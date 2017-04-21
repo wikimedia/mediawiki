@@ -18,6 +18,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 			[ 'page',
 				'revision',
 				'archive',
+				'ip_changes',
 				'text',
 
 				'recentchanges',

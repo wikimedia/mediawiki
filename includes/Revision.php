@@ -1401,7 +1401,7 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @param IDatabase $dbw (master connection)
 	 * @throws MWException
-	 * @return int
+	 * @return int The revision ID
 	 */
 	public function insertOn( $dbw ) {
 		global $wgDefaultExternalStore, $wgContentHandlerUseDB;
@@ -1516,6 +1516,16 @@ class Revision implements IDBAccessObject {
 				'After insert, Revision mId is ' . var_export( $this->mId, 1 ) . ': ' .
 					var_export( $row, 1 )
 			);
+		}
+
+		// Insert IP revision into ip_changes for use when querying for a range.
+		if ( $this->mUser === 0 && IP::isValid( $this->mUserText ) ) {
+			$ipcRow = [
+				'ipc_rev_id'        => $this->mId,
+				'ipc_rev_timestamp' => $row['rev_timestamp'],
+				'ipc_hex'           => IP::toHex( $row['rev_user_text'] ),
+			];
+			$dbw->insert( 'ip_changes', $ipcRow, __METHOD__ );
 		}
 
 		// Avoid PHP 7.1 warning of passing $this by reference

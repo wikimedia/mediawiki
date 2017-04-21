@@ -2833,9 +2833,14 @@ class WikiPage implements Page, IDBAccessObject {
 			'FOR UPDATE',
 			$commentQuery['joins']
 		);
+
 		// Build their equivalent archive rows
 		$rowsInsert = [];
 		$revids = [];
+
+		/** @var int[] Revision IDs of edits that were made by IPs */
+		$ipRevIds = [];
+
 		foreach ( $res as $row ) {
 			$comment = $revCommentStore->getComment( $row );
 			$rowInsert = [
@@ -2861,6 +2866,12 @@ class WikiPage implements Page, IDBAccessObject {
 			}
 			$rowsInsert[] = $rowInsert;
 			$revids[] = $row->rev_id;
+
+			// Keep track of IP edits, so that the corresponding rows can
+			// be deleted in the ip_changes table.
+			if ( (int)$row->rev_user === 0 && IP::isValid( $row->rev_user_text ) ) {
+				$ipRevIds[] = $row->rev_id;
+			}
 		}
 		// Copy them into the archive table
 		$dbw->insert( 'archive', $rowsInsert, __METHOD__ );
@@ -2877,6 +2888,11 @@ class WikiPage implements Page, IDBAccessObject {
 		$dbw->delete( 'revision', [ 'rev_page' => $id ], __METHOD__ );
 		if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
 			$dbw->delete( 'revision_comment_temp', [ 'revcomment_rev' => $revids ], __METHOD__ );
+		}
+
+		// Also delete records from ip_changes as applicable.
+		if ( count( $ipRevIds ) > 0 ) {
+			$dbw->delete( 'ip_changes', [ 'ipc_rev_id' => $ipRevIds ], __METHOD__ );
 		}
 
 		// Log the deletion, if the page was suppressed, put it in the suppression log instead

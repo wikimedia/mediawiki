@@ -828,6 +828,16 @@ class User implements IDBAccessObject {
 	}
 
 	/**
+	 * Is the user an IP range?
+	 *
+	 * @since 1.30
+	 * @return bool
+	 */
+	public function isIPRange() {
+		return IP::isValidRange( $this->mName );
+	}
+
+	/**
 	 * Is the input a valid username?
 	 *
 	 * Checks if the input is a valid username, we don't want an empty string,

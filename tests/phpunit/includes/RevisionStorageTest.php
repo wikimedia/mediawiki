@@ -22,6 +22,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$this->tablesUsed = array_merge( $this->tablesUsed,
 			[ 'page',
 				'revision',
+				'ip_changes',
 				'text',
 
 				'recentchanges',
@@ -438,6 +439,25 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$this->assertEquals( $orig->getTextId(), $rev->getTextId(),
 			'new null revision shold have the same text id as the original revision' );
 		$this->assertEquals( 'some testing text', $rev->getContent()->getNativeData() );
+	}
+
+	/**
+	 * @covers Revision::insertOn
+	 */
+	public function testInsertOn() {
+		$ip = '2600:387:ed7:947e:8c16:a1ad:dd34:1dd7';
+
+		$orig = $this->makeRevision( [
+			'user_text' => $ip
+		] );
+
+		// Make sure the revision was copied to ip_changes
+		$dbr = wfGetDB( DB_REPLICA );
+		$res = $dbr->select( 'ip_changes', '*', [ 'ipc_rev_id' => $orig->getId() ] );
+		$row = $res->fetchObject();
+
+		$this->assertEquals( IP::toHex( $ip ), $row->ipc_hex );
+		$this->assertEquals( $orig->getTimestamp(), $row->ipc_rev_timestamp );
 	}
 
 	public static function provideUserWasLastToEdit() {

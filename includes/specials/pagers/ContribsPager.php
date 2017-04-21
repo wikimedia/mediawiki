@@ -87,6 +87,10 @@ class ContribsPager extends RangeChronologicalPager {
 		}
 		$this->getDateRangeCond( $startTimestamp, $endTimestamp );
 
+		// This property on IndexPager is set by $this->getIndexField() in parent::__construct().
+		// We need to reassign it here so that it is used when the actual query is ran.
+		$this->mIndexField = $this->getIndexField();
+
 		// Most of this code will use the 'contributions' group DB, which can map to replica DBs
 		// with extra user based indexes or partioning by user. The additional metadata
 		// queries should use a regular replica DB since the lookup pattern is not all by user.
@@ -207,6 +211,12 @@ class ContribsPager extends RangeChronologicalPager {
 			'join_conds' => $join_cond
 		];
 
+		// For IPv6, we use ipc_rev_timestamp on ip_changes as the index field,
+		// which will be referenced when parsing the results of a query.
+		if ( self::isQueryableRange( $this->target ) ) {
+			$queryInfo['fields'][] = 'ipc_rev_timestamp';
+		}
+
 		ChangeTags::modifyDisplayQuery(
 			$queryInfo['tables'],
 			$queryInfo['fields'],
@@ -257,8 +267,18 @@ class ContribsPager extends RangeChronologicalPager {
 				$condition['rev_user'] = $uid;
 				$index = 'user_timestamp';
 			} else {
-				$condition['rev_user_text'] = $this->target;
-				$index = 'usertext_timestamp';
+				$ipRangeConds = $this->getIpRangeConds( $this->mDb, $this->target );
+
+				if ( $ipRangeConds ) {
+					$tables[] = 'ip_changes';
+					$join_conds['ip_changes'] = [
+						'LEFT JOIN', [ 'ipc_rev_id = rev_id' ]
+					];
+					$condition[] = $ipRangeConds;
+				} else {
+					$condition['rev_user_text'] = $this->target;
+					$index = 'usertext_timestamp';
+				}
 			}
 		}
 
@@ -305,8 +325,57 @@ class ContribsPager extends RangeChronologicalPager {
 		return [];
 	}
 
-	function getIndexField() {
-		return 'rev_timestamp';
+	/**
+	 * Get SQL conditions for an IP range, if applicable
+	 * @param IDatabase      $db
+	 * @param string         $ip The IP address or CIDR
+	 * @return string|false  SQL for valid IP ranges, false if invalid
+	 */
+	private function getIpRangeConds( $db, $ip ) {
+		// First make sure it is a valid range and they are not outside the CIDR limit
+		if ( !$this->isQueryableRange( $ip ) ) {
+			return false;
+		}
+
+		list( $start, $end ) = IP::parseRange( $ip );
+
+		return 'ipc_hex BETWEEN ' . $db->addQuotes( $start ) . ' AND ' . $db->addQuotes( $end );
+	}
+
+	/**
+	 * Is the given IP a range and within the CIDR limit?
+	 *
+	 * @param string $ipRange
+	 * @return bool True if it is valid
+	 * @since 1.30
+	 */
+	public function isQueryableRange( $ipRange ) {
+		$limits = $this->getConfig()->get( 'RangeContributionsCIDRLimit' );
+
+		$bits = IP::parseCIDR( $ipRange )[1];
+		if (
+			( $bits === false ) ||
+			( IP::isIPv4( $ipRange ) && $bits < $limits['IPv4'] ) ||
+			( IP::isIPv6( $ipRange ) && $bits < $limits['IPv6'] )
+		) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Override of getIndexField() in IndexPager.
+	 * For IP ranges, it's faster to use the replicated ipc_rev_timestamp
+	 * on the `ip_changes` table than the rev_timestamp on the `revision` table.
+	 * @return string Name of field
+	 */
+	public function getIndexField() {
+		if ( self::isQueryableRange( $this->target ) ) {
+			return 'ipc_rev_timestamp';
+		} else {
+			return 'rev_timestamp';
+		}
 	}
 
 	function doBatchLookups() {
@@ -400,6 +469,7 @@ class ContribsPager extends RangeChronologicalPager {
 			# Mark current revisions
 			$topmarktext = '';
 			$user = $this->getUser();
+
 			if ( $row->rev_id === $row->page_latest ) {
 				$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
 				$classes[] = 'mw-contributions-current';
@@ -473,8 +543,10 @@ class ContribsPager extends RangeChronologicalPager {
 
 			# Show user names for /newbies as there may be different users.
 			# Note that only unprivileged users have rows with hidden user names excluded.
+			# When querying for an IP range, we want to always show user and user talk links.
 			$userlink = '';
-			if ( $this->contribs == 'newbie' && !$rev->isDeleted( Revision::DELETED_USER ) ) {
+			if ( ( $this->contribs == 'newbie' && !$rev->isDeleted( Revision::DELETED_USER ) )
+				|| self::isQueryableRange( $this->target ) ) {
 				$userlink = ' . . ' . $lang->getDirMark()
 					. Linker::userLink( $rev->getUser(), $rev->getUserText() );
 				$userlink .= ' ' . $this->msg( 'parentheses' )->rawParams(

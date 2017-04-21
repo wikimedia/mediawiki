@@ -8728,6 +8728,18 @@ $wgCSPFalsePositiveUrls = [
 ];
 
 /**
+ * Shortest CIDR limits that can be checked in any individual range check
+ * at Special:Contributions.
+ *
+ * @var array
+ * @since 1.30
+ */
+$wgRangeContributionsCIDRLimit = [
+	'IPv4' => 16,
+	'IPv6' => 32,
+];
+
+/**
  * The following variables define 3 user experience levels:
  *
  *  - newcomer: has not yet reached the 'learner' level

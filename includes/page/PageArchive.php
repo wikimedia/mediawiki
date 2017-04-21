@@ -735,6 +735,17 @@ class PageArchive {
 					] );
 
 				$revision->insertOn( $dbw );
+
+				// Also restore reference to the revision in ip_changes if it was an IP edit.
+				if ( (int)$row->ar_rev_id === 0 && IP::isValid( $row->ar_user_text ) ) {
+					$ipcRow = [
+						'ipc_rev_id' => $row->ar_rev_id,
+						'ipc_rev_timestamp' => $row->ar_timestamp,
+						'ipc_hex' => IP::toHex( $row->ar_user_text ),
+					];
+					$dbw->insert( 'ip_changes', $ipcRow, __METHOD__ );
+				}
+
 				$restored++;
 
 				Hooks::run( 'ArticleRevisionUndeleted',
