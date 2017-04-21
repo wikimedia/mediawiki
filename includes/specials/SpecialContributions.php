@@ -230,6 +230,9 @@ class SpecialContributions extends IncludableSpecialPage {
 				$message = 'sp-contributions-footer-newbies';
 			} elseif ( IP::isIPAddress( $target ) ) {
 				$message = 'sp-contributions-footer-anon';
+			} elseif ( !IP::isValid( $target ) ) {
+				// isValid returns false for ranges
+				$message = 'sp-contributions-footer-anon-range';
 			} elseif ( $userObj->isAnon() ) {
 				// No message for non-existing users
 				$message = '';
@@ -259,7 +262,7 @@ class SpecialContributions extends IncludableSpecialPage {
 	protected function contributionsSub( $userObj ) {
 		if ( $userObj->isAnon() ) {
 			// Show a warning message that the user being searched for doesn't exists
-			if ( !User::isIP( $userObj->getName() ) ) {
+			if ( !IP::isIPAddress( $userObj->getName() ) ) {
 				$this->getOutput()->wrapWikiMsg(
 					"<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
 					[
@@ -286,7 +289,13 @@ class SpecialContributions extends IncludableSpecialPage {
 			// Do not expose the autoblocks, since that may lead to a leak of accounts' IPs,
 			// and also this will display a totally irrelevant log entry as a current block.
 			if ( !$this->including() ) {
-				$block = Block::newFromTarget( $userObj, $userObj );
+				// For IP ranges you must give Block::newFromTarget the CIDR string and not a user object.
+				if ( $userObj->isIPRange() ) {
+					$block = Block::newFromTarget( $userObj->getName(), $userObj->getName() );
+				} else {
+					$block = Block::newFromTarget( $userObj, $userObj );
+				}
+
 				if ( !is_null( $block ) && $block->getType() != Block::TYPE_AUTO ) {
 					if ( $block->getType() == Block::TYPE_RANGE ) {
 						$nt = MWNamespace::getCanonicalName( NS_USER ) . ':' . $block->getTarget();
@@ -332,10 +341,14 @@ class SpecialContributions extends IncludableSpecialPage {
 		$talkpage = $target->getTalkPage();
 
 		$linkRenderer = $sp->getLinkRenderer();
-		$tools['user-talk'] = $linkRenderer->makeLink(
-			$talkpage,
-			$sp->msg( 'sp-contributions-talk' )->text()
-		);
+
+		# No talk pages for IP ranges.
+		if ( !IP::isValidRange( $username ) ) {
+			$tools['user-talk'] = $linkRenderer->makeLink(
+				$talkpage,
+				$sp->msg( 'sp-contributions-talk' )->text()
+			);
+		}
 
 		if ( ( $id !== null ) || ( $id === null && IP::isIPAddress( $username ) ) ) {
 			if ( $sp->getUser()->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
@@ -374,24 +387,29 @@ class SpecialContributions extends IncludableSpecialPage {
 				);
 			}
 		}
-		# Uploads
-		$tools['uploads'] = $linkRenderer->makeKnownLink(
-			SpecialPage::getTitleFor( 'Listfiles', $username ),
-			$sp->msg( 'sp-contributions-uploads' )->text()
-		);
 
-		# Other logs link
-		$tools['logs'] = $linkRenderer->makeKnownLink(
-			SpecialPage::getTitleFor( 'Log', $username ),
-			$sp->msg( 'sp-contributions-logs' )->text()
-		);
-
-		# Add link to deleted user contributions for priviledged users
-		if ( $sp->getUser()->isAllowed( 'deletedhistory' ) ) {
-			$tools['deletedcontribs'] = $linkRenderer->makeKnownLink(
-				SpecialPage::getTitleFor( 'DeletedContributions', $username ),
-				$sp->msg( 'sp-contributions-deleted', $username )->text()
+		# Don't show some links for IP ranges
+		# FIXME: 'Logs' still appears under 'Tools' on the left sidebar
+		if ( !IP::isValidRange( $username ) ) {
+			# Uploads
+			$tools['uploads'] = $linkRenderer->makeKnownLink(
+				SpecialPage::getTitleFor( 'Listfiles', $username ),
+				$sp->msg( 'sp-contributions-uploads' )->text()
 			);
+
+			# Other logs link
+			$tools['logs'] = $linkRenderer->makeKnownLink(
+				SpecialPage::getTitleFor( 'Log', $username ),
+				$sp->msg( 'sp-contributions-logs' )->text()
+			);
+
+			# Add link to deleted user contributions for priviledged users
+			if ( $sp->getUser()->isAllowed( 'deletedhistory' ) ) {
+				$tools['deletedcontribs'] = $linkRenderer->makeKnownLink(
+					SpecialPage::getTitleFor( 'DeletedContributions', $username ),
+					$sp->msg( 'sp-contributions-deleted', $username )->text()
+				);
+			}
 		}
 
 		# Add a link to change user rights for privileged users
