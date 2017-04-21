@@ -49,14 +49,24 @@ class ApiQueryContributors extends ApiQueryBase {
 		$params = $this->extractRequestParams();
 		$this->requireMaxOneParameter( $params, 'group', 'excludegroup', 'rights', 'excluderights' );
 
-		// Only operate on existing pages
-		$pages = array_keys( $this->getPageSet()->getGoodTitles() );
-
-		// Filter out already-processed pages
+		// Process continue
+		$cont_anonpage = 0;
+		$cont_page = 0;
+		$cont_user = 0;
 		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
-			$this->dieContinueUsageIf( count( $cont ) != 2 );
-			$cont_page = (int)$cont[0];
+			$this->dieContinueUsageIf( count( $cont ) !== 3 );
+			$cont_anonpage = $cont[0] === '-' ? '-' : (int)$cont[0];
+			$cont_page = (int)$cont[1];
+			$cont_user = (int)$cont[2];
+			$this->dieContinueUsageIf( $cont[0] !== (string)$cont_anonpage );
+			$this->dieContinueUsageIf( $cont[1] !== (string)$cont_page );
+			$this->dieContinueUsageIf( $cont[2] !== (string)$cont_user );
+		}
+
+		// Only operate on existing pages
+		$pages = array_keys( $this->getPageSet()->getGoodTitles() );
+		if ( $cont_page > 0 ) {
 			$pages = array_filter( $pages, function ( $v ) use ( $cont_page ) {
 				return $v >= $cont_page;
 			} );
@@ -68,39 +78,60 @@ class ApiQueryContributors extends ApiQueryBase {
 
 		// Apply MAX_PAGES, leaving any over the limit for a continue.
 		sort( $pages );
-		$continuePages = null;
 		if ( count( $pages ) > self::MAX_PAGES ) {
-			$continuePages = $pages[self::MAX_PAGES] . '|0';
+			$nextPage = $pages[self::MAX_PAGES];
+			$continuePages = "$nextPage|$nextPage|0";
 			$pages = array_slice( $pages, 0, self::MAX_PAGES );
+		} else {
+			$nextPage = '-';
+			$continuePages = null;
 		}
 
 		$result = $this->getResult();
 
-		// First, count anons
-		$this->addTables( 'revision' );
-		$this->addFields( [
-			'page' => 'rev_page',
-			'anons' => 'COUNT(DISTINCT rev_user_text)',
-		] );
-		$this->addWhereFld( 'rev_page', $pages );
-		$this->addWhere( 'rev_user = 0' );
-		$this->addWhere( $db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
-		$this->addOption( 'GROUP BY', 'rev_page' );
-		$res = $this->select( __METHOD__ );
-		foreach ( $res as $row ) {
-			$fit = $result->addValue( [ 'query', 'pages', $row->page ],
-				'anoncontributors', (int)$row->anons
-			);
-			if ( !$fit ) {
-				// This not fitting isn't reasonable, so it probably means that
-				// some other module used up all the space. Just set a dummy
-				// continue and hope it works next time.
-				$this->setContinueEnumParameter( 'continue',
-					$params['continue'] !== null ? $params['continue'] : '0|0'
-				);
+		// First, count anons (but only for pages where we haven't already)
+		if ( $cont_anonpage === '-' ) {
+			$anonpages = [];
+		} elseif ( $cont_anonpage > 0 ) {
+			$anonpages = array_values( array_filter( $pages, function ( $v ) use ( $cont_anonpage ) {
+				return $v >= $cont_anonpage;
+			} ) );
+		} else {
+			$anonpages = $pages;
+		}
+		if ( $anonpages ) {
+			$counts = array_fill_keys( $anonpages, 0 );
 
-				return;
+			$this->addTables( 'revision' );
+			$this->addFields( [
+				'page' => 'rev_page',
+				'anons' => 'COUNT(DISTINCT rev_user_text)',
+			] );
+			if ( count( $anonpages ) === 1 ) {
+				// See below
+				$this->addWhere( 'rev_page = ' . (int)$anonpages[0] );
+			} else {
+				$this->addWhereFld( 'rev_page', $anonpages );
 			}
+			$this->addWhere( 'rev_user = 0' );
+			$this->addWhere( $db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
+			$this->addOption( 'GROUP BY', 'rev_page' );
+			$res = $this->select( __METHOD__ );
+			foreach ( $res as $row ) {
+				$counts[$row->page] = (int)$row->anons;
+			}
+
+			ksort( $counts );
+			foreach ( $counts as $page => $count ) {
+				$fit = $result->addValue( [ 'query', 'pages', $page ], 'anoncontributors', $count );
+				if ( !$fit ) {
+					$this->setContinueEnumParameter( 'continue', "$page|$cont_page|$cont_user" );
+					return;
+				}
+			}
+
+			// Update for continuation in named users below
+			$cont_anonpage = $nextPage;
 		}
 
 		// Next, add logged-in users
@@ -111,19 +142,21 @@ class ApiQueryContributors extends ApiQueryBase {
 			'user' => 'rev_user',
 			'username' => 'MAX(rev_user_text)', // Non-MySQL databases don't like partial group-by
 		] );
-		$this->addWhereFld( 'rev_page', $pages );
+		if ( count( $pages ) === 1 ) {
+			// There's an old bug where MySQL will insist on filesorting if a
+			// field that's constant in WHERE is used in GROUP BY or ORDER BY.
+			// On modern MariaDB, though, the bug doesn't occur if it's an integer
+			// field (as rev_page is) and the value is passed as an integer
+			// rather than a string.
+			$this->addWhere( 'rev_page = ' . (int)$pages[0] );
+		} else {
+			$this->addWhereFld( 'rev_page', $pages );
+		}
 		$this->addWhere( 'rev_user != 0' );
 		$this->addWhere( $db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
 		$this->addOption( 'GROUP BY', 'rev_page, rev_user' );
+		$this->addOption( 'ORDER BY', 'rev_page, rev_user' );
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
-
-		// Force a sort order to ensure that properties are grouped by page
-		// But only if pp_page is not constant in the WHERE clause.
-		if ( count( $pages ) > 1 ) {
-			$this->addOption( 'ORDER BY', 'rev_page, rev_user' );
-		} else {
-			$this->addOption( 'ORDER BY', 'rev_user' );
-		}
 
 		$limitGroups = [];
 		if ( $params['group'] ) {
@@ -172,10 +205,6 @@ class ApiQueryContributors extends ApiQueryBase {
 		}
 
 		if ( $params['continue'] !== null ) {
-			$cont = explode( '|', $params['continue'] );
-			$this->dieContinueUsageIf( count( $cont ) != 2 );
-			$cont_page = (int)$cont[0];
-			$cont_user = (int)$cont[1];
 			$this->addWhere(
 				"rev_page > $cont_page OR " .
 				"(rev_page = $cont_page AND " .
@@ -189,8 +218,7 @@ class ApiQueryContributors extends ApiQueryBase {
 			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that
 				// there are additional pages to be had. Stop here...
-				$this->setContinueEnumParameter( 'continue', $row->page . '|' . $row->user );
-
+				$this->setContinueEnumParameter( 'continue', "$cont_anonpage|$row->page|$row->user" );
 				return;
 			}
 
@@ -199,8 +227,7 @@ class ApiQueryContributors extends ApiQueryBase {
 				'user'
 			);
 			if ( !$fit ) {
-				$this->setContinueEnumParameter( 'continue', $row->page . '|' . $row->user );
-
+				$this->setContinueEnumParameter( 'continue', "$cont_anonpage|$row->page|$row->user" );
 				return;
 			}
 		}
