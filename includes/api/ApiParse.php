@@ -312,6 +312,13 @@ class ApiParse extends ApiBase {
 			$outputPage = new OutputPage( $context );
 			$outputPage->addParserOutputMetadata( $p_result );
 			$context->setOutput( $outputPage );
+
+			if ( $skin ) {
+				// Based on OutputPage::output()
+				foreach ( $skin->getDefaultModules() as $group ) {
+					$outputPage->addModules( $group );
+				}
+			}
 		}
 
 		if ( !is_null( $oldid ) ) {
