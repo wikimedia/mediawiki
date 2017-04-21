@@ -75,6 +75,10 @@ class ContribsPager extends ReverseChronologicalPager {
 		$month = isset( $options['month'] ) ? $options['month'] : false;
 		$this->getDateCond( $year, $month );
 
+		// This property on IndexPager is set by $this->getIndexField() in parent::__construct().
+		// We need to reassign it here so that it is used when the actual query is ran.
+		$this->mIndexField = $this->getIndexField();
+
 		// Most of this code will use the 'contributions' group DB, which can map to replica DBs
 		// with extra user based indexes or partioning by user. The additional metadata
 		// queries should use a regular replica DB since the lookup pattern is not all by user.
@@ -246,8 +250,18 @@ class ContribsPager extends ReverseChronologicalPager {
 				$condition['rev_user'] = $uid;
 				$index = 'user_timestamp';
 			} else {
-				$condition['rev_user_text'] = $this->target;
-				$index = 'usertext_timestamp';
+				$ipRangeConds = self::getIpRangeConds( $this->mDb, $this->target );
+
+				if ( $ipRangeConds ) {
+					$tables[] = 'ip_changes';
+					$join_conds['ip_changes'] = [
+						'LEFT JOIN', [ 'ipc_rev_id = rev_id' ]
+					];
+					$condition[] = $ipRangeConds;
+				} else {
+					$condition['rev_user_text'] = $this->target;
+					$index = 'usertext_timestamp';
+				}
 			}
 		}
 
@@ -294,8 +308,58 @@ class ContribsPager extends ReverseChronologicalPager {
 		return [];
 	}
 
+	/**
+	 * Get SQL conditions for an IP range, if applicable
+	 * @param IDatabase $db
+	 * @param string    $ip The IP address or CIDR
+	 * @return array|false  Array for valid IP ranges, false if invalid
+	 */
+	public static function getIpRangeConds( $db, $ip ) {
+		global $wgRangeContributionsCIDRLimit;
+		$matches = [];
+		if ( preg_match( '#^(\d+\.\d+\.\d+\.\d+)/(\d+)$#', $ip, $matches ) ) {
+			// IPv4 CIDR, 16-32 bits
+			if ( $matches[2] < $wgRangeContributionsCIDRLimit['IPv4'] || $matches[2] > 32 ) {
+				return false; // invalid
+			}
+			list( $start, $end ) = IP::parseRange( $ip );
+			return 'ipc_hex BETWEEN ' . $db->addQuotes( $start ) . ' AND ' . $db->addQuotes( $end );
+		} elseif ( preg_match(
+				'#^\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}/(\d+)$#',
+				$ip,
+				$matches ) ) {
+			// IPv6 CIDR, 32-128 bits
+			if ( $matches[1] < $wgRangeContributionsCIDRLimit['IPv6'] || $matches[1] > 128 ) {
+				return false; // invalid
+			}
+			list( $start, $end ) = IP::parseRange( $ip );
+			return 'ipc_hex BETWEEN ' . $db->addQuotes( $start ) . ' AND ' . $db->addQuotes( $end );
+		}
+		// Throw away this query, incomplete IP, these don't get through the entry point anyway
+		return false;
+	}
+
+	/**
+	 * Is the current target an IP range?
+	 * This works because IP::isValid reliably returns false for ranges (see documentation)
+	 * @return boolean True if current target is an IP range
+	 */
+	private function isIPRange() {
+		return IP::isIPAddress( $this->target ) && !IP::isValid( $this->target );
+	}
+
+	/**
+	 * Override of getIndexField() in IndexPager.
+	 * For IP ranges, it's faster to use the replicated ipc_rev_timestamp
+	 * on the `ip_changes` table than the rev_timestamp on the `revision` table.
+	 * @return string Name of field
+	 */
 	function getIndexField() {
-		return 'rev_timestamp';
+		if ( $this->isIPRange() ) {
+			return 'ipc_rev_timestamp';
+		} else {
+			return 'rev_timestamp';
+		}
 	}
 
 	function doBatchLookups() {
@@ -389,6 +453,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			# Mark current revisions
 			$topmarktext = '';
 			$user = $this->getUser();
+
 			if ( $row->rev_id === $row->page_latest ) {
 				$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
 				$classes[] = 'mw-contributions-current';
@@ -460,9 +525,9 @@ class ContribsPager extends ReverseChronologicalPager {
 				$d = '<span class="history-deleted">' . $d . '</span>';
 			}
 
-			# Show user names for /newbies as there may be different users.
+			# Show user names for /newbies and IP ranges as there may be different users.
 			# Note that we already excluded rows with hidden user names.
-			if ( $this->contribs == 'newbie' ) {
+			if ( $this->contribs == 'newbie' || $this->isIPRange() ) {
 				$userlink = ' . . ' . $lang->getDirMark()
 					. Linker::userLink( $rev->getUser(), $rev->getUserText() );
 				$userlink .= ' ' . $this->msg( 'parentheses' )->rawParams(
