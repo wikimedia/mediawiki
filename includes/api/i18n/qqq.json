@@ -1613,6 +1613,7 @@
 	"apierror-revdel-mutuallyexclusive": "{{doc-apierror}}",
 	"apierror-revdel-needtarget": "{{doc-apierror}}",
 	"apierror-revdel-paramneeded": "{{doc-apierror}}",
+	"apierror-revisions-badid": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter in question, e.g. \"rvstartid\".",
 	"apierror-revisions-norevids": "{{doc-apierror}}\n\nParameters:\n* $1 - Module parameter prefix, e.g. \"bl\".",
 	"apierror-revisions-singlepage": "{{doc-apierror}}\n\nParameters:\n* $1 - Module parameter prefix, e.g. \"bl\".",
 	"apierror-revwrongpage": "{{doc-apierror}}\n\nParameters:\n* $1 - Revision ID number.\n* $2 - Page title.",
