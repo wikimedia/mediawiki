@@ -5271,6 +5271,32 @@ Bracketed external links with template-generated invalid target
 </p>
 !! end
 
+# wt2html only because Parsoid would want to add <nowiki>s coming from html
+!! test
+Broken wikilinks (but not external links) prevent templates from closing
+!! options
+parsoid=wt2html
+!! wikitext
+[http://example.com x
+
+{{echo|[http://example.com x}}
+
+[[Foo
+
+{{echo|[[Foo}}
+!! html/php
+<p>[<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a> x
+</p><p>[<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a> x
+</p><p>[[Foo
+</p><p>{{echo|[[Foo}}
+</p>
+!! html/parsoid
+<p>[<a rel="mw:ExtLink" href="http://example.com">http://example.com</a> x</p>
+<p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[http://example.com x"}},"i":0}}]}'>[<a rel="mw:ExtLink" href="http://example.com">http://example.com</a> x</p>
+<p>[[Foo</p>
+<p>{{echo|[[Foo}}</p>
+!! end
+
 !! test
 T4702: Mismatched <i>, <b> and <a> tags are invalid
 !! wikitext
@@ -7847,7 +7873,7 @@ File containing double quotes and spaces
 !! wikitext
 [[File:Cool "Gator".png]]
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[]}' data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}]}'><a href="./File:Cool_%22Gator%22.png" data-parsoid='{"a":{"href":"./File:Cool_%22Gator%22.png"},"sa":{"href":"File:Cool \"Gator\".png"}}'><img resource='./File:Cool_"Gator".png' src="./Special:FilePath/Cool_%22Gator%22.png" height="220" width="220" data-parsoid='{"a":{"resource":"./File:Cool_\"Gator\".png","height":"220","width":"220","src":"./Special:FilePath/Cool_%22Gator%22.png"},"sa":{"resource":"File:Cool \"Gator\".png","src":"./Special:FilePath/Cool_\"Gator\".png"}}'/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[]}' data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./File:Cool_%22Gator%22.png" data-parsoid='{"a":{"href":"./File:Cool_%22Gator%22.png"},"sa":{"href":"File:Cool \"Gator\".png"}}'><img resource='./File:Cool_"Gator".png' src="./Special:FilePath/Cool_%22Gator%22.png" height="220" width="220" data-parsoid='{"a":{"resource":"./File:Cool_\"Gator\".png","height":"220","width":"220","src":"./Special:FilePath/Cool_%22Gator%22.png"},"sa":{"resource":"File:Cool \"Gator\".png","src":"./Special:FilePath/Cool_\"Gator\".png"}}'/></a></span></p>
 !! end
 
 !! test
@@ -7895,7 +7921,7 @@ Link with double quotes in title part (literal) and alternate part (interpreted)
 </p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)"><i>Pentecoste</i></a>
 </p>
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}]}'><a href="./File:Denys_Savchenko_''Pentecoste''.jpg"><img resource="./File:Denys_Savchenko_''Pentecoste''.jpg" src="./Special:FilePath/Denys_Savchenko_''Pentecoste''.jpg" height="220" width="220"/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./File:Denys_Savchenko_''Pentecoste''.jpg"><img resource="./File:Denys_Savchenko_''Pentecoste''.jpg" src="./Special:FilePath/Denys_Savchenko_''Pentecoste''.jpg" height="220" width="220"/></a></span></p>
 <p><a rel="mw:WikiLink" href="./''Pentecoste''" title="''Pentecoste''">''Pentecoste''</a></p>
 <p><a rel="mw:WikiLink" href="./''Pentecoste''" title="''Pentecoste''">Pentecoste</a></p>
 <p><a rel="mw:WikiLink" href="./''Pentecoste''" title="''Pentecoste''"><i>Pentecoste</i></a></p>
@@ -7915,10 +7941,10 @@ Broken image links with HTML captions (T41700)
 <a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent" class="new" title="File:Nonexistent">abc</a>
 </p>
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"caption","ak":"&lt;script>&lt;/script>"}]}' data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}],"caption":"&amp;lt;script>&amp;lt;/script>"}'><a href="./File:Nonexistent" data-parsoid='{"a":{"href":"./File:Nonexistent"},"sa":{}}'><img resource="./File:Nonexistent" src="./Special:FilePath/Nonexistent" height="220" width="220" data-parsoid='{"a":{"resource":"./File:Nonexistent","height":"220","width":"220"},"sa":{"resource":"File:Nonexistent"}}'/></a></span>
-<span typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"width","ak":"100x100px"},{"ck":"caption","ak":"&lt;script>&lt;/script>"}]}' data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}],"caption":"&amp;lt;script>&amp;lt;/script>"}'><a href="./File:Nonexistent" data-parsoid='{"a":{"href":"./File:Nonexistent"},"sa":{}}'><img resource="./File:Nonexistent" src="./Special:FilePath/Nonexistent" height="100" width="100" data-parsoid='{"a":{"resource":"./File:Nonexistent","height":"100","width":"100"},"sa":{"resource":"File:Nonexistent"}}'/></a></span>
-<span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"caption","ak":"&amp;lt;"}]}' data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}],"caption":"&lt;span typeof=\"mw:Entity\" data-parsoid=&#39;{\"src\":\"&amp;amp;lt;\",\"srcContent\":\"&amp;lt;\",\"dsr\":[107,111,null,null]}&#39;>&amp;lt;&lt;/span>"}'><a href="./File:Nonexistent" data-parsoid='{"a":{"href":"./File:Nonexistent"},"sa":{}}'><img resource="./File:Nonexistent" src="./Special:FilePath/Nonexistent" height="220" width="220" data-parsoid='{"a":{"resource":"./File:Nonexistent","height":"220","width":"220"},"sa":{"resource":"File:Nonexistent"}}'/></a></span>
-<span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"caption","ak":"a&lt;i>b&lt;/i>c"}]}' data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}],"caption":"a&lt;i data-parsoid=&#39;{\"stx\":\"html\",\"dsr\":[134,142,3,4]}&#39;>b&lt;/i>c"}'><a href="./File:Nonexistent" data-parsoid='{"a":{"href":"./File:Nonexistent"},"sa":{}}'><img resource="./File:Nonexistent" src="./Special:FilePath/Nonexistent" height="220" width="220" data-parsoid='{"a":{"resource":"./File:Nonexistent","height":"220","width":"220"},"sa":{"resource":"File:Nonexistent"}}'/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"caption","ak":"&lt;script>&lt;/script>"}]}' data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}],"caption":"&amp;lt;script>&amp;lt;/script>"}'><a href="./File:Nonexistent" data-parsoid='{"a":{"href":"./File:Nonexistent"},"sa":{}}'><img resource="./File:Nonexistent" src="./Special:FilePath/Nonexistent" height="220" width="220" data-parsoid='{"a":{"resource":"./File:Nonexistent","height":"220","width":"220"},"sa":{"resource":"File:Nonexistent"}}'/></a></span>
+<span typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"width","ak":"100x100px"},{"ck":"caption","ak":"&lt;script>&lt;/script>"}]}' data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}],"caption":"&amp;lt;script>&amp;lt;/script>"}'><a href="./File:Nonexistent" data-parsoid='{"a":{"href":"./File:Nonexistent"},"sa":{}}'><img resource="./File:Nonexistent" src="./Special:FilePath/Nonexistent" height="100" width="100" data-parsoid='{"a":{"resource":"./File:Nonexistent","height":"100","width":"100"},"sa":{"resource":"File:Nonexistent"}}'/></a></span>
+<span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"caption","ak":"&amp;lt;"}]}' data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}],"caption":"&lt;span typeof=\"mw:Entity\" data-parsoid=&#39;{\"src\":\"&amp;amp;lt;\",\"srcContent\":\"&amp;lt;\",\"dsr\":[107,111,null,null]}&#39;>&amp;lt;&lt;/span>"}'><a href="./File:Nonexistent" data-parsoid='{"a":{"href":"./File:Nonexistent"},"sa":{}}'><img resource="./File:Nonexistent" src="./Special:FilePath/Nonexistent" height="220" width="220" data-parsoid='{"a":{"resource":"./File:Nonexistent","height":"220","width":"220"},"sa":{"resource":"File:Nonexistent"}}'/></a></span>
+<span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"caption","ak":"a&lt;i>b&lt;/i>c"}]}' data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}],"caption":"a&lt;i data-parsoid=&#39;{\"stx\":\"html\",\"dsr\":[134,142,3,4]}&#39;>b&lt;/i>c"}'><a href="./File:Nonexistent" data-parsoid='{"a":{"href":"./File:Nonexistent"},"sa":{}}'><img resource="./File:Nonexistent" src="./Special:FilePath/Nonexistent" height="220" width="220" data-parsoid='{"a":{"resource":"./File:Nonexistent","height":"220","width":"220"},"sa":{"resource":"File:Nonexistent"}}'/></a></span></p>
 !! end
 
 !! test
@@ -10434,15 +10460,18 @@ Parsoid: Page property magic word with magic word contents
 !! wikitext
 {{DISPLAYTITLE:''{{PAGENAME}}''}}
 !! html/parsoid
-<meta property="mw:PageProp/displaytitle" content="Main Page" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"src":"{{DISPLAYTITLE:&#39;&#39;{{PAGENAME}}&#39;&#39;}}"}' data-mw='{"attribs":[[{"txt":"content"},{"html":"&lt;i data-parsoid=&#39;{\"dsr\":[15,31,2,2]}&#39;>&lt;span about=\"#mwt2\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]],\"dsr\":[17,29,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"PAGENAME\",\"function\":\"pagename\"},\"params\":{},\"i\":0}}]}&#39;>Main Page&lt;/span>&lt;/i>"}]]}'/>
+<meta property="mw:PageProp/displaytitle" content="Main Page" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"src":"{{DISPLAYTITLE:&#39;&#39;{{PAGENAME}}&#39;&#39;}}"}' data-mw='{"attribs":[[{"txt":"content"},{"html":"DISPLAYTITLE:&lt;i data-parsoid=&#39;{\"dsr\":[15,31,2,2]}&#39;>&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]],\"dsr\":[17,29,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"PAGENAME\",\"function\":\"pagename\"},\"params\":{},\"i\":0}}]}&#39;>Main Page&lt;/span>&lt;/i>"}]]}'/>
 !! end
 
+# NOTE: mw:ExpandedAttrs is not the best typeof here. mw:Transclusion is better.
+# But, this is a limitation of our representation and is documented in
+# TemplateHandler.js in processSpecialMagicWord
 !! test
 Parsoid: Template-generated DISPLAYTITLE
 !! wikitext
 {{{{echo|DISPLAYTITLE}}:Foo}}
 !! html/parsoid
-<meta property="mw:PageProp/displaytitle" content="Foo" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"{{echo|DISPLAYTITLE}}:Foo"},"params":{},"i":0}}]}'/>
+<meta property="mw:PageProp/displaytitle" content="Foo" about="#mwt1" typeof="mw:ExpandedAttrs" data-parsoid='{"pi":[[]]}' data-mw='{"attribs":[[{"txt":"content"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[2,23,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"DISPLAYTITLE\"}},\"i\":0}}]}&#39;>DISPLAYTITLE&lt;/span>:Foo"}]]}'/>
 !! end
 
 !! test
@@ -11006,6 +11035,21 @@ Template with complex template as argument
 !! end
 
 !! test
+Templates with templated name
+!! wikitext
+{{{{echo|echo}}|foo}}
+{{{{echo|inner list}} }}
+!! html
+<p>foo
+</p>
+<ul><li> item 1</li></ul>
+
+!! html/parsoid
+<p about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"{{echo|echo}}","href":"./Template:Echo"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</p>
+<ul about="#mwt4" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"{{echo|inner list}} ","href":"./Template:Inner_list"},"params":{},"i":0}}]}'><li> item 1</li></ul>
+!! end
+
+!! test
 Template with thumb image (with link in description)
 !! wikitext
 {{paramtest|param=[[Image:noimage.png|thumb|[[no link|link]] [[no link|caption]]]]}}
@@ -11020,7 +11064,7 @@ This is a test template with parameter <div class="thumb tright"><div class="thu
 </div>
 </div>
 !! html/parsoid
-<p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"paramtest","href":"./Template:Paramtest"},"params":{"param":{"wt":"[[Image:noimage.png|thumb|[[no link|link]] [[no link|caption]]]]"}},"i":0}}]}'>This is a test template with parameter </p><figure class="mw-default-size" typeof="mw:Error mw:Image/Thumb" about="#mwt1" data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}]}'><a href="./File:Noimage.png" ><img resource="./File:Noimage.png" src="./Special:FilePath/Noimage.png" height="220" width="220"/></a><figcaption><a rel="mw:WikiLink" href="./No_link" title="No link">link</a> <a rel="mw:WikiLink" href="./No_link" title="No link">caption</a></figcaption></figure>
+<p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"paramtest","href":"./Template:Paramtest"},"params":{"param":{"wt":"[[Image:noimage.png|thumb|[[no link|link]] [[no link|caption]]]]"}},"i":0}}]}'>This is a test template with parameter </p><figure class="mw-default-size" typeof="mw:Error mw:Image/Thumb" about="#mwt1" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./File:Noimage.png" ><img resource="./File:Noimage.png" src="./Special:FilePath/Noimage.png" height="220" width="220"/></a><figcaption><a rel="mw:WikiLink" href="./No_link" title="No link">link</a> <a rel="mw:WikiLink" href="./No_link" title="No link">caption</a></figcaption></figure>
 !! end
 
 !! article
@@ -11252,17 +11296,23 @@ T2041: Template parameters shown as broken links
 
 !! test
 Template with targets containing wikilinks
+!! options
+parsoid=wt2html
 !! wikitext
 {{[[foo]]}}
 
 {{[[{{echo|foo}}]]}}
 
 {{{{echo|[[foo}}]]}}
-!! html
+!! html/php
 <p>{{<a href="/wiki/Foo" title="Foo">foo</a>}}
 </p><p>{{<a href="/wiki/Foo" title="Foo">foo</a>}}
 </p><p>{{[[foo}}]]
 </p>
+!! html/parsoid
+<p>{{<a rel="mw:WikiLink" href="./Foo" title="Foo">foo</a>}}</p>
+<p>{{<a typeof="mw:ExpandedAttrs" rel="mw:WikiLink" href="./Foo" title="Foo" data-mw='{"attribs":[[{"txt":"href"},{"html":"&lt;span about=\"#mwt3\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[17,29,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"foo\"}},\"i\":0}}]}&#39;>foo&lt;/span>"}]]}'>foo</a>}}</p>
+<p>{{<span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[[foo}}]]"}},"i":0}}]}'>[[foo}}]]</span></p>
 !! end
 
 !! article
@@ -14317,7 +14367,7 @@ Entities in file name and attributes
 <p><a href="/index.php?title=Special:Upload&amp;wpDestFile=7%25_solution.gif" class="new" title="File:7% solution.gif">7% solution</a>
 </p>
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"bogus","ak":"manualthumb=7%25 solution.gif"},{"ck":"link","ak":"link=7%25 solution"},{"ck":"caption","ak":"[[7%25 solution]]"}]}' data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}],"caption":"&lt;a rel=\"mw:WikiLink\" href=\"./7%25_solution\" title=\"7% solution\" data-parsoid=&#39;{\"stx\":\"simple\",\"a\":{\"href\":\"./7%25_solution\"},\"sa\":{\"href\":\"7%25 solution\"},\"dsr\":[74,91,2,2]}&#39;>7% solution&lt;/a>"}'><a href="./7%25_solution" data-parsoid='{"a":{"href":"./7%25_solution"},"sa":{"href":"link=7%25 solution"}}'><img resource="./File:7%25_solution.gif" src="./Special:FilePath/7%25_solution.gif" height="220" width="220" data-parsoid='{"a":{"resource":"./File:7%25_solution.gif","height":"220","width":"220"},"sa":{"resource":"File:7%25 solution.gif"}}'/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"bogus","ak":"manualthumb=7%25 solution.gif"},{"ck":"link","ak":"link=7%25 solution"},{"ck":"caption","ak":"[[7%25 solution]]"}]}' data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}],"caption":"&lt;a rel=\"mw:WikiLink\" href=\"./7%25_solution\" title=\"7% solution\" data-parsoid=&#39;{\"stx\":\"simple\",\"a\":{\"href\":\"./7%25_solution\"},\"sa\":{\"href\":\"7%25 solution\"},\"dsr\":[74,91,2,2]}&#39;>7% solution&lt;/a>"}'><a href="./7%25_solution" data-parsoid='{"a":{"href":"./7%25_solution"},"sa":{"href":"link=7%25 solution"}}'><img resource="./File:7%25_solution.gif" src="./Special:FilePath/7%25_solution.gif" height="220" width="220" data-parsoid='{"a":{"resource":"./File:7%25_solution.gif","height":"220","width":"220"},"sa":{"resource":"File:7%25 solution.gif"}}'/></a></span></p>
 !! end
 
 !! test
@@ -14532,7 +14582,7 @@ wgEnableUploads=0
 <p><a href="/wiki/File:Foobaz.jpg" title="File:Foobaz.jpg">File:Foobaz.jpg</a>
 </p>
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}]}'><a href="./File:Foobaz.jpg"><img resource="./File:Foobaz.jpg" src="./Special:FilePath/Foobaz.jpg" height="220" width="220"/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./File:Foobaz.jpg"><img resource="./File:Foobaz.jpg" src="./Special:FilePath/Foobaz.jpg" height="220" width="220"/></a></span></p>
 !! end
 
 # Parsoid-specific testing for images
@@ -15376,12 +15426,15 @@ Parsoid: Defaultsort
 <meta property="mw:PageProp/categorydefaultsort" content="Foo"/>
 !! end
 
+# NOTE: mw:ExpandedAttrs is not the best typeof here. mw:Transclusion is better.
+# But, this is a limitation of our representation and is documented in
+# TemplateHandler.js in processSpecialMagicWord
 !! test
 Parsoid: Defaultsort (template-generated)
 !! wikitext
 {{{{echo|DEFAULTSORT}}:Foo}}
 !! html/parsoid
-<meta property="mw:PageProp/categorydefaultsort" content="Foo" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"{{echo|DEFAULTSORT}}:Foo"},"params":{},"i":0}}]}'/>
+<meta property="mw:PageProp/categorydefaultsort" content="Foo" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"src":"{{{{echo|DEFAULTSORT}}:Foo}}","dsr":[0,26,null,null]}' data-mw='{"attribs":[[{"txt":"content"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[2,22,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"DEFAULTSORT\"}},\"i\":0}}]}&#39;>DEFAULTSORT&lt;/span>:Foo"}]]}'/>
 !! end
 
 ###
@@ -16418,7 +16471,7 @@ Image link to nonexistent file (T3850 - good)
 <p><a href="/index.php?title=Special:Upload&amp;wpDestFile=No_such.jpg" class="new" title="File:No such.jpg">File:No such.jpg</a>
 </p>
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}]}'><a href="./File:No_such.jpg"><img resource="./File:No_such.jpg" src="./Special:FilePath/No_such.jpg" height="220" width="220"/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./File:No_such.jpg"><img resource="./File:No_such.jpg" src="./Special:FilePath/No_such.jpg" height="220" width="220"/></a></span></p>
 !! end
 
 !! test
@@ -17887,8 +17940,8 @@ MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 
 !! html/parsoid
 <p data-parsoid='{"fostered":true,"autoInsertedEnd":true}'>{{{|
-<u class="|" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->&lt;noinclude>}}}}":null},"sa":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->&lt;noinclude>}}}}":""},"autoInsertedEnd":true}' data-mw='{"attribs":[[{"txt":"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->}}}}","html":"{&lt;span about=\"#mwt1\" typeof=\"mw:Param\" data-parsoid=&#39;{\"pi\":[[]],\"dsr\":[21,79,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"templatearg\":{\"target\":{\"wt\":\"SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->&amp;lt;noinclude>\"},\"params\":{},\"i\":0}}]}&#39;>{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->}}}&lt;/span>}"},{"html":""}]]}'>
-<br style="onmouseover='alert(document.cookie);' " data-parsoid='{"stx":"html","selfClose":true}'/></u></p><p data-parsoid='{"fostered":true,"autoInsertedEnd":true}'><u class="|" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->&lt;noinclude>}}}}":null},"sa":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->&lt;noinclude>}}}}":""},"autoInsertedEnd":true,"autoInsertedStart":true}' data-mw='{"attribs":[[{"txt":"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->}}}}","html":"{&lt;span about=\"#mwt1\" typeof=\"mw:Param\" data-parsoid=&#39;{\"pi\":[[]],\"dsr\":[21,79,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"templatearg\":{\"target\":{\"wt\":\"SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->&amp;lt;noinclude>\"},\"params\":{},\"i\":0}}]}&#39;>{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->}}}&lt;/span>}"},{"html":""}]]}'>MOVE YOUR MOUSE CURSOR OVER THIS TEXT</u></p><table data-parsoid='{"autoInsertedEnd":true}'>
+<u class="|" data-parsoid='{"stx":"html","a":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx--":null},"sa":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx--":""},"autoInsertedEnd":true}'><meta typeof="mw:Includes/NoInclude" data-parsoid='{"src":"&lt;noinclude>"}'/>}}}} >
+<br style="onmouseover='alert(document.cookie);' " data-parsoid='{"stx":"html","selfClose":true}'/></u></p><p data-parsoid='{"fostered":true,"autoInsertedEnd":true}'><u class="|" data-parsoid='{"stx":"html","a":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx--":null},"sa":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx--":""},"autoInsertedEnd":true,"autoInsertedStart":true}'>MOVE YOUR MOUSE CURSOR OVER THIS TEXT</u></p><table data-parsoid='{"autoInsertedEnd":true}'>
 
 
 
@@ -17965,7 +18018,7 @@ Fuzz testing: image with bogus manual thumbnail
 <div class="thumb tright"><div class="thumbinner" style="width:182px;">Error creating thumbnail:   <div class="thumbcaption"></div></div></div>
 
 !! html/parsoid
-<figure class="mw-default-size" typeof="mw:Error mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"manualthumb","ak":"thumbnail= "}]}' data-mw='{"errors":[{"key":"missing-thumbnail","message":"This thumbnail does not exist.","params":{"name":""}}],"thumb":""}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{}}'><img resource="./File:Foobar.jpg" src="./Special:FilePath/" height="220" width="220" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"220"},"sa":{"resource":"Image:foobar.jpg"}}'/></a></figure>
+<figure class="mw-default-size" typeof="mw:Error mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"manualthumb","ak":"thumbnail= "}]}' data-mw='{"errors":[{"key":"apierror-invalidtitle","message":"Invalid thumbnail title.","params":{"name":""}}],"thumb":""}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{"href":"Image:foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="./Special:FilePath/Foobar.jpg" height="220" width="220" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"220"},"sa":{"resource":"Image:foobar.jpg"}}'/></a></figure>
 !! end
 
 !! test
@@ -22081,7 +22134,7 @@ percent-encoding and + signs in internal links (T28410)
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./User:+%25" title="User:+%" data-parsoid='{"stx":"simple","a":{"href":"./User:+%25"},"sa":{"href":"User:+%"}}'>User:+%</a> <a rel="mw:WikiLink" href="./Page+title%25" title="Page+title%" data-parsoid='{"stx":"simple","a":{"href":"./Page+title%25"},"sa":{"href":"Page+title%"}}'>Page+title%</a>
 <a rel="mw:WikiLink" href="./%25+" title="%+" data-parsoid='{"stx":"simple","a":{"href":"./%25+"},"sa":{"href":"%+"}}'>%+</a> <a rel="mw:WikiLink" href="./%25+" title="%+" data-parsoid='{"stx":"piped","a":{"href":"./%25+"},"sa":{"href":"%+"}}'>%20</a> <a rel="mw:WikiLink" href="./%25+" title="%+" data-parsoid='{"stx":"simple","a":{"href":"./%25+"},"sa":{"href":"%+ "}}'>%+ </a> <a rel="mw:WikiLink" href="./%25+r" title="%+r" data-parsoid='{"stx":"simple","a":{"href":"./%25+r"},"sa":{"href":"%+r"}}'>%+r</a>
-<a rel="mw:WikiLink" href="./%25" title="%" data-parsoid='{"stx":"simple","a":{"href":"./%25"},"sa":{"href":"%"}}'>%</a> <a rel="mw:WikiLink" href="./+" title="+" data-parsoid='{"stx":"simple","a":{"href":"./+"},"sa":{"href":"+"}}'>+</a> <span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"bogus","ak":"foo"},{"ck":"caption","ak":"[[bar]]"}]}' data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}],"caption":"&lt;a rel=\"mw:WikiLink\" href=\"./Bar\" title=\"Bar\" data-parsoid=&#39;{\"stx\":\"simple\",\"a\":{\"href\":\"./Bar\"},\"sa\":{\"href\":\"bar\"},\"dsr\":[94,101,2,2]}&#39;>bar&lt;/a>"}'><a href="./File:%25+abc9" data-parsoid='{"a":{"href":"./File:%25+abc9"},"sa":{}}'><img resource="./File:%25+abc9" src="./Special:FilePath/%25+abc9" height="220" width="220" data-parsoid='{"a":{"resource":"./File:%25+abc9","height":"220","width":"220"},"sa":{"resource":"File:%+abc%39"}}'/></a></span>
+<a rel="mw:WikiLink" href="./%25" title="%" data-parsoid='{"stx":"simple","a":{"href":"./%25"},"sa":{"href":"%"}}'>%</a> <a rel="mw:WikiLink" href="./+" title="+" data-parsoid='{"stx":"simple","a":{"href":"./+"},"sa":{"href":"+"}}'>+</a> <span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"bogus","ak":"foo"},{"ck":"caption","ak":"[[bar]]"}]}' data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}],"caption":"&lt;a rel=\"mw:WikiLink\" href=\"./Bar\" title=\"Bar\" data-parsoid=&#39;{\"stx\":\"simple\",\"a\":{\"href\":\"./Bar\"},\"sa\":{\"href\":\"bar\"},\"dsr\":[94,101,2,2]}&#39;>bar&lt;/a>"}'><a href="./File:%25+abc9" data-parsoid='{"a":{"href":"./File:%25+abc9"},"sa":{}}'><img resource="./File:%25+abc9" src="./Special:FilePath/%25+abc9" height="220" width="220" data-parsoid='{"a":{"resource":"./File:%25+abc9","height":"220","width":"220"},"sa":{"resource":"File:%+abc%39"}}'/></a></span>
 <a rel="mw:WikiLink" href="./3E" title="3E" data-parsoid='{"stx":"simple","a":{"href":"./3E"},"sa":{"href":"%33%45"}}'>3E</a> <a rel="mw:WikiLink" href="./3E+" title="3E+" data-parsoid='{"stx":"simple","a":{"href":"./3E+"},"sa":{"href":"%33%45+"}}'>3E+</a></p>
 !! end
 
@@ -22095,8 +22148,8 @@ Special characters in embedded file links (T29679)
 <a href="/index.php?title=Special:Upload&amp;wpDestFile=Does_not_exist.jpg" class="new" title="File:Does not exist.jpg">Title with &amp; ampersand</a>
 </p>
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}]}'><a href="./File:Contains_&amp;_ampersand.jpg"><img resource="./File:Contains_&amp;_ampersand.jpg" src="./Special:FilePath/Contains_&amp;_ampersand.jpg" height="220" width="220"/></a></span>
-<span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}],"caption":"Title with &amp;amp; ampersand"}'><a href="./File:Does_not_exist.jpg"><img resource="./File:Does_not_exist.jpg" src="./Special:FilePath/Does_not_exist.jpg" height="220" width="220"/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./File:Contains_&amp;_ampersand.jpg"><img resource="./File:Contains_&amp;_ampersand.jpg" src="./Special:FilePath/Contains_&amp;_ampersand.jpg" height="220" width="220"/></a></span>
+<span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}],"caption":"Title with &amp;amp; ampersand"}'><a href="./File:Does_not_exist.jpg"><img resource="./File:Does_not_exist.jpg" src="./Special:FilePath/Does_not_exist.jpg" height="220" width="220"/></a></span></p>
 !! end
 
 !! test
