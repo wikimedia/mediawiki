@@ -9,7 +9,7 @@
  * dataprovider.
  */
 
-class IPTest extends PHPUnit_Framework_TestCase {
+class IPTest extends MediaWikiTestCase {
 	/**
 	 * @covers IP::isIPAddress
 	 * @dataProvider provideInvalidIPs
@@ -303,6 +303,54 @@ class IPTest extends PHPUnit_Framework_TestCase {
 			[ '::6d:f:2001/*' ],
 			[ '::86:f:2001/ab' ],
 			[ '::23:f:2001/' ],
+		];
+	}
+
+	/**
+	 * @covers IP::isQueryableRange
+	 * @dataProvider provideQueryableRanges
+	 */
+	public function testQueryableRanges( $ipRange ) {
+		$this->setMwGlobals( [
+			'wgRangeContributionsCIDRLimit' => [
+				'IPv4' => 16,
+				'IPv6' => 32,
+			],
+		] );
+
+		$this->assertTrue( IP::isQueryableRange( $ipRange ), "$ipRange is a queryable IP range" );
+	}
+
+	public function provideQueryableRanges() {
+		return [
+			[ '116.17.184.5/32' ],
+			[ '0.17.184.5/16' ],
+			[ '2000::/32' ],
+			[ '2001:db8::/128' ],
+		];
+	}
+
+	/**
+	 * @covers IP::isQueryableRange
+	 * @dataProvider provideUnqueryableRanges
+	 */
+	public function testUnqueryableRanges( $ipRange ) {
+		$this->setMwGlobals( [
+			'wgRangeContributionsCIDRLimit' => [
+				'IPv4' => 16,
+				'IPv6' => 32,
+			],
+		] );
+
+		$this->assertFalse( IP::isQueryableRange( $ipRange ), "$ipRange is not a queryable IP range" );
+	}
+
+	public function provideUnqueryableRanges() {
+		return [
+			[ '116.17.184.5/33' ],
+			[ '0.17.184.5/15' ],
+			[ '2000::/31' ],
+			[ '2001:db8::/9999' ],
 		];
 	}
 

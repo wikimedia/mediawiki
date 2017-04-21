@@ -588,8 +588,8 @@ class PageArchive {
 			[ 'revision' => [ 'LEFT JOIN', 'ar_rev_id=rev_id' ] ]
 		);
 
-		$rev_count = $result->numRows();
-		if ( !$rev_count ) {
+		$revCount = $result->numRows();
+		if ( !$revCount ) {
 			wfDebug( __METHOD__ . ": no revisions to restore\n" );
 
 			$status = Status::newGood( 0 );
@@ -667,7 +667,7 @@ class PageArchive {
 		$restoredPages = [];
 		// If there are no restorable revisions, we can skip most of the steps.
 		if ( $latestRestorableRow === null ) {
-			$failedRevisionCount = $rev_count;
+			$failedRevisionCount = $revCount;
 		} else {
 			if ( $makepage ) {
 				// Check the state of the newest to-be version...
@@ -717,6 +717,17 @@ class PageArchive {
 					] );
 
 				$revision->insertOn( $dbw );
+
+				// Also restore reference to the revision in ip_changes if it was an IP edit.
+				if ( $revision->getUser() === 0 ) {
+					$ipcRow = [
+						'ipc_rev_id' => $row->ar_rev_id,
+						'ipc_rev_timestamp' => $row->ar_timestamp,
+						'ipc_hex' => IP::toHex( $row['ar_user_text'] ),
+					];
+					$dbw->insert( 'ip_changes', $ipcRow, __METHOD__ );
+				}
+
 				$restored++;
 
 				Hooks::run( 'ArticleRevisionUndeleted',
