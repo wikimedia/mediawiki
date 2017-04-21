@@ -55,6 +55,7 @@
 		// Initialization
 		this.$overlay.append( this.popup.$element );
 		this.$element
+			.addClass( 'mw-rcfilters-ui-filterTagItemWidget' )
 			.prepend( this.$highlight )
 			.attr( 'aria-haspopup', 'true' )
 			.on( 'mouseenter', this.onMouseEnter.bind( this ) )
@@ -95,17 +96,14 @@
 	 * Set the current mute state for this item
 	 */
 	mw.rcfilters.ui.FilterTagItemWidget.prototype.setCurrentMuteState = function () {
-		this.$element
-			.toggleClass(
-				'mw-rcfilters-ui-filterTagItemWidget-muted',
+		this.setFlags( {
+			muted: (
 				!this.model.isSelected() ||
 				this.model.isIncluded() ||
 				this.model.isFullyCovered()
-			)
-			.toggleClass(
-				'mw-rcfilters-ui-filterTagItemWidget-conflicted',
-				this.model.isSelected() && this.model.isConflicted()
-			);
+			),
+			invalid: this.model.isSelected() && this.model.isConflicted()
+		} );
 	};
 
 	/**
