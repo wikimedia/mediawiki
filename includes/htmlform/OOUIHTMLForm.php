@@ -191,15 +191,12 @@ class OOUIHTMLForm extends HTMLForm {
 	 * @return string
 	 */
 	public function getErrorsOrWarnings( $elements, $elementsType ) {
-		if ( !in_array( $elementsType, [ 'error', 'warning' ] ) ) {
+		if ( !in_array( $elementsType, [ 'error', 'warning' ], true ) ) {
 			throw new DomainException( $elementsType . ' is not a valid type.' );
 		}
-		if ( !$elements ) {
-			$errors = [];
-		} elseif ( $elements instanceof Status ) {
-			if ( $elements->isGood() ) {
-				$errors = [];
-			} else {
+		$errors = [];
+		if ( $elements instanceof Status ) {
+			if ( !$elements->isGood() ) {
 				$errors = $elements->getErrorsByType( $elementsType );
 				foreach ( $errors as &$error ) {
 					// Input:  [ 'message' => 'foo', 'errors' => [ 'a', 'b', 'c' ] ]
@@ -207,13 +204,12 @@ class OOUIHTMLForm extends HTMLForm {
 					$error = array_merge( [ $error['message'] ], $error['params'] );
 				}
 			}
-		} elseif ( $elementsType === 'errors' ) {
-			$errors = $elements;
-			if ( !is_array( $errors ) ) {
-				$errors = [ $errors ];
+		} elseif ( $elementsType === 'error' ) {
+			if ( is_array( $elements ) ) {
+				$errors = $elements;
+			} elseif ( is_string( $elements ) ) {
+				$errors = [ $elements ];
 			}
-		} else {
-			$errors = [];
 		}
 
 		foreach ( $errors as &$error ) {
