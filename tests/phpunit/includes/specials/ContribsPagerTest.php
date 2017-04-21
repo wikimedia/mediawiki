@@ -3,7 +3,20 @@
 /**
  * @group Database
  */
-class ContribsPagerTest extends \PHPUnit_Framework_TestCase {
+class ContribsPagerTest extends MediaWikiTestCase {
+	/** @var ContribsPager */
+	private $pager;
+
+	function setUp() {
+		$context = new RequestContext();
+		$this->pager = new ContribsPager( $context, [
+			'start' => '2017-01-01',
+			'end' => '2017-02-02',
+		] );
+
+		parent::setUp();
+	}
+
 	/**
 	 * @dataProvider dateFilterOptionProcessingProvider
 	 * @param array $inputOpts Input options
@@ -45,6 +58,60 @@ class ContribsPagerTest extends \PHPUnit_Framework_TestCase {
 				'month' => '' ],
 			  [ 'start' => '',
 				'end' => '2012-12-31' ] ],
+		];
+	}
+
+	/**
+	 * @covers ContribsPager::isQueryableRange
+	 * @dataProvider provideQueryableRanges
+	 */
+	public function testQueryableRanges( $ipRange ) {
+		$this->setMwGlobals( [
+			'wgRangeContributionsCIDRLimit' => [
+				'IPv4' => 16,
+				'IPv6' => 32,
+			],
+		] );
+
+		$this->assertTrue(
+			$this->pager->isQueryableRange( $ipRange ),
+			"$ipRange is a queryable IP range"
+		);
+	}
+
+	public function provideQueryableRanges() {
+		return [
+			[ '116.17.184.5/32' ],
+			[ '0.17.184.5/16' ],
+			[ '2000::/32' ],
+			[ '2001:db8::/128' ],
+		];
+	}
+
+	/**
+	 * @covers ContribsPager::isQueryableRange
+	 * @dataProvider provideUnqueryableRanges
+	 */
+	public function testUnqueryableRanges( $ipRange ) {
+		$this->setMwGlobals( [
+			'wgRangeContributionsCIDRLimit' => [
+				'IPv4' => 16,
+				'IPv6' => 32,
+			],
+		] );
+
+		$this->assertFalse(
+			$this->pager->isQueryableRange( $ipRange ),
+			"$ipRange is not a queryable IP range"
+		);
+	}
+
+	public function provideUnqueryableRanges() {
+		return [
+			[ '116.17.184.5/33' ],
+			[ '0.17.184.5/15' ],
+			[ '2000::/31' ],
+			[ '2001:db8::/9999' ],
 		];
 	}
 }
