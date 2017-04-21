@@ -308,7 +308,7 @@ class ApiParse extends ApiBase {
 			}
 
 			$outputPage = new OutputPage( $context );
-			$outputPage->addParserOutputMetadata( $p_result );
+			$outputPage->addParserOutput( $p_result );
 			$context->setOutput( $outputPage );
 		}
 
