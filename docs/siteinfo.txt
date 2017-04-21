@@ -1,0 +1,48 @@
+This file describes MediaWiki's concept of "site info", and the SiteInfoLookup
+facility.
+
+"Site info" refers to information about other websites, that can be used to
+link to such websites, access their API, etc. MediaWiki typically has such
+information about other wiki sites on the same wiki "farm", but neither is
+necessary: site info can describe a site that does not use mediawiki, and
+is hosted on another domain and managed by an unrelated entity.
+
+The SiteInfoLookup service unifies and supersedes the older Interwiki and
+InterwikiLookup services, as well as the SiteStore and SiteLookup services.
+It also covers some of the functionality of the WikiMap class.
+
+Conceptually, the "site info" about a website is given by a key/value map.
+The map can be arbitrarily extended, but some keys have a well known meaning,
+and are needed to provide certain services:
+
+* type: the type of the site. Should be set to "mediawiki" if the site is
+  running MediaWiki.
+* name: the human readable name of the site, for display.
+* language: an IANA language tag identifying the site's content language.
+  Often used for grouping.
+* family: the name of the wiki's "family" within a farm. E.g. de.wikipedia.org
+  would be in the "wikipedia" family, and meta.wikimedia.org would be in the
+  "meta" family. This is often used for grouping.
+* db-name: the wiki's database name. Often the same as the wiki ID (see below).
+* db-cluster: the wiki's database server (or cluster). Can be used for grouping,
+  to list all wikis hosted on the same DB server.
+* forwardable: boolean indicating whether "magic redirects" are supported to
+  this site. If true, using the title "abc:Test" in a URL will trigger a
+  redirect to the page "Test" on the abc wiki.
+* transcludable: whether content from this site can be used on the local wiki
+  via the "scary transclusion" mechanism.
+* base-url: The site's base URL. script-path and article-path are appended to
+  this. May be protocol relative.
+* script-path: The site's script path, relative to base-url. The meaning of
+  this is only well defined if the type of the site is "mediawiki". In that
+  case, it is the path in which the main entry points, index.php and api.php,
+  can be found. This corresponds to the $wgScriptPath setting.
+* article-path: The site's article path. Should contain $1 as a placeholder
+  for the article title. For mediawiki sites, this corresponds to the
+  $wgArticlePath setting.
+
+TBD: groups
+TBD: wiki id
+TBD: local ids.
+TBD: JSON structure
+TBD: config
