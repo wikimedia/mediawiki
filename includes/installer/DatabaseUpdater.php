@@ -83,7 +83,8 @@ abstract class DatabaseUpdater {
 		FixDefaultJsonContentPages::class,
 		CleanupEmptyCategories::class,
 		AddRFCAndPMIDInterwiki::class,
-		PopulatePPSortKey::class
+		PopulatePPSortKey::class,
+		PopulateIpChanges::class,
 	];
 
 	/**

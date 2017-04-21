@@ -1304,7 +1304,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	private function resetDB( $db, $tablesUsed ) {
 		if ( $db ) {
 			$userTables = [ 'user', 'user_groups', 'user_properties' ];
-			$coreDBDataTables = array_merge( $userTables, [ 'page', 'revision' ] );
+			$coreDBDataTables = array_merge( $userTables, [ 'page', 'revision', 'ip_changes' ] );
 
 			// If any of the user tables were marked as used, we should clear all of them.
 			if ( array_intersect( $tablesUsed, $userTables ) ) {

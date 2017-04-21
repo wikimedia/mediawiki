@@ -118,16 +118,48 @@ class IP {
 	}
 
 	/**
-	 * Validate an IP Block (valid address WITH a valid prefix).
+	 * Validate an IP range (valid address WITH a valid CIDR prefix).
 	 * SIIT IPv4-translated addresses are rejected.
 	 * @note canonicalize() tries to convert translated addresses to IPv4.
 	 *
-	 * @param string $ipblock
+	 * @param string $ipRange
 	 * @return bool True if it is valid
 	 */
-	public static function isValidBlock( $ipblock ) {
-		return ( preg_match( '/^' . RE_IPV6_BLOCK . '$/', $ipblock )
-			|| preg_match( '/^' . RE_IP_BLOCK . '$/', $ipblock ) );
+	public static function isValidBlock( $ipRange ) {
+		return ( preg_match( '/^' . RE_IPV6_BLOCK . '$/', $ipRange )
+			|| preg_match( '/^' . RE_IP_BLOCK . '$/', $ipRange ) );
+	}
+
+	/**
+	 * Alias to isValidBlock()
+	 * @param string $ipRange
+	 * @return bool True if it is valid
+	 * @since 1.30
+	 */
+	public static function isValidRange( $ipRange ) {
+		return self::isValidBlock( $ipRange );
+	}
+
+	/**
+	 * Is the given IP a range and within the CIDR limit?
+	 *
+	 * @param string $ipRange
+	 * @return bool True if it is valid
+	 * @since 1.30
+	 */
+	public static function isQueryableRange( $ipRange ) {
+		global $wgRangeContributionsCIDRLimit;
+
+		$bits = self::parseCIDR( $ipRange )[1];
+		if (
+			( $bits === false ) ||
+			( self::isIPv4( $ipRange ) && $bits < $wgRangeContributionsCIDRLimit['IPv4'] ) ||
+			( self::isIPv6( $ipRange ) && $bits < $wgRangeContributionsCIDRLimit['IPv6'] )
+		) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
