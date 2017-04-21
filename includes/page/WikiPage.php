@@ -2834,8 +2834,13 @@ class WikiPage implements Page, IDBAccessObject {
 			__METHOD__,
 			'FOR UPDATE'
 		);
+
 		// Build their equivalent archive rows
 		$rowsInsert = [];
+
+		/** @var int[] Revision IDs of edits that were made by IPs */
+		$ipRevIds = [];
+
 		foreach ( $res as $row ) {
 			$rowInsert = [
 				'ar_namespace'  => $namespace,
@@ -2860,6 +2865,12 @@ class WikiPage implements Page, IDBAccessObject {
 				$rowInsert['ar_content_format'] = $row->rev_content_format;
 			}
 			$rowsInsert[] = $rowInsert;
+
+			// Keep track of IP edits, so that the corresponding rows can
+			// be deleted in the ip_changes table.
+			if ( (int)$row->rev_user === 0 && IP::isValid( $row->rev_user_text ) ) {
+				$ipRevIds[] = $row->rev_id;
+			}
 		}
 		// Copy them into the archive table
 		$dbw->insert( 'archive', $rowsInsert, __METHOD__ );
@@ -2874,6 +2885,11 @@ class WikiPage implements Page, IDBAccessObject {
 		// Now that it's safely backed up, delete it
 		$dbw->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
 		$dbw->delete( 'revision', [ 'rev_page' => $id ], __METHOD__ );
+
+		// Also delete records from ip_changes as applicable.
+		if ( count( $ipRevIds ) > 0 ) {
+			$dbw->delete( 'ip_changes', [ 'ipc_rev_id' => $ipRevIds ], __METHOD__ );
+		}
 
 		// Log the deletion, if the page was suppressed, put it in the suppression log instead
 		$logtype = $suppress ? 'suppress' : 'delete';

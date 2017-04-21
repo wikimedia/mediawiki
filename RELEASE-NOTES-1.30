@@ -25,6 +25,8 @@ section).
   to plain class names, using the 'factory' key in the module description
   array. This allows dependency injection to be used for ResourceLoader modules.
 * $wgExceptionHooks has been removed.
+* (T163562) $wgRangeContributionsCIDRLimit was introduced to control the size
+  of IP ranges that can be queried at Special:Contributions.
 * (T45547) $wgUsePigLatinVariant added (off by default).
 * (T152540) MediaWiki now supports a section ID escaping style that allows to display
   non-Latin characters verbatim on many modern browsers. This is controlled by the
@@ -44,6 +46,8 @@ section).
 * (T37247) Output from Parser::parse() will now be wrapped in a div with
   class="mw-parser-output" by default. This may be changed or disabled using
   ParserOptions::setWrapOutputClass().
+* (T163562) Added ability to search for contributions within an IP ranges
+  at Special:Contributions.
 * Added 'ChangeTagsAllowedAdd' hook, enabling extensions to allow software-
   specific tags to be added by users.
 * Added a 'ParserOptionsRegister' hook to allow extensions to register
