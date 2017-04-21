@@ -108,11 +108,13 @@
 			var hash = location.hash,
 				matchedElement, parentSection;
 			if ( hash.match( /^#mw-prefsection-[\w\-]+/ ) ) {
+				mw.storage.session.remove( 'mwpreferences-prevTab' );
 				switchPrefTab( hash.replace( '#mw-prefsection-', '' ) );
 			} else if ( hash.match( /^#mw-[\w\-]+/ ) ) {
 				matchedElement = document.getElementById( hash.slice( 1 ) );
 				parentSection = $( matchedElement ).closest( '.prefsection' );
 				if ( parentSection.length ) {
+					mw.storage.session.remove( 'mwpreferences-prevTab' );
 					// Switch to proper tab and scroll to selected item.
 					switchPrefTab( parentSection.attr( 'id' ).replace( 'mw-prefsection-', '' ), 'noHash' );
 					matchedElement.scrollIntoView();
@@ -240,7 +242,7 @@
 		if ( previousTab ) {
 			switchPrefTab( previousTab, 'noHash' );
 			// Deleting the key, the tab states should be reset until we press Save
-			mw.storage.session.remove( previousTab );
+			mw.storage.session.remove( 'mwpreferences-prevTab' );
 		}
 
 		$( '#mw-prefs-form' ).on( 'submit', function () {
