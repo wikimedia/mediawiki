@@ -512,7 +512,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 
 		$result = wfGetDB( DB_MASTER )->select(
-			'user',
+			$tables,
 			'user_name',
 			array_filter( $conds ) + [ 'user_email' => 'ut' ]
 		);
