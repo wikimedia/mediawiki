@@ -118,16 +118,26 @@ class IP {
 	}
 
 	/**
-	 * Validate an IP Block (valid address WITH a valid prefix).
+	 * Validate an IP range (valid address WITH a valid CIDR prefix).
 	 * SIIT IPv4-translated addresses are rejected.
 	 * @note canonicalize() tries to convert translated addresses to IPv4.
 	 *
-	 * @param string $ipblock
+	 * @param string $ipRange
 	 * @return bool True if it is valid
 	 */
-	public static function isValidBlock( $ipblock ) {
-		return ( preg_match( '/^' . RE_IPV6_BLOCK . '$/', $ipblock )
-			|| preg_match( '/^' . RE_IP_BLOCK . '$/', $ipblock ) );
+	public static function isValidBlock( $ipRange ) {
+		return ( preg_match( '/^' . RE_IPV6_BLOCK . '$/', $ipRange )
+			|| preg_match( '/^' . RE_IP_BLOCK . '$/', $ipRange ) );
+	}
+
+	/**
+	 * Alias to isValidBlock()
+	 * @param string $ipRange
+	 * @return bool True if it is valid
+	 * @since 1.30
+	 */
+	public static function isValidRange( $ipRange ) {
+		return self::isValidBlock( $ipRange );
 	}
 
 	/**
