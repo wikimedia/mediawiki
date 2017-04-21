@@ -1507,6 +1507,16 @@ class Revision implements IDBAccessObject {
 			);
 		}
 
+		// Insert IP revision into ip_changes for use when querying for a range.
+		if ( IP::isIPAddress( $row['rev_user_text'] ) ) {
+			$ipcRow = [
+				'ipc_rev_id'        => $this->mId,
+				'ipc_rev_timestamp' => $row['rev_timestamp'],
+				'ipc_hex'           => IP::toHex( $row['rev_user_text'] ),
+			];
+			$dbw->insert( 'ip_changes', $ipcRow, __METHOD__ );
+		}
+
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$revision = $this;
 		Hooks::run( 'RevisionInsertComplete', [ &$revision, $data, $flags ] );
