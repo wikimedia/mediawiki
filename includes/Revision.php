@@ -1499,6 +1499,16 @@ class Revision implements IDBAccessObject {
 			$this->mId = $dbw->insertId();
 		}
 
+		// Insert IP revision into ip_changes for use when querying for a range.
+		if ( IP::isIPAddress( $row['rev_user_text'] ) ) {
+			$ipcRow = [
+				'ipc_rev_id'        => $row['rev_parent_id'],
+				'ipc_rev_timestamp' => $row['rev_timestamp'],
+				'ipc_hex'           => IP::toHex( $row['rev_user_text'] ),
+			];
+			$dbw->insert( 'ip_changes', $ipcRow, __METHOD__ );
+		}
+
 		// Assertion to try to catch T92046
 		if ( (int)$this->mId === 0 ) {
 			throw new UnexpectedValueException(
