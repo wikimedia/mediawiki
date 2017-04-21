@@ -69,4 +69,22 @@ class MimeMagicTest extends PHPUnit_Framework_TestCase {
 		$actualType = $this->mimeAnalyzer->getMediaType( $oggFile, 'application/ogg' );
 		$this->assertEquals( $actualType, MEDIATYPE_AUDIO );
 	}
+
+	/**
+	 * Test to make sure that MP3 with id3 tag is recognized
+	 */
+	function testMP3WithID3Recognize() {
+		$oggFile = __DIR__ . '/../../../data/media/say-test-with-id3.mp3';
+		$actualType = $this->mimeAnalyzer->getMediaType( $oggFile, 'audio/mp3' );
+		$this->assertEquals( $actualType, MEDIATYPE_AUDIO );
+	}
+
+	/**
+	 * Test to make sure that MP3 without id3 tag is recognized
+	 */
+	function testMP3NoID3Recognize() {
+		$oggFile = __DIR__ . '/../../../data/media/say-test-no-id3.mp3';
+		$actualType = $this->mimeAnalyzer->getMediaType( $oggFile, 'audio/mp3' );
+		$this->assertEquals( $actualType, MEDIATYPE_AUDIO );
+	}
 }

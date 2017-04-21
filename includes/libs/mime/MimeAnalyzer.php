@@ -670,6 +670,8 @@ EOT;
 			// Multimedia...
 			'MThd'             => 'audio/midi',
 			'OggS'             => 'application/ogg',
+			'ID3'              => 'audio/mpeg',
+			"\xff\xfb"         => 'audio/mpeg',
 
 			// Image formats...
 			// Note that WMF may have a bare header, no magic number.
