@@ -22,6 +22,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$this->tablesUsed = array_merge( $this->tablesUsed,
 			[ 'page',
 				'revision',
+				'ip_changes',
 				'text',
 
 				'recentchanges',
