@@ -255,7 +255,7 @@ CREATE TABLE &mw_prefix.site_stats (
   ss_good_articles  NUMBER            DEFAULT 0,
   ss_total_pages    NUMBER            DEFAULT -1,
   ss_users          NUMBER            DEFAULT -1,
-  ss_active_users   NUMBER            DEFAULT 1,
+  ss_active_users   NUMBER            DEFAULT -1,
   ss_images         NUMBER            DEFAULT 0
 );
 CREATE UNIQUE INDEX &mw_prefix.site_stats_u01 ON &mw_prefix.site_stats (ss_row_id);
