@@ -469,7 +469,7 @@ CREATE TABLE /*_*/site_stats (
   ss_users bigint default '-1',
 
   -- Number of users that still edit
-  ss_active_users bigint default '1',
+  ss_active_users bigint default '-1',
 
   -- Number of images, equivalent to SELECT COUNT(*) FROM image
   ss_images int default 0
