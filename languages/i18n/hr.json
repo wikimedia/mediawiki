@@ -2389,7 +2389,7 @@
 	"spam_blanking": "Sve inačice koje sadržavaju poveznice na $1, brišem cjelokupni sadržaj",
 	"spam_deleting": "Sve inačice sadržale su poveznice na $1, brišem cjelokupni sadržaj",
 	"simpleantispam-label": "Anti-spam provjera.\n<strong>NE</strong> ispunjavajte ovo!",
-	"pageinfo-title": "Podatci o stranici \"$1\"",
+	"pageinfo-title": "Podatci o stranici »$1«",
 	"pageinfo-not-current": "Nema podataka o uređivanju za najstarija uređivanja stranice.",
 	"pageinfo-header-basic": "Osnovni podatci",
 	"pageinfo-header-edits": "Uređivanja",

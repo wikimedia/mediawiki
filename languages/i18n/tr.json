@@ -93,7 +93,8 @@
 			"By erdo can",
 			"1917 Ekim Devrimi",
 			"Asmen",
-			"Stephanecbisson"
+			"Stephanecbisson",
+			"Alerque"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çizme:",
@@ -309,7 +310,7 @@
 	"redirectedfrom": "($1 sayfasından yönlendirildi)",
 	"redirectpagesub": "Yönlendirme sayfası",
 	"redirectto": "Şuraya yönlendir:",
-	"lastmodifiedat": "Bu sayfa son olarak $1 tarihinde ve $2 saatinde güncellenmiştir.",
+	"lastmodifiedat": "Bu sayfa son olarak $1 tarihinde ve $2 saatinde düzenlenmiştir.",
 	"viewcount": "Bu sayfaya {{PLURAL:$1|bir|$1}} defa erişilmiş.",
 	"protectedpage": "Korumalı sayfa",
 	"jumpto": "Şuraya atla:",
@@ -1356,10 +1357,10 @@
 	"rcfilters-filter-unregistered-label": "Kayıtsız",
 	"rcfilters-filter-unregistered-description": "Oturum açmamış editörler.",
 	"rcfilters-filtergroup-authorship": "Düzenleme sahipliği",
-	"rcfilters-filter-editsbyself-label": "Kendi düzenlemeleriniz",
-	"rcfilters-filter-editsbyself-description": "Sizin düzenlemeleriniz.",
+	"rcfilters-filter-editsbyself-label": "Senin değişiklikleriniz",
+	"rcfilters-filter-editsbyself-description": "Kendi katkılarınız.",
 	"rcfilters-filter-editsbyother-label": "Başkalarının düzenlemeleri",
-	"rcfilters-filter-editsbyother-description": "Başka kullanıcılar tarafından oluşturulan düzenlemeler (sizin değil).",
+	"rcfilters-filter-editsbyother-description": "Kendi düzenlemeleriniz hariç bütün düzenlemeler.",
 	"rcfilters-filtergroup-userExpLevel": "Deneyim düzeyi (yalnızca kayıtlı kullanıcılar için)",
 	"rcfilters-filtergroup-user-experience-level-conflicts-unregistered": "Bu süzgeç etkin değildir, çünkü yalnızca kayıtlı kullanıcıları bulmaktadır, yani \"Kayıtsız\" süzgeci etkisini ortadan kaldırmaktadır.",
 	"rcfilters-filtergroup-user-experience-level-conflicts-unregistered-global": "\"Kayıtsız\" süzgeci bir veya daha fazla Deneyim süzgeciyle çakışmaktadır. Deneyim süzgeçleri yalnızca kayıtlı kullanıcıları bulmaktadır. Çakışan süzgeçler yukarıda etkin değil şeklinde işaretlenmiştir.",
