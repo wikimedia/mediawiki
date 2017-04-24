@@ -813,18 +813,6 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
-	 * @return string
-	 */
-	function buildLike() {
-		$params = func_get_args();
-		if ( count( $params ) > 0 && is_array( $params[0] ) ) {
-			$params = $params[0];
-		}
-
-		return parent::buildLike( $params ) . "ESCAPE '\' ";
-	}
-
-	/**
 	 * @param string $field Field or column to cast
 	 * @return string
 	 * @since 1.28

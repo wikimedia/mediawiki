@@ -2019,8 +2019,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string $s
 	 * @return string
 	 */
-	protected function escapeLikeInternal( $s ) {
-		return addcslashes( $s, '\%_' );
+	protected function escapeLikeInternal( $s, $escapeChar = '`' ) {
+		return str_replace( [ $escapeChar, '%', '_' ],
+			[ "{$escapeChar}{$escapeChar}", "{$escapeChar}%", "{$escapeChar}_" ],
+			$s );
 	}
 
 	public function buildLike() {
@@ -2032,15 +2034,21 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$s = '';
 
+		// We use ` instead of \ as the default LIKE escape character, since addQuotes()
+		// may escape backslashes, creating problems of double escaping. The `
+		// character has good cross-DBMS compatibility, avoiding special operators
+		// in MS SQL like ^ and %
+		$escapeChar = '`';
+
 		foreach ( $params as $value ) {
 			if ( $value instanceof LikeMatch ) {
 				$s .= $value->toString();
 			} else {
-				$s .= $this->escapeLikeInternal( $value );
+				$s .= $this->escapeLikeInternal( $value, $escapeChar );
 			}
 		}
 
-		return " LIKE {$this->addQuotes( $s )} ";
+		return ' LIKE ' . $this->addQuotes( $s ) . ' ESCAPE ' . $this->addQuotes( $escapeChar ) . ' ';
 	}
 
 	public function anyChar() {

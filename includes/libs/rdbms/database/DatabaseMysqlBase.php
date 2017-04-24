@@ -532,9 +532,11 @@ abstract class DatabaseMysqlBase extends Database {
 			return true; // already known to exist and won't show in SHOW TABLES anyway
 		}
 
-		$encLike = $this->buildLike( $table );
+		// We can't use buildLike() here, because it specifies an escape character
+		// other than the backslash, which is the only one supported by SHOW TABLES
+		$encLike = $this->escapeLikeInternal( $table, '\\' );
 
-		return $this->query( "SHOW TABLES $encLike", $fname )->numRows() > 0;
+		return $this->query( "SHOW TABLES LIKE '$encLike'", $fname )->numRows() > 0;
 	}
 
 	/**
