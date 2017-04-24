@@ -311,9 +311,20 @@ CREATE TABLE /*_*/page (
   page_lang varbinary(35) DEFAULT NULL
 ) /*$wgDBTableOptions*/;
 
+-- The title index. Care must be taken to always specify a namespace when
+-- by title, so that the index is used. Even listing all known namespaces
+-- with IN() is better than omitting page_namespace from the WHERE clause.
 CREATE UNIQUE INDEX /*i*/name_title ON /*_*/page (page_namespace,page_title);
+
+-- The index for Special:Random
 CREATE INDEX /*i*/page_random ON /*_*/page (page_random);
+
+-- @fixme Not used for anything? ApiQueryAllPages has an unconditional
+-- namespace filter so should be using the Special:Shortpages index when
+-- minsize/maxsize are specified.
 CREATE INDEX /*i*/page_len ON /*_*/page (page_len);
+
+-- The index for Special:Shortpages and Special:Longpages
 CREATE INDEX /*i*/page_redirect_namespace_len ON /*_*/page (page_is_redirect, page_namespace, page_len);
 
 --
@@ -375,11 +386,26 @@ CREATE TABLE /*_*/revision (
 ) /*$wgDBTableOptions*/ MAX_ROWS=10000000 AVG_ROW_LENGTH=1024;
 -- In case tables are created as MyISAM, use row hints for MySQL <5.0 to avoid 4GB limit
 
+-- The index is proposed for removal, do not use it in new code: T163532.
+-- Used for ordering revisions within a page by rev_id, which is usually
+-- incorrect, since rev_timestamp is normally the correct order. It can also
+-- be used by dumpBackup.php, if a page and rev_id range is specified.
 CREATE INDEX /*i*/rev_page_id ON /*_*/revision (rev_page, rev_id);
+
+-- Used by ApiQueryAllRevisions
 CREATE INDEX /*i*/rev_timestamp ON /*_*/revision (rev_timestamp);
+
+-- History index
 CREATE INDEX /*i*/page_timestamp ON /*_*/revision (rev_page,rev_timestamp);
+
+-- Logged-in user contributions index
 CREATE INDEX /*i*/user_timestamp ON /*_*/revision (rev_user,rev_timestamp);
+
+-- Anonymous user countributions index
 CREATE INDEX /*i*/usertext_timestamp ON /*_*/revision (rev_user_text,rev_timestamp);
+
+-- Credits index. This is scanned in order to compile credits lists for pages,
+-- in ApiQueryContributors. 
 CREATE INDEX /*i*/page_user_timestamp ON /*_*/revision (rev_page,rev_user,rev_timestamp);
 
 --
@@ -499,8 +525,14 @@ CREATE TABLE /*_*/archive (
   ar_content_format varbinary(64) DEFAULT NULL
 ) /*$wgDBTableOptions*/;
 
+-- Index for Special:Undelete to page through deleted revisions
 CREATE INDEX /*i*/name_title_timestamp ON /*_*/archive (ar_namespace,ar_title,ar_timestamp);
+
+-- Index for Special:DeletedContributions
 CREATE INDEX /*i*/ar_usertext_timestamp ON /*_*/archive (ar_user_text,ar_timestamp);
+
+-- Index for linking archive rows with tables that normally link with revision
+-- rows, such as change_tag.
 CREATE INDEX /*i*/ar_revid ON /*_*/archive (ar_rev_id);
 
 
@@ -521,8 +553,13 @@ CREATE TABLE /*_*/pagelinks (
   pl_title varchar(255) binary NOT NULL default ''
 ) /*$wgDBTableOptions*/;
 
+-- Forward index, for page edit, save
 CREATE UNIQUE INDEX /*i*/pl_from ON /*_*/pagelinks (pl_from,pl_namespace,pl_title);
+
+-- Reverse index, for Special:Whatlinkshere
 CREATE INDEX /*i*/pl_namespace ON /*_*/pagelinks (pl_namespace,pl_title,pl_from);
+
+-- Index for Special:Whatlinkshere with namespace filter
 CREATE INDEX /*i*/pl_backlinks_namespace ON /*_*/pagelinks (pl_from_namespace,pl_namespace,pl_title,pl_from);
 
 
@@ -543,8 +580,13 @@ CREATE TABLE /*_*/templatelinks (
   tl_title varchar(255) binary NOT NULL default ''
 ) /*$wgDBTableOptions*/;
 
+-- Forward index, for page edit, save
 CREATE UNIQUE INDEX /*i*/tl_from ON /*_*/templatelinks (tl_from,tl_namespace,tl_title);
+
+-- Reverse index, for Special:Whatlinkshere
 CREATE INDEX /*i*/tl_namespace ON /*_*/templatelinks (tl_namespace,tl_title,tl_from);
+
+-- Index for Special:Whatlinkshere with namespace filter
 CREATE INDEX /*i*/tl_backlinks_namespace ON /*_*/templatelinks (tl_from_namespace,tl_namespace,tl_title,tl_from);
 
 
@@ -565,8 +607,13 @@ CREATE TABLE /*_*/imagelinks (
   il_to varchar(255) binary NOT NULL default ''
 ) /*$wgDBTableOptions*/;
 
+-- Forward index, for cache invalidation on file update, etc.
 CREATE UNIQUE INDEX /*i*/il_from ON /*_*/imagelinks (il_from,il_to);
+
+-- Reverse index, for Special:Whatlinkshere and file description page local usage
 CREATE INDEX /*i*/il_to ON /*_*/imagelinks (il_to,il_from);
+
+-- Index for Special:Whatlinkshere with namespace filter
 CREATE INDEX /*i*/il_backlinks_namespace ON /*_*/imagelinks (il_from_namespace,il_to,il_from);
 
 
@@ -690,9 +737,16 @@ CREATE TABLE /*_*/externallinks (
   el_index_60 varbinary(60) NOT NULL default ''
 ) /*$wgDBTableOptions*/;
 
+-- Forward index, for page edit, save
 CREATE INDEX /*i*/el_from ON /*_*/externallinks (el_from, el_to(40));
+
+-- Index for Special:LinkSearch exact search
 CREATE INDEX /*i*/el_to ON /*_*/externallinks (el_to(60), el_from);
+
+-- For Special:LinkSearch inexact search
 CREATE INDEX /*i*/el_index ON /*_*/externallinks (el_index(60));
+
+-- @fixme Apparently not used yet?
 CREATE INDEX /*i*/el_index_60 ON /*_*/externallinks (el_index_60, el_id);
 CREATE INDEX /*i*/el_from_index_60 ON /*_*/externallinks (el_from, el_index_60, el_id);
 
@@ -710,7 +764,10 @@ CREATE TABLE /*_*/langlinks (
   ll_title varchar(255) binary NOT NULL default ''
 ) /*$wgDBTableOptions*/;
 
+-- Forward index, for page edit, save, ApiQueryLanglinks
 CREATE UNIQUE INDEX /*i*/ll_from ON /*_*/langlinks (ll_from, ll_lang);
+
+-- Index for ApiQueryLangbacklinks
 CREATE INDEX /*i*/ll_lang ON /*_*/langlinks (ll_lang, ll_title);
 
 
@@ -728,8 +785,13 @@ CREATE TABLE /*_*/iwlinks (
   iwl_title varchar(255) binary NOT NULL default ''
 ) /*$wgDBTableOptions*/;
 
+-- Forward index, for page edit, save, ApiQueryIWLinks
 CREATE UNIQUE INDEX /*i*/iwl_from ON /*_*/iwlinks (iwl_from, iwl_prefix, iwl_title);
+
+-- Index for ApiQueryIWBacklinks
 CREATE INDEX /*i*/iwl_prefix_title_from ON /*_*/iwlinks (iwl_prefix, iwl_title, iwl_from);
+
+-- Index for ApiQueryIWLinks
 CREATE INDEX /*i*/iwl_prefix_from_title ON /*_*/iwlinks (iwl_prefix, iwl_from, iwl_title);
 
 
@@ -841,10 +903,19 @@ CREATE TABLE /*_*/ipblocks (
 -- Any new options which prevent collisions should be included
 CREATE UNIQUE INDEX /*i*/ipb_address ON /*_*/ipblocks (ipb_address(255), ipb_user, ipb_auto, ipb_anon_only);
 
+-- For querying whether a logged-in user is blocked
 CREATE INDEX /*i*/ipb_user ON /*_*/ipblocks (ipb_user);
+
+-- For querying whether an IP address is in any range
 CREATE INDEX /*i*/ipb_range ON /*_*/ipblocks (ipb_range_start(8), ipb_range_end(8));
+
+-- Index for Special:BlockList
 CREATE INDEX /*i*/ipb_timestamp ON /*_*/ipblocks (ipb_timestamp);
+
+-- Index for table pruning
 CREATE INDEX /*i*/ipb_expiry ON /*_*/ipblocks (ipb_expiry);
+
+-- Index for removing autoblocks when a parent block is removed
 CREATE INDEX /*i*/ipb_parent_block_id ON /*_*/ipblocks (ipb_parent_block_id);
 
 
@@ -1144,13 +1215,29 @@ CREATE TABLE /*_*/recentchanges (
   rc_params blob NULL
 ) /*$wgDBTableOptions*/;
 
+-- Special:Recentchanges
 CREATE INDEX /*i*/rc_timestamp ON /*_*/recentchanges (rc_timestamp);
+
+-- Special:Watchlist
 CREATE INDEX /*i*/rc_namespace_title ON /*_*/recentchanges (rc_namespace, rc_title);
+
+-- Special:Recentchangeslinked when finding changes in pages linked from a page
 CREATE INDEX /*i*/rc_cur_id ON /*_*/recentchanges (rc_cur_id);
+
+-- Special:Newpages
 CREATE INDEX /*i*/new_name_timestamp ON /*_*/recentchanges (rc_new,rc_namespace,rc_timestamp);
+
+-- Blank unless $wgPutIPinRC=true (false at WMF), possibly used by extensions,
+-- but mostly replaced by CheckUser.
 CREATE INDEX /*i*/rc_ip ON /*_*/recentchanges (rc_ip);
+
+-- Probably intended for Special:NewPages namespace filter
 CREATE INDEX /*i*/rc_ns_usertext ON /*_*/recentchanges (rc_namespace, rc_user_text);
+
+-- SiteStats active user count, Special:ActiveUsers, Special:NewPages user filter
 CREATE INDEX /*i*/rc_user_text ON /*_*/recentchanges (rc_user_text, rc_timestamp);
+
+-- ApiQueryRecentChanges (T140108)
 CREATE INDEX /*i*/rc_name_type_patrolled_timestamp ON /*_*/recentchanges (rc_namespace, rc_type, rc_patrolled, rc_timestamp);
 
 
@@ -1172,8 +1259,13 @@ CREATE TABLE /*_*/watchlist (
 
 ) /*$wgDBTableOptions*/;
 
+-- Special:Watchlist
 CREATE UNIQUE INDEX /*i*/wl_user ON /*_*/watchlist (wl_user, wl_namespace, wl_title);
+
+-- Special:Movepage (WatchedItemStore::duplicateEntry)
 CREATE INDEX /*i*/namespace_title ON /*_*/watchlist (wl_namespace, wl_title);
+
+-- ApiQueryWatchlistRaw changed filter
 CREATE INDEX /*i*/wl_user_notificationtimestamp ON /*_*/watchlist (wl_user, wl_notificationtimestamp);
 
 
@@ -1307,14 +1399,31 @@ CREATE TABLE /*_*/logging (
   log_deleted tinyint unsigned NOT NULL default 0
 ) /*$wgDBTableOptions*/;
 
+-- Special:Log type filter
 CREATE INDEX /*i*/type_time ON /*_*/logging (log_type, log_timestamp);
+
+-- Special:Log performer filter
 CREATE INDEX /*i*/user_time ON /*_*/logging (log_user, log_timestamp);
+
+-- Special:Log title filter, log extract
 CREATE INDEX /*i*/page_time ON /*_*/logging (log_namespace, log_title, log_timestamp);
+
+-- Special:Log unfiltered
 CREATE INDEX /*i*/times ON /*_*/logging (log_timestamp);
+
+-- Special:Log filter by performer and type
 CREATE INDEX /*i*/log_user_type_time ON /*_*/logging (log_user, log_type, log_timestamp);
+
+-- @fixme Possibly unused?
 CREATE INDEX /*i*/log_page_id_time ON /*_*/logging (log_page,log_timestamp);
+
+-- Special:Log action filter
 CREATE INDEX /*i*/type_action ON /*_*/logging (log_type, log_action, log_timestamp);
+
+-- Special:Log filter by type and anonymous performer
 CREATE INDEX /*i*/log_user_text_type_time ON /*_*/logging (log_user_text, log_type, log_timestamp);
+
+-- Special:Log filter by anonymous performer
 CREATE INDEX /*i*/log_user_text_time ON /*_*/logging (log_user_text, log_timestamp);
 
 
