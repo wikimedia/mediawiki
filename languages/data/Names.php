@@ -132,6 +132,7 @@ class Names {
 		'de-at' => 'Österreichisches Deutsch', # Austrian German
 		'de-ch' => 'Schweizer Hochdeutsch', # Swiss Standard German
 		'de-formal' => "Deutsch (Sie-Form)\xE2\x80\x8E", # German - formal address ("Sie")
+		'din' => 'Thuɔŋjäŋ', # Dinka
 		'diq' => 'Zazaki', # Zazaki
 		'dsb' => 'dolnoserbski', # Lower Sorbian
 		'dtp' => 'Dusun Bundu-liwan', # Central Dusun
