@@ -195,6 +195,7 @@ changes to languages because of Phabricator reports.
   ca ↔ oc; hsb ↔ dsb; io → eo; mdf → ru; pnt → el; roa-tara → it; rup → ro;
   sh → bs, sr-el, hr.
 * (T137376) New language support: Atikamekw (atj).
+* (T163600) New language support: Dinka (din).
 * (T155957) Talk Namespaces for Javanese language (jv) have been updated.
 
 ==== No fallback for Ukrainian ====
