@@ -293,6 +293,8 @@ abstract class TablePager extends IndexPager {
 			return '';
 		}
 
+		$this->getOutput()->enableOOUI();
+
 		$labels = [
 			'first' => 'table_pager_first',
 			'prev' => 'table_pager_prev',
@@ -300,28 +302,27 @@ abstract class TablePager extends IndexPager {
 			'last' => 'table_pager_last',
 		];
 
-		$linkTexts = [];
-		$disabledTexts = [];
-		foreach ( $labels as $type => $label ) {
-			$msgLabel = $this->msg( $label )->escaped();
-			$linkTexts[$type] = "<div class='TablePager_nav-enabled'>$msgLabel</div>";
-			$disabledTexts[$type] = "<div class='TablePager_nav-disabled'>$msgLabel</div>";
-		}
-		$links = $this->getPagingLinks( $linkTexts, $disabledTexts );
+		$queries = $this->getPagingQueries();
+		$links = [];
 
-		$s = Html::openElement( 'table', [ 'class' => $this->getNavClass() ] );
-		$s .= Html::openElement( 'tr' ) . "\n";
-		$width = 100 / count( $links ) . '%';
+		$buttons = [];
+
+		$title = $this->getTitle();
+
 		foreach ( $labels as $type => $label ) {
-			// We want every cell to have the same width. We could use table-layout: fixed; in CSS,
-			// but it only works if we specify the width of a cell or the table and we don't want to.
-			// There is no better way. <https://www.w3.org/TR/CSS2/tables.html#fixed-table-layout>
-			$s .= Html::rawElement( 'td',
-				[ 'style' => "width: $width;", 'class' => "TablePager_nav-$type" ],
-				$links[$type] ) . "\n";
+			$buttons[] = new \OOUI\ButtonWidget( [
+				'label' => $this->msg( $label )->text(),
+				'href' => $queries[ $type ] ?
+					$title->getLinkURL( $queries[ $type ] + $this->getDefaultQuery() ) :
+					null,
+				// 'icon' => 'previous' / 'next' / '...',
+				'disabled' => $queries[ $type ] === false
+			] );
 		}
-		$s .= Html::closeElement( 'tr' ) . Html::closeElement( 'table' ) . "\n";
-		return $s;
+		return new \OOUI\ButtonGroupWidget( [
+			'classes' => [ $this->getNavClass() ],
+			'items' => $buttons,
+		] );
 	}
 
 	/**
