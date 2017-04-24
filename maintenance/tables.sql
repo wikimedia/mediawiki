@@ -299,7 +299,7 @@ CREATE TABLE /*_*/page (
   -- Handy key to revision.rev_id of the current revision.
   -- This may be 0 during page creation, but that shouldn't
   -- happen outside of a transaction... hopefully.
-  page_latest int unsigned NOT NULL,
+  page_latest bigint unsigned NOT NULL,
 
   -- Uncompressed length in bytes of the page's current source text.
   page_len int unsigned NOT NULL,
@@ -323,28 +323,19 @@ CREATE INDEX /*i*/page_redirect_namespace_len ON /*_*/page (page_is_redirect, pa
 --
 CREATE TABLE /*_*/revision (
   -- Unique ID to identify each revision
-  rev_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  rev_id bigint unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
 
   -- Key to page_id. This should _never_ be invalid.
   rev_page int unsigned NOT NULL,
 
-  -- Key to text.old_id, where the actual bulk text is stored.
-  -- It's possible for multiple revisions to use the same text,
-  -- for instance revisions where only metadata is altered
-  -- or a rollback to a previous version.
-  rev_text_id int unsigned NOT NULL,
+  -- Key to comment.comment_id, where the actual comment text is stored.
+  -- It's possible for multiple revisions to use the same comment reference,
+  -- or for this to be NULL if no comment is associated.
+  rev_comment_id bigint,
 
-  -- Text comment summarizing the change.
-  -- This text is shown in the history and other changes lists,
-  -- rendered in a subset of wiki markup by Linker::formatComment()
-  rev_comment varbinary(767) NOT NULL,
-
-  -- Key to user.user_id of the user who made this edit.
-  -- Stores 0 for anonymous edits and for some mass imports.
-  rev_user int unsigned NOT NULL default 0,
-
-  -- Text username or IP address of the editor.
-  rev_user_text varchar(255) binary NOT NULL default '',
+  -- Key to actor.actor_id of the user who made this edit.
+  -- actor_user or actor_text will have the actual id or IP address.
+  rev_actor bigint unsigned NOT NULL,
 
   -- Timestamp of when revision was created
   rev_timestamp binary(14) NOT NULL default '',
@@ -356,21 +347,9 @@ CREATE TABLE /*_*/revision (
   -- Restrictions on who can access this revision
   rev_deleted tinyint unsigned NOT NULL default 0,
 
-  -- Length of this revision in bytes
-  rev_len int unsigned,
-
   -- Key to revision.rev_id
   -- This field is used to add support for a tree structure (The Adjacency List Model)
-  rev_parent_id int unsigned default NULL,
-
-  -- SHA-1 text content hash in base-36
-  rev_sha1 varbinary(32) NOT NULL default '',
-
-  -- content model, see CONTENT_MODEL_XXX constants
-  rev_content_model varbinary(32) DEFAULT NULL,
-
-  -- content format, see CONTENT_FORMAT_XXX constants
-  rev_content_format varbinary(64) DEFAULT NULL
+  rev_parent_id bigint unsigned default NULL,
 
 ) /*$wgDBTableOptions*/ MAX_ROWS=10000000 AVG_ROW_LENGTH=1024;
 -- In case tables are created as MyISAM, use row hints for MySQL <5.0 to avoid 4GB limit
@@ -378,9 +357,144 @@ CREATE TABLE /*_*/revision (
 CREATE INDEX /*i*/rev_page_id ON /*_*/revision (rev_page, rev_id);
 CREATE INDEX /*i*/rev_timestamp ON /*_*/revision (rev_timestamp);
 CREATE INDEX /*i*/page_timestamp ON /*_*/revision (rev_page,rev_timestamp);
-CREATE INDEX /*i*/user_timestamp ON /*_*/revision (rev_user,rev_timestamp);
-CREATE INDEX /*i*/usertext_timestamp ON /*_*/revision (rev_user_text,rev_timestamp);
-CREATE INDEX /*i*/page_user_timestamp ON /*_*/revision (rev_page,rev_user,rev_timestamp);
+CREATE INDEX /*i*/actor_timestamp ON /*_*/revision (rev_actor,rev_timestamp);
+CREATE INDEX /*i*/page_actor_timestamp ON /*_*/revision (rev_page,rev_actor,rev_timestamp);
+
+
+--
+-- Revision authorship is represented by an actor row.
+-- This avoids duplicating common usernames/IP addresses
+-- in the revision table, and makes rename processing quicker.
+--
+CREATE TABLE /*_*/actor (
+  -- Unique ID to identify each entry
+  actor_id bigint unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
+
+  -- Key to user.user_id of the user who made this edit.
+  -- Stores 0 for anonymous edits and for some mass imports.
+  actor_user int unsigned NOT NULL default 0,
+
+  -- Text username or IP address of the editor.
+  actor_text varchar(255) binary NOT NULL default ''
+) /*$wgDBTableOptions*/;
+
+
+CREATE INDEX /*i*/actor_user ON /*_*/actor (actor_user);
+CREATE INDEX /*i*/actor_text ON /*_*/actor (actor_text);
+--
+-- Revisions are usually marked with a textual comment describing the change.
+-- They are stored in the comment table to keep revision more compact,
+-- and potentially to allow combining entries for identical comments.
+--
+CREATE TABLE /*_*/comment(
+  -- Unique ID to identify each comment
+  comment_id bigint unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
+
+  -- Text comment summarizing the change.
+  -- This text is shown in the history and other changes lists,
+  -- rendered in a subset of wiki markup by Linker::formatComment()
+  -- Size limits are enforced at the application level, and should
+  -- take care to crop UTF-8 strings appropriately.
+  comment_text BLOB NOT NULL
+) /*$wgDBTableOptions*/;
+
+--
+-- Each revision references one or more content objects via the
+-- slots table, ending up here.
+--
+CREATE TABLE /*_*/content (
+  cont_id bigint unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
+
+  -- Key to text.old_id, where the actual bulk text is stored.
+  -- It's possible for multiple revisions to use the same text,
+  -- for instance revisions where only metadata is altered
+  -- or a rollback to a previous version.
+  cont_text_id bigint unsigned NOT NULL,
+
+  -- Length of this content in bytes
+  cont_len int unsigned,
+
+  -- SHA-1 text content hash in base-36
+  cont_sha1 varbinary(32) NOT NULL DEFAULT '',
+
+  -- content model, keys to content_model.cm_id for cm_model
+  -- See CONTENT_MODEL_XXX constants
+  cont_model smallint NOT NULL DEFAULT 0,
+
+  -- content format, keys to content_format.cf_id for cf_format
+  -- See CONTENT_FORMT_XXX constants
+  cont_format smallint NOT NULL DEFAULT 0
+) /*$wgDBTableOptions*/;
+
+
+--
+-- Slots are the association between a revision and one of its content objects.
+-- Classic wiki pages may use only a single, default slot but more complex
+-- data types may associate multiple content objects.
+--
+CREATE TABLE /*_*/slots (
+  -- Key to revision.rev_id
+  slot_revision BIGINT UNSIGNED NOT NULL,
+
+  -- Key to content.cont_id
+  slot_content BIGINT UNSIGNED NOT NULL,
+
+  -- Key to content_roles.cr_id
+  slot_role SMALLINT UNSIGNED NOT NULL,
+
+  PRIMARY KEY (slot_revision, slot_role, slot_content)
+) /*$wgDBTableOptions*/;
+
+CREATE UNIQUE INDEX /*i*/slot_revision_role ON /*_*/slots (slot_revision, slot_role);
+
+
+--
+-- Mapping table for content slot roles.
+--
+CREATE TABLE /*_*/content_roles (
+  -- Unique ID for each role, used in slots.slot_role
+  cr_id SMALLINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+
+  -- Textual role name
+  cr_role VARBINARY(32) NOT NULL DEFAULT ''
+) /*$wgDBTableOptions*/;
+
+CREATE UNIQUE INDEX /*i*/cr_role ON /*_*/content_roles (cr_role);
+
+
+--
+-- Mapping table for content models.
+-- A content model represents the conceptual data model of the underlying
+-- page content, such as wikitext or javascript or a graph definition.
+--
+CREATE TABLE /*_*/content_model (
+  -- Unique ID for each content model, used in content.cont_model
+  cm_id smallint NOT NULL PRIMARY KEY AUTO_INCREMENT,
+
+  -- Textual content model name
+  -- See CONTENT_MODEL_XXX constants
+  cm_model varbinary(32) NOT NULL DEFAULT ''
+) /*$wgDBTableOptions*/;
+
+CREATE UNIQUE INDEX /*i*/cm_model ON /*_*/content_model (cm_model);
+
+
+--
+-- Mapping table for content formats.
+-- A content format represents the in-DB representation of the underlying
+-- page content, such as wikitext or JSON.
+--
+CREATE TABLE /*_*/content_format (
+  -- Unique ID for each content format, used in content.cont_format
+  cf_id smallint NOT NULL PRIMARY KEY AUTO_INCREMENT,
+
+  -- Textual content format name
+  -- See CONTENT_FORMT_XXX constants
+  cf_format varbinary(64) NOT NULL DEFAULT ''
+) /*$wgDBTableOptions*/;
+
+CREATE UNIQUE INDEX /*i*/cf_format ON /*_*/content_format (cf_format);
+
 
 --
 -- Holds text of individual page revisions.
