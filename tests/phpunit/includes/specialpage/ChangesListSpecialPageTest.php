@@ -396,6 +396,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testFilterUserExpLevel() {
+		$now = time();
 		$this->setMwGlobals( [
 			'wgLearnerEdits' => 10,
 			'wgLearnerMemberSince' => 4,
@@ -412,12 +413,12 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 			'Learner3' => [ 'edits' => 460, 'days' => 33 ],
 			'Learner4' => [ 'edits' => 525, 'days' => 28 ],
 			'Experienced1' => [ 'edits' => 538, 'days' => 33 ],
-		] );
+		], $now );
 
 		// newcomers only
 		$this->assertArrayEquals(
 			[ 'Newcomer1', 'Newcomer2', 'Newcomer3' ],
-			$this->fetchUsers( [ 'newcomer' ] )
+			$this->fetchUsers( [ 'newcomer' ], $now )
 		);
 
 		// newcomers and learner
@@ -426,7 +427,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 				'Newcomer1', 'Newcomer2', 'Newcomer3',
 				'Learner1', 'Learner2', 'Learner3', 'Learner4',
 			],
-			$this->fetchUsers( [ 'newcomer', 'learner' ] )
+			$this->fetchUsers( [ 'newcomer', 'learner' ], $now )
 		);
 
 		// newcomers and more learner
@@ -435,19 +436,19 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 				'Newcomer1', 'Newcomer2', 'Newcomer3',
 				'Experienced1',
 			],
-			$this->fetchUsers( [ 'newcomer', 'experienced' ] )
+			$this->fetchUsers( [ 'newcomer', 'experienced' ], $now )
 		);
 
 		// learner only
 		$this->assertArrayEquals(
 			[ 'Learner1', 'Learner2', 'Learner3', 'Learner4' ],
-			$this->fetchUsers( [ 'learner' ] )
+			$this->fetchUsers( [ 'learner' ], $now )
 		);
 
 		// more experienced only
 		$this->assertArrayEquals(
 			[ 'Experienced1' ],
-			$this->fetchUsers( [ 'experienced' ] )
+			$this->fetchUsers( [ 'experienced' ], $now )
 		);
 
 		// learner and more experienced
@@ -456,7 +457,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 				'Learner1', 'Learner2', 'Learner3', 'Learner4',
 				'Experienced1',
 			],
-			$this->fetchUsers( [ 'learner', 'experienced' ] ),
+			$this->fetchUsers( [ 'learner', 'experienced' ], $now ),
 			'Learner and more experienced'
 		);
 
@@ -469,25 +470,25 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		/* 		'Learner1', 'Learner2', 'Learner3', 'Learner4', */
 		/* 		'Experienced1', */
 		/* 	], */
-		/* 	$this->fetchUsers( [ 'newcomer', 'learner', 'experienced' ] ) */
+		/* 	$this->fetchUsers( [ 'newcomer', 'learner', 'experienced' ], $now ) */
 		/* ); */
 	}
 
-	private function createUsers( $specs ) {
+	private function createUsers( $specs, $now ) {
 		$dbw = wfGetDB( DB_MASTER );
 		foreach ( $specs as $name => $spec ) {
 			User::createNew(
 				$name,
 				[
 					'editcount' => $spec['edits'],
-					'registration' => $dbw->timestamp( $this->daysAgo( $spec['days'] ) ),
+					'registration' => $dbw->timestamp( $this->daysAgo( $spec['days'], $now ) ),
 					'email' => 'ut',
 				]
 			);
 		}
 	}
 
-	private function fetchUsers( $filters ) {
+	private function fetchUsers( $filters, $now ) {
 		$tables = [];
 		$conds = [];
 		$fields = [];
@@ -507,7 +508,8 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 				&$conds,
 				&$query_options,
 				&$join_conds,
-				$filters
+				$filters,
+				$now
 			]
 		);
 
@@ -525,9 +527,9 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		return $usernames;
 	}
 
-	private function daysAgo( $days ) {
+	private function daysAgo( $days, $now ) {
 		$secondsPerDay = 86400;
-		return time() - $days * $secondsPerDay;
+		return $now - $days * $secondsPerDay;
 	}
 
 	public function testGetFilterGroupDefinitionFromLegacyCustomFilters() {
