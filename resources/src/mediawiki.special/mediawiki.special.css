@@ -116,3 +116,7 @@ table.mw-userrights-groups * td,
 table.mw-userrights-groups * th {
 	padding-right: 1.5em;
 }
+
+table.mw-userrights-groups * th {
+	text-align: left;
+}
