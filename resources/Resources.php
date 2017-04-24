@@ -2383,6 +2383,18 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.widgets.SelectWithInputWidget' => [
+		'scripts' => 'resources/src/mediawiki.widgets/mw.widgets.SelectWithInputWidget.js',
+		'dependencies' => [
+			'mediawiki.widgets.SelectWithInputWidget.styles',
+			'oojs-ui-widgets',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	'mediawiki.widgets.SelectWithInputWidget.styles' => [
+		'styles' => 'resources/src/mediawiki.widgets/mw.widgets.SelectWithInputWidget.base.css',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.widgets.MediaSearch' => [
 		'scripts' => [
 			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.APIResultsProvider.js',
