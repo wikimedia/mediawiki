@@ -2063,6 +2063,22 @@ $wgSlaveLagCritical = 30;
  */
 $wgDBWindowsAuthentication = false;
 
+/**
+ * Revision schema layout version, used for transitioning the core tables.
+ * Leave at Revision::SCHEMA_CLASSIC for the 1.5-1.30 classic schema, or
+ * set to Revision::SCHEMA_MCR_TRANSITIONAL to use the transitional mode
+ * to multi-content revisions ("MCR").
+ *
+ * To apply updates, change the var and run update.php.
+ * @TODO attach the updater
+ * @TODO safe to use class constants or move these to Defines.php?
+ * @TODO set this to SCHEMA_CLASSIC initially.
+ * @TODO move all the table defs from tables.sql until ready ;)
+ *
+ * @since 1.30
+ */
+$wgRevisionSchema = 3; // Revision::SCHEMA_MCR
+
 /**@}*/ # End of DB settings }
 
 /************************************************************************//**

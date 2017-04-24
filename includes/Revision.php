@@ -102,6 +102,30 @@ class Revision implements IDBAccessObject {
 	const TEXT_CACHE_GROUP = 'revisiontext:10'; // process cache name and max key count
 
 	/**
+	 * Schema version for post-1.5, pre-1.30.
+	 * Uses page/rev/text and archive/text.
+	 * @TODO may not land in 1.30 :)
+	 * @since 1.30
+	 */
+	const SCHEMA_CLASSIC = 1;
+
+	/**
+	 * Transitional schema version for multi-content revisions.
+	 * Adds slot,content & comment & actor but contains the old fields,
+	 * and uses them for compatibility.
+	 * @since 1.30
+	 */
+	const SCHEMA_MCR_TRANSITIONAL = 2;
+
+	/**
+	 * Production schema version for multi-content revisions.
+	 * Adds slot,content & comment & actor and drops the old fields
+	 * from revision & archive tables.
+	 * @since 1.30
+	 */
+	const SCHEMA_MCR = 3;
+
+	/**
 	 * Load a page revision from a given revision ID number.
 	 * Returns null if no such revision can be found.
 	 *
@@ -401,22 +425,41 @@ class Revision implements IDBAccessObject {
 	 * @return stdClass
 	 */
 	private static function fetchFromConds( $db, $conditions, $flags = 0 ) {
+		global $wgRevisionSchema;
 		$fields = array_merge(
 			self::selectFields(),
-			self::selectPageFields(),
-			self::selectUserFields()
+			self::selectPageFields()
 		);
 		$options = [];
 		if ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING ) {
 			$options[] = 'FOR UPDATE';
 		}
+		$tables = [ 'revision', 'page', 'user' ];
+		$joinConds = [ 'page' => self::pageJoinCond() ];
+
+		if ( $wgRevisionSchema <= self::SCHEMA_MCR_TRANSITIONAL ) {
+			$tables[] = 'user';
+			$fields = array_merge( $fields, self::selectUserFields() );
+			$joinConds['user'] = self::userJoinCond();
+		}
+
+		if ( $wgRevisionSchema >= self::SCHEMA_MCR_TRANSITIONAL ) {
+			$tables[] = 'comment';
+			$fields = array_merge( $fields, self::selectCommentFields() );
+			$joinConds['comment'] = self::commentJoinCond();
+
+			$tables[] = 'actor';
+			$fields = array_merge( $fields, self::selectActorFields() );
+			$joinConds['actor'] = self::actorJoinCond();
+		}
+
 		return $db->selectRow(
-			[ 'revision', 'page', 'user' ],
+			$tables,
 			$fields,
 			$conditions,
 			__METHOD__,
 			$options,
-			[ 'page' => self::pageJoinCond(), 'user' => self::userJoinCond() ]
+			$joinConds
 		);
 	}
 
@@ -441,6 +484,26 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
+	 * Return the value of a select() JOIN conds array for the actor table.
+	 * This will get actor table rows for logged-in users and IPs.
+	 * @since 1.30
+	 * @return array
+	 */
+	public static function actorJoinCond() {
+		return [ 'LEFT JOIN', [ 'actor_id = rev_actor' ] ];
+	}
+
+	/**
+	 * Return the value of a select() JOIN conds array for the comment table.
+	 * This will get comment table rows where available.
+	 * @since 1.30
+	 * @return array
+	 */
+	public static function commentJoinCond() {
+		return [ 'LEFT JOIN', [ 'comment_id = rev_comment_id' ] ];
+	}
+
+	/**
 	 * Return the list of revision fields that should be selected to create
 	 * a new revision.
 	 * @return array
@@ -451,21 +514,29 @@ class Revision implements IDBAccessObject {
 		$fields = [
 			'rev_id',
 			'rev_page',
-			'rev_text_id',
 			'rev_timestamp',
-			'rev_comment',
-			'rev_user_text',
-			'rev_user',
 			'rev_minor_edit',
 			'rev_deleted',
-			'rev_len',
 			'rev_parent_id',
-			'rev_sha1',
 		];
 
 		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'rev_content_format';
 			$fields[] = 'rev_content_model';
+		}
+
+		if ( $wgRevisionSchema <= self::SCHEMA_MCR_TRANSITIONAL ) {
+			$fields[] = 'rev_text_id';
+			$fields[] = 'rev_comment';
+			$fields[] = 'rev_user_text';
+			$fields[] = 'rev_user';
+			$fields[] = 'rev_len';
+			$fields[] = 'rev_sha1';
+		}
+
+		if ( $wgRevisionSchema >= self::SCHEMA_MCR_TRANSITIONAL ) {
+			$fields[] = 'rev_comment_id';
+			$fields[] = 'rev_actor';
 		}
 
 		return $fields;
@@ -499,6 +570,21 @@ class Revision implements IDBAccessObject {
 			$fields[] = 'ar_content_format';
 			$fields[] = 'ar_content_model';
 		}
+
+		if ( $wgRevisionSchema <= self::SCHEMA_MCR_TRANSITIONAL ) {
+			$fields[] = 'ar_text_id';
+			$fields[] = 'ar_comment';
+			$fields[] = 'ar_user_text';
+			$fields[] = 'ar_user';
+			$fields[] = 'ar_len';
+			$fields[] = 'ar_sha1';
+		}
+
+		if ( $wgRevisionSchema >= self::SCHEMA_MCR_TRANSITIONAL ) {
+			$fields[] = 'ar_comment_id';
+			$fields[] = 'ar_actor';
+		}
+
 		return $fields;
 	}
 
@@ -538,6 +624,22 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
+	 * Return the list of actor fields that should be selected from actor table
+	 * @return array
+	 */
+	public static function selectActorFields() {
+		return [ 'actor_text' ];
+	}
+
+	/**
+	 * Return the list of comment fields that should be selected from comment table
+	 * @return array
+	 */
+	public static function selectCommentFields() {
+		return [ 'comment_text' ];
+	}
+
+	/**
 	 * Do a batched query to get the parent revision lengths
 	 * @param IDatabase $db
 	 * @param array $revIds
@@ -570,8 +672,8 @@ class Revision implements IDBAccessObject {
 			$this->mId = intval( $row->rev_id );
 			$this->mPage = intval( $row->rev_page );
 			$this->mTextId = intval( $row->rev_text_id );
-			$this->mComment = $row->rev_comment;
-			$this->mUser = intval( $row->rev_user );
+			$this->mComment = isset( $row->comment_text ) ? $row->comment_text : $row->rev_comment;
+			$this->mUser = isset( $row->actor_user ) ? intval( $row->actor_user ) : intval( $row->rev_user );
 			$this->mMinorEdit = intval( $row->rev_minor_edit );
 			$this->mTimestamp = $row->rev_timestamp;
 			$this->mDeleted = intval( $row->rev_deleted );
@@ -623,9 +725,12 @@ class Revision implements IDBAccessObject {
 				$this->mTextRow = null;
 			}
 
-			// Use user_name for users and rev_user_text for IPs...
+			// Use actor_text in MCR.
+			// For old schema, user_name for users and rev_user_text for IPs...
 			$this->mUserText = null; // lazy load if left null
-			if ( $this->mUser == 0 ) {
+			if ( isset( $row->actor_text ) ) {
+				$this->mUserText = $row->actor_text;
+			} else if ( $this->mUser == 0 ) {
 				$this->mUserText = $row->rev_user_text; // IP user
 			} elseif ( isset( $row->user_name ) ) {
 				$this->mUserText = $row->user_name; // logged-in user

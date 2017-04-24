@@ -299,7 +299,7 @@ CREATE TABLE /*_*/page (
   -- Handy key to revision.rev_id of the current revision.
   -- This may be 0 during page creation, but that shouldn't
   -- happen outside of a transaction... hopefully.
-  page_latest int unsigned NOT NULL,
+  page_latest bigint unsigned NOT NULL,
 
   -- Uncompressed length in bytes of the page's current source text.
   page_len int unsigned NOT NULL,
@@ -335,28 +335,19 @@ CREATE INDEX /*i*/page_redirect_namespace_len ON /*_*/page (page_is_redirect, pa
 --
 CREATE TABLE /*_*/revision (
   -- Unique ID to identify each revision
-  rev_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  rev_id bigint unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
 
   -- Key to page_id. This should _never_ be invalid.
   rev_page int unsigned NOT NULL,
 
-  -- Key to text.old_id, where the actual bulk text is stored.
-  -- It's possible for multiple revisions to use the same text,
-  -- for instance revisions where only metadata is altered
-  -- or a rollback to a previous version.
-  rev_text_id int unsigned NOT NULL,
+  -- Key to comment.comment_id, where the actual comment text is stored.
+  -- It's possible for multiple revisions to use the same comment reference,
+  -- or for this to be NULL if no comment is associated.
+  rev_comment_id bigint,
 
-  -- Text comment summarizing the change.
-  -- This text is shown in the history and other changes lists,
-  -- rendered in a subset of wiki markup by Linker::formatComment()
-  rev_comment varbinary(767) NOT NULL,
-
-  -- Key to user.user_id of the user who made this edit.
-  -- Stores 0 for anonymous edits and for some mass imports.
-  rev_user int unsigned NOT NULL default 0,
-
-  -- Text username or IP address of the editor.
-  rev_user_text varchar(255) binary NOT NULL default '',
+  -- Key to actor.actor_id of the user who made this edit.
+  -- actor_user or actor_text will have the actual id or IP address.
+  rev_actor bigint unsigned NOT NULL,
 
   -- Timestamp of when revision was created
   rev_timestamp binary(14) NOT NULL default '',
@@ -368,21 +359,9 @@ CREATE TABLE /*_*/revision (
   -- Restrictions on who can access this revision
   rev_deleted tinyint unsigned NOT NULL default 0,
 
-  -- Length of this revision in bytes
-  rev_len int unsigned,
-
   -- Key to revision.rev_id
   -- This field is used to add support for a tree structure (The Adjacency List Model)
-  rev_parent_id int unsigned default NULL,
-
-  -- SHA-1 text content hash in base-36
-  rev_sha1 varbinary(32) NOT NULL default '',
-
-  -- content model, see CONTENT_MODEL_XXX constants
-  rev_content_model varbinary(32) DEFAULT NULL,
-
-  -- content format, see CONTENT_FORMAT_XXX constants
-  rev_content_format varbinary(64) DEFAULT NULL
+  rev_parent_id bigint unsigned default NULL,
 
 ) /*$wgDBTableOptions*/ MAX_ROWS=10000000 AVG_ROW_LENGTH=1024;
 -- In case tables are created as MyISAM, use row hints for MySQL <5.0 to avoid 4GB limit
@@ -399,16 +378,156 @@ CREATE INDEX /*i*/rev_timestamp ON /*_*/revision (rev_timestamp);
 -- History index
 CREATE INDEX /*i*/page_timestamp ON /*_*/revision (rev_page,rev_timestamp);
 
--- Logged-in user contributions index
-CREATE INDEX /*i*/user_timestamp ON /*_*/revision (rev_user,rev_timestamp);
-
--- Anonymous user countributions index
-CREATE INDEX /*i*/usertext_timestamp ON /*_*/revision (rev_user_text,rev_timestamp);
+-- User contributions index
+CREATE INDEX /*i*/actor_timestamp ON /*_*/revision (rev_actor,rev_timestamp);
 
 -- Credits index. This is scanned in order to compile credits lists for pages,
--- in ApiQueryContributors. Also for ApiQueryRevisions if rvuser is specified
--- and is a logged-in user.
-CREATE INDEX /*i*/page_user_timestamp ON /*_*/revision (rev_page,rev_user,rev_timestamp);
+-- in ApiQueryContributors. Also for ApiQueryRevisions if rvuser is specified.
+CREATE INDEX /*i*/page_actor_timestamp ON /*_*/revision (rev_page,rev_actor,rev_timestamp);
+
+
+--
+-- Revision authorship is represented by an actor row.
+-- This avoids duplicating common usernames/IP addresses
+-- in the revision table, and makes rename processing quicker.
+--
+CREATE TABLE /*_*/actor (
+  -- Unique ID to identify each entry
+  actor_id bigint unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
+
+  -- Key to user.user_id of the user who made this edit.
+  -- Stores NULL for anonymous edits and for some mass imports.
+  actor_user int unsigned,
+
+  -- Text username or IP address of the editor.
+  actor_text varchar(255) binary NOT NULL default ''
+) /*$wgDBTableOptions*/;
+
+
+CREATE UNIQUE INDEX /*i*/actor_user ON /*_*/actor (actor_user);
+CREATE UNIQUE INDEX /*i*/actor_text ON /*_*/actor (actor_text);
+--
+-- Revisions are usually marked with a textual comment describing the change.
+-- They are stored in the comment table to keep revision more compact,
+-- and to allow usage from other contexts such as deleted revs in archive
+-- table, logging, etc.
+--
+CREATE TABLE /*_*/comment(
+  -- Unique ID to identify each comment
+  comment_id bigint unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
+
+  -- Text comment summarizing the change.
+  -- This text is shown in the history and other changes lists,
+  -- rendered in a subset of wiki markup by Linker::formatComment()
+  -- Size limits are enforced at the application level, and should
+  -- take care to crop UTF-8 strings appropriately.
+  comment_text BLOB NOT NULL
+) /*$wgDBTableOptions*/;
+
+--
+-- Each revision references one or more content objects via the
+-- slot table, ending up here.
+--
+CREATE TABLE /*_*/content (
+  cont_id bigint unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
+
+  -- Key to text.old_id, where the actual bulk text is stored.
+  -- It's possible for multiple revisions to use the same text,
+  -- for instance revisions where only metadata is altered
+  -- or a rollback to a previous version.
+  cont_text_id bigint unsigned NOT NULL,
+
+  -- Length of this content in bytes
+  cont_len int unsigned,
+
+  -- SHA-1 text content hash in base-36
+  cont_sha1 varbinary(32) NOT NULL DEFAULT '',
+
+  -- content model, keys to content_model.cm_id for cm_model
+  -- See CONTENT_MODEL_XXX constants
+  cont_model smallint NOT NULL DEFAULT 0,
+
+  -- content format, keys to content_format.cf_id for cf_format
+  -- See CONTENT_FORMT_XXX constants
+  cont_format smallint NOT NULL DEFAULT 0
+) /*$wgDBTableOptions*/;
+
+
+--
+-- Slots are the association between a revision and the content objects
+-- stored for that version. Note that unchanged content items may be reused
+-- across revisions, or even across pages.
+--
+-- Classic wiki pages may use only a single, default slot but can be extended
+-- with additional slots containing supplementary data types. Other data models
+-- may require multiple specific slots to be present.
+--
+CREATE TABLE /*_*/slot (
+  -- Key to revision.rev_id
+  slot_rev_id BIGINT UNSIGNED NOT NULL,
+
+  -- Key to content.cont_id
+  slot_content BIGINT UNSIGNED NOT NULL,
+
+  -- Key to content_role.cr_id
+  slot_role SMALLINT UNSIGNED NOT NULL,
+
+  PRIMARY KEY (slot_revision, slot_role, slot_content)
+) /*$wgDBTableOptions*/;
+
+CREATE UNIQUE INDEX /*i*/slot_rev_id_role ON /*_*/slot (slot_rev_id, slot_role);
+
+
+--
+-- Mapping table for content slot roles.
+-- @TODO where to find the constants in PHP land?
+-- @TODO specify the default slot mapping name for classic pages?
+--
+CREATE TABLE /*_*/content_role (
+  -- Unique ID for each role, used in slot.slot_role
+  cr_id SMALLINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+
+  -- Textual role name
+  cr_role VARBINARY(32) NOT NULL DEFAULT ''
+) /*$wgDBTableOptions*/;
+
+CREATE UNIQUE INDEX /*i*/cr_role ON /*_*/content_role (cr_role);
+
+
+--
+-- Mapping table for content models.
+-- A content model represents the conceptual data model of the underlying
+-- page content, which allows the serialized format to be interpreted.
+--
+CREATE TABLE /*_*/content_model (
+  -- Unique ID for each content model, used in content.cont_model
+  cm_id smallint NOT NULL PRIMARY KEY AUTO_INCREMENT,
+
+  -- Textual content model name
+  -- See CONTENT_MODEL_XXX constants
+  cm_model varbinary(32) NOT NULL DEFAULT ''
+) /*$wgDBTableOptions*/;
+
+CREATE UNIQUE INDEX /*i*/cm_model ON /*_*/content_model (cm_model);
+
+
+--
+-- Mapping table for content formats.
+-- A content format identifies the serialized representation of the underlying
+-- page content, given as a MIME type. In PHP code these are provided as
+-- constants such as CONTENT_FORMAT_WIKITEXT for convenience.
+--
+CREATE TABLE /*_*/content_format (
+  -- Unique ID for each content format, used in content.cont_format
+  cf_id smallint NOT NULL PRIMARY KEY AUTO_INCREMENT,
+
+  -- Textual content format name
+  -- See CONTENT_FORMT_XXX constants
+  cf_format varbinary(64) NOT NULL DEFAULT ''
+) /*$wgDBTableOptions*/;
+
+CREATE UNIQUE INDEX /*i*/cf_format ON /*_*/content_format (cf_format);
+
 
 --
 -- Holds text of individual page revisions.
@@ -459,27 +578,15 @@ CREATE TABLE /*_*/text (
 --
 CREATE TABLE /*_*/archive (
   -- Primary key
-  ar_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  ar_id bigint unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
   ar_namespace int NOT NULL default 0,
   ar_title varchar(255) binary NOT NULL default '',
 
-  -- Newly deleted pages will not store text in this table,
-  -- but will reference the separately existing text rows.
-  -- This field is retained for backwards compatibility,
-  -- so old archived pages will remain accessible after
-  -- upgrading from 1.4 to 1.5.
-  -- Text may be gzipped or otherwise funky.
-  ar_text mediumblob NOT NULL,
-
   -- Basic revision stuff...
-  ar_comment varbinary(767) NOT NULL,
-  ar_user int unsigned NOT NULL default 0,
-  ar_user_text varchar(255) binary NOT NULL,
+  ar_comment_id bigint unsigned,
+  ar_actor bigint unsigned,
   ar_timestamp binary(14) NOT NULL default '',
   ar_minor_edit tinyint NOT NULL default 0,
-
-  -- See ar_text note.
-  ar_flags tinyblob NOT NULL,
 
   -- When revisions are deleted, their unique rev_id is stored
   -- here so it can be retained after undeletion. This is necessary
@@ -488,24 +595,10 @@ CREATE TABLE /*_*/archive (
   --
   -- Old entries from 1.4 will be NULL here, and a new rev_id will
   -- be created on undeletion for those revisions.
-  ar_rev_id int unsigned,
-
-  -- For newly deleted revisions, this is the text.old_id key to the
-  -- actual stored text. To avoid breaking the block-compression scheme
-  -- and otherwise making storage changes harder, the actual text is
-  -- *not* deleted from the text table, merely hidden by removal of the
-  -- page and revision entries.
-  --
-  -- Old entries deleted under 1.2-1.4 will have NULL here, and their
-  -- ar_text and ar_flags fields will be used to create a new text
-  -- row upon undeletion.
-  ar_text_id int unsigned,
+  ar_rev_id bigint unsigned,
 
   -- rev_deleted for archives
   ar_deleted tinyint unsigned NOT NULL default 0,
-
-  -- Length of this revision in bytes
-  ar_len int unsigned,
 
   -- Reference to page_id. Useful for sysadmin fixing of large pages
   -- merged together in the archives, or for cleanly restoring a page
@@ -515,16 +608,7 @@ CREATE TABLE /*_*/archive (
   ar_page_id int unsigned,
 
   -- Original previous revision
-  ar_parent_id int unsigned default NULL,
-
-  -- SHA-1 text content hash in base-36
-  ar_sha1 varbinary(32) NOT NULL default '',
-
-  -- content model, see CONTENT_MODEL_XXX constants
-  ar_content_model varbinary(32) DEFAULT NULL,
-
-  -- content format, see CONTENT_FORMAT_XXX constants
-  ar_content_format varbinary(64) DEFAULT NULL
+  ar_parent_id bigint unsigned default NULL
 ) /*$wgDBTableOptions*/;
 
 -- Index for Special:Undelete to page through deleted revisions
