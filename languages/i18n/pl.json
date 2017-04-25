@@ -3277,7 +3277,7 @@
 	"imgmultipageprev": "← poprzednia strona",
 	"imgmultipagenext": "następna strona →",
 	"imgmultigo": "Przejdź",
-	"imgmultigoto": "Idź do $1 strony",
+	"imgmultigoto": "Idź do strony: $1",
 	"img-lang-default": "(język domyślny)",
 	"img-lang-info": "Wyświetl tę ilustrację w $1. $2",
 	"img-lang-go": "Dalej",

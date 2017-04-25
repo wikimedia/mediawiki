@@ -895,7 +895,7 @@
 	"mergehistory-invalid-source": "Крынічная старонка мусіць мець карэктную назву.",
 	"mergehistory-invalid-destination": "Мэтавая старонка мусіць мець карэктную назву.",
 	"mergehistory-autocomment": "Гісторыя [[:$1]] аб’яднаная ў [[:$2]]",
-	"mergehistory-comment": "Гісторыя [[:$1]] аб'яднаная ў [[:$2]]: $3",
+	"mergehistory-comment": "Гісторыя [[:$1]] аб’яднаная ў [[:$2]]: $3",
 	"mergehistory-same-destination": "Крынічная і мэтавая старонкі ня могуць супадаць",
 	"mergehistory-reason": "Прычына:",
 	"mergelog": "Журнал аб’яднаньняў",

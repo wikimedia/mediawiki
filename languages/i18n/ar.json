@@ -2404,7 +2404,7 @@
 	"blocklist-timestamp": "الزمن",
 	"blocklist-target": "الهدف",
 	"blocklist-expiry": "ينتهي في",
-	"blocklist-by": "حظر المشرف",
+	"blocklist-by": "الإداري المانع",
 	"blocklist-params": "معطيات المنع",
 	"blocklist-reason": "السبب",
 	"ipblocklist-submit": "بحث",

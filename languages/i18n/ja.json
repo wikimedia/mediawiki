@@ -3616,7 +3616,7 @@
 	"htmlform-user-not-valid": "<strong>$1</strong>は有効な利用者名ではありません。",
 	"logentry-delete-delete": "$1 がページ「$3」を{{GENDER:$2|削除しました}}",
 	"logentry-delete-delete_redir": "$1 がリダイレクト「$3」を上書きにより{{GENDER:$2|削除しました}}",
-	"logentry-delete-restore": "$1 がページ「$3」を{{GENDER:$2|復元しました}}",
+	"logentry-delete-restore": "$1 がページ「$3 ($4)」を{{GENDER:$2|復元しました}}",
 	"logentry-delete-event": "$1 が $3 の{{PLURAL:$5|記録項目|記録項目$5件}}の閲覧レベルを{{GENDER:$2|変更しました}}: $4",
 	"logentry-delete-revision": "$1 がページ「$3」の{{PLURAL:$5|版|$5件の版}}の閲覧レベルを{{GENDER:$2|変更しました}}: $4",
 	"logentry-delete-event-legacy": "$1 が $3 の記録項目の閲覧レベルを{{GENDER:$2|変更しました}}",
