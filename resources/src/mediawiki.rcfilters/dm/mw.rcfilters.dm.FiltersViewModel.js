@@ -17,6 +17,7 @@
 		this.defaultFiltersEmpty = null;
 		this.highlightEnabled = false;
 		this.parameterMap = {};
+		this.baseState = { params: {}, highlights: {} };
 
 		// Events
 		this.aggregate( { update: 'filterItemUpdate' } );
@@ -460,15 +461,6 @@
 	};
 
 	/**
-	 * Set all filter states to default values
-	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.setFiltersToDefaults = function () {
-		var defaultFilterStates = this.getFiltersFromParameters( this.getDefaultParams() );
-
-		this.toggleFiltersSelected( defaultFilterStates );
-	};
-
-	/**
 	 * Analyze the groups and their filters and output an object representing
 	 * the state of the parameters they represent.
 	 *
@@ -788,6 +780,17 @@
 		return this.getItems().filter( function ( filterItem ) {
 			return filterItem.isHighlightSupported() &&
 				filterItem.getHighlightColor();
+		} );
+	};
+
+	/**
+	 * Get items that allow highlights even if they're not currently highlighted
+	 *
+	 * @return {mw.rcfilters.dm.FilterItem[]} Items supporting highlights
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getItemSupportingHighlights = function () {
+		return this.getItems().filter( function ( filterItem ) {
+			return filterItem.isHighlightSupported();
 		} );
 	};
 
