@@ -35,6 +35,14 @@ p.mw-ipb-conveniencelinks {
 	text-align: right;
 }
 
+label[for='mw-input-wpConfirm'] {
+	font-weight: bold;
+}
+
+tr.mw-block-hideuser {
+	font-weight: bold;
+}
+
 /* Special:BlockList */
 table.mw-blocklist span.mw-usertoollinks,
 span.mw-blocklist-actions {
