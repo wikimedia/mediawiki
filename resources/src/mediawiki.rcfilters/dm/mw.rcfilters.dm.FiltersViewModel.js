@@ -17,6 +17,7 @@
 		this.defaultFiltersEmpty = null;
 		this.highlightEnabled = false;
 		this.parameterMap = {};
+		this.baseState = { params: {}, highlights: {} };
 
 		// Events
 		this.aggregate( { update: 'filterItemUpdate' } );
@@ -335,13 +336,15 @@
 				items.push( filterItem );
 			}
 
-			if ( data.type === 'string_options' && data.default ) {
+			if ( data.type === 'string_options' ) {
 				// Store the default parameter group state
 				// For this group, the parameter is group name and value is the names
 				// of selected items
 				model.defaultParams[ group ] = model.sanitizeStringOptionGroup(
 					group,
-					data.default.split( model.groups[ group ].getSeparator() )
+					data.default ?
+						data.default.split( model.groups[ group ].getSeparator() ) :
+						[]
 				).join( model.groups[ group ].getSeparator() );
 			}
 		} );
@@ -457,15 +460,6 @@
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getDefaultParams = function () {
 		return this.defaultParams;
-	};
-
-	/**
-	 * Set all filter states to default values
-	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.setFiltersToDefaults = function () {
-		var defaultFilterStates = this.getFiltersFromParameters( this.getDefaultParams() );
-
-		this.toggleFiltersSelected( defaultFilterStates );
 	};
 
 	/**
@@ -808,6 +802,17 @@
 		return this.getItems().filter( function ( filterItem ) {
 			return filterItem.isHighlightSupported() &&
 				filterItem.getHighlightColor();
+		} );
+	};
+
+	/**
+	 * Get items that allow highlights even if they're not currently highlighted
+	 *
+	 * @return {mw.rcfilters.dm.FilterItem[]} Items supporting highlights
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getItemSupportingHighlights = function () {
+		return this.getItems().filter( function ( filterItem ) {
+			return filterItem.isHighlightSupported();
 		} );
 	};
 
