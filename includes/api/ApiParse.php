@@ -278,6 +278,27 @@ class ApiParse extends ApiBase {
 		$result_array['title'] = $titleObj->getPrefixedText();
 		$result_array['pageid'] = $pageid ?: $pageObj->getId();
 
+		// This ensures these get run:
+		// - ParserOutputHooks
+		// - Hook: LanguageLinks
+		// - Hook: OutputPageParserOutput
+		$useOutputPage = isset( $prop['headhtml'] ) ||
+			isset( $prop['modules'] ) ||
+			isset( $prop['jsconfigvars'] ) ||
+			isset( $prop['encodedjsconfigvars'] );
+
+		if ( $useOutputPage ) {
+			$context = new DerivativeContext( $this->getContext() );
+			$context->setTitle( $titleObj );
+			$context->setWikiPage( $pageObj );
+
+			// We need an OutputPage tied to $context, not to the
+			// RequestContext at the root of the stack.
+			$outputPage = new OutputPage( $context );
+			$outputPage->addParserOutputMetadata( $p_result );
+			$outputSkin = $context->getSkin();
+		}
+
 		if ( !is_null( $oldid ) ) {
 			$result_array['revid'] = intval( $oldid );
 		}
@@ -310,12 +331,10 @@ class ApiParse extends ApiBase {
 				// included in the result.
 				$linkFlags = [];
 				Hooks::run( 'LanguageLinks', [ $titleObj, &$langlinks, &$linkFlags ] );
+			} else {
+				$langlinks = false;
 			}
-		} else {
-			$langlinks = false;
-		}
 
-		if ( isset( $prop['langlinks'] ) ) {
 			$result_array['langlinks'] = $this->formatLangLinks( $langlinks );
 		}
 		if ( isset( $prop['categories'] ) ) {
@@ -355,16 +374,7 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['headhtml'] ) ) {
-			$context = new DerivativeContext( $this->getContext() );
-			$context->setTitle( $titleObj );
-			$context->setWikiPage( $pageObj );
-
-			// We need an OutputPage tied to $context, not to the
-			// RequestContext at the root of the stack.
-			$output = new OutputPage( $context );
-			$output->addParserOutputMetadata( $p_result );
-
-			$result_array['headhtml'] = $output->headElement( $context->getSkin() );
+			$result_array['headhtml'] = $outputPage->headElement( $outputSkin );
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'headhtml';
 		}
 
