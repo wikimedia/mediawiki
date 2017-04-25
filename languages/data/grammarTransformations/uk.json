@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Gutsul",
-			"Amir E. Aharoni (amir.aharoni@mail.huji.ac.il)"
+			"Amir E. Aharoni (amir.aharoni@mail.huji.ac.il)",
+			"Eugene Gvozdetsky (epgvozdet@gmail.com)"
 		],
 		"comment": "These rules don't cover the whole grammar of the language, and are intended only for names of languages and Wikimedia projects."
 	},
@@ -14,5 +15,23 @@
 	],
 	"accusative": [
 		[ "(.+)ія$", "$1ію" ]
+	],
+	"languagegen": [
+		[ "@metadata", [
+			"comment", "мова в родовому відмінку: '(з) української'"
+		] ],
+		[ "(.+)ка$", "$1кої" ],
+		[ "іврит$", "івриту" ],
+		[ "їдиш$", "їдишу" ],
+		[ "(.+)$", "$1" ]
+	],
+	"languageadverb": [
+		[ "@metadata", [
+			"comment", "прислівник з назвою мови: 'українською'"
+		] ],
+		[ "(.+)ка$", "$1кою" ],
+		[ "іврит$", "івритом" ],
+		[ "їдиш$", "їдишом" ],
+		[ "(.+)$", "мовою $1" ]
 	]
 }
