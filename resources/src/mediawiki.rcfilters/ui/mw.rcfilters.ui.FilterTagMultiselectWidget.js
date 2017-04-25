@@ -8,10 +8,11 @@
 	 * @constructor
 	 * @param {mw.rcfilters.Controller} controller Controller
 	 * @param {mw.rcfilters.dm.FiltersViewModel} model View model
+	 * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
 	 * @param {Object} config Configuration object
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
 	 */
-	mw.rcfilters.ui.FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( controller, model, config ) {
+	mw.rcfilters.ui.FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( controller, model, savedQueriesModel, config ) {
 		var title = new OO.ui.LabelWidget( {
 				label: mw.msg( 'rcfilters-activefilters' ),
 				classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-content-title' ]
@@ -23,6 +24,7 @@
 
 		this.controller = controller;
 		this.model = model;
+		this.queriesModel = savedQueriesModel;
 		this.$overlay = config.$overlay || this.$element;
 
 		// Parent
@@ -55,10 +57,20 @@
 			}
 		}, config ) );
 
+		this.savedQueryTitle = new OO.ui.LabelWidget( {
+			label: '',
+			classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-content-savedQueryTitle' ]
+		} );
+
 		this.resetButton = new OO.ui.ButtonWidget( {
 			framed: false,
 			classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-resetButton' ]
 		} );
+
+		this.saveQueryButton = new mw.rcfilters.ui.SaveFiltersPopupButtonWidget(
+			this.controller,
+			this.queriesModel
+		);
 
 		this.emptyFilterMessage = new OO.ui.LabelWidget( {
 			label: mw.msg( 'rcfilters-empty-filter' ),
@@ -71,15 +83,18 @@
 		// Stop propagation for mousedown, so that the widget doesn't
 		// trigger the focus on the input and scrolls up when we click the reset button
 		this.resetButton.$element.on( 'mousedown', function ( e ) { e.stopPropagation(); } );
+		this.saveQueryButton.$element.on( 'mousedown', function ( e ) { e.stopPropagation(); } );
 		this.model.connect( this, {
 			initialize: 'onModelInitialize',
 			itemUpdate: 'onModelItemUpdate',
 			highlightChange: 'onModelHighlightChange'
 		} );
+		this.saveQueryButton.connect( this, { click: 'onSaveQueryButtonClick' } );
 
 		// Build the content
 		$contentWrapper.append(
 			title.$element,
+			this.savedQueryTitle.$element,
 			$( '<div>' )
 				.addClass( 'mw-rcfilters-ui-table' )
 				.append(
@@ -95,6 +110,10 @@
 								.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-cell-filters' ),
 							$( '<div>' )
 								.addClass( 'mw-rcfilters-ui-cell' )
+								.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-cell-save' )
+								.append( this.saveQueryButton.$element ),
+							$( '<div>' )
+								.addClass( 'mw-rcfilters-ui-cell' )
 								.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-cell-reset' )
 								.append( this.resetButton.$element )
 						)
@@ -104,6 +123,7 @@
 		// Initialize
 		this.$handle.append( $contentWrapper );
 		this.emptyFilterMessage.toggle( this.isEmpty() );
+		this.savedQueryTitle.toggle( false );
 
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget' );
@@ -117,6 +137,13 @@
 	OO.inheritClass( mw.rcfilters.ui.FilterTagMultiselectWidget, OO.ui.MenuTagMultiselectWidget );
 
 	/* Methods */
+
+	/**
+	 * Respond to query button click
+	 */
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onSaveQueryButtonClick = function () {
+		this.getMenu().toggle( false );
+	};
 
 	/**
 	 * Respond to menu toggle
@@ -168,8 +195,25 @@
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onModelInitialize = function () {
 		this.populateFromModel();
+
+		this.setSavedQueryVisibility();
 	};
 
+	/**
+	 * Set the visibility of the saved query button
+	 */
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.setSavedQueryVisibility = function () {
+		var matchingQuery = this.controller.findQueryMatchingCurrentState();
+
+		this.savedQueryTitle.setLabel(
+			matchingQuery ? matchingQuery.getLabel() : ''
+		);
+		this.savedQueryTitle.toggle( !!matchingQuery );
+		this.saveQueryButton.toggle(
+			!this.isEmpty() &&
+			!matchingQuery
+		);
+	};
 	/**
 	 * Respond to model itemUpdate event
 	 *
@@ -188,6 +232,8 @@
 		} else {
 			this.removeTagByData( item.getName() );
 		}
+
+		this.setSavedQueryVisibility();
 
 		// Re-evaluate reset state
 		this.reevaluateResetRestoreState();
