@@ -1858,6 +1858,7 @@ class OutputPage extends ContextSource {
 		// TODO: Once OutputPage::setTOCEnabled() is removed, move this up.
 		$parserOutput->setTOCEnabled( $this->mEnableTOC );
 		if ( $parserOutput->getTOCEnabled() && $parserOutput->getTOCHTML() ) {
+			$parserOutput->addModules( 'mediawiki.toc' ); // Compat with ApiParse
 			$this->addModules( 'mediawiki.toc' );
 		}
 	}
