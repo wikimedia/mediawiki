@@ -79,3 +79,7 @@ textarea {
 span.subpages {
 	display: block;
 }
+
+.client-js #t-print:not(.loaded) {
+	pointer-events: none;
+}
