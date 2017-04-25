@@ -494,6 +494,7 @@ class ImagePage extends Article {
 						Xml::openElement( 'form', $formParams ) .
 						Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
 						$this->getContext()->msg( 'imgmultigoto' )->rawParams( $select )->parse() .
+						$this->getContext()->msg( 'word-separator' )->escaped() .
 						Xml::submitButton( $this->getContext()->msg( 'imgmultigo' )->text() ) .
 						Xml::closeElement( 'form' ) .
 						"<hr />$thumb1\n$thumb2<br style=\"clear: both\" /></div></td></tr></table>"
