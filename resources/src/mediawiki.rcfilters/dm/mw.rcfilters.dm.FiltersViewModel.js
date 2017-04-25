@@ -16,11 +16,14 @@
 		this.defaultParams = {};
 		this.defaultFiltersEmpty = null;
 		this.highlightEnabled = false;
+		this.namespacesModel = new mw.rcfilters.dm.NamespacesModel();
 		this.parameterMap = {};
+		this.namespaceSeparator = ',';
 
 		// Events
 		this.aggregate( { update: 'filterItemUpdate' } );
 		this.connect( this, { filterItemUpdate: [ 'emit', 'itemUpdate' ] } );
+		this.namespacesModel.connect( this, { update: [ 'emit', 'namespaceItemUpdate' ] } );
 	};
 
 	/* Initialization */
@@ -384,6 +387,28 @@
 		this.emit( 'initialize' );
 	};
 
+	mw.rcfilters.dm.FiltersViewModel.prototype.initializeNamespaces = function ( namespaces ) {
+		var previous,
+			items = [],
+			model = this;
+
+		$.each( namespaces, function ( id, namespace ) {
+			if ( id < 0 ) {
+				return;
+			}
+
+			if ( namespace === '' ) {
+				namespace = mw.msg( 'blanknamespace' );
+			}
+
+			items.push( new mw.rcfilters.dm.NamespaceItem( 'ns_' + id, id, namespace ) );
+		} );
+
+		this.namespacesModel.addItems( items );
+
+		this.emit( 'initializeNamespaces' );
+	};
+
 	/**
 	 * Get the names of all available filters
 	 *
@@ -479,11 +504,21 @@
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getParametersFromFilters = function ( filterGroups ) {
 		var result = {},
+			values = [],
+			namespaceItems = this.getNamespacesModel().getItems() || [],
 			groupItems = filterGroups || this.getFilterGroups();
 
 		$.each( groupItems, function ( group, model ) {
 			$.extend( result, model.getParamRepresentation() );
 		} );
+
+		// Namespace parameter
+		namespaceItems.forEach( function ( model ) {
+			if ( model.isSelected() ) {
+				values.push( model.getNamespaceID() );
+			}
+		} );
+		result.namespace = values.join( this.namespacesModel.getSeparator() );
 
 		return result;
 	};
@@ -670,9 +705,22 @@
 	 * @return {mw.rcfilters.dm.FilterItem} Filter item
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getItemByName = function ( name ) {
-		return this.getItems().filter( function ( item ) {
-			return name === item.getName();
-		} )[ 0 ];
+		if ( name.indexOf( 'ns_' ) === 0 ) {
+			return this.getNamespacesModel().getItemFromData( name );
+		} else {
+			return this.getItems().filter( function ( item ) {
+				return name === item.getName();
+			} )[ 0 ];
+		}
+	};
+
+	/**
+	 * Get all namespace models
+	 *
+	 * @return {mw.rcfilters.dm.NamespacesModel} Namespaces model
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getNamespacesModel = function ( id ) {
+		return this.namespacesModel;
 	};
 
 	/**
@@ -697,6 +745,38 @@
 		if ( item ) {
 			item.toggleSelected( isSelected );
 		}
+	};
+
+	/**
+	 * Toggle selected state of one namespace
+	 *
+	 * @param {number} namespaceID Namespace ID
+	 * @param {boolean} [isSelected] Namespace selected state
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.toggleNamespaceSelected = function ( namespaceID, isSelected ) {
+		var item = this.getNamespace( namespaceID );
+
+		if ( item ) {
+			item.toggleSelected( isSelected );
+		}
+	};
+
+	/**
+	 * Set selected namespaces based on a given list
+	 * TODO: To allow multiple namespaces that each can either be
+	 * excluded or included, we may need to adjust this method and
+	 * the way we represent those in the URL (perhaps with prefixes)
+	 *
+	 * @param {string} selectedNamespaces List of selected namespaces
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.setNamespaceSelection = function ( selectedNamespaces ) {
+		var selected = selectedNamespaces.split( this.getNamespacesModel().getSeparator() );
+
+		this.getNamespacesModel().getItems().forEach( function ( namespaceModel ) {
+			namespaceModel.toggleSelected(
+				selected.indexOf( namespaceModel.getNamespaceID() ) > -1
+			);
+		} );
 	};
 
 	/**

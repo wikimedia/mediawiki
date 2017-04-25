@@ -81,29 +81,49 @@
 		this.setHighlightColor();
 	};
 
-	mw.rcfilters.ui.FilterTagItemWidget.prototype.setHighlightColor = function () {
-		var selectedColor = this.model.isHighlightEnabled() ? this.model.getHighlightColor() : null;
+	mw.rcfilters.ui.FilterTagItemWidget.prototype.getType = function () {
+		return this.model.getType();
+	};
 
-		this.$highlight
-			.attr( 'data-color', selectedColor )
-			.toggleClass(
-				'mw-rcfilters-ui-filterTagItemWidget-highlight-highlighted',
-				!!selectedColor
-			);
+	mw.rcfilters.ui.FilterTagItemWidget.prototype.setHighlightColor = function () {
+		var selectedColor;
+
+		if ( this.model.getType() === 'filter' ) {
+			selectedColor = this.model.isHighlightEnabled() ? this.model.getHighlightColor() : null;
+
+			this.$highlight
+				.attr( 'data-color', selectedColor )
+				.toggleClass(
+					'mw-rcfilters-ui-filterTagItemWidget-highlight-highlighted',
+					!!selectedColor
+				);
+		}
 	};
 
 	/**
 	 * Set the current mute state for this item
 	 */
 	mw.rcfilters.ui.FilterTagItemWidget.prototype.setCurrentMuteState = function () {
-		this.setFlags( {
-			muted: (
-				!this.model.isSelected() ||
-				this.model.isIncluded() ||
-				this.model.isFullyCovered()
-			),
-			invalid: this.model.isSelected() && this.model.isConflicted()
-		} );
+		if ( this.model.getType() === 'filter' ) {
+			this.setFlags( {
+				muted: (
+					!this.model.isSelected() ||
+					this.model.isIncluded() ||
+					this.model.isFullyCovered()
+				),
+				invalid: this.model.isSelected() && this.model.isConflicted()
+			} );
+		} else {
+			// Excluded filters
+			this.setLabel(
+				this.model.isExcluded() ?
+				mw.msg( 'rcfilters-filter-excluded', this.model.getLabel() ) :
+				mw.msg( 'rcfilters-filter-included', this.model.getLabel() )
+			);
+
+			this.$element
+				.toggleClass( 'mw-rcfilters-ui-filterTagItemWidget-excluded', this.model.isExcluded() );
+		}
 	};
 
 	/**
