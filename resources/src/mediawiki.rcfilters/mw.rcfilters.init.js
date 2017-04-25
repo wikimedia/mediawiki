@@ -9,12 +9,18 @@
 	var rcfilters = {
 		/** */
 		init: function () {
-			var filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
+			var formattedNamespaces = mw.config.get( 'wgFormattedNamespaces' ),
+				namespaceArray = Object.keys( formattedNamespaces )
+					.filter( function ( id ) { return id !== ''; } )
+					.map( function ( id ) { return 'ns_' + id; } ),
+				filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
 				changesListModel = new mw.rcfilters.dm.ChangesListViewModel(),
 				controller = new mw.rcfilters.Controller( filtersModel, changesListModel ),
 				$overlay = $( '<div>' )
 					.addClass( 'mw-rcfilters-ui-overlay' ),
 				filtersWidget = new mw.rcfilters.ui.FilterWrapperWidget(
+					controller, filtersModel, { $overlay: $overlay, namespaces: namespaceArray } ),
+				namespaceWidget = new mw.rcfilters.ui.NamespaceWrapperWidget(
 					controller, filtersModel, { $overlay: $overlay } );
 
 			// TODO: The changesListWrapperWidget should be able to initialize
@@ -23,13 +29,16 @@
 			new mw.rcfilters.ui.ChangesListWrapperWidget(
 				filtersModel, changesListModel, $( '.mw-changeslist, .mw-changeslist-empty' ) );
 
-			controller.initialize( mw.config.get( 'wgStructuredChangeFilters' ) );
+			controller.initialize(
+				mw.config.get( 'wgStructuredChangeFilters' ),
+				mw.config.get( 'wgFormattedNamespaces' )
+			);
 
 			// eslint-disable-next-line no-new
 			new mw.rcfilters.ui.FormWrapperWidget(
 				filtersModel, changesListModel, controller, $( 'fieldset.rcoptions' ) );
 
-			$( '.rcfilters-container' ).append( filtersWidget.$element );
+			$( '.rcfilters-container' ).append( filtersWidget.$element, namespaceWidget.$element );
 			$( 'body' ).append( $overlay );
 
 			// Set as ready

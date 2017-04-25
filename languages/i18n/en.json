@@ -1365,6 +1365,8 @@
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "Show",
 	"rcfilters-activefilters": "Active filters",
+	"rcfilters-filter-excluded": ":not $1",
+	"rcfilters-filter-included": ":$1",
 	"rcfilters-restore-default-filters": "Restore default filters",
 	"rcfilters-clear-all-filters": "Clear all filters",
 	"rcfilters-search-placeholder": "Filter recent changes (browse or start typing)",

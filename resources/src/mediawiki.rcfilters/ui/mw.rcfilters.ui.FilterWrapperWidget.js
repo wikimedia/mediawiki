@@ -27,7 +27,7 @@
 		this.filterTagWidget = new mw.rcfilters.ui.FilterTagMultiselectWidget(
 			this.controller,
 			this.model,
-			{ $overlay: this.$overlay }
+			{ $overlay: this.$overlay, namespaces: config.namespaces }
 		);
 
 		// Initialize

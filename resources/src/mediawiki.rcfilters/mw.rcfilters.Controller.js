@@ -19,10 +19,14 @@
 	 *
 	 * @param {Array} filterStructure Filter definition and structure for the model
 	 */
-	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure ) {
+	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure ) {
 		var $changesList = $( '.mw-changeslist' ).first().contents();
+
+		namespaceStructure = namespaceStructure || {};
+
 		// Initialize the model
 		this.filtersModel.initializeFilters( filterStructure );
+		this.filtersModel.initializeNamespaces( namespaceStructure );
 		this.updateStateBasedOnUrl();
 
 		// Update the changes list with the existing data
@@ -39,20 +43,27 @@
 	 * on current URL and default values.
 	 */
 	mw.rcfilters.Controller.prototype.updateStateBasedOnUrl = function () {
-		var uri = new mw.Uri();
+		var uri = new mw.Uri(),
+			// Merge defaults with URL params for initialization
+			urlParams = $.extend(
+				true,
+				{},
+				this.filtersModel.getDefaultParams(),
+				// URI query overrides defaults
+				uri.query
+			);
 
 		// Set filter states based on defaults and URL params
 		this.filtersModel.toggleFiltersSelected(
-			this.filtersModel.getFiltersFromParameters(
-				// Merge defaults with URL params for initialization
-				$.extend(
-					true,
-					{},
-					this.filtersModel.getDefaultParams(),
-					// URI query overrides defaults
-					uri.query
-				)
-			)
+			this.filtersModel.getFiltersFromParameters( urlParams )
+		);
+
+		// Set namespace values
+		// TODO: If we allow for multiple namespaces, some included
+		// and some and excluded, the parameter structure may have
+		// to be different
+		this.filtersModel.setNamespaceSelection(
+			urlParams.namespace || ''
 		);
 
 		// Initialize highlights
@@ -125,6 +136,47 @@
 
 			// Check filter interactions
 			this.filtersModel.reassessFilterInteractions( filterItem );
+		}
+	};
+
+	mw.rcfilters.Controller.prototype.toggleNamespaceExclude = function ( name, isExcluded ) {
+		var namespaceItem = this.filtersModel.getNamespacesModel().getItemFromData( name );
+
+		if ( !namespaceItem ) {
+			// If no namespace was found, break
+			return;
+		}
+
+		isExcluded = isExcluded === undefined ? !namespaceItem.isExcluded() : isExcluded;
+
+		// TODO: UPDATE THE URL once we figure out how to represent this
+
+		if ( namespaceItem.isExcluded() !== isExcluded ) {
+			namespaceItem.toggleExcluded( isExcluded );
+
+			this.updateChangesList();
+		}
+	};
+	/**
+	 * Update the selected state of a filter
+	 *
+	 * @param {string} namespaceName Namespace name
+	 * @param {boolean} [isSelected] Filter selected state
+	 */
+	mw.rcfilters.Controller.prototype.toggleNamespaceSelect = function ( name, isSelected ) {
+		var namespaceItem = this.filtersModel.getNamespacesModel().getItemFromData( name );
+
+		if ( !namespaceItem ) {
+			// If no namespace was found, break
+			return;
+		}
+
+		isSelected = isSelected === undefined ? !namespaceItem.isSelected() : isSelected;
+
+		if ( namespaceItem.isSelected() !== isSelected ) {
+			namespaceItem.toggleSelected( isSelected );
+
+			this.updateChangesList();
 		}
 	};
 
