@@ -1,0 +1,51 @@
+.mw-rcfilters-ui-quickLinkMenuOptionWidget {
+	padding: 0.5em;
+
+	&:hover {
+		// Mimicking optionWidget styles
+		background-color: #eaecf0;
+		color: #000;
+	}
+
+	.mw-rcfilters-ui-cell {
+		vertical-align: middle;
+	}
+
+	&:not( .oo-ui-iconElement ) .oo-ui-iconElement-icon {
+		// The iconElement-icon class still appears when we
+		// have an empty icon, and we need it to pretend to
+		// be there so the text has the same alignment as
+		// text next to a visible icon. #ThanksOOUI
+		width: 1.875em;
+		height: 1.875em;
+	}
+
+	&-icon span {
+		display: inline-block;
+	}
+
+	&-input {
+		display: inline-block;
+		width: 12em;
+	}
+
+	&-label {
+		max-width: 12em;
+		display: inline-block;
+		vertical-align: middle;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		cursor: pointer;
+		margin-left: 0.5px;
+	}
+
+	&-icon,
+	&-button {
+		width: 2em;
+	}
+
+	&-content {
+		width: 100%;
+	}
+
+}
