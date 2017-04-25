@@ -24,6 +24,7 @@
 		this.controller = controller;
 		this.model = model;
 		this.$overlay = config.$overlay || this.$element;
+		this.namespaces = config.namespaces || [];
 
 		// Parent
 		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.call( this, $.extend( true, {
@@ -74,6 +75,7 @@
 		this.model.connect( this, {
 			initialize: 'onModelInitialize',
 			itemUpdate: 'onModelItemUpdate',
+			namespaceItemUpdate: 'onModelNamespaceItemUpdate',
 			highlightChange: 'onModelHighlightChange'
 		} );
 		this.menu.connect( this, { toggle: 'onMenuToggle' } );
@@ -192,12 +194,26 @@
 		this.reevaluateResetRestoreState();
 	};
 
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onModelNamespaceItemUpdate = function ( item ) {
+		if ( item.isSelected() ) {
+			this.addTag( item.getName(), item.getLabel() );
+		} else {
+			this.removeTagByData( item.getName() );
+		}
+
+		// Re-evaluate reset state
+		this.reevaluateResetRestoreState();
+	};
+
 	/**
 	 * @inheritdoc
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.isAllowedData = function ( data ) {
 		return (
-			this.menu.getItemFromData( data ) &&
+			(
+				this.namespaces.indexOf( data ) > -1 ||
+				this.menu.getItemFromData( data )
+			) &&
 			!this.isDuplicateData( data )
 		);
 	};
@@ -244,6 +260,10 @@
 		var widget = this,
 			menuOption = this.menu.getItemFromData( tagItem.getData() ),
 			oldInputValue = this.input.getValue();
+
+		if ( tagItem.getType() === 'namespace' ) {
+			return;
+		}
 
 		// Reset input
 		this.input.setValue( '' );
@@ -293,7 +313,11 @@
 		// Parent method
 		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.prototype.onTagRemove.call( this, tagItem );
 
-		this.controller.clearFilter( tagItem.getName() );
+		if ( tagItem.getType() === 'filter' ) {
+			this.controller.clearFilter( tagItem.getName() );
+		} else {
+			this.controller.toggleNamespaceSelect( tagItem.getName(), false );
+		}
 
 		tagItem.destroy();
 	};
