@@ -91,10 +91,10 @@ abstract class BaseTemplate extends QuickTemplate {
 			}
 		}
 		if ( isset( $this->data['nav_urls']['print'] ) && $this->data['nav_urls']['print'] ) {
-			$toolbox['print'] = $this->data['nav_urls']['print'];
+			$toolbox['print'];// = $this->data['nav_urls']['print'];
 			$toolbox['print']['id'] = 't-print';
-			$toolbox['print']['rel'] = 'alternate';
 			$toolbox['print']['msg'] = 'printableversion';
+			$toolbox['print']['href'] = '';
 		}
 		if ( isset( $this->data['nav_urls']['permalink'] ) && $this->data['nav_urls']['permalink'] ) {
 			$toolbox['permalink'] = $this->data['nav_urls']['permalink'];

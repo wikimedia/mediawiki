@@ -79,3 +79,16 @@ textarea {
 span.subpages {
 	display: block;
 }
+
+.client-nojs #t-print {
+	display: none;
+}
+#t-print:not(.loaded) a,
+#t-print:not(.loaded) a:link,
+#t-print:not(.loaded) a:visited,
+#t-print:not(.loaded) a:active {
+	cursor: default;
+	opacity: 0.1;
+	text-decoration: none;
+	color: black !important;
+}
