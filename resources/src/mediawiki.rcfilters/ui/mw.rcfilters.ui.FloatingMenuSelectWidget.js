@@ -11,7 +11,7 @@
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
 	 * @cfg {jQuery} [$footer] An optional footer for the menu
 	 */
-	mw.rcfilters.ui.FilterFloatingMenuSelectWidget = function MwRcfiltersUiFilterFloatingMenuSelectWidget( controller, model, config ) {
+	mw.rcfilters.ui.FloatingMenuSelectWidget = function MwRcfiltersUiFloatingMenuSelectWidget( controller, model, config ) {
 		var header;
 
 		config = config || {};
@@ -23,16 +23,16 @@
 		this.$overlay = config.$overlay || this.$element;
 		this.$footer = config.$footer;
 		this.$body = $( '<div>' )
-				.addClass( 'mw-rcfilters-ui-filterFloatingMenuSelectWidget-body' );
+				.addClass( 'mw-rcfilters-ui-floatingMenuSelectWidget-body' );
 
 		// Parent
-		mw.rcfilters.ui.FilterFloatingMenuSelectWidget.parent.call( this, $.extend( {
+		mw.rcfilters.ui.FloatingMenuSelectWidget.parent.call( this, $.extend( {
 			$autoCloseIgnore: this.$overlay,
 			width: 650
 		}, config ) );
 		this.setGroupElement(
 			$( '<div>' )
-				.addClass( 'mw-rcfilters-ui-filterFloatingMenuSelectWidget-group' )
+				.addClass( 'mw-rcfilters-ui-floatingMenuSelectWidget-group' )
 		);
 		this.setClippableElement( this.$body );
 		this.setClippableContainer( this.$element );
@@ -47,11 +47,11 @@
 
 		this.noResults = new OO.ui.LabelWidget( {
 			label: mw.msg( 'rcfilters-filterlist-noresults' ),
-			classes: [ 'mw-rcfilters-ui-filterFloatingMenuSelectWidget-noresults' ]
+			classes: [ 'mw-rcfilters-ui-floatingMenuSelectWidget-noresults' ]
 		} );
 
 		this.$element
-			.addClass( 'mw-rcfilters-ui-filterFloatingMenuSelectWidget' )
+			.addClass( 'mw-rcfilters-ui-floatingMenuSelectWidget' )
 			.append(
 				this.$body
 					.append( header.$element, this.$group, this.noResults.$element )
@@ -60,14 +60,14 @@
 		if ( this.$footer ) {
 			this.$element.append(
 				this.$footer
-					.addClass( 'mw-rcfilters-ui-filterFloatingMenuSelectWidget-footer' )
+					.addClass( 'mw-rcfilters-ui-floatingMenuSelectWidget-footer' )
 			);
 		}
 	};
 
 	/* Initialize */
 
-	OO.inheritClass( mw.rcfilters.ui.FilterFloatingMenuSelectWidget, OO.ui.FloatingMenuSelectWidget );
+	OO.inheritClass( mw.rcfilters.ui.FloatingMenuSelectWidget, OO.ui.FloatingMenuSelectWidget );
 
 	/* Events */
 
@@ -83,7 +83,7 @@
 	 * @fires itemVisibilityChange
 	 * @inheritdoc
 	 */
-	mw.rcfilters.ui.FilterFloatingMenuSelectWidget.prototype.updateItemVisibility = function () {
+	mw.rcfilters.ui.FloatingMenuSelectWidget.prototype.updateItemVisibility = function () {
 		var i,
 			itemWasHighlighted = false,
 			inputVal = this.$input.val(),
@@ -93,7 +93,7 @@
 		// call it unless the input actually changed
 		if ( this.inputValue !== inputVal ) {
 			// Parent method
-			mw.rcfilters.ui.FilterFloatingMenuSelectWidget.parent.prototype.updateItemVisibility.call( this );
+			mw.rcfilters.ui.FloatingMenuSelectWidget.parent.prototype.updateItemVisibility.call( this );
 
 			if ( inputVal !== '' ) {
 				// Highlight the first item in the list
@@ -125,7 +125,7 @@
 	 *
 	 * @inheritdoc
 	 */
-	mw.rcfilters.ui.FilterFloatingMenuSelectWidget.prototype.getItemMatcher = function ( s ) {
+	mw.rcfilters.ui.FloatingMenuSelectWidget.prototype.getItemMatcher = function ( s ) {
 		var results = this.model.findMatches( s, true );
 
 		return function ( item ) {
@@ -136,7 +136,7 @@
 	/**
 	 * Scroll to the top of the menu
 	 */
-	mw.rcfilters.ui.FilterFloatingMenuSelectWidget.prototype.scrollToTop = function () {
+	mw.rcfilters.ui.FloatingMenuSelectWidget.prototype.scrollToTop = function () {
 		this.$body.scrollTop( 0 );
 	};
 }( mediaWiki ) );

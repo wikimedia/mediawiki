@@ -338,7 +338,7 @@
 	 * @inheritdoc
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.createMenuWidget = function ( menuConfig ) {
-		return new mw.rcfilters.ui.FilterFloatingMenuSelectWidget(
+		return new mw.rcfilters.ui.FloatingMenuSelectWidget(
 			this.controller,
 			this.model,
 			$.extend( {
