@@ -8,11 +8,12 @@
 	 * @constructor
 	 * @param {mw.rcfilters.Controller} controller Controller
 	 * @param {mw.rcfilters.dm.FiltersViewModel} model View model
+	 * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
 	 * @param {Object} [config] Configuration object
 	 * @cfg {Object} [filters] A definition of the filter groups in this list
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
 	 */
-	mw.rcfilters.ui.FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget( controller, model, config ) {
+	mw.rcfilters.ui.FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget( controller, model, savedQueriesModel, config ) {
 		config = config || {};
 
 		// Parent
@@ -22,18 +23,29 @@
 
 		this.controller = controller;
 		this.model = model;
+		this.queriesModel = savedQueriesModel;
 		this.$overlay = config.$overlay || this.$element;
 
 		this.filterTagWidget = new mw.rcfilters.ui.FilterTagMultiselectWidget(
 			this.controller,
 			this.model,
+			this.queriesModel,
+			{ $overlay: this.$overlay }
+		);
+
+		this.quickLinksWidget = new mw.rcfilters.ui.QuickLinksWidget(
+			this.controller,
+			this.queriesModel,
 			{ $overlay: this.$overlay }
 		);
 
 		// Initialize
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget' )
-			.append( this.filterTagWidget.$element );
+			.append(
+				this.quickLinksWidget.$element,
+				this.filterTagWidget.$element
+			);
 	};
 
 	/* Initialization */
