@@ -278,16 +278,51 @@ class ApiParse extends ApiBase {
 		$result_array['title'] = $titleObj->getPrefixedText();
 		$result_array['pageid'] = $pageid ?: $pageObj->getId();
 
+		if ( $params['disabletoc'] ) {
+			$p_result->setTOCEnabled( false );
+		}
+
+		if ( isset( $params['useskin'] ) ) {
+			$factory = MediaWikiServices::getInstance()->getSkinFactory();
+			$skin = $factory->makeSkin( Skin::normalizeKey( $params['useskin'] ) );
+		} else {
+			$skin = null;
+		}
+
+		$outputPage = null;
+		$p_meta = $p_result;
+		if ( $skin || isset( $prop['headhtml'] ) {
+			// Enabling the skin via 'useskin' or 'headhtml' gets OutputPage and
+			// Skin involved, which (among others) applies these hooks:
+			// - ParserOutputHooks
+			// - Hook: LanguageLinks
+			// - Hook: OutputPageParserOutput
+			// It changes content for the following properties to come from
+			// OutputPage instead of ParserOutput:
+			// langlinks, headitems, modules, jsconfigvars, indicators
+			$context = new DerivativeContext( $this->getContext() );
+			$context->setTitle( $titleObj );
+			$context->setWikiPage( $pageObj );
+
+			if ( $skin ) {
+				$context->setSkin( $skin );
+			}
+
+			$outputPage = new OutputPage( $context );
+			$outputPage->addParserOutputMetadata( $p_result );
+			$context->setOutput( $outputPage );
+
+			if ( $skin ) {
+				$p_meta = $outputPage;
+			}
+		}
+
 		if ( !is_null( $oldid ) ) {
 			$result_array['revid'] = intval( $oldid );
 		}
 
 		if ( $params['redirects'] && !is_null( $redirValues ) ) {
 			$result_array['redirects'] = $redirValues;
-		}
-
-		if ( $params['disabletoc'] ) {
-			$p_result->setTOCEnabled( false );
 		}
 
 		if ( isset( $prop['text'] ) ) {
@@ -303,19 +338,16 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['langlinks'] ) ) {
-			$langlinks = $p_result->getLanguageLinks();
+			$langlinks = $p_meta->getLanguageLinks();
 
-			if ( $params['effectivelanglinks'] ) {
-				// Link flags are ignored for now, but may in the future be
-				// included in the result.
+			// The deprecated 'effectivelanglinks' option depredates OutputPage
+			// support via 'useskin'. If not already applied, then run just this
+			// one hook of OutputPage::addParserOutputMetadata here.
+			if ( !$outputPage && $params['effectivelanglinks'] ) {
 				$linkFlags = [];
 				Hooks::run( 'LanguageLinks', [ $titleObj, &$langlinks, &$linkFlags ] );
 			}
-		} else {
-			$langlinks = false;
-		}
 
-		if ( isset( $prop['langlinks'] ) ) {
 			$result_array['langlinks'] = $this->formatLangLinks( $langlinks );
 		}
 		if ( isset( $prop['categories'] ) ) {
@@ -355,16 +387,7 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['headhtml'] ) ) {
-			$context = new DerivativeContext( $this->getContext() );
-			$context->setTitle( $titleObj );
-			$context->setWikiPage( $pageObj );
-
-			// We need an OutputPage tied to $context, not to the
-			// RequestContext at the root of the stack.
-			$output = new OutputPage( $context );
-			$output->addParserOutputMetadata( $p_result );
-
-			$result_array['headhtml'] = $output->headElement( $context->getSkin() );
+			$result_array['headhtml'] = $outputPage->headElement( $outputSkin );
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'headhtml';
 		}
 
@@ -794,7 +817,10 @@ class ApiParse extends ApiBase {
 			'wrapoutputclass' => 'mw-parser-output',
 			'pst' => false,
 			'onlypst' => false,
-			'effectivelanglinks' => false,
+			'effectivelanglinks' => [
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DEPRECATED => true,
+			],
 			'section' => null,
 			'sectiontitle' => [
 				ApiBase::PARAM_TYPE => 'string',
@@ -816,6 +842,9 @@ class ApiParse extends ApiBase {
 			'preview' => false,
 			'sectionpreview' => false,
 			'disabletoc' => false,
+			'useskin' => [
+				ApiBase::PARAM_TYPE => array_keys( Skin::getAllowedSkins() ),
+			],
 			'contentformat' => [
 				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
 			],
