@@ -1,0 +1,138 @@
+( function ( mw ) {
+	/**
+	 * Quick links widget
+	 *
+	 * @extends OO.ui.Widget
+	 * @mixins OO.ui.mixin.PendingElement
+	 *
+	 * @constructor
+	 * @param {mw.rcfilters.Controller} controller Controller
+	 * @param {mw.rcfilters.dm.SavedQueriesModel} model View model
+	 * @param {Object} [config] Configuration object
+	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
+	 */
+	mw.rcfilters.ui.SavedLinksListWidget = function MwRcfiltersUiSavedLinksListWidget( controller, model, config ) {
+		config = config || {};
+
+		// Parent
+		mw.rcfilters.ui.SavedLinksListWidget.parent.call( this, config );
+
+		this.controller = controller;
+		this.model = model;
+		this.$overlay = config.$overlay || this.$element;
+
+		// The only reason we're using "ButtonGroupWidget" here is that
+		// straight-out "GroupWidget" is a mixin and cannot be initialized
+		// on its own, so we need something to be its widget.
+		this.menu = new OO.ui.ButtonGroupWidget( {
+			classes: [ 'mw-rcfilters-ui-savedLinksListWidget-menu' ]
+		} );
+		this.button = new OO.ui.PopupButtonWidget( {
+			classes: [ 'mw-rcfilters-ui-savedLinksListWidget-button' ],
+			label: mw.msg( 'rcfilters-quickfilters' ),
+			icon: 'unClip',
+			$overlay: this.$overlay,
+			popup: {
+				width: 250,
+				anchor: false,
+				align: 'forwards',
+				$autoCloseIgnore: this.$overlay,
+				$content: this.menu.$element
+			}
+		} );
+
+		this.menu.aggregate( {
+			click: 'menuItemClick',
+			'delete': 'menuItemDelete',
+			'default': 'menuItemDefault',
+			edit: 'menuItemEdit'
+		} );
+
+		// Events
+		this.model.connect( this, {
+			add: 'onModelAddItem',
+			remove: 'onModelRemoveItem'
+		} );
+		this.menu.connect( this, {
+			menuItemClick: 'onMenuItemClick',
+			menuItemDelete: 'onMenuItemRemove',
+			menuItemDefault: 'onMenuItemDefault',
+			menuItemEdit: 'onMenuItemEdit'
+		} );
+
+		this.button.toggle( !this.menu.isEmpty() );
+		// Initialize
+		this.$element
+			.addClass( 'mw-rcfilters-ui-savedLinksListWidget' )
+			.append( this.button.$element );
+	};
+
+	/* Initialization */
+	OO.inheritClass( mw.rcfilters.ui.SavedLinksListWidget, OO.ui.Widget );
+
+	/**
+	 * Respond to menu item click event
+	 *
+	 * @param {mw.rcfilters.ui.SavedLinksListItemWidget} item Menu item
+	 */
+	mw.rcfilters.ui.SavedLinksListWidget.prototype.onMenuItemClick = function ( item ) {
+		this.controller.loadSavedQuery( item.getID() );
+		this.button.popup.toggle( false );
+	};
+
+	/**
+	 * Respond to menu item remove event
+	 *
+	 * @param {mw.rcfilters.ui.SavedLinksListItemWidget} item Menu item
+	 */
+	mw.rcfilters.ui.SavedLinksListWidget.prototype.onMenuItemRemove = function ( item ) {
+		this.controller.removeSavedQuery( item.getID() );
+		this.menu.removeItems( [ item ] );
+	};
+
+	/**
+	 * Respond to menu item default event
+	 *
+	 * @param {mw.rcfilters.ui.SavedLinksListItemWidget} item Menu item
+	 * @param {boolean} isDefault Item is default
+	 */
+	mw.rcfilters.ui.SavedLinksListWidget.prototype.onMenuItemDefault = function ( item, isDefault ) {
+		this.controller.setDefaultSavedQuery( isDefault ? item.getID() : null );
+	};
+
+	/**
+	 * Respond to menu item edit event
+	 *
+	 * @param {mw.rcfilters.ui.SavedLinksListItemWidget} item Menu item
+	 * @param {string} newLabel New label
+	 */
+	mw.rcfilters.ui.SavedLinksListWidget.prototype.onMenuItemEdit = function ( item, newLabel ) {
+		this.controller.renameSavedQuery( item.getID(), newLabel );
+	};
+
+	/**
+	 * Respond to menu add item event
+	 *
+	 * @param {mw.rcfilters.ui.SavedLinksListItemWidget} item Menu item
+	 */
+	mw.rcfilters.ui.SavedLinksListWidget.prototype.onModelAddItem = function ( item ) {
+		if ( this.menu.getItemFromData( item.getID() ) ) {
+			return;
+		}
+
+		this.menu.addItems( [
+			new mw.rcfilters.ui.SavedLinksListItemWidget( item, { $overlay: this.$overlay } )
+		] );
+		this.button.toggle( !this.menu.isEmpty() );
+	};
+
+	/**
+	 * Respond to menu remove item event
+	 *
+	 * @param {mw.rcfilters.ui.SavedLinksListItemWidget} item Menu item
+	 */
+	mw.rcfilters.ui.SavedLinksListWidget.prototype.onModelRemoveItem = function ( item ) {
+		this.menu.removeItems( [ this.model.getItemByID( item.getID() ) ] );
+		this.button.toggle( !this.menu.isEmpty() );
+	};
+}( mediaWiki ) );
