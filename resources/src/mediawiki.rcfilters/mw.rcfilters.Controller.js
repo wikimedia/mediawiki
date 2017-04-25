@@ -4,10 +4,12 @@
 	 *
 	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersModel Filters view model
 	 * @param {mw.rcfilters.dm.ChangesListViewModel} changesListModel Changes list view model
+	 * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
 	 */
-	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel ) {
+	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel, savedQueriesModel ) {
 		this.filtersModel = filtersModel;
 		this.changesListModel = changesListModel;
+		this.savedQueriesModel = savedQueriesModel;
 		this.requestCounter = 0;
 	};
 
@@ -23,6 +25,7 @@
 		var $changesList = $( '.mw-changeslist' ).first().contents();
 		// Initialize the model
 		this.filtersModel.initializeFilters( filterStructure );
+		this.savedQueriesModel.initialize();
 		this.updateStateBasedOnUrl();
 
 		// Update the changes list with the existing data
@@ -31,7 +34,6 @@
 			$changesList.length ? $changesList : 'NO_RESULTS',
 			$( 'fieldset.rcoptions' ).first()
 		);
-
 	};
 
 	/**
@@ -341,4 +343,49 @@
 			}
 		);
 	};
+
+	mw.rcfilters.Controller.prototype.saveCurrentQuery = function ( label ) {
+		var randomID = ( new Date() ).getTime();
+
+		label = label || mw.msg( 'rcfilters-savedqueries-defaultname' );
+
+		this.savedQueriesModel.addItems( [
+			new mw.rcfilters.dm.SavedQueryItemModel(
+				randomID,
+				label,
+				// Data
+				{
+					params: this.filtersModel.getParametersFromFilters(),
+					highlights: this.filtersModel.getHighlightParameters()
+				}
+			)
+		] );
+
+		this.savedQueriesModel.save();
+	};
+
+	mw.rcfilters.Controller.prototype.removeSavedQuery = function ( queryID ) {
+		var query = this.savedQueriesModel.getItemByID( queryID );
+
+		this.savedQueriesModel.removeItems( [ query ] );
+		this.savedQueriesModel.save();
+	};
+
+	mw.rcfilters.Controller.prototype.renameSavedQuery = function ( queryID, newLabel ) {
+		var queryItem = this.savedQueriesModel.getItemByID( queryID );
+
+		if ( queryItem ) {
+			queryItem.updateLabel( newLabel );
+		}
+		this.savedQueriesModel.save();
+	};
+
+	mw.rcfilters.Controller.prototype.loadSavedQuery = function ( queryID ) {
+		var queryItem = this.savedQueriesModel.getItemByID( queryID ),
+			data = queryItem.getData();
+
+		this.updateChangesList( $.extend( {}, data.params, data.highlights ) );
+		this.updateStateBasedOnUrl();
+	};
+
 }( mediaWiki, jQuery ) );
