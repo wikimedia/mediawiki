@@ -1553,6 +1553,8 @@
 	"recentchanges-legend-plusminus": "{{optional}}\nA plus/minus sign with a number for the legend.",
 	"recentchanges-submit": "Label for submit button in [[Special:RecentChanges]]\n{{Identical|Show}}",
 	"rcfilters-activefilters": "Title for the filters selection showing the active filters.",
+	"rcfilters-filter-excluded": "Prefix noting that the item in the tag area is a namespace item, and is excluded from search.",
+	"rcfilters-filter-included": "Prefix noting that the item in the tag area is a namespace item.",
 	"rcfilters-restore-default-filters": "Label for the button that resets filters to defaults",
 	"rcfilters-clear-all-filters": "Title for the button that clears all filters",
 	"rcfilters-search-placeholder": "Placeholder for the filter search input.",

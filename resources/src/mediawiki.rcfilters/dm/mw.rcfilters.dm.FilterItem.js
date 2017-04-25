@@ -64,6 +64,9 @@
 
 	/* Methods */
 
+	mw.rcfilters.dm.FilterItem.prototype.getType = function () {
+		return 'filter';
+	};
 	/**
 	 * Return the representation of the state of this item.
 	 *
@@ -546,4 +549,6 @@
 	mw.rcfilters.dm.FilterItem.prototype.isHighlighted = function () {
 		return this.isHighlightEnabled() && !!this.getHighlightColor();
 	};
+
+	mw.rcfilters.dm.FilterItem.prototype.isExcluded = function () { return false; };
 }( mediaWiki ) );
