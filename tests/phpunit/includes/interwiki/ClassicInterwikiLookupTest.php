@@ -233,4 +233,42 @@ class ClassicInterwikiLookupTest extends MediaWikiTestCase {
 		$this->assertSame( false, $interwiki->isLocal(), 'isLocal' );
 	}
 
+	public function testGetAllPrefixes() {
+		$zzwiki = [
+			'iw_prefix' => 'zz',
+			'iw_url' => 'https://azz.example.org/',
+			'iw_local' => 0
+		];
+		$dewiki = [
+			'iw_prefix' => 'de',
+			'iw_url' => 'https://de.example.org/',
+			'iw_local' => 1
+		];
+		$azz = [
+			'iw_prefix' => 'azz',
+			'iw_url' => 'https://azz.example.org/',
+			'iw_local' => 1
+		];
+
+		$hash = $this->populateHash(
+			'en',
+			[],
+			[ $zzwiki, $dewiki, $azzwiki ]
+		);
+		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
+			Language::factory( 'en' ),
+			WANObjectCache::newEmpty(),
+			60 * 60,
+			$hash,
+			3,
+			'en'
+		);
+
+		$this->assertEquals(
+			[ $dewiki, $zzwiki ],
+			$lookup->getAllPrefixes(),
+			'getAllPrefixes() - preserves order'
+		);
+	}
+
 }
