@@ -1,0 +1,80 @@
+@import 'mw.rcfilters.mixins';
+
+.mw-rcfilters-ui-tagItemWidget {
+	// Background and color of the capsule widget need a bit
+	// more specificity to override ooui internals
+	&.oo-ui-flaggedElement-muted.oo-ui-tagItemWidget.oo-ui-widget-enabled {
+		// Muted state
+		background-color: #eaecf0;
+		border-color: #c8ccd1;
+
+		.oo-ui-labelElement-label {
+			color: #72777d;
+		}
+		.oo-ui-buttonWidget {
+			opacity: @muted-opacity;
+		}
+	}
+
+	&.oo-ui-flaggedElement-invalid.oo-ui-tagItemWidget.oo-ui-widget-enabled {
+		.oo-ui-labelElement-label {
+			color: #b32424;
+		}
+	}
+
+	// OOUI classes require super-specificity in order to override
+	// the white background
+	// The specificity is fixed in the patch: https://gerrit.wikimedia.org/r/#/c/349525/
+	// and will be available in the next OOUI release.
+	.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-outlined .oo-ui-tagMultiselectWidget-handle &-selected.oo-ui-tagItemWidget.oo-ui-widget-enabled {
+		background-color: #eaf3ff;
+		border-color: #36c;
+	}
+
+	&-popup-content {
+		padding: 0.5em;
+		color: #54595d;
+	}
+
+	&.oo-ui-labelElement .oo-ui-labelElement-label {
+		cursor: pointer;
+	}
+
+	&-highlight {
+		display: none;
+		margin-right: 0.5em;
+		height: 100%;
+		width: 10px;
+
+		&-highlighted {
+			display: inline-block;
+		}
+
+		&:before {
+			content: '';
+			position: absolute;
+			display: block;
+			top: 50%;
+		}
+
+		&[data-color='c1']:before {
+			.mw-rcfilters-mixin-circle( @highlight-c1, 10px, ~'-5px 0.5em 0 0' );
+		}
+
+		&[data-color='c2']:before {
+			.mw-rcfilters-mixin-circle( @highlight-c2, 10px, ~'-5px 0.5em 0 0' );
+		}
+
+		&[data-color='c3']:before {
+			.mw-rcfilters-mixin-circle( @highlight-c3, 10px, ~'-5px 0.5em 0 0' );
+		}
+
+		&[data-color='c4']:before {
+			.mw-rcfilters-mixin-circle( @highlight-c4, 10px, ~'-5px 0.5em 0 0' );
+		}
+
+		&[data-color='c5']:before {
+			.mw-rcfilters-mixin-circle( @highlight-c5, 10px, ~'-5px 0.5em 0 0' );
+		}
+	}
+}
