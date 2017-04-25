@@ -1,0 +1,51 @@
+@import 'mediawiki.mixins';
+
+.mw-rcfilters-ui-itemMenuOptionWidget {
+	padding: 0 0.5em;
+	.box-sizing( border-box );
+
+	&:not( :last-child ) {
+		border-bottom: solid 1px #eaecf0; // Base 80 AAA
+	}
+
+	&:hover {
+		background-color: #fbfbfb;
+	}
+
+	.mw-rcfilters-ui-table {
+		padding-top: 0.5em;
+	}
+
+	&.oo-ui-optionWidget-selected {
+		background-color: #eaf3ff; // Accent90 AAA
+	}
+
+	&-label {
+		&-title {
+			font-weight: bold;
+			font-size: 1.15em;
+			color: #222;
+		}
+		&-desc {
+			color: #464a4f;
+			white-space: normal;
+		}
+	}
+
+	&-itemCheckbox {
+		.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline {
+			// Override margin-top and -bottom rules from FieldLayout
+			margin: 0 !important; /* stylelint-disable-line declaration-no-important */
+		}
+
+		.oo-ui-checkboxInputWidget {
+			// Workaround for IE11 rendering issues. T162098
+			display: block;
+		}
+	}
+
+	&-highlightButton {
+		width: 4em;
+		padding-left: 1em;
+	}
+}
