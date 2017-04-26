@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.1
+ * OOjs UI v0.21.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-04-18T23:32:54Z
+ * Date: 2017-04-26T01:05:15Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -209,11 +209,13 @@
   opacity: 0.51;
 }
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button {
-  min-height: 2.5em;
   border-radius: 2px;
-  padding: 0.625em 0.9375em 0.546875em;
+  padding-left: 0.9375em;
+  padding-right: 0.9375em;
 }
 .oo-ui-buttonElement-framed.oo-ui-iconElement > .oo-ui-buttonElement-button {
+  padding-top: 2.34375em;
+  padding-bottom: 0;
   padding-left: 2.03125em;
 }
 .oo-ui-buttonElement-framed.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
@@ -228,7 +230,9 @@
   left: 0.46875em;
 }
 .oo-ui-buttonElement-framed.oo-ui-indicatorElement > .oo-ui-buttonElement-button {
+  padding-top: 2.34375em;
   padding-right: 2.03125em;
+  padding-bottom: 0;
 }
 .oo-ui-buttonElement-framed.oo-ui-indicatorElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator {
   right: 1.015625em;
@@ -236,6 +240,10 @@
 .oo-ui-buttonElement-framed.oo-ui-indicatorElement.oo-ui-labelElement > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-indicatorElement.oo-ui-iconElement > .oo-ui-buttonElement-button {
   padding-right: 2.5em;
+}
+.oo-ui-buttonElement-framed.oo-ui-labelElement > .oo-ui-buttonElement-button {
+  padding-top: 0.625em;
+  padding-bottom: 0.546875em;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-disabled > .oo-ui-buttonElement-button {
   background-color: #c8ccd1;
@@ -318,7 +326,7 @@
   outline: 0;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button {
-  color: #d33;
+  color: #d73333;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button:hover {
   background-color: #fff;
@@ -1536,7 +1544,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-indicatorElement-indicator {
   opacity: 0.51;
 }
-.oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-labelElement-label {
+.oo-ui-textInputWidget.oo-ui-widget-disabled > .oo-ui-labelElement-label {
   color: #72777d;
   text-shadow: 0 1px 1px #fff;
 }
@@ -1546,6 +1554,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-textInputWidget.oo-ui-iconElement .oo-ui-iconElement-icon {
   left: 0.46875em;
+}
+.oo-ui-textInputWidget.oo-ui-iconElement textarea + .oo-ui-iconElement-icon {
   max-height: 2.5em;
 }
 .oo-ui-textInputWidget.oo-ui-indicatorElement input,
@@ -1836,6 +1846,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin-right: 0;
 }
 .oo-ui-progressBarWidget {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   max-width: 50em;
   background-color: #fff;
   border: 1px solid #a2a9b1;

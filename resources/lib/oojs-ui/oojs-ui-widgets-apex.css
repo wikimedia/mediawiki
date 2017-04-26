@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.1
+ * OOjs UI v0.21.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-04-18T23:32:54Z
+ * Date: 2017-04-26T01:05:15Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -663,22 +663,21 @@
 }
 .oo-ui-tabOptionWidget {
   display: inline-block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   vertical-align: bottom;
-  padding: 0.5em 1em;
   margin: 0.5em 0 0 0.75em;
-  border: 1px solid transparent;
-  border-bottom: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 1px 1px 0 1px;
   border-top-left-radius: 0.5em;
   border-top-right-radius: 0.5em;
+  padding: 0.5em 1em;
 }
-.oo-ui-tabOptionWidget.oo-ui-indicatorElement .oo-ui-labelElement-label {
-  padding-right: 1.5em;
-}
-.oo-ui-tabOptionWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
-  opacity: 0.5;
-}
-.oo-ui-selectWidget-pressed .oo-ui-tabOptionWidget.oo-ui-optionWidget-pressed {
-  background-color: transparent;
+.oo-ui-tabOptionWidget.oo-ui-optionWidget-selected {
+  background-color: #fff;
+  border-color: #ddd;
 }
 .oo-ui-tabOptionWidget.oo-ui-widget-enabled:hover {
   background-color: rgba(255, 255, 255, 0.2);
@@ -688,11 +687,8 @@
   background-color: #fff;
   border-color: #ddd;
 }
-.oo-ui-selectWidget-pressed .oo-ui-tabOptionWidget.oo-ui-optionWidget-selected,
-.oo-ui-selectWidget-depressed .oo-ui-tabOptionWidget.oo-ui-optionWidget-selected,
-.oo-ui-tabOptionWidget.oo-ui-optionWidget-selected:hover {
+.oo-ui-tabOptionWidget.oo-ui-widget-enabled.oo-ui-optionWidget-selected:hover {
   background-color: #fff;
-  border-color: #ddd;
 }
 .oo-ui-tagMultiselectWidget {
   display: inline-block;
@@ -1059,11 +1055,8 @@
   max-width: 50em;
 }
 .oo-ui-numberInputWidget-buttoned .oo-ui-buttonWidget,
-.oo-ui-numberInputWidget-buttoned .oo-ui-textInputWidget {
+.oo-ui-numberInputWidget-buttoned .oo-ui-inputWidget-input {
   display: table-cell;
-  height: 100%;
-}
-.oo-ui-numberInputWidget-buttoned .oo-ui-textInputWidget input {
   height: 100%;
 }
 .oo-ui-numberInputWidget-field {
@@ -1084,6 +1077,6 @@
   border-bottom-left-radius: 0;
   border-left-width: 0;
 }
-.oo-ui-numberInputWidget-buttoned .oo-ui-textInputWidget input {
+.oo-ui-numberInputWidget-buttoned .oo-ui-inputWidget-input {
   border-radius: 0;
 }

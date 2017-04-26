@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.1
+ * OOjs UI v0.21.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-04-18T23:32:49Z
+ * Date: 2017-04-26T01:05:10Z
  */
 ( function ( OO ) {
 
@@ -1636,6 +1636,26 @@ OO.ui.Window = function OoUiWindow( config ) {
 	this.manager = null;
 	this.size = config.size || this.constructor.static.size;
 	this.$frame = $( '<div>' );
+	/**
+	 * Overlay element to use for the `$overlay` configuration option of widgets that support it.
+	 * Things put inside of it are overlaid on top of the window and are not bound to its dimensions.
+	 * See <https://www.mediawiki.org/wiki/OOjs_UI/Concepts#Overlays>.
+	 *
+	 *     MyDialog.prototype.initialize = function () {
+	 *       ...
+	 *       var popupButton = new OO.ui.PopupButtonWidget( {
+	 *         $overlay: this.$overlay,
+	 *         label: 'Popup button',
+	 *         popup: {
+	 *           $content: $( '<p>Popup contents.</p><p>Popup contents.</p><p>Popup contents.</p>' ),
+	 *           padded: true
+	 *         }
+	 *       } );
+	 *       ...
+	 *     };
+	 *
+	 * @property {jQuery}
+	 */
 	this.$overlay = $( '<div>' );
 	this.$content = $( '<div>' );
 
@@ -2492,21 +2512,15 @@ OO.ui.Dialog.prototype.getTeardownProcess = function ( data ) {
  * @inheritdoc
  */
 OO.ui.Dialog.prototype.initialize = function () {
-	var titleId;
-
 	// Parent method
 	OO.ui.Dialog.parent.prototype.initialize.call( this );
 
-	titleId = OO.ui.generateElementId();
-
 	// Properties
-	this.title = new OO.ui.LabelWidget( {
-		id: titleId
-	} );
+	this.title = new OO.ui.LabelWidget();
 
 	// Initialization
 	this.$content.addClass( 'oo-ui-dialog-content' );
-	this.$element.attr( 'aria-labelledby', titleId );
+	this.$element.attr( 'aria-labelledby', this.title.getElementId() );
 	this.setPendingElement( this.$head );
 };
 

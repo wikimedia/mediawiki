@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.1
+ * OOjs UI v0.21.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-04-18T23:32:49Z
+ * Date: 2017-04-26T01:05:10Z
  */
 ( function ( OO ) {
 
@@ -584,6 +584,7 @@ OO.ui.Element = function OoUiElement( config ) {
 
 	// Properties
 	this.$ = $;
+	this.elementId = null;
 	this.visible = true;
 	this.data = config.data;
 	this.$element = config.$element ||
@@ -595,7 +596,7 @@ OO.ui.Element = function OoUiElement( config ) {
 		this.$element.addClass( config.classes.join( ' ' ) );
 	}
 	if ( config.id ) {
-		this.$element.attr( 'id', config.id );
+		this.setElementId( config.id );
 	}
 	if ( config.text ) {
 		this.$element.text( config.text );
@@ -1373,6 +1374,31 @@ OO.ui.Element.prototype.getData = function () {
 OO.ui.Element.prototype.setData = function ( data ) {
 	this.data = data;
 	return this;
+};
+
+/**
+ * Set the element has an 'id' attribute.
+ *
+ * @param {string} id
+ * @chainable
+ */
+OO.ui.Element.prototype.setElementId = function ( id ) {
+	this.elementId = id;
+	this.$element.attr( 'id', id );
+	return this;
+};
+
+/**
+ * Ensure that the element has an 'id' attribute, setting it to an unique value if it's missing,
+ * and return its value.
+ *
+ * @return {string}
+ */
+OO.ui.Element.prototype.getElementId = function () {
+	if ( this.elementId === null ) {
+		this.setElementId( OO.ui.generateElementId() );
+	}
+	return this.elementId;
 };
 
 /**
@@ -5320,6 +5346,7 @@ OO.ui.mixin.PopupElement.prototype.getPopup = function () {
  * @cfg {jQuery} [$overlay] Render the popup into a separate layer. This configuration is useful in cases where
  *  the expanded popup is larger than its containing `<div>`. The specified overlay layer is usually on top of the
  *  containing `<div>` and has a larger area. By default, the popup uses relative positioning.
+ *  See <https://www.mediawiki.org/wiki/OOjs_UI/Concepts#Overlays>.
  */
 OO.ui.PopupButtonWidget = function OoUiPopupButtonWidget( config ) {
 	// Parent constructor
@@ -5764,6 +5791,7 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 	this.$element
 		.addClass( 'oo-ui-selectWidget oo-ui-selectWidget-depressed' )
 		.attr( 'role', 'listbox' );
+	this.setFocusOwner( this.$element );
 	if ( Array.isArray( config.items ) ) {
 		this.addItems( config.items );
 	}
@@ -5856,7 +5884,7 @@ OO.ui.SelectWidget.prototype.onFocus = function ( event ) {
 	}
 
 	if ( event.target !== this.$element[ 0 ] ) {
-		this.$element.focus();
+		this.$focusOwner.focus();
 	}
 };
 
@@ -6270,6 +6298,11 @@ OO.ui.SelectWidget.prototype.highlightItem = function ( item ) {
 		}
 	}
 	if ( changed ) {
+		if ( item ) {
+			this.$focusOwner.attr( 'aria-activedescendant', item.getElementId() );
+		} else {
+			this.$focusOwner.removeAttr( 'aria-activedescendant' );
+		}
 		this.emit( 'highlight', item );
 	}
 
@@ -6368,6 +6401,13 @@ OO.ui.SelectWidget.prototype.selectItem = function ( item ) {
 		}
 	}
 	if ( changed ) {
+		if ( item && !item.constructor.static.highlightable ) {
+			if ( item ) {
+				this.$focusOwner.attr( 'aria-activedescendant', item.getElementId() );
+			} else {
+				this.$focusOwner.removeAttr( 'aria-activedescendant' );
+			}
+		}
 		this.emit( 'select', item );
 	}
 
@@ -6545,6 +6585,18 @@ OO.ui.SelectWidget.prototype.clearItems = function () {
 };
 
 /**
+ * Set the DOM element which has focus while the user is interacting with this SelectWidget.
+ *
+ * Currently this is just used to set `aria-activedescendant` on it.
+ *
+ * @protected
+ * @param {jQuery} $focusOwner
+ */
+OO.ui.SelectWidget.prototype.setFocusOwner = function ( $focusOwner ) {
+	this.$focusOwner = $focusOwner;
+};
+
+/**
  * DecoratedOptionWidgets are {@link OO.ui.OptionWidget options} that can be configured
  * with an {@link OO.ui.mixin.IconElement icon} and/or {@link OO.ui.mixin.IndicatorElement indicator}.
  * This class is used with OO.ui.SelectWidget to create a selection of mutually exclusive
@@ -6618,9 +6670,7 @@ OO.ui.MenuOptionWidget = function OoUiMenuOptionWidget( config ) {
 	OO.ui.MenuOptionWidget.parent.call( this, config );
 
 	// Initialization
-	this.$element
-		.attr( 'role', 'menuitem' )
-		.addClass( 'oo-ui-menuOptionWidget' );
+	this.$element.addClass( 'oo-ui-menuOptionWidget' );
 };
 
 /* Setup */
@@ -6765,9 +6815,10 @@ OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 	this.highlightOnFilter = !!config.highlightOnFilter;
 
 	// Initialization
-	this.$element
-		.addClass( 'oo-ui-menuSelectWidget' )
-		.attr( 'role', 'menu' );
+	this.$element.addClass( 'oo-ui-menuSelectWidget' );
+	if ( config.widget ) {
+		this.setFocusOwner( config.widget.$tabIndexed );
+	}
 
 	// Initially hidden - using #toggle may cause errors if subclasses override toggle with methods
 	// that reference properties not initialized at that time of parent class construction
@@ -7023,6 +7074,7 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 			this.toggleClipping( true );
 
 			if ( this.getSelectedItem() ) {
+				this.$focusOwner.attr( 'aria-activedescendant', this.getSelectedItem().getElementId() );
 				this.getSelectedItem().scrollElementIntoView( { duration: 0 } );
 			}
 
@@ -7031,6 +7083,7 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 				this.getElementDocument().addEventListener( 'mousedown', this.onDocumentMouseDownHandler, true );
 			}
 		} else {
+			this.$focusOwner.removeAttr( 'aria-activedescendant' );
 			this.unbindKeyDownListener();
 			this.unbindKeyPressListener();
 			this.getElementDocument().removeEventListener( 'mousedown', this.onDocumentMouseDownHandler, true );
@@ -7095,6 +7148,7 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
  * @cfg {jQuery} [$overlay] Render the menu into a separate layer. This configuration is useful in cases where
  *  the expanded menu is larger than its containing `<div>`. The specified overlay layer is usually on top of the
  *  containing `<div>` and has a larger area. By default, the menu uses relative positioning.
+ *  See <https://www.mediawiki.org/wiki/OOjs_UI/Concepts#Overlays>.
  */
 OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	// Configuration initialization
@@ -7136,6 +7190,11 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	// Initialization
 	this.$handle
 		.addClass( 'oo-ui-dropdownWidget-handle' )
+		.attr( {
+			role: 'combobox',
+			'aria-owns': this.menu.getElementId(),
+			'aria-autocomplete': 'list'
+		} )
 		.append( this.$icon, this.$label, this.$indicator );
 	this.$element
 		.addClass( 'oo-ui-dropdownWidget' )
@@ -10291,6 +10350,7 @@ OO.ui.SearchInputWidget.prototype.setReadOnly = function ( state ) {
  * @cfg {jQuery} [$overlay] Render the menu into a separate layer. This configuration is useful in cases where
  *  the expanded menu is larger than its containing `<div>`. The specified overlay layer is usually on top of the
  *  containing `<div>` and has a larger area. By default, the menu uses relative positioning.
+ *  See <https://www.mediawiki.org/wiki/OOjs_UI/Concepts#Overlays>.
  */
 OO.ui.ComboBoxInputWidget = function OoUiComboBoxInputWidget( config ) {
 	// Configuration initialization
@@ -10343,6 +10403,7 @@ OO.ui.ComboBoxInputWidget = function OoUiComboBoxInputWidget( config ) {
 	// Initialization
 	this.$input.attr( {
 		role: 'combobox',
+		'aria-owns': this.menu.getElementId(),
 		'aria-autocomplete': 'list'
 	} );
 	// Do not override options set via config.menu.items
@@ -10521,6 +10582,7 @@ OO.ui.ComboBoxInputWidget.prototype.setOptions = function ( options ) {
  *  in the upper-right corner of the rendered field; clicking it will display the text in a popup.
  *  For important messages, you are advised to use `notices`, as they are always shown.
  * @cfg {jQuery} [$overlay] Passed to OO.ui.PopupButtonWidget for help popup, if `help` is given.
+ *  See <https://www.mediawiki.org/wiki/OOjs_UI/Concepts#Overlays>.
  *
  * @throws {Error} An error is thrown if no widget is specified
  */
@@ -10885,6 +10947,7 @@ OO.inheritClass( OO.ui.ActionFieldLayout, OO.ui.FieldLayout );
  *  in the upper-right corner of the rendered field; clicking it will display the text in a popup.
  *  For important messages, you are advised to use `notices`, as they are always shown.
  * @cfg {jQuery} [$overlay] Passed to OO.ui.PopupButtonWidget for help popup, if `help` is given.
+ *  See <https://www.mediawiki.org/wiki/OOjs_UI/Concepts#Overlays>.
  */
 OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 	// Configuration initialization
