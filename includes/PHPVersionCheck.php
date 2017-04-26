@@ -26,7 +26,7 @@
  */
 class PHPVersionCheck {
 	/* @var string The number of the MediaWiki version used */
-	var $mwVersion = '1.29';
+	var $mwVersion = '1.30';
 	/* @var string The minimum php version for MediaWiki to run */
 	var $minimumVersionPHP = '5.5.9';
 	var $functionsExtensionsMapping = array(
