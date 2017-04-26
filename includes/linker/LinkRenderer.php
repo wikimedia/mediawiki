@@ -25,7 +25,6 @@ use DummyLinker;
 use Hooks;
 use Html;
 use HtmlArmor;
-use InvalidArgumentException;
 use LinkCache;
 use Linker;
 use MediaWiki\MediaWikiServices;
@@ -281,13 +280,8 @@ class LinkRenderer {
 	 * @return string
 	 */
 	public function makeKnownLink(
-		$target, $text = null, array $extraAttribs = [], array $query = []
+		LinkTarget $target, $text = null, array $extraAttribs = [], array $query = []
 	) {
-		if ( $target instanceof LinkTarget ) {
-			throw new InvalidArgumentException(
-				'Argument 1 passed to ' . __METHOD__ . ' must implement ' . LinkTarget::class
-			);
-		}
 		$classes = [];
 		if ( $target->isExternal() ) {
 			$classes[] = 'extiw';
