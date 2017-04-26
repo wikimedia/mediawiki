@@ -40,7 +40,7 @@ class PNGMetadataExtractor {
 	/** @var array */
 	private static $textChunks;
 
-	const VERSION = 1;
+	const VERSION = 2;
 	const MAX_CHUNK_SIZE = 3145728; // 3 megabytes
 
 	static function getMetadata( $filename ) {
@@ -121,6 +121,8 @@ class PNGMetadataExtractor {
 				if ( !$buf || strlen( $buf ) < $chunk_size ) {
 					throw new Exception( __METHOD__ . ": Read error" );
 				}
+				$width = unpack( 'N', substr( $buf, 0, 4 ) )[1];
+				$height = unpack( 'N', substr( $buf, 4, 4 ) )[1];
 				$bitDepth = ord( substr( $buf, 8, 1 ) );
 				// Detect the color type in British English as per the spec
 				// https://www.w3.org/TR/PNG/#11IHDR
@@ -404,6 +406,8 @@ class PNGMetadataExtractor {
 			'text' => $text,
 			'bitDepth' => $bitDepth,
 			'colorType' => $colorType,
+			'width' => $width,
+			'height' => $height,
 		];
 	}
 

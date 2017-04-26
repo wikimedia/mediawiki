@@ -307,7 +307,11 @@ class ImportImages extends Maintenance {
 					$publishOptions = [];
 					$handler = MediaHandler::getHandler( $props['mime'] );
 					if ( $handler ) {
-						$publishOptions['headers'] = $handler->getStreamHeaders( $props['metadata'] );
+						wfSuppressWarnings();
+						$metadata = unserialize( $props['metadata'] );
+						wfRestoreWarnings();
+
+						$publishOptions['headers'] = $handler->getContentHeaders( $metadata );
 					} else {
 						$publishOptions['headers'] = [];
 					}
