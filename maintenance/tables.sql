@@ -214,7 +214,7 @@ CREATE INDEX /*i*/un_user_ip ON /*_*/user_newtalk (user_ip);
 --
 CREATE TABLE /*_*/user_properties (
   -- Foreign key to user.user_id
-  up_user int NOT NULL,
+  up_user int unsigned NOT NULL,
 
   -- Name of the option being saved. This is indexed for bulk lookup.
   up_property varbinary(255) NOT NULL,
@@ -232,7 +232,7 @@ CREATE INDEX /*i*/user_properties_property ON /*_*/user_properties (up_property)
 --
 CREATE TABLE /*_*/bot_passwords (
   -- User ID obtained from CentralIdLookup.
-  bp_user int NOT NULL,
+  bp_user int unsigned NOT NULL,
 
   -- Application identifier
   bp_app_id varbinary(32) NOT NULL,
@@ -1552,7 +1552,7 @@ CREATE TABLE /*_*/page_restrictions (
   -- Whether or not to cascade the protection down to pages transcluded.
   pr_cascade tinyint NOT NULL,
   -- Field for future support of per-user restriction.
-  pr_user int NULL,
+  pr_user int unsigned NULL,
   -- Field for time-limited protection.
   pr_expiry varbinary(14) NULL
 ) /*$wgDBTableOptions*/;
@@ -1603,9 +1603,9 @@ CREATE TABLE /*_*/change_tag (
   -- RCID for the change
   ct_rc_id int NULL,
   -- LOGID for the change
-  ct_log_id int NULL,
+  ct_log_id int unsigned NULL,
   -- REVID for the change
-  ct_rev_id int NULL,
+  ct_rev_id int unsigned NULL,
   -- Tag applied
   ct_tag varchar(255) NOT NULL,
   -- Parameters for the tag, presently unused
@@ -1626,9 +1626,9 @@ CREATE TABLE /*_*/tag_summary (
   -- RCID for the change
   ts_rc_id int NULL,
   -- LOGID for the change
-  ts_log_id int NULL,
+  ts_log_id int unsigned NULL,
   -- REVID for the change
-  ts_rev_id int NULL,
+  ts_rev_id int unsigned NULL,
   -- Comma-separated list of tags
   ts_tags blob NOT NULL
 ) /*$wgDBTableOptions*/;
