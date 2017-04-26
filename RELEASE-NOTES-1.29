@@ -330,6 +330,9 @@ changes to languages because of Phabricator reports.
   tooltipAccessKeyRegexp, updateTooltipAccessKeys.
 * The ID of the <li> element containing the login link has changed from
   'pt-login' to 'pt-login-private' in private wikis.
+* (T157227) bot_password.bp_user, change_tag.ct_log_id, change_tag.ct_rev_id,
+  page_restrictions.pr_user, tag_summary.ts_log_id, tag_summary.ts_rev_id and
+  user_properties.up_user have all been made unsigned on MySQL.
 
 == Compatibility ==
 
