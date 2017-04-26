@@ -65,4 +65,27 @@ class MediaHandlerTest extends MediaWikiTestCase {
 		}
 		return $result;
 	}
+
+	/**
+	 * @covers MediaHandler::getPageRangesByDimensions
+	 *
+	 * @dataProvider provideTestGetPageRangesByDimensions
+	 */
+	public function testGetPageRangesByDimensions( $pagesByDimensions, $expected ) {
+		$this->assertEquals( $expected, MediaHandler::getPageRangesByDimensions( $pagesByDimensions ) );
+	}
+
+	public static function provideTestGetPageRangesByDimensions() {
+		return [
+			[ [ '123x456' => [ 1 ] ], '123x456:1' ],
+			[ [ '123x456' => [ 1, 2 ] ], '123x456:1-2' ],
+			[ [ '123x456' => [ 1, 2, 3 ] ], '123x456:1-3' ],
+			[ [ '123x456' => [ 1, 2, 3, 5 ] ], '123x456:1-3,5' ],
+			[ [ '123x456' => [ 1, 3 ] ], '123x456:1,3' ],
+			[ [ '123x456' => [ 1, 2, 3, 5, 6, 7 ] ], '123x456:1-3,5-7' ],
+			[ [ '123x456' => [ 1, 2, 3, 5, 6, 7 ],
+				'789x789' => [ 4, 8, 9 ] ], '123x456:1-3,5-7/789x789:4,8-9'
+			],
+		];
+	}
 }

@@ -242,4 +242,92 @@ class ExifBitmapHandler extends BitmapHandler {
 
 		return 0;
 	}
+
+	protected function transformImageMagick( $image, $params ) {
+		global $wgUseTinyRGBForJPGThumbnails;
+
+		$ret = parent::transformImageMagick( $image, $params );
+
+		if ( $ret ) {
+			return $ret;
+		}
+
+		if ( $params['mimeType'] === 'image/jpeg' && $wgUseTinyRGBForJPGThumbnails ) {
+			// T100976 If the profile embedded in the JPG is sRGB, swap it for the smaller
+			// (and free) TinyRGB
+
+			$this->swapICCProfile(
+				$params['dstPath'],
+				self::SRGB_ICC_PROFILE_NAME,
+				realpath( __DIR__ ) . '/tinyrgb.icc'
+			);
+		}
+
+		return false;
+	}
+
+	/**
+	 * Swaps an embedded ICC profile for another, if found.
+	 * Depends on exiftool, no-op if not installed.
+	 * @param string $filepath File to be manipulated (will be overwritten)
+	 * @param string $oldProfileString Exact name of color profile to look for
+	 *  (the one that will be replaced)
+	 * @param string $profileFilepath ICC profile file to apply to the file
+	 * @since 1.26
+	 * @return bool
+	 */
+	public function swapICCProfile( $filepath, $oldProfileString, $profileFilepath ) {
+		global $wgExiftool;
+
+		if ( !$wgExiftool || !is_executable( $wgExiftool ) ) {
+			return false;
+		}
+
+		$cmd = wfEscapeShellArg( $wgExiftool,
+			'-DeviceModelDesc',
+			'-S',
+			'-T',
+			$filepath
+		);
+
+		$output = wfShellExecWithStderr( $cmd, $retval );
+
+		if ( $retval !== 0 || strcasecmp( trim( $output ), $oldProfileString ) !== 0 ) {
+			// We can't establish that this file has the expected ICC profile, don't process it
+			return false;
+		}
+
+		$cmd = wfEscapeShellArg( $wgExiftool,
+			'-overwrite_original',
+			'-icc_profile<=' . $profileFilepath,
+			$filepath
+		);
+
+		$output = wfShellExecWithStderr( $cmd, $retval );
+
+		if ( $retval !== 0 ) {
+			$this->logErrorForExternalProcess( $retval, $output, $cmd );
+
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	* Get useful response headers for GET/HEAD requests for a file with the given metadata
+	* @param $metadata Array Contains this handler's unserialized getMetadata() for a file
+	* @return Array
+	*/
+	public function getContentHeaders( $metadata ) {
+		if ( !isset( $metadata['Width'] ) || !isset( $metadata['Height'] ) ) {
+			return [];
+		}
+
+		$dimensionsMetadata = [];
+		$dimensionsMetadata['width'] = $metadata['Width'];
+		$dimensionsMetadata['height'] = $metadata['Height'];
+
+		return parent::getContentHeaders( $dimensionsMetadata );
+	}
 }
