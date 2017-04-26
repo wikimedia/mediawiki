@@ -2149,15 +2149,32 @@ abstract class File implements IDBAccessObject {
 	}
 
 	/**
-	 * @return array HTTP header name/value map to use for HEAD/GET request responses
+	 * @deprecated since 1.30, use File::getContentHeaders instead
 	 */
 	function getStreamHeaders() {
+		wfDeprecated( __METHOD__, '1.30' );
+		return $this->getContentHeaders();
+	}
+
+	/**
+	 * @return array HTTP header name/value map to use for HEAD/GET request responses
+	 * @since 1.30
+	 */
+	function getContentHeaders() {
 		$handler = $this->getHandler();
 		if ( $handler ) {
-			return $handler->getStreamHeaders( $this->getMetadata() );
-		} else {
-			return [];
+			$metadata = $this->getMetadata();
+
+			if ( $metadata ) {
+				if ( is_string( $metadata ) ) {
+					$metadata = MediaWiki\quietCall( 'unserialize', $metadata );
+				}
+
+				return $handler->getContentHeaders( $metadata );
+			}
 		}
+
+		return [];
 	}
 
 	/**
