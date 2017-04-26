@@ -1,0 +1,1 @@
+ALTER TABLE /*_*/change_tag MODIFY ct_log_id int unsigned NULL;
