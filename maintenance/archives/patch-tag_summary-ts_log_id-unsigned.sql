@@ -1,0 +1,1 @@
+ALTER TABLE /*_*/tag_summary MODIFY ts_log_id int unsigned NULL;
