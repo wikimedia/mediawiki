@@ -266,7 +266,6 @@ class MysqlUpdater extends DatabaseUpdater {
 				'patch-fa_major_mime-chemical.sql' ],
 
 			// 1.25
-			[ 'doUserNewTalkUseridUnsigned' ],
 			// note this patch covers other _comment and _description fields too
 			[ 'modifyField', 'recentchanges', 'rc_comment', 'patch-editsummary-length.sql' ],
 
@@ -329,6 +328,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'migrateComments' ],
 			[ 'renameIndex', 'l10n_cache', 'lc_lang_key', 'PRIMARY', false,
 				'patch-l10n_cache-primary-key.sql' ],
+			[ 'doUnsignedSyncronisation' ],
 		];
 	}
 
@@ -1123,26 +1123,42 @@ class MysqlUpdater extends DatabaseUpdater {
 		);
 	}
 
-	protected function doUserNewTalkUseridUnsigned() {
-		if ( !$this->doTable( 'user_newtalk' ) ) {
-			return true;
+	protected function doUnsignedSyncronisation() {
+		$sync = [
+			[ 'table' => 'bot_passwords', 'field' => 'bp_user' ],
+			[ 'table' => 'change_tag', 'field' => 'ct_log_id' ],
+			[ 'table' => 'change_tag', 'field' => 'ct_rev_id' ],
+			[ 'table' => 'page_restrictions', 'field' => 'pr_user' ],
+			[ 'table' => 'tag_summary', 'field' => 'ts_log_id' ],
+			[ 'table' => 'tag_summary', 'field' => 'ts_rev_id' ],
+			[ 'table' => 'user_newtalk', 'field' => 'user_id' ],
+			[ 'table' => 'user_properties', 'field' => 'up_user' ],
+		];
+
+		foreach ( $sync as $s ) {
+			if ( !$this->doTable( $s['table'] ) ) {
+				continue;
+			}
+
+			$info = $this->db->fieldInfo( $s['table'], $s['field'] );
+			if ( $info === false ) {
+				continue;
+			}
+			$fullName = "{$s['table']}.{$s['field']}";
+			if ( $info->isUnsigned() ) {
+				$this->output( "...$fullName is already unsigned int.\n" );
+
+				continue;
+			}
+
+			$this->applyPatch(
+				"patch-{$s['table']}-{$s['field']}-unsigned.sql",
+				false,
+				"Making $fullName into an unsigned int"
+			);
 		}
 
-		$info = $this->db->fieldInfo( 'user_newtalk', 'user_id' );
-		if ( $info === false ) {
-			return true;
-		}
-		if ( $info->isUnsigned() ) {
-			$this->output( "...user_id is already unsigned int.\n" );
-
-			return true;
-		}
-
-		return $this->applyPatch(
-			'patch-user-newtalk-userid-unsigned.sql',
-			false,
-			'Making user_id unsigned int'
-		);
+		return true;
 	}
 
 	protected function doRevisionPageRevIndexNonUnique() {
