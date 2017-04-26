@@ -29,6 +29,8 @@ class ExifTest extends MediaWikiTestCase {
 			'GPSAltitude' => -3.141592653,
 			'GPSDOP' => '5/1',
 			'GPSVersionID' => '2.2.0.0',
+			'Height' => 10,
+			'Width' => 40,
 		];
 		$this->assertEquals( $expected, $data, '', 0.0000000001 );
 	}
@@ -40,7 +42,9 @@ class ExifTest extends MediaWikiTestCase {
 		$data = $exif->getFilteredData();
 
 		$expected = [
-			'UserComment' => 'test⁔comment'
+			'UserComment' => 'test⁔comment',
+			'Height' => 10,
+			'Width' => 40,
 		];
 		$this->assertEquals( $expected, $data );
 	}
