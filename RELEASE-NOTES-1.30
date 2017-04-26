@@ -14,7 +14,9 @@ production.
   documentation of $wgShellLocale for details.
 
 === New features in 1.30 ===
-* …
+* File storage backends that supports headers (eg. Swift) now store an
+  X-Content-Dimensions header for originals that contain the media's dimensions
+  as page ranges keyed by dimensions.
 
 === External library changes in 1.30 ===
 
@@ -50,6 +52,8 @@ changes to languages because of Phabricator reports.
 * mw.user.bucket (deprecated in 1.23) was removed.
 * LoadBalancer::getServerInfo() and LoadBalancer::setServerInfo() are
   deprecated. There are no known callers.
+* File::getStreamHeaders() was deprecated.
+* MediaHandler::getStreamHeaders() was deprecated.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for

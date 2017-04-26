@@ -57,13 +57,13 @@ class RefreshFileHeaders extends Maintenance {
 				__METHOD__, [ 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'img_name ASC' ] );
 			foreach ( $res as $row ) {
 				$file = $repo->newFileFromRow( $row );
-				$headers = $file->getStreamHeaders();
+				$headers = $file->getContentHeaders();
 				if ( count( $headers ) ) {
 					$this->updateFileHeaders( $file, $headers );
 				}
 				// Do all of the older file versions...
 				foreach ( $file->getHistory() as $oldFile ) {
-					$headers = $oldFile->getStreamHeaders();
+					$headers = $oldFile->getContentHeaders();
 					if ( count( $headers ) ) {
 						$this->updateFileHeaders( $oldFile, $headers );
 					}
