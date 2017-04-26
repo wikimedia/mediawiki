@@ -305,13 +305,11 @@ abstract class MediaHandler {
 	}
 
 	/**
-	 * Get useful response headers for GET/HEAD requests for a file with the given metadata
-	 *
-	 * @param mixed $metadata Result of the getMetadata() function of this handler for a file
-	 * @return array
-	 */
+	* @deprecated since 1.30, use MediaHandler::getContentHeaders instead
+	*/
 	public function getStreamHeaders( $metadata ) {
-		return [];
+		wfDeprecated( __METHOD__, '1.30' );
+		return $this->getContentHeaders( $metadata );
 	}
 
 	/**
@@ -867,5 +865,69 @@ abstract class MediaHandler {
 	 */
 	public function getWarningConfig( $file ) {
 		return null;
+	}
+
+	/**
+	 * Converts a dimensions array about a potentially multipage document from an
+	 * exhaustive list of ordered page numbers to a list of page ranges
+	 * @param Array $pagesByDimensions
+	 * @return String
+	 * @since 1.30
+	*/
+	public static function getPageRangesByDimensions( $pagesByDimensions ) {
+		$pageRangesByDimensions = [];
+
+		foreach ( $pagesByDimensions as $dimensions => $pageList ) {
+			$ranges = [];
+			$firstPage = $pageList[0];
+			$lastPage = $firstPage - 1;
+
+			foreach ( $pageList as $page ) {
+				if ( $page > $lastPage + 1 ) {
+					if ( $firstPage != $lastPage ) {
+						$ranges[] = "$firstPage-$lastPage";
+					} else {
+						$ranges[] = "$firstPage";
+					}
+
+					$firstPage = $page;
+				}
+
+				$lastPage = $page;
+			}
+
+			if ( $firstPage != $lastPage ) {
+				$ranges[] = "$firstPage-$lastPage";
+			} else {
+				$ranges[] = "$firstPage";
+			}
+
+			$pageRangesByDimensions[ $dimensions ] = $ranges;
+		}
+
+		$dimensionsString = [];
+		foreach ( $pageRangesByDimensions as $dimensions => $pageRanges ) {
+			$dimensionsString[] = "$dimensions:" . implode( ',', $pageRanges );
+		}
+
+		return implode( '/', $dimensionsString );
+	}
+
+	/**
+	* Get useful response headers for GET/HEAD requests for a file with the given metadata
+	* @param $metadata Array Contains this handler's unserialized getMetadata() for a file
+	* @return Array
+	* @since 1.30
+	*/
+	public function getContentHeaders( $metadata ) {
+		if ( !isset( $metadata['width'] ) || !isset( $metadata['height'] ) ) {
+			return [];
+		}
+
+		$dimensionString = $metadata['width'] . 'x' . $metadata['height'];
+		$pagesByDimensions = [ $dimensionString => [ 1 ] ];
+		$pageRangesByDimensions = MediaHandler::getPageRangesByDimensions( $pagesByDimensions );
+
+		return [ 'X-Content-Dimensions' => $pageRangesByDimensions ];
 	}
 }

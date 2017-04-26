@@ -117,6 +117,11 @@ class Exif {
 		 * @link http://exif.org/Exif2-2.PDF The Exif 2.2 specification
 		 */
 		$this->mExifTags = [
+			'COMPUTED' => [
+				'Width' => Exif::SHORT_OR_LONG, # Image width
+				'Height' => Exif::SHORT_OR_LONG, # Image height
+			],
+
 			# TIFF Rev. 6.0 Attribute Information (p22)
 			'IFD0' => [
 				# Tags relating to image structure

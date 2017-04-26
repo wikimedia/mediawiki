@@ -242,4 +242,21 @@ class ExifBitmapHandler extends BitmapHandler {
 
 		return 0;
 	}
+
+	/**
+	* Get useful response headers for GET/HEAD requests for a file with the given metadata
+	* @param $metadata Array Contains this handler's unserialized getMetadata() for a file
+	* @return Array
+	*/
+	public function getContentHeaders( $metadata ) {
+		if ( !isset( $metadata['Width'] ) || !isset( $metadata['Height'] ) ) {
+			return [];
+		}
+
+		$dimensionsMetadata = [];
+		$dimensionsMetadata['width'] = $metadata['Width'];
+		$dimensionsMetadata['height'] = $metadata['Height'];
+
+		return parent::getContentHeaders( $dimensionsMetadata );
+	}
 }
