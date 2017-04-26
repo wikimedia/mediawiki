@@ -4281,6 +4281,27 @@ HTML
 	}
 
 	/**
+	 * Get the message key of the label for the button to save the page
+	 *
+	 * @return string
+	 */
+	private function getSaveButtonLabel() {
+		$labelAsPublish =
+			$this->mArticle->getContext()->getConfig()->get( 'EditSubmitButtonLabelPublish' );
+
+		// Can't use $this->isNew as that's also true if we're adding a new section to an extant page
+		$newPage = !$this->mTitle->exists();
+
+		if ( $labelAsPublish ) {
+			$buttonLabelKey =  $newPage ? 'publishpage' : 'publishchanges';
+		} else {
+			$buttonLabelKey = $newPage ? 'savearticle' : 'savechanges';
+		}
+
+		return $buttonLabelKey;
+	}
+
+	/**
 	 * Returns an array of html code of the following buttons:
 	 * save, diff and preview
 	 *
@@ -4291,15 +4312,8 @@ HTML
 	public function getEditButtons( &$tabindex ) {
 		$buttons = [];
 
-		$labelAsPublish =
-			$this->mArticle->getContext()->getConfig()->get( 'EditSubmitButtonLabelPublish' );
+		$buttonLabelKey = $this->getSaveButtonLabel();
 
-		// Can't use $this->isNew as that's also true if we're adding a new section to an extant page
-		if ( $labelAsPublish ) {
-			$buttonLabelKey = !$this->mTitle->exists() ? 'publishpage' : 'publishchanges';
-		} else {
-			$buttonLabelKey = !$this->mTitle->exists() ? 'savearticle' : 'savechanges';
-		}
 		$attribs = [
 			'id' => 'wpSave',
 			'name' => 'wpSave',
