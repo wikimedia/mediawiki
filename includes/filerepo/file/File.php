@@ -2151,10 +2151,10 @@ abstract class File implements IDBAccessObject {
 	/**
 	 * @return array HTTP header name/value map to use for HEAD/GET request responses
 	 */
-	function getStreamHeaders() {
+	function getContentHeaders() {
 		$handler = $this->getHandler();
 		if ( $handler ) {
-			return $handler->getStreamHeaders( $this->getMetadata() );
+			return $handler->getContentHeaders( $this->getMetadata() );
 		} else {
 			return [];
 		}
