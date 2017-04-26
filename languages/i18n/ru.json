@@ -1761,7 +1761,7 @@
 	"filepage-nofile": "Не существует файла с данным именем.",
 	"filepage-nofile-link": "Не существует файла с данным именем. Вы можете [$1 загрузить его].",
 	"uploadnewversion-linktext": "Загрузить новую версию этого файла",
-	"shared-repo-from": "с $1",
+	"shared-repo-from": "из $1",
 	"shared-repo": "общего хранилища",
 	"shared-repo-name-wikimediacommons": "Викисклада",
 	"filepage.css": "/* Размещённые здесь CSS будут применены на странице описания файла и на сторонних клиентских вики */",

@@ -1000,6 +1000,7 @@
 	"recentchanges-label-plusminus": "यति बाइटहरू संख्याले पानाको आकार फेरबदल  भयाको छ",
 	"recentchanges-legend-heading": "<strong>आदर्श वाक्य:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|नौला पानाको सूची]] यैलाई लै हेरिदिय)",
+	"rcfilters-filter-editsbyself-description": "तमरा आफ्फुनाइ योगदानन",
 	"rclistfrom": "$3 $2 देखिका नयाँ परिवर्तनहरू देखाउन्या",
 	"rcshowhideminor": "$1 सानतिनो सम्पादन",
 	"rcshowhideminor-show": "धेकाइदिय",

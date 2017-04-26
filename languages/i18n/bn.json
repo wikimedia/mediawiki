@@ -1876,7 +1876,7 @@
 	"apisandbox-fullscreen-tooltip": "ব্রাউজারের উইন্ডো পূরণ করতে খেলাঘরের প্যানেল প্রসারিত করুন।",
 	"apisandbox-unfullscreen": "পাতা দেখাও",
 	"apisandbox-unfullscreen-tooltip": "খেলাঘরের প্যানেল হ্রাস করুন, তাহলে মিডিয়াউইকি পরিভ্রমণ করার সংযোগগুলি পাওয়া যাবে।",
-	"apisandbox-submit": "অনুরোধ রাখুন",
+	"apisandbox-submit": "অনুরোধ করুন",
 	"apisandbox-reset": "পরিষ্কার",
 	"apisandbox-retry": "পুনঃচেষ্টা করুন",
 	"apisandbox-loading": "\"$1\" এপিআই মডিউলের জন্য তথ্য লোড হচ্ছে...",

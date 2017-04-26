@@ -2650,6 +2650,7 @@
 	"tooltip-pt-mycontris": "Overzicht van {{GENDER:|uw}} bijdragen",
 	"tooltip-pt-anoncontribs": "Een lijst van bewerkingen gemaakt door dit IP-adres",
 	"tooltip-pt-login": "U wordt van harte uitgenodigd om aan te melden, maar dit is niet verplicht",
+	"tooltip-pt-login-private": "U moet zich aanmelden om gebruik te kunnen maken van deze wiki",
 	"tooltip-pt-logout": "Afmelden",
 	"tooltip-pt-createaccount": "Registreer u vooral en meld u aan. Dit is echter niet vereist.",
 	"tooltip-ca-talk": "Overleg over deze pagina",

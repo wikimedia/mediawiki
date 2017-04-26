@@ -1367,7 +1367,7 @@
 	"rcfilters-filter-registered-description": "Editors que han iniciat sessió",
 	"rcfilters-filter-unregistered-label": "No registrats",
 	"rcfilters-filter-unregistered-description": "Editors que no han iniciat una sessió.",
-	"rcfilters-filtergroup-authorship": "Modifica l'autoria",
+	"rcfilters-filtergroup-authorship": "Autoria de les contribucions",
 	"rcfilters-filter-editsbyself-label": "Les vostres modificacions",
 	"rcfilters-filter-editsbyself-description": "Modificacions vostres.",
 	"rcfilters-filter-editsbyother-label": "Modificacions d'altres",
