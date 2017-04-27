@@ -601,7 +601,7 @@
 	"resetpass-expired": "Salasanasi on vanhentunut. Valitse uusi salasana, jotta pääset kirjautumaan sisään.",
 	"resetpass-expired-soft": "Salasanasi on vanhentunut ja se pitää uudistaa. Valitse uusi salasana nyt tai paina \"{{int:authprovider-resetpass-skip-label}}\", niin voit uudistaa salasanan myöhemmin.",
 	"resetpass-validity-soft": "Salasanasi ei ole kelvollinen: $1\n\nValitse nyt uusi salasana tai paina \"{{int:authprovider-resetpass-skip-label}}\", niin voit vaihtaa sen myöhemmin.",
-	"passwordreset": "Salasanan palauttaminen",
+	"passwordreset": "Salasanan uusiminen",
 	"passwordreset-text-one": "Täytä tämä lomake uudistaaksesi salasanasi.",
 	"passwordreset-text-many": "{{PLURAL:$1|Täytä yksi seuraavista kentistä, jolloin saat väliaikaisen salasanan sähköpostitse.}}",
 	"passwordreset-disabled": "Salasanojen uudistaminen ei ole mahdollista tässä wikissä.",

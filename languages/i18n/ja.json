@@ -1379,7 +1379,7 @@
 	"rcfilters-filter-registered-label": "登録済み",
 	"rcfilters-filter-registered-description": "ログイン済みの編集者。",
 	"rcfilters-filter-unregistered-label": "未登録",
-	"rcfilters-filter-unregistered-description": "ログインせずに編集を行う利用者",
+	"rcfilters-filter-unregistered-description": "ログインしていない編集者。",
 	"rcfilters-filter-unregistered-conflicts-user-experience-level": "この項目は、登録済み利用者を編集回数別で絞り込む以下の{{PLURAL:$2|項目}}と競合しています :$1",
 	"rcfilters-filter-editsbyself-label": "自分の編集",
 	"rcfilters-filter-editsbyself-description": "自分の投稿記録を絞り込む",

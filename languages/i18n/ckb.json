@@ -2815,6 +2815,7 @@
 	"logentry-newusers-create2": "ھەژماری بەکارھێنەریی $3 لە لایەن $1 {{GENDER:$2|دروست کرا}}",
 	"logentry-newusers-byemail": "ھەژماری بەکارھێنەریی $3 لە لایەن $1 {{GENDER:$2|دروست کرا}} و تێپەڕوشە بە ئیمەیل نێردرا",
 	"logentry-newusers-autocreate": "ھەژماری بەکارھێنەریی $1 بە شێوەی خۆگەڕ {{GENDER:$2|دروست کرا}}",
+	"logentry-protect-move_prot": "$1 {{GENDER:$2}} ڕێکخستنەکانی پاراستنی گۆڕی لە $4 بۆ $3",
 	"logentry-protect-protect": "$1 $3ی {{GENDER:$2|پاراست}} $4",
 	"logentry-protect-modify": "$1 ئاستی پاراستنی $3ی {{GENDER:$2|گۆڕی}} $4",
 	"logentry-rights-rights": "$1 ئەندامێتیی {{GENDER:$6|$3}}ی لە $4 بۆ $5 {{GENDER:$2|گۆڕی}}",
