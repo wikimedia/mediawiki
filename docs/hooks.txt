@@ -1417,7 +1417,8 @@ Allows modifying the edit checks below the textarea in the edit form.
 
 'EditPageBeforeEditToolbar': Allows modifying the edit toolbar above the
 textarea in the edit form.
-&$toolbar: The toolbar HTMl
+&$toolbar: The toolbar HTML
+Hook subscribers can return false to avoid the default toolbar code being loaded.
 
 'EditPageCopyrightWarning': Allow for site and per-namespace customization of
 contribution/copyright notice.

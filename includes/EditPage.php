@@ -4097,11 +4097,14 @@ HTML
 		}
 
 		$script .= '});';
-		$wgOut->addScript( ResourceLoader::makeInlineScript( $script ) );
 
 		$toolbar = '<div id="toolbar"></div>';
 
-		Hooks::run( 'EditPageBeforeEditToolbar', [ &$toolbar ] );
+		if ( Hooks::run( 'EditPageBeforeEditToolbar', [ &$toolbar ] ) ) {
+			// Only add the old toolbar cruft to the page payload if the toolbar has not
+			// been over-written by a hook caller
+			$wgOut->addScript( ResourceLoader::makeInlineScript( $script ) );
+		};
 
 		return $toolbar;
 	}
