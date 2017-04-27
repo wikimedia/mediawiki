@@ -88,7 +88,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 		$this->timeout = $params['timeout'];
 
 		if ( !isset( $params['cache'] ) ) {
-			$this->srvCache = new HashBagOStuff( [] );
+			$this->srvCache = new HashBagOStuff();
 		} elseif ( $params['cache'] instanceof BagOStuff ) {
 			$this->srvCache = $params['cache'];
 		} else {
@@ -122,6 +122,9 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 		return $this->procCache['config'][$name];
 	}
 
+	/**
+	 * @throws ConfigException
+	 */
 	private function load() {
 		if ( $this->procCache !== null ) {
 			return; // already loaded
