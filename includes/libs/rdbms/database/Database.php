@@ -2328,7 +2328,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$selectOptions );
 
 		if ( is_array( $srcTable ) ) {
-			$srcTable = implode( ',', array_map( [ &$this, 'tableName' ], $srcTable ) );
+			$srcTable = implode( ',', array_map( [ $this, 'tableName' ], $srcTable ) );
 		} else {
 			$srcTable = $this->tableName( $srcTable );
 		}

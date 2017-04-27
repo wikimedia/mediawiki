@@ -336,7 +336,10 @@ class ImagePage extends Article {
 			$filename = wfEscapeWikiText( $this->displayImg->getName() );
 			$linktext = $filename;
 
-			Hooks::run( 'ImageOpenShowImageInlineBefore', [ &$this, &$out ] );
+			// Avoid PHP 7.1 warning from passing $this by reference
+			$imagePage = $this;
+
+			Hooks::run( 'ImageOpenShowImageInlineBefore', [ &$imagePage, &$out ] );
 
 			if ( $this->displayImg->allowInlineDisplay() ) {
 				# image
