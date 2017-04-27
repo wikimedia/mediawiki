@@ -34,6 +34,9 @@
  * @author Gergő Tisza <tgr.huwiki@gmail.com>
  */
 
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Logger\ConsoleSpi;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -46,7 +49,7 @@ class MediaWikiShell extends Maintenance {
 		parent::__construct();
 		$this->addOption( 'd',
 			'For back compatibility with eval.php. ' .
-			'0 send debug to stdout. ' .
+			'0 send debug to stderr. ' .
 			'With 1 additionally initialize database with debugging ',
 			false, true
 		);
@@ -77,11 +80,9 @@ class MediaWikiShell extends Maintenance {
 	 * For back compatibility with eval.php
 	 */
 	protected function setupLegacy() {
-		global $wgDebugLogFile;
-
 		$d = intval( $this->getOption( 'd' ) );
 		if ( $d > 0 ) {
-			$wgDebugLogFile = 'php://stdout';
+			LoggerFactory::registerProvider( new ConsoleSpi );
 		}
 		if ( $d > 1 ) {
 			# Set DBO_DEBUG (equivalent of $wgDebugDumpSql)

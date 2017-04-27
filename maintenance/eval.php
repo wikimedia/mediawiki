@@ -30,6 +30,9 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Logger\ConsoleSpi;
+
 $optionsWithArgs = [ 'd' ];
 
 require_once __DIR__ . "/commandLine.inc";
@@ -37,7 +40,7 @@ require_once __DIR__ . "/commandLine.inc";
 if ( isset( $options['d'] ) ) {
 	$d = $options['d'];
 	if ( $d > 0 ) {
-		$wgDebugLogFile = '/dev/stdout';
+		LoggerFactory::registerProvider( new ConsoleSpi );
 	}
 	if ( $d > 1 ) {
 		$lb = wfGetLB();
