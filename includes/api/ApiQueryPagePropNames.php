@@ -57,7 +57,11 @@ class ApiQueryPagePropNames extends ApiQueryBase {
 		}
 
 		$limit = $params['limit'];
-		$this->addOption( 'LIMIT', $limit + 1 );
+
+		// mysql has issues with limit in loose index T115825
+		if ( $this->getDB()->getType() !== 'mysql' ) {
+			$this->addOption( 'LIMIT', $limit + 1 );
+		}
 
 		$result = $this->getResult();
 		$count = 0;
