@@ -140,7 +140,9 @@ class SpecialJavaScriptTest extends SpecialPage {
 	var start = window.__karma__ ? window.__karma__.start : QUnit.start;
 	try {
 		mw.loader.using( $modules )
-			.always( start )
+			.always( function () {
+				start();
+			} )
 			.fail( function ( e ) { throw e; } );
 	} catch ( e ) {
 		start();
