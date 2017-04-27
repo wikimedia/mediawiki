@@ -589,6 +589,14 @@ class Parser {
 					$this->mTitle->getPrefixedDBkey() );
 			}
 		}
+
+		# Wrap non-interface parser output in a <div> so it can be targeted
+		# with CSS (T37247)
+		$class = $this->mOptions->getWrapOutputClass();
+		if ( $class !== false && !$this->mOptions->getInterfaceMessage() ) {
+			$text = Html::rawElement( 'div', [ 'class' => $class ], $text );
+		}
+
 		$this->mOutput->setText( $text );
 
 		$this->mRevisionId = $oldRevisionId;
