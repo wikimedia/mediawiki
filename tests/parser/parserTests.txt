@@ -32,6 +32,7 @@
 # local         format section links in edit comment text as local links
 # notoc         disable table of contents
 # thumbsize=NNN set the default thumb size to NNNpx for this test
+# wrap          include the normal wrapper <div class="mw-parser-output"> (since 1.30)
 #
 # You can also set the following parser properties via test options:
 #  wgEnableUploads, wgAllowExternalImages, wgMaxTocLevel,
