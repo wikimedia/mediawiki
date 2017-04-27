@@ -1106,6 +1106,7 @@ __INDEXATTR__;
 		if ( $schema === false ) {
 			$schema = $this->getCoreSchema();
 		}
+		$table = $this->realTableName( $table, 'raw' );
 		$etable = $this->addQuotes( $table );
 		$eschema = $this->addQuotes( $schema );
 		$sql = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
