@@ -5,6 +5,10 @@
  * @author Timo Tijhof
  */
 
+/**
+ * @group ResourceLoader
+ * @group CSSMin
+ */
 class CSSMinTest extends MediaWikiTestCase {
 
 	protected function setUp() {
@@ -118,6 +122,11 @@ class CSSMinTest extends MediaWikiTestCase {
 				'Expand absolute paths',
 				[ 'foo { prop: url(/w/skin/images/bar.png); }', false, 'http://example.org/quux', false ],
 				'foo { prop: url(http://doc.example.org/w/skin/images/bar.png); }',
+			],
+			[
+				"Don't barf at behavior: url(#default#behaviorName) - T162973",
+				[ 'foo { behavior: url(#default#bar); }', false, '/w/', false ],
+				'foo { behavior: url("#default#bar"); }',
 			],
 		];
 	}
