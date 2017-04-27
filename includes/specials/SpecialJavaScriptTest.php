@@ -134,14 +134,20 @@ class SpecialJavaScriptTest extends SpecialPage {
 		// Catch exceptions (such as "dependency missing" or "unknown module") so that we
 		// always start QUnit. Re-throw so that they are caught and reported as global exceptions
 		// by QUnit and Karma.
-		$code .= '(function () {'
-			. 'var start = window.__karma__ ? window.__karma__.start : QUnit.start;'
-			. 'try {'
-			. 'mw.loader.using( ' . Xml::encodeJsVar( $modules ) . ' )'
-			. '.always( start )'
-			. '.fail( function ( e ) { throw e; } );'
-			. '} catch ( e ) { start(); throw e; }'
-			. '}());';
+		$modules = Xml::encodeJsVar( $modules );
+		$code .= <<<CODE
+(function () {
+	var start = window.__karma__ ? window.__karma__.start : QUnit.start;
+	try {
+		mw.loader.using( $modules )
+			.always( start )
+			.fail( function ( e ) { throw e; } );
+	} catch ( e ) {
+		start();
+		throw e;
+	}
+}());
+CODE;
 
 		header( 'Content-Type: text/javascript; charset=utf-8' );
 		header( 'Cache-Control: private, no-cache, must-revalidate' );
