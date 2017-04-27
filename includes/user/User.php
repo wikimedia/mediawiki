@@ -509,6 +509,17 @@ class User implements IDBAccessObject {
 
 				$ttl = $cache->adaptiveTTL( wfTimestamp( TS_UNIX, $this->mTouched ), $ttl );
 
+				// if a user group membership is about to expire, the cache needs to
+				// expire at that time (T163691)
+				foreach ( $this->mGroupMemberships as $ugm ) {
+					if ( $ugm->getExpiry() ) {
+						$secondsUntilExpiry = wfTimestamp( TS_UNIX, $ugm->getExpiry() ) - time();
+						if ( $secondsUntilExpiry > 0 && $secondsUntilExpiry < $ttl ) {
+							$ttl = $secondsUntilExpiry;
+						}
+					}
+				}
+
 				return $data;
 
 			},
