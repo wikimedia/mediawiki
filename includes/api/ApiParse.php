@@ -478,6 +478,9 @@ class ApiParse extends ApiBase {
 		if ( $params['disabletidy'] ) {
 			$popts->setTidy( false );
 		}
+		$popts->setWrapOutputClass(
+			$params['wrapoutputclass'] === '' ? false : $params['wrapoutputclass']
+		);
 
 		$reset = null;
 		$suppressCache = false;
@@ -788,6 +791,7 @@ class ApiParse extends ApiBase {
 					'parsetree' => [ 'apihelp-parse-paramvalue-prop-parsetree', CONTENT_MODEL_WIKITEXT ],
 				],
 			],
+			'wrapoutputclass' => 'mw-parser-output',
 			'pst' => false,
 			'onlypst' => false,
 			'effectivelanglinks' => false,

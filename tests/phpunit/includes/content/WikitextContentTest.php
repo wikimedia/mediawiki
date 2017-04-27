@@ -29,7 +29,7 @@ more stuff
 				"WikitextContentTest_testGetParserOutput",
 				CONTENT_MODEL_WIKITEXT,
 				"hello ''world''\n",
-				"<p>hello <i>world</i>\n</p>"
+				"<div class=\"mw-parser-output\"><p>hello <i>world</i>\n</p>\n\n\n</div>"
 			],
 			// TODO: more...?
 		];

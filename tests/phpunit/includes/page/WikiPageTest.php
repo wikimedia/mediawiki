@@ -549,7 +549,11 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 	public static function provideGetParserOutput() {
 		return [
-			[ CONTENT_MODEL_WIKITEXT, "hello ''world''\n", "<p>hello <i>world</i></p>" ],
+			[
+				CONTENT_MODEL_WIKITEXT,
+				"hello ''world''\n",
+				"<div class=\"mw-parser-output\"><p>hello <i>world</i></p></div>"
+			],
 			// @todo more...?
 		];
 	}
@@ -566,7 +570,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$text = $po->getText();
 
 		$text = trim( preg_replace( '/<!--.*?-->/sm', '', $text ) ); # strip injected comments
-		$text = preg_replace( '!\s*(</p>)!sm', '\1', $text ); # don't let tidy confuse us
+		$text = preg_replace( '!\s*(</p>|</div>)!sm', '\1', $text ); # don't let tidy confuse us
 
 		$this->assertEquals( $expectedHtml, $text );
 

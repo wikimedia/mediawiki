@@ -747,6 +747,10 @@ class ParserTestRunner {
 		$user = $context->getUser();
 		$options = ParserOptions::newFromContext( $context );
 
+		if ( !isset( $opts['wrap'] ) ) {
+			$options->setWrapOutputClass( false );
+		}
+
 		if ( isset( $opts['tidy'] ) ) {
 			if ( !$this->tidySupport->isEnabled() ) {
 				$this->recorder->skipped( $test, 'tidy extension is not installed' );
