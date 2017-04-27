@@ -1426,9 +1426,8 @@ MESSAGE;
 	 * Returns JS code which runs given JS code if the client-side framework is
 	 * present.
 	 *
-	 * @deprecated since 1.25; use makeInlineScript instead
 	 * @param string $script JavaScript code
-	 * @return string
+	 * @return string JavaScript code
 	 */
 	public static function makeLoaderConditionalScript( $script ) {
 		return '(window.RLQ=window.RLQ||[]).push(function(){' .
