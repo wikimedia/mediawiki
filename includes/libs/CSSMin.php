@@ -77,7 +77,8 @@ class CSSMin {
 				$url = $match['file'][0];
 
 				// Skip fully-qualified and protocol-relative URLs and data URIs
-				if ( substr( $url, 0, 2 ) === '//' || parse_url( $url, PHP_URL_SCHEME ) ) {
+				// Also skips the rare `behavior` property specifying application's default behavior
+				if ( substr( $url, 0, 2 ) === '//' || parse_url( $url, PHP_URL_SCHEME ) || substr( $url, 0, 9 ) === '#default#' ) {
 					break;
 				}
 
