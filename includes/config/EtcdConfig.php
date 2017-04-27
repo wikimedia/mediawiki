@@ -88,7 +88,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 		$this->timeout = $params['timeout'];
 
 		if ( !isset( $params['cache'] ) ) {
-			$this->srvCache = new HashBagOStuff( [] );
+			$this->srvCache = new HashBagOStuff();
 		} elseif ( $params['cache'] instanceof BagOStuff ) {
 			$this->srvCache = $params['cache'];
 		} else {
@@ -122,6 +122,37 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 		return $this->procCache['config'][$name];
 	}
 
+	/**
+	 * Scenarios:
+	 * - Cache exists:
+	 *   - If not expired:
+	 *     - Use the cached value. (fresh cache)
+	 *   - If expired:
+	 *     - If another process already has the lock:
+	 *       - Use the cached value. (stale cache)
+	 *     - If we get the lock:
+	 *       - Backend fetch succeeds:
+	 *         - Use the fetched value. (fresh fetch)
+	 *       - Backend fetch fails:
+	 *         - Throws!
+	 *       - Backend fetch times out:
+	 *         - Retries.
+	 *       - Retry loop times out:
+	 *         - Throws!
+	 * - Cache is empty:
+	 *     - If another process already has the lock:
+	 *       - Retry reading the cache.
+	 *     - If we get the lock:
+	 *       - Backend fetch succeeds:
+	 *         - Use the fetched value. (fresh fetch)
+	 *       - Backend fetch fails:
+	 *         - Throws!
+	 *       - Backend fetch times out:
+	 *         - Retries.
+	 *       - Retry loop times out:
+	 *         - Throws!
+	 * @throws ConfigException
+	 */
 	private function load() {
 		if ( $this->procCache !== null ) {
 			return; // already loaded

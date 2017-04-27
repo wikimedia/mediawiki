@@ -64,10 +64,7 @@
 	</groups>
 	<filter>
 		<whitelist addUncoveredFilesFromWhitelist="true">
-			<directory suffix=".php">../../includes</directory>
-			<directory suffix=".php">../../languages</directory>
-			<directory suffix=".php">../../maintenance</directory>
-			<directory suffix=".php">../../skins</directory>
+			<directory suffix=".php">../../includes/config</directory>
 		</whitelist>
 	</filter>
 </phpunit>
