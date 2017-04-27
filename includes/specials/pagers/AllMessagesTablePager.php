@@ -306,13 +306,14 @@ class AllMessagesTablePager extends TablePager {
 			case 'am_title' :
 				$title = Title::makeTitle( NS_MEDIAWIKI, $value . $this->suffix );
 				$talk = Title::makeTitle( NS_MEDIAWIKI_TALK, $value . $this->suffix );
+				# Link the system message on translatewiki.net in simple action=edit
+				# The actual location will be different when a prefix is used:
+				# https://phabricator.wikimedia.org/diffusion/GTWN/browse/master/groups/MediaWiki/?grep=prefix+%3D
+				$target = 'MediaWiki:' . $value . '/' . $this->getLanguage()->getCode();
 				$translation = Linker::makeExternalLink(
 					'https://translatewiki.net/w/i.php?' . wfArrayToCgi( [
-						'title' => 'Special:SearchTranslations',
-						'group' => 'mediawiki',
-						'grouppath' => 'mediawiki',
-						'language' => $this->getLanguage()->getCode(),
-						'query' => $value . ' ' . $this->msg( $value )->plain()
+						'title' => $target,
+						'action' => 'edit',
 					] ),
 					$this->msg( 'allmessages-filter-translate' )->text()
 				);
