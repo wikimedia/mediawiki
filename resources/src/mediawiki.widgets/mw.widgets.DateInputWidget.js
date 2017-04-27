@@ -172,7 +172,8 @@
 		} );
 		this.$handle.on( {
 			click: this.onClick.bind( this ),
-			keypress: this.onKeyPress.bind( this )
+			keypress: this.onKeyPress.bind( this ),
+			focus: this.activate.bind( this )
 		} );
 
 		// Initialization
