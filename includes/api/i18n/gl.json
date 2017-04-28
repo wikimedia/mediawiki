@@ -1577,6 +1577,7 @@
 	"apierror-nosuchuserid": "Non hai ningún usuario con identificador $1.",
 	"apierror-notarget": "Non indicou un destino válido para esta acción.",
 	"apierror-notpatrollable": "A revisión r$1 non pode patrullarse por ser demasiado antiga.",
+	"apierror-nouploadmodule": "Non se definiu un módulo de carga.",
 	"apierror-opensearch-json-warnings": "Non se poden representar os avisos en formato JSON de OpenSearch.",
 	"apierror-pagecannotexist": "O espazo de nomes non permite as páxinas actuais.",
 	"apierror-pagedeleted": "A páxina foi borrada dende que obtivo o selo de tempo.",

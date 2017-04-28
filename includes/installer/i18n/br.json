@@ -165,6 +165,7 @@
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",
 	"config-mysql-myisam-dep": "<strong>Diwallit :</strong> Diuzet eo bet ganeoc'h MyISAM evel keflusker stokañ evit MySQL, ar pezh n'eo ket erbedet evit implijout gant MediaWiki, rak :\n* a-boan m'eo skoret gantañ ober meur a dra war un dro peogwir eo prennet an taolennoù\n* techetoc'h eo d'ar gwastoù eget kefluskerioù all\n* kod diazez MediaWiki n'eo ket atav embreget MyISAM gantañ evel m'eo dleet\n\nM'eo skoret InnoDB gant ho staliadur MySQL, ez eo kuzuliet c'hwek deoc'h dibab hennezh kentoc'h.\nMa n'eo ket skoret InnoDB gant ho staliadur MySQL, e c'hallfe bezañ poent deoc'h ober un hizivadenn.",
+	"config-mysql-only-myisam-dep": "<strong>Taolit evezh :</strong> MyISAM eo ar c'heflusker stokañ nemetañ a c'haller ober gantañ war ar mekanik-mañ evit MySQL, padal n'eo ket erbedet e implij gant MediaWiki, rak :\n* a-boan ma skor ar c'hevezerezh abalamour m'eo prennet an taolennoù\n* aesoc'h eo e wastañ eget kefluskerioù all\n* n'eo ket atav embreget MyIsam evel ma tlefe bezañ gant kod diazez MediaWiki\n\nN'eo ket skoret InnoDB gant ho staliadur MySQL. Poent eo hizivaat anezhañ marteze.",
 	"config-mysql-charset": "Strobad arouezennoù an diaz roadennoù :",
 	"config-mysql-binary": "Binarel",
 	"config-mysql-utf8": "UTF-8",

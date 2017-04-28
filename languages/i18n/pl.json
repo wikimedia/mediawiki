@@ -1402,7 +1402,7 @@
 	"rcfilters-filter-editsbyself-label": "Moje edycje",
 	"rcfilters-filter-editsbyself-description": "Edycje dokonane przez Ciebie.",
 	"rcfilters-filter-editsbyother-label": "Edycje inne niż Twoje",
-	"rcfilters-filter-editsbyother-description": "Edycje wykonane przez innych (nie Twoje).",
+	"rcfilters-filter-editsbyother-description": "Wszystkie zmiany oprócz Twoich.",
 	"rcfilters-filtergroup-userExpLevel": "Poziom doświadczenia (tylko o zarejestrowanych użytkownikach)",
 	"rcfilters-filtergroup-user-experience-level-conflicts-unregistered": "Filtry doświadczenia wyszukują tylko edycje zarejestrowanych użytkowników, więc ten filtr koliduje z filtrem „Niezarejestrowani”.",
 	"rcfilters-filtergroup-user-experience-level-conflicts-unregistered-global": "Filtr \"Niezarejestrowani\" koliduje z jednym lub więcej filtrów z filtrów poziomu doświadczenia, które służą do wyszukiwania wkładu tylko zarejestrowanych użytkowników. Kolidujące filtry zostały odpowiednio oznaczone na pasku Aktywnych filtrów.",
