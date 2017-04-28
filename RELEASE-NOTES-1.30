@@ -70,6 +70,12 @@ production.
   formatted as specified by the error formatter parameters.
 * action=compare can now handle arbitrary text, deleted revisions, and
   returning users and edit comments.
+* (T164106) The 'rvdifftotext', 'rvdifftotextpst', 'rvdiffto',
+  'rvexpandtemplates', 'rvgeneratexml', 'rvparse', and 'rvprop=parsetree'
+  parameters to prop=revisions are deprecated, as are the similarly named
+  parameters to prop=deletedrevisions, list=allrevisions, and
+  list=alldeletedrevisions. Use action=compare, action=parse, or
+  action=expandtemplates instead.
 
 === Action API internal changes in 1.30 ===
 * …
