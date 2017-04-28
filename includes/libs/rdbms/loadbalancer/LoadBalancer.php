@@ -1033,7 +1033,11 @@ class LoadBalancer implements ILoadBalancer {
 		return ( $name != '' ) ? $name : 'localhost';
 	}
 
+	/**
+	 * @deprecated Since 1.30, no alternative
+	 */
 	public function getServerInfo( $i ) {
+		wfDeprecated( __METHOD__, '1.30' );
 		if ( isset( $this->mServers[$i] ) ) {
 			return $this->mServers[$i];
 		} else {
@@ -1041,7 +1045,11 @@ class LoadBalancer implements ILoadBalancer {
 		}
 	}
 
+	/**
+	 * @deprecated Since 1.30, construct new object
+	 */
 	public function setServerInfo( $i, array $serverInfo ) {
+		wfDeprecated( __METHOD__, '1.30' );
 		$this->mServers[$i] = $serverInfo;
 	}
 
