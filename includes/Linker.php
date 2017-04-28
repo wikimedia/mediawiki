@@ -333,7 +333,7 @@ class Linker {
 		}
 
 		// Clean up parameters
-		$page = isset( $handlerParams['page'] ) ? $handlerParams['page'] : false;
+		$page = isset( $handlerParams['page'] ) ? $handlerParams['page'] : 1;
 		if ( !isset( $frameParams['align'] ) ) {
 			$frameParams['align'] = '';
 		}
@@ -530,7 +530,7 @@ class Linker {
 	) {
 		$exists = $file && $file->exists();
 
-		$page = isset( $handlerParams['page'] ) ? $handlerParams['page'] : false;
+		$page = isset( $handlerParams['page'] ) ? $handlerParams['page'] : 1;
 		if ( !isset( $frameParams['align'] ) ) {
 			$frameParams['align'] = 'right';
 		}
@@ -592,7 +592,7 @@ class Linker {
 		# So we don't need to pass it here in $query. However, the URL for the
 		# zoom icon still needs it, so we make a unique query for it. See T16771
 		$url = $title->getLocalURL( $query );
-		if ( $page ) {
+		if ( $page !== 1 ) {
 			$url = wfAppendQuery( $url, [ 'page' => $page ] );
 		}
 		if ( $manualthumb

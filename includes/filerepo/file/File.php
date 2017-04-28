@@ -914,7 +914,7 @@ abstract class File implements IDBAccessObject {
 	 */
 	function getUnscaledThumb( $handlerParams = [] ) {
 		$hp =& $handlerParams;
-		$page = isset( $hp['page'] ) ? $hp['page'] : false;
+		$page = isset( $hp['page'] ) ? $hp['page'] : 1;
 		$width = $this->getWidth( $page );
 		if ( !$width ) {
 			return $this->iconThumb();
