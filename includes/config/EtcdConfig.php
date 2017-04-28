@@ -95,12 +95,14 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 		$this->logger = new Psr\Log\NullLogger();
 		$this->http = new MultiHttpClient( [
 			'connTimeout' => $this->timeout,
-			'reqTimeout' => $this->timeout
+			'reqTimeout' => $this->timeout,
+			'logger' => $this->logger
 		] );
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
+		$this->http->setLogger( $logger );
 	}
 
 	public function has( $name ) {

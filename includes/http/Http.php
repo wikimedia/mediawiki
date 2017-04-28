@@ -59,7 +59,8 @@ class Http {
 	 * @return string|bool (bool)false on failure or a string on success
 	 */
 	public static function request( $method, $url, $options = [], $caller = __METHOD__ ) {
-		wfDebug( "HTTP: $method: $url\n" );
+		$logger = LoggerFactory::getInstance( 'http' );
+		$logger->debug( "$method: $url" );
 
 		$options['method'] = strtoupper( $method );
 
@@ -77,7 +78,6 @@ class Http {
 			return $req->getContent();
 		} else {
 			$errors = $status->getErrorsByType( 'error' );
-			$logger = LoggerFactory::getInstance( 'http' );
 			$logger->warning( Status::wrap( $status )->getWikiText( false, false, 'en' ),
 				[ 'error' => $errors, 'caller' => $caller, 'content' => $req->getContent() ] );
 			return false;
@@ -163,5 +163,21 @@ class Http {
 		}
 
 		return "";
+	}
+
+	/**
+	 * Get a configured MultiHttpClient
+	 * @param array $options
+	 */
+	public static function createMultiClient( $options = [] ) {
+		global $wgHTTPConnectTimeout, $wgHTTPTimeout, $wgHTTPProxy;
+
+		return new MultiHttpClient( $options + [
+			'connTimeout' => $wgHTTPConnectTimeout,
+			'reqTimeout' => $wgHTTPTimeout,
+			'userAgent' => self::userAgent(),
+			'proxy' => $wgHTTPProxy,
+			'logger' => LoggerFactory::getInstance( 'http' )
+		] );
 	}
 }
