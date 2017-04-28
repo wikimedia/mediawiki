@@ -59,6 +59,8 @@ class MultiHttpClient {
 	protected $proxy;
 	/** @var string */
 	protected $userAgent = 'wikimedia/multi-http-client v1.0';
+	/** @var Psr\Log\LoggerInterface */
+	protected $logger;
 
 	/**
 	 * @param array $options
@@ -78,7 +80,8 @@ class MultiHttpClient {
 			}
 		}
 		static $opts = [
-			'connTimeout', 'reqTimeout', 'usePipelining', 'maxConnsPerHost', 'proxy', 'userAgent'
+			'connTimeout', 'reqTimeout', 'usePipelining', 'maxConnsPerHost',
+			'proxy', 'userAgent', 'logger'
 		];
 		foreach ( $opts as $key ) {
 			if ( isset( $options[$key] ) ) {
@@ -162,6 +165,7 @@ class MultiHttpClient {
 			} elseif ( !isset( $req['url'] ) ) {
 				throw new Exception( "Request has no 'url' field set." );
 			}
+			$this->logDebug( "{$req['method']}: {$req['url']}" );
 			$req['query'] = isset( $req['query'] ) ? $req['query'] : [];
 			$headers = []; // normalized headers
 			if ( isset( $req['headers'] ) ) {
@@ -235,6 +239,8 @@ class MultiHttpClient {
 					if ( function_exists( 'curl_strerror' ) ) {
 						$req['response']['error'] .= " " . curl_strerror( $errno );
 					}
+					$this->logWarning( "Error fetching URL \"{$req['url']}\": " .
+						$req['response']['error'] );
 				}
 			} else {
 				$req['response']['error'] = "(curl error: no status set)";
@@ -418,6 +424,37 @@ class MultiHttpClient {
 			$this->multiHandle = $cmh;
 		}
 		return $this->multiHandle;
+	}
+
+	/**
+	 * Log a message with debug priority
+	 *
+	 * @param string $message
+	 */
+	protected function logDebug( $message ) {
+		if ( $this->logger ) {
+			$this->logger->debug( $message );
+		}
+	}
+
+	/**
+	 * Log a message with warning priority
+	 *
+	 * @param string $message
+	 */
+	protected function logWarning( $message ) {
+		if ( $this->logger ) {
+			$this->logger->warning( $message );
+		}
+	}
+
+	/**
+	 * Register a logger
+	 *
+	 * @param Psr\Log\LoggerInterface
+	 */
+	public function setLogger( Psr\Log\LoggerInterface $logger ) {
+		$this->logger = $logger;
 	}
 
 	function __destruct() {
