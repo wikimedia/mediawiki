@@ -2154,6 +2154,7 @@
 	"usermessage-template": "MediaWiki:UserMessage",
 	"watchlist": "Watchlist",
 	"watchlist-summary": "",
+	"watchlist-unknown": "—",
 	"mywatchlist": "Watchlist",
 	"watchlistfor2": "For $1 $2",
 	"nowatchlist": "You have no items on your watchlist.",
