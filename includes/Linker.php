@@ -333,7 +333,7 @@ class Linker {
 		}
 
 		// Clean up parameters
-		$page = isset( $handlerParams['page'] ) ? $handlerParams['page'] : false;
+		$page = isset( $handlerParams['page'] ) ? $handlerParams['page'] : 1;
 		if ( !isset( $frameParams['align'] ) ) {
 			$frameParams['align'] = '';
 		}
@@ -530,7 +530,7 @@ class Linker {
 	) {
 		$exists = $file && $file->exists();
 
-		$page = isset( $handlerParams['page'] ) ? $handlerParams['page'] : false;
+		$page = isset( $handlerParams['page'] ) ? $handlerParams['page'] : 1;
 		if ( !isset( $frameParams['align'] ) ) {
 			$frameParams['align'] = 'right';
 		}
