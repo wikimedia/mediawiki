@@ -476,14 +476,21 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	private function createUsers( $specs ) {
 		$dbw = wfGetDB( DB_MASTER );
 		foreach ( $specs as $name => $spec ) {
-			User::createNew(
+			$registration = $dbw->timestamp( $this->daysAgo( $spec['days'] ) );
+			$user = User::createNew(
 				$name,
 				[
 					'editcount' => $spec['edits'],
-					'registration' => $dbw->timestamp( $this->daysAgo( $spec['days'] ) ),
+					'registration' => $registration,
 					'email' => 'ut',
 				]
 			);
+
+			if ( $user ) {
+				echo "\nUser {$user->getName()}, registration: {$user->getRegistration()} ($registration)\n";
+			} else {
+				echo "\nFailed to create user #name\n";
+			}
 		}
 	}
 
@@ -510,6 +517,8 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 				$filters
 			]
 		);
+
+		echo "\nfetchUsers conds: " . print_r( $conds, true ) . "\n";
 
 		$result = wfGetDB( DB_MASTER )->select(
 			'user',
