@@ -128,31 +128,33 @@ figure[typeof~='mw:Audio/Frame'] {
 	margin: 0.5em 0 1.3em 1.4em;
 	clear: right;
 	float: right;
-}
 
-figure[typeof~='mw:Image/Thumb'] > *:first-child > img,
-figure[typeof~='mw:Video/Thumb'] > *:first-child > video,
-figure[typeof~='mw:Audio/Thumb'] > *:first-child > video,
-figure[typeof~='mw:Image/Frame'] > *:first-child > img,
-figure[typeof~='mw:Video/Frame'] > *:first-child > video,
-figure[typeof~='mw:Audio/Frame'] > *:first-child > video {
-	border: 1px solid #c8ccd1;
-	margin: 3px;
-	background: #fff;
+	> *:first-child {
+		> img,
+		> video {
+			border: 1px solid #c8ccd1;
+			margin: 3px;
+			background: #fff;
+		}
+	}
 }
 
 /* Same as img.thumbborder in content.css */
-.mw-image-border > *:first-child > img,
-.mw-image-border > *:first-child > video {
-	border: 1px solid #eaecf0;
+.mw-image-border > *:first-child {
+	> img,
+	> video {
+		border: 1px solid #eaecf0;
+	}
 }
 
 /* Hide the caption for frameless and plain floated images */
-figure[typeof~='mw:Image/Frameless'] > figcaption,
-figure[typeof~='mw:Video/Frameless'] > figcaption,
-figure[typeof~='mw:Audio/Frameless'] > figcaption,
-figure[typeof~='mw:Image'] > figcaption,
-figure[typeof~='mw:Video'] > figcaption,
-figure[typeof~='mw:Audio'] > figcaption {
-	display: none;
+figure[typeof~='mw:Image/Frameless'],
+figure[typeof~='mw:Video/Frameless'],
+figure[typeof~='mw:Audio/Frameless'],
+figure[typeof~='mw:Image'],
+figure[typeof~='mw:Video'],
+figure[typeof~='mw:Audio'] {
+	> figcaption {
+		display: none;
+	}
 }
