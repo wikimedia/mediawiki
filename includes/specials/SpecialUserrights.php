@@ -174,9 +174,16 @@ class UserrightsPage extends SpecialPage {
 				$targetUser->clearInstanceCache(); // T40989
 			}
 
-			if ( $request->getVal( 'conflictcheck-originalgroups' )
-				!== implode( ',', $targetUser->getGroups() )
-			) {
+			// https://phabricator.wikimedia.org/T164211
+			// This is a temporary fix for unsorted user rights stuck in cache
+			// TODO: sorting can be removed in 1.32
+			$checkValue = explode( ',', $request->getVal( 'conflictcheck-originalgroups' ) );
+			sort( $checkValue );
+			$userGroups = $targetUser->getGroups();
+			sort( $userGroups );
+
+
+			if ( json_encode( $userGroups ) !== json_encode( $checkValue ) ) {
 				$out->addWikiMsg( 'userrights-conflict' );
 			} else {
 				$status = $this->saveUserGroups(
