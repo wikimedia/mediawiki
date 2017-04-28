@@ -148,24 +148,24 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 				if ( $this->srvCache->lock( $key, 0, $this->baseCacheTTL ) ) {
 					try {
 						list( $config, $error, $retry ) = $this->fetchAllFromEtcd();
-						if ( $config === null ) {
+						if ( is_array( $config ) ) {
+							// Avoid having all servers expire cache keys at the same time
+							$expiry = microtime( true ) + $this->baseCacheTTL;
+							$expiry += mt_rand( 0, 1e6 ) / 1e6 * $this->skewCacheTTL;
+
+							$data = [ 'config' => $config, 'expires' => $expiry ];
+							$this->srvCache->set( $key, $data, BagOStuff::TTL_INDEFINITE );
+
+							$this->logger->info( "Refreshed stale etcd configuration cache." );
+
+							return WaitConditionLoop::CONDITION_REACHED;
+						} else {
 							$this->logger->error( "Failed to fetch configuration: $error" );
-							// Fail fast if the error is likely to just keep happening
-							return $retry
-								? WaitConditionLoop::CONDITION_CONTINUE
-								: WaitConditionLoop::CONDITION_FAILED;
+							if ( !$retry ) {
+								// Fail fast since the error is likely to keep happening
+								return WaitConditionLoop::CONDITION_FAILED;
+							}
 						}
-
-						// Avoid having all servers expire cache keys at the same time
-						$expiry = microtime( true ) + $this->baseCacheTTL;
-						$expiry += mt_rand( 0, 1e6 ) / 1e6 * $this->skewCacheTTL;
-
-						$data = [ 'config' => $config, 'expires' => $expiry ];
-						$this->srvCache->set( $key, $data, BagOStuff::TTL_INDEFINITE );
-
-						$this->logger->info( "Refreshed stale etcd configuration cache." );
-
-						return WaitConditionLoop::CONDITION_REACHED;
 					} finally {
 						$this->srvCache->unlock( $key ); // release mutex
 					}
