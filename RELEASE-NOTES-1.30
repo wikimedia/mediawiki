@@ -31,7 +31,12 @@ production.
 * …
 
 === Action API changes in 1.30 ===
-* …
+* (T164106) The 'rvdifftotext', 'rvdifftotextpst', 'rvdiffto',
+  'rvexpandtemplates', 'rvgeneratexml', 'rvparse', and 'rvprop=parsetree'
+  parameters to prop=revisions are deprecated, as are the similarly named
+  parameters to prop=deletedrevisions, list=allrevisions, and
+  list=alldeletedrevisions. Use action=compare, action=parse, or
+  action=expandtemplates instead.
 
 === Action API internal changes in 1.30 ===
 * …
