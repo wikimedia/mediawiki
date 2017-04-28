@@ -251,7 +251,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 
 			$name = basename( $node['key'] );
 			$value = $this->unserialize( $node['value'] );
-			if ( !is_array( $value ) || !isset( $value['val'] ) ) {
+			if ( !is_array( $value ) || !array_key_exists( 'val', $value ) ) {
 				return [ null, "Failed to parse value for '$name'.", false ];
 			}
 
