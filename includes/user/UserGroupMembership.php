@@ -332,6 +332,7 @@ class UserGroupMembership {
 				$ugms[$ugm->group] = $ugm;
 			}
 		}
+		ksort( $ugms );
 
 		return $ugms;
 	}
