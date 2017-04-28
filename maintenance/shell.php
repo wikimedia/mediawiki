@@ -49,8 +49,8 @@ class MediaWikiShell extends Maintenance {
 		parent::__construct();
 		$this->addOption( 'd',
 			'For back compatibility with eval.php. ' .
-			'0 send debug to stderr. ' .
-			'With 1 additionally initialize database with debugging ',
+			'1 send debug to stderr. ' .
+			'With 2 additionally initialize database with debugging ',
 			false, true
 		);
 	}
