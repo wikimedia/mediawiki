@@ -5077,6 +5077,9 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Deferred version of incEditCountImmediate()
+	 *
+	 * This function, rather than incEditCountImmediate(), should be used for
+	 * most cases as it avoids potential deadlocks caused by concurrent editing.
 	 */
 	public function incEditCount() {
 		wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle(
