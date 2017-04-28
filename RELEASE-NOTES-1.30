@@ -39,7 +39,9 @@ changes to languages because of Phabricator reports.
 * …
 
 === Other changes in 1.30 ===
-* …
+* Expired user group memberships are now automatically purged next time they
+  are loaded.
+* New hook UserGroupsExpired is triggered when the above happens.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for

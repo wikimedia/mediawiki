@@ -7352,6 +7352,7 @@ $wgJobClasses = [
 	'categoryMembershipChange' => 'CategoryMembershipChangeJob',
 	'cdnPurge' => 'CdnPurgeJob',
 	'enqueue' => 'EnqueueJob', // local queue for multi-DC setups
+	'userGroupExpiry' => 'UserGroupExpiryJob',
 	'null' => 'NullJob'
 ];
 

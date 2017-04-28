@@ -3599,6 +3599,9 @@ the user's group memberships before the change.
 $newUGMs: An associative array (group name => UserGroupMembership object) of
 the user's current group memberships.
 
+'UserGroupsExpired': Called after one or more users' expired groups have been removed.
+$removals: Removed groups by user ID, e.g. [ userID => [ 'right1', 'right2' ] ]
+
 'UserIsBlockedFrom': Check if a user is blocked from a specific page (for
 specific block exemptions).
 $user: User in question

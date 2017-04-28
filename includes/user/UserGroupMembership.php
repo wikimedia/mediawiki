@@ -294,8 +294,10 @@ class UserGroupMembership {
 
 				// save an array of users/groups to insert to user_former_groups
 				$usersAndGroups = [];
+				$groupsByUser = [];
 				foreach ( $res as $row ) {
 					$usersAndGroups[] = [ 'ufg_user' => $row->ug_user, 'ufg_group' => $row->ug_group ];
+					$groupsByUser[$row->ug_user][] = $row->ug_group;
 				}
 
 				// delete 'em all
@@ -303,6 +305,10 @@ class UserGroupMembership {
 
 				// and push the groups to user_former_groups
 				$dbw->insert( 'user_former_groups', $usersAndGroups, __METHOD__, [ 'IGNORE' ] );
+
+				if ( $groupsByUser ) {
+					Hooks::run( 'UserGroupsExpired', [ $groupsByUser ] );
+				}
 			}
 		) );
 	}
@@ -326,15 +332,29 @@ class UserGroupMembership {
 			__METHOD__ );
 
 		$ugms = [];
+		$haveExpiries = false;
 		foreach ( $res as $row ) {
 			$ugm = self::newFromRow( $row );
 			if ( !$ugm->isExpired() ) {
 				$ugms[$ugm->group] = $ugm;
+				$haveExpiries = true;
 			}
 		}
-		ksort( $ugms );
+		if ( $haveExpiries ) {
+			self::purgeExpiredViaJob();
+		}
 
+		ksort( $ugms );
 		return $ugms;
+	}
+
+	/**
+	 * Enqueues a job to purge expired user groups
+	 */
+	public static function purgeExpiredViaJob() {
+		$job = new UserGroupExpiryJob( Title::newMainPage() );
+
+		JobQueueGroup::singleton()->push( $job );
 	}
 
 	/**
