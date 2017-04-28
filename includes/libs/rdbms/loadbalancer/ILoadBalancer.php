@@ -286,6 +286,8 @@ interface ILoadBalancer {
 	 * Return the server info structure for a given index, or false if the index is invalid.
 	 * @param int $i
 	 * @return array|bool
+	 *
+	 * @deprecated Since 1.30, no alternative
 	 */
 	public function getServerInfo( $i );
 
@@ -294,6 +296,8 @@ interface ILoadBalancer {
 	 * is created if it doesn't exist
 	 * @param int $i
 	 * @param array $serverInfo
+	 *
+	 * @deprecated Since 1.30, construct new object
 	 */
 	public function setServerInfo( $i, array $serverInfo );
 

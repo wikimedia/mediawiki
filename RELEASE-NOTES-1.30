@@ -39,7 +39,8 @@ changes to languages because of Phabricator reports.
 * …
 
 === Other changes in 1.30 ===
-* …
+* LoadBalancer::getServerInfo() and LoadBalancer::setServerInfo() are
+  deprecated. There are no known callers.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for

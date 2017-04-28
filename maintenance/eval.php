@@ -32,6 +32,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\ConsoleSpi;
+use MediaWiki\MediaWikiServices;
 
 $optionsWithArgs = [ 'd' ];
 
@@ -41,15 +42,12 @@ if ( isset( $options['d'] ) ) {
 	$d = $options['d'];
 	if ( $d > 0 ) {
 		LoggerFactory::registerProvider( new ConsoleSpi );
+		// Some services hold Logger instances in object properties
+		MediaWikiServices::resetGlobalInstance();
 	}
 	if ( $d > 1 ) {
-		$lb = wfGetLB();
-		$serverCount = $lb->getServerCount();
-		for ( $i = 0; $i < $serverCount; $i++ ) {
-			$server = $lb->getServerInfo( $i );
-			$server['flags'] |= DBO_DEBUG;
-			$lb->setServerInfo( $i, $server );
-		}
+		wfGetDB( DB_MASTER )->setFlag( DBO_DEBUG );
+		wfGetDB( DB_REPLICA )->setFlag( DBO_DEBUG );
 	}
 }
 
