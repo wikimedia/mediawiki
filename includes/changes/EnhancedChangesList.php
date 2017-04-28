@@ -708,20 +708,28 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string HTML
 	 */
 	public function getDiffHistLinks( RCCacheEntry $rc, array $query ) {
-		$pageTitle = $rc->getTitle();
 		if ( $rc->getAttribute( 'rc_type' ) == RC_CATEGORIZE ) {
 			// For categorizations we must swap the category title with the page title!
 			$pageTitle = Title::newFromID( $rc->getAttribute( 'rc_cur_id' ) );
+		} else {
+			$pageTitle = $rc->getTitle();
+		}
+
+		if ( $pageTitle === null ) {
+			$link = $this->msg( 'mw-changeslist-unknown' );
+		} else {
+			$link = $this->linkRenderer->makeKnownLink(
+			        	$pageTitle,
+			        	new HtmlArmor( $this->message['hist'] ),
+			        	[ 'class' => 'mw-changeslist-history' ],
+			        	$query
+			        );
 		}
 
 		$retVal = ' ' . $this->msg( 'parentheses' )
 				->rawParams( $rc->difflink . $this->message['pipe-separator']
-					. $this->linkRenderer->makeKnownLink(
-						$pageTitle,
-						new HtmlArmor( $this->message['hist'] ),
-						[ 'class' => 'mw-changeslist-history' ],
-						$query
-					) )->escaped();
+					. $link
+					)->escaped();
 		return $retVal;
 	}
 
