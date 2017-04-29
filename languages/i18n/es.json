@@ -1506,7 +1506,7 @@
 	"rcfilters-filter-logactions-description": "Acciones administrativas, creación de cuentas, borrados de páginas, subidas de archivos...",
 	"rcfilters-hideminor-conflicts-typeofchange-global": "El filtro \"Ediciones menores\" está en conflicto con uno o más Tipos de filtros de Cambio, ya que ciertos tipos de cambio no pueden ser designados como \"menores\". Los filtros en conflicto están marcados en el área Filtros activos, anterior.",
 	"rcfilters-hideminor-conflicts-typeofchange": "Ciertos tipos de cambio no pueden ser designados como \"menores\", por lo que este filtro entra en conflicto con los siguientes  Tipos de filtros de Cambio: $1",
-	"rcfilters-typeofchange-conflicts-hideminor": "Este Tipo de filtro de Cambio entra en conflicto con el filtro \"Ediciones Menores\". Ciertos tipos de cambio no pueden ser designados como \"menores\".",
+	"rcfilters-typeofchange-conflicts-hideminor": "Este filtro «Tipo de cambio» entra en conflicto con el filtro «Ediciones menores». Hay ciertos tipos de cambios que no pueden denominarse «menores».",
 	"rcnotefrom": "Debajo {{PLURAL:$5|aparece el cambio|aparecen los cambios}} desde <strong>$3, $4</strong> (se muestran hasta <strong>$1</strong>).",
 	"rclistfromreset": "Reiniciar selección de fecha",
 	"rclistfrom": "Mostrar cambios nuevos desde las $2 del $3",
