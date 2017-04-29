@@ -143,7 +143,11 @@ class SpecialJavaScriptTest extends SpecialPage {
 			.always( function () {
 				start();
 			} )
-			.fail( function ( e ) { throw e; } );
+			.fail( function ( e ) {
+				setTimeout( function () {
+					throw e;
+				} );
+			} );
 	} catch ( e ) {
 		start();
 		throw e;
