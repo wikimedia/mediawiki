@@ -22,6 +22,7 @@
 
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Static accessor class for site_stats and related things
@@ -78,9 +79,12 @@ class SiteStats {
 		$row = self::doLoad( wfGetDB( DB_REPLICA ) );
 
 		if ( !self::isSane( $row ) ) {
-			// Might have just been initialized during this request? Underflow?
-			wfDebug( __METHOD__ . ": site_stats damaged or missing on replica DB\n" );
-			$row = self::doLoad( wfGetDB( DB_MASTER ) );
+			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+			if ( $lb->hasOrMadeRecentMasterChanges() ) {
+				// Might have just been initialized during this request? Underflow?
+				wfDebug( __METHOD__ . ": site_stats damaged or missing on replica DB\n" );
+				$row = self::doLoad( wfGetDB( DB_MASTER ) );
+			}
 		}
 
 		if ( !$wgMiserMode && !self::isSane( $row ) ) {
@@ -98,6 +102,7 @@ class SiteStats {
 		if ( !self::isSane( $row ) ) {
 			wfDebug( __METHOD__ . ": site_stats persistently nonsensical o_O\n" );
 		}
+
 		return $row;
 	}
 
