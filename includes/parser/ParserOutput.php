@@ -708,7 +708,7 @@ class ParserOutput extends CacheTime {
 	 * @since 1.25
 	 */
 	public function addTrackingCategory( $msg, $title ) {
-		if ( $title->getNamespace() === NS_SPECIAL ) {
+		if ( $title->isSpecialPage() ) {
 			wfDebug( __METHOD__ . ": Not adding tracking category $msg to special page!\n" );
 			return false;
 		}

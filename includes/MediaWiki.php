@@ -282,7 +282,7 @@ class MediaWiki {
 			}
 
 			// Special pages ($title may have changed since if statement above)
-			if ( NS_SPECIAL == $title->getNamespace() ) {
+			if ( $title->isSpecialPage() ) {
 				// Actions that need to be made when we have a special pages
 				SpecialPageFactory::executePath( $title, $this->context );
 			} else {

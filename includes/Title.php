@@ -2123,7 +2123,7 @@ class Title implements LinkTarget {
 	private function checkSpecialsAndNSPermissions( $action, $user, $errors, $rigor, $short ) {
 		# Only 'createaccount' can be performed on special pages,
 		# which don't actually exist in the DB.
-		if ( NS_SPECIAL == $this->mNamespace && $action !== 'createaccount' ) {
+		if ( $this->isSpecialPage() && $action !== 'createaccount' ) {
 			$errors[] = [ 'ns-specialprotected' ];
 		}
 
@@ -3426,7 +3426,7 @@ class Title implements LinkTarget {
 		$this->mTextform = strtr( $this->mDbkeyform, '_', ' ' );
 
 		# We already know that some pages won't be in the database!
-		if ( $this->isExternal() || $this->mNamespace == NS_SPECIAL ) {
+		if ( $this->isExternal() || $this->isSpecialPage() ) {
 			$this->mArticleID = 0;
 		}
 
