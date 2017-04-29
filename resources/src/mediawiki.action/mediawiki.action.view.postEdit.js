@@ -22,10 +22,7 @@
 	 * @member mw.hook
 	 */
 
-	var cookieVal,
-		config = mw.config.get( [ 'wgAction', 'wgCurRevisionId' ] ),
-		// This should match EditPage::POST_EDIT_COOKIE_KEY_PREFIX:
-		cookieKey = 'PostEditRevision' + config.wgCurRevisionId;
+	var config = mw.config.get( [ 'wgAction', 'wgCurRevisionId', 'wgPostEdit' ] );
 
 	function showConfirmation( data ) {
 		var $container, $popup, $content, timeoutId;
@@ -71,22 +68,17 @@
 	// Only when viewing wiki pages, that exist
 	// (E.g. not on special pages or non-view actions)
 	if ( config.wgCurRevisionId && config.wgAction === 'view' ) {
-		cookieVal = mw.cookie.get( cookieKey );
-		if ( cookieVal ) {
-			mw.config.set( 'wgPostEdit', true );
-
+		if ( config.wgPostEdit ) {
 			mw.hook( 'postEdit' ).fire( {
 				// The following messages can be used here:
 				// postedit-confirmation-saved
 				// postedit-confirmation-created
 				// postedit-confirmation-restored
 				message: mw.msg(
-					'postedit-confirmation-' + cookieVal,
+					'postedit-confirmation-' + config.wgPostEdit,
 					mw.user
 				)
 			} );
-
-			mw.cookie.set( cookieKey, null );
 		}
 	}
 

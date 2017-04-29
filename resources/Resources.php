@@ -1494,7 +1494,6 @@ return [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.postEdit.js',
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.view.postEdit.less',
 		'dependencies' => [
-			'mediawiki.cookie',
 			'mediawiki.jqueryMsg',
 			'mediawiki.notification'
 		],

@@ -656,8 +656,11 @@ class Article implements Page {
 		# Load the postEdit module when this revision was just saved.
 		$request = $this->getContext()->getRequest();
 		$cookieKey = EditPage::POST_EDIT_COOKIE_KEY_PREFIX . $this->getRevIdFetched();
-		if ( $request->getCookie( $cookieKey ) ) {
+		$postEdit = $request->getCookie( $cookieKey );
+		if ( $postEdit ) {
+			$outputPage->addJsConfigVars( 'wgPostEdit', $postEdit );
 			$outputPage->addModules( 'mediawiki.action.view.postEdit' );
+			$request->response()->clearCookie( $cookieKey );
 		}
 	}
 
