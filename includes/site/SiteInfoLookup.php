@@ -26,6 +26,7 @@ interface SiteInfoLookup {
 	// FIXME: document all the semantics!
 	const SITE_TYPE = 'type';
 	const SITE_NAME = 'name';
+	const SITE_DESCRIPTION = 'description';
 	const SITE_LANGUAGE = 'language';
 	const SITE_FAMILY = 'family';
 	const SITE_DB_NAME = 'db-name';
