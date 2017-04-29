@@ -658,6 +658,8 @@ class Article implements Page {
 		$cookieKey = EditPage::POST_EDIT_COOKIE_KEY_PREFIX . $this->getRevIdFetched();
 		$postEdit = $request->getCookie( $cookieKey );
 		if ( $postEdit ) {
+			$request->response()->clearCookie( $cookieKey );
+			$outputPage->addJsConfigVars( 'wgPostEdit', $postEdit );
 			$outputPage->addModules( 'mediawiki.action.view.postEdit' );
 			# Disable caching for this response.
 			$outputPage->enableClientCache( false );
