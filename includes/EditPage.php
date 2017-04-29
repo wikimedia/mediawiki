@@ -1452,10 +1452,8 @@ class EditPage {
 	 * This uses a temporary cookie for each revision ID so separate saves will never
 	 * interfere with each other.
 	 *
-	 * The cookie is deleted in the mediawiki.action.view.postEdit JS module after
-	 * the redirect.  It must be clearable by JavaScript code, so it must not be
-	 * marked HttpOnly. The JavaScript code converts the cookie to a wgPostEdit config
-	 * variable.
+	 * Article::view deletes the cookie on server-side after the redirect and
+	 * converts the value to the global JavaScript variable wgPostEdit.
 	 *
 	 * If the variable were set on the server, it would be cached, which is unwanted
 	 * since the post-edit state should only apply to the load right after the save.
@@ -1474,9 +1472,7 @@ class EditPage {
 		}
 
 		$response = RequestContext::getMain()->getRequest()->response();
-		$response->setCookie( $postEditKey, $val, time() + self::POST_EDIT_COOKIE_DURATION, [
-			'httpOnly' => false,
-		] );
+		$response->setCookie( $postEditKey, $val, time() + self::POST_EDIT_COOKIE_DURATION );
 	}
 
 	/**
