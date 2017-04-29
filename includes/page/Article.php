@@ -653,7 +653,12 @@ class Article implements Page {
 		$this->showViewFooter();
 		$this->mPage->doViewUpdates( $user, $oldid );
 
-		$outputPage->addModules( 'mediawiki.action.view.postEdit' );
+		# Load the postEdit module when this revision was just saved.
+		$request = $this->getContext()->getRequest();
+		$cookieKey = EditPage::POST_EDIT_COOKIE_KEY_PREFIX . $this->getRevIdFetched();
+		if ( $request->getCookie( $cookieKey ) ) {
+			$outputPage->addModules( 'mediawiki.action.view.postEdit' );
+		}
 	}
 
 	/**
