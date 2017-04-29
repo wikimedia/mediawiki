@@ -1356,7 +1356,7 @@ class ApiPageSet extends ApiBase {
 			}
 		}
 		foreach ( $this->mGeneratorData as $ns => $dbkeys ) {
-			if ( $ns === -1 ) {
+			if ( $ns === NS_SPECIAL ) {
 				$pages = [];
 				foreach ( $this->mSpecialTitles as $id => $title ) {
 					$pages[$title->getDBkey()] = $id;
