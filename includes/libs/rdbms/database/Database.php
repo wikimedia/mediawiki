@@ -817,7 +817,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @param string $sql A SQL query
-	 * @return bool Whether $sql is SQL for creating/dropping a new TEMPORARY table
+	 * @return bool Whether $sql is SQL for TEMPORARY table operation
 	 */
 	protected function registerTempTableOperation( $sql ) {
 		if ( preg_match(
@@ -833,9 +833,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$sql,
 			$matches
 		) ) {
+			$isTemp = isset( $this->mSessionTempTables[$matches[1]] );
 			unset( $this->mSessionTempTables[$matches[1]] );
 
-			return true;
+			return $isTemp;
+		} elseif ( preg_match(
+			'/^TRUNCATE\s+(?:TEMPORARY\s+)?TABLE\s+(?:IF\s+EXISTS\s+)?[`"\']?(\w+)[`"\']?/i',
+			$sql,
+			$matches
+		) ) {
+			return isset( $this->mSessionTempTables[$matches[1]] );
 		} elseif ( preg_match(
 			'/^(?:INSERT\s+(?:\w+\s+)?INTO|UPDATE|DELETE\s+FROM)\s+[`"\']?(\w+)[`"\']?/i',
 			$sql,
