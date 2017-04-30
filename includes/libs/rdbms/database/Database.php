@@ -817,7 +817,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @param string $sql A SQL query
-	 * @return bool Whether $sql is SQL for creating/dropping a new TEMPORARY table
+	 * @return bool Whether $sql is SQL for TEMPORARY table operation
 	 */
 	protected function registerTempTableOperation( $sql ) {
 		if ( preg_match(
@@ -838,6 +838,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 			return $isTemp;
 		} elseif ( preg_match(
+			'/^TRUNCATE\s+(?:TEMPORARY\s+)?TABLE\s+(?:IF\s+EXISTS\s+)?[`"\']?(\w+)[`"\']?/i',
+			$sql,
+			$matches
+		) ) {
+			return isset( $this->mSessionTempTables[$matches[1]] );
+		} elseif ( preg_match(
 			'/^(?:INSERT\s+(?:\w+\s+)?INTO|UPDATE|DELETE\s+FROM)\s+[`"\']?(\w+)[`"\']?/i',
 			$sql,
 			$matches
@@ -852,8 +858,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$priorWritesPending = $this->writesOrCallbacksPending();
 		$this->mLastQuery = $sql;
 
-		$isWrite = $this->isWriteQuery( $sql ) && !$this->registerTempTableOperation( $sql );
+		$isWrite = $this->isWriteQuery( $sql );
 		if ( $isWrite ) {
+			$isNonTempWrite = $this->registerTempTableOperation( $sql );
+		} else {
+			$isNonTempWrite = false;
+		}
+
+		if ( $isWrite ) {
+			# In theory, non-persistent writes are allowed in read-only mode, but due to things
+			# like https://bugs.mysql.com/bug.php?id=33669 that might not work anyway...
 			$reason = $this->getReadOnlyReason();
 			if ( $reason !== false ) {
 				throw new DBReadOnlyError( $this, "Database is read-only: $reason" );
@@ -862,8 +876,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->mLastWriteTime = microtime( true );
 		}
 
-		// Add trace comment to the begin of the sql string, right after the operator.
-		// Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (T44598)
+		# Add trace comment to the begin of the sql string, right after the operator.
+		# Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (T44598)
 		$commentedSql = preg_replace( '/\s|$/', " /* $fname {$this->agent} */ ", $sql, 1 );
 
 		# Start implicit transactions that wrap the request if DBO_TRX is enabled
@@ -889,7 +903,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->assertOpen();
 
 		# Send the query to the server
-		$ret = $this->doProfiledQuery( $sql, $commentedSql, $isWrite, $fname );
+		$ret = $this->doProfiledQuery( $sql, $commentedSql, $isNonTempWrite, $fname );
 
 		# Try reconnecting if the connection was lost
 		if ( false === $ret && $this->wasErrorReissuable() ) {
@@ -910,7 +924,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					$this->reportQueryError( $lastError, $lastErrno, $sql, $fname );
 				} else {
 					# Should be safe to silently retry the query
-					$ret = $this->doProfiledQuery( $sql, $commentedSql, $isWrite, $fname );
+					$ret = $this->doProfiledQuery( $sql, $commentedSql, $isNonTempWrite, $fname );
 				}
 			} else {
 				$msg = __METHOD__ . ": lost connection to {$this->getServer()} permanently";
