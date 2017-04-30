@@ -2202,7 +2202,7 @@
 	"log-name-contentmodel": "Wijzigingenlogboek van inhoudsmodel",
 	"log-description-contentmodel": "Deze pagina bevat wijzigingen rond het inhoudsmodel van pagina's en pagina's die aangemaakt zijn met een inhoudsmodel anders dan het standaardmodel.",
 	"logentry-contentmodel-new": "$1 {{GENDER:$2|maakte}} de pagina $3 aan met behulp van een niet-standaard inhoudsmodel \"$5\"",
-	"logentry-contentmodel-change": "$1 {{GENDER:$2|heeft}} het inhoudsmodel gewijzigd van pagina $3 van \"$4\" in \"$5\"",
+	"logentry-contentmodel-change": "$1 {{GENDER:$2|heeft}} het inhoudsmodel gewijzigd van pagina $3 van \"$4\" naar \"$5\"",
 	"logentry-contentmodel-change-revertlink": "terugdraaien",
 	"logentry-contentmodel-change-revert": "terugdraaien",
 	"protectlogpage": "Beveiligingslogboek",

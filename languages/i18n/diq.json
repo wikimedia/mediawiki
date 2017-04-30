@@ -370,6 +370,8 @@
 	"badtitletext": "Sernameyê pela ke şıma waşt, nêvêrd, vengo ya zi zıwano miyanêno ğelet gırêdaye ya zi sernameyê wiki.\nBeno ke, tede yew ya zi zêdê işareti estê ke sernameyan de nêxebetiyenê.",
 	"title-invalid-empty": "Waziyaye sernamey perrer  venonyana teyna canamey nami sero esto.",
 	"title-invalid-utf8": "Sernamey perre ke şıma wazenê, yew rêza UTF-8iya ke nêvêrene xo sero kırışeno.",
+	"title-invalid-talk-namespace": "Ena perra ke waziyena yew perrê werênayışa ke nêşena bıbo aye ra bestiyena.",
+	"title-invalid-characters": "Ena perra karakterê ke nêvêrenê inan gêna xo miyan.",
 	"perfcached": "Datay cı ver hazır biye. No semedê ra nıkayin niyo! tewr zaf {{PLURAL:$1|netice|$1 netice}} debêno de",
 	"perfcachedts": "Cêr de malumatê nımıteyi esti, demdê newe kerdışo peyın: $1. Tewr zaf {{PLURAL:$4|netice|$4 neticey cı}} debyayo de",
 	"querypage-no-updates": "Rocanebiyayışê na pele nıka cadayiyê.\nDayiyi tiya nıka newe nêbenê.",

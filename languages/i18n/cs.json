@@ -1508,6 +1508,7 @@
 	"php-uploaddisabledtext": "V PHP je vypnuto načítání souborů. Prosím, zkontrolujte nastavení file_uploads.",
 	"uploadscripted": "Tento soubor obsahuje HTML nebo kód skriptu, který by mohl být prohlížečem chybně interpretován.",
 	"upload-scripted-pi-callback": "Nelze načíst soubor, který obsahuje instrukci xml-stylesheet.",
+	"upload-scripted-dtd": "Nelze načíst SVG soubory, které obsahují nestandardní DTD deklaraci.",
 	"uploaded-script-svg": "V načteném SVG souboru byl nalezen skriptovatelný element „$1“.",
 	"uploaded-hostile-svg": "V načteném SVG souboru bylo v elementu se styly nalezeno nebezpečné CSS.",
 	"uploaded-event-handler-on-svg": "Nastavování atributů pro obsluhu událostí <code>$1=\"$2\"</code> není v SVG souborech dovoleno.",

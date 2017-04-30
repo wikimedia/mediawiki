@@ -149,7 +149,7 @@
 	"category-file-count-limited": "Le sequente {{PLURAL:$1|file es|$1 files es}} in le categoria actual.",
 	"listingcontinuesabbrev": "cont.",
 	"index-category": "Paginas indexate",
-	"noindex-category": "Paginas con \"__NOINDEX__\"",
+	"noindex-category": "Paginas non indexate",
 	"broken-file-category": "Paginas con ligamines rupte a files",
 	"about": "A proposito",
 	"article": "Pagina de contento",

@@ -1893,7 +1893,7 @@
 	"listfiles_search_for": "Input label for the form displayed on [[Special:ListFiles]].",
 	"listfiles-userdoesnotexist": "This message is displayed on [[Special:ListFiles]] when a invalid username is entered.",
 	"imgfile": "{{Identical|File}}",
-	"listfiles": "Page title and grouping label for the form displayed on [[Special:ListFiles]].\n{{Identical|File list}}",
+	"listfiles": "Page title and grouping label for the form displayed on [[Special:ListFiles]].\n{{Identical|List}}",
 	"listfiles_thumb": "{{Identical|Thumbnail}}",
 	"listfiles_date": "Column header for the result table displayed on [[Special:ListFiles]].\n{{Identical|Date}}",
 	"listfiles_name": "Column header for the result table displayed on [[Special:ListFiles]].\n{{Identical|Name}}",

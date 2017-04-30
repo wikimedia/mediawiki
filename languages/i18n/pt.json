@@ -1938,7 +1938,7 @@
 	"apisandbox-multivalue-all-namespaces": "$1 (Todos os espaços nominais)",
 	"apisandbox-multivalue-all-values": "$1 (Todos os valores)",
 	"booksources": "Fontes bibliográficas",
-	"booksources-search-legend": "Pesquisar referências bibliográficas",
+	"booksources-search-legend": "Pesquisar fontes de livros",
 	"booksources-search": "Pesquisar",
 	"booksources-text": "É apresentada abaixo uma lista de ligações para outros sítios na Internet que vendem livros novos e usados e talvez possuam informações adicionais sobre os livros que procura:",
 	"booksources-invalid-isbn": "O número ISBN fornecido não parece ser válido; verifique a existência de erros ao copiar da fonte original.",
