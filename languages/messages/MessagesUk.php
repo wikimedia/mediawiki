@@ -51,6 +51,7 @@
  * @author Дар'я Козлова
  * @author Максим Підліснюк
  * @author Тест
+ * @author Eugene Gvozdetsky
  */
 
 $separatorTransformTable = [
@@ -100,6 +101,11 @@ $namespaceAliases = [
 	'Обсуждение_категории' => NS_CATEGORY_TALK,
 	'Изображение' => NS_FILE,
 	'Обсуждение_изображения' => NS_FILE_TALK,
+];
+
+$namespaceGenderAliases = [
+	NS_USER      => [ 'male' => 'Користувач', 'female' => 'Користувачка' ],
+	NS_USER_TALK => [ 'male' => 'Обговорення_користувача', 'female' => 'Обговорення_користувачки' ],
 ];
 
 $dateFormats = [
