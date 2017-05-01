@@ -55,7 +55,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 	/** @var integer */
 	private $timeout;
 	/** @var string */
-	private $directoryHash;
+	private $cacheKey;
 
 	/**
 	 * @param array $params Parameter map:
@@ -81,7 +81,6 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 		$this->host = $params['host'];
 		$this->protocol = $params['protocol'];
 		$this->directory = trim( $params['directory'], '/' );
-		$this->directoryHash = sha1( $this->directory );
 		$this->encoding = $params['encoding'];
 		$this->skewCacheTTL = $params['skewTTL'];
 		$this->baseCacheTTL = max( $params['cacheTTL'] - $this->skewCacheTTL, 0 );
@@ -95,6 +94,11 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 			$this->srvCache = ObjectFactory::getObjectFromSpec( $params['cache'] );
 		}
 
+		$this->cacheKey = $this->srvCache->makeGlobalKey(
+			__CLASS__,
+			$this->host,
+			$this->directory
+		);
 		$this->logger = new Psr\Log\NullLogger();
 		$this->http = new MultiHttpClient( [
 			'connTimeout' => $this->timeout,
@@ -131,7 +135,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 		}
 
 		$now = microtime( true );
-		$key = $this->srvCache->makeKey( 'variable', $this->directoryHash );
+		$key = $this->cacheKey;
 
 		// Get the cached value or block until it is regenerated (by this or another thread)...
 		$data = null; // latest config info
