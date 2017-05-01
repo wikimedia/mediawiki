@@ -9,7 +9,8 @@ production.
 * …
 
 === New features in 1.30 ===
-* …
+* Added RecentChangesPurgeRows hook to allow extensions to purge data that depends on
+  the recentchanges table.
 
 === External library changes in 1.30 ===
 

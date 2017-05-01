@@ -2671,6 +2671,11 @@ random pages.
 'RecentChange_save': Called at the end of RecentChange::save().
 &$recentChange: RecentChange object
 
+'RecentChangesPurgeRows': Called when old recentchanges rows are purged, after
+deleting those rows but within the same transaction.
+$rows: An array of recentchanges row objects (with up to $wgUpdateRowsPerQuery
+  items), as returned when iterating ResultWrapper.
+
 'RedirectSpecialArticleRedirectParams': Lets you alter the set of parameter
 names such as "oldid" that are preserved when using redirecting special pages
 such as Special:MyPage and Special:MyTalk.
