@@ -87,14 +87,20 @@ class RecentChangesUpdateJob extends Job {
 		$ticket = $factory->getEmptyTransactionTicket( __METHOD__ );
 		$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
 		do {
-			$rcIds = $dbw->selectFieldValues( 'recentchanges',
-				'rc_id',
+			$rcIds = $rows = [];
+			$res = $dbw->select( 'recentchanges',
+				[ '*' ],
 				[ 'rc_timestamp < ' . $dbw->addQuotes( $cutoff ) ],
 				__METHOD__,
 				[ 'LIMIT' => $wgUpdateRowsPerQuery ]
 			);
+			foreach ( $res as $row ) {
+				$rcIds[] = $row->rc_id;
+				$rows[] = $row;
+			}
 			if ( $rcIds ) {
 				$dbw->delete( 'recentchanges', [ 'rc_id' => $rcIds ], __METHOD__ );
+				Hooks::run( 'RecentChangesPurgeRows', [ $rows ] );
 				// There might be more, so try waiting for replica DBs
 				try {
 					$factory->commitAndWaitForReplication(
