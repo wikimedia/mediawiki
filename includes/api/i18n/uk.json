@@ -12,7 +12,8 @@
 			"Piramidion",
 			"Andriykopanytsia",
 			"Максим Підліснюк",
-			"AS"
+			"AS",
+			"Eugene Gvozdetsky"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документація]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаПи]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Список розсилки]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Оголошення API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Баґи і запити]\n</div>\n<strong>Статус:</strong> Усі функції, вказані на цій сторінці, мають працювати, але API далі перебуває в активній розробці і може змінитися у будь-який момент. Підпишіться на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ список розсилки mediawiki-api-announce], щоб помічати оновлення.\n\n<strong>Хибні запити:</strong> Коли до API надсилаються хибні запити, буде відіслано HTTP-шапку з ключем «MediaWiki-API-Error», а тоді і значення шапки, і код помилки, надіслані назад, будуть встановлені з тим же значенням. Більше інформації див. на [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]].\n\n<strong>Тестування:</strong> Для зручності тестування запитів API, див. [[Special:ApiSandbox]].",
@@ -1300,10 +1301,10 @@
 	"apihelp-tag-param-tags": "Теги для застосування до запису в журналі, що буде створений в результаті цієї дії.",
 	"apihelp-tag-example-rev": "Додати мітку <kbd>vandalism</kbd> до версії з ідентифікатором 123 без вказання причини",
 	"apihelp-tag-example-log": "Вилучити мітку <kbd>spam</kbd> з запису журналу з ідентифікатором 123 з причиною <kbd>Wrongly applied</kbd>",
-	"apihelp-tokens-description": "Отримати жетони для дій пов'язаних зі зміною даних.\n\nЦей модуль застарів на користь [[Special:ApiHelp/query+tokens|action=query&meta=tokens]].",
-	"apihelp-tokens-param-type": "Які типи жетонів запитати.",
-	"apihelp-tokens-example-edit": "Отримати жетон редагування (за замовчуванням).",
-	"apihelp-tokens-example-emailmove": "Отримати жетон електронної пошти та жетон перейменування.",
+	"apihelp-tokens-description": "Отримати токени для дій пов'язаних зі зміною даних.\n\nЦей модуль застарів на користь [[Special:ApiHelp/query+tokens|action=query&meta=tokens]].",
+	"apihelp-tokens-param-type": "Які типи токенів запитати.",
+	"apihelp-tokens-example-edit": "Отримати токен редагування (за замовчуванням).",
+	"apihelp-tokens-example-emailmove": "Отримати токен електронної пошти та токен перейменування.",
 	"apihelp-unblock-description": "Розблокувати користувача.",
 	"apihelp-unblock-param-id": "Ідентифікатор блоку чи розблокування (отриманий через <kbd>list=blocks</kbd>). Не може бути використано разом із <var>$1user</var> або <var>$1userid</var>.",
 	"apihelp-unblock-param-user": "Ім'я користувача, IP-адреса чи IP-діапазон до розблокування. Не може бути використано разом із <var>$1id</var> або <var>$1userid</var>.",
