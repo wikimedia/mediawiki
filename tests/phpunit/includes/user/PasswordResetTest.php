@@ -10,8 +10,7 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 	 * @dataProvider provideIsAllowed
 	 */
 	public function testIsAllowed( $passwordResetRoutes, $enableEmail,
-		$allowsAuthenticationDataChange, $canEditPrivate, $canSeePassword,
-		$userIsBlocked, $isAllowed
+		$allowsAuthenticationDataChange, $canEditPrivate, $block, $globalBlock, $isAllowed
 	) {
 		$config = new HashConfig( [
 			'PasswordResetRoutes' => $passwordResetRoutes,
@@ -25,13 +24,12 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 
 		$user = $this->getMockBuilder( User::class )->getMock();
 		$user->expects( $this->any() )->method( 'getName' )->willReturn( 'Foo' );
-		$user->expects( $this->any() )->method( 'isBlocked' )->willReturn( $userIsBlocked );
+		$user->expects( $this->any() )->method( 'getBlock' )->willReturn( $block );
+		$user->expects( $this->any() )->method( 'getGlobalBlock' )->willReturn( $globalBlock );
 		$user->expects( $this->any() )->method( 'isAllowed' )
-			->will( $this->returnCallback( function ( $perm ) use ( $canEditPrivate, $canSeePassword ) {
+			->will( $this->returnCallback( function ( $perm ) use ( $canEditPrivate ) {
 				if ( $perm === 'editmyprivateinfo' ) {
 					return $canEditPrivate;
-				} elseif ( $perm === 'passwordreset' ) {
-					return $canSeePassword;
 				} else {
 					$this->fail( 'Unexpected permission check' );
 				}
@@ -44,67 +42,103 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 
 	public function provideIsAllowed() {
 		return [
-			[
+			'no routes' => [
 				'passwordResetRoutes' => [],
 				'enableEmail' => true,
 				'allowsAuthenticationDataChange' => true,
 				'canEditPrivate' => true,
-				'canSeePassword' => true,
-				'userIsBlocked' => false,
+				'block' => null,
+				'globalBlock' => null,
 				'isAllowed' => false,
 			],
-			[
+			'email disabled' => [
 				'passwordResetRoutes' => [ 'username' => true ],
 				'enableEmail' => false,
 				'allowsAuthenticationDataChange' => true,
 				'canEditPrivate' => true,
-				'canSeePassword' => true,
-				'userIsBlocked' => false,
+				'block' => null,
+				'globalBlock' => null,
 				'isAllowed' => false,
 			],
-			[
+			'auth data change disabled' => [
 				'passwordResetRoutes' => [ 'username' => true ],
 				'enableEmail' => true,
 				'allowsAuthenticationDataChange' => false,
 				'canEditPrivate' => true,
-				'canSeePassword' => true,
-				'userIsBlocked' => false,
+				'block' => null,
+				'globalBlock' => null,
 				'isAllowed' => false,
 			],
-			[
+			'cannot edit private data' => [
 				'passwordResetRoutes' => [ 'username' => true ],
 				'enableEmail' => true,
 				'allowsAuthenticationDataChange' => true,
 				'canEditPrivate' => false,
-				'canSeePassword' => true,
-				'userIsBlocked' => false,
+				'block' => null,
+				'globalBlock' => null,
 				'isAllowed' => false,
 			],
-			[
+			'blocked with account creation disabled' => [
 				'passwordResetRoutes' => [ 'username' => true ],
 				'enableEmail' => true,
 				'allowsAuthenticationDataChange' => true,
 				'canEditPrivate' => true,
-				'canSeePassword' => true,
-				'userIsBlocked' => true,
+				'block' => new Block( [ 'createAccount' => true ] ),
+				'globalBlock' => null,
 				'isAllowed' => false,
 			],
-			[
+			'blocked w/o account creation disabled' => [
 				'passwordResetRoutes' => [ 'username' => true ],
 				'enableEmail' => true,
 				'allowsAuthenticationDataChange' => true,
 				'canEditPrivate' => true,
-				'canSeePassword' => false,
-				'userIsBlocked' => false,
+				'block' => new Block( [] ),
+				'globalBlock' => null,
 				'isAllowed' => true,
 			],
-			[
+			'using blocked proxy' => [
 				'passwordResetRoutes' => [ 'username' => true ],
 				'enableEmail' => true,
 				'allowsAuthenticationDataChange' => true,
 				'canEditPrivate' => true,
-				'canSeePassword' => true,
-				'userIsBlocked' => false,
+				'block' => new Block( [ 'systemBlock' => 'proxy' ] ),
+				'globalBlock' => null,
+				'isAllowed' => false,
+			],
+			'globally blocked with account creation disabled' => [
+				'passwordResetRoutes' => [ 'username' => true ],
+				'enableEmail' => true,
+				'allowsAuthenticationDataChange' => true,
+				'canEditPrivate' => true,
+				'block' => null,
+				'globalBlock' => new Block( [ 'systemBlock' => 'global-block', 'createAccount' => true ] ),
+				'isAllowed' => false,
+			],
+			'globally blocked with account creation not disabled' => [
+				'passwordResetRoutes' => [ 'username' => true ],
+				'enableEmail' => true,
+				'allowsAuthenticationDataChange' => true,
+				'canEditPrivate' => true,
+				'block' => null,
+				'globalBlock' => new Block( [ 'systemBlock' => 'global-block', 'createAccount' => false ] ),
+				'isAllowed' => true,
+			],
+			'blocked via wgSoftBlockRanges' => [
+				'passwordResetRoutes' => [ 'username' => true ],
+				'enableEmail' => true,
+				'allowsAuthenticationDataChange' => true,
+				'canEditPrivate' => true,
+				'block' => new Block( [ 'systemBlock' => 'wgSoftBlockRanges', 'anonOnly' => true ] ),
+				'globalBlock' => null,
+				'isAllowed' => true,
+			],
+			'all OK' => [
+				'passwordResetRoutes' => [ 'username' => true ],
+				'enableEmail' => true,
+				'allowsAuthenticationDataChange' => true,
+				'canEditPrivate' => true,
+				'block' => null,
+				'globalBlock' => null,
 				'isAllowed' => true,
 			],
 		];
