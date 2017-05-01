@@ -5,21 +5,19 @@
  * - Beware: Do not call mwNow before the isCompatible() check.
  */
 
-/* global mw, $VARS, $CODE */
+/* global mw, mwPerformance, mwNow, isCompatible, $VARS, $CODE */
 
-var mwPerformance = ( window.performance && performance.mark ) ? performance : {
-		mark: function () {}
-	},
-	// Define now() here to ensure valid comparison with mediaWikiLoadEnd (T153819).
-	mwNow = ( function () {
-		var perf = window.performance,
-			navStart = perf && perf.timing && perf.timing.navigationStart;
-		return navStart && typeof perf.now === 'function' ?
-			function () { return navStart + perf.now(); } :
-			function () { return Date.now(); };
-	}() ),
-	// eslint-disable-next-line no-unused-vars
-	mediaWikiLoadStart;
+window.mwPerformance = ( window.performance && performance.mark ) ? performance : {
+	mark: function () {}
+};
+// Define now() here to ensure valid comparison with mediaWikiLoadEnd (T153819).
+window.mwNow = ( function () {
+	var perf = window.performance,
+		navStart = perf && perf.timing && perf.timing.navigationStart;
+	return navStart && typeof perf.now === 'function' ?
+		function () { return navStart + perf.now(); } :
+		function () { return Date.now(); };
+}() );
 
 /**
  * See <https://www.mediawiki.org/wiki/Compatibility#Browsers>
@@ -62,7 +60,7 @@ var mwPerformance = ( window.performance && performance.mark ) ? performance : {
  * @param {string} [str] User agent, defaults to navigator.userAgent
  * @return {boolean} User agent is compatible with MediaWiki JS
  */
-function isCompatible( str ) {
+window.isCompatible = function ( str ) {
 	var ua = str || navigator.userAgent;
 	return !!(
 		// http://caniuse.com/#feat=es5
@@ -92,7 +90,7 @@ function isCompatible( str ) {
 			ua.match( /PlayStation/i )
 		)
 	);
-}
+};
 
 // Conditional script injection
 ( function () {
@@ -152,7 +150,7 @@ function isCompatible( str ) {
 		};
 	}
 
-	mediaWikiLoadStart = mwNow();
+	window.mediaWikiLoadStart = mwNow();
 	mwPerformance.mark( 'mwLoadStart' );
 
 	script = document.createElement( 'script' );
