@@ -100,7 +100,7 @@ class PasswordReset implements LoggerAwareInterface {
 			} elseif ( !$user->isAllowed( 'editmyprivateinfo' ) ) {
 				// Maybe not all users have permission to change private data
 				$status = StatusValue::newFatal( 'badaccess' );
-			} elseif ( $user->isBlocked() ) {
+			} elseif ( $this->isBlocked( $user ) ) {
 				// Maybe the user is blocked (check this here rather than relying on the parent
 				// method as we have a more specific error message to use here
 				$status = StatusValue::newFatal( 'blocked-mailpassword' );
@@ -248,6 +248,36 @@ class PasswordReset implements LoggerAwareInterface {
 		);
 
 		return StatusValue::newGood( $passwords );
+	}
+
+	/**
+	 * Check whether the user is blocked.
+	 * Ignores certain types of system blocks that are only meant to force users to log in.
+	 * @param User $user
+	 * @return bool
+	 */
+	protected function isBlocked( User $user ) {
+		$block = $user->getBlock();
+		if ( !$block ) {
+			return false;
+		}
+		$type = $block->getSystemBlockType();
+		if ( in_array( $type, [ null, 'global-block' ], true ) ) {
+			// Normal block. Maybe it was meant for someone else and the user just needs to log in;
+			// or maybe it was issued specifically to prevent some IP from messing with password
+			// reset? Go out on a limb and use the registration allowed flag to decide.
+			return $block->prevents( 'createaccount' );
+		} elseif ( $type === 'proxy-block' ) {
+			// we disallow actions through proxy even if the user is logged in
+			// so it makes sense to disallow password resets as well
+			return true;
+		} elseif ( in_array( $type, [ 'dnsbl', 'wgSoftBlockRanges' ], true ) ) {
+			// these are just meant to force login so let's not prevent that
+			return false;
+		} else {
+			// some extension - we'll have to guess
+			return true;
+		}
 	}
 
 	/**
