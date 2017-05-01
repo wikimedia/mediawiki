@@ -37,25 +37,25 @@
 			config.shortMonthNames = {};
 			$.each( config.fullMonthNames, function ( k, v ) {
 				config.shortMonthNames[ k ] = v.substr( 0, 3 );
-			}.bind( this ) );
+			} );
 		}
 		if ( config.shortDayNames && !config.dayLetters ) {
 			config.dayLetters = [];
 			$.each( config.shortDayNames, function ( k, v ) {
 				config.dayLetters[ k ] = v.substr( 0, 1 );
-			}.bind( this ) );
+			} );
 		}
 		if ( config.fullDayNames && !config.dayLetters ) {
 			config.dayLetters = [];
 			$.each( config.fullDayNames, function ( k, v ) {
 				config.dayLetters[ k ] = v.substr( 0, 1 );
-			}.bind( this ) );
+			} );
 		}
 		if ( config.fullDayNames && !config.shortDayNames ) {
 			config.shortDayNames = {};
 			$.each( config.fullDayNames, function ( k, v ) {
 				config.shortDayNames[ k ] = v.substr( 0, 3 );
-			}.bind( this ) );
+			} );
 		}
 		config = $.extend( {
 			fullMonthNames: this.constructor.static.fullMonthNames,

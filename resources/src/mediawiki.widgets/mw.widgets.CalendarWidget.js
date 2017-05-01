@@ -288,7 +288,7 @@
 			}
 			setTimeout( function () {
 				$bodyWrapper.addClass( 'mw-widget-calendarWidget-body-wrapper-fade-' + fade );
-			}.bind( this ), 0 );
+			} );
 		} else {
 			this.$oldBody.replaceWith( this.$body );
 		}

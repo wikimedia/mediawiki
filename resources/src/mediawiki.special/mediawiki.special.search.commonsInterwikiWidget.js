@@ -10,7 +10,7 @@
 		var resultOutput = '', i, result, imageCaption, imageThumbnailSrc;
 
 		for ( i = 0; i < results.length; i++ ) {
-			result = results[ i ],
+			result = results[ i ];
 			imageCaption = mw.html.element( 'span', { 'class': 'iw-result__mini-gallery__caption' }, result.title );
 			imageThumbnailSrc = ( result.thumbnail ) ? result.thumbnail.source : '';
 			resultOutput += '<div class="iw-result__mini-gallery">' +
