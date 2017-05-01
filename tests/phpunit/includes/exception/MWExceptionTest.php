@@ -173,6 +173,7 @@ class MWExceptionTest extends MediaWikiTestCase {
 	 * @dataProvider provideJsonSerializedKeys
 	 */
 	public function testJsonserializeexceptionKeys( $expectedKeyType, $exClass, $key ) {
+
 		# Make sure we log a backtrace:
 		$this->setMwGlobals( [ 'wgLogExceptionBacktrace' => true ] );
 
@@ -234,6 +235,7 @@ class MWExceptionTest extends MediaWikiTestCase {
 			MWExceptionHandler::jsonSerializeException( new Exception() )
 		);
 		$this->assertObjectNotHasAttribute( 'backtrace', $json );
+
 	}
 
 }

@@ -57,11 +57,7 @@ class ApiQueryPagePropNames extends ApiQueryBase {
 		}
 
 		$limit = $params['limit'];
-
-		// mysql has issues with limit in loose index T115825
-		if ( $this->getDB()->getType() !== 'mysql' ) {
-			$this->addOption( 'LIMIT', $limit + 1 );
-		}
+		$this->addOption( 'LIMIT', $limit + 1 );
 
 		$result = $this->getResult();
 		$count = 0;
@@ -108,6 +104,6 @@ class ApiQueryPagePropNames extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Pagepropnames';
+		return 'https://www.mediawiki.org/wiki/API:Pagepropnames';
 	}
 }

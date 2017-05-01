@@ -22,7 +22,6 @@
  * @defgroup Profiler Profiler
  */
 use Wikimedia\ScopedCallback;
-use Wikimedia\Rdbms\TransactionProfiler;
 
 /**
  * Profiler base class that defines the interface and some trivial

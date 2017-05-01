@@ -11,3 +11,4 @@
 $fallback = 'fa';
 
 $rtl = true;
+

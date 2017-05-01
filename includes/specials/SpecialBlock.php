@@ -64,7 +64,7 @@ class SpecialBlock extends FormSpecialPage {
 	protected function checkExecutePermissions( User $user ) {
 		parent::checkExecutePermissions( $user );
 
-		# T17810: blocked admins should have limited access here
+		# bug 15810: blocked admins should have limited access here
 		$status = self::checkUnblockSelf( $this->target, $user );
 		if ( $status !== true ) {
 			throw new ErrorPageError( 'badaccess', $status );
@@ -275,7 +275,7 @@ class SpecialBlock extends FormSpecialPage {
 			}
 
 			// If the username was hidden (ipb_deleted == 1), don't show the reason
-			// unless this user also has rights to hideuser: T37839
+			// unless this user also has rights to hideuser: Bug 35839
 			if ( !$block->mHideName || $this->getUser()->isAllowed( 'hideuser' ) ) {
 				$fields['Reason']['default'] = $block->mReason;
 			} else {
@@ -372,13 +372,12 @@ class SpecialBlock extends FormSpecialPage {
 
 		$this->getOutput()->addModuleStyles( 'mediawiki.special' );
 
-		$linkRenderer = $this->getLinkRenderer();
 		# Link to the user's contributions, if applicable
 		if ( $this->target instanceof User ) {
 			$contribsPage = SpecialPage::getTitleFor( 'Contributions', $this->target->getName() );
-			$links[] = $linkRenderer->makeLink(
+			$links[] = Linker::link(
 				$contribsPage,
-				$this->msg( 'ipb-blocklist-contribs', $this->target->getName() )->text()
+				$this->msg( 'ipb-blocklist-contribs', $this->target->getName() )->escaped()
 			);
 		}
 
@@ -393,24 +392,21 @@ class SpecialBlock extends FormSpecialPage {
 			$message = $this->msg( 'ipb-unblock' )->parse();
 			$list = SpecialPage::getTitleFor( 'Unblock' );
 		}
-		$links[] = $linkRenderer->makeKnownLink(
-			$list,
-			new HtmlArmor( $message )
-		);
+		$links[] = Linker::linkKnown( $list, $message, [] );
 
 		# Link to the block list
-		$links[] = $linkRenderer->makeKnownLink(
+		$links[] = Linker::linkKnown(
 			SpecialPage::getTitleFor( 'BlockList' ),
-			$this->msg( 'ipb-blocklist' )->text()
+			$this->msg( 'ipb-blocklist' )->escaped()
 		);
 
 		$user = $this->getUser();
 
 		# Link to edit the block dropdown reasons, if applicable
 		if ( $user->isAllowed( 'editinterface' ) ) {
-			$links[] = $linkRenderer->makeKnownLink(
+			$links[] = Linker::linkKnown(
 				$this->msg( 'ipbreason-dropdown' )->inContentLanguage()->getTitle(),
-				$this->msg( 'ipb-edit-dropdown' )->text(),
+				$this->msg( 'ipb-edit-dropdown' )->escaped(),
 				[],
 				[ 'action' => 'edit' ]
 			);
@@ -744,7 +740,7 @@ class SpecialBlock extends FormSpecialPage {
 			$blockNotConfirmed = !$data['Confirm'] || ( array_key_exists( 'PreviousTarget', $data )
 				&& $data['PreviousTarget'] !== $target );
 
-			# Special case for API - T34434
+			# Special case for API - bug 32434
 			$reblockNotAllowed = ( array_key_exists( 'Reblock', $data ) && !$data['Reblock'] );
 
 			# Show form unless the user is already aware of this...
@@ -824,17 +820,13 @@ class SpecialBlock extends FormSpecialPage {
 		$logEntry->setComment( $data['Reason'][0] );
 		$logEntry->setPerformer( $performer );
 		$logEntry->setParameters( $logParams );
-		# Relate log ID to block IDs (T27763)
+		# Relate log ID to block IDs (bug 25763)
 		$blockIds = array_merge( [ $status['id'] ], $status['autoIds'] );
 		$logEntry->setRelations( [ 'ipb_id' => $blockIds ] );
 		$logId = $logEntry->insert();
-
-		if ( !empty( $data['Tags'] ) ) {
-			$logEntry->setTags( $data['Tags'] );
-		}
-
 		$logEntry->publish( $logId );
 
+		# Report to the user
 		return true;
 	}
 
@@ -902,7 +894,7 @@ class SpecialBlock extends FormSpecialPage {
 	}
 
 	/**
-	 * T17810: blocked admins should not be able to block/unblock
+	 * bug 15810: blocked admins should not be able to block/unblock
 	 * others, and probably shouldn't be able to unblock themselves
 	 * either.
 	 * @param User|int|string $user

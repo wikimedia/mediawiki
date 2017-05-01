@@ -182,3 +182,4 @@ $dateFormats = [
 
 $fallback8bitEncoding = "iso-8859-2";
 $separatorTransformTable = [ ',' => '.', '.' => ',' ];
+

@@ -50,11 +50,7 @@
  * @class mw.Uri
  */
 
-/* eslint-disable no-use-before-define */
-
 ( function ( mw, $ ) {
-	var parser, properties;
-
 	/**
 	 * Function that's useful when constructing the URI string -- we frequently encounter the pattern
 	 * of having to add something to the URI as we go, but only if it's present, and to include a
@@ -87,10 +83,10 @@
 	 * @static
 	 * @property {Object} parser
 	 */
-	parser = {
+	var parser = {
 		strict: mw.template.get( 'mediawiki.Uri', 'strict.regexp' ).render(),
 		loose: mw.template.get( 'mediawiki.Uri', 'loose.regexp' ).render()
-	};
+	},
 
 	/**
 	 * The order here matches the order of captured matches in the `parser` property regexes.
@@ -143,7 +139,6 @@
 	 * @param {string|Function} documentLocation A full url, or function returning one.
 	 *  If passed a function, the return value may change over time and this will be honoured. (T74334)
 	 * @member mw
-	 * @return {Function} Uri class
 	 */
 	mw.UriRelative = function ( documentLocation ) {
 		var getDefaultUri = ( function () {
@@ -179,8 +174,7 @@
 		 *  override each other (`true`) or automagically convert them to an array (`false`).
 		 */
 		function Uri( uri, options ) {
-			var prop, hrefCur,
-				hasOptions = ( options !== undefined ),
+			var prop,
 				defaultUri = getDefaultUri();
 
 			options = typeof options === 'object' ? options : { strictMode: !!options };
@@ -198,7 +192,7 @@
 						// Only copy direct properties, not inherited ones
 						if ( uri.hasOwnProperty( prop ) ) {
 							// Deep copy object properties
-							if ( Array.isArray( uri[ prop ] ) || $.isPlainObject( uri[ prop ] ) ) {
+							if ( $.isArray( uri[ prop ] ) || $.isPlainObject( uri[ prop ] ) ) {
 								this[ prop ] = $.extend( true, {}, uri[ prop ] );
 							} else {
 								this[ prop ] = uri[ prop ];
@@ -209,12 +203,8 @@
 						this.query = {};
 					}
 				}
-			} else if ( hasOptions ) {
-				// We didn't get a URI in the constructor, but we got options.
-				hrefCur = typeof documentLocation === 'string' ? documentLocation : documentLocation();
-				this.parse( hrefCur, options );
 			} else {
-				// We didn't get a URI or options in the constructor, use the default instance.
+				// If we didn't get a URI in the constructor, use the default one.
 				return defaultUri.clone();
 			}
 
@@ -316,7 +306,7 @@
 									q[ k ] = [ q[ k ] ];
 								}
 								// Add to the array
-								if ( Array.isArray( q[ k ] ) ) {
+								if ( $.isArray( q[ k ] ) ) {
 									q[ k ].push( v );
 								}
 							}
@@ -366,7 +356,7 @@
 				var args = [];
 				$.each( this.query, function ( key, val ) {
 					var k = Uri.encode( key ),
-						vals = Array.isArray( val ) ? val : [ val ];
+						vals = $.isArray( val ) ? val : [ val ];
 					$.each( vals, function ( i, v ) {
 						if ( v === null ) {
 							args.push( k );

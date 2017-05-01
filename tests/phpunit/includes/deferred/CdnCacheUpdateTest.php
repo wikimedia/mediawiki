@@ -1,7 +1,5 @@
 <?php
 
-use Wikimedia\TestingAccessWrapper;
-
 class CdnCacheUpdateTest extends MediaWikiTestCase {
 	public function testPurgeMergeWeb() {
 		$this->setMwGlobals( 'wgCommandLineMode', false );

@@ -24,9 +24,6 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
-use Wikimedia\Rdbms\ResultWrapper;
-use Wikimedia\Rdbms\IDatabase;
-
 /**
  * A special page that list pages that have highest category count
  *
@@ -72,7 +69,19 @@ class MostcategoriesPage extends QueryPage {
 	 * @param ResultWrapper $res
 	 */
 	function preprocessResults( $db, $res ) {
-		$this->executeLBFromResultWrapper( $res );
+		# There's no point doing a batch check if we aren't caching results;
+		# the page must exist for it to have been pulled out of the table
+		if ( !$this->isCached() || !$res->numRows() ) {
+			return;
+		}
+
+		$batch = new LinkBatch();
+		foreach ( $res as $row ) {
+			$batch->add( $row->namespace, $row->title );
+		}
+		$batch->execute();
+
+		$res->seek( 0 );
 	}
 
 	/**
@@ -94,11 +103,10 @@ class MostcategoriesPage extends QueryPage {
 			);
 		}
 
-		$linkRenderer = $this->getLinkRenderer();
 		if ( $this->isCached() ) {
-			$link = $linkRenderer->makeLink( $title );
+			$link = Linker::link( $title );
 		} else {
-			$link = $linkRenderer->makeKnownLink( $title );
+			$link = Linker::linkKnown( $title );
 		}
 
 		$count = $this->msg( 'ncategories' )->numParams( $result->value )->escaped();

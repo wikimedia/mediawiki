@@ -177,7 +177,7 @@
 
 	/* Static properties */
 
-	mw.widgets.datetime.DateTimeInputWidget.static.supportsSimpleLabel = false;
+	mw.widgets.datetime.DateTimeInputWidget[ 'static' ].supportsSimpleLabel = false;
 
 	/* Events */
 
@@ -390,10 +390,6 @@
 				$field = $( '<span>' )
 					.width( sz )
 					.data( 'mw-widgets-datetime-dateTimeInputWidget-placeholder', placeholder );
-				if ( spec.type !== 'static' ) {
-					$field.prop( 'tabIndex', -1 );
-					$field.on( 'focus', this.onFieldFocus.bind( this, $field ) );
-				}
 				if ( spec.type === 'static' ) {
 					$field.text( spec.value );
 				} else {
@@ -587,7 +583,6 @@
 	 * @private
 	 * @param {jQuery} $field
 	 * @param {jQuery.Event} e Key down event
-	 * @return {boolean} False to cancel the default event
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.onFieldKeyDown = function ( $field, e ) {
 		var spec = $field.data( 'mw-widgets-datetime-dateTimeInputWidget-fieldSpec' );
@@ -632,8 +627,6 @@
 	 * @param {jQuery.Event} e Focus event
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.onFieldFocus = function ( $field ) {
-		var spec = $field.data( 'mw-widgets-datetime-dateTimeInputWidget-fieldSpec' );
-
 		if ( !this.isDisabled() ) {
 			if ( this.getValueAsDate() === null ) {
 				this.setValue( this.formatter.getDefaultDate() );
@@ -643,7 +636,7 @@
 			}
 
 			if ( this.calendar ) {
-				this.calendar.toggle( !!spec.calendarComponent );
+				this.calendar.toggle( true );
 			}
 		}
 	};
@@ -711,7 +704,6 @@
 	 * @private
 	 * @param {jQuery} $field
 	 * @param {jQuery.Event} e Change event
-	 * @return {boolean} False to cancel the default event
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.onFieldWheel = function ( $field, e ) {
 		var delta = 0,

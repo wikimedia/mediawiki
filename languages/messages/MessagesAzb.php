@@ -83,3 +83,4 @@ $magicWords = [
 	'img_none'                  => [ '1', 'هئچ', 'هیچ', 'none' ],
 	'img_framed'                => [ '1', 'قابیق', 'قاب', 'frame', 'framed', 'enframed' ],
 ];
+

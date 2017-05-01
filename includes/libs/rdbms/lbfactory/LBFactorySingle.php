@@ -21,11 +21,6 @@
  * @ingroup Database
  */
 
-namespace Wikimedia\Rdbms;
-
-use InvalidArgumentException;
-use BadMethodCallException;
-
 /**
  * An LBFactory class that always returns a single database object.
  */
@@ -75,26 +70,20 @@ class LBFactorySingle extends LBFactory {
 		return $this->lb;
 	}
 
+	/**
+	 * @param string $cluster External storage cluster name (unused)
+	 * @return LoadBalancerSingle
+	 */
 	public function newExternalLB( $cluster ) {
-		throw new BadMethodCallException( "Method is not supported." );
+		return $this->lb;
 	}
 
+	/**
+	 * @param string $cluster External storage cluster name (unused)
+	 * @return LoadBalancerSingle
+	 */
 	public function getExternalLB( $cluster ) {
-		throw new BadMethodCallException( "Method is not supported." );
-	}
-
-	/**
-	 * @return LoadBalancerSingle[] Map of (cluster name => LoadBalancer)
-	 */
-	public function getAllMainLBs() {
-		return [ 'DEFAULT' => $this->lb ];
-	}
-
-	/**
-	 * @return LoadBalancerSingle[] Map of (cluster name => LoadBalancer)
-	 */
-	public function getAllExternalLBs() {
-		return [];
+		return $this->lb;
 	}
 
 	/**

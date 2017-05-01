@@ -39,7 +39,12 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 	protected function run( ApiPageSet $resultPageSet = null ) {
 		$user = $this->getUser();
 		// Before doing anything at all, let's check permissions
-		$this->checkUserRightsAny( 'deletedhistory' );
+		if ( !$user->isAllowed( 'deletedhistory' ) ) {
+			$this->dieUsage(
+				'You don\'t have permission to view deleted revision information',
+				'permissiondenied'
+			);
+		}
 
 		$pageSet = $this->getPageSet();
 		$pageMap = $pageSet->getGoodAndMissingTitlesByNamespace();
@@ -58,7 +63,9 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 
 		$db = $this->getDB();
 
-		$this->requireMaxOneParameter( $params, 'user', 'excludeuser' );
+		if ( !is_null( $params['user'] ) && !is_null( $params['excludeuser'] ) ) {
+			$this->dieUsage( 'user and excludeuser cannot be used together', 'badparams' );
+		}
 
 		$this->addTables( 'archive' );
 		if ( $resultPageSet === null ) {
@@ -99,7 +106,12 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 			$this->addFields( [ 'ar_text', 'ar_flags', 'old_text', 'old_flags' ] );
 
 			// This also means stricter restrictions
-			$this->checkUserRightsAny( [ 'deletedtext', 'undelete' ] );
+			if ( !$user->isAllowedAny( 'undelete', 'deletedtext' ) ) {
+				$this->dieUsage(
+					'You don\'t have permission to view deleted revision content',
+					'permissiondenied'
+				);
+			}
 		}
 
 		$dir = $params['dir'];
@@ -123,7 +135,7 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 		}
 
 		if ( !is_null( $params['user'] ) || !is_null( $params['excludeuser'] ) ) {
-			// Paranoia: avoid brute force searches (T19342)
+			// Paranoia: avoid brute force searches (bug 17342)
 			// (shouldn't be able to get here without 'deletedhistory', but
 			// check it again just in case)
 			if ( !$user->isAllowed( 'deletedhistory' ) ) {
@@ -288,6 +300,6 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Deletedrevisions';
+		return 'https://www.mediawiki.org/wiki/API:Deletedrevisions';
 	}
 }

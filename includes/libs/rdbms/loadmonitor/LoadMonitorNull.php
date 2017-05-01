@@ -18,11 +18,7 @@
  * @file
  * @ingroup Database
  */
-
-namespace Wikimedia\Rdbms;
-
 use Psr\Log\LoggerInterface;
-use BagOStuff;
 
 class LoadMonitorNull implements ILoadMonitor {
 	public function __construct(

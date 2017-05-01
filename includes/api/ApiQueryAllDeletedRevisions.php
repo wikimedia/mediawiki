@@ -41,10 +41,15 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 	 * @return void
 	 */
 	protected function run( ApiPageSet $resultPageSet = null ) {
-		// Before doing anything at all, let's check permissions
-		$this->checkUserRightsAny( 'deletedhistory' );
-
 		$user = $this->getUser();
+		// Before doing anything at all, let's check permissions
+		if ( !$user->isAllowed( 'deletedhistory' ) ) {
+			$this->dieUsage(
+				'You don\'t have permission to view deleted revision information',
+				'permissiondenied'
+			);
+		}
+
 		$db = $this->getDB();
 		$params = $this->extractRequestParams( false );
 
@@ -70,20 +75,16 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			foreach ( [ 'from', 'to', 'prefix', 'excludeuser' ] as $param ) {
 				if ( !is_null( $params[$param] ) ) {
 					$p = $this->getModulePrefix();
-					$this->dieWithError(
-						[ 'apierror-invalidparammix-cannotusewith', $p.$param, "{$p}user" ],
-						'invalidparammix'
-					);
+					$this->dieUsage( "The '{$p}{$param}' parameter cannot be used with '{$p}user'",
+						'badparams' );
 				}
 			}
 		} else {
 			foreach ( [ 'start', 'end' ] as $param ) {
 				if ( !is_null( $params[$param] ) ) {
 					$p = $this->getModulePrefix();
-					$this->dieWithError(
-						[ 'apierror-invalidparammix-mustusewith', $p.$param, "{$p}user" ],
-						'invalidparammix'
-					);
+					$this->dieUsage( "The '{$p}{$param}' parameter may only be used with '{$p}user'",
+						'badparams' );
 				}
 			}
 		}
@@ -99,7 +100,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 				$optimizeGenerateTitles = true;
 			} else {
 				$p = $this->getModulePrefix();
-				$this->addWarning( [ 'apiwarn-alldeletedrevisions-performance', $p ], 'performance' );
+				$this->setWarning( "For better performance when generating titles, set {$p}dir=newer" );
 			}
 		}
 
@@ -147,7 +148,12 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			$this->addFields( [ 'ar_text', 'ar_flags', 'old_text', 'old_flags' ] );
 
 			// This also means stricter restrictions
-			$this->checkUserRightsAny( [ 'deletedtext', 'undelete' ] );
+			if ( !$user->isAllowedAny( 'undelete', 'deletedtext' ) ) {
+				$this->dieUsage(
+					'You don\'t have permission to view deleted revision content',
+					'permissiondenied'
+				);
+			}
 		}
 
 		$miser_ns = null;
@@ -230,7 +236,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 		}
 
 		if ( !is_null( $params['user'] ) || !is_null( $params['excludeuser'] ) ) {
-			// Paranoia: avoid brute force searches (T19342)
+			// Paranoia: avoid brute force searches (bug 17342)
 			// (shouldn't be able to get here without 'deletedhistory', but
 			// check it again just in case)
 			if ( !$user->isAllowed( 'deletedhistory' ) ) {
@@ -455,6 +461,6 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Alldeletedrevisions';
+		return 'https://www.mediawiki.org/wiki/API:Alldeletedrevisions';
 	}
 }

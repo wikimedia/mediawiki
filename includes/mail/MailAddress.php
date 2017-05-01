@@ -30,22 +30,6 @@
  * header format when requested.
  */
 class MailAddress {
-
-	/**
-	 * @var string
-	 */
-	public $name;
-
-	/**
-	 * @var string
-	 */
-	public $realName;
-
-	/**
-	 * @var string
-	 */
-	public $address;
-
 	/**
 	 * @param string $address String with an email address, or a User object
 	 * @param string $name Human-readable name if a string address is given

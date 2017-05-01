@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.2
+ * OOjs UI v0.17.10
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
- * Copyright 2011–2017 OOjs UI Team and other contributors.
+ * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-04-26T01:05:10Z
+ * Date: 2016-10-03T18:59:01Z
  */
 ( function ( OO ) {
 
@@ -60,6 +60,14 @@ OO.ui.ActionWidget = function OoUiActionWidget( config ) {
 OO.inheritClass( OO.ui.ActionWidget, OO.ui.ButtonWidget );
 OO.mixinClass( OO.ui.ActionWidget, OO.ui.mixin.PendingElement );
 
+/* Events */
+
+/**
+ * A resize event is emitted when the size of the widget changes.
+ *
+ * @event resize
+ */
+
 /* Methods */
 
 /**
@@ -94,6 +102,87 @@ OO.ui.ActionWidget.prototype.getModes = function () {
 	return this.modes.slice();
 };
 
+/**
+ * Emit a resize event if the size has changed.
+ *
+ * @private
+ * @chainable
+ */
+OO.ui.ActionWidget.prototype.propagateResize = function () {
+	var width, height;
+
+	if ( this.isElementAttached() ) {
+		width = this.$element.width();
+		height = this.$element.height();
+
+		if ( width !== this.width || height !== this.height ) {
+			this.width = width;
+			this.height = height;
+			this.emit( 'resize' );
+		}
+	}
+
+	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.ActionWidget.prototype.setIcon = function () {
+	// Mixin method
+	OO.ui.mixin.IconElement.prototype.setIcon.apply( this, arguments );
+	this.propagateResize();
+
+	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.ActionWidget.prototype.setLabel = function () {
+	// Mixin method
+	OO.ui.mixin.LabelElement.prototype.setLabel.apply( this, arguments );
+	this.propagateResize();
+
+	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.ActionWidget.prototype.setFlags = function () {
+	// Mixin method
+	OO.ui.mixin.FlaggedElement.prototype.setFlags.apply( this, arguments );
+	this.propagateResize();
+
+	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.ActionWidget.prototype.clearFlags = function () {
+	// Mixin method
+	OO.ui.mixin.FlaggedElement.prototype.clearFlags.apply( this, arguments );
+	this.propagateResize();
+
+	return this;
+};
+
+/**
+ * Toggle the visibility of the action button.
+ *
+ * @param {boolean} [show] Show button, omit to toggle visibility
+ * @chainable
+ */
+OO.ui.ActionWidget.prototype.toggle = function () {
+	// Parent method
+	OO.ui.ActionWidget.parent.prototype.toggle.apply( this, arguments );
+	this.propagateResize();
+
+	return this;
+};
+
 /* eslint-disable no-unused-vars */
 /**
  * ActionSets manage the behavior of the {@link OO.ui.ActionWidget action widgets} that comprise them.
@@ -114,7 +203,6 @@ OO.ui.ActionWidget.prototype.getModes = function () {
  *     }
  *     OO.inheritClass( MyProcessDialog, OO.ui.ProcessDialog );
  *     MyProcessDialog.static.title = 'An action set in a process dialog';
- *     MyProcessDialog.static.name = 'myProcessDialog';
  *     // An action set that uses modes ('edit' and 'help' mode, in this example).
  *     MyProcessDialog.static.actions = [
  *         { action: 'continue', modes: 'edit', label: 'Continue', flags: [ 'primary', 'constructive' ] },
@@ -226,6 +314,14 @@ OO.ui.ActionSet.static.specialFlags = [ 'safe', 'primary' ];
  * A 'click' event is emitted when an action is clicked.
  *
  * @param {OO.ui.ActionWidget} action Action that was clicked
+ */
+
+/**
+ * @event resize
+ *
+ * A 'resize' event is emitted when an action widget is resized.
+ *
+ * @param {OO.ui.ActionWidget} action Action that was resized
  */
 
 /**
@@ -464,6 +560,7 @@ OO.ui.ActionSet.prototype.add = function ( actions ) {
 		action = actions[ i ];
 		action.connect( this, {
 			click: [ 'emit', 'click', action ],
+			resize: [ 'emit', 'resize', action ],
 			toggle: [ 'onActionChange' ]
 		} );
 		this.list.push( action );
@@ -707,6 +804,7 @@ OO.ui.Error.prototype.getMessageText = function () {
  *  that must be resolved before proceeding, or a function to execute. See #createStep for more information. see #createStep for more information
  * @param {Object} [context=null] Execution context of the function. The context is ignored if the step is
  *  a number or promise.
+ * @return {Object} Step object, with `callback` and `context` properties
  */
 OO.ui.Process = function ( step, context ) {
 	// Properties
@@ -928,7 +1026,6 @@ OO.ui.WindowManager = function OoUiWindowManager( config ) {
 	this.preparingToClose = null;
 	this.currentWindow = null;
 	this.globalEvents = false;
-	this.$returnFocusTo = null;
 	this.$ariaHidden = null;
 	this.onWindowResizeTimeout = null;
 	this.onWindowResizeHandler = this.onWindowResize.bind( this );
@@ -1045,7 +1142,6 @@ OO.ui.WindowManager.prototype.afterWindowResize = function () {
 /**
  * Check if window is opening.
  *
- * @param {OO.ui.Window} win Window to check
  * @return {boolean} Window is opening
  */
 OO.ui.WindowManager.prototype.isOpening = function ( win ) {
@@ -1055,7 +1151,6 @@ OO.ui.WindowManager.prototype.isOpening = function ( win ) {
 /**
  * Check if window is closing.
  *
- * @param {OO.ui.Window} win Window to check
  * @return {boolean} Window is closing
  */
 OO.ui.WindowManager.prototype.isClosing = function ( win ) {
@@ -1065,7 +1160,6 @@ OO.ui.WindowManager.prototype.isClosing = function ( win ) {
 /**
  * Check if window is opened.
  *
- * @param {OO.ui.Window} win Window to check
  * @return {boolean} Window is opened
  */
 OO.ui.WindowManager.prototype.isOpened = function ( win ) {
@@ -1189,8 +1283,6 @@ OO.ui.WindowManager.prototype.getCurrentWindow = function () {
  *
  * @param {OO.ui.Window|string} win Window object or symbolic name of window to open
  * @param {Object} [data] Window opening data
- * @param {jQuery|null} [data.$returnFocusTo] Element to which the window will return focus when closed.
- *  Defaults the current activeElement. If set to null, focus isn't changed on close.
  * @return {jQuery.Promise} An `opening` promise resolved when the window is done opening.
  *  See {@link #event-opening 'opening' event}  for more information about `opening` promises.
  * @fires opening
@@ -1198,7 +1290,6 @@ OO.ui.WindowManager.prototype.getCurrentWindow = function () {
 OO.ui.WindowManager.prototype.openWindow = function ( win, data ) {
 	var manager = this,
 		opening = $.Deferred();
-	data = data || {};
 
 	// Argument handling
 	if ( typeof win === 'string' ) {
@@ -1228,7 +1319,6 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data ) {
 				manager.toggleGlobalEvents( true );
 				manager.toggleAriaIsolation( true );
 			}
-			manager.$returnFocusTo = data.$returnFocusTo !== undefined ? data.$returnFocusTo : $( document.activeElement );
 			manager.currentWindow = win;
 			manager.opening = opening;
 			manager.preparingToOpen = null;
@@ -1322,9 +1412,6 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
 								manager.toggleGlobalEvents( false );
 								manager.toggleAriaIsolation( false );
 							}
-							if ( manager.$returnFocusTo && manager.$returnFocusTo.length ) {
-								manager.$returnFocusTo[ 0 ].focus();
-							}
 							manager.closing = null;
 							manager.currentWindow = null;
 							closing.resolve( data );
@@ -1345,41 +1432,6 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
  * See the [OOjs ui documentation on MediaWiki] [2] for examples.
  * [2]: https://www.mediawiki.org/wiki/OOjs_UI/Windows/Window_managers
  *
- * This function can be called in two manners:
- *
- * 1. `.addWindows( [ windowA, windowB, ... ] )` (where `windowA`, `windowB` are OO.ui.Window objects)
- *
- *    This syntax registers windows under the symbolic names defined in their `.static.name`
- *    properties. For example, if `windowA.constructor.static.name` is `'nameA'`, calling
- *    `.openWindow( 'nameA' )` afterwards will open the window `windowA`. This syntax requires the
- *    static name to be set, otherwise an exception will be thrown.
- *
- *    This is the recommended way, as it allows for an easier switch to using a window factory.
- *
- * 2. `.addWindows( { nameA: windowA, nameB: windowB, ... } )`
- *
- *    This syntax registers windows under the explicitly given symbolic names. In this example,
- *    calling `.openWindow( 'nameA' )` afterwards will open the window `windowA`, regardless of what
- *    its `.static.name` is set to. The static name is not required to be set.
- *
- *    This should only be used if you need to override the default symbolic names.
- *
- * Example:
- *
- *     var windowManager = new OO.ui.WindowManager();
- *     $( 'body' ).append( windowManager.$element );
- *
- *     // Add a window under the default name: see OO.ui.MessageDialog.static.name
- *     windowManager.addWindows( [ new OO.ui.MessageDialog() ] );
- *     // Add a window under an explicit name
- *     windowManager.addWindows( { myMessageDialog: new OO.ui.MessageDialog() } );
- *
- *     // Open window by default name
- *     windowManager.openWindow( 'message' );
- *     // Open window by explicitly given name
- *     windowManager.openWindow( 'myMessageDialog' );
- *
- *
  * @param {Object.<string,OO.ui.Window>|OO.ui.Window[]} windows An array of window objects specified
  *  by reference, symbolic name, or explicitly defined symbolic names.
  * @throws {Error} An error is thrown if a window is added by symbolic name, but has neither an
@@ -1393,8 +1445,8 @@ OO.ui.WindowManager.prototype.addWindows = function ( windows ) {
 		list = {};
 		for ( i = 0, len = windows.length; i < len; i++ ) {
 			name = windows[ i ].constructor.static.name;
-			if ( !name ) {
-				throw new Error( 'Windows must have a `name` static property defined.' );
+			if ( typeof name !== 'string' ) {
+				throw new Error( 'Cannot add window' );
 			}
 			list[ name ] = windows[ i ];
 		}
@@ -1462,7 +1514,6 @@ OO.ui.WindowManager.prototype.clearWindows = function () {
  *
  * Fullscreen mode will be used if the dialog is too wide to fit in the screen.
  *
- * @param {OO.ui.Window} win Window to update, should be the current window
  * @chainable
  */
 OO.ui.WindowManager.prototype.updateWindowSize = function ( win ) {
@@ -1636,26 +1687,6 @@ OO.ui.Window = function OoUiWindow( config ) {
 	this.manager = null;
 	this.size = config.size || this.constructor.static.size;
 	this.$frame = $( '<div>' );
-	/**
-	 * Overlay element to use for the `$overlay` configuration option of widgets that support it.
-	 * Things put inside of it are overlaid on top of the window and are not bound to its dimensions.
-	 * See <https://www.mediawiki.org/wiki/OOjs_UI/Concepts#Overlays>.
-	 *
-	 *     MyDialog.prototype.initialize = function () {
-	 *       ...
-	 *       var popupButton = new OO.ui.PopupButtonWidget( {
-	 *         $overlay: this.$overlay,
-	 *         label: 'Popup button',
-	 *         popup: {
-	 *           $content: $( '<p>Popup contents.</p><p>Popup contents.</p><p>Popup contents.</p>' ),
-	 *           padded: true
-	 *         }
-	 *       } );
-	 *       ...
-	 *     };
-	 *
-	 * @property {jQuery}
-	 */
 	this.$overlay = $( '<div>' );
 	this.$content = $( '<div>' );
 
@@ -1821,20 +1852,17 @@ OO.ui.Window.prototype.getSizeProperties = function () {
 OO.ui.Window.prototype.withoutSizeTransitions = function ( callback ) {
 	// Temporarily resize the frame so getBodyHeight() can use scrollHeight measurements.
 	// Disable transitions first, otherwise we'll get values from when the window was animating.
-	// We need to build the transition CSS properties using these specific properties since
-	// Firefox doesn't return anything useful when asked just for 'transition'.
-	var oldTransition = this.$frame.css( 'transition-property' ) + ' ' +
-		this.$frame.css( 'transition-duration' ) + ' ' +
-		this.$frame.css( 'transition-timing-function' ) + ' ' +
-		this.$frame.css( 'transition-delay' );
-
-	this.$frame.css( 'transition', 'none' );
+	var oldTransition,
+		styleObj = this.$frame[ 0 ].style;
+	oldTransition = styleObj.transition || styleObj.OTransition || styleObj.MsTransition ||
+		styleObj.MozTransition || styleObj.WebkitTransition;
+	styleObj.transition = styleObj.OTransition = styleObj.MsTransition =
+		styleObj.MozTransition = styleObj.WebkitTransition = 'none';
 	callback();
-
-	// Force reflow to make sure the style changes done inside callback
-	// really are not transitioned
+	// Force reflow to make sure the style changes done inside callback really are not transitioned
 	this.$frame.height();
-	this.$frame.css( 'transition', oldTransition );
+	styleObj.transition = styleObj.OTransition = styleObj.MsTransition =
+		styleObj.MozTransition = styleObj.WebkitTransition = oldTransition;
 };
 
 /**
@@ -1942,7 +1970,7 @@ OO.ui.Window.prototype.getReadyProcess = function () {
 /**
  * Get the 'hold' process.
  *
- * The hold process is used to keep a window from being used in a particular context,
+ * The hold proccess is used to keep a window from being used in a particular context,
  * based on the `data` argument. This method is called during the closing phase of the window’s
  * lifecycle.
  *
@@ -2275,7 +2303,6 @@ OO.ui.Window.prototype.teardown = function ( data ) {
  *         MyDialog.parent.call( this, config );
  *     }
  *     OO.inheritClass( MyDialog, OO.ui.Dialog );
- *     MyDialog.static.name = 'myDialog';
  *     MyDialog.prototype.initialize = function () {
  *         MyDialog.parent.prototype.initialize.call( this );
  *         this.content = new OO.ui.PanelLayout( { padded: true, expanded: false } );
@@ -2321,6 +2348,7 @@ OO.ui.Dialog = function OoUiDialog( config ) {
 	// Events
 	this.actions.connect( this, {
 		click: 'onActionClick',
+		resize: 'onActionResize',
 		change: 'onActionsChange'
 	} );
 
@@ -2404,7 +2432,7 @@ OO.ui.Dialog.prototype.onDialogKeyDown = function ( e ) {
 		this.executeAction( '' );
 		e.preventDefault();
 		e.stopPropagation();
-	} else if ( e.which === OO.ui.Keys.ENTER && ( e.ctrlKey || e.metaKey ) ) {
+	} else if ( e.which === OO.ui.Keys.ENTER && e.ctrlKey ) {
 		actions = this.actions.get( { flags: 'primary', visible: true, disabled: false } );
 		if ( actions.length > 0 ) {
 			this.executeAction( actions[ 0 ].getAction() );
@@ -2412,6 +2440,16 @@ OO.ui.Dialog.prototype.onDialogKeyDown = function ( e ) {
 			e.stopPropagation();
 		}
 	}
+};
+
+/**
+ * Handle action resized events.
+ *
+ * @private
+ * @param {OO.ui.ActionWidget} action Action that was resized
+ */
+OO.ui.Dialog.prototype.onActionResize = function () {
+	// Override in subclass
 };
 
 /**
@@ -2512,15 +2550,21 @@ OO.ui.Dialog.prototype.getTeardownProcess = function ( data ) {
  * @inheritdoc
  */
 OO.ui.Dialog.prototype.initialize = function () {
+	var titleId;
+
 	// Parent method
 	OO.ui.Dialog.parent.prototype.initialize.call( this );
 
+	titleId = OO.ui.generateElementId();
+
 	// Properties
-	this.title = new OO.ui.LabelWidget();
+	this.title = new OO.ui.LabelWidget( {
+		id: titleId
+	} );
 
 	// Initialization
 	this.$content.addClass( 'oo-ui-dialog-content' );
-	this.$element.attr( 'aria-labelledby', this.title.getElementId() );
+	this.$element.attr( 'aria-labelledby', titleId );
 	this.setPendingElement( this.$head );
 };
 
@@ -2637,17 +2681,11 @@ OO.inheritClass( OO.ui.MessageDialog, OO.ui.Dialog );
 
 /* Static Properties */
 
-/**
- * @static
- * @inheritdoc
- */
 OO.ui.MessageDialog.static.name = 'message';
 
-/**
- * @static
- * @inheritdoc
- */
 OO.ui.MessageDialog.static.size = 'small';
+
+OO.ui.MessageDialog.static.verbose = false;
 
 /**
  * Dialog title.
@@ -2673,12 +2711,8 @@ OO.ui.MessageDialog.static.title = null;
  */
 OO.ui.MessageDialog.static.message = null;
 
-/**
- * @static
- * @inheritdoc
- */
+// Note that OO.ui.alert() and OO.ui.confirm() rely on these.
 OO.ui.MessageDialog.static.actions = [
-	// Note that OO.ui.alert() and OO.ui.confirm() rely on these.
 	{ action: 'accept', label: OO.ui.deferMsg( 'ooui-dialog-message-accept' ), flags: 'primary' },
 	{ action: 'reject', label: OO.ui.deferMsg( 'ooui-dialog-message-reject' ), flags: 'safe' }
 ];
@@ -2697,6 +2731,14 @@ OO.ui.MessageDialog.prototype.setManager = function ( manager ) {
 	} );
 
 	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.MessageDialog.prototype.onActionResize = function ( action ) {
+	this.fitActions();
+	return OO.ui.MessageDialog.parent.prototype.onActionResize.call( this, action );
 };
 
 /**
@@ -2751,7 +2793,7 @@ OO.ui.MessageDialog.prototype.getActionProcess = function ( action ) {
  * @param {Object} [data] Dialog opening data
  * @param {jQuery|string|Function|null} [data.title] Description of the action being confirmed
  * @param {jQuery|string|Function|null} [data.message] Description of the action's consequence
- * @param {string} [data.size] Symbolic name of the dialog size, see OO.ui.Window
+ * @param {boolean} [data.verbose] Message is verbose and should be styled as a long message
  * @param {Object[]} [data.actions] List of OO.ui.ActionOptionWidget configuration options for each
  *   action item
  */
@@ -2767,7 +2809,10 @@ OO.ui.MessageDialog.prototype.getSetupProcess = function ( data ) {
 			this.message.setLabel(
 				data.message !== undefined ? data.message : this.constructor.static.message
 			);
-			this.size = data.size !== undefined ? data.size : this.constructor.static.size;
+			this.message.$element.toggleClass(
+				'oo-ui-messageDialog-message-verbose',
+				data.verbose !== undefined ? data.verbose : this.constructor.static.verbose
+			);
 		}, this );
 };
 
@@ -2819,18 +2864,10 @@ OO.ui.MessageDialog.prototype.setDimensions = function ( dim ) {
 	// Twiddle the overflow property, otherwise an unnecessary scrollbar will be produced.
 	// Need to do it after transition completes (250ms), add 50ms just in case.
 	setTimeout( function () {
-		var oldOverflow = $scrollable[ 0 ].style.overflow,
-			activeElement = document.activeElement;
-
+		var oldOverflow = $scrollable[ 0 ].style.overflow;
 		$scrollable[ 0 ].style.overflow = 'hidden';
 
 		OO.ui.Element.static.reconsiderScrollbars( $scrollable[ 0 ] );
-
-		// Check reconsiderScrollbars didn't destroy our focus, as we
-		// are doing this after the ready process.
-		if ( activeElement && activeElement !== document.activeElement && activeElement.focus ) {
-			activeElement.focus();
-		}
 
 		$scrollable[ 0 ].style.overflow = oldOverflow;
 	}, 300 );
@@ -2955,7 +2992,6 @@ OO.ui.MessageDialog.prototype.fitActions = function () {
  *     }
  *     OO.inheritClass( MyProcessDialog, OO.ui.ProcessDialog );
  *
- *     MyProcessDialog.static.name = 'myProcessDialog';
  *     MyProcessDialog.static.title = 'Process dialog';
  *     MyProcessDialog.static.actions = [
  *         { action: 'save', label: 'Done', flags: 'primary' },
@@ -3037,6 +3073,16 @@ OO.ui.ProcessDialog.prototype.onRetryButtonClick = function () {
 /**
  * @inheritdoc
  */
+OO.ui.ProcessDialog.prototype.onActionResize = function ( action ) {
+	if ( this.actions.isSpecial( action ) ) {
+		this.fitLabel();
+	}
+	return OO.ui.ProcessDialog.parent.prototype.onActionResize.call( this, action );
+};
+
+/**
+ * @inheritdoc
+ */
 OO.ui.ProcessDialog.prototype.initialize = function () {
 	// Parent method
 	OO.ui.ProcessDialog.parent.prototype.initialize.call( this );
@@ -3090,22 +3136,10 @@ OO.ui.ProcessDialog.prototype.initialize = function () {
  * @inheritdoc
  */
 OO.ui.ProcessDialog.prototype.getActionWidgets = function ( actions ) {
-	var i, len, config,
-		isMobile = OO.ui.isMobile(),
-		widgets = [];
-
+	var i, len, widgets = [];
 	for ( i = 0, len = actions.length; i < len; i++ ) {
-		config = $.extend( { framed: !OO.ui.isMobile() }, actions[ i ] );
-		if ( isMobile &&
-			( config.flags === 'back' || ( Array.isArray( config.flags ) && config.flags.indexOf( 'back' ) !== -1 ) )
-		) {
-			$.extend( config, {
-				icon: 'previous',
-				label: ''
-			} );
-		}
 		widgets.push(
-			new OO.ui.ActionWidget( config )
+			new OO.ui.ActionWidget( $.extend( { framed: true }, actions[ i ] ) )
 		);
 	}
 	return widgets;
@@ -3302,7 +3336,9 @@ OO.ui.getWindowManager = function () {
 	if ( !OO.ui.windowManager ) {
 		OO.ui.windowManager = new OO.ui.WindowManager();
 		$( 'body' ).append( OO.ui.windowManager.$element );
-		OO.ui.windowManager.addWindows( [ new OO.ui.MessageDialog() ] );
+		OO.ui.windowManager.addWindows( {
+			messageDialog: new OO.ui.MessageDialog()
+		} );
 	}
 	return OO.ui.windowManager;
 };
@@ -3319,15 +3355,14 @@ OO.ui.getWindowManager = function () {
  *         console.log( 'User closed the dialog.' );
  *     } );
  *
- *     OO.ui.alert( 'Something larger happened!', { size: 'large' } );
- *
  * @param {jQuery|string} text Message text to display
  * @param {Object} [options] Additional options, see OO.ui.MessageDialog#getSetupProcess
  * @return {jQuery.Promise} Promise resolved when the user closes the dialog
  */
 OO.ui.alert = function ( text, options ) {
-	return OO.ui.getWindowManager().openWindow( 'message', $.extend( {
+	return OO.ui.getWindowManager().openWindow( 'messageDialog', $.extend( {
 		message: text,
+		verbose: true,
 		actions: [ OO.ui.MessageDialog.static.actions[ 0 ] ]
 	}, options ) ).then( function ( opened ) {
 		return opened.then( function ( closing ) {
@@ -3362,62 +3397,13 @@ OO.ui.alert = function ( text, options ) {
  *  `false`.
  */
 OO.ui.confirm = function ( text, options ) {
-	return OO.ui.getWindowManager().openWindow( 'message', $.extend( {
-		message: text
+	return OO.ui.getWindowManager().openWindow( 'messageDialog', $.extend( {
+		message: text,
+		verbose: true
 	}, options ) ).then( function ( opened ) {
 		return opened.then( function ( closing ) {
 			return closing.then( function ( data ) {
 				return $.Deferred().resolve( !!( data && data.action === 'accept' ) );
-			} );
-		} );
-	} );
-};
-
-/**
- * Display a quick modal prompt dialog, using a OO.ui.MessageDialog. While the dialog is open,
- * the rest of the page will be dimmed out and the user won't be able to interact with it. The
- * dialog has a text input widget and two action buttons, one to confirm an operation (labelled "OK")
- * and one to cancel it (labelled "Cancel").
- *
- * A window manager is created automatically when this function is called for the first time.
- *
- *     @example
- *     OO.ui.prompt( 'Choose a line to go to', { textInput: { placeholder: 'Line number' } } ).done( function ( result ) {
- *         if ( result !== null ) {
- *             console.log( 'User typed "' + result + '" then clicked "OK".' );
- *         } else {
- *             console.log( 'User clicked "Cancel" or closed the dialog.' );
- *         }
- *     } );
- *
- * @param {jQuery|string} text Message text to display
- * @param {Object} [options] Additional options, see OO.ui.MessageDialog#getSetupProcess
- * @param {Object} [options.textInput] Additional options for text input widget, see OO.ui.TextInputWidget
- * @return {jQuery.Promise} Promise resolved when the user closes the dialog. If the user chose to
- *  confirm, the promise will resolve with the value of the text input widget; otherwise, it will
- *  resolve to `null`.
- */
-OO.ui.prompt = function ( text, options ) {
-	var manager = OO.ui.getWindowManager(),
-		textInput = new OO.ui.TextInputWidget( ( options && options.textInput ) || {} ),
-		textField = new OO.ui.FieldLayout( textInput, {
-			align: 'top',
-			label: text
-		} );
-
-	// TODO: This is a little hacky, and could be done by extending MessageDialog instead.
-
-	return manager.openWindow( 'message', $.extend( {
-		message: textField.$element
-	}, options ) ).then( function ( opened ) {
-		// After ready
-		textInput.on( 'enter', function () {
-			manager.getCurrentWindow().close( { action: 'accept' } );
-		} );
-		textInput.focus();
-		return opened.then( function ( closing ) {
-			return closing.then( function ( data ) {
-				return $.Deferred().resolve( data && data.action === 'accept' ? textInput.getValue() : null );
 			} );
 		} );
 	} );

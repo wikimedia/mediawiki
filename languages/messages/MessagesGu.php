@@ -127,3 +127,4 @@ $digitTransformTable = [
 $digitGroupingPattern = "##,##,###";
 
 $linkTrail = "/^([\x{0A80}-\x{0AFF}]+)(.*)$/sDu";
+

@@ -1,4 +1,4 @@
-/* global moment, Uint8Array */
+/*global moment */
 ( function ( $, mw ) {
 
 	/**
@@ -18,9 +18,6 @@
 	 * @class mw.ForeignStructuredUpload.BookletLayout
 	 * @uses mw.ForeignStructuredUpload
 	 * @extends mw.Upload.BookletLayout
-	 *
-	 * @constructor
-	 * @param {Object} config Configuration options
 	 * @cfg {string} [target] Used to choose the target repository.
 	 *     If nothing is passed, the {@link mw.ForeignUpload#property-target default} is used.
 	 */
@@ -46,11 +43,11 @@
 		return mw.ForeignStructuredUpload.BookletLayout.parent.prototype.initialize.call( this ).then(
 			function () {
 				return $.when(
-					// Point the CategoryMultiselectWidget to the right wiki
+					// Point the CategorySelector to the right wiki
 					booklet.upload.getApi().then( function ( api ) {
 						// If this is a ForeignApi, it will have a apiUrl, otherwise we don't need to do anything
 						if ( api.apiUrl ) {
-							// Can't reuse the same object, CategoryMultiselectWidget calls #abort on its mw.Api instance
+							// Can't reuse the same object, CategorySelector calls #abort on its mw.Api instance
 							booklet.categoriesWidget.api = new mw.ForeignApi( api.apiUrl );
 						}
 						return $.Deferred().resolve();
@@ -107,9 +104,6 @@
 									e.stopPropagation();
 								} );
 						} );
-					}, function ( errorMsg ) {
-						booklet.getPage( 'upload' ).$element.msg( errorMsg );
-						return $.Deferred().resolve();
 					} )
 				);
 			}
@@ -128,14 +122,7 @@
 	 * @return {mw.Upload}
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.createUpload = function () {
-		return new mw.ForeignStructuredUpload( this.target, {
-			parameters: {
-				errorformat: 'html',
-				errorlang: mw.config.get( 'wgUserLanguage' ),
-				errorsuselocal: 1,
-				formatversion: 2
-			}
-		} );
+		return new mw.ForeignStructuredUpload( this.target );
 	};
 
 	/* Form renderers */
@@ -242,7 +229,7 @@
 			multiline: true,
 			autosize: true
 		} );
-		this.categoriesWidget = new mw.widgets.CategoryMultiselectWidget( {
+		this.categoriesWidget = new mw.widgets.CategorySelector( {
 			// Can't be done here because we don't know the target wiki yet... done in #initialize.
 			// api: new mw.ForeignApi( ... ),
 			$overlay: this.$overlay
@@ -408,7 +395,7 @@
 				}
 
 				try {
-					metadata = mw.libs.jpegmeta( fileStr, file.name );
+					metadata = mw.libs.jpegmeta( this.result, file.name );
 				} catch ( e ) {
 					metadata = null;
 				}

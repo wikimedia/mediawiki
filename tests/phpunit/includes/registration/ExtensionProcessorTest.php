@@ -1,7 +1,5 @@
 <?php
 
-use Wikimedia\TestingAccessWrapper;
-
 class ExtensionProcessorTest extends MediaWikiTestCase {
 
 	private $dir;
@@ -422,9 +420,8 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 		$globalSettings = TestingAccessWrapper::newFromClass(
 			ExtensionProcessor::class )->globalSettings;
 
-		$version = ExtensionRegistry::MANIFEST_VERSION;
 		$schema = FormatJson::decode(
-			file_get_contents( "$IP/docs/extension.schema.v$version.json" ),
+			file_get_contents( "$IP/docs/extension.schema.json" ),
 			true
 		);
 		$missing = [];

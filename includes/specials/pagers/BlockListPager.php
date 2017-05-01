@@ -22,9 +22,6 @@
 /**
  * @ingroup Pager
  */
-use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ResultWrapper;
-
 class BlockListPager extends TablePager {
 
 	protected $conds;
@@ -75,7 +72,7 @@ class BlockListPager extends TablePager {
 			];
 
 			foreach ( $keys as $key ) {
-				$msg[$key] = $this->msg( $key )->text();
+				$msg[$key] = $this->msg( $key )->escaped();
 			}
 		}
 
@@ -85,8 +82,6 @@ class BlockListPager extends TablePager {
 		$language = $this->getLanguage();
 
 		$formatted = '';
-
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
 		switch ( $name ) {
 			case 'ipb_timestamp':
@@ -122,18 +117,18 @@ class BlockListPager extends TablePager {
 				) );
 				if ( $this->getUser()->isAllowed( 'block' ) ) {
 					if ( $row->ipb_auto ) {
-						$links[] = $linkRenderer->makeKnownLink(
+						$links[] = Linker::linkKnown(
 							SpecialPage::getTitleFor( 'Unblock' ),
 							$msg['unblocklink'],
 							[],
 							[ 'wpTarget' => "#{$row->ipb_id}" ]
 						);
 					} else {
-						$links[] = $linkRenderer->makeKnownLink(
+						$links[] = Linker::linkKnown(
 							SpecialPage::getTitleFor( 'Unblock', $row->ipb_address ),
 							$msg['unblocklink']
 						);
-						$links[] = $linkRenderer->makeKnownLink(
+						$links[] = Linker::linkKnown(
 							SpecialPage::getTitleFor( 'Block', $row->ipb_address ),
 							$msg['change-blocklink']
 						);
@@ -179,21 +174,21 @@ class BlockListPager extends TablePager {
 			case 'ipb_params':
 				$properties = [];
 				if ( $row->ipb_anon_only ) {
-					$properties[] = htmlspecialchars( $msg['anononlyblock'] );
+					$properties[] = $msg['anononlyblock'];
 				}
 				if ( $row->ipb_create_account ) {
-					$properties[] = htmlspecialchars( $msg['createaccountblock'] );
+					$properties[] = $msg['createaccountblock'];
 				}
 				if ( $row->ipb_user && !$row->ipb_enable_autoblock ) {
-					$properties[] = htmlspecialchars( $msg['noautoblockblock'] );
+					$properties[] = $msg['noautoblockblock'];
 				}
 
 				if ( $row->ipb_block_email ) {
-					$properties[] = htmlspecialchars( $msg['emailblock'] );
+					$properties[] = $msg['emailblock'];
 				}
 
 				if ( !$row->ipb_allow_usertalk ) {
-					$properties[] = htmlspecialchars( $msg['blocklist-nousertalk'] );
+					$properties[] = $msg['blocklist-nousertalk'];
 				}
 
 				$formatted = $language->commaList( $properties );

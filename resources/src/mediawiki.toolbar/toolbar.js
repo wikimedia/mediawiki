@@ -28,11 +28,6 @@
 	 *  current cursor position.
 	 * @param {string} [button.imageId] `id` attribute of the button HTML element. Can be
 	 *  used to define the image with CSS if it's not provided as `imageFile`.
-	 * @param {string} [speedTip]
-	 * @param {string} [tagOpen]
-	 * @param {string} [tagClose]
-	 * @param {string} [sampleText]
-	 * @param {string} [imageId]
 	 */
 	function insertButton( button, speedTip, tagOpen, tagClose, sampleText, imageId ) {
 		var $button;
@@ -124,7 +119,7 @@
 		 *  button object in a list of variadic arguments.
 		 */
 		addButtons: function ( buttons ) {
-			if ( !Array.isArray( buttons ) ) {
+			if ( !$.isArray( buttons ) ) {
 				buttons = slice.call( arguments );
 			}
 			if ( isReady ) {
@@ -164,11 +159,10 @@
 	mw.log.deprecate( window, 'insertTags', toolbar.insertTags, 'Use mw.toolbar.insertTags instead.' );
 
 	// For backwards compatibility. Used to be called from EditPage.php, maybe other places as well.
-	toolbar.init = $.noop;
+	mw.log.deprecate( toolbar, 'init', $.noop );
 
 	// Expose API publicly
-	// @deprecated since MW 1.30
-	mw.log.deprecate( mw, 'toolbar', toolbar );
+	mw.toolbar = toolbar;
 
 	$( function () {
 		var i, button;
@@ -181,7 +175,7 @@
 
 		for ( i = 0; i < queue.length; i++ ) {
 			button = queue[ i ];
-			if ( Array.isArray( button ) ) {
+			if ( $.isArray( button ) ) {
 				// Forwarded arguments array from mw.toolbar.addButton
 				insertButton.apply( toolbar, button );
 			} else {

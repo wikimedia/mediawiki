@@ -36,6 +36,7 @@ class UserDataAuthenticationRequestTest extends AuthenticationRequestTestCase {
 			$this->assertSame( $email ?: 'default@example.com', $user->getEmail() );
 			$this->assertSame( $realname ?: 'Fake Name', $user->getRealName() );
 		}
+
 	}
 
 	public static function providePopulateUser() {

@@ -3,10 +3,16 @@
 		setup: function () {
 			this.server = this.sandbox.useFakeServer();
 			this.server.respondImmediately = true;
+			this.clock = this.sandbox.useFakeTimers();
+		},
+		teardown: function () {
+			// https://github.com/jquery/jquery/issues/2453
+			this.clock.tick();
 		}
 	} ) );
 
 	QUnit.test( 'origin is included in GET requests', function ( assert ) {
+		QUnit.expect( 1 );
 		var api = new mw.ForeignApi( '//localhost:4242/w/api.php' );
 
 		this.server.respond( function ( request ) {
@@ -14,10 +20,11 @@
 			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
 		} );
 
-		return api.get( {} );
+		api.get( {} );
 	} );
 
 	QUnit.test( 'origin is included in POST requests', function ( assert ) {
+		QUnit.expect( 2 );
 		var api = new mw.ForeignApi( '//localhost:4242/w/api.php' );
 
 		this.server.respond( function ( request ) {
@@ -26,7 +33,7 @@
 			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
 		} );
 
-		return api.post( {} );
+		api.post( {} );
 	} );
 
 }( mediaWiki ) );

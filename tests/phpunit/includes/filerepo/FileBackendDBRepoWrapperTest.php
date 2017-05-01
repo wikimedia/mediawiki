@@ -112,26 +112,24 @@ class FileBackendDBRepoWrapperTest extends MediaWikiTestCase {
 	}
 
 	protected function getMocks() {
-		$dbMock = $this->getMockBuilder( 'DatabaseMysqli' )
-			->disableOriginalClone()
+		$dbMock = $this->getMockBuilder( 'DatabaseMysql' )
 			->disableOriginalConstructor()
 			->getMock();
 
-		$backendMock = $this->getMockBuilder( 'FSFileBackend' )
-			->setConstructorArgs( [ [
-					'name' => $this->backendName,
-					'wikiId' => wfWikiID()
-				] ] )
-			->getMock();
+		$backendMock = $this->getMock( 'FSFileBackend',
+			[],
+			[ [
+				'name' => $this->backendName,
+				'wikiId' => wfWikiID()
+			] ] );
 
-		$wrapperMock = $this->getMockBuilder( 'FileBackendDBRepoWrapper' )
-			->setMethods( [ 'getDB' ] )
-			->setConstructorArgs( [ [
-					'backend' => $backendMock,
-					'repoName' => $this->repoName,
-					'dbHandleFactory' => null
-				] ] )
-			->getMock();
+		$wrapperMock = $this->getMock( 'FileBackendDBRepoWrapper',
+			[ 'getDB' ],
+			[ [
+				'backend' => $backendMock,
+				'repoName' => $this->repoName,
+				'dbHandleFactory' => null
+			] ] );
 
 		$wrapperMock->expects( $this->any() )->method( 'getDB' )->will( $this->returnValue( $dbMock ) );
 

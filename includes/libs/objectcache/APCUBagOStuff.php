@@ -72,7 +72,7 @@ class APCUBagOStuff extends APCBagOStuff {
 		if ( apcu_exists( $key . self::KEY_SUFFIX ) ) {
 			return apcu_inc( $key . self::KEY_SUFFIX, $value );
 		} else {
-			return false;
+			return apcu_set( $key . self::KEY_SUFFIX, $value );
 		}
 	}
 
@@ -85,7 +85,7 @@ class APCUBagOStuff extends APCBagOStuff {
 		if ( apcu_exists( $key . self::KEY_SUFFIX ) ) {
 			return apcu_dec( $key . self::KEY_SUFFIX, $value );
 		} else {
-			return false;
+			return apcu_set( $key . self::KEY_SUFFIX, -$value );
 		}
 	}
 }

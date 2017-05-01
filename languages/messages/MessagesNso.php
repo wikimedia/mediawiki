@@ -40,3 +40,4 @@ $magicWords = [
 	'currenttime'               => [ '1', 'NAKO_BJALE', 'CURRENTTIME' ],
 	'currenthour'               => [ '1', 'IRI_BJALE', 'CURRENTHOUR' ],
 ];
+

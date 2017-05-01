@@ -23,10 +23,6 @@
  * <https://github.com/phacility/xhprof>. XHProf can be installed as a PECL
  * package for use with PHP5 (Zend PHP) and is built-in to HHVM 3.3.0.
  *
- * This also supports using the Tideways profiler
- * <https://github.com/tideways/php-profiler-extension>, which additionally
- * has support for PHP7.
- *
  * @since 1.28
  */
 class Xhprof {
@@ -47,16 +43,10 @@ class Xhprof {
 	 */
 	public static function enable( $flags = 0, $options = [] ) {
 		if ( self::isEnabled() ) {
-			throw new Exception( 'Profiling is already enabled.' );
+			throw new Exception( 'Xhprof profiling is already enabled.' );
 		}
 		self::$enabled = true;
-		if ( function_exists( 'xhprof_enable' ) ) {
-			xhprof_enable( $flags, $options );
-		} elseif ( function_exists( 'tideways_enable' ) ) {
-			tideways_enable( $flags, $options );
-		} else {
-			throw new Exception( "Neither xhprof nor tideways are installed" );
-		}
+		xhprof_enable( $flags, $options );
 	}
 
 	/**
@@ -67,12 +57,7 @@ class Xhprof {
 	public static function disable() {
 		if ( self::isEnabled() ) {
 			self::$enabled = false;
-			if ( function_exists( 'xhprof_disable' ) ) {
-				return xhprof_disable();
-			} else {
-				// tideways
-				return tideways_disable();
-			}
+			return xhprof_disable();
 		}
 	}
 }

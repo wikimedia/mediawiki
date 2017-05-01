@@ -128,7 +128,7 @@ class PublishStashedFileJob extends Job {
 			);
 			$this->setLastError( get_class( $e ) . ": " . $e->getMessage() );
 			// To prevent potential database referential integrity issues.
-			// See T34551.
+			// See bug 32551.
 			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 
 			return false;

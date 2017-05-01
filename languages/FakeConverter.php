@@ -64,9 +64,6 @@ class FakeConverter {
 		return $this->mLang->getFormattedNsText( $ns );
 	}
 
-	/**
-	 * @return string[]
-	 */
 	function getVariants() {
 		return [ $this->mLang->getCode() ];
 	}

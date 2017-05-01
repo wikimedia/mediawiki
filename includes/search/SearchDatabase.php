@@ -21,8 +21,6 @@
  * @ingroup Search
  */
 
-use Wikimedia\Rdbms\IDatabase;
-
 /**
  * Base search engine base class for database-backed searches
  * @ingroup Search

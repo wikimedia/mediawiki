@@ -19,11 +19,7 @@
  * @ingroup HTTP
  */
 
-/**
- * Cookie jar to use with MWHttpRequest. Does not handle cookie unsetting.
- */
 class CookieJar {
-	/** @var Cookie[] */
 	private $cookie = [];
 
 	/**

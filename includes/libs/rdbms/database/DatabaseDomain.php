@@ -18,9 +18,6 @@
  * @file
  * @ingroup Database
  */
-namespace Wikimedia\Rdbms;
-
-use InvalidArgumentException;
 
 /**
  * Class to handle database/prefix specification for IDatabase domains

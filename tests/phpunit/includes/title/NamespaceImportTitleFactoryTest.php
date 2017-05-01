@@ -40,27 +40,27 @@ class NamespaceImportTitleFactoryTest extends MediaWikiTestCase {
 			[
 				new ForeignTitle( 0, '', 'MainNamespaceArticle' ),
 				0,
-				'MainNamespaceArticle'
+				Title::newFromText( 'MainNamespaceArticle' )
 			],
 			[
 				new ForeignTitle( 0, '', 'MainNamespaceArticle' ),
 				2,
-				'User:MainNamespaceArticle'
+				Title::newFromText( 'User:MainNamespaceArticle' )
 			],
 			[
 				new ForeignTitle( 1, 'Discussion', 'Nice_talk' ),
 				0,
-				'Nice_talk'
+				Title::newFromText( 'Nice_talk' )
 			],
 			[
 				new ForeignTitle( 0, '', 'Bogus:Nice_talk' ),
 				0,
-				'Bogus:Nice_talk'
+				Title::newFromText( 'Bogus:Nice_talk' )
 			],
 			[
 				new ForeignTitle( 0, '', 'Bogus:Nice_talk' ),
 				2,
-				'User:Bogus:Nice_talk'
+				Title::newFromText( 'User:Bogus:Nice_talk' )
 			],
 		];
 	}
@@ -68,10 +68,9 @@ class NamespaceImportTitleFactoryTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider basicProvider
 	 */
-	public function testBasic( ForeignTitle $foreignTitle, $ns, $titleText ) {
+	public function testBasic( ForeignTitle $foreignTitle, $ns, Title $title ) {
 		$factory = new NamespaceImportTitleFactory( $ns );
 		$testTitle = $factory->createTitleFromForeignTitle( $foreignTitle );
-		$title = Title::newFromText( $titleText );
 
 		$this->assertTrue( $title->equals( $testTitle ) );
 	}

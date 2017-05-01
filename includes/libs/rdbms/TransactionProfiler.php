@@ -22,12 +22,9 @@
  * @author Aaron Schulz
  */
 
-namespace Wikimedia\Rdbms;
-
 use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\NullLogger;
-use RuntimeException;
 
 /**
  * Helper class that detects high-contention DB queries via profiling calls

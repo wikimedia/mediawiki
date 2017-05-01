@@ -31,8 +31,7 @@ class MemoizedCallableTest extends PHPUnit_Framework_TestCase {
 	 * way as the original underlying callable.
 	 */
 	public function testReturnValuePassedThrough() {
-		$mock = $this->getMockBuilder( 'stdClass' )
-			->setMethods( [ 'reverse' ] )->getMock();
+		$mock = $this->getMock( 'stdClass', [ 'reverse' ] );
 		$mock->expects( $this->any() )
 			->method( 'reverse' )
 			->will( $this->returnCallback( 'strrev' ) );
@@ -48,8 +47,7 @@ class MemoizedCallableTest extends PHPUnit_Framework_TestCase {
 	 * @requires function apc_store/apcu_store
 	 */
 	public function testCallableMemoized() {
-		$observer = $this->getMockBuilder( 'stdClass' )
-			->setMethods( [ 'computeSomething' ] )->getMock();
+		$observer = $this->getMock( 'stdClass', [ 'computeSomething' ] );
 		$observer->expects( $this->once() )
 			->method( 'computeSomething' )
 			->will( $this->returnValue( 'ok' ) );

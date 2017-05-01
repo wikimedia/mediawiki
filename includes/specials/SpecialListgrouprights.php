@@ -71,8 +71,6 @@ class SpecialListGroupRights extends SpecialPage {
 		) );
 		asort( $allGroups );
 
-		$linkRenderer = $this->getLinkRenderer();
-
 		foreach ( $allGroups as $group ) {
 			$permissions = isset( $groupPermissions[$group] )
 				? $groupPermissions[$group]
@@ -94,22 +92,22 @@ class SpecialListGroupRights extends SpecialPage {
 				// Do not make a link for the generic * group or group with invalid group page
 				$grouppage = htmlspecialchars( $groupnameLocalized );
 			} else {
-				$grouppage = $linkRenderer->makeLink(
+				$grouppage = Linker::link(
 					$grouppageLocalizedTitle,
-					$groupnameLocalized
+					htmlspecialchars( $groupnameLocalized )
 				);
 			}
 
 			if ( $group === 'user' ) {
 				// Link to Special:listusers for implicit group 'user'
-				$grouplink = '<br />' . $linkRenderer->makeKnownLink(
+				$grouplink = '<br />' . Linker::linkKnown(
 					SpecialPage::getTitleFor( 'Listusers' ),
-					$this->msg( 'listgrouprights-members' )->text()
+					$this->msg( 'listgrouprights-members' )->escaped()
 				);
 			} elseif ( !in_array( $group, $config->get( 'ImplicitGroups' ) ) ) {
-				$grouplink = '<br />' . $linkRenderer->makeKnownLink(
+				$grouplink = '<br />' . Linker::linkKnown(
 					SpecialPage::getTitleFor( 'Listusers' ),
-					$this->msg( 'listgrouprights-members' )->text(),
+					$this->msg( 'listgrouprights-members' )->escaped(),
 					[],
 					[ 'group' => $group ]
 				);
@@ -167,7 +165,7 @@ class SpecialListGroupRights extends SpecialPage {
 				$this->msg( 'listgrouprights-namespaceprotection-restrictedto' )->text()
 			)
 		);
-		$linkRenderer = $this->getLinkRenderer();
+
 		ksort( $namespaceProtection );
 		foreach ( $namespaceProtection as $namespace => $rights ) {
 			if ( !in_array( $namespace, MWNamespace::getValidNamespaces() ) ) {
@@ -185,9 +183,9 @@ class SpecialListGroupRights extends SpecialPage {
 				Html::rawElement(
 					'td',
 					[],
-					$linkRenderer->makeLink(
+					Linker::link(
 						SpecialPage::getTitleFor( 'Allpages' ),
-						$namespaceText,
+						htmlspecialchars( $namespaceText ),
 						[],
 						[ 'namespace' => $namespace ]
 					)
@@ -273,14 +271,12 @@ class SpecialListGroupRights extends SpecialPage {
 			} elseif ( is_array( $changeGroup ) ) {
 				$changeGroup = array_intersect( array_values( array_unique( $changeGroup ) ), $allGroups );
 				if ( count( $changeGroup ) ) {
-					$groupLinks = [];
-					foreach ( $changeGroup as $group ) {
-						$groupLinks[] = UserGroupMembership::getLink( $group, $this->getContext(), 'wiki' );
-					}
 					// For grep: listgrouprights-addgroup, listgrouprights-removegroup,
 					// listgrouprights-addgroup-self, listgrouprights-removegroup-self
 					$r[] = $this->msg( 'listgrouprights-' . $messageKey,
-						$lang->listToText( $groupLinks ), count( $changeGroup ) )->parse();
+						$lang->listToText( array_map( [ 'User', 'makeGroupLinkWiki' ], $changeGroup ) ),
+						count( $changeGroup )
+					)->parse();
 				}
 			}
 		}

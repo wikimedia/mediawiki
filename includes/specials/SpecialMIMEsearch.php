@@ -111,8 +111,7 @@ class MIMEsearchPage extends QueryPage {
 	function getPageHeader() {
 		$formDescriptor = [
 			'mime' => [
-				'type' => 'combobox',
-				'options' => $this->getSuggestionsForTypes(),
+				'type' => 'text',
 				'name' => 'mime',
 				'label-message' => 'mimetype',
 				'required' => true,
@@ -120,39 +119,13 @@ class MIMEsearchPage extends QueryPage {
 			],
 		];
 
-		HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
+		$form = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
+			->setWrapperLegendMsg( 'mimesearch' )
 			->setSubmitTextMsg( 'ilsubmit' )
 			->setAction( $this->getPageTitle()->getLocalURL() )
 			->setMethod( 'get' )
 			->prepareForm()
 			->displayForm( false );
-	}
-
-	protected function getSuggestionsForTypes() {
-		$dbr = wfGetDB( DB_REPLICA );
-		$lastMajor = null;
-		$suggestions = [];
-		$result = $dbr->select(
-			[ 'image' ],
-			// We ignore img_media_type, but using it in the query is needed for MySQL to choose a
-			// sensible execution plan
-			[ 'img_media_type', 'img_major_mime', 'img_minor_mime' ],
-			[],
-			__METHOD__,
-			[ 'GROUP BY' => [ 'img_media_type', 'img_major_mime', 'img_minor_mime' ] ]
-		);
-		foreach ( $result as $row ) {
-			$major = $row->img_major_mime;
-			$minor = $row->img_minor_mime;
-			$suggestions[ "$major/$minor" ] = "$major/$minor";
-			if ( $lastMajor === $major ) {
-				// If there are at least two with the same major mime type, also include the wildcard
-				$suggestions[ "$major/*" ] = "$major/*";
-			}
-			$lastMajor = $major;
-		}
-		ksort( $suggestions );
-		return $suggestions;
 	}
 
 	public function execute( $par ) {
@@ -180,12 +153,11 @@ class MIMEsearchPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
 
-		$linkRenderer = $this->getLinkRenderer();
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getText() );
-		$plink = $linkRenderer->makeLink(
+		$plink = Linker::link(
 			Title::newFromText( $nt->getPrefixedText() ),
-			$text
+			htmlspecialchars( $text )
 		);
 
 		$download = Linker::makeMediaLinkObj( $nt, $this->msg( 'download' )->escaped() );
@@ -194,9 +166,9 @@ class MIMEsearchPage extends QueryPage {
 		$bytes = htmlspecialchars( $lang->formatSize( $result->img_size ) );
 		$dimensions = $this->msg( 'widthheight' )->numParams( $result->img_width,
 			$result->img_height )->escaped();
-		$user = $linkRenderer->makeLink(
+		$user = Linker::link(
 			Title::makeTitle( NS_USER, $result->img_user_text ),
-			$result->img_user_text
+			htmlspecialchars( $result->img_user_text )
 		);
 
 		$time = $lang->userTimeAndDate( $result->img_timestamp, $this->getUser() );
@@ -225,10 +197,6 @@ class MIMEsearchPage extends QueryPage {
 		];
 
 		return in_array( $type, $types );
-	}
-
-	public function preprocessResults( $db, $res ) {
-		$this->executeLBFromResultWrapper( $res );
 	}
 
 	protected function getGroupName() {

@@ -25,11 +25,6 @@
  * @copyright © 2013 Wikimedia Foundation Inc.
  */
 
-use Wikimedia\Rdbms\TransactionProfiler;
-use Wikimedia\Rdbms\DatabaseDomain;
-use Wikimedia\Rdbms\MySQLMasterPos;
-use Wikimedia\Rdbms\DatabaseMysqlBase;
-
 /**
  * Fake class around abstract class so we can call concrete methods.
  */
@@ -121,7 +116,7 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 	/**
 	 * Feeds testAddIdentifierQuotes
 	 *
-	 * Named per T22281 convention.
+	 * Named per bug 20281 convention.
 	 */
 	function provideDiapers() {
 		return [
@@ -175,7 +170,7 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 	}
 
 	function getMockForViews() {
-		$db = $this->getMockBuilder( 'DatabaseMysqli' )
+		$db = $this->getMockBuilder( 'DatabaseMysql' )
 			->disableOriginalConstructor()
 			->setMethods( [ 'fetchRow', 'query' ] )
 			->getMock();
@@ -319,7 +314,7 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 	 * @dataProvider provideLagAmounts
 	 */
 	function testPtHeartbeat( $lag ) {
-		$db = $this->getMockBuilder( 'DatabaseMysqli' )
+		$db = $this->getMockBuilder( 'DatabaseMysql' )
 			->disableOriginalConstructor()
 			->setMethods( [
 				'getLagDetectionMethod', 'getHeartbeatData', 'getMasterServerInfo' ] )

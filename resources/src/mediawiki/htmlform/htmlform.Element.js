@@ -10,7 +10,6 @@
 	 * Currently only supports passing 'hide-if' data.
 	 *
 	 * @ignore
-	 * @param {Object} [config] Configuration options
 	 */
 	mw.htmlform.Element = function ( config ) {
 		// Configuration initialization

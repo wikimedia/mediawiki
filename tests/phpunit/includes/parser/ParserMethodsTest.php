@@ -2,8 +2,8 @@
 
 /**
  * @group Database
- * @covers Parser
  */
+
 class ParserMethodsTest extends MediaWikiLangTestCase {
 
 	public static function providePreSaveTransform() {
@@ -19,6 +19,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider providePreSaveTransform
+	 * @covers Parser::preSaveTransform
 	 */
 	public function testPreSaveTransform( $text, $expected ) {
 		global $wgParser;
@@ -62,6 +63,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideStripOuterParagraph
+	 * @covers Parser::stripOuterParagraph
 	 */
 	public function testStripOuterParagraph( $text, $expected ) {
 		$this->assertEquals( $expected, Parser::stripOuterParagraph( $text ) );
@@ -71,6 +73,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 	 * @expectedException MWException
 	 * @expectedExceptionMessage Parser state cleared while parsing.
 	 *  Did you call Parser::parse recursively?
+	 * @covers Parser::lock
 	 */
 	public function testRecursiveParse() {
 		global $wgParser;
@@ -87,6 +90,9 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		return 'bar';
 	}
 
+	/**
+	 * @covers Parser::callParserFunction
+	 */
 	public function testCallParserFunction() {
 		global $wgParser;
 
@@ -105,7 +111,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Parser
+	 * @covers Parser::parse
 	 * @covers ParserOutput::getSections
 	 */
 	public function testGetSections() {
@@ -149,6 +155,8 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideNormalizeLinkUrl
+	 * @covers Parser::normalizeLinkUrl
+	 * @covers Parser::normalizeUrlComponent
 	 */
 	public function testNormalizeLinkUrl( $explanation, $url, $expected ) {
 		$this->assertEquals( $expected, Parser::normalizeLinkUrl( $url ), $explanation );

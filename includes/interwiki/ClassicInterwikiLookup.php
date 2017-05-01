@@ -23,7 +23,7 @@ namespace MediaWiki\Interwiki;
  */
 use \Cdb\Exception as CdbException;
 use \Cdb\Reader as CdbReader;
-use Wikimedia\Rdbms\Database;
+use Database;
 use Hooks;
 use Interwiki;
 use Language;
@@ -187,7 +187,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	 * @note More logic is explained in DefaultSettings.
 	 *
 	 * @param string $prefix Interwiki prefix
-	 * @return Interwiki|false
+	 * @return Interwiki
 	 */
 	private function getInterwikiCached( $prefix ) {
 		$value = $this->getInterwikiCacheEntry( $prefix );
@@ -221,7 +221,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 				}
 			}
 
-			$value = $this->getCacheValue( wfWikiID() . ':' . $prefix );
+			$value = $this->getCacheValue( wfMemcKey( $prefix ) );
 			// Site level
 			if ( $value == '' && $this->interwikiScopes >= 3 ) {
 				$value = $this->getCacheValue( "_{$this->thisSite}:{$prefix}" );
@@ -288,7 +288,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 
 				$row = $dbr->selectRow(
 					'interwiki',
-					self::selectFields(),
+					ClassicInterwikiLookup::selectFields(),
 					[ 'iw_prefix' => $prefix ],
 					__METHOD__
 				);
@@ -383,6 +383,8 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 				. $e->getMessage() );
 		}
 
+		ksort( $data );
+
 		return array_values( $data );
 	}
 
@@ -406,7 +408,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 		}
 
 		$res = $db->select( 'interwiki',
-			self::selectFields(),
+			$this->selectFields(),
 			$where, __METHOD__, [ 'ORDER BY' => 'iw_prefix' ]
 		);
 

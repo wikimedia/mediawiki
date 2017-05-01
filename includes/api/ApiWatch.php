@@ -35,10 +35,12 @@ class ApiWatch extends ApiBase {
 	public function execute() {
 		$user = $this->getUser();
 		if ( !$user->isLoggedIn() ) {
-			$this->dieWithError( 'watchlistanontext', 'notloggedin' );
+			$this->dieUsage( 'You must be logged-in to have a watchlist', 'notloggedin' );
 		}
 
-		$this->checkUserRightsAny( 'editmywatchlist' );
+		if ( !$user->isAllowed( 'editmywatchlist' ) ) {
+			$this->dieUsage( 'You don\'t have permission to edit your watchlist', 'permissiondenied' );
+		}
 
 		$params = $this->extractRequestParams();
 
@@ -60,7 +62,7 @@ class ApiWatch extends ApiBase {
 
 			foreach ( $pageSet->getMissingTitles() as $title ) {
 				$r = $this->watchTitle( $title, $user, $params );
-				$r['missing'] = true;
+				$r['missing'] = 1;
 				$res[] = $r;
 			}
 
@@ -76,19 +78,16 @@ class ApiWatch extends ApiBase {
 			} ) );
 
 			if ( $extraParams ) {
-				$this->dieWithError(
-					[
-						'apierror-invalidparammix-cannotusewith',
-						$this->encodeParamName( 'title' ),
-						$pageSet->encodeParamName( $extraParams[0] )
-					],
+				$p = $this->getModulePrefix();
+				$this->dieUsage(
+					"The parameter {$p}title can not be used with " . implode( ', ', $extraParams ),
 					'invalidparammix'
 				);
 			}
 
 			$title = Title::newFromText( $params['title'] );
 			if ( !$title || !$title->isWatchable() ) {
-				$this->dieWithError( [ 'invalidtitle', $params['title'] ] );
+				$this->dieUsageMsg( [ 'invalidtitle', $params['title'] ] );
 			}
 			$res = $this->watchTitle( $title, $user, $params, true );
 		}
@@ -110,20 +109,26 @@ class ApiWatch extends ApiBase {
 		if ( $params['unwatch'] ) {
 			$status = UnwatchAction::doUnwatch( $title, $user );
 			$res['unwatched'] = $status->isOK();
+			if ( $status->isOK() ) {
+				$msgKey = $title->isTalkPage() ? 'removedwatchtext-talk' : 'removedwatchtext';
+				$res['message'] = $this->msg( $msgKey, $title->getPrefixedText() )
+					->title( $title )->parseAsBlock();
+			}
 		} else {
 			$status = WatchAction::doWatch( $title, $user );
 			$res['watched'] = $status->isOK();
+			if ( $status->isOK() ) {
+				$msgKey = $title->isTalkPage() ? 'addedwatchtext-talk' : 'addedwatchtext';
+				$res['message'] = $this->msg( $msgKey, $title->getPrefixedText() )
+					->title( $title )->parseAsBlock();
+			}
 		}
 
 		if ( !$status->isOK() ) {
 			if ( $compatibilityMode ) {
 				$this->dieStatus( $status );
 			}
-			$res['errors'] = $this->getErrorFormatter()->arrayFromStatus( $status, 'error' );
-			$res['warnings'] = $this->getErrorFormatter()->arrayFromStatus( $status, 'warning' );
-			if ( !$res['warnings'] ) {
-				unset( $res['warnings'] );
-			}
+			$res['error'] = $this->getErrorFromStatus( $status );
 		}
 
 		return $res;
@@ -183,6 +188,6 @@ class ApiWatch extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Watch';
+		return 'https://www.mediawiki.org/wiki/API:Watch';
 	}
 }

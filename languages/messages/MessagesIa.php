@@ -132,3 +132,4 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'Referentias_a_iste_pagina' ],
 	'Withoutinterwiki'          => [ 'Sin_interwiki' ],
 ];
+

@@ -61,21 +61,21 @@ class LocalisationCacheTest extends MediaWikiTestCase {
 
 	public function testRecacheFallbacks() {
 		$lc = $this->getMockLocalisationCache();
-		$lc->recache( 'ba' );
+		$lc->recache( 'uk' );
 		$this->assertEquals(
 			[
-				'present-ba' => 'ba',
+				'present-uk' => 'uk',
 				'present-ru' => 'ru',
 				'present-en' => 'en',
 			],
-			$lc->getItem( 'ba', 'messages' ),
+			$lc->getItem( 'uk', 'messages' ),
 			'Fallbacks are only used to fill missing data'
 		);
 	}
 
 	public function testRecacheFallbacksWithHooks() {
 		// Use hook to provide updates for messages. This is what the
-		// LocalisationUpdate extension does. See T70781.
+		// LocalisationUpdate extension does. See bug 68781.
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
 			'LocalisationCacheRecacheFallback' => [
 				function (
@@ -84,7 +84,7 @@ class LocalisationCacheTest extends MediaWikiTestCase {
 					array &$cache
 				) {
 					if ( $code === 'ru' ) {
-						$cache['messages']['present-ba'] = 'ru-override';
+						$cache['messages']['present-uk'] = 'ru-override';
 						$cache['messages']['present-ru'] = 'ru-override';
 						$cache['messages']['present-en'] = 'ru-override';
 					}
@@ -93,14 +93,14 @@ class LocalisationCacheTest extends MediaWikiTestCase {
 		] );
 
 		$lc = $this->getMockLocalisationCache();
-		$lc->recache( 'ba' );
+		$lc->recache( 'uk' );
 		$this->assertEquals(
 			[
-				'present-ba' => 'ba',
+				'present-uk' => 'uk',
 				'present-ru' => 'ru-override',
 				'present-en' => 'ru-override',
 			],
-			$lc->getItem( 'ba', 'messages' ),
+			$lc->getItem( 'uk', 'messages' ),
 			'Updates provided by hooks follow the normal fallback order.'
 		);
 	}

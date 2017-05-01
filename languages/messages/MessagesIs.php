@@ -212,3 +212,4 @@ $separatorTransformTable = [ ',' => '.', '.' => ',' ];
 $linkPrefixExtension = true;
 $linkTrail = '/^([áðéíóúýþæöa-z-–]+)(.*)$/sDu';
 $linkPrefixCharset = 'áÁðÐéÉíÍóÓúÚýÝþÞæÆöÖA-Za-z–-';
+

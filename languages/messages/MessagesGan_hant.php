@@ -45,3 +45,4 @@ $specialPageAliases = [
 	'Unusedimages'              => [ '冇用嗰檔案' ],
 	'Watchlist'                 => [ '監視列表' ],
 ];
+

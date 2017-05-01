@@ -23,7 +23,6 @@ namespace MediaWiki\Auth;
 
 use BagOStuff;
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
@@ -69,7 +68,7 @@ class Throttler implements LoggerAwareInterface {
 		}
 
 		if ( $conditions === null ) {
-			$config = MediaWikiServices::getInstance()->getMainConfig();
+			$config = \ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
 			$conditions = $config->get( 'PasswordAttemptThrottle' );
 			$params += [
 				'type' => 'password',
@@ -130,13 +129,13 @@ class Throttler implements LoggerAwareInterface {
 			$throttleKey = wfGlobalCacheKey( 'throttler', $this->type, $index, $ipKey, $userKey );
 			$throttleCount = $this->cache->get( $throttleKey );
 
-			if ( !$throttleCount ) { // counter not started yet
+			if ( !$throttleCount ) {  // counter not started yet
 				$this->cache->add( $throttleKey, 1, $expiry );
 			} elseif ( $throttleCount < $count ) { // throttle limited not yet reached
 				$this->cache->incr( $throttleKey );
 			} else { // throttled
 				$this->logRejection( [
-					'throttle' => $this->type,
+					'type' => $this->type,
 					'index' => $index,
 					'ip' => $ipKey,
 					'username' => $username,
@@ -192,7 +191,7 @@ class Throttler implements LoggerAwareInterface {
 	}
 
 	protected function logRejection( array $context ) {
-		$logMsg = 'Throttle {throttle} hit, throttled for {expiry} seconds due to {count} attempts '
+		$logMsg = 'Throttle {type} hit, throttled for {expiry} seconds due to {count} attempts '
 			. 'from username {username} and IP {ip}';
 
 		// If we are hitting a throttle for >= warningLimit attempts, it is much more likely to be

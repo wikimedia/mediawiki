@@ -1,5 +1,4 @@
 <?php
-use MediaWiki\MediaWikiServices;
 
 /**
  * Test class for Import methods.
@@ -26,7 +25,7 @@ class ImportTest extends MediaWikiLangTestCase {
 
 		$importer = new WikiImporter(
 			$source,
-			MediaWikiServices::getInstance()->getMainConfig()
+			ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
 		);
 
 		$importer->doImport();
@@ -93,7 +92,7 @@ EOF
 
 		$importer = new WikiImporter(
 			$source,
-			MediaWikiServices::getInstance()->getMainConfig()
+			ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
 		);
 		$importer->setPageOutCallback( $callback );
 		$importer->doImport();
@@ -176,7 +175,7 @@ EOF
 
 		$importer = new WikiImporter(
 			$source,
-			MediaWikiServices::getInstance()->getMainConfig()
+			ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
 		);
 		$importer->setSiteInfoCallback( $callback );
 		$importer->doImport();

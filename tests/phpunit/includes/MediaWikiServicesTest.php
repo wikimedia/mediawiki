@@ -7,7 +7,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Services\DestructibleService;
 use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceDisabledException;
-use Wikimedia\Rdbms\LBFactory;
 
 /**
  * @covers MediaWiki\MediaWikiServices
@@ -71,7 +70,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 		$newServices = $this->newMediaWikiServices();
 		$oldServices = MediaWikiServices::forceGlobalInstance( $newServices );
 
-		$service1 = $this->createMock( SalvageableService::class );
+		$service1 = $this->getMock( SalvageableService::class );
 		$service1->expects( $this->never() )
 			->method( 'salvage' );
 
@@ -104,11 +103,11 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 		$newServices = $this->newMediaWikiServices();
 		$oldServices = MediaWikiServices::forceGlobalInstance( $newServices );
 
-		$service1 = $this->createMock( SalvageableService::class );
+		$service1 = $this->getMock( SalvageableService::class );
 		$service1->expects( $this->never() )
 			->method( 'salvage' );
 
-		$service2 = $this->createMock( SalvageableService::class );
+		$service2 = $this->getMock( SalvageableService::class );
 		$service2->expects( $this->once() )
 			->method( 'salvage' )
 			->with( $service1 );
@@ -178,11 +177,11 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 		$newServices = $this->newMediaWikiServices();
 		$oldServices = MediaWikiServices::forceGlobalInstance( $newServices );
 
-		$service1 = $this->createMock( DestructibleService::class );
+		$service1 = $this->getMock( DestructibleService::class );
 		$service1->expects( $this->once() )
 			->method( 'destroy' );
 
-		$service2 = $this->createMock( DestructibleService::class );
+		$service2 = $this->getMock( DestructibleService::class );
 		$service2->expects( $this->never() )
 			->method( 'destroy' );
 
@@ -219,7 +218,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'Test',
 			function() use ( &$serviceCounter ) {
 				$serviceCounter++;
-				$service = $this->createMock( 'MediaWiki\Services\DestructibleService' );
+				$service = $this->getMock( 'MediaWiki\Services\DestructibleService' );
 				$service->expects( $this->once() )->method( 'destroy' );
 				return $service;
 			}
@@ -248,7 +247,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 		$services->defineService(
 			'Test',
 			function() {
-				$service = $this->createMock( 'MediaWiki\Services\DestructibleService' );
+				$service = $this->getMock( 'MediaWiki\Services\DestructibleService' );
 				$service->expects( $this->never() )->method( 'destroy' );
 				return $service;
 			}
@@ -309,14 +308,13 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'SearchEngineFactory' => [ 'SearchEngineFactory', SearchEngineFactory::class ],
 			'SearchEngineConfig' => [ 'SearchEngineConfig', SearchEngineConfig::class ],
 			'SkinFactory' => [ 'SkinFactory', SkinFactory::class ],
-			'DBLoadBalancerFactory' => [ 'DBLoadBalancerFactory', Wikimedia\Rdbms\LBFactory::class ],
+			'DBLoadBalancerFactory' => [ 'DBLoadBalancerFactory', 'LBFactory' ],
 			'DBLoadBalancer' => [ 'DBLoadBalancer', 'LoadBalancer' ],
 			'WatchedItemStore' => [ 'WatchedItemStore', WatchedItemStore::class ],
 			'WatchedItemQueryService' => [ 'WatchedItemQueryService', WatchedItemQueryService::class ],
 			'CryptRand' => [ 'CryptRand', CryptRand::class ],
 			'CryptHKDF' => [ 'CryptHKDF', CryptHKDF::class ],
 			'MediaHandlerFactory' => [ 'MediaHandlerFactory', MediaHandlerFactory::class ],
-			'Parser' => [ 'Parser', Parser::class ],
 			'GenderCache' => [ 'GenderCache', GenderCache::class ],
 			'LinkCache' => [ 'LinkCache', LinkCache::class ],
 			'LinkRenderer' => [ 'LinkRenderer', LinkRenderer::class ],

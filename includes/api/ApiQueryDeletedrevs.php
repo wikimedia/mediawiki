@@ -37,12 +37,21 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 	}
 
 	public function execute() {
-		// Before doing anything at all, let's check permissions
-		$this->checkUserRightsAny( 'deletedhistory' );
-
-		$this->addDeprecation( 'apiwarn-deprecation-deletedrevs', 'action=query&list=deletedrevs' );
-
 		$user = $this->getUser();
+		// Before doing anything at all, let's check permissions
+		if ( !$user->isAllowed( 'deletedhistory' ) ) {
+			$this->dieUsage(
+				'You don\'t have permission to view deleted revision information',
+				'permissiondenied'
+			);
+		}
+
+		$this->setWarning(
+			'list=deletedrevs has been deprecated. Please use prop=deletedrevisions or ' .
+			'list=alldeletedrevisions instead.'
+		);
+		$this->logFeatureUsage( 'action=query&list=deletedrevs' );
+
 		$db = $this->getDB();
 		$params = $this->extractRequestParams( false );
 		$prop = array_flip( $params['prop'] );
@@ -61,6 +70,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		if ( isset( $prop['token'] ) ) {
 			$p = $this->getModulePrefix();
+			$this->setWarning(
+				"{$p}prop=token has been deprecated. Please use action=query&meta=tokens instead."
+			);
 		}
 
 		// If we're in a mode that breaks the same-origin policy, no tokens can
@@ -93,19 +105,19 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			// Ignore namespace and unique due to inability to know whether they were purposely set
 			foreach ( [ 'from', 'to', 'prefix', /*'namespace', 'unique'*/ ] as $p ) {
 				if ( !is_null( $params[$p] ) ) {
-					$this->dieWithError( [ 'apierror-deletedrevs-param-not-1-2', $p ], 'badparams' );
+					$this->dieUsage( "The '{$p}' parameter cannot be used in modes 1 or 2", 'badparams' );
 				}
 			}
 		} else {
 			foreach ( [ 'start', 'end' ] as $p ) {
 				if ( !is_null( $params[$p] ) ) {
-					$this->dieWithError( [ 'apierror-deletedrevs-param-not-3', $p ], 'badparams' );
+					$this->dieUsage( "The {$p} parameter cannot be used in mode 3", 'badparams' );
 				}
 			}
 		}
 
 		if ( !is_null( $params['user'] ) && !is_null( $params['excludeuser'] ) ) {
-			$this->dieWithError( 'user and excludeuser cannot be used together', 'badparams' );
+			$this->dieUsage( 'user and excludeuser cannot be used together', 'badparams' );
 		}
 
 		$this->addTables( 'archive' );
@@ -150,7 +162,12 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->addFields( [ 'ar_text', 'ar_flags', 'ar_text_id', 'old_text', 'old_flags' ] );
 
 			// This also means stricter restrictions
-			$this->checkUserRightsAny( [ 'deletedtext', 'undelete' ] );
+			if ( !$user->isAllowedAny( 'undelete', 'deletedtext' ) ) {
+				$this->dieUsage(
+					'You don\'t have permission to view deleted revision content',
+					'permissiondenied'
+				);
+			}
 		}
 		// Check limits
 		$userMax = $fld_content ? ApiBase::LIMIT_SML1 : ApiBase::LIMIT_BIG1;
@@ -203,7 +220,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		}
 
 		if ( !is_null( $params['user'] ) || !is_null( $params['excludeuser'] ) ) {
-			// Paranoia: avoid brute force searches (T19342)
+			// Paranoia: avoid brute force searches (bug 17342)
 			// (shouldn't be able to get here without 'deletedhistory', but
 			// check it again just in case)
 			if ( !$user->isAllowed( 'deletedhistory' ) ) {
@@ -250,7 +267,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$this->addOption( 'LIMIT', $limit + 1 );
 		$this->addOption(
 			'USE INDEX',
-			[ 'archive' => ( $mode == 'user' ? 'ar_usertext_timestamp' : 'name_title_timestamp' ) ]
+			[ 'archive' => ( $mode == 'user' ? 'usertext_timestamp' : 'name_title_timestamp' ) ]
 		);
 		if ( $mode == 'all' ) {
 			if ( $params['unique'] ) {
@@ -505,6 +522,6 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Deletedrevs';
+		return 'https://www.mediawiki.org/wiki/API:Deletedrevs';
 	}
 }

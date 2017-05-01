@@ -117,6 +117,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/** @var string Name of group to load this module in */
 	protected $group;
 
+	/** @var string Position on the page to load this module at */
+	protected $position = 'bottom';
+
 	/** @var bool Link to raw files in debug mode */
 	protected $debugRaw = true;
 
@@ -201,6 +204,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *         'messages' => [array of message key strings],
 	 *         // Group which this module should be loaded together with
 	 *         'group' => [group name string],
+	 *         // Position on the page to load this module at
+	 *         'position' => ['bottom' (default) or 'top']
 	 *         // Function that, if it returns true, makes the loader skip this module.
 	 *         // The file must contain valid JavaScript for execution in a private function.
 	 *         // The file must not contain the "function () {" and "}" wrapper though.
@@ -267,6 +272,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 					$this->{$member} = $option;
 					break;
 				// Single strings
+				case 'position':
 				case 'group':
 				case 'skipFunction':
 					$this->{$member} = (string)$option;
@@ -440,6 +446,13 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getPosition() {
+		return $this->position;
+	}
+
+	/**
 	 * Gets list of names of modules this module depends on.
 	 * @param ResourceLoaderContext|null $context
 	 * @return array List of module names
@@ -560,6 +573,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			// - dependencies (provided via startup module)
 			// - targets
 			// - group (provided via startup module)
+			// - position (only used by OutputPage)
 			'scripts',
 			'debugScripts',
 			'styles',

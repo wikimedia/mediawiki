@@ -36,9 +36,9 @@ use Psr\Log\NullLogger;
  *   getEntryByName().
  *
  * The in-line documentation incorporates content from the User Timing Specification
- * https://www.w3.org/TR/user-timing/
+ * http://www.w3.org/TR/user-timing/
  * Copyright © 2013 World Wide Web Consortium, (MIT, ERCIM, Keio, Beihang).
- * https://www.w3.org/Consortium/Legal/2015/doc-license
+ * http://www.w3.org/Consortium/Legal/2015/doc-license
  *
  * @since 1.27
  */

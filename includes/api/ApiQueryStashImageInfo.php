@@ -33,7 +33,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 
 	public function execute() {
 		if ( !$this->getUser()->isLoggedIn() ) {
-			$this->dieWithError( 'apierror-mustbeloggedin-uploadstash', 'notloggedin' );
+			$this->dieUsage( 'You must be logged-in to have an upload stash', 'notloggedin' );
 		}
 
 		$params = $this->extractRequestParams();
@@ -45,7 +45,9 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 
 		$result = $this->getResult();
 
-		$this->requireAtLeastOneParameter( $params, 'filekey', 'sessionkey' );
+		if ( !$params['filekey'] && !$params['sessionkey'] ) {
+			$this->dieUsage( 'One of filekey or sessionkey must be supplied', 'nofilekey' );
+		}
 
 		// Alias sessionkey to filekey, but give an existing filekey precedence.
 		if ( !$params['filekey'] && $params['sessionkey'] ) {
@@ -64,9 +66,9 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 			}
 		// @todo Update exception handling here to understand current getFile exceptions
 		} catch ( UploadStashFileNotFoundException $e ) {
-			$this->dieWithException( $e, [ 'wrap' => 'apierror-stashedfilenotfound' ] );
+			$this->dieUsage( 'File not found: ' . $e->getMessage(), 'invalidsessiondata' );
 		} catch ( UploadStashBadPathException $e ) {
-			$this->dieWithException( $e, [ 'wrap' => 'apierror-stashpathinvalid' ] );
+			$this->dieUsage( 'Bad path: ' . $e->getMessage(), 'invalidsessiondata' );
 		}
 	}
 
@@ -123,6 +125,6 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Stashimageinfo';
+		return 'https://www.mediawiki.org/wiki/API:Stashimageinfo';
 	}
 }

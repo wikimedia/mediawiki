@@ -38,7 +38,7 @@ class WikitextContent extends TextContent {
 	}
 
 	/**
-	 * @param string|int $sectionId
+	 * @param string|number $sectionId
 	 *
 	 * @return Content|bool|null
 	 *
@@ -58,7 +58,7 @@ class WikitextContent extends TextContent {
 	}
 
 	/**
-	 * @param string|int|null|bool $sectionId
+	 * @param string|number|null|bool $sectionId
 	 * @param Content $with
 	 * @param string $sectionTitle
 	 *

@@ -2,8 +2,6 @@
 
 namespace MediaWiki\Auth;
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @group AuthManager
  * @group Database
@@ -15,13 +13,11 @@ class LegacyHookPreAuthenticationProviderTest extends \MediaWikiTestCase {
 	 * @return LegacyHookPreAuthenticationProvider
 	 */
 	protected function getProvider() {
-		$request = $this->getMockBuilder( 'FauxRequest' )
-			->setMethods( [ 'getIP' ] )->getMock();
+		$request = $this->getMock( 'FauxRequest', [ 'getIP' ] );
 		$request->expects( $this->any() )->method( 'getIP' )->will( $this->returnValue( '127.0.0.42' ) );
 
 		$manager = new AuthManager(
-			$request,
-			MediaWikiServices::getInstance()->getMainConfig()
+			$request, \ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
 		);
 
 		$provider = new LegacyHookPreAuthenticationProvider();
@@ -40,7 +36,7 @@ class LegacyHookPreAuthenticationProviderTest extends \MediaWikiTestCase {
 	 * @return object $mock->expects( $expect )->method( ... ).
 	 */
 	protected function hook( $hook, $expect ) {
-		$mock = $this->getMockBuilder( __CLASS__ )->setMethods( [ "on$hook" ] )->getMock();
+		$mock = $this->getMock( __CLASS__, [ "on$hook" ] );
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
 			$hook => [ $mock ],
 		] );

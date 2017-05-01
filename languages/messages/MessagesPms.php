@@ -39,3 +39,4 @@ $namespaceNames = [
 	NS_CATEGORY         => 'Categorìa',
 	NS_CATEGORY_TALK    => 'Discussion_ant_sla_categorìa',
 ];
+

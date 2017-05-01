@@ -29,31 +29,31 @@
 abstract class CodeContentHandler extends TextContentHandler {
 
 	/**
-	 * Returns the English language, because code is English, and should be handled as such.
+	 * Returns the english language, because code is english, and should be handled as such.
 	 *
 	 * @param Title $title
 	 * @param Content $content
 	 *
-	 * @return Language
+	 * @return Language Return of wfGetLangObj( 'en' )
 	 *
 	 * @see ContentHandler::getPageLanguage()
 	 */
 	public function getPageLanguage( Title $title, Content $content = null ) {
-		return Language::factory( 'en' );
+		return wfGetLangObj( 'en' );
 	}
 
 	/**
-	 * Returns the English language, because code is English, and should be handled as such.
+	 * Returns the english language, because code is english, and should be handled as such.
 	 *
 	 * @param Title $title
 	 * @param Content $content
 	 *
-	 * @return Language
+	 * @return Language Return of wfGetLangObj( 'en' )
 	 *
 	 * @see ContentHandler::getPageViewLanguage()
 	 */
 	public function getPageViewLanguage( Title $title, Content $content = null ) {
-		return Language::factory( 'en' );
+		return wfGetLangObj( 'en' );
 	}
 
 	/**

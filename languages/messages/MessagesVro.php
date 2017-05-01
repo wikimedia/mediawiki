@@ -39,3 +39,4 @@ $namespaceNames = [
 $magicWords = [
 	'redirect'                  => [ '0', '#saadaq', '#suuna', '#REDIRECT' ],
 ];
+

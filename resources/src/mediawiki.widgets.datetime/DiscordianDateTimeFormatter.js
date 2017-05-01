@@ -32,7 +32,7 @@
 	/**
 	 * @inheritdoc
 	 */
-	mw.widgets.datetime.DiscordianDateTimeFormatter.static.formats = {
+	mw.widgets.datetime.DiscordianDateTimeFormatter[ 'static' ].formats = {
 		'@time': '${hour|0}:${minute|0}:${second|0}',
 		'@date': '$!{dow|full}${not-intercalary|1|, }${season|full}${not-intercalary|1| }${day|#}, ${year|#}',
 		'@datetime': '$!{dow|full}${not-intercalary|1|, }${season|full}${not-intercalary|1| }${day|#}, ${year|#} ${hour|0}:${minute|0}:${second|0} $!{zone|short}',
@@ -67,7 +67,6 @@
 			case 'year|#':
 				spec = {
 					component: 'Year',
-					calendarComponent: true,
 					type: 'number',
 					size: 4,
 					zeropad: false
@@ -77,7 +76,6 @@
 			case 'season|#':
 				spec = {
 					component: 'Season',
-					calendarComponent: true,
 					type: 'number',
 					size: 1,
 					intercalarySize: { 1: 0 },
@@ -88,7 +86,6 @@
 			case 'season|full':
 				spec = {
 					component: 'Season',
-					calendarComponent: true,
 					type: 'string',
 					intercalarySize: { 1: 0 },
 					values: {
@@ -104,7 +101,6 @@
 			case 'dow|full':
 				spec = {
 					component: 'DOW',
-					calendarComponent: true,
 					editable: false,
 					type: 'string',
 					intercalarySize: { 1: 0 },
@@ -123,7 +119,6 @@
 			case 'day|0':
 				spec = {
 					component: 'Day',
-					calendarComponent: true,
 					type: 'string',
 					size: 2,
 					intercalarySize: { 1: 13 },
@@ -151,7 +146,6 @@
 			case 'second|0':
 				spec = {
 					component: tag.charAt( 0 ).toUpperCase() + tag.slice( 1 ),
-					calendarComponent: false,
 					type: 'number',
 					size: 2,
 					zeropad: params[ 0 ] === '0'
@@ -162,7 +156,6 @@
 			case 'millisecond|0':
 				spec = {
 					component: 'Millisecond',
-					calendarComponent: false,
 					type: 'number',
 					size: 3,
 					zeropad: params[ 0 ] === '0'

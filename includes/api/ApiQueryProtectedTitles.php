@@ -135,7 +135,8 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 				}
 
 				if ( isset( $prop['expiry'] ) ) {
-					$vals['expiry'] = ApiResult::formatExpiry( $row->pt_expiry );
+					global $wgContLang;
+					$vals['expiry'] = $wgContLang->formatExpiry( $row->pt_expiry, TS_ISO_8601 );
 				}
 
 				if ( isset( $prop['level'] ) ) {
@@ -234,6 +235,6 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Protectedtitles';
+		return 'https://www.mediawiki.org/wiki/API:Protectedtitles';
 	}
 }

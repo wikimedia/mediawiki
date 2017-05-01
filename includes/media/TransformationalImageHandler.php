@@ -217,7 +217,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 
 			return new MediaTransformError( 'thumbnail_error',
 				$scalerParams['clientWidth'], $scalerParams['clientHeight'],
-				wfMessage( 'filemissing' )
+				wfMessage( 'filemissing' )->text()
 			);
 		}
 
@@ -267,7 +267,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			# Thumbnail was zero-byte and had to be removed
 			return new MediaTransformError( 'thumbnail_error',
 				$scalerParams['clientWidth'], $scalerParams['clientHeight'],
-				wfMessage( 'unknown-error' )
+				wfMessage( 'unknown-error' )->text()
 			);
 		} elseif ( $mto ) {
 			return $mto;
@@ -511,22 +511,21 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 */
 	protected function getMagickVersion() {
 		$cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
-		$method = __METHOD__;
 		return $cache->getWithSetCallback(
 			'imagemagick-version',
 			$cache::TTL_HOUR,
-			function () use ( $method ) {
+			function () {
 				global $wgImageMagickConvertCommand;
 
 				$cmd = wfEscapeShellArg( $wgImageMagickConvertCommand ) . ' -version';
-				wfDebug( $method . ": Running convert -version\n" );
+				wfDebug( __METHOD__ . ": Running convert -version\n" );
 				$retval = '';
-				$return = wfShellExecWithStderr( $cmd, $retval );
+				$return = wfShellExec( $cmd, $retval );
 				$x = preg_match(
 					'/Version: ImageMagick ([0-9]*\.[0-9]*\.[0-9]*)/', $return, $matches
 				);
 				if ( $x != 1 ) {
-					wfDebug( $method . ": ImageMagick version check failed\n" );
+					wfDebug( __METHOD__ . ": ImageMagick version check failed\n" );
 					return false;
 				}
 
@@ -565,11 +564,11 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * @param array $params Rotate parameters.
 	 *   'rotation' clockwise rotation in degrees, allowed are multiples of 90
 	 * @since 1.24 Is non-static. From 1.21 it was static
-	 * @return bool|MediaTransformError
+	 * @return bool
 	 */
 	public function rotate( $file, $params ) {
 		return new MediaTransformError( 'thumbnail_error', 0, 0,
-			static::class . ' rotation not implemented' );
+			get_class( $this ) . ' rotation not implemented' );
 	}
 
 	/**

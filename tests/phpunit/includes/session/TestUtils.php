@@ -3,7 +3,6 @@
 namespace MediaWiki\Session;
 
 use Psr\Log\LoggerInterface;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * Utility functions for Session unit tests
@@ -71,7 +70,7 @@ class TestUtils {
 		}
 
 		$ret = $rc->newInstanceWithoutConstructor();
-		TestingAccessWrapper::newFromObject( $ret )->logger = new \TestLogger;
+		\TestingAccessWrapper::newFromObject( $ret )->logger = new \TestLogger;
 		return $ret;
 	}
 
@@ -96,7 +95,7 @@ class TestUtils {
 		}
 
 		$session = $rc->newInstanceWithoutConstructor();
-		$priv = TestingAccessWrapper::newFromObject( $session );
+		$priv = \TestingAccessWrapper::newFromObject( $session );
 		$priv->backend = $backend;
 		$priv->index = $index;
 		$priv->logger = $logger ?: new \TestLogger;

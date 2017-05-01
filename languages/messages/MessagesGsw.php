@@ -112,3 +112,4 @@ $magicWords = [
 ];
 
 $linkTrail = '/^([äöüßa-z]+)(.*)$/sDu';
+

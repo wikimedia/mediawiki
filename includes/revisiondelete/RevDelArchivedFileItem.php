@@ -69,16 +69,16 @@ class RevDelArchivedFileItem extends RevDelFileItem {
 	}
 
 	protected function getLink() {
-		$date = $this->list->getLanguage()->userTimeAndDate(
-			$this->file->getTimestamp(), $this->list->getUser() );
+		$date = htmlspecialchars( $this->list->getLanguage()->userTimeAndDate(
+			$this->file->getTimestamp(), $this->list->getUser() ) );
 
 		# Hidden files...
 		if ( !$this->canViewContent() ) {
-			$link = htmlspecialchars( $date );
+			$link = $date;
 		} else {
 			$undelete = SpecialPage::getTitleFor( 'Undelete' );
 			$key = $this->file->getKey();
-			$link = $this->getLinkRenderer()->makeLink( $undelete, $date, [],
+			$link = Linker::link( $undelete, $date, [],
 				[
 					'target' => $this->list->title->getPrefixedText(),
 					'file' => $key,
@@ -102,10 +102,10 @@ class RevDelArchivedFileItem extends RevDelFileItem {
 			'width' => $file->getWidth(),
 			'height' => $file->getHeight(),
 			'size' => $file->getSize(),
-			'userhidden' => (bool)$file->isDeleted( Revision::DELETED_USER ),
-			'commenthidden' => (bool)$file->isDeleted( Revision::DELETED_COMMENT ),
-			'contenthidden' => (bool)$this->isDeleted(),
 		];
+		$ret += $file->isDeleted( Revision::DELETED_USER ) ? [ 'userhidden' => '' ] : [];
+		$ret += $file->isDeleted( Revision::DELETED_COMMENT ) ? [ 'commenthidden' => '' ] : [];
+		$ret += $this->isDeleted() ? [ 'contenthidden' => '' ] : [];
 		if ( $this->canViewContent() ) {
 			$ret += [
 				'url' => SpecialPage::getTitleFor( 'Revisiondelete' )->getLinkURL(

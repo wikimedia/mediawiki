@@ -1,3 +1,4 @@
+/* jshint bitwise:false */
 ( function ( mw, $ ) {
 
 	var CONTROL_BUCKET = 'control',
@@ -16,7 +17,6 @@
 	 * @see https://jsbin.com/kejewi/4/watch?js,console
 	 */
 	function hashString( string ) {
-		/* eslint-disable no-bitwise */
 		var hash = 0,
 			i = string.length;
 
@@ -30,7 +30,6 @@
 		hash += ( hash << 15 );
 
 		return hash >>> 0;
-		/* eslint-enable no-bitwise */
 	}
 
 	/**

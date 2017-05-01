@@ -20,9 +20,6 @@
  * @file
  * @ingroup Deployment
  */
-use Wikimedia\Rdbms\Field;
-use Wikimedia\Rdbms\MySQLField;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Mysql update list and mysql-specific update functions.
@@ -294,13 +291,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addField', 'change_tag', 'ct_id', 'patch-change_tag-ct_id.sql' ],
 			[ 'addField', 'tag_summary', 'ts_id', 'patch-tag_summary-ts_id.sql' ],
 			[ 'modifyField', 'recentchanges', 'rc_ip', 'patch-rc_ip_modify.sql' ],
-			[ 'addIndex', 'archive', 'usertext_timestamp', 'patch-rename-ar_usertext_timestamp.sql' ],
-
-			// 1.29
-			[ 'addField', 'externallinks', 'el_index_60', 'patch-externallinks-el_index_60.sql' ],
-			[ 'dropIndex', 'user_groups', 'ug_user_group', 'patch-user_groups-primary-key.sql' ],
-			[ 'addField', 'user_groups', 'ug_expiry', 'patch-user_groups-ug_expiry.sql' ],
-			[ 'addIndex', 'image', 'img_user_timestamp', 'patch-image-user-index-2.sql' ],
 		];
 	}
 
@@ -826,7 +816,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	/**
 	 * Set page_random field to a random value where it is equals to 0.
 	 *
-	 * @see T5946
+	 * @see bug 3946
 	 */
 	protected function doPageRandomUpdate() {
 		$page = $this->db->tableName( 'page' );
@@ -858,8 +848,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			foreach ( $res as $row ) {
 				$count = ( $count + 1 ) % 100;
 				if ( $count == 0 ) {
-					$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-					$lbFactory->waitForReplication( [ 'wiki' => wfWikiID() ] );
+					wfGetLBFactory()->waitForReplication( [ 'wiki' => wfWikiID() ] );
 				}
 				$this->db->insert( 'templatelinks',
 					[

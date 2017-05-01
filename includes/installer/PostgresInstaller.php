@@ -21,10 +21,6 @@
  * @ingroup Deployment
  */
 
-use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\DBQueryError;
-use Wikimedia\Rdbms\DBConnectionError;
-
 /**
  * Class for setting up the MediaWiki database using Postgres.
  *
@@ -160,13 +156,10 @@ class PostgresInstaller extends DatabaseInstaller {
 		try {
 			$db = Database::factory( 'postgres', [
 				'host' => $this->getVar( 'wgDBserver' ),
-				'port' => $this->getVar( 'wgDBport' ),
 				'user' => $user,
 				'password' => $password,
 				'dbname' => $dbName,
-				'schema' => $schema,
-				'keywordTableMap' => [ 'user' => 'mwuser', 'text' => 'pagecontent' ],
-			] );
+				'schema' => $schema ] );
 			$status->value = $db;
 		} catch ( DBConnectionError $e ) {
 			$status->fatal( 'config-connection-error', $e->getMessage() );

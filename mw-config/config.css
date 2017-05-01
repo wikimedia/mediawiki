@@ -15,14 +15,13 @@
 
 .config-block-label {
 	display: block;
-	margin-bottom: 0.2em;
+	margin-bottom: .2em;
 }
 
-.config-block-label label,
-.config-label {
+.config-block-label label, .config-label {
 	font-weight: bold;
-	padding-right: 0.5em;
-	padding-top: 0.2em;
+	padding-right: .5em;
+	padding-top: .2em;
 }
 
 .config-block-elements {
@@ -132,7 +131,7 @@
 .btn-install {
 	font-weight: bold;
 	font-size: 110%;
-	padding: 0.2em 0.3em;
+	padding: .2em .3em;
 }
 
 .success-message {
@@ -152,8 +151,8 @@
 }
 
 .config-plainlink a {
-	background: none !important; /* stylelint-disable-line declaration-no-important */
-	padding: 0 !important; /* stylelint-disable-line declaration-no-important */
+	background: none !important;
+	padding: 0 !important;
 }
 
 .config-download-link {
@@ -185,7 +184,7 @@
 	background-position: left center;
 	background-repeat: no-repeat;
 	cursor: pointer;
-	font-size: 0.8em;
+	font-size: .8em;
 	text-decoration: underline;
 	color: #0645ad;
 }

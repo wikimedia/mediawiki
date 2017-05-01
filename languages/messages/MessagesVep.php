@@ -85,3 +85,4 @@ $magicWords = [
 	'fullurl'                   => [ '0', 'TÄUZ\'URL:', 'KOGUURL:', 'FULLURL:' ],
 	'index'                     => [ '1', '__INDEKS__', 'INDEKSIGA', '__INDEX__' ],
 ];
+

@@ -129,7 +129,7 @@ class CategoryMembershipChange {
 			$this->getUser(),
 			$this->getChangeMessageText(
 				$type,
-				$this->pageTitle->getPrefixedText(),
+				[ 'prefixedText' => $this->pageTitle->getPrefixedText() ],
 				$this->numTemplateLinks
 			),
 			$this->pageTitle,
@@ -245,12 +245,13 @@ class CategoryMembershipChange {
 	 *
 	 * @param int $type may be CategoryMembershipChange::CATEGORY_ADDITION
 	 * or CategoryMembershipChange::CATEGORY_REMOVAL
-	 * @param string $prefixedText result of Title::->getPrefixedText()
+	 * @param array $params
+	 * - prefixedText: result of Title::->getPrefixedText()
 	 * @param int $numTemplateLinks
 	 *
 	 * @return string
 	 */
-	private function getChangeMessageText( $type, $prefixedText, $numTemplateLinks ) {
+	private function getChangeMessageText( $type, array $params, $numTemplateLinks ) {
 		$array = [
 			self::CATEGORY_ADDITION => 'recentchanges-page-added-to-category',
 			self::CATEGORY_REMOVAL => 'recentchanges-page-removed-from-category',
@@ -262,7 +263,7 @@ class CategoryMembershipChange {
 			$msgKey .= '-bundled';
 		}
 
-		return wfMessage( $msgKey, $prefixedText )->inContentLanguage()->text();
+		return wfMessage( $msgKey, $params )->inContentLanguage()->text();
 	}
 
 	/**

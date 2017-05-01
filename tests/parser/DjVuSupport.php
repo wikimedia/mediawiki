@@ -55,3 +55,4 @@ class DjVuSupport {
 			&& is_executable( $wgDjvuTxt );
 	}
 }
+

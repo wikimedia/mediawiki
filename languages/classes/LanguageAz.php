@@ -33,7 +33,7 @@ class LanguageAz extends Language {
 	 * @return mixed|string
 	 */
 	public function ucfirst( $string ) {
-		if ( substr( $string, 0, 1 ) === 'i' ) {
+		if ( $string[0] == 'i' ) {
 			return 'İ' . substr( $string, 1 );
 		}
 		return parent::ucfirst( $string );

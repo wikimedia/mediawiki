@@ -42,8 +42,6 @@
  * @see https://nn.wikipedia.org/w/index.php?title=Brukar:Dittaeva/LanguageNn.php&action=history
  */
 
-$fallback = 'nb';
-
 $datePreferences = [
 	'default',
 	'dmyt',
@@ -96,9 +94,9 @@ $bookstoreList = [
 	'Haugenbok'    => 'http://www.haugenbok.no/resultat.cfm?st=hurtig&isbn=$1',
 	'Akademika'    => 'http://www.akademika.no/sok.php?isbn=$1',
 	'Gnist'        => 'http://www.gnist.no/sok.php?isbn=$1',
-	'Amazon.co.uk' => 'https://www.amazon.co.uk/exec/obidos/ISBN=$1',
-	'Amazon.de'    => 'https://www.amazon.de/exec/obidos/ISBN=$1',
-	'Amazon.com'   => 'https://www.amazon.com/exec/obidos/ISBN=$1'
+	'Amazon.co.uk' => 'http://www.amazon.co.uk/exec/obidos/ISBN=$1',
+	'Amazon.de'    => 'http://www.amazon.de/exec/obidos/ISBN=$1',
+	'Amazon.com'   => 'http://www.amazon.com/exec/obidos/ISBN=$1'
 ];
 
 $magicWords = [
@@ -321,3 +319,4 @@ $separatorTransformTable = [
 	'.' => ','
 ];
 $linkTrail = '/^([æøåa-z]+)(.*)$/sDu';
+

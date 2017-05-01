@@ -36,26 +36,22 @@ class ApiOptions extends ApiBase {
 	 */
 	public function execute() {
 		if ( $this->getUser()->isAnon() ) {
-			$this->dieWithError(
-				[ 'apierror-mustbeloggedin', $this->msg( 'action-editmyoptions' ) ], 'notloggedin'
-			);
+			$this->dieUsage( 'Anonymous users cannot change preferences', 'notloggedin' );
+		} elseif ( !$this->getUser()->isAllowed( 'editmyoptions' ) ) {
+			$this->dieUsage( "You don't have permission to edit your options", 'permissiondenied' );
 		}
-
-		$this->checkUserRightsAny( 'editmyoptions' );
 
 		$params = $this->extractRequestParams();
 		$changed = false;
 
 		if ( isset( $params['optionvalue'] ) && !isset( $params['optionname'] ) ) {
-			$this->dieWithError( [ 'apierror-missingparam', 'optionname' ] );
+			$this->dieUsageMsg( [ 'missingparam', 'optionname' ] );
 		}
 
 		// Load the user from the master to reduce CAS errors on double post (T95839)
 		$user = $this->getUser()->getInstanceForUpdate();
 		if ( !$user ) {
-			$this->dieWithError(
-				[ 'apierror-mustbeloggedin', $this->msg( 'action-editmyoptions' ) ], 'notloggedin'
-			);
+			$this->dieUsage( 'Anonymous users cannot change preferences', 'notloggedin' );
 		}
 
 		if ( $params['reset'] ) {
@@ -75,7 +71,7 @@ class ApiOptions extends ApiBase {
 			$changes[$params['optionname']] = $newValue;
 		}
 		if ( !$changed && !count( $changes ) ) {
-			$this->dieWithError( 'apierror-nochanges' );
+			$this->dieUsage( 'No changes were requested', 'nochanges' );
 		}
 
 		$prefs = Preferences::getPreferences( $user, $this->getContext() );
@@ -102,26 +98,26 @@ class ApiOptions extends ApiBase {
 				case 'userjs':
 					// Allow non-default preferences prefixed with 'userjs-', to be set by user scripts
 					if ( strlen( $key ) > 255 ) {
-						$validation = $this->msg( 'apiwarn-validationfailed-keytoolong', Message::numParam( 255 ) );
+						$validation = 'key too long (no more than 255 bytes allowed)';
 					} elseif ( preg_match( '/[^a-zA-Z0-9_-]/', $key ) !== 0 ) {
-						$validation = $this->msg( 'apiwarn-validationfailed-badchars' );
+						$validation = 'invalid key (only a-z, A-Z, 0-9, _, - allowed)';
 					} else {
 						$validation = true;
 					}
 					break;
 				case 'special':
-					$validation = $this->msg( 'apiwarn-validationfailed-cannotset' );
+					$validation = 'cannot be set by this module';
 					break;
 				case 'unused':
 				default:
-					$validation = $this->msg( 'apiwarn-validationfailed-badpref' );
+					$validation = 'not a valid preference';
 					break;
 			}
 			if ( $validation === true ) {
 				$user->setOption( $key, $value );
 				$changed = true;
 			} else {
-				$this->addWarning( [ 'apiwarn-validationfailed', wfEscapeWikitext( $key ), $validation ] );
+				$this->setWarning( "Validation error for '$key': $validation" );
 			}
 		}
 
@@ -169,7 +165,7 @@ class ApiOptions extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Options';
+		return 'https://www.mediawiki.org/wiki/API:Options';
 	}
 
 	protected function getExamplesMessages() {

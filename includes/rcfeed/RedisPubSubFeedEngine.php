@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +20,7 @@
  */
 
 /**
- * Send recent change notifications via Redis Pub/Sub
+ * Emit a recent change notification via Redis Pub/Sub
  *
  * If the feed URI contains a path component, it will be used to generate a
  * channel name by stripping the leading slash and replacing any remaining
@@ -35,10 +36,10 @@
  *
  * @since 1.22
  */
-class RedisPubSubFeedEngine extends RCFeedEngine {
+class RedisPubSubFeedEngine implements RCFeedEngine {
 
 	/**
-	 * @see FormattedRCFeed::send
+	 * @see RCFeedEngine::send
 	 */
 	public function send( array $feed, $line ) {
 		$parsed = wfParseUrl( $feed['uri'] );

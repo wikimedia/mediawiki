@@ -31,6 +31,7 @@ class SearchInputWidget extends TitleInputWidget {
 	public function __construct( array $config = [] ) {
 		$config = array_merge( [
 			'maxLength' => null,
+			'type' => 'search',
 			'icon' => 'search',
 		], $config );
 
@@ -53,10 +54,6 @@ class SearchInputWidget extends TitleInputWidget {
 
 		// Initialization
 		$this->addClasses( [ 'mw-widget-searchInputWidget' ] );
-	}
-
-	protected function getInputElement( $config ) {
-		return ( new \OOUI\Tag( 'input' ) )->setAttributes( [ 'type' => 'search' ] );
 	}
 
 	protected function getJavaScriptClassName() {

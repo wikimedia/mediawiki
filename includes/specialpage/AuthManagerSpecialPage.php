@@ -198,7 +198,9 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * @param string $subPage Subpage of the special page.
 	 * @return string an AuthManager::ACTION_* constant.
 	 */
-	abstract protected function getDefaultAction( $subPage );
+	protected function getDefaultAction( $subPage ) {
+		throw new BadMethodCallException( 'Subclass did not implement getDefaultAction' );
+	}
 
 	/**
 	 * Return custom message key.

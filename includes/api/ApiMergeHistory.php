@@ -42,24 +42,24 @@ class ApiMergeHistory extends ApiBase {
 		if ( isset( $params['from'] ) ) {
 			$fromTitle = Title::newFromText( $params['from'] );
 			if ( !$fromTitle || $fromTitle->isExternal() ) {
-				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['from'] ) ] );
+				$this->dieUsageMsg( [ 'invalidtitle', $params['from'] ] );
 			}
 		} elseif ( isset( $params['fromid'] ) ) {
 			$fromTitle = Title::newFromID( $params['fromid'] );
 			if ( !$fromTitle ) {
-				$this->dieWithError( [ 'apierror-nosuchpageid', $params['fromid'] ] );
+				$this->dieUsageMsg( [ 'nosuchpageid', $params['fromid'] ] );
 			}
 		}
 
 		if ( isset( $params['to'] ) ) {
 			$toTitle = Title::newFromText( $params['to'] );
 			if ( !$toTitle || $toTitle->isExternal() ) {
-				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['to'] ) ] );
+				$this->dieUsageMsg( [ 'invalidtitle', $params['to'] ] );
 			}
 		} elseif ( isset( $params['toid'] ) ) {
 			$toTitle = Title::newFromID( $params['toid'] );
 			if ( !$toTitle ) {
-				$this->dieWithError( [ 'apierror-nosuchpageid', $params['toid'] ] );
+				$this->dieUsageMsg( [ 'nosuchpageid', $params['toid'] ] );
 			}
 		}
 
@@ -137,6 +137,6 @@ class ApiMergeHistory extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Mergehistory';
+		return 'https://www.mediawiki.org/wiki/API:Mergehistory';
 	}
 }

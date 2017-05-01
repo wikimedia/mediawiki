@@ -21,8 +21,6 @@
  * @ingroup Ajax
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @defgroup Ajax Ajax
  */
@@ -92,6 +90,7 @@ class AjaxDispatcher {
 				# Or we could throw an exception:
 				# throw new MWException( __METHOD__ . ' called without any data (mode empty).' );
 		}
+
 	}
 
 	/**
@@ -137,8 +136,7 @@ class AjaxDispatcher {
 					}
 
 					// Make sure DB commit succeeds before sending a response
-					$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-					$lbFactory->commitMasterChanges( __METHOD__ );
+					wfGetLBFactory()->commitMasterChanges( __METHOD__ );
 
 					$result->sendHeaders();
 					$result->printText();
@@ -158,5 +156,6 @@ class AjaxDispatcher {
 				}
 			}
 		}
+
 	}
 }

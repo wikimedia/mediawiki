@@ -35,3 +35,4 @@ $namespaceGenderAliases = [];
 $linkPrefixExtension = true;
 $linkTrail = '/^([a-zа-яĕçăӳ"»]+)(.*)$/sDu';
 $linkPrefixCharset = 'a-zA-Z"\\x{80}-\\x{10ffff}';
+

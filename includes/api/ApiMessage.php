@@ -36,10 +36,9 @@ interface IApiMessage extends MessageSpecifier {
 	/**
 	 * Returns a machine-readable code for use by the API
 	 *
-	 * If no code was specifically set, the message key is used as the code
-	 * after removing "apiwarn-" or "apierror-" prefixes and applying
-	 * backwards-compatibility mappings.
-	 *
+	 * The message key is often sufficient, but sometimes there are multiple
+	 * messages used for what is really the same underlying condition (e.g.
+	 * badaccess-groups and badaccess-group0)
 	 * @return string
 	 */
 	public function getApiCode();
@@ -52,7 +51,7 @@ interface IApiMessage extends MessageSpecifier {
 
 	/**
 	 * Sets the machine-readable code for use by the API
-	 * @param string|null $code If null, uses the default (see self::getApiCode())
+	 * @param string|null $code If null, the message key should be returned by self::getApiCode()
 	 * @param array|null $data If non-null, passed to self::setApiData()
 	 */
 	public function setApiCode( $code, array $data = null );
@@ -70,96 +69,14 @@ interface IApiMessage extends MessageSpecifier {
  * @ingroup API
  */
 trait ApiMessageTrait {
-
-	/**
-	 * Compatibility code mappings for various MW messages.
-	 * @todo Ideally anything relying on this should be changed to use ApiMessage.
-	 */
-	protected static $messageMap = [
-		'actionthrottledtext' => 'ratelimited',
-		'autoblockedtext' => 'autoblocked',
-		'badaccess-group0' => 'permissiondenied',
-		'badaccess-groups' => 'permissiondenied',
-		'badipaddress' => 'invalidip',
-		'blankpage' => 'emptypage',
-		'blockedtext' => 'blocked',
-		'cannotdelete' => 'cantdelete',
-		'cannotundelete' => 'cantundelete',
-		'cantmove-titleprotected' => 'protectedtitle',
-		'cantrollback' => 'onlyauthor',
-		'confirmedittext' => 'confirmemail',
-		'content-not-allowed-here' => 'contentnotallowedhere',
-		'deleteprotected' => 'cantedit',
-		'delete-toobig' => 'bigdelete',
-		'edit-conflict' => 'editconflict',
-		'imagenocrossnamespace' => 'nonfilenamespace',
-		'imagetypemismatch' => 'filetypemismatch',
-		'importbadinterwiki' => 'badinterwiki',
-		'importcantopen' => 'cantopenfile',
-		'import-noarticle' => 'badinterwiki',
-		'importnofile' => 'nofile',
-		'importuploaderrorpartial' => 'partialupload',
-		'importuploaderrorsize' => 'filetoobig',
-		'importuploaderrortemp' => 'notempdir',
-		'ipb_already_blocked' => 'alreadyblocked',
-		'ipb_blocked_as_range' => 'blockedasrange',
-		'ipb_cant_unblock' => 'cantunblock',
-		'ipb_expiry_invalid' => 'invalidexpiry',
-		'ip_range_invalid' => 'invalidrange',
-		'mailnologin' => 'cantsend',
-		'markedaspatrollederror-noautopatrol' => 'noautopatrol',
-		'movenologintext' => 'cantmove-anon',
-		'movenotallowed' => 'cantmove',
-		'movenotallowedfile' => 'cantmovefile',
-		'namespaceprotected' => 'protectednamespace',
-		'nocreate-loggedin' => 'cantcreate',
-		'nocreatetext' => 'cantcreate-anon',
-		'noname' => 'invaliduser',
-		'nosuchusershort' => 'nosuchuser',
-		'notanarticle' => 'missingtitle',
-		'nouserspecified' => 'invaliduser',
-		'ns-specialprotected' => 'unsupportednamespace',
-		'protect-cantedit' => 'cantedit',
-		'protectedinterface' => 'protectednamespace-interface',
-		'protectedpagetext' => 'protectedpage',
-		'range_block_disabled' => 'rangedisabled',
-		'rcpatroldisabled' => 'patroldisabled',
-		'readonlytext' => 'readonly',
-		'sessionfailure' => 'badtoken',
-		'systemblockedtext' => 'blocked',
-		'titleprotected' => 'protectedtitle',
-		'undo-failure' => 'undofailure',
-		'userrights-nodatabase' => 'nosuchdatabase',
-		'userrights-no-interwiki' => 'nointerwikiuserrights',
-	];
-
 	protected $apiCode = null;
 	protected $apiData = [];
 
 	public function getApiCode() {
-		if ( $this->apiCode === null ) {
-			$key = $this->getKey();
-			if ( isset( self::$messageMap[$key] ) ) {
-				$this->apiCode = self::$messageMap[$key];
-			} elseif ( $key === 'apierror-missingparam' ) {
-				/// @todo: Kill this case along with ApiBase::$messageMap
-				$this->apiCode = 'no' . $this->getParams()[0];
-			} elseif ( substr( $key, 0, 8 ) === 'apiwarn-' ) {
-				$this->apiCode = substr( $key, 8 );
-			} elseif ( substr( $key, 0, 9 ) === 'apierror-' ) {
-				$this->apiCode = substr( $key, 9 );
-			} else {
-				$this->apiCode = $key;
-			}
-		}
-		return $this->apiCode;
+		return $this->apiCode === null ? $this->getKey() : $this->apiCode;
 	}
 
 	public function setApiCode( $code, array $data = null ) {
-		if ( $code !== null && !( is_string( $code ) && $code !== '' ) ) {
-			throw new InvalidArgumentException( "Invalid code \"$code\"" );
-		}
-
 		$this->apiCode = $code;
 		if ( $data !== null ) {
 			$this->setApiData( $data );
@@ -207,25 +124,9 @@ class ApiMessage extends Message implements IApiMessage {
 	 * @param Message|RawMessage|array|string $msg
 	 * @param string|null $code
 	 * @param array|null $data
-	 * @return IApiMessage
+	 * @return ApiMessage
 	 */
 	public static function create( $msg, $code = null, array $data = null ) {
-		if ( is_array( $msg ) ) {
-			// From StatusValue
-			if ( isset( $msg['message'] ) ) {
-				if ( isset( $msg['params'] ) ) {
-					$msg = array_merge( [ $msg['message'] ], $msg['params'] );
-				} else {
-					$msg = [ $msg['message'] ];
-				}
-			}
-
-			// Weirdness that comes in sometimes, including the above
-			if ( $msg[0] instanceof MessageSpecifier ) {
-				$msg = $msg[0];
-			}
-		}
-
 		if ( $msg instanceof IApiMessage ) {
 			return $msg;
 		} elseif ( $msg instanceof RawMessage ) {
@@ -242,6 +143,7 @@ class ApiMessage extends Message implements IApiMessage {
 	 *  - string: passed to Message::__construct
 	 * @param string|null $code
 	 * @param array|null $data
+	 * @return ApiMessage
 	 */
 	public function __construct( $msg, $code = null, array $data = null ) {
 		if ( $msg instanceof Message ) {
@@ -256,7 +158,8 @@ class ApiMessage extends Message implements IApiMessage {
 		} else {
 			parent::__construct( $msg );
 		}
-		$this->setApiCode( $code, $data );
+		$this->apiCode = $code;
+		$this->apiData = (array)$data;
 	}
 }
 
@@ -289,6 +192,7 @@ class ApiRawMessage extends RawMessage implements IApiMessage {
 		} else {
 			parent::__construct( $msg );
 		}
-		$this->setApiCode( $code, $data );
+		$this->apiCode = $code;
+		$this->apiData = (array)$data;
 	}
 }

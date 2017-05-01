@@ -40,16 +40,19 @@ class ApiPatrol extends ApiBase {
 		if ( isset( $params['rcid'] ) ) {
 			$rc = RecentChange::newFromId( $params['rcid'] );
 			if ( !$rc ) {
-				$this->dieWithError( [ 'apierror-nosuchrcid', $params['rcid'] ] );
+				$this->dieUsageMsg( [ 'nosuchrcid', $params['rcid'] ] );
 			}
 		} else {
 			$rev = Revision::newFromId( $params['revid'] );
 			if ( !$rev ) {
-				$this->dieWithError( [ 'apierror-nosuchrevid', $params['revid'] ] );
+				$this->dieUsageMsg( [ 'nosuchrevid', $params['revid'] ] );
 			}
 			$rc = $rev->getRecentChange();
 			if ( !$rc ) {
-				$this->dieWithError( [ 'apierror-notpatrollable', $params['revid'] ] );
+				$this->dieUsage(
+					'The revision ' . $params['revid'] . " can't be patrolled as it's too old",
+					'notpatrollable'
+				);
 			}
 		}
 
@@ -67,7 +70,7 @@ class ApiPatrol extends ApiBase {
 		$retval = $rc->doMarkPatrolled( $user, false, $tags );
 
 		if ( $retval ) {
-			$this->dieStatus( $this->errorArrayToStatus( $retval, $user ) );
+			$this->dieUsageMsg( reset( $retval ) );
 		}
 
 		$result = [ 'rcid' => intval( $rc->getAttribute( 'rc_id' ) ) ];
@@ -112,6 +115,6 @@ class ApiPatrol extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Patrol';
+		return 'https://www.mediawiki.org/wiki/API:Patrol';
 	}
 }

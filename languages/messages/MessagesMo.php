@@ -18,3 +18,4 @@ $specialPageAliases = [
 	'Preferences'               => [ 'Преферинце' ],
 	'Recentchanges'             => [ 'Модификэрьреченте' ],
 ];
+

@@ -60,7 +60,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		if ( isset( $show[WatchedItemQueryService::FILTER_CHANGED] )
 			&& isset( $show[WatchedItemQueryService::FILTER_NOT_CHANGED] )
 		) {
-			$this->dieWithError( 'apierror-show' );
+			$this->dieUsageMsg( 'show' );
 		}
 
 		$options = [];
@@ -170,8 +170,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_TYPE => 'user'
 			],
 			'token' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_SENSITIVE => true,
+				ApiBase::PARAM_TYPE => 'string'
 			],
 			'dir' => [
 				ApiBase::PARAM_DFLT => 'ascending',
@@ -199,6 +198,6 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Watchlistraw';
+		return 'https://www.mediawiki.org/wiki/API:Watchlistraw';
 	}
 }

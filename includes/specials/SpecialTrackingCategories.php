@@ -36,6 +36,26 @@ class SpecialTrackingCategories extends SpecialPage {
 		parent::__construct( 'TrackingCategories' );
 	}
 
+	/**
+	 * Tracking categories that exist in core
+	 *
+	 * @var array
+	 */
+	private static $coreTrackingCategories = [
+		'index-category',
+		'noindex-category',
+		'duplicate-args-category',
+		'expensive-parserfunction-category',
+		'post-expand-template-argument-category',
+		'post-expand-template-inclusion-category',
+		'hidden-category-category',
+		'broken-file-category',
+		'node-count-exceeded-category',
+		'expansion-depth-exceeded-category',
+		'restricted-displaytitle-ignored',
+		'deprecated-self-close-category',
+	];
+
 	function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
@@ -56,11 +76,10 @@ class SpecialTrackingCategories extends SpecialPage {
 			</tr></thead>"
 		);
 
-		$trackingCategories = new TrackingCategories( $this->getConfig() );
-		$categoryList = $trackingCategories->getTrackingCategories();
+		$trackingCategories = $this->prepareTrackingCategoriesData();
 
 		$batch = new LinkBatch();
-		foreach ( $categoryList as $catMsg => $data ) {
+		foreach ( $trackingCategories as $catMsg => $data ) {
 			$batch->addObj( $data['msg'] );
 			foreach ( $data['cats'] as $catTitle ) {
 				$batch->addObj( $catTitle );
@@ -68,29 +87,21 @@ class SpecialTrackingCategories extends SpecialPage {
 		}
 		$batch->execute();
 
-		Hooks::run( 'SpecialTrackingCategories::preprocess', [ $this, $categoryList ] );
-
-		$linkRenderer = $this->getLinkRenderer();
-
-		foreach ( $categoryList as $catMsg => $data ) {
+		foreach ( $trackingCategories as $catMsg => $data ) {
 			$allMsgs = [];
 			$catDesc = $catMsg . '-desc';
 
-			$catMsgTitleText = $linkRenderer->makeLink(
+			$catMsgTitleText = Linker::link(
 				$data['msg'],
-				$catMsg
+				htmlspecialchars( $catMsg )
 			);
 
 			foreach ( $data['cats'] as $catTitle ) {
-				$html = $linkRenderer->makeLink(
+				$catTitleText = Linker::link(
 					$catTitle,
-					$catTitle->getText()
+					htmlspecialchars( $catTitle->getText() )
 				);
-
-				Hooks::run( 'SpecialTrackingCategories::generateCatLink',
-					[ $this, $catTitle, &$html ] );
-
-				$allMsgs[] = $html;
+				$allMsgs[] = $catTitleText;
 			}
 
 			# Extra message, when no category was found
@@ -124,7 +135,6 @@ class SpecialTrackingCategories extends SpecialPage {
 		$this->getOutput()->addHTML( Html::closeElement( 'table' ) );
 	}
 
-<<<<<<< HEAD
 	/**
 	 * Read the global and extract title objects from the corresponding messages
 	 * @return array Array( 'msg' => Title, 'cats' => Title[] )
@@ -199,8 +209,6 @@ class SpecialTrackingCategories extends SpecialPage {
 		return $trackingCategories;
 	}
 
-=======
->>>>>>> wikimedia/master
 	protected function getGroupName() {
 		return 'pages';
 	}

@@ -4,7 +4,7 @@
  * A checkbox field
  */
 class HTMLCheckField extends HTMLFormField {
-	public function getInputHTML( $value ) {
+	function getInputHTML( $value ) {
 		global $wgUseMediaWikiUIEverywhere;
 
 		if ( !empty( $this->mParams['invert'] ) ) {
@@ -79,7 +79,7 @@ class HTMLCheckField extends HTMLFormField {
 	 *
 	 * @return string
 	 */
-	public function getLabel() {
+	function getLabel() {
 		if ( $this->mParent instanceof OOUIHTMLForm ) {
 			return $this->mLabel;
 		} elseif (
@@ -113,7 +113,7 @@ class HTMLCheckField extends HTMLFormField {
 	 *
 	 * @return bool
 	 */
-	public function loadDataFromRequest( $request ) {
+	function loadDataFromRequest( $request ) {
 		$invert = isset( $this->mParams['invert'] ) && $this->mParams['invert'];
 
 		// GetCheck won't work like we want for checks.

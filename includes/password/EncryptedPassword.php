@@ -41,33 +41,20 @@ class EncryptedPassword extends ParameterizedPassword {
 	public function crypt( $password ) {
 		$secret = $this->config['secrets'][$this->params['secret']];
 
-		// Clear error string
-		while ( openssl_error_string() !== false );
-
 		if ( $this->hash ) {
-			$decrypted = openssl_decrypt(
-					$this->hash, $this->params['cipher'],
-					$secret, 0, base64_decode( $this->args[0] ) );
-			if ( $decrypted === false ) {
-				throw new PasswordError( 'Error decrypting password: ' . openssl_error_string() );
-			}
-			$underlyingPassword = $this->factory->newFromCiphertext( $decrypted );
+			$underlyingPassword = $this->factory->newFromCiphertext( openssl_decrypt(
+					base64_decode( $this->hash ), $this->params['cipher'],
+					$secret, 0, base64_decode( $this->args[0] )
+				) );
 		} else {
 			$underlyingPassword = $this->factory->newFromType( $this->config['underlying'] );
 		}
 
 		$underlyingPassword->crypt( $password );
-		if ( count( $this->args ) ) {
-			$iv = base64_decode( $this->args[0] );
-		} else {
-			$iv = MWCryptRand::generate( openssl_cipher_iv_length( $this->params['cipher'] ), true );
-		}
+		$iv = MWCryptRand::generate( openssl_cipher_iv_length( $this->params['cipher'] ), true );
 
 		$this->hash = openssl_encrypt(
 			$underlyingPassword->toString(), $this->params['cipher'], $secret, 0, $iv );
-		if ( $this->hash === false ) {
-			throw new PasswordError( 'Error encrypting password: ' . openssl_error_string() );
-		}
 		$this->args = [ base64_encode( $iv ) ];
 	}
 
@@ -78,42 +65,32 @@ class EncryptedPassword extends ParameterizedPassword {
 	 * @return bool True if the password was updated
 	 */
 	public function update() {
-		if ( count( $this->args ) != 1 || $this->params == $this->getDefaultParams() ) {
+		if ( count( $this->args ) != 2 || $this->params == $this->getDefaultParams() ) {
 			// Hash does not need updating
 			return false;
 		}
 
-		// Clear error string
-		while ( openssl_error_string() !== false );
-
 		// Decrypt the underlying hash
 		$underlyingHash = openssl_decrypt(
-			$this->hash,
+			base64_decode( $this->args[1] ),
 			$this->params['cipher'],
 			$this->config['secrets'][$this->params['secret']],
 			0,
 			base64_decode( $this->args[0] )
 		);
-		if ( $underlyingHash === false ) {
-			throw new PasswordError( 'Error decrypting password: ' . openssl_error_string() );
-		}
 
 		// Reset the params
 		$this->params = $this->getDefaultParams();
 
 		// Check the key size with the new params
 		$iv = MWCryptRand::generate( openssl_cipher_iv_length( $this->params['cipher'] ), true );
-		$this->hash = openssl_encrypt(
+		$this->hash = base64_encode( openssl_encrypt(
 				$underlyingHash,
 				$this->params['cipher'],
 				$this->config['secrets'][$this->params['secret']],
 				0,
 				$iv
-			);
-		if ( $this->hash === false ) {
-			throw new PasswordError( 'Error encrypting password: ' . openssl_error_string() );
-		}
-
+			) );
 		$this->args = [ base64_encode( $iv ) ];
 
 		return true;

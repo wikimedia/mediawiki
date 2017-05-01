@@ -29,12 +29,18 @@
  */
 class ApiProtect extends ApiBase {
 	public function execute() {
+		global $wgContLang;
+
 		$params = $this->extractRequestParams();
 
 		$pageObj = $this->getTitleOrPageId( $params, 'fromdbmaster' );
 		$titleObj = $pageObj->getTitle();
 
-		$this->checkTitleUserPermissions( $titleObj, 'protect' );
+		$errors = $titleObj->getUserPermissionsErrors( 'protect', $this->getUser() );
+		if ( $errors ) {
+			// We don't care about multiple errors, just report one of them
+			$this->dieUsageMsg( reset( $errors ) );
+		}
 
 		$user = $this->getUser();
 		$tags = $params['tags'];
@@ -52,8 +58,8 @@ class ApiProtect extends ApiBase {
 			if ( count( $expiry ) == 1 ) {
 				$expiry = array_fill( 0, count( $params['protections'] ), $expiry[0] );
 			} else {
-				$this->dieWithError( [
-					'apierror-toofewexpiries',
+				$this->dieUsageMsg( [
+					'toofewexpiries',
 					count( $expiry ),
 					count( $params['protections'] )
 				] );
@@ -70,17 +76,17 @@ class ApiProtect extends ApiBase {
 			$protections[$p[0]] = ( $p[1] == 'all' ? '' : $p[1] );
 
 			if ( $titleObj->exists() && $p[0] == 'create' ) {
-				$this->dieWithError( 'apierror-create-titleexists' );
+				$this->dieUsageMsg( 'create-titleexists' );
 			}
 			if ( !$titleObj->exists() && $p[0] != 'create' ) {
-				$this->dieWithError( 'apierror-missingtitle-createonly' );
+				$this->dieUsageMsg( 'missingtitle-createonly' );
 			}
 
 			if ( !in_array( $p[0], $restrictionTypes ) && $p[0] != 'create' ) {
-				$this->dieWithError( [ 'apierror-protect-invalidaction', wfEscapeWikiText( $p[0] ) ] );
+				$this->dieUsageMsg( [ 'protect-invalidaction', $p[0] ] );
 			}
 			if ( !in_array( $p[1], $this->getConfig()->get( 'RestrictionLevels' ) ) && $p[1] != 'all' ) {
-				$this->dieWithError( [ 'apierror-protect-invalidlevel', wfEscapeWikiText( $p[1] ) ] );
+				$this->dieUsageMsg( [ 'protect-invalidlevel', $p[1] ] );
 			}
 
 			if ( wfIsInfinity( $expiry[$i] ) ) {
@@ -88,18 +94,18 @@ class ApiProtect extends ApiBase {
 			} else {
 				$exp = strtotime( $expiry[$i] );
 				if ( $exp < 0 || !$exp ) {
-					$this->dieWithError( [ 'apierror-invalidexpiry', wfEscapeWikiText( $expiry[$i] ) ] );
+					$this->dieUsageMsg( [ 'invalidexpiry', $expiry[$i] ] );
 				}
 
 				$exp = wfTimestamp( TS_MW, $exp );
 				if ( $exp < wfTimestampNow() ) {
-					$this->dieWithError( [ 'apierror-pastexpiry', wfEscapeWikiText( $expiry[$i] ) ] );
+					$this->dieUsageMsg( [ 'pastexpiry', $expiry[$i] ] );
 				}
 				$expiryarray[$p[0]] = $exp;
 			}
 			$resultProtections[] = [
 				$p[0] => $protections[$p[0]],
-				'expiry' => ApiResult::formatExpiry( $expiryarray[$p[0]], 'infinite' ),
+				'expiry' => $wgContLang->formatExpiry( $expiryarray[$p[0]], TS_ISO_8601, 'infinite' ),
 			];
 		}
 
@@ -199,6 +205,6 @@ class ApiProtect extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Protect';
+		return 'https://www.mediawiki.org/wiki/API:Protect';
 	}
 }

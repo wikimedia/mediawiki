@@ -52,7 +52,7 @@ class ApiResetPassword extends ApiBase {
 
 	public function execute() {
 		if ( !$this->hasAnyRoutes() ) {
-			$this->dieWithError( 'apihelp-resetpassword-description-noroutes', 'moduledisabled' );
+			$this->dieUsage( 'No password reset routes are available.', 'moduledisabled' );
 		}
 
 		$params = $this->extractRequestParams() + [
@@ -65,13 +65,13 @@ class ApiResetPassword extends ApiBase {
 
 		$passwordReset = new PasswordReset( $this->getConfig(), AuthManager::singleton() );
 
-		$status = $passwordReset->isAllowed( $this->getUser() );
+		$status = $passwordReset->isAllowed( $this->getUser(), $params['capture'] );
 		if ( !$status->isOK() ) {
 			$this->dieStatus( Status::wrap( $status ) );
 		}
 
 		$status = $passwordReset->execute(
-			$this->getUser(), $params['user'], $params['email']
+			$this->getUser(), $params['user'], $params['email'], $params['capture']
 		);
 		if ( !$status->isOK() ) {
 			$status->value = null;
@@ -80,6 +80,12 @@ class ApiResetPassword extends ApiBase {
 
 		$result = $this->getResult();
 		$result->addValue( [ 'resetpassword' ], 'status', 'success' );
+		if ( $params['capture'] ) {
+			$passwords = $status->getValue() ?: [];
+			ApiResult::setArrayType( $passwords, 'kvp', 'user' );
+			ApiResult::setIndexedTagName( $passwords, 'p' );
+			$result->addValue( [ 'resetpassword' ], 'passwords', $passwords );
+		}
 	}
 
 	public function isWriteMode() {
@@ -105,6 +111,7 @@ class ApiResetPassword extends ApiBase {
 			'email' => [
 				ApiBase::PARAM_TYPE => 'string',
 			],
+			'capture' => false,
 		];
 
 		$resetRoutes = $this->getConfig()->get( 'PasswordResetRoutes' );
@@ -134,6 +141,6 @@ class ApiResetPassword extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Manage_authentication_data';
+		return 'https://www.mediawiki.org/wiki/API:Manage_authentication_data';
 	}
 }

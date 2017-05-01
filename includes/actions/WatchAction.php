@@ -35,8 +35,11 @@ class WatchAction extends FormAction {
 		return false;
 	}
 
+	/**
+	 * @return string HTML
+	 */
 	protected function getDescription() {
-		return '';
+		return $this->msg( 'addwatch' )->escaped();
 	}
 
 	public function onSubmit( $data ) {
@@ -54,25 +57,13 @@ class WatchAction extends FormAction {
 		parent::checkCanExecute( $user );
 	}
 
-	protected function usesOOUI() {
-		return true;
-	}
-
-	protected function getFormFields() {
-		return [
-			'intro' => [
-				'type' => 'info',
-				'vertical-label' => true,
-				'raw' => true,
-				'default' => $this->msg( 'confirm-watch-top' )->parse()
-			]
-		];
-	}
-
 	protected function alterForm( HTMLForm $form ) {
-		$form->setWrapperLegendMsg( 'addwatch' );
 		$form->setSubmitTextMsg( 'confirm-watch-button' );
 		$form->setTokenSalt( 'watch' );
+	}
+
+	protected function preText() {
+		return $this->msg( 'confirm-watch-top' )->parse();
 	}
 
 	public function onSuccess() {

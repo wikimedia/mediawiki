@@ -23,7 +23,6 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Object passed around to modules which contains information about the state
@@ -138,7 +137,7 @@ class ResourceLoaderContext {
 	 */
 	public static function newDummyContext() {
 		return new self( new ResourceLoader(
-			MediaWikiServices::getInstance()->getMainConfig(),
+			ConfigFactory::getDefaultInstance()->makeConfig( 'main' ),
 			LoggerFactory::getInstance( 'resourceloader' )
 		), new FauxRequest( [] ) );
 	}
@@ -197,7 +196,7 @@ class ResourceLoaderContext {
 		if ( $this->direction === null ) {
 			$this->direction = $this->getRequest()->getRawVal( 'dir' );
 			if ( !$this->direction ) {
-				// Determine directionality based on user language (T8100)
+				// Determine directionality based on user language (bug 6100)
 				$this->direction = Language::factory( $this->getLanguage() )->getDir();
 			}
 		}

@@ -30,11 +30,8 @@ class FileContentHandler extends WikitextContentHandler  {
 		return $fields;
 	}
 
-	public function getDataForSearchIndex(
-		WikiPage $page,
-		ParserOutput $parserOutput,
-		SearchEngine $engine
-	) {
+	public function getDataForSearchIndex( WikiPage $page, ParserOutput $parserOutput,
+	                                       SearchEngine $engine ) {
 		$fields = [];
 
 		$title = $page->getTitle();

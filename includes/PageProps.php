@@ -25,6 +25,7 @@ use Wikimedia\ScopedCallback;
  * Gives access to properties of a page.
  *
  * @since 1.27
+ *
  */
 class PageProps {
 

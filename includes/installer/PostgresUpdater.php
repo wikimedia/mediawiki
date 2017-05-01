@@ -21,8 +21,6 @@
  * @ingroup Deployment
  */
 
-use Wikimedia\Rdbms\DatabasePostgres;
-
 /**
  * Class for handling updates to Postgres databases.
  *
@@ -445,13 +443,6 @@ class PostgresUpdater extends DatabaseUpdater {
 				"INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('change_tag_ct_id_seq')" ],
 			[ 'addPgField', 'tag_summary', 'ts_id',
 				"INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('tag_summary_ts_id_seq')" ],
-
-			// 1.29
-			[ 'addPgField', 'externallinks', 'el_index_60', "BYTEA NOT NULL DEFAULT ''" ],
-			[ 'addPgIndex', 'externallinks', 'el_index_60', '( el_index_60, el_id )' ],
-			[ 'addPgIndex', 'externallinks', 'el_from_index_60', '( el_from, el_index_60, el_id )' ],
-			[ 'addPgField', 'user_groups', 'ug_expiry', "TIMESTAMPTZ NULL" ],
-			[ 'addPgIndex', 'user_groups', 'user_groups_expiry', '( ug_expiry )' ],
 		];
 	}
 
@@ -498,8 +489,8 @@ class PostgresUpdater extends DatabaseUpdater {
 		$q = <<<END
 SELECT attname, attnum FROM pg_namespace, pg_class, pg_attribute
 	WHERE pg_class.relnamespace = pg_namespace.oid
-		AND attrelid=pg_class.oid AND attnum > 0
-		AND relname=%s AND nspname=%s
+	  AND attrelid=pg_class.oid AND attnum > 0
+	  AND relname=%s AND nspname=%s
 END;
 		$res = $this->db->query( sprintf( $q,
 			$this->db->addQuotes( $table ),
@@ -525,9 +516,9 @@ END;
 		$q = <<<END
 SELECT indkey, indrelid FROM pg_namespace, pg_class, pg_index
 	WHERE nspname=%s
-		AND pg_class.relnamespace = pg_namespace.oid
-		AND relname=%s
-		AND indexrelid=pg_class.oid
+	  AND pg_class.relnamespace = pg_namespace.oid
+	  AND relname=%s
+	  AND indexrelid=pg_class.oid
 END;
 		$res = $this->db->query(
 			sprintf(
@@ -553,8 +544,8 @@ END;
 			$query = <<<END
 SELECT attname FROM pg_class, pg_attribute
 	WHERE attrelid=$relid
-		AND attnum=%d
-		AND attrelid=pg_class.oid
+	  AND attnum=%d
+	  AND attrelid=pg_class.oid
 END;
 			$r2 = $this->db->query( sprintf( $query, $rid ) );
 			if ( !$r2 ) {
@@ -574,8 +565,8 @@ END;
 		$q = <<<END
 SELECT confdeltype FROM pg_constraint, pg_namespace
 	WHERE connamespace=pg_namespace.oid
-		AND nspname=%s
-		AND conname=%s;
+	  AND nspname=%s
+	  AND conname=%s;
 END;
 		$r = $this->db->query(
 			sprintf(
@@ -596,8 +587,8 @@ END;
 		$q = <<<END
 SELECT definition FROM pg_rules
 	WHERE schemaname = %s
-		AND tablename = %s
-		AND rulename = %s
+	  AND tablename = %s
+	  AND rulename = %s
 END;
 		$r = $this->db->query(
 			sprintf(
@@ -983,14 +974,10 @@ END;
 
 	protected function rebuildTextSearch() {
 		if ( $this->updateRowExists( 'patch-textsearch_bug66650.sql' ) ) {
-<<<<<<< HEAD
 			$this->output( "...bug 66650 already fixed or not applicable.\n" );
-=======
-			$this->output( "...T68650 already fixed or not applicable.\n" );
->>>>>>> wikimedia/master
 			return;
 		};
 		$this->applyPatch( 'patch-textsearch_bug66650.sql', false,
-			'Rebuilding text search for T68650' );
+			'Rebuilding text search for bug 66650' );
 	}
 }

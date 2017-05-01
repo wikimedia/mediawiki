@@ -65,3 +65,4 @@ abstract class EventRelayer implements LoggerAwareInterface {
 	 */
 	abstract protected function doNotify( $channel, array $events );
 }
+

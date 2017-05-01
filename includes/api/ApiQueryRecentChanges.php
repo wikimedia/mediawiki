@@ -147,7 +147,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		/* Build our basic query. Namely, something along the lines of:
 		 * SELECT * FROM recentchanges WHERE rc_timestamp > $start
-		 *   AND rc_timestamp < $end AND rc_namespace = $namespace
+		 * 		AND rc_timestamp < $end AND rc_namespace = $namespace
 		 */
 		$this->addTables( 'recentchanges' );
 		$this->addTimestampWhereRange( 'rc_timestamp', $params['dir'], $params['start'], $params['end'] );
@@ -195,7 +195,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				|| ( isset( $show['patrolled'] ) && isset( $show['unpatrolled'] ) )
 				|| ( isset( $show['!patrolled'] ) && isset( $show['unpatrolled'] ) )
 			) {
-				$this->dieWithError( 'apierror-show' );
+				$this->dieUsageMsg( 'show' );
 			}
 
 			// Check permissions
@@ -204,7 +204,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				|| isset( $show['unpatrolled'] )
 			) {
 				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
-					$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'permissiondenied' );
+					$this->dieUsage(
+						'You need patrol or patrolmarks permission to request the patrolled flag',
+						'permissiondenied'
+					);
 				}
 			}
 
@@ -236,7 +239,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			);
 		}
 
-		$this->requireMaxOneParameter( $params, 'user', 'excludeuser' );
+		if ( !is_null( $params['user'] ) && !is_null( $params['excludeuser'] ) ) {
+			$this->dieUsage( 'user and excludeuser cannot be used together', 'user-excludeuser' );
+		}
 
 		if ( !is_null( $params['user'] ) ) {
 			$this->addWhereFld( 'rc_user_text', $params['user'] );
@@ -269,7 +274,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->initProperties( $prop );
 
 			if ( $this->fld_patrolled && !$user->useRCPatrol() && !$user->useNPPatrol() ) {
-				$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'permissiondenied' );
+				$this->dieUsage(
+					'You need patrol or patrolmarks permission to request the patrolled flag',
+					'permissiondenied'
+				);
 			}
 
 			/* Add fields to our query if they are specified as a needed parameter. */
@@ -320,7 +328,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addWhereFld( 'ct_tag', $params['tag'] );
 		}
 
-		// Paranoia: avoid brute force searches (T19342)
+		// Paranoia: avoid brute force searches (bug 17342)
 		if ( !is_null( $params['user'] ) || !is_null( $params['excludeuser'] ) ) {
 			if ( !$user->isAllowed( 'deletedhistory' ) ) {
 				$bitmask = Revision::DELETED_USER;
@@ -563,7 +571,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				$val = call_user_func( $tokenFunctions[$t], $row->rc_cur_id,
 					$title, RecentChange::newFromRow( $row ) );
 				if ( $val === false ) {
-					$this->addWarning( [ 'apiwarn-tokennotallowed', $t ] );
+					$this->setWarning( "Action '$t' is not allowed for the current user" );
 				} else {
 					$vals[$t . 'token'] = $val;
 				}
@@ -617,8 +625,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			],
 			'namespace' => [
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => 'namespace',
-				ApiBase::PARAM_EXTRA_NAMESPACES => [ NS_MEDIA, NS_SPECIAL ],
+				ApiBase::PARAM_TYPE => 'namespace'
 			],
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user'
@@ -699,6 +706,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Recentchanges';
+		return 'https://www.mediawiki.org/wiki/API:Recentchanges';
 	}
 }

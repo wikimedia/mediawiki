@@ -20,9 +20,6 @@
  * @file
  */
 
-use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\IDatabase;
-
 /**
  * Static accessor class for site_stats and related things
  */
@@ -189,7 +186,6 @@ class SiteStats {
 			wfMemcKey( 'SiteStats', 'groupcounts', $group ),
 			$cache::TTL_HOUR,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $group ) {
-				global $wgDisableUserGroupExpiry;
 				$dbr = wfGetDB( DB_REPLICA );
 
 				$setOpts += Database::getCacheSetOptions( $dbr );
@@ -197,12 +193,7 @@ class SiteStats {
 				return $dbr->selectField(
 					'user_groups',
 					'COUNT(*)',
-					[
-						'ug_group' => $group,
-						$wgDisableUserGroupExpiry ?
-							'1' :
-							'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
-					],
+					[ 'ug_group' => $group ],
 					__METHOD__
 				);
 			},

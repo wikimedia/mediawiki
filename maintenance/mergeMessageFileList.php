@@ -36,6 +36,11 @@ $mmfl = false;
  * @ingroup Maintenance
  */
 class MergeMessageFileList extends Maintenance {
+	/**
+	 * @var bool
+	 */
+	protected $hasError;
+
 	function __construct() {
 		parent::__construct();
 		$this->addOption(
@@ -101,6 +106,7 @@ class MergeMessageFileList extends Maintenance {
 				}
 
 				if ( !$found ) {
+					$this->hasError = true;
 					$this->error( "Extension {$extname} in {$extdir} lacks expected entry point: " .
 						"extension.json, skin.json, or {$extname}.php." );
 				}
@@ -111,6 +117,10 @@ class MergeMessageFileList extends Maintenance {
 		foreach ( $wgExtensionEntryPointListFiles as $points ) {
 			$extensionPaths = $this->readFile( $points );
 			$mmfl['setupFiles'] = array_merge( $mmfl['setupFiles'], $extensionPaths );
+		}
+
+		if ( $this->hasError ) {
+			$this->error( "Some files are missing (see above). Giving up.", 1 );
 		}
 
 		if ( $this->hasOption( 'output' ) ) {

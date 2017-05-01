@@ -26,24 +26,20 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 	public function testClosureExpansionDisabled() {
 		$obj = ObjectFactory::getObjectFromSpec( [
 			'class' => 'ObjectFactoryTestFixture',
-			'args' => [
-				function() {
-					return 'wrapped';
-				},
-				'unwrapped',
-			],
+			'args' => [ function() {
+				return 'unwrapped';
+			}, ],
 			'calls' => [
 				'setter' => [ function() {
-					return 'wrapped';
+					return 'unwrapped';
 				}, ],
 			],
 			'closure_expansion' => false,
 		] );
 		$this->assertInstanceOf( 'Closure', $obj->args[0] );
-		$this->assertSame( 'wrapped', $obj->args[0]() );
-		$this->assertSame( 'unwrapped', $obj->args[1] );
+		$this->assertSame( 'unwrapped', $obj->args[0]() );
 		$this->assertInstanceOf( 'Closure', $obj->setterArgs[0] );
-		$this->assertSame( 'wrapped', $obj->setterArgs[0]() );
+		$this->assertSame( 'unwrapped', $obj->setterArgs[0]() );
 	}
 
 	/**
@@ -53,24 +49,20 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 	public function testClosureExpansionEnabled() {
 		$obj = ObjectFactory::getObjectFromSpec( [
 			'class' => 'ObjectFactoryTestFixture',
-			'args' => [
-				function() {
-					return 'wrapped';
-				},
-				'unwrapped',
-			],
+			'args' => [ function() {
+				return 'unwrapped';
+			}, ],
 			'calls' => [
 				'setter' => [ function() {
-					return 'wrapped';
+					return 'unwrapped';
 				}, ],
 			],
 			'closure_expansion' => true,
 		] );
 		$this->assertInternalType( 'string', $obj->args[0] );
-		$this->assertSame( 'wrapped', $obj->args[0] );
-		$this->assertSame( 'unwrapped', $obj->args[1] );
+		$this->assertSame( 'unwrapped', $obj->args[0] );
 		$this->assertInternalType( 'string', $obj->setterArgs[0] );
-		$this->assertSame( 'wrapped', $obj->setterArgs[0] );
+		$this->assertSame( 'unwrapped', $obj->setterArgs[0] );
 
 		$obj = ObjectFactory::getObjectFromSpec( [
 			'class' => 'ObjectFactoryTestFixture',

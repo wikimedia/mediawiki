@@ -349,3 +349,4 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'Mında_siltegender' ],
 	'Withoutinterwiki'          => [ 'Wïkï-aralıqsızdar' ],
 ];
+

@@ -167,7 +167,7 @@ class FileBackendMultiWrite extends FileBackend {
 		// Do a consistency check to see if the backends are consistent...
 		$syncStatus = $this->consistencyCheck( $relevantPaths );
 		if ( !$syncStatus->isOK() ) {
-			wfDebugLog( 'FileOperation', static::class .
+			wfDebugLog( 'FileOperation', get_class( $this ) .
 				" failed sync check: " . FormatJson::encode( $relevantPaths ) );
 			// Try to resync the clone backends to the master on the spot...
 			if ( $this->autoResync === false
@@ -378,7 +378,7 @@ class FileBackendMultiWrite extends FileBackend {
 		}
 
 		if ( !$status->isOK() ) {
-			wfDebugLog( 'FileOperation', static::class .
+			wfDebugLog( 'FileOperation', get_class( $this ) .
 				" failed to resync: " . FormatJson::encode( $paths ) );
 		}
 

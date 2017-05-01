@@ -108,6 +108,7 @@ class SearchUpdate implements DeferrableUpdate {
 			# Perform the actual update
 			$search->update( $this->id, $normalTitle, $search->normalizeText( $text ) );
 		}
+
 	}
 
 	/**

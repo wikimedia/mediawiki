@@ -4,7 +4,7 @@
 ( function ( $ ) {
 	if ( document.selection && document.selection.createRange ) {
 		// On IE, patch the focus() method to restore the windows' scroll position
-		// (T34241)
+		// (bug 32241)
 		$.fn.extend( {
 			focus: ( function ( jqFocus ) {
 				return function () {
@@ -32,17 +32,13 @@
 
 		/**
 		 * Helper function to get an IE TextRange object for an element
-		 *
-		 * @param {HTMLElement} element
-		 * @return {TextRange}
 		 */
-		function rangeForElementIE( element ) {
-			var sel;
-			if ( element.nodeName.toLowerCase() === 'input' ) {
-				return element.createTextRange();
+		function rangeForElementIE( e ) {
+			if ( e.nodeName.toLowerCase() === 'input' ) {
+				return e.createTextRange();
 			} else {
-				sel = document.body.createTextRange();
-				sel.moveToElementText( element );
+				var sel = document.body.createTextRange();
+				sel.moveToElementText( e );
 				return sel;
 			}
 		}
@@ -51,12 +47,10 @@
 		 * Helper function for IE for activating the textarea. Called only in the
 		 * IE-specific code paths below; makes use of IE-specific non-standard
 		 * function setActive() if possible to avoid screen flicker.
-		 *
-		 * @param {HTMLElement} element
 		 */
 		function activateElementOnIE( element ) {
 			if ( element.setActive ) {
-				element.setActive(); // T34241: doesn't scroll
+				element.setActive(); // bug 32241: doesn't scroll
 			} else {
 				$( element ).focus(); // may scroll (but we patched it above)
 			}
@@ -65,16 +59,12 @@
 		fn = {
 			/**
 			 * Get the contents of the textarea
-			 *
-			 * @return {string}
 			 */
 			getContents: function () {
 				return this.val();
 			},
 			/**
 			 * Set the contents of the textarea, replacing anything that was there before
-			 *
-			 * @param {string} content
 			 */
 			setContents: function ( content ) {
 				this.val( content );
@@ -82,8 +72,6 @@
 			/**
 			 * Get the currently selected text in this textarea. Will focus the textarea
 			 * in some browsers (IE/Opera)
-			 *
-			 * @return {string}
 			 */
 			getSelection: function () {
 				var retval, range,
@@ -108,9 +96,7 @@
 			 * Inserts text at the beginning and end of a text selection, optionally
 			 * inserting text at the caret when selection is empty.
 			 *
-			 * @param {Object} options Options
 			 * FIXME document the options parameters
-			 * @return {jQuery}
 			 */
 			encapsulateSelection: function ( options ) {
 				return this.each( function () {
@@ -146,11 +132,6 @@
 					 * Do the splitlines stuff.
 					 *
 					 * Wrap each line of the selected text with pre and post
-					 *
-					 * @param {string} selText Selected text
-					 * @param {string} pre Text before
-					 * @param {string} post Text after
-					 * @return {string} Wrapped text
 					 */
 					function doSplitLines( selText, pre, post ) {
 						var i,
@@ -172,7 +153,7 @@
 							// IE
 
 							// Note that IE9 will trigger the next section unless we check this first.
-							// See bug T37201.
+							// See bug 35201.
 
 							activateElementOnIE( this );
 							if ( context ) {
@@ -287,16 +268,14 @@
 			 *
 			 * Will focus the textarea in some browsers (IE/Opera)
 			 *
-			 * @param {Object} options Options
 			 * FIXME document the options parameters
-			 * @return {number} Position
 			 */
 			getCaretPosition: function ( options ) {
 				function getCaret( e ) {
 					var caretPos = 0,
 						endPos = 0,
 						preText, rawPreText, periText,
-						rawPeriText, postText,
+						rawPeriText, postText, rawPostText,
 						// IE Support
 						preFinished,
 						periFinished,
@@ -312,7 +291,7 @@
 						// IE doesn't properly report non-selected caret position through
 						// the selection ranges when textarea isn't focused. This can
 						// lead to saving a bogus empty selection, which then screws up
-						// whatever we do later (T33847).
+						// whatever we do later (bug 31847).
 						activateElementOnIE( e );
 
 						preFinished = false;
@@ -331,7 +310,7 @@
 						// Load the text values we need to compare
 						preText = rawPreText = preRange.text;
 						periText = rawPeriText = periRange.text;
-						postText = postRange.text;
+						postText = rawPostText = postRange.text;
 
 						/*
 						 * Check each range for trimmed newlines by shrinking the range by 1
@@ -368,7 +347,9 @@
 									postFinished = true;
 								} else {
 									postRange.moveEnd( 'character', -1 );
-									if ( postRange.text !== postText ) {
+									if ( postRange.text === postText ) {
+										rawPostText += '\r\n';
+									} else {
 										postFinished = true;
 									}
 								}
@@ -386,9 +367,7 @@
 				return getCaret( this.get( 0 ) );
 			},
 			/**
-			 * @param {Object} options options
 			 * FIXME document the options parameters
-			 * @return {jQuery}
 			 */
 			setSelection: function ( options ) {
 				return this.each( function () {
@@ -433,11 +412,10 @@
 			 * Scroll a textarea to the current cursor position. You can set the cursor
 			 * position with setSelection()
 			 *
-			 * @param {Object} options options
-			 * @cfg {boolean} [force=false] Whether to force a scroll even if the caret position
-			 *  is already visible.
-			 * FIXME document the options parameters
-			 * @return {jQuery}
+			 * @param {boolean} options Whether to force a scroll even if the caret position
+			 *  is already visible. Defaults to false
+			 *
+			 * FIXME document the options parameters (function body suggests options.force is a boolean, not options itself)
 			 */
 			scrollToCaretPosition: function ( options ) {
 				function getLineLength( e ) {

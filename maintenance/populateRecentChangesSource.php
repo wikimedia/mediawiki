@@ -23,8 +23,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use Wikimedia\Rdbms\IDatabase;
-
 /**
  * Maintenance script to populate the rc_source field.
  *
@@ -85,7 +83,7 @@ class PopulateRecentChangesSource extends LoggedUpdateMaintenance {
 		return __CLASS__;
 	}
 
-	protected function buildUpdateCondition( IDatabase $dbw ) {
+	protected function buildUpdateCondition( Database $dbw ) {
 		$rcNew = $dbw->addQuotes( RC_NEW );
 		$rcSrcNew = $dbw->addQuotes( RecentChange::SRC_NEW );
 		$rcEdit = $dbw->addQuotes( RC_EDIT );

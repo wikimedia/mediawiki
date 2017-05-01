@@ -15,7 +15,6 @@
 	 * @mixins OO.ui.mixin.LookupElement
 	 *
 	 * @constructor
-	 * @param {Object} [config] Configuration options
 	 * @cfg {boolean} [suggestions=true] Display search suggestions
 	 * @cfg {RegExp|Function|string} [validate] Perform title validation
 	 */

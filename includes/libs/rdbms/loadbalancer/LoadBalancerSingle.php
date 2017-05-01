@@ -21,10 +21,6 @@
  * @ingroup Database
  */
 
-namespace Wikimedia\Rdbms;
-
-use InvalidArgumentException;
-
 /**
  * Trivial LoadBalancer that always returns an injected connection handle
  */
@@ -76,5 +72,3 @@ class LoadBalancerSingle extends LoadBalancer {
 		return $this->db;
 	}
 }
-
-class_alias( 'Wikimedia\Rdbms\LoadBalancerSingle', 'LoadBalancerSingle' );

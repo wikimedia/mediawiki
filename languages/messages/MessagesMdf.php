@@ -13,7 +13,7 @@
  * @author Numulunj pilgae
  */
 
-$fallback = 'ru';
+$fallbak = 'ru';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Медиа',
@@ -137,3 +137,4 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'МезеньСюлмафкстТяса' ],
 	'Withoutinterwiki'          => [ 'Интервикифтома' ],
 ];
+

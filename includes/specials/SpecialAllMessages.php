@@ -67,6 +67,8 @@ class SpecialAllMessages extends SpecialPage {
 			wfGetLangObj( $request->getVal( 'lang', $par ) )
 		);
 
+		$this->langcode = $this->table->lang->getCode();
+
 		$out->addHTML( $this->table->buildForm() );
 		$out->addParserOutputContent( $this->table->getFullOutput() );
 	}

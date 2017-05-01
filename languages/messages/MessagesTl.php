@@ -144,3 +144,4 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'Ano_ang_nakakawing_dito' ],
 	'Withoutinterwiki'          => [ 'Walang_ugnayang-wiki' ],
 ];
+

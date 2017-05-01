@@ -49,6 +49,10 @@ class DerivativeRequest extends FauxRequest {
 		return $this->base->getCookie( $key, $prefix, $default );
 	}
 
+	public function checkSessionCookie() {
+		return $this->base->checkSessionCookie();
+	}
+
 	public function getHeader( $name, $flags = 0 ) {
 		return $this->base->getHeader( $name, $flags );
 	}

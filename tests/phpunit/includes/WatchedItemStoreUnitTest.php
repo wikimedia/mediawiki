@@ -13,7 +13,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	 * @return PHPUnit_Framework_MockObject_MockObject|IDatabase
 	 */
 	private function getMockDb() {
-		return $this->createMock( IDatabase::class );
+		return $this->getMock( IDatabase::class );
 	}
 
 	/**
@@ -21,7 +21,8 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	 */
 	private function getMockLoadBalancer(
 		$mockDb,
-		$expectedConnectionType = null
+		$expectedConnectionType = null,
+		$readOnlyReason = false
 	) {
 		$mock = $this->getMockBuilder( LoadBalancer::class )
 			->disableOriginalConstructor()
@@ -36,6 +37,9 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				->method( 'getConnectionRef' )
 				->will( $this->returnValue( $mockDb ) );
 		}
+		$mock->expects( $this->any() )
+			->method( 'getReadOnlyReason' )
+			->will( $this->returnValue( $readOnlyReason ) );
 		return $mock;
 	}
 
@@ -55,24 +59,11 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return PHPUnit_Framework_MockObject_MockObject|ReadOnlyMode
-	 */
-	private function getMockReadOnlyMode( $readOnly = false ) {
-		$mock = $this->getMockBuilder( ReadOnlyMode::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$mock->expects( $this->any() )
-			->method( 'isReadOnly' )
-			->will( $this->returnValue( $readOnly ) );
-		return $mock;
-	}
-
-	/**
 	 * @param int $id
 	 * @return PHPUnit_Framework_MockObject_MockObject|User
 	 */
 	private function getMockNonAnonUserWithId( $id ) {
-		$mock = $this->createMock( User::class );
+		$mock = $this->getMock( User::class );
 		$mock->expects( $this->any() )
 			->method( 'isAnon' )
 			->will( $this->returnValue( false ) );
@@ -97,13 +88,10 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		return $fakeRow;
 	}
 
-	private function newWatchedItemStore( LoadBalancer $loadBalancer, HashBagOStuff $cache,
-		ReadOnlyMode $readOnlyMode
-	) {
+	private function newWatchedItemStore( LoadBalancer $loadBalancer, HashBagOStuff $cache ) {
 		return new WatchedItemStore(
 			$loadBalancer,
-			$cache,
-			$readOnlyMode
+			$cache
 		);
 	}
 
@@ -130,8 +118,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertEquals( 12, $store->countWatchedItems( $user ) );
@@ -161,8 +148,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertEquals( 7, $store->countWatchers( $titleValue ) );
@@ -213,8 +199,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$expected = [
@@ -280,8 +265,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$expected = [
@@ -329,8 +313,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertEquals( 7, $store->countVisitingWatchers( $titleValue, '111' ) );
@@ -409,8 +392,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$expected = [
@@ -512,8 +494,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$expected = [
@@ -566,8 +547,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$expected = [
@@ -604,8 +584,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertEquals( 9, $store->countUnreadNotifications( $user ) );
@@ -639,8 +618,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertSame(
@@ -677,8 +655,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertEquals(
@@ -708,8 +685,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$this->getMockCache(),
-			$this->getMockReadOnlyMode()
+			$this->getMockCache()
 		);
 
 		$store->duplicateEntry(
@@ -767,8 +743,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$store->duplicateEntry(
@@ -814,8 +789,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$store->duplicateAllAssociatedEntries(
@@ -908,8 +882,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$store->duplicateAllAssociatedEntries(
@@ -941,8 +914,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$store->addWatch(
@@ -962,8 +934,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$store->addWatch(
@@ -974,9 +945,8 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 	public function testAddWatchBatchForUser_readOnlyDBReturnsFalse() {
 		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $this->getMockDb() ),
-			$this->getMockCache(),
-			$this->getMockReadOnlyMode( true )
+			$this->getMockLoadBalancer( $this->getMockDb(), null, 'Some Reason' ),
+			$this->getMockCache()
 		);
 
 		$this->assertFalse(
@@ -1021,8 +991,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$mockUser = $this->getMockNonAnonUserWithId( 1 );
@@ -1046,8 +1015,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertFalse(
@@ -1070,8 +1038,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertTrue(
@@ -1105,8 +1072,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$watchedItem = $store->loadWatchedItem(
@@ -1140,8 +1106,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertFalse(
@@ -1163,8 +1128,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertFalse(
@@ -1199,8 +1163,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertTrue(
@@ -1235,8 +1198,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertFalse(
@@ -1259,8 +1221,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertFalse(
@@ -1304,8 +1265,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$watchedItem = $store->getWatchedItem(
@@ -1339,8 +1299,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertEquals(
@@ -1377,8 +1336,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertFalse(
@@ -1401,8 +1359,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertFalse(
@@ -1442,8 +1399,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 		$user = $this->getMockNonAnonUserWithId( 1 );
 
@@ -1493,8 +1449,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$mockLoadBalancer,
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$watchedItems = $store->getWatchedItemsForUser(
@@ -1507,8 +1462,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	public function testGetWatchedItemsForUser_badSortOptionThrowsException() {
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $this->getMockDb() ),
-			$this->getMockCache(),
-			$this->getMockReadOnlyMode()
+			$this->getMockCache()
 		);
 
 		$this->setExpectedException( 'InvalidArgumentException' );
@@ -1549,8 +1503,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertTrue(
@@ -1586,8 +1539,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertFalse(
@@ -1610,8 +1562,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertFalse(
@@ -1678,8 +1629,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertEquals(
@@ -1729,8 +1679,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertEquals(
@@ -1791,8 +1740,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertEquals(
@@ -1832,8 +1780,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertEquals(
@@ -1859,8 +1806,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertEquals(
@@ -1884,8 +1830,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertFalse(
@@ -1918,8 +1863,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertFalse(
@@ -1964,8 +1908,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		// Note: This does not actually assert the job is correct
@@ -2005,8 +1948,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		// Note: This does not actually assert the job is correct
@@ -2036,7 +1978,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	 * @return PHPUnit_Framework_MockObject_MockObject|Title
 	 */
 	private function getMockTitle( $text, $ns = 0 ) {
-		$title = $this->createMock( Title::class );
+		$title = $this->getMock( Title::class );
 		$title->expects( $this->any() )
 			->method( 'getText' )
 			->will( $this->returnValue( str_replace( '_', ' ', $text ) ) );
@@ -2099,8 +2041,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$callableCallCounter = 0;
@@ -2166,8 +2107,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$addUpdateCallCounter = 0;
@@ -2242,8 +2182,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$callableCallCounter = 0;
@@ -2309,8 +2248,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$addUpdateCallCounter = 0;
@@ -2387,8 +2325,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$addUpdateCallCounter = 0;
@@ -2433,8 +2370,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	public function testSetNotificationTimestampsForUser_anonUser() {
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $this->getMockDb() ),
-			$this->getMockCache(),
-			$this->getMockReadOnlyMode()
+			$this->getMockCache()
 		);
 		$this->assertFalse( $store->setNotificationTimestampsForUser( $this->getAnonUser(), '' ) );
 	}
@@ -2460,38 +2396,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$this->getMockCache(),
-			$this->getMockReadOnlyMode()
-		);
-
-		$this->assertTrue(
-			$store->setNotificationTimestampsForUser( $user, $timestamp )
-		);
-	}
-
-	public function testSetNotificationTimestampsForUser_nullTimestamp() {
-		$user = $this->getMockNonAnonUserWithId( 1 );
-		$timestamp = null;
-
-		$mockDb = $this->getMockDb();
-		$mockDb->expects( $this->once() )
-			->method( 'update' )
-			->with(
-				'watchlist',
-				[ 'wl_notificationtimestamp' => null ],
-				[ 'wl_user' => 1 ]
-			)
-			->will( $this->returnValue( true ) );
-		$mockDb->expects( $this->exactly( 0 ) )
-			->method( 'timestamp' )
-			->will( $this->returnCallback( function( $value ) {
-				return 'TS' . $value . 'TS';
-			} ) );
-
-		$store = $this->newWatchedItemStore(
-			$this->getMockLoadBalancer( $mockDb ),
-			$this->getMockCache(),
-			$this->getMockReadOnlyMode()
+			$this->getMockCache()
 		);
 
 		$this->assertTrue(
@@ -2529,8 +2434,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$this->getMockCache(),
-			$this->getMockReadOnlyMode()
+			$this->getMockCache()
 		);
 
 		$this->assertTrue(
@@ -2572,8 +2476,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$this->assertEquals(
@@ -2613,8 +2516,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		$watchers = $store->updateNotificationTimestamp(
@@ -2657,8 +2559,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache,
-			$this->getMockReadOnlyMode()
+			$mockCache
 		);
 
 		// This will add the item to the cache

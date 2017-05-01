@@ -16,7 +16,7 @@ class TextContentHandlerTest extends MediaWikiLangTestCase {
 	public function testFieldsForIndex() {
 		$handler = new TextContentHandler();
 
-		$mockEngine = $this->createMock( 'SearchEngine' );
+		$mockEngine = $this->getMock( 'SearchEngine' );
 
 		$mockEngine->expects( $this->atLeastOnce() )
 			->method( 'makeSearchFieldMapping' )

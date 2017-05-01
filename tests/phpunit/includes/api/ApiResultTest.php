@@ -1230,6 +1230,7 @@ class ApiResultTest extends MediaWikiTestCase {
 				],
 			],
 		];
+
 	}
 
 	/**
@@ -1379,6 +1380,7 @@ class ApiResultTest extends MediaWikiTestCase {
 			'two' => 2,
 		], $arr['foo'] );
 	}
+
 }
 
 class ApiResultTestStringifiableObject {

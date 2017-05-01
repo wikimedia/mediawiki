@@ -125,3 +125,4 @@ $magicWords = [
 	'url_path'                  => [ '0', 'ܫܒܝܠܐ', 'PATH' ],
 	'url_wiki'                  => [ '0', 'ܘܝܩܝ', 'WIKI' ],
 ];
+

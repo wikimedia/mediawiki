@@ -13,7 +13,6 @@
 	 * @extends mw.widgets.TitleInputWidget
 	 *
 	 * @constructor
-	 * @param {Object} [config] Configuration options
 	 * @cfg {boolean} [pushPending=true] Visually mark the input field as "pending", while
 	 *  requesting suggestions.
 	 * @cfg {boolean} [performSearchOnClick=true] If true, the script will start a search when-
@@ -30,11 +29,11 @@
 		var $form = config.$input ? config.$input.closest( 'form' ) : $();
 
 		config = $.extend( {
+			type: 'search',
 			icon: 'search',
 			maxLength: undefined,
 			performSearchOnClick: true,
-			dataLocation: 'header',
-			namespace: 0
+			dataLocation: 'header'
 		}, config );
 
 		// Parent constructor
@@ -66,12 +65,6 @@
 				)
 			} );
 		}.bind( this ) );
-
-		this.$element.addClass( 'oo-ui-textInputWidget-type-search' );
-		this.updateSearchIndicator();
-		this.connect( this, {
-			disable: 'onDisable'
-		} );
 	};
 
 	/* Setup */
@@ -81,75 +74,15 @@
 	/* Methods */
 
 	/**
-	 * @inheritdoc
-	 * @protected
-	 */
-	mw.widgets.SearchInputWidget.prototype.getInputElement = function () {
-		return $( '<input>' ).attr( 'type', 'search' );
-	};
-
-	/**
-	 * @inheritdoc
-	 */
-	mw.widgets.SearchInputWidget.prototype.onIndicatorMouseDown = function ( e ) {
-		if ( e.which === OO.ui.MouseButtons.LEFT ) {
-			// Clear the text field
-			this.setValue( '' );
-			this.$input[ 0 ].focus();
-			return false;
-		}
-	};
-
-	/**
-	 * Update the 'clear' indicator displayed on type: 'search' text
-	 * fields, hiding it when the field is already empty or when it's not
-	 * editable.
-	 */
-	mw.widgets.SearchInputWidget.prototype.updateSearchIndicator = function () {
-		if ( this.getValue() === '' || this.isDisabled() || this.isReadOnly() ) {
-			this.setIndicator( null );
-		} else {
-			this.setIndicator( 'clear' );
-		}
-	};
-
-	/**
-	 * @inheritdoc
-	 */
-	mw.widgets.SearchInputWidget.prototype.onChange = function () {
-		mw.widgets.SearchInputWidget.parent.prototype.onChange.call( this );
-		this.updateSearchIndicator();
-	};
-
-	/**
-	 * Handle disable events.
-	 *
-	 * @param {boolean} disabled Element is disabled
-	 * @private
-	 */
-	mw.widgets.SearchInputWidget.prototype.onDisable = function () {
-		this.updateSearchIndicator();
-	};
-
-	/**
-	 * @inheritdoc
-	 */
-	mw.widgets.SearchInputWidget.prototype.setReadOnly = function ( state ) {
-		mw.widgets.SearchInputWidget.parent.prototype.setReadOnly.call( this, state );
-		this.updateSearchIndicator();
-		return this;
-	};
-
-	/**
 	 * @inheritdoc mw.widgets.TitleWidget
 	 */
 	mw.widgets.SearchInputWidget.prototype.getSuggestionsPromise = function () {
-		var api = this.getApi(),
+		var api = new mw.Api(),
 			promise,
 			self = this;
 
 		// reuse the searchSuggest function from mw.searchSuggest
-		promise = mw.searchSuggest.request( api, this.getQueryValue(), $.noop, this.limit, this.getNamespace() );
+		promise = mw.searchSuggest.request( api, this.getQueryValue(), $.noop, this.limit );
 
 		// tracking purposes
 		promise.done( function ( data, jqXHR ) {

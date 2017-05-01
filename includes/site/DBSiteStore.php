@@ -1,7 +1,5 @@
 <?php
 
-use Wikimedia\Rdbms\LoadBalancer;
-
 /**
  * Represents the site configuration of a wiki.
  * Holds a list of sites (ie SiteList), stored in the database.

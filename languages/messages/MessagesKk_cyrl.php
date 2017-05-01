@@ -355,3 +355,4 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'Мында_сілтегендер' ],
 	'Withoutinterwiki'          => [ 'Уики-аралықсыздар' ],
 ];
+

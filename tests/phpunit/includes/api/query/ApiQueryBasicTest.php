@@ -325,7 +325,7 @@ class ApiQueryBasicTest extends ApiQueryTestBase {
 	}
 
 	/**
-	 * Test T53821
+	 * Test bug 51821
 	 */
 	public function testGeneratorRedirects() {
 		$this->editPage( 'AQBT-Target', 'test' );

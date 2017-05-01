@@ -60,3 +60,4 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'AnoAnNasumpayDinhi' ],
 	'Withoutinterwiki'          => [ 'Warayinterwiki' ],
 ];
+

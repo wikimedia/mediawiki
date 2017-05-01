@@ -1,8 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
-			"Saanvel",
-			"Abbas dhothar"
+			"Saanvel"
 		]
 	},
 	"ooui-outline-control-move-down": "شیہ تھلے کرو",
@@ -10,7 +9,6 @@
 	"ooui-outline-control-remove": "شیہ مٹاؤ",
 	"ooui-toolbar-more": "ہور",
 	"ooui-toolgroup-expand": "ہور",
-	"ooui-toolgroup-collapse": "گھٹ",
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "مکاؤ",
 	"ooui-dialog-process-error": "کوئی رپھڑ پے گیا اے۔",

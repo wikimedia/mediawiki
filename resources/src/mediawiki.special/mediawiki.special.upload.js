@@ -5,11 +5,8 @@
  * @class mw.special.upload
  * @singleton
  */
-
-/* eslint-disable no-use-before-define */
-/* global Uint8Array */
-
 ( function ( mw, $ ) {
+	/*jshint latedef:false */
 	var uploadWarning, uploadLicense,
 		ajaxUploadDestCheck = mw.config.get( 'wgAjaxUploadDestCheck' ),
 		$license = $( '#wpLicense' );
@@ -252,7 +249,7 @@
 				// Output result
 				if ( $( '#wpDestFile' ).length ) {
 					// Call decodeURIComponent function to remove possible URL-encoded characters
-					// from the file name (T32390). Especially likely with upload-form-url.
+					// from the file name (bug 30390). Especially likely with upload-form-url.
 					// decodeURIComponent can throw an exception if input is invalid utf-8
 					try {
 						$( '#wpDestFile' ).val( decodeURIComponent( fname ) );
@@ -269,8 +266,6 @@
 	$( function () {
 		/**
 		 * Is the FileAPI available with sufficient functionality?
-		 *
-		 * @return {boolean}
 		 */
 		function hasFileAPI() {
 			return window.FileReader !== undefined;
@@ -426,8 +421,9 @@
 			}, mw.config.get( 'wgFileCanRotate' ) ? function ( data ) {
 				try {
 					meta = mw.libs.jpegmeta( data, file.fileName );
-					// eslint-disable-next-line no-underscore-dangle, camelcase
+					// jscs:disable requireCamelCaseOrUpperCaseIdentifiers, disallowDanglingUnderscores
 					meta._binary_data = null;
+					// jscs:enable
 				} catch ( e ) {
 					meta = null;
 				}
@@ -503,9 +499,6 @@
 
 		/**
 		 * Check if the file does not exceed the maximum size
-		 *
-		 * @param {File} file
-		 * @return {boolean}
 		 */
 		function checkMaxUploadSize( file ) {
 			var maxSize, $error;
@@ -538,11 +531,10 @@
 		if ( hasFileAPI() ) {
 			// Update thumbnail when the file selection control is updated.
 			$( '#wpUploadFile' ).change( function () {
-				var file;
 				clearPreview();
 				if ( this.files && this.files.length ) {
 					// Note: would need to be updated to handle multiple files.
-					file = this.files[ 0 ];
+					var file = this.files[ 0 ];
 
 					if ( !checkMaxUploadSize( file ) ) {
 						return;

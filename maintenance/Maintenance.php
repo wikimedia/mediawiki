@@ -25,8 +25,6 @@
 require_once __DIR__ . '/../includes/PHPVersionCheck.php';
 wfEntryPointCheck( 'cli' );
 
-use Wikimedia\Rdbms\DBReplicationWaitError;
-
 /**
  * @defgroup MaintenanceArchive Maintenance archives
  * @ingroup Maintenance
@@ -38,11 +36,8 @@ define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN ); // original name, harmless
 
 $maintClass = false;
 
-use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\LBFactory;
-use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
  * Abstract maintenance class for quickly writing and churning out
@@ -109,7 +104,7 @@ abstract class Maintenance {
 
 	/**
 	 * Used by getDB() / setDB()
-	 * @var IMaintainableDatabase
+	 * @var Database
 	 */
 	private $mDb = null;
 
@@ -209,7 +204,7 @@ abstract class Maintenance {
 	 * @param string $description The description of the param to show on --help
 	 * @param bool $required Is the param required?
 	 * @param bool $withArg Is an argument required with this option?
-	 * @param string|bool $shortName Character to use as short name
+	 * @param string $shortName Character to use as short name
 	 * @param bool $multiOccurrence Can this option be passed multiple times?
 	 */
 	protected function addOption( $name, $description, $required = false,
@@ -464,6 +459,7 @@ abstract class Maintenance {
 	 * Add the default parameters to the scripts
 	 */
 	protected function addDefaultParams() {
+
 		# Generic (non script dependant) options:
 
 		$this->addOption( 'help', 'Display this help message', false, false, 'h' );
@@ -503,7 +499,7 @@ abstract class Maintenance {
 	 */
 	public function getConfig() {
 		if ( $this->config === null ) {
-			$this->config = MediaWikiServices::getInstance()->getMainConfig();
+			$this->config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
 		}
 
 		return $this->config;
@@ -550,6 +546,7 @@ abstract class Maintenance {
 				. "for this script to run: $joined. Please enable them and then try again.";
 			$this->error( $msg, 1 );
 		}
+
 	}
 
 	/**
@@ -1246,7 +1243,7 @@ abstract class Maintenance {
 	 * @param integer $db DB index (DB_REPLICA/DB_MASTER)
 	 * @param array $groups; default: empty array
 	 * @param string|bool $wiki; default: current wiki
-	 * @return IMaintainableDatabase
+	 * @return Database
 	 */
 	protected function getDB( $db, $groups = [], $wiki = false ) {
 		if ( is_null( $this->mDb ) ) {
@@ -1259,7 +1256,7 @@ abstract class Maintenance {
 	/**
 	 * Sets database object to be returned by getDB().
 	 *
-	 * @param IDatabase $db
+	 * @param IDatabase $db Database object to be used
 	 */
 	public function setDB( IDatabase $db ) {
 		$this->mDb = $db;
@@ -1321,7 +1318,7 @@ abstract class Maintenance {
 
 	/**
 	 * Lock the search index
-	 * @param IMaintainableDatabase &$db
+	 * @param Database &$db
 	 */
 	private function lockSearchindex( $db ) {
 		$write = [ 'searchindex' ];
@@ -1339,7 +1336,7 @@ abstract class Maintenance {
 
 	/**
 	 * Unlock the tables
-	 * @param IMaintainableDatabase &$db
+	 * @param Database &$db
 	 */
 	private function unlockSearchindex( $db ) {
 		$db->unlockTables( __CLASS__ . '::' . __METHOD__ );
@@ -1348,7 +1345,7 @@ abstract class Maintenance {
 	/**
 	 * Unlock and lock again
 	 * Since the lock is low-priority, queued reads will be able to complete
-	 * @param IMaintainableDatabase &$db
+	 * @param Database &$db
 	 */
 	private function relockSearchindex( $db ) {
 		$this->unlockSearchindex( $db );
@@ -1359,7 +1356,7 @@ abstract class Maintenance {
 	 * Perform a search index update with locking
 	 * @param int $maxLockTime The maximum time to keep the search index locked.
 	 * @param string $callback The function that will update the function.
-	 * @param IMaintainableDatabase $dbw
+	 * @param Database $dbw
 	 * @param array $results
 	 */
 	public function updateSearchIndex( $maxLockTime, $callback, $dbw, $results ) {
@@ -1395,7 +1392,7 @@ abstract class Maintenance {
 
 	/**
 	 * Update the searchindex table for a given pageid
-	 * @param IDatabase $dbw A database write handle
+	 * @param Database $dbw A database write handle
 	 * @param int $pageId The page ID to update.
 	 * @return null|string
 	 */
@@ -1503,36 +1500,6 @@ abstract class Maintenance {
 		print $prompt;
 
 		return fgets( STDIN, 1024 );
-	}
-
-	/**
-	 * Get the terminal size as a two-element array where the first element
-	 * is the width (number of columns) and the second element is the height
-	 * (number of rows).
-	 *
-	 * @return array
-	 */
-	public static function getTermSize() {
-		$default = [ 80, 50 ];
-		if ( wfIsWindows() ) {
-			return $default;
-		}
-		// It's possible to get the screen size with VT-100 terminal escapes,
-		// but reading the responses is not possible without setting raw mode
-		// (unless you want to require the user to press enter), and that
-		// requires an ioctl(), which we can't do. So we have to shell out to
-		// something that can do the relevant syscalls. There are a few
-		// options. Linux and Mac OS X both have "stty size" which does the
-		// job directly.
-		$retval = false;
-		$size = wfShellExec( 'stty size', $retval );
-		if ( $retval !== 0 ) {
-			return $default;
-		}
-		if ( !preg_match( '/^(\d+) (\d+)$/', $size, $m ) ) {
-			return $default;
-		}
-		return [ intval( $m[2] ), intval( $m[1] ) ];
 	}
 
 	/**

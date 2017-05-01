@@ -39,3 +39,4 @@
 	} );
 
 }( mediaWiki, jQuery ) );
+

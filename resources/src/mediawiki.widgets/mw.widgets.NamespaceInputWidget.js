@@ -36,8 +36,6 @@
 
 	/**
 	 * @private
-	 * @param {Object} [config] Configuration options
-	 * @return {Object[]} Dropdown options
 	 */
 	mw.widgets.NamespaceInputWidget.prototype.getNamespaceDropdownOptions = function ( config ) {
 		var options,

@@ -69,3 +69,4 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'Pájina_sira_ne\'ebé_bá_iha_ne\'e' ],
 	'Withoutinterwiki'          => [ 'Laiha_interwiki' ],
 ];
+

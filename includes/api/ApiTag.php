@@ -30,18 +30,13 @@ class ApiTag extends ApiBase {
 		$user = $this->getUser();
 
 		// make sure the user is allowed
-		$this->checkUserRightsAny( 'changetags' );
+		if ( !$user->isAllowed( 'changetags' ) ) {
+			$this->dieUsage( "You don't have permission to add or remove change tags from individual edits",
+				'permissiondenied' );
+		}
 
 		if ( $user->isBlocked() ) {
 			$this->dieBlocked( $user->getBlock() );
-		}
-
-		// Check if user can add tags
-		if ( count( $params['tags'] ) ) {
-			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
-			if ( !$ableToTag->isOk() ) {
-				$this->dieStatus( $ableToTag );
-			}
 		}
 
 		// validate and process each revid, rcid and logid
@@ -93,8 +88,7 @@ class ApiTag extends ApiBase {
 
 		if ( !$valid ) {
 			$idResult['status'] = 'error';
-			// Messages: apierror-nosuchrcid apierror-nosuchrevid apierror-nosuchlogid
-			$idResult += $this->getErrorFormatter()->formatMessage( [ "apierror-nosuch$type", $id ] );
+			$idResult += $this->parseMsg( [ "nosuch$type", $id ] );
 			return $idResult;
 		}
 
@@ -117,17 +111,13 @@ class ApiTag extends ApiBase {
 		} else {
 			$idResult['status'] = 'success';
 			if ( is_null( $status->value->logId ) ) {
-				$idResult['noop'] = true;
+				$idResult['noop'] = '';
 			} else {
 				$idResult['actionlogid'] = $status->value->logId;
 				$idResult['added'] = $status->value->addedTags;
 				ApiResult::setIndexedTagName( $idResult['added'], 't' );
 				$idResult['removed'] = $status->value->removedTags;
 				ApiResult::setIndexedTagName( $idResult['removed'], 't' );
-
-				if ( $params['tags'] ) {
-					ChangeTags::addTags( $params['tags'], null, null, $status->value->logId );
-				}
 			}
 		}
 		return $idResult;
@@ -166,10 +156,6 @@ class ApiTag extends ApiBase {
 			'reason' => [
 				ApiBase::PARAM_DFLT => '',
 			],
-			'tags' => [
-				ApiBase::PARAM_TYPE => 'tags',
-				ApiBase::PARAM_ISMULTI => true,
-			],
 		];
 	}
 
@@ -187,6 +173,6 @@ class ApiTag extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tag';
+		return 'https://www.mediawiki.org/wiki/API:Tag';
 	}
 }

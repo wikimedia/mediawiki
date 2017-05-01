@@ -20,14 +20,6 @@
  * @file
  * @ingroup Database
  */
-namespace Wikimedia\Rdbms;
-
-use DateTime;
-use DateTimeZone;
-use MediaWiki;
-use InvalidArgumentException;
-use Exception;
-use stdClass;
 
 /**
  * Database abstraction object for MySQL.
@@ -102,7 +94,7 @@ abstract class DatabaseMysqlBase extends Database {
 	/**
 	 * @return string
 	 */
-	public function getType() {
+	function getType() {
 		return 'mysql';
 	}
 
@@ -114,7 +106,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @throws Exception|DBConnectionError
 	 * @return bool
 	 */
-	public function open( $server, $user, $password, $dbName ) {
+	function open( $server, $user, $password, $dbName ) {
 		# Close/unset connection handle
 		$this->close();
 
@@ -245,7 +237,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param ResultWrapper|resource $res
 	 * @throws DBUnexpectedError
 	 */
-	public function freeResult( $res ) {
+	function freeResult( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
@@ -270,7 +262,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return stdClass|bool
 	 * @throws DBUnexpectedError
 	 */
-	public function fetchObject( $res ) {
+	function fetchObject( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
@@ -282,7 +274,7 @@ abstract class DatabaseMysqlBase extends Database {
 		// Unfortunately, mysql_fetch_object does not reset the last errno.
 		// Only check for CR_SERVER_LOST and CR_UNKNOWN_ERROR, as
 		// these are the only errors mysql_fetch_object can cause.
-		// See https://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
+		// See http://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
 		if ( $errno == 2000 || $errno == 2013 ) {
 			throw new DBUnexpectedError(
 				$this,
@@ -306,7 +298,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return array|bool
 	 * @throws DBUnexpectedError
 	 */
-	public function fetchRow( $res ) {
+	function fetchRow( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
@@ -318,7 +310,7 @@ abstract class DatabaseMysqlBase extends Database {
 		// Unfortunately, mysql_fetch_array does not reset the last errno.
 		// Only check for CR_SERVER_LOST and CR_UNKNOWN_ERROR, as
 		// these are the only errors mysql_fetch_array can cause.
-		// See https://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
+		// See http://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
 		if ( $errno == 2000 || $errno == 2013 ) {
 			throw new DBUnexpectedError(
 				$this,
@@ -353,7 +345,7 @@ abstract class DatabaseMysqlBase extends Database {
 		// Unfortunately, mysql_num_rows does not reset the last errno.
 		// We are not checking for any errors here, since
 		// these are no errors mysql_num_rows can cause.
-		// See https://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
+		// See http://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
 		// See https://phabricator.wikimedia.org/T44430
 		return $n;
 	}
@@ -370,7 +362,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param ResultWrapper|resource $res
 	 * @return int
 	 */
-	public function numFields( $res ) {
+	function numFields( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
@@ -391,7 +383,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param int $n
 	 * @return string
 	 */
-	public function fieldName( $res, $n ) {
+	function fieldName( $res, $n ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
@@ -436,7 +428,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param int $row
 	 * @return bool
 	 */
-	public function dataSeek( $res, $row ) {
+	function dataSeek( $res, $row ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
@@ -456,7 +448,7 @@ abstract class DatabaseMysqlBase extends Database {
 	/**
 	 * @return string
 	 */
-	public function lastError() {
+	function lastError() {
 		if ( $this->mConn ) {
 			# Even if it's non-zero, it can still be invalid
 			MediaWiki\suppressWarnings();
@@ -490,7 +482,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param string $fname
 	 * @return ResultWrapper
 	 */
-	public function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
+	function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
 		return $this->nativeReplace( $table, $rows, $fname );
 	}
 
@@ -526,17 +518,15 @@ abstract class DatabaseMysqlBase extends Database {
 		return (int)$rows;
 	}
 
-	public function tableExists( $table, $fname = __METHOD__ ) {
+	function tableExists( $table, $fname = __METHOD__ ) {
 		$table = $this->tableName( $table, 'raw' );
 		if ( isset( $this->mSessionTempTables[$table] ) ) {
 			return true; // already known to exist and won't show in SHOW TABLES anyway
 		}
 
-		// We can't use buildLike() here, because it specifies an escape character
-		// other than the backslash, which is the only one supported by SHOW TABLES
-		$encLike = $this->escapeLikeInternal( $table, '\\' );
+		$encLike = $this->buildLike( $table );
 
-		return $this->query( "SHOW TABLES LIKE '$encLike'", $fname )->numRows() > 0;
+		return $this->query( "SHOW TABLES $encLike", $fname )->numRows() > 0;
 	}
 
 	/**
@@ -544,7 +534,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param string $field
 	 * @return bool|MySQLField
 	 */
-	public function fieldInfo( $table, $field ) {
+	function fieldInfo( $table, $field ) {
 		$table = $this->tableName( $table );
 		$res = $this->query( "SELECT * FROM $table LIMIT 1", __METHOD__, true );
 		if ( !$res ) {
@@ -579,10 +569,10 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param string $fname
 	 * @return bool|array|null False or null on failure
 	 */
-	public function indexInfo( $table, $index, $fname = __METHOD__ ) {
+	function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		# SHOW INDEX works in MySQL 3.23.58, but SHOW INDEXES does not.
 		# SHOW INDEX should work for 3.x and up:
-		# https://dev.mysql.com/doc/mysql/en/SHOW_INDEX.html
+		# http://dev.mysql.com/doc/mysql/en/SHOW_INDEX.html
 		$table = $this->tableName( $table );
 		$index = $this->indexName( $index );
 
@@ -608,7 +598,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param string $s
 	 * @return string
 	 */
-	public function strencode( $s ) {
+	function strencode( $s ) {
 		return $this->mysqlRealEscapeString( $s );
 	}
 
@@ -648,7 +638,7 @@ abstract class DatabaseMysqlBase extends Database {
 		return strlen( $name ) && $name[0] == '`' && substr( $name, -1, 1 ) == '`';
 	}
 
-	public function getLag() {
+	function getLag() {
 		if ( $this->getLagDetectionMethod() === 'pt-heartbeat' ) {
 			return $this->getLagFromPtHeartbeat();
 		} else {
@@ -766,25 +756,19 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @see https://www.percona.com/doc/percona-toolkit/2.1/pt-heartbeat.html
 	 */
 	protected function getHeartbeatData( array $conds ) {
-		// Do not bother starting implicit transactions here
-		$this->clearFlag( self::DBO_TRX, self::REMEMBER_PRIOR );
-		try {
-			$whereSQL = $this->makeList( $conds, self::LIST_AND );
-			// Use ORDER BY for channel based queries since that field might not be UNIQUE.
-			// Note: this would use "TIMESTAMPDIFF(MICROSECOND,ts,UTC_TIMESTAMP(6))" but the
-			// percision field is not supported in MySQL <= 5.5.
-			$res = $this->query(
-				"SELECT ts FROM heartbeat.heartbeat WHERE $whereSQL ORDER BY ts DESC LIMIT 1"
-			);
-			$row = $res ? $res->fetchObject() : false;
-		} finally {
-			$this->restoreFlags();
-		}
+		$whereSQL = $this->makeList( $conds, self::LIST_AND );
+		// Use ORDER BY for channel based queries since that field might not be UNIQUE.
+		// Note: this would use "TIMESTAMPDIFF(MICROSECOND,ts,UTC_TIMESTAMP(6))" but the
+		// percision field is not supported in MySQL <= 5.5.
+		$res = $this->query(
+			"SELECT ts FROM heartbeat.heartbeat WHERE $whereSQL ORDER BY ts DESC LIMIT 1"
+		);
+		$row = $res ? $res->fetchObject() : false;
 
 		return [ $row ? $row->ts : null, microtime( true ) ];
 	}
 
-	protected function getApproximateLagStatus() {
+	public function getApproximateLagStatus() {
 		if ( $this->getLagDetectionMethod() === 'pt-heartbeat' ) {
 			// Disable caching since this is fast enough and we don't wan't
 			// to be *too* pessimistic by having both the cache TTL and the
@@ -802,7 +786,7 @@ abstract class DatabaseMysqlBase extends Database {
 		return $approxLag;
 	}
 
-	public function masterPosWait( DBMasterPos $pos, $timeout ) {
+	function masterPosWait( DBMasterPos $pos, $timeout ) {
 		if ( !( $pos instanceof MySQLMasterPos ) ) {
 			throw new InvalidArgumentException( "Position not an instance of MySQLMasterPos" );
 		}
@@ -827,8 +811,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 		$row = $res ? $this->fetchRow( $res ) : false;
 		if ( !$row ) {
-			throw new DBExpectedError( $this,
-				"MASTER_POS_WAIT() or MASTER_GTID_WAIT() failed: {$this->lastError()}" );
+			throw new DBExpectedError( $this, "Failed to query MASTER_POS_WAIT()" );
 		}
 
 		// Result can be NULL (error), -1 (timeout), or 0+ per the MySQL manual
@@ -856,7 +839,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 *
 	 * @return MySQLMasterPos|bool
 	 */
-	public function getReplicaPos() {
+	function getReplicaPos() {
 		$res = $this->query( 'SHOW SLAVE STATUS', __METHOD__ );
 		$row = $this->fetchObject( $res );
 
@@ -884,7 +867,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 *
 	 * @return MySQLMasterPos|bool
 	 */
-	public function getMasterPos() {
+	function getMasterPos() {
 		$res = $this->query( 'SHOW MASTER STATUS', __METHOD__ );
 		$row = $this->fetchObject( $res );
 
@@ -1030,7 +1013,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 	/**
 	 * FROM MYSQL DOCS:
-	 * https://dev.mysql.com/doc/refman/5.0/en/miscellaneous-functions.html#function_release-lock
+	 * http://dev.mysql.com/doc/refman/5.0/en/miscellaneous-functions.html#function_release-lock
 	 * @param string $lockName
 	 * @param string $method
 	 * @return bool
@@ -1051,7 +1034,7 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	private function makeLockName( $lockName ) {
-		// https://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_get-lock
+		// http://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_get-lock
 		// Newer version enforce a 64 char length limit.
 		return ( strlen( $lockName ) > 64 ) ? sha1( $lockName ) : $lockName;
 	}
@@ -1060,26 +1043,36 @@ abstract class DatabaseMysqlBase extends Database {
 		return true;
 	}
 
-	public function tableLocksHaveTransactionScope() {
-		return false; // tied to TCP connection
-	}
-
-	protected function doLockTables( array $read, array $write, $method ) {
+	/**
+	 * @param array $read
+	 * @param array $write
+	 * @param string $method
+	 * @param bool $lowPriority
+	 * @return bool
+	 */
+	public function lockTables( $read, $write, $method, $lowPriority = true ) {
 		$items = [];
+
 		foreach ( $write as $table ) {
-			$items[] = $this->tableName( $table ) . ' WRITE';
+			$tbl = $this->tableName( $table ) .
+				( $lowPriority ? ' LOW_PRIORITY' : '' ) .
+				' WRITE';
+			$items[] = $tbl;
 		}
 		foreach ( $read as $table ) {
 			$items[] = $this->tableName( $table ) . ' READ';
 		}
-
 		$sql = "LOCK TABLES " . implode( ',', $items );
 		$this->query( $sql, $method );
 
 		return true;
 	}
 
-	protected function doUnlockTables( $method ) {
+	/**
+	 * @param string $method
+	 * @return bool
+	 */
+	public function unlockTables( $method ) {
 		$this->query( "UNLOCK TABLES", $method );
 
 		return true;
@@ -1115,9 +1108,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @throws DBUnexpectedError
 	 * @return bool|ResultWrapper
 	 */
-	public function deleteJoin(
-		$delTable, $joinTable, $delVar, $joinVar, $conds, $fname = __METHOD__
-	) {
+	function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname = __METHOD__ ) {
 		if ( !$conds ) {
 			throw new DBUnexpectedError( $this, __METHOD__ . ' called with empty $conds' );
 		}
@@ -1171,7 +1162,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 *
 	 * @return int
 	 */
-	public function getServerUptime() {
+	function getServerUptime() {
 		$vars = $this->getMysqlStatus( 'Uptime' );
 
 		return (int)$vars['Uptime'];
@@ -1182,7 +1173,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 *
 	 * @return bool
 	 */
-	public function wasDeadlock() {
+	function wasDeadlock() {
 		return $this->lastErrno() == 1213;
 	}
 
@@ -1191,11 +1182,11 @@ abstract class DatabaseMysqlBase extends Database {
 	 *
 	 * @return bool
 	 */
-	public function wasLockTimeout() {
+	function wasLockTimeout() {
 		return $this->lastErrno() == 1205;
 	}
 
-	public function wasErrorReissuable() {
+	function wasErrorReissuable() {
 		return $this->lastErrno() == 2013 || $this->lastErrno() == 2006;
 	}
 
@@ -1204,12 +1195,12 @@ abstract class DatabaseMysqlBase extends Database {
 	 *
 	 * @return bool
 	 */
-	public function wasReadOnlyError() {
+	function wasReadOnlyError() {
 		return $this->lastErrno() == 1223 ||
 			( $this->lastErrno() == 1290 && strpos( $this->lastError(), '--read-only' ) !== false );
 	}
 
-	public function wasConnectionError( $errno ) {
+	function wasConnectionError( $errno ) {
 		return $errno == 2013 || $errno == 2006;
 	}
 
@@ -1220,9 +1211,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param string $fname
 	 * @return bool
 	 */
-	public function duplicateTableStructure(
-		$oldName, $newName, $temporary = false, $fname = __METHOD__
-	) {
+	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = __METHOD__ ) {
 		$tmp = $temporary ? 'TEMPORARY ' : '';
 		$newName = $this->addIdentifierQuotes( $newName );
 		$oldName = $this->addIdentifierQuotes( $oldName );
@@ -1238,7 +1227,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param string $fname Calling function name
 	 * @return array
 	 */
-	public function listTables( $prefix = null, $fname = __METHOD__ ) {
+	function listTables( $prefix = null, $fname = __METHOD__ ) {
 		$result = $this->query( "SHOW TABLES", $fname );
 
 		$endArray = [];
@@ -1274,7 +1263,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param string $which
 	 * @return array
 	 */
-	private function getMysqlStatus( $which = "%" ) {
+	function getMysqlStatus( $which = "%" ) {
 		$res = $this->query( "SHOW STATUS LIKE '{$which}'" );
 		$status = [];
 
@@ -1331,40 +1320,5 @@ abstract class DatabaseMysqlBase extends Database {
 	public function isView( $name, $prefix = null ) {
 		return in_array( $name, $this->listViews( $prefix ) );
 	}
-
-	/**
-	 * Allows for index remapping in queries where this is not consistent across DBMS
-	 *
-	 * @param string $index
-	 * @return string
-	 */
-	protected function indexName( $index ) {
-		/**
-		 * When SQLite indexes were introduced in r45764, it was noted that
-		 * SQLite requires index names to be unique within the whole database,
-		 * not just within a schema. As discussed in CR r45819, to avoid the
-		 * need for a schema change on existing installations, the indexes
-		 * were implicitly mapped from the new names to the old names.
-		 *
-		 * This mapping can be removed if DB patches are introduced to alter
-		 * the relevant tables in existing installations. Note that because
-		 * this index mapping applies to table creation, even new installations
-		 * of MySQL have the old names (except for installations created during
-		 * a period where this mapping was inappropriately removed, see
-		 * T154872).
-		 */
-		$renamed = [
-			'ar_usertext_timestamp' => 'usertext_timestamp',
-			'un_user_id' => 'user_id',
-			'un_user_ip' => 'user_ip',
-		];
-
-		if ( isset( $renamed[$index] ) ) {
-			return $renamed[$index];
-		} else {
-			return $index;
-		}
-	}
 }
 
-class_alias( DatabaseMysqlBase::class, 'DatabaseMysqlBase' );

@@ -21,9 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use Wikimedia\Rdbms\ResultWrapper;
-use Wikimedia\Rdbms\IDatabase;
-
 /**
  * A special page listing redirects to non existent page. Those should be
  * fixed to point to an existing page.
@@ -112,13 +109,12 @@ class BrokenRedirectsPage extends QueryPage {
 			}
 		}
 
-		$linkRenderer = $this->getLinkRenderer();
 		// $toObj may very easily be false if the $result list is cached
 		if ( !is_object( $toObj ) ) {
-			return '<del>' . $linkRenderer->makeLink( $fromObj ) . '</del>';
+			return '<del>' . Linker::link( $fromObj ) . '</del>';
 		}
 
-		$from = $linkRenderer->makeKnownLink(
+		$from = Linker::linkKnown(
 			$fromObj,
 			null,
 			[],
@@ -132,22 +128,28 @@ class BrokenRedirectsPage extends QueryPage {
 			// check, if the content model is editable through action=edit
 			ContentHandler::getForTitle( $fromObj )->supportsDirectEditing()
 		) {
-			$links[] = $linkRenderer->makeKnownLink(
+			$links[] = Linker::linkKnown(
 				$fromObj,
-				$this->msg( 'brokenredirects-edit' )->text(),
+				$this->msg( 'brokenredirects-edit' )->escaped(),
 				[],
 				[ 'action' => 'edit' ]
 			);
 		}
-		$to = $linkRenderer->makeBrokenLink( $toObj );
+		$to = Linker::link(
+			$toObj,
+			null,
+			[],
+			[],
+			[ 'broken' ]
+		);
 		$arr = $this->getLanguage()->getArrow();
 
 		$out = $from . $this->msg( 'word-separator' )->escaped();
 
 		if ( $this->getUser()->isAllowed( 'delete' ) ) {
-			$links[] = $linkRenderer->makeKnownLink(
+			$links[] = Linker::linkKnown(
 				$fromObj,
-				$this->msg( 'brokenredirects-delete' )->text(),
+				$this->msg( 'brokenredirects-delete' )->escaped(),
 				[],
 				[ 'action' => 'delete' ]
 			);
@@ -169,7 +171,18 @@ class BrokenRedirectsPage extends QueryPage {
 	 * @param ResultWrapper $res
 	 */
 	function preprocessResults( $db, $res ) {
-		$this->executeLBFromResultWrapper( $res );
+		if ( !$res->numRows() ) {
+			return;
+		}
+
+		$batch = new LinkBatch;
+		foreach ( $res as $row ) {
+			$batch->add( $row->namespace, $row->title );
+		}
+		$batch->execute();
+
+		// Back to start for display
+		$res->seek( 0 );
 	}
 
 	protected function getGroupName() {

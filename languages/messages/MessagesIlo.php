@@ -26,3 +26,4 @@ $namespaceNames = [
 	NS_CATEGORY         => 'Kategoria',
 	NS_CATEGORY_TALK    => 'Kategoria_tungtungan',
 ];
+

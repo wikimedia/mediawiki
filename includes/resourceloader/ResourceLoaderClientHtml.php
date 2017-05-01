@@ -56,7 +56,7 @@ class ResourceLoaderClientHtml {
 
 	/**
 	 * @param ResourceLoaderContext $context
-	 * @param string|null $target [optional] Custom 'target' parameter for the startup module
+	 * @param aray $target [optional] Custom 'target' parameter for the startup module
 	 */
 	public function __construct( ResourceLoaderContext $context, $target = null ) {
 		$this->context = $context;
@@ -130,15 +130,26 @@ class ResourceLoaderClientHtml {
 			'states' => [
 				// moduleName => state
 			],
-			'general' => [],
+			'general' => [
+				// position => [ moduleName ]
+				'top' => [],
+				'bottom' => [],
+			],
 			'styles' => [
 				// moduleName
 			],
-			'scripts' => [],
+			'scripts' => [
+				// position => [ moduleName ]
+				'top' => [],
+				'bottom' => [],
+			],
 			// Embedding for private modules
 			'embed' => [
 				'styles' => [],
-				'general' => [],
+				'general' => [
+					'top' => [],
+					'bottom' => [],
+				],
 			],
 
 		];
@@ -150,15 +161,16 @@ class ResourceLoaderClientHtml {
 			}
 
 			$group = $module->getGroup();
+			$position = $module->getPosition();
 
 			if ( $group === 'private' ) {
 				// Embed via mw.loader.implement per T36907.
-				$data['embed']['general'][] = $name;
+				$data['embed']['general'][$position][] = $name;
 				// Avoid duplicate request from mw.loader
 				$data['states'][$name] = 'loading';
 			} else {
 				// Load via mw.loader.load()
-				$data['general'][] = $name;
+				$data['general'][$position][] = $name;
 			}
 		}
 
@@ -204,13 +216,14 @@ class ResourceLoaderClientHtml {
 			}
 
 			$group = $module->getGroup();
+			$position = $module->getPosition();
 			$context = $this->getContext( $group, ResourceLoaderModule::TYPE_SCRIPTS );
 			if ( $module->isKnownEmpty( $context ) ) {
 				// Avoid needless request for empty module
 				$data['states'][$name] = 'ready';
 			} else {
 				// Load from load.php?only=scripts via <script src></script>
-				$data['scripts'][] = $name;
+				$data['scripts'][$position][] = $name;
 
 				// Avoid duplicate request from mw.loader
 				$data['states'][$name] = 'loading';
@@ -269,24 +282,24 @@ class ResourceLoaderClientHtml {
 		}
 
 		// Inline RLQ: Embedded modules
-		if ( $data['embed']['general'] ) {
+		if ( $data['embed']['general']['top'] ) {
 			$chunks[] = $this->getLoad(
-				$data['embed']['general'],
+				$data['embed']['general']['top'],
 				ResourceLoaderModule::TYPE_COMBINED
 			);
 		}
 
 		// Inline RLQ: Load general modules
-		if ( $data['general'] ) {
+		if ( $data['general']['top'] ) {
 			$chunks[] = ResourceLoader::makeInlineScript(
-				Xml::encodeJsCall( 'mw.loader.load', [ $data['general'] ] )
+				Xml::encodeJsCall( 'mw.loader.load', [ $data['general']['top'] ] )
 			);
 		}
 
 		// Inline RLQ: Load only=scripts
-		if ( $data['scripts'] ) {
+		if ( $data['scripts']['top'] ) {
 			$chunks[] = $this->getLoad(
-				$data['scripts'],
+				$data['scripts']['top'],
 				ResourceLoaderModule::TYPE_SCRIPTS
 			);
 		}
@@ -323,7 +336,33 @@ class ResourceLoaderClientHtml {
 	 * @return string|WrappedStringList HTML
 	 */
 	public function getBodyHtml() {
-		return '';
+		$data = $this->getData();
+		$chunks = [];
+
+		// Inline RLQ: Embedded modules
+		if ( $data['embed']['general']['bottom'] ) {
+			$chunks[] = $this->getLoad(
+				$data['embed']['general']['bottom'],
+				ResourceLoaderModule::TYPE_COMBINED
+			);
+		}
+
+		// Inline RLQ: Load only=scripts
+		if ( $data['scripts']['bottom'] ) {
+			$chunks[] = $this->getLoad(
+				$data['scripts']['bottom'],
+				ResourceLoaderModule::TYPE_SCRIPTS
+			);
+		}
+
+		// Inline RLQ: Load general modules
+		if ( $data['general']['bottom'] ) {
+			$chunks[] = ResourceLoader::makeInlineScript(
+				Xml::encodeJsCall( 'mw.loader.load', [ $data['general']['bottom'] ] )
+			);
+		}
+
+		return WrappedStringList::join( "\n", $chunks );
 	}
 
 	private function getContext( $group, $type ) {
@@ -365,11 +404,7 @@ class ResourceLoaderClientHtml {
 		$rl = $mainContext->getResourceLoader();
 		$chunks = [];
 
-		// Sort module names so requests are more uniform
-		sort( $modules );
-
 		if ( $mainContext->getDebug() && count( $modules ) > 1 ) {
-
 			$chunks = [];
 			// Recursively call us for every item
 			foreach ( $modules as $name ) {
@@ -378,6 +413,8 @@ class ResourceLoaderClientHtml {
 			return new WrappedStringList( "\n", $chunks );
 		}
 
+		// Sort module names so requests are more uniform
+		sort( $modules );
 		// Create keyed-by-source and then keyed-by-group list of module objects from modules list
 		$sortedModules = [];
 		foreach ( $modules as $name ) {
@@ -417,7 +454,7 @@ class ResourceLoaderClientHtml {
 				// Special handling for the user group; because users might change their stuff
 				// on-wiki like user pages, or user preferences; we need to find the highest
 				// timestamp of these user-changeable modules so we can ensure cache misses on change
-				// This should NOT be done for the site group (T29564) because anons get that too
+				// This should NOT be done for the site group (bug 27564) because anons get that too
 				// and we shouldn't be putting timestamps in CDN-cached HTML
 				if ( $group === 'user' ) {
 					// Must setModules() before makeVersionQuery()

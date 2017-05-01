@@ -67,7 +67,7 @@ class HashConfig implements Config, MutableConfig {
 	}
 
 	/**
-	 * @see MutableConfig::set
+	 * @see Config::set
 	 */
 	public function set( $name, $value ) {
 		$this->settings[$name] = $value;

@@ -36,11 +36,9 @@ class MWOldPassword extends ParameterizedPassword {
 	}
 
 	public function crypt( $plaintext ) {
-		if ( count( $this->args ) === 1 ) {
-			// Accept (but do not generate) salted passwords with :A: prefix.
-			// These are actually B-type passwords, but an error in a previous
-			// version of MediaWiki caused them to be written with an :A:
-			// prefix.
+		global $wgPasswordSalt;
+
+		if ( $wgPasswordSalt && count( $this->args ) === 1 ) {
 			$this->hash = md5( $this->args[0] . '-' . md5( $plaintext ) );
 		} else {
 			$this->args = [];

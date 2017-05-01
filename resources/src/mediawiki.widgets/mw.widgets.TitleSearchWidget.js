@@ -15,7 +15,6 @@
 	 * @mixins mw.widgets.TitleWidget
 	 *
 	 * @constructor
-	 * @param {Object} [config] Configuration options
 	 */
 	mw.widgets.TitleSearchWidget = function MwWidgetsTitleSearchWidget( config ) {
 		config = config || {};

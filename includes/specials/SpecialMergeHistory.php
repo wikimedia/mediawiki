@@ -277,8 +277,6 @@ class SpecialMergeHistory extends SpecialPage {
 	function formatRevisionRow( $row ) {
 		$rev = new Revision( $row );
 
-		$linkRenderer = $this->getLinkRenderer();
-
 		$stxt = '';
 		$last = $this->msg( 'last' )->escaped();
 
@@ -287,9 +285,9 @@ class SpecialMergeHistory extends SpecialPage {
 
 		$user = $this->getUser();
 
-		$pageLink = $linkRenderer->makeKnownLink(
+		$pageLink = Linker::linkKnown(
 			$rev->getTitle(),
-			$this->getLanguage()->userTimeAndDate( $ts, $user ),
+			htmlspecialchars( $this->getLanguage()->userTimeAndDate( $ts, $user ) ),
 			[],
 			[ 'oldid' => $rev->getId() ]
 		);
@@ -301,9 +299,9 @@ class SpecialMergeHistory extends SpecialPage {
 		if ( !$rev->userCan( Revision::DELETED_TEXT, $user ) ) {
 			$last = $this->msg( 'last' )->escaped();
 		} elseif ( isset( $this->prevId[$row->rev_id] ) ) {
-			$last = $linkRenderer->makeKnownLink(
+			$last = Linker::linkKnown(
 				$rev->getTitle(),
-				$this->msg( 'last' )->text(),
+				$this->msg( 'last' )->escaped(),
 				[],
 				[
 					'diff' => $row->rev_id,
@@ -361,9 +359,7 @@ class SpecialMergeHistory extends SpecialPage {
 			return false;
 		}
 
-		$linkRenderer = $this->getLinkRenderer();
-
-		$targetLink = $linkRenderer->makeLink(
+		$targetLink = Linker::link(
 			$targetTitle,
 			null,
 			[],

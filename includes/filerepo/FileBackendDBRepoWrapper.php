@@ -23,9 +23,6 @@
  * @author Aaron Schulz
  */
 
-use Wikimedia\Rdbms\DBConnRef;
-use Wikimedia\Rdbms\MaintainableDBConnRef;
-
 /**
  * @brief Proxy backend that manages file layout rewriting for FileRepo.
  *

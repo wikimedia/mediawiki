@@ -3,8 +3,7 @@
 		"authors": [
 			"Asoxor",
 			"Calak",
-			"Muhammed taha",
-			"Lost Whispers"
+			"Muhammed taha"
 		]
 	},
 	"config-desc": "دامەزرێنەرەکە بۆ میدیاویکی",
@@ -45,8 +44,6 @@
 	"config-admin-password": "تێپەڕوشە:",
 	"config-admin-password-confirm": "دووبارە تێپەڕوشە:",
 	"config-admin-email": "ناونیشانی ئیمەیل:",
-	"config-admin-email-help": "ناونیشانی ئیمەیڵەکەت لێرەدا دابنێ بۆئەوەی بتوانیت ئیمەیڵت لە بەکارھێنەرانی ترەوە پێ بگات، تێپەڕ وشە ڕێک بخەیتەوە و ئاگادار بکرێیتەوە لەو گۆڕانکاریانەی کە لەو پەڕانەدا دەکرێن کە چاودێرییان دەکەیت. دەتوانیت ئەم بۆشاییە بە بەتاڵی جێبھێڵیت.",
-	"config-admin-error-bademail": "تۆ ناونیشانی ئیمەیڵێکی ھەڵەت داخڵ کردووە.",
 	"config-profile-wiki": "ویکیی کراوە",
 	"config-profile-no-anon": "دروستکردنی ھەژمارە پێویستە",
 	"config-profile-fishbowl": "تەنھا دەستکاریکەری ڕێگەپێدراوە",

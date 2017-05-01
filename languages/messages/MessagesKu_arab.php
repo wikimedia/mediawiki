@@ -32,3 +32,4 @@ $digitTransformTable = [
 	'.' => '٫', # &#x066b; wrong table ?
 	',' => '٬', # &#x066c;
 ];
+

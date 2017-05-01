@@ -53,6 +53,12 @@ class FewestrevisionsPage extends QueryPage {
 				'page_namespace' => MWNamespace::getContentNamespaces(),
 				'page_id = rev_page' ],
 			'options' => [
+				'HAVING' => 'COUNT(*) > 1',
+				// ^^^ This was probably here to weed out redirects.
+				// Since we mark them as such now, it might be
+				// useful to remove this. People _do_ create pages
+				// and never revise them, they aren't necessarily
+				// redirects.
 				'GROUP BY' => [ 'page_namespace', 'page_title', 'page_is_redirect' ]
 			]
 		];
@@ -82,14 +88,14 @@ class FewestrevisionsPage extends QueryPage {
 				)
 			);
 		}
-		$linkRenderer = $this->getLinkRenderer();
-		$text = $wgContLang->convert( $nt->getPrefixedText() );
-		$plink = $linkRenderer->makeLink( $nt, $text );
 
-		$nl = $this->msg( 'nrevisions' )->numParams( $result->value )->text();
+		$text = htmlspecialchars( $wgContLang->convert( $nt->getPrefixedText() ) );
+		$plink = Linker::linkKnown( $nt, $text );
+
+		$nl = $this->msg( 'nrevisions' )->numParams( $result->value )->escaped();
 		$redirect = isset( $result->redirect ) && $result->redirect ?
 			' - ' . $this->msg( 'isredirect' )->escaped() : '';
-		$nlink = $linkRenderer->makeKnownLink(
+		$nlink = Linker::linkKnown(
 			$nt,
 			$nl,
 			[],

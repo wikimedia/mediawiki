@@ -1,49 +1,9 @@
 <?php
 
-use Wikimedia\TestingAccessWrapper;
-
 /**
  * @group FileRepo
  * @group FileBackend
  * @group medium
- *
- * @covers FileBackend
- *
- * @covers CopyFileOp
- * @covers CreateFileOp
- * @covers DeleteFileOp
- * @covers DescribeFileOp
- * @covers FSFile
- * @covers FSFileBackend
- * @covers FSFileBackendDirList
- * @covers FSFileBackendFileList
- * @covers FSFileBackendList
- * @covers FSFileOpHandle
- * @covers FileBackendDBRepoWrapper
- * @covers FileBackendError
- * @covers FileBackendGroup
- * @covers FileBackendMultiWrite
- * @covers FileBackendStore
- * @covers FileBackendStoreOpHandle
- * @covers FileBackendStoreShardDirIterator
- * @covers FileBackendStoreShardFileIterator
- * @covers FileBackendStoreShardListIterator
- * @covers FileJournal
- * @covers FileOp
- * @covers FileOpBatch
- * @covers HTTPFileStreamer
- * @covers LockManagerGroup
- * @covers MemoryFileBackend
- * @covers MoveFileOp
- * @covers MySqlLockManager
- * @covers NullFileJournal
- * @covers NullFileOp
- * @covers StoreFileOp
- * @covers TempFSFile
- *
- * @covers FSLockManager
- * @covers LockManager
- * @covers NullLockManager
  */
 class FileBackendTest extends MediaWikiTestCase {
 
@@ -129,6 +89,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_testIsStoragePath
+	 * @covers FileBackend::isStoragePath
 	 */
 	public function testIsStoragePath( $path, $isStorePath ) {
 		$this->assertEquals( $isStorePath, FileBackend::isStoragePath( $path ),
@@ -153,6 +114,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_testSplitStoragePath
+	 * @covers FileBackend::splitStoragePath
 	 */
 	public function testSplitStoragePath( $path, $res ) {
 		$this->assertEquals( $res, FileBackend::splitStoragePath( $path ),
@@ -177,6 +139,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_normalizeStoragePath
+	 * @covers FileBackend::normalizeStoragePath
 	 */
 	public function testNormalizeStoragePath( $path, $res ) {
 		$this->assertEquals( $res, FileBackend::normalizeStoragePath( $path ),
@@ -206,6 +169,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_testParentStoragePath
+	 * @covers FileBackend::parentStoragePath
 	 */
 	public function testParentStoragePath( $path, $res ) {
 		$this->assertEquals( $res, FileBackend::parentStoragePath( $path ),
@@ -227,6 +191,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_testExtensionFromPath
+	 * @covers FileBackend::extensionFromPath
 	 */
 	public function testExtensionFromPath( $path, $res ) {
 		$this->assertEquals( $res, FileBackend::extensionFromPath( $path ),
@@ -259,6 +224,9 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->tearDownFiles();
 	}
 
+	/**
+	 * @covers FileBackend::doOperation
+	 */
 	private function doTestStore( $op ) {
 		$backendName = $this->backendClass();
 
@@ -318,6 +286,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_testCopy
+	 * @covers FileBackend::doOperation
 	 */
 	public function testCopy( $op ) {
 		$this->backend = $this->singleBackend;
@@ -438,6 +407,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_testMove
+	 * @covers FileBackend::doOperation
 	 */
 	public function testMove( $op ) {
 		$this->backend = $this->singleBackend;
@@ -559,6 +529,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_testDelete
+	 * @covers FileBackend::doOperation
 	 */
 	public function testDelete( $op, $withSource, $okStatus ) {
 		$this->backend = $this->singleBackend;
@@ -650,6 +621,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_testDescribe
+	 * @covers FileBackend::doOperation
 	 */
 	public function testDescribe( $op, $withSource, $okStatus ) {
 		$this->backend = $this->singleBackend;
@@ -750,6 +722,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_testCreate
+	 * @covers FileBackend::doOperation
 	 */
 	public function testCreate( $op, $alreadyExists, $okStatus, $newSize ) {
 		$this->backend = $this->singleBackend;
@@ -870,6 +843,9 @@ class FileBackendTest extends MediaWikiTestCase {
 		return $cases;
 	}
 
+	/**
+	 * @covers FileBackend::doQuickOperations
+	 */
 	public function testDoQuickOperations() {
 		$this->backend = $this->singleBackend;
 		$this->doTestDoQuickOperations();
@@ -1080,6 +1056,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_testGetFileStat
+	 * @covers FileBackend::getFileStat
 	 */
 	public function testGetFileStat( $path, $content, $alreadyExists ) {
 		$this->backend = $this->singleBackend;
@@ -1155,6 +1132,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_testGetFileStat
+	 * @covers FileBackend::streamFile
 	 */
 	public function testStreamFile( $path, $content, $alreadyExists ) {
 		$this->backend = $this->singleBackend;
@@ -1253,6 +1231,8 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_testGetFileContents
+	 * @covers FileBackend::getFileContents
+	 * @covers FileBackend::getFileContentsMulti
 	 */
 	public function testGetFileContents( $source, $content ) {
 		$this->backend = $this->singleBackend;
@@ -1324,6 +1304,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_testGetLocalCopy
+	 * @covers FileBackend::getLocalCopy
 	 */
 	public function testGetLocalCopy( $source, $content ) {
 		$this->backend = $this->singleBackend;
@@ -1409,6 +1390,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_testGetLocalReference
+	 * @covers FileBackend::getLocalReference
 	 */
 	public function testGetLocalReference( $source, $content ) {
 		$this->backend = $this->singleBackend;
@@ -1485,6 +1467,10 @@ class FileBackendTest extends MediaWikiTestCase {
 		return $cases;
 	}
 
+	/**
+	 * @covers FileBackend::getLocalCopy
+	 * @covers FileBackend::getLocalReference
+	 */
 	public function testGetLocalCopyAndReference404() {
 		$this->backend = $this->singleBackend;
 		$this->tearDownFiles();
@@ -1513,6 +1499,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_testGetFileHttpUrl
+	 * @covers FileBackend::getFileHttpUrl
 	 */
 	public function testGetFileHttpUrl( $source, $content ) {
 		$this->backend = $this->singleBackend;
@@ -1557,6 +1544,8 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_testPrepareAndClean
+	 * @covers FileBackend::prepare
+	 * @covers FileBackend::clean
 	 */
 	public function testPrepareAndClean( $path, $isOK ) {
 		$this->backend = $this->singleBackend;
@@ -1637,6 +1626,9 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->tearDownFiles();
 	}
 
+	/**
+	 * @covers FileBackend::clean
+	 */
 	private function doTestRecursiveClean() {
 		$backendName = $this->backendClass();
 
@@ -1681,6 +1673,9 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 	}
 
+	/**
+	 * @covers FileBackend::doOperations
+	 */
 	public function testDoOperations() {
 		$this->backend = $this->singleBackend;
 		$this->tearDownFiles();
@@ -1768,6 +1763,9 @@ class FileBackendTest extends MediaWikiTestCase {
 			"Correct file SHA-1 of $fileC" );
 	}
 
+	/**
+	 * @covers FileBackend::doOperations
+	 */
 	public function testDoOperationsPipeline() {
 		$this->backend = $this->singleBackend;
 		$this->tearDownFiles();
@@ -1864,6 +1862,9 @@ class FileBackendTest extends MediaWikiTestCase {
 			"Correct file SHA-1 of $fileC" );
 	}
 
+	/**
+	 * @covers FileBackend::doOperations
+	 */
 	public function testDoOperationsFailing() {
 		$this->backend = $this->singleBackend;
 		$this->tearDownFiles();
@@ -1938,6 +1939,9 @@ class FileBackendTest extends MediaWikiTestCase {
 			"Correct file SHA-1 of $fileA" );
 	}
 
+	/**
+	 * @covers FileBackend::getFileList
+	 */
 	public function testGetFileList() {
 		$this->backend = $this->singleBackend;
 		$this->tearDownFiles();
@@ -2113,6 +2117,10 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 	}
 
+	/**
+	 * @covers FileBackend::getTopDirectoryList
+	 * @covers FileBackend::getDirectoryList
+	 */
 	public function testGetDirectoryList() {
 		$this->backend = $this->singleBackend;
 		$this->tearDownFiles();
@@ -2326,6 +2334,10 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->assertEquals( [], $items, "Directory listing is empty." );
 	}
 
+	/**
+	 * @covers FileBackend::lockFiles
+	 * @covers FileBackend::unlockFiles
+	 */
 	public function testLockCalls() {
 		$this->backend = $this->singleBackend;
 		$this->doTestLockCalls();

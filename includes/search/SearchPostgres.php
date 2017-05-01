@@ -62,6 +62,7 @@ class SearchPostgres extends SearchDatabase {
 	 * @return string
 	 */
 	function parseQuery( $term ) {
+
 		wfDebug( "parseQuery received: $term \n" );
 
 		# # No backslashes allowed
@@ -114,6 +115,7 @@ class SearchPostgres extends SearchDatabase {
 		wfDebug( "parseQuery returned: $searchstring \n" );
 
 		return $searchstring;
+
 	}
 
 	/**

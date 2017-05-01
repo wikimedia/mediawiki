@@ -19,16 +19,12 @@
  * @ingroup Pager
  */
 
-use Wikimedia\Rdbms\FakeResultWrapper;
-
 /**
  * Use TablePager for prettified output. We have to pretend that we're
  * getting data from a table when in fact not all of it comes from the database.
  *
  * @ingroup Pager
  */
-use MediaWiki\MediaWikiServices;
-
 class AllMessagesTablePager extends TablePager {
 
 	protected $filter, $prefix, $langcode, $displayPrefix;
@@ -301,7 +297,6 @@ class AllMessagesTablePager extends TablePager {
 	}
 
 	function formatValue( $field, $value ) {
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		switch ( $field ) {
 			case 'am_title' :
 				$title = Title::makeTitle( NS_MEDIAWIKI, $value . $this->suffix );
@@ -318,19 +313,25 @@ class AllMessagesTablePager extends TablePager {
 				);
 
 				if ( $this->mCurrentRow->am_customised ) {
-					$title = $linkRenderer->makeKnownLink( $title, $this->getLanguage()->lcfirst( $value ) );
+					$title = Linker::linkKnown( $title, $this->getLanguage()->lcfirst( $value ) );
 				} else {
-					$title = $linkRenderer->makeBrokenLink(
+					$title = Linker::link(
 						$title,
-						$this->getLanguage()->lcfirst( $value )
+						$this->getLanguage()->lcfirst( $value ),
+						[],
+						[],
+						[ 'broken' ]
 					);
 				}
 				if ( $this->mCurrentRow->am_talk_exists ) {
-					$talk = $linkRenderer->makeKnownLink( $talk, $this->talk );
+					$talk = Linker::linkKnown( $talk, $this->talk );
 				} else {
-					$talk = $linkRenderer->makeBrokenLink(
+					$talk = Linker::link(
 						$talk,
-						$this->talk
+						$this->talk,
+						[],
+						[],
+						[ 'broken' ]
 					);
 				}
 

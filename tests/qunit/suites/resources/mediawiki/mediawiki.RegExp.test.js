@@ -1,7 +1,7 @@
 ( function ( mw, $ ) {
 	QUnit.module( 'mediawiki.RegExp' );
 
-	QUnit.test( 'escape', function ( assert ) {
+	QUnit.test( 'escape', 16, function ( assert ) {
 		var specials, normal;
 
 		specials = [

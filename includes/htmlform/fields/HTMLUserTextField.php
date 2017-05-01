@@ -28,12 +28,12 @@ class HTMLUserTextField extends HTMLTextField {
 		$user = User::newFromName( $value, false );
 
 		if ( !$user ) {
-			return $this->msg( 'htmlform-user-not-valid', $value );
+			return $this->msg( 'htmlform-user-not-valid', $value )->parse();
 		} elseif (
 			( $this->mParams['exists'] && $user->getId() === 0 ) &&
 			!( $this->mParams['ipallowed'] && User::isIP( $value ) )
 		) {
-			return $this->msg( 'htmlform-user-not-exists', $user->getName() );
+			return $this->msg( 'htmlform-user-not-exists', $user->getName() )->parse();
 		}
 
 		return parent::validate( $value, $alldata );

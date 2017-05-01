@@ -64,11 +64,9 @@ INSERT INTO /*_*/mwuser (user_name) VALUES ('##Anonymous##');
 CREATE TABLE /*_*/user_groups (
    ug_user  INT     NOT NULL REFERENCES /*_*/mwuser(user_id) ON DELETE CASCADE,
    ug_group NVARCHAR(255) NOT NULL DEFAULT '',
-   ug_expiry varchar(14) DEFAULT NULL,
-   PRIMARY KEY(ug_user, ug_group)
 );
+CREATE UNIQUE clustered INDEX /*i*/ug_user_group ON /*_*/user_groups (ug_user, ug_group);
 CREATE INDEX /*i*/ug_group ON /*_*/user_groups(ug_group);
-CREATE INDEX /*i*/ug_expiry ON /*_*/user_groups(ug_expiry);
 
 -- Stores the groups the user has once belonged to.
 -- The user may still belong to these groups (check user_groups).
@@ -301,7 +299,7 @@ CREATE TABLE /*_*/categorylinks (
   -- conversion algorithm is run.  We store this so that we can update
   -- collations without reparsing all pages.
   -- Note: If you change the length of this field, you also need to change
-  -- code in LinksUpdate.php. See T27254.
+  -- code in LinksUpdate.php. See bug 25254.
   cl_sortkey_prefix varbinary(255) NOT NULL default 0x,
 
   -- This isn't really used at present. Provided for an optional
@@ -391,18 +389,11 @@ CREATE TABLE /*_*/externallinks (
   -- which allows for fast searching for all pages under example.com with the
   -- clause:
   --      WHERE el_index LIKE 'http://com.example.%'
-  el_index nvarchar(450) NOT NULL,
-
-  -- This is el_index truncated to 60 bytes to allow for sortable queries that
-  -- aren't supported by a partial index.
-  -- @todo Drop the default once this is deployed everywhere and code is populating it.
-  el_index_60 varbinary(60) NOT NULL default ''
+  el_index nvarchar(450) NOT NULL
 );
 
 CREATE INDEX /*i*/el_from ON /*_*/externallinks (el_from);
 CREATE INDEX /*i*/el_index ON /*_*/externallinks (el_index);
-CREATE INDEX /*i*/el_index_60 ON /*_*/externallinks (el_index_60, el_id);
-CREATE INDEX /*i*/el_from_index_60 ON /*_*/externallinks (el_from, el_index_60, el_id);
 -- el_to index intentionally not added; we cannot index nvarchar(max) columns,
 -- but we also cannot restrict el_to to a smaller column size as the external
 -- link may be larger.
@@ -528,7 +519,7 @@ CREATE TABLE /*_*/ipblocks (
   -- Size chosen to allow IPv6
   -- FIXME: these fields were originally blank for single-IP blocks,
   -- but now they are populated. No migration was ever done. They
-  -- should be fixed to be blank again for such blocks (T51504).
+  -- should be fixed to be blank again for such blocks (bug 49504).
   ipb_range_start varchar(255) NOT NULL,
   ipb_range_end varchar(255) NOT NULL,
 
@@ -586,13 +577,13 @@ CREATE TABLE /*_*/image (
   img_media_type varchar(16) default null,
 
   -- major part of a MIME media type as defined by IANA
-  -- see https://www.iana.org/assignments/media-types/
+  -- see http://www.iana.org/assignments/media-types/
   img_major_mime varchar(16) not null default 'unknown',
 
   -- minor part of a MIME media type as defined by IANA
   -- the minor parts are not required to adher to any standard
   -- but should be consistent throughout the database
-  -- see https://www.iana.org/assignments/media-types/
+  -- see http://www.iana.org/assignments/media-types/
   img_minor_mime nvarchar(100) NOT NULL default 'unknown',
 
   -- Description field as entered by the uploader.
@@ -661,6 +652,7 @@ CREATE TABLE /*_*/oldimage (
 
 CREATE INDEX /*i*/oi_usertext_timestamp ON /*_*/oldimage (oi_user_text,oi_timestamp);
 CREATE INDEX /*i*/oi_name_timestamp ON /*_*/oldimage (oi_name,oi_timestamp);
+CREATE INDEX /*i*/oi_name_archive_name ON /*_*/oldimage (oi_name,oi_archive_name);
 CREATE INDEX /*i*/oi_sha1 ON /*_*/oldimage (oi_sha1);
 
 

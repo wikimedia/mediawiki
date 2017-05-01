@@ -24,9 +24,6 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
-use Wikimedia\Rdbms\ResultWrapper;
-use Wikimedia\Rdbms\IDatabase;
-
 /**
  * A special page that displays a list of pages that are not on anyones watchlist.
  *
@@ -46,28 +43,7 @@ class UnwatchedpagesPage extends QueryPage {
 		return false;
 	}
 
-	/**
-	 * Pre-cache page existence to speed up link generation
-	 *
-	 * @param IDatabase $db
-	 * @param ResultWrapper $res
-	 */
-	public function preprocessResults( $db, $res ) {
-		if ( !$res->numRows() ) {
-			return;
-		}
-
-		$batch = new LinkBatch();
-		foreach ( $res as $row ) {
-			$batch->add( $row->namespace, $row->title );
-		}
-		$batch->execute();
-
-		$res->seek( 0 );
-	}
-
 	public function getQueryInfo() {
-		$dbr = wfGetDB( DB_REPLICA );
 		return [
 			'tables' => [ 'page', 'watchlist' ],
 			'fields' => [
@@ -78,7 +54,7 @@ class UnwatchedpagesPage extends QueryPage {
 			'conds' => [
 				'wl_title IS NULL',
 				'page_is_redirect' => 0,
-				'page_namespace != ' . $dbr->addQuotes( NS_MEDIAWIKI ),
+				"page_namespace != '" . NS_MEDIAWIKI . "'"
 			],
 			'join_conds' => [ 'watchlist' => [
 				'LEFT JOIN', [ 'wl_title = page_title',
@@ -119,12 +95,10 @@ class UnwatchedpagesPage extends QueryPage {
 
 		$text = $wgContLang->convert( $nt->getPrefixedText() );
 
-		$linkRenderer = $this->getLinkRenderer();
-
-		$plink = $linkRenderer->makeKnownLink( $nt, $text );
-		$wlink = $linkRenderer->makeKnownLink(
+		$plink = Linker::linkKnown( $nt, htmlspecialchars( $text ) );
+		$wlink = Linker::linkKnown(
 			$nt,
-			$this->msg( 'watch' )->text(),
+			$this->msg( 'watch' )->escaped(),
 			[ 'class' => 'mw-watch-link' ],
 			[ 'action' => 'watch' ]
 		);

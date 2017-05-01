@@ -131,3 +131,4 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'ای لینکی ادان هست' ],
 	'Withoutinterwiki'          => [ 'بی بین ویکی' ],
 ];
+

@@ -26,8 +26,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use Wikimedia\Rdbms\IDatabase;
-
 /**
  * Maintenance script that will find all rows in the categorylinks table
  * whose collation is out-of-date.
@@ -244,7 +242,7 @@ TEXT
 	 * Return an SQL expression selecting rows which sort above the given row,
 	 * assuming an ordering of cl_collation, cl_to, cl_type, cl_from
 	 * @param stdClass $row
-	 * @param IDatabase $dbw
+	 * @param Database $dbw
 	 * @return string
 	 */
 	function getBatchCondition( $row, $dbw ) {

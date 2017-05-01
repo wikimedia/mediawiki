@@ -3,7 +3,6 @@
 	mw.page = {};
 
 	$( function () {
-		var $diff;
 		mw.util.init();
 
 		/**
@@ -24,7 +23,7 @@
 		 */
 		mw.hook( 'wikipage.content' ).fire( $( '#mw-content-text' ) );
 
-		$diff = $( 'table.diff[data-mw="interface"]' );
+		var $diff = $( 'table.diff[data-mw="interface"]' );
 		if ( $diff.length ) {
 			/**
 			 * Fired when the diff is added to a page containing a diff

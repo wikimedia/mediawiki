@@ -35,12 +35,11 @@
 				rcid: rcid
 			} )
 			.done( function ( data ) {
-				var title;
 				// Remove all patrollinks from the page (including any spinners inside).
 				$patrolLinks.closest( '.patrollink' ).remove();
 				if ( data.patrol !== undefined ) {
 					// Success
-					title = new mw.Title( data.patrol.title );
+					var title = new mw.Title( data.patrol.title );
 					mw.notify( mw.msg( 'markedaspatrollednotify', title.toText() ) );
 				} else {
 					// This should never happen as errors should trigger fail

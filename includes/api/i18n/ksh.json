@@ -1,8 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
-			"Purodha",
-			"Macofe"
+			"Purodha"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page/de|Dokemäntazjohn]]\n* [[mw:API:FAQ/de|Öff jefrohch]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mäileng_Leß]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Aanköndejonge zom <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i>]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Jemäldte Fähler un Wönsch]\n</div>\n<strong>Status:</strong> Alle op heh dä Sigg aanjzeischte Ußwahle sullte donn, ävver et <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i> weed jrahd noch äntwekeld un et kann sesch alle Nahslangs jädd ändere. Holl Der de [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ Mäileng_Leß med Aanköndejonge], öm automattesch övver Neujeschkeite enfommehrt ze wähde.\n\n<strong>Kapodde Aanfrohre:</strong> Wam_mer kapodde Aanfroheaan et API <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i> schek, kritt mer ene <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"HyperText Transfer Protocol\">HTTP</i>-Kopp ußjejovve met däm Täx „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">MediaWiki-API-Error</code>“ dren, dä mer als ene Schlößel bedraachte kann. Mih dohzoh fengk met op dä Sigg [[mw:API:Errors_and_warnings|<i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i>: Fähler un Warnonge]].",
@@ -993,7 +992,7 @@
 	"apihelp-xml-param-includexmlnamespace": "Wann aanjejovve, deihd en <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Extensible Markup Language\">XML</i>-Appachtemand derbei.",
 	"apihelp-xmlfm-description": "Donn de Dahte em <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Extensible Markup Language\">XML</i>-Fommahd schöhn jemaht met <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"HyperText Markup Language\">HTML</i> ußjävve.",
 	"api-format-title": "Wat et <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i> ußjohv.",
-	"api-format-prettyprint-header-only-html": "Dat heh es en <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"HyperText Markup Language\">HTML</i>_Daaschtällong un för et Fähersöhke jedaach. Dadd is för Aanwändongsprojramme nit ze bruche.\n\nEn de [[mw:Special:MyLanguage/API|complete Dokkemäntazjohn]] un de [[Special:ApiHelp/main|API Hölp_Sigg]] kam_mer doh mih drövver lässe.",
+	"api-format-prettyprint-header-only-html": "Dat heh es en <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"HyperText Markup Language\">HTML</i>_Daaschtällong un för et Fähersöhke jedaach. Dadd is för Aanwändongsprojramme nit ze bruche.\n\nEn de [[mw:API|complete Dokkemäntazjohn]] un de [[Special:ApiHelp/main|API Hölp_Sigg]] kam_mer doh mih drövver lässe.",
 	"api-pageset-param-titles": "En Leß vun Övverschreffte för ze beärbeide.",
 	"api-pageset-param-pageids": "En Leß vun Kännonge vun Sigge för ze beärbeide.",
 	"api-pageset-param-revids": "En Leß vun Kännonge vun Väsjohne för ze beärbeide.",
@@ -1030,8 +1029,8 @@
 	"api-help-param-multi-max": "De jrühßte müjjelesche Zahl es {{PLURAL:$1|$1}}, un {{PLURAL:$2|$2}} för Botprojramme.",
 	"api-help-param-default": "Schtandatt: $1",
 	"api-help-param-default-empty": "Schtandatt: <span class=\"apihelp-empty\">(läddesch)</span>",
-	"api-help-param-disabled-in-miser-mode": "Dadd es wäje em [[mw:Special:MyLanguage/Manual:$wgMiserMode|miser mode]] affjeschalldt.",
-	"api-help-param-limited-in-miser-mode": "<strong>Opjepaß:</strong> Weil der [[mw:Special:MyLanguage/Manual:$wgMiserMode|miser mode]] enjeschalld es, künne heh winnijer wi <var lang=\"en\" xml:lang=\"en\" dir=\"ltr\">$1limit</var> Äjehpneße ußjejejovve wähde, vör em Wigger_Mache. En Jränzfäll künne et Noll sin.",
+	"api-help-param-disabled-in-miser-mode": "Dadd es wäje em [[mw:Manual:$wgMiserMode|miser mode]] affjeschalldt.",
+	"api-help-param-limited-in-miser-mode": "<strong>Opjepaß:</strong> Weil der [[mw:Manual:$wgMiserMode|miser mode]] enjeschalld es, künne heh winnijer wi <var lang=\"en\" xml:lang=\"en\" dir=\"ltr\">$1limit</var> Äjehpneße ußjejejovve wähde, vör em Wigger_Mache. En Jränzfäll künne et Noll sin.",
 	"api-help-param-direction": "En wälsche Reihjefollsch opleßte:\n;<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">newer</code>:De Ählsde et eez. Opjepaß: „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">$1start</code>“ moß fröhjer sin wi „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">$1end</code>“.\n;<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">older</code>:De Neuste et eez, der Schtanndatt. Opjepaß: „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">$1start</code>“ moß schpääder sin wi „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">$1end</code>“.",
 	"api-help-param-continue": "Wann mih ze holle es, nemm dat för wigger ze maache.",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(nix drövver bikannt)</span>",

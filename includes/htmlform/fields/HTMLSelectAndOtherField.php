@@ -11,7 +11,7 @@
  * @todo FIXME: If made 'required', only the text field should be compulsory.
  */
 class HTMLSelectAndOtherField extends HTMLSelectField {
-	public function __construct( $params ) {
+	function __construct( $params ) {
 		if ( array_key_exists( 'other', $params ) ) {
 			// Do nothing
 		} elseif ( array_key_exists( 'other-message', $params ) ) {
@@ -31,9 +31,10 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			$this->mOptions = [ $params['other'] => 'other' ] + $this->mOptions;
 		}
 		$this->mFlatOptions = self::flattenOptions( $this->getOptions() );
+
 	}
 
-	public function getInputHTML( $value ) {
+	function getInputHTML( $value ) {
 		$select = parent::getInputHTML( $value[1] );
 
 		$textAttribs = [
@@ -63,7 +64,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		return "$select<br />\n$textbox";
 	}
 
-	public function getInputOOUI( $value ) {
+	function getInputOOUI( $value ) {
 		return false;
 	}
 
@@ -72,7 +73,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	 *
 	 * @return array("<overall message>","<select value>","<text field value>")
 	 */
-	public function loadDataFromRequest( $request ) {
+	function loadDataFromRequest( $request ) {
 		if ( $request->getCheck( $this->mName ) ) {
 			$list = $request->getText( $this->mName );
 			$text = $request->getText( $this->mName . '-other' );
@@ -107,11 +108,11 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		return [ $final, $list, $text ];
 	}
 
-	public function getSize() {
+	function getSize() {
 		return isset( $this->mParams['size'] ) ? $this->mParams['size'] : 45;
 	}
 
-	public function validate( $value, $alldata ) {
+	function validate( $value, $alldata ) {
 		# HTMLSelectField forces $value to be one of the options in the select
 		# field, which is not useful here.  But we do want the validation further up
 		# the chain
@@ -125,7 +126,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			&& $this->mParams['required'] !== false
 			&& $value[1] === ''
 		) {
-			return $this->msg( 'htmlform-required' );
+			return $this->msg( 'htmlform-required' )->parse();
 		}
 
 		return true;

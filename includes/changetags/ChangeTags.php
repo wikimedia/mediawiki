@@ -21,8 +21,6 @@
  * @ingroup Change tagging
  */
 
-use Wikimedia\Rdbms\Database;
-
 class ChangeTags {
 	/**
 	 * Can't delete tags with more than this many uses. Similar in intent to
@@ -65,7 +63,7 @@ class ChangeTags {
 			if ( !$tag ) {
 				continue;
 			}
-			$description = self::tagDescription( $tag, $context );
+			$description = self::tagDescription( $tag );
 			if ( $description === false ) {
 				continue;
 			}
@@ -100,12 +98,11 @@ class ChangeTags {
 	 * we consider the tag hidden, and return false.
 	 *
 	 * @param string $tag Tag
-	 * @param IContextSource $context
 	 * @return string|bool Tag description or false if tag is to be hidden.
 	 * @since 1.25 Returns false if tag is to be hidden.
 	 */
-	public static function tagDescription( $tag, IContextSource $context ) {
-		$msg = $context->msg( "tag-$tag" );
+	public static function tagDescription( $tag ) {
+		$msg = wfMessage( "tag-$tag" );
 		if ( !$msg->exists() ) {
 			// No such message, so return the HTML-escaped tag name.
 			return htmlspecialchars( $tag );
@@ -399,7 +396,7 @@ class ChangeTags {
 			if ( !$user->isAllowed( 'applychangetags' ) ) {
 				return Status::newFatal( 'tags-apply-no-permission' );
 			} elseif ( $user->isBlocked() ) {
-				return Status::newFatal( 'tags-apply-blocked', $user->getName() );
+				return Status::newFatal( 'tags-apply-blocked' );
 			}
 		}
 
@@ -470,7 +467,7 @@ class ChangeTags {
 			if ( !$user->isAllowed( 'changetags' ) ) {
 				return Status::newFatal( 'tags-update-no-permission' );
 			} elseif ( $user->isBlocked() ) {
-				return Status::newFatal( 'tags-update-blocked', $user->getName() );
+				return Status::newFatal( 'tags-update-blocked' );
 			}
 		}
 
@@ -670,20 +667,12 @@ class ChangeTags {
 	 * @param string $selected Tag to select by default
 	 * @param bool $ooui Use an OOUI TextInputWidget as selector instead of a non-OOUI input field
 	 *        You need to call OutputPage::enableOOUI() yourself.
-	 * @param IContextSource|null $context
-	 * @note Even though it takes null as a valid argument, an IContextSource is preferred
-	 *       in a new code, as the null value can change in the future
 	 * @return array an array of (label, selector)
 	 */
-	public static function buildTagFilterSelector(
-		$selected = '', $ooui = false, IContextSource $context = null
-	) {
-		if ( !$context ) {
-			$context = RequestContext::getMain();
-		}
+	public static function buildTagFilterSelector( $selected = '', $ooui = false ) {
+		global $wgUseTagFilter;
 
-		$config = $context->getConfig();
-		if ( !$config->get( 'UseTagFilter' ) || !count( self::listDefinedTags() ) ) {
+		if ( !$wgUseTagFilter || !count( self::listDefinedTags() ) ) {
 			return [];
 		}
 
@@ -691,7 +680,7 @@ class ChangeTags {
 			Html::rawElement(
 				'label',
 				[ 'for' => 'tagfilter' ],
-				$context->msg( 'tag-filter' )->parse()
+				wfMessage( 'tag-filter' )->parse()
 			)
 		];
 
@@ -759,13 +748,11 @@ class ChangeTags {
 	 * @param User $user Who to attribute the action to
 	 * @param int $tagCount For deletion only, how many usages the tag had before
 	 * it was deleted.
-	 * @param array $logEntryTags Change tags to apply to the entry
-	 * that will be created in the tag management log
 	 * @return int ID of the inserted log entry
 	 * @since 1.25
 	 */
 	protected static function logTagManagementAction( $action, $tag, $reason,
-		User $user, $tagCount = null, array $logEntryTags = [] ) {
+		User $user, $tagCount = null ) {
 
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -782,7 +769,6 @@ class ChangeTags {
 		}
 		$logEntry->setParameters( $params );
 		$logEntry->setRelations( [ 'Tag' => $tag ] );
-		$logEntry->setTags( $logEntryTags );
 
 		$logId = $logEntry->insert( $dbw );
 		$logEntry->publish( $logId );
@@ -803,7 +789,7 @@ class ChangeTags {
 			if ( !$user->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
 			} elseif ( $user->isBlocked() ) {
-				return Status::newFatal( 'tags-manage-blocked', $user->getName() );
+				return Status::newFatal( 'tags-manage-blocked' );
 			}
 		}
 
@@ -835,14 +821,12 @@ class ChangeTags {
 	 * @param string $reason
 	 * @param User $user Who to give credit for the action
 	 * @param bool $ignoreWarnings Can be used for API interaction, default false
-	 * @param array $logEntryTags Change tags to apply to the entry
-	 * that will be created in the tag management log
 	 * @return Status If successful, the Status contains the ID of the added log
 	 * entry as its value
 	 * @since 1.25
 	 */
 	public static function activateTagWithChecks( $tag, $reason, User $user,
-		$ignoreWarnings = false, array $logEntryTags = [] ) {
+		$ignoreWarnings = false ) {
 
 		// are we allowed to do this?
 		$result = self::canActivateTag( $tag, $user );
@@ -855,9 +839,7 @@ class ChangeTags {
 		self::defineTag( $tag );
 
 		// log it
-		$logId = self::logTagManagementAction( 'activate', $tag, $reason, $user,
-			null, $logEntryTags );
-
+		$logId = self::logTagManagementAction( 'activate', $tag, $reason, $user );
 		return Status::newGood( $logId );
 	}
 
@@ -875,7 +857,7 @@ class ChangeTags {
 			if ( !$user->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
 			} elseif ( $user->isBlocked() ) {
-				return Status::newFatal( 'tags-manage-blocked', $user->getName() );
+				return Status::newFatal( 'tags-manage-blocked' );
 			}
 		}
 
@@ -898,14 +880,12 @@ class ChangeTags {
 	 * @param string $reason
 	 * @param User $user Who to give credit for the action
 	 * @param bool $ignoreWarnings Can be used for API interaction, default false
-	 * @param array $logEntryTags Change tags to apply to the entry
-	 * that will be created in the tag management log
 	 * @return Status If successful, the Status contains the ID of the added log
 	 * entry as its value
 	 * @since 1.25
 	 */
 	public static function deactivateTagWithChecks( $tag, $reason, User $user,
-		$ignoreWarnings = false, array $logEntryTags = [] ) {
+		$ignoreWarnings = false ) {
 
 		// are we allowed to do this?
 		$result = self::canDeactivateTag( $tag, $user );
@@ -918,9 +898,7 @@ class ChangeTags {
 		self::undefineTag( $tag );
 
 		// log it
-		$logId = self::logTagManagementAction( 'deactivate', $tag, $reason, $user,
-			null, $logEntryTags );
-
+		$logId = self::logTagManagementAction( 'deactivate', $tag, $reason, $user );
 		return Status::newGood( $logId );
 	}
 
@@ -938,7 +916,7 @@ class ChangeTags {
 			if ( !$user->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
 			} elseif ( $user->isBlocked() ) {
-				return Status::newFatal( 'tags-manage-blocked', $user->getName() );
+				return Status::newFatal( 'tags-manage-blocked' );
 			}
 		}
 
@@ -981,14 +959,12 @@ class ChangeTags {
 	 * @param string $reason
 	 * @param User $user Who to give credit for the action
 	 * @param bool $ignoreWarnings Can be used for API interaction, default false
-	 * @param array $logEntryTags Change tags to apply to the entry
-	 * that will be created in the tag management log
 	 * @return Status If successful, the Status contains the ID of the added log
 	 * entry as its value
 	 * @since 1.25
 	 */
 	public static function createTagWithChecks( $tag, $reason, User $user,
-		$ignoreWarnings = false, array $logEntryTags = [] ) {
+		$ignoreWarnings = false ) {
 
 		// are we allowed to do this?
 		$result = self::canCreateTag( $tag, $user );
@@ -1001,9 +977,7 @@ class ChangeTags {
 		self::defineTag( $tag );
 
 		// log it
-		$logId = self::logTagManagementAction( 'create', $tag, $reason, $user,
-			null, $logEntryTags );
-
+		$logId = self::logTagManagementAction( 'create', $tag, $reason, $user );
 		return Status::newGood( $logId );
 	}
 
@@ -1075,7 +1049,7 @@ class ChangeTags {
 			if ( !$user->isAllowed( 'deletechangetags' ) ) {
 				return Status::newFatal( 'tags-delete-no-permission' );
 			} elseif ( $user->isBlocked() ) {
-				return Status::newFatal( 'tags-manage-blocked', $user->getName() );
+				return Status::newFatal( 'tags-manage-blocked' );
 			}
 		}
 
@@ -1112,14 +1086,12 @@ class ChangeTags {
 	 * @param string $reason
 	 * @param User $user Who to give credit for the action
 	 * @param bool $ignoreWarnings Can be used for API interaction, default false
-	 * @param array $logEntryTags Change tags to apply to the entry
-	 * that will be created in the tag management log
 	 * @return Status If successful, the Status contains the ID of the added log
 	 * entry as its value
 	 * @since 1.25
 	 */
 	public static function deleteTagWithChecks( $tag, $reason, User $user,
-		$ignoreWarnings = false, array $logEntryTags = [] ) {
+		$ignoreWarnings = false ) {
 
 		// are we allowed to do this?
 		$result = self::canDeleteTag( $tag, $user );
@@ -1139,9 +1111,7 @@ class ChangeTags {
 		}
 
 		// log it
-		$logId = self::logTagManagementAction( 'delete', $tag, $reason, $user,
-			$hitcount, $logEntryTags );
-
+		$logId = self::logTagManagementAction( 'delete', $tag, $reason, $user, $hitcount );
 		$deleteResult->value = $logId;
 		return $deleteResult;
 	}

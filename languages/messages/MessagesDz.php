@@ -20,3 +20,4 @@ $digitTransformTable = [
 	'8' => '༨', # &#x0f28;
 	'9' => '༩', # &#x0f29;
 ];
+

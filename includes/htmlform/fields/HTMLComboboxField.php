@@ -25,7 +25,7 @@ class HTMLComboboxField extends HTMLTextField {
 		return $attribs;
 	}
 
-	public function getInputHTML( $value ) {
+	function getInputHTML( $value ) {
 		$datalist = new XmlSelect( false, $this->mName . '-datalist' );
 		$datalist->setTagName( 'datalist' );
 		$datalist->addOptions( $this->getOptions() );
@@ -33,7 +33,7 @@ class HTMLComboboxField extends HTMLTextField {
 		return parent::getInputHTML( $value ) . $datalist->getHTML();
 	}
 
-	public function getInputOOUI( $value ) {
+	function getInputOOUI( $value ) {
 		$disabled = false;
 		$allowedParams = [ 'tabindex' ];
 		$attribs = OOUI\Element::configFromHtmlAttributes(

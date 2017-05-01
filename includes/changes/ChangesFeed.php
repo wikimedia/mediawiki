@@ -20,8 +20,6 @@
  * @file
  */
 
-use Wikimedia\Rdbms\ResultWrapper;
-
 /**
  * Feed to Special:RecentChanges and Special:RecentChangesLiked
  *
@@ -154,7 +152,7 @@ class ChangesFeed {
 			if ( $feedAge < $wgFeedCacheTimeout || $feedLastmodUnix > $lastmodUnix ) {
 				wfDebug( "RC: loading feed from cache ($key; $feedLastmod; $lastmod)...\n" );
 				if ( $feedLastmodUnix < $lastmodUnix ) {
-					$wgOut->setLastModified( $feedLastmod ); // T23916
+					$wgOut->setLastModified( $feedLastmod ); // bug 21916
 				}
 				return $cache->get( $key );
 			} else {

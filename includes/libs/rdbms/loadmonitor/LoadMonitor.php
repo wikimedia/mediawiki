@@ -19,12 +19,8 @@
  * @ingroup Database
  */
 
-namespace Wikimedia\Rdbms;
-
 use Psr\Log\LoggerInterface;
-use Psr\Log\NullLogger;
 use Wikimedia\ScopedCallback;
-use BagOStuff;
 
 /**
  * Basic DB load monitor with no external dependencies
@@ -53,7 +49,7 @@ class LoadMonitor implements ILoadMonitor {
 		$this->parent = $lb;
 		$this->srvCache = $srvCache;
 		$this->mainCache = $cache;
-		$this->replLogger = new NullLogger();
+		$this->replLogger = new \Psr\Log\NullLogger();
 
 		$this->movingAveRatio = isset( $options['movingAveRatio'] )
 			? $options['movingAveRatio']

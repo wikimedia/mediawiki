@@ -23,7 +23,6 @@
 
 namespace MediaWiki\Session;
 
-use MediaWiki\MediaWikiServices;
 use MWException;
 use Psr\Log\LoggerInterface;
 use BagOStuff;
@@ -153,7 +152,7 @@ final class SessionManager implements SessionManagerInterface {
 				);
 			}
 		} else {
-			$this->config = MediaWikiServices::getInstance()->getMainConfig();
+			$this->config = \ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
 		}
 
 		if ( isset( $options['logger'] ) ) {
@@ -773,8 +772,7 @@ final class SessionManager implements SessionManagerInterface {
 					return $failHandler();
 				}
 			} elseif ( !$info->getUserInfo()->isVerified() ) {
-				// probably just a session timeout
-				$this->logger->info(
+				$this->logger->warning(
 					'Session "{session}": Unverified user provided and no metadata to auth it',
 					[
 						'session' => $info,

@@ -42,7 +42,7 @@ class PurgeAction extends FormAction {
 	}
 
 	public function onSubmit( $data ) {
-		return $this->page->doPurge();
+		return $this->page->doPurge( WikiPage::PURGE_ALL );
 	}
 
 	public function show() {
@@ -75,24 +75,12 @@ class PurgeAction extends FormAction {
 		}
 	}
 
-	protected function usesOOUI() {
-		return true;
-	}
-
-	protected function getFormFields() {
-		return [
-			'intro' => [
-				'type' => 'info',
-				'vertical-label' => true,
-				'raw' => true,
-				'default' => $this->msg( 'confirm-purge-top' )->parse()
-			]
-		];
-	}
-
 	protected function alterForm( HTMLForm $form ) {
-		$form->setWrapperLegendMsg( 'confirm-purge-title' );
 		$form->setSubmitTextMsg( 'confirm_purge_button' );
+	}
+
+	protected function preText() {
+		return $this->msg( 'confirm-purge-top' )->parse();
 	}
 
 	protected function postText() {

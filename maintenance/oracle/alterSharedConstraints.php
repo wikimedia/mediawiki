@@ -19,8 +19,6 @@
  * @ingroup Maintenance
  */
 
-use Wikimedia\Rdbms\DBQueryError;
-
 /**
  * When using shared tables that are referenced by foreign keys on local
  * tables you have to change the constraints on local tables.

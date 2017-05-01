@@ -42,7 +42,7 @@ abstract class HTMLFormField {
 	 *
 	 * @return string Valid HTML.
 	 */
-	abstract public function getInputHTML( $value );
+	abstract function getInputHTML( $value );
 
 	/**
 	 * Same as getInputHTML, but returns an OOUI object.
@@ -51,7 +51,7 @@ abstract class HTMLFormField {
 	 * @param string $value
 	 * @return OOUI\Widget|false
 	 */
-	public function getInputOOUI( $value ) {
+	function getInputOOUI( $value ) {
 		return false;
 	}
 
@@ -74,7 +74,7 @@ abstract class HTMLFormField {
 	 *
 	 * @return Message
 	 */
-	public function msg() {
+	function msg() {
 		$args = func_get_args();
 
 		if ( $this->mParent ) {
@@ -266,7 +266,7 @@ abstract class HTMLFormField {
 	 * @param array $alldata The data collected from the form
 	 * @return bool
 	 */
-	public function isHidden( $alldata ) {
+	function isHidden( $alldata ) {
 		if ( !$this->mHideIf ) {
 			return false;
 		}
@@ -284,7 +284,7 @@ abstract class HTMLFormField {
 	 *
 	 * @return bool True to cancel the submission
 	 */
-	public function cancelSubmit( $value, $alldata ) {
+	function cancelSubmit( $value, $alldata ) {
 		return false;
 	}
 
@@ -296,10 +296,10 @@ abstract class HTMLFormField {
 	 * @param string|array $value The value the field was submitted with
 	 * @param array $alldata The data collected from the form
 	 *
-	 * @return bool|string|Message True on success, or String/Message error to display, or
+	 * @return bool|string True on success, or String error to display, or
 	 *   false to fail validation without displaying an error.
 	 */
-	public function validate( $value, $alldata ) {
+	function validate( $value, $alldata ) {
 		if ( $this->isHidden( $alldata ) ) {
 			return true;
 		}
@@ -308,7 +308,7 @@ abstract class HTMLFormField {
 			&& $this->mParams['required'] !== false
 			&& $value === ''
 		) {
-			return $this->msg( 'htmlform-required' );
+			return $this->msg( 'htmlform-required' )->parse();
 		}
 
 		if ( isset( $this->mValidationCallback ) ) {
@@ -318,7 +318,7 @@ abstract class HTMLFormField {
 		return true;
 	}
 
-	public function filter( $value, $alldata ) {
+	function filter( $value, $alldata ) {
 		if ( isset( $this->mFilterCallback ) ) {
 			$value = call_user_func( $this->mFilterCallback, $value, $alldata, $this->mParent );
 		}
@@ -370,7 +370,7 @@ abstract class HTMLFormField {
 	 * @param WebRequest $request
 	 * @return string The value
 	 */
-	public function loadDataFromRequest( $request ) {
+	function loadDataFromRequest( $request ) {
 		if ( $request->getCheck( $this->mName ) ) {
 			return $request->getText( $this->mName );
 		} else {
@@ -386,7 +386,7 @@ abstract class HTMLFormField {
 	 * @since 1.22 The 'label' attribute no longer accepts raw HTML, use 'label-raw' instead
 	 * @throws MWException
 	 */
-	public function __construct( $params ) {
+	function __construct( $params ) {
 		$this->mParams = $params;
 
 		if ( isset( $params['parent'] ) && $params['parent'] instanceof HTMLForm ) {
@@ -472,10 +472,10 @@ abstract class HTMLFormField {
 	 *
 	 * @return string Complete HTML table row.
 	 */
-	public function getTableRow( $value ) {
+	function getTableRow( $value ) {
 		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
 		$inputHtml = $this->getInputHTML( $value );
-		$fieldType = static::class;
+		$fieldType = get_class( $this );
 		$helptext = $this->getHelpTextHtmlTable( $this->getHelpText() );
 		$cellAttributes = [];
 		$rowAttributes = [];
@@ -533,7 +533,7 @@ abstract class HTMLFormField {
 	public function getDiv( $value ) {
 		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
 		$inputHtml = $this->getInputHTML( $value );
-		$fieldType = static::class;
+		$fieldType = get_class( $this );
 		$helptext = $this->getHelpTextHtmlDiv( $this->getHelpText() );
 		$cellAttributes = [];
 		$label = $this->getLabelHtml( $cellAttributes );
@@ -601,7 +601,7 @@ abstract class HTMLFormField {
 			$infusable = false;
 		}
 
-		$fieldType = static::class;
+		$fieldType = get_class( $this );
 		$help = $this->getHelpText();
 		$errors = $this->getErrorsRaw( $value );
 		foreach ( $errors as &$error ) {
@@ -903,7 +903,7 @@ abstract class HTMLFormField {
 	 * @since 1.28
 	 * @return string[]
 	 */
-	public function getNotices() {
+	function getNotices() {
 		$notices = [];
 
 		if ( isset( $this->mParams['notice-message'] ) ) {
@@ -924,11 +924,11 @@ abstract class HTMLFormField {
 	/**
 	 * @return string HTML
 	 */
-	public function getLabel() {
+	function getLabel() {
 		return is_null( $this->mLabel ) ? '' : $this->mLabel;
 	}
 
-	public function getLabelHtml( $cellAttributes = [] ) {
+	function getLabelHtml( $cellAttributes = [] ) {
 		# Don't output a for= attribute for labels with no associated input.
 		# Kind of hacky here, possibly we don't want these to be <label>s at all.
 		$for = [];
@@ -967,7 +967,7 @@ abstract class HTMLFormField {
 		return $html;
 	}
 
-	public function getDefault() {
+	function getDefault() {
 		if ( isset( $this->mDefault ) ) {
 			return $this->mDefault;
 		} else {
@@ -1034,9 +1034,9 @@ abstract class HTMLFormField {
 	 * with integer 0 as a value.
 	 *
 	 * @param array $array
-	 * @return array|string
+	 * @return array
 	 */
-	public static function forceToStringRecursive( $array ) {
+	static function forceToStringRecursive( $array ) {
 		if ( is_array( $array ) ) {
 			return array_map( [ __CLASS__, 'forceToStringRecursive' ], $array );
 		} else {
@@ -1145,9 +1145,6 @@ abstract class HTMLFormField {
 	 * @since 1.18
 	 */
 	protected static function formatErrors( $errors ) {
-		// Note: If you change the logic in this method, change
-		// htmlform.Checker.js to match.
-
 		if ( is_array( $errors ) && count( $errors ) === 1 ) {
 			$errors = array_shift( $errors );
 		}
@@ -1196,20 +1193,5 @@ abstract class HTMLFormField {
 	 */
 	public function skipLoadData( $request ) {
 		return !empty( $this->mParams['nodata'] );
-	}
-
-	/**
-	 * Whether this field requires the user agent to have JavaScript enabled for the client-side HTML5
-	 * form validation to work correctly.
-	 *
-	 * @return boolean
-	 * @since 1.29
-	 */
-	public function needsJSForHtml5FormValidation() {
-		if ( $this->mHideIf ) {
-			// This is probably more restrictive than it needs to be, but better safe than sorry
-			return true;
-		}
-		return false;
 	}
 }

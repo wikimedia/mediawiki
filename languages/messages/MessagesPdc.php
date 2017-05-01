@@ -58,3 +58,4 @@ $specialPageAliases = [
 	'Listbots'                  => [ 'Waddefresser', 'Bots' ],
 	'Search'                    => [ 'Uffgucke', 'Suche' ],
 ];
+

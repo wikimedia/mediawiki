@@ -13,9 +13,6 @@
  *   of the value from 'default'. Overrides 'buttonlabel-raw'.
  * - buttonlabel-raw: HTMLto display for the button display text, instead
  *   of the value from 'default'.
- * - formnovalidate: Set to true if clicking this button should suppress
- *   client-side form validation. Used in HTMLFormFieldCloner for add/remove
- *   buttons.
  *
  * Note that the buttonlabel parameters are not supported on IE6 and IE7 due to
  * bugs in those browsers. If detected, they will be served buttons using the
@@ -30,16 +27,10 @@ class HTMLButtonField extends HTMLFormField {
 	/** @var array $mFlags Flags to add to OOUI Button widget */
 	protected $mFlags = [];
 
-	protected $mFormnovalidate = false;
-
 	public function __construct( $info ) {
 		$info['nodata'] = true;
 		if ( isset( $info['flags'] ) ) {
 			$this->mFlags = $info['flags'];
-		}
-
-		if ( isset( $info['formnovalidate'] ) ) {
-			$this->mFormnovalidate = $info['formnovalidate'];
 		}
 
 		# Generate the label from a message, if possible
@@ -80,7 +71,6 @@ class HTMLButtonField extends HTMLFormField {
 			'type' => $this->buttonType,
 			'name' => $this->mName,
 			'value' => $this->getDefault(),
-			'formnovalidate' => $this->mFormnovalidate,
 		] + $this->getAttributes( [ 'disabled', 'tabindex' ] );
 
 		if ( $this->isBadIE() ) {
@@ -123,7 +113,7 @@ class HTMLButtonField extends HTMLFormField {
 	 * @param string $value
 	 * @param array $alldata
 	 *
-	 * @return bool|string|Message
+	 * @return bool
 	 */
 	public function validate( $value, $alldata ) {
 		return true;
@@ -137,6 +127,6 @@ class HTMLButtonField extends HTMLFormField {
 		$request = $this->mParent
 			? $this->mParent->getRequest()
 			: RequestContext::getMain()->getRequest();
-		return (bool)preg_match( '/MSIE [1-7]\./i', $request->getHeader( 'User-Agent' ) );
+		return preg_match( '/MSIE [1-7]\./i', $request->getHeader( 'User-Agent' ) );
 	}
 }

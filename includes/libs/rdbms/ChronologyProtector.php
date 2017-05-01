@@ -20,14 +20,9 @@
  * @file
  * @ingroup Database
  */
-
-namespace Wikimedia\Rdbms;
-
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
-use Psr\Log\NullLogger;
 use Wikimedia\WaitConditionLoop;
-use BagOStuff;
 
 /**
  * Class for ensuring a consistent ordering of events as seen by the user, despite replication.
@@ -75,9 +70,9 @@ class ChronologyProtector implements LoggerAwareInterface {
 	public function __construct( BagOStuff $store, array $client, $posTime = null ) {
 		$this->store = $store;
 		$this->clientId = md5( $client['ip'] . "\n" . $client['agent'] );
-		$this->key = $store->makeGlobalKey( __CLASS__, $this->clientId, 'v1' );
+		$this->key = $store->makeGlobalKey( __CLASS__, $this->clientId );
 		$this->waitForPosTime = $posTime;
-		$this->logger = new NullLogger();
+		$this->logger = new \Psr\Log\NullLogger();
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -119,10 +114,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 		$this->initPositions();
 
 		$masterName = $lb->getServerName( $lb->getWriterIndex() );
-		if (
-			isset( $this->startupPositions[$masterName] ) &&
-			$this->startupPositions[$masterName] instanceof DBMasterPos
-		) {
+		if ( !empty( $this->startupPositions[$masterName] ) ) {
 			$pos = $this->startupPositions[$masterName];
 			$this->logger->info( __METHOD__ . ": LB for '$masterName' set to pos $pos\n" );
 			$lb->waitFor( $pos );
@@ -301,9 +293,8 @@ class ChronologyProtector implements LoggerAwareInterface {
 
 		$min = null;
 		foreach ( $data['positions'] as $pos ) {
-			if ( $pos instanceof DBMasterPos ) {
-				$min = $min ? min( $pos->asOfTime(), $min ) : $pos->asOfTime();
-			}
+			/** @var DBMasterPos $pos */
+			$min = $min ? min( $pos->asOfTime(), $min ) : $pos->asOfTime();
 		}
 
 		return $min;
@@ -322,10 +313,8 @@ class ChronologyProtector implements LoggerAwareInterface {
 			$curPositions = $curValue['positions'];
 			// Use the newest positions for each DB master
 			foreach ( $shutdownPositions as $db => $pos ) {
-				if (
-					!isset( $curPositions[$db] ) ||
-					!( $curPositions[$db] instanceof DBMasterPos ) ||
-					$pos->asOfTime() > $curPositions[$db]->asOfTime()
+				if ( !isset( $curPositions[$db] )
+					|| $pos->asOfTime() > $curPositions[$db]->asOfTime()
 				) {
 					$curPositions[$db] = $pos;
 				}

@@ -83,7 +83,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	 * what will break? In practice this probably isn't a problem anyway -- Bryan)
 	 */
 	protected static $wellKnownTypes = <<<EOT
-application/ogg ogx ogg ogm ogv oga spx opus
+application/ogg ogx ogg ogm ogv oga spx
 application/pdf pdf
 application/vnd.oasis.opendocument.chart odc
 application/vnd.oasis.opendocument.chart-template otc
@@ -108,8 +108,7 @@ audio/midi mid midi kar
 audio/mpeg mpga mpa mp2 mp3
 audio/x-aiff aif aiff aifc
 audio/x-wav wav
-audio/ogg oga spx ogg opus
-audio/opus opus ogg oga ogg spx
+audio/ogg oga spx ogg
 image/x-bmp bmp
 image/gif gif
 image/jpeg jpeg jpg jpe
@@ -527,7 +526,7 @@ EOT;
 			'xbm',
 
 			// Formats we recognize magic numbers for
-			'djvu', 'ogx', 'ogg', 'ogv', 'oga', 'spx', 'opus',
+			'djvu', 'ogx', 'ogg', 'ogv', 'oga', 'spx',
 			'mid', 'pdf', 'wmf', 'xcf', 'webm', 'mkv', 'mka',
 			'webp',
 
@@ -862,7 +861,7 @@ EOT;
 			'text-web',
 			'text' ];
 
-		// https://lists.oasis-open.org/archives/office/200505/msg00006.html
+		// http://lists.oasis-open.org/archives/office/200505/msg00006.html
 		$types = '(?:' . implode( '|', $opendocTypes ) . ')';
 		$opendocRegex = "/^mimetype(application\/vnd\.oasis\.opendocument\.$types)/";
 
@@ -1054,8 +1053,6 @@ EOT;
 			} elseif ( strpos( $head, 'flac' ) !== false ) {
 				return MEDIATYPE_AUDIO;
 			} elseif ( strpos( $head, 'speex' ) !== false ) {
-				return MEDIATYPE_AUDIO;
-			} elseif ( strpos( $head, 'opus' ) !== false ) {
 				return MEDIATYPE_AUDIO;
 			} else {
 				return MEDIATYPE_MULTIMEDIA;

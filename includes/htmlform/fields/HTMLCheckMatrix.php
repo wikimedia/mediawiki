@@ -38,7 +38,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		parent::__construct( $params );
 	}
 
-	public function validate( $value, $alldata ) {
+	function validate( $value, $alldata ) {
 		$rows = $this->mParams['rows'];
 		$columns = $this->mParams['columns'];
 
@@ -65,7 +65,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		if ( count( $validValues ) == count( $value ) ) {
 			return true;
 		} else {
-			return $this->msg( 'htmlform-select-badoption' );
+			return $this->msg( 'htmlform-select-badoption' )->parse();
 		}
 	}
 
@@ -79,7 +79,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 	 *
 	 * @return string
 	 */
-	public function getInputHTML( $value ) {
+	function getInputHTML( $value ) {
 		$html = '';
 		$tableContents = '';
 		$rows = $this->mParams['rows'];
@@ -186,10 +186,10 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 	 *
 	 * @return string Complete HTML table row
 	 */
-	public function getTableRow( $value ) {
+	function getTableRow( $value ) {
 		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
 		$inputHtml = $this->getInputHTML( $value );
-		$fieldType = static::class;
+		$fieldType = get_class( $this );
 		$helptext = $this->getHelpTextHtmlTable( $this->getHelpText() );
 		$cellAttributes = [ 'colspan' => 2 ];
 
@@ -224,7 +224,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 	 *
 	 * @return array
 	 */
-	public function loadDataFromRequest( $request ) {
+	function loadDataFromRequest( $request ) {
 		if ( $this->isSubmitAttempt( $request ) ) {
 			// Checkboxes are just not added to the request arrays if they're not checked,
 			// so it's perfectly possible for there not to be an entry at all
@@ -235,7 +235,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		}
 	}
 
-	public function getDefault() {
+	function getDefault() {
 		if ( isset( $this->mDefault ) ) {
 			return $this->mDefault;
 		} else {
@@ -243,7 +243,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		}
 	}
 
-	public function filterDataForSubmit( $data ) {
+	function filterDataForSubmit( $data ) {
 		$columns = HTMLFormField::flattenOptions( $this->mParams['columns'] );
 		$rows = HTMLFormField::flattenOptions( $this->mParams['rows'] );
 		$res = [];

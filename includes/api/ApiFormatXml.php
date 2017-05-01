@@ -269,17 +269,17 @@ class ApiFormatXml extends ApiFormatBase {
 	protected function addXslt() {
 		$nt = Title::newFromText( $this->mXslt );
 		if ( is_null( $nt ) || !$nt->exists() ) {
-			$this->addWarning( 'apiwarn-invalidxmlstylesheet' );
+			$this->setWarning( 'Invalid or non-existent stylesheet specified' );
 
 			return;
 		}
 		if ( $nt->getNamespace() != NS_MEDIAWIKI ) {
-			$this->addWarning( 'apiwarn-invalidxmlstylesheetns' );
+			$this->setWarning( 'Stylesheet should be in the MediaWiki namespace.' );
 
 			return;
 		}
 		if ( substr( $nt->getText(), -4 ) !== '.xsl' ) {
-			$this->addWarning( 'apiwarn-invalidxmlstylesheetext' );
+			$this->setWarning( 'Stylesheet should have .xsl extension.' );
 
 			return;
 		}

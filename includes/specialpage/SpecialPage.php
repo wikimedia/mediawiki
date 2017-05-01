@@ -853,7 +853,7 @@ class SpecialPage {
 	 * @since 1.28
 	 * @return \MediaWiki\Linker\LinkRenderer
 	 */
-	public function getLinkRenderer() {
+	protected function getLinkRenderer() {
 		if ( $this->linkRenderer ) {
 			return $this->linkRenderer;
 		} else {

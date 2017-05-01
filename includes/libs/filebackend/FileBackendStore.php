@@ -21,7 +21,6 @@
  * @ingroup FileBackend
  * @author Aaron Schulz
  */
-use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @brief Base class for all backends using particular storage medium.
@@ -360,7 +359,7 @@ abstract class FileBackendStore extends FileBackend {
 			$status->merge( $this->doConcatenate( $params ) );
 			$sec = microtime( true ) - $start_time;
 			if ( !$status->isOK() ) {
-				$this->logger->error( static::class . "-{$this->name}" .
+				$this->logger->error( get_class( $this ) . "-{$this->name}" .
 					" failed to concatenate " . count( $params['srcs'] ) . " file(s) [$sec sec]" );
 			}
 		}
@@ -730,7 +729,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackendStore::getFileXAttributes()
 	 * @param array $params
-	 * @return array[][]
+	 * @return bool|string
 	 */
 	protected function doGetFileXAttributes( array $params ) {
 		return [ 'headers' => [], 'metadata' => [] ]; // not supported
@@ -1123,7 +1122,7 @@ abstract class FileBackendStore extends FileBackend {
 				$subStatus->success[$i] = false;
 				++$subStatus->failCount;
 			}
-			$this->logger->error( static::class . "-{$this->name} " .
+			$this->logger->error( get_class( $this ) . "-{$this->name} " .
 				" stat failure; aborted operations: " . FormatJson::encode( $ops ) );
 		}
 
@@ -1200,20 +1199,21 @@ abstract class FileBackendStore extends FileBackend {
 	 * to the order in which the handles where given.
 	 *
 	 * @param FileBackendStoreOpHandle[] $fileOpHandles
-	 * @return StatusValue[] Map of StatusValue objects
+	 *
 	 * @throws FileBackendError
+	 * @return StatusValue[] Map of StatusValue objects
 	 */
 	final public function executeOpHandlesInternal( array $fileOpHandles ) {
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
 
 		foreach ( $fileOpHandles as $fileOpHandle ) {
 			if ( !( $fileOpHandle instanceof FileBackendStoreOpHandle ) ) {
-				throw new InvalidArgumentException( "Expected FileBackendStoreOpHandle object." );
+				throw new InvalidArgumentException( "Got a non-FileBackendStoreOpHandle object." );
 			} elseif ( $fileOpHandle->backend->getName() !== $this->getName() ) {
-				throw new InvalidArgumentException( "Expected handle for this file backend." );
+				throw new InvalidArgumentException(
+					"Got a FileBackendStoreOpHandle for the wrong backend." );
 			}
 		}
-
 		$res = $this->doExecuteOpHandlesInternal( $fileOpHandles );
 		foreach ( $fileOpHandles as $fileOpHandle ) {
 			$fileOpHandle->closeResources();

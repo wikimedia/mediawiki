@@ -37,7 +37,7 @@ class ResourceLoaderUserDefaultsModule extends ResourceLoaderModule {
 
 	/**
 	 * @param ResourceLoaderContext $context
-	 * @return string JavaScript code
+	 * @return string
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		return Xml::encodeJsCall(

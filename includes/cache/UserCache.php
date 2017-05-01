@@ -80,6 +80,7 @@ class UserCache {
 	 * @param string $caller The calling method
 	 */
 	public function doQuery( array $userIds, $options = [], $caller = '' ) {
+
 		$usersToCheck = [];
 		$usersToQuery = [];
 
@@ -131,6 +132,7 @@ class UserCache {
 			}
 		}
 		$lb->execute();
+
 	}
 
 	/**

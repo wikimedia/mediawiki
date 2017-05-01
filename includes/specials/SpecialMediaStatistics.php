@@ -22,9 +22,6 @@
  * @author Brian Wolff
  */
 
-use Wikimedia\Rdbms\ResultWrapper;
-use Wikimedia\Rdbms\IDatabase;
-
 /**
  * @ingroup SpecialPage
  */
@@ -83,6 +80,10 @@ class MediaStatisticsPage extends QueryPage {
 				'title' => $fakeTitle,
 				'namespace' => NS_MEDIA, /* needs to be something */
 				'value' => '1'
+			],
+			'conds' => [
+				// WMF has a random null row in the db
+				'img_media_type IS NOT NULL'
 			],
 			'options' => [
 				'GROUP BY' => [
@@ -173,11 +174,10 @@ class MediaStatisticsPage extends QueryPage {
 	 */
 	protected function outputTableRow( $mime, $count, $bytes ) {
 		$mimeSearch = SpecialPage::getTitleFor( 'MIMEsearch', $mime );
-		$linkRenderer = $this->getLinkRenderer();
 		$row = Html::rawElement(
 			'td',
 			[],
-			$linkRenderer->makeLink( $mimeSearch, $mime )
+			Linker::link( $mimeSearch, htmlspecialchars( $mime ) )
 		);
 		$row .= Html::element(
 			'td',
@@ -338,7 +338,7 @@ class MediaStatisticsPage extends QueryPage {
 	 * we need to implement since abstract in parent class.
 	 *
 	 * @param Skin $skin
-	 * @param stdClass $result Result row
+	 * @param stdObject $result Result row
 	 * @return bool|string|void
 	 * @throws MWException
 	 */
@@ -353,7 +353,6 @@ class MediaStatisticsPage extends QueryPage {
 	 * @param ResultWrapper $res
 	 */
 	public function preprocessResults( $dbr, $res ) {
-		$this->executeLBFromResultWrapper( $res );
 		$this->totalCount = $this->totalBytes = 0;
 		foreach ( $res as $row ) {
 			$mediaStats = $this->splitFakeTitle( $row->title );

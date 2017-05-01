@@ -20,3 +20,4 @@ $namespaceNames = [
 	NS_HELP_TALK        => '帮助谈詑',
 	NS_CATEGORY_TALK    => '分类谈詑',
 ];
+

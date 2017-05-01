@@ -24,12 +24,9 @@
  * @ingroup Maintenance
  */
 
-require_once __DIR__ . '/Maintenance.php';
-
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ResultWrapper;
-use Wikimedia\Rdbms\IMaintainableDatabase;
+
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that checks for articles to fix after
@@ -40,7 +37,7 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
 class NamespaceConflictChecker extends Maintenance {
 
 	/**
-	 * @var IMaintainableDatabase
+	 * @var Database
 	 */
 	protected $db;
 
@@ -227,7 +224,7 @@ class NamespaceConflictChecker extends Maintenance {
 	 * @return array
 	 */
 	private function getInterwikiList() {
-		$result = MediaWikiServices::getInstance()->getInterwikiLookup()->getAllPrefixes();
+		$result = Interwiki::getAllPrefixes();
 		$prefixes = [];
 		foreach ( $result as $row ) {
 			$prefixes[] = $row['iw_prefix'];
@@ -573,7 +570,7 @@ class NamespaceConflictChecker extends Maintenance {
 	/**
 	 * Merge page histories
 	 *
-	 * @param stdClass $row Page row
+	 * @param integer $id The page_id
 	 * @param Title $newTitle The new title
 	 * @return bool
 	 */

@@ -53,7 +53,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	 */
 	private function validateHexSortkey( $hexSortkey ) {
 		// A hex sortkey has an unbound number of 2 letter pairs
-		return (bool)preg_match( '/^(?:[a-fA-F0-9]{2})*$/D', $hexSortkey );
+		return preg_match( '/^(?:[a-fA-F0-9]{2})*$/D', $hexSortkey );
 	}
 
 	/**
@@ -65,7 +65,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 		$categoryTitle = $this->getTitleOrPageId( $params )->getTitle();
 		if ( $categoryTitle->getNamespace() != NS_CATEGORY ) {
-			$this->dieWithError( 'apierror-invalidcategory' );
+			$this->dieUsage( 'The category name you entered is not valid', 'invalidcategory' );
 		}
 
 		$prop = array_flip( $params['prop'] );
@@ -153,8 +153,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					$startsortkey = Collation::singleton()->getSortKey( $params['startsortkeyprefix'] );
 				} elseif ( $params['starthexsortkey'] !== null ) {
 					if ( !$this->validateHexSortkey( $params['starthexsortkey'] ) ) {
-						$encParamName = $this->encodeParamName( 'starthexsortkey' );
-						$this->dieWithError( [ 'apierror-badparameter', $encParamName ], "badvalue_$encParamName" );
+						$this->dieUsage( 'The starthexsortkey provided is not valid', 'bad_starthexsortkey' );
 					}
 					$startsortkey = hex2bin( $params['starthexsortkey'] );
 				} else {
@@ -164,8 +163,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					$endsortkey = Collation::singleton()->getSortKey( $params['endsortkeyprefix'] );
 				} elseif ( $params['endhexsortkey'] !== null ) {
 					if ( !$this->validateHexSortkey( $params['endhexsortkey'] ) ) {
-						$encParamName = $this->encodeParamName( 'endhexsortkey' );
-						$this->dieWithError( [ 'apierror-badparameter', $encParamName ], "badvalue_$encParamName" );
+						$this->dieUsage( 'The endhexsortkey provided is not valid', 'bad_endhexsortkey' );
 					}
 					$endsortkey = hex2bin( $params['endhexsortkey'] );
 				} else {
@@ -391,6 +389,6 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Categorymembers';
+		return 'https://www.mediawiki.org/wiki/API:Categorymembers';
 	}
 }

@@ -8,7 +8,7 @@
  *
  */
 
-$fallback = 'fi'; // T146744#2678472
+$fallback = 'ru';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Medii',
@@ -30,3 +30,4 @@ $namespaceNames = [
 ];
 
 $linkTrail = '/^([a-zčČšŠžŽäÄöÖ]+)(.*)$/sDu';
+

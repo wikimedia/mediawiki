@@ -1,7 +1,7 @@
 --
 -- image-user-index.sql
 --
--- Add user_text/timestamp index to current image versions
+-- Add user/timestamp index to current image versions
 --
 
 ALTER TABLE /*$wgDBprefix*/image

@@ -107,7 +107,7 @@ class Preprocessor_Hash extends Preprocessor {
 	 *                                 included. Default is to assume a direct page view.
 	 *
 	 * The generated DOM tree must depend only on the input text and the flags.
-	 * The DOM tree must be the same in OT_HTML and OT_WIKI mode, to avoid a regression of T6899.
+	 * The DOM tree must be the same in OT_HTML and OT_WIKI mode, to avoid a regression of bug 4899.
 	 *
 	 * Any flag added to the $flags parameter here, or any other parameter liable to cause a
 	 * change in the DOM tree for a given text, must be passed through the section identifier
@@ -117,8 +117,6 @@ class Preprocessor_Hash extends Preprocessor {
 	 * @return PPNode_Hash_Tree
 	 */
 	public function preprocessToObj( $text, $flags = 0 ) {
-		global $wgDisableLangConversion;
-
 		$tree = $this->cacheGetTree( $text, $flags );
 		if ( $tree !== false ) {
 			$store = json_decode( $tree );
@@ -154,11 +152,6 @@ class Preprocessor_Hash extends Preprocessor {
 		$stack = new PPDStack_Hash;
 
 		$searchBase = "[{<\n";
-		if ( !$wgDisableLangConversion ) {
-			// FIXME: disabled due to T153761
-			// $searchBase .= '-';
-		}
-
 		// For fast reverse searches
 		$revText = strrev( $text );
 		$lengthText = strlen( $text );
@@ -236,10 +229,7 @@ class Preprocessor_Hash extends Preprocessor {
 						break;
 					}
 				} else {
-					$curChar = $curTwoChar = $text[$i];
-					if ( ( $i + 1 ) < $lengthText ) {
-						$curTwoChar .= $text[$i + 1];
-					}
+					$curChar = $text[$i];
 					if ( $curChar == '|' ) {
 						$found = 'pipe';
 					} elseif ( $curChar == '=' ) {
@@ -252,20 +242,11 @@ class Preprocessor_Hash extends Preprocessor {
 						} else {
 							$found = 'line-start';
 						}
-					} elseif ( $curTwoChar == $currentClosing ) {
-						$found = 'close';
-						$curChar = $curTwoChar;
 					} elseif ( $curChar == $currentClosing ) {
 						$found = 'close';
-					} elseif ( isset( $this->rules[$curTwoChar] ) ) {
-						$curChar = $curTwoChar;
-						$found = 'open';
-						$rule = $this->rules[$curChar];
 					} elseif ( isset( $this->rules[$curChar] ) ) {
 						$found = 'open';
 						$rule = $this->rules[$curChar];
-					} elseif ( $curChar == '-' ) {
-						$found = 'dash';
 					} else {
 						# Some versions of PHP have a strcspn which stops on null characters
 						# Ignore and continue
@@ -557,8 +538,7 @@ class Preprocessor_Hash extends Preprocessor {
 				// input pointer.
 			} elseif ( $found == 'open' ) {
 				# count opening brace characters
-				$curLen = strlen( $curChar );
-				$count = ( $curLen > 1 ) ? 1 : strspn( $text, $curChar, $i );
+				$count = strspn( $text, $curChar, $i );
 
 				# we need to add to stack only if opening brace count is enough for one of the rules
 				if ( $count >= $rule['min'] ) {
@@ -577,13 +557,12 @@ class Preprocessor_Hash extends Preprocessor {
 					# Add literal brace(s)
 					self::addLiteral( $accum, str_repeat( $curChar, $count ) );
 				}
-				$i += $curLen * $count;
+				$i += $count;
 			} elseif ( $found == 'close' ) {
 				$piece = $stack->top;
 				# lets check if there are enough characters for closing brace
 				$maxCount = $piece->count;
-				$curLen = strlen( $curChar );
-				$count = ( $curLen > 1 ) ? 1 : strspn( $text, $curChar, $i, $maxCount );
+				$count = strspn( $text, $curChar, $i, $maxCount );
 
 				# check for maximum matching characters (if there are 5 closing
 				# characters, we will probably need only 3 - depending on the rules)
@@ -606,7 +585,7 @@ class Preprocessor_Hash extends Preprocessor {
 					# No matching element found in callback array
 					# Output a literal closing brace and continue
 					self::addLiteral( $accum, str_repeat( $curChar, $count ) );
-					$i += $curLen * $count;
+					$i += $count;
 					continue;
 				}
 				$name = $rule['names'][$matchingCount];
@@ -648,7 +627,7 @@ class Preprocessor_Hash extends Preprocessor {
 				}
 
 				# Advance input pointer
-				$i += $curLen * $matchingCount;
+				$i += $matchingCount;
 
 				# Unwind the stack
 				$stack->pop();
@@ -681,9 +660,6 @@ class Preprocessor_Hash extends Preprocessor {
 				$findEquals = false; // shortcut for getFlags()
 				$accum[] = [ 'equals', [ '=' ] ];
 				$stack->getCurrentPart()->eqpos = count( $accum ) - 1;
-				++$i;
-			} elseif ( $found == 'dash' ) {
-				self::addLiteral( $accum, '-' );
 				++$i;
 			}
 		}

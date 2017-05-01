@@ -21,10 +21,6 @@
  * @ingroup Deployment
  */
 
-use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\DBQueryError;
-use Wikimedia\Rdbms\DBConnectionError;
-
 /**
  * Class for setting up the MediaWiki database using Microsoft SQL Server.
  *
@@ -218,7 +214,6 @@ class MssqlInstaller extends DatabaseInstaller {
 		try {
 			$db = Database::factory( 'mssql', [
 				'host' => $this->getVar( 'wgDBserver' ),
-				'port' => $this->getVar( 'wgDBport' ),
 				'user' => $user,
 				'password' => $password,
 				'dbname' => false,
@@ -287,7 +282,7 @@ class MssqlInstaller extends DatabaseInstaller {
 		// Check to ensure we can grant everything needed as well
 		// We can't actually tell if we have WITH GRANT OPTION for a given permission, so we assume we do
 		// and just check for the permission
-		// https://technet.microsoft.com/en-us/library/ms178569.aspx
+		// http://technet.microsoft.com/en-us/library/ms178569.aspx
 		// The following array sets up which permissions imply whatever permissions we specify
 		$implied = [
 			// schema           database  server

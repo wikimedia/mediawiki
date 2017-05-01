@@ -91,5 +91,6 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 			$title->getParentCategories(),
 			'Verify that the page is no longer in the category after template deletion'
 		);
+
 	}
 }

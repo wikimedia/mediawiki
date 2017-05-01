@@ -46,11 +46,9 @@ class MWHttpRequest implements LoggerAwareInterface {
 	protected $reqHeaders = [];
 	protected $url;
 	protected $parsedUrl;
-	/** @var callable  */
 	protected $callback;
 	protected $maxRedirects = 5;
 	protected $followRedirects = false;
-	protected $connectTimeout;
 
 	/**
 	 * @var CookieJar
@@ -62,8 +60,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 	protected $respStatus = "200 Ok";
 	protected $respHeaders = [];
 
-	/** @var StatusValue */
-	protected $status;
+	public $status;
 
 	/**
 	 * @var Profiler
@@ -101,9 +98,9 @@ class MWHttpRequest implements LoggerAwareInterface {
 		}
 
 		if ( !$this->parsedUrl || !Http::isValidURI( $this->url ) ) {
-			$this->status = StatusValue::newFatal( 'http-invalid-url', $url );
+			$this->status = Status::newFatal( 'http-invalid-url', $url );
 		} else {
-			$this->status = StatusValue::newGood( 100 ); // continue
+			$this->status = Status::newGood( 100 ); // continue
 		}
 
 		if ( isset( $options['timeout'] ) && $options['timeout'] != 'default' ) {
@@ -119,15 +116,6 @@ class MWHttpRequest implements LoggerAwareInterface {
 		if ( isset( $options['userAgent'] ) ) {
 			$this->setUserAgent( $options['userAgent'] );
 		}
-		if ( isset( $options['username'] ) && isset( $options['password'] ) ) {
-			$this->setHeader(
-				'Authorization',
-				'Basic ' . base64_encode( $options['username'] . ':' . $options['password'] )
-			);
-		}
-		if ( isset( $options['originalRequest'] ) ) {
-			$this->setOriginalRequest( $options['originalRequest'] );
-		}
 
 		$members = [ "postData", "proxy", "noProxy", "sslVerifyHost", "caInfo",
 				"method", "followRedirects", "maxRedirects", "sslVerifyCert", "callback" ];
@@ -135,7 +123,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 		foreach ( $members as $o ) {
 			if ( isset( $options[$o] ) ) {
 				// ensure that MWHttpRequest::method is always
-				// uppercased. T38137
+				// uppercased. Bug 36137
 				if ( $o == 'method' ) {
 					$options[$o] = strtoupper( $options[$o] );
 				}
@@ -173,7 +161,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 * @param string $url Url to use
 	 * @param array $options (optional) extra params to pass (see Http::request())
 	 * @param string $caller The method making this request, for profiling
-	 * @throws DomainException
+	 * @throws MWException
 	 * @return CurlHttpRequest|PhpHttpRequest
 	 * @see MWHttpRequest::__construct
 	 */
@@ -181,7 +169,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 		if ( !Http::$httpEngine ) {
 			Http::$httpEngine = function_exists( 'curl_init' ) ? 'curl' : 'php';
 		} elseif ( Http::$httpEngine == 'curl' && !function_exists( 'curl_init' ) ) {
-			throw new DomainException( __METHOD__ . ': curl (http://php.net/curl) is not installed, but' .
+			throw new MWException( __METHOD__ . ': curl (http://php.net/curl) is not installed, but' .
 				' Http::$httpEngine is set to "curl"' );
 		}
 
@@ -198,7 +186,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 				return new CurlHttpRequest( $url, $options, $caller, Profiler::instance() );
 			case 'php':
 				if ( !wfIniGetBool( 'allow_url_fopen' ) ) {
-					throw new DomainException( __METHOD__ . ': allow_url_fopen ' .
+					throw new MWException( __METHOD__ . ': allow_url_fopen ' .
 						'needs to be enabled for pure PHP http requests to ' .
 						'work. If possible, curl should be used instead. See ' .
 						'http://php.net/curl.'
@@ -206,7 +194,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 				}
 				return new PhpHttpRequest( $url, $options, $caller, Profiler::instance() );
 			default:
-				throw new DomainException( __METHOD__ . ': The setting of Http::$httpEngine is not valid.' );
+				throw new MWException( __METHOD__ . ': The setting of Http::$httpEngine is not valid.' );
 		}
 	}
 
@@ -234,7 +222,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 *
 	 * @return void
 	 */
-	protected function proxySetup() {
+	public function proxySetup() {
 		// If there is an explicit proxy set and proxies are not disabled, then use it
 		if ( $this->proxy && !$this->noProxy ) {
 			return;
@@ -312,7 +300,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 * Get an array of the headers
 	 * @return array
 	 */
-	protected function getHeaderList() {
+	public function getHeaderList() {
 		$list = [];
 
 		if ( $this->cookieJar ) {
@@ -345,14 +333,12 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 * bytes are reported handled than were passed to you, the HTTP fetch
 	 * will be aborted.
 	 *
-	 * @param callable|null $callback
-	 * @throws InvalidArgumentException
+	 * @param callable $callback
+	 * @throws MWException
 	 */
 	public function setCallback( $callback ) {
-		if ( is_null( $callback ) ) {
-			$callback = [ $this, 'read' ];
-		} elseif ( !is_callable( $callback ) ) {
-			throw new InvalidArgumentException( __METHOD__ . ': invalid callback' );
+		if ( !is_callable( $callback ) ) {
+			throw new MWException( 'Invalid MwHttpRequest callback' );
 		}
 		$this->callback = $callback;
 	}
@@ -364,7 +350,6 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 * @param resource $fh
 	 * @param string $content
 	 * @return int
-	 * @internal
 	 */
 	public function read( $fh, $content ) {
 		$this->content .= $content;
@@ -374,14 +359,10 @@ class MWHttpRequest implements LoggerAwareInterface {
 	/**
 	 * Take care of whatever is necessary to perform the URI request.
 	 *
-	 * @return StatusValue
-	 * @note currently returns Status for B/C
+	 * @return Status
 	 */
 	public function execute() {
-		throw new LogicException( 'children must override this' );
-	}
 
-	protected function prepare() {
 		$this->content = "";
 
 		if ( strtoupper( $this->method ) == "HEAD" ) {
@@ -391,12 +372,13 @@ class MWHttpRequest implements LoggerAwareInterface {
 		$this->proxySetup(); // set up any proxy as needed
 
 		if ( !$this->callback ) {
-			$this->setCallback( null );
+			$this->setCallback( [ $this, 'read' ] );
 		}
 
 		if ( !isset( $this->reqHeaders['User-Agent'] ) ) {
 			$this->setUserAgent( Http::userAgent() );
 		}
+
 	}
 
 	/**
@@ -405,6 +387,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 * found in an array in the member variable headerList.
 	 */
 	protected function parseHeader() {
+
 		$lastname = "";
 
 		foreach ( $this->headerList as $header ) {
@@ -421,6 +404,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 		}
 
 		$this->parseCookies();
+
 	}
 
 	/**
@@ -514,8 +498,6 @@ class MWHttpRequest implements LoggerAwareInterface {
 	/**
 	 * Tells the MWHttpRequest object to use this pre-loaded CookieJar.
 	 *
-	 * To read response cookies from the jar, getCookieJar must be called first.
-	 *
 	 * @param CookieJar $jar
 	 */
 	public function setCookieJar( $jar ) {
@@ -541,16 +523,12 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 * Set-Cookie headers.
 	 * @see Cookie::set
 	 * @param string $name
-	 * @param string $value
+	 * @param mixed $value
 	 * @param array $attr
 	 */
-	public function setCookie( $name, $value, $attr = [] ) {
+	public function setCookie( $name, $value = null, $attr = null ) {
 		if ( !$this->cookieJar ) {
 			$this->cookieJar = new CookieJar;
-		}
-
-		if ( $this->parsedUrl && !isset( $attr['domain'] ) ) {
-			$attr['domain'] = $this->parsedUrl['host'];
 		}
 
 		$this->cookieJar->setCookie( $name, $value, $attr );
@@ -560,6 +538,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 * Parse the cookies in the response headers and store them in the cookie jar.
 	 */
 	protected function parseCookies() {
+
 		if ( !$this->cookieJar ) {
 			$this->cookieJar = new CookieJar;
 		}
@@ -570,6 +549,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 				$this->cookieJar->parseCookieResponseHeader( $cookie, $url['host'] );
 			}
 		}
+
 	}
 
 	/**
@@ -583,7 +563,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 *
 	 * Note that the multiple Location: headers are an artifact of
 	 * CURL -- they shouldn't actually get returned this way. Rewrite
-	 * this when T31232 is taken care of (high-level redirect
+	 * this when bug 29232 is taken care of (high-level redirect
 	 * handling rewrite).
 	 *
 	 * @return string
@@ -609,16 +589,18 @@ class MWHttpRequest implements LoggerAwareInterface {
 				}
 			}
 
-			if ( !$foundRelativeURI ) {
+			if ( $foundRelativeURI ) {
+				if ( $domain ) {
+					return $domain . $locations[$countLocations - 1];
+				} else {
+					$url = parse_url( $this->url );
+					if ( isset( $url['host'] ) ) {
+						return $url['scheme'] . '://' . $url['host'] .
+							$locations[$countLocations - 1];
+					}
+				}
+			} else {
 				return $locations[$countLocations - 1];
-			}
-			if ( $domain ) {
-				return $domain . $locations[$countLocations - 1];
-			}
-			$url = parse_url( $this->url );
-			if ( isset( $url['host'] ) ) {
-				return $url['scheme'] . '://' . $url['host'] .
-					$locations[$countLocations - 1];
 			}
 		}
 
@@ -632,35 +614,5 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 */
 	public function canFollowRedirects() {
 		return true;
-	}
-
-	/**
-	 * Set information about the original request. This can be useful for
-	 * endpoints/API modules which act as a proxy for some service, and
-	 * throttling etc. needs to happen in that service.
-	 * Calling this will result in the X-Forwarded-For and X-Original-User-Agent
-	 * headers being set.
-	 * @param WebRequest|array $originalRequest When in array form, it's
-	 *   expected to have the keys 'ip' and 'userAgent'.
-	 * @note IP/user agent is personally identifiable information, and should
-	 *   only be set when the privacy policy of the request target is
-	 *   compatible with that of the MediaWiki installation.
-	 */
-	public function setOriginalRequest( $originalRequest ) {
-		if ( $originalRequest instanceof WebRequest ) {
-			$originalRequest = [
-				'ip' => $originalRequest->getIP(),
-				'userAgent' => $originalRequest->getHeader( 'User-Agent' ),
-			];
-		} elseif (
-			!is_array( $originalRequest )
-			|| array_diff( [ 'ip', 'userAgent' ], array_keys( $originalRequest ) )
-		) {
-			throw new InvalidArgumentException( __METHOD__ . ': $originalRequest must be a '
-				. "WebRequest or an array with 'ip' and 'userAgent' keys" );
-		}
-
-		$this->reqHeaders['X-Forwarded-For'] = $originalRequest['ip'];
-		$this->reqHeaders['X-Original-User-Agent'] = $originalRequest['userAgent'];
 	}
 }

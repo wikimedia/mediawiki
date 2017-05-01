@@ -30,17 +30,9 @@ Then(/^error box should not be visible$/) do
   expect(on(LoginPage).error_message_element).not_to exist
 end
 
-Then(/^error message should be displayed for username$/) do
-  expect(on(LoginPage).username_error_element).to exist
-end
-
-Then(/^error message should be displayed for password$/) do
-  expect(on(LoginPage).password_error_element).to exist
-end
-
 Then(/^feedback should be (.+)$/) do |feedback|
   on(LoginPage) do |page|
-    page.feedback_element.click
+    page.feedback_element.when_present.click
     expect(page.feedback).to match Regexp.escape(feedback)
   end
 end
@@ -58,7 +50,7 @@ Then(/^Password element should be there$/) do
 end
 
 Then(/^there should be a link to (.+)$/) do |text|
-  expect(on(LoginPage).username_displayed_element.text).to eq text
+  expect(on(LoginPage).username_displayed_element.when_present.text).to eq text
 end
 
 Then(/^Username element should be there$/) do

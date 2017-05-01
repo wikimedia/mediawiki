@@ -1,4 +1,2 @@
-( function () {
-	var Router = require( 'oojs-router' );
-	module.exports = new Router();
-}() );
+var Router = require( 'oojs-router' );
+module.exports = new Router();

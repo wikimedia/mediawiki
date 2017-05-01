@@ -105,3 +105,4 @@ $dateFormats = [
 ];
 
 $separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
+

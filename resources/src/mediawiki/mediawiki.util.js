@@ -50,7 +50,6 @@
 		 * Encode the string like PHP's rawurlencode
 		 *
 		 * @param {string} str String to be encoded.
-		 * @return {string} Encoded string
 		 */
 		rawurlencode: function ( str ) {
 			str = String( str );
@@ -63,7 +62,6 @@
 		 * Encode the string like Sanitizer::escapeId in PHP
 		 *
 		 * @param {string} str String to be encoded.
-		 * @return {string} Encoded string
 		 */
 		escapeId: function ( str ) {
 			str = String( str );
@@ -82,7 +80,6 @@
 		 * of `wfUrlencode` in PHP.
 		 *
 		 * @param {string} str String to be encoded.
-		 * @return {string} Encoded string
 		 */
 		wikiUrlencode: function ( str ) {
 			return util.rawurlencode( str )
@@ -127,12 +124,11 @@
 				query = $.param( params );
 			}
 			if ( query ) {
-				url = title ?
-					util.wikiScript() + '?title=' + util.wikiUrlencode( title ) + '&' + query :
-					util.wikiScript() + '?' + query;
+				url = title
+					? util.wikiScript() + '?title=' + util.wikiUrlencode( title ) + '&' + query
+					: util.wikiScript() + '?' + query;
 			} else {
-				url = mw.config.get( 'wgArticlePath' )
-					.replace( '$1', util.wikiUrlencode( title ).replace( /\$/g, '$$$$' ) );
+				url = mw.config.get( 'wgArticlePath' ).replace( '$1', util.wikiUrlencode( title ) );
 			}
 
 			// Append the encoded fragment
@@ -168,7 +164,7 @@
 		 * This function returns the styleSheet object for convience (due to cross-browsers
 		 * difference as to where it is located).
 		 *
-		 *     var sheet = util.addCSS( '.foobar { display: none; }' );
+		 *     var sheet = mw.util.addCSS( '.foobar { display: none; }' );
 		 *     $( foo ).click( function () {
 		 *         // Toggle the sheet on and off
 		 *         sheet.disabled = !sheet.disabled;
@@ -191,10 +187,12 @@
 		 * @return {Mixed} Parameter value or null.
 		 */
 		getParamValue: function ( param, url ) {
+			if ( url === undefined ) {
+				url = location.href;
+			}
 			// Get last match, stop at hash
 			var	re = new RegExp( '^[^#]*[&?]' + mw.RegExp.escape( param ) + '=([^&#]*)' ),
-				m = re.exec( url !== undefined ? url : location.href );
-
+				m = re.exec( url );
 			if ( m ) {
 				// Beware that decodeURIComponent is not required to understand '+'
 				// by spec, as encodeURIComponent does not produce it.
@@ -238,12 +236,12 @@
 		 * (e.g. `document.getElementById( 'foobar' )`) or a jQuery-selector
 		 * (e.g. `'#foobar'`) for that item.
 		 *
-		 *     util.addPortletLink(
+		 *     mw.util.addPortletLink(
 		 *         'p-tb', 'https://www.mediawiki.org/',
 		 *         'mediawiki.org', 't-mworg', 'Go to mediawiki.org', 'm', '#t-print'
 		 *     );
 		 *
-		 *     var node = util.addPortletLink(
+		 *     var node = mw.util.addPortletLink(
 		 *         'p-tb',
 		 *         new mw.Title( 'Special:Example' ).getUrl(),
 		 *         'Example'
@@ -358,7 +356,7 @@
 			}
 
 			// Update tooltip for the access key after inserting into DOM
-			// to get a localized access key label (T69946).
+			// to get a localized access key label (bug 67946).
 			$link.updateTooltipAccessKeys();
 
 			return $item[ 0 ];
@@ -415,15 +413,20 @@
 
 			html5EmailRegexp = new RegExp(
 				// start of string
-				'^' +
+				'^'
+				+
 				// User part which is liberal :p
-				'[' + rfc5322Atext + '\\.]+' +
+				'[' + rfc5322Atext + '\\.]+'
+				+
 				// 'at'
-				'@' +
+				'@'
+				+
 				// Domain first part
-				'[' + rfc1034LdhStr + ']+' +
+				'[' + rfc1034LdhStr + ']+'
+				+
 				// Optional second part and following are separated by a dot
-				'(?:\\.[' + rfc1034LdhStr + ']+)*' +
+				'(?:\\.[' + rfc1034LdhStr + ']+)*'
+				+
 				// End of string
 				'$',
 				// RegExp is case insensitive
@@ -440,15 +443,13 @@
 		 * @return {boolean}
 		 */
 		isIPv4Address: function ( address, allowBlock ) {
-			var block, RE_IP_BYTE, RE_IP_ADD;
-
 			if ( typeof address !== 'string' ) {
 				return false;
 			}
 
-			block = allowBlock ? '(?:\\/(?:3[0-2]|[12]?\\d))?' : '';
-			RE_IP_BYTE = '(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|0?[0-9]?[0-9])';
-			RE_IP_ADD = '(?:' + RE_IP_BYTE + '\\.){3}' + RE_IP_BYTE;
+			var	block = allowBlock ? '(?:\\/(?:3[0-2]|[12]?\\d))?' : '',
+				RE_IP_BYTE = '(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|0?[0-9]?[0-9])',
+				RE_IP_ADD = '(?:' + RE_IP_BYTE + '\\.){3}' + RE_IP_BYTE;
 
 			return ( new RegExp( '^' + RE_IP_ADD + block + '$' ).test( address ) );
 		},
@@ -461,45 +462,31 @@
 		 * @return {boolean}
 		 */
 		isIPv6Address: function ( address, allowBlock ) {
-			var block, RE_IPV6_ADD;
-
 			if ( typeof address !== 'string' ) {
 				return false;
 			}
 
-			block = allowBlock ? '(?:\\/(?:12[0-8]|1[01][0-9]|[1-9]?\\d))?' : '';
-			RE_IPV6_ADD =
-				'(?:' + // starts with "::" (including "::")
-					':(?::|(?::' +
-						'[0-9A-Fa-f]{1,4}' +
-					'){1,7})' +
-					'|' + // ends with "::" (except "::")
-					'[0-9A-Fa-f]{1,4}' +
-					'(?::' +
-						'[0-9A-Fa-f]{1,4}' +
-					'){0,6}::' +
-					'|' + // contains no "::"
-					'[0-9A-Fa-f]{1,4}' +
-					'(?::' +
-						'[0-9A-Fa-f]{1,4}' +
-					'){7}' +
-				')';
+			var	block = allowBlock ? '(?:\\/(?:12[0-8]|1[01][0-9]|[1-9]?\\d))?' : '',
+				RE_IPV6_ADD =
+			'(?:' + // starts with "::" (including "::")
+			':(?::|(?::' + '[0-9A-Fa-f]{1,4}' + '){1,7})' +
+			'|' + // ends with "::" (except "::")
+			'[0-9A-Fa-f]{1,4}' + '(?::' + '[0-9A-Fa-f]{1,4}' + '){0,6}::' +
+			'|' + // contains no "::"
+			'[0-9A-Fa-f]{1,4}' + '(?::' + '[0-9A-Fa-f]{1,4}' + '){7}' +
+			')';
 
 			if ( new RegExp( '^' + RE_IPV6_ADD + block + '$' ).test( address ) ) {
 				return true;
 			}
 
 			// contains one "::" in the middle (single '::' check below)
-			RE_IPV6_ADD =
-				'[0-9A-Fa-f]{1,4}' +
-				'(?:::?' +
-					'[0-9A-Fa-f]{1,4}' +
-				'){1,6}';
+			RE_IPV6_ADD = '[0-9A-Fa-f]{1,4}' + '(?:::?' + '[0-9A-Fa-f]{1,4}' + '){1,6}';
 
 			return (
-				new RegExp( '^' + RE_IPV6_ADD + block + '$' ).test( address ) &&
-				/::/.test( address ) &&
-				!/::.*::/.test( address )
+				new RegExp( '^' + RE_IPV6_ADD + block + '$' ).test( address )
+				&& /::/.test( address )
+				&& !/::.*::/.test( address )
 			);
 		},
 
@@ -566,6 +553,5 @@
 	}, 'Use mw.notify instead.' );
 
 	mw.util = util;
-	module.exports = util;
 
 }( mediaWiki, jQuery ) );

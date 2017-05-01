@@ -21,15 +21,8 @@
  * @ingroup Database
  */
 
-namespace Wikimedia\Rdbms;
-
 use Psr\Log\LoggerInterface;
 use Wikimedia\ScopedCallback;
-use BagOStuff;
-use EmptyBagOStuff;
-use WANObjectCache;
-use Exception;
-use RuntimeException;
 
 /**
  * An interface for generating database load balancers
@@ -107,7 +100,7 @@ abstract class LBFactory implements ILBFactory {
 				trigger_error( E_USER_WARNING, get_class( $e ) . ': ' . $e->getMessage() );
 			};
 
-		$this->profiler = isset( $conf['profiler'] ) ? $conf['profiler'] : null;
+		$this->profiler = isset( $params['profiler'] ) ? $params['profiler'] : null;
 		$this->trxProfiler = isset( $conf['trxProfiler'] )
 			? $conf['trxProfiler']
 			: new TransactionProfiler();
@@ -118,9 +111,9 @@ abstract class LBFactory implements ILBFactory {
 			'ChronologyProtection' => 'true'
 		];
 
-		$this->cliMode = isset( $conf['cliMode'] ) ? $conf['cliMode'] : PHP_SAPI === 'cli';
+		$this->cliMode = isset( $params['cliMode'] ) ? $params['cliMode'] : PHP_SAPI === 'cli';
 		$this->hostname = isset( $conf['hostname'] ) ? $conf['hostname'] : gethostname();
-		$this->agent = isset( $conf['agent'] ) ? $conf['agent'] : '';
+		$this->agent = isset( $params['agent'] ) ? $params['agent'] : '';
 
 		$this->ticket = mt_rand();
 	}
@@ -333,7 +326,7 @@ abstract class LBFactory implements ILBFactory {
 		$masterPositions = array_fill( 0, count( $lbs ), false );
 		foreach ( $lbs as $i => $lb ) {
 			if ( $lb->getServerCount() <= 1 ) {
-				// T29975 - Don't try to wait for replica DBs if there are none
+				// Bug 27975 - Don't try to wait for replica DBs if there are none
 				// Prevents permission error when getting master position
 				continue;
 			} elseif ( $opts['ifWritesSince']
@@ -362,7 +355,6 @@ abstract class LBFactory implements ILBFactory {
 
 		if ( $failed ) {
 			throw new DBReplicationWaitError(
-				null,
 				"Could not wait for replica DBs to catch up to " .
 				implode( ', ', $failed )
 			);
@@ -505,8 +497,7 @@ abstract class LBFactory implements ILBFactory {
 			'errorLogger' => $this->errorLogger,
 			'hostname' => $this->hostname,
 			'cliMode' => $this->cliMode,
-			'agent' => $this->agent,
-			'chronologyProtector' => $this->getChronologyProtector()
+			'agent' => $this->agent
 		];
 	}
 
@@ -563,7 +554,7 @@ abstract class LBFactory implements ILBFactory {
 	 * @return ScopedCallback|null
 	 */
 	final protected function getScopedPHPBehaviorForCommit() {
-		if ( PHP_SAPI != 'cli' ) { // https://bugs.php.net/bug.php?id=47540
+		if ( PHP_SAPI != 'cli' ) { // http://bugs.php.net/bug.php?id=47540
 			$old = ignore_user_abort( true ); // avoid half-finished operations
 			return new ScopedCallback( function () use ( $old ) {
 				ignore_user_abort( $old );

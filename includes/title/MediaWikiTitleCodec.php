@@ -21,8 +21,6 @@
  * @license GPL 2+
  * @author Daniel Kinzler
  */
-use MediaWiki\Interwiki\InterwikiLookup;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\LinkTarget;
 
 /**
@@ -53,24 +51,16 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	protected $localInterwikis;
 
 	/**
-	 * @var InterwikiLookup
-	 */
-	protected $interwikiLookup;
-
-	/**
 	 * @param Language $language The language object to use for localizing namespace names.
 	 * @param GenderCache $genderCache The gender cache for generating gendered namespace names
 	 * @param string[]|string $localInterwikis
-	 * @param InterwikiLookup|null $interwikiLookup
 	 */
 	public function __construct( Language $language, GenderCache $genderCache,
-		$localInterwikis = [], $interwikiLookup = null
+		$localInterwikis = []
 	) {
 		$this->language = $language;
 		$this->genderCache = $genderCache;
 		$this->localInterwikis = (array)$localInterwikis;
-		$this->interwikiLookup = $interwikiLookup ?:
-			MediaWikiServices::getInstance()->getInterwikiLookup();
 	}
 
 	/**
@@ -328,13 +318,13 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 						if ( $this->language->getNsIndex( $x[1] ) ) {
 							# Disallow Talk:File:x type titles...
 							throw new MalformedTitleException( 'title-invalid-talk-namespace', $text );
-						} elseif ( $this->interwikiLookup->isValidInterwiki( $x[1] ) ) {
+						} elseif ( Interwiki::isValidInterwiki( $x[1] ) ) {
 							// TODO: get rid of global state!
 							# Disallow Talk:Interwiki:x type titles...
 							throw new MalformedTitleException( 'title-invalid-talk-namespace', $text );
 						}
 					}
-				} elseif ( $this->interwikiLookup->isValidInterwiki( $p ) ) {
+				} elseif ( Interwiki::isValidInterwiki( $p ) ) {
 					# Interwiki link
 					$dbkey = $m[2];
 					$parts['interwiki'] = $this->language->lc( $p );

@@ -149,14 +149,14 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$entryWarning = $this->msg( $request->getVal( 'warning', '' ) );
 		// bc: provide login link as a parameter for messages where the translation
 		// was not updated
-		$loginreqlink = $this->getLinkRenderer()->makeKnownLink(
+		$loginreqlink = Linker::linkKnown(
 			$this->getPageTitle(),
-			$this->msg( 'loginreqlink' )->text(),
+			$this->msg( 'loginreqlink' )->escaped(),
 			[],
 			[
 				'returnto' => $this->mReturnTo,
 				'returntoquery' => $this->mReturnToQuery,
-				'uselang' => $this->mLanguage ?: null,
+				'uselang' => $this->mLanguage,
 				'fromhttp' => $wgSecureLogin && $this->mFromHTTP ? '1' : null,
 			]
 		);
@@ -177,7 +177,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		# 1. When switching accounts, it sucks to get automatically logged out
 		# 2. Do not return to PasswordReset after a successful password change
-		#    but goto Wiki start page (Main_Page) instead ( T35997 )
+		#    but goto Wiki start page (Main_Page) instead ( bug 33997 )
 		$returnToTitle = Title::newFromText( $this->mReturnTo );
 		if ( is_object( $returnToTitle )
 			&& ( $returnToTitle->isSpecial( 'Userlogout' )
@@ -556,11 +556,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 
 		// warning header for non-standard workflows (e.g. security reauthentication)
-		if (
-			!$this->isSignup() &&
-			$this->getUser()->isLoggedIn() &&
-			$this->authAction !== AuthManager::ACTION_LOGIN_CONTINUE
-		) {
+		if ( !$this->isSignup() && $this->getUser()->isLoggedIn() ) {
 			$reauthMessage = $this->securityLevel ? 'userlogin-reauth' : 'userlogin-loggedin';
 			$submitStatus->warning( $reauthMessage, $this->getUser()->getName() );
 		}
@@ -641,7 +637,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @return HTMLForm
 	 */
 	protected function getAuthForm( array $requests, $action, $msg = '', $msgType = 'error' ) {
-		global $wgSecureLogin;
+		global $wgSecureLogin, $wgLoginLanguageSelector;
 		// FIXME merge this with parent
 
 		if ( isset( $this->authForm ) ) {
@@ -667,7 +663,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$form = HTMLForm::factory( 'vform', $formDescriptor, $context );
 
 		$form->addHiddenField( 'authAction', $this->authAction );
-		if ( $this->mLanguage ) {
+		if ( $wgLoginLanguageSelector ) {
 			$form->addHiddenField( 'uselang', $this->mLanguage );
 		}
 		$form->addHiddenField( 'force', $this->securityLevel );
@@ -702,12 +698,12 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 */
 	protected function getFakeTemplate( $msg, $msgType ) {
 		global $wgAuth, $wgEnableEmail, $wgHiddenPrefs, $wgEmailConfirmToEdit, $wgEnableUserEmail,
-			$wgSecureLogin, $wgPasswordResetRoutes;
+			   $wgSecureLogin, $wgLoginLanguageSelector, $wgPasswordResetRoutes;
 
 		// make a best effort to get the value of fields which used to be fixed in the old login
 		// template but now might or might not exist depending on what providers are used
 		$request = $this->getRequest();
-		$data = (object)[
+		$data = (object) [
 			'mUsername' => $request->getText( 'wpName' ),
 			'mPassword' => $request->getText( 'wpPassword' ),
 			'mRetype' => $request->getText( 'wpRetype' ),
@@ -727,7 +723,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$user = $this->getUser();
 		$template = new FakeAuthTemplate();
 
-		// Pre-fill username (if not creating an account, T46775).
+		// Pre-fill username (if not creating an account, bug 44775).
 		if ( $data->mUsername == '' && $this->isSignup() ) {
 			if ( $user->isLoggedIn() ) {
 				$data->mUsername = $user->getName();
@@ -760,7 +756,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		# Don't show a "create account" link if the user can't.
 		if ( $this->showCreateAccountLink() ) {
 			# Pass any language selection on to the mode switch link
-			if ( $this->mLanguage ) {
+			if ( $wgLoginLanguageSelector && $this->mLanguage ) {
 				$linkq .= '&uselang=' . $this->mLanguage;
 			}
 			// Supply URL, login template creates the button.
@@ -772,7 +768,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$resetLink = $this->isSignup()
 			? null
 			: is_array( $wgPasswordResetRoutes )
-				&& in_array( true, array_values( $wgPasswordResetRoutes ), true );
+			  && in_array( true, array_values( $wgPasswordResetRoutes ), true );
 
 		$template->set( 'header', '' );
 		$template->set( 'formheader', '' );
@@ -811,21 +807,14 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$wgAuth->modifyUITemplate( $template, $action );
 
 		$oldTemplate = $template;
-
-		// Both Hooks::run are explicit here to make findHooks.php happy
-		if ( $this->isSignup() ) {
-			Hooks::run( 'UserCreateForm', [ &$template ] );
-			if ( $oldTemplate !== $template ) {
-				wfDeprecated( "reference in UserCreateForm hook", '1.27' );
-			}
-		} else {
-			Hooks::run( 'UserLoginForm', [ &$template ] );
-			if ( $oldTemplate !== $template ) {
-				wfDeprecated( "reference in UserLoginForm hook", '1.27' );
-			}
+		$hookName = $this->isSignup() ? 'UserCreateForm' : 'UserLoginForm';
+		Hooks::run( $hookName, [ &$template ] );
+		if ( $oldTemplate !== $template ) {
+			wfDeprecated( "reference in $hookName hook", '1.27' );
 		}
 
 		return $template;
+
 	}
 
 	public function onAuthChangeFormFields(
@@ -892,7 +881,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @return array
 	 */
 	protected function getFieldDefinitions( $template ) {
-		global $wgEmailConfirmToEdit;
+		global $wgEmailConfirmToEdit, $wgLoginLanguageSelector;
 
 		$isLoggedIn = $this->getUser()->isLoggedIn();
 		$continuePart = $this->isContinued() ? 'continue-' : '';
@@ -1088,13 +1077,13 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			// B/C for old extensions that haven't been converted to AuthManager (or have been
 			// but somebody is using the old version) and still use templates via the
 			// UserCreateForm/UserLoginForm hook.
-			// 'header' used by ConfirmEdit, ConfirmAccount, Persona, WikimediaIncubator, SemanticSignup
+			// 'header' used by ConfirmEdit, CondfirmAccount, Persona, WikimediaIncubator, SemanticSignup
 			// 'formheader' used by MobileFrontend
 			$fieldDefinitions['header'] = [
 				'type' => 'info',
 				'raw' => true,
 				'default' => $template->get( 'header' ) ?: $template->get( 'formheader' ),
-				'weight' => -110,
+				'weight' => - 110,
 			];
 		}
 		if ( $this->mEntryError ) {
@@ -1134,9 +1123,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'type' => 'info',
 					'raw' => true,
 					'cssclass' => 'mw-form-related-link-container',
-					'default' => $this->getLinkRenderer()->makeLink(
+					'default' => Linker::link(
 						SpecialPage::getTitleFor( 'PasswordReset' ),
-						$this->msg( 'userlogin-resetpassword-link' )->text()
+						$this->msg( 'userlogin-resetpassword-link' )->escaped()
 					),
 					'weight' => 230,
 				];
@@ -1148,7 +1137,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				$linkTitle = $this->getTitleFor( $this->isSignup() ? 'Userlogin' :'CreateAccount' );
 				$linkq = $this->getReturnToQueryStringFragment();
 				// Pass any language selection on to the mode switch link
-				if ( $this->mLanguage ) {
+				if ( $wgLoginLanguageSelector && $this->mLanguage ) {
 					$linkq .= '&uselang=' . $this->mLanguage;
 				}
 				$loggedIn = $this->getUser()->isLoggedIn();
@@ -1315,9 +1304,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$targetLanguage = Language::factory( $lang );
 		$attr['lang'] = $attr['hreflang'] = $targetLanguage->getHtmlCode();
 
-		return $this->getLinkRenderer()->makeKnownLink(
+		return Linker::linkKnown(
 			$this->getPageTitle(),
-			$text,
+			htmlspecialchars( $text ),
 			$attr,
 			$query
 		);

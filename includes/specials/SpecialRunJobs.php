@@ -41,10 +41,14 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 	public function execute( $par = '' ) {
 		$this->getOutput()->disable();
 		if ( wfReadOnly() ) {
-			wfHttpError( 423, 'Locked', 'Wiki is in read-only mode.' );
+			// HTTP 423 Locked
+			HttpStatus::header( 423 );
+			print 'Wiki is in read-only mode';
+
 			return;
 		} elseif ( !$this->getRequest()->wasPosted() ) {
-			wfHttpError( 400, 'Bad Request', 'Request must be POSTed.' );
+			HttpStatus::header( 400 );
+			print 'Request must be POSTed';
 			return;
 		}
 
@@ -54,9 +58,8 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 		$params = array_intersect_key( $this->getRequest()->getValues(), $required + $optional );
 		$missing = array_diff_key( $required, $params );
 		if ( count( $missing ) ) {
-			wfHttpError( 400, 'Bad Request',
-				'Missing parameters: ' . implode( ', ', array_keys( $missing ) )
-			);
+			HttpStatus::header( 400 );
+			print 'Missing parameters: ' . implode( ', ', array_keys( $missing ) );
 			return;
 		}
 
@@ -68,7 +71,8 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 		$verified = is_string( $providedSignature )
 			&& hash_equals( $correctSignature, $providedSignature );
 		if ( !$verified || $params['sigexpiry'] < time() ) {
-			wfHttpError( 400, 'Bad Request', 'Invalid or stale signature provided.' );
+			HttpStatus::header( 400 );
+			print 'Invalid or stale signature provided';
 			return;
 		}
 

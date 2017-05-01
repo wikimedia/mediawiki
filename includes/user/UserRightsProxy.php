@@ -20,8 +20,6 @@
  * @file
  */
 
-use Wikimedia\Rdbms\IDatabase;
-
 /**
  * Cut-down copy of User interface for local-interwiki-database
  * user rights manipulation.
@@ -200,47 +198,50 @@ class UserRightsProxy {
 	 * @return array
 	 */
 	function getGroups() {
-		return array_keys( self::getGroupMemberships() );
+		$res = $this->db->select( 'user_groups',
+			[ 'ug_group' ],
+			[ 'ug_user' => $this->id ],
+			__METHOD__ );
+		$groups = [];
+		foreach ( $res as $row ) {
+			$groups[] = $row->ug_group;
+		}
+		return $groups;
 	}
 
 	/**
-	 * Replaces User::getGroupMemberships()
-	 *
-	 * @return array
-	 * @since 1.29
-	 */
-	function getGroupMemberships() {
-		return UserGroupMembership::getMembershipsForUser( $this->id, $this->db );
-	}
-
-	/**
-	 * Replaces User::addGroup()
-	 *
+	 * Replaces User::addUserGroup()
 	 * @param string $group
-	 * @param string|null $expiry
+	 *
 	 * @return bool
 	 */
-	function addGroup( $group, $expiry = null ) {
-		if ( $expiry ) {
-			$expiry = wfTimestamp( TS_MW, $expiry );
-		}
+	function addGroup( $group ) {
+		$this->db->insert( 'user_groups',
+			[
+				'ug_user' => $this->id,
+				'ug_group' => $group,
+			],
+			__METHOD__,
+			[ 'IGNORE' ] );
 
-		$ugm = new UserGroupMembership( $this->id, $group, $expiry );
-		return $ugm->insert( true, $this->db );
+		return true;
 	}
 
 	/**
-	 * Replaces User::removeGroup()
-	 *
+	 * Replaces User::removeUserGroup()
 	 * @param string $group
+	 *
 	 * @return bool
 	 */
 	function removeGroup( $group ) {
-		$ugm = UserGroupMembership::getMembership( $this->id, $group, $this->db );
-		if ( !$ugm ) {
-			return false;
-		}
-		return $ugm->delete( $this->db );
+		$this->db->delete( 'user_groups',
+			[
+				'ug_user' => $this->id,
+				'ug_group' => $group,
+			],
+			__METHOD__ );
+
+		return true;
 	}
 
 	/**

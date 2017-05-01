@@ -1,4 +1,6 @@
 ( function ( mw, $ ) {
+	QUnit.module( 'mediawiki.cldr', QUnit.newMwEnvironment() );
+
 	var pluralTestcases = {
 		/*
 		 * Sample:
@@ -59,12 +61,9 @@
 		]
 	};
 
-	QUnit.module( 'mediawiki.cldr', QUnit.newMwEnvironment() );
-
 	function pluralTest( langCode, tests ) {
-		QUnit.test( 'Plural Test for ' + langCode, function ( assert ) {
-			var i;
-			for ( i = 0; i < tests.length; i++ ) {
+		QUnit.test( 'Plural Test for ' + langCode, tests.length, function ( assert ) {
+			for ( var i = 0; i < tests.length; i++ ) {
 				assert.equal(
 					mw.language.convertPlural( tests[ i ][ 0 ], tests[ i ][ 1 ] ),
 					tests[ i ][ 2 ],

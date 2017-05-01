@@ -32,27 +32,9 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 	protected $mTitle;
 
 	/**
-	 * @since 1.14
-	 * @var ImagePage
-	 */
-	public $mImagePage;
-
-	/**
-	 * @since 1.14
-	 * @var File[]
-	 */
-	public $mHist;
-
-	/**
-	 * @since 1.14
-	 * @var int[]
-	 */
-	public $mRange;
-
-	/**
 	 * @param ImagePage $imagePage
 	 */
-	public function __construct( $imagePage ) {
+	function __construct( $imagePage ) {
 		parent::__construct( $imagePage->getContext() );
 		$this->mImagePage = $imagePage;
 		$this->mTitle = clone $imagePage->getTitle();
@@ -60,29 +42,23 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		$this->mImg = null;
 		$this->mHist = [];
 		$this->mRange = [ 0, 0 ]; // display range
-
-		// Only display 10 revisions at once by default, otherwise the list is overwhelming
-		$this->mLimitsShown = array_merge( [ 10 ], $this->mLimitsShown );
-		$this->mDefaultLimit = 10;
-		list( $this->mLimit, /* $offset */ ) =
-			$this->mRequest->getLimitOffset( $this->mDefaultLimit, '' );
 	}
 
 	/**
 	 * @return Title
 	 */
-	public function getTitle() {
+	function getTitle() {
 		return $this->mTitle;
 	}
 
-	public function getQueryInfo() {
+	function getQueryInfo() {
 		return false;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getIndexField() {
+	function getIndexField() {
 		return '';
 	}
 
@@ -90,14 +66,14 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 	 * @param object $row
 	 * @return string
 	 */
-	public function formatRow( $row ) {
+	function formatRow( $row ) {
 		return '';
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getBody() {
+	function getBody() {
 		$s = '';
 		$this->doQuery();
 		if ( count( $this->mHist ) ) {
@@ -131,7 +107,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		return $s;
 	}
 
-	public function doQuery() {
+	function doQuery() {
 		if ( $this->mQueryDone ) {
 			return;
 		}

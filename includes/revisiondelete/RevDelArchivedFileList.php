@@ -19,8 +19,6 @@
  * @ingroup RevisionDelete
  */
 
-use Wikimedia\Rdbms\IDatabase;
-
 /**
  * List for filearchive table items
  */

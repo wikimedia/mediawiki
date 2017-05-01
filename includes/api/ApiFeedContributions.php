@@ -43,16 +43,16 @@ class ApiFeedContributions extends ApiBase {
 
 		$config = $this->getConfig();
 		if ( !$config->get( 'Feed' ) ) {
-			$this->dieWithError( 'feed-unavailable' );
+			$this->dieUsage( 'Syndication feeds are not available', 'feed-unavailable' );
 		}
 
 		$feedClasses = $config->get( 'FeedClasses' );
 		if ( !isset( $feedClasses[$params['feedformat']] ) ) {
-			$this->dieWithError( 'feed-invalid' );
+			$this->dieUsage( 'Invalid subscription feed type', 'feed-invalid' );
 		}
 
 		if ( $params['showsizediff'] && $this->getConfig()->get( 'MiserMode' ) ) {
-			$this->dieWithError( 'apierror-sizediffdisabled' );
+			$this->dieUsage( 'Size difference is disabled in Miser Mode', 'sizediffdisabled' );
 		}
 
 		$msg = wfMessage( 'Contributions' )->inContentLanguage()->text();

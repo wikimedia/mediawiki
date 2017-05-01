@@ -4,11 +4,11 @@
  * A field that will contain a numeric value
  */
 class HTMLFloatField extends HTMLTextField {
-	public function getSize() {
+	function getSize() {
 		return isset( $this->mParams['size'] ) ? $this->mParams['size'] : 20;
 	}
 
-	public function validate( $value, $alldata ) {
+	function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
 		if ( $p !== true ) {
@@ -17,10 +17,10 @@ class HTMLFloatField extends HTMLTextField {
 
 		$value = trim( $value );
 
-		# https://www.w3.org/TR/html5/infrastructure.html#floating-point-numbers
+		# http://www.w3.org/TR/html5/infrastructure.html#floating-point-numbers
 		# with the addition that a leading '+' sign is ok.
 		if ( !preg_match( '/^((\+|\-)?\d+(\.\d+)?(E(\+|\-)?\d+)?)?$/i', $value ) ) {
-			return $this->msg( 'htmlform-float-invalid' );
+			return $this->msg( 'htmlform-float-invalid' )->parseAsBlock();
 		}
 
 		# The "int" part of these message names is rather confusing.
@@ -29,7 +29,7 @@ class HTMLFloatField extends HTMLTextField {
 			$min = $this->mParams['min'];
 
 			if ( $min > $value ) {
-				return $this->msg( 'htmlform-int-toolow', $min );
+				return $this->msg( 'htmlform-int-toolow', $min )->parseAsBlock();
 			}
 		}
 
@@ -37,7 +37,7 @@ class HTMLFloatField extends HTMLTextField {
 			$max = $this->mParams['max'];
 
 			if ( $max < $value ) {
-				return $this->msg( 'htmlform-int-toohigh', $max );
+				return $this->msg( 'htmlform-int-toohigh', $max )->parseAsBlock();
 			}
 		}
 

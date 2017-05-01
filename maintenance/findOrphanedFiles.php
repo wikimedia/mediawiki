@@ -75,7 +75,7 @@ class FindOrphanedFiles extends Maintenance {
 			return;
 		}
 
-		$dbr = $repo->getReplicaDB();
+		$dbr = $repo->getSlaveDB();
 
 		$curNames = [];
 		$oldNames = [];

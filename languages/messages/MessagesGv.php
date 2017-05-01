@@ -26,3 +26,4 @@ $namespaceNames = [
 	NS_CATEGORY         => 'Ronney',
 	NS_CATEGORY_TALK    => 'Resooney_ronney',
 ];
+

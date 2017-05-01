@@ -21,8 +21,6 @@
  * @ingroup RevisionDelete
  */
 
-use Wikimedia\Rdbms\IDatabase;
-
 /**
  * Backend functions for suppressing and unsuppressing all references to a given user,
  * used when blocking with HideUser enabled.  This was spun out of SpecialBlockip.php

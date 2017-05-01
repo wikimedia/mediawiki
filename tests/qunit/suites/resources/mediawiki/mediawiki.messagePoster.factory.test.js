@@ -7,7 +7,7 @@
 		}
 	} ) );
 
-	QUnit.test( 'register', function ( assert ) {
+	QUnit.test( 'register', 2, function ( assert ) {
 		var testMessagePosterConstructor = function () {};
 
 		mw.messagePoster.factory.register( TEST_MODEL, testMessagePosterConstructor );

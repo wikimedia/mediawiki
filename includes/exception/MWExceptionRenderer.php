@@ -19,11 +19,6 @@
  * @author Aaron Schulz
  */
 
-use Wikimedia\Rdbms\DBConnectionError;
-use Wikimedia\Rdbms\DBError;
-use Wikimedia\Rdbms\DBReadOnlyError;
-use Wikimedia\Rdbms\DBExpectedError;
-
 /**
  * Class to expose exceptions to the client (API bots, users, admins using CLI scripts)
  * @since 1.28
@@ -47,10 +42,10 @@ class MWExceptionRenderer {
 		} elseif ( self::isCommandLine() ) {
 			self::printError( self::getText( $e ) );
 		} elseif ( $mode === self::AS_PRETTY ) {
-			self::statusHeader( 500 );
 			if ( $e instanceof DBConnectionError ) {
 				self::reportOutageHTML( $e );
 			} else {
+				self::statusHeader( 500 );
 				self::header( "Content-Type: $wgMimeType; charset=utf-8" );
 				self::reportHTML( $e );
 			}
@@ -65,13 +60,7 @@ class MWExceptionRenderer {
 							MWExceptionHandler::getLogMessage( $eNew ) .
 						"\nBacktrace:\n" . MWExceptionHandler::getRedactedTraceAsString( $eNew );
 				} else {
-<<<<<<< HEAD
 					$message .= "Exception caught inside exception handler.\n\n" .
-=======
-					$message .= 'Original exception: ' .
-						MWExceptionHandler::getPublicLogMessage( $e );
-					$message .= "\n\nException caught inside exception handler.\n\n" .
->>>>>>> wikimedia/master
 						self::getShowBacktraceError( $e );
 				}
 				$message .= "\n";
@@ -84,7 +73,11 @@ class MWExceptionRenderer {
 					$message = MWExceptionHandler::getPublicLogMessage( $e );
 				}
 			}
-			echo nl2br( htmlspecialchars( $message ) ) . "\n";
+			if ( self::isCommandLine() ) {
+				self::printError( $message );
+			} else {
+				echo nl2br( htmlspecialchars( $message ) ) . "\n";
+			}
 		}
 	}
 
@@ -216,14 +209,14 @@ class MWExceptionRenderer {
 	 */
 	public static function getHTML( $e ) {
 		if ( self::showBackTrace( $e ) ) {
-			$html = "<div class=\"errorbox mw-content-ltr\"><p>" .
+			$html = "<div class=\"errorbox\"><p>" .
 				nl2br( htmlspecialchars( MWExceptionHandler::getLogMessage( $e ) ) ) .
 				'</p><p>Backtrace:</p><p>' .
 				nl2br( htmlspecialchars( MWExceptionHandler::getRedactedTraceAsString( $e ) ) ) .
 				"</p></div>\n";
 		} else {
 			$logId = WebRequest::getRequestId();
-			$html = "<div class=\"errorbox mw-content-ltr\">" .
+			$html = "<div class=\"errorbox\">" .
 				'[' . $logId . '] ' .
 				gmdate( 'Y-m-d H:i:s' ) . ": " .
 				self::msg( "internalerror-fatal-exception",
@@ -297,11 +290,7 @@ class MWExceptionRenderer {
 			$vars[] = '$wgShowDBErrorBacktrace = true;';
 		}
 		$vars = implode( ' and ', $vars );
-<<<<<<< HEAD
 		return "Set $vars at the bottom of LocalSettings.php to show detailed debugging information";
-=======
-		return "Set $vars at the bottom of LocalSettings.php to show detailed debugging information\n";
->>>>>>> wikimedia/master
 	}
 
 	/**

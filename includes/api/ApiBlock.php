@@ -39,57 +39,43 @@ class ApiBlock extends ApiBase {
 	 * of success. If it fails, the result will specify the nature of the error.
 	 */
 	public function execute() {
-		$this->checkUserRightsAny( 'block' );
+		global $wgContLang;
 
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
-		$this->requireOnlyOneParameter( $params, 'user', 'userid' );
+		if ( !$user->isAllowed( 'block' ) ) {
+			$this->dieUsageMsg( 'cantblock' );
+		}
 
-		# T17810: blocked admins should have limited access here
+		# bug 15810: blocked admins should have limited access here
 		if ( $user->isBlocked() ) {
 			$status = SpecialBlock::checkUnblockSelf( $params['user'], $user );
 			if ( $status !== true ) {
-				$this->dieWithError(
-					$status,
-					null,
+				$msg = $this->parseMsg( $status );
+				$this->dieUsage(
+					$msg['info'],
+					$msg['code'],
+					0,
 					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
 				);
 			}
 		}
 
-		if ( $params['userid'] !== null ) {
-			$username = User::whoIs( $params['userid'] );
-
-			if ( $username === false ) {
-				$this->dieWithError( [ 'apierror-nosuchuserid', $params['userid'] ], 'nosuchuserid' );
-			} else {
-				$params['user'] = $username;
-			}
-		} else {
-			$target = User::newFromName( $params['user'] );
-
-			// T40633 - if the target is a user (not an IP address), but it
-			// doesn't exist or is unusable, error.
-			if ( $target instanceof User &&
-				( $target->isAnon() /* doesn't exist */ || !User::isUsableName( $target->getName() ) )
-			) {
-				$this->dieWithError( [ 'nosuchusershort', $params['user'] ], 'nosuchuser' );
-			}
-		}
-
-		if ( $params['tags'] ) {
-			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
-			if ( !$ableToTag->isOK() ) {
-				$this->dieStatus( $ableToTag );
-			}
+		$target = User::newFromName( $params['user'] );
+		// Bug 38633 - if the target is a user (not an IP address), but it
+		// doesn't exist or is unusable, error.
+		if ( $target instanceof User &&
+			( $target->isAnon() /* doesn't exist */ || !User::isUsableName( $target->getName() ) )
+		) {
+			$this->dieUsageMsg( [ 'nosuchuser', $params['user'] ] );
 		}
 
 		if ( $params['hidename'] && !$user->isAllowed( 'hideuser' ) ) {
-			$this->dieWithError( 'apierror-canthide' );
+			$this->dieUsageMsg( 'canthide' );
 		}
 		if ( $params['noemail'] && !SpecialBlock::canBlockEmail( $user ) ) {
-			$this->dieWithError( 'apierror-cantblock-email' );
+			$this->dieUsageMsg( 'cantblock-email' );
 		}
 
 		$data = [
@@ -110,12 +96,12 @@ class ApiBlock extends ApiBase {
 			'Reblock' => $params['reblock'],
 			'Watch' => $params['watchuser'],
 			'Confirm' => true,
-			'Tags' => $params['tags'],
 		];
 
 		$retval = SpecialBlock::processForm( $data, $this->getContext() );
 		if ( $retval !== true ) {
-			$this->dieStatus( $this->errorArrayToStatus( $retval ) );
+			// We don't care about multiple errors, just report one of them
+			$this->dieUsageMsg( $retval );
 		}
 
 		list( $target, /*...*/ ) = SpecialBlock::getTargetAndType( $params['user'] );
@@ -124,7 +110,7 @@ class ApiBlock extends ApiBase {
 
 		$block = Block::newFromTarget( $target, null, true );
 		if ( $block instanceof Block ) {
-			$res['expiry'] = ApiResult::formatExpiry( $block->mExpiry, 'infinite' );
+			$res['expiry'] = $wgContLang->formatExpiry( $block->mExpiry, TS_ISO_8601, 'infinite' );
 			$res['id'] = $block->getId();
 		} else {
 			# should be unreachable
@@ -156,9 +142,7 @@ class ApiBlock extends ApiBase {
 		return [
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
-			],
-			'userid' => [
-				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_REQUIRED => true
 			],
 			'expiry' => 'never',
 			'reason' => '',
@@ -170,10 +154,6 @@ class ApiBlock extends ApiBase {
 			'allowusertalk' => false,
 			'reblock' => false,
 			'watchuser' => false,
-			'tags' => [
-				ApiBase::PARAM_TYPE => 'tags',
-				ApiBase::PARAM_ISMULTI => true,
-			],
 		];
 	}
 
@@ -193,6 +173,6 @@ class ApiBlock extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Block';
+		return 'https://www.mediawiki.org/wiki/API:Block';
 	}
 }

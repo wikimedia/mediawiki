@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 class ApiOpenSearchTest extends MediaWikiTestCase {
 	public function testGetAllowedParams() {
 		$config = $this->replaceSearchEngineConfig();

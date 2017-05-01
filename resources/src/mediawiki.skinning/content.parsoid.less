@@ -11,12 +11,12 @@
  * automatically when content is modified.
  */
 .mw-body-content {
-	counter-reset: mw-numbered-ext-link;
+	counter-reset: mw-NumberedExtLink;
 }
 
-.mw-body-content a[rel~='mw:ExtLink']:empty:after {
-	content: '[' counter( mw-numbered-ext-link ) ']';
-	counter-increment: mw-numbered-ext-link;
+.mw-body-content a[rel~="mw:ExtLink"]:empty:after {
+	content: "[" counter( mw-NumberedExtLink ) "]";
+	counter-increment: mw-NumberedExtLink;
 }
 
 /**
@@ -38,17 +38,14 @@ span.reference {
 	unicode-bidi: isolate;
 }
 
-sup,
-sub {
+sup, sub {
 	line-height: 1;
 }
 
 /**
  * Block media items
  */
-figure[typeof*='mw:Image'],
-figure[typeof*='mw:Video'],
-figure[typeof*='mw:Audio'] {
+figure[typeof*='mw:Image'] {
 	margin: 0;
 
 	a {
@@ -57,7 +54,7 @@ figure[typeof*='mw:Audio'] {
 
 	&.mw-halign-right {
 		/* @noflip */
-		margin: 0.5em 0 1.3em 1.4em;
+		margin: .5em 0 1.3em 1.4em;
 		/* @noflip */
 		clear: right;
 		/* @noflip */
@@ -66,7 +63,7 @@ figure[typeof*='mw:Audio'] {
 
 	&.mw-halign-left {
 		/* @noflip */
-		margin: 0.5em 1.4em 1.3em 0;
+		margin: .5em 1.4em 1.3em 0;
 		/* @noflip */
 		clear: left;
 		/* @noflip */
@@ -80,7 +77,7 @@ figure[typeof*='mw:Audio'] {
 	}
 
 	&.mw-halign-center {
-		margin: 0 auto 0.5em auto;
+		margin: 0 auto .5em auto;
 		display: table;
 		clear: none;
 		float: none;
@@ -90,18 +87,18 @@ figure[typeof*='mw:Audio'] {
 		display: table-caption;
 		caption-side: bottom;
 		/* In mw-core the font-size is duplicated, 94% in thumbiner
-		 * and again 94% in thumbcaption. 88.4% for font size of the
-		 * caption results in the same behavior. */
-		font-size: 88.4%;
+		   and again 94% in thumbcaption. 88% for font size of the
+		   caption results in the same behavior. */
+		font-size: 88%;
 		line-height: 1.4em;
 		text-align: left;
 
-		border: 1px solid #c8ccd1;
+		border: 1px solid #ccc;
 		border-top: 0;
 
 		/* taken from .thumbcaption, plus .thumbinner */
-		padding: 0 6px 6px 6px;
-		background-color: #f8f9fa;
+		padding: 1px 5px 5px;
+		background-color: #f9f9f9;
 
 		table {
 			/* reset caption side for tables inside figcaptions */
@@ -111,50 +108,28 @@ figure[typeof*='mw:Audio'] {
 }
 
 figure[typeof~='mw:Image/Thumb'],
-figure[typeof~='mw:Video/Thumb'],
-figure[typeof~='mw:Audio/Thumb'],
-figure[typeof~='mw:Image/Frame'],
-figure[typeof~='mw:Video/Frame'],
-figure[typeof~='mw:Audio/Frame'] {
+figure[typeof~='mw:Image/Frame'] {
 	display: table;
 	overflow: auto;
 	text-align: center;
-	border: 1px solid #c8ccd1;
+	border: 1px solid #ccc;
 	border-bottom: 0; // No border to caption
 	border-collapse: collapse;
-	background-color: #f8f9fa;
+	background-color: #f9f9f9;
 	// Default to right alignment. This is needed since Parsoid only specifies the
 	// alignment class when the alignment is explicitly set.
-	margin: 0.5em 0 1.3em 1.4em;
+	margin: .5em 0 1.3em 1.4em;
 	clear: right;
 	float: right;
-
-	> *:first-child {
-		> img,
-		> video {
-			border: 1px solid #c8ccd1;
-			margin: 3px;
-			background: #fff;
-		}
-	}
 }
 
-/* Same as img.thumbborder in content.css */
-.mw-image-border > *:first-child {
-	> img,
-	> video {
-		border: 1px solid #eaecf0;
-	}
+figure[typeof~='mw:Image/Thumb'] > *:first-child > img,
+figure[typeof~='mw:Image/Frame'] > *:first-child > img,
+.mw-image-border > *:first-child > img {
+	border: 1px solid #ccc;
+	margin: 3px;
 }
 
 /* Hide the caption for frameless and plain floated images */
-figure[typeof~='mw:Image/Frameless'],
-figure[typeof~='mw:Video/Frameless'],
-figure[typeof~='mw:Audio/Frameless'],
-figure[typeof~='mw:Image'],
-figure[typeof~='mw:Video'],
-figure[typeof~='mw:Audio'] {
-	> figcaption {
-		display: none;
-	}
-}
+figure[typeof~="mw:Image/Frameless"] > figcaption,
+figure[typeof~="mw:Image"] > figcaption { display: none }

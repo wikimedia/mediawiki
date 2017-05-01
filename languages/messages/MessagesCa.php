@@ -8,8 +8,6 @@
  *
  */
 
-$fallback = 'oc';
-
 $namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Especial',
@@ -128,7 +126,6 @@ $specialPageAliases = [
 ];
 
 $magicWords = [
-	'redirect'                  => [ '0', '#REDIRECCIÓ', '#REDIRECCIO', '#REDIRECT' ],
 	'numberofarticles'          => [ '1', 'NOMBRED\'ARTICLES', 'NUMBEROFARTICLES' ],
 	'numberoffiles'             => [ '1', 'NOMBRED\'ARXIUS', 'NUMBEROFFILES' ],
 	'numberofusers'             => [ '1', 'NOMBRED\'USUARIS', 'NUMBEROFUSERS' ],
@@ -161,17 +158,11 @@ $dateFormats = [
 	'ymd both' => 'H:i, Y M j',
 ];
 
-$datePreferences = [
-	'default',
-	'dmy',
-	'ymd',
-	'ISO 8601',
-];
-$defaultDateFormat = 'dmy';
-
 $bookstoreList = [
-	'Catàleg Col·lectiu de les Universitats de Catalunya' => 'http://ccuc.cbuc.cat/search*cat/X?SEARCH=$1',
+	'Catàleg Col·lectiu de les Universitats de Catalunya' => 'http://ccuc.cbuc.es/cgi-bin/vtls.web.gateway?searchtype=control+numcard&searcharg=$1',
+	'Totselsllibres.com' => 'http://www.totselsllibres.com/tel/publi/busquedaAvanzadaLibros.do?ISBN=$1',
 	'inherit' => true,
 ];
 
 $linkTrail = "/^((?:[a-zàèéíòóúç·ïü]|'(?!'))+)(.*)$/sDu";
+

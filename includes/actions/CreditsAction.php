@@ -23,8 +23,6 @@
  * @author <evan@wikitravel.org>
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @ingroup Actions
  */
@@ -200,15 +198,14 @@ class CreditsAction extends FormlessAction {
 		if ( $this->canShowRealUserName() && !$user->isAnon() ) {
 			$real = $user->getRealName();
 		} else {
-			$real = $user->getName();
+			$real = false;
 		}
 
 		$page = $user->isAnon()
 			? SpecialPage::getTitleFor( 'Contributions', $user->getName() )
 			: $user->getUserPage();
 
-		return MediaWikiServices::getInstance()
-			->getLinkRenderer()->makeLink( $page, $real );
+		return Linker::link( $page, htmlspecialchars( $real ? $real : $user->getName() ) );
 	}
 
 	/**
@@ -234,9 +231,9 @@ class CreditsAction extends FormlessAction {
 	 * @return string HTML link
 	 */
 	protected function othersLink() {
-		return MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
+		return Linker::linkKnown(
 			$this->getTitle(),
-			$this->msg( 'others' )->text(),
+			$this->msg( 'others' )->escaped(),
 			[],
 			[ 'action' => 'credits' ]
 		);

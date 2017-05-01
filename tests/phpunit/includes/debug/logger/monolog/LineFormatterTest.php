@@ -24,7 +24,7 @@ use InvalidArgumentException;
 use LengthException;
 use LogicException;
 use MediaWikiTestCase;
-use Wikimedia\TestingAccessWrapper;
+use TestingAccessWrapper;
 
 class LineFormatterTest extends MediaWikiTestCase {
 

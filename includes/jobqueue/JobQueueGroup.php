@@ -170,7 +170,7 @@ class JobQueueGroup {
 	 * @since 1.26
 	 */
 	public function lazyPush( $jobs ) {
-		if ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' ) {
+		if ( PHP_SAPI === 'cli' ) {
 			$this->push( $jobs );
 			return;
 		}

@@ -266,9 +266,11 @@ class TestPageProps extends MediaWikiLangTestCase {
 	}
 
 	protected function setProperties( $pageID, $properties ) {
+
 		$rows = [];
 
 		foreach ( $properties as $propertyName => $propertyValue ) {
+
 			$row = [
 				'pp_page' => $pageID,
 				'pp_propname' => $propertyName,
@@ -293,9 +295,11 @@ class TestPageProps extends MediaWikiLangTestCase {
 	}
 
 	protected function setProperty( $pageID, $propertyName, $propertyValue ) {
+
 		$properties = [];
 		$properties[$propertyName] = $propertyValue;
 
 		$this->setProperties( $pageID, $properties );
+
 	}
 }

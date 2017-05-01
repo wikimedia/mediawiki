@@ -22,3 +22,4 @@ $namespaceNames = [
 	NS_CATEGORY         => 'Katigoria',
 	NS_CATEGORY_TALK    => 'Kombetsasion_ni_katigoria',
 ];
+

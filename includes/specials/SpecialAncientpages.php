@@ -64,10 +64,6 @@ class AncientPagesPage extends QueryPage {
 		return false;
 	}
 
-	public function preprocessResults( $db, $res ) {
-		$this->executeLBFromResultWrapper( $res );
-	}
-
 	/**
 	 * @param Skin $skin
 	 * @param object $result Result row
@@ -78,10 +74,9 @@ class AncientPagesPage extends QueryPage {
 
 		$d = $this->getLanguage()->userTimeAndDate( $result->value, $this->getUser() );
 		$title = Title::makeTitle( $result->namespace, $result->title );
-		$linkRenderer = $this->getLinkRenderer();
-		$link = $linkRenderer->makeKnownLink(
+		$link = Linker::linkKnown(
 			$title,
-			$wgContLang->convert( $title->getPrefixedText() )
+			htmlspecialchars( $wgContLang->convert( $title->getPrefixedText() ) )
 		);
 
 		return $this->getLanguage()->specialList( $link, htmlspecialchars( $d ) );

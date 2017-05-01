@@ -96,7 +96,7 @@
  */
  // jscs:enable checkParamNames
 
-( function ( $, mw ) {
+( function ( $ ) {
 
 	var hasOwn = Object.hasOwnProperty;
 
@@ -178,7 +178,7 @@
 					context.data.prevText = val;
 					// Try cache first
 					if ( context.config.cache && hasOwn.call( cache, val ) ) {
-						if ( mw.now() - cache[ val ].timestamp < context.config.cacheMaxAge ) {
+						if ( +new Date() - cache[ val ].timestamp < context.config.cacheMaxAge ) {
 							context.data.$textbox.suggestions( 'suggestions', cache[ val ].suggestions );
 							if ( typeof context.config.update.after === 'function' ) {
 								context.config.update.after.call( context.data.$textbox, cache[ val ].metadata );
@@ -203,7 +203,7 @@
 									cache[ val ] = {
 										suggestions: suggestions,
 										metadata: metadata,
-										timestamp: mw.now()
+										timestamp: +new Date()
 									};
 								}
 							},
@@ -353,6 +353,7 @@
 							$results.empty();
 							expWidth = -1;
 							for ( i = 0; i < context.config.suggestions.length; i++ ) {
+								/*jshint loopfunc:true */
 								text = context.config.suggestions[ i ];
 								$result = $( '<div>' )
 									.addClass( 'suggestions-result' )
@@ -375,7 +376,7 @@
 								}
 
 								if ( context.config.highlightInput ) {
-									$result.highlightText( context.data.prevText, { method: 'prefixHighlight' } );
+									$result.highlightText( context.data.prevText );
 								}
 
 								// Widen results box if needed (new width is only calculated here, applied later).
@@ -681,7 +682,7 @@
 								// Don't interfere with special clicks (e.g. to open in new tab)
 								if ( !( e.which !== 1 || e.altKey || e.ctrlKey || e.shiftKey || e.metaKey ) ) {
 									// This will hide the link we're just clicking on, which causes problems
-									// when done synchronously in at least Firefox 3.6 (T64858).
+									// when done synchronously in at least Firefox 3.6 (bug 62858).
 									setTimeout( function () {
 										$.suggestions.hide( context );
 									}, 0 );
@@ -713,7 +714,7 @@
 								// Don't interfere with special clicks (e.g. to open in new tab)
 								if ( !( e.which !== 1 || e.altKey || e.ctrlKey || e.shiftKey || e.metaKey ) ) {
 									// This will hide the link we're just clicking on, which causes problems
-									// when done synchronously in at least Firefox 3.6 (T64858).
+									// when done synchronously in at least Firefox 3.6 (bug 62858).
 									setTimeout( function () {
 										$.suggestions.hide( context );
 									}, 0 );
@@ -757,9 +758,9 @@
 							46, // delete
 							8   // backspace
 						];
-						if ( context.data.keypressedCount === 0 &&
-							e.which === context.data.keypressed &&
-							$.inArray( e.which, allowed ) !== -1
+						if ( context.data.keypressedCount === 0
+							&& e.which === context.data.keypressed
+							&& $.inArray( e.which, allowed ) !== -1
 						) {
 							$.suggestions.keypress( e, context, context.data.keypressed );
 						}
@@ -786,4 +787,4 @@
 	 * @mixins jQuery.plugin.suggestions
 	 */
 
-}( jQuery, mediaWiki ) );
+}( jQuery ) );

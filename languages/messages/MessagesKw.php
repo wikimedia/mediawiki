@@ -202,3 +202,4 @@ $magicWords = [
 	'pagesincategory_all'       => [ '0', 'oll', 'all' ],
 	'pagesincategory_pages'     => [ '0', 'folennow', 'pages' ],
 ];
+

@@ -44,7 +44,7 @@ $namespaceNames = [
 ];
 
 $namespaceAliases = [
-	// Aliases for Polish namespaces (T36988).
+	// Aliases for Polish namespaces (bug 34988).
 	'Specjalna'            => NS_SPECIAL,
 	'Dyskusja'             => NS_TALK,
 	'Użytkownik'           => NS_USER,
@@ -62,3 +62,4 @@ $namespaceAliases = [
 
 // Remove Polish gender aliases
 $namespaceGenderAliases = [];
+

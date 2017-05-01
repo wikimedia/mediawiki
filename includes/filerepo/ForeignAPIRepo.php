@@ -109,7 +109,7 @@ class ForeignAPIRepo extends FileRepo {
 	 *
 	 * @param Title $title
 	 * @param string|bool $time
-	 * @return File|false
+	 * @return File
 	 */
 	function newFile( $title, $time = false ) {
 		if ( $time ) {
@@ -571,7 +571,7 @@ class ForeignAPIRepo extends FileRepo {
 
 		$cache = ObjectCache::getMainWANInstance();
 		return $cache->getWithSetCallback(
-			$this->getLocalCacheKey( static::class, $target, md5( $url ) ),
+			$this->getLocalCacheKey( get_class( $this ), $target, md5( $url ) ),
 			$cacheTTL,
 			function ( $curValue, &$ttl ) use ( $url, $cache ) {
 				$html = self::httpGet( $url, 'default', [], $mtime );
@@ -593,13 +593,13 @@ class ForeignAPIRepo extends FileRepo {
 	 * @throws MWException
 	 */
 	function enumFiles( $callback ) {
-		throw new MWException( 'enumFiles is not supported by ' . static::class );
+		throw new MWException( 'enumFiles is not supported by ' . get_class( $this ) );
 	}
 
 	/**
 	 * @throws MWException
 	 */
 	protected function assertWritableRepo() {
-		throw new MWException( static::class . ': write operations are not supported.' );
+		throw new MWException( get_class( $this ) . ': write operations are not supported.' );
 	}
 }

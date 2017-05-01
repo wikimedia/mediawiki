@@ -158,11 +158,10 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			// Also set header tabs to be for the target.
 			$this->getSkin()->setRelevantTitle( $this->targetObj );
 
-			$linkRenderer = $this->getLinkRenderer();
 			$links = [];
-			$links[] = $linkRenderer->makeKnownLink(
+			$links[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Log' ),
-				$this->msg( 'viewpagelogs' )->text(),
+				$this->msg( 'viewpagelogs' )->escaped(),
 				[],
 				[
 					'page' => $this->targetObj->getPrefixedText(),
@@ -171,17 +170,17 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			);
 			if ( !$this->targetObj->isSpecialPage() ) {
 				// Give a link to the page history
-				$links[] = $linkRenderer->makeKnownLink(
+				$links[] = Linker::linkKnown(
 					$this->targetObj,
-					$this->msg( 'pagehist' )->text(),
+					$this->msg( 'pagehist' )->escaped(),
 					[],
 					[ 'action' => 'history' ]
 				);
 			}
 			// Link to Special:Tags
-			$links[] = $linkRenderer->makeKnownLink(
+			$links[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Tags' ),
-				$this->msg( 'tags-edit-manage-link' )->text()
+				$this->msg( 'tags-edit-manage-link' )->escaped()
 			);
 			// Logs themselves don't have histories or archived revisions
 			$this->getOutput()->addSubtitle( $this->getLanguage()->pipeList( $links ) );

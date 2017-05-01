@@ -41,7 +41,6 @@ class RollbackAction extends FormlessAction {
 	 * - confirm-rollback-button
 	 * - rollbackfailed
 	 * - rollback-missingparam
-	 * - rollback-success-notify
 	 */
 
 	/**
@@ -124,13 +123,8 @@ class RollbackAction extends FormlessAction {
 
 		$old = Linker::revUserTools( $current );
 		$new = Linker::revUserTools( $target );
-		$this->getOutput()->addHTML(
-			$this->msg( 'rollback-success' )
-				->rawParams( $old, $new )
-				->params( $current->getUserText( Revision::FOR_THIS_USER, $user ) )
-				->params( $target->getUserText( Revision::FOR_THIS_USER, $user ) )
-				->parseAsBlock()
-		);
+		$this->getOutput()->addHTML( $this->msg( 'rollback-success' )->rawParams( $old, $new )
+			->parseAsBlock() );
 
 		if ( $user->getBoolOption( 'watchrollback' ) ) {
 			$user->addWatch( $this->page->getTitle(), User::IGNORE_USER_RIGHTS );

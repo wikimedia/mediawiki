@@ -20,7 +20,6 @@
  *
  * @file
  */
-use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\MediaWikiServices;
 
 class PurgeJobUtils {

@@ -1,7 +1,4 @@
 <?php
-
-use Wikimedia\TestingAccessWrapper;
-
 /**
  * @group BagOStuff
  */

@@ -26,7 +26,6 @@
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Wikimedia\Rdbms\Database;
 
 /**
  * This class generates message blobs for use by ResourceLoader modules.
@@ -111,6 +110,9 @@ class MessageBlobStore implements LoggerAwareInterface {
 		foreach ( $modules as $name => $module ) {
 			$key = $cacheKeys[$name];
 			if ( !isset( $result[$key] ) || $curTTLs[$key] === null || $curTTLs[$key] < 0 ) {
+				$this->logger->info( 'Message blob cache-miss for {module}',
+					[ 'module' => $name, 'cacheKey' => $key ]
+				);
 				$blobs[$name] = $this->recacheMessageBlob( $key, $module, $lang );
 			} else {
 				// Use unexpired cache
@@ -239,7 +241,6 @@ class MessageBlobStore implements LoggerAwareInterface {
 		}
 
 		$json = FormatJson::encode( (object)$messages );
-		// @codeCoverageIgnoreStart
 		if ( $json === false ) {
 			$this->logger->warning( 'Failed to encode message blob for {module} ({lang})', [
 				'module' => $module->getName(),
@@ -247,7 +248,6 @@ class MessageBlobStore implements LoggerAwareInterface {
 			] );
 			$json = '{}';
 		}
-		// codeCoverageIgnoreEnd
 		return $json;
 	}
 }

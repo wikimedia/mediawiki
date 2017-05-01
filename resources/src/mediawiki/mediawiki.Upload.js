@@ -2,6 +2,8 @@
 	var UP;
 
 	/**
+	 * @class mw.Upload
+	 *
 	 * Used to represent an upload in progress on the frontend.
 	 * Most of the functionality is implemented in mw.Api.plugin.upload,
 	 * but this model class will tie it together as well as let you perform
@@ -40,8 +42,6 @@
 	 *         console.log( 'Done!' );
 	 *       } );
 	 *     } );
-	 *
-	 * @class mw.Upload
 	 *
 	 * @constructor
 	 * @param {Object|mw.Api} [apiconfig] A mw.Api object (or subclass), or configuration

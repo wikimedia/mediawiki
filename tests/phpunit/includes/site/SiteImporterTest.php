@@ -32,7 +32,7 @@
 class SiteImporterTest extends PHPUnit_Framework_TestCase {
 
 	private function newSiteImporter( array $expectedSites, $errorCount ) {
-		$store = $this->getMockBuilder( 'SiteStore' )->getMock();
+		$store = $this->getMock( 'SiteStore' );
 
 		$store->expects( $this->once() )
 			->method( 'saveSites' )
@@ -44,7 +44,7 @@ class SiteImporterTest extends PHPUnit_Framework_TestCase {
 			->method( 'getSites' )
 			->will( $this->returnValue( new SiteList() ) );
 
-		$errorHandler = $this->getMockBuilder( 'Psr\Log\LoggerInterface' )->getMock();
+		$errorHandler = $this->getMock( 'Psr\Log\LoggerInterface' );
 		$errorHandler->expects( $this->exactly( $errorCount ) )
 			->method( 'error' );
 
@@ -148,7 +148,7 @@ class SiteImporterTest extends PHPUnit_Framework_TestCase {
 	public function testImportFromXML_malformed() {
 		$this->setExpectedException( 'Exception' );
 
-		$store = $this->getMockBuilder( 'SiteStore' )->getMock();
+		$store = $this->getMock( 'SiteStore' );
 		$importer = new SiteImporter( $store );
 		$importer->importFromXML( 'THIS IS NOT XML' );
 	}

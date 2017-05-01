@@ -32,8 +32,7 @@
 			"Indiralena",
 			"Peter Bowman",
 			"Dgstranz",
-			"Irus",
-			"Tinss"
+			"Irus"
 		]
 	},
 	"config-desc": "El instalador de MediaWiki",
@@ -45,7 +44,7 @@
 	"config-localsettings-badkey": "La clave de actualización proporcionada es incorrecta.",
 	"config-upgrade-key-missing": "Se ha detectado una instalación existente de MediaWiki.\nPara actualizar la instalación, añade la siguiente línea al final de tu  <code>LocalSettings.php</code>:\n\n$1",
 	"config-localsettings-incomplete": "El archivo <code>LocalSettings.php</code> existente parece estar incompleto.\nLa variable $1 no está definida.\nCambia <code>LocalSettings.php</code> para que esta variable quede establecida y haz clic en \"{{int:Config-continue}}\".",
-	"config-localsettings-connection-error": "Se ha producido un error al conectar con la base de datos a través de la configuración especificada en <code>LocalSettings.php</code>. Corrige estos ajustes e inténtalo de nuevo.\n\n$1",
+	"config-localsettings-connection-error": "Se ha producido un error al conectar a la base de datos utilizando la configuración especificada en <code>LocalSettings.php</code>. Corrige estos ajustes e inténtalo de nuevo.\n\n$1",
 	"config-session-error": "Error al iniciar la sesión: $1",
 	"config-session-expired": "Tus datos de sesión parecen haber expirado.\nLas sesiones están configuradas por una duración de $1.\nPuedes incrementar esto configurando <code>session.gc_maxlifetime</code> en php.ini.\nReiniciar el proceso de instalación.",
 	"config-no-session": "Se han perdido los datos de sesión.\nVerifica tu php.ini y comprueba que <code>session.save_path</code> está establecido en un directorio apropiado.",
@@ -57,7 +56,7 @@
 	"config-continue": "Continuar →",
 	"config-page-language": "Idioma",
 	"config-page-welcome": "Te damos la bienvenida a MediaWiki.",
-	"config-page-dbconnect": "Conectar con la base de datos",
+	"config-page-dbconnect": "Conectar a la base de datos",
 	"config-page-upgrade": "Actualizar instalación existente",
 	"config-page-dbsettings": "Configuración de la base de datos",
 	"config-page-name": "Nombre",
@@ -134,7 +133,7 @@
 	"config-db-port": "Puerto de la base de datos:",
 	"config-db-schema": "Esquema para MediaWiki",
 	"config-db-schema-help": "Este esquema usualmente estará bien.\nCámbialos solo si lo necesitas.",
-	"config-pg-test-error": "No se puede conectar con la base de datos <strong>$1</strong>: $2",
+	"config-pg-test-error": "No se puede conectar a la base de datos <strong>$1</strong>: $2",
 	"config-sqlite-dir": "Directorio de datos SQLite:",
 	"config-sqlite-dir-help": "SQLite almacena todos los datos en un único archivo.\n\nEl directorio que proporciones debe poder escribirse por el servidor web durante la instalación.\n\n'''No''' debería ser accesible a través de Internet. Por eso no vamos a ponerlo en el sitio donde están los archivos PHP.\n\nEl instalador escribirá un archivo <code>.htaccess</code> junto con él, pero si falla alguien podría tener acceso a la base de datos en bloque.\nEso incluye los datos de usuario en bloque (direcciones de correo electrónico, las contraseñas con hash) así como revisiones eliminadas y otros datos restringidos del wiki.\n\nConsidera poner la base de datos en algún otro sitio, por ejemplo en <code>/var/lib/mediawiki/tuwiki</code> .",
 	"config-oracle-def-ts": "Espacio de tablas predeterminado:",
@@ -146,10 +145,10 @@
 	"config-type-mssql": "Microsoft SQL Server",
 	"config-support-info": "MediaWiki es compatible con los siguientes sistemas de bases de datos:\n\n$1\n\nSi no encuentras en el listado el sistema de base de datos que estás intentando utilizar, sigue las instrucciones enlazadas arriba para activar la compatibilidad.",
 	"config-dbsupport-mysql": "* [{{int:version-db-mysql-url}} MySQL] es la base de datos mayoritaria para MediaWiki y la que goza de mayor compatibilidad. MediaWiki también funciona con [{{int:version-db-mariadb-url}} MariaDB] y [{{int:version-db-percona-url}} Percona Server], que son compatibles con MySQL. ([http://www.php.net/manual/es/mysql.installation.php Cómo compilar PHP con compatibilidad MySQL])",
-	"config-dbsupport-postgres": "[{{int:version-db-postgres-url}} PostgreSQL] es un sistema de base de datos popular de código abierto, alternativa a MySQL. ([http://www.php.net/manual/es/pgsql.installation.php Cómo compilar PHP con compatibilidad PostgreSQL]).",
+	"config-dbsupport-postgres": "[{{int:version-db-postgres-url}} PostgreSQL] es un sistema de base de datos popular de código abierto, alternativa a MySQL. Pueden haber algunos fallos menores destacables, y no es recomendable para su uso en un entorno de producción. ([http://www.php.net/manual/es/pgsql.installation.php Cómo compilar PHP con compatibilidad PostgreSQL]).",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] es un sistema de base de datos ligero con gran compatibilidad con MediaWiki. ([http://www.php.net/manual/es/pdo.installation.php Cómo compilar PHP con compatibilidad SQLite], usando PDO)",
 	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle] es una base de datos comercial a nivel empresarial. ([http://www.php.net/manual/es/oci8.installation.php Cómo compilar PHP con compatibilidad con OCI8])",
-	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] es un sistema comercial de base de datos empresariales para Windows. ([http://www.php.net/manual/en/sqlsrv.installation.php Cómo compilar PHP con compatibilidad con SQLSRV])",
+	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] es una base de datos comercial a nivel empresarial para Windows. ([http://www.php.net/manual/en/sqlsrv.installation.php Cómo compilar PHP con soporte para SQLSRV])",
 	"config-header-mysql": "Configuración de MySQL",
 	"config-header-postgres": "Configuración de PostgreSQL",
 	"config-header-sqlite": "Configuración de SQLite",
@@ -332,7 +331,6 @@
 	"config-install-subscribe-fail": "No se ha podido suscribir a mediawiki-announce: $1",
 	"config-install-subscribe-notpossible": "cURL no está instalado y <code>allow_url_fopen</code> no está disponible.",
 	"config-install-mainpage": "Creando página principal con contenido predeterminado",
-	"config-install-mainpage-exists": "La página principal ya existe, se omite",
 	"config-install-extension-tables": "Creando las tablas para las extensiones habilitadas",
 	"config-install-mainpage-failed": "No se pudo insertar la página principal: $1",
 	"config-install-done": "<strong>¡Felicidades!</strong>\nHas instalado MediaWiki.\n\nEl instalador ha generado un archivo <code>LocalSettings.php</code>.\nEste contiene toda su configuración.\n\nDeberás descargarlo y ponerlo en la base de la instalación de wiki (el mismo directorio que index.php). La descarga debería haber comenzado automáticamente.\n\nSi no comenzó la descarga, o si se ha cancelado, puedes reiniciar la descarga haciendo clic en el siguiente enlace:\n\n$3\n\n<strong>Nota</strong>: si no haces esto ahora, este archivo de configuración generado no estará disponible más tarde si sales de la instalación sin descargarlo.\n\nCuando lo hayas hecho, podrás <strong>[$2 entrar en tu wiki]</strong>.",
@@ -343,5 +341,5 @@
 	"config-nofile": "El archivo \"$1\" no se pudo encontrar. ¿Se ha eliminado?",
 	"config-extension-link": "¿Sabías que tu wiki admite [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensiones]?\n\nPuedes navegar por las [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category categorías] o visitar el [https://www.mediawiki.org/wiki/Extension_Matrix centro de extensiones] para ver una lista completa.",
 	"mainpagetext": "<strong>MediaWiki se ha instalado.</strong>",
-	"mainpagedocfooter": "Consulta la [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents guía] para obtener información sobre el uso del software wiki.\n\n== Primeros pasos ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista de ajustes de configuración]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Preguntas frecuentes sobre MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo de anuncios de publicación de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Traducir MediaWiki a tu idioma]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Aprende a combatir el spam en tu wiki]"
+	"mainpagedocfooter": "Consulta la [https://meta.wikimedia.org/wiki/Help:Contents/es guía del usuario] para obtener información sobre el uso del software wiki.\n\n== Primeros pasos ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista de ajustes de configuración]\n* [https://www.mediawiki.org/wiki/Manual:FAQ/es Preguntas frecuentes sobre MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo de anuncios de publicación de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Traducir MediaWiki en tu idioma]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Aprende cómo combatir el spam en tu wiki]"
 }

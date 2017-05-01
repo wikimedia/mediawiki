@@ -83,7 +83,7 @@ class MWTidy {
 	/**
 	 * @return bool|\MediaWiki\Tidy\TidyDriverBase
 	 */
-	public static function singleton() {
+	protected static function singleton() {
 		global $wgUseTidy, $wgTidyInternal, $wgTidyConf, $wgDebugTidy, $wgTidyConfig,
 			$wgTidyBin, $wgTidyOpts;
 
@@ -137,9 +137,6 @@ class MWTidy {
 				break;
 			case 'Html5Internal':
 				$instance = new MediaWiki\Tidy\Html5Internal( $config );
-				break;
-			case 'RemexHtml':
-				$instance = new MediaWiki\Tidy\RemexDriver( $config );
 				break;
 			case 'disabled':
 				return false;

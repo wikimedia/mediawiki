@@ -34,7 +34,8 @@ class ApiComparePages extends ApiBase {
 		$revision = Revision::newFromId( $rev1 );
 
 		if ( !$revision ) {
-			$this->dieWithError( 'apierror-baddiff' );
+			$this->dieUsage( 'The diff cannot be retrieved, ' .
+				'one revision does not exist or you do not have permission to view it.', 'baddiff' );
 		}
 
 		$contentHandler = $revision->getContentHandler();
@@ -64,7 +65,11 @@ class ApiComparePages extends ApiBase {
 		$difftext = $de->getDiffBody();
 
 		if ( $difftext === false ) {
-			$this->dieWithError( 'apierror-baddiff' );
+			$this->dieUsage(
+				'The diff cannot be retrieved. Maybe one or both revisions do ' .
+					'not exist or you do not have permission to view them.',
+				'baddiff'
+			);
 		}
 
 		ApiResult::setContentValue( $vals, 'body', $difftext );
@@ -84,19 +89,22 @@ class ApiComparePages extends ApiBase {
 		} elseif ( $titleText ) {
 			$title = Title::newFromText( $titleText );
 			if ( !$title || $title->isExternal() ) {
-				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $titleText ) ] );
+				$this->dieUsageMsg( [ 'invalidtitle', $titleText ] );
 			}
 
 			return $title->getLatestRevID();
 		} elseif ( $titleId ) {
 			$title = Title::newFromID( $titleId );
 			if ( !$title ) {
-				$this->dieWithError( [ 'apierror-nosuchpageid', $titleId ] );
+				$this->dieUsageMsg( [ 'nosuchpageid', $titleId ] );
 			}
 
 			return $title->getLatestRevID();
 		}
-		$this->dieWithError( 'apierror-compare-inputneeded', 'inputneeded' );
+		$this->dieUsage(
+			'A title, a page ID, or a revision number is needed for both the from and the to parameters',
+			'inputneeded'
+		);
 	}
 
 	public function getAllowedParams() {

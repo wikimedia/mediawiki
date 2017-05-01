@@ -3,6 +3,7 @@
  */
 
 mediaWiki.language.convertGrammar = function ( word, form ) {
+	/*jshint onecase:true */
 	var grammarForms = mediaWiki.language.getData( 'hy', 'grammarForms' );
 	if ( grammarForms && grammarForms[ form ] ) {
 		return grammarForms[ form ][ word ];

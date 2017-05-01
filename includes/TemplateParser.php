@@ -1,6 +1,4 @@
 <?php
-use MediaWiki\MediaWikiServices;
-
 /**
  * Handles compiling Mustache templates into PHP rendering functions
  *
@@ -54,11 +52,18 @@ class TemplateParser {
 	 * @throws UnexpectedValueException If $templateName attempts upwards directory traversal
 	 */
 	protected function getTemplateFilename( $templateName ) {
-		// Prevent path traversal. Based on Language::isValidCode().
-		// This is for paranoia. The $templateName should never come from
-		// untrusted input.
+		// Prevent upwards directory traversal using same methods as Title::secureAndSplit
 		if (
-			strcspn( $templateName, ":/\\\000&<>'\"%" ) !== strlen( $templateName )
+			strpos( $templateName, '.' ) !== false &&
+			(
+				$templateName === '.' || $templateName === '..' ||
+				strpos( $templateName, './' ) === 0 ||
+				strpos( $templateName, '../' ) === 0 ||
+				strpos( $templateName, '/./' ) !== false ||
+				strpos( $templateName, '/../' ) !== false ||
+				substr( $templateName, -2 ) === '/.' ||
+				substr( $templateName, -3 ) === '/..'
+			)
 		) {
 			throw new UnexpectedValueException( "Malformed \$templateName: $templateName" );
 		}
@@ -93,7 +98,7 @@ class TemplateParser {
 		$fastHash = md5( $fileContents );
 
 		// Fetch a secret key for building a keyed hash of the PHP code
-		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
 		$secretKey = $config->get( 'SecretKey' );
 
 		if ( $secretKey ) {

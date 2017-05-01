@@ -3,8 +3,7 @@
 		"authors": [
 			"Subi",
 			"Sator",
-			"An13sa",
-			"Gorkaazk"
+			"An13sa"
 		]
 	},
 	"apihelp-main-param-action": "Zein ekintza burutuko da.",
@@ -49,7 +48,7 @@
 	"apihelp-login-param-name": "Erabiltzaile izena.",
 	"apihelp-login-param-password": "Pasahitza.",
 	"apihelp-login-param-domain": "Domeinua (hautazkoa).",
-	"apihelp-login-example-login": "Hasi saioa",
+	"apihelp-login-example-login": "Saioa hasi",
 	"apihelp-move-description": "Orrialde bat mugitu",
 	"apihelp-move-param-reason": "Berrizenpenaren arrazoia.",
 	"apihelp-move-param-noredirect": "Birzuzenketarik ez sortu.",

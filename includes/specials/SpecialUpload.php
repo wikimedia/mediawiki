@@ -209,9 +209,7 @@ class SpecialUpload extends SpecialPage {
 			$this->processUpload();
 		} else {
 			# Backwards compatibility hook
-			// Avoid PHP 7.1 warning of passing $this by reference
-			$upload = $this;
-			if ( !Hooks::run( 'UploadForm:initial', [ &$upload ] ) ) {
+			if ( !Hooks::run( 'UploadForm:initial', [ &$this ] ) ) {
 				wfDebug( "Hook 'UploadForm:initial' broke output of the upload form\n" );
 
 				return;
@@ -281,12 +279,10 @@ class SpecialUpload extends SpecialPage {
 		$desiredTitleObj = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
 		$delNotice = ''; // empty by default
 		if ( $desiredTitleObj instanceof Title && !$desiredTitleObj->exists() ) {
-			$dbr = wfGetDB( DB_REPLICA );
-
 			LogEventsList::showLogExtract( $delNotice, [ 'delete', 'move' ],
 				$desiredTitleObj,
 				'', [ 'lim' => 10,
-					'conds' => [ 'log_action != ' . $dbr->addQuotes( 'revision' ) ],
+					'conds' => [ "log_action != 'revision'" ],
 					'showIfEmpty' => false,
 					'msgKey' => [ 'upload-recreate-warning' ] ]
 			);
@@ -487,9 +483,8 @@ class SpecialUpload extends SpecialPage {
 
 			return;
 		}
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$upload = $this;
-		if ( !Hooks::run( 'UploadForm:BeforeProcessing', [ &$upload ] ) ) {
+
+		if ( !Hooks::run( 'UploadForm:BeforeProcessing', [ &$this ] ) ) {
 			wfDebug( "Hook 'UploadForm:BeforeProcessing' broke processing the file.\n" );
 			// This code path is deprecated. If you want to break upload processing
 			// do so by hooking into the appropriate hooks in UploadBase::verifyUpload
@@ -575,9 +570,7 @@ class SpecialUpload extends SpecialPage {
 
 		// Success, redirect to description page
 		$this->mUploadSuccessful = true;
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$upload = $this;
-		Hooks::run( 'SpecialUploadComplete', [ &$upload ] );
+		Hooks::run( 'SpecialUploadComplete', [ &$this ] );
 		$this->getOutput()->redirect( $this->mLocalFile->getTitle()->getFullURL() );
 	}
 
@@ -595,7 +588,7 @@ class SpecialUpload extends SpecialPage {
 	) {
 		if ( $config === null ) {
 			wfDebug( __METHOD__ . ' called without a Config instance passed to it' );
-			$config = MediaWikiServices::getInstance()->getMainConfig();
+			$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
 		}
 
 		$msg = [];
@@ -1092,14 +1085,12 @@ class UploadForm extends HTMLForm {
 				global $wgContLang;
 
 				$mto = $file->transform( [ 'width' => 120 ] );
-				if ( $mto ) {
-					$this->addHeaderText(
-						'<div class="thumb t' . $wgContLang->alignEnd() . '">' .
-						Html::element( 'img', [
-							'src' => $mto->getUrl(),
-							'class' => 'thumbimage',
-						] ) . '</div>', 'description' );
-				}
+				$this->addHeaderText(
+					'<div class="thumb t' . $wgContLang->alignEnd() . '">' .
+					Html::element( 'img', [
+						'src' => $mto->getUrl(),
+						'class' => 'thumbimage',
+					] ) . '</div>', 'description' );
 			}
 		}
 
@@ -1122,7 +1113,7 @@ class UploadForm extends HTMLForm {
 					? 'filereuploadsummary'
 					: 'fileuploadsummary',
 				'default' => $this->mComment,
-				'cols' => 80,
+				'cols' => $this->getUser()->getIntOption( 'cols' ),
 				'rows' => 8,
 			]
 		];

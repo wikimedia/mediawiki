@@ -19,7 +19,6 @@
  * @file
  */
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
-use MediaWiki\MediaWikiServices;
 
 /**
  * The simplest way of implementing IContextSource is to hold a RequestContext as a
@@ -40,7 +39,7 @@ abstract class ContextSource implements IContextSource {
 	 */
 	public function getContext() {
 		if ( $this->context === null ) {
-			$class = static::class;
+			$class = get_class( $this );
 			wfDebug( __METHOD__ . " ($class): called and \$context is null. " .
 				"Using RequestContext::getMain() for sanity\n" );
 			$this->context = RequestContext::getMain();
@@ -173,7 +172,7 @@ abstract class ContextSource implements IContextSource {
 	 * @return StatsdDataFactory
 	 */
 	public function getStats() {
-		return MediaWikiServices::getInstance()->getStatsdDataFactory();
+		return $this->getContext()->getStats();
 	}
 
 	/**

@@ -69,8 +69,7 @@ class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 
 	public function testCreateForUser() {
 		/** @var PHPUnit_Framework_MockObject_MockObject|User $user */
-		$user = $this->getMockBuilder( User::class )
-			->setMethods( [ 'getStubThreshold' ] )->getMock();
+		$user = $this->getMock( User::class, [ 'getStubThreshold' ] );
 		$user->expects( $this->once() )
 			->method( 'getStubThreshold' )
 			->willReturn( 15 );

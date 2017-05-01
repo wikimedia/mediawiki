@@ -23,18 +23,9 @@
  * @file
  * @ingroup Database
  */
-namespace Wikimedia\Rdbms;
-
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ScopedCallback;
-use Wikimedia\Timestamp\ConvertibleTimestamp;
-use MediaWiki;
-use BagOStuff;
-use HashBagOStuff;
-use InvalidArgumentException;
-use Exception;
-use RuntimeException;
 
 /**
  * Relational database abstraction object
@@ -339,13 +330,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			'oracle' => [],
 			'mssql' => [],
 		];
-		static $classAliases = [
-			'DatabaseMssql' => DatabaseMssql::class,
-			'DatabaseMysql' => DatabaseMysql::class,
-			'DatabaseMysqli' => DatabaseMysqli::class,
-			'DatabaseSqlite' => DatabaseSqlite::class,
-			'DatabasePostgres' => DatabasePostgres::class
-		];
 
 		$driver = false;
 		$dbType = strtolower( $dbType );
@@ -369,18 +353,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} else {
 			$driver = $dbType;
 		}
-
 		if ( $driver === false || $driver === '' ) {
 			throw new InvalidArgumentException( __METHOD__ .
 				" no viable database extension found for type '$dbType'" );
 		}
 
 		$class = 'Database' . ucfirst( $driver );
-		if ( isset( $classAliases[$class] ) ) {
-			$class = $classAliases[$class];
-		}
-
-		if ( class_exists( $class ) && is_subclass_of( $class, IDatabase::class ) ) {
+		if ( class_exists( $class ) && is_subclass_of( $class, 'IDatabase' ) ) {
 			// Resolve some defaults for b/c
 			$p['host'] = isset( $p['host'] ) ? $p['host'] : false;
 			$p['user'] = isset( $p['user'] ) ? $p['user'] : false;
@@ -862,7 +841,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		// Add trace comment to the begin of the sql string, right after the operator.
-		// Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (T44598)
+		// Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (bug 42598)
 		$commentedSql = preg_replace( '/\s|$/', " /* $fname {$this->agent} */ ", $sql, 1 );
 
 		# Start implicit transactions that wrap the request if DBO_TRX is enabled
@@ -919,7 +898,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		if ( false === $ret ) {
 			# Deadlocks cause the entire transaction to abort, not just the statement.
-			# https://dev.mysql.com/doc/refman/5.7/en/innodb-error-handling.html
+			# http://dev.mysql.com/doc/refman/5.7/en/innodb-error-handling.html
 			# https://www.postgresql.org/docs/9.1/static/explicit-locking.html
 			if ( $this->wasDeadlock() ) {
 				if ( $this->explicitTrxActive() || $priorWritesPending ) {
@@ -1041,8 +1020,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	private function handleSessionLoss() {
 		$this->mTrxLevel = 0;
-		$this->mTrxIdleCallbacks = []; // T67263
-		$this->mTrxPreCommitCallbacks = []; // T67263
+		$this->mTrxIdleCallbacks = []; // bug 65263
+		$this->mTrxPreCommitCallbacks = []; // bug 65263
 		$this->mSessionTempTables = [];
 		$this->mNamedLocksHeld = [];
 		try {
@@ -1156,6 +1135,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$preLimitTail .= $this->makeGroupByWithHaving( $options );
 
 		$preLimitTail .= $this->makeOrderBy( $options );
+
+		// if (isset($options['LIMIT'])) {
+		// 	$tailOpts .= $this->limitResult('', $options['LIMIT'],
+		// 		isset($options['OFFSET']) ? $options['OFFSET']
+		// 		: false);
+		// }
 
 		if ( isset( $noKeyOptions['FOR UPDATE'] ) ) {
 			$postLimitTail .= ' FOR UPDATE';
@@ -1368,10 +1353,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	) {
 		$rows = 0;
 		$sql = $this->selectSQLText( $tables, '1', $conds, $fname, $options, $join_conds );
-		// The identifier quotes is primarily for MSSQL.
-		$rowCountCol = $this->addIdentifierQuotes( "rowcount" );
-		$tableName = $this->addIdentifierQuotes( "tmp_count" );
-		$res = $this->query( "SELECT COUNT(*) AS $rowCountCol FROM ($sql) $tableName", $fname );
+		$res = $this->query( "SELECT COUNT(*) AS rowcount FROM ($sql) tmp_count", $fname );
 
 		if ( $res ) {
 			$row = $this->fetchRow( $res );
@@ -1437,8 +1419,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		$table = $this->tableName( $table );
-		$ignoreErrors = true;
-		$res = $this->query( "SELECT 1 FROM $table LIMIT 1", $fname, $ignoreErrors );
+		$old = $this->ignoreErrors( true );
+		$res = $this->query( "SELECT 1 FROM $table LIMIT 1", $fname );
+		$this->ignoreErrors( $old );
 
 		return (bool)$res;
 	}
@@ -1556,7 +1539,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$sql .= " WHERE " . $this->makeList( $conds, self::LIST_AND );
 		}
 
-		return (bool)$this->query( $sql, $fname );
+		return $this->query( $sql, $fname );
 	}
 
 	public function makeList( $a, $mode = self::LIST_COMMA ) {
@@ -1963,7 +1946,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Allows for index remapping in queries where this is not consistent across DBMS
+	 * Get the name of an index in a given table.
 	 *
 	 * @param string $index
 	 * @return string
@@ -2019,10 +2002,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string $s
 	 * @return string
 	 */
-	protected function escapeLikeInternal( $s, $escapeChar = '`' ) {
-		return str_replace( [ $escapeChar, '%', '_' ],
-			[ "{$escapeChar}{$escapeChar}", "{$escapeChar}%", "{$escapeChar}_" ],
-			$s );
+	protected function escapeLikeInternal( $s ) {
+		return addcslashes( $s, '\%_' );
 	}
 
 	public function buildLike() {
@@ -2034,21 +2015,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$s = '';
 
-		// We use ` instead of \ as the default LIKE escape character, since addQuotes()
-		// may escape backslashes, creating problems of double escaping. The `
-		// character has good cross-DBMS compatibility, avoiding special operators
-		// in MS SQL like ^ and %
-		$escapeChar = '`';
-
 		foreach ( $params as $value ) {
 			if ( $value instanceof LikeMatch ) {
 				$s .= $value->toString();
 			} else {
-				$s .= $this->escapeLikeInternal( $value, $escapeChar );
+				$s .= $this->escapeLikeInternal( $value );
 			}
 		}
 
-		return ' LIKE ' . $this->addQuotes( $s ) . ' ESCAPE ' . $this->addQuotes( $escapeChar ) . ' ';
+		return " LIKE {$this->addQuotes( $s )} ";
 	}
 
 	public function anyChar() {
@@ -2339,7 +2314,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$selectOptions );
 
 		if ( is_array( $srcTable ) ) {
-			$srcTable = implode( ',', array_map( [ $this, 'tableName' ], $srcTable ) );
+			$srcTable = implode( ',', array_map( [ &$this, 'tableName' ], $srcTable ) );
 		} else {
 			$srcTable = $this->tableName( $srcTable );
 		}
@@ -2887,8 +2862,23 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->mTrxLevel && ( $this->mTrxAtomicLevels || !$this->mTrxAutomatic );
 	}
 
-	public function duplicateTableStructure(
-		$oldName, $newName, $temporary = false, $fname = __METHOD__
+	/**
+	 * Creates a new table with structure copied from existing table
+	 * Note that unlike most database abstraction functions, this function does not
+	 * automatically append database prefix, because it works at a lower
+	 * abstraction level.
+	 * The table names passed to this function shall not be quoted (this
+	 * function calls addIdentifierQuotes when needed).
+	 *
+	 * @param string $oldName Name of table whose structure should be copied
+	 * @param string $newName Name of table to be created
+	 * @param bool $temporary Whether the new table should be temporary
+	 * @param string $fname Calling function name
+	 * @throws RuntimeException
+	 * @return bool True if operation was successful
+	 */
+	public function duplicateTableStructure( $oldName, $newName, $temporary = false,
+		$fname = __METHOD__
 	) {
 		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
@@ -3315,37 +3305,26 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return false;
 	}
 
-	public function tableLocksHaveTransactionScope() {
+	/**
+	 * Lock specific tables
+	 *
+	 * @param array $read Array of tables to lock for read access
+	 * @param array $write Array of tables to lock for write access
+	 * @param string $method Name of caller
+	 * @param bool $lowPriority Whether to indicate writes to be LOW PRIORITY
+	 * @return bool
+	 */
+	public function lockTables( $read, $write, $method, $lowPriority = true ) {
 		return true;
 	}
 
-	final public function lockTables( array $read, array $write, $method ) {
-		if ( $this->writesOrCallbacksPending() ) {
-			throw new DBUnexpectedError( $this, "Transaction writes or callbacks still pending." );
-		}
-
-		if ( $this->tableLocksHaveTransactionScope() ) {
-			$this->startAtomic( $method );
-		}
-
-		return $this->doLockTables( $read, $write, $method );
-	}
-
-	protected function doLockTables( array $read, array $write, $method ) {
-		return true;
-	}
-
-	final public function unlockTables( $method ) {
-		if ( $this->tableLocksHaveTransactionScope() ) {
-			$this->endAtomic( $method );
-
-			return true; // locks released on COMMIT/ROLLBACK
-		}
-
-		return $this->doUnlockTables( $method );
-	}
-
-	protected function doUnlockTables( $method ) {
+	/**
+	 * Unlock specific tables
+	 *
+	 * @param string $method The caller
+	 * @return bool
+	 */
+	public function unlockTables( $method ) {
 		return true;
 	}
 
@@ -3448,7 +3427,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	public function __clone() {
 		$this->connLogger->warning(
-			"Cloning " . static::class . " is not recomended; forking connection:\n" .
+			"Cloning " . get_class( $this ) . " is not recomended; forking connection:\n" .
 			( new RuntimeException() )->getTraceAsString()
 		);
 
@@ -3508,5 +3487,4 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 }
 
-class_alias( Database::class, 'DatabaseBase' ); // b/c for old name
-class_alias( Database::class, 'Database' ); // b/c global alias
+class_alias( 'Database', 'DatabaseBase' );

@@ -182,7 +182,7 @@ class CryptRand {
 		$this->logger->debug( "Clock drift calculation " .
 			"(time-taken=" . ( $timeTaken * 1000 ) . "ms, " .
 			"iterations=$iterations, " .
-			"time-per-iteration=" . ( $timeTaken / $iterations * 1e6 ) . "us)" );
+			"time-per-iteration=" . ( $timeTaken / $iterations * 1e6 ) . "us)\n" );
 
 		return $data;
 	}
@@ -235,26 +235,13 @@ class CryptRand {
 	 */
 	public function generate( $bytes, $forceStrong = false ) {
 
+		$this->logger->debug( "Generating cryptographic random bytes for\n" );
+
 		$bytes = floor( $bytes );
 		static $buffer = '';
 		if ( is_null( $this->strong ) ) {
 			// Set strength to false initially until we know what source data is coming from
 			$this->strong = true;
-		}
-
-		if ( strlen( $buffer ) < $bytes ) {
-			// If available make use of PHP 7's random_bytes
-			// On Linux, getrandom syscall will be used if available.
-			// On Windows CryptGenRandom will always be used
-			// On other platforms, /dev/urandom will be used.
-			// All error situations will throw Exceptions and or Errors
-			if ( function_exists( 'random_bytes' ) ) {
-				$rem = $bytes - strlen( $buffer );
-				$buffer .= random_bytes( $rem );
-			}
-			if ( strlen( $buffer ) >= $bytes ) {
-				$this->strong = true;
-			}
 		}
 
 		if ( strlen( $buffer ) < $bytes ) {
@@ -268,11 +255,11 @@ class CryptRand {
 				$rem = $bytes - strlen( $buffer );
 				$iv = mcrypt_create_iv( $rem, MCRYPT_DEV_URANDOM );
 				if ( $iv === false ) {
-					$this->logger->debug( "mcrypt_create_iv returned false." );
+					$this->logger->debug( "mcrypt_create_iv returned false.\n" );
 				} else {
 					$buffer .= $iv;
 					$this->logger->debug( "mcrypt_create_iv generated " . strlen( $iv ) .
-						" bytes of randomness." );
+						" bytes of randomness.\n" );
 				}
 			}
 		}
@@ -282,12 +269,12 @@ class CryptRand {
 				$rem = $bytes - strlen( $buffer );
 				$openssl_bytes = openssl_random_pseudo_bytes( $rem, $openssl_strong );
 				if ( $openssl_bytes === false ) {
-					$this->logger->debug( "openssl_random_pseudo_bytes returned false." );
+					$this->logger->debug( "openssl_random_pseudo_bytes returned false.\n" );
 				} else {
 					$buffer .= $openssl_bytes;
 					$this->logger->debug( "openssl_random_pseudo_bytes generated " .
 						strlen( $openssl_bytes ) . " bytes of " .
-						( $openssl_strong ? "strong" : "weak" ) . " randomness." );
+						( $openssl_strong ? "strong" : "weak" ) . " randomness.\n" );
 				}
 				if ( strlen( $buffer ) >= $bytes ) {
 					// openssl tells us if the random source was strong, if some of our data was generated
@@ -304,7 +291,7 @@ class CryptRand {
 			$rem = $bytes - strlen( $buffer );
 			if ( !function_exists( 'stream_set_read_buffer' ) && $forceStrong ) {
 				$this->logger->debug( "Was forced to read from /dev/urandom " .
-					"without control over the buffer size." );
+					"without control over the buffer size.\n" );
 			}
 			// /dev/urandom is generally considered the best possible commonly
 			// available random source, and is available on most *nix systems.
@@ -330,14 +317,14 @@ class CryptRand {
 				$buffer .= $random_bytes;
 				fclose( $urandom );
 				$this->logger->debug( "/dev/urandom generated " . strlen( $random_bytes ) .
-					" bytes of randomness." );
+					" bytes of randomness.\n" );
 
 				if ( strlen( $buffer ) >= $bytes ) {
 					// urandom is always strong, set to true if all our data was generated using it
 					$this->strong = true;
 				}
 			} else {
-				$this->logger->debug( "/dev/urandom could not be opened." );
+				$this->logger->debug( "/dev/urandom could not be opened.\n" );
 			}
 		}
 
@@ -349,7 +336,7 @@ class CryptRand {
 		// out and being used to predict the /randomness/ that follows.
 		if ( strlen( $buffer ) < $bytes ) {
 			$this->logger->debug( __METHOD__ .
-				": Falling back to using a pseudo random state to generate randomness." );
+				": Falling back to using a pseudo random state to generate randomness.\n" );
 		}
 		while ( strlen( $buffer ) < $bytes ) {
 			$buffer .= MWCryptHash::hmac( $this->randomState(), strval( mt_rand() ) );
@@ -365,7 +352,7 @@ class CryptRand {
 		$buffer = substr( $buffer, $bytes );
 
 		$this->logger->debug( strlen( $buffer ) .
-			" bytes of randomness leftover in the buffer." );
+			" bytes of randomness leftover in the buffer.\n" );
 
 		return $generated;
 	}

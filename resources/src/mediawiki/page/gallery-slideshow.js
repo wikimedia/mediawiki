@@ -26,7 +26,7 @@
 		// Initialize
 		this.drawCarousel();
 		this.setSizeRequirement();
-		this.toggleThumbnails( !!this.$gallery.attr( 'data-showthumbnails' ) );
+		this.toggleThumbnails( false );
 		this.showCurrentImage();
 
 		// Events
@@ -89,7 +89,7 @@
 
 	/**
 	 * @property {jQuery} $container If the gallery contained in an element that is
-	 *   not the main content element, then it stores that element.
+	 * 	not the main content element, then it stores that element.
 	 */
 
 	/**
@@ -102,7 +102,7 @@
 
 	/**
 	 * @property {number} imageHeight Height of the image based on viewport size
-	 *   the URLs in the required size.
+	 * 	the URLs in the required size.
 	 */
 
 	/* Setup */
@@ -207,8 +207,6 @@
 	/**
 	 * Gets the height of the interface elements and the
 	 * gallery's caption.
-	 *
-	 * @return {number} Height
 	 */
 	mw.GallerySlideshow.prototype.getChromeHeight = function () {
 		return this.$interface.outerHeight() + this.$galleryCaption.outerHeight();
@@ -232,7 +230,11 @@
 			.removeAttr( 'height' );
 
 		// Stretch image to take up the required size
-		this.$img.attr( 'height', ( this.imageHeight - this.$imgCaption.outerHeight() ) + 'px' );
+		if ( this.$thumbnail.width() > this.$thumbnail.height() ) {
+			this.$img.attr( 'width', this.imageWidth + 'px' );
+		} else {
+			this.$img.attr( 'height', this.imageHeight + 'px' );
+		}
 
 		// Make the image smaller in case the current image
 		// size is larger than the original file size.
@@ -258,28 +260,25 @@
 		var imageLi = this.getCurrentImage(),
 			caption = imageLi.find( '.gallerytext' );
 
-		// The order of the following is important for size calculations
-		// 1. Highlight current thumbnail
+		// Highlight current thumbnail
 		this.$gallery
 			.find( '.gallerybox.slideshow-current' )
 			.removeClass( 'slideshow-current' );
 		imageLi.addClass( 'slideshow-current' );
 
-		// 2. Show thumbnail
+		// Show thumbnail stretched to the right size while the image loads
 		this.$thumbnail = imageLi.find( 'img' );
 		this.$img.attr( 'src', this.$thumbnail.attr( 'src' ) );
 		this.$img.attr( 'alt', this.$thumbnail.attr( 'alt' ) );
 		this.$imgLink.attr( 'href', imageLi.find( 'a' ).eq( 0 ).attr( 'href' ) );
+		this.setImageSize();
 
-		// 3. Copy caption
+		// Copy caption
 		this.$imgCaption
 			.empty()
 			.append( caption.clone() );
 
-		// 4. Stretch thumbnail to correct size
-		this.setImageSize();
-
-		// 5. Load image at the required size
+		// Load image at the required size
 		this.loadImage( this.$thumbnail ).done( function ( info, $img ) {
 			// Show this image to the user only if its still the current one
 			if ( this.$thumbnail.attr( 'src' ) === $img.attr( 'src' ) ) {
@@ -336,7 +335,7 @@
 		if ( this.imageInfoCache[ imageSrc ] === undefined ) {
 			api = new mw.Api();
 			// TODO: This supports only gallery of images
-			title = mw.Title.newFromImg( $img );
+			title = new mw.Title.newFromImg( $img );
 			params = {
 				action: 'query',
 				formatversion: 2,
@@ -451,10 +450,11 @@
 	};
 
 	// Bootstrap all slideshow galleries
-	mw.hook( 'wikipage.content' ).add( function ( $content ) {
-		$content.find( '.mw-gallery-slideshow' ).each( function () {
-			// eslint-disable-next-line no-new
+	$( function () {
+		$( '.mw-gallery-slideshow' ).each( function () {
+			/*jshint -W031 */
 			new mw.GallerySlideshow( this );
+			/*jshint +W031 */
 		} );
 	} );
 }( mediaWiki, jQuery, OO ) );

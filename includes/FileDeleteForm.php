@@ -21,7 +21,6 @@
  * @author Rob Church <robchur@gmail.com>
  * @ingroup Media
  */
-use MediaWiki\MediaWikiServices;
 
 /**
  * File deletion user interface
@@ -153,7 +152,7 @@ class FileDeleteForm {
 	 * @param User $user User object performing the request
 	 * @param array $tags Tags to apply to the deletion action
 	 * @throws MWException
-	 * @return Status
+	 * @return bool|Status
 	 */
 	public static function doDelete( &$title, &$file, &$oldimage, $reason,
 		$suppress, User $user = null, $tags = []
@@ -206,8 +205,7 @@ class FileDeleteForm {
 					$dbw->endAtomic( __METHOD__ );
 				} else {
 					// Page deleted but file still there? rollback page delete
-					$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-					$lbFactory->rollbackMasterChanges( __METHOD__ );
+					wfGetLBFactory()->rollbackMasterChanges( __METHOD__ );
 				}
 			} else {
 				// Done; nothing changed
@@ -303,10 +301,9 @@ class FileDeleteForm {
 
 			if ( $wgUser->isAllowed( 'editinterface' ) ) {
 				$title = wfMessage( 'filedelete-reason-dropdown' )->inContentLanguage()->getTitle();
-				$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-				$link = $linkRenderer->makeKnownLink(
+				$link = Linker::linkKnown(
 					$title,
-					wfMessage( 'filedelete-edit-reasonlist' )->text(),
+					wfMessage( 'filedelete-edit-reasonlist' )->escaped(),
 					[],
 					[ 'action' => 'edit' ]
 				);

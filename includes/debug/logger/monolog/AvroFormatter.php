@@ -138,7 +138,9 @@ class AvroFormatter implements FormatterInterface {
 				$this->schemas[$channel]['schema'] = AvroSchema::parse( $schema );
 			} else {
 				$this->schemas[$channel]['schema'] = AvroSchema::real_parse(
-					$schema
+					$schema,
+					null,
+					new AvroNamedSchemata()
 				);
 			}
 		}
@@ -153,7 +155,7 @@ class AvroFormatter implements FormatterInterface {
 	 */
 	public function getSchemaRevisionId( $channel ) {
 		if ( isset( $this->schemas[$channel]['revision'] ) ) {
-			return (int)$this->schemas[$channel]['revision'];
+			return (int) $this->schemas[$channel]['revision'];
 		}
 		return null;
 	}

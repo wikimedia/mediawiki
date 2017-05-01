@@ -7,5 +7,5 @@ interface HTMLNestedFilterable {
 	 *
 	 * @param array $data
 	 */
-	public function filterDataForSubmit( $data );
+	function filterDataForSubmit( $data );
 }

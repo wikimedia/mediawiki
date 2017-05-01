@@ -39,18 +39,25 @@ class ApiUnblock extends ApiBase {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
-		$this->requireOnlyOneParameter( $params, 'id', 'user', 'userid' );
+		if ( is_null( $params['id'] ) && is_null( $params['user'] ) ) {
+			$this->dieUsageMsg( 'unblock-notarget' );
+		}
+		if ( !is_null( $params['id'] ) && !is_null( $params['user'] ) ) {
+			$this->dieUsageMsg( 'unblock-idanduser' );
+		}
 
 		if ( !$user->isAllowed( 'block' ) ) {
-			$this->dieWithError( 'apierror-permissiondenied-unblock', 'permissiondenied' );
+			$this->dieUsageMsg( 'cantunblock' );
 		}
-		# T17810: blocked admins should have limited access here
+		# bug 15810: blocked admins should have limited access here
 		if ( $user->isBlocked() ) {
 			$status = SpecialBlock::checkUnblockSelf( $params['user'], $user );
 			if ( $status !== true ) {
-				$this->dieWithError(
-					$status,
-					null,
+				$msg = $this->parseMsg( $status );
+				$this->dieUsage(
+					$msg['info'],
+					$msg['code'],
+					0,
 					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
 				);
 			}
@@ -64,16 +71,6 @@ class ApiUnblock extends ApiBase {
 			}
 		}
 
-		if ( $params['userid'] !== null ) {
-			$username = User::whoIs( $params['userid'] );
-
-			if ( $username === false ) {
-				$this->dieWithError( [ 'apierror-nosuchuserid', $params['userid'] ], 'nosuchuserid' );
-			} else {
-				$params['user'] = $username;
-			}
-		}
-
 		$data = [
 			'Target' => is_null( $params['id'] ) ? $params['user'] : "#{$params['id']}",
 			'Reason' => $params['reason'],
@@ -82,7 +79,7 @@ class ApiUnblock extends ApiBase {
 		$block = Block::newFromTarget( $data['Target'] );
 		$retval = SpecialUnblock::processUnblock( $data, $this->getContext() );
 		if ( $retval !== true ) {
-			$this->dieStatus( $this->errorArrayToStatus( $retval ) );
+			$this->dieUsageMsg( $retval[0] );
 		}
 
 		$res['id'] = $block->getId();
@@ -107,9 +104,6 @@ class ApiUnblock extends ApiBase {
 				ApiBase::PARAM_TYPE => 'integer',
 			],
 			'user' => null,
-			'userid' => [
-				ApiBase::PARAM_TYPE => 'integer'
-			],
 			'reason' => '',
 			'tags' => [
 				ApiBase::PARAM_TYPE => 'tags',
@@ -132,6 +126,6 @@ class ApiUnblock extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Block';
+		return 'https://www.mediawiki.org/wiki/API:Block';
 	}
 }

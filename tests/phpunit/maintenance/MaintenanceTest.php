@@ -5,7 +5,6 @@
 // without changing the visibility and without working around hacks in
 // Maintenance.php
 // For the same reason, we cannot just use FakeMaintenance.
-use MediaWiki\MediaWikiServices;
 
 /**
  * makes parts of the API of Maintenance that is hidden by protected visibily
@@ -24,6 +23,7 @@ use MediaWiki\MediaWikiServices;
  * Due to a hack in Maintenance.php using register_shutdown_function, be sure to
  * finally call simulateShutdown on MaintenanceFixup instance before a test
  * ends.
+ *
  */
 class MaintenanceFixup extends Maintenance {
 
@@ -826,7 +826,7 @@ class MaintenanceTest extends MediaWikiTestCase {
 	public function testGetConfig() {
 		$this->assertInstanceOf( 'Config', $this->m->getConfig() );
 		$this->assertSame(
-			MediaWikiServices::getInstance()->getMainConfig(),
+			ConfigFactory::getDefaultInstance()->makeConfig( 'main' ),
 			$this->m->getConfig()
 		);
 	}
@@ -835,7 +835,7 @@ class MaintenanceTest extends MediaWikiTestCase {
 	 * @covers Maintenance::setConfig
 	 */
 	public function testSetConfig() {
-		$conf = $this->createMock( 'Config' );
+		$conf = $this->getMock( 'Config' );
 		$this->m->setConfig( $conf );
 		$this->assertSame( $conf, $this->m->getConfig() );
 	}

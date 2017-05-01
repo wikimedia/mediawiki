@@ -108,7 +108,6 @@ class GenerateJsonI18n extends Maintenance {
 		if ( !is_readable( $phpfile ) ) {
 			$this->error( "Error reading $phpfile", 1 );
 		}
-		$messages = null;
 		include $phpfile;
 		$phpfileContents = file_get_contents( $phpfile );
 

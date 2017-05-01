@@ -53,3 +53,4 @@ $namespaceAliases = [
 	'Categoria' => NS_CATEGORY,
 	'Discussioni_categoria' => NS_CATEGORY_TALK,
 ];
+

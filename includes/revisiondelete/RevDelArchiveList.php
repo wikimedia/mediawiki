@@ -19,8 +19,6 @@
  * @ingroup RevisionDelete
  */
 
-use Wikimedia\Rdbms\IDatabase;
-
 /**
  * List for archive table items, i.e. revisions deleted via action=delete
  */

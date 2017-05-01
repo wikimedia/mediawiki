@@ -149,3 +149,4 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'PuntanoQui' ],
 	'Withoutinterwiki'          => [ 'PagineSenzaInterwiki' ],
 ];
+

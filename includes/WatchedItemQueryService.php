@@ -1,9 +1,7 @@
 <?php
 
-use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Linker\LinkTarget;
 use Wikimedia\Assert\Assert;
-use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * Class performing complex database queries related to WatchedItems.
@@ -52,22 +50,8 @@ class WatchedItemQueryService {
 	 */
 	private $loadBalancer;
 
-	/** @var WatchedItemQueryServiceExtension[]|null */
-	private $extensions = null;
-
 	public function __construct( LoadBalancer $loadBalancer ) {
 		$this->loadBalancer = $loadBalancer;
-	}
-
-	/**
-	 * @return WatchedItemQueryServiceExtension[]
-	 */
-	private function getExtensions() {
-		if ( $this->extensions === null ) {
-			$this->extensions = [];
-			Hooks::run( 'WatchedItemQueryServiceExtensions', [ &$this->extensions, $this ] );
-		}
-		return $this->extensions;
 	}
 
 	/**
@@ -100,6 +84,9 @@ class WatchedItemQueryService {
 	 *                                 timestamp to start enumerating from
 	 *        'end'                 => string (format accepted by wfTimestamp) requires 'dir' option,
 	 *                                 timestamp to end enumerating
+	 *        'startFrom'           => [ string $rcTimestamp, int $rcId ] requires 'dir' option,
+	 *                                 return items starting from the RecentChange specified by this,
+	 *                                 $rcTimestamp should be in the format accepted by wfTimestamp
 	 *        'watchlistOwner'      => User user whose watchlist items should be listed if different
 	 *                                 than the one specified with $user param,
 	 *                                 requires 'watchlistOwnerToken' option
@@ -110,7 +97,6 @@ class WatchedItemQueryService {
 	 *                                 generator ('rc_cur_id' or 'rc_this_oldid') if true, or all
 	 *                                 id fields ('rc_cur_id', 'rc_this_oldid', 'rc_last_oldid')
 	 *                                 if false (default)
-	 * @param array|null &$startFrom Continuation value: [ string $rcTimestamp, int $rcId ]
 	 * @return array of pairs ( WatchedItem $watchedItem, string[] $recentChangeInfo ),
 	 *         where $recentChangeInfo contains the following keys:
 	 *         - 'rc_id',
@@ -121,9 +107,7 @@ class WatchedItemQueryService {
 	 *         - 'rc_deleted',
 	 *         Additional keys could be added by specifying the 'includeFields' option
 	 */
-	public function getWatchedItemsWithRecentChangeInfo(
-		User $user, array $options = [], &$startFrom = null
-	) {
+	public function getWatchedItemsWithRecentChangeInfo( User $user, array $options = [] ) {
 		$options += [
 			'includeFields' => [],
 			'namespaceIds' => [],
@@ -144,19 +128,15 @@ class WatchedItemQueryService {
 			'must be DIR_OLDER or DIR_NEWER'
 		);
 		Assert::parameter(
-			!isset( $options['start'] ) && !isset( $options['end'] ) && $startFrom === null
+			!isset( $options['start'] ) && !isset( $options['end'] ) && !isset( $options['startFrom'] )
 				|| isset( $options['dir'] ),
 			'$options[\'dir\']',
-			'must be provided when providing the "start" or "end" options or the $startFrom parameter'
+			'must be provided when providing any of options: start, end, startFrom'
 		);
 		Assert::parameter(
-			!isset( $options['startFrom'] ),
+			!isset( $options['startFrom'] )
+				|| ( is_array( $options['startFrom'] ) && count( $options['startFrom'] ) === 2 ),
 			'$options[\'startFrom\']',
-			'must not be provided, use $startFrom instead'
-		);
-		Assert::parameter(
-			!isset( $startFrom ) || ( is_array( $startFrom ) && count( $startFrom ) === 2 ),
-			'$startFrom',
 			'must be a two-element array'
 		);
 		if ( array_key_exists( 'watchlistOwner', $options ) ) {
@@ -184,21 +164,6 @@ class WatchedItemQueryService {
 		$dbOptions = $this->getWatchedItemsWithRCInfoQueryDbOptions( $options );
 		$joinConds = $this->getWatchedItemsWithRCInfoQueryJoinConds( $options );
 
-		if ( $startFrom !== null ) {
-			$conds[] = $this->getStartFromConds( $db, $options, $startFrom );
-		}
-
-		foreach ( $this->getExtensions() as $extension ) {
-			$extension->modifyWatchedItemsWithRCInfoQuery(
-				$user, $options, $db,
-				$tables,
-				$fields,
-				$conds,
-				$dbOptions,
-				$joinConds
-			);
-		}
-
 		$res = $db->select(
 			$tables,
 			$fields,
@@ -208,15 +173,8 @@ class WatchedItemQueryService {
 			$joinConds
 		);
 
-		$limit = isset( $dbOptions['LIMIT'] ) ? $dbOptions['LIMIT'] : INF;
 		$items = [];
-		$startFrom = null;
 		foreach ( $res as $row ) {
-			if ( --$limit <= 0 ) {
-				$startFrom = [ $row->rc_timestamp, $row->rc_id ];
-				break;
-			}
-
 			$items[] = [
 				new WatchedItem(
 					$user,
@@ -225,10 +183,6 @@ class WatchedItemQueryService {
 				),
 				$this->getRecentChangeFieldsFromRow( $row )
 			];
-		}
-
-		foreach ( $this->getExtensions() as $extension ) {
-			$extension->modifyWatchedItemsWithRCInfo( $user, $options, $db, $items, $res, $startFrom );
 		}
 
 		return $items;
@@ -390,7 +344,7 @@ class WatchedItemQueryService {
 		}
 
 		if ( array_key_exists( 'rcTypes', $options ) ) {
-			$conds['rc_type'] = array_map( 'intval', $options['rcTypes'] );
+			$conds['rc_type'] = array_map( 'intval',  $options['rcTypes'] );
 		}
 
 		$conds = array_merge(
@@ -403,7 +357,7 @@ class WatchedItemQueryService {
 		if ( !isset( $options['start'] ) && !isset( $options['end'] ) ) {
 			if ( $db->getType() === 'mysql' ) {
 				// This is an index optimization for mysql
-				$conds[] = 'rc_timestamp > ' . $db->addQuotes( '' );
+				$conds[] = "rc_timestamp > ''";
 			}
 		}
 
@@ -412,6 +366,10 @@ class WatchedItemQueryService {
 		$deletedPageLogCond = $this->getExtraDeletedPageLogEntryRelatedCond( $db, $user );
 		if ( $deletedPageLogCond ) {
 			$conds[] = $deletedPageLogCond;
+		}
+
+		if ( array_key_exists( 'startFrom', $options ) ) {
+			$conds[] = $this->getStartFromConds( $db, $options );
 		}
 
 		return $conds;
@@ -424,7 +382,10 @@ class WatchedItemQueryService {
 			$ownersToken = $watchlistOwner->getOption( 'watchlisttoken' );
 			$token = $options['watchlistOwnerToken'];
 			if ( $ownersToken == '' || !hash_equals( $ownersToken, $token ) ) {
-				throw ApiUsageException::newWithMessage( null, 'apierror-bad-watchlist-token', 'bad_wltoken' );
+				throw new UsageException(
+					'Incorrect watchlist token provided -- please set a correct token in Special:Preferences',
+					'bad_wltoken'
+				);
 			}
 			return $watchlistOwner->getId();
 		}
@@ -473,7 +434,7 @@ class WatchedItemQueryService {
 	}
 
 	private function getStartEndConds( IDatabase $db, array $options ) {
-		if ( !isset( $options['start'] ) && !isset( $options['end'] ) ) {
+		if ( !isset( $options['start'] ) && ! isset( $options['end'] ) ) {
 			return [];
 		}
 
@@ -506,7 +467,7 @@ class WatchedItemQueryService {
 			$conds[] = 'rc_user_text != ' . $db->addQuotes( $options['notByUser'] );
 		}
 
-		// Avoid brute force searches (T19342)
+		// Avoid brute force searches (bug 17342)
 		$bitmask = 0;
 		if ( !$user->isAllowed( 'deletedhistory' ) ) {
 			$bitmask = Revision::DELETED_USER;
@@ -538,9 +499,9 @@ class WatchedItemQueryService {
 		return '';
 	}
 
-	private function getStartFromConds( IDatabase $db, array $options, array $startFrom ) {
+	private function getStartFromConds( IDatabase $db, array $options ) {
 		$op = $options['dir'] === self::DIR_OLDER ? '<' : '>';
-		list( $rcTimestamp, $rcId ) = $startFrom;
+		list( $rcTimestamp, $rcId ) = $options['startFrom'];
 		$rcTimestamp = $db->addQuotes( $db->timestamp( $rcTimestamp ) );
 		$rcId = (int)$rcId;
 		return $db->makeList(
@@ -565,7 +526,7 @@ class WatchedItemQueryService {
 		}
 		if ( isset( $options['filter'] ) ) {
 			$filter = $options['filter'];
-			if ( $filter === self::FILTER_CHANGED ) {
+			if ( $filter ===  self::FILTER_CHANGED ) {
 				$conds[] = 'wl_notificationtimestamp IS NOT NULL';
 			} else {
 				$conds[] = 'wl_notificationtimestamp IS NULL';
@@ -622,7 +583,7 @@ class WatchedItemQueryService {
 		}
 
 		if ( array_key_exists( 'limit', $options ) ) {
-			$dbOptions['LIMIT'] = (int)$options['limit'] + 1;
+			$dbOptions['LIMIT'] = (int)$options['limit'];
 		}
 
 		return $dbOptions;

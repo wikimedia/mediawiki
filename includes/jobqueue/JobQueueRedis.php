@@ -75,8 +75,6 @@ class JobQueueRedis extends JobQueue {
 	/** @var string Compression method to use */
 	protected $compression;
 
-	const MAX_PUSH_SIZE = 25; // avoid tying up the server
-
 	/**
 	 * @param array $params Possible keys:
 	 *   - redisConfig : An array of parameters to RedisConnectionPool::__construct().
@@ -214,7 +212,7 @@ class JobQueueRedis extends JobQueue {
 			if ( $flags & self::QOS_ATOMIC ) {
 				$batches = [ $items ]; // all or nothing
 			} else {
-				$batches = array_chunk( $items, self::MAX_PUSH_SIZE );
+				$batches = array_chunk( $items, 100 ); // avoid tying up the server
 			}
 			$failed = 0;
 			$pushed = 0;
@@ -795,9 +793,9 @@ LUA;
 	private function getGlobalKey( $name ) {
 		$parts = [ 'global', 'jobqueue', $name ];
 		foreach ( $parts as $part ) {
-			if ( !preg_match( '/[a-zA-Z0-9_-]+/', $part ) ) {
-				throw new InvalidArgumentException( "Key part characters are out of range." );
-			}
+		    if ( !preg_match( '/[a-zA-Z0-9_-]+/', $part ) ) {
+		        throw new InvalidArgumentException( "Key part characters are out of range." );
+		    }
 		}
 
 		return implode( ':', $parts );

@@ -27,9 +27,6 @@
 require_once __DIR__ . '/Maintenance.php';
 require_once __DIR__ . '/../includes/export/DumpFilter.php';
 
-use Wikimedia\Rdbms\LoadBalancer;
-use Wikimedia\Rdbms\IDatabase;
-
 /**
  * @ingroup Dump Maintenance
  */
@@ -63,7 +60,7 @@ class BackupDumper extends Maintenance {
 	/**
 	 * The dependency-injected database to use.
 	 *
-	 * @var IDatabase|null
+	 * @var DatabaseBase|null
 	 *
 	 * @see self::setDB
 	 */
@@ -166,7 +163,7 @@ class BackupDumper extends Maintenance {
 					$val = explode( ':', $param );
 
 					if ( count( $val ) === 1 ) {
-						$this->loadPlugin( $val[0], '' );
+						$this->loadPlugin( $val[0] );
 					} elseif ( count( $val ) === 2 ) {
 						$this->loadPlugin( $val[0], $val[1] );
 					} else {
@@ -317,7 +314,7 @@ class BackupDumper extends Maintenance {
 	 * @todo Fixme: the --server parameter is currently not respected, as it
 	 * doesn't seem terribly easy to ask the load balancer for a particular
 	 * connection by name.
-	 * @return IDatabase
+	 * @return DatabaseBase
 	 */
 	function backupDb() {
 		if ( $this->forcedDb !== null ) {
@@ -338,7 +335,7 @@ class BackupDumper extends Maintenance {
 	 * Force the dump to use the provided database connection for database
 	 * operations, wherever possible.
 	 *
-	 * @param IDatabase|null $db (Optional) the database connection to use. If null, resort to
+	 * @param DatabaseBase|null $db (Optional) the database connection to use. If null, resort to
 	 *   use the globally provided ways to get database connections.
 	 */
 	function setDB( IDatabase $db = null ) {

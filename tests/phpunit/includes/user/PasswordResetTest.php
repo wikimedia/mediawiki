@@ -11,7 +11,7 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testIsAllowed( $passwordResetRoutes, $enableEmail,
 		$allowsAuthenticationDataChange, $canEditPrivate, $canSeePassword,
-		$userIsBlocked, $isAllowed
+		$userIsBlocked, $isAllowed, $isAllowedToDisplayPassword
 	) {
 		$config = new HashConfig( [
 			'PasswordResetRoutes' => $passwordResetRoutes,
@@ -23,7 +23,7 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 		$authManager->expects( $this->any() )->method( 'allowsAuthenticationDataChange' )
 			->willReturn( $allowsAuthenticationDataChange ? Status::newGood() : Status::newFatal( 'foo' ) );
 
-		$user = $this->getMockBuilder( User::class )->getMock();
+		$user = $this->getMock( User::class );
 		$user->expects( $this->any() )->method( 'getName' )->willReturn( 'Foo' );
 		$user->expects( $this->any() )->method( 'isBlocked' )->willReturn( $userIsBlocked );
 		$user->expects( $this->any() )->method( 'isAllowed' )
@@ -40,6 +40,8 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 		$passwordReset = new PasswordReset( $config, $authManager );
 
 		$this->assertSame( $isAllowed, $passwordReset->isAllowed( $user )->isGood() );
+		$this->assertSame( $isAllowedToDisplayPassword,
+			$passwordReset->isAllowed( $user, true )->isGood() );
 	}
 
 	public function provideIsAllowed() {
@@ -52,6 +54,7 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 				'canSeePassword' => true,
 				'userIsBlocked' => false,
 				'isAllowed' => false,
+				'isAllowedToDisplayPassword' => false,
 			],
 			[
 				'passwordResetRoutes' => [ 'username' => true ],
@@ -61,6 +64,7 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 				'canSeePassword' => true,
 				'userIsBlocked' => false,
 				'isAllowed' => false,
+				'isAllowedToDisplayPassword' => false,
 			],
 			[
 				'passwordResetRoutes' => [ 'username' => true ],
@@ -70,6 +74,7 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 				'canSeePassword' => true,
 				'userIsBlocked' => false,
 				'isAllowed' => false,
+				'isAllowedToDisplayPassword' => false,
 			],
 			[
 				'passwordResetRoutes' => [ 'username' => true ],
@@ -79,6 +84,7 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 				'canSeePassword' => true,
 				'userIsBlocked' => false,
 				'isAllowed' => false,
+				'isAllowedToDisplayPassword' => false,
 			],
 			[
 				'passwordResetRoutes' => [ 'username' => true ],
@@ -88,6 +94,7 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 				'canSeePassword' => true,
 				'userIsBlocked' => true,
 				'isAllowed' => false,
+				'isAllowedToDisplayPassword' => false,
 			],
 			[
 				'passwordResetRoutes' => [ 'username' => true ],
@@ -97,6 +104,7 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 				'canSeePassword' => false,
 				'userIsBlocked' => false,
 				'isAllowed' => true,
+				'isAllowedToDisplayPassword' => false,
 			],
 			[
 				'passwordResetRoutes' => [ 'username' => true ],
@@ -106,6 +114,7 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 				'canSeePassword' => true,
 				'userIsBlocked' => false,
 				'isAllowed' => true,
+				'isAllowedToDisplayPassword' => true,
 			],
 		];
 	}
@@ -124,12 +133,12 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 
 		$request = new FauxRequest();
 		$request->setIP( '1.2.3.4' );
-		$performingUser = $this->getMockBuilder( User::class )->getMock();
+		$performingUser = $this->getMock( User::class );
 		$performingUser->expects( $this->any() )->method( 'getRequest' )->willReturn( $request );
 		$performingUser->expects( $this->any() )->method( 'isAllowed' )->willReturn( true );
 
-		$targetUser1 = $this->getMockBuilder( User::class )->getMock();
-		$targetUser2 = $this->getMockBuilder( User::class )->getMock();
+		$targetUser1 = $this->getMock( User::class );
+		$targetUser2 = $this->getMock( User::class );
 		$targetUser1->expects( $this->any() )->method( 'getName' )->willReturn( 'User1' );
 		$targetUser2->expects( $this->any() )->method( 'getName' )->willReturn( 'User2' );
 		$targetUser1->expects( $this->any() )->method( 'getId' )->willReturn( 1 );

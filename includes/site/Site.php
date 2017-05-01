@@ -463,9 +463,6 @@ class Site implements Serializable {
 	 * @param string $languageCode
 	 */
 	public function setLanguageCode( $languageCode ) {
-		if ( !Language::isValidCode( $languageCode ) ) {
-			throw new InvalidArgumentException( "$languageCode is not a valid language code." );
-		}
 		$this->languageCode = $languageCode;
 	}
 

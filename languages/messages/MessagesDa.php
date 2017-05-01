@@ -144,3 +144,4 @@ $bookstoreList = [
 
 $separatorTransformTable = [ ',' => '.', '.' => ',' ];
 $linkTrail = '/^([a-zæøå]+)(.*)$/sDu';
+

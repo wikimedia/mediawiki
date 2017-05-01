@@ -49,3 +49,4 @@ $separatorTransformTable = [
 	'.' => '٫', # &#x066b;
 	',' => '٬', # &#x066c;
 ];
+

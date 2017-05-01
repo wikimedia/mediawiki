@@ -31,3 +31,4 @@ $namespaceAliases = [
 	'Talγa'            => NS_TEMPLATE,
 	'Amyannan_n_talγa' => NS_TEMPLATE_TALK,
 ];
+

@@ -165,3 +165,4 @@ $digitTransformTable = [
 ];
 
 $digitGroupingPattern = "##,##,###";
+

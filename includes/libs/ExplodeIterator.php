@@ -40,7 +40,7 @@ class ExplodeIterator implements Iterator {
 	// The position after the end of the next delimiter
 	private $endPos;
 
-	/** @var string|false The current token */
+	// The current token
 	private $current;
 
 	/**

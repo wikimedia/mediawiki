@@ -26,3 +26,4 @@ $namespaceNames = [
 	NS_CATEGORY         => 'Roinn-seòrsa',
 	NS_CATEGORY_TALK    => 'Deasbaireachd_na_roinn-seòrsa',
 ];
+

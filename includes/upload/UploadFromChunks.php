@@ -64,52 +64,6 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * {@inheritdoc}
-	 */
-	public function tryStashFile( User $user, $isPartial = false ) {
-		try {
-			$this->verifyChunk();
-		} catch ( UploadChunkVerificationException $e ) {
-			return Status::newFatal( $e->msg );
-		}
-
-		return parent::tryStashFile( $user, $isPartial );
-	}
-
-	/**
-	 * {@inheritdoc}
-	 * @throws UploadChunkVerificationException
-	 * @deprecated since 1.28 Use tryStashFile() instead
-	 */
-	public function stashFile( User $user = null ) {
-		wfDeprecated( __METHOD__, '1.28' );
-		$this->verifyChunk();
-		return parent::stashFile( $user );
-	}
-
-	/**
-	 * {@inheritdoc}
-	 * @throws UploadChunkVerificationException
-	 * @deprecated since 1.28
-	 */
-	public function stashFileGetKey() {
-		wfDeprecated( __METHOD__, '1.28' );
-		$this->verifyChunk();
-		return parent::stashFileGetKey();
-	}
-
-	/**
-	 * {@inheritdoc}
-	 * @throws UploadChunkVerificationException
-	 * @deprecated since 1.28
-	 */
-	public function stashSession() {
-		wfDeprecated( __METHOD__, '1.28' );
-		$this->verifyChunk();
-		return parent::stashSession();
-	}
-
-	/**
 	 * Calls the parent doStashFile and updates the uploadsession table to handle "chunks"
 	 *
 	 * @param User|null $user
@@ -120,6 +74,7 @@ class UploadFromChunks extends UploadFromFile {
 		$this->mChunkIndex = 0;
 		$this->mOffset = 0;
 
+		$this->verifyChunk();
 		// Create a local stash target
 		$this->mStashFile = parent::doStashFile( $user );
 		// Update the initial file offset (based on file size)
@@ -158,7 +113,7 @@ class UploadFromChunks extends UploadFromFile {
 
 	/**
 	 * Append the final chunk and ready file for parent::performUpload()
-	 * @return Status
+	 * @return FileRepoStatus
 	 */
 	public function concatenateChunks() {
 		$chunkIndex = $this->getChunkIndex();
@@ -267,7 +222,7 @@ class UploadFromChunks extends UploadFromFile {
 					$this->verifyChunk();
 					$this->mTempPath = $oldTemp;
 				} catch ( UploadChunkVerificationException $e ) {
-					return Status::newFatal( $e->msg );
+					return Status::newFatal( $e->getMessage() );
 				}
 				$status = $this->outputChunk( $chunkPath );
 				if ( $status->isGood() ) {
@@ -358,7 +313,7 @@ class UploadFromChunks extends UploadFromFile {
 	 *
 	 * @param string $chunkPath
 	 * @throws UploadChunkFileException
-	 * @return Status
+	 * @return FileRepoStatus
 	 */
 	private function outputChunk( $chunkPath ) {
 		// Key is fileKey + chunk index
@@ -409,7 +364,7 @@ class UploadFromChunks extends UploadFromFile {
 		$this->mDesiredDestName = $oldDesiredDestName;
 		$this->mTitle = false;
 		if ( is_array( $res ) ) {
-			throw new UploadChunkVerificationException( $res );
+			throw new UploadChunkVerificationException( $res[0] );
 		}
 	}
 }
@@ -421,10 +376,4 @@ class UploadChunkFileException extends MWException {
 }
 
 class UploadChunkVerificationException extends MWException {
-	public $msg;
-	public function __construct( $res ) {
-		$this->msg = call_user_func_array( 'wfMessage', $res );
-		parent::__construct( call_user_func_array( 'wfMessage', $res )
-			->inLanguage( 'en' )->useDatabase( false )->text() );
-	}
 }

@@ -47,3 +47,4 @@ $specialPageAliases = [
 	'Watchlist'                 => [ 'Lukautbuk' ],
 	'Whatlinkshere'             => [ 'Ol link ikam long hia' ],
 ];
+

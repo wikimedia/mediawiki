@@ -22,8 +22,6 @@
  * @see wfWaitForSlaves()
  */
 
-use Wikimedia\Rdbms\DBConnectionError;
-
 require __DIR__ . '/../commandLine.inc';
 
 if ( count( $args ) < 1 ) {
@@ -71,7 +69,7 @@ class TrackBlobs {
 		echo "Doing integrity check...\n";
 		$dbr = wfGetDB( DB_REPLICA );
 
-		// Scan for HistoryBlobStub objects in the text table (T22757)
+		// Scan for HistoryBlobStub objects in the text table (bug 20757)
 
 		$exists = $dbr->selectField( 'text', 1,
 			'old_flags LIKE \'%object%\' AND old_flags NOT LIKE \'%external%\' ' .
@@ -86,7 +84,7 @@ class TrackBlobs {
 			exit( 1 );
 		}
 
-		// Scan the archive table for HistoryBlobStub objects or external flags (T24624)
+		// Scan the archive table for HistoryBlobStub objects or external flags (bug 22624)
 		$flags = $dbr->selectField( 'archive', 'ar_flags',
 			'ar_flags LIKE \'%external%\' OR (' .
 			'ar_flags LIKE \'%object%\' ' .

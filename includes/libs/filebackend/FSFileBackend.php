@@ -21,7 +21,6 @@
  * @ingroup FileBackend
  * @author Aaron Schulz
  */
-use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @brief Class for a file system (FS) based file backend.

@@ -20,11 +20,6 @@
  * @file
  */
 
-use Wikimedia\Rdbms\LoadBalancer;
-use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\DBConnRef;
-use Wikimedia\Rdbms\MaintainableDBConnRef;
-
 /**
  * DB accessable external objects.
  *
@@ -110,17 +105,19 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @param string $cluster Cluster name
 	 * @return LoadBalancer
 	 */
-	private function getLoadBalancer( $cluster ) {
-		return wfGetLBFactory()->getExternalLB( $cluster );
+	function getLoadBalancer( $cluster ) {
+		$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : false;
+
+		return wfGetLBFactory()->getExternalLB( $cluster, $wiki );
 	}
 
 	/**
 	 * Get a replica DB connection for the specified cluster
 	 *
 	 * @param string $cluster Cluster name
-	 * @return DBConnRef
+	 * @return IDatabase
 	 */
-	public function getSlave( $cluster ) {
+	function getSlave( $cluster ) {
 		global $wgDefaultExternalStore;
 
 		$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : false;
@@ -143,13 +140,13 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * Get a master database connection for the specified cluster
 	 *
 	 * @param string $cluster Cluster name
-	 * @return MaintainableDBConnRef
+	 * @return IDatabase
 	 */
-	public function getMaster( $cluster ) {
+	function getMaster( $cluster ) {
 		$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : false;
 		$lb = $this->getLoadBalancer( $cluster );
 
-		$db = $lb->getMaintenanceConnectionRef( DB_MASTER, [], $wiki );
+		$db = $lb->getConnectionRef( DB_MASTER, [], $wiki );
 		$db->clearFlag( DBO_TRX ); // sanity
 
 		return $db;
@@ -161,7 +158,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @param IDatabase $db
 	 * @return string Table name ('blobs' by default)
 	 */
-	public function getTable( $db ) {
+	function getTable( $db ) {
 		$table = $db->getLBInfo( 'blobs table' );
 		if ( is_null( $table ) ) {
 			$table = 'blobs';
@@ -178,8 +175,9 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @param string $id
 	 * @param string $itemID
 	 * @return HistoryBlob|bool Returns false if missing
+	 * @private
 	 */
-	private function fetchBlob( $cluster, $id, $itemID ) {
+	function fetchBlob( $cluster, $id, $itemID ) {
 		/**
 		 * One-step cache variable to hold base blobs; operations that
 		 * pull multiple revisions may often pull multiple times from
@@ -232,7 +230,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @return array A map from the blob_id's requested to their content.
 	 *   Unlocated ids are not represented
 	 */
-	private function batchFetchBlobs( $cluster, array $ids ) {
+	function batchFetchBlobs( $cluster, array $ids ) {
 		$dbr = $this->getSlave( $cluster );
 		$res = $dbr->select( $this->getTable( $dbr ),
 			[ 'blob_id', 'blob_text' ], [ 'blob_id' => array_keys( $ids ) ], __METHOD__ );

@@ -42,3 +42,4 @@ $namespaceNames = [
 $namespaceGenderAliases = [];
 
 $linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюяӀ1“»]+)(.*)$/sDu';
+

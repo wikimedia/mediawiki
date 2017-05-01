@@ -178,14 +178,14 @@ class SvgHandler extends ImageHandler {
 
 		$metadata = $this->unpackMetadata( $image->getMetadata() );
 		if ( isset( $metadata['error'] ) ) { // sanity check
-			$err = wfMessage( 'svg-long-error', $metadata['error']['message'] );
+			$err = wfMessage( 'svg-long-error', $metadata['error']['message'] )->text();
 
 			return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight, $err );
 		}
 
 		if ( !wfMkdirParents( dirname( $dstPath ), null, __METHOD__ ) ) {
 			return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight,
-				wfMessage( 'thumbnail_dest_directory' ) );
+				wfMessage( 'thumbnail_dest_directory' )->text() );
 		}
 
 		$srcPath = $image->getLocalRefPath();
@@ -196,7 +196,7 @@ class SvgHandler extends ImageHandler {
 
 			return new MediaTransformError( 'thumbnail_error',
 				$params['width'], $params['height'],
-				wfMessage( 'filemissing' )
+				wfMessage( 'filemissing' )->text()
 			);
 		}
 
@@ -219,7 +219,7 @@ class SvgHandler extends ImageHandler {
 					wfHostname(), $lnPath, $srcPath ) );
 			return new MediaTransformError( 'thumbnail_error',
 				$params['width'], $params['height'],
-				wfMessage( 'thumbnail-temp-create' )
+				wfMessage( 'thumbnail-temp-create' )->text()
 			);
 		}
 

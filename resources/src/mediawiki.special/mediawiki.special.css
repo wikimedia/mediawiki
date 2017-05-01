@@ -16,8 +16,7 @@
 }
 
 /* Common for Special:Allpages and Special:PrefixIndex */
-.mw-allpages-body,
-.mw-prefixindex-body {
+.mw-allpages-body, .mw-prefixindex-body {
 	columns: 22em 3;
 	-moz-columns: 22em 3;
 	-webkit-columns: 22em 3;
@@ -33,14 +32,6 @@
 p.mw-ipb-conveniencelinks {
 	font-size: 90%;
 	text-align: right;
-}
-
-label[for='mw-input-wpConfirm'] {
-	font-weight: bold;
-}
-
-tr.mw-block-hideuser {
-	font-weight: bold;
 }
 
 /* Special:BlockList */
@@ -123,8 +114,4 @@ span.mw-protectedpages-unknown {
 table.mw-userrights-groups * td,
 table.mw-userrights-groups * th {
 	padding-right: 1.5em;
-}
-
-table.mw-userrights-groups * th {
-	text-align: left;
 }

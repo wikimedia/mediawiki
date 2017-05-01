@@ -25,7 +25,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiTestCase {
 			]
 		] );
 
-		$dbMock = $this->getMockBuilder( 'DatabaseMysqli' )
+		$dbMock = $this->getMockBuilder( 'DatabaseMysql' )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -41,21 +41,19 @@ class MigrateFileRepoLayoutTest extends MediaWikiTestCase {
 				new FakeResultWrapper( [] ) // filearchive
 			) );
 
-		$repoMock = $this->getMockBuilder( 'LocalRepo' )
-			->setMethods( [ 'getMasterDB' ] )
-			->setConstructorArgs( [ [
-					'name' => 'migratefilerepolayouttest',
-					'backend' => $backend
-				] ] )
-			->getMock();
+		$repoMock = $this->getMock( 'LocalRepo',
+			[ 'getMasterDB' ],
+			[ [
+				'name' => 'migratefilerepolayouttest',
+				'backend' => $backend
+			] ] );
 
 		$repoMock
 			->expects( $this->any() )
 			->method( 'getMasterDB' )
 			->will( $this->returnValue( $dbMock ) );
 
-		$this->migratorMock = $this->getMockBuilder( 'MigrateFileRepoLayout' )
-			->setMethods( [ 'getRepo' ] )->getMock();
+		$this->migratorMock = $this->getMock( 'MigrateFileRepoLayout', [ 'getRepo' ] );
 		$this->migratorMock
 			->expects( $this->any() )
 			->method( 'getRepo' )

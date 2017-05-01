@@ -49,9 +49,8 @@ abstract class ChangeTagsList extends RevisionListBase {
 				$className = 'ChangeTagsLogList';
 				break;
 			default:
-				throw new Exception( "Class $typeName requested, but does not exist" );
+				throw new Exception( "Class $className requested, but does not exist" );
 		}
-
 		return new $className( $context, $title, $ids );
 	}
 

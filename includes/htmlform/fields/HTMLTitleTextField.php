@@ -51,22 +51,22 @@ class HTMLTitleTextField extends HTMLTextField {
 			if ( $params ) {
 				$msg->params( $params );
 			}
-			return $msg;
+			return $msg->parse();
 		}
 
 		$text = $title->getPrefixedText();
 		if ( $this->mParams['namespace'] !== false &&
 			!$title->inNamespace( $this->mParams['namespace'] )
 		) {
-			return $this->msg( 'htmlform-title-badnamespace', $this->mParams['namespace'], $text );
+			return $this->msg( 'htmlform-title-badnamespace', $this->mParams['namespace'], $text )->parse();
 		}
 
 		if ( $this->mParams['creatable'] && !$title->canExist() ) {
-			return $this->msg( 'htmlform-title-not-creatable', $text );
+			return $this->msg( 'htmlform-title-not-creatable', $text )->escaped();
 		}
 
 		if ( $this->mParams['exists'] && !$title->exists() ) {
-			return $this->msg( 'htmlform-title-not-exists', $text );
+			return $this->msg( 'htmlform-title-not-exists', $text )->parse();
 		}
 
 		return parent::validate( $value, $alldata );

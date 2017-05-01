@@ -86,7 +86,7 @@ class OldLocalFile extends LocalFile {
 	 * @return bool|OldLocalFile
 	 */
 	static function newFromKey( $sha1, $repo, $timestamp = false ) {
-		$dbr = $repo->getReplicaDB();
+		$dbr = $repo->getSlaveDB();
 
 		$conds = [ 'oi_sha1' => $sha1 ];
 		if ( $timestamp ) {
@@ -179,7 +179,7 @@ class OldLocalFile extends LocalFile {
 
 		$dbr = ( $flags & self::READ_LATEST )
 			? $this->repo->getMasterDB()
-			: $this->repo->getReplicaDB();
+			: $this->repo->getSlaveDB();
 
 		$conds = [ 'oi_name' => $this->getName() ];
 		if ( is_null( $this->requestedTime ) ) {
@@ -194,14 +194,16 @@ class OldLocalFile extends LocalFile {
 		} else {
 			$this->fileExists = false;
 		}
+
 	}
 
 	/**
 	 * Load lazy file metadata from the DB
 	 */
 	protected function loadExtraFromDB() {
+
 		$this->extraDataLoaded = true;
-		$dbr = $this->repo->getReplicaDB();
+		$dbr = $this->repo->getSlaveDB();
 		$conds = [ 'oi_name' => $this->getName() ];
 		if ( is_null( $this->requestedTime ) ) {
 			$conds['oi_archive_name'] = $this->archive_name;
@@ -225,6 +227,7 @@ class OldLocalFile extends LocalFile {
 		} else {
 			throw new MWException( "Could not find data for image '{$this->archive_name}'." );
 		}
+
 	}
 
 	/**

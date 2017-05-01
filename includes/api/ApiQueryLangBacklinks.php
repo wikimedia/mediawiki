@@ -51,14 +51,7 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 		$params = $this->extractRequestParams();
 
 		if ( isset( $params['title'] ) && !isset( $params['lang'] ) ) {
-			$this->dieWithError(
-				[
-					'apierror-invalidparammix-mustusewith',
-					$this->encodeParamName( 'title' ),
-					$this->encodeParamName( 'lang' )
-				],
-				'nolang'
-			);
+			$this->dieUsageMsg( [ 'missingparam', 'lang' ] );
 		}
 
 		if ( !is_null( $params['continue'] ) ) {
@@ -214,6 +207,6 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Langbacklinks';
+		return 'https://www.mediawiki.org/wiki/API:Langbacklinks';
 	}
 }

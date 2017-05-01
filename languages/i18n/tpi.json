@@ -213,6 +213,7 @@
 	"viewsource": "Lukim as tok",
 	"yourname": "Yusanem:",
 	"yourpassword": "Paswot:",
+	"remembermypassword": "Holim yusanem bilong mi long dispela komputa (holim pas longpela taim $1 {{PLURAL:$1|de|de}})",
 	"login": "Log in",
 	"userloginnocreate": "Log in",
 	"logout": "Logaut",

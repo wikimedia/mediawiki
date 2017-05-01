@@ -20,18 +20,8 @@
  * @file
  * @ingroup Database
  */
-namespace Wikimedia\Rdbms;
-
 use Psr\Log\LoggerInterface;
-use Psr\Log\NullLogger;
 use Wikimedia\ScopedCallback;
-use BagOStuff;
-use EmptyBagOStuff;
-use WANObjectCache;
-use ArrayUtils;
-use InvalidArgumentException;
-use RuntimeException;
-use Exception;
 
 /**
  * Database connection, tracking, load balancing, and transaction manager for a cluster
@@ -41,7 +31,7 @@ use Exception;
 class LoadBalancer implements ILoadBalancer {
 	/** @var array[] Map of (server index => server config array) */
 	private $mServers;
-	/** @var Database[][][] Map of local/foreignUsed/foreignFree => server index => IDatabase array */
+	/** @var array[] Map of (local/foreignUsed/foreignFree => server index => IDatabase array) */
 	private $mConns;
 	/** @var float[] Map of (server index => weight) */
 	private $mLoads;
@@ -58,8 +48,6 @@ class LoadBalancer implements ILoadBalancer {
 
 	/** @var ILoadMonitor */
 	private $loadMonitor;
-	/** @var ChronologyProtector|null */
-	private $chronProt;
 	/** @var BagOStuff */
 	private $srvCache;
 	/** @var BagOStuff */
@@ -79,8 +67,8 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var LoggerInterface */
 	protected $perfLogger;
 
-	/** @var Database DB connection object that caused a problem */
-	private $errorConnection;
+	/** @var bool|IDatabase Database connection that caused a problem */
+	private $mErrorConnection;
 	/** @var integer The generic (not query grouped) replica DB index (of $mServers) */
 	private $mReadIndex;
 	/** @var bool|DBMasterPos False if not set */
@@ -115,8 +103,6 @@ class LoadBalancer implements ILoadBalancer {
 
 	/** @var boolean */
 	private $disabled = false;
-	/** @var boolean */
-	private $chronProtInitialized = false;
 
 	/** @var integer Warn when this many connection are held */
 	const CONN_HELD_WARN_THRESHOLD = 10;
@@ -154,6 +140,7 @@ class LoadBalancer implements ILoadBalancer {
 		];
 		$this->mLoads = [];
 		$this->mWaitForPos = false;
+		$this->mErrorConnection = false;
 		$this->mAllowLagged = false;
 
 		if ( isset( $params['readOnlyReason'] ) && is_string( $params['readOnlyReason'] ) ) {
@@ -207,7 +194,7 @@ class LoadBalancer implements ILoadBalancer {
 			};
 
 		foreach ( [ 'replLogger', 'connLogger', 'queryLogger', 'perfLogger' ] as $key ) {
-			$this->$key = isset( $params[$key] ) ? $params[$key] : new NullLogger();
+			$this->$key = isset( $params[$key] ) ? $params[$key] : new \Psr\Log\NullLogger();
 		}
 
 		$this->host = isset( $params['hostname'] )
@@ -215,10 +202,6 @@ class LoadBalancer implements ILoadBalancer {
 			: ( gethostname() ?: 'unknown' );
 		$this->cliMode = isset( $params['cliMode'] ) ? $params['cliMode'] : PHP_SAPI === 'cli';
 		$this->agent = isset( $params['agent'] ) ? $params['agent'] : '';
-
-		if ( isset( $params['chronologyProtector'] ) ) {
-			$this->chronProt = $params['chronologyProtector'];
-		}
 	}
 
 	/**
@@ -228,17 +211,7 @@ class LoadBalancer implements ILoadBalancer {
 	 */
 	private function getLoadMonitor() {
 		if ( !isset( $this->loadMonitor ) ) {
-			$compat = [
-				'LoadMonitor' => LoadMonitor::class,
-				'LoadMonitorNull' => LoadMonitorNull::class,
-				'LoadMonitorMySQL' => LoadMonitorMySQL::class,
-			];
-
 			$class = $this->loadMonitorConfig['class'];
-			if ( isset( $compat[$class] ) ) {
-				$class = $compat[$class];
-			}
-
 			$this->loadMonitor = new $class(
 				$this, $this->srvCache, $this->memCache, $this->loadMonitorConfig );
 			$this->loadMonitor->setLogger( $this->replLogger );
@@ -268,14 +241,10 @@ class LoadBalancer implements ILoadBalancer {
 
 				$host = $this->getServerName( $i );
 				if ( $lag === false && !is_infinite( $maxServerLag ) ) {
-					$this->replLogger->error(
-						"Server {host} is not replicating?", [ 'host' => $host ] );
+					$this->replLogger->error( "Server $host (#$i) is not replicating?" );
 					unset( $loads[$i] );
 				} elseif ( $lag > $maxServerLag ) {
-					$this->replLogger->warning(
-						"Server {host} has {lag} seconds of lag (>= {maxlag})",
-						[ 'host' => $host, 'lag' => $lag, 'maxlag' => $maxServerLag ]
-					);
+					$this->replLogger->warning( "Server $host (#$i) has >= $lag seconds of lag" );
 					unset( $loads[$i] );
 				}
 			}
@@ -304,99 +273,60 @@ class LoadBalancer implements ILoadBalancer {
 
 	public function getReaderIndex( $group = false, $domain = false ) {
 		if ( count( $this->mServers ) == 1 ) {
-			// Skip the load balancing if there's only one server
+			# Skip the load balancing if there's only one server
 			return $this->getWriterIndex();
 		} elseif ( $group === false && $this->mReadIndex >= 0 ) {
-			// Shortcut if the generic reader index was already cached
+			# Shortcut if generic reader exists already
 			return $this->mReadIndex;
 		}
 
+		# Find the relevant load array
 		if ( $group !== false ) {
-			// Use the server weight array for this load group
 			if ( isset( $this->mGroupLoads[$group] ) ) {
-				$loads = $this->mGroupLoads[$group];
+				$nonErrorLoads = $this->mGroupLoads[$group];
 			} else {
-				// No loads for this group, return false and the caller can use some other group
+				# No loads for this group, return false and the caller can use some other group
 				$this->connLogger->info( __METHOD__ . ": no loads for group $group" );
 
 				return false;
 			}
 		} else {
-			// Use the generic load group
-			$loads = $this->mLoads;
+			$nonErrorLoads = $this->mLoads;
 		}
 
-		// Scale the configured load ratios according to each server's load and state
-		$this->getLoadMonitor()->scaleLoads( $loads, $domain );
-
-		// Pick a server to use, accounting for weights, load, lag, and mWaitForPos
-		list( $i, $laggedReplicaMode ) = $this->pickReaderIndex( $loads, $domain );
-		if ( $i === false ) {
-			// Replica DB connection unsuccessful
-			return false;
-		}
-
-		if ( $this->mWaitForPos && $i != $this->getWriterIndex() ) {
-			// Before any data queries are run, wait for the server to catch up to the
-			// specified position. This is used to improve session consistency. Note that
-			// when LoadBalancer::waitFor() sets mWaitForPos, the waiting triggers here,
-			// so update laggedReplicaMode as needed for consistency.
-			if ( !$this->doWait( $i ) ) {
-				$laggedReplicaMode = true;
-			}
-		}
-
-		if ( $this->mReadIndex <= 0 && $this->mLoads[$i] > 0 && $group === false ) {
-			// Cache the generic reader index for future ungrouped DB_REPLICA handles
-			$this->mReadIndex = $i;
-			// Record if the generic reader index is in "lagged replica DB" mode
-			if ( $laggedReplicaMode ) {
-				$this->laggedReplicaMode = true;
-			}
-		}
-
-		$serverName = $this->getServerName( $i );
-		$this->connLogger->debug( __METHOD__ . ": using server $serverName for group '$group'" );
-
-		return $i;
-	}
-
-	/**
-	 * @param array $loads List of server weights
-	 * @param string|bool $domain
-	 * @return array (reader index, lagged replica mode) or false on failure
-	 */
-	private function pickReaderIndex( array $loads, $domain = false ) {
-		if ( !count( $loads ) ) {
+		if ( !count( $nonErrorLoads ) ) {
 			throw new InvalidArgumentException( "Empty server array given to LoadBalancer" );
 		}
 
-		/** @var $i int|bool Index of selected server */
-		$i = false;
-		/** @var $laggedReplicaMode bool Whether server is considered lagged */
+		# Scale the configured load ratios according to the dynamic load if supported
+		$this->getLoadMonitor()->scaleLoads( $nonErrorLoads, $domain );
+
 		$laggedReplicaMode = false;
 
-		// Quickly look through the available servers for a server that meets criteria...
-		$currentLoads = $loads;
+		# No server found yet
+		$i = false;
+		# First try quickly looking through the available servers for a server that
+		# meets our criteria
+		$currentLoads = $nonErrorLoads;
 		while ( count( $currentLoads ) ) {
 			if ( $this->mAllowLagged || $laggedReplicaMode ) {
 				$i = ArrayUtils::pickRandom( $currentLoads );
 			} else {
 				$i = false;
 				if ( $this->mWaitForPos && $this->mWaitForPos->asOfTime() ) {
-					// ChronologyProtecter sets mWaitForPos for session consistency.
-					// This triggers doWait() after connect, so it's especially good to
-					// avoid lagged servers so as to avoid excessive delay in that method.
+					# ChronologyProtecter causes mWaitForPos to be set via sessions.
+					# This triggers doWait() after connect, so it's especially good to
+					# avoid lagged servers so as to avoid just blocking in that method.
 					$ago = microtime( true ) - $this->mWaitForPos->asOfTime();
-					// Aim for <= 1 second of waiting (being too picky can backfire)
+					# Aim for <= 1 second of waiting (being too picky can backfire)
 					$i = $this->getRandomNonLagged( $currentLoads, $domain, $ago + 1 );
 				}
 				if ( $i === false ) {
-					// Any server with less lag than it's 'max lag' param is preferable
+					# Any server with less lag than it's 'max lag' param is preferable
 					$i = $this->getRandomNonLagged( $currentLoads, $domain );
 				}
 				if ( $i === false && count( $currentLoads ) != 0 ) {
-					// All replica DBs lagged. Switch to read-only mode
+					# All replica DBs lagged. Switch to read-only mode
 					$this->replLogger->error( "All replica DBs lagged. Switch to read-only mode" );
 					$i = ArrayUtils::pickRandom( $currentLoads );
 					$laggedReplicaMode = true;
@@ -404,12 +334,12 @@ class LoadBalancer implements ILoadBalancer {
 			}
 
 			if ( $i === false ) {
-				// pickRandom() returned false.
-				// This is permanent and means the configuration or the load monitor
-				// wants us to return false.
+				# pickRandom() returned false
+				# This is permanent and means the configuration or the load monitor
+				# wants us to return false.
 				$this->connLogger->debug( __METHOD__ . ": pickRandom() returned false" );
 
-				return [ false, false ];
+				return false;
 			}
 
 			$serverName = $this->getServerName( $i );
@@ -418,7 +348,8 @@ class LoadBalancer implements ILoadBalancer {
 			$conn = $this->openConnection( $i, $domain );
 			if ( !$conn ) {
 				$this->connLogger->warning( __METHOD__ . ": Failed connecting to $i/$domain" );
-				unset( $currentLoads[$i] ); // avoid this server next iteration
+				unset( $nonErrorLoads[$i] );
+				unset( $currentLoads[$i] );
 				$i = false;
 				continue;
 			}
@@ -429,106 +360,86 @@ class LoadBalancer implements ILoadBalancer {
 				$this->reuseConnection( $conn );
 			}
 
-			// Return this server
+			# Return this server
 			break;
 		}
 
-		// If all servers were down, quit now
-		if ( !count( $currentLoads ) ) {
+		# If all servers were down, quit now
+		if ( !count( $nonErrorLoads ) ) {
 			$this->connLogger->error( "All servers down" );
 		}
 
-		return [ $i, $laggedReplicaMode ];
-	}
-
-	public function waitFor( $pos ) {
-		$oldPos = $this->mWaitForPos;
-		try {
-			$this->mWaitForPos = $pos;
-			// If a generic reader connection was already established, then wait now
-			$i = $this->mReadIndex;
-			if ( $i > 0 ) {
-				if ( !$this->doWait( $i ) ) {
+		if ( $i !== false ) {
+			# Replica DB connection successful.
+			# Wait for the session master pos for a short time.
+			if ( $this->mWaitForPos && $i > 0 ) {
+				$this->doWait( $i );
+			}
+			if ( $this->mReadIndex <= 0 && $this->mLoads[$i] > 0 && $group === false ) {
+				$this->mReadIndex = $i;
+				# Record if the generic reader index is in "lagged replica DB" mode
+				if ( $laggedReplicaMode ) {
 					$this->laggedReplicaMode = true;
 				}
 			}
-		} finally {
-			// Restore the older position if it was higher since this is used for lag-protection
-			$this->setWaitForPositionIfHigher( $oldPos );
+			$serverName = $this->getServerName( $i );
+			$this->connLogger->debug(
+				__METHOD__ . ": using server $serverName for group '$group'" );
+		}
+
+		return $i;
+	}
+
+	public function waitFor( $pos ) {
+		$this->mWaitForPos = $pos;
+		$i = $this->mReadIndex;
+
+		if ( $i > 0 ) {
+			if ( !$this->doWait( $i ) ) {
+				$this->laggedReplicaMode = true;
+			}
 		}
 	}
 
 	public function waitForOne( $pos, $timeout = null ) {
-		$oldPos = $this->mWaitForPos;
-		try {
-			$this->mWaitForPos = $pos;
+		$this->mWaitForPos = $pos;
 
-			$i = $this->mReadIndex;
-			if ( $i <= 0 ) {
-				// Pick a generic replica DB if there isn't one yet
-				$readLoads = $this->mLoads;
-				unset( $readLoads[$this->getWriterIndex()] ); // replica DBs only
-				$readLoads = array_filter( $readLoads ); // with non-zero load
-				$i = ArrayUtils::pickRandom( $readLoads );
-			}
+		$i = $this->mReadIndex;
+		if ( $i <= 0 ) {
+			// Pick a generic replica DB if there isn't one yet
+			$readLoads = $this->mLoads;
+			unset( $readLoads[$this->getWriterIndex()] ); // replica DBs only
+			$readLoads = array_filter( $readLoads ); // with non-zero load
+			$i = ArrayUtils::pickRandom( $readLoads );
+		}
 
-			if ( $i > 0 ) {
-				$ok = $this->doWait( $i, true, $timeout );
-			} else {
-				$ok = true; // no applicable loads
-			}
-		} finally {
-			# Restore the old position, as this is not used for lag-protection but for throttling
-			$this->mWaitForPos = $oldPos;
+		if ( $i > 0 ) {
+			$ok = $this->doWait( $i, true, $timeout );
+		} else {
+			$ok = true; // no applicable loads
 		}
 
 		return $ok;
 	}
 
 	public function waitForAll( $pos, $timeout = null ) {
-		$oldPos = $this->mWaitForPos;
-		try {
-			$this->mWaitForPos = $pos;
-			$serverCount = count( $this->mServers );
+		$this->mWaitForPos = $pos;
+		$serverCount = count( $this->mServers );
 
-			$ok = true;
-			for ( $i = 1; $i < $serverCount; $i++ ) {
-				if ( $this->mLoads[$i] > 0 ) {
-					$ok = $this->doWait( $i, true, $timeout ) && $ok;
-				}
+		$ok = true;
+		for ( $i = 1; $i < $serverCount; $i++ ) {
+			if ( $this->mLoads[$i] > 0 ) {
+				$ok = $this->doWait( $i, true, $timeout ) && $ok;
 			}
-		} finally {
-			# Restore the old position, as this is not used for lag-protection but for throttling
-			$this->mWaitForPos = $oldPos;
 		}
 
 		return $ok;
 	}
 
-	/**
-	 * @param DBMasterPos|bool $pos
-	 */
-	private function setWaitForPositionIfHigher( $pos ) {
-		if ( !$pos ) {
-			return;
-		}
-
-		if ( !$this->mWaitForPos || $pos->hasReached( $this->mWaitForPos ) ) {
-			$this->mWaitForPos = $pos;
-		}
-	}
-
-	/**
-	 * @param int $i
-	 * @return IDatabase|bool
-	 */
 	public function getAnyOpenConnection( $i ) {
 		foreach ( $this->mConns as $connsByServer ) {
 			if ( !empty( $connsByServer[$i] ) ) {
-				/** @var $serverConns IDatabase[] */
-				$serverConns = $connsByServer[$i];
-
-				return reset( $serverConns );
+				return reset( $connsByServer[$i] );
 			}
 		}
 
@@ -547,13 +458,10 @@ class LoadBalancer implements ILoadBalancer {
 
 		// Check if we already know that the DB has reached this point
 		$server = $this->getServerName( $index );
-		$key = $this->srvCache->makeGlobalKey( __CLASS__, 'last-known-pos', $server, 'v1' );
+		$key = $this->srvCache->makeGlobalKey( __CLASS__, 'last-known-pos', $server );
 		/** @var DBMasterPos $knownReachedPos */
 		$knownReachedPos = $this->srvCache->get( $key );
-		if (
-			$knownReachedPos instanceof DBMasterPos &&
-			$knownReachedPos->hasReached( $this->mWaitForPos )
-		) {
+		if ( $knownReachedPos && $knownReachedPos->hasReached( $this->mWaitForPos ) ) {
 			$this->replLogger->debug( __METHOD__ .
 				": replica DB $server known to be caught up (pos >= $knownReachedPos)." );
 			return true;
@@ -585,10 +493,8 @@ class LoadBalancer implements ILoadBalancer {
 
 		if ( $result == -1 || is_null( $result ) ) {
 			// Timed out waiting for replica DB, use master instead
-			$this->replLogger->warning(
-				__METHOD__ . ": Timed out waiting on {host} pos {$this->mWaitForPos}",
-				[ 'host' => $server ]
-			);
+			$msg = __METHOD__ . ": Timed out waiting on $server pos {$this->mWaitForPos}";
+			$this->replLogger->warning( "$msg" );
 			$ok = false;
 		} else {
 			$this->replLogger->info( __METHOD__ . ": Done" );
@@ -744,12 +650,6 @@ class LoadBalancer implements ILoadBalancer {
 		return new DBConnRef( $this, [ $db, $groups, $domain ] );
 	}
 
-	public function getMaintenanceConnectionRef( $db, $groups = [], $domain = false ) {
-		$domain = ( $domain !== false ) ? $domain : $this->localDomain;
-
-		return new MaintainableDBConnRef( $this, $this->getConnection( $db, $groups, $domain ) );
-	}
-
 	/**
 	 * @see ILoadBalancer::openConnection()
 	 *
@@ -761,13 +661,6 @@ class LoadBalancer implements ILoadBalancer {
 	public function openConnection( $i, $domain = false ) {
 		if ( $this->localDomain->equals( $domain ) || $domain === $this->localDomainIdAlias ) {
 			$domain = false; // local connection requested
-		}
-
-		if ( !$this->chronProtInitialized && $this->chronProt ) {
-			$this->connLogger->debug( __METHOD__ . ': calling initLB() before first connection.' );
-			// Load CP positions before connecting so that doWait() triggers later if needed
-			$this->chronProtInitialized = true;
-			$this->chronProt->initLB( $this );
 		}
 
 		if ( $domain !== false ) {
@@ -788,17 +681,17 @@ class LoadBalancer implements ILoadBalancer {
 				$this->mConns['local'][$i][0] = $conn;
 			} else {
 				$this->connLogger->warning( "Failed to connect to database $i at '$serverName'." );
-				$this->errorConnection = $conn;
+				$this->mErrorConnection = $conn;
 				$conn = false;
 			}
 		}
 
-		if ( $conn instanceof IDatabase && !$conn->isOpen() ) {
+		if ( $conn && !$conn->isOpen() ) {
 			// Connection was made but later unrecoverably lost for some reason.
 			// Do not return a handle that will just throw exceptions on use,
 			// but let the calling code (e.g. getReaderIndex) try another server.
 			// See DatabaseMyslBase::ping() for how this can happen.
-			$this->errorConnection = $conn;
+			$this->mErrorConnection = $conn;
 			$conn = false;
 		}
 
@@ -817,7 +710,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * it has been freed first with reuseConnection().
 	 *
 	 * On error, returns false, and the connection which caused the
-	 * error will be available via $this->errorConnection.
+	 * error will be available via $this->mErrorConnection.
 	 *
 	 * @note If disable() was called on this LoadBalancer, this method will throw a DBAccessError.
 	 *
@@ -849,7 +742,7 @@ class LoadBalancer implements ILoadBalancer {
 			if ( strlen( $dbName ) && !$conn->selectDB( $dbName ) ) {
 				$this->mLastError = "Error selecting database '$dbName' on server " .
 					$conn->getServer() . " from client host {$this->host}";
-				$this->errorConnection = $conn;
+				$this->mErrorConnection = $conn;
 				$conn = false;
 			} else {
 				$conn->tablePrefix( $prefix );
@@ -870,7 +763,7 @@ class LoadBalancer implements ILoadBalancer {
 			$conn = $this->reallyOpenConnection( $server, $dbName );
 			if ( !$conn->isOpen() ) {
 				$this->connLogger->warning( __METHOD__ . ": connection error for $i/$domain" );
-				$this->errorConnection = $conn;
+				$this->mErrorConnection = $conn;
 				$conn = false;
 			} else {
 				$conn->tablePrefix( $prefix );
@@ -880,7 +773,7 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		// Increment reference count
-		if ( $conn instanceof IDatabase ) {
+		if ( $conn ) {
 			$refCount = $conn->getLBInfo( 'foreignPoolRefCount' );
 			$conn->setLBInfo( 'foreignPoolRefCount', $refCount + 1 );
 		}
@@ -978,22 +871,13 @@ class LoadBalancer implements ILoadBalancer {
 	 * @throws DBConnectionError
 	 */
 	private function reportConnectionError() {
-		$conn = $this->errorConnection; // the connection which caused the error
+		$conn = $this->mErrorConnection; // the connection which caused the error
 		$context = [
 			'method' => __METHOD__,
 			'last_error' => $this->mLastError,
 		];
 
-		if ( $conn instanceof IDatabase ) {
-			$context['db_server'] = $conn->getServer();
-			$this->connLogger->warning(
-				"Connection error: {last_error} ({db_server})",
-				$context
-			);
-
-			// throws DBConnectionError
-			$conn->reportConnectionError( "{$this->mLastError} ({$context['db_server']})" );
-		} else {
+		if ( !is_object( $conn ) ) {
 			// No last connection, probably due to all servers being too busy
 			$this->connLogger->error(
 				"LB failure with no last connection. Connection error: {last_error}",
@@ -1002,6 +886,15 @@ class LoadBalancer implements ILoadBalancer {
 
 			// If all servers were busy, mLastError will contain something sensible
 			throw new DBConnectionError( null, $this->mLastError );
+		} else {
+			$context['db_server'] = $conn->getServer();
+			$this->connLogger->warning(
+				"Connection error: {last_error} ({db_server})",
+				$context
+			);
+
+			// throws DBConnectionError
+			$conn->reportConnectionError( "{$this->mLastError} ({$context['db_server']})" );
 		}
 	}
 
@@ -1421,7 +1314,7 @@ class LoadBalancer implements ILoadBalancer {
 
 	/**
 	 * @param string $domain Domain ID, or false for the current domain
-	 * @param IDatabase|null $conn DB master connectionl used to avoid loops [optional]
+	 * @param IDatabase|null DB master connectionl used to avoid loops [optional]
 	 * @return bool
 	 */
 	private function masterRunningReadOnly( $domain, IDatabase $conn = null ) {
@@ -1554,12 +1447,6 @@ class LoadBalancer implements ILoadBalancer {
 		}
 	}
 
-	/**
-	 * @param IDatabase $conn
-	 * @param DBMasterPos|bool $pos
-	 * @param int $timeout
-	 * @return bool
-	 */
 	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = 10 ) {
 		if ( $this->getServerCount() <= 1 || !$conn->getLBInfo( 'replica' ) ) {
 			return true; // server is not a replica DB
@@ -1642,7 +1529,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @return ScopedCallback|null
 	 */
 	final protected function getScopedPHPBehaviorForCommit() {
-		if ( PHP_SAPI != 'cli' ) { // https://bugs.php.net/bug.php?id=47540
+		if ( PHP_SAPI != 'cli' ) { // http://bugs.php.net/bug.php?id=47540
 			$old = ignore_user_abort( true ); // avoid half-finished operations
 			return new ScopedCallback( function () use ( $old ) {
 				ignore_user_abort( $old );
@@ -1657,5 +1544,3 @@ class LoadBalancer implements ILoadBalancer {
 		$this->disable();
 	}
 }
-
-class_alias( LoadBalancer::class, 'LoadBalancer' );

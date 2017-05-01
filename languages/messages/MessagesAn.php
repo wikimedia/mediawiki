@@ -119,3 +119,4 @@ $specialPageAliases = [
 	'Wantedtemplates'           => [ 'Plantillas_requiestas', 'Plantillas_demandatas' ],
 	'Watchlist'                 => [ 'Lista_de_seguimiento' ],
 ];
+

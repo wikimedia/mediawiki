@@ -119,3 +119,4 @@ $specialPageAliases = [
 	'Watchlist'                 => [ 'Maangalizi' ],
 	'Whatlinkshere'             => [ 'VingoViungavyoUkurasahuu' ],
 ];
+

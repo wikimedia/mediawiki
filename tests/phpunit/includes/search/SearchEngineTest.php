@@ -164,8 +164,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		/**
 		 * @var $mockEngine SearchEngine
 		 */
-		$mockEngine = $this->getMockBuilder( 'SearchEngine' )
-			->setMethods( [ 'makeSearchFieldMapping' ] )->getMock();
+		$mockEngine = $this->getMock( 'SearchEngine', [ 'makeSearchFieldMapping' ] );
 
 		$mockFieldBuilder = function ( $name, $type ) {
 			$mockField =
@@ -231,7 +230,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	}
 
 	public function addAugmentors( &$setAugmentors, &$rowAugmentors ) {
-		$setAugmentor = $this->createMock( 'ResultSetAugmentor' );
+		$setAugmentor = $this->getMock( 'ResultSetAugmentor' );
 		$setAugmentor->expects( $this->once() )
 			->method( 'augmentAll' )
 			->willReturnCallback( function ( SearchResultSet $resultSet ) {
@@ -245,7 +244,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			} );
 		$setAugmentors['testSet'] = $setAugmentor;
 
-		$rowAugmentor = $this->createMock( 'ResultAugmentor' );
+		$rowAugmentor = $this->getMock( 'ResultAugmentor' );
 		$rowAugmentor->expects( $this->exactly( 2 ) )
 			->method( 'augment' )
 			->willReturnCallback( function ( SearchResult $result ) {

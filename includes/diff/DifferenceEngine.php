@@ -20,7 +20,6 @@
  * @file
  * @ingroup DifferenceEngine
  */
-use MediaWiki\MediaWikiServices;
 
 /** @deprecated use class constant instead */
 define( 'MW_DIFF_VERSION', '1.11a' );
@@ -83,7 +82,7 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Set this to true to add debug info to the HTML output.
 	 * Warning: this may cause RSS readers to spuriously mark articles as "new"
-	 * (T22601)
+	 * (bug 20601)
 	 */
 	public $enableDebugComment = false;
 
@@ -211,7 +210,7 @@ class DifferenceEngine extends ContextSource {
 		if ( $link ) {
 			return "[$link $id]";
 		} else {
-			return (string)$id;
+			return $id;
 		}
 	}
 
@@ -248,9 +247,8 @@ class DifferenceEngine extends ContextSource {
 		Hooks::run( 'DifferenceEngineShowDiffPage', [ $out ] );
 
 		if ( !$this->loadRevisionData() ) {
-			if ( Hooks::run( 'DifferenceEngineShowDiffPageMaybeShowMissingRevision', [ $this ] ) ) {
-				$this->showMissingRevision();
-			}
+			$this->showMissingRevision();
+
 			return;
 		}
 
@@ -483,7 +481,7 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @return string HTML or empty string
 	 */
-	public function markPatrolledLink() {
+	protected function markPatrolledLink() {
 		if ( $this->mMarkPatrolledLink === null ) {
 			$linkInfo = $this->getMarkPatrolledLinkInfo();
 			// If false, there is no patrol link needed/allowed
@@ -498,11 +496,12 @@ class DifferenceEngine extends ContextSource {
 						[
 							'action' => 'markpatrolled',
 							'rcid' => $linkInfo['rcid'],
+							'token' => $linkInfo['token'],
 						]
 					) . ']</span>';
 				// Allow extensions to change the markpatrolled link
 				Hooks::run( 'DifferenceEngineMarkPatrolledLink', [ $this,
-					&$this->mMarkPatrolledLink, $linkInfo['rcid'] ] );
+					&$this->mMarkPatrolledLink, $linkInfo['rcid'], $linkInfo['token'] ] );
 			}
 		}
 		return $this->mMarkPatrolledLink;
@@ -512,7 +511,7 @@ class DifferenceEngine extends ContextSource {
 	 * Returns an array of meta data needed to build a "mark as patrolled" link and
 	 * adds the mediawiki.page.patrol.ajax to the output.
 	 *
-	 * @return array|false An array of meta data for a patrol link (rcid only)
+	 * @return array|false An array of meta data for a patrol link (rcid & token)
 	 *  or false if no link is needed
 	 */
 	protected function getMarkPatrolledLinkInfo() {
@@ -562,8 +561,10 @@ class DifferenceEngine extends ContextSource {
 					$this->getOutput()->addModules( 'mediawiki.page.patrol.ajax' );
 				}
 
+				$token = $user->getEditToken( $rcid );
 				return [
 					'rcid' => $rcid,
+					'token' => $token,
 				];
 			}
 		}
@@ -603,7 +604,28 @@ class DifferenceEngine extends ContextSource {
 			$out->setRevisionTimestamp( $this->mNewRev->getTimestamp() );
 			$out->setArticleFlag( true );
 
-			if ( !Hooks::run( 'ArticleContentViewCustom', [ $this->mNewContent, $this->mNewPage, $out ] ) ) {
+			// NOTE: only needed for B/C: custom rendering of JS/CSS via hook
+			if ( $this->mNewPage->isCssJsSubpage() || $this->mNewPage->isCssOrJsPage() ) {
+				// This needs to be synchronised with Article::showCssOrJsPage(), which sucks
+				// Give hooks a chance to customise the output
+				// @todo standardize this crap into one function
+				if ( ContentHandler::runLegacyHooks( 'ShowRawCssJs', [ $this->mNewContent, $this->mNewPage, $out ], '1.24' ) ) {
+					// NOTE: deprecated hook, B/C only
+					// use the content object's own rendering
+					$cnt = $this->mNewRev->getContent();
+					$po = $cnt ? $cnt->getParserOutput( $this->mNewRev->getTitle(), $this->mNewRev->getId() ) : null;
+					if ( $po ) {
+						$out->addParserOutputContent( $po );
+					}
+				}
+			} elseif ( !Hooks::run( 'ArticleContentViewCustom', [ $this->mNewContent, $this->mNewPage, $out ] ) ) {
+				// Handled by extension
+			} elseif ( !ContentHandler::runLegacyHooks(
+				'ArticleViewCustom',
+				[ $this->mNewContent, $this->mNewPage, $out ],
+				'1.21'
+			) ) {
+				// NOTE: deprecated hook, B/C only
 				// Handled by extension
 			} else {
 				// Normal page
@@ -763,11 +785,8 @@ class DifferenceEngine extends ContextSource {
 
 		$difftext = $this->generateContentDiffBody( $this->mOldContent, $this->mNewContent );
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$diffEngine = $this;
-
 		// Save to cache for 7 days
-		if ( !Hooks::run( 'AbortDiffCache', [ &$diffEngine ] ) ) {
+		if ( !Hooks::run( 'AbortDiffCache', [ &$this ] ) ) {
 			wfIncrStats( 'diff_cache.uncacheable' );
 		} elseif ( $key !== false && $difftext !== false ) {
 			wfIncrStats( 'diff_cache.miss' );
@@ -853,7 +872,7 @@ class DifferenceEngine extends ContextSource {
 			$result = $this->textDiff( $otext, $ntext );
 
 			$time = intval( ( microtime( true ) - $time ) * 1000 );
-			MediaWikiServices::getInstance()->getStatsdDataFactory()->timing( 'diff_time', $time );
+			$this->getStats()->timing( 'diff_time', $time );
 			// Log requests slower than 99th percentile
 			if ( $time > 100 && $this->mOldPage && $this->mNewPage ) {
 				wfDebugLog( 'diff',
@@ -863,10 +882,6 @@ class DifferenceEngine extends ContextSource {
 			return $result;
 		};
 
-		/**
-		 * @param Status $status
-		 * @throws FatalError
-		 */
 		$error = function( $status ) {
 			throw new FatalError( $status->getWikiText() );
 		};
@@ -986,7 +1001,7 @@ class DifferenceEngine extends ContextSource {
 	public function localiseLineNumbers( $text ) {
 		return preg_replace_callback(
 			'/<!--LINE (\d+)-->/',
-			[ $this, 'localiseLineNumbersCb' ],
+			[ &$this, 'localiseLineNumbersCb' ],
 			$text
 		);
 	}
@@ -1069,7 +1084,7 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @return string HTML fragment
 	 */
-	public function getRevisionHeader( Revision $rev, $complete = '' ) {
+	protected function getRevisionHeader( Revision $rev, $complete = '' ) {
 		$lang = $this->getLanguage();
 		$user = $this->getUser();
 		$revtimestamp = $rev->getTimestamp();
@@ -1374,7 +1389,6 @@ class DifferenceEngine extends ContextSource {
 
 		if ( $this->mNewRev ) {
 			$this->mNewContent = $this->mNewRev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
-			Hooks::run( 'DifferenceEngineLoadTextAfterNewContentIsLoaded', [ $this ] );
 			if ( $this->mNewContent === null ) {
 				return false;
 			}
@@ -1400,8 +1414,6 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		$this->mNewContent = $this->mNewRev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
-
-		Hooks::run( 'DifferenceEngineAfterLoadNewText', [ $this ] );
 
 		return true;
 	}

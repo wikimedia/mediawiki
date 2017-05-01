@@ -1,18 +1,18 @@
 /*!
- * OOjs v2.0.0 optimised for jQuery
+ * OOjs v1.1.10 optimised for jQuery
  * https://www.mediawiki.org/wiki/OOjs
  *
- * Copyright 2011-2017 OOjs Team and other contributors.
+ * Copyright 2011-2015 OOjs Team and other contributors.
  * Released under the MIT license
- * https://oojs.mit-license.org
+ * http://oojs.mit-license.org
  *
- * Date: 2017-04-05T02:18:04Z
+ * Date: 2015-11-11T16:49:11Z
  */
 ( function ( global ) {
 
 'use strict';
 
-/* exported toString */
+/*exported toString */
 var
 	/**
 	 * Namespace for all classes, static methods and static properties.
@@ -22,7 +22,21 @@ var
 	oo = {},
 	// Optimisation: Local reference to Object.prototype.hasOwnProperty
 	hasOwn = oo.hasOwnProperty,
-	toString = oo.toString;
+	toString = oo.toString,
+	// Object.create() is impossible to fully polyfill, so don't require it
+	createObject = Object.create || ( function () {
+		// Reusable constructor function
+		function Empty() {}
+		return function ( prototype, properties ) {
+			var obj;
+			Empty.prototype = prototype;
+			obj = new Empty();
+			if ( properties && hasOwn.call( properties, 'constructor' ) ) {
+				obj.constructor = properties.constructor.value;
+			}
+			return obj;
+		};
+	} )();
 
 /* Class Methods */
 
@@ -78,11 +92,8 @@ oo.initClass = function ( fn ) {
 oo.inheritClass = function ( targetFn, originFn ) {
 	var targetConstructor;
 
-	if ( !originFn ) {
-		throw new Error( 'inheritClass: Origin is not a function (actually ' + originFn + ')' );
-	}
 	if ( targetFn.prototype instanceof originFn ) {
-		throw new Error( 'inheritClass: Target already inherits from origin' );
+		throw new Error( 'Target already inherits from origin' );
 	}
 
 	targetConstructor = targetFn.prototype.constructor;
@@ -91,10 +102,9 @@ oo.inheritClass = function ( targetFn, originFn ) {
 	// by IE 8 and below (bug 63303).
 	// Provide .parent as alias for code supporting older browsers which
 	// allows people to comply with their style guide.
-	// eslint-disable-next-line dot-notation
 	targetFn[ 'super' ] = targetFn.parent = originFn;
 
-	targetFn.prototype = Object.create( originFn.prototype, {
+	targetFn.prototype = createObject( originFn.prototype, {
 		// Restore constructor property of targetFn
 		constructor: {
 			value: targetConstructor,
@@ -106,7 +116,7 @@ oo.inheritClass = function ( targetFn, originFn ) {
 
 	// Extend static properties - always initialize both sides
 	oo.initClass( originFn );
-	targetFn.static = Object.create( originFn.static );
+	targetFn.static = createObject( originFn.static );
 };
 
 /**
@@ -143,10 +153,6 @@ oo.inheritClass = function ( targetFn, originFn ) {
 oo.mixinClass = function ( targetFn, originFn ) {
 	var key;
 
-	if ( !originFn ) {
-		throw new Error( 'mixinClass: Origin is not a function (actually ' + originFn + ')' );
-	}
-
 	// Copy prototype properties
 	for ( key in originFn.prototype ) {
 		if ( key !== 'constructor' && hasOwn.call( originFn.prototype, key ) ) {
@@ -167,26 +173,13 @@ oo.mixinClass = function ( targetFn, originFn ) {
 	}
 };
 
-/**
- * Test whether one class is a subclass of another, without instantiating it.
- *
- * Every class is considered a subclass of Object and of itself.
- *
- * @param {Function} testFn The class to be tested
- * @param {Function} baseFn The base class
- * @return {boolean} Whether testFn is a subclass of baseFn (or equal to it)
- */
-oo.isSubclass = function ( testFn, baseFn ) {
-	return testFn === baseFn || testFn.prototype instanceof baseFn;
-};
-
 /* Object Methods */
 
 /**
  * Get a deeply nested property of an object using variadic arguments, protecting against
  * undefined property errors.
  *
- * `quux = OO.getProp( obj, 'foo', 'bar', 'baz' );` is equivalent to `quux = obj.foo.bar.baz;`
+ * `quux = oo.getProp( obj, 'foo', 'bar', 'baz' );` is equivalent to `quux = obj.foo.bar.baz;`
  * except that the former protects against JS errors if one of the intermediate properties
  * is undefined. Instead of throwing an error, this function will return undefined in
  * that case.
@@ -225,7 +218,7 @@ oo.getProp = function ( obj ) {
 oo.setProp = function ( obj ) {
 	var i,
 		prop = obj;
-	if ( Object( obj ) !== obj || arguments.length < 2 ) {
+	if ( Object( obj ) !== obj ) {
 		return;
 	}
 	for ( i = 1; i < arguments.length - 2; i++ ) {
@@ -238,34 +231,6 @@ oo.setProp = function ( obj ) {
 		prop = prop[ arguments[ i ] ];
 	}
 	prop[ arguments[ arguments.length - 2 ] ] = arguments[ arguments.length - 1 ];
-};
-
-/**
- * Delete a deeply nested property of an object using variadic arguments, protecting against
- * undefined property errors, and deleting resulting empty objects.
- *
- * @param {Object} obj
- * @param {...Mixed} [keys]
- */
-oo.deleteProp = function ( obj ) {
-	var i,
-		prop = obj,
-		props = [ prop ];
-	if ( Object( obj ) !== obj || arguments.length < 2 ) {
-		return;
-	}
-	for ( i = 1; i < arguments.length - 1; i++ ) {
-		if ( prop[ arguments[ i ] ] === undefined || Object( prop[ arguments[ i ] ] ) !== prop[ arguments[ i ] ] ) {
-			return;
-		}
-		prop = prop[ arguments[ i ] ];
-		props.push( prop );
-	}
-	delete prop[ arguments[ i ] ];
-	// Walk back through props removing any plain empty objects
-	while ( ( prop = props.pop() ) && oo.isPlainObject( prop ) && !Object.keys( prop ).length ) {
-		delete props[ props.length - 1 ][ arguments[ props.length ] ];
-	}
 };
 
 /**
@@ -293,7 +258,7 @@ oo.deleteProp = function ( obj ) {
 oo.cloneObject = function ( origin ) {
 	var key, r;
 
-	r = Object.create( origin.constructor.prototype );
+	r = createObject( origin.constructor.prototype );
 
 	for ( key in origin ) {
 		if ( hasOwn.call( origin, key ) ) {
@@ -349,7 +314,7 @@ oo.binarySearch = function ( arr, searchFunc, forInsertion ) {
 		right = arr.length;
 	while ( left < right ) {
 		// Equivalent to Math.floor( ( left + right ) / 2 ) but much faster
-		// eslint-disable-next-line no-bitwise
+		/*jshint bitwise:false */
 		mid = ( left + right ) >> 1;
 		cmpResult = searchFunc( arr[ mid ] );
 		if ( cmpResult < 0 ) {
@@ -514,9 +479,10 @@ oo.getHash.keySortReplacer = function ( key, val ) {
 			normalized[ keys[ i ] ] = val[ keys[ i ] ];
 		}
 		return normalized;
+
+	// Primitive values and arrays get stable hashes
+	// by default. Lets those be stringified as-is.
 	} else {
-		// Primitive values and arrays get stable hashes
-		// by default. Lets those be stringified as-is.
 		return val;
 	}
 };
@@ -626,11 +592,11 @@ oo.simpleArrayDifference = function ( a, b ) {
 	return simpleArrayCombine( a, b, false );
 };
 
-/* global $ */
+/*global $ */
 
 oo.isPlainObject = $.isPlainObject;
 
-/* global hasOwn */
+/*global hasOwn */
 
 ( function () {
 
@@ -1125,18 +1091,7 @@ oo.isPlainObject = $.isPlainObject;
 	 * Don't call this directly unless you know what you're doing.
 	 * Use #addItems instead.
 	 *
-	 * This method can be extended in child classes to produce
-	 * different behavior when an item is inserted. For example,
-	 * inserted items may also be attached to the DOM or may
-	 * interact with some other nodes in certain ways. Extending
-	 * this method is allowed, but if overriden, the aggregation
-	 * of events must be preserved, or behavior of emitted events
-	 * will be broken.
-	 *
-	 * If you are extending this method, please make sure the
-	 * parent method is called.
-	 *
-	 * @protected
+	 * @private
 	 * @param {OO.EventEmitter} item Items to add
 	 * @param {number} index Index to add items at
 	 * @return {number} The index the item was added at
@@ -1342,7 +1297,7 @@ oo.SortedEmitterList.prototype.addItems = function ( items ) {
 
 		// Insert item at the insertion index
 		index = this.insertItem( items[ i ], insertionIndex );
-		this.emit( 'add', items[ i ], index );
+		this.emit( 'add', items[ i ], insertionIndex );
 	}
 
 	return this;
@@ -1370,7 +1325,7 @@ oo.SortedEmitterList.prototype.findInsertionIndex = function ( item ) {
 
 };
 
-/* global hasOwn */
+/*global hasOwn */
 
 /**
  * @class OO.Registry
@@ -1466,6 +1421,8 @@ oo.Registry.prototype.lookup = function ( name ) {
 	}
 };
 
+/*global createObject */
+
 /**
  * @class OO.Factory
  * @extends OO.Registry
@@ -1474,7 +1431,7 @@ oo.Registry.prototype.lookup = function ( name ) {
  */
 oo.Factory = function OoFactory() {
 	// Parent constructor
-	oo.Factory.super.call( this );
+	oo.Factory.parent.call( this );
 };
 
 /* Inheritance */
@@ -1511,7 +1468,7 @@ oo.Factory.prototype.register = function ( constructor ) {
 	}
 
 	// Parent method
-	oo.Factory.super.prototype.register.call( this, name, constructor );
+	oo.Factory.parent.prototype.register.call( this, name, constructor );
 };
 
 /**
@@ -1533,7 +1490,7 @@ oo.Factory.prototype.unregister = function ( constructor ) {
 	}
 
 	// Parent method
-	oo.Factory.super.prototype.unregister.call( this, name );
+	oo.Factory.parent.prototype.unregister.call( this, name );
 };
 
 /**
@@ -1566,12 +1523,12 @@ oo.Factory.prototype.create = function ( name ) {
 	// the constructor's prototype (which also makes it an "instanceof" the constructor),
 	// then invoke the constructor with the object as context, and return it (ignoring
 	// the constructor's return value).
-	obj = Object.create( constructor.prototype );
+	obj = createObject( constructor.prototype );
 	constructor.apply( obj, args );
 	return obj;
 };
 
-/* eslint-env node */
+/*jshint node:true */
 if ( typeof module !== 'undefined' && module.exports ) {
 	module.exports = oo;
 } else {

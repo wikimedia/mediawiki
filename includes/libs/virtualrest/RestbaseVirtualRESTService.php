@@ -78,6 +78,7 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 	}
 
 	public function onRequests( array $reqs, Closure $idGenFunc ) {
+
 		if ( $this->params['parsoidCompat'] ) {
 			return $this->onParsoidRequests( $reqs, $idGenFunc );
 		}
@@ -116,6 +117,7 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 	 * Remaps Parsoid v1/v3 requests to RESTBase v1 requests.
 	 */
 	public function onParsoidRequests( array $reqs, Closure $idGeneratorFunc ) {
+
 		$result = [];
 		foreach ( $reqs as $key => $req ) {
 			$version = explode( '/', $req['url'] )[1];
@@ -129,6 +131,7 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 		}
 
 		return $result;
+
 	}
 
 	/**
@@ -220,6 +223,7 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 		}
 
 		return $req;
+
 	}
 
 	/**
@@ -237,6 +241,7 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 	 *   * $revision is optional
 	 */
 	public function onParsoid3Request( array $req, Closure $idGeneratorFunc ) {
+
 		$parts = explode( '/', $req['url'] );
 		list(
 			$targetWiki, // 'local'
@@ -267,6 +272,7 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 		}
 
 		return $req;
+
 	}
 
 }

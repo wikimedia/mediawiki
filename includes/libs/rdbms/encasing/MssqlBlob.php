@@ -1,13 +1,5 @@
 <?php
-
-namespace Wikimedia\Rdbms;
-
 class MssqlBlob extends Blob {
-	/** @noinspection PhpMissingParentConstructorInspection */
-
-	/**
-	 * @param string $data
-	 */
 	public function __construct( $data ) {
 		if ( $data instanceof MssqlBlob ) {
 			return $data;

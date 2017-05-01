@@ -120,7 +120,7 @@ $dateFormats = [
 
 $fallback8bitEncoding = 'iso-8859-2';
 $separatorTransformTable = [
-	',' => "\xc2\xa0", // T4749
+	',' => "\xc2\xa0", // @bug 2749
 	'.' => ','
 ];
 
@@ -317,3 +317,4 @@ $magicWords = [
 	'pagesincategory_pages'     => [ '0', 'strony', 'pages' ],
 	'pagesincategory_files'     => [ '0', 'pliki', 'files' ],
 ];
+

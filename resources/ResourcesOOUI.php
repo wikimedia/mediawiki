@@ -65,6 +65,7 @@ return call_user_func( function () {
 		],
 		'skinScripts' => $getSkinSpecific( null, 'js' ),
 		'dependencies' => [
+			'es5-shim',
 			'oojs',
 			'oojs-ui-core.styles',
 			'oojs-ui.styles.icons',

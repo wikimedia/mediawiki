@@ -14,7 +14,7 @@
 	"config-localsettings-upgrade": "Otkrivena je datoteka <code>LocalSettings.php</code>.\nDa biste unaprijedili vaš softver, molimo vas upišite vrijednost od <code>$wgUpgradeKey</code> u okvir ispod.\nNaći ćete ga u <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "Datoteka <code>LocalSettings.php</code> file je otkrivena.\nZa nadogradnju ove instalacije, molimo da pokrenete <code>update.php</code> umjesto toga",
 	"config-localsettings-key": "Ključ za nadgradnju:",
-	"config-localsettings-badkey": "Ključ za nadogradnju koji ste naveli je pogrešan.",
+	"config-localsettings-badkey": "Ključ koji ste dali je pogrešan.",
 	"config-upgrade-key-missing": "Postojeća instalacije MediaWiki je pronađena.\nZa nadogradnju ove instalacije, molimo da stavite sljedeće liniju na dno vašeg <code>LocalSettings.php</code>:\n\n$1",
 	"config-localsettings-incomplete": "Postojeći <code>LocalSettings.php</code> se čini da je nepotpun.\nVarijabla $1 nije podešena.\nMolimo da zamjenite <code>LocalSettings.php</code> tako da je varijabla podešena, i kliknite \"{{int:Config-continue}}\".",
 	"config-session-error": "Greška pri pokretanju sesije: $1",
@@ -44,7 +44,6 @@
 	"config-restart": "Da, pokreni ponovo",
 	"config-sidebar": "* [https://www.mediawiki.org MediaWiki Početna strana]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Vodič za korisnike]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Vodič za administratore]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ NPP]\n----\n* <doclink href=Readme>Pročitaj me</doclink>\n* <doclink href=ReleaseNotes>Napomene izdanja</doclink>\n* <doclink href=Copying>Kopiranje</doclink>\n* <doclink href=UpgradeDoc>Poboljšavanje</doclink>",
 	"config-env-good": "Okruženje je provjereno.\nMožete instalirati MediaWiki.",
-	"config-env-bad": "Okruženje je provjereno.\nNe možete instalirati MediaWiki.",
 	"config-env-php": "PHP $1 je instaliran.",
 	"config-env-hhvm": "HHVM $1 je instaliran.",
 	"config-no-db": "Nije mogao biti pronađen pogodan driver za bazu podataka! Morate instalirati driver baze podataka za PHP.\nSljedeće vrste baza podataka {{PLURAL:$2|type is|types are}}su podržane: $1.\n\nAko se sami kompajlirali PHP, podesite ga sa omogućenim klijentom baze podataka, koristeći naprimjer, <code>./configure --with-mysqli</code>.\nAko ste instalirali PHP iz Debian ili Ubuntu paketa, tada morate instalirati, naprimjer, i paket <code>php5-mysql</code>.",
@@ -89,6 +88,6 @@
 	"config-install-tables": "Kreiranje tabela",
 	"config-help": "pomoć",
 	"config-help-tooltip": "klikni za proširenje",
-	"mainpagetext": "<strong>MediaWiki je instaliran.</strong>",
-	"mainpagedocfooter": "Pogledajte [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents korisnički vodič] za uputstva o upotrebi wiki softvera.\n\n== Prvi koraci ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Spisak postavki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Često postavljana pitanja o MediaWikiju]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Dopisna lista o izdanjima MediaWikija]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokalizirajte MediaWiki za svoj jezik]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Naučite kako se boriti protiv neželjenog sadržaja na svom wikiju]"
+	"mainpagetext": "'''MediaWiki softver je uspješno instaliran.'''",
+	"mainpagedocfooter": "Kontaktirajte [https://meta.wikimedia.org/wiki/Help:Sadržaj uputstva za korisnike] za informacije o upotrebi wiki programa.\n\n== Početak ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista postavki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki najčešće postavljana pitanja]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista E-Mail adresa MediaWiki]"
 }

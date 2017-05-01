@@ -1,7 +1,4 @@
 <?php
-
-use Wikimedia\TestingAccessWrapper;
-
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,12 +45,9 @@ class ContentHandlerSanityTest extends MediaWikiTestCase {
 		$handlerClass = get_class( $handler );
 		$contentClass = get_class( $content );
 
-		if ( $handler->supportsDirectEditing() ) {
-			$this->assertTrue(
-				$content->isValid(),
-				"$handlerClass::makeEmptyContent() did not return a valid content ($contentClass::isValid())"
-			);
-		}
+		$this->assertTrue(
+			$content->isValid(),
+			"$handlerClass::makeEmptyContent() did not return a valid content ($contentClass::isValid())"
+		);
 	}
-
 }

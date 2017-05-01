@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 class ConfigFactoryTest extends MediaWikiTestCase {
 
 	/**
@@ -142,7 +140,7 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 	public function testGetDefaultInstance() {
 		// NOTE: the global config factory returned here has been overwritten
 		// for operation in test mode. It may not reflect LocalSettings.
-		$factory = MediaWikiServices::getInstance()->getConfigFactory();
+		$factory = ConfigFactory::getDefaultInstance();
 		$this->assertInstanceOf( 'Config', $factory->makeConfig( 'main' ) );
 	}
 

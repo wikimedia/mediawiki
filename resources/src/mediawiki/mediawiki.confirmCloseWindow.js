@@ -1,5 +1,9 @@
+/* jshint devel: true */
 ( function ( mw, $ ) {
 	/**
+	 * @method confirmCloseWindow
+	 * @member mw
+	 *
 	 * Prevent the closing of a window with a confirm message (the onbeforeunload event seems to
 	 * work in most browsers.)
 	 *
@@ -21,8 +25,6 @@
 	 *         // do whatever you wanted to do
 	 *     }
 	 *
-	 * @method confirmCloseWindow
-	 * @member mw
 	 * @param {Object} [options]
 	 * @param {string} [options.namespace] Namespace for the event registration
 	 * @param {string} [options.message]
@@ -107,4 +109,4 @@
 			}
 		};
 	};
-}( mediaWiki, jQuery ) );
+} )( mediaWiki, jQuery );

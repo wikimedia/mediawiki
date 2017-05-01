@@ -83,7 +83,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 			$showme = $from;
 		}
 
-		// T29864: if transcluded, show all pages instead of the form.
+		// Bug 27864: if transcluded, show all pages instead of the form.
 		if ( $this->including() || $showme != '' || $ns !== null ) {
 			$this->showPrefixChunk( $namespace, $showme, $from );
 		} else {
@@ -228,9 +228,9 @@ class SpecialPrefixindex extends SpecialAllPages {
 						$displayed = substr( $displayed, $prefixLength );
 					}
 					$link = ( $title->isRedirect() ? '<div class="allpagesredirect">' : '' ) .
-						$this->getLinkRenderer()->makeKnownLink(
+						Linker::linkKnown(
 							$title,
-							$displayed
+							htmlspecialchars( $displayed )
 						) .
 						( $title->isRedirect() ? '</div>' : '' );
 
@@ -275,9 +275,9 @@ class SpecialPrefixindex extends SpecialAllPages {
 				$query['namespace'] = $namespace;
 			}
 
-			$nextLink = $this->getLinkRenderer()->makeKnownLink(
+			$nextLink = Linker::linkKnown(
 				$this->getPageTitle(),
-				$this->msg( 'nextpage', str_replace( '_', ' ', $nextRow->page_title ) )->text(),
+				$this->msg( 'nextpage', str_replace( '_', ' ', $nextRow->page_title ) )->escaped(),
 				[],
 				$query
 			);

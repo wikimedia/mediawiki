@@ -22,72 +22,62 @@
 	 * @member mw.hook
 	 */
 
-	var cookieVal,
-		config = mw.config.get( [ 'wgAction', 'wgCurRevisionId' ] ),
+	var config = mw.config.get( [ 'wgAction', 'wgCurRevisionId' ] ),
 		// This should match EditPage::POST_EDIT_COOKIE_KEY_PREFIX:
-		cookieKey = 'PostEditRevision' + config.wgCurRevisionId;
+		cookieKey = 'PostEditRevision' + config.wgCurRevisionId,
+		cookieVal = mw.cookie.get( cookieKey ),
+		$div, id;
+
+	function removeConfirmation() {
+		$div.remove();
+		mw.hook( 'postEdit.afterRemoval' ).fire();
+	}
+
+	function fadeOutConfirmation() {
+		clearTimeout( id );
+		$div.find( '.postedit' ).addClass( 'postedit postedit-faded' );
+		setTimeout( removeConfirmation, 500 );
+
+		return false;
+	}
 
 	function showConfirmation( data ) {
-		var $container, $popup, $content, timeoutId;
-
-		function fadeOutConfirmation() {
-			$popup.addClass( 'postedit-faded' );
-			setTimeout( function () {
-				$container.remove();
-				mw.hook( 'postEdit.afterRemoval' ).fire();
-			}, 250 );
-		}
-
 		data = data || {};
-
 		if ( data.message === undefined ) {
 			data.message = $.parseHTML( mw.message( 'postedit-confirmation-saved', data.user || mw.user ).escaped() );
 		}
 
-		$content = $( '<div>' ).addClass( 'postedit-icon postedit-icon-checkmark postedit-content' );
+		$div = mw.template.get( 'mediawiki.action.view.postEdit', 'postEdit.html' ).render();
+
 		if ( typeof data.message === 'string' ) {
-			$content.text( data.message );
+			$div.find( '.postedit-content' ).text( data.message );
 		} else if ( typeof data.message === 'object' ) {
-			$content.append( data.message );
+			$div.find( '.postedit-content' ).append( data.message );
 		}
 
-		$popup = $( '<div>' ).addClass( 'postedit mw-notification' ).append(
-			$content,
-			$( '<a>' ).addClass( 'postedit-close' ).attr( 'href', '#' ).text( '×' )
-		).on( 'click', function ( e ) {
-			e.preventDefault();
-			clearTimeout( timeoutId );
-			fadeOutConfirmation();
-		} );
+		$div
+			.click( fadeOutConfirmation )
+			.prependTo( 'body' );
 
-		$container = $( '<div>' ).addClass( 'postedit-container' ).append( $popup );
-		timeoutId = setTimeout( fadeOutConfirmation, 3000 );
-
-		$( 'body' ).prepend( $container );
+		id = setTimeout( fadeOutConfirmation, 3000 );
 	}
 
 	mw.hook( 'postEdit' ).add( showConfirmation );
 
-	// Only when viewing wiki pages, that exist
-	// (E.g. not on special pages or non-view actions)
-	if ( config.wgCurRevisionId && config.wgAction === 'view' ) {
-		cookieVal = mw.cookie.get( cookieKey );
-		if ( cookieVal ) {
-			mw.config.set( 'wgPostEdit', true );
+	if ( config.wgAction === 'view' && cookieVal ) {
+		mw.config.set( 'wgPostEdit', true );
 
-			mw.hook( 'postEdit' ).fire( {
-				// The following messages can be used here:
-				// postedit-confirmation-saved
-				// postedit-confirmation-created
-				// postedit-confirmation-restored
-				message: mw.msg(
-					'postedit-confirmation-' + cookieVal,
-					mw.user
-				)
-			} );
-
-			mw.cookie.set( cookieKey, null );
-		}
+		mw.hook( 'postEdit' ).fire( {
+			// The following messages can be used here:
+			// postedit-confirmation-saved
+			// postedit-confirmation-created
+			// postedit-confirmation-restored
+			message: mw.msg(
+				'postedit-confirmation-' + cookieVal,
+				mw.user
+			)
+		} );
+		mw.cookie.set( cookieKey, null );
 	}
 
 }( mediaWiki, jQuery ) );

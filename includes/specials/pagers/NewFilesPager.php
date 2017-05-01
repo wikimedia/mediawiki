@@ -22,12 +22,10 @@
 /**
  * @ingroup Pager
  */
-use MediaWiki\MediaWikiServices;
-
 class NewFilesPager extends ReverseChronologicalPager {
 
 	/**
-	 * @var ImageGalleryBase
+	 * @var ImageGallery
 	 */
 	protected $gallery;
 
@@ -55,31 +53,17 @@ class NewFilesPager extends ReverseChronologicalPager {
 		$fields = [ 'img_name', 'img_user', 'img_timestamp' ];
 		$options = [];
 
-		$user = $opts->getValue( 'user' );
-		if ( $user !== '' ) {
-			$userId = User::idFromName( $user );
-			if ( $userId ) {
-				$conds['img_user'] = $userId;
-			} else {
-				$conds['img_user_text'] = $user;
-			}
-		}
-
 		if ( !$opts->getValue( 'showbots' ) ) {
 			$groupsWithBotPermission = User::getGroupsWithPermission( 'bot' );
 
 			if ( count( $groupsWithBotPermission ) ) {
-				$dbr = wfGetDB( DB_REPLICA );
 				$tables[] = 'user_groups';
 				$conds[] = 'ug_group IS NULL';
 				$jconds['user_groups'] = [
 					'LEFT JOIN',
 					[
 						'ug_group' => $groupsWithBotPermission,
-						'ug_user = img_user',
-						$this->getConfig()->get( 'DisableUserGroupExpiry' ) ?
-							'1' :
-							'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
+						'ug_user = img_user'
 					]
 				];
 			}
@@ -158,10 +142,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 		$user = User::newFromId( $row->img_user );
 
 		$title = Title::makeTitle( NS_FILE, $name );
-		$ul = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
-			$user->getUserPage(),
-			$user->getName()
-		);
+		$ul = Linker::link( $user->getUserPage(), $user->getName() );
 		$time = $this->getLanguage()->userTimeAndDate( $row->img_timestamp, $this->getUser() );
 
 		$this->gallery->add(

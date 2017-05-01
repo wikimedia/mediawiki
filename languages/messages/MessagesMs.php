@@ -211,3 +211,4 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'Pautan_ke_sini', 'Pautan_ke' ],
 	'Withoutinterwiki'          => [ 'Laman_tanpa_pautan_bahasa' ],
 ];
+

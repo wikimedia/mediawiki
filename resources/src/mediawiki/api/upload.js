@@ -34,8 +34,7 @@
 	 * @return {string}
 	 */
 	function getFirstKey( obj ) {
-		var key;
-		for ( key in obj ) {
+		for ( var key in obj ) {
 			if ( obj.hasOwnProperty( key ) ) {
 				return key;
 			}
@@ -46,7 +45,6 @@
 	 * Get new iframe object for an upload.
 	 *
 	 * @private
-	 * @param {string} id
 	 * @return {HTMLIframeElement}
 	 */
 	function getNewIframe( id ) {
@@ -60,8 +58,6 @@
 	 * Shortcut for getting hidden inputs
 	 *
 	 * @private
-	 * @param {string} name
-	 * @param {string} val
 	 * @return {jQuery}
 	 */
 	function getHiddenInput( name, val ) {
@@ -377,7 +373,6 @@
 		 *
 		 * @param {string} filekey
 		 * @param {Object} data
-		 * @return {jQuery.Promise}
 		 */
 		uploadFromStash: function ( filekey, data ) {
 			data.filekey = filekey;

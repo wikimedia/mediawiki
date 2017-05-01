@@ -1,7 +1,5 @@
 <?php
 
-use Wikimedia\Rdbms\LikeMatch;
-
 /**
  * Test the abstract database layer
  * This is a non DBMS depending test.
@@ -660,31 +658,19 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 		return [
 			[
 				'text',
-				"LIKE 'text' ESCAPE '`'"
+				"LIKE 'text'"
 			],
 			[
 				[ 'text', new LikeMatch( '%' ) ],
-				"LIKE 'text%' ESCAPE '`'"
+				"LIKE 'text%'"
 			],
 			[
 				[ 'text', new LikeMatch( '%' ), 'text2' ],
-				"LIKE 'text%text2' ESCAPE '`'"
+				"LIKE 'text%text2'"
 			],
 			[
 				[ 'text', new LikeMatch( '_' ) ],
-				"LIKE 'text_' ESCAPE '`'"
-			],
-			[
-				'more_text',
-				"LIKE 'more`_text' ESCAPE '`'"
-			],
-			[
-				[ 'C:\\Windows\\', new LikeMatch( '%' ) ],
-				"LIKE 'C:\\Windows\\%' ESCAPE '`'"
-			],
-			[
-				[ 'accent`_test`', new LikeMatch( '%' ) ],
-				"LIKE 'accent```_test``%' ESCAPE '`'"
+				"LIKE 'text_'"
 			],
 		];
 	}

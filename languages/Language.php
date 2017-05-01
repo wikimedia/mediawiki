@@ -45,9 +45,7 @@ class Language {
 	public $dateFormatStrings = [];
 	public $mExtendedSpecialPageAliases;
 
-	/** @var array|null */
-	protected $namespaceNames;
-	protected $mNamespaceIds, $namespaceAliases;
+	protected $namespaceNames, $mNamespaceIds, $namespaceAliases;
 
 	/**
 	 * ReplacementArray object caches
@@ -415,10 +413,10 @@ class Language {
 	function __construct() {
 		$this->mConverter = new FakeConverter( $this );
 		// Set the code to the name of the descendant
-		if ( static::class === 'Language' ) {
+		if ( get_class( $this ) == 'Language' ) {
 			$this->mCode = 'en';
 		} else {
-			$this->mCode = str_replace( '_', '-', strtolower( substr( static::class, 8 ) ) );
+			$this->mCode = str_replace( '_', '-', strtolower( substr( get_class( $this ), 8 ) ) );
 		}
 		self::getLocalisationCache();
 	}
@@ -465,11 +463,10 @@ class Language {
 		if ( is_null( $this->namespaceNames ) ) {
 			global $wgMetaNamespace, $wgMetaNamespaceTalk, $wgExtraNamespaces;
 
+			$this->namespaceNames = self::$dataCache->getItem( $this->mCode, 'namespaceNames' );
 			$validNamespaces = MWNamespace::getCanonicalNamespaces();
 
-			$this->namespaceNames = $wgExtraNamespaces +
-				self::$dataCache->getItem( $this->mCode, 'namespaceNames' );
-			$this->namespaceNames += $validNamespaces;
+			$this->namespaceNames = $wgExtraNamespaces + $this->namespaceNames + $validNamespaces;
 
 			$this->namespaceNames[NS_PROJECT] = $wgMetaNamespace;
 			if ( $wgMetaNamespaceTalk ) {
@@ -2100,15 +2097,17 @@ class Language {
 		$data = explode( '|', $tz, 3 );
 
 		if ( $data[0] == 'ZoneInfo' ) {
-			try {
-				$userTZ = new DateTimeZone( $data[2] );
-				$date = new DateTime( $ts, new DateTimeZone( 'UTC' ) );
-				$date->setTimezone( $userTZ );
-				return $date->format( 'YmdHis' );
-			} catch ( Exception $e ) {
-				// Unrecognized timezone, default to 'Offset' with the stored offset.
-				$data[0] = 'Offset';
+			MediaWiki\suppressWarnings();
+			$userTZ = timezone_open( $data[2] );
+			MediaWiki\restoreWarnings();
+			if ( $userTZ !== false ) {
+				$date = date_create( $ts, timezone_open( 'UTC' ) );
+				date_timezone_set( $date, $userTZ );
+				$date = date_format( $date, 'YmdHis' );
+				return $date;
 			}
+			# Unrecognized timezone, default to 'Offset' with the stored offset.
+			$data[0] = 'Offset';
 		}
 
 		if ( $data[0] == 'System' || $tz == '' ) {
@@ -2158,10 +2157,12 @@ class Language {
 	 * the date preference they're supposed to use, it should be used in
 	 * all children.
 	 *
-	 *     function timeanddate([...], $format = true) {
-	 *       $datePreference = $this->dateFormat($format);
-	 *       [...]
-	 *     }
+	 *<code>
+	 * function timeanddate([...], $format = true) {
+	 * 	$datePreference = $this->dateFormat($format);
+	 * [...]
+	 * }
+	 *</code>
 	 *
 	 * @param int|string|bool $usePrefs If true, the user's preference is used
 	 *   if false, the site/language default is used
@@ -2576,7 +2577,7 @@ class Language {
 
 	/**
 	 * @param string $key
-	 * @return string|null
+	 * @return array|null
 	 */
 	public function getMessage( $key ) {
 		return self::$dataCache->getSubitem( $this->mCode, 'messages', $key );
@@ -3284,14 +3285,14 @@ class Language {
 	public function parseFormattedNumber( $number ) {
 		$s = $this->digitTransformTable();
 		if ( $s ) {
-			// eliminate empty array values such as ''. (T66347)
+			// eliminate empty array values such as ''. (bug 64347)
 			$s = array_filter( $s );
 			$number = strtr( $number, array_flip( $s ) );
 		}
 
 		$s = $this->separatorTransformTable();
 		if ( $s ) {
-			// eliminate empty array values such as ''. (T66347)
+			// eliminate empty array values such as ''. (bug 64347)
 			$s = array_filter( $s );
 			$number = strtr( $number, array_flip( $s ) );
 		}
@@ -3495,7 +3496,7 @@ class Language {
 				$string = $ellipsis . $string;
 			}
 		}
-		# Do not truncate if the ellipsis makes the string longer/equal (T24181).
+		# Do not truncate if the ellipsis makes the string longer/equal (bug 22181).
 		# This check is *not* redundant if $adjustLength, due to the single case where
 		# LEN($ellipsis) > ABS($limit arg); $stringOriginal could be shorter than $string.
 		if ( strlen( $string ) < strlen( $stringOriginal ) ) {
@@ -3733,43 +3734,6 @@ class Language {
 			return $wgGrammarForms[$this->getCode()][$case][$word];
 		}
 
-		$grammarTransformations = $this->getGrammarTransformations();
-
-		if ( isset( $grammarTransformations[$case] ) ) {
-			$forms = $grammarTransformations[$case];
-
-			// Some names of grammar rules are aliases for other rules.
-			// In such cases the value is a string rather than object,
-			// so load the actual rules.
-			if ( is_string( $forms ) ) {
-				$forms = $grammarTransformations[$forms];
-			}
-
-			foreach ( array_values( $forms ) as $rule ) {
-				$form = $rule[0];
-
-				if ( $form === '@metadata' ) {
-					continue;
-				}
-
-				$replacement = $rule[1];
-
-				$regex = '/' . addcslashes( $form, '/' ) . '/u';
-				$patternMatches = preg_match( $regex, $word );
-
-				if ( $patternMatches === false ) {
-					wfLogWarning(
-						'An error occurred while processing grammar. ' .
-						"Word: '$word'. Regex: /$form/."
-					);
-				} elseif ( $patternMatches === 1 ) {
-					$word = preg_replace( $regex, $replacement, $word );
-
-					break;
-				}
-			}
-		}
-
 		return $word;
 	}
 
@@ -3973,11 +3937,10 @@ class Language {
 	 *
 	 * @param string $str The validated block duration in English
 	 * @param User $user User object to use timezone from or null for $wgUser
-	 * @param int $now Current timestamp, for formatting relative block durations
 	 * @return string Somehow translated block duration
 	 * @see LanguageFi.php for example implementation
 	 */
-	function translateBlockExpiry( $str, User $user = null, $now = 0 ) {
+	function translateBlockExpiry( $str, User $user = null ) {
 		$duration = SpecialBlock::getSuggestedDurations( $this );
 		foreach ( $duration as $show => $value ) {
 			if ( strcmp( $str, $value ) == 0 ) {
@@ -3994,13 +3957,12 @@ class Language {
 		}
 
 		// If all else fails, return a standard duration or timestamp description.
-		$time = strtotime( $str, $now );
+		$time = strtotime( $str, 0 );
 		if ( $time === false ) { // Unknown format. Return it as-is in case.
 			return $str;
-		} elseif ( $time !== strtotime( $str, $now + 1 ) ) { // It's a relative timestamp.
-			// The result differs based on current time, so the difference
-			// is a fixed duration length.
-			return $this->formatDuration( $time - $now );
+		} elseif ( $time !== strtotime( $str, 1 ) ) { // It's a relative timestamp.
+			// $time is relative to 0 so it's a duration length.
+			return $this->formatDuration( $time );
 		} else { // It's an absolute timestamp.
 			if ( $time === 0 ) {
 				// wfTimestamp() handles 0 as current time instead of epoch.
@@ -4127,7 +4089,7 @@ class Language {
 	 * Get the list of variants supported by this language
 	 * see sample implementation in LanguageZh.php
 	 *
-	 * @return string[] An array of language codes
+	 * @return array An array of language codes
 	 */
 	public function getVariants() {
 		return $this->mConverter->getVariants();
@@ -4506,7 +4468,7 @@ class Language {
 		# such as action=raw much more expensive than they need to be.
 		# This will hopefully cover most cases.
 		$talk = preg_replace_callback( '/{{grammar:(.*?)\|(.*?)}}/i',
-			[ $this, 'replaceGrammarInNamespace' ], $talk );
+			[ &$this, 'replaceGrammarInNamespace' ], $talk );
 		return str_replace( ' ', '_', $talk );
 	}
 

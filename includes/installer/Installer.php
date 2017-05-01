@@ -216,7 +216,7 @@ abstract class Installer {
 		'_UpgradeKeySupplied' => false,
 		'_ExistingDBSettings' => false,
 
-		// $wgLogo is probably wrong (T50084); set something that will work.
+		// $wgLogo is probably wrong (bug 48084); set something that will work.
 		// Single quotes work fine here, as LocalSettingsGenerator outputs this unescaped.
 		'wgLogo' => '$wgResourceBasePath/resources/assets/wiki.png',
 		'wgAuthenticationTokenVersion' => 1,
@@ -446,8 +446,6 @@ abstract class Installer {
 		$this->parserTitle = Title::newFromText( 'Installer' );
 		$this->parserOptions = new ParserOptions( $wgUser ); // language will be wrong :(
 		$this->parserOptions->setEditSection( false );
-		// Don't try to access DB before user language is initialised
-		$this->setParserLanguage( Language::factory( 'en' ) );
 	}
 
 	/**
@@ -569,7 +567,7 @@ abstract class Installer {
 	/**
 	 * Determine if LocalSettings.php exists. If it does, return its variables.
 	 *
-	 * @return array|false
+	 * @return array
 	 */
 	public static function getExistingLocalSettings() {
 		global $IP;
@@ -676,7 +674,7 @@ abstract class Installer {
 		try {
 			$out = $wgParser->parse( $text, $this->parserTitle, $this->parserOptions, $lineStart );
 			$html = $out->getText();
-		} catch ( MediaWiki\Services\ServiceDisabledException $e ) {
+		} catch ( DBAccessError $e ) {
 			$html = '<!--DB access attempted during parse-->  ' . htmlspecialchars( $text );
 
 			if ( !empty( $this->debug ) ) {
@@ -724,7 +722,6 @@ abstract class Installer {
 				'ss_good_articles' => 0,
 				'ss_total_pages' => 0,
 				'ss_users' => 0,
-				'ss_active_users' => 0,
 				'ss_images' => 0
 			],
 			__METHOD__, 'IGNORE'
@@ -1083,7 +1080,7 @@ abstract class Installer {
 	/**
 	 * Convert a hex string representing a Unicode code point to that code point.
 	 * @param string $c
-	 * @return string|false
+	 * @return string
 	 */
 	protected function unicodeChar( $c ) {
 		$c = hexdec( $c );
@@ -1424,7 +1421,6 @@ abstract class Installer {
 		$wgAutoloadClasses += $data['autoload'];
 
 		$hooksWeWant = isset( $wgHooks['LoadExtensionSchemaUpdates'] ) ?
-			/** @suppress PhanUndeclaredVariable $wgHooks is set by DefaultSettings */
 			$wgHooks['LoadExtensionSchemaUpdates'] : [];
 
 		if ( isset( $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
@@ -1434,7 +1430,7 @@ abstract class Installer {
 			);
 		}
 		// Unset everyone else's hooks. Lord knows what someone might be doing
-		// in ParserFirstCallInit (see T29171)
+		// in ParserFirstCallInit (see bug 27171)
 		$GLOBALS['wgHooks'] = [ 'LoadExtensionSchemaUpdates' => $hooksWeWant ];
 
 		return Status::newGood();
@@ -1659,13 +1655,8 @@ abstract class Installer {
 	 */
 	protected function createMainpage( DatabaseInstaller $installer ) {
 		$status = Status::newGood();
-		$title = Title::newMainPage();
-		if ( $title->exists() ) {
-			$status->warning( 'config-install-mainpage-exists' );
-			return $status;
-		}
 		try {
-			$page = WikiPage::factory( $title );
+			$page = WikiPage::factory( Title::newMainPage() );
 			$content = new WikitextContent(
 				wfMessage( 'mainpagetext' )->inContentLanguage()->text() . "\n\n" .
 				wfMessage( 'mainpagedocfooter' )->inContentLanguage()->text()

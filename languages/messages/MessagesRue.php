@@ -128,3 +128,4 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'Одказы_гев' ],
 	'Withoutinterwiki'          => [ 'Без_інтервікі' ],
 ];
+

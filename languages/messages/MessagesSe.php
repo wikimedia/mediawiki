@@ -137,3 +137,4 @@ $magicWords = [
 $separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
 
 $linkTrail = '/^(:?[a-zàáâçčʒǯđðéèêëǧǥȟíìîïıǩŋñóòôõßšŧúùûýÿüžþæøåäö]+)(.*)$/sDu';
+

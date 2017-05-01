@@ -417,3 +417,4 @@ $imageFiles = [
 	'button-headline' => 'fa/button_headline.png',
 	'button-nowiki'   => 'fa/button_nowiki.png',
 ];
+

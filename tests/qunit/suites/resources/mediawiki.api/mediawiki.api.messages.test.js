@@ -2,21 +2,14 @@
 	QUnit.module( 'mediawiki.api.messages', QUnit.newMwEnvironment( {
 		setup: function () {
 			this.server = this.sandbox.useFakeServer();
-			this.server.respondImmediately = true;
 		}
 	} ) );
 
 	QUnit.test( '.getMessages()', function ( assert ) {
-		this.server.respondWith( /ammessages=foo%7Cbaz/, [
-			200,
-			{ 'Content-Type': 'application/json' },
-			'{ "query": { "allmessages": [' +
-				'{ "name": "foo", "content": "Foo bar" },' +
-				'{ "name": "baz", "content": "Baz Quux" }' +
-				'] } }'
-		] );
+		QUnit.expect( 1 );
 
-		return new mw.Api().getMessages( [ 'foo', 'baz' ] ).then( function ( messages ) {
+		var api = new mw.Api();
+		api.getMessages( [ 'foo', 'baz' ] ).then( function ( messages ) {
 			assert.deepEqual(
 				messages,
 				{
@@ -25,5 +18,14 @@
 				}
 			);
 		} );
+
+		this.server.respond( /ammessages=foo%7Cbaz/, [
+			200,
+			{ 'Content-Type': 'application/json' },
+			'{ "query": { "allmessages": [' +
+				'{ "name": "foo", "content": "Foo bar" },' +
+				'{ "name": "baz", "content": "Baz Quux" }' +
+				'] } }'
+		] );
 	} );
 }( mediaWiki ) );

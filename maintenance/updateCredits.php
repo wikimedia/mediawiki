@@ -26,11 +26,8 @@ if ( PHP_SAPI != 'cli' ) {
 	die( "This script can only be run from the command line.\n" );
 }
 
-<<<<<<< HEAD
 chdir( dirname( __DIR__ ) );
 
-=======
->>>>>>> wikimedia/master
 $CREDITS = 'CREDITS';
 $START_CONTRIBUTORS = '<!-- BEGIN CONTRIBUTOR LIST -->';
 $END_CONTRIBUTORS = '<!-- END CONTRIBUTOR LIST -->';
@@ -41,13 +38,6 @@ $header = [];
 $contributors = [];
 $footer = [];
 
-<<<<<<< HEAD
-=======
-if ( !file_exists( $CREDITS ) ) {
-	exit( 'No CREDITS file found. Are you running this script in the right directory?' );
-}
-
->>>>>>> wikimedia/master
 $lines = explode( "\n", file_get_contents( $CREDITS ) );
 foreach ( $lines as $line ) {
 	if ( $inHeader ) {

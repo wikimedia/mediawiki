@@ -20,9 +20,6 @@
  * @file
  * @ingroup Deployment
  */
-use Wikimedia\Rdbms\LBFactorySingle;
-use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Base class for DBMS-specific installation helper classes.
@@ -339,6 +336,7 @@ abstract class DatabaseInstaller {
 		$services->redefineService( 'DBLoadBalancerFactory', function() use ( $connection ) {
 			return LBFactorySingle::newFromConnection( $connection );
 		} );
+
 	}
 
 	/**

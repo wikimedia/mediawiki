@@ -154,16 +154,6 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			return $this->failResponse( $req );
 		}
 
-		// Add an extra log entry since a temporary password is
-		// an unusual way to log in, so its important to keep track
-		// of in case of abuse.
-		$this->logger->info( "{user} successfully logged in using temp password",
-			[
-				'user' => $username,
-				'requestIP' => $this->manager->getRequest()->getIP()
-			]
-		);
-
 		$this->setPasswordResetFlag( $username, $status );
 
 		return AuthenticationResponse::newPass( $username );
@@ -246,7 +236,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			$sv->merge( $this->checkPasswordValidity( $username, $req->password ) );
 
 			if ( $req->mailpassword ) {
-				if ( !$this->emailEnabled ) {
+				if ( !$this->emailEnabled && !$req->hasBackchannel ) {
 					return \StatusValue::newFatal( 'passwordreset-emaildisabled' );
 				}
 
@@ -336,7 +326,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 
 		$ret = \StatusValue::newGood();
 		if ( $req ) {
-			if ( $req->mailpassword ) {
+			if ( $req->mailpassword && !$req->hasBackchannel ) {
 				if ( !$this->emailEnabled ) {
 					$ret->merge( \StatusValue::newFatal( 'emaildisabled' ) );
 				} elseif ( !$user->getEmail() ) {

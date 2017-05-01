@@ -81,22 +81,6 @@ class CachedBagOStuff extends HashBagOStuff {
 		$this->backend->setDebug( $bool );
 	}
 
-	public function deleteObjectsExpiringBefore( $date, $progressCallback = false ) {
-		parent::deleteObjectsExpiringBefore( $date, $progressCallback );
-		return $this->backend->deleteObjectsExpiringBefore( $date, $progressCallback );
-	}
-
-	public function makeKey() {
-		return call_user_func_array( [ $this->backend, __FUNCTION__ ], func_get_args() );
-	}
-
-	public function makeGlobalKey() {
-		return call_user_func_array( [ $this->backend, __FUNCTION__ ], func_get_args() );
-	}
-
-	// These just call the backend (tested elsewhere)
-	// @codeCoverageIgnoreStart
-
 	public function lock( $key, $timeout = 6, $expiry = 6, $rclass = '' ) {
 		return $this->backend->lock( $key, $timeout, $expiry, $rclass );
 	}
@@ -105,17 +89,21 @@ class CachedBagOStuff extends HashBagOStuff {
 		return $this->backend->unlock( $key );
 	}
 
+	public function deleteObjectsExpiringBefore( $date, $progressCallback = false ) {
+		parent::deleteObjectsExpiringBefore( $date, $progressCallback );
+		return $this->backend->deleteObjectsExpiringBefore( $date, $progressCallback );
+	}
+
 	public function getLastError() {
 		return $this->backend->getLastError();
 	}
 
 	public function clearLastError() {
-		return $this->backend->clearLastError();
+		$this->backend->clearLastError();
 	}
 
 	public function modifySimpleRelayEvent( array $event ) {
 		return $this->backend->modifySimpleRelayEvent( $event );
 	}
 
-	// @codeCoverageIgnoreEnd
 }

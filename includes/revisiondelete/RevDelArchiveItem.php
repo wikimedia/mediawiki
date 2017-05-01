@@ -68,14 +68,14 @@ class RevDelArchiveItem extends RevDelRevisionItem {
 	}
 
 	protected function getRevisionLink() {
-		$date = $this->list->getLanguage()->userTimeAndDate(
-			$this->revision->getTimestamp(), $this->list->getUser() );
+		$date = htmlspecialchars( $this->list->getLanguage()->userTimeAndDate(
+			$this->revision->getTimestamp(), $this->list->getUser() ) );
 
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
-			return htmlspecialchars( $date );
+			return $date;
 		}
 
-		return $this->getLinkRenderer()->makeLink(
+		return Linker::link(
 			SpecialPage::getTitleFor( 'Undelete' ),
 			$date,
 			[],
@@ -91,9 +91,9 @@ class RevDelArchiveItem extends RevDelRevisionItem {
 			return $this->list->msg( 'diff' )->escaped();
 		}
 
-		return $this->getLinkRenderer()->makeLink(
+		return Linker::link(
 			SpecialPage::getTitleFor( 'Undelete' ),
-			$this->list->msg( 'diff' )->text(),
+			$this->list->msg( 'diff' )->escaped(),
 			[],
 			[
 				'target' => $this->list->title->getPrefixedText(),

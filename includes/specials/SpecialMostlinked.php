@@ -25,9 +25,6 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-use Wikimedia\Rdbms\ResultWrapper;
-use Wikimedia\Rdbms\IDatabase;
-
 /**
  * A special page to show pages ordered by the number of pages linking to them.
  *
@@ -81,7 +78,16 @@ class MostlinkedPage extends QueryPage {
 	 * @param ResultWrapper $res
 	 */
 	function preprocessResults( $db, $res ) {
-		$this->executeLBFromResultWrapper( $res );
+		if ( $res->numRows() > 0 ) {
+			$linkBatch = new LinkBatch();
+
+			foreach ( $res as $row ) {
+				$linkBatch->add( $row->namespace, $row->title );
+			}
+
+			$res->seek( 0 );
+			$linkBatch->execute();
+		}
 	}
 
 	/**
@@ -94,8 +100,7 @@ class MostlinkedPage extends QueryPage {
 	function makeWlhLink( $title, $caption ) {
 		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedDBkey() );
 
-		$linkRenderer = $this->getLinkRenderer();
-		return $linkRenderer->makeKnownLink( $wlh, $caption );
+		return Linker::linkKnown( $wlh, $caption );
 	}
 
 	/**
@@ -119,11 +124,10 @@ class MostlinkedPage extends QueryPage {
 			);
 		}
 
-		$linkRenderer = $this->getLinkRenderer();
-		$link = $linkRenderer->makeLink( $title );
+		$link = Linker::link( $title );
 		$wlh = $this->makeWlhLink(
 			$title,
-			$this->msg( 'nlinks' )->numParams( $result->value )->text()
+			$this->msg( 'nlinks' )->numParams( $result->value )->escaped()
 		);
 
 		return $this->getLanguage()->specialList( $link, $wlh );

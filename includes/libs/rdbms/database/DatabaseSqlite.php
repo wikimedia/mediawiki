@@ -21,15 +21,6 @@
  * @file
  * @ingroup Database
  */
-namespace Wikimedia\Rdbms;
-
-use PDO;
-use PDOException;
-use LockManager;
-use FSLockManager;
-use InvalidArgumentException;
-use RuntimeException;
-use stdClass;
 
 /**
  * @ingroup Database
@@ -40,18 +31,20 @@ class DatabaseSqlite extends Database {
 
 	/** @var string Directory */
 	protected $dbDir;
+
 	/** @var string File name for SQLite database file */
 	protected $dbPath;
+
 	/** @var string Transaction mode */
 	protected $trxMode;
 
 	/** @var int The number of rows affected as an integer */
 	protected $mAffectedRows;
+
 	/** @var resource */
 	protected $mLastResult;
 
-	/** @var PDO */
-	protected $mConn;
+	/** @var $mConn PDO */
 
 	/** @var FSLockManager (hopefully on the same server as the DB) */
 	protected $lockMgr;
@@ -122,10 +115,8 @@ class DatabaseSqlite extends Database {
 		$p['dbFilePath'] = $filename;
 		$p['schema'] = false;
 		$p['tablePrefix'] = '';
-		/** @var DatabaseSqlite $db */
-		$db = Database::factory( 'sqlite', $p );
 
-		return $db;
+		return Database::factory( 'sqlite', $p );
 	}
 
 	/**
@@ -153,7 +144,7 @@ class DatabaseSqlite extends Database {
 	 * @param string $dbName
 	 *
 	 * @throws DBConnectionError
-	 * @return bool
+	 * @return PDO
 	 */
 	function open( $server, $user, $pass, $dbName ) {
 		$this->close();
@@ -164,7 +155,7 @@ class DatabaseSqlite extends Database {
 		}
 		$this->openFile( $fileName );
 
-		return (bool)$this->mConn;
+		return $this->mConn;
 	}
 
 	/**
@@ -205,10 +196,6 @@ class DatabaseSqlite extends Database {
 		}
 
 		return false;
-	}
-
-	public function selectDB( $db ) {
-		return false; // doesn't make sense
 	}
 
 	/**
@@ -279,7 +266,7 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
-	 * Attaches external database to our connection, see https://sqlite.org/lang_attach.html
+	 * Attaches external database to our connection, see http://sqlite.org/lang_attach.html
 	 * for details.
 	 *
 	 * @param string $name Database name to be used in queries like
@@ -506,12 +493,15 @@ class DatabaseSqlite extends Database {
 	 * @param string $table
 	 * @param string $index
 	 * @param string $fname
-	 * @return array|false
+	 * @return array
 	 */
 	function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		$sql = 'PRAGMA index_info(' . $this->addQuotes( $this->indexName( $index ) ) . ')';
 		$res = $this->query( $sql, $fname );
-		if ( !$res || $res->numRows() == 0 ) {
+		if ( !$res ) {
+			return null;
+		}
+		if ( $res->numRows() == 0 ) {
 			return false;
 		}
 		$info = [];
@@ -676,7 +666,7 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
-	 * @param string[] $sqls
+	 * @param string $sqls
 	 * @param bool $all Whether to "UNION ALL" or not
 	 * @return string
 	 */
@@ -810,6 +800,18 @@ class DatabaseSqlite extends Database {
 		} else {
 			return $this->mConn->quote( $s );
 		}
+	}
+
+	/**
+	 * @return string
+	 */
+	function buildLike() {
+		$params = func_get_args();
+		if ( count( $params ) > 0 && is_array( $params[0] ) ) {
+			$params = $params[0];
+		}
+
+		return parent::buildLike( $params ) . "ESCAPE '\' ";
 	}
 
 	/**
@@ -1044,6 +1046,3 @@ class DatabaseSqlite extends Database {
 		return 'SQLite ' . (string)$this->mConn->getAttribute( PDO::ATTR_SERVER_VERSION );
 	}
 }
-
-class_alias( DatabaseSqlite::class, 'DatabaseSqlite' );
-

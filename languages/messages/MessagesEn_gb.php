@@ -14,3 +14,4 @@ $specialPageAliases = [
 	'Uncategorizedpages'        => [ 'UncategorisedPages' ],
 	'Uncategorizedtemplates'    => [ 'UncategorisedTemplates' ],
 ];
+

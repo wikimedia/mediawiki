@@ -32,8 +32,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use Wikimedia\Rdbms\IMaintainableDatabase;
-
 /**
  * Maintenance script to update image metadata records.
  *
@@ -42,7 +40,7 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
 class ImageBuilder extends Maintenance {
 
 	/**
-	 * @var IMaintainableDatabase
+	 * @var Database
 	 */
 	protected $dbw;
 
@@ -63,8 +61,7 @@ class ImageBuilder extends Maintenance {
 		$this->dbw = $this->getDB( DB_MASTER );
 		$this->dryrun = $this->hasOption( 'dry-run' );
 		if ( $this->dryrun ) {
-			MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()
-				->setReason( 'Dry run mode, image upgrades are suppressed' );
+			$GLOBALS['wgReadOnly'] = 'Dry run mode, image upgrades are suppressed';
 		}
 
 		if ( $this->hasOption( 'missing' ) ) {

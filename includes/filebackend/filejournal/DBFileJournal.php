@@ -22,10 +22,6 @@
  * @author Aaron Schulz
  */
 
-use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\DBError;
-
 /**
  * Version of FileJournal that logs to a DB table
  * @since 1.20
@@ -184,7 +180,7 @@ class DBFileJournal extends FileJournal {
 	protected function getMasterDB() {
 		if ( !$this->dbw ) {
 			// Get a separate connection in autocommit mode
-			$lb =  MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->newMainLB();
+			$lb = wfGetLBFactory()->newMainLB();
 			$this->dbw = $lb->getConnection( DB_MASTER, [], $this->wiki );
 			$this->dbw->clearFlag( DBO_TRX );
 		}

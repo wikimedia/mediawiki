@@ -94,8 +94,7 @@
 	 * @extends mw.Title
 	 *
 	 * @constructor
-	 * @param {string} title
-	 * @param {number} [namespace]
+	 * @inheritdoc
 	 */
 	function ForeignTitle( title, namespace ) {
 		// We only need to handle categories here... but we don't know the target language.
@@ -110,10 +109,11 @@
 	};
 
 	/**
+	 * @class mw.widgets.CategoryCapsuleItemWidget
+	 *
 	 * Category selector capsule item widget. Extends OO.ui.CapsuleItemWidget with the ability to link
 	 * to the given page, and to show its existence status (i.e., whether it is a redlink).
 	 *
-	 * @class mw.widgets.CategoryCapsuleItemWidget
 	 * @uses mw.Api
 	 * @extends OO.ui.CapsuleItemWidget
 	 *
@@ -146,6 +146,7 @@
 		this.$label.replaceWith( this.$link );
 		this.setLabelElement( this.$link );
 
+		/*jshint -W024*/
 		if ( !this.constructor.static.pageExistenceCaches[ this.apiUrl ] ) {
 			this.constructor.static.pageExistenceCaches[ this.apiUrl ] =
 				new PageExistenceCache( new mw.ForeignApi( this.apiUrl ) );
@@ -155,6 +156,7 @@
 			.done( function ( exists ) {
 				widget.setMissing( !exists );
 			} );
+		/*jshint +W024*/
 	};
 
 	/* Setup */
@@ -163,6 +165,7 @@
 
 	/* Static Properties */
 
+	/*jshint -W024*/
 	/**
 	 * Map of API URLs to PageExistenceCache objects.
 	 *
@@ -173,6 +176,7 @@
 	mw.widgets.CategoryCapsuleItemWidget.static.pageExistenceCaches = {
 		'': new PageExistenceCache()
 	};
+	/*jshint +W024*/
 
 	/* Methods */
 

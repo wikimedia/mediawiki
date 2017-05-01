@@ -1,5 +1,4 @@
 <?php
-use MediaWiki\MediaWikiServices;
 
 /**
  * @group Database
@@ -40,7 +39,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 	 * @covers GenderCache::getGenderOf
 	 */
 	public function testUserName( $userKey, $expectedGender ) {
-		$genderCache = MediaWikiServices::getInstance()->getGenderCache();
+		$genderCache = GenderCache::singleton();
 		$username = isset( self::$nameMap[$userKey] ) ? self::$nameMap[$userKey] : $userKey;
 		$gender = $genderCache->getGenderOf( $username );
 		$this->assertEquals( $gender, $expectedGender, "GenderCache normal" );
@@ -54,7 +53,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 	 */
 	public function testUserObjects( $userKey, $expectedGender ) {
 		$username = isset( self::$nameMap[$userKey] ) ? self::$nameMap[$userKey] : $userKey;
-		$genderCache = MediaWikiServices::getInstance()->getGenderCache();
+		$genderCache = GenderCache::singleton();
 		$gender = $genderCache->getGenderOf( $username );
 		$this->assertEquals( $gender, $expectedGender, "GenderCache normal" );
 	}
@@ -80,7 +79,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 	 */
 	public function testStripSubpages( $userKey, $expectedGender ) {
 		$username = isset( self::$nameMap[$userKey] ) ? self::$nameMap[$userKey] : $userKey;
-		$genderCache = MediaWikiServices::getInstance()->getGenderCache();
+		$genderCache = GenderCache::singleton();
 		$gender = $genderCache->getGenderOf( "$username/subpage" );
 		$this->assertEquals( $gender, $expectedGender, "GenderCache must strip of subpages" );
 	}

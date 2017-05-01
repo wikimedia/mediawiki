@@ -77,3 +77,4 @@ $namespaceAliases = [
 	'Plé_múnla' => NS_TEMPLATE_TALK,
 	'Rang' => NS_CATEGORY
 ];
+

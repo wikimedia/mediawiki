@@ -212,21 +212,23 @@ class LocalisationCache {
 				case 'detect':
 					if ( !empty( $conf['storeDirectory'] ) ) {
 						$storeClass = 'LCStoreCDB';
-					} elseif ( $wgCacheDirectory ) {
-						$storeConf['directory'] = $wgCacheDirectory;
-						$storeClass = 'LCStoreCDB';
 					} else {
-						$storeClass = 'LCStoreDB';
+						$cacheDir = $wgCacheDirectory ?: wfTempDir();
+						if ( $cacheDir ) {
+							$storeConf['directory'] = $cacheDir;
+							$storeClass = 'LCStoreCDB';
+						} else {
+							$storeClass = 'LCStoreDB';
+						}
 					}
 					break;
 				default:
 					throw new MWException(
-						'Please set $wgLocalisationCacheConf[\'store\'] to something sensible.'
-					);
+						'Please set $wgLocalisationCacheConf[\'store\'] to something sensible.' );
 			}
 		}
 
-		wfDebugLog( 'caches', static::class . ": using store $storeClass" );
+		wfDebugLog( 'caches', get_class( $this ) . ": using store $storeClass" );
 		if ( !empty( $conf['storeDirectory'] ) ) {
 			$storeConf['directory'] = $conf['storeDirectory'];
 		}
@@ -311,7 +313,7 @@ class LocalisationCache {
 	 * array.
 	 * @param string $code
 	 * @param string $key
-	 * @return bool|null|string|string[]
+	 * @return bool|null|string
 	 */
 	public function getSubitemList( $code, $key ) {
 		if ( in_array( $key, self::$splitKeys ) ) {
@@ -547,6 +549,7 @@ class LocalisationCache {
 	 * @return array Array with a 'messages' key, or empty array if the file doesn't exist
 	 */
 	public function readJSONFile( $fileName ) {
+
 		if ( !is_readable( $fileName ) ) {
 			return [];
 		}
@@ -558,6 +561,7 @@ class LocalisationCache {
 
 		$data = FormatJson::decode( $json, true );
 		if ( $data === null ) {
+
 			throw new MWException( __METHOD__ . ": Invalid JSON file: $fileName" );
 		}
 
@@ -1032,6 +1036,7 @@ class LocalisationCache {
 			$blobStore = new MessageBlobStore();
 			$blobStore->clear();
 		}
+
 	}
 
 	/**

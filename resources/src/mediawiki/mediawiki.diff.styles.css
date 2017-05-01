@@ -2,7 +2,7 @@
  * Diff rendering
  */
 table.diff {
-	border: 0;
+	border: none;
 	border-spacing: 4px;
 	margin: 0;
 	width: 100%;
@@ -115,6 +115,6 @@ td.diff-deletedline .diffchange {
 .diff-otitle,
 .diff-ntitle,
 .diff-lineno {
-	direction: ltr !important; /* stylelint-disable-line declaration-no-important */
+	direction: ltr !important;
 	unicode-bidi: embed;
 }

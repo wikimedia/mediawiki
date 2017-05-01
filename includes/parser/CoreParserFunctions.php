@@ -20,7 +20,6 @@
  * @file
  * @ingroup Parser
  */
-use MediaWiki\MediaWikiServices;
 
 /**
  * Various core parser functions, registered in Parser::firstCallInit()
@@ -157,7 +156,7 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * urlencodes a string according to one of three patterns: (T24474)
+	 * urlencodes a string according to one of three patterns: (bug 22474)
 	 *
 	 * By default (for HTTP "query" strings), spaces are encoded as '+'.
 	 * Or to encode a value for the HTTP "path", spaces are encoded as '%20'.
@@ -276,7 +275,7 @@ class CoreParserFunctions {
 		}
 		if ( !is_null( $title ) ) {
 			# Convert NS_MEDIA -> NS_FILE
-			if ( $title->inNamespace( NS_MEDIA ) ) {
+			if ( $title->getNamespace() == NS_MEDIA ) {
 				$title = Title::makeTitle( NS_FILE, $title->getDBkey() );
 			}
 			if ( !is_null( $arg ) ) {
@@ -341,17 +340,16 @@ class CoreParserFunctions {
 		// allow prefix.
 		$title = Title::newFromText( $username );
 
-		if ( $title && $title->inNamespace( NS_USER ) ) {
+		if ( $title && $title->getNamespace() == NS_USER ) {
 			$username = $title->getText();
 		}
 
 		// check parameter, or use the ParserOptions if in interface message
 		$user = User::newFromName( $username );
-		$genderCache = MediaWikiServices::getInstance()->getGenderCache();
 		if ( $user ) {
-			$gender = $genderCache->getGenderOf( $user, __METHOD__ );
+			$gender = GenderCache::singleton()->getGenderOf( $user, __METHOD__ );
 		} elseif ( $username === '' && $parser->getOptions()->getInterfaceMessage() ) {
-			$gender = $genderCache->getGenderOf( $parser->getOptions()->getUser(), __METHOD__ );
+			$gender = GenderCache::singleton()->getGenderOf( $parser->getOptions()->getUser(), __METHOD__ );
 		}
 		$ret = $parser->getFunctionLang()->gender( $gender, $forms );
 		return $ret;
@@ -489,66 +487,40 @@ class CoreParserFunctions {
 		return $mwObject->matchStartToEnd( $value );
 	}
 
-	/**
-	 * Formats a number according to a language.
-	 *
-	 * @param int|float $num
-	 * @param string $raw
-	 * @param Language|StubUserLang $language
-	 * @return string
-	 */
-	public static function formatRaw( $num, $raw, $language ) {
+	public static function formatRaw( $num, $raw ) {
 		if ( self::matchAgainstMagicword( 'rawsuffix', $raw ) ) {
 			return $num;
 		} else {
-			return $language->formatNum( $num );
+			global $wgContLang;
+			return $wgContLang->formatNum( $num );
 		}
 	}
-
 	public static function numberofpages( $parser, $raw = null ) {
-		return self::formatRaw( SiteStats::pages(), $raw, $parser->getFunctionLang() );
+		return self::formatRaw( SiteStats::pages(), $raw );
 	}
-
 	public static function numberofusers( $parser, $raw = null ) {
-		return self::formatRaw( SiteStats::users(), $raw, $parser->getFunctionLang() );
+		return self::formatRaw( SiteStats::users(), $raw );
 	}
 	public static function numberofactiveusers( $parser, $raw = null ) {
-		return self::formatRaw( SiteStats::activeUsers(), $raw, $parser->getFunctionLang() );
+		return self::formatRaw( SiteStats::activeUsers(), $raw );
 	}
-
 	public static function numberofarticles( $parser, $raw = null ) {
-		return self::formatRaw( SiteStats::articles(), $raw, $parser->getFunctionLang() );
+		return self::formatRaw( SiteStats::articles(), $raw );
 	}
-
 	public static function numberoffiles( $parser, $raw = null ) {
-		return self::formatRaw( SiteStats::images(), $raw, $parser->getFunctionLang() );
+		return self::formatRaw( SiteStats::images(), $raw );
 	}
-
 	public static function numberofadmins( $parser, $raw = null ) {
-		return self::formatRaw(
-			SiteStats::numberingroup( 'sysop' ),
-			$raw,
-			$parser->getFunctionLang()
-		);
+		return self::formatRaw( SiteStats::numberingroup( 'sysop' ), $raw );
 	}
-
 	public static function numberofedits( $parser, $raw = null ) {
-		return self::formatRaw( SiteStats::edits(), $raw, $parser->getFunctionLang() );
+		return self::formatRaw( SiteStats::edits(), $raw );
 	}
-
 	public static function pagesinnamespace( $parser, $namespace = 0, $raw = null ) {
-		return self::formatRaw(
-			SiteStats::pagesInNs( intval( $namespace ) ),
-			$raw,
-			$parser->getFunctionLang()
-		);
+		return self::formatRaw( SiteStats::pagesInNs( intval( $namespace ) ), $raw );
 	}
 	public static function numberingroup( $parser, $name = '', $raw = null ) {
-		return self::formatRaw(
-			SiteStats::numberingroup( strtolower( $name ) ),
-			$raw,
-			$parser->getFunctionLang()
-		);
+		return self::formatRaw( SiteStats::numberingroup( strtolower( $name ) ), $raw );
 	}
 
 	/**
@@ -755,7 +727,7 @@ class CoreParserFunctions {
 
 		$title = Title::makeTitleSafe( NS_CATEGORY, $name );
 		if ( !$title ) { # invalid title
-			return self::formatRaw( 0, $raw, $parser->getFunctionLang() );
+			return self::formatRaw( 0, $raw );
 		}
 		$wgContLang->findVariantLink( $name, $title, true );
 
@@ -781,7 +753,7 @@ class CoreParserFunctions {
 		}
 
 		$count = $cache[$name][$type];
-		return self::formatRaw( $count, $raw, $parser->getFunctionLang() );
+		return self::formatRaw( $count, $raw );
 	}
 
 	/**
@@ -797,7 +769,7 @@ class CoreParserFunctions {
 		$title = Title::newFromText( $page );
 
 		if ( !is_object( $title ) ) {
-			return self::formatRaw( 0, $raw, $parser->getFunctionLang() );
+			return self::formatRaw( 0, $raw );
 		}
 
 		// fetch revision from cache/database and return the value
@@ -807,7 +779,7 @@ class CoreParserFunctions {
 			// We've had bugs where rev_len was not being recorded for empty pages, see T135414
 			$length = 0;
 		}
-		return self::formatRaw( $length, $raw, $parser->getFunctionLang() );
+		return self::formatRaw( $length, $raw );
 	}
 
 	/**

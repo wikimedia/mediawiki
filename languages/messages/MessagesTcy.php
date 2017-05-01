@@ -31,3 +31,4 @@ $namespaceNames = [
 	NS_CATEGORY         => 'ವರ್ಗೊ',
 	NS_CATEGORY_TALK    => 'ವರ್ಗೊ_ಪಾತೆರ',
 ];
+

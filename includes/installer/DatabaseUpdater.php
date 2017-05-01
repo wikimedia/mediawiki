@@ -20,8 +20,6 @@
  * @file
  * @ingroup Deployment
  */
-use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\MediaWikiServices;
 
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
@@ -34,6 +32,8 @@ require_once __DIR__ . '/../../maintenance/Maintenance.php';
  * @since 1.17
  */
 abstract class DatabaseUpdater {
+	protected static $updateCounter = 0;
+
 	/**
 	 * Array of updates to perform on the database
 	 *
@@ -60,11 +60,6 @@ abstract class DatabaseUpdater {
 	 * @var Database
 	 */
 	protected $db;
-
-	/**
-	 * @var Maintenance
-	 */
-	protected $maintenance;
 
 	protected $shared = false;
 
@@ -394,7 +389,7 @@ abstract class DatabaseUpdater {
 	 * Writes the schema updates desired to a file for the DB Admin to run.
 	 * @param array $schemaUpdate
 	 */
-	private function writeSchemaUpdateFile( array $schemaUpdate = [] ) {
+	private function writeSchemaUpdateFile( $schemaUpdate = [] ) {
 		$updates = $this->updatesSkipped;
 		$this->updatesSkipped = [];
 
@@ -427,7 +422,9 @@ abstract class DatabaseUpdater {
 	 *
 	 * @param array $what What updates to perform
 	 */
-	public function doUpdates( array $what = [ 'core', 'extensions', 'stats' ] ) {
+	public function doUpdates( $what = [ 'core', 'extensions', 'stats' ] ) {
+		global $wgVersion;
+
 		$this->db->setSchemaVars( $this->getSchemaVars() );
 
 		$what = array_flip( $what );
@@ -444,9 +441,12 @@ abstract class DatabaseUpdater {
 			$this->checkStats();
 		}
 
+		$this->setAppliedUpdates( $wgVersion, $this->updates );
+
 		if ( $this->fileHandle ) {
 			$this->skipSchema = false;
 			$this->writeSchemaUpdateFile();
+			$this->setAppliedUpdates( "$wgVersion-schema", $this->updatesSkipped );
 		}
 	}
 
@@ -483,6 +483,23 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * @param string $version
+	 * @param array $updates
+	 */
+	protected function setAppliedUpdates( $version, $updates = [] ) {
+		$this->db->clearFlag( DBO_DDLMODE );
+		if ( !$this->canUseNewUpdatelog() ) {
+			return;
+		}
+		$key = "updatelist-$version-" . time() . self::$updateCounter;
+		self::$updateCounter++;
+		$this->db->insert( 'updatelog',
+			[ 'ul_key' => $key, 'ul_value' => serialize( $updates ) ],
+			__METHOD__ );
+		$this->db->setFlag( DBO_DDLMODE );
+	}
+
+	/**
 	 * Helper function: check if the given key is present in the updatelog table.
 	 * Obviously, only use this for updates that occur after the updatelog table was
 	 * created!
@@ -492,7 +509,7 @@ abstract class DatabaseUpdater {
 	public function updateRowExists( $key ) {
 		$row = $this->db->selectRow(
 			'updatelog',
-			# T67813
+			# Bug 65813
 			'1 AS X',
 			[ 'ul_key' => $key ],
 			__METHOD__

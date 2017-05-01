@@ -28,6 +28,7 @@
  *
  * These are synonyms for the names given in the language file
  * Users and translators should not change them
+ *
  */
 class MWNamespace {
 

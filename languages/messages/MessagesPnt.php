@@ -16,8 +16,6 @@
  * @author ZaDiak
  */
 
-$fallback = 'el';
-
 $namespaceNames = [
 	NS_MEDIA            => 'Μέσον',
 	NS_SPECIAL          => 'Ειδικόν',
@@ -55,3 +53,4 @@ $dateFormats = [
 	'pnt date' => 'j xg Y',
 	'pnt both' => 'H:i, j xg Y',
 ];
+

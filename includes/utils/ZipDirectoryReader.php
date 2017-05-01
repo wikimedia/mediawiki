@@ -26,6 +26,7 @@
  *
  * Only a functional interface is provided: ZipFileReader::read(). No access is
  * given to object instances.
+ *
  */
 class ZipDirectoryReader {
 	/**

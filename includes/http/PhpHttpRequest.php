@@ -87,20 +87,15 @@ class PhpHttpRequest extends MWHttpRequest {
 	 * is completely useless (something like "fopen: failed to open stream")
 	 * so normal methods of handling errors programmatically
 	 * like get_last_error() don't work.
-	 * @internal
 	 */
 	public function errorHandler( $errno, $errstr ) {
 		$n = count( $this->fopenErrors ) + 1;
 		$this->fopenErrors += [ "errno$n" => $errno, "errstr$n" => $errstr ];
 	}
 
-	/**
-	 * @see MWHttpRequest::execute
-	 *
-	 * @return Status
-	 */
 	public function execute() {
-		$this->prepare();
+
+		parent::execute();
 
 		if ( is_array( $this->postData ) ) {
 			$this->postData = wfArrayToCgi( $this->postData );
@@ -232,12 +227,12 @@ class PhpHttpRequest extends MWHttpRequest {
 					. ': error opening connection: {errstr1}', $this->fopenErrors );
 			}
 			$this->status->fatal( 'http-request-error' );
-			return Status::wrap( $this->status ); // TODO B/C; move this to callers
+			return $this->status;
 		}
 
 		if ( $result['timed_out'] ) {
 			$this->status->fatal( 'http-timed-out', $this->url );
-			return Status::wrap( $this->status ); // TODO B/C; move this to callers
+			return $this->status;
 		}
 
 		// If everything went OK, or we received some error code
@@ -258,6 +253,6 @@ class PhpHttpRequest extends MWHttpRequest {
 		}
 		fclose( $fh );
 
-		return Status::wrap( $this->status ); // TODO B/C; move this to callers
+		return $this->status;
 	}
 }

@@ -42,19 +42,20 @@ class BenchHttpHttps extends Benchmarker {
 			[ 'function' => [ $this, 'getHTTP' ] ],
 			[ 'function' => [ $this, 'getHTTPS' ] ],
 		] );
+		print $this->getFormattedResults();
 	}
 
-	private function doRequest( $proto ) {
+	static function doRequest( $proto ) {
 		Http::get( "$proto://localhost/", [], __METHOD__ );
 	}
 
 	// bench function 1
-	protected function getHTTP() {
+	function getHTTP() {
 		$this->doRequest( 'http' );
 	}
 
 	// bench function 2
-	protected function getHTTPS() {
+	function getHTTPS() {
 		$this->doRequest( 'https' );
 	}
 }

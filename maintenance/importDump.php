@@ -109,8 +109,7 @@ TEXT
 		}
 
 		$this->output( "Done!\n" );
-		$this->output( "You might want to run rebuildrecentchanges.php to regenerate RecentChanges,\n" );
-		$this->output( "and initSiteStats.php to update page and revision counts\n" );
+		$this->output( "You might want to run rebuildrecentchanges.php to regenerate RecentChanges\n" );
 	}
 
 	function setNsfilter( array $namespaces ) {
@@ -283,9 +282,6 @@ TEXT
 
 		$source = new ImportStreamSource( $handle );
 		$importer = new WikiImporter( $source, $this->getConfig() );
-
-		// Updating statistics require a lot of time so disable it
-		$importer->disableStatisticsUpdate();
 
 		if ( $this->hasOption( 'debug' ) ) {
 			$importer->setDebug( true );

@@ -80,3 +80,4 @@ $specialPageAliases = [
 	'Wantedtemplates'           => [ 'ބޭނުންވާ_ފަންވަތްތައް' ],
 	'Watchlist'                 => [ 'މަގޭ_ނަޒަރު' ],
 ];
+

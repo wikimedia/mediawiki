@@ -154,3 +154,4 @@ $magicWords = [
 	'pagesize'                  => [ '1', 'СӘҺИФӘ_ПАМЈӘ', 'PAGESIZE' ],
 	'url_wiki'                  => [ '0', 'ВИКИ', 'WIKI' ],
 ];
+

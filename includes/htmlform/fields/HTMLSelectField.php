@@ -4,7 +4,7 @@
  * A select dropdown field.  Basically a wrapper for Xmlselect class
  */
 class HTMLSelectField extends HTMLFormField {
-	public function validate( $value, $alldata ) {
+	function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
 		if ( $p !== true ) {
@@ -16,11 +16,11 @@ class HTMLSelectField extends HTMLFormField {
 		if ( in_array( strval( $value ), $validOptions, true ) ) {
 			return true;
 		} else {
-			return $this->msg( 'htmlform-select-badoption' );
+			return $this->msg( 'htmlform-select-badoption' )->parse();
 		}
 	}
 
-	public function getInputHTML( $value ) {
+	function getInputHTML( $value ) {
 		$select = new XmlSelect( $this->mName, $this->mID, strval( $value ) );
 
 		if ( !empty( $this->mParams['disabled'] ) ) {
@@ -42,7 +42,7 @@ class HTMLSelectField extends HTMLFormField {
 		return $select->getHTML();
 	}
 
-	public function getInputOOUI( $value ) {
+	function getInputOOUI( $value ) {
 		$disabled = false;
 		$allowedParams = [ 'tabindex' ];
 		$attribs = OOUI\Element::configFromHtmlAttributes(

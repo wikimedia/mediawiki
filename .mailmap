@@ -3,7 +3,6 @@
 #
 # To update the CREDITS file, run maintenance/updateCredits.php
 #
-<<<<<<< HEAD
 # Two types of entries are useful here. The first sets a cannonical author
 # name for a given email address:
 #
@@ -16,20 +15,6 @@
 #
 # Mappings are only needed for authors who have used multiple author names
 # and/or author emails for revisions over time. Author names begenning with
-=======
-# Two types of entries are useful here. The first sets a canonical author
-# name for a given email address:
-#
-#   Canonical Author Name <author email>
-#
-# The second allows collecting alternate email addresses into a single
-# canonical author name and email address:
-#
-#   Canonical Author Name <author email> <alternate email>
-#
-# Mappings are only needed for authors who have used multiple author names
-# and/or author emails for revisions over time. Author names beginning with
->>>>>>> wikimedia/master
 # "[BOT]" will be omitted from the CREDITS file.
 #
 # See also: https://git-scm.com/docs/git-shortlog#_mapping_authors
@@ -47,16 +32,9 @@ addshore <addshorewiki@gmail.com>
 Aditya Sastry <ganeshaditya1@gmail.com>
 Adrian Heine <adrian.heine@wikimedia.de>
 Alex Z. <mrzmanwiki@gmail.com> <mrzman@users.mediawiki.org>
-<<<<<<< HEAD
 Alexander Emsenhuber <ialex.wiki@gmail.com>
 Alexander Emsenhuber <ialex.wiki@gmail.com> <ialex@users.mediawiki.org>
 Alexander Emsenhuber <ialex.wiki@gmail.com> <mediawiki@emsenhuber.ch>
-=======
-Aleksey Bekh-Ivanov <aleksey.bekh-ivanov@wikimedia.de>
-Alexandre Emsenhuber <ialex.wiki@gmail.com>
-Alexandre Emsenhuber <ialex.wiki@gmail.com> <ialex@users.mediawiki.org>
-Alexandre Emsenhuber <ialex.wiki@gmail.com> <mediawiki@emsenhuber.ch>
->>>>>>> wikimedia/master
 Alexander Monk <krenair@gmail.com>
 Alexander Monk <krenair@gmail.com> <alex@wikimedia.org>
 Alexander Monk <krenair@gmail.com> <krenair@wikimedia.org>
@@ -115,7 +93,6 @@ Chad Horohoe <chadh@wikimedia.org>
 Chad Horohoe <chadh@wikimedia.org> <demon@users.mediawiki.org>
 Charles Melbye <charlie@yourwiki.net> <charlie@users.mediawiki.org>
 Chiefwei <chiefwei1989@gmail.com>
-Chris Koerner <ckoerner@wikimedia.org>
 Chris McMahon <cmcmahon@wikimedia.org>
 Chris Steipp <csteipp@wikimedia.org>
 Christian Aistleitner <christian@quelltextlich.at>
@@ -123,11 +100,6 @@ Christian Aistleitner <christian@quelltextlich.at> <qchris@users.mediawiki.org>
 Christian Williams <orbit@framezero.com>
 Christian Williams <orbit@framezero.com> <christian@localhost>
 Christian Williams <orbit@framezero.com> <christian@wikia-inc.com>
-<<<<<<< HEAD
-=======
-Christoph Jauera <christoph.jauera@wikimedia.de>
-Christoph Jauera <christoph.jauera@wikimedia.de> <christoph.fischer@wikimedia.de>
->>>>>>> wikimedia/master
 Christopher Johnson <root@bugzilla.wmde.de>
 church of emacs <churchofemacs@users.mediawiki.org>
 Cindy Cicalese <cicalese@mitre.org>
@@ -143,29 +115,17 @@ Daniel Friesen <mediawiki@danielfriesen.name> <dantman@users.mediawiki.org>
 Daniel Friesen <mediawiki@danielfriesen.name> <pub-github@nadir-seen-fire.com>
 Daniel Kinzler <daniel.kinzler@wikimedia.de>
 Daniel Kinzler <daniel.kinzler@wikimedia.de> <daniel@users.mediawiki.org>
-<<<<<<< HEAD
-=======
-Daniel Renfro <bluecurio@gmail.com> <drenfro@vistaprint.com>
->>>>>>> wikimedia/master
 Danny B. <Wikipedia.Danny.B@email.cz>
 Danny B. <Wikipedia.Danny.B@email.cz> <danny.b@email.cz>
 Danny B. <Wikipedia.Danny.B@email.cz> <danny_b@users.mediawiki.org>
 Danny B. <Wikipedia.Danny.B@email.cz> <wikimedia.danny.b@email.cz>
 Darian Anthony Patrick <dpatrick@wikimedia.org>
 Darkdragon09 <ubuntu@ip-172-31-39-38.us-west-2.compute.internal>
-<<<<<<< HEAD
-=======
-David Causse <dcausse@wikimedia.org>
->>>>>>> wikimedia/master
 David Chan <david@sheetmusic.org.uk>
 Dereckson <dereckson@espace-win.org>
 Derk-Jan Hartman <hartman@videolan.org>
 Derk-Jan Hartman <hartman@videolan.org> <hartman.wiki@gmail.com>
 Derk-Jan Hartman <hartman@videolan.org> <hartman@users.mediawiki.org>
-<<<<<<< HEAD
-=======
-Devi Krishnan <devikrishnan67@gmail.com>
->>>>>>> wikimedia/master
 Diederik van Liere <dvanliere@gmail.com> <diederik@users.mediawiki.org>
 Domas Mituzas <domas.mituzas@gmail.com> <midom@users.mediawiki.org>
 Douglas Gardner <douglas@chippy.ch>
@@ -174,10 +134,6 @@ Ebrahim Byagowi <ebrahim@gnu.org>
 Ed Sanders <esanders@wikimedia.org>
 Elliott Eggleston <eeggleston@wikimedia.org>
 Elliott Eggleston <eeggleston@wikimedia.org> <ejegg@ejegg.com>
-<<<<<<< HEAD
-=======
-Emad Elwany <emadelwany@hotmail.com>
->>>>>>> wikimedia/master
 Emmanuel Engelhart <kelson@kiwix.org> <kelson42@users.mediawiki.org>
 Emufarmers <emufarmers@gmail.com>
 Emufarmers <emufarmers@gmail.com> <emufarmers@users.mediawiki.org>
@@ -245,18 +201,14 @@ Jason Richey <jasonr@wikia.com> <jasonr@users.mediawiki.org>
 Jason Richey <jasonr@wikia.com> <urichj00@users.mediawiki.org>
 Jeff Hall <jeffreyehall@gmail.com>
 Jeff Hall <jeffreyehall@gmail.com> <jhall@wikimedia.org>
-Jeff Hobson <jhobson@wikimedia.org>
 Jeff Janes <jeff.janes@gmail.com>
-Jeremy Baron <jeremy@tuxmachine.com>
 Jeremy Postlethwaite <jpostlethwaite@wikimedia.org> <jpostlethwaite@users.mediawiki.org>
 Jeroen De Dauw <jeroendedauw@gmail.com>
 Jeroen De Dauw <jeroendedauw@gmail.com> <jeroendedauw@users.mediawiki.org>
 Jesús Martínez Novo <martineznovo@gmail.com>
 Jiabao <jiabao.foss@gmail.com>
 Jimmy Collins <jimmy.collins@web.de> <collinj@users.mediawiki.org>
-Joel Sahleen <jsahleen@wikimedia.org>
 John Du Hart <john@compwhizii.net> <johnduhart@users.mediawiki.org>
-John Erling Blad <john.blad@wikimedia.de>
 Jon Harald Søby <jhsoby@gmail.com> <jhsoby@users.mediawiki.org>
 Jon Robson <jrobson@wikimedia.org>
 Jon Robson <jrobson@wikimedia.org> <jdlrobson@gmail.com>
@@ -265,11 +217,6 @@ Juliusz Gonera <jgonera@gmail.com> <jgonera@wikimedia.org>
 JuneHyeon Bae <devunt@gmail.com>
 Jure Kajzer <freak@drajv.si>
 Jure Kajzer <freak@drajv.si> <freakolowsky@users.mediawiki.org>
-<<<<<<< HEAD
-=======
-Justin Du <justin.d128@gmail.com>
-Kai Nissen <kai.nissen@wikimedia.de>
->>>>>>> wikimedia/master
 Karun Dambiec <karun.84@gmx.de>
 Katie Filbert <aude.wiki@gmail.com>
 Katie Filbert <aude.wiki@gmail.com> <aude@users.mediawiki.org>
@@ -289,10 +236,6 @@ liangent <liangent@gmail.com>
 Lisa Ridley <lhridley@gmail.com> <lhridley@users.mediawiki.org>
 Ljudusika <plo2000@i.ua>
 Luis Felipe Schenone <schenonef@gmail.com>
-<<<<<<< HEAD
-=======
-Luke Welling <lwelling@wikimedia.org>
->>>>>>> wikimedia/master
 Lupo <lupo.bugzilla@gmail.com>
 m4tx <m4tx@m4tx.pl>
 Madman <madman.enwiki@gmail.com>
@@ -318,7 +261,6 @@ Markus Glaser <glaser@hallowelt.biz> <mglaser@users.mediawiki.org>
 Matt Johnston <mattj@emazestudios.com> <mattj@users.mediawiki.org>
 Matthew Britton <hugglegurch@gmail.com> <gurch@users.mediawiki.org>
 Matthew Flaschen <mflaschen@wikimedia.org>
-Matthew Walker <mwalker@wikimedia.org>
 Matthias Mullie <git@mullie.eu>
 Matthias Mullie <git@mullie.eu> <mmullie@wikimedia.org>
 Matěj Grabovský <mgrabovsky@yahoo.com> <mgrabovsky@users.mediawiki.org>
@@ -339,14 +281,11 @@ Mwalker <mwalker@wikimedia.org>
 MZMcBride <g@mzmcbride.com>
 nadeesha <nadeesha@calcey.com> <nadeesha@users.mediawiki.org>
 Namit <namit.ohri@gmail.com>
-Nathan Larson <nathanlarson3141@gmail.com>
-Nathan Larson <nathanlarson3141@gmail.com> <tjlsangria@gmail.com>
 Nathaniel Herman <redwwjd@yahoo.com> <pinky@users.mediawiki.org>
 Neil Kandalgaonkar <neilk@wikimedia.org> <neilk@users.mediawiki.org>
 Nemo bis <federicoleva@tiscali.it>
 nephele <nephele@skyhighway.com> <nephele@users.mediawiki.org>
 Nick Jenkins <nickpj@gmail.com> <nickj@users.mediawiki.org>
-Niharika Kohli <nkohli@wikimedia.org>
 Nik Everett <neverett@wikimedia.org>
 Niklas Laxström <niklas.laxstrom@gmail.com>
 Niklas Laxström <niklas.laxstrom@gmail.com> <nikerabbit@users.mediawiki.org>
@@ -358,15 +297,10 @@ OverlordQ <wikipedia@thedarkcitadel.com> <overlordq@users.mediawiki.org>
 Owen Davis <owen@wikia-inc.com>
 Owen Davis <owen@wikia-inc.com> <owen@users.mediawiki.org>
 paladox <thomasmulhall410@yahoo.com>
-<<<<<<< HEAD
-=======
-Patricio Molina <patriciomolina@gmail.com>
->>>>>>> wikimedia/master
 Patrick Reilly <preilly@wikimedia.org>
 Patrick Reilly <preilly@wikimedia.org> <preilly@users.mediawiki.org>
 Patrick Westerhoff <PatrickWesterhoff@gmail.com>
 Paul Copperman <paul.copperman@gmail.com> <pcopp@users.mediawiki.org>
-Peter Coombe <pcoombe@wikimedia.org>
 Peter Coti <petercoti@gmail.com>
 Peter Potrowl <peter017@gmail.com> <peter17@users.mediawiki.org>
 Petr Kadlec <mormegil@centrum.cz>
@@ -451,7 +385,6 @@ Stephane Bisson <sbisson@wikimedia.org>
 Stephen Liang <github@stephenliang.pw>
 Steve Sanbeg <ffnaort@jro.qr> <sanbeg@users.mediawiki.org>
 Steven Roddis <StevenRoddis@users.noreply.github.com>
-Steven Walling <swalling@wikimedia.org>
 Subramanya Sastry <ssastry@wikimedia.org>
 Sucheta Ghoshal <sghoshal@wikimedia.org>
 Sumit Asthana <asthana.sumit23@gmail.com>
@@ -485,14 +418,9 @@ Tpt <thomaspt@hotmail.fr>
 Trevor Parscal <trevorparscal@gmail.com>
 Trevor Parscal <trevorparscal@gmail.com> <tparscal@users.mediawiki.org>
 Trevor Parscal <trevorparscal@gmail.com> <tparscal@wikimedia.org>
-Trey Jones <tjones@wikimedia.org>
 Tyler Cipriani <tcipriani@wikimedia.org>
 Tyler Romeo <tylerromeo@gmail.com>
 Umherirrender <umherirrender_de.wp@web.de>
-<<<<<<< HEAD
-=======
-Victor Barbu <victorbarbu08@gmail.com>
->>>>>>> wikimedia/master
 Victor Vasiliev <vasilvv@mit.edu>
 Victor Vasiliev <vasilvv@mit.edu> <vasilievvv@users.mediawiki.org>
 Victor Vasiliev <vasilvv@mit.edu> <vasilvv@gmail.com>
@@ -510,7 +438,6 @@ Yongmin Hong <revi@member.fsf.org> <reviwiki@gmail.com>
 Yuri Astrakhan <yurik@wikimedia.org>
 Yuri Astrakhan <yurik@wikimedia.org> <yuriastrakhan@gmail.com>
 Yuri Astrakhan <yurik@wikimedia.org> <yurik@users.mediawiki.org>
-Yuriy Shnitkovskiy <bmp2558@gmail.com>
 Yusuke Matsubara <whym@whym.org>
 Yuvi Panda <yuvipanda@gmail.com>
 Zak Greant <zak+mediawiki@fooassociates.com> <zak@users.mediawiki.org>

@@ -21,9 +21,7 @@
  * @ingroup FileAbstraction
  */
 
-use MediaWiki\Logger\LoggerFactory;
-use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\IDatabase;
+use \MediaWiki\Logger\LoggerFactory;
 
 /**
  * Class to represent a local file in the wiki's own database
@@ -176,7 +174,7 @@ class LocalFile extends File {
 	 * @return bool|LocalFile
 	 */
 	static function newFromKey( $sha1, $repo, $timestamp = false ) {
-		$dbr = $repo->getReplicaDB();
+		$dbr = $repo->getSlaveDB();
 
 		$conds = [ 'img_sha1' => $sha1 ];
 		if ( $timestamp ) {
@@ -243,15 +241,6 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * @param WANObjectCache $cache
-	 * @return string[]
-	 * @since 1.28
-	 */
-	public function getMutableCacheKeys( WANObjectCache $cache ) {
-		return [ $this->getCacheKey() ];
-	}
-
-	/**
 	 * Try to load file metadata from memcached, falling back to the database
 	 */
 	private function loadFromCache() {
@@ -270,7 +259,7 @@ class LocalFile extends File {
 			$key,
 			$cache::TTL_WEEK,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $cache ) {
-				$setOpts += Database::getCacheSetOptions( $this->repo->getReplicaDB() );
+				$setOpts += Database::getCacheSetOptions( $this->repo->getSlaveDB() );
 
 				$this->loadFromDB( self::READ_NORMAL );
 
@@ -393,7 +382,7 @@ class LocalFile extends File {
 	 * @param int $flags
 	 */
 	function loadFromDB( $flags = 0 ) {
-		$fname = static::class . '::' . __FUNCTION__;
+		$fname = get_class( $this ) . '::' . __FUNCTION__;
 
 		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
 		$this->dataLoaded = true;
@@ -401,7 +390,7 @@ class LocalFile extends File {
 
 		$dbr = ( $flags & self::READ_LATEST )
 			? $this->repo->getMasterDB()
-			: $this->repo->getReplicaDB();
+			: $this->repo->getSlaveDB();
 
 		$row = $dbr->selectRow( 'image', $this->getCacheFields( 'img_' ),
 			[ 'img_name' => $this->getName() ], $fname );
@@ -418,12 +407,12 @@ class LocalFile extends File {
 	 * This covers fields that are sometimes not cached.
 	 */
 	protected function loadExtraFromDB() {
-		$fname = static::class . '::' . __FUNCTION__;
+		$fname = get_class( $this ) . '::' . __FUNCTION__;
 
 		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
 		$this->extraDataLoaded = true;
 
-		$fieldMap = $this->loadFieldsWithTimestamp( $this->repo->getReplicaDB(), $fname );
+		$fieldMap = $this->loadFieldsWithTimestamp( $this->repo->getSlaveDB(), $fname );
 		if ( !$fieldMap ) {
 			$fieldMap = $this->loadFieldsWithTimestamp( $this->repo->getMasterDB(), $fname );
 		}
@@ -501,7 +490,7 @@ class LocalFile extends File {
 
 		$decoded['timestamp'] = wfTimestamp( TS_MW, $decoded['timestamp'] );
 
-		$decoded['metadata'] = $this->repo->getReplicaDB()->decodeBlob( $decoded['metadata'] );
+		$decoded['metadata'] = $this->repo->getSlaveDB()->decodeBlob( $decoded['metadata'] );
 
 		if ( empty( $decoded['major_mime'] ) ) {
 			$decoded['mime'] = 'unknown/unknown';
@@ -893,7 +882,7 @@ class LocalFile extends File {
 				$files[] = $file;
 			}
 		} catch ( FileBackendError $e ) {
-		} // suppress (T56674)
+		} // suppress (bug 54674)
 
 		return $files;
 	}
@@ -1048,7 +1037,7 @@ class LocalFile extends File {
 	 * @return OldLocalFile[]
 	 */
 	function getHistory( $limit = null, $start = null, $end = null, $inc = true ) {
-		$dbr = $this->repo->getReplicaDB();
+		$dbr = $this->repo->getSlaveDB();
 		$tables = [ 'oldimage' ];
 		$fields = OldLocalFile::selectFields();
 		$conds = $opts = $join_conds = [];
@@ -1072,9 +1061,7 @@ class LocalFile extends File {
 		$opts['ORDER BY'] = "oi_timestamp $order";
 		$opts['USE INDEX'] = [ 'oldimage' => 'oi_name_timestamp' ];
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$localFile = $this;
-		Hooks::run( 'LocalFile::getHistory', [ &$localFile, &$tables, &$fields,
+		Hooks::run( 'LocalFile::getHistory', [ &$this, &$tables, &$fields,
 			&$conds, &$opts, &$join_conds ] );
 
 		$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $opts, $join_conds );
@@ -1102,9 +1089,9 @@ class LocalFile extends File {
 	 */
 	public function nextHistoryLine() {
 		# Polymorphic function name to distinguish foreign and local fetches
-		$fname = static::class . '::' . __FUNCTION__;
+		$fname = get_class( $this ) . '::' . __FUNCTION__;
 
-		$dbr = $this->repo->getReplicaDB();
+		$dbr = $this->repo->getSlaveDB();
 
 		if ( $this->historyLine == 0 ) { // called for the first time, return line from cur
 			$this->historyRes = $dbr->select( 'image',
@@ -1355,7 +1342,7 @@ class LocalFile extends File {
 				}
 			}
 
-			# (T36993) Note: $oldver can be empty here, if the previous
+			# (bug 34993) Note: $oldver can be empty here, if the previous
 			# version of the file was broken. Allow registration of the new
 			# version to continue anyway, because that's better than having
 			# an image that's not fixable by user operations.
@@ -1585,7 +1572,7 @@ class LocalFile extends File {
 
 	/**
 	 * Move or copy a file to its public location. If a file exists at the
-	 * destination, move it to an archive. Returns a Status object with
+	 * destination, move it to an archive. Returns a FileRepoStatus object with
 	 * the archive name in the "value" member on success.
 	 *
 	 * The archive name should be passed through to recordUpload for database
@@ -1603,7 +1590,7 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * Move or copy a file to a specified location. Returns a Status
+	 * Move or copy a file to a specified location. Returns a FileRepoStatus
 	 * object with the archive name in the "value" member on success.
 	 *
 	 * The archive name should be passed through to recordUpload for database
@@ -1930,7 +1917,7 @@ class LocalFile extends File {
 				'page_namespace' => $this->title->getNamespace(),
 				'page_title' => $this->title->getDBkey()
 			];
-			$touched = $this->repo->getReplicaDB()->selectField( 'page', 'page_touched', $cond, __METHOD__ );
+			$touched = $this->repo->getSlaveDB()->selectField( 'page', 'page_touched', $cond, __METHOD__ );
 			$this->descriptionTouched = $touched ? wfTimestamp( TS_MW, $touched ) : false;
 		}
 
@@ -2009,7 +1996,7 @@ class LocalFile extends File {
 			$dbw = $this->repo->getMasterDB();
 			$makesTransaction = !$dbw->trxLevel();
 			$dbw->startAtomic( self::ATOMIC_SECTION_LOCK );
-			// T56736: use simple lock to handle when the file does not exist.
+			// Bug 54736: use simple lock to handle when the file does not exist.
 			// SELECT FOR UPDATE prevents changes, not other SELECTs with FOR UPDATE.
 			// Also, that would cause contention on INSERT of similarly named rows.
 			$status = $this->acquireFileLock(); // represents all versions of the file
@@ -2099,7 +2086,7 @@ class LocalFileDeleteBatch {
 	/** @var bool Whether to suppress all suppressable fields when deleting */
 	private $suppress;
 
-	/** @var Status */
+	/** @var FileRepoStatus */
 	private $status;
 
 	/** @var User */
@@ -2247,7 +2234,12 @@ class LocalFileDeleteBatch {
 
 		// Bitfields to further suppress the content
 		if ( $this->suppress ) {
-			$bitfield = Revision::SUPPRESSED_ALL;
+			$bitfield = 0;
+			// This should be 15...
+			$bitfield |= Revision::DELETED_TEXT;
+			$bitfield |= Revision::DELETED_COMMENT;
+			$bitfield |= Revision::DELETED_USER;
+			$bitfield |= Revision::DELETED_RESTRICTED;
 		} else {
 			$bitfield = 'oi_deleted';
 		}
@@ -2267,6 +2259,7 @@ class LocalFileDeleteBatch {
 					'fa_deleted_timestamp' => $encTimestamp,
 					'fa_deleted_reason' => $encReason,
 					'fa_deleted' => $this->suppress ? $bitfield : 0,
+
 					'fa_name' => 'img_name',
 					'fa_archive_name' => 'NULL',
 					'fa_size' => 'img_size',
@@ -3006,7 +2999,7 @@ class LocalFileMoveBatch {
 	}
 
 	/**
-	 * Verify the database updates and return a new Status indicating how
+	 * Verify the database updates and return a new FileRepoStatus indicating how
 	 * many rows would be updated.
 	 *
 	 * @return Status
@@ -3037,7 +3030,7 @@ class LocalFileMoveBatch {
 			$status->failCount++;
 		}
 		$status->successCount += $oldRowCount;
-		// T36934: oldCount is based on files that actually exist.
+		// Bug 34934: oldCount is based on files that actually exist.
 		// There may be more DB rows than such files, in which case $affected
 		// can be greater than $total. We use max() to avoid negatives here.
 		$status->failCount += max( 0, $this->oldCount - $oldRowCount );
@@ -3049,7 +3042,7 @@ class LocalFileMoveBatch {
 	}
 
 	/**
-	 * Do the database updates and return a new Status indicating how
+	 * Do the database updates and return a new FileRepoStatus indicating how
 	 * many rows where updated.
 	 */
 	protected function doDBUpdates() {

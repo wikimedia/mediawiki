@@ -2,8 +2,6 @@
 
 namespace MediaWiki\Auth;
 
-use Wikimedia\TestingAccessWrapper;
-
 /**
  * @group AuthManager
  * @group Database
@@ -12,7 +10,7 @@ use Wikimedia\TestingAccessWrapper;
 class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	public function testConstructor() {
 		$provider = new CheckBlocksSecondaryAuthenticationProvider();
-		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
+		$providerPriv = \TestingAccessWrapper::newFromObject( $provider );
 		$config = new \HashConfig( [
 			'BlockDisablesLogin' => false
 		] );
@@ -22,7 +20,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		$provider = new CheckBlocksSecondaryAuthenticationProvider(
 			[ 'blockDisablesLogin' => true ]
 		);
-		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
+		$providerPriv = \TestingAccessWrapper::newFromObject( $provider );
 		$config = new \HashConfig( [
 			'BlockDisablesLogin' => false
 		] );

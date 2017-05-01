@@ -9,3 +9,4 @@
  */
 
 $fallback = 'fr';
+

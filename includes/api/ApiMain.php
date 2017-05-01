@@ -1,5 +1,7 @@
 <?php
 /**
+ *
+ *
  * Created on Sep 4, 2006
  *
  * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
@@ -24,10 +26,6 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
-use Wikimedia\Timestamp\TimestampException;
-use Wikimedia\Rdbms\DBQueryError;
-use Wikimedia\Rdbms\DBError;
 
 /**
  * This is the main API class, used for both external and internal processing.
@@ -47,11 +45,6 @@ class ApiMain extends ApiBase {
 	 * When no format parameter is given, this format will be used
 	 */
 	const API_DEFAULT_FORMAT = 'jsonfm';
-
-	/**
-	 * When no uselang parameter is given, this language will be used
-	 */
-	const API_DEFAULT_USELANG = 'user';
 
 	/**
 	 * List of available modules: action name => module class
@@ -81,7 +74,6 @@ class ApiMain extends ApiBase {
 		'tokens' => 'ApiTokens',
 		'checktoken' => 'ApiCheckToken',
 		'cspreport' => 'ApiCSPReport',
-		'validatepassword' => 'ApiValidatePassword',
 
 		// Write modules
 		'purge' => 'ApiPurge',
@@ -108,7 +100,6 @@ class ApiMain extends ApiBase {
 		'managetags' => 'ApiManageTags',
 		'tag' => 'ApiTag',
 		'mergehistory' => 'ApiMergeHistory',
-		'setpagelanguage' => 'ApiSetPageLanguage',
 	];
 
 	/**
@@ -149,7 +140,7 @@ class ApiMain extends ApiBase {
 	 */
 	private $mPrinter;
 
-	private $mModuleMgr, $mResult, $mErrorFormatter = null;
+	private $mModuleMgr, $mResult, $mErrorFormatter;
 	/** @var ApiContinuationManager|null */
 	private $mContinuationManager;
 	private $mAction;
@@ -161,7 +152,6 @@ class ApiMain extends ApiBase {
 	private $mCacheMode = 'private';
 	private $mCacheControl = [];
 	private $mParamsUsed = [];
-	private $mParamsSensitive = [];
 
 	/** @var bool|null Cached return value from self::lacksSameOriginSecurity() */
 	private $lacksSameOriginSecurity = null;
@@ -239,11 +229,7 @@ class ApiMain extends ApiBase {
 			}
 		}
 
-		$this->mResult = new ApiResult( $this->getConfig()->get( 'APIMaxResultSize' ) );
-
-		// Setup uselang. This doesn't use $this->getParameter()
-		// because we're not ready to handle errors yet.
-		$uselang = $request->getVal( 'uselang', self::API_DEFAULT_USELANG );
+		$uselang = $this->getParameter( 'uselang' );
 		if ( $uselang === 'user' ) {
 			// Assume the parent context is going to return the user language
 			// for uselang=user (see T85635).
@@ -261,29 +247,6 @@ class ApiMain extends ApiBase {
 			}
 		}
 
-		// Set up the error formatter. This doesn't use $this->getParameter()
-		// because we're not ready to handle errors yet.
-		$errorFormat = $request->getVal( 'errorformat', 'bc' );
-		$errorLangCode = $request->getVal( 'errorlang', 'uselang' );
-		$errorsUseDB = $request->getCheck( 'errorsuselocal' );
-		if ( in_array( $errorFormat, [ 'plaintext', 'wikitext', 'html', 'raw', 'none' ], true ) ) {
-			if ( $errorLangCode === 'uselang' ) {
-				$errorLang = $this->getLanguage();
-			} elseif ( $errorLangCode === 'content' ) {
-				global $wgContLang;
-				$errorLang = $wgContLang;
-			} else {
-				$errorLangCode = RequestContext::sanitizeLangCode( $errorLangCode );
-				$errorLang = Language::factory( $errorLangCode );
-			}
-			$this->mErrorFormatter = new ApiErrorFormatter(
-				$this->mResult, $errorLang, $errorFormat, $errorsUseDB
-			);
-		} else {
-			$this->mErrorFormatter = new ApiErrorFormatter_BackCompat( $this->mResult );
-		}
-		$this->mResult->setErrorFormatter( $this->getErrorFormatter() );
-
 		$this->mModuleMgr = new ApiModuleManager( $this );
 		$this->mModuleMgr->addModules( self::$Modules, 'action' );
 		$this->mModuleMgr->addModules( $config->get( 'APIModules' ), 'action' );
@@ -292,6 +255,9 @@ class ApiMain extends ApiBase {
 
 		Hooks::run( 'ApiMain::moduleManager', [ $this->mModuleMgr ] );
 
+		$this->mResult = new ApiResult( $this->getConfig()->get( 'APIMaxResultSize' ) );
+		$this->mErrorFormatter = new ApiErrorFormatter_BackCompat( $this->mResult );
+		$this->mResult->setErrorFormatter( $this->mErrorFormatter );
 		$this->mContinuationManager = null;
 		$this->mEnableWrite = $enableWrite;
 
@@ -498,9 +464,7 @@ class ApiMain extends ApiBase {
 	public function createPrinterByName( $format ) {
 		$printer = $this->mModuleMgr->getModule( $format, 'format' );
 		if ( $printer === null ) {
-			$this->dieWithError(
-				[ 'apierror-unknownformat', wfEscapeWikiText( $format ) ], 'unknown_format'
-			);
+			$this->dieUsage( "Unrecognized format: {$format}", 'unknown_format' );
 		}
 
 		return $printer;
@@ -546,7 +510,7 @@ class ApiMain extends ApiBase {
 			$runTime = microtime( true ) - $t;
 			$this->logRequest( $runTime );
 			if ( $this->mModule->isWriteMode() && $this->getRequest()->wasPosted() ) {
-				MediaWikiServices::getInstance()->getStatsdDataFactory()->timing(
+				$this->getStats()->timing(
 					'api.' . $this->mModule->getModuleName() . '.executeTiming', 1000 * $runTime
 				);
 			}
@@ -577,8 +541,8 @@ class ApiMain extends ApiBase {
 	 * @param Exception $e
 	 */
 	protected function handleException( Exception $e ) {
-		// T65145: Rollback any open database transactions
-		if ( !( $e instanceof ApiUsageException || $e instanceof UsageException ) ) {
+		// Bug 63145: Rollback any open database transactions
+		if ( !( $e instanceof UsageException ) ) {
 			// UsageExceptions are intentional, so don't rollback if that's the case
 			try {
 				MWExceptionHandler::rollbackMasterChangesAndLog( $e );
@@ -593,7 +557,7 @@ class ApiMain extends ApiBase {
 		Hooks::run( 'ApiMain::onException', [ $this, $e ] );
 
 		// Log it
-		if ( !( $e instanceof ApiUsageException || $e instanceof UsageException ) ) {
+		if ( !( $e instanceof UsageException ) ) {
 			MWExceptionHandler::logException( $e );
 		}
 
@@ -601,14 +565,18 @@ class ApiMain extends ApiBase {
 		// If this fails, an unhandled exception should be thrown so that global error
 		// handler will process and log it.
 
-		$errCodes = $this->substituteResultWithError( $e );
+		$errCode = $this->substituteResultWithError( $e );
 
 		// Error results should not be cached
 		$this->setCacheMode( 'private' );
 
 		$response = $this->getRequest()->response();
-		$headerStr = 'MediaWiki-API-Error: ' . join( ', ', $errCodes );
-		$response->header( $headerStr );
+		$headerStr = 'MediaWiki-API-Error: ' . $errCode;
+		if ( $e->getCode() === 0 ) {
+			$response->header( $headerStr );
+		} else {
+			$response->header( $headerStr, true, $e->getCode() );
+		}
 
 		// Reset and print just the error message
 		ob_clean();
@@ -616,38 +584,18 @@ class ApiMain extends ApiBase {
 		// Printer may not be initialized if the extractRequestParams() fails for the main module
 		$this->createErrorPrinter();
 
-		$failed = false;
 		try {
-			$this->printResult( $e->getCode() );
-		} catch ( ApiUsageException $ex ) {
-			// The error printer itself is failing. Try suppressing its request
-			// parameters and redo.
-			$failed = true;
-			$this->addWarning( 'apiwarn-errorprinterfailed' );
-			foreach ( $ex->getStatusValue()->getErrors() as $error ) {
-				try {
-					$this->mPrinter->addWarning( $error );
-				} catch ( Exception $ex2 ) {
-					// WTF?
-					$this->addWarning( $error );
-				}
-			}
+			$this->printResult( true );
 		} catch ( UsageException $ex ) {
 			// The error printer itself is failing. Try suppressing its request
 			// parameters and redo.
-			$failed = true;
-			$this->addWarning(
-				[ 'apiwarn-errorprinterfailed-ex', $ex->getMessage() ], 'errorprinterfailed'
+			$this->setWarning(
+				'Error printer failed (will retry without params): ' . $ex->getMessage()
 			);
-		}
-		if ( $failed ) {
 			$this->mPrinter = null;
 			$this->createErrorPrinter();
 			$this->mPrinter->forceDefaultParams();
-			if ( $e->getCode() ) {
-				$response->statusHeader( 200 ); // Reset in case the fallback doesn't want a non-200
-			}
-			$this->printResult( $e->getCode() );
+			$this->printResult( true );
 		}
 	}
 
@@ -688,8 +636,8 @@ class ApiMain extends ApiBase {
 	 * If the parameter and the header do match, the header is checked against $wgCrossSiteAJAXdomains
 	 * and $wgCrossSiteAJAXdomainExceptions, and if the origin qualifies, the appropriate CORS
 	 * headers are set.
-	 * https://www.w3.org/TR/cors/#resource-requests
-	 * https://www.w3.org/TR/cors/#resource-preflight-requests
+	 * http://www.w3.org/TR/cors/#resource-requests
+	 * http://www.w3.org/TR/cors/#resource-preflight-requests
 	 *
 	 * @return bool False if the caller should abort (403 case), true otherwise (all other cases)
 	 */
@@ -771,7 +719,7 @@ class ApiMain extends ApiBase {
 
 			$response->header( "Access-Control-Allow-Origin: $allowOrigin" );
 			$response->header( "Access-Control-Allow-Credentials: $allowCredentials" );
-			// https://www.w3.org/TR/resource-timing/#timing-allow-origin
+			// http://www.w3.org/TR/resource-timing/#timing-allow-origin
 			if ( $allowTiming !== false ) {
 				$response->header( "Timing-Allow-Origin: $allowTiming" );
 			}
@@ -1011,167 +959,80 @@ class ApiMain extends ApiBase {
 	/**
 	 * Create an error message for the given exception.
 	 *
-	 * If an ApiUsageException, errors/warnings will be extracted from the
-	 * embedded StatusValue.
-	 *
-	 * If a base UsageException, the getMessageArray() method will be used to
-	 * extract the code and English message for a single error (no warnings).
-	 *
-	 * Any other exception will be returned with a generic code and wrapper
-	 * text around the exception's (presumably English) message as a single
-	 * error (no warnings).
+	 * If the exception is a UsageException then
+	 * UsageException::getMessageArray() will be called to create the message.
 	 *
 	 * @param Exception $e
-	 * @param string $type 'error' or 'warning'
-	 * @return ApiMessage[]
+	 * @return array ['code' => 'some string', 'info' => 'some other string']
 	 * @since 1.27
 	 */
-	protected function errorMessagesFromException( $e, $type = 'error' ) {
-		$messages = [];
-		if ( $e instanceof ApiUsageException ) {
-			foreach ( $e->getStatusValue()->getErrorsByType( $type ) as $error ) {
-				$messages[] = ApiMessage::create( $error );
-			}
-		} elseif ( $type !== 'error' ) {
-			// None of the rest have any messages for non-error types
-		} elseif ( $e instanceof UsageException ) {
+	protected function errorMessageFromException( $e ) {
+		if ( $e instanceof UsageException ) {
 			// User entered incorrect parameters - generate error response
-			$data = $e->getMessageArray();
-			$code = $data['code'];
-			$info = $data['info'];
-			unset( $data['code'], $data['info'] );
-			$messages[] = new ApiRawMessage( [ '$1', $info ], $code, $data );
+			$errMessage = $e->getMessageArray();
 		} else {
-			// Something is seriously wrong
 			$config = $this->getConfig();
-			$class = preg_replace( '#^Wikimedia\\\Rdbms\\\#', '', get_class( $e ) );
-			$code = 'internal_api_error_' . $class;
+			// Something is seriously wrong
 			if ( ( $e instanceof DBQueryError ) && !$config->get( 'ShowSQLErrors' ) ) {
-				$params = [ 'apierror-databaseerror', WebRequest::getRequestId() ];
+				$info = 'Database query error';
 			} else {
-				$params = [
-					'apierror-exceptioncaught',
-					WebRequest::getRequestId(),
-					$e instanceof ILocalizedException
-						? $e->getMessageObject()
-						: wfEscapeWikiText( $e->getMessage() )
-				];
+				$info = "Exception Caught: {$e->getMessage()}";
 			}
-			$messages[] = ApiMessage::create( $params, $code );
+
+			$errMessage = [
+				'code' => 'internal_api_error_' . get_class( $e ),
+				'info' => '[' . WebRequest::getRequestId() . '] ' . $info,
+			];
 		}
-		return $messages;
+		return $errMessage;
 	}
 
 	/**
 	 * Replace the result data with the information about an exception.
+	 * Returns the error code
 	 * @param Exception $e
-	 * @return string[] Error codes
+	 * @return string
 	 */
 	protected function substituteResultWithError( $e ) {
 		$result = $this->getResult();
-		$formatter = $this->getErrorFormatter();
 		$config = $this->getConfig();
-		$errorCodes = [];
 
-		// Remember existing warnings and errors across the reset
-		$errors = $result->getResultData( [ 'errors' ] );
-		$warnings = $result->getResultData( [ 'warnings' ] );
-		$result->reset();
-		if ( $warnings !== null ) {
-			$result->addValue( null, 'warnings', $warnings, ApiResult::NO_SIZE_CHECK );
-		}
-		if ( $errors !== null ) {
-			$result->addValue( null, 'errors', $errors, ApiResult::NO_SIZE_CHECK );
-
-			// Collect the copied error codes for the return value
-			foreach ( $errors as $error ) {
-				if ( isset( $error['code'] ) ) {
-					$errorCodes[$error['code']] = true;
-				}
-			}
-		}
-
-		// Add errors from the exception
-		$modulePath = $e instanceof ApiUsageException ? $e->getModulePath() : null;
-		foreach ( $this->errorMessagesFromException( $e, 'error' ) as $msg ) {
-			$errorCodes[$msg->getApiCode()] = true;
-			$formatter->addError( $modulePath, $msg );
-		}
-		foreach ( $this->errorMessagesFromException( $e, 'warning' ) as $msg ) {
-			$formatter->addWarning( $modulePath, $msg );
-		}
-
-		// Add additional data. Path depends on whether we're in BC mode or not.
-		// Data depends on the type of exception.
-		if ( $formatter instanceof ApiErrorFormatter_BackCompat ) {
-			$path = [ 'error' ];
-		} else {
-			$path = null;
-		}
-		if ( $e instanceof ApiUsageException || $e instanceof UsageException ) {
+		$errMessage = $this->errorMessageFromException( $e );
+		if ( $e instanceof UsageException ) {
+			// User entered incorrect parameters - generate error response
 			$link = wfExpandUrl( wfScript( 'api' ) );
-			$result->addContentValue(
-				$path,
-				'docref',
-				trim(
-					$this->msg( 'api-usage-docref', $link )->inLanguage( $formatter->getLanguage() )->text()
-					. ' '
-					. $this->msg( 'api-usage-mailinglist-ref' )->inLanguage( $formatter->getLanguage() )->text()
-				)
-			);
+			ApiResult::setContentValue( $errMessage, 'docref', "See $link for API usage" );
 		} else {
-			if ( $config->get( 'ShowExceptionDetails' ) &&
-				( !$e instanceof DBError || $config->get( 'ShowDBErrorBacktrace' ) )
-			) {
-				$result->addContentValue(
-					$path,
+			// Something is seriously wrong
+			if ( $config->get( 'ShowExceptionDetails' ) ) {
+				ApiResult::setContentValue(
+					$errMessage,
 					'trace',
-					$this->msg( 'api-exception-trace',
-						get_class( $e ),
-						$e->getFile(),
-						$e->getLine(),
-						MWExceptionHandler::getRedactedTraceAsString( $e )
-					)->inLanguage( $formatter->getLanguage() )->text()
+					MWExceptionHandler::getRedactedTraceAsString( $e )
 				);
 			}
 		}
 
-		// Add the id and such
-		$this->addRequestedFields( [ 'servedby' ] );
+		// Remember all the warnings to re-add them later
+		$warnings = $result->getResultData( [ 'warnings' ] );
 
-		return array_keys( $errorCodes );
-	}
-
-	/**
-	 * Add requested fields to the result
-	 * @param string[] $force Which fields to force even if not requested. Accepted values are:
-	 *  - servedby
-	 */
-	protected function addRequestedFields( $force = [] ) {
-		$result = $this->getResult();
-
+		$result->reset();
+		// Re-add the id
 		$requestid = $this->getParameter( 'requestid' );
-		if ( $requestid !== null ) {
+		if ( !is_null( $requestid ) ) {
 			$result->addValue( null, 'requestid', $requestid, ApiResult::NO_SIZE_CHECK );
 		}
-
-		if ( $this->getConfig()->get( 'ShowHostnames' ) && (
-			in_array( 'servedby', $force, true ) || $this->getParameter( 'servedby' )
-		) ) {
+		if ( $config->get( 'ShowHostnames' ) ) {
+			// servedby is especially useful when debugging errors
 			$result->addValue( null, 'servedby', wfHostname(), ApiResult::NO_SIZE_CHECK );
 		}
-
-		if ( $this->getParameter( 'curtimestamp' ) ) {
-			$result->addValue( null, 'curtimestamp', wfTimestamp( TS_ISO_8601, time() ),
-				ApiResult::NO_SIZE_CHECK );
+		if ( $warnings !== null ) {
+			$result->addValue( null, 'warnings', $warnings, ApiResult::NO_SIZE_CHECK );
 		}
 
-		if ( $this->getParameter( 'responselanginfo' ) ) {
-			$result->addValue( null, 'uselang', $this->getLanguage()->getCode(),
-				ApiResult::NO_SIZE_CHECK );
-			$result->addValue( null, 'errorlang', $this->getErrorFormatter()->getLanguage()->getCode(),
-				ApiResult::NO_SIZE_CHECK );
-		}
+		$result->addValue( null, 'error', $errMessage, ApiResult::NO_SIZE_CHECK );
+
+		return $errMessage['code'];
 	}
 
 	/**
@@ -1179,10 +1040,32 @@ class ApiMain extends ApiBase {
 	 * @return array
 	 */
 	protected function setupExecuteAction() {
-		$this->addRequestedFields();
+		// First add the id to the top element
+		$result = $this->getResult();
+		$requestid = $this->getParameter( 'requestid' );
+		if ( !is_null( $requestid ) ) {
+			$result->addValue( null, 'requestid', $requestid );
+		}
+
+		if ( $this->getConfig()->get( 'ShowHostnames' ) ) {
+			$servedby = $this->getParameter( 'servedby' );
+			if ( $servedby ) {
+				$result->addValue( null, 'servedby', wfHostname() );
+			}
+		}
+
+		if ( $this->getParameter( 'curtimestamp' ) ) {
+			$result->addValue( null, 'curtimestamp', wfTimestamp( TS_ISO_8601, time() ),
+				ApiResult::NO_SIZE_CHECK );
+		}
 
 		$params = $this->extractRequestParams();
+
 		$this->mAction = $params['action'];
+
+		if ( !is_string( $this->mAction ) ) {
+			$this->dieUsage( 'The API requires a valid action parameter', 'unknown_action' );
+		}
 
 		return $params;
 	}
@@ -1191,15 +1074,13 @@ class ApiMain extends ApiBase {
 	 * Set up the module for response
 	 * @return ApiBase The module that will handle this action
 	 * @throws MWException
-	 * @throws ApiUsageException
+	 * @throws UsageException
 	 */
 	protected function setupModule() {
 		// Instantiate the module requested by the user
 		$module = $this->mModuleMgr->getModule( $this->mAction, 'action' );
 		if ( $module === null ) {
-			$this->dieWithError(
-				[ 'apierror-unknownaction', wfEscapeWikiText( $this->mAction ) ], 'unknown_action'
-			);
+			$this->dieUsage( 'The API requires a valid action parameter', 'unknown_action' );
 		}
 		$moduleParams = $module->extractRequestParams();
 
@@ -1218,46 +1099,17 @@ class ApiMain extends ApiBase {
 			}
 
 			if ( !isset( $moduleParams['token'] ) ) {
-				$module->dieWithError( [ 'apierror-missingparam', 'token' ] );
+				$this->dieUsageMsg( [ 'missingparam', 'token' ] );
 			}
 
 			$module->requirePostedParameters( [ 'token' ] );
 
 			if ( !$module->validateToken( $moduleParams['token'], $moduleParams ) ) {
-				$module->dieWithError( 'apierror-badtoken' );
+				$this->dieUsageMsg( 'sessionfailure' );
 			}
 		}
 
 		return $module;
-	}
-
-	/**
-	 * @return array
-	 */
-	private function getMaxLag() {
-		$dbLag = MediaWikiServices::getInstance()->getDBLoadBalancer()->getMaxLag();
-		$lagInfo = [
-			'host' => $dbLag[0],
-			'lag' => $dbLag[1],
-			'type' => 'db'
-		];
-
-		$jobQueueLagFactor = $this->getConfig()->get( 'JobQueueIncludeInMaxLagFactor' );
-		if ( $jobQueueLagFactor ) {
-			// Turn total number of jobs into seconds by using the configured value
-			$totalJobs = array_sum( JobQueueGroup::singleton()->getQueueSizes() );
-			$jobQueueLag = $totalJobs / (float)$jobQueueLagFactor;
-			if ( $jobQueueLag > $lagInfo['lag'] ) {
-				$lagInfo = [
-					'host' => wfHostname(), // XXX: Is there a better value that could be used?
-					'lag' => $jobQueueLag,
-					'type' => 'jobqueue',
-					'jobs' => $totalJobs,
-				];
-			}
-		}
-
-		return $lagInfo;
 	}
 
 	/**
@@ -1269,22 +1121,18 @@ class ApiMain extends ApiBase {
 	protected function checkMaxLag( $module, $params ) {
 		if ( $module->shouldCheckMaxlag() && isset( $params['maxlag'] ) ) {
 			$maxLag = $params['maxlag'];
-			$lagInfo = $this->getMaxLag();
-			if ( $lagInfo['lag'] > $maxLag ) {
+			list( $host, $lag ) = wfGetLB()->getMaxLag();
+			if ( $lag > $maxLag ) {
 				$response = $this->getRequest()->response();
 
 				$response->header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
-				$response->header( 'X-Database-Lag: ' . intval( $lagInfo['lag'] ) );
+				$response->header( 'X-Database-Lag: ' . intval( $lag ) );
 
 				if ( $this->getConfig()->get( 'ShowHostnames' ) ) {
-					$this->dieWithError(
-						[ 'apierror-maxlag', $lagInfo['lag'], $lagInfo['host'] ],
-						'maxlag',
-						$lagInfo
-					);
+					$this->dieUsage( "Waiting for $host: $lag seconds lagged", 'maxlag' );
 				}
 
-				$this->dieWithError( [ 'apierror-maxlag-generic', $lagInfo['lag'] ], 'maxlag', $lagInfo );
+				$this->dieUsage( "Waiting for a database server: $lag seconds lagged", 'maxlag' );
 			}
 		}
 
@@ -1415,16 +1263,19 @@ class ApiMain extends ApiBase {
 		if ( $module->isReadMode() && !User::isEveryoneAllowed( 'read' ) &&
 			!$user->isAllowed( 'read' )
 		) {
-			$this->dieWithError( 'apierror-readapidenied' );
+			$this->dieUsageMsg( 'readrequired' );
 		}
 
 		if ( $module->isWriteMode() ) {
 			if ( !$this->mEnableWrite ) {
-				$this->dieWithError( 'apierror-noapiwrite' );
+				$this->dieUsageMsg( 'writedisabled' );
 			} elseif ( !$user->isAllowed( 'writeapi' ) ) {
-				$this->dieWithError( 'apierror-writeapidenied' );
+				$this->dieUsageMsg( 'writerequired' );
 			} elseif ( $this->getRequest()->getHeader( 'Promise-Non-Write-API-Action' ) ) {
-				$this->dieWithError( 'apierror-promised-nonwrite-api' );
+				$this->dieUsage(
+					'Promise-Non-Write-API-Action HTTP header cannot be sent to write API modules',
+					'promised-nonwrite-api'
+				);
 			}
 
 			$this->checkReadOnly( $module );
@@ -1433,7 +1284,7 @@ class ApiMain extends ApiBase {
 		// Allow extensions to stop execution for arbitrary reasons.
 		$message = false;
 		if ( !Hooks::run( 'ApiCheckCanExecute', [ $module, $user, &$message ] ) ) {
-			$this->dieWithError( $message );
+			$this->dieUsageMsg( $message );
 		}
 	}
 
@@ -1479,9 +1330,12 @@ class ApiMain extends ApiBase {
 				"Api request failed as read only because the following DBs are lagged: $laggedServers"
 			);
 
-			$this->dieWithError(
-				'readonly_lag',
-				'readonly',
+			$parsed = $this->parseMsg( [ 'readonlytext' ] );
+			$this->dieUsage(
+				$parsed['info'],
+				$parsed['code'],
+				/* http error */
+				0,
 				[ 'readonlyreason' => "Waiting for $numLagged lagged database(s)" ]
 			);
 		}
@@ -1497,12 +1351,12 @@ class ApiMain extends ApiBase {
 			switch ( $params['assert'] ) {
 				case 'user':
 					if ( $user->isAnon() ) {
-						$this->dieWithError( 'apierror-assertuserfailed' );
+						$this->dieUsage( 'Assertion that the user is logged in failed', 'assertuserfailed' );
 					}
 					break;
 				case 'bot':
 					if ( !$user->isAllowed( 'bot' ) ) {
-						$this->dieWithError( 'apierror-assertbotfailed' );
+						$this->dieUsage( 'Assertion that the user has the bot right failed', 'assertbotfailed' );
 					}
 					break;
 			}
@@ -1510,8 +1364,9 @@ class ApiMain extends ApiBase {
 		if ( isset( $params['assertuser'] ) ) {
 			$assertUser = User::newFromName( $params['assertuser'], false );
 			if ( !$assertUser || !$this->getUser()->equals( $assertUser ) ) {
-				$this->dieWithError(
-					[ 'apierror-assertnameduserfailed', wfEscapeWikiText( $params['assertuser'] ) ]
+				$this->dieUsage(
+					'Assertion that the user is "' . $params['assertuser'] . '" failed',
+					'assertnameduserfailed'
 				);
 			}
 		}
@@ -1527,7 +1382,7 @@ class ApiMain extends ApiBase {
 		if ( !$request->wasPosted() && $module->mustBePosted() ) {
 			// Module requires POST. GET request might still be allowed
 			// if $wgDebugApi is true, otherwise fail.
-			$this->dieWithErrorOrDebug( [ 'apierror-mustbeposted', $this->mAction ] );
+			$this->dieUsageMsgOrDebug( [ 'mustbeposted', $this->mAction ] );
 		}
 
 		// See if custom printer is used
@@ -1542,7 +1397,8 @@ class ApiMain extends ApiBase {
 			( $this->getUser()->isLoggedIn() &&
 				$this->getUser()->requiresHTTPS() )
 		) ) {
-			$this->addDeprecation( 'apiwarn-deprecation-httpsexpected', 'https-expected' );
+			$this->logFeatureUsage( 'https-expected' );
+			$this->setWarning( 'HTTP used when HTTPS was expected' );
 		}
 	}
 
@@ -1585,7 +1441,7 @@ class ApiMain extends ApiBase {
 			MWDebug::appendDebugInfoToApiResult( $this->getContext(), $this->getResult() );
 
 			// Print result data
-			$this->printResult();
+			$this->printResult( false );
 		}
 	}
 
@@ -1619,16 +1475,14 @@ class ApiMain extends ApiBase {
 			'ip' => $request->getIP(),
 			'userAgent' => $this->getUserAgent(),
 			'wiki' => wfWikiID(),
-			'timeSpentBackend' => (int)round( $time * 1000 ),
+			'timeSpentBackend' => (int) round( $time * 1000 ),
 			'hadError' => $e !== null,
 			'errorCodes' => [],
 			'params' => [],
 		];
 
 		if ( $e ) {
-			foreach ( $this->errorMessagesFromException( $e ) as $msg ) {
-				$logCtx['errorCodes'][] = $msg->getApiCode();
-			}
+			$logCtx['errorCodes'][] = $this->errorMessageFromException( $e )['code'];
 		}
 
 		// Construct space separated message for 'api' log channel
@@ -1637,17 +1491,13 @@ class ApiMain extends ApiBase {
 			" {$logCtx['ip']} " .
 			"T={$logCtx['timeSpentBackend']}ms";
 
-		$sensitive = array_flip( $this->getSensitiveParams() );
 		foreach ( $this->getParamsUsed() as $name ) {
 			$value = $request->getVal( $name );
 			if ( $value === null ) {
 				continue;
 			}
 
-			if ( isset( $sensitive[$name] ) ) {
-				$value = '[redacted]';
-				$encValue = '[redacted]';
-			} elseif ( strlen( $value ) > 256 ) {
+			if ( strlen( $value ) > 256 ) {
 				$value = substr( $value, 0, 256 );
 				$encValue = $this->encodeRequestLogValue( $value ) . '[...]';
 			} else {
@@ -1698,24 +1548,6 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * Get the request parameters that should be considered sensitive
-	 * @since 1.29
-	 * @return array
-	 */
-	protected function getSensitiveParams() {
-		return array_keys( $this->mParamsSensitive );
-	}
-
-	/**
-	 * Mark parameters as sensitive
-	 * @since 1.29
-	 * @param string|string[] $params
-	 */
-	public function markParamsSensitive( $params ) {
-		$this->mParamsSensitive += array_fill_keys( (array)$params, true );
-	}
-
-	/**
 	 * Get a request value, and register the fact that it was used, for logging.
 	 * @param string $name
 	 * @param mixed $default
@@ -1727,9 +1559,11 @@ class ApiMain extends ApiBase {
 		$ret = $this->getRequest()->getVal( $name );
 		if ( $ret === null ) {
 			if ( $this->getRequest()->getArray( $name ) !== null ) {
-				// See T12262 for why we don't just implode( '|', ... ) the
+				// See bug 10262 for why we don't just implode( '|', ... ) the
 				// array.
-				$this->addWarning( [ 'apiwarn-unsupportedarray', $name ] );
+				$this->setWarning(
+					"Parameter '$name' uses unsupported PHP array syntax"
+				);
 			}
 			$ret = $default;
 		}
@@ -1769,7 +1603,8 @@ class ApiMain extends ApiBase {
 
 		if ( !$this->mInternalMode ) {
 			// Printer has not yet executed; don't warn that its parameters are unused
-			$printerParams = $this->mPrinter->encodeParamName(
+			$printerParams = array_map(
+				[ $this->mPrinter, 'encodeParamName' ],
 				array_keys( $this->mPrinter->getFinalParams() ?: [] )
 			);
 			$unusedParams = array_diff( $allParams, $paramsUsed, $printerParams );
@@ -1778,29 +1613,23 @@ class ApiMain extends ApiBase {
 		}
 
 		if ( count( $unusedParams ) ) {
-			$this->addWarning( [
-				'apierror-unrecognizedparams',
-				Message::listParam( array_map( 'wfEscapeWikiText', $unusedParams ), 'comma' ),
-				count( $unusedParams )
-			] );
+			$s = count( $unusedParams ) > 1 ? 's' : '';
+			$this->setWarning( "Unrecognized parameter$s: '" . implode( $unusedParams, "', '" ) . "'" );
 		}
 	}
 
 	/**
 	 * Print results using the current printer
 	 *
-	 * @param int $httpCode HTTP status code, or 0 to not change
+	 * @param bool $isError
 	 */
-	protected function printResult( $httpCode = 0 ) {
+	protected function printResult( $isError ) {
 		if ( $this->getConfig()->get( 'DebugAPI' ) !== false ) {
-			$this->addWarning( 'apiwarn-wgDebugAPI' );
+			$this->setWarning( 'SECURITY WARNING: $wgDebugAPI is enabled' );
 		}
 
 		$printer = $this->mPrinter;
 		$printer->initPrinter( false );
-		if ( $httpCode ) {
-			$printer->setHttpStatus( $httpCode );
-		}
 		$printer->execute();
 		$printer->closePrinter();
 	}
@@ -1847,20 +1676,9 @@ class ApiMain extends ApiBase {
 			'requestid' => null,
 			'servedby' => false,
 			'curtimestamp' => false,
-			'responselanginfo' => false,
 			'origin' => null,
 			'uselang' => [
-				ApiBase::PARAM_DFLT => self::API_DEFAULT_USELANG,
-			],
-			'errorformat' => [
-				ApiBase::PARAM_TYPE => [ 'plaintext', 'wikitext', 'html', 'raw', 'none', 'bc' ],
-				ApiBase::PARAM_DFLT => 'bc',
-			],
-			'errorlang' => [
-				ApiBase::PARAM_DFLT => 'uselang',
-			],
-			'errorsuselocal' => [
-				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DFLT => 'user',
 			],
 		];
 	}
@@ -1912,7 +1730,7 @@ class ApiMain extends ApiBase {
 			$help['permissions'] .= Html::rawElement( 'dd', null,
 				$this->msg( 'api-help-permissions-granted-to' )
 					->numParams( count( $groups ) )
-					->params( Message::listParam( $groups ) )
+					->params( $this->getLanguage()->commaList( $groups ) )
 					->parse()
 			);
 		}
@@ -2008,6 +1826,70 @@ class ApiMain extends ApiBase {
 			$this->getRequest()->getHeader( 'Api-user-agent' ) . ' ' .
 			$this->getRequest()->getHeader( 'User-agent' )
 		);
+	}
+}
+
+/**
+ * This exception will be thrown when dieUsage is called to stop module execution.
+ *
+ * @ingroup API
+ */
+class UsageException extends MWException {
+
+	private $mCodestr;
+
+	/**
+	 * @var null|array
+	 */
+	private $mExtraData;
+
+	/**
+	 * @param string $message
+	 * @param string $codestr
+	 * @param int $code
+	 * @param array|null $extradata
+	 */
+	public function __construct( $message, $codestr, $code = 0, $extradata = null ) {
+		parent::__construct( $message, $code );
+		$this->mCodestr = $codestr;
+		$this->mExtraData = $extradata;
+
+		// This should never happen, so throw an exception about it that will
+		// hopefully get logged with a backtrace (T138585)
+		if ( !is_string( $codestr ) || $codestr === '' ) {
+			throw new InvalidArgumentException( 'Invalid $codestr, was ' .
+				( $codestr === '' ? 'empty string' : gettype( $codestr ) )
+			);
+		}
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getCodeString() {
+		return $this->mCodestr;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getMessageArray() {
+		$result = [
+			'code' => $this->mCodestr,
+			'info' => $this->getMessage()
+		];
+		if ( is_array( $this->mExtraData ) ) {
+			$result = array_merge( $result, $this->mExtraData );
+		}
+
+		return $result;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function __toString() {
+		return "{$this->getCodeString()}: {$this->getMessage()}";
 	}
 }
 

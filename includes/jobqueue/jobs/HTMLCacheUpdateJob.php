@@ -22,8 +22,6 @@
  * @ingroup Cache
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Job to purge the cache for all pages that link to or use another page or file
  *
@@ -115,7 +113,7 @@ class HTMLCacheUpdateJob extends Job {
 		$touchTimestamp = wfTimestampNow();
 
 		$dbw = wfGetDB( DB_MASTER );
-		$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$factory = wfGetLBFactory();
 		$ticket = $factory->getEmptyTransactionTicket( __METHOD__ );
 		// Update page_touched (skipping pages already touched since the root job).
 		// Check $wgUpdateRowsPerQuery for sanity; batch jobs are sized by that already.

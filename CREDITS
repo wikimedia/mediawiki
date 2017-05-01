@@ -1,13 +1,11 @@
-{{int:version-credits-summary}} <!--
-MediaWiki 1.29 is a collaborative project released under the
+{{int:version-credits-summary}}
+<!--
+MediaWiki 1.28 is a collaborative project released under the
 GNU General Public License v2. We would like to recognize the
 following names for their contribution to the product.
+-->
+<!-- Please notice that the following can be found parsed under Special:Version/Credits -->
 
-<<<<<<< HEAD
-=======
-The following list can be found parsed under Special:Version/Credits -->
-
->>>>>>> wikimedia/master
 == Contributors ==
 <!-- Updates to this list made with maintenance/updateCredits.php -->
 <!-- BEGIN CONTRIBUTOR LIST -->
@@ -26,28 +24,17 @@ The following list can be found parsed under Special:Version/Credits -->
 * Adrian Heine
 * Adrian Lang
 * Ævar Arnfjörð Bjarmason
-<<<<<<< HEAD
-=======
-* Aftab
->>>>>>> wikimedia/master
 * Agbad
 * Ahmad Sherif
 * Ajayrahul P
 * Alangi Derick
 * Albert221
 * Alejandro Mery
-<<<<<<< HEAD
-=======
-* Aleksey Bekh-Ivanov
->>>>>>> wikimedia/master
 * AlephNull
 * Alex Ivanov
 * Alex Shih-Han Lin
 * Alex Z.
-<<<<<<< HEAD
 * Alexander Emsenhuber
-=======
->>>>>>> wikimedia/master
 * Alexander I. Mashin
 * Alexander Lehmann
 * Alexander Monk
@@ -57,10 +44,6 @@ The following list can be found parsed under Special:Version/Credits -->
 * Amalthea
 * Amir E. Aharoni
 * Amir Sarabadani
-<<<<<<< HEAD
-=======
-* amritsreekumar
->>>>>>> wikimedia/master
 * ananay
 * Anders Wegge Jakobsen
 * Andre Engels
@@ -89,10 +72,6 @@ The following list can be found parsed under Special:Version/Credits -->
 * Aryeh Gregor
 * Asher Feldman
 * Asier Lostalé
-<<<<<<< HEAD
-=======
-* awu42
->>>>>>> wikimedia/master
 * ayush_garg
 * Azliq7
 * Bagariavivek
@@ -109,10 +88,6 @@ The following list can be found parsed under Special:Version/Credits -->
 * Bill Traynor
 * Billinghurst
 * billm
-<<<<<<< HEAD
-=======
-* blackspirit96
->>>>>>> wikimedia/master
 * blotmandroid
 * Bogdan Stancescu
 * Boris Nagaev
@@ -143,17 +118,9 @@ The following list can be found parsed under Special:Version/Credits -->
 * Chris McMahon
 * Chris Seaton
 * Chris Steipp
-<<<<<<< HEAD
 * Christian Aistleitner
 * Christian List
 * Christian Neubauer
-=======
-* Chrisludt
-* Christian Aistleitner
-* Christian List
-* Christian Neubauer
-* Christoph Jauera
->>>>>>> wikimedia/master
 * Christopher Johnson
 * church of emacs
 * Cindy Cicalese
@@ -180,13 +147,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Darian Anthony Patrick
 * Darkdragon09
 * DaSch
-<<<<<<< HEAD
 * David Baumgarten
-=======
-* datguy
-* David Baumgarten
-* David Causse
->>>>>>> wikimedia/master
 * David Chan
 * David E. Narváez
 * David Lynch
@@ -202,29 +163,17 @@ The following list can be found parsed under Special:Version/Credits -->
 * Dévai Tamás
 * Devi Krishnan
 * Diederik van Liere
-<<<<<<< HEAD
-=======
-* divadsn
->>>>>>> wikimedia/master
 * Domas Mituzas
 * Douglas Gardner
 * DPStokesNZ
 * dr0ptp4kt
 * Ebrahim Byagowi
 * Ed Sanders
-<<<<<<< HEAD
-=======
-* Eddie Greiner-Petter
->>>>>>> wikimedia/master
 * Edward Chernenko
 * Edward Z. Yang
 * Elisabeth Bauer
 * Elliott Eggleston
 * Elvis Stansvik
-<<<<<<< HEAD
-=======
-* Emad Elwany
->>>>>>> wikimedia/master
 * Emil Podlaszewski
 * Emmanuel Engelhart
 * Emmanuel Gil Peyrot
@@ -260,10 +209,6 @@ The following list can be found parsed under Special:Version/Credits -->
 * georggi
 * Gergő Tisza
 * Gero Scholz
-<<<<<<< HEAD
-=======
-* Ghybu
->>>>>>> wikimedia/master
 * gicode
 * Giftpflanze
 * Gilles Dubuc
@@ -277,10 +222,6 @@ The following list can be found parsed under Special:Version/Credits -->
 * Grunny
 * Guillaume Blanchard
 * Guy Van den Broeck
-<<<<<<< HEAD
-=======
-* Haikal Izzuddin
->>>>>>> wikimedia/master
 * Happy-melon
 * haritha28
 * Harry Burt
@@ -320,10 +261,6 @@ The following list can be found parsed under Special:Version/Credits -->
 * Jaska Zedlik
 * Jason Richey
 * jeblad
-<<<<<<< HEAD
-=======
-* Jeff Hobson
->>>>>>> wikimedia/master
 * Jeff Janes
 * jeff303
 * Jens Frank
@@ -340,24 +277,12 @@ The following list can be found parsed under Special:Version/Credits -->
 * Jidanni
 * Jimmy Collins
 * Jimmy Xu
-<<<<<<< HEAD
 * joakin
 * Joan Creus
 * Joel Natividad
 * Joerg
 * Johan Dahlin
 * John Du Hart
-=======
-* jo12bar
-* joakin
-* Joan Creus
-* Joel Natividad
-* Joel Sahleen
-* Joerg
-* Johan Dahlin
-* John Du Hart
-* John Erling Blad
->>>>>>> wikimedia/master
 * John N
 * Jon Harald Søby
 * Jon Robson
@@ -370,10 +295,6 @@ The following list can be found parsed under Special:Version/Credits -->
 * JuneHyeon Bae
 * Jure Kajzer
 * Justin Du
-<<<<<<< HEAD
-=======
-* Kai Nissen
->>>>>>> wikimedia/master
 * Kai_WMDE
 * kaligula
 * Kartik Mistry
@@ -410,10 +331,6 @@ The following list can be found parsed under Special:Version/Credits -->
 * Liam Edwards-Playne
 * liangent
 * Lisa Ridley
-<<<<<<< HEAD
-=======
-* Liuxinyu970226
->>>>>>> wikimedia/master
 * Ljudusika
 * Lojjik Braughler
 * Louperivois
@@ -423,10 +340,6 @@ The following list can be found parsed under Special:Version/Credits -->
 * Luigi Corsaro
 * Luis Felipe Schenone
 * Luke Faraone
-<<<<<<< HEAD
-=======
-* Luke Welling
->>>>>>> wikimedia/master
 * Lupin
 * Lupo
 * lwelling
@@ -455,10 +368,6 @@ The following list can be found parsed under Special:Version/Credits -->
 * Martin Urbanec
 * Massaf
 * Matěj Grabovský
-<<<<<<< HEAD
-=======
-* Matěj Suchánek
->>>>>>> wikimedia/master
 * matejsuchanek
 * Mathias Ertl
 * mati
@@ -468,10 +377,6 @@ The following list can be found parsed under Special:Version/Credits -->
 * Matthew Bowker
 * Matthew Britton
 * Matthew Flaschen
-<<<<<<< HEAD
-=======
-* Matthew Walker
->>>>>>> wikimedia/master
 * Matthias Jordan
 * Matthias Mullie
 * MatthiasDD
@@ -508,14 +413,9 @@ The following list can be found parsed under Special:Version/Credits -->
 * MrBlueSky
 * MrPete
 * Mukunda Modell
-<<<<<<< HEAD
-=======
-* MusikAnimal
->>>>>>> wikimedia/master
 * Mwalker
 * mwjames
 * mybugs.mail
-* mynk-96
 * MZMcBride
 * nadeesha
 * Nakon
@@ -528,15 +428,8 @@ The following list can be found parsed under Special:Version/Credits -->
 * Nicholas Pisarro, Jr
 * Nick Jenkins
 * nicoco007
-<<<<<<< HEAD
 * Nicolas Dumazet
 * Nicolas Weeger
-=======
-* Nicolaie Constantinescu
-* Nicolas Dumazet
-* Nicolas Weeger
-* Niharika Kohli
->>>>>>> wikimedia/master
 * Nik
 * Nik Everett
 * Niklas Laxström
@@ -551,10 +444,6 @@ The following list can be found parsed under Special:Version/Credits -->
 * Nuria Ruiz
 * Nx.devnull
 * Ocean behind ears
-<<<<<<< HEAD
-=======
-* Od1n
->>>>>>> wikimedia/master
 * Olaf Lenz
 * Olivier Finlay Beaton
 * onei
@@ -576,10 +465,6 @@ The following list can be found parsed under Special:Version/Credits -->
 * Pavel Selitskas
 * Pcoombe
 * Perside Rosalie
-<<<<<<< HEAD
-=======
-* Peter Coombe
->>>>>>> wikimedia/master
 * Peter Gehres
 * Peter Hedenskog
 * Peter Potrowl
@@ -587,10 +472,6 @@ The following list can be found parsed under Special:Version/Credits -->
 * Petr Kadlec
 * Petr Onderka
 * Petr Pchelko
-<<<<<<< HEAD
-=======
-* Phantom42
->>>>>>> wikimedia/master
 * Philip Tzou
 * physikerwelt (Moritz Schubotz)
 * PieRRoMaN
@@ -599,10 +480,6 @@ The following list can be found parsed under Special:Version/Credits -->
 * Platonides
 * Pmlineditor
 * pmolina
-<<<<<<< HEAD
-=======
-* pppery
->>>>>>> wikimedia/master
 * prageck
 * Pranav Ravichandran
 * PranavK
@@ -625,10 +502,6 @@ The following list can be found parsed under Special:Version/Credits -->
 * Ricordisamoa
 * rillke
 * River Tarnell
-<<<<<<< HEAD
-=======
-* rlot
->>>>>>> wikimedia/master
 * Roan Kattouw
 * Rob Church
 * Rob Lanphier
@@ -660,13 +533,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Salvatore Ingala
 * Sam Reed
 * Sam Smith
-<<<<<<< HEAD
 * Santhosh Thottingal
-=======
-* Sam Wilson
-* Santhosh Thottingal
-* saptaks
->>>>>>> wikimedia/master
 * Schnark
 * Scimonster
 * scnd
@@ -682,10 +549,6 @@ The following list can be found parsed under Special:Version/Credits -->
 * Shahyar
 * Shane Gibbons
 * Shane King
-<<<<<<< HEAD
-=======
-* shanika
->>>>>>> wikimedia/master
 * Shinjiman
 * shirayuki
 * Sidhant Gupta
@@ -708,12 +571,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Stephen Liang
 * Steve Sanbeg
 * Steven Roddis
-<<<<<<< HEAD
-=======
-* Steven Walling
->>>>>>> wikimedia/master
 * Str4nd
-* Subin Siby
 * Subramanya Sastry
 * Sumit Asthana
 * svip
@@ -750,17 +608,9 @@ The following list can be found parsed under Special:Version/Credits -->
 * Tomasz W. Kozlowski
 * Tomasz Wegrzanowski
 * tomek
-<<<<<<< HEAD
 * Tony Thomas
 * Tpt
 * Trevor Parscal
-=======
-* Toni Hermoso Pulido
-* Tony Thomas
-* Tpt
-* Trevor Parscal
-* Trey Jones
->>>>>>> wikimedia/master
 * TyA
 * Tychay
 * Tyler Anthony Romeo
@@ -772,10 +622,6 @@ The following list can be found parsed under Special:Version/Credits -->
 * utkarsh95
 * Van de Bugger
 * Viačeslav
-<<<<<<< HEAD
-=======
-* Victor Barbu
->>>>>>> wikimedia/master
 * Victor Porton
 * Victor Vasiliev
 * victorbarbu
@@ -797,18 +643,10 @@ The following list can be found parsed under Special:Version/Credits -->
 * Yaron Koren
 * Yaroslav Melnychuk
 * Yesid Carrillo
-<<<<<<< HEAD
-=======
-* Yifei He
->>>>>>> wikimedia/master
 * Yogesh K S
 * Yongmin Hong
 * yoonghm
 * Yuri Astrakhan
-<<<<<<< HEAD
-=======
-* Yuriy Shnitkovskiy
->>>>>>> wikimedia/master
 * Yusuke Matsubara
 * Yuvi Panda
 * Zachary Hauri
@@ -816,10 +654,6 @@ The following list can be found parsed under Special:Version/Credits -->
 * Željko Filipin
 * Zhaofeng Li
 * Zhengzhu Feng
-<<<<<<< HEAD
-=======
-* Zhuyifei1999
->>>>>>> wikimedia/master
 * Zppix
 * محمد شعیب
 <!-- END CONTRIBUTOR LIST -->

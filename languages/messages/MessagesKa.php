@@ -146,3 +146,4 @@ $magicWords = [
 
 $linkPrefixExtension = true;
 $linkTrail = '/^([a-zაბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ“»]+)(.*)$/sDu';
+

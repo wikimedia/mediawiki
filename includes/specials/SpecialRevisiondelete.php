@@ -241,33 +241,32 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 * Show some useful links in the subtitle
 	 */
 	protected function showConvenienceLinks() {
-		$linkRenderer = $this->getLinkRenderer();
 		# Give a link to the logs/hist for this page
 		if ( $this->targetObj ) {
 			// Also set header tabs to be for the target.
 			$this->getSkin()->setRelevantTitle( $this->targetObj );
 
 			$links = [];
-			$links[] = $linkRenderer->makeKnownLink(
+			$links[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Log' ),
-				$this->msg( 'viewpagelogs' )->text(),
+				$this->msg( 'viewpagelogs' )->escaped(),
 				[],
 				[ 'page' => $this->targetObj->getPrefixedText() ]
 			);
 			if ( !$this->targetObj->isSpecialPage() ) {
 				# Give a link to the page history
-				$links[] = $linkRenderer->makeKnownLink(
+				$links[] = Linker::linkKnown(
 					$this->targetObj,
-					$this->msg( 'pagehist' )->text(),
+					$this->msg( 'pagehist' )->escaped(),
 					[],
 					[ 'action' => 'history' ]
 				);
 				# Link to deleted edits
 				if ( $this->getUser()->isAllowed( 'undelete' ) ) {
 					$undelete = SpecialPage::getTitleFor( 'Undelete' );
-					$links[] = $linkRenderer->makeKnownLink(
+					$links[] = Linker::linkKnown(
 						$undelete,
-						$this->msg( 'deletedhist' )->text(),
+						$this->msg( 'deletedhist' )->escaped(),
 						[],
 						[ 'target' => $this->targetObj->getPrefixedDBkey() ]
 					);
@@ -466,9 +465,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				Xml::closeElement( 'form' ) . "\n";
 			// Show link to edit the dropdown reasons
 			if ( $this->getUser()->isAllowed( 'editinterface' ) ) {
-				$link = $this->getLinkRenderer()->makeKnownLink(
+				$link = Linker::linkKnown(
 					$this->msg( 'revdelete-reason-dropdown' )->inContentLanguage()->getTitle(),
-					$this->msg( 'revdelete-edit-reasonlist' )->text(),
+					$this->msg( 'revdelete-edit-reasonlist' )->escaped(),
 					[],
 					[ 'action' => 'edit' ]
 				);

@@ -3,30 +3,6 @@
 /**
  * @group Database
  * @group Parser
- *
- * @covers Parser
- * @covers StripState
- *
- * @covers Preprocessor_DOM
- * @covers PPDStack
- * @covers PPDStackElement
- * @covers PPDPart
- * @covers PPFrame_DOM
- * @covers PPTemplateFrame_DOM
- * @covers PPCustomFrame_DOM
- * @covers PPNode_DOM
- *
- * @covers Preprocessor_Hash
- * @covers PPDStack_Hash
- * @covers PPDStackElement_Hash
- * @covers PPDPart_Hash
- * @covers PPFrame_Hash
- * @covers PPTemplateFrame_Hash
- * @covers PPCustomFrame_Hash
- * @covers PPNode_Hash_Tree
- * @covers PPNode_Hash_Text
- * @covers PPNode_Hash_Array
- * @covers PPNode_Hash_Attr
  */
 class TagHookTest extends MediaWikiTestCase {
 	public static function provideValidNames() {
@@ -45,6 +21,7 @@ class TagHookTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideValidNames
+	 * @covers Parser::setHook
 	 */
 	public function testTagHooks( $tag ) {
 		global $wgParserConf, $wgContLang;
@@ -64,6 +41,7 @@ class TagHookTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideBadNames
 	 * @expectedException MWException
+	 * @covers Parser::setHook
 	 */
 	public function testBadTagHooks( $tag ) {
 		global $wgParserConf, $wgContLang;
@@ -80,6 +58,7 @@ class TagHookTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideValidNames
+	 * @covers Parser::setFunctionTagHook
 	 */
 	public function testFunctionTagHooks( $tag ) {
 		global $wgParserConf, $wgContLang;
@@ -99,6 +78,7 @@ class TagHookTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideBadNames
 	 * @expectedException MWException
+	 * @covers Parser::setFunctionTagHook
 	 */
 	public function testBadFunctionTagHooks( $tag ) {
 		global $wgParserConf, $wgContLang;

@@ -51,7 +51,7 @@ class HtmlCheckMatrixTest extends MediaWikiTestCase {
 
 	public function testValidateAllowsOnlyKnownTags() {
 		$field = new HTMLCheckMatrix( self::$defaultOptions );
-		$this->assertInstanceOf( Message::class, $this->validate( $field, [ 'foo' ] ) );
+		$this->assertInternalType( 'string', $this->validate( $field, [ 'foo' ] ) );
 	}
 
 	public function testValidateAcceptsPartialTagList() {

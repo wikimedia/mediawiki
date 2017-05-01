@@ -1,10 +1,4 @@
 <?php
-
-namespace Wikimedia\Rdbms;
-
-use stdClass;
-use RuntimeException;
-
 /**
  * Result wrapper for grabbing data queried from an IDatabase object
  *
@@ -21,7 +15,7 @@ use RuntimeException;
  *
  * @ingroup Database
  */
-class ResultWrapper implements IResultWrapper {
+class ResultWrapper implements Iterator {
 	/** @var resource|array|null Optional underlying result handle for subclass usage */
 	public $result;
 
@@ -51,22 +45,54 @@ class ResultWrapper implements IResultWrapper {
 		}
 	}
 
+	/**
+	 * Get the number of rows in a result object
+	 *
+	 * @return int
+	 */
 	public function numRows() {
 		return $this->getDB()->numRows( $this );
 	}
 
+	/**
+	 * Fetch the next row from the given result object, in object form. Fields can be retrieved with
+	 * $row->fieldname, with fields acting like member variables. If no more rows are available,
+	 * false is returned.
+	 *
+	 * @return stdClass|bool
+	 * @throws DBUnexpectedError Thrown if the database returns an error
+	 */
 	public function fetchObject() {
 		return $this->getDB()->fetchObject( $this );
 	}
 
+	/**
+	 * Fetch the next row from the given result object, in associative array form. Fields are
+	 * retrieved with $row['fieldname']. If no more rows are available, false is returned.
+	 *
+	 * @return array|bool
+	 * @throws DBUnexpectedError Thrown if the database returns an error
+	 */
 	public function fetchRow() {
 		return $this->getDB()->fetchRow( $this );
 	}
 
+	/**
+	 * Change the position of the cursor in a result object.
+	 * See mysql_data_seek()
+	 *
+	 * @param int $row
+	 */
 	public function seek( $row ) {
 		$this->getDB()->dataSeek( $this, $row );
 	}
 
+	/**
+	 * Free a result object
+	 *
+	 * This either saves memory in PHP (buffered queries) or on the server (unbuffered queries).
+	 * In general, queries are not large enough in result sets for this to be worth calling.
+	 */
 	public function free() {
 		if ( $this->db ) {
 			$this->db->freeResult( $this );
@@ -81,7 +107,7 @@ class ResultWrapper implements IResultWrapper {
 	 */
 	private function getDB() {
 		if ( !$this->db ) {
-			throw new RuntimeException( static::class . ' needs a DB handle for iteration.' );
+			throw new RuntimeException( get_class( $this ) . ' needs a DB handle for iteration.' );
 		}
 
 		return $this->db;
@@ -95,6 +121,9 @@ class ResultWrapper implements IResultWrapper {
 		$this->currentRow = null;
 	}
 
+	/**
+	 * @return stdClass|array|bool
+	 */
 	function current() {
 		if ( is_null( $this->currentRow ) ) {
 			$this->next();
@@ -103,10 +132,16 @@ class ResultWrapper implements IResultWrapper {
 		return $this->currentRow;
 	}
 
+	/**
+	 * @return int
+	 */
 	function key() {
 		return $this->pos;
 	}
 
+	/**
+	 * @return stdClass
+	 */
 	function next() {
 		$this->pos++;
 		$this->currentRow = $this->fetchObject();
@@ -118,5 +153,3 @@ class ResultWrapper implements IResultWrapper {
 		return $this->current() !== false;
 	}
 }
-
-class_alias( ResultWrapper::class, 'ResultWrapper' );

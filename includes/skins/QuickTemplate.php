@@ -17,7 +17,6 @@
  *
  * @file
  */
-use MediaWiki\MediaWikiServices;
 
 /**
  * Generic wrapper for template functions, with interface
@@ -37,7 +36,7 @@ abstract class QuickTemplate {
 		$this->translator = new MediaWikiI18N();
 		if ( $config === null ) {
 			wfDebug( __METHOD__ . ' was called with no Config instance passed to it' );
-			$config = MediaWikiServices::getInstance()->getMainConfig();
+			$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
 		}
 		$this->config = $config;
 	}

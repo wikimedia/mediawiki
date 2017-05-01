@@ -20,9 +20,6 @@
  * @file
  * @ingroup Cache
  */
-
-use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 
@@ -279,20 +276,6 @@ class LinkCache {
 		}
 
 		return $id;
-	}
-
-	/**
-	 * @param WANObjectCache $cache
-	 * @param TitleValue $t
-	 * @return string[]
-	 * @since 1.28
-	 */
-	public function getMutableCacheKeys( WANObjectCache $cache, TitleValue $t ) {
-		if ( $this->isCacheable( $t ) ) {
-			return [ $cache->makeKey( 'page', $t->getNamespace(), sha1( $t->getDBkey() ) ) ];
-		}
-
-		return [];
 	}
 
 	private function isCacheable( LinkTarget $title ) {

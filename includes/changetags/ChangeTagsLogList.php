@@ -19,8 +19,6 @@
  * @ingroup Change tagging
  */
 
-use Wikimedia\Rdbms\IDatabase;
-
 /**
  * Stores a list of taggable log entries.
  * @since 1.25

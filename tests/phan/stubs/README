@@ -1,3 +1,0 @@
-These stubs describe how code that is not available at analysis time should be
-used. No implementations are necessary, just define the classes and their
-methods and use phpdoc to describe what arguments are allowed.

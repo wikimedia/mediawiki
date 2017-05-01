@@ -89,7 +89,7 @@ class LoginHelper extends ContextSource {
 		}
 
 		if ( $type === 'successredirect' ) {
-			$redirectUrl = $returnToTitle->getFullUrlForRedirect( $returnToQuery, $proto );
+			$redirectUrl = $returnToTitle->getFullURL( $returnToQuery, false, $proto );
 			$this->getOutput()->redirect( $redirectUrl );
 		} else {
 			$this->getOutput()->addReturnTo( $returnToTitle, $returnToQuery, null, $options );

@@ -33,19 +33,18 @@ class ApiUndelete extends ApiBase {
 		$this->useTransactionalTimeLimit();
 
 		$params = $this->extractRequestParams();
-
 		$user = $this->getUser();
+		if ( !$user->isAllowed( 'undelete' ) ) {
+			$this->dieUsageMsg( 'permdenied-undelete' );
+		}
+
 		if ( $user->isBlocked() ) {
 			$this->dieBlocked( $user->getBlock() );
 		}
 
 		$titleObj = Title::newFromText( $params['title'] );
 		if ( !$titleObj || $titleObj->isExternal() ) {
-			$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['title'] ) ] );
-		}
-
-		if ( !$titleObj->userCan( 'undelete', $user, 'secure' ) ) {
-			$this->dieWithError( 'permdenied-undelete' );
+			$this->dieUsageMsg( [ 'invalidtitle', $params['title'] ] );
 		}
 
 		// Check if user can add tags
@@ -77,7 +76,7 @@ class ApiUndelete extends ApiBase {
 			$params['tags']
 		);
 		if ( !is_array( $retval ) ) {
-			$this->dieWithError( 'apierror-cantundelete' );
+			$this->dieUsageMsg( 'cannotundelete' );
 		}
 
 		if ( $retval[1] ) {
@@ -148,6 +147,6 @@ class ApiUndelete extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Undelete';
+		return 'https://www.mediawiki.org/wiki/API:Undelete';
 	}
 }

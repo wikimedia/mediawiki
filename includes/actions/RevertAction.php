@@ -66,10 +66,6 @@ class RevertAction extends FormAction {
 		}
 	}
 
-	protected function usesOOUI() {
-		return true;
-	}
-
 	protected function alterForm( HTMLForm $form ) {
 		$form->setWrapperLegendMsg( 'filerevert-legend' );
 		$form->setSubmitTextMsg( 'filerevert-submit' );

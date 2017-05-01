@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,9 +20,18 @@
  */
 
 /**
- * Backward-compatibility alias.
+ * Interface for RC feed engines, which send formatted notifications
+ *
  * @since 1.22
- * @deprecated since 1.29 Use FormattedRCFeed instead
  */
-abstract class RCFeedEngine extends FormattedRCFeed {
+interface RCFeedEngine {
+	/**
+	 * Sends some text to the specified live feed.
+	 *
+	 * @see IRCColourfulRCFeedFormatter::cleanupForIRC
+	 * @param array $feed The feed, as configured in an associative array
+	 * @param string $line The text to send
+	 * @return bool Success
+	 */
+	public function send( array $feed, $line );
 }

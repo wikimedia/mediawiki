@@ -24,10 +24,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use Wikimedia\Rdbms\ResultWrapper;
-use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\DBQueryError;
-
 /**
  * Maintenance script that sends SQL queries from the specified file to the database.
  *
@@ -54,7 +50,7 @@ class MwSql extends Maintenance {
 		$wiki = $this->hasOption( 'wikidb' ) ? $this->getOption( 'wikidb' ) : false;
 		// Get the appropriate load balancer (for this wiki)
 		if ( $this->hasOption( 'cluster' ) ) {
-			$lb = wfGetLBFactory()->getExternalLB( $this->getOption( 'cluster' ) );
+			$lb = wfGetLBFactory()->getExternalLB( $this->getOption( 'cluster' ), $wiki );
 		} else {
 			$lb = wfGetLB( $wiki );
 		}
@@ -78,7 +74,7 @@ class MwSql extends Maintenance {
 			$index = DB_MASTER;
 		}
 
-		/** @var IDatabase $db DB handle for the appropriate cluster/wiki */
+		/** @var Database $db DB handle for the appropriate cluster/wiki */
 		$db = $lb->getConnection( $index, [], $wiki );
 		if ( $replicaDB != '' && $db->getLBInfo( 'master' ) !== null ) {
 			$this->error( "The server selected ({$db->getServer()}) is not a replica DB.", 1 );
@@ -141,7 +137,7 @@ class MwSql extends Maintenance {
 			}
 			if ( $historyFile ) {
 				# Delimiter is eated by streamStatementEnd, we add it
-				# up in the history (T39020)
+				# up in the history (bug 37020)
 				readline_add_history( $wholeLine . ';' );
 				readline_write_history( $historyFile );
 			}
@@ -163,7 +159,7 @@ class MwSql extends Maintenance {
 
 	/**
 	 * Print the results, callback for $db->sourceStream()
-	 * @param ResultWrapper|bool $res The results object
+	 * @param ResultWrapper $res The results object
 	 * @param IDatabase $db
 	 */
 	public function sqlPrintResult( $res, $db ) {

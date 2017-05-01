@@ -20,8 +20,6 @@
  * @file
  */
 
-use Wikimedia\Rdbms\IDatabase;
-
 /**
  * The "CategoryFinder" class takes a list of articles, creates an internal
  * representation of all their parent categories (as well as parents of
@@ -42,6 +40,7 @@ use Wikimedia\Rdbms\IDatabase;
  *     $a = $cf->run();
  *     print implode( ',' , $a );
  * @endcode
+ *
  */
 class CategoryFinder {
 	/** @var int[] The original article IDs passed to the seed function */

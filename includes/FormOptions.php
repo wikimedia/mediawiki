@@ -52,9 +52,6 @@ class FormOptions implements ArrayAccess {
 	 * This is useful for the namespace selector.
 	 */
 	const INTNULL = 3;
-	/** Array type, maps guessType() to WebRequest::getArray()
-	 * @since 1.29 */
-	const ARR = 5;
 	/* @} */
 
 	/**
@@ -123,8 +120,6 @@ class FormOptions implements ArrayAccess {
 			return self::FLOAT;
 		} elseif ( is_string( $data ) ) {
 			return self::STRING;
-		} elseif ( is_array( $data ) ) {
-			return self::ARR;
 		} else {
 			throw new MWException( 'Unsupported datatype' );
 		}
@@ -363,9 +358,6 @@ class FormOptions implements ArrayAccess {
 				case self::INTNULL:
 					$value = $r->getIntOrNull( $name );
 					break;
-				case self::ARR:
-					$value = $r->getArray( $name );
-					break;
 				default:
 					throw new MWException( 'Unsupported datatype' );
 			}
@@ -378,7 +370,7 @@ class FormOptions implements ArrayAccess {
 
 	/** @name ArrayAccess functions
 	 * These functions implement the ArrayAccess PHP interface.
-	 * @see https://secure.php.net/manual/en/class.arrayaccess.php
+	 * @see http://php.net/manual/en/class.arrayaccess.php
 	 */
 	/* @{ */
 	/**

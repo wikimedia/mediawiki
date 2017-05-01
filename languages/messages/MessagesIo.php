@@ -8,8 +8,6 @@
  *
  */
 
-$fallback = 'eo';
-
 $namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Specala',
@@ -27,11 +25,6 @@ $namespaceNames = [
 	NS_HELP_TALK        => 'Helpo_Debato',
 	NS_CATEGORY         => 'Kategorio',
 	NS_CATEGORY_TALK    => 'Kategorio_Debato',
-];
-
-$namespaceGenderAliases = [
-	NS_USER => [ 'male' => 'Uzanto', 'female' => 'Uzantino' ],
-	NS_USER_TALK => [ 'male' => 'Uzanto_Debato', 'female' => 'Uzantino_Debato' ],
 ];
 
 $namespaceAliases = [
@@ -103,3 +96,4 @@ $specialPageAliases = [
 	'Watchlist'                 => [ 'Surveyaji' ],
 	'Whatlinkshere'             => [ 'QuoLigasHike' ],
 ];
+

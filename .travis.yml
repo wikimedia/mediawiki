@@ -7,35 +7,18 @@
 # complement that setup by testing MediaWiki on travis
 #
 language: php
-# Use the slower sudo-enabled VMs instead of fast containers:
-# - Package 'djvulibre-bin' is not yet whitelisted for trusty containers.
-#   https://github.com/travis-ci/apt-package-whitelist/issues/4036
-sudo: required
-# Use Trusty instead of Travis default (precise)
-# - Required in order to use HHVM 3.6 or higher.
-# - Required for non-buggy xml library for XmlTypeCheck/UploadBaseTest (T75176).
-dist: trusty
 
 matrix:
   fast_finish: true
   include:
-    # On Trusty, mysql user 'travis' doesn't have create database rights
-    # Postgres has no user called 'root'.
-    - env: dbtype=mysql dbuser=root
+    - env: dbtype=mysql
       php: 5.5
-    - env: dbtype=postgres dbuser=travis
+    - env: dbtype=postgres
       php: 5.5
-    - env: dbtype=mysql dbuser=root
-      # https://docs.travis-ci.com/user/languages/php#HHVM-versions
-      # https://github.com/travis-ci/travis-ci/issues/7368
-      php: hhvm-3.12
-    - env: dbtype=mysql dbuser=root
+    - env: dbtype=mysql
+      php: hhvm
+    - env: dbtype=mysql
       php: 7
-  allow_failures:
-    # Postgres support for unit tests is still buggy
-    # https://phabricator.wikimedia.org/T75174
-    - env: dbtype=postgres dbuser=travis
-      php: 5.5
 
 services:
   - mysql
@@ -43,17 +26,15 @@ services:
 branches:
   # Test changes in master and arbitrary Travis CI branches only.
   # The latter allows developers to enable Travis CI in their GitHub fork of
-  # wikimedia/mediawiki and then push changes for testing to branches like
+  # wikimedia/mediawiki and then push changes they like to test to branches like
   # "travis-ci/test-this-awesome-change".
   only:
     - master
     - /^travis-ci\/.*$/
 
-addons:
-  apt:
-    packages:
-    - djvulibre-bin
-    - tidy
+before_install:
+  - sudo apt-get install -qq djvulibre-bin tidy
+  - composer self-update --quiet --no-interaction
 
 before_script:
   - composer install --prefer-source --quiet --no-interaction
@@ -63,7 +44,7 @@ before_script:
       --pass travis
       --dbtype "$dbtype"
       --dbname traviswiki
-      --dbuser "$dbuser"
+      --dbuser travis
       --dbpass ""
       --scriptpath "/w"
 

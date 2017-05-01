@@ -1,6 +1,7 @@
 <?php
 namespace MediaWiki\Tidy;
 
+use ReplacementArray;
 use ParserOutput;
 use Parser;
 
@@ -19,32 +20,33 @@ use Parser;
 class RaggettWrapper {
 
 	/**
-	 * @var array
+	 * @var ReplacementArray
 	 */
 	protected $mTokens;
 
-	/**
-	 * @var int
-	 */
 	protected $mMarkerIndex;
+
+	public function __construct() {
+		$this->mTokens = null;
+	}
 
 	/**
 	 * @param string $text
 	 * @return string
 	 */
 	public function getWrapped( $text ) {
-		$this->mTokens = [];
+		$this->mTokens = new ReplacementArray;
 		$this->mMarkerIndex = 0;
 
 		// Replace <mw:editsection> elements with placeholders
 		$wrappedtext = preg_replace_callback( ParserOutput::EDITSECTION_REGEX,
-			[ $this, 'replaceCallback' ], $text );
+			[ &$this, 'replaceCallback' ], $text );
 		// ...and <mw:toc> markers
 		$wrappedtext = preg_replace_callback( '/\<\\/?mw:toc\>/',
-			[ $this, 'replaceCallback' ], $wrappedtext );
+			[ &$this, 'replaceCallback' ], $wrappedtext );
 		// ... and <math> tags
 		$wrappedtext = preg_replace_callback( '/\<math(.*?)\<\\/math\>/s',
-			[ $this, 'replaceCallback' ], $wrappedtext );
+			[ &$this, 'replaceCallback' ], $wrappedtext );
 		// Modify inline Microdata <link> and <meta> elements so they say <html-link> and <html-meta> so
 		// we can trick Tidy into not stripping them out by including them in tidy's new-empty-tags config
 		$wrappedtext = preg_replace( '!<(link|meta)([^>]*?)(/{0,1}>)!', '<html-$1$2$3', $wrappedtext );
@@ -64,12 +66,13 @@ class RaggettWrapper {
 
 	/**
 	 * @param array $m
+	 *
 	 * @return string
 	 */
-	private function replaceCallback( array $m ) {
+	public function replaceCallback( $m ) {
 		$marker = Parser::MARKER_PREFIX . "-item-{$this->mMarkerIndex}" . Parser::MARKER_SUFFIX;
 		$this->mMarkerIndex++;
-		$this->mTokens[$marker] = $m[0];
+		$this->mTokens->setPair( $marker, $m[0] );
 		return $marker;
 	}
 
@@ -85,7 +88,7 @@ class RaggettWrapper {
 		$text = str_replace( '<li datafld=""', '<li', $text );
 
 		// Restore the contents of placeholder tokens
-		$text = strtr( $text, $this->mTokens );
+		$text = $this->mTokens->replace( $text );
 
 		return $text;
 	}

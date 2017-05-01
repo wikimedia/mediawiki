@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.2
+ * OOjs UI v0.17.10
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
- * Copyright 2011–2017 OOjs UI Team and other contributors.
+ * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-04-26T01:05:10Z
+ * Date: 2016-10-03T18:59:01Z
  */
 ( function ( OO ) {
 
@@ -48,19 +48,14 @@ OO.ui.MediaWikiTheme.prototype.getElementClasses = function ( element ) {
 	if ( element.supports( [ 'hasFlag' ] ) ) {
 		isFramed = element.supports( [ 'isFramed' ] ) && element.isFramed();
 		isActive = element.supports( [ 'isActive' ] ) && element.isActive();
-		if (
-			// Button with a dark background
-			isFramed && ( isActive || element.isDisabled() || element.hasFlag( 'primary' ) ) ||
-			// Toolbar with a dark background
-			OO.ui.ToolGroup && element instanceof OO.ui.ToolGroup && ( isActive || element.hasFlag( 'primary' ) )
-		) {
-			// … use white icon / indicator, regardless of other flags
+		if ( isFramed && ( isActive || element.isDisabled() || element.hasFlag( 'primary' ) ) ) {
+			// Button with a dark background, use white icon
 			variants.invert = true;
 		} else if ( !isFramed && element.isDisabled() ) {
-			// Frameless disabled button, always use black icon / indicator regardless of other flags
+			// Frameless disabled button, always use black icon regardless of flags
 			variants.invert = false;
 		} else if ( !element.isDisabled() ) {
-			// Any other kind of button, use the right colored icon / indicator if available
+			// Any other kind of button, use the right colored icon if available
 			variants.progressive = element.hasFlag( 'progressive' );
 			variants.constructive = element.hasFlag( 'constructive' );
 			variants.destructive = element.hasFlag( 'destructive' );

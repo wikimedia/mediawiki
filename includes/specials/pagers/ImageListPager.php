@@ -22,10 +22,6 @@
 /**
  * @ingroup Pager
  */
-use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ResultWrapper;
-use Wikimedia\Rdbms\FakeResultWrapper;
-
 class ImageListPager extends TablePager {
 
 	protected $mFieldNames = null;
@@ -193,8 +189,7 @@ class ImageListPager extends TablePager {
 		}
 		$sortable = [ 'img_timestamp', 'img_name', 'img_size' ];
 		/* For reference, the indicies we can use for sorting are:
-		 * On the image table: img_user_timestamp, img_usertext_timestamp,
-		 * img_size, img_timestamp
+		 * On the image table: img_usertext_timestamp, img_size, img_timestamp
 		 * On oldimage: oi_usertext_timestamp, oi_name_timestamp
 		 *
 		 * In particular that means we cannot sort by timestamp when not filtering
@@ -427,7 +422,6 @@ class ImageListPager extends TablePager {
 	 * @throws MWException
 	 */
 	function formatValue( $field, $value ) {
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		switch ( $field ) {
 			case 'thumb':
 				$opt = [ 'time' => wfTimestamp( TS_MW, $this->mCurrentRow->img_timestamp ) ];
@@ -452,12 +446,12 @@ class ImageListPager extends TablePager {
 					$imgfile = $this->msg( 'imgfile' )->text();
 				}
 
-				// Weird files can maybe exist? T24227
+				// Weird files can maybe exist? Bug 22227
 				$filePage = Title::makeTitleSafe( NS_FILE, $value );
 				if ( $filePage ) {
-					$link = $linkRenderer->makeKnownLink(
+					$link = Linker::linkKnown(
 						$filePage,
-						$filePage->getText()
+						htmlspecialchars( $filePage->getText() )
 					);
 					$download = Xml::element( 'a',
 						[ 'href' => wfLocalFile( $filePage )->getUrl() ],
@@ -468,9 +462,9 @@ class ImageListPager extends TablePager {
 					// Add delete links if allowed
 					// From https://github.com/Wikia/app/pull/3859
 					if ( $filePage->userCan( 'delete', $this->getUser() ) ) {
-						$deleteMsg = $this->msg( 'listfiles-delete' )->text();
+						$deleteMsg = $this->msg( 'listfiles-delete' )->escaped();
 
-						$delete = $linkRenderer->makeKnownLink(
+						$delete = Linker::linkKnown(
 							$filePage, $deleteMsg, [], [ 'action' => 'delete' ]
 						);
 						$delete = $this->msg( 'parentheses' )->rawParams( $delete )->escaped();
@@ -485,9 +479,9 @@ class ImageListPager extends TablePager {
 			case 'img_user_text':
 				if ( $this->mCurrentRow->img_user ) {
 					$name = User::whoIs( $this->mCurrentRow->img_user );
-					$link = $linkRenderer->makeLink(
+					$link = Linker::link(
 						Title::makeTitle( NS_USER, $name ),
-						$name
+						htmlspecialchars( $name )
 					);
 				} else {
 					$link = htmlspecialchars( $value );

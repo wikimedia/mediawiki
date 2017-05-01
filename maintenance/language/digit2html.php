@@ -31,7 +31,7 @@ require_once __DIR__ . '/../Maintenance.php';
 class Digit2Html extends Maintenance {
 
 	# A list of unicode numerals is available at:
-	# https://www.fileformat.info/info/unicode/category/Nd/list.htm
+	# http://www.fileformat.info/info/unicode/category/Nd/list.htm
 	private $mLangs = [
 		'Ar', 'As', 'Bh', 'Bo', 'Dz',
 		'Fa', 'Gu', 'Hi', 'Km', 'Kn',

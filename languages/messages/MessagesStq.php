@@ -41,3 +41,4 @@ $namespaceGenderAliases = [
 	NS_USER => [ 'male' => 'Benutser', 'female' => 'Benutserske' ],
 	NS_USER_TALK => [ 'male' => 'Benutser_Diskussion', 'female' => 'Benutserske_Diskussion' ],
 ];
+

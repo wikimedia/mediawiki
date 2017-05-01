@@ -123,3 +123,4 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'NumbuKaDieu' ],
 	'Withoutinterwiki'          => [ 'TanpaInterwiki' ],
 ];
+

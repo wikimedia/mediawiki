@@ -22,7 +22,6 @@ namespace MediaWiki\Logger\Monolog;
 
 use MediaWikiTestCase;
 use Monolog\Logger;
-use Wikimedia\TestingAccessWrapper;
 
 class KafkaHandlerTest extends MediaWikiTestCase {
 
@@ -155,13 +154,13 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 			->method( 'send' )
 			->will( $this->returnValue( true ) );
 		// evil hax
-		TestingAccessWrapper::newFromObject( $mockMethod )->matcher->parametersMatcher =
+		\TestingAccessWrapper::newFromObject( $mockMethod )->matcher->parametersMatcher =
 			new \PHPUnit_Framework_MockObject_Matcher_ConsecutiveParameters( [
 				[ $this->anything(), $this->anything(), [ 'words' ] ],
 				[ $this->anything(), $this->anything(), [ 'lines' ] ]
 			] );
 
-		$formatter = $this->createMock( 'Monolog\Formatter\FormatterInterface' );
+		$formatter = $this->getMock( 'Monolog\Formatter\FormatterInterface' );
 		$formatter->expects( $this->any() )
 			->method( 'format' )
 			->will( $this->onConsecutiveCalls( 'words', null, 'lines' ) );
@@ -192,7 +191,7 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 			->method( 'send' )
 			->will( $this->returnValue( true ) );
 
-		$formatter = $this->createMock( 'Monolog\Formatter\FormatterInterface' );
+		$formatter = $this->getMock( 'Monolog\Formatter\FormatterInterface' );
 		$formatter->expects( $this->any() )
 			->method( 'format' )
 			->will( $this->onConsecutiveCalls( 'words', null, 'lines' ) );

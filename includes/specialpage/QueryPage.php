@@ -21,10 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use Wikimedia\Rdbms\ResultWrapper;
-use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\DBError;
-
 /**
  * This is a class for doing query pages; since they're almost all the same,
  * we factor out some of the functionality into a superclass, and let
@@ -306,7 +302,7 @@ abstract class QueryPage extends SpecialPage {
 			return 0;
 		}
 
-		$fname = static::class . '::recache';
+		$fname = get_class( $this ) . '::recache';
 		$dbw = wfGetDB( DB_MASTER );
 		if ( !$dbw ) {
 			return false;
@@ -326,7 +322,7 @@ abstract class QueryPage extends SpecialPage {
 							$value = wfTimestamp( TS_UNIX,
 								$row->value );
 						} else {
-							$value = intval( $row->value ); // T16414
+							$value = intval( $row->value ); // @bug 14414
 						}
 					} else {
 						$value = 0;
@@ -391,7 +387,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @since 1.18
 	 */
 	public function reallyDoQuery( $limit, $offset = false ) {
-		$fname = static::class . '::reallyDoQuery';
+		$fname = get_class( $this ) . "::reallyDoQuery";
 		$dbr = $this->getRecacheDB();
 		$query = $this->getQueryInfo();
 		$order = $this->getOrderFields();
@@ -409,7 +405,7 @@ abstract class QueryPage extends SpecialPage {
 			$options = isset( $query['options'] ) ? (array)$query['options'] : [];
 			$join_conds = isset( $query['join_conds'] ) ? (array)$query['join_conds'] : [];
 
-			if ( $order ) {
+			if ( count( $order ) ) {
 				$options['ORDER BY'] = $order;
 			}
 
@@ -459,50 +455,30 @@ abstract class QueryPage extends SpecialPage {
 	public function fetchFromCache( $limit, $offset = false ) {
 		$dbr = wfGetDB( DB_REPLICA );
 		$options = [];
-
 		if ( $limit !== false ) {
 			$options['LIMIT'] = intval( $limit );
 		}
-
 		if ( $offset !== false ) {
 			$options['OFFSET'] = intval( $offset );
 		}
-
-		$order = $this->getCacheOrderFields();
 		if ( $this->sortDescending() ) {
-			foreach ( $order as &$field ) {
-				$field .= " DESC";
-			}
+			$options['ORDER BY'] = 'qc_value DESC';
+		} else {
+			$options['ORDER BY'] = 'qc_value ASC';
 		}
-		if ( $order ) {
-			$options['ORDER BY'] = $order;
-		}
-
-		return $dbr->select( 'querycache',
-				[ 'qc_type',
+		return $dbr->select( 'querycache', [ 'qc_type',
 				'namespace' => 'qc_namespace',
 				'title' => 'qc_title',
 				'value' => 'qc_value' ],
 				[ 'qc_type' => $this->getName() ],
-				__METHOD__,
-				$options
+				__METHOD__, $options
 		);
-	}
-
-	/**
-	 * Return the order fields for fetchFromCache. Default is to always use
-	 * "ORDER BY value" which was the default prior to this function.
-	 * @return array
-	 * @since 1.29
-	 */
-	function getCacheOrderFields() {
-		return [ 'value' ];
 	}
 
 	public function getCachedTimestamp() {
 		if ( is_null( $this->cachedTimestamp ) ) {
 			$dbr = wfGetDB( DB_REPLICA );
-			$fname = static::class . '::getCachedTimestamp';
+			$fname = get_class( $this ) . '::getCachedTimestamp';
 			$this->cachedTimestamp = $dbr->selectField( 'querycache_info', 'qci_timestamp',
 				[ 'qci_type' => $this->getName() ], $fname );
 		}
@@ -848,29 +824,5 @@ abstract class QueryPage extends SpecialPage {
 
 	function feedUrl() {
 		return $this->getPageTitle()->getFullURL();
-	}
-
-	/**
-	 * Creates a new LinkBatch object, adds all pages from the passed ResultWrapper (MUST include
-	 * title and optional the namespace field) and executes the batch. This operation will pre-cache
-	 * LinkCache information like page existence and information for stub color and redirect hints.
-	 *
-	 * @param ResultWrapper $res The ResultWrapper object to process. Needs to include the title
-	 *  field and namespace field, if the $ns parameter isn't set.
-	 * @param null $ns Use this namespace for the given titles in the ResultWrapper object,
-	 *  instead of the namespace value of $res.
-	 */
-	protected function executeLBFromResultWrapper( ResultWrapper $res, $ns = null ) {
-		if ( !$res->numRows() ) {
-			return;
-		}
-
-		$batch = new LinkBatch;
-		foreach ( $res as $row ) {
-			$batch->add( $ns !== null ? $ns : $row->namespace, $row->title );
-		}
-		$batch->execute();
-
-		$res->seek( 0 );
 	}
 }

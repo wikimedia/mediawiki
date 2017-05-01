@@ -23,7 +23,6 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
  * MediaWiki-specific class for generating database load balancers
@@ -33,12 +32,9 @@ abstract class MWLBFactory {
 	/**
 	 * @param array $lbConf Config for LBFactory::__construct()
 	 * @param Config $mainConfig Main config object from MediaWikiServices
-	 * @param ConfiguredReadOnlyMode $readOnlyMode
 	 * @return array
 	 */
-	public static function applyDefaultConfig( array $lbConf, Config $mainConfig,
-		ConfiguredReadOnlyMode $readOnlyMode
-	) {
+	public static function applyDefaultConfig( array $lbConf, Config $mainConfig ) {
 		global $wgCommandLineMode;
 
 		static $typesWithSchema = [ 'postgres', 'msssql' ];
@@ -58,12 +54,10 @@ abstract class MWLBFactory {
 			'errorLogger' => [ MWExceptionHandler::class, 'logException' ],
 			'cliMode' => $wgCommandLineMode,
 			'hostname' => wfHostname(),
-			'readOnlyReason' => $readOnlyMode->getReason(),
+			// TODO: replace the global wfConfiguredReadOnlyReason() with a service.
+			'readOnlyReason' => wfConfiguredReadOnlyReason(),
 		];
 
-		// When making changes here, remember to also specify MediaWiki-specific options
-		// for Database classes in the relevant Installer subclass.
-		// Such as MysqlInstaller::openConnection and PostgresInstaller::openConnectionWithParams.
 		if ( $lbConf['class'] === 'LBFactorySimple' ) {
 			if ( isset( $lbConf['servers'] ) ) {
 				// Server array is already explicitly configured; leave alone
@@ -72,27 +66,11 @@ abstract class MWLBFactory {
 					if ( $server['type'] === 'sqlite' ) {
 						$server += [ 'dbDirectory' => $mainConfig->get( 'SQLiteDataDir' ) ];
 					} elseif ( $server['type'] === 'postgres' ) {
-						$server += [
-							'port' => $mainConfig->get( 'DBport' ),
-							// Work around the reserved word usage in MediaWiki schema
-							'keywordTableMap' => [ 'user' => 'mwuser', 'text' => 'pagecontent' ]
-						];
-					} elseif ( $server['type'] === 'mssql' ) {
-						$server += [
-							'port' => $mainConfig->get( 'DBport' ),
-							'useWindowsAuth' => $mainConfig->get( 'DBWindowsAuthentication' )
-						];
+						$server += [ 'port' => $mainConfig->get( 'DBport' ) ];
 					}
-
 					if ( in_array( $server['type'], $typesWithSchema, true ) ) {
 						$server += [ 'schema' => $mainConfig->get( 'DBmwschema' ) ];
 					}
-<<<<<<< HEAD
-					if ( in_array( $server['type'], $typesWithSchema, true ) ) {
-						$server += [ 'schema' => $mainConfig->get( 'DBmwschema' ) ];
-					}
-=======
->>>>>>> wikimedia/master
 
 					$server += [
 						'tablePrefix' => $mainConfig->get( 'DBprefix' ),
@@ -127,11 +105,6 @@ abstract class MWLBFactory {
 					$server[ 'dbDirectory'] = $mainConfig->get( 'SQLiteDataDir' );
 				} elseif ( $server['type'] === 'postgres' ) {
 					$server['port'] = $mainConfig->get( 'DBport' );
-					// Work around the reserved word usage in MediaWiki schema
-					$server['keywordTableMap'] = [ 'user' => 'mwuser', 'text' => 'pagecontent' ];
-				} elseif ( $server['type'] === 'mssql' ) {
-					$server['port'] = $mainConfig->get( 'DBport' );
-					$server['useWindowsAuth'] = $mainConfig->get( 'DBWindowsAuthentication' );
 				}
 				$lbConf['servers'] = [ $server ];
 			}
@@ -190,17 +163,6 @@ abstract class MWLBFactory {
 				'$wgLBFactoryConf must be updated. See RELEASE-NOTES for details',
 				'1.23'
 			);
-		}
-
-		// For configuration backward compatibility after moving classes to namespaces (1.29)
-		$compat = [
-			'LBFactorySingle' => Wikimedia\Rdbms\LBFactorySingle::class,
-			'LBFactorySimple' => Wikimedia\Rdbms\LBFactorySimple::class,
-			'LBFactoryMulti' => Wikimedia\Rdbms\LBFactoryMulti::class
-		];
-
-		if ( isset( $compat[$class] ) ) {
-			$class = $compat[$class];
 		}
 
 		return $class;

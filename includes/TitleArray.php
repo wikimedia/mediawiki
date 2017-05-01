@@ -24,8 +24,6 @@
  * @file
  */
 
-use Wikimedia\Rdbms\ResultWrapper;
-
 /**
  * The TitleArray class only exists to provide the newFromResult method at pre-
  * sent.

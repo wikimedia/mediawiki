@@ -26,3 +26,4 @@ $namespaceNames = [
 	NS_CATEGORY         => 'Nkyekyem',
 	NS_CATEGORY_TALK    => 'Nkyekyem_nkɔmmɔbea',
 ];
+

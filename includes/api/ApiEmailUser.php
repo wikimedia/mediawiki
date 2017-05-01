@@ -36,16 +36,7 @@ class ApiEmailUser extends ApiBase {
 		// Validate target
 		$targetUser = SpecialEmailUser::getTarget( $params['target'] );
 		if ( !( $targetUser instanceof User ) ) {
-			switch ( $targetUser ) {
-				case 'notarget':
-					$this->dieWithError( 'apierror-notarget' );
-				case 'noemail':
-					$this->dieWithError( [ 'noemail', $params['target'] ] );
-				case 'nowikiemail':
-					$this->dieWithError( 'nowikiemailtext', 'nowikiemail' );
-				default:
-					$this->dieWithError( [ 'apierror-unknownerror', $targetUser ] );
-			}
+			$this->dieUsageMsg( [ $targetUser ] );
 		}
 
 		// Check permissions and errors
@@ -55,7 +46,7 @@ class ApiEmailUser extends ApiBase {
 			$this->getConfig()
 		);
 		if ( $error ) {
-			$this->dieWithError( $error );
+			$this->dieUsageMsg( [ $error ] );
 		}
 
 		$data = [
@@ -65,16 +56,25 @@ class ApiEmailUser extends ApiBase {
 			'CCMe' => $params['ccme'],
 		];
 		$retval = SpecialEmailUser::submit( $data, $this->getContext() );
-		if ( !$retval instanceof Status ) {
-			// This is probably the reason
-			$retval = Status::newFatal( 'hookaborted' );
+
+		if ( $retval instanceof Status ) {
+			// SpecialEmailUser sometimes returns a status
+			// sometimes it doesn't.
+			if ( $retval->isGood() ) {
+				$retval = true;
+			} else {
+				$retval = $retval->getErrorsArray();
+			}
 		}
 
-		$result = array_filter( [
-			'result' => $retval->isGood() ? 'Success' : $retval->isOk() ? 'Warnings' : 'Failure',
-			'warnings' => $this->getErrorFormatter()->arrayFromStatus( $retval, 'warning' ),
-			'errors' => $this->getErrorFormatter()->arrayFromStatus( $retval, 'error' ),
-		] );
+		if ( $retval === true ) {
+			$result = [ 'result' => 'Success' ];
+		} else {
+			$result = [
+				'result' => 'Failure',
+				'message' => $retval
+			];
+		}
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
 	}
@@ -114,6 +114,6 @@ class ApiEmailUser extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Email';
+		return 'https://www.mediawiki.org/wiki/API:Email';
 	}
 }

@@ -202,7 +202,6 @@
 		return this.selected;
 	};
 
-	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Set the selected dates
 	 *
@@ -251,7 +250,6 @@
 		return this.focusedDate;
 	};
 
-	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Set the currently-focused date
 	 *
@@ -500,7 +498,6 @@
 	 *
 	 * @protected
 	 * @param {jQuery.Event} e Key down event
-	 * @return {boolean} False to cancel the default event
 	 */
 	mw.widgets.datetime.CalendarWidget.prototype.onKeyDown = function ( e ) {
 		var focusedDate = this.getFocusedDate();

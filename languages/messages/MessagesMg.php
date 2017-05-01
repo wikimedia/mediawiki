@@ -231,3 +231,4 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'Pejy_mirohy' ],
 	'Withoutinterwiki'          => [ 'Tsy_misy_interwiki' ],
 ];
+

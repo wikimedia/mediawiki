@@ -153,3 +153,4 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'Hubong_gisa' ],
 	'Withoutinterwiki'          => [ 'Hana_interwiki' ],
 ];
+

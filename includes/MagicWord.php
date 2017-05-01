@@ -46,8 +46,8 @@
  * $magicWords = [];
  *
  * $magicWords['en'] = [
- *   'magicwordkey' => [ 0, 'case_insensitive_magic_word' ],
- *   'magicwordkey2' => [ 1, 'CASE_sensitive_magic_word2' ],
+ * 	'magicwordkey' => [ 0, 'case_insensitive_magic_word' ],
+ * 	'magicwordkey2' => [ 1, 'CASE_sensitive_magic_word2' ],
  * ];
  * @endcode
  *
@@ -169,7 +169,6 @@ class MagicWord {
 		'localtimestamp',
 		'directionmark',
 		'contentlanguage',
-		'pagelanguage',
 		'numberofadmins',
 		'cascadingsources',
 	];
@@ -502,7 +501,7 @@ class MagicWord {
 			# multiple matched parts (variable match); some will be empty because of
 			# synonyms. The variable will be the second non-empty one so remove any
 			# blank elements and re-sort the indices.
-			# See also T8526
+			# See also bug 6526
 
 			$matches = array_values( array_filter( $matches ) );
 
@@ -526,7 +525,7 @@ class MagicWord {
 		$this->mFound = false;
 		$text = preg_replace_callback(
 			$this->getRegex(),
-			[ $this, 'pregRemoveAndRecord' ],
+			[ &$this, 'pregRemoveAndRecord' ],
 			$text
 		);
 
@@ -541,7 +540,7 @@ class MagicWord {
 		$this->mFound = false;
 		$text = preg_replace_callback(
 			$this->getRegexStart(),
-			[ $this, 'pregRemoveAndRecord' ],
+			[ &$this, 'pregRemoveAndRecord' ],
 			$text
 		);
 

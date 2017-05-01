@@ -91,3 +91,4 @@ $magicWords = [
 	'img_bottom'                => [ '1', 'ӱлычын', 'снизу', 'bottom' ],
 	'sitename'                  => [ '1', 'САЙТЛӰМ', 'НАЗВАНИЕ_САЙТА', 'SITENAME' ],
 ];
+

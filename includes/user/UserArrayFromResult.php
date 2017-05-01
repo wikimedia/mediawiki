@@ -20,8 +20,6 @@
  * @file
  */
 
-use Wikimedia\Rdbms\ResultWrapper;
-
 class UserArrayFromResult extends UserArray implements Countable {
 	/** @var ResultWrapper */
 	public $res;
@@ -29,7 +27,7 @@ class UserArrayFromResult extends UserArray implements Countable {
 	/** @var int */
 	public $key;
 
-	/** @var bool|User */
+	/** @var bool|stdClass */
 	public $current;
 
 	/**

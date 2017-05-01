@@ -21,8 +21,6 @@
  * @file
  */
 
-use Wikimedia\Rdbms\IDatabase;
-
 /**
  * @deprecated Since 1.28 Use DataUpdate directly, injecting the database
  */

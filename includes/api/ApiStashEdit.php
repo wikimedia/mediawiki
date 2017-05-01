@@ -51,7 +51,7 @@ class ApiStashEdit extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		if ( $user->isBot() ) { // sanity
-			$this->dieWithError( 'apierror-botsnotsupported' );
+			$this->dieUsage( 'This interface is not supported for bots', 'botsnotsupported' );
 		}
 
 		$cache = ObjectCache::getLocalClusterInstance();
@@ -61,13 +61,8 @@ class ApiStashEdit extends ApiBase {
 		if ( !ContentHandler::getForModelID( $params['contentmodel'] )
 			->isSupportedFormat( $params['contentformat'] )
 		) {
-			$this->dieWithError(
-				[ 'apierror-badformat-generic', $params['contentformat'], $params['contentmodel'] ],
-				'badmodelformat'
-			);
+			$this->dieUsage( 'Unsupported content model/format', 'badmodelformat' );
 		}
-
-		$this->requireAtLeastOneParameter( $params, 'stashedtexthash', 'text' );
 
 		$text = null;
 		$textHash = null;
@@ -77,18 +72,15 @@ class ApiStashEdit extends ApiBase {
 			$textKey = $cache->makeKey( 'stashedit', 'text', $textHash );
 			$text = $cache->get( $textKey );
 			if ( !is_string( $text ) ) {
-				$this->dieWithError( 'apierror-stashedit-missingtext', 'missingtext' );
+				$this->dieUsage( 'No stashed text found with the given hash', 'missingtext' );
 			}
 		} elseif ( $params['text'] !== null ) {
 			// Trim and fix newlines so the key SHA1's match (see WebRequest::getText())
 			$text = rtrim( str_replace( "\r\n", "\n", $params['text'] ) );
 			$textHash = sha1( $text );
 		} else {
-			$this->dieWithError( [
-				'apierror-missingparam-at-least-one-of',
-				Message::listParam( [ '<var>stashedtexthash</var>', '<var>text</var>' ] ),
-				2,
-			], 'missingparam' );
+			$this->dieUsage(
+				'The text or stashedtexthash parameter must be given', 'missingtextparam' );
 		}
 
 		$textContent = ContentHandler::makeContent(
@@ -99,11 +91,11 @@ class ApiStashEdit extends ApiBase {
 			// Page exists: get the merged content with the proposed change
 			$baseRev = Revision::newFromPageId( $page->getId(), $params['baserevid'] );
 			if ( !$baseRev ) {
-				$this->dieWithError( [ 'apierror-nosuchrevid', $params['baserevid'] ] );
+				$this->dieUsage( "No revision ID {$params['baserevid']}", 'missingrev' );
 			}
 			$currentRev = $page->getRevision();
 			if ( !$currentRev ) {
-				$this->dieWithError( [ 'apierror-missingrev-pageid', $page->getId() ], 'missingrev' );
+				$this->dieUsage( "No current revision of page ID {$page->getId()}", 'missingrev' );
 			}
 			// Merge in the new version of the section to get the proposed version
 			$editContent = $page->replaceSectionAtRev(
@@ -113,7 +105,7 @@ class ApiStashEdit extends ApiBase {
 				$baseRev->getId()
 			);
 			if ( !$editContent ) {
-				$this->dieWithError( 'apierror-sectionreplacefailed', 'replacefailed' );
+				$this->dieUsage( 'Could not merge updated section.', 'replacefailed' );
 			}
 			if ( $currentRev->getId() == $baseRev->getId() ) {
 				// Base revision was still the latest; nothing to merge
@@ -123,7 +115,7 @@ class ApiStashEdit extends ApiBase {
 				$baseContent = $baseRev->getContent();
 				$currentContent = $currentRev->getContent();
 				if ( !$baseContent || !$currentContent ) {
-					$this->dieWithError( [ 'apierror-missingcontent-pageid', $page->getId() ], 'missingrev' );
+					$this->dieUsage( "Missing content for page ID {$page->getId()}", 'missingrev' );
 				}
 				$handler = ContentHandler::getForModelID( $baseContent->getModel() );
 				$content = $handler->merge3( $baseContent, $editContent, $currentContent );
@@ -168,7 +160,7 @@ class ApiStashEdit extends ApiBase {
 	 * @param Content $content Edit content
 	 * @param User $user
 	 * @param string $summary Edit summary
-	 * @return string ApiStashEdit::ERROR_* constant
+	 * @return integer ApiStashEdit::ERROR_* constant
 	 * @since 1.25
 	 */
 	public static function parseAndStash( WikiPage $page, Content $content, User $user, $summary ) {

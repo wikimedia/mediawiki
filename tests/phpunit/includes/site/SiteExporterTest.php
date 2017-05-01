@@ -75,7 +75,7 @@ class SiteExporterTest extends PHPUnit_Framework_TestCase {
 	}
 
 	private function newSiteStore( SiteList $sites ) {
-		$store = $this->getMockBuilder( 'SiteStore' )->getMock();
+		$store = $this->getMock( 'SiteStore' );
 
 		$store->expects( $this->once() )
 			->method( 'saveSites' )

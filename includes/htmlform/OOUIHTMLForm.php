@@ -48,7 +48,7 @@ class OOUIHTMLForm extends HTMLForm {
 		return $field;
 	}
 
-	public function getButtons() {
+	function getButtons() {
 		$buttons = '';
 
 		// IE<8 has bugs with <button>, so we'll need to avoid them.
@@ -190,13 +190,16 @@ class OOUIHTMLForm extends HTMLForm {
 	 * @param string $elementsType
 	 * @return string
 	 */
-	public function getErrorsOrWarnings( $elements, $elementsType ) {
-		if ( !in_array( $elementsType, [ 'error', 'warning' ], true ) ) {
+	function getErrorsOrWarnings( $elements, $elementsType ) {
+		if ( !in_array( $elementsType, [ 'error', 'warning' ] ) ) {
 			throw new DomainException( $elementsType . ' is not a valid type.' );
 		}
-		$errors = [];
-		if ( $elements instanceof Status ) {
-			if ( !$elements->isGood() ) {
+		if ( !$elements ) {
+			$errors = [];
+		} elseif ( $elements instanceof Status ) {
+			if ( $elements->isGood() ) {
+				$errors = [];
+			} else {
 				$errors = $elements->getErrorsByType( $elementsType );
 				foreach ( $errors as &$error ) {
 					// Input:  [ 'message' => 'foo', 'errors' => [ 'a', 'b', 'c' ] ]
@@ -204,12 +207,13 @@ class OOUIHTMLForm extends HTMLForm {
 					$error = array_merge( [ $error['message'] ], $error['params'] );
 				}
 			}
-		} elseif ( $elementsType === 'error' ) {
-			if ( is_array( $elements ) ) {
-				$errors = $elements;
-			} elseif ( is_string( $elements ) ) {
-				$errors = [ $elements ];
+		} elseif ( $elementsType === 'errors' )  {
+			$errors = $elements;
+			if ( !is_array( $errors ) ) {
+				$errors = [ $errors ];
 			}
+		} else {
+			$errors = [];
 		}
 
 		foreach ( $errors as &$error ) {
@@ -226,7 +230,7 @@ class OOUIHTMLForm extends HTMLForm {
 		return '';
 	}
 
-	public function getHeaderText( $section = null ) {
+	function getHeaderText( $section = null ) {
 		if ( is_null( $section ) ) {
 			// We handle $this->mHeader elsewhere, in getBody()
 			return '';
@@ -235,7 +239,7 @@ class OOUIHTMLForm extends HTMLForm {
 		}
 	}
 
-	public function getBody() {
+	function getBody() {
 		$fieldset = parent::getBody();
 		// FIXME This only works for forms with no subsections
 		if ( $fieldset instanceof OOUI\FieldsetLayout ) {
@@ -269,9 +273,9 @@ class OOUIHTMLForm extends HTMLForm {
 		return $fieldset;
 	}
 
-	public function wrapForm( $html ) {
+	function wrapForm( $html ) {
 		$form = new OOUI\FormLayout( $this->getFormAttributes() + [
-			'classes' => [ 'mw-htmlform', 'mw-htmlform-ooui' ],
+			'classes' => [ 'mw-htmlform-ooui' ],
 			'content' => new OOUI\HtmlSnippet( $html ),
 		] );
 

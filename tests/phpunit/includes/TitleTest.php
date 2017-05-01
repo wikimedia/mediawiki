@@ -267,7 +267,7 @@ class TitleTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			$expectedParam,
 			$par,
-			"T33100 regression check: Title->fixSpecialName() should preserve parameter"
+			"Bug 31100 regression check: Title->fixSpecialName() should preserve parameter"
 		);
 	}
 

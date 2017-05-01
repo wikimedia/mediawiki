@@ -86,6 +86,7 @@ class DeleteRevision extends Maintenance {
 				);
 				$dbw->delete( 'revision', [ 'rev_id' => $revID ] );
 				if ( $pageLatest == $revID ) {
+					// Database integrity
 					$newLatest = $dbw->selectField(
 						'revision',
 						'rev_id',

@@ -1,8 +1,5 @@
 <?php
 
-use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\LoadBalancer;
-
 /**
  * Base class for objects that allow access to other wiki's databases using
  * the foreign database access mechanism implemented by LBFactoryMulti.

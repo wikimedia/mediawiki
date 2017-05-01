@@ -1,10 +1,10 @@
 <?php
 /**
- * Specificly for testing Media handlers. Sets up a FileRepo backend
+ * Specificly for testing Media handlers. Sets up a FSFile backend
  */
 abstract class MediaWikiMediaTestCase extends MediaWikiTestCase {
 
-	/** @var FileRepo */
+	/** @var FSRepo */
 	protected $repo;
 	/** @var FSFileBackend */
 	protected $backend;
@@ -19,7 +19,7 @@ abstract class MediaWikiMediaTestCase extends MediaWikiTestCase {
 		if ( $this->createsThumbnails() ) {
 			// We need a temp directory for the thumbnails
 			// the container is named 'temp-thumb' because it is the
-			// thumb directory for a repo named "temp".
+			// thumb directory for a FSRepo named "temp".
 			$containers['temp-thumb'] = $this->getNewTempDirectory();
 		}
 
@@ -29,11 +29,11 @@ abstract class MediaWikiMediaTestCase extends MediaWikiTestCase {
 			'containerPaths' => $containers,
 			'tmpDirectory' => $this->getNewTempDirectory()
 		] );
-		$this->repo = new FileRepo( $this->getRepoOptions() );
+		$this->repo = new FSRepo( $this->getRepoOptions() );
 	}
 
 	/**
-	 * @return array Argument for FileRepo constructor
+	 * @return array Argument for FSRepo constructor
 	 */
 	protected function getRepoOptions() {
 		return [

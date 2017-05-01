@@ -129,6 +129,13 @@ class FeedUtils {
 		}
 
 		if ( $oldid ) {
+
+			# $diffText = $de->getDiff( wfMessage( 'revisionasof',
+			# 	$wgLang->timeanddate( $timestamp ),
+			# 	$wgLang->date( $timestamp ),
+			# 	$wgLang->time( $timestamp ) )->text(),
+			# 	wfMessage( 'currentrev' )->text() );
+
 			$diffText = '';
 			// Don't bother generating the diff if we won't be able to show it
 			if ( $wgFeedDiffCutoff > 0 ) {
@@ -189,7 +196,7 @@ class FeedUtils {
 
 			if ( $html === null ) {
 
-				// Omit large new page diffs, T31110
+				// Omit large new page diffs, bug 29110
 				// Also use diff link for non-textual content
 				$diffText = self::getDiffLink( $title, $newid );
 			} else {

@@ -92,9 +92,9 @@ class RevDelLogItem extends RevDelItem {
 		$formatter->setAudience( LogFormatter::FOR_THIS_USER );
 
 		// Log link for this page
-		$loglink = $this->getLinkRenderer()->makeLink(
+		$loglink = Linker::link(
 			SpecialPage::getTitleFor( 'Log' ),
-			$this->list->msg( 'log' )->text(),
+			$this->list->msg( 'log' )->escaped(),
 			[],
 			[ 'page' => $title->getPrefixedText() ]
 		);
@@ -119,10 +119,16 @@ class RevDelLogItem extends RevDelItem {
 			'id' => $logEntry->getId(),
 			'type' => $logEntry->getType(),
 			'action' => $logEntry->getSubtype(),
-			'userhidden' => (bool)$logEntry->isDeleted( LogPage::DELETED_USER ),
-			'commenthidden' => (bool)$logEntry->isDeleted( LogPage::DELETED_COMMENT ),
-			'actionhidden' => (bool)$logEntry->isDeleted( LogPage::DELETED_ACTION ),
 		];
+		$ret += $logEntry->isDeleted( LogPage::DELETED_USER )
+			? [ 'userhidden' => '' ]
+			: [];
+		$ret += $logEntry->isDeleted( LogPage::DELETED_COMMENT )
+			? [ 'commenthidden' => '' ]
+			: [];
+		$ret += $logEntry->isDeleted( LogPage::DELETED_ACTION )
+			? [ 'actionhidden' => '' ]
+			: [];
 
 		if ( LogEventsList::userCan( $this->row, LogPage::DELETED_ACTION, $user ) ) {
 			$ret['params'] = LogFormatter::newFromEntry( $logEntry )->formatParametersForApi();

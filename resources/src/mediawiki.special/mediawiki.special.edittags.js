@@ -6,10 +6,9 @@
 		var $tagList = $( '#mw-edittags-tag-list' );
 		if ( $tagList.length ) {
 			$tagList.chosen( {
-				/* eslint-disable camelcase */
+				/*jscs:disable requireCamelCaseOrUpperCaseIdentifiers */
 				placeholder_text_multiple: mw.msg( 'tags-edit-chosen-placeholder' ),
 				no_results_text: mw.msg( 'tags-edit-chosen-no-results' )
-				/* eslint-enable camelcase */
 			} );
 		}
 

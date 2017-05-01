@@ -109,3 +109,4 @@ $specialPageAliases = [
 	'Watchlist'                 => [ 'Galädalised' ],
 	'Whatlinkshere'             => [ 'Yümsisio', 'Isio' ],
 ];
+

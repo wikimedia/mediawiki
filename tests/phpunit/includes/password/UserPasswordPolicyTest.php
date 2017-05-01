@@ -20,9 +20,6 @@
  * @file
  */
 
-/**
- * @group Database
- */
 class UserPasswordPolicyTest extends MediaWikiTestCase {
 
 	protected $policies = [
@@ -64,7 +61,6 @@ class UserPasswordPolicyTest extends MediaWikiTestCase {
 		$upp = $this->getUserPasswordPolicy();
 
 		$user = User::newFromName( 'TestUserPolicy' );
-		$user->addToDatabase();
 		$user->addGroup( 'sysop' );
 
 		$this->assertArrayEquals(
@@ -110,7 +106,6 @@ class UserPasswordPolicyTest extends MediaWikiTestCase {
 		$upp = $this->getUserPasswordPolicy();
 
 		$user = User::newFromName( $username );
-		$user->addToDatabase();
 		foreach ( $groups as $group ) {
 			$user->addGroup( $group );
 		}

@@ -36,18 +36,18 @@ class ApiParse extends ApiBase {
 	/** @var Content $pstContent */
 	private $pstContent = null;
 
+	private function checkReadPermissions( Title $title ) {
+		if ( !$title->userCan( 'read', $this->getUser() ) ) {
+			$this->dieUsage( "You don't have permission to view this page", 'permissiondenied' );
+		}
+	}
+
 	public function execute() {
 		// The data is hot but user-dependent, like page views, so we set vary cookies
 		$this->getMain()->setCacheMode( 'anon-public-user-private' );
 
 		// Get parameters
 		$params = $this->extractRequestParams();
-
-		// No easy way to say that text & title are allowed together while the
-		// rest aren't, so just do it in two calls.
-		$this->requireMaxOneParameter( $params, 'page', 'pageid', 'oldid', 'text' );
-		$this->requireMaxOneParameter( $params, 'page', 'pageid', 'oldid', 'title' );
-
 		$text = $params['text'];
 		$title = $params['title'];
 		if ( $title === null ) {
@@ -65,12 +65,21 @@ class ApiParse extends ApiBase {
 		$model = $params['contentmodel'];
 		$format = $params['contentformat'];
 
+		if ( !is_null( $page ) && ( !is_null( $text ) || $titleProvided ) ) {
+			$this->dieUsage(
+				'The page parameter cannot be used together with the text and title parameters',
+				'params'
+			);
+		}
+
 		$prop = array_flip( $params['prop'] );
 
 		if ( isset( $params['section'] ) ) {
 			$this->section = $params['section'];
 			if ( !preg_match( '/^((T-)?\d+|new)$/', $this->section ) ) {
-				$this->dieWithError( 'apierror-invalidsection' );
+				$this->dieUsage(
+					'The section parameter must be a valid section id or "new"', 'invalidsection'
+				);
 			}
 		} else {
 			$this->section = false;
@@ -88,20 +97,21 @@ class ApiParse extends ApiBase {
 
 		if ( !is_null( $oldid ) || !is_null( $pageid ) || !is_null( $page ) ) {
 			if ( $this->section === 'new' ) {
-				$this->dieWithError( 'apierror-invalidparammix-parse-new-section', 'invalidparammix' );
+					$this->dieUsage(
+						'section=new cannot be combined with oldid, pageid or page parameters. ' .
+						'Please use text', 'params'
+					);
 			}
 			if ( !is_null( $oldid ) ) {
 				// Don't use the parser cache
 				$rev = Revision::newFromId( $oldid );
 				if ( !$rev ) {
-					$this->dieWithError( [ 'apierror-nosuchrevid', $oldid ] );
+					$this->dieUsage( "There is no revision ID $oldid", 'missingrev' );
 				}
 
-				$this->checkTitleUserPermissions( $rev->getTitle(), 'read' );
+				$this->checkReadPermissions( $rev->getTitle() );
 				if ( !$rev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
-					$this->dieWithError(
-						[ 'apierror-permissiondenied', $this->msg( 'action-deletedtext' ) ]
-					);
+					$this->dieUsage( "You don't have permission to view deleted revisions", 'permissiondenied' );
 				}
 
 				$titleObj = $rev->getTitle();
@@ -121,9 +131,7 @@ class ApiParse extends ApiBase {
 					$this->content = $rev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
 
 					if ( $this->section !== false ) {
-						$this->content = $this->getSectionContent(
-							$this->content, $this->msg( 'revid', $rev->getId() )
-						);
+						$this->content = $this->getSectionContent( $this->content, 'r' . $rev->getId() );
 					}
 
 					// Should we save old revision parses to the parser cache?
@@ -159,10 +167,10 @@ class ApiParse extends ApiBase {
 				$pageObj = $this->getTitleOrPageId( $pageParams, 'fromdb' );
 				$titleObj = $pageObj->getTitle();
 				if ( !$titleObj || !$titleObj->exists() ) {
-					$this->dieWithError( 'apierror-missingtitle' );
+					$this->dieUsage( "The page you specified doesn't exist", 'missingtitle' );
 				}
 
-				$this->checkTitleUserPermissions( $titleObj, 'read' );
+				$this->checkReadPermissions( $titleObj );
 				$wgTitle = $titleObj;
 
 				if ( isset( $prop['revid'] ) ) {
@@ -193,7 +201,7 @@ class ApiParse extends ApiBase {
 		} else { // Not $oldid, $pageid, $page. Hence based on $text
 			$titleObj = Title::newFromText( $title );
 			if ( !$titleObj || $titleObj->isExternal() ) {
-				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $title ) ] );
+				$this->dieUsageMsg( [ 'invalidtitle', $title ] );
 			}
 			$wgTitle = $titleObj;
 			if ( $titleObj->canExist() ) {
@@ -209,7 +217,10 @@ class ApiParse extends ApiBase {
 
 			if ( !$textProvided ) {
 				if ( $titleProvided && ( $prop || $params['generatexml'] ) ) {
-					$this->addWarning( 'apiwarn-parse-titlewithouttext' );
+					$this->setWarning(
+						"'title' used without 'text', and parsed page properties were requested " .
+						"(did you mean to use 'page' instead of 'title'?)"
+					);
 				}
 				// Prevent warning from ContentHandler::makeContent()
 				$text = '';
@@ -219,15 +230,13 @@ class ApiParse extends ApiBase {
 			// API title, but default to wikitext to keep BC.
 			if ( $textProvided && !$titleProvided && is_null( $model ) ) {
 				$model = CONTENT_MODEL_WIKITEXT;
-				$this->addWarning( [ 'apiwarn-parse-nocontentmodel', $model ] );
+				$this->setWarning( "No 'title' or 'contentmodel' was given, assuming $model." );
 			}
 
 			try {
 				$this->content = ContentHandler::makeContent( $text, $titleObj, $model, $format );
 			} catch ( MWContentSerializationException $ex ) {
-				$this->dieWithException( $ex, [
-					'wrap' => ApiMessage::create( 'apierror-contentserializationexception', 'parseerror' )
-				] );
+				$this->dieUsage( $ex->getMessage(), 'parseerror' );
 			}
 
 			if ( $this->section !== false ) {
@@ -340,9 +349,6 @@ class ApiParse extends ApiBase {
 		if ( isset( $prop['sections'] ) ) {
 			$result_array['sections'] = $p_result->getSections();
 		}
-		if ( isset( $prop['parsewarnings'] ) ) {
-			$result_array['parsewarnings'] = $p_result->getWarnings();
-		}
 
 		if ( isset( $prop['displaytitle'] ) ) {
 			$result_array['displaytitle'] = $p_result->getDisplayTitle() ?:
@@ -351,7 +357,10 @@ class ApiParse extends ApiBase {
 
 		if ( isset( $prop['headitems'] ) ) {
 			$result_array['headitems'] = $this->formatHeadItems( $p_result->getHeadItems() );
-			$this->addDeprecation( 'apiwarn-deprecation-parse-headitems', 'action=parse&prop=headitems' );
+			$this->logFeatureUsage( 'action=parse&prop=headitems' );
+			$this->setWarning( 'headitems is deprecated since MediaWiki 1.28. '
+				. 'Use prop=headhtml when creating new HTML documents, or '
+				. 'prop=modules|jsconfigvars when updating a document client-side.' );
 		}
 
 		if ( isset( $prop['headhtml'] ) ) {
@@ -388,7 +397,9 @@ class ApiParse extends ApiBase {
 
 		if ( isset( $prop['modules'] ) &&
 			!isset( $prop['jsconfigvars'] ) && !isset( $prop['encodedjsconfigvars'] ) ) {
-			$this->addWarning( 'apiwarn-moduleswithoutvars' );
+			$this->setWarning( 'Property "modules" was set but not "jsconfigvars" ' .
+				'or "encodedjsconfigvars". Configuration variables are necessary ' .
+				'for proper module usage.' );
 		}
 
 		if ( isset( $prop['indicators'] ) ) {
@@ -424,7 +435,7 @@ class ApiParse extends ApiBase {
 
 		if ( isset( $prop['parsetree'] ) || $params['generatexml'] ) {
 			if ( $this->content->getModel() != CONTENT_MODEL_WIKITEXT ) {
-				$this->dieWithError( 'apierror-parsetree-notwikitext', 'notwikitext' );
+				$this->dieUsage( 'parsetree is only supported for wikitext content', 'notwikitext' );
 			}
 
 			$wgParser->startExternalParse( $titleObj, $popts, Parser::OT_PREPROCESS );
@@ -455,7 +466,6 @@ class ApiParse extends ApiBase {
 			'modulestyles' => 'm',
 			'properties' => 'pp',
 			'limitreportdata' => 'lr',
-			'parsewarnings' => 'pw'
 		];
 		$this->setIndexedTagNames( $result_array, $result_mapping );
 		$result->addValue( null, $this->getModuleName(), $result_array );
@@ -506,7 +516,7 @@ class ApiParse extends ApiBase {
 		// getParserOutput will save to Parser cache if able
 		$pout = $page->getParserOutput( $popts );
 		if ( !$pout ) {
-			$this->dieWithError( [ 'apierror-nosuchrevid', $page->getLatest() ] );
+			$this->dieUsage( "There is no revision ID {$page->getLatest()}", 'missingrev' );
 		}
 		if ( $getWikitext ) {
 			$this->content = $page->getContent( Revision::RAW );
@@ -528,9 +538,7 @@ class ApiParse extends ApiBase {
 		if ( $this->section !== false && $content !== null ) {
 			$content = $this->getSectionContent(
 				$content,
-				!is_null( $pageId )
-					? $this->msg( 'pageid', $pageId )
-					: $page->getTitle()->getPrefixedText()
+				!is_null( $pageId ) ? 'page id ' . $pageId : $page->getTitle()->getPrefixedText()
 			);
 		}
 		return $content;
@@ -540,17 +548,17 @@ class ApiParse extends ApiBase {
 	 * Extract the requested section from the given Content
 	 *
 	 * @param Content $content
-	 * @param string|Message $what Identifies the content in error messages, e.g. page title.
+	 * @param string $what Identifies the content in error messages, e.g. page title.
 	 * @return Content|bool
 	 */
 	private function getSectionContent( Content $content, $what ) {
 		// Not cached (save or load)
 		$section = $content->getSection( $this->section );
 		if ( $section === false ) {
-			$this->dieWithError( [ 'apierror-nosuchsection-what', $this->section, $what ], 'nosuchsection' );
+			$this->dieUsage( "There is no section {$this->section} in $what", 'nosuchsection' );
 		}
 		if ( $section === null ) {
-			$this->dieWithError( [ 'apierror-sectionsnotsupported-what', $what ], 'nosuchsection' );
+			$this->dieUsage( "Sections are not supported by $what", 'nosuchsection' );
 			$section = false;
 		}
 
@@ -755,8 +763,7 @@ class ApiParse extends ApiBase {
 			],
 			'prop' => [
 				ApiBase::PARAM_DFLT => 'text|langlinks|categories|links|templates|' .
-					'images|externallinks|sections|revid|displaytitle|iwlinks|' .
-					'properties|parsewarnings',
+					'images|externallinks|sections|revid|displaytitle|iwlinks|properties',
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => [
 					'text',
@@ -782,7 +789,6 @@ class ApiParse extends ApiBase {
 					'limitreportdata',
 					'limitreporthtml',
 					'parsetree',
-					'parsewarnings'
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [
 					'parsetree' => [ 'apihelp-parse-paramvalue-prop-parsetree', CONTENT_MODEL_WIKITEXT ],
@@ -835,6 +841,6 @@ class ApiParse extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Parsing_wikitext#parse';
+		return 'https://www.mediawiki.org/wiki/API:Parsing_wikitext#parse';
 	}
 }

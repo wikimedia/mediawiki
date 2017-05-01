@@ -1,21 +1,19 @@
 <?php
-
-namespace Wikimedia\Rdbms;
-
-class Blob implements IBlob {
+/**
+ * Utility class
+ * @ingroup Database
+ *
+ * This allows us to distinguish a blob from a normal string and an array of strings
+ */
+class Blob {
 	/** @var string */
 	protected $mData;
 
-	/**
-	 * @param $data string
-	 */
-	public function __construct( $data ) {
+	function __construct( $data ) {
 		$this->mData = $data;
 	}
 
-	public function fetch() {
+	function fetch() {
 		return $this->mData;
 	}
 }
-
-class_alias( Blob::class, 'Blob' );

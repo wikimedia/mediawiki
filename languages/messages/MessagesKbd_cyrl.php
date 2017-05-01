@@ -8,7 +8,7 @@
  *
  */
 
-# $fallback = 'ru'; // T29785
+# $fallback = 'ru'; // bug 27785
 
 $namespaceNames = [
 	NS_MEDIA            => 'Медиа',
@@ -46,3 +46,4 @@ $namespaceAliases = [
 
 // Remove Russian gender aliases
 $namespaceGenderAliases = [];
+

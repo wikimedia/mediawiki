@@ -24,7 +24,6 @@
 namespace MediaWiki\Auth;
 
 use Config;
-use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Status;
@@ -147,7 +146,7 @@ class AuthManager implements LoggerAwareInterface {
 		if ( self::$instance === null ) {
 			self::$instance = new self(
 				\RequestContext::getMain()->getRequest(),
-				MediaWikiServices::getInstance()->getMainConfig()
+				\ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
 			);
 		}
 		return self::$instance;

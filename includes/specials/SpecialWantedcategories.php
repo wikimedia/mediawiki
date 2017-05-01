@@ -91,17 +91,20 @@ class WantedCategoriesPage extends WantedQueryPage {
 		global $wgContLang;
 
 		$nt = Title::makeTitle( $result->namespace, $result->title );
-		$text = $wgContLang->convert( $nt->getText() );
+		$text = htmlspecialchars( $wgContLang->convert( $nt->getText() ) );
 
 		if ( !$this->isCached() ) {
 			// We can assume the freshest data
-			$plink = $this->getLinkRenderer()->makeBrokenLink(
+			$plink = Linker::link(
 				$nt,
-				$text
+				$text,
+				[],
+				[],
+				[ 'broken' ]
 			);
 			$nlinks = $this->msg( 'nmembers' )->numParams( $result->value )->escaped();
 		} else {
-			$plink = $this->getLinkRenderer()->makeLink( $nt, $text );
+			$plink = Linker::link( $nt, $text );
 
 			$currentValue = isset( $this->currentCategoryCounts[$result->title] )
 				? $this->currentCategoryCounts[$result->title]

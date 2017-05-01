@@ -1,34 +1,35 @@
-//! moment.js locale configuration
-//! locale : Basque [eu]
-//! author : Eneko Illarramendi : https://github.com/eillarra
+// moment.js locale configuration
+// locale : euskara (eu)
+// author : Eneko Illarramendi : https://github.com/eillarra
 
-;(function (global, factory) {
-   typeof exports === 'object' && typeof module !== 'undefined'
-       && typeof require === 'function' ? factory(require('../moment')) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, function (moment) { 'use strict';
-
-
-    var eu = moment.defineLocale('eu', {
+(function (factory) {
+    // Comment out broken wrapper, see T145382
+    /*if (typeof define === 'function' && define.amd) {
+        define(['moment'], factory); // AMD
+    } else if (typeof exports === 'object') {
+        module.exports = factory(require('../moment')); // Node
+    } else {
+        factory((typeof global !== 'undefined' ? global : this).moment); // node or other global
+    }*/
+    factory(this.moment);
+}(function (moment) {
+    return moment.defineLocale('eu', {
         months : 'urtarrila_otsaila_martxoa_apirila_maiatza_ekaina_uztaila_abuztua_iraila_urria_azaroa_abendua'.split('_'),
         monthsShort : 'urt._ots._mar._api._mai._eka._uzt._abu._ira._urr._aza._abe.'.split('_'),
-        monthsParseExact : true,
         weekdays : 'igandea_astelehena_asteartea_asteazkena_osteguna_ostirala_larunbata'.split('_'),
         weekdaysShort : 'ig._al._ar._az._og._ol._lr.'.split('_'),
         weekdaysMin : 'ig_al_ar_az_og_ol_lr'.split('_'),
-        weekdaysParseExact : true,
         longDateFormat : {
             LT : 'HH:mm',
-            LTS : 'HH:mm:ss',
+            LTS : 'LT:ss',
             L : 'YYYY-MM-DD',
             LL : 'YYYY[ko] MMMM[ren] D[a]',
-            LLL : 'YYYY[ko] MMMM[ren] D[a] HH:mm',
-            LLLL : 'dddd, YYYY[ko] MMMM[ren] D[a] HH:mm',
+            LLL : 'YYYY[ko] MMMM[ren] D[a] LT',
+            LLLL : 'dddd, YYYY[ko] MMMM[ren] D[a] LT',
             l : 'YYYY-M-D',
             ll : 'YYYY[ko] MMM D[a]',
-            lll : 'YYYY[ko] MMM D[a] HH:mm',
-            llll : 'ddd, YYYY[ko] MMM D[a] HH:mm'
+            lll : 'YYYY[ko] MMM D[a] LT',
+            llll : 'ddd, YYYY[ko] MMM D[a] LT'
         },
         calendar : {
             sameDay : '[gaur] LT[etan]',
@@ -60,7 +61,4 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
-
-    return eu;
-
 }));

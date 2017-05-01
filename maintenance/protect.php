@@ -41,8 +41,8 @@ class Protect extends Maintenance {
 	}
 
 	public function execute() {
-		$userName = $this->getOption( 'user', false );
-		$reason = $this->getOption( 'reason', '' );
+		$userName = $this->getOption( 'u', false );
+		$reason = $this->getOption( 'r', '' );
 
 		$cascade = $this->hasOption( 'cascade' );
 

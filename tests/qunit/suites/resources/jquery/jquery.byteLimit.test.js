@@ -46,17 +46,21 @@
 			expected: ''
 		}, options );
 
-		QUnit.test( opt.description, function ( assert ) {
-			opt.$input.appendTo( '#qunit-fixture' );
+		QUnit.asyncTest( opt.description, 1, function ( assert ) {
+			setTimeout( function () {
+				opt.$input.appendTo( '#qunit-fixture' );
 
-			// Simulate pressing keys for each of the sample characters
-			addChars( opt.$input, opt.sample );
+				// Simulate pressing keys for each of the sample characters
+				addChars( opt.$input, opt.sample );
 
-			assert.equal(
-				opt.$input.val(),
-				opt.expected,
-				'New value matches the expected string'
-			);
+				assert.equal(
+					opt.$input.val(),
+					opt.expected,
+					'New value matches the expected string'
+				);
+
+				QUnit.start();
+			} );
 		} );
 	}
 
@@ -68,7 +72,7 @@
 	} );
 
 	byteLimitTest( {
-		description: 'Plain text input. Calling byteLimit with no parameters and no maxlength attribute (T38310)',
+		description: 'Plain text input. Calling byteLimit with no parameters and no maxlength attribute (bug 36310)',
 		$input: $( '<input>' ).attr( 'type', 'text' )
 			.byteLimit(),
 		sample: simpleSample,
@@ -114,7 +118,7 @@
 		$input: $( '<input>' ).attr( 'type', 'text' )
 			.byteLimit( 12 ),
 		sample: mbSample,
-		expected: '123456789012'
+		expected: '1234567890' + '12'
 	} );
 
 	byteLimitTest( {
@@ -168,7 +172,7 @@
 		expected: '1234'
 	} );
 
-	// Regression tests for T43450
+	// Regression tests for bug 41450
 	byteLimitTest( {
 		description: 'Input filter of which the base exceeds the limit',
 		$input: $( '<input>' ).attr( 'type', 'text' )
@@ -181,8 +185,8 @@
 		expected: ''
 	} );
 
-	QUnit.test( 'Confirm properties and attributes set', function ( assert ) {
-		var $el;
+	QUnit.test( 'Confirm properties and attributes set', 4, function ( assert ) {
+		var $el, $elA, $elB;
 
 		$el = $( '<input>' ).attr( 'type', 'text' )
 			.attr( 'maxlength', '7' )
@@ -207,12 +211,12 @@
 
 		assert.strictEqual( $el.attr( 'maxlength' ), undefined, 'maxlength attribute removed for limit with callback' );
 
-		$( '<input>' ).attr( 'type', 'text' )
+		$elA = $( '<input>' ).attr( 'type', 'text' )
 			.addClass( 'mw-test-byteLimit-foo' )
 			.attr( 'maxlength', '7' )
 			.appendTo( '#qunit-fixture' );
 
-		$( '<input>' ).attr( 'type', 'text' )
+		$elB = $( '<input>' ).attr( 'type', 'text' )
 			.addClass( 'mw-test-byteLimit-foo' )
 			.attr( 'maxlength', '12' )
 			.appendTo( '#qunit-fixture' );
@@ -224,11 +228,11 @@
 		$el.byteLimit();
 	} );
 
-	QUnit.test( 'Trim from insertion when limit exceeded', function ( assert ) {
+	QUnit.test( 'Trim from insertion when limit exceeded', 2, function ( assert ) {
 		var $el;
 
-		// Use a new <input> because the bug only occurs on the first time
-		// the limit it reached (T42850)
+		// Use a new <input /> because the bug only occurs on the first time
+		// the limit it reached (bug 40850)
 		$el = $( '<input>' ).attr( 'type', 'text' )
 			.appendTo( '#qunit-fixture' )
 			.byteLimit( 3 )
