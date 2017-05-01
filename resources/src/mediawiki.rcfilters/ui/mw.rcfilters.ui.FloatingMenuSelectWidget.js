@@ -52,9 +52,10 @@
 
 		this.$element
 			.addClass( 'mw-rcfilters-ui-floatingMenuSelectWidget' )
+			.append( header.$element )
 			.append(
 				this.$body
-					.append( header.$element, this.$group, this.noResults.$element )
+					.append( this.$group, this.noResults.$element )
 			);
 
 		if ( this.$footer ) {
