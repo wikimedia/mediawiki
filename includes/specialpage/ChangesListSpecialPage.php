@@ -392,6 +392,95 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					],
 				],
 			],
+
+			[
+				'name' => 'watchlist',
+				'title' => 'rcfilters-filtergroup-watchlist',
+				'class' => ChangesListStringOptionsFilterGroup::class,
+				'isFullCoverage' => true,
+				'filters' => [
+					[
+						'name' => 'watched',
+						'label' => 'rcfilters-filter-watchlist-watched-label',
+						'description' => 'rcfilters-filter-watchlist-watched-description',
+						'cssClassSuffix' => 'watched',
+						'isRowApplicableCallable' => function ( $ctx, $rc ) {
+							return $rc->getAttribute( 'wl_user' );
+						}
+					],
+					[
+						'name' => 'watchednew',
+						'label' => 'rcfilters-filter-watchlist-watchednew-label',
+						'description' => 'rcfilters-filter-watchlist-watchednew-description',
+						'cssClassSuffix' => 'watchednew',
+						'isRowApplicableCallable' => function ( $ctx, $rc ) {
+							return $rc->getAttribute( 'wl_user' ) &&
+								$rc->getAttribute( 'rc_timestamp' ) > $rc->getAttribute( 'wl_notificationtimestamp' );
+						},
+					],
+					[
+						'name' => 'notwatched',
+						'label' => 'rcfilters-filter-watchlist-notwatched-label',
+						'description' => 'rcfilters-filter-watchlist-notwatched-description',
+						'cssClassSuffix' => 'notwatched',
+						'isRowApplicableCallable' => function ( $ctx, $rc ) {
+							return $rc->getAttribute( 'wl_user' ) === null;
+						},
+					]
+				],
+				'default' => ChangesListStringOptionsFilterGroup::NONE,
+				'queryCallable' => function ( $specialPageClassName, $context, $dbr,
+					&$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedValues ) {
+					sort( $selectedValues );
+					$notwatchedCond = 'wl_user IS NULL';
+					$watchedCond = 'wl_user IS NOT NULL';
+					$newCond = 'rc_timestamp >= wl_notificationtimestamp';
+
+					if ( $selectedValues === [ 'notwatched' ] ) {
+						$conds[] = $notwatchedCond;
+						return;
+					}
+
+					if ( $selectedValues === [ 'watched' ] ) {
+						$conds[] = $watchedCond;
+						return;
+					}
+
+					if ( $selectedValues === [ 'watchednew' ] ) {
+						$conds[] = $dbr->makeList( [
+							$watchedCond,
+							$newCond
+						], LIST_AND );
+						return;
+					}
+
+					if ( $selectedValues === [ 'notwatched', 'watched' ] ) {
+						// no filters
+						return;
+					}
+
+					if ( $selectedValues === [ 'notwatched', 'watchednew' ] ) {
+						$conds[] = $dbr->makeList( [
+							$notwatchedCond,
+							$dbr->makeList( [
+								$watchedCond,
+								$newCond
+							], LIST_AND )
+						], LIST_OR );
+						return;
+					}
+
+					if ( $selectedValues === [ 'watched', 'watchednew' ] ) {
+						$conds[] = $watchedCond;
+						return;
+					}
+
+					if ( $selectedValues === [ 'notwatched', 'watched', 'watchednew' ] ) {
+						// no filters
+						return;
+					}
+				},
+			],
 		];
 
 		$this->reviewStatusFilterGroupDefinition = [
@@ -678,6 +767,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			'rcfilters-hideminor-conflicts-typeofchange-global',
 			'rcfilters-hideminor-conflicts-typeofchange',
 			'rcfilters-typeofchange-conflicts-hideminor'
+		);
+
+		$watchlistGroup = $this->getFilterGroup( 'watchlist' );
+		$watchlistGroup->getFilter( 'watched' )->setAsSupersetOf(
+			$watchlistGroup->getFilter( 'watchednew' )
 		);
 	}
 
