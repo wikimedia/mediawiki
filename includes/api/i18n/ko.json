@@ -15,7 +15,8 @@
 			"Ykhwong",
 			"Jonghaya",
 			"Jerrykim306",
-			"코코아"
+			"코코아",
+			"Macofe"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|설명문서]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 메일링 리스트]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API 알림 사항]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 버그 및 요청]\n</div>\n<strong>상태:</strong> 이 페이지에 보이는 모든 기능은 정상적으로 작동하지만, API는 여전히 활발하게 개발되고 있으며, 언제든지 변경될 수 있습니다. 업데이트 공지를 받아보려면 [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 메일링 리스트]를 구독하십시오.\n\n<strong>잘못된 요청:</strong> API에 잘못된 요청이 전송되면 \"MediaWiki-API-Error\" 키가 포함된 HTTP 헤더가 전송되며 반환되는 헤더와 오류 코드의 값은 모두 동일한 값으로 설정됩니다. 자세한 정보에 대해서는 [[mw:Special:MyLanguage/API:Errors and warnings/ko|API:오류와 경고]]를 참조하십시오.\n\n<strong>테스트하기:</strong> API 요청 테스트를 용이하게 하려면, [[Special:ApiSandbox]]를 보십시오.",
@@ -519,7 +520,7 @@
 	"apihelp-rollback-param-watchlist": "현재 사용자의 주시목록에서 문서를 무조건적으로 추가하거나 제거하거나, 환경 설정을 사용하거나 주시를 변경하지 않습니다.",
 	"apihelp-rollback-example-simple": "<kbd>Project:대문</kbd> 문서의 <kbd>예시</kbd>의 마지막 판을 되돌리기",
 	"apihelp-setpagelanguage-description": "문서의 언어를 변경합니다.",
-	"apihelp-setpagelanguage-description-disabled": "이 위키에서 문서의 언어 변경은 허용되지 않습니다.\n\n이 동작을 사용하려면 <var>[[mw:Manual:$wgPageLanguageUseDB|$wgPageLanguageUseDB]]</var>을 활성화하십시오.",
+	"apihelp-setpagelanguage-description-disabled": "이 위키에서 문서의 언어 변경은 허용되지 않습니다.\n\n이 동작을 사용하려면 <var>[[mw:Special:MyLanguage/Manual:$wgPageLanguageUseDB|$wgPageLanguageUseDB]]</var>을 활성화하십시오.",
 	"apihelp-setpagelanguage-param-reason": "변경 이유.",
 	"apihelp-setpagelanguage-example-language": "<kbd>Main Page</kbd>의 언어를 바스크어로 변경합니다.",
 	"apihelp-stashedit-param-sectiontitle": "새 문단을 위한 제목.",

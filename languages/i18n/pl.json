@@ -2149,7 +2149,7 @@
 	"enotif_body_intro_moved": "Strona projektu {{SITENAME}} o nazwie $1 została przeniesiona $PAGEEDITDATE przez {{gender:$2|$2}}, zobacz aktualną wersję na: $3",
 	"enotif_body_intro_restored": "Strona projektu {{SITENAME}} o nazwie $1 została przywrócona $PAGEEDITDATE przez {{gender:$2|$2}}, zobacz aktualną wersję na: $3",
 	"enotif_body_intro_changed": "Strona projektu {{SITENAME}} o nazwie $1 została zmieniona $PAGEEDITDATE przez {{gender:$2|$2}}, zobacz aktualną wersję na: $3",
-	"enotif_lastvisited": "Zobacz na stronie $1 wszystkie zmiany od Twojej ostatniej wizyty.",
+	"enotif_lastvisited": "Aby obejrzeć wszystkie wszystkie zmiany od Twojej ostatniej wizyty, zobacz $1",
 	"enotif_lastdiff": "Aby obejrzeć tę zmianę, zobacz $1",
 	"enotif_anon_editor": "użytkownik anonimowy $1",
 	"enotif_body": "Szanowny $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nOpis zmiany: $PAGESUMMARY $PAGEMINOREDIT\n\nKontakt do autora:\nmail – $PAGEEDITOR_EMAIL\nwiki – $PAGEEDITOR_WIKI\n\nW przypadku kolejnych zmian nowe powiadomienia nie zostaną wysłane, dopóki nie odwiedzisz tej strony jako zalogowany. Możesz także zresetować wszystkie flagi powiadomień na swojej liście stron obserwowanych.\n\nWiadomość z systemu powiadomień {{GRAMMAR:D.lp|{{SITENAME}}}}\n\n--\nW celu zmiany ustawień swojej listy obserwowanych odwiedź\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nUsunięcie strony z listy obserwowanych możliwe jest na stronie\n$UNWATCHURL\n\nPomoc\n$HELPPAGE",

@@ -62,6 +62,7 @@
 	"config-memory-bad": "<strong>Avís:</strong> El <code>memory_limit</code> del PHP és $1.\nAixò és probablement massa baix.\nLa instal·lació pot fallar!",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] està instal·lat",
 	"config-apc": "L’[http://www.php.net/apc APC] està instal·lat",
+	"config-apcu": "[http://www.php.net/apcu APCu] està instal·lat",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] està instal·lat",
 	"config-diff3-bad": "No s'ha trobat el GNU diff3.",
 	"config-git": "S'ha trobat el programari de control de versions Git: <code>$1</code>.",
@@ -203,6 +204,7 @@
 	"config-cache-options": "Configuració per a la memòria cau dels objectes:",
 	"config-cache-help": "L'encauament d'objectes s'utilitza per a millorar la rapidesa del MediaWiki afegint a la memòria cau les dades que s'utilitzen de forma freqüent. És recomanable que els llocs web mitjans o grans ho habilitin. També els llocs web petits en veuran els beneficis.",
 	"config-cache-none": "Sense encauament (no se suprimeix cap funcionalitat, però la velocitat pot veure's afectada en els llocs wiki més grans)",
+	"config-cache-accel": "Emmagatzemament en memòria cau d'objectes de PHP (APC, APCu, XCache o WinCache)",
 	"config-cache-memcached": "Utilitza Memcached (requereix una instal·lació i configuració addicionals)",
 	"config-memcached-servers": "Servidors de Memcache:",
 	"config-memcache-badip": "Heu introduït una adreça IP no vàlida per al Memcached: $1.",
@@ -210,10 +212,12 @@
 	"config-memcache-badport": "Els números de port de Memcached han de ser entre $1 i $2.",
 	"config-extensions": "Extensions",
 	"config-skins": "Aparences",
+	"config-skins-help": "S'han detectat els temes llistats a dalt en el directori <code>./skins</code>. Heu d'habilitar-ne com a mínim un i trieu-ne el predeterminat.",
 	"config-skins-use-as-default": "Utilitza aquest tema per defecte",
 	"config-skins-missing": "No s'ha trobat cap tema; MediaWiki utilitzarà el tema per defecte fins que hi instal·leu alguns adequats.",
 	"config-skins-must-enable-some": "Heu de triar com a mínim un tema per habilitar.",
 	"config-skins-must-enable-default": "Cal habilitar el tema triat per defecte.",
+	"config-install-alreadydone": "<strong>Avís:</strong> Sembla que ja havíeu instal·lat MediaWiki i esteu provant d'instal·lar-lo de nou.\nProcediu a la pàgina següent.",
 	"config-install-begin": "En fer clic a «{{int:config-continue}}» s’iniciarà la instal·lació del MediaWiki. Si encara voleu fer canvis, feu clic a «{{int:config-back}}».",
 	"config-install-step-done": "fet",
 	"config-install-step-failed": "ha fallat",
@@ -252,6 +256,7 @@
 	"config-help": "ajuda",
 	"config-help-tooltip": "feu clic per ampliar",
 	"config-nofile": "No s'ha pogut trobar el fitxer «$1». S'ha suprimit?",
+	"config-extension-link": "Sabíeu que el vostre wiki permet l'ús d'[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensions]?\n\nPodeu navegar les [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensions per categoria] o la [https://www.mediawiki.org/wiki/Extension_Matrix matriu d'extensions] per a veure'n una llista sencera.",
 	"mainpagetext": "<strong>MediaWiki s'ha instal·lat.</strong>",
-	"mainpagedocfooter": "Consulteu la [https://meta.wikimedia.org/wiki/Help:Contents Guia d'Usuari] per a més informació sobre com utilitzar-lo.\n\n== Per a començar ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Llista de característiques configurables]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ PMF del MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de correu (''listserv'') per a anuncis del MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Traduïu MediaWiki en la vostra llengua]"
+	"mainpagedocfooter": "Consulteu la [https://meta.wikimedia.org/wiki/Help:Contents Guia d'Usuari] per a més informació sobre com utilitzar aquest programari wiki.\n\n== Primers passos ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Llista de paràmetres configurables]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ PMF del MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de correu per a anuncis del MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Traducció de MediaWiki en la vostra llengua]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Aprengueu com combatre la brossa que pot atacar el vostre wiki]"
 }

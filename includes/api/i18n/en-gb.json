@@ -142,15 +142,11 @@
 	"apihelp-userrights-example-userid": "Add the user with ID <kbd>123</kbd> to group <kbd>bot</kbd>, and remove from groups <kbd>sysop</kbd> and <kbd>bureaucrat</kbd>.",
 	"apihelp-watch-param-title": "The page to (un)watch. Use <var>$1titles</var> instead.",
 	"apihelp-watch-example-unwatch": "Unwatch the page <kbd>Main Page</kbd>.",
-	"apihelp-dbg-description": "Output data in PHP's <code>var_export()</code> format.",
-	"apihelp-dbgfm-description": "Output data in PHP's <code>var_export()</code> format (pretty-print in HTML).",
 	"apihelp-php-description": "Output data in serialised PHP format.",
 	"apihelp-phpfm-description": "Output data in serialised PHP format (pretty-print in HTML).",
-	"apihelp-txt-description": "Output data in PHP's <code>print_r()</code> format.",
-	"apihelp-txtfm-description": "Output data in PHP's <code>print_r()</code> format (pretty-print in HTML).",
 	"api-pageset-param-redirects-generator": "Automatically resolve redirects in <var>$1titles</var>, <var>$1pageids</var>, and <var>$1revids</var>, and in pages returned by <var>$1generator</var>.",
 	"api-pageset-param-redirects-nogenerator": "Automatically resolve redirects in <var>$1titles</var>, <var>$1pageids</var>, and <var>$1revids</var>.",
 	"api-help-param-multi-separate": "Separate values with <kbd>|</kbd>.",
-	"api-help-param-disabled-in-miser-mode": "Disabled due to [[mw:Manual:$wgMiserMode|miser mode]].",
-	"api-help-param-limited-in-miser-mode": "<strong>Note:</strong> Due to [[mw:Manual:$wgMiserMode|miser mode]], using this may result in fewer than <var>$1limit</var> results returned before continuing; in extreme cases, zero results may be returned."
+	"api-help-param-disabled-in-miser-mode": "Disabled due to [[mw:Special:MyLanguage/Manual:$wgMiserMode|miser mode]].",
+	"api-help-param-limited-in-miser-mode": "<strong>Note:</strong> Due to [[mw:Special:MyLanguage/Manual:$wgMiserMode|miser mode]], using this may result in fewer than <var>$1limit</var> results returned before continuing; in extreme cases, zero results may be returned."
 }

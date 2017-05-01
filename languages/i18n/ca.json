@@ -3838,5 +3838,6 @@
 	"restrictionsfield-badip": "Adreça o interval d'IP no vàlid: $1",
 	"restrictionsfield-label": "Intervals d'IP permesos:",
 	"revid": "revisió $1",
-	"pageid": "ID de pàgina $1"
+	"pageid": "ID de pàgina $1",
+	"gotointerwiki-invalid": "El títol especificat no és vàlid."
 }

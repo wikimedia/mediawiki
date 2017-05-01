@@ -925,7 +925,7 @@
 	"difference-title-multipage": "\"$1\" ও \"$2\" পাতাগুলির মধ্যে পার্থক্য",
 	"difference-multipage": "(পাতাগুলির মধ্যে পার্থক্য)",
 	"lineno": "$1 নং লাইন:",
-	"compareselectedversions": "নির্বাচিত সংশোধিত সংস্করণগুলির তুলনা",
+	"compareselectedversions": "নির্বাচিত সংস্করণগুলি তুলনা করুন",
 	"showhideselectedversions": "নির্বাচিত সংশোধনগুলি দেখাও/লুকাও",
 	"editundo": "পূর্বাবস্থায় ফেরত",
 	"diff-empty": "(কোন পার্থক্য নেই)",

@@ -3803,6 +3803,7 @@
 	"authmanager-provider-temporarypassword": "Часовы пароль",
 	"authprovider-confirmlink-message": "Калі грунтавацца на вашых няўдаўніх спробах уваходу, наступныя рахункі могуць быць далучаныя да вашага вікірахунку. Іх далучэньне дазволіць вам уваходзіць праз гэтыя рахункі. Калі ласка, абярце якія рахункі трэба далучыць.",
 	"authprovider-confirmlink-request-label": "Рахункі, якія павінны быць злучаныя",
+	"authprovider-confirmlink-success-line": "$1: пасьпяхова далучаны.",
 	"changecredentials": "Зьмена ўліковых зьвестак",
 	"removecredentials": "Выдаленьне ўліковых зьвестак",
 	"removecredentials-submit": "Выдаліць уліковыя зьвесткі",
