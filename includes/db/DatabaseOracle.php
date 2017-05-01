@@ -565,7 +565,7 @@ class DatabaseOracle extends Database {
 		// count-alias subselect fields to avoid abigious definition errors
 		$i = 0;
 		foreach ( $varMap as &$val ) {
-			$val = $val . ' field' . ( $i++ );
+			$val .= ' field' . ( $i++ );
 		}
 
 		$selectSql = $this->selectSQLText(

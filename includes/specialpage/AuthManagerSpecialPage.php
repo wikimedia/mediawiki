@@ -157,7 +157,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 				if ( $request->wasPosted() ) {
 					// unique ID in case the same special page is open in multiple browser tabs
 					$uniqueId = MWCryptRand::generateHex( 6 );
-					$key = $key . ':' . $uniqueId;
+					$key .= ':' . $uniqueId;
 
 					$queryParams = [ 'authUniqueId' => $uniqueId ] + $queryParams;
 					$authData = array_diff_key( $request->getValues(),
@@ -181,7 +181,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 
 		$uniqueId = $request->getVal( 'authUniqueId' );
 		if ( $uniqueId ) {
-			$key = $key . ':' . $uniqueId;
+			$key .= ':' . $uniqueId;
 			$authData = $authManager->getAuthenticationSessionData( $key );
 			if ( $authData ) {
 				$authManager->removeAuthenticationSessionData( $key );

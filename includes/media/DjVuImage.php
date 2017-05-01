@@ -285,8 +285,8 @@ class DjVuImage {
 EOR;
 				$txt = preg_replace_callback( $reg, [ $this, 'pageTextCallback' ], $txt );
 				$txt = "<DjVuTxt>\n<HEAD></HEAD>\n<BODY>\n" . $txt . "</BODY>\n</DjVuTxt>\n";
-				$xml = preg_replace( "/<DjVuXML>/", "<mw-djvu><DjVuXML>", $xml, 1 );
-				$xml = $xml . $txt . '</mw-djvu>';
+				$xml = preg_replace( "/<DjVuXML>/", "<mw-djvu><DjVuXML>", $xml, 1 ) .
+					$txt . '</mw-djvu>';
 			}
 		}
 

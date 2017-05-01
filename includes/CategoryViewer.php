@@ -125,7 +125,7 @@ class CategoryViewer extends ContextSource {
 			// @todo FIXME: Cannot be completely suppressed because it
 			//        is unknown if 'until' or 'from' makes this
 			//        give 0 results.
-			$r = $r . $this->getCategoryTop();
+			$r = $this->getCategoryTop();
 		} else {
 			$r = $this->getCategoryTop() .
 				$r .
