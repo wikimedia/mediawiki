@@ -114,7 +114,7 @@
 		$input: $( '<input>' ).attr( 'type', 'text' )
 			.byteLimit( 12 ),
 		sample: mbSample,
-		expected: '1234567890' + '12'
+		expected: '123456789012'
 	} );
 
 	byteLimitTest( {

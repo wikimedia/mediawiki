@@ -483,7 +483,7 @@
 			title = mw.Title.newFromImg( { src: thisCase.url } );
 
 			if ( thisCase.nameText !== undefined ) {
-				prefix = '[' + thisCase.typeOfUrl + ' URL' + '] ';
+				prefix = '[' + thisCase.typeOfUrl + ' URL] ';
 
 				assert.notStrictEqual( title, null, prefix + 'Parses successfully' );
 				assert.equal( title.getNameText(), thisCase.nameText, prefix + 'Filename matches original' );

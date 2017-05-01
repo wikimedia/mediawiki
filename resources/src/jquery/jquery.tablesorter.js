@@ -509,9 +509,14 @@
 
 		// We allow a trailing percent sign, which we just strip. This works fine
 		// if percents and regular numbers aren't being mixed.
-		ts.numberRegex = new RegExp( '^(' + '[-+\u2212]?[0-9][0-9,]*(\\.[0-9,]*)?(E[-+\u2212]?[0-9][0-9,]*)?' + // Fortran-style scientific
-		'|' + '[-+\u2212]?' + digitClass + '+[\\s\\xa0]*%?' + // Generic localised
-		')$', 'i' );
+		ts.numberRegex = new RegExp(
+			'^(' +
+				'[-+\u2212]?[0-9][0-9,]*(\\.[0-9,]*)?(E[-+\u2212]?[0-9][0-9,]*)?' + // Fortran-style scientific
+				'|' +
+				'[-+\u2212]?' + digitClass + '+[\\s\\xa0]*%?' + // Generic localised
+			')$',
+			'i'
+		);
 	}
 
 	function buildDateTable() {
@@ -540,10 +545,20 @@
 		ts.dateRegex[ 0 ] = new RegExp( /^\s*(\d{1,2})[\,\.\-\/'\s]{1,2}(\d{1,2})[\,\.\-\/'\s]{1,2}(\d{2,4})\s*?/i );
 
 		// Written Month name, dmy
-		ts.dateRegex[ 1 ] = new RegExp( '^\\s*(\\d{1,2})[\\,\\.\\-\\/\'\\s]+(' + regex + ')' + '[\\,\\.\\-\\/\'\\s]+(\\d{2,4})\\s*$', 'i' );
+		ts.dateRegex[ 1 ] = new RegExp(
+			'^\\s*(\\d{1,2})[\\,\\.\\-\\/\'\\s]+(' +
+				regex +
+			')' +
+			'[\\,\\.\\-\\/\'\\s]+(\\d{2,4})\\s*$',
+			'i'
+		);
 
 		// Written Month name, mdy
-		ts.dateRegex[ 2 ] = new RegExp( '^\\s*(' + regex + ')' + '[\\,\\.\\-\\/\'\\s]+(\\d{1,2})[\\,\\.\\-\\/\'\\s]+(\\d{2,4})\\s*$', 'i' );
+		ts.dateRegex[ 2 ] = new RegExp(
+			'^\\s*(' + regex + ')' +
+			'[\\,\\.\\-\\/\'\\s]+(\\d{1,2})[\\,\\.\\-\\/\'\\s]+(\\d{2,4})\\s*$',
+			'i'
+		);
 
 	}
 

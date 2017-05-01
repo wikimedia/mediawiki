@@ -470,11 +470,19 @@
 			block = allowBlock ? '(?:\\/(?:12[0-8]|1[01][0-9]|[1-9]?\\d))?' : '';
 			RE_IPV6_ADD =
 				'(?:' + // starts with "::" (including "::")
-				':(?::|(?::' + '[0-9A-Fa-f]{1,4}' + '){1,7})' +
-				'|' + // ends with "::" (except "::")
-				'[0-9A-Fa-f]{1,4}' + '(?::' + '[0-9A-Fa-f]{1,4}' + '){0,6}::' +
-				'|' + // contains no "::"
-				'[0-9A-Fa-f]{1,4}' + '(?::' + '[0-9A-Fa-f]{1,4}' + '){7}' +
+					':(?::|(?::' +
+						'[0-9A-Fa-f]{1,4}' +
+					'){1,7})' +
+					'|' + // ends with "::" (except "::")
+					'[0-9A-Fa-f]{1,4}' +
+					'(?::' +
+						'[0-9A-Fa-f]{1,4}' +
+					'){0,6}::' +
+					'|' + // contains no "::"
+					'[0-9A-Fa-f]{1,4}' +
+					'(?::' +
+						'[0-9A-Fa-f]{1,4}' +
+					'){7}' +
 				')';
 
 			if ( new RegExp( '^' + RE_IPV6_ADD + block + '$' ).test( address ) ) {
@@ -482,7 +490,11 @@
 			}
 
 			// contains one "::" in the middle (single '::' check below)
-			RE_IPV6_ADD = '[0-9A-Fa-f]{1,4}' + '(?:::?' + '[0-9A-Fa-f]{1,4}' + '){1,6}';
+			RE_IPV6_ADD =
+				'[0-9A-Fa-f]{1,4}' +
+				'(?:::?' +
+					'[0-9A-Fa-f]{1,4}' +
+				'){1,6}';
 
 			return (
 				new RegExp( '^' + RE_IPV6_ADD + block + '$' ).test( address ) &&

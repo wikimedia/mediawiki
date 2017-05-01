@@ -256,28 +256,28 @@
 		var pTestTb, pCustom, vectorTabs, tbRL, cuQuux, $cuQuux, tbMW, $tbMW, tbRLDM, caFoo,
 			addedAfter, tbRLDMnonexistentid, tbRLDMemptyjquery;
 
-		pTestTb = '\
-		<div class="portlet" id="p-test-tb">\
-			<h3>Toolbox</h3>\
-			<ul class="body"></ul>\
-		</div>';
-		pCustom = '\
-		<div class="portlet" id="p-test-custom">\
-			<h3>Views</h3>\
-			<ul class="body">\
-				<li id="c-foo"><a href="#">Foo</a></li>\
-				<li id="c-barmenu">\
-					<ul>\
-						<li id="c-bar-baz"><a href="#">Baz</a></a>\
-					</ul>\
-				</li>\
-			</ul>\
-		</div>';
-		vectorTabs = '\
-		<div id="p-test-views" class="vectorTabs">\
-			<h3>Views</h3>\
-			<ul></ul>\
-		</div>';
+		pTestTb =
+			'<div class="portlet" id="p-test-tb">' +
+				'<h3>Toolbox</h3>' +
+				'<ul class="body"></ul>' +
+			'</div>';
+		pCustom =
+			'<div class="portlet" id="p-test-custom">' +
+				'<h3>Views</h3>' +
+				'<ul class="body">' +
+					'<li id="c-foo"><a href="#">Foo</a></li>' +
+					'<li id="c-barmenu">' +
+						'<ul>' +
+							'<li id="c-bar-baz"><a href="#">Baz</a></a>' +
+						'</ul>' +
+					'</li>' +
+				'</ul>' +
+			'</div>';
+		vectorTabs =
+			'<div id="p-test-views" class="vectorTabs">' +
+				'<h3>Views</h3>' +
+				'<ul></ul>' +
+			'</div>';
 
 		$( '#qunit-fixture' ).append( pTestTb, pCustom, vectorTabs );
 
