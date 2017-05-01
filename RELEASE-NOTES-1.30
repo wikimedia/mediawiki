@@ -39,6 +39,8 @@ production.
   as page ranges keyed by dimensions.
 * Added a 'ParserOptionsRegister' hook to allow extensions to register
   additional parser options.
+* Added RecentChangesPurgeRows hook to allow extensions to purge data that
+  depends on the recentchanges table.
 
 === Languages updated in 1.30 ===
 
