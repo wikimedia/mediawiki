@@ -9,7 +9,7 @@
 class LanguageTrTest extends LanguageClassesTestCase {
 
 	/**
-	 * See @bug 28040
+	 * See T30040
 	 * Credits to irc://irc.freenode.net/wikipedia-tr users:
 	 *  - berm
 	 *  - []LuCkY[]
@@ -48,7 +48,7 @@ class LanguageTrTest extends LanguageClassesTestCase {
 			[ 'lcfirst', 'ı', 'lower', 'ı' ],
 			[ 'lcfirst', 'i', 'lower', 'i' ],
 
-			# A real example taken from bug 28040 using
+			# A real example taken from T30040 using
 			# https://tr.wikipedia.org/wiki/%C4%B0Phone
 			[ 'lcfirst', 'iPhone', 'lower', 'iPhone' ],
 

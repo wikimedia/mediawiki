@@ -26,9 +26,11 @@ require_once __DIR__ . '/Maintenance.php';
 /**
  * Maintenance script to create common password cdb database.
  *
- * Meant to take a file like
- * https://github.com/danielmiessler/SecLists/blob/master/Passwords/rockyou.txt?raw=true
- * as input.
+ * Meant to take a file like those from
+ * https://github.com/danielmiessler/SecLists
+ * For example:
+ * https://github.com/danielmiessler/SecLists/blob/fe2b40dd84/Passwords/rockyou.txt?raw=true
+ *
  * @see serialized/commonpasswords.cdb and PasswordPolicyChecks::checkPopularPasswordBlacklist
  * @since 1.27
  * @ingroup Maintenance
@@ -109,7 +111,6 @@ class GenerateCommonPassword extends Maintenance {
 		} catch ( \Cdb\Exception $e ) {
 			$this->error( "Error writing cdb file: " . $e->getMessage(), 2 );
 		}
-
 	}
 }
 

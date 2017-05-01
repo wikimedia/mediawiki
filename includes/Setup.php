@@ -1,6 +1,6 @@
 <?php
 /**
- * Include most things that are needed to make %MediaWiki work.
+ * Include most things that are needed to make MediaWiki work.
  *
  * This file is included by WebStart.php and doMaintenance.php so that both
  * web and maintenance scripts share a final set up phase to include necessary
@@ -36,8 +36,10 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 $fname = 'Setup.php';
 $ps_setup = Profiler::instance()->scopedProfileIn( $fname );
 
-// If any extensions are still queued, force load them
+// Load queued extensions
 ExtensionRegistry::getInstance()->loadFromQueue();
+// Don't let any other extensions load
+ExtensionRegistry::getInstance()->finish();
 
 // Check to see if we are at the file scope
 if ( !isset( $wgVersion ) ) {
@@ -242,7 +244,7 @@ if ( $wgUseInstantCommons ) {
 		'transformVia404' => true,
 		'fetchDescription' => true,
 		'descriptionCacheExpiry' => 43200,
-		'apiThumbCacheExpiry' => 86400,
+		'apiThumbCacheExpiry' => 0,
 	];
 }
 /*
@@ -327,7 +329,7 @@ if ( $wgEnableEmail ) {
 	$wgUseEnotif = $wgEnotifUserTalk || $wgEnotifWatchlist;
 } else {
 	// Disable all other email settings automatically if $wgEnableEmail
-	// is set to false. - bug 63678
+	// is set to false. - T65678
 	$wgAllowHTMLEmail = false;
 	$wgEmailAuthentication = false; // do not require auth if you're not sending email anyway
 	$wgEnableUserEmail = false;
@@ -401,6 +403,12 @@ if ( is_array( $wgExtraNamespaces ) ) {
 	$wgCanonicalNamespaceNames = $wgCanonicalNamespaceNames + $wgExtraNamespaces;
 }
 
+// Merge in the legacy language codes, incorporating overrides from the config
+$wgDummyLanguageCodes += [
+	'qqq' => 'qqq', // Used for message documentation
+	'qqx' => 'qqx', // Used for viewing message keys
+] + $wgExtraLanguageCodes + LanguageCode::getDeprecatedCodeMapping();
+
 // These are now the same, always
 // To determine the user language, use $wgLang->getCode()
 $wgContLanguageCode = $wgLanguageCode;
@@ -462,7 +470,7 @@ if ( $wgMaximalPasswordLength !== false ) {
 }
 
 // Backwards compatibility warning
-if ( !$wgSessionsInObjectCache && !$wgSessionsInMemcached ) {
+if ( !$wgSessionsInObjectCache ) {
 	wfDeprecated( '$wgSessionsInObjectCache = false', '1.27' );
 	if ( $wgSessionHandler ) {
 		wfDeprecated( '$wgSessionsHandler', '1.27' );
@@ -497,10 +505,6 @@ if ( $wgDebugToolbar && !$wgCommandLineMode ) {
 	MWDebug::init();
 }
 
-if ( !class_exists( 'AutoLoader' ) ) {
-	require_once "$IP/includes/AutoLoader.php";
-}
-
 // Reset the global service locator, so any services that have already been created will be
 // re-created while taking into account any custom settings and extensions.
 MediaWikiServices::resetGlobalInstance( new GlobalVarConfig(), 'quick' );
@@ -522,35 +526,6 @@ if ( $wgSharedDB && $wgSharedTables ) {
 // Define a constant that indicates that the bootstrapping of the service locator
 // is complete.
 define( 'MW_SERVICE_BOOTSTRAP_COMPLETE', 1 );
-
-// Install a header callback to prevent caching of responses with cookies (T127993)
-if ( !$wgCommandLineMode ) {
-	header_register_callback( function () {
-		$headers = [];
-		foreach ( headers_list() as $header ) {
-			list( $name, $value ) = explode( ':', $header, 2 );
-			$headers[strtolower( trim( $name ) )][] = trim( $value );
-		}
-
-		if ( isset( $headers['set-cookie'] ) ) {
-			$cacheControl = isset( $headers['cache-control'] )
-				? implode( ', ', $headers['cache-control'] )
-				: '';
-
-			if ( !preg_match( '/(?:^|,)\s*(?:private|no-cache|no-store)\s*(?:$|,)/i', $cacheControl ) ) {
-				header( 'Expires: Thu, 01 Jan 1970 00:00:00 GMT' );
-				header( 'Cache-Control: private, max-age=0, s-maxage=0' );
-				MediaWiki\Logger\LoggerFactory::getInstance( 'cache-cookies' )->warning(
-					'Cookies set on {url} with Cache-Control "{cache-control}"', [
-						'url' => WebRequest::getGlobalRequestURL(),
-						'cookies' => $headers['set-cookie'],
-						'cache-control' => $cacheControl ?: '<not set>',
-					]
-				);
-			}
-		}
-	} );
-}
 
 MWExceptionHandler::installHandler();
 
@@ -818,7 +793,9 @@ $wgOut = RequestContext::getMain()->getOutput(); // BackCompat
 /**
  * @var Parser $wgParser
  */
-$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], [ $wgParserConf ] );
+$wgParser = new StubObject( 'wgParser', function () {
+	return MediaWikiServices::getInstance()->getParser();
+} );
 
 /**
  * @var Title $wgTitle
@@ -876,7 +853,6 @@ if ( !$wgCommandLineMode ) {
 	Pingback::schedulePingback();
 }
 
-wfDebug( "Fully initialised\n" );
 $wgFullyInitialised = true;
 
 Profiler::instance()->scopedProfileOut( $ps_extensions );

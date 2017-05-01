@@ -133,7 +133,7 @@ class SpecialPagesWithProp extends QueryPage {
 	 */
 	function formatResult( $skin, $result ) {
 		$title = Title::newFromRow( $result );
-		$ret = Linker::link( $title, null, [], [], [ 'known' ] );
+		$ret = $this->getLinkRenderer()->makeKnownLink( $title );
 		if ( $result->pp_value !== '' ) {
 			// Do not show very long or binary values on the special page
 			$valueLength = strlen( $result->pp_value );

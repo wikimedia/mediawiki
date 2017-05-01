@@ -5,7 +5,7 @@
  */
 
 /* For clarity, explicitly state some recommendations from
- * http://www.w3.org/TR/CSS21/sample.html to make sure the editsection links scale right
+ * https://www.w3.org/TR/CSS21/sample.html to make sure the editsection links scale right
  */
 
 h1 {
@@ -32,7 +32,12 @@ h6 {
 	font-size: 1em;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	font-weight: bolder;
 }
 
@@ -78,7 +83,7 @@ table.rimage {
 
 /* thumbnails */
 div.thumb {
-	margin-bottom: .5em;
+	margin-bottom: 0.5em;
 	border-style: solid;
 	border-color: #fff;
 	width: auto;
@@ -100,7 +105,7 @@ html .thumbimage {
 }
 
 html .thumbcaption {
-	border: none;
+	border: 0;
 	line-height: 1.4em;
 	padding: 3px;
 	font-size: 94%;
@@ -136,15 +141,15 @@ div.magnify a {
 div.tright {
 	clear: right;
 	float: right;
-	border-width: .5em 0 .8em 1.4em;
+	border-width: 0.5em 0 0.8em 1.4em;
 }
 
 /* @noflip */
 div.tleft {
 	float: left;
 	clear: left;
-	margin-right: .5em;
-	border-width: .5em 1.4em .8em 0;
+	margin-right: 0.5em;
+	border-width: 0.5em 1.4em 0.8em 0;
 }
 
 img.thumbborder {
@@ -158,14 +163,14 @@ img.thumbborder {
 }
 
 img {
-	border: none;
+	border: 0;
 }
 
 #toc,
 .toc {
 	border: 1px solid #bba;
 	background-color: #f7f8ff;
-	padding: 5px;
+	padding: 7px;
 	font-size: 95%;
 	text-align: center;
 	display: inline-block;
@@ -173,9 +178,7 @@ img {
 
 	/* IE7 and earlier */
 	zoom: 1;
-	*display: inline;
-
-	padding: 7px;
+	*display: inline; /* stylelint-disable-line declaration-block-no-duplicate-properties */
 }
 
 /* CSS for backwards-compatibility with cached page renders and creative uses in wikitext */
@@ -193,7 +196,7 @@ table.toc td {
 #toc h2,
 .toc h2 {
 	display: inline;
-	border: none;
+	border: 0;
 	padding: 0;
 	font-size: 100%;
 	font-weight: bold;
@@ -308,9 +311,7 @@ span.comment {
 }
 
 .editExternally {
-	border-style: solid;
-	border-width: 1px;
-	border-color: #808080;
+	border: 1px solid #808080;
 	background: #fff;
 	padding: 3px;
 	margin-top: 0.5em;
@@ -333,23 +334,12 @@ li span.deleted {
 /* Classes for Exif data display */
 table.mw_metadata {
 	margin-left: 0.5em;
+	border: 0;
+	border-collapse: collapse;
 }
 
 table.mw_metadata caption {
 	font-weight: bold;
-}
-
-table.mw_metadata th {
-	font-weight: normal;
-}
-
-table.mw_metadata td {
-	padding: 0.1em;
-}
-
-table.mw_metadata {
-	border: none;
-	border-collapse: collapse;
 }
 
 table.mw_metadata td,
@@ -361,16 +351,18 @@ table.mw_metadata th {
 
 table.mw_metadata th {
 	background-color: #f9f9f9;
+	font-weight: normal;
 }
 
 table.mw_metadata td {
 	background-color: #fcfcfc;
+	padding-top: 0.1em;
+	padding-bottom: 0.1em;
 }
 
 table.mw_metadata td.spacer {
 	background: inherit;
-	border-top: none;
-	border-bottom: none;
+	border-width: 0 1px;
 }
 
 .visualClear {
@@ -399,14 +391,14 @@ table.mw_metadata td.spacer {
 }
 
 div.multipageimagenavbox {
-	border: solid 1px #c0c0c0;
+	border: 1px solid #c0c0c0;
 	padding: 4px;
 	margin: 1em;
 	background: #f0f0f0;
 }
 
 div.multipageimagenavbox div.thumb {
-	border: none;
+	border: 0;
 	margin-left: 2em;
 	margin-right: 2em;
 }
@@ -467,4 +459,4 @@ html > body.rtl .mw-body ul#filetoc {
 	display: block;
 }
 
-/* RTL specific CSS ends here **/
+/** RTL specific CSS ends here **/

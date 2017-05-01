@@ -15,19 +15,19 @@ class LanguageBe_taraskTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * @see bug 23156 & r64981
+	 * @see T25156 & r64981
 	 * @covers Language::commafy
 	 */
 	public function testSearchRightSingleQuotationMarkAsApostroph() {
 		$this->assertEquals(
 			"'",
 			$this->getLang()->normalizeForSearch( '’' ),
-			'bug 23156: U+2019 conversion to U+0027'
+			'T25156: U+2019 conversion to U+0027'
 		);
 	}
 
 	/**
-	 * @see bug 23156 & r64981
+	 * @see T25156 & r64981
 	 * @covers Language::commafy
 	 */
 	public function testCommafy() {
@@ -36,7 +36,7 @@ class LanguageBe_taraskTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * @see bug 23156 & r64981
+	 * @see T25156 & r64981
 	 * @covers Language::commafy
 	 */
 	public function testDoesNotCommafyFourDigitsNumber() {

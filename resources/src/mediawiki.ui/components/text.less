@@ -1,6 +1,6 @@
-@import "mediawiki.mixins";
-@import "mediawiki.ui/variables";
-@import "mediawiki.ui/mixins";
+@import 'mediawiki.mixins';
+@import 'mediawiki.ui/variables';
+@import 'mediawiki.ui/mixins';
 
 /*
 Text & Anchors
@@ -16,7 +16,6 @@ Text
 Context classes may be used on elements with only plain-text content with the mw-ui-text base. When the context classes
 are used on interactive and block-level elements, the appropriate alternative base type classes should also be used. For
 example, mw-ui-anchor with A, or mw-ui-button with buttons.
-'Constructive' is deprecated and merged with 'Progressive'.
 
 Markup:
 <span class="mw-ui-text mw-ui-progressive">Progressive</span>
@@ -28,11 +27,10 @@ Styleguide 6.1.
 .mw-ui-text {
 	// The selector order is like this on purpose; IE 6 ignores the second selector,
 	// so we don't want to accidentally apply this color on all mw-ui-CONTEXT classes
-	.mw-ui-progressive&,
-	.mw-ui-constructive& {
+	&.mw-ui-progressive {
 		color: @colorProgressive;
 	}
-	.mw-ui-destructive& {
+	&.mw-ui-destructive {
 		color: @colorDestructive;
 	}
 }

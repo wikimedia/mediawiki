@@ -177,9 +177,9 @@ $bookstoreList = [
 	'Haugenbok' => 'http://www.haugenbok.no/searchresults.cfm?searchtype=simple&isbn=$1',
 	'Akademika' => 'http://www.akademika.no/sok.php?isbn=$1',
 	'Gnist' => 'http://www.gnist.no/sok.php?isbn=$1',
-	'Amazon.co.uk' => 'http://www.amazon.co.uk/exec/obidos/ISBN=$1',
-	'Amazon.de' => 'http://www.amazon.de/exec/obidos/ISBN=$1',
-	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+	'Amazon.co.uk' => 'https://www.amazon.co.uk/exec/obidos/ISBN=$1',
+	'Amazon.de' => 'https://www.amazon.de/exec/obidos/ISBN=$1',
+	'Amazon.com' => 'https://www.amazon.com/exec/obidos/ISBN=$1'
 ];
 
 $magicWords = [
@@ -290,4 +290,3 @@ $separatorTransformTable = [
 ];
 
 $linkTrail = '/^([a-záäčďéíľĺňóôŕšťúýž]+)(.*)$/sDu';
-

@@ -11,11 +11,11 @@ Feature: Log in
 
   Scenario: Log in without entering credentials
     When I log in without entering credentials
-    Then error box should be visible
+    Then error message should be displayed for username
 
   Scenario: Log in without entering password
     When I log in without entering password
-    Then error box should be visible
+    Then error message should be displayed for password
 
   Scenario: Log in with incorrect username
     When I log in with incorrect username

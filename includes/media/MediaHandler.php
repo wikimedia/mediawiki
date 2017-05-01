@@ -104,7 +104,7 @@ abstract class MediaHandler {
 	 *   Warning, FSFile::getPropsFromPath might pass an FSFile instead of File (!)
 	 * @param string $path The filename
 	 * @return array|bool Follow the format of PHP getimagesize() internal function.
-	 *   See http://www.php.net/getimagesize. MediaWiki will only ever use the
+	 *   See https://secure.php.net/getimagesize. MediaWiki will only ever use the
 	 *   first two array keys (the width and height), and the 'bits' associative
 	 *   key. All other array keys are ignored. Returning a 'bits' key is optional
 	 *   as not all formats have a notion of "bitdepth". Returns false on failure.
@@ -762,7 +762,7 @@ abstract class MediaHandler {
 	 * @param string $cmd
 	 */
 	protected function logErrorForExternalProcess( $retval, $err, $cmd ) {
-		# Keep error output limited (bug 57985)
+		# Keep error output limited (T59985)
 		$errMessage = trim( substr( $err, 0, self::MAX_ERR_LOG_SIZE ) );
 
 		wfDebugLog( 'thumbnail',

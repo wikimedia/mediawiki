@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -129,7 +131,7 @@ class ImportTextFiles extends Maintenance {
 				}
 			}
 
-			$rev = new WikiRevision( ConfigFactory::getDefaultInstance()->makeConfig( 'main' ) );
+			$rev = new WikiRevision( MediaWikiServices::getInstance()->getMainConfig() );
 			$rev->setText( rtrim( $text ) );
 			$rev->setTitle( $title );
 			$rev->setUserObj( $user );

@@ -33,12 +33,12 @@ use Psr\Log\LoggerInterface;
  *
  * Constructor options array arguments:
  * * alias: map from monolog channel to kafka topic name. When no
- *	  alias exists the topic "monolog_$channel" will be used.
+ *   alias exists the topic "monolog_$channel" will be used.
  * * swallowExceptions: Swallow exceptions that occur while talking to
- *    kafka. Defaults to false.
+ *   kafka. Defaults to false.
  * * logExceptions: Log exceptions talking to kafka here. Either null,
- *    the name of a channel to log to, or an object implementing
- *    FormatterInterface. Defaults to null.
+ *   the name of a channel to log to, or an object implementing
+ *   FormatterInterface. Defaults to null.
  *
  * Requires the nmred/kafka-php library, version >= 1.3.0
  *

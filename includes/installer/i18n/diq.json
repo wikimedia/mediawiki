@@ -4,7 +4,8 @@
 			"Erdemaslancan",
 			"Mirzali",
 			"Marmase",
-			"Kumkumuk"
+			"Kumkumuk",
+			"Gambollar"
 		]
 	},
 	"config-desc": "Qandé MediaWiki sazi",
@@ -26,7 +27,7 @@
 	"config-page-install": "Bar ke",
 	"config-page-complete": "Temamyayo",
 	"config-page-restart": "Barkerdışi fına ser kı",
-	"config-page-readme": "Mı bıwane",
+	"config-page-readme": "Mı bıwan",
 	"config-page-releasenotes": "Notë versiyoni",
 	"config-page-copying": "Kopyayeno",
 	"config-page-upgradedoc": "Berzkerdış",

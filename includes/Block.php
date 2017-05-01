@@ -20,6 +20,8 @@
  * @file
  */
 
+use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\MediaWikiServices;
 
 class Block {
@@ -74,6 +76,9 @@ class Block {
 	/** @var bool */
 	protected $isAutoblocking;
 
+	/** @var string|null */
+	protected $systemBlockType;
+
 	# TYPE constants
 	const TYPE_USER = 1;
 	const TYPE_IP = 2;
@@ -99,6 +104,10 @@ class Block {
 	 *     blockEmail bool      Disallow sending emails
 	 *     allowUsertalk bool   Allow the target to edit its own talk page
 	 *     byText string        Username of the blocker (for foreign users)
+	 *     systemBlock string   Indicate that this block is automatically
+	 *                          created by MediaWiki rather than being stored
+	 *                          in the database. Value is a string to return
+	 *                          from self::getSystemBlockType().
 	 *
 	 * @since 1.26 accepts $options array instead of individual parameters; order
 	 * of parameters above reflects the original order
@@ -119,6 +128,7 @@ class Block {
 			'blockEmail'      => false,
 			'allowUsertalk'   => false,
 			'byText'          => '',
+			'systemBlock'     => null,
 		];
 
 		if ( func_num_args() > 1 || !is_array( $options ) ) {
@@ -162,6 +172,7 @@ class Block {
 		$this->prevents( 'createaccount', (bool)$options['createAccount'] );
 
 		$this->mFromMaster = false;
+		$this->systemBlockType = $options['systemBlock'];
 	}
 
 	/**
@@ -256,7 +267,7 @@ class Block {
 		}
 
 		# Be aware that the != '' check is explicit, since empty values will be
-		# passed by some callers (bug 29116)
+		# passed by some callers (T31116)
 		if ( $vagueTarget != '' ) {
 			list( $target, $type ) = self::parseTarget( $vagueTarget );
 			switch ( $type ) {
@@ -349,7 +360,7 @@ class Block {
 		if ( $end === null ) {
 			$end = $start;
 		}
-		# Per bug 14634, we want to include relevant active rangeblocks; for
+		# Per T16634, we want to include relevant active rangeblocks; for
 		# rangeblocks, we want to include larger ranges which enclose the given
 		# range. We know that all blocks must be smaller than $wgBlockCIDRLimit,
 		# so we can improve performance by filtering on a LIKE clause
@@ -461,6 +472,11 @@ class Block {
 	 */
 	public function insert( $dbw = null ) {
 		global $wgBlockDisablesLogin;
+
+		if ( $this->getSystemBlockType() !== null ) {
+			throw new MWException( 'Cannot insert a system block into the database' );
+		}
+
 		wfDebug( "Block::insert; timestamp {$this->mTimestamp}\n" );
 
 		if ( $dbw === null ) {
@@ -539,7 +555,7 @@ class Block {
 		$affected = $dbw->affectedRows();
 
 		if ( $this->isAutoblocking() ) {
-			// update corresponding autoblock(s) (bug 48813)
+			// update corresponding autoblock(s) (T50813)
 			$dbw->update(
 				'ipblocks',
 				$this->getAutoblockUpdateArray(),
@@ -741,13 +757,20 @@ class Block {
 			return false;
 		}
 
+		# Don't autoblock for system blocks
+		if ( $this->getSystemBlockType() !== null ) {
+			throw new MWException( 'Cannot autoblock from a system block' );
+		}
+
 		# Check for presence on the autoblock whitelist.
 		if ( self::isWhitelistedFromAutoblocks( $autoblockIP ) ) {
 			return false;
 		}
 
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$block = $this;
 		# Allow hooks to cancel the autoblock.
-		if ( !Hooks::run( 'AbortAutoblock', [ $autoblockIP, &$this ] ) ) {
+		if ( !Hooks::run( 'AbortAutoblock', [ $autoblockIP, &$block ] ) ) {
 			wfDebug( "Autoblock aborted by hook.\n" );
 			return false;
 		}
@@ -935,6 +958,14 @@ class Block {
 	}
 
 	/**
+	 * Get the system block type, if any
+	 * @return string|null
+	 */
+	public function getSystemBlockType() {
+		return $this->systemBlockType;
+	}
+
+	/**
 	 * Get/set a flag determining whether the master is used for reads
 	 *
 	 * @param bool|null $x
@@ -1088,7 +1119,7 @@ class Block {
 		} elseif ( $target === null && $vagueTarget == '' ) {
 			# We're not going to find anything useful here
 			# Be aware that the == '' check is explicit, since empty values will be
-			# passed by some callers (bug 29116)
+			# passed by some callers (T31116)
 			return null;
 
 		} elseif ( in_array(
@@ -1113,7 +1144,7 @@ class Block {
 	 * Get all blocks that match any IP from an array of IP addresses
 	 *
 	 * @param array $ipChain List of IPs (strings), usually retrieved from the
-	 *	   X-Forwarded-For header of the request
+	 *     X-Forwarded-For header of the request
 	 * @param bool $isAnon Exclude anonymous-only blocks if false
 	 * @param bool $fromMaster Whether to query the master or replica DB
 	 * @return array Array of Blocks
@@ -1194,9 +1225,9 @@ class Block {
 	 *
 	 * @param array $blocks Array of Block objects
 	 * @param array $ipChain List of IPs (strings). This is used to determine how "close"
-	 * 	  a block is to the server, and if a block matches exactly, or is in a range.
-	 *	  The order is furthest from the server to nearest e.g., (Browser, proxy1, proxy2,
-	 *	  local-squid, ...)
+	 *     a block is to the server, and if a block matches exactly, or is in a range.
+	 *     The order is furthest from the server to nearest e.g., (Browser, proxy1, proxy2,
+	 *     local-squid, ...)
 	 * @throws MWException
 	 * @return Block|null The "best" block from the list
 	 */
@@ -1418,6 +1449,83 @@ class Block {
 	}
 
 	/**
+	 * Set the 'BlockID' cookie to this block's ID and expiry time. The cookie's expiry will be
+	 * the same as the block's, to a maximum of 24 hours.
+	 *
+	 * @param WebResponse $response The response on which to set the cookie.
+	 */
+	public function setCookie( WebResponse $response ) {
+		// Calculate the default expiry time.
+		$maxExpiryTime = wfTimestamp( TS_MW, wfTimestamp() + ( 24 * 60 * 60 ) );
+
+		// Use the Block's expiry time only if it's less than the default.
+		$expiryTime = $this->getExpiry();
+		if ( $expiryTime === 'infinity' || $expiryTime > $maxExpiryTime ) {
+			$expiryTime = $maxExpiryTime;
+		}
+
+		// Set the cookie. Reformat the MediaWiki datetime as a Unix timestamp for the cookie.
+		$expiryValue = DateTime::createFromFormat( 'YmdHis', $expiryTime )->format( 'U' );
+		$cookieOptions = [ 'httpOnly' => false ];
+		$cookieValue = $this->getCookieValue();
+		$response->setCookie( 'BlockID', $cookieValue, $expiryValue, $cookieOptions );
+	}
+
+	/**
+	 * Unset the 'BlockID' cookie.
+	 *
+	 * @param WebResponse $response The response on which to unset the cookie.
+	 */
+	public static function clearCookie( WebResponse $response ) {
+		$response->clearCookie( 'BlockID', [ 'httpOnly' => false ] );
+	}
+
+	/**
+	 * Get the BlockID cookie's value for this block. This is usually the block ID concatenated
+	 * with an HMAC in order to avoid spoofing (T152951), but if wgSecretKey is not set will just
+	 * be the block ID.
+	 * @return string The block ID, probably concatenated with "!" and the HMAC.
+	 */
+	public function getCookieValue() {
+		$config = RequestContext::getMain()->getConfig();
+		$id = $this->getId();
+		$secretKey = $config->get( 'SecretKey' );
+		if ( !$secretKey ) {
+			// If there's no secret key, don't append a HMAC.
+			return $id;
+		}
+		$hmac = MWCryptHash::hmac( $id, $secretKey, false );
+		$cookieValue =  $id . '!' . $hmac;
+		return $cookieValue;
+	}
+
+	/**
+	 * Get the stored ID from the 'BlockID' cookie. The cookie's value is usually a combination of
+	 * the ID and a HMAC (see Block::setCookie), but will sometimes only be the ID.
+	 * @param string $cookieValue The string in which to find the ID.
+	 * @return integer|null The block ID, or null if the HMAC is present and invalid.
+	 */
+	public static function getIdFromCookieValue( $cookieValue ) {
+		// Extract the ID prefix from the cookie value (may be the whole value, if no bang found).
+		$bangPos = strpos( $cookieValue, '!' );
+		$id = ( $bangPos === false ) ? $cookieValue : substr( $cookieValue, 0, $bangPos );
+		// Get the site-wide secret key.
+		$config = RequestContext::getMain()->getConfig();
+		$secretKey = $config->get( 'SecretKey' );
+		if ( !$secretKey ) {
+			// If there's no secret key, just use the ID as given.
+			return $id;
+		}
+		$storedHmac = substr( $cookieValue, $bangPos + 1 );
+		$calculatedHmac = MWCryptHash::hmac( $id, $secretKey, false );
+		if ( $calculatedHmac === $storedHmac ) {
+			return $id;
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * Get the key and parameters for the corresponding error message.
 	 *
 	 * @since 1.22
@@ -1442,14 +1550,18 @@ class Block {
 		 * This could be a username, an IP range, or a single IP. */
 		$intended = $this->getTarget();
 
+		$systemBlockType = $this->getSystemBlockType();
+
 		$lang = $context->getLanguage();
 		return [
-			$this->mAuto ? 'autoblockedtext' : 'blockedtext',
+			$systemBlockType !== null
+				? 'systemblockedtext'
+				: ( $this->mAuto ? 'autoblockedtext' : 'blockedtext' ),
 			$link,
 			$reason,
 			$context->getRequest()->getIP(),
 			$this->getByName(),
-			$this->getId(),
+			$systemBlockType !== null ? $systemBlockType : $this->getId(),
 			$lang->formatExpiry( $this->mExpiry ),
 			(string)$intended,
 			$lang->userTimeAndDate( $this->mTimestamp, $context->getUser() ),

@@ -6,22 +6,23 @@
 		}
 	} ) );
 
-	QUnit.asyncTest( 'toggleToc', 4, function ( assert ) {
-		var tocHtml, $toggleLink, $tocList;
+	QUnit.asyncTest( 'toggleToc', function ( assert ) {
+		var tocHtml, $toc, $toggleLink, $tocList;
 
-		assert.strictEqual( $( '#toc' ).length, 0, 'There is no table of contents on the page at the beginning' );
+		assert.strictEqual( $( '.toc' ).length, 0, 'There is no table of contents on the page at the beginning' );
 
 		tocHtml = '<div id="toc" class="toc">' +
-			'<div id="toctitle">' +
+			'<div id="toctitle" class="toctitle">' +
 			'<h2>Contents</h2>' +
 			'</div>' +
 			'<ul><li></li></ul>' +
 			'</div>';
-		$( tocHtml ).appendTo( '#qunit-fixture' );
+		$toc = $( tocHtml );
+		$( '#qunit-fixture' ).append( $toc );
 		mw.hook( 'wikipage.content' ).fire( $( '#qunit-fixture' ) );
 
-		$tocList = $( '#toc ul:first' );
-		$toggleLink = $( '#togglelink' );
+		$tocList = $toc.find( 'ul:first' );
+		$toggleLink = $toc.find( '.togglelink' );
 
 		assert.strictEqual( $toggleLink.length, 1, 'Toggle link is added to the table of contents' );
 

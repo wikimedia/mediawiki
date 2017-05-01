@@ -191,4 +191,3 @@ $magicWords = [
 	'pagesincategory_pages'     => [ '0', 'Säiten', 'seiten', 'pages' ],
 	'pagesincategory_files'     => [ '0', 'Fichieren', 'dateien', 'files' ],
 ];
-

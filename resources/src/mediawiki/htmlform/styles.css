@@ -1,5 +1,9 @@
 /* HTMLForm styles */
 
+.mw-htmlform {
+	clear: both;
+}
+
 table.mw-htmlform-nolabel td.mw-label {
 	display: none;
 }
@@ -22,7 +26,7 @@ table.mw-htmlform-nolabel td.mw-label {
 }
 
 tr.mw-htmlform-vertical-label td.mw-label {
-	text-align: left !important;
+	text-align: left !important; /* stylelint-disable-line declaration-no-important */
 }
 
 .mw-icon-question {
@@ -40,9 +44,10 @@ tr.mw-htmlform-vertical-label td.mw-label {
 	margin-left: 4px;
 }
 
-.mw-icon-question:lang(ar),
-.mw-icon-question:lang(fa),
-.mw-icon-question:lang(ur) {
+/* stylelint-disable indentation */
+.mw-icon-question:lang( ar ),
+.mw-icon-question:lang( fa ),
+.mw-icon-question:lang( ur ) {
 	-webkit-transform: scaleX( -1 );
 	-ms-transform: scaleX( -1 );
 	transform: scaleX( -1 );

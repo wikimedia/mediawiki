@@ -22,6 +22,8 @@
  * @since 1.25
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This class formats block log entries.
  *
@@ -57,9 +59,15 @@ class BlockLogFormatter extends LogFormatter {
 			// The lrm is needed to make sure that the number
 			// is shown on the correct side of the tooltip text.
 			$durationTooltip = '&lrm;' . htmlspecialchars( $params[4] );
-			$params[4] = Message::rawParam( "<span class='blockExpiry' title='$durationTooltip'>" .
-				$this->context->getLanguage()->translateBlockExpiry( $params[4],
-					$this->context->getUser() ) . '</span>' );
+			$params[4] = Message::rawParam(
+				"<span class='blockExpiry' title='$durationTooltip'>" .
+				$this->context->getLanguage()->translateBlockExpiry(
+					$params[4],
+					$this->context->getUser(),
+					wfTimestamp( TS_UNIX, $this->entry->getTimestamp() )
+				) .
+				'</span>'
+			);
 			$params[5] = isset( $params[5] ) ?
 				self::formatBlockFlags( $params[5], $this->context->getLanguage() ) : '';
 		}
@@ -91,6 +99,7 @@ class BlockLogFormatter extends LogFormatter {
 
 	public function getActionLinks() {
 		$subtype = $this->entry->getSubtype();
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( $this->entry->isDeleted( LogPage::DELETED_ACTION ) // Action is hidden
 			|| !( $subtype === 'block' || $subtype === 'reblock' )
 			|| !$this->context->getUser()->isAllowed( 'block' )
@@ -101,13 +110,13 @@ class BlockLogFormatter extends LogFormatter {
 		// Show unblock/change block link
 		$title = $this->entry->getTarget();
 		$links = [
-			Linker::linkKnown(
+			$linkRenderer->makeKnownLink(
 				SpecialPage::getTitleFor( 'Unblock', $title->getDBkey() ),
-				$this->msg( 'unblocklink' )->escaped()
+				$this->msg( 'unblocklink' )->text()
 			),
-			Linker::linkKnown(
+			$linkRenderer->makeKnownLink(
 				SpecialPage::getTitleFor( 'Block', $title->getDBkey() ),
-				$this->msg( 'change-blocklink' )->escaped()
+				$this->msg( 'change-blocklink' )->text()
 			)
 		];
 

@@ -1,4 +1,4 @@
-/*global isCompatible: true */
+/* global isCompatible: true */
 ( function ( $ ) {
 	var testcases = {
 		tested: [
@@ -10,21 +10,18 @@
 			'Mozilla/5.0 (Windows NT 6.1.1; rv:5.0) Gecko/20100101 Firefox/5.0',
 			'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:9.0) Gecko/20100101 Firefox/9.0',
 			'Mozilla/5.0 (Macintosh; I; Intel Mac OS X 11_7_9; de-LI; rv:1.9b4) Gecko/2012010317 Firefox/10.0a4',
+			'Mozilla/5.0 (X11; Linux i686; rv:10.0) Gecko/20100101 Firefox/10.0',
 			'Mozilla/5.0 (Windows NT 6.1; rv:12.0) Gecko/20120403211507 Firefox/12.0',
 			'Mozilla/5.0 (Windows NT 6.2; Win64; x64; rv:16.0.1) Gecko/20121011 Firefox/16.0.1',
 			// Kindle Fire
 			'Mozilla/5.0 (Linux; U; Android 2.3.4; en-us; Kindle Fire Build/GINGERBREAD) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Safari/533.1',
 			// Safari 5.0+
 			'Mozilla/5.0 (Macintosh; I; Intel Mac OS X 10_6_7; ru-ru) AppleWebKit/534.31+ (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1',
-			// Opera 12+ (Presto-based)
-			'Opera/9.80 (Windows NT 6.1; U; es-ES) Presto/2.9.181 Version/12.00',
-			'Opera/9.80 (Windows NT 5.1) Presto/2.12.388 Version/12.17',
 			// Opera 15+ (Chromium-based)
 			'Mozilla/5.0 (Windows NT 6.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.95 Safari/537.36 OPR/15.0.1147.153',
 			'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36 OPR/16.0.1196.62',
 			'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36 OPR/23.0.1522.75',
-			// Internet Explorer 9+
-			'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 7.1; Trident/5.0)',
+			// Internet Explorer 10+
 			'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0)',
 			'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko',
 			// IE Mobile
@@ -46,10 +43,12 @@
 			'Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420.1 (KHTML, like Gecko) Version/3.0 Mobile/3B48b Safari/419.3',
 			// Android
 			'Mozilla/5.0 (Linux; U; Android 2.1; en-us; Nexus One Build/ERD62) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17',
+			// UC Mini (speed mode off)
+			'Mozilla/5.0 (Linux; U; Android 6.0.1; en-US; Nexus_5 Build/MMB29S) AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1 UCBrowser/10.7.6.805 Mobile',
 
 			/* Grade C */
 
-			// Internet Explorer < 9
+			// Internet Explorer < 10
 			'Mozilla/2.0 (compatible; MSIE 3.03; Windows 3.1)',
 			'Mozilla/4.0 (compatible; MSIE 4.01; Windows 95)',
 			'Mozilla/4.0 (compatible; MSIE 5.0; Windows 98;)',
@@ -57,10 +56,12 @@
 			'Mozilla/5.0 (compatible; MSIE 6.0; Windows NT 5.1)',
 			'Mozilla/5.0 (compatible; MSIE 7.0; Windows NT 6.0; en-US)',
 			'Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 5.2; Trident/4.0; Media Center PC 4.0; SLCC1; .NET CLR 3.0.04320)',
-			// Firefox < 3
+			'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 7.1; Trident/5.0)',
+			// Firefox < 4
 			'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.0.2) Gecko/20060308 Firefox/1.5.0.2',
 			'Mozilla/5.0 (X11; U; Linux i686; nl; rv:1.8.1.1) Gecko/20070311 Firefox/2.0.0.1',
-			// Opera < 12
+			'Mozilla/5.0 (Windows; U; Windows NT 6.1; ru; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3',
+			// Opera < 15 (Presto-based)
 			'Mozilla/5.0 (Windows NT 5.0; U) Opera 7.54 [en]',
 			'Opera/7.54 (Windows NT 5.0; U) [en]',
 			'Mozilla/5.0 (Windows NT 5.1; U; en) Opera 8.0',
@@ -70,14 +71,14 @@
 			'Opera/9.80 (Windows NT 6.1; U; en) Presto/2.2.15 Version/10.00',
 			'Opera/9.80 (Windows NT 6.1; U; ru) Presto/2.8.131 Version/11.10',
 			'Opera/9.80 (Windows NT 6.1; WOW64; U; pt) Presto/2.10.229 Version/11.62',
+			'Opera/9.80 (Windows NT 6.1; U; es-ES) Presto/2.9.181 Version/12.00',
+			'Opera/9.80 (Windows NT 5.1) Presto/2.12.388 Version/12.17',
 			// BlackBerry < 6
 			'BlackBerry9300/5.0.0.716 Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/133',
 			'BlackBerry7250/4.0.0 Profile/MIDP-2.0 Configuration/CLDC-1.1',
 
 			/* Grade X */
 
-			// Firefox 3.6
-			'Mozilla/5.0 (Windows; U; Windows NT 6.1; ru; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3',
 			// Gecko
 			'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.0.7) Gecko/20060928 (Debian|Debian-1.8.0.7-1) Epiphany/2.14',
 			'Mozilla/5.0 (X11; U; Linux i686 (x86_64); en-US; rv:1.8.1.6) Gecko/20070817 IceWeasel/2.0.0.6-g2',
@@ -99,12 +100,18 @@
 			'Wget/1.10.1 (Red Hat modified)',
 			// Unknown
 			'I\'m an unknown browser',
+			'I\'m an unknown Glass browser',
 			// Empty
 			''
 		],
 		blacklisted: [
 			/* Grade C */
 
+			// PlayStation
+			'Mozilla/5.0 (PLAYSTATION 3; 1.10)',
+			'Mozilla/5.0 (PLAYSTATION 3; 3.55)',
+			'Mozilla/5.0 (PLAYSTATION 3 4.21) AppleWebKit/531.22.8 (KHTML, like Gecko)',
+			'Mozilla/5.0 (PlayStation 4 1.70) AppleWebKit/536.26 (KHTML, like Gecko)',
 			// Open WebOS < 1.5 (Palm Pre, Palm Pixi)
 			'Mozilla/5.0 (webOS/1.0; U; en-US) AppleWebKit/525.27.1 (KHTML, like Gecko) Version/1.0 Safari/525.27.1 Pre/1.0',
 			'Mozilla/5.0 (webOS/1.4.0; U; en-US) AppleWebKit/532.2 (KHTML, like Gecko) Version/1.0 Safari/532.2 Pixi/1.1 ',
@@ -128,23 +135,25 @@
 			// Google Glass
 			'Mozilla/5.0 (Linux; U; Android 4.0.4; en-us; Glass 1 Build/IMM76L; XE11) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30',
 			// MeeGo
-			'Mozilla/5.0 (MeeGo; NokiaN9) AppleWebKit/534.13 (KHTML, like Gecko) NokiaBrowser/8.5.0 Mobile Safari/534.13'
+			'Mozilla/5.0 (MeeGo; NokiaN9) AppleWebKit/534.13 (KHTML, like Gecko) NokiaBrowser/8.5.0 Mobile Safari/534.13',
+			// UC Mini (speed mode on)
+			'Mozilla/5.0 (X11; U; Linux i686; zh-CN; r:1.2.3.4) Gecko/',
+			// Google Web Light proxy
+			'Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko; googleweblight) Chrome/38.0.1025.166 Mobile Safari/535.19'
 		]
 	};
 
 	QUnit.module( 'startup', QUnit.newMwEnvironment() );
 
-	QUnit.test( 'isCompatible( featureTestable )', testcases.tested.length, function ( assert ) {
+	QUnit.test( 'isCompatible( featureTestable )', function ( assert ) {
 		$.each( testcases.tested, function ( i, ua ) {
-				assert.strictEqual( isCompatible( ua ), true, ua );
-			}
-		);
+			assert.strictEqual( isCompatible( ua ), true, ua );
+		} );
 	} );
 
-	QUnit.test( 'isCompatible( blacklisted )', testcases.blacklisted.length, function ( assert ) {
+	QUnit.test( 'isCompatible( blacklisted )', function ( assert ) {
 		$.each( testcases.blacklisted, function ( i, ua ) {
-				assert.strictEqual( isCompatible( ua ), false, ua );
-			}
-		);
+			assert.strictEqual( isCompatible( ua ), false, ua );
+		} );
 	} );
 }( jQuery ) );

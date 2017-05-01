@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>commons-icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="commons">
+            <g id="Group" transform="translate(7.000000, 10.000000)">
+                <rect id="Rectangle-3" fill="#000000" x="0" y="7" width="47" height="32" rx="3"></rect>
+                <path d="M12.5575779,0.983966166 C12.6781522,0.440536658 13.228439,0 13.7774775,0 L33.4411152,0 C33.9942728,0 34.5376987,0.428179934 34.6610148,0.983966166 L36.1940854,7.89352671 C36.3146597,8.43695622 35.9679607,8.87749288 35.4086105,8.87749288 L11.8099821,8.87749288 C11.255602,8.87749288 10.9011913,8.44931294 11.0245073,7.89352671 L12.5575779,0.983966166 Z" id="Rectangle-3" fill="#000000"></path>
+                <ellipse id="Oval" stroke="#FFFFFF" stroke-width="3" cx="23.1981132" cy="23.2091168" rx="10.1981132" ry="10.2091168"></ellipse>
+            </g>
+        </g>
+    </g>
+</svg>

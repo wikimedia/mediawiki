@@ -81,7 +81,7 @@ class ArchivedFile {
 	/** @var string SHA-1 hash of file content */
 	private $sha1;
 
-	/** @var string Number of pages of a multipage document, or false for
+	/** @var int|false Number of pages of a multipage document, or false for
 	 * documents which aren't multipage documents
 	 */
 	private $pageCount;
@@ -493,25 +493,9 @@ class ArchivedFile {
 	}
 
 	/**
-	 * Return the user name of the uploader.
-	 *
-	 * @deprecated since 1.23 Use getUser( 'text' ) instead.
-	 * @return string
-	 */
-	public function getUserText() {
-		wfDeprecated( __METHOD__, '1.23' );
-		$this->load();
-		if ( $this->isDeleted( File::DELETED_USER ) ) {
-			return 0;
-		} else {
-			return $this->user_text;
-		}
-	}
-
-	/**
 	 * Return upload description.
 	 *
-	 * @return string
+	 * @return string|int
 	 */
 	public function getDescription() {
 		$this->load();

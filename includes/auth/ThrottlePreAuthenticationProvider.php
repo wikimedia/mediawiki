@@ -167,7 +167,9 @@ class ThrottlePreAuthenticationProvider extends AbstractPreAuthenticationProvide
 
 		$data = $this->manager->getAuthenticationSessionData( 'LoginThrottle' );
 		if ( !$data ) {
-			$this->logger->error( 'throttler data not found for {user}', [ 'user' => $user->getName() ] );
+			// this can occur when login is happening via AuthenticationRequest::$loginRequest
+			// so testForAuthentication is skipped
+			$this->logger->info( 'throttler data not found for {user}', [ 'user' => $user->getName() ] );
 			return;
 		}
 

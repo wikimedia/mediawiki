@@ -359,7 +359,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				[ 'page' => $userpage->getPrefixedText() ]
 			);
 
-			# Suppression log link (bug 59120)
+			# Suppression log link (T61120)
 			if ( $sp->getUser()->isAllowed( 'suppressionlog' ) ) {
 				$tools['log-suppression'] = $linkRenderer->makeKnownLink(
 					SpecialPage::getTitleFor( 'Log', 'suppress' ),
@@ -395,7 +395,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		if ( $userrightsPage->userCanChangeRights( $target ) ) {
 			$tools['userrights'] = $linkRenderer->makeKnownLink(
 				SpecialPage::getTitleFor( 'Userrights', $username ),
-				$sp->msg( 'sp-contributions-userrights' )->text()
+				$sp->msg( 'sp-contributions-userrights', $username )->text()
 			);
 		}
 
@@ -492,7 +492,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			$form .= "\t" . Html::hidden( $name, $value ) . "\n";
 		}
 
-		$tagFilter = ChangeTags::buildTagFilterSelector( $this->opts['tagfilter'] );
+		$tagFilter = ChangeTags::buildTagFilterSelector(
+			$this->opts['tagfilter'], false, $this->getContext() );
 
 		if ( $tagFilter ) {
 			$filterSelection = Html::rawElement(
@@ -528,7 +529,6 @@ class SpecialContributions extends IncludableSpecialPage {
 			'text',
 			[
 				'size' => '40',
-				'required' => '',
 				'class' => [
 					'mw-input',
 					'mw-ui-input-inline',
@@ -554,7 +554,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				$this->msg( 'namespace' )->text(),
 				'namespace',
 				''
-			) .
+			) . '&#160;' .
 			Html::namespaceSelector(
 				[ 'selected' => $this->opts['namespace'], 'all' => '' ],
 				[

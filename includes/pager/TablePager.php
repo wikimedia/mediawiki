@@ -315,7 +315,7 @@ abstract class TablePager extends IndexPager {
 		foreach ( $labels as $type => $label ) {
 			// We want every cell to have the same width. We could use table-layout: fixed; in CSS,
 			// but it only works if we specify the width of a cell or the table and we don't want to.
-			// There is no better way. <http://www.w3.org/TR/CSS2/tables.html#fixed-table-layout>
+			// There is no better way. <https://www.w3.org/TR/CSS2/tables.html#fixed-table-layout>
 			$s .= Html::rawElement( 'td',
 				[ 'style' => "width: $width;", 'class' => "TablePager_nav-$type" ],
 				$links[$type] ) . "\n";
@@ -336,7 +336,7 @@ abstract class TablePager extends IndexPager {
 	/**
 	 * Get a "<select>" element which has options for each of the allowed limits
 	 *
-	 * @param string $attribs Extra attributes to set
+	 * @param string[] $attribs Extra attributes to set
 	 * @return string HTML fragment
 	 */
 	public function getLimitSelect( $attribs = [] ) {

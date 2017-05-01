@@ -1,6 +1,7 @@
 /*!
  * Scripts for pre-emptive edit preparing on action=edit
  */
+/* eslint-disable no-use-before-define */
 ( function ( mw, $ ) {
 	if ( !mw.config.get( 'wgAjaxEditStash' ) ) {
 		return;
@@ -10,7 +11,7 @@
 		var idleTimeout = 3000,
 			api = new mw.Api(),
 			timer,
-			pending,
+			stashReq,
 			lastText,
 			lastSummary,
 			lastTextHash,
@@ -25,64 +26,68 @@
 			PRIORITY_LOW = 1,
 			PRIORITY_HIGH = 2;
 
+		// We don't attempt to stash new section edits because in such cases the parser output
+		// varies on the edit summary (since it determines the new section's name).
+		if ( !$form.length || section === 'new' ) {
+			return;
+		}
+
 		// Send a request to stash the edit to the API.
 		// If a request is in progress, abort it since its payload is stale and the API
 		// may limit concurrent stash parses.
 		function stashEdit() {
-			api.getToken( 'csrf' ).then( function ( token ) {
-				var req, params,
-					textChanged = isTextChanged(),
-					priority = textChanged ? PRIORITY_HIGH : PRIORITY_LOW;
+			var req, params,
+				textChanged = isTextChanged(),
+				priority = textChanged ? PRIORITY_HIGH : PRIORITY_LOW;
 
-				if ( pending ) {
-					if ( lastPriority > priority ) {
-						// Stash request for summary change should wait on pending text change stash
-						pending.then( checkStash );
-						return;
-					}
-					pending.abort();
+			if ( stashReq ) {
+				if ( lastPriority > priority ) {
+					// Stash request for summary change should wait on pending text change stash
+					stashReq.then( checkStash );
+					return;
 				}
+				stashReq.abort();
+			}
 
-				// Update the "last" tracking variables
-				lastSummary = $summary.textSelection( 'getContents' );
-				lastPriority = priority;
-				if ( textChanged ) {
-					lastText = $text.textSelection( 'getContents' );
-					// Reset hash
+			// Update the "last" tracking variables
+			lastSummary = $summary.textSelection( 'getContents' );
+			lastPriority = priority;
+			if ( textChanged ) {
+				lastText = $text.textSelection( 'getContents' );
+				// Reset hash
+				lastTextHash = null;
+			}
+
+			params = {
+				formatversion: 2,
+				action: 'stashedit',
+				title: mw.config.get( 'wgPageName' ),
+				section: section,
+				sectiontitle: '',
+				summary: lastSummary,
+				contentmodel: model,
+				contentformat: format,
+				baserevid: revId
+			};
+			if ( lastTextHash ) {
+				params.stashedtexthash = lastTextHash;
+			} else {
+				params.text = lastText;
+			}
+
+			req = api.postWithToken( 'csrf', params );
+			stashReq = req;
+			req.then( function ( data ) {
+				if ( req === stashReq ) {
+					stashReq = null;
+				}
+				if ( data.stashedit && data.stashedit.texthash ) {
+					lastTextHash = data.stashedit.texthash;
+				} else {
+					// Request failed or text hash expired;
+					// include the text in a future stash request.
 					lastTextHash = null;
 				}
-
-				params = {
-					action: 'stashedit',
-					token: token,
-					title: mw.config.get( 'wgPageName' ),
-					section: section,
-					sectiontitle: '',
-					summary: lastSummary,
-					contentmodel: model,
-					contentformat: format,
-					baserevid: revId
-				};
-				if ( lastTextHash ) {
-					params.stashedtexthash = lastTextHash;
-				} else {
-					params.text = lastText;
-				}
-
-				req = api.post( params );
-				pending = req;
-				req.then( function ( data ) {
-					if ( req === pending ) {
-						pending = null;
-					}
-					if ( data.stashedit && data.stashedit.texthash ) {
-						lastTextHash = data.stashedit.texthash;
-					} else {
-						// Request failed or text hash expired;
-						// include the text in a future stash request.
-						lastTextHash = null;
-					}
-				} );
 			} );
 		}
 
@@ -134,35 +139,26 @@
 			idleTimeout = 3000;
 		}
 
-		function onFormLoaded() {
-			if (
-				// Reverts may involve use (undo) links; stash as they review the diff.
-				// Since the form has a pre-filled summary, stash the edit immediately.
-				mw.util.getParamValue( 'undo' ) !== null
-				// Pressing "show changes" and "preview" also signify that the user will
-				// probably save the page soon
-				|| $.inArray( $form.find( '#mw-edit-mode' ).val(), [ 'preview', 'diff' ] ) > -1
-			) {
-				checkStash();
-			}
-		}
-
-		// We don't attempt to stash new section edits because in such cases the parser output
-		// varies on the edit summary (since it determines the new section's name).
-		if ( $form.find( 'input[name=wpSection]' ).val() === 'new' ) {
-			return;
-		}
-
 		$text.on( {
-			change: checkStash,
 			keyup: onKeyUp,
-			focus: onTextFocus
+			focus: onTextFocus,
+			change: checkStash
 		} );
 		$summary.on( {
+			keyup: onKeyUp,
 			focus: onSummaryFocus,
-			focusout: checkStash,
-			keyup: onKeyUp
+			focusout: checkStash
 		} );
-		onFormLoaded();
+
+		if (
+			// Reverts may involve use (undo) links; stash as they review the diff.
+			// Since the form has a pre-filled summary, stash the edit immediately.
+			mw.util.getParamValue( 'undo' ) !== null ||
+			// Pressing "show changes" and "preview" also signify that the user will
+			// probably save the page soon
+			$.inArray( $form.find( '#mw-edit-mode' ).val(), [ 'preview', 'diff' ] ) > -1
+		) {
+			checkStash();
+		}
 	} );
 }( mediaWiki, jQuery ) );

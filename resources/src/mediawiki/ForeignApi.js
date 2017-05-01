@@ -50,12 +50,12 @@
 		this.apiUrl = String( url );
 		this.anonymous = options && options.anonymous;
 
-		options = $.extend( /*deep=*/ true,
+		options = $.extend( /* deep=*/ true,
 			{
 				ajax: {
 					url: this.apiUrl,
 					xhrFields: {
-						withCredentials: this.anonymous ? false : true
+						withCredentials: !this.anonymous
 					}
 				},
 				parameters: {

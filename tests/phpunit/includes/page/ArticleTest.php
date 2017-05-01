@@ -63,13 +63,9 @@ class ArticleTest extends MediaWikiTestCase {
 	 * @covers Article::onArticleCreate
 	 * @covers Article::onArticleDelete
 	 * @covers Article::onArticleEdit
-	 * @covers Article::getAutosummary
 	 */
 	public function testStaticFunctions() {
 		$this->hideDeprecated( 'Article::selectFields' );
-		$this->hideDeprecated( 'Article::getAutosummary' );
-		$this->hideDeprecated( 'WikiPage::getAutosummary' );
-		$this->hideDeprecated( 'CategoryPage::getAutosummary' ); // Inherited from Article
 
 		$this->assertEquals( WikiPage::selectFields(), Article::selectFields(),
 			"Article static functions" );
@@ -78,8 +74,6 @@ class ArticleTest extends MediaWikiTestCase {
 		$this->assertEquals( true, is_callable( "Article::onArticleDelete" ),
 			"Article static functions" );
 		$this->assertEquals( true, is_callable( "ImagePage::onArticleEdit" ),
-			"Article static functions" );
-		$this->assertTrue( is_string( CategoryPage::getAutosummary( '', '', 0 ) ),
 			"Article static functions" );
 	}
 }

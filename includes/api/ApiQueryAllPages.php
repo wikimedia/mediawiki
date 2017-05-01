@@ -23,6 +23,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Query module to enumerate all available pages.
@@ -49,11 +50,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 	 */
 	public function executeGenerator( $resultPageSet ) {
 		if ( $resultPageSet->isResolvingRedirects() ) {
-			$this->dieUsage(
-				'Use "gapfilterredir=nonredirects" option instead of "redirects" ' .
-					'when using allpages as a generator',
-				'params'
-			);
+			$this->dieWithError( 'apierror-allpages-generator-redirects', 'params' );
 		}
 
 		$this->run( $resultPageSet );
@@ -79,10 +76,13 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			$this->addWhere( "page_title $op= $cont_from" );
 		}
 
-		if ( $params['filterredir'] == 'redirects' ) {
-			$this->addWhereFld( 'page_is_redirect', 1 );
-		} elseif ( $params['filterredir'] == 'nonredirects' ) {
-			$this->addWhereFld( 'page_is_redirect', 0 );
+		$miserMode = $this->getConfig()->get( 'MiserMode' );
+		if ( !$miserMode ) {
+			if ( $params['filterredir'] == 'redirects' ) {
+				$this->addWhereFld( 'page_is_redirect', 1 );
+			} elseif ( $params['filterredir'] == 'nonredirects' ) {
+				$this->addWhereFld( 'page_is_redirect', 0 );
+			}
 		}
 
 		$this->addWhereFld( 'page_namespace', $params['namespace'] );
@@ -109,6 +109,18 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			];
 		} else {
 			$selectFields = $resultPageSet->getPageTableFields();
+		}
+
+		$miserModeFilterRedirValue = null;
+		$miserModeFilterRedir = $miserMode && $params['filterredir'] !== 'all';
+		if ( $miserModeFilterRedir ) {
+			$selectFields[] = 'page_is_redirect';
+
+			if ( $params['filterredir'] == 'redirects' ) {
+				$miserModeFilterRedirValue = 1;
+			} elseif ( $params['filterredir'] == 'nonredirects' ) {
+				$miserModeFilterRedirValue = 0;
+			}
 		}
 
 		$this->addFields( $selectFields );
@@ -156,7 +168,9 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 
 			$this->addOption( 'DISTINCT' );
 		} elseif ( isset( $params['prlevel'] ) ) {
-			$this->dieUsage( 'prlevel may not be used without prtype', 'params' );
+			$this->dieWithError(
+				[ 'apierror-invalidparammix-mustusewith', 'prlevel', 'prtype' ], 'invalidparammix'
+			);
 		}
 
 		if ( $params['filterlanglinks'] == 'withoutlanglinks' ) {
@@ -206,7 +220,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			foreach ( $res as $row ) {
 				$users[] = $row->page_title;
 			}
-			GenderCache::singleton()->doQuery( $users, __METHOD__ );
+			MediaWikiServices::getInstance()->getGenderCache()->doQuery( $users, __METHOD__ );
 			$res->rewind(); // reset
 		}
 
@@ -218,6 +232,11 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 				// additional pages to be had. Stop here...
 				$this->setContinueEnumParameter( 'continue', $row->page_title );
 				break;
+			}
+
+			if ( $miserModeFilterRedir && (int)$row->page_is_redirect !== $miserModeFilterRedirValue ) {
+				// Filter implemented in PHP due to being in Miser Mode
+				continue;
 			}
 
 			if ( is_null( $resultPageSet ) ) {
@@ -243,7 +262,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		return [
+		$ret = [
 			'from' => null,
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
@@ -315,6 +334,12 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_DFLT => 'all'
 			],
 		];
+
+		if ( $this->getConfig()->get( 'MiserMode' ) ) {
+			$ret['filterredir'][ApiBase::PARAM_HELP_MSG_APPEND] = [ 'api-help-param-limited-in-miser-mode' ];
+		}
+
+		return $ret;
 	}
 
 	protected function getExamplesMessages() {
@@ -330,6 +355,6 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Allpages';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Allpages';
 	}
 }

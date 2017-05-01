@@ -13,16 +13,6 @@
 	var original = mw.log,
 		slice = Array.prototype.slice;
 
-	/**
-	 * Logs a message to the console in debug mode.
-	 *
-	 * In the case the browser does not have a console API, a console is created on-the-fly by appending
-	 * a `<div id="mw-log-console">` element to the bottom of the body and then appending this and future
-	 * messages to that, instead of the console.
-	 *
-	 * @member mw.log
-	 * @param {...string} msg Messages to output to console.
-	 */
 	mw.log = function () {
 		// Turn arguments into an array
 		var args = slice.call( arguments ),
@@ -52,11 +42,11 @@
 
 			if ( !$log.length ) {
 				$log = $( '<div id="mw-log-console"></div>' ).css( {
-						overflow: 'auto',
-						height: '150px',
-						backgroundColor: 'white',
-						borderTop: 'solid 2px #ADADAD'
-					} );
+					overflow: 'auto',
+					height: '150px',
+					backgroundColor: 'white',
+					borderTop: 'solid 2px #ADADAD'
+				} );
 				hovzer = $.getFootHovzer();
 				hovzer.$.append( $log );
 				hovzer.update();

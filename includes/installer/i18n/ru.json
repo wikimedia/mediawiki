@@ -22,7 +22,8 @@
 			"Ильнар",
 			"Macofe",
 			"StasR",
-			"Irus"
+			"Irus",
+			"Mailman"
 		]
 	},
 	"config-desc": "Инсталлятор MediaWiki",
@@ -31,7 +32,7 @@
 	"config-localsettings-upgrade": "Обнаружен файл <code>LocalSettings.php</code>.\nДля обновления этой установки, пожалуйста, введите значение <code>$wgUpgradeKey</code>.\nЕго можно найти в файле <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "Обнаружен файл <code>LocalSettings.php</code>.\nДля обновления этой установки, пожалуйста, запустите <code>update.php</code>",
 	"config-localsettings-key": "Ключ обновления:",
-	"config-localsettings-badkey": "Вы указали неправильный ключ обновления",
+	"config-localsettings-badkey": "Вы указали неверный ключ обновления.",
 	"config-upgrade-key-missing": "Обнаружена существующая установленная копия MediaWiki.\nЧтобы обновить обнаруженную установку, пожалуйста, добавьте следующую строку в конец вашего файла <code>LocalSettings.php</code>:\n\n$1",
 	"config-localsettings-incomplete": "Похоже, что существующий файл <code>LocalSettings.php</code> неполон.\nНе установлена переменная $1.\nПожалуйста, измените <code>LocalSettings.php</code> так, чтобы значение этой переменной было задано, затем нажмите «{{int:Config-continue}}».",
 	"config-localsettings-connection-error": "Произошла ошибка при подключении к базе данных с использованием настроек, указанных в <code>LocalSettings.php</code>. Пожалуйста, исправьте эти настройки и повторите попытку.\n\n$1",
@@ -321,6 +322,7 @@
 	"config-install-subscribe-fail": "Не удаётся подписаться на mediawiki-announce: $1",
 	"config-install-subscribe-notpossible": "cURL не установлен и не доступна опция <code>allow_url_fopen</code>.",
 	"config-install-mainpage": "Создание главной страницы с содержимым по умолчанию",
+	"config-install-mainpage-exists": "Главная страница уже существует, пропускаем",
 	"config-install-extension-tables": "Создание таблиц для включённых расширений",
 	"config-install-mainpage-failed": "Не удаётся вставить главную страницу: $1",
 	"config-install-done": "<strong>Поздравляем!</strong>\nВы установили MediaWiki.\n\nВо время установки был создан файл <code>LocalSettings.php</code>.\nОн содержит все ваши настройки.\n\nВам необходимо скачать его и положить в корневую директорию вашей вики (ту же директорию, где находится файл index.php). Его загрузка должна начаться автоматически.\n\nЕсли автоматическая загрузка не началась или вы её отменили, вы можете скачать по ссылке ниже:\n\n$3\n\n<strong>Примечание</strong>: Если вы не сделаете этого сейчас, то сгенерированный файл конфигурации не будет доступен вам в дальнейшем, если вы выйдете из установки, не скачивая его.\n\nПо окончании действий, описанных выше, вы сможете <strong>[$2 войти в вашу вики]</strong>.",
@@ -331,5 +333,5 @@
 	"config-nofile": "Файл \"$1\" не удается найти. Он был удален?",
 	"config-extension-link": "Знаете ли вы, что ваш вики-проект поддерживает [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions расширения]?\n\nВы можете просмотреть [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category расширения по категориям] или [https://www.mediawiki.org/wiki/Extension_Matrix матрицу расширений], чтобы увидеть их полный список.",
 	"mainpagetext": "<strong>MediaWiki успешно установлена.</strong>",
-	"mainpagedocfooter": "Информацию по работе с этой вики можно найти в [https://meta.wikimedia.org/wiki/Help:Contents/ru справочном руководстве].\n\n== Некоторые полезные ресурсы ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Список возможных настроек];\n* [https://www.mediawiki.org/wiki/Manual:FAQ/ru Часто задаваемые вопросы и ответы по MediaWiki];\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Рассылка уведомлений о выходе новых версий MediaWiki].\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Перевод MediaWiki на свой язык]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Узнайте, как бороться со спамом в вашей вики]"
+	"mainpagedocfooter": "Информацию по работе с этой вики можно найти в [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents справочном руководстве].\n\n== Некоторые полезные ресурсы ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Список возможных настроек];\n* [https://www.mediawiki.org/wiki/Manual:FAQ/ru Часто задаваемые вопросы и ответы по MediaWiki];\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Рассылка уведомлений о выходе новых версий MediaWiki].\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Перевод MediaWiki на свой язык]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Узнайте, как бороться со спамом в вашей вики]"
 }

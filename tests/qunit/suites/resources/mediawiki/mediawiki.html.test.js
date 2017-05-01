@@ -1,7 +1,7 @@
 ( function ( mw ) {
 	QUnit.module( 'mediawiki.html' );
 
-	QUnit.test( 'escape', 2, function ( assert ) {
+	QUnit.test( 'escape', function ( assert ) {
 		assert.throws(
 			function () {
 				mw.html.escape();
@@ -17,7 +17,7 @@
 		);
 	} );
 
-	QUnit.test( 'element()', 1, function ( assert ) {
+	QUnit.test( 'element()', function ( assert ) {
 		assert.equal(
 			mw.html.element(),
 			'<undefined/>',
@@ -25,11 +25,11 @@
 		);
 	} );
 
-	QUnit.test( 'element( tagName )', 1, function ( assert ) {
+	QUnit.test( 'element( tagName )', function ( assert ) {
 		assert.equal( mw.html.element( 'div' ), '<div/>', 'DIV' );
 	} );
 
-	QUnit.test( 'element( tagName, attrs )', 2, function ( assert ) {
+	QUnit.test( 'element( tagName, attrs )', function ( assert ) {
 		assert.equal( mw.html.element( 'div', {} ), '<div/>', 'DIV' );
 
 		assert.equal(
@@ -43,7 +43,7 @@
 		);
 	} );
 
-	QUnit.test( 'element( tagName, attrs, content )', 8, function ( assert ) {
+	QUnit.test( 'element( tagName, attrs, content )', function ( assert ) {
 
 		assert.equal( mw.html.element( 'div', {}, '' ), '<div></div>', 'DIV with empty attributes and content' );
 

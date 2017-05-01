@@ -216,7 +216,7 @@ class FormatJson {
 			$count = 0;
 			$value =
 				preg_replace( '/,([ \t]*[}\]][^"\r\n]*([\r\n]|$)|[ \t]*[\r\n][ \t\r\n]*[}\]])/', '$1',
-					$value, - 1, $count );
+					$value, -1, $count );
 			if ( $count > 0 ) {
 				$result = json_decode( $value, $assoc );
 				if ( JSON_ERROR_NONE === json_last_error() ) {
@@ -271,7 +271,7 @@ class FormatJson {
 	 */
 	public static function stripComments( $json ) {
 		// Ensure we have a string
-		$str = (string) $json;
+		$str = (string)$json;
 		$buffer = '';
 		$maxLen = strlen( $str );
 		$mark = 0;

@@ -209,6 +209,6 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Random';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Random';
 	}
 }

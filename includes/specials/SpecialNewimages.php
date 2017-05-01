@@ -39,6 +39,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		$opts = new FormOptions();
 
 		$opts->add( 'like', '' );
+		$opts->add( 'user', '' );
 		$opts->add( 'showbots', false );
 		$opts->add( 'hidepatrolled', false );
 		$opts->add( 'limit', 50 );
@@ -75,6 +76,12 @@ class SpecialNewFiles extends IncludableSpecialPage {
 				'name' => 'like',
 			],
 
+			'user' => [
+				'type' => 'text',
+				'label-message' => 'newimages-user',
+				'name' => 'user',
+			],
+
 			'showbots' => [
 				'type' => 'check',
 				'label-message' => 'newimages-showbots',
@@ -108,7 +115,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 			unset( $formDescriptor['hidepatrolled'] );
 		}
 
-		$form = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
+		HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
 			->setWrapperLegendMsg( 'newimages-legend' )
 			->setSubmitTextMsg( 'ilsubmit' )
 			->setMethod( 'get' )

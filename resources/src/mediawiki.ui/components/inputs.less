@@ -1,8 +1,8 @@
 // Inputs
 
-@import "mediawiki.mixins";
-@import "mediawiki.ui/variables";
-@import "mediawiki.ui/mixins";
+@import 'mediawiki.mixins';
+@import 'mediawiki.ui/variables';
+@import 'mediawiki.ui/mixins';
 
 // Text inputs
 //
@@ -23,50 +23,27 @@
 // Styleguide 1.1.
 .mw-ui-input {
 	background-color: #fff;
+	color: @colorGray1;
 	.box-sizing( border-box );
 	display: block;
 	width: 100%;
 	border: 1px solid @colorFieldBorder;
 	border-radius: @borderRadius;
-	padding: 0.3em 0.3em 0.3em 0.6em;
+	padding: 0.625em 0.546875em 0.546875em;
 	// necessary for smooth transition
 	box-shadow: inset 0 0 0 0.1em #fff;
 	font-family: inherit;
 	font-size: inherit;
-	line-height: inherit;
+	line-height: 1.172em;
 	vertical-align: middle;
 
 	// Normalize & style placeholder text, see T139034
-	// Placeholder styles can't be grouped, otherwise they're ignored as invalid.
-
-	// Placeholder mixin
-	.mixin-placeholder() {
+	/* stylelint-disable indentation */
+	.mixin-placeholder( {
 		color: @colorGray7;
-		font-style: italic;
-	}
-	// Firefox 4-18
-	&:-moz-placeholder { // stylelint-disable-line selector-no-vendor-prefix
-		.mixin-placeholder;
 		opacity: 1;
-	}
-	// Firefox 19-
-	&::-moz-placeholder { // stylelint-disable-line selector-no-vendor-prefix
-		.mixin-placeholder;
-		opacity: 1;
-	}
-	// Internet Explorer 10-11
-	&:-ms-input-placeholder { // stylelint-disable-line selector-no-vendor-prefix
-		.mixin-placeholder;
-	}
-	// WebKit, Blink, Edge
-	// Don't set `opacity < 1`, see https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/3901363/
-	&::-webkit-input-placeholder { // stylelint-disable-line selector-no-vendor-prefix
-		.mixin-placeholder;
-	}
-	// W3C Standard Selectors Level 4
-	&:placeholder-shown {
-		.mixin-placeholder;
-	}
+	} );
+	/* stylelint-enable indentation */
 
 	// Firefox: Remove red outline when `required` attribute set and invalid content.
 	// See https://developer.mozilla.org/en-US/docs/Web/CSS/:invalid
@@ -96,7 +73,7 @@
 	}
 
 	// Normalize styling for `<input type="search">`
-	&[type="search"] {
+	&[type='search'] {
 		// Correct the odd appearance in Chrome and Safari 5
 		-webkit-appearance: textfield;
 
@@ -108,7 +85,7 @@
 		// Remove the inner padding and cancel buttons in Chrome on OS X and Safari on OS X
 		&::-webkit-search-cancel-button,
 		&::-webkit-search-decoration {
-	 		-webkit-appearance: none;
+			-webkit-appearance: none;
 		}
 	}
 }
@@ -126,7 +103,7 @@ textarea.mw-ui-input {
 // <button class="mw-ui-button mw-ui-progressive">Submit</button>
 //
 // Styleguide 1.2.
-input[type="number"],
+input[type='number'],
 .mw-ui-input-inline {
 	display: inline-block;
 	width: auto;
@@ -166,4 +143,5 @@ input.mw-ui-input-large {
 	font-size: 1.75em;
 	font-weight: bold;
 	line-height: 1.25em;
+	padding: 0.3673em 0.3265em 0.3265em;
 }

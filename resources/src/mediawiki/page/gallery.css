@@ -28,8 +28,8 @@ li.gallerycaption {
 
 li.gallerybox div.thumb {
 	text-align: center;
-	border: 1px solid #ccc;
-	background-color: #f9f9f9;
+	border: 1px solid #c8ccd1;
+	background-color: #f8f9fa;
 	margin: 2px;
 }
 
@@ -58,7 +58,7 @@ div.gallerytext {
 /* new gallery stuff */
 ul.mw-gallery-nolines li.gallerybox div.thumb {
 	background-color: transparent;
-	border: none;
+	border: 0;
 }
 
 ul.mw-gallery-nolines li.gallerybox div.gallerytext {
@@ -71,7 +71,7 @@ ul.mw-gallery-packed li.gallerybox div.thumb,
 ul.mw-gallery-packed-overlay li.gallerybox div.thumb,
 ul.mw-gallery-packed-hover li.gallerybox div.thumb {
 	background-color: transparent;
-	border: none;
+	border: 0;
 }
 
 ul.mw-gallery-packed li.gallerybox div.thumb img,
@@ -95,7 +95,7 @@ ul.mw-gallery-packed-overlay li.gallerybox div.gallerytextwrapper,
 ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapper {
 	position: absolute;
 	background: #fff;
-	background: rgba(255, 255, 255, 0.8);
+	background: rgba( 255, 255, 255, 0.8 );
 	padding: 5px 10px;
 	bottom: 0;
 	left: 0; /* Needed for IE */
@@ -168,7 +168,7 @@ ul.gallery.mw-gallery-slideshow .mw-gallery-slideshow-buttons .oo-ui-buttonEleme
 }
 
 ul.mw-gallery-slideshow li.gallerybox div.thumb {
-	border: none;
+	border: 0;
 	background: transparent;
 }
 

@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Чаховіч Уладзіслаў"
+			"Чаховіч Уладзіслаў",
+			"Mechanizatar"
 		]
 	},
 	"config-desc": "Інсталятар MediaWiki",
@@ -15,6 +16,6 @@
 	"config-page-name": "Назва",
 	"config-page-options": "Настройкі",
 	"config-upload-settings": "Загрузка выяў і файлаў",
-	"mainpagetext": "'''MediaWiki паспяхова ўсталяваная.'''",
-	"mainpagedocfooter": "Гл. [https://meta.wikimedia.org/wiki/Help:Contents Дапаможнік карыстальніка (англ.)] па далейшыя звесткі аб карыстанні вікі-праграмамі.\n\n== З чаго пачаць ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Пералік параметраў канфігурацыі (англ.)]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ ЧАПЫ MediaWiki (англ.)]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Ліставанне аб выпусках MediaWiki (англ.)]"
+	"mainpagetext": "<strong>MediaWiki паспяхова ўсталяваная.</strong>",
+	"mainpagedocfooter": "Гл. [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Дапаможнік карыстальніка (англ.)] для атрымання інфармацыі аб карыстанні вікі-праграмамі.\n\n== З чаго пачаць ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Пералік параметраў канфігурацыі (англ.)]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ ЧАПЫ MediaWiki (англ.)]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Ліставанне аб выпусках MediaWiki (англ.)]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Пераклад MediaWiki на Вашу мову]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Даведайцеся, як змагацца са спамам у Вашай вікі]"
 }

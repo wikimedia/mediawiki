@@ -16,4 +16,3 @@ $separatorTransformTable = [
 ];
 
 $fallback = 'ar';
-

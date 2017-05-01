@@ -134,19 +134,19 @@ class SanitizerTest extends MediaWikiTestCase {
 				'Self-closing closing div'
 			],
 			// Make sure special nested HTML5 semantics are not broken
-			// http://www.whatwg.org/html/text-level-semantics.html#the-kbd-element
+			// https://html.spec.whatwg.org/multipage/semantics.html#the-kbd-element
 			[
 				'<kbd><kbd>Shift</kbd>+<kbd>F3</kbd></kbd>',
 				'<kbd><kbd>Shift</kbd>+<kbd>F3</kbd></kbd>',
 				'Nested <kbd>.'
 			],
-			// http://www.whatwg.org/html/text-level-semantics.html#the-sub-and-sup-elements
+			// https://html.spec.whatwg.org/multipage/semantics.html#the-sub-and-sup-elements
 			[
 				'<var>x<sub><var>i</var></sub></var>, <var>y<sub><var>i</var></sub></var>',
 				'<var>x<sub><var>i</var></sub></var>, <var>y<sub><var>i</var></sub></var>',
 				'Nested <var>.'
 			],
-			// http://www.whatwg.org/html/text-level-semantics.html#the-dfn-element
+			// https://html.spec.whatwg.org/multipage/semantics.html#the-dfn-element
 			[
 				'<dfn><abbr title="Garage Door Opener">GDO</abbr></dfn>',
 				'<dfn><abbr title="Garage Door Opener">GDO</abbr></dfn>',
@@ -211,7 +211,7 @@ class SanitizerTest extends MediaWikiTestCase {
 			[ [ 'foo6' => 'baz' ], 'foo6=baz', 'Numbers are allowed' ],
 
 			# This bit is more relaxed than XML rules, but some extensions use
-			# it, like ProofreadPage (see bug 27539)
+			# it, like ProofreadPage (see T29539)
 			[ [ '1foo' => 'baz' ], '1foo=baz', 'Leading numbers are allowed' ],
 			[ [], 'foo$=baz', 'Symbols are not allowed' ],
 			[ [], 'foo@=baz', 'Symbols are not allowed' ],
@@ -286,7 +286,7 @@ class SanitizerTest extends MediaWikiTestCase {
 			[ ' ', '/* /* */' ],
 			[ 'display: block;', "display:/* foo */block;" ],
 			[ 'display: block;', "display:\\2f\\2a foo \\2a\\2f block;",
-				'Backslash-escaped comments must be stripped (bug 28450)' ],
+				'Backslash-escaped comments must be stripped (T30450)' ],
 			[ '', '/* unfinished comment structure',
 				'Remove anything after a comment-start token' ],
 			[ '', "\\2f\\2a unifinished comment'",

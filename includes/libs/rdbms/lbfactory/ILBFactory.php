@@ -21,6 +21,10 @@
  * @ingroup Database
  */
 
+namespace Wikimedia\Rdbms;
+
+use InvalidArgumentException;
+
 /**
  * An interface for generating database load balancers
  * @ingroup Database
@@ -107,6 +111,22 @@ interface ILBFactory {
 	public function getExternalLB( $cluster );
 
 	/**
+	 * Get cached (tracked) load balancers for all main database clusters
+	 *
+	 * @return LoadBalancer[] Map of (cluster name => LoadBalancer)
+	 * @since 1.29
+	 */
+	public function getAllMainLBs();
+
+	/**
+	 * Get cached (tracked) load balancers for all external database clusters
+	 *
+	 * @return LoadBalancer[] Map of (cluster name => LoadBalancer)
+	 * @since 1.29
+	 */
+	public function getAllExternalLBs();
+
+	/**
 	 * Execute a function for each tracked load balancer
 	 * The callback is called with the load balancer as the first parameter,
 	 * and $params passed as the subsequent parameters.
@@ -162,7 +182,7 @@ interface ILBFactory {
 	 * @param string $fname Caller name
 	 * @param array $options Options map:
 	 *   - maxWriteDuration: abort if more than this much time was spent in write queries
-	 * @throws Exception
+	 * @throws DBTransactionError
 	 */
 	public function commitMasterChanges( $fname = __METHOD__, array $options = [] );
 

@@ -3,7 +3,8 @@
 		"authors": [
 			"Cedric31",
 			"Jfblanc",
-			"Seb35"
+			"Seb35",
+			"Nicolas Eynaud"
 		]
 	},
 	"config-desc": "Lo programa d’installacion de MediaWiki",
@@ -164,6 +165,7 @@
 	"config-install-user-grant-failed": "Fracàs al moment de l'apondon de permissions a l'utilizaire « $1 » : $2",
 	"config-install-user-missing": "L'utilizaire «$1» existís pas.",
 	"config-install-tables": "Creacion de las taulas",
+	"config-install-interwiki-list": "Impossible de legir lo fichier <code>interwiki.list</code>.",
 	"config-install-stats": "Inicializacion de las estatisticas",
 	"config-install-keys": "Generacion de la clau secreta",
 	"config-install-updates": "Empachar l’execucion de las mesas a jorn inutilas",

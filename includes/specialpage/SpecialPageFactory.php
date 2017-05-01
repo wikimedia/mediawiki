@@ -96,6 +96,7 @@ class SpecialPageFactory {
 		'Block' => 'SpecialBlock',
 		'Unblock' => 'SpecialUnblock',
 		'BlockList' => 'SpecialBlockList',
+		'AutoblockList' => 'SpecialAutoblockList',
 		'ChangePassword' => 'SpecialChangePassword',
 		'BotPasswords' => 'SpecialBotPasswords',
 		'PasswordReset' => 'SpecialPasswordReset',
@@ -144,6 +145,7 @@ class SpecialPageFactory {
 		'RandomInCategory' => 'SpecialRandomInCategory',
 		'Randomredirect' => 'SpecialRandomredirect',
 		'Randomrootpage' => 'SpecialRandomrootpage',
+		'GoToInterwiki' => 'SpecialGoToInterwiki',
 
 		// High use pages
 		'Mostlinkedcategories' => 'MostlinkedCategoriesPage',
@@ -346,7 +348,7 @@ class SpecialPageFactory {
 			return [ null, null ];
 		}
 
-		if ( !isset( $bits[1] ) ) { // bug 2087
+		if ( !isset( $bits[1] ) ) { // T4087
 			$par = null;
 		} else {
 			$par = $bits[1];
@@ -504,7 +506,7 @@ class SpecialPageFactory {
 	 * @param bool $including Bool output is being captured for use in {{special:whatever}}
 	 * @param LinkRenderer|null $linkRenderer (since 1.28)
 	 *
-	 * @return bool
+	 * @return bool|Title
 	 */
 	public static function executePath( Title &$title, IContextSource &$context, $including = false,
 		LinkRenderer $linkRenderer = null
@@ -512,7 +514,7 @@ class SpecialPageFactory {
 		// @todo FIXME: Redirects broken due to this call
 		$bits = explode( '/', $title->getDBkey(), 2 );
 		$name = $bits[0];
-		if ( !isset( $bits[1] ) ) { // bug 2087
+		if ( !isset( $bits[1] ) ) { // T4087
 			$par = null;
 		} else {
 			$par = $bits[1];

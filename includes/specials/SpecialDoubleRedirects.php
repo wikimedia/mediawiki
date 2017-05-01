@@ -21,6 +21,9 @@
  * @ingroup SpecialPage
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * A special page listing redirects to redirecting page.
  * The software will automatically not follow double redirects, to prevent loops.
@@ -75,7 +78,7 @@ class DoubleRedirectsPage extends QueryPage {
 			'conds' => [
 				'ra.rd_from = pa.page_id',
 
-				// Filter out redirects where the target goes interwiki (bug 40353).
+				// Filter out redirects where the target goes interwiki (T42353).
 				// This isn't an optimization, it is required for correct results,
 				// otherwise a non-double redirect like Bar -> w:Foo will show up
 				// like "Bar -> Foo -> w:Foo".
@@ -137,14 +140,15 @@ class DoubleRedirectsPage extends QueryPage {
 				$result = $dbr->fetchObject( $res );
 			}
 		}
+		$linkRenderer = $this->getLinkRenderer();
 		if ( !$result ) {
-			return '<del>' . Linker::link( $titleA, null, [], [ 'redirect' => 'no' ] ) . '</del>';
+			return '<del>' . $linkRenderer->makeLink( $titleA, null, [], [ 'redirect' => 'no' ] ) . '</del>';
 		}
 
 		$titleB = Title::makeTitle( $result->nsb, $result->tb );
 		$titleC = Title::makeTitle( $result->nsc, $result->tc, '', $result->iwc );
 
-		$linkA = Linker::linkKnown(
+		$linkA = $linkRenderer->makeKnownLink(
 			$titleA,
 			null,
 			[],
@@ -158,26 +162,24 @@ class DoubleRedirectsPage extends QueryPage {
 			// check, if the content model is editable through action=edit
 			ContentHandler::getForTitle( $titleA )->supportsDirectEditing()
 		) {
-			$edit = Linker::linkKnown(
+			$edit = $linkRenderer->makeKnownLink(
 				$titleA,
-				$this->msg( 'parentheses', $this->msg( 'editlink' )->text() )->escaped(),
+				$this->msg( 'parentheses', $this->msg( 'editlink' )->text() )->text(),
 				[],
-				[
-					'action' => 'edit'
-				]
+				[ 'action' => 'edit' ]
 			);
 		} else {
 			$edit = '';
 		}
 
-		$linkB = Linker::linkKnown(
+		$linkB = $linkRenderer->makeKnownLink(
 			$titleB,
 			null,
 			[],
 			[ 'redirect' => 'no' ]
 		);
 
-		$linkC = Linker::linkKnown( $titleC );
+		$linkC = $linkRenderer->makeKnownLink( $titleC );
 
 		$lang = $this->getLanguage();
 		$arr = $lang->getArrow() . $lang->getDirMark();

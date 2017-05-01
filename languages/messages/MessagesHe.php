@@ -343,6 +343,5 @@ $bookstoreList = [
 	'מיתוס'          => 'http://www.mitos.co.il/',
 	'iBooks'         => 'http://www.ibooks.co.il/',
 	'Barnes & Noble' => 'http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
-	'Amazon.com'     => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+	'Amazon.com'     => 'https://www.amazon.com/exec/obidos/ISBN=$1'
 ];
-

@@ -33,6 +33,7 @@ abstract class ApiFormatBase extends ApiBase {
 	private $mIsHtml, $mFormat, $mUnescapeAmps, $mHelp;
 	private $mBuffer, $mDisabled = false;
 	private $mIsWrappedHtml = false;
+	private $mHttpStatus = false;
 	protected $mForceDefaultParams = false;
 
 	/**
@@ -148,6 +149,23 @@ abstract class ApiFormatBase extends ApiBase {
 	}
 
 	/**
+	 * Set the HTTP status code to be used for the response
+	 * @since 1.29
+	 * @param int $code
+	 */
+	public function setHttpStatus( $code ) {
+		if ( $this->mDisabled ) {
+			return;
+		}
+
+		if ( $this->getIsHtml() ) {
+			$this->mHttpStatus = $code;
+		} else {
+			$this->getMain()->getRequest()->response()->statusHeader( $code );
+		}
+	}
+
+	/**
 	 * Initialize the printer function and prepare the output headers.
 	 * @param bool $unused Always false since 1.25
 	 */
@@ -168,7 +186,7 @@ abstract class ApiFormatBase extends ApiBase {
 
 		$this->getMain()->getRequest()->response()->header( "Content-Type: $mime; charset=utf-8" );
 
-		// Set X-Frame-Options API results (bug 39180)
+		// Set X-Frame-Options API results (T41180)
 		$apiFrameOptions = $this->getConfig()->get( 'ApiFrameOptions' );
 		if ( $apiFrameOptions ) {
 			$this->getMain()->getRequest()->response()->header( "X-Frame-Options: $apiFrameOptions" );
@@ -212,6 +230,18 @@ abstract class ApiFormatBase extends ApiBase {
 						ApiHelp::fixHelpLinks( $header )
 					)
 				);
+
+				if ( $this->mHttpStatus && $this->mHttpStatus !== 200 ) {
+					$out->addHTML(
+						Html::rawElement( 'div', [ 'class' => 'api-pretty-header api-pretty-status' ],
+							$this->msg(
+								'api-format-prettyprint-status',
+								$this->mHttpStatus,
+								HttpStatus::getMessage( $this->mHttpStatus )
+							)->parse()
+						)
+					);
+				}
 			}
 
 			if ( Hooks::run( 'ApiFormatHighlight', [ $context, $result, $mime, $format ] ) ) {
@@ -225,6 +255,8 @@ abstract class ApiFormatBase extends ApiBase {
 				$time = microtime( true ) - $this->getConfig()->get( 'RequestTime' );
 				$json = FormatJson::encode(
 					[
+						'status' => (int)( $this->mHttpStatus ?: 200 ),
+						'statustext' => HttpStatus::getMessage( $this->mHttpStatus ?: 200 ),
 						'html' => $out->getHTML(),
 						'modules' => array_values( array_unique( array_merge(
 							$out->getModules(),
@@ -237,7 +269,7 @@ abstract class ApiFormatBase extends ApiBase {
 					false, FormatJson::ALL_OK
 				);
 
-				// Bug 66776: wfMangleFlashPolicy() is needed to avoid a nasty bug in
+				// T68776: wfMangleFlashPolicy() is needed to avoid a nasty bug in
 				// Flash, but what it does isn't friendly for the API, so we need to
 				// work around it.
 				if ( preg_match( '/\<\s*cross-domain-policy\s*\>/i', $json ) ) {
@@ -298,7 +330,7 @@ abstract class ApiFormatBase extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Data_formats';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Data_formats';
 	}
 
 }

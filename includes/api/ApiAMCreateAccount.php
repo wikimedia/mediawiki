@@ -56,8 +56,8 @@ class ApiAMCreateAccount extends ApiBase {
 			$bits = wfParseUrl( $params['returnurl'] );
 			if ( !$bits || $bits['scheme'] === '' ) {
 				$encParamName = $this->encodeParamName( 'returnurl' );
-				$this->dieUsage(
-					"Invalid value '{$params['returnurl']}' for url parameter $encParamName",
+				$this->dieWithError(
+					[ 'apierror-badurl', $encParamName, wfEscapeWikiText( $params['returnurl'] ) ],
 					"badurl_{$encParamName}"
 				);
 			}
@@ -132,6 +132,6 @@ class ApiAMCreateAccount extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Account_creation';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Account_creation';
 	}
 }

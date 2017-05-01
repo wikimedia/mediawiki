@@ -650,7 +650,7 @@ class XMPInfo {
 				'choices' => [ '1' => true, '2' => true ],
 			],
 			/********
-			 * Disable extracting this property (bug 31944)
+			 * Disable extracting this property (T33944)
 			 * Several files have a string instead of a Seq
 			 * for this property. XMPReader doesn't handle
 			 * mismatched types very gracefully (it marks
@@ -658,7 +658,7 @@ class XMPInfo {
 			 * the relavent prop). Since this prop
 			 * doesn't communicate all that useful information
 			 * just disable this prop for now, until such
-			 * XMPReader is more graceful (bug 32172)
+			 * XMPReader is more graceful (T34172)
 			 * 'YCbCrSubSampling'  => array(
 			 *    'map_group' => 'exif',
 			 *    'mode'      => XMPReader::MODE_SEQ,

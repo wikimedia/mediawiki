@@ -4,6 +4,7 @@ namespace MediaWiki\Session;
 
 use MediaWikiTestCase;
 use User;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Session
@@ -37,7 +38,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 	public function testConstructor() {
 		$provider = $this->getMockBuilder( ImmutableSessionProviderWithCookie::class )
 			->getMockForAbstractClass();
-		$priv = \TestingAccessWrapper::newFromObject( $provider );
+		$priv = TestingAccessWrapper::newFromObject( $provider );
 		$this->assertNull( $priv->sessionCookieName );
 		$this->assertSame( [], $priv->sessionCookieOptions );
 
@@ -47,7 +48,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 				'sessionCookieOptions' => [ 'Bar' ],
 			] ] )
 			->getMockForAbstractClass();
-		$priv = \TestingAccessWrapper::newFromObject( $provider );
+		$priv = TestingAccessWrapper::newFromObject( $provider );
 		$this->assertSame( 'Foo', $priv->sessionCookieName );
 		$this->assertSame( [ 'Bar' ], $priv->sessionCookieOptions );
 
@@ -119,7 +120,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 			'bad' => 'bad',
 		], '' );
 
-		$provider = \TestingAccessWrapper::newFromObject( $this->getProvider( null ) );
+		$provider = TestingAccessWrapper::newFromObject( $this->getProvider( null ) );
 		try {
 			$provider->getSessionIdFromCookie( $request );
 			$this->fail( 'Expected exception not thrown' );
@@ -131,39 +132,42 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 			);
 		}
 
-		$provider = \TestingAccessWrapper::newFromObject( $this->getProvider( 'Foo' ) );
+		$provider = TestingAccessWrapper::newFromObject( $this->getProvider( 'Foo' ) );
 		$this->assertSame(
 			'wgfoo---------------------------',
 			$provider->getSessionIdFromCookie( $request )
 		);
 
-		$provider = \TestingAccessWrapper::newFromObject( $this->getProvider( 'Foo', 'Bar' ) );
+		$provider = TestingAccessWrapper::newFromObject( $this->getProvider( 'Foo', 'Bar' ) );
 		$this->assertSame(
 			'foobar--------------------------',
 			$provider->getSessionIdFromCookie( $request )
 		);
 
-		$provider = \TestingAccessWrapper::newFromObject( $this->getProvider( 'Foo', '' ) );
+		$provider = TestingAccessWrapper::newFromObject( $this->getProvider( 'Foo', '' ) );
 		$this->assertSame(
 			'foo-----------------------------',
 			$provider->getSessionIdFromCookie( $request )
 		);
 
-		$provider = \TestingAccessWrapper::newFromObject( $this->getProvider( 'bad', '' ) );
+		$provider = TestingAccessWrapper::newFromObject( $this->getProvider( 'bad', '' ) );
 		$this->assertSame( null, $provider->getSessionIdFromCookie( $request ) );
 
-		$provider = \TestingAccessWrapper::newFromObject( $this->getProvider( 'none', '' ) );
+		$provider = TestingAccessWrapper::newFromObject( $this->getProvider( 'none', '' ) );
 		$this->assertSame( null, $provider->getSessionIdFromCookie( $request ) );
 	}
 
 	protected function getSentRequest() {
-		$sentResponse = $this->getMock( 'FauxResponse', [ 'headersSent', 'setCookie', 'header' ] );
+		$sentResponse = $this->getMockBuilder( 'FauxResponse' )
+			->setMethods( [ 'headersSent', 'setCookie', 'header' ] )
+			->getMock();
 		$sentResponse->expects( $this->any() )->method( 'headersSent' )
 			->will( $this->returnValue( true ) );
 		$sentResponse->expects( $this->never() )->method( 'setCookie' );
 		$sentResponse->expects( $this->never() )->method( 'header' );
 
-		$sentRequest = $this->getMock( 'FauxRequest', [ 'response' ] );
+		$sentRequest = $this->getMockBuilder( 'FauxRequest' )
+			->setMethods( [ 'response' ] )->getMock();
 		$sentRequest->expects( $this->any() )->method( 'response' )
 			->will( $this->returnValue( $sentResponse ) );
 		return $sentRequest;
@@ -182,7 +186,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 
 		$provider = $this->getProvider( 'session' );
 		$provider->setLogger( new \Psr\Log\NullLogger() );
-		$priv = \TestingAccessWrapper::newFromObject( $provider );
+		$priv = TestingAccessWrapper::newFromObject( $provider );
 		$priv->sessionCookieOptions = [
 			'prefix' => 'x',
 			'path' => 'CookiePath',
@@ -208,7 +212,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 			new \Psr\Log\NullLogger(),
 			10
 		);
-		\TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = false;
+		TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = false;
 		$backend->setRememberUser( $remember );
 		$backend->setForceHTTPS( $secure );
 
@@ -278,7 +282,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 	public function testUnpersistSession() {
 		$provider = $this->getProvider( 'session', '' );
 		$provider->setLogger( new \Psr\Log\NullLogger() );
-		$priv = \TestingAccessWrapper::newFromObject( $provider );
+		$priv = TestingAccessWrapper::newFromObject( $provider );
 
 		// No cookie
 		$priv->sessionCookieName = null;

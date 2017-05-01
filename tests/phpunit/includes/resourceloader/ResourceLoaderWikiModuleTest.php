@@ -1,5 +1,9 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\TestingAccessWrapper;
+
 class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 
 	/**
@@ -213,6 +217,157 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 
 		$module = TestingAccessWrapper::newFromObject( $module );
 		$this->assertEquals( $expected, $module->getTitleInfo( $context ), 'Title info' );
+	}
+
+	/**
+	 * @covers ResourceLoaderWikiModule::preloadTitleInfo
+	 */
+	public function testGetPreloadedBadTitle() {
+		// Mock values
+		$pages = [
+			// Covers else branch for invalid page name
+			'[x]' => [ 'type' => 'styles' ],
+		];
+		$titleInfo = [];
+
+		// Set up objects
+		$module = $this->getMockBuilder( 'TestResourceLoaderWikiModule' )
+			->setMethods( [ 'getPages' ] ) ->getMock();
+		$module->method( 'getPages' )->willReturn( $pages );
+		$module::$returnFetchTitleInfo = $titleInfo;
+		$rl = new EmptyResourceLoader();
+		$rl->register( 'testmodule', $module );
+		$context = new ResourceLoaderContext( $rl, new FauxRequest() );
+
+		// Act
+		TestResourceLoaderWikiModule::preloadTitleInfo(
+			$context,
+			wfGetDB( DB_REPLICA ),
+			[ 'testmodule' ]
+		);
+
+		// Assert
+		$module = TestingAccessWrapper::newFromObject( $module );
+		$this->assertEquals( $titleInfo, $module->getTitleInfo( $context ), 'Title info' );
+	}
+
+	/**
+	 * @covers ResourceLoaderWikiModule::preloadTitleInfo
+	 */
+	public function testGetPreloadedTitleInfoEmpty() {
+		$context = new ResourceLoaderContext( new EmptyResourceLoader(), new FauxRequest() );
+		// Covers early return
+		$this->assertSame(
+			null,
+			ResourceLoaderWikiModule::preloadTitleInfo(
+				$context,
+				wfGetDB( DB_REPLICA ),
+				[]
+			)
+		);
+	}
+
+	public static function provideGetContent() {
+		return [
+			'Bad title' => [ null, '[x]' ],
+			'Dead redirect' => [ null, [
+				'text' => 'Dead redirect',
+				'title' => 'Dead_redirect',
+				'redirect' => 1,
+			] ],
+			'Bad content model' => [ null, [
+				'text' => 'MediaWiki:Wikitext',
+				'ns' => NS_MEDIAWIKI,
+				'title' => 'Wikitext',
+			] ],
+			'No JS content found' => [ null, [
+				'text' => 'MediaWiki:Script.js',
+				'ns' => NS_MEDIAWIKI,
+				'title' => 'Script.js',
+			] ],
+			'No CSS content found' => [ null, [
+				'text' => 'MediaWiki:Styles.css',
+				'ns' => NS_MEDIAWIKI,
+				'title' => 'Script.css',
+			] ],
+		];
+	}
+
+	/**
+	 * @covers ResourceLoaderWikiModule::getContent
+	 * @dataProvider provideGetContent
+	 */
+	public function testGetContent( $expected, $title ) {
+		$context = $this->getResourceLoaderContext( [], new EmptyResourceLoader );
+		$module = $this->getMockBuilder( 'ResourceLoaderWikiModule' )
+			->setMethods( [ 'getContentObj' ] ) ->getMock();
+		$module->expects( $this->any() )
+			->method( 'getContentObj' )->willReturn( null );
+
+		if ( is_array( $title ) ) {
+			$title += [ 'ns' => NS_MAIN, 'id' => 1, 'len' => 1, 'redirect' => 0 ];
+			$titleText = $title['text'];
+			// Mock Title db access via LinkCache
+			MediaWikiServices::getInstance()->getLinkCache()->addGoodLinkObj(
+				$title['id'],
+				new TitleValue( $title['ns'], $title['title'] ),
+				$title['len'],
+				$title['redirect']
+			);
+		} else {
+			$titleText = $title;
+		}
+
+		$module = TestingAccessWrapper::newFromObject( $module );
+		$this->assertEquals(
+			$expected,
+			$module->getContent( $titleText )
+		);
+
+	}
+
+	/**
+	 * @covers ResourceLoaderWikiModule::getContent
+	 */
+	public function testGetContentForRedirects() {
+		// Set up context and module object
+		$context = $this->getResourceLoaderContext( [], new EmptyResourceLoader );
+		$module = $this->getMockBuilder( 'ResourceLoaderWikiModule' )
+			->setMethods( [ 'getPages', 'getContentObj' ] )
+			->getMock();
+		$module->expects( $this->any() )
+			->method( 'getPages' )
+			->will( $this->returnValue( [
+				'MediaWiki:Redirect.js' => [ 'type' => 'script' ]
+			] ) );
+		$module->expects( $this->any() )
+			->method( 'getContentObj' )
+			->will( $this->returnCallback( function ( Title $title ) {
+				if ( $title->getPrefixedText() === 'MediaWiki:Redirect.js' ) {
+					$handler = new JavaScriptContentHandler();
+					return $handler->makeRedirectContent(
+						Title::makeTitle( NS_MEDIAWIKI, 'Target.js' )
+					);
+				} elseif ( $title->getPrefixedText() === 'MediaWiki:Target.js' ) {
+					return new JavaScriptContent( 'target;' );
+				} else {
+					return null;
+				}
+			} ) );
+
+		// Mock away Title's db queries with LinkCache
+		MediaWikiServices::getInstance()->getLinkCache()->addGoodLinkObj(
+			1, // id
+			new TitleValue( NS_MEDIAWIKI, 'Redirect.js' ),
+			1, // len
+			1 // redirect
+		);
+
+		$this->assertEquals(
+			"/*\nMediaWiki:Redirect.js\n*/\ntarget;\n",
+			$module->getScript( $context ),
+			'Redirect resolved by getContent'
+		);
 	}
 }
 

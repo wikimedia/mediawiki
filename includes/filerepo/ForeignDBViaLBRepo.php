@@ -65,7 +65,7 @@ class ForeignDBViaLBRepo extends LocalRepo {
 	/**
 	 * @return IDatabase
 	 */
-	function getSlaveDB() {
+	function getReplicaDB() {
 		return wfGetLB( $this->wiki )->getConnectionRef( DB_REPLICA, [], $this->wiki );
 	}
 
@@ -100,7 +100,7 @@ class ForeignDBViaLBRepo extends LocalRepo {
 	}
 
 	protected function assertWritableRepo() {
-		throw new MWException( get_class( $this ) . ': write operations are not supported.' );
+		throw new MWException( static::class . ': write operations are not supported.' );
 	}
 
 	public function getInfo() {

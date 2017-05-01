@@ -18,71 +18,25 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\Assert\Assert;
 
+/**
+ * @deprecated since 1.29
+ * MimeAnalyzer should be used instead of MimeMagic
+ */
 class MimeMagic extends MimeAnalyzer {
 	/**
 	 * Get an instance of this class
 	 * @return MimeMagic
-	 * @deprecated since 1.28
+	 * @deprecated since 1.28 get a MimeAnalyzer instance form MediaWikiServices
 	 */
 	public static function singleton() {
-		return MediaWikiServices::getInstance()->getMIMEAnalyzer();
-	}
-
-	/**
-	 * @param array $params
-	 * @param Config $mainConfig
-	 * @return array
-	 */
-	public static function applyDefaultParameters( array $params, Config $mainConfig ) {
-		$logger = LoggerFactory::getInstance( 'Mime' );
-		$params += [
-			'typeFile' => $mainConfig->get( 'MimeTypeFile' ),
-			'infoFile' => $mainConfig->get( 'MimeInfoFile' ),
-			'xmlTypes' => $mainConfig->get( 'XMLMimeTypes' ),
-			'guessCallback' =>
-				function ( $mimeAnalyzer, &$head, &$tail, $file, &$mime ) use ( $logger ) {
-					// Also test DjVu
-					$deja = new DjVuImage( $file );
-					if ( $deja->isValid() ) {
-						$logger->info( __METHOD__ . ": detected $file as image/vnd.djvu\n" );
-						$mime = 'image/vnd.djvu';
-
-						return;
-					}
-					// Some strings by reference for performance - assuming well-behaved hooks
-					Hooks::run(
-						'MimeMagicGuessFromContent',
-						[ $mimeAnalyzer, &$head, &$tail, $file, &$mime ]
-					);
-				},
-			'extCallback' => function ( $mimeAnalyzer, $ext, &$mime ) {
-				// Media handling extensions can improve the MIME detected
-				Hooks::run( 'MimeMagicImproveFromExtension', [ $mimeAnalyzer, $ext, &$mime ] );
-			},
-			'initCallback' => function ( $mimeAnalyzer ) {
-				// Allow media handling extensions adding MIME-types and MIME-info
-				Hooks::run( 'MimeMagicInit', [ $mimeAnalyzer ] );
-			},
-			'logger' => $logger
-		];
-
-		if ( $params['infoFile'] === 'includes/mime.info' ) {
-			$params['infoFile'] = __DIR__ . "/libs/mime/mime.info";
-		}
-
-		if ( $params['typeFile'] === 'includes/mime.types' ) {
-			$params['typeFile'] = __DIR__ . "/libs/mime/mime.types";
-		}
-
-		$detectorCmd = $mainConfig->get( 'MimeDetectorCommand' );
-		if ( $detectorCmd ) {
-			$params['detectCallback'] = function ( $file ) use ( $detectorCmd ) {
-				return wfShellExec( "$detectorCmd " . wfEscapeShellArg( $file ) );
-			};
-		}
-
-		return $params;
+		// XXX: We know that the MimeAnalyzer is currently an instance of MimeMagic
+		$instance = MediaWikiServices::getInstance()->getMimeAnalyzer();
+		Assert::postcondition(
+			$instance instanceof MimeMagic,
+			__METHOD__ . ' should return an instance of ' . MimeMagic::class
+		);
+		return $instance;
 	}
 }

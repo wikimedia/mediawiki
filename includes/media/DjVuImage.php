@@ -254,7 +254,7 @@ class DjVuImage {
 
 		if ( isset( $wgDjvuDump ) ) {
 			# djvudump is faster as of version 3.5
-			# http://sourceforge.net/tracker/index.php?func=detail&aid=1704049&group_id=32953&atid=406583
+			# https://sourceforge.net/p/djvu/bugs/71/
 			$cmd = wfEscapeShellArg( $wgDjvuDump ) . ' ' . wfEscapeShellArg( $this->mFilename );
 			$dump = wfShellExec( $cmd );
 			$xml = $this->convertDumpToXML( $dump );
@@ -277,9 +277,9 @@ class DjVuImage {
 				$reg = <<<EOR
 					/\(page\s[\d-]*\s[\d-]*\s[\d-]*\s[\d-]*\s*"
 					((?>    # Text to match is composed of atoms of either:
-					  \\\\. # - any escaped character
-					  |     # - any character different from " and \
-					  [^"\\\\]+
+						\\\\. # - any escaped character
+						|     # - any character different from " and \
+						[^"\\\\]+
 					)*?)
 					"\s*\)
 					| # Or page can be empty ; in this case, djvutxt dumps ()

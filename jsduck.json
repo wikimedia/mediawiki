@@ -9,6 +9,7 @@
 	"--warnings-exit-nonzero": true,
 	"--external": "Blob,File,HTMLDocument,HTMLElement,HTMLIframeElement,HTMLInputElement,KeyboardEvent,MouseEvent,Node,Window,XMLDocument",
 	"--output": "docs/js",
+	"--exclude": "resources/src/mediawiki/mediawiki.Title.phpCharToUpper.js",
 	"--": [
 		"maintenance/jsduck/external.js",
 		"resources/src/mediawiki",
@@ -19,7 +20,6 @@
 		"resources/src/mediawiki.toolbar",
 		"resources/src/mediawiki.widgets",
 		"resources/src/jquery/jquery.accessKeyLabel.js",
-		"resources/src/jquery/jquery.arrowSteps.js",
 		"resources/src/jquery/jquery.autoEllipsis.js",
 		"resources/src/jquery/jquery.badge.js",
 		"resources/src/jquery/jquery.byteLength.js",

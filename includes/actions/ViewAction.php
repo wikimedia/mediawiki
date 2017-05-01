@@ -26,7 +26,7 @@
 /**
  * An action that views article content
  *
- * This is a wrapper that will call Article::render().
+ * This is a wrapper that will call Article::view().
  *
  * @ingroup Actions
  */
@@ -57,9 +57,6 @@ class ViewAction extends FormlessAction {
 				// Don't bother following the chain and getting the max mtime
 				$touched = null;
 			}
-
-			// If a page was purged on HTTP GET, relect that timestamp to avoid sending 304s
-			$touched = max( $touched, $this->page->getLastPurgeTimestamp() );
 
 			// Send HTTP 304 if the IMS matches or otherwise set expiry/last-modified headers
 			if ( $touched && $this->getOutput()->checkLastModified( $touched ) ) {

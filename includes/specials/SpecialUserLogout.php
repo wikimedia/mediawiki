@@ -38,7 +38,7 @@ class SpecialUserLogout extends UnlistedSpecialPage {
 	function execute( $par ) {
 		/**
 		 * Some satellite ISPs use broken precaching schemes that log people out straight after
-		 * they're logged in (bug 17790). Luckily, there's a way to detect such requests.
+		 * they're logged in (T19790). Luckily, there's a way to detect such requests.
 		 */
 		if ( isset( $_SERVER['REQUEST_URI'] ) && strpos( $_SERVER['REQUEST_URI'], '&amp;' ) !== false ) {
 			wfDebug( "Special:UserLogout request {$_SERVER['REQUEST_URI']} looks suspicious, denying.\n" );

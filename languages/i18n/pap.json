@@ -184,7 +184,7 @@
 	"rcshowhideminor": "$1 kambionan menor",
 	"rcshowhidebots": "$1 botnan",
 	"rcshowhideanons": "$1 uzadónan anonimo",
-	"rclinks": "Mustra último $1 kambionan den último $2 dianan<br />$3",
+	"rclinks": "Mustra último $1 kambionan den último $2 dianan",
 	"hide": "Skonde",
 	"show": "Mustra",
 	"file-anchor-link": "Imagen",

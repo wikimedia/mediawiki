@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aefgh39622"
+		]
+	},
+	"apihelp-imagerotate-description": "หมุนรูปภาพอย่างน้อยหนึ่งรูป",
+	"api-help-param-continue": "เมื่อมีผลลัพธ์เพิ่มเติมพร้อมใช้งาน ใช้ตัวเลือกนี้เพื่อดำเนินการต่อ"
+}

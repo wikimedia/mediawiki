@@ -1,17 +1,61 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  *
  * @author Matthew Flaschen
  *
+ * @group Database
  * @group Output
  *
  * @todo factor tests in this class into providers and test methods
- *
  */
 class OutputPageTest extends MediaWikiTestCase {
 	const SCREEN_MEDIA_QUERY = 'screen and (min-width: 982px)';
 	const SCREEN_ONLY_MEDIA_QUERY = 'only screen and (min-width: 982px)';
+
+	/**
+	 * @covers OutputPage::addMeta
+	 * @covers OutputPage::getMetaTags
+	 * @covers OutputPage::getHeadLinksArray
+	 */
+	public function testMetaTags() {
+		$outputPage = $this->newInstance();
+		$outputPage->addMeta( 'http:expires', '0' );
+		$outputPage->addMeta( 'keywords', 'first' );
+		$outputPage->addMeta( 'keywords', 'second' );
+		$outputPage->addMeta( 'og:title', 'Ta-duh' );
+
+		$expected = [
+			[ 'http:expires', '0' ],
+			[ 'keywords', 'first' ],
+			[ 'keywords', 'second' ],
+			[ 'og:title', 'Ta-duh' ],
+		];
+		$this->assertSame( $expected, $outputPage->getMetaTags() );
+
+		$links = $outputPage->getHeadLinksArray();
+		$this->assertContains( '<meta http-equiv="expires" content="0"/>', $links );
+		$this->assertContains( '<meta name="keywords" content="first"/>', $links );
+		$this->assertContains( '<meta name="keywords" content="second"/>', $links );
+		$this->assertContains( '<meta property="og:title" content="Ta-duh"/>', $links );
+		$this->assertArrayNotHasKey( 'meta-robots', $links );
+	}
+
+	/**
+	 * @covers OutputPage::setIndexPolicy
+	 * @covers OutputPage::setFollowPolicy
+	 * @covers OutputPage::getHeadLinksArray
+	 */
+	public function testRobotsPolicies() {
+		$outputPage = $this->newInstance();
+		$outputPage->setIndexPolicy( 'noindex' );
+		$outputPage->setFollowPolicy( 'nofollow' );
+
+		$links = $outputPage->getHeadLinksArray();
+		$this->assertContains( '<meta name="robots" content="noindex,nofollow"/>', $links );
+	}
 
 	/**
 	 * Tests a particular case of transformCssMedia, using the given input, globals,
@@ -134,6 +178,99 @@ class OutputPageTest extends MediaWikiTestCase {
 			'expectedReturn' => null,
 			'message' => 'On request with handheld querystring and media is screen, returns null'
 		] );
+	}
+
+	public static function provideTransformFilePath() {
+		$baseDir = dirname( __DIR__ ) . '/data/media';
+		return [
+			// File that matches basePath, and exists. Hash found and appended.
+			[
+				'baseDir' => $baseDir, 'basePath' => '/w',
+				'/w/test.jpg',
+				'/w/test.jpg?edcf2'
+			],
+			// File that matches basePath, but not found on disk. Empty query.
+			[
+				'baseDir' => $baseDir, 'basePath' => '/w',
+				'/w/unknown.png',
+				'/w/unknown.png?'
+			],
+			// File not matching basePath. Ignored.
+			[
+				'baseDir' => $baseDir, 'basePath' => '/w',
+				'/files/test.jpg'
+			],
+			// Empty string. Ignored.
+			[
+				'baseDir' => $baseDir, 'basePath' => '/w',
+				'',
+				''
+			],
+			// Similar path, but with domain component. Ignored.
+			[
+				'baseDir' => $baseDir, 'basePath' => '/w',
+				'//example.org/w/test.jpg'
+			],
+			[
+				'baseDir' => $baseDir, 'basePath' => '/w',
+				'https://example.org/w/test.jpg'
+			],
+			// Unrelated path with domain component. Ignored.
+			[
+				'baseDir' => $baseDir, 'basePath' => '/w',
+				'https://example.org/files/test.jpg'
+			],
+			[
+				'baseDir' => $baseDir, 'basePath' => '/w',
+				'//example.org/files/test.jpg'
+			],
+			// Unrelated path with domain, and empty base path (root mw install). Ignored.
+			[
+				'baseDir' => $baseDir, 'basePath' => '',
+				'https://example.org/files/test.jpg'
+			],
+			[
+				'baseDir' => $baseDir, 'basePath' => '',
+				// T155310
+				'//example.org/files/test.jpg'
+			],
+			// Check UploadPath before ResourceBasePath (T155146)
+			[
+				'baseDir' => dirname( $baseDir ), 'basePath' => '',
+				'uploadDir' => $baseDir, 'uploadPath' => '/images',
+				'/images/test.jpg',
+				'/images/test.jpg?edcf2'
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideTransformFilePath
+	 * @covers OutputPage::transformFilePath
+	 * @covers OutputPage::transformResourcePath
+	 */
+	public function testTransformResourcePath( $baseDir, $basePath, $uploadDir = null,
+		$uploadPath = null, $path = null, $expected = null
+	) {
+		if ( $path === null ) {
+			// Skip optional $uploadDir and $uploadPath
+			$path = $uploadDir;
+			$expected = $uploadPath;
+			$uploadDir = "$baseDir/images";
+			$uploadPath = "$basePath/images";
+		}
+		$this->setMwGlobals( 'IP', $baseDir );
+		$conf = new HashConfig( [
+			'ResourceBasePath' => $basePath,
+			'UploadDirectory' => $uploadDir,
+			'UploadPath' => $uploadPath,
+		] );
+
+		MediaWiki\suppressWarnings();
+		$actual = OutputPage::transformResourcePath( $conf, $path );
+		MediaWiki\restoreWarnings();
+
+		$this->assertEquals( $expected ?: $path, $actual );
 	}
 
 	public static function provideMakeResourceLoaderLink() {
@@ -288,7 +425,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	/**
 	 * @covers OutputPage::haveCacheVaryCookies
 	 */
-	function testHaveCacheVaryCookies() {
+	public function testHaveCacheVaryCookies() {
 		$request = new FauxRequest();
 		$context = new RequestContext();
 		$context->setRequest( $request );
@@ -304,6 +441,157 @@ class OutputPageTest extends MediaWikiTestCase {
 		// 'Token' present and nonempty.
 		$request->setCookie( 'Token', '123' );
 		$this->assertTrue( $outputPage->haveCacheVaryCookies() );
+	}
+
+	/*
+	 * @covers OutputPage::addCategoryLinks
+	 * @covers OutputPage::getCategories
+	 */
+	public function testGetCategories() {
+		$fakeResultWrapper = new FakeResultWrapper( [
+			(object) [
+				'pp_value' => 1,
+				'page_title' => 'Test'
+			],
+			(object) [
+				'page_title' => 'Test2'
+			]
+		] );
+		$outputPage = $this->getMockBuilder( 'OutputPage' )
+			->setConstructorArgs( [ new RequestContext() ] )
+			->setMethods( [ 'addCategoryLinksToLBAndGetResult' ] )
+			->getMock();
+		$outputPage->expects( $this->any() )
+			->method( 'addCategoryLinksToLBAndGetResult' )
+			->will( $this->returnValue( $fakeResultWrapper ) );
+
+		$outputPage->addCategoryLinks( [
+			'Test' => 'Test',
+			'Test2' => 'Test2',
+		] );
+		$this->assertEquals( [ 0 => 'Test', '1' => 'Test2' ], $outputPage->getCategories() );
+		$this->assertEquals( [ 0 => 'Test2' ], $outputPage->getCategories( 'normal' ) );
+		$this->assertEquals( [ 0 => 'Test' ], $outputPage->getCategories( 'hidden' ) );
+	}
+
+	/**
+	 * @dataProvider provideLinkHeaders
+	 * @covers OutputPage::addLinkHeader
+	 * @covers OutputPage::getLinkHeader
+	 */
+	public function testLinkHeaders( $headers, $result ) {
+		$outputPage = $this->newInstance();
+
+		foreach ( $headers as $header ) {
+			$outputPage->addLinkHeader( $header );
+		}
+
+		$this->assertEquals( $result, $outputPage->getLinkHeader() );
+	}
+
+	public function provideLinkHeaders() {
+		return [
+			[
+				[],
+				false
+			],
+			[
+				[ '<https://foo/bar.jpg>;rel=preload;as=image' ],
+				'Link: <https://foo/bar.jpg>;rel=preload;as=image',
+			],
+			[
+				[ '<https://foo/bar.jpg>;rel=preload;as=image','<https://foo/baz.jpg>;rel=preload;as=image' ],
+				'Link: <https://foo/bar.jpg>;rel=preload;as=image,<https://foo/baz.jpg>;rel=preload;as=image',
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider providePreloadLinkHeaders
+	 * @covers OutputPage::addLogoPreloadLinkHeaders
+	 * @covers ResourceLoaderSkinModule::getLogo
+	 */
+	public function testPreloadLinkHeaders( $config, $result, $baseDir = null ) {
+		if ( $baseDir ) {
+			$this->setMwGlobals( 'IP', $baseDir );
+		}
+		$out = TestingAccessWrapper::newFromObject( $this->newInstance( $config ) );
+		$out->addLogoPreloadLinkHeaders();
+
+		$this->assertEquals( $result, $out->getLinkHeader() );
+	}
+
+	public function providePreloadLinkHeaders() {
+		return [
+			[
+				[
+					'ResourceBasePath' => '/w',
+					'Logo' => '/img/default.png',
+					'LogoHD' => [
+						'1.5x' => '/img/one-point-five.png',
+						'2x' => '/img/two-x.png',
+					],
+				],
+				'Link: </img/default.png>;rel=preload;as=image;media=' .
+				'not all and (min-resolution: 1.5dppx),' .
+				'</img/one-point-five.png>;rel=preload;as=image;media=' .
+				'(min-resolution: 1.5dppx) and (max-resolution: 1.999999dppx),' .
+				'</img/two-x.png>;rel=preload;as=image;media=(min-resolution: 2dppx)'
+			],
+			[
+				[
+					'ResourceBasePath' => '/w',
+					'Logo' => '/img/default.png',
+					'LogoHD' => false,
+				],
+				'Link: </img/default.png>;rel=preload;as=image'
+			],
+			[
+				[
+					'ResourceBasePath' => '/w',
+					'Logo' => '/img/default.png',
+					'LogoHD' => [
+						'2x' => '/img/two-x.png',
+					],
+				],
+				'Link: </img/default.png>;rel=preload;as=image;media=' .
+				'not all and (min-resolution: 2dppx),' .
+				'</img/two-x.png>;rel=preload;as=image;media=(min-resolution: 2dppx)'
+			],
+			[
+				[
+					'ResourceBasePath' => '/w',
+					'Logo' => '/w/test.jpg',
+					'LogoHD' => false,
+					'UploadPath' => '/w/images',
+				],
+				'Link: </w/test.jpg?edcf2>;rel=preload;as=image',
+				'baseDir' => dirname( __DIR__ ) . '/data/media',
+			],
+		];
+	}
+
+	/**
+	 * @return OutputPage
+	 */
+	private function newInstance( $config = [] ) {
+		$context = new RequestContext();
+
+		$context->setConfig( new HashConfig( $config + [
+			'AppleTouchIcon' => false,
+			'DisableLangConversion' => true,
+			'EnableAPI' => false,
+			'EnableCanonicalServerLink' => false,
+			'Favicon' => false,
+			'Feed' => false,
+			'LanguageCode' => false,
+			'ReferrerPolicy' => false,
+			'RightsPage' => false,
+			'RightsUrl' => false,
+			'UniversalEditButton' => false,
+		] ) );
+
+		return new OutputPage( $context );
 	}
 }
 

@@ -20,4 +20,3 @@ $namespaceNames = [
 	NS_CATEGORY         => 'Kalasi',
 	NS_CATEGORY_TALK    => 'Disolo_kalasi',
 ];
-

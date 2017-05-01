@@ -29,6 +29,7 @@
 	"config-env-hhvm": "HHVM $1 ir uzstādīts.",
 	"config-apcu": "[http://www.php.net/apcu APCu] ir uzstādīts",
 	"config-diff3-bad": "GNU diff3 nav atrasts.",
+	"config-db-host-oracle": "Datubāzes TNS:",
 	"config-db-name": "Datubāzes nosaukums:",
 	"config-db-username": "Datubāzes lietotājvārds:",
 	"config-db-password": "Datubāzes parole:",

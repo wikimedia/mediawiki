@@ -1,16 +1,23 @@
 <?php
 
+use Wikimedia\Rdbms\IDatabase;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\Assert;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\DBUnexpectedError;
 
 /**
  * Storage layer class for WatchedItems.
  * Database interaction.
  *
- * @author Addshore
+ * Uses database because this uses User::isAnon
  *
+ * @group Database
+ *
+ * @author Addshore
  * @since 1.27
  */
 class WatchedItemStore implements StatsdAwareInterface {
@@ -22,6 +29,11 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 * @var LoadBalancer
 	 */
 	private $loadBalancer;
+
+	/**
+	 * @var ReadOnlyMode
+	 */
+	private $readOnlyMode;
 
 	/**
 	 * @var HashBagOStuff
@@ -54,13 +66,16 @@ class WatchedItemStore implements StatsdAwareInterface {
 	/**
 	 * @param LoadBalancer $loadBalancer
 	 * @param HashBagOStuff $cache
+	 * @param ReadOnlyMode $readOnlyMode
 	 */
 	public function __construct(
 		LoadBalancer $loadBalancer,
-		HashBagOStuff $cache
+		HashBagOStuff $cache,
+		ReadOnlyMode $readOnlyMode
 	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->cache = $cache;
+		$this->readOnlyMode = $readOnlyMode;
 		$this->stats = new NullStatsdDataFactory();
 		$this->deferredUpdatesAddCallableUpdateCallback = [ 'DeferredUpdates', 'addCallableUpdate' ];
 		$this->revisionGetTimestampFromIdCallback = [ 'Revision', 'getTimestampFromId' ];
@@ -167,7 +182,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 * @param User $user
 	 * @param LinkTarget $target
 	 *
-	 * @return WatchedItem|null
+	 * @return WatchedItem|false
 	 */
 	private function getCached( User $user, LinkTarget $target ) {
 		return $this->cache->get( $this->getCacheKey( $user, $target ) );
@@ -495,7 +510,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 
 		$watchedItems = [];
 		foreach ( $res as $row ) {
-			// todo these could all be cached at some point?
+			// @todo: Should we add these to the process cache?
 			$watchedItems[] = new WatchedItem(
 				$user,
 				new TitleValue( (int)$row->wl_namespace, $row->wl_title ),
@@ -589,7 +604,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 * @return bool success
 	 */
 	public function addWatchBatchForUser( User $user, array $targets ) {
-		if ( $this->loadBalancer->getReadOnlyReason() !== false ) {
+		if ( $this->readOnlyMode->isReadOnly() ) {
 			return false;
 		}
 		// Only loggedin user can have a watchlist
@@ -602,6 +617,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 		}
 
 		$rows = [];
+		$items = [];
 		foreach ( $targets as $target ) {
 			$rows[] = [
 				'wl_user' => $user->getId(),
@@ -609,6 +625,11 @@ class WatchedItemStore implements StatsdAwareInterface {
 				'wl_title' => $target->getDBkey(),
 				'wl_notificationtimestamp' => null,
 			];
+			$items[] = new WatchedItem(
+				$user,
+				$target,
+				null
+			);
 			$this->uncache( $user, $target );
 		}
 
@@ -617,6 +638,12 @@ class WatchedItemStore implements StatsdAwareInterface {
 			// Use INSERT IGNORE to avoid overwriting the notification timestamp
 			// if there's already an entry for this page
 			$dbw->insert( 'watchlist', $toInsert, __METHOD__, 'IGNORE' );
+		}
+		// Update process cache to ensure skin doesn't claim that the current
+		// page is unwatched in the response of action=watch itself (T28292).
+		// This would otherwise be re-queried from a slave by isWatched().
+		foreach ( $items as $item ) {
+			$this->cache( $item );
 		}
 
 		return true;
@@ -635,7 +662,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 */
 	public function removeWatch( User $user, LinkTarget $target ) {
 		// Only logged in user can have a watchlist
-		if ( $this->loadBalancer->getReadOnlyReason() !== false || $user->isAnon() ) {
+		if ( $this->readOnlyMode->isReadOnly() || $user->isAnon() ) {
 			return false;
 		}
 
@@ -656,7 +683,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 
 	/**
 	 * @param User $user The user to set the timestamp for
-	 * @param string $timestamp Set the update timestamp to this value
+	 * @param string|null $timestamp Set the update timestamp to this value
 	 * @param LinkTarget[] $targets List of targets to update. Default to all targets
 	 *
 	 * @return bool success
@@ -675,9 +702,13 @@ class WatchedItemStore implements StatsdAwareInterface {
 			$conds[] = $batch->constructSet( 'wl', $dbw );
 		}
 
+		if ( $timestamp !== null ) {
+			$timestamp = $dbw->timestamp( $timestamp );
+		}
+
 		$success = $dbw->update(
 			'watchlist',
-			[ 'wl_notificationtimestamp' => $dbw->timestamp( $timestamp ) ],
+			[ 'wl_notificationtimestamp' => $timestamp ],
 			$conds,
 			__METHOD__
 		);
@@ -718,7 +749,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 					global $wgUpdateRowsPerQuery;
 
 					$dbw = $this->getConnectionRef( DB_MASTER );
-					$factory = wfGetLBFactory();
+					$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 					$ticket = $factory->getEmptyTransactionTicket( __METHOD__ );
 
 					$watchersChunks = array_chunk( $watchers, $wgUpdateRowsPerQuery );
@@ -762,7 +793,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 */
 	public function resetNotificationTimestamp( User $user, Title $title, $force = '', $oldid = 0 ) {
 		// Only loggedin user can have a watchlist
-		if ( $this->loadBalancer->getReadOnlyReason() !== false || $user->isAnon() ) {
+		if ( $this->readOnlyMode->isReadOnly() || $user->isAnon() ) {
 			return false;
 		}
 

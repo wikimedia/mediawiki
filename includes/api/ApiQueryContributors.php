@@ -160,7 +160,13 @@ class ApiQueryContributors extends ApiQueryBase {
 			$this->addTables( 'user_groups' );
 			$this->addJoinConds( [ 'user_groups' => [
 				$excludeGroups ? 'LEFT OUTER JOIN' : 'INNER JOIN',
-				[ 'ug_user=rev_user', 'ug_group' => $limitGroups ]
+				[
+					'ug_user=rev_user',
+					'ug_group' => $limitGroups,
+					$this->getConfig()->get( 'DisableUserGroupExpiry' ) ?
+						'1' :
+						'ug_expiry IS NULL OR ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
+				]
 			] ] );
 			$this->addWhereIf( 'ug_user IS NULL', $excludeGroups );
 		}
@@ -250,6 +256,6 @@ class ApiQueryContributors extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Contributors';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Contributors';
 	}
 }

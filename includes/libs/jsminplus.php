@@ -6,9 +6,9 @@
  * Minifies a javascript file using a javascript parser
  *
  * This implements a PHP port of Brendan Eich's Narcissus open source javascript engine (in javascript)
- * References: http://en.wikipedia.org/wiki/Narcissus_(JavaScript_engine)
- * Narcissus sourcecode: http://mxr.mozilla.org/mozilla/source/js/narcissus/
- * JSMinPlus weblog: http://crisp.tweakblogs.net/blog/cat/716
+ * References: https://en.wikipedia.org/wiki/Narcissus_(JavaScript_engine)
+ * Narcissus sourcecode: https://mxr.mozilla.org/mozilla/source/js/narcissus/
+ * JSMinPlus weblog: https://crisp.tweakblogs.net/blog/cat/716
  *
  * Tino Zijdel <crisp@tweakers.net>
  *
@@ -936,7 +936,7 @@ class JSParser
 				{
 					// <script language="JavaScript"> (without version hints) may need
 					// automatic semicolon insertion without a newline after do-while.
-					// See http://bugzilla.mozilla.org/show_bug.cgi?id=238945.
+					// See https://bugzilla.mozilla.org/show_bug.cgi?id=238945.
 					$this->t->match(OP_SEMICOLON);
 					return $n;
 				}

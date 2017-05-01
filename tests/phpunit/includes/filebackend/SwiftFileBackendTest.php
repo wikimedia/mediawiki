@@ -1,9 +1,16 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @group FileRepo
  * @group FileBackend
  * @group medium
+ *
+ * @covers SwiftFileBackend
+ * @covers SwiftFileBackendDirList
+ * @covers SwiftFileBackendFileList
+ * @covers SwiftFileBackendList
  */
 class SwiftFileBackendTest extends MediaWikiTestCase {
 	/** @var TestingAccessWrapper Proxy to SwiftFileBackend */
@@ -28,8 +35,6 @@ class SwiftFileBackendTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_testSanitizeHdrs
-	 * @covers SwiftFileBackend::sanitizeHdrs
-	 * @covers SwiftFileBackend::getCustomHeaders
 	 */
 	public function testSanitizeHdrs( $raw, $sanitized ) {
 		$hdrs = $this->backend->sanitizeHdrs( [ 'headers' => $raw ] );
@@ -92,7 +97,6 @@ class SwiftFileBackendTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_testGetMetadataHeaders
-	 * @covers SwiftFileBackend::getMetadataHeaders
 	 */
 	public function testGetMetadataHeaders( $raw, $sanitized ) {
 		$hdrs = $this->backend->getMetadataHeaders( $raw );
@@ -120,7 +124,6 @@ class SwiftFileBackendTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provider_testGetMetadata
-	 * @covers SwiftFileBackend::getMetadata
 	 */
 	public function testGetMetadata( $raw, $sanitized ) {
 		$hdrs = $this->backend->getMetadata( $raw );

@@ -19,6 +19,8 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Abstract base class for a list of deletable items. The list class
  * needs to be able to make a query from a set of identifiers to pull
@@ -97,8 +99,9 @@ abstract class RevDelList extends RevisionListBase {
 	 *
 	 * @param array $params Associative array of parameters. Members are:
 	 *     value:         ExtractBitParams() bitfield array
-	 *     comment:       The log comment.
+	 *     comment:       The log comment
 	 *     perItemStatus: Set if you want per-item status reports
+	 *     tags:          The array of change tags to apply to the log entry
 	 * @return Status
 	 * @since 1.23 Added 'perItemStatus' param
 	 */
@@ -254,7 +257,8 @@ abstract class RevDelList extends RevisionListBase {
 		$status->merge( $this->doPreCommitUpdates() );
 		if ( !$status->isOK() ) {
 			// Fatal error, such as no configured archive directory or I/O failures
-			wfGetLBFactory()->rollbackMasterChanges( __METHOD__ );
+			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+			$lbFactory->rollbackMasterChanges( __METHOD__ );
 			return $status;
 		}
 
@@ -269,7 +273,8 @@ abstract class RevDelList extends RevisionListBase {
 				'comment' => $comment,
 				'ids' => $idsForLog,
 				'authorIds' => $authorIds,
-				'authorIPs' => $authorIPs
+				'authorIPs' => $authorIPs,
+				'tags' => isset( $params['tags'] ) ? $params['tags'] : [],
 			]
 		);
 
@@ -327,6 +332,7 @@ abstract class RevDelList extends RevisionListBase {
 	 *     comment:         The log comment
 	 *     authorsIds:      The array of the user IDs of the offenders
 	 *     authorsIPs:      The array of the IP/anon user offenders
+	 *     tags:            The array of change tags to apply to the log entry
 	 * @throws MWException
 	 */
 	private function updateLog( $logType, $params ) {
@@ -349,6 +355,8 @@ abstract class RevDelList extends RevisionListBase {
 			'target_author_id' => $params['authorIds'],
 			'target_author_ip' => $params['authorIPs'],
 		] );
+		// Apply change tags to the log entry
+		$logEntry->setTags( $params['tags'] );
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 	}

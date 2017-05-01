@@ -22,6 +22,9 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Special page lists templates with a large number of
  * transclusion links, i.e. "most used" templates
@@ -79,17 +82,7 @@ class MostlinkedTemplatesPage extends QueryPage {
 	 * @param ResultWrapper $res
 	 */
 	public function preprocessResults( $db, $res ) {
-		if ( !$res->numRows() ) {
-			return;
-		}
-
-		$batch = new LinkBatch();
-		foreach ( $res as $row ) {
-			$batch->add( $row->namespace, $row->title );
-		}
-		$batch->execute();
-
-		$res->seek( 0 );
+		$this->executeLBFromResultWrapper( $res );
 	}
 
 	/**
@@ -114,7 +107,7 @@ class MostlinkedTemplatesPage extends QueryPage {
 		}
 
 		return $this->getLanguage()->specialList(
-			Linker::link( $title ),
+			$this->getLinkRenderer()->makeLink( $title ),
 			$this->makeWlhLink( $title, $result )
 		);
 	}
@@ -128,9 +121,9 @@ class MostlinkedTemplatesPage extends QueryPage {
 	 */
 	private function makeWlhLink( $title, $result ) {
 		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedText() );
-		$label = $this->msg( 'ntransclusions' )->numParams( $result->value )->escaped();
+		$label = $this->msg( 'ntransclusions' )->numParams( $result->value )->text();
 
-		return Linker::link( $wlh, $label );
+		return $this->getLinkRenderer()->makeLink( $wlh, $label );
 	}
 
 	protected function getGroupName() {

@@ -20,6 +20,8 @@
  * @file
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 abstract class UserArray implements Iterator {
 	/**
 	 * @param ResultWrapper $res
@@ -38,7 +40,7 @@ abstract class UserArray implements Iterator {
 
 	/**
 	 * @param array $ids
-	 * @return UserArrayFromResult
+	 * @return UserArrayFromResult|ArrayIterator
 	 */
 	static function newFromIDs( $ids ) {
 		$ids = array_map( 'intval', (array)$ids ); // paranoia
@@ -59,7 +61,7 @@ abstract class UserArray implements Iterator {
 	/**
 	 * @since 1.25
 	 * @param array $names
-	 * @return UserArrayFromResult
+	 * @return UserArrayFromResult|ArrayIterator
 	 */
 	static function newFromNames( $names ) {
 		$names = array_map( 'strval', (array)$names ); // paranoia

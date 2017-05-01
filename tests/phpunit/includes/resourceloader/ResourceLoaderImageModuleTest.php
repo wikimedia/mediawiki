@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @group ResourceLoader
  */
@@ -196,6 +198,62 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 			'image' => 'example',
 		] ) );
 		$this->assertInstanceOf( ResourceLoaderImage::class, $context->getImageObj() );
+	}
+
+	public static function providerGetStyleDeclarations() {
+		return [
+			[
+				false,
+<<<TEXT
+background-image: url(rasterized.png);
+	background-image: linear-gradient(transparent, transparent), url(original.svg);
+	background-image: -o-linear-gradient(transparent, transparent), url(rasterized.png);
+TEXT
+			],
+			[
+				'data:image/svg+xml',
+<<<TEXT
+background-image: url(rasterized.png);
+	background-image: linear-gradient(transparent, transparent), url(data:image/svg+xml);
+	background-image: -o-linear-gradient(transparent, transparent), url(rasterized.png);
+TEXT
+			],
+
+		];
+	}
+
+	/**
+	 * @dataProvider providerGetStyleDeclarations
+	 * @covers ResourceLoaderImageModule::getStyleDeclarations
+	 */
+	public function testGetStyleDeclarations( $dataUriReturnValue, $expected ) {
+		$module = TestingAccessWrapper::newFromObject( new ResourceLoaderImageModule() );
+		$context = $this->getResourceLoaderContext();
+		$image = $this->getImageMock( $context, $dataUriReturnValue );
+
+		$styles = $module->getStyleDeclarations(
+			$context,
+			$image,
+			'load.php'
+		);
+
+		$this->assertEquals( $expected, $styles );
+	}
+
+	private function getImageMock( ResourceLoaderContext $context, $dataUriReturnValue ) {
+		$image = $this->getMockBuilder( 'ResourceLoaderImage' )
+			->disableOriginalConstructor()
+			->getMock();
+		$image->method( 'getDataUri' )
+			->will( $this->returnValue( $dataUriReturnValue ) );
+		$image->expects( $this->any() )
+			->method( 'getUrl' )
+			->will( $this->returnValueMap( [
+				[ $context, 'load.php', null, 'original', 'original.svg' ],
+				[ $context, 'load.php', null, 'rasterized', 'rasterized.png' ],
+			] ) );
+
+		return $image;
 	}
 }
 

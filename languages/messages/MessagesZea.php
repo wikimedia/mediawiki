@@ -20,7 +20,7 @@ $fallback = 'nl';
 
 /**
  * Namespace names
- * (bug 8708)
+ * (T10708)
  */
 $namespaceNames = [
 	NS_MEDIA            => 'Media',
@@ -40,4 +40,3 @@ $namespaceNames = [
 	NS_CATEGORY         => 'Categorie',
 	NS_CATEGORY_TALK    => 'Overleg_categorie',
 ];
-

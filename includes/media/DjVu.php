@@ -170,7 +170,7 @@ class DjVuHandler extends ImageHandler {
 				'thumbnail_error',
 				$width,
 				$height,
-				wfMessage( 'thumbnail_dest_directory' )->text()
+				wfMessage( 'thumbnail_dest_directory' )
 			);
 		}
 
@@ -197,7 +197,7 @@ class DjVuHandler extends ImageHandler {
 
 			return new MediaTransformError( 'thumbnail_error',
 				$params['width'], $params['height'],
-				wfMessage( 'filemissing' )->text()
+				wfMessage( 'filemissing' )
 			);
 		}
 

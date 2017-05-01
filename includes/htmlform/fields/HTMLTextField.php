@@ -1,7 +1,18 @@
 <?php
 
+/**
+ * <input> field.
+ *
+ * Besides the parameters recognized by HTMLFormField, the following are
+ * recognized:
+ *   autocomplete - HTML autocomplete value (a boolean for on/off or a string according to
+ *     https://html.spec.whatwg.org/multipage/forms.html#autofill )
+ */
 class HTMLTextField extends HTMLFormField {
 	protected $mPlaceholder = '';
+
+	/** @var bool HTML autocomplete attribute */
+	protected $autocomplete;
 
 	/**
 	 * @param array $params
@@ -13,6 +24,10 @@ class HTMLTextField extends HTMLFormField {
 	 *     for password fields)
 	 */
 	public function __construct( $params ) {
+		if ( isset( $params['autocomplete'] ) && is_bool( $params['autocomplete'] ) ) {
+			$params['autocomplete'] = $params['autocomplete'] ? 'on' : 'off';
+		}
+
 		parent::__construct( $params );
 
 		if ( isset( $params['placeholder-message'] ) ) {
@@ -22,11 +37,11 @@ class HTMLTextField extends HTMLFormField {
 		}
 	}
 
-	function getSize() {
+	public function getSize() {
 		return isset( $this->mParams['size'] ) ? $this->mParams['size'] : 45;
 	}
 
-	function getSpellCheck() {
+	public function getSpellCheck() {
 		$val = isset( $this->mParams['spellcheck'] ) ? $this->mParams['spellcheck'] : null;
 		if ( is_bool( $val ) ) {
 			// "spellcheck" attribute literally requires "true" or "false" to work.
@@ -43,7 +58,7 @@ class HTMLTextField extends HTMLFormField {
 		return !( isset( $this->mParams['type'] ) && $this->mParams['type'] === 'password' );
 	}
 
-	function getInputHTML( $value ) {
+	public function getInputHTML( $value ) {
 		if ( !$this->isPersistent() ) {
 			$value = '';
 		}
@@ -80,7 +95,8 @@ class HTMLTextField extends HTMLFormField {
 			'required',
 			'autofocus',
 			'multiple',
-			'readonly'
+			'readonly',
+			'autocomplete',
 		];
 
 		$attribs += $this->getAttributes( $allowedParams );
@@ -119,7 +135,7 @@ class HTMLTextField extends HTMLFormField {
 		return $type;
 	}
 
-	function getInputOOUI( $value ) {
+	public function getInputOOUI( $value ) {
 		if ( !$this->isPersistent() ) {
 			$value = '';
 		}
@@ -146,11 +162,23 @@ class HTMLTextField extends HTMLFormField {
 			'required',
 			'tabindex',
 			'type',
+			'autocomplete',
 		];
 
 		$attribs += OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( $allowedParams )
 		);
+
+		// FIXME T150983 downgrade autocomplete
+		if ( isset( $attribs['autocomplete'] ) ) {
+			if ( $attribs['autocomplete'] === 'on' ) {
+				$attribs['autocomplete'] = true;
+			} elseif ( $attribs['autocomplete'] === 'off' ) {
+				$attribs['autocomplete'] = false;
+			} else {
+				unset( $attribs['autocomplete'] );
+			}
+		}
 
 		$type = $this->getType( $attribs );
 
@@ -159,6 +187,7 @@ class HTMLTextField extends HTMLFormField {
 			'name' => $this->mName,
 			'value' => $value,
 			'type' => $type,
+			'dir' => $this->mDir,
 		] + $attribs );
 	}
 

@@ -1,4 +1,7 @@
 <?php
+
+namespace Wikimedia\Rdbms;
+
 class MySQLField implements Field {
 	private $name, $tablename, $default, $max_length, $nullable,
 		$is_pk, $is_unique, $is_multiple, $is_key, $type, $binary,
@@ -103,4 +106,3 @@ class MySQLField implements Field {
 		return $this->is_zerofill;
 	}
 }
-

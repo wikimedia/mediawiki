@@ -82,6 +82,11 @@ abstract class Password {
 	protected $config;
 
 	/**
+	 * Hash must fit in user_password, which is a tinyblob
+	 */
+	const MAX_HASH_SIZE = 255;
+
+	/**
 	 * Construct the Password object using a string hash
 	 *
 	 * It is strongly recommended not to call this function directly unless you
@@ -133,8 +138,7 @@ abstract class Password {
 	 *
 	 * @return bool True if needs update, false otherwise
 	 */
-	public function needsUpdate() {
-	}
+	abstract public function needsUpdate();
 
 	/**
 	 * Compare one Password object to this object
@@ -168,9 +172,28 @@ abstract class Password {
 	 * are considered equivalent.
 	 *
 	 * @return string
+	 * @throws PasswordError if password cannot be serialized to fit a tinyblob.
 	 */
 	public function toString() {
-		return ':' . $this->config['type'] . ':' . $this->hash;
+		$result = ':' . $this->config['type'] . ':' . $this->hash;
+		$this->assertIsSafeSize( $result );
+		return $result;
+	}
+
+	/**
+	 * Assert that hash will fit in a tinyblob field.
+	 *
+	 * This prevents MW from inserting it into the DB
+	 * and having MySQL silently truncating it, locking
+	 * the user out of their account.
+	 *
+	 * @param string $hash The hash in question.
+	 * @throws PasswordError If hash does not fit in DB.
+	 */
+	final protected function assertIsSafeSize( $hash ) {
+		if ( strlen( $hash ) > self::MAX_HASH_SIZE ) {
+			throw new PasswordError( "Password hash is too big" );
+		}
 	}
 
 	/**

@@ -49,6 +49,8 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	protected $persistent;
 	/** @var int Serializer to use (Redis::SERIALIZER_*) */
 	protected $serializer;
+	/** @var string ID for persistent connections */
+	protected $id;
 
 	/** @var int Current idle pool size */
 	protected $idlePoolSize = 0;
@@ -71,9 +73,10 @@ class RedisConnectionPool implements LoggerAwareInterface {
 
 	/**
 	 * @param array $options
+	 * @param string $id
 	 * @throws Exception
 	 */
-	protected function __construct( array $options ) {
+	protected function __construct( array $options, $id ) {
 		if ( !class_exists( 'Redis' ) ) {
 			throw new RuntimeException(
 				__CLASS__ . ' requires a Redis client library. ' .
@@ -95,6 +98,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 		} else {
 			throw new InvalidArgumentException( "Invalid serializer specified." );
 		}
+		$this->id = $id;
 	}
 
 	/**
@@ -148,7 +152,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 		$id = sha1( serialize( $options ) );
 		// Initialize the object at the hash as needed...
 		if ( !isset( self::$instances[$id] ) ) {
-			self::$instances[$id] = new self( $options );
+			self::$instances[$id] = new self( $options, $id );
 		}
 
 		return self::$instances[$id];
@@ -230,7 +234,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 		$conn = new Redis();
 		try {
 			if ( $this->persistent ) {
-				$result = $conn->pconnect( $host, $port, $this->connectTimeout );
+				$result = $conn->pconnect( $host, $port, $this->connectTimeout, $this->id );
 			} else {
 				$result = $conn->connect( $host, $port, $this->connectTimeout );
 			}
@@ -317,21 +321,6 @@ class RedisConnectionPool implements LoggerAwareInterface {
 				}
 			}
 		}
-	}
-
-	/**
-	 * The redis extension throws an exception in response to various read, write
-	 * and protocol errors. Sometimes it also closes the connection, sometimes
-	 * not. The safest response for us is to explicitly destroy the connection
-	 * object and let it be reopened during the next request.
-	 *
-	 * @param string $server
-	 * @param RedisConnRef $cref
-	 * @param RedisException $e
-	 * @deprecated since 1.23
-	 */
-	public function handleException( $server, RedisConnRef $cref, RedisException $e ) {
-		$this->handleError( $cref, $e );
 	}
 
 	/**

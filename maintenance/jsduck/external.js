@@ -38,6 +38,6 @@
  */
 
 /**
- * Source: <http://api.qunitjs.com/>
+ * Source: <https://api.qunitjs.com/>
  * @class QUnit
  */

@@ -19,7 +19,7 @@
  */
 
 /**
- * Workaround for incorrect collation of Estonian language ('et') in ICU (bug 54168).
+ * Workaround for incorrect collation of Estonian language ('et') in ICU (T56168).
  *
  * 'W' and 'V' should not be considered the same letter for the purposes of collation in modern
  * Estonian. We work around this by replacing 'W' and 'w' with 'ᴡ' U+1D21 'LATIN LETTER SMALL

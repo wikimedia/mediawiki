@@ -121,10 +121,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			}
 
 			if ( !$valid ) {
-				$valueName = $this->encodeParamName( 'action' );
-				$this->dieUsage(
-					"Unrecognized value for parameter '$valueName': {$logAction}",
-					"unknown_$valueName"
+				$encParamName = $this->encodeParamName( 'action' );
+				$this->dieWithError(
+					[ 'apierror-unrecognizedvalue', $encParamName, wfEscapeWikiText( $logAction ) ],
+					"unknown_$encParamName"
 				);
 			}
 
@@ -173,7 +173,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		if ( !is_null( $title ) ) {
 			$titleObj = Title::newFromText( $title );
 			if ( is_null( $titleObj ) ) {
-				$this->dieUsage( "Bad title value '$title'", 'param_title' );
+				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $title ) ] );
 			}
 			$this->addWhereFld( 'log_namespace', $titleObj->getNamespace() );
 			$this->addWhereFld( 'log_title', $titleObj->getDBkey() );
@@ -187,18 +187,18 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		if ( !is_null( $prefix ) ) {
 			if ( $this->getConfig()->get( 'MiserMode' ) ) {
-				$this->dieUsage( 'Prefix search disabled in Miser Mode', 'prefixsearchdisabled' );
+				$this->dieWithError( 'apierror-prefixsearchdisabled' );
 			}
 
 			$title = Title::newFromText( $prefix );
 			if ( is_null( $title ) ) {
-				$this->dieUsage( "Bad title value '$prefix'", 'param_prefix' );
+				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $prefix ) ] );
 			}
 			$this->addWhereFld( 'log_namespace', $title->getNamespace() );
 			$this->addWhere( 'log_title ' . $db->buildLike( $title->getDBkey(), $db->anyString() ) );
 		}
 
-		// Paranoia: avoid brute force searches (bug 17342)
+		// Paranoia: avoid brute force searches (T19342)
 		if ( $params['namespace'] !== null || !is_null( $title ) || !is_null( $user ) ) {
 			if ( !$this->getUser()->isAllowed( 'deletedhistory' ) ) {
 				$titleBits = LogPage::DELETED_ACTION;
@@ -435,7 +435,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			],
 			'title' => null,
 			'namespace' => [
-				ApiBase::PARAM_TYPE => 'namespace'
+				ApiBase::PARAM_TYPE => 'namespace',
+				ApiBase::PARAM_EXTRA_NAMESPACES => [ NS_MEDIA, NS_SPECIAL ],
 			],
 			'prefix' => [],
 			'tag' => null,
@@ -466,6 +467,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Logevents';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Logevents';
 	}
 }

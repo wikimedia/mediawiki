@@ -15,7 +15,7 @@
 						pages: [ {
 							pageid: 1,
 							ns: 0,
-							title:  'Sandbox',
+							title: 'Sandbox',
 							revisions: [ {
 								timestamp: '2016-01-01T12:00:00Z',
 								contentformat: 'text/x-wiki',
@@ -56,7 +56,7 @@
 						pages: [ {
 							pageid: 4,
 							ns: 0,
-							title:  'Async',
+							title: 'Async',
 							revisions: [ {
 								timestamp: '2016-02-01T12:00:00Z',
 								contentformat: 'text/x-wiki',
@@ -97,7 +97,7 @@
 						pages: [ {
 							pageid: 3,
 							ns: 0,
-							title:  'Param',
+							title: 'Param',
 							revisions: [ {
 								timestamp: '2016-03-01T12:00:00Z',
 								contentformat: 'text/x-wiki',
@@ -134,7 +134,7 @@
 			if ( /edit.+text=Sand/.test( req.requestBody ) ) {
 				req.respond( 200, { 'Content-Type': 'application/json' }, JSON.stringify( {
 					edit: {
-						'new': true,
+						new: true,
 						result: 'Success',
 						newrevid: 41,
 						newtimestamp: '2016-04-01T12:00:00Z'

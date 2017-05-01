@@ -68,7 +68,8 @@ class ParserTestsMaintenance extends Maintenance {
 			'are: removeTbody to remove <tbody> tags; and trimWhitespace ' .
 			'to trim whitespace from the start and end of text nodes.',
 			false, true );
-		$this->addOption( 'use-tidy-config', 'Use the wiki\'s Tidy configuration instead of known-good' .
+		$this->addOption( 'use-tidy-config',
+			'Use the wiki\'s Tidy configuration instead of known-good' .
 			'defaults.' );
 	}
 

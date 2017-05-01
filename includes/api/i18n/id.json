@@ -4,7 +4,8 @@
 			"WongKentir",
 			"Beeyan",
 			"Rachmat.Wahidi",
-			"Kenrick95"
+			"Kenrick95",
+			"Presidenvolksraad"
 		]
 	},
 	"apihelp-main-param-action": "Tindakan manakah yang akan dilakukan.",
@@ -60,7 +61,7 @@
 	"apihelp-edit-param-tags": "Ganti tag untuk menerapkan ke revisi.",
 	"apihelp-edit-param-minor": "Suntingan kecil.",
 	"apihelp-edit-param-notminor": "Bukan suntingan kecil.",
-	"apihelp-edit-param-bot": "Tandai suntingan ini sebagai bot.",
+	"apihelp-edit-param-bot": "Tandai suntingan ini sebagai suntingan bot.",
 	"apihelp-edit-param-basetimestamp": "Stempel waktu dari revisi asal, digunakan untuk mendeteksi konflik penyuntingan. Dapat ditemukan di [[Special:ApiHelp/query+revisions|action=query&prop=revisions&rvprop=timestamp]].",
 	"apihelp-edit-param-starttimestamp": "Stempel waktu ketika proses penyuntingan dimulai, digunakan untuk mendeteksi konflik penyuntingan. Nilai yang cocok dapat ditemukan dengan menggunakan <var>[[Special:ApiHelp/main|curtimestamp]]</var> ketika memulai proses penyuntingan (seperti ketika memuat isi konten yang akan disunting).",
 	"apihelp-edit-param-recreate": "Batalkan galat yang terjadi tentang halaman yang sudah dihapus pada saat itu.",
@@ -86,13 +87,19 @@
 	"apihelp-emailuser-param-subject": "Tajuk subjek.",
 	"apihelp-emailuser-param-text": "Badan pesan.",
 	"apihelp-emailuser-param-ccme": "Kirimkan salinan pesan ini kepada saya.",
-	"apihelp-expandtemplates-description": "Tambahkan semua templat dalam teks wiki.",
+	"apihelp-expandtemplates-description": "Longgarkan semua templat dalam teks wiki.",
 	"apihelp-expandtemplates-param-title": "Judul halaman.",
 	"apihelp-expandtemplates-param-text": "Teks wiki yang akan diubah.",
 	"apihelp-expandtemplates-param-revid": "ID revisi, untuk <nowiki>{{REVISIONID}}</nowiki> dan variabel serupa.",
 	"apihelp-expandtemplates-param-prop": "Bagian informasi manakah yang ingin didapatkan.\n\nPerhatikan bahwa jika tidak ada nilai yang dipilih, hasilnya akan mengandung teks wiki, namun keluaran akan berupa format usang.",
+	"apihelp-feedcontributions-param-deletedonly": "Tampilkan hanya kontribusi terhapus.",
 	"apihelp-login-example-login": "Masuk log.",
+	"apihelp-move-param-noredirect": "Jangan buat pengalihan.",
+	"apihelp-move-param-unwatch": "Hapus halaman dan pengalihan dari daftar pantauan pengguna ini.",
+	"apihelp-move-example-move": "Pindahkan <kbd>Judul buruk</kbd> ke <kbd>Judul benar</kbd> tanpa membuat pengalihan.",
+	"apihelp-opensearch-param-redirects": "Bagaimana menangani pengalihan:\n;return:Kembali ke pengalihan itu.\n;resolve:Kembali ke halaman tujuan. Mungkin hasil kembali kurang dari $1limit.\nUntuk alasan riwayat, nilai baku adalah \"kembali\" untuk $1format=json dan \"resolve\" untuk format lain.",
 	"apihelp-query+prefixsearch-param-profile": "Cari profil untuk digunakan.",
 	"apihelp-query+search-param-qiprofile": "Meminta profil independen untuk digunakan (berefek pada algoritma peringkat).",
-	"apihelp-revisiondelete-param-ids": "Penanda untuk perubahan yang akan dihapus"
+	"apihelp-revisiondelete-param-ids": "Penanda untuk perubahan yang akan dihapus",
+	"api-format-prettyprint-status": "Tanggapan ini akan dikembalikan dengan status $1 $2 HTTP."
 }

@@ -99,4 +99,3 @@ $bookstoreList = [
 ];
 
 $linkTrail = '/^([áðíóúýæøa-z]+)(.*)$/sDu';
-

@@ -1,8 +1,10 @@
 /*!
  * Implement AJAX navigation for multi-page images so the user may browse without a full page reload.
  */
+
+/* eslint-disable no-use-before-define */
+
 ( function ( mw, $ ) {
-	/*jshint latedef:false */
 	var jqXhr, $multipageimage, $spinner,
 		cache = {},
 		cacheOrder = [];
@@ -102,7 +104,7 @@
 			var page, url;
 
 			// Generate the same URL on client side as the one generated in ImagePage::openShowImage.
-			// We avoid using the URL in the link directly since it could have been manipulated (bug 66608)
+			// We avoid using the URL in the link directly since it could have been manipulated (T68608)
 			page = Number( mw.util.getParamValue( 'page', this.href ) );
 			url = mw.util.getUrl( mw.config.get( 'wgPageName' ), { page: page } );
 

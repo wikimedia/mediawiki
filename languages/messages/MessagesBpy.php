@@ -41,4 +41,3 @@ $digitTransformTable = [
 	'8' => '৮',
 	'9' => '৯'
 ];
-

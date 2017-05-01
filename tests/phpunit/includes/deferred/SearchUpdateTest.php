@@ -66,13 +66,13 @@ EOT
 		$this->assertNotEquals(
 			'',
 			$this->updateText( $text ),
-			'Bug 18609'
+			'T20609'
 		);
 	}
 
 	/**
 	 * @covers SearchUpdate::updateText
-	 * Test bug 32712
+	 * Test T34712
 	 * Test if unicode quotes in article links make its search index empty
 	 */
 	public function testUnicodeLinkSearchIndexError() {

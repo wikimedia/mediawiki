@@ -19,7 +19,7 @@ class HTMLRadioField extends HTMLFormField {
 		}
 	}
 
-	function validate( $value, $alldata ) {
+	public function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
 		if ( $p !== true ) {
@@ -27,7 +27,7 @@ class HTMLRadioField extends HTMLFormField {
 		}
 
 		if ( !is_string( $value ) && !is_int( $value ) ) {
-			return $this->msg( 'htmlform-required' )->parse();
+			return $this->msg( 'htmlform-required' );
 		}
 
 		$validOptions = HTMLFormField::flattenOptions( $this->getOptions() );
@@ -35,7 +35,7 @@ class HTMLRadioField extends HTMLFormField {
 		if ( in_array( strval( $value ), $validOptions, true ) ) {
 			return true;
 		} else {
-			return $this->msg( 'htmlform-select-badoption' )->parse();
+			return $this->msg( 'htmlform-select-badoption' );
 		}
 	}
 
@@ -47,13 +47,13 @@ class HTMLRadioField extends HTMLFormField {
 	 *
 	 * @return string
 	 */
-	function getInputHTML( $value ) {
+	public function getInputHTML( $value ) {
 		$html = $this->formatOptions( $this->getOptions(), strval( $value ) );
 
 		return $html;
 	}
 
-	function getInputOOUI( $value ) {
+	public function getInputOOUI( $value ) {
 		$options = [];
 		foreach ( $this->getOptions() as $label => $data ) {
 			$options[] = [
@@ -76,7 +76,7 @@ class HTMLRadioField extends HTMLFormField {
 		return true;
 	}
 
-	function formatOptions( $options, $value ) {
+	public function formatOptions( $options, $value ) {
 		global $wgUseMediaWikiUIEverywhere;
 
 		$html = '';

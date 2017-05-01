@@ -28,6 +28,8 @@
  * @since 1.19
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Interface for log entries. Every log entry has these methods.
  *
@@ -428,7 +430,7 @@ class ManualLogEntry extends LogEntryBase {
 	/** @var int ID of the log entry */
 	protected $id;
 
-	/** @var Can this log entry be patrolled? */
+	/** @var bool Can this log entry be patrolled? */
 	protected $isPatrollable = false;
 
 	/** @var bool Whether this is a legacy log entry */

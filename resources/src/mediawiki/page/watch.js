@@ -106,11 +106,12 @@
 		$links = $links.filter( ':not( #bodyContent *, #content * )' );
 
 		$links.click( function ( e ) {
-			var action, api, $link;
+			var mwTitle, action, api, $link;
 
+			mwTitle = mw.Title.newFromText( title );
 			action = mwUriGetAction( this.href );
 
-			if ( action !== 'watch' && action !== 'unwatch' ) {
+			if ( !mwTitle || ( action !== 'watch' && action !== 'unwatch' ) ) {
 				// Let native browsing handle the link
 				return true;
 			}
@@ -132,9 +133,15 @@
 
 			api[ action ]( title )
 				.done( function ( watchResponse ) {
-					var otherAction = action === 'watch' ? 'unwatch' : 'watch';
+					var message, otherAction = action === 'watch' ? 'unwatch' : 'watch';
 
-					mw.notify( $.parseHTML( watchResponse.message ), {
+					if ( mwTitle.getNamespaceId() > 0 && mwTitle.getNamespaceId() % 2 === 1 ) {
+						message = action === 'watch' ? 'addedwatchtext-talk' : 'removedwatchtext-talk';
+					} else {
+						message = action === 'watch' ? 'addedwatchtext' : 'removedwatchtext';
+					}
+
+					mw.notify( mw.message( message, mwTitle.getPrefixedText() ).parseDom(), {
 						tag: 'watch-self'
 					} );
 
@@ -142,22 +149,21 @@
 					updateWatchLink( $link, otherAction );
 
 					// Update the "Watch this page" checkbox on action=edit when the
-					// page is watched or unwatched via the tab (bug 12395).
-					$( '#wpWatchthis' ).prop( 'checked', watchResponse.watched !== undefined );
+					// page is watched or unwatched via the tab (T14395).
+					$( '#wpWatchthis' ).prop( 'checked', watchResponse.watched === true );
 				} )
 				.fail( function () {
-					var cleanTitle, msg, link;
+					var msg, link;
 
 					// Reset link to non-loading mode
 					updateWatchLink( $link, action );
 
 					// Format error message
-					cleanTitle = title.replace( /_/g, ' ' );
 					link = mw.html.element(
 						'a', {
 							href: mw.util.getUrl( title ),
-							title: cleanTitle
-						}, cleanTitle
+							title: mwTitle.getPrefixedText()
+						}, mwTitle.getPrefixedText()
 					);
 					msg = mw.message( 'watcherrortext', link );
 

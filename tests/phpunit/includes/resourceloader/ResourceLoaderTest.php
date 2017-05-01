@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 class ResourceLoaderTest extends ResourceLoaderTestCase {
 
 	protected function setUp() {
@@ -14,6 +16,11 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 				'Foo' => '#eeeeee',
 				'bar' => 5,
 			],
+			// Clear ResourceLoaderGetConfigVars hooks (called by StartupModule)
+			// to avoid notices during testMakeModuleResponse for missing
+			// wgResourceLoaderLESSVars keys in extension hooks.
+			'wgHooks' => [],
+			'wgShowExceptionDetails' => true,
 		] );
 	}
 
@@ -44,11 +51,34 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoader::register
 	 * @covers ResourceLoader::getModule
 	 */
-	public function testRegisterValid() {
+	public function testRegisterValidObject() {
 		$module = new ResourceLoaderTestModule();
 		$resourceLoader = new EmptyResourceLoader();
 		$resourceLoader->register( 'test', $module );
 		$this->assertEquals( $module, $resourceLoader->getModule( 'test' ) );
+	}
+
+	/**
+	 * @covers ResourceLoader::register
+	 * @covers ResourceLoader::getModule
+	 */
+	public function testRegisterValidArray() {
+		$module = new ResourceLoaderTestModule();
+		$resourceLoader = new EmptyResourceLoader();
+		// Covers case of register() setting $rl->moduleInfos,
+		// but $rl->modules lazy-populated by getModule()
+		$resourceLoader->register( 'test', [ 'object' => $module ] );
+		$this->assertEquals( $module, $resourceLoader->getModule( 'test' ) );
+	}
+
+	/**
+	 * @covers ResourceLoader::register
+	 */
+	public function testRegisterEmptyString() {
+		$module = new ResourceLoaderTestModule();
+		$resourceLoader = new EmptyResourceLoader();
+		$resourceLoader->register( '', $module );
+		$this->assertEquals( $module, $resourceLoader->getModule( '' ) );
 	}
 
 	/**
@@ -370,6 +400,33 @@ mw.example();
 	}
 
 	/**
+	 * @covers ResourceLoader::makeLoaderRegisterScript
+	 */
+	public function testMakeLoaderRegisterScript() {
+		$this->assertEquals(
+			'mw.loader.register( [
+    [
+        "test.name",
+        "1234567"
+    ]
+] );',
+			ResourceLoader::makeLoaderRegisterScript( [
+				[ 'test.name', '1234567' ],
+			] ),
+			'Nested array parameter'
+		);
+
+		$this->assertEquals(
+			'mw.loader.register( "test.name", "1234567" );',
+			ResourceLoader::makeLoaderRegisterScript(
+				'test.name',
+				'1234567'
+			),
+			'Variadic parameters'
+		);
+	}
+
+	/**
 	 * @covers ResourceLoader::makeLoaderSourcesScript
 	 */
 	public function testMakeLoaderSourcesScript() {
@@ -430,5 +487,136 @@ mw.example();
 		} catch ( MWException $e ) {
 			$this->assertTrue( true );
 		}
+	}
+
+	protected function getFailFerryMock() {
+		$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
+			->setMethods( [ 'getScript' ] )
+			->getMock();
+		$mock->method( 'getScript' )->will( $this->throwException(
+			new Exception( 'Ferry not found' )
+		) );
+		return $mock;
+	}
+
+	protected function getSimpleModuleMock( $script = '' ) {
+		$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
+			->setMethods( [ 'getScript' ] )
+			->getMock();
+		$mock->method( 'getScript' )->willReturn( $script );
+		return $mock;
+	}
+
+	/**
+	 * @covers ResourceLoader::getCombinedVersion
+	 */
+	public function testGetCombinedVersion() {
+		$rl = new EmptyResourceLoader();
+		$rl->register( [
+			'foo' => self::getSimpleModuleMock(),
+			'ferry' => self::getFailFerryMock(),
+			'bar' => self::getSimpleModuleMock(),
+		] );
+		$context = $this->getResourceLoaderContext( [], $rl );
+
+		$this->assertEquals(
+			ResourceLoader::makeHash( self::BLANK_VERSION ),
+			$rl->getCombinedVersion( $context, [ 'foo' ] ),
+			'compute foo'
+		);
+
+		// Verify that getCombinedVersion() does not throw when ferry fails.
+		// Instead it gracefully continues to combine the remaining modules.
+		$this->assertEquals(
+			ResourceLoader::makeHash( self::BLANK_VERSION . self::BLANK_VERSION ),
+			$rl->getCombinedVersion( $context, [ 'foo', 'ferry', 'bar' ] ),
+			'compute foo+ferry+bar (T152266)'
+		);
+	}
+
+	/**
+	 * Verify that when building module content in a load.php response,
+	 * an exception from one module will not break script output from
+	 * other modules.
+	 */
+	public function testMakeModuleResponseError() {
+		$modules = [
+			'foo' => self::getSimpleModuleMock( 'foo();' ),
+			'ferry' => self::getFailFerryMock(),
+			'bar' => self::getSimpleModuleMock( 'bar();' ),
+		];
+		$rl = new EmptyResourceLoader();
+		$rl->register( $modules );
+		$context = $this->getResourceLoaderContext(
+			[
+				'modules' => 'foo|ferry|bar',
+				'only' => 'scripts',
+			],
+			$rl
+		);
+
+		$response = $rl->makeModuleResponse( $context, $modules );
+		$errors = $rl->getErrors();
+
+		$this->assertCount( 1, $errors );
+		$this->assertRegExp( '/Ferry not found/', $errors[0] );
+		$this->assertEquals(
+			'foo();bar();mw.loader.state( {
+    "ferry": "error",
+    "foo": "ready",
+    "bar": "ready"
+} );',
+			$response
+		);
+	}
+
+	/**
+	 * Verify that when building the startup module response,
+	 * an exception from one module class will not break the entire
+	 * startup module response. See T152266.
+	 */
+	public function testMakeModuleResponseStartupError() {
+		$rl = new EmptyResourceLoader();
+		$rl->register( [
+			'foo' => self::getSimpleModuleMock( 'foo();' ),
+			'ferry' => self::getFailFerryMock(),
+			'bar' => self::getSimpleModuleMock( 'bar();' ),
+			'startup' => [ 'class' => 'ResourceLoaderStartUpModule' ],
+		] );
+		$context = $this->getResourceLoaderContext(
+			[
+				'modules' => 'startup',
+				'only' => 'scripts',
+			],
+			$rl
+		);
+
+		$this->assertEquals(
+			[ 'foo', 'ferry', 'bar', 'startup' ],
+			$rl->getModuleNames(),
+			'getModuleNames'
+		);
+
+		$modules = [ 'startup' => $rl->getModule( 'startup' ) ];
+		$response = $rl->makeModuleResponse( $context, $modules );
+		$errors = $rl->getErrors();
+
+		$this->assertRegExp( '/Ferry not found/', $errors[0] );
+		$this->assertCount( 1, $errors );
+		$this->assertRegExp(
+			'/isCompatible.*function startUp/s',
+			$response,
+			'startup response undisrupted (T152266)'
+		);
+		$this->assertRegExp(
+			'/register\([^)]+"ferry",\s*""/s',
+			$response,
+			'startup response registers broken module'
+		);
+		$this->assertRegExp(
+			'/state\([^)]+"ferry":\s*"error"/s',
+			$response,
+			'startup response sets state to error'
+		);
 	}
 }

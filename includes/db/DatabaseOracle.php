@@ -21,117 +21,16 @@
  * @ingroup Database
  */
 
-/**
- * The oci8 extension is fairly weak and doesn't support oci_num_rows, among
- * other things. We use a wrapper class to handle that and other
- * Oracle-specific bits, like converting column names back to lowercase.
- * @ingroup Database
- */
-class ORAResult {
-	private $rows;
-	private $cursor;
-	private $nrows;
-
-	private $columns = [];
-
-	private function array_unique_md( $array_in ) {
-		$array_out = [];
-		$array_hashes = [];
-
-		foreach ( $array_in as $item ) {
-			$hash = md5( serialize( $item ) );
-			if ( !isset( $array_hashes[$hash] ) ) {
-				$array_hashes[$hash] = $hash;
-				$array_out[] = $item;
-			}
-		}
-
-		return $array_out;
-	}
-
-	/**
-	 * @param IDatabase $db
-	 * @param resource $stmt A valid OCI statement identifier
-	 * @param bool $unique
-	 */
-	function __construct( &$db, $stmt, $unique = false ) {
-		$this->db =& $db;
-
-		$this->nrows = oci_fetch_all( $stmt, $this->rows, 0, -1, OCI_FETCHSTATEMENT_BY_ROW | OCI_NUM );
-		if ( $this->nrows === false ) {
-			$e = oci_error( $stmt );
-			$db->reportQueryError( $e['message'], $e['code'], '', __METHOD__ );
-			$this->free();
-
-			return;
-		}
-
-		if ( $unique ) {
-			$this->rows = $this->array_unique_md( $this->rows );
-			$this->nrows = count( $this->rows );
-		}
-
-		if ( $this->nrows > 0 ) {
-			foreach ( $this->rows[0] as $k => $v ) {
-				$this->columns[$k] = strtolower( oci_field_name( $stmt, $k + 1 ) );
-			}
-		}
-
-		$this->cursor = 0;
-		oci_free_statement( $stmt );
-	}
-
-	public function free() {
-		unset( $this->db );
-	}
-
-	public function seek( $row ) {
-		$this->cursor = min( $row, $this->nrows );
-	}
-
-	public function numRows() {
-		return $this->nrows;
-	}
-
-	public function numFields() {
-		return count( $this->columns );
-	}
-
-	public function fetchObject() {
-		if ( $this->cursor >= $this->nrows ) {
-			return false;
-		}
-		$row = $this->rows[$this->cursor++];
-		$ret = new stdClass();
-		foreach ( $row as $k => $v ) {
-			$lc = $this->columns[$k];
-			$ret->$lc = $v;
-		}
-
-		return $ret;
-	}
-
-	public function fetchRow() {
-		if ( $this->cursor >= $this->nrows ) {
-			return false;
-		}
-
-		$row = $this->rows[$this->cursor++];
-		$ret = [];
-		foreach ( $row as $k => $v ) {
-			$lc = $this->columns[$k];
-			$ret[$lc] = $v;
-			$ret[$k] = $v;
-		}
-
-		return $ret;
-	}
-}
+use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\Blob;
+use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\DBConnectionError;
+use Wikimedia\Rdbms\DBUnexpectedError;
 
 /**
  * @ingroup Database
  */
-class DatabaseOracle extends DatabaseBase {
+class DatabaseOracle extends Database {
 	/** @var resource */
 	protected $mLastResult = null;
 
@@ -668,7 +567,7 @@ class DatabaseOracle extends DatabaseBase {
 		list( $startOpts, $useIndex, $tailOpts, $ignoreIndex ) =
 			$this->makeSelectOptions( $selectOptions );
 		if ( is_array( $srcTable ) ) {
-			$srcTable = implode( ',', array_map( [ &$this, 'tableName' ], $srcTable ) );
+			$srcTable = implode( ',', array_map( [ $this, 'tableName' ], $srcTable ) );
 		} else {
 			$srcTable = $this->tableName( $srcTable );
 		}
@@ -993,12 +892,12 @@ class DatabaseOracle extends DatabaseBase {
 	 *
 	 * @param array|string $table
 	 * @param string $field
-	 * @return ORAField|ORAResult
+	 * @return ORAField|ORAResult|false
 	 */
 	private function fieldInfoMulti( $table, $field ) {
 		$field = strtoupper( $field );
 		if ( is_array( $table ) ) {
-			$table = array_map( [ &$this, 'tableNameInternal' ], $table );
+			$table = array_map( [ $this, 'tableNameInternal' ], $table );
 			$tableWhere = 'IN (';
 			foreach ( $table as &$singleTable ) {
 				$singleTable = $this->removeIdentifierQuotes( $singleTable );
@@ -1085,24 +984,18 @@ class DatabaseOracle extends DatabaseBase {
 		}
 	}
 
-	/**
-	 * defines must comply with ^define\s*([^\s=]*)\s*=\s?'\{\$([^\}]*)\}';
-	 *
-	 * @param resource $fp
-	 * @param bool|string $lineCallback
-	 * @param bool|callable $resultCallback
-	 * @param string $fname
-	 * @param bool|callable $inputCallback
-	 * @return bool|string
-	 */
-	function sourceStream( $fp, $lineCallback = false, $resultCallback = false,
-		$fname = __METHOD__, $inputCallback = false ) {
+	function sourceStream(
+		$fp,
+		callable $lineCallback = null,
+		callable $resultCallback = null,
+		$fname = __METHOD__, callable $inputCallback = null
+	) {
 		$cmd = '';
 		$done = false;
 		$dollarquote = false;
 
 		$replacements = [];
-
+		// Defines must comply with ^define\s*([^\s=]*)\s*=\s?'\{\$([^\}]*)\}';
 		while ( !feof( $fp ) ) {
 			if ( $lineCallback ) {
 				call_user_func( $lineCallback );

@@ -22,6 +22,10 @@
  * @ingroup FileRepo
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * A repository that stores files in the local filesystem and registers them
  * in the wiki's own database. This is the most commonly used repository class.
@@ -195,12 +199,12 @@ class LocalRepo extends FileRepo {
 			$expiry = 86400; // has invalidation, 1 day
 		}
 
-		$that = $this;
+		$method = __METHOD__;
 		$redirDbKey = ObjectCache::getMainWANInstance()->getWithSetCallback(
 			$memcKey,
 			$expiry,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $that, $title ) {
-				$dbr = $that->getSlaveDB(); // possibly remote DB
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $method, $title ) {
+				$dbr = $this->getReplicaDB(); // possibly remote DB
 
 				$setOpts += Database::getCacheSetOptions( $dbr );
 
@@ -213,7 +217,7 @@ class LocalRepo extends FileRepo {
 							'page_title' => $title->getDBkey(),
 							'rd_from = page_id'
 						],
-						__METHOD__
+						$method
 					);
 				} else {
 					$row = false;
@@ -298,7 +302,7 @@ class LocalRepo extends FileRepo {
 			}
 		};
 
-		$dbr = $this->getSlaveDB();
+		$dbr = $this->getReplicaDB();
 
 		// Query image table
 		$imgNames = [];
@@ -368,7 +372,7 @@ class LocalRepo extends FileRepo {
 	 * @return File[]
 	 */
 	function findBySha1( $hash ) {
-		$dbr = $this->getSlaveDB();
+		$dbr = $this->getReplicaDB();
 		$res = $dbr->select(
 			'image',
 			LocalFile::selectFields(),
@@ -400,7 +404,7 @@ class LocalRepo extends FileRepo {
 			return []; // empty parameter
 		}
 
-		$dbr = $this->getSlaveDB();
+		$dbr = $this->getReplicaDB();
 		$res = $dbr->select(
 			'image',
 			LocalFile::selectFields(),
@@ -430,7 +434,7 @@ class LocalRepo extends FileRepo {
 		$selectOptions = [ 'ORDER BY' => 'img_name', 'LIMIT' => intval( $limit ) ];
 
 		// Query database
-		$dbr = $this->getSlaveDB();
+		$dbr = $this->getReplicaDB();
 		$res = $dbr->select(
 			'image',
 			LocalFile::selectFields(),
@@ -452,8 +456,18 @@ class LocalRepo extends FileRepo {
 	 * Get a connection to the replica DB
 	 * @return IDatabase
 	 */
-	function getSlaveDB() {
+	function getReplicaDB() {
 		return wfGetDB( DB_REPLICA );
+	}
+
+	/**
+	 * Alias for getReplicaDB()
+	 *
+	 * @return IDatabase
+	 * @deprecated Since 1.29
+	 */
+	function getSlaveDB() {
+		return $this->getReplicaDB();
 	}
 
 	/**

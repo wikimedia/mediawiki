@@ -195,7 +195,7 @@ class UserDupes {
 			"SELECT user_name,COUNT(*) AS n
 				FROM $user
 			GROUP BY user_name
-			  HAVING n > 1", __METHOD__ );
+				HAVING n > 1", __METHOD__ );
 
 		$list = [];
 		foreach ( $result as $row ) {

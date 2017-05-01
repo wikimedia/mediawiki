@@ -23,6 +23,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * Maintenance script that sends purge requests for pages edited in a date
  * range to squid/varnish.

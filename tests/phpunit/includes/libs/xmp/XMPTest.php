@@ -56,7 +56,7 @@ class XMPTest extends PHPUnit_Framework_TestCase  {
 			[ 'invalid-child-not-struct', 'Test child props not in struct or ignored' ],
 			[ 'no-recognized-props', 'Test namespace and no recognized props' ],
 			[ 'no-namespace', 'Test non-namespaced attributes are ignored' ],
-			[ 'bag-for-seq', "Allow bag's instead of seq's. (bug 27105)" ],
+			[ 'bag-for-seq', "Allow bag's instead of seq's. (T29105)" ],
 			[ 'utf16BE', 'UTF-16BE encoding' ],
 			[ 'utf16LE', 'UTF-16LE encoding' ],
 			[ 'utf32BE', 'UTF-32BE encoding' ],

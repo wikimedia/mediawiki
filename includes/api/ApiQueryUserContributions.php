@@ -65,24 +65,48 @@ class ApiQueryContributions extends ApiQueryBase {
 		// TODO: if the query is going only against the revision table, should this be done?
 		$this->selectNamedDB( 'contributions', DB_REPLICA, 'contributions' );
 
+		$this->requireOnlyOneParameter( $this->params, 'userprefix', 'userids', 'user' );
+
 		$this->idMode = false;
 		if ( isset( $this->params['userprefix'] ) ) {
 			$this->prefixMode = true;
 			$this->multiUserMode = true;
 			$this->userprefix = $this->params['userprefix'];
+		} elseif ( isset( $this->params['userids'] ) ) {
+			$this->userids = [];
+
+			if ( !count( $this->params['userids'] ) ) {
+				$encParamName = $this->encodeParamName( 'userids' );
+				$this->dieWithError( [ 'apierror-paramempty', $encParamName ], "paramempty_$encParamName" );
+			}
+
+			foreach ( $this->params['userids'] as $uid ) {
+				if ( $uid <= 0 ) {
+					$this->dieWithError( [ 'apierror-invaliduserid', $uid ], 'invaliduserid' );
+				}
+
+				$this->userids[] = $uid;
+			}
+
+			$this->prefixMode = false;
+			$this->multiUserMode = ( count( $this->params['userids'] ) > 1 );
+			$this->idMode = true;
 		} else {
 			$anyIPs = false;
 			$this->userids = [];
 			$this->usernames = [];
-			if ( !is_array( $this->params['user'] ) ) {
-				$this->params['user'] = [ $this->params['user'] ];
-			}
 			if ( !count( $this->params['user'] ) ) {
-				$this->dieUsage( 'User parameter may not be empty.', 'param_user' );
+				$encParamName = $this->encodeParamName( 'user' );
+				$this->dieWithError(
+					[ 'apierror-paramempty', $encParamName ], "paramempty_$encParamName"
+				);
 			}
 			foreach ( $this->params['user'] as $u ) {
-				if ( is_null( $u ) || $u === '' ) {
-					$this->dieUsage( 'User parameter may not be empty', 'param_user' );
+				if ( $u === '' ) {
+					$encParamName = $this->encodeParamName( 'user' );
+					$this->dieWithError(
+						[ 'apierror-paramempty', $encParamName ], "paramempty_$encParamName"
+					);
 				}
 
 				if ( User::isIP( $u ) ) {
@@ -91,7 +115,10 @@ class ApiQueryContributions extends ApiQueryBase {
 				} else {
 					$name = User::getCanonicalName( $u, 'valid' );
 					if ( $name === false ) {
-						$this->dieUsage( "User name {$u} is not valid", 'param_user' );
+						$encParamName = $this->encodeParamName( 'user' );
+						$this->dieWithError(
+							[ 'apierror-baduser', $encParamName, wfEscapeWikiText( $u ) ], "baduser_$encParamName"
+						);
 					}
 					$this->usernames[] = $name;
 				}
@@ -254,7 +281,7 @@ class ApiQueryContributions extends ApiQueryBase {
 				|| ( isset( $show['top'] ) && isset( $show['!top'] ) )
 				|| ( isset( $show['new'] ) && isset( $show['!new'] ) )
 			) {
-				$this->dieUsageMsg( 'show' );
+				$this->dieWithError( 'apierror-show' );
 			}
 
 			$this->addWhereIf( 'rev_minor_edit = 0', isset( $show['!minor'] ) );
@@ -285,10 +312,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			$this->fld_patrolled
 		) {
 			if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
-				$this->dieUsage(
-					'You need the patrol right to request the patrolled flag',
-					'permissiondenied'
-				);
+				$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'permissiondenied' );
 			}
 
 			// Use a redundant join condition on both
@@ -489,6 +513,10 @@ class ApiQueryContributions extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => 'user',
 				ApiBase::PARAM_ISMULTI => true
 			],
+			'userids' => [
+				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_ISMULTI => true
+			],
 			'userprefix' => null,
 			'dir' => [
 				ApiBase::PARAM_DFLT => 'older',
@@ -554,6 +582,6 @@ class ApiQueryContributions extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Usercontribs';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Usercontribs';
 	}
 }

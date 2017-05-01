@@ -21,6 +21,9 @@
  * @ingroup SpecialPage
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * A special page listing redirects to non existent page. Those should be
  * fixed to point to an existing page.
@@ -109,12 +112,13 @@ class BrokenRedirectsPage extends QueryPage {
 			}
 		}
 
+		$linkRenderer = $this->getLinkRenderer();
 		// $toObj may very easily be false if the $result list is cached
 		if ( !is_object( $toObj ) ) {
-			return '<del>' . Linker::link( $fromObj ) . '</del>';
+			return '<del>' . $linkRenderer->makeLink( $fromObj ) . '</del>';
 		}
 
-		$from = Linker::linkKnown(
+		$from = $linkRenderer->makeKnownLink(
 			$fromObj,
 			null,
 			[],
@@ -128,28 +132,22 @@ class BrokenRedirectsPage extends QueryPage {
 			// check, if the content model is editable through action=edit
 			ContentHandler::getForTitle( $fromObj )->supportsDirectEditing()
 		) {
-			$links[] = Linker::linkKnown(
+			$links[] = $linkRenderer->makeKnownLink(
 				$fromObj,
-				$this->msg( 'brokenredirects-edit' )->escaped(),
+				$this->msg( 'brokenredirects-edit' )->text(),
 				[],
 				[ 'action' => 'edit' ]
 			);
 		}
-		$to = Linker::link(
-			$toObj,
-			null,
-			[],
-			[],
-			[ 'broken' ]
-		);
+		$to = $linkRenderer->makeBrokenLink( $toObj );
 		$arr = $this->getLanguage()->getArrow();
 
 		$out = $from . $this->msg( 'word-separator' )->escaped();
 
 		if ( $this->getUser()->isAllowed( 'delete' ) ) {
-			$links[] = Linker::linkKnown(
+			$links[] = $linkRenderer->makeKnownLink(
 				$fromObj,
-				$this->msg( 'brokenredirects-delete' )->escaped(),
+				$this->msg( 'brokenredirects-delete' )->text(),
 				[],
 				[ 'action' => 'delete' ]
 			);
@@ -171,18 +169,7 @@ class BrokenRedirectsPage extends QueryPage {
 	 * @param ResultWrapper $res
 	 */
 	function preprocessResults( $db, $res ) {
-		if ( !$res->numRows() ) {
-			return;
-		}
-
-		$batch = new LinkBatch;
-		foreach ( $res as $row ) {
-			$batch->add( $row->namespace, $row->title );
-		}
-		$batch->execute();
-
-		// Back to start for display
-		$res->seek( 0 );
+		$this->executeLBFromResultWrapper( $res );
 	}
 
 	protected function getGroupName() {

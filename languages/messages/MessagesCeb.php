@@ -55,4 +55,3 @@ $specialPageAliases = [
 	'Version'                   => [ 'Bersiyon' ],
 	'Watchlist'                 => [ 'Gibantayan' ],
 ];
-

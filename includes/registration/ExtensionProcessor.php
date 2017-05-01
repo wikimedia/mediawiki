@@ -8,50 +8,52 @@ class ExtensionProcessor implements Processor {
 	 * @var array
 	 */
 	protected static $globalSettings = [
-		'ResourceLoaderSources',
-		'ResourceLoaderLESSVars',
-		'DefaultUserOptions',
-		'HiddenPrefs',
-		'GroupPermissions',
-		'RevokePermissions',
-		'GrantPermissions',
-		'GrantPermissionGroups',
-		'ImplicitGroups',
-		'GroupsAddToSelf',
-		'GroupsRemoveFromSelf',
+		'ActionFilteredLogs',
+		'Actions',
 		'AddGroups',
-		'RemoveGroups',
-		'AvailableRights',
-		'ContentHandlers',
-		'ConfigRegistry',
-		'SessionProviders',
+		'APIFormatModules',
+		'APIListModules',
+		'APIMetaModules',
+		'APIModules',
+		'APIPropModules',
 		'AuthManagerAutoConfig',
+		'AvailableRights',
 		'CentralIdLookupProviders',
 		'ChangeCredentialsBlacklist',
-		'RemoveCredentialsBlacklist',
-		'RateLimits',
-		'RecentChangesFlags',
-		'MediaHandlers',
-		'ExtensionFunctions',
+		'ConfigRegistry',
+		'ContentHandlers',
+		'DefaultUserOptions',
 		'ExtensionEntryPointListFiles',
-		'SpecialPages',
-		'JobClasses',
-		'LogTypes',
-		'LogRestrictions',
+		'ExtensionFunctions',
+		'FeedClasses',
+		'FileExtensions',
 		'FilterLogTypes',
-		'ActionFilteredLogs',
-		'LogNames',
-		'LogHeaders',
+		'GrantPermissionGroups',
+		'GrantPermissions',
+		'GroupPermissions',
+		'GroupsAddToSelf',
+		'GroupsRemoveFromSelf',
+		'HiddenPrefs',
+		'ImplicitGroups',
+		'JobClasses',
 		'LogActions',
 		'LogActionsHandlers',
-		'Actions',
-		'APIModules',
-		'APIFormatModules',
-		'APIMetaModules',
-		'APIPropModules',
-		'APIListModules',
+		'LogHeaders',
+		'LogNames',
+		'LogRestrictions',
+		'LogTypes',
+		'MediaHandlers',
+		'PasswordPolicy',
+		'RateLimits',
+		'RecentChangesFlags',
+		'RemoveCredentialsBlacklist',
+		'RemoveGroups',
+		'ResourceLoaderLESSVars',
+		'ResourceLoaderSources',
+		'RevokePermissions',
+		'SessionProviders',
+		'SpecialPages',
 		'ValidSkinNames',
-		'FeedClasses',
 	];
 
 	/**
@@ -62,18 +64,19 @@ class ExtensionProcessor implements Processor {
 	 * @var array
 	 */
 	protected static $mergeStrategies = [
-		'wgGroupPermissions' => 'array_plus_2d',
-		'wgRevokePermissions' => 'array_plus_2d',
-		'wgGrantPermissions' => 'array_plus_2d',
-		'wgHooks' => 'array_merge_recursive',
+		'wgAuthManagerAutoConfig' => 'array_plus_2d',
+		'wgCapitalLinkOverrides' => 'array_plus',
 		'wgExtensionCredits' => 'array_merge_recursive',
 		'wgExtraGenderNamespaces' => 'array_plus',
-		'wgNamespacesWithSubpages' => 'array_plus',
+		'wgGrantPermissions' => 'array_plus_2d',
+		'wgGroupPermissions' => 'array_plus_2d',
+		'wgHooks' => 'array_merge_recursive',
 		'wgNamespaceContentModels' => 'array_plus',
 		'wgNamespaceProtection' => 'array_plus',
-		'wgCapitalLinkOverrides' => 'array_plus',
+		'wgNamespacesWithSubpages' => 'array_plus',
+		'wgPasswordPolicy' => 'array_merge_recursive',
 		'wgRateLimits' => 'array_plus_2d',
-		'wgAuthManagerAutoConfig' => 'array_plus_2d',
+		'wgRevokePermissions' => 'array_plus_2d',
 	];
 
 	/**
@@ -138,6 +141,7 @@ class ExtensionProcessor implements Processor {
 
 	/**
 	 * Things to be called once registration of these extensions are done
+	 * keyed by the name of the extension that it belongs to
 	 *
 	 * @var callable[]
 	 */
@@ -172,11 +176,11 @@ class ExtensionProcessor implements Processor {
 		$this->extractResourceLoaderModules( $dir, $info );
 		$this->extractServiceWiringFiles( $dir, $info );
 		$this->extractParserTestFiles( $dir, $info );
+		$name = $this->extractCredits( $path, $info );
 		if ( isset( $info['callback'] ) ) {
-			$this->callbacks[] = $info['callback'];
+			$this->callbacks[$name] = $info['callback'];
 		}
 
-		$this->extractCredits( $path, $info );
 		foreach ( $info as $key => $val ) {
 			if ( in_array( $key, self::$globalSettings ) ) {
 				$this->storeToArray( $path, "wg$key", $val, $this->globals );
@@ -207,13 +211,7 @@ class ExtensionProcessor implements Processor {
 	}
 
 	public function getRequirements( array $info ) {
-		$requirements = [];
-		$key = ExtensionRegistry::MEDIAWIKI_CORE;
-		if ( isset( $info['requires'][$key] ) ) {
-			$requirements[$key] = $info['requires'][$key];
-		}
-
-		return $requirements;
+		return isset( $info['requires'] ) ? $info['requires'] : [];
 	}
 
 	protected function extractHooks( array $info ) {
@@ -327,6 +325,7 @@ class ExtensionProcessor implements Processor {
 	/**
 	 * @param string $path
 	 * @param array $info
+	 * @return string Name of thing
 	 * @throws Exception
 	 */
 	protected function extractCredits( $path, array $info ) {
@@ -352,6 +351,8 @@ class ExtensionProcessor implements Processor {
 
 		$this->credits[$name] = $credits;
 		$this->globals['wgExtensionCredits'][$credits['type']][] = $credits;
+
+		return $name;
 	}
 
 	/**

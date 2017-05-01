@@ -29,7 +29,11 @@ body {
 	margin: 0 0 10px 10px;
 }
 
-td, h3, p, h1, pre {
+h1,
+h3,
+p,
+pre,
+td {
 	margin: 0 20px 20px 20px;
 	font-size: 11px;
 	line-height: 140%;

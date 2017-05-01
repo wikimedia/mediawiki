@@ -33,7 +33,7 @@
  * For example, if templates A and B are edited (at the same time) the queue will have:
  *     (A base, B base)
  * When these jobs run, the queue will have per-title and remnant partition jobs:
- * 	   (titleX,titleY,titleZ,...,A remnant,titleM,titleN,titleO,...,B remnant)
+ *     (titleX,titleY,titleZ,...,A remnant,titleM,titleN,titleO,...,B remnant)
  *
  * This works best when the queue is FIFO, for several reasons:
  *   - a) Since the remnant jobs are enqueued after the leaf jobs, the slower leaf jobs have to
@@ -133,7 +133,7 @@ class BacklinkJobUtils {
 					'table'         => $params['table'],
 					'range'         => [
 						'start'     => $ranges[1][0],
-						'end'	    => $ranges[count( $ranges ) - 1][1],
+						'end'       => $ranges[count( $ranges ) - 1][1],
 						'batchSize' => $realBSize,
 						'subranges' => array_slice( $ranges, 1 )
 					],

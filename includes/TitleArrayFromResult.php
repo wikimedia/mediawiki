@@ -24,6 +24,8 @@
  * @file
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 class TitleArrayFromResult extends TitleArray implements Countable {
 	/** @var ResultWrapper */
 	public $res;

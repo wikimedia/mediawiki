@@ -6,7 +6,8 @@
 			"아라",
 			"Vivaelcelta",
 			"Macofe",
-			"Banjo"
+			"Banjo",
+			"Seb35"
 		]
 	},
 	"config-desc": "O programa de instalación de MediaWiki",
@@ -55,7 +56,7 @@
 	"config-unicode-using-intl": "Usando a [http://pecl.php.net/intl extensión intl PECL] para a normalización Unicode.",
 	"config-unicode-pure-php-warning": "<strong>Atención:</strong> A [http://pecl.php.net/intl extensión intl PECL] non está dispoñible para manexar a normalización Unicode; volvendo á execución lenta de PHP puro.\nSe o seu sitio posúe un alto tráfico de visitantes, debería ler un chisco sobre a [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations normalización Unicode].",
 	"config-unicode-update-warning": "<strong>Atención:</strong> A versión instalada da envoltura de normalización Unicode emprega unha versión vella da biblioteca [http://site.icu-project.org/ do proxecto ICU].\nDebería [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations actualizar] se o uso de Unicode é importante para vostede.",
-	"config-no-db": "Non se puido atopar un controlador axeitado para a base de datos! Necesita instalar un controlador de base de datos para PHP.\n{{PLURAL:$2|Acéptase o seguinte tipo|Acéptanse os seguintes tipos}} de base de datos: $1.\n\nSe compilou o PHP vostede mesmo, reconfigúreo activando un cliente de base de datos, por exemplo, usando <code>./configure --with-mysql</code>.\nSe instalou o PHP desde un paquete Debian ou Ubuntu, entón tamén necesita instalar, por exemplo, o módulo <code>php5-mysql</code>.",
+	"config-no-db": "Non se puido atopar un controlador axeitado para a base de datos! Necesita instalar un controlador de base de datos para PHP.\n{{PLURAL:$2|Acéptase o seguinte tipo|Acéptanse os seguintes tipos}} de base de datos: $1.\n\nSe compilou o PHP vostede mesmo, reconfigúreo activando un cliente de base de datos, por exemplo, usando <code>./configure --with-mysqli</code>.\nSe instalou o PHP desde un paquete Debian ou Ubuntu, entón tamén necesita instalar, por exemplo, o módulo <code>php5-mysql</code>.",
 	"config-outdated-sqlite": "<strong>Atención:</strong> Ten o SQLite $1, que é inferior á versión mínima necesaria: $2. O SQLite non estará dispoñible.",
 	"config-no-fts3": "<strong>Atención:</strong> O SQLite está compilado sen o [//sqlite.org/fts3.html módulo FTS3]; as características de procura non estarán dispoñibles nesta instalación.",
 	"config-pcre-old": "<strong>Erro fatal:</strong> Necesítase PCRE $1 ou posterior.\nO seu PHP binario está ligado con PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Máis información].",
@@ -305,6 +306,7 @@
 	"config-install-subscribe-fail": "Non se puido subscribir á lista mediawiki-announce: $1",
 	"config-install-subscribe-notpossible": "cURL non está instalado e <code>allow_url_fopen</code> non está dispoñible.",
 	"config-install-mainpage": "Creando a páxina principal co contido por defecto",
+	"config-install-mainpage-exists": "A páxina principal xa existe, saltando",
 	"config-install-extension-tables": "Creando as táboas para as extensións activadas",
 	"config-install-mainpage-failed": "Non se puido inserir a páxina principal: $1",
 	"config-install-done": "<strong>Parabéns!</strong>\nInstalou MediaWiki.\n\nO programa de instalación xerou un ficheiro <code>LocalSettings.php</code>.\nEste ficheiro contén toda a súa configuración.\n\nTerá que descargalo e poñelo na base da instalación do seu wiki (no mesmo directorio ca index.php). A descarga debería comezar automaticamente.\n\nSe non comezou a descarga ou se a cancelou, pode facer que comece de novo premendo na ligazón que aparece a continuación:\n\n$3\n\n<strong>Nota:</strong> Se non fai iso agora, este ficheiro de configuración xerado non estará dispoñible máis adiante se sae da instalación sen descargalo.\n\nCando faga todo isto, xa poderá <strong>[$2 entrar no seu wiki]</strong>.",
@@ -315,5 +317,5 @@
 	"config-nofile": "Non se puido atopar o ficheiro \"$1\". Se cadra, foi borrado.",
 	"config-extension-link": "Sabía que o seu wiki soporta [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensións]?\n\nPode explorar as [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensións por categoría] ou a [https://www.mediawiki.org/wiki/Extension_Matrix matriz de extensións] para ollar a lista completa de extensións.",
 	"mainpagetext": "<strong>Instalouse MediaWiki.</strong>",
-	"mainpagedocfooter": "Consulte a [https://meta.wikimedia.org/wiki/Help:Contents guía de usuario] para obter máis información sobre como usar o software wiki.\n\n== Primeiros pasos ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista das opcións de configuración]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Preguntas máis frecuentes sobre MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo dos lanzamentos de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localice MediaWiki á súa lingua]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Aprenda como combater a publicidade na súa wiki]"
+	"mainpagedocfooter": "Consulte a [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents guía de usuario] para obter máis información sobre como usar o software wiki.\n\n== Primeiros pasos ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista das opcións de configuración]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Preguntas máis frecuentes sobre MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo dos lanzamentos de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localice MediaWiki á súa lingua]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Aprenda como combater a publicidade na súa wiki]"
 }

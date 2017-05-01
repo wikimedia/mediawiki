@@ -9,4 +9,4 @@ To run parser tests via PHPUnit:
 
 You can optionally filter by title using --filter, e.g.
 
- ./phpunit.php --testsuite parsertests --filter="Bug 6200"
+ ./phpunit.php --testsuite parsertests --filter="T6400"

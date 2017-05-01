@@ -21,6 +21,9 @@
  * @ingroup FileRepo
  */
 
+use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * A foreign repository with an accessible MediaWiki database
  *
@@ -89,7 +92,7 @@ class ForeignDBRepo extends LocalRepo {
 	/**
 	 * @return IDatabase
 	 */
-	function getSlaveDB() {
+	function getReplicaDB() {
 		return $this->getMasterDB();
 	}
 
@@ -138,7 +141,7 @@ class ForeignDBRepo extends LocalRepo {
 	}
 
 	protected function assertWritableRepo() {
-		throw new MWException( get_class( $this ) . ': write operations are not supported.' );
+		throw new MWException( static::class . ': write operations are not supported.' );
 	}
 
 	/**

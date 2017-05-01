@@ -60,7 +60,6 @@ class CheckComposerLockUpToDate extends Maintenance {
 			// We couldn't find any out-of-date dependencies, so assume everything is ok!
 			$this->output( "Your composer.lock file is up to date with current dependencies!\n" );
 		}
-
 	}
 }
 

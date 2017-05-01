@@ -212,9 +212,13 @@ related to a particular event, like so:
 		# ...
 		function protect() {
 			global $wgUser;
-			if ( Hooks::run( 'ArticleProtect', array( &$this, &$wgUser ) ) ) {
+
+			// Avoid PHP 7.1 warning from passing $this by reference
+			$article = $this;
+
+			if ( Hooks::run( 'ArticleProtect', [ &$article, &$wgUser ] ) ) {
 				# protect the article
-				Hooks::run( 'ArticleProtectComplete', array( &$this, &$wgUser ) );
+				Hooks::run( 'ArticleProtectComplete', [ &$article, &$wgUser ] );
 			}
 		}
 	}
@@ -358,8 +362,17 @@ authenticate and authorize API clients before executing the module. Return
 false and set a message to cancel the request.
 $module: Module object
 $user: Current user
-&$message: API usage message to die with, as a message key or array
-  as accepted by ApiBase::dieUsageMsg.
+&$message: API message to die with. Specific values accepted depend on the
+ MediaWiki version:
+ * 1.29+: IApiMessage, Message, string message key, or key+parameters array to
+   pass to ApiBase::dieWithError().
+ * 1.27+: IApiMessage, or a key or key+parameters in ApiBase::$messageMap.
+ * Earlier: A key or key+parameters in ApiBase::$messageMap.
+
+'ApiDeprecationHelp': Add messages to the 'deprecation-help' warning generated
+from ApiBase::addDeprecation().
+&$msgs: Message[] Messages to include in the help. Multiple messages will be
+  joined with spaces.
 
 'APIEditBeforeSave': DEPRECATED! Use EditFilterMergedContent instead.
 Before saving a page with api.php?action=edit, after
@@ -565,6 +578,18 @@ your callback to the $tokenFunctions array and return true (returning false
 makes no sense).
 &$tokenFunctions: array(action => callback)
 
+'ApiQueryWatchlistExtractOutputData': Extract row data for ApiQueryWatchlist.
+$module: ApiQueryWatchlist instance
+$watchedItem: WatchedItem instance
+$recentChangeInfo: Array of recent change info data
+&$vals: Associative array of data to be output for the row
+
+'ApiQueryWatchlistPrepareWatchedItemQueryServiceOptions': Populate the options
+to be passed from ApiQueryWatchlist to WatchedItemQueryService.
+$module: ApiQueryWatchlist instance
+$params: Array of parameters, as would be returned by $module->extractRequestParams()
+&$options: Array of options for WatchedItemQueryService::getWatchedItemsWithRecentChangeInfo()
+
 'ApiRsdServiceApis': Add or remove APIs from the RSD services list. Each service
 should have its own entry in the $apis array and have a unique name, passed as
 key for the array that represents the service data. In this data array, the
@@ -576,18 +601,16 @@ Use this hook to extend action=tokens with new token types.
 &$tokenTypes: supported token types in format 'type' => callback function
   used to retrieve this type of tokens.
 
+'ApiValidatePassword': Called from ApiValidatePassword.
+$module: ApiValidatePassword instance.
+&$r: Result array.
+
 'Article::MissingArticleConditions': Before fetching deletion & move log entries
 to display a message of a non-existing page being deleted/moved, give extensions
 a chance to hide their (unrelated) log entries.
 &$conds: Array of query conditions (all of which have to be met; conditions will
   AND in the final query)
 $logTypes: Array of log types being queried
-
-'ArticleAfterFetchContent': DEPRECATED! Use ArticleAfterFetchContentObject
-instead.
-After fetching content of an article from the database.
-&$article: the article (object) being loaded from the database
-&$content: the content (string) of the article
 
 'ArticleAfterFetchContentObject': After fetching content of an article from the
 database.
@@ -657,18 +680,6 @@ Wiki::articleFromTitle().
 &$article: Article (object) that will be returned
 $context: IContextSource (object)
 
-'ArticleInsertComplete': DEPRECATED! Use PageContentInsertComplete.
-After a new article is created.
-$wikiPage: WikiPage created
-$user: User creating the article
-$text: New content
-$summary: Edit summary/comment
-$isMinor: Whether or not the edit was marked as minor
-$isWatch: (No longer used)
-$section: (No longer used)
-$flags: Flags passed to WikiPage::doEditContent()
-$revision: New Revision of the article
-
 'ArticleMergeComplete': After merging to article using Special:Mergehistory.
 $targetTitle: target title (object)
 $destTitle: destination title (object)
@@ -720,36 +731,15 @@ $user: the user who did the rollback
 $revision: the revision the page was reverted back to
 $current: the reverted revision
 
-'ArticleSave': DEPRECATED! Use PageContentSave instead.
-Before an article is saved.
-$wikiPage: the WikiPage (object) being saved
-$user: the user (object) saving the article
-$text: the new article text
-$summary: the article summary (comment)
-$isminor: minor flag
-$iswatch: watch flag
-$section: section #
-
-'ArticleSaveComplete': DEPRECATED! Use PageContentSaveComplete instead.
-After an article has been updated.
-$wikiPage: WikiPage modified
-$user: User performing the modification
-$text: New content
-$summary: Edit summary/comment
-$isMinor: Whether or not the edit was marked as minor
-$isWatch: (No longer used)
-$section: (No longer used)
-$flags: Flags passed to WikiPage::doEditContent()
-$revision: New Revision of the article
-$status: Status object about to be returned by doEditContent()
-$baseRevId: the rev ID (or false) this edit was based on
-
 'ArticleUndelete': When one or more revisions of an article are restored.
 &$title: Title corresponding to the article restored
 $create: Whether or not the restoration caused the page to be created (i.e. it
   didn't exist before).
 $comment: The comment associated with the undeletion.
-$oldPageId: ID of page previously deleted (from archive table)
+$oldPageId: ID of page previously deleted (from archive table). This ID will be used
+  for the restored page.
+$restoredPages: Set of page IDs that have revisions restored for this undelete,
+  with keys being page IDs and values are 'true'.
 
 'ArticleUndeleteLogEntry': When a log entry is generated but not yet saved.
 $pageArchive: the PageArchive object
@@ -761,14 +751,6 @@ the user is redirected back to the page.
 $article: the article
 &$sectionanchor: The section anchor link (e.g. "#overview" )
 &$extraq: Extra query parameters which can be added via hooked functions
-
-'ArticleViewCustom': DEPRECATED! Use ArticleContentViewCustom instead.
-Allows to output the text of the article in a different format than wikitext.
-Note that it is preferable to implement proper handing for a custom data type
-using the ContentHandler facility.
-$text: text of the page
-$title: title of the page
-$output: reference to $wgOut
 
 'ArticleViewFooter': After showing the footer section of an ordinary page view
 $article: Article object
@@ -1003,7 +985,9 @@ $rows: The data that will be rendered. May be a ResultWrapper instance or
 $unpatrolled: Whether or not we are showing unpatrolled changes.
 $watched: Whether or not the change is watched by the user.
 
-'ChangesListSpecialPageFilters': Called after building form options on pages
+'ChangesListSpecialPageFilters': DEPRECATED! Use 'ChangesListSpecialPageStructuredFilters'
+instead.
+Called after building form options on pages
 inheriting from ChangesListSpecialPage (in core: RecentChanges,
 RecentChangesLinked and Watchlist).
 $special: ChangesListSpecialPage instance
@@ -1014,6 +998,15 @@ $special: ChangesListSpecialPage instance
 'ChangesListSpecialPageQuery': Called when building SQL query on pages
 inheriting from ChangesListSpecialPage (in core: RecentChanges,
 RecentChangesLinked and Watchlist).
+
+Do not use this to implement individual filters if they are compatible with the
+ChangesListFilter and ChangesListFilterGroup structure.
+
+Instead, use sub-classes of those classes, in conjunction with the
+ChangesListSpecialPageStructuredFilters hook.
+
+This hook can be used to implement filters that do not implement that structure,
+or custom behavior that is not an individual filter.
 $name: name of the special page, e.g. 'Watchlist'
 &$tables: array of tables to be queried
 &$fields: array of columns to select
@@ -1021,6 +1014,17 @@ $name: name of the special page, e.g. 'Watchlist'
 &$query_options: array of options for the database request
 &$join_conds: join conditions for the tables
 $opts: FormOptions for this request
+
+'ChangesListSpecialPageStructuredFilters': Called to allow extensions to register
+filters for pages inheriting from ChangesListSpecialPage (in core: RecentChanges,
+RecentChangesLinked, and Watchlist).  Generally, you will want to construct
+new ChangesListBooleanFilter or ChangesListStringOptionsFilter objects.
+
+When constructing them, you specify which group they belong to.  You can reuse
+existing groups (accessed through $special->getFilterGroup), or create your own
+(ChangesListBooleanFilterGroup or ChangesListStringOptionsFilterGroup).
+If you create new groups, you must register them with $special->registerFilterGroup.
+$special: ChangesListSpecialPage instance
 
 'ChangeTagAfterDelete': Called after a change tag has been deleted (that is,
 removed from all revisions and log entries to which it was applied). This gives
@@ -1066,6 +1070,12 @@ $params: tag params
 $rc: RecentChange being tagged when the tagging accompanies the action or null
 $user: User who performed the tagging when the tagging is subsequent to the action or null
 
+'ChangeUserGroups': Called before user groups are changed.
+$performer: The User who will perform the change
+$user: The User whose groups will be changed
+&$add: The groups that will be added
+&$remove: The groups that will be removed
+
 'Collation::factory': Called if $wgCategoryCollation is an unknown collation.
 $collationName: Name of the collation in question
 &$collationObject: Null. Replace with a subclass of the Collation class that
@@ -1107,6 +1117,8 @@ $title: the Title in question
 'ContentHandlerForModelID': Called when a ContentHandler is requested for
 a given content model name, but no entry for that model exists in
 $wgContentHandlers.
+Note: if your extension implements additional models via this hook, please
+use GetContentModels hook to make them known to core.
 $modeName: the requested content model name
 &$handler: set this to a ContentHandler object, if desired.
 
@@ -1182,13 +1194,24 @@ $page: SpecialPage object for DeletedContributions
 $row: the DB row for this line
 &$classes: the classes to add to the surrounding <li>
 
+'DifferenceEngineAfterLoadNewText': called in DifferenceEngine::loadNewText()
+after the new revision's content has been loaded into the class member variable
+$differenceEngine->mNewContent but before returning true from this function.
+$differenceEngine: DifferenceEngine object
+
+'DifferenceEngineLoadTextAfterNewContentIsLoaded': called in
+DifferenceEngine::loadText() after the new revision's content has been loaded
+into the class member variable $differenceEngine->mNewContent but before
+checking if the variable's value is null.
+This hook can be used to inject content into said class member variable.
+$differenceEngine: DifferenceEngine object
+
 'DifferenceEngineMarkPatrolledLink': Allows extensions to change the "mark as patrolled" link
 which is shown both on the diff header as well as on the bottom of a page, usually
 wrapped in a span element which has class="patrollink".
 $differenceEngine: DifferenceEngine object
 &$markAsPatrolledLink: The "mark as patrolled" link HTML (string)
 $rcid: Recent change ID (rc_id) for this change (int)
-$token: Patrol token; $rcid is used in generating this variable
 
 'DifferenceEngineMarkPatrolledRCID': Allows extensions to possibly change the rcid parameter.
 For example the rcid might be set to zero due to the user being the same as the
@@ -1261,6 +1284,12 @@ $differenceEngine: DifferenceEngine object
 object into the diff view
 $out: OutputPage object
 
+'DifferenceEngineShowDiffPageMaybeShowMissingRevision': called in
+DifferenceEngine::showDiffPage() when revision data cannot be loaded.
+Return false in order to prevent displaying the missing revision message
+(i.e. to prevent DifferenceEngine::showMissingRevision() from being called).
+$differenceEngine: DifferenceEngine object
+
 'DiffRevisionTools': Override or extend the revision tools available from the
 diff view, i.e. undo, etc.
 $newRev: Revision object of the "new" revision
@@ -1298,12 +1327,6 @@ $section: Section being edited
 &$error: Error message to return
 $summary: Edit summary for page
 
-'EditFilterMerged': DEPRECATED! Use EditFilterMergedContent instead.
-Post-section-merge edit filter.
-$editor: EditPage instance (object)
-$text: content of the edit box
-&$error: error message to return
-$summary: Edit summary for page
 
 'EditFilterMergedContent': Post-section-merge edit filter.
 This may be triggered by the EditPage or any other facility that modifies page
@@ -1384,15 +1407,18 @@ textarea in the edit form.
 &$buttons: Array of edit buttons "Save", "Preview", "Live", and "Diff"
 &$tabindex: HTML tabindex of the last edit check/button
 
-'EditPageBeforeEditChecks': Allows modifying the edit checks below the textarea
-in the edit form.
+'EditPageBeforeEditChecks': DEPRECATED! Use 'EditPageGetCheckboxesDefinition' instead,
+or 'EditPage::showStandardInputs:options' if you don't actually care about checkboxes
+and just want to add some HTML to the page.
+Allows modifying the edit checks below the textarea in the edit form.
 &$editpage: The current EditPage object
-&$checks: Array of edit checks like "watch this page"/"minor edit"
+&$checks: Array of the HTML for edit checks like "watch this page"/"minor edit"
 &$tabindex: HTML tabindex of the last edit check/button
 
 'EditPageBeforeEditToolbar': Allows modifying the edit toolbar above the
 textarea in the edit form.
-&$toolbar: The toolbar HTMl
+&$toolbar: The toolbar HTML
+Hook subscribers can return false to avoid the default toolbar code being loaded.
 
 'EditPageCopyrightWarning': Allow for site and per-namespace customization of
 contribution/copyright notice.
@@ -1400,16 +1426,15 @@ $title: title of page being edited
 &$msg: localization message name, overridable. Default is either
   'copyrightwarning' or 'copyrightwarning2'.
 
+'EditPageGetCheckboxesDefinition': Allows modifying the edit checkboxes
+below the textarea in the edit form.
+$editpage: The current EditPage object
+&$checkboxes: Array of checkbox definitions. See EditPage::getCheckboxesDefinition()
+for the format.
+
 'EditPageGetDiffContent': Allow modifying the wikitext that will be used in
 "Show changes". Note that it is preferable to implement diff handling for
 different data types using the ContentHandler facility.
-$editPage: EditPage object
-&$newtext: wikitext that will be used as "your version"
-
-'EditPageGetDiffText': DEPRECATED! Use EditPageGetDiffContent instead.
-Allow modifying the wikitext that will be used in "Show changes". Note that it
-is preferable to implement diff handling for different data types using the
-ContentHandler facility.
 $editPage: EditPage object
 &$newtext: wikitext that will be used as "your version"
 
@@ -1418,13 +1443,6 @@ previewed. Note that it is preferable to implement previews for different data
 types using the ContentHandler facility.
 $editPage: EditPage object
 &$content: Content object to be previewed (may be replaced by hook function)
-
-'EditPageGetPreviewText': DEPRECATED! Use EditPageGetPreviewContent instead.
-Allow modifying the wikitext that will be previewed. Note that it is preferable
-to implement previews for different data types using the ContentHandler
-facility.
-$editPage: EditPage object
-&$toparse: wikitext that will be parsed
 
 'EditPageNoSuchSection': When a section edit request is given for an
 non-existent section
@@ -1448,7 +1466,7 @@ true to allow those checks to occur, and false if checking is done.
 &$from: MailAddress object of sending user
 &$subject: subject of the mail
 &$text: text of the mail
-&$error: Out-param for an error
+&$error: Out-param for an error. Should be set to a Status object or boolean false.
 
 'EmailUserCC': Before sending the copy of the email to the author.
 &$to: MailAddress object of receiving user
@@ -1579,6 +1597,9 @@ notifications.
 &$title: Title object of page
 &$url: string value as output (out parameter, can modify)
 $query: query options passed to Title::getCanonicalURL()
+
+'GetContentModels': Add content models to the list of available models.
+&$models: array containing current model list, as strings. Extensions should add to this list.
 
 'GetDefaultSortkey': Override the default sortkey for a page.
 $title: Title object that we need to get a sortkey for
@@ -1914,8 +1935,8 @@ $code: language of the preferred translations
 in various places to allow extensions to define the effective language
 links for a page.
 $title: The page's Title.
-&$links: Associative array mapping language codes to prefixed links of the
-  form "language:title".
+&$links: Array with elements of the form "language:title" in the order
+  that they will be output.
 &$linkFlags: Associative array mapping prefixed links to arrays of flags.
   Currently unused, but planned to provide support for marking individual
   language links in the UI, e.g. for featured articles.
@@ -2202,6 +2223,7 @@ $text: new contents of the page.
 'MessagesPreLoad': When loading a message from the database.
 $title: title of the message (string)
 &$message: value (string), change it to the message you want to define
+$code: code (string) denoting the language to try.
 
 'MimeMagicGuessFromContent': Allows MW extensions guess the MIME by content.
 $mimeMagic: Instance of MimeMagic.
@@ -2291,6 +2313,10 @@ $page: the Page that was rendered.
 $title: the Title of the rendered page.
 $parserOutput: ParserOutput resulting from rendering the page.
 
+'OtherAutoblockLogLink': Get links to the autoblock log from extensions which
+autoblocks users and/or IP addresses too.
+&$otherBlockLink: An array with links to other autoblock logs
+
 'OtherBlockLogLink': Get links to the block log from extensions which blocks
 users and/or IP addresses too.
 &$otherBlockLink: An array with links to other block logs
@@ -2367,6 +2393,7 @@ $revision: New Revision of the article (can be null for edits that change
   nothing)
 $status: Status object about to be returned by doEditContent()
 $baseRevId: the rev ID (or false) this edit was based on
+$undidRevId: the rev ID (or 0) this edit undid
 
 'PageHistoryBeforeList': When a history page list is about to be constructed.
 &$article: the article that the history is loading for
@@ -2453,6 +2480,13 @@ $revId: ID of the revision that was parsed to create $parserOutput
 'ParserCloned': Called when the parser is cloned.
 $parser: Newly-cloned Parser object
 
+'ParserFetchTemplate': Called when the parser fetches a template
+$parser: Parser Parser object or false
+$title: Title object of the template to be fetched
+$rev: Revision object of the template
+&$text: Transclusion text of the template or false or null
+&$deps: Array of template dependencies with 'title', 'page_id', 'rev_id' keys
+
 'ParserFirstCallInit': Called when the parser initialises for the first time.
 &$parser: Parser object being cleared
 
@@ -2475,11 +2509,23 @@ cache or return false to not use it.
 &$parser: Parser object
 &$varCache: variable cache (array)
 
-'ParserLimitReport': DEPRECATED! Use ParserLimitReportPrepare instead.
+'ParserLimitReport': DEPRECATED! Use ParserLimitReportPrepare and
+ParserLimitReportFormat instead.
 Called at the end of Parser:parse() when the parser will
 include comments about size of the text parsed.
 $parser: Parser object
 &$limitReport: text that will be included (without comment tags)
+
+'ParserLimitReportFormat': Called for each row in the parser limit report that
+needs formatting. If nothing handles this hook, the default is to use "$key" to
+get the label, and "$key-value" or "$key-value-text"/"$key-value-html" to
+format the value.
+$key: Key for the limit report item (string)
+&$value: Value of the limit report item
+&$report: String onto which to append the data
+$isHTML: If true, $report is an HTML table with two columns; if false, it's
+  text intended for display in a monospaced font.
+$localize: If false, $report should be output in English.
 
 'ParserLimitReportPrepare': Called at the end of Parser:parse() when the parser
 will include comments about size of the text parsed. Hooks should use
@@ -2509,10 +2555,6 @@ $showEditLinks: boolean describing whether this section has an edit link
 &$globals: Array with all the globals which should be set for parser tests.
   The arrays keys serve as the globals names, its values are the globals values.
 
-'ParserTestParser': Called when creating a new instance of Parser in
-tests/parser/parserTest.inc.
-&$parser: Parser object created
-
 'ParserTestTables': Alter the list of tables to duplicate when parser tests are
 run. Use when page save hooks require the presence of custom tables to ensure
 that tests continue to run properly.
@@ -2528,8 +2570,6 @@ $user: the User considering the edit
 'PasswordPoliciesForUser': Alter the effective password policy for a user.
 $user: User object whose policy you are modifying
 &$effectivePolicy: Array of policy statements that apply to this user
-$purpose: string indicating purpose of the check, one of 'login', 'create',
-  or 'reset'
 
 'PerformRetroactiveAutoblock': Called before a retroactive autoblock is applied
 to a user.
@@ -2679,6 +2719,13 @@ variables from $wgResourceLoaderLESSVars are added. Can be used to add
 context-based variables.
 &$lessVars: array of variables already added
 
+'ResourceLoaderJqueryMsgModuleMagicWords': Called in
+ResourceLoaderJqueryMsgModule to allow adding magic words for jQueryMsg.
+The value should be a string, and they can depend only on the
+ResourceLoaderContext.
+$context: ResourceLoaderContext
+&$magicWords: Associative array mapping all-caps magic word to a string value
+
 'ResourceLoaderRegisterModules': Right before modules information is required,
 such as when responding to a resource
 loader request or generating HTML output.
@@ -2817,12 +2864,6 @@ Special:ShortPages.
 'ShowMissingArticle': Called when generating the output for a non-existent page.
 $article: The article object corresponding to the page
 
-'ShowRawCssJs': DEPRECATED! Use the ContentGetParserOutput hook instead.
-Customise the output of raw CSS and JavaScript in page views.
-$text: Text being shown
-$title: Title of the custom script/stylesheet page
-$output: Current OutputPage object
-
 'ShowSearchHit': Customize display of search hit.
 $searchPage: The SpecialSearch instance.
 $result: The SearchResult to show
@@ -2841,11 +2882,11 @@ $terms: Search terms, for highlighting
 
 'ShowSearchHitTitle': Customise display of search hit title/link.
 &$title: Title to link to
-&$text: Text to use for the link
-$result: The search result
-$terms: The search terms entered
-$page: The SpecialSearch object
-&$query: Query string to be appended to the link
+&$titleSnippet: Label for the link representing the search result. Typically the article title.
+$result: The SearchResult object
+$terms: String of the search terms entered
+$specialSearch: The SpecialSearch object
+&$query: Array of query string parameters for the link representing the search result.
 
 'SidebarBeforeOutput': Allows to edit sidebar just before it is output by skins.
 Warning: This hook is run on each display. You should consider to use
@@ -3099,7 +3140,7 @@ use this to change some selection criteria or substitute a different title.
 &$title: If the hook returns false, a Title object to use instead of the
   result from the normal query
 
-'SpecialRecentChangesFilters': DEPRECATED! Use ChangesListSpecialPageFilters
+'SpecialRecentChangesFilters': DEPRECATED! Use ChangesListSpecialPageStructuredFilters
 instead.
 Called after building form options at RecentChanges.
 $special: the special page object
@@ -3112,8 +3153,8 @@ SpecialRecentChanges.
 &$extraOpts: array of added items, to which can be added
 $opts: FormOptions for this request
 
-'SpecialRecentChangesQuery': DEPRECATED! Use ChangesListSpecialPageQuery
-instead.
+'SpecialRecentChangesQuery': DEPRECATED! Use ChangesListSpecialPageStructuredFilters
+or ChangesListSpecialPageQuery instead.
 Called when building SQL query for SpecialRecentChanges and
 SpecialRecentChangesLinked.
 &$conds: array of WHERE conditionals for query
@@ -3144,8 +3185,10 @@ $term: The string the user searched for
 $title: The title the 'go' feature has decided to forward the user to
 &$url: Initially null, hook subscribers can set this to specify the final url to redirect to
 
-'SpecialSearchNogomatch': Called when user clicked the "Go" button but the
-target doesn't exist.
+'SpecialSearchNogomatch': Called when the 'Go' feature is triggered (generally
+from autocomplete search other than the main bar on Special:Search) and the
+target doesn't exist. Full text search results are generated after this hook is
+called.
 &$title: title object generated from the text entered by the user
 
 'SpecialSearchPowerBox': The equivalent of SpecialSearchProfileForm for
@@ -3198,6 +3241,15 @@ $engine: the search engine
   message key to use in the name column,
 $context: IContextSource object
 
+'SpecialTrackingCategories::preprocess': Called after LinkBatch on Special:TrackingCategories
+$specialPage: The SpecialTrackingCategories object
+$trackingCategories: Array of data from Special:TrackingCategories with msg and cats
+
+'SpecialTrackingCategories::generateCatLink': Called for each cat link on Special:TrackingCategories
+$specialPage: The SpecialTrackingCategories object
+$catTitle: The Title object of the linked category
+&$html: The Result html
+
 'SpecialUploadComplete': Called after successfully uploading a file from
 Special:Upload.
 &$form: The SpecialUpload object
@@ -3206,7 +3258,7 @@ Special:Upload.
 $wgVersion: Current $wgVersion for you to use
 &$versionUrl: Raw url to link to (eg: release notes)
 
-'SpecialWatchlistFilters': DEPRECATED! Use ChangesListSpecialPageFilters
+'SpecialWatchlistFilters': DEPRECATED! Use ChangesListSpecialPageStructuredFilters
 instead.
 Called after building form options at Watchlist.
 $special: the special page object
@@ -3219,7 +3271,8 @@ SpecialWatchlist. Allows extensions to register custom values they have
 inserted to rc_type so they can be returned as part of the watchlist.
 &$nonRevisionTypes: array of values in the rc_type field of recentchanges table
 
-'SpecialWatchlistQuery': DEPRECATED! Use ChangesListSpecialPageQuery instead.
+'SpecialWatchlistQuery': DEPRECATED! Use ChangesListSpecialPageStructuredFilters
+or ChangesListSpecialPageQuery instead.
 Called when building sql query for SpecialWatchlist.
 &$conds: array of WHERE conditionals for query
 &$tables: array of tables to be queried
@@ -3268,13 +3321,6 @@ by the isKnown method.
 $title: Title object that is being checked
 &$isKnown: Boolean|null; whether MediaWiki currently thinks this page is known
 
-'TitleIsCssOrJsPage': DEPRECATED! Use ContentHandlerDefaultModelFor instead.
-Called when determining if a page is a CSS or JS page.
-$title: Title object that is being checked
-&$result: Boolean; whether MediaWiki currently thinks this is a CSS/JS page.
-  Hooks may change this value to override the return value of
-  Title::isCssOrJsPage().
-
 'TitleIsMovable': Called when determining if it is possible to move a page. Note
 that this hook is not called for interwiki pages or pages in immovable
 namespaces: for these, isMovable() always returns false.
@@ -3283,13 +3329,6 @@ $title: Title object that is being checked
   Hooks may change this value to override the return value of
   Title::isMovable().
 
-'TitleIsWikitextPage': DEPRECATED! Use ContentHandlerDefaultModelFor instead.
-Called when determining if a page is a wikitext or should
-be handled by separate handler (via ArticleViewCustom).
-$title: Title object that is being checked
-&$result: Boolean; whether MediaWiki currently thinks this is a wikitext page.
-  Hooks may change this value to override the return value of
-  Title::isWikitextPage()
 
 'TitleMove': Before moving an article (title).
 $old: old title
@@ -3339,6 +3378,15 @@ $user: Current user object
 $title: Title object to purge
 &$urls: An array of URLs to purge from the caches, to be manipulated.
 
+'UnblockUser': Before an IP address or user is unblocked.
+&$block: The Block object about to be saved
+&$user: The user performing the unblock (not the one being unblocked)
+&$reason: If the hook is aborted, the error message to be returned in an array
+
+'UnblockUserComplete': After an IP address or user has been unblocked.
+$block: The Block object that was saved
+$user: The user who performed the unblock (not the one being unblocked)
+
 'UndeleteForm::showHistory': Called in UndeleteForm::showHistory, after a
 PageArchive object has been created but before any further processing is done.
 &$archive: PageArchive object
@@ -3349,7 +3397,7 @@ PageArchive object has been created but before any further processing is done.
 &$archive: PageArchive object
 $title: Title object of the page that we're viewing
 
-'UndeleteForm::undelete': Called un UndeleteForm::undelete, after checking that
+'UndeleteForm::undelete': Called in UndeleteForm::undelete, after checking that
 the site is not in read-only mode, that the Title object is not null and after
 a PageArchive object has been constructed but before performing any further
 processing.
@@ -3365,8 +3413,9 @@ Since 1.24: Paths pointing to a directory will be recursively scanned for
 test case files matching the suffix "Test.php".
 &$paths: list of test cases and directories to search.
 
-'UnknownAction': An unknown "action" has occurred (useful for defining your own
-actions).
+'UnknownAction': DEPRECATED! To add an action in an extension,
+create a subclass of Action, and add a new key to $wgActions.
+An unknown "action" has occurred (useful for defining your own actions).
 $action: action name
 $article: article "acted on"
 
@@ -3465,10 +3514,12 @@ temporary password
 &$ip: IP of the user who sent the message out
 &$u: the account whose new password will be set
 
-'UserAddGroup': Called when adding a group; return false to override
-stock group addition.
+'UserAddGroup': Called when adding a group or changing a group's expiry; return
+false to override stock group addition.
 $user: the user object that is to have a group added
-&$group: the group to add, can be modified
+&$group: the group to add; can be modified
+&$expiry: the expiry time in TS_MW format, or null if the group is not to
+expire; can be modified
 
 'UserArrayFromResult': Called when creating an UserArray object from a database
 result.
@@ -3543,6 +3594,10 @@ $removed: Groups removed
 $performer: User who performed the change, false if via autopromotion
 $reason: The reason, if any, given by the user performing the change,
 false if via autopromotion.
+$oldUGMs: An associative array (group name => UserGroupMembership object) of
+the user's group memberships before the change.
+$newUGMs: An associative array (group name => UserGroupMembership object) of
+the user's current group memberships.
 
 'UserIsBlockedFrom': Check if a user is blocked from a specific page (for
 specific block exemptions).
@@ -3711,7 +3766,8 @@ their data into the cache array so that things like global user groups are
 displayed correctly in Special:ListUsers.
 $dbr: Read-only database handle
 $userIds: Array of user IDs whose groups we should look up
-&$cache: Array of user ID -> internal user group name (e.g. 'sysop') mappings
+&$cache: Array of user ID -> (array of internal group name (e.g. 'sysop') ->
+UserGroupMembership object)
 &$groups: Array of group name -> bool true mappings for members of a given user
 group
 
@@ -3734,6 +3790,10 @@ used to alter the SQL query which gets the list of wanted pages.
 'WatchArticleComplete': After a watch is added to an article.
 &$user: user that watched
 &$page: WikiPage object watched
+
+'WatchedItemQueryServiceExtensions': Create a WatchedItemQueryServiceExtension.
+&$extensions: Add WatchedItemQueryServiceExtension objects to this array
+$watchedItemQueryService: Service object
 
 'WatchlistEditorBeforeFormRender': Before building the Special:EditWatchlist
 form, used to manipulate the list of pages or preload data based on that list.

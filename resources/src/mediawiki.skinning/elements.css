@@ -25,15 +25,16 @@ a:active {
 	color: #faa700;
 }
 
-a:hover, a:focus {
+a:hover,
+a:focus {
 	text-decoration: underline;
 }
 
-a:lang(ar),
-a:lang(kk-arab),
-a:lang(mzn),
-a:lang(ps),
-a:lang(ur) {
+a:lang( ar ),
+a:lang( kk-arab ),
+a:lang( mzn ),
+a:lang( ps ),
+a:lang( ur ) {
 	text-decoration: none;
 }
 
@@ -41,57 +42,59 @@ a.stub {
 	color: #723;
 }
 
-a.new, #p-personal a.new {
+a.new,
+#p-personal a.new {
 	color: #ba0000;
 }
 
-a.new:visited, #p-personal a.new:visited {
+a.new:visited,
+#p-personal a.new:visited {
 	color: #a55858;
 }
 
 /* Interwiki Styling */
-.mw-body a.extiw,
-.mw-body a.extiw:active {
+.mw-body-content a.extiw,
+.mw-body-content a.extiw:active {
 	color: #36b;
 }
 
-.mw-body a.extiw:visited {
+.mw-body-content a.extiw:visited {
 	color: #636;
 }
 
-.mw-body a.extiw:active {
+.mw-body-content a.extiw:active {
 	color: #b63;
 }
 
 /* External links */
-.mw-body a.external {
+.mw-body-content a.external {
 	color: #36b;
 }
 
-.mw-body a.external:visited {
-	color: #636; /* bug 3112 */
+.mw-body-content a.external:visited {
+	color: #636; /* T5112 */
 }
 
-.mw-body a.external:active {
+.mw-body-content a.external:active {
 	color: #b63;
 }
 
-.mw-body a.external.free {
+.mw-body-content a.external.free {
 	word-wrap: break-word;
 }
 
 /* Inline Elements */
 img {
-	border: none;
+	border: 0;
 	vertical-align: middle;
 }
 
 hr {
 	height: 1px;
-	color: #aaa;
-	background-color: #aaa;
+	color: #a2a9b1;
+	background-color: #a2a9b1;
 	border: 0;
-	margin: .2em 0;
+	margin: 0.2em 0;
 }
 
 /* Structural Elements */
@@ -106,9 +109,9 @@ h6 {
 	font-weight: normal;
 	margin: 0;
 	overflow: hidden;
-	padding-top: .5em;
-	padding-bottom: .17em;
-	border-bottom: 1px solid #aaa;
+	padding-top: 0.5em;
+	padding-bottom: 0.17em;
+	border-bottom: 1px solid #a2a9b1;
 }
 
 h1 {
@@ -123,7 +126,7 @@ h3,
 h4,
 h5,
 h6 {
-	border-bottom: none;
+	border-bottom: 0;
 	font-weight: bold;
 }
 
@@ -146,17 +149,17 @@ h6 {
 /* Some space under the headers in the content area */
 h1,
 h2 {
-	margin-bottom: .6em;
+	margin-bottom: 0.6em;
 }
 
 h3,
 h4,
 h5 {
-	margin-bottom: .3em;
+	margin-bottom: 0.3em;
 }
 
 p {
-	margin: .4em 0 .5em 0;
+	margin: 0.4em 0 0.5em 0;
 }
 
 p img {
@@ -165,36 +168,41 @@ p img {
 
 ul {
 	list-style-type: square;
-	margin: .3em 0 0 1.6em;
+	margin: 0.3em 0 0 1.6em;
 	padding: 0;
 }
 
 ol {
-	margin: .3em 0 0 3.2em;
+	margin: 0.3em 0 0 3.2em;
 	padding: 0;
 	list-style-image: none;
 }
 
 li {
-	margin-bottom: .1em;
+	margin-bottom: 0.1em;
 }
 
 dt {
 	font-weight: bold;
-	margin-bottom: .1em;
+	margin-bottom: 0.1em;
 }
 
 dl {
-	margin-top: .2em;
-	margin-bottom: .5em;
+	margin-top: 0.2em;
+	margin-bottom: 0.5em;
 }
 
 dd {
 	margin-left: 1.6em;
-	margin-bottom: .1em;
+	margin-bottom: 0.1em;
 }
 
-pre, code, tt, kbd, samp, .mw-code {
+pre,
+code,
+tt,
+kbd,
+samp,
+.mw-code {
 	/*
 	 * Some browsers will render the monospace text too small, namely Firefox, Chrome and Safari.
 	 * Specifying any valid, second value will trigger correct behavior without forcing a different font.
@@ -204,8 +212,8 @@ pre, code, tt, kbd, samp, .mw-code {
 
 code {
 	color: #000;
-	background-color: #f9f9f9;
-	border: 1px solid #ddd;
+	background-color: #f8f9fa;
+	border: 1px solid #eaecf0;
 	border-radius: 2px;
 	padding: 1px 4px;
 }
@@ -213,8 +221,8 @@ code {
 pre,
 .mw-code {
 	color: #000;
-	background-color: #f9f9f9;
-	border: 1px solid #ddd;
+	background-color: #f8f9fa;
+	border: 1px solid #eaecf0;
 	padding: 1em;
 	/* Wrap lines in overflow. T2260, T103780 */
 	white-space: pre-wrap;
@@ -227,7 +235,7 @@ table {
 
 /* Forms */
 fieldset {
-	border: 1px solid #2f6fab;
+	border: 1px solid #2a4b8d;
 	margin: 1em 0 1em 0;
 	padding: 0 1em 1em;
 }
@@ -238,18 +246,18 @@ fieldset.nested {
 }
 
 legend {
-	padding: .5em;
+	padding: 0.5em;
 	font-size: 95%;
 }
 
 form {
-	border: none;
+	border: 0;
 	margin: 0;
 }
 
 textarea {
 	width: 100%;
-	padding: .1em;
+	padding: 0.1em;
 	display: block;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;

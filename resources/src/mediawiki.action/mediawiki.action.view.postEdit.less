@@ -1,0 +1,71 @@
+@import 'mediawiki.mixins';
+
+.postedit-container {
+	margin: 0 auto;
+	position: fixed;
+	top: 0;
+	height: 0;
+	left: 50%;
+	z-index: 1000;
+	font-size: 13px;
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.postedit {
+	position: relative;
+	top: 0.6em;
+	left: -50%;
+	line-height: 1.35;
+	opacity: 1;
+	.transition( opacity 250ms );
+
+	&.mw-notification {
+		padding-right: 3em;
+	}
+}
+
+// TODO: Move to monobook skin
+.skin-monobook .postedit {
+	top: 6em !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.postedit-faded {
+	opacity: 0;
+}
+
+.postedit-icon {
+	padding-left: 41px; /* 25 + 8 + 8 */
+	/* like min-height, but old IE compatible and keeps text vertically aligned, too */
+	line-height: 25px;
+	background-repeat: no-repeat;
+	background-position: 8px 50%;
+}
+
+.postedit-icon-checkmark {
+	/* @embed */
+	background-image: url( images/green-checkmark.png );
+	background-position: left;
+}
+
+.postedit-close {
+	position: absolute;
+	padding: 0 0.8em;
+	right: 0;
+	top: 0;
+	font-size: 1.25em;
+	font-weight: bold;
+	line-height: 2.3em;
+	color: #000;
+	text-shadow: 0 0.0625em 0 #fff;
+	text-decoration: none;
+	opacity: 0.2;
+
+	.postedit:hover & {
+		color: #000;
+		text-decoration: none;
+		opacity: 0.4;
+	}
+}

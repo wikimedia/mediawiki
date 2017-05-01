@@ -8,7 +8,7 @@
  *
  */
 
-$fallback = 'de';
+$fallback = 'hsb, de';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Medija',
@@ -140,4 +140,3 @@ $dateFormats = [
 	'dmy date' => 'j. xg Y',
 	'dmy both' => 'j. xg Y, H:i',
 ];
-

@@ -15,7 +15,7 @@
 			"color": "#36c"
 		},
 		"destructive": {
-			"color": "#c33"
+			"color": "#d33"
 		},
 		"warning": {
 			"color": "#ff5d00"
@@ -36,10 +36,6 @@
 			"rtl": "images/icons/imageLock-rtl.svg"
 		} },
 		"imageGallery": { "file": {
-			"ltr": "images/icons/imageGallery-ltr.svg",
-			"rtl": "images/icons/imageGallery-rtl.svg"
-		} },
-		"photoGallery": { "file": {
 			"ltr": "images/icons/imageGallery-ltr.svg",
 			"rtl": "images/icons/imageGallery-rtl.svg"
 		} },

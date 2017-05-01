@@ -69,19 +69,12 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 
 		$diff = [ 'curid' => 5, 'diff' => 191, 'oldid' => 190 ];
 		$cur = [ 'curid' => 5, 'diff' => 0, 'oldid' => 191 ];
-		$this->assertQueryLink( 'cur', $cur, $cacheEntry->curlink, 'cur link' );
-		$this->assertQueryLink( 'prev', $diff, $cacheEntry->lastlink, 'prev link' );
-		$this->assertQueryLink( 'diff', $diff, $cacheEntry->difflink, 'diff link' );
+		$this->assertQueryLink( 'cur', $cur, $cacheEntry->curlink );
+		$this->assertQueryLink( 'prev', $diff, $cacheEntry->lastlink );
+		$this->assertQueryLink( 'diff', $diff, $cacheEntry->difflink );
 	}
 
 	public function testNewForDeleteChange() {
-		$expected = [
-			'title' => 'Abc',
-			'user' => 'TestRecentChangesUser',
-			'timestamp' => '21:21',
-			'numberofWatchingusers' => 0,
-			'unpatrolled' => false
-		];
 		$user = $this->getMutableTestUser()->getUser();
 		$recentChange = $this->testRecentChangesHelper->makeLogRecentChange(
 			'delete',
@@ -148,103 +141,69 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'prev', $cacheEntry->lastlink, 'pref link for delete log or rev' );
 	}
 
+	private function assertValidHTML( $actual ) {
+		// Throws if invalid
+		$doc = PHPUnit_Util_XML::load( $actual, /* isHtml */ true );
+	}
+
 	private function assertUserLinks( $user, $cacheEntry ) {
-		$this->assertTag(
-			[
-				'tag' => 'a',
-				'attributes' => [
-					'class' => 'new mw-userlink'
-				],
-				'content' => $user
-			],
+		$this->assertValidHTML( $cacheEntry->userlink );
+		$this->assertRegExp(
+			'#^<a .*class="new mw-userlink".*><bdi>' . $user . '</bdi></a>#',
 			$cacheEntry->userlink,
 			'verify user link'
 		);
 
-		$this->assertTag(
-			[
-				'tag' => 'span',
-				'attributes' => [
-					'class' => 'mw-usertoollinks'
-				],
-				'child' => [
-					'tag' => 'a',
-					'content' => 'talk',
-				]
-			],
+		$this->assertValidHTML( $cacheEntry->usertalklink );
+		$this->assertRegExp(
+			'#^ <span class="mw-usertoollinks">\(.*<a .+>talk</a>.*\)</span>#',
 			$cacheEntry->usertalklink,
 			'verify user talk link'
 		);
 
-		$this->assertTag(
-			[
-				'tag' => 'span',
-				'attributes' => [
-					'class' => 'mw-usertoollinks'
-				],
-				'child' => [
-					'tag' => 'a',
-					'content' => 'contribs',
-				]
-			],
+		$this->assertValidHTML( $cacheEntry->usertalklink );
+		$this->assertRegExp(
+			'#^ <span class="mw-usertoollinks">\(.*<a .+>contribs</a>.*\)</span>$#',
 			$cacheEntry->usertalklink,
 			'verify user tool links'
 		);
 	}
 
 	private function assertDeleteLogLink( $cacheEntry ) {
-		$this->assertTag(
-			[
-				'tag' => 'a',
-				'attributes' => [
-					'href' => '/wiki/Special:Log/delete',
-					'title' => 'Special:Log/delete'
-				],
-				'content' => 'Deletion log'
-			],
+		$this->assertEquals(
+			'(<a href="/wiki/Special:Log/delete" title="Special:Log/delete">Deletion log</a>)',
 			$cacheEntry->link,
 			'verify deletion log link'
 		);
+
+		$this->assertValidHTML( $cacheEntry->link );
 	}
 
 	private function assertRevDel( $cacheEntry ) {
-		$this->assertTag(
-			[
-				'tag' => 'span',
-				'attributes' => [
-					'class' => 'history-deleted'
-				],
-				'content' => '(username removed)'
-			],
+		$this->assertEquals(
+			' <span class="history-deleted">(username removed)</span>',
 			$cacheEntry->userlink,
 			'verify user link for change with deleted revision and user'
 		);
+		$this->assertValidHTML( $cacheEntry->userlink );
 	}
 
 	private function assertTitleLink( $title, $cacheEntry ) {
-		$this->assertTag(
-			[
-				'tag' => 'a',
-				'attributes' => [
-					'href' => '/wiki/' . $title,
-					'title' => $title
-				],
-				'content' => $title
-			],
+		$this->assertEquals(
+			'<a href="/wiki/' . $title . '" title="' . $title . '">' . $title . '</a>',
 			$cacheEntry->link,
 			'verify title link'
 		);
+		$this->assertValidHTML( $cacheEntry->link );
 	}
 
 	private function assertQueryLink( $content, $params, $link ) {
-		$this->assertTag(
-			[
-				'tag' => 'a',
-				'content' => $content
-			],
+		$this->assertRegExp(
+			"#^<a .+>$content</a>$#",
 			$link,
-			'assert query link element'
+			'verify query link element'
 		);
+		$this->assertValidHTML( $link );
 
 		foreach ( $params as $key => $value ) {
 			$this->assertRegExp( '/' . $key . '=' . $value . '/', $link, "verify $key link params" );

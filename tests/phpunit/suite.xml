@@ -35,13 +35,15 @@
 			<directory>structure</directory>
 			<file>suites/LessTestSuite.php</file>
 		</testsuite>
-		<!-- As there is a class Maintenance, we cannot use the
-		     name "maintenance" directly -->
+		<!-- As there is a class Maintenance, we cannot use the name "maintenance" directly -->
 		<testsuite name="maintenance_suite">
 			<directory>maintenance</directory>
 		</testsuite>
 		<testsuite name="structure">
 			<directory>structure</directory>
+		</testsuite>
+		<testsuite name="tests">
+			<directory>tests</directory>
 		</testsuite>
 		<testsuite name="uploadfromurl">
 			<file>suites/UploadFromUrlTestSuite.php</file>

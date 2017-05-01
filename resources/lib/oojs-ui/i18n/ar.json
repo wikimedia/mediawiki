@@ -12,7 +12,8 @@
 			"ترجمان05",
 			"Abanima",
 			"محمد أحمد عبد الفتاح",
-			"Hiba Alshawi"
+			"Hiba Alshawi",
+			"Meno25"
 		]
 	},
 	"ooui-outline-control-move-down": "انقل العنصر للأسفل",
@@ -27,8 +28,8 @@
 	"ooui-dialog-process-dismiss": "أغلق",
 	"ooui-dialog-process-retry": "حاول مرة أخرى",
 	"ooui-dialog-process-continue": "استمر",
-	"ooui-selectfile-button-select": "أختر ملف",
-	"ooui-selectfile-not-supported": "تحديد الملفات غير مدعوم",
-	"ooui-selectfile-placeholder": "لم يختر أي ملف",
-	"ooui-selectfile-dragdrop-placeholder": "ترك ملف هنا"
+	"ooui-selectfile-button-select": "اختر ملفا",
+	"ooui-selectfile-not-supported": "اختيار الملفات غير مدعوم",
+	"ooui-selectfile-placeholder": "لم يتم اختيار أي ملف",
+	"ooui-selectfile-dragdrop-placeholder": "اترك الملف هنا"
 }

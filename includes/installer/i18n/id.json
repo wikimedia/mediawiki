@@ -13,7 +13,8 @@
 			"Bennylin",
 			"WongKentir",
 			"Macofe",
-			"Rachmat.Wahidi"
+			"Rachmat.Wahidi",
+			"Gombang"
 		]
 	},
 	"config-desc": "Penginstal untuk MediaWiki",
@@ -62,7 +63,7 @@
 	"config-unicode-using-intl": "Menggunakan [http://pecl.php.net/intl ekstensi PECL intl] untuk normalisasi Unicode.",
 	"config-unicode-pure-php-warning": "'''Peringatan''': [http://pecl.php.net/intl Ekstensi intl PECL] untuk menangani normalisasi Unicode tidak tersedia, kembali menggunakan implementasi murni PHP yang lambat.\nJika Anda menjalankan situs berlalu lintas tinggi, Anda harus sedikit membaca [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations normalisasi Unicode].",
 	"config-unicode-update-warning": "'''Peringatan''': Versi terinstal dari pembungkus normalisasi Unicode menggunakan versi lama pustaka [http://site.icu-project.org/ proyek ICU].\nAnda harus [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations memutakhirkannya] jika Anda ingin menggunakan Unicode.",
-	"config-no-db": "Pengandar basis data yang sesuai tidak ditemukan! Anda perlu menginstal pengandar basis data untuk PHP.\n{{PLURAL:$2|Jenis|Jenis}} basis data yang didukung: $1.\n\nJika Anda mengompilasi PHP sendiri, ubahlah konfigurasinya dengan mengaktifkan klien basis data, misalnya menggunakan <code>./configure --with-mysql</code>.\nJika Anda menginstal PHP dari paket Debian atau Ubuntu, maka Anda juga perlu menginstal seperti paket <code>php5-mysql</code>.",
+	"config-no-db": "Pengandar basis data yang sesuai tidak ditemukan! Anda perlu menginstal pengandar basis data untuk PHP.\n{{PLURAL:$2|Jenis|Jenis}} basis data yang didukung: $1.\n\nJika Anda mengompilasi PHP sendiri, ubahlah konfigurasinya dengan mengaktifkan klien basis data, misalnya menggunakan <code>./configure --with-mysqli</code>.\nJika Anda menginstal PHP dari paket Debian atau Ubuntu, maka Anda juga perlu menginstal seperti paket <code>php5-mysql</code>.",
 	"config-outdated-sqlite": "<strong>Peringatan:</strong> Anda menggunakan SQLite $1, yang lebih rendah dari versi minimum yang diperlukan $2. SQLite akan tidak tersedia.",
 	"config-no-fts3": "'''Peringatan''': SQLite dikompilasi tanpa [//sqlite.org/fts3.html modul FTS3], fitur pencarian tidak akan tersedia pada konfigurasi ini.",
 	"config-pcre-old": "<strong>Fatal:</strong> PCRE $1 atau kemudian diperlukan.\nBiner PHP Anda dihubungkan dengan PCRE $2. [https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Selengkapnya].",
@@ -210,6 +211,7 @@
 	"config-subscribe": "Berlangganan ke [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce milis pengumuman rilis].",
 	"config-subscribe-help": "Ini adalah milis bervolume rendah yang digunakan untuk pengumuman rilis, termasuk pengumuman keamanan penting.\nAnda sebaiknya berlangganan dan memperbarui instalasi MediaWiki saat versi baru keluar.",
 	"config-subscribe-noemail": "Anda mencoba untuk berlangganan milis pengumuman rilis tanpa menyediakan alamat email.\nHarap berikan alamat surel jika Anda ingin berlangganan ke milis.",
+	"config-pingback": "Bagikan data tentang instalasi ini dengan pengembang MediaWiki",
 	"config-almost-done": "Anda hampir selesai!\nAnda sekarang dapat melewati sisa konfigurasi dan menginstal wiki sekarang.",
 	"config-optional-continue": "Berikan saya pertanyaan lagi.",
 	"config-optional-skip": "Saya sudah bosan, instal saja wikinya.",
@@ -218,7 +220,7 @@
 	"config-profile-no-anon": "Pembuatan akun diperlukan",
 	"config-profile-fishbowl": "Khusus penyunting terdaftar",
 	"config-profile-private": "Wiki pribadi",
-	"config-profile-help": "Wiki paling baik bekerja jika Anda membiarkan sebanyak mungkin orang untuk menyunting. Dengan MediaWiki, sangat mudah meninjau perubahan terbaru dan mengembalikan kerusakan yang dilakukan oleh pengguna naif atau berbahaya.\n\nNamun, berbagai kegunaan lain dari MediaWiki telah ditemukan, dan kadang tidak mudah untuk meyakinkan semua orang manfaat dari cara wiki. Jadi, Anda yang menentukan.\n\n'''{{int:config-profile-wiki}}''' memungkinkan setiap orang untuk menyunting, bahkan tanpa masuk.\n'''{{int:config-profile-no-anon}}''' menyediakan akuntabilitas tambahan, tetapi dapat mencegah kontributor biasa.\n\n'''{{int:config-profile-fishbowl}}''' memungkinkan pengguna yang disetujui untuk menyunting, tetapi publik dapat melihat halaman, termasuk riwayatnya.\n'''{{int:config-profile-private}}''' hanya memungkinkan pengguna yang disetujui untuk melihat dan menyunting halaman.\n\nKonfigurasi hak pengguna yang lebih kompleks tersedia setelah instalasi. Lihat [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:User_rights/id entri manual terkait].",
+	"config-profile-help": "Wiki paling baik bekerja jika Anda membiarkan sebanyak mungkin orang untuk menyunting. Dengan MediaWiki, sangat mudah meninjau perubahan terbaru dan mengembalikan kerusakan yang dilakukan oleh pengguna naif atau berbahaya.\n\nNamun, berbagai kegunaan lain dari MediaWiki telah ditemukan, dan kadang tidak mudah untuk meyakinkan semua orang manfaat dari cara wiki. Jadi, Anda yang menentukan.\n\n'''{{int:config-profile-wiki}}''' memungkinkan setiap orang untuk menyunting, bahkan tanpa masuk log.\n'''{{int:config-profile-no-anon}}''' menyediakan akuntabilitas tambahan, tetapi dapat mengurangi semangat kontributor sambil lalu.\n\n'''{{int:config-profile-fishbowl}}''' memungkinkan pengguna yang disetujui untuk menyunting, tetapi publik dapat melihat halaman, termasuk riwayatnya.\n'''{{int:config-profile-private}}''' hanya memungkinkan pengguna yang disetujui untuk melihat dan menyunting halaman.\n\nKonfigurasi hak pengguna yang lebih kompleks tersedia setelah instalasi. Lihat [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:User_rights/id entri manual terkait].",
 	"config-license": "Hak cipta dan lisensi:",
 	"config-license-none": "Tidak ada lisensi",
 	"config-license-cc-by-sa": "Creative Commons Atribusi Berbagi Serupa",

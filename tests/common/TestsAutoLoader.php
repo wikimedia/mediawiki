@@ -24,23 +24,28 @@
 global $wgAutoloadClasses;
 $testDir = __DIR__ . "/..";
 
+// @codingStandardsIgnoreStart Generic.Files.LineLength.TooLong
 $wgAutoloadClasses += [
 
 	# tests/common
 	'TestSetup' => "$testDir/common/TestSetup.php",
 
+	# tests/integration
+	'MWHttpRequestTestCase' => "$testDir/integration/includes/http/MWHttpRequestTestCase.php",
+
 	# tests/parser
 	'DbTestPreviewer' => "$testDir/parser/DbTestPreviewer.php",
 	'DbTestRecorder' => "$testDir/parser/DbTestRecorder.php",
 	'DjVuSupport' => "$testDir/parser/DjVuSupport.php",
-	'TestRecorder' => "$testDir/parser/TestRecorder.php",
 	'MultiTestRecorder' => "$testDir/parser/MultiTestRecorder.php",
+	'ParserTestMockParser' => "$testDir/parser/ParserTestMockParser.php",
 	'ParserTestRunner' => "$testDir/parser/ParserTestRunner.php",
 	'ParserTestParserHook' => "$testDir/parser/ParserTestParserHook.php",
 	'ParserTestPrinter' => "$testDir/parser/ParserTestPrinter.php",
 	'ParserTestResult' => "$testDir/parser/ParserTestResult.php",
 	'ParserTestResultNormalizer' => "$testDir/parser/ParserTestResultNormalizer.php",
 	'PhpunitTestRecorder' => "$testDir/parser/PhpunitTestRecorder.php",
+	'TestFileEditor' => "$testDir/parser/TestFileEditor.php",
 	'TestFileReader' => "$testDir/parser/TestFileReader.php",
 	'TestRecorder' => "$testDir/parser/TestRecorder.php",
 	'TidySupport' => "$testDir/parser/TidySupport.php",
@@ -126,6 +131,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/specialpage
 	'SpecialPageTestHelper' => "$testDir/phpunit/includes/specialpage/SpecialPageTestHelper.php",
+	'AbstractChangesListSpecialPageTestCase' => "$testDir/phpunit/includes/specialpage/AbstractChangesListSpecialPageTestCase.php",
 
 	# tests/phpunit/includes/specials
 	'SpecialPageTestBase' => "$testDir/phpunit/includes/specials/SpecialPageTestBase.php",
@@ -154,6 +160,8 @@ $wgAutoloadClasses += [
 	'MockDjVuHandler' => "$testDir/phpunit/mocks/media/MockDjVuHandler.php",
 	'MockOggHandler' => "$testDir/phpunit/mocks/media/MockOggHandler.php",
 	'MockMediaHandlerFactory' => "$testDir/phpunit/mocks/media/MockMediaHandlerFactory.php",
+	'MockChangesListFilter' => "$testDir/phpunit/mocks/MockChangesListFilter.php",
+	'MockChangesListFilterGroup' => "$testDir/phpunit/mocks/MockChangesListFilterGroup.php",
 	'MockWebRequest' => "$testDir/phpunit/mocks/MockWebRequest.php",
 	'MediaWiki\\Session\\DummySessionBackend'
 		=> "$testDir/phpunit/mocks/session/DummySessionBackend.php",
@@ -163,3 +171,4 @@ $wgAutoloadClasses += [
 	'ParserTestFileSuite' => "$testDir/phpunit/suites/ParserTestFileSuite.php",
 	'ParserTestTopLevelSuite' => "$testDir/phpunit/suites/ParserTestTopLevelSuite.php",
 ];
+// @codingStandardsIgnoreEnd

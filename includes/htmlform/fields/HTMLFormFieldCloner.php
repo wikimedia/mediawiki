@@ -46,7 +46,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 	protected $uniqueId;
 
 	public function __construct( $params ) {
-		$this->uniqueId = get_class( $this ) . ++self::$counter . 'x';
+		$this->uniqueId = static::class . ++self::$counter . 'x';
 		parent::__construct( $params );
 
 		if ( empty( $this->mParams['fields'] ) || !is_array( $this->mParams['fields'] ) ) {
@@ -57,6 +57,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		if ( isset( $this->mParams['fields']['delete'] ) ) {
 			$class = 'mw-htmlform-cloner-delete-button';
 			$info = $this->mParams['fields']['delete'] + [
+				'formnovalidate' => true,
 				'cssclass' => $class
 			];
 			unset( $info['name'], $info['class'] );
@@ -95,6 +96,17 @@ class HTMLFormFieldCloner extends HTMLFormField {
 				$info['id'] = Sanitizer::escapeId( "{$this->mID}--$key--{$info['id']}" );
 			} else {
 				$info['id'] = Sanitizer::escapeId( "{$this->mID}--$key--$fieldname" );
+			}
+			// Copy the hide-if rules to "child" fields, so that the JavaScript code handling them
+			// (resources/src/mediawiki/htmlform/hide-if.js) doesn't have to handle nested fields.
+			if ( $this->mHideIf ) {
+				if ( isset( $info['hide-if'] ) ) {
+					// Hide child field if either its rules say it's hidden, or parent's rules say it's hidden
+					$info['hide-if'] = [ 'OR', $info['hide-if'], $this->mHideIf ];
+				} else {
+					// Hide child field if parent's rules say it's hidden
+					$info['hide-if'] = $this->mHideIf;
+				}
 			}
 			$field = HTMLForm::loadInputFromParameters( $name, $info, $this->mParent );
 			$fields[$fieldname] = $field;
@@ -224,7 +236,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			&& $this->mParams['required'] !== false
 			&& !$values
 		) {
-			return $this->msg( 'htmlform-cloner-required' )->parseAsBlock();
+			return $this->msg( 'htmlform-cloner-required' );
 		}
 
 		if ( isset( $values['nonjs'] ) ) {
@@ -238,6 +250,9 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			$fields = $this->createFieldsForKey( $key );
 			foreach ( $fields as $fieldname => $field ) {
 				if ( !array_key_exists( $fieldname, $value ) ) {
+					continue;
+				}
+				if ( $field->isHidden( $alldata ) ) {
 					continue;
 				}
 				$ok = $field->validate( $value[$fieldname], $alldata );
@@ -296,6 +311,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 				: 'htmlform-cloner-delete';
 			$field = HTMLForm::loadInputFromParameters( $name, [
 				'type' => 'submit',
+				'formnovalidate' => true,
 				'name' => $name,
 				'id' => Sanitizer::escapeId( "{$this->mID}--$key--delete" ),
 				'cssclass' => 'mw-htmlform-cloner-delete-button',
@@ -368,6 +384,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			: 'htmlform-cloner-create';
 		$field = HTMLForm::loadInputFromParameters( $name, [
 			'type' => 'submit',
+			'formnovalidate' => true,
 			'name' => $name,
 			'id' => Sanitizer::escapeId( "{$this->mID}--create" ),
 			'cssclass' => 'mw-htmlform-cloner-create-button',

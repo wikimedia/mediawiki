@@ -31,4 +31,3 @@ $namespaceNames = [
 ];
 
 $datePreferences = false;
-

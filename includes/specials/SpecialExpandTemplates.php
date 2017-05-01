@@ -263,7 +263,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			$user = $this->getUser();
 
 			// To prevent cross-site scripting attacks, don't show the preview if raw HTML is
-			// allowed and a valid edit token is not provided (bug 71111). However, MediaWiki
+			// allowed and a valid edit token is not provided (T73111). However, MediaWiki
 			// does not currently provide logged-out users with CSRF protection; in that case,
 			// do not show the preview unless anonymous editing is allowed.
 			if ( $user->isAnon() && !$user->isAllowed( 'edit' ) ) {

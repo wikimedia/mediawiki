@@ -1,8 +1,8 @@
-/*global CompletenessTest, sinon */
+/* global sinon */
 ( function ( $, mw, QUnit ) {
 	'use strict';
 
-	var mwTestIgnore, mwTester, addons;
+	var addons;
 
 	/**
 	 * Add bogus to url to prevent IE crazy caching
@@ -25,23 +25,16 @@
 	// killing the test and assuming timeout failure.
 	QUnit.config.testTimeout = 60 * 1000;
 
+	// Reduce default animation duration from 400ms to 0ms for unit tests
+	// eslint-disable-next-line no-underscore-dangle
+	$.fx.speeds._default = 0;
+
 	// Add a checkbox to QUnit header to toggle MediaWiki ResourceLoader debug mode.
 	QUnit.config.urlConfig.push( {
 		id: 'debug',
 		label: 'Enable ResourceLoaderDebug',
 		tooltip: 'Enable debug mode in ResourceLoader',
 		value: 'true'
-	} );
-
-	/**
-	 * CompletenessTest
-	 *
-	 * Adds toggle checkbox to header
-	 */
-	QUnit.config.urlConfig.push( {
-		id: 'completenesstest',
-		label: 'Run CompletenessTest',
-		tooltip: 'Run the completeness test'
 	} );
 
 	/**
@@ -121,42 +114,6 @@
 		};
 	}() );
 
-	// Initiate when enabled
-	if ( QUnit.urlParams.completenesstest ) {
-
-		// Return true to ignore
-		mwTestIgnore = function ( val, tester ) {
-
-			// Don't record methods of the properties of constructors,
-			// to avoid getting into a loop (prototype.constructor.prototype..).
-			// Since we're therefor skipping any injection for
-			// "new mw.Foo()", manually set it to true here.
-			if ( val instanceof mw.Map ) {
-				tester.methodCallTracker.Map = true;
-				return true;
-			}
-			if ( val instanceof mw.Title ) {
-				tester.methodCallTracker.Title = true;
-				return true;
-			}
-
-			// Don't record methods of the properties of a jQuery object
-			if ( val instanceof $ ) {
-				return true;
-			}
-
-			// Don't iterate over the module registry (the 'script' references would
-			// be listed as untested methods otherwise)
-			if ( val === mw.loader.moduleRegistry ) {
-				return true;
-			}
-
-			return false;
-		};
-
-		mwTester = new CompletenessTest( mw, mwTestIgnore );
-	}
-
 	/**
 	 * Reset mw.config and others to a fresh copy of the live config for each test(),
 	 * and restore it back to the live one afterwards.
@@ -174,9 +131,11 @@
 		liveMessages = mw.messages;
 
 		function suppressWarnings() {
-			warn = mw.log.warn;
-			error = mw.log.error;
-			mw.log.warn = mw.log.error = $.noop;
+			if ( warn === undefined ) {
+				warn = mw.log.warn;
+				error = mw.log.error;
+				mw.log.warn = mw.log.error = $.noop;
+			}
 		}
 
 		function restoreWarnings() {
@@ -206,7 +165,7 @@
 		}
 
 		function freshMessagesCopy( custom ) {
-			return $.extend( /*deep=*/true, {}, liveMessages.get(), custom );
+			return $.extend( /* deep */true, {}, liveMessages.get(), custom );
 		}
 
 		/**
@@ -258,6 +217,10 @@
 					// Stop tracking ajax requests
 					$( document ).off( 'ajaxSend', trackAjax );
 
+					// As a convenience feature, automatically restore warnings if they're
+					// still suppressed by the end of the test.
+					restoreWarnings();
+
 					// Farewell, mock environment!
 					mw.config = liveConfig;
 					mw.messages = liveMessages;
@@ -265,10 +228,6 @@
 					mw.jqueryMsg.setParserDefaults( {
 						messages: liveMessages
 					} );
-
-					// As a convenience feature, automatically restore warnings if they're
-					// still suppressed by the end of the test.
-					restoreWarnings();
 
 					// Tests should use fake timers or wait for animations to complete
 					// Check for incomplete animations/requests/etc and throw if there are any.
@@ -281,6 +240,7 @@
 							);
 						} );
 						// Force animations to stop to give the next test a clean start
+						$.timers = [];
 						$.fx.stop();
 
 						throw new Error( 'Unfinished animations: ' + timers );
@@ -296,8 +256,11 @@
 							mw.log.warn( 'Pending requests does not match jQuery.active count' );
 						}
 						// Force requests to stop to give the next test a clean start
-						$.each( pending, function ( i, ajax ) {
-							mw.log.warn( 'Pending AJAX request #' + i, ajax.options );
+						$.each( ajaxRequests, function ( i, ajax ) {
+							mw.log.warn(
+								'AJAX request #' + i + ' (state: ' + ajax.xhr.state() + ')',
+								ajax.options
+							);
 							ajax.xhr.abort();
 						} );
 						ajaxRequests = [];
@@ -476,7 +439,7 @@
 		}
 	} ) );
 
-	QUnit.test( 'Setup', 3, function ( assert ) {
+	QUnit.test( 'Setup', function ( assert ) {
 		assert.equal( mw.html.escape( 'foo' ), 'mocked', 'setup() callback was ran.' );
 		assert.equal( mw.config.get( 'testVar' ), 'foo', 'config object applied' );
 		assert.equal( mw.messages.get( 'testMsg' ), 'Foo.', 'messages object applied' );
@@ -485,12 +448,12 @@
 		mw.messages.set( 'testMsg', 'Bar.' );
 	} );
 
-	QUnit.test( 'Teardown', 2, function ( assert ) {
+	QUnit.test( 'Teardown', function ( assert ) {
 		assert.equal( mw.config.get( 'testVar' ), 'foo', 'config object restored and re-applied after test()' );
 		assert.equal( mw.messages.get( 'testMsg' ), 'Foo.', 'messages object restored and re-applied after test()' );
 	} );
 
-	QUnit.test( 'Loader status', 2, function ( assert ) {
+	QUnit.test( 'Loader status', function ( assert ) {
 		var i, len, state,
 			modules = mw.loader.getModuleNames(),
 			error = [],
@@ -509,7 +472,7 @@
 		assert.deepEqual( missing, [], 'Modules in missing state' );
 	} );
 
-	QUnit.test( 'htmlEqual', 8, function ( assert ) {
+	QUnit.test( 'htmlEqual', function ( assert ) {
 		assert.htmlEqual(
 			'<div><p class="some classes" data-length="10">Child paragraph with <a href="http://example.com">A link</a></p>Regular text<span>A span</span></div>',
 			'<div><p data-length=\'10\'  class=\'some classes\'>Child paragraph with <a href=\'http://example.com\' >A link</a></p>Regular text<span>A span</span></div>',
@@ -561,7 +524,7 @@
 
 	QUnit.module( 'test.mediawiki.qunit.testrunner-after', QUnit.newMwEnvironment() );
 
-	QUnit.test( 'Teardown', 3, function ( assert ) {
+	QUnit.test( 'Teardown', function ( assert ) {
 		assert.equal( mw.html.escape( '<' ), '&lt;', 'teardown() callback was ran.' );
 		assert.equal( mw.config.get( 'testVar' ), null, 'config object restored to live in next module()' );
 		assert.equal( mw.messages.get( 'testMsg' ), null, 'messages object restored to live in next module()' );

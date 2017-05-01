@@ -18,7 +18,8 @@ class JobTest extends MediaWikiTestCase {
 	}
 
 	public function provideTestToString() {
-		$mockToStringObj = $this->getMock( 'stdClass', [ '__toString' ] );
+		$mockToStringObj = $this->getMockBuilder( 'stdClass' )
+			->setMethods( [ '__toString' ] )->getMock();
 		$mockToStringObj->expects( $this->any() )
 			->method( '__toString' )
 			->will( $this->returnValue( '{STRING_OBJ_VAL}' ) );

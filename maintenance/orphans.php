@@ -30,6 +30,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use Wikimedia\Rdbms\IMaintainableDatabase;
+
 /**
  * Maintenance script that looks for 'orphan' revisions hooked to pages which
  * don't exist and 'childless' pages with no revisions.
@@ -56,8 +58,8 @@ class Orphans extends Maintenance {
 
 	/**
 	 * Lock the appropriate tables for the script
-	 * @param Database $db
-	 * @param string $extraTable The name of any extra tables to lock (eg: text)
+	 * @param IMaintainableDatabase $db
+	 * @param string[] $extraTable The name of any extra tables to lock (eg: text)
 	 */
 	private function lockTables( $db, $extraTable = [] ) {
 		$tbls = [ 'page', 'revision', 'redirect' ];

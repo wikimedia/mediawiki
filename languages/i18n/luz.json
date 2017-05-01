@@ -4,7 +4,8 @@
 			"Bonevarluri",
 			"علی ساکی لرستانی",
 			"Mjbmr",
-			"Hosseinblue"
+			"Hosseinblue",
+			"MtDu"
 		]
 	},
 	"tog-underline": "لینکیا خط وه دومن",
@@ -219,7 +220,7 @@
 	"pool-queuefull": "صف استخر پر هسی",
 	"pool-errorunknown": "خطا ناشناخته",
 	"pool-servererror": "شمارنده سرویس استخر ور تیه نی ($1).",
-	"aboutsite": "پۉرۉجھ : دأربارھ",
+	"aboutsite": "پۉرۉجھ : دأربارھ{{SITENAME}}",
 	"aboutpage": "Project:دأربارھ",
 	"copyright": "مطلب دومن $ 1 هس نکه خلاف هونو ذکر وابی.",
 	"copyrightpage": "{{ns:project}}:کۉپی رایت",

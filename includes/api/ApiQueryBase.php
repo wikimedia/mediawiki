@@ -24,6 +24,9 @@
  * @file
  */
 
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * This is a base class for all Query modules.
  * It provides some common functionality such as constructing various SQL
@@ -103,7 +106,7 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Get the Query database connection (read-only)
-	 * @return Database
+	 * @return IDatabase
 	 */
 	protected function getDB() {
 		if ( is_null( $this->mDb ) ) {
@@ -119,7 +122,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param string $name Name to assign to the database connection
 	 * @param int $db One of the DB_* constants
 	 * @param array $groups Query groups
-	 * @return Database
+	 * @return IDatabase
 	 */
 	public function selectNamedDB( $name, $db, $groups ) {
 		$this->mDb = $this->getQuery()->getNamedDB( $name, $db, $groups );
@@ -258,7 +261,7 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Equivalent to addWhere(array($field => $value))
 	 * @param string $field Field name
-	 * @param string $value Value; ignored if null or empty array;
+	 * @param string|string[] $value Value; ignored if null or empty array;
 	 */
 	protected function addWhereFld( $field, $value ) {
 		// Use count() to its full documented capabilities to simultaneously
@@ -325,7 +328,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * Add an option such as LIMIT or USE INDEX. If an option was set
 	 * before, the old value will be overwritten
 	 * @param string $name Option name
-	 * @param string $value Option value
+	 * @param string|string[] $value Option value
 	 */
 	protected function addOption( $name, $value = null ) {
 		if ( is_null( $value ) ) {
@@ -421,7 +424,7 @@ abstract class ApiQueryBase extends ApiBase {
 
 			$likeQuery = LinkFilter::makeLikeArray( $query, $protocol );
 			if ( !$likeQuery ) {
-				$this->dieUsage( 'Invalid query', 'bad_query' );
+				$this->dieWithError( 'apierror-badquery' );
 			}
 
 			$likeQuery = LinkFilter::keepOneWildcard( $likeQuery );
@@ -547,7 +550,7 @@ abstract class ApiQueryBase extends ApiBase {
 		$t = Title::makeTitleSafe( $namespace, $titlePart . 'x' );
 		if ( !$t || $t->hasFragment() ) {
 			// Invalid title (e.g. bad chars) or contained a '#'.
-			$this->dieUsageMsg( [ 'invalidtitle', $titlePart ] );
+			$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $titlePart ) ] );
 		}
 		if ( $namespace != $t->getNamespace() || $t->isExternal() ) {
 			// This can happen in two cases. First, if you call titlePartToKey with a title part
@@ -555,7 +558,7 @@ abstract class ApiQueryBase extends ApiBase {
 			// difficult to handle such a case. Such cases cannot exist and are therefore treated
 			// as invalid user input. The second case is when somebody specifies a title interwiki
 			// prefix.
-			$this->dieUsageMsg( [ 'invalidtitle', $titlePart ] );
+			$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $titlePart ) ] );
 		}
 
 		return substr( $t->getDBkey(), 0, -1 );
@@ -573,7 +576,7 @@ abstract class ApiQueryBase extends ApiBase {
 		$t = Title::newFromText( $titlePart . 'x', $defaultNamespace );
 		if ( !$t || $t->hasFragment() || $t->isExternal() ) {
 			// Invalid title (e.g. bad chars) or contained a '#'.
-			$this->dieUsageMsg( [ 'invalidtitle', $titlePart ] );
+			$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $titlePart ) ] );
 		}
 
 		return [ $t->getNamespace(), substr( $t->getDBkey(), 0, -1 ) ];
@@ -584,7 +587,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return bool
 	 */
 	public function validateSha1Hash( $hash ) {
-		return preg_match( '/^[a-f0-9]{40}$/', $hash );
+		return (bool)preg_match( '/^[a-f0-9]{40}$/', $hash );
 	}
 
 	/**
@@ -592,7 +595,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return bool
 	 */
 	public function validateSha1Base36Hash( $hash ) {
-		return preg_match( '/^[a-z0-9]{31}$/', $hash );
+		return (bool)preg_match( '/^[a-z0-9]{31}$/', $hash );
 	}
 
 	/**

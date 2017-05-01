@@ -1,7 +1,5 @@
 <?php
 /**
- * Mark a revision as patrolled on a page
- *
  * Copyright © 2011 Alexandre Emsenhuber
  *
  * This program is free software; you can redistribute it and/or modify
@@ -22,47 +20,84 @@
  * @ingroup Actions
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Mark a revision as patrolled on a page
  *
  * @ingroup Actions
  */
-class MarkpatrolledAction extends FormlessAction {
+class MarkpatrolledAction extends FormAction {
 
 	public function getName() {
 		return 'markpatrolled';
 	}
 
 	protected function getDescription() {
+		// Disable default header "subtitle"
 		return '';
 	}
 
-	public function onView() {
-		$request = $this->getRequest();
+	public function getRestriction() {
+		return 'patrol';
+	}
 
-		$rcId = $request->getInt( 'rcid' );
-		$rc = RecentChange::newFromId( $rcId );
-		if ( is_null( $rc ) ) {
+	protected function getRecentChange( $data = null ) {
+		$rc = null;
+		// Note: This works both on initial GET url and after submitting the form
+		$rcId = $data ? intval( $data['rcid'] ) : $this->getRequest()->getInt( 'rcid' );
+		if ( $rcId ) {
+			$rc = RecentChange::newFromId( $rcId );
+		}
+		if ( !$rc ) {
 			throw new ErrorPageError( 'markedaspatrollederror', 'markedaspatrollederrortext' );
 		}
+		return $rc;
+	}
 
+	protected function preText() {
+		$rc = $this->getRecentChange();
+		$title = $rc->getTitle();
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+
+		// Based on logentry-patrol-patrol (see PatrolLogFormatter)
+		$revId = $rc->getAttribute( 'rc_this_oldid' );
+		$query = [
+			'curid' => $rc->getAttribute( 'rc_cur_id' ),
+			'diff' => $revId,
+			'oldid' => $rc->getAttribute( 'rc_last_oldid' )
+		];
+		$revlink = $linkRenderer->makeLink( $title, $revId, [], $query );
+		$pagelink = $linkRenderer->makeLink( $title, $title->getPrefixedText() );
+
+		return $this->msg( 'confirm-markpatrolled-top' )->params(
+			$title->getPrefixedText(),
+			// Provide pre-rendered link as parser would render [[:$1]] as bold non-link
+			Message::rawParam( $pagelink ),
+			Message::rawParam( $revlink )
+		)->parse();
+	}
+
+	protected function alterForm( HTMLForm $form ) {
+		$form->addHiddenField( 'rcid', $this->getRequest()->getInt( 'rcid' ) );
+		$form->setTokenSalt( 'patrol' );
+		$form->setSubmitTextMsg( 'confirm-markpatrolled-button' );
+	}
+
+	/**
+	 * @return bool|array True for success, false for didn't-try, array of errors on failure
+	 */
+	public function onSubmit( $data ) {
 		$user = $this->getUser();
-		if ( !$user->matchEditToken( $request->getVal( 'token' ), $rcId ) ) {
-			throw new ErrorPageError( 'sessionfailure-title', 'sessionfailure' );
-		}
-
+		$rc = $this->getRecentChange( $data );
 		$errors = $rc->doMarkPatrolled( $user );
 
 		if ( in_array( [ 'rcpatroldisabled' ], $errors ) ) {
 			throw new ErrorPageError( 'rcpatroldisabled', 'rcpatroldisabledtext' );
 		}
 
-		if ( in_array( [ 'hookaborted' ], $errors ) ) {
-			// The hook itself has handled any output
-			return;
-		}
-
-		# It would be nice to see where the user had actually come from, but for now just guess
+		// Guess where the user came from
+		// TODO: Would be nice to see where the user actually came from
 		if ( $rc->getAttribute( 'rc_type' ) == RC_NEW ) {
 			$returnTo = 'Newpages';
 		} elseif ( $rc->getAttribute( 'rc_log_type' ) == 'upload' ) {
@@ -76,18 +111,25 @@ class MarkpatrolledAction extends FormlessAction {
 			$this->getOutput()->setPageTitle( $this->msg( 'markedaspatrollederror' ) );
 			$this->getOutput()->addWikiMsg( 'markedaspatrollederror-noautopatrol' );
 			$this->getOutput()->returnToMain( null, $return );
-
-			return;
+			return true;
 		}
 
-		if ( count( $errors ) ) {
-			throw new PermissionsError( 'patrol', $errors );
+		if ( $errors ) {
+			if ( !in_array( [ 'hookaborted' ], $errors ) ) {
+				throw new PermissionsError( 'patrol', $errors );
+			}
+			// The hook itself has handled any output
+			return $errors;
 		}
 
-		# Inform the user
 		$this->getOutput()->setPageTitle( $this->msg( 'markedaspatrolled' ) );
 		$this->getOutput()->addWikiMsg( 'markedaspatrolledtext', $rc->getTitle()->getPrefixedText() );
 		$this->getOutput()->returnToMain( null, $return );
+		return true;
+	}
+
+	public function onSuccess() {
+		// Required by parent class. Redundant as our onSubmit handles output already.
 	}
 
 	public function doesWrites() {

@@ -87,13 +87,13 @@ class WfTimestampTest extends MediaWikiTestCase {
 	/**
 	 * This test checks wfTimestamp() with values outside.
 	 * It needs PHP 64 bits or PHP > 5.1.
-	 * See r74778 and bug 25451
+	 * See r74778 and T27451
 	 * @dataProvider provideOldTimestamps
 	 */
 	public function testOldTimestamps( $input, $outputType, $output, $message ) {
 		$timestamp = wfTimestamp( $outputType, $input );
 		if ( substr( $output, 0, 1 ) === '/' ) {
-			// Bug 64946: Day of the week calculations for very old
+			// T66946: Day of the week calculations for very old
 			// timestamps varies from system to system.
 			$this->assertRegExp( $output, $timestamp, $message );
 		} else {

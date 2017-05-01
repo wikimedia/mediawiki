@@ -37,3 +37,11 @@ $namespaceNames = [
 	NS_CATEGORY         => 'گٹھ',
 	NS_CATEGORY_TALK    => 'گٹھ_گل_بات',
 ];
+
+$namespaceAliases = [
+	'تصویر' => NS_FILE,
+];
+
+$magicWords = [
+	'redirect' => [ '0', '#مڑجوڑ', '#REDIRECT' ],
+];

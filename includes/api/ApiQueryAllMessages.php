@@ -41,7 +41,9 @@ class ApiQueryAllMessages extends ApiQueryBase {
 		if ( is_null( $params['lang'] ) ) {
 			$langObj = $this->getLanguage();
 		} elseif ( !Language::isValidCode( $params['lang'] ) ) {
-			$this->dieUsage( 'Invalid language code for parameter lang', 'invalidlang' );
+			$this->dieWithError(
+				[ 'apierror-invalidlang', $this->encodeParamName( 'lang' ) ], 'invalidlang'
+			);
 		} else {
 			$langObj = Language::factory( $params['lang'] );
 		}
@@ -50,7 +52,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 			if ( !is_null( $params['title'] ) ) {
 				$title = Title::newFromText( $params['title'] );
 				if ( !$title || $title->isExternal() ) {
-					$this->dieUsageMsg( [ 'invalidtitle', $params['title'] ] );
+					$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['title'] ) ] );
 				}
 			} else {
 				$title = Title::newFromText( 'API' );
@@ -254,6 +256,6 @@ class ApiQueryAllMessages extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Allmessages';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Allmessages';
 	}
 }

@@ -1,4 +1,28 @@
 ( function ( $ ) {
+	var caretSample,
+		sig = {
+			pre: '--~~~~'
+		},
+		bold = {
+			pre: '\'\'\'',
+			peri: 'Bold text',
+			post: '\'\'\''
+		},
+		h2 = {
+			pre: '== ',
+			peri: 'Heading 2',
+			post: ' ==',
+			regex: /^(\s*)(={1,6})(.*?)\2(\s*)$/,
+			regexReplace: '$1==$3==$4',
+			ownline: true
+		},
+		ulist = {
+			pre: '* ',
+			peri: 'Bulleted list item',
+			post: '',
+			ownline: true,
+			splitlines: true
+		};
 
 	QUnit.module( 'jquery.textSelection', QUnit.newMwEnvironment() );
 
@@ -32,12 +56,7 @@
 		}, opt.after );
 
 		QUnit.test( opt.description, function ( assert ) {
-			var $textarea, start, end, options, text, selected,
-				tests = 1;
-			if ( opt.after.selected !== null ) {
-				tests++;
-			}
-			QUnit.expect( tests );
+			var $textarea, start, end, options, text, selected;
 
 			$textarea = $( '<textarea>' );
 
@@ -65,31 +84,6 @@
 
 		} );
 	}
-
-	var caretSample,
-		sig = {
-			pre: '--~~~~'
-		},
-		bold = {
-			pre: '\'\'\'',
-			peri: 'Bold text',
-			post: '\'\'\''
-		},
-		h2 = {
-			pre: '== ',
-			peri: 'Heading 2',
-			post: ' ==',
-			regex: /^(\s*)(={1,6})(.*?)\2(\s*)$/,
-			regexReplace: '$1==$3==$4',
-			ownline: true
-		},
-		ulist = {
-			pre: '* ',
-			peri: 'Bulleted list item',
-			post: '',
-			ownline: true,
-			splitlines: true
-		};
 
 	encapsulateTest( {
 		description: 'Adding sig to end of text',
@@ -215,7 +209,7 @@
 	} );
 
 	function caretTest( options ) {
-		QUnit.test( options.description, 2, function ( assert ) {
+		QUnit.test( options.description, function ( assert ) {
 			var pos,
 				$textarea = $( '<textarea>' ).text( options.text );
 
@@ -229,7 +223,7 @@
 			}
 
 			function among( actual, expected, message ) {
-				if ( $.isArray( expected ) ) {
+				if ( Array.isArray( expected ) ) {
 					assert.ok( $.inArray( actual, expected ) !== -1, message + ' (got ' + actual + '; expected one of ' + expected.join( ', ' ) + ')' );
 				} else {
 					assert.equal( actual, expected, message );
@@ -244,9 +238,9 @@
 
 	caretSample = 'Some big text that we like to work with. Nothing fancy... you know what I mean?';
 
-	/* @broken: Disabled per bug 34820
+	/* @broken: Disabled per T36820
 	caretTest({
-		description: 'getCaretPosition with original/empty selection - bug 31847 with IE 6/7/8',
+		description: 'getCaretPosition with original/empty selection - T33847 with IE 6/7/8',
 		text: caretSample,
 		start: [0, caretSample.length], // Opera and Firefox (prior to FF 6.0) default caret to the end of the box (caretSample.length)
 		end: [0, caretSample.length], // Other browsers default it to the beginning (0), so check both.

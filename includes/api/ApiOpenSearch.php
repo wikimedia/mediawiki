@@ -25,6 +25,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\Database;
 
 /**
  * @ingroup API
@@ -309,7 +310,7 @@ class ApiOpenSearch extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Opensearch';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Opensearch';
 	}
 
 	/**
@@ -391,14 +392,14 @@ class ApiOpenSearchFormatJson extends ApiFormatJson {
 	}
 
 	public function execute() {
-		if ( !$this->getResult()->getResultData( 'error' ) ) {
-			$result = $this->getResult();
-
+		$result = $this->getResult();
+		if ( !$result->getResultData( 'error' ) && !$result->getResultData( 'errors' ) ) {
 			// Ignore warnings or treat as errors, as requested
 			$warnings = $result->removeValue( 'warnings', null );
 			if ( $this->warningsAsError && $warnings ) {
-				$this->dieUsage(
-					'Warnings cannot be represented in OpenSearch JSON format', 'warnings', 0,
+				$this->dieWithError(
+					'apierror-opensearch-json-warnings',
+					'warnings',
 					[ 'warnings' => $warnings ]
 				);
 			}

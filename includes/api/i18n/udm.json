@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kaganer"
+			"Kaganer",
+			"Mouse21"
 		]
 	},
+	"apihelp-block-description": "Блокировка пыриськисьёс.",
 	"apihelp-edit-example-edit": "Бамез тупатъяно.",
 	"apihelp-login-example-login": "Пырыны."
 }

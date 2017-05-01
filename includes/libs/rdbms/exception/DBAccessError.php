@@ -19,12 +19,16 @@
  * @ingroup Database
  */
 
+namespace Wikimedia\Rdbms;
+
 /**
  * Exception class for attempted DB access
  * @ingroup Database
  */
 class DBAccessError extends DBUnexpectedError {
 	public function __construct() {
-		parent::__construct( "Database access has been disabled." );
+		parent::__construct( null, "Database access has been disabled." );
 	}
 }
+
+class_alias( DBAccessError::class, 'DBAccessError' );

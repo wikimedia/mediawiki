@@ -27,7 +27,7 @@ abstract class TidyDriverBase {
 	 * @return bool Whether the HTML is valid
 	 */
 	public function validate( $text, &$errorStr ) {
-		throw new \MWException( get_class( $this ) . " does not support validate()" );
+		throw new \MWException( static::class . ' does not support validate()' );
 	}
 
 	/**

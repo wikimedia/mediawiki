@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 /**
  * Maintenance script to wrap all old-style passwords in a layered type
  *
@@ -71,6 +74,7 @@ class WrapOldPasswords extends Maintenance {
 		$typeCond = 'user_password' . $dbw->buildLike( ":$firstType:", $dbw->anyString() );
 
 		$minUserId = 0;
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		do {
 			$this->beginTransaction( $dbw, __METHOD__ );
 
@@ -113,6 +117,7 @@ class WrapOldPasswords extends Maintenance {
 			}
 
 			$this->commitTransaction( $dbw, __METHOD__ );
+			$lbFactory->waitForReplication();
 
 			// Clear memcached so old passwords are wiped out
 			foreach ( $updateUsers as $user ) {

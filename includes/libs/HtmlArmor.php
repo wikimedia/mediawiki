@@ -28,12 +28,12 @@
 class HtmlArmor {
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
 	private $value;
 
 	/**
-	 * @param string $value
+	 * @param string|null $value
 	 */
 	public function __construct( $value ) {
 		$this->value = $value;
@@ -44,7 +44,8 @@ class HtmlArmor {
 	 * and get safe HTML back
 	 *
 	 * @param string|HtmlArmor $input
-	 * @return string safe for usage in HTML
+	 * @return string|null safe for usage in HTML, or null
+	 *         if the HtmlArmor instance was wrapping null.
 	 */
 	public static function getHtml( $input ) {
 		if ( $input instanceof HtmlArmor ) {

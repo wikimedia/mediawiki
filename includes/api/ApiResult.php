@@ -364,7 +364,7 @@ class ApiResult implements ApiSerializable {
 			}
 		}
 		if ( is_array( $value ) ) {
-			// Work around PHP bug 45959 by copying to a temporary
+			// Work around https://bugs.php.net/bug.php?id=45959 by copying to a temporary
 			// (in this case, foreach gets $k === "1" but $tmp[$k] assigns as if $k === 1)
 			$tmp = [];
 			foreach ( $value as $k => $v ) {
@@ -413,11 +413,9 @@ class ApiResult implements ApiSerializable {
 
 			$newsize = $this->size + self::size( $value );
 			if ( $this->maxSize !== false && $newsize > $this->maxSize ) {
-				/// @todo Add i18n message when replacing calls to ->setWarning()
-				$msg = new ApiRawMessage( 'This result was truncated because it would otherwise ' .
-					'be larger than the limit of $1 bytes', 'truncatedresult' );
-				$msg->numParams( $this->maxSize );
-				$this->errorFormatter->addWarning( 'result', $msg );
+				$this->errorFormatter->addWarning(
+					'result', [ 'apiwarn-truncatedresult', Message::numParam( $this->maxSize ) ]
+				);
 				return false;
 			}
 			$this->size = $newsize;
@@ -1195,6 +1193,29 @@ class ApiResult implements ApiSerializable {
 				ApiResult::META_BC_BOOLS => $bools,
 				ApiResult::META_INDEXED_TAG_NAME => 'value',
 			] + $vars;
+		}
+	}
+
+	/**
+	 * Format an expiry timestamp for API output
+	 * @since 1.29
+	 * @param string $expiry Expiry timestamp, likely from the database
+	 * @param string $infinity Use this string for infinite expiry
+	 *  (only use this to maintain backward compatibility with existing output)
+	 * @return string Formatted expiry
+	 */
+	public static function formatExpiry( $expiry, $infinity = 'infinity' ) {
+		static $dbInfinity;
+		if ( $dbInfinity === null ) {
+			$dbInfinity = wfGetDB( DB_REPLICA )->getInfinity();
+		}
+
+		if ( $expiry === '' || $expiry === null || $expiry === false ||
+			wfIsInfinity( $expiry ) || $expiry === $dbInfinity
+		) {
+			return $infinity;
+		} else {
+			return wfTimestamp( TS_ISO_8601, $expiry );
 		}
 	}
 

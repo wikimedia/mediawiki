@@ -91,13 +91,41 @@ class IcuCollation extends Collation {
 	 * available and that there are, in fact, no additional letters to consider.
 	 */
 	private static $tailoringFirstLetters = [
-		// Verified by native speakers
+		'af' => [],
+		'am' => [],
+		'ar' => [],
+		'as' => [ "\xe0\xa6\x82", "\xe0\xa6\x81", "\xe0\xa6\x83", "\xe0\xa7\x8e", "ক্ষ " ],
+		'ast' => [ "Ch", "Ll", "Ñ" ], // not in libicu
+		'az' => [ "Ç", "Ə", "Ğ", "İ", "Ö", "Ş", "Ü" ],
 		'be' => [ "Ё" ],
 		'be-tarask' => [ "Ё" ],
+		'bg' => [],
+		'bn' => [ 'ং', 'ঃ', 'ঁ' ],
+		'bn@collation=traditional' => [
+			'ং', 'ঃ', 'ঁ', 'ক্', 'খ্', 'গ্', 'ঘ্', 'ঙ্', 'চ্', 'ছ্', 'জ্', 'ঝ্',
+			'ঞ্', 'ট্', 'ঠ্', 'ড্', 'ঢ্', 'ণ্', 'ৎ', 'থ্', 'দ্', 'ধ্', 'ন্', 'প্',
+			'ফ্', 'ব্', 'ভ্', 'ম্', 'য্', 'র্', 'ৰ্', 'ল্', 'ৱ্', 'শ্', 'ষ্', 'স্', 'হ্'
+		],
+		'bo' => [],
+		'br' => [ "Ch", "C'h" ],
 		'bs' => [ "Č", "Ć", "Dž", "Đ", "Lj", "Nj", "Š", "Ž" ],
+		'bs-Cyrl' => [],
+		'ca' => [],
+		'chr' => [],
+		'co' => [], // not in libicu
 		'cs' => [ "Č", "Ch", "Ř", "Š", "Ž" ],
 		'cy' => [ "Ch", "Dd", "Ff", "Ng", "Ll", "Ph", "Rh", "Th" ],
+		'da' => [ "Æ", "Ø", "Å" ],
+		'de' => [],
+		'de-AT@collation=phonebook' => [ 'ä', 'ö', 'ü', 'ß' ],
+		'dsb' => [ "Č", "Ć", "Dź", "Ě", "Ch", "Ł", "Ń", "Ŕ", "Š", "Ś", "Ž", "Ź" ],
+		'ee' => [ "Dz", "Ɖ", "Ɛ", "Ƒ", "Gb", "Ɣ", "Kp", "Ny", "Ŋ", "Ɔ", "Ts", "Ʋ" ],
+		'el' => [],
 		'en' => [],
+		'eo' => [ "Ĉ", "Ĝ", "Ĥ", "Ĵ", "Ŝ", "Ŭ" ],
+		'es' => [ "Ñ" ],
+		'et' => [ "Š", "Ž", "Õ", "Ä", "Ö", "Ü", "W" ], // added W for CollationEt (xx-uca-et)
+		'eu' => [ "Ñ" ], // not in libicu
 		'fa' => [
 			// RTL, let's put each letter on a new line
 			"آ",
@@ -107,74 +135,107 @@ class IcuCollation extends Collation {
 			"و"
 		],
 		'fi' => [ "Å", "Ä", "Ö" ],
+		'fil' => [ "Ñ", "Ng" ],
+		'fo' => [ "Á", "Ð", "Í", "Ó", "Ú", "Ý", "Æ", "Ø", "Å" ],
 		'fr' => [],
+		'fr-CA' => [], // fr-CA sorts accents slightly different from fr.
+		'fur' => [ "À", "Á", "Â", "È", "Ì", "Ò", "Ù" ], // not in libicu
+		'fy' => [], // not in libicu
+		'ga' => [],
+		'gd' => [], // not in libicu
+		'gl' => [ "Ch", "Ll", "Ñ" ],
+		'gu' => [ "\xe0\xaa\x82", "\xe0\xaa\x83", "\xe0\xaa\x81", "\xe0\xaa\xb3" ],
+		'ha' => [ 'Ɓ', 'Ɗ', 'Ƙ', 'Sh', 'Ts', 'Ƴ' ],
+		'haw' => [ 'ʻ' ],
+		'he' => [],
+		'hi' => [ "\xe0\xa4\x82", "\xe0\xa4\x83" ],
 		'hr' => [ "Č", "Ć", "Dž", "Đ", "Lj", "Nj", "Š", "Ž" ],
 		'hsb' => [ "Č", "Dź", "Ě", "Ch", "Ł", "Ń", "Ř", "Š", "Ć", "Ž" ],
 		'hu' => [ "Cs", "Dz", "Dzs", "Gy", "Ly", "Ny", "Ö", "Sz", "Ty", "Ü", "Zs" ],
+		'hy' => [ "և" ],
+		'id' => [],
+		'ig' => [ "Ch", "Gb", "Gh", "Gw", "Ị", "Kp", "Kw", "Ṅ", "Nw", "Ny", "Ọ", "Sh", "Ụ" ],
 		'is' => [ "Á", "Ð", "É", "Í", "Ó", "Ú", "Ý", "Þ", "Æ", "Ö", "Å" ],
 		'it' => [],
+		'ka' => [],
+		'kk' => [ "Ү", "І" ],
+		'kl' => [ "Æ", "Ø", "Å" ],
+		'km' => [
+			"រ", "ឫ", "ឬ", "ល", "ឭ", "ឮ", "\xe1\x9e\xbb\xe1\x9f\x86",
+			"\xe1\x9f\x86", "\xe1\x9e\xb6\xe1\x9f\x86", "\xe1\x9f\x87",
+			"\xe1\x9e\xb7\xe1\x9f\x87", "\xe1\x9e\xbb\xe1\x9f\x87",
+			"\xe1\x9f\x81\xe1\x9f\x87", "\xe1\x9f\x84\xe1\x9f\x87",
+		],
+		'kn' => [ "\xe0\xb2\x81", "\xe0\xb2\x83", "\xe0\xb3\xb1", "\xe0\xb3\xb2" ],
+		'kok' => [ "\xe0\xa4\x82", "\xe0\xa4\x83", "ळ", "क्ष" ],
+		'ku' => [ "Ç", "Ê", "Î", "Ş", "Û" ], // not in libicu
+		'ky' => [ "Ё" ],
+		'la' => [], // not in libicu
+		'lb' => [],
+		'lkt' => [ 'Č', 'Ǧ', 'Ȟ', 'Š', 'Ž' ],
+		'ln' => [ 'Ɛ' ],
+		'lo' => [],
 		'lt' => [ "Č", "Š", "Ž" ],
 		'lv' => [ "Č", "Ģ", "Ķ", "Ļ", "Ņ", "Š", "Ž" ],
 		'mk' => [ "Ѓ", "Ќ" ],
+		'ml' => [],
+		'mn' => [],
+		'mo' => [ "Ă", "Â", "Î", "Ş", "Ţ" ], // not in libicu
+		'mr' => [ "\xe0\xa4\x82", "\xe0\xa4\x83", "ळ", "क्ष", "ज्ञ" ],
+		'ms' => [],
+		'mt' => [ "Ċ", "Ġ", "Għ", "Ħ", "Ż" ],
+		'nb' => [ "Æ", "Ø", "Å" ],
+		'ne' => [],
 		'nl' => [],
+		'nn' => [ "Æ", "Ø", "Å" ],
+		'no' => [ "Æ", "Ø", "Å" ], // not in libicu. You should probably use nb or nn instead.
+		'oc' => [], // not in libicu
+		'om' => [ 'Ch', 'Dh', 'Kh', 'Ny', 'Ph', 'Sh' ],
+		'or' => [ "\xe0\xac\x81", "\xe0\xac\x82", "\xe0\xac\x83", "କ୍ଷ" ],
+		'pa' => [ "\xe0\xa9\x8d" ],
 		'pl' => [ "Ą", "Ć", "Ę", "Ł", "Ń", "Ó", "Ś", "Ź", "Ż" ],
 		'pt' => [],
+		'rm' => [], // not in libicu
+		'ro' => [ "Ă", "Â", "Î", "Ş", "Ţ" ],
 		'ru' => [],
+		'rup' => [ "Ă", "Â", "Î", "Ľ", "Ń", "Ş", "Ţ" ], // not in libicu
+		'sco' => [],
+		'se' => [
+			'Á', 'Č', 'Ʒ', 'Ǯ', 'Đ', 'Ǧ', 'Ǥ', 'Ǩ', 'Ŋ',
+			'Š', 'Ŧ', 'Ž', 'Ø', 'Æ', 'Ȧ', 'Ä', 'Ö'
+		],
+		'si' => [ "\xe0\xb6\x82", "\xe0\xb6\x83", "\xe0\xb6\xa4" ],
 		'sk' => [ "Ä", "Č", "Ch", "Ô", "Š", "Ž" ],
+		'sl' => [ "Č", "Š", "Ž" ],
+		'smn' => [ "Á", "Č", "Đ", "Ŋ", "Š", "Ŧ", "Ž", "Æ", "Ø", "Å", "Ä", "Ö" ],
+		'sq' => [ "Ç", "Dh", "Ë", "Gj", "Ll", "Nj", "Rr", "Sh", "Th", "Xh", "Zh" ],
 		'sr' => [],
+		'sr-Latn' => [ "Č", "Ć", "Dž", "Đ", "Lj", "Nj", "Š", "Ž" ],
 		'sv' => [ "Å", "Ä", "Ö" ],
 		'sv@collation=standard' => [ "Å", "Ä", "Ö" ],
+		'sw' => [],
 		'ta' => [
 			"\xE0\xAE\x82", "ஃ", "க்ஷ", "க்", "ங்", "ச்", "ஞ்", "ட்", "ண்", "த்", "ந்",
 			"ப்", "ம்", "ய்", "ர்", "ல்", "வ்", "ழ்", "ள்", "ற்", "ன்", "ஜ்", "ஶ்", "ஷ்",
 			"ஸ்", "ஹ்", "க்ஷ்"
 		],
-		'uk' => [ "Ґ", "Ь" ],
-		'vi' => [ "Ă", "Â", "Đ", "Ê", "Ô", "Ơ", "Ư" ],
-		// Not verified, but likely correct
-		'af' => [],
-		'ast' => [ "Ch", "Ll", "Ñ" ],
-		'az' => [ "Ç", "Ə", "Ğ", "İ", "Ö", "Ş", "Ü" ],
-		'bg' => [],
-		'br' => [ "Ch", "C'h" ],
-		'ca' => [],
-		'co' => [],
-		'da' => [ "Æ", "Ø", "Å" ],
-		'de' => [],
-		'dsb' => [ "Č", "Ć", "Dź", "Ě", "Ch", "Ł", "Ń", "Ŕ", "Š", "Ś", "Ž", "Ź" ],
-		'el' => [],
-		'eo' => [ "Ĉ", "Ĝ", "Ĥ", "Ĵ", "Ŝ", "Ŭ" ],
-		'es' => [ "Ñ" ],
-		'et' => [ "Š", "Ž", "Õ", "Ä", "Ö", "Ü", "W" ], // added W for CollationEt (xx-uca-et)
-		'eu' => [ "Ñ" ],
-		'fo' => [ "Á", "Ð", "Í", "Ó", "Ú", "Ý", "Æ", "Ø", "Å" ],
-		'fur' => [ "À", "Á", "Â", "È", "Ì", "Ò", "Ù" ],
-		'fy' => [],
-		'ga' => [],
-		'gd' => [],
-		'gl' => [ "Ch", "Ll", "Ñ" ],
-		'kk' => [ "Ү", "І" ],
-		'kl' => [ "Æ", "Ø", "Å" ],
-		'ku' => [ "Ç", "Ê", "Î", "Ş", "Û" ],
-		'ky' => [ "Ё" ],
-		'la' => [],
-		'lb' => [],
-		'mo' => [ "Ă", "Â", "Î", "Ş", "Ţ" ],
-		'mt' => [ "Ċ", "Ġ", "Għ", "Ħ", "Ż" ],
-		'no' => [ "Æ", "Ø", "Å" ],
-		'oc' => [],
-		'rm' => [],
-		'ro' => [ "Ă", "Â", "Î", "Ş", "Ţ" ],
-		'rup' => [ "Ă", "Â", "Î", "Ľ", "Ń", "Ş", "Ţ" ],
-		'sco' => [],
-		'sl' => [ "Č", "Š", "Ž" ],
-		'smn' => [ "Á", "Č", "Đ", "Ŋ", "Š", "Ŧ", "Ž", "Æ", "Ø", "Å", "Ä", "Ö" ],
-		'sq' => [ "Ç", "Dh", "Ë", "Gj", "Ll", "Nj", "Rr", "Sh", "Th", "Xh", "Zh" ],
+		'te' => [ "\xe0\xb0\x81", "\xe0\xb0\x82", "\xe0\xb0\x83" ],
+		'th' => [ "ฯ", "\xe0\xb9\x86", "\xe0\xb9\x8d", "\xe0\xb8\xba" ],
 		'tk' => [ "Ç", "Ä", "Ž", "Ň", "Ö", "Ş", "Ü", "Ý" ],
-		'tl' => [ "Ñ", "Ng" ],
+		'tl' => [ "Ñ", "Ng" ], // not in libicu
+		'to' => [ "Ng", "ʻ" ],
 		'tr' => [ "Ç", "Ğ", "İ", "Ö", "Ş", "Ü" ],
-		'tt' => [ "Ә", "Ө", "Ү", "Җ", "Ң", "Һ" ],
-		'uz' => [ "Ch", "G'", "Ng", "O'", "Sh" ],
+		'tt' => [ "Ә", "Ө", "Ү", "Җ", "Ң", "Һ" ], // not in libicu
+		'uk' => [ "Ґ", "Ь" ],
+		'uz' => [ "Ch", "G'", "Ng", "O'", "Sh" ], // not in libicu
+		'vi' => [ "Ă", "Â", "Đ", "Ê", "Ô", "Ơ", "Ư" ],
+		'vo' => [ "Ä", "Ö", "Ü" ],
+		'yi' => [
+			"\xd7\x91\xd6\xbf", "\xd7\x9b\xd6\xbc", "\xd7\xa4\xd6\xbc",
+			"\xd7\xa9\xd7\x82", "\xd7\xaa\xd6\xbc"
+		],
+		'yo' => [ "Ẹ", "Gb", "Ọ", "Ṣ" ],
+		'zu' => [],
 	];
 
 	/**
@@ -269,6 +330,7 @@ class IcuCollation extends Collation {
 			$cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
 			$cacheKey = $cache->makeKey(
 				'first-letters',
+				static::class,
 				$this->locale,
 				$this->digitTransformLanguage->getCode(),
 				self::getICUVersion(),
@@ -451,8 +513,12 @@ class IcuCollation extends Collation {
 	 * can't be determined.
 	 *
 	 * The constant INTL_ICU_VERSION this function refers to isn't really
-	 * documented. It is available since PHP 5.3.7 (see PHP bug 54561).
-	 * This function will return false on older PHPs.
+	 * documented. It is available since PHP 5.3.7 (see PHP 54561
+	 * https://bugs.php.net/bug.php?id=54561). This function will return
+	 * false on older PHPs.
+	 *
+	 * TODO: Remove the backwards-compatibility as MediaWiki now requires
+	 * higher levels of PHP.
 	 *
 	 * @since 1.21
 	 * @return string|bool

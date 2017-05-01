@@ -25,7 +25,6 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 			$this->revs[] = Title::newFromText( self::$page )
 				->getLatestRevID( Title::GAID_FOR_UPDATE );
 		}
-
 	}
 
 	public function testHidingRevisions() {
@@ -44,9 +43,9 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 		$this->assertEquals( $out['status'], 'Success' );
 		$this->assertArrayHasKey( 'items', $out );
 		$item = $out['items'][0];
-		$this->assertArrayHasKey( 'userhidden', $item );
-		$this->assertArrayHasKey( 'commenthidden', $item );
-		$this->assertArrayHasKey( 'texthidden', $item );
+		$this->assertTrue( $item['userhidden'], 'userhidden' );
+		$this->assertTrue( $item['commenthidden'], 'commenthidden' );
+		$this->assertTrue( $item['texthidden'], 'texthidden' );
 		$this->assertEquals( $item['id'], $revid );
 
 		// Now check that that revision was actually hidden
@@ -71,9 +70,9 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'items', $out2 );
 		$item = $out2['items'][0];
 
-		$this->assertArrayNotHasKey( 'userhidden', $item );
-		$this->assertArrayNotHasKey( 'commenthidden', $item );
-		$this->assertArrayNotHasKey( 'texthidden', $item );
+		$this->assertFalse( $item['userhidden'], 'userhidden' );
+		$this->assertFalse( $item['commenthidden'], 'commenthidden' );
+		$this->assertFalse( $item['texthidden'], 'texthidden' );
 
 		$this->assertEquals( $item['id'], $revid );
 
@@ -108,11 +107,11 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 		$this->assertEquals( $out['status'], 'Success' );
 		$this->assertArrayHasKey( 'items', $out );
 		$item = $out['items'][0];
-		// Check it has userhidden & texthidden keys
-		// but no commenthidden key
-		$this->assertArrayHasKey( 'userhidden', $item );
-		$this->assertArrayNotHasKey( 'commenthidden', $item );
-		$this->assertArrayHasKey( 'texthidden', $item );
+		// Check it has userhidden & texthidden
+		// but not commenthidden
+		$this->assertTrue( $item['userhidden'], 'userhidden' );
+		$this->assertFalse( $item['commenthidden'], 'commenthidden' );
+		$this->assertTrue( $item['texthidden'], 'texthidden' );
 		$this->assertEquals( $item['id'], $revid );
 	}
 }

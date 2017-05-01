@@ -133,16 +133,16 @@ class ClassicInterwikiLookupTest extends MediaWikiTestCase {
 		// NOTE: CDB setup is expensive, so we only do
 		//  it once and run all the tests in one go.
 
-		$dewiki = [
-			'iw_prefix' => 'de',
-			'iw_url' => 'http://de.wikipedia.org/wiki/',
-			'iw_local' => 1
-		];
-
 		$zzwiki = [
 			'iw_prefix' => 'zz',
 			'iw_url' => 'http://zzwiki.org/wiki/',
 			'iw_local' => 0
+		];
+
+		$dewiki = [
+			'iw_prefix' => 'de',
+			'iw_url' => 'http://de.wikipedia.org/wiki/',
+			'iw_local' => 1
 		];
 
 		$cdbFile = $this->populateCDB(
@@ -160,7 +160,7 @@ class ClassicInterwikiLookupTest extends MediaWikiTestCase {
 		);
 
 		$this->assertEquals(
-			[ $dewiki, $zzwiki ],
+			[ $zzwiki, $dewiki ],
 			$lookup->getAllPrefixes(),
 			'getAllPrefixes()'
 		);
@@ -185,16 +185,15 @@ class ClassicInterwikiLookupTest extends MediaWikiTestCase {
 	}
 
 	public function testArrayStorage() {
-		$dewiki = [
-			'iw_prefix' => 'de',
-			'iw_url' => 'http://de.wikipedia.org/wiki/',
-			'iw_local' => 1
-		];
-
 		$zzwiki = [
 			'iw_prefix' => 'zz',
 			'iw_url' => 'http://zzwiki.org/wiki/',
 			'iw_local' => 0
+		];
+		$dewiki = [
+			'iw_prefix' => 'de',
+			'iw_url' => 'http://de.wikipedia.org/wiki/',
+			'iw_local' => 1
 		];
 
 		$hash = $this->populateHash(
@@ -212,7 +211,7 @@ class ClassicInterwikiLookupTest extends MediaWikiTestCase {
 		);
 
 		$this->assertEquals(
-			[ $dewiki, $zzwiki ],
+			[ $zzwiki, $dewiki ],
 			$lookup->getAllPrefixes(),
 			'getAllPrefixes()'
 		);
@@ -231,6 +230,44 @@ class ClassicInterwikiLookupTest extends MediaWikiTestCase {
 
 		$this->assertSame( 'http://zzwiki.org/wiki/', $interwiki->getURL(), 'getURL' );
 		$this->assertSame( false, $interwiki->isLocal(), 'isLocal' );
+	}
+
+	public function testGetAllPrefixes() {
+		$zz = [
+			'iw_prefix' => 'zz',
+			'iw_url' => 'https://azz.example.org/',
+			'iw_local' => 1
+		];
+		$de = [
+			'iw_prefix' => 'de',
+			'iw_url' => 'https://de.example.org/',
+			'iw_local' => 1
+		];
+		$azz = [
+			'iw_prefix' => 'azz',
+			'iw_url' => 'https://azz.example.org/',
+			'iw_local' => 1
+		];
+
+		$hash = $this->populateHash(
+			'en',
+			[],
+			[ $zz, $de, $azz ]
+		);
+		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
+			Language::factory( 'en' ),
+			WANObjectCache::newEmpty(),
+			60 * 60,
+			$hash,
+			3,
+			'en'
+		);
+
+		$this->assertEquals(
+			[ $zz, $de, $azz ],
+			$lookup->getAllPrefixes(),
+			'getAllPrefixes() - preserves order'
+		);
 	}
 
 }

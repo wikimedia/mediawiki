@@ -1,5 +1,5 @@
 <?php
-use MediaWiki\Linker\LinkRenderer;
+
 use MediaWiki\MediaWikiServices;
 
 /**

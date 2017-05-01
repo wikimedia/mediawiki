@@ -64,18 +64,19 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	 *  - blockreason - reason provided for the block
 	 *  - blockedtimestamp - timestamp for when the block was placed/modified
 	 *  - blockexpiry - expiry time of the block
+	 *  - systemblocktype - system block type, if any
 	 */
 	public static function getBlockInfo( Block $block ) {
-		global $wgContLang;
 		$vals = [];
 		$vals['blockid'] = $block->getId();
 		$vals['blockedby'] = $block->getByName();
 		$vals['blockedbyid'] = $block->getBy();
 		$vals['blockreason'] = $block->mReason;
 		$vals['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $block->mTimestamp );
-		$vals['blockexpiry'] = $wgContLang->formatExpiry(
-			$block->getExpiry(), TS_ISO_8601, 'infinite'
-		);
+		$vals['blockexpiry'] = ApiResult::formatExpiry( $block->getExpiry(), 'infinite' );
+		if ( $block->getSystemBlockType() !== null ) {
+			$vals['systemblocktype'] = $block->getSystemBlockType();
+		}
 		return $vals;
 	}
 
@@ -142,6 +143,19 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			ApiResult::setIndexedTagName( $vals['groups'], 'g' ); // even if empty
 		}
 
+		if ( isset( $this->prop['groupmemberships'] ) ) {
+			$ugms = $user->getGroupMemberships();
+			$vals['groupmemberships'] = [];
+			foreach ( $ugms as $group => $ugm ) {
+				$vals['groupmemberships'][] = [
+					'group' => $group,
+					'expiry' => ApiResult::formatExpiry( $ugm->getExpiry() ),
+				];
+			}
+			ApiResult::setArrayType( $vals['groupmemberships'], 'array' ); // even if empty
+			ApiResult::setIndexedTagName( $vals['groupmemberships'], 'groupmembership' ); // even if empty
+		}
+
 		if ( isset( $this->prop['implicitgroups'] ) ) {
 			$vals['implicitgroups'] = $user->getAutomaticGroups();
 			ApiResult::setArrayType( $vals['implicitgroups'], 'array' ); // even if empty
@@ -170,8 +184,13 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 		if ( isset( $this->prop['preferencestoken'] ) ) {
 			$p = $this->getModulePrefix();
-			$this->setWarning(
-				"{$p}prop=preferencestoken has been deprecated. Please use action=query&meta=tokens instead."
+			$this->addDeprecation(
+				[
+					'apiwarn-deprecation-withreplacement',
+					"{$p}prop=preferencestoken",
+					'action=query&meta=tokens',
+				],
+				"meta=userinfo&{$p}prop=preferencestoken"
 			);
 		}
 		if ( isset( $this->prop['preferencestoken'] ) &&
@@ -296,6 +315,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'blockinfo',
 					'hasmsg',
 					'groups',
+					'groupmemberships',
 					'implicitgroups',
 					'rights',
 					'changeablegroups',
@@ -332,6 +352,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Userinfo';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Userinfo';
 	}
 }

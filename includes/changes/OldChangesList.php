@@ -34,7 +34,7 @@ class OldChangesList extends ChangesList {
 	public function recentChangesLine( &$rc, $watched = false, $linenumber = null ) {
 
 		$classes = $this->getHTMLClasses( $rc, $watched );
-		// use mw-line-even/mw-line-odd class only if linenumber is given (feature from bug 14468)
+		// use mw-line-even/mw-line-odd class only if linenumber is given (feature from T16468)
 		if ( $linenumber ) {
 			if ( $linenumber & 1 ) {
 				$classes[] = 'mw-line-odd';
@@ -50,7 +50,9 @@ class OldChangesList extends ChangesList {
 				$rc->mAttribs['rc_namespace'] . '-' . $rc->mAttribs['rc_title'] );
 		}
 
-		if ( !Hooks::run( 'OldChangesListRecentChangesLine', [ &$this, &$html, $rc, &$classes ] ) ) {
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$list = $this;
+		if ( !Hooks::run( 'OldChangesListRecentChangesLine', [ &$list, &$html, $rc, &$classes ] ) ) {
 			return false;
 		}
 

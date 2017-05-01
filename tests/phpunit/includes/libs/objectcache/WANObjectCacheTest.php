@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 class WANObjectCacheTest extends PHPUnit_Framework_TestCase  {
 	/** @var WANObjectCache */
 	private $cache;
@@ -873,6 +875,62 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase  {
 	}
 
 	/**
+	 * @covers WANObjectCache::reap()
+	 * @covers WANObjectCache::reapCheckKey()
+	 */
+	public function testReap() {
+		$vKey1 = wfRandomString();
+		$vKey2 = wfRandomString();
+		$tKey1 = wfRandomString();
+		$tKey2 = wfRandomString();
+		$value = 'moo';
+
+		$knownPurge = time() - 60;
+		$goodTime = microtime( true ) - 5;
+		$badTime = microtime( true ) - 300;
+
+		$this->internalCache->set(
+			WANObjectCache::VALUE_KEY_PREFIX . $vKey1,
+			[
+				WANObjectCache::FLD_VERSION => WANObjectCache::VERSION,
+				WANObjectCache::FLD_VALUE => $value,
+				WANObjectCache::FLD_TTL => 3600,
+				WANObjectCache::FLD_TIME => $goodTime
+			]
+		);
+		$this->internalCache->set(
+			WANObjectCache::VALUE_KEY_PREFIX . $vKey2,
+			[
+				WANObjectCache::FLD_VERSION => WANObjectCache::VERSION,
+				WANObjectCache::FLD_VALUE => $value,
+				WANObjectCache::FLD_TTL => 3600,
+				WANObjectCache::FLD_TIME => $badTime
+			]
+		);
+		$this->internalCache->set(
+			WANObjectCache::TIME_KEY_PREFIX . $tKey1,
+			WANObjectCache::PURGE_VAL_PREFIX . $goodTime
+		);
+		$this->internalCache->set(
+			WANObjectCache::TIME_KEY_PREFIX . $tKey2,
+			WANObjectCache::PURGE_VAL_PREFIX . $badTime
+		);
+
+		$this->assertEquals( $value, $this->cache->get( $vKey1 ) );
+		$this->assertEquals( $value, $this->cache->get( $vKey2 ) );
+		$this->cache->reap( $vKey1, $knownPurge, $bad1 );
+		$this->cache->reap( $vKey2, $knownPurge, $bad2 );
+
+		$this->assertFalse( $bad1 );
+		$this->assertTrue( $bad2 );
+
+		$this->cache->reapCheckKey( $tKey1, $knownPurge, $tBad1 );
+		$this->cache->reapCheckKey( $tKey2, $knownPurge, $tBad2 );
+		$this->assertFalse( $tBad1 );
+		$this->assertTrue( $tBad2 );
+	}
+
+	/**
 	 * @covers WANObjectCache::set()
 	 */
 	public function testSetWithLag() {
@@ -907,7 +965,8 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase  {
 	}
 
 	public function testMcRouterSupport() {
-		$localBag = $this->getMock( 'EmptyBagOStuff', [ 'set', 'delete' ] );
+		$localBag = $this->getMockBuilder( 'EmptyBagOStuff' )
+			->setMethods( [ 'set', 'delete' ] )->getMock();
 		$localBag->expects( $this->never() )->method( 'set' );
 		$localBag->expects( $this->never() )->method( 'delete' );
 		$wanCache = new WANObjectCache( [
@@ -926,6 +985,8 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase  {
 		$wanCache->getMulti( [ 'x', 'y' ], $ctls, [ 'check2' ] );
 		$wanCache->getWithSetCallback( 'p', 30, $valFunc );
 		$wanCache->getCheckKeyTime( 'zzz' );
+		$wanCache->reap( 'x', time() - 300 );
+		$wanCache->reap( 'zzz', time() - 300 );
 	}
 
 	/**

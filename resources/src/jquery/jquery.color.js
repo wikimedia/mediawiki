@@ -10,18 +10,18 @@
 ( function ( $ ) {
 
 	function getColor( elem, attr ) {
-		/*jshint boss:true */
 		var color;
 
 		do {
 			color = $.css( elem, attr );
 
 			// Keep going until we find an element that has color, or we hit the body
-			if ( color !== '' && color !== 'transparent' || $.nodeName( elem, 'body' ) ) {
+			if ( color !== '' && color !== 'transparent' || elem.nodeName.toLowerCase() === 'body' ) {
 				break;
 			}
 
 			attr = 'backgroundColor';
+		// eslint-disable-next-line no-cond-assign
 		} while ( elem = elem.parentNode );
 
 		return $.colorUtil.getRGB( color );

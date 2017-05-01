@@ -23,6 +23,8 @@
  * @ingroup SpecialPage
  */
 
+use Mediawiki\MediaWikiServices;
+
 /**
  * A special page that allows users to export pages in a XML file
  *
@@ -359,7 +361,7 @@ class SpecialExport extends SpecialPage {
 
 			$pages = array_keys( $pageSet );
 
-			// Normalize titles to the same format and remove dupes, see bug 17374
+			// Normalize titles to the same format and remove dupes, see T19374
 			foreach ( $pages as $k => $v ) {
 				$pages[$k] = str_replace( " ", "_", $v );
 			}
@@ -374,7 +376,7 @@ class SpecialExport extends SpecialPage {
 			$buffer = WikiExporter::BUFFER;
 		} else {
 			// Use an unbuffered query; histories may be very long!
-			$lb = wfGetLBFactory()->newMainLB();
+			$lb = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->newMainLB();
 			$db = $lb->getConnection( DB_REPLICA );
 			$buffer = WikiExporter::STREAM;
 
@@ -392,7 +394,7 @@ class SpecialExport extends SpecialPage {
 			$exporter->allPages();
 		} else {
 			foreach ( $pages as $page ) {
-				# Bug 8824: Only export pages the user can read
+				# T10824: Only export pages the user can read
 				$title = Title::newFromText( $page );
 				if ( is_null( $title ) ) {
 					// @todo Perhaps output an <error> tag or something.

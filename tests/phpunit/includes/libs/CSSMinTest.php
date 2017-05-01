@@ -19,6 +19,81 @@ class CSSMinTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider mimeTypeProvider
+	 */
+	public function testGetMimeType( $fileContents, $fileExtension, $expected ) {
+		$fileName = wfTempDir() . DIRECTORY_SEPARATOR . uniqid( 'MW_PHPUnit_CSSMinTest_' ) . '.'
+			. $fileExtension;
+		$this->addTmpFiles( $fileName );
+		file_put_contents( $fileName, $fileContents );
+		$this->assertSame( $expected, CSSMin::getMimeType( $fileName ) );
+	}
+
+	public function mimeTypeProvider() {
+		return [
+			'JPEG with short extension' => [
+				"\xFF\xD8\xFF",
+				'jpg',
+				'image/jpeg'
+			],
+			'JPEG with long extension' => [
+				"\xFF\xD8\xFF",
+				'jpeg',
+				'image/jpeg'
+			],
+			'PNG' => [
+				"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A",
+				'png',
+				'image/png'
+			],
+
+			'PNG extension but JPEG content' => [
+				"\xFF\xD8\xFF",
+				'png',
+				'image/png'
+			],
+			'JPEG extension but PNG content' => [
+				"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A",
+				'jpg',
+				'image/jpeg'
+			],
+			'PNG extension but SVG content' => [
+				'<?xml version="1.0"?><svg></svg>',
+				'png',
+				'image/png'
+			],
+			'SVG extension but PNG content' => [
+				"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A",
+				'svg',
+				'image/svg+xml'
+			],
+
+			'SVG with all headers' => [
+				'<?xml version="1.0"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" '
+				. '"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg></svg>',
+				'svg',
+				'image/svg+xml'
+			],
+			'SVG with XML header only' => [
+				'<?xml version="1.0"?><svg></svg>',
+				'svg',
+				'image/svg+xml'
+			],
+			'SVG with DOCTYPE only' => [
+				'<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" '
+				. '"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg></svg>',
+				'svg',
+				'image/svg+xml'
+			],
+			'SVG without any header' => [
+				'<svg></svg>',
+				'svg',
+				'image/svg+xml'
+			],
+		];
+	}
+
+	/**
 	 * @dataProvider provideMinifyCases
 	 * @covers CSSMin::minify
 	 */
@@ -54,7 +129,7 @@ class CSSMinTest extends MediaWikiTestCase {
 			[ "foo, bar {\n\tprop: value; /* comment */\n}", "foo,bar{prop:value; }" ],
 
 			// Keep track of things that aren't as minified as much as they
-			// could be (bug 35493)
+			// could be (T37493)
 			[ 'foo { prop: value ;}', 'foo{prop:value }' ],
 			[ 'foo { prop : value; }', 'foo{prop :value}' ],
 			[ 'foo { prop: value ; }', 'foo{prop:value }' ],
@@ -105,7 +180,7 @@ class CSSMinTest extends MediaWikiTestCase {
 				'foo { prop: url(http://example.org/bar.png); }',
 			],
 			[
-				'With trailing slash on remote (bug 27052)',
+				'With trailing slash on remote (T29052)',
 				[ 'foo { prop: url(../bar.png); }', false, 'http://example.org/quux/', false ],
 				'foo { prop: url(http://example.org/bar.png); }',
 			],
@@ -129,8 +204,8 @@ class CSSMinTest extends MediaWikiTestCase {
 	 * @covers CSSMin::remap
 	 */
 	public function testRemapRemapping( $message, $input, $expectedOutput ) {
-		$localPath = __DIR__ . '/../../data/cssmin/';
-		$remotePath = 'http://localhost/w/';
+		$localPath = __DIR__ . '/../../data/cssmin';
+		$remotePath = 'http://localhost/w';
 
 		$realOutput = CSSMin::remap( $input, $localPath, $remotePath );
 		$this->assertEquals( $expectedOutput, $realOutput, "CSSMin::remap: $message" );
@@ -370,7 +445,7 @@ class CSSMinTest extends MediaWikiTestCase {
 				'{ background: /*asd*/ url(http://localhost/w/something.png); background: /*jkl*/ url(http://localhost/w/something.png); }',
 			],
 			[
-				'Sanity check for offending line from jquery.ui.theme.css (bug 60077)',
+				'Sanity check for offending line from jquery.ui.theme.css (T62077)',
 				'.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #d3d3d3/*{borderColorDefault}*/; background: #e6e6e6/*{bgColorDefault}*/ url(images/ui-bg_glass_75_e6e6e6_1x400.png)/*{bgImgUrlDefault}*/ 50%/*{bgDefaultXPos}*/ 50%/*{bgDefaultYPos}*/ repeat-x/*{bgDefaultRepeat}*/; font-weight: normal/*{fwDefault}*/; color: #555555/*{fcDefault}*/; }',
 				'.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #d3d3d3/*{borderColorDefault}*/; background: #e6e6e6/*{bgColorDefault}*/ url(http://localhost/w/images/ui-bg_glass_75_e6e6e6_1x400.png)/*{bgImgUrlDefault}*/ 50%/*{bgDefaultXPos}*/ 50%/*{bgDefaultYPos}*/ repeat-x/*{bgDefaultRepeat}*/; font-weight: normal/*{fwDefault}*/; color: #555555/*{fcDefault}*/; }',
 			],
@@ -418,7 +493,7 @@ class CSSMinTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Seperated because they are currently broken (bug 35492)
+	 * Seperated because they are currently broken (T37492)
 	 *
 	 * @group Broken
 	 * @dataProvider provideStringCases

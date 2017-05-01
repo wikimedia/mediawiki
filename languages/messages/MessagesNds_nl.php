@@ -319,4 +319,3 @@ $specialPageAliases = [
 ];
 
 $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';
-

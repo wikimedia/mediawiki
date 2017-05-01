@@ -90,7 +90,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 			foreach ( $params['images'] as $img ) {
 				$title = Title::newFromText( $img );
 				if ( !$title || $title->getNamespace() != NS_FILE ) {
-					$this->setWarning( "\"$img\" is not a file" );
+					$this->addWarning( [ 'apiwarn-notfile', wfEscapeWikiText( $img ) ] );
 				} else {
 					$images[] = $title->getDBkey();
 				}
@@ -172,6 +172,6 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Images';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Images';
 	}
 }

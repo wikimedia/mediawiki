@@ -325,4 +325,3 @@ $magicWords = [
 	'pagesincategory_subcats'   => [ '0', 'bınkatategori', 'subcats' ],
 	'pagesincategory_files'     => [ '0', 'dosyey', 'files' ],
 ];
-

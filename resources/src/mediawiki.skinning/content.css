@@ -10,8 +10,8 @@
 .toc,
 .mw-warning,
 .toccolours {
-	border: 1px solid #aaa;
-	background-color: #f9f9f9;
+	border: 1px solid #a2a9b1;
+	background-color: #f8f9fa;
 	padding: 5px;
 	font-size: 95%;
 }
@@ -35,7 +35,7 @@
 
 	/* IE7 and earlier */
 	zoom: 1;
-	*display: inline;
+	*display: inline; /* stylelint-disable declaration-block-no-duplicate-properties */
 
 	padding: 7px;
 }
@@ -55,7 +55,7 @@ table.toc td {
 #toc h2,
 .toc h2 {
 	display: inline;
-	border: none;
+	border: 0;
 	padding: 0;
 	font-size: 100%;
 	font-weight: bold;
@@ -89,7 +89,7 @@ table.toc td {
 	display: table-cell;
 	/*
 	Text decorations are not propagated to the contents of inline blocks and inline tables,
-	according to <http://www.w3.org/TR/css-text-decor-3/#line-decoration>, and 'display: table-cell'
+	according to <https://www.w3.org/TR/css-text-decor-3/#line-decoration>, and 'display: table-cell'
 	generates an inline table when used without any parent table-rows and tables.
 	*/
 	text-decoration: inherit;
@@ -99,8 +99,8 @@ table.toc td {
 .tocnumber {
 	padding-left: 0;
 	padding-right: 0.5em;
+	color: #222;
 }
-
 /* @noflip */
 .mw-content-ltr .tocnumber {
 	padding-left: 0;
@@ -121,18 +121,20 @@ table.toc td {
 }
 
 /* Images */
-/* @noflip */div.floatright, table.floatright {
-	margin: 0 0 .5em .5em;
-	border: 0;
+/* @noflip */
+div.floatright,
+table.floatright {
+	margin: 0 0 0.5em 0.5em;
 }
 
 div.floatright p {
 	font-style: italic;
 }
 
-/* @noflip */div.floatleft, table.floatleft {
-	margin: 0 .5em .5em 0;
-	border: 0;
+/* @noflip */
+div.floatleft,
+table.floatleft {
+	margin: 0 0.5em 0.5em 0;
 }
 
 div.floatleft p {
@@ -141,15 +143,15 @@ div.floatleft p {
 
 /* Thumbnails */
 div.thumb {
-	margin-bottom: .5em;
+	margin-bottom: 0.5em;
 	width: auto;
 	background-color: transparent;
 }
 
 div.thumbinner {
-	border: 1px solid #ccc;
+	border: 1px solid #c8ccd1;
 	padding: 3px;
-	background-color: #f9f9f9;
+	background-color: #f8f9fa;
 	font-size: 94%;
 	text-align: center;
 	/* new block formatting context,
@@ -158,11 +160,12 @@ div.thumbinner {
 }
 
 html .thumbimage {
-	border: 1px solid #ccc;
+	background-color: #fff;
+	border: 1px solid #c8ccd1;
 }
 
 html .thumbcaption {
-	border: none;
+	border: 0;
 	line-height: 1.4em;
 	padding: 3px;
 	font-size: 94%;
@@ -199,7 +202,7 @@ div.magnify a {
 }
 
 img.thumbborder {
-	border: 1px solid #ddd;
+	border: 1px solid #eaecf0;
 }
 
 /* Directionality-specific styles for thumbnails - their positioning depends on content language */
@@ -246,12 +249,12 @@ img.thumbborder {
 
 /* @noflip */
 div.tright {
-	margin: .5em 0 1.3em 1.4em;
+	margin: 0.5em 0 1.3em 1.4em;
 }
 
 /* @noflip */
 div.tleft {
-	margin: .5em 1.4em 1.3em 0;
+	margin: 0.5em 1.4em 1.3em 0;
 }
 
 /* Hide elements that are marked as "empty" according to legacy Tidy rules,

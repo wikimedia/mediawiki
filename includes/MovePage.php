@@ -233,9 +233,11 @@ class MovePage {
 	 * @param User $user
 	 * @param string $reason
 	 * @param bool $createRedirect
+	 * @param string[] $changeTags Change tags to apply to the entry in the move log. Caller
+	 *  should perform permission checks with ChangeTags::canAddTagsAccompanyingChange
 	 * @return Status
 	 */
-	public function move( User $user, $reason, $createRedirect ) {
+	public function move( User $user, $reason, $createRedirect, array $changeTags = [] ) {
 		global $wgCategoryCollation;
 
 		Hooks::run( 'TitleMove', [ $this->oldTitle, $this->newTitle, $user ] );
@@ -265,7 +267,8 @@ class MovePage {
 		$protected = $this->oldTitle->isProtected();
 
 		// Do the actual move; if this fails, it will throw an MWException(!)
-		$nullRevision = $this->moveToInternal( $user, $this->newTitle, $reason, $createRedirect );
+		$nullRevision = $this->moveToInternal( $user, $this->newTitle, $reason, $createRedirect,
+			$changeTags );
 
 		// Refresh the sortkey for this row.  Be careful to avoid resetting
 		// cl_timestamp, which may disturb time-based lists on some sites.
@@ -356,6 +359,7 @@ class MovePage {
 				'4::oldtitle' => $this->oldTitle->getPrefixedText(),
 			] );
 			$logEntry->setRelations( [ 'pr_id' => $logRelationsValues ] );
+			$logEntry->setTags( $changeTags );
 			$logId = $logEntry->insert();
 			$logEntry->publish( $logId );
 		}
@@ -424,18 +428,21 @@ class MovePage {
 	 * Move page to a title which is either a redirect to the
 	 * source page or nonexistent
 	 *
-	 * @fixme This was basically directly moved from Title, it should be split into smaller functions
+	 * @todo This was basically directly moved from Title, it should be split into
+	 *   smaller functions
 	 * @param User $user the User doing the move
 	 * @param Title $nt The page to move to, which should be a redirect or non-existent
 	 * @param string $reason The reason for the move
 	 * @param bool $createRedirect Whether to leave a redirect at the old title. Does not check
 	 *   if the user has the suppressredirect right
+	 * @param string[] $changeTags Change tags to apply to the entry in the move log
 	 * @return Revision the revision created by the move
 	 * @throws MWException
 	 */
-	private function moveToInternal( User $user, &$nt, $reason = '', $createRedirect = true ) {
-		global $wgContLang;
+	private function moveToInternal( User $user, &$nt, $reason = '', $createRedirect = true,
+		array $changeTags = [] ) {
 
+		global $wgContLang;
 		if ( $nt->exists() ) {
 			$moveOverRedirect = true;
 			$logType = 'move_redir';
@@ -448,7 +455,7 @@ class MovePage {
 			$overwriteMessage = wfMessage(
 					'delete_and_move_reason',
 					$this->oldTitle->getPrefixedText()
-				)->text();
+				)->inContentLanguage()->text();
 			$newpage = WikiPage::factory( $nt );
 			$errs = [];
 			$status = $newpage->doDeleteArticleReal(
@@ -458,7 +465,11 @@ class MovePage {
 				/* $commit */ false,
 				$errs,
 				$user,
+<<<<<<< HEAD
 				[],
+=======
+				$changeTags,
+>>>>>>> wikimedia/master
 				'delete_redir'
 			);
 
@@ -494,7 +505,7 @@ class MovePage {
 		$defaultContentModelChanging = ( $oldDefault !== $newDefault
 			&& $oldDefault === $contentModel );
 
-		// bug 57084: log_page should be the ID of the *moved* page
+		// T59084: log_page should be the ID of the *moved* page
 		$oldid = $this->oldTitle->getArticleID();
 		$logTitle = clone $this->oldTitle;
 
@@ -529,7 +540,8 @@ class MovePage {
 			throw new MWException( 'No valid null revision produced in ' . __METHOD__ );
 		}
 
-		$nullRevision->insertOn( $dbw );
+		$nullRevId = $nullRevision->insertOn( $dbw );
+		$logEntry->setAssociatedRevId( $nullRevId );
 
 		# Change the name of the target page:
 		$dbw->update( 'page',
@@ -542,13 +554,13 @@ class MovePage {
 		);
 
 		if ( !$redirectContent ) {
-			// Clean up the old title *before* reset article id - bug 45348
+			// Clean up the old title *before* reset article id - T47348
 			WikiPage::onArticleDelete( $this->oldTitle );
 		}
 
 		$this->oldTitle->resetArticleID( 0 ); // 0 == non existing
 		$nt->resetArticleID( $oldid );
-		$newpage->loadPageData( WikiPage::READ_LOCKING ); // bug 46397
+		$newpage->loadPageData( WikiPage::READ_LOCKING ); // T48397
 
 		$newpage->updateRevisionOn( $dbw, $nullRevision );
 
@@ -573,7 +585,7 @@ class MovePage {
 		# Recreate the redirect, this time in the other direction.
 		if ( $redirectContent ) {
 			$redirectArticle = WikiPage::factory( $this->oldTitle );
-			$redirectArticle->loadFromRow( false, WikiPage::READ_LOCKING ); // bug 46397
+			$redirectArticle->loadFromRow( false, WikiPage::READ_LOCKING ); // T48397
 			$newid = $redirectArticle->insertOn( $dbw );
 			if ( $newid ) { // sanity
 				$this->oldTitle->resetArticleID( $newid );
@@ -584,18 +596,22 @@ class MovePage {
 					'user' => $user->getId(),
 					'comment' => $comment,
 					'content' => $redirectContent ] );
-				$redirectRevision->insertOn( $dbw );
+				$redirectRevId = $redirectRevision->insertOn( $dbw );
 				$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
 
 				Hooks::run( 'NewRevisionFromEditComplete',
 					[ $redirectArticle, $redirectRevision, false, $user ] );
 
 				$redirectArticle->doEditUpdates( $redirectRevision, $user, [ 'created' => true ] );
+
+				ChangeTags::addTags( $changeTags, null, $redirectRevId, null );
 			}
 		}
 
 		# Log the move
 		$logid = $logEntry->insert();
+
+		$logEntry->setTags( $changeTags );
 		$logEntry->publish( $logid );
 
 		return $nullRevision;

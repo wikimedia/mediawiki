@@ -20,6 +20,7 @@
  * @file
  * @ingroup Ajax
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Handle responses for Ajax requests (send headers, print
@@ -82,7 +83,7 @@ class AjaxResponse {
 	function __construct( $text = null, Config $config = null ) {
 		$this->mCacheDuration = null;
 		$this->mVary = null;
-		$this->mConfig = $config ?: ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+		$this->mConfig = $config ?: MediaWikiServices::getInstance()->getMainConfig();
 
 		$this->mDisabled = false;
 		$this->mText = '';
@@ -161,7 +162,7 @@ class AjaxResponse {
 			// For back-compat, it is supported that mResponseCode be a string like " 200 OK"
 			// (with leading space and the status message after). Cast response code to an integer
 			// to take advantage of PHP's conversion rules which will turn "  200 OK" into 200.
-			// http://php.net/string#language.types.string.conversion
+			// https://secure.php.net/manual/en/language.types.string.php#language.types.string.conversion
 			$n = intval( trim( $this->mResponseCode ) );
 			HttpStatus::header( $n );
 		}

@@ -28,7 +28,6 @@ class WfUrlencodeTest extends MediaWikiTestCase {
 	/**
 	 * Internal helper that actually run the test.
 	 * Called by the public methods testEncodingUrlWith...()
-	 *
 	 */
 	private function verifyEncodingFor( $server, $input, $expectations ) {
 		$expected = $this->extractExpect( $server, $expectations );

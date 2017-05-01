@@ -106,7 +106,7 @@ class HHVMMakeRepo extends Maintenance {
 		$cmd = wfEscapeShellArg(
 			$hhvm,
 			'--hphp',
-		    '--target', 'hhbc',
+			'--target', 'hhbc',
 			'--format', 'binary',
 			'--force', '1',
 			'--keep-tempdir', '1',

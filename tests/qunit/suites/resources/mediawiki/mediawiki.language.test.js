@@ -1,13 +1,15 @@
 ( function ( mw, $ ) {
 	'use strict';
 
+	var grammarTests;
+
 	QUnit.module( 'mediawiki.language', QUnit.newMwEnvironment( {
 		setup: function () {
-			this.liveLangData = mw.language.data.values;
-			mw.language.data.values = $.extend( true, {}, this.liveLangData );
+			this.liveLangData = mw.language.data;
+			mw.language.data = {};
 		},
 		teardown: function () {
-			mw.language.data.values = this.liveLangData;
+			mw.language.data = this.liveLangData;
 		},
 		messages: {
 			// mw.language.listToText test
@@ -17,7 +19,7 @@
 		}
 	} ) );
 
-	QUnit.test( 'mw.language getData and setData', 3, function ( assert ) {
+	QUnit.test( 'mw.language getData and setData', function ( assert ) {
 		mw.language.setData( 'en', 'testkey', 'testvalue' );
 		assert.equal( mw.language.getData( 'en', 'testkey' ), 'testvalue', 'Getter setter test for mw.language' );
 		assert.equal( mw.language.getData( 'en', 'invalidkey' ), undefined, 'Getter setter test for mw.language with invalid key' );
@@ -25,7 +27,7 @@
 		assert.equal( mw.language.getData( 'en-US', 'testkey' ), 'testvalue', 'Case insensitive test for mw.language' );
 	} );
 
-	QUnit.test( 'mw.language.commafy test', 9, function ( assert ) {
+	QUnit.test( 'mw.language.commafy test', function ( assert ) {
 		mw.language.setData( 'en', 'digitGroupingPattern', null );
 		mw.language.setData( 'en', 'digitTransformTable', null );
 		mw.language.setData( 'en', 'separatorTransformTable', null );
@@ -43,13 +45,47 @@
 		assert.equal( mw.language.commafy( 123456789.567, '###,###,#0.00' ), '1,234,567,89.56', 'Decimal part as group of 3 and last one 2' );
 	} );
 
+	QUnit.test( 'mw.language.convertNumber', function ( assert ) {
+		mw.language.setData( 'en', 'digitGroupingPattern', null );
+		mw.language.setData( 'en', 'digitTransformTable', null );
+		mw.language.setData( 'en', 'separatorTransformTable', { ',': '.', '.': ',' } );
+		mw.config.set( 'wgUserLanguage', 'en' );
+		mw.config.set( 'wgTranslateNumerals', true );
+
+		assert.equal( mw.language.convertNumber( 1800 ), '1.800', 'formatting' );
+		assert.equal( mw.language.convertNumber( '1.800', true ), '1800', 'unformatting' );
+	} );
+
+	QUnit.test( 'mw.language.convertNumber - digitTransformTable', function ( assert ) {
+		mw.config.set( 'wgUserLanguage', 'hi' );
+		mw.config.set( 'wgTranslateNumerals', true );
+		mw.language.setData( 'hi', 'digitGroupingPattern', null );
+		mw.language.setData( 'hi', 'separatorTransformTable', { ',': '.', '.': ',' } );
+
+		// Example from Hindi (MessagesHi.php)
+		mw.language.setData( 'hi', 'digitTransformTable', {
+			0: '०',
+			1: '१',
+			2: '२'
+		} );
+
+		assert.equal( mw.language.convertNumber( 1200 ), '१.२००', 'format' );
+		assert.equal( mw.language.convertNumber( '१.२००', true ), '1200', 'unformat from digit transform' );
+		assert.equal( mw.language.convertNumber( '1.200', true ), '1200', 'unformat plain' );
+
+		mw.config.set( 'wgTranslateNumerals', false );
+
+		assert.equal( mw.language.convertNumber( 1200 ), '1.200', 'format (digit transform disabled)' );
+		assert.equal( mw.language.convertNumber( '१.२००', true ), '1200', 'unformat from digit transform (when disabled)' );
+		assert.equal( mw.language.convertNumber( '1.200', true ), '1200', 'unformat plain (digit transform disabled)' );
+	} );
+
 	function grammarTest( langCode, test ) {
 		// The test works only if the content language is opt.language
 		// because it requires [lang].js to be loaded.
 		QUnit.test( 'Grammar test for lang=' + langCode, function ( assert ) {
-			QUnit.expect( test.length );
-
-			for ( var i = 0; i < test.length; i++ ) {
+			var i;
+			for ( i = 0; i < test.length; i++ ) {
 				assert.equal(
 					mw.language.convertGrammar( test[ i ].word, test[ i ].grammarForm ),
 					test[ i ].expected,
@@ -60,7 +96,7 @@
 	}
 
 	// These tests run only for the current UI language.
-	var grammarTests = {
+	grammarTests = {
 		bs: [
 			{
 				word: 'word',
@@ -545,7 +581,7 @@
 		}
 	} );
 
-	QUnit.test( 'List to text test', 4, function ( assert ) {
+	QUnit.test( 'List to text test', function ( assert ) {
 		assert.equal( mw.language.listToText( [] ), '', 'Blank list' );
 		assert.equal( mw.language.listToText( [ 'a' ] ), 'a', 'Single item' );
 		assert.equal( mw.language.listToText( [ 'a', 'b' ] ), 'a and b', 'Two items' );

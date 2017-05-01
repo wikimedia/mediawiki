@@ -29,6 +29,9 @@
 	 * @uses mw.Upload
 	 * @uses mw.Upload.BookletLayout
 	 * @extends OO.ui.ProcessDialog
+	 *
+	 * @constructor
+	 * @param {Object} [config] Configuration options
 	 * @cfg {Function} [bookletClass=mw.Upload.BookletLayout] Booklet class to be
 	 *     used for the steps
 	 * @cfg {Object} [booklet] Booklet constructor configuration
@@ -57,7 +60,6 @@
 	 * @inheritdoc
 	 * @property title
 	 */
-	/*jshint -W024*/
 	mw.Upload.Dialog.static.title = mw.msg( 'upload-dialog-title' );
 
 	/**
@@ -97,8 +99,6 @@
 		}
 	];
 
-	/*jshint +W024*/
-
 	/* Methods */
 
 	/**
@@ -125,6 +125,7 @@
 	 * @return {mw.Upload.BookletLayout} An upload booklet
 	 */
 	mw.Upload.Dialog.prototype.createUploadBooklet = function () {
+		// eslint-disable-next-line new-cap
 		return new this.bookletClass( $.extend( {
 			$overlay: this.$overlay
 		}, this.bookletConfig ) );

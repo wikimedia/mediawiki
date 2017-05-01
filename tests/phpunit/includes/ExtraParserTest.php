@@ -32,7 +32,7 @@ class ExtraParserTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @see Bug 8689
+	 * @see T10689
 	 * @covers Parser::parse
 	 */
 	public function testLongNumericLinesDontKillTheParser() {

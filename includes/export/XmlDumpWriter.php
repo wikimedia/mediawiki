@@ -38,7 +38,7 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	function openStream() {
-		global $wgLanguageCode;
+		global $wgContLang;
 		$ver = WikiExporter::schemaVersion();
 		return Xml::element( 'mediawiki', [
 			'xmlns'              => "http://www.mediawiki.org/xml/export-$ver/",
@@ -51,12 +51,12 @@ class XmlDumpWriter {
 			 * you copy in the new xsd file.
 			 *
 			 * After it is reviewed, merged and deployed (sync-docroot), the index.html needs purging.
-			 * echo "http://www.mediawiki.org/xml/index.html" | mwscript purgeList.php --wiki=aawiki
+			 * echo "https://www.mediawiki.org/xml/index.html" | mwscript purgeList.php --wiki=aawiki
 			 */
 			'xsi:schemaLocation' => "http://www.mediawiki.org/xml/export-$ver/ " .
 				"http://www.mediawiki.org/xml/export-$ver.xsd",
 			'version'            => $ver,
-			'xml:lang'           => $wgLanguageCode ],
+			'xml:lang'           => $wgContLang->getHtmlCode() ],
 			null ) .
 			"\n" .
 			$this->siteInfo();
@@ -269,7 +269,9 @@ class XmlDumpWriter {
 			$out .= "      <sha1/>\n";
 		}
 
-		Hooks::run( 'XmlDumpWriterWriteRevision', [ &$this, &$out, $row, $text ] );
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$writer = $this;
+		Hooks::run( 'XmlDumpWriterWriteRevision', [ &$writer, &$out, $row, $text ] );
 
 		$out .= "    </revision>\n";
 
@@ -430,6 +432,9 @@ class XmlDumpWriter {
 
 		global $wgContLang;
 		$prefix = $wgContLang->getFormattedNsText( $title->getNamespace() );
+
+		// @todo Emit some kind of warning to the user if $title->getNamespace() !==
+		// NS_MAIN and $prefix === '' (viz. pages in an unregistered namespace)
 
 		if ( $prefix !== '' ) {
 			$prefix .= ':';

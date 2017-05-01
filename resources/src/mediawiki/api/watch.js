@@ -12,13 +12,13 @@
 	 * @param {string|mw.Title|string[]|mw.Title[]} pages Full page name or instance of mw.Title, or an
 	 *  array thereof. If an array is passed, the return value passed to the promise will also be an
 	 *  array of appropriate objects.
+	 * @param {Object} [addParams]
 	 * @return {jQuery.Promise}
 	 * @return {Function} return.done
 	 * @return {Object|Object[]} return.done.watch Object or list of objects (depends on the `pages`
 	 *  parameter)
 	 * @return {string} return.done.watch.title Full pagename
 	 * @return {boolean} return.done.watch.watched Whether the page is now watched or unwatched
-	 * @return {string} return.done.watch.message Parsed HTML of the confirmational interface message
 	 */
 	function doWatchInternal( pages, addParams ) {
 		// XXX: Parameter addParams is undocumented because we inherit this
@@ -26,9 +26,9 @@
 		var apiPromise = this.postWithToken( 'watch',
 			$.extend(
 				{
+					formatversion: 2,
 					action: 'watch',
-					titles: $.isArray( pages ) ? pages.join( '|' ) : String( pages ),
-					uselang: mw.config.get( 'wgUserLanguage' )
+					titles: Array.isArray( pages ) ? pages.join( '|' ) : String( pages )
 				},
 				addParams
 			)
@@ -37,7 +37,7 @@
 		return apiPromise
 			.then( function ( data ) {
 				// If a single page was given (not an array) respond with a single item as well.
-				return $.isArray( pages ) ? data.watch : data.watch[ 0 ];
+				return Array.isArray( pages ) ? data.watch : data.watch[ 0 ];
 			} )
 			.promise( { abort: apiPromise.abort } );
 	}

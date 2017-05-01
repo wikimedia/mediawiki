@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @group API
  * @group Database
@@ -20,7 +22,7 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	/**
-	 * @expectedException UsageException
+	 * @expectedException ApiUsageException
 	 * @covers ApiBase::requireOnlyOneParameter
 	 */
 	public function testRequireOnlyOneParameterZero() {
@@ -32,7 +34,7 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	/**
-	 * @expectedException UsageException
+	 * @expectedException ApiUsageException
 	 * @covers ApiBase::requireOnlyOneParameter
 	 */
 	public function testRequireOnlyOneParameterTrue() {
@@ -58,10 +60,10 @@ class ApiBaseTest extends ApiTestCase {
 		$context->setRequest( new FauxRequest( $input !== null ? [ 'foo' => $input ] : [] ) );
 		$wrapper->mMainModule = new ApiMain( $context );
 
-		if ( $expected instanceof UsageException ) {
+		if ( $expected instanceof ApiUsageException ) {
 			try {
 				$wrapper->getParameterFromSettings( 'foo', $paramSettings, true );
-			} catch ( UsageException $ex ) {
+			} catch ( ApiUsageException $ex ) {
 				$this->assertEquals( $expected, $ex );
 			}
 		} else {
@@ -73,9 +75,7 @@ class ApiBaseTest extends ApiTestCase {
 
 	public static function provideGetParameterFromSettings() {
 		$warnings = [
-			'The value passed for \'foo\' contains invalid or non-normalized data. Textual data should ' .
-			'be valid, NFC-normalized Unicode without C0 control characters other than ' .
-			'HT (\\t), LF (\\n), and CR (\\r).'
+			[ 'apiwarn-badutf8', 'foo' ],
 		];
 
 		$c0 = '';
@@ -96,7 +96,7 @@ class ApiBaseTest extends ApiTestCase {
 			'String param, required, empty' => [
 				'',
 				[ ApiBase::PARAM_DFLT => 'default', ApiBase::PARAM_REQUIRED => true ],
-				new UsageException( 'The foo parameter must be set', 'nofoo' ),
+				ApiUsageException::newWithMessage( null, [ 'apierror-missingparam', 'foo' ] ),
 				[]
 			],
 			'Multi-valued parameter' => [
@@ -124,6 +124,54 @@ class ApiBaseTest extends ApiTestCase {
 				$warnings
 			],
 		];
+	}
+
+	public function testErrorArrayToStatus() {
+		$mock = new MockApi();
+
+		// Sanity check empty array
+		$expect = Status::newGood();
+		$this->assertEquals( $expect, $mock->errorArrayToStatus( [] ) );
+
+		// No blocked $user, so no special block handling
+		$expect = Status::newGood();
+		$expect->fatal( 'blockedtext' );
+		$expect->fatal( 'autoblockedtext' );
+		$expect->fatal( 'systemblockedtext' );
+		$expect->fatal( 'mainpage' );
+		$expect->fatal( 'parentheses', 'foobar' );
+		$this->assertEquals( $expect, $mock->errorArrayToStatus( [
+			[ 'blockedtext' ],
+			[ 'autoblockedtext' ],
+			[ 'systemblockedtext' ],
+			'mainpage',
+			[ 'parentheses', 'foobar' ],
+		] ) );
+
+		// Has a blocked $user, so special block handling
+		$user = $this->getMutableTestUser()->getUser();
+		$block = new \Block( [
+			'address' => $user->getName(),
+			'user' => $user->getID(),
+			'reason' => __METHOD__,
+			'expiry' => time() + 100500,
+		] );
+		$block->insert();
+		$blockinfo = [ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) ];
+
+		$expect = Status::newGood();
+		$expect->fatal( ApiMessage::create( 'apierror-blocked', 'blocked', $blockinfo ) );
+		$expect->fatal( ApiMessage::create( 'apierror-autoblocked', 'autoblocked', $blockinfo ) );
+		$expect->fatal( ApiMessage::create( 'apierror-systemblocked', 'blocked', $blockinfo ) );
+		$expect->fatal( 'mainpage' );
+		$expect->fatal( 'parentheses', 'foobar' );
+		$this->assertEquals( $expect, $mock->errorArrayToStatus( [
+			[ 'blockedtext' ],
+			[ 'autoblockedtext' ],
+			[ 'systemblockedtext' ],
+			'mainpage',
+			[ 'parentheses', 'foobar' ],
+		], $user ) );
 	}
 
 }

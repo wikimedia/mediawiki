@@ -64,12 +64,14 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 		// Deprecated parameters
 		if ( isset( $prop['hasrelated'] ) ) {
-			$this->logFeatureUsage( 'action=search&srprop=hasrelated' );
-			$this->setWarning( 'srprop=hasrelated has been deprecated' );
+			$this->addDeprecation(
+				[ 'apiwarn-deprecation-parameter', 'srprop=hasrelated' ], 'action=search&srprop=hasrelated'
+			);
 		}
 		if ( isset( $prop['score'] ) ) {
-			$this->logFeatureUsage( 'action=search&srprop=score' );
-			$this->setWarning( 'srprop=score has been deprecated' );
+			$this->addDeprecation(
+				[ 'apiwarn-deprecation-parameter', 'srprop=score' ], 'action=search&srprop=score'
+			);
 		}
 
 		// Create search engine instance and set options
@@ -107,10 +109,25 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				$matches = $search->searchText( $query );
 			}
 		}
-		if ( is_null( $matches ) ) {
-			$this->dieUsage( "{$what} search is disabled", "search-{$what}-disabled" );
-		} elseif ( $matches instanceof Status && !$matches->isGood() ) {
-			$this->dieUsage( $matches->getWikiText( false, false, 'en' ), 'search-error' );
+
+		if ( $matches instanceof Status ) {
+			$status = $matches;
+			$matches = $status->getValue();
+		} else {
+			$status = null;
+		}
+
+		if ( $status ) {
+			if ( $status->isOK() ) {
+				$this->getMain()->getErrorFormatter()->addMessagesFromStatus(
+					$this->getModuleName(),
+					$status
+				);
+			} else {
+				$this->dieStatus( $status );
+			}
+		} elseif ( is_null( $matches ) ) {
+			$this->dieWithError( [ 'apierror-searchdisabled', $what ], "search-{$what}-disabled" );
 		}
 
 		if ( $resultPageSet === null ) {
@@ -158,119 +175,44 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				continue;
 			}
 
-			$title = $result->getTitle();
 			if ( $resultPageSet === null ) {
-				$vals = [];
-				ApiQueryBase::addTitleInfo( $vals, $title );
-
-				if ( isset( $prop['snippet'] ) ) {
-					$vals['snippet'] = $result->getTextSnippet( $terms );
-				}
-				if ( isset( $prop['size'] ) ) {
-					$vals['size'] = $result->getByteSize();
-				}
-				if ( isset( $prop['wordcount'] ) ) {
-					$vals['wordcount'] = $result->getWordCount();
-				}
-				if ( isset( $prop['timestamp'] ) ) {
-					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $result->getTimestamp() );
-				}
-				if ( isset( $prop['titlesnippet'] ) ) {
-					$vals['titlesnippet'] = $result->getTitleSnippet();
-				}
-				if ( isset( $prop['categorysnippet'] ) ) {
-					$vals['categorysnippet'] = $result->getCategorySnippet();
-				}
-				if ( !is_null( $result->getRedirectTitle() ) ) {
-					if ( isset( $prop['redirecttitle'] ) ) {
-						$vals['redirecttitle'] = $result->getRedirectTitle()->getPrefixedText();
+				$vals = $this->getSearchResultData( $result, $prop, $terms );
+				if ( $vals ) {
+					// Add item to results and see whether it fits
+					$fit = $apiResult->addValue( [ 'query', $this->getModuleName() ], null, $vals );
+					if ( !$fit ) {
+						$this->setContinueEnumParameter( 'offset', $params['offset'] + $count - 1 );
+						break;
 					}
-					if ( isset( $prop['redirectsnippet'] ) ) {
-						$vals['redirectsnippet'] = $result->getRedirectSnippet();
-					}
-				}
-				if ( !is_null( $result->getSectionTitle() ) ) {
-					if ( isset( $prop['sectiontitle'] ) ) {
-						$vals['sectiontitle'] = $result->getSectionTitle()->getFragment();
-					}
-					if ( isset( $prop['sectionsnippet'] ) ) {
-						$vals['sectionsnippet'] = $result->getSectionSnippet();
-					}
-				}
-				if ( isset( $prop['isfilematch'] ) ) {
-					$vals['isfilematch'] = $result->isFileMatch();
-				}
-
-				// Add item to results and see whether it fits
-				$fit = $apiResult->addValue( [ 'query', $this->getModuleName() ],
-					null, $vals );
-				if ( !$fit ) {
-					$this->setContinueEnumParameter( 'offset', $params['offset'] + $count - 1 );
-					break;
 				}
 			} else {
-				$titles[] = $title;
+				$titles[] = $result->getTitle();
 			}
 
 			$result = $matches->next();
 		}
 
-		$hasInterwikiResults = false;
-		$totalhits = null;
-		if ( $interwiki && $resultPageSet === null && $matches->hasInterwikiResults() ) {
-			foreach ( $matches->getInterwikiResults() as $interwikiMatches ) {
-				$hasInterwikiResults = true;
+		// Here we assume interwiki results do not count with
+		// regular search results. We may want to reconsider this
+		// if we ever return a lot of interwiki results or want pagination
+		// for them.
+		// Interwiki results inside main result set
+		$canAddInterwiki = (bool)$params['enablerewrites'] && ( $resultPageSet === null );
+		if ( $canAddInterwiki ) {
+			$this->addInterwikiResults( $matches, $apiResult, $prop, $terms, 'additional',
+				SearchResultSet::INLINE_RESULTS );
+		}
 
-				// Include number of results if requested
-				if ( $resultPageSet === null && isset( $searchInfo['totalhits'] ) ) {
-					$totalhits += $interwikiMatches->getTotalHits();
-				}
-
-				$result = $interwikiMatches->next();
-				while ( $result ) {
-					$title = $result->getTitle();
-
-					if ( $resultPageSet === null ) {
-						$vals = [
-							'namespace' => $result->getInterwikiNamespaceText(),
-							'title' => $title->getText(),
-							'url' => $title->getFullURL(),
-						];
-
-						// Add item to results and see whether it fits
-						$fit = $apiResult->addValue(
-							[ 'query', 'interwiki' . $this->getModuleName(), $result->getInterwikiPrefix() ],
-							null,
-							$vals
-						);
-
-						if ( !$fit ) {
-							// We hit the limit. We can't really provide any meaningful
-							// pagination info so just bail out
-							break;
-						}
-					} else {
-						$titles[] = $title;
-					}
-
-					$result = $interwikiMatches->next();
-				}
-			}
-			if ( $totalhits !== null ) {
-				$apiResult->addValue( [ 'query', 'interwikisearchinfo' ],
-					'totalhits', $totalhits );
-			}
+		// Interwiki results outside main result set
+		if ( $interwiki && $resultPageSet === null ) {
+			$this->addInterwikiResults( $matches, $apiResult, $prop, $terms, 'interwiki',
+				SearchResultSet::SECONDARY_RESULTS );
 		}
 
 		if ( $resultPageSet === null ) {
 			$apiResult->addIndexedTagName( [
 				'query', $this->getModuleName()
 			], 'p' );
-			if ( $hasInterwikiResults ) {
-				$apiResult->addIndexedTagName( [
-					'query', 'interwiki' . $this->getModuleName()
-				], 'p' );
-			}
 		} else {
 			$resultPageSet->setRedirectMergePolicy( function ( $current, $new ) {
 				if ( !isset( $current['index'] ) || $new['index'] < $current['index'] ) {
@@ -284,6 +226,119 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				$resultPageSet->setGeneratorData( $title, [ 'index' => $index + $offset ] );
 			}
 		}
+	}
+
+	/**
+	 * Assemble search result data.
+	 * @param SearchResult $result Search result
+	 * @param array        $prop Props to extract (as keys)
+	 * @param array        $terms Terms list
+	 * @return array|null Result data or null if result is broken in some way.
+	 */
+	private function getSearchResultData( SearchResult $result, $prop, $terms ) {
+		// Silently skip broken and missing titles
+		if ( $result->isBrokenTitle() || $result->isMissingRevision() ) {
+			return null;
+		}
+
+		$vals = [];
+
+		$title = $result->getTitle();
+		ApiQueryBase::addTitleInfo( $vals, $title );
+
+		if ( isset( $prop['size'] ) ) {
+			$vals['size'] = $result->getByteSize();
+		}
+		if ( isset( $prop['wordcount'] ) ) {
+			$vals['wordcount'] = $result->getWordCount();
+		}
+		if ( isset( $prop['snippet'] ) ) {
+			$vals['snippet'] = $result->getTextSnippet( $terms );
+		}
+		if ( isset( $prop['timestamp'] ) ) {
+			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $result->getTimestamp() );
+		}
+		if ( isset( $prop['titlesnippet'] ) ) {
+			$vals['titlesnippet'] = $result->getTitleSnippet();
+		}
+		if ( isset( $prop['categorysnippet'] ) ) {
+			$vals['categorysnippet'] = $result->getCategorySnippet();
+		}
+		if ( !is_null( $result->getRedirectTitle() ) ) {
+			if ( isset( $prop['redirecttitle'] ) ) {
+				$vals['redirecttitle'] = $result->getRedirectTitle()->getPrefixedText();
+			}
+			if ( isset( $prop['redirectsnippet'] ) ) {
+				$vals['redirectsnippet'] = $result->getRedirectSnippet();
+			}
+		}
+		if ( !is_null( $result->getSectionTitle() ) ) {
+			if ( isset( $prop['sectiontitle'] ) ) {
+				$vals['sectiontitle'] = $result->getSectionTitle()->getFragment();
+			}
+			if ( isset( $prop['sectionsnippet'] ) ) {
+				$vals['sectionsnippet'] = $result->getSectionSnippet();
+			}
+		}
+		if ( isset( $prop['isfilematch'] ) ) {
+			$vals['isfilematch'] = $result->isFileMatch();
+		}
+		return $vals;
+	}
+
+	/**
+	 * Add interwiki results as a section in query results.
+	 * @param SearchResultSet $matches
+	 * @param ApiResult       $apiResult
+	 * @param array           $prop Props to extract (as keys)
+	 * @param array           $terms Terms list
+	 * @param string          $section Section name where results would go
+	 * @param int             $type Interwiki result type
+	 * @return int|null Number of total hits in the data or null if none was produced
+	 */
+	private function addInterwikiResults(
+		SearchResultSet $matches, ApiResult $apiResult, $prop,
+		$terms, $section, $type
+	) {
+		$totalhits = null;
+		if ( $matches->hasInterwikiResults( $type ) ) {
+			foreach ( $matches->getInterwikiResults( $type ) as $interwikiMatches ) {
+				// Include number of results if requested
+				$totalhits += $interwikiMatches->getTotalHits();
+
+				$result = $interwikiMatches->next();
+				while ( $result ) {
+					$title = $result->getTitle();
+					$vals = $this->getSearchResultData( $result, $prop, $terms );
+
+					$vals['namespace'] = $result->getInterwikiNamespaceText();
+					$vals['title'] = $title->getText();
+					$vals['url'] = $title->getFullURL();
+
+					// Add item to results and see whether it fits
+					$fit = $apiResult->addValue( [
+							'query',
+							$section . $this->getModuleName(),
+							$result->getInterwikiPrefix()
+						], null, $vals );
+
+					if ( !$fit ) {
+						// We hit the limit. We can't really provide any meaningful
+						// pagination info so just bail out
+						break;
+					}
+
+					$result = $interwikiMatches->next();
+				}
+			}
+			if ( $totalhits !== null ) {
+				$apiResult->addValue( [ 'query', $section . 'searchinfo' ], 'totalhits', $totalhits );
+				$apiResult->addIndexedTagName( [
+					'query', $section . $this->getModuleName()
+				], 'p' );
+			}
+		}
+		return $totalhits;
 	}
 
 	public function getCacheMode( $params ) {
@@ -360,6 +415,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Search';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Search';
 	}
 }

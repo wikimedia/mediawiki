@@ -10,6 +10,7 @@ jQuery( function ( $ ) {
 	 * @ignore
 	 * @context {Element} input
 	 * @param {jQuery.Event} e
+	 * @return {boolean} False to cancel the default event
 	 */
 	function updateDiffRadios() {
 		var nextState = 'before',

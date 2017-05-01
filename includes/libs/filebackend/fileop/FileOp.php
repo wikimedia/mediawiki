@@ -461,7 +461,7 @@ abstract class FileOp {
 		$params = $this->params;
 		$params['failedAction'] = $action;
 		try {
-			$this->logger->error( get_class( $this ) .
+			$this->logger->error( static::class .
 				" failed (batch #{$this->batchId}): " . FormatJson::encode( $params ) );
 		} catch ( Exception $e ) {
 			// bad config? debug log error?

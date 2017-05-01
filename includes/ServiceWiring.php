@@ -48,7 +48,8 @@ return [
 
 		$lbConf = MWLBFactory::applyDefaultConfig(
 			$mainConfig->get( 'LBFactoryConf' ),
-			$mainConfig
+			$mainConfig,
+			$services->getConfiguredReadOnlyMode()
 		);
 		$class = MWLBFactory::getLBFactoryClass( $lbConf );
 
@@ -71,8 +72,14 @@ return [
 	},
 
 	'SiteLookup' => function( MediaWikiServices $services ) {
-		// Use the default SiteStore as the SiteLookup implementation for now
-		return $services->getSiteStore();
+		$cacheFile = $services->getMainConfig()->get( 'SitesCacheFile' );
+
+		if ( $cacheFile !== false ) {
+			return new FileBasedSiteLookup( $cacheFile );
+		} else {
+			// Use the default SiteStore as the SiteLookup implementation for now
+			return $services->getSiteStore();
+		}
 	},
 
 	'ConfigFactory' => function( MediaWikiServices $services ) {
@@ -96,7 +103,7 @@ return [
 		$config = $services->getMainConfig();
 		return new ClassicInterwikiLookup(
 			$wgContLang,
-			ObjectCache::getMainWANInstance(),
+			$services->getMainWANObjectCache(),
 			$config->get( 'InterwikiExpiry' ),
 			$config->get( 'InterwikiCache' ),
 			$config->get( 'InterwikiScopes' ),
@@ -149,7 +156,8 @@ return [
 	'WatchedItemStore' => function( MediaWikiServices $services ) {
 		$store = new WatchedItemStore(
 			$services->getDBLoadBalancer(),
-			new HashBagOStuff( [ 'maxKeys' => 100 ] )
+			new HashBagOStuff( [ 'maxKeys' => 100 ] ),
+			$services->getReadOnlyMode()
 		);
 		$store->setStatsdDataFactory( $services->getStatsdDataFactory() );
 		return $store;
@@ -214,12 +222,56 @@ return [
 	},
 
 	'MimeAnalyzer' => function( MediaWikiServices $services ) {
-		return new MimeMagic(
-			MimeMagic::applyDefaultParameters(
-				[],
-				$services->getMainConfig()
-			)
-		);
+		$logger = LoggerFactory::getInstance( 'Mime' );
+		$mainConfig = $services->getMainConfig();
+		$params = [
+			'typeFile' => $mainConfig->get( 'MimeTypeFile' ),
+			'infoFile' => $mainConfig->get( 'MimeInfoFile' ),
+			'xmlTypes' => $mainConfig->get( 'XMLMimeTypes' ),
+			'guessCallback' =>
+				function ( $mimeAnalyzer, &$head, &$tail, $file, &$mime ) use ( $logger ) {
+					// Also test DjVu
+					$deja = new DjVuImage( $file );
+					if ( $deja->isValid() ) {
+						$logger->info( __METHOD__ . ": detected $file as image/vnd.djvu\n" );
+						$mime = 'image/vnd.djvu';
+
+						return;
+					}
+					// Some strings by reference for performance - assuming well-behaved hooks
+					Hooks::run(
+						'MimeMagicGuessFromContent',
+						[ $mimeAnalyzer, &$head, &$tail, $file, &$mime ]
+					);
+				},
+			'extCallback' => function ( $mimeAnalyzer, $ext, &$mime ) {
+				// Media handling extensions can improve the MIME detected
+				Hooks::run( 'MimeMagicImproveFromExtension', [ $mimeAnalyzer, $ext, &$mime ] );
+			},
+			'initCallback' => function ( $mimeAnalyzer ) {
+				// Allow media handling extensions adding MIME-types and MIME-info
+				Hooks::run( 'MimeMagicInit', [ $mimeAnalyzer ] );
+			},
+			'logger' => $logger
+		];
+
+		if ( $params['infoFile'] === 'includes/mime.info' ) {
+			$params['infoFile'] = __DIR__ . "/libs/mime/mime.info";
+		}
+
+		if ( $params['typeFile'] === 'includes/mime.types' ) {
+			$params['typeFile'] = __DIR__ . "/libs/mime/mime.types";
+		}
+
+		$detectorCmd = $mainConfig->get( 'MimeDetectorCommand' );
+		if ( $detectorCmd ) {
+			$params['detectCallback'] = function ( $file ) use ( $detectorCmd ) {
+				return wfShellExec( "$detectorCmd " . wfEscapeShellArg( $file ) );
+			};
+		}
+
+		// XXX: MimeMagic::singleton currently requires this service to return an instance of MimeMagic
+		return new MimeMagic( $params );
 	},
 
 	'ProxyLookup' => function( MediaWikiServices $services ) {
@@ -230,10 +282,15 @@ return [
 		);
 	},
 
+	'Parser' => function( MediaWikiServices $services ) {
+		$conf = $services->getMainConfig()->get( 'ParserConf' );
+		return ObjectFactory::constructClassInstance( $conf['class'], [ $conf ] );
+	},
+
 	'LinkCache' => function( MediaWikiServices $services ) {
 		return new LinkCache(
 			$services->getTitleFormatter(),
-			ObjectCache::getMainWANInstance()
+			$services->getMainWANObjectCache()
 		);
 	},
 
@@ -347,6 +404,17 @@ return [
 		}
 
 		return $vrsClient;
+	},
+
+	'ConfiguredReadOnlyMode' => function( MediaWikiServices $services ) {
+		return new ConfiguredReadOnlyMode( $services->getMainConfig() );
+	},
+
+	'ReadOnlyMode' => function( MediaWikiServices $services ) {
+		return new ReadOnlyMode(
+			$services->getConfiguredReadOnlyMode(),
+			$services->getDBLoadBalancer()
+		);
 	},
 
 	///////////////////////////////////////////////////////////////////////////

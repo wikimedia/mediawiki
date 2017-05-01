@@ -27,12 +27,14 @@
 					"mw.notification",
 					"mw.Notification_",
 					"mw.storage",
+					"mw.storage.session",
 					"mw.user",
 					"mw.util",
 					"mw.plugin.*",
 					"mw.cookie",
 					"mw.experiments",
-					"mw.viewport"
+					"mw.viewport",
+					"mw.htmlform.*"
 				]
 			},
 			{

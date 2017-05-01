@@ -84,7 +84,7 @@ class BlockTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * per bug 26425
+	 * per T28425
 	 */
 	public function testBug26425BlockTimestampDefaultsToTime() {
 		// delta to stop one-off errors when things happen to go over a second mark.
@@ -99,7 +99,7 @@ class BlockTest extends MediaWikiLangTestCase {
 	/**
 	 * CheckUser since being changed to use Block::newFromTarget started failing
 	 * because the new function didn't accept empty strings like Block::load()
-	 * had. Regression bug 29116.
+	 * had. Regression T31116.
 	 *
 	 * @dataProvider provideBug29116Data
 	 * @covers Block::newFromTarget
@@ -408,5 +408,34 @@ class BlockTest extends MediaWikiLangTestCase {
 			(bool)$block->prevents( 'createaccount' ),
 			"Account creation should not be blocked by default"
 		);
+	}
+
+	public function testSystemBlocks() {
+		$blockOptions = [
+			'address' => 'UTBlockee',
+			'reason' => 'test system block',
+			'timestamp' => wfTimestampNow(),
+			'expiry' => $this->db->getInfinity(),
+			'byText' => 'MetaWikiUser',
+			'systemBlock' => 'test',
+			'enableAutoblock' => true,
+		];
+		$block = new Block( $blockOptions );
+
+		$this->assertSame( 'test', $block->getSystemBlockType() );
+
+		try {
+			$block->insert();
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( MWException $ex ) {
+			$this->assertSame( 'Cannot insert a system block into the database', $ex->getMessage() );
+		}
+
+		try {
+			$block->doAutoblock( '192.0.2.2' );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( MWException $ex ) {
+			$this->assertSame( 'Cannot autoblock from a system block', $ex->getMessage() );
+		}
 	}
 }

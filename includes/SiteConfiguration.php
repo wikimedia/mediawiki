@@ -274,7 +274,7 @@ class SiteConfiguration {
 	 * @param string $from
 	 * @param string $to
 	 * @param string|array $in
-	 * @return string
+	 * @return string|array
 	 */
 	function doReplace( $from, $to, $in ) {
 		if ( is_string( $in ) ) {

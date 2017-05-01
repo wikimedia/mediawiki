@@ -24,6 +24,8 @@
  *
  * @file
  */
+use Wikimedia\Timestamp\TimestampException;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Handles the backend logic of merging the histories of two

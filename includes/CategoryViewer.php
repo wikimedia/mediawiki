@@ -67,7 +67,7 @@ class CategoryViewer extends ContextSource {
 	/** @var Collation */
 	public $collation;
 
-	/** @var ImageGallery */
+	/** @var ImageGalleryBase */
 	public $gallery;
 
 	/** @var Category Category object for this page. */
@@ -197,7 +197,11 @@ class CategoryViewer extends ContextSource {
 		$link = null;
 		Hooks::run( 'CategoryViewer::generateLink', [ $type, $title, $html, &$link ] );
 		if ( $link === null ) {
-			$link = Linker::link( $title, $html );
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+			if ( $html !== null ) {
+				$html = new HtmlArmor( $html );
+			}
+			$link = $linkRenderer->makeLink( $title, $html );
 		}
 		if ( $isRedirect ) {
 			$link = '<span class="redirect-in-category">' . $link . '</span>';
@@ -628,11 +632,12 @@ class CategoryViewer extends ContextSource {
 	private function pagingLinks( $first, $last, $type = '' ) {
 		$prevLink = $this->msg( 'prev-page' )->text();
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( $first != '' ) {
 			$prevQuery = $this->query;
 			$prevQuery["{$type}until"] = $first;
 			unset( $prevQuery["{$type}from"] );
-			$prevLink = Linker::linkKnown(
+			$prevLink = $linkRenderer->makeKnownLink(
 				$this->addFragmentToTitle( $this->title, $type ),
 				$prevLink,
 				[],
@@ -646,7 +651,7 @@ class CategoryViewer extends ContextSource {
 			$lastQuery = $this->query;
 			$lastQuery["{$type}from"] = $last;
 			unset( $lastQuery["{$type}until"] );
-			$nextLink = Linker::linkKnown(
+			$nextLink = $linkRenderer->makeKnownLink(
 				$this->addFragmentToTitle( $this->title, $type ),
 				$nextLink,
 				[],
@@ -735,10 +740,7 @@ class CategoryViewer extends ContextSource {
 			// to refresh the incorrect category table entry -- which should be
 			// quick due to the small number of entries.
 			$totalcnt = $rescnt;
-			$category = $this->cat;
-			DeferredUpdates::addCallableUpdate( function () use ( $category ) {
-				$category->refreshCounts();
-			} );
+			DeferredUpdates::addCallableUpdate( [ $this->cat, 'refreshCounts' ] );
 		} else {
 			// Case 3: hopeless.  Don't give a total count at all.
 			// Messages: category-subcat-count-limited, category-article-count-limited,

@@ -23,6 +23,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Maintenance script that displays replication lag times.
  *
@@ -32,27 +34,42 @@ class GetLagTimes extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Dump replication lag times' );
+		$this->addOption( 'report', "Report the lag values to StatsD" );
 	}
 
 	public function execute() {
-		$lb = wfGetLB();
+		$services = MediaWikiServices::getInstance();
+		$lbFactory = $services->getDBLoadBalancerFactory();
+		$stats = $services->getStatsdDataFactory();
+		$lbsByType = [
+			'main' => $lbFactory->getAllMainLBs(),
+			'external' => $lbFactory->getAllExternalLBs()
+		];
 
-		if ( $lb->getServerCount() == 1 ) {
-			$this->error( "This script dumps replication lag times, but you don't seem to have\n"
-				. "a multi-host db server configuration." );
-		} else {
-			$lags = $lb->getLagTimes();
-			foreach ( $lags as $n => $lag ) {
-				$host = $lb->getServerName( $n );
-				if ( IP::isValid( $host ) ) {
-					$ip = $host;
-					$host = gethostbyaddr( $host );
-				} else {
-					$ip = gethostbyname( $host );
+		foreach ( $lbsByType as $type => $lbs ) {
+			foreach ( $lbs as $cluster => $lb ) {
+				if ( $lb->getServerCount() <= 1 ) {
+					continue;
 				}
-				$starLen = min( intval( $lag ), 40 );
-				$stars = str_repeat( '*', $starLen );
-				$this->output( sprintf( "%10s %20s %3d %s\n", $ip, $host, $lag, $stars ) );
+				$lags = $lb->getLagTimes();
+				foreach ( $lags as $serverIndex => $lag ) {
+					$host = $lb->getServerName( $serverIndex );
+					if ( IP::isValid( $host ) ) {
+						$ip = $host;
+						$host = gethostbyaddr( $host );
+					} else {
+						$ip = gethostbyname( $host );
+					}
+
+					$starLen = min( intval( $lag ), 40 );
+					$stars = str_repeat( '*', $starLen );
+					$this->output( sprintf( "%10s %20s %3d %s\n", $ip, $host, $lag, $stars ) );
+
+					if ( $this->hasOption( 'report' ) ) {
+						$group = ( $type === 'external' ) ? 'external' : $cluster;
+						$stats->gauge( "loadbalancer.lag.$group.$host", intval( $lag * 1e3 ) );
+					}
+				}
 			}
 		}
 	}

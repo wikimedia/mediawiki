@@ -23,11 +23,17 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Usage:
  *  populateContentModel.php --ns=1 --table=page
  */
 class PopulateContentModel extends Maintenance {
+	protected $wikiId;
+	/** @var WANObjectCache */
+	protected $wanCache;
+
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Populate the various content_* fields' );
@@ -38,6 +44,11 @@ class PopulateContentModel extends Maintenance {
 
 	public function execute() {
 		$dbw = $this->getDB( DB_MASTER );
+
+		$this->wikiId = $dbw->getWikiID();
+
+		$this->wanCache = ObjectCache::getMainWANInstance();
+
 		$ns = $this->getOption( 'ns' );
 		if ( !ctype_digit( $ns ) && $ns !== 'all' ) {
 			$this->error( 'Invalid namespace', 1 );
@@ -57,7 +68,19 @@ class PopulateContentModel extends Maintenance {
 		}
 	}
 
-	private function updatePageRows( Database $dbw, $pageIds, $model ) {
+	protected function clearCache( $page_id, $rev_id ) {
+		$contentModelKey = $this->wanCache->makeKey( 'page', 'content-model', $rev_id );
+		$revisionKey =
+			$this->wanCache->makeGlobalKey( 'revision', $this->wikiId, $page_id, $rev_id );
+
+		// WikiPage content model cache
+		$this->wanCache->delete( $contentModelKey );
+
+		// Revision object cache, which contains a content model
+		$this->wanCache->delete( $revisionKey );
+	}
+
+	private function updatePageRows( IDatabase $dbw, $pageIds, $model ) {
 		$count = count( $pageIds );
 		$this->output( "Setting $count rows to $model..." );
 		$dbw->update(
@@ -70,7 +93,7 @@ class PopulateContentModel extends Maintenance {
 		$this->output( "done.\n" );
 	}
 
-	protected function populatePage( Database $dbw, $ns ) {
+	protected function populatePage( IDatabase $dbw, $ns ) {
 		$toSave = [];
 		$lastId = 0;
 		$nsCondition = $ns === 'all' ? [] : [ 'page_namespace' => $ns ];
@@ -102,7 +125,7 @@ class PopulateContentModel extends Maintenance {
 		}
 	}
 
-	private function updateRevisionOrArchiveRows( Database $dbw, $ids, $model, $table ) {
+	private function updateRevisionOrArchiveRows( IDatabase $dbw, $ids, $model, $table ) {
 		$prefix = $table === 'archive' ? 'ar' : 'rev';
 		$model_column = "{$prefix}_content_model";
 		$format_column = "{$prefix}_content_format";
@@ -117,10 +140,11 @@ class PopulateContentModel extends Maintenance {
 			[ $key => $ids ],
 			__METHOD__
 		);
+
 		$this->output( "done.\n" );
 	}
 
-	protected function populateRevisionOrArchive( Database $dbw, $table, $ns ) {
+	protected function populateRevisionOrArchive( IDatabase $dbw, $table, $ns ) {
 		$prefix = $table === 'archive' ? 'ar' : 'rev';
 		$model_column = "{$prefix}_content_model";
 		$format_column = "{$prefix}_content_format";
@@ -130,19 +154,27 @@ class PopulateContentModel extends Maintenance {
 			$fields = [ 'ar_namespace', 'ar_title' ];
 			$join_conds = [];
 			$where = $ns === 'all' ? [] : [ 'ar_namespace' => $ns ];
+			$page_id_column = 'ar_page_id';
+			$rev_id_column = 'ar_rev_id';
 		} else { // revision
 			$selectTables = [ 'revision', 'page' ];
 			$fields = [ 'page_title', 'page_namespace' ];
 			$join_conds = [ 'page' => [ 'INNER JOIN', 'rev_page=page_id' ] ];
 			$where = $ns === 'all' ? [] : [ 'page_namespace' => $ns ];
+			$page_id_column = 'rev_page';
+			$rev_id_column = 'rev_id';
 		}
 
 		$toSave = [];
+		$idsToClear = [];
 		$lastId = 0;
 		do {
 			$rows = $dbw->select(
 				$selectTables,
-				array_merge( $fields, [ $model_column, $format_column, $key ] ),
+				array_merge(
+					$fields,
+					[ $model_column, $format_column, $key, $page_id_column, $rev_id_column ]
+				),
 				// @todo support populating format if model is already set
 				[
 					$model_column => null,
@@ -174,9 +206,17 @@ class PopulateContentModel extends Maintenance {
 				if ( $dbModel === null && $dbFormat === null ) {
 					// Set the defaults
 					$toSave[$defaultModel][] = $row->{$key};
+					$idsToClear[] = [
+						'page_id' => $row->{$page_id_column},
+						'rev_id' => $row->{$rev_id_column},
+					];
 				} else { // $dbModel === null, $dbFormat set.
 					if ( $dbFormat === $defaultFormat ) {
 						$toSave[$defaultModel][] = $row->{$key};
+						$idsToClear[] = [
+							'page_id' => $row->{$page_id_column},
+							'rev_id' => $row->{$rev_id_column},
+						];
 					} else { // non-default format, just update now
 						$this->output( "Updating model to match format for $table $id of $title... " );
 						$dbw->update(
@@ -186,6 +226,7 @@ class PopulateContentModel extends Maintenance {
 							__METHOD__
 						);
 						wfWaitForSlaves();
+						$this->clearCache( $row->{$page_id_column}, $row->{$rev_id_column} );
 						$this->output( "done.\n" );
 						continue;
 					}
@@ -199,6 +240,10 @@ class PopulateContentModel extends Maintenance {
 		} while ( $rows->numRows() >= $this->mBatchSize );
 		foreach ( $toSave as $model => $ids ) {
 			$this->updateRevisionOrArchiveRows( $dbw, $ids, $model, $table );
+		}
+
+		foreach ( $idsToClear as $idPair ) {
+			$this->clearCache( $idPair['page_id'], $idPair['rev_id'] );
 		}
 	}
 }

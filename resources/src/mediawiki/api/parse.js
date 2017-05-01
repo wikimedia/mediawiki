@@ -16,11 +16,12 @@
 		 * @return {string} return.done.data Parsed HTML of `wikitext`.
 		 */
 		parse: function ( content, additionalParams ) {
-			var apiPromise, config = $.extend( {
-				formatversion: 2,
-				action: 'parse',
-				contentmodel: 'wikitext'
-			}, additionalParams );
+			var apiPromise,
+				config = $.extend( {
+					formatversion: 2,
+					action: 'parse',
+					contentmodel: 'wikitext'
+				}, additionalParams );
 
 			if ( mw.Title && content instanceof mw.Title ) {
 				// Parse existing page

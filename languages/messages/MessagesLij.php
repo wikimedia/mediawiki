@@ -120,4 +120,3 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'Cose appunta chì' ],
 	'Withoutinterwiki'          => [ 'Sensa Interwiki' ],
 ];
-

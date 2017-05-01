@@ -340,7 +340,6 @@
 	"yourpassword": "ལམ་ཡིག",
 	"userlogin-yourpassword-ph": "ཁྱེད་ཀྱི་གསང་བའི་ཨང་གྲངས་བླུག་རོགས།",
 	"yourpasswordagain": "གསང་བའི་ཨང་ངོས་འཛིན་གནང་རོགས།",
-	"remembermypassword": "ངའི་ལམ་ཡིག་འདིར་(མང་མཐའ་ཉིན $1 {{PLURAL:$1}}) དྲན་པར་བྱས།",
 	"yourdomainname": "ཁྱེད་ཀྱི་ཁྱབ་ཁུལ།",
 	"login": "ནང་འཛུལ།",
 	"nav-login-createaccount": "ནང་འཛུལ། / ཐོ་འགོད།",

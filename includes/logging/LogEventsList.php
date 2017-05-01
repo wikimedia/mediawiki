@@ -23,6 +23,9 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
+
 class LogEventsList extends ContextSource {
 	const NO_ACTION_LINK = 1;
 	const NO_EXTRA_USER_LINKS = 2;
@@ -91,7 +94,7 @@ class LogEventsList extends ContextSource {
 		// For B/C, we take strings, but make sure they are converted...
 		$types = ( $types === '' ) ? [] : (array)$types;
 
-		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter );
+		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter, false, $this->getContext() );
 
 		$html = Html::hidden( 'title', $title->getPrefixedDBkey() );
 
@@ -142,10 +145,11 @@ class LogEventsList extends ContextSource {
 	 */
 	private function getFilterLinks( $filter ) {
 		// show/hide links
-		$messages = [ $this->msg( 'show' )->escaped(), $this->msg( 'hide' )->escaped() ];
+		$messages = [ $this->msg( 'show' )->text(), $this->msg( 'hide' )->text() ];
 		// Option value -> message mapping
 		$links = [];
 		$hiddens = ''; // keep track for "go" button
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		foreach ( $filter as $type => $val ) {
 			// Should the below assignment be outside the foreach?
 			// Then it would have to be copied. Not certain what is more expensive.
@@ -155,7 +159,7 @@ class LogEventsList extends ContextSource {
 			$hideVal = 1 - intval( $val );
 			$query[$queryKey] = $hideVal;
 
-			$link = Linker::linkKnown(
+			$link = $linkRenderer->makeKnownLink(
 				$this->getTitle(),
 				$messages[$hideVal],
 				[],
@@ -541,7 +545,8 @@ class LogEventsList extends ContextSource {
 	 * @param string $user The user who made the log entries
 	 * @param array $param Associative Array with the following additional options:
 	 * - lim Integer Limit of items to show, default is 50
-	 * - conds Array Extra conditions for the query (e.g. "log_action != 'revision'")
+	 * - conds Array Extra conditions for the query
+	 *   (e.g. 'log_action != ' . $dbr->addQuotes( 'revision' ))
 	 * - showIfEmpty boolean Set to false if you don't want any output in case the loglist is empty
 	 *   if set to true (default), "No matching items in log" is displayed if loglist is empty
 	 * - msgKey Array If you want a nice box with a message, set this to the key of the message.
@@ -672,9 +677,9 @@ class LogEventsList extends ContextSource {
 				$urlParam = array_merge( $urlParam, $extraUrlParams );
 			}
 
-			$s .= Linker::linkKnown(
+			$s .= MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
 				SpecialPage::getTitleFor( 'Log' ),
-				$context->msg( 'log-fulllog' )->escaped(),
+				$context->msg( 'log-fulllog' )->text(),
 				[],
 				$urlParam
 			);

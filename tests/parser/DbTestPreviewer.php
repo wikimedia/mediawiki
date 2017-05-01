@@ -93,7 +93,7 @@ class DbTestPreviewer extends TestRecorder {
 					$before = 'n';
 				} elseif ( $prevResults[$test] == 1 ) {
 					$before = 'p';
-				} else /* if ( $prevResults[$test] == 0 )*/ {
+				} else /* if ( $prevResults[$test] == 0 ) */ {
 					$before = 'f';
 				}
 
@@ -101,7 +101,7 @@ class DbTestPreviewer extends TestRecorder {
 					$after = 'n';
 				} elseif ( $this->results[$test] == 1 ) {
 					$after = 'p';
-				} else /*if ( $this->results[$test] == 0 ) */ {
+				} else /* if ( $this->results[$test] == 0 ) */ {
 					$after = 'f';
 				}
 
@@ -201,4 +201,3 @@ class DbTestPreviewer extends TestRecorder {
 			. " and $postDate";
 	}
 }
-

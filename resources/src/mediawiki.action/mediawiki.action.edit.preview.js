@@ -245,7 +245,11 @@
 					$( '<span>' ).addClass( 'comment' ).html(
 						// There is no equivalent to rawParams
 						mw.message( 'parentheses' ).escaped()
-							.replace( '$1', parse.parsedsummary )
+							// .replace() use $ as start of a pattern.
+							// $$ is the pattern for '$'.
+							// The inner .replace() duplicates any $ and
+							// the outer .replace() simplifies the $$.
+							.replace( '$1', parse.parsedsummary.replace( /\$/g, '$$$$' ) )
 					)
 				);
 			}
@@ -319,7 +323,7 @@
 
 		// This should be moved down to '#editform', but is kept on the body for now
 		// because the LiquidThreads extension is re-using this module with only half
-		// the EditPage (doesn't include #editform presumably, bug 55463).
+		// the EditPage (doesn't include #editform presumably, T57463).
 		$( document.body ).on( 'click', '#wpPreview, #wpDiff', doLivePreview );
 	} );
 

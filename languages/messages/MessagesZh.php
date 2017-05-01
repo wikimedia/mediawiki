@@ -180,4 +180,3 @@ $specialPageAliases = [
 	'Watchlist'                 => [ '监视列表', '監視列表', '監視清单' ],
 	'Whatlinkshere'             => [ '链入页面', '鏈入頁面', '連入頁面' ],
 ];
-

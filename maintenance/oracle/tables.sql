@@ -33,11 +33,13 @@ INSERT INTO &mw_prefix.mwuser
 
 CREATE TABLE &mw_prefix.user_groups (
   ug_user   NUMBER      DEFAULT 0 NOT NULL,
-  ug_group  VARCHAR2(255)     NOT NULL
+  ug_group  VARCHAR2(255)     NOT NULL,
+  ug_expiry TIMESTAMP(6) WITH TIME ZONE NULL
 );
+ALTER TABLE &mw_prefix.user_groups ADD CONSTRAINT &mw_prefix.user_groups_pk PRIMARY KEY (ug_user,ug_group);
 ALTER TABLE &mw_prefix.user_groups ADD CONSTRAINT &mw_prefix.user_groups_fk1 FOREIGN KEY (ug_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX &mw_prefix.user_groups_u01 ON &mw_prefix.user_groups (ug_user,ug_group);
 CREATE INDEX &mw_prefix.user_groups_i01 ON &mw_prefix.user_groups (ug_group);
+CREATE INDEX &mw_prefix.user_groups_i02 ON &mw_prefix.user_groups (ug_expiry);
 
 CREATE TABLE &mw_prefix.user_former_groups (
   ufg_user   NUMBER      DEFAULT 0 NOT NULL,
@@ -219,13 +221,16 @@ CREATE TABLE &mw_prefix.externallinks (
   el_id     NUMBER  NOT NULL,
   el_from   NUMBER  NOT NULL,
   el_to     VARCHAR2(2048) NOT NULL,
-  el_index  VARCHAR2(2048) NOT NULL
+  el_index  VARCHAR2(2048) NOT NULL,
+  el_index_60  VARBINARY(60) NOT NULL DEFAULT ''
 );
 ALTER TABLE &mw_prefix.externallinks ADD CONSTRAINT &mw_prefix.externallinks_pk PRIMARY KEY (el_id);
 ALTER TABLE &mw_prefix.externallinks ADD CONSTRAINT &mw_prefix.externallinks_fk1 FOREIGN KEY (el_from) REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 CREATE INDEX &mw_prefix.externallinks_i01 ON &mw_prefix.externallinks (el_from, el_to);
 CREATE INDEX &mw_prefix.externallinks_i02 ON &mw_prefix.externallinks (el_to, el_from);
 CREATE INDEX &mw_prefix.externallinks_i03 ON &mw_prefix.externallinks (el_index);
+CREATE INDEX &mw_prefix.externallinks_i04 ON &mw_prefix.externallinks (el_index_60, el_id);
+CREATE INDEX &mw_prefix.externallinks_i05 ON &mw_prefix.externallinks (el_from, el_index_60, el_id);
 
 CREATE TABLE &mw_prefix.langlinks (
   ll_from    NUMBER  NOT NULL,

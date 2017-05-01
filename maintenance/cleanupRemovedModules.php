@@ -22,6 +22,9 @@
  * @author Roan Kattouw
  */
 
+use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -36,31 +39,43 @@ class CleanupRemovedModules extends Maintenance {
 		parent::__construct();
 		$this->addDescription(
 			'Remove cache entries for removed ResourceLoader modules from the database' );
-		$this->addOption( 'batchsize', 'Delete rows in batches of this size. Default: 500', false, true );
+		$this->setBatchSize( 500 );
 	}
 
 	public function execute() {
-		$dbw = $this->getDB( DB_MASTER );
-		$rl = new ResourceLoader( ConfigFactory::getDefaultInstance()->makeConfig( 'main' ) );
-		$moduleNames = $rl->getModuleNames();
-		$moduleList = implode( ', ', array_map( [ $dbw, 'addQuotes' ], $moduleNames ) );
-		$limit = max( 1, intval( $this->getOption( 'batchsize', 500 ) ) );
-
 		$this->output( "Cleaning up module_deps table...\n" );
-		$i = 1;
+
+		$dbw = $this->getDB( DB_MASTER );
+		$rl = new ResourceLoader( MediaWikiServices::getInstance()->getMainConfig() );
+		$moduleNames = $rl->getModuleNames();
+		$res = $dbw->select( 'module_deps',
+			[ 'md_module', 'md_skin' ],
+			$moduleNames ? 'md_module NOT IN (' . $dbw->makeList( $moduleNames ) . ')' : '1=1',
+			__METHOD__
+		);
+		$rows = iterator_to_array( $res, false );
+
 		$modDeps = $dbw->tableName( 'module_deps' );
-		do {
-			// $dbw->delete() doesn't support LIMIT :(
-			$where = $moduleList ? "md_module NOT IN ($moduleList)" : '1=1';
-			$dbw->query( "DELETE FROM $modDeps WHERE $where LIMIT $limit", __METHOD__ );
+		$i = 1;
+		foreach ( array_chunk( $rows, $this->mBatchSize ) as $chunk ) {
+			// WHERE ( mod=A AND skin=A ) OR ( mod=A AND skin=B) ..
+			$conds = array_map( function ( stdClass $row ) use ( $dbw ) {
+				return $dbw->makeList( (array)$row, IDatabase::LIST_AND );
+			}, $chunk );
+			$conds = $dbw->makeList( $conds, IDatabase::LIST_OR );
+
+			$this->beginTransaction( $dbw, __METHOD__ );
+			$dbw->query( "DELETE FROM $modDeps WHERE $conds", __METHOD__ );
 			$numRows = $dbw->affectedRows();
 			$this->output( "Batch $i: $numRows rows\n" );
+			$this->commitTransaction( $dbw, __METHOD__ );
+
 			$i++;
-			wfWaitForSlaves();
-		} while ( $numRows > 0 );
-		$this->output( "done\n" );
+		}
+
+		$this->output( "Done\n" );
 	}
 }
 
-$maintClass = "CleanupRemovedModules";
+$maintClass = 'CleanupRemovedModules';
 require_once RUN_MAINTENANCE_IF_MAIN;

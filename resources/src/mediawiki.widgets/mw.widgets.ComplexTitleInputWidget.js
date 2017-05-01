@@ -51,7 +51,6 @@
 	OO.inheritClass( mw.widgets.ComplexTitleInputWidget, OO.ui.Widget );
 
 	/* Static Methods */
-	/*jshint -W024*/
 
 	/**
 	 * @inheritdoc
@@ -85,8 +84,6 @@
 		return state;
 	};
 
-	/*jshint +W024*/
-
 	/* Methods */
 
 	/**
@@ -104,6 +101,21 @@
 		mw.widgets.ComplexTitleInputWidget.parent.prototype.restorePreInfuseState.call( this, state );
 		this.namespace.restorePreInfuseState( state.namespace );
 		this.title.restorePreInfuseState( state.title );
+	};
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.widgets.ComplexTitleInputWidget.prototype.setDisabled = function ( disabled ) {
+		mw.widgets.ComplexTitleInputWidget.parent.prototype.setDisabled.call( this, disabled );
+		if ( this.namespace ) {
+			this.namespace.setDisabled( disabled );
+		}
+
+		if ( this.title ) {
+			this.title.setDisabled( disabled );
+		}
+		return this;
 	};
 
 }( jQuery, mediaWiki ) );

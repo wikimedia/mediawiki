@@ -50,4 +50,3 @@ $specialPageAliases = [
 	'Userlogin'                 => [ 'ÌwọléOníse' ],
 	'Userlogout'                => [ 'Ìbọ̀sódeOníṣe' ],
 ];
-

@@ -17,7 +17,6 @@ class ExifBitmapTest extends MediaWikiMediaTestCase {
 		$this->setMwGlobals( 'wgShowEXIF', true );
 
 		$this->handler = new ExifBitmapHandler;
-
 	}
 
 	/**

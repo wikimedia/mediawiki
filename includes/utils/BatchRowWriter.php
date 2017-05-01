@@ -20,6 +20,7 @@
  * @file
  * @ingroup Maintenance
  */
+use Wikimedia\Rdbms\IDatabase;
 use \MediaWiki\MediaWikiServices;
 
 class BatchRowWriter {

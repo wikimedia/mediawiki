@@ -7,7 +7,7 @@
  * and should be used instead.
  */
 class HTMLSelectOrOtherField extends HTMLTextField {
-	function __construct( $params ) {
+	public function __construct( $params ) {
 		parent::__construct( $params );
 		$this->getOptions();
 		if ( !in_array( 'other', $this->mOptions, true ) ) {
@@ -18,10 +18,9 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 			// Have 'other' always as first element
 			$this->mOptions = [ $msg => 'other' ] + $this->mOptions;
 		}
-
 	}
 
-	function getInputHTML( $value ) {
+	public function getInputHTML( $value ) {
 		$valInSelect = false;
 
 		if ( $value !== false ) {
@@ -65,7 +64,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 		return "$select<br />\n$textbox";
 	}
 
-	function getInputOOUI( $value ) {
+	public function getInputOOUI( $value ) {
 		return false;
 	}
 
@@ -74,7 +73,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 	 *
 	 * @return string
 	 */
-	function loadDataFromRequest( $request ) {
+	public function loadDataFromRequest( $request ) {
 		if ( $request->getCheck( $this->mName ) ) {
 			$val = $request->getText( $this->mName );
 

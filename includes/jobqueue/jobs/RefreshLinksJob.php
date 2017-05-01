@@ -21,6 +21,7 @@
  * @ingroup JobQueue
  */
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\DBReplicationWaitError;
 
 /**
  * Job to update link tables for pages
@@ -29,7 +30,7 @@ use MediaWiki\MediaWikiServices;
  *   - a) Recursive jobs to update links for backlink pages for a given title.
  *        These jobs have (recursive:true,table:<table>) set.
  *   - b) Jobs to update links for a set of pages (the job title is ignored).
- *	      These jobs have (pages:(<page ID>:(<namespace>,<title>),...) set.
+ *        These jobs have (pages:(<page ID>:(<namespace>,<title>),...) set.
  *   - c) Jobs to update links for a single page (the job title)
  *        These jobs need no extra fields set.
  *
@@ -86,7 +87,7 @@ class RefreshLinksJob extends Job {
 			// When the base job branches, wait for the replica DBs to catch up to the master.
 			// From then on, we know that any template changes at the time the base job was
 			// enqueued will be reflected in backlink page parses when the leaf jobs run.
-			if ( !isset( $params['range'] ) ) {
+			if ( !isset( $this->params['range'] ) ) {
 				try {
 					$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 					$lbFactory->waitForReplication( [
@@ -112,7 +113,7 @@ class RefreshLinksJob extends Job {
 			JobQueueGroup::singleton()->push( $jobs );
 		// Job to update link tables for a set of titles
 		} elseif ( isset( $this->params['pages'] ) ) {
-			foreach ( $this->params['pages'] as $pageId => $nsAndKey ) {
+			foreach ( $this->params['pages'] as $nsAndKey ) {
 				list( $ns, $dbKey ) = $nsAndKey;
 				$this->runForTitle( Title::makeTitleSafe( $ns, $dbKey ) );
 			}
@@ -247,7 +248,12 @@ class RefreshLinksJob extends Job {
 			$parserOutput
 		);
 
-		foreach ( $updates as $key => $update ) {
+		// For legacy hook handlers doing updates via LinksUpdateConstructed, make sure
+		// any pending writes they made get flushed before the doUpdate() calls below.
+		// This avoids snapshot-clearing errors in LinksUpdate::acquirePageLock().
+		$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+
+		foreach ( $updates as $update ) {
 			// FIXME: This code probably shouldn't be here?
 			// Needed by things like Echo notifications which need
 			// to know which user caused the links update

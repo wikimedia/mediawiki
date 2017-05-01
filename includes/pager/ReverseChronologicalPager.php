@@ -20,6 +20,7 @@
  * @file
  * @ingroup Pager
  */
+use Wikimedia\Timestamp\TimestampException;
 
 /**
  * IndexPager with a formatted navigation bar
@@ -80,7 +81,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 
 		// If year and month are false, don't update the mOffset
 		if ( !$this->mYear && !$this->mMonth ) {
-			return;
+			return null;
 		}
 
 		// Given an optional year, month, and day, we need to generate a timestamp
@@ -150,7 +151,13 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		$timestamp = MWTimestamp::getInstance( "${ymd}000000" );
 		$timestamp->setTimezone( $this->getConfig()->get( 'Localtimezone' ) );
 
-		$this->mOffset = $this->mDb->timestamp( $timestamp->getTimestamp() );
+		try {
+			$this->mOffset = $this->mDb->timestamp( $timestamp->getTimestamp() );
+		} catch ( TimestampException $e ) {
+			// Invalid user provided timestamp (T149257)
+			return null;
+		}
+
 		return $this->mOffset;
 	}
 }

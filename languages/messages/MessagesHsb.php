@@ -8,7 +8,7 @@
  *
  */
 
-$fallback = 'de';
+$fallback = 'dsb, de';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Media',
@@ -144,4 +144,3 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'Lisćina_wotkazow' ],
 	'Withoutinterwiki'          => [ 'Falowace_mjezyrěčne_wotkazy' ],
 ];
-

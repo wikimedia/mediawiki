@@ -199,4 +199,3 @@ $magicWords = [
 	'url_wiki'                  => [ '0', 'וויקי', 'ויקי', 'WIKI' ],
 	'pagesincategory_pages'     => [ '0', 'בלעטער', 'דפים', 'pages' ],
 ];
-

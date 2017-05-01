@@ -30,7 +30,7 @@ if ( ini_get( 'mbstring.func_overload' ) ) {
 	die( 'MediaWiki does not support installations where mbstring.func_overload is non-zero.' );
 }
 
-# bug 15461: Make IE8 turn off content sniffing. Everybody else should ignore this
+# T17461: Make IE8 turn off content sniffing. Everybody else should ignore this
 # We're adding it here so that it's *always* set, even for alternate entry
 # points and when $wgOut gets disabled or overridden.
 header( 'X-Content-Type-Options: nosniff' );
@@ -104,6 +104,9 @@ if ( !interface_exists( 'Psr\Log\LoggerInterface' ) ) {
 	die( 1 );
 }
 
+# Install a header callback
+MediaWiki\HeaderCallback::register();
+
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Use a callback function to configure MediaWiki
 	call_user_func( MW_CONFIG_CALLBACK );
@@ -133,9 +136,7 @@ if ( ob_get_level() == 0 ) {
 	ob_start( 'wfOutputHandler' );
 }
 
-if ( !defined( 'MW_NO_SETUP' ) ) {
-	require_once "$IP/includes/Setup.php";
-}
+require_once "$IP/includes/Setup.php";
 
 # Multiple DBs or commits might be used; keep the request as transactional as possible
 if ( isset( $_SERVER['REQUEST_METHOD'] ) && $_SERVER['REQUEST_METHOD'] === 'POST' ) {

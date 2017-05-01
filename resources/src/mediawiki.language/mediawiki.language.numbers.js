@@ -15,11 +15,12 @@
 	 * @return {string}
 	 */
 	function replicate( str, num ) {
+		var buf = [];
+
 		if ( num <= 0 || !str ) {
 			return '';
 		}
 
-		var buf = [];
 		while ( num-- ) {
 			buf.push( str );
 		}
@@ -43,12 +44,14 @@
 	 * @return {string}
 	 */
 	function pad( text, size, ch, end ) {
+		var out, padStr;
+
 		if ( !ch ) {
 			ch = '0';
 		}
 
-		var out = String( text ),
-			padStr = replicate( ch, Math.ceil( ( size - out.length ) / ch.length ) );
+		out = String( text );
+		padStr = replicate( ch, Math.ceil( ( size - out.length ) / ch.length ) );
 
 		return end ? out + padStr : padStr + out;
 	}
@@ -69,15 +72,6 @@
 	 * @return {string}
 	 */
 	function commafyNumber( value, pattern, options ) {
-		options = options || {
-			group: ',',
-			decimal: '.'
-		};
-
-		if ( isNaN( value ) ) {
-			return value;
-		}
-
 		var padLength,
 			patternDigits,
 			index,
@@ -91,6 +85,15 @@
 			groupSize = 0,
 			groupSize2 = 0,
 			pieces = [];
+
+		options = options || {
+			group: ',',
+			decimal: '.'
+		};
+
+		if ( isNaN( value ) ) {
+			return value;
+		}
 
 		if ( patternParts[ 1 ] ) {
 			// Pad fractional with trailing zeros
@@ -155,6 +158,31 @@
 		return valueParts.join( options.decimal );
 	}
 
+	/**
+	 * Helper function to flip transformation tables.
+	 *
+	 * @param {...Object} Transformation tables
+	 * @return {Object}
+	 */
+	function flipTransform() {
+		var i, key, table, flipped = {};
+
+		// Ensure we strip thousand separators. This might be overwritten.
+		flipped[ ',' ] = '';
+
+		for ( i = 0; i < arguments.length; i++ ) {
+			table = arguments[ i ];
+			for ( key in table ) {
+				if ( table.hasOwnProperty( key ) ) {
+					// The thousand separator should be deleted
+					flipped[ table[ key ] ] = key === ',' ? '' : key;
+				}
+			}
+		}
+
+		return flipped;
+	}
+
 	$.extend( mw.language, {
 
 		/**
@@ -165,46 +193,55 @@
 		 * @return {number|string} Formatted number
 		 */
 		convertNumber: function ( num, integer ) {
-			var i, tmp, transformTable, numberString, convertedNumber, pattern;
+			var transformTable, digitTransformTable, separatorTransformTable,
+				i, numberString, convertedNumber, pattern;
 
-			pattern = mw.language.getData( mw.config.get( 'wgUserLanguage' ),
-				'digitGroupingPattern' ) || '#,##0.###';
-
-			// Set the target transform table:
-			transformTable = mw.language.getDigitTransformTable();
-
-			if ( !transformTable ) {
+			// Quick shortcut for plain numbers
+			if ( integer && parseInt( num, 10 ) === num ) {
 				return num;
 			}
 
-			// Check if the 'restore' to Latin number flag is set:
+			// Load the transformation tables (can be empty)
+			digitTransformTable = mw.language.getDigitTransformTable();
+			separatorTransformTable = mw.language.getSeparatorTransformTable();
+
 			if ( integer ) {
-				if ( parseInt( num, 10 ) === num ) {
-					return num;
-				}
-				tmp = [];
-				for ( i in transformTable ) {
-					tmp[ transformTable[ i ] ] = i;
-				}
-				transformTable = tmp;
+				// Reverse the digit transformation tables if we are doing unformatting
+				transformTable = flipTransform( separatorTransformTable, digitTransformTable );
 				numberString = String( num );
 			} else {
-				// Ignore transform table if wgTranslateNumerals is false
-				if ( !mw.config.get( 'wgTranslateNumerals' ) ) {
-					transformTable = [];
+				// This check being here means that digits can still be unformatted
+				// even if we do not produce them. This seems sane behavior.
+				if ( mw.config.get( 'wgTranslateNumerals' ) ) {
+					transformTable = digitTransformTable;
 				}
+
+				// Commaying is more complex, so we handle it here separately.
+				// When unformatting, we just use separatorTransformTable.
+				pattern = mw.language.getData( mw.config.get( 'wgUserLanguage' ),
+					'digitGroupingPattern' ) || '#,##0.###';
 				numberString = mw.language.commafy( num, pattern );
 			}
 
-			convertedNumber = '';
-			for ( i = 0; i < numberString.length; i++ ) {
-				if ( transformTable[ numberString[ i ] ] ) {
-					convertedNumber += transformTable[ numberString[ i ] ];
-				} else {
-					convertedNumber += numberString[ i ];
+			if ( transformTable ) {
+				convertedNumber = '';
+				for ( i = 0; i < numberString.length; i++ ) {
+					if ( transformTable.hasOwnProperty( numberString[ i ] ) ) {
+						convertedNumber += transformTable[ numberString[ i ] ];
+					} else {
+						convertedNumber += numberString[ i ];
+					}
 				}
+			} else {
+				convertedNumber = numberString;
 			}
-			return integer ? parseInt( convertedNumber, 10 ) : convertedNumber;
+
+			if ( integer ) {
+				// Parse string to integer. This loses decimals!
+				convertedNumber = parseInt( convertedNumber, 10 );
+			}
+
+			return convertedNumber;
 		},
 
 		/**

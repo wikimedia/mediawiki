@@ -32,7 +32,7 @@
  *
  * @since 1.22
  */
-abstract class TestRecorder {
+class TestRecorder {
 
 	/**
 	 * Called at beginning of the parser test run
@@ -91,4 +91,3 @@ abstract class TestRecorder {
 	}
 
 }
-

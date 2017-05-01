@@ -93,7 +93,7 @@ class ApiQueryTags extends ApiQueryBase {
 			$tag['name'] = $tagName;
 
 			if ( $fld_displayname ) {
-				$tag['displayname'] = ChangeTags::tagDescription( $tagName );
+				$tag['displayname'] = ChangeTags::tagDescription( $tagName, $this );
 			}
 
 			if ( $fld_description ) {
@@ -178,6 +178,6 @@ class ApiQueryTags extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Tags';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tags';
 	}
 }

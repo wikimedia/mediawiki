@@ -367,22 +367,6 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertFalse( $handler->supportsDirectEditing(), 'direct editing is not supported' );
 	}
 
-	/**
-	 * @covers ContentHandler::runLegacyHooks
-	 */
-	public function testRunLegacyHooks() {
-		Hooks::register( 'testRunLegacyHooks', __CLASS__ . '::dummyHookHandler' );
-
-		$content = new WikitextContent( 'test text' );
-		$ok = ContentHandler::runLegacyHooks(
-			'testRunLegacyHooks',
-			[ 'foo', &$content, 'bar' ]
-		);
-
-		$this->assertTrue( $ok, "runLegacyHooks should have returned true" );
-		$this->assertEquals( "TEST TEXT", $content->getNativeData() );
-	}
-
 	public static function dummyHookHandler( $foo, &$text, $bar ) {
 		if ( $text === null || $text === false ) {
 			return false;
@@ -425,6 +409,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertArrayHasKey( 'external_link', $fields );
 		$this->assertArrayHasKey( 'outgoing_link', $fields );
 		$this->assertArrayHasKey( 'template', $fields );
+		$this->assertArrayHasKey( 'content_model', $fields );
 	}
 
 	private function newSearchEngine() {
@@ -444,13 +429,18 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	 * @covers ContentHandler::getDataForSearchIndex
 	 */
 	public function testDataIndexFields() {
-		$mockEngine = $this->getMock( 'SearchEngine' );
+		$mockEngine = $this->createMock( 'SearchEngine' );
 		$title = Title::newFromText( 'Not_Main_Page', NS_MAIN );
 		$page = new WikiPage( $title );
 
 		$this->setTemporaryHook( 'SearchDataForIndex',
-			function ( &$fields, ContentHandler $handler, WikiPage $page, ParserOutput $output,
-					   SearchEngine $engine ) {
+			function (
+				&$fields,
+				ContentHandler $handler,
+				WikiPage $page,
+				ParserOutput $output,
+				SearchEngine $engine
+			) {
 				$fields['testDataField'] = 'test content';
 			} );
 
@@ -461,6 +451,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertArrayHasKey( 'language', $data );
 		$this->assertArrayHasKey( 'testDataField', $data );
 		$this->assertEquals( 'test content', $data['testDataField'] );
+		$this->assertEquals( 'wikitext', $data['content_model'] );
 	}
 
 	/**
@@ -475,4 +466,13 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertContains( 'one who smiths', $out->getRawText() );
 	}
 
+	/**
+	 * @covers ContentHandler::getContentModels
+	 */
+	public function testGetContentModelsHook() {
+		$this->setTemporaryHook( 'GetContentModels', function ( &$models ) {
+			$models[] = 'Ferrari';
+		} );
+		$this->assertContains( 'Ferrari', ContentHandler::getContentModels() );
+	}
 }

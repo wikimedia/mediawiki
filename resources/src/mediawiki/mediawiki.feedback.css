@@ -1,7 +1,7 @@
 .feedback-spinner {
 	display: inline-block;
 	zoom: 1;
-	*display: inline; /* IE7 and below */
+	*display: inline; /* IE7 and below */ /* stylelint-disable declaration-block-no-duplicate-properties */
 	/* @embed */
 	background: url( mediawiki.feedback.spinner.gif );
 	width: 18px;

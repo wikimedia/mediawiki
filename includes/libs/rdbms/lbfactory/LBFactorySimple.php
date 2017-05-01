@@ -21,6 +21,10 @@
  * @ingroup Database
  */
 
+namespace Wikimedia\Rdbms;
+
+use InvalidArgumentException;
+
 /**
  * A simple single-master LBFactory that gets its configuration from the b/c globals
  */
@@ -85,7 +89,6 @@ class LBFactorySimple extends LBFactory {
 	public function getMainLB( $domain = false ) {
 		if ( !isset( $this->mainLB ) ) {
 			$this->mainLB = $this->newMainLB( $domain );
-			$this->getChronologyProtector()->initLB( $this->mainLB );
 		}
 
 		return $this->mainLB;
@@ -102,10 +105,22 @@ class LBFactorySimple extends LBFactory {
 	public function getExternalLB( $cluster ) {
 		if ( !isset( $this->extLBs[$cluster] ) ) {
 			$this->extLBs[$cluster] = $this->newExternalLB( $cluster );
-			$this->getChronologyProtector()->initLB( $this->extLBs[$cluster] );
 		}
 
 		return $this->extLBs[$cluster];
+	}
+
+	public function getAllMainLBs() {
+		return [ 'DEFAULT' => $this->getMainLB() ];
+	}
+
+	public function getAllExternalLBs() {
+		$lbs = [];
+		foreach ( $this->externalClusters as $cluster => $unused ) {
+			$lbs[$cluster] = $this->getExternalLB( $cluster );
+		}
+
+		return $lbs;
 	}
 
 	private function newLoadBalancer( array $servers ) {

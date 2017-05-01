@@ -32,7 +32,7 @@ class HTMLRestrictionsField extends HTMLTextAreaField {
 	 * @param WebRequest $request
 	 * @return string|MWRestrictions Restrictions object or original string if invalid
 	 */
-	function loadDataFromRequest( $request ) {
+	public function loadDataFromRequest( $request ) {
 		if ( !$request->getCheck( $this->mName ) ) {
 			return $this->getDefault();
 		}
@@ -61,7 +61,7 @@ class HTMLRestrictionsField extends HTMLTextAreaField {
 	 * @param string|MWRestrictions $value The value the field was submitted with
 	 * @param array $alldata The data collected from the form
 	 *
-	 * @return bool|string True on success, or String error to display, or
+	 * @return bool|string|Message True on success, or String/Message error to display, or
 	 *   false to fail validation without displaying an error.
 	 */
 	public function validate( $value, $alldata ) {
@@ -73,7 +73,7 @@ class HTMLRestrictionsField extends HTMLTextAreaField {
 			isset( $this->mParams['required'] ) && $this->mParams['required'] !== false
 			&& $value instanceof MWRestrictions && !$value->toArray()['IPAddresses']
 		) {
-			return $this->msg( 'htmlform-required' )->parse();
+			return $this->msg( 'htmlform-required' );
 		}
 
 		if ( is_string( $value ) ) {
@@ -87,7 +87,7 @@ class HTMLRestrictionsField extends HTMLTextAreaField {
 			if ( $status->isOK() ) {
 				$status->fatal( 'unknown-error' );
 			}
-			return $status->getMessage()->parse();
+			return $status->getMessage();
 		}
 
 		if ( isset( $this->mValidationCallback ) ) {

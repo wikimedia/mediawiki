@@ -36,7 +36,7 @@ class ApiQueryMyStashedFiles extends ApiQueryBase {
 		$user = $this->getUser();
 
 		if ( $user->isAnon() ) {
-			$this->dieUsage( 'The upload stash is only available to logged-in users.', 'stashnotloggedin' );
+			$this->dieWithError( 'apierror-mustbeloggedin-uploadstash', 'stashnotloggedin' );
 		}
 
 		// Note: If user is logged in but cannot upload, they can still see
@@ -92,10 +92,10 @@ class ApiQueryMyStashedFiles extends ApiQueryBase {
 			];
 
 			if ( isset( $prop['size'] ) ) {
-				$item['size'] = (int) $row->us_size;
-				$item['width'] = (int) $row->us_image_width;
-				$item['height'] = (int) $row->us_image_height;
-				$item['bits'] = (int) $row->us_image_bits;
+				$item['size'] = (int)$row->us_size;
+				$item['width'] = (int)$row->us_image_width;
+				$item['height'] = (int)$row->us_image_height;
+				$item['bits'] = (int)$row->us_image_bits;
 			}
 
 			if ( isset( $prop['type'] ) ) {
@@ -145,6 +145,6 @@ class ApiQueryMyStashedFiles extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:mystashedfiles';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:mystashedfiles';
 	}
 }

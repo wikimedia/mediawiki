@@ -79,7 +79,7 @@ class MigrateUserGroup extends Maintenance {
 			$affected += $dbw->affectedRows();
 			$this->commitTransaction( $dbw, __METHOD__ );
 
-			// Clear cache for the affected users (bug 40340)
+			// Clear cache for the affected users (T42340)
 			if ( $affected > 0 ) {
 				// XXX: This also invalidates cache of unaffected users that
 				// were in the new group and not in the group.

@@ -21,6 +21,9 @@
  * @ingroup Pager
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * IndexPager is an efficient pager which uses a (roughly unique) index in the
  * data set to implement paging, rather than a "LIMIT offset,limit" clause.
@@ -195,7 +198,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 */
 	public function doQuery() {
 		# Use the child class name for profiling
-		$fname = __METHOD__ . ' (' . get_class( $this ) . ')';
+		$fname = __METHOD__ . ' (' . static::class . ')';
 		$section = Profiler::instance()->scopedProfileIn( $fname );
 
 		// @todo This should probably compare to DIR_DESCENDING and DIR_ASCENDING constants
@@ -346,7 +349,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @return string
 	 */
 	function getSqlComment() {
-		return get_class( $this );
+		return static::class;
 	}
 
 	/**

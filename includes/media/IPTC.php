@@ -97,7 +97,7 @@ class IPTC {
 				case '2#025': /* keywords */
 					$data['Keywords'] = self::convIPTC( $val, $c );
 					break;
-				case '2#101': /* Country (shown)*/
+				case '2#101': /* Country (shown) */
 					$data['CountryDest'] = self::convIPTC( $val, $c );
 					break;
 				case '2#095': /* state/province (shown) */
@@ -115,7 +115,7 @@ class IPTC {
 				case '2#040': /* special instructions */
 					$data['SpecialInstructions'] = self::convIPTC( $val, $c );
 					break;
-				case '2#105': /* headline*/
+				case '2#105': /* headline */
 					$data['Headline'] = self::convIPTC( $val, $c );
 					break;
 				case '2#110': /* credit */

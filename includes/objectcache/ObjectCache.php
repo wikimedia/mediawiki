@@ -246,8 +246,14 @@ class ObjectCache {
 		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType;
 		$candidates = [ $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType ];
 		foreach ( $candidates as $candidate ) {
+			$cache = false;
 			if ( $candidate !== CACHE_NONE && $candidate !== CACHE_ANYTHING ) {
-				return self::getInstance( $candidate );
+				$cache = self::getInstance( $candidate );
+				// CACHE_ACCEL might default to nothing if no APCu
+				// See includes/ServiceWiring.php
+				if ( !( $cache instanceof EmptyBagOStuff ) ) {
+					return $cache;
+				}
 			}
 		}
 
@@ -359,7 +365,7 @@ class ObjectCache {
 	 *
 	 * @since 1.26
 	 * @return WANObjectCache
-	 * @deprecated Since 1.28 Use MediaWikiServices::getMainWANCache()
+	 * @deprecated Since 1.28 Use MediaWikiServices::getMainWANObjectCache()
 	 */
 	public static function getMainWANInstance() {
 		return MediaWikiServices::getInstance()->getMainWANObjectCache();

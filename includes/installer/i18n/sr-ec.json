@@ -5,7 +5,8 @@
 			"Михајло Анђелковић",
 			"Milicevic01",
 			"Aktron",
-			"Сербијана"
+			"Сербијана",
+			"Zoranzoki21"
 		]
 	},
 	"config-desc": "Инсталација за Медијавики",
@@ -52,7 +53,7 @@
 	"config-type-oracle": "Oracle",
 	"config-type-mssql": "Microsoft SQL Server",
 	"config-header-mysql": "MySQL подешавања",
-	"config-header-mssql": "Поставке Microsoft SQL Server-а",
+	"config-header-mssql": "Подешавања Microsoft SQL Server-а",
 	"config-invalid-db-type": "Неважећи тип базе података.",
 	"config-mssql-old": "Потребан је Microsoft SQL Server $1 или новији. Ви имате $2.",
 	"config-mysql-innodb": "InnoDB",
@@ -82,8 +83,9 @@
 	"config-skins": "Теме",
 	"config-install-step-done": "готово",
 	"config-install-step-failed": "није успело",
+	"config-install-mainpage-exists": "Главна страна већ постоји, прескакање",
 	"config-help": "помоћ",
 	"config-help-tooltip": "кликните да проширите",
 	"mainpagetext": "<strong>Медијавики је успешно инсталиран.</strong>",
-	"mainpagedocfooter": "Погледајте [https://meta.wikimedia.org/wiki/Help:Contents кориснички водич] за коришћење програма.\n\n== Увод ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Помоћ у вези са подешавањима]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Често постављена питања]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Дописна листа о издањима Медијавикија]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Научите како да се борете против спама на Вашој вики]"
+	"mainpagedocfooter": "Погледајте [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents кориснички водич] за коришћење програма.\n\n== Увод ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Помоћ у вези са подешавањима]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Често постављена питања]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Дописна листа о издањима Медијавикија]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Научите како да се борете против спама на Вашој вики]"
 }

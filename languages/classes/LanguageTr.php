@@ -27,8 +27,7 @@
  * Turkish has two different i, one with a dot and another without a dot. They
  * are totally different letters in this language, so we have to override the
  * ucfirst and lcfirst methods.
- * See https://en.wikipedia.org/wiki/Dotted_and_dotless_I
- * and @bug 28040
+ * See https://en.wikipedia.org/wiki/Dotted_and_dotless_I and T30040
  * @ingroup Language
  */
 class LanguageTr extends Language {

@@ -21,6 +21,9 @@
  * @ingroup Maintenance
  */
 
+use Wikimedia\Rdbms\DatabaseSqlite;
+use Wikimedia\Rdbms\DBError;
+
 /**
  * This class contains code common to different SQLite-related maintenance scripts
  *

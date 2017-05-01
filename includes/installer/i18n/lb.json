@@ -3,7 +3,8 @@
 		"authors": [
 			"Robby",
 			"Soued031",
-			"아라"
+			"아라",
+			"Seb35"
 		]
 	},
 	"config-desc": "Den Installatiounsprogramm vu MediaWiki",
@@ -45,7 +46,7 @@
 	"config-env-bad": "Den Environnement gouf iwwerpréift.\nDir kënnt MediWiki net installéieren.",
 	"config-env-php": "PHP $1 ass installéiert.",
 	"config-env-hhvm": "HHVM $1 ass installéiert.",
-	"config-no-db": "Et konnt kee passenden Datebank-Driver fonnt ginn! Dir musst een Datebank-Driver fir PHP installéieren.\n{{PLURAL:$2|Dësn Datebank-Typ gëtt|Dës Datebank-Type ginn}} ënnerstëtzt: $1.\n\nWann Dir PHP selwer compiléiert hutt, da rekonfiguréiert en mat dem ageschalten Datebank-Client, zum Beispill an deem Dir <code>./configure --with-mysql</code> benotzt.\nWann Dir PHP vun engem Debian oder Ubuntu Package aus installéiert hutt, da musst Dir och den php5-mysql Modul installéieren.",
+	"config-no-db": "Et konnt kee passenden Datebank-Driver fonnt ginn! Dir musst een Datebank-Driver fir PHP installéieren.\n{{PLURAL:$2|Dësn Datebank-Typ gëtt|Dës Datebank-Type ginn}} ënnerstëtzt: $1.\n\nWann Dir PHP selwer compiléiert hutt, da rekonfiguréiert en mat dem ageschalten Datebank-Client, zum Beispill an deem Dir <code>./configure --with-mysqli</code> benotzt.\nWann Dir PHP vun engem Debian oder Ubuntu Package aus installéiert hutt, da musst Dir och den php5-mysql Modul installéieren.",
 	"config-outdated-sqlite": "'''Warnung:''' SQLite $1 ass installéiert. Allerdengs brauch MediaWiki SQLite $2 oder méi nei. SQLite ass dofir net disponibel.",
 	"config-memory-bad": "'''Opgepasst:''' De Parameter <code>memory_limit</code> vu PHP ass $1.\nDat ass wahrscheinlech ze niddreg.\nD'Installatioun kéint net funktionéieren.",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] ass installéiert",
@@ -198,6 +199,7 @@
 	"config-install-updates": "Net néideg Aktualiséierungen net maachen",
 	"config-install-sysop": "Administrateur Benotzerkont gëtt ugeluecht",
 	"config-install-mainpage": "Haaptsäit mat Standard-Inhalt gëtt ugeluecht",
+	"config-install-mainpage-exists": "Haaptsäit gëtt et schonn, iwwersprangen",
 	"config-install-extension-tables": "D'Tabelle fir déi aktivéiert Erweiderunge ginn ugeluecht",
 	"config-install-mainpage-failed": "D'Haaptsäit konnt net dragesat ginn: $1",
 	"config-download-localsettings": "<code>LocalSettings.php</code> eroflueden",
@@ -205,5 +207,5 @@
 	"config-help-tooltip": "klickt fir opzeklappen",
 	"config-nofile": "De Fichier \"$1\" gouf net fonnt. Gouf e geläscht?",
 	"mainpagetext": "<strong>MediaWiki gouf installéiert.</strong>",
-	"mainpagedocfooter": "Kuckt w.e.g. [https://meta.wikimedia.org/wiki/Help:Contents d'Benotzerhandbuch] fir Informatiounen iwwer de Gebruach vun der Wiki Software.\n\n== Fir  unzefänken ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Hëllef bei der Konfiguratioun]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki-FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglëscht vun neie MediaWiki-Versiounen]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokaliséiert MediaWiki fir Är Sprooch]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Léiert wéi Spam op Ärer Wiki reduzéiert gi kann]"
+	"mainpagedocfooter": "Kuckt w.e.g. [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents d'Benotzerhandbuch] fir Informatiounen iwwer de Gebruach vun der Wiki Software.\n\n== Fir  unzefänken ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Hëllef bei der Konfiguratioun]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki-FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglëscht vun neie MediaWiki-Versiounen]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokaliséiert MediaWiki fir Är Sprooch]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Léiert wéi Spam op Ärer Wiki reduzéiert gi kann]"
 }

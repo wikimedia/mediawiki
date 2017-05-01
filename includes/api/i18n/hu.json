@@ -92,5 +92,6 @@
 	"api-help-param-limit2": "Nem engedélyezett több mint $1 (botoknak $2).",
 	"api-help-param-integer-min": "Az {{PLURAL:$1|1=érték nem lehet kisebb|2=értékek nem lehetnek kisebbek}} mint $2.",
 	"api-help-param-integer-max": "Az {{PLURAL:$1|1=érték nem lehet nagyobb|2=értékek nem lehetnek nagyobbak}} mint $3.",
-	"api-help-param-integer-minmax": "{{PLURAL:$1|1=Az értéknek $2 és $3 között kell lennie.|2=Az értékeknek $2 és $3 között kell lenniük.}}"
+	"api-help-param-integer-minmax": "{{PLURAL:$1|1=Az értéknek $2 és $3 között kell lennie.|2=Az értékeknek $2 és $3 között kell lenniük.}}",
+	"api-help-param-default": "Alapértelmezett: $1"
 }

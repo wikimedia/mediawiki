@@ -27,6 +27,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use Wikimedia\Rdbms\IMaintainableDatabase;
+
 /**
  * Maintenance script to run database schema updates.
  *
@@ -112,7 +114,7 @@ class UpdateMediaWiki extends Maintenance {
 		}
 
 		$lang = Language::factory( 'en' );
-		// Set global language to ensure localised errors are in English (bug 20633)
+		// Set global language to ensure localised errors are in English (T22633)
 		RequestContext::getMain()->setLanguage( $lang );
 		$wgLang = $lang; // BackCompat
 
@@ -145,7 +147,7 @@ class UpdateMediaWiki extends Maintenance {
 
 		$this->output( "Going to run database updates for " . wfWikiID() . "\n" );
 		if ( $db->getType() === 'sqlite' ) {
-			/** @var Database|DatabaseSqlite $db */
+			/** @var IMaintainableDatabase|DatabaseSqlite $db */
 			$this->output( "Using SQLite file: '{$db->getDbFilePath()}'\n" );
 		}
 		$this->output( "Depending on the size of your database this may take a while!\n" );
@@ -203,7 +205,7 @@ class UpdateMediaWiki extends Maintenance {
 
 		# Don't try to access the database
 		# This needs to be disabled early since extensions will try to use the l10n
-		# cache from $wgExtensionFunctions (bug 20471)
+		# cache from $wgExtensionFunctions (T22471)
 		$wgLocalisationCacheConf = [
 			'class' => 'LocalisationCache',
 			'storeClass' => 'LCStoreNull',

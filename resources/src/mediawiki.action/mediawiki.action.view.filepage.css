@@ -33,7 +33,7 @@
 
 /*
  * Add a checkered background image on hover for file
- * description pages. (bug 26470)
+ * description pages. (T28470)
  */
 .filehistory a img,
 #file img:hover {
@@ -46,8 +46,8 @@
  */
 #filetoc {
 	text-align: center;
-	border: 1px solid #aaa;
-	background-color: #f9f9f9;
+	border: 1px solid #a2a9b1;
+	background-color: #f8f9fa;
 	padding: 5px;
 	font-size: 95%;
 	margin-bottom: 0.5em;
@@ -76,6 +76,8 @@
 	font-size: 0.8em;
 	margin-left: 0.5em;
 	margin-bottom: 0.5em;
+	border: 0;
+	border-collapse: collapse;
 	width: 400px;
 }
 
@@ -83,33 +85,23 @@
 	font-weight: bold;
 }
 
-.mw_metadata th {
-	font-weight: normal;
-	text-align: center;
-}
-
-.mw_metadata td {
-	padding: 0.1em;
-}
-
-.mw_metadata {
-	border: none;
-	border-collapse: collapse;
-}
-
 .mw_metadata td,
 .mw_metadata th {
-	border: 1px solid #aaa;
+	border: 1px solid #a2a9b1;
 	padding-left: 5px;
 	padding-right: 5px;
 }
 
 .mw_metadata th {
-	background-color: #f9f9f9;
+	background-color: #f8f9fa;
+	font-weight: normal;
+	text-align: center;
 }
 
 .mw_metadata td {
 	background-color: #fcfcfc;
+	padding-top: 0.1em;
+	padding-bottom: 0.1em;
 }
 
 .mw_metadata ul.metadata-langlist {

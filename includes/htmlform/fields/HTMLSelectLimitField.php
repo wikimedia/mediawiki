@@ -12,7 +12,7 @@ class HTMLSelectLimitField extends HTMLSelectField {
 	 * @param array $alldata
 	 * @return bool
 	 */
-	function validate( $value, $alldata ) {
+	public function validate( $value, $alldata ) {
 		if ( $value == '' ) {
 			return true;
 		}

@@ -267,10 +267,8 @@ class LinkHolderArray {
 	 * @param string $text
 	 */
 	public function replace( &$text ) {
-
 		$this->replaceInternal( $text );
 		$this->replaceInterwiki( $text );
-
 	}
 
 	/**
@@ -414,7 +412,6 @@ class LinkHolderArray {
 			$replacer->cb(),
 			$text
 		);
-
 	}
 
 	/**
@@ -614,10 +611,9 @@ class LinkHolderArray {
 	 * @return string
 	 */
 	public function replaceText( $text ) {
-
 		$text = preg_replace_callback(
 			'/<!--(LINK|IWLINK) (.*?)-->/',
-			[ &$this, 'replaceTextCallback' ],
+			[ $this, 'replaceTextCallback' ],
 			$text );
 
 		return $text;

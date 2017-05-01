@@ -176,7 +176,6 @@ class SwiftFileBackend extends FileBackendStore {
 		return isset( $params['headers'] )
 			? $this->getCustomHeaders( $params['headers'] )
 			: [];
-
 	}
 
 	/**
@@ -288,7 +287,7 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( !empty( $params['async'] ) ) { // deferred
 			$status->value = $opHandle;
 		} else { // actually write the object in Swift
-			$status->merge( current( $this->doExecuteOpHandlesInternal( [ $opHandle ] ) ) );
+			$status->merge( current( $this->executeOpHandlesInternal( [ $opHandle ] ) ) );
 		}
 
 		return $status;
@@ -349,10 +348,12 @@ class SwiftFileBackend extends FileBackendStore {
 		};
 
 		$opHandle = new SwiftFileOpHandle( $this, $handler, $reqs );
+		$opHandle->resourcesToClose[] = $handle;
+
 		if ( !empty( $params['async'] ) ) { // deferred
 			$status->value = $opHandle;
 		} else { // actually write the object in Swift
-			$status->merge( current( $this->doExecuteOpHandlesInternal( [ $opHandle ] ) ) );
+			$status->merge( current( $this->executeOpHandlesInternal( [ $opHandle ] ) ) );
 		}
 
 		return $status;
@@ -400,7 +401,7 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( !empty( $params['async'] ) ) { // deferred
 			$status->value = $opHandle;
 		} else { // actually write the object in Swift
-			$status->merge( current( $this->doExecuteOpHandlesInternal( [ $opHandle ] ) ) );
+			$status->merge( current( $this->executeOpHandlesInternal( [ $opHandle ] ) ) );
 		}
 
 		return $status;
@@ -459,7 +460,7 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( !empty( $params['async'] ) ) { // deferred
 			$status->value = $opHandle;
 		} else { // actually move the object in Swift
-			$status->merge( current( $this->doExecuteOpHandlesInternal( [ $opHandle ] ) ) );
+			$status->merge( current( $this->executeOpHandlesInternal( [ $opHandle ] ) ) );
 		}
 
 		return $status;
@@ -499,7 +500,7 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( !empty( $params['async'] ) ) { // deferred
 			$status->value = $opHandle;
 		} else { // actually delete the object in Swift
-			$status->merge( current( $this->doExecuteOpHandlesInternal( [ $opHandle ] ) ) );
+			$status->merge( current( $this->executeOpHandlesInternal( [ $opHandle ] ) ) );
 		}
 
 		return $status;
@@ -555,7 +556,7 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( !empty( $params['async'] ) ) { // deferred
 			$status->value = $opHandle;
 		} else { // actually change the object in Swift
-			$status->merge( current( $this->doExecuteOpHandlesInternal( [ $opHandle ] ) ) );
+			$status->merge( current( $this->executeOpHandlesInternal( [ $opHandle ] ) ) );
 		}
 
 		return $status;
@@ -1090,7 +1091,7 @@ class SwiftFileBackend extends FileBackendStore {
 			// good
 		} elseif ( $rcode === 404 ) {
 			$status->fatal( 'backend-fail-stream', $params['src'] );
-			// Per bug 41113, nasty things can happen if bad cache entries get
+			// Per T43113, nasty things can happen if bad cache entries get
 			// stuck in cache. It's also possible that this error can come up
 			// with simple race conditions. Clear out the stat cache to be safe.
 			$this->clearCache( [ $params['src'] ] );
@@ -1209,7 +1210,7 @@ class SwiftFileBackend extends FileBackendStore {
 					$this->rgwS3SecretKey,
 					true // raw
 				) );
-				// See http://s3.amazonaws.com/doc/s3-developer-guide/RESTAuthentication.html.
+				// See https://s3.amazonaws.com/doc/s3-developer-guide/RESTAuthentication.html.
 				// Note: adding a newline for empty CanonicalizedAmzHeaders does not work.
 				// Note: S3 API is the rgw default; remove the /swift/ URL bit.
 				return str_replace( '/swift/v1', '', $this->storageUrl( $auth ) . $spath ) .
@@ -1305,7 +1306,7 @@ class SwiftFileBackend extends FileBackendStore {
 	/**
 	 * Set read/write permissions for a Swift container.
 	 *
-	 * @see http://swift.openstack.org/misc.html#acls
+	 * @see http://docs.openstack.org/developer/swift/misc.html#acls
 	 *
 	 * In general, we don't allow listings to end-users. It's not useful, isn't well-defined
 	 * (lists are truncated to 10000 item with no way to page), and is just a performance risk.
@@ -1702,7 +1703,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param array $creds From getAuthentication()
 	 * @param string $container
 	 * @param string $object
-	 * @return array
+	 * @return string
 	 */
 	protected function storageUrl( array $creds, $container = null, $object = null ) {
 		$parts = [ $creds['storage_url'] ];

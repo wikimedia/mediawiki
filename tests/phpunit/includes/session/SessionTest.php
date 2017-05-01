@@ -5,6 +5,7 @@ namespace MediaWiki\Session;
 use Psr\Log\LogLevel;
 use MediaWikiTestCase;
 use User;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Session
@@ -14,16 +15,16 @@ class SessionTest extends MediaWikiTestCase {
 
 	public function testConstructor() {
 		$backend = TestUtils::getDummySessionBackend();
-		\TestingAccessWrapper::newFromObject( $backend )->requests = [ -1 => 'dummy' ];
-		\TestingAccessWrapper::newFromObject( $backend )->id = new SessionId( 'abc' );
+		TestingAccessWrapper::newFromObject( $backend )->requests = [ -1 => 'dummy' ];
+		TestingAccessWrapper::newFromObject( $backend )->id = new SessionId( 'abc' );
 
 		$session = new Session( $backend, 42, new \TestLogger );
-		$priv = \TestingAccessWrapper::newFromObject( $session );
+		$priv = TestingAccessWrapper::newFromObject( $session );
 		$this->assertSame( $backend, $priv->backend );
 		$this->assertSame( 42, $priv->index );
 
 		$request = new \FauxRequest();
-		$priv2 = \TestingAccessWrapper::newFromObject( $session->sessionWithRequest( $request ) );
+		$priv2 = TestingAccessWrapper::newFromObject( $session->sessionWithRequest( $request ) );
 		$this->assertSame( $backend, $priv2->backend );
 		$this->assertNotSame( $priv->index, $priv2->index );
 		$this->assertSame( $request, $priv2->getRequest() );
@@ -37,8 +38,9 @@ class SessionTest extends MediaWikiTestCase {
 	 * @param bool $ret Whether the method returns a value
 	 */
 	public function testMethods( $m, $args, $index, $ret ) {
-		$mock = $this->getMock( DummySessionBackend::class,
-			[ $m, 'deregisterSession' ] );
+		$mock = $this->getMockBuilder( DummySessionBackend::class )
+			->setMethods( [ $m, 'deregisterSession' ] )
+			->getMock();
 		$mock->expects( $this->once() )->method( 'deregisterSession' )
 			->with( $this->identicalTo( 42 ) );
 
@@ -97,7 +99,7 @@ class SessionTest extends MediaWikiTestCase {
 
 	public function testDataAccess() {
 		$session = TestUtils::getDummySession();
-		$backend = \TestingAccessWrapper::newFromObject( $session )->backend;
+		$backend = TestingAccessWrapper::newFromObject( $session )->backend;
 
 		$this->assertEquals( 1, $session->get( 'foo' ) );
 		$this->assertEquals( 'zero', $session->get( 0 ) );
@@ -157,7 +159,7 @@ class SessionTest extends MediaWikiTestCase {
 	public function testArrayAccess() {
 		$logger = new \TestLogger;
 		$session = TestUtils::getDummySession( null, -1, $logger );
-		$backend = \TestingAccessWrapper::newFromObject( $session )->backend;
+		$backend = TestingAccessWrapper::newFromObject( $session )->backend;
 
 		$this->assertEquals( 1, $session['foo'] );
 		$this->assertEquals( 'zero', $session[0] );
@@ -221,11 +223,11 @@ class SessionTest extends MediaWikiTestCase {
 
 	public function testClear() {
 		$session = TestUtils::getDummySession();
-		$priv = \TestingAccessWrapper::newFromObject( $session );
+		$priv = TestingAccessWrapper::newFromObject( $session );
 
-		$backend = $this->getMock(
-			DummySessionBackend::class, [ 'canSetUser', 'setUser', 'save' ]
-		);
+		$backend = $this->getMockBuilder( DummySessionBackend::class )
+			->setMethods( [ 'canSetUser', 'setUser', 'save' ] )
+			->getMock();
 		$backend->expects( $this->once() )->method( 'canSetUser' )
 			->will( $this->returnValue( true ) );
 		$backend->expects( $this->once() )->method( 'setUser' )
@@ -238,9 +240,9 @@ class SessionTest extends MediaWikiTestCase {
 		$this->assertSame( [], $backend->data );
 		$this->assertTrue( $backend->dirty );
 
-		$backend = $this->getMock(
-			DummySessionBackend::class, [ 'canSetUser', 'setUser', 'save' ]
-		);
+		$backend = $this->getMockBuilder( DummySessionBackend::class )
+			->setMethods( [ 'canSetUser', 'setUser', 'save' ] )
+			->getMock();
 		$backend->data = [];
 		$backend->expects( $this->once() )->method( 'canSetUser' )
 			->will( $this->returnValue( true ) );
@@ -253,9 +255,9 @@ class SessionTest extends MediaWikiTestCase {
 		$session->clear();
 		$this->assertFalse( $backend->dirty );
 
-		$backend = $this->getMock(
-			DummySessionBackend::class, [ 'canSetUser', 'setUser', 'save' ]
-		);
+		$backend = $this->getMockBuilder( DummySessionBackend::class )
+			->setMethods( [ 'canSetUser', 'setUser', 'save' ] )
+			->getMock();
 		$backend->expects( $this->once() )->method( 'canSetUser' )
 			->will( $this->returnValue( false ) );
 		$backend->expects( $this->never() )->method( 'setUser' );
@@ -268,10 +270,10 @@ class SessionTest extends MediaWikiTestCase {
 
 	public function testTokens() {
 		$session = TestUtils::getDummySession();
-		$priv = \TestingAccessWrapper::newFromObject( $session );
+		$priv = TestingAccessWrapper::newFromObject( $session );
 		$backend = $priv->backend;
 
-		$token = \TestingAccessWrapper::newFromObject( $session->getToken() );
+		$token = TestingAccessWrapper::newFromObject( $session->getToken() );
 		$this->assertArrayHasKey( 'wsTokenSecrets', $backend->data );
 		$this->assertArrayHasKey( 'default', $backend->data['wsTokenSecrets'] );
 		$secret = $backend->data['wsTokenSecrets']['default'];
@@ -279,13 +281,13 @@ class SessionTest extends MediaWikiTestCase {
 		$this->assertSame( '', $token->salt );
 		$this->assertTrue( $token->wasNew() );
 
-		$token = \TestingAccessWrapper::newFromObject( $session->getToken( 'foo' ) );
+		$token = TestingAccessWrapper::newFromObject( $session->getToken( 'foo' ) );
 		$this->assertSame( $secret, $token->secret );
 		$this->assertSame( 'foo', $token->salt );
 		$this->assertFalse( $token->wasNew() );
 
 		$backend->data['wsTokenSecrets']['secret'] = 'sekret';
-		$token = \TestingAccessWrapper::newFromObject(
+		$token = TestingAccessWrapper::newFromObject(
 			$session->getToken( [ 'bar', 'baz' ], 'secret' )
 		);
 		$this->assertSame( 'sekret', $token->secret );
@@ -299,7 +301,6 @@ class SessionTest extends MediaWikiTestCase {
 
 		$session->resetAllTokens();
 		$this->assertArrayNotHasKey( 'wsTokenSecrets', $backend->data );
-
 	}
 
 	/**
@@ -358,7 +359,7 @@ class SessionTest extends MediaWikiTestCase {
 
 		// Unserializable data
 		$iv = \MWCryptRand::generate( 16, true );
-		list( $encKey, $hmacKey ) = \TestingAccessWrapper::newFromObject( $session )->getSecretKeys();
+		list( $encKey, $hmacKey ) = TestingAccessWrapper::newFromObject( $session )->getSecretKeys();
 		$ciphertext = openssl_encrypt( 'foobar', 'aes-256-ctr', $encKey, OPENSSL_RAW_DATA, $iv );
 		$sealed = base64_encode( $iv ) . '.' . base64_encode( $ciphertext );
 		$hmac = hash_hmac( 'sha256', $sealed, $hmacKey, true );

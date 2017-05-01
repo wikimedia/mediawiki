@@ -30,4 +30,3 @@ $namespaceNames = [
 	NS_CATEGORY         => 'Shopni',
 	NS_CATEGORY_TALK    => 'Shopni_vakyarimata',
 ];
-

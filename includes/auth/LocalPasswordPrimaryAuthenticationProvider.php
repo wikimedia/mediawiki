@@ -104,7 +104,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 		// The old hash format was just an md5 hex hash, with no type information
 		if ( preg_match( '/^[0-9a-f]{32}$/', $row->user_password ) ) {
 			if ( $this->config->get( 'PasswordSalt' ) ) {
-				$row->user_password = ":A:{$row->user_id}:{$row->user_password}";
+				$row->user_password = ":B:{$row->user_id}:{$row->user_password}";
 			} else {
 				$row->user_password = ":A:{$row->user_password}";
 			}
@@ -132,12 +132,12 @@ class LocalPasswordPrimaryAuthenticationProvider
 
 		// @codeCoverageIgnoreStart
 		if ( $this->getPasswordFactory()->needsUpdate( $pwhash ) ) {
-			$pwhash = $this->getPasswordFactory()->newFromPlaintext( $req->password );
-			\DeferredUpdates::addCallableUpdate( function () use ( $pwhash, $oldRow ) {
+			$newHash = $this->getPasswordFactory()->newFromPlaintext( $req->password );
+			\DeferredUpdates::addCallableUpdate( function () use ( $newHash, $oldRow ) {
 				$dbw = wfGetDB( DB_MASTER );
 				$dbw->update(
 					'user',
-					[ 'user_password' => $pwhash->toString() ],
+					[ 'user_password' => $newHash->toString() ],
 					[
 						'user_id' => $oldRow->user_id,
 						'user_password' => $oldRow->user_password
@@ -242,14 +242,14 @@ class LocalPasswordPrimaryAuthenticationProvider
 
 		$pwhash = null;
 
-		if ( $this->loginOnly ) {
-			$pwhash = $this->getPasswordFactory()->newFromCiphertext( null );
-			$expiry = null;
-			// @codeCoverageIgnoreStart
-		} elseif ( get_class( $req ) === PasswordAuthenticationRequest::class ) {
-			// @codeCoverageIgnoreEnd
-			$pwhash = $this->getPasswordFactory()->newFromPlaintext( $req->password );
-			$expiry = $this->getNewPasswordExpiry( $username );
+		if ( get_class( $req ) === PasswordAuthenticationRequest::class ) {
+			if ( $this->loginOnly ) {
+				$pwhash = $this->getPasswordFactory()->newFromCiphertext( null );
+				$expiry = null;
+			} else {
+				$pwhash = $this->getPasswordFactory()->newFromPlaintext( $req->password );
+				$expiry = $this->getNewPasswordExpiry( $username );
+			}
 		}
 
 		if ( $pwhash ) {

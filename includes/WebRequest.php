@@ -113,7 +113,7 @@ class WebRequest {
 	 */
 	public static function getPathInfo( $want = 'all' ) {
 		global $wgUsePathInfo;
-		// PATH_INFO is mangled due to http://bugs.php.net/bug.php?id=31892
+		// PATH_INFO is mangled due to https://bugs.php.net/bug.php?id=31892
 		// And also by Apache 2.x, double slashes are converted to single slashes.
 		// So we will use REQUEST_URI if possible.
 		$matches = [];
@@ -175,7 +175,7 @@ class WebRequest {
 		} elseif ( $wgUsePathInfo ) {
 			if ( isset( $_SERVER['ORIG_PATH_INFO'] ) && $_SERVER['ORIG_PATH_INFO'] != '' ) {
 				// Mangled PATH_INFO
-				// http://bugs.php.net/bug.php?id=31892
+				// https://bugs.php.net/bug.php?id=31892
 				// Also reported when ini_get('cgi.fix_pathinfo')==false
 				$matches['title'] = substr( $_SERVER['ORIG_PATH_INFO'], 1 );
 
@@ -216,7 +216,7 @@ class WebRequest {
 
 			$host = $parts[0];
 			if ( $wgAssumeProxiesUseDefaultProtocolPorts && isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ) {
-				// Bug 70021: Assume that upstream proxy is running on the default
+				// T72021: Assume that upstream proxy is running on the default
 				// port based on the protocol. We have no reliable way to determine
 				// the actual port in use upstream.
 				$port = $stdPort;
@@ -238,7 +238,7 @@ class WebRequest {
 	 * This is for use prior to Setup.php, when no WebRequest object is available.
 	 * At other times, use the non-static function getProtocol().
 	 *
-	 * @return array
+	 * @return string
 	 */
 	public static function detectProtocol() {
 		if ( ( !empty( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] !== 'off' ) ||
@@ -308,7 +308,7 @@ class WebRequest {
 	 * available variant URLs.
 	 */
 	public function interpolateTitle() {
-		// bug 16019: title interpolation on API queries is useless and sometimes harmful
+		// T18019: title interpolation on API queries is useless and sometimes harmful
 		if ( defined( 'MW_API' ) ) {
 			return;
 		}
@@ -379,7 +379,7 @@ class WebRequest {
 	 */
 	private function getGPCVal( $arr, $name, $default ) {
 		# PHP is so nice to not touch input data, except sometimes:
-		# http://us2.php.net/variables.external#language.variables.external.dot-in-names
+		# https://secure.php.net/variables.external#language.variables.external.dot-in-names
 		# Work around PHP *feature* to avoid *bugs* elsewhere.
 		$name = strtr( $name, '.', '_' );
 		if ( isset( $arr[$name] ) ) {
@@ -408,7 +408,7 @@ class WebRequest {
 	 * @since 1.28
 	 * @param string $name
 	 * @param string|null $default Optional default
-	 * @return string
+	 * @return string|null
 	 */
 	public function getRawVal( $name, $default = null ) {
 		$name = strtr( $name, '.', '_' ); // See comment in self::getGPCVal()
@@ -432,7 +432,7 @@ class WebRequest {
 	 *
 	 * @param string $name
 	 * @param string $default Optional default (or null)
-	 * @return string
+	 * @return string|null
 	 */
 	public function getVal( $name, $default = null ) {
 		$val = $this->getGPCVal( $this->data, $name, $default );
@@ -482,7 +482,7 @@ class WebRequest {
 	 *
 	 * @param string $name
 	 * @param array $default Optional default (or null)
-	 * @return array
+	 * @return array|null
 	 */
 	public function getArray( $name, $default = null ) {
 		$val = $this->getGPCVal( $this->data, $name, $default );
@@ -755,22 +755,6 @@ class WebRequest {
 	 */
 	public function getSessionId() {
 		return $this->sessionId;
-	}
-
-	/**
-	 * Returns true if the request has a persistent session.
-	 * This does not necessarily mean that the user is logged in!
-	 *
-	 * @deprecated since 1.27, use
-	 *  \MediaWiki\Session\SessionManager::singleton()->getPersistedSessionId()
-	 *  instead.
-	 * @return bool
-	 */
-	public function checkSessionCookie() {
-		global $wgInitialSessionId;
-		wfDeprecated( __METHOD__, '1.27' );
-		return $wgInitialSessionId !== null &&
-			$this->getSession()->getId() === (string)$wgInitialSessionId;
 	}
 
 	/**
@@ -1099,6 +1083,7 @@ class WebRequest {
 		header( 'Content-Type: text/html' );
 		$encUrl = htmlspecialchars( $url );
 		echo <<<HTML
+<!DOCTYPE html>
 <html>
 <head>
 <title>Security redirect</title>
@@ -1244,7 +1229,7 @@ HTML;
 				if (
 					IP::isPublic( $ipchain[$i + 1] ) ||
 					$wgUsePrivateIPs ||
-					$proxyLookup->isConfiguredProxy( $curIP ) // bug 48919; treat IP as sane
+					$proxyLookup->isConfiguredProxy( $curIP ) // T50919; treat IP as sane
 				) {
 					// Follow the next IP according to the proxy
 					$nextIP = IP::canonicalize( $ipchain[$i + 1] );

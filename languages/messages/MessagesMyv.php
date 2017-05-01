@@ -183,4 +183,3 @@ $magicWords = [
 	'url_path'                  => [ '0', 'ЯН', 'ПУТЬ', 'PATH' ],
 	'url_wiki'                  => [ '0', 'ВИКИ', 'WIKI' ],
 ];
-

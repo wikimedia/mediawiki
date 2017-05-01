@@ -27,7 +27,8 @@
 			"Cl3m3n7",
 			"C13m3n7",
 			"The RedBurn",
-			"Trial"
+			"Trial",
+			"Tinss"
 		]
 	},
 	"config-desc": "Le programme d’installation de MediaWiki",
@@ -87,7 +88,7 @@
 	"config-apc": "[http://www.php.net/apc APC] est installé",
 	"config-apcu": "[http://www.php.net/apcu APCu] est installé",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] est installé",
-	"config-no-cache-apcu": "'''Attention :''' Impossible de trouver [http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] ou [http://www.iis.net/download/WinCacheForPhp WinCache].\nLa mise en cache d'objets n'est pas activée.",
+	"config-no-cache-apcu": "<strong>Attention :</strong> Impossible de trouver [http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] ou [http://www.iis.net/download/WinCacheForPhp WinCache].\nLa mise en cache d'objets n'est pas activée.",
 	"config-mod-security": "'''Attention''': Votre serveur web a [http://modsecurity.org/ mod_security] activé. S'il est mal configuré, cela peut poser des problèmes à MediaWiki ou à d'autres applications qui permettent aux utilisateurs de publier un contenu quelconque.\nReportez-vous à [http://modsecurity.org/documentation/ la documentation de mod_security] ou contactez le support de votre hébergeur si vous rencontrez des erreurs aléatoires.",
 	"config-diff3-bad": "GNU diff3 introuvable.",
 	"config-git": "Logiciel de contrôle de version Git trouvé : <code>$1</code>.",
@@ -185,13 +186,13 @@
 	"config-mysql-engine": "Moteur de stockage :",
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",
-	"config-mysql-myisam-dep": "''' Avertissement ''': vous avez sélectionné MyISAM comme moteur de stockage pour MySQL, ce qui n’est pas recommandé pour une utilisation avec MediaWiki, parce que :\n * il prend à peine en charge la simultanéité en raison de verrouillage de table\n * il est plus sujet à la corruption que les autres moteurs\n * le code de base MediaWiki ne gère pas toujours MyISAM comme il se doit\n\nSi votre installation MySQL prenden charge InnoDB, il est fortement recommandé que vous le choisissiez plutôt. \nSi votre installation MySQL ne prend pas en charge les tables InnoDB, il est peut-être temps de faire une mise à niveau.",
-	"config-mysql-only-myisam-dep": "'''Attention :''' MyISAM est le seul moteur de stockage disponible pour MySQL sur cette machine, et cela n’est pas recommandé pour une utilisation avec MédiaWiki, car :\n* il prend très peu en charge les accès concurrents à cause du verrouillage des tables\n* il est plus sujet à corruption que les autres moteurs\n* le code de base de MédiaWiki ne gère pas toujours MyISAM comme il faudrait\n\nVotre installation MySQL ne prend pas en charge InnoDB ; il est peut-être temps de la mettre à jour.",
-	"config-mysql-engine-help": "'''InnoDB''' est presque toujours la meilleure option, car il prend bien en charge les accès concurrents.\n\n'''MyISAM''' peut être plus rapide dans les installations monoposte ou en lecture seule.\nLes bases de données MyISAM ont tendance à se corrompre plus souvent que les bases d’InnoDB.",
+	"config-mysql-myisam-dep": "<strong> Avertissement </strong>: vous avez sélectionné MyISAM comme moteur de stockage pour MySQL, ce qui n’est pas recommandé pour une utilisation avec MediaWiki, parce que :\n * il prend à peine en charge la simultanéité en raison de verrouillage de table\n * il est plus sujet à la corruption que les autres moteurs\n * le code de base MediaWiki ne gère pas toujours MyISAM comme il se doit\n\nSi votre installation MySQL prenden charge InnoDB, il est fortement recommandé que vous le choisissiez plutôt. \nSi votre installation MySQL ne prend pas en charge les tables InnoDB, il est peut-être temps de faire une mise à niveau.",
+	"config-mysql-only-myisam-dep": "<strong>Attention :</strong> MyISAM est le seul moteur de stockage disponible pour MySQL sur cette machine, et cela n’est pas recommandé pour une utilisation avec MédiaWiki, car :\n* il prend très peu en charge les accès concurrents à cause du verrouillage des tables\n* il est plus sujet à corruption que les autres moteurs\n* le code de base de MédiaWiki ne gère pas toujours MyISAM comme il faudrait\n\nVotre installation MySQL ne prend pas en charge InnoDB ; il est peut-être temps de la mettre à jour.",
+	"config-mysql-engine-help": "<strong>InnoDB</strong> est presque toujours la meilleure option, car il prend bien en charge les accès concurrents.\n\n<strong>MyISAM</strong> peut être plus rapide dans les installations monoposte ou en lecture seule.\nLes bases de données MyISAM ont tendance à se corrompre plus souvent que les bases d’InnoDB.",
 	"config-mysql-charset": "Jeu de caractères de la base de données :",
 	"config-mysql-binary": "Binaire",
 	"config-mysql-utf8": "UTF-8",
-	"config-mysql-charset-help": "En ''mode binaire'', MediaWiki stocke le texte au format UTF-8 dans la base de données dans des champs binaires.\nC'est plus efficace que le ''UTF-8 mode'' de MySQL, et vous permet d'utiliser toute la gamme des caractères Unicode.\n\nEn ''mode UTF-8'', MySQL reconnaîtra le jeu de caractères dans lequel sont vos données et pourra les présenter et les convertir de manière appropriée, mais il ne vous laissera pas stocker les caractères au-dessus du [https://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes plan multilingue de base] (en anglais).",
+	"config-mysql-charset-help": "En <strong>mode binaire</strong>, MediaWiki stocke le texte au format UTF-8 dans la base de données dans des champs binaires.\nC'est plus efficace que le ''UTF-8 mode'' de MySQL, et vous permet d'utiliser toute la gamme des caractères Unicode.\n\nEn <strong>mode UTF-8</strong>, MySQL reconnaîtra le jeu de caractères dans lequel sont vos données et pourra les présenter et les convertir de manière appropriée, mais il ne vous laissera pas stocker les caractères au-dessus du [https://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes plan multilingue de base] (en anglais).",
 	"config-mssql-auth": "Type d’authentification :",
 	"config-mssql-install-auth": "Sélectionner le type d’authentification qui sera utilisé pour se connecter à la base de données pendant le processus d’installation.\nSi vous sélectionnez « {{int:config-mssql-windowsauth}} », les informations d’identification de l’utilisateur faisant tourner le serveur seront utilisées.",
 	"config-mssql-web-auth": "Sélectionner le type d’authentification que le serveur web utilisera pour se connecter au serveur de base de données lors des opérations habituelles du wiki.\nSi vous sélectionnez « {{int:config-mssql-windowsauth}} », les informations d’identification de l’utilisateur sous lequel tourne le serveur web seront utilisées.",
@@ -326,6 +327,7 @@
 	"config-install-subscribe-fail": "Impossible de s'abonner à mediawiki-announce : $1",
 	"config-install-subscribe-notpossible": "cURL n’est pas installé et <code>allow_url_fopen</code> n’est pas disponible.",
 	"config-install-mainpage": "Création de la page principale avec un contenu par défaut",
+	"config-install-mainpage-exists": "La page principale existe déjà, ignoré",
 	"config-install-extension-tables": "Création de tables pour les extensions activées",
 	"config-install-mainpage-failed": "Impossible d’insérer la page principale : $1",
 	"config-install-done": "<strong>Félicitations!</strong>\nVous avez installé MediaWiki.\n\nLe programme d'installation a généré un fichier <code>LocalSettings.php</code>. Il contient tous les paramètres de votre configuration.\n\nVous devrez le télécharger et le mettre à la racine de votre installation wiki (dans le même répertoire que index.php). Le téléchargement devrait démarrer automatiquement.\n\nSi le téléchargement n'a pas été proposé, ou que vous l'avez annulé, vous pouvez redémarrer le téléchargement en cliquant ce lien :\n\n$3\n\n<strong>Note :</strong> Si vous ne le faites pas maintenant, ce fichier de configuration généré ne sera pas disponible plus tard si vous quittez l'installation sans le télécharger.\n\nLorsque c'est fait, vous pouvez <strong>[$2 accéder à votre wiki]</strong> .",
@@ -336,5 +338,5 @@
 	"config-nofile": "Le fichier « $1 » est introuvable. A-t-il été supprimé ?",
 	"config-extension-link": "Saviez-vous que votre wiki prend en charge [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions des extensions] ?\n\nVous pouvez consulter les [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensions par catégorie] ou la [https://www.mediawiki.org/wiki/Extension_Matrix matrice des extensions] pour voir la liste complète des extensions.",
 	"mainpagetext": "<strong>MediaWiki a été installé.</strong>",
-	"mainpagedocfooter": "Consultez le [https://meta.wikimedia.org/wiki/Help:Contents/fr Guide de l’utilisateur] pour plus d’informations sur l’utilisation de ce logiciel de wiki.\n\n== Pour démarrer ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Liste des paramètres de configuration]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/fr Questions courantes sur MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liste de discussion sur les distributions de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Adaptez MediaWiki dans votre langue]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Apprendre comment lutter contre le pourriel dans votre wiki]"
+	"mainpagedocfooter": "Consultez le [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Guide de l’utilisateur du contenu] pour plus d’informations sur l’utilisation de ce logiciel de wiki.\n\n== Pour démarrer ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Liste des paramètres de configuration]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/fr Questions courantes sur MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liste de discussion sur les distributions de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Adaptez MediaWiki dans votre langue]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Apprendre comment lutter contre le pourriel dans votre wiki]"
 }

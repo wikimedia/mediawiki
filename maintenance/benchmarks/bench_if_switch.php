@@ -42,11 +42,10 @@ class BenchIfSwitch extends Benchmarker {
 			[ 'function' => [ $this, 'doElseIf' ] ],
 			[ 'function' => [ $this, 'doSwitch' ] ],
 		] );
-		print $this->getFormattedResults();
 	}
 
 	// bench function 1
-	function doElseIf() {
+	protected function doElseIf() {
 		$a = 'z';
 		if ( $a == 'a' ) {
 		} elseif ( $a == 'b' ) {
@@ -69,7 +68,7 @@ class BenchIfSwitch extends Benchmarker {
 	}
 
 	// bench function 2
-	function doSwitch() {
+	protected function doSwitch() {
 		$a = 'z';
 		switch ( $a ) {
 			case 'b':

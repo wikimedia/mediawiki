@@ -1,4 +1,8 @@
 <?php
+
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\DBError;
+
 /**
  * MySQL version of DBLockManager that supports shared locks.
  *
@@ -34,7 +38,7 @@ class MySqlLockManager extends DBLockManager {
 
 	/**
 	 * Get a connection to a lock DB and acquire locks on $paths.
-	 * This does not use GET_LOCK() per http://bugs.mysql.com/bug.php?id=1118.
+	 * This does not use GET_LOCK() per https://bugs.mysql.com/bug.php?id=1118.
 	 *
 	 * @see DBLockManager::getLocksOnServer()
 	 * @param string $lockSrv

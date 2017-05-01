@@ -15,8 +15,8 @@ $namespaceNames = [
 	NS_USER             => 'Kasutaja',
 	NS_USER_TALK        => 'Kasutaja_arutelu',
 	NS_PROJECT_TALK     => '{{GRAMMAR:genitive|$1}}_arutelu',
-	NS_FILE             => 'Pilt',
-	NS_FILE_TALK        => 'Pildi_arutelu',
+	NS_FILE             => 'Fail',
+	NS_FILE_TALK        => 'Faili_arutelu',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_arutelu',
 	NS_TEMPLATE         => 'Mall',
@@ -29,6 +29,8 @@ $namespaceNames = [
 
 $namespaceAliases = [
 	'$1_arutelu' => NS_PROJECT_TALK,
+	'Pilt' => NS_FILE,
+	'Pildi_arutelu' => NS_FILE_TALK,
 ];
 
 $specialPageAliases = [
@@ -146,7 +148,7 @@ $bookstoreList = [
 	'Raamatukoi' => 'http://www.raamatukoi.ee/cgi-bin/index?valik=otsing&paring=$1',
 	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
 	'Barnes & Noble' => 'http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
-	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+	'Amazon.com' => 'https://www.amazon.com/exec/obidos/ISBN=$1'
 ];
 
 $magicWords = [
@@ -289,4 +291,3 @@ $dateFormats = [
 	'et roman date' => 'j. xrm Y',
 	'et roman both' => 'j. xrm Y, "kell" H:i',
 ];
-

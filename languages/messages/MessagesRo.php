@@ -292,4 +292,3 @@ $dateFormats = [
 $fallback8bitEncoding = 'iso8859-2';
 
 $linkTrail = '/^([a-zăâîşţșțĂÂÎŞŢȘȚ]+)(.*)$/sDu';
-

@@ -101,4 +101,3 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'PuntaniInogghi' ],
 	'Withoutinterwiki'          => [ 'PàginiChenaInterwiki' ],
 ];
-

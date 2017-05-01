@@ -1,4 +1,4 @@
-/*global moment*/
+/* global moment */
 ( function ( $, mw, moment ) {
 
 	/**
@@ -176,24 +176,18 @@
 
 		return this.upload.getApi().then(
 			function ( api ) {
-				return $.when(
-					booklet.upload.loadConfig().then(
-						null,
-						function ( errorMsg ) {
-							booklet.getPage( 'upload' ).$element.msg( errorMsg );
-							return $.Deferred().resolve();
-						}
-					),
-					// If the user can't upload anything, don't give them the option to.
-					api.getUserInfo().then( function ( userInfo ) {
+				// If the user can't upload anything, don't give them the option to.
+				return api.getUserInfo().then(
+					function ( userInfo ) {
 						if ( userInfo.rights.indexOf( 'upload' ) === -1 ) {
-							// TODO Use a better error message when not all logged-in users can upload
-							booklet.getPage( 'upload' ).$element.msg( 'api-error-mustbeloggedin' );
+							if ( mw.user.isAnon() ) {
+								booklet.getPage( 'upload' ).$element.msg( 'apierror-mustbeloggedin', mw.msg( 'action-upload' ) );
+							} else {
+								booklet.getPage( 'upload' ).$element.msg( 'apierror-permissiondenied', mw.msg( 'action-upload' ) );
+							}
 						}
 						return $.Deferred().resolve();
-					} )
-				).then(
-					null,
+					},
 					// Always resolve, never reject
 					function () { return $.Deferred().resolve(); }
 				);
@@ -212,7 +206,14 @@
 	 * @return {mw.Upload} Upload model
 	 */
 	mw.Upload.BookletLayout.prototype.createUpload = function () {
-		return new mw.Upload();
+		return new mw.Upload( {
+			parameters: {
+				errorformat: 'html',
+				errorlang: mw.config.get( 'wgUserLanguage' ),
+				errorsuselocal: 1,
+				formatversion: 2
+			}
+		} );
 	};
 
 	/* Uploading */
@@ -229,7 +230,7 @@
 	 */
 	mw.Upload.BookletLayout.prototype.uploadFile = function () {
 		var deferred = $.Deferred(),
-			startTime = new Date(),
+			startTime = mw.now(),
 			layout = this,
 			file = this.getFile();
 
@@ -264,7 +265,7 @@
 				deferred.reject( errorMessage );
 			} );
 		}, function ( progress ) {
-			var elapsedTime = new Date() - startTime,
+			var elapsedTime = mw.now() - startTime,
 				estimatedTotalTime = ( 1 / progress ) * elapsedTime,
 				estimatedRemainingTime = moment.duration( estimatedTotalTime - elapsedTime );
 			layout.emit( 'fileUploadProgress', progress, estimatedRemainingTime );
@@ -325,58 +326,23 @@
 	 * @return {jQuery.Promise} A Promise that will be resolved with an OO.ui.Error.
 	 */
 	mw.Upload.BookletLayout.prototype.getErrorMessageForStateDetails = function () {
-		var message,
-			state = this.upload.getState(),
+		var state = this.upload.getState(),
 			stateDetails = this.upload.getStateDetails(),
-			error = stateDetails.error,
-			warnings = stateDetails.upload && stateDetails.upload.warnings;
+			error = stateDetails.errors ? stateDetails.errors[ 0 ] : false,
+			warnings = stateDetails.upload && stateDetails.upload.warnings,
+			$ul = $( '<ul>' );
 
 		if ( state === mw.Upload.State.ERROR ) {
 			if ( !error ) {
 				// If there's an 'exception' key, this might be a timeout, or other connection problem
 				return $.Deferred().resolve( new OO.ui.Error(
-					$( '<p>' ).msg( 'api-error-unknownerror', JSON.stringify( stateDetails ) ),
+					$( '<p>' ).msg( 'apierror-unknownerror', JSON.stringify( stateDetails ) ),
 					{ recoverable: false }
 				) );
 			}
 
-			// Errors in this format are produced by TitleBlacklist and AbuseFilter. Perhaps other
-			// extensions will follow this format in the future.
-			if ( error.message ) {
-				return this.upload.getApi()
-					.then( function ( api ) {
-						// 'amenableparser' will expand templates and parser functions server-side.
-						// We still do the rest of wikitext parsing here (through jqueryMsg).
-						return api.loadMessagesIfMissing( [ error.message.key ], { amenableparser: true } )
-							.then( function () {
-								if ( !mw.message( error.message.key ).exists() ) {
-									return $.Deferred().reject();
-								}
-								return new OO.ui.Error(
-									$( '<p>' ).msg( error.message.key, error.message.params || [] ),
-									{ recoverable: false }
-								);
-							} );
-					} )
-					.then( null, function () {
-						// We failed when loading the error message, or it doesn't actually exist, fall back
-						return $.Deferred().resolve( new OO.ui.Error(
-							$( '<p>' ).msg( 'api-error-unknownerror', JSON.stringify( stateDetails ) ),
-							{ recoverable: false }
-						) );
-					} );
-			}
-
-			if ( error.code === 'protectedpage' ) {
-				message = mw.message( 'protectedpagetext' );
-			} else {
-				message = mw.message( 'api-error-' + error.code );
-				if ( !message.exists() ) {
-					message = mw.message( 'api-error-unknownerror', JSON.stringify( stateDetails ) );
-				}
-			}
 			return $.Deferred().resolve( new OO.ui.Error(
-				$( '<p>' ).append( message.parseDom() ),
+				$( '<p>' ).html( error.html ),
 				{ recoverable: false }
 			) );
 		}
@@ -385,12 +351,7 @@
 			// We could get more than one of these errors, these are in order
 			// of importance. For example fixing the thumbnail like file name
 			// won't help the fact that the file already exists.
-			if ( warnings.stashfailed !== undefined ) {
-				return $.Deferred().resolve( new OO.ui.Error(
-					$( '<p>' ).msg( 'api-error-stashfailed' ),
-					{ recoverable: false }
-				) );
-			} else if ( warnings.exists !== undefined ) {
+			if ( warnings.exists !== undefined ) {
 				return $.Deferred().resolve( new OO.ui.Error(
 					$( '<p>' ).msg( 'fileexists', 'File:' + warnings.exists ),
 					{ recoverable: false }
@@ -406,8 +367,16 @@
 					{ recoverable: false }
 				) );
 			} else if ( warnings.duplicate !== undefined ) {
+				$.each( warnings.duplicate, function ( i, filename ) {
+					var $a = $( '<a>' ).text( filename ),
+						href = mw.Title.makeTitle( mw.config.get( 'wgNamespaceIds' ).file, filename ).getUrl( {} );
+
+					$a.attr( { href: href, target: '_blank' } );
+					$ul.append( $( '<li>' ).append( $a ) );
+				} );
+
 				return $.Deferred().resolve( new OO.ui.Error(
-					$( '<p>' ).msg( 'api-error-duplicate', warnings.duplicate.length ),
+					$( '<p>' ).msg( 'file-exists-duplicate', warnings.duplicate.length ).append( $ul ),
 					{ recoverable: false }
 				) );
 			} else if ( warnings[ 'thumb-name' ] !== undefined ) {
@@ -422,12 +391,12 @@
 				) );
 			} else if ( warnings[ 'duplicate-archive' ] !== undefined ) {
 				return $.Deferred().resolve( new OO.ui.Error(
-					$( '<p>' ).msg( 'api-error-duplicate-archive', 1 ),
+					$( '<p>' ).msg( 'file-deleted-duplicate', 'File:' + warnings[ 'duplicate-archive' ] ),
 					{ recoverable: false }
 				) );
 			} else if ( warnings[ 'was-deleted' ] !== undefined ) {
 				return $.Deferred().resolve( new OO.ui.Error(
-					$( '<p>' ).msg( 'api-error-was-deleted' ),
+					$( '<p>' ).msg( 'filewasdeleted', 'File:' + warnings[ 'was-deleted' ] ),
 					{ recoverable: false }
 				) );
 			} else if ( warnings.badfilename !== undefined ) {

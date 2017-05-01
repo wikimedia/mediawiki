@@ -4,7 +4,9 @@
  * @author Ori Livneh
  * @since 1.22
  */
-/*jshint devel:true */
+
+/* eslint-disable no-console */
+
 ( function ( mw, $ ) {
 
 	var inspect,
@@ -18,11 +20,12 @@
 	}
 
 	function humanSize( bytes ) {
-		if ( !$.isNumeric( bytes ) || bytes === 0 ) { return bytes; }
-		var i = 0,
+		var i,
 			units = [ '', ' KiB', ' MiB', ' GiB', ' TiB', ' PiB' ];
 
-		for ( ; bytes >= 1024; bytes /= 1024 ) { i++; }
+		if ( !$.isNumeric( bytes ) || bytes === 0 ) { return bytes; }
+
+		for ( i = 0; bytes >= 1024; bytes /= 1024 ) { i++; }
 		// Maintain one decimal for kB and above, but don't
 		// add ".0" for bytes.
 		return bytes.toFixed( i > 0 ? 1 : 0 ) + units[ i ];
@@ -70,29 +73,57 @@
 		 */
 		getModuleSize: function ( moduleName ) {
 			var module = mw.loader.moduleRegistry[ moduleName ],
-				payload = 0;
+				args, i, size;
 
-			if ( mw.loader.getState( moduleName ) !== 'ready' ) {
+			if ( module.state !== 'ready' ) {
 				return null;
 			}
 
 			if ( !module.style && !module.script ) {
-				return null;
+				return 0;
 			}
 
-			// Tally CSS
-			if ( module.style && $.isArray( module.style.css ) ) {
-				$.each( module.style.css, function ( i, stylesheet ) {
-					payload += $.byteLength( stylesheet );
-				} );
+			function getFunctionBody( func ) {
+				return String( func )
+					// To ensure a deterministic result, replace the start of the function
+					// declaration with a fixed string. For example, in Chrome 55, it seems
+					// V8 seemingly-at-random decides to sometimes put a line break between
+					// the opening brace and first statement of the function body. T159751.
+					.replace( /^\s*function\s*\([^)]*\)\s*{\s*/, 'function(){' )
+					.replace( /\s*}\s*$/, '}' );
 			}
 
-			// Tally JavaScript
-			if ( $.isFunction( module.script ) ) {
-				payload += $.byteLength( module.script.toString() );
+			// Based on the load.php response for this module.
+			// For example: `mw.loader.implement("example", function(){}, {"css":[".x{color:red}"]});`
+			// @see mw.loader.store.set().
+			args = [
+				moduleName,
+				module.script,
+				module.style,
+				module.messages,
+				module.templates
+			];
+			// Trim trailing null or empty object, as load.php would have done.
+			// @see ResourceLoader::makeLoaderImplementScript and ResourceLoader::trimArray.
+			i = args.length;
+			while ( i-- ) {
+				if ( args[ i ] === null || ( $.isPlainObject( args[ i ] ) && $.isEmptyObject( args[ i ] ) ) ) {
+					args.splice( i, 1 );
+				} else {
+					break;
+				}
 			}
 
-			return payload;
+			size = 0;
+			for ( i = 0; i < args.length; i++ ) {
+				if ( typeof args[ i ] === 'function' ) {
+					size += $.byteLength( getFunctionBody( args[ i ] ) );
+				} else {
+					size += $.byteLength( JSON.stringify( args[ i ] ) );
+				}
+			}
+
+			return size;
 		},
 
 		/**
@@ -187,6 +218,8 @@
 			/**
 			 * Generate a breakdown of all loaded modules and their size in
 			 * kilobytes. Modules are ordered from largest to smallest.
+			 *
+			 * @return {Object[]} Size reports
 			 */
 			size: function () {
 				// Map each module to a descriptor object.
@@ -212,6 +245,8 @@
 			/**
 			 * For each module with styles, count the number of selectors, and
 			 * count how many match against some element currently in the DOM.
+			 *
+			 * @return {Object[]} CSS reports
 			 */
 			css: function () {
 				var modules = [];
@@ -229,7 +264,7 @@
 						allSelectors: stats.total,
 						matchedSelectors: stats.matched,
 						percentMatched: stats.total !== 0 ?
-							( stats.matched / stats.total * 100 ).toFixed( 2 )  + '%' : null
+							( stats.matched / stats.total * 100 ).toFixed( 2 ) + '%' : null
 					} );
 				} );
 				sortByProperty( modules, 'allSelectors', true );
@@ -240,6 +275,8 @@
 			 * Report stats on mw.loader.store: the number of localStorage
 			 * cache hits and misses, the number of items purged from the
 			 * cache, and the total size of the module blob in localStorage.
+			 *
+			 * @return {Object[]} Store stats
 			 */
 			store: function () {
 				var raw, stats = { enabled: mw.loader.store.enabled };
@@ -247,7 +284,7 @@
 					$.extend( stats, mw.loader.store.stats );
 					try {
 						raw = localStorage.getItem( mw.loader.store.getStoreKey() );
-						stats.totalSizeInBytes =  $.byteLength( raw );
+						stats.totalSizeInBytes = $.byteLength( raw );
 						stats.totalSize = humanSize( $.byteLength( raw ) );
 					} catch ( e ) {}
 				}
@@ -278,8 +315,8 @@
 
 				// Grep module's CSS
 				if (
-					$.isPlainObject( module.style ) && $.isArray( module.style.css )
-					&& pattern.test( module.style.css.join( '' ) )
+					$.isPlainObject( module.style ) && Array.isArray( module.style.css ) &&
+					pattern.test( module.style.css.join( '' ) )
 				) {
 					// Module's CSS source matches
 					return true;

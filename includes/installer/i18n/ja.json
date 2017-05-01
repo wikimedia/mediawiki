@@ -18,7 +18,10 @@
 			"Macofe",
 			"2nd-player",
 			"Otokoume",
-			"Rxy"
+			"Rxy",
+			"Foresttttttt",
+			"ネイ",
+			"Suchichi02"
 		]
 	},
 	"config-desc": "MediaWiki のインストーラー",
@@ -76,6 +79,7 @@
 	"config-memory-bad": "<strong>警告:</strong> PHPの<code>memory_limit</code>に$1に設定されています。\nこの値はおそらく小さすぎます。\nインストールが失敗するおそれがあります!",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] がインストール済み",
 	"config-apc": "[http://www.php.net/apc APC] がインストール済み",
+	"config-apcu": "[http://www.php.net/apc APC] がインストール済みです。",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] がインストール済み",
 	"config-no-cache-apcu": "<strong>警告:</strong> [http://www.php.net/apcu APCu]、 [http://xcache.lighttpd.net/ XCache]、 [http://www.iis.net/download/WinCacheForPhp WinCache] のいずれも見つかりませんでした。\nオブジェクトのキャッシュは有効化されません。",
 	"config-mod-security": "<strong>警告:</strong> あなたのウェブサーバーでは [http://modsecurity.org/ mod_security] が有効になっています。正しく構成されていない場合は、MediaWiki や利用者にコンテンツの投稿を許可するその他のソフトウェアに問題が発生する場合があります。\n[http://modsecurity.org/documentation/ mod_security の説明文書]を確認するか、ランダムなエラーが発生した場合はあなたのホストのサポートにお問い合わせください。",
@@ -130,7 +134,7 @@
 	"config-type-mssql": "マイクロソフト SQL Server",
 	"config-support-info": "MediaWiki は以下のデータベース システムに対応しています:\n\n$1\n\n使用しようとしているデータベース システムが下記の一覧にない場合は、上記リンク先の手順に従ってインストールしてください。",
 	"config-dbsupport-mysql": "* [{{int:version-db-mysql-url}} MySQL]はMediaWikiの主要な対象であり、最もよくサポートされています。MediaWikiはMySQLと互換性のある[{{int:version-db-mariadb-url}} MariaDB]、[{{int:version-db-percona-url}} Percona Server]でも動きます。 ([http://www.php.net/manual/ja/mysqli.installation.php PHPをMySQLサポート付きでコンパイルする方法])",
-	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] は、MySQLの代替として人気があるオープンソースのデータベースシステムです。細部の未解消バグがある場合があるため、プロダクション環境での使用は推奨されません。 ([http://www.php.net/manual/en/pgsql.installation.php PHPをPostgreSQLサポート付きでコンパイルする方法])",
+	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] は、MySQLの代替として人気がある公開のデータベースシステムです。([http://www.php.net/manual/en/pgsql.installation.php PHPをPostgreSQLサポート付きでコンパイルする方法])",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite]は、良くサポートされている、軽量データベースシステムです。([http://www.php.net/manual/ja/pdo.installation.php SQLiteに対応したPHPをコンパイルする方法]、PDOを使用)",
 	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle]は商業企業のデータベースです。([http://www.php.net/manual/en/oci8.installation.php OCI8サポートなPHPをコンパイルする方法])",
 	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server]は商業企業のWindows用データベースです。([http://www.php.net/manual/en/sqlsrv.installation.php SQLSRVサポートなPHPをコンパイルする方法])",
@@ -215,6 +219,8 @@
 	"config-subscribe": "[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce リリース告知のメーリングリスト]を購読する。",
 	"config-subscribe-help": "これは、リリースの告知 (重要なセキュリティに関する案内を含む) に使用される、流量が少ないメーリングリストです。\nこのメーリングリストを購読して、新しいバージョンが出た場合にMediaWikiを更新してください。",
 	"config-subscribe-noemail": "メールアドレスなしでリリースアナウンスのメーリングリストを購読しようとしています。\nメーリングリストを購読する場合にはメールアドレスを入力してください。",
+	"config-pingback": "このインストールに関するデータをMediaWikiの開発者と共有する。",
+	"config-pingback-help": "もし君がこのオプションを選択したら、メデイアウィキは定期的にhttps://www.mediawiki.orgとメデイアウィキのインスタンスに関する基本的のデータをピンします。このデータはシステムのタイプ、PHPのバージョンと選択されたデータベースのバックエンドなどを含んでいます。メデイアウィキファンデーションは将来の",
 	"config-almost-done": "これでほぼ終わりました!\n残りの設定を飛ばして、ウィキを今すぐインストールできます。",
 	"config-optional-continue": "私にもっと質問してください。",
 	"config-optional-skip": "もう飽きてしまったので、とにかくウィキをインストールしてください。",
@@ -263,7 +269,7 @@
 	"config-cache-options": "オブジェクトのキャッシュの設定:",
 	"config-cache-help": "オブジェクトのキャッシュを使用すると、頻繁に使用するデータをキャッシュするため MediaWiki の動作速度を改善できます。\n中〜大規模サイトではこれを有効にすることを強くお勧めします。小規模サイトでも同様に効果があります。",
 	"config-cache-none": "キャッシングしない(機能は取り払われます、しかもより大きなウィキサイト上でスピードの問題が発生します)",
-	"config-cache-accel": "PHP オブジェクト キャッシュ (APC、XCache、WinCache のいずれか)",
+	"config-cache-accel": "PHPオブジェクトキャッシュ (APC、APCu、XCache、WinCache のいずれか)",
 	"config-cache-memcached": "memcached を使用 (追加の設定が必要)",
 	"config-memcached-servers": "memcached サーバー:",
 	"config-memcached-help": "Memcachedを使用するIPアドレスの一覧。\nカンマ区切りで、利用する特定のポートの指定が必要です。例:\n127.0.0.1:11211\n192.168.1.25:1234",
@@ -324,5 +330,5 @@
 	"config-nofile": "ファイル「$1」が見つかりませんでした。削除された可能性があります。",
 	"config-extension-link": "あなたのウィキは[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions 拡張機能]をサポートしていることをご存知ですか?\n\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category カテゴリ別で拡張機能を見る]か[https://www.mediawiki.org/wiki/Extension_Matrix 拡張機能のマトリックス]で拡張機能すべてのリストをご覧になれます。",
 	"mainpagetext": "<strong>MediaWiki はインストール済みです。</strong>",
-	"mainpagedocfooter": "ウィキソフトウェアの使い方に関する情報は[https://meta.wikimedia.org/wiki/Help:Contents 利用者案内]を参照してください。\n\n== はじめましょう ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings/ja 設定の一覧]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/ja MediaWiki よくある質問と回答]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki リリース情報メーリングリスト]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation/ja MediaWiki のあなたの言語へのローカライズ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Learn how to combat spam on your wiki]"
+	"mainpagedocfooter": "ウィキソフトウェアの使い方に関する情報は[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 利用者案内]を参照してください。\n\n== はじめましょう ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings/ja 設定の一覧]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/ja MediaWiki よくある質問と回答]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki リリース情報メーリングリスト]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation/ja MediaWiki のあなたの言語へのローカライズ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam あなたのウィキでスパムと戦う方法を学ぶ]"
 }

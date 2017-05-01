@@ -37,12 +37,17 @@ class CurlHttpRequest extends MWHttpRequest {
 		return strlen( $content );
 	}
 
+	/**
+	 * @see MWHttpRequest::execute
+	 *
+	 * @throws MWException
+	 * @return Status
+	 */
 	public function execute() {
-
-		parent::execute();
+		$this->prepare();
 
 		if ( !$this->status->isOK() ) {
-			return $this->status;
+			return Status::wrap( $this->status ); // TODO B/C; move this to callers
 		}
 
 		$this->curlOptions[CURLOPT_PROXY] = $this->proxy;
@@ -102,7 +107,7 @@ class CurlHttpRequest extends MWHttpRequest {
 		$curlHandle = curl_init( $this->url );
 
 		if ( !curl_setopt_array( $curlHandle, $this->curlOptions ) ) {
-			throw new MWException( "Error setting curl options." );
+			throw new InvalidArgumentException( "Error setting curl options." );
 		}
 
 		if ( $this->followRedirects && $this->canFollowRedirects() ) {
@@ -140,7 +145,7 @@ class CurlHttpRequest extends MWHttpRequest {
 		$this->parseHeader();
 		$this->setStatus();
 
-		return $this->status;
+		return Status::wrap( $this->status ); // TODO B/C; move this to callers
 	}
 
 	/**

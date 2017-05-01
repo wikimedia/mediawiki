@@ -27,22 +27,34 @@ class ApiManageTags extends ApiBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
+		$user = $this->getUser();
 
 		// make sure the user is allowed
 		if ( $params['operation'] !== 'delete'
 			&& !$this->getUser()->isAllowed( 'managechangetags' )
 		) {
-			$this->dieUsage( "You don't have permission to manage change tags",
-				'permissiondenied' );
+			$this->dieWithError( 'tags-manage-no-permission', 'permissiondenied' );
 		} elseif ( !$this->getUser()->isAllowed( 'deletechangetags' ) ) {
-			$this->dieUsage( "You don't have permission to delete change tags",
-				'permissiondenied' );
+			$this->dieWithError( 'tags-delete-no-permission', 'permissiondenied' );
+		}
+
+		// Check if user can add the log entry tags which were requested
+		if ( $params['tags'] ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			if ( !$ableToTag->isOK() ) {
+				$this->dieStatus( $ableToTag );
+			}
 		}
 
 		$result = $this->getResult();
 		$funcName = "{$params['operation']}TagWithChecks";
-		$status = ChangeTags::$funcName( $params['tag'], $params['reason'],
-			$this->getUser(), $params['ignorewarnings'] );
+		$status = ChangeTags::$funcName(
+			$params['tag'],
+			$params['reason'],
+			$user,
+			$params['ignorewarnings'],
+			$params['tags'] ?: []
+		);
 
 		if ( !$status->isOK() ) {
 			$this->dieStatus( $status );
@@ -59,6 +71,7 @@ class ApiManageTags extends ApiBase {
 		if ( $ret['success'] ) {
 			$ret['logid'] = $status->value;
 		}
+
 		$result->addValue( null, $this->getModuleName(), $ret );
 	}
 
@@ -87,6 +100,10 @@ class ApiManageTags extends ApiBase {
 				ApiBase::PARAM_TYPE => 'boolean',
 				ApiBase::PARAM_DFLT => false,
 			],
+			'tags' => [
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
+			],
 		];
 	}
 
@@ -108,6 +125,6 @@ class ApiManageTags extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Tag_management';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tag_management';
 	}
 }

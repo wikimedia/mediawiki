@@ -130,12 +130,15 @@ class TestFileReader {
 			'input' => $data[$input],
 			'options' => $data['options'],
 			'config' => $data['config'],
+			'line' => $this->sectionLineNum['test'],
+			'file' => $this->file
 		];
 
 		if ( $nonTidySection !== false ) {
 			// Add non-tidy test
 			$this->tests[] = [
 				'result' => $data[$nonTidySection],
+				'resultSection' => $nonTidySection
 			] + $commonInfo;
 
 			if ( $tidySection !== false ) {
@@ -143,13 +146,16 @@ class TestFileReader {
 				$this->tests[] = [
 					'desc' => $data['test'] . ' (with tidy)',
 					'result' => $data[$tidySection],
+					'resultSection' => $tidySection,
 					'options' => $data['options'] . ' tidy',
+					'isSubtest' => true,
 				] + $commonInfo;
 			}
 		} elseif ( $tidySection !== false ) {
 			// No need to override desc when there is no subtest
 			$this->tests[] = [
 				'result' => $data[$tidySection],
+				'resultSection' => $tidySection,
 				'options' => $data['options'] . ' tidy'
 			] + $commonInfo;
 		} else {
@@ -258,7 +264,6 @@ class TestFileReader {
 		$this->sectionLineNum = [];
 		$this->sectionData = [];
 		$this->section = null;
-
 	}
 
 	/**
@@ -328,4 +333,3 @@ class TestFileReader {
 		$this->requirements[$type][$name] = true;
 	}
 }
-

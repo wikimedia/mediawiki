@@ -46,11 +46,15 @@ class Http {
 	 *    - caInfo              Provide CA information
 	 *    - maxRedirects        Maximum number of redirects to follow (defaults to 5)
 	 *    - followRedirects     Whether to follow redirects (defaults to false).
-	 *		                    Note: this should only be used when the target URL is trusted,
-	 *		                    to avoid attacks on intranet services accessible by HTTP.
+	 *                          Note: this should only be used when the target URL is trusted,
+	 *                          to avoid attacks on intranet services accessible by HTTP.
 	 *    - userAgent           A user agent, if you want to override the default
 	 *                          MediaWiki/$wgVersion
 	 *    - logger              A \Psr\Logger\LoggerInterface instance for debug logging
+	 *    - username            Username for HTTP Basic Authentication
+	 *    - password            Password for HTTP Basic Authentication
+	 *    - originalRequest     Information about the original request (as a WebRequest object or
+	 *                          an associative array with 'ip' and 'userAgent').
 	 * @param string $caller The method making this request, for profiling
 	 * @return string|bool (bool)false on failure or a string on success
 	 */
@@ -74,7 +78,7 @@ class Http {
 		} else {
 			$errors = $status->getErrorsByType( 'error' );
 			$logger = LoggerFactory::getInstance( 'http' );
-			$logger->warning( $status->getWikiText( false, false, 'en' ),
+			$logger->warning( Status::wrap( $status )->getWikiText( false, false, 'en' ),
 				[ 'error' => $errors, 'caller' => $caller, 'content' => $req->getContent() ] );
 			return false;
 		}
@@ -140,7 +144,7 @@ class Http {
 	 * @return bool
 	 */
 	public static function isValidURI( $uri ) {
-		return preg_match(
+		return (bool)preg_match(
 			'/^https?:\/\/[^\/\s]\S*$/D',
 			$uri
 		);

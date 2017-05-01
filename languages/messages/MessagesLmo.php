@@ -100,4 +100,3 @@ $magicWords = [
 	'img_none'                  => [ '1', 'nissön', 'nessuno', 'none' ],
 	'sitename'                  => [ '1', 'NUMSIT', 'NOMESITO', 'SITENAME' ],
 ];
-

@@ -432,7 +432,7 @@ class UploadStash {
 				. ' No user is logged in, files must belong to users' );
 		}
 
-		$dbr = $this->repo->getSlaveDB();
+		$dbr = $this->repo->getReplicaDB();
 		$res = $dbr->select(
 			'uploadstash',
 			'us_key',
@@ -511,7 +511,7 @@ class UploadStash {
 			// sometimes reading from the master is necessary, if there's replication lag.
 			$dbr = $this->repo->getMasterDB();
 		} else {
-			$dbr = $this->repo->getSlaveDB();
+			$dbr = $this->repo->getReplicaDB();
 		}
 
 		$row = $dbr->selectRow(

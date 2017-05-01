@@ -103,9 +103,9 @@ class UserMailer {
 	 * @param string $subject Email's subject.
 	 * @param string $body Email's text or Array of two strings to be the text and html bodies
 	 * @param array $options:
-	 * 		'replyTo' MailAddress
-	 * 		'contentType' string default 'text/plain; charset=UTF-8'
-	 * 		'headers' array Extra headers to set
+	 *     'replyTo' MailAddress
+	 *     'contentType' string default 'text/plain; charset=UTF-8'
+	 *     'headers' array Extra headers to set
 	 *
 	 * @throws MWException
 	 * @throws Exception
@@ -197,9 +197,9 @@ class UserMailer {
 	 * @param string $subject Email's subject.
 	 * @param string $body Email's text or Array of two strings to be the text and html bodies
 	 * @param array $options:
-	 * 		'replyTo' MailAddress
-	 * 		'contentType' string default 'text/plain; charset=UTF-8'
-	 * 		'headers' array Extra headers to set
+	 *     'replyTo' MailAddress
+	 *     'contentType' string default 'text/plain; charset=UTF-8'
+	 *     'headers' array Extra headers to set
 	 *
 	 * @throws MWException
 	 * @throws Exception
@@ -268,7 +268,14 @@ class UserMailer {
 		// Add the envelope sender address using the -f command line option when PHP mail() is used.
 		// Will default to the $from->address when the UserMailerChangeReturnPath hook fails and the
 		// generated VERP address when the hook runs effectively.
-		$extraParams .= ' -f ' . $returnPath;
+
+		// PHP runs this through escapeshellcmd(). However that's not sufficient
+		// escaping (e.g. due to spaces). MediaWiki's email sanitizer should generally
+		// be good enough, but just in case, put in double quotes, and remove any
+		// double quotes present (" is not allowed in emails, so should have no
+		// effect, although this might cause apostrophees to be double escaped)
+		$returnPathCLI = '"' . str_replace( '"', '', $returnPath ) . '"';
+		$extraParams .= ' -f ' . $returnPathCLI;
 
 		$headers['Return-Path'] = $returnPath;
 
@@ -283,7 +290,7 @@ class UserMailer {
 			->getFullURL( '', false, PROTO_CANONICAL ) . '>';
 
 		// Line endings need to be different on Unix and Windows due to
-		// the bug described at http://trac.wordpress.org/ticket/2603
+		// the bug described at https://core.trac.wordpress.org/ticket/2603
 		$endl = PHP_EOL;
 
 		if ( is_array( $body ) ) {

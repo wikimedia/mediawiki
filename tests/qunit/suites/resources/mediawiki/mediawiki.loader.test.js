@@ -5,6 +5,11 @@
 		},
 		teardown: function () {
 			mw.loader.store.enabled = false;
+			// Teardown for StringSet shim test
+			if ( this.nativeSet ) {
+				window.Set = this.nativeSet;
+				mw.redefineFallbacksForTest();
+			}
 		}
 	} ) );
 
@@ -32,10 +37,10 @@
 
 		function isCssImportApplied() {
 			// Trigger reflow, repaint, redraw, whatever (cross-browser)
-			var x = $element.css( 'height' );
-			x = el.innerHTML;
+			$element.css( 'height' );
+			el.innerHTML;
 			el.className = el.className;
-			x = document.documentElement.clientHeight;
+			document.documentElement.clientHeight;
 
 			return $element.css( prop ) === val;
 		}
@@ -75,7 +80,7 @@
 		);
 	}
 
-	QUnit.test( 'Basic', 2, function ( assert ) {
+	QUnit.test( 'Basic', function ( assert ) {
 		var isAwesomeDone;
 
 		mw.loader.testCallback = function () {
@@ -94,7 +99,7 @@
 		} );
 	} );
 
-	QUnit.test( 'Object method as module name', 2, function ( assert ) {
+	QUnit.test( 'Object method as module name', function ( assert ) {
 		var isAwesomeDone;
 
 		mw.loader.testCallback = function () {
@@ -113,7 +118,7 @@
 		} );
 	} );
 
-	QUnit.test( '.using( .. ) Promise', 2, function ( assert ) {
+	QUnit.test( '.using( .. ) Promise', function ( assert ) {
 		var isAwesomeDone;
 
 		mw.loader.testCallback = function () {
@@ -127,14 +132,92 @@
 		.done( function () {
 			assert.strictEqual( isAwesomeDone, true, 'test.promise module should\'ve caused isAwesomeDone to be true' );
 			delete mw.loader.testCallback;
-
 		} )
 		.fail( function () {
 			assert.ok( false, 'Error callback fired while loader.using "test.promise" module' );
 		} );
 	} );
 
-	QUnit.test( '.implement( styles={ "css": [text, ..] } )', 2, function ( assert ) {
+	// Covers mw.loader#sortDependencies (with native Set if available)
+	QUnit.test( '.using() Error: Circular dependency [StringSet default]', function ( assert ) {
+		var done = assert.async();
+
+		mw.loader.register( [
+			[ 'test.circle1', '0', [ 'test.circle2' ] ],
+			[ 'test.circle2', '0', [ 'test.circle3' ] ],
+			[ 'test.circle3', '0', [ 'test.circle1' ] ]
+		] );
+		mw.loader.using( 'test.circle3' ).then(
+			function done() {
+				assert.ok( false, 'Unexpected resolution, expected error.' );
+			},
+			function fail( e ) {
+				assert.ok( /Circular/.test( String( e ) ), 'Detect circular dependency' );
+			}
+		)
+		.always( done );
+	} );
+
+	// @covers mw.loader#sortDependencies (with fallback shim)
+	QUnit.test( '.using() Error: Circular dependency [StringSet shim]', function ( assert ) {
+		var done = assert.async();
+
+		if ( !window.Set ) {
+			assert.expect( 0 );
+			done();
+			return;
+		}
+
+		this.nativeSet = window.Set;
+		window.Set = undefined;
+		mw.redefineFallbacksForTest();
+
+		mw.loader.register( [
+			[ 'test.shim.circle1', '0', [ 'test.shim.circle2' ] ],
+			[ 'test.shim.circle2', '0', [ 'test.shim.circle3' ] ],
+			[ 'test.shim.circle3', '0', [ 'test.shim.circle1' ] ]
+		] );
+		mw.loader.using( 'test.shim.circle3' ).then(
+			function done() {
+				assert.ok( false, 'Unexpected resolution, expected error.' );
+			},
+			function fail( e ) {
+				assert.ok( /Circular/.test( String( e ) ), 'Detect circular dependency' );
+			}
+		)
+		.always( done );
+	} );
+
+	QUnit.test( '.load() - Error: Circular dependency', function ( assert ) {
+		mw.loader.register( [
+			[ 'test.circleA', '0', [ 'test.circleB' ] ],
+			[ 'test.circleB', '0', [ 'test.circleC' ] ],
+			[ 'test.circleC', '0', [ 'test.circleA' ] ]
+		] );
+		assert.throws( function () {
+			mw.loader.load( 'test.circleC' );
+		}, /Circular/, 'Detect circular dependency' );
+	} );
+
+	QUnit.test( '.using() - Error: Unregistered', function ( assert ) {
+		var done = assert.async();
+
+		mw.loader.using( 'test.using.unreg' ).then(
+			function done() {
+				assert.ok( false, 'Unexpected resolution, expected error.' );
+			},
+			function fail( e ) {
+				assert.ok( /Unknown/.test( String( e ) ), 'Detect unknown dependency' );
+			}
+		).always( done );
+	} );
+
+	QUnit.test( '.load() - Error: Unregistered (ignored)', function ( assert ) {
+		assert.expect( 0 );
+		mw.loader.load( 'test.using.unreg2' );
+	} );
+
+	QUnit.test( '.implement( styles={ "css": [text, ..] } )', function ( assert ) {
 		var $element = $( '<div class="mw-test-implement-a"></div>' ).appendTo( '#qunit-fixture' );
 
 		assert.notEqual(
@@ -160,7 +243,7 @@
 		return mw.loader.using( 'test.implement.a' );
 	} );
 
-	QUnit.test( '.implement( styles={ "url": { <media>: [url, ..] } } )', 7, function ( assert ) {
+	QUnit.test( '.implement( styles={ "url": { <media>: [url, ..] } } )', function ( assert ) {
 		var $element1 = $( '<div class="mw-test-implement-b1"></div>' ).appendTo( '#qunit-fixture' ),
 			$element2 = $( '<div class="mw-test-implement-b2"></div>' ).appendTo( '#qunit-fixture' ),
 			$element3 = $( '<div class="mw-test-implement-b3"></div>' ).appendTo( '#qunit-fixture' ),
@@ -210,7 +293,7 @@
 				url: {
 					print: [ urlStyleTest( '.mw-test-implement-b1', 'text-align', 'center' ) ],
 					screen: [
-						// bug 40834: Make sure it actually works with more than 1 stylesheet reference
+						// T42834: Make sure it actually works with more than 1 stylesheet reference
 						urlStyleTest( '.mw-test-implement-b2', 'float', 'left' ),
 						urlStyleTest( '.mw-test-implement-b3', 'float', 'right' )
 					]
@@ -222,7 +305,7 @@
 	} );
 
 	// Backwards compatibility
-	QUnit.test( '.implement( styles={ <media>: text } ) (back-compat)', 2, function ( assert ) {
+	QUnit.test( '.implement( styles={ <media>: text } ) (back-compat)', function ( assert ) {
 		var $element = $( '<div class="mw-test-implement-c"></div>' ).appendTo( '#qunit-fixture' );
 
 		assert.notEqual(
@@ -249,7 +332,7 @@
 	} );
 
 	// Backwards compatibility
-	QUnit.test( '.implement( styles={ <media>: [url, ..] } ) (back-compat)', 4, function ( assert ) {
+	QUnit.test( '.implement( styles={ <media>: [url, ..] } ) (back-compat)', function ( assert ) {
 		var $element = $( '<div class="mw-test-implement-d"></div>' ).appendTo( '#qunit-fixture' ),
 			$element2 = $( '<div class="mw-test-implement-d2"></div>' ).appendTo( '#qunit-fixture' ),
 			done = assert.async();
@@ -269,7 +352,7 @@
 			'test.implement.d',
 			function () {
 				assertStyleAsync( assert, $element, 'float', 'right', function () {
-					assert.notEqual( $element2.css( 'text-align' ), 'center', 'print style is not applied (bug 40500)' );
+					assert.notEqual( $element2.css( 'text-align' ), 'center', 'print style is not applied (T42500)' );
 					done();
 				} );
 			},
@@ -282,8 +365,8 @@
 		mw.loader.load( 'test.implement.d' );
 	} );
 
-	// @import (bug 31676)
-	QUnit.test( '.implement( styles has @import )', 7, function ( assert ) {
+	// @import (T33676)
+	QUnit.test( '.implement( styles has @import )', function ( assert ) {
 		var isJsExecuted, $element,
 			done = assert.async();
 
@@ -326,7 +409,7 @@
 		} );
 	} );
 
-	QUnit.test( '.implement( dependency with styles )', 4, function ( assert ) {
+	QUnit.test( '.implement( dependency with styles )', function ( assert ) {
 		var $element = $( '<div class="mw-test-implement-e"></div>' ).appendTo( '#qunit-fixture' ),
 			$element2 = $( '<div class="mw-test-implement-e2"></div>' ).appendTo( '#qunit-fixture' );
 
@@ -377,31 +460,29 @@
 		return mw.loader.using( 'test.implement.e' );
 	} );
 
-	QUnit.test( '.implement( only scripts )', 1, function ( assert ) {
+	QUnit.test( '.implement( only scripts )', function ( assert ) {
 		mw.loader.implement( 'test.onlyscripts', function () {} );
 		assert.strictEqual( mw.loader.getState( 'test.onlyscripts' ), 'ready' );
 	} );
 
-	QUnit.test( '.implement( only messages )', 2, function ( assert ) {
-		assert.assertFalse( mw.messages.exists( 'bug_29107' ), 'Verify that the test message doesn\'t exist yet' );
+	QUnit.test( '.implement( only messages )', function ( assert ) {
+		assert.assertFalse( mw.messages.exists( 'T31107' ), 'Verify that the test message doesn\'t exist yet' );
 
-		// jscs: disable requireCamelCaseOrUpperCaseIdentifiers
-		mw.loader.implement( 'test.implement.msgs', [], {}, { bug_29107: 'loaded' } );
-		// jscs: enable requireCamelCaseOrUpperCaseIdentifiers
+		mw.loader.implement( 'test.implement.msgs', [], {}, { T31107: 'loaded' } );
 
 		return mw.loader.using( 'test.implement.msgs', function () {
-			assert.ok( mw.messages.exists( 'bug_29107' ), 'Bug 29107: messages-only module should implement ok' );
+			assert.ok( mw.messages.exists( 'T31107' ), 'T31107: messages-only module should implement ok' );
 		}, function () {
 			assert.ok( false, 'Error callback fired while implementing "test.implement.msgs" module' );
 		} );
 	} );
 
-	QUnit.test( '.implement( empty )', 1, function ( assert ) {
+	QUnit.test( '.implement( empty )', function ( assert ) {
 		mw.loader.implement( 'test.empty' );
 		assert.strictEqual( mw.loader.getState( 'test.empty' ), 'ready' );
 	} );
 
-	QUnit.test( 'Broken indirect dependency', 4, function ( assert ) {
+	QUnit.test( 'Broken indirect dependency', function ( assert ) {
 		// don't emit an error event
 		this.sandbox.stub( mw, 'track' );
 
@@ -420,18 +501,7 @@
 		assert.strictEqual( mw.track.callCount, 1 );
 	} );
 
-	QUnit.test( 'Circular dependency', 1, function ( assert ) {
-		mw.loader.register( [
-			[ 'test.circle1', '0', [ 'test.circle2' ] ],
-			[ 'test.circle2', '0', [ 'test.circle3' ] ],
-			[ 'test.circle3', '0', [ 'test.circle1' ] ]
-		] );
-		assert.throws( function () {
-			mw.loader.using( 'test.circle3' );
-		}, /Circular/, 'Detect circular dependency' );
-	} );
-
-	QUnit.test( 'Out-of-order implementation', 9, function ( assert ) {
+	QUnit.test( 'Out-of-order implementation', function ( assert ) {
 		mw.loader.register( [
 			[ 'test.module4', '0' ],
 			[ 'test.module5', '0', [ 'test.module4' ] ],
@@ -451,7 +521,7 @@
 		assert.strictEqual( mw.loader.getState( 'test.module6' ), 'ready', 'Expected "ready" state for test.module6' );
 	} );
 
-	QUnit.test( 'Missing dependency', 13, function ( assert ) {
+	QUnit.test( 'Missing dependency', function ( assert ) {
 		mw.loader.register( [
 			[ 'test.module7', '0' ],
 			[ 'test.module8', '0', [ 'test.module7' ] ],
@@ -476,7 +546,7 @@
 				assert.ok( true, 'QUnit expected() count dummy' );
 			},
 			function ( e, dependencies ) {
-				assert.strictEqual( $.isArray( dependencies ), true, 'Expected array of dependencies' );
+				assert.strictEqual( Array.isArray( dependencies ), true, 'Expected array of dependencies' );
 				assert.deepEqual( dependencies, [ 'test.module7' ], 'Error callback called with module test.module7' );
 			}
 		);
@@ -487,7 +557,7 @@
 				assert.ok( true, 'QUnit expected() count dummy' );
 			},
 			function ( e, dependencies ) {
-				assert.strictEqual( $.isArray( dependencies ), true, 'Expected array of dependencies' );
+				assert.strictEqual( Array.isArray( dependencies ), true, 'Expected array of dependencies' );
 				dependencies.sort();
 				assert.deepEqual(
 					dependencies,
@@ -498,7 +568,7 @@
 		);
 	} );
 
-	QUnit.test( 'Dependency handling', 5, function ( assert ) {
+	QUnit.test( 'Dependency handling', function ( assert ) {
 		var done = assert.async();
 		mw.loader.register( [
 			// [module, version, dependencies, group, source]
@@ -536,7 +606,7 @@
 		);
 	} );
 
-	QUnit.test( 'Skip-function handling', 5, function ( assert ) {
+	QUnit.test( 'Skip-function handling', function ( assert ) {
 		mw.loader.register( [
 			// [module, version, dependencies, group, source, skip]
 			[ 'testSkipped', '1', [], null, 'testloader', 'return true;' ],
@@ -566,7 +636,7 @@
 		);
 	} );
 
-	QUnit.asyncTest( '.load( "//protocol-relative" ) - T32825', 2, function ( assert ) {
+	QUnit.asyncTest( '.load( "//protocol-relative" ) - T32825', function ( assert ) {
 		// This bug was actually already fixed in 1.18 and later when discovered in 1.17.
 		// Test is for regressions!
 
@@ -587,7 +657,7 @@
 		mw.loader.load( target );
 	} );
 
-	QUnit.asyncTest( '.load( "/absolute-path" )', 2, function ( assert ) {
+	QUnit.asyncTest( '.load( "/absolute-path" )', function ( assert ) {
 		// Forge a URL to the test callback script
 		var target = QUnit.fixurl(
 			mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/qunitOkCall.js'
@@ -601,7 +671,26 @@
 		mw.loader.load( target );
 	} );
 
-	QUnit.test( 'Executing race - T112232', 2, function ( assert ) {
+	QUnit.test( 'Empty string module name - T28804', function ( assert ) {
+		var done = false;
+
+		assert.strictEqual( mw.loader.getState( '' ), null, 'State (unregistered)' );
+
+		mw.loader.register( '', 'v1' );
+		assert.strictEqual( mw.loader.getState( '' ), 'registered', 'State (registered)' );
+		assert.strictEqual( mw.loader.getVersion( '' ), 'v1', 'Version' );
+
+		mw.loader.implement( '', function () {
+			done = true;
+		} );
+
+		return mw.loader.using( '', function () {
+			assert.strictEqual( done, true, 'script ran' );
+			assert.strictEqual( mw.loader.getState( '' ), 'ready', 'State (ready)' );
+		} );
+	} );
+
+	QUnit.test( 'Executing race - T112232', function ( assert ) {
 		var done = false;
 
 		// The red herring schedules its CSS buffer first. In T112232, a bug in the
@@ -684,7 +773,7 @@
 			} );
 	} );
 
-	QUnit.test( 'require()', 6, function ( assert ) {
+	QUnit.test( 'require()', function ( assert ) {
 		mw.loader.register( [
 			[ 'test.require1', '0' ],
 			[ 'test.require2', '0' ],

@@ -1,4 +1,3 @@
-/*jshint -W024 */
 ( function ( mw ) {
 	var specialCharactersPageName,
 		// Can't mock SITENAME since jqueryMsg caches it at load
@@ -32,7 +31,7 @@
 		}
 	} ) );
 
-	QUnit.test( 'Initial check', 8, function ( assert ) {
+	QUnit.test( 'Initial check', function ( assert ) {
 		assert.ok( window.jQuery, 'jQuery defined' );
 		assert.ok( window.$, '$ defined' );
 		assert.strictEqual( window.$, window.jQuery, '$ alias to jQuery' );
@@ -52,7 +51,7 @@
 		this.restoreWarnings();
 	} );
 
-	QUnit.test( 'mw.format', 2, function ( assert ) {
+	QUnit.test( 'mw.format', function ( assert ) {
 		assert.equal(
 			mw.format( 'Format $1 $2', 'foo', 'bar' ),
 			'Format foo bar',
@@ -62,6 +61,15 @@
 			mw.format( 'Format $1 $2' ),
 			'Format $1 $2',
 			'Missing parameters'
+		);
+	} );
+
+	QUnit.test( 'mw.now', function ( assert ) {
+		assert.equal( typeof mw.now(), 'number', 'Return a number' );
+		assert.equal(
+			String( Math.round( mw.now() ) ).length,
+			String( +new Date() ).length,
+			'Match size of current timestamp'
 		);
 	} );
 
@@ -106,16 +114,23 @@
 		assert.strictEqual( conf.set( arry, 'Arry' ), false, 'Map.set returns boolean false if key was invalid (Array)' );
 		assert.strictEqual( conf.set( nummy, 'Nummy' ), false, 'Map.set returns boolean false if key was invalid (Number)' );
 
-		assert.strictEqual( conf.get( funky ), null, 'Map.get ruturns null if selection was invalid (Function)' );
-		assert.strictEqual( conf.get( nummy ), null, 'Map.get ruturns null if selection was invalid (Number)' );
-
 		conf.set( String( nummy ), 'I used to be a number' );
+
+		assert.strictEqual( conf.get( funky ), null, 'Map.get returns null if selection was invalid (Function)' );
+		assert.strictEqual( conf.get( nummy ), null, 'Map.get returns null if selection was invalid (Number)' );
+		assert.propEqual( conf.get( [ nummy ] ), {}, 'Map.get returns null if selection was invalid (multiple)' );
+		assert.strictEqual( conf.get( nummy, false ), false, 'Map.get returns custom fallback for invalid selection' );
 
 		assert.strictEqual( conf.exists( 'doesNotExist' ), false, 'Map.exists where property does not exist' );
 		assert.strictEqual( conf.exists( 'undef' ), true, 'Map.exists where value is `undefined`' );
-		assert.strictEqual( conf.exists( nummy ), false, 'Map.exists where key is invalid but looks like an existing key' );
+		assert.strictEqual( conf.exists( [ 'undef', 'example' ] ), true, 'Map.exists with multiple keys (all existing)' );
+		assert.strictEqual( conf.exists( [ 'example', 'doesNotExist' ] ), false, 'Map.exists with multiple keys (some non-existing)' );
+		assert.strictEqual( conf.exists( [] ), true, 'Map.exists with no keys' );
+		assert.strictEqual( conf.exists( nummy ), false, 'Map.exists with invalid key that looks like an existing key' );
+		assert.strictEqual( conf.exists( [ nummy ] ), false, 'Map.exists with invalid key that looks like an existing key' );
 
 		// Multiple values at once
+		conf = new mw.Map();
 		someValues = {
 			foo: 'bar',
 			lorem: 'ipsum',
@@ -132,11 +147,10 @@
 			notExist: null
 		}, 'Map.get return includes keys that were not found as null values' );
 
-		// Interacting with globals and accessing the values object
-		this.suppressWarnings();
-		assert.strictEqual( conf.get(), conf.values, 'Map.get returns the entire values object by reference (if called without arguments)' );
-		this.restoreWarnings();
+		assert.propEqual( conf.values, someValues, 'Map.values is an internal object with all values (exposed for convenience)' );
+		assert.propEqual( conf.get(), someValues, 'Map.get() returns an object with all values' );
 
+		// Interacting with globals
 		conf.set( 'globalMapChecker', 'Hi' );
 
 		assert.ok( ( 'globalMapChecker' in window ) === false, 'Map does not its store values in the window object by default' );
@@ -239,9 +253,7 @@
 		goodbye = mw.message( 'goodbye' );
 		assert.strictEqual( goodbye.exists(), false, 'Message.exists returns false for nonexistent messages' );
 
-		assertMultipleFormats( [ 'goodbye' ], [ 'plain', 'text' ], '<goodbye>', 'Message.toString returns <key> if key does not exist' );
-		// bug 30684
-		assertMultipleFormats( [ 'goodbye' ], [ 'parse', 'escaped' ], '&lt;goodbye&gt;', 'Message.toString returns properly escaped &lt;key&gt; if key does not exist' );
+		assertMultipleFormats( [ 'good<>bye' ], [ 'plain', 'text', 'parse', 'escaped' ], '⧼good&lt;&gt;bye⧽', 'Message.toString returns ⧼key⧽ if key does not exist' );
 
 		assert.ok( mw.messages.set( 'plural-test-msg', 'There {{PLURAL:$1|is|are}} $1 {{PLURAL:$1|result|results}}' ), 'mw.messages.set: Register' );
 		assertMultipleFormats( [ 'plural-test-msg', 6 ], [ 'text', 'parse', 'escaped' ], 'There are 6 results', 'plural get resolved' );
@@ -317,10 +329,10 @@
 
 	} );
 
-	QUnit.test( 'mw.msg', 14, function ( assert ) {
+	QUnit.test( 'mw.msg', function ( assert ) {
 		assert.ok( mw.messages.set( 'hello', 'Hello <b>awesome</b> world' ), 'mw.messages.set: Register' );
 		assert.equal( mw.msg( 'hello' ), 'Hello <b>awesome</b> world', 'Gets message with default options (existing message)' );
-		assert.equal( mw.msg( 'goodbye' ), '<goodbye>', 'Gets message with default options (nonexistent message)' );
+		assert.equal( mw.msg( 'goodbye' ), '⧼goodbye⧽', 'Gets message with default options (nonexistent message)' );
 
 		assert.ok( mw.messages.set( 'plural-item', 'Found $1 {{PLURAL:$1|item|items}}' ), 'mw.messages.set: Register' );
 		assert.equal( mw.msg( 'plural-item', 5 ), 'Found 5 items', 'Apply plural for count 5' );
@@ -340,7 +352,7 @@
 		assert.equal( mw.msg( 'int-msg' ), 'Some Other Message', 'int is resolved' );
 	} );
 
-	QUnit.test( 'mw.hook', 13, function ( assert ) {
+	QUnit.test( 'mw.hook', function ( assert ) {
 		var hook, add, fire, chars, callback;
 
 		mw.hook( 'test.hook.unfired' ).add( function () {

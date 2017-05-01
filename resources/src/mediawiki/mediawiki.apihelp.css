@@ -33,7 +33,8 @@ div.apihelp-linktrail {
 	width: 20em;
 }
 
-.apihelp-deprecated, .apihelp-flag-deprecated,
+.apihelp-deprecated,
+.apihelp-flag-deprecated,
 .apihelp-flag-internal strong {
 	font-weight: bold;
 	color: #f00;
@@ -68,7 +69,7 @@ div.apihelp-linktrail {
 }
 
 .apihelp-parameters dt:after {
-	content: ':\A0'
+	content: ':\A0';
 }
 
 .apihelp-parameters dd {

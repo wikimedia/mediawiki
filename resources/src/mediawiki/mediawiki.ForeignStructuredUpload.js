@@ -1,8 +1,5 @@
 ( function ( mw, $, OO ) {
 	/**
-	 * @class mw.ForeignStructuredUpload
-	 * @extends mw.ForeignUpload
-	 *
 	 * Used to represent an upload in progress on the frontend.
 	 *
 	 * This subclass will upload to a wiki using a structured metadata
@@ -14,7 +11,12 @@
 	 * **TODO: This currently only supports uploads under CC-BY-SA 4.0,
 	 * and should really have support for more licenses.**
 	 *
-	 * @inheritdoc
+	 * @class mw.ForeignStructuredUpload
+	 * @extends mw.ForeignUpload
+	 *
+	 * @constructor
+	 * @param {string} [target]
+	 * @param {Object} [apiconfig]
 	 */
 	function ForeignStructuredUpload( target, apiconfig ) {
 		this.date = undefined;

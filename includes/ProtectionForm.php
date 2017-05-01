@@ -22,6 +22,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Handles the page protection UI and backend
@@ -148,7 +149,7 @@ class ProtectionForm {
 	 *
 	 * @param string $action
 	 *
-	 * @return string 14-char timestamp or "infinity", or false if the input was invalid
+	 * @return string|false 14-char timestamp or "infinity", or false if the input was invalid
 	 */
 	function getExpiry( $action ) {
 		if ( $this->mExpirySelection[$action] == 'existing' ) {
@@ -543,9 +544,10 @@ class ProtectionForm {
 		$out .= Xml::closeElement( 'fieldset' );
 
 		if ( $user->isAllowed( 'editinterface' ) ) {
-			$link = Linker::linkKnown(
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+			$link = $linkRenderer->makeKnownLink(
 				$context->msg( 'protect-dropdown' )->inContentLanguage()->getTitle(),
-				$context->msg( 'protect-edit-reasonlist' )->escaped(),
+				$context->msg( 'protect-edit-reasonlist' )->text(),
 				[],
 				[ 'action' => 'edit' ]
 			);

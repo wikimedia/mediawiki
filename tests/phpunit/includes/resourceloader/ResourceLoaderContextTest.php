@@ -14,6 +14,7 @@ class ResourceLoaderContextTest extends PHPUnit_Framework_TestCase {
 			'ResourceLoaderDebug' => false,
 			'DefaultSkin' => 'fallback',
 			'LanguageCode' => 'nl',
+			'LoadScript' => '/w/load.php',
 		] ) );
 	}
 
@@ -103,5 +104,14 @@ class ResourceLoaderContextTest extends PHPUnit_Framework_TestCase {
 		] ) );
 		$this->assertSame( 'Example', $ctx->getUser() );
 		$this->assertEquals( 'Example', $ctx->getUserObj()->getName() );
+	}
+
+	public function testMsg() {
+		$ctx = new ResourceLoaderContext( $this->getResourceLoader(), new FauxRequest( [
+			'lang' => 'en'
+		] ) );
+		$msg = $ctx->msg( 'mainpage' );
+		$this->assertInstanceOf( Message::class, $msg );
+		$this->assertSame( 'Main Page', $msg->useDatabase( false )->plain() );
 	}
 }

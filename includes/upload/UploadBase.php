@@ -20,6 +20,7 @@
  * @file
  * @ingroup Upload
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * @defgroup Upload Upload related
@@ -297,7 +298,7 @@ abstract class UploadBase {
 	 * @param string $srcPath The source path
 	 * @return string|bool The real path if it was a virtual URL Returns false on failure
 	 */
-	function getRealPath( $srcPath ) {
+	public function getRealPath( $srcPath ) {
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		if ( $repo->isVirtualUrl( $srcPath ) ) {
 			/** @todo Just make uploads work with storage paths UploadFromStash
@@ -560,7 +561,7 @@ abstract class UploadBase {
 	 *
 	 * @param array $entry
 	 */
-	function zipEntryCallback( $entry ) {
+	public function zipEntryCallback( $entry ) {
 		$names = [ $entry['name'] ];
 
 		// If there is a null character, cut off the name at it, because JDK's
@@ -775,7 +776,9 @@ abstract class UploadBase {
 					User::IGNORE_USER_RIGHTS
 				);
 			}
-			Hooks::run( 'UploadComplete', [ &$this ] );
+			// Avoid PHP 7.1 warning of passing $this by reference
+			$uploadBase = $this;
+			Hooks::run( 'UploadComplete', [ &$uploadBase ] );
 
 			$this->postProcessUpload();
 		}
@@ -795,7 +798,7 @@ abstract class UploadBase {
 	 * Returns the title of the file to be uploaded. Sets mTitleError in case
 	 * the name was illegal.
 	 *
-	 * @return Title The title of the file or null in case the name was illegal
+	 * @return Title|null The title of the file or null in case the name was illegal
 	 */
 	public function getTitle() {
 		if ( $this->mTitle !== false ) {
@@ -893,7 +896,7 @@ abstract class UploadBase {
 			return $this->mTitle;
 		}
 
-		// Windows may be broken with special characters, see bug 1780
+		// Windows may be broken with special characters, see T3780
 		if ( !preg_match( '/^[\x0-\x7f]*$/', $nt->getText() )
 			&& !RepoGroup::singleton()->getLocalRepo()->backendSupportsUnicodePaths()
 		) {
@@ -1207,7 +1210,7 @@ abstract class UploadBase {
 		}
 
 		// Some browsers will interpret obscure xml encodings as UTF-8, while
-		// PHP/expat will interpret the given encoding in the xml declaration (bug 47304)
+		// PHP/expat will interpret the given encoding in the xml declaration (T49304)
 		if ( $extension == 'svg' || strpos( $mime, 'image/svg' ) === 0 ) {
 			if ( self::checkXMLEncodingMissmatch( $file ) ) {
 				return true;
@@ -1356,11 +1359,14 @@ abstract class UploadBase {
 			$filename,
 			[ $this, 'checkSvgScriptCallback' ],
 			true,
-			[ 'processing_instruction_handler' => 'UploadBase::checkSvgPICallback' ]
+			[
+				'processing_instruction_handler' => 'UploadBase::checkSvgPICallback',
+				'external_dtd_handler' => 'UploadBase::checkSvgExternalDTD',
+			]
 		);
 		if ( $check->wellFormed !== true ) {
-			// Invalid xml (bug 58553)
-			// But only when non-partial (bug 65724)
+			// Invalid xml (T60553)
+			// But only when non-partial (T67724)
 			return $partial ? false : [ 'uploadinvalidxml' ];
 		} elseif ( $check->filterMatch ) {
 			if ( $this->mSVGNSError ) {
@@ -1380,11 +1386,39 @@ abstract class UploadBase {
 	 * @return bool (true if the filter identified something bad)
 	 */
 	public static function checkSvgPICallback( $target, $data ) {
-		// Don't allow external stylesheets (bug 57550)
+		// Don't allow external stylesheets (T59550)
 		if ( preg_match( '/xml-stylesheet/i', $target ) ) {
 			return [ 'upload-scripted-pi-callback' ];
 		}
 
+		return false;
+	}
+
+	/**
+	 * Verify that DTD urls referenced are only the standard dtds
+	 *
+	 * Browsers seem to ignore external dtds. However just to be on the
+	 * safe side, only allow dtds from the svg standard.
+	 *
+	 * @param string $type PUBLIC or SYSTEM
+	 * @param string $publicId The well-known public identifier for the dtd
+	 * @param string $systemId The url for the external dtd
+	 */
+	public static function checkSvgExternalDTD( $type, $publicId, $systemId ) {
+		// This doesn't include the XHTML+MathML+SVG doctype since we don't
+		// allow XHTML anyways.
+		$allowedDTDs = [
+			'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd',
+			'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd',
+			'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-basic.dtd',
+			'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-tiny.dtd'
+		];
+		if ( $type !== 'PUBLIC'
+			|| !in_array( $systemId, $allowedDTDs )
+			|| strpos( $publicId, "-//W3C//" ) !== 0
+		) {
+			return [ 'upload-scripted-dtd' ];
+		}
 		return false;
 	}
 
@@ -1399,7 +1433,7 @@ abstract class UploadBase {
 		list( $namespace, $strippedElement ) = $this->splitXmlNamespace( $element );
 
 		// We specifically don't include:
-		// http://www.w3.org/1999/xhtml (bug 60771)
+		// http://www.w3.org/1999/xhtml (T62771)
 		static $validNamespaces = [
 			'',
 			'adobe:ns:meta/',
@@ -1438,9 +1472,14 @@ abstract class UploadBase {
 			'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
 			'http://www.w3.org/2000/svg',
 			'http://www.w3.org/tr/rec-rdf-syntax/',
+			'http://www.w3.org/2000/01/rdf-schema#',
 		];
 
-		if ( !in_array( $namespace, $validNamespaces ) ) {
+		// Inkscape mangles namespace definitions created by Adobe Illustrator.
+		// This is nasty but harmless. (T144827)
+		$isBuggyInkscape = preg_match( '/^&(#38;)*ns_[a-z_]+;$/', $namespace );
+
+		if ( !( $isBuggyInkscape || in_array( $namespace, $validNamespaces ) ) ) {
 			wfDebug( __METHOD__ . ": Non-svg namespace '$namespace' in uploaded file.\n" );
 			/** @todo Return a status object to a closure in XmlTypeCheck, for MW1.21+ */
 			$this->mSVGNSError = $namespace;
@@ -1503,6 +1542,7 @@ abstract class UploadBase {
 			# fragment links are allowed. For all other tags, only data:
 			# and fragment are allowed.
 			if ( $stripped == 'href'
+				&& $value !== ''
 				&& strpos( $value, 'data:' ) !== 0
 				&& strpos( $value, '#' ) !== 0
 			) {
@@ -2075,7 +2115,7 @@ abstract class UploadBase {
 	public static function getSessionStatus( User $user, $statusKey ) {
 		$key = wfMemcKey( 'uploadstatus', $user->getId() ?: md5( $user->getName() ), $statusKey );
 
-		return ObjectCache::getMainStashInstance()->get( $key );
+		return MediaWikiServices::getInstance()->getMainObjectStash()->get( $key );
 	}
 
 	/**
@@ -2091,7 +2131,7 @@ abstract class UploadBase {
 	public static function setSessionStatus( User $user, $statusKey, $value ) {
 		$key = wfMemcKey( 'uploadstatus', $user->getId() ?: md5( $user->getName() ), $statusKey );
 
-		$cache = ObjectCache::getMainStashInstance();
+		$cache = MediaWikiServices::getInstance()->getMainObjectStash();
 		if ( $value === false ) {
 			$cache->delete( $key );
 		} else {

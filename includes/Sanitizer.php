@@ -41,7 +41,7 @@ class Sanitizer {
 
 	/**
 	 * Acceptable tag name charset from HTML5 parsing spec
-	 * http://www.w3.org/TR/html5/syntax.html#tag-open-state
+	 * https://www.w3.org/TR/html5/syntax.html#tag-open-state
 	 */
 	const ELEMENT_BITS_REGEX = '!^(/?)([A-Za-z][^\t\n\v />\0]*+)([^>]*?)(/?>)([^<]*)$!';
 
@@ -58,7 +58,7 @@ class Sanitizer {
 
 	/**
 	 * List of all named character entities defined in HTML 4.01
-	 * http://www.w3.org/TR/html4/sgml/entities.html
+	 * https://www.w3.org/TR/html4/sgml/entities.html
 	 * As well as &apos; which is only defined starting in XHTML1.
 	 */
 	private static $htmlEntities = [
@@ -333,7 +333,7 @@ class Sanitizer {
 	/**
 	 * Regular expression to match HTML/XML attribute pairs within a tag.
 	 * Allows some... latitude. Based on,
-	 * http://www.w3.org/TR/html5/syntax.html#before-attribute-value-state
+	 * https://www.w3.org/TR/html5/syntax.html#before-attribute-value-state
 	 * Used in Sanitizer::fixTagAttributes and Sanitizer::decodeTagAttributes
 	 * @return string
 	 */
@@ -344,12 +344,12 @@ class Sanitizer {
 			$space = '[\x09\x0a\x0c\x0d\x20]';
 			self::$attribsRegex =
 				"/(?:^|$space)({$attribFirst}{$attrib}*)
-				  ($space*=$space*
+					($space*=$space*
 					(?:
-					 # The attribute value: quoted or alone
-					  \"([^\"]*)(?:\"|\$)
-					 | '([^']*)(?:'|\$)
-					 |  (((?!$space|>).)*)
+						# The attribute value: quoted or alone
+						\"([^\"]*)(?:\"|\$)
+						| '([^']*)(?:'|\$)
+						| (((?!$space|>).)*)
 					)
 				)?(?=$space|\$)/sx";
 		}
@@ -545,7 +545,7 @@ class Sanitizer {
 							$badtag = true;
 						} elseif ( in_array( $t, $tagstack ) && !isset( $htmlnest[$t] ) ) {
 							$badtag = true;
-						#  Is it a self closed htmlpair ? (bug 5487)
+						#  Is it a self closed htmlpair ? (T7487)
 						} elseif ( $brace == '/>' && isset( $htmlpairs[$t] ) ) {
 							// Eventually we'll just remove the self-closing
 							// slash, in order to be consistent with HTML5
@@ -922,7 +922,7 @@ class Sanitizer {
 
 		// Normalize Halfwidth and Fullwidth Unicode block that IE6 might treat as ascii
 		$value = preg_replace_callback(
-			'/[！-［］-ｚ]/u', // U+FF01 to U+FF5A, excluding U+FF3C (bug 58088)
+			'/[！-［］-ｚ]/u', // U+FF01 to U+FF5A, excluding U+FF3C (T60088)
 			function ( $matches ) {
 				$cp = UtfNormal\Utils::utf8ToCodepoint( $matches[0] );
 				if ( $cp === false ) {
@@ -1119,6 +1119,7 @@ class Sanitizer {
 			'>'    => '&gt;',   // we've received invalid input
 			'"'    => '&quot;', // which should have been escaped.
 			'{'    => '&#123;',
+			'}'    => '&#125;', // prevent unpaired language conversion syntax
 			'['    => '&#91;',
 			"''"   => '&#39;&#39;',
 			'ISBN' => '&#73;SBN',
@@ -1149,11 +1150,11 @@ class Sanitizer {
 	 * ambiguous if it's part of something that looks like a percent escape
 	 * (which don't work reliably in fragments cross-browser).
 	 *
-	 * @see http://www.w3.org/TR/html401/types.html#type-name Valid characters
+	 * @see https://www.w3.org/TR/html401/types.html#type-name Valid characters
 	 *   in the id and name attributes
-	 * @see http://www.w3.org/TR/html401/struct/links.html#h-12.2.3 Anchors with
+	 * @see https://www.w3.org/TR/html401/struct/links.html#h-12.2.3 Anchors with
 	 *   the id attribute
-	 * @see http://www.whatwg.org/html/elements.html#the-id-attribute
+	 * @see https://www.w3.org/TR/html5/dom.html#the-id-attribute
 	 *   HTML5 definition of id attribute
 	 *
 	 * @param string $id Id to escape
@@ -1239,7 +1240,7 @@ class Sanitizer {
 	 *
 	 * @todo For extra validity, input should be validated UTF-8.
 	 *
-	 * @see http://www.w3.org/TR/CSS21/syndata.html Valid characters/format
+	 * @see https://www.w3.org/TR/CSS21/syndata.html Valid characters/format
 	 *
 	 * @param string $class
 	 * @return string
@@ -1262,8 +1263,9 @@ class Sanitizer {
 	static function escapeHtmlAllowEntities( $html ) {
 		$html = Sanitizer::decodeCharReferences( $html );
 		# It seems wise to escape ' as well as ", as a matter of course.  Can't
-		# hurt.
-		$html = htmlspecialchars( $html, ENT_QUOTES );
+		# hurt. Use ENT_SUBSTITUTE so that incorrectly truncated multibyte characters
+		# don't cause the entire string to disappear.
+		$html = htmlspecialchars( $html, ENT_QUOTES | ENT_SUBSTITUTE );
 		return $html;
 	}
 
@@ -1352,7 +1354,7 @@ class Sanitizer {
 		} elseif ( !isset( $set[2] ) ) {
 			# In XHTML, attributes must have a value so return an empty string.
 			# See "Empty attribute syntax",
-			# http://www.w3.org/TR/html5/syntax.html#syntax-attribute-name
+			# https://www.w3.org/TR/html5/syntax.html#syntax-attribute-name
 			return "";
 		} else {
 			throw new MWException( "Tag conditions not met. This should never happen and is a bug." );
@@ -1506,7 +1508,7 @@ class Sanitizer {
 
 	/**
 	 * Decode any character references, numeric or named entities,
-	 * in the next and normalize the resulting string. (bug 14952)
+	 * in the next and normalize the resulting string. (T16952)
 	 *
 	 * This is useful for page titles, not for text to be displayed,
 	 * MediaWiki allows HTML entities to escape normalization as a feature.
@@ -1622,7 +1624,7 @@ class Sanitizer {
 
 			# RDFa
 			# These attributes are specified in section 9 of
-			# http://www.w3.org/TR/2008/REC-rdfa-syntax-20081014
+			# https://www.w3.org/TR/2008/REC-rdfa-syntax-20081014
 			'about',
 			'property',
 			'resource',
@@ -1630,7 +1632,7 @@ class Sanitizer {
 			'typeof',
 
 			# Microdata. These are specified by
-			# http://www.whatwg.org/html/microdata.html#the-microdata-model
+			# https://html.spec.whatwg.org/multipage/microdata.html#the-microdata-model
 			'itemid',
 			'itemprop',
 			'itemref',
@@ -1654,7 +1656,7 @@ class Sanitizer {
 		];
 
 		# Numbers refer to sections in HTML 4.01 standard describing the element.
-		# See: http://www.w3.org/TR/html4/
+		# See: https://www.w3.org/TR/html4/
 		$whitelist = [
 			# 7.5.4
 			'div'        => $block,
@@ -1701,7 +1703,7 @@ class Sanitizer {
 			# 9.3.2
 			'br'         => array_merge( $common, [ 'clear' ] ),
 
-			# http://www.whatwg.org/html/text-level-semantics.html#the-wbr-element
+			# https://www.w3.org/TR/html5/text-level-semantics.html#the-wbr-element
 			'wbr'        => $common,
 
 			# 9.3.4
@@ -1776,24 +1778,24 @@ class Sanitizer {
 			'hr'         => array_merge( $common, [ 'width' ] ),
 
 			# HTML Ruby annotation text module, simple ruby only.
-			# http://www.whatwg.org/html/text-level-semantics.html#the-ruby-element
+			# https://www.w3.org/TR/html5/text-level-semantics.html#the-ruby-element
 			'ruby'       => $common,
 			# rbc
 			'rb'         => $common,
 			'rp'         => $common,
 			'rt'         => $common, # array_merge( $common, array( 'rbspan' ) ),
-			'rtc'         => $common,
+			'rtc'        => $common,
 
 			# MathML root element, where used for extensions
 			# 'title' may not be 100% valid here; it's XHTML
-			# http://www.w3.org/TR/REC-MathML/
+			# https://www.w3.org/TR/REC-MathML/
 			'math'       => [ 'class', 'style', 'id', 'title' ],
 
 			# HTML 5 section 4.6
 			'bdi' => $common,
 
 			# HTML5 elements, defined by:
-			# http://www.whatwg.org/html/
+			# https://html.spec.whatwg.org/multipage/semantics.html#the-data-element
 			'data' => array_merge( $common, [ 'value' ] ),
 			'time' => array_merge( $common, [ 'datetime' ] ),
 			'mark' => $common,
@@ -1924,7 +1926,7 @@ class Sanitizer {
 	 *   3.5.
 	 *
 	 * This function is an implementation of the specification as requested in
-	 * bug 22449.
+	 * T24449.
 	 *
 	 * Client-side forms will use the same standard validation rules via JS or
 	 * HTML 5 validation; additional restrictions can be enforced server-side
@@ -1947,7 +1949,7 @@ class Sanitizer {
 
 		// Please note strings below are enclosed in brackets [], this make the
 		// hyphen "-" a range indicator. Hence it is double backslashed below.
-		// See bug 26948
+		// See T28948
 		$rfc5322_atext = "a-z0-9!#$%&'*+\\-\/=?^_`{|}~";
 		$rfc1034_ldh_str = "a-z0-9\\-";
 

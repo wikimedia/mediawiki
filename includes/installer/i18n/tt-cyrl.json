@@ -61,11 +61,12 @@
 	"config-license-pd": "Җәмгыять мирасы",
 	"config-logo": "Логотип URL:",
 	"config-cc-again": "Кабат сайлагыз...",
+	"config-advanced-settings": "Өстәмә көйләнмәләр",
 	"config-extensions": "Киңәйтүләр",
 	"config-skins": "Бизәлеш",
 	"config-install-step-done": "әзер",
 	"config-install-step-failed": "булмады",
 	"config-help": "ярдәм",
 	"mainpagetext": "<strong>«MediaWiki» куелды.</strong>",
-	"mainpagedocfooter": "Бу вики турында мәгълүматны [https://meta.wikimedia.org/wiki/Help:Contents/ru биредә] табып була.\n\n== Кайбер файдалы ресурслар ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Көйләнмәләр исемлеге (рус.)];\n* [https://www.mediawiki.org/wiki/Manual:FAQ/ru MediaWiki турында еш бирелгән сораулар һәм җаваплар (рус.)];\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki сәхифәсенең яңа юрамалары турында хәбәрләр яздырып алу].\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources MediaWiki сәхифәсен туган телегезгә тәрҗемә итү]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Үзегезнең викида ничек спам белән көрәшү турында мәгълүмат]"
+	"mainpagedocfooter": "Бу вики турында мәгълүматны [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents/ru биредә] табып була.\n\n== Кайбер файдалы ресурслар ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Көйләнмәләр исемлеге (рус.)];\n* [https://www.mediawiki.org/wiki/Manual:FAQ/ru MediaWiki турында еш бирелгән сораулар һәм җаваплар (рус.)];\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki сәхифәсенең яңа юрамалары турында хәбәрләр яздырып алу].\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources MediaWiki сәхифәсен туган телегезгә тәрҗемә итү]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Үзегезнең викида ничек спам белән көрәшү турында мәгълүмат]"
 }

@@ -20,6 +20,10 @@
  * @file
  * @ingroup Database
  */
+namespace Wikimedia\Rdbms;
+
+use mysqli;
+use IP;
 
 /**
  * Database abstraction object for PHP extension mysqli.
@@ -261,7 +265,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	/**
-	 * @param resource|ResultWrapper $res
+	 * @param mysqli $res
 	 * @param int $n
 	 * @return mixed
 	 */
@@ -272,7 +276,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	/**
-	 * @param resource|ResultWrapper $res
+	 * @param mysqli $res
 	 * @param int $n
 	 * @return mixed
 	 */
@@ -283,7 +287,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	/**
-	 * @param resource|ResultWrapper $res
+	 * @param mysqli $res
 	 * @param int $row
 	 * @return mixed
 	 */
@@ -329,3 +333,5 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		}
 	}
 }
+
+class_alias( DatabaseMysqli::class, 'DatabaseMysqli' );

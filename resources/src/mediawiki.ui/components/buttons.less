@@ -1,6 +1,6 @@
-@import "mediawiki.mixins";
-@import "mediawiki.ui/variables";
-@import "mediawiki.ui/mixins";
+@import 'mediawiki.mixins';
+@import 'mediawiki.ui/variables';
+@import 'mediawiki.ui/mixins';
 
 // Buttons
 //
@@ -26,14 +26,15 @@
 //
 // Styleguide 2.1.
 .mw-ui-button {
-	// Inherit the font rather than apply user agent stylesheet (bug 70072)
+	// Inherit the font rather than apply user agent stylesheet (T72072)
 	font-family: inherit;
 	font-size: 1em;
 	// Container layout
 	display: inline-block;
 	min-width: 4em;
 	max-width: 28.75em; // equivalent to 460px, @see T95367
-	padding: .5em 1em;
+	padding: 0.546875em 1em;
+	line-height: 1.286;
 	margin: 0;
 	border-radius: @borderRadius;
 	.box-sizing( border-box );
@@ -43,7 +44,7 @@
 
 	// IE 6 & 7 hack
 	// https://stackoverflow.com/a/5838575/365238
-	*display: inline;
+	*display: inline; /* stylelint-disable-line declaration-block-no-duplicate-properties */
 	zoom: 1;
 
 	// Ensure that buttons and inputs are nicely aligned when they have differing heights
@@ -210,6 +211,15 @@
 	}
 }
 
+input.mw-ui-button,
+button.mw-ui-button {
+	// Buttons in Firefox have extra height
+	&::-moz-focus-inner {
+		margin-top: -1px;
+		margin-bottom: -1px;
+	}
+}
+
 a.mw-ui-button {
 	text-decoration: none;
 
@@ -219,12 +229,6 @@ a.mw-ui-button {
 	&:focus {
 		text-decoration: none;
 	}
-
-	// a-tags behave different to inputs if the line-height attribute is inherited
-	// from another element (e.g. mw-body-content). They appear bigger as input
-	// tags. See Bug T116427. To fix that, apply the correct line-height (used
-	// for inputs) to a-tags, too.
-	line-height: normal;
 }
 
 // Button groups

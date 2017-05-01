@@ -193,7 +193,7 @@ $specialPageAliases = [
 $bookstoreList = [
 	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
 	'Barnes & Noble' => 'http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
-	'亞馬遜' => 'http://www.amazon.com/exec/obidos/ISBN=$1',
+	'亞馬遜' => 'https://www.amazon.com/exec/obidos/ISBN=$1',
 	'博客來書店' => 'http://www.books.com.tw/exep/prod/booksfile.php?item=$1',
 	'三民書店' => 'http://www.sanmin.com.tw/page-qsearch.asp?ct=search_isbn&qu=$1',
 	'天下書店' => 'http://www.cwbook.com.tw/search/result1.jsp?field=2&keyWord=$1',
@@ -227,4 +227,3 @@ $dateFormats = [
 	'yue ymd date' => 'Y-n-j',
 	'yue ymd both' => 'Y-n-j H:i',
 ];
-

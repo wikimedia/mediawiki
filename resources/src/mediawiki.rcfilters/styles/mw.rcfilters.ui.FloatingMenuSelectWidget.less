@@ -1,0 +1,30 @@
+@import 'mediawiki.mixins';
+
+.mw-rcfilters-ui-floatingMenuSelectWidget {
+	z-index: auto;
+	max-width: 650px;
+
+	&.oo-ui-menuSelectWidget-invisible {
+		display: block;
+	}
+
+	&-noresults {
+		display: none;
+		padding: 0.5em;
+		color: #666;
+
+		.oo-ui-menuSelectWidget-invisible & {
+			display: inline-block;
+		}
+	}
+
+	&-body {
+		max-height: 70vh;
+	}
+
+	&-footer {
+		background-color: #f8f9fa;
+		text-align: right;
+		padding: 0.5em;
+	}
+}

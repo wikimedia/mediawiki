@@ -1,7 +1,10 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @group API
+ * @group Database
  * @group medium
  *
  * @covers ApiMain
@@ -53,8 +56,8 @@ class ApiMainTest extends ApiTestCase {
 				'assert' => $assert,
 			], null, null, $user );
 			$this->assertFalse( $error ); // That no error was expected
-		} catch ( UsageException $e ) {
-			$this->assertEquals( $e->getCodeString(), $error );
+		} catch ( ApiUsageException $e ) {
+			$this->assertTrue( self::apiExceptionHasCode( $e, $error ) );
 		}
 	}
 
@@ -76,8 +79,8 @@ class ApiMainTest extends ApiTestCase {
 				'assertuser' => $user->getName() . 'X',
 			], null, null, $user );
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( UsageException $e ) {
-			$this->assertEquals( $e->getCodeString(), 'assertnameduserfailed' );
+		} catch ( ApiUsageException $e ) {
+			$this->assertTrue( self::apiExceptionHasCode( $e, 'assertnameduserfailed' ) );
 		}
 	}
 
@@ -85,20 +88,15 @@ class ApiMainTest extends ApiTestCase {
 	 * Test if all classes in the main module manager exists
 	 */
 	public function testClassNamesInModuleManager() {
-		global $wgAutoloadLocalClasses, $wgAutoloadClasses;
-
-		// wgAutoloadLocalClasses has precedence, just like in includes/AutoLoader.php
-		$classes = $wgAutoloadLocalClasses + $wgAutoloadClasses;
-
 		$api = new ApiMain(
 			new FauxRequest( [ 'action' => 'query', 'meta' => 'siteinfo' ] )
 		);
 		$modules = $api->getModuleManager()->getNamesWithClasses();
+
 		foreach ( $modules as $name => $class ) {
-			$this->assertArrayHasKey(
-				$class,
-				$classes,
-				'Class ' . $class . ' for api module ' . $name . ' not in autoloader (with exact case)'
+			$this->assertTrue(
+				class_exists( $class ),
+				'Class ' . $class . ' for api module ' . $name . ' does not exist (with exact case)'
 			);
 		}
 	}
@@ -304,5 +302,282 @@ class ApiMainTest extends ApiTestCase {
 		] );
 		$main = new ApiMain( new FauxRequest( [ 'action' => 'query', 'meta' => 'siteinfo' ] ) );
 		$this->assertTrue( $main->lacksSameOriginSecurity(), 'Hook, should lack security' );
+	}
+
+	/**
+	 * Test proper creation of the ApiErrorFormatter
+	 * @covers ApiMain::__construct
+	 * @dataProvider provideApiErrorFormatterCreation
+	 * @param array $request Request parameters
+	 * @param array $expect Expected data
+	 *  - uselang: ApiMain language
+	 *  - class: ApiErrorFormatter class
+	 *  - lang: ApiErrorFormatter language
+	 *  - format: ApiErrorFormatter format
+	 *  - usedb: ApiErrorFormatter use-database flag
+	 */
+	public function testApiErrorFormatterCreation( array $request, array $expect ) {
+		$context = new RequestContext();
+		$context->setRequest( new FauxRequest( $request ) );
+		$context->setLanguage( 'ru' );
+
+		$main = new ApiMain( $context );
+		$formatter = $main->getErrorFormatter();
+		$wrappedFormatter = TestingAccessWrapper::newFromObject( $formatter );
+
+		$this->assertSame( $expect['uselang'], $main->getLanguage()->getCode() );
+		$this->assertInstanceOf( $expect['class'], $formatter );
+		$this->assertSame( $expect['lang'], $formatter->getLanguage()->getCode() );
+		$this->assertSame( $expect['format'], $wrappedFormatter->format );
+		$this->assertSame( $expect['usedb'], $wrappedFormatter->useDB );
+	}
+
+	public static function provideApiErrorFormatterCreation() {
+		return [
+			'Default (BC)' => [ [], [
+				'uselang' => 'ru',
+				'class' => ApiErrorFormatter_BackCompat::class,
+				'lang' => 'en',
+				'format' => 'none',
+				'usedb' => false,
+			] ],
+			'BC ignores fields' => [ [ 'errorlang' => 'de', 'errorsuselocal' => 1 ], [
+				'uselang' => 'ru',
+				'class' => ApiErrorFormatter_BackCompat::class,
+				'lang' => 'en',
+				'format' => 'none',
+				'usedb' => false,
+			] ],
+			'Explicit BC' => [ [ 'errorformat' => 'bc' ], [
+				'uselang' => 'ru',
+				'class' => ApiErrorFormatter_BackCompat::class,
+				'lang' => 'en',
+				'format' => 'none',
+				'usedb' => false,
+			] ],
+			'Basic' => [ [ 'errorformat' => 'wikitext' ], [
+				'uselang' => 'ru',
+				'class' => ApiErrorFormatter::class,
+				'lang' => 'ru',
+				'format' => 'wikitext',
+				'usedb' => false,
+			] ],
+			'Follows uselang' => [ [ 'uselang' => 'fr', 'errorformat' => 'plaintext' ], [
+				'uselang' => 'fr',
+				'class' => ApiErrorFormatter::class,
+				'lang' => 'fr',
+				'format' => 'plaintext',
+				'usedb' => false,
+			] ],
+			'Explicitly follows uselang' => [
+				[ 'uselang' => 'fr', 'errorlang' => 'uselang', 'errorformat' => 'plaintext' ],
+				[
+					'uselang' => 'fr',
+					'class' => ApiErrorFormatter::class,
+					'lang' => 'fr',
+					'format' => 'plaintext',
+					'usedb' => false,
+				]
+			],
+			'uselang=content' => [
+				[ 'uselang' => 'content', 'errorformat' => 'plaintext' ],
+				[
+					'uselang' => 'en',
+					'class' => ApiErrorFormatter::class,
+					'lang' => 'en',
+					'format' => 'plaintext',
+					'usedb' => false,
+				]
+			],
+			'errorlang=content' => [
+				[ 'errorlang' => 'content', 'errorformat' => 'plaintext' ],
+				[
+					'uselang' => 'ru',
+					'class' => ApiErrorFormatter::class,
+					'lang' => 'en',
+					'format' => 'plaintext',
+					'usedb' => false,
+				]
+			],
+			'Explicit parameters' => [
+				[ 'errorlang' => 'de', 'errorformat' => 'html', 'errorsuselocal' => 1 ],
+				[
+					'uselang' => 'ru',
+					'class' => ApiErrorFormatter::class,
+					'lang' => 'de',
+					'format' => 'html',
+					'usedb' => true,
+				]
+			],
+			'Explicit parameters override uselang' => [
+				[ 'errorlang' => 'de', 'uselang' => 'fr', 'errorformat' => 'raw' ],
+				[
+					'uselang' => 'fr',
+					'class' => ApiErrorFormatter::class,
+					'lang' => 'de',
+					'format' => 'raw',
+					'usedb' => false,
+				]
+			],
+			'Bogus language doesn\'t explode' => [
+				[ 'errorlang' => '<bogus1>', 'uselang' => '<bogus2>', 'errorformat' => 'none' ],
+				[
+					'uselang' => 'en',
+					'class' => ApiErrorFormatter::class,
+					'lang' => 'en',
+					'format' => 'none',
+					'usedb' => false,
+				]
+			],
+			'Bogus format doesn\'t explode' => [ [ 'errorformat' => 'bogus' ], [
+				'uselang' => 'ru',
+				'class' => ApiErrorFormatter_BackCompat::class,
+				'lang' => 'en',
+				'format' => 'none',
+				'usedb' => false,
+			] ],
+		];
+	}
+
+	/**
+	 * @covers ApiMain::errorMessagesFromException
+	 * @covers ApiMain::substituteResultWithError
+	 * @dataProvider provideExceptionErrors
+	 * @param Exception $exception
+	 * @param array $expectReturn
+	 * @param array $expectResult
+	 */
+	public function testExceptionErrors( $error, $expectReturn, $expectResult ) {
+		$context = new RequestContext();
+		$context->setRequest( new FauxRequest( [ 'errorformat' => 'plaintext' ] ) );
+		$context->setLanguage( 'en' );
+		$context->setConfig( new MultiConfig( [
+			new HashConfig( [
+				'ShowHostnames' => true, 'ShowSQLErrors' => false,
+				'ShowExceptionDetails' => true, 'ShowDBErrorBacktrace' => true,
+			] ),
+			$context->getConfig()
+		] ) );
+
+		$main = new ApiMain( $context );
+		$main->addWarning( new RawMessage( 'existing warning' ), 'existing-warning' );
+		$main->addError( new RawMessage( 'existing error' ), 'existing-error' );
+
+		$ret = TestingAccessWrapper::newFromObject( $main )->substituteResultWithError( $error );
+		$this->assertSame( $expectReturn, $ret );
+
+		// PHPUnit sometimes adds some SplObjectStorage garbage to the arrays,
+		// so let's try ->assertEquals().
+		$this->assertEquals(
+			$expectResult,
+			$main->getResult()->getResultData( [], [ 'Strip' => 'all' ] )
+		);
+	}
+
+	// Not static so $this can be used
+	public function provideExceptionErrors() {
+		$reqId = WebRequest::getRequestId();
+		$doclink = wfExpandUrl( wfScript( 'api' ) );
+
+		$ex = new InvalidArgumentException( 'Random exception' );
+		$trace = wfMessage( 'api-exception-trace',
+			get_class( $ex ),
+			$ex->getFile(),
+			$ex->getLine(),
+			MWExceptionHandler::getRedactedTraceAsString( $ex )
+		)->inLanguage( 'en' )->useDatabase( false )->text();
+
+		$dbex = new DBQueryError(
+			$this->createMock( 'IDatabase' ),
+			'error', 1234, 'SELECT 1', __METHOD__ );
+		$dbtrace = wfMessage( 'api-exception-trace',
+			get_class( $dbex ),
+			$dbex->getFile(),
+			$dbex->getLine(),
+			MWExceptionHandler::getRedactedTraceAsString( $dbex )
+		)->inLanguage( 'en' )->useDatabase( false )->text();
+
+		$apiEx1 = new ApiUsageException( null,
+			StatusValue::newFatal( new ApiRawMessage( 'An error', 'sv-error1' ) ) );
+		TestingAccessWrapper::newFromObject( $apiEx1 )->modulePath = 'foo+bar';
+		$apiEx1->getStatusValue()->warning( new ApiRawMessage( 'A warning', 'sv-warn1' ) );
+		$apiEx1->getStatusValue()->warning( new ApiRawMessage( 'Another warning', 'sv-warn2' ) );
+		$apiEx1->getStatusValue()->fatal( new ApiRawMessage( 'Another error', 'sv-error2' ) );
+
+		return [
+			[
+				$ex,
+				[ 'existing-error', 'internal_api_error_InvalidArgumentException' ],
+				[
+					'warnings' => [
+						[ 'code' => 'existing-warning', 'text' => 'existing warning', 'module' => 'main' ],
+					],
+					'errors' => [
+						[ 'code' => 'existing-error', 'text' => 'existing error', 'module' => 'main' ],
+						[
+							'code' => 'internal_api_error_InvalidArgumentException',
+							'text' => "[$reqId] Exception caught: Random exception",
+						]
+					],
+					'trace' => $trace,
+					'servedby' => wfHostname(),
+				]
+			],
+			[
+				$dbex,
+				[ 'existing-error', 'internal_api_error_DBQueryError' ],
+				[
+					'warnings' => [
+						[ 'code' => 'existing-warning', 'text' => 'existing warning', 'module' => 'main' ],
+					],
+					'errors' => [
+						[ 'code' => 'existing-error', 'text' => 'existing error', 'module' => 'main' ],
+						[
+							'code' => 'internal_api_error_DBQueryError',
+							'text' => "[$reqId] Database query error.",
+						]
+					],
+					'trace' => $dbtrace,
+					'servedby' => wfHostname(),
+				]
+			],
+			[
+				new UsageException( 'Usage exception!', 'ue', 0, [ 'foo' => 'bar' ] ),
+				[ 'existing-error', 'ue' ],
+				[
+					'warnings' => [
+						[ 'code' => 'existing-warning', 'text' => 'existing warning', 'module' => 'main' ],
+					],
+					'errors' => [
+						[ 'code' => 'existing-error', 'text' => 'existing error', 'module' => 'main' ],
+						[ 'code' => 'ue', 'text' => "Usage exception!", 'data' => [ 'foo' => 'bar' ] ]
+					],
+					'docref' => "See $doclink for API usage. Subscribe to the mediawiki-api-announce mailing " .
+						"list at &lt;https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce&gt; " .
+						"for notice of API deprecations and breaking changes.",
+					'servedby' => wfHostname(),
+				]
+			],
+			[
+				$apiEx1,
+				[ 'existing-error', 'sv-error1', 'sv-error2' ],
+				[
+					'warnings' => [
+						[ 'code' => 'existing-warning', 'text' => 'existing warning', 'module' => 'main' ],
+						[ 'code' => 'sv-warn1', 'text' => 'A warning', 'module' => 'foo+bar' ],
+						[ 'code' => 'sv-warn2', 'text' => 'Another warning', 'module' => 'foo+bar' ],
+					],
+					'errors' => [
+						[ 'code' => 'existing-error', 'text' => 'existing error', 'module' => 'main' ],
+						[ 'code' => 'sv-error1', 'text' => 'An error', 'module' => 'foo+bar' ],
+						[ 'code' => 'sv-error2', 'text' => 'Another error', 'module' => 'foo+bar' ],
+					],
+					'docref' => "See $doclink for API usage. Subscribe to the mediawiki-api-announce mailing " .
+						"list at &lt;https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce&gt; " .
+						"for notice of API deprecations and breaking changes.",
+					'servedby' => wfHostname(),
+				]
+			],
+		];
 	}
 }

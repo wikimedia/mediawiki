@@ -18,7 +18,6 @@ class GitInfoTest extends MediaWikiTestCase {
 		$this->assertEquals( 'master', $gitInfo->getCurrentBranch() );
 		$this->assertContains( '0123456789abcdef0123456789abcdef01234567',
 			$gitInfo->getHeadViewUrl() );
-
 	}
 
 	public function testValidJsonData() {

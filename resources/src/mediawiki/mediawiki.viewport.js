@@ -18,6 +18,7 @@
 		 *
 		 * @ignore
 		 * @private
+		 * @return {Object} Viewport positions
 		 */
 		makeViewportFromWindow: function () {
 			var $window = $( window ),
@@ -85,7 +86,7 @@
 		 */
 		isElementCloseToViewport: function ( el, threshold, rectangle ) {
 			var viewport = rectangle ? $.extend( {}, rectangle ) : this.makeViewportFromWindow();
-			threshold = threshold || 50 ;
+			threshold = threshold || 50;
 
 			viewport.top -= threshold;
 			viewport.left -= threshold;

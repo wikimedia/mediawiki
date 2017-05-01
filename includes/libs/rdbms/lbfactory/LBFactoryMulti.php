@@ -21,6 +21,10 @@
  * @ingroup Database
  */
 
+namespace Wikimedia\Rdbms;
+
+use InvalidArgumentException;
+
 /**
  * A multi-database, multi-master factory for Wikimedia and similar installations.
  * Ignores the old configuration globals.
@@ -247,9 +251,7 @@ class LBFactoryMulti extends LBFactory {
 	public function getMainLB( $domain = false ) {
 		$section = $this->getSectionForDomain( $domain );
 		if ( !isset( $this->mainLBs[$section] ) ) {
-			$lb = $this->newMainLB( $domain );
-			$this->getChronologyProtector()->initLB( $lb );
-			$this->mainLBs[$section] = $lb;
+			$this->mainLBs[$section] = $this->newMainLB( $domain );
 		}
 
 		return $this->mainLBs[$section];
@@ -260,7 +262,7 @@ class LBFactoryMulti extends LBFactory {
 			throw new InvalidArgumentException( __METHOD__ . ": Unknown cluster \"$cluster\"" );
 		}
 		$template = $this->serverTemplate;
-		if ( isset( $this->externalTemplateOverrides ) ) {
+		if ( $this->externalTemplateOverrides ) {
 			$template = $this->externalTemplateOverrides + $template;
 		}
 		if ( isset( $this->templateOverridesByCluster[$cluster] ) ) {
@@ -278,10 +280,29 @@ class LBFactoryMulti extends LBFactory {
 	public function getExternalLB( $cluster ) {
 		if ( !isset( $this->extLBs[$cluster] ) ) {
 			$this->extLBs[$cluster] = $this->newExternalLB( $cluster );
-			$this->getChronologyProtector()->initLB( $this->extLBs[$cluster] );
 		}
 
 		return $this->extLBs[$cluster];
+	}
+
+	public function getAllMainLBs() {
+		$lbs = [];
+		foreach ( $this->sectionsByDB as $db => $section ) {
+			if ( !isset( $lbs[$section] ) ) {
+				$lbs[$section] = $this->getMainLB( $db );
+			}
+		}
+
+		return $lbs;
+	}
+
+	public function getAllExternalLBs() {
+		$lbs = [];
+		foreach ( $this->externalLoads as $cluster => $unused ) {
+			$lbs[$cluster] = $this->getExternalLB( $cluster );
+		}
+
+		return $lbs;
 	}
 
 	/**
@@ -328,7 +349,7 @@ class LBFactoryMulti extends LBFactory {
 			$serverInfo = $template;
 			if ( $master ) {
 				$serverInfo['master'] = true;
-				if ( isset( $this->masterTemplateOverrides ) ) {
+				if ( $this->masterTemplateOverrides ) {
 					$serverInfo = $this->masterTemplateOverrides + $serverInfo;
 				}
 				$master = false;

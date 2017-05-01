@@ -9,4 +9,3 @@
  */
 
 $fallback = 'zh-cn, zh-hans';
-

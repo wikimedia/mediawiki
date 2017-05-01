@@ -20,6 +20,10 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * List for revision table items for a single page
  */
@@ -33,7 +37,7 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 	/** @var ResultWrapper|bool */
 	protected $res;
 
-	/** @var bool|object */
+	/** @var bool|Revision */
 	protected $current;
 
 	/**
@@ -268,6 +272,14 @@ abstract class RevisionItemBase {
 	 * This is used to show the list in HTML form, by the special page.
 	 */
 	abstract public function getHTML();
+
+	/**
+	 * Returns an instance of LinkRenderer
+	 * @return \MediaWiki\Linker\LinkRenderer
+	 */
+	protected function getLinkRenderer() {
+		return MediaWikiServices::getInstance()->getLinkRenderer();
+	}
 }
 
 class RevisionList extends RevisionListBase {
@@ -353,13 +365,14 @@ class RevisionItem extends RevisionItemBase {
 	 * @return string
 	 */
 	protected function getRevisionLink() {
-		$date = htmlspecialchars( $this->list->getLanguage()->userTimeAndDate(
-			$this->revision->getTimestamp(), $this->list->getUser() ) );
+		$date = $this->list->getLanguage()->userTimeAndDate(
+			$this->revision->getTimestamp(), $this->list->getUser() );
 
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
-			return $date;
+			return htmlspecialchars( $date );
 		}
-		return Linker::linkKnown(
+		$linkRenderer = $this->getLinkRenderer();
+		return $linkRenderer->makeKnownLink(
 			$this->list->title,
 			$date,
 			[],
@@ -381,9 +394,10 @@ class RevisionItem extends RevisionItemBase {
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return $this->context->msg( 'diff' )->escaped();
 		} else {
-			return Linker::linkKnown(
+			$linkRenderer = $this->getLinkRenderer();
+			return $linkRenderer->makeKnownLink(
 					$this->list->title,
-					$this->list->msg( 'diff' )->escaped(),
+					$this->list->msg( 'diff' )->text(),
 					[],
 					[
 						'diff' => $this->revision->getId(),

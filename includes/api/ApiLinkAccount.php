@@ -49,7 +49,7 @@ class ApiLinkAccount extends ApiBase {
 
 	public function execute() {
 		if ( !$this->getUser()->isLoggedIn() ) {
-			$this->dieUsage( 'Must be logged in to link accounts', 'notloggedin' );
+			$this->dieWithError( 'apierror-mustbeloggedin-linkaccounts', 'notloggedin' );
 		}
 
 		$params = $this->extractRequestParams();
@@ -60,8 +60,8 @@ class ApiLinkAccount extends ApiBase {
 			$bits = wfParseUrl( $params['returnurl'] );
 			if ( !$bits || $bits['scheme'] === '' ) {
 				$encParamName = $this->encodeParamName( 'returnurl' );
-				$this->dieUsage(
-					"Invalid value '{$params['returnurl']}' for url parameter $encParamName",
+				$this->dieWithError(
+					[ 'apierror-badurl', $encParamName, wfEscapeWikiText( $params['returnurl'] ) ],
 					"badurl_{$encParamName}"
 				);
 			}
@@ -124,6 +124,6 @@ class ApiLinkAccount extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Linkaccount';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Linkaccount';
 	}
 }

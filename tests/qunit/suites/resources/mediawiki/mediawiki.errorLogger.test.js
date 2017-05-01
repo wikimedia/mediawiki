@@ -1,7 +1,7 @@
 ( function ( $, mw ) {
 	QUnit.module( 'mediawiki.errorLogger', QUnit.newMwEnvironment() );
 
-	QUnit.test( 'installGlobalHandler', 7, function ( assert ) {
+	QUnit.test( 'installGlobalHandler', function ( assert ) {
 		var w = {},
 			errorMessage = 'Foo',
 			errorUrl = 'http://example.com',
@@ -24,7 +24,7 @@
 		w.onerror( errorMessage, errorUrl, errorLine, errorColumn, errorObject );
 		sinon.assert.calledWithExactly( mw.track, 'global.error',
 			sinon.match( { errorMessage: errorMessage, url: errorUrl, lineNumber: errorLine,
-			columnNumber: errorColumn, errorObject: errorObject } ) );
+				columnNumber: errorColumn, errorObject: errorObject } ) );
 
 		w = { onerror: oldHandler };
 

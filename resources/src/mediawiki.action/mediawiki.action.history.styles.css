@@ -10,8 +10,8 @@
 }
 
 #pagehistory li.selected {
-	background-color: #f9f9f9;
-	border: 1px dashed #aaa;
+	background-color: #f8f9fa;
+	border: 1px dashed #a2a9b1;
 }
 
 .mw-history-revisionactions {

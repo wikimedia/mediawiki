@@ -20,6 +20,12 @@
  * @file
  */
 
+require_once __DIR__ . '/libs/mime/defines.php';
+require_once __DIR__ . '/libs/rdbms/defines.php';
+require_once __DIR__ . '/compat/normal/UtfNormalDefines.php';
+
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * @defgroup Constants MediaWiki constants
  */
@@ -97,8 +103,6 @@ define( 'CACHE_MEMCACHED', 2 );  // MemCached, must specify servers in $wgMemCac
 define( 'CACHE_ACCEL', 3 );      // APC, XCache or WinCache
 /**@}*/
 
-require_once __DIR__ . '/libs/mime/defines.php';
-
 /**@{
  * Antivirus result codes, for use in $wgAntivirusSetup.
  */
@@ -152,16 +156,6 @@ define( 'EDIT_DEFER_UPDATES', 32 ); // Unused since 1.27
 define( 'EDIT_AUTOSUMMARY', 64 );
 define( 'EDIT_INTERNAL', 128 );
 /**@}*/
-
-/**
- * Database related
- */
-require_once __DIR__ . '/libs/rdbms/defines.php';
-
-/**
- * Unicode and normalisation related
- */
-require_once __DIR__ . '/compat/normal/UtfNormalDefines.php';
 
 /**@{
  * Hook support constants

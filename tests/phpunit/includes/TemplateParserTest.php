@@ -52,6 +52,43 @@ class TemplateParserTest extends MediaWikiTestCase {
 				'UnexpectedValueException'
 			],
 			[
+				"\000../foobar",
+				[],
+				false,
+				'UnexpectedValueException'
+			],
+			[
+				'/',
+				[],
+				false,
+				'UnexpectedValueException'
+			],
+			[
+				// Allegedly this can strip ext in windows.
+				'baz<',
+				[],
+				false,
+				'UnexpectedValueException'
+			],
+			[
+				'\\foo',
+				[],
+				false,
+				'UnexpectedValueException'
+			],
+			[
+				'C:\bar',
+				[],
+				false,
+				'UnexpectedValueException'
+			],
+			[
+				"foo\000bar",
+				[],
+				false,
+				'UnexpectedValueException'
+			],
+			[
 				'nonexistenttemplate',
 				[],
 				false,

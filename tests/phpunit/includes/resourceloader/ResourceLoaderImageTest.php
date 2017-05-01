@@ -61,7 +61,10 @@ class ResourceLoaderImageTest extends ResourceLoaderTestCase {
 		static $contexts = [];
 
 		$image = $this->getTestImage( $imageName );
-		$context = $this->getResourceLoaderContext( $languageCode, $dirMap[$languageCode] );
+		$context = $this->getResourceLoaderContext( [
+			'lang' => $languageCode,
+			'dir' => $dirMap[$languageCode],
+		] );
 
 		$this->assertEquals( $image->getPath( $context ), $this->imagesPath . '/' . $path );
 	}
@@ -87,7 +90,7 @@ class ResourceLoaderImageTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoaderImage::massageSvgPathdata
 	 */
 	public function testGetImageData() {
-		$context = $this->getResourceLoaderContext( 'en', 'ltr' );
+		$context = $this->getResourceLoaderContext();
 
 		$image = $this->getTestImage( 'remove' );
 		$data = file_get_contents( $this->imagesPath . '/remove.svg' );

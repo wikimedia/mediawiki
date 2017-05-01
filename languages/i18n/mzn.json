@@ -317,7 +317,6 @@
 	"yourpasswordagain": "پسورد ره دِباره بنویس",
 	"createacct-yourpasswordagain": "پسورد ره دِباره باوّین",
 	"createacct-yourpasswordagain-ph": "پسورد ره دِباره باوّین",
-	"remembermypassword": "مه رمز ره (تا حداکثر $1 {{PLURAL:$1|روز|روز}}) این مرورگر سر یاد نکان",
 	"userlogin-remembermypassword": "مه ره سایت دله دار",
 	"yourdomainname": "شمه کاروری نوم",
 	"login": "دله بوردن",
@@ -858,6 +857,5 @@
 	"api-error-unknown-error": "خطای داخلی: زمونی که شما تلاش کاردنی باربی‌یشتن پرونده ره انجوم هادین، اتا چی اشتباه پیش بورده.",
 	"api-error-unknown-warning": "اخطار نشناسی‌یه: $1",
 	"api-error-uploaddisabled": "باربی‌یشتن این ویکی دله غیرفعاله.",
-	"api-error-verification-error": "ممکن هسته که پرونده رِقِد بورد بائه یا پسوند غلط داره.",
-	"api-error-blacklisted": "اتا عنوان توصیفی دیگه انتخاب هاکنین."
+	"api-error-verification-error": "ممکن هسته که پرونده رِقِد بورد بائه یا پسوند غلط داره."
 }

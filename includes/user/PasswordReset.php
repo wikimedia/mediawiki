@@ -22,6 +22,9 @@
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\TemporaryPasswordAuthenticationRequest;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+use MediaWiki\Logger\LoggerFactory;
 
 /**
  * Helper class for the password reset functionality shared by the web UI and the API.
@@ -30,16 +33,19 @@ use MediaWiki\Auth\TemporaryPasswordAuthenticationRequest;
  * EmailNotificationSecondaryAuthenticationProvider (or something providing equivalent
  * functionality) to be enabled.
  */
-class PasswordReset {
+class PasswordReset implements LoggerAwareInterface {
 	/** @var Config */
 	protected $config;
 
 	/** @var AuthManager */
 	protected $authManager;
 
+	/** @var LoggerInterface */
+	protected $logger;
+
 	/**
-	 * In-process cache for isAllowed lookups, by username. Contains pairs of StatusValue objects
-	 * (for false and true value of $displayPassword, respectively).
+	 * In-process cache for isAllowed lookups, by username.
+	 * Contains a StatusValue object
 	 * @var HashBagOStuff
 	 */
 	private $permissionCache;
@@ -48,6 +54,17 @@ class PasswordReset {
 		$this->config = $config;
 		$this->authManager = $authManager;
 		$this->permissionCache = new HashBagOStuff( [ 'maxKeys' => 1 ] );
+		$this->logger = LoggerFactory::getInstance( 'authentication' );
+	}
+
+	/**
+	 * Set the logger instance to use.
+	 *
+	 * @param LoggerInterface $logger
+	 * @since 1.29
+	 */
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
 	}
 
 	/**
@@ -55,13 +72,12 @@ class PasswordReset {
 	 * @param User $user
 	 * @param bool $displayPassword If set, also check whether the user is allowed to reset the
 	 *   password of another user and see the temporary password.
+	 * @since 1.29 Second argument for displayPassword removed.
 	 * @return StatusValue
 	 */
-	public function isAllowed( User $user, $displayPassword = false ) {
-		$statuses = $this->permissionCache->get( $user->getName() );
-		if ( $statuses ) {
-			list ( $status, $status2 ) = $statuses;
-		} else {
+	public function isAllowed( User $user ) {
+		$status = $this->permissionCache->get( $user->getName() );
+		if ( !$status ) {
 			$resetRoutes = $this->config->get( 'PasswordResetRoutes' );
 			$status = StatusValue::newGood();
 
@@ -90,19 +106,10 @@ class PasswordReset {
 				$status = StatusValue::newFatal( 'blocked-mailpassword' );
 			}
 
-			$status2 = StatusValue::newGood();
-			if ( !$user->isAllowed( 'passwordreset' ) ) {
-				$status2 = StatusValue::newFatal( 'badaccess' );
-			}
-
-			$this->permissionCache->set( $user->getName(), [ $status, $status2 ] );
+			$this->permissionCache->set( $user->getName(), $status );
 		}
 
-		if ( !$displayPassword || !$status->isGood() ) {
-			return $status;
-		} else {
-			return $status2;
-		}
+		return $status;
 	}
 
 	/**
@@ -111,22 +118,22 @@ class PasswordReset {
 	 * Process the form.  At this point we know that the user passes all the criteria in
 	 * userCanExecute(), and if the data array contains 'Username', etc, then Username
 	 * resets are allowed.
+	 *
+	 * @since 1.29 Fourth argument for displayPassword removed.
 	 * @param User $performingUser The user that does the password reset
 	 * @param string $username The user whose password is reset
 	 * @param string $email Alternative way to specify the user
-	 * @param bool $displayPassword Whether to display the password
 	 * @return StatusValue Will contain the passwords as a username => password array if the
 	 *   $displayPassword flag was set
 	 * @throws LogicException When the user is not allowed to perform the action
 	 * @throws MWException On unexpected DB errors
 	 */
 	public function execute(
-		User $performingUser, $username = null, $email = null, $displayPassword = false
+		User $performingUser, $username = null, $email = null
 	) {
-		if ( !$this->isAllowed( $performingUser, $displayPassword )->isGood() ) {
-			$action = $this->isAllowed( $performingUser )->isGood() ? 'display' : 'reset';
+		if ( !$this->isAllowed( $performingUser )->isGood() ) {
 			throw new LogicException( 'User ' . $performingUser->getName()
-				. ' is not allowed to ' . $action . ' passwords' );
+				. ' is not allowed to reset passwords' );
 		}
 
 		$resetRoutes = $this->config->get( 'PasswordResetRoutes' )
@@ -134,12 +141,14 @@ class PasswordReset {
 		if ( $resetRoutes['username'] && $username ) {
 			$method = 'username';
 			$users = [ User::newFromName( $username ) ];
+			$email = null;
 		} elseif ( $resetRoutes['email'] && $email ) {
 			if ( !Sanitizer::validateEmail( $email ) ) {
 				return StatusValue::newFatal( 'passwordreset-invalidemail' );
 			}
 			$method = 'email';
 			$users = $this->getUsersByEmail( $email );
+			$username = null;
 		} else {
 			// The user didn't supply any data
 			return StatusValue::newFatal( 'passwordreset-nodata' );
@@ -150,7 +159,6 @@ class PasswordReset {
 		$data = [
 			'Username' => $username,
 			'Email' => $email,
-			'Capture' => $displayPassword ? '1' : null,
 		];
 		if ( !Hooks::run( 'SpecialPasswordResetOnSubmit', [ &$users, $data, &$error ] ) ) {
 			return StatusValue::newFatal( Message::newFromSpecifier( $error ) );
@@ -168,7 +176,7 @@ class PasswordReset {
 		$firstUser = $users[0];
 
 		if ( !$firstUser instanceof User || !$firstUser->getId() ) {
-			// Don't parse username as wikitext (bug 65501)
+			// Don't parse username as wikitext (T67501)
 			return StatusValue::newFatal( wfMessage( 'nosuchuser', wfEscapeWikiText( $username ) ) );
 		}
 
@@ -184,7 +192,7 @@ class PasswordReset {
 				wfEscapeWikiText( $firstUser->getName() ) ) );
 		}
 
-		// We need to have a valid IP address for the hook, but per bug 18347, we should
+		// We need to have a valid IP address for the hook, but per T20347, we should
 		// send the user's name if they're logged in.
 		$ip = $performingUser->getRequest()->getIP();
 		if ( !$ip ) {
@@ -199,7 +207,6 @@ class PasswordReset {
 			$req = TemporaryPasswordAuthenticationRequest::newRandom();
 			$req->username = $user->getName();
 			$req->mailpassword = true;
-			$req->hasBackchannel = $displayPassword;
 			$req->caller = $performingUser->getName();
 			$status = $this->authManager->allowsAuthenticationDataChange( $req, true );
 			if ( $status->isGood() && $status->getValue() !== 'ignored' ) {
@@ -214,18 +221,31 @@ class PasswordReset {
 			}
 		}
 
+		$logContext = [
+			'requestingIp' => $ip,
+			'requestingUser' => $performingUser->getName(),
+			'targetUsername' => $username,
+			'targetEmail' => $email,
+			'actualUser' => $firstUser->getName(),
+		];
+
 		if ( !$result->isGood() ) {
+			$this->logger->info(
+				"{requestingUser} attempted password reset of {actualUser} but failed",
+				$logContext + [ 'errors' => $result->getErrors() ]
+			);
 			return $result;
 		}
 
 		$passwords = [];
 		foreach ( $reqs as $req ) {
 			$this->authManager->changeAuthenticationData( $req );
-			// TODO record mail sending errors
-			if ( $displayPassword ) {
-				$passwords[$req->username] = $req->password;
-			}
 		}
+
+		$this->logger->info(
+			"{requestingUser} did password reset of {actualUser}",
+			$logContext
+		);
 
 		return StatusValue::newGood( $passwords );
 	}

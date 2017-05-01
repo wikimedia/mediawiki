@@ -86,13 +86,13 @@ class SVGReader {
 		}
 
 		// Expand entities, since Adobe Illustrator uses them for xmlns
-		// attributes (bug 31719). Note that libxml2 has some protection
+		// attributes (T33719). Note that libxml2 has some protection
 		// against large recursive entity expansions so this is not as
 		// insecure as it might appear to be. However, it is still extremely
 		// insecure. It's necessary to wrap any read() calls with
 		// libxml_disable_entity_loader() to avoid arbitrary local file
 		// inclusion, or even arbitrary code execution if the expect
-		// extension is installed (bug 46859).
+		// extension is installed (T48859).
 		$oldDisable = libxml_disable_entity_loader( true );
 		$this->reader->setParserProperty( XMLReader::SUBST_ENTITIES, true );
 
@@ -264,7 +264,7 @@ class SVGReader {
 			) {
 				$sysLang = $this->reader->getAttribute( 'systemLanguage' );
 				if ( !is_null( $sysLang ) && $sysLang !== '' ) {
-					// See http://www.w3.org/TR/SVG/struct.html#SystemLanguageAttribute
+					// See https://www.w3.org/TR/SVG/struct.html#SystemLanguageAttribute
 					$langList = explode( ',', $sysLang );
 					foreach ( $langList as $langItem ) {
 						$langItem = trim( $langItem );
@@ -305,12 +305,6 @@ class SVGReader {
 			}
 			$keepReading = $this->reader->read();
 		}
-	}
-
-	// @todo FIXME: Unused, remove?
-	private function throwXmlError( $err ) {
-		$this->debug( "FAILURE: $err" );
-		wfDebug( "SVGReader XML error: $err\n" );
 	}
 
 	private function debug( $data ) {
@@ -369,7 +363,7 @@ class SVGReader {
 
 	/**
 	 * Return a rounded pixel equivalent for a labeled CSS/SVG length.
-	 * http://www.w3.org/TR/SVG11/coords.html#UnitIdentifiers
+	 * https://www.w3.org/TR/SVG11/coords.html#Units
 	 *
 	 * @param string $length CSS/SVG length.
 	 * @param float|int $viewportSize Optional scale for percentage units...

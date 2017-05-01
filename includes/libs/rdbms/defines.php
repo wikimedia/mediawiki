@@ -1,5 +1,8 @@
 <?php
 
+use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IDatabase;
+
 /**@{
  * Database related constants
  */

@@ -99,7 +99,7 @@ class FileRepo {
 	 */
 	protected $pathDisclosureProtection = 'simple';
 
-	/** @var bool Public zone URL. */
+	/** @var string|false Public zone URL. */
 	protected $url;
 
 	/** @var string The base thumbnail URL. Defaults to "<url>/thumb". */
@@ -309,7 +309,7 @@ class FileRepo {
 	 * @return bool Whether non-ASCII path characters are allowed
 	 */
 	public function backendSupportsUnicodePaths() {
-		return ( $this->getBackend()->getFeatures() & FileBackend::ATTR_UNICODE_PATHS );
+		return (bool)( $this->getBackend()->getFeatures() & FileBackend::ATTR_UNICODE_PATHS );
 	}
 
 	/**
@@ -737,7 +737,7 @@ class FileRepo {
 	 * constructor, whereas local repositories use the local Title functions.
 	 *
 	 * @param string $name
-	 * @return string
+	 * @return string|false
 	 */
 	public function getDescriptionUrl( $name ) {
 		$encName = wfUrlencode( $name );
@@ -771,7 +771,7 @@ class FileRepo {
 	 *
 	 * @param string $name Name of image to fetch
 	 * @param string $lang Language to fetch it in, if any.
-	 * @return string
+	 * @return string|false
 	 */
 	public function getDescriptionRenderUrl( $name, $lang = null ) {
 		$query = 'action=render';
@@ -1059,7 +1059,7 @@ class FileRepo {
 
 	/**
 	 * Pick a random name in the temp zone and store a file to it.
-	 * Returns a FileRepoStatus object with the file Virtual URL in the value,
+	 * Returns a Status object with the file Virtual URL in the value,
 	 * file can later be disposed using FileRepo::freeTemp().
 	 *
 	 * @param string $originalName The base name of the file as specified
@@ -1143,7 +1143,7 @@ class FileRepo {
 	 * Copy or move a file either from a storage path, virtual URL,
 	 * or file system path, into this repository at the specified destination location.
 	 *
-	 * Returns a FileRepoStatus object. On success, the value contains "new" or
+	 * Returns a Status object. On success, the value contains "new" or
 	 * "archived", to indicate whether the file was new with that name.
 	 *
 	 * Options to $options include:
@@ -1448,7 +1448,7 @@ class FileRepo {
 				'dst' => $archivePath,
 				// We may have 2+ identical files being deleted,
 				// all of which will map to the same destination file
-				'overwriteSame' => true // also see bug 31792
+				'overwriteSame' => true // also see T33792
 			];
 		}
 
@@ -1922,14 +1922,5 @@ class FileRepo {
 	 */
 	public function supportsSha1URLs() {
 		return $this->supportsSha1URLs;
-	}
-}
-
-/**
- * FileRepo for temporary files created via FileRepo::getTempRepo()
- */
-class TempFileRepo extends FileRepo {
-	public function getTempRepo() {
-		throw new MWException( "Cannot get a temp repo from a temp repo." );
 	}
 }

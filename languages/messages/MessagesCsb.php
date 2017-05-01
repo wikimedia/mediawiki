@@ -28,4 +28,3 @@ $namespaceNames = [
 	NS_CATEGORY         => 'Kategòrëjô',
 	NS_CATEGORY_TALK    => 'Diskùsëjô_Kategòrëji',
 ];
-

@@ -39,4 +39,3 @@ $namespaceAliases = [
 	'Floccgesprec'  => NS_CATEGORY_TALK,
 	'Floccmotung'   => NS_CATEGORY_TALK,
 ];
-

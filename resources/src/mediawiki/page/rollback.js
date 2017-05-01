@@ -30,6 +30,7 @@
 			$spinner = $.createSpinner( { size: 'small', type: 'inline' } );
 			$link.hide().after( $spinner );
 
+			// @todo: data.messageHtml is no more. Convert to using errorformat=html.
 			api = new mw.Api();
 			api.rollback( page, user )
 				.then( function ( data ) {
@@ -43,9 +44,9 @@
 					}
 					$( e.delegateTarget ).remove();
 				}, function ( errorCode, data ) {
-					var message = data && data.error && data.error.messageHtml
-						? $.parseHTML( data.error.messageHtml )
-						: mw.msg( 'rollbackfailed' ),
+					var message = data && data.error && data.error.messageHtml ?
+						$.parseHTML( data.error.messageHtml ) :
+						mw.msg( 'rollbackfailed' ),
 						type = errorCode === 'alreadyrolled' ? 'warn' : 'error';
 
 					mw.notify( message, {

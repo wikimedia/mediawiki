@@ -182,7 +182,7 @@ class DiffEngine {
 			}
 
 			while ( $i < $len && !$changed[$i] ) {
-				assert( $j < $other_len && ! $other_changed[$j] );
+				assert( $j < $other_len && !$other_changed[$j] );
 				$i++;
 				$j++;
 				while ( $j < $other_len && $other_changed[$j] ) {
@@ -247,7 +247,7 @@ class DiffEngine {
 						$i++;
 					}
 
-					assert( $j < $other_len && ! $other_changed[$j] );
+					assert( $j < $other_len && !$other_changed[$j] );
 					$j++;
 					if ( $j < $other_len && $other_changed[$j] ) {
 						$corresponding = $i;

@@ -155,4 +155,3 @@ $magicWords = [
 	'noindex'                   => [ '1', '__بې_ليکلړ__', '__NOINDEX__' ],
 	'protectionlevel'           => [ '1', 'ژغورکچه', 'PROTECTIONLEVEL' ],
 ];
-

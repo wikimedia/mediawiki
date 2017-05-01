@@ -42,7 +42,7 @@ class PreferencesTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Placeholder to verify bug 34302
+	 * Placeholder to verify T36302
 	 * @covers Preferences::profilePreferences
 	 */
 	public function testEmailAuthenticationFieldWhenUserHasNoEmail() {
@@ -54,7 +54,7 @@ class PreferencesTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Placeholder to verify bug 34302
+	 * Placeholder to verify T36302
 	 * @covers Preferences::profilePreferences
 	 */
 	public function testEmailAuthenticationFieldWhenUserEmailNotAuthenticated() {
@@ -66,7 +66,7 @@ class PreferencesTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Placeholder to verify bug 34302
+	 * Placeholder to verify T36302
 	 * @covers Preferences::profilePreferences
 	 */
 	public function testEmailAuthenticationFieldWhenUserEmailIsAuthenticated() {

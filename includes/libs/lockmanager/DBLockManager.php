@@ -21,6 +21,10 @@
  * @ingroup LockManager
  */
 
+use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\DBError;
+
 /**
  * Version of LockManager based on using named/row DB locks.
  *

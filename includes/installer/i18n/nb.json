@@ -8,7 +8,8 @@
 			"Jeblad",
 			"Macofe",
 			"SuperPotato",
-			"Jon Harald Søby"
+			"Jon Harald Søby",
+			"Seb35"
 		]
 	},
 	"config-desc": "Installasjonsprogrammet for MediaWiki",
@@ -57,7 +58,7 @@
 	"config-unicode-using-intl": "Bruker [http://pecl.php.net/intl intl PECL-utvidelsen] for Unicode-normalisering.",
 	"config-unicode-pure-php-warning": "'''Advarsel''': [http://pecl.php.net/intl intl PECL-utvidelsen] er ikke tilgjengelig for å håndtere Unicode-normaliseringen, faller tilbake til en langsommere ren-PHP-implementasjon.\nOm du kjører et nettsted med høy trafikk bør du lese litt om [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode-normalisering].",
 	"config-unicode-update-warning": "<strong>Advarsel:</strong> Den installerte versjonen av Unicode-normalisereren bruker en eldre versjon av [http://site.icu-project.org/ ICU-prosjektets] bibliotek.\nDu bør [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations oppgradere] om du er bekymret for å bruke Unicode.",
-	"config-no-db": "Fant ingen passende databasedriver! Du må installere en databasedriver for PHP.\nFølgende {{PLURAL:$2|databasetype|databasetyper}} støttes: $1\n\nOm du kompilerte PHP selv, rekonfigurer den med en aktivert databaseklient, for eksempel ved å bruke <code>./configure --with-mysql</code>.\nOm du installerte PHP fra en Debian- eller Ubuntu-pakke, må du også installere for eksempel <code>php5-mysql</code>-pakken.",
+	"config-no-db": "Fant ingen passende databasedriver! Du må installere en databasedriver for PHP.\nFølgende {{PLURAL:$2|databasetype|databasetyper}} støttes: $1\n\nOm du kompilerte PHP selv, rekonfigurer den med en aktivert databaseklient, for eksempel ved å bruke <code>./configure --with-mysqli</code>.\nOm du installerte PHP fra en Debian- eller Ubuntu-pakke, må du også installere for eksempel <code>php5-mysql</code>-pakken.",
 	"config-outdated-sqlite": "'''Advarsel''': Du har SQLite $1, som er en eldre versjon enn minimumskravet SQLite $2. SQLite vil ikke være tilgjengelig.",
 	"config-no-fts3": "'''Advarsel''': SQLite er kompilert uten [//sqlite.org/fts3.html FTS3-modulen], søkefunksjoner vil ikke være tilgjengelig på dette bakstykket.",
 	"config-pcre-old": "'''Alvorlig:''' PCRE $1 eller senere kreves.\nDin PHP-kode er lenket med PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Nærmere informasjon].",
@@ -121,7 +122,7 @@
 	"config-type-mssql": "Microsoft SQLServer",
 	"config-support-info": "MediaWiki støtter følgende databasesystem:\n\n$1\n\nHvis du ikke ser databasesystemet du prøver å bruke i listen nedenfor, følg instruksjonene det er lenket til over for å aktivere støtte.",
 	"config-dbsupport-mysql": "* [{{int:version-db-mysql-url}} MySQL] er den prefererte databasen for MediaWiki og er derfor best støttet.  MediaWiki fungerer også med [{{int:version-db-mariadb-url}} MariaDB] og [{{int:version-db-percona-url}} Percona Server], som begge er MySQL-kompatible. ([http://www.php.net/manual/en/mysqli.installation.php Hvordan kompilere med PHP med MySQL-støtte])",
-	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] er et populært åpen kildekode-databasesystem og et alternativ til MySQL. Det kan ha noen små utestående feil og det anbefales derfor ikke for bruk i et produksjonsmiljø. ([http://www.php.net/manual/en/pgsql.installation.php Hvordan kompilere PHP med PostgreSQL-støtte])",
+	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] er et populært åpen kildekode-databasesystem og et alternativ til MySQL.  ([http://www.php.net/manual/en/pgsql.installation.php Hvordan kompilere PHP med PostgreSQL-støtte])",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] er et lettvekts-databasesystem som har veldig god støtte. ([http://www.php.net/manual/en/pdo.installation.php Hvordan kompilere PHP med SQLite-støtte], bruker PDO)",
 	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle] er en kommersiell database for bedrifter. ([http://www.php.net/manual/en/oci8.installation.php Hvordan kompilere PHP med OCI8-støtte])",
 	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQLServer] er en kommersiell enterprise-database for Windows. ([http://www.php.net/manual/en/sqlsrv.installation.php Hvordan kompilere PHP med SQLSRV-støtte])",
@@ -307,6 +308,7 @@
 	"config-install-subscribe-fail": "Ikke mulig å abonnere på mediawiki-announce: $1",
 	"config-install-subscribe-notpossible": "cURL er ikke installert og <code>allow_url_fopen</code> er ikke tilgjengelig.",
 	"config-install-mainpage": "Oppretter hovedside med standard innhold",
+	"config-install-mainpage-exists": "Hovedsiden eksisterer allerede, hopper over",
 	"config-install-extension-tables": "Oppretter tabeller for aktiviserte utvidelser",
 	"config-install-mainpage-failed": "Kunne ikke sette inn hovedside: $1",
 	"config-install-done": "<strong>Gratulrerer!</strong>\nDu har lykkes i å installere MediaWiki.\n\nInstallasjonsprogrammet har generert en <code>LocalSettings.php</code>-fil.\nDen inneholder alle dine konfigureringer.\n\nDu må laste den ned og legge den på hovedfolderen for din wiki-installasjon (der index.php ligger). Nedlastingen skulle ha startet automatisk.\n\nHvis ingen nedlasting ble tilbudt, eller du avbrøt den, kan du få den i gang ved å klikke på lenken under:\n\n$3\n\n<strong>OBS:</strong> Hvis du ikke gjør dette nå, vil den genererte konfigurasjonsfilen ikke være tilgjengelig for deg senere.\n\nNår dette er gjort, kan du <strong>[$2 gå inn i wikien]</strong>.",
@@ -317,5 +319,5 @@
 	"config-nofile": "Filen \"$1\" ble ikke funnet. Kan den være blitt slettet?",
 	"config-extension-link": "Visste du at wikien din kan brukes sammen med en mengde [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions utvidelser]?\n\nDu kan sjekke gjennom [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category utvidelser per kategori] eller [https://www.mediawiki.org/wiki/Extension_Matrix utvidelsesmatrisen] for å se den komplette listen av utvidelser.",
 	"mainpagetext": "<strong>MediaWiki har blitt installert.</strong>",
-	"mainpagedocfooter": "Sjekk [https://meta.wikimedia.org/wiki/Help:Contents brukerveiledningen] for å få informasjon om hvordan du bruker wiki-programvaren.\n\n==Hvordan komme igang==\n*[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Innstillingsliste]\n*[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Ofte stilte spørsmål om MediaWiki]\n*[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-postliste]\n*[https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Tilpass MediaWiki for ditt språk]\n*[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Lær deg å beskytte deg mot spam på wikien din]"
+	"mainpagedocfooter": "Sjekk [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents brukerveiledningen] for å få informasjon om hvordan du bruker wiki-programvaren.\n\n==Hvordan komme igang==\n*[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Innstillingsliste]\n*[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Ofte stilte spørsmål om MediaWiki]\n*[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-postliste]\n*[https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Tilpass MediaWiki for ditt språk]\n*[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Lær deg å beskytte deg mot spam på wikien din]"
 }

@@ -397,9 +397,9 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 *
 	 * The return value is such that someone could theoretically do this:
 	 * @code
-	 *  foreach ( $provider->getVaryHeaders() as $header => $options ) {
-	 *  	$outputPage->addVaryHeader( $header, $options );
-	 *  }
+	 * foreach ( $provider->getVaryHeaders() as $header => $options ) {
+	 *   $outputPage->addVaryHeader( $header, $options );
+	 * }
 	 * @endcode
 	 *
 	 * @protected For use by \MediaWiki\Session\SessionManager only
@@ -455,7 +455,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 * @return string
 	 */
 	public function __toString() {
-		return get_class( $this );
+		return static::class;
 	}
 
 	/**
@@ -475,7 +475,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 */
 	protected function describeMessage() {
 		return wfMessage(
-			'sessionprovider-' . str_replace( '\\', '-', strtolower( get_class( $this ) ) )
+			'sessionprovider-' . str_replace( '\\', '-', strtolower( static::class ) )
 		);
 	}
 

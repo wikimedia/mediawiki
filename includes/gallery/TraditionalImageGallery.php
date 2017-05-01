@@ -348,17 +348,3 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	protected function adjustImageParameters( $thumb, &$imageParameters ) {
 	}
 }
-
-/**
- * Backwards compatibility. This always uses traditional mode
- * if called the old way, for extensions that may expect traditional
- * mode.
- *
- * @deprecated since 1.22 Use ImageGalleryBase::factory instead.
- */
-class ImageGallery extends TraditionalImageGallery {
-	function __construct( $mode = 'traditional' ) {
-		wfDeprecated( __METHOD__, '1.22' );
-		parent::__construct( $mode );
-	}
-}

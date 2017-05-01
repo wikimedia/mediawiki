@@ -50,7 +50,7 @@ class VFormHTMLForm extends HTMLForm {
 		return $field;
 	}
 
-	function getHTML( $submitResult ) {
+	public function getHTML( $submitResult ) {
 		// This is required for VForm HTMLForms that use that style regardless
 		// of wgUseMediaWikiUIEverywhere (since they pre-date it).
 		// When wgUseMediaWikiUIEverywhere is removed, this should be consolidated
@@ -67,16 +67,16 @@ class VFormHTMLForm extends HTMLForm {
 
 	protected function getFormAttributes() {
 		$attribs = parent::getFormAttributes();
-		$attribs['class'] = [ 'mw-ui-vform', 'mw-ui-container', 'visualClear' ];
+		$attribs['class'] = [ 'mw-htmlform', 'mw-ui-vform', 'mw-ui-container' ];
 		return $attribs;
 	}
 
-	function wrapForm( $html ) {
+	public function wrapForm( $html ) {
 		// Always discard $this->mWrapperLegend
 		return Html::rawElement( 'form', $this->getFormAttributes(), $html );
 	}
 
-	function getButtons() {
+	public function getButtons() {
 		$buttons = '';
 
 		if ( $this->mShowSubmit ) {

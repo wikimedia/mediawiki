@@ -28,6 +28,5 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'Ñemohenda_myangekõi',
 ];
 
-// Remove Spanish gender aliases (bug 37090)
+// Remove Spanish gender aliases (T39090)
 $namespaceGenderAliases = [];
-

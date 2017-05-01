@@ -27,41 +27,6 @@ use MediaWiki\Search\ParserOutputSearchDataExtractor;
  *
  * @author Daniel Kinzler
  */
-
-/**
- * Exception representing a failure to serialize or unserialize a content object.
- *
- * @ingroup Content
- */
-class MWContentSerializationException extends MWException {
-}
-
-/**
- * Exception thrown when an unregistered content model is requested. This error
- * can be triggered by user input, so a separate exception class is provided so
- * callers can substitute a context-specific, internationalised error message.
- *
- * @ingroup Content
- * @since 1.27
- */
-class MWUnknownContentModelException extends MWException {
-	/** @var string The name of the unknown content model */
-	private $modelId;
-
-	/** @param string $modelId */
-	function __construct( $modelId ) {
-		parent::__construct( "The content model '$modelId' is not registered on this wiki.\n" .
-			'See https://www.mediawiki.org/wiki/Content_handlers to find out which extensions ' .
-			'handle this content model.' );
-		$this->modelId = $modelId;
-	}
-
-	/** @return string */
-	public function getModelId() {
-		return $this->modelId;
-	}
-}
-
 /**
  * A content handler knows how do deal with a specific type of content on a wiki
  * page. Content is stored in the database in a serialized form (using a
@@ -233,9 +198,6 @@ abstract class ContentHandler {
 			$ext = $m[1];
 		}
 
-		// Hook can force JS/CSS
-		Hooks::run( 'TitleIsCssOrJsPage', [ $title, &$isCodePage ], '1.21' );
-
 		// Is this a user subpage containing code?
 		$isCodeSubpage = NS_USER == $ns
 			&& !$isCodePage
@@ -247,9 +209,6 @@ abstract class ContentHandler {
 		// Is this wikitext, according to $wgNamespaceContentModels or the DefaultModelFor hook?
 		$isWikitext = is_null( $model ) || $model == CONTENT_MODEL_WIKITEXT;
 		$isWikitext = $isWikitext && !$isCodePage && !$isCodeSubpage;
-
-		// Hook can override $isWikitext
-		Hooks::run( 'TitleIsWikitextPage', [ $title, &$isWikitext ], '1.21' );
 
 		if ( !$isWikitext ) {
 			switch ( $ext ) {
@@ -402,7 +361,9 @@ abstract class ContentHandler {
 	public static function getContentModels() {
 		global $wgContentHandlers;
 
-		return array_keys( $wgContentHandlers );
+		$models = array_keys( $wgContentHandlers );
+		Hooks::run( 'GetContentModels', [ &$models ] );
+		return $models;
 	}
 
 	public static function getAllContentFormats() {
@@ -938,7 +899,7 @@ abstract class ContentHandler {
 			$onlyAuthor = $row->rev_user_text;
 			// Try to find a second contributor
 			foreach ( $res as $row ) {
-				if ( $row->rev_user_text != $onlyAuthor ) { // Bug 22999
+				if ( $row->rev_user_text != $onlyAuthor ) { // T24999
 					$onlyAuthor = false;
 					break;
 				}
@@ -1131,65 +1092,6 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * Call a legacy hook that uses text instead of Content objects.
-	 * Will log a warning when a matching hook function is registered.
-	 * If the textual representation of the content is changed by the
-	 * hook function, a new Content object is constructed from the new
-	 * text.
-	 *
-	 * @param string $event Event name
-	 * @param array $args Parameters passed to hook functions
-	 * @param string|null $deprecatedVersion Emit a deprecation notice
-	 *   when the hook is run for the provided version
-	 *
-	 * @return bool True if no handler aborted the hook
-	 */
-	public static function runLegacyHooks( $event, $args = [],
-		$deprecatedVersion = null
-	) {
-
-		if ( !Hooks::isRegistered( $event ) ) {
-			return true; // nothing to do here
-		}
-
-		// convert Content objects to text
-		$contentObjects = [];
-		$contentTexts = [];
-
-		foreach ( $args as $k => $v ) {
-			if ( $v instanceof Content ) {
-				/* @var Content $v */
-
-				$contentObjects[$k] = $v;
-
-				$v = $v->serialize();
-				$contentTexts[$k] = $v;
-				$args[$k] = $v;
-			}
-		}
-
-		// call the hook functions
-		$ok = Hooks::run( $event, $args, $deprecatedVersion );
-
-		// see if the hook changed the text
-		foreach ( $contentTexts as $k => $orig ) {
-			/* @var Content $content */
-
-			$modified = $args[$k];
-			$content = $contentObjects[$k];
-
-			if ( $modified !== $orig ) {
-				// text was changed, create updated Content object
-				$content = $content->getContentHandler()->unserializeContent( $modified );
-			}
-
-			$args[$k] = $content;
-		}
-
-		return $ok;
-	}
-
-	/**
 	 * Get fields definition for search index
 	 *
 	 * @todo Expose title, redirect, namespace, text, source_text, text_bytes
@@ -1204,7 +1106,6 @@ abstract class ContentHandler {
 			'category',
 			SearchIndexField::INDEX_TYPE_TEXT
 		);
-
 		$fields['category']->setFlag( SearchIndexField::FLAG_CASEFOLD );
 
 		$fields['external_link'] = $engine->makeSearchFieldMapping(
@@ -1221,8 +1122,12 @@ abstract class ContentHandler {
 			'template',
 			SearchIndexField::INDEX_TYPE_KEYWORD
 		);
-
 		$fields['template']->setFlag( SearchIndexField::FLAG_CASEFOLD );
+
+		$fields['content_model'] = $engine->makeSearchFieldMapping(
+			'content_model',
+			SearchIndexField::INDEX_TYPE_KEYWORD
+		);
 
 		return $fields;
 	}
@@ -1252,8 +1157,11 @@ abstract class ContentHandler {
 	 * @return array Map of name=>value for fields
 	 * @since 1.28
 	 */
-	public function getDataForSearchIndex( WikiPage $page, ParserOutput $output,
-	                                       SearchEngine $engine ) {
+	public function getDataForSearchIndex(
+		WikiPage $page,
+		ParserOutput $output,
+		SearchEngine $engine
+	) {
 		$fieldData = [];
 		$content = $page->getContent();
 
@@ -1270,6 +1178,7 @@ abstract class ContentHandler {
 			$fieldData['text'] = $text;
 			$fieldData['source_text'] = $text;
 			$fieldData['text_bytes'] = $content->getSize();
+			$fieldData['content_model'] = $content->getModel();
 		}
 
 		Hooks::run( 'SearchDataForIndex', [ &$fieldData, $this, $page, $output, $engine ] );

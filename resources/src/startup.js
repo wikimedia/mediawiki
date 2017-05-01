@@ -1,41 +1,50 @@
 /**
- * Code in this file MUST work on even the most ancient of browsers!
+ * This file is where we decide whether to initialise the Grade A run-time.
  *
- * This file is where we decide whether to initialise the modern run-time.
+ * - Beware: This file MUST parse without errors on even the most ancient of browsers!
+ * - Beware: Do not call mwNow before the isCompatible() check.
  */
-/*jshint unused: false */
-/*globals mw, RLQ: true, NORLQ: true, $VARS, $CODE, performance */
 
-var mediaWikiLoadStart = ( new Date() ).getTime(),
+/* global mw, mwPerformance, mwNow, isCompatible, $VARS, $CODE */
 
-	mwPerformance = ( window.performance && performance.mark ) ? performance : {
-		mark: function () {}
-	};
-
-mwPerformance.mark( 'mwLoadStart' );
+window.mwPerformance = ( window.performance && performance.mark ) ? performance : {
+	mark: function () {}
+};
+// Define now() here to ensure valid comparison with mediaWikiLoadEnd (T153819).
+window.mwNow = ( function () {
+	var perf = window.performance,
+		navStart = perf && perf.timing && perf.timing.navigationStart;
+	return navStart && typeof perf.now === 'function' ?
+		function () { return navStart + perf.now(); } :
+		function () { return Date.now(); };
+}() );
 
 /**
  * See <https://www.mediawiki.org/wiki/Compatibility#Browsers>
  *
  * Capabilities required for modern run-time:
+ * - ECMAScript 5
  * - DOM Level 4 & Selectors API Level 1
  * - HTML5 & Web Storage
  * - DOM Level 2 Events
  *
  * Browsers we support in our modern run-time (Grade A):
- * - Chrome
- * - IE 9+
- * - Firefox 3.5+
- * - Safari 4+
- * - Opera 10.5+
- * - Mobile Safari (iOS 1+)
- * - Android 2.0+
+ * - Chrome 13+
+ * - IE 10+
+ * - Firefox 4+
+ * - Safari 5+
+ * - Opera 12.10+
+ * - Mobile Safari 5.1+ (iOS 5+)
+ * - Android 4.1+
  *
  * Browsers we support in our no-javascript run-time (Grade C):
+ * - Chrome 1+
  * - IE 6+
  * - Firefox 3+
  * - Safari 3+
  * - Opera 10+
+ * - Mobile Safari 5.0+ (iOS 4+)
+ * - Android 2.0+
  * - WebOS < 1.5
  * - PlayStation
  * - Symbian-based browsers
@@ -44,33 +53,44 @@ mwPerformance.mark( 'mwLoadStart' );
  * - Nokia's Ovi Browser
  * - MeeGo's browser
  * - Google Glass
+ * - UC Mini (speed mode on)
  *
  * Other browsers that pass the check are considered Grade X.
+ *
+ * @param {string} [str] User agent, defaults to navigator.userAgent
+ * @return {boolean} User agent is compatible with MediaWiki JS
  */
-function isCompatible( str ) {
+window.isCompatible = function ( str ) {
 	var ua = str || navigator.userAgent;
 	return !!(
+		// http://caniuse.com/#feat=es5
+		// http://caniuse.com/#feat=use-strict
+		// http://caniuse.com/#feat=json / https://phabricator.wikimedia.org/T141344#2784065
+		( function () {
+			'use strict';
+			return !this && !!Function.prototype.bind && !!window.JSON;
+		}() ) &&
+
 		// http://caniuse.com/#feat=queryselector
-		'querySelector' in document
+		'querySelector' in document &&
 
 		// http://caniuse.com/#feat=namevalue-storage
 		// https://developer.blackberry.com/html5/apis/v1_0/localstorage.html
 		// https://blog.whatwg.org/this-week-in-html-5-episode-30
-		&& 'localStorage' in window
+		'localStorage' in window &&
 
 		// http://caniuse.com/#feat=addeventlistener
-		&& 'addEventListener' in window
+		'addEventListener' in window &&
 
 		// Hardcoded exceptions for browsers that pass the requirement but we don't want to
 		// support in the modern run-time.
-		&& !(
-			ua.match( /webOS\/1\.[0-4]/ ) ||
-			ua.match( /PlayStation/i ) ||
-			ua.match( /SymbianOS|Series60|NetFront|Opera Mini|S40OviBrowser|MeeGo/ ) ||
-			( ua.match( /Glass/ ) && ua.match( /Android/ ) )
+		// Note: Please extend the regex instead of adding new ones
+		!(
+			ua.match( /webOS\/1\.[0-4]|SymbianOS|Series60|NetFront|Opera Mini|S40OviBrowser|MeeGo|Android.+Glass|^Mozilla\/5\.0 .+ Gecko\/$|googleweblight/ ) ||
+			ua.match( /PlayStation/i )
 		)
 	);
-}
+};
 
 // Conditional script injection
 ( function () {
@@ -112,6 +132,7 @@ function isCompatible( str ) {
 
 		// Must be after mw.config.set because these callbacks may use mw.loader which
 		// needs to have values 'skin', 'debug' etc. from mw.config.
+		// eslint-disable-next-line vars-on-top
 		var RLQ = window.RLQ || [];
 		while ( RLQ.length ) {
 			RLQ.shift()();
@@ -128,6 +149,9 @@ function isCompatible( str ) {
 			push: function () {}
 		};
 	}
+
+	window.mediaWikiLoadStart = mwNow();
+	mwPerformance.mark( 'mwLoadStart' );
 
 	script = document.createElement( 'script' );
 	script.src = $VARS.baseModulesUri;

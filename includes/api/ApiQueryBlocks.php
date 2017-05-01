@@ -36,8 +36,6 @@ class ApiQueryBlocks extends ApiQueryBase {
 	}
 
 	public function execute() {
-		global $wgContLang;
-
 		$db = $this->getDB();
 		$params = $this->extractRequestParams();
 		$this->requireMaxOneParameter( $params, 'users', 'ip' );
@@ -114,16 +112,13 @@ class ApiQueryBlocks extends ApiQueryBase {
 				$cidrLimit = $blockCIDRLimit['IPv6'];
 				$prefixLen = 3; // IP::toHex output is prefixed with "v6-"
 			} else {
-				$this->dieUsage( 'IP parameter is not valid', 'param_ip' );
+				$this->dieWithError( 'apierror-badip', 'param_ip' );
 			}
 
 			# Check range validity, if it's a CIDR
 			list( $ip, $range ) = IP::parseCIDR( $params['ip'] );
 			if ( $ip !== false && $range !== false && $range < $cidrLimit ) {
-				$this->dieUsage(
-					"$type CIDR ranges broader than /$cidrLimit are not accepted",
-					'cidrtoobroad'
-				);
+				$this->dieWithError( [ 'apierror-cidrtoobroad', $type, $cidrLimit ] );
 			}
 
 			# Let IP::parseRange handle calculating $upper, instead of duplicating the logic here.
@@ -154,7 +149,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 				|| ( isset( $show['range'] ) && isset( $show['!range'] ) )
 				|| ( isset( $show['temp'] ) && isset( $show['!temp'] ) )
 			) {
-				$this->dieUsageMsg( 'show' );
+				$this->dieWithError( 'apierror-show' );
 			}
 
 			$this->addWhereIf( 'ipb_user = 0', isset( $show['!account'] ) );
@@ -207,7 +202,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 				$block['timestamp'] = wfTimestamp( TS_ISO_8601, $row->ipb_timestamp );
 			}
 			if ( $fld_expiry ) {
-				$block['expiry'] = $wgContLang->formatExpiry( $row->ipb_expiry, TS_ISO_8601 );
+				$block['expiry'] = ApiResult::formatExpiry( $row->ipb_expiry );
 			}
 			if ( $fld_reason ) {
 				$block['reason'] = $row->ipb_reason;
@@ -237,13 +232,19 @@ class ApiQueryBlocks extends ApiQueryBase {
 
 	protected function prepareUsername( $user ) {
 		if ( !$user ) {
-			$this->dieUsage( 'User parameter may not be empty', 'param_user' );
+			$encParamName = $this->encodeParamName( 'users' );
+			$this->dieWithError( [ 'apierror-baduser', $encParamName, wfEscapeWikiText( $user ) ],
+				"baduser_{$encParamName}"
+			);
 		}
 		$name = User::isIP( $user )
 			? $user
 			: User::getCanonicalName( $user, 'valid' );
 		if ( $name === false ) {
-			$this->dieUsage( "User name {$user} is not valid", 'param_user' );
+			$encParamName = $this->encodeParamName( 'users' );
+			$this->dieWithError( [ 'apierror-baduser', $encParamName, wfEscapeWikiText( $user ) ],
+				"baduser_{$encParamName}"
+			);
 		}
 		return $name;
 	}
@@ -334,6 +335,6 @@ class ApiQueryBlocks extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Blocks';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Blocks';
 	}
 }

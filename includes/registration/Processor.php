@@ -23,11 +23,11 @@ interface Processor {
 
 	/**
 	 * @return array With following keys:
-	 * 		'globals' - variables to be set to $GLOBALS
-	 * 		'defines' - constants to define
-	 * 		'callbacks' - functions to be executed by the registry
-	 * 		'credits' - metadata to be stored by registry
-	 * 		'attributes' - registration info which isn't a global variable
+	 *     'globals' - variables to be set to $GLOBALS
+	 *     'defines' - constants to define
+	 *     'callbacks' - functions to be executed by the registry
+	 *     'credits' - metadata to be stored by registry
+	 *     'attributes' - registration info which isn't a global variable
 	 */
 	public function getExtractedInfo();
 

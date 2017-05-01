@@ -43,7 +43,7 @@ $namespaceAliases = [
 
 $bookstoreList = [
 	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
-	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1',
+	'Amazon.com' => 'https://www.amazon.com/exec/obidos/ISBN=$1',
 	'Barnes & Noble' => 'http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
 	'Bhinneka.com bookstore' => 'http://www.bhinneka.com/Buku/Engine/search.asp?fisbn=$1',
 	'Gramedia Cyberstore (via Google)' => 'http://www.google.com/search?q=%22ISBN+:+$1%22+%22product_detail%22+site:www.gramediacyberstore.com+OR+site:www.gramediaonline.com+OR+site:www.kompas.com&hl=id',
@@ -310,4 +310,3 @@ $dateFormats = [
 	'ymd date' => 'Y F j',
 	'ymd both' => 'Y F j H.i',
 ];
-

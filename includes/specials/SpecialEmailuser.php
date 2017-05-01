@@ -20,6 +20,7 @@
  * @file
  * @ingroup SpecialPage
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * A special page that allows users to send e-mails to other users
@@ -52,13 +53,14 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	}
 
 	protected function getFormFields() {
+		$linkRenderer = $this->getLinkRenderer();
 		return [
 			'From' => [
 				'type' => 'info',
 				'raw' => 1,
-				'default' => Linker::link(
+				'default' => $linkRenderer->makeLink(
 					$this->getUser()->getUserPage(),
-					htmlspecialchars( $this->getUser()->getName() )
+					$this->getUser()->getName()
 				),
 				'label-message' => 'emailfrom',
 				'id' => 'mw-emailuser-sender',
@@ -66,9 +68,9 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			'To' => [
 				'type' => 'info',
 				'raw' => 1,
-				'default' => Linker::link(
+				'default' => $linkRenderer->makeLink(
 					$this->mTargetObj->getUserPage(),
-					htmlspecialchars( $this->mTargetObj->getName() )
+					$this->mTargetObj->getName()
 				),
 				'label-message' => 'emailto',
 				'id' => 'mw-emailuser-recipient',
@@ -223,18 +225,19 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	public static function getPermissionsError( $user, $editToken, Config $config = null ) {
 		if ( $config === null ) {
 			wfDebug( __METHOD__ . ' called without a Config instance passed to it' );
-			$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+			$config = MediaWikiServices::getInstance()->getMainConfig();
 		}
 		if ( !$config->get( 'EnableEmail' ) || !$config->get( 'EnableUserEmail' ) ) {
 			return 'usermaildisabled';
 		}
 
-		if ( !$user->isAllowed( 'sendemail' ) ) {
-			return 'badaccess';
-		}
-
+		// Run this before $user->isAllowed, to show appropriate message to anons (T160309)
 		if ( !$user->isEmailConfirmed() ) {
 			return 'mailnologin';
+		}
+
+		if ( !$user->isAllowed( 'sendemail' ) ) {
+			return 'badaccess';
 		}
 
 		if ( $user->isBlockedFromEmailuser() ) {
@@ -286,7 +289,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				'text',
 				[
 					'id' => 'emailusertarget',
-					'class' => 'mw-autocomplete-user',  // used by mediawiki.userSuggest
+					'class' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
 					'autofocus' => true,
 					'size' => 30,
 				]
@@ -305,7 +308,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @since 1.20
 	 * @param array $data
 	 * @param HTMLForm $form
-	 * @return Status|string|bool
+	 * @return Status|bool
 	 */
 	public static function uiSubmit( array $data, HTMLForm $form ) {
 		return self::submit( $data, $form->getContext() );
@@ -318,8 +321,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 *
 	 * @param array $data
 	 * @param IContextSource $context
-	 * @return Status|string|bool Status object, or potentially a String on error
-	 * or maybe even true on success if anything uses the EmailUser hook.
+	 * @return Status|bool
 	 */
 	public static function submit( array $data, IContextSource $context ) {
 		$config = $context->getConfig();
@@ -327,7 +329,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$target = self::getTarget( $data['Target'] );
 		if ( !$target instanceof User ) {
 			// Messages used here: notargettext, noemailtext, nowikiemailtext
-			return $context->msg( $target . 'text' )->parseAsBlock();
+			return Status::newFatal( $target . 'text' );
 		}
 
 		$to = MailAddress::newFromUser( $target );
@@ -340,9 +342,33 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$text .= $context->msg( 'emailuserfooter',
 			$from->name, $to->name )->inContentLanguage()->text();
 
-		$error = '';
+		$error = false;
 		if ( !Hooks::run( 'EmailUser', [ &$to, &$from, &$subject, &$text, &$error ] ) ) {
-			return $error;
+			if ( $error instanceof Status ) {
+				return $error;
+			} elseif ( $error === false || $error === '' || $error === [] ) {
+				// Possibly to tell HTMLForm to pretend there was no submission?
+				return false;
+			} elseif ( $error === true ) {
+				// Hook sent the mail itself and indicates success?
+				return Status::newGood();
+			} elseif ( is_array( $error ) ) {
+				$status = Status::newGood();
+				foreach ( $error as $e ) {
+					$status->fatal( $e );
+				}
+				return $status;
+			} elseif ( $error instanceof MessageSpecifier ) {
+				return Status::newFatal( $error );
+			} else {
+				// Ugh. Either a raw HTML string, or something that's supposed
+				// to be treated like one.
+				$type = is_object( $error ) ? get_class( $error ) : gettype( $error );
+				wfDeprecated( "EmailUser hook returning a $type as \$error", '1.29' );
+				return Status::newFatal( new ApiRawMessage(
+					[ '$1', Message::rawParam( (string)$error ) ], 'hookaborted'
+				) );
+			}
 		}
 
 		if ( $config->get( 'UserEmailUseReplyTo' ) ) {

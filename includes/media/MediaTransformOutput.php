@@ -439,19 +439,12 @@ class ThumbnailImage extends MediaTransformOutput {
  * @ingroup Media
  */
 class MediaTransformError extends MediaTransformOutput {
-	/** @var string HTML formatted version of the error */
-	private $htmlMsg;
-
-	/** @var string Plain text formatted version of the error */
-	private $textMsg;
+	/** @var Message */
+	private $msg;
 
 	function __construct( $msg, $width, $height /*, ... */ ) {
 		$args = array_slice( func_get_args(), 3 );
-		$htmlArgs = array_map( 'htmlspecialchars', $args );
-		$htmlArgs = array_map( 'nl2br', $htmlArgs );
-
-		$this->htmlMsg = wfMessage( $msg )->rawParams( $htmlArgs )->escaped();
-		$this->textMsg = wfMessage( $msg )->rawParams( $htmlArgs )->text();
+		$this->msg = wfMessage( $msg )->params( $args );
 		$this->width = intval( $width );
 		$this->height = intval( $height );
 		$this->url = false;
@@ -461,20 +454,28 @@ class MediaTransformError extends MediaTransformOutput {
 	function toHtml( $options = [] ) {
 		return "<div class=\"MediaTransformError\" style=\"" .
 			"width: {$this->width}px; height: {$this->height}px; display:inline-block;\">" .
-			$this->htmlMsg .
+			$this->getHtmlMsg() .
 			"</div>";
 	}
 
 	function toText() {
-		return $this->textMsg;
+		return $this->msg->text();
 	}
 
 	function getHtmlMsg() {
-		return $this->htmlMsg;
+		return $this->msg->escaped();
+	}
+
+	function getMsg() {
+		return $this->msg;
 	}
 
 	function isError() {
 		return true;
+	}
+
+	function getHttpStatusCode() {
+		return 500;
 	}
 }
 
@@ -488,7 +489,12 @@ class TransformParameterError extends MediaTransformError {
 		parent::__construct( 'thumbnail_error',
 			max( isset( $params['width'] ) ? $params['width'] : 0, 120 ),
 			max( isset( $params['height'] ) ? $params['height'] : 0, 120 ),
-			wfMessage( 'thumbnail_invalid_params' )->text() );
+			wfMessage( 'thumbnail_invalid_params' )
+		);
+	}
+
+	function getHttpStatusCode() {
+		return 400;
 	}
 }
 
@@ -501,14 +507,18 @@ class TransformParameterError extends MediaTransformError {
 class TransformTooBigImageAreaError extends MediaTransformError {
 	function __construct( $params, $maxImageArea ) {
 		$msg = wfMessage( 'thumbnail_toobigimagearea' );
+		$msg->rawParams(
+			$msg->getLanguage()->formatComputingNumbers( $maxImageArea, 1000, "size-$1pixel" )
+		);
 
 		parent::__construct( 'thumbnail_error',
 			max( isset( $params['width'] ) ? $params['width'] : 0, 120 ),
 			max( isset( $params['height'] ) ? $params['height'] : 0, 120 ),
-			$msg->rawParams(
-				$msg->getLanguage()->formatComputingNumbers(
-					$maxImageArea, 1000, "size-$1pixel" )
-				)->text()
-			);
+			$msg
+		);
+	}
+
+	function getHttpStatusCode() {
+		return 400;
 	}
 }

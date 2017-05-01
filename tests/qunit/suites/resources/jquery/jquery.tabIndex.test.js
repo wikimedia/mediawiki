@@ -1,7 +1,7 @@
 ( function ( $ ) {
 	QUnit.module( 'jquery.tabIndex', QUnit.newMwEnvironment() );
 
-	QUnit.test( 'firstTabIndex', 2, function ( assert ) {
+	QUnit.test( 'firstTabIndex', function ( assert ) {
 		var html, $testA, $testB;
 		html = '<form>' +
 			'<input tabindex="7" />' +
@@ -17,7 +17,7 @@
 		assert.strictEqual( $testB.firstTabIndex(), null, 'Return null if none available.' );
 	} );
 
-	QUnit.test( 'lastTabIndex', 2, function ( assert ) {
+	QUnit.test( 'lastTabIndex', function ( assert ) {
 		var html, $testA, $testB;
 		html = '<form>' +
 			'<input tabindex="7" />' +

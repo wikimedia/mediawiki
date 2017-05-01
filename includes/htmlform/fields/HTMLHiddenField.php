@@ -11,7 +11,7 @@ class HTMLHiddenField extends HTMLFormField {
 		}
 
 		# Per HTML5 spec, hidden fields cannot be 'required'
-		# http://www.w3.org/TR/html5/forms.html#hidden-state-%28type=hidden%29
+		# https://www.w3.org/TR/html5/forms.html#hidden-state-%28type=hidden%29
 		unset( $this->mParams['required'] );
 	}
 

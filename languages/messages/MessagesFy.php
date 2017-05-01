@@ -129,4 +129,3 @@ $specialPageAliases = [
 
 $separatorTransformTable = [ ',' => '.', '.' => ',' ];
 $linkTrail = '/^([a-zàáèéìíòóùúâêîôûäëïöü]+)(.*)$/sDu';
-

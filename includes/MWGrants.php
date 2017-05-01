@@ -17,6 +17,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * A collection of public static functions to deal with grants.
@@ -178,9 +179,10 @@ class MWGrants {
 	 * @return string (proto-relative) HTML link
 	 */
 	public static function getGrantsLink( $grant, $lang = null ) {
-		return \Linker::linkKnown(
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		return $linkRenderer->makeKnownLink(
 			\SpecialPage::getTitleFor( 'Listgrants', false, $grant ),
-			htmlspecialchars( self::grantName( $grant, $lang ) )
+			self::grantName( $grant, $lang )
 		);
 	}
 

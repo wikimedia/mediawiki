@@ -8,7 +8,7 @@
 		padding: 0;
 		margin: 0;
 		background: none;
-		border: none;
+		border: 0;
 	}
 
 	table {
@@ -37,7 +37,7 @@
 		tr {
 			background-color: #fff;
 
-			&:nth-child(even) {
+			&:nth-child( even ) {
 				background-color: #f9f9f9;
 			}
 		}
@@ -63,9 +63,6 @@
 	display: inline-block;
 	padding: 10px 5px;
 	font-size: 13px;
-	/* IE-hack for display: inline-block */
-	zoom: 1;
-	*display: inline;
 }
 
 .mw-debug-panelink {
@@ -185,6 +182,6 @@ a.mw-debug-panelabel:visited {
 }
 
 /* Cheapo hack to hide the first 3 lines of the backtrace */
-.mw-debug-backtrace li:nth-child(-n+3) {
+.mw-debug-backtrace li:nth-child( -n+3 ) {
 	display: none;
 }

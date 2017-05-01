@@ -157,4 +157,3 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'Nexus_ad_paginam' ],
 	'Withoutinterwiki'          => [ 'Paginae_sine_nexibus_ad_linguas_alias', 'Paginae_sine_nexibus_intervicis' ],
 ];
-

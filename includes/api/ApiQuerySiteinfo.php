@@ -23,6 +23,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * A query action to return meta information about the wiki site.
@@ -86,6 +87,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					break;
 				case 'languages':
 					$fit = $this->appendLanguages( $p );
+					break;
+				case 'languagevariants':
+					$fit = $this->appendLanguageVariants( $p );
 					break;
 				case 'skins':
 					$fit = $this->appendSkins( $p );
@@ -253,6 +257,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['maxuploadsize'] = UploadBase::getMaxUploadSize();
 		$data['minuploadchunksize'] = (int)$config->get( 'MinUploadChunkSize' );
 
+		$data['galleryoptions'] = $config->get( 'GalleryOptions' );
+
 		$data['thumblimits'] = $config->get( 'ThumbLimits' );
 		ApiResult::setArrayType( $data['thumblimits'], 'BCassoc' );
 		ApiResult::setIndexedTagName( $data['thumblimits'], 'limit' );
@@ -386,7 +392,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$langCode = isset( $params['inlanguagecode'] ) ? $params['inlanguagecode'] : '';
 		$langNames = Language::fetchLanguageNames( $langCode );
 
-		$getPrefixes = Interwiki::getAllPrefixes( $local );
+		$getPrefixes = MediaWikiServices::getInstance()->getInterwikiLookup()->getAllPrefixes( $local );
 		$extraLangPrefixes = $this->getConfig()->get( 'ExtraInterlanguageLinkPrefixes' );
 		$localInterwikis = $this->getConfig()->get( 'LocalInterwikis' );
 		$data = [];
@@ -445,10 +451,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$showHostnames = $this->getConfig()->get( 'ShowHostnames' );
 		if ( $includeAll ) {
 			if ( !$showHostnames ) {
-				$this->dieUsage(
-					'Cannot view all servers info unless $wgShowHostnames is true',
-					'includeAllDenied'
-				);
+				$this->dieWithError( 'apierror-siteinfo-includealldenied', 'includeAllDenied' );
 			}
 
 			$lags = $lb->getLagTimes();
@@ -576,7 +579,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		ApiResult::setIndexedTagName( $data, 'library' );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
-
 	}
 
 	protected function appendExtensions( $property ) {
@@ -714,6 +716,49 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
+	// Export information about which page languages will trigger
+	// language conversion. (T153341)
+	public function appendLanguageVariants( $property ) {
+		$langNames = LanguageConverter::$languagesWithVariants;
+		if ( $this->getConfig()->get( 'DisableLangConversion' ) ) {
+			// Ensure result is empty if language conversion is disabled.
+			$langNames = [];
+		}
+		sort( $langNames );
+
+		$data = [];
+		foreach ( $langNames as $langCode ) {
+			$lang = Language::factory( $langCode );
+			if ( $lang->getConverter() instanceof FakeConverter ) {
+				// Only languages which do not return instances of
+				// FakeConverter implement language conversion.
+				continue;
+			}
+			$data[$langCode] = [];
+			ApiResult::setIndexedTagName( $data[$langCode], 'variant' );
+			ApiResult::setArrayType( $data[$langCode], 'kvp', 'code' );
+
+			$variants = $lang->getVariants();
+			sort( $variants );
+			foreach ( $variants as $v ) {
+				$fallbacks = $lang->getConverter()->getVariantFallbacks( $v );
+				if ( !is_array( $fallbacks ) ) {
+					$fallbacks = [ $fallbacks ];
+				}
+				$data[$langCode][$v] = [
+					'fallbacks' => $fallbacks,
+				];
+				ApiResult::setIndexedTagName(
+					$data[$langCode][$v]['fallbacks'], 'variant'
+				);
+			}
+		}
+		ApiResult::setIndexedTagName( $data, 'lang' );
+		ApiResult::setArrayType( $data, 'kvp', 'code' );
+
+		return $this->getResult()->addValue( 'query', $property, $data );
+	}
+
 	public function appendSkins( $property ) {
 		$data = [];
 		$allowed = Skin::getAllowedSkins();
@@ -773,7 +818,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function appendProtocols( $property ) {
-		// Make a copy of the global so we don't try to set the _element key of it - bug 45130
+		// Make a copy of the global so we don't try to set the _element key of it - T47130
 		$protocols = array_values( $this->getConfig()->get( 'UrlProtocols' ) );
 		ApiResult::setArrayType( $protocols, 'BCarray' );
 		ApiResult::setIndexedTagName( $protocols, 'p' );
@@ -852,6 +897,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'rightsinfo',
 					'restrictions',
 					'languages',
+					'languagevariants',
 					'skins',
 					'extensiontags',
 					'functionhooks',
@@ -887,6 +933,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Siteinfo';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Siteinfo';
 	}
 }

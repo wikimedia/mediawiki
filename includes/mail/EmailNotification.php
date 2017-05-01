@@ -316,7 +316,7 @@ class EmailNotification {
 		$pageTitle = $this->title->getPrefixedText();
 
 		if ( $this->oldid ) {
-			// Always show a link to the diff which triggered the mail. See bug 32210.
+			// Always show a link to the diff which triggered the mail. See T34210.
 			$keys['$NEWPAGE'] = "\n\n" . wfMessage( 'enotif_lastdiff',
 					$this->title->getCanonicalURL( [ 'diff' => 'next', 'oldid' => $this->oldid ] ) )
 					->inContentLanguage()->text();
@@ -363,7 +363,7 @@ class EmailNotification {
 			Skin::makeInternalOrExternalUrl( wfMessage( 'helppage' )->inContentLanguage()->text() )
 		);
 
-		# Replace this after transforming the message, bug 35019
+		# Replace this after transforming the message, T37019
 		$postTransformKeys['$PAGESUMMARY'] = $this->summary == '' ? ' - ' : $this->summary;
 
 		// Now build message's subject and body

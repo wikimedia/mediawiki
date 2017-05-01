@@ -1,6 +1,433 @@
-Change notes from older releases. For current info see RELEASE-NOTES-1.28.
+Change notes from older releases. For current info see RELEASE-NOTES-1.29.
+
+= MediaWiki 1.28 =
+
+== MediaWiki 1.28.1 ==
+
+This is a security and maintenance release of the MediaWiki 1.28 branch.
+
+=== Changes since 1.28.0 ===
+
+* $wgRunJobsAsync is now false by default (T142751). This change only affects
+  wikis with $wgJobRunRate > 0.
+* Fix fatal from "WaitConditionLoop" not being found, experienced when a wiki has
+  more than one database server setup.
+* (T152717) Better escaping for PHP mail() command,
+* (T154670) A missing method causing the MySQL installer to fatal in rare
+  circumstances was restored.
+* (T154672) Un-deprecate ArticleAfterFetchContentObject hook.
+* (T158766) Avoid SQL error on MSSQL when using selectRowCount().
+* (T145635) Fix too long index error when installing with MSSQL.
+* (T156184) $wgRawHtml will no longer apply to internationalization messages.
+* (T160519) CACHE_ANYTHING will not be CACHE_ACCEL if no accelerator is installed.
+* (T154872) Fix incorrect ar_usertext_timestamp index names in new 1.28 installs.
+* (T109140) (T122209) SECURITY: Special:UserLogin and Special:Search allow redirect
+  to interwiki links.
+* (T144845) SECURITY: XSS in SearchHighlighter::highlightText() when
+  $wgAdvancedSearchHighlighting is true.
+* (T125177) SECURITY: API parameters may now be marked as "sensitive" to keep
+  their values out of the logs.
+* (T150044) SECURITY: "Mark all pages visited" on the watchlist now requires a CSRF
+  token.
+* (T156184) SECURITY: Escape content model/format url parameter in message.
+* (T151735) SECURITY: SVG filter evasion using default attribute values in DTD
+  declaration.
+* (T161453) SECURITY: LocalisationCache will no longer use the temporary directory
+  in it's fallback chain when trying to work out where to write the cache.
+* (T48143) SECURITY: Spam blacklist ineffective on encoded URLs inside file inclusion
+  syntax's link parameter.
+* (T108138) SECURITY: Sysops can undelete pages, although the page is protected against
+  it.
+
+== MediaWiki 1.28 ==
+
+=== Changes since 1.28.0-rc1 ===
+* (T148957) Replace wgShowExceptionDetails with wgShowDBErrorBacktrace on db
+  errors.
+* (T148956) Only apply wgDBschema to postgres/mssql.
+* (T145991) Introduce separate log action for deleting pages on move.
+* (T141474) (T110464) Bypass login page if no user input is required.
+
+=== Changes since 1.28.0-rc0 ===
+* (T142210) The changes to move the parser "NewPP limit report" from a HTML
+  comment to a machine-readable JavaScript config option 'wgPageParseReport'
+  have been undone. They caused the human-readable limit report to be shown
+  incompletely or not at all. ParserOutput::setLimitReportData() and
+  getLimitReportData() behave as they did in MediaWiki 1.27 again.
+* (T149510) Value of {{DISPLAYTITLE:}} parser function will not be used for
+  the text of subheadings on a category page when creating it. This wasn't
+  working correctly.
+* (T106793) MediaWiki will no longer try to perform a HTTP redirect to the
+  canonical pretty URL when a non-pretty URL is used. It resulted in redirect
+  loops in some clients and in some server configurations. This undoes a change
+  made in MediaWiki 1.26.
+* (T149759) manifest_version: 2 was removed.
+
+=== Configuration changes in 1.28 ===
+* $wgSend404Code now affects status code of action=history if the page is not there.
+* BREAKING CHANGE: $wgHTTPProxy is now *required* for all external requests
+  made by MediaWiki via a proxy. Relying on the http_proxy environment
+  variable is no longer supported.
+* The load.php entry point now enforces the existing policy of not allowing
+  access to session data, which includes the session user and the session
+  user's language. If such access is attempted, an exception will be thrown.
+* The number of internal PBKDF2 iterations used to derive the session secret
+  is configurable via $wgSessionPbkdf2Iterations.
+* Upload dialog's file upload log comment can now be configured separately for
+  local and foreign uploads.
+* $wgForeignUploadTargets now defaults to `[ 'local' ]`, where `'local'`
+  signifies local uploads. A value of `[]` (empty array) now means that
+  no upload targets are allowed, effectively disabling the upload dialog.
+* The deprecated $wgEditEncoding variable has been removed; it was only used
+  for Esperanto language character conversion. You are now recommended to use
+  input methods provided by the UniversalLanguageSelector extension.
+* When $wgPingback is true, MediaWiki will periodically ping
+  https://www.mediawiki.org/beacon with basic information about the local
+  MediaWiki installation. This data includes, for example, the type of system,
+  PHP version, and chosen database backend. This behavior is off by default.
+* When $wgEditSubmitButtonLabelPublish is true, MediaWiki will label the button
+  to store-to-database-and-show-to-others as "Publish page"/"Publish changes";
+  if false, the default, they will be "Save page"/"Save changes".
+* The 'editcontentmodel' permission is now granted to all logged-in users ('user').
+  instead of just administrators ('sysop'). Documentation for this feature is
+  available at <https://www.mediawiki.org/wiki/Help:ChangeContentModel>.
+* $wgRevisionCacheExpiry is now set to one week by default instead of being disabled.
+* Magic links are now disabled by default, and can be re-enabled by modifying the value
+  of $wgEnableMagicLinks. Their usage is discouraged, but if they are manually enabled,
+  a tracking category will be added to help identify usage and make it easier to migrate
+  away from. If you depend upon magic link functionality, it is requested that you comment
+  on <https://www.mediawiki.org/wiki/Requests_for_comment/Future_of_magic_links> and
+  explain your use case(s).
+* New config variable $wgCSPFalsePositiveUrls to control what URLs to ignore
+  in upcoming Content-Security-Policy feature's reporting.
+
+=== New features in 1.28 ===
+* User::isBot() method for checking if an account is a bot role account.
+* Added a new 'slideshow' mode for galleries.
+* Added a new hook, 'UserIsBot', to aid in determining if a user is a bot.
+* Added a new hook, 'ApiMakeParserOptions', to allow extensions to better
+  interact with API parsing.
+* Added a new hook, 'UploadVerifyUpload', which can be used to reject a file
+  upload. Unlike 'UploadVerifyFile' it provides information about upload comment
+  and the file description page, but does not run for uploads to stash.
+* (T141604) Extensions can now provide a better error message when their
+  maintenance scripts are run without the extension being installed.
+* (T8948) Numeric sorting in categories is now supported by setting $wgCategoryCollation
+  to 'uca-default-u-kn' or 'uca-<langcode>-u-kn'. If you can't use UCA collations,
+  a 'numeric' collation is also available. If migrating from another
+  collation, you will need to run the updateCollation.php maintenance script.
+* Two new codes have been added to #time parser function: "xit" for days in current
+  month, and "xiz" for days passed in the year, both in Iranian calendar.
+* mw.Api has a new option, useUS, to use U+001F (Unit Separator) when
+  appropriate for sending multi-valued parameters. This defaults to true when
+  the mw.Api instance seems to be for the local wiki.
+* After a client performs an action which alters a database that has replica databases,
+  MediaWiki will wait for the replica databases to synchronize with the master database
+  while it renders the HTML output. However, if the output is a redirect to another wiki
+  on the wiki farm with a different domain, MediaWiki will instead alter the redirect
+  URL to include a ?cpPosTime parameter that triggers the database synchronization when
+  the URL is followed by the client. The same-domain case uses a new cpPosTime cookie.
+* Added new hooks, 'ApiQueryBaseBeforeQuery', 'ApiQueryBaseAfterQuery', and
+  'ApiQueryBaseProcessRow', to make it easier for extensions to add 'prop' and
+  'show' parameters to existing API query modules.
+
+=== External library changes in 1.28 ===
+
+==== Upgraded external libraries ====
+* Updated es5-shim from v4.1.5 to v4.5.8
+* Updated composer/semver from v1.4.1 to v1.4.2
+* Updated wikimedia/php-session-serializer from v1.0.3 to v1.0.4
+
+==== New external libraries ====
+* Added wikimedia/scoped-callback v1.0.0
+* Added wikimedia/wait-condition-loop v1.0.1
+
+=== Bug fixes in 1.28 ===
+* (T146496) action=history pages should return 404 HTTP error code if the page does not exist
+* (T137264) SECURITY: XSS in unclosed internal links
+* (T133147) SECURITY: Escape '<' and ']]>' in inline <style> blocks
+* (T133147) SECURITY: Require login to preview user CSS pages
+* (T132926) SECURITY: Do not allow undeleting a revision deleted file if it is
+  the top file
+* (T129738) SECURITY: Make $wgBlockDisablesLogin also restrict logged in
+  permissions
+* (T129738) SECURITY: Make blocks log users out if $wgBlockDisablesLogin is true
+* (T139670) Move 'UserGetRights' call before application of
+  Session::getAllowedUserRights()
+
+=== Action API changes in 1.28 ===
+* Added 'maxarticlesize' property to action=query&meta=siteinfo which contains
+  the value of $wgMaxArticleSize.
+* Property 'modulemessages' from action=parse&prop=modules was removed
+  (deprecated since 1.26).
+* The following response properties from action=login, deprecated in 1.27, are
+  now removed: lgtoken, cookieprefix, sessionid. Clients should handle cookies
+  to properly manage session state.
+* Submitting the lgtoken and lgpassword parameters in the query string to
+  action=login is now deprecated and outputs a warning. They should be submitted
+  in the POST body instead.
+* Submitting sensitive authentication request parameters to action=clientlogin,
+  action=createaccount, action=linkaccount, and action=changeauthenticationdata
+  in the query string is now deprecated and outputs a warning. They should be
+  submitted in the POST body instead.
+* (T141960) Multi-valued parameters may now be separated using U+001F (Unit Separator)
+  instead of the pipe character. This will be useful if some of the multiple
+  values need to contain pipes, e.g. for action=options.
+* The API will now warn if input is not NFC-normalized Unicode or if it
+  contains invalid characters.
+* The 'normalized' list output by action=query and other modules that use
+  ApiPageSet may contain entries where the 'from' value is percent-encoded as
+  the raw value cannot be represented in a valid API response. These are
+  indicated by a 'fromencoded' boolean alongside the existing 'from' parameter.
+* (T28680) action=paraminfo can now return info about all submodules of a
+  module without listing them all explicitly.
+* (T146770) It is now possible to assert that the current user is a specific
+  named user, using the 'assertuser' parameter.
+* (T141963) Added a 'known' property when missing-but-known titles (e.g. from
+  the 'TitleIsAlwaysKnown' hook) are output in various modules.
+
+=== Action API internal changes in 1.28 ===
+* Added a new hook, 'ApiMakeParserOptions', to allow extensions to better
+  interact with ApiParse and ApiExpandTemplates.
+* (T139565) SECURITY: API: Generate head items in the context of the given title
+* (T115333) SECURITY: Check read permission when loading page content in ApiParse
+* ApiBase::getResultData() was removed (deprecated since 1.25)
+* ApiBase::makeHelpArrayToString() was removed (deprecated since 1.25)
+* ApiBase::makeHelpMsgParameters() was removed (deprecated since 1.25)
+* ApiBase::makeHelpMsg() was removed (deprecated since 1.25)
+* ApiFormatBase::formatHTML() was removed (deprecated since 1.25)
+* ApiFormatBase::getNeedsRawData() was removed (deprecated since 1.25)
+* ApiFormatBase::getWantsHelp() was removed (deprecated since 1.25)
+* ApiFormatBase::setBufferResult() was removed (deprecated since 1.25)
+* ApiFormatBase::setHelp() was removed (deprecated since 1.25)
+* ApiFormatBase::setUnescapeAmps() was removed (deprecated since 1.25)
+* ApiMain::makeHelpMsgHeader() was removed (deprecated since 1.25)
+* ApiMain::reallyMakeHelpMsg() was removed (deprecated since 1.25)
+* ApiMain::setHelp() was removed (deprecated since 1.25)
+* ApiResult::beginContinuation() was removed (deprecated since 1.25)
+* ApiResult::cleanUpUTF8() was removed (deprecated since 1.25)
+* ApiResult::convertStatusToArray() was removed (deprecated since 1.25)
+* ApiResult::disableSizeCheck() was removed (deprecated since 1.24)
+* ApiResult::enableSizeCheck() was removed (deprecated since 1.24)
+* ApiResult::endContinuation() was removed (deprecated since 1.25)
+* ApiResult::getData() was removed (deprecated since 1.25)
+* ApiResult::getIsRawMode() was removed (deprecated since 1.25)
+* ApiResult::setContent() was removed (deprecated since 1.25)
+* ApiResult::setContinueParam() was removed (deprecated since 1.25)
+* ApiResult::setElement() was removed (deprecated since 1.25)
+* ApiResult::setGeneratorContinueParam() was removed (deprecated since 1.25)
+* ApiResult::setIndexedTagName_internal() was removed (deprecated since 1.25)
+* ApiResult::setIndexedTagName_recursive() was removed (deprecated since 1.25)
+* ApiResult::setMainForContinuation() was removed (deprecated since 1.25)
+* ApiResult::setParsedLimit() was removed (deprecated since 1.25)
+* ApiResult::setRawMode() was removed (deprecated since 1.25)
+* ApiResult::size() was removed (deprecated since 1.25)
+* Added new hooks, 'ApiQueryBaseBeforeQuery', 'ApiQueryBaseAfterQuery', and
+  'ApiQueryBaseProcessRow', to make it easier for extensions to add 'prop' and
+  'show' parameters to existing API query modules. A query module can enable
+  these hooks by passing an array for $hookData to ApiQueryBase::select() and
+  by calling ApiQueryBase->processRow() before adding a row's data to the
+  result.
+
+=== Languages updated in 1.28 ===
+
+MediaWiki supports over 375 languages. Many localisations are updated
+regularly. Below only new and removed languages are listed, as well as
+changes to languages because of Phabricator reports.
+
+* (T137411) ban (Balinese), thanks to translators Adi Mayndra, Andru,
+  BASAbali, M. Adiputra, Naval Scene, Nemo bis, NoiX180, and 아라.
+* (T135867) shn (Shan), thanks to translators Khun Sar, Piangpha,
+  Saiddzone Saimawnkham, Saosukham, and Sengwan.
+* Czech (cs) and Slovak (sk) set as reciprocal fallbacks.
+* (T146744) Livvi-Karelian (olo) namespace messages created thanks to translator Ilja.mos.
+
+=== Other changes in 1.28 ===
+* (T128697) Improved handling of large diffs.
+* [BREAKING CHANGE] $wgExtendedLoginCookies has been removed. You can
+  use or update a custom session provider if needed.
+* Deprecated APIEditBeforeSave hook in favor of EditFilterMergedContent.
+* The 'UploadVerification' hook is deprecated. Use 'UploadVerifyFile' instead.
+* SiteConfiguration::isLocalVHost() was removed (deprecated since 1.25).
+* The 'UserLoginComplete' hook has a new parameter to differentiate between actual
+  login and visiting the login page while already logged in.
+* ResourceLoader::makeLoaderURL() was removed (deprecated since 1.24).
+* $.fn.liveAndTestAtStart was removed (deprecated since 1.24).
+* mw.util.tooltipAccessKeyPrefix was removed (deprecated since 1.24).
+* mw.util.tooltipAccessKeyRegexp was removed (deprecated since 1.24).
+* Linker::link() and Linker::linkKnown() were deprecated; please instead use
+  MediaWiki\Linker\LinkRenderer. In addition, the LinkBegin and LinkEnd hooks
+  were replaced by HtmlPageLinkRendererBegin and HtmlPageLinkRendererEnd
+  respectively. See docs/hooks.txt for the specific changes needed for those hooks.
+* Linker::formatSize() was deprecated. Use Language::formatSize() directly.
+* Aliases for Linker methods, deprecated since 1.21, were removed from Skin:
+  * Skin::commentBlock() (use Linker::commentBlock() instead)
+  * Skin::generateRollback() (use Linker::generateRollback() instead)
+  * Skin::link() (use MediaWiki\Linker\LinkRenderer instead)
+  * Skin::linkKnown() (use MediaWiki\Linker\LinkRenderer instead)
+  * Skin::userLink() (use Linker::userLink() instead)
+  * Skin::userToolLinks() (use Linker::userToolLinks() instead)
+* Disabled "bug 2702" HTML tidying of parsed UI messages on wikis where Tidy is
+  disabled.
+* DifferenceEngine::generateDiffBody() was removed (deprecated since 1.21).
+* UploadBase::stashFileGetKey() and UploadBase::stashSession() were deprecated.
+  Use ...->stashFile()->getFileKey() instead.
+* "Public domain" was removed as a wiki license option from the installer, in
+  favour of CC-0.
+* AuthenticationRequest::$required is now changed from REQUIRED to PRIMARY_REQUIRED
+  on requests needed by primary providers even if all primaries need them.
+  Primary providers are discouraged from returning multiple REQUIRED requests.
+* OOjs UI PHP widgets constructed with the `'infusable' => true` config option
+  will no longer be automatically infused. You should call `OO.ui.infuse()`
+  on them yourself from your JavaScript code.
+* parserTests.php has moved to tests/parser/parserTests.php
+* The command line options specific to parser tests have been removed from
+  phpunit.php: --regex and --keep-uploads. Instead of --regex, use --filter.
+  Instead of --keep-uploads, use the same option to parserTests.php, but you
+  must specify a directory with --upload-dir.
+* The 'jquery.arrowSteps' ResourceLoader module is now deprecated.
+* IP::isConfiguredProxy() and IP::isTrustedProxy() were removed. Callers should
+  migrate to using the same functions on a ProxyLookup instance, obtainable from
+  MediaWikiServices.
+* The ArticleAfterFetchContent, ArticleInsertComplete, ArticleSave, ArticleSaveComplete,
+  ArticleViewCustom, EditFilterMerged, EditPageGetDiffText, EditPageGetPreviewText and
+  ShowRawCssJs hooks will now emit deprecation warnings if used.
+* (T68404) CSS3 attr() function with url type is no longer allowed
+  in inline styles.
+* Database::getSearchEngine() is deprecated, use SearchEngineFactory::getSearchEngineClass
+  instead.
+
+== Compatibility ==
+
+MediaWiki 1.28 requires PHP 5.5.9 or later. There is experimental support for
+HHVM 3.6.5 or later.
+
+MySQL is the recommended DBMS. PostgreSQL or SQLite can also be used, but
+support for them is somewhat less mature. There is experimental support for
+Oracle and Microsoft SQL Server.
+
+The supported versions are:
+
+* MySQL 5.0.3 or later
+* PostgreSQL 8.3 or later
+* SQLite 3.3.7 or later
+* Oracle 9.0.1 or later
+* Microsoft SQL Server 2005 (9.00.1399)
+
+== Upgrading ==
+
+1.28 has several database changes since 1.27, and will not work without schema
+updates. Note that due to changes to some very large tables like the revision
+table, the schema update may take quite long (minutes on a medium sized site,
+many hours on a large site).
+
+If upgrading from before 1.11, and you are using a wiki as a commons
+repository, make sure that it is updated as well. Otherwise, errors may arise
+due to database schema changes.
+
+If upgrading from before 1.7, you may want to run refreshLinks.php to ensure
+new database fields are filled with data.
+
+If you are upgrading from MediaWiki 1.4.x or earlier, you should upgrade to
+1.5 first. The upgrade script maintenance/upgrade1_5.php has been removed
+with MediaWiki 1.21.
+
+Don't forget to always back up your database before upgrading!
+
+See the file UPGRADE for more detailed upgrade instructions.
+
+For notes on 1.27.x and older releases, see HISTORY.
+
+== Online documentation ==
+
+Documentation for both end-users and site administrators is available on
+MediaWiki.org, and is covered under the GNU Free Documentation License (except
+for pages that explicitly state that their contents are in the public domain):
+
+       https://www.mediawiki.org/wiki/Special:MyLanguage/Documentation
+
+== Mailing list ==
+
+A mailing list is available for MediaWiki user support and discussion:
+
+       https://lists.wikimedia.org/mailman/listinfo/mediawiki-l
+
+A low-traffic announcements-only list is also available:
+
+       https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce
+
+It's highly recommended that you sign up for one of these lists if you're
+going to run a public MediaWiki, so you can be notified of security fixes.
+
+== IRC help ==
+
+There's usually someone online in #mediawiki on irc.freenode.net.
 
 = MediaWiki 1.27 =
+
+== MediaWiki 1.27.2 ==
+This is a security and maintenance release of the MediaWiki 1.27 branch.
+
+ApiCreateAccount was removed in 1.27.0. It was incorrectly still marked as
+deprecated (rather than already removed) in the RELEASE-NOTES at the point 1.27.0
+was released.
+
+=== Changes since 1.27.1 ===
+
+* (T68404) CSS3 attr() function with url type argument is no longer allowed
+  in inline styles.
+* $wgRunJobsAsync is now false by default (T142751). This change only affects
+  wikis with $wgJobRunRate > 0.
+* (T152717) Better escaping for PHP mail() command
+* Submitting the lgtoken and lgpassword parameters in the query string to
+  action=login is now deprecated and outputs a warning. They should be submitted
+  in the POST body instead.
+* Submitting sensitive authentication request parameters to action=clientlogin,
+  action=createaccount, action=linkaccount, and action=changeauthenticationdata
+  in the query string is now deprecated and outputs a warning. They should be
+  submitted in the POST body instead.
+* (T158766) Avoid SQL error on MSSQL when using selectRowCount()
+* (T145635) Fix too long index error when installing with MSSQL.
+* (T156184) $wgRawHtml will no longer apply to internationalization messages.
+* (T160519) CACHE_ANYTHING will not be CACHE_ACCEL if no accelerator is installed.
+* (T109140) (T122209) SECURITY: Special:UserLogin and Special:Search allow redirect
+  to interwiki links.
+* (T144845) SECURITY: XSS in SearchHighlighter::highlightText() when
+  $wgAdvancedSearchHighlighting is true.
+* (T125177) SECURITY: API parameters may now be marked as "sensitive" to keep
+  their values out of the logs.
+* (T150044) SECURITY: "Mark all pages visited" on the watchlist now requires a CSRF
+  token.
+* (T156184) SECURITY: Escape content model/format url parameter in message.
+* (T151735) SECURITY: SVG filter evasion using default attribute values in DTD
+  declaration.
+* (T161453) SECURITY: LocalisationCache will no longer use the temporary directory
+  in it's fallback chain when trying to work out where to write the cache.
+* (T48143) SECURITY: Spam blacklist ineffective on encoded URLs inside file inclusion
+  syntax's link parameter.
+* (T108138) SECURITY: Sysops can undelete pages, although the page is protected against
+  it.
+
+== MediaWiki 1.27.1 ==
+
+This is a maintenance release of the MediaWiki 1.27 branch.
+
+=== Changes since 1.27.0 ===
+* BREAKING CHANGE: $wgHTTPProxy is now *required* for all external requests
+  made by MediaWiki via a proxy. Relying on the http_proxy environment
+  variable is no longer supported.
+* (T139565) SECURITY: API: Generate head items in the context of the given title
+* (T137264) SECURITY: XSS in unclosed internal links
+* (T133147) SECURITY: Escape '<' and ']]>' in inline <style> blocks
+* (T133147) SECURITY: Require login to preview user CSS pages
+* (T132926) SECURITY: Do not allow undeleting a revision deleted file if it is
+  the top file
+* (T129738) SECURITY: Make $wgBlockDisablesLogin also restrict logged in
+  permissions
+* (T129738) SECURITY: Make blocks log users out if $wgBlockDisablesLogin is true
+* (T115333) SECURITY: Check read permission when loading page content in ApiParse
+* (T57548) Remove support for $wgWellFormedXml = false, all output is now well formed
+* (T139670) Move 'UserGetRights' call before application of Session::getAllowedUserRights()
 
 == MediaWiki 1.27.0 ==
 
@@ -328,7 +755,7 @@ The following PHP extensions are strongly recommended:
 * ApiMain::addFormat() was removed (deprecated in 1.21).
 * ApiMain::getFormats() was removed (deprecated in 1.21).
 * ApiPageSet::finishPageSetGeneration() was removed (deprecated in 1.21).
-* ApiCreateAccount is deprecated, and will be removed soon.
+* ApiCreateAccount was removed.
 
 === Languages updated in 1.27 ===
 
@@ -584,6 +1011,55 @@ For notes on 1.26.x and older releases, see HISTORY.
 
 
 = MediaWiki 1.26 =
+
+== MediaWiki 1.26.4 ==
+
+This is a maintenance release of the MediaWiki 1.26 branch.
+
+=== Changes since 1.26.3 ===
+* BREAKING CHANGE: $wgHTTPProxy is now *required* for all external requests
+  made by MediaWiki via a proxy. Relying on the http_proxy environment
+  variable is no longer supported.
+* (T124163) Fixed fatal error in DifferenceEngine under HHVM.
+* (T139565) SECURITY: API: Generate head items in the context of the given title
+* (T137264) SECURITY: XSS in unclosed internal links
+* (T133147) SECURITY: Escape '<' and ']]>' in inline <style> blocks
+* (T133147) SECURITY: Require login to preview user CSS pages
+* (T132926) SECURITY: Do not allow undeleting a revision deleted file if it is
+  the top file
+* (T129738) SECURITY: Make $wgBlockDisablesLogin also restrict logged in
+  permissions
+* (T129738) SECURITY: Make blocks log users out if $wgBlockDisablesLogin is true
+* (T115333) SECURITY: Check read permission when loading page content in ApiParse
+* Remove support for $wgWellFormedXml = false, all output is now well formed
+
+== MediaWiki 1.26.3 ==
+
+This is a maintenance release of the MediaWiki 1.26 branch.
+
+=== Changes since 1.26.2 ===
+* (T116266) Fixed undefined property notices in DairikiDiff under HHVM.
+* (T123166) Fix fatal error when importing pages to titles which cannot be
+  created, such as invalid titles or titles the user is not allowed to edit.
+* (T122056) Old tokens are remaining valid within a new session
+* (T127114) Login throttle can be tricked using non-canonicalized usernames
+* (T123653) Cross-domain policy regexp is too narrow
+* (T123071) Incorrectly identifying http link in a's href attributes, due to
+  m modifier in regex
+* (T129506) MediaWiki:Gadget-popups.js isn't renderable
+* (T125283) Users occasionally logged in as different users after
+  SessionManager deployment
+* (T103239) Patrol allows click catching and patrolling of any page
+* (T122807) [tracking] Check php crypto primatives
+* (T98313) Graphs can leak tokens, leading to CSRF
+* (T130947) Diff generation should use PoolCounter
+* (T133507) Careless use of $wgExternalLinkTarget is insecure
+* (T132874) API action=move is not rate limited
+* (T110143) strip markers can be used to get around html attribute escaping in
+  (many?) parser tags
+* (T116030) Increase pbkdf2 parameter strengths
+* (T127420) Pbkdf2Password does not check if hash_pbkdf2() succeeded
+* (T126685) Globally throttle password attempts
 
 == MediaWiki 1.26.2 ==
 
@@ -862,6 +1338,33 @@ changes to languages because of Phabricator reports.
 * DeferredUpdates::addHTMLCacheUpdate() was removed.
 
 = MediaWiki 1.25 =
+
+== MediaWiki 1.25.6 ==
+
+This is a maintenance release of the MediaWiki 1.25 branch.
+
+=== Changes since 1.25.5 ===
+* (T123166) Fix fatal error when importing pages to titles which cannot be
+  created, such as invalid titles or titles the user is not allowed to edit.
+* (T122056) Old tokens are remaining valid within a new session
+* (T127114) Login throttle can be tricked using non-canonicalized usernames
+* (T123653) Cross-domain policy regexp is too narrow
+* (T123071) Incorrectly identifying http link in a's href attributes, due to
+  m modifier in regex
+* (T129506) MediaWiki:Gadget-popups.js isn't renderable
+* (T125283) Users occasionally logged in as different users after
+  SessionManager deployment
+* (T103239) Patrol allows click catching and patrolling of any page
+* (T122807) [tracking] Check php crypto primatives
+* (T98313) Graphs can leak tokens, leading to CSRF
+* (T130947) Diff generation should use PoolCounter
+* (T133507) Careless use of $wgExternalLinkTarget is insecure
+* (T132874) API action=move is not rate limited
+* (T110143) strip markers can be used to get around html attribute escaping in
+  (many?) parser tags
+* (T116030) Increase pbkdf2 parameter strengths
+* (T127420) Pbkdf2Password does not check if hash_pbkdf2() succeeded
+* (T126685) Globally throttle password attempts
 
 == MediaWiki 1.25.5 ==
 
@@ -2248,6 +2751,52 @@ of files that are no longer available follows.
 * skins/common/images/ksh/button_S_italic.png
 
 = MediaWiki 1.23 =
+
+== MediaWiki 1.23.16 ==
+This is a security and maintenance release of the MediaWiki 1.23 branch.
+
+=== Changes since 1.23.15 ===
+* (T68404) CSS3 attr() function with url type is no longer allowed
+  in inline styles.
+* (T156184) $wgRawHtml will no longer apply to internationalization messages.
+* Submitting the lgtoken and lgpassword parameters in the query string to
+  action=login is now deprecated and outputs a warning. They should be submitted
+  in the POST body instead.
+* (T109140) (T122209) SECURITY: Special:UserLogin and Special:Search allow redirect
+  to interwiki links.
+* (T144845) SECURITY: XSS in SearchHighlighter::highlightText() when
+  $wgAdvancedSearchHighlighting is true.
+* (T125177) SECURITY: API parameters may now be marked as "sensitive" to keep
+  their values out of the logs.
+* (T150044) SECURITY: "Mark all pages visited" on the watchlist now requires a CSRF
+  token.
+* (T156184) SECURITY: Escape content model/format url parameter in message.
+* (T151735) SECURITY: SVG filter evasion using default attribute values in DTD
+  declaration.
+* (T48143) SECURITY: Spam blacklist ineffective on encoded URLs inside file inclusion
+  syntax's link parameter.
+* (T108138) SECURITY: Sysops can undelete pages, although the page is protected against
+  it.
+
+== MediaWiki 1.23.15 ==
+
+This is a maintenance release of the MediaWiki 1.23 branch.
+
+=== Changes since 1.23.14 ===
+* BREAKING CHANGE: $wgHTTPProxy is now *required* for all external requests
+  made by MediaWiki via a proxy. Relying on the http_proxy environment
+  variable is no longer supported.
+* (T139565) SECURITY: API: Generate head items in the context of the given title
+* (T137264) SECURITY: XSS in unclosed internal links
+* (T133147) SECURITY: Escape '<' and ']]>' in inline <style> blocks
+* (T133147) SECURITY: Require login to preview user CSS pages
+* (T132926) SECURITY: Do not allow undeleting a revision deleted file if it is
+  the top file
+* (T129738) SECURITY: Make $wgBlockDisablesLogin also restrict logged in
+  permissions
+* (T129738) SECURITY: Make blocks log users out if $wgBlockDisablesLogin is true
+* (T115333) SECURITY: Check read permission when loading page content in ApiParse
+* Remove support for $wgWellFormedXml = false, all output is now well formed
 
 == MediaWiki 1.23.13 ==
 

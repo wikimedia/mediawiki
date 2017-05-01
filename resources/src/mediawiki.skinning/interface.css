@@ -8,8 +8,8 @@
 
 /* Categories */
 .catlinks {
-	border: 1px solid #aaa;
-	background-color: #f9f9f9;
+	border: 1px solid #a2a9b1;
+	background-color: #f8f9fa;
 	padding: 5px;
 	margin-top: 1em;
 	clear: both;
@@ -17,13 +17,13 @@
 
 textarea {
 	/* Support Firefox: Border rule required to override system appearance on Linux */
-	border: 1px solid #c0c0c0;
+	border: 1px solid #a2a9b1;
 }
 
 .editOptions {
-	background-color: #f0f0f0;
-	border: 1px solid #c0c0c0;
-	border-top: none;
+	background-color: #eaecf0;
+	border: 1px solid #c8ccd1;
+	border-top: 0;
 	padding: 1em 1em 1.5em 1em;
 	margin-bottom: 2em;
 }
@@ -34,7 +34,7 @@ textarea {
 	color: #000;
 	font-weight: bold;
 	margin: 2em 0 1em;
-	padding: .5em 1em;
+	padding: 0.5em 1em;
 	vertical-align: middle;
 }
 
@@ -49,9 +49,9 @@ textarea {
 }
 
 .firstHeading {
-	margin-bottom: .1em;
-	/* These two rules hack around bug 2013 (fix for more limited bug 11325).
-	 * When bug 2013 is fixed properly, they should be removed. */
+	margin-bottom: 0.1em;
+	/* These two rules hack around T4013 (fix for more limited T13325).
+	 * When T4013 is fixed properly, they should be removed. */
 	line-height: 1.2em;
 	padding-bottom: 0;
 }

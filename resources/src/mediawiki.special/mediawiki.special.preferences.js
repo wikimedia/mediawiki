@@ -3,7 +3,7 @@
  */
 ( function ( mw, $ ) {
 	$( function () {
-		var $preftoc, $preferences, $fieldsets, labelFunc,
+		var $preftoc, $preferences, $fieldsets, labelFunc, previousTab,
 			$tzSelect, $tzTextbox, $localtimeHolder, servertime, allowCloseWindow,
 			convertmessagebox = require( 'mediawiki.notification.convertmessagebox' );
 
@@ -108,11 +108,13 @@
 			var hash = location.hash,
 				matchedElement, parentSection;
 			if ( hash.match( /^#mw-prefsection-[\w\-]+/ ) ) {
+				mw.storage.session.remove( 'mwpreferences-prevTab' );
 				switchPrefTab( hash.replace( '#mw-prefsection-', '' ) );
 			} else if ( hash.match( /^#mw-[\w\-]+/ ) ) {
 				matchedElement = document.getElementById( hash.slice( 1 ) );
 				parentSection = $( matchedElement ).closest( '.prefsection' );
 				if ( parentSection.length ) {
+					mw.storage.session.remove( 'mwpreferences-prevTab' );
 					// Switch to proper tab and scroll to selected item.
 					switchPrefTab( parentSection.attr( 'id' ).replace( 'mw-prefsection-', '' ), 'noHash' );
 					matchedElement.scrollIntoView();
@@ -235,21 +237,18 @@
 			updateTimezoneSelection();
 		}
 
-		// Preserve the tab after saving the preferences
-		// Not using cookies, because their deletion results are inconsistent.
-		// Not using jStorage due to its enormous size (for this feature)
-		if ( window.sessionStorage ) {
-			if ( sessionStorage.getItem( 'mediawikiPreferencesTab' ) !== null ) {
-				switchPrefTab( sessionStorage.getItem( 'mediawikiPreferencesTab' ), 'noHash' );
-			}
+		// Restore the active tab after saving the preferences
+		previousTab = mw.storage.session.get( 'mwpreferences-prevTab' );
+		if ( previousTab ) {
+			switchPrefTab( previousTab, 'noHash' );
 			// Deleting the key, the tab states should be reset until we press Save
-			sessionStorage.removeItem( 'mediawikiPreferencesTab' );
-
-			$( '#mw-prefs-form' ).submit( function () {
-				var storageData = $( $preftoc ).find( 'li.selected a' ).attr( 'id' ).replace( 'preftab-', '' );
-				sessionStorage.setItem( 'mediawikiPreferencesTab', storageData );
-			} );
+			mw.storage.session.remove( 'mwpreferences-prevTab' );
 		}
+
+		$( '#mw-prefs-form' ).on( 'submit', function () {
+			var value = $( $preftoc ).find( 'li.selected a' ).attr( 'id' ).replace( 'preftab-', '' );
+			mw.storage.session.set( 'mwpreferences-prevTab', value );
+		} );
 
 		// Check if all of the form values are unchanged
 		function isPrefsChanged() {

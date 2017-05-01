@@ -3,7 +3,7 @@
 
 	// TODO: verify checkboxes == [ 'nsassociated', 'nsinvert' ]
 
-	QUnit.test( '"all" namespace disable checkboxes', 8, function ( assert ) {
+	QUnit.test( '"all" namespace disable checkboxes', function ( assert ) {
 		var selectHtml, $env, $options,
 			rc = require( 'mediawiki.special.recentchanges' );
 

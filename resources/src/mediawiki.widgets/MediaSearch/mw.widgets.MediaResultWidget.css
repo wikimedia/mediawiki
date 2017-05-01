@@ -1,0 +1,87 @@
+/*!
+ * MediaWiki Widgets - MediaResultWidget styles.
+ *
+ * @copyright 2011-2016 VisualEditor Team and others; see AUTHORS.txt
+ * @license The MIT License (MIT); see LICENSE.txt
+ */
+
+.mw-widget-mediaResultWidget {
+	display: inline-block;
+	position: relative;
+	padding: 0;
+	margin: 2px;
+	overflow: hidden;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.mw-widget-mediaResultWidget-error {
+	background-color: #f3f3f3;
+}
+
+.mw-widget-mediaResultWidget-thumbnail {
+	opacity: 0;
+	display: inline-block;
+	-webkit-transition: opacity 400ms;
+	-moz-transition: opacity 400ms;
+	transition: opacity 400ms;
+}
+
+.mw-widget-mediaResultWidget-done .mw-widget-mediaResultWidget-thumbnail,
+.mw-widget-mediaResultWidget-error .mw-widget-mediaResultWidget-thumbnail {
+	opacity: 1;
+}
+
+.mw-widget-mediaResultWidget-crop {
+	background-size: cover;
+	background-position: center center;
+}
+
+.mw-widget-mediaResultWidget-overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	box-shadow: inset 0 0 0 1px #ccc;
+}
+
+.mw-widget-mediaResultWidget.oo-ui-optionWidget-highlighted,
+.mw-widget-mediaResultWidget.oo-ui-optionWidget-selected {
+	box-shadow: 0 0 0.3em #a7dcff, 0 0 0 #fff;
+}
+
+.mw-widget-mediaResultWidget-error .mw-widget-mediaResultWidget-thumbnail {
+	/* @embed */
+	background-image: url( broken-image.png );
+	background-size: auto;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.mw-widget-mediaResultWidget .mw-widget-mediaResultWidget-nameLabel {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	overflow: hidden;
+	padding: 0.5em;
+	color: #fff;
+	text-shadow: 1px 1px #000;
+	line-height: 1.125em;
+	background-color: rgba( 0, 0, 0, 0.5 );
+	text-overflow: ellipsis;
+	text-align: left;
+}
+
+.mw-widget-mediaResultWidget.oo-ui-optionWidget-highlighted .mw-widget-mediaResultWidget-nameLabel {
+	background-color: rgba( 0, 0, 0, 0.75 );
+}
+
+.mw-widget-mediaResultWidget.oo-ui-optionWidget-selected .mw-widget-mediaResultWidget-nameLabel {
+	background-color: #000;
+}
+
+.mw-widget-mediaSearchWidget-noresults {
+	padding-top: 1em;
+}

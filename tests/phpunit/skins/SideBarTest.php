@@ -123,7 +123,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * bug 33321 - Make sure there's a | after transforming.
+	 * T35321 - Make sure there's a | after transforming.
 	 * @group Database
 	 * @covers SkinTemplate::addToSidebarPlain
 	 */

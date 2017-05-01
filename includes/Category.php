@@ -96,7 +96,7 @@ class Category {
 		$this->mSubcats = $row->cat_subcats;
 		$this->mFiles = $row->cat_files;
 
-		# (bug 13683) If the count is negative, then 1) it's obviously wrong
+		# (T15683) If the count is negative, then 1) it's obviously wrong
 		# and should not be kept, and 2) we *probably* don't have to scan many
 		# rows to obtain the correct figure, so let's risk a one-time recount.
 		if ( $this->mPages < 0 || $this->mSubcats < 0 || $this->mFiles < 0 ) {
@@ -168,7 +168,7 @@ class Category {
 	 * @param Title $title Optional title object for the category represented by
 	 *   the given row. May be provided if it is already known, to avoid having
 	 *   to re-create a title object later.
-	 * @return Category
+	 * @return Category|false
 	 */
 	public static function newFromRow( $row, $title = null ) {
 		$cat = new self();
@@ -321,6 +321,13 @@ class Category {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
+		# Avoid excess contention on the same category (T162121)
+		$name = __METHOD__ . ':' . md5( $this->mName );
+		$scopedLock = $dbw->getScopedLockAndFlush( $name, __METHOD__, 1 );
+		if ( !$scopedLock ) {
+			return;
+		}
+
 		$dbw->startAtomic( __METHOD__ );
 
 		$cond1 = $dbw->conditional( [ 'page_namespace' => NS_CATEGORY ], 1, 'NULL' );

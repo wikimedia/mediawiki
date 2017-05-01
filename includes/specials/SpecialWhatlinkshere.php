@@ -21,6 +21,8 @@
  * @todo Use some variant of Pager or something; the pagination here is lousy.
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Implements Special:Whatlinkshere
  *
@@ -327,7 +329,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$query = [];
 		}
 
-		$link = Linker::linkKnown(
+		$link = $this->getLinkRenderer()->makeKnownLink(
 			$nt,
 			null,
 			$row->page_is_redirect ? [ 'class' => 'mw-redirect' ] : [],
@@ -376,9 +378,15 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$title = $this->getPageTitle();
 		}
 
+		$linkRenderer = $this->getLinkRenderer();
+
+		if ( $text !== null ) {
+			$text = new HtmlArmor( $text );
+		}
+
 		// always show a "<- Links" link
 		$links = [
-			'links' => Linker::linkKnown(
+			'links' => $linkRenderer->makeKnownLink(
 				$title,
 				$text,
 				[],
@@ -393,7 +401,11 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			// check, if the content model is editable through action=edit
 			ContentHandler::getForTitle( $target )->supportsDirectEditing()
 		) {
-			$links['edit'] = Linker::linkKnown(
+			if ( $editText !== null ) {
+				$editText = new HtmlArmor( $editText );
+			}
+
+			$links['edit'] = $linkRenderer->makeKnownLink(
 				$target,
 				$editText,
 				[],
@@ -406,7 +418,11 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	}
 
 	function makeSelfLink( $text, $query ) {
-		return Linker::linkKnown(
+		if ( $text !== null ) {
+			$text = new HtmlArmor( $text );
+		}
+
+		return $this->getLinkRenderer()->makeKnownLink(
 			$this->selfTitle,
 			$text,
 			[],

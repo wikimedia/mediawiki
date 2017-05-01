@@ -105,4 +105,3 @@ $dateFormats = [
 	'CNS 7648 compact date'  => '"ROC" xoY-m-d (l)',
 	'CNS 7648 compact both'  => '"ROC" xoY-m-d (D) H:i',
 ];
-

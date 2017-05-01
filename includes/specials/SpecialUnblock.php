@@ -119,14 +119,14 @@ class SpecialUnblock extends SpecialPage {
 				$fields['Target']['type'] = 'hidden';
 				switch ( $type ) {
 					case Block::TYPE_IP:
-						$fields['Name']['default'] = Linker::linkKnown(
+						$fields['Name']['default'] = $this->getLinkRenderer()->makeKnownLink(
 							SpecialPage::getTitleFor( 'Contributions', $target->getName() ),
 							$target->getName()
 						);
 						$fields['Name']['raw'] = true;
 						break;
 					case Block::TYPE_USER:
-						$fields['Name']['default'] = Linker::link(
+						$fields['Name']['default'] = $this->getLinkRenderer()->makeLink(
 							$target->getUserPage(),
 							$target->getName()
 						);
@@ -175,7 +175,7 @@ class SpecialUnblock extends SpecialPage {
 	 * @param array $data
 	 * @param IContextSource $context
 	 * @throws ErrorPageError
-	 * @return array|bool Array(message key, parameters) on failure, True on success
+	 * @return array|bool Array( Array( message key, parameters ) ) on failure, True on success
 	 */
 	public static function processUnblock( array $data, IContextSource $context ) {
 		$performer = $context->getUser();
@@ -186,7 +186,7 @@ class SpecialUnblock extends SpecialPage {
 			return [ [ 'ipb_cant_unblock', $target ] ];
 		}
 
-		# bug 15810: blocked admins should have limited access here.  This
+		# T17810: blocked admins should have limited access here.  This
 		# won't allow sysops to remove autoblocks on themselves, but they
 		# should have ipblock-exempt anyway
 		$status = SpecialBlock::checkUnblockSelf( $target, $performer );
@@ -209,10 +209,17 @@ class SpecialUnblock extends SpecialPage {
 			return [ 'unblock-hideuser' ];
 		}
 
+		$reason = [ 'hookaborted' ];
+		if ( !Hooks::run( 'UnblockUser', [ &$block, &$performer, &$reason ] ) ) {
+			return $reason;
+		}
+
 		# Delete block
 		if ( !$block->delete() ) {
-			return [ 'ipb_cant_unblock', htmlspecialchars( $block->getTarget() ) ];
+			return [ [ 'ipb_cant_unblock', htmlspecialchars( $block->getTarget() ) ] ];
 		}
+
+		Hooks::run( 'UnblockUserComplete', [ $block, $performer ] );
 
 		# Unset _deleted fields as needed
 		if ( $block->mHideName ) {

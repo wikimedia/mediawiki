@@ -56,22 +56,22 @@ wbr {
 
 /* Input types that should follow user direction, like buttons */
 /* TODO: What about buttons in wikipage content ? */
-input[type="submit"],
-input[type="button"],
-input[type="reset"],
-input[type="file"] {
+input[type='submit'],
+input[type='button'],
+input[type='reset'],
+input[type='file'] {
 	direction: ltr;
 }
 
 /* Override default values */
-textarea[dir="ltr"],
-input[dir="ltr"] {
+textarea[dir='ltr'],
+input[dir='ltr'] {
 	/* @noflip */
 	direction: ltr;
 }
 
-textarea[dir="rtl"],
-input[dir="rtl"] {
+textarea[dir='rtl'],
+input[dir='rtl'] {
 	/* @noflip */
 	direction: rtl;
 }
@@ -83,10 +83,10 @@ abbr[title],
 	cursor: help;
 }
 
-@supports (text-decoration: underline dotted) {
+@supports ( text-decoration: underline dotted ) {
 	abbr[title],
 	.explain[title] {
-		border-bottom: none;
+		border-bottom: 0;
 		text-decoration: underline dotted;
 	}
 }
@@ -124,6 +124,16 @@ span.comment {
 	font-family: serif;
 }
 
+/* Underline preference */
+
+.mw-underline-always a {
+	text-decoration: underline;
+}
+
+.mw-underline-never a {
+	text-decoration: none;
+}
+
 /**
  * rev_deleted stuff
  */
@@ -156,6 +166,7 @@ div.patrollink {
  */
 td.mw-label {
 	text-align: right;
+	vertical-align: middle;
 }
 
 td.mw-input {
@@ -164,19 +175,7 @@ td.mw-input {
 
 td.mw-submit {
 	text-align: left;
-}
-
-td.mw-label {
-	vertical-align: middle;
-}
-
-td.mw-submit {
 	white-space: nowrap;
-}
-
-input#wpSummary {
-	width: 80%;
-	margin-bottom: 1em;
 }
 
 .mw-input-with-label {
@@ -216,7 +215,7 @@ input#wpSummary {
 #catlinks {
 	/**
 	 * Overrides text justification (user preference)
-	 * See bug 31990
+	 * See T33990
 	 */
 	text-align: left;
 }
@@ -234,19 +233,19 @@ input#wpSummary {
 .catlinks li {
 	display: inline-block;
 	line-height: 1.25em;
-	border-left: 1px solid #aaa;
+	border-left: 1px solid #a2a9b1;
 	margin: 0.125em 0;
 	padding: 0 0.5em;
 	zoom: 1;
-	display: inline !ie;
+	display: inline !ie; /* stylelint-disable-line declaration-block-no-duplicate-properties */
 }
 
 .catlinks li:first-child {
 	padding-left: 0.25em;
-	border-left: none;
+	border-left: 0;
 }
 
-/* (bug 5346) make category redirects italic */
+/* (T7346) make category redirects italic */
 .catlinks li a.mw-redirect {
 	font-style: italic;
 }
@@ -293,7 +292,7 @@ p.mw-delete-editreasons {
 div.mw-warning-with-logexcerpt {
 	padding: 3px;
 	margin-bottom: 3px;
-	border: 2px solid #2f6fab;
+	border: 2px solid #2a4b8d;
 	clear: both;
 }
 
@@ -318,19 +317,34 @@ th.mw-revdel-checkbox {
 	text-align: center;
 }
 
-/* red links; see bug 36276 */
+/* red links; see T38276 */
 a.new {
 	color: #ba0000;
+}
+
+/* self links */
+a.mw-selflink {
+	color: inherit;
+	font-weight: bold;
+	text-decoration: inherit;
+}
+a.mw-selflink:hover {
+	cursor: inherit;
+	text-decoration: inherit;
+}
+a.mw-selflink:active,
+a.mw-selflink:visited {
+	color: inherit;
 }
 
 /* Plainlinks - this can be used to switch
  * off special external link styling */
 .plainlinks a.external {
-	background: none !important;
-	padding: 0 !important;
+	background: none !important; /* stylelint-disable-line declaration-no-important */
+	padding: 0 !important; /* stylelint-disable-line declaration-no-important */
 }
 
-/* External URLs should always be treated as LTR (bug 4330) */
+/* External URLs should always be treated as LTR (T6330) */
 /* @noflip */ .rtl a.external.free,
 .rtl a.external.autonumber {
 	direction: ltr;
@@ -343,8 +357,8 @@ a.new {
  */
 table.wikitable {
 	margin: 1em 0;
-	background-color: #f9f9f9;
-	border: 1px solid #aaa;
+	background-color: #f8f9fa;
+	border: 1px solid #a2a9b1;
 	border-collapse: collapse;
 	color: #000;
 }
@@ -353,13 +367,13 @@ table.wikitable > tr > th,
 table.wikitable > tr > td,
 table.wikitable > * > tr > th,
 table.wikitable > * > tr > td {
-	border: 1px solid #aaa;
+	border: 1px solid #a2a9b1;
 	padding: 0.2em 0.4em;
 }
 
 table.wikitable > tr > th,
 table.wikitable > * > tr > th {
-	background-color: #f2f2f2;
+	background-color: #eaecf0;
 	text-align: center;
 }
 
@@ -390,11 +404,11 @@ table.wikitable > caption {
 .warningbox,
 .successbox {
 	border: 1px solid;
-	padding: .5em 1em;
+	padding: 0.5em 1em;
 	margin-bottom: 1em;
 	display: inline-block;
 	zoom: 1;
-	*display: inline;
+	*display: inline; /* stylelint-disable-line declaration-block-no-duplicate-properties */
 }
 
 .errorbox h2,
@@ -404,8 +418,8 @@ table.wikitable > caption {
 	color: inherit;
 	font-weight: bold;
 	display: inline;
-	margin: 0 .5em 0 0;
-	border: none;
+	margin: 0 0.5em 0 0;
+	border: 0;
 }
 
 .errorbox {
@@ -472,7 +486,7 @@ table.wikitable > caption {
 .mw-datatable,
 .mw-datatable td,
 .mw-datatable th {
-	border: 1px solid #aaa;
+	border: 1px solid #a2a9b1;
 	padding: 0 0.15em 0 0.15em;
 }
 
@@ -485,7 +499,7 @@ table.wikitable > caption {
 }
 
 .mw-datatable tr:hover td {
-	background-color: #eef;
+	background-color: #eaf3ff;
 }
 
 /* Correct directionality when page dir is different from site/user dir */
@@ -541,103 +555,106 @@ table.wikitable > caption {
 }
 
 .mw-small-spinner {
-	padding: 10px !important;
+	padding: 10px !important; /* stylelint-disable-line declaration-no-important */
 	margin-right: 0.6em;
 	background-image: url( images/spinner.gif );
 	background-position: center center;
 	background-repeat: no-repeat;
 }
 
-/* Language specific height correction for titles. Ref Bug 29405 and Bug 30809 */
+/* Language specific height correction for titles. Ref T31405 and T32809 */
 /* Languages like hi or ml require slightly more vertical space to show diacritics properly */
-h1:lang(anp),
-h1:lang(as),
-h1:lang(bh), /* Macrolanguage, used on bh.wikipedia.org, should be removed one day */
-h1:lang(bho),
-h1:lang(bn),
-h1:lang(gu),
-h1:lang(hi),
-h1:lang(kn),
-h1:lang(ks),
-h1:lang(ml),
-h1:lang(mr),
-h1:lang(my),
-h1:lang(mai),
-h1:lang(ne),
-h1:lang(new),
-h1:lang(or),
-h1:lang(pa),
-h1:lang(pi),
-h1:lang(sa),
-h1:lang(ta),
-h1:lang(te) {
-	line-height: 1.6em !important;
+h1:lang( anp ),
+h1:lang( as ),
+h1:lang( bh ), /* Macrolanguage, used on bh.wikipedia.org, should be removed one day */
+h1:lang( bho ),
+h1:lang( bn ),
+h1:lang( gu ),
+h1:lang( hi ),
+h1:lang( kn ),
+h1:lang( ks ),
+h1:lang( ml ),
+h1:lang( mr ),
+h1:lang( my ),
+h1:lang( mai ),
+h1:lang( ne ),
+h1:lang( new ),
+h1:lang( or ),
+h1:lang( pa ),
+h1:lang( pi ),
+h1:lang( sa ),
+h1:lang( ta ),
+h1:lang( te ) {
+	line-height: 1.6em !important; /* stylelint-disable-line declaration-no-important */
 }
 
-h2:lang(anp), h3:lang(anp), h4:lang(anp), h5:lang(anp), h6:lang(anp),
-h2:lang(as), h3:lang(as), h4:lang(as), h5:lang(as), h6:lang(as),
-h2:lang(bho), h3:lang(bho), h4:lang(bho), h5:lang(bho), h6:lang(bho),
-h2:lang(bh), h3:lang(bh), h4:lang(bh), h5:lang(bh), h6:lang(bh),
-h2:lang(bn), h3:lang(bn), h4:lang(bn), h5:lang(bn), h6:lang(bn),
-h2:lang(gu), h3:lang(gu), h4:lang(gu), h5:lang(gu), h6:lang(gu),
-h2:lang(hi), h3:lang(hi), h4:lang(hi), h5:lang(hi), h6:lang(hi),
-h2:lang(kn), h3:lang(kn), h4:lang(kn), h5:lang(kn), h6:lang(kn),
-h2:lang(ks), h3:lang(ks), h4:lang(ks), h5:lang(ks), h6:lang(ks),
-h2:lang(ml), h3:lang(ml), h4:lang(ml), h5:lang(ml), h6:lang(ml),
-h2:lang(mr), h3:lang(mr), h4:lang(mr), h5:lang(mr), h6:lang(mr),
-h2:lang(my), h3:lang(my), h4:lang(my), h5:lang(my), h6:lang(my),
-h2:lang(mai), h3:lang(mai), h4:lang(mai), h5:lang(mai), h6:lang(mai),
-h2:lang(ne), h3:lang(ne), h4:lang(ne), h5:lang(ne), h6:lang(ne),
-h2:lang(new), h3:lang(new), h4:lang(new), h5:lang(new), h6:lang(new),
-h2:lang(or), h3:lang(or), h4:lang(or), h5:lang(or), h6:lang(or),
-h2:lang(pa), h3:lang(pa), h4:lang(pa), h5:lang(pa), h6:lang(pa),
-h2:lang(pi), h3:lang(pi), h4:lang(pi), h5:lang(pi), h6:lang(pi),
-h2:lang(sa), h3:lang(sa), h4:lang(sa), h5:lang(sa), h6:lang(sa),
-h2:lang(ta), h3:lang(ta), h4:lang(ta), h5:lang(ta), h6:lang(ta),
-h2:lang(te), h3:lang(te), h4:lang(te), h5:lang(te), h6:lang(te) {
+/* stylelint-disable selector-list-comma-newline-after */
+h2:lang( anp ), h3:lang( anp ), h4:lang( anp ), h5:lang( anp ), h6:lang( anp ),
+h2:lang( as ), h3:lang( as ), h4:lang( as ), h5:lang( as ), h6:lang( as ),
+h2:lang( bho ), h3:lang( bho ), h4:lang( bho ), h5:lang( bho ), h6:lang( bho ),
+h2:lang( bh ), h3:lang( bh ), h4:lang( bh ), h5:lang( bh ), h6:lang( bh ),
+h2:lang( bn ), h3:lang( bn ), h4:lang( bn ), h5:lang( bn ), h6:lang( bn ),
+h2:lang( gu ), h3:lang( gu ), h4:lang( gu ), h5:lang( gu ), h6:lang( gu ),
+h2:lang( hi ), h3:lang( hi ), h4:lang( hi ), h5:lang( hi ), h6:lang( hi ),
+h2:lang( kn ), h3:lang( kn ), h4:lang( kn ), h5:lang( kn ), h6:lang( kn ),
+h2:lang( ks ), h3:lang( ks ), h4:lang( ks ), h5:lang( ks ), h6:lang( ks ),
+h2:lang( ml ), h3:lang( ml ), h4:lang( ml ), h5:lang( ml ), h6:lang( ml ),
+h2:lang( mr ), h3:lang( mr ), h4:lang( mr ), h5:lang( mr ), h6:lang( mr ),
+h2:lang( my ), h3:lang( my ), h4:lang( my ), h5:lang( my ), h6:lang( my ),
+h2:lang( mai ), h3:lang( mai ), h4:lang( mai ), h5:lang( mai ), h6:lang( mai ),
+h2:lang( ne ), h3:lang( ne ), h4:lang( ne ), h5:lang( ne ), h6:lang( ne ),
+h2:lang( new ), h3:lang( new ), h4:lang( new ), h5:lang( new ), h6:lang( new ),
+h2:lang( or ), h3:lang( or ), h4:lang( or ), h5:lang( or ), h6:lang( or ),
+h2:lang( pa ), h3:lang( pa ), h4:lang( pa ), h5:lang( pa ), h6:lang( pa ),
+h2:lang( pi ), h3:lang( pi ), h4:lang( pi ), h5:lang( pi ), h6:lang( pi ),
+h2:lang( sa ), h3:lang( sa ), h4:lang( sa ), h5:lang( sa ), h6:lang( sa ),
+h2:lang( ta ), h3:lang( ta ), h4:lang( ta ), h5:lang( ta ), h6:lang( ta ),
+h2:lang( te ), h3:lang( te ), h4:lang( te ), h5:lang( te ), h6:lang( te ) {
 	line-height: 1.2em;
 }
+/* stylelint-enable selector-list-comma-newline-after */
 
 /* Localised ordered list numbering for some languages */
-ol:lang(azb) li,
-ol:lang(bcc) li,
-ol:lang(bgn) li,
-ol:lang(bqi) li,
-ol:lang(fa) li,
-ol:lang(glk) li,
-ol:lang(kk-arab) li,
-ol:lang(lrc) li,
-ol:lang(luz) li,
-ol:lang(mzn) li {
+ol:lang( azb ) li,
+ol:lang( bcc ) li,
+ol:lang( bgn ) li,
+ol:lang( bqi ) li,
+ol:lang( fa ) li,
+ol:lang( glk ) li,
+ol:lang( kk-arab ) li,
+ol:lang( lrc ) li,
+ol:lang( luz ) li,
+ol:lang( mzn ) li {
 	list-style-type: -moz-persian;
 	list-style-type: persian;
 }
 
-ol:lang(ckb) li,
-ol:lang(sdh) li {
+ol:lang( ckb ) li,
+ol:lang( sdh ) li {
 	list-style-type: -moz-arabic-indic;
 	list-style-type: arabic-indic;
 }
 
-ol:lang(hi) li,
-ol:lang(mr) li {
+ol:lang( hi ) li,
+ol:lang( mr ) li {
 	list-style-type: -moz-devanagari;
 	list-style-type: devanagari;
 }
 
-ol:lang(as) li,
-ol:lang(bn) li {
+ol:lang( as ) li,
+ol:lang( bn ) li {
 	list-style-type: -moz-bengali;
 	list-style-type: bengali;
 }
 
-ol:lang(or) li {
+ol:lang( or ) li {
 	list-style-type: -moz-oriya;
 	list-style-type: oriya;
 }
 
-#toc ul, .toc ul {
-	margin: .3em 0;
+#toc ul,
+.toc ul {
+	margin: 0.3em 0;
 }
 
 /* Correct directionality when page dir is different from site/user dir */
@@ -714,7 +731,7 @@ table.floatleft {
 	position: relative;
 }
 
-/* bug 12205 */
+/* T14205 */
 #mw-credits a {
 	unicode-bidi: embed;
 }

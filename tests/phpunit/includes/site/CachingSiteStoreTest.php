@@ -148,6 +148,11 @@ class CachingSiteStoreTest extends MediaWikiTestCase {
 		$this->assertEquals( 0, $sites->count() );
 	}
 
+	/**
+	 * @param Site[] $sites
+	 *
+	 * @return SiteStore
+	 */
 	private function getHashSiteStore( array $sites ) {
 		$siteStore = new HashSiteStore();
 		$siteStore->saveSites( $sites );

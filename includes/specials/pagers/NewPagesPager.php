@@ -48,6 +48,15 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$username = $this->opts->getValue( 'username' );
 		$user = Title::makeTitleSafe( NS_USER, $username );
 
+		$size = abs( intval( $this->opts->getValue( 'size' ) ) );
+		if ( $size > 0 ) {
+			if ( $this->opts->getValue( 'size-mode' ) === 'max' ) {
+				$conds[] = 'page_len <= ' . $size;
+			} else {
+				$conds[] = 'page_len >= ' . $size;
+			}
+		}
+
 		$rcIndexes = [];
 
 		if ( $namespace !== false ) {
@@ -91,8 +100,10 @@ class NewPagesPager extends ReverseChronologicalPager {
 		];
 		$join_conds = [ 'page' => [ 'INNER JOIN', 'page_id=rc_cur_id' ] ];
 
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$pager = $this;
 		Hooks::run( 'SpecialNewpagesConditions',
-			[ &$this, $this->opts, &$conds, &$tables, &$fields, &$join_conds ] );
+			[ &$pager, $this->opts, &$conds, &$tables, &$fields, &$join_conds ] );
 
 		$options = [];
 

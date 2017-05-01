@@ -1,4 +1,3 @@
-/*global OO */
 ( function ( mw, $ ) {
 	/**
 	 * Factory for MessagePoster objects. This provides a pluggable to way to script the action
@@ -64,18 +63,15 @@
 			api = apiUrl ? new mw.ForeignApi( apiUrl ) : new mw.Api();
 
 		return api.get( {
+			formatversion: 2,
 			action: 'query',
 			prop: 'info',
-			indexpageids: true,
 			titles: title.getPrefixedDb()
 		} ).then( function ( data ) {
-			var pageId, page, contentModel, moduleName;
-			if ( !data.query.pageids[ 0 ] ) {
+			var contentModel, moduleName, page = data.query.pages[ 0 ];
+			if ( !page ) {
 				return $.Deferred().reject( 'unexpected-response', 'Unexpected API response' );
 			}
-			pageId = data.query.pageids[ 0 ];
-			page = data.query.pages[ pageId ];
-
 			contentModel = page.contentmodel;
 			moduleName = 'mediawiki.messagePoster.' + contentModel;
 			return mw.loader.using( moduleName ).then( function () {
@@ -100,7 +96,6 @@
 	 * @param {mw.Title} title Title being posted to
 	 * @param {mw.Api} api mw.Api instance that the instance should use
 	 * @return {mw.messagePoster.MessagePoster}
-	 *
 	 */
 	MessagePosterFactory.prototype.createForContentModel = function ( contentModel, title, api ) {
 		return new this.contentModelToClass[ contentModel ]( title, api );

@@ -110,19 +110,14 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		}
 
 		if ( $revCount > 0 && $enumRevMode ) {
-			$this->dieUsage(
-				'The revids= parameter may not be used with the list options ' .
-					'(limit, startid, endid, dirNewer, start, end).',
-				'revids'
+			$this->dieWithError(
+				[ 'apierror-revisions-nolist', $this->getModulePrefix() ], 'invalidparammix'
 			);
 		}
 
 		if ( $pageCount > 1 && $enumRevMode ) {
-			$this->dieUsage(
-				'titles, pageids or a generator was used to supply multiple pages, ' .
-					'but the limit, startid, endid, dirNewer, user, excludeuser, start ' .
-					'and end parameters may only be used on a single page.',
-				'multpages'
+			$this->dieWithError(
+				[ 'apierror-revisions-singlepage', $this->getModulePrefix() ], 'invalidparammix'
 			);
 		}
 
@@ -170,13 +165,18 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		if ( $this->fetchContent ) {
 			// For each page we will request, the user must have read rights for that page
 			$user = $this->getUser();
+			$status = Status::newGood();
 			/** @var $title Title */
 			foreach ( $pageSet->getGoodTitles() as $title ) {
 				if ( !$title->userCan( 'read', $user ) ) {
-					$this->dieUsage(
-						'The current user is not allowed to read ' . $title->getPrefixedText(),
-						'accessdenied' );
+					$status->fatal( ApiMessage::create(
+						[ 'apierror-cannotviewtitle', wfEscapeWikiText( $title->getPrefixedText() ) ],
+						'accessdenied'
+					) );
 				}
+			}
+			if ( !$status->isGood() ) {
+				$this->dieStatus( $status );
 			}
 
 			$this->addTables( 'text' );
@@ -201,17 +201,9 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			//  page_timestamp or usertext_timestamp if we have an IP rvuser
 
 			// This is mostly to prevent parameter errors (and optimize SQL?)
-			if ( $params['startid'] !== null && $params['start'] !== null ) {
-				$this->dieUsage( 'start and startid cannot be used together', 'badparams' );
-			}
-
-			if ( $params['endid'] !== null && $params['end'] !== null ) {
-				$this->dieUsage( 'end and endid cannot be used together', 'badparams' );
-			}
-
-			if ( $params['user'] !== null && $params['excludeuser'] !== null ) {
-				$this->dieUsage( 'user and excludeuser cannot be used together', 'badparams' );
-			}
+			$this->requireMaxOneParameter( $params, 'startid', 'start' );
+			$this->requireMaxOneParameter( $params, 'endid', 'end' );
+			$this->requireMaxOneParameter( $params, 'user', 'excludeuser' );
 
 			if ( $params['continue'] !== null ) {
 				$cont = explode( '|', $params['continue'] );
@@ -252,7 +244,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 				}
 			}
 			if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
-				// Paranoia: avoid brute force searches (bug 17342)
+				// Paranoia: avoid brute force searches (T19342)
 				if ( !$this->getUser()->isAllowed( 'deletedhistory' ) ) {
 					$bitmask = Revision::DELETED_USER;
 				} elseif ( !$this->getUser()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
@@ -344,7 +336,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 					foreach ( $this->token as $t ) {
 						$val = call_user_func( $tokenFunctions[$t], $title->getArticleID(), $title, $revision );
 						if ( $val === false ) {
-							$this->setWarning( "Action '$t' is not allowed for the current user" );
+							$this->addWarning( [ 'apiwarn-tokennotallowed', $t ] );
 						} else {
 							$rev[$t . 'token'] = $val;
 						}
@@ -455,6 +447,6 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Revisions';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Revisions';
 	}
 }

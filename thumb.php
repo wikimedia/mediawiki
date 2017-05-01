@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
 require __DIR__ . '/includes/WebStart.php';
@@ -272,7 +273,7 @@ function wfStreamThumb( array $params ) {
 	// For 404 handled thumbnails, we only use the base name of the URI
 	// for the thumb params and the parent directory for the source file name.
 	// Check that the zone relative path matches up so squid caches won't pick
-	// up thumbs that would not be purged on source file deletion (bug 34231).
+	// up thumbs that would not be purged on source file deletion (T36231).
 	if ( $rel404 !== null ) { // thumbnail was handled via 404
 		if ( rawurldecode( $rel404 ) === $img->getThumbRel( $thumbName ) ) {
 			// Request for the canonical thumbnail name
@@ -317,7 +318,9 @@ function wfStreamThumb( array $params ) {
 		$streamtime = microtime( true ) - $starttime;
 
 		if ( $status->isOK() ) {
-			RequestContext::getMain()->getStats()->timing( 'media.thumbnail.stream', $streamtime );
+			MediaWikiServices::getInstance()->getStatsdDataFactory()->timing(
+				'media.thumbnail.stream', $streamtime
+			);
 		} else {
 			wfThumbError( 500, 'Could not stream the file', null, [ 'file' => $thumbName,
 				'path' => $thumbPath, 'error' => $status->getWikiText( false, false, 'en' ) ] );
@@ -341,6 +344,7 @@ function wfStreamThumb( array $params ) {
 	// Check for thumbnail generation errors...
 	$msg = wfMessage( 'thumbnail_error' );
 	$errorCode = 500;
+
 	if ( !$thumb ) {
 		$errorMsg = $errorMsg ?: $msg->rawParams( 'File::transform() returned false' )->escaped();
 		if ( $errorMsg instanceof MessageSpecifier &&
@@ -350,6 +354,7 @@ function wfStreamThumb( array $params ) {
 		}
 	} elseif ( $thumb->isError() ) {
 		$errorMsg = $thumb->getHtmlMsg();
+		$errorCode = $thumb->getHttpStatusCode();
 	} elseif ( !$thumb->hasFile() ) {
 		$errorMsg = $msg->rawParams( 'No path supplied in thumbnail object' )->escaped();
 	} elseif ( $thumb->fileIsSource() ) {

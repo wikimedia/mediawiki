@@ -274,4 +274,3 @@ $magicWords = [
 ];
 
 $separatorTransformTable = [ ',' => '.', '.' => ',' ];
-

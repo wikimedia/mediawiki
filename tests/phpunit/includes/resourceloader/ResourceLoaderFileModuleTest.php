@@ -31,9 +31,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 				'deprecated' => true,
 			],
 			'deprecatedTomorrow' => $base + [
-				'deprecated' => [
-					'message' => 'Will be removed tomorrow.'
-				],
+				'deprecated' => 'Will be removed tomorrow.'
 			],
 
 			'htmlTemplateModule' => $base + [
@@ -130,7 +128,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		$modules = self::getModules();
 		$rl = new ResourceLoaderFileModule( $modules[$name] );
 		$rl->setName( $name );
-		$ctx = $this->getResourceLoaderContext( 'en', 'ltr' );
+		$ctx = $this->getResourceLoaderContext();
 		$this->assertEquals( $rl->getScript( $ctx ), $expected );
 	}
 
@@ -210,8 +208,14 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		] );
 		$expectedModule->setName( 'testing' );
 
-		$contextLtr = $this->getResourceLoaderContext( 'en', 'ltr' );
-		$contextRtl = $this->getResourceLoaderContext( 'he', 'rtl' );
+		$contextLtr = $this->getResourceLoaderContext( [
+			'lang' => 'en',
+			'dir' => 'ltr',
+		] );
+		$contextRtl = $this->getResourceLoaderContext( [
+			'lang' => 'he',
+			'dir' => 'rtl',
+		] );
 
 		// Since we want to compare the effect of @noflip+@embed against the effect of just @embed, and
 		// the @noflip annotations are always preserved, we need to strip them first.
@@ -282,9 +286,9 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 			'File has leading BOM'
 		);
 
-		$contextLtr = $this->getResourceLoaderContext( 'en', 'ltr' );
+		$context = $this->getResourceLoaderContext();
 		$this->assertEquals(
-			$testModule->getStyles( $contextLtr ),
+			$testModule->getStyles( $context ),
 			[ 'all' => ".efbbbf_bom_char_at_start_of_file {}\n" ],
 			'Leading BOM removed when concatenating files'
 		);

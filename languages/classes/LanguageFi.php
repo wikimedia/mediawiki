@@ -85,9 +85,10 @@ class LanguageFi extends Language {
 	/**
 	 * @param string $str
 	 * @param User $user User object to use timezone from or null for $wgUser
+	 * @param int $now Current timestamp, for formatting relative block durations
 	 * @return string
 	 */
-	function translateBlockExpiry( $str, User $user = null ) {
+	function translateBlockExpiry( $str, User $user = null, $now = 0 ) {
 		/*
 			'ago', 'now', 'today', 'this', 'next',
 			'first', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth',

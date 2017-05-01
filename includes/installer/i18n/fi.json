@@ -20,7 +20,8 @@
 			"Jaakkoh",
 			"Mikahama",
 			"Olimar",
-			"01miki10"
+			"01miki10",
+			"Pyscowicz"
 		]
 	},
 	"config-desc": "MediaWiki-asennin",
@@ -126,7 +127,7 @@
 	"config-type-mssql": "Microsoft SQL Server",
 	"config-support-info": "MediaWiki tukee seuraavia tietokantajärjestelmiä:\n\n$1\n\nJos et näe tietokantajärjestelmää, jota yrität käyttää, listattuna alhaalla, seuraa yläpuolella olevia ohjeita tuen aktivoimiseksi.",
 	"config-dbsupport-mysql": "* [{{int:version-db-mysql-url}} MySQL] on MediaWikin ensisijainen kohde ja se on myös parhaiten tuettu. MediaWiki voi myös käyttää [{{int:version-db-mariadb-url}} MariaDB]- sekä [{{int:version-db-percona-url}} Percona Server]-järjestelmiä, jotka ovat MySQL-yhteensopivia. ([http://www.php.net/manual/en/mysqli.installation.php Miten käännetään PHP MySQL-tuella])",
-	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] on suosittu avoimen lähdekoodin tietokantajärjestelmä vaihtoehtona MySQL:lle. Tuessa saattaa olla pieniä puutteita, eikä sitä suositella käytettäväksi tuotantoympäristössä. ([http://www.php.net/manual/en/pgsql.installation.php Kuinka käännetään PHP PostgreSQL-tuella])",
+	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] on suosittu avoimen lähdekoodin tietokantajärjestelmä vaihtoehtona MySQL:lle. ([http://www.php.net/manual/en/pgsql.installation.php Kuinka käännetään PHP PostgreSQL-tuella])",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] on kevyt tietokantajärjestelmä, jota tuetaan hyvin. ([http://www.php.net/manual/en/pdo.installation.php Miten käännetään PHP SQLite-tuella], käyttää PDO:ta)",
 	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle] on kaupallinen yritystietokanta. ([http://www.php.net/manual/en/oci8.installation.php Kuinka käännetään PHP OCI8-tuella])",
 	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] on kaupallinen yritystietokanta Windowsille. ([http://www.php.net/manual/en/sqlsrv.installation.php Miten käännetään PHP SQLSRV-tuella])",
@@ -150,6 +151,7 @@
 	"config-mssql-old": "Vaaditaan Microsoft SQL Server $1 tai uudempi. Sinulla on käytössä $2.",
 	"config-sqlite-name-help": "Valitse nimi, joka yksilöi tämän wikin.\nÄlä käytä välilyöntejä tai viivoja.\nNimeä käytetään SQLite-tietokannan tiedostonimessä.",
 	"config-sqlite-dir-unwritable": "Hakemistoon ”$1” kirjoittaminen epäonnistui.\nMuuta hakemiston käyttöoikeuksia siten, että palvelinohjelmisto voi kirjoittaa siihen ja yritä uudelleen.",
+	"config-sqlite-connection-error": "$1.\n\nTarkista tietohakemiston ja tietokannan nimi alla ja yritä uudelleen.",
 	"config-sqlite-readonly": "Tiedostoon <code>$1</code> ei voi kirjoittaa.",
 	"config-sqlite-cant-create-db": "Tietokantatiedostoa <code>$1</code> ei voitu luoda.",
 	"config-sqlite-fts3-downgrade": "PHP:stä puuttuu FTS3-tuki. Poistetaan ominaisuus käytöstä tietokantatauluista.",
@@ -172,6 +174,7 @@
 	"config-mssql-auth": "Varmennuksen tyyppi:",
 	"config-mssql-install-auth": "Valitse varmennuksen tyyppi, jota käytetään yhdistäessä tietokantaan asennuksen aikana.\nJos valitset \"{{int:config-mssql-windowsauth}}\", käytetään verkkopalvelimen käyttäjän kirjautumistietoja.",
 	"config-mssql-web-auth": "Valitse varmennuksen tyyppi, jota verkkopalvelin käyttää yhdistäessään tietokantapalvelimeen wikin tavallisen toiminnan aikana.\nJos valitset \"{{int:config-mssql-windowsauth}}\", käytetään verkkopalvelimen käyttäjän kirjautumistietoja.",
+	"config-mssql-sqlauth": "SQL Server varmennus",
 	"config-mssql-windowsauth": "Windows-varmennus",
 	"config-site-name": "Wikin nimi",
 	"config-site-name-help": "Tämä näkyy selaimen otsikkona ja muissa kohdissa.",
@@ -292,6 +295,7 @@
 	"config-install-subscribe-fail": "Liittyminen mediawiki-announce listalle epäonnistui: $1",
 	"config-install-subscribe-notpossible": "cURL-ohjelmaa ei ole asennettu eikä <code>allow_url_fopen</code> ole saatavilla.",
 	"config-install-mainpage": "Luodaan etusivu oletussisällöllä",
+	"config-install-mainpage-exists": "Etusivu on jo olemassa, ohitetaan",
 	"config-install-extension-tables": "Luodaan tauluja käyttöönotetuille laajuennuksille",
 	"config-install-mainpage-failed": "Etusivun lisääminen ei onnistunut: $1",
 	"config-install-done": "<strong>Onnittelut!</strong>\nOlet asentanut MediaWikin.\n\nAsennusohjelma on luonut <code>LocalSettings.php</code> -tiedoston.\nSiinä on kaikki MediaWikin asetukset.\n\nLataa tiedosto ja laita se MediaWikin asennushakemistoon (sama kuin missä on index.php). Lataamisen olisi pitänyt alkaa automaattisesti.\n\nMikäli latausta ei tarjottu tai keskeytit latauksen, käynnistä se uudestaan tästä linkistä:\n\n$3\n\n<strong>Huom:</strong> Mikäli et nyt lataa tiedostoa, luotu tiedosto ei ole saatavissa myöhemmin, jos poistut asennuksesta lataamatta sitä.\n\nKun olet laittanut tiedoston oikeaan paikkaan, voit <strong>[$2 mennä wikiisi]</strong>.",
@@ -302,5 +306,5 @@
 	"config-nofile": "Tiedostoa \"$1\" ei löytynyt. Onko se poistettu?",
 	"config-extension-link": "Tiesitkö että wiki tukee [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions laajennuksia]?\n\nLaajennuksia voi hakea myös [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category luokittain].",
 	"mainpagetext": "<strong>MediaWiki on onnistuneesti asennettu.</strong>",
-	"mainpagedocfooter": "Lisätietoja wiki-ohjelmiston käytöstä on [https://meta.wikimedia.org/wiki/Help:Contents käyttöoppaassa].\n\n=== Aloittaminen ===\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Asetusten teko-ohjeita]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWikin FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Sähköpostilista, jolla tiedotetaan MediaWikin uusista versioista]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Käännä MediaWikiä kielellesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Katso, kuinka torjua spämmiä wikissäsi]\n\n=== Asetukset ===\n\nTarkista, että alla olevat taivutusmuodot ovat oikein. Jos eivät, tee tarvittavat muutokset tiedostoon LocalSettings.php seuraavasti:\n $wgGrammarForms['fi']['genitive']['{{SITENAME}}'] = '...';\n $wgGrammarForms['fi']['partitive']['{{SITENAME}}'] = '...';\n $wgGrammarForms['fi']['elative']['{{SITENAME}}'] = '...';\n $wgGrammarForms['fi']['inessive']['{{SITENAME}}'] = '...';\n $wgGrammarForms['fi']['illative']['{{SITENAME}}'] = '...';\nTaivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) – {{GRAMMAR:partitive|{{SITENAME}}}} (yötä) – {{GRAMMAR:elative|{{SITENAME}}}} (yöstä) – {{GRAMMAR:inessive|{{SITENAME}}}} (yössä) – {{GRAMMAR:illative|{{SITENAME}}}} (yöhön)."
+	"mainpagedocfooter": "Lisätietoja wiki-ohjelmiston käytöstä on [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents käyttöoppaassa].\n\n=== Aloittaminen ===\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Asetusten teko-ohjeita]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWikin FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Sähköpostilista, jolla tiedotetaan MediaWikin uusista versioista]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Käännä MediaWikiä kielellesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Katso, kuinka torjua spämmiä wikissäsi]\n\n=== Asetukset ===\n\nTarkista, että alla olevat taivutusmuodot ovat oikein. Jos eivät, tee tarvittavat muutokset tiedostoon LocalSettings.php seuraavasti:\n $wgGrammarForms['fi']['genitive']['{{SITENAME}}'] = '...';\n $wgGrammarForms['fi']['partitive']['{{SITENAME}}'] = '...';\n $wgGrammarForms['fi']['elative']['{{SITENAME}}'] = '...';\n $wgGrammarForms['fi']['inessive']['{{SITENAME}}'] = '...';\n $wgGrammarForms['fi']['illative']['{{SITENAME}}'] = '...';\nTaivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) – {{GRAMMAR:partitive|{{SITENAME}}}} (yötä) – {{GRAMMAR:elative|{{SITENAME}}}} (yöstä) – {{GRAMMAR:inessive|{{SITENAME}}}} (yössä) – {{GRAMMAR:illative|{{SITENAME}}}} (yöhön)."
 }

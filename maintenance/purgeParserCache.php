@@ -32,6 +32,8 @@ require __DIR__ . '/Maintenance.php';
 class PurgeParserCache extends Maintenance {
 	public $lastProgress;
 
+	private $usleep = 0;
+
 	function __construct() {
 		parent::__construct();
 		$this->addDescription( "Remove old objects from the parser cache. " .
@@ -39,36 +41,44 @@ class PurgeParserCache extends Maintenance {
 		$this->addOption( 'expiredate', 'Delete objects expiring before this date.', false, true );
 		$this->addOption(
 			'age',
-			'Delete objects created more than this many seconds ago, assuming $wgParserCacheExpireTime ' .
-				'has been consistent.',
-			false, true );
+			'Delete objects created more than this many seconds ago, assuming ' .
+				'$wgParserCacheExpireTime has remained consistent.',
+			false,
+			true );
+		$this->addOption( 'msleep', 'Milliseconds to sleep between purge chunks', false, true );
 	}
 
 	function execute() {
+		global $wgParserCacheExpireTime;
+
 		$inputDate = $this->getOption( 'expiredate' );
 		$inputAge = $this->getOption( 'age' );
 		if ( $inputDate !== null ) {
 			$date = wfTimestamp( TS_MW, strtotime( $inputDate ) );
 		} elseif ( $inputAge !== null ) {
-			global $wgParserCacheExpireTime;
 			$date = wfTimestamp( TS_MW, time() + $wgParserCacheExpireTime - intval( $inputAge ) );
 		} else {
 			$this->error( "Must specify either --expiredate or --age", 1 );
+			return;
 		}
+		$this->usleep = 1e3 * $this->getOption( 'msleep', 0 );
 
 		$english = Language::factory( 'en' );
-		$this->output( "Deleting objects expiring before " . $english->timeanddate( $date ) . "\n" );
+		$this->output( "Deleting objects expiring before " .
+			$english->timeanddate( $date ) . "\n" );
 
 		$pc = wfGetParserCacheStorage();
-		$success = $pc->deleteObjectsExpiringBefore( $date, [ $this, 'showProgress' ] );
+		$success = $pc->deleteObjectsExpiringBefore( $date, [ $this, 'showProgressAndWait' ] );
 		if ( !$success ) {
 			$this->error( "\nCannot purge this kind of parser cache.", 1 );
 		}
-		$this->showProgress( 100 );
+		$this->showProgressAndWait( 100 );
 		$this->output( "\nDone\n" );
 	}
 
-	function showProgress( $percent ) {
+	public function showProgressAndWait( $percent ) {
+		usleep( $this->usleep ); // avoid lag; T150124
+
 		$percentString = sprintf( "%.2f", $percent );
 		if ( $percentString === $this->lastProgress ) {
 			return;

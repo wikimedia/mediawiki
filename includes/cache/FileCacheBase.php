@@ -154,7 +154,7 @@ abstract class FileCacheBase {
 	/**
 	 * Save and compress text to the cache
 	 * @param string $text
-	 * @return string Compressed text
+	 * @return string|false Compressed text
 	 */
 	public function saveText( $text ) {
 		if ( $this->useGzip() ) {
@@ -242,7 +242,7 @@ abstract class FileCacheBase {
 				: IP::sanitizeRange( "$ip/16" );
 
 			# Bail out if a request already came from this range...
-			$key = wfMemcKey( get_class( $this ), 'attempt', $this->mType, $this->mKey, $ip );
+			$key = wfMemcKey( static::class, 'attempt', $this->mType, $this->mKey, $ip );
 			if ( $cache->get( $key ) ) {
 				return; // possibly the same user
 			}
@@ -272,6 +272,6 @@ abstract class FileCacheBase {
 	 * @return string
 	 */
 	protected function cacheMissKey() {
-		return wfMemcKey( get_class( $this ), 'misses', $this->mType, $this->mKey );
+		return wfMemcKey( static::class, 'misses', $this->mType, $this->mKey );
 	}
 }

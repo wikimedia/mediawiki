@@ -1,9 +1,7 @@
 <?php
 
 /**
- *
- *
- * Created on Mar 24, 2009
+ * API userrights module
  *
  * Copyright © 2009 Roan Kattouw "<Firstname>.<Lastname>@gmail.com"
  *
@@ -59,15 +57,60 @@ class ApiUserrights extends ApiBase {
 
 		$params = $this->extractRequestParams();
 
+		// Figure out expiry times from the input
+		// @todo Remove this isset check when removing $wgDisableUserGroupExpiry
+		if ( isset( $params['expiry'] ) ) {
+			$expiry = (array)$params['expiry'];
+		} else {
+			$expiry = [ 'infinity' ];
+		}
+		if ( count( $expiry ) !== count( $params['add'] ) ) {
+			if ( count( $expiry ) === 1 ) {
+				$expiry = array_fill( 0, count( $params['add'] ), $expiry[0] );
+			} else {
+				$this->dieWithError( [
+					'apierror-toofewexpiries',
+					count( $expiry ),
+					count( $params['add'] )
+				] );
+			}
+		}
+
+		// Validate the expiries
+		$groupExpiries = [];
+		foreach ( $expiry as $index => $expiryValue ) {
+			$group = $params['add'][$index];
+			$groupExpiries[$group] = UserrightsPage::expiryToTimestamp( $expiryValue );
+
+			if ( $groupExpiries[$group] === false ) {
+				$this->dieWithError( [ 'apierror-invalidexpiry', wfEscapeWikiText( $expiryValue ) ] );
+			}
+
+			// not allowed to have things expiring in the past
+			if ( $groupExpiries[$group] && $groupExpiries[$group] < wfTimestampNow() ) {
+				$this->dieWithError( [ 'apierror-pastexpiry', wfEscapeWikiText( $expiryValue ) ] );
+			}
+		}
+
 		$user = $this->getUrUser( $params );
+
+		$tags = $params['tags'];
+
+		// Check if user can add tags
+		if ( !is_null( $tags ) ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $tags, $pUser );
+			if ( !$ableToTag->isOK() ) {
+				$this->dieStatus( $ableToTag );
+			}
+		}
 
 		$form = $this->getUserRightsPage();
 		$form->setContext( $this->getContext() );
 		$r['user'] = $user->getName();
 		$r['userid'] = $user->getId();
 		list( $r['added'], $r['removed'] ) = $form->doSaveUserGroups(
-			$user, (array)$params['add'],
-			(array)$params['remove'], $params['reason']
+			$user, (array)$params['add'], (array)$params['remove'],
+			$params['reason'], $tags, $groupExpiries
 		);
 
 		$result = $this->getResult();
@@ -110,7 +153,7 @@ class ApiUserrights extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return [
+		$a = [
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
 			],
@@ -120,6 +163,11 @@ class ApiUserrights extends ApiBase {
 			'add' => [
 				ApiBase::PARAM_TYPE => $this->getAllGroups(),
 				ApiBase::PARAM_ISMULTI => true
+			],
+			'expiry' => [
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_ALLOW_DUPLICATES => true,
+				ApiBase::PARAM_DFLT => 'infinite',
 			],
 			'remove' => [
 				ApiBase::PARAM_TYPE => $this->getAllGroups(),
@@ -132,7 +180,15 @@ class ApiUserrights extends ApiBase {
 				// Standard definition automatically inserted
 				ApiBase::PARAM_HELP_MSG_APPEND => [ 'api-help-param-token-webui' ],
 			],
+			'tags' => [
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true
+			],
 		];
+		if ( !$this->getUserRightsPage()->canProcessExpiries() ) {
+			unset( $a['expiry'] );
+		}
+		return $a;
 	}
 
 	public function needsToken() {
@@ -144,15 +200,20 @@ class ApiUserrights extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
-		return [
+		$a = [
 			'action=userrights&user=FooBot&add=bot&remove=sysop|bureaucrat&token=123ABC'
 				=> 'apihelp-userrights-example-user',
 			'action=userrights&userid=123&add=bot&remove=sysop|bureaucrat&token=123ABC'
 				=> 'apihelp-userrights-example-userid',
 		];
+		if ( $this->getUserRightsPage()->canProcessExpiries() ) {
+			$a['action=userrights&user=SometimeSysop&add=sysop&expiry=1%20month&token=123ABC']
+				= 'apihelp-userrights-example-expiry';
+		}
+		return $a;
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:User_group_membership';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:User_group_membership';
 	}
 }

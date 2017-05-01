@@ -23,6 +23,8 @@
  * @since 1.22
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This class formats delete log entries.
  *
@@ -36,6 +38,12 @@ class DeleteLogFormatter extends LogFormatter {
 				// Messages: logentry-delete-event-legacy, logentry-delete-revision-legacy,
 				// logentry-suppress-event-legacy, logentry-suppress-revision-legacy
 				return "$key-legacy";
+			}
+		} elseif ( $this->entry->getSubtype() === 'restore' ) {
+			$rawParams = $this->entry->getParameters();
+			if ( !isset( $rawParams[':assoc:count'] ) ) {
+				// Message: logentry-delete-restore-nocount
+				return $key . '-nocount';
 			}
 		}
 
@@ -95,6 +103,19 @@ class DeleteLogFormatter extends LogFormatter {
 				$this->parsedParametersDeleteLog = array_slice( $params, 0, 3 );
 				return $this->parsedParametersDeleteLog;
 			}
+		} elseif ( $subtype === 'restore' ) {
+			$rawParams = $this->entry->getParameters();
+			if ( isset( $rawParams[':assoc:count'] ) ) {
+				$countList = [];
+				foreach ( $rawParams[':assoc:count'] as $type => $count ) {
+					if ( $count ) {
+						// Messages: restore-count-revisions, restore-count-files
+						$countList[] = $this->context->msg( 'restore-count-' . $type )
+							->numParams( $count )->plain();
+					}
+				}
+				$params[3] = $this->context->getLanguage()->listToText( $countList );
+			}
 		}
 
 		$this->parsedParametersDeleteLog = $params;
@@ -114,6 +135,7 @@ class DeleteLogFormatter extends LogFormatter {
 
 	public function getActionLinks() {
 		$user = $this->context->getUser();
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( !$user->isAllowed( 'deletedhistory' )
 			|| $this->entry->isDeleted( LogPage::DELETED_ACTION )
 		) {
@@ -128,9 +150,9 @@ class DeleteLogFormatter extends LogFormatter {
 				} else {
 					$message = 'undeleteviewlink';
 				}
-				$revert = Linker::linkKnown(
+				$revert = $linkRenderer->makeKnownLink(
 					SpecialPage::getTitleFor( 'Undelete' ),
-					$this->msg( $message )->escaped(),
+					$this->msg( $message )->text(),
 					[],
 					[ 'target' => $this->entry->getTarget()->getPrefixedDBkey() ]
 				);
@@ -156,9 +178,9 @@ class DeleteLogFormatter extends LogFormatter {
 				if ( count( $ids ) == 1 ) {
 					// Live revision diffs...
 					if ( $key == 'oldid' || $key == 'revision' ) {
-						$links[] = Linker::linkKnown(
+						$links[] = $linkRenderer->makeKnownLink(
 							$this->entry->getTarget(),
-							$this->msg( 'diff' )->escaped(),
+							$this->msg( 'diff' )->text(),
 							[],
 							[
 								'diff' => intval( $ids[0] ),
@@ -167,9 +189,9 @@ class DeleteLogFormatter extends LogFormatter {
 						);
 						// Deleted revision diffs...
 					} elseif ( $key == 'artimestamp' || $key == 'archive' ) {
-						$links[] = Linker::linkKnown(
+						$links[] = $linkRenderer->makeKnownLink(
 							SpecialPage::getTitleFor( 'Undelete' ),
-							$this->msg( 'diff' )->escaped(),
+							$this->msg( 'diff' )->text(),
 							[],
 							[
 								'target' => $this->entry->getTarget()->getPrefixedDBkey(),
@@ -181,9 +203,9 @@ class DeleteLogFormatter extends LogFormatter {
 				}
 
 				// View/modify link...
-				$links[] = Linker::linkKnown(
+				$links[] = $linkRenderer->makeKnownLink(
 					SpecialPage::getTitleFor( 'Revisiondelete' ),
-					$this->msg( 'revdel-restore' )->escaped(),
+					$this->msg( 'revdel-restore' )->text(),
 					[],
 					[
 						'target' => $this->entry->getTarget()->getPrefixedText(),
@@ -206,9 +228,9 @@ class DeleteLogFormatter extends LogFormatter {
 					$query = implode( ',', $query );
 				}
 				// Link to each hidden object ID, $params[1] is the url param
-				$revert = Linker::linkKnown(
+				$revert = $linkRenderer->makeKnownLink(
 					SpecialPage::getTitleFor( 'Revisiondelete' ),
-					$this->msg( 'revdel-restore' )->escaped(),
+					$this->msg( 'revdel-restore' )->text(),
 					[],
 					[
 						'target' => $this->entry->getTarget()->getPrefixedText(),
@@ -272,6 +294,11 @@ class DeleteLogFormatter extends LogFormatter {
 			foreach ( $fields as $bit => $key ) {
 				$params[':assoc:old'][$key] = (bool)( $old & $bit );
 				$params[':assoc:new'][$key] = (bool)( $new & $bit );
+			}
+		} elseif ( $subtype === 'restore' ) {
+			$rawParams = $entry->getParameters();
+			if ( isset( $rawParams[':assoc:count'] ) ) {
+				$params[':assoc:count'] = $rawParams[':assoc:count'];
 			}
 		}
 

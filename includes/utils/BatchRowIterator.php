@@ -1,4 +1,7 @@
 <?php
+
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Allows iterating a large number of rows in batches transparently.
  * By default when iterated over returns the full query result as an
@@ -230,7 +233,7 @@ class BatchRowIterator implements RecursiveIterator {
 	 * `=` conditions while the final key uses a `>` condition
 	 *
 	 * Example output:
-	 * 	  [ '( foo = 42 AND bar > 7 ) OR ( foo > 42 )' ]
+	 *     [ '( foo = 42 AND bar > 7 ) OR ( foo > 42 )' ]
 	 *
 	 * @return array The SQL conditions necessary to select the next set
 	 *  of rows in the batched query

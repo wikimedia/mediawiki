@@ -150,4 +150,3 @@ $magicWords = [
 	'pagesincategory'           => [ '1', 'زمريجاصفحا', 'PAGESINCATEGORY', 'PAGESINCAT' ],
 	'pagesize'                  => [ '1', 'صفحيجيماپ', 'PAGESIZE' ],
 ];
-

@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @covers WatchedItemQueryService
  */
@@ -66,7 +68,7 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 	 * @return PHPUnit_Framework_MockObject_MockObject|User
 	 */
 	private function getMockNonAnonUserWithId( $id ) {
-		$mock = $this->getMock( User::class );
+		$mock = $this->getMockBuilder( User::class )->getMock();
 		$mock->expects( $this->any() )
 			->method( 'isAnon' )
 			->will( $this->returnValue( false ) );
@@ -142,7 +144,7 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 	}
 
 	private function getMockAnonUser() {
-		$mock = $this->getMock( User::class );
+		$mock = $this->getMockBuilder( User::class )->getMock();
 		$mock->expects( $this->any() )
 			->method( 'isAnon' )
 			->will( $this->returnValue( true ) );
@@ -180,7 +182,9 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 					'(rc_this_oldid=page_latest) OR (rc_type=3)',
 				],
 				$this->isType( 'string' ),
-				[],
+				[
+					'LIMIT' => 3,
+				],
 				[
 					'watchlist' => [
 						'INNER JOIN',
@@ -214,12 +218,24 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 					'rc_deleted' => 0,
 					'wl_notificationtimestamp' => null,
 				] ),
+				$this->getFakeRow( [
+					'rc_id' => 3,
+					'rc_namespace' => 1,
+					'rc_title' => 'Foo3',
+					'rc_timestamp' => '20151212010103',
+					'rc_type' => RC_NEW,
+					'rc_deleted' => 0,
+					'wl_notificationtimestamp' => null,
+				] ),
 			] ) );
 
 		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
 		$user = $this->getMockUnrestrictedNonAnonUserWithId( 1 );
 
-		$items = $queryService->getWatchedItemsWithRecentChangeInfo( $user );
+		$startFrom = null;
+		$items = $queryService->getWatchedItemsWithRecentChangeInfo(
+			$user, [ 'limit' => 2 ], $startFrom
+		);
 
 		$this->assertInternalType( 'array', $items );
 		$this->assertCount( 2, $items );
@@ -260,90 +276,268 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 			],
 			$items[1][1]
 		);
+
+		$this->assertEquals( [ '20151212010103', 3 ], $startFrom );
+	}
+
+	public function testGetWatchedItemsWithRecentChangeInfo_extension() {
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->with(
+				[ 'recentchanges', 'watchlist', 'page', 'extension_dummy_table' ],
+				[
+					'rc_id',
+					'rc_namespace',
+					'rc_title',
+					'rc_timestamp',
+					'rc_type',
+					'rc_deleted',
+					'wl_notificationtimestamp',
+					'rc_cur_id',
+					'rc_this_oldid',
+					'rc_last_oldid',
+					'extension_dummy_field',
+				],
+				[
+					'wl_user' => 1,
+					'(rc_this_oldid=page_latest) OR (rc_type=3)',
+					'extension_dummy_cond',
+				],
+				$this->isType( 'string' ),
+				[
+					'extension_dummy_option',
+				],
+				[
+					'watchlist' => [
+						'INNER JOIN',
+						[
+							'wl_namespace=rc_namespace',
+							'wl_title=rc_title'
+						]
+					],
+					'page' => [
+						'LEFT JOIN',
+						'rc_cur_id=page_id',
+					],
+					'extension_dummy_join_cond' => [],
+				]
+			)
+			->will( $this->returnValue( [
+				$this->getFakeRow( [
+					'rc_id' => 1,
+					'rc_namespace' => 0,
+					'rc_title' => 'Foo1',
+					'rc_timestamp' => '20151212010101',
+					'rc_type' => RC_NEW,
+					'rc_deleted' => 0,
+					'wl_notificationtimestamp' => '20151212010101',
+				] ),
+				$this->getFakeRow( [
+					'rc_id' => 2,
+					'rc_namespace' => 1,
+					'rc_title' => 'Foo2',
+					'rc_timestamp' => '20151212010102',
+					'rc_type' => RC_NEW,
+					'rc_deleted' => 0,
+					'wl_notificationtimestamp' => null,
+				] ),
+			] ) );
+
+		$user = $this->getMockUnrestrictedNonAnonUserWithId( 1 );
+
+		$mockExtension = $this->getMockBuilder( WatchedItemQueryServiceExtension::class )
+			->getMock();
+		$mockExtension->expects( $this->once() )
+			->method( 'modifyWatchedItemsWithRCInfoQuery' )
+			->with(
+				$this->identicalTo( $user ),
+				$this->isType( 'array' ),
+				$this->isInstanceOf( IDatabase::class ),
+				$this->isType( 'array' ),
+				$this->isType( 'array' ),
+				$this->isType( 'array' ),
+				$this->isType( 'array' ),
+				$this->isType( 'array' )
+			)
+			->will( $this->returnCallback( function (
+				$user, $options, $db, &$tables, &$fields, &$conds, &$dbOptions, &$joinConds
+			) {
+				$tables[] = 'extension_dummy_table';
+				$fields[] = 'extension_dummy_field';
+				$conds[] = 'extension_dummy_cond';
+				$dbOptions[] = 'extension_dummy_option';
+				$joinConds['extension_dummy_join_cond'] = [];
+			} ) );
+		$mockExtension->expects( $this->once() )
+			->method( 'modifyWatchedItemsWithRCInfo' )
+			->with(
+				$this->identicalTo( $user ),
+				$this->isType( 'array' ),
+				$this->isInstanceOf( IDatabase::class ),
+				$this->isType( 'array' ),
+				$this->anything(),
+				$this->anything() // Can't test for null here, PHPUnit applies this after the callback
+			)
+			->will( $this->returnCallback( function ( $user, $options, $db, &$items, $res, &$startFrom ) {
+				foreach ( $items as $i => &$item ) {
+					$item[1]['extension_dummy_field'] = $i;
+				}
+				unset( $item );
+
+				$this->assertNull( $startFrom );
+				$startFrom = [ '20160203123456', 42 ];
+			} ) );
+
+		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
+		TestingAccessWrapper::newFromObject( $queryService )->extensions = [ $mockExtension ];
+
+		$startFrom = null;
+		$items = $queryService->getWatchedItemsWithRecentChangeInfo(
+			$user, [], $startFrom
+		);
+
+		$this->assertInternalType( 'array', $items );
+		$this->assertCount( 2, $items );
+
+		foreach ( $items as list( $watchedItem, $recentChangeInfo ) ) {
+			$this->assertInstanceOf( WatchedItem::class, $watchedItem );
+			$this->assertInternalType( 'array', $recentChangeInfo );
+		}
+
+		$this->assertEquals(
+			new WatchedItem( $user, new TitleValue( 0, 'Foo1' ), '20151212010101' ),
+			$items[0][0]
+		);
+		$this->assertEquals(
+			[
+				'rc_id' => 1,
+				'rc_namespace' => 0,
+				'rc_title' => 'Foo1',
+				'rc_timestamp' => '20151212010101',
+				'rc_type' => RC_NEW,
+				'rc_deleted' => 0,
+				'extension_dummy_field' => 0,
+			],
+			$items[0][1]
+		);
+
+		$this->assertEquals(
+			new WatchedItem( $user, new TitleValue( 1, 'Foo2' ), null ),
+			$items[1][0]
+		);
+		$this->assertEquals(
+			[
+				'rc_id' => 2,
+				'rc_namespace' => 1,
+				'rc_title' => 'Foo2',
+				'rc_timestamp' => '20151212010102',
+				'rc_type' => RC_NEW,
+				'rc_deleted' => 0,
+				'extension_dummy_field' => 1,
+			],
+			$items[1][1]
+		);
+
+		$this->assertEquals( [ '20160203123456', 42 ], $startFrom );
 	}
 
 	public function getWatchedItemsWithRecentChangeInfoOptionsProvider() {
 		return [
 			[
 				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_FLAGS ] ],
+				null,
 				[ 'rc_type', 'rc_minor', 'rc_bot' ],
 				[],
 				[],
 			],
 			[
 				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_USER ] ],
+				null,
 				[ 'rc_user_text' ],
 				[],
 				[],
 			],
 			[
 				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_USER_ID ] ],
+				null,
 				[ 'rc_user' ],
 				[],
 				[],
 			],
 			[
 				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_COMMENT ] ],
+				null,
 				[ 'rc_comment' ],
 				[],
 				[],
 			],
 			[
 				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_PATROL_INFO ] ],
+				null,
 				[ 'rc_patrolled', 'rc_log_type' ],
 				[],
 				[],
 			],
 			[
 				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_SIZES ] ],
+				null,
 				[ 'rc_old_len', 'rc_new_len' ],
 				[],
 				[],
 			],
 			[
 				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_LOG_INFO ] ],
+				null,
 				[ 'rc_logid', 'rc_log_type', 'rc_log_action', 'rc_params' ],
 				[],
 				[],
 			],
 			[
 				[ 'namespaceIds' => [ 0, 1 ] ],
+				null,
 				[],
 				[ 'wl_namespace' => [ 0, 1 ] ],
 				[],
 			],
 			[
 				[ 'namespaceIds' => [ 0, "1; DROP TABLE watchlist;\n--" ] ],
+				null,
 				[],
 				[ 'wl_namespace' => [ 0, 1 ] ],
 				[],
 			],
 			[
 				[ 'rcTypes' => [ RC_EDIT, RC_NEW ] ],
+				null,
 				[],
 				[ 'rc_type' => [ RC_EDIT, RC_NEW ] ],
 				[],
 			],
 			[
 				[ 'dir' => WatchedItemQueryService::DIR_OLDER ],
+				null,
 				[],
 				[],
 				[ 'ORDER BY' => [ 'rc_timestamp DESC', 'rc_id DESC' ] ]
 			],
 			[
 				[ 'dir' => WatchedItemQueryService::DIR_NEWER ],
+				null,
 				[],
 				[],
 				[ 'ORDER BY' => [ 'rc_timestamp', 'rc_id' ] ]
 			],
 			[
 				[ 'dir' => WatchedItemQueryService::DIR_OLDER, 'start' => '20151212010101' ],
+				null,
 				[],
 				[ "rc_timestamp <= '20151212010101'" ],
 				[ 'ORDER BY' => [ 'rc_timestamp DESC', 'rc_id DESC' ] ]
 			],
 			[
 				[ 'dir' => WatchedItemQueryService::DIR_OLDER, 'end' => '20151212010101' ],
+				null,
 				[],
 				[ "rc_timestamp >= '20151212010101'" ],
 				[ 'ORDER BY' => [ 'rc_timestamp DESC', 'rc_id DESC' ] ]
@@ -354,18 +548,21 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 					'start' => '20151212020101',
 					'end' => '20151212010101'
 				],
+				null,
 				[],
 				[ "rc_timestamp <= '20151212020101'", "rc_timestamp >= '20151212010101'" ],
 				[ 'ORDER BY' => [ 'rc_timestamp DESC', 'rc_id DESC' ] ]
 			],
 			[
 				[ 'dir' => WatchedItemQueryService::DIR_NEWER, 'start' => '20151212010101' ],
+				null,
 				[],
 				[ "rc_timestamp >= '20151212010101'" ],
 				[ 'ORDER BY' => [ 'rc_timestamp', 'rc_id' ] ]
 			],
 			[
 				[ 'dir' => WatchedItemQueryService::DIR_NEWER, 'end' => '20151212010101' ],
+				null,
 				[],
 				[ "rc_timestamp <= '20151212010101'" ],
 				[ 'ORDER BY' => [ 'rc_timestamp', 'rc_id' ] ]
@@ -376,96 +573,112 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 					'start' => '20151212010101',
 					'end' => '20151212020101'
 				],
+				null,
 				[],
 				[ "rc_timestamp >= '20151212010101'", "rc_timestamp <= '20151212020101'" ],
 				[ 'ORDER BY' => [ 'rc_timestamp', 'rc_id' ] ]
 			],
 			[
 				[ 'limit' => 10 ],
+				null,
 				[],
 				[],
-				[ 'LIMIT' => 10 ],
+				[ 'LIMIT' => 11 ],
 			],
 			[
 				[ 'limit' => "10; DROP TABLE watchlist;\n--" ],
+				null,
 				[],
 				[],
-				[ 'LIMIT' => 10 ],
+				[ 'LIMIT' => 11 ],
 			],
 			[
 				[ 'filters' => [ WatchedItemQueryService::FILTER_MINOR ] ],
+				null,
 				[],
 				[ 'rc_minor != 0' ],
 				[],
 			],
 			[
 				[ 'filters' => [ WatchedItemQueryService::FILTER_NOT_MINOR ] ],
+				null,
 				[],
 				[ 'rc_minor = 0' ],
 				[],
 			],
 			[
 				[ 'filters' => [ WatchedItemQueryService::FILTER_BOT ] ],
+				null,
 				[],
 				[ 'rc_bot != 0' ],
 				[],
 			],
 			[
 				[ 'filters' => [ WatchedItemQueryService::FILTER_NOT_BOT ] ],
+				null,
 				[],
 				[ 'rc_bot = 0' ],
 				[],
 			],
 			[
 				[ 'filters' => [ WatchedItemQueryService::FILTER_ANON ] ],
+				null,
 				[],
 				[ 'rc_user = 0' ],
 				[],
 			],
 			[
 				[ 'filters' => [ WatchedItemQueryService::FILTER_NOT_ANON ] ],
+				null,
 				[],
 				[ 'rc_user != 0' ],
 				[],
 			],
 			[
 				[ 'filters' => [ WatchedItemQueryService::FILTER_PATROLLED ] ],
+				null,
 				[],
 				[ 'rc_patrolled != 0' ],
 				[],
 			],
 			[
 				[ 'filters' => [ WatchedItemQueryService::FILTER_NOT_PATROLLED ] ],
+				null,
 				[],
 				[ 'rc_patrolled = 0' ],
 				[],
 			],
 			[
 				[ 'filters' => [ WatchedItemQueryService::FILTER_UNREAD ] ],
+				null,
 				[],
 				[ 'rc_timestamp >= wl_notificationtimestamp' ],
 				[],
 			],
 			[
 				[ 'filters' => [ WatchedItemQueryService::FILTER_NOT_UNREAD ] ],
+				null,
 				[],
 				[ 'wl_notificationtimestamp IS NULL OR rc_timestamp < wl_notificationtimestamp' ],
 				[],
 			],
 			[
 				[ 'onlyByUser' => 'SomeOtherUser' ],
+				null,
 				[],
 				[ 'rc_user_text' => 'SomeOtherUser' ],
 				[],
 			],
 			[
 				[ 'notByUser' => 'SomeOtherUser' ],
+				null,
 				[],
 				[ "rc_user_text != 'SomeOtherUser'" ],
 				[],
 			],
 			[
-				[ 'startFrom' => [ '20151212010101', 123 ], 'dir' => WatchedItemQueryService::DIR_OLDER ],
+				[ 'dir' => WatchedItemQueryService::DIR_OLDER ],
+				[ '20151212010101', 123 ],
 				[],
 				[
 					"(rc_timestamp < '20151212010101') OR ((rc_timestamp = '20151212010101') AND (rc_id <= 123))"
@@ -473,7 +686,8 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 				[ 'ORDER BY' => [ 'rc_timestamp DESC', 'rc_id DESC' ] ],
 			],
 			[
-				[ 'startFrom' => [ '20151212010101', 123 ], 'dir' => WatchedItemQueryService::DIR_NEWER ],
+				[ 'dir' => WatchedItemQueryService::DIR_NEWER ],
+				[ '20151212010101', 123 ],
 				[],
 				[
 					"(rc_timestamp > '20151212010101') OR ((rc_timestamp = '20151212010101') AND (rc_id >= 123))"
@@ -481,10 +695,8 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 				[ 'ORDER BY' => [ 'rc_timestamp', 'rc_id' ] ],
 			],
 			[
-				[
-					'startFrom' => [ '20151212010101', "123; DROP TABLE watchlist;\n--" ],
-					'dir' => WatchedItemQueryService::DIR_OLDER
-				],
+				[ 'dir' => WatchedItemQueryService::DIR_OLDER ],
+				[ '20151212010101', "123; DROP TABLE watchlist;\n--" ],
 				[],
 				[
 					"(rc_timestamp < '20151212010101') OR ((rc_timestamp = '20151212010101') AND (rc_id <= 123))"
@@ -499,6 +711,7 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testGetWatchedItemsWithRecentChangeInfo_optionsAndEmptyResult(
 		array $options,
+		$startFrom,
 		array $expectedExtraFields,
 		array $expectedExtraConds,
 		array $expectedDbOptions
@@ -552,9 +765,10 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
 		$user = $this->getMockUnrestrictedNonAnonUserWithId( 1 );
 
-		$items = $queryService->getWatchedItemsWithRecentChangeInfo( $user, $options );
+		$items = $queryService->getWatchedItemsWithRecentChangeInfo( $user, $options, $startFrom );
 
 		$this->assertEmpty( $items );
+		$this->assertNull( $startFrom );
 	}
 
 	public function filterPatrolledOptionProvider() {
@@ -797,53 +1011,62 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 		return [
 			[
 				[ 'rcTypes' => [ 1337 ] ],
+				null,
 				'Bad value for parameter $options[\'rcTypes\']',
 			],
 			[
 				[ 'rcTypes' => [ 'edit' ] ],
+				null,
 				'Bad value for parameter $options[\'rcTypes\']',
 			],
 			[
 				[ 'rcTypes' => [ RC_EDIT, 1337 ] ],
+				null,
 				'Bad value for parameter $options[\'rcTypes\']',
 			],
 			[
 				[ 'dir' => 'foo' ],
+				null,
 				'Bad value for parameter $options[\'dir\']',
 			],
 			[
 				[ 'start' => '20151212010101' ],
+				null,
 				'Bad value for parameter $options[\'dir\']: must be provided',
 			],
 			[
 				[ 'end' => '20151212010101' ],
+				null,
 				'Bad value for parameter $options[\'dir\']: must be provided',
 			],
 			[
-				[ 'startFrom' => [ '20151212010101', 123 ] ],
+				[],
+				[ '20151212010101', 123 ],
 				'Bad value for parameter $options[\'dir\']: must be provided',
 			],
 			[
-				[ 'dir' => WatchedItemQueryService::DIR_OLDER, 'startFrom' => '20151212010101' ],
-				'Bad value for parameter $options[\'startFrom\']: must be a two-element array',
+				[ 'dir' => WatchedItemQueryService::DIR_OLDER ],
+				'20151212010101',
+				'Bad value for parameter $startFrom: must be a two-element array',
 			],
 			[
-				[ 'dir' => WatchedItemQueryService::DIR_OLDER, 'startFrom' => [ '20151212010101' ] ],
-				'Bad value for parameter $options[\'startFrom\']: must be a two-element array',
+				[ 'dir' => WatchedItemQueryService::DIR_OLDER ],
+				[ '20151212010101' ],
+				'Bad value for parameter $startFrom: must be a two-element array',
 			],
 			[
-				[
-					'dir' => WatchedItemQueryService::DIR_OLDER,
-					'startFrom' => [ '20151212010101', 123, 'foo' ]
-				],
-				'Bad value for parameter $options[\'startFrom\']: must be a two-element array',
+				[ 'dir' => WatchedItemQueryService::DIR_OLDER ],
+				[ '20151212010101', 123, 'foo' ],
+				'Bad value for parameter $startFrom: must be a two-element array',
 			],
 			[
 				[ 'watchlistOwner' => $this->getMockUnrestrictedNonAnonUserWithId( 2 ) ],
+				null,
 				'Bad value for parameter $options[\'watchlistOwnerToken\']',
 			],
 			[
 				[ 'watchlistOwner' => 'Other User', 'watchlistOwnerToken' => 'some-token' ],
+				null,
 				'Bad value for parameter $options[\'watchlistOwner\']',
 			],
 		];
@@ -854,6 +1077,7 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testGetWatchedItemsWithRecentChangeInfo_invalidOptions(
 		array $options,
+		$startFrom,
 		$expectedInExceptionMessage
 	) {
 		$mockDb = $this->getMockDb();
@@ -864,7 +1088,7 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 		$user = $this->getMockUnrestrictedNonAnonUserWithId( 1 );
 
 		$this->setExpectedException( InvalidArgumentException::class, $expectedInExceptionMessage );
-		$queryService->getWatchedItemsWithRecentChangeInfo( $user, $options );
+		$queryService->getWatchedItemsWithRecentChangeInfo( $user, $options, $startFrom );
 	}
 
 	public function testGetWatchedItemsWithRecentChangeInfo_usedInGeneratorOptionAndEmptyResult() {
@@ -1011,7 +1235,7 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 			->with( 'watchlisttoken' )
 			->willReturn( '0123456789abcdef' );
 
-		$this->setExpectedException( UsageException::class, 'Incorrect watchlist token provided' );
+		$this->setExpectedException( ApiUsageException::class, 'Incorrect watchlist token provided' );
 		$queryService->getWatchedItemsWithRecentChangeInfo(
 			$user,
 			[ 'watchlistOwner' => $otherUser, 'watchlistOwnerToken' => $token ]

@@ -5,7 +5,7 @@
  * @group Database
  * ^--- important, causes temporary tables to be used instead of the real database
  * @group medium
- **/
+ */
 class WikiPageTest extends MediaWikiLangTestCase {
 
 	protected $pages_to_delete;
@@ -156,67 +156,6 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers WikiPage::doEdit
-	 * @deprecated since 1.21. Should be removed when WikiPage::doEdit() gets removed
-	 */
-	public function testDoEdit() {
-		$this->hideDeprecated( "WikiPage::doEdit" );
-		$this->hideDeprecated( "WikiPage::getText" );
-		$this->hideDeprecated( "Revision::getText" );
-
-		// NOTE: assume help namespace will default to wikitext
-		$title = Title::newFromText( "Help:WikiPageTest_testDoEdit" );
-
-		$page = $this->newPage( $title );
-
-		$text = "[[Lorem ipsum]] dolor sit amet, consetetur sadipscing elitr, sed diam "
-			. " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.";
-
-		$page->doEdit( $text, "[[testing]] 1" );
-
-		$this->assertTrue( $title->getArticleID() > 0, "Title object should have new page id" );
-		$this->assertTrue( $page->getId() > 0, "WikiPage should have new page id" );
-		$this->assertTrue( $title->exists(), "Title object should indicate that the page now exists" );
-		$this->assertTrue( $page->exists(), "WikiPage object should indicate that the page now exists" );
-
-		$id = $page->getId();
-
-		# ------------------------
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'pagelinks', '*', [ 'pl_from' => $id ] );
-		$n = $res->numRows();
-		$res->free();
-
-		$this->assertEquals( 1, $n, 'pagelinks should contain one link from the page' );
-
-		# ------------------------
-		$page = new WikiPage( $title );
-
-		$retrieved = $page->getText();
-		$this->assertEquals( $text, $retrieved, 'retrieved text doesn\'t equal original' );
-
-		# ------------------------
-		$text = "At vero eos et accusam et justo duo [[dolores]] et ea rebum. "
-			. "Stet clita kasd [[gubergren]], no sea takimata sanctus est.";
-
-		$page->doEdit( $text, "testing 2" );
-
-		# ------------------------
-		$page = new WikiPage( $title );
-
-		$retrieved = $page->getText();
-		$this->assertEquals( $text, $retrieved, 'retrieved text doesn\'t equal original' );
-
-		# ------------------------
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'pagelinks', '*', [ 'pl_from' => $id ] );
-		$n = $res->numRows();
-		$res->free();
-
-		$this->assertEquals( 2, $n, 'pagelinks should contain two links from the page' );
-	}
-
-	/**
 	 * @covers WikiPage::doDeleteArticle
 	 */
 	public function testDoDeleteArticle() {
@@ -241,10 +180,6 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$this->assertNull(
 			$page->getContent(),
 			"WikiPage::getContent should return null after page was deleted"
-		);
-		$this->assertFalse(
-			$page->getText(),
-			"WikiPage::getText should return false after page was deleted"
 		);
 
 		$t = Title::newFromText( $page->getTitle()->getPrefixedText() );
@@ -330,24 +265,6 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 		$content = $page->getContent();
 		$this->assertEquals( "some text", $content->getNativeData() );
-	}
-
-	/**
-	 * @covers WikiPage::getText
-	 */
-	public function testGetText() {
-		$this->hideDeprecated( "WikiPage::getText" );
-
-		$page = $this->newPage( "WikiPageTest_testGetText" );
-
-		$text = $page->getText();
-		$this->assertFalse( $text );
-
-		# -----------------
-		$this->createPage( $page, "some text", CONTENT_MODEL_WIKITEXT );
-
-		$text = $page->getText();
-		$this->assertEquals( "some text", $text );
 	}
 
 	/**
@@ -836,6 +753,47 @@ more stuff
 	 */
 
 	/**
+	 * @covers WikiPage::getOldestRevision
+	 */
+	public function testGetOldestRevision() {
+		$page = $this->newPage( "WikiPageTest_testGetOldestRevision" );
+		$page->doEditContent(
+			new WikitextContent( 'one' ),
+			"first edit",
+			EDIT_NEW
+		);
+		$rev1 = $page->getRevision();
+
+		$page = new WikiPage( $page->getTitle() );
+		$page->doEditContent(
+			new WikitextContent( 'two' ),
+			"second edit",
+			EDIT_UPDATE
+		);
+
+		$page = new WikiPage( $page->getTitle() );
+		$page->doEditContent(
+			new WikitextContent( 'three' ),
+			"third edit",
+			EDIT_UPDATE
+		);
+
+		// sanity check
+		$this->assertNotEquals(
+			$rev1->getId(),
+			$page->getRevision()->getId(),
+			'$page->getRevision()->getId()'
+		);
+
+		// actual test
+		$this->assertEquals(
+			$rev1->getId(),
+			$page->getOldestRevision()->getId(),
+			'$page->getOldestRevision()->getId()'
+		);
+	}
+
+	/**
 	 * @todo FIXME: this is a better rollback test than the one below, but it
 	 * keeps failing in jenkins for some reason.
 	 */
@@ -879,6 +837,7 @@ more stuff
 		$this->assertEquals( 'Admin', $rev1->getUserText() );
 
 		# now, try the actual rollback
+		$admin->addToDatabase();
 		$admin->addGroup( "sysop" ); # XXX: make the test user a sysop...
 		$token = $admin->getEditToken(
 			[ $page->getTitle()->getPrefixedText(), $user2->getName() ],
@@ -911,6 +870,7 @@ more stuff
 	public function testDoRollback() {
 		$admin = new User();
 		$admin->setName( "Admin" );
+		$admin->addToDatabase();
 
 		$text = "one";
 		$page = $this->newPage( "WikiPageTest_testDoRollback" );
@@ -937,10 +897,7 @@ more stuff
 
 		# now, try the rollback
 		$admin->addGroup( "sysop" ); # XXX: make the test user a sysop...
-		$token = $admin->getEditToken(
-			[ $page->getTitle()->getPrefixedText(), $user1->getName() ],
-			null
-		);
+		$token = $admin->getEditToken( 'rollback' );
 		$errors = $page->doRollback(
 			$user1->getName(),
 			"testing revert",
@@ -967,6 +924,7 @@ more stuff
 	public function testDoRollbackFailureSameContent() {
 		$admin = new User();
 		$admin->setName( "Admin" );
+		$admin->addToDatabase();
 		$admin->addGroup( "sysop" ); # XXX: make the test user a sysop...
 
 		$text = "one";
@@ -982,6 +940,7 @@ more stuff
 
 		$user1 = new User();
 		$user1->setName( "127.0.1.11" );
+		$user1->addToDatabase();
 		$user1->addGroup( "sysop" ); # XXX: make the test user a sysop...
 		$text .= "\n\ntwo";
 		$page = new WikiPage( $page->getTitle() );
@@ -995,10 +954,7 @@ more stuff
 
 		# now, do a the rollback from the same user was doing the edit before
 		$resultDetails = [];
-		$token = $user1->getEditToken(
-			[ $page->getTitle()->getPrefixedText(), $user1->getName() ],
-			null
-		);
+		$token = $user1->getEditToken( 'rollback' );
 		$errors = $page->doRollback(
 			$user1->getName(),
 			"testing revert same user",
@@ -1012,10 +968,7 @@ more stuff
 
 		# now, try the rollback
 		$resultDetails = [];
-		$token = $admin->getEditToken(
-			[ $page->getTitle()->getPrefixedText(), $user1->getName() ],
-			null
-		);
+		$token = $admin->getEditToken( 'rollback' );
 		$errors = $page->doRollback(
 			$user1->getName(),
 			"testing revert",
@@ -1032,63 +985,6 @@ more stuff
 		$this->assertEquals( $rev1->getSha1(), $page->getRevision()->getSha1(),
 			"rollback did not revert to the correct revision" );
 		$this->assertEquals( "one", $page->getContent()->getNativeData() );
-	}
-
-	public static function provideGetAutosummary() {
-		return [
-			[
-				'Hello there, world!',
-				'#REDIRECT [[Foo]]',
-				0,
-				'/^Redirected page .*Foo/'
-			],
-
-			[
-				null,
-				'Hello world!',
-				EDIT_NEW,
-				'/^Created page .*Hello/'
-			],
-
-			[
-				'Hello there, world!',
-				'',
-				0,
-				'/^Blanked/'
-			],
-
-			[
-				'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-				eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-				voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-				clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-				'Hello world!',
-				0,
-				'/^Replaced .*Hello/'
-			],
-
-			[
-				'foo',
-				'bar',
-				0,
-				'/^$/'
-			],
-		];
-	}
-
-	/**
-	 * @dataProvider provideGetAutoSummary
-	 * @covers WikiPage::getAutosummary
-	 */
-	public function testGetAutosummary( $old, $new, $flags, $expected ) {
-		$this->hideDeprecated( "WikiPage::getAutosummary" );
-
-		$page = $this->newPage( "WikiPageTest_testGetAutosummary" );
-
-		$summary = $page->getAutosummary( $old, $new, $flags );
-
-		$this->assertTrue( (bool)preg_match( $expected, $summary ),
-			"Autosummary didn't match expected pattern $expected: $summary" );
 	}
 
 	public static function provideGetAutoDeleteReason() {

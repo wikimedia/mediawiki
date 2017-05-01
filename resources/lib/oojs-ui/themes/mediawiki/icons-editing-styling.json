@@ -15,7 +15,7 @@
 			"color": "#36c"
 		},
 		"destructive": {
-			"color": "#c33"
+			"color": "#d33"
 		},
 		"warning": {
 			"color": "#ff5d00"
@@ -55,6 +55,10 @@
 				"nl": "images/icons/bold-v.svg",
 				"os": "images/icons/bold-cyrl-be.svg"
 			}
+		} },
+		"highlight": { "file": {
+			"ltr": "images/icons/highlight-ltr.svg",
+			"rtl": "images/icons/highlight-rtl.svg"
 		} },
 		"italic": { "file": {
 			"default": "images/icons/italic-a.svg",

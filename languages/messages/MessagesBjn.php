@@ -135,4 +135,3 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'Tautan_balik' ],
 	'Withoutinterwiki'          => [ 'Kada_pakai_interwiki' ],
 ];
-

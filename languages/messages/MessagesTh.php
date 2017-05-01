@@ -190,4 +190,3 @@ $dateFormats = [
 	'ISO 8601 date' => 'xnY-xnm-xnd',
 	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
 ];
-

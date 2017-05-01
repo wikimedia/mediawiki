@@ -1,0 +1,20 @@
+/*!
+ * MediaWiki Widgets - base SelectWithInput styles.
+ *
+ * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
+ * @license The MIT License (MIT); see LICENSE.txt
+ */
+
+.mw-widget-selectWithInputWidget .oo-ui-dropdownInputWidget,
+.mw-widget-selectWithInputWidget .oo-ui-textInputWidget {
+	display: inline-block;
+}
+
+.mw-widget-selectWithInputWidget .oo-ui-dropdownInputWidget {
+	max-width: 20em;
+	margin-right: 0.5em;
+}
+
+.mw-widget-selectWithInputWidget .oo-ui-textInputWidget {
+	max-width: 29.5em;
+}

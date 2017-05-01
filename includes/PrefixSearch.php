@@ -23,7 +23,7 @@
 /**
  * Handles searching prefixes of titles and finding any page
  * names that match. Used largely by the OpenSearch implementation.
- * @deprecated Since 1.27, Use SearchEngine::prefixSearchSubpages or SearchEngine::completionSearch
+ * @deprecated Since 1.27, Use SearchEngine::defaultPrefixSearch or SearchEngine::completionSearch
  *
  * @ingroup Search
  */
@@ -231,7 +231,7 @@ abstract class PrefixSearch {
 			}
 		}
 
-		# normalize searchKey, so aliases with spaces can be found - bug 25675
+		# normalize searchKey, so aliases with spaces can be found - T27675
 		$searchKey = str_replace( ' ', '_', $searchKey );
 		$searchKey = $wgContLang->caseFold( $searchKey );
 
@@ -239,41 +239,43 @@ abstract class PrefixSearch {
 		// canonical and alias title forms...
 		$keys = [];
 		foreach ( SpecialPageFactory::getNames() as $page ) {
-			$keys[$wgContLang->caseFold( $page )] = $page;
+			$keys[$wgContLang->caseFold( $page )] = [ 'page' => $page, 'rank' => 0 ];
 		}
 
 		foreach ( $wgContLang->getSpecialPageAliases() as $page => $aliases ) {
-			if ( !in_array( $page, SpecialPageFactory::getNames() ) ) {# bug 20885
+			if ( !in_array( $page, SpecialPageFactory::getNames() ) ) {# T22885
 				continue;
 			}
 
-			foreach ( $aliases as $alias ) {
-				$keys[$wgContLang->caseFold( $alias )] = $alias;
+			foreach ( $aliases as $key => $alias ) {
+				$keys[$wgContLang->caseFold( $alias )] = [ 'page' => $alias, 'rank' => $key ];
 			}
 		}
 		ksort( $keys );
 
-		$srchres = [];
-		$skipped = 0;
+		$matches = [];
 		foreach ( $keys as $pageKey => $page ) {
 			if ( $searchKey === '' || strpos( $pageKey, $searchKey ) === 0 ) {
-				// bug 27671: Don't use SpecialPage::getTitleFor() here because it
+				// T29671: Don't use SpecialPage::getTitleFor() here because it
 				// localizes its input leading to searches for e.g. Special:All
 				// returning Spezial:MediaWiki-Systemnachrichten and returning
 				// Spezial:Alle_Seiten twice when $wgLanguageCode == 'de'
-				if ( $offset > 0 && $skipped < $offset ) {
-					$skipped++;
-					continue;
+				$matches[$page['rank']][] = Title::makeTitleSafe( NS_SPECIAL, $page['page'] );
+
+				if ( isset( $matches[0] ) && count( $matches[0] ) >= $limit + $offset ) {
+					// We have enough items in primary rank, no use to continue
+					break;
 				}
-				$srchres[] = Title::makeTitleSafe( NS_SPECIAL, $page );
 			}
 
-			if ( count( $srchres ) >= $limit ) {
-				break;
-			}
 		}
 
-		return $srchres;
+		// Ensure keys are in order
+		ksort( $matches );
+		// Flatten the array
+		$matches = array_reduce( $matches, 'array_merge', [] );
+
+		return array_slice( $matches, $offset, $limit );
 	}
 
 	/**
@@ -367,7 +369,7 @@ abstract class PrefixSearch {
 
 /**
  * Performs prefix search, returning Title objects
- * @deprecated Since 1.27, Use SearchEngine::prefixSearchSubpages or SearchEngine::completionSearch
+ * @deprecated Since 1.27, Use SearchEngine::defaultPrefixSearch or SearchEngine::completionSearch
  * @ingroup Search
  */
 class TitlePrefixSearch extends PrefixSearch {

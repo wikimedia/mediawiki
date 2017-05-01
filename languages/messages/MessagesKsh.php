@@ -210,4 +210,3 @@ $magicWords = [
 $imageFiles = [
 	'button-italic'   => 'ksh/button_italic.png',
 ];
-

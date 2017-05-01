@@ -5,7 +5,7 @@
  * Should be set in Doxygen INPUT_FILTER as "php mwdoc-filter.php"
  *
  * Based on
- * <http://virtualtee.blogspot.co.uk/2012/03/tip-for-using-doxygen-for-php-code.html>
+ * <https://virtualtee.blogspot.co.uk/2012/03/tip-for-using-doxygen-for-php-code.html>
  *
  * Improved to resolve various bugs and better MediaWiki PHPDoc conventions:
  *
@@ -16,7 +16,7 @@
  * - Strip the text after @var from the output to avoid Doxygen warnings aboug bogus
  *   symbols being documented but not declared or defined.
  *
- * Copyright (C) 2012 Tamas Imrei <tamas.imrei@gmail.com> http://virtualtee.blogspot.com/
+ * Copyright (C) 2012 Tamas Imrei <tamas.imrei@gmail.com> https://virtualtee.blogspot.com/
  * Copyright (C) 2015 Timo Tijhof
  *
  * Permission is hereby granted, free of charge, to any person obtaining

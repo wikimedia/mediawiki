@@ -16,7 +16,7 @@
 /*
  * @example QUnit
  * <code>
-	QUnit.test( 'Output matches PHP parser', mw.libs.phpParserData.tests.length, function ( assert ) {
+	QUnit.test( 'Output matches PHP parser', function ( assert ) {
 		mw.messages.set( mw.libs.phpParserData.messages );
 		$.each( mw.libs.phpParserData.tests, function ( i, test ) {
 			QUnit.stop();
@@ -133,7 +133,7 @@ class GenerateJqueryMsgData extends Maintenance {
 				. "// languages, and parser modes. Intended for use by a unit test framework by looping\n"
 				. "// through the object and comparing its parser return value with the 'result' property.\n"
 				. '// Last generated with ' . basename( __FILE__ ) . ' at ' . gmdate( 'r' ) . "\n"
-				. "//jscs:disable\n"
+				. "/* eslint-disable */\n"
 				. "\n"
 				. 'mediaWiki.libs.phpParserData = ' . FormatJson::encode( $phpParserData, true ) . ";\n";
 

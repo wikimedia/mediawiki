@@ -26,6 +26,8 @@
  * @file
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Query module to enumerate all available pages.
  *
@@ -44,10 +46,10 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 	 * which may not necessarily be the same as the local DB.
 	 *
 	 * TODO: allow querying non-local repos.
-	 * @return Database
+	 * @return IDatabase
 	 */
 	protected function getDB() {
-		return $this->mRepo->getSlaveDB();
+		return $this->mRepo->getReplicaDB();
 	}
 
 	public function execute() {
@@ -64,11 +66,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 	 */
 	public function executeGenerator( $resultPageSet ) {
 		if ( $resultPageSet->isResolvingRedirects() ) {
-			$this->dieUsage(
-				'Use "gaifilterredir=nonredirects" option instead of "redirects" ' .
-					'when using allimages as a generator',
-				'params'
-			);
+			$this->dieWithError( 'apierror-allimages-redirect', 'invalidparammix' );
 		}
 
 		$this->run( $resultPageSet );
@@ -81,10 +79,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 	private function run( $resultPageSet = null ) {
 		$repo = $this->mRepo;
 		if ( !$repo instanceof LocalRepo ) {
-			$this->dieUsage(
-				'Local file repository does not support querying all images',
-				'unsupportedrepo'
-			);
+			$this->dieWithError( 'apierror-unsupportedrepo' );
 		}
 
 		$prefix = $this->getModulePrefix();
@@ -92,6 +87,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		$db = $this->getDB();
 
 		$params = $this->extractRequestParams();
+		$userId = !is_null( $params['user'] ) ? User::idFromName( $params['user'] ) : null;
 
 		// Table and return fields
 		$this->addTables( 'image' );
@@ -109,16 +105,24 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			$disallowed = [ 'start', 'end', 'user' ];
 			foreach ( $disallowed as $pname ) {
 				if ( isset( $params[$pname] ) ) {
-					$this->dieUsage(
-						"Parameter '{$prefix}{$pname}' can only be used with {$prefix}sort=timestamp",
-						'badparams'
+					$this->dieWithError(
+						[
+							'apierror-invalidparammix-mustusewith',
+							"{$prefix}{$pname}",
+							"{$prefix}sort=timestamp"
+						],
+						'invalidparammix'
 					);
 				}
 			}
 			if ( $params['filterbots'] != 'all' ) {
-				$this->dieUsage(
-					"Parameter '{$prefix}filterbots' can only be used with {$prefix}sort=timestamp",
-					'badparams'
+				$this->dieWithError(
+					[
+						'apierror-invalidparammix-mustusewith',
+						"{$prefix}filterbots",
+						"{$prefix}sort=timestamp"
+					],
+					'invalidparammix'
 				);
 			}
 
@@ -146,18 +150,21 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			$disallowed = [ 'from', 'to', 'prefix' ];
 			foreach ( $disallowed as $pname ) {
 				if ( isset( $params[$pname] ) ) {
-					$this->dieUsage(
-						"Parameter '{$prefix}{$pname}' can only be used with {$prefix}sort=name",
-						'badparams'
+					$this->dieWithError(
+						[
+							'apierror-invalidparammix-mustusewith',
+							"{$prefix}{$pname}",
+							"{$prefix}sort=name"
+						],
+						'invalidparammix'
 					);
 				}
 			}
 			if ( !is_null( $params['user'] ) && $params['filterbots'] != 'all' ) {
 				// Since filterbots checks if each user has the bot right, it
 				// doesn't make sense to use it with user
-				$this->dieUsage(
-					"Parameters '{$prefix}user' and '{$prefix}filterbots' cannot be used together",
-					'badparams'
+				$this->dieWithError(
+					[ 'apierror-invalidparammix-cannotusewith', "{$prefix}user", "{$prefix}filterbots" ]
 				);
 			}
 
@@ -185,7 +192,11 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 			// Image filters
 			if ( !is_null( $params['user'] ) ) {
-				$this->addWhereFld( 'img_user_text', $params['user'] );
+				if ( $userId ) {
+					$this->addWhereFld( 'img_user', $userId );
+				} else {
+					$this->addWhereFld( 'img_user_text', $params['user'] );
+				}
 			}
 			if ( $params['filterbots'] != 'all' ) {
 				$this->addTables( 'user_groups' );
@@ -193,7 +204,10 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 					'LEFT JOIN',
 					[
 						'ug_group' => User::getGroupsWithPermission( 'bot' ),
-						'ug_user = img_user'
+						'ug_user = img_user',
+						$this->getConfig()->get( 'DisableUserGroupExpiry' ) ?
+							'1' :
+							'ug_expiry IS NULL OR ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
 					]
 				] ] );
 				$groupCond = ( $params['filterbots'] == 'nobots' ? 'NULL' : 'NOT NULL' );
@@ -214,13 +228,13 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		if ( isset( $params['sha1'] ) ) {
 			$sha1 = strtolower( $params['sha1'] );
 			if ( !$this->validateSha1Hash( $sha1 ) ) {
-				$this->dieUsage( 'The SHA1 hash provided is not valid', 'invalidsha1hash' );
+				$this->dieWithError( 'apierror-invalidsha1hash' );
 			}
 			$sha1 = Wikimedia\base_convert( $sha1, 16, 36, 31 );
 		} elseif ( isset( $params['sha1base36'] ) ) {
 			$sha1 = strtolower( $params['sha1base36'] );
 			if ( !$this->validateSha1Base36Hash( $sha1 ) ) {
-				$this->dieUsage( 'The SHA1Base36 hash provided is not valid', 'invalidsha1base36hash' );
+				$this->dieWithError( 'apierror-invalidsha1base36hash' );
 			}
 		}
 		if ( $sha1 ) {
@@ -229,7 +243,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 		if ( !is_null( $params['mime'] ) ) {
 			if ( $this->getConfig()->get( 'MiserMode' ) ) {
-				$this->dieUsage( 'MIME search disabled in Miser Mode', 'mimesearchdisabled' );
+				$this->dieWithError( 'apierror-mimesearchdisabled' );
 			}
 
 			$mimeConds = [];
@@ -262,7 +276,11 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		if ( $params['sort'] == 'timestamp' ) {
 			$this->addOption( 'ORDER BY', 'img_timestamp' . $sortFlag );
 			if ( !is_null( $params['user'] ) ) {
-				$this->addOption( 'USE INDEX', [ 'image' => 'img_usertext_timestamp' ] );
+				if ( $userId ) {
+					$this->addOption( 'USE INDEX', [ 'image' => 'img_user_timestamp' ] );
+				} else {
+					$this->addOption( 'USE INDEX', [ 'image' => 'img_usertext_timestamp' ] );
+				}
 			} else {
 				$this->addOption( 'USE INDEX', [ 'image' => 'img_timestamp' ] );
 			}
@@ -410,6 +428,6 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Allimages';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Allimages';
 	}
 }

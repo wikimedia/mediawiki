@@ -83,7 +83,7 @@ class XmlTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			'<input name="name" value="0" />',
 			Xml::input( 'name', false, 0 ),
-			'Input with a value of 0 (bug 23797)'
+			'Input with a value of 0 (T25797)'
 		);
 	}
 
@@ -306,17 +306,6 @@ class XmlTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers Xml::escapeJsString
-	 */
-	public function testEscapeJsStringSpecialChars() {
-		$this->assertEquals(
-			'\\\\\r\n',
-			Xml::escapeJsString( "\\\r\n" ),
-			'escapeJsString() with special characters'
-		);
-	}
-
-	/**
 	 * @covers Xml::encodeJsVar
 	 */
 	public function testEncodeJsVarBoolean() {
@@ -406,6 +395,35 @@ class XmlTest extends MediaWikiTestCase {
 			'"1.23456"',
 			Xml::encodeJsVar( '1.23456' ),
 			'encodeJsVar() with float-like string'
+		);
+	}
+
+	/**
+	 * @covers Xml::listDropDown
+	 */
+	public function testListDropDown() {
+		$this->assertEquals(
+			'<select id="test-name" name="test-name" class="test-css" tabindex="2">' . "\n" .
+				'<option value="other">other reasons</option>' .
+				'<optgroup label="Foo"><option value="Foo 1">Foo 1</option>' .
+				'<option value="Example" selected="">Example</option>' .
+				'</optgroup><optgroup label="Bar">' .
+				'<option value="Bar 1">Bar 1</option></optgroup>' . "\n" .
+				'</select>',
+			Xml::listDropDown(
+				// name
+				'test-name',
+				// source list
+				"* Foo\n** Foo 1\n** Example\n* Bar\n** Bar 1",
+				// other
+				'other reasons',
+				// selected
+				'Example',
+				// class
+				'test-css',
+				// tabindex
+				2
+			)
 		);
 	}
 }

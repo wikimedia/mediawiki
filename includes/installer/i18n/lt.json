@@ -54,6 +54,7 @@
 	"config-memory-raised": "PHP <code>memory_limit</code> yra $1, padidintas iki $2.",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] yra įdiegtas",
 	"config-apc": "[http://www.php.net/apc APC] yra įdiegtas",
+	"config-apcu": "[http://www.php.net/apcu APCu] yra įdiegtas",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] yra įdiegtas",
 	"config-no-cache-apcu": "<strong>Įspėjimas:</strong> Nepavyko rasti [http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] or [http://www.iis.net/download/WinCacheForPhp WinCache].\nObjekto spartinimas neįjungtas.",
 	"config-diff3-bad": "GNU diff3 nerastas.",
@@ -93,6 +94,7 @@
 	"config-postgres-old": "PostgreSQL $1 ar vėlesnė yra reikalinga. Jūs turite $2.",
 	"config-sqlite-cant-create-db": "Nepavyko sukurti duomenų bazės failo <code>$1</code>.",
 	"config-regenerate": "Pergeneruoti LocalSettings.php →",
+	"config-db-web-account": "Duomenų bazės paskyra dėl internetinės prieigos",
 	"config-db-web-account-same": "Naudoti tą pačią paskyrą kaip ir įdiegimui",
 	"config-db-web-create": "Sukurti paskyrą, jeigu jos nėra",
 	"config-mysql-engine": "Saugojimo variklis:",
@@ -170,5 +172,5 @@
 	"config-help-tooltip": "spustelėkite išplėtimui",
 	"config-nofile": "Failas \"$1\" nerastas. Ar jis buvo ištrintas?",
 	"mainpagetext": "<strong>MediaWiki sėkmingai įdiegta.</strong>",
-	"mainpagedocfooter": "Informacijos apie wiki programinės įrangos naudojimą, ieškokite [https://meta.wikimedia.org/wiki/Help:Contents žinyne].\n\n== Pradžiai ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Konfigūracijos nustatymų sąrašas]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki DUK]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki pranešimai paštu apie naujas versijas]"
+	"mainpagedocfooter": "Informacijos apie viki programinės įrangos naudojimą, ieškokite [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents].\n\n== Pradžia ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Konfigūracijos nustatymų sąrašas]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MedijaViki DUK]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MedijaViki pranešimai el. paštu apie naujas versijas]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokalizuoti MedijaViki savo kalbai]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Sužinokite kaip kovoti su šlamštu savo viki]"
 }

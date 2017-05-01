@@ -54,4 +54,3 @@ $dateFormats = [
 ];
 
 $linkTrail = "/^([a-z]+)(.*)$/sD";
-

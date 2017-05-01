@@ -90,7 +90,6 @@ class ApiHelp extends ApiBase {
 	 * @param IContextSource $context
 	 * @param ApiBase[]|ApiBase $modules
 	 * @param array $options Formatting options (described above)
-	 * @return string
 	 */
 	public static function getHelp( IContextSource $context, $modules, array $options ) {
 		global $wgContLang;
@@ -548,6 +547,12 @@ class ApiHelp extends ApiBase {
 
 								case 'namespace':
 									$namespaces = MWNamespace::getValidNamespaces();
+									if ( isset( $settings[ApiBase::PARAM_EXTRA_NAMESPACES] ) &&
+										is_array( $settings[ApiBase::PARAM_EXTRA_NAMESPACES] )
+									) {
+										$namespaces = array_merge( $namespaces, $settings[ApiBase::PARAM_EXTRA_NAMESPACES] );
+									}
+									sort( $namespaces );
 									$count = count( $namespaces );
 									$info[] = $context->msg( 'api-help-param-list' )
 										->params( $multi ? 2 : 1 )
@@ -644,6 +649,20 @@ class ApiHelp extends ApiBase {
 							}
 							if ( $extra ) {
 								$info[] = implode( ' ', $extra );
+							}
+
+							$allowAll = isset( $settings[ApiBase::PARAM_ALL] )
+								? $settings[ApiBase::PARAM_ALL]
+								: false;
+							if ( $allowAll || $settings[ApiBase::PARAM_TYPE] === 'namespace' ) {
+								if ( $settings[ApiBase::PARAM_TYPE] === 'namespace' ) {
+									$allSpecifier = ApiBase::ALL_DEFAULT_STRING;
+								} else {
+									$allSpecifier = ( is_string( $allowAll ) ? $allowAll : ApiBase::ALL_DEFAULT_STRING );
+								}
+								$info[] = $context->msg( 'api-help-param-multi-all' )
+									->params( $allSpecifier )
+									->parse();
 							}
 						}
 					}
@@ -825,9 +844,9 @@ class ApiHelp extends ApiBase {
 
 	public function getHelpUrls() {
 		return [
-			'https://www.mediawiki.org/wiki/API:Main_page',
-			'https://www.mediawiki.org/wiki/API:FAQ',
-			'https://www.mediawiki.org/wiki/API:Quick_start_guide',
+			'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page',
+			'https://www.mediawiki.org/wiki/Special:MyLanguage/API:FAQ',
+			'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Quick_start_guide',
 		];
 	}
 }

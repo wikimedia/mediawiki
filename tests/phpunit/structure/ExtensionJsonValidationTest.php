@@ -16,23 +16,22 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-use Composer\Spdx\SpdxLicenses;
-use JsonSchema\Validator;
-
 /**
  * Validates all loaded extensions and skins using the ExtensionRegistry
  * against the extension.json schema in the docs/ folder.
  */
 class ExtensionJsonValidationTest extends PHPUnit_Framework_TestCase {
 
+	/**
+	 * @var ExtensionJsonValidator
+	 */
+	protected $validator;
+
 	public function setUp() {
 		parent::setUp();
-		if ( !class_exists( Validator::class ) ) {
-			$this->markTestSkipped(
-				'The JsonSchema library cannot be found,' .
-				' please install it through composer to run extension.json validation tests.'
-			);
-		}
+
+		$this->validator = new ExtensionJsonValidator( [ $this, 'markTestSkipped' ] );
+		$this->validator->checkDependencies();
 
 		if ( !ExtensionRegistry::getInstance()->getAllThings() ) {
 			$this->markTestSkipped(
@@ -55,56 +54,12 @@ class ExtensionJsonValidationTest extends PHPUnit_Framework_TestCase {
 	 * @param string $path Path to thing's json file
 	 */
 	public function testPassesValidation( $path ) {
-		$data = json_decode( file_get_contents( $path ) );
-		$this->assertInstanceOf( 'stdClass', $data, "$path is not valid JSON" );
-
-		$this->assertObjectHasAttribute( 'manifest_version', $data,
-			"$path does not have manifest_version set." );
-		$version = $data->manifest_version;
-		if ( $version !== ExtensionRegistry::MANIFEST_VERSION ) {
-			$schemaPath = __DIR__ . "/../../../docs/extension.schema.v$version.json";
-		} else {
-			$schemaPath = __DIR__ . '/../../../docs/extension.schema.json';
-		}
-
-		// Not too old
-		$this->assertTrue(
-			$version >= ExtensionRegistry::OLDEST_MANIFEST_VERSION,
-			"$path is using a non-supported schema version"
-		);
-		// Not too new
-		$this->assertTrue(
-			$version <= ExtensionRegistry::MANIFEST_VERSION,
-			"$path is using a non-supported schema version"
-		);
-
-		$licenseError = false;
-		if ( class_exists( SpdxLicenses::class ) && isset( $data->{'license-name'} )
-			// Check if it's a string, if not, schema validation will display an error
-			&& is_string( $data->{'license-name'} )
-		) {
-			$licenses = new SpdxLicenses();
-			$valid = $licenses->validate( $data->{'license-name'} );
-			if ( !$valid ) {
-				$licenseError = '[license-name] Invalid SPDX license identifier, '
-					. 'see <https://spdx.org/licenses/>';
-			}
-		}
-
-		$validator = new Validator;
-		$validator->check( $data, (object) [ '$ref' => 'file://' . $schemaPath ] );
-		if ( $validator->isValid() && !$licenseError ) {
-			// All good.
+		try {
+			$this->validator->validate( $path );
+			// All good
 			$this->assertTrue( true );
-		} else {
-			$out = "$path did pass validation.\n";
-			foreach ( $validator->getErrors() as $error ) {
-				$out .= "[{$error['property']}] {$error['message']}\n";
-			}
-			if ( $licenseError ) {
-				$out .= "$licenseError\n";
-			}
-			$this->assertTrue( false, $out );
+		} catch ( ExtensionJsonValidationError $e ) {
+			$this->assertEquals( false, $e->getMessage() );
 		}
 	}
 }

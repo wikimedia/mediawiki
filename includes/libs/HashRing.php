@@ -32,7 +32,7 @@ class HashRing {
 	/** @var Array (location => (start, end)) */
 	protected $ring = [];
 
-	/** @var Array (location => (start, end)) */
+	/** @var HashRing|null */
 	protected $liveRing;
 	/** @var Array (location => UNIX timestamp) */
 	protected $ejectionExpiries = [];

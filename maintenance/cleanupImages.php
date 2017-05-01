@@ -146,7 +146,7 @@ class ImageCleanup extends TableCleanup {
 		 * if the target title exists in the image table, or if both the
 		 * original and target titles exist in the page table, append
 		 * increasing version numbers until the target title exists in
-		 * neither.  (See also bug 16916.)
+		 * neither.  (See also T18916.)
 		 */
 		$version = 0;
 		$final = $new;

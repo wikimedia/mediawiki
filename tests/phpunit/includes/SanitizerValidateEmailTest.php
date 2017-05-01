@@ -64,7 +64,7 @@ class SanitizerValidateEmailTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * bug 26948 : comma were matched by an incorrect regexp range
+	 * T28948 : comma were matched by an incorrect regexp range
 	 */
 	public function testEmailWithCommasAreInvalids() {
 		$this->invalid( "user,foo@example.org" );

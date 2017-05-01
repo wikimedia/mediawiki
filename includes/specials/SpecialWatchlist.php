@@ -22,6 +22,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * A special page that lists last changes made to the wiki,
@@ -52,6 +54,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$this->addHelpLink( 'Help:Watching pages' );
 		$output->addModules( [
 			'mediawiki.special.changeslist.visitedstatus',
+			'mediawiki.special.watchlist',
 		] );
 
 		$mode = SpecialEditWatchlist::getMode( $request, $subpage );
@@ -78,6 +81,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		if ( ( $config->get( 'EnotifWatchlist' ) || $config->get( 'ShowUpdatedMarker' ) )
 			&& $request->getVal( 'reset' )
 			&& $request->wasPosted()
+			&& $user->matchEditToken( $request->getVal( 'token' ) )
 		) {
 			$user->clearAllNotifications();
 			$output->redirect( $this->getPageTitle()->getFullURL( $opts->getChangedValues() ) );
@@ -103,6 +107,58 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
+	 * @inheritdoc
+	 */
+	protected function transformFilterDefinition( array $filterDefinition ) {
+		if ( isset( $filterDefinition['showHideSuffix'] ) ) {
+			$filterDefinition['showHide'] = 'wl' . $filterDefinition['showHideSuffix'];
+		}
+
+		return $filterDefinition;
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	protected function registerFilters() {
+		parent::registerFilters();
+
+		$user = $this->getUser();
+
+		$significance = $this->getFilterGroup( 'significance' );
+		$hideMinor = $significance->getFilter( 'hideminor' );
+		$hideMinor->setDefault( $user->getBoolOption( 'watchlisthideminor' ) );
+
+		$automated = $this->getFilterGroup( 'automated' );
+		$hideBots = $automated->getFilter( 'hidebots' );
+		$hideBots->setDefault( $user->getBoolOption( 'watchlisthidebots' ) );
+
+		$registration = $this->getFilterGroup( 'registration' );
+		$hideAnons = $registration->getFilter( 'hideanons' );
+		$hideAnons->setDefault( $user->getBoolOption( 'watchlisthideanons' ) );
+		$hideLiu = $registration->getFilter( 'hideliu' );
+		$hideLiu->setDefault( $user->getBoolOption( 'watchlisthideliu' ) );
+
+		$reviewStatus = $this->getFilterGroup( 'reviewStatus' );
+		if ( $reviewStatus !== null ) {
+			// Conditional on feature being available and rights
+			$hidePatrolled = $reviewStatus->getFilter( 'hidepatrolled' );
+			$hidePatrolled->setDefault( $user->getBoolOption( 'watchlisthidepatrolled' ) );
+		}
+
+		$authorship = $this->getFilterGroup( 'authorship' );
+		$hideMyself = $authorship->getFilter( 'hidemyself' );
+		$hideMyself->setDefault( $user->getBoolOption( 'watchlisthideown' ) );
+
+		$changeType = $this->getFilterGroup( 'changeType' );
+		$hideCategorization = $changeType->getFilter( 'hidecategorization' );
+		if ( $hideCategorization !== null ) {
+			// Conditional on feature being available
+			$hideCategorization->setDefault( $user->getBoolOption( 'watchlisthidecategorization' ) );
+		}
+	}
+
+	/**
 	 * Get a FormOptions object containing the default options
 	 *
 	 * @return FormOptions
@@ -113,24 +169,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$opts->add( 'days', $user->getOption( 'watchlistdays' ), FormOptions::FLOAT );
 		$opts->add( 'extended', $user->getBoolOption( 'extendwatchlist' ) );
-		if ( $this->getRequest()->getVal( 'action' ) == 'submit' ) {
-			// The user has submitted the form, so we dont need the default values
-			return $opts;
-		}
-
-		$opts->add( 'hideminor', $user->getBoolOption( 'watchlisthideminor' ) );
-		$opts->add( 'hidebots', $user->getBoolOption( 'watchlisthidebots' ) );
-		$opts->add( 'hideanons', $user->getBoolOption( 'watchlisthideanons' ) );
-		$opts->add( 'hideliu', $user->getBoolOption( 'watchlisthideliu' ) );
-		$opts->add( 'hidepatrolled', $user->getBoolOption( 'watchlisthidepatrolled' ) );
-		$opts->add( 'hidemyself', $user->getBoolOption( 'watchlisthideown' ) );
-		$opts->add( 'hidecategorization', $user->getBoolOption( 'watchlisthidecategorization' ) );
 
 		return $opts;
 	}
 
 	/**
-	 * Get custom show/hide filters
+	 * Get all custom filters
 	 *
 	 * @return array Map of filter URL param names to properties (msg/default)
 	 */
@@ -170,6 +214,26 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			}
 		}
 
+		if ( $this->getRequest()->getVal( 'action' ) == 'submit' ) {
+			$allBooleansFalse = [];
+
+			// If the user submitted the form, start with a baseline of "all
+			// booleans are false", then change the ones they checked.  This
+			// means we ignore the defaults.
+
+			// This is how we handle the fact that HTML forms don't submit
+			// unchecked boxes.
+			foreach ( $this->filterGroups as $filterGroup ) {
+				if ( $filterGroup instanceof ChangesListBooleanFilterGroup ) {
+					foreach ( $filterGroup->getFilters() as $filter ) {
+						$allBooleansFalse[$filter->getName()] = false;
+					}
+				}
+			}
+
+			$params = $params + $allBooleansFalse;
+		}
+
 		// Not the prettiest way to achieve this… FormOptions internally depends on data sanitization
 		// methods defined on WebRequest and removing this dependency would cause some code duplication.
 		$request = new DerivativeRequest( $this->getRequest(), $params );
@@ -179,32 +243,28 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Return an array of conditions depending of options set in $opts
-	 *
-	 * @param FormOptions $opts
-	 * @return array
+	 * @inheritdoc
 	 */
-	public function buildMainQueryConds( FormOptions $opts ) {
+	protected function buildQuery( &$tables, &$fields, &$conds, &$query_options,
+		&$join_conds, FormOptions $opts ) {
+
 		$dbr = $this->getDB();
-		$conds = parent::buildMainQueryConds( $opts );
+		parent::buildQuery( $tables, $fields, $conds, $query_options, $join_conds,
+			$opts );
 
 		// Calculate cutoff
 		if ( $opts['days'] > 0 ) {
 			$conds[] = 'rc_timestamp > ' .
 				$dbr->addQuotes( $dbr->timestamp( time() - intval( $opts['days'] * 86400 ) ) );
 		}
-
-		return $conds;
 	}
 
 	/**
-	 * Process the query
-	 *
-	 * @param array $conds
-	 * @param FormOptions $opts
-	 * @return bool|ResultWrapper Result or false (for Recentchangeslinked only)
+	 * @inheritdoc
 	 */
-	public function doMainQuery( $conds, $opts ) {
+	protected function doMainQuery( $tables, $fields, $conds, $query_options,
+		$join_conds, FormOptions $opts ) {
+
 		$dbr = $this->getDB();
 		$user = $this->getUser();
 
@@ -229,19 +289,23 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$usePage = true;
 		}
 
-		$tables = [ 'recentchanges', 'watchlist' ];
-		$fields = RecentChange::selectFields();
-		$query_options = [ 'ORDER BY' => 'rc_timestamp DESC' ];
-		$join_conds = [
-			'watchlist' => [
-				'INNER JOIN',
-				[
-					'wl_user' => $user->getId(),
-					'wl_namespace=rc_namespace',
-					'wl_title=rc_title'
+		$tables = array_merge( [ 'recentchanges', 'watchlist' ], $tables );
+		$fields = array_merge( RecentChange::selectFields(), $fields );
+
+		$query_options = array_merge( [ 'ORDER BY' => 'rc_timestamp DESC' ], $query_options );
+		$join_conds = array_merge(
+			[
+				'watchlist' => [
+					'INNER JOIN',
+					[
+						'wl_user' => $user->getId(),
+						'wl_namespace=rc_namespace',
+						'wl_title=rc_title'
+					],
 				],
 			],
-		];
+			$join_conds
+		);
 
 		if ( $this->getConfig()->get( 'ShowUpdatedMarker' ) ) {
 			$fields[] = 'wl_notificationtimestamp';
@@ -359,7 +423,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$dbr->dataSeek( $rows, 0 );
 
-		$list = ChangesList::newFromContext( $this->getContext() );
+		$list = ChangesList::newFromContext( $this->getContext(), $this->filterGroups );
 		$list->setWatchlistDivs();
 		$list->initChangesListRows( $rows );
 		$dbr->dataSeek( $rows, 0 );
@@ -421,12 +485,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$user = $this->getUser();
 		$out = $this->getOutput();
 
-		// if the user wishes, that the watchlist is reloaded, whenever a filter changes,
-		// add the module for that
-		if ( $user->getBoolOption( 'watchlistreloadautomatically' ) ) {
-			$out->addModules( [ 'mediawiki.special.watchlist' ] );
-		}
-
 		$out->addSubtitle(
 			$this->msg( 'watchlistfor2', $user->getName() )
 				->rawParams( SpecialEditWatchlist::buildTools(
@@ -452,30 +510,23 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$cutofflinks = $this->msg( 'wlshowtime' ) . ' ' . $this->cutoffselector( $opts );
 
 		# Spit out some control panel links
-		$filters = [
-			'hideminor' => 'wlshowhideminor',
-			'hidebots' => 'wlshowhidebots',
-			'hideanons' => 'wlshowhideanons',
-			'hideliu' => 'wlshowhideliu',
-			'hidemyself' => 'wlshowhidemine',
-			'hidepatrolled' => 'wlshowhidepatr'
-		];
-
-		if ( $this->getConfig()->get( 'RCWatchCategoryMembership' ) ) {
-			$filters['hidecategorization'] = 'wlshowhidecategorization';
-		}
-
-		foreach ( $this->getCustomFilters() as $key => $params ) {
-			$filters[$key] = $params['msg'];
-		}
-		// Disable some if needed
-		if ( !$user->useRCPatrol() ) {
-			unset( $filters['hidepatrolled'] );
-		}
-
 		$links = [];
-		foreach ( $filters as $name => $msg ) {
-			$links[] = $this->showHideCheck( $nondefaults, $msg, $name, $opts[$name] );
+		$context = $this->getContext();
+		$namesOfDisplayedFilters = [];
+		foreach ( $this->getFilterGroups() as $groupName => $group ) {
+			if ( !$group->isPerGroupRequestParameter() ) {
+				foreach ( $group->getFilters() as $filterName => $filter ) {
+					if ( $filter->displaysOnUnstructuredUi( $this ) ) {
+						$namesOfDisplayedFilters[] = $filterName;
+						$links[] = $this->showHideCheck(
+							$nondefaults,
+							$filter->getShowHide(),
+							$filterName,
+							$opts[$filterName]
+						);
+					}
+				}
+			}
 		}
 
 		$hiddenFields = $nondefaults;
@@ -484,8 +535,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		unset( $hiddenFields['invert'] );
 		unset( $hiddenFields['associated'] );
 		unset( $hiddenFields['days'] );
-		foreach ( $filters as $key => $value ) {
-			unset( $hiddenFields[$key] );
+		foreach ( $namesOfDisplayedFilters as $filterName ) {
+			unset( $hiddenFields[$filterName] );
 		}
 
 		# Create output
@@ -608,7 +659,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$form .= Xml::openElement( 'form', [ 'method' => 'post',
 				'action' => $this->getPageTitle()->getLocalURL(),
 				'id' => 'mw-watchlist-resetbutton' ] ) . "\n" .
-			Xml::submitButton( $this->msg( 'enotif_reset' )->text(), [ 'name' => 'dummy' ] ) . "\n" .
+			Xml::submitButton( $this->msg( 'enotif_reset' )->text(),
+				[ 'name' => 'mw-watchlist-reset-submit' ] ) . "\n" .
+			Html::hidden( 'token', $user->getEditToken() ) . "\n" .
 			Html::hidden( 'reset', 'all' ) . "\n";
 			foreach ( $nondefaults as $key => $value ) {
 				$form .= Html::hidden( $key, $value ) . "\n";

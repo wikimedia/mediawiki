@@ -1,4 +1,3 @@
-/*global OO*/
 ( function ( mw, $ ) {
 	/**
 	 * This is an implementation of MessagePoster for wikitext talk pages.

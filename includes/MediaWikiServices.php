@@ -9,10 +9,10 @@ use EventRelayerGroup;
 use GenderCache;
 use GlobalVarConfig;
 use Hooks;
-use LBFactory;
+use Wikimedia\Rdbms\LBFactory;
 use LinkCache;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
-use LoadBalancer;
+use Wikimedia\Rdbms\LoadBalancer;
 use MediaHandlerFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
@@ -22,6 +22,7 @@ use MediaWiki\Services\NoSuchServiceException;
 use MWException;
 use MimeAnalyzer;
 use ObjectCache;
+use Parser;
 use ProxyLookup;
 use SearchEngine;
 use SearchEngineConfig;
@@ -191,7 +192,6 @@ class MediaWikiServices extends ServiceContainer {
 		} else {
 			$oldInstance->destroy();
 		}
-
 	}
 
 	/**
@@ -297,7 +297,7 @@ class MediaWikiServices extends ServiceContainer {
 		self::resetGlobalInstance();
 
 		// Child, reseed because there is no bug in PHP:
-		// http://bugs.php.net/bug.php?id=42465
+		// https://bugs.php.net/bug.php?id=42465
 		mt_srand( getmypid() );
 	}
 
@@ -566,6 +566,14 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.29
+	 * @return Parser
+	 */
+	public function getParser() {
+		return $this->getService( 'Parser' );
+	}
+
+	/**
 	 * @since 1.28
 	 * @return GenderCache
 	 */
@@ -646,6 +654,22 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getVirtualRESTServiceClient() {
 		return $this->getService( 'VirtualRESTServiceClient' );
+	}
+
+	/**
+	 * @since 1.29
+	 * @return \ConfiguredReadOnlyMode
+	 */
+	public function getConfiguredReadOnlyMode() {
+		return $this->getService( 'ConfiguredReadOnlyMode' );
+	}
+
+	/**
+	 * @since 1.29
+	 * @return \ReadOnlyMode
+	 */
+	public function getReadOnlyMode() {
+		return $this->getService( 'ReadOnlyMode' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

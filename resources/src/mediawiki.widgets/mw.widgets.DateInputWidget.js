@@ -4,7 +4,7 @@
  * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
-/*global moment */
+/* global moment */
 ( function ( $, mw ) {
 
 	/**
@@ -56,7 +56,7 @@
 	 *     } );
 	 *
 	 * @class
-	 * @extends OO.ui.InputWidget
+	 * @extends OO.ui.TextInputWidget
 	 * @mixins OO.ui.mixin.IndicatorElement
 	 *
 	 * @constructor
@@ -72,6 +72,8 @@
 	 *     while the widget is inactive. Should be as unambiguous as possible (for example, prefer to
 	 *     spell out the month, rather than rely on the order), even if that makes it longer. When not
 	 *     given, the default is language-specific.
+	 * @cfg {boolean} [longDisplayFormat=false] If a custom displayFormat is not specified, use
+	 *     unabbreviated day of the week and month names in the default language-specific displayFormat.
 	 * @cfg {string} [placeholderLabel=No date selected] Placeholder text shown when the widget is not
 	 *     selected. Default text taken from message `mw-widgets-dateinput-no-date`.
 	 * @cfg {string} [placeholderDateFormat] User-visible date format string displayed in the textual input
@@ -87,9 +89,12 @@
 	 *     calendar uses relative positioning.
 	 */
 	mw.widgets.DateInputWidget = function MWWDateInputWidget( config ) {
+		var placeholderDateFormat, mustBeAfter, mustBeBefore;
+
 		// Config initialization
 		config = $.extend( {
 			precision: 'day',
+			longDisplayFormat: false,
 			required: false,
 			placeholderLabel: mw.msg( 'mw-widgets-dateinput-no-date' )
 		}, config );
@@ -99,7 +104,6 @@
 			}
 		}
 
-		var placeholderDateFormat, mustBeAfter, mustBeBefore;
 		if ( config.placeholderDateFormat ) {
 			placeholderDateFormat = config.placeholderDateFormat;
 		} else if ( config.inputFormat ) {
@@ -112,7 +116,7 @@
 
 		// Properties (must be set before parent constructor, which calls #setValue)
 		this.$handle = $( '<div>' );
-		this.label = new OO.ui.LabelWidget();
+		this.innerLabel = new OO.ui.LabelWidget();
 		this.textInput = new OO.ui.TextInputWidget( {
 			required: config.required,
 			placeholder: placeholderDateFormat,
@@ -128,10 +132,11 @@
 		this.inTextInput = 0;
 		this.inputFormat = config.inputFormat;
 		this.displayFormat = config.displayFormat;
+		this.longDisplayFormat = config.longDisplayFormat;
 		this.required = config.required;
 		this.placeholderLabel = config.placeholderLabel;
-
 		// Validate and set min and max dates as properties
+
 		if ( config.mustBeAfter !== undefined ) {
 			mustBeAfter = moment( config.mustBeAfter, 'YYYY-MM-DD' );
 			if ( mustBeAfter.isValid() ) {
@@ -144,7 +149,6 @@
 				this.mustBeBefore = mustBeBefore;
 			}
 		}
-
 		// Parent constructor
 		mw.widgets.DateInputWidget.parent.call( this, config );
 
@@ -168,20 +172,26 @@
 		} );
 		this.$handle.on( {
 			click: this.onClick.bind( this ),
-			keypress: this.onKeyPress.bind( this )
+			keypress: this.onKeyPress.bind( this ),
+			focus: this.activate.bind( this )
 		} );
 
 		// Initialization
 		// Move 'tabindex' from this.$input (which is invisible) to the visible handle
 		this.setTabIndexedElement( this.$handle );
 		this.$handle
-			.append( this.label.$element, this.$indicator )
+			.append( this.innerLabel.$element, this.$indicator )
 			.addClass( 'mw-widget-dateInputWidget-handle' );
 		this.calendar.$element
 			.addClass( 'mw-widget-dateInputWidget-calendar' );
 		this.$element
 			.addClass( 'mw-widget-dateInputWidget' )
 			.append( this.$handle, this.textInput.$element, this.calendar.$element );
+
+		// config.overlay is the selector to be used for config.$overlay, specified from PHP
+		if ( config.overlay ) {
+			config.$overlay = $( config.overlay );
+		}
 
 		if ( config.$overlay ) {
 			this.calendar.setFloatableContainer( this.$element );
@@ -219,11 +229,17 @@
 		this.updateUI();
 		this.textInput.toggle( false );
 		this.calendar.toggle( false );
+
+		// Hide unused <input> from PHP after infusion is done
+		// See InputWidget#reusePreInfuseDOM about config.$input
+		if ( config.$input ) {
+			config.$input.addClass( 'oo-ui-element-hidden' );
+		}
 	};
 
 	/* Inheritance */
 
-	OO.inheritClass( mw.widgets.DateInputWidget, OO.ui.InputWidget );
+	OO.inheritClass( mw.widgets.DateInputWidget, OO.ui.TextInputWidget );
 	OO.mixinClass( mw.widgets.DateInputWidget, OO.ui.mixin.IndicatorElement );
 
 	/* Methods */
@@ -351,7 +367,7 @@
 		if ( this.getValue() === '' ) {
 			this.textInput.setValue( '' );
 			this.calendar.setDate( null );
-			this.label.setLabel( this.placeholderLabel );
+			this.innerLabel.setLabel( this.placeholderLabel );
 			this.$element.addClass( 'mw-widget-dateInputWidget-empty' );
 		} else {
 			moment = this.getMoment();
@@ -361,7 +377,7 @@
 			if ( !this.inCalendar ) {
 				this.calendar.setDate( this.getValue() );
 			}
-			this.label.setLabel( moment.format( this.getDisplayFormat() ) );
+			this.innerLabel.setLabel( moment.format( this.getDisplayFormat() ) );
 			this.$element.removeClass( 'mw-widget-dateInputWidget-empty' );
 		}
 	};
@@ -401,6 +417,8 @@
 	 * @return {string} Format string
 	 */
 	mw.widgets.DateInputWidget.prototype.getDisplayFormat = function () {
+		var localeData, llll, lll, ll, format;
+
 		if ( this.displayFormat !== undefined ) {
 			return this.displayFormat;
 		}
@@ -419,11 +437,15 @@
 			// We try to construct it as 'llll - (lll - ll)' and hope for the best.
 			// This seems to work well for many languages (maybe even all?).
 
-			var localeData = moment.localeData( moment.locale() ),
-				llll = localeData.longDateFormat( 'llll' ),
-				lll = localeData.longDateFormat( 'lll' ),
-				ll = localeData.longDateFormat( 'll' ),
-				format = llll.replace( lll.replace( ll, '' ), '' );
+			localeData = moment.localeData( moment.locale() );
+			llll = localeData.longDateFormat( 'llll' );
+			lll = localeData.longDateFormat( 'lll' );
+			ll = localeData.longDateFormat( 'll' );
+			format = llll.replace( lll.replace( ll, '' ), '' );
+
+			if ( this.longDisplayFormat ) {
+				format = format.replace( 'MMM', 'MMMM' ).replace( 'ddd', 'dddd' );
+			}
 
 			return format;
 		}
@@ -474,6 +496,7 @@
 	 *
 	 * @private
 	 * @param {jQuery.Event} e Mouse click event
+	 * @return {boolean} False to cancel the default event
 	 */
 	mw.widgets.DateInputWidget.prototype.onClick = function ( e ) {
 		if ( !this.isDisabled() && e.which === 1 ) {
@@ -487,6 +510,7 @@
 	 *
 	 * @private
 	 * @param {jQuery.Event} e Key press event
+	 * @return {boolean} False to cancel the default event
 	 */
 	mw.widgets.DateInputWidget.prototype.onKeyPress = function ( e ) {
 		if ( !this.isDisabled() &&
@@ -502,6 +526,7 @@
 	 *
 	 * @private
 	 * @param {jQuery.Event} e Key press event
+	 * @return {boolean} False to cancel the default event
 	 */
 	mw.widgets.DateInputWidget.prototype.onCalendarKeyPress = function ( e ) {
 		if ( !this.isDisabled() && e.which === OO.ui.Keys.ENTER ) {
@@ -516,6 +541,7 @@
 	 *
 	 * @private
 	 * @param {jQuery.Event} e Mouse click event
+	 * @return {boolean} False to cancel the default event
 	 */
 	mw.widgets.DateInputWidget.prototype.onCalendarClick = function ( e ) {
 		if (

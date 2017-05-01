@@ -123,4 +123,3 @@ $separatorTransformTable = [
 	'.' => ',',
 	',' => "\xc2\xa0", # nbsp
 ];
-

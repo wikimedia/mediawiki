@@ -30,7 +30,7 @@
  */
 class TextContentHandler extends ContentHandler {
 
-	// @codingStandardsIgnoreStart bug 57585
+	// @codingStandardsIgnoreStart T59585
 	public function __construct( $modelId = CONTENT_MODEL_TEXT, $formats = [ CONTENT_FORMAT_TEXT ] ) {
 		parent::__construct( $modelId, $formats );
 	}
@@ -150,8 +150,11 @@ class TextContentHandler extends ContentHandler {
 		return $fields;
 	}
 
-	public function getDataForSearchIndex( WikiPage $page, ParserOutput $output,
-	                                       SearchEngine $engine ) {
+	public function getDataForSearchIndex(
+		WikiPage $page,
+		ParserOutput $output,
+		SearchEngine $engine
+	) {
 		$fields = parent::getDataForSearchIndex( $page, $output, $engine );
 		$fields['language'] =
 			$this->getPageLanguage( $page->getTitle(), $page->getContent() )->getCode();

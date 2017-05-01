@@ -23,6 +23,7 @@
  * @file
  * @ingroup SpecialPage
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * XML file reader for the page data importer.
@@ -44,6 +45,8 @@ class WikiImporter {
 	private $importTitleFactory;
 	/** @var array */
 	private $countableCache = [];
+	/** @var bool */
+	private $disableStatisticsUpdate = false;
 
 	/**
 	 * Creates an ImportXMLReader drawing from the source provided
@@ -59,7 +62,7 @@ class WikiImporter {
 		$this->reader = new XMLReader();
 		if ( !$config ) {
 			wfDeprecated( __METHOD__ . ' without a Config instance', '1.25' );
-			$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+			$config = MediaWikiServices::getInstance()->getMainConfig();
 		}
 		$this->config = $config;
 
@@ -303,6 +306,14 @@ class WikiImporter {
 	}
 
 	/**
+	 * Statistics update can cause a lot of time
+	 * @since 1.29
+	 */
+	public function disableStatisticsUpdate() {
+		$this->disableStatisticsUpdate = true;
+	}
+
+	/**
 	 * Default per-page callback. Sets up some things related to site statistics
 	 * @param array $titleAndForeignTitle Two-element array, with Title object at
 	 * index 0 and ForeignTitle object at index 1
@@ -380,21 +391,23 @@ class WikiImporter {
 		// suffers from issues of replica DB lag. We let WikiPage handle the total page
 		// and revision count, and we implement our own custom logic for the
 		// article (content page) count.
-		$page = WikiPage::factory( $title );
-		$page->loadPageData( 'fromdbmaster' );
-		$content = $page->getContent();
-		if ( $content === null ) {
-			wfDebug( __METHOD__ . ': Skipping article count adjustment for ' . $title .
-				' because WikiPage::getContent() returned null' );
-		} else {
-			$editInfo = $page->prepareContentForEdit( $content );
-			$countKey = 'title_' . $title->getPrefixedText();
-			$countable = $page->isCountable( $editInfo );
-			if ( array_key_exists( $countKey, $this->countableCache ) &&
-				$countable != $this->countableCache[$countKey] ) {
-				DeferredUpdates::addUpdate( SiteStatsUpdate::factory( [
-					'articles' => ( (int)$countable - (int)$this->countableCache[$countKey] )
-				] ) );
+		if ( !$this->disableStatisticsUpdate ) {
+			$page = WikiPage::factory( $title );
+			$page->loadPageData( 'fromdbmaster' );
+			$content = $page->getContent();
+			if ( $content === null ) {
+				wfDebug( __METHOD__ . ': Skipping article count adjustment for ' . $title .
+					' because WikiPage::getContent() returned null' );
+			} else {
+				$editInfo = $page->prepareContentForEdit( $content );
+				$countKey = 'title_' . $title->getPrefixedText();
+				$countable = $page->isCountable( $editInfo );
+				if ( array_key_exists( $countKey, $this->countableCache ) &&
+					$countable != $this->countableCache[$countKey] ) {
+					DeferredUpdates::addUpdate( SiteStatsUpdate::factory( [
+						'articles' => ( (int)$countable - (int)$this->countableCache[$countKey] )
+					] ) );
+				}
 			}
 		}
 
@@ -533,7 +546,7 @@ class WikiImporter {
 	public function doImport() {
 		// Calls to reader->read need to be wrapped in calls to
 		// libxml_disable_entity_loader() to avoid local file
-		// inclusion attacks (bug 46932).
+		// inclusion attacks (T48932).
 		$oldDisable = libxml_disable_entity_loader( true );
 		$this->reader->read();
 

@@ -87,4 +87,3 @@ $magicWords = [
 	'pagesincategory'           => [ '1', 'PAHINASAKATEGORYA', 'PAHINASAKAT', 'PAGESINCATEGORY', 'PAGESINCAT' ],
 	'pagesize'                  => [ '1', 'PAHINASOKOL', 'PAGESIZE' ],
 ];
-

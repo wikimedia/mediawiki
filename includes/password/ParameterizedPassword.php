@@ -79,7 +79,7 @@ abstract class ParameterizedPassword extends Password {
 	}
 
 	public function needsUpdate() {
-		return parent::needsUpdate() || $this->params !== $this->getDefaultParams();
+		return $this->params !== $this->getDefaultParams();
 	}
 
 	public function toString() {
@@ -90,7 +90,9 @@ abstract class ParameterizedPassword extends Password {
 			$str .= $this->getDelimiter();
 		}
 
-		return $str . $this->hash;
+		$res = $str . $this->hash;
+		$this->assertIsSafeSize( $res );
+		return $res;
 	}
 
 	/**

@@ -58,7 +58,7 @@ class UploadFromUrlTest extends ApiTestCase {
 			$this->doApiRequest( [
 				'action' => 'upload',
 			] );
-		} catch ( UsageException $e ) {
+		} catch ( ApiUsageException $e ) {
 			$exception = true;
 			$this->assertEquals( "The token parameter must be set", $e->getMessage() );
 		}
@@ -70,7 +70,7 @@ class UploadFromUrlTest extends ApiTestCase {
 				'action' => 'upload',
 				'token' => $token,
 			], $data );
-		} catch ( UsageException $e ) {
+		} catch ( ApiUsageException $e ) {
 			$exception = true;
 			$this->assertEquals( "One of the parameters sessionkey, file, url is required",
 				$e->getMessage() );
@@ -84,7 +84,7 @@ class UploadFromUrlTest extends ApiTestCase {
 				'url' => 'http://www.example.com/test.png',
 				'token' => $token,
 			], $data );
-		} catch ( UsageException $e ) {
+		} catch ( ApiUsageException $e ) {
 			$exception = true;
 			$this->assertEquals( "The filename parameter must be set", $e->getMessage() );
 		}
@@ -99,7 +99,7 @@ class UploadFromUrlTest extends ApiTestCase {
 				'filename' => 'UploadFromUrlTest.png',
 				'token' => $token,
 			], $data );
-		} catch ( UsageException $e ) {
+		} catch ( ApiUsageException $e ) {
 			$exception = true;
 			$this->assertEquals( "Permission denied", $e->getMessage() );
 		}

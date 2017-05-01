@@ -5,7 +5,8 @@
 			"Vivek Rai",
 			"Phoenix303",
 			"संजीव कुमार",
-			"Sahilrathod"
+			"Sahilrathod",
+			"Shyamal"
 		]
 	},
 	"config-desc": "साँचा लिए इंस्टॉलर",
@@ -16,7 +17,9 @@
 	"config-localsettings-key": "नवीनीकरण कुंजी",
 	"config-localsettings-badkey": "आपकी दी गई कुंजी ग़लत है।",
 	"config-your-language": "आपकी भाषा:",
+	"config-your-language-help": "स्थापन के लिए भाषा चुनें",
 	"config-wiki-language": "विकी भाषा:",
+	"config-wiki-language-help": "भाषा चुनें जिस  में अधिकतर लेख लिखा जाएगा",
 	"config-back": "← वापस",
 	"config-continue": "आगे बढ़ें →",
 	"config-page-language": "भाषा",

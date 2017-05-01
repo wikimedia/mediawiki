@@ -1,4 +1,9 @@
 <?php
+
+namespace Wikimedia\Rdbms;
+
+use stdClass;
+
 class MssqlResultWrapper extends ResultWrapper {
 	/** @var integer|null */
 	private $mSeekTo = null;

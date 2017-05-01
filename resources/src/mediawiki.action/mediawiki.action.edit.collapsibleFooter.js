@@ -2,27 +2,31 @@
 	var collapsibleLists, handleOne;
 
 	// Collapsible lists of categories and templates
+	// If changing or removing a storeKey, ensure there is a strategy for old keys.
+	// E.g. detect existence via requestIdleCallback and remove. (T121646)
 	collapsibleLists = [
 		{
 			listSel: '.templatesUsed ul',
 			togglerSel: '.mw-templatesUsedExplanation',
-			cookieName: 'templates-used-list'
+			storeKey: 'mwedit-state-templatesUsed'
 		},
 		{
 			listSel: '.hiddencats ul',
 			togglerSel: '.mw-hiddenCategoriesExplanation',
-			cookieName: 'hidden-categories-list'
+			storeKey: 'mwedit-state-hiddenCategories'
 		},
 		{
 			listSel: '.preview-limit-report-wrapper',
 			togglerSel: '.mw-limitReportExplanation',
-			cookieName: 'preview-limit-report'
+			storeKey: 'mwedit-state-limitReport'
 		}
 	];
 
-	handleOne = function ( $list, $toggler, cookieName ) {
-		// Collapsed by default
-		var isCollapsed = mw.cookie.get( cookieName ) !== 'expanded';
+	handleOne = function ( $list, $toggler, storeKey ) {
+		var collapsedVal = '0',
+			expandedVal = '1',
+			// Default to collapsed if not set
+			isCollapsed = mw.storage.get( storeKey ) !== expandedVal;
 
 		// Style the toggler with an arrow icon and add a tabIndex and a role for accessibility
 		$toggler.addClass( 'mw-editfooter-toggler' ).prop( 'tabIndex', 0 ).attr( 'role', 'button' );
@@ -39,12 +43,12 @@
 
 		$list.on( 'beforeExpand.mw-collapsible', function () {
 			$toggler.removeClass( 'mw-icon-arrow-collapsed' ).addClass( 'mw-icon-arrow-expanded' );
-			mw.cookie.set( cookieName, 'expanded' );
+			mw.storage.set( storeKey, expandedVal );
 		} );
 
 		$list.on( 'beforeCollapse.mw-collapsible', function () {
 			$toggler.removeClass( 'mw-icon-arrow-expanded' ).addClass( 'mw-icon-arrow-collapsed' );
-			mw.cookie.set( cookieName, 'collapsed' );
+			mw.storage.set( storeKey, collapsedVal );
 		} );
 	};
 
@@ -55,7 +59,7 @@
 			handleOne(
 				$editForm.find( collapsibleLists[ i ].listSel ),
 				$editForm.find( collapsibleLists[ i ].togglerSel ),
-				collapsibleLists[ i ].cookieName
+				collapsibleLists[ i ].storeKey
 			);
 		}
 	} );

@@ -26,6 +26,10 @@
  * @copyright © 2011, Antoine Musso
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Class for fetching backlink lists, approximate backlink counts and
  * partitions. This is a shared cache.
@@ -139,7 +143,7 @@ class BacklinkCache {
 	/**
 	 * Get the replica DB connection to the database
 	 * When non existing, will initialize the connection.
-	 * @return Database
+	 * @return IDatabase
 	 */
 	protected function getDB() {
 		if ( !isset( $this->db ) ) {
@@ -335,7 +339,11 @@ class BacklinkCache {
 			return min( $max, $this->fullResultCache[$table]->numRows() );
 		}
 
-		$memcKey = wfMemcKey( 'numbacklinks', md5( $this->title->getPrefixedDBkey() ), $table );
+		$memcKey = $cache->makeKey(
+			'numbacklinks',
+			md5( $this->title->getPrefixedDBkey() ),
+			$table
+		);
 
 		// 3) ... fallback to memcached ...
 		$count = $cache->get( $memcKey );
@@ -389,7 +397,7 @@ class BacklinkCache {
 			return $cacheEntry['batches'];
 		}
 
-		$memcKey = wfMemcKey(
+		$memcKey = $cache->makeKey(
 			'backlinks',
 			md5( $this->title->getPrefixedDBkey() ),
 			$table,
@@ -407,7 +415,7 @@ class BacklinkCache {
 
 		// 4) ... finally fetch from the slow database :(
 		$cacheEntry = [ 'numRows' => 0, 'batches' => [] ]; // final result
-		// Do the selects in batches to avoid client-side OOMs (bug 43452).
+		// Do the selects in batches to avoid client-side OOMs (T45452).
 		// Use a LIMIT that plays well with $batchSize to keep equal sized partitions.
 		$selectSize = max( $batchSize, 200000 - ( 200000 % $batchSize ) );
 		$start = false;
@@ -432,7 +440,11 @@ class BacklinkCache {
 		$cache->set( $memcKey, $cacheEntry, self::CACHE_EXPIRY );
 
 		// Save backlink count to memcached
-		$memcKey = wfMemcKey( 'numbacklinks', md5( $this->title->getPrefixedDBkey() ), $table );
+		$memcKey = $cache->makeKey(
+			'numbacklinks',
+			md5( $this->title->getPrefixedDBkey() ),
+			$table
+		);
 		$cache->set( $memcKey, $cacheEntry['numRows'], self::CACHE_EXPIRY );
 
 		wfDebug( __METHOD__ . ": got from database\n" );

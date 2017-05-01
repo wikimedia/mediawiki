@@ -51,6 +51,9 @@ class SpecialActiveUsers extends SpecialPage {
 		$opts = new FormOptions();
 
 		$opts->add( 'username', '' );
+		$opts->add( 'groups', [] );
+		$opts->add( 'excludegroups', [] );
+		// Backwards-compatibility with old URLs
 		$opts->add( 'hidebots', false, FormOptions::BOOL );
 		$opts->add( 'hidesysops', false, FormOptions::BOOL );
 
@@ -60,8 +63,91 @@ class SpecialActiveUsers extends SpecialPage {
 			$opts->setValue( 'username', $par );
 		}
 
+		$pager = new ActiveUsersPager( $this->getContext(), $opts );
+		$usersBody = $pager->getBody();
+
+		$this->buildForm();
+
+		if ( $usersBody ) {
+			$out->addHTML(
+				$pager->getNavigationBar() .
+				Html::rawElement( 'ul', [], $usersBody ) .
+				$pager->getNavigationBar()
+			);
+		} else {
+			$out->addWikiMsg( 'activeusers-noresult' );
+		}
+	}
+
+	/**
+	 * Generate and output the form
+	 */
+	protected function buildForm() {
+		$groups = User::getAllGroups();
+
+		foreach ( $groups as $group ) {
+			$msg = htmlspecialchars( UserGroupMembership::getGroupName( $group ) );
+			$options[$msg] = $group;
+		}
+
+		// Backwards-compatibility with old URLs
+		$req = $this->getRequest();
+		$excludeDefault = [];
+		if ( $req->getCheck( 'hidebots' ) ) {
+			$excludeDefault[] = 'bot';
+		}
+		if ( $req->getCheck( 'hidesysops' ) ) {
+			$excludeDefault[] = 'sysop';
+		}
+
+		$formDescriptor = [
+			'username' => [
+				'type' => 'user',
+				'name' => 'username',
+				'label-message' => 'activeusers-from',
+			],
+			'groups' => [
+				'type' => 'multiselect',
+				'dropdown' => true,
+				'flatlist' => true,
+				'name' => 'groups',
+				'label-message' => 'activeusers-groups',
+				'options' => $options,
+			],
+			'excludegroups' => [
+				'type' => 'multiselect',
+				'dropdown' => true,
+				'flatlist' => true,
+				'name' => 'excludegroups',
+				'label-message' => 'activeusers-excludegroups',
+				'options' => $options,
+				'default' => $excludeDefault,
+			],
+		];
+
+		HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
+			// For the 'multiselect' field values to be preserved on submit
+			->setFormIdentifier( 'specialactiveusers' )
+			->setIntro( $this->getIntroText() )
+			->setWrapperLegendMsg( 'activeusers' )
+			->setSubmitTextMsg( 'activeusers-submit' )
+			// prevent setting subpage and 'username' parameter at the same time
+			->setAction( $this->getPageTitle()->getLocalURL() )
+			->setMethod( 'get' )
+			->prepareForm()
+			->displayForm( false );
+	}
+
+	/**
+	 * Return introductory message.
+	 * @return string
+	 */
+	protected function getIntroText() {
+		$days = $this->getConfig()->get( 'ActiveUserDays' );
+
+		$intro = $this->msg( 'activeusers-intro' )->numParams( $days )->parse();
+
 		// Mention the level of cache staleness...
-		$cacheText = '';
 		$dbr = wfGetDB( DB_REPLICA, 'recentchanges' );
 		$rcMax = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)', '', __METHOD__ );
 		if ( $rcMax ) {
@@ -77,55 +163,12 @@ class SpecialActiveUsers extends SpecialPage {
 				$secondsOld = time() - wfTimestamp( TS_UNIX, $rcMin );
 			}
 			if ( $secondsOld > 0 ) {
-				$cacheTxt = '<br>' . $this->msg( 'cachedspecial-viewing-cached-ttl' )
-					->durationParams( $secondsOld );
+				$intro .= $this->msg( 'cachedspecial-viewing-cached-ttl' )
+					->durationParams( $secondsOld )->parseAsBlock();
 			}
 		}
 
-		$pager = new ActiveUsersPager( $this->getContext(), $opts );
-		$usersBody = $pager->getBody();
-
-		$days = $this->getConfig()->get( 'ActiveUserDays' );
-
-		$formDescriptor = [
-			'username' => [
-				'type' => 'user',
-				'name' => 'username',
-				'label-message' => 'activeusers-from',
-			],
-
-			'hidebots' => [
-				'type' => 'check',
-				'name' => 'hidebots',
-				'label-message' => 'activeusers-hidebots',
-				'default' => false,
-			],
-
-			'hidesysops' => [
-				'type' => 'check',
-				'name' => 'hidesysops',
-				'label-message' => 'activeusers-hidesysops',
-				'default' => false,
-			],
-		];
-
-		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
-			->setIntro( $this->msg( 'activeusers-intro' )->numParams( $days ) . $cacheText )
-			->setWrapperLegendMsg( 'activeusers' )
-			->setSubmitTextMsg( 'activeusers-submit' )
-			->setMethod( 'get' )
-			->prepareForm()
-			->displayForm( false );
-
-		if ( $usersBody ) {
-			$out->addHTML(
-				$pager->getNavigationBar() .
-				Html::rawElement( 'ul', [], $usersBody ) .
-				$pager->getNavigationBar()
-			);
-		} else {
-			$out->addWikiMsg( 'activeusers-noresult' );
-		}
+		return $intro;
 	}
 
 	protected function getGroupName() {

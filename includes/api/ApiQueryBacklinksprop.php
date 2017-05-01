@@ -104,6 +104,13 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		$titles = $pageSet->getGoodAndMissingTitles();
 		$map = $pageSet->getGoodAndMissingTitlesByNamespace();
 
+		// Add in special pages, they can theoretically have backlinks too.
+		// (although currently they only do for prop=redirects)
+		foreach ( $pageSet->getSpecialTitles() as $id => $title ) {
+			$titles[] = $title;
+			$map[$title->getNamespace()][$title->getDBkey()] = $id;
+		}
+
 		// Determine our fields to query on
 		$p = $settings['prefix'];
 		$hasNS = !isset( $settings['to_namespace'] );
@@ -220,8 +227,9 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		$this->addFieldsIf( 'page_namespace', $miser_ns !== null );
 
 		if ( $hasNS ) {
-			$lb = new LinkBatch( $titles );
-			$this->addWhere( $lb->constructSet( $p, $db ) );
+			// Can't use LinkBatch because it throws away Special titles.
+			// And we already have the needed data structure anyway.
+			$this->addWhere( $db->makeWhereFrom2d( $map, $bl_namespace, $bl_title ) );
 		} else {
 			$where = [];
 			foreach ( $titles as $t ) {
@@ -238,7 +246,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			if ( isset( $show['fragment'] ) && isset( $show['!fragment'] ) ||
 				isset( $show['redirect'] ) && isset( $show['!redirect'] )
 			) {
-				$this->dieUsageMsg( 'show' );
+				$this->dieWithError( 'apierror-show' );
 			}
 			$this->addWhereIf( "rd_fragment != $emptyString", isset( $show['fragment'] ) );
 			$this->addWhereIf(
@@ -424,6 +432,6 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
 	public function getHelpUrls() {
 		$name = ucfirst( $this->getModuleName() );
-		return "https://www.mediawiki.org/wiki/API:{$name}";
+		return "https://www.mediawiki.org/wiki/Special:MyLanguage/API:{$name}";
 	}
 }

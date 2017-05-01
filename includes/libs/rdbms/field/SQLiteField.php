@@ -1,4 +1,7 @@
 <?php
+
+namespace Wikimedia\Rdbms;
+
 class SQLiteField implements Field {
 	private $info, $tableName;
 

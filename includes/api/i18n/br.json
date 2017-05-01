@@ -1,19 +1,35 @@
 {
 	"@metadata": {
 		"authors": [
-			"Y-M D"
+			"Y-M D",
+			"Fulup"
 		]
 	},
 	"apihelp-block-description": "Stankañ un implijer",
 	"apihelp-block-param-reason": "Abeg evit stankañ.",
+	"apihelp-createaccount-description": "Krouiñ ur gont implijer nevez.",
 	"apihelp-createaccount-param-name": "Anv implijer.",
 	"apihelp-delete-description": "Diverkañ ur bajenn.",
+	"apihelp-edit-description": "Krouiñ pajennoù ha kemmañ anezho.",
+	"apihelp-edit-param-sectiontitle": "Titl ur rannbennad nevez.",
 	"apihelp-edit-param-text": "Danvez ar bajenn.",
 	"apihelp-edit-param-minor": "Kemmig dister.",
 	"apihelp-edit-example-edit": "Kemmañ ur bajenn.",
+	"apihelp-emailuser-description": "Kas ur postel d'un implijer.",
+	"apihelp-emailuser-param-text": "Korf ar postel.",
 	"apihelp-expandtemplates-param-title": "Titl ar bajenn.",
+	"apihelp-feedcontributions-param-year": "Adalek ar bloaz (ha koshoc'h)",
+	"apihelp-feedcontributions-param-month": "Adalek ar miz (ha koshoc'h).",
+	"apihelp-feedcontributions-param-hideminor": "Kuzhat ar c'hemmoù dister.",
+	"apihelp-feedrecentchanges-param-hideminor": "Kuzhat ar c'hemmoù dister.",
+	"apihelp-feedrecentchanges-param-tagfilter": "Silañ dre dikedennoù.",
+	"apihelp-feedrecentchanges-example-simple": "Diskouez ar c'hemmoù diwezhañ.",
 	"apihelp-login-param-name": "Anv implijer.",
 	"apihelp-login-param-password": "Ger-tremen.",
+	"apihelp-login-param-domain": "Domani (diret).",
 	"apihelp-login-example-login": "Kevreañ.",
-	"apihelp-protect-example-protect": "Gwareziñ ur bajenn."
+	"apihelp-move-description": "Dilec'hiañ ur bajenn.",
+	"apihelp-move-param-noredirect": "Chom hep krouiñ un adkas.",
+	"apihelp-protect-example-protect": "Gwareziñ ur bajenn.",
+	"apihelp-rollback-param-tags": "Tikedennoù da lakaat e talvoud war an distroioù."
 }

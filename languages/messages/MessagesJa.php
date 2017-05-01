@@ -321,4 +321,3 @@ $magicWords = [
 	'url_wiki'                  => [ '0', 'ウィキ', 'WIKI' ],
 	'url_query'                 => [ '0', 'クエリ', 'クエリー', 'QUERY' ],
 ];
-

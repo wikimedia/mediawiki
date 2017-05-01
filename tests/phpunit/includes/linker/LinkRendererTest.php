@@ -24,7 +24,6 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 			'wgScript' => '/w/index.php',
 		] );
 		$this->factory = MediaWikiServices::getInstance()->getLinkRendererFactory();
-
 	}
 
 	public function testMergeAttribs() {

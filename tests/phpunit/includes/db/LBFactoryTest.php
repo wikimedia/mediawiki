@@ -1,4 +1,10 @@
 <?php
+
+use Wikimedia\Rdbms\LBFactorySimple;
+use Wikimedia\Rdbms\LBFactoryMulti;
+use Wikimedia\Rdbms\ChronologyProtector;
+use Wikimedia\Rdbms\MySQLMasterPos;
+
 /**
  * Holds tests for LBFactory abstract MediaWiki class.
  *
@@ -29,7 +35,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 	 * @dataProvider getLBFactoryClassProvider
 	 */
 	public function testGetLBFactoryClass( $expected, $deprecated ) {
-		$mockDB = $this->getMockBuilder( 'DatabaseMysql' )
+		$mockDB = $this->getMockBuilder( 'DatabaseMysqli' )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -51,24 +57,28 @@ class LBFactoryTest extends MediaWikiTestCase {
 	public function getLBFactoryClassProvider() {
 		return [
 			# Format: new class, old class
-			[ 'LBFactorySimple', 'LBFactory_Simple' ],
-			[ 'LBFactorySingle', 'LBFactory_Single' ],
-			[ 'LBFactoryMulti', 'LBFactory_Multi' ],
+			[ Wikimedia\Rdbms\LBFactorySimple::class, 'LBFactory_Simple' ],
+			[ Wikimedia\Rdbms\LBFactorySingle::class, 'LBFactory_Single' ],
+			[ Wikimedia\Rdbms\LBFactoryMulti::class, 'LBFactory_Multi' ],
+			[ Wikimedia\Rdbms\LBFactorySimple::class, 'LBFactorySimple' ],
+			[ Wikimedia\Rdbms\LBFactorySingle::class, 'LBFactorySingle' ],
+			[ Wikimedia\Rdbms\LBFactoryMulti::class, 'LBFactoryMulti' ],
 		];
 	}
 
 	public function testLBFactorySimpleServer() {
-		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype;
+		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
 
 		$servers = [
 			[
-				'host'      => $wgDBserver,
-				'dbname'    => $wgDBname,
-				'user'      => $wgDBuser,
-				'password'  => $wgDBpassword,
-				'type'      => $wgDBtype,
-				'load'      => 0,
-				'flags'     => DBO_TRX // REPEATABLE-READ for consistency
+				'host'        => $wgDBserver,
+				'dbname'      => $wgDBname,
+				'user'        => $wgDBuser,
+				'password'    => $wgDBpassword,
+				'type'        => $wgDBtype,
+				'dbDirectory' => $wgSQLiteDataDir,
+				'load'        => 0,
+				'flags'       => DBO_TRX // REPEATABLE-READ for consistency
 			],
 		];
 
@@ -86,26 +96,28 @@ class LBFactoryTest extends MediaWikiTestCase {
 	}
 
 	public function testLBFactorySimpleServers() {
-		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype;
+		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
 
 		$servers = [
 			[ // master
-				'host'     => $wgDBserver,
-				'dbname'   => $wgDBname,
-				'user'     => $wgDBuser,
-				'password' => $wgDBpassword,
-				'type'     => $wgDBtype,
-				'load'     => 0,
-				'flags'    => DBO_TRX // REPEATABLE-READ for consistency
+				'host'        => $wgDBserver,
+				'dbname'      => $wgDBname,
+				'user'        => $wgDBuser,
+				'password'    => $wgDBpassword,
+				'type'        => $wgDBtype,
+				'dbDirectory' => $wgSQLiteDataDir,
+				'load'        => 0,
+				'flags'       => DBO_TRX // REPEATABLE-READ for consistency
 			],
 			[ // emulated slave
-				'host'     => $wgDBserver,
-				'dbname'   => $wgDBname,
-				'user'     => $wgDBuser,
-				'password' => $wgDBpassword,
-				'type'     => $wgDBtype,
-				'load'     => 100,
-				'flags'    => DBO_TRX // REPEATABLE-READ for consistency
+				'host'        => $wgDBserver,
+				'dbname'      => $wgDBname,
+				'user'        => $wgDBuser,
+				'password'    => $wgDBpassword,
+				'type'        => $wgDBtype,
+				'dbDirectory' => $wgSQLiteDataDir,
+				'load'        => 100,
+				'flags'       => DBO_TRX // REPEATABLE-READ for consistency
 			]
 		];
 
@@ -118,19 +130,23 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$dbw = $lb->getConnection( DB_MASTER );
 		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
 		$this->assertEquals(
-			$wgDBserver, $dbw->getLBInfo( 'clusterMasterHost' ), 'cluster master set' );
+			( $wgDBserver != '' ) ? $wgDBserver : 'localhost',
+			$dbw->getLBInfo( 'clusterMasterHost' ),
+			'cluster master set' );
 
 		$dbr = $lb->getConnection( DB_SLAVE );
 		$this->assertTrue( $dbr->getLBInfo( 'replica' ), 'slave shows as slave' );
 		$this->assertEquals(
-			$wgDBserver, $dbr->getLBInfo( 'clusterMasterHost' ), 'cluster master set' );
+			( $wgDBserver != '' ) ? $wgDBserver : 'localhost',
+			$dbr->getLBInfo( 'clusterMasterHost' ),
+			'cluster master set' );
 
 		$factory->shutdown();
 		$lb->closeAll();
 	}
 
 	public function testLBFactoryMulti() {
-		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype;
+		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
 
 		$factory = new LBFactoryMulti( [
 			'sectionsByDB' => [],
@@ -141,11 +157,12 @@ class LBFactoryTest extends MediaWikiTestCase {
 				],
 			],
 			'serverTemplate' => [
-				'dbname'	  => $wgDBname,
-				'user'		  => $wgDBuser,
-				'password'	  => $wgDBpassword,
-				'type'		  => $wgDBtype,
-				'flags'		  => DBO_DEFAULT
+				'dbname'      => $wgDBname,
+				'user'        => $wgDBuser,
+				'password'    => $wgDBpassword,
+				'type'        => $wgDBtype,
+				'dbDirectory' => $wgSQLiteDataDir,
+				'flags'       => DBO_DEFAULT
 			],
 			'hostsByName' => [
 				'test-db1'  => $wgDBserver,
@@ -170,7 +187,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$mPos = new MySQLMasterPos( 'db1034-bin.000976', '843431247' );
 
 		$now = microtime( true );
-		$mockDB = $this->getMockBuilder( 'DatabaseMysql' )
+		$mockDB = $this->getMockBuilder( 'DatabaseMysqli' )
 			->disableOriginalConstructor()
 			->getMock();
 		$mockDB->method( 'writesOrCallbacksPending' )->willReturn( true );
@@ -233,7 +250,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 	}
 
 	private function newLBFactoryMulti( array $baseOverride = [], array $serverOverride = [] ) {
-		global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype;
+		global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype, $wgSQLiteDataDir;
 
 		return new LBFactoryMulti( $baseOverride + [
 			'sectionsByDB' => [],
@@ -247,6 +264,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 				'user' => $wgDBuser,
 				'password' => $wgDBpassword,
 				'type' => $wgDBtype,
+				'dbDirectory' => $wgSQLiteDataDir,
 				'flags' => DBO_DEFAULT
 			],
 			'hostsByName' => [
@@ -258,17 +276,32 @@ class LBFactoryTest extends MediaWikiTestCase {
 	}
 
 	public function testNiceDomains() {
-		global $wgDBname;
+		global $wgDBname, $wgDBtype;
 
-		$factory = $this->newLBFactoryMulti();
+		if ( $wgDBtype === 'sqlite' ) {
+			$tmpDir = $this->getNewTempDirectory();
+			$dbPath = "$tmpDir/unit_test_db.sqlite";
+			file_put_contents( $dbPath, '' );
+			$tempFsFile = new TempFSFile( $dbPath );
+			$tempFsFile->autocollect();
+		} else {
+			$dbPath = null;
+		}
+
+		$factory = $this->newLBFactoryMulti(
+			[],
+			[ 'dbFilePath' => $dbPath ]
+		);
 		$lb = $factory->getMainLB();
 
-		$db = $lb->getConnectionRef( DB_MASTER );
-		$this->assertEquals(
-			$wgDBname,
-			$db->getDomainID()
-		);
-		unset( $db );
+		if ( $wgDBtype !== 'sqlite' ) {
+			$db = $lb->getConnectionRef( DB_MASTER );
+			$this->assertEquals(
+				$wgDBname,
+				$db->getDomainID()
+			);
+			unset( $db );
+		}
 
 		/** @var Database $db */
 		$db = $lb->getConnection( DB_MASTER, [], '' );
@@ -280,19 +313,19 @@ class LBFactoryTest extends MediaWikiTestCase {
 		);
 
 		$this->assertEquals(
-			$db->addIdentifierQuotes( 'page' ),
+			$this->quoteTable( $db, 'page' ),
 			$db->tableName( 'page' ),
 			"Correct full table name"
 		);
 
 		$this->assertEquals(
-			$db->addIdentifierQuotes( $wgDBname ) . '.' . $db->addIdentifierQuotes( 'page' ),
+			$this->quoteTable( $db, $wgDBname ) . '.' . $this->quoteTable( $db, 'page' ),
 			$db->tableName( "$wgDBname.page" ),
 			"Correct full table name"
 		);
 
 		$this->assertEquals(
-			$db->addIdentifierQuotes( 'nice_db' ) . '.' . $db->addIdentifierQuotes( 'page' ),
+			$this->quoteTable( $db, 'nice_db' ) . '.' . $this->quoteTable( $db, 'page' ),
 			$db->tableName( 'nice_db.page' ),
 			"Correct full table name"
 		);
@@ -303,12 +336,12 @@ class LBFactoryTest extends MediaWikiTestCase {
 			$db->getDomainID()
 		);
 		$this->assertEquals(
-			$db->addIdentifierQuotes( 'my_page' ),
+			$this->quoteTable( $db, 'my_page' ),
 			$db->tableName( 'page' ),
 			"Correct full table name"
 		);
 		$this->assertEquals(
-			$db->addIdentifierQuotes( 'other_nice_db' ) . '.' . $db->addIdentifierQuotes( 'page' ),
+			$this->quoteTable( $db, 'other_nice_db' ) . '.' . $this->quoteTable( $db, 'page' ),
 			$db->tableName( 'other_nice_db.page' ),
 			"Correct full table name"
 		);
@@ -318,9 +351,23 @@ class LBFactoryTest extends MediaWikiTestCase {
 	}
 
 	public function testTrickyDomain() {
+		global $wgDBtype;
+
+		if ( $wgDBtype === 'sqlite' ) {
+			$tmpDir = $this->getNewTempDirectory();
+			$dbPath = "$tmpDir/unit_test_db.sqlite";
+			file_put_contents( $dbPath, '' );
+			$tempFsFile = new TempFSFile( $dbPath );
+			$tempFsFile->autocollect();
+		} else {
+			$dbPath = null;
+		}
+
 		$dbname = 'unittest-domain';
 		$factory = $this->newLBFactoryMulti(
-			[ 'localDomain' => $dbname ], [ 'dbname' => $dbname ] );
+			[ 'localDomain' => $dbname ],
+			[ 'dbname' => $dbname, 'dbFilePath' => $dbPath ]
+		);
 		$lb = $factory->getMainLB();
 		/** @var Database $db */
 		$db = $lb->getConnection( DB_MASTER, [], '' );
@@ -332,19 +379,19 @@ class LBFactoryTest extends MediaWikiTestCase {
 		);
 
 		$this->assertEquals(
-			$db->addIdentifierQuotes( 'page' ),
+			$this->quoteTable( $db, 'page' ),
 			$db->tableName( 'page' ),
 			"Correct full table name"
 		);
 
 		$this->assertEquals(
-			$db->addIdentifierQuotes( $dbname ) . '.' . $db->addIdentifierQuotes( 'page' ),
+			$this->quoteTable( $db, $dbname ) . '.' . $this->quoteTable( $db, 'page' ),
 			$db->tableName( "$dbname.page" ),
 			"Correct full table name"
 		);
 
 		$this->assertEquals(
-			$db->addIdentifierQuotes( 'nice_db' ) . '.' . $db->addIdentifierQuotes( 'page' ),
+			$this->quoteTable( $db, 'nice_db' ) . '.' . $this->quoteTable( $db, 'page' ),
 			$db->tableName( 'nice_db.page' ),
 			"Correct full table name"
 		);
@@ -352,12 +399,12 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$factory->setDomainPrefix( 'my_' );
 
 		$this->assertEquals(
-			$db->addIdentifierQuotes( 'my_page' ),
+			$this->quoteTable( $db, 'my_page' ),
 			$db->tableName( 'page' ),
 			"Correct full table name"
 		);
 		$this->assertEquals(
-			$db->addIdentifierQuotes( 'other_nice_db' ) . '.' . $db->addIdentifierQuotes( 'page' ),
+			$this->quoteTable( $db, 'other_nice_db' ) . '.' . $this->quoteTable( $db, 'page' ),
 			$db->tableName( 'other_nice_db.page' ),
 			"Correct full table name"
 		);
@@ -367,12 +414,20 @@ class LBFactoryTest extends MediaWikiTestCase {
 		\MediaWiki\restoreWarnings();
 
 		$this->assertEquals(
-			$db->addIdentifierQuotes( 'garbage-db' ) . '.' . $db->addIdentifierQuotes( 'page' ),
+			$this->quoteTable( $db, 'garbage-db' ) . '.' . $this->quoteTable( $db, 'page' ),
 			$db->tableName( 'garbage-db.page' ),
 			"Correct full table name"
 		);
 
 		$factory->closeAll();
 		$factory->destroy();
+	}
+
+	private function quoteTable( Database $db, $table ) {
+		if ( $db->getType() === 'sqlite' ) {
+			return $table;
+		} else {
+			return $db->addIdentifierQuotes( $table );
+		}
 	}
 }

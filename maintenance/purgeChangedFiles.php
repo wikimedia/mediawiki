@@ -210,7 +210,7 @@ class PurgeChangedFiles extends Maintenance {
 	}
 
 	protected function purgeFromArchiveTable( LocalRepo $repo, LocalFile $file ) {
-		$dbr = $repo->getSlaveDB();
+		$dbr = $repo->getReplicaDB();
 		$res = $dbr->select(
 			'filearchive',
 			[ 'fa_archive_name' ],

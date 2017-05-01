@@ -3,7 +3,8 @@
 		"authors": [
 			"Jose77",
 			"Meno25",
-			"Protostar"
+			"Protostar",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "Link ùndarlaintin",
@@ -163,7 +164,7 @@
 	"versionrequired": "Yu nid MediaWiki Version $1",
 	"versionrequiredtext": "Yu nid MediaWiki Versiòn $1 fòyuz dhis pej.\nLuk [[Special:Version|version page]].",
 	"ok": "OK",
-	"pagetitle-view-mainpage": " \n{{SAITNEM}}",
+	"pagetitle-view-mainpage": "{{SITENAME}}",
 	"retrievedfrom": "Dèn dòn ritriv am na\"$1\"",
 	"youhavenewmessages": "{{PLURAL:$3|Yu gèt}} $1 ($2).",
 	"editsection": "èdit",

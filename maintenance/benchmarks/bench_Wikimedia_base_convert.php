@@ -60,13 +60,11 @@ class BenchWikimediaBaseConvert extends Benchmarker {
 				'args' => [ $number, $inbase, $outbase, 0, true, 'gmp' ]
 			],
 		] );
-
-		$this->output( $this->getFormattedResults() );
 	}
 
 	protected static function makeRandomNumber( $base, $length ) {
-		$baseChars = "0123456789abcdefghijklmnopqrstuvwxyz";
-		$res = "";
+		$baseChars = '0123456789abcdefghijklmnopqrstuvwxyz';
+		$res = '';
 		for ( $i = 0; $i < $length; $i++ ) {
 			$res .= $baseChars[mt_rand( 0, $base - 1 )];
 		}

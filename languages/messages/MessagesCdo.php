@@ -19,8 +19,8 @@ $namespaceNames = [
 	NS_PROJECT_TALK     => '$1討論',
 	NS_FILE             => '文件',
 	NS_FILE_TALK        => '文件討論',
-	NS_MEDIAWIKI        => '媒體維基',
-	NS_MEDIAWIKI_TALK   => '媒體維基討論',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki討論',
 	NS_TEMPLATE         => '模板',
 	NS_TEMPLATE_TALK    => '模板討論',
 	NS_HELP             => '幫助',
@@ -138,4 +138,3 @@ $dateFormats = [
 	'cdo date' => 'Y "nièng" n "nguŏk" j "hô̤" (l)',
 	'cdo both' => 'Y "nièng" n "nguŏk" j "hô̤" (D) H:i',
 ];
-

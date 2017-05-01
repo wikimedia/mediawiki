@@ -23,11 +23,13 @@
 	position: absolute;
 	cursor: crosshair;
 }
-.farbtastic, .farbtastic .wheel {
+.farbtastic,
+.farbtastic .wheel {
 	width: 195px;
 	height: 195px;
 }
-.farbtastic .color, .farbtastic .overlay {
+.farbtastic .color,
+.farbtastic .overlay {
 	top: 47px;
 	left: 47px;
 	width: 101px;

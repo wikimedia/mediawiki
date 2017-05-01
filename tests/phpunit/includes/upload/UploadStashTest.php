@@ -19,7 +19,7 @@ class UploadStashTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		// Setup a file for bug 29408
+		// Setup a file for T31408
 		$this->bug29408File = wfTempDir() . '/bug29408';
 		file_put_contents( $this->bug29408File, "\x00" );
 
@@ -62,7 +62,7 @@ class UploadStashTest extends MediaWikiTestCase {
 
 		// Throws exception caught by PHPUnit on failure
 		$file = $stash->stashFile( $this->bug29408File );
-		// We'll never reach this point if we hit bug 29408
+		// We'll never reach this point if we hit T31408
 		$this->assertTrue( true, 'Unrecognized file without extension' );
 
 		$stash->removeFile( $file->getFileKey() );

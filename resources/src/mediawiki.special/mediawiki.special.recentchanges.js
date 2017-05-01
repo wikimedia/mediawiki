@@ -21,7 +21,6 @@
 			$checkboxes.prop( 'disabled', isAllNS );
 		},
 
-		/** */
 		init: function () {
 			$select = $( '#namespace' );
 			$checkboxes = $( '#nsassociated, #nsinvert' );

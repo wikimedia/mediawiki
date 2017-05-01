@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Milicevic01"
+			"Milicevic01",
+			"Сербијана"
 		]
 	},
 	"config-session-error": "Greška pri započinjanju sesije: $1",
@@ -32,8 +33,11 @@
 	"config-type-postgres": "PostgreSQL",
 	"config-type-sqlite": "SQLite",
 	"config-type-oracle": "Oracle",
+	"config-header-mssql": "Podešavanja Microsoft SQL Server-a",
 	"config-site-name": "Ime vikija:",
+	"config-admin-email": "Imejl adresa:",
 	"config-license-cc-0": "Creative Commons Zero (javno vlasništvo)",
+	"config-email-settings": "Podešavanja imejla",
 	"config-skins": "Teme",
 	"mainpagetext": "<strong>Medijaviki je uspešno instaliran.</strong>",
 	"mainpagedocfooter": "Molimo vidite [https://meta.wikimedia.org/wiki/Help:Contents korisnički vodič] za informacije o upotrebi viki softvera.\n\n== Za početak ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Pomoć u vezi sa podešavanjima]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Najčešće postavljena pitanja]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mejling lista o izdanjima MedijaVikija]"

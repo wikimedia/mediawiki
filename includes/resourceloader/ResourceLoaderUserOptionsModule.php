@@ -48,7 +48,7 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 
 	/**
 	 * @param ResourceLoaderContext $context
-	 * @return string
+	 * @return string JavaScript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		return Xml::encodeJsCall( 'mw.user.options.set',
@@ -62,13 +62,6 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	 */
 	public function supportsURLLoading() {
 		return false;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getPosition() {
-		return 'top';
 	}
 
 	/**

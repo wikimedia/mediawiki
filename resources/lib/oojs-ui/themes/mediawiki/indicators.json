@@ -6,19 +6,6 @@
 		"invert": {
 			"color": "#fff",
 			"global": true
-		},
-		"progressive": {
-			"color": "#36c",
-			"global": true
-		},
-		"constructive": {
-			"color": "#36c"
-		},
-		"destructive": {
-			"color": "#c33"
-		},
-		"warning": {
-			"color": "#ff5d00"
 		}
 	},
 	"images": {

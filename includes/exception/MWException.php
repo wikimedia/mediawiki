@@ -112,7 +112,7 @@ class MWException extends Exception {
 			"</p>\n";
 		} else {
 			$logId = WebRequest::getRequestId();
-			$type = get_class( $this );
+			$type = static::class;
 			return "<div class=\"errorbox\">" .
 			'[' . $logId . '] ' .
 			gmdate( 'Y-m-d H:i:s' ) . ": " .
@@ -164,7 +164,7 @@ class MWException extends Exception {
 		if ( $this->useOutputPage() ) {
 			$wgOut->prepareErrorPage( $this->getPageTitle() );
 
-			$hookResult = $this->runHooks( get_class( $this ) );
+			$hookResult = $this->runHooks( static::class );
 			if ( $hookResult ) {
 				$wgOut->addHTML( $hookResult );
 			} else {
@@ -183,7 +183,7 @@ class MWException extends Exception {
 				'<style>body { font-family: sans-serif; margin: 0; padding: 0.5em 2em; }</style>' .
 				"</head><body>\n";
 
-			$hookResult = $this->runHooks( get_class( $this ) . 'Raw' );
+			$hookResult = $this->runHooks( static::class . 'Raw' );
 			if ( $hookResult ) {
 				echo $hookResult;
 			} else {
@@ -203,7 +203,7 @@ class MWException extends Exception {
 
 		if ( defined( 'MW_API' ) ) {
 			// Unhandled API exception, we can't be sure that format printer is alive
-			self::header( 'MediaWiki-API-Error: internal_api_error_' . get_class( $this ) );
+			self::header( 'MediaWiki-API-Error: internal_api_error_' . static::class );
 			wfHttpError( 500, 'Internal Server Error', $this->getText() );
 		} elseif ( self::isCommandLine() ) {
 			$message = $this->getText();

@@ -93,7 +93,7 @@ class ApiAuthManagerHelper {
 	/**
 	 * Call $manager->securitySensitiveOperationStatus()
 	 * @param string $operation Operation being checked.
-	 * @throws UsageException
+	 * @throws ApiUsageException
 	 */
 	public function securitySensitiveOperation( $operation ) {
 		$status = AuthManager::singleton()->securitySensitiveOperationStatus( $operation );
@@ -102,14 +102,10 @@ class ApiAuthManagerHelper {
 				return;
 
 			case AuthManager::SEC_REAUTH:
-				$this->module->dieUsage(
-					'You have not authenticated recently in this session, please reauthenticate.', 'reauthenticate'
-				);
+				$this->module->dieWithError( 'apierror-reauthenticate' );
 
 			case AuthManager::SEC_FAIL:
-				$this->module->dieUsage(
-					'This action is not available as your identify cannot be verified.', 'cannotreauthenticate'
-				);
+				$this->module->dieWithError( 'apierror-cannotreauthenticate' );
 
 			default:
 				throw new UnexpectedValueException( "Unknown status \"$status\"" );
@@ -173,13 +169,8 @@ class ApiAuthManagerHelper {
 		$this->module->getMain()->markParamsUsed( array_keys( $data ) );
 
 		if ( $sensitive ) {
-			try {
-				$this->module->requirePostedParameters( array_keys( $sensitive ), 'noprefix' );
-			} catch ( UsageException $ex ) {
-				// Make this a warning for now, upgrade to an error in 1.29.
-				$this->module->setWarning( $ex->getMessage() );
-				$this->module->logFeatureUsage( $this->module->getModuleName() . '-params-in-query-string' );
-			}
+			$this->module->getMain()->markParamsSensitive( array_keys( $sensitive ) );
+			$this->module->requirePostedParameters( array_keys( $sensitive ), 'noprefix' );
 		}
 
 		return AuthenticationRequest::loadRequestsFromSubmission( $reqs, $data );
@@ -218,6 +209,7 @@ class ApiAuthManagerHelper {
 			$res->status === AuthenticationResponse::RESTART
 		) {
 			$this->formatMessage( $ret, 'message', $res->message );
+			$ret['messagecode'] = ApiMessage::create( $res->message )->getApiCode();
 		}
 
 		if ( $res->status === AuthenticationResponse::FAIL ||

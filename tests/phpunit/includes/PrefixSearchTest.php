@@ -1,4 +1,7 @@
 <?php
+
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @group Search
  * @group Database
@@ -129,11 +132,11 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 				'results' => [
 					'Special:ActiveUsers',
 					'Special:AllMessages',
-					'Special:AllMyFiles',
+					'Special:AllMyUploads',
 				],
 				// Third result when testing offset
 				'offsetresult' => [
-					'Special:AllMyUploads',
+					'Special:AllPages',
 				],
 			] ],
 			[ [
@@ -146,7 +149,7 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 				],
 				// Third result when testing offset
 				'offsetresult' => [
-					'Special:UncategorizedImages',
+					'Special:UncategorizedPages',
 				],
 			] ],
 			[ [
@@ -260,7 +263,7 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 				],
 			] ],
 			[ [
-				'Exact match not on top (bug 70958)',
+				'Exact match not on top (T72958)',
 				'provision' => [
 					'Barcelona',
 					'Bar',
@@ -274,7 +277,7 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 				],
 			] ],
 			[ [
-				'Exact match missing (bug 70958)',
+				'Exact match missing (T72958)',
 				'provision' => [
 					'Barcelona',
 					'Barbara',

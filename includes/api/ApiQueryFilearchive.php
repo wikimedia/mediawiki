@@ -38,15 +38,10 @@ class ApiQueryFilearchive extends ApiQueryBase {
 	}
 
 	public function execute() {
-		$user = $this->getUser();
 		// Before doing anything at all, let's check permissions
-		if ( !$user->isAllowed( 'deletedhistory' ) ) {
-			$this->dieUsage(
-				'You don\'t have permission to view deleted file information',
-				'permissiondenied'
-			);
-		}
+		$this->checkUserRightsAny( 'deletedhistory' );
 
+		$user = $this->getUser();
 		$db = $this->getDB();
 
 		$params = $this->extractRequestParams();
@@ -112,13 +107,13 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			if ( $sha1Set ) {
 				$sha1 = strtolower( $params['sha1'] );
 				if ( !$this->validateSha1Hash( $sha1 ) ) {
-					$this->dieUsage( 'The SHA1 hash provided is not valid', 'invalidsha1hash' );
+					$this->dieWithError( 'apierror-invalidsha1hash' );
 				}
 				$sha1 = Wikimedia\base_convert( $sha1, 16, 36, 31 );
 			} elseif ( $sha1base36Set ) {
 				$sha1 = strtolower( $params['sha1base36'] );
 				if ( !$this->validateSha1Base36Hash( $sha1 ) ) {
-					$this->dieUsage( 'The SHA1Base36 hash provided is not valid', 'invalidsha1base36hash' );
+					$this->dieWithError( 'apierror-invalidsha1base36hash' );
 				}
 			}
 			if ( $sha1 ) {
@@ -297,6 +292,6 @@ class ApiQueryFilearchive extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Filearchive';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Filearchive';
 	}
 }

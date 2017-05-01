@@ -23,8 +23,11 @@
  */
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ResultWrapper;
 
 class ChangesList extends ContextSource {
+	const CSS_CLASS_PREFIX = 'mw-changeslist-';
+
 	/**
 	 * @var Skin
 	 */
@@ -47,11 +50,17 @@ class ChangesList extends ContextSource {
 	protected $linkRenderer;
 
 	/**
+	 * @var array
+	 */
+	protected $filterGroups;
+
+	/**
 	 * Changeslist constructor
 	 *
 	 * @param Skin|IContextSource $obj
+	 * @param array $filterGroups Array of ChangesListFilterGroup objects (currently optional)
 	 */
-	public function __construct( $obj ) {
+	public function __construct( $obj, array $filterGroups = [] ) {
 		if ( $obj instanceof IContextSource ) {
 			$this->setContext( $obj );
 			$this->skin = $obj->getSkin();
@@ -62,6 +71,7 @@ class ChangesList extends ContextSource {
 		$this->preCacheMessages();
 		$this->watchMsgCache = new HashBagOStuff( [ 'maxKeys' => 50 ] );
 		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$this->filterGroups = $filterGroups;
 	}
 
 	/**
@@ -69,16 +79,19 @@ class ChangesList extends ContextSource {
 	 * Some users might want to use an enhanced list format, for instance
 	 *
 	 * @param IContextSource $context
+	 * @param array $groups Array of ChangesListFilterGroup objects (currently optional)
 	 * @return ChangesList
 	 */
-	public static function newFromContext( IContextSource $context ) {
+	public static function newFromContext( IContextSource $context, array $groups = [] ) {
 		$user = $context->getUser();
 		$sk = $context->getSkin();
 		$list = null;
 		if ( Hooks::run( 'FetchChangesList', [ $user, &$sk, &$list ] ) ) {
 			$new = $context->getRequest()->getBool( 'enhanced', $user->getOption( 'usenewrc' ) );
 
-			return $new ? new EnhancedChangesList( $context ) : new OldChangesList( $context );
+			return $new ?
+				new EnhancedChangesList( $context, $groups ) :
+				new OldChangesList( $context, $groups );
 		} else {
 			return $list;
 		}
@@ -160,17 +173,39 @@ class ChangesList extends ContextSource {
 		$logType = $rc->mAttribs['rc_log_type'];
 
 		if ( $logType ) {
-			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-log-' . $logType );
+			$classes[] = Sanitizer::escapeClass( self::CSS_CLASS_PREFIX . 'log-' . $logType );
 		} else {
-			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-ns' .
+			$classes[] = Sanitizer::escapeClass( self::CSS_CLASS_PREFIX . 'ns' .
 				$rc->mAttribs['rc_namespace'] . '-' . $rc->mAttribs['rc_title'] );
 		}
 
 		// Indicate watched status on the line to allow for more
 		// comprehensive styling.
 		$classes[] = $watched && $rc->mAttribs['rc_timestamp'] >= $watched
-			? 'mw-changeslist-line-watched'
-			: 'mw-changeslist-line-not-watched';
+			? self::CSS_CLASS_PREFIX . 'line-watched'
+			: self::CSS_CLASS_PREFIX . 'line-not-watched';
+
+		$classes = array_merge( $classes, $this->getHTMLClassesForFilters( $rc ) );
+
+		return $classes;
+	}
+
+	/**
+	 * Get an array of CSS classes attributed to filters for this row
+	 *
+	 * @param RecentChange $rc
+	 * @return array Array of CSS classes
+	 */
+	protected function getHTMLClassesForFilters( $rc ) {
+		$classes = [];
+
+		if ( $this->filterGroups !== null ) {
+			foreach ( $this->filterGroups as $filterGroup ) {
+				foreach ( $filterGroup->getFilters() as $filter ) {
+					$filter->applyCssClassIfNeeded( $this, $rc, $classes );
+				}
+			}
+		}
 
 		return $classes;
 	}
@@ -379,7 +414,7 @@ class ChangesList extends ContextSource {
 			$diffLink = $this->linkRenderer->makeKnownLink(
 				$rc->getTitle(),
 				new HtmlArmor( $this->message['diff'] ),
-				[],
+				[ 'class' => 'mw-changeslist-diff' ],
 				$query
 			);
 		}
@@ -391,7 +426,7 @@ class ChangesList extends ContextSource {
 			$diffhist .= $this->linkRenderer->makeKnownLink(
 				$rc->getTitle(),
 				new HtmlArmor( $this->message['hist'] ),
-				[],
+				[ 'class' => 'mw-changeslist-history' ],
 				[
 					'curid' => $rc->mAttribs['rc_cur_id'],
 					'action' => 'history'
@@ -444,8 +479,10 @@ class ChangesList extends ContextSource {
 
 		# TODO: Deprecate the $s argument, it seems happily unused.
 		$s = '';
+		# Avoid PHP 7.1 warning from passing $this by reference
+		$changesList = $this;
 		Hooks::run( 'ChangesListInsertArticleLink',
-			[ &$this, &$articlelink, &$s, &$rc, $unpatrolled, $watched ] );
+			[ &$changesList, &$articlelink, &$s, &$rc, $unpatrolled, $watched ] );
 
 		return "{$s} {$articlelink}";
 	}

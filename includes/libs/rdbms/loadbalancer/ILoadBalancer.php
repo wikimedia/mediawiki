@@ -21,6 +21,10 @@
  * @ingroup Database
  * @author Aaron Schulz
  */
+namespace Wikimedia\Rdbms;
+
+use Exception;
+use InvalidArgumentException;
 
 /**
  * Database cluster connection, tracking, load balancing, and transaction manager interface
@@ -93,6 +97,7 @@ interface ILoadBalancer {
 	 *  - srvCache : BagOStuff object for server cache [optional]
 	 *  - memCache : BagOStuff object for cluster memory cache [optional]
 	 *  - wanCache : WANObjectCache object [optional]
+	 *  - chronologyProtector: ChronologyProtector object [optional]
 	 *  - hostname : The name of the current server [optional]
 	 *  - cliMode: Whether the execution context is a CLI script. [optional]
 	 *  - profiler : Class name or instance with profileIn()/profileOut() methods. [optional]
@@ -108,8 +113,9 @@ interface ILoadBalancer {
 
 	/**
 	 * Get the index of the reader connection, which may be a replica DB
+	 *
 	 * This takes into account load ratios and lag times. It should
-	 * always return a consistent index during a given invocation
+	 * always return a consistent index during a given invocation.
 	 *
 	 * Side effect: opens connections to databases
 	 * @param string|bool $group Query group, or false for the generic reader
@@ -121,9 +127,15 @@ interface ILoadBalancer {
 
 	/**
 	 * Set the master wait position
-	 * If a DB_REPLICA connection has been opened already, waits
-	 * Otherwise sets a variable telling it to wait if such a connection is opened
-	 * @param DBMasterPos $pos
+	 *
+	 * If a DB_REPLICA connection has been opened already, then wait immediately.
+	 * Otherwise sets a variable telling it to wait if such a connection is opened.
+	 *
+	 * This only applies to connections to the generic replica DB for this request.
+	 * If a timeout happens when waiting, then getLaggedReplicaMode()/laggedReplicaUsed()
+	 * will return true.
+	 *
+	 * @param DBMasterPos|bool $pos Master position or false
 	 */
 	public function waitFor( $pos );
 
@@ -132,7 +144,7 @@ interface ILoadBalancer {
 	 *
 	 * This can be used a faster proxy for waitForAll()
 	 *
-	 * @param DBMasterPos $pos
+	 * @param DBMasterPos|bool $pos Master position or false
 	 * @param int $timeout Max seconds to wait; default is mWaitTimeout
 	 * @return bool Success (able to connect and no timeouts reached)
 	 */
@@ -140,7 +152,8 @@ interface ILoadBalancer {
 
 	/**
 	 * Set the master wait position and wait for ALL replica DBs to catch up to it
-	 * @param DBMasterPos $pos
+	 *
+	 * @param DBMasterPos|bool $pos Master position or false
 	 * @param int $timeout Max seconds to wait; default is mWaitTimeout
 	 * @return bool Success (able to connect and no timeouts reached)
 	 */
@@ -148,30 +161,29 @@ interface ILoadBalancer {
 
 	/**
 	 * Get any open connection to a given server index, local or foreign
-	 * Returns false if there is no connection open
 	 *
-	 * @param int $i Server index
-	 * @return IDatabase|bool False on failure
+	 * @param int $i Server index or DB_MASTER/DB_REPLICA
+	 * @return Database|bool False if no such connection is open
 	 */
 	public function getAnyOpenConnection( $i );
 
 	/**
 	 * Get a connection by index
-	 * This is the main entry point for this class.
 	 *
-	 * @param int $i Server index
+	 * @param int $i Server index or DB_MASTER/DB_REPLICA
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
 	 * @param string|bool $domain Domain ID, or false for the current domain
 	 *
 	 * @throws DBError
-	 * @return IDatabase
+	 * @return Database
 	 */
 	public function getConnection( $i, $groups = [], $domain = false );
 
 	/**
-	 * Mark a foreign connection as being available for reuse under a different
-	 * DB name or prefix. This mechanism is reference-counted, and must be called
-	 * the same number of times as getConnection() to work.
+	 * Mark a foreign connection as being available for reuse under a different DB domain
+	 *
+	 * This mechanism is reference-counted, and must be called the same number of times
+	 * as getConnection() to work.
 	 *
 	 * @param IDatabase $conn
 	 * @throws InvalidArgumentException
@@ -181,44 +193,55 @@ interface ILoadBalancer {
 	/**
 	 * Get a database connection handle reference
 	 *
-	 * The handle's methods wrap simply wrap those of a IDatabase handle
+	 * The handle's methods simply wrap those of a Database handle
 	 *
-	 * @see LoadBalancer::getConnection() for parameter information
+	 * @see ILoadBalancer::getConnection() for parameter information
 	 *
-	 * @param int $db
+	 * @param int $i Server index or DB_MASTER/DB_REPLICA
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
 	 * @param string|bool $domain Domain ID, or false for the current domain
 	 * @return DBConnRef
 	 */
-	public function getConnectionRef( $db, $groups = [], $domain = false );
+	public function getConnectionRef( $i, $groups = [], $domain = false );
 
 	/**
 	 * Get a database connection handle reference without connecting yet
 	 *
-	 * The handle's methods wrap simply wrap those of a IDatabase handle
+	 * The handle's methods simply wrap those of a Database handle
 	 *
-	 * @see LoadBalancer::getConnection() for parameter information
+	 * @see ILoadBalancer::getConnection() for parameter information
 	 *
-	 * @param int $db
+	 * @param int $i Server index or DB_MASTER/DB_REPLICA
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
 	 * @param string|bool $domain Domain ID, or false for the current domain
 	 * @return DBConnRef
 	 */
-	public function getLazyConnectionRef( $db, $groups = [], $domain = false );
+	public function getLazyConnectionRef( $i, $groups = [], $domain = false );
+
+	/**
+	 * Get a maintenance database connection handle reference for migrations and schema changes
+	 *
+	 * The handle's methods simply wrap those of a Database handle
+	 *
+	 * @see ILoadBalancer::getConnection() for parameter information
+	 *
+	 * @param int $db Server index or DB_MASTER/DB_REPLICA
+	 * @param array|string|bool $groups Query group(s), or false for the generic reader
+	 * @param string|bool $domain Domain ID, or false for the current domain
+	 * @return MaintainableDBConnRef
+	 */
+	public function getMaintenanceConnectionRef( $db, $groups = [], $domain = false );
 
 	/**
 	 * Open a connection to the server given by the specified index
 	 * Index must be an actual index into the array.
 	 * If the server is already open, returns it.
 	 *
-	 * On error, returns false, and the connection which caused the
-	 * error will be available via $this->mErrorConnection.
-	 *
 	 * @note If disable() was called on this LoadBalancer, this method will throw a DBAccessError.
 	 *
-	 * @param int $i Server index
+	 * @param int $i Server index or DB_MASTER/DB_REPLICA
 	 * @param string|bool $domain Domain ID, or false for the current domain
-	 * @return IDatabase|bool Returns false on errors
+	 * @return Database|bool Returns false on errors
 	 * @throws DBAccessError
 	 */
 	public function openConnection( $i, $domain = false );
@@ -353,7 +376,7 @@ interface ILoadBalancer {
 	 *
 	 * Use this only for mutli-database commits
 	 *
-	 * @param integer $type IDatabase::TRIGGER_* constant
+	 * @param int $type IDatabase::TRIGGER_* constant
 	 * @return Exception|null The first exception or null if there were none
 	 */
 	public function runMasterPostTrxCallbacks( $type );
@@ -417,20 +440,24 @@ interface ILoadBalancer {
 	/**
 	 * @note This method will trigger a DB connection if not yet done
 	 * @param string|bool $domain Domain ID, or false for the current domain
-	 * @return bool Whether the generic connection for reads is highly "lagged"
+	 * @return bool Whether the database for generic connections this request is highly "lagged"
 	 */
 	public function getLaggedReplicaMode( $domain = false );
 
 	/**
+	 * Checks whether the database for generic connections this request was both:
+	 *   - a) Already choosen due to a prior connection attempt
+	 *   - b) Considered highly "lagged"
+	 *
 	 * @note This method will never cause a new DB connection
-	 * @return bool Whether any generic connection used for reads was highly "lagged"
+	 * @return bool
 	 */
 	public function laggedReplicaUsed();
 
 	/**
 	 * @note This method may trigger a DB connection if not yet done
 	 * @param string|bool $domain Domain ID, or false for the current domain
-	 * @param IDatabase|null DB master connection; used to avoid loops [optional]
+	 * @param IDatabase|null $conn DB master connection; used to avoid loops [optional]
 	 * @return string|bool Reason the master is read-only or false if it is not
 	 */
 	public function getReadOnlyReason( $domain = false, IDatabase $conn = null );
@@ -515,10 +542,10 @@ interface ILoadBalancer {
 	 *
 	 * @param IDatabase $conn Replica DB
 	 * @param DBMasterPos|bool $pos Master position; default: current position
-	 * @param integer|null $timeout Timeout in seconds [optional]
+	 * @param int $timeout Timeout in seconds [optional]
 	 * @return bool Success
 	 */
-	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = null );
+	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = 10 );
 
 	/**
 	 * Set a callback via IDatabase::setTransactionListener() on

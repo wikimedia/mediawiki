@@ -2,10 +2,9 @@
  * @class mw.user
  * @singleton
  */
+/* global Uint32Array */
 ( function ( mw, $ ) {
-	var i,
-		userInfoPromise,
-		byteToHex = [];
+	var userInfoPromise;
 
 	/**
 	 * Get the current user's groups or rights
@@ -18,12 +17,6 @@
 			userInfoPromise = new mw.Api().getUserInfo();
 		}
 		return userInfoPromise;
-	}
-
-	// Map from numbers 0-255 to a hex string (with padding)
-	for ( i = 0; i < 256; i++ ) {
-		// Padding: Add a full byte (0x100, 256) and strip the extra character
-		byteToHex[ i ] = ( i + 256 ).toString( 16 ).slice( 1 );
 	}
 
 	// mw.user with the properties options and tokens gets defined in mediawiki.js.
@@ -50,30 +43,27 @@
 		 * @return {string} 64 bit integer in hex format, padded
 		 */
 		generateRandomSessionId: function () {
-			/*jshint bitwise:false */
-			var rnds, i, r,
-				hexRnds = new Array( 8 ),
+			var rnds, i,
+				hexRnds = new Array( 2 ),
 				// Support: IE 11
 				crypto = window.crypto || window.msCrypto;
 
-			// Based on https://github.com/broofa/node-uuid/blob/bfd9f96127/uuid.js
 			if ( crypto && crypto.getRandomValues ) {
-				// Fill an array with 8 random values, each of which is 8 bits.
-				// Note that Uint8Array is array-like but does not implement Array.
-				rnds = new Uint8Array( 8 );
+				// Fill an array with 2 random values, each of which is 32 bits.
+				// Note that Uint32Array is array-like but does not implement Array.
+				rnds = new Uint32Array( 2 );
 				crypto.getRandomValues( rnds );
 			} else {
-				rnds = new Array( 8 );
-				for ( i = 0; i < 8; i++ ) {
-					if ( ( i & 3 ) === 0 ) {
-						r = Math.random() * 0x100000000;
-					}
-					rnds[ i ] = r >>> ( ( i & 3 ) << 3 ) & 255;
-				}
+				rnds = [
+					Math.floor( Math.random() * 0x100000000 ),
+					Math.floor( Math.random() * 0x100000000 )
+				];
 			}
-			// Convert from number to hex
-			for ( i = 0; i < 8; i++ ) {
-				hexRnds[ i ] = byteToHex[ rnds[ i ] ];
+			// Convert number to a string with 16 hex characters
+			for ( i = 0; i < 2; i++ ) {
+				// Add 0x100000000 before converting to hex and strip the extra character
+				// after converting to keep the leading zeros.
+				hexRnds[ i ] = ( rnds[ i ] + 0x100000000 ).toString( 16 ).slice( 1 );
 			}
 
 			// Concatenation of two random integers with entropy n and m
@@ -108,10 +98,11 @@
 		 *  unavailable, or Date for when the user registered.
 		 */
 		getRegistration: function () {
+			var registration;
 			if ( mw.user.isAnon() ) {
 				return false;
 			}
-			var registration = mw.config.get( 'wgUserRegistration' );
+			registration = mw.config.get( 'wgUserRegistration' );
 			// Registration may be unavailable if the user signed up before MediaWiki
 			// began tracking this.
 			return !registration ? null : new Date( registration );
@@ -127,18 +118,18 @@
 		},
 
 		/**
-		 * Get an automatically generated random ID (stored in a session cookie)
+		 * Get an automatically generated random ID (persisted in sessionStorage)
 		 *
-		 * This ID is ephemeral for everyone, staying in their browser only until they close
-		 * their browser.
+		 * This ID is ephemeral for everyone, staying in their browser only until they
+		 * close their browsing session.
 		 *
 		 * @return {string} Random session ID
 		 */
 		sessionId: function () {
-			var sessionId = mw.cookie.get( 'mwuser-sessionId' );
-			if ( sessionId === null ) {
+			var sessionId = mw.storage.session.get( 'mwuser-sessionId' );
+			if ( !sessionId ) {
 				sessionId = mw.user.generateRandomSessionId();
-				mw.cookie.set( 'mwuser-sessionId', sessionId, { expires: null } );
+				mw.storage.session.set( 'mwuser-sessionId', sessionId );
 			}
 			return sessionId;
 		},

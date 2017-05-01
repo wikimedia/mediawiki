@@ -136,7 +136,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 
 		$content = $rev->getContent();
 		if ( !$content ) {
-			# This should not happen, but sometimes does (bug 20757)
+			# This should not happen, but sometimes does (T22757)
 			$id = $row->$idCol;
 			$this->output( "Content of $table $id unavailable!\n" );
 

@@ -19,6 +19,8 @@
  * @ingroup Database
  */
 
+namespace Wikimedia\Rdbms;
+
 /**
  * Exception class for replica DB wait timeouts
  * @ingroup Database
@@ -26,3 +28,4 @@
 class DBReplicationWaitError extends DBExpectedError {
 }
 
+class_alias( DBReplicationWaitError::class, 'DBReplicationWaitError' );

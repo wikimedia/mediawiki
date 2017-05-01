@@ -1036,7 +1036,6 @@ csrf
 css
 cssclass
 csslinks
-cssprefs
 cta
 ctime
 ctor
@@ -1323,7 +1322,6 @@ edittoken
 edittools
 editurl
 editusercss
-editusercssjs
 edituserjs
 edoe
 egrave
@@ -1399,7 +1397,6 @@ epcampus
 epcoordinator
 epinstructor
 eponline
-eqiad
 erevoke
 errno
 error
@@ -4572,7 +4569,6 @@ wmls
 wmlsc
 wmlscript
 wmlscriptc
-wmnet
 wordcount
 wordprocessingml
 wordwg

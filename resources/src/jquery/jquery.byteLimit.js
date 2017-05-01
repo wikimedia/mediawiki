@@ -3,6 +3,17 @@
  */
 ( function ( $ ) {
 
+	var eventKeys = [
+		'keyup.byteLimit',
+		'keydown.byteLimit',
+		'change.byteLimit',
+		'mouseup.byteLimit',
+		'cut.byteLimit',
+		'paste.byteLimit',
+		'focus.byteLimit',
+		'blur.byteLimit'
+	].join( ' ' );
+
 	/**
 	 * Utility function to trim down a string, based on byteLimit
 	 * and given a safe start position. It supports insertion anywhere
@@ -76,7 +87,7 @@
 		// Chop off characters from the end of the "inserted content" string
 		// until the limit is statisfied.
 		if ( fn ) {
-			// stop, when there is nothing to slice - bug 41450
+			// stop, when there is nothing to slice - T43450
 			while ( $.byteLength( fn( inpParts.join( '' ) ) ) > byteLimit && inpParts[ 1 ].length > 0 ) {
 				inpParts[ 1 ] = inpParts[ 1 ].slice( 0, -1 );
 			}
@@ -93,17 +104,6 @@
 			trimmed: newVal !== inpParts.join( '' )
 		};
 	};
-
-	var eventKeys = [
-		'keyup.byteLimit',
-		'keydown.byteLimit',
-		'change.byteLimit',
-		'mouseup.byteLimit',
-		'cut.byteLimit',
-		'paste.byteLimit',
-		'focus.byteLimit',
-		'blur.byteLimit'
-	].join( ' ' );
 
 	/**
 	 * Enforces a byte limit on an input field, so that UTF-8 entries are counted as well,
@@ -176,7 +176,7 @@
 				// maxLength is a strange property. Removing or setting the property to
 				// undefined directly doesn't work. Instead, it can only be unset internally
 				// by the browser when removing the associated attribute (Firefox/Chrome).
-				// http://code.google.com/p/chromium/issues/detail?id=136004
+				// https://bugs.chromium.org/p/chromium/issues/detail?id=136004
 				$el.removeAttr( 'maxlength' );
 
 			} else {
@@ -203,7 +203,7 @@
 			// changed while text is being entered and keyup/change will not be fired yet
 			// (such as holding down a single key, fires keydown, and after each keydown,
 			// we can trim the previous one).
-			// See http://www.w3.org/TR/DOM-Level-3-Events/#events-keyboard-event-order for
+			// See https://www.w3.org/TR/DOM-Level-3-Events/#events-keyboard-event-order for
 			// the order and characteristics of the key events.
 			$el.on( eventKeys, function () {
 				var res = $.trimByteLength(
@@ -225,7 +225,7 @@
 				}
 				// Always adjust prevSafeVal to reflect the input value. Not doing this could cause
 				// trimByteLength to compare the new value to an empty string instead of the
-				// old value, resulting in trimming always from the end (bug 40850).
+				// old value, resulting in trimming always from the end (T42850).
 				prevSafeVal = res.newVal;
 			} );
 		} );

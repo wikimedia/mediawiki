@@ -34,6 +34,11 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 	protected $subfields = [];
 
 	/**
+	 * @var callable
+	 */
+	private $mergeCallback;
+
+	/**
 	 * SearchIndexFieldDefinition constructor.
 	 * @param string $name Field name
 	 * @param int    $type Index type
@@ -91,9 +96,12 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 	 * @return SearchIndexField|false New definition or false if not mergeable.
 	 */
 	public function merge( SearchIndexField $that ) {
+		if ( !empty( $this->mergeCallback ) ) {
+			return call_user_func( $this->mergeCallback, $this, $that );
+		}
 		// TODO: which definitions may be compatible?
 		if ( ( $that instanceof self ) && $this->type === $that->type &&
-		     $this->flags === $that->flags && $this->type !== self::INDEX_TYPE_NESTED
+			$this->flags === $that->flags && $this->type !== self::INDEX_TYPE_NESTED
 		) {
 			return $that;
 		}
@@ -125,4 +133,11 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 	 */
 	abstract public function getMapping( SearchEngine $engine );
 
+	/**
+	 * Set field-specific merge strategy.
+	 * @param callable $callback
+	 */
+	public function setMergeCallback( $callback ) {
+		$this->mergeCallback = $callback;
+	}
 }

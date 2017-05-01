@@ -36,14 +36,9 @@ class ActiveUsersPager extends UsersPager {
 	protected $opts;
 
 	/**
-	 * @var array
+	 * @var string[]
 	 */
-	protected $hideGroups = [];
-
-	/**
-	 * @var array
-	 */
-	protected $hideRights = [];
+	protected $groups;
 
 	/**
 	 * @var array
@@ -68,11 +63,14 @@ class ActiveUsersPager extends UsersPager {
 			}
 		}
 
-		if ( $opts->getValue( 'hidebots' ) == 1 ) {
-			$this->hideRights[] = 'bot';
+		$this->groups = $opts->getValue( 'groups' );
+		$this->excludegroups = $opts->getValue( 'excludegroups' );
+		// Backwards-compatibility with old URLs
+		if ( $opts->getValue( 'hidebots' ) ) {
+			$this->excludegroups[] = 'bot';
 		}
-		if ( $opts->getValue( 'hidesysops' ) == 1 ) {
-			$this->hideGroups[] = 'sysop';
+		if ( $opts->getValue( 'hidesysops' ) ) {
+			$this->excludegroups[] = 'sysop';
 		}
 	}
 
@@ -85,6 +83,7 @@ class ActiveUsersPager extends UsersPager {
 
 		$activeUserSeconds = $this->getConfig()->get( 'ActiveUserDays' ) * 86400;
 		$timestamp = $dbr->timestamp( wfTimestamp( TS_UNIX ) - $activeUserSeconds );
+		$tables = [ 'querycachetwo', 'user', 'recentchanges' ];
 		$conds = [
 			'qcc_type' => 'activeusers',
 			'qcc_namespace' => NS_USER,
@@ -97,6 +96,27 @@ class ActiveUsersPager extends UsersPager {
 		];
 		if ( $this->requestedUser != '' ) {
 			$conds[] = 'qcc_title >= ' . $dbr->addQuotes( $this->requestedUser );
+		}
+		if ( $this->groups !== [] ) {
+			$tables[] = 'user_groups';
+			$conds[] = 'ug_user = user_id';
+			$conds['ug_group'] = $this->groups;
+			if ( !$this->getConfig()->get( 'DisableUserGroupExpiry' ) ) {
+				$conds[] = 'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() );
+			}
+		}
+		if ( $this->excludegroups !== [] ) {
+			foreach ( $this->excludegroups as $group ) {
+				$conds[] = 'NOT EXISTS (' . $dbr->selectSQLText(
+					'user_groups', '1', [
+						'ug_user = user_id',
+						'ug_group' => $group,
+						$this->getConfig()->get( 'DisableUserGroupExpiry' ) ?
+							'1' :
+							'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
+					]
+				) . ')';
+			}
 		}
 		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
 			$conds[] = 'NOT EXISTS (' . $dbr->selectSQLText(
@@ -111,7 +131,7 @@ class ActiveUsersPager extends UsersPager {
 		}
 
 		return [
-			'tables' => [ 'querycachetwo', 'user', 'recentchanges' ],
+			'tables' => $tables,
 			'fields' => [ 'user_name', 'user_id', 'recentedits' => 'COUNT(*)', 'qcc_title' ],
 			'options' => $options,
 			'conds' => $conds
@@ -154,27 +174,9 @@ class ActiveUsersPager extends UsersPager {
 		$list = [];
 		$user = User::newFromId( $row->user_id );
 
-		// User right filter
-		foreach ( $this->hideRights as $right ) {
-			// Calling User::getRights() within the loop so that
-			// if the hideRights() filter is empty, we don't have to
-			// trigger the lazy-init of the big userrights array in the
-			// User object
-			if ( in_array( $right, $user->getRights() ) ) {
-				return '';
-			}
-		}
-
-		// User group filter
-		// Note: This is a different loop than for user rights,
-		// because we're reusing it to build the group links
-		// at the same time
-		$groups_list = self::getGroups( intval( $row->user_id ), $this->userGroupCache );
-		foreach ( $groups_list as $group ) {
-			if ( in_array( $group, $this->hideGroups ) ) {
-				return '';
-			}
-			$list[] = self::buildGroupLink( $group, $userName );
+		$ugms = self::getGroupMemberships( intval( $row->user_id ), $this->userGroupCache );
+		foreach ( $ugms as $ugm ) {
+			$list[] = $this->buildGroupLink( $ugm, $userName );
 		}
 
 		$groups = $lang->commaList( $list );

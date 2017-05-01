@@ -21,5 +21,8 @@
 	"apihelp-edit-param-contentmodel": "নতুন বিষয়বস্তুর, বিষয়বস্তু-মডেল।",
 	"apihelp-edit-example-edit": "একটি পাতা সম্পাদনা করুন",
 	"apihelp-edit-example-prepend": "একটি পৃষ্ঠার পূর্বে <kbd>_&#95;NOTOC_&#95;</kbd> লিখুন।",
-	"apihelp-login-example-login": "প্রবেশ"
+	"apihelp-login-example-login": "প্রবেশ",
+	"apihelp-setpagelanguage-param-reason": "পরিবর্তনের কারণ।",
+	"apierror-invaliduserid": "ব্যবহারকারী আইডি <var>$1</var> বৈধ নয়।",
+	"apierror-nosuchuserid": "$1 আইডি যুক্ত কোন ব্যবহারকারী নেই।"
 }

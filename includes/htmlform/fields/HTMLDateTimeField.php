@@ -36,6 +36,11 @@ class HTMLDateTimeField extends HTMLTextField {
 			throw new InvalidArgumentException( "Invalid type '$this->mType'" );
 		}
 
+		if ( $this->mPlaceholder === '' ) {
+			// Messages: htmlform-date-placeholder htmlform-time-placeholder htmlform-datetime-placeholder
+			$this->mPlaceholder = $this->msg( "htmlform-{$this->mType}-placeholder" )->text();
+		}
+
 		$this->mClass .= ' mw-htmlform-datetime-field';
 	}
 
@@ -43,31 +48,20 @@ class HTMLDateTimeField extends HTMLTextField {
 		$parentList = array_diff( $list, [ 'min', 'max' ] );
 		$ret = parent::getAttributes( $parentList );
 
-		if ( in_array( 'placeholder', $list ) && !isset( $ret['placeholder'] ) ) {
-			// Messages: htmlform-date-placeholder htmlform-time-placeholder htmlform-datetime-placeholder
-			$ret['placeholder'] = $this->msg( "htmlform-{$this->mType}-placeholder" )->text();
-		}
-
 		if ( in_array( 'min', $list ) && isset( $this->mParams['min'] ) ) {
 			$min = $this->parseDate( $this->mParams['min'] );
 			if ( $min ) {
 				$ret['min'] = $this->formatDate( $min );
-				// Because Html::expandAttributes filters it out
-				$ret['data-min'] = $ret['min'];
 			}
 		}
 		if ( in_array( 'max', $list ) && isset( $this->mParams['max'] ) ) {
 			$max = $this->parseDate( $this->mParams['max'] );
 			if ( $max ) {
 				$ret['max'] = $this->formatDate( $max );
-				// Because Html::expandAttributes filters it out
-				$ret['data-max'] = $ret['max'];
 			}
 		}
 
 		$ret['step'] = 1;
-		// Because Html::expandAttributes filters it out
-		$ret['data-step'] = 1;
 
 		$ret['type'] = $this->mType;
 		$ret['pattern'] = static::$patterns[$this->mType];
@@ -75,7 +69,7 @@ class HTMLDateTimeField extends HTMLTextField {
 		return $ret;
 	}
 
-	function loadDataFromRequest( $request ) {
+	public function loadDataFromRequest( $request ) {
 		if ( !$request->getCheck( $this->mName ) ) {
 			return $this->getDefault();
 		}
@@ -85,7 +79,7 @@ class HTMLDateTimeField extends HTMLTextField {
 		return $date ? $this->formatDate( $date ) : $value;
 	}
 
-	function validate( $value, $alldata ) {
+	public function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
 		if ( $p !== true ) {
@@ -100,15 +94,14 @@ class HTMLDateTimeField extends HTMLTextField {
 		$date = $this->parseDate( $value );
 		if ( !$date ) {
 			// Messages: htmlform-date-invalid htmlform-time-invalid htmlform-datetime-invalid
-			return $this->msg( "htmlform-{$this->mType}-invalid" )->parseAsBlock();
+			return $this->msg( "htmlform-{$this->mType}-invalid" );
 		}
 
 		if ( isset( $this->mParams['min'] ) ) {
 			$min = $this->parseDate( $this->mParams['min'] );
 			if ( $min && $date < $min ) {
 				// Messages: htmlform-date-toolow htmlform-time-toolow htmlform-datetime-toolow
-				return $this->msg( "htmlform-{$this->mType}-toolow", $this->formatDate( $min ) )
-					->parseAsBlock();
+				return $this->msg( "htmlform-{$this->mType}-toolow", $this->formatDate( $min ) );
 			}
 		}
 
@@ -116,8 +109,7 @@ class HTMLDateTimeField extends HTMLTextField {
 			$max = $this->parseDate( $this->mParams['max'] );
 			if ( $max && $date > $max ) {
 				// Messages: htmlform-date-toohigh htmlform-time-toohigh htmlform-datetime-toohigh
-				return $this->msg( "htmlform-{$this->mType}-toohigh", $this->formatDate( $max ) )
-					->parseAsBlock();
+				return $this->msg( "htmlform-{$this->mType}-toohigh", $this->formatDate( $max ) );
 			}
 		}
 

@@ -24,6 +24,12 @@
 		return sequence( bodies );
 	}
 
+	// Utility to make inline use with an assert easier
+	function match( text, pattern ) {
+		var m = text.match( pattern );
+		return m && m[ 1 ] || null;
+	}
+
 	QUnit.test( 'get()', function ( assert ) {
 		var api = new mw.Api();
 
@@ -44,11 +50,25 @@
 		} );
 	} );
 
-	QUnit.test( 'API error', function ( assert ) {
+	QUnit.test( 'API error errorformat=bc', function ( assert ) {
 		var api = new mw.Api();
 
 		this.server.respond( [ 200, { 'Content-Type': 'application/json' },
 			'{ "error": { "code": "unknown_action" } }'
+		] );
+
+		api.get( { action: 'doesntexist' } )
+			.fail( function ( errorCode ) {
+				assert.equal( errorCode, 'unknown_action', 'API error should reject the deferred' );
+			} )
+			.always( assert.async() );
+	} );
+
+	QUnit.test( 'API error errorformat!=bc', function ( assert ) {
+		var api = new mw.Api();
+
+		this.server.respond( [ 200, { 'Content-Type': 'application/json' },
+			'{ "errors": [ { "code": "unknown_action", "key": "unknown-error", "params": [] } ] }'
 		] );
 
 		api.get( { action: 'doesntexist' } )
@@ -75,15 +95,38 @@
 		return api.post( { action: 'test' }, { contentType: 'multipart/form-data' } );
 	} );
 
-	QUnit.test( 'Converting arrays to pipe-separated', function ( assert ) {
+	QUnit.test( 'Converting arrays to pipe-separated (string)', function ( assert ) {
 		var api = new mw.Api();
 
 		this.server.respond( function ( request ) {
-			assert.ok( request.url.match( /test=foo%7Cbar%7Cbaz/ ), 'Pipe-separated value was submitted' );
+			assert.equal( match( request.url, /test=([^&]+)/ ), 'foo%7Cbar%7Cbaz', 'Pipe-separated value was submitted' );
 			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
 		} );
 
 		return api.get( { test: [ 'foo', 'bar', 'baz' ] } );
+	} );
+
+	QUnit.test( 'Converting arrays to pipe-separated (mw.Title)', function ( assert ) {
+		var api = new mw.Api();
+
+		this.server.respond( function ( request ) {
+			assert.equal( match( request.url, /test=([^&]+)/ ), 'Foo%7CBar', 'Pipe-separated value was submitted' );
+			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
+		} );
+
+		return api.get( { test: [ new mw.Title( 'Foo' ), new mw.Title( 'Bar' ) ] } );
+	} );
+
+	QUnit.test( 'Converting arrays to pipe-separated (misc primitives)', function ( assert ) {
+		var api = new mw.Api();
+
+		this.server.respond( function ( request ) {
+			assert.equal( match( request.url, /test=([^&]+)/ ), 'true%7Cfalse%7C%7C%7C0%7C1%2E2', 'Pipe-separated value was submitted' );
+			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
+		} );
+
+		// undefined/null will become empty string
+		return api.get( { test: [ true, false, undefined, null, 0, 1.2 ] } );
 	} );
 
 	QUnit.test( 'Omitting false booleans', function ( assert ) {
@@ -158,7 +201,7 @@
 			]
 		) );
 
-		// Don't cache error (bug 65268)
+		// Don't cache error (T67268)
 		return api.getToken( 'testerror' )
 			.then( null, function ( err ) {
 				assert.equal( err, 'bite-me', 'Expected error' );
@@ -268,7 +311,7 @@
 
 		return api.postWithToken( 'testassertpost', { action: 'example', key: 'foo', assert: 'user' } )
 			// Cast error to success and vice versa
-			.then( function ( ) {
+			.then( function () {
 				return $.Deferred().reject( 'Unexpected success' );
 			}, function ( errorCode ) {
 				assert.equal( errorCode, 'assertuserfailed', 'getToken fails assert' );
@@ -286,28 +329,28 @@
 		this.server.respond( [ 200, { 'Content-Type': 'application/json' }, '{ "example": "quux" }' ] );
 
 		return api.postWithToken( 'csrf',
-				{ action: 'example' },
-				{
-					headers: {
-						'X-Foo': 'Bar'
-					}
+			{ action: 'example' },
+			{
+				headers: {
+					'X-Foo': 'Bar'
 				}
-			)
-			.then( function () {
-				assert.equal( test.server.requests[ 0 ].requestHeaders[ 'X-Foo' ], 'Bar', 'Header sent' );
+			}
+		)
+		.then( function () {
+			assert.equal( test.server.requests[ 0 ].requestHeaders[ 'X-Foo' ], 'Bar', 'Header sent' );
 
-				return api.postWithToken( 'csrf',
-					{ action: 'example' },
-					function () {
-						assert.ok( false, 'This parameter cannot be a callback' );
-					}
-				);
-			} )
-			.then( function ( data ) {
-				assert.equal( data.example, 'quux' );
+			return api.postWithToken( 'csrf',
+				{ action: 'example' },
+				function () {
+					assert.ok( false, 'This parameter cannot be a callback' );
+				}
+			);
+		} )
+		.then( function ( data ) {
+			assert.equal( data.example, 'quux' );
 
-				assert.equal( test.server.requests.length, 2, 'Request made' );
-			} );
+			assert.equal( test.server.requests.length, 2, 'Request made' );
+		} );
 	} );
 
 	QUnit.test( 'postWithToken() - badtoken', function ( assert ) {
@@ -399,7 +442,7 @@
 		}
 	} );
 
-	QUnit.test( '#abort', 3, function ( assert ) {
+	QUnit.test( '#abort', function ( assert ) {
 		this.api.get( {
 			a: 1
 		} );

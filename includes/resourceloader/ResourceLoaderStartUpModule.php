@@ -82,7 +82,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgSearchType' => $conf->get( 'SearchType' ),
 			'wgVariantArticlePath' => $conf->get( 'VariantArticlePath' ),
 			// Force object to avoid "empty" associative array from
-			// becoming [] instead of {} in JS (bug 34604)
+			// becoming [] instead of {} in JS (T36604)
 			'wgActionPaths' => (object)$conf->get( 'ActionPaths' ),
 			'wgServer' => $conf->get( 'Server' ),
 			'wgServerName' => $conf->get( 'ServerName' ),
@@ -112,7 +112,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgIllegalFileChars' => Title::convertByteClassToUnicodeClass( $illegalFileChars ),
 			'wgResourceLoaderStorageVersion' => $conf->get( 'ResourceLoaderStorageVersion' ),
 			'wgResourceLoaderStorageEnabled' => $conf->get( 'ResourceLoaderStorageEnabled' ),
-			'wgResourceLoaderLegacyModules' => self::getLegacyModules(),
 			'wgForeignUploadTargets' => $conf->get( 'ForeignUploadTargets' ),
 			'wgEnableUploads' => $conf->get( 'EnableUploads' ),
 		];
@@ -194,7 +193,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @return string JavaScript code for registering all modules with the client loader
 	 */
 	public function getModuleRegistrations( ResourceLoaderContext $context ) {
-
 		$resourceLoader = $context->getResourceLoader();
 		$target = $context->getRequest()->getVal( 'target', 'desktop' );
 		// Bypass target filter if this request is Special:JavaScriptTest.
@@ -202,6 +200,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		$byPassTargetFilter = $this->getConfig()->get( 'EnableJavaScriptTest' ) && $target === 'test';
 
 		$out = '';
+		$states = [];
 		$registryData = [];
 
 		// Get registry data
@@ -219,8 +218,23 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				continue;
 			}
 
-			$versionHash = $module->getVersionHash( $context );
-			if ( strlen( $versionHash ) !== 7 ) {
+			try {
+				$versionHash = $module->getVersionHash( $context );
+			} catch ( Exception $e ) {
+				// See also T152266 and ResourceLoader::getCombinedVersion()
+				MWExceptionHandler::logException( $e );
+				$context->getLogger()->warning(
+					'Calculating version for "{module}" failed: {exception}',
+					[
+						'module' => $name,
+						'exception' => $e,
+					]
+				);
+				$versionHash = '';
+				$states[$name] = 'error';
+			}
+
+			if ( $versionHash !== '' && strlen( $versionHash ) !== 7 ) {
 				$context->getLogger()->warning(
 					"Module '{module}' produced an invalid version hash: '{version}'.",
 					[
@@ -270,6 +284,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		// Register modules
 		$out .= "\n" . ResourceLoader::makeLoaderRegisterScript( $registrations );
 
+		if ( $states ) {
+			$out .= "\n" . ResourceLoader::makeLoaderStateScript( $states );
+		}
+
 		return $out;
 	}
 
@@ -311,9 +329,11 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 */
 	public static function getStartupModulesUrl( ResourceLoaderContext $context ) {
 		$rl = $context->getResourceLoader();
-
 		$derivative = new DerivativeResourceLoaderContext( $context );
-		$derivative->setModules( self::getStartupModules() );
+		$derivative->setModules( array_merge(
+			self::getStartupModules(),
+			self::getLegacyModules()
+		) );
 		$derivative->setOnly( 'scripts' );
 		// Must setModules() before makeVersionQuery()
 		$derivative->setVersion( $rl->makeVersionQuery( $derivative ) );
@@ -323,7 +343,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 	/**
 	 * @param ResourceLoaderContext $context
-	 * @return string
+	 * @return string JavaScript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		global $IP;

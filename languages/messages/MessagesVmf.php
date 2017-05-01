@@ -61,4 +61,3 @@ $specialPageAliases = [
 
 // Remove German aliases
 $namespaceGenderAliases = [];
-

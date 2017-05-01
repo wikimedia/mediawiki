@@ -268,4 +268,3 @@ $magicWords = [
 ];
 
 $linkPrefixCharset = 'A-\\x{10ffff}';
-

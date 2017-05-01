@@ -3,7 +3,8 @@
 		"authors": [
 			"Чаховіч Уладзіслаў",
 			"Artificial123",
-			"Goshaproject"
+			"Goshaproject",
+			"Mechanizatar"
 		]
 	},
 	"ooui-outline-control-move-down": "Перамясціць элемент ўніз",
@@ -18,6 +19,7 @@
 	"ooui-dialog-process-dismiss": "Прапусціць",
 	"ooui-dialog-process-retry": "Паспрабаваць яшчэ раз",
 	"ooui-dialog-process-continue": "Працягнуць",
+	"ooui-selectfile-button-select": "Выбраць файл",
 	"ooui-selectfile-not-supported": "Выбраны файл не падтрымліваецца",
 	"ooui-selectfile-placeholder": "Файл не выбраны"
 }

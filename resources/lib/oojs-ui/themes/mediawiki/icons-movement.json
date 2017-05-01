@@ -15,7 +15,7 @@
 			"color": "#36c"
 		},
 		"destructive": {
-			"color": "#c33"
+			"color": "#d33"
 		},
 		"warning": {
 			"color": "#ff5d00"
@@ -40,8 +40,20 @@
 		} },
 		"caretDown": { "file": "images/icons/caretDown.svg" },
 		"caretUp": { "file": "images/icons/caretUp.svg" },
+		"collapse": { "file": "images/icons/collapse.svg" },
 		"downTriangle": { "file": "images/icons/downTriangle.svg" },
+		"expand": { "file": "images/icons/expand.svg" },
 		"move": { "file": "images/icons/move.svg" },
+		"next": { "file": {
+			"ltr": "images/icons/move-ltr.svg",
+			"rtl": "images/icons/move-rtl.svg"
+			}
+		},
+		"previous": { "file": {
+			"ltr": "images/icons/move-rtl.svg",
+			"rtl": "images/icons/move-ltr.svg"
+			}
+		},
 		"upTriangle": { "file": "images/icons/upTriangle.svg" }
 	}
 }

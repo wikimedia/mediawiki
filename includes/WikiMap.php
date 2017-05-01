@@ -141,7 +141,7 @@ class WikiMap {
 	 * @param string $wikiID Wiki'd id (generally database name)
 	 * @param string $page Page name (must be normalised before calling this function!)
 	 * @param string $text Link's text; optional, default to $page
-	 * @return string HTML link or false if the wiki was not found
+	 * @return string|false HTML link or false if the wiki was not found
 	 */
 	public static function makeForeignLink( $wikiID, $page, $text = null ) {
 		if ( !$text ) {
@@ -182,7 +182,7 @@ class WikiMap {
 class WikiReference {
 	private $mCanonicalServer; ///< canonical server URL, e.g. 'https://www.mediawiki.org'
 	private $mServer; ///< server URL, may be protocol-relative, e.g. '//www.mediawiki.org'
-	private $mPath;   ///< path, '/wiki/$1'
+	private $mPath; ///< path, '/wiki/$1'
 
 	/**
 	 * @param string $canonicalServer

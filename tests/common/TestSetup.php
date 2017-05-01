@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Common code for test environment initialisation and teardown
  */
@@ -15,6 +13,7 @@ class TestSetup {
 		global $wgMainStash;
 		global $wgLanguageConverterCacheType, $wgUseDatabaseMessages;
 		global $wgLocaltimezone, $wgLocalisationCacheConf;
+		global $wgSearchType;
 		global $wgDevelopmentWarnings;
 		global $wgSessionProviders, $wgSessionPbkdf2Iterations;
 		global $wgJobTypeConf;
@@ -49,6 +48,9 @@ class TestSetup {
 		$wgLocaltimezone = 'UTC';
 
 		$wgLocalisationCacheConf['storeClass'] = 'LCStoreNull';
+
+		// Do not bother updating search tables
+		$wgSearchType = 'SearchEngineDummy';
 
 		// Generic MediaWiki\Session\SessionManager configuration for tests
 		// We use CookieSessionProvider because things might be expecting
@@ -87,7 +89,7 @@ class TestSetup {
 		];
 		$wgAuth = new MediaWiki\Auth\AuthManagerAuthPlugin();
 
-		// Bug 44192 Do not attempt to send a real e-mail
+		// T46192 Do not attempt to send a real e-mail
 		Hooks::clear( 'AlternateUserMailer' );
 		Hooks::register(
 			'AlternateUserMailer',

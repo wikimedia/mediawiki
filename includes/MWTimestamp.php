@@ -21,6 +21,7 @@
  * @since 1.20
  * @author Tyler Romeo, 2012
  */
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Library for creating and parsing MW-style timestamps. Based on the JS

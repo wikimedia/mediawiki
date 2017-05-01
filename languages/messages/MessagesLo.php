@@ -91,4 +91,3 @@ $digitTransformTable = [
 	'8' => '໘', # &#x0ed8;
 	'9' => '໙', # &#x0ed9;
 ];
-

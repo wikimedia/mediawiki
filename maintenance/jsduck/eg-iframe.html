@@ -34,18 +34,17 @@
 		};
 	</script>
 	<script>
-		// Emulate startup.js
-		var mwPerformance = { mark: function () {} };
+		// Mock startup.js
+		var mwPerformance = { mark: function () {} },
+			mwNow = Date.now;
 
 		function startUp() {
 			mw.config = new mw.Map();
 		}
 	</script>
 	<script src="modules/lib/jquery/jquery.js"></script>
-	<script src="modules/lib/phpjs-sha1/sha1.js"></script>
 	<script src="modules/src/mediawiki/mediawiki.js"></script>
 	<script src="modules/src/mediawiki/mediawiki.errorLogger.js"></script>
-	<script src="modules/src/mediawiki/mediawiki.startUp.js"></script>
 	<script src="modules/lib/oojs/oojs.jquery.js"></script>
 	<script src="modules/lib/oojs-ui/oojs-ui-core.js"></script>
 	<script src="modules/lib/oojs-ui/oojs-ui-widgets.js"></script>
@@ -88,7 +87,7 @@
 			background: #fff;
 		}
 	</style>
-	<link rel="stylesheet" href="modules/src/oojs-ui/oojs-ui-local.css">
+	<link rel="stylesheet" href="modules/src/oojs-ui-local.css">
 	<link rel="stylesheet" href="modules/lib/oojs-ui/oojs-ui-core-mediawiki.css">
 	<link rel="stylesheet" href="modules/lib/oojs-ui/oojs-ui-widgets-mediawiki.css">
 	<link rel="stylesheet" href="modules/lib/oojs-ui/oojs-ui-toolbars-mediawiki.css">

@@ -66,14 +66,17 @@ class ApiParamInfo extends ApiBase {
 				if ( $submodules ) {
 					try {
 						$module = $this->getModuleFromPath( $path );
-					} catch ( UsageException $ex ) {
-						$this->setWarning( $ex->getMessage() );
+					} catch ( ApiUsageException $ex ) {
+						foreach ( $ex->getStatusValue()->getErrors() as $error ) {
+							$this->addWarning( $error );
+						}
+						continue;
 					}
 					$submodules = $this->listAllSubmodules( $module, $recursive );
 					if ( $submodules ) {
 						$modules = array_merge( $modules, $submodules );
 					} else {
-						$this->setWarning( "Module $path has no submodules" );
+						$this->addWarning( [ 'apierror-badmodule-nosubmodules', $path ], 'badmodule' );
 					}
 				} else {
 					$modules[] = $path;
@@ -108,8 +111,10 @@ class ApiParamInfo extends ApiBase {
 		foreach ( $modules as $m ) {
 			try {
 				$module = $this->getModuleFromPath( $m );
-			} catch ( UsageException $ex ) {
-				$this->setWarning( $ex->getMessage() );
+			} catch ( ApiUsageException $ex ) {
+				foreach ( $ex->getStatusValue()->getErrors() as $error ) {
+					$this->addWarning( $error );
+				}
 				continue;
 			}
 			$key = 'modules';
@@ -232,7 +237,7 @@ class ApiParamInfo extends ApiBase {
 
 	/**
 	 * @param ApiBase $module
-	 * @return ApiResult
+	 * @return array
 	 */
 	private function getModuleInfo( $module ) {
 		$ret = [];
@@ -406,6 +411,30 @@ class ApiParamInfo extends ApiBase {
 					$item['type'] = array_values( $item['type'] );
 					ApiResult::setIndexedTagName( $item['type'], 't' );
 				}
+
+				// Add 'allspecifier' if applicable
+				if ( $item['type'] === 'namespace' ) {
+					$allowAll = true;
+					$allSpecifier = ApiBase::ALL_DEFAULT_STRING;
+				} else {
+					$allowAll = isset( $settings[ApiBase::PARAM_ALL] )
+						? $settings[ApiBase::PARAM_ALL]
+						: false;
+					$allSpecifier = ( is_string( $allowAll ) ? $allowAll : ApiBase::ALL_DEFAULT_STRING );
+				}
+				if ( $allowAll && $item['multi'] &&
+					( is_array( $item['type'] ) || $item['type'] === 'namespace' ) ) {
+					$item['allspecifier'] = $allSpecifier;
+				}
+
+				if ( $item['type'] === 'namespace' &&
+					isset( $settings[ApiBase::PARAM_EXTRA_NAMESPACES] ) &&
+					is_array( $settings[ApiBase::PARAM_EXTRA_NAMESPACES] )
+				) {
+					$item['extranamespaces'] = $settings[ApiBase::PARAM_EXTRA_NAMESPACES];
+					ApiResult::setArrayType( $item['extranamespaces'], 'array' );
+					ApiResult::setIndexedTagName( $item['extranamespaces'], 'ns' );
+				}
 			}
 			if ( isset( $settings[ApiBase::PARAM_MAX] ) ) {
 				$item['max'] = $settings[ApiBase::PARAM_MAX];
@@ -514,6 +543,6 @@ class ApiParamInfo extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Parameter_information';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Parameter_information';
 	}
 }

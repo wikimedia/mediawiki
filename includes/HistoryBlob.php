@@ -239,7 +239,7 @@ class HistoryBlobStub {
 	}
 
 	/**
-	 * @return string
+	 * @return string|false
 	 */
 	function getText() {
 		if ( isset( self::$blobCache[$this->mOldId] ) ) {
@@ -590,7 +590,7 @@ class DiffHistoryBlob implements HistoryBlob {
 
 	/**
 	 * Compute a binary "Adler-32" checksum as defined by LibXDiff, i.e. with
-	 * the bytes backwards and initialised with 0 instead of 1. See bug 34428.
+	 * the bytes backwards and initialised with 0 instead of 1. See T36428.
 	 *
 	 * @param string $s
 	 * @return string|bool False if the hash extension is not available

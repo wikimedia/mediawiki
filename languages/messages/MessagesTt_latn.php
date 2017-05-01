@@ -89,4 +89,3 @@ $magicWords = [
 $fallback8bitEncoding = "windows-1254";
 
 $linkTrail = '/^([a-zäçğıñöşü“»]+)(.*)$/sDu';
-

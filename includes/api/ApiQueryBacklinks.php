@@ -59,19 +59,19 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			'code' => 'bl',
 			'prefix' => 'pl',
 			'linktbl' => 'pagelinks',
-			'helpurl' => 'https://www.mediawiki.org/wiki/API:Backlinks',
+			'helpurl' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Backlinks',
 		],
 		'embeddedin' => [
 			'code' => 'ei',
 			'prefix' => 'tl',
 			'linktbl' => 'templatelinks',
-			'helpurl' => 'https://www.mediawiki.org/wiki/API:Embeddedin',
+			'helpurl' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Embeddedin',
 		],
 		'imageusage' => [
 			'code' => 'iu',
 			'prefix' => 'il',
 			'linktbl' => 'imagelinks',
-			'helpurl' => 'https://www.mediawiki.org/wiki/API:Imageusage',
+			'helpurl' => 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Imageusage',
 		]
 	];
 
@@ -152,7 +152,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		if ( $this->params['filterredir'] == 'redirects' ) {
 			$this->addWhereFld( 'page_is_redirect', 1 );
 		} elseif ( $this->params['filterredir'] == 'nonredirects' && !$this->redirect ) {
-			// bug 22245 - Check for !redirect, as filtering nonredirects, when
+			// T24245 - Check for !redirect, as filtering nonredirects, when
 			// getting what links to them is contradictory
 			$this->addWhereFld( 'page_is_redirect', 0 );
 		}
@@ -344,12 +344,12 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$this->validateLimit( 'limit', $this->params['limit'], 1, $userMax, $botMax );
 		}
 
-		$this->rootTitle = $this->getTitleOrPageId( $this->params )->getTitle();
+		$this->rootTitle = $this->getTitleFromTitleOrPageId( $this->params );
 
 		// only image titles are allowed for the root in imageinfo mode
 		if ( !$this->hasNS && $this->rootTitle->getNamespace() !== NS_FILE ) {
-			$this->dieUsage(
-				"The title for {$this->getModuleName()} query must be a file",
+			$this->dieWithError(
+				[ 'apierror-imageusage-badtitle', $this->getModuleName() ],
 				'bad_image_title'
 			);
 		}

@@ -74,7 +74,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 			foreach ( $params['categories'] as $cat ) {
 				$title = Title::newFromText( $cat );
 				if ( !$title || $title->getNamespace() != NS_CATEGORY ) {
-					$this->setWarning( "\"$cat\" is not a category" );
+					$this->addWarning( [ 'apiwarn-invalidcategory', wfEscapeWikiText( $cat ) ] );
 				} else {
 					$cats[] = $title->getDBkey();
 				}
@@ -96,7 +96,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		}
 
 		if ( isset( $show['hidden'] ) && isset( $show['!hidden'] ) ) {
-			$this->dieUsageMsg( 'show' );
+			$this->dieWithError( 'apierror-show' );
 		}
 		if ( isset( $show['hidden'] ) || isset( $show['!hidden'] ) || isset( $prop['hidden'] ) ) {
 			$this->addOption( 'STRAIGHT_JOIN' );
@@ -227,6 +227,6 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Categories';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Categories';
 	}
 }

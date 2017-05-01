@@ -150,7 +150,7 @@ class BitmapHandler extends TransformationalImageHandler {
 			if ( $params['interlace'] ) {
 				$animation_post = [ '-interlace', 'JPEG' ];
 			}
-			# Sharpening, see bug 6193
+			# Sharpening, see T8193
 			if ( ( $params['physicalWidth'] + $params['physicalHeight'] )
 				/ ( $params['srcWidth'] + $params['srcHeight'] )
 				< $wgSharpenReductionThreshold
@@ -178,10 +178,10 @@ class BitmapHandler extends TransformationalImageHandler {
 				// be a total drag. :P
 				$scene = 0;
 			} elseif ( $this->isAnimatedImage( $image ) ) {
-				// Coalesce is needed to scale animated GIFs properly (bug 1017).
+				// Coalesce is needed to scale animated GIFs properly (T3017).
 				$animation_pre = [ '-coalesce' ];
 				// We optimize the output, but -optimize is broken,
-				// use optimizeTransparency instead (bug 11822)
+				// use optimizeTransparency instead (T13822)
 				if ( version_compare( $this->getMagickVersion(), "6.3.5" ) >= 0 ) {
 					$animation_post = [ '-fuzz', '5%', '-layers', 'optimizeTransparency' ];
 				}
@@ -211,7 +211,7 @@ class BitmapHandler extends TransformationalImageHandler {
 				&& $xcfMeta['colorType'] === 'greyscale-alpha'
 				&& version_compare( $this->getMagickVersion(), "6.8.9-3" ) < 0
 			) {
-				// bug 66323 - Greyscale images not rendered properly.
+				// T68323 - Greyscale images not rendered properly.
 				// So only take the "red" channel.
 				$channelOnly = [ '-channel', 'R', '-separate' ];
 				$animation_pre = array_merge( $animation_pre, $channelOnly );
@@ -283,7 +283,7 @@ class BitmapHandler extends TransformationalImageHandler {
 			$im->readImage( $params['srcPath'] );
 
 			if ( $params['mimeType'] == 'image/jpeg' ) {
-				// Sharpening, see bug 6193
+				// Sharpening, see T8193
 				if ( ( $params['physicalWidth'] + $params['physicalHeight'] )
 					/ ( $params['srcWidth'] + $params['srcHeight'] )
 					< $wgSharpenReductionThreshold
@@ -312,7 +312,7 @@ class BitmapHandler extends TransformationalImageHandler {
 					// be a total drag. :P
 					$im->setImageScene( 0 );
 				} elseif ( $this->isAnimatedImage( $image ) ) {
-					// Coalesce is needed to scale animated GIFs properly (bug 1017).
+					// Coalesce is needed to scale animated GIFs properly (T3017).
 					$im = $im->coalesceImages();
 				}
 				// GIF interlacing is only available since 6.3.4
@@ -541,7 +541,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	 * @param array $params Rotate parameters.
 	 *   'rotation' clockwise rotation in degrees, allowed are multiples of 90
 	 * @since 1.21
-	 * @return bool
+	 * @return bool|MediaTransformError
 	 */
 	public function rotate( $file, $params ) {
 		global $wgImageMagickConvertCommand;

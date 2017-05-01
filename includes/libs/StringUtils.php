@@ -55,6 +55,59 @@ class StringUtils {
 	}
 
 	/**
+	 * Explode a string, but ignore any instances of the separator inside
+	 * the given start and end delimiters, which may optionally nest.
+	 * The delimiters are literal strings, not regular expressions.
+	 * @param string $startDelim Start delimiter
+	 * @param string $endDelim End delimiter
+	 * @param string $separator Separator string for the explode.
+	 * @param string $subject Subject string to explode.
+	 * @param bool $nested True iff the delimiters are allowed to nest.
+	 * @return ArrayIterator
+	 */
+	static function delimiterExplode( $startDelim, $endDelim, $separator,
+		$subject, $nested = false ) {
+		$inputPos = 0;
+		$lastPos = 0;
+		$depth = 0;
+		$encStart = preg_quote( $startDelim, '!' );
+		$encEnd = preg_quote( $endDelim, '!' );
+		$encSep = preg_quote( $separator, '!' );
+		$len = strlen( $subject );
+		$m = [];
+		$exploded = [];
+		while (
+			$inputPos < $len &&
+			preg_match(
+				"!$encStart|$encEnd|$encSep!S", $subject, $m,
+				PREG_OFFSET_CAPTURE, $inputPos
+			)
+		) {
+			$match = $m[0][0];
+			$matchPos = $m[0][1];
+			$inputPos = $matchPos + strlen( $match );
+			if ( $match === $separator ) {
+				if ( $depth === 0 ) {
+					$exploded[] = substr(
+						$subject, $lastPos, $matchPos - $lastPos
+					);
+					$lastPos = $inputPos;
+				}
+			} elseif ( $match === $startDelim ) {
+				if ( $depth === 0 || $nested ) {
+					$depth++;
+				}
+			} else {
+				$depth--;
+			}
+		}
+		$exploded[] = substr( $subject, $lastPos );
+		// This method could be rewritten in the future to avoid creating an
+		// intermediate array, since the return type is just an iterator.
+		return new ArrayIterator( $exploded );
+	}
+
+	/**
 	 * Perform an operation equivalent to `preg_replace()`
 	 *
 	 * Matches this code:
@@ -115,6 +168,7 @@ class StringUtils {
 	) {
 		$inputPos = 0;
 		$outputPos = 0;
+		$contentPos = 0;
 		$output = '';
 		$foundStart = false;
 		$encStart = preg_quote( $startDelim, '!' );

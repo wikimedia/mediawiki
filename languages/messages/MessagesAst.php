@@ -60,4 +60,3 @@ $specialPageAliases = [
 	'Search'                    => [ 'Gueta' ],
 	'Statistics'                => [ 'Estadístiques' ],
 ];
-

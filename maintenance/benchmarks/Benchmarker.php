@@ -34,67 +34,99 @@ require_once __DIR__ . '/../Maintenance.php';
  * @ingroup Benchmark
  */
 abstract class Benchmarker extends Maintenance {
-	private $results;
+	protected $defaultCount = 100;
 
 	public function __construct() {
 		parent::__construct();
-		$this->addOption( 'count', "How many times to run a benchmark", false, true );
+		$this->addOption( 'count', 'How many times to run a benchmark', false, true );
 	}
 
 	public function bench( array $benchs ) {
-		$bench_number = 0;
-		$count = $this->getOption( 'count', 100 );
-
-		foreach ( $benchs as $bench ) {
-			// handle empty args
-			if ( !array_key_exists( 'args', $bench ) ) {
+		$this->startBench();
+		$count = $this->getOption( 'count', $this->defaultCount );
+		foreach ( $benchs as $key => $bench ) {
+			// Default to no arguments
+			if ( !isset( $bench['args'] ) ) {
 				$bench['args'] = [];
 			}
 
-			$bench_number++;
-			$start = microtime( true );
+			// Optional setup called outside time measure
+			if ( isset( $bench['setup'] ) ) {
+				call_user_func( $bench['setup'] );
+			}
+
+			// Run benchmarks
+			$times = [];
 			for ( $i = 0; $i < $count; $i++ ) {
+				$t = microtime( true );
 				call_user_func_array( $bench['function'], $bench['args'] );
-			}
-			$delta = microtime( true ) - $start;
-
-			// function passed as a callback
-			if ( is_array( $bench['function'] ) ) {
-				$ret = get_class( $bench['function'][0] ) . '->' . $bench['function'][1];
-				$bench['function'] = $ret;
+				$t = ( microtime( true ) - $t ) * 1000;
+				$times[] = $t;
 			}
 
-			$this->results[$bench_number] = [
-				'function' => $bench['function'],
-				'arguments' => $bench['args'],
+			// Collect metrics
+			sort( $times, SORT_NUMERIC );
+			$min = $times[0];
+			$max = end( $times );
+			if ( $count % 2 ) {
+				$median = $times[ ( $count - 1 ) / 2 ];
+			} else {
+				$median = ( $times[$count / 2] + $times[$count / 2 - 1] ) / 2;
+			}
+			$total = array_sum( $times );
+			$mean = $total / $count;
+
+			// Name defaults to name of called function
+			if ( is_string( $key ) ) {
+				$name = $key;
+			} else {
+				if ( is_array( $bench['function'] ) ) {
+					$name = get_class( $bench['function'][0] ) . '::' . $bench['function'][1];
+				} else {
+					$name = strval( $bench['function'] );
+				}
+				$name = sprintf( "%s(%s)",
+					$name,
+					implode( ', ', $bench['args'] )
+				);
+			}
+
+			$this->addResult( [
+				'name' => $name,
 				'count' => $count,
-				'delta' => $delta,
-				'average' => $delta / $count,
-			];
+				'total' => $total,
+				'min' => $min,
+				'median' => $median,
+				'mean' => $mean,
+				'max' => $max,
+			] );
 		}
 	}
 
-	public function getFormattedResults() {
-		$ret = sprintf( "Running PHP version %s (%s) on %s %s %s\n\n",
-			phpversion(),
-			php_uname( 'm' ),
-			php_uname( 's' ),
-			php_uname( 'r' ),
-			php_uname( 'v' )
+	public function startBench() {
+		$this->output(
+			sprintf( "Running PHP version %s (%s) on %s %s %s\n\n",
+				phpversion(),
+				php_uname( 'm' ),
+				php_uname( 's' ),
+				php_uname( 'r' ),
+				php_uname( 'v' )
+			)
 		);
-		foreach ( $this->results as $res ) {
-			// show function with args
-			$ret .= sprintf( "%s times: function %s(%s) :\n",
-				$res['count'],
-				$res['function'],
-				implode( ', ', $res['arguments'] )
-			);
-			$ret .= sprintf( "   %6.2fms (%6.2fms each)\n",
-				$res['delta'] * 1000,
-				$res['average'] * 1000
+	}
+
+	public function addResult( $res ) {
+		$ret = sprintf( "%s\n  %' 6s: %d\n",
+			$res['name'],
+			'times',
+			$res['count']
+		);
+		foreach ( [ 'total', 'min', 'median', 'mean', 'max' ] as $metric ) {
+			$ret .= sprintf( "  %' 6s: %6.2fms\n",
+				$metric,
+				$res[$metric]
 			);
 		}
-
-		return $ret;
+		$this->output( "$ret\n" );
 	}
 }

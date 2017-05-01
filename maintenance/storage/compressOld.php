@@ -51,13 +51,11 @@ require_once __DIR__ . '/../Maintenance.php';
 class CompressOld extends Maintenance {
 	/**
 	 * Option to load each revision individually.
-	 *
 	 */
 	const LS_INDIVIDUAL = 0;
 
 	/**
 	 * Option to load revisions in chunks.
-	 *
 	 */
 	const LS_CHUNKED = 1;
 

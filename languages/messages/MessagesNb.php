@@ -47,13 +47,15 @@
  * @author לערי ריינהארט
  */
 
+$fallback = 'nn';
+
 $bookstoreList = [
 	'Antikvariat.net' => 'http://www.antikvariat.net/',
 	'Frida' => 'http://wo.uio.no/as/WebObjects/frida.woa/wa/fres?action=sok&isbn=$1&visParametre=1&sort=alfabetisk&bs=50',
 	'Bibsys' => 'http://ask.bibsys.no/ask/action/result?cmd=&kilde=biblio&fid=isbn&term=$1&op=and&fid=bd&term=&arstall=&sortering=sortdate-&treffPrSide=50',
 	'Akademika' => 'http://www.akademika.no/sok.php?ts=4&sok=$1',
 	'Haugenbok' => 'http://www.haugenbok.no/resultat.cfm?st=extended&isbn=$1',
-	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+	'Amazon.com' => 'https://www.amazon.com/exec/obidos/ISBN=$1'
 ];
 
 $namespaceNames = [
@@ -82,6 +84,14 @@ $namespaceAliases = [
 
 $separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
 $linkTrail = '/^([æøåa-z]+)(.*)$/sDu';
+
+$datePreferenceMigrationMap = [
+	'default',
+	'mdy',
+	'dmy',
+	'ymd'
+];
+$defaultDateFormat = 'dmy';
 
 $dateFormats = [
 	'mdy time' => 'H:i',
@@ -320,4 +330,3 @@ $magicWords = [
 	'url_path'                  => [ '0', 'STI', 'PATH' ],
 	'url_query'                 => [ '0', 'SPØRRING', 'QUERY' ],
 ];
-

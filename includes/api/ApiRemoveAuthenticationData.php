@@ -45,7 +45,7 @@ class ApiRemoveAuthenticationData extends ApiBase {
 
 	public function execute() {
 		if ( !$this->getUser()->isLoggedIn() ) {
-			$this->dieUsage( 'Must be logged in to remove authentication data', 'notloggedin' );
+			$this->dieWithError( 'apierror-mustbeloggedin-removeauth', 'notloggedin' );
 		}
 
 		$params = $this->extractRequestParams();
@@ -67,7 +67,7 @@ class ApiRemoveAuthenticationData extends ApiBase {
 			}
 		);
 		if ( count( $reqs ) !== 1 ) {
-			$this->dieUsage( 'Failed to create change request', 'badrequest' );
+			$this->dieWithError( 'apierror-changeauth-norequest', 'badrequest' );
 		}
 		$req = reset( $reqs );
 
@@ -106,6 +106,6 @@ class ApiRemoveAuthenticationData extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Manage_authentication_data';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Manage_authentication_data';
 	}
 }

@@ -59,8 +59,8 @@ class Xml {
 	 * Given an array of ('attributename' => 'value'), it generates the code
 	 * to set the XML attributes : attributename="value".
 	 * The values are passed to Sanitizer::encodeAttribute.
-	 * Return null if no attributes given.
-	 * @param array $attribs Array of attributes for an XML element
+	 * Returns null or empty string if no attributes given.
+	 * @param array|null $attribs Array of attributes for an XML element
 	 * @throws MWException
 	 * @return null|string
 	 */
@@ -238,7 +238,6 @@ class Xml {
 			Xml::label( $msg->text(), $attrs['id'] ),
 			Xml::tags( 'select', $attrs, $options )
 		];
-
 	}
 
 	/**
@@ -612,42 +611,6 @@ class Xml {
 						] + $attribs
 					),
 					$content, false );
-	}
-
-	/**
-	 * Returns an escaped string suitable for inclusion in a string literal
-	 * for JavaScript source code.
-	 * Illegal control characters are assumed not to be present.
-	 *
-	 * @deprecated since 1.21; use Xml::encodeJsVar() or Xml::encodeJsCall() instead
-	 * @param string $string String to escape
-	 * @return string
-	 */
-	public static function escapeJsString( $string ) {
-		// See ECMA 262 section 7.8.4 for string literal format
-		$pairs = [
-			"\\" => "\\\\",
-			"\"" => "\\\"",
-			'\'' => '\\\'',
-			"\n" => "\\n",
-			"\r" => "\\r",
-
-			# To avoid closing the element or CDATA section
-			"<" => "\\x3c",
-			">" => "\\x3e",
-
-			# To avoid any complaints about bad entity refs
-			"&" => "\\x26",
-
-			# Work around https://bugzilla.mozilla.org/show_bug.cgi?id=274152
-			# Encode certain Unicode formatting chars so affected
-			# versions of Gecko don't misinterpret our strings;
-			# this is a common problem with Farsi text.
-			"\xe2\x80\x8c" => "\\u200c", // ZERO WIDTH NON-JOINER
-			"\xe2\x80\x8d" => "\\u200d", // ZERO WIDTH JOINER
-		];
-
-		return strtr( $string, $pairs );
 	}
 
 	/**

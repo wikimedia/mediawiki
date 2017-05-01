@@ -261,4 +261,3 @@ $magicWords = [
 $fallback8bitEncoding = "iso-8859-2";
 $separatorTransformTable = [ ',' => '.', '.' => ',' ];
 $linkTrail = '/^([a-zćčžšđž]+)(.*)$/sDu';
-

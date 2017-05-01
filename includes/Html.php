@@ -3,7 +3,7 @@
  * Collection of methods to generate HTML content
  *
  * Copyright © 2009 Aryeh Gregor
- * http://www.mediawiki.org/
+ * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -156,10 +156,10 @@ class Html {
 	 * @param string $contents The raw HTML contents of the element: *not*
 	 *   escaped!
 	 * @param array $attrs Associative array of attributes, e.g., [
-	 *   'href' => 'http://www.mediawiki.org/' ]. See expandAttributes() for
+	 *   'href' => 'https://www.mediawiki.org/' ]. See expandAttributes() for
 	 *   further documentation.
 	 * @param string[] $modifiers classes to add to the button
-	 * @see http://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
+	 * @see https://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
 	 * @return string Raw HTML
 	 */
 	public static function linkButton( $contents, array $attrs, array $modifiers = [] ) {
@@ -176,10 +176,10 @@ class Html {
 	 * @param string $contents The raw HTML contents of the element: *not*
 	 *   escaped!
 	 * @param array $attrs Associative array of attributes, e.g., [
-	 *   'href' => 'http://www.mediawiki.org/' ]. See expandAttributes() for
+	 *   'href' => 'https://www.mediawiki.org/' ]. See expandAttributes() for
 	 *   further documentation.
 	 * @param string[] $modifiers classes to add to the button
-	 * @see http://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
+	 * @see https://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
 	 * @return string Raw HTML
 	 */
 	public static function submitButton( $contents, array $attrs, array $modifiers = [] ) {
@@ -200,7 +200,7 @@ class Html {
 	 *
 	 * @param string $element The element's name, e.g., 'a'
 	 * @param array $attribs Associative array of attributes, e.g., [
-	 *   'href' => 'http://www.mediawiki.org/' ]. See expandAttributes() for
+	 *   'href' => 'https://www.mediawiki.org/' ]. See expandAttributes() for
 	 *   further documentation.
 	 * @param string $contents The raw HTML contents of the element: *not*
 	 *   escaped!
@@ -220,8 +220,10 @@ class Html {
 	 * Identical to rawElement(), but HTML-escapes $contents (like
 	 * Xml::element()).
 	 *
-	 * @param string $element
-	 * @param array $attribs
+	 * @param string $element Name of the element, e.g., 'a'
+	 * @param array $attribs Associative array of attributes, e.g., [
+	 *   'href' => 'https://www.mediawiki.org/' ]. See expandAttributes() for
+	 *   further documentation.
 	 * @param string $contents
 	 *
 	 * @return string
@@ -239,8 +241,10 @@ class Html {
 	 * Identical to rawElement(), but has no third parameter and omits the end
 	 * tag (and the self-closing '/' in XML mode for empty elements).
 	 *
-	 * @param string $element
-	 * @param array $attribs
+	 * @param string $element Name of the element, e.g., 'a'
+	 * @param array $attribs Associative array of attributes, e.g., [
+	 *   'href' => 'https://www.mediawiki.org/' ]. See expandAttributes() for
+	 *   further documentation.
 	 *
 	 * @return string
 	 */
@@ -321,7 +325,7 @@ class Html {
 	 *
 	 * @param string $element Name of the element, e.g., 'a'
 	 * @param array $attribs Associative array of attributes, e.g., [
-	 *   'href' => 'http://www.mediawiki.org/' ].  See expandAttributes() for
+	 *   'href' => 'https://www.mediawiki.org/' ].  See expandAttributes() for
 	 *   further documentation.
 	 * @return array An array of attributes functionally identical to $attribs
 	 */
@@ -431,8 +435,8 @@ class Html {
 	/**
 	 * Given an associative array of element attributes, generate a string
 	 * to stick after the element name in HTML output.  Like [ 'href' =>
-	 * 'http://www.mediawiki.org/' ] becomes something like
-	 * ' href="http://www.mediawiki.org"'.  Again, this is like
+	 * 'https://www.mediawiki.org/' ] becomes something like
+	 * ' href="https://www.mediawiki.org"'.  Again, this is like
 	 * Xml::expandAttributes(), but it implements some HTML-specific logic.
 	 *
 	 * Attributes that can contain space-separated lists ('class', 'accesskey' and 'rel') array
@@ -458,8 +462,8 @@ class Html {
 	 * @endcode
 	 *
 	 * @param array $attribs Associative array of attributes, e.g., [
-	 *   'href' => 'http://www.mediawiki.org/' ].  Values will be HTML-escaped.
-	 *   A value of false means to omit the attribute.  For boolean attributes,
+	 *   'href' => 'https://www.mediawiki.org/' ].  Values will be HTML-escaped.
+	 *   A value of false or null means to omit the attribute.  For boolean attributes,
 	 *   you can omit the key, e.g., [ 'checked' ] instead of
 	 *   [ 'checked' => 'checked' ] or such.
 	 *
@@ -485,24 +489,8 @@ class Html {
 			// and better compression anyway.
 			$key = strtolower( $key );
 
-			// Bug 23769: Blacklist all form validation attributes for now.  Current
-			// (June 2010) WebKit has no UI, so the form just refuses to submit
-			// without telling the user why, which is much worse than failing
-			// server-side validation.  Opera is the only other implementation at
-			// this time, and has ugly UI, so just kill the feature entirely until
-			// we have at least one good implementation.
-
-			// As the default value of "1" for "step" rejects decimal
-			// numbers to be entered in 'type="number"' fields, allow
-			// the special case 'step="any"'.
-
-			if ( in_array( $key, [ 'max', 'min', 'pattern', 'required' ] )
-				|| $key === 'step' && $value !== 'any' ) {
-				continue;
-			}
-
-			// http://www.w3.org/TR/html401/index/attributes.html ("space-separated")
-			// http://www.w3.org/TR/html5/index.html#attributes-1 ("space-separated")
+			// https://www.w3.org/TR/html401/index/attributes.html ("space-separated")
+			// https://www.w3.org/TR/html5/index.html#attributes-1 ("space-separated")
 			$spaceSeparatedListAttributes = [
 				'class', // html4, html5
 				'accesskey', // as of html5, multiple space-separated values allowed
@@ -775,7 +763,7 @@ class Html {
 		$attribs['name'] = $name;
 
 		if ( substr( $value, 0, 1 ) == "\n" ) {
-			// Workaround for bug 12130: browsers eat the initial newline
+			// Workaround for T14130: browsers eat the initial newline
 			// assuming that it's just for show, but they do keep the later
 			// newlines, which we may want to preserve during editing.
 			// Prepending a single newline
@@ -956,7 +944,7 @@ class Html {
 	 * @return bool
 	 */
 	public static function isXmlMimeType( $mimetype ) {
-		# http://www.whatwg.org/html/infrastructure.html#xml-mime-type
+		# https://html.spec.whatwg.org/multipage/infrastructure.html#xml-mime-type
 		# * text/xml
 		# * application/xml
 		# * Any MIME type with a subtype ending in +xml (this implicitly includes application/xhtml+xml)
@@ -1005,7 +993,7 @@ class Html {
 	 *
 	 * @note srcset width and height values are not supported.
 	 *
-	 * @see http://www.whatwg.org/html/embedded-content-1.html#attr-img-srcset
+	 * @see https://html.spec.whatwg.org/#attr-img-srcset
 	 *
 	 * @par Example:
 	 * @code

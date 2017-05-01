@@ -25,6 +25,7 @@
  * @file
  * @ingroup Testing
  */
+use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
 
@@ -295,7 +296,7 @@ class ParserTestRunner {
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'MediaHandlerFactory' );
 		};
 
-		// SqlBagOStuff broke when using temporary tables on r40209 (bug 15892).
+		// SqlBagOStuff broke when using temporary tables on r40209 (T17892).
 		// It seems to have been fixed since (r55079?), but regressed at some point before r85701.
 		// This works around it for now...
 		global $wgObjectCaches;
@@ -316,7 +317,7 @@ class ParserTestRunner {
 
 	private function appendNamespaceSetup( &$setup, &$teardown ) {
 		// Add a namespace shadowing a interwiki link, to test
-		// proper precedence when resolving links. (bug 51680)
+		// proper precedence when resolving links. (T53680)
 		$setup['wgExtraNamespaces'] = [
 			100 => 'MemoryAlpha',
 			101 => 'MemoryAlpha_talk'
@@ -426,7 +427,7 @@ class ParserTestRunner {
 	 * @param ScopedCallback|null A ScopedCallback to consume
 	 * @return ScopedCallback
 	 */
-	protected function createTeardownObject( $teardown, $nextTeardown ) {
+	protected function createTeardownObject( $teardown, $nextTeardown = null ) {
 		return new ScopedCallback( function() use ( $teardown, $nextTeardown ) {
 			// Schedule teardown snippets in reverse order
 			$teardown = array_reverse( $teardown );
@@ -974,7 +975,9 @@ class ParserTestRunner {
 			'wgEnableUploads' => self::getOptionValue( 'wgEnableUploads', $opts, true ),
 			'wgLanguageCode' => $langCode,
 			'wgRawHtml' => self::getOptionValue( 'wgRawHtml', $opts, false ),
-			'wgNamespacesWithSubpages' => [ 0 => isset( $opts['subpage'] ) ],
+			'wgNamespacesWithSubpages' => array_fill_keys(
+				MWNamespace::getValidNamespaces(), isset( $opts['subpage'] )
+			),
 			'wgMaxTocLevel' => $maxtoclevel,
 			'wgAllowExternalImages' => self::getOptionValue( 'wgAllowExternalImages', $opts, true ),
 			'wgThumbLimits' => [ self::getOptionValue( 'thumbsize', $opts, 180 ) ],
@@ -1318,7 +1321,7 @@ class ParserTestRunner {
 		if ( $this->useTemporaryTables ) {
 			if ( $this->db->getType() == 'sqlite' ) {
 				# Under SQLite the searchindex table is virtual and need
-				# to be explicitly destroyed. See bug 29912
+				# to be explicitly destroyed. See T31912
 				# See also MediaWikiTestCase::destroyDB()
 				wfDebug( __METHOD__ . " explicitly destroying sqlite virtual table parsertest_searchindex\n" );
 				$this->db->query( "DROP TABLE `parsertest_searchindex`" );
@@ -1503,7 +1506,18 @@ class ParserTestRunner {
 			throw new MWException( "duplicate article '$name' at $file:$line\n" );
 		}
 
-		$status = $page->doEditContent( ContentHandler::makeContent( $text, $title ), '', EDIT_NEW );
+		// Use mock parser, to make debugging of actual parser tests simpler.
+		// But initialise the MessageCache clone first, don't let MessageCache
+		// get a reference to the mock object.
+		MessageCache::singleton()->getParser();
+		$restore = $this->executeSetupSnippets( [ 'wgParser' => new ParserTestMockParser ] );
+		$status = $page->doEditContent(
+			ContentHandler::makeContent( $text, $title ),
+			'',
+			EDIT_NEW | EDIT_INTERNAL
+		);
+		$restore();
+
 		if ( !$status->isOK() ) {
 			throw new MWException( $status->getWikiText( false, false, 'en' ) );
 		}

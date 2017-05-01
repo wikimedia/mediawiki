@@ -38,11 +38,9 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		$user = $this->getUser();
 
 		if ( $user->isAnon() ) {
-			$this->dieUsage( 'Anonymous users cannot use watchlist change notifications', 'notloggedin' );
+			$this->dieWithError( 'watchlistanontext', 'notloggedin' );
 		}
-		if ( !$user->isAllowed( 'editmywatchlist' ) ) {
-			$this->dieUsage( 'You don\'t have permission to edit your watchlist', 'permissiondenied' );
-		}
+		$this->checkUserRightsAny( 'editmywatchlist' );
 
 		$params = $this->extractRequestParams();
 		$this->requireMaxOneParameter( $params, 'timestamp', 'torevid', 'newerthanrevid' );
@@ -52,8 +50,12 @@ class ApiSetNotificationTimestamp extends ApiBase {
 
 		$pageSet = $this->getPageSet();
 		if ( $params['entirewatchlist'] && $pageSet->getDataSource() !== null ) {
-			$this->dieUsage(
-				"Cannot use 'entirewatchlist' at the same time as '{$pageSet->getDataSource()}'",
+			$this->dieWithError(
+				[
+					'apierror-invalidparammix-cannotusewith',
+					$this->encodeParamName( 'entirewatchlist' ),
+					$pageSet->encodeParamName( $pageSet->getDataSource() )
+				],
 				'multisource'
 			);
 		}
@@ -71,7 +73,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 
 		if ( isset( $params['torevid'] ) ) {
 			if ( $params['entirewatchlist'] || $pageSet->getGoodTitleCount() > 1 ) {
-				$this->dieUsage( 'torevid may only be used with a single page', 'multpages' );
+				$this->dieWithError( [ 'apierror-multpages', $this->encodeParamName( 'torevid' ) ] );
 			}
 			$title = reset( $pageSet->getGoodTitles() );
 			if ( $title ) {
@@ -85,7 +87,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 			}
 		} elseif ( isset( $params['newerthanrevid'] ) ) {
 			if ( $params['entirewatchlist'] || $pageSet->getGoodTitleCount() > 1 ) {
-				$this->dieUsage( 'newerthanrevid may only be used with a single page', 'multpages' );
+				$this->dieWithError( [ 'apierror-multpages', $this->encodeParamName( 'newerthanrevid' ) ] );
 			}
 			$title = reset( $pageSet->getGoodTitles() );
 			if ( $title ) {
@@ -246,6 +248,6 @@ class ApiSetNotificationTimestamp extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:SetNotificationTimestamp';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:SetNotificationTimestamp';
 	}
 }

@@ -113,6 +113,6 @@
 	"config-download-localsettings": "Jaitsi <code>LocalSettings.php</code>",
 	"config-help": "Laguntza",
 	"config-help-tooltip": "sakatu zabaltzeko",
-	"mainpagetext": "'''MediaWiki arrakastaz instalatu da.'''",
+	"mainpagetext": "<strong>MediaWiki instalatu da.</strong>",
 	"mainpagedocfooter": "Ikus [https://meta.wikimedia.org/wiki/Help:Contents Erabiltzaile Gida] wiki softwarea erabiltzen hasteko informazio gehiagorako.\n\n== Nola hasi ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Konfigurazio balioen zerrenda]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ (Maiz egindako galderak)]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWikiren argitalpenen posta zerrenda]"
 }

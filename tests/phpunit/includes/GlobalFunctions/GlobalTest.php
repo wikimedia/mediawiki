@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group Database
  * @group GlobalFunctions
  */
 class GlobalTest extends MediaWikiTestCase {
@@ -101,21 +102,27 @@ class GlobalTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * Intended to cover the relevant bits of ServiceWiring.php, as well as GlobalFunctions.php
 	 * @covers ::wfReadOnly
 	 */
 	public function testReadOnlyEmpty() {
 		global $wgReadOnly;
 		$wgReadOnly = null;
 
+		MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()->clearCache();
 		$this->assertFalse( wfReadOnly() );
 		$this->assertFalse( wfReadOnly() );
 	}
 
 	/**
+	 * Intended to cover the relevant bits of ServiceWiring.php, as well as GlobalFunctions.php
 	 * @covers ::wfReadOnly
 	 */
 	public function testReadOnlySet() {
 		global $wgReadOnly, $wgReadOnlyFile;
+
+		$readOnlyMode = MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode();
+		$readOnlyMode->clearCache();
 
 		$f = fopen( $wgReadOnlyFile, "wt" );
 		fwrite( $f, 'Message' );
@@ -126,10 +133,21 @@ class GlobalTest extends MediaWikiTestCase {
 		$this->assertTrue( wfReadOnly() ); # Check cached
 
 		unlink( $wgReadOnlyFile );
-		$wgReadOnly = null; # Clean cache
+		$readOnlyMode->clearCache();
+		$this->assertFalse( wfReadOnly() );
+		$this->assertFalse( wfReadOnly() );
+	}
 
-		$this->assertFalse( wfReadOnly() );
-		$this->assertFalse( wfReadOnly() );
+	/**
+	 * This behaviour could probably be deprecated. Several extensions rely on it as of 1.29.
+	 * @covers ::wfReadOnlyReason
+	 */
+	public function testReadOnlyGlobalChange() {
+		$this->assertFalse( wfReadOnlyReason() );
+		$this->setMwGlobals( [
+			'wgReadOnly' => 'reason'
+		] );
+		$this->assertSame( 'reason', wfReadOnlyReason() );
 	}
 
 	public static function provideArrayToCGI() {

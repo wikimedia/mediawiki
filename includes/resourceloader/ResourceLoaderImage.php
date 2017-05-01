@@ -67,23 +67,27 @@ class ResourceLoaderImage {
 				}
 			}
 		}
+		// Remove 'deprecated' key
+		if ( is_array( $this->descriptor ) ) {
+			unset( $this->descriptor[ 'deprecated' ] );
+		}
 
 		// Ensure that all files have common extension.
 		$extensions = [];
-		$descriptor = (array)$descriptor;
+		$descriptor = (array)$this->descriptor;
 		array_walk_recursive( $descriptor, function ( $path ) use ( &$extensions ) {
 			$extensions[] = pathinfo( $path, PATHINFO_EXTENSION );
 		} );
 		$extensions = array_unique( $extensions );
 		if ( count( $extensions ) !== 1 ) {
 			throw new InvalidArgumentException(
-				"File type for different image files of '$name' not the same"
+				"File type for different image files of '$name' not the same in module '$module'"
 			);
 		}
 		$ext = $extensions[0];
 		if ( !isset( self::$fileTypes[$ext] ) ) {
 			throw new InvalidArgumentException(
-				"Invalid file type for image files of '$name' (valid: svg, png, gif, jpg)"
+				"Invalid file type for image files of '$name' (valid: svg, png, gif, jpg) in module '$module'"
 			);
 		}
 		$this->extension = $ext;
@@ -176,6 +180,7 @@ class ResourceLoaderImage {
 			'variant' => $variant,
 			'format' => $format,
 			'lang' => $context->getLanguage(),
+			'skin' => $context->getSkin(),
 			'version' => $context->getVersion(),
 		];
 

@@ -62,7 +62,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 		/** @var $qp QueryPage */
 		$qp = new $this->qpMap[$params['page']]();
 		if ( !$qp->userCanExecute( $this->getUser() ) ) {
-			$this->dieUsageMsg( 'specialpage-cantexecute' );
+			$this->dieWithError( 'apierror-specialpage-cantexecute' );
 		}
 
 		$r = [ 'name' => $params['page'] ];
@@ -166,6 +166,6 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Querypage';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Querypage';
 	}
 }

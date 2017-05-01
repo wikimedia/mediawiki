@@ -14,4 +14,3 @@ $fallback = 'fr';
 
 // Remove French aliases
 $namespaceGenderAliases = [];
-

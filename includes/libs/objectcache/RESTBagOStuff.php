@@ -63,9 +63,9 @@ class RESTBagOStuff extends BagOStuff {
 	protected function doGet( $key, $flags = 0 ) {
 		$req = [
 			'method' => 'GET',
-		    'url' => $this->url . rawurlencode( $key ),
-
+			'url' => $this->url . rawurlencode( $key ),
 		];
+
 		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->client->run( $req );
 		if ( $rcode === 200 ) {
 			if ( is_string( $rbody ) ) {

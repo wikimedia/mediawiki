@@ -27,26 +27,35 @@ class WikiTextStructure {
 	 * @var string[] selectors to elements that are excluded entirely from search
 	 */
 	private $excludedElementSelectors = [
-		'audio', 'video',       // "it looks like you don't have javascript enabled..."
-		                        // do not need to index
-		'sup.reference',        // The [1] for references
-		'.mw-cite-backlink',    // The ↑ next to references in the references section
-		'h1', 'h2', 'h3',       // Headings are already indexed in their own field.
-		'h5', 'h6', 'h4',
-		'.autocollapse',        // Collapsed fields are hidden by default so we don't want them
-								// showing up.
+		// "it looks like you don't have javascript enabled..." – do not need to index
+		'audio', 'video',
+		// The [1] for references
+		'sup.reference',
+		// The ↑ next to references in the references section
+		'.mw-cite-backlink',
+		// Headings are already indexed in their own field.
+		'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+		// Collapsed fields are hidden by default so we don't want them showing up.
+		'.autocollapse',
+		// Content explicitly decided to be not searchable by editors such
+		// as custom navigation templates.
+		'.navigation-not-searchable'
 	];
 
 	/**
 	 * @var string[] selectors to elements that are considered auxiliary to article text for search
 	 */
 	private $auxiliaryElementSelectors = [
-		'.thumbcaption',        // Thumbnail captions aren't really part of the text proper
-		'table',                // Neither are tables
-		'.rellink',             // Common style for "See also:".
-		'.dablink',             // Common style for calling out helpful links at the top
-								// of the article.
-		'.searchaux',           // New class users can use to mark stuff as auxiliary to searches.
+		// Thumbnail captions aren't really part of the text proper
+		'.thumbcaption',
+		// Neither are tables
+		'table',
+		// Common style for "See also:".
+		'.rellink',
+		// Common style for calling out helpful links at the top of the article.
+		'.dablink',
+		// New class users can use to mark stuff as auxiliary to searches.
+		'.searchaux',
 	];
 
 	/**

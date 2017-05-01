@@ -7,4 +7,3 @@ class CoreParserTestSuite extends PHPUnit_Framework_TestSuite {
 	}
 
 }
-

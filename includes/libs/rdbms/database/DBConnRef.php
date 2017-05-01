@@ -1,4 +1,9 @@
 <?php
+
+namespace Wikimedia\Rdbms;
+
+use InvalidArgumentException;
+
 /**
  * Helper class to handle automatically marking connections as reusable (via RAII pattern)
  * as well handling deferring the actual network connection until the handle is used
@@ -10,10 +15,8 @@
 class DBConnRef implements IDatabase {
 	/** @var ILoadBalancer */
 	private $lb;
-
-	/** @var IDatabase|null Live connection handle */
+	/** @var Database|null Live connection handle */
 	private $conn;
-
 	/** @var array|null N-tuple of (server index, group, DatabaseDomain|string) */
 	private $params;
 
@@ -22,12 +25,12 @@ class DBConnRef implements IDatabase {
 	const FLD_DOMAIN = 2;
 
 	/**
-	 * @param ILoadBalancer $lb
-	 * @param IDatabase|array $conn Connection or (server index, group, DatabaseDomain|string)
+	 * @param ILoadBalancer $lb Connection manager for $conn
+	 * @param Database|array $conn New connection handle or (server index, query groups, domain)
 	 */
 	public function __construct( ILoadBalancer $lb, $conn ) {
 		$this->lb = $lb;
-		if ( $conn instanceof IDatabase ) {
+		if ( $conn instanceof Database ) {
 			$this->conn = $conn; // live handle
 		} elseif ( count( $conn ) >= 3 && $conn[self::FLD_DOMAIN] !== false ) {
 			$this->params = $conn;
@@ -595,7 +598,7 @@ class DBConnRef implements IDatabase {
 	 * Clean up the connection when out of scope
 	 */
 	function __destruct() {
-		if ( $this->conn !== null ) {
+		if ( $this->conn ) {
 			$this->lb->reuseConnection( $this->conn );
 		}
 	}
@@ -608,3 +611,5 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 }
+
+class_alias( DBConnRef::class, 'DBConnRef' );

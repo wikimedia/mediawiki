@@ -8,7 +8,7 @@
  * not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * 		http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software distributed
  * under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
@@ -176,6 +176,12 @@ class CSSMin {
 	 * @return bool|string
 	 */
 	public static function getMimeType( $file ) {
+		// Infer the MIME-type from the file extension
+		$ext = strtolower( pathinfo( $file, PATHINFO_EXTENSION ) );
+		if ( isset( self::$mimeTypes[$ext] ) ) {
+			return self::$mimeTypes[$ext];
+		}
+
 		$realpath = realpath( $file );
 		if (
 			$realpath
@@ -184,12 +190,6 @@ class CSSMin {
 			&& defined( 'FILEINFO_MIME_TYPE' )
 		) {
 			return finfo_file( finfo_open( FILEINFO_MIME_TYPE ), $realpath );
-		}
-
-		// Infer the MIME-type from the file extension
-		$ext = strtolower( pathinfo( $file, PATHINFO_EXTENSION ) );
-		if ( isset( self::$mimeTypes[$ext] ) ) {
-			return self::$mimeTypes[$ext];
 		}
 
 		return false;
@@ -237,7 +237,7 @@ class CSSMin {
 		//       * Otherwise remap the URL to work in generated stylesheets
 
 		// Guard against trailing slashes, because "some/remote/../foo.png"
-		// resolves to "some/remote/foo.png" on (some?) clients (bug 27052).
+		// resolves to "some/remote/foo.png" on (some?) clients (T29052).
 		if ( substr( $remote, -1 ) == '/' ) {
 			$remote = substr( $remote, 0, -1 );
 		}
@@ -319,7 +319,7 @@ class CSSMin {
 							);
 
 							$url = $match['file'] . $match['query'];
-							$file = $local . $match['file'];
+							$file = "{$local}/{$match['file']}";
 							if (
 								!self::isRemoteUrl( $url ) && !self::isLocalUrl( $url )
 								&& file_exists( $file )
@@ -357,7 +357,6 @@ class CSSMin {
 		}, $source );
 
 		return $source;
-
 	}
 
 	/**

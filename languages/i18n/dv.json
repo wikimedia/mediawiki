@@ -7,7 +7,8 @@
 			"Ushau97",
 			"Zhatre",
 			"לערי ריינהארט",
-			"Glaisher"
+			"Glaisher",
+			"MtDu"
 		]
 	},
 	"tog-hideminor": "ކުދި އުނި އިތުރުތައް އެންމެފަހުގެ ބަދަލުތަކުގެ ލިސްޓުން ފޮރުއްވަވާ",
@@ -100,7 +101,7 @@
 	"namespaces": "ނަންސްޕޭސަސް",
 	"errorpagetitle": "ކުށް",
 	"returnto": "އަނބުރާ $1 އަށް ވަޑައިގަންނަވާ!",
-	"tagline": "ވިކިޕީޑިއާ އިން",
+	"tagline": "ވިކިޕީޑިއާ އިން{{SITENAME}}",
 	"help": "އެހީ",
 	"search": "ހޯއްދަވާ",
 	"searchbutton": "ހޯއްދަވާ",
@@ -438,8 +439,6 @@
 	"categories": "ގިސްމުތައް",
 	"categoriespagetext": "ތިރީގައި މިވާ ގިސްމުތައް ވިކީ ގައި މައުޖޫދުވެގެން ވެއެވެ.\n[[Special:UnusedCategories|Unused categories]] are not shown here.\nAlso see [[Special:WantedCategories|wanted categories]].",
 	"activeusers": "ހަރަކާތްތެރި މެމްބަރުންގެ ލިސްޓު",
-	"activeusers-hidebots": "ބޮޓް ފޮރުއްވާ",
-	"activeusers-hidesysops": "އެޑްމިނިސްޓްރޭޓަރުން ފޮރުއްވާ",
 	"listgrouprights-members": "(މެމްބަރުންގެ ލިސްޓު)",
 	"emailuser": "މި މެންބަރަށް އީމޭލު ފޮނުއްވާ",
 	"watchlist": "މަގޭ ނަޒަރު",

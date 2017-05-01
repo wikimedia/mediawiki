@@ -518,11 +518,6 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->title->getUserPermissionsErrors( 'bogus',
 				$this->user ) );
 
-		$this->setUserPerm( 'editusercssjs' );
-		$this->assertEquals( [ [ 'badaccess-group0' ] ],
-			$this->title->getUserPermissionsErrors( 'bogus',
-				$this->user ) );
-
 		$this->setUserPerm( [ 'edituserjs', 'editusercss' ] );
 		$this->assertEquals( [ [ 'badaccess-group0' ] ],
 			$this->title->getUserPermissionsErrors( 'bogus',
@@ -787,5 +782,21 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		# $action != 'read' && $action != 'createaccount' && $user->isBlockedFrom( $this )
 		#   $user->blockedFor() == ''
 		#   $user->mBlock->mExpiry == 'infinity'
+
+		$this->user->mBlockedby = $this->user->getName();
+		$this->user->mBlock = new Block( [
+			'address' => '127.0.8.1',
+			'by' => $this->user->getId(),
+			'reason' => 'no reason given',
+			'timestamp' => $now,
+			'auto' => false,
+			'expiry' => 10,
+			'systemBlock' => 'test',
+		] );
+		$this->assertEquals( [ [ 'systemblockedtext',
+				'[[User:Useruser|Useruser]]', 'no reason given', '127.0.0.1',
+				'Useruser', 'test', '23:00, 31 December 1969', '127.0.8.1',
+				$wgLang->timeanddate( wfTimestamp( TS_MW, $now ), true ) ] ],
+			$this->title->getUserPermissionsErrors( 'move-target', $this->user ) );
 	}
 }

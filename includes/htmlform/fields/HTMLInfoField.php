@@ -19,7 +19,7 @@ class HTMLInfoField extends HTMLFormField {
 		parent::__construct( $info );
 	}
 
-	function getDefault() {
+	public function getDefault() {
 		$default = parent::getDefault();
 		if ( $default instanceof Closure ) {
 			$default = call_user_func( $default, $this->mParams );

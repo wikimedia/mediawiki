@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @group BagOStuff
  */
@@ -81,5 +83,74 @@ class CachedBagOStuffTest extends PHPUnit_Framework_TestCase {
 		// But a fresh value is read from the backend
 		$backend->set( 'bar', true );
 		$this->assertEquals( true, $cache->get( 'bar' ) );
+	}
+
+	/**
+	 * @covers CachedBagOStuff::setDebug
+	 */
+	public function testSetDebug() {
+		$backend = new HashBagOStuff();
+		$cache = new CachedBagOStuff( $backend );
+		// Access private property 'debugMode'
+		$backend = TestingAccessWrapper::newFromObject( $backend );
+		$cache = TestingAccessWrapper::newFromObject( $cache );
+		$this->assertFalse( $backend->debugMode );
+		$this->assertFalse( $cache->debugMode );
+
+		$cache->setDebug( true );
+		// Should have set both
+		$this->assertTrue( $backend->debugMode, 'sets backend' );
+		$this->assertTrue( $cache->debugMode, 'sets self' );
+	}
+
+	/**
+	 * @covers CachedBagOStuff::deleteObjectsExpiringBefore
+	 */
+	public function testExpire() {
+		$backend = $this->getMockBuilder( HashBagOStuff::class )
+			->setMethods( [ 'deleteObjectsExpiringBefore' ] )
+			->getMock();
+		$backend->expects( $this->once() )
+			->method( 'deleteObjectsExpiringBefore' )
+			->willReturn( false );
+
+		$cache = new CachedBagOStuff( $backend );
+		$cache->deleteObjectsExpiringBefore( '20110401000000' );
+	}
+
+	/**
+	 * @covers CachedBagOStuff::makeKey
+	 */
+	public function testMakeKey() {
+		$backend = $this->getMockBuilder( HashBagOStuff::class )
+			->setMethods( [ 'makeKey' ] )
+			->getMock();
+		$backend->method( 'makeKey' )
+			->willReturn( 'special/logic' );
+
+		// CachedBagOStuff wraps any backend with a process cache
+		// using HashBagOStuff. Hash has no special key limitations,
+		// but backends often do. Make sure it uses the backend's
+		// makeKey() logic, not the one inherited from HashBagOStuff
+		$cache = new CachedBagOStuff( $backend );
+
+		$this->assertEquals( 'special/logic', $backend->makeKey( 'special', 'logic' ) );
+		$this->assertEquals( 'special/logic', $cache->makeKey( 'special', 'logic' ) );
+	}
+
+	/**
+	 * @covers CachedBagOStuff::makeGlobalKey
+	 */
+	public function testMakeGlobalKey() {
+		$backend = $this->getMockBuilder( HashBagOStuff::class )
+			->setMethods( [ 'makeGlobalKey' ] )
+			->getMock();
+		$backend->method( 'makeGlobalKey' )
+			->willReturn( 'special/logic' );
+
+		$cache = new CachedBagOStuff( $backend );
+
+		$this->assertEquals( 'special/logic', $backend->makeGlobalKey( 'special', 'logic' ) );
+		$this->assertEquals( 'special/logic', $cache->makeGlobalKey( 'special', 'logic' ) );
 	}
 }

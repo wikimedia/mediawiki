@@ -1,5 +1,5 @@
-@import "mediawiki.mixins";
-@import "mediawiki.ui/variables";
+@import 'mediawiki.mixins';
+@import 'mediawiki.ui/variables';
 
 // Checkbox
 //
@@ -43,22 +43,22 @@
 	display: table;
 
 	* {
-		// reset font sizes (see bug 72727)
+		// reset font sizes (see T74727)
 		font: inherit;
 		vertical-align: middle;
 	}
 
-	input[type="checkbox"] {
+	input[type='checkbox'] {
 		// we hide the input element as instead we will style the label that follows
 		// we use opacity so that VoiceOver software can still identify it
 		opacity: 0;
-		// Render "on top of" the label, so that it's still clickable (T98905)
+		// Render *on top of* the label, so that it's still clickable (T98905)
 		z-index: 1;
 		position: relative;
 		// ensure the invisible checkbox takes up the required width
 		width: @checkboxSize;
 		height: @checkboxSize;
-		// This is needed for Firefox mobile (See bug 71750 to workaround default Firefox stylesheet)
+		// This is needed for Firefox mobile (See T73750 to workaround default Firefox stylesheet)
 		max-width: none;
 		margin: 0 0.4em 0 0;
 		display: table-cell;
@@ -68,7 +68,7 @@
 		}
 
 		// the pseudo before element of the label after the checkbox now looks like a checkbox
-		& + label::before {
+		& + label:before {
 			content: '';
 			background-color: #fff;
 			.background-image-svg( 'images/checked.svg', 'images/checked.png' );
@@ -91,33 +91,33 @@
 		}
 
 		// when the input is checked, style the label pseudo before element that followed as a checked checkbox
-		&:checked + label::before {
+		&:checked + label:before {
 			.background-size( 100%, 100% );
 		}
 
-		&:active + label::before {
+		&:active + label:before {
 			background-color: @colorGray13;
 			border-color: @colorGray13;
 		}
 
-		&:focus + label::before {
+		&:focus + label:before {
 			border-width: 2px;
 		}
 
-		&:focus:hover + label::before,
-		&:hover + label::before {
+		&:focus:hover + label:before,
+		&:hover + label:before {
 			border-bottom-width: 3px;
 		}
 
 		// disabled checkboxes have a gray background
-		&:disabled + label::before {
+		&:disabled + label:before {
 			cursor: default;
 			background-color: @colorGray14;
 			border-color: @colorGray14;
 		}
 
 		// disabled and checked checkboxes have a white circle
-		&:disabled:checked + label::before {
+		&:disabled:checked + label:before {
 			.background-image-svg( 'images/checked_disabled.svg', 'images/checked_disabled.png' );
 		}
 	}

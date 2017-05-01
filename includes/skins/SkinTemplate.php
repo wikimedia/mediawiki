@@ -61,7 +61,7 @@ class SkinTemplate extends Skin {
 	 *
 	 * @param OutputPage $out
 	 */
-	function setupSkinUserCss( OutputPage $out ) {
+	public function setupSkinUserCss( OutputPage $out ) {
 		$moduleStyles = [
 			'mediawiki.legacy.shared',
 			'mediawiki.legacy.commonPrint',
@@ -196,7 +196,6 @@ class SkinTemplate extends Skin {
 	}
 
 	protected function setupTemplateForOutput() {
-
 		$request = $this->getRequest();
 		$user = $this->getUser();
 		$title = $this->getTitle();
@@ -257,7 +256,6 @@ class SkinTemplate extends Skin {
 		if ( $oldContext ) {
 			$this->setContext( $oldContext );
 		}
-
 	}
 
 	/**
@@ -346,7 +344,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'charset', 'UTF-8' );
 		$tpl->setRef( 'wgScript', $wgScript );
 		$tpl->setRef( 'skinname', $this->skinname );
-		$tpl->set( 'skinclass', get_class( $this ) );
+		$tpl->set( 'skinclass', static::class );
 		$tpl->setRef( 'skin', $this );
 		$tpl->setRef( 'stylename', $this->stylename );
 		$tpl->set( 'printable', $out->isPrintable() );
@@ -491,8 +489,10 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'debughtml', $this->generateDebugHTML() );
 		$tpl->set( 'reporttime', wfReportTime() );
 
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$skinTemplate = $this;
 		// original version by hansm
-		if ( !Hooks::run( 'SkinTemplateOutputPageBeforeExec', [ &$this, &$tpl ] ) ) {
+		if ( !Hooks::run( 'SkinTemplateOutputPageBeforeExec', [ &$skinTemplate, &$tpl ] ) ) {
 			wfDebug( __METHOD__ . ": Hook SkinTemplateOutputPageBeforeExec broke outputPage execution!\n" );
 		}
 
@@ -582,7 +582,7 @@ class SkinTemplate extends Skin {
 		/* set up the default links for the personal toolbar */
 		$personal_urls = [];
 
-		# Due to bug 32276, if a user does not have read permissions,
+		# Due to T34276, if a user does not have read permissions,
 		# $this->getTitle() will just give Special:Badtitle, which is
 		# not especially useful as a returnto parameter. Use the title
 		# from the request instead, if there was one.
@@ -663,7 +663,7 @@ class SkinTemplate extends Skin {
 					'text' => $this->msg( 'pt-userlogout' )->text(),
 					'href' => self::makeSpecialUrl( 'Userlogout',
 						// userlogout link must always contain an & character, otherwise we might not be able
-						// to detect a buggy precaching proxy (bug 17790)
+						// to detect a buggy precaching proxy (T19790)
 						$title->isSpecial( 'Preferences' ) ? 'noreturnto' : $returnto ),
 					'active' => false
 				];
@@ -720,7 +720,10 @@ class SkinTemplate extends Skin {
 			}
 
 			if ( $authManager->canAuthenticateNow() ) {
-				$personal_urls['login'] = $login_url;
+				$key = User::groupHasPermission( '*', 'read' )
+					? 'login'
+					: 'login-private';
+				$personal_urls[$key] = $login_url;
 			}
 		}
 
@@ -770,8 +773,10 @@ class SkinTemplate extends Skin {
 				MWNamespace::getSubject( $title->getNamespace() ) );
 		}
 
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$skinTemplate = $this;
 		$result = [];
-		if ( !Hooks::run( 'SkinTemplateTabAction', [ &$this,
+		if ( !Hooks::run( 'SkinTemplateTabAction', [ &$skinTemplate,
 				$title, $message, $selected, $checkEdit,
 				&$classes, &$query, &$text, &$result ] ) ) {
 			return $result;
@@ -872,8 +877,10 @@ class SkinTemplate extends Skin {
 
 		$userCanRead = $title->quickUserCan( 'read', $user );
 
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$skinTemplate = $this;
 		$preventActiveTabs = false;
-		Hooks::run( 'SkinTemplatePreventOtherActiveTabs', [ &$this, &$preventActiveTabs ] );
+		Hooks::run( 'SkinTemplatePreventOtherActiveTabs', [ &$skinTemplate, &$preventActiveTabs ] );
 
 		// Checks if page is some kind of content
 		if ( $title->canExist() ) {
@@ -921,19 +928,18 @@ class SkinTemplate extends Skin {
 					$content_navigation['views']['view']['redundant'] = true;
 				}
 
-				$isForeignFile = $title->inNamespace( NS_FILE ) && $this->canUseWikiPage() &&
-					$this->getWikiPage() instanceof WikiFilePage && !$this->getWikiPage()->isLocal();
+				$page = $this->canUseWikiPage() ? $this->getWikiPage() : false;
+				$isRemoteContent = $page && !$page->isLocal();
 
 				// If it is a non-local file, show a link to the file in its own repository
 				// @todo abstract this for remote content that isn't a file
-				if ( $isForeignFile ) {
-					$file = $this->getWikiPage()->getFile();
+				if ( $isRemoteContent ) {
 					$content_navigation['views']['view-foreign'] = [
 						'class' => '',
 						'text' => wfMessageFallback( "$skname-view-foreign", 'view-foreign' )->
 							setContext( $this->getContext() )->
-							params( $file->getRepo()->getDisplayName() )->text(),
-						'href' => $file->getDescriptionUrl(),
+							params( $page->getWikiDisplayName() )->text(),
+						'href' => $page->getSourceURL(),
 						'primary' => false,
 					];
 				}
@@ -957,9 +963,9 @@ class SkinTemplate extends Skin {
 							&& $title->getDefaultMessageText() !== false
 						)
 					) {
-						$msgKey = $isForeignFile ? 'edit-local' : 'edit';
+						$msgKey = $isRemoteContent ? 'edit-local' : 'edit';
 					} else {
-						$msgKey = $isForeignFile ? 'create-local' : 'create';
+						$msgKey = $isRemoteContent ? 'create-local' : 'create';
 					}
 					$content_navigation['views']['edit'] = [
 						'class' => ( $isEditing && ( $section !== 'new' || !$showNewSection )
@@ -969,7 +975,7 @@ class SkinTemplate extends Skin {
 						'text' => wfMessageFallback( "$skname-view-$msgKey", $msgKey )
 							->setContext( $this->getContext() )->text(),
 						'href' => $title->getLocalURL( $this->editUrlOptions() ),
-						'primary' => !$isForeignFile, // don't collapse this in vector
+						'primary' => !$isRemoteContent, // don't collapse this in vector
 					];
 
 					// section link
@@ -1077,7 +1083,9 @@ class SkinTemplate extends Skin {
 				}
 			}
 
-			Hooks::run( 'SkinTemplateNavigation', [ &$this, &$content_navigation ] );
+			// Avoid PHP 7.1 warning of passing $this by reference
+			$skinTemplate = $this;
+			Hooks::run( 'SkinTemplateNavigation', [ &$skinTemplate, &$content_navigation ] );
 
 			if ( $userCanRead && !$wgDisableLangConversion ) {
 				$pageLang = $title->getPageLanguage();
@@ -1115,16 +1123,20 @@ class SkinTemplate extends Skin {
 			$content_navigation['namespaces']['special'] = [
 				'class' => 'selected',
 				'text' => $this->msg( 'nstab-special' )->text(),
-				'href' => $request->getRequestURL(), // @see: bug 2457, bug 2510
+				'href' => $request->getRequestURL(), // @see: T4457, T4510
 				'context' => 'subject'
 			];
 
+			// Avoid PHP 7.1 warning of passing $this by reference
+			$skinTemplate = $this;
 			Hooks::run( 'SkinTemplateNavigation::SpecialPage',
-				[ &$this, &$content_navigation ] );
+				[ &$skinTemplate, &$content_navigation ] );
 		}
 
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$skinTemplate = $this;
 		// Equiv to SkinTemplateContentActions
-		Hooks::run( 'SkinTemplateNavigation::Universal', [ &$this, &$content_navigation ] );
+		Hooks::run( 'SkinTemplateNavigation::Universal', [ &$skinTemplate, &$content_navigation ] );
 
 		// Setup xml ids and tooltip info
 		foreach ( $content_navigation as $section => &$links ) {
@@ -1171,7 +1183,6 @@ class SkinTemplate extends Skin {
 	 * @return array
 	 */
 	private function buildContentActionUrls( $content_navigation ) {
-
 		// content_actions has been replaced with content_navigation for backwards
 		// compatibility and also for skins that just want simple tabs content_actions
 		// is now built by flattening the content_navigation arrays into one
@@ -1258,9 +1269,11 @@ class SkinTemplate extends Skin {
 				];
 			}
 
+			// Avoid PHP 7.1 warning of passing $this by reference
+			$skinTemplate = $this;
 			// Use the copy of revision ID in case this undocumented, shady hook tries to mess with internals
 			Hooks::run( 'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink',
-				[ &$this, &$nav_urls, &$revid, &$revid ] );
+				[ &$skinTemplate, &$nav_urls, &$revid, &$revid ] );
 		}
 
 		if ( $out->isArticleRelated() ) {
@@ -1273,7 +1286,7 @@ class SkinTemplate extends Skin {
 				'href' => $this->getTitle()->getLocalURL( "action=info" )
 			];
 
-			if ( $this->getTitle()->exists() ) {
+			if ( $this->getTitle()->exists() || $this->getTitle()->inNamespace( NS_CATEGORY ) ) {
 				$nav_urls['recentchangeslinked'] = [
 					'href' => SpecialPage::getTitleFor( 'Recentchangeslinked', $this->thispage )->getLocalURL()
 				];
@@ -1312,12 +1325,14 @@ class SkinTemplate extends Skin {
 			if ( !$user->isAnon() ) {
 				$sur = new UserrightsPage;
 				$sur->setContext( $this->getContext() );
-				if ( $sur->userCanExecute( $this->getUser() ) ) {
-					$nav_urls['userrights'] = [
-						'text' => $this->msg( 'tool-link-userrights', $this->getUser()->getName() )->text(),
-						'href' => self::makeSpecialUrlSubpage( 'Userrights', $rootUser )
-					];
-				}
+				$canChange = $sur->userCanChangeRights( $user );
+				$nav_urls['userrights'] = [
+					'text' => $this->msg(
+						$canChange ? 'tool-link-userrights' : 'tool-link-userrights-readonly',
+						$rootUser
+					)->text(),
+					'href' => self::makeSpecialUrlSubpage( 'Userrights', $rootUser )
+				];
 			}
 		}
 

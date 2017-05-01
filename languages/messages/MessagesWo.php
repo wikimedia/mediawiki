@@ -80,4 +80,3 @@ $specialPageAliases = [
 	'Wantedpages'               => [ 'Xët yiñ laaj' ],
 	'Watchlist'                 => [ 'Limu toppte' ],
 ];
-

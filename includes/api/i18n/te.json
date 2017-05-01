@@ -3,7 +3,8 @@
 		"authors": [
 			"Veeven",
 			"HAUSANRIK",
-			"Ravichandra"
+			"Ravichandra",
+			"Jedimaster26"
 		]
 	},
 	"apihelp-block-description": "ఓ వాడుకరిని నిరోధించండి.",
@@ -15,5 +16,6 @@
 	"apihelp-edit-example-edit": "ఓ పేజీని మార్చు.",
 	"apihelp-emailuser-description": "వాడుకరికి ఈమెయిలు పంపించండి.",
 	"apihelp-feedrecentchanges-example-simple": "ఇటీవలి మార్పులను చూడండి",
+	"apihelp-query+users-param-userids": "వివరములు సేకరించవలసిన ఉపయోగదారుల పేర్లు",
 	"apihelp-rawfm-description": "బయటకు వచ్చిన సమాచారo, డీబగ్గింగ్ అంశముతో కలిపి, JSON పద్ధతిలో (HTMLలో అందంగా-ముద్రించు)"
 }

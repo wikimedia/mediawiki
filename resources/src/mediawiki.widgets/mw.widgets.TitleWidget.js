@@ -6,16 +6,6 @@
  */
 ( function ( $, mw ) {
 
-	var interwikiPrefixesPromise = new mw.Api().get( {
-			action: 'query',
-			meta: 'siteinfo',
-			siprop: 'interwikimap'
-		} ).then( function ( data ) {
-			return $.map( data.query.interwikimap, function ( interwiki ) {
-				return interwiki.prefix;
-			} );
-		} );
-
 	/**
 	 * Mixin for title widgets
 	 *
@@ -36,6 +26,7 @@
 	 * @cfg {boolean} [validateTitle=true] Whether the input must be a valid title (if set to true,
 	 *  the widget will marks itself red for invalid inputs, including an empty query).
 	 * @cfg {Object} [cache] Result cache which implements a 'set' method, taking keyed values as an argument
+	 * @cfg {mw.Api} [api] API object to use, creates a default mw.Api instance if not specified
 	 */
 	mw.widgets.TitleWidget = function MwWidgetsTitleWidget( config ) {
 		// Config initialization
@@ -56,6 +47,7 @@
 		this.excludeCurrentPage = !!config.excludeCurrentPage;
 		this.validateTitle = config.validateTitle !== undefined ? config.validateTitle : true;
 		this.cache = config.cache;
+		this.api = config.api || new mw.Api();
 
 		// Initialization
 		this.$element.addClass( 'mw-widget-titleWidget' );
@@ -64,6 +56,10 @@
 	/* Setup */
 
 	OO.initClass( mw.widgets.TitleWidget );
+
+	/* Static properties */
+
+	mw.widgets.TitleWidget.static.interwikiPrefixesPromiseCache = {};
 
 	/* Methods */
 
@@ -93,6 +89,29 @@
 		this.namespace = namespace;
 	};
 
+	mw.widgets.TitleWidget.prototype.getInterwikiPrefixesPromise = function () {
+		var api = this.getApi(),
+			cache = this.constructor.static.interwikiPrefixesPromiseCache,
+			key = api.defaults.ajax.url;
+		if ( !cache.hasOwnProperty( key ) ) {
+			cache[ key ] = api.get( {
+				action: 'query',
+				meta: 'siteinfo',
+				siprop: 'interwikimap',
+				// Cache client-side for a day since this info is mostly static
+				maxage: 60 * 60 * 24,
+				smaxage: 60 * 60 * 24,
+				// Workaround T97096 by setting uselang=content
+				uselang: 'content'
+			} ).then( function ( data ) {
+				return $.map( data.query.interwikimap, function ( interwiki ) {
+					return interwiki.prefix;
+				} );
+			} );
+		}
+		return cache[ key ];
+	};
+
 	/**
 	 * Get a promise which resolves with an API repsonse for suggested
 	 * links for the current query.
@@ -101,6 +120,7 @@
 	 */
 	mw.widgets.TitleWidget.prototype.getSuggestionsPromise = function () {
 		var req,
+			api = this.getApi(),
 			query = this.getQueryValue(),
 			widget = this,
 			promiseAbortObject = { abort: function () {
@@ -108,7 +128,7 @@
 			} };
 
 		if ( mw.Title.newFromText( query ) ) {
-			return interwikiPrefixesPromise.then( function ( interwikiPrefixes ) {
+			return this.getInterwikiPrefixesPromise().then( function ( interwikiPrefixes ) {
 				var params,
 					interwiki = query.substring( 0, query.indexOf( ':' ) );
 				if (
@@ -142,11 +162,11 @@
 						params.prop.push( 'pageterms' );
 						params.wbptterms = 'description';
 					}
-					req = new mw.Api().get( params );
+					req = api.get( params );
 					promiseAbortObject.abort = req.abort.bind( req ); // TODO ew
 					return req.then( function ( ret ) {
 						if ( ret.query === undefined ) {
-							ret = new mw.Api().get( { action: 'query', titles: query } );
+							ret = api.get( { action: 'query', titles: query } );
 							promiseAbortObject.abort = ret.abort.bind( ret );
 						}
 						return ret;
@@ -158,6 +178,15 @@
 			// Just pretend it returned nothing so we can show the 'invalid title' section
 			return $.Deferred().resolve( {} ).promise( promiseAbortObject );
 		}
+	};
+
+	/**
+	 * Get the API object for title requests
+	 *
+	 * @return {mw.Api} MediaWiki API
+	 */
+	mw.widgets.TitleWidget.prototype.getApi = function () {
+		return this.api;
 	};
 
 	/**
@@ -226,7 +255,7 @@
 		} );
 
 		// If not found, run value through mw.Title to avoid treating a match as a
-		// mismatch where normalisation would make them matching (bug 48476)
+		// mismatch where normalisation would make them matching (T50476)
 
 		pageExistsExact = (
 			Object.prototype.hasOwnProperty.call( pageData, this.getQueryValue() ) &&
@@ -275,9 +304,9 @@
 			description = mw.msg( 'mw-widgets-titleinput-description-new-page' );
 		}
 		return {
-			data: this.namespace !== null && this.relative
-				? mwTitle.getRelativeText( this.namespace )
-				: title,
+			data: this.namespace !== null && this.relative ?
+				mwTitle.getRelativeText( this.namespace ) :
+				title,
 			url: mwTitle.getUrl(),
 			imageUrl: this.showImages ? data.imageUrl : null,
 			description: this.showDescriptions ? description : null,

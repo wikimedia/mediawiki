@@ -9,7 +9,8 @@
 			"Tacsipacsi",
 			"Dorgan",
 			"Macofe",
-			"Máté"
+			"Máté",
+			"Seb35"
 		]
 	},
 	"config-desc": "A MediaWiki telepítője",
@@ -58,7 +59,7 @@
 	"config-unicode-using-intl": "A rendszer Unicode normalizálására az [http://pecl.php.net/intl intl PECL kiterjesztést] használja.",
 	"config-unicode-pure-php-warning": "<strong>Figyelmeztetés:</strong> Az Unicode normalizáláshoz szükséges [http://pecl.php.net/intl intl PECL kiterjesztés] nem érhető el, helyette a lassú, PHP-alapú implementáció lesz használatban.\nHa nagy látogatottságú oldalt üzemeltetsz, [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations itt] találhatsz további információkat a témáról.",
 	"config-unicode-update-warning": "<strong>Figyelmeztetés:</strong> Az Unicode normalizáláshoz szükséges burkolókönyvtár [http://site.icu-project.org/ ICU projekt] függvénykönyvtárának régebbi változatát használja.\nHa ügyelni kívánsz a Unicode használatára, fontold meg a [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations frissítését].",
-	"config-no-db": "Nem sikerült egyetlen használható adatbázis-illesztőprogramot sem találni. Telepítened kell egyet a PHP-hez.\nA következő {{PLURAL:$2|adatbázistípus támogatott|adatbázistípusok támogatottak}}: $1.\n\nHa a PHP-t magad fordítottad, konfiguráld újra úgy, hogy engedélyezve legyen egy adatbáziskliens, pl. a <code>./configure --with-mysql</code> parancs használatával.\nHa a PHP-t Debian vagy Ubuntu csomaggal telepítetted, akkor szükséged lesz például a php5-mysql csomagra is.",
+	"config-no-db": "Nem sikerült egyetlen használható adatbázis-illesztőprogramot sem találni. Telepítened kell egyet a PHP-hez.\nA következő {{PLURAL:$2|adatbázistípus támogatott|adatbázistípusok támogatottak}}: $1.\n\nHa a PHP-t magad fordítottad, konfiguráld újra úgy, hogy engedélyezve legyen egy adatbáziskliens, pl. a <code>./configure --with-mysqli</code> parancs használatával.\nHa a PHP-t Debian vagy Ubuntu csomaggal telepítetted, akkor szükséged lesz például a php5-mysql csomagra is.",
 	"config-outdated-sqlite": "<strong>Figyelmeztetés:</strong> SQLite $1 verziód van, ami alacsonyabb a legalább szükséges $2 verziónál. Az SQLite nem lesz elérhető.",
 	"config-no-fts3": "'''Figyelmeztetés''': Az SQLite [//sqlite.org/fts3.html FTS3 modul] nélkül lett fordítva, a keresési funkciók nem fognak működni ezen a rendszeren.",
 	"config-pcre-old": "<strong>Kritikus hiba:</strong> PCRE $1 vagy későbbi szükséges.\nA Te PHP binárisod PCRE $2-vel lett linkelve.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE További információ].",
@@ -67,6 +68,7 @@
 	"config-memory-bad": "'''Figyelmeztetés:''' A PHP <code>memory_limit</code> beállításának értéke $1.\nEz az érték valószínűleg túl kevés, a telepítés sikertelen lehet.",
 	"config-xcache": "Az [http://xcache.lighttpd.net/ XCache] telepítve van",
 	"config-apc": "Az [http://www.php.net/apc APC] telepítve van",
+	"config-apcu": "Az [http://www.php.net/apcu APCu] telepítve van",
 	"config-wincache": "A [http://www.iis.net/download/WinCacheForPhp WinCache] telepítve van",
 	"config-diff3-bad": "GNU diff3 nem található.",
 	"config-git": "Megtaláltam a Git verziókezelő szoftvert: <code>$1</code>.",
@@ -127,7 +129,7 @@
 	"config-missing-db-name": "Meg kell adnod a(z) „{{int:config-db-name}}” értékét.",
 	"config-missing-db-host": "Meg kell adnod az „{{int:config-db-host}}” értékét.",
 	"config-missing-db-server-oracle": "Meg kell adnod az „{{int:config-db-host-oracle}}” értékét.",
-	"config-invalid-db-server-oracle": "Érvénytelen adatbázis TNS: „$1”\nCsak ASCII betűk (a-z, A-Z), számok (0-9), alulvonás (_) és pont (.) használható.",
+	"config-invalid-db-server-oracle": "Érvénytelen adatbázis TNS: „$1”\nHasználd a „TNS Name” vagy az Easy Connect” sztringet!\n([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Oracle Naming Methods]).",
 	"config-invalid-db-name": "Érvénytelen adatbázisnév: „$1”.\nCsak ASCII-karakterek (a-z, A-Z), számok (0-9), alulvonás (_) és kötőjel (-) használható.",
 	"config-invalid-db-prefix": "Érvénytelen adatbázisnév-előtag: „$1”.\nCsak ASCII-karakterek (a-z, A-Z), számok (0-9), alulvonás (_) és kötőjel (-) használható.",
 	"config-connection-error": "$1.\n\nEllenőrizd a hosztot, felhasználónevet és jelszót, majd próbáld újra.",
@@ -301,5 +303,5 @@
 	"config-nofile": "\"$1\" fájl nem található. Törölve lett?",
 	"config-extension-link": "Tudtad, hogy a wikid támogat [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions kiterjesztéseket]?\n\nBöngészhetsz [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category kiterjesztéseket kategóriánként] vagy válogathatsz a [https://www.mediawiki.org/wiki/Extension_Matrix kiterjesztésmátrixból] az összes kiterjesztés áttekintéséhez.",
 	"mainpagetext": "<strong>A MediaWiki telepítése sikeresen befejeződött.</strong>",
-	"mainpagedocfooter": "Ha segítségre van szükséged a wikiszoftver használatához, akkor keresd fel a [https://meta.wikimedia.org/wiki/Help:Contents User's Guide] oldalt.\n\n== Alapok (angol nyelven) ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Beállítások listája]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki GyIK]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-kiadások levelezőlistája]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources A MediaWiki fordítása a saját nyelvedre]"
+	"mainpagedocfooter": "Ha segítségre van szükséged a wikiszoftver használatához, akkor keresd fel a [https://meta.wikimedia.org/wiki/Help:Contents User's Guide] oldalt.\n\n== Alapok (angol nyelven) ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Beállítások listája]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki GyIK]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-kiadások levelezőlistája]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources A MediaWiki fordítása a saját nyelvedre]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Tudd meg többet, hogyan küzdhetsz a kéretlen levelek ellen a wikiden]"
 }

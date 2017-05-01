@@ -65,10 +65,16 @@
 		} );
 
 		// Highlight matching parts of link suggestion
-		this.$label.autoEllipsis( { hasSpan: false, tooltip: true, matchText: config.query } );
+		this.$label
+			.highlightText( config.query )
+			.attr( 'title', config.data );
 
 		if ( config.missing ) {
 			this.$label.addClass( 'new' );
+		} else if ( config.redirect ) {
+			this.$label.addClass( 'mw-redirect' );
+		} else if ( config.disambiguation ) {
+			this.$label.addClass( 'mw-disambig' );
 		}
 
 		if ( config.imageUrl ) {

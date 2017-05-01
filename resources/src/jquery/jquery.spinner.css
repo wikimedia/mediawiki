@@ -36,5 +36,5 @@
 
 	/* IE < 8 */
 	zoom: 1;
-	*display: inline;
+	*display: inline; /* stylelint-disable-line declaration-block-no-duplicate-properties */
 }

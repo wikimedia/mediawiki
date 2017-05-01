@@ -1,3 +1,5 @@
+@import 'mediawiki.mixins';
+
 .mw-widgets-stashedFileWidget {
 	display: inline-block;
 	vertical-align: middle;
@@ -28,18 +30,14 @@
 	vertical-align: middle;
 	position: relative;
 	overflow: hidden;
-	-webkit-box-sizing: border-box;
-	   -moz-box-sizing: border-box;
-	        box-sizing: border-box;
+	.box-sizing( border-box );
 
 	> .mw-widgets-stashedFileWidget-label {
 		line-height: 2.3em;
 		margin: 0;
 		overflow: hidden;
 		white-space: nowrap;
-		-webkit-box-sizing: border-box;
-		   -moz-box-sizing: border-box;
-				box-sizing: border-box;
+		.box-sizing( border-box );
 		text-overflow: ellipsis;
 		left: 0.5em;
 		right: 2.375em;
@@ -124,7 +122,7 @@
 	}
 
 	.mw-widgets-stashedFileWidget-info {
-		border: none;
+		border: 0;
 		background: none;
 		display: block;
 		height: 100%;
@@ -146,7 +144,6 @@
 		}
 	}
 }
-
 
 .mw-widgets-stashedFileWidget-empty {
 	.mw-widgets-stashedFileWidget-thumbnail-container {

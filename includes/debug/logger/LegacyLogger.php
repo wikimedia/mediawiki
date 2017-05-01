@@ -327,7 +327,7 @@ class LegacyLogger extends AbstractLogger {
 	 * @param string $channel
 	 * @param string $message
 	 * @param array $context
-	 * @return null
+	 * @return string
 	 */
 	protected static function formatAsWfDebugLog( $channel, $message, $context ) {
 		$time = wfTimestamp( TS_DB );
@@ -378,7 +378,7 @@ class LegacyLogger extends AbstractLogger {
 			if ( is_nan( $item ) ) {
 				return 'NaN';
 			}
-			return $item;
+			return (string)$item;
 		}
 
 		if ( is_scalar( $item ) ) {

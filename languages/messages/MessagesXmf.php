@@ -20,4 +20,3 @@
  */
 
 $fallback = 'ka';
-

@@ -19,11 +19,14 @@
  * @ingroup Testing
  */
 
+use Wikimedia\Rdbms\IMaintainableDatabase;
+
 class DbTestRecorder extends TestRecorder {
 	public $version;
+	/** @var Database */
 	private $db;
 
-	public function __construct( IDatabase $db ) {
+	public function __construct( IMaintainableDatabase $db ) {
 		$this->db = $db;
 	}
 
@@ -81,4 +84,3 @@ class DbTestRecorder extends TestRecorder {
 		$this->db->commit( __METHOD__ );
 	}
 }
-

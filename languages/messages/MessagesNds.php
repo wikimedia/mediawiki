@@ -88,7 +88,7 @@ $magicWords = [
 $bookstoreList = [
 	'Verteken vun leverbore Böker'  => 'http://www.buchhandel.de/sixcms/list.php?page=buchhandel_profisuche_frameset&suchfeld=isbn&suchwert=$1=0&y=0',
 	'abebooks.de'                   => 'http://www.abebooks.de/servlet/BookSearchPL?ph=2&isbn=$1',
-	'Amazon.de'                     => 'http://www.amazon.de/exec/obidos/ISBN=$1',
+	'Amazon.de'                     => 'https://www.amazon.de/exec/obidos/ISBN=$1',
 	'Lehmanns Fachbuchhandlung'     => 'http://www.lob.de/cgi-bin/work/suche?flag=new&stich1=$1',
 ];
 
@@ -211,4 +211,3 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'Wat wiest hier hen' ],
 	'Withoutinterwiki'          => [ 'Sieden ahn Spraaklenken' ],
 ];
-

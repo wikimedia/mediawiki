@@ -1337,7 +1337,7 @@ class LanguageTest extends LanguageClassesTestCase {
 					"Acteur%7CAlbert%20Robbins%7CAnglais%7CAnn%20Donahue%7CAnthony%20E.%20Zuiker%7CCarol%20Mendelsohn"
 				)
 			],
-			// The following two data sets come from bug 36839. They fail if checkTitleEncoding uses a regexp to test for
+			// The following two data sets come from T38839. They fail if checkTitleEncoding uses a regexp to test for
 			// valid UTF-8 encoding and the pcre.recursion_limit is low (like, say, 1024). They succeed if checkTitleEncoding
 			// uses mb_check_encoding for its test.
 			[
@@ -1585,7 +1585,7 @@ class LanguageTest extends LanguageClassesTestCase {
 	 * @covers Language::translateBlockExpiry()
 	 * @dataProvider provideTranslateBlockExpiry
 	 */
-	public function testTranslateBlockExpiry( $expectedData, $str, $desc ) {
+	public function testTranslateBlockExpiry( $expectedData, $str, $now, $desc ) {
 		$lang = $this->getLang();
 		if ( is_array( $expectedData ) ) {
 			list( $func, $arg ) = $expectedData;
@@ -1593,27 +1593,40 @@ class LanguageTest extends LanguageClassesTestCase {
 		} else {
 			$expected = $expectedData;
 		}
-		$this->assertEquals( $expected, $lang->translateBlockExpiry( $str ), $desc );
+		$this->assertEquals( $expected, $lang->translateBlockExpiry( $str, null, $now ), $desc );
 	}
 
 	public static function provideTranslateBlockExpiry() {
 		return [
-			[ '2 hours', '2 hours', 'simple data from ipboptions' ],
-			[ 'indefinite', 'infinite', 'infinite from ipboptions' ],
-			[ 'indefinite', 'infinity', 'alternative infinite from ipboptions' ],
-			[ 'indefinite', 'indefinite', 'another alternative infinite from ipboptions' ],
-			[ [ 'formatDuration', 1023 * 60 * 60 ], '1023 hours', 'relative' ],
-			[ [ 'formatDuration', -1023 ], '-1023 seconds', 'negative relative' ],
-			[ [ 'formatDuration', 0 ], 'now', 'now' ],
+			[ '2 hours', '2 hours', 0, 'simple data from ipboptions' ],
+			[ 'indefinite', 'infinite', 0, 'infinite from ipboptions' ],
+			[ 'indefinite', 'infinity', 0, 'alternative infinite from ipboptions' ],
+			[ 'indefinite', 'indefinite', 0, 'another alternative infinite from ipboptions' ],
+			[ [ 'formatDuration', 1023 * 60 * 60 ], '1023 hours', 0, 'relative' ],
+			[ [ 'formatDuration', -1023 ], '-1023 seconds', 0, 'negative relative' ],
+			[
+				[ 'formatDuration', 1023 * 60 * 60 ],
+				'1023 hours',
+				wfTimestamp( TS_UNIX, '19910203040506' ),
+				'relative with initial timestamp'
+			],
+			[ [ 'formatDuration', 0 ], 'now', 0, 'now' ],
 			[
 				[ 'timeanddate', '20120102070000' ],
 				'2012-1-1 7:00 +1 day',
+				0,
 				'mixed, handled as absolute'
 			],
-			[ [ 'timeanddate', '19910203040506' ], '1991-2-3 4:05:06', 'absolute' ],
-			[ [ 'timeanddate', '19700101000000' ], '1970-1-1 0:00:00', 'absolute at epoch' ],
-			[ [ 'timeanddate', '19691231235959' ], '1969-12-31 23:59:59', 'time before epoch' ],
-			[ 'dummy', 'dummy', 'return garbage as is' ],
+			[ [ 'timeanddate', '19910203040506' ], '1991-2-3 4:05:06', 0, 'absolute' ],
+			[ [ 'timeanddate', '19700101000000' ], '1970-1-1 0:00:00', 0, 'absolute at epoch' ],
+			[ [ 'timeanddate', '19691231235959' ], '1969-12-31 23:59:59', 0, 'time before epoch' ],
+			[
+				[ 'timeanddate', '19910910000000' ],
+				'10 september',
+				wfTimestamp( TS_UNIX, '19910203040506' ),
+				'partial'
+			],
+			[ 'dummy', 'dummy', 0, 'return garbage as is' ],
 		];
 	}
 

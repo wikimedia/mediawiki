@@ -24,6 +24,7 @@
  * @see http://exif.org/Exif2-2.PDF The Exif 2.2 specification
  * @file
  */
+use Wikimedia\Timestamp\TimestampException;
 
 /**
  * Format Image metadata values into a human readable form.
@@ -102,7 +103,6 @@ class FormatMetadata extends ContextSource {
 		unset( $tags['ResolutionUnit'] );
 
 		foreach ( $tags as $tag => &$vals ) {
-
 			// This seems ugly to wrap non-array's in an array just to unwrap again,
 			// especially when most of the time it is not an array
 			if ( !is_array( $tags[$tag] ) ) {
@@ -165,7 +165,6 @@ class FormatMetadata extends ContextSource {
 			}
 
 			foreach ( $vals as &$val ) {
-
 				switch ( $tag ) {
 					case 'Compression':
 						switch ( $val ) {
@@ -866,6 +865,7 @@ class FormatMetadata extends ContextSource {
 					// are included here as we really don't want
 					// commas inserted.
 					case 'ImageDescription':
+					case 'UserComment':
 					case 'Artist':
 					case 'Copyright':
 					case 'RelatedSoundFile':
@@ -1682,7 +1682,6 @@ class FormatMetadata extends ContextSource {
 	protected function getExtendedMetadataFromHook( File $file, array $extendedMetadata,
 		&$maxCacheTime
 	) {
-
 		Hooks::run( 'GetExtendedMetadata', [
 			&$extendedMetadata,
 			$file,
@@ -1806,7 +1805,6 @@ class FormatMetadata extends ContextSource {
 				$field['value'] = $this->resolveMultivalueValue( $field['value'] );
 			}
 		}
-
 	}
 
 	/**

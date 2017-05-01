@@ -22,6 +22,10 @@
  * @file
  * @ingroup Database
  */
+namespace Wikimedia\Rdbms;
+
+use Exception;
+use RuntimeException;
 
 /**
  * Advanced database interface for IDatabase handles that include maintenance methods
@@ -186,4 +190,92 @@ interface IMaintainableDatabase extends IDatabase {
 	 * @return array
 	 */
 	public function listViews( $prefix = null, $fname = __METHOD__ );
+
+	/**
+	 * Creates a new table with structure copied from existing table
+	 *
+	 * Note that unlike most database abstraction functions, this function does not
+	 * automatically append database prefix, because it works at a lower abstraction level.
+	 * The table names passed to this function shall not be quoted (this function calls
+	 * addIdentifierQuotes() when needed).
+	 *
+	 * @param string $oldName Name of table whose structure should be copied
+	 * @param string $newName Name of table to be created
+	 * @param bool $temporary Whether the new table should be temporary
+	 * @param string $fname Calling function name
+	 * @return bool True if operation was successful
+	 * @throws RuntimeException
+	 */
+	public function duplicateTableStructure(
+		$oldName, $newName, $temporary = false, $fname = __METHOD__
+	);
+
+	/**
+	 * Checks if table locks acquired by lockTables() are transaction-bound in their scope
+	 *
+	 * Transaction-bound table locks will be released when the current transaction terminates.
+	 * Table locks that are not bound to a transaction are not effected by BEGIN/COMMIT/ROLLBACK
+	 * and will last until either lockTables()/unlockTables() is called or the TCP connection to
+	 * the database is closed.
+	 *
+	 * @return bool
+	 * @since 1.29
+	 */
+	public function tableLocksHaveTransactionScope();
+
+	/**
+	 * Lock specific tables
+	 *
+	 * Any pending transaction should be resolved before calling this method, since:
+	 *   a) Doing so resets any REPEATABLE-READ snapshot of the data to a fresh one.
+	 *   b) Previous row and table locks from the transaction or session may be released
+	 *      by LOCK TABLES, which may be unsafe for the changes in such a transaction.
+	 *   c) The main use case of lockTables() is to avoid deadlocks and timeouts by locking
+	 *      entire tables in order to do long-running, batched, and lag-aware, updates. Batching
+	 *      and replication lag checks do not work when all the updates happen in a transaction.
+	 *
+	 * Always get all relevant table locks up-front in one call, since LOCK TABLES might release
+	 * any prior table locks on some RDBMes (e.g MySQL).
+	 *
+	 * For compatibility, callers should check tableLocksHaveTransactionScope() before using
+	 * this method. If locks are scoped specifically to transactions then caller must either:
+	 *   - a) Start a new transaction and acquire table locks for the scope of that transaction,
+	 *        doing all row updates within that transaction. It will not be possible to update
+	 *        rows in batches; this might result in high replication lag.
+	 *   - b) Forgo table locks entirely and avoid calling this method. Careful use of hints like
+	 *        LOCK IN SHARE MODE and FOR UPDATE and the use of query batching may be preferrable
+	 *        to using table locks with a potentially large transaction. Use of MySQL and Postges
+	 *        style REPEATABLE-READ (Snapshot Isolation with or without First-Committer-Rule) can
+	 *        also be considered for certain tasks that require a consistent view of entire tables.
+	 *
+	 * If session scoped locks are not supported, then calling lockTables() will trigger
+	 * startAtomic(), with unlockTables() triggering endAtomic(). This will automatically
+	 * start a transaction if one is not already present and cause the locks to be released
+	 * when the transaction finishes (normally during the unlockTables() call).
+	 *
+	 * In any case, avoid using begin()/commit() in code that runs while such table locks are
+	 * acquired, as that breaks in case when a transaction is needed. The startAtomic() and
+	 * endAtomic() methods are safe, however, since they will join any existing transaction.
+	 *
+	 * @param array $read Array of tables to lock for read access
+	 * @param array $write Array of tables to lock for write access
+	 * @param string $method Name of caller
+	 * @return bool
+	 * @since 1.29
+	 */
+	public function lockTables( array $read, array $write, $method );
+
+	/**
+	 * Unlock all tables locked via lockTables()
+	 *
+	 * If table locks are scoped to transactions, then locks might not be released until the
+	 * transaction ends, which could happen after this method is called.
+	 *
+	 * @param string $method The caller
+	 * @return bool
+	 * @since 1.29
+	 */
+	public function unlockTables( $method );
 }
+
+class_alias( IMaintainableDatabase::class, 'IMaintainableDatabase' );

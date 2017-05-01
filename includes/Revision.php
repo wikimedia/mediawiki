@@ -19,8 +19,13 @@
  *
  * @file
  */
+
+use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
  * @todo document
@@ -87,6 +92,7 @@ class Revision implements IDBAccessObject {
 	const DELETED_USER = 4;
 	const DELETED_RESTRICTED = 8;
 	const SUPPRESSED_USER = 12; // convenience
+	const SUPPRESSED_ALL = 15; // convenience
 
 	// Audience options for accessors
 	const FOR_PUBLIC = 1;
@@ -215,7 +221,7 @@ class Revision implements IDBAccessObject {
 			// Pre-1.5 ar_text row
 			$attribs['text'] = self::getRevisionText( $row, 'ar_' );
 			if ( $attribs['text'] === false ) {
-				throw new MWException( 'Unable to load text from archive row (possibly bug 22624)' );
+				throw new MWException( 'Unable to load text from archive row (possibly T24624)' );
 			}
 		}
 		return new self( $attribs );
@@ -873,7 +879,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Fetch revision's user id without regard for the current user's permissions
 	 *
-	 * @return string
+	 * @return int
 	 * @deprecated since 1.25, use getUser( Revision::RAW )
 	 */
 	public function getRawUser() {
@@ -1035,28 +1041,6 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * Fetch revision text if it's available to the specified audience.
-	 * If the specified audience does not have the ability to view this
-	 * revision, an empty string will be returned.
-	 *
-	 * @param int $audience One of:
-	 *   Revision::FOR_PUBLIC       to be displayed to all users
-	 *   Revision::FOR_THIS_USER    to be displayed to the given user
-	 *   Revision::RAW              get the text regardless of permissions
-	 * @param User $user User object to check for, only if FOR_THIS_USER is passed
-	 *   to the $audience parameter
-	 *
-	 * @deprecated since 1.21, use getContent() instead
-	 * @return string
-	 */
-	public function getText( $audience = self::FOR_PUBLIC, User $user = null ) {
-		wfDeprecated( __METHOD__, '1.21' );
-
-		$content = $this->getContent( $audience, $user );
-		return ContentHandler::getContentText( $content ); # returns the raw content text, if applicable
-	}
-
-	/**
 	 * Fetch revision content if it's available to the specified audience.
 	 * If the specified audience does not have the ability to view this
 	 * revision, null will be returned.
@@ -1130,7 +1114,7 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @return string The content model id associated with this revision,
 	 *     see the CONTENT_MODEL_XXX constants.
-	 **/
+	 */
 	public function getContentModel() {
 		if ( !$this->mContentModel ) {
 			$title = $this->getTitle();
@@ -1154,7 +1138,7 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @return string The content format id associated with this revision,
 	 *     see the CONTENT_FORMAT_XXX constants.
-	 **/
+	 */
 	public function getContentFormat() {
 		if ( !$this->mContentFormat ) {
 			$handler = $this->getContentHandler();
@@ -1259,8 +1243,9 @@ class Revision implements IDBAccessObject {
 
 	/**
 	 * Get revision text associated with an old or archive row
-	 * $row is usually an object from wfFetchRow(), both the flags and the text
-	 * field must be included.
+	 *
+	 * Both the flags and the text field must be included. Including the old_id
+	 * field will activate cache usage as long as the $wiki parameter is not set.
 	 *
 	 * @param stdClass $row The text data
 	 * @param string $prefix Table prefix (default 'old_')
@@ -1268,11 +1253,9 @@ class Revision implements IDBAccessObject {
 	 *   (same as the the wiki $row was loaded from) or false to indicate the local
 	 *   wiki (this is the default). Otherwise, it must be a symbolic wiki database
 	 *   identifier as understood by the LoadBalancer class.
-	 * @return string Text the text requested or false on failure
+	 * @return string|false Text the text requested or false on failure
 	 */
 	public static function getRevisionText( $row, $prefix = 'old_', $wiki = false ) {
-
-		# Get data
 		$textField = $prefix . 'text';
 		$flagsField = $prefix . 'flags';
 
@@ -1288,21 +1271,35 @@ class Revision implements IDBAccessObject {
 			return false;
 		}
 
-		# Use external methods for external objects, text in table is URL-only then
+		// Use external methods for external objects, text in table is URL-only then
 		if ( in_array( 'external', $flags ) ) {
 			$url = $text;
 			$parts = explode( '://', $url, 2 );
 			if ( count( $parts ) == 1 || $parts[1] == '' ) {
 				return false;
 			}
-			$text = ExternalStore::fetchFromURL( $url, [ 'wiki' => $wiki ] );
+
+			if ( isset( $row->old_id ) && $wiki === false ) {
+				// Make use of the wiki-local revision text cache
+				$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+				// The cached value should be decompressed, so handle that and return here
+				return $cache->getWithSetCallback(
+					$cache->makeKey( 'revisiontext', 'textid', $row->old_id ),
+					self::getCacheTTL( $cache ),
+					function () use ( $url, $wiki, $flags ) {
+						// No negative caching per Revision::loadText()
+						$text = ExternalStore::fetchFromURL( $url, [ 'wiki' => $wiki ] );
+
+						return self::decompressRevisionText( $text, $flags );
+					},
+					[ 'pcGroup' => self::TEXT_CACHE_GROUP, 'pcTTL' => $cache::TTL_PROC_LONG ]
+				);
+			} else {
+				$text = ExternalStore::fetchFromURL( $url, [ 'wiki' => $wiki ] );
+			}
 		}
 
-		// If the text was fetched without an error, convert it
-		if ( $text !== false ) {
-			$text = self::decompressRevisionText( $text, $flags );
-		}
-		return $text;
+		return self::decompressRevisionText( $text, $flags );
 	}
 
 	/**
@@ -1348,6 +1345,13 @@ class Revision implements IDBAccessObject {
 	 * @return string|bool Decompressed text, or false on failure
 	 */
 	public static function decompressRevisionText( $text, $flags ) {
+		global $wgLegacyEncoding, $wgContLang;
+
+		if ( $text === false ) {
+			// Text failed to be fetched; nothing to do
+			return false;
+		}
+
 		if ( in_array( 'gzip', $flags ) ) {
 			# Deal with optional compression of archived pages.
 			# This can be done periodically via maintenance/compressOld.php, and
@@ -1370,7 +1374,6 @@ class Revision implements IDBAccessObject {
 			$text = $obj->getText();
 		}
 
-		global $wgLegacyEncoding;
 		if ( $text !== false && $wgLegacyEncoding
 			&& !in_array( 'utf-8', $flags ) && !in_array( 'utf8', $flags )
 		) {
@@ -1378,7 +1381,6 @@ class Revision implements IDBAccessObject {
 			# Upconvert on demand.
 			# ("utf8" checked for compatibility with some broken
 			#  conversion scripts 2008-12-30)
-			global $wgContLang;
 			$text = $wgContLang->iconv( $wgLegacyEncoding, 'UTF-8', $text );
 		}
 
@@ -1504,7 +1506,9 @@ class Revision implements IDBAccessObject {
 			);
 		}
 
-		Hooks::run( 'RevisionInsertComplete', [ &$this, $data, $flags ] );
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$revision = $this;
+		Hooks::run( 'RevisionInsertComplete', [ &$revision, $data, $flags ] );
 
 		return $this->mId;
 	}
@@ -1576,15 +1580,14 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * Lazy-load the revision's text.
-	 * Currently hardcoded to the 'text' table storage engine.
+	 * Get the text cache TTL
 	 *
-	 * @return string|bool The revision's text, or false on failure
+	 * @param WANObjectCache $cache
+	 * @return integer
 	 */
-	private function loadText() {
+	private static function getCacheTTL( WANObjectCache $cache ) {
 		global $wgRevisionCacheExpiry;
 
-		$cache = ObjectCache::getMainWANInstance();
 		if ( $cache->getQoS( $cache::ATTR_EMULATION ) <= $cache::QOS_EMULATION_SQL ) {
 			// Do not cache RDBMs blobs in...the RDBMs store
 			$ttl = $cache::TTL_UNCACHEABLE;
@@ -1592,10 +1595,22 @@ class Revision implements IDBAccessObject {
 			$ttl = $wgRevisionCacheExpiry ?: $cache::TTL_UNCACHEABLE;
 		}
 
+		return $ttl;
+	}
+
+	/**
+	 * Lazy-load the revision's text.
+	 * Currently hardcoded to the 'text' table storage engine.
+	 *
+	 * @return string|bool The revision's text, or false on failure
+	 */
+	private function loadText() {
+		$cache = ObjectCache::getMainWANInstance();
+
 		// No negative caching; negative hits on text rows may be due to corrupted replica DBs
 		return $cache->getWithSetCallback(
 			$cache->makeKey( 'revisiontext', 'textid', $this->getTextId() ),
-			$ttl,
+			self::getCacheTTL( $cache ),
 			function () {
 				return $this->fetchText();
 			},
@@ -1800,6 +1815,7 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @param Title $title
 	 * @param int $id
+	 * @param int $flags
 	 * @return string|bool False if not found
 	 */
 	static function getTimestampFromId( $title, $id, $flags = 0 ) {

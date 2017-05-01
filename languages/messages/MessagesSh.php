@@ -13,6 +13,8 @@
  * @author לערי ריינהארט
  */
 
+$fallback = 'bs, sr-el, hr';
+
 $namespaceNames = [
 	NS_SPECIAL          => 'Posebno',
 	NS_TALK             => 'Razgovor',
@@ -28,6 +30,23 @@ $namespaceNames = [
 	NS_HELP_TALK        => 'Razgovor_o_pomoći',
 	NS_CATEGORY         => 'Kategorija',
 	NS_CATEGORY_TALK    => 'Razgovor_o_kategoriji',
+];
+
+# Some dummy translations to prevent language fallback for now
+# @TODO: Check whether localising them is appropriate.
+$namespaceGenderAliases = [];
+$defaultDateFormat = 'dmy';
+$datePreferences = [
+	'default',
+	'dmy',
+	'ymd',
+	'ISO 8601',
+];
+$datePreferenceMigrationMap = [
+	'default',
+	'mdy',
+	'dmy',
+	'ymd'
 ];
 
 $specialPageAliases = [
@@ -202,4 +221,3 @@ $magicWords = [
 ];
 
 $linkTrail = '/^([a-zčćđžš]+)(.*)$/sDu';
-

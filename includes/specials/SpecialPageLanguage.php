@@ -89,6 +89,12 @@ class SpecialPageLanguage extends FormSpecialPage {
 			'default' => $this->getConfig()->get( 'LanguageCode' ),
 		];
 
+		// Allow user to enter a comment explaining the change
+		$page['reason'] = [
+			'type' => 'text',
+			'label-message' => 'pagelang-reason'
+		];
+
 		return $page;
 	}
 
@@ -111,68 +117,110 @@ class SpecialPageLanguage extends FormSpecialPage {
 	/**
 	 *
 	 * @param array $data
-	 * @return bool
+	 * @return Status
 	 */
 	public function onSubmit( array $data ) {
-		$title = Title::newFromText( $data['pagename'] );
+		$pageName = $data['pagename'];
 
-		// Check if title is valid
-		if ( !$title ) {
-			return false;
+		// Check if user wants to use default language
+		if ( $data['selectoptions'] == 1 ) {
+			$newLanguage = 'default';
+		} else {
+			$newLanguage = $data['language'];
 		}
 
+		try {
+			$title = Title::newFromTextThrow( $pageName );
+		} catch ( MalformedTitleException $ex ) {
+			return Status::newFatal( $ex->getMessageObject() );
+		}
+
+		// Url to redirect to after the operation
+		$this->goToUrl = $title->getFullUrlForRedirect(
+			$title->isRedirect() ? [ 'redirect' => 'no' ] : []
+		);
+
+		return self::changePageLanguage(
+			$this->getContext(),
+			$title,
+			$newLanguage,
+			$data['reason'] === null ? '' : $data['reason']
+		);
+	}
+
+	/**
+	 * @param IContextSource $context
+	 * @param Title $title
+	 * @param string $newLanguage Language code
+	 * @param string $reason Reason for the change
+	 * @param array $tags Change tags to apply to the log entry
+	 * @return Status
+	 */
+	public static function changePageLanguage( IContextSource $context, Title $title,
+		$newLanguage, $reason, array $tags = [] ) {
 		// Get the default language for the wiki
-		$defLang = $this->getConfig()->get( 'LanguageCode' );
+		$defLang = $context->getConfig()->get( 'LanguageCode' );
 
 		$pageId = $title->getArticleID();
 
 		// Check if article exists
 		if ( !$pageId ) {
-			return false;
+			return Status::newFatal(
+				'pagelang-nonexistent-page',
+				wfEscapeWikiText( $title->getPrefixedText() )
+			);
 		}
 
 		// Load the page language from DB
 		$dbw = wfGetDB( DB_MASTER );
-		$langOld = $dbw->selectField(
+		$oldLanguage = $dbw->selectField(
 			'page',
 			'page_lang',
 			[ 'page_id' => $pageId ],
 			__METHOD__
 		);
 
-		// Url to redirect to after the operation
-		$this->goToUrl = $title->getFullURL();
-
-		// Check if user wants to use default language
-		if ( $data['selectoptions'] == 1 ) {
-			$langNew = null;
-		} else {
-			$langNew = $data['language'];
+		// Check if user wants to use the default language
+		if ( $newLanguage === 'default' ) {
+			$newLanguage = null;
 		}
 
 		// No change in language
-		if ( $langNew === $langOld ) {
-			return false;
+		if ( $newLanguage === $oldLanguage ) {
+			// Check if old language does not exist
+			if ( !$oldLanguage ) {
+				return Status::newFatal( ApiMessage::create(
+					[
+						'pagelang-unchanged-language-default',
+						wfEscapeWikiText( $title->getPrefixedText() )
+					],
+					'pagelang-unchanged-language'
+				) );
+			}
+			return Status::newFatal(
+				'pagelang-unchanged-language',
+				wfEscapeWikiText( $title->getPrefixedText() ),
+				$oldLanguage
+			);
 		}
 
 		// Hardcoded [def] if the language is set to null
-		$logOld = $langOld ? $langOld : $defLang . '[def]';
-		$logNew = $langNew ? $langNew : $defLang . '[def]';
+		$logOld = $oldLanguage ? $oldLanguage : $defLang . '[def]';
+		$logNew = $newLanguage ? $newLanguage : $defLang . '[def]';
 
 		// Writing new page language to database
-		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update(
 			'page',
-			[ 'page_lang' => $langNew ],
+			[ 'page_lang' => $newLanguage ],
 			[
 				'page_id' => $pageId,
-				'page_lang' => $langOld
+				'page_lang' => $oldLanguage
 			],
 			__METHOD__
 		);
 
 		if ( !$dbw->affectedRows() ) {
-			return false;
+			return Status::newFatal( 'pagelang-db-failed' );
 		}
 
 		// Logging change of language
@@ -181,9 +229,11 @@ class SpecialPageLanguage extends FormSpecialPage {
 			'5::newlanguage' => $logNew
 		];
 		$entry = new ManualLogEntry( 'pagelang', 'pagelang' );
-		$entry->setPerformer( $this->getUser() );
+		$entry->setPerformer( $context->getUser() );
 		$entry->setTarget( $title );
 		$entry->setParameters( $logParams );
+		$entry->setComment( $reason );
+		$entry->setTags( $tags );
 
 		$logid = $entry->insert();
 		$entry->publish( $logid );
@@ -191,7 +241,11 @@ class SpecialPageLanguage extends FormSpecialPage {
 		// Force re-render so that language-based content (parser functions etc.) gets updated
 		$title->invalidateCache();
 
-		return true;
+		return Status::newGood( (object)[
+			'oldLanguage' => $logOld,
+			'newLanguage' => $logNew,
+			'logId' => $logid,
+		] );
 	}
 
 	public function onSuccess() {

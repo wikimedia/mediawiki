@@ -42,6 +42,14 @@ class ApiImageRotate extends ApiBase {
 			'invalidTitles', 'special', 'missingIds', 'missingRevIds', 'interwikiTitles',
 		] );
 
+		// Check if user can add tags
+		if ( count( $params['tags'] ) ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $this->getUser() );
+			if ( !$ableToTag->isOK() ) {
+				$this->dieStatus( $ableToTag );
+			}
+		}
+
 		foreach ( $pageSet->getTitles() as $title ) {
 			$r = [];
 			$r['id'] = $title->getArticleID();
@@ -56,23 +64,29 @@ class ApiImageRotate extends ApiBase {
 			$file = wfFindFile( $title, [ 'latest' => true ] );
 			if ( !$file ) {
 				$r['result'] = 'Failure';
-				$r['errormessage'] = 'File does not exist';
+				$r['errors'] = $this->getErrorFormatter()->arrayFromStatus(
+					Status::newFatal( 'apierror-filedoesnotexist' )
+				);
 				$result[] = $r;
 				continue;
 			}
 			$handler = $file->getHandler();
 			if ( !$handler || !$handler->canRotate() ) {
 				$r['result'] = 'Failure';
-				$r['errormessage'] = 'File type cannot be rotated';
+				$r['errors'] = $this->getErrorFormatter()->arrayFromStatus(
+					Status::newFatal( 'apierror-filetypecannotberotated' )
+				);
 				$result[] = $r;
 				continue;
 			}
 
 			// Check whether we're allowed to rotate this file
-			$permError = $this->checkPermissions( $this->getUser(), $file->getTitle() );
-			if ( $permError !== null ) {
+			$permError = $this->checkTitleUserPermissions( $file->getTitle(), [ 'edit', 'upload' ] );
+			if ( $permError ) {
 				$r['result'] = 'Failure';
-				$r['errormessage'] = $permError;
+				$r['errors'] = $this->getErrorFormatter()->arrayFromStatus(
+					$this->errorArrayToStatus( $permError )
+				);
 				$result[] = $r;
 				continue;
 			}
@@ -80,7 +94,9 @@ class ApiImageRotate extends ApiBase {
 			$srcPath = $file->getLocalRefPath();
 			if ( $srcPath === false ) {
 				$r['result'] = 'Failure';
-				$r['errormessage'] = 'Cannot get local file path';
+				$r['errors'] = $this->getErrorFormatter()->arrayFromStatus(
+					Status::newFatal( 'apierror-filenopath' )
+				);
 				$result[] = $r;
 				continue;
 			}
@@ -96,17 +112,27 @@ class ApiImageRotate extends ApiBase {
 				$comment = wfMessage(
 					'rotate-comment'
 				)->numParams( $rotation )->inContentLanguage()->text();
-				$status = $file->upload( $dstPath,
-					$comment, $comment, 0, false, false, $this->getUser() );
+				$status = $file->upload(
+					$dstPath,
+					$comment,
+					$comment,
+					0,
+					false,
+					false,
+					$this->getUser(),
+					$params['tags'] ?: []
+				);
 				if ( $status->isGood() ) {
 					$r['result'] = 'Success';
 				} else {
 					$r['result'] = 'Failure';
-					$r['errormessage'] = $this->getErrorFormatter()->arrayFromStatus( $status );
+					$r['errors'] = $this->getErrorFormatter()->arrayFromStatus( $status );
 				}
 			} else {
 				$r['result'] = 'Failure';
-				$r['errormessage'] = $err->toText();
+				$r['errors'] = $this->getErrorFormatter()->arrayFromStatus(
+					Status::newFatal( ApiMessage::create( $err->getMsg() ) )
+				);
 			}
 			$result[] = $r;
 		}
@@ -130,28 +156,6 @@ class ApiImageRotate extends ApiBase {
 		return $this->mPageSet;
 	}
 
-	/**
-	 * Checks that the user has permissions to perform rotations.
-	 * @param User $user The user to check
-	 * @param Title $title
-	 * @return string|null Permission error message, or null if there is no error
-	 */
-	protected function checkPermissions( $user, $title ) {
-		$permissionErrors = array_merge(
-			$title->getUserPermissionsErrors( 'edit', $user ),
-			$title->getUserPermissionsErrors( 'upload', $user )
-		);
-
-		if ( $permissionErrors ) {
-			// Just return the first error
-			$msg = $this->parseMsg( $permissionErrors[0] );
-
-			return $msg['info'];
-		}
-
-		return null;
-	}
-
 	public function mustBePosted() {
 		return true;
 	}
@@ -168,6 +172,10 @@ class ApiImageRotate extends ApiBase {
 			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			],
+			'tags' => [
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
 			],
 		];
 		if ( $flags ) {

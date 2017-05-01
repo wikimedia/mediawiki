@@ -4,12 +4,12 @@
 ( function ( mw, $ ) {
 	mw.searchSuggest = {
 		// queries the wiki and calls response with the result
-		request: function ( api, query, response, maxRows ) {
+		request: function ( api, query, response, maxRows, namespace ) {
 			return api.get( {
 				formatversion: 2,
 				action: 'opensearch',
 				search: query,
-				namespace: 0,
+				namespace: namespace || 0,
 				limit: maxRows,
 				suggest: true
 			} ).done( function ( data, jqXHR ) {
@@ -22,7 +22,7 @@
 	};
 
 	$( function () {
-		var api, map, searchboxesSelectors,
+		var api, searchboxesSelectors,
 			// Region where the suggestions box will appear directly below
 			// (using the same width). Can be a container element or the input
 			// itself, depending on what suits best in the environment.
@@ -33,23 +33,6 @@
 			$searchRegion = $( '#simpleSearch, #searchInput' ).first(),
 			$searchInput = $( '#searchInput' ),
 			previousSearchText = $searchInput.val();
-
-		// Compatibility map
-		map = {
-			// SimpleSearch is broken in Opera < 9.6
-			opera: [ [ '>=', 9.6 ] ],
-			// Older Konquerors are unable to position the suggestions correctly (bug 50805)
-			konqueror: [ [ '>=', '4.11' ] ],
-			docomo: false,
-			blackberry: false,
-			// Support for iOS 6 or higher. It has not been tested on iOS 5 or lower
-			ipod: [ [ '>=', 6 ] ],
-			iphone: [ [ '>=', 6 ] ]
-		};
-
-		if ( !$.client.test( map ) ) {
-			return;
-		}
 
 		// Compute form data for search suggestions functionality.
 		function getFormData( context ) {
@@ -92,13 +75,15 @@
 		}
 
 		/**
-		 * defines the location of autocomplete. Typically either
+		 * Defines the location of autocomplete. Typically either
 		 * header, which is in the top right of vector (for example)
 		 * and content which identifies the main search bar on
-		 * Special:Search.  Defaults to header for skins that don't set
+		 * Special:Search. Defaults to header for skins that don't set
 		 * explicitly.
 		 *
 		 * @ignore
+		 * @param {Object} context
+		 * @return {string}
 		 */
 		function getInputLocation( context ) {
 			return context.config.$region
@@ -112,6 +97,7 @@
 		 * 'this' is the search input box (jQuery object)
 		 *
 		 * @ignore
+		 * @param {Object} metadata
 		 */
 		function onAfterUpdate( metadata ) {
 			var context = this.data( 'suggestionsContext' );
@@ -254,7 +240,7 @@
 				cache: true,
 				highlightInput: true
 			} )
-			.bind( 'paste cut drop', function () {
+			.on( 'paste cut drop', function () {
 				// make sure paste and cut events from the mouse and drag&drop events
 				// trigger the keypress handler and cause the suggestions to update
 				$( this ).trigger( 'keypress' );

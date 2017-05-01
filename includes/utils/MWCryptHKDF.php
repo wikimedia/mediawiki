@@ -47,11 +47,11 @@ class MWCryptHKDF {
 	 * From http://eprint.iacr.org/2010/264.pdf:
 	 *
 	 * The scheme HKDF is specifed as:
-	 * 	HKDF(XTS, SKM, CTXinfo, L) = K(1) || K(2) || ... || K(t)
+	 *   HKDF(XTS, SKM, CTXinfo, L) = K(1) || K(2) || ... || K(t)
 	 * where the values K(i) are defined as follows:
-	 * 	PRK = HMAC(XTS, SKM)
-	 * 	K(1) = HMAC(PRK, CTXinfo || 0);
-	 * 	K(i+1) = HMAC(PRK, K(i) || CTXinfo || i), 1 <= i < t;
+	 *   PRK = HMAC(XTS, SKM)
+	 *   K(1) = HMAC(PRK, CTXinfo || 0);
+	 *   K(i+1) = HMAC(PRK, K(i) || CTXinfo || i), 1 <= i < t;
 	 * where t = [L/k] and the value K(t) is truncated to its first d = L mod k bits;
 	 * the counter i is non-wrapping and of a given fixed size, e.g., a single byte.
 	 * Note that the length of the HMAC output is the same as its key length and therefore

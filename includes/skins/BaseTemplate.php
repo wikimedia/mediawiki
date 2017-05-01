@@ -112,7 +112,9 @@ abstract class BaseTemplate extends QuickTemplate {
 			$toolbox['info']['id'] = 't-info';
 		}
 
-		Hooks::run( 'BaseTemplateToolbox', [ &$this, &$toolbox ] );
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$template = $this;
+		Hooks::run( 'BaseTemplateToolbox', [ &$template, &$toolbox ] );
 		return $toolbox;
 	}
 
@@ -227,7 +229,9 @@ abstract class BaseTemplate extends QuickTemplate {
 			ob_start();
 			// We pass an extra 'true' at the end so extensions using BaseTemplateToolbox
 			// can abort and avoid outputting double toolbox links
-			Hooks::run( 'SkinTemplateToolboxEnd', [ &$this, true ] );
+			// Avoid PHP 7.1 warning from passing $this by reference
+			$template = $this;
+			Hooks::run( 'SkinTemplateToolboxEnd', [ &$template, true ] );
 			$hookContents = ob_get_contents();
 			ob_end_clean();
 			if ( !trim( $hookContents ) ) {
@@ -283,13 +287,31 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @param string $name
 	 */
 	protected function renderAfterPortlet( $name ) {
+		echo $this->getAfterPortlet( $name );
+	}
+
+	/**
+	 * Allows extensions to hook into known portlets and add stuff to them
+	 *
+	 * @param string $name
+	 *
+	 * @return string html
+	 * @since 1.29
+	 */
+	protected function getAfterPortlet( $name ) {
+		$html = '';
 		$content = '';
 		Hooks::run( 'BaseTemplateAfterPortlet', [ $this, $name, &$content ] );
 
 		if ( $content !== '' ) {
-			echo "<div class='after-portlet after-portlet-$name'>$content</div>";
+			$html = Html::rawElement(
+				'div',
+				[ 'class' => [ 'after-portlet', 'after-portlet-' . $name ] ],
+				$content
+			);
 		}
 
+		return $html;
 	}
 
 	/**
@@ -321,12 +343,12 @@ abstract class BaseTemplate extends QuickTemplate {
 	 *
 	 * If a "data" key is present, it must be an array, where the keys represent
 	 * the data-xxx properties with their provided values. For example,
-	 *  $item['data'] = [
-	 *  	 'foo' => 1,
-	 *  	 'bar' => 'baz',
-	 *  ];
+	 *     $item['data'] = [
+	 *       'foo' => 1,
+	 *       'bar' => 'baz',
+	 *     ];
 	 * will render as element properties:
-	 *  data-foo='1' data-bar='baz'
+	 *     data-foo='1' data-bar='baz'
 	 *
 	 * @param array $options Can be used to affect the output of a link.
 	 * Possible options are:
@@ -630,6 +652,69 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
+	 * Renderer for getFooterIcons and getFooterLinks
+	 *
+	 * @param string $iconStyle $option for getFooterIcons: "icononly", "nocopyright"
+	 * @param string $linkStyle $option for getFooterLinks: "flat"
+	 *
+	 * @return string html
+	 * @since 1.29
+	 */
+	protected function getFooter( $iconStyle = 'icononly', $linkStyle = 'flat' ) {
+		$validFooterIcons = $this->getFooterIcons( $iconStyle );
+		$validFooterLinks = $this->getFooterLinks( $linkStyle );
+
+		$html = '';
+
+		if ( count( $validFooterIcons ) + count( $validFooterLinks ) > 0 ) {
+			$html .= Html::openElement( 'div', [
+				'id' => 'footer-bottom',
+				'role' => 'contentinfo',
+				'lang' => $this->get( 'userlang' ),
+				'dir' => $this->get( 'dir' )
+			] );
+			$footerEnd = Html::closeElement( 'div' );
+		} else {
+			$footerEnd = '';
+		}
+		foreach ( $validFooterIcons as $blockName => $footerIcons ) {
+			$html .= Html::openElement( 'div', [
+				'id' => 'f-' . Sanitizer::escapeId( $blockName ) . 'ico',
+				'class' => 'footer-icons'
+			] );
+			foreach ( $footerIcons as $icon ) {
+				$html .= $this->getSkin()->makeFooterIcon( $icon );
+			}
+			$html .= Html::closeElement( 'div' );
+		}
+		if ( count( $validFooterLinks ) > 0 ) {
+			$html .= Html::openElement( 'ul', [ 'id' => 'f-list', 'class' => 'footer-places' ] );
+			foreach ( $validFooterLinks as $aLink ) {
+				$html .= Html::rawElement(
+					'li',
+					[ 'id' => Sanitizer::escapeId( $aLink ) ],
+					$this->get( $aLink )
+				);
+			}
+			$html .= Html::closeElement( 'ul' );
+		}
+
+		$html .= $this->getClear() . $footerEnd;
+
+		return $html;
+	}
+
+	/**
+	 * Get a div with the core visualClear class, for clearing floats
+	 *
+	 * @return string html
+	 * @since 1.29
+	 */
+	protected function getClear() {
+		return Html::element( 'div', [ 'class' => 'visualClear' ] );
+	}
+
+	/**
 	 * Get the suggested HTML for page status indicators: icons (or short text snippets) usually
 	 * displayed in the top-right corner of the page, outside of the main content.
 	 *
@@ -645,7 +730,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @since 1.25
 	 */
 	public function getIndicators() {
-		$out = "<div class=\"mw-indicators\">\n";
+		$out = "<div class=\"mw-indicators mw-body-content\">\n";
 		foreach ( $this->data['indicators'] as $id => $content ) {
 			$out .= Html::rawElement(
 				'div',
@@ -661,15 +746,25 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
-	 * Output the basic end-page trail including bottomscripts, reporttime, and
-	 * debug stuff. This should be called right before outputting the closing
-	 * body and html tags.
+	 * Output getTrail
 	 */
 	function printTrail() {
-?>
-<?php echo MWDebug::getDebugHTML( $this->getSkin()->getContext() ); ?>
-<?php $this->html( 'bottomscripts' ); /* JS call to runBodyOnloadHook */ ?>
-<?php $this->html( 'reporttime' ) ?>
-<?php
+		echo $this->getTrail();
+	}
+
+	/**
+	 * Get the basic end-page trail including bottomscripts, reporttime, and
+	 * debug stuff. This should be called right before outputting the closing
+	 * body and html tags.
+	 *
+	 * @return string
+	 * @since 1.29
+	 */
+	function getTrail() {
+		$html = MWDebug::getDebugHTML( $this->getSkin()->getContext() );
+		$html .= $this->get( 'bottomscripts' );
+		$html .= $this->get( 'reporttime' );
+
+		return $html;
 	}
 }

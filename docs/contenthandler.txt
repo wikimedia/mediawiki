@@ -21,10 +21,6 @@ ContentHandler::getDefaultModelFor($title) as follows:
 * The hook ContentHandlerDefaultModelFor may be used to override the page's default model.
 * Pages in NS_MEDIAWIKI and NS_USER default to the CSS or JavaScript model if they end in .css or .js, respectively.
   Pages in NS_MEDIAWIKI default to the wikitext model otherwise.
-* The hook TitleIsCssOrJsPage may be used to force a page to use the CSS or JavaScript model.
-  This is a compatibility feature. The ContentHandlerDefaultModelFor hook should be used instead if possible.
-* The hook TitleIsWikitextPage may be used to force a page to use the wikitext model.
-  This is a compatibility feature. The ContentHandlerDefaultModelFor hook should be used instead if possible.
 * Otherwise, the wikitext model is used.
 
 Note that is currently no mechanism to convert a page from one content model to another, and there is no guarantee that

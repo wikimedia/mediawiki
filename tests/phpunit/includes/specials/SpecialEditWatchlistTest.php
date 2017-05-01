@@ -33,7 +33,7 @@ class SpecialEditWatchlistTest extends SpecialPageTestBase {
 		$user = new TestUser( __METHOD__ );
 		list( $html, ) = $this->executeSpecialPage( 'clear', null, 'qqx', $user->getUser() );
 		$this->assertRegExp(
-			'/<form action=".*?Special:EditWatchlist\/clear" method="post" class="visualClear">/',
+			'/<form class="mw-htmlform" action=".*?Special:EditWatchlist\/clear" method="post">/',
 			$html
 		);
 	}

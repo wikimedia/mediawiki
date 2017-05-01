@@ -15,13 +15,14 @@
 			"color": "#36c"
 		},
 		"destructive": {
-			"color": "#c33"
+			"color": "#d33"
 		},
 		"warning": {
 			"color": "#ff5d00"
 		}
 	},
 	"images": {
+		"menu": { "file": "images/icons/menu.svg" },
 		"stripeFlow": { "file": {
 			"ltr": "images/icons/stripeFlow-ltr.svg",
 			"rtl": "images/icons/stripeFlow-rtl.svg"

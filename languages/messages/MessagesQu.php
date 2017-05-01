@@ -36,7 +36,7 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'Katiguriya_rimanakuy',
 ];
 
-// Remove Spanish gender aliases (bug 37090)
+// Remove Spanish gender aliases (T39090)
 $namespaceGenderAliases = [];
 
 $specialPageAliases = [
@@ -277,4 +277,3 @@ $magicWords = [
 	'protectionlevel'           => [ '1', 'HAYKAAMACHAY', 'IMASINCHIAMACHAY', 'NIVELDEPROTECCIÓN', 'PROTECTIONLEVEL' ],
 	'formatdate'                => [ '0', 'punchawrikchakuy', 'formatodefecha', 'formatearfecha', 'formatdate', 'dateformat' ],
 ];
-

@@ -13,4 +13,3 @@
 
 # Inherit everything for now
 $fallback = 'zh-hans';
-

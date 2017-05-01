@@ -38,6 +38,12 @@
 			/**
 			 * Dumb window.onerror handler which forwards the errors via mw.track.
 			 *
+			 * @param {string} errorMessage
+			 * @param {string} url
+			 * @param {number} lineNumber
+			 * @param {number} [columnNumber]
+			 * @param {Error|Mixed} [errorObject]
+			 * @return {boolean} True to prevent the default action
 			 * @fires global_error
 			 */
 			window.onerror = function ( errorMessage, url, lineNumber, columnNumber, errorObject ) {

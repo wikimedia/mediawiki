@@ -15,15 +15,15 @@
 			"color": "#36c"
 		},
 		"destructive": {
-			"color": "#c33"
+			"color": "#d33"
 		},
 		"warning": {
 			"color": "#ff5d00"
 		}
 	},
 	"images": {
-		"beta": { "file": "images/icons/beta.svg" },
-		"betaLaunch": { "file": "images/icons/betaLaunch.svg" },
+		"add": { "file": "images/icons/add.svg", "variants": [ "constructive", "progressive" ] },
+		"advanced": { "file": "images/icons/advanced.svg" },
 		"bookmark": { "file": {
 			"ltr": "images/icons/bookmark-ltr.svg",
 			"rtl": "images/icons/bookmark-rtl.svg"
@@ -32,13 +32,31 @@
 			"ltr": "images/icons/browser-ltr.svg",
 			"rtl": "images/icons/browser-rtl.svg"
 		} },
+		"cancel": { "file": "images/icons/cancel.svg", "variants": [ "destructive" ] },
+		"check": { "file": "images/icons/check.svg", "variants": [ "constructive", "progressive", "destructive" ] },
 		"clear": { "file": "images/icons/clear.svg" },
 		"clock": { "file": "images/icons/clock.svg" },
+		"close": { "file": "images/icons/close.svg" },
+		"ellipsis": { "file": "images/icons/ellipsis.svg" },
+		"feedback": {
+			"file": {
+				"ltr": "images/icons/feedback-ltr.svg",
+				"rtl": "images/icons/feedback-rtl.svg"
+			},
+			"variants": [ "progressive" ]
+		},
 		"funnel": { "file": {
 			"ltr": "images/icons/funnel-ltr.svg",
 			"rtl": "images/icons/funnel-rtl.svg"
 		} },
 		"heart": { "file": "images/icons/heart.svg" },
+		"help": { "file": {
+			"ltr": "images/icons/help-ltr.svg",
+			"rtl": "images/icons/help-rtl.svg",
+			"lang": {
+				"he,yi": "images/icons/help-ltr.svg"
+			}
+		} },
 		"key": { "file": {
 			"ltr": "images/icons/key-ltr.svg",
 			"rtl": "images/icons/key-rtl.svg"
@@ -59,7 +77,13 @@
 			"ltr": "images/icons/printer-ltr.svg",
 			"rtl": "images/icons/printer-rtl.svg"
 		} },
-		"ribbonPrize": { "file": "images/icons/ribbonPrize.svg" },
+		"search": { "file": {
+			"ltr": "images/icons/search-ltr.svg",
+			"rtl": "images/icons/search-rtl.svg"
+			}
+		},
+		"settings": { "file": "images/icons/settings.svg" },
+		"subtract": { "file": "images/icons/subtract.svg" },
 		"sun": { "file": {
 			"ltr": "images/icons/sun-ltr.svg",
 			"rtl": "images/icons/sun-rtl.svg"

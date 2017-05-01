@@ -47,7 +47,7 @@ class PNGMetadataExtractor {
 		self::$pngSig = pack( "C8", 137, 80, 78, 71, 13, 10, 26, 10 );
 		self::$crcSize = 4;
 		/* based on list at http://owl.phy.queensu.ca/~phil/exiftool/TagNames/PNG.html#TextualData
-		 * and http://www.w3.org/TR/PNG/#11keywords
+		 * and https://www.w3.org/TR/PNG/#11keywords
 		 */
 		self::$textChunks = [
 			'xml:com.adobe.xmp' => 'xmp',
@@ -123,7 +123,7 @@ class PNGMetadataExtractor {
 				}
 				$bitDepth = ord( substr( $buf, 8, 1 ) );
 				// Detect the color type in British English as per the spec
-				// http://www.w3.org/TR/PNG/#11IHDR
+				// https://www.w3.org/TR/PNG/#11IHDR
 				switch ( ord( substr( $buf, 9, 1 ) ) ) {
 					case 0:
 						$colorType = 'greyscale';

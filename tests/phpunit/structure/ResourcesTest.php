@@ -11,7 +11,6 @@
  * @copyright © 2012, Niklas Laxström
  * @copyright © 2012, Santhosh Thottingal
  * @copyright © 2012, Timo Tijhof
- *
  */
 class ResourcesTest extends MediaWikiTestCase {
 
@@ -91,7 +90,6 @@ class ResourcesTest extends MediaWikiTestCase {
 	 */
 	public function testMissingMessages() {
 		$data = self::getAllModules();
-		$validDeps = array_keys( $data['modules'] );
 		$lang = Language::factory( 'en' );
 
 		/** @var ResourceLoaderModule $module */
@@ -114,7 +112,6 @@ class ResourcesTest extends MediaWikiTestCase {
 	 */
 	public function testUnsatisfiableDependencies() {
 		$data = self::getAllModules();
-		$validDeps = array_keys( $data['modules'] );
 
 		/** @var ResourceLoaderModule $module */
 		foreach ( $data['modules'] as $moduleName => $module ) {

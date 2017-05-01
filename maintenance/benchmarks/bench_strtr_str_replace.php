@@ -51,22 +51,21 @@ class BenchStrtrStrReplace extends Benchmarker {
 			[ 'function' => [ $this, 'benchstrtr_indirect' ] ],
 			[ 'function' => [ $this, 'benchstr_replace_indirect' ] ],
 		] );
-		print $this->getFormattedResults();
 	}
 
-	function benchstrtr() {
+	protected function benchstrtr() {
 		strtr( "[[MediaWiki:Some_random_test_page]]", "_", " " );
 	}
 
-	function benchstr_replace() {
+	protected function benchstr_replace() {
 		str_replace( "_", " ", "[[MediaWiki:Some_random_test_page]]" );
 	}
 
-	function benchstrtr_indirect() {
+	protected function benchstrtr_indirect() {
 		bfNormalizeTitleStrTr( "[[MediaWiki:Some_random_test_page]]" );
 	}
 
-	function benchstr_replace_indirect() {
+	protected function benchstr_replace_indirect() {
 		bfNormalizeTitleStrReplace( "[[MediaWiki:Some_random_test_page]]" );
 	}
 }

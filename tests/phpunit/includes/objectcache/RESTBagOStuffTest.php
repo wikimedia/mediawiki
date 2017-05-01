@@ -27,7 +27,7 @@ class RESTBagOStuffTest extends MediaWikiTestCase {
 		$this->client->expects( $this->once() )->method( 'run' )->with( [
 			'method' => 'GET',
 			'url' => 'http://test/rest/42xyz42'
-		    // list( $rcode, $rdesc, $rhdrs, $rbody, $rerr )
+			// list( $rcode, $rdesc, $rhdrs, $rbody, $rerr )
 		] )->willReturn( [ 200, 'OK', [], 's:8:"somedata";', 0 ] );
 		$result = $this->bag->get( '42xyz42' );
 		$this->assertEquals( 'somedata', $result );
@@ -69,7 +69,7 @@ class RESTBagOStuffTest extends MediaWikiTestCase {
 		$this->client->expects( $this->once() )->method( 'run' )->with( [
 			'method' => 'PUT',
 			'url' => 'http://test/rest/42xyz42',
-		    'body' => 's:8:"postdata";'
+			'body' => 's:8:"postdata";'
 			// list( $rcode, $rdesc, $rhdrs, $rbody, $rerr )
 		] )->willReturn( [ 200, 'OK', [], 'Done', 0 ] );
 		$result = $this->bag->set( '42xyz42', 'postdata' );

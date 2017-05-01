@@ -45,9 +45,11 @@ class ApiLogout extends ApiBase {
 
 		// Make sure it's possible to log out
 		if ( !$session->canSetUser() ) {
-			$this->dieUsage(
-				'Cannot log out when using ' .
-					$session->getProvider()->describe( Language::factory( 'en' ) ),
+			$this->dieWithError(
+				[
+					'cannotlogoutnow-text',
+					$session->getProvider()->describe( $this->getErrorFormatter()->getLanguage() )
+				],
 				'cannotlogout'
 			);
 		}
@@ -73,6 +75,6 @@ class ApiLogout extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Logout';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Logout';
 	}
 }

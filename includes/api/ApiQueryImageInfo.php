@@ -58,6 +58,15 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'revdelUser' => $this->getUser(),
 		];
 
+		if ( isset( $params['badfilecontexttitle'] ) ) {
+			$badFileContextTitle = Title::newFromText( $params['badfilecontexttitle'] );
+			if ( !$badFileContextTitle ) {
+				$this->dieUsage( 'Invalid title in badfilecontexttitle parameter', 'invalid-title' );
+			}
+		} else {
+			$badFileContextTitle = false;
+		}
+
 		$pageIds = $this->getPageSet()->getGoodAndMissingTitlesByNamespace();
 		if ( !empty( $pageIds[NS_FILE] ) ) {
 			$titles = array_keys( $pageIds[NS_FILE] );
@@ -95,13 +104,16 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 			$result = $this->getResult();
 			foreach ( $titles as $title ) {
+				$info = [];
 				$pageId = $pageIds[NS_FILE][$title];
 				$start = $title === $fromTitle ? $fromTimestamp : $params['start'];
 
 				if ( !isset( $images[$title] ) ) {
-					if ( isset( $prop['uploadwarning'] ) ) {
-						// Uploadwarning needs info about non-existing files
+					if ( isset( $prop['uploadwarning'] ) || isset( $prop['badfile'] ) ) {
+						// uploadwarning and badfile need info about non-existing files
 						$images[$title] = wfLocalFile( $title );
+						// Doesn't exist, so set an empty image repository
+						$info['imagerepository'] = '';
 					} else {
 						$result->addValue(
 							[ 'query', 'pages', intval( $pageId ) ],
@@ -128,10 +140,14 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					break;
 				}
 
-				$fit = $result->addValue(
-					[ 'query', 'pages', intval( $pageId ) ],
-					'imagerepository', $img->getRepoName()
-				);
+				if ( !isset( $info['imagerepository'] ) ) {
+					$info['imagerepository'] = $img->getRepoName();
+				}
+				if ( isset( $prop['badfile'] ) ) {
+					$info['badfile'] = (bool)wfIsBadImage( $title, $badFileContextTitle );
+				}
+
+				$fit = $result->addValue( [ 'query', 'pages' ], intval( $pageId ), $info );
 				if ( !$fit ) {
 					if ( count( $pageIds[NS_FILE] ) == 1 ) {
 						// The user is screwed. imageinfo can't be solely
@@ -280,8 +296,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		$h = $image->getHandler();
 		if ( !$h ) {
-			$this->setWarning( 'Could not create thumbnail because ' .
-				$image->getName() . ' does not have an associated image handler' );
+			$this->addWarning( [ 'apiwarn-nothumb-noimagehandler', wfEscapeWikiText( $image->getName() ) ] );
 
 			return $thumbParams;
 		}
@@ -292,23 +307,24 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			// we could still render the image using width and height parameters,
 			// and this type of thing could happen between different versions of
 			// handlers.
-			$this->setWarning( "Could not parse {$p}urlparam for " . $image->getName()
-				. '. Using only width and height' );
+			$this->addWarning( [ 'apiwarn-badurlparam', $p, wfEscapeWikiText( $image->getName() ) ] );
 			$this->checkParameterNormalise( $image, $thumbParams );
 			return $thumbParams;
 		}
 
 		if ( isset( $paramList['width'] ) && isset( $thumbParams['width'] ) ) {
 			if ( intval( $paramList['width'] ) != intval( $thumbParams['width'] ) ) {
-				$this->setWarning( "Ignoring width value set in {$p}urlparam ({$paramList['width']}) "
-					. "in favor of width value derived from {$p}urlwidth/{$p}urlheight "
-					. "({$thumbParams['width']})" );
+				$this->addWarning(
+					[ 'apiwarn-urlparamwidth', $p, $paramList['width'], $thumbParams['width'] ]
+				);
 			}
 		}
 
 		foreach ( $paramList as $name => $value ) {
 			if ( !$h->validateParam( $name, $value ) ) {
-				$this->dieUsage( "Invalid value for {$p}urlparam ($name=$value)", 'urlparam' );
+				$this->dieWithError(
+					[ 'apierror-invalidurlparam', $p, wfEscapeWikiText( $name ), wfEscapeWikiText( $value ) ]
+				);
 			}
 		}
 
@@ -337,8 +353,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		// in the actual normalised version, only if we can actually normalise them,
 		// so we use the functions scope to throw away the normalisations.
 		if ( !$h->normaliseParams( $image, $finalParams ) ) {
-			$this->dieUsage( 'Could not normalise image parameters for ' .
-				$image->getName(), 'urlparamnormal' );
+			$this->dieWithError( [ 'apierror-urlparamnormal', wfEscapeWikiText( $image->getName() ) ] );
 		}
 	}
 
@@ -494,7 +509,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				if ( $mto && !$mto->isError() ) {
 					$vals['thumburl'] = wfExpandUrl( $mto->getUrl(), PROTO_CURRENT );
 
-					// bug 23834 - If the URL's are the same, we haven't resized it, so shouldn't give the wanted
+					// T25834 - If the URLs are the same, we haven't resized it, so shouldn't give the wanted
 					// thumbnail sizes for the thumbnail actual size
 					if ( $mto->getUrl() !== $file->getUrl() ) {
 						$vals['thumbwidth'] = intval( $mto->getWidth() );
@@ -689,6 +704,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				ApiBase::PARAM_DFLT => '',
 				ApiBase::PARAM_TYPE => 'string',
 			],
+			'badfilecontexttitle' => [
+				ApiBase::PARAM_TYPE => 'string',
+			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			],
@@ -734,6 +752,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				'archivename' => 'apihelp-query+imageinfo-paramvalue-prop-archivename',
 				'bitdepth' => 'apihelp-query+imageinfo-paramvalue-prop-bitdepth',
 				'uploadwarning' => 'apihelp-query+imageinfo-paramvalue-prop-uploadwarning',
+				'badfile' => 'apihelp-query+imageinfo-paramvalue-prop-badfile',
 			],
 			array_flip( $filter )
 		);
@@ -802,6 +821,6 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Imageinfo';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Imageinfo';
 	}
 }

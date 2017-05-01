@@ -18,8 +18,8 @@
 		} );
 		$oldContainer.find( 'input' ).each( function () {
 			var $oldInput = $( this ),
-			checked = $oldInput.prop( 'checked' ),
-			$option = $( '<option>' );
+				checked = $oldInput.prop( 'checked' ),
+				$option = $( '<option>' );
 			$option.prop( 'value', $oldInput.prop( 'value' ) );
 			if ( checked ) {
 				$option.prop( 'selected', true );
@@ -98,7 +98,6 @@
 						modules.push.apply( modules, extraModules );
 					}
 					mw.loader.using( modules, function () {
-						/*jshint -W024*/
 						convertCheckboxesWidgetToCapsules( OO.ui.FieldLayout.static.infuse( $el ) );
 					} );
 				} else {

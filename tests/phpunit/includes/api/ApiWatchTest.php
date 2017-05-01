@@ -16,8 +16,6 @@ class ApiWatchTest extends ApiTestCase {
 		return $this->getTokenList( self::$users['sysop'] );
 	}
 
-	/**
-	 */
 	public function testWatchEdit() {
 		$tokens = $this->getTokens();
 
@@ -74,8 +72,6 @@ class ApiWatchTest extends ApiTestCase {
 		return $data;
 	}
 
-	/**
-	 */
 	public function testWatchProtect() {
 		$tokens = $this->getTokens();
 
@@ -92,8 +88,6 @@ class ApiWatchTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'edit', $data[0]['protect']['protections'][0] );
 	}
 
-	/**
-	 */
 	public function testGetRollbackToken() {
 		$this->getTokens();
 
@@ -146,11 +140,11 @@ class ApiWatchTest extends ApiTestCase {
 
 			$this->assertArrayHasKey( 'rollback', $data[0] );
 			$this->assertArrayHasKey( 'title', $data[0]['rollback'] );
-		} catch ( UsageException $ue ) {
-			if ( $ue->getCodeString() == 'onlyauthor' ) {
+		} catch ( ApiUsageException $ue ) {
+			if ( self::apiExceptionHasCode( $ue, 'onlyauthor' ) ) {
 				$this->markTestIncomplete( "Only one author to 'Help:UTPage', cannot test rollback" );
 			} else {
-				$this->fail( "Received error '" . $ue->getCodeString() . "'" );
+				$this->fail( "Received error '" . $ue->getMessage() . "'" );
 			}
 		}
 	}

@@ -5,6 +5,9 @@
  * @license The MIT License (MIT); see LICENSE.txt
  */
 
+/* stylelint-disable no-duplicate-selectors */
+@import 'mediawiki.mixins';
+
 @calendarWidth: 21em;
 @calendarHeight: 14em;
 
@@ -14,7 +17,7 @@
 
 .mw-widget-calendarWidget-header {
 	position: relative;
-	line-height: 2.5em;
+	line-height: 2.5;
 }
 
 .mw-widget-calendarWidget-header .oo-ui-buttonWidget {
@@ -24,10 +27,10 @@
 .mw-widget-calendarWidget-header .mw-widget-calendarWidget-labelButton {
 	margin: 0 auto;
 	display: block;
-	width: @calendarWidth - 2*3em;
+	width: @calendarWidth - 2 * 3em;
 
 	.oo-ui-buttonElement-button {
-		width: @calendarWidth - 2*3em;
+		width: @calendarWidth - 2 * 3em;
 		text-align: center;
 	}
 }
@@ -64,16 +67,12 @@
 		height: @calendarHeight;
 	}
 
-	.mw-widget-calendarWidget-old-body {
-		// background: #fdd;
+	.mw-widget-calendarWidget-body:not( .mw-widget-calendarWidget-old-body ):first-child {
+		margin-top: -@calendarHeight; /* stylelint-disable-line value-keyword-case */
+		margin-left: -@calendarWidth; /* stylelint-disable-line value-keyword-case */
 	}
 
-	.mw-widget-calendarWidget-body:not(.mw-widget-calendarWidget-old-body):first-child {
-		margin-top: -@calendarHeight;
-		margin-left: -@calendarWidth;
-	}
-
-	.mw-widget-calendarWidget-body:not(.mw-widget-calendarWidget-old-body):last-child {
+	.mw-widget-calendarWidget-body:not( .mw-widget-calendarWidget-old-body ):last-child {
 		margin-top: 0;
 		margin-left: 0;
 	}
@@ -84,9 +83,9 @@
 	height: @calendarHeight;
 
 	.mw-widget-calendarWidget-body:first-child {
-		margin-top: 0 !important;
-		margin-left: 0 !important;
-		transition: 0.5s margin-left;
+		margin-top: 0 !important; /* stylelint-disable-line declaration-no-important */
+		margin-left: 0 !important; /* stylelint-disable-line declaration-no-important */
+		.transition( margin-left 500ms );
 	}
 }
 
@@ -95,9 +94,9 @@
 	height: @calendarHeight;
 
 	.mw-widget-calendarWidget-body:first-child {
-		margin-left: -@calendarWidth !important;
-		margin-top: 0 !important;
-		transition: 0.5s margin-left;
+		margin-left: -@calendarWidth !important; /* stylelint-disable-line value-keyword-case, declaration-no-important */
+		margin-top: 0 !important; /* stylelint-disable-line declaration-no-important */
+		.transition( margin-left 500ms );
 	}
 }
 
@@ -110,9 +109,9 @@
 	}
 
 	.mw-widget-calendarWidget-body:first-child {
-		margin-left: 0 !important;
-		margin-top: 0 !important;
-		transition: 0.5s margin-top;
+		margin-left: 0 !important; /* stylelint-disable-line declaration-no-important */
+		margin-top: 0 !important; /* stylelint-disable-line declaration-no-important */
+		.transition( margin-top 500ms );
 	}
 }
 
@@ -125,9 +124,9 @@
 	}
 
 	.mw-widget-calendarWidget-body:first-child {
-		margin-left: 0 !important;
-		margin-top: -@calendarHeight !important;
-		transition: 0.5s margin-top;
+		margin-left: 0 !important; /* stylelint-disable-line declaration-no-important */
+		margin-top: -@calendarHeight !important; /* stylelint-disable-line value-keyword-case, declaration-no-important */
+		.transition( margin-top 500ms );
 	}
 }
 
@@ -149,15 +148,15 @@
 	width: @calendarWidth / 7;
 	line-height: @calendarHeight / 7;
 	// Don't overlap the hacked-up fake box-shadow border we get when focussed
-	&:nth-child(7n) {
+	&:nth-child( 7n ) {
 		width: @calendarWidth / 7 - 0.2em;
 		margin-right: 0.2em;
 	}
-	&:nth-child(7n+1) {
+	&:nth-child( 7n+1 ) {
 		width: @calendarWidth / 7 - 0.2em;
 		margin-left: 0.2em;
 	}
-	&:nth-child(42) ~ & {
+	&:nth-child( 42 ) ~ & {
 		line-height: @calendarHeight / 7 - 0.2em;
 		margin-bottom: 0.2em;
 	}
@@ -168,15 +167,15 @@
 	width: @calendarWidth / 2;
 	line-height: @calendarHeight / 6;
 	// Don't overlap the hacked-up fake box-shadow border we get when focussed
-	&:nth-child(2n) {
+	&:nth-child( 2n ) {
 		width: @calendarWidth / 2 - 0.2em;
 		margin-right: 0.2em;
 	}
-	&:nth-child(2n+1) {
+	&:nth-child( 2n+1 ) {
 		width: @calendarWidth / 2 - 0.2em;
 		margin-left: 0.2em;
 	}
-	&:nth-child(10) ~ & {
+	&:nth-child( 10 ) ~ & {
 		line-height: @calendarHeight / 6 - 0.2em;
 		margin-bottom: 0.2em;
 	}
@@ -187,15 +186,15 @@
 	width: @calendarWidth / 5;
 	line-height: @calendarHeight / 4;
 	// Don't overlap the hacked-up fake box-shadow border we get when focussed
-	&:nth-child(5n) {
+	&:nth-child( 5n ) {
 		width: @calendarWidth / 5 - 0.2em;
 		margin-right: 0.2em;
 	}
-	&:nth-child(5n+1) {
+	&:nth-child( 5n+1 ) {
 		width: @calendarWidth / 5 - 0.2em;
 		margin-left: 0.2em;
 	}
-	&:nth-child(15) ~ & {
+	&:nth-child( 15 ) ~ & {
 		line-height: @calendarHeight / 4 - 0.2em;
 		margin-bottom: 0.2em;
 	}
@@ -207,37 +206,49 @@
 
 /* Theme-specific */
 .mw-widget-calendarWidget {
-	box-shadow: inset 0 0 0 1px #ccc;
-}
+	.box-sizing( border-box );
+	border: 1px solid #a2a9b1;
+	.transition( ~'border-color 100ms, box-shadow 100ms' );
 
-.mw-widget-calendarWidget:focus {
-	outline: none;
-	box-shadow: inset 0 0 0 2px #36c;
-}
+	&:focus {
+		border-color: #36c;
+		box-shadow: inset 0 0 0 1px #36c;
+		outline: 0;
+	}
 
-.mw-widget-calendarWidget-day {
-	color: #444;
-	border-radius: 0.1em;
-}
+	&-day {
+		color: #222;
+		border-radius: 2px;
+	}
 
-.mw-widget-calendarWidget-day-heading {
-	font-weight: bold;
-	color: #555;
-}
+	&-day-heading {
+		color: #54595d;
+		font-weight: bold;
+	}
 
-.mw-widget-calendarWidget-day-additional {
-	color: #aaa;
-}
+	&-day-additional {
+		color: #a2a9b1;
 
-.mw-widget-calendarWidget-day-today {
-	box-shadow: inset 0 0 0 1px #3787fb;
-}
+		&:hover {
+			color: #222;
+		}
+	}
 
-.mw-widget-calendarWidget-item-selected {
-	background-color: #d8e6fe;
-	color: #3787fb;
-}
+	&-day-today {
+		box-shadow: inset 0 0 0 1px #36c;
+	}
 
-.mw-widget-calendarWidget-item:hover {
-	background-color: #eee;
+	&-item {
+		.transition( ~'background-color 250ms, color 250ms' );
+
+		&:hover {
+			background-color: #36c;
+			color: #fff;
+		}
+
+		&-selected {
+			background-color: #2a4b8d;
+			color: #fff;
+		}
+	}
 }

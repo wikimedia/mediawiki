@@ -2,7 +2,7 @@
 
 	/**
 	 * Provides various methods needed for formatting dates and times. This
-	 * implementation implments the proleptic Gregorian calendar over years
+	 * implementation implements the proleptic Gregorian calendar over years
 	 * 0000–9999.
 	 *
 	 * @class
@@ -26,45 +26,43 @@
 	 * @cfg {number} [weekStartsOn=0] What day the week starts on: 0 is Sunday, 1 is Monday, 6 is Saturday.
 	 */
 	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter = function MwWidgetsDatetimeProlepticGregorianDateTimeFormatter( config ) {
-		var statick = this.constructor[ 'static' ];
-
-		statick.setupDefaults();
+		this.constructor.static.setupDefaults();
 
 		config = $.extend( {
 			weekStartsOn: 0,
-			hour12Periods: statick.hour12Periods
+			hour12Periods: this.constructor.static.hour12Periods
 		}, config );
 
 		if ( config.fullMonthNames && !config.shortMonthNames ) {
 			config.shortMonthNames = {};
 			$.each( config.fullMonthNames, function ( k, v ) {
 				config.shortMonthNames[ k ] = v.substr( 0, 3 );
-			}.bind( this ) );
+			} );
 		}
 		if ( config.shortDayNames && !config.dayLetters ) {
 			config.dayLetters = [];
 			$.each( config.shortDayNames, function ( k, v ) {
 				config.dayLetters[ k ] = v.substr( 0, 1 );
-			}.bind( this ) );
+			} );
 		}
 		if ( config.fullDayNames && !config.dayLetters ) {
 			config.dayLetters = [];
 			$.each( config.fullDayNames, function ( k, v ) {
 				config.dayLetters[ k ] = v.substr( 0, 1 );
-			}.bind( this ) );
+			} );
 		}
 		if ( config.fullDayNames && !config.shortDayNames ) {
 			config.shortDayNames = {};
 			$.each( config.fullDayNames, function ( k, v ) {
 				config.shortDayNames[ k ] = v.substr( 0, 3 );
-			}.bind( this ) );
+			} );
 		}
 		config = $.extend( {
-			fullMonthNames: statick.fullMonthNames,
-			shortMonthNames: statick.shortMonthNames,
-			fullDayNames: statick.fullDayNames,
-			shortDayNames: statick.shortDayNames,
-			dayLetters: statick.dayLetters
+			fullMonthNames: this.constructor.static.fullMonthNames,
+			shortMonthNames: this.constructor.static.shortMonthNames,
+			fullDayNames: this.constructor.static.fullDayNames,
+			shortDayNames: this.constructor.static.shortDayNames,
+			dayLetters: this.constructor.static.dayLetters
 		}, config );
 
 		// Parent constructor
@@ -89,7 +87,7 @@
 	/**
 	 * @inheritdoc
 	 */
-	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter[ 'static' ].formats = {
+	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.formats = {
 		'@time': '${hour|0}:${minute|0}:${second|0}',
 		'@date': '$!{dow|short} ${day|#} ${month|short} ${year|#}',
 		'@datetime': '$!{dow|short} ${day|#} ${month|short} ${year|#} ${hour|0}:${minute|0}:${second|0} $!{zone|short}',
@@ -103,7 +101,7 @@
 	 * @inheritable
 	 * @property {Object}
 	 */
-	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter[ 'static' ].fullMonthNames = null;
+	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.fullMonthNames = null;
 
 	/**
 	 * Default abbreviated month names.
@@ -112,7 +110,7 @@
 	 * @inheritable
 	 * @property {Object}
 	 */
-	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter[ 'static' ].shortMonthNames = null;
+	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.shortMonthNames = null;
 
 	/**
 	 * Default full day of week names.
@@ -121,7 +119,7 @@
 	 * @inheritable
 	 * @property {Object}
 	 */
-	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter[ 'static' ].fullDayNames = null;
+	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.fullDayNames = null;
 
 	/**
 	 * Default abbreviated day of week names.
@@ -130,7 +128,7 @@
 	 * @inheritable
 	 * @property {Object}
 	 */
-	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter[ 'static' ].shortDayNames = null;
+	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.shortDayNames = null;
 
 	/**
 	 * Default day letters.
@@ -139,7 +137,7 @@
 	 * @inheritable
 	 * @property {string[]}
 	 */
-	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter[ 'static' ].dayLetters = null;
+	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.dayLetters = null;
 
 	/**
 	 * Default AM/PM indicators
@@ -148,10 +146,10 @@
 	 * @inheritable
 	 * @property {string[]}
 	 */
-	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter[ 'static' ].hour12Periods = null;
+	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.hour12Periods = null;
 
-	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter[ 'static' ].setupDefaults = function () {
-		mw.widgets.datetime.DateTimeFormatter[ 'static' ].setupDefaults.call( this );
+	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.setupDefaults = function () {
+		mw.widgets.datetime.DateTimeFormatter.static.setupDefaults.call( this );
 
 		if ( this.fullMonthNames && !this.shortMonthNames ) {
 			this.shortMonthNames = {};
@@ -284,6 +282,7 @@
 			case 'year|0':
 				spec = {
 					component: 'year',
+					calendarComponent: true,
 					type: 'number',
 					size: 4,
 					zeropad: params[ 0 ] === '0'
@@ -294,6 +293,7 @@
 			case 'month|full':
 				spec = {
 					component: 'month',
+					calendarComponent: true,
 					type: 'string',
 					values: params[ 0 ] === 'short' ? this.shortMonthNames : this.fullMonthNames
 				};
@@ -303,6 +303,7 @@
 			case 'dow|full':
 				spec = {
 					component: 'dow',
+					calendarComponent: true,
 					editable: false,
 					type: 'string',
 					values: params[ 0 ] === 'short' ? this.shortDayNames : this.fullDayNames
@@ -313,6 +314,15 @@
 			case 'month|0':
 			case 'day|#':
 			case 'day|0':
+				spec = {
+					component: tag,
+					calendarComponent: true,
+					type: 'number',
+					size: 2,
+					zeropad: params[ 0 ] === '0'
+				};
+				break;
+
 			case 'hour|#':
 			case 'hour|0':
 			case 'minute|#':
@@ -321,6 +331,7 @@
 			case 'second|0':
 				spec = {
 					component: tag,
+					calendarComponent: false,
 					type: 'number',
 					size: 2,
 					zeropad: params[ 0 ] === '0'
@@ -331,6 +342,7 @@
 			case 'hour|012':
 				spec = {
 					component: 'hour12',
+					calendarComponent: false,
 					type: 'number',
 					size: 2,
 					zeropad: params[ 0 ] === '012'
@@ -340,6 +352,7 @@
 			case 'hour|period':
 				spec = {
 					component: 'hour12period',
+					calendarComponent: false,
 					type: 'boolean',
 					values: this.hour12Periods
 				};
@@ -349,6 +362,7 @@
 			case 'millisecond|0':
 				spec = {
 					component: 'millisecond',
+					calendarComponent: false,
 					type: 'number',
 					size: 3,
 					zeropad: params[ 0 ] === '0'

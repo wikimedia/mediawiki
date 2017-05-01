@@ -30,13 +30,7 @@
 class ApiClearHasMsg extends ApiBase {
 	public function execute() {
 		$user = $this->getUser();
-		if ( $this->getRequest()->wasPosted() ) {
-			$user->setNewtalk( false );
-		} else {
-			DeferredUpdates::addCallableUpdate( function () use ( $user ) {
-				$user->setNewtalk( false );
-			} );
-		}
+		$user->setNewtalk( false );
 		$this->getResult()->addValue( null, $this->getModuleName(), 'success' );
 	}
 
@@ -45,7 +39,7 @@ class ApiClearHasMsg extends ApiBase {
 	}
 
 	public function mustBePosted() {
-		return false;
+		return true;
 	}
 
 	protected function getExamplesMessages() {
@@ -56,6 +50,6 @@ class ApiClearHasMsg extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:ClearHasMsg';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:ClearHasMsg';
 	}
 }

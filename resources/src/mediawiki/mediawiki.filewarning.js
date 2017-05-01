@@ -4,7 +4,6 @@
  * @author Mark Holmquist, 2015
  * @since 1.25
  */
-/*global OO*/
 ( function ( mw, $, oo ) {
 	var warningConfig = mw.config.get( 'wgFileWarning' ),
 		warningMessages = warningConfig.messages,

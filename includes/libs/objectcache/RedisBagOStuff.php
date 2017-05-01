@@ -321,7 +321,7 @@ class RedisBagOStuff extends BagOStuff {
 	 */
 	protected function serialize( $data ) {
 		// Serialize anything but integers so INCR/DECR work
-		// Do not store integer-like strings as integers to avoid type confusion (bug 60563)
+		// Do not store integer-like strings as integers to avoid type confusion (T62563)
 		return is_int( $data ) ? $data : serialize( $data );
 	}
 

@@ -20,6 +20,8 @@
  * @file
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * Class for viewing MediaWiki file description pages
  *
@@ -69,6 +71,7 @@ class ImagePage extends Article {
 		$this->fileLoaded = true;
 
 		$this->displayImg = $img = false;
+
 		Hooks::run( 'ImagePageFindFile', [ $this, &$img, &$this->displayImg ] );
 		if ( !$img ) { // not set by hook?
 			$img = wfFindFile( $this->getTitle() );
@@ -212,10 +215,9 @@ class ImagePage extends Article {
 		}
 
 		$out->addModuleStyles( [
-			'filepage', // always show the local local Filepage.css, bug 29277
+			'filepage', // always show the local local Filepage.css, T31277
 			'mediawiki.action.view.filepage', // Add MediaWiki styles for a file page
 		] );
-
 	}
 
 	/**
@@ -336,7 +338,10 @@ class ImagePage extends Article {
 			$filename = wfEscapeWikiText( $this->displayImg->getName() );
 			$linktext = $filename;
 
-			Hooks::run( 'ImageOpenShowImageInlineBefore', [ &$this, &$out ] );
+			// Avoid PHP 7.1 warning from passing $this by reference
+			$imagePage = $this;
+
+			Hooks::run( 'ImageOpenShowImageInlineBefore', [ &$imagePage, &$out ] );
 
 			if ( $this->displayImg->allowInlineDisplay() ) {
 				# image
@@ -489,6 +494,7 @@ class ImagePage extends Article {
 						Xml::openElement( 'form', $formParams ) .
 						Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
 						$this->getContext()->msg( 'imgmultigoto' )->rawParams( $select )->parse() .
+						$this->getContext()->msg( 'word-separator' )->escaped() .
 						Xml::submitButton( $this->getContext()->msg( 'imgmultigo' )->text() ) .
 						Xml::closeElement( 'form' ) .
 						"<hr />$thumb1\n$thumb2<br style=\"clear: both\" /></div></td></tr></table>"
@@ -531,7 +537,7 @@ class ImagePage extends Article {
 				// this will get messy.
 				// The dirmark, however, must not be immediately adjacent
 				// to the filename, because it can get copied with it.
-				// See bug 25277.
+				// See T27277.
 				// @codingStandardsIgnoreStart Ignore long line
 				$out->addWikiText( <<<EOT
 <div class="fullMedia"><span class="dangerousLink">{$medialink}</span> $dirmark<span class="fileInfo">$longDesc</span></div>
@@ -582,6 +588,8 @@ EOT
 		} else {
 			# Image does not exist
 			if ( !$this->getId() ) {
+				$dbr = wfGetDB( DB_REPLICA );
+
 				# No article exists either
 				# Show deletion log to be consistent with normal articles
 				LogEventsList::showLogExtract(
@@ -590,7 +598,7 @@ EOT
 					$this->getTitle()->getPrefixedText(),
 					'',
 					[ 'lim' => 10,
-						'conds' => [ "log_action != 'revision'" ],
+						'conds' => [ 'log_action != ' . $dbr->addQuotes( 'revision' ) ],
 						'showIfEmpty' => false,
 						'msgKey' => [ 'moveddeleted-notice' ]
 					]

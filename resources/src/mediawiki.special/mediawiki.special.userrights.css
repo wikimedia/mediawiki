@@ -1,0 +1,12 @@
+/*!
+ * Styling for Special:UserRights
+ */
+.mw-userrights-nested {
+	margin-left: 1.2em;
+}
+
+.mw-userrights-nested span {
+	margin-left: 0.3em;
+	display: inline-block;
+	vertical-align: middle;
+}

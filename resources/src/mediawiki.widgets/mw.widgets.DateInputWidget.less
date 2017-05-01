@@ -21,6 +21,7 @@
 
 .oo-ui-inline-spacing( @spacing, @cancelled-spacing: 0 ) {
 	margin-right: @spacing;
+
 	&:last-child {
 		margin-right: @cancelled-spacing;
 	}
@@ -29,17 +30,39 @@
 @indicator-size: unit( 12 / 16 / 0.8, em );
 
 .mw-widget-dateInputWidget {
-	display: inline-block;
-	position: relative;
-
-	&-handle {
-		width: 100%;
+	&.oo-ui-textInputWidget {
 		display: inline-block;
-		cursor: pointer;
 		position: relative;
+		width: 21em;
+		margin-top: 0.25em;
+		.oo-ui-inline-spacing( 0.5em );
+		margin-bottom: 0.25em;
+		margin-left: 0;
+	}
 
+	&-handle,
+	&.oo-ui-textInputWidget input {
+		background-color: #fff;
+		display: inline-block;
+		position: relative;
+		.oo-ui-box-sizing( border-box );
+		width: 100%;
 		.oo-ui-unselectable();
-		.oo-ui-box-sizing(border-box);
+		cursor: pointer;
+		padding: 0.5em 1em;
+		border: 1px solid #a2a9b1;
+		border-radius: 2px;
+		outline: 0;
+		line-height: 1.275;
+		/**
+		 * Ensures non-infused and infused widget have the same height.
+		 * Equal to line height + top padding + bottom padding
+		 */
+		height: 2.275em;
+
+		> .oo-ui-labelElement-label {
+			padding: 0;
+		}
 
 		> .oo-ui-indicatorElement-indicator {
 			display: none;
@@ -51,76 +74,37 @@
 		position: absolute;
 		top: 0;
 		right: 0;
-		height: 100%;
-	}
-
-	&.oo-ui-widget-disabled .mw-widget-dateInputWidget-handle {
-		cursor: default;
-	}
-
-	&-calendar {
-		position: absolute;
-		z-index: 1;
-	}
-
-	// Theme-specific styles
-	width: 21em;
-	margin: 0.25em 0;
-
-	.oo-ui-inline-spacing(0.5em);
-
-	&-handle {
-		padding: 0.5em 1em;
-		border: 1px solid #ccc;
-		border-radius: 0.1em;
-		line-height: 1.275em;
-		background-color: #fff;
-
-		> .oo-ui-labelElement-label {
-			padding: 0;
-		}
-	}
-
-	&.oo-ui-indicatorElement .mw-widget-dateInputWidget-handle > .oo-ui-indicatorElement-indicator {
 		width: @indicator-size;
+		height: 100%;
 		margin: 0 0.775em;
-	}
-
-	> .oo-ui-textInputWidget input {
-		padding-left: 1em;
 	}
 
 	> .oo-ui-textInputWidget {
 		z-index: 2;
+
+		& input {
+			padding-left: 1em;
+		}
 	}
 
 	&-calendar {
 		background-color: #fff;
+		position: absolute;
 		margin-top: -2px;
+		box-shadow: 0 0.15em 0 0 rgba( 0, 0, 0, 0.15 );
+		z-index: 1;
 
 		&:focus {
+			box-shadow: inset 0 0 0 1px #36c, 0 0.15em 0 0 rgba( 0, 0, 0, 0.15 );
 			z-index: 3;
 		}
 	}
 
-	&.oo-ui-widget-enabled {
-		.mw-widget-dateInputWidget-handle:hover {
-			border-color: #36c;
-		}
-	}
-
-	&.oo-ui-widget-disabled {
+	&-empty {
 		.mw-widget-dateInputWidget-handle {
-			color: #ccc;
-			text-shadow: 0 1px 1px #fff;
-			border-color: #ddd;
-			background-color: #f3f3f3;
-
-			> .oo-ui-indicatorElement-indicator {
-				opacity: 0.2;
-			}
+			color: #54595d;
+			outline: 0;
 		}
-
 	}
 
 	&.oo-ui-flaggedElement-invalid {
@@ -130,9 +114,23 @@
 		}
 	}
 
-	&-empty {
+	&.oo-ui-widget-enabled {
+		.mw-widget-dateInputWidget-handle:hover {
+			border-color: #72777d;
+		}
+	}
+
+	&.oo-ui-widget-disabled {
 		.mw-widget-dateInputWidget-handle {
-			color: #ccc;
+			background-color: #eaecf0;
+			color: #72777d;
+			border-color: #c8ccd1;
+			text-shadow: 0 1px 1px #fff;
+			cursor: default;
+
+			> .oo-ui-indicatorElement-indicator {
+				opacity: 0.51;
+			}
 		}
 	}
 }

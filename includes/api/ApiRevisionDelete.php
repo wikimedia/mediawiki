@@ -36,24 +36,30 @@ class ApiRevisionDelete extends ApiBase {
 
 		$params = $this->extractRequestParams();
 		$user = $this->getUser();
-		if ( !$user->isAllowed( RevisionDeleter::getRestriction( $params['type'] ) ) ) {
-			$this->dieUsageMsg( 'badaccess-group0' );
-		}
+		$this->checkUserRightsAny( RevisionDeleter::getRestriction( $params['type'] ) );
 
 		if ( $user->isBlocked() ) {
 			$this->dieBlocked( $user->getBlock() );
 		}
 
 		if ( !$params['ids'] ) {
-			$this->dieUsage( "At least one value is required for 'ids'", 'badparams' );
+			$this->dieWithError( [ 'apierror-paramempty', 'ids' ], 'paramempty_ids' );
+		}
+
+		// Check if user can add tags
+		if ( count( $params['tags'] ) ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			if ( !$ableToTag->isOK() ) {
+				$this->dieStatus( $ableToTag );
+			}
 		}
 
 		$hide = $params['hide'] ?: [];
 		$show = $params['show'] ?: [];
 		if ( array_intersect( $hide, $show ) ) {
-			$this->dieUsage( "Mutually exclusive values for 'hide' and 'show'", 'badparams' );
+			$this->dieWithError( 'apierror-revdel-mutuallyexclusive', 'badparams' );
 		} elseif ( !$hide && !$show ) {
-			$this->dieUsage( "At least one value is required for 'hide' or 'show'", 'badparams' );
+			$this->dieWithError( 'apierror-revdel-paramneeded', 'badparams' );
 		}
 		$bits = [
 			'content' => RevisionDeleter::getRevdelConstant( $params['type'] ),
@@ -72,9 +78,7 @@ class ApiRevisionDelete extends ApiBase {
 		}
 
 		if ( $params['suppress'] === 'yes' ) {
-			if ( !$user->isAllowed( 'suppressrevision' ) ) {
-				$this->dieUsageMsg( 'badaccess-group0' );
-			}
+			$this->checkUserRightsAny( 'suppressrevision' );
 			$bitfield[Revision::DELETED_RESTRICTED] = 1;
 		} elseif ( $params['suppress'] === 'no' ) {
 			$bitfield[Revision::DELETED_RESTRICTED] = 0;
@@ -88,15 +92,18 @@ class ApiRevisionDelete extends ApiBase {
 		}
 		$targetObj = RevisionDeleter::suggestTarget( $params['type'], $targetObj, $params['ids'] );
 		if ( $targetObj === null ) {
-			$this->dieUsage( 'A target title is required for this RevDel type', 'needtarget' );
+			$this->dieWithError( [ 'apierror-revdel-needtarget' ], 'needtarget' );
 		}
 
 		$list = RevisionDeleter::createList(
 			$params['type'], $this->getContext(), $targetObj, $params['ids']
 		);
-		$status = $list->setVisibility(
-			[ 'value' => $bitfield, 'comment' => $params['reason'], 'perItemStatus' => true ]
-		);
+		$status = $list->setVisibility( [
+			'value' => $bitfield,
+			'comment' => $params['reason'],
+			'perItemStatus' => true,
+			'tags' => $params['tags']
+		] );
 
 		$result = $this->getResult();
 		$data = $this->extractStatusInfo( $status );
@@ -124,44 +131,14 @@ class ApiRevisionDelete extends ApiBase {
 		$ret = [
 			'status' => $status->isOK() ? 'Success' : 'Fail',
 		];
-		$errors = $this->formatStatusMessages( $status->getErrorsByType( 'error' ) );
+
+		$errors = $this->getErrorFormatter()->arrayFromStatus( $status, 'error' );
 		if ( $errors ) {
-			ApiResult::setIndexedTagName( $errors, 'e' );
 			$ret['errors'] = $errors;
 		}
-		$warnings = $this->formatStatusMessages( $status->getErrorsByType( 'warning' ) );
+		$warnings = $this->getErrorFormatter()->arrayFromStatus( $status, 'warning' );
 		if ( $warnings ) {
-			ApiResult::setIndexedTagName( $warnings, 'w' );
 			$ret['warnings'] = $warnings;
-		}
-
-		return $ret;
-	}
-
-	private function formatStatusMessages( $messages ) {
-		if ( !$messages ) {
-			return [];
-		}
-		$ret = [];
-		foreach ( $messages as $m ) {
-			if ( $m['message'] instanceof Message ) {
-				$msg = $m['message'];
-				$message = [ 'message' => $msg->getKey() ];
-				if ( $msg->getParams() ) {
-					$message['params'] = $msg->getParams();
-					ApiResult::setIndexedTagName( $message['params'], 'p' );
-				}
-			} else {
-				$message = [ 'message' => $m['message'] ];
-				$msg = wfMessage( $m['message'] );
-				if ( isset( $m['params'] ) ) {
-					$message['params'] = $m['params'];
-					ApiResult::setIndexedTagName( $message['params'], 'p' );
-					$msg->params( $m['params'] );
-				}
-			}
-			$message['rendered'] = $msg->useDatabase( false )->inLanguage( 'en' )->plain();
-			$ret[] = $message;
 		}
 
 		return $ret;
@@ -199,6 +176,10 @@ class ApiRevisionDelete extends ApiBase {
 				ApiBase::PARAM_DFLT => 'nochange',
 			],
 			'reason' => null,
+			'tags' => [
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
+			],
 		];
 	}
 
@@ -218,6 +199,6 @@ class ApiRevisionDelete extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Revisiondelete';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Revisiondelete';
 	}
 }

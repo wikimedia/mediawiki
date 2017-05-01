@@ -110,16 +110,24 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			}
 		}
 
-		if ( !is_null( $params['group'] ) && !is_null( $params['excludegroup'] ) ) {
-			$this->dieUsage( 'group and excludegroup cannot be used together', 'group-excludegroup' );
-		}
+		$this->requireMaxOneParameter( $params, 'group', 'excludegroup' );
 
 		if ( !is_null( $params['group'] ) && count( $params['group'] ) ) {
 			// Filter only users that belong to a given group. This might
 			// produce as many rows-per-user as there are groups being checked.
 			$this->addTables( 'user_groups', 'ug1' );
-			$this->addJoinConds( [ 'ug1' => [ 'INNER JOIN', [ 'ug1.ug_user=user_id',
-				'ug1.ug_group' => $params['group'] ] ] ] );
+			$this->addJoinConds( [
+				'ug1' => [
+					'INNER JOIN',
+					[
+						'ug1.ug_user=user_id',
+						'ug1.ug_group' => $params['group'],
+						$this->getConfig()->get( 'DisableUserGroupExpiry' ) ?
+							'1' :
+							'ug1.ug_expiry IS NULL OR ug1.ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
+					]
+				]
+			] );
 			$maxDuplicateRows *= count( $params['group'] );
 		}
 
@@ -137,7 +145,12 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				) ];
 			}
 			$this->addJoinConds( [ 'ug1' => [ 'LEFT OUTER JOIN',
-				array_merge( [ 'ug1.ug_user=user_id' ], $exclude )
+				array_merge( [
+					'ug1.ug_user=user_id',
+					$this->getConfig()->get( 'DisableUserGroupExpiry' ) ?
+						'1' :
+						'ug1.ug_expiry IS NULL OR ug1.ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
+				], $exclude )
 			] ] );
 			$this->addWhere( 'ug1.ug_user IS NULL' );
 		}
@@ -150,7 +163,12 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 		if ( $fld_groups || $fld_rights ) {
 			$this->addFields( [ 'groups' =>
-				$db->buildGroupConcatField( '|', 'user_groups', 'ug_group', 'ug_user=user_id' )
+				$db->buildGroupConcatField( '|', 'user_groups', 'ug_group', [
+					'ug_user=user_id',
+					$this->getConfig()->get( 'DisableUserGroupExpiry' ) ?
+						'1' :
+						'ug_expiry IS NULL OR ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
+				] )
 			] );
 		}
 
@@ -168,7 +186,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				],
 			] ] );
 
-			// Actually count the actions using a subquery (bug 64505 and bug 64507)
+			// Actually count the actions using a subquery (T66505 and T66507)
 			$timestamp = $db->timestamp( wfTimestamp( TS_UNIX ) - $activeUserSeconds );
 			$this->addFields( [
 				'recentactions' => '(' . $db->selectSQLText(
@@ -377,6 +395,6 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Allusers';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Allusers';
 	}
 }

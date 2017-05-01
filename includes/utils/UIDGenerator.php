@@ -56,13 +56,13 @@ class UIDGenerator {
 		if ( !preg_match( '/^[0-9a-f]{12}$/i', $nodeId ) ) {
 			MediaWiki\suppressWarnings();
 			if ( wfIsWindows() ) {
-				// http://technet.microsoft.com/en-us/library/bb490913.aspx
+				// https://technet.microsoft.com/en-us/library/bb490913.aspx
 				$csv = trim( wfShellExec( 'getmac /NH /FO CSV' ) );
 				$line = substr( $csv, 0, strcspn( $csv, "\n" ) );
 				$info = str_getcsv( $line );
 				$nodeId = isset( $info[0] ) ? str_replace( '-', '', $info[0] ) : '';
 			} elseif ( is_executable( '/sbin/ifconfig' ) ) { // Linux/BSD/Solaris/OS X
-				// See http://linux.die.net/man/8/ifconfig
+				// See https://linux.die.net/man/8/ifconfig
 				$m = [];
 				preg_match( '/\s([0-9a-f]{2}(:[0-9a-f]{2}){5})\s/',
 					wfShellExec( '/sbin/ifconfig -a' ), $m );
@@ -517,7 +517,7 @@ class UIDGenerator {
 	protected function timeWaitUntil( array $time ) {
 		do {
 			$ct = self::millitime();
-			if ( $ct >= $time ) { // http://php.net/manual/en/language.operators.comparison.php
+			if ( $ct >= $time ) { // https://secure.php.net/manual/en/language.operators.comparison.php
 				return $ct; // current timestamp is higher than $time
 			}
 		} while ( ( ( $time[0] - $ct[0] ) * 1000 + ( $time[1] - $ct[1] ) ) <= 10 );
@@ -554,9 +554,9 @@ class UIDGenerator {
 			$ts = ( 1000 * $sec + $msec ) * 10000 + (int)$offset + $delta;
 			$id_bin = str_pad( decbin( $ts % pow( 2, 60 ) ), 60, '0', STR_PAD_LEFT );
 		} elseif ( extension_loaded( 'gmp' ) ) {
-			$ts = gmp_add( gmp_mul( (string) $sec, '1000' ), (string) $msec ); // ms
+			$ts = gmp_add( gmp_mul( (string)$sec, '1000' ), (string)$msec ); // ms
 			$ts = gmp_add( gmp_mul( $ts, '10000' ), $offset ); // 100ns intervals
-			$ts = gmp_add( $ts, (string) $delta );
+			$ts = gmp_add( $ts, (string)$delta );
 			$ts = gmp_mod( $ts, gmp_pow( '2', '60' ) ); // wrap around
 			$id_bin = str_pad( gmp_strval( $ts, 2 ), 60, '0', STR_PAD_LEFT );
 		} elseif ( extension_loaded( 'bcmath' ) ) {

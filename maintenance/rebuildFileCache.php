@@ -41,7 +41,7 @@ class RebuildFileCache extends Maintenance {
 	}
 
 	public function finalSetup() {
-		global $wgDebugToolbar, $wgUseFileCache, $wgReadOnly;
+		global $wgDebugToolbar, $wgUseFileCache;
 
 		$this->enabled = $wgUseFileCache;
 		// Script will handle capturing output and saving it itself
@@ -50,7 +50,8 @@ class RebuildFileCache extends Maintenance {
 		// Has to be done before Setup.php initialize MWDebug
 		$wgDebugToolbar = false;
 		//  Avoid DB writes (like enotif/counters)
-		$wgReadOnly = 'Building cache'; // avoid DB writes (like enotif/counters)
+		MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()
+			->setReason( 'Building cache' );
 
 		parent::finalSetup();
 	}
@@ -122,6 +123,9 @@ class RebuildFileCache extends Maintenance {
 				$article = Article::newFromTitle( $title, $context );
 				$context->setWikiPage( $article->getPage() );
 
+				// Some extensions like FlaggedRevs while error out if this is unset
+				RequestContext::getMain()->setTitle( $title );
+
 				// If the article is cacheable, then load it
 				if ( $article->isFileCacheable( HTMLFileCache::MODE_REBUILD ) ) {
 					$viewCache = new HTMLFileCache( $title, 'view' );
@@ -137,7 +141,7 @@ class RebuildFileCache extends Maintenance {
 
 					MediaWiki\suppressWarnings(); // header notices
 					// Cache ?action=view
-					$wgRequestTime = microtime( true ); # bug 22852
+					$wgRequestTime = microtime( true ); # T24852
 					ob_start();
 					$article->view();
 					$context->getOutput()->output();
@@ -145,7 +149,7 @@ class RebuildFileCache extends Maintenance {
 					$viewHtml = ob_get_clean();
 					$viewCache->saveToFileCache( $viewHtml );
 					// Cache ?action=history
-					$wgRequestTime = microtime( true ); # bug 22852
+					$wgRequestTime = microtime( true ); # T24852
 					ob_start();
 					Action::factory( 'history', $article, $context )->show();
 					$context->getOutput()->output();

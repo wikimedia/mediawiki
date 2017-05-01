@@ -26,6 +26,7 @@
 class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 	protected function loadFromDefinition() {
 		if ( $this->definition === null ) {
+			// Do nothing if definition was already processed
 			return;
 		}
 
@@ -38,39 +39,48 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 
 		$definition = [];
 		foreach ( $themes as $skin => $theme ) {
+			// Find the path to the JSON file which contains the actual image definitions for this theme
 			// TODO Allow extensions to specify this path somehow
-			$dataPath = $this->localBasePath . '/' . $rootPath . '/' . $theme . '/' . $name . '.json';
+			$dataPath = $rootPath . '/' . strtolower( $theme ) . '/' . $name . '.json';
+			$localDataPath = $this->localBasePath . '/' . $dataPath;
 
-			if ( file_exists( $dataPath ) ) {
-				$data = json_decode( file_get_contents( $dataPath ), true );
-				$fixPath = function ( &$path ) use ( $rootPath, $theme ) {
-					// TODO Allow extensions to specify this path somehow
-					$path = $rootPath . '/' . $theme . '/' . $path;
-				};
-				array_walk( $data['images'], function ( &$value ) use ( $fixPath ) {
-					if ( is_string( $value['file'] ) ) {
-						$fixPath( $value['file'] );
-					} elseif ( is_array( $value['file'] ) ) {
-						array_walk_recursive( $value['file'], $fixPath );
-					}
-				} );
-			} else {
-				$data = [];
+			// If there's no file for this module of this theme, that's okay, it will just use the defaults
+			if ( !file_exists( $localDataPath ) ) {
+				continue;
 			}
+			$data = json_decode( file_get_contents( $localDataPath ), true );
 
+			// Expand the paths to images (since they are relative to the JSON file that defines them, not
+			// our base directory)
+			$fixPath = function ( &$path ) use ( $dataPath ) {
+				$path = dirname( $dataPath ) . '/' . $path;
+			};
+			array_walk( $data['images'], function ( &$value ) use ( $fixPath ) {
+				if ( is_string( $value['file'] ) ) {
+					$fixPath( $value['file'] );
+				} elseif ( is_array( $value['file'] ) ) {
+					array_walk_recursive( $value['file'], $fixPath );
+				}
+			} );
+
+			// Convert into a definition compatible with the parent vanilla ResourceLoaderImageModule
 			foreach ( $data as $key => $value ) {
 				switch ( $key ) {
+					// Images and color variants are defined per-theme, here converted to per-skin
 					case 'images':
 					case 'variants':
 						$definition[$key][$skin] = $data[$key];
 						break;
 
+					// Other options must be identical for each theme (or only defined in the default one)
 					default:
 						if ( !isset( $definition[$key] ) ) {
 							$definition[$key] = $data[$key];
 						} elseif ( $definition[$key] !== $data[$key] ) {
 							throw new Exception(
-								"Mismatched OOUI theme definitions are not supported: trying to load $key of $theme theme"
+								"Mismatched OOUI theme images definition: " .
+									"key '$key' of theme '$theme' " .
+									"does not match other themes"
 							);
 						}
 						break;
@@ -78,7 +88,7 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 			}
 		}
 
-		// Fields from definition silently override keys from JSON files
+		// Fields from module definition silently override keys from JSON files
 		$this->definition += $definition;
 
 		parent::loadFromDefinition();

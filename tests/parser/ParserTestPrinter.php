@@ -323,4 +323,3 @@ class ParserTestPrinter extends TestRecorder {
 		return ( $success == $total );
 	}
 }
-

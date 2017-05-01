@@ -8,6 +8,8 @@
  *
  */
 
+$fallback = 'fr';
+
 $namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Dibar',
@@ -31,6 +33,8 @@ $namespaceAliases = [
 	'Skeudenn'            => NS_FILE,
 	'Kaozeadenn_Skeudenn' => NS_FILE_TALK,
 ];
+
+$namespaceGenderAliases = [];
 
 $specialPageAliases = [
 	'Activeusers'               => [ 'ImplijerienOberiant' ],
@@ -146,7 +150,7 @@ $magicWords = [
 ];
 
 $bookstoreList = [
-	'Amazon.fr'    => 'http://www.amazon.fr/exec/obidos/ISBN=$1',
+	'Amazon.fr'    => 'https://www.amazon.fr/exec/obidos/ISBN=$1',
 	'alapage.fr'   => 'http://www.alapage.com/mx/?tp=F&type=101&l_isbn=$1&donnee_appel=ALASQ&devise=&',
 	'fnac.com'     => 'http://www3.fnac.com/advanced/book.do?isbn=$1',
 	'chapitre.com' => 'http://www.chapitre.com/frame_rec.asp?isbn=$1',
@@ -162,4 +166,3 @@ $dateFormats = [
 
 $separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
 $linkTrail = "/^((?:c\'h|C\'H|C\'h|c’h|C’H|C’h|[a-zA-ZàâçéèêîôûäëïöüùñÇÉÂÊÎÔÛÄËÏÖÜÀÈÙÑ])+)(.*)$/sDu";
-

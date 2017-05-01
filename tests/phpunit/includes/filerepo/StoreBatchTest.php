@@ -15,7 +15,7 @@ class StoreBatchTest extends MediaWikiTestCase {
 		global $wgFileBackends;
 		parent::setUp();
 
-		# Forge a FSRepo object to not have to rely on local wiki settings
+		# Forge a FileRepo object to not have to rely on local wiki settings
 		$tmpPrefix = $this->getNewTempDirectory();
 		if ( $this->getCliArg( 'use-filebackend' ) ) {
 			$name = $this->getCliArg( 'use-filebackend' );
@@ -63,7 +63,7 @@ class StoreBatchTest extends MediaWikiTestCase {
 	 * @param string $originalName The title of the image
 	 * @param string $srcPath The filepath or virtual URL
 	 * @param int $flags Flags to pass into repo::store().
-	 * @return FileRepoStatus
+	 * @return Status
 	 */
 	private function storeit( $originalName, $srcPath, $flags ) {
 		$hashPath = $this->repo->getHashPath( $originalName );

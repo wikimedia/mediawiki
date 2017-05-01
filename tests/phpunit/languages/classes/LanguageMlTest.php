@@ -10,7 +10,7 @@ class LanguageMlTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider providerFormatNum
-	 * @see bug 29495
+	 * T31495
 	 * @covers Language::formatNum
 	 */
 	public function testFormatNum( $result, $value ) {

@@ -6,8 +6,6 @@
  * @author Moriel Schottlender, 2015
  * @since 1.19
  */
-/*jshint esversion:5 */
-/*global OO*/
 ( function ( mw, $ ) {
 	/**
 	 * This is a way of getting simple feedback from users. It's useful
@@ -296,7 +294,7 @@
 				this.feedbackSubjectInput.getValue()
 			);
 
-		this.actions.setAbilities( { submit:  isValid } );
+		this.actions.setAbilities( { submit: isValid } );
 	};
 
 	/**
@@ -458,10 +456,10 @@
 				if ( secondaryCode === 'http' ) {
 					fb.status = 'error3';
 					// ajax request failed
-					mw.log.warn( 'Feedback report failed with HTTP error: ' +  details.textStatus );
+					mw.log.warn( 'Feedback report failed with HTTP error: ' + details.textStatus );
 				} else {
 					fb.status = 'error2';
-					mw.log.warn( 'Feedback report failed with API error: ' +  secondaryCode );
+					mw.log.warn( 'Feedback report failed with API error: ' + secondaryCode );
 				}
 			} else {
 				fb.status = 'error1';

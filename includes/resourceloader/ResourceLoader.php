@@ -22,10 +22,12 @@
  * @author Trevor Parscal
  */
 
+use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use WrappedString\WrappedString;
+use Wikimedia\Rdbms\DBConnectionError;
 
 /**
  * Dynamic JavaScript and CSS resource loading system.
@@ -184,7 +186,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			return self::applyFilter( $filter, $data );
 		}
 
-		$stats = RequestContext::getMain()->getStats();
+		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 		$cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
 
 		$key = $cache->makeGlobalKey(
@@ -239,7 +241,7 @@ class ResourceLoader implements LoggerAwareInterface {
 
 		if ( !$config ) {
 			$this->logger->debug( __METHOD__ . ' was called without providing a Config instance' );
-			$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+			$config = MediaWikiServices::getInstance()->getMainConfig();
 		}
 		$this->config = $config;
 
@@ -254,7 +256,10 @@ class ResourceLoader implements LoggerAwareInterface {
 		$this->register( include "$IP/resources/ResourcesOOUI.php" );
 		// Register extension modules
 		$this->register( $config->get( 'ResourceModules' ) );
-		Hooks::run( 'ResourceLoaderRegisterModules', [ &$this ] );
+
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$rl = $this;
+		Hooks::run( 'ResourceLoaderRegisterModules', [ &$rl ] );
 
 		if ( $config->get( 'EnableJavaScriptTest' ) === true ) {
 			$this->registerTestModules();
@@ -388,11 +393,8 @@ class ResourceLoader implements LoggerAwareInterface {
 				}
 			}
 		}
-
 	}
 
-	/**
-	 */
 	public function registerTestModules() {
 		global $IP;
 
@@ -406,7 +408,9 @@ class ResourceLoader implements LoggerAwareInterface {
 		$testModules = [];
 		$testModules['qunit'] = [];
 		// Get other test suites (e.g. from extensions)
-		Hooks::run( 'ResourceLoaderTestModules', [ &$testModules, &$this ] );
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$rl = $this;
+		Hooks::run( 'ResourceLoaderTestModules', [ &$testModules, &$rl ] );
 
 		// Add the testrunner (which configures QUnit) to the dependencies.
 		// Since it must be ready before any of the test suites are executed.
@@ -428,7 +432,6 @@ class ResourceLoader implements LoggerAwareInterface {
 			// Keep track of their names so that they can be loaded together
 			$this->testModuleNames[$id] = array_keys( $testModules[$id] );
 		}
-
 	}
 
 	/**
@@ -609,6 +612,25 @@ class ResourceLoader implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Add an error to the 'errors' array and log it.
+	 *
+	 * Should only be called from within respond().
+	 *
+	 * @since 1.29
+	 * @param Exception $e
+	 * @param string $msg
+	 * @param array $context
+	 */
+	protected function outputErrorAndLog( Exception $e, $msg, array $context = [] ) {
+		MWExceptionHandler::logException( $e );
+		$this->logger->warning(
+			$msg,
+			$context + [ 'exception' => $e ]
+		);
+		$this->errors[] = self::formatExceptionNoComment( $e );
+	}
+
+	/**
 	 * Helper method to get and combine versions of multiple modules.
 	 *
 	 * @since 1.26
@@ -621,7 +643,20 @@ class ResourceLoader implements LoggerAwareInterface {
 			return '';
 		}
 		$hashes = array_map( function ( $module ) use ( $context ) {
-			return $this->getModule( $module )->getVersionHash( $context );
+			try {
+				return $this->getModule( $module )->getVersionHash( $context );
+			} catch ( Exception $e ) {
+				// If modules fail to compute a version, do still consider the versions
+				// of other modules - don't set an empty string E-Tag for the whole request.
+				// See also T152266 and StartupModule::getModuleRegistrations().
+				$this->outputErrorAndLog( $e,
+					'Calculating version for "{module}" failed: {exception}',
+					[
+						'module' => $module,
+					]
+				);
+				return '';
+			}
 		}, $moduleNames );
 		return self::makeHash( implode( '', $hashes ) );
 	}
@@ -670,7 +705,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		// back for subsequent output, resulting in invalid GZIP. So we have to wrap
 		// the whole thing in our own output buffer to be sure the active buffer
 		// doesn't use ob_gzhandler.
-		// See http://bugs.php.net/bug.php?id=36514
+		// See https://bugs.php.net/bug.php?id=36514
 		ob_start();
 
 		// Find out which modules are missing and instantiate the others
@@ -680,7 +715,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			$module = $this->getModule( $name );
 			if ( $module ) {
 				// Do not allow private modules to be loaded from the web.
-				// This is a security issue, see bug 34907.
+				// This is a security issue, see T36907.
 				if ( $module->getGroup() === 'private' ) {
 					$this->logger->debug( "Request for private module '$name' denied" );
 					$this->errors[] = "Cannot show private module \"$name\"";
@@ -696,11 +731,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			// Preload for getCombinedVersion() and for batch makeModuleResponse()
 			$this->preloadModuleInfo( array_keys( $modules ), $context );
 		} catch ( Exception $e ) {
-			MWExceptionHandler::logException( $e );
-			$this->logger->warning( 'Preloading module info failed: {exception}', [
-				'exception' => $e
-			] );
-			$this->errors[] = self::formatExceptionNoComment( $e );
+			$this->outputErrorAndLog( $e, 'Preloading module info failed: {exception}' );
 		}
 
 		// Combine versions to propagate cache invalidation
@@ -708,15 +739,11 @@ class ResourceLoader implements LoggerAwareInterface {
 		try {
 			$versionHash = $this->getCombinedVersion( $context, array_keys( $modules ) );
 		} catch ( Exception $e ) {
-			MWExceptionHandler::logException( $e );
-			$this->logger->warning( 'Calculating version hash failed: {exception}', [
-				'exception' => $e
-			] );
-			$this->errors[] = self::formatExceptionNoComment( $e );
+			$this->outputErrorAndLog( $e, 'Calculating version hash failed: {exception}' );
 		}
 
 		// See RFC 2616 § 3.11 Entity Tags
-		// http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.11
+		// https://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.11
 		$etag = 'W/"' . $versionHash . '"';
 
 		// Try the client-side cache first
@@ -779,7 +806,6 @@ class ResourceLoader implements LoggerAwareInterface {
 
 		$this->errors = [];
 		echo $response;
-
 	}
 
 	/**
@@ -793,6 +819,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @return void
 	 */
 	protected function sendResponseHeaders( ResourceLoaderContext $context, $etag, $errors ) {
+		\MediaWiki\HeaderCallback::warnIfHeadersSent();
 		$rlMaxage = $this->config->get( 'ResourceLoaderMaxage' );
 		// Use a short cache expiry so that updates propagate to clients quickly, if:
 		// - No version specified (shared resources, e.g. stylesheets)
@@ -824,7 +851,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			header( 'Content-Type: text/javascript; charset=utf-8' );
 		}
 		// See RFC 2616 § 14.19 ETag
-		// http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19
+		// https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19
 		header( 'ETag: ' . $etag );
 		if ( $context->getDebug() ) {
 			// Do not cache debug responses
@@ -849,7 +876,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 */
 	protected function tryRespondNotModified( ResourceLoaderContext $context, $etag ) {
 		// See RFC 2616 § 14.26 If-None-Match
-		// http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26
+		// https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26
 		$clientKeys = $context->getRequest()->getHeader( 'If-None-Match', WebRequest::GETHEADER_LIST );
 		// Never send 304s in debug mode
 		if ( $clientKeys !== false && !$context->getDebug() && in_array( $etag, $clientKeys ) ) {
@@ -859,7 +886,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			// response (because the gzip header is always there). This is
 			// a problem because 304 responses have to be completely empty
 			// per the HTTP spec, and Firefox behaves buggily when they're not.
-			// See also http://bugs.php.net/bug.php?id=51579
+			// See also https://bugs.php.net/bug.php?id=51579
 			// To work around this, we tear down all output buffering before
 			// sending the 304.
 			wfResetOutputBuffers( /* $resetGzipEncoding = */ true );
@@ -962,7 +989,9 @@ class ResourceLoader implements LoggerAwareInterface {
 			return MWExceptionHandler::getPublicLogMessage( $e );
 		}
 
-		return MWExceptionHandler::getLogMessage( $e );
+		return MWExceptionHandler::getLogMessage( $e ) .
+			"\nBacktrace:\n" .
+			MWExceptionHandler::getRedactedTraceAsString( $e );
 	}
 
 	/**
@@ -1063,11 +1092,7 @@ MESSAGE;
 				$out .= $strContent;
 
 			} catch ( Exception $e ) {
-				MWExceptionHandler::logException( $e );
-				$this->logger->warning( 'Generating module package failed: {exception}', [
-					'exception' => $e
-				] );
-				$this->errors[] = self::formatExceptionNoComment( $e );
+				$this->outputErrorAndLog( $e, 'Generating module package failed: {exception}' );
 
 				// Respond to client with error-state instead of module implementation
 				$states[$name] = 'error';
@@ -1142,7 +1167,6 @@ MESSAGE;
 	protected static function makeLoaderImplementScript(
 		$name, $scripts, $styles, $messages, $templates
 	) {
-
 		if ( $scripts instanceof XmlJsCode ) {
 			$scripts = new XmlJsCode( "function ( $, jQuery, require, module ) {\n{$scripts->value}\n}" );
 		} elseif ( !is_string( $scripts ) && !is_array( $scripts ) ) {
@@ -1194,7 +1218,7 @@ MESSAGE;
 			$styles = (array)$styles;
 			foreach ( $styles as $style ) {
 				$style = trim( $style );
-				// Don't output an empty "@media print { }" block (bug 40498)
+				// Don't output an empty "@media print { }" block (T42498)
 				if ( $style !== '' ) {
 					// Transform the media type based on request params and config
 					// The way that this relies on $wgRequest to propagate request params is slightly evil
@@ -1611,7 +1635,7 @@ MESSAGE;
 	 */
 	public function getLessCompiler( $extraVars = [] ) {
 		// When called from the installer, it is possible that a required PHP extension
-		// is missing (at least for now; see bug 47564). If this is the case, throw an
+		// is missing (at least for now; see T49564). If this is the case, throw an
 		// exception (caught by the installer) to prevent a fatal error later on.
 		if ( !class_exists( 'Less_Parser' ) ) {
 			throw new MWException( 'MediaWiki requires the less.php parser' );

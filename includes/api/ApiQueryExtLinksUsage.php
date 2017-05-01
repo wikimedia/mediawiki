@@ -230,6 +230,6 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Exturlusage';
+		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Exturlusage';
 	}
 }

@@ -7,7 +7,10 @@
  * @alternateClassName mediaWiki
  * @singleton
  */
-/*jshint latedef:false */
+
+/* global mwNow */
+/* eslint-disable no-use-before-define */
+
 ( function ( $ ) {
 	'use strict';
 
@@ -31,7 +34,7 @@
 	 * @return {string} hash as an seven-character base 36 string
 	 */
 	function fnv132( str ) {
-		/*jshint bitwise:false */
+		/* eslint-disable no-bitwise */
 		var hash = 0x811C9DC5,
 			i;
 
@@ -46,24 +49,28 @@
 		}
 
 		return hash;
+		/* eslint-enable no-bitwise */
 	}
 
-	StringSet = window.Set || ( function () {
-		/**
-		 * @private
-		 * @class
-		 */
-		function StringSet() {
-			this.set = {};
-		}
-		StringSet.prototype.add = function ( value ) {
-			this.set[ value ] = true;
-		};
-		StringSet.prototype.has = function ( value ) {
-			return this.set.hasOwnProperty( value );
-		};
-		return StringSet;
-	}() );
+	function defineFallbacks() {
+		// <https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Set>
+		StringSet = window.Set || ( function () {
+			/**
+			 * @private
+			 * @class
+			 */
+			function StringSet() {
+				this.set = {};
+			}
+			StringSet.prototype.add = function ( value ) {
+				this.set[ value ] = true;
+			};
+			StringSet.prototype.has = function ( value ) {
+				return hasOwn.call( this.set, value );
+			};
+			return StringSet;
+		}() );
+	}
 
 	/**
 	 * Create an object that can be read from or written to via methods that allow
@@ -78,9 +85,8 @@
 	 *  copied in one direction only. Changes to globals do not reflect in the map.
 	 */
 	function Map( global ) {
-		this.internalValues = {};
+		this.values = {};
 		if ( global === true ) {
-
 			// Override #set to also set the global variable
 			this.set = function ( selection, value ) {
 				var s;
@@ -98,15 +104,6 @@
 				return false;
 			};
 		}
-
-		// Deprecated since MediaWiki 1.28
-		log.deprecate(
-			this,
-			'values',
-			this.internalValues,
-			'mw.Map#values is deprecated. Use mw.Map#get() instead.',
-			'Map-values'
-		);
 	}
 
 	/**
@@ -119,7 +116,7 @@
 	 * @param {Mixed} value
 	 */
 	function setGlobalMapValue( map, key, value ) {
-		map.internalValues[ key ] = value;
+		map.values[ key ] = value;
 		log.deprecate(
 				window,
 				key,
@@ -139,39 +136,42 @@
 		 *
 		 * @param {string|Array} [selection] Key or array of keys to retrieve values for.
 		 * @param {Mixed} [fallback=null] Value for keys that don't exist.
-		 * @return {Mixed|Object| null} If selection was a string, returns the value,
+		 * @return {Mixed|Object|null} If selection was a string, returns the value,
 		 *  If selection was an array, returns an object of key/values.
-		 *  If no selection is passed, the internal container is returned. (Beware that,
-		 *  as is the default in JavaScript, the object is returned by reference.)
+		 *  If no selection is passed, a new object with all key/values is returned.
 		 */
 		get: function ( selection, fallback ) {
 			var results, i;
-			// If we only do this in the `return` block, it'll fail for the
-			// call to get() from the mutli-selection block.
 			fallback = arguments.length > 1 ? fallback : null;
 
-			if ( $.isArray( selection ) ) {
-				selection = slice.call( selection );
+			if ( Array.isArray( selection ) ) {
 				results = {};
 				for ( i = 0; i < selection.length; i++ ) {
-					results[ selection[ i ] ] = this.get( selection[ i ], fallback );
+					if ( typeof selection[ i ] === 'string' ) {
+						results[ selection[ i ] ] = hasOwn.call( this.values, selection[ i ] ) ?
+							this.values[ selection[ i ] ] :
+							fallback;
+					}
 				}
 				return results;
 			}
 
 			if ( typeof selection === 'string' ) {
-				if ( !hasOwn.call( this.internalValues, selection ) ) {
-					return fallback;
-				}
-				return this.internalValues[ selection ];
+				return hasOwn.call( this.values, selection ) ?
+					this.values[ selection ] :
+					fallback;
 			}
 
 			if ( selection === undefined ) {
-				return this.internalValues;
+				results = {};
+				for ( i in this.values ) {
+					results[ i ] = this.values[ i ];
+				}
+				return results;
 			}
 
 			// Invalid selection key
-			return null;
+			return fallback;
 		},
 
 		/**
@@ -186,12 +186,12 @@
 
 			if ( $.isPlainObject( selection ) ) {
 				for ( s in selection ) {
-					this.internalValues[ s ] = selection[ s ];
+					this.values[ s ] = selection[ s ];
 				}
 				return true;
 			}
 			if ( typeof selection === 'string' && arguments.length > 1 ) {
-				this.internalValues[ selection ] = value;
+				this.values[ selection ] = value;
 				return true;
 			}
 			return false;
@@ -204,17 +204,16 @@
 		 * @return {boolean} True if the key(s) exist
 		 */
 		exists: function ( selection ) {
-			var s;
-
-			if ( $.isArray( selection ) ) {
-				for ( s = 0; s < selection.length; s++ ) {
-					if ( typeof selection[ s ] !== 'string' || !hasOwn.call( this.internalValues, selection[ s ] ) ) {
+			var i;
+			if ( Array.isArray( selection ) ) {
+				for ( i = 0; i < selection.length; i++ ) {
+					if ( typeof selection[ i ] !== 'string' || !hasOwn.call( this.values, selection[ i ] ) ) {
 						return false;
 					}
 				}
 				return true;
 			}
-			return typeof selection === 'string' && hasOwn.call( this.internalValues, selection );
+			return typeof selection === 'string' && hasOwn.call( this.values, selection );
 		}
 	};
 
@@ -301,6 +300,7 @@
 			return mw.format.apply( null, [ this.map.get( this.key ) ].concat( this.parameters ) );
 		},
 
+		// eslint-disable-next-line valid-jsdoc
 		/**
 		 * Add (does not replace) parameters for `$N` placeholder values.
 		 *
@@ -325,12 +325,15 @@
 			var text;
 
 			if ( !this.exists() ) {
-				// Use <key> as text if key does not exist
-				if ( this.format === 'escaped' || this.format === 'parse' ) {
-					// format 'escaped' and 'parse' need to have the brackets and key html escaped
-					return mw.html.escape( '<' + this.key + '>' );
-				}
-				return '<' + this.key + '>';
+				// Use ⧼key⧽ as text if key does not exist
+				// Err on the side of safety, ensure that the output
+				// is always html safe in the event the message key is
+				// missing, since in that case its highly likely the
+				// message key is user-controlled.
+				// '⧼' is used instead of '<' to side-step any
+				// double-escaping issues.
+				// (Keep synchronised with Message::toString() in PHP.)
+				return '⧼' + mw.html.escape( this.key ) + '⧽';
 			}
 
 			if ( this.format === 'plain' || this.format === 'text' || this.format === 'parse' ) {
@@ -412,20 +415,39 @@
 		}
 	};
 
+	defineFallbacks();
+
+	/* eslint-disable no-console */
 	log = ( function () {
-		// Also update the restoration of methods in mediawiki.log.js
-		// when adding or removing methods here.
+		/**
+		 * Write a verbose message to the browser's console in debug mode.
+		 *
+		 * This method is mainly intended for verbose logging. It is a no-op in production mode.
+		 * In ResourceLoader debug mode, it will use the browser's console if available, with
+		 * fallback to creating a console interface in the DOM and logging messages there.
+		 *
+		 * See {@link mw.log} for other logging methods.
+		 *
+		 * @member mw
+		 * @param {...string} msg Messages to output to console.
+		 */
 		var log = function () {},
 			console = window.console;
 
+		// Note: Keep list of methods in sync with restoration in mediawiki.log.js
+		// when adding or removing mw.log methods below!
+
 		/**
+		 * Collection of methods to help log messages to the console.
+		 *
 		 * @class mw.log
 		 * @singleton
 		 */
 
 		/**
-		 * Write a message to the console's warning channel.
-		 * Actions not supported by the browser console are silently ignored.
+		 * Write a message to the browser console's warning channel.
+		 *
+		 * This method is a no-op in browsers that don't implement the Console API.
 		 *
 		 * @param {...string} msg Messages to output to console
 		 */
@@ -434,10 +456,12 @@
 			$.noop;
 
 		/**
-		 * Write a message to the console's error channel.
+		 * Write a message to the browser console's error channel.
 		 *
-		 * Most browsers provide a stacktrace by default if the argument
-		 * is a caught Error object.
+		 * Most browsers also print a stacktrace when calling this method if the
+		 * argument is an Error object.
+		 *
+		 * This method is a no-op in browsers that don't implement the Console API.
 		 *
 		 * @since 1.26
 		 * @param {Error|...string} msg Messages to output to console
@@ -447,7 +471,7 @@
 			$.noop;
 
 		/**
-		 * Create a property in a host object that, when accessed, will produce
+		 * Create a property on a host object that, when accessed, will produce
 		 * a deprecation warning in the console.
 		 *
 		 * @param {Object} obj Host object of deprecated property
@@ -460,9 +484,9 @@
 		log.deprecate = !Object.defineProperty ? function ( obj, key, val ) {
 			obj[ key ] = val;
 		} : function ( obj, key, val, msg, logName ) {
+			var logged = new StringSet();
 			logName = logName || key;
 			msg = 'Use of "' + logName + '" is deprecated.' + ( msg ? ( ' ' + msg ) : '' );
-			var logged = new StringSet();
 			function uniqueTrace() {
 				var trace = new Error().stack;
 				if ( logged.has( trace ) ) {
@@ -500,11 +524,18 @@
 
 		return log;
 	}() );
+	/* eslint-enable no-console */
 
 	/**
 	 * @class mw
 	 */
 	mw = {
+		redefineFallbacksForTest: function () {
+			if ( !window.QUnit ) {
+				throw new Error( 'Reset not allowed outside unit tests' );
+			}
+			defineFallbacks();
+		},
 
 		/**
 		 * Get the current time, measured in milliseconds since January 1, 1970 (UTC).
@@ -515,13 +546,8 @@
 		 *
 		 * @return {number} Current time
 		 */
-		now: ( function () {
-			var perf = window.performance,
-				navStart = perf && perf.timing && perf.timing.navigationStart;
-			return navStart && typeof perf.now === 'function' ?
-				function () { return navStart + perf.now(); } :
-				function () { return +new Date(); };
-		}() ),
+		now: mwNow,
+		// mwNow is defined in startup.js
 
 		/**
 		 * Format a string. Replace $1, $2 ... $N with positional arguments.
@@ -694,11 +720,7 @@
 			return mw.message.apply( mw.message, arguments ).toString();
 		},
 
-		/**
-		 * No-op dummy placeholder for {@link mw.log} in debug mode.
-		 *
-		 * @method
-		 */
+		// Expose mw.log
 		log: log,
 
 		/**
@@ -849,7 +871,6 @@
 				cssBuffer = '',
 				cssBufferTimer = null,
 				cssCallbacks = $.Callbacks(),
-				isIE9 = document.documentMode === 9,
 				rAF = window.requestAnimationFrame || setTimeout;
 
 			function getMarker() {
@@ -898,8 +919,6 @@
 			 * @param {Function} [callback]
 			 */
 			function addEmbeddedCSS( cssText, callback ) {
-				var $style, styleEl;
-
 				function fireCallbacks() {
 					var oldCallbacks = cssCallbacks;
 					// Reset cssCallbacks variable so it's not polluted by any calls to
@@ -942,29 +961,7 @@
 					cssBuffer = '';
 				}
 
-				// By default, always create a new <style>. Appending text to a <style> tag is
-				// is a performance anti-pattern as it requires CSS to be reparsed (T47810).
-				//
-				// Support: IE 6-9
-				// Try to re-use existing <style> tags due to the IE stylesheet limit (T33676).
-				if ( isIE9 ) {
-					$style = $( getMarker() ).prev();
-					// Verify that the element before the marker actually is a <style> tag created
-					// by mw.loader (not some other style tag, or e.g. a <meta> tag).
-					if ( $style.data( 'ResourceLoaderDynamicStyleTag' ) ) {
-						styleEl = $style[ 0 ];
-						styleEl.appendChild( document.createTextNode( cssText ) );
-						fireCallbacks();
-						return;
-					}
-					// Else: No existing tag to reuse. Continue below and create the first one.
-				}
-
-				$style = $( newStyleTag( cssText, getMarker() ) );
-
-				if ( isIE9 ) {
-					$style.data( 'ResourceLoaderDynamicStyleTag', true );
-				}
+				$( newStyleTag( cssText, getMarker() ) );
 
 				fireCallbacks();
 			}
@@ -975,7 +972,7 @@
 			 * @return {string} Hash of concatenated version hashes.
 			 */
 			function getCombinedVersion( modules ) {
-				var hashes = $.map( modules, function ( module ) {
+				var hashes = modules.map( function ( module ) {
 					return registry[ module ].version;
 				} );
 				return fnv132( hashes.join( '' ) );
@@ -1109,7 +1106,7 @@
 				}
 
 				if ( registry[ module ].skip !== null ) {
-					/*jshint evil:true */
+					// eslint-disable-next-line no-new-func
 					skip = new Function( registry[ module ].skip );
 					registry[ module ].skip = null;
 					if ( skip() ) {
@@ -1149,7 +1146,7 @@
 							) );
 						}
 
-						unresolved.add(  module );
+						unresolved.add( module );
 						sortDependencies( deps[ i ], resolved, unresolved );
 					}
 				}
@@ -1162,12 +1159,13 @@
 			 * @private
 			 * @param {string[]} modules Array of string module names
 			 * @return {Array} List of dependencies, including 'module'.
+			 * @throws {Error} If an unregistered module or a dependency loop is encountered
 			 */
 			function resolve( modules ) {
-				var resolved = [];
-				$.each( modules, function ( idx, module ) {
-					sortDependencies( module, resolved );
-				} );
+				var i, resolved = [];
+				for ( i = 0; i < modules.length; i++ ) {
+					sortDependencies( modules[ i ], resolved );
+				}
 				return resolved;
 			}
 
@@ -1235,6 +1233,8 @@
 			 * Utility function for execute()
 			 *
 			 * @ignore
+			 * @param {string} [media] Media attribute
+			 * @param {string} url URL
 			 */
 			function addLink( media, url ) {
 				var el = document.createElement( 'link' );
@@ -1244,7 +1244,7 @@
 					el.media = media;
 				}
 				// If you end up here from an IE exception "SCRIPT: Invalid property value.",
-				// see #addEmbeddedCSS, bug 31676, and bug 47277 for details.
+				// see #addEmbeddedCSS, T33676, T43331, and T49277 for details.
 				el.href = url;
 
 				$( getMarker() ).before( el );
@@ -1270,10 +1270,7 @@
 				registry[ module ].state = 'executing';
 
 				runScript = function () {
-					var script, markModuleReady, nestedAddScript, legacyWait, implicitDependencies,
-						// Expand to include dependencies since we have to exclude both legacy modules
-						// and their dependencies from the legacyWait (to prevent a circular dependency).
-						legacyModules = resolve( mw.config.get( 'wgResourceLoaderLegacyModules', [] ) );
+					var script, markModuleReady, nestedAddScript, implicitDependencies, implicitWait;
 
 					script = registry[ module ].script;
 					markModuleReady = function () {
@@ -1294,9 +1291,7 @@
 						} );
 					};
 
-					implicitDependencies = ( $.inArray( module, legacyModules ) !== -1 )
-						? []
-						: legacyModules;
+					implicitDependencies = [];
 
 					if ( module === 'user' ) {
 						// Implicit dependency on the site module. Not real dependency because
@@ -1304,13 +1299,13 @@
 						implicitDependencies.push( 'site' );
 					}
 
-					legacyWait = implicitDependencies.length
-						? mw.loader.using( implicitDependencies )
-						: $.Deferred().resolve();
+					implicitWait = implicitDependencies.length ?
+						mw.loader.using( implicitDependencies ) :
+						$.Deferred().resolve();
 
-					legacyWait.always( function () {
+					implicitWait.always( function () {
 						try {
-							if ( $.isArray( script ) ) {
+							if ( Array.isArray( script ) ) {
 								nestedAddScript( script, markModuleReady, 0 );
 							} else if ( typeof script === 'function' ) {
 								// Pass jQuery twice so that the signature of the closure which wraps
@@ -1401,7 +1396,7 @@
 
 						// Array of css strings in key 'css',
 						// or back-compat array of urls from media-type
-						if ( $.isArray( value ) ) {
+						if ( Array.isArray( value ) ) {
 							for ( i = 0; i < value.length; i++ ) {
 								if ( key === 'bc-url' ) {
 									// back-compat: { <media>: [url, ..] }
@@ -1500,6 +1495,8 @@
 			 * to a query string of the form foo.bar,baz|bar.baz,quux
 			 *
 			 * @private
+			 * @param {Object} moduleMap Module map
+			 * @return {string} Module query string
 			 */
 			function buildModulesString( moduleMap ) {
 				var p, prefix,
@@ -1635,9 +1632,9 @@
 							prefix = modules[ i ].substr( 0, lastDotIndex );
 							suffix = modules[ i ].slice( lastDotIndex + 1 );
 
-							bytesAdded = hasOwn.call( moduleMap, prefix )
-								? suffix.length + 3 // '%2C'.length == 3
-								: modules[ i ].length + 3; // '%7C'.length == 3
+							bytesAdded = hasOwn.call( moduleMap, prefix ) ?
+								suffix.length + 3 : // '%2C'.length == 3
+								modules[ i ].length + 3; // '%7C'.length == 3
 
 							// If the url would become too long, create a new one,
 							// but don't create empty requests
@@ -1777,11 +1774,13 @@
 							return true;
 						} );
 						asyncEval( implementations, function ( err ) {
+							var failed;
 							// Not good, the cached mw.loader.implement calls failed! This should
 							// never happen, barring ResourceLoader bugs, browser bugs and PEBKACs.
 							// Depending on how corrupt the string is, it is likely that some
 							// modules' implement() succeeded while the ones after the error will
 							// never run and leave their modules in the 'loading' state forever.
+							mw.loader.store.stats.failed++;
 
 							// Since this is an error not caused by an individual module but by
 							// something that infected the implement call itself, don't take any
@@ -1790,7 +1789,7 @@
 
 							mw.track( 'resourceloader.exception', { exception: err, source: 'store-eval' } );
 							// Re-add the failed ones that are still pending back to the batch
-							var failed = $.grep( sourceModules, function ( module ) {
+							failed = $.grep( sourceModules, function ( module ) {
 								return registry[ module ].state === 'loading';
 							} );
 							batchRequest( failed );
@@ -1911,7 +1910,7 @@
 				 *     { <media>: css }
 				 *     { <media>: [url, ..] }
 				 *
-				 * The reason css strings are not concatenated anymore is bug 31676. We now check
+				 * The reason css strings are not concatenated anymore is T33676. We now check
 				 * whether it's safe to extend the stylesheet.
 				 *
 				 * @protected
@@ -1985,8 +1984,12 @@
 						deferred.fail( error );
 					}
 
-					// Resolve entire dependency map
-					dependencies = resolve( dependencies );
+					try {
+						// Resolve entire dependency map
+						dependencies = resolve( dependencies );
+					} catch ( e ) {
+						return deferred.reject( e ).promise();
+					}
 					if ( allReady( dependencies ) ) {
 						// Run ready immediately
 						deferred.resolve( mw.loader.require );
@@ -2023,10 +2026,6 @@
 						// "https://example.org/x.js", "http://example.org/x.js", "//example.org/x.js", "/x.js"
 						if ( /^(https?:)?\/?\//.test( modules ) ) {
 							if ( type === 'text/css' ) {
-								// Support: IE 7-8
-								// Use properties instead of attributes as IE throws security
-								// warnings when inserting a <link> tag with a protocol-relative
-								// URL set though attributes - when on HTTPS. See bug 41331.
 								l = document.createElement( 'link' );
 								l.rel = 'stylesheet';
 								l.href = modules;
@@ -2127,9 +2126,7 @@
 				 * @return {Array}
 				 */
 				getModuleNames: function () {
-					return $.map( registry, function ( i, key ) {
-						return key;
-					} );
+					return Object.keys( registry );
 				},
 
 				/**
@@ -2139,6 +2136,8 @@
 				 *
 				 * @protected
 				 * @since 1.27
+				 * @param {string} moduleName Module name
+				 * @return {Mixed} Exported value
 				 */
 				require: function ( moduleName ) {
 					var state = mw.loader.getState( moduleName );
@@ -2177,6 +2176,8 @@
 					// Whether the store is in use on this page.
 					enabled: null,
 
+					// Modules whose string representation exceeds 100 kB are
+					// ineligible for storage. See bug T66721.
 					MODULE_SIZE_MAX: 100 * 1000,
 
 					// The contents of the store, mapping '[name]@[version]' keys
@@ -2184,7 +2185,7 @@
 					items: {},
 
 					// Cache hit stats
-					stats: { hits: 0, misses: 0, expired: 0 },
+					stats: { hits: 0, misses: 0, expired: 0, failed: 0 },
 
 					/**
 					 * Construct a JSON-serializable object representing the content of the store.
@@ -2305,6 +2306,7 @@
 					 *
 					 * @param {string} module Module name
 					 * @param {Object} descriptor The module's descriptor as set in the registry
+					 * @return {boolean} Module was set
 					 */
 					set: function ( module, descriptor ) {
 						var args, key, src;
@@ -2325,7 +2327,7 @@
 							// Partial descriptor
 							// (e.g. skipped module, or style module with state=ready)
 							$.inArray( undefined, [ descriptor.script, descriptor.style,
-									descriptor.messages, descriptor.templates ] ) !== -1
+								descriptor.messages, descriptor.templates ] ) !== -1
 						) {
 							// Decline to store
 							return false;
@@ -2349,7 +2351,7 @@
 							}
 						} catch ( e ) {
 							mw.track( 'resourceloader.exception', { exception: e, source: 'store-localstorage-json' } );
-							return;
+							return false;
 						}
 
 						src = 'mw.loader.implement(' + args.join( ',' ) + ');';
@@ -2358,11 +2360,14 @@
 						}
 						mw.loader.store.items[ key ] = src;
 						mw.loader.store.update();
+						return true;
 					},
 
 					/**
 					 * Iterate through the module store, removing any item that does not correspond
 					 * (in name and version) to an item in the module registry.
+					 *
+					 * @return {boolean} Store was pruned
 					 */
 					prune: function () {
 						var key, module;
@@ -2381,6 +2386,7 @@
 								delete mw.loader.store.items[ key ];
 							}
 						}
+						return true;
 					},
 
 					/**
@@ -2504,7 +2510,7 @@
 				 *  - this.Raw: The raw value is directly included.
 				 *  - this.Cdata: The raw value is directly included. An exception is
 				 *    thrown if it contains any illegal ETAGO delimiter.
-				 *    See <http://www.w3.org/TR/html401/appendix/notes.html#h-B.3.2>.
+				 *    See <https://www.w3.org/TR/html401/appendix/notes.html#h-B.3.2>.
 				 * @return {string} HTML
 				 */
 				element: function ( name, attrs, contents ) {
@@ -2562,6 +2568,8 @@
 				 * Wrapper object for raw HTML passed to mw.html.element().
 				 *
 				 * @class mw.html.Raw
+				 * @constructor
+				 * @param {string} value
 				 */
 				Raw: function ( value ) {
 					this.value = value;
@@ -2571,6 +2579,8 @@
 				 * Wrapper object for CDATA element contents passed to mw.html.element()
 				 *
 				 * @class mw.html.Cdata
+				 * @constructor
+				 * @param {string} value
 				 */
 				Cdata: function ( value ) {
 					this.value = value;
@@ -2669,6 +2679,7 @@
 					 */
 					remove: list.remove,
 
+					// eslint-disable-next-line valid-jsdoc
 					/**
 					 * Run a hook.
 					 *
@@ -2702,6 +2713,7 @@
 	 * @param {string} [data.module] Name of module which caused the error
 	 */
 	function logError( topic, data ) {
+		/* eslint-disable no-console */
 		var msg,
 			e = data.exception,
 			source = data.source,
@@ -2723,6 +2735,7 @@
 				console.error( String( e ), e );
 			}
 		}
+		/* eslint-enable no-console */
 	}
 
 	// Subscribe to error streams
@@ -2736,14 +2749,16 @@
 	 * @member mw.hook
 	 */
 	$( function () {
-		var loading = $.grep( mw.loader.getModuleNames(), function ( module ) {
+		var loading, modules;
+
+		modules = $.grep( mw.loader.getModuleNames(), function ( module ) {
 			return mw.loader.getState( module ) === 'loading';
 		} );
 		// We only need a callback, not any actual module. First try a single using()
 		// for all loading modules. If one fails, fall back to tracking each module
 		// separately via $.when(), this is expensive.
-		loading = mw.loader.using( loading ).then( null, function () {
-			var all = $.map( loading, function ( module ) {
+		loading = mw.loader.using( modules ).then( null, function () {
+			var all = modules.map( function ( module ) {
 				return mw.loader.using( module ).then( null, function () {
 					return $.Deferred().resolve();
 				} );
@@ -2751,6 +2766,7 @@
 			return $.when.apply( $, all );
 		} );
 		loading.then( function () {
+			/* global mwPerformance */
 			mwPerformance.mark( 'mwLoadEnd' );
 			mw.hook( 'resourceloader.loadEnd' ).fire();
 		} );

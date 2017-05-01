@@ -18,35 +18,55 @@
  *   options-messages - As for HTMLSelectField
  *   options - As for HTMLSelectField
  *   options-message - As for HTMLSelectField
- *   autocomplete - Associative array mapping display text to values.
- *   autocomplete-messages - Like autocomplete, but keys are message names.
+ *   autocomplete-data - Associative array mapping display text to values.
+ *   autocomplete-data-messages - Like autocomplete, but keys are message names.
  *   require-match - Boolean, if true the value must be in the options or the
  *     autocomplete.
  *   other-message - Message to use instead of htmlform-selectorother-other for
  *      the 'other' message.
  *   other - Raw text to use for the 'other' message
+ *
+ * The old name of autocomplete-data[-messages] was autocomplete[-messages] which is still
+ * recognized but deprecated since MediaWiki 1.29 since it conflicts with how autocomplete is
+ * used in HTMLTextField.
  */
 class HTMLAutoCompleteSelectField extends HTMLTextField {
-	protected $autocomplete = [];
+	protected $autocompleteData = [];
 
-	function __construct( $params ) {
+	public function __construct( $params ) {
 		$params += [
 			'require-match' => false,
 		];
 
+		// FIXME B/C, remove in 1.30
+		if (
+			array_key_exists( 'autocomplete', $params )
+			&& !array_key_exists( 'autocomplete-data', $params )
+		) {
+			$params['autocomplete-data'] = $params['autocomplete'];
+			unset( $params['autocomplete'] );
+		}
+		if (
+			array_key_exists( 'autocomplete-messages', $params )
+			&& !array_key_exists( 'autocomplete-data-messages', $params )
+		) {
+			$params['autocomplete-data-messages'] = $params['autocomplete-messages'];
+			unset( $params['autocomplete-messages'] );
+		}
+
 		parent::__construct( $params );
 
-		if ( array_key_exists( 'autocomplete-messages', $this->mParams ) ) {
-			foreach ( $this->mParams['autocomplete-messages'] as $key => $value ) {
+		if ( array_key_exists( 'autocomplete-data-messages', $this->mParams ) ) {
+			foreach ( $this->mParams['autocomplete-data-messages'] as $key => $value ) {
 				$key = $this->msg( $key )->plain();
-				$this->autocomplete[$key] = strval( $value );
+				$this->autocompleteData[$key] = strval( $value );
 			}
-		} elseif ( array_key_exists( 'autocomplete', $this->mParams ) ) {
-			foreach ( $this->mParams['autocomplete'] as $key => $value ) {
-				$this->autocomplete[$key] = strval( $value );
+		} elseif ( array_key_exists( 'autocomplete-data', $this->mParams ) ) {
+			foreach ( $this->mParams['autocomplete-data'] as $key => $value ) {
+				$this->autocompleteData[$key] = strval( $value );
 			}
 		}
-		if ( !is_array( $this->autocomplete ) || !$this->autocomplete ) {
+		if ( !is_array( $this->autocompleteData ) || !$this->autocompleteData ) {
 			throw new MWException( 'HTMLAutoCompleteSelectField called without any autocompletions' );
 		}
 
@@ -63,14 +83,14 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 		}
 	}
 
-	function loadDataFromRequest( $request ) {
+	public function loadDataFromRequest( $request ) {
 		if ( $request->getCheck( $this->mName ) ) {
 			$val = $request->getText( $this->mName . '-select', 'other' );
 
 			if ( $val === 'other' ) {
 				$val = $request->getText( $this->mName );
-				if ( isset( $this->autocomplete[$val] ) ) {
-					$val = $this->autocomplete[$val];
+				if ( isset( $this->autocompleteData[$val] ) ) {
+					$val = $this->autocompleteData[$val];
 				}
 			}
 
@@ -80,21 +100,21 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 		}
 	}
 
-	function validate( $value, $alldata ) {
+	public function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
 		if ( $p !== true ) {
 			return $p;
 		}
 
-		$validOptions = HTMLFormField::flattenOptions( $this->getOptions() );
+		$validOptions = HTMLFormField::flattenOptions( $this->getOptions() ?: [] );
 
 		if ( in_array( strval( $value ), $validOptions, true ) ) {
 			return true;
-		} elseif ( in_array( strval( $value ), $this->autocomplete, true ) ) {
+		} elseif ( in_array( strval( $value ), $this->autocompleteData, true ) ) {
 			return true;
 		} elseif ( $this->mParams['require-match'] ) {
-			return $this->msg( 'htmlform-select-badoption' )->parse();
+			return $this->msg( 'htmlform-select-badoption' );
 		}
 
 		return true;
@@ -104,7 +124,7 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 	public function getAttributes( array $list ) {
 		$attribs = [
 			'type' => 'text',
-			'data-autocomplete' => FormatJson::encode( array_keys( $this->autocomplete ) ),
+			'data-autocomplete' => FormatJson::encode( array_keys( $this->autocompleteData ) ),
 		] + parent::getAttributes( $list );
 
 		if ( $this->getOptions() ) {
@@ -116,7 +136,7 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 		return $attribs;
 	}
 
-	function getInputHTML( $value ) {
+	public function getInputHTML( $value ) {
 		$oldClass = $this->mClass;
 		$this->mClass = (array)$this->mClass;
 
@@ -152,7 +172,7 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 		if ( $valInSelect ) {
 			$value = '';
 		} else {
-			$key = array_search( strval( $value ), $this->autocomplete, true );
+			$key = array_search( strval( $value ), $this->autocompleteData, true );
 			if ( $key !== false ) {
 				$value = $key;
 			}
@@ -170,7 +190,7 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 	 * @param string $value
 	 * @return false
 	 */
-	function getInputOOUI( $value ) {
+	public function getInputOOUI( $value ) {
 		// To be implemented, for now override the function from HTMLTextField
 		return false;
 	}

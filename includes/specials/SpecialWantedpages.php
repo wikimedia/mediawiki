@@ -49,6 +49,7 @@ class WantedPagesPage extends WantedQueryPage {
 	}
 
 	function getQueryInfo() {
+		$dbr = wfGetDB( DB_REPLICA );
 		$count = $this->getConfig()->get( 'WantedPagesThreshold' ) - 1;
 		$query = [
 			'tables' => [
@@ -63,13 +64,13 @@ class WantedPagesPage extends WantedQueryPage {
 			],
 			'conds' => [
 				'pg1.page_namespace IS NULL',
-				"pl_namespace NOT IN ( '" . NS_USER . "', '" . NS_USER_TALK . "' )",
-				"pg2.page_namespace != '" . NS_MEDIAWIKI . "'"
+				'pl_namespace NOT IN (' . $dbr->makeList( [ NS_USER, NS_USER_TALK ] ) . ')',
+				'pg2.page_namespace != ' . $dbr->addQuotes( NS_MEDIAWIKI ),
 			],
 			'options' => [
 				'HAVING' => [
-					"COUNT(*) > $count",
-					"COUNT(*) > SUM(pg2.page_is_redirect)"
+					'COUNT(*) > ' . $dbr->addQuotes( $count ),
+					'COUNT(*) > SUM(pg2.page_is_redirect)'
 				],
 				'GROUP BY' => [ 'pl_namespace', 'pl_title' ]
 			],
@@ -84,7 +85,9 @@ class WantedPagesPage extends WantedQueryPage {
 			]
 		];
 		// Replacement for the WantedPages::getSQL hook
-		Hooks::run( 'WantedPages::getQueryInfo', [ &$this, &$query ] );
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$wantedPages = $this;
+		Hooks::run( 'WantedPages::getQueryInfo', [ &$wantedPages, &$query ] );
 
 		return $query;
 	}

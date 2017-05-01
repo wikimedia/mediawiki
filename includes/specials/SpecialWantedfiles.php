@@ -83,7 +83,7 @@ class WantedFilesPage extends WantedQueryPage {
 	 * KLUGE: The results may contain false positives for files
 	 * that exist e.g. in a shared repo.  Setting this at least
 	 * keeps them from showing up as redlinks in the output, even
-	 * if it doesn't fix the real problem (bug 6220).
+	 * if it doesn't fix the real problem (T8220).
 	 *
 	 * @note could also have existing links here from broken file
 	 * redirects.

@@ -23,6 +23,7 @@
 
 use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerAwareInterface;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * This contains some static methods for

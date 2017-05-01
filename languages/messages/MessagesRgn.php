@@ -11,4 +11,3 @@
  */
 
 $fallback = 'it';
-

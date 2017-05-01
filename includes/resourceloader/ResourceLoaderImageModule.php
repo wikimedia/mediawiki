@@ -45,9 +45,6 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	protected $selectorWithVariant = '.{prefix}-{name}-{variant}';
 	protected $targets = [ 'desktop', 'mobile' ];
 
-	/** @var string Position on the page to load this module at */
-	protected $position = 'bottom';
-
 	/**
 	 * Constructs a new module from an options array.
 	 *
@@ -73,7 +70,8 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 *         'selectorWithVariant' => [CSS selector template, variables: {prefix} {name} {variant}],
 	 *         // List of variants that may be used for the image files
 	 *         'variants' => [
-	 *             [theme name] => [
+	 *             // This level of nesting can be omitted if you use the same images for every skin
+	 *             [skin name (or 'default')] => [
 	 *                 [variant name] => [
 	 *                     'color' => [color string, e.g. '#ffff00'],
 	 *                     'global' => [boolean, if true, this variant is available
@@ -85,7 +83,8 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 *         ],
 	 *         // List of image files and their options
 	 *         'images' => [
-	 *             [theme name] => [
+	 *             // This level of nesting can be omitted if you use the same images for every skin
+	 *             [skin name (or 'default')] => [
 	 *                 [icon name] => [
 	 *                     'file' => [file path string or array whose values are file path strings
 	 *                                    and whose keys are 'default', 'ltr', 'rtl', a single
@@ -183,7 +182,6 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 					$this->{$member} = $option;
 					break;
 
-				case 'position':
 				case 'prefix':
 				case 'selectorWithoutVariant':
 				case 'selectorWithVariant':
@@ -319,11 +317,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		$selectors = $this->getSelectors();
 
 		foreach ( $this->getImages( $context ) as $name => $image ) {
-			$declarations = $this->getCssDeclarations(
-				$image->getDataUri( $context, null, 'original' ),
-				$image->getUrl( $context, $script, null, 'rasterized' )
-			);
-			$declarations = implode( "\n\t", $declarations );
+			$declarations = $this->getStyleDeclarations( $context, $image, $script );
 			$selector = strtr(
 				$selectors['selectorWithoutVariant'],
 				[
@@ -335,11 +329,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 			$rules[] = "$selector {\n\t$declarations\n}";
 
 			foreach ( $image->getVariants() as $variant ) {
-				$declarations = $this->getCssDeclarations(
-					$image->getDataUri( $context, $variant, 'original' ),
-					$image->getUrl( $context, $script, $variant, 'rasterized' )
-				);
-				$declarations = implode( "\n\t", $declarations );
+				$declarations = $this->getStyleDeclarations( $context, $image, $script, $variant );
 				$selector = strtr(
 					$selectors['selectorWithVariant'],
 					[
@@ -354,6 +344,28 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 
 		$style = implode( "\n", $rules );
 		return [ 'all' => $style ];
+	}
+
+	/**
+	 * @param ResourceLoaderContext $context
+	 * @param ResourceLoaderImage $image Image to get the style for
+	 * @param string $script URL to load.php
+	 * @param string|null $variant Variant to get the style for
+	 * @return string
+	 */
+	private function getStyleDeclarations(
+		ResourceLoaderContext $context,
+		ResourceLoaderImage $image,
+		$script,
+		$variant = null
+	) {
+		$imageDataUri = $image->getDataUri( $context, $variant, 'original' );
+		$primaryUrl = $imageDataUri ?: $image->getUrl( $context, $script, $variant, 'original' );
+		$declarations = $this->getCssDeclarations(
+			$primaryUrl,
+			$image->getUrl( $context, $script, $variant, 'rasterized' )
+		);
+		return implode( "\n\t", $declarations );
 	}
 
 	/**
@@ -446,14 +458,6 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		}
 
 		return $localBasePath;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getPosition() {
-		$this->loadFromDefinition();
-		return $this->position;
 	}
 
 	/**
