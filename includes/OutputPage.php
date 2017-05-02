@@ -2388,7 +2388,14 @@ class OutputPage extends ContextSource {
 		// jQuery etc. can work correctly.
 		$response->header( 'X-UA-Compatible: IE=Edge' );
 
-		$this->addLogoPreloadLinkHeaders();
+		if ( !$this->mArticleBodyOnly ) {
+			$sk = $this->getSkin();
+
+			if ( $sk->shouldPreloadLogo() ) {
+				$this->addLogoPreloadLinkHeaders();
+			}
+		}
+
 		$linkHeader = $this->getLinkHeader();
 		if ( $linkHeader ) {
 			$response->header( $linkHeader );
