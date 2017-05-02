@@ -2,7 +2,7 @@
 	/**
 	 * List displaying all filter groups
 	 *
-	 * @extends OO.ui.Widget
+	 * @extends OO.ui.MenuTagMultiselectWidget
 	 * @mixins OO.ui.mixin.PendingElement
 	 *
 	 * @constructor
@@ -76,7 +76,6 @@
 			itemUpdate: 'onModelItemUpdate',
 			highlightChange: 'onModelHighlightChange'
 		} );
-		this.menu.connect( this, { toggle: 'onMenuToggle' } );
 
 		// Build the content
 		$contentWrapper.append(
@@ -125,8 +124,11 @@
 	 * @param {boolean} isVisible Menu is visible
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onMenuToggle = function ( isVisible ) {
+		// Parent
+		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.prototype.onMenuToggle.call( this );
+
 		if ( isVisible ) {
-			mw.hook( 'RcFilters.popup.open' ).fire( this.getMenu().getSelectedItem() );
+			mw.hook( 'RcFilters.popup.open' ).fire();
 
 			if ( !this.getMenu().getSelectedItem() ) {
 				// If there are no selected items, scroll menu to top
@@ -136,7 +138,6 @@
 			}
 		} else {
 			// Clear selection
-			this.getMenu().selectItem( null );
 			this.selectTag( null );
 		}
 	};
