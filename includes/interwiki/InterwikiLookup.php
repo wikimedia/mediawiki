@@ -47,10 +47,18 @@ interface InterwikiLookup {
 	public function fetch( $prefix );
 
 	/**
-	 * Returns all interwiki prefixes
+	 * Returns information about all interwiki prefixes, in the form of rows
+	 * of the interwiki table. Each row may have the following keys:
+	 *
+	 * - iw_prefix: The prefix. Always present.
+	 * - iw_url: The URL to use for linking, with $1 as placeholder for the target page. Always present.
+	 * - iw_api: the URL of the API (of any). Optional.
+	 * - iw_wikiid: The wiki ID (usually the database name for local wikis). Optional.
+	 * - iw_local: Whether the wiki is local, and the "magic redirect" mechanism should apply. Default: false.
+	 * - iw_trans: Whether "scary translcusion" is allowed for this site. Default: false.
 	 *
 	 * @param string|null $local If set, limits output to local/non-local interwikis
-	 * @return string[] List of prefixes
+	 * @return array[] interwiki rows.
 	 */
 	public function getAllPrefixes( $local = null );
 
