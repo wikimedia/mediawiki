@@ -253,33 +253,63 @@
 	/**
 	 * Get the parameter representation from this group
 	 *
+	 * @param {Object} [filterRepresentation] An object defining the state
+	 *  of the filters in this group, keyed by their name and current selected
+	 *  state value.
 	 * @return {Object} Parameter representation
 	 */
-	mw.rcfilters.dm.FilterGroup.prototype.getParamRepresentation = function () {
-		var i, values,
+	mw.rcfilters.dm.FilterGroup.prototype.getParamRepresentation = function ( filterRepresentation ) {
+		var values,
+			areAnySelected = false,
+			buildFromCurrentState = !filterRepresentation,
 			result = {},
-			filterItems = this.getItems();
+			filterParamNames = {};
 
+		filterRepresentation = filterRepresentation || {};
+
+		// Create or complete the filterRepresentation definition
+		this.getItems().forEach( function ( item ) {
+			// Map filter names to their parameter names
+			filterParamNames[ item.getName() ] = item.getParamName();
+
+			if ( buildFromCurrentState ) {
+				// This means we have not been given a filter representation
+				// so we are building one based on current state
+				filterRepresentation[ item.getName() ] = item.isSelected();
+			} else if ( !filterRepresentation[ item.getName() ] ) {
+				// We are given a filter representation, but we have to make
+				// sure that we fill in the missing filters if there are any
+				// we will assume they are all falsey
+				filterRepresentation[ item.getName() ] = false;
+			}
+
+			if ( filterRepresentation[ item.getName() ] ) {
+				areAnySelected = true;
+			}
+		} );
+
+		// Build result
 		if ( this.getType() === 'send_unselected_if_any' ) {
 			// First, check if any of the items are selected at all.
 			// If none is selected, we're treating it as if they are
 			// all false
 
 			// Go over the items and define the correct values
-			for ( i = 0; i < filterItems.length; i++ ) {
-				result[ filterItems[ i ].getParamName() ] = this.areAnySelected() ?
-					Number( !filterItems[ i ].isSelected() ) : 0;
-			}
-
+			$.each( filterRepresentation, function ( name, value ) {
+				result[ filterParamNames[ name ] ] = areAnySelected ?
+					Number( !value ) : 0;
+			} );
 		} else if ( this.getType() === 'string_options' ) {
 			values = [];
-			for ( i = 0; i < filterItems.length; i++ ) {
-				if ( filterItems[ i ].isSelected() ) {
-					values.push( filterItems[ i ].getParamName() );
-				}
-			}
 
-			result[ this.getName() ] = ( values.length === filterItems.length ) ?
+			$.each( filterRepresentation, function ( name, value ) {
+				// Collect values
+				if ( value ) {
+					values.push( filterParamNames[ name ] );
+				}
+			} );
+
+			result[ this.getName() ] = ( values.length === Object.keys( filterRepresentation ).length ) ?
 				'all' : values.join( this.getSeparator() );
 		}
 
