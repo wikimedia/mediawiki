@@ -445,6 +445,15 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * Whether the logo should be preloaded with an HTTP link header or not
+	 * @since 1.29
+	 * @return bool
+	 */
+	public function shouldPreloadLogo() {
+		return false;
+	}
+
+	/**
 	 * @return string HTML
 	 */
 	function getCategoryLinks() {
