@@ -200,8 +200,7 @@
 	} );
 
 	QUnit.test( 'getParametersFromFilters', function ( assert ) {
-		var originalState,
-			definition = [ {
+		var definition = [ {
 				name: 'group1',
 				title: 'Group 1',
 				type: 'send_unselected_if_any',
@@ -432,71 +431,102 @@
 			'All filters selected in "string_option" group returns \'all\'.'
 		);
 
-		// Test with given definitions
+	} );
 
-		// Change the actual model, to make it easier to verify that the answers we get
-		// are not from the model state, but from our given explicit state
-		model.toggleFiltersSelected( {
-			group1__hidefilter1: false,
-			group1__hidefilter2: false,
-			group1__hidefilter3: false,
-			group2__hidefilter4: false,
-			group2__hidefilter5: false,
-			group2__hidefilter6: false,
-			group3__hidefilter7: false,
-			group3__hidefilter8: false,
-			group3__hidefilter9: false
-		} );
+	QUnit.test( 'getParametersFromFilters (custom object)', function ( assert ) {
+		var originalState,
+			model = new mw.rcfilters.dm.FiltersViewModel(),
+			definition = [ {
+				name: 'group1',
+				title: 'Group 1',
+				type: 'send_unselected_if_any',
+				filters: [
+					{ name: 'hidefilter1', label: 'Hide filter 1', description: '' },
+					{ name: 'hidefilter2', label: 'Hide filter 2', description: '' },
+					{ name: 'hidefilter3', label: 'Hide filter 3', description: '' }
+				]
+			}, {
+				name: 'group2',
+				title: 'Group 2',
+				type: 'send_unselected_if_any',
+				filters: [
+					{ name: 'hidefilter4', label: 'Hide filter 4', description: '' },
+					{ name: 'hidefilter5', label: 'Hide filter 5', description: '' },
+					{ name: 'hidefilter6', label: 'Hide filter 6', description: '' }
+				]
+			}, {
+				name: 'group3',
+				title: 'Group 3',
+				type: 'string_options',
+				separator: ',',
+				filters: [
+					{ name: 'filter7', label: 'Hide filter 7', description: '' },
+					{ name: 'filter8', label: 'Hide filter 8', description: '' },
+					{ name: 'filter9', label: 'Hide filter 9', description: '' }
+				]
+			} ],
+			cases = [
+				{
+					// This is mocking the cases above, both
+					// - 'Two filters in one "send_unselected_if_any" group returns the other parameters truthy.'
+					// - 'Two filters selected in "string_option" group returns those filters in the value.'
+					input: {
+						group1__hidefilter1: true,
+						group1__hidefilter2: true,
+						group1__hidefilter3: false,
+						group2__hidefilter4: false,
+						group2__hidefilter5: false,
+						group2__hidefilter6: false,
+						group3__filter7: true,
+						group3__filter8: true,
+						group3__filter9: false
+					},
+					expected: {
+						// Group 1 (two selected, the others are true)
+						hidefilter1: 0,
+						hidefilter2: 0,
+						hidefilter3: 1,
+						// Group 2 (nothing is selected, all false)
+						hidefilter4: 0,
+						hidefilter5: 0,
+						hidefilter6: 0,
+						group3: 'filter7,filter8'
+					},
+					msg: 'Given an explicit (complete) filter state object, the result is the same as if the object given represented the model state.'
+				},
+				{
+					// This is mocking case above
+					// - 'One filters in one "send_unselected_if_any" group returns the other parameters truthy.'
+					input: {
+						group1__hidefilter1: 1
+					},
+					expected: {
+						// Group 1 (one selected, the others are true)
+						hidefilter1: 0,
+						hidefilter2: 1,
+						hidefilter3: 1,
+						// Group 2 (nothing is selected, all false)
+						hidefilter4: 0,
+						hidefilter5: 0,
+						hidefilter6: 0,
+						group3: ''
+					},
+					msg: 'Given an explicit (incomplete) filter state object, the result is the same as if the object give represented the model state.'
+				}
+			];
+
+		model.initializeFilters( definition );
+		// Store original state
 		originalState = model.getSelectedState();
 
-		// This is mocking the cases above, both
-		// - 'Two filters in one "send_unselected_if_any" group returns the other parameters truthy.'
-		// - 'Two filters selected in "string_option" group returns those filters in the value.'
-		assert.deepEqual(
-			model.getParametersFromFilters( {
-				group1__hidefilter1: true,
-				group1__hidefilter2: true,
-				group1__hidefilter3: false,
-				group2__hidefilter4: false,
-				group2__hidefilter5: false,
-				group2__hidefilter6: false,
-				group3__filter7: true,
-				group3__filter8: true,
-				group3__filter9: false
-			} ),
-			{
-				// Group 1 (two selected, the others are true)
-				hidefilter1: 0,
-				hidefilter2: 0,
-				hidefilter3: 1,
-				// Group 2 (nothing is selected, all false)
-				hidefilter4: 0,
-				hidefilter5: 0,
-				hidefilter6: 0,
-				group3: 'filter7,filter8'
-			},
-			'Given an explicit (complete) filter state object, the result is the same as if the object given represented the model state.'
-		);
-
-		// This is mocking case above
-		// - 'One filters in one "send_unselected_if_any" group returns the other parameters truthy.'
-		assert.deepEqual(
-			model.getParametersFromFilters( {
-				group1__hidefilter1: 1,
-			} ),
-			{
-				// Group 1 (one selected, the others are true)
-				hidefilter1: 0,
-				hidefilter2: 1,
-				hidefilter3: 1,
-				// Group 2 (nothing is selected, all false)
-				hidefilter4: 0,
-				hidefilter5: 0,
-				hidefilter6: 0,
-				group3: ''
-			},
-			'Given an explicit (incomplete) filter state object, the result is the same as if the object give represented the model state.'
-		);
+		// Test each case
+		cases.forEach( function ( test ) {
+			assert.deepEqual(
+				model.getParametersFromFilters( test.input ),
+				test.expected,
+				test.msg
+			);
+		} );
 
 		// After doing the above tests, make sure the actual state
 		// of the filter stayed the same

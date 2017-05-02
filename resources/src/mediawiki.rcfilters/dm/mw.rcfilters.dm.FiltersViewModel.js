@@ -472,14 +472,13 @@
 	 * Analyze the groups and their filters and output an object representing
 	 * the state of the parameters they represent.
 	 *
-	 * @param {Object} [filterGroups] An object defining the filter values,
+	 * @param {Object} [filterDefinition] An object defining the filter values,
 	 *  keyed by filter names.
 	 * @return {Object} Parameter state object
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getParametersFromFilters = function ( filterDefinition ) {
 		var groupItemDefinition,
 			result = {},
-			model = this,
 			groupItems = this.getFilterGroups();
 
 		if ( filterDefinition ) {

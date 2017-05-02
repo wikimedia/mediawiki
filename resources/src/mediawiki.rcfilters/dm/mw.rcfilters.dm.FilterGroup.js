@@ -259,12 +259,12 @@
 	 * @return {Object} Parameter representation
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.getParamRepresentation = function ( filterRepresentation ) {
-		var i, values,
+		var values,
 			areAnySelected = false,
-			model = this,
 			buildFromCurrentState = !filterRepresentation,
 			result = {},
 			filterParamNames = {};
+
 		filterRepresentation = filterRepresentation || {};
 
 		// Create or complete the filterRepresentation definition
