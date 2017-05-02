@@ -271,7 +271,7 @@
 	"privacypage": "Project:Pravila o anonimnosti",
 	"badaccess": "Greška pri odobrenju",
 	"badaccess-group0": "Nije vam dozvoljeno izvršiti akciju koju ste zahtjevali.",
-	"badaccess-groups": "Akcija koju ste zahtjevali je ograničena na korisnike iz {{PLURAL:$2|ove grupe|jedne od grupa}}: $1.",
+	"badaccess-groups": "Radnja koju ste zahtijevali ograničena je samo korisnicima u {{PLURAL:$2|ovoj grupi|jednoj od ovih grupa}}: $1.",
 	"versionrequired": "Potrebna je verzija $1 MediaWikija",
 	"versionrequiredtext": "Potrebna je verzija $1 MediaWikija da bi se koristila ova strana. Pogledaj [[Special:Version|verziju]].",
 	"ok": "U redu",
