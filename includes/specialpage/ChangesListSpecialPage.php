@@ -415,7 +415,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'cssClassSuffix' => 'watchednew',
 						'isRowApplicableCallable' => function ( $ctx, $rc ) {
 							return $rc->getAttribute( 'wl_user' ) &&
-								$rc->getAttribute( 'rc_timestamp' ) > $rc->getAttribute( 'wl_notificationtimestamp' );
+								$rc->getAttribute( 'rc_timestamp' ) &&
+								$rc->getAttribute( 'wl_notificationtimestamp' ) &&
+								$rc->getAttribute( 'rc_timestamp' ) >= $rc->getAttribute( 'wl_notificationtimestamp' );
 						},
 					],
 					[
