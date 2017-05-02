@@ -422,6 +422,16 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.27
+	 * @deprecated since 1.30. Use getSiteInfoLookup instead.
+	 * @return SiteLookup
+	 */
+	public function getSiteInfoLookup() {
+		return $this->getService( 'SiteInfoLookup' );
+	}
+
+	/**
+	 * @since 1.27
+	 * @deprecated since 1.30. Use getSiteInfoLookup instead.
 	 * @return SiteLookup
 	 */
 	public function getSiteLookup() {

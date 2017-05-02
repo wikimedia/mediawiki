@@ -27,6 +27,7 @@
  * @author Katie Filbert < aude.wiki@gmail.com >
  *
  * @since 1.25
+ * @deprecated since 1.30. Use HashSiteInfoLookup instead.
  * @ingroup Site
  */
 class HashSiteStore implements SiteStore {

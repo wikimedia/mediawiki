@@ -7,6 +7,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Services\DestructibleService;
 use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceDisabledException;
+use MediaWiki\Site\SiteInfoLookup;
 use Wikimedia\Rdbms\LBFactory;
 
 /**
@@ -303,6 +304,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'MainConfig' => [ 'MainConfig', Config::class ],
 			'SiteStore' => [ 'SiteStore', SiteStore::class ],
 			'SiteLookup' => [ 'SiteLookup', SiteLookup::class ],
+			'SiteInfoLookup' => [ 'SiteLookup', SiteInfoLookup::class ],
 			'StatsdDataFactory' => [ 'StatsdDataFactory', StatsdDataFactory::class ],
 			'InterwikiLookup' => [ 'InterwikiLookup', InterwikiLookup::class ],
 			'EventRelayerGroup' => [ 'EventRelayerGroup', EventRelayerGroup::class ],

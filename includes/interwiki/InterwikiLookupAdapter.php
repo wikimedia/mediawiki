@@ -22,6 +22,7 @@ namespace MediaWiki\Interwiki;
  * @file
  *
  * @since 1.29
+ * @deprecated since 1.30. Use SiteInfoInterwikiLookup instead.
  * @ingroup InterwikiLookup
  *
  * @license GNU GPL v2+

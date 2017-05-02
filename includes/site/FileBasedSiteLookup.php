@@ -29,6 +29,7 @@
  * 'wgSitesCacheFile' configuration to the cache file location.
  *
  * @since 1.25
+ * @deprecated since 1.30. Use FileSiteInfoLookup instead.
  */
 class FileBasedSiteLookup implements SiteLookup {
 

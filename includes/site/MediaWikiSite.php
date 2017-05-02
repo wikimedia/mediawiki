@@ -32,6 +32,7 @@ use MediaWiki\Site\MediaWikiPageNameNormalizer;
  * Class representing a MediaWiki site.
  *
  * @since 1.21
+ * @deprecated since 1.30. Use SiteInfoLookup instead.
  *
  * @ingroup Site
  */

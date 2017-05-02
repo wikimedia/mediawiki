@@ -22,6 +22,7 @@ use Wikimedia\Rdbms\LoadBalancer;
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @since 1.25
+ * @deprecated since 1.30. Use a SiteInfoLookup implementation instead.
  *
  * @file
  * @ingroup Site
