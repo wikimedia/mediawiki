@@ -109,7 +109,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 			[
 				'namespace' => NS_MAIN,
 			],
-			"rc conditions with no options (aka default setting)"
+			"rc conditions with one namespace"
 		);
 	}
 
@@ -126,50 +126,56 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 	}
 
-	/**
-	 * T4429
-	 * @dataProvider provideNamespacesAssociations
-	 */
-	public function testRcNsFilterAssociation( $ns1, $ns2 ) {
+	public function testRcNsFilterMultiple() {
 		$this->assertConditions(
 			[ # expected
-				"(rc_namespace = '$ns1' OR rc_namespace = '$ns2')",
+				"rc_namespace IN ('1','2','3')",
 			],
 			[
-				'namespace' => $ns1,
-				'associated' => 1,
+				'namespace' => '1,2,3',
 			],
-			"rc conditions with namespace inverted"
+			"rc conditions with multiple namespaces"
 		);
 	}
 
-	/**
-	 * T4429
-	 * @dataProvider provideNamespacesAssociations
-	 */
-	public function testRcNsFilterAssociationWithInversion( $ns1, $ns2 ) {
+	public function testRcNsFilterMultipleAssociated() {
 		$this->assertConditions(
 			[ # expected
-				"(rc_namespace != '$ns1' AND rc_namespace != '$ns2')",
+				"rc_namespace IN ('0','1','4','5','6','7')",
 			],
 			[
-				'namespace' => $ns1,
+				'namespace' => '1,4,7',
 				'associated' => 1,
+			],
+			"rc conditions with multiple namespaces and associated"
+		);
+	}
+
+	public function testRcNsFilterMultipleAssociatedInvert() {
+		$this->assertConditions(
+			[ # expected
+				"rc_namespace NOT IN ('2','3','8','9')",
+			],
+			[
+				'namespace' => '2,3,9',
+				'associated' => 1,
+				'invert' => 1
+			],
+			"rc conditions with multiple namespaces, associated and inverted"
+		);
+	}
+
+	public function testRcNsFilterMultipleInvert() {
+		$this->assertConditions(
+			[ # expected
+				"rc_namespace NOT IN ('1','2','3')",
+			],
+			[
+				'namespace' => '1,2,3',
 				'invert' => 1,
 			],
-			"rc conditions with namespace inverted"
+			"rc conditions with multiple namespaces inverted"
 		);
-	}
-
-	/**
-	 * Provides associated namespaces to test recent changes
-	 * namespaces association filtering.
-	 */
-	public static function provideNamespacesAssociations() {
-		return [ # (NS => Associated_NS)
-			[ NS_MAIN, NS_TALK ],
-			[ NS_TALK, NS_MAIN ],
-		];
 	}
 
 	public function testRcHidemyselfFilter() {
