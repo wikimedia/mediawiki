@@ -3,9 +3,18 @@
 .mw-rcfilters-ui-filterMenuOptionWidget {
 	&.oo-ui-flaggedElement-muted {
 		background-color: #f8f9fa; // Base90 AAA
+
 		.mw-rcfilters-ui-itemMenuOptionWidget-label-title,
 		.mw-rcfilters-ui-itemMenuOptionWidget-label-desc {
 			color: #54595d; // Base20 AAA
 		}
+
+		&.oo-ui-optionWidget-highlighted {
+			// Copying over styles from OOUI, since it must
+			// override our 'muted' state
+			background-color: #eaecf0;
+			color: #000;
+		}
 	}
+
 }
