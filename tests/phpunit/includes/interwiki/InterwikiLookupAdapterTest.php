@@ -60,20 +60,37 @@ class InterwikiLookupAdapterTest extends MediaWikiTestCase {
 	}
 
 	public function testGetAllPrefixes() {
+		$foo = [
+			'iw_prefix' => 'foo',
+			'iw_url' => '',
+			'iw_api' => '',
+			'iw_wikiid' => 'foobar',
+			'iw_local' => false,
+			'iw_trans' => false,
+		];
+		$enwt = [
+			'iw_prefix' => 'enwt',
+			'iw_url' => 'https://en.wiktionary.org/wiki/$1',
+			'iw_api' => 'https://en.wiktionary.org/w/api.php',
+			'iw_wikiid' => 'enwiktionary',
+			'iw_local' => true,
+			'iw_trans' => false,
+		];
+
 		$this->assertEquals(
-			[ 'foo', 'enwt' ],
+			[ $foo, $enwt ],
 			$this->interwikiLookup->getAllPrefixes(),
 			'getAllPrefixes()'
 		);
 
 		$this->assertEquals(
-			[ 'foo' ],
+			[ $foo ],
 			$this->interwikiLookup->getAllPrefixes( false ),
 			'get external prefixes'
 		);
 
 		$this->assertEquals(
-			[ 'enwt' ],
+			[ $enwt ],
 			$this->interwikiLookup->getAllPrefixes( true ),
 			'get local prefixes'
 		);
