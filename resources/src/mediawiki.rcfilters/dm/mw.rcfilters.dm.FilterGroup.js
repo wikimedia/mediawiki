@@ -174,8 +174,26 @@
 	 * @return {boolean} All items are selected
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.areAllSelected = function () {
-		return this.getItems().every( function ( filterItem ) {
-			return filterItem.isSelected();
+		var selected = [],
+			unselected = [];
+
+		this.getItems().forEach( function ( filterItem ) {
+			if ( filterItem.isSelected() ) {
+				selected.push( filterItem );
+			} else {
+				unselected.push( filterItem );
+			}
+		} );
+
+		if ( unselected.length === 0 ) {
+			return true;
+		}
+
+		// check if every unselected is a subset of a selected
+		return unselected.every( function ( unselectedFilterItem ) {
+			return selected.some( function ( selectedFilterItem ) {
+				return selectedFilterItem.existsInSubset( unselectedFilterItem.getName() );
+			} );
 		} );
 	};
 
