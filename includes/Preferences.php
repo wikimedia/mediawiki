@@ -778,7 +778,7 @@ class Preferences {
 			];
 		}
 
-		$stubThresholdValues = [ 50, 100, 500, 1000, 2000, 5000, 10000 ];
+		$stubThresholdValues = $context->getConfig()->get( 'UseStubThresholdValues' );
 		$stubThresholdOptions = [ $context->msg( 'stub-threshold-disabled' )->text() => 0 ];
 		foreach ( $stubThresholdValues as $value ) {
 			$stubThresholdOptions[$context->msg( 'size-bytes', $value )->text()] = $value;

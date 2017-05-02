@@ -3326,6 +3326,11 @@ $wgUseSiteJs = true;
 $wgUseSiteCss = true;
 
 /**
+ * Use a set of stub threshold values
+ */
+$wgUseStubThresholdValues = [ 50, 100, 200, 500, 1000, 2000, 5000, 10000 ];
+
+/**
  * Break out of framesets. This can be used to prevent clickjacking attacks,
  * or to prevent external sites from framing your site with ads.
  */
