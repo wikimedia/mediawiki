@@ -188,11 +188,11 @@ if ( !$wgLocalFileRepo ) {
 		'scriptDirUrl' => $wgScriptPath,
 		'scriptExtension' => '.php',
 		'url' => $wgUploadBaseUrl ? $wgUploadBaseUrl . $wgUploadPath : $wgUploadPath,
-		'hashLevels' => $wgHashedUploadDirectory ? 2 : 0,
+		'hashLevels' =>  2,
 		'thumbScriptUrl' => $wgThumbnailScriptPath,
 		'transformVia404' => !$wgGenerateThumbnailOnParse,
 		'deletedDir' => $wgDeletedDirectory,
-		'deletedHashLevels' => $wgHashedUploadDirectory ? 3 : 0
+		'deletedHashLevels' => 3
 	];
 }
 /**
