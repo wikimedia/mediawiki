@@ -117,6 +117,10 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 		// Does not consider $preferences, just wiki's defaults
 		$wikiDefaults = $page->getDefaultOptions()->getAllValues();
 
+		// Adding 'watchlist' manually since default options are fetched when the
+		// special page doesn't have a user in its context.
+		$wikiDefaults['watchlist'] = '';
+
 		$allFalse = $wikiDefaults;
 
 		foreach ( $allFalse as $key => &$value ) {
