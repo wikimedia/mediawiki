@@ -92,12 +92,12 @@ class Interwiki {
 	}
 
 	/**
-	 * Returns all interwiki prefixes
+	 * Returns all interwiki prefix definitions.
 	 *
 	 * @deprecated since 1.28, unused. Use InterwikiLookup instead.
 	 *
 	 * @param string|null $local If set, limits output to local/non-local interwikis
-	 * @return array List of prefixes
+	 * @return array[] List of interwiki rows
 	 * @since 1.19
 	 */
 	public static function getAllPrefixes( $local = null ) {
