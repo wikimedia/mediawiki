@@ -142,6 +142,14 @@ abstract class ChangesListFilterGroup {
 	 * * $groupDefinition['isFullCoverage'] bool Whether the group is full coverage;
 	 * *  if true, this means that checking every item in the group means no
 	 * *  changes list entries are filtered out.
+	 * * $groupDefinition['whatsThisHeader'] string i18n key for header of "What's
+	 * *  This" popup (optional).
+	 * * $groupDefinition['whatsThisBody'] string i18n key for body of "What's This"
+	 * *  popup (optional).
+	 * * $groupDefinition['whatsThisUrl'] string URL for main link of "What's This"
+	 * *  popup (optional).
+	 * * $groupDefinition['whatsThisLinkText'] string i18n key of text for main link of
+	 * *  "What's This" popup (optional).
 	 */
 	public function __construct( array $groupDefinition ) {
 		if ( strpos( $groupDefinition['name'], self::RESERVED_NAME_CHAR ) !== false ) {

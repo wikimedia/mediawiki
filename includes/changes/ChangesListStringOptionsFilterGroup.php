@@ -107,6 +107,14 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 	 * *  array &$query_options Array of query options; see IDatabase::select $options
 	 * *  array &$join_conds Array of join conditions; see IDatabase::select $join_conds
 	 * *  array $selectedValues The allowed and requested values, lower-cased and sorted
+	 * * $groupDefinition['whatsThisHeader'] string i18n key for header of "What's
+	 * *  This" popup (optional).
+	 * * $groupDefinition['whatsThisBody'] string i18n key for body of "What's This"
+	 * *  popup (optional).
+	 * * $groupDefinition['whatsThisUrl'] string URL for main link of "What's This"
+	 * *  popup (optional).
+	 * * $groupDefinition['whatsThisLinkText'] string i18n key of text for main link of
+	 * *  "What's This" popup (optional).
 	 */
 	public function __construct( array $groupDefinition ) {
 		if ( !isset( $groupDefinition['isFullCoverage'] ) ) {
