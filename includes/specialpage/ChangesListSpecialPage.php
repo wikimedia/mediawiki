@@ -1342,7 +1342,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @param array $selectedExpLevels The allowed active values, sorted
 	 */
 	public function filterOnUserExperienceLevel( $specialPageClassName, $context, $dbr,
-		&$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedExpLevels ) {
+		&$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedExpLevels, $now = 0 ) {
 
 		global $wgLearnerEdits,
 			$wgExperiencedUserEdits,
@@ -1361,7 +1361,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$tables[] = 'user';
 		$join_conds['user'] = [ 'LEFT JOIN', 'rc_user = user_id' ];
 
-		$now = time();
+		if ( $now === 0 ) {
+			$now = time();
+		}
 		$secondsPerDay = 86400;
 		$learnerCutoff = $now - $wgLearnerMemberSince * $secondsPerDay;
 		$experiencedUserCutoff = $now - $wgExperiencedUserMemberSince * $secondsPerDay;
