@@ -823,21 +823,6 @@ $wgThumbnailScriptPath = false;
 $wgSharedThumbnailScriptPath = false;
 
 /**
- * Set this to false if you do not want MediaWiki to divide your images
- * directory into many subdirectories, for improved performance.
- *
- * It's almost always good to leave this enabled. In previous versions of
- * MediaWiki, some users set this to false to allow images to be added to the
- * wiki by simply copying them into $wgUploadDirectory and then running
- * maintenance/rebuildImages.php to register them in the database. This is no
- * longer recommended, use maintenance/importImages.php instead.
- *
- * @note That this variable may be ignored if $wgLocalFileRepo is set.
- * @todo Deprecate the setting and ultimately remove it from Core.
- */
-$wgHashedUploadDirectory = true;
-
-/**
  * Set the following to false especially if you have a set of files that need to
  * be accessible by all wikis, and you do not want to use the hash (path/a/aa/)
  * directory layout.
