@@ -897,7 +897,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			}
 		}
 
-		$opts->add( 'namespace', '', FormOptions::INTNULL );
+		$opts->add( 'namespace', '', FormOptions::STRING );
 		$opts->add( 'invert', false );
 		$opts->add( 'associated', false );
 
@@ -1090,25 +1090,28 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		}
 
 		// Namespace filtering
-		if ( $opts['namespace'] !== '' ) {
-			$selectedNS = $dbr->addQuotes( $opts['namespace'] );
-			$operator = $opts['invert'] ? '!=' : '=';
-			$boolean = $opts['invert'] ? 'AND' : 'OR';
+		if ( $opts[ 'namespace' ] !== '' ) {
+			$namespaces = explode( ',', $opts[ 'namespace' ] );
 
-			// Namespace association (T4429)
-			if ( !$opts['associated'] ) {
-				$condition = "rc_namespace $operator $selectedNS";
-			} else {
-				// Also add the associated namespace
-				$associatedNS = $dbr->addQuotes(
-					MWNamespace::getAssociated( $opts['namespace'] )
+			if ( $opts[ 'associated' ] ) {
+				$associatedNamespaces = array_map(
+					function ( $ns ) {
+						return MWNamespace::getAssociated( $ns );
+					},
+					$namespaces
 				);
-				$condition = "(rc_namespace $operator $selectedNS "
-					. $boolean
-					. " rc_namespace $operator $associatedNS)";
+				$namespaces = array_unique( array_merge( $namespaces, $associatedNamespaces ) );
 			}
 
-			$conds[] = $condition;
+			if ( count( $namespaces ) === 1 ) {
+				$operator = $opts[ 'invert' ] ? '!=' : '=';
+				$value = $dbr->addQuotes( reset( $namespaces ) );
+			} else {
+				$operator = $opts[ 'invert' ] ? 'NOT IN' : 'IN';
+				sort( $namespaces );
+				$value = '(' . $dbr->makeList( $namespaces ) . ')';
+			}
+			$conds[] = "rc_namespace $operator $value";
 		}
 	}
 
