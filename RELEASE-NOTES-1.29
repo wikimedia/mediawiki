@@ -335,6 +335,8 @@ changes to languages because of Phabricator reports.
   MediaWiki release tarball and in Wikimedia production by the WikiEditor
   extension in 2010. It is only shown to users if no other editor was
   installed, and leads to confusion.
+* (T92459) Loading ResourceLoader modules containing JavaScript through
+  addModuleStyles() is deprecated and will log a warning server-side.
 
 == Compatibility ==
 
