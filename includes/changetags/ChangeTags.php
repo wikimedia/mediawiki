@@ -660,7 +660,7 @@ class ChangeTags {
 
 			$tables[] = 'change_tag';
 			$join_conds['change_tag'] = [ 'INNER JOIN', $join_cond ];
-			$conds['ct_tag'] = $filter_tag;
+			$conds['ct_tag'] = explode( ',', $filter_tag );
 		}
 	}
 
