@@ -38,63 +38,80 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-if ( PHP_SAPI != 'cli' ) {
-	die( "This filter can only be run from the command line.\n" );
-}
+require_once __DIR__ . '/Maintenance.php';
 
-$source = file_get_contents( $argv[1] );
-$tokens = token_get_all( $source );
+/**
+ * Maintenance script that builds doxygen documentation.
+ * @ingroup Maintenance
+ */
+class MWDocGenFilter extends Maintenance {
+	public function __construct() {
+		parent::__construct();
+		$this->addDescription( 'Doxygen filter to fix member variable types in documentation. '
+			'Used by mwdocgen.php'
+		);
+		$this->addArg( 'filename', 'PHP file to filter', true );
+	}
 
-$buffer = $bufferType = null;
-foreach ( $tokens as $token ) {
-	if ( is_string( $token ) ) {
-		if ( $buffer !== null && $token === ';' ) {
-			// If we still have a buffer and the statement has ended,
-			// flush it and move on.
-			echo $buffer;
-			$buffer = $bufferType = null;
+	public function execute() {
+		$source = file_get_contents( $this->getArg( 0 ) );
+		$tokens = token_get_all( $source );
+
+		$buffer = $bufferType = null;
+		foreach ( $tokens as $token ) {
+			if ( is_string( $token ) ) {
+				if ( $buffer !== null && $token === ';' ) {
+					// If we still have a buffer and the statement has ended,
+					// flush it and move on.
+					echo $buffer;
+					$buffer = $bufferType = null;
+				}
+				echo $token;
+				continue;
+			}
+			list( $id, $content ) = $token;
+			switch ( $id ) {
+				case T_DOC_COMMENT:
+					// Escape slashes so that references to namespaces are not
+					// wrongly interpreted as a Doxygen "\command".
+					$content = addcslashes( $content, '\\' );
+					// Look for instances of "@var Type" not followed by $name.
+					if ( preg_match( '#@var\s+([^\s]+)\s+([^\$]+)#s', $content ) ) {
+						$buffer = preg_replace_callback(
+							// Strip the "@var Type" part and remember the type
+							'#(@var\s+)([^\s]+)#s',
+							function ( $matches ) use ( &$bufferType ) {
+								$bufferType = $matches[2];
+								return '';
+							},
+							$content
+						);
+					} else {
+						echo $content;
+					}
+					break;
+
+				case T_VARIABLE:
+					if ( $buffer !== null ) {
+						echo $buffer;
+						echo "$bufferType $content";
+						$buffer = $bufferType = null;
+					} else {
+						echo $content;
+					}
+					break;
+
+				default:
+					if ( $buffer !== null ) {
+						$buffer .= $content;
+					} else {
+						echo $content;
+					}
+					break;
+			}
 		}
-		echo $token;
-		continue;
-	}
-	list( $id, $content ) = $token;
-	switch ( $id ) {
-		case T_DOC_COMMENT:
-			// Escape slashes so that references to namespaces are not
-			// wrongly interpreted as a Doxygen "\command".
-			$content = addcslashes( $content, '\\' );
-			// Look for instances of "@var Type" not followed by $name.
-			if ( preg_match( '#@var\s+([^\s]+)\s+([^\$]+)#s', $content ) ) {
-				$buffer = preg_replace_callback(
-					// Strip the "@var Type" part and remember the type
-					'#(@var\s+)([^\s]+)#s',
-					function ( $matches ) use ( &$bufferType ) {
-						$bufferType = $matches[2];
-						return '';
-					},
-					$content
-				);
-			} else {
-				echo $content;
-			}
-			break;
-
-		case T_VARIABLE:
-			if ( $buffer !== null ) {
-				echo $buffer;
-				echo "$bufferType $content";
-				$buffer = $bufferType = null;
-			} else {
-				echo $content;
-			}
-			break;
-
-		default:
-			if ( $buffer !== null ) {
-				$buffer .= $content;
-			} else {
-				echo $content;
-			}
-			break;
 	}
 }
+
+$maintClass = 'MWDocGenFilter';
+require_once RUN_MAINTENANCE_IF_MAIN;
