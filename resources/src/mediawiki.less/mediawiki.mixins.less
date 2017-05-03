@@ -42,6 +42,12 @@
 	background-image: -o-linear-gradient( transparent, transparent ), url( @fallback );
 }
 
+// Shorthand for background-image-svg in core. Use if your PNG and SVG live in the same directory\
+// and only if you cannot use ResourceLoaderImage module for some particular reason.
+.background-image-svg-quick( @url ) {
+	.background-image-svg( ~'@{url}.svg', ~'@{url}.png' );
+}
+
 .list-style-image( @url ) {
 	list-style-image: e( '/* @embed */' ) url( @url );
 }
