@@ -529,7 +529,7 @@
 	"editingsection": "Mudifega de $1 (sezión)",
 	"editingcomment": "Adree a mudifegà $1 (sezión növa)",
 	"editconflict": "Cunflit de edisiù sö $1",
-	"explainconflict": "'N óter ütènt el g'ha salvàt 'na versiù nöa de l'articol entàt che te sìet dré a fà le tò mudìfiche.\nL'area de mudìfica de sura la g'ha dét el test de la pàgina che gh'è on-line adès, isé come che l'è stat agiurnàt de l'óter ütènt.\nLa versiù co le tò mudìfiche envéce te la tróet endèl'area de mudìfica de sòta.\nSemài che te ölarèset confermàle, te g'hét de riportà le tò mudìfiche endèl tèst de l'area de sura.\nA schisà el butù '{{int:savearticle}}', se salvarà '''apéna''' el test che gh'è dét endèl'àrea de mudìfica de sura.",
+	"explainconflict": "'N óter ütènt el g'ha salvàt 'na versiù nöa de l'articol entàt che te sìet dré a fà le tò mudìfiche.\nL'area de mudìfica de sura la g'ha dét el test de la pàgina che gh'è on-line adès, isé come che l'è stat agiurnàt de l'óter ütènt.\nLa versiù co le tò mudìfiche envéce te la tróet endèl'area de mudìfica de sòta.\nSemài che te ölarèset confermàle, te g'hét de riportà le tò mudìfiche endèl tèst de l'area de sura.\nA schisà el butù '$1', se salvarà '''apéna''' el test che gh'è dét endèl'àrea de mudìfica de sura.",
 	"yourtext": "El tò test",
 	"storedversion": "La versiù en memória",
 	"editingold": "<strong>Ocio: Te sét dré a mudificà 'na versiù mìa agiurnàda de chèsta pàgina.</strong> Semài che te la sàlvet, töcc i cambiamèncc facc dòpo de chèsta versiù le narà pèrde.",

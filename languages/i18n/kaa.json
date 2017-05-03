@@ -364,7 +364,7 @@
 	"anoneditwarning": "'''Esletpe:''' Siz kirmedin'iz. Sizin' IP adresin'iz usi bettin' o'zgeris tariyxında saqlanıp qaladı.",
 	"missingsummary": "'''Esletpe:''' O'zgeristin' qısqasha mazmunın ko'rsetpedin'iz.\n\"Saqlaw\"dı ja'ne bassan'ız, o'zgerislerin'iz hesh qanday kommentariysiz saqlanadı.",
 	"missingcommenttext": "Kommentariydi to'mende kiritin'.",
-	"missingcommentheader": "'''Eskertpe:''' Bul kommentariy ushın atama ko'rsetpedin'iz.\nEger ja'ne \"{{int:savearticle}}\" bassan'ız, o'zgerislerin'iz olsız saqlanadı.",
+	"missingcommentheader": "'''Eskertpe:''' Bul kommentariy ushın atama ko'rsetpedin'iz.\nEger ja'ne \"$1\" bassan'ız, o'zgerislerin'iz olsız saqlanadı.",
 	"summary-preview": "Juwmag'ın ko'rip shıg'ıw:",
 	"subject-preview": "Atamanı aldınnan qaraw:",
 	"blockedtitle": "Paydalanıwshı bloklang'an",

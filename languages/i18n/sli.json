@@ -396,7 +396,7 @@
 	"editingsection": "Bearbta vu $1 (Obschnitt)",
 	"editingcomment": "Bearbta vu $1 (Neuer Obschnitt)",
 	"editconflict": "Beoarbeetungskonflikt: $1",
-	"explainconflict": "Jemand anders hoot diese Seite geändert, noachdem du oagefanga host diese zu bearbta.\nDoas obere Textfeld enthält dann aktuellen Stand.\nDoas undere Textfeld enthält denne Änderunga.\nBitte fiege denne Änderungen ei doas obere Textfeld a.\n'''Ock''' der Inhalt des oberen Textfeldes werd gespeichert, wenn du uff „{{int:savearticle}}“ klickst!",
+	"explainconflict": "Jemand anders hoot diese Seite geändert, noachdem du oagefanga host diese zu bearbta.\nDoas obere Textfeld enthält dann aktuellen Stand.\nDoas undere Textfeld enthält denne Änderunga.\nBitte fiege denne Änderungen ei doas obere Textfeld a.\n'''Ock''' der Inhalt des oberen Textfeldes werd gespeichert, wenn du uff „$1“ klickst!",
 	"yourtext": "Deen Text",
 	"nonunicodebrowser": "'''Ochtiche:''' Dei Browser koan Unicode-Zeicha ne richtig verarbta. Bitte verwende anna andern Browser im Seita zu bearbta.",
 	"editingold": "'''OCHTICHE: Du beoarbeetest anne aale Version dieser Seite. Wenn du speicherst, waan olle neueren Versionen ieberschrieba.'''",

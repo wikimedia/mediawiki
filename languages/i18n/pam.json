@@ -420,7 +420,7 @@
 	"editingsection": "Alilan (e-edit) ya ing $1 (dake)",
 	"editingcomment": "I-edit ya ing $1 (komentu)",
 	"editconflict": "Misasalungat a edit: $1",
-	"explainconflict": "Ating aliwang minalili king bulung a ini manibat aniang inumpisan meng i-edit.\nMakabili ya king espasiung pirinan sulat king babo (upper text area)  ing kasalungsungan nang itsura niti.\nAtyu la king espasiung pirinan sulat king lalam (lower text area) deng kekang elilan.\nKailangan mong piyabe deng elilan mu ketang kasalungsungan a makasulat.\nBukud mung ing makasulat king babo ing ma-save katimid mu ketang   \"{{int:savearticle}}\".",
+	"explainconflict": "Ating aliwang minalili king bulung a ini manibat aniang inumpisan meng i-edit.\nMakabili ya king espasiung pirinan sulat king babo (upper text area)  ing kasalungsungan nang itsura niti.\nAtyu la king espasiung pirinan sulat king lalam (lower text area) deng kekang elilan.\nKailangan mong piyabe deng elilan mu ketang kasalungsungan a makasulat.\nBukud mung ing makasulat king babo ing ma-save katimid mu ketang   \"$1\".",
 	"yourtext": "Ing kekang sinulat",
 	"storedversion": "Bersion a makasimpan",
 	"nonunicodebrowser": "'''BABALA: E ya unicode compliant ing kekang browser.\nAting paralan ba kang e mika-prublema king pamag-edit: lunto la antimong hexadecimal code king kahun a pipag-editan deng letra/kulit a e-ASCII (non-ASCII characters).'''",

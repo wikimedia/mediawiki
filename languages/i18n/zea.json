@@ -420,7 +420,7 @@
 	"editingsection": "Bezig mie bewerken van $1 (deêlpagina)",
 	"editingcomment": "Bezig mie bewerken van $1 (opmerkieng)",
 	"editconflict": "Bewerkiengsconflict: $1",
-	"explainconflict": "Een aore gebruker ei deêze pagina bewerkt sins a je mie je bewerkieng bin behonnen.\nIn 't bovenste deêl van 't venster sti de tekst van de udihe pagina.\nJe bewerkieng sti in 't onderste hedeêlte.\nJe dien je bewerkiengen in te voehen in de bestaende tekst.\n'''Alleên''' de tekst in 't bovenste hedeêlte wor opeslogen a je op \"{{int:savearticle}}\" klik.",
+	"explainconflict": "Een aore gebruker ei deêze pagina bewerkt sins a je mie je bewerkieng bin behonnen.\nIn 't bovenste deêl van 't venster sti de tekst van de udihe pagina.\nJe bewerkieng sti in 't onderste hedeêlte.\nJe dien je bewerkiengen in te voehen in de bestaende tekst.\n'''Alleên''' de tekst in 't bovenste hedeêlte wor opeslogen a je op \"$1\" klik.",
 	"yourtext": "Joe tekst",
 	"storedversion": "Opeslogen versie",
 	"nonunicodebrowser": "'''WAERSCHUWIENG: Je browser kan nie hoed overwig mie unicode.\nIermie wor deur de MediaWiki-software rekenienge ehouwen zoda je toch zonder probleemn pagina's kan bewerken: nie-ASCII karakters worn in 't bewerkiengsveld weereheven as hexadecimale codes.'''",

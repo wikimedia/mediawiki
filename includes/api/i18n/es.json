@@ -334,7 +334,7 @@
 	"apihelp-parse-paramvalue-prop-revid": "Añade la ID de revisión de la página analizada.",
 	"apihelp-parse-paramvalue-prop-displaytitle": "Añade el título del wikitexto analizado.",
 	"apihelp-parse-paramvalue-prop-headitems": "<span class=\"apihelp-deprecated\">Obsoleto.</span> Proporciona elementos para colocar en el <code>&lt;head&gt;</code> de la página.",
-	"apihelp-parse-paramvalue-prop-headhtml": "Da el <code>&lt;encabezado&gt;</code> analizado de la página.",
+	"apihelp-parse-paramvalue-prop-headhtml": "Proporciona la <code>&lt;head&gt;</code> analizada de la página.",
 	"apihelp-parse-paramvalue-prop-modules": "Proporciona los módulos de ResourceLoader utilizados en la página. Para cargar, utiliza <code>mw.loader.using()</code>. <kbd>jsconfigvars</kbd> o bien <kbd>encodedjsconfigvars</kbd> deben solicitarse en conjunto con <kbd>modules</kbd>.",
 	"apihelp-parse-paramvalue-prop-jsconfigvars": "Proporciona las variables de configuración de JavaScript específicas de la página. Para obtenerlas, utiliza <code>mw.config.set()</code>.",
 	"apihelp-parse-paramvalue-prop-encodedjsconfigvars": "Da la configuración JavaScript de variables específica para la página como cadena JSON.",

@@ -346,7 +346,7 @@
 	"editing": "Rievdadit siiddu $1",
 	"editingsection": "Rievdadit oasi siiddus $1",
 	"editingcomment": "Rievdadit kommeanta siiddus $1",
-	"explainconflict": "Soames lea rievdadan dán siiddu dan maŋŋel go don leat álgan rievdadit dan.\nBajit oasis oidno siiddu teaksta dálá hámis.\nDu rievdadusat oidnojit vuolit oasis.\nDon fertet dahkat du rievdadusaid dálá tekstii.\n'''Beare''' bajit oasi teaksta vurkejuvvo go deaddilat «{{int:savearticle}}».",
+	"explainconflict": "Soames lea rievdadan dán siiddu dan maŋŋel go don leat álgan rievdadit dan.\nBajit oasis oidno siiddu teaksta dálá hámis.\nDu rievdadusat oidnojit vuolit oasis.\nDon fertet dahkat du rievdadusaid dálá tekstii.\n'''Beare''' bajit oasi teaksta vurkejuvvo go deaddilat «$1».",
 	"yourtext": "Iežat teaksta",
 	"storedversion": "Vurkejuvvon veršuvdna",
 	"yourdiff": "Erohusat",

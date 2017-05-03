@@ -544,7 +544,7 @@
 	"anonpreviewwarning": "''Rika durung mlebu log. Nyimpen kaca bakal nyatetna alamat IP-ne Rika nang riwayat suntingan kaca kiye.''",
 	"missingsummary": "'''Pènget:''' Rika ora nglebokna ringkesan panyuntingan. \nAngger Rika mencèt tombol Simpen maning, suntingane Rika bakal kasimpen tanpa ringkesan panyuntingan.",
 	"missingcommenttext": "Tulung lebokna komentar nang ngisor kiye.",
-	"missingcommentheader": "'''Pènget:''' Rika ora nglebokna subjek/judul nggo komentare Rika kiye. \nAngger Rika mencèt \"{{int:savearticle}}\" maning, suntingane Rika bakal kasimpen tanpa komentar kuwe.",
+	"missingcommentheader": "'''Pènget:''' Rika ora nglebokna subjek/judul nggo komentare Rika kiye. \nAngger Rika mencèt \"$1\" maning, suntingane Rika bakal kasimpen tanpa komentar kuwe.",
 	"summary-preview": "Pratayang ringkesan:",
 	"subject-preview": "Pratayang subyèk/judul:",
 	"blockedtitle": "Panganggo diblokir",

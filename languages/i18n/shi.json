@@ -346,7 +346,7 @@
 	"showdiff": "Mel imbddln lli ifttun",
 	"anoneditwarning": "Han  ''' ur ttuyssant ''' rad ibayn IP nk ɣ umzrut n tasna yad, ur sul  iḥba tamagit nk",
 	"anonpreviewwarning": "ur ittuyssan mat tgit. Iɣ tgdl tawuri nk, tansa nk IP rad tbayn ɣ umzruy n imbdln n tasna yad.",
-	"missingsummary": "'''Adakt nskti :''' ur ta tfit awal imun n imbddln nk.\nIɣ tklikkit tiklit yaḍn f tjrrayt « {{int:savearticle}} », aẓṛig rad ittuyskar blla tsnt",
+	"missingsummary": "'''Adakt nskti :''' ur ta tfit awal imun n imbddln nk.\nIɣ tklikkit tiklit yaḍn f tjrrayt « $1 », aẓṛig rad ittuyskar blla tsnt",
 	"missingcommenttext": "Σafak skjm awnnit (aɣfawal) nk ɣ uflla.",
 	"summary-preview": "Tiẓṛi  n tagḍwit:",
 	"blockedtitle": "lmostkhdim ad itbloka",

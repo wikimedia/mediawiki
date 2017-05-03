@@ -496,7 +496,7 @@
 	"editingsection": "Tahrirlanmoqda — $1 (boʻlimi)",
 	"editingcomment": "Yangi mavzu yaratilmoqda — $1",
 	"editconflict": "Tahrirlash toʻqnashuvi: $1",
-	"explainconflict": "Sahifani tahrirlayotgan mahalingizda boshqa birov unga oʻzgarish kiritib ulgurdi.\nYuqoridagi tahrir oynasida sahifaning joriy matnini koʻrishingiz mumkin.\nPastdagida esa siz kiritgan oʻzgarishlar koʻrsatilgan.\nKiritmoqchi boʻlgan oʻzgarishlaringizni pastdagi oynadan yuqoridagiga oʻtkazing.\n«{{int:savearticle}}» tugmasini bossangiz <strong>faqat</strong> yuqoridagi matn saqlanadi.",
+	"explainconflict": "Sahifani tahrirlayotgan mahalingizda boshqa birov unga oʻzgarish kiritib ulgurdi.\nYuqoridagi tahrir oynasida sahifaning joriy matnini koʻrishingiz mumkin.\nPastdagida esa siz kiritgan oʻzgarishlar koʻrsatilgan.\nKiritmoqchi boʻlgan oʻzgarishlaringizni pastdagi oynadan yuqoridagiga oʻtkazing.\n«$1» tugmasini bossangiz <strong>faqat</strong> yuqoridagi matn saqlanadi.",
 	"yourtext": "Sizning matningiz",
 	"editingold": "<strong>Ogohlantirish: Siz sahifaning eski nusxasini tahrirlayapsiz.</strong> Uni shunday holicha saqlasangiz, keyingi nusxalardagi oʻzgarishlar yoʻqotiladi.",
 	"yourdiff": "Farqlar",

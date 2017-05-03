@@ -547,7 +547,7 @@
 	"editingsection": "Cambiende $1 (setzione)",
 	"editingcomment": "Modìfica de $1 (setzione noa)",
 	"editconflict": "Cunflitu de editzione: $1",
-	"explainconflict": "Calicunu àteru at cambiadu custa pàgina in su tempus chi dda fias cambiende tue.\nS'àrea de testu de susu cuntènnet su testu de sa pàgina in sa forma atuale.\nIs mudàntzias tuas sunt ammustradas in s'àrea de testu in suta.\nAs a dèper insertare is mudàntzias tuas in su testu atuale, e pro custu a ddas iscrìer in s'àrea de susu.\n<strong>Solu</strong> su testu in s'àrea de susu at a èsser sarbadu si carcas su butone \"{{int:savearticle}}\".",
+	"explainconflict": "Calicunu àteru at cambiadu custa pàgina in su tempus chi dda fias cambiende tue.\nS'àrea de testu de susu cuntènnet su testu de sa pàgina in sa forma atuale.\nIs mudàntzias tuas sunt ammustradas in s'àrea de testu in suta.\nAs a dèper insertare is mudàntzias tuas in su testu atuale, e pro custu a ddas iscrìer in s'àrea de susu.\n<strong>Solu</strong> su testu in s'àrea de susu at a èsser sarbadu si carcas su butone \"$1\".",
 	"yourtext": "Su testu tuo",
 	"storedversion": "Revisione in archìviu",
 	"editingold": "<strong>Atentzione: Ses cambiende una versione non-agiornada de sa pàgina.</strong>\nSi dda sarbas de aici, totus is càmbios fatos a pustis de custa versione ant a bènnere pèrdidos pro semper.",

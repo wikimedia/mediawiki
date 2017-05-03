@@ -417,7 +417,7 @@
 	"editingsection": "Mudifigga di $1 (sezzioni)",
 	"editingcomment": "Mudifigga di $1 (cummentu)",
 	"editconflict": "Cuntrasthu d'edizioni i $1",
-	"explainconflict": "Un'althru utenti à sàivvaddu una noba versioni di la pàgina primma di lu saivvatàggiu tóiu.\nLa casella di mudìfigga superiori cunteni lu testhu di la pàgina attuarmenti in lìnia, cumenti è isthadda mudìfiggadda da l'althru utenti.\nLa versioni cu' li mudìfigghi tói è i' la casella di mudìfigga in giossu.\nSi vói cunfèimmalli, dévi arriggà li mudìfigghi tói i' lu testhu esisthenti (casella superiori).\n'''Soru''' lu testhu i' la casella superiori sarà sàivvaddu candu tu incalcharé \"{{int:savearticle}}\".",
+	"explainconflict": "Un'althru utenti à sàivvaddu una noba versioni di la pàgina primma di lu saivvatàggiu tóiu.\nLa casella di mudìfigga superiori cunteni lu testhu di la pàgina attuarmenti in lìnia, cumenti è isthadda mudìfiggadda da l'althru utenti.\nLa versioni cu' li mudìfigghi tói è i' la casella di mudìfigga in giossu.\nSi vói cunfèimmalli, dévi arriggà li mudìfigghi tói i' lu testhu esisthenti (casella superiori).\n'''Soru''' lu testhu i' la casella superiori sarà sàivvaddu candu tu incalcharé \"$1\".",
 	"yourtext": "Lu testhu tóiu",
 	"storedversion": "La versioni mimurizadda",
 	"nonunicodebrowser": "'''ATTINZIONI: Lu nabiggadori tóiu nò è cumpatìbiri cu' li caràtteri Unicode. Pa cunsintì la mudìfigga di li pàgini chena crià incunvinienti, i caràtteri nò ASCII so visuarizzaddi i' la casella di mudìfigga cumenti còdizi esadezimari.'''",

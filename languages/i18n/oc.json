@@ -606,7 +606,7 @@
 	"preview": "Previsualizar",
 	"showpreview": "Previsualizar",
 	"showdiff": "Veire los cambiaments",
-	"blankarticle": "<strong>Atencion :</strong> La pagina que creatz es voida.\nSe clicatz tornarmai sus « {{int:savearticle}} », la pagina serà creada sens cap de contengut.",
+	"blankarticle": "<strong>Atencion :</strong> La pagina que creatz es voida.\nSe clicatz tornarmai sus « $1 », la pagina serà creada sens cap de contengut.",
 	"anoneditwarning": "<strong>Atencion :<strong> sètz pas connectat.\nVòstra adreça IP serà visibla per tot lo monde se fasètz de modificacions. Se <strong>[$1 vos connectatz]</strong> o <strong>[$2 creatz un compte]</strong>, vòstras modificacions seràn atribuidas a vòstre nom d’utilizaire, entre autres avantatges.",
 	"anonpreviewwarning": "''Sètz pas identificat. Salvar enregistrarà vòstra adreça IP dins l’istoric de las modificacions de la pagina.''",
 	"missingsummary": "'''Atencion :''' avètz pas modificat lo resumit de vòstra modificacion. Se clicatz tornarmai sul boton « Salvar », lo salvament serà fait sens avertiment mai.",

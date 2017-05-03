@@ -344,7 +344,7 @@
 	"editingsection": "Tumulaika $1 (patte)",
 	"editingcomment": "Tulalaika $1 (komentu)",
 	"editconflict": "Tulaika i problema: $1",
-	"explainconflict": "Guåha otru na tinilaika gi påhina ginen i tiempon tumutuhon hao tumulaika.\nMa'annok i tinige' gi hilo' komu på'go.\nMa'annok i tinilaika-mu gi papa'.\nPara un nesita muna'daña i tinilaika-mu yan i guinaha.\n'''I tinige' gi hilo' ha'''' para u såtba annai un yemme' \"{{int:savearticle}}\".",
+	"explainconflict": "Guåha otru na tinilaika gi påhina ginen i tiempon tumutuhon hao tumulaika.\nMa'annok i tinige' gi hilo' komu på'go.\nMa'annok i tinilaika-mu gi papa'.\nPara un nesita muna'daña i tinilaika-mu yan i guinaha.\n'''I tinige' gi hilo' ha'''' para u såtba annai un yemme' \"$1\".",
 	"yourtext": "Tinige'-mu",
 	"storedversion": "Tinilaika masåtba",
 	"editingold": "'''ADAHI: Un tulalaika un ribision påhina gus bihu.\nYanggen un såtba ha', para u fana'malingu i tinilaika siha despues di enao na ribision.'''",

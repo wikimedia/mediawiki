@@ -470,7 +470,7 @@
 	"anoneditwarning": "<strong>Homaikat:<strong> Tö et olgoi kirjutanus sistemha. Teiden IP-adres kirjutadas necen lehtpolen redaktiruindan istorijaha, ku toižetaškandet sidä. Ku tö <strong>[$1 kirjutatoiš sistemha]</strong> vai <strong>[$2 sat registracijan]</strong>, ka teiden redakcijad sidotas teiden kävutajannimehe. Siloi teil linneb toižid-ki ližavoimuzid.",
 	"missingsummary": "'''Muštatez:''' Tö et olgoi andnuded toižetusiden lühüdad ümbrikacundad.\nKu tö valičet völ kerdan \"Kirjutada lehtpol'\", ka teiden toižetused kirjutase ningoižeta ümbrikacundata.",
 	"missingcommenttext": "Olgat hüväd, pangat teiden tedotuz alahaks.",
-	"missingcommentheader": "'''Muštatez:''' Tö et olgoi andnuded toižetusiden ümbrikacundoiden pälkirjutest.\nKu tö valičet völ kerdan ”{{int:savearticle}}” \"Kirjutada lehtpol'\", ka teiden toižetusiden ümbrikacund kirjutase ningoižeta pälkirjuteseta.",
+	"missingcommentheader": "'''Muštatez:''' Tö et olgoi andnuded toižetusiden ümbrikacundoiden pälkirjutest.\nKu tö valičet völ kerdan ”$1” \"Kirjutada lehtpol'\", ka teiden toižetusiden ümbrikacund kirjutase ningoižeta pälkirjuteseta.",
 	"summary-preview": "Ümbrikacund linneb mugoi:",
 	"subject-preview": "Ümbrikacundan pälkirjutez linneb mugoi:",
 	"blockedtitle": "Kävutai om blokiruidud",

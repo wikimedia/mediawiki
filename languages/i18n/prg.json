@@ -408,7 +408,7 @@
 	"editingsection": "Tū redigijja $1 (sekciōni)",
 	"editingcomment": "Tū redigijja $1 (naunā sekciōni)",
 	"editconflict": "Redigīsenin kōnfliktan: $1",
-	"explainconflict": "Ainunts kits ast kitawīdinuns šin pāusan ezkērdai tū pagaūwa redigītun din.\nTekstas laūks aūktais turri ēn sen pāusas tekstan, kawīds bigāntei ekzistijja.\nTwajjas kitawīdinsnas ast waidīntan en zemmaišasmu tekstas laūkan.\nTebbei prawerru wīrstwei senlījuns(si) twajjans kitawīdinsnans sen ekzistīntin tekstan.\n'''Tēr''' teksts en aūktaišasmu tekstas laūkan wīrst būwuns enpeisātan, kaddan tu wīrst gnettuns \"{{int:savearticle}}\".",
+	"explainconflict": "Ainunts kits ast kitawīdinuns šin pāusan ezkērdai tū pagaūwa redigītun din.\nTekstas laūks aūktais turri ēn sen pāusas tekstan, kawīds bigāntei ekzistijja.\nTwajjas kitawīdinsnas ast waidīntan en zemmaišasmu tekstas laūkan.\nTebbei prawerru wīrstwei senlījuns(si) twajjans kitawīdinsnans sen ekzistīntin tekstan.\n'''Tēr''' teksts en aūktaišasmu tekstas laūkan wīrst būwuns enpeisātan, kaddan tu wīrst gnettuns \"$1\".",
 	"yourtext": "Twājs teksts",
 	"storedversion": "Enpeisāta wersiōni",
 	"nonunicodebrowser": "\"Ēmpirsergīsenis: Twajā lasātla ni erzinna tikrōmiskai UTF-8 kōdisnan (Unicode).\nStesse paggan wisāi zentlai pastāi mainātan sen tenēisan ušnadesimtiskan kōdan.",

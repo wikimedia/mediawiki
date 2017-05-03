@@ -40,8 +40,11 @@
 	"config-env-hhvm": "HHVM $1 instalatuta dago.",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] instalatuta dago",
 	"config-apc": "[http://www.php.net/apc APC] instalatuta dago",
+	"config-apcu": "[http://www.php.net/apcu APCu] instalatuta dago",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] instalatuta dago",
 	"config-diff3-bad": "GNU diff3 ez da aurkitu.",
+	"config-using-server": "\"<nowiki>$1</nowiki>\" zerbitzari-izena erabiltzen.",
+	"config-using-uri": "\"<nowiki>$1$2</nowiki>\" zerbitzariaren URLa erabiltzen.",
 	"config-db-type": "Datu-base mota:",
 	"config-db-host": "Datu-basearen zerbitzaria:",
 	"config-db-host-oracle": "Datu-baseko TNS:",
@@ -64,6 +67,8 @@
 	"config-header-mssql": "Microsoft SQL Server-en ezarpenak",
 	"config-invalid-db-type": "Datu-base mota baliogabea.",
 	"config-db-sys-user-exists-oracle": "$1 erabiltzaile kontua dagoeneko existitzen da. SYSDBA kontu berri bat sortzeko erabili daiteke soilik!",
+	"config-sqlite-readonly": "Ezin da idatzi <code>$1</code> fitxategian.",
+	"config-regenerate": "Birsortu LocalSettings.php →",
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",
 	"config-mysql-binary": "Bitarra",
@@ -113,6 +118,7 @@
 	"config-download-localsettings": "Jaitsi <code>LocalSettings.php</code>",
 	"config-help": "Laguntza",
 	"config-help-tooltip": "sakatu zabaltzeko",
+	"config-nofile": "Ezin da \"$1\" fitxategia aurkitu. Ezabatua izan da?",
 	"mainpagetext": "<strong>MediaWiki instalatu da.</strong>",
 	"mainpagedocfooter": "Ikus [https://meta.wikimedia.org/wiki/Help:Contents Erabiltzaile Gida] wiki softwarea erabiltzen hasteko informazio gehiagorako.\n\n== Nola hasi ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Konfigurazio balioen zerrenda]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ (Maiz egindako galderak)]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWikiren argitalpenen posta zerrenda]"
 }

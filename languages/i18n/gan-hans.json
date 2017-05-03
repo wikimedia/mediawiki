@@ -385,7 +385,7 @@
 	"anoneditwarning": "'''警告:'''倷哈冇登入，个页𠮶编写历史会记到倷𠮶IP。",
 	"missingsummary": "'''提示:''' 倷冇提供编写摘要。要系倷再按系保存𠮶话，倷保存𠮶编辑就会冇编辑摘要。",
 	"missingcommenttext": "请到底下评论。",
-	"missingcommentheader": "''提示:''' 汝𠮶评论冇提供标题。若系汝捺过到{{int:savearticle}}𠮶话，汝保存𠮶编辑就会冇标题。",
+	"missingcommentheader": "''提示:''' 汝𠮶评论冇提供标题。若系汝捺过到$1𠮶话，汝保存𠮶编辑就会冇标题。",
 	"summary-preview": "摘要预览:",
 	"subject-preview": "主题/头条预览:",
 	"blockedtitle": "用户封到嘞",

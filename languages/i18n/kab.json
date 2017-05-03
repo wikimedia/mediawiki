@@ -570,7 +570,7 @@
 	"editingsection": "Abeddel n $1 (amur)",
 	"editingcomment": "Abeddel n $1 (tigezmi tamaynut)",
 	"editconflict": "Amennuɣ deg ubeddel: $1",
-	"explainconflict": "Amdan nniḍen ibeddel asebter-agi asmi telliḍ tettbeddileḍ.\nAḍris deg usawen yesɛa asebter am yella tura.\nIbeddlen inek ahaten deg ukessar.\nYesfek ad txelṭeḍ ibeddlen inek akk d usebter i yellan.\n'''Ala''' aḍris deg usawen i yettusmekta asmi twekkiḍ \"{{int:savearticle}}\".",
+	"explainconflict": "Amdan nniḍen ibeddel asebter-agi asmi telliḍ tettbeddileḍ.\nAḍris deg usawen yesɛa asebter am yella tura.\nIbeddlen inek ahaten deg ukessar.\nYesfek ad txelṭeḍ ibeddlen inek akk d usebter i yellan.\n'''Ala''' aḍris deg usawen i yettusmekta asmi twekkiḍ \"$1\".",
 	"yourtext": "Aḍris inek",
 	"storedversion": "Tasiwelt yettusmketen",
 	"nonunicodebrowser": "'''AƔTAL: Browser/Explorateur inek ur yebil ara unicode. Nexdem akken ad tzemreḍ ad tbeddleḍ mebla amihi: isekkilin i mačči ASCII ttbanen deg tankult ubeddel s ungilen hexadecimal.'''",

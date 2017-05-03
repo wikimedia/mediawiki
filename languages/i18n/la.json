@@ -487,7 +487,7 @@
 	"editingsection": "Recensens $1 (partem)",
 	"editingcomment": "Recensens $1 (nova pars)",
 	"editconflict": "Contentio recensionis: $1",
-	"explainconflict": "Alius hanc paginam mutavit postquam eadem recensere incipiebas.\nCapsa superior paginae verba recentissima continet.\nMutationes tuae in capsa inferiore monstrantur.\nMutationes tuae in verba superiora adiungare debes.\n'''Solum''' verba capsae superioris servabuntur quando \"{{int:savearticle}}\" premes.",
+	"explainconflict": "Alius hanc paginam mutavit postquam eadem recensere incipiebas.\nCapsa superior paginae verba recentissima continet.\nMutationes tuae in capsa inferiore monstrantur.\nMutationes tuae in verba superiora adiungare debes.\n'''Solum''' verba capsae superioris servabuntur quando \"$1\" premes.",
 	"yourtext": "Tua redactio",
 	"storedversion": "Redactio modo servata",
 	"nonunicodebrowser": "'''CAVETO: Navigatorium retiale tuum systemati UNICODE morem non gerit. Modum habemus quo commentationes sine damno recenseas: litterae non-ASCII in capsa sub veste hexadecimali ostendentur.'''",

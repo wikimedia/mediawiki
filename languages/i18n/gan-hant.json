@@ -381,7 +381,7 @@
 	"anoneditwarning": "'''警告：'''汝哈冇登入，箇頁嗰編寫歷史會錄到汝嗰IP。",
 	"missingsummary": "'''提示:''' 倷冇提供編寫摘要。要係倷再按係保存嗰話，倷保存嗰編輯就會冇編輯摘要。",
 	"missingcommenttext": "請到底下評論。",
-	"missingcommentheader": "''提示:''' 汝嗰評論冇提供標題。若係汝捺過到{{int:savearticle}}嗰話，汝保存嗰編輯就會冇標題。",
+	"missingcommentheader": "''提示:''' 汝嗰評論冇提供標題。若係汝捺過到$1嗰話，汝保存嗰編輯就會冇標題。",
 	"summary-preview": "摘要預覽:",
 	"subject-preview": "主題/頭條預覽:",
 	"blockedtitle": "用戶封到哩",

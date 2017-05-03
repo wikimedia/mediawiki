@@ -450,7 +450,7 @@
 	"editingsection": "Candjant $1 (seccion)",
 	"editingcomment": "Candjant $1 (novele seccion)",
 	"editconflict": "Ecramiaedje inte deus candjmints: $1",
-	"explainconflict": "Ene sakî a candjî l' pådje do tins ki vos estîz a scrire.\nLi boesse di tecse do dzeur mostere li tecse del pådje come il est\npol moumint sol sierveu. Li tecse da vosse est sol boesse di tecse do dzo.\nLes diferinces sont håynêyes å mitan. Vos dvoz mete vos candjmints dins\nl' tecse d' asteure (å dzeur) si vos lez vloz co evoyî.\n'''Seulmint''' li tecse do dzeur serè candjî cwand vos clitchroz sol boton «{{int:savearticle}}».",
+	"explainconflict": "Ene sakî a candjî l' pådje do tins ki vos estîz a scrire.\nLi boesse di tecse do dzeur mostere li tecse del pådje come il est\npol moumint sol sierveu. Li tecse da vosse est sol boesse di tecse do dzo.\nLes diferinces sont håynêyes å mitan. Vos dvoz mete vos candjmints dins\nl' tecse d' asteure (å dzeur) si vos lez vloz co evoyî.\n'''Seulmint''' li tecse do dzeur serè candjî cwand vos clitchroz sol boton «$1».",
 	"yourtext": "Li tecse da vosse",
 	"storedversion": "Modêye sol sierveu",
 	"nonunicodebrowser": "'''ASTEME: li betchteu waibe da vosse ni sopoite nén l' ecôdaedje unicôde, cåze di çoula les caracteres nén-ASCII vont aparexhe dins l' boesse di tecse come des côdes hecsadecimås, insi vos pôroz tot l' minme candjî l' pådje.'''",

@@ -308,7 +308,7 @@
 	"editingsection": "ʻOku fatuʻi $1 (vahe)",
 	"editingcomment": "ʻOku fatuʻi $1 (fakamatala foʻou)",
 	"editconflict": "Fepaki fatu: $1",
-	"explainconflict": "Naʻe liliu ʻa e pēsí ni ʻe he ʻetita ʻe taha lolotonga he taimi kuo ke kamata hoʻo fatu.\nKo e konga ʻi olunga, ko e kupu ia he onopooni.\nKo e konga ʻi lalo, ko hoʻo ngaahi liliu ia.\nʻE pau te ke fakataha hoʻo liliu ʻi loto ʻo e kupu ʻoku tuʻu.\nKo e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi ʻo e meʻalolomi \"{{int:savearticle}}\".",
+	"explainconflict": "Naʻe liliu ʻa e pēsí ni ʻe he ʻetita ʻe taha lolotonga he taimi kuo ke kamata hoʻo fatu.\nKo e konga ʻi olunga, ko e kupu ia he onopooni.\nKo e konga ʻi lalo, ko hoʻo ngaahi liliu ia.\nʻE pau te ke fakataha hoʻo liliu ʻi loto ʻo e kupu ʻoku tuʻu.\nKo e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi ʻo e meʻalolomi \"$1\".",
 	"yourtext": "tohi ʻaʻau",
 	"storedversion": "Ko e paaki kuo tuku",
 	"editingold": "'''FAKATOKANGA: ʻOku ke fatu ʻi he paaki fakaonoʻaho ʻo e pēsi. Kapau te ke haofaki ia, ʻe mole ʻa e ngaahi liliu kotoa talu mei ai.'''",

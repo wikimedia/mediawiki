@@ -451,7 +451,7 @@
 	"editingsection": "Tue redaktue (sekcionin) $1",
 	"editingcomment": "Tue redaktue (sekcionin e ri) $1",
 	"editconflict": "Konflikt redaktues: $1",
-	"explainconflict": "Dikush tjetër e ka ndryshue këtë faqe derisa e redaktojshit ju.\nKutia e sipërme tregon tekstin aktual të faqes.\nNdryshimet tueja gjinden në kutinë e poshtme redaktuese.\nJu duheni me i bashkue ndryshimet tueja në tekstin aktual.\n'''Vetëmse''' nëse shtypni \"{{int:savearticle}}\" ka me u ruejtë teksti në kutinë e sipërme redaktuese.",
+	"explainconflict": "Dikush tjetër e ka ndryshue këtë faqe derisa e redaktojshit ju.\nKutia e sipërme tregon tekstin aktual të faqes.\nNdryshimet tueja gjinden në kutinë e poshtme redaktuese.\nJu duheni me i bashkue ndryshimet tueja në tekstin aktual.\n'''Vetëmse''' nëse shtypni \"$1\" ka me u ruejtë teksti në kutinë e sipërme redaktuese.",
 	"yourtext": "Teksti juej",
 	"storedversion": "Rishikim i ruejtun",
 	"nonunicodebrowser": "'''Kujdes: Shfletuesi juej nuk e përkrah unicodein.'''\nPër me ju lejue me redaktue faqen pa gabime aplikohet nji opcion shtesë: germat jashta ASCII kodit paraqiten me kod heksadecimal.",

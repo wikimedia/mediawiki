@@ -561,7 +561,7 @@
 	"editingsection": "Sprowjosz $1 (sekcyjo)",
 	"editingcomment": "Sprowjosz \"$1\" (nowy kůmyntorz)",
 	"editconflict": "Kůnflikt sprowjyń: $1",
-	"explainconflict": "Ftoś zdůnżůł wćepać swoja wersyjo artikla ńim żeś naszkryflou sprowjyńy.\nWe polu edycyji na wjyrchu mosz tekst zajty aktuelńy naszkryflany we baźe danych.\nTwoje pomjyńańo sům we polu edycyji půńiżyj.\nBy wćepać swoje pomjyńańo muśisz pomjyńać tekst we polu na wjyrchu.\n'''Ino''' tekst ze pola na wjyrchu bydźe naszkryflany we baźe jak \nwciśńesz knefel \"{{int:savearticle}}\".",
+	"explainconflict": "Ftoś zdůnżůł wćepać swoja wersyjo artikla ńim żeś naszkryflou sprowjyńy.\nWe polu edycyji na wjyrchu mosz tekst zajty aktuelńy naszkryflany we baźe danych.\nTwoje pomjyńańo sům we polu edycyji půńiżyj.\nBy wćepać swoje pomjyńańo muśisz pomjyńać tekst we polu na wjyrchu.\n'''Ino''' tekst ze pola na wjyrchu bydźe naszkryflany we baźe jak \nwciśńesz knefel \"$1\".",
 	"yourtext": "Twůj tekst",
 	"storedversion": "Naszkryflano wersyjo",
 	"nonunicodebrowser": "'''Pozůr! Twoja przeglůndorka ńy umi poprawńe rozpoznować kodowańo UTF-8 (Unicode). Bestůż wszyjske znoki, kerych Twojo przeglůndorka ńy umi rozpoznować, zamjeńůno na jejich kody heksadecymalne.'''",

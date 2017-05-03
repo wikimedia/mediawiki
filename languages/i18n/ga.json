@@ -464,7 +464,7 @@
 	"editingsection": "Ag athrú $1 (mir)",
 	"editingcomment": "Ag athrú $1 (mír nua)",
 	"editconflict": "Coimhlint athraithe: $1",
-	"explainconflict": "D'athraigh duine eile an leathanach seo ó thosaigh tú ar a athrú.\nTá téacs an leathanaigh mar atá sé faoi láthair le feiceáil thuas.\nTá do chuid athruithe le feiceáil thíos.\nCaithfidh tú do chuid athruithe a chumasc leis an leagan reatha.\nNí shábhálfar '''ach''' an téacs thuas nuair a bhrúnn tú ar an gcnaipe \"{{int:savearticle}}\".",
+	"explainconflict": "D'athraigh duine eile an leathanach seo ó thosaigh tú ar a athrú.\nTá téacs an leathanaigh mar atá sé faoi láthair le feiceáil thuas.\nTá do chuid athruithe le feiceáil thíos.\nCaithfidh tú do chuid athruithe a chumasc leis an leagan reatha.\nNí shábhálfar '''ach''' an téacs thuas nuair a bhrúnn tú ar an gcnaipe \"$1\".",
 	"yourtext": "Do chuid téacs",
 	"storedversion": "Leagan sábháilte",
 	"editingold": "'''Rabhadh: Tá tú ag athrú leagan an leathanaigh seo atá as dáta.\nMá shábhálfar é, caillfear gach athrú a rinneadh i ndiaidh an leagain seo.'''",

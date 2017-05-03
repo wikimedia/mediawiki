@@ -510,7 +510,7 @@
 	"anonpreviewwarning": "''Tu ne têketî yî. Tomarkirin wê navnîşana IP'ya te di dîroka guhertinan de nîşan bide.''",
 	"missingsummary": "<span style=\"color:#990000;\">'''Zanibe:'''</span> Te nivîsekî kurt ji bo guherandinê ra nenivîsand. Eger tu niha carekî din li Tomar xê, guherandinê te vê nivîsekî kurt yê were tomarkirin.",
 	"missingcommenttext": "Ji kerema xwe kurteya naverokê li jêr binivisîne.",
-	"missingcommentheader": "<strong>Zanibe:</strong> Te sernav/mijarek nenivîsandîye. Heke tu niha carekî din li ser \"{{int:savearticle}}\" bitikînî, ev guherandina te bê sernav/mijar wê were tomarkirin.",
+	"missingcommentheader": "<strong>Zanibe:</strong> Te sernav/mijarek nenivîsandîye. Heke tu niha carekî din li ser \"$1\" bitikînî, ev guherandina te bê sernav/mijar wê were tomarkirin.",
 	"summary-preview": "Pêşdîtina kurtenivîsê:",
 	"subject-preview": "Pêşdîtina sernivîsê:",
 	"previewerrortext": "Wextê pêşdîtina guhertinên te, pirsgirekek derket.",
