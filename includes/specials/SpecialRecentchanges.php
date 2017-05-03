@@ -247,11 +247,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			] ];
 		}
 
-		if ( $user->isAllowed( 'rollback' ) ) {
-			$tables[] = 'page';
-			$fields[] = 'page_latest';
-			$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
-		}
+		// JOIN on page, used for 'last revision' filter highlight
+		$tables[] = 'page';
+		$fields[] = 'page_latest';
+		$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
 
 		ChangeTags::modifyDisplayQuery(
 			$tables,
