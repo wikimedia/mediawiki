@@ -305,14 +305,13 @@ class LogPager extends ReverseChronologicalPager {
 		$options = $basic['options'];
 		$joins = $basic['join_conds'];
 
-		$index = [];
 		# Add log_search table if there are conditions on it.
 		# This filters the results to only include log rows that have
 		# log_search records with the specified ls_field and ls_value values.
 		if ( array_key_exists( 'ls_field', $this->mConds ) ) {
 			$tables[] = 'log_search';
-			$index['log_search'] = 'ls_field_val';
-			$index['logging'] = 'PRIMARY';
+			$options['IGNORE INDEX'] = [ 'log_search' => 'ls_log_id' ];
+			$options['USE INDEX'] = [ 'logging' => 'PRIMARY' ];
 			if ( !$this->hasEqualsClause( 'ls_field' )
 				|| !$this->hasEqualsClause( 'ls_value' )
 			) {
@@ -321,9 +320,6 @@ class LogPager extends ReverseChronologicalPager {
 				# no duplicate log rows. Otherwise, we need to remove the duplicates.
 				$options[] = 'DISTINCT';
 			}
-		}
-		if ( count( $index ) ) {
-			$options['USE INDEX'] = $index;
 		}
 		# Don't show duplicate rows when using log_search
 		$joins['log_search'] = [ 'INNER JOIN', 'ls_log_id=log_id' ];
