@@ -207,7 +207,7 @@
 		 * The content wrapper of the skin (e.g. `.mw-body`).
 		 *
 		 * Populated on document ready by #init. To use this property,
-		 * wait for `$.ready` and be sure to have a module depedendency on
+		 * wait for `$.ready` and be sure to have a module dependency on
 		 * `mediawiki.util` and `mediawiki.page.startup` which will ensure
 		 * your document ready handler fires after #init.
 		 *
