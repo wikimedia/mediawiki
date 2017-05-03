@@ -822,7 +822,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/**
 	 * Get filter group definition from legacy custom filters
 	 *
-	 * @param array Custom filters from legacy hooks
+	 * @param array $customFilters Custom filters from legacy hooks
 	 * @return array Group definition
 	 */
 	protected function getFilterGroupDefinitionFromLegacyCustomFilters( $customFilters ) {
@@ -1343,6 +1343,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @param array &$query_options Array of query options; see IDatabase::select $options
 	 * @param array &$join_conds Array of join conditions; see IDatabase::select $join_conds
 	 * @param array $selectedExpLevels The allowed active values, sorted
+	 * @param int $now Number of seconds since the UNIX epoch, or 0 if not given
+	 *   (optional)
 	 */
 	public function filterOnUserExperienceLevel( $specialPageClassName, $context, $dbr,
 		&$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedExpLevels, $now = 0 ) {
