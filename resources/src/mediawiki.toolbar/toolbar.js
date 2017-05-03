@@ -167,7 +167,7 @@
 	toolbar.init = $.noop;
 
 	// Expose API publicly
-	// @deprecated since MW 1.30
+	// @deprecated since MW 1.29
 	mw.log.deprecate( mw, 'toolbar', toolbar );
 
 	$( function () {
