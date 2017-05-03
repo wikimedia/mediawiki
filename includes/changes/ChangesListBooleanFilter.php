@@ -30,12 +30,6 @@ use Wikimedia\Rdbms\IDatabase;
  * @since 1.29
  */
 class ChangesListBooleanFilter extends ChangesListFilter {
-	/**
-	 * Name.  Used as URL parameter
-	 *
-	 * @var string $name
-	 */
-
 	// This can sometimes be different on Special:RecentChanges
 	// and Special:Watchlist, due to the double-legacy hooks
 	// (SpecialRecentChangesFilters and SpecialWatchlistFilters)
@@ -84,32 +78,31 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	 * it's for.
 	 *
 	 * @param array $filterDefinition ChangesListFilter definition
-	 *
-	 * $filterDefinition['name'] string Name.  Used as URL parameter.
-	 * $filterDefinition['group'] ChangesListFilterGroup Group.  Filter group this
-	 *  belongs to.
-	 * $filterDefinition['label'] string i18n key of label for structured UI.
-	 * $filterDefinition['description'] string i18n key of description for structured
-	 *  UI.
-	 * $filterDefinition['showHide'] string Main i18n key used for unstructured UI.
-	 * $filterDefinition['isReplacedInStructuredUi'] bool Whether there is an
-	 *  equivalent feature available in the structured UI; this is optional, defaulting
-	 *  to true.  It does not need to be set if the exact same filter is simply visible
-	 *  on both.
-	 * $filterDefinition['default'] bool Default
-	 * $filterDefinition['priority'] int Priority integer.  Higher value means higher
-	 *  up in the group's filter list.
-	 * $filterDefinition['queryCallable'] callable Callable accepting parameters, used
-	 *  to implement filter's DB query modification.  Callback parameters:
-	 *   string $specialPageClassName Class name of current special page
-	 *   IContextSource $context Context, for e.g. user
-	 *   IDatabase $dbr Database, for addQuotes, makeList, and similar
-	 *   array &$tables Array of tables; see IDatabase::select $table
-	 *   array &$fields Array of fields; see IDatabase::select $vars
-	 *   array &$conds Array of conditions; see IDatabase::select $conds
-	 *   array &$query_options Array of query options; see IDatabase::select $options
-	 *   array &$join_conds Array of join conditions; see IDatabase::select $join_conds
-	 *   Optional only for legacy filters that still use the query hooks directly
+	 * * $filterDefinition['name'] string Name.  Used as URL parameter.
+	 * * $filterDefinition['group'] ChangesListFilterGroup Group.  Filter group this
+	 *     belongs to.
+	 * * $filterDefinition['label'] string i18n key of label for structured UI.
+	 * * $filterDefinition['description'] string i18n key of description for structured
+	 *     UI.
+	 * * $filterDefinition['showHide'] string Main i18n key used for unstructured UI.
+	 * * $filterDefinition['isReplacedInStructuredUi'] bool Whether there is an
+	 *     equivalent feature available in the structured UI; this is optional, defaulting
+	 *     to true.  It does not need to be set if the exact same filter is simply visible
+	 *     on both.
+	 * * $filterDefinition['default'] bool Default
+	 * * $filterDefinition['priority'] int Priority integer.  Higher value means higher
+	 *     up in the group's filter list.
+	 * * $filterDefinition['queryCallable'] callable Callable accepting parameters, used
+	 *     to implement filter's DB query modification.  Required, except for legacy
+	 *     filters that still use the query hooks directly.  Callback parameters:
+	 * 	* string $specialPageClassName Class name of current special page
+	 * 	* IContextSource $context Context, for e.g. user
+	 * 	* IDatabase $dbr Database, for addQuotes, makeList, and similar
+	 * 	* array &$tables Array of tables; see IDatabase::select $table
+	 * 	* array &$fields Array of fields; see IDatabase::select $vars
+	 * 	* array &$conds Array of conditions; see IDatabase::select $conds
+	 * 	* array &$query_options Array of query options; see IDatabase::select $options
+	 * 	* array &$join_conds Array of join conditions; see IDatabase::select $join_conds
 	 */
 	public function __construct( $filterDefinition ) {
 		parent::__construct( $filterDefinition );
@@ -150,7 +143,7 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	/**
 	 * Sets default
 	 *
-	 * @param bool Default value
+	 * @param bool $defaultValue
 	 */
 	public function setDefault( $defaultValue ) {
 		$this->defaultValue = $defaultValue;
