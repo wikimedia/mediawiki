@@ -1168,7 +1168,8 @@
 										icon: 'info',
 										popup: {
 											$content: $( '<div>' ).append( Util.parseMsg( 'apisandbox-continue-help' ) ),
-											padded: true
+											padded: true,
+											width: 'auto'
 										}
 									} ).$element
 								)
@@ -1427,6 +1428,8 @@
 						label: mw.message( 'apisandbox-helpurls' ).text(),
 						icon: 'help',
 						popup: {
+							width: 'auto',
+							padded: true,
 							$content: $( '<ul>' ).append( $.map( pi.helpurls, function ( link ) {
 								return $( '<li>' ).append( $( '<a>', {
 									href: link,
@@ -1444,6 +1447,8 @@
 						label: mw.message( 'apisandbox-examples' ).text(),
 						icon: 'code',
 						popup: {
+							width: 'auto',
+							padded: true,
 							$content: $( '<ul>' ).append( $.map( pi.examples, function ( example ) {
 								var a = $( '<a>', {
 									href: '#' + example.query,
