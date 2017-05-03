@@ -31,9 +31,104 @@ use Wikimedia\Rdbms\FakeResultWrapper;
  * @ingroup SpecialPage
  */
 class SpecialRecentChanges extends ChangesListSpecialPage {
+
+	private $watchlistFilterGroupDefinition;
+
 	// @codingStandardsIgnoreStart Needed "useless" override to change parameters.
 	public function __construct( $name = 'Recentchanges', $restriction = '' ) {
 		parent::__construct( $name, $restriction );
+
+		$this->watchlistFilterGroupDefinition = [
+			'name' => 'watchlist',
+			'title' => 'rcfilters-filtergroup-watchlist',
+			'class' => ChangesListStringOptionsFilterGroup::class,
+			'priority' => -9,
+			'isFullCoverage' => true,
+			'filters' => [
+				[
+					'name' => 'watched',
+					'label' => 'rcfilters-filter-watchlist-watched-label',
+					'description' => 'rcfilters-filter-watchlist-watched-description',
+					'cssClassSuffix' => 'watched',
+					'isRowApplicableCallable' => function ( $ctx, $rc ) {
+						return $rc->getAttribute( 'wl_user' );
+					}
+				],
+				[
+					'name' => 'watchednew',
+					'label' => 'rcfilters-filter-watchlist-watchednew-label',
+					'description' => 'rcfilters-filter-watchlist-watchednew-description',
+					'cssClassSuffix' => 'watchednew',
+					'isRowApplicableCallable' => function ( $ctx, $rc ) {
+						return $rc->getAttribute( 'wl_user' ) &&
+							$rc->getAttribute( 'rc_timestamp' ) &&
+							$rc->getAttribute( 'wl_notificationtimestamp' ) &&
+							$rc->getAttribute( 'rc_timestamp' ) >= $rc->getAttribute( 'wl_notificationtimestamp' );
+					},
+				],
+				[
+					'name' => 'notwatched',
+					'label' => 'rcfilters-filter-watchlist-notwatched-label',
+					'description' => 'rcfilters-filter-watchlist-notwatched-description',
+					'cssClassSuffix' => 'notwatched',
+					'isRowApplicableCallable' => function ( $ctx, $rc ) {
+						return $rc->getAttribute( 'wl_user' ) === null;
+					},
+				]
+			],
+			'default' => ChangesListStringOptionsFilterGroup::NONE,
+			'queryCallable' => function ( $specialPageClassName, $context, $dbr,
+				&$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedValues ) {
+				sort( $selectedValues );
+				$notwatchedCond = 'wl_user IS NULL';
+				$watchedCond = 'wl_user IS NOT NULL';
+				$newCond = 'rc_timestamp >= wl_notificationtimestamp';
+
+				if ( $selectedValues === [ 'notwatched' ] ) {
+					$conds[] = $notwatchedCond;
+					return;
+				}
+
+				if ( $selectedValues === [ 'watched' ] ) {
+					$conds[] = $watchedCond;
+					return;
+				}
+
+				if ( $selectedValues === [ 'watchednew' ] ) {
+					$conds[] = $dbr->makeList( [
+						$watchedCond,
+						$newCond
+					], LIST_AND );
+					return;
+				}
+
+				if ( $selectedValues === [ 'notwatched', 'watched' ] ) {
+					// no filters
+					return;
+				}
+
+				if ( $selectedValues === [ 'notwatched', 'watchednew' ] ) {
+					$conds[] = $dbr->makeList( [
+						$notwatchedCond,
+						$dbr->makeList( [
+							$watchedCond,
+							$newCond
+						], LIST_AND )
+					], LIST_OR );
+					return;
+				}
+
+				if ( $selectedValues === [ 'watched', 'watchednew' ] ) {
+					$conds[] = $watchedCond;
+					return;
+				}
+
+				if ( $selectedValues === [ 'notwatched', 'watched', 'watchednew' ] ) {
+					// no filters
+					return;
+				}
+			}
+		];
 	}
 	// @codingStandardsIgnoreEnd
 
@@ -102,6 +197,18 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 */
 	protected function registerFilters() {
 		parent::registerFilters();
+
+		if (
+			!$this->including() &&
+			$this->getUser()->isLoggedIn() &&
+			$this->getUser()->isAllowed( 'viewmywatchlist' )
+		) {
+			$this->registerFiltersFromDefinitions( [ $this->watchlistFilterGroupDefinition ] );
+			$watchlistGroup = $this->getFilterGroup( 'watchlist' );
+			$watchlistGroup->getFilter( 'watched' )->setAsSupersetOf(
+				$watchlistGroup->getFilter( 'watchednew' )
+			);
+		}
 
 		$user = $this->getUser();
 
@@ -236,7 +343,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$fields = array_merge( RecentChange::selectFields(), $fields );
 
 		// JOIN on watchlist for users
-		if ( $user->getId() && $user->isAllowed( 'viewmywatchlist' ) ) {
+		if ( $user->isLoggedIn() && $user->isAllowed( 'viewmywatchlist' ) ) {
 			$tables[] = 'watchlist';
 			$fields[] = 'wl_user';
 			$fields[] = 'wl_notificationtimestamp';
