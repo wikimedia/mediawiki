@@ -1262,7 +1262,7 @@ interface IDatabase {
 	public function conditional( $cond, $trueVal, $falseVal );
 
 	/**
-	 * Returns a comand for str_replace function in SQL query.
+	 * Returns a command for str_replace function in SQL query.
 	 * Uses REPLACE() in MySQL
 	 *
 	 * @param string $orig Column to modify
