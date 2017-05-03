@@ -52,6 +52,11 @@
 	list-style-image: e( '/* @embed */' ) url( @fallback ) e( '\9' );
 }
 
+.transform( @transform ) {
+	-webkit-transform: @transform;
+	transform: @transform;
+}
+
 .transition( @value ) {
 	-webkit-transition: @value; // Safari 3.1-6.0, iOS 3.2-6.1, Android 2.1-4.3
 	-moz-transition: @value; // Firefox 4-15
