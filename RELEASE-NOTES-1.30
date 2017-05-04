@@ -17,6 +17,10 @@ production.
   This is intended for extensions that want control
   over the instantiation of their jobs,
   to allow for proper dependency injection.
+* $wgResourceModules may now specify callback functions
+  as an alternative to plain class names, using the 'factory' key
+  in the module description array.
+  This allows dependency injection to be used on ResourceModules.
 
 === New features in 1.30 ===
 * (T37247) Output from Parser::parse() will now be wrapped in a div with

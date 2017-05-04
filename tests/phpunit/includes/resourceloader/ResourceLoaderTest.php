@@ -146,6 +146,23 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	/**
 	 * @covers ResourceLoader::getModule
 	 */
+	public function testGetModuleFactory() {
+		$factory = function( array $info ) {
+			$this->assertArrayHasKey( 'kitten', $info );
+			return new ResourceLoaderTestModule( $info );
+		};
+
+		$rl = new EmptyResourceLoader();
+		$rl->register( 'test', [ 'factory' => $factory, 'kitten' => 'little ball of fur' ] );
+		$this->assertInstanceOf(
+			ResourceLoaderTestModule::class,
+			$rl->getModule( 'test' )
+		);
+	}
+
+	/**
+	 * @covers ResourceLoader::getModule
+	 */
 	public function testGetModuleClassDefault() {
 		$rl = new EmptyResourceLoader();
 		$rl->register( 'test', [] );
