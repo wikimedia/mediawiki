@@ -3585,7 +3585,7 @@
 	"api-error-stashfailed": "Unutrašnja greška: server nije mogao da spremi privremenu datoteku.",
 	"api-error-unknown-warning": "Nepoznato upozorenje: \"$1\".",
 	"api-error-unknownerror": "Nepoznata greška: \"$1\"",
-	"duration-seconds": "$1 {{PLURAL:$1|sekunda|sekunde}}",
+	"duration-seconds": "$1 {{PLURAL:$1|sekunda|sekunde|sekundi}}",
 	"duration-minutes": "$1 {{PLURAL:$1|minut|minute|minuta}}",
 	"duration-hours": "$1 {{PLURAL:$1|sat|sata|sati}}",
 	"duration-days": "$1 {{PLURAL:$1|dan|dana}}",

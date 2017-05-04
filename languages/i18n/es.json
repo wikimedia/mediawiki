@@ -479,7 +479,7 @@
 	"internalerror_info": "Error interno: $1",
 	"internalerror-fatal-exception": "Excepción grave de tipo \"$1\"",
 	"filecopyerror": "No se ha podido copiar el archivo «$1» a «$2».",
-	"filerenameerror": "No se ha podido renombrar el archivo «$1» a «$2».",
+	"filerenameerror": "No se pudo cambiar el nombre del archivo «$1» a «$2».",
 	"filedeleteerror": "No se ha podido borrar el archivo «$1».",
 	"directorycreateerror": "No se ha podido crear el directorio «$1».",
 	"directoryreadonlyerror": "El directorio «$1» es de solo lectura.",

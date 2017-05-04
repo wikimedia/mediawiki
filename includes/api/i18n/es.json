@@ -784,7 +784,7 @@
 	"apihelp-query+imageinfo-param-urlwidth": "Si se establece $2prop=url, se devolverá una URL a una imagen escalada a este ancho.\nPor razones de rendimiento, si se utiliza esta opción, no se devolverán más de $1 imágenes escaladas.",
 	"apihelp-query+imageinfo-param-urlheight": "Similar a $1urlwidth.",
 	"apihelp-query+imageinfo-param-metadataversion": "Versión de los metadatos que se utilizará. Si se especifica <kbd>latest</kbd>, utilizará la última versión. El valor predeterminado es <kbd>1</kbd>, por motivo de retrocompatibilidad.",
-	"apihelp-query+imageinfo-param-extmetadatalanguage": "¿Qué idioma buscar  en extmetadata. Esto afecta a qué traducción buscar, si hay varias disponibles, así como la forma en que cosas como números y varios valores son formateados.",
+	"apihelp-query+imageinfo-param-extmetadatalanguage": "En qué idioma obtener «extmetadata». Esto afecta tanto la traducción que se obtendrá ―si hay varias― como el formato de elementos como los números y algunos valores.",
 	"apihelp-query+imageinfo-param-extmetadatamultilang": "Si las traducciones para la propiedad extmetadata están disponibles, busque todas ellas.",
 	"apihelp-query+imageinfo-param-extmetadatafilter": "Si se especifica y no vacío, sólo estas claves serán devueltos por $1prop=extmetadata.",
 	"apihelp-query+imageinfo-param-urlparam": "Un controlador específico de la cadena de parámetro. Por ejemplo, los archivos Pdf pueden utilizar <kbd>page15-100px</kbd>. <var>$1urlwidth</var> debe ser utilizado y debe ser consistente con <var>$1urlparam</var>.",

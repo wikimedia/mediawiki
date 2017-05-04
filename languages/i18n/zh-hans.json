@@ -2933,7 +2933,7 @@
 	"metadata-help": "此文件中包含有额外的信息。这些信息可能是由数码相机或扫描仪在创建或数字化过程中所添加的。如果文件自初始状态已受到修改，一些详细说明可能无法反映修改后的文件。",
 	"metadata-expand": "显示详细资料",
 	"metadata-collapse": "隐藏详细资料",
-	"metadata-fields": "在本信息中所列出的 EXIF 元数据域将包含在图片显示页面，当元数据表损坏时只显示以下信息。\n其他的元数据默认为隐藏。\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "在本信息中所列出的 EXIF 元数据域将包含在图片显示页面，当元数据表损坏时只显示以下信息。其他的元数据默认为隐藏。\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
 	"exif-imagewidth": "宽度",
 	"exif-imagelength": "高度",
 	"exif-bitspersample": "每像素字节数",
