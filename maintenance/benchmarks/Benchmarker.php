@@ -45,6 +45,11 @@ abstract class Benchmarker extends Maintenance {
 		$this->startBench();
 		$count = $this->getOption( 'count', $this->defaultCount );
 		foreach ( $benchs as $key => $bench ) {
+			// Shortcut for simple functions
+			if ( is_callable( $bench ) ) {
+				$bench = [ 'function' => $bench ];
+			}
+
 			// Default to no arguments
 			if ( !isset( $bench['args'] ) ) {
 				$bench['args'] = [];

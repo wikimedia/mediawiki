@@ -29,50 +29,36 @@ require_once __DIR__ . '/Benchmarker.php';
  * @ingroup Benchmark
  */
 class BenchmarkHooks extends Benchmarker {
+	protected $defaultCount = 10;
+
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Benchmark MediaWiki Hooks.' );
 	}
 
 	public function execute() {
-		global $wgHooks;
-		$wgHooks['Test'] = [];
-
-		$time = $this->benchHooks();
-		$this->output( 'Empty hook: ' . $time . "\n" );
-
-		$wgHooks['Test'][] = [ $this, 'test' ];
-		$time = $this->benchHooks();
-		$this->output( 'Loaded (one) hook: ' . $time . "\n" );
-
-		for ( $i = 0; $i < 9; $i++ ) {
-			$wgHooks['Test'][] = [ $this, 'test' ];
+		$cases = [
+			'Loaded 0 hooks' => 0,
+			'Loaded 1 hook' => 1,
+			'Loaded 10 hooks' => 10,
+			'Loaded 100 hooks' => 100,
+		];
+		$benches = [];
+		foreach ( $cases as $label => $load ) {
+			$benches[$label] = [
+				'setup' => function () use ( $load ) {
+					global $wgHooks;
+					$wgHooks['Test'] = [];
+					for ( $i = 1; $i <= $load; $i++ ) {
+						$wgHooks['Test'][] = [ $this, 'test' ];
+					}
+				},
+				'function' => function () {
+					Hooks::run( 'Test' );
+				}
+			];
 		}
-		$time = $this->benchHooks();
-		$this->output( 'Loaded (ten) hook: ' . $time . "\n" );
-
-		for ( $i = 0; $i < 90; $i++ ) {
-			$wgHooks['Test'][] = [ $this, 'test' ];
-		}
-		$time = $this->benchHooks();
-		$this->output( 'Loaded (one hundred) hook: ' . $time . "\n" );
-		$this->output( "\n" );
-	}
-
-	/**
-	 * @param int $trials
-	 * @return string
-	 */
-	private function benchHooks( $trials = 10 ) {
-		$start = microtime( true );
-		for ( $i = 0; $i < $trials; $i++ ) {
-			Hooks::run( 'Test' );
-		}
-		$delta = microtime( true ) - $start;
-		$pertrial = $delta / $trials;
-
-		return sprintf( "Took %6.3fms",
-			$pertrial * 1000 );
+		$this->bench( $benches );
 	}
 
 	/**
