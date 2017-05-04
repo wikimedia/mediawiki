@@ -303,7 +303,7 @@ class ServiceContainer implements DestructibleService {
 
 		$instance = $this->peekService( $name );
 
-		if ( $destroy && $instance instanceof DestructibleService )  {
+		if ( $destroy && $instance instanceof DestructibleService ) {
 			$instance->destroy();
 		}
 

@@ -69,7 +69,7 @@ class SamplingStatsdClient extends StatsdClient {
 		return $data;
 	}
 
-	/*
+	/**
 	 * Send the metrics over UDP
 	 * Sample the metrics according to their sample rate and send the remaining ones.
 	 *

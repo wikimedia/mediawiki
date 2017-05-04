@@ -1436,7 +1436,6 @@ function wfMsgReplaceArgs( $message, $args ) {
 function wfHostname() {
 	static $host;
 	if ( is_null( $host ) ) {
-
 		# Hostname overriding
 		global $wgOverrideHostname;
 		if ( $wgOverrideHostname !== false ) {

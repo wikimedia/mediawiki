@@ -1022,7 +1022,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		}
 
 		return false;
-
 	}
 
 	/**

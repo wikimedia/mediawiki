@@ -6,7 +6,7 @@
  * but instead manually called by WikitextHandler.
  * This should be fixed in the future.
  */
-class FileContentHandler extends WikitextContentHandler  {
+class FileContentHandler extends WikitextContentHandler {
 
 	public function getFieldsForSearchIndex( SearchEngine $engine ) {
 		$fields['file_media_type'] =
