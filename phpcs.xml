@@ -26,6 +26,81 @@
 	<rule ref="Generic.ControlStructures.InlineControlStructure.NotAllowed">
 		<severity>0</severity>
 	</rule>
+	<rule ref="MediaWiki.Commenting.FunctionComment.MissingParamComment">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.Commenting.FunctionComment.Missing.Public">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.Commenting.FunctionComment.ExtraParamComment">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.Commenting.FunctionComment.Missing.Protected">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.SingleSpaceBeforeSingleLineComment">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.WhiteSpace.DisallowEmptyLineFunctions.NoEmptyLine">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.Commenting.FunctionComment.MissingParamTag">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.Commenting.FunctionComment.ParamNameNoMatch">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.Commenting.FunctionComment.MissingReturn">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.Commenting.FunctionComment.MissingParamName">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.Commenting.FunctionComment.WrongStyle">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentStart">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.Commenting.FunctionComment.SpacingAfterParamType">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentEnd">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.WhiteSpace.SpaceBeforeControlStructureBrace.EmptyLines">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.Commenting.FunctionComment.SpacingAfterParamType">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.Commenting.FunctionComment.SpacingAfterParamName">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.Commenting.FunctionComment.SpacingAfter">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.ExtraCharacters.ParenthesesAroundKeyword.ParenthesesAroundKeywords">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.WhiteSpace.SpaceBeforeClassBrace.NoSpaceBeforeBrace">
+		<severity>0</severity>
+	</rule>
 	<exclude-pattern>node_modules/</exclude-pattern>
 	<exclude-pattern>vendor/</exclude-pattern>
 	<exclude-pattern type="relative">^extensions/</exclude-pattern>

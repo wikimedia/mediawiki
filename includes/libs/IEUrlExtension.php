@@ -63,8 +63,8 @@ class IEUrlExtension {
 		// Check QUERY_STRING or REQUEST_URI
 		if ( isset( $vars['SERVER_SOFTWARE'] )
 			&& isset( $vars['REQUEST_URI'] )
-			&& self::haveUndecodedRequestUri( $vars['SERVER_SOFTWARE'] ) )
-		{
+			&& self::haveUndecodedRequestUri( $vars['SERVER_SOFTWARE'] )
+		) {
 			$urlPart = $vars['REQUEST_URI'];
 		} elseif ( isset( $vars['QUERY_STRING'] ) ) {
 			$urlPart = $vars['QUERY_STRING'];
@@ -79,8 +79,8 @@ class IEUrlExtension {
 		// Some servers have PATH_INFO but not REQUEST_URI, so we check both
 		// to be on the safe side.
 		if ( isset( $vars['PATH_INFO'] )
-			&& self::isUrlExtensionBad( $vars['PATH_INFO'], $extWhitelist ) )
-		{
+			&& self::isUrlExtensionBad( $vars['PATH_INFO'], $extWhitelist )
+		) {
 			return true;
 		}
 
@@ -223,8 +223,8 @@ class IEUrlExtension {
 				// If the extension is NOT exe, dll or cgi, return it
 				$extension = substr( $url, $pos, $nextPos - $pos );
 				if ( strcasecmp( $extension, 'exe' ) && strcasecmp( $extension, 'dll' ) &&
-					strcasecmp( $extension, 'cgi' ) )
-				{
+					strcasecmp( $extension, 'cgi' )
+				) {
 					return $extension;
 				}
 				// Else continue looking

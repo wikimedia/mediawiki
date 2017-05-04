@@ -399,8 +399,8 @@ class IEContentAnalyzer {
 		$proposedFormat = $this->getDataFormat( $version, $proposed );
 		if ( $proposedFormat == 'unknown'
 			&& $proposed != 'multipart/mixed'
-			&& $proposed != 'multipart/x-mixed-replace' )
-		{
+			&& $proposed != 'multipart/x-mixed-replace'
+		) {
 			return $proposed;
 		}
 		if ( strval( $chunk ) === '' ) {
@@ -426,15 +426,15 @@ class IEContentAnalyzer {
 			return 'image/gif';
 		}
 		if ( ( $proposed == 'image/pjpeg' || $proposed == 'image/jpeg' )
-			&& $binaryType == 'image/pjpeg' )
-		{
+			&& $binaryType == 'image/pjpeg'
+		) {
 			return $proposed;
 		}
 		// PNG check added in IE 7
 		if ( $version >= 'ie07'
 			&& ( $proposed == 'image/x-png' || $proposed == 'image/png' )
-			&& $binaryType == 'image/x-png' )
-		{
+			&& $binaryType == 'image/x-png'
+		) {
 			return $proposed;
 		}
 
@@ -450,8 +450,8 @@ class IEContentAnalyzer {
 		}
 		if ( isset( $sampleFound['rdf-tag'] )
 			&& isset( $sampleFound['rdf-url'] )
-			&& isset( $sampleFound['rdf-purl'] ) )
-		{
+			&& isset( $sampleFound['rdf-purl'] )
+		) {
 			return 'application/rss+xml';
 		}
 		if ( isset( $sampleFound['atom'] ) ) {
@@ -497,8 +497,8 @@ class IEContentAnalyzer {
 		// Freaky heuristics to determine if the data is text or binary
 		// The heuristic is of course broken for non-ASCII text
 		if ( $counters['ctrl'] != 0 && ( $counters['ff'] + $counters['low'] )
-			< ( $counters['ctrl'] + $counters['high'] ) * 16 )
-		{
+			< ( $counters['ctrl'] + $counters['high'] ) * 16
+		) {
 			$kindOfBinary = true;
 			$type = $binaryType ? $binaryType : $textType;
 			if ( $type === false ) {
@@ -599,13 +599,13 @@ class IEContentAnalyzer {
 
 		if ( $chunk2 == 'BM'
 			&& substr( $chunk, 6, 2 ) == "\000\000"
-			&& substr( $chunk, 8, 2 ) == "\000\000" )
-		{
+			&& substr( $chunk, 8, 2 ) == "\000\000"
+		) {
 			return 'image/bmp'; // another non-standard MIME
 		}
 		if ( $chunk4 == 'RIFF'
-			&& substr( $chunk, 8, 4 ) == 'WAVE' )
-		{
+			&& substr( $chunk, 8, 4 ) == 'WAVE'
+		) {
 			return 'audio/wav';
 		}
 		// These were integer literals in IE
@@ -613,8 +613,8 @@ class IEContentAnalyzer {
 		if ( $chunk4 == ".sd\000"
 			|| $chunk4 == ".snd"
 			|| $chunk4 == "\000ds."
-			|| $chunk4 == "dns." )
-		{
+			|| $chunk4 == "dns."
+		) {
 			return 'audio/basic';
 		}
 		if ( $chunk3 == "MM\000" ) {
@@ -648,8 +648,8 @@ class IEContentAnalyzer {
 			return 'video/mpeg';
 		}
 		if ( $chunk4 == "\001\000\000\000"
-			&& substr( $chunk, 40, 4 ) == ' EMF' )
-		{
+			&& substr( $chunk, 40, 4 ) == ' EMF'
+		) {
 			return 'image/x-emf';
 		}
 		if ( $chunk4 == "\xd7\xcd\xc6\x9a" ) {
@@ -789,8 +789,8 @@ class IEContentAnalyzer {
 			if ( !strncasecmp( $remainder, $rdfUrl, strlen( $rdfUrl ) ) ) {
 				$found['rdf-url'] = true;
 				if ( isset( $found['rdf-tag'] )
-					&& isset( $found['rdf-purl'] ) ) // [sic]
-				{
+					&& isset( $found['rdf-purl'] ) // [sic]
+				) {
 					break;
 				}
 				continue;
@@ -798,8 +798,8 @@ class IEContentAnalyzer {
 
 			if ( !strncasecmp( $remainder, $rdfPurl, strlen( $rdfPurl ) ) ) {
 				if ( isset( $found['rdf-tag'] )
-					&& isset( $found['rdf-url'] ) ) // [sic]
-				{
+					&& isset( $found['rdf-url'] ) // [sic]
+				) {
 					break;
 				}
 				continue;

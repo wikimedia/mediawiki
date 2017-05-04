@@ -231,7 +231,6 @@ class RecentChangesUpdateJob extends Job {
 					],
 					__METHOD__
 				);
-
 			},
 			__METHOD__
 		);
