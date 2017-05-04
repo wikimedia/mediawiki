@@ -4,10 +4,12 @@
 	 *
 	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersModel Filters view model
 	 * @param {mw.rcfilters.dm.ChangesListViewModel} changesListModel Changes list view model
+	 * @param {mw.rcfilters.dm.NamespacesModel} changesListModel Changes list view model
 	 */
-	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel ) {
+	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel, namespacesModel ) {
 		this.filtersModel = filtersModel;
 		this.changesListModel = changesListModel;
+		this.namespacesModel = namespacesModel;
 		this.requestCounter = 0;
 	};
 
@@ -19,11 +21,15 @@
 	 *
 	 * @param {Array} filterStructure Filter definition and structure for the model
 	 */
-	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure ) {
+	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure ) {
 		var $changesList = $( '.mw-changeslist' ).first().contents();
-		// Initialize the model
+
+		// Initialize the filters model
 		this.filtersModel.initializeFilters( filterStructure );
 		this.updateStateBasedOnUrl();
+
+		// Initialize namespaces
+		this.namespacesModel.initialize( namespaceStructure );
 
 		// Update the changes list with the existing data
 		// so it gets processed
