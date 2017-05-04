@@ -8,7 +8,7 @@ use InvalidArgumentException;
  * Helper class to handle automatically marking connections as reusable (via RAII pattern)
  * as well handling deferring the actual network connection until the handle is used
  *
- * @note: proxy methods are defined explicity to avoid interface errors
+ * @note: proxy methods are defined explicitly to avoid interface errors
  * @ingroup Database
  * @since 1.22
  */
