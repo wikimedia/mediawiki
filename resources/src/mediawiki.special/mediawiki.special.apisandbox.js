@@ -1373,8 +1373,8 @@
 						return v.substr( -2 ) !== 'fm' ||
 							!availableFormats.hasOwnProperty( v.substr( 0, v.length - 2 ) );
 					},
-					widgetLabelOnClick = function () {
-						var f = this.getField();
+					widgetLabelOnClick = function ( field ) {
+						var f = field.getField();
 						if ( $.isFunction( f.setDisabled ) ) {
 							f.setDisabled( false );
 						}

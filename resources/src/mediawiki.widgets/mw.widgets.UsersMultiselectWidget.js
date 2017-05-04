@@ -85,7 +85,7 @@
 	 *
 	 * @return {Array} usernames
 	 */
-	mw.widgets.UsersMultiselectWidget.prototype.getSelectedUsernames = function() {
+	mw.widgets.UsersMultiselectWidget.prototype.getSelectedUsernames = function () {
 		return this.getItemsData();
 	};
 
@@ -94,7 +94,7 @@
 	 *
 	 * @private
 	 */
-	mw.widgets.UsersMultiselectWidget.prototype.updateMenuItems = function() {
+	mw.widgets.UsersMultiselectWidget.prototype.updateMenuItems = function () {
 		var inputValue = this.$input.val();
 
 		if ( inputValue === this.inputValue ) {
@@ -116,7 +116,7 @@
 				// character to uppercase so that "fo" may yield "Foo".
 				auprefix: inputValue[ 0 ].toUpperCase() + inputValue.slice( 1 ),
 				aulimit: this.limit
-			} ).done( function( response ) {
+			} ).done( function ( response ) {
 				var suggestions = response.query.allusers,
 					selected = this.getSelectedUsernames();
 
@@ -128,7 +128,7 @@
 							label: user.name
 						} );
 					}
-				} ).filter( function( item ) {
+				} ).filter( function ( item ) {
 					return item !== undefined;
 				} );
 
@@ -154,7 +154,7 @@
 	 *
 	 * @private
 	 */
-	mw.widgets.UsersMultiselectWidget.prototype.updateHiddenInput = function() {
+	mw.widgets.UsersMultiselectWidget.prototype.updateHiddenInput = function () {
 		if ( 'hiddenInput' in this ) {
 			this.hiddenInput.val( this.getSelectedUsernames().join( '\n' ) );
 		}
