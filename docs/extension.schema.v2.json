@@ -317,7 +317,7 @@
 							}
 						},
 						{
-							"description": "An arbitrary ResourceLoaderModule definition",
+							"description": "An arbitrary ResourceLoaderModule definition by class",
 							"properties": {
 								"class": {
 									"type": "string",
@@ -325,6 +325,16 @@
 								}
 							},
 							"required": ["class"]
+						},
+						{
+							"description": "An arbitrary ResourceLoaderModule definition with instantiator",
+							"properties": {
+								"factory": {
+									"type": "string",
+									"description": "A static instantiator function for creating the ResourceLoaderModule object."
+								}
+							},
+							"required": ["factory"]
 						}
 					]
 				}
