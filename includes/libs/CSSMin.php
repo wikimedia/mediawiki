@@ -38,7 +38,33 @@ class CSSMin {
 	 * Internet Explorer data URI length limit. See encodeImageAsDataURI().
 	 */
 	const DATA_URI_SIZE_LIMIT = 32768;
-	const URL_REGEX = 'url\(\s*[\'"]?(?P<file>[^\?\)\'"]*?)(?P<query>\?[^\)\'"]*?|)[\'"]?\s*\)';
+
+	// Match these three variants separately to avoid broken urls when
+	// e.g. a double quoted url contains a parenthesis, or when a
+	// single quoted url contains a double quote, etc.
+	// Note: PCRE doesn't support multiple capture groups with the same name by default.
+	// - PCRE 6.7 introduced the "J" modifier (PCRE_INFO_JCHANGED for PCRE_DUPNAMES).
+	//   https://secure.php.net/manual/en/reference.pcre.pattern.modifiers.php
+	//   However this isn't useful since it just ignores all but the first one.
+	//   Also, while the modifier was introduced in PCRE 6.7 (PHP 5.2+) it was
+	//   not exposed to public preg_* functions until PHP 5.6.0.
+	// - PCRE 8.36 fixed this to work as expected (e.g. merge conceptually to
+	//   only return the one matched in the part that actually matched).
+	//   However MediaWiki supports 5.5.9, which has PCRE 8.32
+	//   Per https://secure.php.net/manual/en/pcre.installation.php:
+	//   - PCRE 8.32 (PHP 5.5.0)
+	//   - PCRE 8.34 (PHP 5.5.10, PHP 5.6.0)
+	//   - PCRE 8.37 (PHP 5.5.26, PHP 5.6.9, PHP 7.0.0)
+	//   Workaround by using different groups and merge via processUrlMatch().
+	const URL_REGEX = '(' .
+	    // Unquoted url
+	    'url\(\s*(?P<file0>[^\'"][^\?\)]*?)(?P<query0>\?[^\)]*?|)\s*\)' .
+	    // Single quoted url
+	    '|url\(\s*\'(?P<file1>[^\?\']*?)(?P<query1>\?[^\']*?|)\'\s*\)' .
+	    // Double quoted url
+	    '|url\(\s*"(?P<file2>[^\?"]*?)(?P<query2>\?[^"]*?|)"\s*\)' .
+	    ')';
+
 	const EMBED_REGEX = '\/\*\s*\@embed\s*\*\/';
 	const COMMENT_REGEX = '\/\*.*?\*\/';
 
@@ -74,6 +100,7 @@ class CSSMin {
 		$rFlags = PREG_OFFSET_CAPTURE | PREG_SET_ORDER;
 		if ( preg_match_all( '/' . self::URL_REGEX . '/', $stripped, $matches, $rFlags ) ) {
 			foreach ( $matches as $match ) {
+				self::processUrlMatch( $match, $rFlags );
 				$url = $match['file'][0];
 
 				// Skip fully-qualified and protocol-relative URLs and data URIs
@@ -295,8 +322,9 @@ class CSSMin {
 				$ruleWithRemapped = preg_replace_callback(
 					$pattern,
 					function ( $match ) use ( $local, $remote ) {
-						$remapped = CSSMin::remapOne( $match['file'], $match['query'], $local, $remote, false );
+						self::processUrlMatch( $match );
 
+						$remapped = CSSMin::remapOne( $match['file'], $match['query'], $local, $remote, false );
 						return CSSMin::buildUrlValue( $remapped );
 					},
 					$rule
@@ -309,6 +337,8 @@ class CSSMin {
 					$ruleWithEmbedded = preg_replace_callback(
 						$pattern,
 						function ( $match ) use ( $embedAll, $local, $remote, &$mimeTypes ) {
+							self::processUrlMatch( $match );
+
 							$embed = $embedAll || $match['embed'];
 							$embedded = CSSMin::remapOne(
 								$match['file'],
@@ -383,6 +413,36 @@ class CSSMin {
 			return true;
 		}
 		return false;
+	}
+
+	// See comment at self::URL_REGEX
+	private static function processUrlMatch( array &$match, $flags = 0 ) {
+		if ( $flags & PREG_SET_ORDER ) {
+			// preg_match_all with PREG_SET_ORDER will return each group in each
+			// match array, and if it didn't match, instead of the sub array
+			// being an empty array it is `[ '', -1 ]`...
+			if ( isset( $match['file0'] ) && $match['file0'][1] !== -1 ) {
+				$match['file'] = $match['file0'];
+				$match['query'] = $match['query0'];
+			} elseif ( isset( $match['file1'] ) && $match['file1'][1] !== -1 ) {
+				$match['file'] = $match['file1'];
+				$match['query'] = $match['query1'];
+			} else {
+				$match['file'] = $match['file2'];
+				$match['query'] = $match['query2'];
+			}
+		} else {
+			if ( isset( $match['file0'] ) && $match['file0'] !== '' ) {
+				$match['file'] = $match['file0'];
+				$match['query'] = $match['query0'];
+			} elseif ( isset( $match['file1'] ) && $match['file1'] !== '' ) {
+				$match['file'] = $match['file1'];
+				$match['query'] = $match['query1'];
+			} else {
+				$match['file'] = $match['file2'];
+				$match['query'] = $match['query2'];
+			}
+		}
 	}
 
 	/**
