@@ -108,9 +108,9 @@
 						.revisions[ 0 ].diff.body;
 					$wikiDiff.find( 'table.diff tbody' ).html( diffHtml );
 					mw.hook( 'wikipage.diff' ).fire( $wikiDiff.find( 'table.diff' ) );
-				} catch ( e ) {
+				} catch ( err ) {
 					// "result.blah is undefined" error, ignore
-					mw.log.warn( e );
+					mw.log.warn( err );
 				}
 				$wikiDiff.show();
 			} );

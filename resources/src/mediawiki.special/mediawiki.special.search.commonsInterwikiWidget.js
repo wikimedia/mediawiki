@@ -66,7 +66,7 @@
 			return;
 		}
 
-		results.sort( function( a, b ) {
+		results.sort( function ( a, b ) {
 			return a.index - b.index;
 		} );
 
