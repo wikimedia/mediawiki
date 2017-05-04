@@ -98,6 +98,7 @@
 			 */
 			trigger: function () {
 				// use confirm to show the message to the user (if options.text() is true)
+				// eslint-disable-next-line no-alert
 				if ( options.test() && !confirm( message ) ) {
 					// the user want to keep the actual page
 					return false;

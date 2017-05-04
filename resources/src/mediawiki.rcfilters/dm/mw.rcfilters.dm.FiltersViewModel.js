@@ -513,7 +513,7 @@
 	 * @param {string[]} valueArray Array of values
 	 * @return {string[]} Array of valid values
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.sanitizeStringOptionGroup = function( groupName, valueArray ) {
+	mw.rcfilters.dm.FiltersViewModel.prototype.sanitizeStringOptionGroup = function ( groupName, valueArray ) {
 		var result = [],
 			validNames = this.getGroupFilters( groupName ).map( function ( filterItem ) {
 				return filterItem.getParamName();
