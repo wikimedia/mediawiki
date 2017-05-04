@@ -180,7 +180,6 @@ class FeedItem {
 	public static function stripComment( $text ) {
 		return preg_replace( '/\[\[([^]]*\|)?([^]]+)\]\]/', '\2', $text );
 	}
-	/**#@-*/
 }
 
 /**

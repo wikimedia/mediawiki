@@ -10,7 +10,6 @@ class DnsSrvDiscovererTest extends PHPUnit_Framework_TestCase {
 		$record = $discoverer->pickServer( $params );
 
 		$this->assertEquals( $expected, $record );
-
 	}
 
 	public static function provideRecords() {

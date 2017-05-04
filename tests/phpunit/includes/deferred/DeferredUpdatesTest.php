@@ -14,7 +14,7 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 		$all = DeferredUpdates::ALL;
 
 		$update = $this->getMockBuilder( 'DeferrableUpdate' )
-			      ->getMock();
+			->getMock();
 		$update->expects( $this->never() )
 			->method( 'doUpdate' );
 

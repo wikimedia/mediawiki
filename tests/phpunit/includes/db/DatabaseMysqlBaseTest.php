@@ -91,7 +91,6 @@ class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 	}
 
 	protected function mysqlRealEscapeString( $s ) {
-
 	}
 
 	function insertId() {
