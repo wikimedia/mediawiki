@@ -541,6 +541,10 @@ class ResourceLoader implements LoggerAwareInterface {
 			if ( isset( $info['object'] ) ) {
 				// Object given in info array
 				$object = $info['object'];
+			} elseif( isset( $info['factory'] ) ) {
+				$object = call_user_func( $info['factory'], $info );
+				$object->setConfig( $this->getConfig() );
+				$object->setLogger( $this->logger );
 			} else {
 				if ( !isset( $info['class'] ) ) {
 					$class = 'ResourceLoaderFileModule';

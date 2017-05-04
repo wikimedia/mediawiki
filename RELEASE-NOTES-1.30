@@ -12,6 +12,10 @@ production.
   case.
 * $wgShellLocale now affects LC_ALL rather than only LC_CTYPE. See
   documentation of $wgShellLocale for details.
+* $wgResourceModules may now specify callback functions
+  as an alternative to plain class names, using the 'factory' key
+  in the module description array.
+  This allows dependency injection to be used on ResourceModules.
 
 === New features in 1.30 ===
 * …
