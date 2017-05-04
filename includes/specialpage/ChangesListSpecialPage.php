@@ -255,43 +255,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			// reviewStatus (conditional)
 
 			[
-				'name' => 'lastRevision',
-				'title' => 'rcfilters-filtergroup-lastRevision',
-				'class' => ChangesListBooleanFilterGroup::class,
-				'priority' => -7,
-				'filters' => [
-					[
-						'name' => 'hidelastrevision',
-						'label' => 'rcfilters-filter-lastrevision-label',
-						'description' => 'rcfilters-filter-lastrevision-description',
-						'default' => false,
-						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) {
-							$conds[] = 'rc_this_oldid <> page_latest';
-						},
-						'cssClassSuffix' => 'last',
-						'isRowApplicableCallable' => function ( $ctx, $rc ) {
-							return $rc->getAttribute( 'rc_this_oldid' ) === $rc->getAttribute( 'page_latest' );
-						}
-					],
-					[
-						'name' => 'hidepreviousrevisions',
-						'label' => 'rcfilters-filter-previousrevision-label',
-						'description' => 'rcfilters-filter-previousrevision-description',
-						'default' => false,
-						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) {
-							$conds[] = 'rc_this_oldid = page_latest';
-						},
-						'cssClassSuffix' => 'previous',
-						'isRowApplicableCallable' => function ( $ctx, $rc ) {
-							return $rc->getAttribute( 'rc_this_oldid' ) !== $rc->getAttribute( 'page_latest' );
-						}
-					]
-				]
-			],
-
-			[
 				'name' => 'significance',
 				'title' => 'rcfilters-filtergroup-significance',
 				'class' => ChangesListBooleanFilterGroup::class,
@@ -328,6 +291,43 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'cssClassSuffix' => 'major',
 						'isRowApplicableCallable' => function ( $ctx, $rc ) {
 							return !$rc->getAttribute( 'rc_minor' );
+						}
+					]
+				]
+			],
+
+			[
+				'name' => 'lastRevision',
+				'title' => 'rcfilters-filtergroup-lastRevision',
+				'class' => ChangesListBooleanFilterGroup::class,
+				'priority' => -7,
+				'filters' => [
+					[
+						'name' => 'hidelastrevision',
+						'label' => 'rcfilters-filter-lastrevision-label',
+						'description' => 'rcfilters-filter-lastrevision-description',
+						'default' => false,
+						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
+							&$query_options, &$join_conds ) {
+							$conds[] = 'rc_this_oldid <> page_latest';
+						},
+						'cssClassSuffix' => 'last',
+						'isRowApplicableCallable' => function ( $ctx, $rc ) {
+							return $rc->getAttribute( 'rc_this_oldid' ) === $rc->getAttribute( 'page_latest' );
+						}
+					],
+					[
+						'name' => 'hidepreviousrevisions',
+						'label' => 'rcfilters-filter-previousrevision-label',
+						'description' => 'rcfilters-filter-previousrevision-description',
+						'default' => false,
+						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
+							&$query_options, &$join_conds ) {
+							$conds[] = 'rc_this_oldid = page_latest';
+						},
+						'cssClassSuffix' => 'previous',
+						'isRowApplicableCallable' => function ( $ctx, $rc ) {
+							return $rc->getAttribute( 'rc_this_oldid' ) !== $rc->getAttribute( 'page_latest' );
 						}
 					]
 				]
