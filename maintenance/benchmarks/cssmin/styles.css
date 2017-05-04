@@ -1,0 +1,32 @@
+/**
+ * Header
+ */
+
+.foo {
+	background: url(wiki.png);
+}
+
+.foo {
+	background: url(unknown.png);
+}
+
+.foo {
+	background: url(https://example.org/foo.png);
+	background: url('https://example.org/foo.png');
+	background: url("https://example.org/foo.png");
+}
+
+.foo {
+	/* @embed */
+	background: url(wiki.png);
+}
+
+.foo {
+	/* @embed */
+	background: url(circle.svg);
+}
+
+.foo {
+	/* @embed */
+	background: url(wiki.png), url(wiki.png);
+}
