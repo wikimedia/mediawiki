@@ -38,8 +38,10 @@
 		function isCssImportApplied() {
 			// Trigger reflow, repaint, redraw, whatever (cross-browser)
 			$element.css( 'height' );
+			// eslint-disable-next-line no-unused-expressions
 			el.innerHTML;
 			el.className = el.className;
+			// eslint-disable-next-line no-unused-expressions
 			document.documentElement.clientHeight;
 
 			return $element.css( prop ) === val;
