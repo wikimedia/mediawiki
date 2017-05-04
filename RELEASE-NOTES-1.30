@@ -12,6 +12,11 @@ production.
   case.
 * $wgShellLocale now affects LC_ALL rather than only LC_CTYPE. See
   documentation of $wgShellLocale for details.
+* $wgJobClasses may now specify callback functions
+  as an alternative to plain class names.
+  This is intended for extensions that want control
+  over the instantiation of their jobs,
+  to allow for proper dependency injection.
 
 === New features in 1.30 ===
 * …
