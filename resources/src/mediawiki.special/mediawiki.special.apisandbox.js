@@ -1365,7 +1365,7 @@
 
 		Util.fetchModuleInfo( this.apiModule )
 			.done( function ( pi ) {
-				var prefix, i, j, descriptionContainer, widget, $widgetLabel, widgetField, helpField, tmp, flag, count,
+				var prefix, i, j, descriptionContainer, widget, widgetField, helpField, tmp, flag, count,
 					items = [],
 					deprecatedItems = [],
 					buttons = [],
@@ -1585,20 +1585,18 @@
 							}
 						);
 
-						$widgetLabel = $( '<span>' );
 						widgetField = new OO.ui.FieldLayout(
 							widget,
 							{
 								align: 'left',
 								classes: [ 'mw-apisandbox-widget-field' ],
-								label: prefix + pi.parameters[ i ].name,
-								$label: $widgetLabel
+								label: prefix + pi.parameters[ i ].name
 							}
 						);
 
-						// FieldLayout only does click for InputElement
-						// widgets. So supply our own click handler.
-						$widgetLabel.on( 'click', widgetLabelOnClick.bind( widgetField ) );
+						// We need our own click handler on the widget label to
+						// turn off the disablement.
+						widgetField.$label.on( 'click', widgetLabelOnClick.bind( widgetField ) );
 
 						// Don't grey out the label when the field is disabled,
 						// it makes it too hard to read and our "disabled"
