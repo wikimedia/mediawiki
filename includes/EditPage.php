@@ -3170,7 +3170,6 @@ class EditPage {
 			);
 			$wgOut->addHTML( "{$label} {$input}" );
 		}
-
 	}
 
 	/**

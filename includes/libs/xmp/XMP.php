@@ -272,7 +272,6 @@ class XMPReader implements LoggerAwareInterface {
 		if ( isset( $data['xmp-exif']['GPSAltitudeRef'] )
 			&& isset( $data['xmp-exif']['GPSAltitude'] )
 		) {
-
 			// Must convert to a real before multiplying by -1
 			// XMPValidate guarantees there will always be a '/' in this value.
 			list( $nom, $denom ) = explode( '/', $data['xmp-exif']['GPSAltitude'] );
@@ -1004,7 +1003,6 @@ class XMPReader implements LoggerAwareInterface {
 	 */
 	private function startElementModeInitial( $ns, $tag, $attribs ) {
 		if ( $ns !== self::NS_RDF ) {
-
 			if ( isset( $this->items[$ns][$tag] ) ) {
 				if ( isset( $this->items[$ns][$tag]['structPart'] ) ) {
 					// If this element is supposed to appear only as
@@ -1066,7 +1064,6 @@ class XMPReader implements LoggerAwareInterface {
 	 */
 	private function startElementModeStruct( $ns, $tag, $attribs ) {
 		if ( $ns !== self::NS_RDF ) {
-
 			if ( isset( $this->items[$ns][$tag] ) ) {
 				if ( isset( $this->items[$ns][$this->ancestorStruct]['children'] )
 					&& !isset( $this->items[$ns][$this->ancestorStruct]['children'][$tag] )

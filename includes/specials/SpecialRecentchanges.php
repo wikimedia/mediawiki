@@ -167,7 +167,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$jsData = $this->getStructuredFilterJsData();
 
 			$messages = [];
-			foreach ( $jsData['messageKeys'] as $key ){
+			foreach ( $jsData['messageKeys'] as $key ) {
 				$messages[$key] = $this->msg( $key )->plain();
 			}
 
