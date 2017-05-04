@@ -4,10 +4,12 @@
 	 *
 	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersModel Filters view model
 	 * @param {mw.rcfilters.dm.ChangesListViewModel} changesListModel Changes list view model
+	 * @param {mw.rcfilters.dm.NamespacesModel} changesListModel Changes list view model
 	 */
-	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel ) {
+	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel, namespacesModel ) {
 		this.filtersModel = filtersModel;
 		this.changesListModel = changesListModel;
+		this.namespacesModel = namespacesModel;
 		this.requestCounter = 0;
 	};
 
@@ -19,11 +21,15 @@
 	 *
 	 * @param {Array} filterStructure Filter definition and structure for the model
 	 */
-	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure ) {
+	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure ) {
 		var $changesList = $( '.mw-changeslist' ).first().contents();
-		// Initialize the model
+
+		// Initialize the filters model
 		this.filtersModel.initializeFilters( filterStructure );
 		this.updateStateBasedOnUrl();
+
+		// Initialize namespaces
+		this.namespacesModel.initialize( namespaceStructure );
 
 		// Update the changes list with the existing data
 		// so it gets processed
@@ -54,6 +60,8 @@
 				)
 			)
 		);
+
+		// Update namespace
 
 		// Initialize highlights
 		this.filtersModel.toggleHighlight( !!uri.query.highlight );
@@ -125,6 +133,29 @@
 
 			// Check filter interactions
 			this.filtersModel.reassessFilterInteractions( filterItem );
+		}
+	};
+
+	/**
+	 * Update the selected state of a namespace item
+	 *
+	 * @param {string} namespaceName Namespace item name
+	 * @param {boolean} [isSelected] Namespace selected state
+	 */
+	mw.rcfilters.Controller.prototype.toggleNamespaceSelect = function ( namespaceName, isSelected ) {
+		var namespaceItem = this.namespacesModel.getItemByName( namespaceName );
+
+		if ( !namespaceItem ) {
+			// If no item was found, break
+			return;
+		}
+
+		isSelected = isSelected === undefined ? !namespaceItem.isSelected() : isSelected;
+
+		if ( namespaceItem.isSelected() !== isSelected ) {
+			namespaceItem.toggleSelected( isSelected );
+
+			this.updateChangesList();
 		}
 	};
 

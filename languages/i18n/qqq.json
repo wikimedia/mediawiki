@@ -1627,6 +1627,8 @@
 	"rcfilters-filter-lastrevision-description": "Description for the filter for showing changes on last revision of a page.",
 	"rcfilters-filter-previousrevision-label": "Title for the filter for showing changes on previous revisions of a page.",
 	"rcfilters-filter-previousrevision-description": "Description for the filter for showing changes on previous revisions of a page.",
+	"rcfilters-namespace-prefix-regular": "A prefix for the namespaces tag, noting tht they are of the \"Namespace\" type in the tag list, and are included in the filtering.\n\nParameters: \n* 1 - Namespace label",
+	"rcfilters-namespace-prefix-inverted": "A prefix for the namespaces tag, noting tht they are of the \"Namespace\" type in the tag list, and are being excluded in the filtering.\n\nParameters: \n* 1 - Namespace label",
 	"rcnotefrom": "This message is displayed at [[Special:RecentChanges]] when viewing recentchanges from some specific time.\n\nThe corresponding message is {{msg-mw|Rclistfrom}}.\n\nParameters:\n* $1 - the maximum number of changes that are displayed\n* $2 - (Optional) a date and time\n* $3 - a date\n* $4 - a time\n* $5 - Number of changes are displayed, for use with PLURAL",
 	"rclistfromreset": "Used on [[Special:RecentChanges]] to reset a selection of a certain date range.",
 	"rclistfrom": "Used on [[Special:RecentChanges]]. Parameters:\n* $1 - (Currently not use) date and time. The date and the time adds to the rclistfrom description.\n* $2 - time. The time adds to the rclistfrom link description (with split of date and time).\n* $3 - date. The date adds to the rclistfrom link description (with split of date and time).\n\nThe corresponding message is {{msg-mw|Rcnotefrom}}.",
