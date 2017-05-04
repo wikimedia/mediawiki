@@ -14,7 +14,7 @@ use Html;
  * interwiki prefix. Includes a per-wiki header indicating where
  * the results are from.
  */
-class SimpleSearchResultSetWidget implements SearchResultSetWidget{
+class SimpleSearchResultSetWidget implements SearchResultSetWidget {
 	/** @var SpecialSearch */
 	protected $specialSearch;
 	/** @var SearchResultWidget */

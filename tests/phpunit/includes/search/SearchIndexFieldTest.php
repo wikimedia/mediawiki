@@ -51,7 +51,6 @@ class SearchIndexFieldTest extends MediaWikiTestCase {
 			}
 		);
 		$this->assertEquals( "test", $field1->merge( $field2 ) );
-
 	}
 
 }

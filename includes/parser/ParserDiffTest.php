@@ -24,8 +24,7 @@
 /**
  * @ingroup Parser
  */
-class ParserDiffTest
-{
+class ParserDiffTest {
 	public $parsers;
 	public $conf;
 	public $shortOutput = false;
