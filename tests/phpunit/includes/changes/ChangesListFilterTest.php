@@ -23,7 +23,6 @@ class ChangesListFilterTest extends MediaWikiTestCase {
 				'filters' => [],
 			]
 		);
-
 	}
 
 	// @codingStandardsIgnoreStart

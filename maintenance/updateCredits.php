@@ -59,7 +59,7 @@ unset( $lines );
 
 $lines = explode( "\n", shell_exec( 'git log --format="%aN"' ) );
 foreach ( $lines as $line ) {
-	if ( empty( $line ) )  {
+	if ( empty( $line ) ) {
 		continue;
 	}
 	if ( substr( $line, 0, 5 ) === '[BOT]' ) {
