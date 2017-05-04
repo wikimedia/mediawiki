@@ -60,6 +60,8 @@ production.
   the new 'wrapoutputclass' parameter.
 * When errorformat is not 'bc', abort reasons from action=login will be
   formatted as specified by the error formatter parameters.
+* action=compare can now handle arbitrary text, deleted revisions, and
+  returning users and edit comments.
 
 === Action API internal changes in 1.30 ===
 * …
