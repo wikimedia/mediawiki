@@ -31,7 +31,8 @@ production.
 * …
 
 === Action API changes in 1.30 ===
-* …
+* action=compare can now handle arbitrary text, deleted revisions, and
+  returning users and edit comments.
 
 === Action API internal changes in 1.30 ===
 * …
