@@ -43,7 +43,6 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 				'watchlistreloadautomatically' => 0,
 			]
 		);
-
 	}
 
 	/**

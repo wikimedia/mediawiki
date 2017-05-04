@@ -212,7 +212,6 @@ global \${$this->variableName};
 ];
 
 EOD;
-
 	}
 
 	/**

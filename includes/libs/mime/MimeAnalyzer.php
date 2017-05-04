@@ -735,8 +735,8 @@ EOT;
 			( strpos( $head, "<\x00?\x00 " ) !== false ) ||
 			( strpos( $head, "<\x00?\x00\n" ) !== false ) ||
 			( strpos( $head, "<\x00?\x00\t" ) !== false ) ||
-			( strpos( $head, "<\x00?\x00=" ) !== false ) ) {
-
+			( strpos( $head, "<\x00?\x00=" ) !== false )
+		) {
 			$this->logger->info( __METHOD__ . ": recognized $file as application/x-php\n" );
 			return 'application/x-php';
 		}
@@ -1035,7 +1035,6 @@ EOT;
 		// Special code for ogg - detect if it's video (theora),
 		// else label it as sound.
 		if ( $mime == 'application/ogg' && file_exists( $path ) ) {
-
 			// Read a chunk of the file
 			$f = fopen( $path, "rt" );
 			if ( !$f ) {
