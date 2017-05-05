@@ -795,6 +795,9 @@ class PPDStackElement_Hash extends PPDStackElement {
 				substr( $this->open, -1 ),
 				$openingCount - strlen( $s )
 			);
+			// Break after first character so this doesn't get misparsed
+			// later.
+			$s = substr( $s, 0, 1 ) . '<nowiki/>' . substr( $s, 1 );
 			$accum = [ $s ];
 			$lastIndex = 0;
 			$first = true;

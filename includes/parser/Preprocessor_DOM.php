@@ -966,6 +966,9 @@ class PPDStackElement {
 				}
 				$s .= $part->out;
 			}
+			// Break after first character so this doesn't get misparsed
+			// later.
+			$s = substr( $s, 0, 1 ) . '<nowiki/>' . substr( $s, 1 );
 		}
 		return $s;
 	}
