@@ -147,6 +147,45 @@ class CSSMinTest extends MediaWikiTestCase {
 		];
 	}
 
+	public static function provideIsRemoteUrl() {
+		return [
+			[ true, 'http://localhost/w/red.gif?123' ],
+			[ true, 'https://example.org/x.png' ],
+			[ true, '//example.org/x.y.z/image.png' ],
+			[ true, '//localhost/styles.css?query=yes' ],
+			[ true, 'data:image/gif;base64,R0lGODlhAQABAIAAAP8AADAAACwAAAAAAQABAAACAkQBADs=' ],
+			[ false, 'x.gif' ],
+			[ false, '/x.gif' ],
+			[ false, './x.gif' ],
+			[ false, '../x.gif' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideIsRemoteUrl
+	 * @cover CSSMin::isRemoteUrl
+	 */
+	public function testIsRemoteUrl( $expect, $url ) {
+		$this->assertEquals( CSSMinTestable::isRemoteUrl( $url ), $expect );
+	}
+
+	public static function provideIsLocalUrls() {
+		return [
+			[ false, 'x.gif' ],
+			[ true, '/x.gif' ],
+			[ false, './x.gif' ],
+			[ false, '../x.gif' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideIsLocalUrls
+	 * @cover CSSMin::isLocalUrl
+	 */
+	public function testIsLocalUrl( $expect, $url ) {
+		$this->assertEquals( CSSMinTestable::isLocalUrl( $url ), $expect );
+	}
+
 	/**
 	 * This tests funky parameters to CSSMin::remap. testRemapRemapping tests
 	 * the basic functionality.
@@ -211,45 +250,6 @@ class CSSMinTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedOutput, $realOutput, "CSSMin::remap: $message" );
 	}
 
-	public static function provideIsRemoteUrl() {
-		return [
-			[ true, 'http://localhost/w/red.gif?123' ],
-			[ true, 'https://example.org/x.png' ],
-			[ true, '//example.org/x.y.z/image.png' ],
-			[ true, '//localhost/styles.css?query=yes' ],
-			[ true, 'data:image/gif;base64,R0lGODlhAQABAIAAAP8AADAAACwAAAAAAQABAAACAkQBADs=' ],
-			[ false, 'x.gif' ],
-			[ false, '/x.gif' ],
-			[ false, './x.gif' ],
-			[ false, '../x.gif' ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideIsRemoteUrl
-	 * @cover CSSMin::isRemoteUrl
-	 */
-	public function testIsRemoteUrl( $expect, $url ) {
-		$this->assertEquals( CSSMinTestable::isRemoteUrl( $url ), $expect );
-	}
-
-	public static function provideIsLocalUrls() {
-		return [
-			[ false, 'x.gif' ],
-			[ true, '/x.gif' ],
-			[ false, './x.gif' ],
-			[ false, '../x.gif' ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideIsLocalUrls
-	 * @cover CSSMin::isLocalUrl
-	 */
-	public function testIsLocalUrl( $expect, $url ) {
-		$this->assertEquals( CSSMinTestable::isLocalUrl( $url ), $expect );
-	}
-
 	public static function provideRemapRemappingCases() {
 		// red.gif and green.gif are one-pixel 35-byte GIFs.
 		// large.png is a 35K PNG that should be non-embeddable.
@@ -307,8 +307,8 @@ class CSSMinTest extends MediaWikiTestCase {
 			],
 			[
 				'Remote URL (unnecessary quotes not preserved)',
-				'foo { background: url("http://example.org/w/foo.png"); }',
-				'foo { background: url(http://example.org/w/foo.png); }',
+				'foo { background: url("http://example.org/w/unnecessary-quotes.png"); }',
+				'foo { background: url(http://example.org/w/unnecessary-quotes.png); }',
 			],
 			[
 				'Embedded file',
@@ -410,9 +410,39 @@ class CSSMinTest extends MediaWikiTestCase {
 				'@import url(http://doc.example.org/styles.css)',
 			],
 			[
-				'@import rule to URL (should we remap this?)',
-				'@import url(//localhost/styles.css?query=yes)',
-				'@import url(//localhost/styles.css?query=yes)',
+				'@import rule to local file (should we remap this?)',
+				'@import url(/styles.css)',
+				'@import url(http://doc.example.org/styles.css)',
+			],
+			[
+				'@import rule to URL',
+				'@import url(//localhost/styles.css?query=val)',
+				'@import url(//localhost/styles.css?query=val)',
+			],
+			[
+				'Background URL (double quotes)',
+				'foo { background: url("//localhost/styles.css?quoted=double") }',
+				'foo { background: url(//localhost/styles.css?quoted=double) }',
+			],
+			[
+				'Background URL (single quotes)',
+				'foo { background: url(\'//localhost/styles.css?quoted=single\') }',
+				'foo { background: url(//localhost/styles.css?quoted=single) }',
+			],
+			[
+				'Background URL (containing parentheses; T60473)',
+				'foo { background: url("//localhost/styles.css?query=(parens)") }',
+				'foo { background: url("//localhost/styles.css?query=(parens)") }',
+			],
+			[
+				'Background URL (double quoted, containing single quotes; T60473)',
+				'foo { background: url("//localhost/styles.css?quote=\'") }',
+				'foo { background: url("//localhost/styles.css?quote=\'") }',
+			],
+			[
+				'Background URL (single quoted, containing double quotes; T60473)',
+				'foo { background: url(\'//localhost/styles.css?quote="\') }',
+				'foo { background: url("//localhost/styles.css?quote=\"") }',
 			],
 			[
 				'Simple case with comments before url',
