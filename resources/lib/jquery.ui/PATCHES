@@ -1,3 +1,7 @@
+jquery.ui.core.js
+* I7ffbfd2e5 Avoid deprecated jQuery.expr[":"].
+
+
 jquery.ui.draggable.js
 * 71e11de2a3 Fix positioning error with draggable, revert and grid.
              https://phabricator.wikimedia.org/T140965#2944610
@@ -7,6 +11,10 @@ jquery.ui.draggable.js
 
 jquery.ui.datepicker
 * 19531f3c23 Add translations in de-AT and de-CH
+
+
+jquery.ui.widget.js
+* I7ffbfd2e5 Avoid deprecated jQuery.expr[":"].
 
 
 themes/smoothness/jquery.ui.theme.css
