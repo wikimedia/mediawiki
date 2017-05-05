@@ -1637,7 +1637,7 @@ class Preferences {
 }
 
 /** Some tweaks to allow js prefs to work */
-class PreferencesForm extends HTMLForm {
+class PreferencesForm extends OOUIHTMLForm {
 	// Override default value from HTMLForm
 	protected $mSubSectionBeforeFields = false;
 
@@ -1685,25 +1685,39 @@ class PreferencesForm extends HTMLForm {
 	 * @return string
 	 */
 	function getButtons() {
-		$attrs = [ 'id' => 'mw-prefs-restoreprefs' ];
-
 		if ( !$this->getModifiedUser()->isAllowedAny( 'editmyprivateinfo', 'editmyoptions' ) ) {
 			return '';
 		}
 
-		$html = parent::getButtons();
+		$buttons = [];
+
+		$buttons[] = new OOUI\ButtonInputWidget( [
+			'type' => 'submit',
+			'id' => 'prefcontrol',
+			'name' => "x",
+			'value' => "Save",
+			'label' => "Save",
+			'flags' => [ 'primary', 'progressive' ],
+			'framed' => true,
+			'useInputTag' => false,
+		] );
 
 		if ( $this->getModifiedUser()->isAllowed( 'editmyoptions' ) ) {
-			$t = $this->getTitle()->getSubpage( 'reset' );
+			$target = $this->getTitle()->getSubpage( 'reset' );
 
 			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-			$html .= "\n" . $linkRenderer->makeLink( $t, $this->msg( 'restoreprefs' )->text(),
-				Html::buttonAttributes( $attrs, [ 'mw-ui-quiet' ] ) );
 
-			$html = Xml::tags( 'div', [ 'class' => 'mw-prefs-buttons' ], $html );
+			$buttons[] = new OOUI\ButtonWidget( [
+				'id' => 'mw-prefs-restoreprefs',
+				'label' => $this->msg( 'restoreprefs' )->text(),
+				'href' => $linkRenderer->makeLink( $target, $this->msg( 'restoreprefs' )->text() ),
+				'flags' => [ 'destructive' ],
+				'icon' => 'remove',
+				'framed' => false,
+			] );
 		}
 
-		return $html;
+		return new OOUI\HorizontalLayout( [ 'items' => $buttons, 'class' => 'mw-prefs-buttons' ] );
 	}
 
 	/**
