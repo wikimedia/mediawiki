@@ -928,6 +928,7 @@
 	"rcfilters-filter-humans-label": "انسان (بوٽ نہ)",
 	"rcfilters-filter-humans-description": "انساني ايڊيٽرن پاران ڪيل ترميمون.",
 	"rcfilters-filter-pageedits-label": "صفحي ترميمون",
+	"rcfilters-filter-newpages-label": "صفحي تخليقون",
 	"rcnotefrom": "هيٺ {{PLURAL:$5|تبديلي آهي|تبديليون آهن}} کان <strong>$3, $4</strong> (تائين <strong>$1</strong> ) ڏيکاريل آهن.",
 	"rclistfrom": "$2، $3 کان شروع ٿيندڙ نيون تبديليون ڏيکاريو",
 	"rcshowhideminor": "$1 معمولي ترميمون",

@@ -2414,7 +2414,7 @@
 	"unblock-hideuser": "No podeu desblocar aquest usuari, perquè el seu nom d'usuari està ocult.",
 	"ipb_cant_unblock": "Errada: No s'ha trobat el núm. ID de bloqueig $1. És possible que ja s'haguera desblocat.",
 	"ipb_blocked_as_range": "Error: L'adreça IP $1 no està blocada directament i per tant no pot ésser desbloquejada. Ara bé, sí que ho està per formar part del rang $2 que sí que pot ser desblocat.",
-	"ip_range_invalid": "Rang d'IP no vàlid.",
+	"ip_range_invalid": "L’interval d’adreces IP no és vàlid.",
 	"ip_range_toolarge": "No són permesos els bloquejos de rangs més grans que /$1.",
 	"proxyblocker": "Bloqueig de proxy",
 	"proxyblockreason": "S'ha blocat la vostra adreça IP perquè és un proxy obert. Contactau el vostre proveïdor d'Internet o servei tècnic i informau-los d'aquest seriós problema de seguretat.",
