@@ -955,6 +955,9 @@ class PPDStackElement {
 				substr( $this->open, -1 ),
 				$openingCount - strlen( $s )
 			);
+			// Escape this opening sequence so this doesn't get misparsed
+			// as markup later.
+			$s = '<nowiki>' . $s . '</nowiki>';
 			$first = true;
 			foreach ( $this->parts as $part ) {
 				if ( $first ) {
