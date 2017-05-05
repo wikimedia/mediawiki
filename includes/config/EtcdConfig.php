@@ -73,7 +73,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 			'encoding' => 'JSON',
 			'cacheTTL' => 10,
 			'skewTTL' => 1,
-			'timeout' => 10
+			'timeout' => 2
 		];
 
 		$this->host = $params['host'];
@@ -215,7 +215,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 			}
 
 			// Avoid the server next time if that failed
-			$dsd->removeServer( $server, $servers );
+			$servers = $dsd->removeServer( $server, $servers );
 		} while ( $servers );
 
 		return [ $config, $error, $retry ];
