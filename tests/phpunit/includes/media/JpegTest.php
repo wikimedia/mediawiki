@@ -54,7 +54,7 @@ class JpegTest extends MediaWikiMediaTestCase {
 
 	/**
 	 * @dataProvider provideSwappingICCProfile
-	 * @covers ExifBitmapHandler::swapICCProfile
+	 * @covers JpegHandler::swapICCProfile
 	 */
 	public function testSwappingICCProfile(
 		$sourceFilename, $controlFilename, $newProfileFilename, $oldProfileName
