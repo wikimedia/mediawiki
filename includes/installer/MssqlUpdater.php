@@ -112,26 +112,4 @@ class MssqlUpdater extends DatabaseUpdater {
 		$this->db->prepareStatements( $prevPrep );
 	}
 
-	/**
-	 * General schema update for a table that touches more than one field or requires
-	 * destructive actions (such as dropping and recreating the table).
-	 *
-	 * @param string $table
-	 * @param string $updatekey
-	 * @param string $patch
-	 * @param bool $fullpath
-	 */
-	protected function updateSchema( $table, $updatekey, $patch, $fullpath = false ) {
-		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
-			$this->output( "...$table table does not exist, skipping schema update patch.\n" );
-		} elseif ( $this->updateRowExists( $updatekey ) ) {
-			$this->output( "...$table already had schema updated by $patch.\n" );
-		} else {
-			$this->insertUpdateRow( $updatekey );
-
-			return $this->applyPatch( $patch, $fullpath, "Updating schema of table $table" );
-		}
-
-		return true;
-	}
 }
