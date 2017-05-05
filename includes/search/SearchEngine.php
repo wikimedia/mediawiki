@@ -455,8 +455,8 @@ abstract class SearchEngine {
 			$title = Title::newFromText( $search . 'Dummy' );
 			if ( $title && $title->getText() == 'Dummy'
 					&& $title->getNamespace() != NS_MAIN
-					&& !$title->isExternal() )
-			{
+					&& !$title->isExternal()
+			) {
 				$ns = [ $title->getNamespace() ];
 				$search = '';
 			} else {

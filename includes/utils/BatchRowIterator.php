@@ -87,9 +87,9 @@ class BatchRowIterator implements RecursiveIterator {
 
 	/**
 	 * @param IDatabase $db The database to read from
-	 * @param string|array $table      The name or names of the table to read from
+	 * @param string|array $table The name or names of the table to read from
 	 * @param string|array $primaryKey The name or names of the primary key columns
-	 * @param integer      $batchSize  The number of rows to fetch per iteration
+	 * @param integer $batchSize The number of rows to fetch per iteration
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( IDatabase $db, $table, $primaryKey, $batchSize ) {

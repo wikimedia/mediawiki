@@ -522,7 +522,6 @@ class User implements IDBAccessObject {
 				}
 
 				return $data;
-
 			},
 			[ 'pcTTL' => $cache::TTL_PROC_LONG, 'version' => self::VERSION ]
 		);
