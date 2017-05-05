@@ -22,7 +22,12 @@
  */
 
 /**
- * A fake language converter
+ * A fake language variant converter. Languages which do not implement variant
+ * conversion, for example, English, should return a FakeConverter rather than a
+ * LanguageConverter when asked for their converter. The fake converter just
+ * returns text unchanged, i.e. it doesn't do any conversion.
+ *
+ * See https://www.mediawiki.org/wiki/Writing_systems#LanguageConverter.
  *
  * @ingroup Language
  */
