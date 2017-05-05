@@ -947,14 +947,21 @@ class PPDStackElement {
 		if ( $this->open == "\n" ) {
 			$s = $this->parts[0]->out;
 		} else {
+			$escape = false;
 			if ( $openingCount === false ) {
 				$openingCount = $this->count;
+				$escape = true;
 			}
 			$s = substr( $this->open, 0, -1 );
 			$s .= str_repeat(
 				substr( $this->open, -1 ),
 				$openingCount - strlen( $s )
 			);
+			// Escape this opening sequence so this doesn't get misparsed
+			// as markup later.
+			if ( $escape ) {
+				$s = wfEscapeWikiText( $s );
+			}
 			$first = true;
 			foreach ( $this->parts as $part ) {
 				if ( $first ) {
