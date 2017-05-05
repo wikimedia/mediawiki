@@ -472,17 +472,37 @@
 	 * Analyze the groups and their filters and output an object representing
 	 * the state of the parameters they represent.
 	 *
-	 * @param {Object} [filterGroups] An object defining the filter groups to
-	 *  translate to parameters. Its structure must follow that of this.groups
-	 *  see #getFilterGroups
+	 * @param {Object} [filterDefinition] An object defining the filter values,
+	 *  keyed by filter names.
 	 * @return {Object} Parameter state object
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.getParametersFromFilters = function ( filterGroups ) {
-		var result = {},
-			groupItems = filterGroups || this.getFilterGroups();
+	mw.rcfilters.dm.FiltersViewModel.prototype.getParametersFromFilters = function ( filterDefinition ) {
+		var groupItemDefinition,
+			result = {},
+			groupItems = this.getFilterGroups();
+
+		if ( filterDefinition ) {
+			groupItemDefinition = {};
+			// Filter definition is "flat", but in effect
+			// each group needs to tell us its result based
+			// on the values in it. We need to split this list
+			// back into groupings so we can "feed" it to the
+			// loop below, and we need to expand it so it includes
+			// all filters (set to false)
+			this.getItems().forEach( function ( filterItem ) {
+				groupItemDefinition[ filterItem.getGroupName() ] = groupItemDefinition[ filterItem.getGroupName() ] || {};
+				groupItemDefinition[ filterItem.getGroupName() ][ filterItem.getName() ] = !!filterDefinition[ filterItem.getName() ];
+			} );
+		}
 
 		$.each( groupItems, function ( group, model ) {
-			$.extend( result, model.getParamRepresentation() );
+			$.extend(
+				result,
+				model.getParamRepresentation(
+					groupItemDefinition ?
+						groupItemDefinition[ group ] : null
+				)
+			);
 		} );
 
 		return result;
