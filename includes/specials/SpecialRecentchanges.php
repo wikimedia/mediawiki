@@ -619,7 +619,11 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		if ( !$message->isDisabled() ) {
 			$this->getOutput()->addWikiText(
 				Html::rawElement( 'div',
-					[ 'lang' => $wgContLang->getHtmlCode(), 'dir' => $wgContLang->getDir() ],
+					[
+						'class' => 'mw-recentchanges-toplinks',
+						'lang' => $wgContLang->getHtmlCode(),
+						'dir' => $wgContLang->getDir()
+					],
 					"\n" . $message->plain() . "\n"
 				),
 				/* $lineStart */ true,
