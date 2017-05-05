@@ -69,7 +69,7 @@ class LocalSettingsGenerator {
 			$db->getGlobalNames()
 		);
 
-		$unescaped = [ 'wgRightsIcon', 'wgLogo' ];
+		$unescaped = [ 'wgRightsIcon', 'wgLogo', '_Caches' ];
 		$boolItems = [
 			'wgEnableEmail', 'wgEnableUserEmail', 'wgEnotifUserTalk',
 			'wgEnotifWatchlist', 'wgEmailAuthentication', 'wgEnableUploads', 'wgUseInstantCommons',
