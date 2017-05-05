@@ -833,9 +833,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$sql,
 			$matches
 		) ) {
+			$isTemp = isset( $this->mSessionTempTables[$matches[1]] );
 			unset( $this->mSessionTempTables[$matches[1]] );
 
-			return true;
+			return $isTemp;
 		} elseif ( preg_match(
 			'/^(?:INSERT\s+(?:\w+\s+)?INTO|UPDATE|DELETE\s+FROM)\s+[`"\']?(\w+)[`"\']?/i',
 			$sql,
