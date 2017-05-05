@@ -2087,7 +2087,7 @@ return [
 	'mediawiki.special.pagesWithProp' => [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.pagesWithProp.css',
 	],
-	'mediawiki.special.preferences' => [
+	'mediawiki.special.preferences.ooui' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.preferences.js',
 		'messages' => [
 			'prefs-tabs-navigation-hint',
@@ -2101,7 +2101,7 @@ return [
 			'mediawiki.notification.convertmessagebox',
 		],
 	],
-	'mediawiki.special.preferences.styles' => [
+	'mediawiki.special.preferences.styles.ooui' => [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.preferences.styles.css',
 	],
 	'mediawiki.special.recentchanges' => [

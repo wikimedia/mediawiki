@@ -50,8 +50,8 @@ class SpecialPreferences extends SpecialPage {
 			return;
 		}
 
-		$out->addModules( 'mediawiki.special.preferences' );
-		$out->addModuleStyles( 'mediawiki.special.preferences.styles' );
+		$out->addModules( 'mediawiki.special.preferences.ooui' );
+		$out->addModuleStyles( 'mediawiki.special.preferences.styles.ooui' );
 
 		$session = $this->getRequest()->getSession();
 		if ( $session->get( 'specialPreferencesSaveSuccess' ) ) {

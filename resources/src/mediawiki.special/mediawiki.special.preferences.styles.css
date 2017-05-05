@@ -45,3 +45,15 @@
 .client-js #preferences #mw-prefsection-personal {
 	display: block;
 }
+
+
+
+
+
+
+
+
+.mw-prefs-buttons .mw-htmlform-submit-buttons {
+	margin: 0;
+	display: inline;
+}
