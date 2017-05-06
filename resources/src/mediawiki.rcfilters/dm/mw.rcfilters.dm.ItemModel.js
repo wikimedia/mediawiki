@@ -24,7 +24,7 @@
 		OO.EventEmitter.call( this );
 
 		this.param = param;
-		this.namePrefix = config.namePrefix || 'item_';
+		this.namePrefix = config.namePrefix || '';
 		this.name = this.namePrefix + param;
 
 		this.label = config.label || this.name;

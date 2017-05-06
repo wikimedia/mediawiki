@@ -4,12 +4,14 @@
 	 * Controller for the filters in Recent Changes
 	 *
 	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersModel Filters view model
+	 * @param {mw.rcfilters.dm.NamespacesViewModel} namespacesModel Namespaces view model
 	 * @param {mw.rcfilters.dm.ChangesListViewModel} changesListModel Changes list view model
 	 * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
 	 */
-	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel, savedQueriesModel ) {
+	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel, namespacesModel, savedQueriesModel ) {
 		this.filtersModel = filtersModel;
 		this.changesListModel = changesListModel;
+		this.namespacesModel = namespacesModel;
 		this.savedQueriesModel = savedQueriesModel;
 		this.requestCounter = 0;
 		this.baseState = {};
@@ -21,13 +23,16 @@
 	/**
 	 * Initialize the filter and parameter states
 	 *
-	 * @param {Array} filterStructure Filter definition and structure for the model
+	 * @param {Object} filterStructure Filter definition and structure for the model
+	 * @param {Object} namespaceStructure Namespace definition for the model
 	 */
-	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure ) {
+	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure ) {
 		var parsedSavedQueries,
 			$changesList = $( '.mw-changeslist' ).first().contents();
+debugger;
 		// Initialize the model
 		this.filtersModel.initializeFilters( filterStructure );
+		this.namespacesModel.initialize( namespaceStructure );
 
 		this._buildBaseFilterState();
 

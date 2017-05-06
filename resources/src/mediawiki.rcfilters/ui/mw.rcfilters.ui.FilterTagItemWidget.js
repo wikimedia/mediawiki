@@ -1,6 +1,6 @@
 ( function ( mw ) {
 	/**
-	 * Extend OOUI's FilterTagItemWidget to also display a popup on hover.
+	 * Widget representing a filter in the RCFilters tag area
 	 *
 	 * @class
 	 * @extends mw.rcfilters.ui.TagItemWidget

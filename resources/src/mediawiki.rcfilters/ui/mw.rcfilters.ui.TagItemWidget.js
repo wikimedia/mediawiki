@@ -8,7 +8,7 @@
 	 *
 	 * @constructor
 	 * @param {mw.rcfilters.Controller} controller
-	 * @param {mw.rcfilters.dm.FilterItem} model Item model
+	 * @param {mw.rcfilters.dm.ItemModel} model Item model
 	 * @param {Object} config Configuration object
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
 	 */
