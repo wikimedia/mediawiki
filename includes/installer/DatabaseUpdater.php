@@ -926,11 +926,41 @@ abstract class DatabaseUpdater {
 		} elseif ( $this->updateRowExists( $updateKey ) ) {
 			$this->output( "...$field in table $table already modified by patch $patch.\n" );
 		} else {
-			$this->insertUpdateRow( $updateKey );
+			$apply = $this->applyPatch( $patch, $fullpath, "Modifying $field field of table $table" );
+			if( $apply ) {
+				$this->insertUpdateRow( $updateKey );
+			}
+			return $apply;
+		}
+		return true;
+	}
 
-			return $this->applyPatch( $patch, $fullpath, "Modifying $field field of table $table" );
+	/**
+	 * Modify an existing table, similar to modifyField. Intended for changes that
+	 *  touch more than one column on a table.
+	 *
+	 * @param string $table Name of the table to modify
+	 * @param string $patch Name of the patch file to apply
+	 * @param string $fullpath Whether to treat $patch path as relative or not, defaults to false
+	 * @return bool False if this was skipped because of schema changes being skipped
+	 */
+	public function modifyTable( $table, $patch,  $fullpath = false ) {
+		if( !$this->doTable( $table ) ) {
+			return true;
 		}
 
+		$updateKey = "$table-$patch";
+		if( !$this->db->tableExists( $table, __METHOD__ ) ) {
+			$this->output( "...$table table does not exist, skipping modify table patch.\n" );
+		} elseif ( $this->updateRowExists( $updateKey ) ) {
+			$this->output( "...table $table already modified by patch $patch.\n" );
+		} else {
+			$apply = $this->applyPatch( $patch, $fullpath, "Modifying table $table" );
+			if( $apply ) {
+				$this->insertUpdateRow( $updateKey );
+			}
+			return $apply;
+		}
 		return true;
 	}
 
