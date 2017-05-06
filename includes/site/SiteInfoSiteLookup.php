@@ -38,9 +38,9 @@ class SiteInfoSiteLookup implements SiteLookup {
 	private $defaults = [
 		SiteInfoLookup::SITE_TYPE => SiteInfoLookup::TYPE_UNKNOWN,
 		SiteInfoLookup::SITE_IS_FORWARDABLE => false,
-		SiteInfoLookup::SITE_BASE_URL => '',
-		SiteInfoLookup::SITE_SCRIPT_PATH => '',
-		SiteInfoLookup::SITE_LINK_PATH => '',
+		SiteInfoLookup::SITE_BASE_URL => null,
+		SiteInfoLookup::SITE_SCRIPT_PATH => null,
+		SiteInfoLookup::SITE_LINK_PATH => null,
 		SiteInfoLookup::SITE_FAMILY => null,
 		SiteInfoLookup::SITE_LANGUAGE => null,
 	];
@@ -124,16 +124,16 @@ class SiteInfoSiteLookup implements SiteLookup {
 		}
 
 		$baseUrl = $info[SiteInfoLookup::SITE_BASE_URL];
-		$articlePath = $this->reducePath( $baseUrl, $info[SiteInfoLookup::SITE_LINK_PATH] );
-		$scriptPath = $this->reducePath( $baseUrl, $info[SiteInfoLookup::SITE_SCRIPT_PATH] );
+		$articlePath = $this->expandUrl( $baseUrl, $info[SiteInfoLookup::SITE_LINK_PATH] );
+		$scriptPath = $this->expandUrl( $baseUrl, $info[SiteInfoLookup::SITE_SCRIPT_PATH] );
 
-		$site->setExtraData( [
-			'paths' => [
+		$site->setExtraData( array_filter( [
+			'paths' => array_filter( [
 				Site::PATH_LINK => $articlePath,
 				MediaWikiSite::PATH_PAGE => $articlePath,
 				MediaWikiSite::PATH_FILE => $scriptPath,
-			]
-		] );
+			] )
+		] ) );
 
 		// XXX: this is expensive and probably not needed in most cases.
 		$idMap = $this->siteInfoLookup->getAliasesFor( $globalId );
@@ -151,6 +151,28 @@ class SiteInfoSiteLookup implements SiteLookup {
 		}
 
 		return $site;
+	}
+
+	/**
+	 * @param string $base
+	 * @param string|null $path
+	 *
+	 * @return string|null
+	 */
+	private function expandUrl( $base, $path ) {
+		if ( $path === null ) {
+			return null;
+		}
+
+		if ( !preg_match( '!\$1$!', $path ) ) {
+			$path .= '$1';
+		}
+
+		if ( preg_match( '!^https?://!', $path ) ) {
+			return $path;
+		} else {
+			return $base . $path;
+		}
 	}
 
 	/**

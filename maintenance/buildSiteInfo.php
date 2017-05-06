@@ -160,7 +160,7 @@ class BuildSiteInfo extends Maintenance {
 				$navigationIds = $this->extractLocalIds( $raw, '_navigationIds_' );
 
 				$this->log( "Writing navigation IDs to $navigationIdFile..." );
-				$array = [ 'ids' => [ SiteInfoLookup::NAVIGATION_ID => $navigationIds ] ];
+				$array = [ 'ids' => [ SiteInfoLookup::INTERLANGUAGE_ID => $navigationIds ] ];
 				$this->saveData( $navigationIdFile, $array );
 			}
 
@@ -299,9 +299,7 @@ class BuildSiteInfo extends Maintenance {
 		// TODO: add Wikimedia specific magic defaults
 
 		if ( $scriptPath ) {
-			if ( substr_compare( $scriptPath, $baseUrl, 0, strlen( $baseUrl ) ) === 0 ) {
-				$scriptPath = substr( $scriptPath, strlen( $baseUrl ) );
-			}
+			$scriptPath = $this->removeUrlPrefix( $baseUrl, $scriptPath );
 
 			$info[ SiteInfoLookup::SITE_SCRIPT_PATH ] = $scriptPath;
 			$info[ SiteInfoLookup::SITE_TYPE ] = SiteInfoLookup::TYPE_MEDIAWIKI;
@@ -318,6 +316,21 @@ class BuildSiteInfo extends Maintenance {
 
 		$info = array_filter( $info );
 		return $info;
+	}
+
+	/**
+	 * @param string $prefix
+	 * @param string $url
+	 * @return string
+	 */
+	private function removeUrlPrefix( $prefix, $url ) {
+		$prefix = preg_replace( '!^https?://!i', '', $prefix );
+		$path = preg_replace( '!^https?://!i', '', $url );
+		if ( substr_compare( $path, $prefix, 0, strlen( $prefix ) ) === 0 ) {
+			return substr( $path, strlen( $prefix ) );
+		}
+
+		return $url;
 	}
 
 	/**
