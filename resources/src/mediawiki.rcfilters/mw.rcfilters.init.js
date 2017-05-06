@@ -9,14 +9,15 @@
 	var rcfilters = {
 		/** */
 		init: function () {
-			var filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
+			var namespacesModel = new mw.rcfilters.dm.NamespacesViewModel( { namePrefix: 'namespace_' } ),
+				filtersModel = new mw.rcfilters.dm.FiltersViewModel( { namePrefix: 'filter_' } ),
 				changesListModel = new mw.rcfilters.dm.ChangesListViewModel(),
 				savedQueriesModel = new mw.rcfilters.dm.SavedQueriesModel(),
-				controller = new mw.rcfilters.Controller( filtersModel, changesListModel, savedQueriesModel ),
+				controller = new mw.rcfilters.Controller( filtersModel, changesListModel, namespacesModel, savedQueriesModel ),
 				$overlay = $( '<div>' )
 					.addClass( 'mw-rcfilters-ui-overlay' ),
 				filtersWidget = new mw.rcfilters.ui.FilterWrapperWidget(
-					controller, filtersModel, savedQueriesModel, { $overlay: $overlay } );
+					controller, filtersModel, namespacesModel, savedQueriesModel, { $overlay: $overlay } );
 
 			// TODO: The changesListWrapperWidget should be able to initialize
 			// after the model is ready.
@@ -24,7 +25,7 @@
 			new mw.rcfilters.ui.ChangesListWrapperWidget(
 				filtersModel, changesListModel, $( '.mw-changeslist, .mw-changeslist-empty' ) );
 
-			controller.initialize( mw.config.get( 'wgStructuredChangeFilters' ) );
+			controller.initialize( mw.config.get( 'wgStructuredChangeFilters' ), mw.config.get( 'wgFormattedNamespaces' ) );
 
 			// eslint-disable-next-line no-new
 			new mw.rcfilters.ui.FormWrapperWidget(

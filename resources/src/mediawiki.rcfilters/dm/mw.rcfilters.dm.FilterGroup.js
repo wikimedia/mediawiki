@@ -34,6 +34,7 @@
 
 		this.active = !!config.active;
 		this.fullCoverage = !!config.fullCoverage;
+		this.namePrefix = config.namePrefix || '';
 
 		this.whatsThis = config.whatsThis || {};
 
@@ -331,7 +332,7 @@
 	 * @return {string} Group prefix
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.getNamePrefix = function () {
-		return this.getName() + '__';
+		return this.namePrefix + this.getName() + '__';
 	};
 
 	/**
