@@ -389,7 +389,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			// TODO: the DB setup should be done in setUpBeforeClass(), so the test DB
 			// is available in subclass's setUpBeforeClass() and setUp() methods.
 			// This would also remove the need for the HACK that is oncePerClass().
-			if ( $this->oncePerClass() ) {
+			if ( $thisuild->oncePerClass() ) {
 				$this->addDBDataOnce();
 			}
 

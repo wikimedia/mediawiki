@@ -160,7 +160,7 @@ class BuildSiteInfo extends Maintenance {
 				$navigationIds = $this->extractLocalIds( $raw, '_navigationIds_' );
 
 				$this->log( "Writing navigation IDs to $navigationIdFile..." );
-				$array = [ 'ids' => [ SiteInfoLookup::NAVIGATION_ID => $navigationIds ] ];
+				$array = [ 'ids' => [ SiteInfoLookup::INTERLANGUAGE_ID => $navigationIds ] ];
 				$this->saveData( $navigationIdFile, $array );
 			}
 

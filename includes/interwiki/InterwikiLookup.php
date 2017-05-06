@@ -42,7 +42,7 @@ interface InterwikiLookup {
 	 * Fetch an Interwiki object
 	 *
 	 * @param string $prefix Interwiki prefix to use
-	 * @return Interwiki|null|bool
+	 * @return Interwiki|null|bool null for local, false for unknown.
 	 */
 	public function fetch( $prefix );
 
@@ -50,7 +50,7 @@ interface InterwikiLookup {
 	 * Returns all interwiki prefixes
 	 *
 	 * @param string|null $local If set, limits output to local/non-local interwikis
-	 * @return string[] List of prefixes
+	 * @return array[] Interwiki rows, where each row is an associative array
 	 */
 	public function getAllPrefixes( $local = null );
 

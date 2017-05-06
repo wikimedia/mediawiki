@@ -173,10 +173,14 @@ class HashSiteInfoLookup implements SiteInfoLookup, SiteInfoMaintenanceLookup {
 	public function getAliasesFor( $siteId ) {
 		$siteId = $this->getSiteId( $siteId );
 
-		$ids = $this->getIdsBySiteArray();
+		if ( !isset( $siteId ) ) {
+			throw new OutOfBoundsException( 'Unknown Site: ' . $siteId );
+		}
+
+		$ids = $this->getAliasesBySiteArray();
 
 		if ( !isset( $ids[$siteId] ) ) {
-			throw new OutOfBoundsException( 'Unknown Site: ' . $siteId );
+			return [];
 		}
 
 		return $ids[$siteId];
@@ -195,7 +199,7 @@ class HashSiteInfoLookup implements SiteInfoLookup, SiteInfoMaintenanceLookup {
 	public function getSiteAlias( $siteId, $context ) {
 		$siteId = $this->getSiteId( $siteId );
 
-		$ids = $this->getIdsBySiteArray();
+		$ids = $this->getAliasesBySiteArray();
 
 		if ( !isset( $ids[$siteId] ) ) {
 			throw new OutOfBoundsException( 'Unknown Site: ' . $siteId );
@@ -212,19 +216,24 @@ class HashSiteInfoLookup implements SiteInfoLookup, SiteInfoMaintenanceLookup {
 	/**
 	 * @see SiteInfoLookup::getSiteId
 	 *
-	 * @param string $localId
+	 * @param string $alias
 	 *
 	 * @param string $context
 	 * @return null|string
 	 */
-	public function getSiteId( $localId, $context = null ) {
+	public function getSiteId( $alias, $context = null ) {
+		$sites = $this->getSitesArray();
+		if ( isset( $sites[$alias] ) ) {
+			return $alias;
+		}
+
 		$aliases = $this->getAliasArray();
 
 		$keys = $context === null ? array_keys( $aliases ) : (array)$context;
 
 		foreach ( $keys as $k ) {
-			if ( isset( $aliases[$k][$localId] ) ) {
-				return $aliases[$k][$localId];
+			if ( isset( $aliases[$k][$alias] ) ) {
+				return $aliases[$k][$alias];
 			}
 		}
 
@@ -249,7 +258,7 @@ class HashSiteInfoLookup implements SiteInfoLookup, SiteInfoMaintenanceLookup {
 	/**
 	 * @return array[]
 	 */
-	private function getIdsBySiteArray() {
+	private function getAliasesBySiteArray() {
 		if ( $this->aliasesById !== null ) {
 			return $this->aliasesById;
 		}

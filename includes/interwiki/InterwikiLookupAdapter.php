@@ -87,16 +87,20 @@ class InterwikiLookupAdapter implements InterwikiLookup {
 	 * See InterwikiLookup::getAllPrefixes
 	 *
 	 * @param string|null $local If set, limits output to local/non-local interwikis
-	 * @return string[] List of prefixes
+	 * @return array[] Interwiki rows, where each row is an associative array
 	 */
 	public function getAllPrefixes( $local = null ) {
-		if ( $local === null ) {
-			return array_keys( $this->getInterwikiMap() );
-		}
 		$res = [];
 		foreach ( $this->getInterwikiMap() as $interwikiId => $interwiki ) {
-			if ( $interwiki->isLocal() === $local ) {
-				$res[] = $interwikiId;
+			if ( $local === null || $interwiki->isLocal() === $local ) {
+				$res[] = [
+					'iw_prefix' => $interwikiId,
+					'iw_url' => $interwiki->getURL(),
+					'iw_api' => $interwiki->getAPI(),
+					'iw_wikiid' => $interwiki->getWikiID(),
+					'iw_local' => $interwiki->isLocal() ? '1' : '0',
+					'iw_trans' => $interwiki->isTranscludable() ? '1' : '0',
+				];
 			}
 		}
 		return $res;

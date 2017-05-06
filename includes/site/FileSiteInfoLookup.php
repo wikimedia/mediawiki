@@ -79,7 +79,7 @@ class FileSiteInfoLookup extends HashSiteInfoLookup {
 			$data = include $path; // FIXME: check return value
 		} elseif ( $this->hasSuffix( $path, '.json' ) ) {
 			$json = file_get_contents( $path ); // FIXME: check return value
-			$data = json_decode( $json ); // FIXME: check return value
+			$data = json_decode( $json, JSON_OBJECT_AS_ARRAY ); // FIXME: check return value
 		} else {
 			// FIXME: IAE is a pretty hard failure mode for a configuration error. Be nicer.
 			throw new InvalidArgumentException( 'Unsupported file type: ' . $path );

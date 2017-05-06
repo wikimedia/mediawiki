@@ -30,6 +30,7 @@ namespace MediaWiki\Interwiki;
 use Interwiki;
 use MediaWiki\Site\SiteInfoLookup;
 use MediaWiki\Site\SiteInfoMaintenanceLookup;
+use OutOfBoundsException;
 
 class SiteInfoInterwikiLookup implements InterwikiLookup {
 
@@ -86,7 +87,11 @@ class SiteInfoInterwikiLookup implements InterwikiLookup {
 			return false;
 		}
 
-		$info = $this->siteLookup->getSiteInfo( $id, $this->defaults );
+		try {
+			$info = $this->siteLookup->getSiteInfo( $id, $this->defaults );
+		} catch ( OutOfBoundsException $ex ) {
+			return false;
+		}
 
 		$articleUrl = $info[SiteInfoLookup::SITE_BASE_URL]
 			. $info[SiteInfoLookup::SITE_LINK_PATH];
@@ -112,7 +117,7 @@ class SiteInfoInterwikiLookup implements InterwikiLookup {
 	 * See InterwikiLookup::getAllPrefixes
 	 *
 	 * @param string|null $local If set, limits output to local/non-local interwikis
-	 * @return string[] List of prefixes
+	 * @return array[] Interwiki rows, where each row is an associative array
 	 */
 	public function getAllPrefixes( $local = null ) {
 		// @var array $sites: maps local IDs to global site IDs
@@ -127,10 +132,25 @@ class SiteInfoInterwikiLookup implements InterwikiLookup {
 				SiteInfoLookup::SITE_IS_FORWARDABLE,
 				$local
 			);
-			$sites = array_intersect( $sites, $matching );
+			$sites = array_intersect_key( $sites, array_flip( $matching ) );
+		}
+		$res = [];
+		foreach ( $sites as $interwikiId => $siteId ) {
+			$interwiki = $this->fetch( $interwikiId );
+
+			if ( $local === null || $interwiki->isLocal() === $local ) {
+				$res[] = [
+					'iw_prefix' => $interwikiId,
+					'iw_url' => $interwiki->getURL(),
+					'iw_api' => $interwiki->getAPI(),
+					'iw_wikiid' => $interwiki->getWikiID(),
+					'iw_local' => $interwiki->isLocal() ? '1' : '0',
+					'iw_trans' => $interwiki->isTranscludable() ? '1' : '0',
+				];
+			}
 		}
 
-		return array_keys( $sites );
+		return $res;
 	}
 
 	/**
