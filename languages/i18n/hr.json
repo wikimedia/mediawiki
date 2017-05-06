@@ -1805,7 +1805,7 @@
 	"listgrouprights-removegroup-self": "Ukloni {{PLURAL:$2|skupinu|skupine}} iz vlastitog računa: $1",
 	"listgrouprights-addgroup-self-all": "Dodaj sve skupine vlastitom računu",
 	"listgrouprights-removegroup-self-all": "Uklonite sve skupine iz vlastitog računa",
-	"listgrouprights-namespaceprotection-header": "Ograničenja prostora imena",
+	"listgrouprights-namespaceprotection-header": "Ograničenja imenskoga prostora",
 	"listgrouprights-namespaceprotection-namespace": "Imenski prostor",
 	"listgrants": "Dozvole",
 	"listgrants-summary": "Slijedi popis dozvola s pridruženim pristupom suradničkim pravima. Suradnici mogu omogućiti aplikacijama uporabu svojih računa, ali s ograničenim ovlastima na temelju dozvola koje je suradnik dodijelio aplikaciji. Aplikacija koja djeluje u ime suradnika međutim ne može rabiti prava koje suradnik nema.\nMoguće su [[{{MediaWiki:Listgrouprights-helppage}}|dodatne informacije]] o pojedinim pravima.",

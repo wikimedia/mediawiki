@@ -1306,6 +1306,7 @@
 	"rcfilters-filter-lastrevision-label": "Lescht Versioun",
 	"rcfilters-filter-lastrevision-description": "Déi lescht Ännerung op enger Säit",
 	"rcfilters-filter-previousrevision-label": "Méi fréi Versiounen",
+	"rcfilters-filter-previousrevision-description": "All Ännerungen, déi net déi rezenst Ännerung vun enger Säit sinn.",
 	"rcnotefrom": "Hei drënner {{PLURAL:$5|gëtt d'Ännerung|ginn d'Ännerungen}} zanter <strong>$3, $4</strong> (maximal <strong>$1</strong> Ännerunge gi gewisen).",
 	"rclistfrom": "Nei Ännerunge vum $3 $2 u weisen",
 	"rcshowhideminor": "Kleng Ännerunge $1",
