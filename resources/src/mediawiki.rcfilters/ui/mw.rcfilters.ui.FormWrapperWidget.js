@@ -6,7 +6,7 @@
 	 * @extends OO.ui.Widget
 	 *
 	 * @constructor
-	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersModel Changes list view model
+	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersModel Filters view model
 	 * @param {mw.rcfilters.dm.ChangesListViewModel} changeListModel Changes list view model
 	 * @param {mw.rcfilters.Controller} controller RCfilters controller
 	 * @param {jQuery} $formRoot Root element of the form to attach to

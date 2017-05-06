@@ -8,12 +8,13 @@
 	 * @constructor
 	 * @param {mw.rcfilters.Controller} controller Controller
 	 * @param {mw.rcfilters.dm.FiltersViewModel} model View model
+	 * @param {mw.rcfilters.dm.NamespacesViewModel} namespacesModel Namespaces view model
 	 * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
 	 * @param {Object} [config] Configuration object
 	 * @cfg {Object} [filters] A definition of the filter groups in this list
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
 	 */
-	mw.rcfilters.ui.FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget( controller, model, savedQueriesModel, config ) {
+	mw.rcfilters.ui.FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget( controller, model, namespacesModel, savedQueriesModel, config ) {
 		config = config || {};
 
 		// Parent
@@ -22,13 +23,15 @@
 		OO.ui.mixin.PendingElement.call( this, config );
 
 		this.controller = controller;
-		this.model = model;
+		this.filtersModel = model;
+		this.namespacesModel = namespacesModel;
 		this.queriesModel = savedQueriesModel;
 		this.$overlay = config.$overlay || this.$element;
 
 		this.filterTagWidget = new mw.rcfilters.ui.FilterTagMultiselectWidget(
 			this.controller,
-			this.model,
+			this.filtersModel,
+			this.namespacesModel,
 			this.queriesModel,
 			{ $overlay: this.$overlay }
 		);

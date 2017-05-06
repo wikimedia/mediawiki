@@ -17,11 +17,11 @@
 		config = config || {};
 
 		this.groupModel = groupModel;
-
+		this.namePrefix = config.namePrefix || '';
 		// Parent
-		mw.rcfilters.dm.FilterItem.parent.call( this, param, $.extend( {
+		mw.rcfilters.dm.FilterItem.parent.call( this, param, $.extend( config, {
 			namePrefix: this.groupModel.getNamePrefix()
-		}, config ) );
+		} ) );
 		// Mixin constructor
 		OO.EventEmitter.call( this );
 

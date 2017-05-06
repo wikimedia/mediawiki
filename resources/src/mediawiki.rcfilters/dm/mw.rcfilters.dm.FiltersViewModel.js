@@ -7,7 +7,9 @@
 	 *
 	 * @constructor
 	 */
-	mw.rcfilters.dm.FiltersViewModel = function MwRcfiltersDmFiltersViewModel() {
+	mw.rcfilters.dm.FiltersViewModel = function MwRcfiltersDmFiltersViewModel( config ) {
+		config = config || {};
+
 		// Mixin constructor
 		OO.EventEmitter.call( this );
 		OO.EmitterList.call( this );
@@ -18,6 +20,8 @@
 		this.highlightEnabled = false;
 		this.parameterMap = {};
 		this.baseState = { params: {}, highlights: {} };
+
+		this.namePrefix = config.namePrefix || '';
 
 		// Events
 		this.aggregate( { update: 'filterItemUpdate' } );
@@ -271,6 +275,7 @@
 					title: mw.msg( data.title ),
 					separator: data.separator,
 					fullCoverage: !!data.fullCoverage,
+					namePrefix: model.namePrefix,
 					whatsThis: {
 						body: data.whatsThisBody,
 						header: data.whatsThisHeader,
@@ -294,7 +299,7 @@
 					group: group,
 					label: mw.msg( data.filters[ i ].label ),
 					description: mw.msg( data.filters[ i ].description ),
-					cssClass: data.filters[ i ].cssClass
+					cssClass: data.filters[ i ].cssClass,
 				} );
 
 				if ( data.filters[ i ].subset ) {

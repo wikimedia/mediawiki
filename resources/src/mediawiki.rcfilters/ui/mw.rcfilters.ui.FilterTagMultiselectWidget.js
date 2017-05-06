@@ -7,12 +7,13 @@
 	 *
 	 * @constructor
 	 * @param {mw.rcfilters.Controller} controller Controller
-	 * @param {mw.rcfilters.dm.FiltersViewModel} model View model
+	 * @param {mw.rcfilters.dm.FiltersViewModel} model Filters view model
+	 * @param {mw.rcfilters.dm.NamespacesViewModel} namepacesModel Namespaces view model
 	 * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
 	 * @param {Object} config Configuration object
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
 	 */
-	mw.rcfilters.ui.FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( controller, model, savedQueriesModel, config ) {
+	mw.rcfilters.ui.FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( controller, model, namespacesModel, savedQueriesModel, config ) {
 		var title = new OO.ui.LabelWidget( {
 				label: mw.msg( 'rcfilters-activefilters' ),
 				classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-content-title' ]
@@ -23,9 +24,12 @@
 		config = config || {};
 
 		this.controller = controller;
-		this.model = model;
+		this.filtersModel = model;
+		this.namespacesModel = namespacesModel;
 		this.queriesModel = savedQueriesModel;
 		this.$overlay = config.$overlay || this.$element;
+		this.menuTypes = {};
+		this.menuMode = 'filters';
 
 		// Parent
 		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.call( this, $.extend( true, {
@@ -78,18 +82,32 @@
 		} );
 		this.$content.append( this.emptyFilterMessage.$element );
 
+		// Extended filter buttons
+		this.namespaceToggleButton = new OO.ui.ToggleButtonWidget( {
+			icon: 'article',
+			label: mw.msg( 'rcfilters-extended-button-namespace-label' ),
+			title: mw.msg( 'rcfilters-extended-button-namespace-tooltip' ),
+			classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-extended-namespaceButton' ]
+		} );
+
 		// Events
 		this.resetButton.connect( this, { click: 'onResetButtonClick' } );
 		// Stop propagation for mousedown, so that the widget doesn't
 		// trigger the focus on the input and scrolls up when we click the reset button
 		this.resetButton.$element.on( 'mousedown', function ( e ) { e.stopPropagation(); } );
 		this.saveQueryButton.$element.on( 'mousedown', function ( e ) { e.stopPropagation(); } );
-		this.model.connect( this, {
-			initialize: 'onModelInitialize',
-			itemUpdate: 'onModelItemUpdate',
+		this.namespaceToggleButton.$element.on( 'mousedown', function ( e ) { e.stopPropagation(); } );
+		this.filtersModel.connect( this, {
+			initialize: 'onFiltersModelInitialize',
+			itemUpdate: 'onFiltersModelItemUpdate',
 			highlightChange: 'onModelHighlightChange'
 		} );
+		this.namespacesModel.connect( this, {
+			initialize: 'onNamespacesModelInitialize',
+			itemUpdate: 'onNamespacesModelItemUpdate',
+		} );
 		this.saveQueryButton.connect( this, { click: 'onSaveQueryButtonClick' } );
+		this.namespaceToggleButton.connect( this, { change: 'onNamespaceToggleChange' } );
 
 		// Build the content
 		$contentWrapper.append(
@@ -126,9 +144,12 @@
 		this.savedQueryTitle.toggle( false );
 
 		this.$element
-			.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget' );
+			.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget' )
+			.append( this.namespaceToggleButton.$element );
 
-		this.populateFromModel();
+		this.populateFromModel( 'filters' );
+		this.populateFromModel( 'namespaces' );
+		this.changeMenuMode( 'filters' );
 		this.reevaluateResetRestoreState();
 	};
 
@@ -170,6 +191,16 @@
 	};
 
 	/**
+	 * Respond to namespace toggle button change event
+	 *
+	 * @param {boolean} isActive The toggle state is on
+	 */
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onNamespaceToggleChange = function ( isActive ) {
+		this.changeMenuMode( isActive ? 'namespaces' : 'filters' );
+		this.focus();
+	};
+
+	/**
 	 * @inheritdoc
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onInputFocus = function () {
@@ -193,10 +224,20 @@
 	/**
 	 * Respond to model initialize event
 	 */
-	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onModelInitialize = function () {
-		this.populateFromModel();
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onFiltersModelInitialize = function () {
+		this.populateFromModel( 'filters' );
+		this.changeMenuMode( 'filters' );
 
 		this.setSavedQueryVisibility();
+	};
+
+	/**
+	 * Respond to model initialize event
+	 */
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onNamespacesModelInitialize = function () {
+		this.populateFromModel( 'namespaces' );
+
+		// this.setSavedQueryVisibility();
 	};
 
 	/**
@@ -214,16 +255,17 @@
 			!matchingQuery
 		);
 	};
+
 	/**
 	 * Respond to model itemUpdate event
 	 *
 	 * @param {mw.rcfilters.dm.FilterItem} item Filter item model
 	 */
-	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onModelItemUpdate = function ( item ) {
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onFiltersModelItemUpdate = function ( item ) {
 		if (
 			item.isSelected() ||
 			(
-				this.model.isHighlightEnabled() &&
+				this.filtersModel.isHighlightEnabled() &&
 				item.isHighlightSupported() &&
 				item.getHighlightColor()
 			)
@@ -239,6 +281,12 @@
 		this.reevaluateResetRestoreState();
 	};
 
+	/**
+	 * Respond to model itemUpdate event
+	 *
+	 * @param {mw.rcfilters.dm.FilterItem} item Filter item model
+	 */
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onNamespacesModelItemUpdate = function ( item ) {};
 	/**
 	 * @inheritdoc
 	 */
@@ -267,7 +315,7 @@
 	 * @param {boolean} isHighlightEnabled Highlight is enabled
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onModelHighlightChange = function ( isHighlightEnabled ) {
-		var highlightedItems = this.model.getHighlightedItems();
+		var highlightedItems = this.filtersModel.getHighlightedItems();
 
 		if ( isHighlightEnabled ) {
 			// Add capsule widgets
@@ -349,7 +397,7 @@
 	 * Respond to click event on the reset button
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onResetButtonClick = function () {
-		if ( this.model.areCurrentFiltersEmpty() ) {
+		if ( this.filtersModel.areCurrentFiltersEmpty() ) {
 			// Reset to default filters
 			this.controller.resetToDefaults();
 		} else {
@@ -359,11 +407,24 @@
 	};
 
 	/**
+	 * Change the menu type visible.
+	 *
+	 * @param {string} type Menu type. Available types are 'filters' and 'namespaces'
+	 */
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.changeMenuMode = function ( type ) {
+		if ( this.menuMode !== type && this.menuTypes[ type ] ) {
+			this.menu.clearItems();
+			this.menu.addItems( this.menuTypes[ type ] );
+			this.menuMode = type;
+		}
+	};
+
+	/**
 	 * Reevaluate the restore state for the widget between setting to defaults and clearing all filters
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.reevaluateResetRestoreState = function () {
-		var defaultsAreEmpty = this.model.areDefaultFiltersEmpty(),
-			currFiltersAreEmpty = this.model.areCurrentFiltersEmpty(),
+		var defaultsAreEmpty = this.filtersModel.areDefaultFiltersEmpty(),
+			currFiltersAreEmpty = this.filtersModel.areCurrentFiltersEmpty(),
 			hideResetButton = currFiltersAreEmpty && defaultsAreEmpty;
 
 		this.resetButton.setIcon(
@@ -387,7 +448,7 @@
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.createMenuWidget = function ( menuConfig ) {
 		return new mw.rcfilters.ui.FloatingMenuSelectWidget(
 			this.controller,
-			this.model,
+			this.filtersModel,
 			$.extend( {
 				filterFromInput: true
 			}, menuConfig )
@@ -396,49 +457,63 @@
 
 	/**
 	 * Populate the menu from the model
+	 *
+	 * @param {string} type Model type
 	 */
-	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.populateFromModel = function () {
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.populateFromModel = function ( type ) {
 		var widget = this,
 			items = [];
 
-		// Reset
-		this.getMenu().clearItems();
-
-		$.each( this.model.getFilterGroups(), function ( groupName, groupModel ) {
-			items.push(
-				// Group section
-				new mw.rcfilters.ui.FilterMenuSectionOptionWidget(
-					widget.controller,
-					groupModel,
-					{
-						$overlay: widget.$overlay
-					}
-				)
-			);
-
-			// Add items
-			widget.model.getGroupFilters( groupName ).forEach( function ( filterItem ) {
+		if ( type === 'filters' ) {
+			$.each( this.filtersModel.getFilterGroups(), function ( groupName, groupModel ) {
 				items.push(
-					new mw.rcfilters.ui.FilterMenuOptionWidget(
+					// Group section
+					new mw.rcfilters.ui.FilterMenuSectionOptionWidget(
 						widget.controller,
-						filterItem,
+						groupModel,
+						{
+							$overlay: widget.$overlay
+						}
+					)
+				);
+
+				// Add items
+				widget.filtersModel.getGroupFilters( groupName ).forEach( function ( filterItem ) {
+					items.push(
+						new mw.rcfilters.ui.FilterMenuOptionWidget(
+							widget.controller,
+							filterItem,
+							{
+								$overlay: widget.$overlay
+							}
+						)
+					);
+				} );
+			} );
+
+		} else if ( type === 'namespaces' ) {
+			$.each( this.namespacesModel.getItems(), function ( namespaceItem ) {
+				items.push(
+					new mw.rcfilters.ui.NamespaceMenuOptionWidget(
+						widget.controller,
+						namespaceItem,
 						{
 							$overlay: widget.$overlay
 						}
 					)
 				);
 			} );
-		} );
+		}
 
-		// Add all items to the menu
-		this.getMenu().addItems( items );
+		// Add to reference
+		this.menuTypes[ type ] = items;
 	};
 
 	/**
 	 * @inheritdoc
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.createTagItemWidget = function ( data ) {
-		var filterItem = this.model.getItemByName( data );
+		var filterItem = this.filtersModel.getItemByName( data );
 
 		if ( filterItem ) {
 			return new mw.rcfilters.ui.FilterTagItemWidget(

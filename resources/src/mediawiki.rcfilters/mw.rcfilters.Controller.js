@@ -4,12 +4,14 @@
 	 * Controller for the filters in Recent Changes
 	 *
 	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersModel Filters view model
+	 * @param {mw.rcfilters.dm.NamespacesViewModel} namespacesModel Namespaces view model
 	 * @param {mw.rcfilters.dm.ChangesListViewModel} changesListModel Changes list view model
 	 * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
 	 */
-	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel, savedQueriesModel ) {
+	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel, namespacesModel, savedQueriesModel ) {
 		this.filtersModel = filtersModel;
 		this.changesListModel = changesListModel;
+		this.namespacesModel = namespacesModel;
 		this.savedQueriesModel = savedQueriesModel;
 		this.requestCounter = 0;
 		this.baseState = {};
