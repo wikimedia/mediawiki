@@ -58,7 +58,7 @@ class ApiUserrights extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		// Figure out expiry times from the input
-		// @todo Remove this isset check when removing $wgDisableUserGroupExpiry
+		// $params['expiry'] may not be set in subclasses
 		if ( isset( $params['expiry'] ) ) {
 			$expiry = (array)$params['expiry'];
 		} else {

@@ -122,9 +122,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 					[
 						'ug1.ug_user=user_id',
 						'ug1.ug_group' => $params['group'],
-						$this->getConfig()->get( 'DisableUserGroupExpiry' ) ?
-							'1' :
-							'ug1.ug_expiry IS NULL OR ug1.ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
+						'ug1.ug_expiry IS NULL OR ug1.ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
 					]
 				]
 			] );
@@ -147,9 +145,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$this->addJoinConds( [ 'ug1' => [ 'LEFT OUTER JOIN',
 				array_merge( [
 					'ug1.ug_user=user_id',
-					$this->getConfig()->get( 'DisableUserGroupExpiry' ) ?
-						'1' :
-						'ug1.ug_expiry IS NULL OR ug1.ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
+					'ug1.ug_expiry IS NULL OR ug1.ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
 				], $exclude )
 			] ] );
 			$this->addWhere( 'ug1.ug_user IS NULL' );
@@ -165,9 +161,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$this->addFields( [ 'groups' =>
 				$db->buildGroupConcatField( '|', 'user_groups', 'ug_group', [
 					'ug_user=user_id',
-					$this->getConfig()->get( 'DisableUserGroupExpiry' ) ?
-						'1' :
-						'ug_expiry IS NULL OR ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
+					'ug_expiry IS NULL OR ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
 				] )
 			] );
 		}

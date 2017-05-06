@@ -172,10 +172,8 @@ class ApiQueryUsers extends ApiQueryBase {
 				$this->addJoinConds( [ 'user_groups' => [ 'INNER JOIN', 'ug_user=user_id' ] ] );
 				$this->addFields( [ 'user_name' ] );
 				$this->addFields( UserGroupMembership::selectFields() );
-				if ( !$this->getConfig()->get( 'DisableUserGroupExpiry' ) ) {
-					$this->addWhere( 'ug_expiry IS NULL OR ug_expiry >= ' .
-						$db->addQuotes( $db->timestamp() ) );
-				}
+				$this->addWhere( 'ug_expiry IS NULL OR ug_expiry >= ' .
+					$db->addQuotes( $db->timestamp() ) );
 				$userGroupsRes = $this->select( __METHOD__ );
 
 				foreach ( $userGroupsRes as $row ) {
