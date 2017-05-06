@@ -13,7 +13,6 @@
 		<exclude name="MediaWiki.Commenting.FunctionComment.SpacingAfter" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.SpacingAfterParamName" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.SpacingAfterParamType" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.WrongStyle" />
 		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentStart" />
 		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentEnd" />
 		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures" />
