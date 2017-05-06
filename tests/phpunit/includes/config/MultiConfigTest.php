@@ -5,6 +5,7 @@ class MultiConfigTest extends MediaWikiTestCase {
 	/**
 	 * Tests that settings are fetched in the right order
 	 *
+	 * @covers MultiConfig::__construct
 	 * @covers MultiConfig::get
 	 */
 	public function testGet() {
