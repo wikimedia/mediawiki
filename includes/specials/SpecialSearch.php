@@ -401,7 +401,7 @@ class SpecialSearch extends SpecialPage {
 				$this,
 				$sidebarResultWidget,
 				$linkRenderer,
-				MediaWikiServices::getInstance()->getInterwikiLookup()
+				MediaWikiServices::getInstance()->getSiteUrlBuilder()
 			);
 		} else {
 			$sidebarResultWidget = new SimpleSearchResultWidget( $this, $linkRenderer );
@@ -409,7 +409,7 @@ class SpecialSearch extends SpecialPage {
 				$this,
 				$sidebarResultWidget,
 				$linkRenderer,
-				MediaWikiServices::getInstance()->getInterwikiLookup()
+				MediaWikiServices::getInstance()->getSiteUrlBuilder()
 			);
 		}
 

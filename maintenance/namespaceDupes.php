@@ -26,6 +26,7 @@
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Site\SiteInfoLookup;
 use Wikimedia\Rdbms\ResultWrapper;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -226,11 +227,16 @@ class NamespaceConflictChecker extends Maintenance {
 	 * @return array
 	 */
 	private function getInterwikiList() {
-		$result = MediaWikiServices::getInstance()->getInterwikiLookup()->getAllPrefixes();
-		$prefixes = [];
-		foreach ( $result as $row ) {
-			$prefixes[] = $row['iw_prefix'];
-		}
+		$siLookup = MediaWikiServices::getInstance()->getSiteInfoLookup();
+		$interwikiIds = $siLookup->getIdMap( SiteInfoLookup::INTERWIKI_ID );
+		$navigationIds = $siLookup->getIdMap( SiteInfoLookup::NAVIGATION_ID );
+
+		$prefixes = array_unique(
+			array_merge(
+				array_keys( $interwikiIds ),
+				array_keys( $navigationIds )
+			)
+		);
 
 		return $prefixes;
 	}

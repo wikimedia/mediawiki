@@ -2,7 +2,8 @@
 
 namespace MediaWiki\Widget\Search;
 
-use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Site\SiteInfoLookup;
+use MediaWiki\Site\SiteUrlBuilder;
 use MediaWiki\Linker\LinkRenderer;
 use SearchResultSet;
 use SpecialSearch;
@@ -23,19 +24,19 @@ class SimpleSearchResultSetWidget implements SearchResultSetWidget{
 	protected $customCaptions;
 	/** @var LinkRenderer */
 	protected $linkRenderer;
-	/** @var InterwikiLookup */
-	protected $iwLookup;
+	/** @var SiteUrlBuilder */
+	protected $urlBuilder;
 
 	public function __construct(
 		SpecialSearch $specialSearch,
 		SearchResultWidget $resultWidget,
 		LinkRenderer $linkRenderer,
-		InterwikiLookup $iwLookup
+		SiteUrlBuilder $urlBuilder
 	) {
 		$this->specialSearch = $specialSearch;
 		$this->resultWidget = $resultWidget;
 		$this->linkRenderer = $linkRenderer;
-		$this->iwLookup = $iwLookup;
+		$this->urlBuilder = $urlBuilder;
 	}
 
 	/**
@@ -94,9 +95,9 @@ class SimpleSearchResultSetWidget implements SearchResultSetWidget{
 		if ( isset( $this->customCaptions[$iwPrefix] ) ) {
 			$caption = $this->customCaptions[$iwPrefix];
 		} else {
-			$interwiki = $this->iwLookup->fetch( $iwPrefix );
-			$parsed = wfParseUrl( wfExpandUrl( $interwiki ? $interwiki->getURL() : '/' ) );
-			$caption = $this->specialSearch->msg( 'search-interwiki-default', $parsed['host'] )->escaped();
+			$host = $this->urlBuilder->getHost( $iwPrefix, SiteInfoLookup::INTERWIKI_ID );
+			$host = $host === null ? wfParseUrl( wfExpandUrl( '/' ) )['host'] : $host;
+			$caption = $this->specialSearch->msg( 'search-interwiki-default', $host )->escaped();
 		}
 
 		$href = Title::makeTitle( NS_SPECIAL, 'Search', null, $iwPrefix )->getLocalURL(

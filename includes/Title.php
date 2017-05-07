@@ -22,9 +22,10 @@
  * @file
  */
 
+use MediaWiki\Site\SiteInfoLookup;
+use MediaWiki\Site\SiteUrlBuilder;
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -180,15 +181,27 @@ class Title implements LinkTarget {
 	}
 
 	/**
-	 * B/C kludge: provide an InterwikiLookup for use by Title.
+	 * B/C kludge: provide an SiteInfoLookup for use by Title.
 	 * Ideally, Title would have no methods that need this.
 	 * Avoid usage of this singleton by using TitleValue
 	 * and the associated services when possible.
 	 *
-	 * @return InterwikiLookup
+	 * @return SiteInfoLookup
 	 */
-	private static function getInterwikiLookup() {
-		return MediaWikiServices::getInstance()->getInterwikiLookup();
+	private static function getSiteInfoLookup() {
+		return MediaWikiServices::getInstance()->getSiteInfoLookup();
+	}
+
+	/**
+	 * B/C kludge: provide an SiteUrlBuilder for use by Title.
+	 * Ideally, Title would have no methods that need this.
+	 * Avoid usage of this singleton by using TitleValue
+	 * and the associated services when possible.
+	 *
+	 * @return SiteUrlBuilder
+	 */
+	private static function getSiteUrlBuilder() {
+		return MediaWikiServices::getInstance()->getSiteUrlBuilder();
 	}
 
 	/**
@@ -775,17 +788,45 @@ class Title implements LinkTarget {
 	}
 
 	/**
+	 * @return bool|string The ID of the target site, or false if the title's interwiki prefix
+	 *         is not know. If this title has no interwiki prefix, the empty string is returned.
+	 */
+	private function getTargetSiteId() {
+		if ( $this->isExternal() ) {
+			$lookup = self::getSiteInfoLookup();
+			$siteId = $lookup->resolveLocalId(
+				SiteInfoLookup::INTERWIKI_ID,
+				$this->mInterwiki
+			);
+
+			if ( $siteId === null ) {
+				$siteId = $lookup->resolveLocalId(
+					SiteInfoLookup::NAVIGATION_ID,
+					$this->mInterwiki
+				);
+			}
+
+			return $siteId === null ? false : $siteId;
+		}
+
+		return '';
+	}
+
+	/**
 	 * Determine whether the object refers to a page within
 	 * this project (either this wiki or a wiki with a local
-	 * interwiki, see https://www.mediawiki.org/wiki/Manual:Interwiki_table#iw_local )
+	 * interwiki, see docs/siteinfo.txt )
 	 *
 	 * @return bool True if this is an in-project interwiki link or a wikilink, false otherwise
 	 */
 	public function isLocal() {
 		if ( $this->isExternal() ) {
-			$iw = self::getInterwikiLookup()->fetch( $this->mInterwiki );
-			if ( $iw ) {
-				return $iw->isLocal();
+			$siteId = $this->getTargetSiteId();
+
+			if ( $siteId !== null ) {
+				$info = self::getSiteInfoLookup()->getSiteInfo( $siteId );
+				return isset( $info[SiteInfoLookup::SITE_IS_FORWARDABLE] )
+					&& $info[SiteInfoLookup::SITE_IS_FORWARDABLE];
 			}
 		}
 		return true;
@@ -824,14 +865,24 @@ class Title implements LinkTarget {
 	 * Determine whether the object refers to a page within
 	 * this project and is transcludable.
 	 *
-	 * @return bool True if this is transcludable
+	 * @return bool True if this is transcludable. Note that this method returns false
+	 *         for titles that do not have an interwiki prefix.
 	 */
 	public function isTrans() {
 		if ( !$this->isExternal() ) {
 			return false;
 		}
 
-		return self::getInterwikiLookup()->fetch( $this->mInterwiki )->isTranscludable();
+		$siteId = $this->getTargetSiteId();
+
+		if ( $siteId !== null ) {
+			$info = self::getSiteInfoLookup()->getSiteInfo( $siteId );
+
+			return isset( $info[SiteInfoLookup::SITE_IS_TRANSCLUDABLE] )
+				&& $info[SiteInfoLookup::SITE_IS_TRANSCLUDABLE];
+		}
+
+		return false;
 	}
 
 	/**
@@ -844,7 +895,7 @@ class Title implements LinkTarget {
 			return false;
 		}
 
-		return self::getInterwikiLookup()->fetch( $this->mInterwiki )->getWikiID();
+		return $this->getTargetSiteId();
 	}
 
 	/**
@@ -1711,15 +1762,9 @@ class Title implements LinkTarget {
 
 		$query = self::fixUrlQueryArgs( $query, $query2 );
 
-		$interwiki = self::getInterwikiLookup()->fetch( $this->mInterwiki );
-		if ( $interwiki ) {
-			$namespace = $this->getNsText();
-			if ( $namespace != '' ) {
-				# Can this actually happen? Interwikis shouldn't be parsed.
-				# Yes! It can in interwiki transclusion. But... it probably shouldn't.
-				$namespace .= ':';
-			}
-			$url = $interwiki->getURL( $namespace . $this->getDBkey() );
+		$targetSiteId = $this->getTargetSiteId();
+		if ( $targetSiteId !== '' && $targetSiteId !== false ) {
+			$url = self::getSiteUrlBuilder()->getLinkUrl( $this );
 			$url = wfAppendQuery( $url, $query );
 		} else {
 			$dbkey = wfUrlencode( $this->getPrefixedDBkey() );

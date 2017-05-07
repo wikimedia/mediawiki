@@ -21,9 +21,9 @@
  * @license GPL 2+
  * @author Daniel Kinzler
  */
-use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Site\SiteInfoLookup;
 
 /**
  * A codec for %MediaWiki page titles.
@@ -53,24 +53,24 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	protected $localInterwikis;
 
 	/**
-	 * @var InterwikiLookup
+	 * @var SiteInfoLookup
 	 */
-	protected $interwikiLookup;
+	protected $siteInfoLookup;
 
 	/**
 	 * @param Language $language The language object to use for localizing namespace names.
 	 * @param GenderCache $genderCache The gender cache for generating gendered namespace names
 	 * @param string[]|string $localInterwikis
-	 * @param InterwikiLookup|null $interwikiLookup
+	 * @param SiteInfoLookup|null $siteInfoLookup
 	 */
 	public function __construct( Language $language, GenderCache $genderCache,
-		$localInterwikis = [], $interwikiLookup = null
+		$localInterwikis = [], $siteInfoLookup = null
 	) {
 		$this->language = $language;
 		$this->genderCache = $genderCache;
 		$this->localInterwikis = (array)$localInterwikis;
-		$this->interwikiLookup = $interwikiLookup ?:
-			MediaWikiServices::getInstance()->getInterwikiLookup();
+		$this->siteInfoLookup = $siteInfoLookup ?:
+			MediaWikiServices::getInstance()->getSiteInfoLookup();
 	}
 
 	/**
@@ -245,6 +245,16 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	}
 
 	/**
+	 * @param string $prefix
+	 *
+	 * @return bool
+	 */
+	private function isValidInterwiki( $prefix ) {
+		return $this->siteInfoLookup->resolveLocalId( SiteInfoLookup::INTERWIKI_ID, $prefix ) !== null
+		|| $this->siteInfoLookup->resolveLocalId( SiteInfoLookup::NAVIGATION_ID, $prefix ) !== null;
+	}
+
+	/**
 	 * Normalizes and splits a title string.
 	 *
 	 * This function removes illegal characters, splits off the interwiki and
@@ -328,13 +338,13 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 						if ( $this->language->getNsIndex( $x[1] ) ) {
 							# Disallow Talk:File:x type titles...
 							throw new MalformedTitleException( 'title-invalid-talk-namespace', $text );
-						} elseif ( $this->interwikiLookup->isValidInterwiki( $x[1] ) ) {
+						} elseif ( $this->isValidInterwiki( $x[1] ) ) {
 							// TODO: get rid of global state!
 							# Disallow Talk:Interwiki:x type titles...
 							throw new MalformedTitleException( 'title-invalid-talk-namespace', $text );
 						}
 					}
-				} elseif ( $this->interwikiLookup->isValidInterwiki( $p ) ) {
+				} elseif ( $this->isValidInterwiki( $p ) ) {
 					# Interwiki link
 					$dbkey = $m[2];
 					$parts['interwiki'] = $this->language->lc( $p );

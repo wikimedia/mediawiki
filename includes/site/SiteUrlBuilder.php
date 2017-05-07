@@ -132,6 +132,34 @@ class SiteUrlBuilder {
 	}
 
 	/**
+	 * @param string $id
+	 * @param string|null $resolveScope The scope in which to resolve $id.
+	 *        If not given, $id is taken to be a global site id.
+	 *
+	 * @return null|string
+	 */
+	public function getHost( $id, $resolveScope = null ) {
+		if ( $resolveScope ) {
+			$siteId = $this->siteInfoLookup->resolveLocalId( $resolveScope, $id );
+
+			if ( $siteId === null ) {
+				return null;
+			}
+		} else {
+			$siteId = $id;
+		}
+
+		$info = $this->siteInfoLookup->getSiteInfo( $siteId );
+
+		if ( !isset( $info[SiteInfoLookup::SITE_BASE_URL] ) ) {
+			return null;
+		}
+
+		$parsed = wfParseUrl( $info[SiteInfoLookup::SITE_BASE_URL] );
+		return $parsed['host'];
+	}
+
+	/**
 	 * Returns a link to a LinkTarget on another site.
 	 *
 	 * @param LinkTarget $target

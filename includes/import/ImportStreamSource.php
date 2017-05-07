@@ -24,6 +24,7 @@
  * @ingroup SpecialPage
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Site\SiteInfoLookup;
 
 /**
  * Imports a XML dump from a file (either from file upload, files on disk, or HTTP)
@@ -149,9 +150,9 @@ class ImportStreamSource implements ImportSource {
 		# Look up the first interwiki prefix, and let the foreign site handle
 		# subsequent interwiki prefixes
 		$firstIwPrefix = strtok( $interwiki, ':' );
-		$interwikiLookup = MediaWikiServices::getInstance()->getInterwikiLookup();
-		$firstIw = $interwikiLookup->fetch( $firstIwPrefix );
-		if ( !$firstIw ) {
+		$siteUrlBuilder = MediaWikiServices::getInstance()->getSiteUrlBuilder();
+		$firstIwSiteId = $siteUrlBuilder->resolveLocalId( SiteInfoLookup::INTERWIKI_ID,  $firstIwPrefix );
+		if ( !$firstIwSiteId ) {
 			return Status::newFatal( 'importbadinterwiki' );
 		}
 
@@ -162,8 +163,11 @@ class ImportStreamSource implements ImportSource {
 		# Have to do a DB-key replacement ourselves; otherwise spaces get
 		# URL-encoded to +, which is wrong in this case. Similar to logic in
 		# Title::getLocalURL
-		$link = $firstIw->getURL( strtr( "${additionalIwPrefixes}Special:Export/$page",
-			' ', '_' ) );
+		$link = $siteUrlBuilder->getUrl(
+			$firstIwSiteId,
+			SiteInfoLookup::SITE_LINK_PATH,
+			strtr( "${additionalIwPrefixes}Special:Export/$page", ' ', '_' )
+		);
 
 		$params = [];
 		if ( $history ) {

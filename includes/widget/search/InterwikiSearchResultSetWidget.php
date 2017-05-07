@@ -2,8 +2,9 @@
 
 namespace MediaWiki\Widget\Search;
 
-use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Site\SiteInfoLookup;
+use MediaWiki\Site\SiteUrlBuilder;
 use SearchResultSet;
 use SpecialSearch;
 use Title;
@@ -23,8 +24,8 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 	protected $customCaptions;
 	/** @var LinkRenderer */
 	protected $linkRenderer;
-	/** @var InterwikiLookup */
-	protected $iwLookup;
+	/** @var SiteUrlBuilder */
+	protected $urlBuilder;
 	/** @var $output */
 	protected $output;
 	/** @var $iwPrefixDisplayTypes */
@@ -34,12 +35,12 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 		SpecialSearch $specialSearch,
 		SearchResultWidget $resultWidget,
 		LinkRenderer $linkRenderer,
-		InterwikiLookup $iwLookup
+		SiteUrlBuilder $urlBuilder
 	) {
 		$this->specialSearch = $specialSearch;
 		$this->resultWidget = $resultWidget;
 		$this->linkRenderer = $linkRenderer;
-		$this->iwLookup = $iwLookup;
+		$this->urlBuilder = $urlBuilder;
 		$this->output = $specialSearch->getOutput();
 		$this->iwPrefixDisplayTypes = $specialSearch->getConfig()->get(
 			'InterwikiPrefixDisplayTypes'
@@ -134,9 +135,9 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 			/* customCaptions composed by loadCustomCaptions() with pre-escaped content. */
 			$caption = $this->customCaptions[$iwPrefix];
 		} else {
-			$interwiki = $this->iwLookup->fetch( $iwPrefix );
-			$parsed = wfParseUrl( wfExpandUrl( $interwiki ? $interwiki->getURL() : '/' ) );
-			$caption = $this->specialSearch->msg( 'search-interwiki-default', $parsed['host'] )->escaped();
+			$host = $this->urlBuilder->getHost( $iwPrefix, SiteInfoLookup::INTERWIKI_ID );
+			$host = $host === null ? wfParseUrl( wfExpandUrl( '/' ) )['host'] : $host;
+			$caption = $this->specialSearch->msg( 'search-interwiki-default', $host )->escaped();
 		}
 
 		return Html::rawElement( 'div', [ 'class' => 'iw-result__header' ],

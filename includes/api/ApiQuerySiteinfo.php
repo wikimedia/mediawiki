@@ -392,6 +392,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$langCode = isset( $params['inlanguagecode'] ) ? $params['inlanguagecode'] : '';
 		$langNames = Language::fetchLanguageNames( $langCode );
 
+		// TODO: port this to using SiteInfoLookup::listSites() and SiteInfoLookup::getSiteInfo()
 		$getPrefixes = MediaWikiServices::getInstance()->getInterwikiLookup()->getAllPrefixes( $local );
 		$extraLangPrefixes = $this->getConfig()->get( 'ExtraInterlanguageLinkPrefixes' );
 		$localInterwikis = $this->getConfig()->get( 'LocalInterwikis' );

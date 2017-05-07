@@ -168,4 +168,17 @@ class SiteUrlBuilderTest extends PHPUnit_Framework_TestCase {
 		$this->assertSame( $expected, $urlBuilder->getLinkUrl( $target ) );
 	}
 
+	public function testGetHost() {
+		$urlBuilder = $this->getUrlBuilder();
+
+		$this->assertSame( 'www.acme.test', $urlBuilder->getHost( 'acme' ) );
+		$this->assertSame( 'en.wikipedia.org', $urlBuilder->getHost( 'enwiki' ) );
+
+		$this->assertSame( 'www.acme.test', $urlBuilder->getHost( 'acme', SiteInfoLookup::INTERWIKI_ID ) );
+		$this->assertSame( 'en.wikipedia.org', $urlBuilder->getHost( 'en', SiteInfoLookup::NAVIGATION_ID ) );
+
+		$this->assertNull( $urlBuilder->getHost( 'xyz', SiteInfoLookup::INTERWIKI_ID ) );
+		$this->assertNull( $urlBuilder->getHost( 'en', SiteInfoLookup::INTERWIKI_ID ) );
+	}
+
 }
