@@ -917,6 +917,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Site\\MediaWikiPageNameNormalizer' => __DIR__ . '/includes/site/MediaWikiPageNameNormalizer.php',
 	'MediaWiki\\Site\\SiteInfoLookup' => __DIR__ . '/includes/site/SiteInfoLookup.php',
 	'MediaWiki\\Site\\SiteInfoSiteLookup' => __DIR__ . '/includes/site/SiteInfoSiteLookup.php',
+	'MediaWiki\\Site\\SiteUrlBuilder' => __DIR__ . '/includes/site/SiteUrlBuilder.php',
 	'MediaWiki\\Tidy\\BalanceActiveFormattingElements' => __DIR__ . '/includes/tidy/Balancer.php',
 	'MediaWiki\\Tidy\\BalanceElement' => __DIR__ . '/includes/tidy/Balancer.php',
 	'MediaWiki\\Tidy\\BalanceMarker' => __DIR__ . '/includes/tidy/Balancer.php',
