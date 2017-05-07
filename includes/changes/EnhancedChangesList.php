@@ -624,13 +624,10 @@ class EnhancedChangesList extends ChangesList {
 
 		# Article or log link
 		if ( $logType ) {
-			$logPage = new LogPage( $logType );
+			$logLink = '';
 			$logTitle = SpecialPage::getTitleFor( 'Log', $logType );
-			$logName = $logPage->getName()->text();
-			$data['logLink'] = $this->msg( 'parentheses' )
-				->rawParams(
-					$this->linkRenderer->makeKnownLink( $logTitle, $logName )
-				)->escaped();
+			$this->insertLog( $logLink, $logTitle, $logType );
+			$data['logLink'] = $logLink;
 		} else {
 			$data['articleLink'] = $this->getArticleLink( $rcObj, $rcObj->unpatrolled, $rcObj->watched );
 		}
