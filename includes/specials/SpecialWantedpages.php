@@ -92,6 +92,10 @@ class WantedPagesPage extends WantedQueryPage {
 		return $query;
 	}
 
+	function getOrder() {
+	    return ' ORDER BY value DESC, bl_to ASC';
+	 }
+
 	protected function getGroupName() {
 		return 'maintenance';
 	}
