@@ -25,6 +25,7 @@ require_once __DIR__ . '/Maintenance.php';
 /**
  * Maintenance script to dump a SiteStore as a static json file.
  *
+ * @deprecated since 1.23, use buildSiteInfo.php.
  * @ingroup Maintenance
  */
 class RebuildSitesCache extends Maintenance {

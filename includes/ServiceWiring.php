@@ -38,9 +38,13 @@
  */
 
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
+use MediaWiki\Interwiki\SiteInfoInterwikiLookup;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Site\FileSiteInfoLookup;
+use MediaWiki\Site\SiteInfoSiteLookup;
+use MediaWiki\Site\SiteUrlBuilder;
 
 return [
 	'DBLoadBalancerFactory' => function( MediaWikiServices $services ) {
@@ -60,25 +64,8 @@ return [
 		return $services->getDBLoadBalancerFactory()->getMainLB();
 	},
 
-	'SiteStore' => function( MediaWikiServices $services ) {
-		$rawSiteStore = new DBSiteStore( $services->getDBLoadBalancer() );
-
-		// TODO: replace wfGetCache with a CacheFactory service.
-		// TODO: replace wfIsHHVM with a capabilities service.
-		$cache = wfGetCache( wfIsHHVM() ? CACHE_ACCEL : CACHE_ANYTHING );
-
-		return new CachingSiteStore( $rawSiteStore, $cache );
-	},
-
 	'SiteLookup' => function( MediaWikiServices $services ) {
-		$cacheFile = $services->getMainConfig()->get( 'SitesCacheFile' );
-
-		if ( $cacheFile !== false ) {
-			return new FileBasedSiteLookup( $cacheFile );
-		} else {
-			// Use the default SiteStore as the SiteLookup implementation for now
-			return $services->getSiteStore();
-		}
+		return new SiteInfoSiteLookup( $services->getSiteInfoLookup() );
 	},
 
 	'ConfigFactory' => function( MediaWikiServices $services ) {
@@ -98,15 +85,19 @@ return [
 	},
 
 	'InterwikiLookup' => function( MediaWikiServices $services ) {
-		global $wgContLang; // TODO: manage $wgContLang as a service
+		return new SiteInfoInterwikiLookup( $services->getSiteInfoLookup() );
+	},
+
+	'SiteInfoLookup' => function( MediaWikiServices $services ) {
 		$config = $services->getMainConfig();
-		return new ClassicInterwikiLookup(
-			$wgContLang,
-			$services->getMainWANObjectCache(),
-			$config->get( 'InterwikiExpiry' ),
-			$config->get( 'InterwikiCache' ),
-			$config->get( 'InterwikiScopes' ),
-			$config->get( 'InterwikiFallbackSite' )
+		return new FileSiteInfoLookup(
+			$config->get( 'SiteInfoFiles' )
+		);
+	},
+
+	'SiteUrlBuilder' => function( MediaWikiServices $services ) {
+		return new SiteUrlBuilder(
+			$services->getSiteInfoLookup()
 		);
 	},
 

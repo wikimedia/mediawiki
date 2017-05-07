@@ -19,6 +19,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @since 1.21
+ * @deprecated since 1.30, use FileSiteInfoLookup instead.
  *
  * @file
  * @ingroup Site

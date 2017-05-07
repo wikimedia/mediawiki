@@ -1,3 +1,6 @@
+NOTE: the SiteStore mechanism has been deprecated in MW 1.30.
+See siteinfo.txt for the new mechanism.
+
 MediaWiki's SiteStore can be cached and stored in a flat file,
 in a json format. If the SiteStore is frequently accessed, the
 file cache may provide a performance benefit over a database

@@ -9,6 +9,9 @@ use EventRelayerGroup;
 use GenderCache;
 use GlobalVarConfig;
 use Hooks;
+use MediaWiki\Site\SiteInfoLookup;
+use MediaWiki\Site\SiteUrlBuilder;
+use SiteStore;
 use Wikimedia\Rdbms\LBFactory;
 use LinkCache;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
@@ -28,7 +31,6 @@ use SearchEngine;
 use SearchEngineConfig;
 use SearchEngineFactory;
 use SiteLookup;
-use SiteStore;
 use WatchedItemStore;
 use WatchedItemQueryService;
 use SkinFactory;
@@ -430,10 +432,13 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.27
-	 * @return SiteStore
+	 * @deprecated since 1.30, use the buildSiteInfo maintenance script. See docs/siteinfo.txt.
 	 */
 	public function getSiteStore() {
-		return $this->getService( 'SiteStore' );
+		// Note: this is a hard failure mode, but SiteStore should never be used during a
+		// web request anyway. Its only purpose is to update the sites database, which is
+		// no longer used, since it has been replaced by site info files.
+		throw new MWException( 'The SiteStore service interface is no longer supported' );
 	}
 
 	/**
@@ -442,6 +447,22 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getInterwikiLookup() {
 		return $this->getService( 'InterwikiLookup' );
+	}
+
+	/**
+	 * @since 1.30
+	 * @return SiteInfoLookup
+	 */
+	public function getSiteInfoLookup() {
+		return $this->getService( 'SiteInfoLookup' );
+	}
+
+	/**
+	 * @since 1.30
+	 * @return SiteUrlBuilder
+	 */
+	public function getSiteUrlBuilder() {
+		return $this->getService( 'SiteUrlBuilder' );
 	}
 
 	/**

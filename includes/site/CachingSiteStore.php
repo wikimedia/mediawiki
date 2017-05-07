@@ -20,6 +20,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @since 1.25
+ * @deprecated since 1.30, use HashSiteInfoLookup instead.
  *
  * @file
  * @ingroup Site

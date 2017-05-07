@@ -3973,16 +3973,11 @@ $wgInterwikiFallbackSite = 'wiki';
 /** @} */ # end of Interwiki caching settings.
 
 /**
- * @name SiteStore caching settings.
- * @{
+ * Specify files from which to load site info.
+ * Each path must end in ".json" or ".php".
+ * See docs/siteinfo.txt for details.
  */
-
-/**
- * Specify the file location for the Sites json cache file.
- */
-$wgSitesCacheFile = false;
-
-/** @} */ # end of SiteStore caching settings.
+$wgSiteInfoFiles = [ "$IP/sites.json" ];
 
 /**
  * If local interwikis are set up which allow redirects,
