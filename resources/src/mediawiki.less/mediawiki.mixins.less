@@ -58,6 +58,12 @@
 	list-style-image: e( '/* @embed */' ) url( @fallback ) e( '\9' );
 }
 
+.transform( @value ) {
+	-webkit-transform: @value; // Safari 3.1-8.0, iOS 3.2-8.4, Android 2.1-4.4.4
+	-moz-transform: @value; // Firefox 3.5-15
+	transform: @value; // Chrome 36+, Firefox 16+, IE 10+, Safari 9+, Opera 23+, iOS 9.2+, Android 5+
+}
+
 .transition( @value ) {
 	-webkit-transition: @value; // Safari 3.1-6.0, iOS 3.2-6.1, Android 2.1-4.3
 	-moz-transition: @value; // Firefox 4-15
