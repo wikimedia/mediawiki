@@ -2,7 +2,6 @@
 const assert = require( 'assert' ),
 	CreateAccountPage = require( '../pageobjects/createaccount.page' ),
 	UserLoginPage = require( '../pageobjects/userlogin.page' ),
-	UserLogoutPage = require( '../pageobjects/userlogout.page' ),
 	PreferencesPage = require( '../pageobjects/preferences.page' );
 
 describe( 'User', function () {
@@ -28,10 +27,7 @@ describe( 'User', function () {
 	it( 'should be able to log in', function () {
 
 		// create
-		CreateAccountPage.createAccount( username, password );
-
-		// logout
-		UserLogoutPage.open();
+		CreateAccountPage.apiCreateAccount( username, password );
 
 		// log in
 		UserLoginPage.login( username, password );
