@@ -24,6 +24,7 @@
     "karma-firefox-launcher": "1.0.1",
     "karma-mocha-reporter": "2.2.3",
     "karma-qunit": "1.0.0",
+    "nodemw": "0.10.1",
     "qunitjs": "1.23.1",
     "stylelint-config-wikimedia": "0.4.1",
     "wdio-junit-reporter": "0.2.0",

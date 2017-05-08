@@ -1,7 +1,7 @@
 'use strict';
 const assert = require( 'assert' ),
-	HistoryPage = require( '../pageobjects/history.page' ),
-	EditPage = require( '../pageobjects/edit.page' );
+	EditPage = require( '../pageobjects/edit.page' ),
+	HistoryPage = require( '../pageobjects/history.page' );
 
 describe( 'Page', function () {
 
@@ -9,6 +9,7 @@ describe( 'Page', function () {
 		name;
 
 	beforeEach( function () {
+		browser.deleteCookie();
 		content = Math.random().toString();
 		name = Math.random().toString();
 	} );
@@ -29,12 +30,14 @@ describe( 'Page', function () {
 		var content2 = Math.random().toString();
 
 		// create
-		EditPage.edit( name, content );
+		browser.call( function () {
+			return EditPage.apiEdit( name, content );
+		} );
 
 		// edit
 		EditPage.edit( name, content2 );
 
-		// check content
+		// check
 		assert.equal( EditPage.heading.getText(), name );
 		assert.equal( EditPage.displayedContent.getText(), content2 );
 
@@ -43,7 +46,9 @@ describe( 'Page', function () {
 	it( 'should have history', function () {
 
 		// create
-		EditPage.edit( name, content );
+		browser.call( function () {
+			return EditPage.apiEdit( name, content );
+		} );
 
 		// check
 		HistoryPage.open( name );
