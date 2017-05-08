@@ -660,7 +660,7 @@ class ChangeTags {
 
 			$tables[] = 'change_tag';
 			$join_conds['change_tag'] = [ 'INNER JOIN', $join_cond ];
-			$conds['ct_tag'] = explode( ',', $filter_tag );
+			$conds['ct_tag'] = explode( ';', $filter_tag );
 		}
 	}
 
@@ -947,9 +947,12 @@ class ChangeTags {
 			return Status::newFatal( 'tags-create-no-name' );
 		}
 
-		// tags cannot contain commas (used as a delimiter in tag_summary table) or
-		// slashes (would break tag description messages in MediaWiki namespace)
-		if ( strpos( $tag, ',' ) !== false || strpos( $tag, '/' ) !== false ) {
+		// tags cannot contain commas (used as a delimiter in tag_summary table),
+		// semi-colons (used as a delimiter between multiple tags in
+		// modifyDisplayQuery), or slashes (would break tag description messages in
+		// MediaWiki namespace)
+		if ( strpos( $tag, ',' ) !== false || strpos( $tag, ';' ) !== false
+			|| strpos( $tag, '/' ) !== false ) {
 			return Status::newFatal( 'tags-create-invalid-chars' );
 		}
 
