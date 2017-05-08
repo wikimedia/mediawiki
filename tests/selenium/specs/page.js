@@ -29,7 +29,11 @@ describe( 'Page', function () {
 		var content2 = Math.random().toString();
 
 		// create
-		EditPage.edit( name, content );
+		EditPage.apiEdit( name, content );
+		browser.waitUntil( function () {
+			EditPage.open( name );
+			return !/There is currently no text in this page/.test( EditPage.displayedContent.getText() );
+		}, 10000 );
 
 		// edit
 		EditPage.edit( name, content2 );
@@ -43,10 +47,13 @@ describe( 'Page', function () {
 	it( 'should have history', function () {
 
 		// create
-		EditPage.edit( name, content );
+		EditPage.apiEdit( name, content );
+		browser.waitUntil( function () {
+			HistoryPage.open( name );
+			return HistoryPage.comment.isExisting();
+		}, 10000 );
 
 		// check
-		HistoryPage.open( name );
 		assert.equal( HistoryPage.comment.getText(), `(Created page with "${content}")` );
 
 	} );
