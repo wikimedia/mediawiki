@@ -193,6 +193,9 @@
 		} else if ( action === 'default' ) {
 			this.emit( 'default', !this.default );
 		}
+		// Reset selected
+		this.menu.selectItem( null );
+		// Close the menu
 		this.menu.toggle( false );
 	};
 

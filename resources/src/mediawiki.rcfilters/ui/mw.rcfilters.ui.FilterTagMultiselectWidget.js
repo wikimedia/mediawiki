@@ -26,6 +26,7 @@
 		this.model = model;
 		this.queriesModel = savedQueriesModel;
 		this.$overlay = config.$overlay || this.$element;
+		this.matchingQuery = null;
 
 		// Parent
 		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.call( this, $.extend( true, {
@@ -93,6 +94,7 @@
 			click: 'onSaveQueryButtonClick',
 			saveCurrent: 'setSavedQueryVisibility'
 		} );
+		this.queriesModel.connect( this, { itemUpdate: 'onSavedQueriesItemUpdate' } );
 
 		// Build the content
 		$contentWrapper.append(
@@ -146,6 +148,19 @@
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onSaveQueryButtonClick = function () {
 		this.getMenu().toggle( false );
+	};
+
+	/**
+	 * Respond to save query item change. Mainly this is done to update the label in case
+	 * a query item has been edited
+	 *
+	 * @param {mw.rcfilters.dm.SavedQueryItemModel} item Saved query item
+	 */
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onSavedQueriesItemUpdate = function ( item ) {
+		if ( this.matchingQuery === item ) {
+			// This means we just edited the item that is currently matched
+			this.savedQueryTitle.setLabel( item.getLabel() );
+		}
 	};
 
 	/**
@@ -206,15 +221,15 @@
 	 * Set the visibility of the saved query button
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.setSavedQueryVisibility = function () {
-		var matchingQuery = this.controller.findQueryMatchingCurrentState();
+		this.matchingQuery = this.controller.findQueryMatchingCurrentState();
 
 		this.savedQueryTitle.setLabel(
-			matchingQuery ? matchingQuery.getLabel() : ''
+			this.matchingQuery ? this.matchingQuery.getLabel() : ''
 		);
-		this.savedQueryTitle.toggle( !!matchingQuery );
+		this.savedQueryTitle.toggle( !!this.matchingQuery );
 		this.saveQueryButton.toggle(
 			!this.isEmpty() &&
-			!matchingQuery
+			!this.matchingQuery
 		);
 	};
 	/**
