@@ -973,13 +973,17 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return bool True if any option was reset
 	 */
 	private function fixContradictoryOptions( FormOptions $opts ) {
-		$contradictorySets = [];
-
 		$fixed = $this->fixBackwardsCompatibilityOptions( $opts );
 
 		foreach ( $this->filterGroups as $filterGroup ) {
 			if ( $filterGroup instanceof ChangesListBooleanFilterGroup ) {
 				$filters = $filterGroup->getFilters();
+
+				if ( count( $filters ) === 1 ) {
+					// legacy boolean filters should not be considered
+					continue;
+				}
+
 				$allInGroupEnabled = array_reduce(
 					$filters,
 					function ( $carry, $filter ) use ( $opts ) {
@@ -990,7 +994,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 				if ( $allInGroupEnabled ) {
 					foreach ( $filters as $filter ) {
-						$opts->reset( $filter->getName() );
+						$opts[ $filter->getName() ] = false;
 					}
 
 					$fixed = true;
