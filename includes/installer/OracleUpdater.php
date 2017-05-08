@@ -125,6 +125,7 @@ class OracleUpdater extends DatabaseUpdater {
 
 			// 1.30
 			[ 'modifyTable', 'site_stats', 'patch-site_stats-pk.sql' ],
+			[ 'modifyTable', 'site_stats', 'patch-site_stats-modify.sql' ],
 
 			// KEEP THIS AT THE BOTTOM!!
 			[ 'doRebuildDuplicateFunction' ],
