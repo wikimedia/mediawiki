@@ -27,8 +27,8 @@ To run only one file (for example page.js), you first need to spawn the chromedr
 
 Then in another terminal:
 
-    cd mediawiki/tests/selenium
-    ../../node_modules/.bin/wdio --spec page.js
+    cd tests/selenium
+    ../../node_modules/.bin/wdio --spec specs/page.js
 
 The runner reads the config file `wdio.conf.js` and runs the spec listed in
 `page.js`.
