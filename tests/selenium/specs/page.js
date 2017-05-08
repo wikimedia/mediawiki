@@ -29,7 +29,7 @@ describe( 'Page', function () {
 		var content2 = Math.random().toString();
 
 		// create
-		EditPage.edit( name, content );
+		EditPage.apiEdit( name, content );
 
 		// edit
 		EditPage.edit( name, content2 );
@@ -43,7 +43,7 @@ describe( 'Page', function () {
 	it( 'should have history', function () {
 
 		// create
-		EditPage.edit( name, content );
+		EditPage.apiEdit( name, content );
 
 		// check
 		HistoryPage.open( name );
