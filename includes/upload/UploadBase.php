@@ -683,6 +683,38 @@ abstract class UploadBase {
 		}
 
 		$hash = $this->getTempFileSha1Base36();
+
+		$localFileExistsWarnings = $this->checkLocalFileExists( $localFile, $hash );
+		if ( $localFileExistsWarnings ) {
+			$warnings = array_merge( $warnings, $localFileExistsWarnings );
+		}
+
+		if ( $this->checkLocalFileWasDeleted( $localFile ) ) {
+			$warnings['was-deleted'] = $filename;
+		}
+
+		$dupes = $this->checkAgainstExistingDupes( $hash );
+		if ( $dupes ) {
+			$warnings['duplicate'] = $dupes;
+		}
+
+		$archivedDupes = $this->checkAgainstArchiveDupes( $hash );
+		if ( $archivedDupes !== null ) {
+			$warnings['duplicate-archive'] = $archivedDupes;
+		}
+
+		return $warnings;
+	}
+
+	/**
+	 * @param LocalFile $localFile
+	 * @param string $hash sha1 hash of the file to check
+	 *
+	 * @return array warnings
+	 */
+	protected function checkLocalFileExists( LocalFile $localFile, $hash ) {
+		$warnings = [];
+
 		$exists = self::getExistsWarning( $localFile );
 		if ( $exists !== false ) {
 			$warnings['exists'] = $exists;
@@ -701,11 +733,19 @@ abstract class UploadBase {
 			}
 		}
 
-		if ( $localFile->wasDeleted() && !$localFile->exists() ) {
-			$warnings['was-deleted'] = $filename;
-		}
+		return $warnings;
+	}
 
-		// Check dupes against existing files
+	protected function checkLocalFileWasDeleted( LocalFile $localFile ) {
+		return $localFile->wasDeleted() && !$localFile->exists();
+	}
+
+	/**
+	 * @param string $hash sha1 hash of the file to check
+	 *
+	 * @return File[] Duplicate files, if found.
+	 */
+	protected function checkAgainstExistingDupes( $hash ) {
 		$dupes = RepoGroup::singleton()->findBySha1( $hash );
 		$title = $this->getTitle();
 		// Remove all matches against self
@@ -714,21 +754,27 @@ abstract class UploadBase {
 				unset( $dupes[$key] );
 			}
 		}
-		if ( $dupes ) {
-			$warnings['duplicate'] = $dupes;
-		}
 
-		// Check dupes against archives
+		return $dupes;
+	}
+
+	/**
+	 * @param string $hash sha1 hash of the file to check
+	 *
+	 * @return string|null Name of the dupe or empty string if discovered (depending on visibility)
+	 *                     null if the check discovered no dupes.
+	 */
+	protected function checkAgainstArchiveDupes( $hash ) {
 		$archivedFile = new ArchivedFile( null, 0, '', $hash );
 		if ( $archivedFile->getID() > 0 ) {
 			if ( $archivedFile->userCan( File::DELETED_FILE ) ) {
-				$warnings['duplicate-archive'] = $archivedFile->getName();
+				return $archivedFile->getName();
 			} else {
-				$warnings['duplicate-archive'] = '';
+				return'';
 			}
 		}
 
-		return $warnings;
+		return null;
 	}
 
 	/**
@@ -801,6 +847,8 @@ abstract class UploadBase {
 	 * @return Title|null The title of the file or null in case the name was illegal
 	 */
 	public function getTitle() {
+		wfDebugLog( 'addshore', __METHOD__ );
+		wfDebugLog( 'addshore', $this->mTitleError );
 		if ( $this->mTitle !== false ) {
 			return $this->mTitle;
 		}
