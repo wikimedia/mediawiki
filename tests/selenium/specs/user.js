@@ -1,9 +1,9 @@
 'use strict';
 const assert = require( 'assert' ),
 	CreateAccountPage = require( '../pageobjects/createaccount.page' ),
-	UserLoginPage = require( '../pageobjects/userlogin.page' ),
-	UserLogoutPage = require( '../pageobjects/userlogout.page' ),
-	PreferencesPage = require( '../pageobjects/preferences.page' );
+	LogNewUsersPage = require( '../pageobjects/lognewusers.page' ),
+	PreferencesPage = require( '../pageobjects/preferences.page' ),
+	UserLoginPage = require( '../pageobjects/userlogin.page' );
 
 describe( 'User', function () {
 
@@ -11,6 +11,7 @@ describe( 'User', function () {
 		username;
 
 	beforeEach( function () {
+		browser.deleteCookie();
 		username = `User-${Math.random().toString()}`;
 		password = Math.random().toString();
 	} );
@@ -28,10 +29,13 @@ describe( 'User', function () {
 	it( 'should be able to log in', function () {
 
 		// create
-		CreateAccountPage.createAccount( username, password );
+		CreateAccountPage.apiCreateAccount( username, password );
 
-		// logout
-		UserLogoutPage.open();
+		// wait
+		browser.waitUntil( function () {
+			LogNewUsersPage.open();
+			return LogNewUsersPage.user( username ).isExisting();
+		}, 10000 );
 
 		// log in
 		UserLoginPage.login( username, password );
@@ -46,9 +50,18 @@ describe( 'User', function () {
 		var realName = Math.random().toString();
 
 		// create
-		CreateAccountPage.createAccount( username, password );
+		CreateAccountPage.apiCreateAccount( username, password );
 
-		// change real name
+		// wait
+		browser.waitUntil( function () {
+			LogNewUsersPage.open();
+			return LogNewUsersPage.user( username ).isExisting();
+		}, 10000 );
+
+		// log in
+		UserLoginPage.login( username, password );
+
+		// change
 		PreferencesPage.changeRealName( realName );
 
 		// check
