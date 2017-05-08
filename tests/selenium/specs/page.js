@@ -29,25 +29,26 @@ describe( 'Page', function () {
 		var content2 = Math.random().toString();
 
 		// create
-		EditPage.edit( name, content );
-
-		// edit
-		EditPage.edit( name, content2 );
-
-		// check content
-		assert.equal( EditPage.heading.getText(), name );
-		assert.equal( EditPage.displayedContent.getText(), content2 );
+		return EditPage.apiEdit( name, content )
+			// edit
+			.then( () => EditPage.edit( name, content2 ) )
+			// check
+			.then( () => EditPage.open( name ) )
+			.then( () => EditPage.heading.getText() )
+			.then( text => assert.equal( text, name ) )
+			.then( () => EditPage.displayedContent.getText() )
+			.then( text => assert.equal( text, content2 ) );
 
 	} );
 
 	it( 'should have history', function () {
 
 		// create
-		EditPage.edit( name, content );
-
+		return EditPage.apiEdit( name, content )
 		// check
-		HistoryPage.open( name );
-		assert.equal( HistoryPage.comment.getText(), `(Created page with "${content}")` );
+			.then( () => HistoryPage.open( name ) )
+			.then( () => HistoryPage.comment.getText() )
+			.then( text => assert.equal( text, `(Created page with "${content}")` ) );
 
 	} );
 
