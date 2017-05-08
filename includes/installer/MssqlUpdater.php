@@ -116,6 +116,7 @@ class MssqlUpdater extends DatabaseUpdater {
 			[ 'addTable', 'slot_roles', 'patch-slot_roles.sql' ],
 			[ 'addTable', 'content_models', 'patch-content_models.sql' ],
 			[ 'migrateArchiveText' ],
+			[ 'modifyTable', 'site_stats', 'patch-site_stats-modify.sql' ],
 		];
 	}
 

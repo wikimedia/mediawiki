@@ -97,6 +97,9 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 		$config = $services->getMainConfig();
 
 		$dbw = $services->getDBLoadBalancer()->getConnection( DB_MASTER );
+
+		wfDebugLog( 'foo', $dbw->query( 'select * from site_stats' )->fetchRow()['ss_total_pages'] );
+
 		$lockKey = $dbw->getDomainID() . ':site_stats'; // prepend wiki ID
 		$pd = [];
 		if ( $config->get( 'SiteStatsAsyncFactor' ) ) {
