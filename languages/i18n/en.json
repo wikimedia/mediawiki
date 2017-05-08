@@ -1397,7 +1397,7 @@
 	"rcfilters-filter-user-experience-level-newcomer-label": "Newcomers",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Fewer than 10 edits and 4 days of activity.",
 	"rcfilters-filter-user-experience-level-learner-label": "Learners",
-	"rcfilters-filter-user-experience-level-learner-description": "More days of activity and edits than \"Newcomers\" but fewer than \"Experienced users\".",
+	"rcfilters-filter-user-experience-level-learner-description": "More experience than \"Newcomers\" but less than \"Experienced users\".",
 	"rcfilters-filter-user-experience-level-experienced-label": "Experienced users",
 	"rcfilters-filter-user-experience-level-experienced-description": "More than 30 days of activity and 500 edits.",
 	"rcfilters-filtergroup-automated": "Automated contributions",
