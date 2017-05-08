@@ -29,12 +29,14 @@ describe( 'Page', function () {
 		var content2 = Math.random().toString();
 
 		// create
-		EditPage.edit( name, content );
+		EditPage.apiEdit( name, content );
+		browser.pause( 3000 ); // TODO: hardcoded pauses are evil http://webdriver.io/api/utility/pause.html
 
 		// edit
 		EditPage.edit( name, content2 );
 
 		// check content
+		EditPage.open( name );
 		assert.equal( EditPage.heading.getText(), name );
 		assert.equal( EditPage.displayedContent.getText(), content2 );
 
@@ -43,7 +45,8 @@ describe( 'Page', function () {
 	it( 'should have history', function () {
 
 		// create
-		EditPage.edit( name, content );
+		EditPage.apiEdit( name, content );
+		browser.pause( 3000 ); // TODO: hardcoded pauses are evil http://webdriver.io/api/utility/pause.html
 
 		// check
 		HistoryPage.open( name );
