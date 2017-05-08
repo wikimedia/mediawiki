@@ -1078,7 +1078,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		// Namespace filtering
 		if ( $opts[ 'namespace' ] !== '' ) {
-			$namespaces = explode( ',', $opts[ 'namespace' ] );
+			$namespaces = explode( ';', $opts[ 'namespace' ] );
 
 			if ( $opts[ 'associated' ] ) {
 				$associatedNamespaces = array_map(

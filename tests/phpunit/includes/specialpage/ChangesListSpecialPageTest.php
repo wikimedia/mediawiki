@@ -136,7 +136,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 				"rc_namespace IN ('1','2','3')",
 			],
 			[
-				'namespace' => '1,2,3',
+				'namespace' => '1;2;3',
 			],
 			"rc conditions with multiple namespaces"
 		);
@@ -148,7 +148,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 				"rc_namespace IN ('0','1','4','5','6','7')",
 			],
 			[
-				'namespace' => '1,4,7',
+				'namespace' => '1;4;7',
 				'associated' => 1,
 			],
 			"rc conditions with multiple namespaces and associated"
@@ -161,7 +161,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 				"rc_namespace NOT IN ('2','3','8','9')",
 			],
 			[
-				'namespace' => '2,3,9',
+				'namespace' => '2;3;9',
 				'associated' => 1,
 				'invert' => 1
 			],
@@ -175,7 +175,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 				"rc_namespace NOT IN ('1','2','3')",
 			],
 			[
-				'namespace' => '1,2,3',
+				'namespace' => '1;2;3',
 				'invert' => 1,
 			],
 			"rc conditions with multiple namespaces inverted"

@@ -291,7 +291,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			if ( preg_match( '/^days=(\d+)$/', $bit, $m ) ) {
 				$opts['days'] = $m[1];
 			}
-			if ( preg_match( '/^namespace=(\d+)$/', $bit, $m ) ) {
+			if ( preg_match( '/^namespace=(.*)$/', $bit, $m ) ) {
 				$opts['namespace'] = $m[1];
 			}
 			if ( preg_match( '/^tagfilter=(.*)$/', $bit, $m ) ) {
