@@ -120,6 +120,7 @@ class MssqlUpdater extends DatabaseUpdater {
 			[ 'addTable', 'actor', 'patch-actor-table.sql' ],
 			[ 'migrateActors' ],
 			[ 'modifyField', 'revision', 'rev_text_id', 'patch-rev_text_id-default.sql' ],
+			[ 'modifyTable', 'site_stats', 'patch-site_stats-modify.sql' ],
 		];
 	}
 
