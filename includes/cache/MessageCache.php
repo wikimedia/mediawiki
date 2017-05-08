@@ -515,15 +515,18 @@ class MessageCache {
 
 		# Conditions to load the remaining pages with their contents
 		$smallConds = $conds;
-		$smallConds[] = 'page_latest=rev_id';
-		$smallConds[] = 'rev_text_id=old_id';
 		$smallConds[] = 'page_len <= ' . intval( $wgMaxMsgCacheEntrySize );
 
 		$res = $dbr->select(
 			[ 'page', 'revision', 'text' ],
 			[ 'page_title', 'old_id', 'old_text', 'old_flags' ],
 			$smallConds,
-			__METHOD__ . "($code)-small"
+			__METHOD__ . "($code)-small",
+			[],
+			[
+				'revision' => [ 'JOIN', 'page_latest=rev_id' ],
+				'text' => [ 'JOIN', 'rev_text_id=old_id' ],
+			]
 		);
 
 		foreach ( $res as $row ) {
