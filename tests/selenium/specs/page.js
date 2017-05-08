@@ -29,25 +29,30 @@ describe( 'Page', function () {
 		var content2 = Math.random().toString();
 
 		// create
-		EditPage.edit( name, content );
+		return EditPage.apiEdit( name, content ).then( function () {
 
-		// edit
-		EditPage.edit( name, content2 );
+			// edit
+			EditPage.edit( name, content2 );
 
-		// check content
-		assert.equal( EditPage.heading.getText(), name );
-		assert.equal( EditPage.displayedContent.getText(), content2 );
+			// check content
+			EditPage.open( name );
+			assert.equal( EditPage.heading.getText(), name );
+			assert.equal( EditPage.displayedContent.getText(), content2 );
+
+		} );
 
 	} );
 
 	it( 'should have history', function () {
 
 		// create
-		EditPage.edit( name, content );
+		return EditPage.apiEdit( name, content ).then( function () {
 
-		// check
-		HistoryPage.open( name );
-		assert.equal( HistoryPage.comment.getText(), `(Created page with "${content}")` );
+			// check
+			HistoryPage.open( name );
+			assert.equal( HistoryPage.comment.getText(), `(Created page with "${content}")` );
+
+		} );
 
 	} );
 
