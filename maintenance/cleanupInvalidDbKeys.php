@@ -63,9 +63,7 @@ Because any foreign key relationships involving these titles will already be
 broken, the titles are corrected to a valid version or the rows are deleted
 entirely, depending on the table.
 
-Key progress output is printed to STDERR, while a full log of all entries that
-are deleted is sent to STDOUT. You are strongly advised to capture STDOUT into
-a file.
+The script runs with the expectation that STDOUT is redirected to a file.
 TEXT
 		);
 		$this->addOption( 'fix', 'Actually clean up invalid titles. If this parameter is ' .
@@ -87,7 +85,10 @@ TEXT
 			}
 		}
 
-		$this->output( 'Done! Cleaned up invalid DB keys on ' . wfWikiID() . "!\n" );
+		$this->outputStatus( 'Done!' );
+		if ( $this->hasOption( 'fix' ) ) {
+			$this->outputStatus( ' Cleaned up invalid DB keys on ' . wfWikiID() . "!\n" );
+		}
 	}
 
 	/**
@@ -97,10 +98,10 @@ TEXT
 	 * @param string $str Text to write to both places
 	 * @param string|null $channel Ignored
 	 */
-	protected function output( $str, $channel = null ) {
+	protected function outputStatus( $str, $channel = null ) {
 		// Make it easier to find progress lines in the STDOUT log
 		if ( trim( $str ) ) {
-			fwrite( STDOUT, '*** ' );
+			fwrite( STDOUT, '*** ' . trim( $str ) . "\n" );
 		}
 		fwrite( STDERR, $str );
 	}
@@ -132,7 +133,7 @@ TEXT
 			$tableParams['titleField'] :
 			"{$prefix}_title";
 
-		$this->output( "Looking for invalid $titleField entries in $table...\n" );
+		$this->outputStatus( "Looking for invalid $titleField entries in $table...\n" );
 
 		// Do all the select queries on the replicas, as they are slow (they use
 		// unanchored LIKEs). Naturally this could cause problems if rows are
@@ -153,9 +154,9 @@ TEXT
 			// The REGEXP operator is not cross-DBMS, so we have to use lots of LIKEs
 			[ $dbr->makeList( [
 				$titleField . $dbr->buildLike( $percent, ' ', $percent ),
-				$titleField . $dbr->buildLike( $percent, '\r', $percent ),
-				$titleField . $dbr->buildLike( $percent, '\n', $percent ),
-				$titleField . $dbr->buildLike( $percent, '\t', $percent ),
+				$titleField . $dbr->buildLike( $percent, "\r", $percent ),
+				$titleField . $dbr->buildLike( $percent, "\n", $percent ),
+				$titleField . $dbr->buildLike( $percent, "\t", $percent ),
 				$titleField . $dbr->buildLike( '_', $percent ),
 				$titleField . $dbr->buildLike( $percent, '_' ),
 			], LIST_OR ) ],
@@ -163,9 +164,9 @@ TEXT
 			[ 'LIMIT' => $this->mBatchSize ]
 		);
 
-		$this->output( "Number of invalid rows: " . $res->numRows() . "\n" );
+		$this->outputStatus( "Number of invalid rows: " . $res->numRows() . "\n" );
 		if ( !$res->numRows() ) {
-			$this->output( "\n" );
+			$this->outputStatus( "\n" );
 			return;
 		}
 
@@ -191,9 +192,9 @@ TEXT
 			}
 
 			if ( $table !== 'page' && $table !== 'redirect' ) {
-				$this->output( "Run with --fix to clean up these rows\n" );
+				$this->outputStatus( "Run with --fix to clean up these rows\n" );
 			}
-			$this->output( "\n" );
+			$this->outputStatus( "\n" );
 			return;
 		}
 
@@ -205,7 +206,7 @@ TEXT
 				// This shouldn't happen on production wikis, and we already have a script
 				// to handle 'page' rows anyway, so just notify the user and let them decide
 				// what to do next.
-				$this->output( <<<TEXT
+				$this->outputStatus( <<<TEXT
 IMPORTANT: This script does not fix invalid entries in the $table table.
 Consider repairing these rows, and rows in related tables, by hand.
 You may like to run, or borrow logic from, the cleanupTitles.php script.
@@ -220,7 +221,7 @@ TEXT
 				// to the page_title field are already broken, so this will just make sure
 				// users can still access the log entries/deleted revisions from the interface
 				// using a valid page title.
-				$this->output(
+				$this->outputStatus(
 					"Updating these rows, setting $titleField to the closest valid DB key...\n" );
 				$affectedRowCount = 0;
 				foreach ( $res as $row ) {
@@ -235,7 +236,7 @@ TEXT
 					$affectedRowCount += $dbw->affectedRows();
 				}
 				wfWaitForSlaves();
-				$this->output( "Updated $affectedRowCount rows on $table.\n" );
+				$this->outputStatus( "Updated $affectedRowCount rows on $table.\n" );
 
 				break;
 
@@ -245,17 +246,17 @@ TEXT
 				// Since these broken titles can't exist, there's really nothing to watch,
 				// nothing can be categorised in them, and they can't have been changed
 				// recently, so we can just remove these rows.
-				$this->output( "Deleting invalid $table rows...\n" );
+				$this->outputStatus( "Deleting invalid $table rows...\n" );
 				$dbw->delete( $table, [ $idField => $ids ], __METHOD__ );
 				wfWaitForSlaves();
-				$this->output( 'Deleted ' . $dbw->affectedRows() . " rows from $table.\n" );
+				$this->outputStatus( 'Deleted ' . $dbw->affectedRows() . " rows from $table.\n" );
 				break;
 
 			case 'protected_titles':
 				// Since these broken titles can't exist, there's really nothing to protect,
 				// so we can just remove these rows. Made more complicated by this table
 				// not having an ID field
-				$this->output( "Deleting invalid $table rows...\n" );
+				$this->outputStatus( "Deleting invalid $table rows...\n" );
 				$affectedRowCount = 0;
 				foreach ( $res as $row ) {
 					$dbw->delete( $table,
@@ -264,7 +265,7 @@ TEXT
 					$affectedRowCount += $dbw->affectedRows();
 				}
 				wfWaitForSlaves();
-				$this->output( "Deleted $affectedRowCount rows from $table.\n" );
+				$this->outputStatus( "Deleted $affectedRowCount rows from $table.\n" );
 				break;
 
 			case 'pagelinks':
@@ -273,7 +274,7 @@ TEXT
 				// Update links tables for each page where these bogus links are supposedly
 				// located. If the invalid rows don't go away after these jobs go through,
 				// they're probably being added by a buggy hook.
-				$this->output( "Queueing link update jobs for the pages in $idField...\n" );
+				$this->outputStatus( "Queueing link update jobs for the pages in $idField...\n" );
 				foreach ( $res as $row ) {
 					$wp = WikiPage::newFromID( $row->id );
 					if ( $wp ) {
@@ -286,11 +287,11 @@ TEXT
 					}
 				}
 				wfWaitForSlaves();
-				$this->output( "Link update jobs have been added to the job queue.\n" );
+				$this->outputStatus( "Link update jobs have been added to the job queue.\n" );
 				break;
 		}
 
-		$this->output( "\n" );
+		$this->outputStatus( "\n" );
 		return;
 	}
 
