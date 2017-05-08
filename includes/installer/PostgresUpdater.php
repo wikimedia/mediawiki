@@ -482,6 +482,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addPgField', 'protected_titles', 'pt_reason_id', 'INTEGER NOT NULL DEFAULT 0' ],
 			[ 'addTable', 'comment', 'patch-comment-table.sql' ],
 			[ 'addIndex', 'site_stats', 'PRIMARY', 'patch-site_stats-pk.sql' ],
+
+			// 1.31
+			[ 'modifyTable', 'site_stats', 'patch-site_stats-modify.sql' ],
 		];
 	}
 
