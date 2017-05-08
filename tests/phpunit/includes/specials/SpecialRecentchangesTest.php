@@ -27,9 +27,13 @@ class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
 
 			[ 'days=3', [ 'days' => '3' ] ],
 
-			[ 'namespace=5', [ 'namespace' => 5 ] ],
+			[ 'namespace=5', [ 'namespace' => "5" ] ],
+
+			[ 'namespace=5|3', [ 'namespace' => "5|3" ] ],
 
 			[ 'tagfilter=foo', [ 'tagfilter' => 'foo' ] ],
+
+			[ 'tagfilter=foo;bar', [ 'tagfilter' => 'foo;bar' ] ],
 		];
 	}
 
