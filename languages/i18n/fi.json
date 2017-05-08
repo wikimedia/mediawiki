@@ -3561,7 +3561,7 @@
 	"logentry-import-upload": "$1 {{GENDER:$2|on tuonut}} kohteen $3 tiedostotallennuksella",
 	"logentry-import-upload-details": "$1 {{GENDER:$2|on tuonut}} kohteen $3 tiedostotallennuksella ($4 {{PLURAL:$4|versio|versiota}})",
 	"logentry-import-interwiki": "$1 {{GENDER:$2|on tuonut}} kohteen $3 muusta wikistä",
-	"logentry-import-interwiki-details": "$1 {{GENDER:$2|on tuonut}} kohteen $3 paikasta $5 ($4 {{PLURAL:$4|versio|versioita}})",
+	"logentry-import-interwiki-details": "$1 {{GENDER:$2|on tuonut}} kohteen $3 paikasta $5 ($4 {{PLURAL:$4|versio|versiota}})",
 	"logentry-merge-merge": "$1 {{GENDER:$2|yhdisti}} sivun $3 sivuun $4 (versiot $5 saakka)",
 	"logentry-move-move": "$1 {{GENDER:$2|siirsi}} sivun $3 uudelle nimelle $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|siirsi}} sivun $3 uudelle nimelle $4 luomatta ohjausta",

@@ -1358,7 +1358,7 @@
 	"rcfilters-filter-user-experience-level-newcomer-label": "חדשים",
 	"rcfilters-filter-user-experience-level-newcomer-description": "פחות מ־10 עריכות ומ־4 ימים של פעילות.",
 	"rcfilters-filter-user-experience-level-learner-label": "לומדים",
-	"rcfilters-filter-user-experience-level-learner-description": "יותר ימי פעילות ועריכות מ\"חדשים\", אבל פחות מ\"משתמשים מנוסים\".",
+	"rcfilters-filter-user-experience-level-learner-description": "יותר ניסיון מ\"חדשים\", אבל פחות מ\"משתמשים מנוסים\".",
 	"rcfilters-filter-user-experience-level-experienced-label": "משתמשים מנוסים",
 	"rcfilters-filter-user-experience-level-experienced-description": "יותר מ־30 ימים של פעילות ו־500 עריכות.",
 	"rcfilters-filtergroup-automated": "תרומות אוטומטיות",

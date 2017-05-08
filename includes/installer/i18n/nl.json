@@ -171,7 +171,7 @@
 	"config-unknown-collation": "'''Waarschuwing:''' de database gebruikt een collatie die niet wordt herkend.",
 	"config-db-web-account": "Databaseaccount voor webtoegang",
 	"config-db-web-help": "Selecteer de gebruikersnaam en het wachtwoord die de webserver gebruikt om verbinding te maken met de databaseserver na de installatie.",
-	"config-db-web-account-same": "Dezelfde account gebruiken als voor de installatie",
+	"config-db-web-account-same": "Hetzelfde account gebruiken als voor de installatie",
 	"config-db-web-create": "Maak de gebruiker aan als deze nog niet bestaat",
 	"config-db-web-no-create-privs": "De gebruiker die u hebt opgegeven voor de installatie heeft niet voldoende rechten om een gebruiker aan te maken.\nDe gebruiker die u hier opgeeft moet al bestaan.",
 	"config-mysql-engine": "Opslagmethode:",

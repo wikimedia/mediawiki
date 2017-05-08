@@ -340,6 +340,7 @@
 	"apihelp-parse-paramvalue-prop-limitreporthtml": "提供限制报告的HTML版本。当<var>$1disablelimitreport</var>被设置时不会提供数据。",
 	"apihelp-parse-paramvalue-prop-parsetree": "修订内容的XML解析树（需要内容模型<code>$1</code>）",
 	"apihelp-parse-paramvalue-prop-parsewarnings": "在解析内容时提供发生的警告",
+	"apihelp-parse-param-wrapoutputclass": "要用于包裹解析输出的CSS类。",
 	"apihelp-parse-param-pst": "在解析输入前，对输入做一次保存前变换处理。仅当使用文本时有效。",
 	"apihelp-parse-param-onlypst": "在输入内容中执行预保存转换（PST），但不解析它。在PST被应用后返回相同的wiki文本。只当与<var>$1text</var>一起使用时有效。",
 	"apihelp-parse-param-effectivelanglinks": "包含由扩展提供的语言链接（用于与<kbd>$1prop=langlinks</kbd>一起使用）。",
