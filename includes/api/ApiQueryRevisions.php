@@ -259,12 +259,34 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 					$p = $this->encodeParamName( 'endid' );
 					$this->dieWithError( [ 'apierror-revisions-badid', $p ], "badid_$p" );
 				}
+
+				if ( $params['start'] !== null ) {
+					$op = ( $params['dir'] === 'newer' ? '>' : '<' );
+					$ts = $db->addQuotes( $db->timestampOrNull( $params['start'] ) );
+					if ( $params['startid'] !== null ) {
+						$this->addWhere( "rev_timestamp $op $ts OR "
+							. "rev_timestamp = $ts AND rev_id $op= " . intval( $params['startid'] ) );
+					} else {
+						$this->addWhere( "rev_timestamp $op= $ts" );
+					}
+				}
+				if ( $params['end'] !== null ) {
+					$op = ( $params['dir'] === 'newer' ? '<' : '>' ); // Yes, opposite of the above
+					$ts = $db->addQuotes( $db->timestampOrNull( $params['end'] ) );
+					if ( $params['endid'] !== null ) {
+						$this->addWhere( "rev_timestamp $op $ts OR "
+							. "rev_timestamp = $ts AND rev_id $op= " . intval( $params['endid'] ) );
+					} else {
+						$this->addWhere( "rev_timestamp $op= $ts" );
+					}
+				}
+			} else {
+				$this->addTimestampWhereRange( 'rev_timestamp', $params['dir'],
+					$params['start'], $params['end'] );
 			}
 
-			$this->addTimestampWhereRange( 'rev_timestamp', $params['dir'],
-				$params['start'], $params['end'] );
-			// Dummy to add rev_id to ORDER BY
-			$this->addWhereRange( 'rev_id', $params['dir'], null, null );
+			$sort = ( $params['dir'] === 'newer' ? '' : 'DESC' );
+			$this->addOption( 'ORDER BY', [ "rev_timestamp $sort", "rev_id $sort" ] );
 
 			// There is only one ID, use it
 			$ids = array_keys( $pageSet->getGoodTitles() );
