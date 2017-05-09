@@ -109,6 +109,97 @@
 		);
 	} );
 
+	QUnit.test( 'Default filters', function ( assert ) {
+		var definition = [ {
+				name: 'group1',
+				title: 'Group 1',
+				type: 'send_unselected_if_any',
+				filters: [
+					{
+						name: 'hidefilter1',
+						label: 'Show filter 1',
+						description: 'Description of Filter 1 in Group 1',
+						default: true
+					},
+					{
+						name: 'hidefilter2',
+						label: 'Show filter 2',
+						description: 'Description of Filter 2 in Group 1'
+					},
+					{
+						name: 'hidefilter3',
+						label: 'Show filter 3',
+						description: 'Description of Filter 3 in Group 1',
+						default: true
+					}
+				]
+			}, {
+				name: 'group2',
+				title: 'Group 2',
+				type: 'send_unselected_if_any',
+				filters: [
+					{
+						name: 'hidefilter4',
+						label: 'Show filter 4',
+						description: 'Description of Filter 1 in Group 2'
+					},
+					{
+						name: 'hidefilter5',
+						label: 'Show filter 5',
+						description: 'Description of Filter 2 in Group 2',
+						default: true
+					},
+					{
+						name: 'hidefilter6',
+						label: 'Show filter 6',
+						description: 'Description of Filter 3 in Group 2'
+					}
+				]
+			}, {
+
+				name: 'group3',
+				title: 'Group 3',
+				type: 'string_options',
+				separator: ',',
+				default: 'filter8',
+				filters: [
+					{
+						name: 'filter7',
+						label: 'Group 3: Filter 1',
+						description: 'Description of Filter 1 in Group 3'
+					},
+					{
+						name: 'filter8',
+						label: 'Group 3: Filter 2',
+						description: 'Description of Filter 2 in Group 3'
+					},
+					{
+						name: 'filter9',
+						label: 'Group 3: Filter 3',
+						description: 'Description of Filter 3 in Group 3'
+					}
+				]
+			} ],
+			model = new mw.rcfilters.dm.FiltersViewModel();
+
+		model.initializeFilters( definition );
+
+		// Empty query = only default values
+		assert.deepEqual(
+			model.getDefaultParams(),
+			{
+				hidefilter1: 1,
+				hidefilter2: 0,
+				hidefilter3: 1,
+				hidefilter4: 0,
+				hidefilter5: 1,
+				hidefilter6: 0,
+				group3: 'filter8',
+			},
+			'Default parameters are stored properly per filter and group'
+		);
+	} );
+
 	QUnit.test( 'Finding matching filters', function ( assert ) {
 		var matches,
 			definition = [ {
@@ -608,17 +699,15 @@
 					}
 				]
 			} ],
-			defaultFilterRepresentation = {
-				// Group 1 and 2, "send_unselected_if_any", the values of the filters are "flipped" from the values of the parameters
+			baseFilterRepresentation = {
 				group1__hidefilter1: false,
-				group1__hidefilter2: true,
+				group1__hidefilter2: false,
 				group1__hidefilter3: false,
-				group2__hidefilter4: true,
+				group2__hidefilter4: false,
 				group2__hidefilter5: false,
-				group2__hidefilter6: true,
-				// Group 3, "string_options", default values correspond to parameters and filters
+				group2__hidefilter6: false,
 				group3__filter7: false,
-				group3__filter8: true,
+				group3__filter8: false,
 				group3__filter9: false
 			},
 			model = new mw.rcfilters.dm.FiltersViewModel();
@@ -628,18 +717,18 @@
 		// Empty query = only default values
 		assert.deepEqual(
 			model.getFiltersFromParameters( {} ),
-			defaultFilterRepresentation,
-			'Empty parameter query results in filters in initial default state'
+			baseFilterRepresentation,
+			'Empty parameter query results in an object representing all filters set to false'
 		);
 
 		assert.deepEqual(
 			model.getFiltersFromParameters( {
 				hidefilter2: '1'
 			} ),
-			$.extend( {}, defaultFilterRepresentation, {
-				group1__hidefilter1: false, // The text is "show filter 1"
+			$.extend( {}, baseFilterRepresentation, {
+				group1__hidefilter1: true, // The text is "show filter 1"
 				group1__hidefilter2: false, // The text is "show filter 2"
-				group1__hidefilter3: false // The text is "show filter 3"
+				group1__hidefilter3: true // The text is "show filter 3"
 			} ),
 			'One truthy parameter in a group whose other parameters are true by default makes the rest of the filters in the group false (unchecked)'
 		);
@@ -650,7 +739,7 @@
 				hidefilter2: '1',
 				hidefilter3: '1'
 			} ),
-			$.extend( {}, defaultFilterRepresentation, {
+			$.extend( {}, baseFilterRepresentation, {
 				group1__hidefilter1: false, // The text is "show filter 1"
 				group1__hidefilter2: false, // The text is "show filter 2"
 				group1__hidefilter3: false // The text is "show filter 3"
@@ -680,11 +769,11 @@
 		);
 
 		// The result here is ignoring the first toggleFiltersSelected call
-		// We should receive default values + hidefilter6 as false
 		assert.deepEqual(
 			model.getSelectedState(),
-			$.extend( {}, defaultFilterRepresentation, {
-				group2__hidefilter5: false,
+			$.extend( {}, baseFilterRepresentation, {
+				group2__hidefilter4: true,
+				group2__hidefilter5: true,
 				group2__hidefilter6: false
 			} ),
 			'getFiltersFromParameters does not care about previous or existing state.'
@@ -696,31 +785,12 @@
 
 		model.toggleFiltersSelected(
 			model.getFiltersFromParameters( {
-				hidefilter1: '0'
-			} )
-		);
-		model.toggleFiltersSelected(
-			model.getFiltersFromParameters( {
-				hidefilter1: '1'
-			} )
-		);
-
-		// Simulates minor edits being hidden in preferences, then unhidden via URL
-		// override.
-		assert.deepEqual(
-			model.getSelectedState(),
-			defaultFilterRepresentation,
-			'After checking and then unchecking a \'send_unselected_if_any\' filter (without touching other filters in that group), results are default'
-		);
-
-		model.toggleFiltersSelected(
-			model.getFiltersFromParameters( {
 				group3: 'filter7'
 			} )
 		);
 		assert.deepEqual(
 			model.getSelectedState(),
-			$.extend( {}, defaultFilterRepresentation, {
+			$.extend( {}, baseFilterRepresentation, {
 				group3__filter7: true,
 				group3__filter8: false,
 				group3__filter9: false
@@ -735,7 +805,7 @@
 		);
 		assert.deepEqual(
 			model.getSelectedState(),
-			$.extend( {}, defaultFilterRepresentation, {
+			$.extend( {}, baseFilterRepresentation, {
 				group3__filter7: true,
 				group3__filter8: true,
 				group3__filter9: false
@@ -750,7 +820,7 @@
 		);
 		assert.deepEqual(
 			model.getSelectedState(),
-			$.extend( {}, defaultFilterRepresentation, {
+			$.extend( {}, baseFilterRepresentation, {
 				group3__filter7: true,
 				group3__filter8: true,
 				group3__filter9: true
@@ -765,7 +835,7 @@
 		);
 		assert.deepEqual(
 			model.getSelectedState(),
-			$.extend( {}, defaultFilterRepresentation, {
+			$.extend( {}, baseFilterRepresentation, {
 				group3__filter7: true,
 				group3__filter8: true,
 				group3__filter9: true
@@ -780,7 +850,7 @@
 		);
 		assert.deepEqual(
 			model.getSelectedState(),
-			$.extend( {}, defaultFilterRepresentation, {
+			$.extend( {}, baseFilterRepresentation, {
 				group3__filter7: true,
 				group3__filter8: false,
 				group3__filter9: true
