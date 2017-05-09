@@ -7323,8 +7323,10 @@ $wgServiceWiringFiles = [
 ];
 
 /**
- * Maps jobs to their handling classes; extensions
- * can add to this to provide custom jobs
+ * Maps jobs to their handlers; extensions
+ * can add to this to provide custom jobs.
+ * A job handler should either be a class name to be instantiated,
+ * or (since 1.30) a callback to use for creating the job object.
  */
 $wgJobClasses = [
 	'refreshLinks' => 'RefreshLinksJob',

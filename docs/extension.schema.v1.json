@@ -576,7 +576,7 @@
 		},
 		"JobClasses": {
 			"type": "object",
-			"description": "Job types this extension implements (mapping of job type to class name)"
+			"description": "Job types this extension implements (mapping of job type to class name or factory function)"
 		},
 		"LogTypes": {
 			"type": "array",
