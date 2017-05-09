@@ -1238,7 +1238,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$aboveNewcomer = $dbr->makeList(
 			[
 				'user_editcount >= ' . intval( $wgLearnerEdits ),
-				'user_registration <= ' . $dbr->timestamp( $learnerCutoff ),
+				'user_registration <= ' . $dbr->addQuotes( $dbr->timestamp( $learnerCutoff ) ),
 			],
 			IDatabase::LIST_AND
 		);
@@ -1246,7 +1246,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$aboveLearner = $dbr->makeList(
 			[
 				'user_editcount >= ' . intval( $wgExperiencedUserEdits ),
-				'user_registration <= ' . $dbr->timestamp( $experiencedUserCutoff ),
+				'user_registration <= ' .
+					$dbr->addQuotes( $dbr->timestamp( $experiencedUserCutoff ) ),
 			],
 			IDatabase::LIST_AND
 		);
