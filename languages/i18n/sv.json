@@ -1395,7 +1395,7 @@
 	"rcfilters-filter-user-experience-level-newcomer-label": "Nykomlingar",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Färre än 10 redigeringar och 4 dagars aktivitet.",
 	"rcfilters-filter-user-experience-level-learner-label": "Nybörjare",
-	"rcfilters-filter-user-experience-level-learner-description": "Fler dagars aktivitet och redigeringar än \"Nybörjare\" men färre än \"Erfarna användare\".",
+	"rcfilters-filter-user-experience-level-learner-description": "Mer erfarenhet än \"Nybörjare\" men mindre än \"Erfarna användare\".",
 	"rcfilters-filter-user-experience-level-experienced-label": "Erfarna användare",
 	"rcfilters-filter-user-experience-level-experienced-description": "Fler än 30 dagars aktivitet och 500 redigeringar.",
 	"rcfilters-filtergroup-automated": "Automatiserade bidrag",

@@ -1514,7 +1514,7 @@
 	"file-deleted-duplicate": "Egy ehhez hasonló fájlt ([[:$1]]) korábban már töröltek. Ellenőrizd a fájl törlési naplóját, mielőtt újra feltöltenéd.",
 	"file-deleted-duplicate-notitle": "Egy ugyanilyen fájlt korábban már töröltek, és címét eltávolították. Kérj meg valakit, aki meg tudja nézni a törölt fájlokat, hogy tekintse át a helyzetet, mielőtt újra feltöltenéd a fájlt.",
 	"uploadwarning": "Feltöltési figyelmeztetés",
-	"uploadwarning-text": "Kérlek módosítsd a fájl leírását alább, majd próbáld újra.",
+	"uploadwarning-text": "Kérlek, módosítsd a fájl leírását alább, majd próbáld újra.",
 	"savefile": "Fájl mentése",
 	"uploaddisabled": "Feltöltések kikapcsolva",
 	"copyuploaddisabled": "A feltöltés URL alapján le van tiltva.",

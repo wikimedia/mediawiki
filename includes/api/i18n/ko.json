@@ -721,6 +721,7 @@
 	"apierror-ratelimited": "속도 제한을 초과했습니다. 잠시 기다렸다가 다시 시도하십시오.",
 	"apierror-readapidenied": "이 모듈을 사용하려면 읽기 권한이 필요합니다.",
 	"apierror-readonly": "위키는 현재 읽기 전용 모드입니다.",
+	"apierror-revisions-badid": "<var>$1</var> 변수에 대한 판을 발견하지 못했습니다.",
 	"apierror-revwrongpage": "r$1은(는) $2의 판이 아닙니다.",
 	"apierror-specialpage-cantexecute": "특수 문서의 결과를 볼 권한이 없습니다.",
 	"apierror-stashwrongowner": "잘못된 소유자: $1",

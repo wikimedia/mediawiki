@@ -1477,7 +1477,7 @@
 	"rcfilters-filter-user-experience-level-newcomer-label": "Recién llegados",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Menos de 10 ediciones y 4 días de actividad.",
 	"rcfilters-filter-user-experience-level-learner-label": "Aprendices",
-	"rcfilters-filter-user-experience-level-learner-description": "Más días de actividad y ediciones que los «recién llegados», pero menos que los «usuarios experimentados».",
+	"rcfilters-filter-user-experience-level-learner-description": "Más experiencia que los «recién llegados», pero menos que los «usuarios experimentados».",
 	"rcfilters-filter-user-experience-level-experienced-label": "Usuarios experimentados",
 	"rcfilters-filter-user-experience-level-experienced-description": "Más de 30 días de actividad y 500 ediciones.",
 	"rcfilters-filtergroup-automated": "Contribuciones automatizadas",

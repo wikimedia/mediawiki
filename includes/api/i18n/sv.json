@@ -459,6 +459,7 @@
 	"apierror-invalidsection": "Parametern <var>section</var> måste vara ett giltigt avsnitts-ID eller <kbd>new</kbd>.",
 	"apierror-nosuchuserid": "Det finns ingen användare med ID $1.",
 	"apierror-protect-invalidaction": "Ogiltig skyddstyp \"$1\".",
+	"apierror-revisions-badid": "Ingen revision hittades för parametern <var>$1</var>.",
 	"apierror-systemblocked": "Du har blockerats automatiskt av MediaWiki.",
 	"apierror-unknownformat": "Okänt format \"$1\".",
 	"api-feed-error-title": "Fel ($1)"

@@ -794,7 +794,7 @@
 	"page_first": "prva",
 	"page_last": "posljednja",
 	"histlegend": "Odabir razlika: označite radio dugme verzija koje uspoređujete i pritistnite enter ili dugme na dnu. <br />\nObjašnjenje: <strong>({{int:cur}})</strong> = razlika sa trenutnom verzijom, <strong>({{int:last}})</strong> = razlika sa prethodnom verzijom, <strong>{{int:minoreditletter}}</strong> = mala izmjena.",
-	"history-fieldset-title": "Pretraži izmjene",
+	"history-fieldset-title": "Pretraga izmjena",
 	"history-show-deleted": "Samo obrisane",
 	"histfirst": "najstarije",
 	"histlast": "najnovije",

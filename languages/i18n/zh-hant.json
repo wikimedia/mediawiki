@@ -1371,6 +1371,7 @@
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "顯示",
 	"rcfilters-activefilters": "使用中的過濾條件",
+	"rcfilters-savedqueries-remove": "移除",
 	"rcfilters-restore-default-filters": "還原預設過濾條件",
 	"rcfilters-clear-all-filters": "清除所有過濾條件",
 	"rcfilters-search-placeholder": "過濾條件近期變更 (瀏覽或開始輸入)",
