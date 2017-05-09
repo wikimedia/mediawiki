@@ -38,6 +38,7 @@
 		this.whatsThis = config.whatsThis || {};
 
 		this.conflicts = config.conflicts || {};
+		this.defaultParams = {};
 
 		this.aggregate( { update: 'filterItemUpdate' } );
 		this.connect( this, { filterItemUpdate: 'onFilterItemUpdate' } );
@@ -57,6 +58,96 @@
 	 */
 
 	/* Methods */
+
+	/**
+	 * Initialize the group and create its filter items
+	 *
+	 * @param {Object} filterDefinition Filter definition for this group
+	 * @param {string|Object} [groupDefault] Definition of the group default
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefault ) {
+		var supersetMap = {},
+			model = this,
+			items = [];
+
+		filterDefinition.forEach( function ( filter ) {
+			// Instantiate an item
+			var subsetNames = [],
+				filterItem = new mw.rcfilters.dm.FilterItem( filter.name, model, {
+					group: model.getName(),
+					label: mw.msg( filter.label ),
+					description: mw.msg( filter.description ),
+					cssClass: filter.cssClass
+				} );
+
+			filter.subset = filter.subset || [];
+			filter.subset = filter.subset.map( function ( el ) {
+				return el.filter;
+			} );
+
+			if ( filter.subset ) {
+				subsetNames = [];
+				filter.subset.forEach( function ( subsetFilterName ) { // eslint-disable-line no-loop-func
+					// Subsets (unlike conflicts) are always inside the same group
+					// We can re-map the names of the filters we are getting from
+					// the subsets with the group prefix
+					var subsetName = this.getNamePrefix() + subsetFilterName;
+					// For convenience, we should store each filter's "supersets" -- these are
+					// the filters that have that item in their subset list. This will just
+					// make it easier to go through whether the item has any other items
+					// that affect it (and are selected) at any given time
+					supersetMap[ subsetName ] = supersetMap[ subsetName ] || [];
+					mw.rcfilters.utils.addArrayElementsUnique(
+						supersetMap[ subsetName ],
+						filterItem.getName()
+					);
+
+					// Translate subset param name to add the group name, so we
+					// get consistent naming. We know that subsets are only within
+					// the same group
+					subsetNames.push( subsetName );
+				} );
+
+				// Set translated subset
+				filterItem.setSubset( subsetNames );
+			}
+
+			items.push( filterItem );
+
+			// Store default parameter state; in this case, default is defined per filter
+			if ( model.getType() === 'send_unselected_if_any' ) {
+				// Store the default parameter state
+				// For this group type, parameter values are direct
+				model.defaultParams[ filter.name ] = Number( !!filter.default );
+			}
+		} );
+
+		// Add items
+		this.addItems( items );
+
+		// Now that we have all items, we can apply the superset map
+		this.getItems().forEach( function ( filterItem ) {
+			filterItem.setSuperset( supersetMap[ filterItem.getName() ] );
+		} );
+
+		// Store default parameter state; in this case, default is defined per the
+		// entire group, given by groupDefault method parameter
+		if ( this.getType() === 'string_options' ) {
+			// Store the default parameter group state
+			// For this group, the parameter is group name and value is the names
+			// of selected items
+			this.defaultParams = mw.rcfilters.utils.normalizeParamOptions(
+				// Current values
+				groupDefault ?
+					groupDefault.split( this.getSeparator() ) :
+					[],
+				// Legal values
+				this.getItems().map( function ( item ) {
+					return item.getParamName();
+				} )
+			).join( this.getSeparator() );
+		}
+	};
 
 	/**
 	 * Respond to filterItem update event
@@ -89,6 +180,15 @@
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.getName = function () {
 		return this.name;
+	};
+
+	/**
+	 * Get the default param state of this group
+	 *
+	 * @return {Object} Default param state
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.getDefaultParams = function () {
+		return this.defaultParams;
 	};
 
 	/**
@@ -141,6 +241,21 @@
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.setConflicts = function ( conflicts ) {
 		this.conflicts = conflicts;
+	};
+
+	/**
+	 * Set conflicts for each filter item in the group based on the
+	 * given conflict map
+	 *
+	 * @param {Object} conflicts Object representing the conflict map,
+	 *  keyed by the item name, where its value is an object for all its conflicts
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.setConflicts = function ( conflicts ) {
+		this.getItems().forEach( function ( filterItem ) {
+			if ( conflicts[ filterItem.getName() ] ) {
+				filterItem.setConflicts( conflicts[ filterItem.getName() ] );
+			}
+		} );
 	};
 
 	/**
@@ -311,6 +426,76 @@
 
 			result[ this.getName() ] = ( values.length === Object.keys( filterRepresentation ).length ) ?
 				'all' : values.join( this.getSeparator() );
+		}
+
+		return result;
+	};
+
+	/**
+	 * Get the filter representation this group would provide
+	 * based on given parameter states.
+	 *
+	 * @param {Object} paramRepresentation An object defining a parameter
+	 *  state to translate the filter state from. If not given, the current state
+	 *  of the filters is returned.
+	 * @return {Object} Filter representation
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation ) {
+		var areAnySelected, paramValues,
+			model = this,
+			paramToFilterMap = {},
+			result = {};
+
+		if ( this.getType() === 'send_unselected_if_any' ) {
+			// Expand param representation to include all filters in the group
+			this.getItems().forEach( function ( filterItem ) {
+				paramRepresentation[ filterItem.getParamName() ] = !!paramRepresentation[ filterItem.getParamName() ];
+				paramToFilterMap[ filterItem.getParamName() ] = filterItem;
+
+				if ( paramRepresentation[ filterItem.getParamName() ] ) {
+					areAnySelected = true;
+				}
+			} );
+
+			$.each( paramRepresentation, function ( paramName, paramValue ) {
+				var filterItem = paramToFilterMap[ paramName ];
+
+				result[ filterItem.getName() ] = areAnySelected ?
+					// Flip the definition between the parameter
+					// state and the filter state
+					// This is what the 'toggleSelected' value of the filter is
+					!Number( paramValue ) :
+					// Otherwise, there are no selected items in the
+					// group, which means the state is false
+					false;
+			} );
+		} else if ( this.getType() === 'string_options' ) {
+			// Normalize the given parameter values
+			paramValues = mw.rcfilters.utils.normalizeParamOptions(
+				// Given
+				paramRepresentation[ this.getName() ].split(
+					this.getSeparator()
+				),
+				// Allowed values
+				this.getItems().map( function ( filterItem ) {
+					return filterItem.getParamName();
+				} )
+			);
+
+			// Translate the parameter values into a filter selection state
+			this.getItems().forEach( function ( filterItem ) {
+				result[ filterItem.getName() ] = (
+						// If it is the word 'all'
+						paramValues.length === 1 && paramValues[ 0 ] === 'all' ||
+						// All values are written
+						paramValues.length === model.getItemCount()
+					) ?
+					// All true (either because all values are written or the term 'all' is written)
+					// is the same as all filters set to true
+					true :
+					// Otherwise, the filter is selected only if it appears in the parameter values
+					paramValues.indexOf( filterItem.getParamName() ) > -1;
+			} );
 		}
 
 		return result;

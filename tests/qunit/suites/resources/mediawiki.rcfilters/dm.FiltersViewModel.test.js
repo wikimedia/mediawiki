@@ -64,7 +64,7 @@
 				]
 			} ],
 			model = new mw.rcfilters.dm.FiltersViewModel();
-
+debugger;
 		model.initializeFilters( definition );
 
 		assert.ok(
