@@ -1691,74 +1691,127 @@ class Article implements Page {
 			$suppress = '';
 		}
 		$checkWatch = $user->getBoolOption( 'watchdeletion' ) || $user->isWatched( $title );
-		$form = Html::openElement( 'form', [ 'method' => 'post',
-			'action' => $title->getLocalURL( 'action=delete' ), 'id' => 'deleteconfirm' ] ) .
-			Html::openElement( 'fieldset', [ 'id' => 'mw-delete-table' ] ) .
-			Html::element( 'legend', null, wfMessage( 'delete-legend' )->text() ) .
-			Html::openElement( 'div', [ 'id' => 'mw-deleteconfirm-table' ] ) .
-			Html::openElement( 'div', [ 'id' => 'wpDeleteReasonListRow' ] ) .
-			Html::label( wfMessage( 'deletecomment' )->text(), 'wpDeleteReasonList' ) .
-			'&nbsp;' .
-			Xml::listDropDown(
-				'wpDeleteReasonList',
-				wfMessage( 'deletereason-dropdown' )->inContentLanguage()->text(),
-				wfMessage( 'deletereasonotherlist' )->inContentLanguage()->text(),
-				'',
-				'wpReasonDropDown',
-				1
-			) .
-			Html::closeElement( 'div' ) .
-			Html::openElement( 'div', [ 'id' => 'wpDeleteReasonRow' ] ) .
-			Html::label( wfMessage( 'deleteotherreason' )->text(), 'wpReason' ) .
-			'&nbsp;' .
-			Html::input( 'wpReason', $reason, 'text', [
-				'size' => '60',
-				'maxlength' => '255',
-				'tabindex' => '2',
-				'id' => 'wpReason',
-				'class' => 'mw-ui-input-inline',
-				'autofocus'
-			] ) .
-			Html::closeElement( 'div' );
 
-		# Disallow watching if user is not logged in
-		if ( $user->isLoggedIn() ) {
-			$form .=
-					Xml::checkLabel( wfMessage( 'watchthis' )->text(),
-						'wpWatch', 'wpWatch', $checkWatch, [ 'tabindex' => '3' ] );
+		$outputPage->enableOOUI();
+
+		$options = [];
+		$options[] = [
+			'data' => 'other',
+			'label' => $ctx->msg( 'deletereasonotherlist' )->inContentLanguage()->text(),
+		];
+		$list = $ctx->msg( 'deletereason-dropdown' )->inContentLanguage()->text();
+		foreach ( explode( "\n", $list ) as $option ) {
+			$value = trim( $option );
+			if ( $value == '' ) {
+				continue;
+			} elseif ( substr( $value, 0, 1 ) == '*' && substr( $value, 1, 1 ) != '*' ) {
+				$options[] = [ 'optgroup' => trim( substr( $value, 1 ) ) ];
+			} else if ( substr( $value, 0, 2 ) == '**' ) {
+				$options[] = [ 'data' => trim( substr( $value, 2 ) ) ];
+			} else {
+				$options[] = [ 'data' => trim( $value ) ];
+			}
 		}
 
-		$form .=
-				Html::openElement( 'div' ) .
-				$suppress .
-					Xml::submitButton( wfMessage( 'deletepage' )->text(),
-						[
-							'name' => 'wpConfirmB',
-							'id' => 'wpConfirmB',
-							'tabindex' => '5',
-							'class' => $useMediaWikiUIEverywhere ? 'mw-ui-button mw-ui-destructive' : '',
-						]
-					) .
-				Html::closeElement( 'div' ) .
-			Html::closeElement( 'div' ) .
-			Xml::closeElement( 'fieldset' ) .
-			Html::hidden(
-				'wpEditToken',
-				$user->getEditToken( [ 'delete', $title->getPrefixedText() ] )
-			) .
-			Xml::closeElement( 'form' );
+		$fields[] = new OOUI\FieldLayout(
+			new OOUI\DropdownInputWidget( [
+				'name' => 'wpDeleteReasonList',
+				'id' => 'wpDeleteReasonList',
+				'tabIndex' => 1,
+				'infusable' => true,
+				'value' => '',
+				'options' => $options
+			] ),
+			[
+				'label' => $ctx->msg( 'deletecomment' )->text(),
+				'align' => 'top',
+			]
+		);
 
-			if ( $user->isAllowed( 'editinterface' ) ) {
-				$link = Linker::linkKnown(
-					$ctx->msg( 'deletereason-dropdown' )->inContentLanguage()->getTitle(),
-					wfMessage( 'delete-edit-reasonlist' )->escaped(),
-					[],
-					[ 'action' => 'edit' ]
-				);
-				$form .= '<p class="mw-delete-editreasons">' . $link . '</p>';
-			}
+		$fields[] = new OOUI\FieldLayout(
+			new OOUI\TextInputWidget( [
+				'name' => 'wpReason',
+				'id' => 'wpReason',
+				'tabIndex' => 2,
+				'maxLength' => 255,
+				'infusable' => true,
+				'value' => $reason,
+				'autofocus' => true,
+			] ),
+			[
+				'label' => $ctx->msg( 'deleteotherreason' )->text(),
+				'align' => 'top',
+			]
+		);
 
-		$outputPage->addHTML( $form );
+		if ( $user->isLoggedIn() ) {
+			$fields[] = new OOUI\FieldLayout(
+				new OOUI\CheckboxInputWidget( [
+					'name' => 'wpWatch',
+					'id' => 'wpWatch',
+					'tabIndex' => 3,
+					'selected' => $checkWatch,
+				] ),
+				[
+					'label' => $ctx->msg( 'watchthis' )->text(),
+					'align' => 'inline',
+					'infusable' => true,
+				]
+			);
+		}
+
+		$fields[] = new OOUI\FieldLayout(
+			new OOUI\ButtonInputWidget( [
+				'name' => 'wpConfirmB',
+				'id' => 'wpConfirmB',
+				'tabIndex' => 5,
+				'value' => $ctx->msg( 'deletepage' )->text(),
+				'label' => $ctx->msg( 'deletepage' )->text(),
+				'flags' => [ 'primary', 'destructive' ],
+				'type' => 'submit',
+			] ),
+			[
+				'align' => 'top',
+			]
+		);
+
+		$fieldset = new OOUI\FieldsetLayout( [
+			'label' => $ctx->msg( 'delete-legend' )->text(),
+			'id' => 'mw-delete-table',
+			'items' => $fields,
+		] );
+
+		$form = new OOUI\FormLayout( [
+			'method' => 'post',
+			'action' => $title->getLocalURL( 'action=delete' ),
+			'id' => 'deleteconfirm',
+		] );
+		$form->appendContent(
+			$fieldset,
+			new OOUI\HtmlSnippet(
+				Html::hidden( 'wpEditToken', $user->getEditToken( [ 'delete', $title->getPrefixedText() ] ) )
+			)
+		);
+
+		$outputPage->addHTML(
+			new OOUI\PanelLayout( [
+				'classes' => [ 'deletepage-wrapper' ],
+				'expanded' => false,
+				'padded' => true,
+				'framed' => true,
+				'content' => $form,
+			] )
+		);
+
+		if ( $user->isAllowed( 'editinterface' ) ) {
+			$link = Linker::linkKnown(
+				$ctx->msg( 'deletereason-dropdown' )->inContentLanguage()->getTitle(),
+				wfMessage( 'delete-edit-reasonlist' )->escaped(),
+				[],
+				[ 'action' => 'edit' ]
+			);
+			$outputPage->addHTML( '<p class="mw-delete-editreasons">' . $link . '</p>' );
+		}
 
 		$deleteLogPage = new LogPage( 'delete' );
 		$outputPage->addHTML( Xml::element( 'h2', null, $deleteLogPage->getName()->text() ) );
