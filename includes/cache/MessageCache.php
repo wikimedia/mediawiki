@@ -464,7 +464,11 @@ class MessageCache {
 	protected function loadFromDB( $code, $mode = null ) {
 		global $wgMaxMsgCacheEntrySize, $wgLanguageCode, $wgAdaptiveMessageCache;
 
-		$dbr = wfGetDB( ( $mode == self::FOR_UPDATE ) ? DB_MASTER : DB_REPLICA );
+		// (T164666) The query here performs really poorly on WMF's
+		// contributions replicas. We don't have a way to say "any group except
+		// contributions", so for the moment let's specify 'api'.
+		// @todo: Get rid of this hack.
+		$dbr = wfGetDB( ( $mode == self::FOR_UPDATE ) ? DB_MASTER : DB_REPLICA, 'api' );
 
 		$cache = [];
 
