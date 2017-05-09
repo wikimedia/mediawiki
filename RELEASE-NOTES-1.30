@@ -12,6 +12,8 @@ production.
   case.
 * $wgShellLocale now affects LC_ALL rather than only LC_CTYPE. See
   documentation of $wgShellLocale for details.
+* $wgShellLocale is now applied for all requests. wfInitShellLocale() is
+  deprecated and a no-op, as it is no longer needed.
 
 === New features in 1.30 ===
 * (T37247) Output from Parser::parse() will now be wrapped in a div with

@@ -2193,8 +2193,6 @@ function wfIniGetBool( $setting ) {
  * @return string
  */
 function wfEscapeShellArg( /*...*/ ) {
-	wfInitShellLocale();
-
 	$args = func_get_args();
 	if ( count( $args ) === 1 && is_array( reset( $args ) ) ) {
 		// If only one argument has been passed, and that argument is an array,
@@ -2308,8 +2306,6 @@ function wfShellExec( $cmd, &$retval = null, $environ = [],
 
 	$includeStderr = isset( $options['duplicateStderr'] ) && $options['duplicateStderr'];
 	$profileMethod = isset( $options['profileMethod'] ) ? $options['profileMethod'] : wfGetCaller();
-
-	wfInitShellLocale();
 
 	$envcmd = '';
 	foreach ( $environ as $k => $v ) {
@@ -2534,25 +2530,14 @@ function wfShellExecWithStderr( $cmd, &$retval = null, $environ = [], $limits = 
 }
 
 /**
- * Set the locale for locale-sensitive operations
+ * Formerly set the locale for locale-sensitive operations
  *
- * Sets LC_ALL to a known value to work around issues like the following:
- * - https://bugs.php.net/bug.php?id=45132 escapeshellarg() destroys non-ASCII
- *   characters if LANG is not a UTF-8 locale
- * - T107128 Scribunto string comparison works case insensitive while the
- *   standard Lua case sensitive
+ * This is now done in Setup.php.
  *
+ * @deprecated since 1.30, no longer needed
  * @see $wgShellLocale
  */
 function wfInitShellLocale() {
-	static $done = false;
-	if ( $done ) {
-		return;
-	}
-	$done = true;
-	global $wgShellLocale;
-	putenv( "LC_ALL=$wgShellLocale" );
-	setlocale( LC_ALL, $wgShellLocale );
 }
 
 /**

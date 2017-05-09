@@ -49,6 +49,10 @@ if ( !isset( $wgVersion ) ) {
 
 mb_internal_encoding( 'UTF-8' );
 
+// Set the configured locale on all requests for consisteny
+putenv( "LC_ALL=$wgShellLocale" );
+setlocale( LC_ALL, $wgShellLocale );
+
 // Set various default paths sensibly...
 $ps_default = Profiler::instance()->scopedProfileIn( $fname . '-defaults' );
 
