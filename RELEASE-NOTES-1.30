@@ -21,6 +21,8 @@ production.
   to plain class names, using the 'factory' key in the module description
   array. This allows dependency injection to be used for ResourceLoader modules.
 * $wgExceptionHooks has been removed.
+* $wgShellLocale is now applied for all requests. wfInitShellLocale() is
+  deprecated and a no-op, as it is no longer needed.
 
 === New features in 1.30 ===
 * (T37247) Output from Parser::parse() will now be wrapped in a div with

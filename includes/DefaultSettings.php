@@ -8183,7 +8183,6 @@ $wgPhpCli = '/usr/bin/php';
  * @note If multiple wikis are being served from the same process (e.g. the
  *  same fastCGI or Apache server), this setting must be the same on all those
  *  wikis.
- * @see wfInitShellLocale()
  */
 $wgShellLocale = 'C.UTF-8';
 
