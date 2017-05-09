@@ -32,7 +32,7 @@
 			icon: 'unClip',
 			$overlay: this.$overlay,
 			popup: {
-				width: 250,
+				width: 300,
 				anchor: false,
 				align: 'forwards',
 				$autoCloseIgnore: this.$overlay,
