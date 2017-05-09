@@ -235,31 +235,59 @@ class SpecialUndelete extends SpecialPage {
 	function showSearchForm() {
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'undelete-search-title' ) );
-		$fuzzySearch = $this->getRequest()->getVal( "fuzzy", false );
-		$out->addHTML(
-			Xml::openElement( 'form', [ 'method' => 'get', 'action' => wfScript() ] ) .
-				Xml::fieldset( $this->msg( 'undelete-search-box' )->text() ) .
+		$fuzzySearch = $this->getRequest()->getVal( 'fuzzy', false );
+
+		$out->enableOOUI();
+
+		$fields[] = new OOUI\ActionFieldLayout(
+			new OOUI\TextInputWidget( [
+				'name' => 'prefix',
+				'inputId' => 'prefix',
+				'infusable' => true,
+				'value' => $this->mSearchPrefix,
+				'autofocus' => true,
+			] ),
+			new OOUI\ButtonInputWidget( [
+				'label' => $this->msg( 'undelete-search-submit' )->text(),
+				'flags' => [ 'primary', 'progressive' ],
+				'inputId' => 'searchUndelete',
+				'type' => 'submit',
+			] ),
+			[
+				'label' => new OOUI\HtmlSnippet(
+					$this->msg(
+						$fuzzySearch ? 'undelete-search-full' : 'undelete-search-prefix'
+					)->parse()
+				),
+				'align' => 'left',
+			]
+		);
+
+		$fieldset = new OOUI\FieldsetLayout( [
+			'label' => $this->msg( 'undelete-search-box' )->text(),
+			'items' => $fields,
+		] );
+
+		$form = new OOUI\FormLayout( [
+			'method' => 'get',
+			'action' => wfScript(),
+		] );
+
+		$form->appendContent(
+			$fieldset,
+			new OOUI\HtmlSnippet(
 				Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) .
-				Html::hidden( 'fuzzy', $this->getRequest()->getVal( 'fuzzy' ) ) .
-				Html::rawElement(
-					'label',
-					[ 'for' => 'prefix' ],
-					$this->msg( $fuzzySearch ? 'undelete-search-full' : 'undelete-search-prefix' )
-						->parse()
-				) .
-				Xml::input(
-					'prefix',
-					20,
-					$this->mSearchPrefix,
-					[ 'id' => 'prefix', 'autofocus' => '' ]
-				) .
-				' ' .
-				Xml::submitButton(
-					$this->msg( 'undelete-search-submit' )->text(),
-					[ 'id' => 'searchUndelete' ]
-				) .
-				Xml::closeElement( 'fieldset' ) .
-				Xml::closeElement( 'form' )
+				Html::hidden( 'fuzzy', $this->getRequest()->getVal( 'fuzzy' ) )
+			)
+		);
+
+		$out->addHTML(
+			new OOUI\PanelLayout( [
+				'expanded' => false,
+				'padded' => true,
+				'framed' => true,
+				'content' => $form,
+			] )
 		);
 
 		# List undeletable articles
