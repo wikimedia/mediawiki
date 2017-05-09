@@ -263,3 +263,7 @@ div.tleft {
 body.mw-hide-empty-elt .mw-empty-elt {
 	display: none;
 }
+
+.mw-parser-output {
+	overflow: hidden;
+}
