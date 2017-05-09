@@ -75,7 +75,7 @@
 		this.baseState = baseState;
 
 		this.clearItems();
-		$.each( savedQueries.queries, function ( id, obj ) {
+		$.each( savedQueries.queries || {}, function ( id, obj ) {
 			var normalizedData = $.extend( true, {}, baseState, obj.data );
 			items.push(
 				new mw.rcfilters.dm.SavedQueryItemModel(
