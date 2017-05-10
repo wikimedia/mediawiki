@@ -634,7 +634,7 @@ class ManualLogEntry extends LogEntryBase {
 		}
 
 		$dbw->insert( 'logging', $data, __METHOD__ );
-		$this->id = !is_null( $id ) ? $id : $dbw->insertId();
+		$this->id = $dbw->insertId();
 
 		$rows = [];
 		foreach ( $relations as $tag => $values ) {
