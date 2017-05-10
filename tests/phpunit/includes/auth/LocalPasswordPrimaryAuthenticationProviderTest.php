@@ -509,7 +509,10 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 
 		$this->assertSame(
 			$expectExpiry,
-			$dbw->selectField( 'user', 'user_password_expires', [ 'user_name' => $cuser ] )
+			wfTimestampOrNull(
+				TS_MW,
+				$dbw->selectField( 'user', 'user_password_expires', [ 'user_name' => $cuser ] )
+			)
 		);
 	}
 
