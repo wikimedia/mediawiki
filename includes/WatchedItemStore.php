@@ -467,7 +467,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 		$item = new WatchedItem(
 			$user,
 			$target,
-			$row->wl_notificationtimestamp
+			wfTimestampOrNull( TS_MW, $row->wl_notificationtimestamp )
 		);
 		$this->cache( $item );
 
