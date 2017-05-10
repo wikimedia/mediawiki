@@ -1859,7 +1859,7 @@
 	"listusers-blocked": "(bloccou)",
 	"activeusers": "Lista di utenti attivi",
 	"activeusers-intro": "Questo o l'è un elenco di utenti ch'han avuo quarche tipo d'attivitæ da $1 {{PLURAL:$1|giorno|giorni}} a questa parte.",
-	"activeusers-count": "$1 {{PLURAL:$1|açione|açioin}} {{PLURAL:$3|inte l'urtimo giorno|inti urtimi $3 giorni}}",
+	"activeusers-count": "$1 {{PLURAL:$1|açion|açioin}} {{PLURAL:$3|inte l'urtimo giorno|inti urtimi $3 giorni}}",
 	"activeusers-from": "Mostra i utenti a partî da:",
 	"activeusers-noresult": "Nisciun utente o risponde a-i critei impostæ.",
 	"activeusers-submit": "Mostra utenti attivi",

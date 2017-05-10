@@ -2762,6 +2762,7 @@
 	"confirmrecreate": "{{GENDER:$1|Wužiwar|Wužiwarka}} [[User:$1|$1]] ([[User talk:$1|diskusija]]) je stronu {{GENDER:$1|wušmórnył|wušmórnyła}}, po tym zo sy započał ju wobdźěłać. Přičina:\n: <em>$2</em>\nProšu potwjerdź, zo chceš tutu stronu woprawdźe znowa wutworić.",
 	"confirmrecreate-noreason": "{{GENDER:$1|Wužiwar|Wužiwarka}} [[User:$1|$1]] ([[User talk:$1|diskusija]]) je tutu stronu {{GENDER:$1|zhašał|zhašała}}, po tym zo sće wobdźěłowanje započał. Prošu wobkruć, zo woprawdźe chceš tutu stronu znowa wutworić.",
 	"recreate": "Znowa wutworić",
+	"confirm-purge-title": "Tutu stronu zaktualizować",
 	"confirm_purge_button": "W porjadku",
 	"confirm-purge-top": "Pufrowak strony wuprózdnić?",
 	"confirm-purge-bottom": "Wuprózdnja pufrowak a wunuzuje zwobraznjenje aktualneje wersije.",

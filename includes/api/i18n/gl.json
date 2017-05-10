@@ -1601,6 +1601,7 @@
 	"apierror-revdel-mutuallyexclusive": "Non se pode usar o mesmo campo en <var>hide</var> e <var>show</var>.",
 	"apierror-revdel-needtarget": "É necesario un título obxectivo para este tipo RevDel.",
 	"apierror-revdel-paramneeded": "Requírese polo menos un valor para <var>hide</var> e/ou <var>show</var>.",
+	"apierror-revisions-badid": "Non se atoparon modificacións para o parámetro <var>$1</var>.",
 	"apierror-revisions-norevids": "O parámetro <var>revids</var> non se pode utilizar xunto coas opción de lista (<var>$1limit</var>, <var>$1startid</var>, <var>$1endid</var>, <kbd>$1dir=newer</kbd>, <var>$1user</var>, <var>$1excludeuser</var>, <var>$1start</var> e <var>$1end</var>).",
 	"apierror-revisions-singlepage": "Utilizouse <var>titles</var>, <var>pageids</var> ou un xerador para proporcionar múltiples páxinas, pero os parámetros <var>$1limit</var>, <var>$1startid</var>, <var>$1endid</var>, <kbd>$1dir=newer</kbd>, <var>$1user</var>, <var>$1excludeuser</var>, <var>$1start</var> e <var>$1end</var> só poden utilizarse nunha soa páxina.",
 	"apierror-revwrongpage": "r$1 non é unha revisión de $2.",

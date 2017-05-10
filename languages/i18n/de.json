@@ -1019,7 +1019,7 @@
 	"search-file-match": "(treffende Dateiinhalte)",
 	"search-suggest": "Meintest du „$1“?",
 	"search-rewritten": "Es werden die Ergebnisse für $1 angezeigt. Stattdessen nach $2 suchen.",
-	"search-interwiki-caption": "Schwesterprojekte",
+	"search-interwiki-caption": "Ergebnisse von Schwesterprojekten",
 	"search-interwiki-default": "Ergebnisse von $1:",
 	"search-interwiki-more": "(weitere)",
 	"search-interwiki-more-results": "Weitere Ergebnisse",

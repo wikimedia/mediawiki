@@ -81,7 +81,8 @@
 			"おはぐろ蜻蛉",
 			"Aefgh39622",
 			"Ayame",
-			"Omotecho"
+			"Omotecho",
+			"Thibaut120094"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -1376,6 +1377,7 @@
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "表示",
 	"rcfilters-activefilters": "絞り込み",
+	"rcfilters-savedqueries-cancel-label": "キャンセル",
 	"rcfilters-restore-default-filters": "標準設定の絞り込み条件を適用",
 	"rcfilters-clear-all-filters": "すべてのフィルターをクリア",
 	"rcfilters-search-placeholder": "絞り込みを行う（一覧から選択、または検索）",

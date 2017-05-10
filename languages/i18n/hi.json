@@ -1016,7 +1016,7 @@
 	"search-file-match": "(फ़ाइल सामग्री से मेल खाता है)",
 	"search-suggest": "कहीं आपका मतलब $1 तो नहीं था?",
 	"search-rewritten": "$1 का परिणाम दिखा रहा है। यह $2 हेतु खोज रहा है।",
-	"search-interwiki-caption": "अन्य प्रकल्प",
+	"search-interwiki-caption": "अन्य प्रकल्पों से परिणाम",
 	"search-interwiki-default": "$1 से परिणाम:",
 	"search-interwiki-more": "(और)",
 	"search-interwiki-more-results": "अधिक परिणाम",

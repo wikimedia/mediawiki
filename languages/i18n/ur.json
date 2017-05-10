@@ -30,7 +30,8 @@
 			"امین اکبر",
 			"Jdforrester",
 			"قیصرانی",
-			"Junaid Ahmad"
+			"Junaid Ahmad",
+			"Abuaneeqa"
 		]
 	},
 	"tog-underline": "ربط کی خط کشیدگی:",
@@ -199,6 +200,7 @@
 	"searcharticle": "چلیں",
 	"history": "تاریخچۂ صفحہ",
 	"history_short": "تاریخچہ",
+	"history_small": "تاریخچہ",
 	"updatedmarker": "میری آخری آمد کے بعد تجدید شدہ",
 	"printableversion": "قابل طبع نسخہ",
 	"permalink": "مستقل ربط",
@@ -1282,6 +1284,7 @@
 	"recentchanges-legend-heading": "<strong>اختصارات:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (نیز [[Special:NewPages|جدید صفحات کی فہرست]]) ملاحظہ فرمائیں",
 	"recentchanges-submit": "دکھائیں",
+	"rcfilters-filter-user-experience-level-experienced-label": "تجربہ کار صارف",
 	"rcnotefrom": "ذیل میں <strong>$2</strong> سے کی گئی {{PLURAL:$5|تبدیلی|تبدیلیاں}} <strong>$1</strong> تک دکھائی جا رہی ہیں۔",
 	"rclistfrom": "$2، $3ء سے ہونے والی نئی تبدیلیاں دکھائیں",
 	"rcshowhideminor": "معمولی ترامیم $1",
