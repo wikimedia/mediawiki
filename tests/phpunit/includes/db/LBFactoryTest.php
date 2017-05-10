@@ -409,15 +409,26 @@ class LBFactoryTest extends MediaWikiTestCase {
 			"Correct full table name"
 		);
 
-		\MediaWiki\suppressWarnings();
-		$this->assertFalse( $db->selectDB( 'garbage-db' ) );
-		\MediaWiki\restoreWarnings();
-
 		$this->assertEquals(
 			$this->quoteTable( $db, 'garbage-db' ) . '.' . $this->quoteTable( $db, 'page' ),
 			$db->tableName( 'garbage-db.page' ),
 			"Correct full table name"
 		);
+
+		if ( $db->databasesAreIndependent() ) {
+			try {
+				$e = null;
+				$db->selectDB( 'garbage-db' );
+			} catch ( \Wikimedia\Rdbms\DBConnectionError $e ) {
+				// expected
+			}
+			$this->assertInstanceOf( '\Wikimedia\Rdbms\DBConnectionError', $e );
+			$this->assertFalse( $db->isOpen() );
+		} else {
+			\MediaWiki\suppressWarnings();
+			$this->assertFalse( $db->selectDB( 'garbage-db' ) );
+			\MediaWiki\restoreWarnings();
+		}
 
 		$factory->closeAll();
 		$factory->destroy();
