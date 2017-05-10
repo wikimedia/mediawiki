@@ -205,7 +205,7 @@ class JpegHandler extends ExifBitmapHandler {
 			// we'll also add TinyRGB profile to images lacking a profile, but
 			// only if they're not low quality (which are meant to save bandwith
 			// and we don't want to increase the filesize by adding a profile)
-			if ( $params['quality'] > 30 ) {
+			if ( isset( $params['quality'] ) && $params['quality'] > 30 ) {
 				$profiles[] = '-';
 			}
 
