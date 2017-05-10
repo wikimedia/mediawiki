@@ -1705,6 +1705,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $field;
 	}
 
+	public function databasesAreIndependent() {
+		return false;
+	}
+
 	public function selectDB( $db ) {
 		# Stub. Shouldn't cause serious problems if it's not overridden, but
 		# if your database engine supports a concept similar to MySQL's
