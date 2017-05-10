@@ -27,6 +27,8 @@
 			"ltr": "images/icons/unBlock-ltr.svg",
 			"rtl": "images/icons/unBlock-rtl.svg"
 		} },
+		"clip": { "file": "images/icons/clip.svg", "variants": [ "progressive" ] },
+		"unClip": { "file": "images/icons/unClip.svg", "variants": [ "progressive" ] },
 		"flag": { "file": {
 			"ltr": "images/icons/flag-ltr.svg",
 			"rtl": "images/icons/flag-rtl.svg"
@@ -54,6 +56,7 @@
 			"ltr": "images/icons/unTrash-ltr.svg",
 			"rtl": "images/icons/unTrash-rtl.svg"
 		} },
+		"pushPin": { "file": "images/icons/pushPin.svg", "variants": [ "progressive" ] },
 		"ongoingConversation": {
 			"file": {
 				"ltr": "images/icons/ongoingConversation-ltr.svg",

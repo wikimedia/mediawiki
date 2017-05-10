@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.2
+ * OOjs UI v0.21.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-04-26T01:05:15Z
+ * Date: 2017-05-10T00:55:45Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -73,8 +73,10 @@
 .oo-ui-buttonElement.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
   display: block;
 }
-.oo-ui-buttonElement.oo-ui-labelElement > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement > input.oo-ui-buttonElement-button {
+  -webkit-appearance: none;
+}
+.oo-ui-buttonElement.oo-ui-labelElement > .oo-ui-buttonElement-button {
   line-height: 1;
 }
 .oo-ui-buttonElement.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
@@ -717,7 +719,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-optionWidget.oo-ui-widget-disabled {
   cursor: default;
 }
-.oo-ui-optionWidget.oo-ui-labelElement .oo-ui-labelElement-label {
+.oo-ui-optionWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
   display: block;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -736,8 +738,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   padding: 0.703125em 0.9375em 0.625em;
   line-height: 1;
 }
-.oo-ui-decoratedOptionWidget .oo-ui-iconElement-icon,
-.oo-ui-decoratedOptionWidget .oo-ui-indicatorElement-indicator {
+.oo-ui-decoratedOptionWidget > .oo-ui-iconElement-icon,
+.oo-ui-decoratedOptionWidget > .oo-ui-indicatorElement-indicator {
   position: absolute;
 }
 .oo-ui-decoratedOptionWidget.oo-ui-iconElement .oo-ui-iconElement-icon,
@@ -1187,7 +1189,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-dropdownInputWidget select {
   -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -1377,7 +1378,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin: 0;
 }
 .oo-ui-textInputWidget [type='search'] {
-  -webkit-appearance: textfield;
+  -webkit-appearance: none;
 }
 .oo-ui-textInputWidget [type='search']::-ms-clear {
   display: none;
@@ -1441,6 +1442,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-textInputWidget input,
 .oo-ui-textInputWidget textarea {
+  -webkit-appearance: none;
   margin: 0;
   font-size: inherit;
   font-family: inherit;
@@ -1587,13 +1589,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border: 1px solid #a2a9b1;
   border-radius: 0 0 2px 2px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25);
-}
-.oo-ui-menuSelectWidget input {
-  position: absolute;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-  opacity: 0;
 }
 .oo-ui-menuSelectWidget.oo-ui-clippableElement-clippable {
   min-height: 2.6em;

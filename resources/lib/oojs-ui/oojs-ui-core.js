@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.2
+ * OOjs UI v0.21.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-04-26T01:05:10Z
+ * Date: 2017-05-10T00:55:40Z
  */
 ( function ( OO ) {
 
@@ -6728,7 +6728,7 @@ OO.ui.MenuSectionOptionWidget = function OoUiMenuSectionOptionWidget( config ) {
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-menuSectionOptionWidget' )
-		.attr( 'role', '' );
+		.removeAttr( 'role aria-selected' );
 };
 
 /* Setup */
@@ -6775,6 +6775,7 @@ OO.ui.MenuSectionOptionWidget.static.highlightable = false;
  * @class
  * @extends OO.ui.SelectWidget
  * @mixins OO.ui.mixin.ClippableElement
+ * @mixins OO.ui.mixin.FloatableElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -6792,6 +6793,7 @@ OO.ui.MenuSectionOptionWidget.static.highlightable = false;
  * @cfg {boolean} [hideOnChoose=true] Hide the menu when the user chooses an option.
  * @cfg {boolean} [filterFromInput=false] Filter the displayed options from the input
  * @cfg {boolean} [highlightOnFilter] Highlight the first result when filtering
+ * @cfg {number} [width] Width of the menu
  */
 OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 	// Configuration initialization
@@ -6802,6 +6804,7 @@ OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 
 	// Mixin constructors
 	OO.ui.mixin.ClippableElement.call( this, $.extend( {}, config, { $clippable: this.$group } ) );
+	OO.ui.mixin.FloatableElement.call( this, config );
 
 	// Properties
 	this.autoHide = config.autoHide === undefined || !!config.autoHide;
@@ -6813,6 +6816,7 @@ OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 	this.onDocumentMouseDownHandler = this.onDocumentMouseDown.bind( this );
 	this.onInputEditHandler = OO.ui.debounce( this.updateItemVisibility.bind( this ), 100 );
 	this.highlightOnFilter = !!config.highlightOnFilter;
+	this.width = config.width;
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-menuSelectWidget' );
@@ -6831,6 +6835,15 @@ OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 
 OO.inheritClass( OO.ui.MenuSelectWidget, OO.ui.SelectWidget );
 OO.mixinClass( OO.ui.MenuSelectWidget, OO.ui.mixin.ClippableElement );
+OO.mixinClass( OO.ui.MenuSelectWidget, OO.ui.mixin.FloatableElement );
+
+/* Events */
+
+/**
+ * @event ready
+ *
+ * The menu is ready: it is visible and has been positioned and clipped.
+ */
 
 /* Methods */
 
@@ -6898,7 +6911,9 @@ OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
 		anyVisible = false,
 		len = this.items.length,
 		showAll = !this.isVisible(),
-		filter = showAll ? null : this.getItemMatcher( this.$input.val() );
+		filter = showAll ? null : this.getItemMatcher( this.$input.val() ),
+		exactFilter = this.getItemMatcher( this.$input.val(), true ),
+		exactMatch = false;
 
 	// Hide non-matching options, and also hide section headers if all options
 	// in their section are hidden.
@@ -6913,6 +6928,7 @@ OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
 			sectionEmpty = true;
 		} else if ( item instanceof OO.ui.OptionWidget ) {
 			visible = showAll || filter( item );
+			exactMatch = exactMatch || exactFilter( item );
 			anyVisible = anyVisible || visible;
 			sectionEmpty = sectionEmpty && !visible;
 			item.toggle( visible );
@@ -6926,6 +6942,10 @@ OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
 	// Process the final section
 	if ( section ) {
 		section.toggle( showAll || !sectionEmpty );
+	}
+
+	if ( anyVisible && this.items.length && !exactMatch ) {
+		this.scrollItemIntoView( this.items[ 0 ] );
 	}
 
 	this.$element.toggleClass( 'oo-ui-menuSelectWidget-invisible', !anyVisible );
@@ -6963,6 +6983,7 @@ OO.ui.MenuSelectWidget.prototype.bindKeyPressListener = function () {
 	if ( this.$input ) {
 		if ( this.filterFromInput ) {
 			this.$input.on( 'keydown mouseup cut paste change input select', this.onInputEditHandler );
+			this.updateItemVisibility();
 		}
 	} else {
 		OO.ui.MenuSelectWidget.parent.prototype.bindKeyPressListener.call( this );
@@ -7050,6 +7071,7 @@ OO.ui.MenuSelectWidget.prototype.clearItems = function () {
  * Side-effects may include broken interface and exceptions being thrown. This wasn't always
  * strictly enforced, so currently it only generates a warning in the browser console.
  *
+ * @fires ready
  * @inheritdoc
  */
 OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
@@ -7063,6 +7085,10 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 		this.warnedUnattached = true;
 	}
 
+	if ( change && visible && ( this.width || this.$floatableContainer ) ) {
+		this.setIdealSize( this.width || this.$floatableContainer.width() );
+	}
+
 	// Parent method
 	OO.ui.MenuSelectWidget.parent.prototype.toggle.call( this, visible );
 
@@ -7071,6 +7097,7 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 			this.bindKeyDownListener();
 			this.bindKeyPressListener();
 
+			this.togglePositioning( !!this.$floatableContainer );
 			this.toggleClipping( true );
 
 			if ( this.getSelectedItem() ) {
@@ -7082,11 +7109,14 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 			if ( this.autoHide ) {
 				this.getElementDocument().addEventListener( 'mousedown', this.onDocumentMouseDownHandler, true );
 			}
+
+			this.emit( 'ready' );
 		} else {
 			this.$focusOwner.removeAttr( 'aria-activedescendant' );
 			this.unbindKeyDownListener();
 			this.unbindKeyPressListener();
 			this.getElementDocument().removeEventListener( 'mousedown', this.onDocumentMouseDownHandler, true );
+			this.togglePositioning( false );
 			this.toggleClipping( false );
 		}
 	}
@@ -7144,7 +7174,7 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {Object} [menu] Configuration options to pass to {@link OO.ui.FloatingMenuSelectWidget menu select widget}
+ * @cfg {Object} [menu] Configuration options to pass to {@link OO.ui.MenuSelectWidget menu select widget}
  * @cfg {jQuery} [$overlay] Render the menu into a separate layer. This configuration is useful in cases where
  *  the expanded menu is larger than its containing `<div>`. The specified overlay layer is usually on top of the
  *  containing `<div>` and has a larger area. By default, the menu uses relative positioning.
@@ -7169,9 +7199,9 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: this.$handle } ) );
 
 	// Properties
-	this.menu = new OO.ui.FloatingMenuSelectWidget( $.extend( {
+	this.menu = new OO.ui.MenuSelectWidget( $.extend( {
 		widget: this,
-		$container: this.$element
+		$floatableContainer: this.$element
 	}, config.menu ) );
 
 	// Events
@@ -7890,28 +7920,24 @@ OO.ui.CheckboxMultiselectWidget.prototype.onClick = function ( e ) {
 };
 
 /**
- * FloatingMenuSelectWidget is a menu that will stick under a specified
- * container, even when it is inserted elsewhere in the document (for example,
- * in a OO.ui.Window's $overlay). This is sometimes necessary to prevent the
- * menu from being clipped too aggresively.
- *
- * The menu's position is automatically calculated and maintained when the menu
- * is toggled or the window is resized.
- *
- * See OO.ui.ComboBoxInputWidget for an example of a widget that uses this class.
+ * FloatingMenuSelectWidget was a menu that would stick under a specified
+ * container, even when it is inserted elsewhere in the document.
+ * This functionality is now included in MenuSelectWidget, and FloatingMenuSelectWidget
+ * is preserved for backwards-compatibility.
  *
  * @class
  * @extends OO.ui.MenuSelectWidget
- * @mixins OO.ui.mixin.FloatableElement
+ * @deprecated since v0.21.3, use MenuSelectWidget instead.
  *
  * @constructor
  * @param {OO.ui.Widget} [inputWidget] Widget to provide the menu for.
  *   Deprecated, omit this parameter and specify `$container` instead.
  * @param {Object} [config] Configuration options
  * @cfg {jQuery} [$container=inputWidget.$element] Element to render menu under
- * @cfg {number} [width] Width of the menu
  */
 OO.ui.FloatingMenuSelectWidget = function OoUiFloatingMenuSelectWidget( inputWidget, config ) {
+	OO.ui.warnDeprecation( 'FloatingMenuSelectWidget is deprecated. Use the MenuSelectWidget instead.' );
+
 	// Allow 'inputWidget' parameter and config for backwards compatibility
 	if ( OO.isPlainObject( inputWidget ) && config === undefined ) {
 		config = inputWidget;
@@ -7921,17 +7947,12 @@ OO.ui.FloatingMenuSelectWidget = function OoUiFloatingMenuSelectWidget( inputWid
 	// Configuration initialization
 	config = config || {};
 
-	this.width = config.width;
+	// Properties
+	this.inputWidget = inputWidget; // For backwards compatibility
+	this.$container = config.$floatableContainer || config.$container || this.inputWidget.$element;
 
 	// Parent constructor
-	OO.ui.FloatingMenuSelectWidget.parent.call( this, config );
-
-	// Properties (must be set before mixin constructors)
-	this.inputWidget = inputWidget; // For backwards compatibility
-	this.$container = config.$container || this.inputWidget.$element;
-
-	// Mixins constructors
-	OO.ui.mixin.FloatableElement.call( this, $.extend( {}, config, { $floatableContainer: this.$container } ) );
+	OO.ui.FloatingMenuSelectWidget.parent.call( this, $.extend( {}, config, { $floatableContainer: this.$container } ) );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-floatingMenuSelectWidget' );
@@ -7942,45 +7963,6 @@ OO.ui.FloatingMenuSelectWidget = function OoUiFloatingMenuSelectWidget( inputWid
 /* Setup */
 
 OO.inheritClass( OO.ui.FloatingMenuSelectWidget, OO.ui.MenuSelectWidget );
-OO.mixinClass( OO.ui.FloatingMenuSelectWidget, OO.ui.mixin.FloatableElement );
-
-/* Events */
-
-/**
- * @event ready
- *
- * The menu is ready: it is visible and has been positioned and clipped.
- */
-
-/* Methods */
-
-/**
- * @fires ready
- * @inheritdoc
- */
-OO.ui.FloatingMenuSelectWidget.prototype.toggle = function ( visible ) {
-	var change;
-	visible = visible === undefined ? !this.isVisible() : !!visible;
-	change = visible !== this.isVisible();
-
-	if ( change && visible ) {
-		// Make sure the width is set before the parent method runs.
-		this.setIdealSize( this.width || this.$container.width() );
-	}
-
-	// Parent method
-	// This will call this.clip(), which is nonsensical since we're not positioned yet...
-	OO.ui.FloatingMenuSelectWidget.parent.prototype.toggle.call( this, visible );
-
-	if ( change ) {
-		this.togglePositioning( this.isVisible() );
-		if ( visible ) {
-			this.emit( 'ready' );
-		}
-	}
-
-	return this;
-};
 
 /**
  * Progress bars visually display the status of an operation, such as a download,
@@ -10346,7 +10328,7 @@ OO.ui.SearchInputWidget.prototype.setReadOnly = function ( state ) {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {Object[]} [options=[]] Array of menu options in the format `{ data: …, label: … }`
- * @cfg {Object} [menu] Configuration options to pass to the {@link OO.ui.FloatingMenuSelectWidget menu select widget}.
+ * @cfg {Object} [menu] Configuration options to pass to the {@link OO.ui.MenuSelectWidget menu select widget}.
  * @cfg {jQuery} [$overlay] Render the menu into a separate layer. This configuration is useful in cases where
  *  the expanded menu is larger than its containing `<div>`. The specified overlay layer is usually on top of the
  *  containing `<div>` and has a larger area. By default, the menu uses relative positioning.
@@ -10376,11 +10358,11 @@ OO.ui.ComboBoxInputWidget = function OoUiComboBoxInputWidget( config ) {
 		indicator: 'down',
 		disabled: this.disabled
 	} );
-	this.menu = new OO.ui.FloatingMenuSelectWidget( $.extend(
+	this.menu = new OO.ui.MenuSelectWidget( $.extend(
 		{
 			widget: this,
 			input: this,
-			$container: this.$element,
+			$floatableContainer: this.$element,
 			disabled: this.isDisabled()
 		},
 		config.menu
@@ -10429,7 +10411,7 @@ OO.inheritClass( OO.ui.ComboBoxInputWidget, OO.ui.TextInputWidget );
 /**
  * Get the combobox's menu.
  *
- * @return {OO.ui.FloatingMenuSelectWidget} Menu widget
+ * @return {OO.ui.MenuSelectWidget} Menu widget
  */
 OO.ui.ComboBoxInputWidget.prototype.getMenu = function () {
 	return this.menu;
@@ -11258,3 +11240,5 @@ OO.inheritClass( OO.ui.HorizontalLayout, OO.ui.Layout );
 OO.mixinClass( OO.ui.HorizontalLayout, OO.ui.mixin.GroupElement );
 
 }( OO ) );
+
+//# sourceMappingURL=oojs-ui-core.js.map

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.2
+ * OOjs UI v0.21.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-04-26T01:05:15Z
+ * Date: 2017-05-10T00:55:45Z
  */
 .oo-ui-draggableElement {
   padding: 1.0546875em 0.9375em 0.9375em;
@@ -841,27 +841,28 @@
   width: 1px;
 }
 .oo-ui-tagMultiselectWidget-handle {
-  min-height: 2.4em;
-  margin-right: 0.5em;
-  padding: 0.15em 0.25em;
-  border: 1px solid #a2a9b1;
-  border-radius: 2px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  min-height: 2.5em;
+  margin-right: 0.5em;
+  border: 1px solid #a2a9b1;
+  border-radius: 2px;
+  padding: 0 0.625em 0.3125em;
+  line-height: 1;
 }
 .oo-ui-tagMultiselectWidget-handle:last-child {
   margin-right: 0;
 }
 .oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > input {
-  border: 0;
-  line-height: 1.675;
-  margin: 0 0 0 0.2em;
-  padding: 0;
-  font-size: inherit;
-  font-family: inherit;
   background-color: transparent;
   color: #000;
+  margin: 0.46875em 0 0 0.390625em;
+  border: 0;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.563em;
   vertical-align: middle;
 }
 .oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > input::-webkit-input-placeholder {
@@ -887,6 +888,9 @@
 .oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > input:focus {
   outline: 0;
 }
+.oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content .oo-ui-tagMultiselectWidget-group:empty + input {
+  margin-left: 0;
+}
 .oo-ui-tagMultiselectWidget.oo-ui-iconElement .oo-ui-tagMultiselectWidget-handle {
   padding-left: 2.475em;
 }
@@ -907,10 +911,10 @@
   -moz-transition: border-color 200ms cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
   transition: border-color 200ms cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
 }
-.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled:hover .oo-ui-tagMultiselectWidget-handle {
+.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-inlined:hover .oo-ui-tagMultiselectWidget-handle {
   border-color: #72777d;
 }
-.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-open .oo-ui-tagMultiselectWidget-handle {
+.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-inlined.oo-ui-tagMultiselectWidget-focus .oo-ui-tagMultiselectWidget-handle {
   border-color: #36c;
   outline: 0;
   box-shadow: inset 0 0 0 1px #36c;
@@ -950,12 +954,12 @@
   box-sizing: border-box;
   width: auto;
   max-width: 100%;
-  height: 1.7em;
-  margin: 0.1em;
+  height: 1.71875em;
+  margin: 0.3125em 0.3125em 0 0;
   border: 1px solid #a2a9b1;
   border-radius: 2px;
-  padding: 0 0.4em;
-  line-height: 1.7;
+  padding: 0 0.3125em;
+  line-height: 1.71875em;
   vertical-align: middle;
 }
 .oo-ui-tagItemWidget.oo-ui-labelElement .oo-ui-labelElement-label {
@@ -1058,27 +1062,28 @@
   width: 1px;
 }
 .oo-ui-capsuleMultiselectWidget-handle {
-  min-height: 2.4em;
-  margin-right: 0.5em;
-  padding: 0.15em 0.25em;
-  border: 1px solid #a2a9b1;
-  border-radius: 2px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  min-height: 2.5em;
+  margin-right: 0.5em;
+  border: 1px solid #a2a9b1;
+  border-radius: 2px;
+  padding: 0 0.625em 0.3125em;
+  line-height: 1;
 }
 .oo-ui-capsuleMultiselectWidget-handle:last-child {
   margin-right: 0;
 }
 .oo-ui-capsuleMultiselectWidget-handle > .oo-ui-capsuleMultiselectWidget-content > input {
-  border: 0;
-  line-height: 1.675;
-  margin: 0 0 0 0.2em;
-  padding: 0;
-  font-size: inherit;
-  font-family: inherit;
   background-color: transparent;
   color: #000;
+  border: 0;
+  margin: 0.46875em 0 0 0.390625em;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.563em;
   vertical-align: middle;
 }
 .oo-ui-capsuleMultiselectWidget-handle > .oo-ui-capsuleMultiselectWidget-content > input::-webkit-input-placeholder {
@@ -1103,6 +1108,9 @@
 }
 .oo-ui-capsuleMultiselectWidget-handle > .oo-ui-capsuleMultiselectWidget-content > input:focus {
   outline: 0;
+}
+.oo-ui-capsuleMultiselectWidget-handle > .oo-ui-capsuleMultiselectWidget-content .oo-ui-capsuleMultiselectWidget-group:empty + input {
+  margin-left: 0;
 }
 .oo-ui-capsuleMultiselectWidget.oo-ui-iconElement .oo-ui-capsuleMultiselectWidget-handle {
   padding-left: 2.5em;
@@ -1159,12 +1167,12 @@
   box-sizing: border-box;
   width: auto;
   max-width: 100%;
-  height: 1.7em;
-  margin: 0.1em;
+  height: 1.71875em;
+  margin: 0.3125em 0.3125em 0 0;
   border: 1px solid #a2a9b1;
   border-radius: 2px;
-  padding: 0 0.4em;
-  line-height: 1.7;
+  padding: 0 0.3125em;
+  line-height: 1.71875em;
   vertical-align: middle;
 }
 .oo-ui-capsuleItemWidget.oo-ui-labelElement .oo-ui-labelElement-label {
