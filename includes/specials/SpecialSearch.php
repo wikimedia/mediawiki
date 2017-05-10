@@ -401,7 +401,8 @@ class SpecialSearch extends SpecialPage {
 				$this,
 				$sidebarResultWidget,
 				$linkRenderer,
-				MediaWikiServices::getInstance()->getInterwikiLookup()
+				MediaWikiServices::getInstance()->getInterwikiLookup(),
+				$search->getFeatureData( 'show-multimedia-search-results' )
 			);
 		} else {
 			$sidebarResultWidget = new SimpleSearchResultWidget( $this, $linkRenderer );
