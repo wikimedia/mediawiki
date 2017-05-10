@@ -234,11 +234,18 @@ class MWCryptRand {
 			// On Linux, getrandom syscall will be used if available.
 			// On Windows CryptGenRandom will always be used
 			// On other platforms, /dev/urandom will be used.
+			// Avoids polyfills from before php 7.0
 			// All error situations will throw Exceptions and or Errors
-			if ( function_exists( 'random_bytes' ) ) {
+
+			// @codingStandardsIgnoreStart Generic.CodeAnalysis.UnconditionalIfStatement.Found
+			// CI runs MW 1.27 on PHP 5.5, so this is always false
+			if ( PHP_VERSION_ID >= 70000
+				|| ( defined( 'HHVM_VERSION_ID' ) && HHVM_VERSION_ID >= 31101 )
+			{
 				$rem = $bytes - strlen( $buffer );
 				$buffer .= random_bytes( $rem );
 			}
+			// @codingStandardsIgnoreEnd
 			if ( strlen( $buffer ) >= $bytes ) {
 				$this->strong = true;
 			}
