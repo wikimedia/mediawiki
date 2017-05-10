@@ -247,8 +247,11 @@ class CryptRand {
 			// On Linux, getrandom syscall will be used if available.
 			// On Windows CryptGenRandom will always be used
 			// On other platforms, /dev/urandom will be used.
+			// Avoids polyfills from before php 7.0
 			// All error situations will throw Exceptions and or Errors
-			if ( function_exists( 'random_bytes' ) ) {
+			if ( PHP_VERSION_ID >= 70000
+				|| ( defined( 'HHVM_VERSION_ID' ) && HHVM_VERSION_ID >= 31101 )
+			) {
 				$rem = $bytes - strlen( $buffer );
 				$buffer .= random_bytes( $rem );
 			}
