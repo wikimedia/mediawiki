@@ -911,7 +911,15 @@ class RecentChange {
 	public function loadFromRow( $row ) {
 		$this->mAttribs = get_object_vars( $row );
 		$this->mAttribs['rc_timestamp'] = wfTimestamp( TS_MW, $this->mAttribs['rc_timestamp'] );
-		$this->mAttribs['rc_deleted'] = $row->rc_deleted; // MUST be set
+		if ( isset( $this->mAttribs['rc_ip'] ) ) {
+			// Clean up CIDRs for postgres
+			$n = strpos( $this->mAttribs['rc_ip'], '/' );
+			if ( $n !== false ) {
+				$this->mAttribs['rc_ip'] = substr( $this->mAttribs['rc_ip'], 0, $n );
+			}
+		}
+		// rc_deleted MUST be set
+		$this->mAttribs['rc_deleted'] = $row->rc_deleted;
 	}
 
 	/**
