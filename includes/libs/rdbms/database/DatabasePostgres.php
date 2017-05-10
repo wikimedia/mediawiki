@@ -105,7 +105,10 @@ class DatabasePostgres extends Database {
 		$this->mDBname = $dbName;
 
 		$connectVars = [
-			'dbname' => $dbName,
+			// pg_connect() user $user as the default database. Since a database is *required*,
+			// at least pick a "don't care" database that is more likely to exist. This case
+			// arrises when LoadBalancer::getConnection( $i, [], '' ) is used.
+			'dbname' => strlen( $dbName ) ? $dbName : 'postgres',
 			'user' => $user,
 			'password' => $password
 		];
@@ -165,11 +168,16 @@ class DatabasePostgres extends Database {
 		return $this->mConn;
 	}
 
+	public function databasesAreIndependent() {
+		return true;
+	}
+
 	/**
 	 * Postgres doesn't support selectDB in the same way MySQL does. So if the
 	 * DB name doesn't match the open connection, open a new one
 	 * @param string $db
 	 * @return bool
+	 * @throws DBUnexpectedError
 	 */
 	public function selectDB( $db ) {
 		if ( $this->mDBname !== $db ) {

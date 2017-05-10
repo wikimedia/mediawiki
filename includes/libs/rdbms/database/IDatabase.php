@@ -1030,10 +1030,24 @@ interface IDatabase {
 	public function buildStringCast( $field );
 
 	/**
+	 * Returns true if DBs are assumed to be on potentially different servers
+	 *
+	 * In systems like mysql/mariadb, different databases can easily be referenced on a single
+	 * connection merely by name, even in a single query via JOIN. On the other hand, Postgres
+	 * treats databases as fully separate, only allowing mechanisms like postgres_fdw to
+	 * effectively "mount" foreign DBs. This is true even among DBs on the same server.
+	 *
+	 * @return bool
+	 * @since 1.29
+	 */
+	public function databasesAreIndependent();
+
+	/**
 	 * Change the current database
 	 *
 	 * @param string $db
 	 * @return bool Success or failure
+	 * @throws DBConnectionError If databasesAreIndependent() is true and an error occurs
 	 */
 	public function selectDB( $db );
 
