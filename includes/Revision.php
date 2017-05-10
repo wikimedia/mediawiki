@@ -1496,7 +1496,10 @@ class Revision implements IDBAccessObject {
 
 		$dbw->insert( 'revision', $row, __METHOD__ );
 
-		$this->mId = $rev_id !== null ? $rev_id : $dbw->insertId();
+		if ( $this->mId === null ) {
+			// Only if nextSequenceValue() was called
+			$this->mId = $dbw->insertId();
+		}
 
 		// Assertion to try to catch T92046
 		if ( (int)$this->mId === 0 ) {

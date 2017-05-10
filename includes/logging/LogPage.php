@@ -110,7 +110,7 @@ class LogPage {
 			'log_params' => $this->params
 		];
 		$dbw->insert( 'logging', $data, __METHOD__ );
-		$newId = !is_null( $log_id ) ? $log_id : $dbw->insertId();
+		$newId = $dbw->insertId();
 
 		# And update recentchanges
 		if ( $this->updateRecentChanges ) {
