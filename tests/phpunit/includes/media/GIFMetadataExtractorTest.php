@@ -83,6 +83,8 @@ EOF;
 					'frameCount' => 1,
 					'looped' => false,
 					'xmp' => '',
+					'width' => 45,
+					'height' => 30,
 				]
 			],
 			[
@@ -93,6 +95,8 @@ EOF;
 					'frameCount' => 4,
 					'looped' => true,
 					'xmp' => '',
+					'width' => 45,
+					'height' => 30,
 				]
 			],
 
@@ -104,6 +108,8 @@ EOF;
 					'frameCount' => 4,
 					'looped' => true,
 					'comment' => [ 'GIƒ·test·file' ],
+					'width' => 45,
+					'height' => 30,
 				]
 			],
 		];
