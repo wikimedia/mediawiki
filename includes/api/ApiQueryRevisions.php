@@ -219,26 +219,26 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			}
 
 			// Convert startid/endid to timestamps (T163532)
-			if ( $params['startid'] !== null || $params['endid'] !== null ) {
-				$ids = [
-					(int)$params['startid'] => true,
-					(int)$params['endid'] => true,
-				];
-				unset( $ids[0] ); // null
-				$ids = array_keys( $ids );
-
+			$revids = [];
+			if ( $params['startid'] !== null ) {
+				$revids[] = (int)$params['startid'];
+			}
+			if ( $params['endid'] !== null ) {
+				$revids[] = (int)$params['endid'];
+			}
+			if ( $revids ) {
 				$db = $this->getDB();
 				$sql = $db->unionQueries( [
 					$db->selectSQLText(
 						'revision',
 						[ 'id' => 'rev_id', 'ts' => 'rev_timestamp' ],
-						[ 'rev_id' => $ids ],
+						[ 'rev_id' => $revids ],
 						__METHOD__
 					),
 					$db->selectSQLText(
 						'archive',
 						[ 'id' => 'ar_rev_id', 'ts' => 'ar_timestamp' ],
-						[ 'ar_rev_id' => $ids ],
+						[ 'ar_rev_id' => $revids ],
 						__METHOD__
 					),
 				], false );
