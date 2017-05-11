@@ -220,11 +220,13 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 			// Convert startid/endid to timestamps (T163532)
 			if ( $params['startid'] !== null || $params['endid'] !== null ) {
-				$ids = [
-					(int)$params['startid'] => true,
-					(int)$params['endid'] => true,
-				];
-				unset( $ids[0] ); // null
+				$ids = [];
+				if ( $params['startid'] !== null ) {
+					$ids[(int)$params['startid']] = true;
+				}
+				if ( $params['endid'] !== null ) {
+					$ids[(int)$params['endid']] = true;
+				}
 				$ids = array_keys( $ids );
 
 				$db = $this->getDB();
