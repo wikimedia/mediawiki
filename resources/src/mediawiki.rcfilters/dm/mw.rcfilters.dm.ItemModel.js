@@ -28,7 +28,7 @@
 		this.name = this.namePrefix + param;
 
 		this.label = config.label || this.name;
-		this.description = config.description;
+		this.description = config.description || '';
 		this.selected = !!config.selected;
 
 		this.inverted = !!config.inverted;

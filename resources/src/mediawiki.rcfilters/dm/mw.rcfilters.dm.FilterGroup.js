@@ -9,6 +9,8 @@
 	 * @param {string} name Group name
 	 * @param {Object} [config] Configuration options
 	 * @cfg {string} [type='send_unselected_if_any'] Group type
+	 * @cfg {string} [displayGroup='default'] Name of the display group this group
+	 *  is a part of.
 	 * @cfg {string} [title] Group title
 	 * @cfg {string} [separator='|'] Value separator for 'string_options' groups
 	 * @cfg {boolean} [active] Group is active
@@ -29,6 +31,7 @@
 
 		this.name = name;
 		this.type = config.type || 'send_unselected_if_any';
+		this.displayGroup = config.displayGroup || 'default';
 		this.title = config.title;
 		this.separator = config.separator || '|';
 
@@ -529,6 +532,15 @@
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.getType = function () {
 		return this.type;
+	};
+
+	/**
+	 * Get display group
+	 *
+	 * @return {string} Display group
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.getDisplayGroup = function () {
+		return this.displayGroup;
 	};
 
 	/**

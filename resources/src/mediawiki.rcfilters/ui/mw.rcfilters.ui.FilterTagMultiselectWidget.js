@@ -27,6 +27,7 @@
 		this.queriesModel = savedQueriesModel;
 		this.$overlay = config.$overlay || this.$element;
 		this.matchingQuery = null;
+		this.views = {};
 
 		// Parent
 		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.call( this, $.extend( true, {
@@ -421,9 +422,13 @@
 
 		// Reset
 		this.getMenu().clearItems();
+		this.views = { default: [] };
 
 		$.each( this.model.getFilterGroups(), function ( groupName, groupModel ) {
-			items.push(
+			var currentItems = [],
+				displayGroup = groupModel.getDisplayGroup();
+
+			currentItems.push(
 				// Group section
 				new mw.rcfilters.ui.FilterMenuSectionOptionWidget(
 					widget.controller,
@@ -436,7 +441,7 @@
 
 			// Add items
 			widget.model.getGroupFilters( groupName ).forEach( function ( filterItem ) {
-				items.push(
+				currentItems.push(
 					new mw.rcfilters.ui.FilterMenuOptionWidget(
 						widget.controller,
 						filterItem,
@@ -446,10 +451,15 @@
 					)
 				);
 			} );
+
+			// Cache the items per view, so we can switch between them
+			// without rebuilding the widgets each time
+			widget.views[ displayGroup ] = widget.views[ displayGroup ] || [];
+			widget.views[ displayGroup ] = widget.views[ displayGroup ].concat( currentItems );
 		} );
 
-		// Add all items to the menu
-		this.getMenu().addItems( items );
+		// Start with default view
+		this.getMenu().addItems( this.views.default || [] );
 	};
 
 	/**
