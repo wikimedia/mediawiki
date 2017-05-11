@@ -6768,6 +6768,12 @@ $wgUseRCPatrol = true;
 $wgStructuredChangeFiltersEnableSaving = true;
 
 /**
+ * Whether to show the new experimental views (like namespaces, tags, and users) in
+ * RecentChanges filters
+ */
+$wgStructuredChangeFiltersEnableExperimentalViews = false;
+
+/**
  * Use new page patrolling to check new pages on Special:Newpages
  */
 $wgUseNPPatrol = true;

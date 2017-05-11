@@ -80,6 +80,8 @@
 			)
 		);
 
+		this.filtersModel.toggleInvertedNamespaces( !!Number( parameters.invert ) );
+
 		// Update highlight state
 		this.filtersModel.toggleHighlight( !!Number( parameters.highlight ) );
 		this.filtersModel.getItems().forEach( function ( filterItem ) {
@@ -106,7 +108,10 @@
 			{},
 			this.filtersModel.getParametersFromFilters(),
 			this.filtersModel.getHighlightParameters(),
-			{ highlight: String( Number( this.filtersModel.isHighlightEnabled() ) ) }
+			{
+				highlight: String( Number( this.filtersModel.isHighlightEnabled() ) ),
+				invert: String( Number( this.filtersModel.areNamespacesInverted() ) )
+			}
 		);
 	};
 
@@ -125,7 +130,10 @@
 			uriQuery,
 			this.filtersModel.getParametersFromFilters( filterRepresentation ),
 			this.filtersModel.extractHighlightValues( uriQuery ),
-			{ highlight: String( Number( uriQuery.highlight ) ) }
+			{
+				highlight: String( Number( uriQuery.highlight ) ),
+				invert: String( Number( uriQuery.invert ) )
+			}
 		);
 	};
 
@@ -261,7 +269,7 @@
 			{},
 			emptyParams,
 			emptyHighlights,
-			{ highlight: '0' }
+			{ highlight: '0', invert: '0' }
 		);
 	};
 }( mediaWiki, jQuery ) );
