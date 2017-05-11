@@ -477,7 +477,7 @@
 		);
 
 		// Update highlight state
-		this.filtersModel.toggleHighlight( !!parameters.highlights );
+		this.filtersModel.toggleHighlight( !!parameters.highlight );
 		this.filtersModel.getItems().forEach( function ( filterItem ) {
 			var color = parameters[ filterItem.getName() + '_color' ];
 			if ( color ) {
@@ -570,6 +570,7 @@
 		uri.extend( this.filtersModel.getParametersFromFilters() );
 
 		// highlight params
+		uri.query.highlight = this.filtersModel.isHighlightEnabled();
 		Object.keys( highlightParams ).forEach( function ( paramName ) {
 			if ( highlightParams[ paramName ] ) {
 				uri.query[ paramName ] = highlightParams[ paramName ];
