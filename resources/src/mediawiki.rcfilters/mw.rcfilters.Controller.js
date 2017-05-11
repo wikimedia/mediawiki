@@ -23,11 +23,12 @@
 	 *
 	 * @param {Array} filterStructure Filter definition and structure for the model
 	 */
-	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure ) {
+	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure ) {
 		var parsedSavedQueries,
 			$changesList = $( '.mw-changeslist' ).first().contents();
+
 		// Initialize the model
-		this.filtersModel.initializeFilters( filterStructure );
+		this.filtersModel.initializeFilters( filterStructure, namespaceStructure );
 
 		this._buildBaseFilterState();
 
@@ -46,6 +47,7 @@
 		);
 
 		this.updateStateBasedOnUrl();
+		this.switchView( 'default' );
 
 		// Update the changes list with the existing data
 		// so it gets processed
@@ -53,6 +55,15 @@
 			$changesList.length ? $changesList : 'NO_RESULTS',
 			$( 'fieldset.rcoptions' ).first()
 		);
+	};
+
+	/**
+	 * Switch the view of the filters model
+	 *
+	 * @param {string} view Requested view
+	 */
+	mw.rcfilters.Controller.prototype.switchView = function ( view ) {
+		this.filtersModel.switchView( view );
 	};
 
 	/**
@@ -143,6 +154,14 @@
 	};
 
 	/**
+	 * Toggle the namespaces inverted feature on and off
+	 */
+	mw.rcfilters.Controller.prototype.toggleInvertedNamespaces = function () {
+		this.filtersModel.toggleInvertedNamespaces();
+		this.updateChangesList();
+	};
+
+	/**
 	 * Set the highlight color for a filter item
 	 *
 	 * @param {string} filterName Name of the filter item
@@ -187,7 +206,8 @@
 			label || mw.msg( 'rcfilters-savedqueries-defaultlabel' ),
 			{
 				filters: this.filtersModel.getSelectedState(),
-				highlights: highlightedItems
+				highlights: highlightedItems,
+				nsinvert: this.areNamespacesInverted()
 			}
 		);
 
@@ -258,6 +278,9 @@
 			// Update model state from filters
 			this.filtersModel.toggleFiltersSelected( data.filters );
 
+			// Update namespace inverted property
+			this.filtersModel.toggleInvertedNamespaces( !!Number( data.nsinvert ) );
+
 			// Update highlight state
 			this.filtersModel.toggleHighlight( !!Number( highlights.highlight ) );
 			this.filtersModel.getItems().forEach( function ( filterItem ) {
@@ -294,7 +317,8 @@
 		return this.savedQueriesModel.findMatchingQuery(
 			{
 				filters: this.filtersModel.getSelectedState(),
-				highlights: highlightedItems
+				highlights: highlightedItems,
+				nsinvert: this.filtersModel.areNamespacesInverted()
 			}
 		);
 	};
@@ -481,6 +505,9 @@
 			)
 		);
 
+		// Update namespaces inverted
+		this.filtersModel.toggleInvertedNamespaces( !!Number( parameters.nsinvert ) );
+
 		// Update highlight state
 		this.filtersModel.toggleHighlight( !!Number( parameters.highlight ) );
 		this.filtersModel.getItems().forEach( function ( filterItem ) {
@@ -524,7 +551,7 @@
 				}
 			} );
 
-			return $.extend( true, {}, savedParams, savedHighlights );
+			return $.extend( true, {}, savedParams, savedHighlights, { nsinvert: data.nsinvert } );
 		}
 
 		return this.filtersModel.getDefaultParams();
@@ -573,6 +600,9 @@
 		// shouldn't appear at all? Or compare to existing query string
 		// and see if current state of a specific filter is needed?
 		uri.extend( this.filtersModel.getParametersFromFilters() );
+
+		// Namespaces inverted param
+		uri.query.nsinvert = Number( this.filtersModel.areNamespacesInverted() );
 
 		// highlight params
 		uri.query.highlight = Number( this.filtersModel.isHighlightEnabled() );
