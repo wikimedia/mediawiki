@@ -11,6 +11,7 @@
 	 * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
 	 * @param {Object} config Configuration object
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
+	 * @cfg {string} [view='default'] Sets up the initial view of the menu
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( controller, model, savedQueriesModel, config ) {
 		var rcFiltersRow,
@@ -98,9 +99,11 @@
 		this.resetButton.$element.on( 'mousedown', function ( e ) { e.stopPropagation(); } );
 		this.model.connect( this, {
 			initialize: 'onModelInitialize',
+			update: 'onModelUpdate',
 			itemUpdate: 'onModelItemUpdate',
 			highlightChange: 'onModelHighlightChange'
 		} );
+		this.input.connect( this, { change: 'onInputChange' } );
 		this.queriesModel.connect( this, { itemUpdate: 'onSavedQueriesItemUpdate' } );
 
 		// The filter list and button should appear side by side regardless of how
@@ -150,7 +153,6 @@
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget' );
 
-		this.populateFromModel();
 		this.reevaluateResetRestoreState();
 	};
 
@@ -160,6 +162,21 @@
 
 	/* Methods */
 
+	/**
+	 * Respond to input change event
+	 *
+	 * @param {[type]} value [description]
+	 * @return {[type]} [description]
+	 */
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onInputChange = function ( value ) {
+		var view = 'default';
+
+		if ( value.indexOf( this.model.getViewTrigger( 'namespaces' ) ) === 0 ) {
+			view = 'namespaces';
+		}
+
+		this.controller.switchView( view );
+	};
 	/**
 	 * Respond to query button click
 	 */
@@ -201,6 +218,23 @@
 		} else {
 			// Clear selection
 			this.selectTag( null );
+
+			// Clear input if the only thing in the input is the prefix
+			if (
+				// If there's only one character in the input
+				this.input.getValue().length === 1 &&
+				// If we are not in the default view
+				this.model.getCurrentView() !== 'default' &&
+				// If that one character is a prefix
+				this.input.getValue().indexOf(
+					this.model.getViewTrigger(
+						this.model.getCurrentView()
+					)
+				) === 0 &&
+			) {
+				// Clear the input
+				this.input.setValue( '' );
+			}
 		}
 	};
 
@@ -229,9 +263,42 @@
 	 * Respond to model initialize event
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onModelInitialize = function () {
-		this.populateFromModel();
-
 		this.setSavedQueryVisibility();
+	};
+
+	/**
+	 * Respond to model update event
+	 */
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onModelUpdate = function () {
+		this.updateElementsForView();
+	};
+
+	/**
+	 * Update the elements in the widget to the current view
+	 */
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.updateElementsForView = function () {
+		var view = this.model.getCurrentView(),
+			inputValue = this.input.getValue(),
+			newInputValue = inputValue;
+
+		switch ( view ) {
+			case 'namespaces':
+				if ( inputValue.indexOf( this.model.getViewTrigger( 'namespaces' ) ) !== 0 ) {
+					// Add the prefix to the input
+					newInputValue = this.model.getViewTrigger( 'namespaces' ) + inputValue;
+				}
+				break;
+			default:
+			case 'default':
+				if ( inputValue.indexOf( this.model.getViewTrigger( 'namespaces' ) ) === 0 ) {
+					// Remove the prefix
+					newInputValue = inputValue.substr( 1 );
+				}
+				break;
+		}
+
+		// Update input
+		this.input.setValue( newInputValue );
 	};
 
 	/**
@@ -251,6 +318,7 @@
 			);
 		}
 	};
+
 	/**
 	 * Respond to model itemUpdate event
 	 *
@@ -281,7 +349,7 @@
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.isAllowedData = function ( data ) {
 		return (
-			this.menu.getItemFromData( data ) &&
+			this.model.getItemByName( data ) &&
 			!this.isDuplicateData( data )
 		);
 	};
@@ -326,11 +394,14 @@
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onTagSelect = function ( tagItem ) {
 		var widget = this,
-			menuOption = this.menu.getItemFromData( tagItem.getData() ),
+			menuOption = this.menu.getItemFromModel( tagItem.getModel() ),
 			oldInputValue = this.input.getValue();
 
 		// Reset input
 		this.input.setValue( '' );
+
+		// Switch view
+		this.controller.switchView( tagItem.getView() );
 
 		// Parent method
 		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.prototype.onTagSelect.call( this, tagItem );
@@ -429,46 +500,6 @@
 				filterFromInput: true
 			}, menuConfig )
 		);
-	};
-
-	/**
-	 * Populate the menu from the model
-	 */
-	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.populateFromModel = function () {
-		var widget = this,
-			items = [];
-
-		// Reset
-		this.getMenu().clearItems();
-
-		$.each( this.model.getFilterGroups(), function ( groupName, groupModel ) {
-			items.push(
-				// Group section
-				new mw.rcfilters.ui.FilterMenuSectionOptionWidget(
-					widget.controller,
-					groupModel,
-					{
-						$overlay: widget.$overlay
-					}
-				)
-			);
-
-			// Add items
-			widget.model.getGroupFilters( groupName ).forEach( function ( filterItem ) {
-				items.push(
-					new mw.rcfilters.ui.FilterMenuOptionWidget(
-						widget.controller,
-						filterItem,
-						{
-							$overlay: widget.$overlay
-						}
-					)
-				);
-			} );
-		} );
-
-		// Add all items to the menu
-		this.getMenu().addItems( items );
 	};
 
 	/**
