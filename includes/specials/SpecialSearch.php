@@ -356,7 +356,7 @@ class SpecialSearch extends SpecialPage {
 		$hasOtherResults = $textMatches &&
 			$textMatches->hasInterwikiResults( SearchResultSet::INLINE_RESULTS );
 
-		if ( $textMatches->hasInterwikiResults( SearchResultSet::SECONDARY_RESULTS ) ) {
+		if ( $textMatches && $textMatches->hasInterwikiResults( SearchResultSet::SECONDARY_RESULTS ) ) {
 			$out->addHTML( '<div class="searchresults mw-searchresults-has-iw">' );
 		} else {
 			$out->addHTML( '<div class="searchresults">' );
