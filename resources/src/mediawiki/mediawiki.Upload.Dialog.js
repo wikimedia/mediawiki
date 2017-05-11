@@ -58,6 +58,12 @@
 
 	/**
 	 * @inheritdoc
+	 * @property name
+	 */
+	mw.Upload.Dialog.static.name = 'mwUploadDialog';
+
+	/**
+	 * @inheritdoc
 	 * @property title
 	 */
 	mw.Upload.Dialog.static.title = mw.msg( 'upload-dialog-title' );
