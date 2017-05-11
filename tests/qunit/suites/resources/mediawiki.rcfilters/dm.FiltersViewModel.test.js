@@ -109,6 +109,73 @@
 		);
 	} );
 
+	QUnit.test( 'Setting up namespaces', function ( assert ) {
+		var filtersDefinition = [ {
+				name: 'group1',
+				title: 'Group 1',
+				type: 'send_unselected_if_any',
+				filters: [
+					{
+						name: 'filter1',
+						label: 'Group 1: Filter 1',
+						description: 'Description of Filter 1 in Group 1'
+					},
+					{
+						name: 'filter2',
+						label: 'Group 1: Filter 2',
+						description: 'Description of Filter 2 in Group 1'
+					}
+				]
+			} ],
+			namespaceDefinition = {
+				0: 'Main',
+				1: 'Talk',
+				2: 'User',
+				3: 'User talk'
+			},
+			model = new mw.rcfilters.dm.FiltersViewModel();
+
+		model.initializeFilters( filtersDefinition, namespaceDefinition );
+
+		assert.ok(
+			model.getItemByName( 'namespace__0' ) instanceof mw.rcfilters.dm.FilterItem &&
+			model.getItemByName( 'namespace__1' ) instanceof mw.rcfilters.dm.FilterItem &&
+			model.getItemByName( 'namespace__2' ) instanceof mw.rcfilters.dm.FilterItem &&
+			model.getItemByName( 'namespace__3' ) instanceof mw.rcfilters.dm.FilterItem,
+			'Namespaces instantiated and stored correctly'
+		);
+
+		assert.deepEqual(
+			model.getSelectedState(),
+			{
+				group1__filter1: false,
+				group1__filter2: false,
+				namespace__0: false,
+				namespace__1: false,
+				namespace__2: false,
+				namespace__3: false
+			},
+			'Initial state of namespaces'
+		);
+
+		model.toggleFiltersSelected( {
+			namespace__0: true,
+			namespace__2: true
+		} );
+		assert.deepEqual(
+			model.getSelectedState(),
+			{
+				group1__filter1: false,
+				group1__filter2: false,
+				namespace__0: true,
+				namespace__1: false,
+				namespace__2: true,
+				namespace__3: false
+			},
+			'Updating namespace states correctly'
+		);
+	} );
+
 	QUnit.test( 'Default filters', function ( assert ) {
 		var definition = [ {
 				name: 'group1',
@@ -245,6 +312,12 @@
 					}
 				]
 			} ],
+			namespaceDefinition = {
+				0: 'Main',
+				1: 'Talk',
+				2: 'User',
+				3: 'User talk'
+			},
 			testCases = [
 				{
 					query: 'group',
@@ -269,6 +342,18 @@
 						group2: [ 'group2__filter1', 'group2__filter2' ]
 					},
 					reason: 'Finds filters containing the query string in their group title'
+				},
+				{
+					query: ':main',
+					expectedMatches: {
+						namespace: [ 'namespace__0' ]
+					},
+					reason: 'Finds namespaces using the prefix ":"'
+				},
+				{
+					query: ':title',
+					expectedMatches: {},
+					reason: 'Finds no matches for string that matches a filter that uses the prefix ":"'
 				}
 			],
 			model = new mw.rcfilters.dm.FiltersViewModel(),
@@ -282,7 +367,7 @@
 				return result;
 			};
 
-		model.initializeFilters( definition );
+		model.initializeFilters( definition, namespaceDefinition );
 
 		testCases.forEach( function ( testCase ) {
 			matches = model.findMatches( testCase.query );
@@ -380,7 +465,9 @@
 				hidefilter4: '0',
 				hidefilter5: '0',
 				hidefilter6: '0',
-				group3: ''
+				group3: '',
+				highlight: '0',
+				invert: '0'
 			},
 			'Unselected filters return all parameters falsey or \'\'.'
 		);
@@ -406,7 +493,9 @@
 				hidefilter4: '0',
 				hidefilter5: '0',
 				hidefilter6: '0',
-				group3: ''
+				group3: '',
+				highlight: '0',
+				invert: '0'
 			},
 			'One filter in one "send_unselected_if_any" group returns the other parameters truthy.'
 		);
@@ -432,7 +521,9 @@
 				hidefilter4: '0',
 				hidefilter5: '0',
 				hidefilter6: '0',
-				group3: ''
+				group3: '',
+				highlight: '0',
+				invert: '0'
 			},
 			'Two filters in one "send_unselected_if_any" group returns the other parameters truthy.'
 		);
@@ -458,7 +549,9 @@
 				hidefilter4: '0',
 				hidefilter5: '0',
 				hidefilter6: '0',
-				group3: ''
+				group3: '',
+				highlight: '0',
+				invert: '0'
 			},
 			'All filters selected in one "send_unselected_if_any" group returns all parameters falsy.'
 		);
@@ -481,7 +574,9 @@
 				hidefilter4: '0',
 				hidefilter5: '0',
 				hidefilter6: '0',
-				group3: 'filter7'
+				group3: 'filter7',
+				highlight: '0',
+				invert: '0'
 			},
 			'One filter selected in "string_option" group returns that filter in the value.'
 		);
@@ -504,7 +599,9 @@
 				hidefilter4: '0',
 				hidefilter5: '0',
 				hidefilter6: '0',
-				group3: 'filter7,filter8'
+				group3: 'filter7,filter8',
+				highlight: '0',
+				invert: '0'
 			},
 			'Two filters selected in "string_option" group returns those filters in the value.'
 		);
@@ -527,7 +624,9 @@
 				hidefilter4: '0',
 				hidefilter5: '0',
 				hidefilter6: '0',
-				group3: 'all'
+				group3: 'all',
+				highlight: '0',
+				invert: '0'
 			},
 			'All filters selected in "string_option" group returns \'all\'.'
 		);
@@ -591,7 +690,9 @@
 						hidefilter4: '0',
 						hidefilter5: '0',
 						hidefilter6: '0',
-						group3: 'filter7,filter8'
+						group3: 'filter7,filter8',
+						highlight: '0',
+						invert: '0'
 					},
 					msg: 'Given an explicit (complete) filter state object, the result is the same as if the object given represented the model state.'
 				},
@@ -610,7 +711,9 @@
 						hidefilter4: '0',
 						hidefilter5: '0',
 						hidefilter6: '0',
-						group3: ''
+						group3: '',
+						highlight: '0',
+						invert: '0'
 					},
 					msg: 'Given an explicit (incomplete) filter state object, the result is the same as if the object give represented the model state.'
 				},
@@ -623,7 +726,9 @@
 						hidefilter4: '0',
 						hidefilter5: '0',
 						hidefilter6: '0',
-						group3: ''
+						group3: '',
+						highlight: '0',
+						invert: '0'
 					},
 					msg: 'Given an explicit empty object, the result is all filters set to their falsey unselected value.'
 				}
@@ -731,7 +836,9 @@
 				group2__hidefilter6: false,
 				group3__filter7: false,
 				group3__filter8: false,
-				group3__filter9: false
+				group3__filter9: false,
+				invert: false,
+				highlight: false
 			},
 			model = new mw.rcfilters.dm.FiltersViewModel();
 
@@ -794,11 +901,17 @@
 		// The result here is ignoring the first toggleFiltersSelected call
 		assert.deepEqual(
 			model.getSelectedState(),
-			$.extend( {}, baseFilterRepresentation, {
+			{
+				group1__hidefilter1: false,
+				group1__hidefilter2: false,
+				group1__hidefilter3: false,
 				group2__hidefilter4: true,
 				group2__hidefilter5: true,
-				group2__hidefilter6: false
-			} ),
+				group2__hidefilter6: false,
+				group3__filter7: false,
+				group3__filter8: false,
+				group3__filter9: false
+			},
 			'getFiltersFromParameters does not care about previous or existing state.'
 		);
 
@@ -813,11 +926,17 @@
 		);
 		assert.deepEqual(
 			model.getSelectedState(),
-			$.extend( {}, baseFilterRepresentation, {
+			{
+				group1__hidefilter1: false,
+				group1__hidefilter2: false,
+				group1__hidefilter3: false,
+				group2__hidefilter4: false,
+				group2__hidefilter5: false,
+				group2__hidefilter6: false,
 				group3__filter7: true,
 				group3__filter8: false,
 				group3__filter9: false
-			} ),
+			},
 			'A \'string_options\' parameter containing 1 value, results in the corresponding filter as checked'
 		);
 
@@ -828,11 +947,17 @@
 		);
 		assert.deepEqual(
 			model.getSelectedState(),
-			$.extend( {}, baseFilterRepresentation, {
+			{
+				group1__hidefilter1: false,
+				group1__hidefilter2: false,
+				group1__hidefilter3: false,
+				group2__hidefilter4: false,
+				group2__hidefilter5: false,
+				group2__hidefilter6: false,
 				group3__filter7: true,
 				group3__filter8: true,
 				group3__filter9: false
-			} ),
+			},
 			'A \'string_options\' parameter containing 2 values, results in both corresponding filters as checked'
 		);
 
@@ -843,11 +968,17 @@
 		);
 		assert.deepEqual(
 			model.getSelectedState(),
-			$.extend( {}, baseFilterRepresentation, {
+			{
+				group1__hidefilter1: false,
+				group1__hidefilter2: false,
+				group1__hidefilter3: false,
+				group2__hidefilter4: false,
+				group2__hidefilter5: false,
+				group2__hidefilter6: false,
 				group3__filter7: true,
 				group3__filter8: true,
 				group3__filter9: true
-			} ),
+			},
 			'A \'string_options\' parameter containing all values, results in all filters of the group as checked.'
 		);
 
@@ -858,11 +989,17 @@
 		);
 		assert.deepEqual(
 			model.getSelectedState(),
-			$.extend( {}, baseFilterRepresentation, {
+			{
+				group1__hidefilter1: false,
+				group1__hidefilter2: false,
+				group1__hidefilter3: false,
+				group2__hidefilter4: false,
+				group2__hidefilter5: false,
+				group2__hidefilter6: false,
 				group3__filter7: true,
 				group3__filter8: true,
 				group3__filter9: true
-			} ),
+			},
 			'A \'string_options\' parameter containing the value \'all\', results in all filters of the group as checked.'
 		);
 
@@ -873,11 +1010,17 @@
 		);
 		assert.deepEqual(
 			model.getSelectedState(),
-			$.extend( {}, baseFilterRepresentation, {
+			{
+				group1__hidefilter1: false,
+				group1__hidefilter2: false,
+				group1__hidefilter3: false,
+				group2__hidefilter4: false,
+				group2__hidefilter5: false,
+				group2__hidefilter6: false,
 				group3__filter7: true,
 				group3__filter8: false,
 				group3__filter9: true
-			} ),
+			},
 			'A \'string_options\' parameter containing an invalid value, results in the invalid value ignored and the valid corresponding filters checked.'
 		);
 	} );
