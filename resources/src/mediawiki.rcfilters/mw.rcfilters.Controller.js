@@ -23,23 +23,24 @@
 	 * Initialize the filter and parameter states
 	 *
 	 * @param {Array} filterStructure Filter definition and structure for the model
+	 * @param {Object} [namespaceStructure] Namespace definition
 	 */
-	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure ) {
+	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure ) {
 		var parsedSavedQueries, validParameterNames,
 			uri = new mw.Uri(),
 			$changesList = $( '.mw-changeslist' ).first().contents();
 
 		// Initialize the model
-		this.filtersModel.initializeFilters( filterStructure );
+		this.filtersModel.initializeFilters( filterStructure, namespaceStructure );
 
 		this._buildBaseFilterState();
 		this._buildEmptyParameterState();
 		validParameterNames = Object.keys( this._getEmptyParameterState() )
 			.filter( function ( param ) {
-				// Remove 'highlight' parameter from this check;
+				// Remove 'highlight' and 'invert' parameters from this check;
 				// if it's the only parameter in the URL we still
 				// want to consider the URL 'empty' for defaults to load
-				return param !== 'highlight';
+				return param !== 'highlight' && param !== 'invert';
 			} );
 
 		try {
@@ -74,15 +75,20 @@
 			// No valid parameters are given, load defaults
 			this._updateModelState(
 				$.extend( true,
-					// We're ignoring the highlight parameter, if it exist, in
-					// the check for "emptiness" but we should retain its value
-					// when we update the model state
-					{ highlight: String( Number( uri.query.highlight ) ) },
+					// We're ignoring the highlight and invert parameters,
+					// if they exist, in the check for "emptiness" but we
+					// should retain their value when we update the model state
+					{
+						highlight: String( Number( uri.query.highlight ) ),
+						invert: String( Number( uri.query.invert ) )
+					},
 					this._getDefaultParams()
 				)
 			);
 			this.updateChangesList();
 		}
+
+		this.switchView( 'default' );
 
 		// Update the changes list with the existing data
 		// so it gets processed
@@ -90,6 +96,15 @@
 			$changesList.length ? $changesList : 'NO_RESULTS',
 			$( 'fieldset.rcoptions' ).first()
 		);
+	};
+
+	/**
+	 * Switch the view of the filters model
+	 *
+	 * @param {string} view Requested view
+	 */
+	mw.rcfilters.Controller.prototype.switchView = function ( view ) {
+		this.filtersModel.switchView( view );
 	};
 
 	/**
@@ -180,6 +195,14 @@
 	};
 
 	/**
+	 * Toggle the namespaces inverted feature on and off
+	 */
+	mw.rcfilters.Controller.prototype.toggleInvertedNamespaces = function () {
+		this.filtersModel.toggleInvertedNamespaces();
+		this.updateChangesList();
+	};
+
+	/**
 	 * Set the highlight color for a filter item
 	 *
 	 * @param {string} filterName Name of the filter item
@@ -224,7 +247,8 @@
 			label || mw.msg( 'rcfilters-savedqueries-defaultlabel' ),
 			{
 				filters: this.filtersModel.getSelectedState(),
-				highlights: highlightedItems
+				highlights: highlightedItems,
+				invert: this.areNamespacesInverted()
 			}
 		);
 
@@ -295,6 +319,9 @@
 			// Update model state from filters
 			this.filtersModel.toggleFiltersSelected( data.filters );
 
+			// Update namespace inverted property
+			this.filtersModel.toggleInvertedNamespaces( !!Number( data.invert ) );
+
 			// Update highlight state
 			this.filtersModel.toggleHighlight( !!Number( highlights.highlight ) );
 			this.filtersModel.getItems().forEach( function ( filterItem ) {
@@ -331,7 +358,8 @@
 		return this.savedQueriesModel.findMatchingQuery(
 			{
 				filters: this.filtersModel.getSelectedState(),
-				highlights: highlightedItems
+				highlights: highlightedItems,
+				invert: this.filtersModel.areNamespacesInverted()
 			}
 		);
 	};
@@ -551,6 +579,9 @@
 			)
 		);
 
+		// Update namespaces inverted
+		this.filtersModel.toggleInvertedNamespaces( !!Number( parameters.invert ) );
+
 		// Update highlight state
 		this.filtersModel.toggleHighlight( !!Number( parameters.highlight ) );
 		this.filtersModel.getItems().forEach( function ( filterItem ) {
@@ -594,7 +625,7 @@
 				}
 			} );
 
-			return $.extend( true, {}, savedParams, savedHighlights );
+			return $.extend( true, {}, savedParams, savedHighlights, { invert: data.invert } );
 		}
 
 		return this.filtersModel.getDefaultParams();
@@ -651,6 +682,13 @@
 				delete uri.query[ paramName ];
 			}
 		} );
+
+		// Namespaces inverted param
+		if ( this.filtersModel.areNamespacesInverted() ) {
+			uri.query.invert = '1';
+		} else {
+			delete uri.query.invert;
+		}
 
 		// highlight params
 		if ( this.filtersModel.isHighlightEnabled() ) {
