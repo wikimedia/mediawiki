@@ -275,7 +275,7 @@
 	"redirectedfrom": "(Omdirigeret fra $1)",
 	"redirectpagesub": "Omdirigeringsside",
 	"redirectto": "Omdiriger til:",
-	"lastmodifiedat": "Denne side blev senest ændret $1 kl. $2.",
+	"lastmodifiedat": "Denne side blev senest redigeret $1 kl. $2.",
 	"viewcount": "Siden er vist {{PLURAL:$1|én gang|$1 gange}}.",
 	"protectedpage": "Beskyttet side",
 	"jumpto": "Skift til:",

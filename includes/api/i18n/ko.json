@@ -409,6 +409,8 @@
 	"apihelp-query+recentchanges-paramvalue-prop-user": "편집에 임할 사용자를 추가하고 IP인 경우 태그합니다.",
 	"apihelp-query+recentchanges-paramvalue-prop-userid": "편집에 임할 사용자를 추가합니다.",
 	"apihelp-query+recentchanges-paramvalue-prop-flags": "편집에 대한 플래그를 추가합니다.",
+	"apihelp-query+revisions-param-startid": "이 판의 타임스탬프에서 열거를 시작합니다. 이 판은 존재해야 하지만 이 문서에 속할 필요는 없습니다.",
+	"apihelp-query+revisions-param-endid": "이 판의 타임스탬프에서 열거를 중단합니다. 이 판은 존재해야 하지만 이 문서에 속할 필요는 없습니다.",
 	"apihelp-query+revisions+base-paramvalue-prop-size": "판의 길이. (바이트)",
 	"apihelp-query+revisions+base-paramvalue-prop-sha1": "판의 SHA-1 (base 16).",
 	"apihelp-query+revisions+base-paramvalue-prop-contentmodel": "판의 콘텐츠 모델 ID.",

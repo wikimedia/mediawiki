@@ -18,7 +18,8 @@
 			"Matma Rex",
 			"Macofe",
 			"Nemo bis",
-			"Alefbeis"
+			"Alefbeis",
+			"Sol lemon"
 		]
 	},
 	"tog-underline": "שטרייכט אונטער לינקען",
@@ -1243,6 +1244,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (זעט אויך [[Special:NewPages|די רשימה פון נייע בלעטער]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "ווייזן",
+	"rcfilters-savedqueries-remove": "נעם אראפ",
 	"rcfilters-invalid-filter": "אומגילטיגער פֿילטער",
 	"rcfilters-filterlist-title": "פֿילטערס",
 	"rcfilters-filterlist-noresults": "קיין פֿילטערס נישט געטראפֿן",

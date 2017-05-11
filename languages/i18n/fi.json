@@ -1335,7 +1335,7 @@
 	"rcfilters-activefilters": "Aktiiviset suodattimet",
 	"rcfilters-restore-default-filters": "Palauta oletussuodattimet",
 	"rcfilters-clear-all-filters": "Tyhjennä kaikki suodattimet",
-	"rcfilters-search-placeholder": "Suodata tuoreita muutoksia (selaa tai aloita kirjoittamaan)",
+	"rcfilters-search-placeholder": "Suodata tuoreita muutoksia (selaa tai ala kirjoittaa)",
 	"rcfilters-invalid-filter": "Virheellinen suodatin",
 	"rcfilters-empty-filter": "Ei aktiivisia suodattimia. Kaikki muutokset näytetään.",
 	"rcfilters-filterlist-title": "Suodattimet",

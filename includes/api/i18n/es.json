@@ -1549,6 +1549,7 @@
 	"apierror-reauthenticate": "No te has autentificado recientemente en esta sesión. Por favor, vuelve a autentificarte.",
 	"apierror-revdel-mutuallyexclusive": "No se puede usar el mismo campo en <var>hide</var> y <var>show</var>.",
 	"apierror-revdel-paramneeded": "Se requiere al menos un valor para <var>hide</var> y/o <var>show</var>.",
+	"apierror-revisions-badid": "No se encontró ninguna revisión para el parámetro <var>$1</var>.",
 	"apierror-revisions-norevids": "El parámetro <var>revids</var> no se puede utilizar junto con las opciones de lista (<var>$1limit</var>, <var>$1startid</var>, <var>$1endid</var>, <kbd>$1dir=newer</kbd>, <var>$1user</var>, <var>$1excludeuser</var>, <var>$1start</var> y <var>$1end</var>).",
 	"apierror-revisions-singlepage": "Se utilizó <var>titles</var>, <var>pageids</var> o un generador para proporcionar múltiples páginas, pero los parámetros <var>$1limit</var>, <var>$1startid</var>, <var>$1endid</var>, <kbd>$1dir=newer</kbd>, <var>$1user</var>, <var>$1excludeuser</var>, <var>$1start</var> y <var>$1end</var> solo se pueden utilizar en una sola página.",
 	"apierror-revwrongpage": "r$1 no es una revisión de $2.",

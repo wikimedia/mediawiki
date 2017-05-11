@@ -1490,6 +1490,7 @@
 	"unusedimages": "Ubrukte filer",
 	"wantedcategories": "Etterspurde kategoriar",
 	"wantedpages": "Etterspurde sider",
+	"wantedpages-summary": "Liste over uoppretta sider med flest innkomande lenkjer, unnateke sider som berre er lenkja frå omdirigeringar. For ei liste over uoppretta sider som er lenkja frå omdirigeringar, sjå [[{{#special:BrokenRedirects}}|lista over uverksame omdirigeringar]].",
 	"wantedpages-badtitle": "Ugyldig tittel mellom resultata: $1",
 	"wantedfiles": "Etterspurde filer",
 	"wantedfiletext-cat": "Desse filene er nytta men finst ikkje. Filer frå utannettstadlege samlingar kan vera lista opp sjølv om dei finst. Slike falske positivar vert <del>strokne ut</del>. Sider som nyttar filer som ikkje finst vert lista opp i [[:$1]].",
