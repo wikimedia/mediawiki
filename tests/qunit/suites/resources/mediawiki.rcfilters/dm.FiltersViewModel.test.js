@@ -188,16 +188,6 @@
 		assert.deepEqual(
 			model.getDefaultParams(),
 			{
-				group1__hidefilter1_color: null,
-				group1__hidefilter2_color: null,
-				group1__hidefilter3_color: null,
-				group2__hidefilter4_color: null,
-				group2__hidefilter5_color: null,
-				group2__hidefilter6_color: null,
-				group3__filter7_color: null,
-				group3__filter8_color: null,
-				group3__filter9_color: null,
-				highlight: '0',
 				hidefilter1: '1',
 				hidefilter2: '0',
 				hidefilter3: '1',
