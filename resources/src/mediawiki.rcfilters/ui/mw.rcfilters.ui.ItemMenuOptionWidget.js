@@ -11,6 +11,7 @@
 	 */
 	mw.rcfilters.ui.ItemMenuOptionWidget = function MwRcfiltersUiItemMenuOptionWidget( controller, model, config ) {
 		var layout,
+			classes = [],
 			$label = $( '<div>' )
 				.addClass( 'mw-rcfilters-ui-itemMenuOptionWidget-label' );
 
@@ -55,6 +56,11 @@
 		);
 		this.highlightButton.toggle( this.model.isHighlightEnabled() );
 
+		this.excludeLabel = new OO.ui.LabelWidget( {
+			label: mw.msg( 'rcfilters-filter-excluded' )
+		} );
+		this.excludeLabel.toggle( this.model.isSelected() && this.model.isInverted() );
+
 		layout = new OO.ui.FieldLayout( this.checkboxWidget, {
 			label: $label,
 			align: 'inline'
@@ -71,6 +77,7 @@
 
 		this.$element
 			.addClass( 'mw-rcfilters-ui-itemMenuOptionWidget' )
+			.addClass( 'mw-rcfilters-ui-itemMenuOptionWidget-view-' + this.model.getGroupModel().getView() )
 			.append(
 				$( '<div>' )
 					.addClass( 'mw-rcfilters-ui-table' )
@@ -82,11 +89,22 @@
 									.addClass( 'mw-rcfilters-ui-cell mw-rcfilters-ui-itemMenuOptionWidget-itemCheckbox' )
 									.append( layout.$element ),
 								$( '<div>' )
+									.addClass( 'mw-rcfilters-ui-cell mw-rcfilters-ui-itemMenuOptionWidget-excludeLabel' )
+									.append( this.excludeLabel.$element ),
+								$( '<div>' )
 									.addClass( 'mw-rcfilters-ui-cell mw-rcfilters-ui-itemMenuOptionWidget-highlightButton' )
 									.append( this.highlightButton.$element )
 							)
 					)
 			);
+
+		if ( this.model.getIdentifiers() ) {
+			this.model.getIdentifiers().forEach( function ( ident ) {
+				classes.push( 'mw-rcfilters-ui-itemMenuOptionWidget-identifier-' + ident );
+			} );
+
+			this.$element.addClass( classes.join( ' ' ) );
+		}
 	};
 
 	/* Initialization */
@@ -107,6 +125,7 @@
 		this.checkboxWidget.setSelected( this.model.isSelected() );
 
 		this.highlightButton.toggle( this.model.isHighlightEnabled() );
+		this.excludeLabel.toggle( this.model.isSelected() && this.model.isInverted() );
 	};
 
 	/**
