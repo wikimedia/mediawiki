@@ -1089,6 +1089,22 @@ MESSAGE;
 					$strContent = self::filter( $filter, $strContent );
 				}
 
+				if ( $context->getOnly() === 'styles' ) {
+					// @import statements may only appear at the beginning of a file.
+					//
+					// If we see one, and this isn't the first module, we're basically boned. We can't "bubble
+					// it up" to the top, because that would change the order in which styles apply.
+					//
+					// We can work around this by turning everything we've generated so far into another
+					// @import rule, which is pretty crazy, probably hurts performance and definitely hurts
+					// debuggability, but what else can you do when users just want to make you sad?
+					if ( $out !== '' && strpos( $strContent, '@import' ) !== false ) {
+						$dataUri = CSSMin::encodeStringAsDataURI( $out, 'text/css', false );
+						$urlValue = CSSMin::buildUrlValue( $dataUri );
+						$out = "/* Import rules make ResourceLoader sad :( */\n@import $urlValue;\n";
+					}
+				}
+
 				$out .= $strContent;
 
 			} catch ( Exception $e ) {

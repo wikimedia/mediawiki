@@ -2529,6 +2529,13 @@ return [
 		],
 	],
 
+	'test1' => [
+		'styles' => 'resources/test1.css',
+	],
+	'test2' => [
+		'styles' => 'resources/test2.css',
+	],
+
 	/* OOjs UI */
 	// @see ResourcesOOUI.php
 ];
