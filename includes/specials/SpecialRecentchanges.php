@@ -138,6 +138,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @param string $subpage
 	 */
 	public function execute( $subpage ) {
+		global $wgStructuredChangeFiltersEnableSaving;
+
 		// Backwards-compatibility: redirect to new feed URLs
 		$feedFormat = $this->getRequest()->getVal( 'feed' );
 		if ( !$this->including() && $feedFormat ) {
@@ -178,6 +180,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			);
 
 			$out->addJsConfigVars( 'wgStructuredChangeFilters', $jsData['groups'] );
+			$out->addJsConfigVars(
+				'wgStructuredChangeFiltersEnableSaving',
+				$wgStructuredChangeFiltersEnableSaving
+			);
 		}
 	}
 
