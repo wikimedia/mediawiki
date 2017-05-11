@@ -23,11 +23,12 @@
 	 *
 	 * @param {Array} filterStructure Filter definition and structure for the model
 	 */
-	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure ) {
+	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure ) {
 		var parsedSavedQueries,
 			$changesList = $( '.mw-changeslist' ).first().contents();
+
 		// Initialize the model
-		this.filtersModel.initializeFilters( filterStructure );
+		this.filtersModel.initializeFilters( filterStructure, namespaceStructure );
 
 		this._buildBaseFilterState();
 
@@ -45,6 +46,7 @@
 			this._getBaseState()
 		);
 		this.updateStateBasedOnUrl();
+		this.switchView( 'default' );
 
 		// Update the changes list with the existing data
 		// so it gets processed
@@ -52,6 +54,15 @@
 			$changesList.length ? $changesList : 'NO_RESULTS',
 			$( 'fieldset.rcoptions' ).first()
 		);
+	};
+
+	/**
+	 * Switch the view of the filters model
+	 *
+	 * @param {string} view Requested view
+	 */
+	mw.rcfilters.Controller.prototype.switchView = function ( view ) {
+		this.filtersModel.switchView( view );
 	};
 
 	/**

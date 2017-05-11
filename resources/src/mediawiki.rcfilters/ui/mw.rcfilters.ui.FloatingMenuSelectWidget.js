@@ -18,6 +18,8 @@
 
 		this.controller = controller;
 		this.model = model;
+		this.currentView = '';
+		this.views = {};
 
 		this.inputValue = '';
 		this.$overlay = config.$overlay || this.$element;
@@ -50,6 +52,13 @@
 			classes: [ 'mw-rcfilters-ui-floatingMenuSelectWidget-noresults' ]
 		} );
 
+		// Events
+		this.model.connect( this, {
+			update: 'onModelUpdate',
+			initialize: 'onModelInitialize'
+		} );
+
+		// Initialization
 		this.$element
 			.addClass( 'mw-rcfilters-ui-floatingMenuSelectWidget' )
 			.append( header.$element )
@@ -64,6 +73,7 @@
 					.addClass( 'mw-rcfilters-ui-floatingMenuSelectWidget-footer' )
 			);
 		}
+		this.switchView( this.model.getCurrentView() );
 	};
 
 	/* Initialize */
@@ -79,6 +89,84 @@
 	 */
 
 	/* Methods */
+
+	/**
+	 * Respond to model update event
+	 */
+	mw.rcfilters.ui.FloatingMenuSelectWidget.prototype.onModelUpdate = function () {
+		// Change view
+		this.switchView( this.model.getCurrentView() );
+	};
+
+	/**
+	 * Respond to model initialize event. Populate the menu from the model
+	 */
+	mw.rcfilters.ui.FloatingMenuSelectWidget.prototype.onModelInitialize = function () {
+		var widget = this,
+			items = [],
+			views = { default: [] };
+
+		// Reset
+		this.clearItems();
+
+		$.each( this.model.getFilterGroups(), function ( groupName, groupModel ) {
+			var currentItems = [],
+				view = groupModel.getView();
+
+			currentItems.push(
+				// Group section
+				new mw.rcfilters.ui.FilterMenuSectionOptionWidget(
+					widget.controller,
+					groupModel,
+					{
+						$overlay: widget.$overlay
+					}
+				)
+			);
+
+			// Add items
+			widget.model.getGroupFilters( groupName ).forEach( function ( filterItem ) {
+				currentItems.push(
+					new mw.rcfilters.ui.FilterMenuOptionWidget(
+						widget.controller,
+						filterItem,
+						{
+							$overlay: widget.$overlay
+						}
+					)
+				);
+			} );
+
+			// Cache the items per view, so we can switch between them
+			// without rebuilding the widgets each time
+			widget.views[ view ] = widget.views[ view ] || [];
+			widget.views[ view ] = widget.views[ view ].concat( currentItems );
+		} );
+
+		this.switchView( this.model.getCurrentView() );
+	};
+
+
+	/**
+	 * Switch view
+	 *
+	 * @param {string} [viewName] View name. If not given, default is used.
+	 */
+	mw.rcfilters.ui.FloatingMenuSelectWidget.prototype.switchView = function ( viewName ) {
+		viewName = viewName || 'default';
+
+		if ( this.views[ viewName ] && this.currentView !== viewName ) {
+			this.clearItems();
+			this.addItems( this.views[ viewName ] );
+
+			this.$element
+				.data( 'view', viewName )
+				.removeClass( 'mw-rcfilters-ui-floatingMenuSelectWidget-view-' + this.currentView )
+				.addClass( 'mw-rcfilters-ui-floatingMenuSelectWidget-view-' + viewName );
+
+			this.currentView = viewName;
+		}
+	};
 
 	/**
 	 * @fires itemVisibilityChange

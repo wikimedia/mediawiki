@@ -9,6 +9,8 @@
 	 * @param {string} name Group name
 	 * @param {Object} [config] Configuration options
 	 * @cfg {string} [type='send_unselected_if_any'] Group type
+	 * @cfg {string} [view='default'] Name of the display group this group
+	 *  is a part of.
 	 * @cfg {string} [title] Group title
 	 * @cfg {string} [separator='|'] Value separator for 'string_options' groups
 	 * @cfg {boolean} [active] Group is active
@@ -29,8 +31,10 @@
 
 		this.name = name;
 		this.type = config.type || 'send_unselected_if_any';
+		this.view = config.view || 'default';
 		this.title = config.title;
 		this.separator = config.separator || '|';
+		this.labelPrefixKey = config.labelPrefixKey;
 
 		this.active = !!config.active;
 		this.fullCoverage = !!config.fullCoverage;
@@ -75,9 +79,11 @@
 			var subsetNames = [],
 				filterItem = new mw.rcfilters.dm.FilterItem( filter.name, model, {
 					group: model.getName(),
-					label: mw.msg( filter.label ),
-					description: mw.msg( filter.description ),
-					cssClass: filter.cssClass
+					label: filter.label,
+					description: filter.description,
+					labelPrefixKey: model.labelPrefixKey,
+					cssClass: filter.cssClass,
+					identifiers: filter.identifiers
 				} );
 
 			filter.subset = filter.subset || [];
@@ -529,6 +535,15 @@
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.getType = function () {
 		return this.type;
+	};
+
+	/**
+	 * Get display group
+	 *
+	 * @return {string} Display group
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.getView = function () {
+		return this.view;
 	};
 
 	/**

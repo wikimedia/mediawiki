@@ -11,6 +11,7 @@
 	 * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
 	 * @param {Object} config Configuration object
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
+	 * @cfg {string} [view='default'] Sets up the initial view of the menu
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( controller, model, savedQueriesModel, config ) {
 		var rcFiltersRow,
@@ -101,6 +102,7 @@
 			itemUpdate: 'onModelItemUpdate',
 			highlightChange: 'onModelHighlightChange'
 		} );
+		this.input.connect( this, { change: 'onInputChange' } );
 		this.queriesModel.connect( this, { itemUpdate: 'onSavedQueriesItemUpdate' } );
 
 		// The filter list and button should appear side by side regardless of how
@@ -150,7 +152,6 @@
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget' );
 
-		this.populateFromModel();
 		this.reevaluateResetRestoreState();
 	};
 
@@ -160,6 +161,21 @@
 
 	/* Methods */
 
+	/**
+	 * Respond to input change event
+	 *
+	 * @param {[type]} value [description]
+	 * @return {[type]} [description]
+	 */
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onInputChange = function ( value ) {
+		var view = 'default';
+
+		if ( value.indexOf( ':' ) === 0 ) {
+			view = 'namespaces';
+		}
+
+		this.controller.switchView( view );
+	};
 	/**
 	 * Respond to query button click
 	 */
@@ -229,8 +245,6 @@
 	 * Respond to model initialize event
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onModelInitialize = function () {
-		this.populateFromModel();
-
 		this.setSavedQueryVisibility();
 	};
 
@@ -281,7 +295,7 @@
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.isAllowedData = function ( data ) {
 		return (
-			this.menu.getItemFromData( data ) &&
+			this.model.getItemByName( data ) &&
 			!this.isDuplicateData( data )
 		);
 	};
@@ -429,46 +443,6 @@
 				filterFromInput: true
 			}, menuConfig )
 		);
-	};
-
-	/**
-	 * Populate the menu from the model
-	 */
-	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.populateFromModel = function () {
-		var widget = this,
-			items = [];
-
-		// Reset
-		this.getMenu().clearItems();
-
-		$.each( this.model.getFilterGroups(), function ( groupName, groupModel ) {
-			items.push(
-				// Group section
-				new mw.rcfilters.ui.FilterMenuSectionOptionWidget(
-					widget.controller,
-					groupModel,
-					{
-						$overlay: widget.$overlay
-					}
-				)
-			);
-
-			// Add items
-			widget.model.getGroupFilters( groupName ).forEach( function ( filterItem ) {
-				items.push(
-					new mw.rcfilters.ui.FilterMenuOptionWidget(
-						widget.controller,
-						filterItem,
-						{
-							$overlay: widget.$overlay
-						}
-					)
-				);
-			} );
-		} );
-
-		// Add all items to the menu
-		this.getMenu().addItems( items );
 	};
 
 	/**
