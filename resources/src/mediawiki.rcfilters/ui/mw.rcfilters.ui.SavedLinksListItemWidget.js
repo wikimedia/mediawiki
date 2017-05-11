@@ -5,6 +5,7 @@
 	 * @extends OO.ui.Widget
 	 * @mixins OO.ui.mixin.LabelElement
 	 * @mixins OO.ui.mixin.IconElement
+	 * @mixins OO.ui.mixin.TitledElement
 	 *
 	 * @constructor
 	 * @param {mw.rcfilters.dm.SavedQueryItemModel} model View model
@@ -27,6 +28,9 @@
 		}, config ) );
 		OO.ui.mixin.IconElement.call( this, $.extend( {
 			icon: ''
+		}, config ) );
+		OO.ui.mixin.TitledElement.call( this, $.extend( {
+			title: this.model.getLabel()
 		}, config ) );
 
 		this.edit = false;
@@ -126,6 +130,7 @@
 	OO.inheritClass( mw.rcfilters.ui.SavedLinksListItemWidget, OO.ui.Widget );
 	OO.mixinClass( mw.rcfilters.ui.SavedLinksListItemWidget, OO.ui.mixin.LabelElement );
 	OO.mixinClass( mw.rcfilters.ui.SavedLinksListItemWidget, OO.ui.mixin.IconElement );
+	OO.mixinClass( mw.rcfilters.ui.SavedLinksListItemWidget, OO.ui.mixin.TitledElement );
 
 	/* Events */
 
