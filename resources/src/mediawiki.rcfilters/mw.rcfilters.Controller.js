@@ -24,17 +24,18 @@
 	 * Initialize the filter and parameter states
 	 *
 	 * @param {Array} filterStructure Filter definition and structure for the model
+	 * @param {Object} [namespaceStructure] Namespace definition
 	 */
-	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure ) {
+	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure ) {
 		var parsedSavedQueries,
 			useDataFromServer = false,
 			uri = new mw.Uri(),
 			$changesList = $( '.mw-changeslist' ).first().contents();
 
 		// Initialize the model
-		this.filtersModel.initializeFilters( filterStructure );
-
+		this.filtersModel.initializeFilters( filterStructure, namespaceStructure );
 		this._buildBaseFilterState();
+
 		this.uriProcessor = new mw.rcfilters.UriProcessor(
 			this.filtersModel
 		);
@@ -84,6 +85,8 @@
 			}
 		}
 
+		this.switchView( 'default' );
+
 		if ( useDataFromServer ) {
 			// Update the changes list with the existing data
 			// so it gets processed
@@ -92,7 +95,17 @@
 				$( 'fieldset.rcoptions' ).first()
 			);
 		}
+
 		this.initializing = false;
+	};
+
+	/**
+	 * Switch the view of the filters model
+	 *
+	 * @param {string} view Requested view
+	 */
+	mw.rcfilters.Controller.prototype.switchView = function ( view ) {
+		this.filtersModel.switchView( view );
 	};
 
 	/**
@@ -183,6 +196,14 @@
 	};
 
 	/**
+	 * Toggle the namespaces inverted feature on and off
+	 */
+	mw.rcfilters.Controller.prototype.toggleInvertedNamespaces = function () {
+		this.filtersModel.toggleInvertedNamespaces();
+		this.updateChangesList();
+	};
+
+	/**
 	 * Set the highlight color for a filter item
 	 *
 	 * @param {string} filterName Name of the filter item
@@ -227,7 +248,8 @@
 			label || mw.msg( 'rcfilters-savedqueries-defaultlabel' ),
 			{
 				filters: this.filtersModel.getSelectedState(),
-				highlights: highlightedItems
+				highlights: highlightedItems,
+				invert: this.filtersModel.areNamespacesInverted()
 			}
 		);
 
@@ -298,6 +320,9 @@
 			// Update model state from filters
 			this.filtersModel.toggleFiltersSelected( data.filters );
 
+			// Update namespace inverted property
+			this.filtersModel.toggleInvertedNamespaces( !!Number( data.invert ) );
+
 			// Update highlight state
 			this.filtersModel.toggleHighlight( !!Number( highlights.highlight ) );
 			this.filtersModel.getItems().forEach( function ( filterItem ) {
@@ -334,7 +359,8 @@
 		return this.savedQueriesModel.findMatchingQuery(
 			{
 				filters: this.filtersModel.getSelectedState(),
-				highlights: highlightedItems
+				highlights: highlightedItems,
+				invert: this.filtersModel.areNamespacesInverted()
 			}
 		);
 	};
@@ -377,7 +403,8 @@
 
 		this.baseFilterState = {
 			filters: this.filtersModel.getFiltersFromParameters( defaultParams ),
-			highlights: highlightedItems
+			highlights: highlightedItems,
+			invert: false
 		};
 	};
 
@@ -525,7 +552,7 @@
 				}
 			} );
 
-			return $.extend( true, {}, savedParams, savedHighlights );
+			return $.extend( true, {}, savedParams, savedHighlights, { invert: data.invert } );
 		}
 
 		return $.extend(
