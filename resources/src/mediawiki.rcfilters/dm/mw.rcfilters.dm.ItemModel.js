@@ -16,6 +16,8 @@
 	 * @cfg {string} [namePrefix='item_'] A prefix to add to the param name to act as a unique
 	 *  identifier
 	 * @cfg {string} [cssClass] The class identifying the results that match this filter
+	 * @cfg {string[]} [identifiers] An array of identifiers for this item. They will be
+	 *  added and considered in the view.
 	 */
 	mw.rcfilters.dm.ItemModel = function MwRcfiltersDmItemModel( param, config ) {
 		config = config || {};
@@ -28,10 +30,12 @@
 		this.name = this.namePrefix + param;
 
 		this.label = config.label || this.name;
-		this.description = config.description;
+		this.labelPrefixKey = config.labelPrefixKey;
+		this.description = config.description || '';
 		this.selected = !!config.selected;
 
 		this.inverted = !!config.inverted;
+		this.identifiers = config.identifiers || [];
 
 		// Highlight
 		this.cssClass = config.cssClass;
@@ -73,6 +77,24 @@
 	 */
 	mw.rcfilters.dm.ItemModel.prototype.getName = function () {
 		return this.name;
+	};
+
+	/**
+	 * Get a prefixed label
+	 *
+	 * @return {string} Prefixed label
+	 */
+	mw.rcfilters.dm.ItemModel.prototype.getPrefixedLabel = function () {
+		var key;
+
+		if ( this.labelPrefixKey ) {
+			key = typeof this.labelPrefixKey === 'string' ?
+				this.labelPrefixKey : this.labelPrefixKey[ this.isInverted() ? 'inverted' : 'default' ];
+
+			return mw.message( key, this.getLabel() ).parse();
+		} else {
+			return this.getLabel();
+		}
 	};
 
 	/**
@@ -205,6 +227,15 @@
 	 */
 	mw.rcfilters.dm.ItemModel.prototype.getCssClass = function () {
 		return this.cssClass;
+	};
+
+	/**
+	 * Get the item's identifiers
+	 *
+	 * @return {string[]}
+	 */
+	mw.rcfilters.dm.ItemModel.prototype.getIdentifiers = function () {
+		return this.identifiers;
 	};
 
 	/**
