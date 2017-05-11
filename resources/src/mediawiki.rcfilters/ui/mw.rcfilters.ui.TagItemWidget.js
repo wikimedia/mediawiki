@@ -22,7 +22,7 @@
 
 		mw.rcfilters.ui.TagItemWidget.parent.call( this, $.extend( {
 			data: this.model.getName(),
-			label: this.model.getLabel()
+			label: this.model.getPrefixedLabel()
 		}, config ) );
 
 		this.$overlay = config.$overlay || this.$element;
@@ -77,6 +77,9 @@
 	 */
 	mw.rcfilters.ui.TagItemWidget.prototype.onModelUpdate = function () {
 		this.setCurrentMuteState();
+
+		// Update label if needed
+		this.setLabel( $( '<div>' ).html( this.model.getPrefixedLabel() ).contents() );
 
 		this.setHighlightColor();
 	};

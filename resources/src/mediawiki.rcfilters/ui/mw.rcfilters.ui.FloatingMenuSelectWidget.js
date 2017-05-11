@@ -64,6 +64,7 @@
 					.addClass( 'mw-rcfilters-ui-floatingMenuSelectWidget-footer' )
 			);
 		}
+		this.setView( 'default' );
 	};
 
 	/* Initialize */
@@ -72,6 +73,17 @@
 
 	/* Events */
 
+	/**
+	 * Set the current view of the menu items
+	 *
+	 * @param {string} viewName Current view name
+	 */
+	mw.rcfilters.ui.FloatingMenuSelectWidget.prototype.setView = function ( viewName ) {
+		this.$element
+			.data( 'view', viewName )
+			.removeClass( 'mw-rcfilters-ui-floatingMenuSelectWidget-view-' + this.currentView )
+			.addClass( 'mw-rcfilters-ui-floatingMenuSelectWidget-view-' + viewName );
+	};
 	/**
 	 * @event itemVisibilityChange
 	 *
