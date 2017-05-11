@@ -9,6 +9,9 @@
 	 * @param {Object} config Configuration object
 	 * @cfg {string} [label] The label for the filter
 	 * @cfg {string} [description] The description of the filter
+	 * @cfg {string|Object} [labelPrefixKey] An i18n key defining the prefix label for this
+	 *  group. If the prefix has 'invert' state, the parameter is expected to be an object
+	 *  with 'default' and 'inverted' as keys.
 	 * @cfg {boolean} [active=true] The filter is active and affecting the result
 	 * @cfg {boolean} [selected] The item is selected
 	 * @cfg {boolean} [inverted] The item is inverted, meaning the search is excluding
@@ -16,6 +19,8 @@
 	 * @cfg {string} [namePrefix='item_'] A prefix to add to the param name to act as a unique
 	 *  identifier
 	 * @cfg {string} [cssClass] The class identifying the results that match this filter
+	 * @cfg {string[]} [identifiers] An array of identifiers for this item. They will be
+	 *  added and considered in the view.
 	 */
 	mw.rcfilters.dm.ItemModel = function MwRcfiltersDmItemModel( param, config ) {
 		config = config || {};
@@ -28,10 +33,12 @@
 		this.name = this.namePrefix + param;
 
 		this.label = config.label || this.name;
-		this.description = config.description;
+		this.labelPrefixKey = config.labelPrefixKey;
+		this.description = config.description || '';
 		this.selected = !!config.selected;
 
 		this.inverted = !!config.inverted;
+		this.identifiers = config.identifiers || [];
 
 		// Highlight
 		this.cssClass = config.cssClass;
@@ -73,6 +80,31 @@
 	 */
 	mw.rcfilters.dm.ItemModel.prototype.getName = function () {
 		return this.name;
+	};
+
+	/**
+	 * Get a prefixed label
+	 *
+	 * @return {string} Prefixed label
+	 */
+	mw.rcfilters.dm.ItemModel.prototype.getPrefixedLabel = function () {
+		if ( this.labelPrefixKey ) {
+			if ( typeof this.labelPrefixKey === 'string' ) {
+				return mw.message( this.labelPrefixKey, this.getLabel() ).parse();
+			} else {
+				return mw.message(
+					this.labelPrefixKey[
+						// Only use inverted-prefix if the item is selected
+						// Highlight-only an inverted item makes no sense
+						this.isInverted() && this.isSelected() ?
+							'inverted' : 'default'
+					],
+					this.getLabel()
+				).parse();
+			}
+		} else {
+			return this.getLabel();
+		}
 	};
 
 	/**
@@ -205,6 +237,15 @@
 	 */
 	mw.rcfilters.dm.ItemModel.prototype.getCssClass = function () {
 		return this.cssClass;
+	};
+
+	/**
+	 * Get the item's identifiers
+	 *
+	 * @return {string[]}
+	 */
+	mw.rcfilters.dm.ItemModel.prototype.getIdentifiers = function () {
+		return this.identifiers;
 	};
 
 	/**

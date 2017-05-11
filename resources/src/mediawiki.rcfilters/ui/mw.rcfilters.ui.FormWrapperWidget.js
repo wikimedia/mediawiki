@@ -114,7 +114,6 @@
 	 */
 	mw.rcfilters.ui.FormWrapperWidget.prototype.cleanUpFieldset = function () {
 		var $namespaceSelect = this.$element.find( '#namespace' ),
-			$namespaceCheckboxes = this.$element.find( '#nsassociated, #nsinvert' ),
 			collapseCookieName = 'changeslist-state';
 
 		this.$element.find( '.rcshowhideoption[data-feature-in-structured-ui=1]' ).each( function () {
@@ -130,12 +129,10 @@
 			this.parentNode.removeChild( this );
 		} );
 
-		// Bind namespace select to change event
-		// see resources/src/mediawiki.special/mediawiki.special.recentchanges.js
-		$namespaceCheckboxes.prop( 'disabled', $namespaceSelect.val() === '' );
-		$namespaceSelect.on( 'change', function () {
-			$namespaceCheckboxes.prop( 'disabled', $( this ).val() === '' );
-		} );
+		// Hide namespaces
+		if ( mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' ) ) {
+			$namespaceSelect.closest( 'tr' ).detach();
+		}
 
 		// Collapse legend
 		// see resources/src/mediawiki.special/mediawiki.special.changelist.legend.js
