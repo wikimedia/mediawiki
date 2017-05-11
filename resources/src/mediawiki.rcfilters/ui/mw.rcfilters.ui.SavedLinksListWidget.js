@@ -30,6 +30,7 @@
 			classes: [ 'mw-rcfilters-ui-savedLinksListWidget-button' ],
 			label: mw.msg( 'rcfilters-quickfilters' ),
 			icon: 'unClip',
+			indicator: 'down',
 			$overlay: this.$overlay,
 			popup: {
 				width: 300,
