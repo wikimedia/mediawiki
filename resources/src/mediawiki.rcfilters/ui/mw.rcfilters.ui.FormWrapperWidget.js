@@ -130,12 +130,8 @@
 			this.parentNode.removeChild( this );
 		} );
 
-		// Bind namespace select to change event
-		// see resources/src/mediawiki.special/mediawiki.special.recentchanges.js
-		$namespaceCheckboxes.prop( 'disabled', $namespaceSelect.val() === '' );
-		$namespaceSelect.on( 'change', function () {
-			$namespaceCheckboxes.prop( 'disabled', $( this ).val() === '' );
-		} );
+		// Hide namespaces
+		$namespaceSelect.closest( 'tr' ).detach();
 
 		// Collapse legend
 		// see resources/src/mediawiki.special/mediawiki.special.changelist.legend.js
