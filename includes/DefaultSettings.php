@@ -6763,6 +6763,11 @@ $wgRCWatchCategoryMembership = false;
 $wgUseRCPatrol = true;
 
 /**
+ * Whether to allow users to save their RecentChanges filters
+ */
+$wgStructuredChangeFiltersEnableSaving = false;
+
+/**
  * Use new page patrolling to check new pages on Special:Newpages
  */
 $wgUseNPPatrol = true;

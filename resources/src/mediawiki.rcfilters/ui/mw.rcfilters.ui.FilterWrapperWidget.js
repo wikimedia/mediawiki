@@ -33,11 +33,13 @@
 			{ $overlay: this.$overlay }
 		);
 
-		this.savedLinksListWidget = new mw.rcfilters.ui.SavedLinksListWidget(
-			this.controller,
-			this.queriesModel,
-			{ $overlay: this.$overlay }
-		);
+		if ( mw.config.get( 'wgStructuredChangeFiltersEnableSaving' ) ) {
+			this.savedLinksListWidget = new mw.rcfilters.ui.SavedLinksListWidget(
+				this.controller,
+				this.queriesModel,
+				{ $overlay: this.$overlay }
+			);
+		}
 
 		// Initialize
 		this.$element

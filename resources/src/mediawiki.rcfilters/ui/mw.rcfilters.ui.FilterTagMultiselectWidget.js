@@ -68,10 +68,12 @@
 			classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-resetButton' ]
 		} );
 
-		this.saveQueryButton = new mw.rcfilters.ui.SaveFiltersPopupButtonWidget(
-			this.controller,
-			this.queriesModel
-		);
+		if ( mw.config.get( 'wgStructuredChangeFiltersEnableSaving' ) ) {
+			this.saveQueryButton = new mw.rcfilters.ui.SaveFiltersPopupButtonWidget(
+				this.controller,
+				this.queriesModel
+			);
+		}
 
 		this.emptyFilterMessage = new OO.ui.LabelWidget( {
 			label: mw.msg( 'rcfilters-empty-filter' ),
