@@ -18,6 +18,9 @@
 		this.highlightEnabled = false;
 		this.parameterMap = {};
 
+		this.views = {};
+		this.currentView = null;
+
 		// Events
 		this.aggregate( { update: 'filterItemUpdate' } );
 		this.connect( this, { filterItemUpdate: [ 'emit', 'itemUpdate' ] } );
@@ -34,6 +37,12 @@
 	 * @event initialize
 	 *
 	 * Filter list is initialized
+	 */
+
+	/**
+	 * @event update
+	 *
+	 * Model has been updated
 	 */
 
 	/**
@@ -191,10 +200,11 @@
 	 *
 	 * @param {Array} filters Filter group definition
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.initializeFilters = function ( filters ) {
-		var filterItem, filterConflictResult, groupConflictResult,
+	mw.rcfilters.dm.FiltersViewModel.prototype.initializeFilters = function ( filters, namespaces ) {
+		var i, filterItem, filterConflictResult, groupConflictResult,
 			model = this,
 			items = [],
+			namespaceDefinition = [],
 			groupConflictMap = {},
 			filterConflictMap = {},
 			/*!
@@ -258,7 +268,10 @@
 		// Reset
 		this.clearItems();
 		this.groups = {};
+		this.views = {};
 
+		// Filters
+		this.views.default = { name: 'default', label: mw.msg( 'rcfilters-filterlist-title' ) };
 		filters.forEach( function ( data ) {
 			var i,
 				group = data.name;
@@ -277,6 +290,14 @@
 					}
 				} );
 			}
+
+			// Filters are given to us with msg-keys, we need
+			// to translate those before we hand them off
+			for ( i = 0; i < data.filters.length; i++ ) {
+				data.filters[ i ].label = mw.msg( data.filters[ i ].label );
+				data.filters[ i ].description = mw.msg( data.filters[ i ].description );
+			}
+
 			model.groups[ group ].initializeFilters( data.filters, data.default );
 			items = items.concat( model.groups[ group ].getItems() );
 
@@ -295,9 +316,33 @@
 			}
 		} );
 
+		// Namespaces group
+		this.views.namespaces = { name: 'namespaces', label: mw.msg( 'namespaces' ) };
+		$.each( namespaces, function ( namespaceID, label ) {
+			// Build and clean up the definition
+			namespaceDefinition.push( {
+				name: namespaceID,
+				label: label || mw.msg( 'blanknamespace' ),
+				description: '',
+				identifiers: [ namespaceID % 2 === 0 ? 'subject' : 'talk' ]
+			} );
+		} );
+
+		// Add the group
+		model.groups.namespaces = new mw.rcfilters.dm.FilterGroup( 'namespaces', {
+			type: 'string_options',
+			view: 'namespaces',
+			title: 'namespaces', // Message key
+			separator: ';',
+			labelPrefixKey: { default: 'rcfilters-tag-prefix-namespace', inverted: 'rcfilters-tag-prefix-namespace-inverted' },
+			fullCoverage: true
+		} );
+		// Add namespace items to group
+		model.groups.namespaces.initializeFilters( namespaceDefinition );
+		items = items.concat( model.groups.namespaces.getItems() );
+
 		// Add item references to the model, for lookup
 		this.addItems( items );
-
 		// Expand conflicts
 		groupConflictResult = expandConflictDefinitions( groupConflictMap );
 		filterConflictResult = expandConflictDefinitions( filterConflictMap );
@@ -348,6 +393,48 @@
 	mw.rcfilters.dm.FiltersViewModel.prototype.getFilterGroups = function () {
 		return this.groups;
 	};
+
+	/**
+	 * Get the object that defines groups that match a certain view by their name.
+	 *
+	 * @param {string} [view] Requested view. If not given, uses current view
+	 * @return {Object} Filter groups matching a display group
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getFilterGroupsByView = function ( view ) {
+		var result = {};
+
+		view = view || this.getCurrentView();
+
+		$.each( this.groups, function ( groupName, groupModel ) {
+			if ( groupModel.getView() === view ) {
+				result[ groupName ] = groupModel;
+			}
+		} );
+
+		return result;
+	};
+
+	/**
+	 * Get an array of filters matching the given display group.
+	 *
+	 * @param {string} [view] Requested view. If not given, uses current view
+	 * @return {mw.rcfilters.dm.FilterItem} Filter items matching the group
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getFiltersByView = function ( view ) {
+		var groups,
+			result = [];
+
+		view = view || this.getCurrentView();
+
+		groups = this.getFilterGroupsByView( view );
+
+		$.each( groups, function ( groupName, groupModel ) {
+			result = result.concat( groupModel.getItems() );
+		} );
+
+		return result;
+	};
+
 
 	/**
 	 * Get the value of a specific parameter
@@ -643,18 +730,28 @@
 	 *  arranged by their group names
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.findMatches = function ( query, returnFlat ) {
-		var i,
+		var i, view, searchIsEmpty,
 			groupTitle,
 			result = {},
 			flatResult = [],
-			items = this.getItems();
+			items = this.getFiltersByView();
 
-		// Normalize so we can search strings regardless of case
+		// Normalize so we can search strings regardless of case and view
 		query = query.toLowerCase();
+		if ( query.indexOf( ':' ) === 0 ) {
+			query = query.substr( 1 );
+		}
+
+		// Check if the search if actually empty; this can be a problem when
+		// we use prefixes to denote different views
+		searchIsEmpty = query.length === 0;
 
 		// item label starting with the query string
 		for ( i = 0; i < items.length; i++ ) {
-			if ( items[ i ].getLabel().toLowerCase().indexOf( query ) === 0 ) {
+			if (
+				searchIsEmpty ||
+				items[ i ].getLabel().toLowerCase().indexOf( query ) === 0
+			) {
 				result[ items[ i ].getGroupName() ] = result[ items[ i ].getGroupName() ] || [];
 				result[ items[ i ].getGroupName() ].push( items[ i ] );
 				flatResult.push( items[ i ] );
@@ -666,6 +763,7 @@
 			for ( i = 0; i < items.length; i++ ) {
 				groupTitle = items[ i ].getGroupModel().getTitle();
 				if (
+					searchIsEmpty ||
 					items[ i ].getLabel().toLowerCase().indexOf( query ) > -1 ||
 					items[ i ].getDescription().toLowerCase().indexOf( query ) > -1 ||
 					groupTitle.toLowerCase().indexOf( query ) > -1
@@ -701,6 +799,21 @@
 		return this.getItems().filter( function ( filterItem ) {
 			return filterItem.isHighlightSupported();
 		} );
+	};
+
+	mw.rcfilters.dm.FiltersViewModel.prototype.switchView = function ( view ) {
+		if ( this.views[ view ] && this.currentView !== view ) {
+			this.currentView = view;
+			this.emit( 'update' );
+		}
+	};
+
+	mw.rcfilters.dm.FiltersViewModel.prototype.getCurrentView = function () {
+		return this.currentView;
+	};
+
+	mw.rcfilters.dm.FiltersViewModel.prototype.getCurrentViewLabel = function () {
+		return this.views[ this.getCurrentView() ].label;
 	};
 
 	/**

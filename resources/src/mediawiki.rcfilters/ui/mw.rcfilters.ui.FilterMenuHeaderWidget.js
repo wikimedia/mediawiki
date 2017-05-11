@@ -35,7 +35,10 @@
 		// Events
 		this.highlightButton
 			.connect( this, { click: 'onHighlightButtonClick' } );
-		this.model.connect( this, { highlightChange: 'onModelHighlightChange' } );
+		this.model.connect( this, {
+			highlightChange: 'onModelHighlightChange',
+			update: 'onModelUpdate'
+		} );
 
 		// Initialize
 		this.$element
@@ -67,6 +70,13 @@
 	OO.mixinClass( mw.rcfilters.ui.FilterMenuHeaderWidget, OO.ui.mixin.LabelElement );
 
 	/* Methods */
+
+	/**
+	 * Respond to model update event
+	 */
+	mw.rcfilters.ui.FilterMenuHeaderWidget.prototype.onModelUpdate = function () {
+		this.setLabel( this.model.getCurrentViewLabel() );
+	};
 
 	/**
 	 * Respond to model highlight change event

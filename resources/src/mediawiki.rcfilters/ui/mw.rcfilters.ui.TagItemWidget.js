@@ -22,7 +22,7 @@
 
 		mw.rcfilters.ui.TagItemWidget.parent.call( this, $.extend( {
 			data: this.model.getName(),
-			label: this.model.getLabel()
+			label: this.model.getPrefixedLabel()
 		}, config ) );
 
 		this.$overlay = config.$overlay || this.$element;
@@ -77,6 +77,9 @@
 	 */
 	mw.rcfilters.ui.TagItemWidget.prototype.onModelUpdate = function () {
 		this.setCurrentMuteState();
+
+		// Update label if needed
+		this.setLabel( $( '<div>' ).html( this.model.getPrefixedLabel() ).contents() );
 
 		this.setHighlightColor();
 	};
@@ -167,6 +170,24 @@
 	 */
 	mw.rcfilters.ui.TagItemWidget.prototype.getName = function () {
 		return this.model.getName();
+	};
+
+	/**
+	 * Get item model
+	 *
+	 * @return {string} Filter model
+	 */
+	mw.rcfilters.ui.TagItemWidget.prototype.getModel = function () {
+		return this.model;
+	};
+
+	/**
+	 * Get item view
+	 *
+	 * @return {string} Filter view
+	 */
+	mw.rcfilters.ui.TagItemWidget.prototype.getView = function () {
+		return this.model.getGroupModel().getView();
 	};
 
 	/**

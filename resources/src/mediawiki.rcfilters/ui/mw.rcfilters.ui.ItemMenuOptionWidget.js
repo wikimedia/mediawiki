@@ -11,6 +11,7 @@
 	 */
 	mw.rcfilters.ui.ItemMenuOptionWidget = function MwRcfiltersUiItemMenuOptionWidget( controller, model, config ) {
 		var layout,
+			classes = [],
 			$label = $( '<div>' )
 				.addClass( 'mw-rcfilters-ui-itemMenuOptionWidget-label' );
 
@@ -71,6 +72,7 @@
 
 		this.$element
 			.addClass( 'mw-rcfilters-ui-itemMenuOptionWidget' )
+			.addClass( 'mw-rcfilters-ui-itemMenuOptionWidget-group-' + this.model.getGroupModel().getName() )
 			.append(
 				$( '<div>' )
 					.addClass( 'mw-rcfilters-ui-table' )
@@ -87,6 +89,14 @@
 							)
 					)
 			);
+
+		if ( this.model.getIdentifiers() ) {
+			this.model.getIdentifiers().forEach( function ( ident ) {
+				classes.push( 'mw-rcfilters-ui-itemMenuOptionWidget-identifier-' + ident );
+			} );
+
+			this.$element.addClass( classes.join( ' ' ) );
+		}
 	};
 
 	/* Initialization */
