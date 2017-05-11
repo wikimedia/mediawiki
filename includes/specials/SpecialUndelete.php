@@ -711,11 +711,11 @@ class SpecialUndelete extends SpecialPage {
 		if ( $this->mAllowed ) {
 			$action = $this->getPageTitle()->getLocalURL( [ 'action' => 'submit' ] );
 			# Start the form here
-			$top = Xml::openElement(
-				'form',
-				[ 'method' => 'post', 'action' => $action, 'id' => 'undelete' ]
-			);
-			$out->addHTML( $top );
+			$form = new OOUI\FormLayout( [
+				'method' => 'post',
+				'action' => $action,
+				'id' => 'undelete',
+			] );
 		}
 
 		# Show relevant lines from the deletion log:
@@ -730,68 +730,92 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		if ( $this->mAllowed && ( $haveRevisions || $haveFiles ) ) {
-			# Format the user-visible controls (comment field, submission button)
-			# in a nice little table
+
+			$out->enableOOUI();
+
+			$fields[] = new OOUI\Layout( [
+				'content' => new OOUI\HtmlSnippet( $this->msg( 'undeleteextrahelp' )->parseAsBlock() )
+			] );
+
+			$fields[] = new OOUI\FieldLayout(
+				new OOUI\TextInputWidget( [
+					'name' => 'wpComment',
+					'inputId' => 'wpComment',
+					'infusable' => true,
+					'value' => $this->mComment,
+					'autofocus' => true,
+				] ),
+				[
+					'label' => $this->msg( 'undeletecomment' )->text(),
+					'align' => 'top',
+				]
+			);
+
+			$fields[] = new OOUI\FieldLayout(
+				new OOUI\Widget( [
+					'content' => new OOUI\HorizontalLayout( [
+						'items' => [
+							new OOUI\ButtonInputWidget( [
+								'name' => 'restore',
+								'inputId' => 'mw-undelete-submit',
+								'value' => '1',
+								'label' => $this->msg( 'undeletebtn' )->text(),
+								'flags' => [ 'primary', 'progressive' ],
+								'type' => 'submit',
+							] ),
+							new OOUI\ButtonInputWidget( [
+								'name' => 'invert',
+								'inputId' => 'mw-undelete-invert',
+								'value' => '1',
+								'label' => $this->msg( 'undeleteinvert' )->text()
+							] ),
+						]
+					] )
+				] )
+			);
+
 			if ( $this->getUser()->isAllowed( 'suppressrevision' ) ) {
-				$unsuppressBox =
-					"<tr>
-						<td>&#160;</td>
-						<td class='mw-input'>" .
-						Xml::checkLabel( $this->msg( 'revdelete-unsuppress' )->text(),
-							'wpUnsuppress', 'mw-undelete-unsuppress', $this->mUnsuppress ) .
-						"</td>
-					</tr>";
-			} else {
-				$unsuppressBox = '';
+				$fields[] = new OOUI\FieldLayout(
+					new OOUI\CheckboxInputWidget( [
+						'name' => 'wpUnsuppress',
+						'inputId' => 'mw-undelete-unsuppress',
+						'value' => '1',
+					] ),
+					[
+						'label' => $this->msg( 'revdelete-unsuppress' )->text(),
+						'align' => 'inline',
+					]
+				);
 			}
 
-			$table = Xml::fieldset( $this->msg( 'undelete-fieldset-title' )->text() ) .
-				Xml::openElement( 'table', [ 'id' => 'mw-undelete-table' ] ) .
-				"<tr>
-					<td colspan='2' class='mw-undelete-extrahelp'>" .
-				$this->msg( 'undeleteextrahelp' )->parseAsBlock() .
-				"</td>
-			</tr>
-			<tr>
-				<td class='mw-label'>" .
-				Xml::label( $this->msg( 'undeletecomment' )->text(), 'wpComment' ) .
-				"</td>
-				<td class='mw-input'>" .
-				Xml::input(
-					'wpComment',
-					50,
-					$this->mComment,
-					[ 'id' => 'wpComment', 'autofocus' => '' ]
-				) .
-				"</td>
-			</tr>
-			<tr>
-				<td>&#160;</td>
-				<td class='mw-submit'>" .
-				Xml::submitButton(
-					$this->msg( 'undeletebtn' )->text(),
-					[ 'name' => 'restore', 'id' => 'mw-undelete-submit' ]
-				) . ' ' .
-				Xml::submitButton(
-					$this->msg( 'undeleteinvert' )->text(),
-					[ 'name' => 'invert', 'id' => 'mw-undelete-invert' ]
-				) .
-				"</td>
-			</tr>" .
-				$unsuppressBox .
-				Xml::closeElement( 'table' ) .
-				Xml::closeElement( 'fieldset' );
+			$fieldset = new OOUI\FieldsetLayout( [
+				'label' => $this->msg( 'undelete-fieldset-title' )->text(),
+				'id' => 'mw-undelete-table',
+				'items' => $fields,
+			] );
 
-			$out->addHTML( $table );
+			$form->appendContent(
+				new OOUI\PanelLayout( [
+					'expanded' => false,
+					'padded' => true,
+					'framed' => true,
+					'content' => $fieldset,
+				] ),
+				new OOUI\HtmlSnippet(
+					Html::hidden( 'target', $this->mTarget ) .
+					Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() )
+				)
+			);
 		}
 
-		$out->addHTML( Xml::element( 'h2', null, $this->msg( 'history' )->text() ) . "\n" );
+		$history = '';
+		$history .= Xml::element( 'h2', null, $this->msg( 'history' )->text() ) . "\n";
 
 		if ( $haveRevisions ) {
 			# Show the page's stored (deleted) history
 
 			if ( $this->getUser()->isAllowed( 'deleterevision' ) ) {
-				$out->addHTML( Html::element(
+				$history .= Html::element(
 					'button',
 					[
 						'name' => 'revdel',
@@ -799,31 +823,31 @@ class SpecialUndelete extends SpecialPage {
 						'class' => 'deleterevision-log-submit mw-log-deleterevision-button'
 					],
 					$this->msg( 'showhideselectedversions' )->text()
-				) . "\n" );
+				) . "\n";
 			}
 
-			$out->addHTML( '<ul>' );
+			$history .= '<ul class="mw-undelete-revlist">';
 			$remaining = $revisions->numRows();
 			$earliestLiveTime = $this->mTargetObj->getEarliestRevTime();
 
 			foreach ( $revisions as $row ) {
 				$remaining--;
-				$out->addHTML( $this->formatRevisionRow( $row, $earliestLiveTime, $remaining ) );
+				$history .= $this->formatRevisionRow( $row, $earliestLiveTime, $remaining );
 			}
 			$revisions->free();
-			$out->addHTML( '</ul>' );
+			$history .= '</ul>';
 		} else {
 			$out->addWikiMsg( 'nohistory' );
 		}
 
 		if ( $haveFiles ) {
-			$out->addHTML( Xml::element( 'h2', null, $this->msg( 'filehist' )->text() ) . "\n" );
-			$out->addHTML( '<ul>' );
+			$history .= Xml::element( 'h2', null, $this->msg( 'filehist' )->text() ) . "\n";
+			$history .= '<ul class="mw-undelete-revlist">';
 			foreach ( $files as $row ) {
-				$out->addHTML( $this->formatFileRow( $row ) );
+				$history .= $this->formatFileRow( $row );
 			}
 			$files->free();
-			$out->addHTML( '</ul>' );
+			$history .= '</ul>';
 		}
 
 		if ( $this->mAllowed ) {
@@ -831,8 +855,12 @@ class SpecialUndelete extends SpecialPage {
 			$misc = Html::hidden( 'target', $this->mTarget );
 			$misc .= Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() );
 			$misc .= Xml::closeElement( 'form' );
-			$out->addHTML( $misc );
+			$history .= $misc;
 		}
+
+		$form->appendContent( new OOUI\HtmlSnippet( $history ) );
+
+		$out->addHTML( $form );
 
 		return true;
 	}
