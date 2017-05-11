@@ -32,10 +32,23 @@
 			classes: [ 'mw-rcfilters-ui-filterMenuHeaderWidget-hightlightButton' ]
 		} );
 
+		// Invert namespaces button
+		this.invertNamespacesButton = new OO.ui.ToggleButtonWidget( {
+			icon: '',
+			label: mw.msg( 'invert' ),
+			classes: [ 'mw-rcfilters-ui-filterMenuHeaderWidget-inverNamespacesButton' ]
+		} );
+
 		// Events
 		this.highlightButton
 			.connect( this, { click: 'onHighlightButtonClick' } );
-		this.model.connect( this, { highlightChange: 'onModelHighlightChange' } );
+		this.invertNamespacesButton
+			.connect( this, { click: 'onInvertNamespacesButtonClick' } );
+		this.model.connect( this, {
+			highlightChange: 'onModelHighlightChange',
+			invertChange: 'onModelInvertChange',
+			update: 'onModelUpdate'
+		} );
 
 		// Initialize
 		this.$element
@@ -54,6 +67,10 @@
 									.append( this.$label ),
 								$( '<div>' )
 									.addClass( 'mw-rcfilters-ui-cell' )
+									.addClass( 'mw-rcfilters-ui-filterMenuHeaderWidget-header-invert' )
+									.append( this.invertNamespacesButton.$element ),
+								$( '<div>' )
+									.addClass( 'mw-rcfilters-ui-cell' )
 									.addClass( 'mw-rcfilters-ui-filterMenuHeaderWidget-header-highlight' )
 									.append( this.highlightButton.$element )
 							)
@@ -69,6 +86,17 @@
 	/* Methods */
 
 	/**
+	 * Respond to model update event
+	 */
+	mw.rcfilters.ui.FilterMenuHeaderWidget.prototype.onModelUpdate = function () {
+		var view = this.model.getCurrentView();
+
+		this.setLabel( this.model.getCurrentViewLabel() );
+
+		this.invertNamespacesButton.toggle( view === 'namespaces' );
+	};
+
+	/**
 	 * Respond to model highlight change event
 	 *
 	 * @param {boolean} highlightEnabled Highlight is enabled
@@ -78,9 +106,25 @@
 	};
 
 	/**
+	 * Respond to model highlight change event
+	 *
+	 * @param {boolean} highlightEnabled Highlight is enabled
+	 */
+	mw.rcfilters.ui.FilterMenuHeaderWidget.prototype.onModelInvertChange = function ( highlightEnabled ) {
+		this.invertNamespacesButton.setActive( highlightEnabled );
+	};
+
+	/**
 	 * Respond to highlight button click
 	 */
 	mw.rcfilters.ui.FilterMenuHeaderWidget.prototype.onHighlightButtonClick = function () {
 		this.controller.toggleHighlight();
+	};
+
+	/**
+	 * Respond to highlight button click
+	 */
+	mw.rcfilters.ui.FilterMenuHeaderWidget.prototype.onInvertNamespacesButtonClick = function () {
+		this.controller.toggleInvertedNamespaces();
 	};
 }( mediaWiki, jQuery ) );
