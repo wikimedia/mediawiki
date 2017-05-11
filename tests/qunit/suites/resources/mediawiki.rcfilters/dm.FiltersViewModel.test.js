@@ -63,9 +63,15 @@
 					}
 				]
 			} ],
+			namespaces = {
+				0: 'Main',
+				1: 'Talk',
+				2: 'User',
+				3: 'User talk'
+			},
 			model = new mw.rcfilters.dm.FiltersViewModel();
 
-		model.initializeFilters( definition );
+		model.initializeFilters( definition, namespaces );
 
 		assert.ok(
 			model.getItemByName( 'group1__filter1' ) instanceof mw.rcfilters.dm.FilterItem &&
@@ -74,6 +80,10 @@
 			model.getItemByName( 'group2__filter2' ) instanceof mw.rcfilters.dm.FilterItem &&
 			model.getItemByName( 'group3__filter1' ) instanceof mw.rcfilters.dm.FilterItem &&
 			model.getItemByName( 'group3__filter2' ) instanceof mw.rcfilters.dm.FilterItem,
+			model.getItemByName( 'namespace__0' ) instanceof mw.rcfilters.dm.FilterItem,
+			model.getItemByName( 'namespace__1' ) instanceof mw.rcfilters.dm.FilterItem,
+			model.getItemByName( 'namespace__2' ) instanceof mw.rcfilters.dm.FilterItem,
+			model.getItemByName( 'namespace__3' ) instanceof mw.rcfilters.dm.FilterItem,
 			'Filters instantiated and stored correctly'
 		);
 
@@ -85,7 +95,11 @@
 				group2__filter1: false,
 				group2__filter2: false,
 				group3__filter1: false,
-				group3__filter2: false
+				group3__filter2: false,
+				namespace__0: false,
+				namespace__1: false,
+				namespace__2: false,
+				namespace__3: false
 			},
 			'Initial state of filters'
 		);
@@ -103,7 +117,11 @@
 				group2__filter1: false,
 				group2__filter2: true,
 				group3__filter1: true,
-				group3__filter2: false
+				group3__filter2: false,
+				namespace__0: false,
+				namespace__1: false,
+				namespace__2: false,
+				namespace__3: false
 			},
 			'Updating filter states correctly'
 		);
@@ -188,16 +206,6 @@
 		assert.deepEqual(
 			model.getDefaultParams(),
 			{
-				group1__hidefilter1_color: null,
-				group1__hidefilter2_color: null,
-				group1__hidefilter3_color: null,
-				group2__hidefilter4_color: null,
-				group2__hidefilter5_color: null,
-				group2__hidefilter6_color: null,
-				group3__filter7_color: null,
-				group3__filter8_color: null,
-				group3__filter9_color: null,
-				highlight: '0',
 				hidefilter1: '1',
 				hidefilter2: '0',
 				hidefilter3: '1',
@@ -245,6 +253,12 @@
 					}
 				]
 			} ],
+			namespaces = {
+				0: 'Main',
+				1: 'Talk',
+				2: 'User',
+				3: 'User talk'
+			},
 			testCases = [
 				{
 					query: 'group',
@@ -269,6 +283,18 @@
 						group2: [ 'group2__filter1', 'group2__filter2' ]
 					},
 					reason: 'Finds filters containing the query string in their group title'
+				},
+				{
+					query: ':Main',
+					expectedMatches: {
+						namespace: [ 'namespace__0' ]
+					},
+					reason: 'Finds namespaces when using : prefix'
+				},
+				{
+					query: ':group',
+					expectedMatches: {},
+					reason: 'Finds no results if using namespaces prefix (:) to search for filter title'
 				}
 			],
 			model = new mw.rcfilters.dm.FiltersViewModel(),
@@ -282,7 +308,7 @@
 				return result;
 			};
 
-		model.initializeFilters( definition );
+		model.initializeFilters( definition, namespaces );
 
 		testCases.forEach( function ( testCase ) {
 			matches = model.findMatches( testCase.query );
