@@ -1366,6 +1366,7 @@
 	"recentchanges-submit": "Show",
 	"rcfilters-activefilters": "Active filters",
 	"rcfilters-quickfilters": "Quick links",
+	"rcfilters-quickfilters-placeholder": "Save your favorite tool settings to re-use them later.",
 	"rcfilters-savedqueries-defaultlabel": "Saved filters",
 	"rcfilters-savedqueries-rename": "Rename",
 	"rcfilters-savedqueries-setdefault": "Set as default",

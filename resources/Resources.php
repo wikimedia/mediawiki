@@ -1803,6 +1803,7 @@ return [
 		'messages' => [
 			'rcfilters-activefilters',
 			'rcfilters-quickfilters',
+			'rcfilters-quickfilters-placeholder',
 			'rcfilters-savedqueries-defaultlabel',
 			'rcfilters-savedqueries-rename',
 			'rcfilters-savedqueries-setdefault',

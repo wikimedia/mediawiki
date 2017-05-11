@@ -4,4 +4,17 @@
 	&-menu {
 		width: 100%;
 	}
+
+	&-placeholder {
+		// Extra specificity needed to override OOUI rule that sets white-space: nowrap;
+		// on labels inside options
+		&.oo-ui-optionWidget .oo-ui-labelElement-label {
+			color: #72777d;
+			white-space: normal;
+		}
+
+		.oo-ui-iconElement-icon {
+			opacity: 0.5;
+		}
+	}
 }
