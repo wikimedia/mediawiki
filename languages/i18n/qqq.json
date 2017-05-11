@@ -1554,6 +1554,7 @@
 	"recentchanges-submit": "Label for submit button in [[Special:RecentChanges]]\n{{Identical|Show}}",
 	"rcfilters-activefilters": "Title for the filters selection showing the active filters.",
 	"rcfilters-quickfilters": "Label for the button that opens the quick filters menu in [[Special:RecentChanges]]",
+	"rcfilters-quickfilters-placeholder": "Text shown in the quick filters menu on [[Special:RecentChanges]] if the user has not saved any quick filters.",
 	"rcfilters-savedqueries-defaultlabel": "Default name for saving a new set of quick filters [[Special:RecentChanges]]",
 	"rcfilters-savedqueries-rename": "Label for the menu option that edits a quick filter in [[Special:RecentChanges]]\n{{Identical|Rename}}",
 	"rcfilters-savedqueries-setdefault": "Label for the menu option that sets a quick filter as default in [[Special:RecentChanges]]",

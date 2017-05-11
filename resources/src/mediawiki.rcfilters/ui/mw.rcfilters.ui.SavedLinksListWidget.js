@@ -20,11 +20,17 @@
 		this.model = model;
 		this.$overlay = config.$overlay || this.$element;
 
+		this.placeholderItem = new OO.ui.DecoratedOptionWidget( {
+			classes: [ 'mw-rcfilters-ui-savedLinksListWidget-placeholder' ],
+			label: mw.msg( 'rcfilters-quickfilters-placeholder' ),
+			icon: 'unClip'
+		} );
 		// The only reason we're using "ButtonGroupWidget" here is that
 		// straight-out "GroupWidget" is a mixin and cannot be initialized
 		// on its own, so we need something to be its widget.
 		this.menu = new OO.ui.ButtonGroupWidget( {
-			classes: [ 'mw-rcfilters-ui-savedLinksListWidget-menu' ]
+			classes: [ 'mw-rcfilters-ui-savedLinksListWidget-menu' ],
+			items: [ this.placeholderItem ]
 		} );
 		this.button = new OO.ui.PopupButtonWidget( {
 			classes: [ 'mw-rcfilters-ui-savedLinksListWidget-button' ],
@@ -60,7 +66,7 @@
 			menuItemEdit: 'onMenuItemEdit'
 		} );
 
-		this.button.toggle( !this.menu.isEmpty() );
+		this.placeholderItem.toggle( this.model.isEmpty() );
 		// Initialize
 		this.$element
 			.addClass( 'mw-rcfilters-ui-savedLinksListWidget' )
@@ -122,7 +128,7 @@
 		this.menu.addItems( [
 			new mw.rcfilters.ui.SavedLinksListItemWidget( item, { $overlay: this.$overlay } )
 		] );
-		this.button.toggle( !this.menu.isEmpty() );
+		this.placeholderItem.toggle( this.model.isEmpty() );
 	};
 
 	/**
@@ -132,6 +138,6 @@
 	 */
 	mw.rcfilters.ui.SavedLinksListWidget.prototype.onModelRemoveItem = function ( item ) {
 		this.menu.removeItems( [ this.menu.getItemFromData( item.getID() ) ] );
-		this.button.toggle( !this.menu.isEmpty() );
+		this.placeholderItem.toggle( this.model.isEmpty() );
 	};
 }( mediaWiki ) );
