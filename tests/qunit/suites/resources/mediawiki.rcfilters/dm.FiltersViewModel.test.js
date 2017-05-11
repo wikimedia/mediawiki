@@ -109,6 +109,73 @@
 		);
 	} );
 
+	QUnit.test( 'Setting up namespaces', function ( assert ) {
+		var filtersDefinition = [ {
+				name: 'group1',
+				title: 'Group 1',
+				type: 'send_unselected_if_any',
+				filters: [
+					{
+						name: 'filter1',
+						label: 'Group 1: Filter 1',
+						description: 'Description of Filter 1 in Group 1'
+					},
+					{
+						name: 'filter2',
+						label: 'Group 1: Filter 2',
+						description: 'Description of Filter 2 in Group 1'
+					}
+				]
+			} ],
+			namespaceDefinition = {
+				0: 'Main',
+				1: 'Talk',
+				2: 'User',
+				3: 'User talk'
+			},
+			model = new mw.rcfilters.dm.FiltersViewModel();
+
+		model.initializeFilters( filtersDefinition, namespaceDefinition );
+
+		assert.ok(
+			model.getItemByName( 'namespace__0' ) instanceof mw.rcfilters.dm.FilterItem &&
+			model.getItemByName( 'namespace__1' ) instanceof mw.rcfilters.dm.FilterItem &&
+			model.getItemByName( 'namespace__2' ) instanceof mw.rcfilters.dm.FilterItem &&
+			model.getItemByName( 'namespace__3' ) instanceof mw.rcfilters.dm.FilterItem,
+			'Namespaces instantiated and stored correctly'
+		);
+
+		assert.deepEqual(
+			model.getSelectedState(),
+			{
+				group1__filter1: false,
+				group1__filter2: false,
+				namespace__0: false,
+				namespace__1: false,
+				namespace__2: false,
+				namespace__3: false
+			},
+			'Initial state of namespaces'
+		);
+
+		model.toggleFiltersSelected( {
+			namespace__0: true,
+			namespace__2: true
+		} );
+		assert.deepEqual(
+			model.getSelectedState(),
+			{
+				group1__filter1: false,
+				group1__filter2: false,
+				namespace__0: true,
+				namespace__1: false,
+				namespace__2: true,
+				namespace__3: false
+			},
+			'Updating namespace states correctly'
+		);
+	} );
+
 	QUnit.test( 'Default filters', function ( assert ) {
 		var definition = [ {
 				name: 'group1',
@@ -245,6 +312,12 @@
 					}
 				]
 			} ],
+			namespaceDefinition = {
+				0: 'Main',
+				1: 'Talk',
+				2: 'User',
+				3: 'User talk'
+			},
 			testCases = [
 				{
 					query: 'group',
@@ -269,6 +342,18 @@
 						group2: [ 'group2__filter1', 'group2__filter2' ]
 					},
 					reason: 'Finds filters containing the query string in their group title'
+				},
+				{
+					query: ':main',
+					expectedMatches: {
+						namespace: [ 'namespace__0' ]
+					},
+					reason: 'Finds namespaces using the prefix ":"'
+				},
+				{
+					query: ':title',
+					expectedMatches: {},
+					reason: 'Finds no matches for string that matches a filter that uses the prefix ":"'
 				}
 			],
 			model = new mw.rcfilters.dm.FiltersViewModel(),
@@ -282,7 +367,7 @@
 				return result;
 			};
 
-		model.initializeFilters( definition );
+		model.initializeFilters( definition, namespaceDefinition );
 
 		testCases.forEach( function ( testCase ) {
 			matches = model.findMatches( testCase.query );
