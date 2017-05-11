@@ -23,11 +23,12 @@
 	 *
 	 * @param {Array} filterStructure Filter definition and structure for the model
 	 */
-	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure ) {
+	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure ) {
 		var parsedSavedQueries,
 			$changesList = $( '.mw-changeslist' ).first().contents();
+
 		// Initialize the model
-		this.filtersModel.initializeFilters( filterStructure );
+		this.filtersModel.initializeFilters( filterStructure, namespaceStructure );
 
 		this._buildBaseFilterState();
 

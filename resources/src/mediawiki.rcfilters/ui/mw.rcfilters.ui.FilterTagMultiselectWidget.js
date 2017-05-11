@@ -11,6 +11,7 @@
 	 * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
 	 * @param {Object} config Configuration object
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
+	 * @cfg {string} [view='default'] Sets up the initial view of the menu
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( controller, model, savedQueriesModel, config ) {
 		var title = new OO.ui.LabelWidget( {
@@ -27,6 +28,8 @@
 		this.queriesModel = savedQueriesModel;
 		this.$overlay = config.$overlay || this.$element;
 		this.matchingQuery = null;
+		this.views = {};
+		this.currentView = null;
 
 		// Parent
 		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.call( this, $.extend( true, {
@@ -133,7 +136,6 @@
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget' );
 
-		this.populateFromModel();
 		this.reevaluateResetRestoreState();
 	};
 
@@ -262,7 +264,7 @@
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.isAllowedData = function ( data ) {
 		return (
-			this.menu.getItemFromData( data ) &&
+			this.model.getItemByName( data ) &&
 			!this.isDuplicateData( data )
 		);
 	};
@@ -421,9 +423,13 @@
 
 		// Reset
 		this.getMenu().clearItems();
+		this.views = { default: [] };
 
 		$.each( this.model.getFilterGroups(), function ( groupName, groupModel ) {
-			items.push(
+			var currentItems = [],
+				displayGroup = groupModel.getDisplayGroup();
+
+			currentItems.push(
 				// Group section
 				new mw.rcfilters.ui.FilterMenuSectionOptionWidget(
 					widget.controller,
@@ -436,7 +442,7 @@
 
 			// Add items
 			widget.model.getGroupFilters( groupName ).forEach( function ( filterItem ) {
-				items.push(
+				currentItems.push(
 					new mw.rcfilters.ui.FilterMenuOptionWidget(
 						widget.controller,
 						filterItem,
@@ -446,10 +452,32 @@
 					)
 				);
 			} );
+
+			// Cache the items per view, so we can switch between them
+			// without rebuilding the widgets each time
+			widget.views[ displayGroup ] = widget.views[ displayGroup ] || [];
+			widget.views[ displayGroup ] = widget.views[ displayGroup ].concat( currentItems );
 		} );
 
-		// Add all items to the menu
-		this.getMenu().addItems( items );
+		// Start with default view
+		this.switchView( 'namespaces' );
+	};
+
+	/**
+	 * Switch view
+	 *
+	 * @param {string} [viewName] View name. If not given, default is used.
+	 */
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.switchView = function ( viewName ) {
+		viewName = viewName || 'default';
+
+		if ( this.views[ viewName ] && this.currentView !== viewName ) {
+			this.getMenu().clearItems();
+			this.getMenu().addItems( this.views[ viewName ] );
+			this.getMenu().setView( viewName );
+
+			this.currentView = viewName;
+		}
 	};
 
 	/**

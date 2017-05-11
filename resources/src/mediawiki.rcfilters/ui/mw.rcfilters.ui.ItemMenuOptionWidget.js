@@ -11,6 +11,7 @@
 	 */
 	mw.rcfilters.ui.ItemMenuOptionWidget = function MwRcfiltersUiItemMenuOptionWidget( controller, model, config ) {
 		var layout,
+			classes = [],
 			$label = $( '<div>' )
 				.addClass( 'mw-rcfilters-ui-itemMenuOptionWidget-label' );
 
@@ -87,6 +88,14 @@
 							)
 					)
 			);
+
+		if ( this.model.getIdentifiers() ) {
+			this.model.getIdentifiers().forEach( function ( ident ) {
+				classes.push( 'mw-rcfilters-ui-itemMenuOptionWidget-identifier-' + ident );
+			} );
+
+			this.$element.addClass( classes.join( ' ' ) );
+		}
 	};
 
 	/* Initialization */
