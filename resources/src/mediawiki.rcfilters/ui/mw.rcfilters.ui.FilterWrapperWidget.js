@@ -33,6 +33,15 @@
 			{ $overlay: this.$overlay }
 		);
 
+		this.namespaceToggle = new OO.ui.ToggleButtonWidget( {
+			label: mw.msg( 'namespaces' ),
+			classes: [ 'mw-rcfilters-ui-filterWrapperWidget-namespaceToggle' ]
+		} );
+
+		// Events
+		this.model.connect( this, { update: 'onModelUpdate' } );
+		this.namespaceToggle.connect( this, { change: 'onNamespaceToggleChange' } );
+
 		// Initialize
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget' );
@@ -51,7 +60,8 @@
 		}
 
 		this.$element.append(
-			this.filterTagWidget.$element
+			this.filterTagWidget.$element,
+			this.namespaceToggle.$element
 		);
 	};
 
@@ -59,4 +69,22 @@
 
 	OO.inheritClass( mw.rcfilters.ui.FilterWrapperWidget, OO.ui.Widget );
 	OO.mixinClass( mw.rcfilters.ui.FilterWrapperWidget, OO.ui.mixin.PendingElement );
+
+	/* Methods */
+
+	/**
+	 * Respond to model update event
+	 */
+	mw.rcfilters.ui.FilterWrapperWidget.prototype.onModelUpdate = function () {
+		// Synchronize the state of the toggle button with the current view
+		this.namespaceToggle.setValue( this.model.getCurrentView() === 'namespaces' );
+	};
+
+	/**
+	 * Respond to namespace toggle button click
+	 */
+	mw.rcfilters.ui.FilterWrapperWidget.prototype.onNamespaceToggleChange = function () {
+		this.controller.switchView( 'namespaces' );
+		this.filterTagWidget.focus();
+	};
 }( mediaWiki ) );

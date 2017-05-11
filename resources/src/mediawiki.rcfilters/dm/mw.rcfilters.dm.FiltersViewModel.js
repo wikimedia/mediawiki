@@ -16,7 +16,11 @@
 		this.defaultParams = {};
 		this.defaultFiltersEmpty = null;
 		this.highlightEnabled = false;
+		this.invertedNamespaces = false;
 		this.parameterMap = {};
+
+		this.views = {};
+		this.currentView = null;
 
 		// Events
 		this.aggregate( { update: 'filterItemUpdate' } );
@@ -34,6 +38,12 @@
 	 * @event initialize
 	 *
 	 * Filter list is initialized
+	 */
+
+	/**
+	 * @event update
+	 *
+	 * Model has been updated
 	 */
 
 	/**
@@ -191,10 +201,11 @@
 	 *
 	 * @param {Array} filters Filter group definition
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.initializeFilters = function ( filters ) {
-		var filterItem, filterConflictResult, groupConflictResult,
+	mw.rcfilters.dm.FiltersViewModel.prototype.initializeFilters = function ( filters, namespaces ) {
+		var i, filterItem, filterConflictResult, groupConflictResult,
 			model = this,
 			items = [],
+			namespaceDefinition = [],
 			groupConflictMap = {},
 			filterConflictMap = {},
 			/*!
@@ -258,7 +269,10 @@
 		// Reset
 		this.clearItems();
 		this.groups = {};
+		this.views = {};
 
+		// Filters
+		this.views.default = { name: 'default', label: mw.msg( 'rcfilters-filterlist-title' ) };
 		filters.forEach( function ( data ) {
 			var i,
 				group = data.name;
@@ -277,6 +291,14 @@
 					}
 				} );
 			}
+
+			// Filters are given to us with msg-keys, we need
+			// to translate those before we hand them off
+			for ( i = 0; i < data.filters.length; i++ ) {
+				data.filters[ i ].label = mw.msg( data.filters[ i ].label );
+				data.filters[ i ].description = mw.msg( data.filters[ i ].description );
+			}
+
 			model.groups[ group ].initializeFilters( data.filters, data.default );
 			items = items.concat( model.groups[ group ].getItems() );
 
@@ -295,9 +317,37 @@
 			}
 		} );
 
+		// Namespaces group
+		this.views.namespaces = { name: 'namespaces', label: mw.msg( 'namespaces' ), trigger: ':' };
+		$.each( namespaces, function ( namespaceID, label ) {
+			// Build and clean up the definition
+			namespaceDefinition.push( {
+				name: namespaceID,
+				label: label || mw.msg( 'blanknamespace' ),
+				description: '',
+				identifiers: [ namespaceID % 2 === 0 ? 'subject' : 'talk' ],
+				cssClass: 'mw-changeslist-ns-' + namespaceID
+			} );
+		} );
+
+		// Add the group
+		model.groups.namespace = new mw.rcfilters.dm.FilterGroup(
+			'namespace', // Parameter name is singular
+			{
+				type: 'string_options',
+				view: 'namespaces',
+				title: 'namespaces', // Message key
+				separator: ';',
+				labelPrefixKey: { default: 'rcfilters-tag-prefix-namespace', inverted: 'rcfilters-tag-prefix-namespace-inverted' },
+				fullCoverage: true
+			}
+		);
+		// Add namespace items to group
+		model.groups.namespace.initializeFilters( namespaceDefinition );
+		items = items.concat( model.groups.namespace.getItems() );
+
 		// Add item references to the model, for lookup
 		this.addItems( items );
-
 		// Expand conflicts
 		groupConflictResult = expandConflictDefinitions( groupConflictMap );
 		filterConflictResult = expandConflictDefinitions( filterConflictMap );
@@ -349,6 +399,56 @@
 		return this.groups;
 	};
 
+	/**
+	 * Get the object that defines groups that match a certain view by their name.
+	 *
+	 * @param {string} [view] Requested view. If not given, uses current view
+	 * @return {Object} Filter groups matching a display group
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getFilterGroupsByView = function ( view ) {
+		var result = {};
+
+		view = view || this.getCurrentView();
+
+		$.each( this.groups, function ( groupName, groupModel ) {
+			if ( groupModel.getView() === view ) {
+				result[ groupName ] = groupModel;
+			}
+		} );
+
+		return result;
+	};
+
+	/**
+	 * Get an array of filters matching the given display group.
+	 *
+	 * @param {string} [view] Requested view. If not given, uses current view
+	 * @return {mw.rcfilters.dm.FilterItem} Filter items matching the group
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getFiltersByView = function ( view ) {
+		var groups,
+			result = [];
+
+		view = view || this.getCurrentView();
+
+		groups = this.getFilterGroupsByView( view );
+
+		$.each( groups, function ( groupName, groupModel ) {
+			result = result.concat( groupModel.getItems() );
+		} );
+
+		return result;
+	};
+
+	/**
+	 * Get the trigger for the requested view.
+	 *
+	 * @param {string} view View name
+	 * @return {string} View trigger, if exists
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getViewTrigger = function ( view ) {
+		return this.views[ view ] && this.views[ view ].trigger;
+	};
 	/**
 	 * Get the value of a specific parameter
 	 *
@@ -643,18 +743,28 @@
 	 *  arranged by their group names
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.findMatches = function ( query, returnFlat ) {
-		var i,
+		var i, view, searchIsEmpty,
 			groupTitle,
 			result = {},
 			flatResult = [],
-			items = this.getItems();
+			items = this.getFiltersByView();
 
-		// Normalize so we can search strings regardless of case
+		// Normalize so we can search strings regardless of case and view
 		query = query.toLowerCase();
+		if ( query.indexOf( this.getViewTrigger( 'namespaces' ) ) === 0 ) {
+			query = query.substr( 1 );
+		}
+
+		// Check if the search if actually empty; this can be a problem when
+		// we use prefixes to denote different views
+		searchIsEmpty = query.length === 0;
 
 		// item label starting with the query string
 		for ( i = 0; i < items.length; i++ ) {
-			if ( items[ i ].getLabel().toLowerCase().indexOf( query ) === 0 ) {
+			if (
+				searchIsEmpty ||
+				items[ i ].getLabel().toLowerCase().indexOf( query ) === 0
+			) {
 				result[ items[ i ].getGroupName() ] = result[ items[ i ].getGroupName() ] || [];
 				result[ items[ i ].getGroupName() ].push( items[ i ] );
 				flatResult.push( items[ i ] );
@@ -666,6 +776,7 @@
 			for ( i = 0; i < items.length; i++ ) {
 				groupTitle = items[ i ].getGroupModel().getTitle();
 				if (
+					searchIsEmpty ||
 					items[ i ].getLabel().toLowerCase().indexOf( query ) > -1 ||
 					items[ i ].getDescription().toLowerCase().indexOf( query ) > -1 ||
 					groupTitle.toLowerCase().indexOf( query ) > -1
@@ -703,6 +814,21 @@
 		} );
 	};
 
+	mw.rcfilters.dm.FiltersViewModel.prototype.switchView = function ( view ) {
+		if ( this.views[ view ] && this.currentView !== view ) {
+			this.currentView = view;
+			this.emit( 'update' );
+		}
+	};
+
+	mw.rcfilters.dm.FiltersViewModel.prototype.getCurrentView = function () {
+		return this.currentView;
+	};
+
+	mw.rcfilters.dm.FiltersViewModel.prototype.getCurrentViewLabel = function () {
+		return this.views[ this.getCurrentView() ].label;
+	};
+
 	/**
 	 * Toggle the highlight feature on and off.
 	 * Propagate the change to filter items.
@@ -730,6 +856,35 @@
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.isHighlightEnabled = function () {
 		return !!this.highlightEnabled;
+	};
+
+	/**
+	 * Toggle the inverted namespaces property on and off.
+	 * Propagate the change to namespace filter items.
+	 *
+	 * @param {boolean} enable Inverted property is enabled
+	 * @fires invertedChange
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.toggleInvertedNamespaces = function ( enable ) {
+		enable = enable === undefined ? !this.invertedNamespaces : enable;
+
+		if ( this.invertedNamespaces !== enable ) {
+			this.invertedNamespaces = enable;
+
+			this.getFiltersByView( 'namespaces' ).forEach( function ( filterItem ) {
+				filterItem.toggleInverted( this.invertedNamespaces );
+			}.bind( this ) );
+
+			this.emit( 'nsInvertChange', this.invertedNamespaces );
+		}
+	};
+
+	/**
+	 * Check if the namespaces selection is set to be inverted
+	 * @return {boolean}
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.areNamespacesInverted = function () {
+		return !!this.invertedNamespaces;
 	};
 
 	/**
