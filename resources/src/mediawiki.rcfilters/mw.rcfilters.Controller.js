@@ -24,23 +24,24 @@
 	 * Initialize the filter and parameter states
 	 *
 	 * @param {Array} filterStructure Filter definition and structure for the model
+	 * @param {Object} [namespaceStructure] Namespace definition
 	 */
-	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure ) {
+	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure ) {
 		var parsedSavedQueries, validParameterNames,
 			uri = new mw.Uri(),
 			$changesList = $( '.mw-changeslist' ).first().contents();
 
 		// Initialize the model
-		this.filtersModel.initializeFilters( filterStructure );
+		this.filtersModel.initializeFilters( filterStructure, namespaceStructure );
 
 		this._buildBaseFilterState();
 		this._buildEmptyParameterState();
 		validParameterNames = Object.keys( this._getEmptyParameterState() )
 			.filter( function ( param ) {
-				// Remove 'highlight' parameter from this check;
+				// Remove 'highlight' and 'invert' parameters from this check;
 				// if it's the only parameter in the URL we still
 				// want to consider the URL 'empty' for defaults to load
-				return param !== 'highlight';
+				return param !== 'highlight' && param !== 'invert';
 			} );
 
 		try {
@@ -78,18 +79,23 @@
 			this._updateModelState(
 				$.extend(
 					true,
-					// We've ignored the highlight parameter for the sake
-					// of seeing whether we need to apply defaults - but
+					this._getDefaultParams(),
+					// We've ignored the highlight and invert parameters for
+					// the sake of seeing whether we need to apply defaults - but
 					// while we do load the defaults, we still want to retain
 					// the actual value given in the URL for it on top of the
 					// defaults
-					{ highlight: String( Number( uri.query.highlight ) ) },
-					this._getDefaultParams()
+					{
+						highlight: String( Number( uri.query.highlight ) ),
+						invert: String( Number( uri.query.invert ) )
+					}
 				)
 			);
 			this.updateChangesList();
 			this.initializing = false;
 		}
+
+		this.switchView( 'default' );
 
 		// Update the changes list with the existing data
 		// so it gets processed
@@ -100,10 +106,19 @@
 	};
 
 	/**
+	 * Switch the view of the filters model
+	 *
+	 * @param {string} view Requested view
+	 */
+	mw.rcfilters.Controller.prototype.switchView = function ( view ) {
+		this.filtersModel.switchView( view );
+	};
+
+	/**
 	 * Reset to default filters
 	 */
 	mw.rcfilters.Controller.prototype.resetToDefaults = function () {
-		this._updateModelState( $.extend( true, { highlight: '0' }, this._getDefaultParams() ) );
+		this._updateModelState( $.extend( true, { highlight: '0', invert: '0' }, this._getDefaultParams() ) );
 		this.updateChangesList();
 	};
 
@@ -187,6 +202,14 @@
 	};
 
 	/**
+	 * Toggle the namespaces inverted feature on and off
+	 */
+	mw.rcfilters.Controller.prototype.toggleInvertedNamespaces = function () {
+		this.filtersModel.toggleInvertedNamespaces();
+		this.updateChangesList();
+	};
+
+	/**
 	 * Set the highlight color for a filter item
 	 *
 	 * @param {string} filterName Name of the filter item
@@ -231,7 +254,8 @@
 			label || mw.msg( 'rcfilters-savedqueries-defaultlabel' ),
 			{
 				filters: this.filtersModel.getSelectedState(),
-				highlights: highlightedItems
+				highlights: highlightedItems,
+				invert: this.filtersModel.areNamespacesInverted()
 			}
 		);
 
@@ -302,6 +326,9 @@
 			// Update model state from filters
 			this.filtersModel.toggleFiltersSelected( data.filters );
 
+			// Update namespace inverted property
+			this.filtersModel.toggleInvertedNamespaces( !!Number( data.invert ) );
+
 			// Update highlight state
 			this.filtersModel.toggleHighlight( !!Number( highlights.highlight ) );
 			this.filtersModel.getItems().forEach( function ( filterItem ) {
@@ -338,7 +365,8 @@
 		return this.savedQueriesModel.findMatchingQuery(
 			{
 				filters: this.filtersModel.getSelectedState(),
-				highlights: highlightedItems
+				highlights: highlightedItems,
+				invert: this.filtersModel.areNamespacesInverted()
 			}
 		);
 	};
@@ -381,7 +409,8 @@
 
 		this.baseFilterState = {
 			filters: this.filtersModel.getFiltersFromParameters( defaultParams ),
-			highlights: highlightedItems
+			highlights: highlightedItems,
+			invert: false
 		};
 	};
 
@@ -399,7 +428,7 @@
 			{},
 			emptyParams,
 			emptyHighlights,
-			{ highlight: '0' }
+			{ highlight: '0', invert: '0' }
 		);
 	};
 
@@ -558,6 +587,9 @@
 			)
 		);
 
+		// Update namespaces inverted
+		this.filtersModel.toggleInvertedNamespaces( !!Number( parameters.invert ) );
+
 		// Update highlight state
 		this.filtersModel.toggleHighlight( !!Number( parameters.highlight ) );
 		this.filtersModel.getItems().forEach( function ( filterItem ) {
@@ -601,7 +633,7 @@
 				}
 			} );
 
-			return $.extend( true, {}, savedParams, savedHighlights );
+			return $.extend( true, {}, savedParams, savedHighlights, { invert: data.invert } );
 		}
 
 		return this.filtersModel.getDefaultParams();
@@ -643,12 +675,18 @@
 		$.extend( true,
 			currentFilterState,
 			this.filtersModel.extractHighlightValues( uri.query ),
-			{ highlight: !!Number( uri.query.highlight ) }
+			{
+				highlight: !!Number( uri.query.highlight ),
+				invert: !!Number( uri.query.invert )
+			}
 		);
 		$.extend( true,
 			updatedFilterState,
 			this.filtersModel.extractHighlightValues( updatedUri.query ),
-			{ highlight: !!Number( updatedUri.query.highlight ) }
+			{
+				highlight: !!Number( updatedUri.query.highlight ),
+				invert: !!Number( updatedUri.query.invert )
+			}
 		);
 
 		if ( notEquivalent( currentFilterState, updatedFilterState ) ) {
@@ -686,11 +724,6 @@
 		} );
 
 		// highlight params
-		if ( this.filtersModel.isHighlightEnabled() ) {
-			uri.query.highlight = Number( this.filtersModel.isHighlightEnabled() );
-		} else {
-			delete uri.query.highlight;
-		}
 		$.each( highlightParams, function ( paramName, value ) {
 			// Only output if it is different than the base parameters
 			if ( baseParams[ paramName ] !== value ) {
@@ -699,6 +732,18 @@
 				delete uri.query[ paramName ];
 			}
 		} );
+
+		// Namespaces inverted param
+		if ( this.filtersModel.areNamespacesInverted() ) {
+			uri.query.invert = '1';
+		} else {
+			delete uri.query.invert;
+		}
+		if ( this.filtersModel.isHighlightEnabled() ) {
+			uri.query.highlight = '1';
+		} else {
+			delete uri.query.highlight;
+		}
 
 		return uri;
 	};
