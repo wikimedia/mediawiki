@@ -28,7 +28,8 @@
 		this.name = this.namePrefix + param;
 
 		this.label = config.label || this.name;
-		this.description = config.description;
+		this.labelPrefixKey = config.labelPrefixKey || { default: 'rcfilters-tag-prefix-default', inverted: 'rcfilters-tag-prefix-default-inverted' };
+		this.description = config.description || '';
 		this.selected = !!config.selected;
 
 		this.inverted = !!config.inverted;
@@ -73,6 +74,18 @@
 	 */
 	mw.rcfilters.dm.ItemModel.prototype.getName = function () {
 		return this.name;
+	};
+
+	/**
+	 * Get a prefixed label
+	 *
+	 * @return {string} Prefixed label
+	 */
+	mw.rcfilters.dm.ItemModel.prototype.getPrefixedLabel = function () {
+		return mw.msg(
+			this.labelPrefixKey[ this.isInverted() ? 'inverted' : 'default' ],
+			this.getLabel()
+		);
 	};
 
 	/**

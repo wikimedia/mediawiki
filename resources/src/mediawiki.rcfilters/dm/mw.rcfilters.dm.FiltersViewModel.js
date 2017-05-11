@@ -191,10 +191,11 @@
 	 *
 	 * @param {Array} filters Filter group definition
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.initializeFilters = function ( filters ) {
-		var filterItem, filterConflictResult, groupConflictResult,
+	mw.rcfilters.dm.FiltersViewModel.prototype.initializeFilters = function ( filters, namespaces ) {
+		var i, filterItem, filterConflictResult, groupConflictResult,
 			model = this,
 			items = [],
+			namespaceDefinition = [],
 			groupConflictMap = {},
 			filterConflictMap = {},
 			/*!
@@ -259,6 +260,7 @@
 		this.clearItems();
 		this.groups = {};
 
+		// Filters
 		filters.forEach( function ( data ) {
 			var i,
 				group = data.name;
@@ -269,6 +271,7 @@
 					title: mw.msg( data.title ),
 					separator: data.separator,
 					fullCoverage: !!data.fullCoverage,
+					labelPrefixKey: { default: 'rcfilters-tag-prefix-default', inverted: 'rcfilters-tag-prefix-default' },
 					whatsThis: {
 						body: data.whatsThisBody,
 						header: data.whatsThisHeader,
@@ -277,6 +280,14 @@
 					}
 				} );
 			}
+
+			// Filters are given to us with msg-keys, we need
+			// to translate those before we hand them off
+			for ( i = 0; i < data.filters.length; i++ ) {
+				data.filters[ i ].label = mw.msg( data.filters[ i ].label );
+				data.filters[ i ].description = mw.msg( data.filters[ i ].description );
+			}
+
 			model.groups[ group ].initializeFilters( data.filters, data.default );
 			items = items.concat( model.groups[ group ].getItems() );
 
@@ -295,9 +306,31 @@
 			}
 		} );
 
+		// Namespaces group
+		$.each( namespaces, function ( namespaceID, label ) {
+			// Build definition
+			namespaceDefinition.push( {
+				name: namespaceID,
+				label: label || mw.msg( 'blanknamespace' ),
+				description: ''
+			} );
+		} );
+
+		// Add the group
+		model.groups.namespaces = new mw.rcfilters.dm.FilterGroup( 'namespaces', {
+			type: 'string_options',
+			displayGroup: 'namespaces',
+			title: 'namespace', // Message key
+			separator: ':',
+			labelPrefixKey: { default: 'rcfilters-tag-prefix-namespace', inverted: 'rcfilters-tag-prefix-namespace-inverted' },
+			fullCoverage: true
+		} );
+		// Add namespace items to group
+		model.groups.namespaces.initializeFilters( namespaceDefinition );
+		items = items.concat( model.groups.namespaces.getItems() );
+
 		// Add item references to the model, for lookup
 		this.addItems( items );
-
 		// Expand conflicts
 		groupConflictResult = expandConflictDefinitions( groupConflictMap );
 		filterConflictResult = expandConflictDefinitions( filterConflictMap );
@@ -347,6 +380,25 @@
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getFilterGroups = function () {
 		return this.groups;
+	};
+
+	/**
+	 * Get the object that defines groups that match a certain displayGroup by their name.
+	 *
+	 * @return {Object} Filter groups matching a display group
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getFilterGroupsByDisplayGroup = function ( displayGroup ) {
+		var result = [];
+
+		displayGroup = displayGroup || 'default';
+
+		$.each( this.groups, function ( groupName, groupModel ) {
+			if ( groupModel.getDisplayGroup() === displayGroup ) {
+				result[ groupName ] = groupModel;
+			}
+		} );
+
+		return result;
 	};
 
 	/**
@@ -562,6 +614,26 @@
 		}
 
 		return this.defaultFiltersEmpty;
+	};
+
+	/**
+	 * Get an array of filters matching the given display group.
+	 *
+	 * @param {string} [displayGroup='default'] Display group
+	 * @return {mw.rcfilters.dm.FilterItem} Filter items matching the group
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getFiltersByDisplayGroup = function ( displayGroup ) {
+		var result = [];
+
+		displayGroup = displayGroup || 'default';
+
+		$.each( this.groups, function ( groupName, groupModel ) {
+			if ( groupModel.getDisplayGroup() === displayGroup ) {
+				result = result.concat( this.getItems() );
+			}
+		} );
+
+		return result;
 	};
 
 	/**
