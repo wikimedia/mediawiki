@@ -23,6 +23,10 @@ production.
 * $wgExceptionHooks has been removed.
 * $wgShellLocale is now applied for all requests. wfInitShellLocale() is
   deprecated and a no-op, as it is no longer needed.
+* WikiPage::getParserOutput() will now throw an exception if passed
+  ParserOptions would pollute the parser cache. Callers should use
+  WikiPage::makeParserOptions() to create the ParserOptions object and only
+  change options that affect the parser cache key.
 
 === New features in 1.30 ===
 * (T37247) Output from Parser::parse() will now be wrapped in a div with
@@ -33,6 +37,8 @@ production.
 * File storage backends that supports headers (eg. Swift) now store an
   X-Content-Dimensions header for originals that contain the media's dimensions
   as page ranges keyed by dimensions.
+* Added a 'ParserOptionsRegister' hook to allow extensions to register
+  additional parser options.
 
 === Languages updated in 1.30 ===
 
