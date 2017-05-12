@@ -138,6 +138,20 @@ class ParserCache {
 	 * @return bool|mixed|string
 	 */
 	public function getKey( $article, $popts, $useOutdated = true ) {
+		$dummy = null;
+		return $this->getKeyReal( $article, $popts, $useOutdated, $dummy );
+	}
+
+	/**
+	 * Temporary internal function to allow accessing $usedOptions
+	 * @todo Merge this back to self::getKey() when ParserOptions::optionsHashPre30() is removed
+	 * @param WikiPage $article
+	 * @param ParserOptions $popts
+	 * @param bool $useOutdated (default true)
+	 * @param array &$usedOptions Don't use this, it will go away soon
+	 * @return bool|mixed|string
+	 */
+	private function getKeyReal( $article, $popts, $useOutdated, &$usedOptions ) {
 		global $wgCacheEpoch;
 
 		if ( $popts instanceof User ) {
@@ -204,7 +218,8 @@ class ParserCache {
 
 		$touched = $article->getTouched();
 
-		$parserOutputKey = $this->getKey( $article, $popts, $useOutdated );
+		$usedOptions = null;
+		$parserOutputKey = $this->getKeyReal( $article, $popts, $useOutdated, $usedOptions );
 		if ( $parserOutputKey === false ) {
 			wfIncrStats( 'pcache.miss.absent' );
 			return false;
@@ -213,6 +228,13 @@ class ParserCache {
 		$casToken = null;
 		/** @var ParserOutput $value */
 		$value = $this->mMemc->get( $parserOutputKey, $casToken, BagOStuff::READ_VERIFIED );
+		if ( !$value ) {
+			$parserOutputKey = $this->getParserOutputKey(
+				$article,
+				$popts->optionsHashPre30( $usedOptions, $article->getTitle() )
+			);
+			$value = $this->mMemc->get( $parserOutputKey, $casToken, BagOStuff::READ_VERIFIED );
+		}
 		if ( !$value ) {
 			wfDebug( "ParserOutput cache miss.\n" );
 			wfIncrStats( "pcache.miss.absent" );
