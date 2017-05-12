@@ -309,6 +309,11 @@ class ApiParse extends ApiBase {
 			$outputPage = new OutputPage( $context );
 			$outputPage->addParserOutput( $p_result );
 			$context->setOutput( $outputPage );
+
+			if ( $skin ) {
+				// Based on OutputPage::output()
+				$this->addModules( $skin->getDefaultModules() );
+			}
 		}
 
 		if ( !is_null( $oldid ) ) {
