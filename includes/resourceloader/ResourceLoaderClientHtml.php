@@ -170,7 +170,7 @@ class ResourceLoaderClientHtml {
 
 			if ( $module->getType() !== ResourceLoaderModule::LOAD_STYLES ) {
 				$logger = $rl->getLogger();
-				$logger->warning( 'Unexpected general module "{module}" in styles queue.', [
+				$logger->debug( 'Unexpected general module "{module}" in styles queue.', [
 					'module' => $name,
 				] );
 			} else {
