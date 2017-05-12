@@ -11,6 +11,16 @@
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
 	 */
 	mw.rcfilters.ui.SavedLinksListWidget = function MwRcfiltersUiSavedLinksListWidget( controller, model, config ) {
+		var $labelNoEntries = $( '<div>' )
+			.append(
+				$( '<div>' )
+					.addClass( 'mw-rcfilters-ui-savedLinksListWidget-placeholder-title' )
+					.append( mw.msg( 'rcfilters-quickfilters-placeholder-title' ) ),
+				$( '<div>' )
+					.addClass( 'mw-rcfilters-ui-savedLinksListWidget-placeholder-description' )
+					.append( mw.msg( 'rcfilters-quickfilters-placeholder-description' ) )
+			);
+
 		config = config || {};
 
 		// Parent
@@ -22,7 +32,7 @@
 
 		this.placeholderItem = new OO.ui.DecoratedOptionWidget( {
 			classes: [ 'mw-rcfilters-ui-savedLinksListWidget-placeholder' ],
-			label: mw.msg( 'rcfilters-quickfilters-placeholder' ),
+			label: $labelNoEntries,
 			icon: 'unClip'
 		} );
 		// The only reason we're using "ButtonGroupWidget" here is that
