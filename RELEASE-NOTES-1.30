@@ -19,9 +19,6 @@ production.
   to allow for proper dependency injection.
 
 === New features in 1.30 ===
-* (T37247) Output from Parser::parse() will now be wrapped in a div with
-  class="mw-parser-output" by default. This may be changed or disabled using
-  ParserOptions::setWrapOutputClass().
 * Added 'ChangeTagsAllowedAdd' hook, enabling extensions to allow software-
   specific tags to be added by users.
 * File storage backends that supports headers (eg. Swift) now store an
@@ -43,9 +40,7 @@ production.
 * …
 
 === Action API changes in 1.30 ===
-* (T37247) action=parse output will be wrapped in a div with
-  class="mw-parser-output" by default. This may be changed or disabled using
-  the new 'wrapoutputclass' parameter.
+* …
 
 === Action API internal changes in 1.30 ===
 * …
