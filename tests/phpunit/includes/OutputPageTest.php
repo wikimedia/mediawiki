@@ -372,8 +372,10 @@ class OutputPageTest extends MediaWikiTestCase {
 					'user' => [ 'user.styles', 'example.user' ],
 				],
 				'<meta name="ResourceLoaderDynamicStyles" content=""/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=example.site.a%2Cb%7Csite.styles&amp;only=styles&amp;skin=fallback"/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=example.user%7Cuser.styles&amp;only=styles&amp;skin=fallback&amp;version=0hsudgr"/>',
+				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=example.site.a%2Cb&amp;only=styles&amp;skin=fallback"/>' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=fallback"/>' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=example.user&amp;only=styles&amp;skin=fallback&amp;version=0a56zyi"/>' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=user.styles&amp;only=styles&amp;skin=fallback&amp;version=0i6m8xm"/>',
 			],
 			// @codingStandardsIgnoreEnd Generic.Files.LineLength
 		];
