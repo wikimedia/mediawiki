@@ -39,7 +39,7 @@
 		this.popup.$head.prepend( ( new OO.ui.IconWidget( { icon: 'clip' } ) ).$element );
 
 		this.input = new OO.ui.TextInputWidget( {
-			validate: 'non-empty'
+			validate: /\S/
 		} );
 		layout = new OO.ui.FieldLayout( this.input, {
 			label: mw.msg( 'rcfilters-savedqueries-new-name-label' ),
@@ -151,8 +151,6 @@
 				widget.controller.saveCurrentQuery( label );
 				widget.input.setValue( this.input, '' );
 				widget.emit( 'saveCurrent' );
-			} )
-			.always( function () {
 				widget.popup.toggle( false );
 			} );
 	};
