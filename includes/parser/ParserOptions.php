@@ -493,6 +493,7 @@ class ParserOptions {
 	 * @return string|bool
 	 */
 	public function getWrapOutputClass() {
+		$this->optionUsed( 'wrapclass' );
 		return $this->wrapOutputClass;
 	}
 
@@ -941,6 +942,10 @@ class ParserOptions {
 
 		if ( $this->mIsPrintable && in_array( 'printable', $forOptions ) ) {
 			$confstr .= '!printable=1';
+		}
+
+		if ( $this->wrapOutputClass !== 'mw-parser-output' && in_array( 'wrapclass', $forOptions ) ) {
+			$confstr .= '!wrapclass=' . $this->wrapOutputClass;
 		}
 
 		if ( $this->mExtraKey != '' ) {
