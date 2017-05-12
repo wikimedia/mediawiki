@@ -364,7 +364,7 @@ class OutputPageTest extends MediaWikiTestCase {
 				'exemptStyleModules' => [ 'site' => [ 'site.styles' ], 'user' => [ 'user.styles' ] ],
 				'<meta name="ResourceLoaderDynamicStyles" content=""/>' . "\n" .
 				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=fallback"/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=user.styles&amp;only=styles&amp;skin=fallback&amp;version=0i6m8xm"/>',
+				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=user.styles&amp;only=styles&amp;skin=fallback&amp;version=0fj06nq"/>',
 			],
 			'custom modules' => [
 				'exemptStyleModules' => [
@@ -372,8 +372,10 @@ class OutputPageTest extends MediaWikiTestCase {
 					'user' => [ 'user.styles', 'example.user' ],
 				],
 				'<meta name="ResourceLoaderDynamicStyles" content=""/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=example.site.a%2Cb%7Csite.styles&amp;only=styles&amp;skin=fallback"/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=example.user%7Cuser.styles&amp;only=styles&amp;skin=fallback&amp;version=0hsudgr"/>',
+				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=example.site.a%2Cb&amp;only=styles&amp;skin=fallback"/>' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=fallback"/>' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=example.user&amp;only=styles&amp;skin=fallback&amp;version=0a56zyi"/>' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=user.styles&amp;only=styles&amp;skin=fallback&amp;version=0fj06nq"/>',
 			],
 			// @codingStandardsIgnoreEnd Generic.Files.LineLength
 		];
@@ -387,6 +389,9 @@ class OutputPageTest extends MediaWikiTestCase {
 		$this->setMwGlobals( [
 			'wgResourceLoaderDebug' => false,
 			'wgLoadScript' => '/w/load.php',
+			// Stub wgCacheEpoch as it influences getVersionHash used for the
+			// urls in the expected HTML
+			'wgCacheEpoch' => '20030516000000',
 		] );
 
 		// Set up stubs
