@@ -3644,10 +3644,21 @@ class OutputPage extends ContextSource {
 			[ 'name' => 'ResourceLoaderDynamicStyles', 'content' => '' ]
 		);
 
+		$separateReq = [ 'site.styles', 'user.styles' ];
 		foreach ( $this->rlExemptStyleModules as $group => $moduleNames ) {
-			$chunks[] = $this->makeResourceLoaderLink( $moduleNames,
+			// Combinable modules
+			$chunks[] = $this->makeResourceLoaderLink(
+				array_diff( $moduleNames, $separateReq ),
 				ResourceLoaderModule::TYPE_STYLES
 			);
+
+			foreach ( array_intersect( $moduleNames, $separateReq ) as $name ) {
+				// These require their own dedicated request in order to support "@import"
+				// syntax, which is incompatible with concatenation. (T147667, T37562)
+				$chunks[] = $this->makeResourceLoaderLink( $name,
+					ResourceLoaderModule::TYPE_STYLES
+				);
+			}
 		}
 
 		return self::combineWrappedStrings( array_merge( $chunks, $append ) );
