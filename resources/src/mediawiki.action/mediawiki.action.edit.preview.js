@@ -124,6 +124,7 @@
 				preview: true,
 				sectionpreview: section !== '',
 				disableeditsection: true,
+				useskin: mw.config.get( 'skin' ),
 				uselang: mw.config.get( 'wgUserLanguage' )
 			} );
 			if ( section === 'new' ) {
