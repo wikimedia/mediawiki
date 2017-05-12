@@ -2417,7 +2417,8 @@ constructed.
 &$pager: the pager
 &$queryInfo: the query parameters
 
-'PageRenderingHash': Alter the parser cache option hash key. A parser extension
+'PageRenderingHash': NOTE: Consider using ParserOptionsRegister instead.
+Alter the parser cache option hash key. A parser extension
 which depends on user options should install this hook and append its values to
 the key.
 &$confstr: reference to a hash key string which can be modified
@@ -2540,6 +2541,16 @@ $title: title object representing the file
 $file: file object that will be used to create the image
 &$params: 2-D array of parameters
 $parser: Parser object that called the hook
+
+'ParserOptionsRegister': Register additional parser options. Note that if you
+change the default value for an option, all existing parser cache entries will
+be invalid. To avoid bugs, you'll need to handle that somehow (e.g. with the
+RejectParserCacheValue hook) because MediaWiki won't do it for you.
+&$defaults: Set the default value for your option here.
+&$inCacheKey: To fragment the parser cache on your option, set a truthy value here.
+&$lazyLoad: To lazy-initialize your option, set it null in $defaults and set a
+  callable here. The callable is passed the ParserOptions object and the option
+  name.
 
 'ParserSectionCreate': Called each time the parser creates a document section
 from wikitext. Use this to apply per-section modifications to HTML (like

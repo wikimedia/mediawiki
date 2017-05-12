@@ -1055,6 +1055,13 @@ class WikiPage implements Page, IDBAccessObject {
 	) {
 		$useParserCache =
 			( !$forceParse ) && $this->shouldCheckParserCache( $parserOptions, $oldid );
+
+		if ( $useParserCache && !$parserOptions->isSafeToCache() ) {
+			throw new InvalidArgumentException(
+				'The supplied ParserOptions are not safe to cache. Fix the options or set $forceParse = true.'
+			);
+		}
+
 		wfDebug( __METHOD__ .
 			': using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
 		if ( $parserOptions->getStubThreshold() ) {
