@@ -21,6 +21,10 @@ production.
   to plain class names, using the 'factory' key in the module description
   array. This allows dependency injection to be used for ResourceLoader modules.
 * $wgExceptionHooks has been removed.
+* WikiPage::getParserOutput() will now throw an exception if passed
+  ParserOptions would pollute the parser cache. Callers should use
+  WikiPage::makeParserOptions() to create the ParserOptions object and only
+  change options that affect the parser cache key.
 
 === New features in 1.30 ===
 * (T37247) Output from Parser::parse() will now be wrapped in a div with
@@ -31,6 +35,8 @@ production.
 * File storage backends that supports headers (eg. Swift) now store an
   X-Content-Dimensions header for originals that contain the media's dimensions
   as page ranges keyed by dimensions.
+* Added a 'ParserOptionsRegister' hook to allow extensions to register
+  additional parser options.
 
 === External library changes in 1.30 ===
 
