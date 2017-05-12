@@ -1007,22 +1007,22 @@ abstract class ContentHandler {
 	 * @return ParserOptions
 	 */
 	public function makeParserOptions( $context ) {
-		global $wgContLang, $wgEnableParserLimitReporting;
+		global $wgContLang;
 
 		if ( $context instanceof IContextSource ) {
-			$options = ParserOptions::newFromContext( $context );
+			$user = $context->getUser();
+			$lang = $context->getLanguage();
 		} elseif ( $context instanceof User ) { // settings per user (even anons)
-			$options = ParserOptions::newFromUser( $context );
+			$user = $context;
+			$lang = null;
 		} elseif ( $context === 'canonical' ) { // canonical settings
-			$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
+			$user = new User;
+			$lang = $wgContLang;
 		} else {
 			throw new MWException( "Bad context for parser options: $context" );
 		}
 
-		$options->enableLimitReport( $wgEnableParserLimitReporting ); // show inclusion/loop reports
-		$options->setTidy( true ); // fix bad HTML
-
-		return $options;
+		return ParserOptions::newCanonical( $user, $lang );
 	}
 
 	/**
