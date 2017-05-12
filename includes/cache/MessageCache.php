@@ -193,7 +193,6 @@ class MessageCache {
 				$po = ParserOptions::newFromAnon();
 				$po->setEditSection( false );
 				$po->setAllowUnsafeRawHtml( false );
-				$po->setWrapOutputClass( false );
 				return $po;
 			}
 
@@ -203,11 +202,6 @@ class MessageCache {
 			// from malicious sources. As a precaution, disable
 			// the <html> parser tag when parsing messages.
 			$this->mParserOptions->setAllowUnsafeRawHtml( false );
-			// Wrapping messages in an extra <div> is probably not expected. If
-			// they're outside the content area they probably shouldn't be
-			// targeted by CSS that's targeting the parser output, and if
-			// they're inside they already are from the outer div.
-			$this->mParserOptions->setWrapOutputClass( false );
 		}
 
 		return $this->mParserOptions;
