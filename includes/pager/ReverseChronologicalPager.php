@@ -1,7 +1,5 @@
 <?php
 /**
- * Efficient paging for SQL queries.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -23,7 +21,8 @@
 use Wikimedia\Timestamp\TimestampException;
 
 /**
- * IndexPager with a formatted navigation bar
+ * Efficient paging for SQL queries.
+ * IndexPager with a formatted navigation bar.
  * @ingroup Pager
  */
 abstract class ReverseChronologicalPager extends IndexPager {
@@ -32,7 +31,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	public $mMonth;
 	public $mDay;
 
-	function getNavigationBar() {
+	public function getNavigationBar() {
 		if ( !$this->isNavigationBarShown() ) {
 			return '';
 		}
@@ -65,52 +64,79 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	/**
 	 * Set and return the mOffset timestamp such that we can get all revisions with
 	 * a timestamp up to the specified parameters.
+	 *
 	 * @param int $year Year up to which we want revisions
 	 * @param int $month Month up to which we want revisions
 	 * @param int $day [optional] Day up to which we want revisions. Default is end of month.
 	 * @return string|null Timestamp or null if year and month are false/invalid
 	 */
-	function getDateCond( $year, $month, $day = -1 ) {
-		$year = intval( $year );
-		$month = intval( $month );
-		$day = intval( $day );
+	public function getDateCond( $year, $month, $day = -1 ) {
+		$year = (int)$year;
+		$month = (int)$month;
+		$day = (int)$day;
 
 		// Basic validity checks for year and month
-		$this->mYear = $year > 0 ? $year : false;
-		$this->mMonth = ( $month > 0 && $month < 13 ) ? $month : false;
-
-		// If year and month are false, don't update the mOffset
-		if ( !$this->mYear && !$this->mMonth ) {
+		// If year and month are invalid, don't update the mOffset
+		if ( $year <= 0 && ( $month <= 0 || $month >= 13 ) ) {
 			return null;
 		}
 
+		// Treat the given time in the wiki timezone and get a UTC timestamp for the database lookup
+		$timestamp = self::getOffsetDate( $year, $month, $day );
+		$timestamp->setTimezone( $this->getConfig()->get( 'Localtimezone' ) );
+
+		try {
+			$this->mYear = (int)$timestamp->format( 'Y' );
+			$this->mMonth = (int)$timestamp->format( 'm' );
+			$this->mDay = (int)$timestamp->format( 'd' );
+			$this->mOffset = $this->mDb->timestamp( $timestamp->getTimestamp() );
+		} catch ( TimestampException $e ) {
+			// Invalid user provided timestamp (T149257)
+			return null;
+		}
+
+		return $this->mOffset;
+	}
+
+	/**
+	 * Core logic of determining the mOffset timestamp such that we can get all items with
+	 * a timestamp up to the specified parameters. Given parameters for a day up to which to get
+	 * items, this function finds the timestamp of the day just after the end of the range for use
+	 * in an database strict inequality filter.
+	 *
+	 * This is separate from getDateCond so we can use this logic in other places, such as in
+	 * RangeChronologicalPager, where this function is used to convert year/month/day filter options
+	 * into a timestamp.
+	 *
+	 * @param int $year Year up to which we want revisions
+	 * @param int $month Month up to which we want revisions
+	 * @param int $day [optional] Day up to which we want revisions. Default is end of month.
+	 * @return MWTimestamp Timestamp or null if year and month are false/invalid
+	 */
+	public static function getOffsetDate( $year, $month, $day = -1 ) {
 		// Given an optional year, month, and day, we need to generate a timestamp
 		// to use as "WHERE rev_timestamp <= result"
 		// Examples: year = 2006      equals < 20070101 (+000000)
 		// year=2005, month=1         equals < 20050201
 		// year=2005, month=12        equals < 20060101
 		// year=2005, month=12, day=5 equals < 20051206
-		if ( $this->mYear ) {
-			$year = $this->mYear;
-		} else {
+		if ( $year <= 0 ) {
 			// If no year given, assume the current one
 			$timestamp = MWTimestamp::getInstance();
 			$year = $timestamp->format( 'Y' );
 			// If this month hasn't happened yet this year, go back to last year's month
-			if ( $this->mMonth > $timestamp->format( 'n' ) ) {
+			if ( $month > $timestamp->format( 'n' ) ) {
 				$year--;
 			}
 		}
 
-		if ( $this->mMonth ) {
-			$month = $this->mMonth;
-
+		if ( $month && $month > 0 && $month < 13 ) {
 			// Day validity check after we have month and year checked
-			$this->mDay = checkdate( $month, $day, $year ) ? $day : false;
+			$day = checkdate( $month, $day, $year ) ? $day : false;
 
-			if ( $this->mDay ) {
+			if ( $day && $day > 0 ) {
 				// If we have a day, we want up to the day immediately afterward
-				$day = $this->mDay + 1;
+				$day++;
 
 				// Did we overflow the current month?
 				if ( !checkdate( $month, $day, $year ) ) {
@@ -147,17 +173,6 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			$ymd = 20320101;
 		}
 
-		// Treat the given time in the wiki timezone and get a UTC timestamp for the database lookup
-		$timestamp = MWTimestamp::getInstance( "${ymd}000000" );
-		$timestamp->setTimezone( $this->getConfig()->get( 'Localtimezone' ) );
-
-		try {
-			$this->mOffset = $this->mDb->timestamp( $timestamp->getTimestamp() );
-		} catch ( TimestampException $e ) {
-			// Invalid user provided timestamp (T149257)
-			return null;
-		}
-
-		return $this->mOffset;
+		return MWTimestamp::getInstance( "${ymd}000000" );
 	}
 }
