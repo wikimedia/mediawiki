@@ -6,6 +6,11 @@
 	}
 
 	&-placeholder {
+		&-title {
+			font-weight: bold;
+			margin-bottom: 1em;
+		}
+
 		// Extra specificity needed to override OOUI rule that sets white-space: nowrap;
 		// on labels inside options
 		&.oo-ui-optionWidget .oo-ui-labelElement-label {
@@ -15,6 +20,11 @@
 
 		.oo-ui-iconElement-icon {
 			opacity: 0.5;
+			// Override OOUI option widget rules for icons
+			// we want the icon to appear at the top near the
+			// title, not in the middle of the multiline option
+			top: 0.7em !important;
+			height: inherit !important;
 		}
 	}
 }
