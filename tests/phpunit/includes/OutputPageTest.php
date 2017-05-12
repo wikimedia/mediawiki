@@ -344,6 +344,83 @@ class OutputPageTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedHtml, $actualHtml );
 	}
 
+	public static function provideBuildExemptModules() {
+		return [
+			'empty' => [
+				'exemptStyleModules' => [],
+				'<meta name="ResourceLoaderDynamicStyles" content=""/>',
+			],
+			'empty sets' => [
+				'exemptStyleModules' => [ 'site' => [], 'noscript' => [], 'private' => [], 'user' => [] ],
+				'<meta name="ResourceLoaderDynamicStyles" content=""/>',
+			],
+			// @codingStandardsIgnoreStart Generic.Files.LineLength
+			'default logged-out' => [
+				'exemptStyleModules' => [ 'site' => [ 'site.styles' ] ],
+				'<meta name="ResourceLoaderDynamicStyles" content=""/>' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=fallback"/>',
+			],
+			'default logged-in' => [
+				'exemptStyleModules' => [ 'site' => [ 'site.styles' ], 'user' => [ 'user.styles' ] ],
+				'<meta name="ResourceLoaderDynamicStyles" content=""/>' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=fallback"/>' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=user.styles&amp;only=styles&amp;skin=fallback&amp;version=0i6m8xm"/>',
+			],
+			'custom modules' => [
+				'exemptStyleModules' => [
+					'site' => [ 'site.styles', 'example.site.a', 'example.site.b' ],
+					'user' => [ 'user.styles', 'example.user' ],
+				],
+				'<meta name="ResourceLoaderDynamicStyles" content=""/>' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=example.site.a%2Cb%7Csite.styles&amp;only=styles&amp;skin=fallback"/>' . "\n" .
+				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=example.user%7Cuser.styles&amp;only=styles&amp;skin=fallback&amp;version=0hsudgr"/>',
+			],
+			// @codingStandardsIgnoreEnd Generic.Files.LineLength
+		];
+	}
+
+	/**
+	 * @dataProvider provideBuildExemptModules
+	 * @covers OutputPage::buildExemptModules
+	 */
+	public function testBuildExemptModules( array $exemptStyleModules, $expect ) {
+		$this->setMwGlobals( [
+			'wgResourceLoaderDebug' => false,
+			'wgLoadScript' => '/w/load.php',
+		] );
+
+		// Set up stubs
+		$ctx = new RequestContext();
+		$ctx->setSkin( SkinFactory::getDefaultInstance()->makeSkin( 'fallback' ) );
+		$ctx->setLanguage( 'en' );
+		$outputPage = $this->getMockBuilder( 'OutputPage' )
+			->setConstructorArgs( [ $ctx ] )
+			->setMethods( [ 'isUserCssPreview', 'buildCssLinksArray' ] )
+			->getMock();
+		$outputPage->expects( $this->any() )
+			->method( 'isUserCssPreview' )
+			->willReturn( false );
+		$outputPage->expects( $this->any() )
+			->method( 'buildCssLinksArray' )
+			->willReturn( [] );
+		$rl = $outputPage->getResourceLoader();
+		$rl->setMessageBlobStore( new NullMessageBlobStore() );
+
+		// Register custom modules
+		$rl->register( [
+			'example.site.a' => new ResourceLoaderTestModule( [ 'group' => 'site' ] ),
+			'example.site.b' => new ResourceLoaderTestModule( [ 'group' => 'site' ] ),
+			'example.user' => new ResourceLoaderTestModule( [ 'group' => 'user' ] ),
+		] );
+
+		$outputPage = TestingAccessWrapper::newFromObject( $outputPage );
+		$outputPage->rlExemptStyleModules = $exemptStyleModules;
+		$this->assertEquals(
+			$expect,
+			strval( $outputPage->buildExemptModules() )
+		);
+	}
+
 	/**
 	 * @dataProvider provideVaryHeaders
 	 * @covers OutputPage::addVaryHeader
