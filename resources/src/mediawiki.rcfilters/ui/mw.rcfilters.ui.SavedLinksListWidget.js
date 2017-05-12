@@ -86,7 +86,6 @@
 	 */
 	mw.rcfilters.ui.SavedLinksListWidget.prototype.onMenuItemRemove = function ( item ) {
 		this.controller.removeSavedQuery( item.getID() );
-		this.menu.removeItems( [ item ] );
 	};
 
 	/**
@@ -131,7 +130,7 @@
 	 * @param {mw.rcfilters.ui.SavedLinksListItemWidget} item Menu item
 	 */
 	mw.rcfilters.ui.SavedLinksListWidget.prototype.onModelRemoveItem = function ( item ) {
-		this.menu.removeItems( [ this.model.getItemByID( item.getID() ) ] );
+		this.menu.removeItems( [ this.menu.getItemFromData( item.getID() ) ] );
 		this.button.toggle( !this.menu.isEmpty() );
 	};
 }( mediaWiki ) );
