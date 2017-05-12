@@ -258,12 +258,6 @@ class ParserOptions {
 	 */
 	private $allowUnsafeRawHtml = true;
 
-	/**
-	 * CSS class to use to wrap output from Parser::parse().
-	 * @var string|false
-	 */
-	private $wrapOutputClass = 'mw-parser-output';
-
 	public function getInterwikiMagic() {
 		return $this->mInterwikiMagic;
 	}
@@ -487,15 +481,6 @@ class ParserOptions {
 		return $this->allowUnsafeRawHtml;
 	}
 
-	/**
-	 * Class to use to wrap output from Parser::parse()
-	 * @since 1.30
-	 * @return string|bool
-	 */
-	public function getWrapOutputClass() {
-		return $this->wrapOutputClass;
-	}
-
 	public function setInterwikiMagic( $x ) {
 		return wfSetVar( $this->mInterwikiMagic, $x );
 	}
@@ -642,19 +627,6 @@ class ParserOptions {
 	 */
 	public function setAllowUnsafeRawHtml( $x ) {
 		return wfSetVar( $this->allowUnsafeRawHtml, $x );
-	}
-
-	/**
-	 * CSS class to use to wrap output from Parser::parse()
-	 * @since 1.30
-	 * @param string|bool $className Set false to disable wrapping.
-	 * @return string|bool Current value
-	 */
-	public function setWrapOutputClass( $className ) {
-		if ( $className === true ) { // DWIM, they probably want the default class name
-			$className = 'mw-parser-output';
-		}
-		return wfSetVar( $this->wrapOutputClass, $className );
 	}
 
 	/**

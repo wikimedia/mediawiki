@@ -26,7 +26,6 @@ class ExtraParserTest extends MediaWikiTestCase {
 		// FIXME: This test should pass without setting global content language
 		$this->options = ParserOptions::newFromUserAndLang( new User, $contLang );
 		$this->options->setTemplateCallback( [ __CLASS__, 'statelessFetchTemplate' ] );
-		$this->options->setWrapOutputClass( false );
 		$this->parser = new Parser;
 
 		MagicWord::clearCache();
@@ -41,7 +40,6 @@ class ExtraParserTest extends MediaWikiTestCase {
 
 		$title = Title::newFromText( 'Unit test' );
 		$options = ParserOptions::newFromUser( new User() );
-		$options->setWrapOutputClass( false );
 		$this->assertEquals( "<p>$longLine</p>",
 			$this->parser->parse( $longLine, $title, $options )->getText() );
 	}
