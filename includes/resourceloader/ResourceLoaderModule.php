@@ -936,11 +936,12 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		}
 		$cache = ObjectCache::getMainWANInstance();
 		return $cache->getWithSetCallback(
-			$cache->makeKey(
+			$cache->makeGlobalKey(
 				'resourceloader',
 				'jsparse',
 				self::$parseCacheVersion,
-				md5( $contents )
+				md5( $contents ),
+				$fileName
 			),
 			$cache::TTL_WEEK,
 			function () use ( $contents, $fileName ) {
