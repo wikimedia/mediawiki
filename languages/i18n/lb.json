@@ -3511,6 +3511,8 @@
 	"mw-widgets-titleinput-description-redirect": "viruleeden op $1",
 	"mw-widgets-categoryselector-add-category-placeholder": "Eng Kategorie derbäisetzen...",
 	"mw-widgets-usersmultiselect-placeholder": "Méi derbäisetzen...",
+	"date-range-from": "Vum (Datum):",
+	"date-range-to": "Bis den (Datum):",
 	"sessionprovider-generic": "$1-Sessiounen",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "cookie-baséiert Sessiounen",
 	"sessionprovider-nocookies": "Cookië sinn eventuell desaktivéiert. Vergewëssert Iech datt Dir d'Cookien aktivéiert hutt a probéiert nach eng Kéier.",

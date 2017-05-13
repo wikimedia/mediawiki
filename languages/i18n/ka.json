@@ -1110,7 +1110,7 @@
 	"userrights-changeable-col": "ჯგუფები, რომლებიც შეგიძლიათ შეცვალოთ",
 	"userrights-unchangeable-col": "ჯგუფები, რომლებიც არ შეგიძლიათ შეცვალოთ",
 	"userrights-irreversible-marker": "$1*",
-	"userrights-expiry-none": "დასრულების ვადა არ გასულა",
+	"userrights-expiry-none": "უვადოდ",
 	"userrights-expiry": "ვადა:",
 	"userrights-expiry-existing": "დასრულების დრო: $3, $2",
 	"userrights-expiry-othertime": "სხვა დრო:",

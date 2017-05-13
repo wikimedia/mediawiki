@@ -74,7 +74,8 @@
 			"McDutchie",
 			"Larske",
 			"Rockyfelle",
-			"Johan"
+			"Johan",
+			"Martin Wiss"
 		]
 	},
 	"tog-underline": "Stryk under länkar:",
@@ -3788,6 +3789,7 @@
 	"mw-widgets-titleinput-description-redirect": "omdirigerar till $1",
 	"mw-widgets-categoryselector-add-category-placeholder": "Lägg till en kategori...",
 	"mw-widgets-usersmultiselect-placeholder": "Lägg till fler...",
+	"date-range-from": "From. den",
 	"sessionmanager-tie": "Kan inte kombinera flera begäransautentiseringstyper: $1.",
 	"sessionprovider-generic": "$1-sessioner",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "cookiebaserade sessioner",
