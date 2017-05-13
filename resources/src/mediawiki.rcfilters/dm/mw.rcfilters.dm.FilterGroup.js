@@ -118,7 +118,8 @@
 			if ( model.getType() === 'send_unselected_if_any' ) {
 				// Store the default parameter state
 				// For this group type, parameter values are direct
-				model.defaultParams[ filter.name ] = Number( !!filter.default );
+				// We need to convert from a boolean to a string ('1' and '0')
+				model.defaultParams[ filter.name ] = '' + Number( !!filter.default );
 			}
 		} );
 
@@ -412,7 +413,9 @@
 			// Go over the items and define the correct values
 			$.each( filterRepresentation, function ( name, value ) {
 				result[ filterParamNames[ name ] ] = areAnySelected ?
-					Number( !value ) : 0;
+					// We must store all parameter values as strings '0' or '1'
+					'' + Number( !value ) :
+					'0';
 			} );
 		} else if ( this.getType() === 'string_options' ) {
 			values = [];
@@ -451,10 +454,12 @@
 			paramRepresentation = paramRepresentation || {};
 			// Expand param representation to include all filters in the group
 			this.getItems().forEach( function ( filterItem ) {
-				paramRepresentation[ filterItem.getParamName() ] = !!paramRepresentation[ filterItem.getParamName() ];
-				paramToFilterMap[ filterItem.getParamName() ] = filterItem;
+				var paramName = filterItem.getParamName();
 
-				if ( paramRepresentation[ filterItem.getParamName() ] ) {
+				paramRepresentation[ paramName ] = paramRepresentation[ paramName ] || '0';
+				paramToFilterMap[ paramName ] = filterItem;
+
+				if ( Number( paramRepresentation[ filterItem.getParamName() ] ) ) {
 					areAnySelected = true;
 				}
 			} );
