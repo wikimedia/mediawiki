@@ -931,36 +931,32 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * @return string JS with the original, or a replacement error
 	 */
 	protected function validateScriptFile( $fileName, $contents ) {
-		if ( $this->getConfig()->get( 'ResourceLoaderValidateJS' ) ) {
-			// Try for cache hit
-			$cache = ObjectCache::getMainWANInstance();
-			$key = $cache->makeKey(
+		if ( !$this->getConfig()->get( 'ResourceLoaderValidateJS' ) ) {
+			return $contents;
+		}
+		$cache = ObjectCache::getMainWANInstance();
+		return $cache->getWithSetCallback(
+			$cache->makeKey(
 				'resourceloader',
 				'jsparse',
 				self::$parseCacheVersion,
 				md5( $contents )
-			);
-			$cacheEntry = $cache->get( $key );
-			if ( is_string( $cacheEntry ) ) {
-				return $cacheEntry;
+			),
+			$cache::TTL_WEEK,
+			function () use ( $contents, $fileName ) {
+				$parser = self::javaScriptParser();
+				try {
+					$parser->parse( $contents, $fileName, 1 );
+					$result = $contents;
+				} catch ( Exception $e ) {
+					// We'll save this to cache to avoid having to re-validate broken JS
+					$err = $e->getMessage();
+					$result = "mw.log.error(" .
+						Xml::encodeJsVar( "JavaScript parse error: $err" ) . ");";
+				}
+				return $result;
 			}
-
-			$parser = self::javaScriptParser();
-			try {
-				$parser->parse( $contents, $fileName, 1 );
-				$result = $contents;
-			} catch ( Exception $e ) {
-				// We'll save this to cache to avoid having to validate broken JS over and over...
-				$err = $e->getMessage();
-				$result = "mw.log.error(" .
-					Xml::encodeJsVar( "JavaScript parse error: $err" ) . ");";
-			}
-
-			$cache->set( $key, $result );
-			return $result;
-		} else {
-			return $contents;
-		}
+		);
 	}
 
 	/**
