@@ -438,7 +438,7 @@
 	mw.rcfilters.Controller.prototype.updateStateBasedOnUrl = function () {
 		var uri = new mw.Uri(),
 			defaultParams = this._getDefaultParams();
-
+debugger;
 		this._updateModelState( $.extend( {}, defaultParams, uri.query ) );
 		this.updateChangesList();
 	};
@@ -522,10 +522,10 @@
 					savedHighlights[ filterName + '_color' ] = color;
 				}
 			} );
-
+debugger;
 			return $.extend( true, {}, savedParams, savedHighlights );
 		}
-
+debugger;
 		return this.filtersModel.getDefaultParams();
 	};
 
@@ -576,11 +576,15 @@
 		// highlight params
 		uri.query.highlight = Number( this.filtersModel.isHighlightEnabled() );
 		Object.keys( highlightParams ).forEach( function ( paramName ) {
-			if ( highlightParams[ paramName ] ) {
-				uri.query[ paramName ] = highlightParams[ paramName ];
-			} else {
-				delete uri.query[ paramName ];
-			}
+			// Always have some value (either the color or null) so that
+			// if we have something in the URL that doesn't have the highlight
+			// intentionally, it can override default with highlight.
+			// Otherwise, the $.extend will always add the highlight that
+			// exists in the default even if the URL query that is being
+			// refreshed has different highlights, or has highlights enabled
+			// but no active highlights anywhere
+			uri.query[ paramName ] = highlightParams[ paramName ] ?
+				highlightParams[ paramName ] : null;
 		} );
 
 		return uri;
