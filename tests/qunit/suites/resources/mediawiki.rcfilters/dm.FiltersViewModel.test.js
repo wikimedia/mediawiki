@@ -188,12 +188,12 @@
 		assert.deepEqual(
 			model.getDefaultParams(),
 			{
-				hidefilter1: 1,
-				hidefilter2: 0,
-				hidefilter3: 1,
-				hidefilter4: 0,
-				hidefilter5: 1,
-				hidefilter6: 0,
+				hidefilter1: '1',
+				hidefilter2: '0',
+				hidefilter3: '1',
+				hidefilter4: '0',
+				hidefilter5: '1',
+				hidefilter6: '0',
 				group3: 'filter8'
 			},
 			'Default parameters are stored properly per filter and group'
@@ -364,12 +364,12 @@
 		assert.deepEqual(
 			model.getParametersFromFilters(),
 			{
-				hidefilter1: 0,
-				hidefilter2: 0,
-				hidefilter3: 0,
-				hidefilter4: 0,
-				hidefilter5: 0,
-				hidefilter6: 0,
+				hidefilter1: '0',
+				hidefilter2: '0',
+				hidefilter3: '0',
+				hidefilter4: '0',
+				hidefilter5: '0',
+				hidefilter6: '0',
 				group3: ''
 			},
 			'Unselected filters return all parameters falsey or \'\'.'
@@ -389,13 +389,13 @@
 			model.getParametersFromFilters(),
 			{
 				// Group 1 (one selected, the others are true)
-				hidefilter1: 0,
-				hidefilter2: 1,
-				hidefilter3: 1,
+				hidefilter1: '0',
+				hidefilter2: '1',
+				hidefilter3: '1',
 				// Group 2 (nothing is selected, all false)
-				hidefilter4: 0,
-				hidefilter5: 0,
-				hidefilter6: 0,
+				hidefilter4: '0',
+				hidefilter5: '0',
+				hidefilter6: '0',
 				group3: ''
 			},
 			'One filters in one "send_unselected_if_any" group returns the other parameters truthy.'
@@ -415,13 +415,13 @@
 			model.getParametersFromFilters(),
 			{
 				// Group 1 (two selected, the others are true)
-				hidefilter1: 0,
-				hidefilter2: 0,
-				hidefilter3: 1,
+				hidefilter1: '0',
+				hidefilter2: '0',
+				hidefilter3: '1',
 				// Group 2 (nothing is selected, all false)
-				hidefilter4: 0,
-				hidefilter5: 0,
-				hidefilter6: 0,
+				hidefilter4: '0',
+				hidefilter5: '0',
+				hidefilter6: '0',
 				group3: ''
 			},
 			'Two filters in one "send_unselected_if_any" group returns the other parameters truthy.'
@@ -441,13 +441,13 @@
 			model.getParametersFromFilters(),
 			{
 				// Group 1 (all selected, all false)
-				hidefilter1: 0,
-				hidefilter2: 0,
-				hidefilter3: 0,
+				hidefilter1: '0',
+				hidefilter2: '0',
+				hidefilter3: '0',
 				// Group 2 (nothing is selected, all false)
-				hidefilter4: 0,
-				hidefilter5: 0,
-				hidefilter6: 0,
+				hidefilter4: '0',
+				hidefilter5: '0',
+				hidefilter6: '0',
 				group3: ''
 			},
 			'All filters selected in one "send_unselected_if_any" group returns all parameters falsy.'
@@ -464,13 +464,13 @@
 			model.getParametersFromFilters(),
 			{
 				// Group 1 (all selected, all)
-				hidefilter1: 0,
-				hidefilter2: 0,
-				hidefilter3: 0,
+				hidefilter1: '0',
+				hidefilter2: '0',
+				hidefilter3: '0',
 				// Group 2 (nothing is selected, all false)
-				hidefilter4: 0,
-				hidefilter5: 0,
-				hidefilter6: 0,
+				hidefilter4: '0',
+				hidefilter5: '0',
+				hidefilter6: '0',
 				group3: 'filter7'
 			},
 			'One filter selected in "string_option" group returns that filter in the value.'
@@ -487,13 +487,13 @@
 			model.getParametersFromFilters(),
 			{
 				// Group 1 (all selected, all)
-				hidefilter1: 0,
-				hidefilter2: 0,
-				hidefilter3: 0,
+				hidefilter1: '0',
+				hidefilter2: '0',
+				hidefilter3: '0',
 				// Group 2 (nothing is selected, all false)
-				hidefilter4: 0,
-				hidefilter5: 0,
-				hidefilter6: 0,
+				hidefilter4: '0',
+				hidefilter5: '0',
+				hidefilter6: '0',
 				group3: 'filter7,filter8'
 			},
 			'Two filters selected in "string_option" group returns those filters in the value.'
@@ -510,13 +510,13 @@
 			model.getParametersFromFilters(),
 			{
 				// Group 1 (all selected, all)
-				hidefilter1: 0,
-				hidefilter2: 0,
-				hidefilter3: 0,
+				hidefilter1: '0',
+				hidefilter2: '0',
+				hidefilter3: '0',
 				// Group 2 (nothing is selected, all false)
-				hidefilter4: 0,
-				hidefilter5: 0,
-				hidefilter6: 0,
+				hidefilter4: '0',
+				hidefilter5: '0',
+				hidefilter6: '0',
 				group3: 'all'
 			},
 			'All filters selected in "string_option" group returns \'all\'.'
@@ -574,13 +574,13 @@
 					},
 					expected: {
 						// Group 1 (two selected, the others are true)
-						hidefilter1: 0,
-						hidefilter2: 0,
-						hidefilter3: 1,
+						hidefilter1: '0',
+						hidefilter2: '0',
+						hidefilter3: '1',
 						// Group 2 (nothing is selected, all false)
-						hidefilter4: 0,
-						hidefilter5: 0,
-						hidefilter6: 0,
+						hidefilter4: '0',
+						hidefilter5: '0',
+						hidefilter6: '0',
 						group3: 'filter7,filter8'
 					},
 					msg: 'Given an explicit (complete) filter state object, the result is the same as if the object given represented the model state.'
@@ -593,13 +593,13 @@
 					},
 					expected: {
 						// Group 1 (one selected, the others are true)
-						hidefilter1: 0,
-						hidefilter2: 1,
-						hidefilter3: 1,
+						hidefilter1: '0',
+						hidefilter2: '1',
+						hidefilter3: '1',
 						// Group 2 (nothing is selected, all false)
-						hidefilter4: 0,
-						hidefilter5: 0,
-						hidefilter6: 0,
+						hidefilter4: '0',
+						hidefilter5: '0',
+						hidefilter6: '0',
 						group3: ''
 					},
 					msg: 'Given an explicit (incomplete) filter state object, the result is the same as if the object give represented the model state.'
