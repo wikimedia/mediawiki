@@ -179,7 +179,8 @@
 			highlightedItems[ item.getName() ] = highlightEnabled ?
 				item.getHighlightColor() : null;
 		} );
-		highlightedItems.highlight = this.filtersModel.isHighlightEnabled();
+		// Stored as a string '0' or '1'
+		highlightedItems.highlight = String( Number( this.filtersModel.isHighlightEnabled() ) );
 
 		// Add item
 		this.savedQueriesModel.addNewQuery(
@@ -576,11 +577,15 @@
 		// highlight params
 		uri.query.highlight = Number( this.filtersModel.isHighlightEnabled() );
 		Object.keys( highlightParams ).forEach( function ( paramName ) {
-			if ( highlightParams[ paramName ] ) {
-				uri.query[ paramName ] = highlightParams[ paramName ];
-			} else {
-				delete uri.query[ paramName ];
-			}
+			// Always have some value (either the color or null) so that
+			// if we have something in the URL that doesn't have the highlight
+			// intentionally, it can override default with highlight.
+			// Otherwise, the $.extend will always add the highlight that
+			// exists in the default even if the URL query that is being
+			// refreshed has different highlights, or has highlights enabled
+			// but no active highlights anywhere
+			uri.query[ paramName ] = highlightParams[ paramName ] ?
+				highlightParams[ paramName ] : null;
 		} );
 
 		return uri;
