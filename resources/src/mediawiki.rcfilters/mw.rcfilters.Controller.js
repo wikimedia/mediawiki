@@ -44,6 +44,7 @@
 			parsedSavedQueries,
 			this._getBaseState()
 		);
+
 		this.updateStateBasedOnUrl();
 
 		// Update the changes list with the existing data
