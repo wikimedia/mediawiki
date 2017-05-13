@@ -416,14 +416,25 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $conn;
 	}
 
+	/**
+	 * Set the PSR-3 logger interface to use for query logging
+	 *
+	 * @param LoggerInterface $logger
+	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->queryLogger = $logger;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function getServerInfo() {
 		return $this->getServerVersion();
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function bufferResults( $buffer = null ) {
 		$res = !$this->getFlag( self::DBO_NOBUFFER );
 		if ( $buffer !== null ) {
@@ -458,14 +469,23 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $res;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function trxLevel() {
 		return $this->mTrxLevel;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function trxTimestamp() {
 		return $this->mTrxLevel ? $this->mTrxTimestamp : null;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function tablePrefix( $prefix = null ) {
 		$old = $this->mTablePrefix;
 		if ( $prefix !== null ) {
@@ -478,6 +498,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $old;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function dbSchema( $schema = null ) {
 		$old = $this->mSchema;
 		if ( $schema !== null ) {
@@ -487,6 +510,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $old;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function getLBInfo( $name = null ) {
 		if ( is_null( $name ) ) {
 			return $this->mLBInfo;
@@ -499,6 +525,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function setLBInfo( $name, $value = null ) {
 		if ( is_null( $value ) ) {
 			$this->mLBInfo = $name;
@@ -507,6 +536,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function setLazyMasterHandle( IDatabase $conn ) {
 		$this->lazyMasterHandle = $conn;
 	}
@@ -520,36 +552,60 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->lazyMasterHandle;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function implicitGroupby() {
 		return true;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function implicitOrderby() {
 		return true;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function lastQuery() {
 		return $this->mLastQuery;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function doneWrites() {
 		return (bool)$this->mLastWriteTime;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function lastDoneWrites() {
 		return $this->mLastWriteTime ?: false;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function writesPending() {
 		return $this->mTrxLevel && $this->mTrxDoneWrites;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function writesOrCallbacksPending() {
 		return $this->mTrxLevel && (
 			$this->mTrxDoneWrites || $this->mTrxIdleCallbacks || $this->mTrxPreCommitCallbacks
 		);
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function pendingWriteQueryDuration( $type = self::ESTIMATE_TOTAL ) {
 		if ( !$this->mTrxLevel ) {
 			return false;
@@ -572,10 +628,19 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function pendingWriteCallers() {
 		return $this->mTrxLevel ? $this->mTrxWriteCallers : [];
 	}
 
+	/**
+	 * Get the list of method names that have pending write queries or callbacks
+	 * for this transaction
+	 *
+	 * @return array
+	 */
 	protected function pendingWriteAndCallbackCallers() {
 		if ( !$this->mTrxLevel ) {
 			return [];
@@ -595,10 +660,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $fnames;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function isOpen() {
 		return $this->mOpened;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function setFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
 		if ( $remember === self::REMEMBER_PRIOR ) {
 			array_push( $this->priorFlags, $this->mFlags );
@@ -606,6 +677,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->mFlags |= $flag;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function clearFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
 		if ( $remember === self::REMEMBER_PRIOR ) {
 			array_push( $this->priorFlags, $this->mFlags );
@@ -613,6 +687,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->mFlags &= ~$flag;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function restoreFlags( $state = self::RESTORE_PRIOR ) {
 		if ( !$this->priorFlags ) {
 			return;
@@ -626,6 +703,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function getFlag( $flag ) {
 		return !!( $this->mFlags & $flag );
 	}
@@ -639,10 +719,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->$name;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function getDomainID() {
 		return $this->currentDomain->getId();
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	final public function getWikiID() {
 		return $this->getDomainID();
 	}
@@ -664,6 +750,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	abstract function strencode( $s );
 
+	/**
+	 * Set a custom error handler for logging errors during database connection
+	 */
 	protected function installErrorHandler() {
 		$this->mPHPError = false;
 		$this->htmlErrors = ini_set( 'html_errors', '0' );
@@ -671,6 +760,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
+	 * Restore the previous error handler and return the last PHP error for this DB
+	 *
 	 * @return bool|string
 	 */
 	protected function restoreErrorHandler() {
@@ -697,6 +788,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
+	 * Error handler for logging errors during database connection
 	 * This method should not be used outside of Database classes
 	 *
 	 * @param int $errno
@@ -723,6 +815,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		);
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function close() {
 		if ( $this->mConn ) {
 			if ( $this->trxLevel() ) {
@@ -759,6 +854,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	abstract protected function closeConnection();
 
+	/**
+	 * @inheritdoc
+	 */
 	public function reportConnectionError( $error = 'Unknown error' ) {
 		$myError = $this->lastError();
 		if ( $myError ) {
@@ -854,6 +952,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return false;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function query( $sql, $fname = __METHOD__, $tempIgnore = false ) {
 		$priorWritesPending = $this->writesOrCallbacksPending();
 		$this->mLastQuery = $sql;
@@ -953,6 +1054,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $res;
 	}
 
+	/**
+	 * Helper method for query() that handles profiling and logging and sends
+	 * the query to doQuery()
+	 *
+	 * @param string $sql Original SQL query
+	 * @param string $commentedSql SQL query with debugging/trace comment
+	 * @param bool $isWrite Whether the query is a (non-temporary) write operation
+	 * @param string $fname Name of the calling function
+	 * @return bool|ResultWrapper True for a successful write query, ResultWrapper
+	 *     object for a successful read query, or false on failure
+	 */
 	private function doProfiledQuery( $sql, $commentedSql, $isWrite, $fname ) {
 		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
 		# generalizeSQL() will probably cut down the query to reasonable
@@ -1034,6 +1146,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * Determine whether or not it is safe to retry queries after a database
+	 * connection is lost
+	 *
+	 * @param string $sql SQL query
+	 * @param bool $priorWritesPending Whether there is a transaction open with
+	 *     possible write queries or transaction pre-commit/idle callbacks
+	 *     waiting on it to finish.
+	 * @return bool True if it is safe to retry the query, false otherwise
+	 */
 	private function canRecoverFromDisconnect( $sql, $priorWritesPending ) {
 		# Transaction dropped; this can mean lost writes, or REPEATABLE-READ snapshots.
 		# Dropped connections also mean that named locks are automatically released.
@@ -1054,6 +1176,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return true;
 	}
 
+	/**
+	 * Clean things up after transaction loss due to disconnection
+	 *
+	 * @return null|Exception
+	 */
 	private function handleSessionLoss() {
 		$this->mTrxLevel = 0;
 		$this->mTrxIdleCallbacks = []; // T67263
@@ -1071,6 +1198,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
 		if ( $this->ignoreErrors() || $tempIgnore ) {
 			$this->queryLogger->debug( "SQL ERROR (ignored): $error\n" );
@@ -1091,9 +1221,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function freeResult( $res ) {
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function selectField(
 		$table, $var, $cond = '', $fname = __METHOD__, $options = []
 	) {
@@ -1121,6 +1257,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function selectFieldValues(
 		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
@@ -1277,6 +1416,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return '';
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function select( $table, $vars, $conds = '', $fname = __METHOD__,
 		$options = [], $join_conds = [] ) {
 		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
@@ -1284,6 +1426,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->query( $sql, $fname );
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
 		$options = [], $join_conds = []
 	) {
@@ -1344,6 +1489,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $sql;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function selectRow( $table, $vars, $conds, $fname = __METHOD__,
 		$options = [], $join_conds = []
 	) {
@@ -1364,6 +1512,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $obj;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function estimateRowCount(
 		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = []
 	) {
@@ -1378,6 +1529,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $rows;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function selectRowCount(
 		$tables, $vars = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
@@ -1426,12 +1580,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $sql;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function fieldExists( $table, $field, $fname = __METHOD__ ) {
 		$info = $this->fieldInfo( $table, $field );
 
 		return (bool)$info;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function indexExists( $table, $index, $fname = __METHOD__ ) {
 		if ( !$this->tableExists( $table ) ) {
 			return null;
@@ -1445,6 +1605,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function tableExists( $table, $fname = __METHOD__ ) {
 		$tableRaw = $this->tableName( $table, 'raw' );
 		if ( isset( $this->mSessionTempTables[$tableRaw] ) ) {
@@ -1458,6 +1621,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return (bool)$res;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function indexUnique( $table, $index ) {
 		$indexInfo = $this->indexInfo( $table, $index );
 
@@ -1478,6 +1644,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return implode( ' ', $options );
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function insert( $table, $a, $fname = __METHOD__, $options = [] ) {
 		# No rows to insert, easy just return now
 		if ( !count( $a ) ) {
@@ -1562,6 +1731,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return implode( ' ', $opts );
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function update( $table, $values, $conds, $fname = __METHOD__, $options = [] ) {
 		$table = $this->tableName( $table );
 		$opts = $this->makeUpdateOptions( $options );
@@ -1574,6 +1746,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return (bool)$this->query( $sql, $fname );
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function makeList( $a, $mode = self::LIST_COMMA ) {
 		if ( !is_array( $a ) ) {
 			throw new DBUnexpectedError( $this, __METHOD__ . ' called with incorrect parameters' );
@@ -1654,6 +1829,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $list;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function makeWhereFrom2d( $data, $baseKey, $subKey ) {
 		$conds = [];
 
@@ -1673,26 +1851,44 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function aggregateValue( $valuedata, $valuename = 'value' ) {
 		return $valuename;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function bitNot( $field ) {
 		return "(~$field)";
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function bitAnd( $fieldLeft, $fieldRight ) {
 		return "($fieldLeft & $fieldRight)";
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function bitOr( $fieldLeft, $fieldRight ) {
 		return "($fieldLeft | $fieldRight)";
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function buildConcat( $stringList ) {
 		return 'CONCAT(' . implode( ',', $stringList ) . ')';
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function buildGroupConcatField(
 		$delim, $table, $field, $conds = '', $join_conds = []
 	) {
@@ -1701,14 +1897,23 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function buildStringCast( $field ) {
 		return $field;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function databasesAreIndependent() {
 		return false;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function selectDB( $db ) {
 		# Stub. Shouldn't cause serious problems if it's not overridden, but
 		# if your database engine supports a concept similar to MySQL's
@@ -1718,14 +1923,23 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return true;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function getDBname() {
 		return $this->mDBname;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function getServer() {
 		return $this->mServer;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function tableName( $name, $format = 'quoted' ) {
 		# Skip the entire process when we have a string quoted on both ends.
 		# Note that we check the end so that we will still quote any use of
@@ -1812,6 +2026,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $relation;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function tableNames() {
 		$inArray = func_get_args();
 		$retVal = [];
@@ -1823,6 +2040,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $retVal;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function tableNamesN() {
 		$inArray = func_get_args();
 		$retVal = [];
@@ -1991,6 +2211,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $index;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function addQuotes( $s ) {
 		if ( $s instanceof Blob ) {
 			$s = $s->fetch();
@@ -2044,6 +2267,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$s );
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function buildLike() {
 		$params = func_get_args();
 
@@ -2070,14 +2296,23 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return ' LIKE ' . $this->addQuotes( $s ) . ' ESCAPE ' . $this->addQuotes( $escapeChar ) . ' ';
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function anyChar() {
 		return new LikeMatch( '_' );
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function anyString() {
 		return new LikeMatch( '%' );
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function nextSequenceValue( $seqName ) {
 		return null;
 	}
@@ -2110,6 +2345,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return '';
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
 		$quotedTable = $this->tableName( $table );
 
@@ -2192,6 +2430,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->query( $sql, $fname );
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function upsert( $table, array $rows, array $uniqueIndexes, array $set,
 		$fname = __METHOD__
 	) {
@@ -2246,6 +2487,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $ok;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds,
 		$fname = __METHOD__
 	) {
@@ -2264,6 +2508,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->query( $sql, $fname );
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function textFieldSize( $table, $field ) {
 		$table = $this->tableName( $table );
 		$sql = "SHOW COLUMNS FROM $table LIKE \"$field\";";
@@ -2281,6 +2528,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $size;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function delete( $table, $conds, $fname = __METHOD__ ) {
 		if ( !$conds ) {
 			throw new DBUnexpectedError( $this, __METHOD__ . ' called with no conditions' );
@@ -2299,6 +2549,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->query( $sql, $fname );
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function insertSelect(
 		$destTable, $srcTable, $varMap, $conds,
 		$fname = __METHOD__, $insertOptions = [], $selectOptions = []
@@ -2338,6 +2591,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->insert( $destTable, $rows, $fname, $insertOptions );
 	}
 
+	/**
+	 * Native server-side implementation of insertSelect() for situations where
+	 * we don't want to select everything into memory
+	 *
+	 * See IDatabase::insertSelect() for parameter descriptions.
+	 */
 	protected function nativeInsertSelect( $destTable, $srcTable, $varMap, $conds,
 		$fname = __METHOD__,
 		$insertOptions = [], $selectOptions = []
@@ -2410,16 +2669,25 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		. "{$limit} ";
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function unionSupportsOrderAndLimit() {
 		return true; // True for almost every DB supported
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function unionQueries( $sqls, $all ) {
 		$glue = $all ? ') UNION ALL (' : ') UNION (';
 
 		return '(' . implode( $glue, $sqls ) . ')';
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function conditional( $cond, $trueVal, $falseVal ) {
 		if ( is_array( $cond ) ) {
 			$cond = $this->makeList( $cond, self::LIST_AND );
@@ -2428,26 +2696,44 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return " (CASE WHEN $cond THEN $trueVal ELSE $falseVal END) ";
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function strreplace( $orig, $old, $new ) {
 		return "REPLACE({$orig}, {$old}, {$new})";
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function getServerUptime() {
 		return 0;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function wasDeadlock() {
 		return false;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function wasLockTimeout() {
 		return false;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function wasErrorReissuable() {
 		return false;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function wasReadOnlyError() {
 		return false;
 	}
@@ -2462,6 +2748,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return false;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function deadlockLoop() {
 		$args = func_get_args();
 		$function = array_shift( $args );
@@ -2498,25 +2787,40 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function masterPosWait( DBMasterPos $pos, $timeout ) {
 		# Real waits are implemented in the subclass.
 		return 0;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function getReplicaPos() {
 		# Stub
 		return false;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function getMasterPos() {
 		# Stub
 		return false;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function serverIsReadOnly() {
 		return false;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	final public function onTransactionResolution( callable $callback, $fname = __METHOD__ ) {
 		if ( !$this->mTrxLevel ) {
 			throw new DBUnexpectedError( $this, "No transaction is active." );
@@ -2524,6 +2828,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->mTrxEndCallbacks[] = [ $callback, $fname ];
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	final public function onTransactionIdle( callable $callback, $fname = __METHOD__ ) {
 		$this->mTrxIdleCallbacks[] = [ $callback, $fname ];
 		if ( !$this->mTrxLevel ) {
@@ -2531,6 +2838,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	final public function onTransactionPreCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
 		if ( $this->mTrxLevel ) {
 			$this->mTrxPreCommitCallbacks[] = [ $callback, $fname ];
@@ -2547,6 +2857,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	final public function setTransactionListener( $name, callable $callback = null ) {
 		if ( $callback ) {
 			$this->mTrxRecurringCallbacks[$name] = $callback;
@@ -2678,6 +2991,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	final public function startAtomic( $fname = __METHOD__ ) {
 		if ( !$this->mTrxLevel ) {
 			$this->begin( $fname, self::TRANSACTION_INTERNAL );
@@ -2691,6 +3007,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->mTrxAtomicLevels[] = $fname;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	final public function endAtomic( $fname = __METHOD__ ) {
 		if ( !$this->mTrxLevel ) {
 			throw new DBUnexpectedError( $this, "No atomic transaction is open (got $fname)." );
@@ -2706,6 +3025,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	final public function doAtomicSection( $fname, callable $callback ) {
 		$this->startAtomic( $fname );
 		try {
@@ -2719,6 +3041,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $res;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	final public function begin( $fname = __METHOD__, $mode = self::TRANSACTION_EXPLICIT ) {
 		// Protect against mismatched atomic section, transaction nesting, and snapshot loss
 		if ( $this->mTrxLevel ) {
@@ -2779,6 +3104,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->mTrxLevel = 1;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	final public function commit( $fname = __METHOD__, $flush = '' ) {
 		if ( $this->mTrxLevel && $this->mTrxAtomicLevels ) {
 			// There are still atomic sections open. This cannot be ignored
@@ -2840,6 +3168,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	final public function rollback( $fname = __METHOD__, $flush = '' ) {
 		if ( $flush === self::FLUSHING_INTERNAL || $flush === self::FLUSHING_ALL_PEERS ) {
 			if ( !$this->mTrxLevel ) {
@@ -2889,6 +3220,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function flushSnapshot( $fname = __METHOD__ ) {
 		if ( $this->writesOrCallbacksPending() || $this->explicitTrxActive() ) {
 			// This only flushes transactions to clear snapshots, not to write data
@@ -2902,30 +3236,48 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->commit( $fname, self::FLUSHING_INTERNAL );
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function explicitTrxActive() {
 		return $this->mTrxLevel && ( $this->mTrxAtomicLevels || !$this->mTrxAutomatic );
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function duplicateTableStructure(
 		$oldName, $newName, $temporary = false, $fname = __METHOD__
 	) {
 		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function listTables( $prefix = null, $fname = __METHOD__ ) {
 		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function listViews( $prefix = null, $fname = __METHOD__ ) {
 		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function timestamp( $ts = 0 ) {
 		$t = new ConvertibleTimestamp( $ts );
 		// Let errors bubble up to avoid putting garbage in the DB
 		return $t->getTimestamp( TS_MW );
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function timestampOrNull( $ts = null ) {
 		if ( is_null( $ts ) ) {
 			return null;
@@ -2960,6 +3312,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function ping( &$rtt = null ) {
 		// Avoid hitting the server if it was hit recently
 		if ( $this->isOpen() && ( microtime( true ) - $this->lastPing ) < self::PING_TTL ) {
@@ -2982,7 +3337,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @return bool
+	 * Close existing database connection and open a new connection
+	 *
+	 * @return bool True if new connection is opened successfully, false if error
 	 */
 	protected function reconnect() {
 		$this->closeConnection();
@@ -2999,6 +3356,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $ok;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function getSessionLagStatus() {
 		return $this->getTransactionLagStatus() ?: $this->getApproximateLagStatus();
 	}
@@ -3068,18 +3428,30 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $res;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function getLag() {
 		return 0;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function maxListLen() {
 		return 0;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function encodeBlob( $b ) {
 		return $b;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function decodeBlob( $b ) {
 		if ( $b instanceof Blob ) {
 			$b = $b->fetch();
@@ -3087,9 +3459,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $b;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function setSessionOptions( array $options ) {
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function sourceFile(
 		$filename,
 		callable $lineCallback = null,
@@ -3122,10 +3500,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $error;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function setSchemaVars( $vars ) {
 		$this->mSchemaVars = $vars;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function sourceStream(
 		$fp,
 		callable $lineCallback = null,
@@ -3279,22 +3663,34 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return [];
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function lockIsFree( $lockName, $method ) {
 		return true;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function lock( $lockName, $method, $timeout = 5 ) {
 		$this->mNamedLocksHeld[$lockName] = 1;
 
 		return true;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function unlock( $lockName, $method ) {
 		unset( $this->mNamedLocksHeld[$lockName] );
 
 		return true;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function getScopedLockAndFlush( $lockKey, $fname, $timeout ) {
 		if ( $this->writesOrCallbacksPending() ) {
 			// This only flushes transactions to clear snapshots, not to write data
@@ -3330,14 +3726,23 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $unlocker;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function namedLocksEnqueue() {
 		return false;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function tableLocksHaveTransactionScope() {
 		return true;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	final public function lockTables( array $read, array $write, $method ) {
 		if ( $this->writesOrCallbacksPending() ) {
 			throw new DBUnexpectedError( $this, "Transaction writes or callbacks still pending." );
@@ -3350,10 +3755,21 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->doLockTables( $read, $write, $method );
 	}
 
+	/**
+	 * Helper function for lockTables() that handles the actual table locking
+	 *
+	 * @param array $read Array of tables to lock for read access
+	 * @param array $write Array of tables to lock for write access
+	 * @param string $method Name of caller
+	 * @return true
+	 */
 	protected function doLockTables( array $read, array $write, $method ) {
 		return true;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	final public function unlockTables( $method ) {
 		if ( $this->tableLocksHaveTransactionScope() ) {
 			$this->endAtomic( $method );
@@ -3364,6 +3780,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->doUnlockTables( $method );
 	}
 
+	/**
+	 * Helper function for unlockTables() that handles the actual table unlocking
+	 *
+	 * @param string $method Name of caller
+	 * @return true
+	 */
 	protected function doUnlockTables( $method ) {
 		return true;
 	}
@@ -3384,16 +3806,25 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->query( $sql, $fName );
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function getInfinity() {
 		return 'infinity';
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function encodeExpiry( $expiry ) {
 		return ( $expiry == '' || $expiry == 'infinity' || $expiry == $this->getInfinity() )
 			? $this->getInfinity()
 			: $this->timestamp( $expiry );
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function decodeExpiry( $expiry, $format = TS_MW ) {
 		if ( $expiry == '' || $expiry == 'infinity' || $expiry == $this->getInfinity() ) {
 			return 'infinity';
@@ -3402,10 +3833,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return ConvertibleTimestamp::convert( $format, $expiry );
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function setBigSelects( $value = true ) {
 		// no-op
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function isReadOnly() {
 		return ( $this->getReadOnlyReason() !== false );
 	}
@@ -3419,6 +3856,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return is_string( $reason ) ? $reason : false;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function setTableAliases( array $aliases ) {
 		$this->tableAliases = $aliases;
 	}
