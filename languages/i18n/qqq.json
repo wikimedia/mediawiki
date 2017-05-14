@@ -4127,7 +4127,7 @@
 	"rawmessage": "{{notranslate}} Used to pass arbitrary text as a message specifier array",
 	"logentry-delete-delete": "{{Logentry|[[Special:Log/delete]]}}",
 	"logentry-delete-delete_redir": "{{Logentry|[[Special:Log/delete]]}}",
-	"logentry-delete-restore": "{{Logentry|[[Special:Log/delete]]}}\n* $4 - {{msg-mw|restore-count-revisions}} or/and {{msg-mw|restore-count-files}}",
+	"logentry-delete-restore": "{{Logentry|[[Special:Log/delete]]}}\n* $4 - {{msg-mw|restore-count-revisions}} or {{msg-mw|restore-count-files}}, or a combination with both (e.g. \"3 revision and 1 file\")\n\n'''A note for RTL languages''': if $3 is a name of a page or a file written in a different language, the number in the beginning of $4 may be displayed incorrectly. Consider inserting a word or an RLM between $3 and $4.",
 	"logentry-delete-restore-nocount": "{{Logentry|[[Special:Log/delete]]}}",
 	"restore-count-revisions": "Used as parameter in {{msg-mw|logentry-delete-restore}}\n{{Identical|Revision}}",
 	"restore-count-files": "Used as parameter in {{msg-mw|logentry-delete-restore}}\n{{Identical|File}}",

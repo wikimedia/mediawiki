@@ -3842,6 +3842,8 @@
 	"mw-widgets-titleinput-description-redirect": "przekierowanie do $1",
 	"mw-widgets-categoryselector-add-category-placeholder": "Dodaj kategorię...",
 	"mw-widgets-usersmultiselect-placeholder": "Dodaj więcej...",
+	"date-range-from": "Od daty:",
+	"date-range-to": "Do daty:",
 	"sessionmanager-tie": "Nie można łączyć kilku rodzajów uwierzytelniania dla zapytania: $1.",
 	"sessionprovider-generic": "sesje $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sesje na podstawie cookie",

@@ -3279,6 +3279,8 @@
 	"mw-widgets-titleinput-description-redirect": "$1ra birzuzendu",
 	"mw-widgets-categoryselector-add-category-placeholder": "Gehitu kategoria bat...",
 	"mw-widgets-usersmultiselect-placeholder": "Gehitu gehiago...",
+	"date-range-from": "Data honetatik aurrera:",
+	"date-range-to": "Data honetara arte:",
 	"sessionprovider-generic": "$1 sesio",
 	"log-action-filter-block": "Blokeatze mota:",
 	"log-action-filter-delete": "Ezabatze mota:",

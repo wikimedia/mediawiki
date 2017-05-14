@@ -401,7 +401,7 @@
 	"createacct-yourpasswordagain-ph": "Серсүзне кабаттан кертегез",
 	"userlogin-remembermypassword": "Системада калырга",
 	"userlogin-signwithsecure": "Якланган кушылу",
-	"yourdomainname": "Сезнең доменыгыз:",
+	"yourdomainname": "Доменыгыз:",
 	"password-change-forbidden": "Сез бу викидә серсүзне үзгәртә алмыйсыз.",
 	"externaldberror": "Тышкы мәгълүмат базасы ярдәмендә аутентификация үткәндә хата чыкты, яисә тышкы хисап язмагызга үзгәрешләр кертү хокукыгыз юк.",
 	"login": "Керү",

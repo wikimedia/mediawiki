@@ -50,6 +50,7 @@
 	"config-db-host-oracle": "דאטנבאזע־TNS:",
 	"config-db-wiki-settings": "אידענטיפיצירן די דאזיקע וויקי",
 	"config-db-name": "דאטנבאזע נאָמען:",
+	"config-db-name-oracle": "דאטנבאזע סכעמע:",
 	"config-db-install-account": "באניצער־קאנטע פאר אינסטאלאציע",
 	"config-db-username": "דאטנבאזע באניצער־נאָמען:",
 	"config-db-password": "דאטנבאזע־פאסווארט:",
