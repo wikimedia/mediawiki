@@ -693,19 +693,31 @@ class User implements IDBAccessObject {
 			return null;
 		}
 
-		$fields = self::selectFields();
-
-		$dbw = wfGetDB( DB_MASTER );
-		$row = $dbw->selectRow(
+		$dbr = wfGetDB( DB_REPLICA );
+		$row = $dbr->selectRow(
 			'user',
-			$fields,
+			self::selectFields(),
 			[ 'user_name' => $name ],
 			__METHOD__
 		);
 		if ( !$row ) {
-			// No user. Create it?
-			return $options['create'] ? self::createNew( $name, [ 'token' => self::INVALID_TOKEN ] ) : null;
+			// Try the master database...
+			$dbw = wfGetDB( DB_MASTER );
+			$row = $dbw->selectRow(
+				'user',
+				self::selectFields(),
+				[ 'user_name' => $name ],
+				__METHOD__
+			);
 		}
+
+		if ( !$row ) {
+			// No user. Create it?
+			return $options['create']
+				? self::createNew( $name, [ 'token' => self::INVALID_TOKEN ] )
+				: null;
+		}
+
 		$user = self::newFromRow( $row );
 
 		// A user is considered to exist as a non-system user if it can
