@@ -55,6 +55,15 @@ class RefreshFileHeaders extends Maintenance {
 			}
 			$res = $dbr->select( 'image', '*', $conds,
 				__METHOD__, [ 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'img_name ASC' ] );
+
+			if ( $res->numRows() > 0 ) {
+				$row1 = $res->current();
+				$this->output( "Processing next {$res->numRows()} row(s) starting with {$row1->img_name}.\n" );
+				$res->rewind();
+			} else {
+				$this->error( "No images to process.", 4 );
+			}
+
 			foreach ( $res as $row ) {
 				$file = $repo->newFileFromRow( $row );
 				$headers = $file->getContentHeaders();
@@ -74,7 +83,7 @@ class RefreshFileHeaders extends Maintenance {
 				++$count;
 				$start = $row->img_name; // advance
 			}
-		} while ( $res->numRows() > 0 );
+		} while ( $res->numRows() === $this->mBatchSize );
 
 		$this->output( "Done. Updated headers for $count file(s).\n" );
 	}

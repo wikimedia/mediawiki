@@ -135,7 +135,7 @@ class RefreshImageMetadata extends Maintenance {
 
 			if ( $res->numRows() > 0 ) {
 				$row1 = $res->current();
-				$this->output( "Processing next {$this->mBatchSize} rows starting with {$row1->img_name}.\n" );
+				$this->output( "Processing next {$res->numRows()} row(s) starting with {$row1->img_name}.\n" );
 				$res->rewind();
 			} else {
 				$this->error( "No images to process.", 4 );
