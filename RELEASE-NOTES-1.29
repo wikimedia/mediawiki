@@ -175,6 +175,19 @@ production.
 * API parameters may now be marked as "sensitive" to keep their values out of
   the logs.
 
+=== extension.json changes in 1.29 ===
+* Extensions must set a value for "manifest_version" in their extension.json
+  or skin.json files. See
+  <https://www.mediawiki.org/wiki/Manual:Extension.json/Schema#manifest_version>
+  for details.
+* Extensions can now specify dependencies upon other extensions by using the
+  "requires" key. See
+  <https://www.mediawiki.org/wiki/Manual:Extension.json/Schema#requires> for
+  more details.
+* (T151136) Functions set as the "callback" now recieve that extension's credits
+  information as the first argument.
+* (T149597) "PasswordPolicy" can be set in extension.json.
+
 === Languages updated in 1.29 ===
 
 MediaWiki supports over 350 languages. Many localisations are updated
