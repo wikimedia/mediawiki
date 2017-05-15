@@ -574,7 +574,7 @@ class MysqlInstaller extends DatabaseInstaller {
 							// If we couldn't create for some bizzare reason and the
 							// user probably doesn't exist, skip the grant
 							$this->db->rollback( __METHOD__ );
-							$status->warning( 'config-install-user-create-failed', $dbUser, $dqe->getText() );
+							$status->warning( 'config-install-user-create-failed', $dbUser, $dqe->getMessage() );
 						}
 					}
 				} else {
@@ -594,7 +594,7 @@ class MysqlInstaller extends DatabaseInstaller {
 				$this->db->commit( __METHOD__ );
 			} catch ( DBQueryError $dqe ) {
 				$this->db->rollback( __METHOD__ );
-				$status->fatal( 'config-install-user-grant-failed', $dbUser, $dqe->getText() );
+				$status->fatal( 'config-install-user-grant-failed', $dbUser, $dqe->getMessage() );
 			}
 		}
 
