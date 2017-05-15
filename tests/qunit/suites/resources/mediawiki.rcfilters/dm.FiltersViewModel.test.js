@@ -603,6 +603,23 @@
 						group3: ''
 					},
 					msg: 'Given an explicit (incomplete) filter state object, the result is the same as if the object give represented the model state.'
+				},
+				{
+					// This is mocking case above
+					// - 'One filters in one "send_unselected_if_any" group returns the other parameters truthy.'
+					input: {},
+					expected: {
+						// Group 1 (one selected, the others are true)
+						hidefilter1: '0',
+						hidefilter2: '0',
+						hidefilter3: '0',
+						// Group 2 (nothing is selected, all false)
+						hidefilter4: '0',
+						hidefilter5: '0',
+						hidefilter6: '0',
+						group3: ''
+					},
+					msg: 'Given an explicit empty object, the result is all filters set to their falsey unselected value.'
 				}
 			];
 
