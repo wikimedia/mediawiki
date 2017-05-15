@@ -188,6 +188,16 @@
 		assert.deepEqual(
 			model.getDefaultParams(),
 			{
+				group1__hidefilter1_color: null,
+				group1__hidefilter2_color: null,
+				group1__hidefilter3_color: null,
+				group2__hidefilter4_color: null,
+				group2__hidefilter5_color: null,
+				group2__hidefilter6_color: null,
+				group3__filter7_color: null,
+				group3__filter8_color: null,
+				group3__filter9_color: null,
+				highlight: false,
 				hidefilter1: '1',
 				hidefilter2: '0',
 				hidefilter3: '1',
@@ -398,7 +408,7 @@
 				hidefilter6: '0',
 				group3: ''
 			},
-			'One filters in one "send_unselected_if_any" group returns the other parameters truthy.'
+			'One filter in one "send_unselected_if_any" group returns the other parameters truthy.'
 		);
 
 		// Select 2 filters
@@ -587,7 +597,7 @@
 				},
 				{
 					// This is mocking case above
-					// - 'One filters in one "send_unselected_if_any" group returns the other parameters truthy.'
+					// - 'One filter in one "send_unselected_if_any" group returns the other parameters truthy.'
 					input: {
 						group1__hidefilter1: 1
 					},
@@ -603,6 +613,19 @@
 						group3: ''
 					},
 					msg: 'Given an explicit (incomplete) filter state object, the result is the same as if the object give represented the model state.'
+				},
+				{
+					input: {},
+					expected: {
+						hidefilter1: '0',
+						hidefilter2: '0',
+						hidefilter3: '0',
+						hidefilter4: '0',
+						hidefilter5: '0',
+						hidefilter6: '0',
+						group3: ''
+					},
+					msg: 'Given an explicit empty object, the result is all filters set to their falsey unselected value.'
 				}
 			];
 
