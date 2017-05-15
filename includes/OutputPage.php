@@ -3221,6 +3221,10 @@ class OutputPage extends ContextSource {
 		$vars['wgIsProbablyEditable'] = $title->quickUserCan( 'edit', $user )
 			&& ( $title->exists() || $title->quickUserCan( 'create', $user ) );
 
+		$vars['wgRelevantPageIsProbablyEditable'] = $relevantTitle
+			&& $relevantTitle->quickUserCan( 'edit', $user )
+			&& ( $relevantTitle->exists() || $relevantTitle->quickUserCan( 'create', $user ) );
+
 		foreach ( $title->getRestrictionTypes() as $type ) {
 			$vars['wgRestriction' . ucfirst( $type )] = $title->getRestrictions( $type );
 		}
