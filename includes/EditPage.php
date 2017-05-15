@@ -2753,6 +2753,9 @@ class EditPage {
 		$wgOut->addHTML( Html::hidden( 'format', $this->contentFormat ) );
 		$wgOut->addHTML( Html::hidden( 'model', $this->contentModel ) );
 
+		// Preserve &ooui=1 / &ooui=0 from URL parameters after submitting the page for preview
+		$wgOut->addHTML( Html::hidden( 'ooui', $this->oouiEnabled ? '1' : '0' ) );
+
 		// following functions will need OOUI, enable it only once; here.
 		if ( $this->oouiEnabled ) {
 			$wgOut->enableOOUI();
