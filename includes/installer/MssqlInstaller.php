@@ -577,7 +577,7 @@ class MssqlInstaller extends DatabaseInstaller {
 					$grantableNames[] = $dbUser;
 				} catch ( DBQueryError $dqe ) {
 					$this->db->rollback();
-					$status->warning( 'config-install-user-create-failed', $dbUser, $dqe->getText() );
+					$status->warning( 'config-install-user-create-failed', $dbUser, $dqe->getMessage() );
 				}
 			} elseif ( !$this->userExists( $dbUser ) ) {
 				try {
@@ -588,7 +588,7 @@ class MssqlInstaller extends DatabaseInstaller {
 					$grantableNames[] = $dbUser;
 				} catch ( DBQueryError $dqe ) {
 					$this->db->rollback();
-					$status->warning( 'config-install-user-create-failed', $dbUser, $dqe->getText() );
+					$status->warning( 'config-install-user-create-failed', $dbUser, $dqe->getMessage() );
 				}
 			} else {
 				$status->warning( 'config-install-user-alreadyexists', $dbUser );
@@ -620,7 +620,7 @@ class MssqlInstaller extends DatabaseInstaller {
 					$this->db->commit();
 				} catch ( DBQueryError $dqe ) {
 					$this->db->rollback();
-					$status->fatal( 'config-install-user-grant-failed', $dbUser, $dqe->getText() );
+					$status->fatal( 'config-install-user-grant-failed', $dbUser, $dqe->getMessage() );
 				}
 				// Also try to grant SHOWPLAN on the db, but don't fail if we can't
 				// (just makes a couple things in mediawiki run slower since
@@ -646,7 +646,7 @@ class MssqlInstaller extends DatabaseInstaller {
 				$this->db->query( "CREATE FULLTEXT INDEX ON $searchindex (si_title, si_text) "
 					. "KEY INDEX si_page ON $schema" );
 			} catch ( DBQueryError $dqe ) {
-				$status->fatal( 'config-install-tables-failed', $dqe->getText() );
+				$status->fatal( 'config-install-tables-failed', $dqe->getMessage() );
 			}
 		}
 
