@@ -77,6 +77,12 @@
 		this.clearItems();
 		$.each( savedQueries.queries || {}, function ( id, obj ) {
 			var normalizedData = $.extend( true, {}, baseState, obj.data );
+
+			// Backwards-compat fix: We stored the 'highlight' state with
+			// "1" and "0" instead of true/false; for already-stored states,
+			// we need to fix that
+			normalizedData.highlights.highlight = !!Number( normalizedData.highlight );
+
 			items.push(
 				new mw.rcfilters.dm.SavedQueryItemModel(
 					id,
