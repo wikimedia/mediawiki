@@ -505,10 +505,10 @@
 	 *                  are the selected highlight colors.
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getHighlightParameters = function () {
-		var result = { highlight: Number( this.isHighlightEnabled() ) };
+		var result = {};
 
 		this.getItems().forEach( function ( filterItem ) {
-			result[ filterItem.getName() + '_color' ] = filterItem.getHighlightColor();
+			result[ filterItem.getName() + '_color' ] = filterItem.getHighlightColor() || null;
 		} );
 		return result;
 	};
