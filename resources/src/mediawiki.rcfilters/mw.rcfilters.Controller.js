@@ -179,8 +179,8 @@
 			highlightedItems[ item.getName() ] = highlightEnabled ?
 				item.getHighlightColor() : null;
 		} );
-		// Stored as a string '0' or '1'
-		highlightedItems.highlight = String( Number( this.filtersModel.isHighlightEnabled() ) );
+		// These are filter sates; highlight is stored as boolean
+		highlightedItems.highlight = this.filtersModel.isHighlightEnabled();
 
 		// Add item
 		this.savedQueriesModel.addNewQuery(
@@ -259,7 +259,7 @@
 			this.filtersModel.toggleFiltersSelected( data.filters );
 
 			// Update highlight state
-			this.filtersModel.toggleHighlight( !!highlights.highlight );
+			this.filtersModel.toggleHighlight( !!Number( highlights.highlight ) );
 			this.filtersModel.getItems().forEach( function ( filterItem ) {
 				var color = highlights[ filterItem.getName() ];
 				if ( color ) {
@@ -482,7 +482,7 @@
 		);
 
 		// Update highlight state
-		this.filtersModel.toggleHighlight( !!parameters.highlight );
+		this.filtersModel.toggleHighlight( !!Number( parameters.highlight ) );
 		this.filtersModel.getItems().forEach( function ( filterItem ) {
 			var color = parameters[ filterItem.getName() + '_color' ];
 			if ( color ) {
@@ -517,7 +517,7 @@
 			savedParams = this.filtersModel.getParametersFromFilters( data.filters || {} );
 
 			// Translate highlights to parameters
-			savedHighlights.highlight = queryHighlights.highlight;
+			savedHighlights.highlight = String( Number( queryHighlights.highlight ) );
 			$.each( queryHighlights, function ( filterName, color ) {
 				if ( filterName !== 'highlights' ) {
 					savedHighlights[ filterName + '_color' ] = color;
