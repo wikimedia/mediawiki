@@ -66,6 +66,7 @@ changes to languages because of Phabricator reports.
   deprecated. There are no known callers.
 * File::getStreamHeaders() was deprecated.
 * MediaHandler::getStreamHeaders() was deprecated.
+* The ExtractThumbParameters hook (deprecated in 1.21) was removed.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
