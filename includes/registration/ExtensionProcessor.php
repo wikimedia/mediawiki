@@ -57,6 +57,16 @@ class ExtensionProcessor implements Processor {
 	];
 
 	/**
+	 * Top-level attributes that come from MW core
+	 *
+	 * @var string[]
+	 */
+	protected static $coreAttributes = [
+		'SkinOOUIThemes',
+		'TrackingCategories',
+	];
+
+	/**
 	 * Mapping of global settings to their specific merge strategies.
 	 *
 	 * @see ExtensionRegistry::exportExtractedData
@@ -161,6 +171,14 @@ class ExtensionProcessor implements Processor {
 	protected $attributes = [];
 
 	/**
+	 * Extension attributes, keyed by name =>
+	 *  settings.
+	 *
+	 * @var array
+	 */
+	protected $extAttributes = [];
+
+	/**
 	 * @param string $path
 	 * @param array $info
 	 * @param int $version manifest_version for info
@@ -186,14 +204,47 @@ class ExtensionProcessor implements Processor {
 			$this->callbacks[$name] = $info['callback'];
 		}
 
+		if ( $version === 2 ) {
+			$this->extractAttributes( $path, $info );
+		}
+
 		foreach ( $info as $key => $val ) {
+			// If it's a global setting,
 			if ( in_array( $key, self::$globalSettings ) ) {
 				$this->storeToArray( $path, "wg$key", $val, $this->globals );
+				continue;
+			}
 			// Ignore anything that starts with a @
-			} elseif ( $key[0] !== '@' && !in_array( $key, self::$notAttributes )
-				&& !in_array( $key, self::$creditsAttributes )
-			) {
-				$this->storeToArray( $path, $key, $val, $this->attributes );
+			if ( $key[0] === '@' ) {
+				continue;
+			}
+
+			if ( $version === 2 ) {
+				// Only whitelisted attributes are set
+				if ( in_array( $key, self::$coreAttributes ) ) {
+					$this->storeToArray( $path, $key, $val, $this->attributes );
+				}
+			} else {
+				// version === 1
+				if ( !in_array( $key, self::$notAttributes )
+					&& !in_array( $key, self::$creditsAttributes )
+				) {
+					// If it's not blacklisted, it's an attribute
+					$this->storeToArray( $path, $key, $val, $this->attributes );
+				}
+			}
+
+		}
+	}
+
+	/**
+	 * @param string $path
+	 * @param array $info
+	 */
+	protected function extractAttributes( $path, array $info ) {
+		if ( isset( $info['attributes'] ) ) {
+			foreach ( $info['attributes'] as $extName => $value ) {
+				$this->storeToArray( $path, $extName, $value, $this->extAttributes );
 			}
 		}
 	}
@@ -203,6 +254,22 @@ class ExtensionProcessor implements Processor {
 		foreach ( $this->globals as $key => $val ) {
 			if ( isset( self::$mergeStrategies[$key] ) ) {
 				$this->globals[$key][ExtensionRegistry::MERGE_STRATEGY] = self::$mergeStrategies[$key];
+			}
+		}
+
+		// Merge $this->extAttributes into $this->attributes depending on what is loaded
+		foreach ( $this->extAttributes as $extName => $value ) {
+			// Only set the attribute if $extName is loaded (and hence present in credits)
+			if ( isset( $this->credits[$extName] ) ) {
+				foreach ( $value as $attrName => $attrValue ) {
+					$this->storeToArray(
+						'', // Don't provide a path since it's impossible to generate an error here
+						$extName . $attrName,
+						$attrValue,
+						$this->attributes
+					);
+				}
+				unset( $this->extAttributes[$extName] );
 			}
 		}
 

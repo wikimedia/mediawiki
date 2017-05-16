@@ -2,6 +2,7 @@
 	"$schema": "http://json-schema.org/schema#",
 	"description": "MediaWiki extension.json schema",
 	"type": "object",
+	"additionalProperties": false,
 	"properties": {
 		"manifest_version": {
 			"type": "integer",
@@ -728,6 +729,20 @@
 		"ServiceWiringFiles": {
 			"type": "array",
 			"description": "List of service wiring files to be loaded by the default instance of MediaWikiServices"
+		},
+		"attributes": {
+			"description":"Registration information for other extensions",
+			"type": "object",
+			"patternProperties": {
+				".*": {
+					"type": "object",
+					"patternProperties": {
+						".*": {
+							"type": ["array", "object"]
+						}
+					}
+				}
+			}
 		},
 		"load_composer_autoloader": {
 			"type": "boolean",
