@@ -3,7 +3,22 @@
 /* eslint-disable no-console, comma-dangle */
 'use strict';
 
-const path = require( 'path' );
+const path = require( 'path' ),
+	VisualRegressionCompare = require( 'wdio-visual-regression-service/compare' );
+
+function getScreenshotName( basePath ) {
+	return function ( context ) {
+		var type = context.type,
+			testName = context.test.title,
+			browserVersion = parseInt( context.browser.version, 10 ),
+			browserName = context.browser.name,
+			browserViewport = context.meta.viewport,
+			browserWidth = browserViewport.width,
+			browserHeight = browserViewport.height;
+
+		return path.join( basePath, `${testName}_${type}_${browserName}_v${browserVersion}_${browserWidth}x${browserHeight}.png` );
+	};
+}
 
 function relPath( foo ) {
 	return path.resolve( __dirname, '../..', foo );
@@ -130,6 +145,20 @@ exports.config = {
 	//
 	// Default request retries count
 	connectionRetryCount: 3,
+	services: [
+		'visual-regression'
+	],
+	visualRegression: {
+		compare: new VisualRegressionCompare.LocalCompare( {
+			referenceName: getScreenshotName( path.join( process.cwd(), 'tests/selenium/screenshots/reference' ) ),
+			screenshotName: getScreenshotName( path.join( process.cwd(), 'tests/selenium/screenshots/screen' ) ),
+			diffName: getScreenshotName( path.join( process.cwd(), 'tests/selenium/screenshots/diff' ) ),
+			misMatchTolerance: 0.01,
+		} ),
+		viewportChangePause: 300,
+		viewports: [ { width: 320, height: 480 }, { width: 480, height: 320 }, { width: 1024, height: 768 } ],
+		orientations: [ 'landscape', 'portrait' ]
+	},
 	//
 	// Initialize the browser instance with a WebdriverIO plugin. The object should have the
 	// plugin name as key and the desired plugin options as properties. Make sure you have
