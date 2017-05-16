@@ -111,7 +111,7 @@ class ExtensionRegistry {
 	 *  be loaded then).
 	 */
 	public function loadFromQueue() {
-		global $wgVersion;
+		global $wgVersion, $wgDevelopmentWarnings;
 		if ( !$this->queued ) {
 			return;
 		}
@@ -151,7 +151,10 @@ class ExtensionRegistry {
 			// did that, but it should be cached
 			$data['globals']['wgAutoloadClasses'] += $data['autoload'];
 			unset( $data['autoload'] );
-			$cache->set( $key, $data, 60 * 60 * 24 );
+			if ( !( $data['warnings'] && $wgDevelopmentWarnings ) ) {
+				// If there were no warnings that were shown, cache it
+				$cache->set( $key, $data, 60 * 60 * 24 );
+			}
 		}
 		$this->queued = [];
 	}
@@ -198,6 +201,7 @@ class ExtensionRegistry {
 		$versionChecker = new VersionChecker( $wgVersion );
 		$extDependencies = [];
 		$incompatible = [];
+		$warnings = false;
 		foreach ( $queue as $path => $mtime ) {
 			$json = file_get_contents( $path );
 			if ( $json === false ) {
@@ -209,6 +213,11 @@ class ExtensionRegistry {
 			}
 
 			if ( !isset( $info['manifest_version'] ) ) {
+				wfDeprecated(
+					"{$info['name']}'s extension.json or skin.json does not have manifest_version",
+					'1.29'
+				);
+				$warnings = true;
 				// For backwards-compatability, assume a version of 1
 				$info['manifest_version'] = 1;
 			}
@@ -237,6 +246,7 @@ class ExtensionRegistry {
 			$processor->extractInfo( $path, $info, $version );
 		}
 		$data = $processor->getExtractedInfo();
+		$data['warnings'] = $warnings;
 
 		// check for incompatible extensions
 		$incompatible = array_merge(
