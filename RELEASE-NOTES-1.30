@@ -46,6 +46,8 @@ production.
 * (T37247) action=parse output will be wrapped in a div with
   class="mw-parser-output" by default. This may be changed or disabled using
   the new 'wrapoutputclass' parameter.
+* When errorformat is not 'bc', abort reasons from action=login will be
+  formatted as specified by the error formatter parameters.
 
 === Action API internal changes in 1.30 ===
 * …
