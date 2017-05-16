@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eugene Gvozdetsky (epgvozdet@gmail.com)"
+		],
+		"comment": "These rules don't cover the whole grammar of the language, and are intended only for names of languages and Wikimedia projects."
+	},
+	"genitive": [
+		[ "(.+)nek$", "$1nka" ],
+		[ "(.+)dysta$", "$1dysty" ]
+	],
+	"prepositional": [
+		[ "(.+)nek$", "$1nku" ],
+		[ "(.+)dysta$", "$1dyście" ]
+	],
+	"languagegen": [
+		[ "@metadata", [
+			"comment", "język w dopełniaczu: '(z) polskiego'"
+		] ],
+		[ "(.+)ki$", "$1kiego" ],
+		[ "(.+)$", "$1" ]
+	],
+	"languageadverb": [
+		[ "@metadata", [
+			"comment", "'po polski'"
+		] ],
+		[ "(.+)ki$", "po $1ki" ],
+	]
+}
