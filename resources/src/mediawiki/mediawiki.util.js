@@ -8,42 +8,6 @@
 	 */
 	var util = {
 
-		/**
-		 * Initialisation
-		 * (don't call before document ready)
-		 */
-		init: function () {
-			util.$content = ( function () {
-				var i, l, $node, selectors;
-
-				selectors = [
-					// The preferred standard is class "mw-body".
-					// You may also use class "mw-body mw-body-primary" if you use
-					// mw-body in multiple locations. Or class "mw-body-primary" if
-					// you use mw-body deeper in the DOM.
-					'.mw-body-primary',
-					'.mw-body',
-
-					// If the skin has no such class, fall back to the parser output
-					'#mw-content-text',
-
-					// Should never happen... well, it could if someone is not finished writing a
-					// skin and has not yet inserted bodytext yet.
-					'body'
-				];
-
-				for ( i = 0, l = selectors.length; i < l; i++ ) {
-					$node = $( selectors[ i ] );
-					if ( $node.length ) {
-						return $node.first();
-					}
-				}
-
-				// Preserve existing customized value in case it was preset
-				return util.$content;
-			}() );
-		},
-
 		/* Main body */
 
 		/**
@@ -206,10 +170,10 @@
 		/**
 		 * The content wrapper of the skin (e.g. `.mw-body`).
 		 *
-		 * Populated on document ready by #init. To use this property,
+		 * Populated on document ready. To use this property,
 		 * wait for `$.ready` and be sure to have a module dependency on
-		 * `mediawiki.util` and `mediawiki.page.startup` which will ensure
-		 * your document ready handler fires after #init.
+		 * `mediawiki.util` which will ensure
+		 * your document ready handler fires after initialization.
 		 *
 		 * Because of the lazy-initialised nature of this property,
 		 * you're discouraged from using it.
@@ -564,6 +528,43 @@
 		mw.notify( message, { autoHide: true, tag: 'legacy' } );
 		return true;
 	}, 'Use mw.notify instead.' );
+
+	/**
+	 * @deprecated since 1.30
+	 */
+	mw.log.deprecate( util, 'init', $.noop, 'Remove the call of mw.util.init().' );
+
+	$( function () {
+		/**
+		 * Initialisation of mw.util.$content
+		 */
+		util.$content = ( function () {
+			var i, l, $node, selectors;
+
+			selectors = [
+				// The preferred standard is class "mw-body".
+				// You may also use class "mw-body mw-body-primary" if you use
+				// mw-body in multiple locations. Or class "mw-body-primary" if
+				// you use mw-body deeper in the DOM.
+				'.mw-body-primary',
+				'.mw-body',
+
+				// If the skin has no such class, fall back to the parser output
+				'#mw-content-text'
+			];
+
+			for ( i = 0, l = selectors.length; i < l; i++ ) {
+				$node = $( selectors[ i ] );
+				if ( $node.length ) {
+					return $node.first();
+				}
+			}
+
+			// Should never happen... well, it could if someone is not finished writing a
+			// skin and has not yet inserted bodytext yet.
+			return $( 'body' );
+		}() );
+	} );
 
 	mw.util = util;
 	module.exports = util;
