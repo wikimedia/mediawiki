@@ -4,7 +4,6 @@
 
 	$( function () {
 		var $diff;
-		mw.util.init();
 
 		/**
 		 * Fired when wiki content is being added to the DOM

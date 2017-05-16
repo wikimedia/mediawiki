@@ -1150,7 +1150,6 @@ return [
 		],
 		'scripts' => 'resources/src/mediawiki/mediawiki.notification.js',
 		'dependencies' => [
-			'mediawiki.page.startup',
 			'mediawiki.util',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
@@ -1477,7 +1476,6 @@ return [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.dblClickEdit.js',
 		'dependencies' => [
 			'mediawiki.util',
-			'mediawiki.page.startup',
 			'user.options',
 		],
 	],
