@@ -1150,7 +1150,6 @@ return [
 		],
 		'scripts' => 'resources/src/mediawiki/mediawiki.notification.js',
 		'dependencies' => [
-			'mediawiki.page.startup',
 			'mediawiki.util',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
@@ -1477,7 +1476,6 @@ return [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.dblClickEdit.js',
 		'dependencies' => [
 			'mediawiki.util',
-			'mediawiki.page.startup',
 			'user.options',
 		],
 	],
@@ -1666,7 +1664,6 @@ return [
 	],
 	'mediawiki.page.startup' => [
 		'scripts' => 'resources/src/mediawiki/page/startup.js',
-		'dependencies' => 'mediawiki.util',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.page.patrol.ajax' => [
@@ -1689,7 +1686,6 @@ return [
 	'mediawiki.page.watch.ajax' => [
 		'scripts' => 'resources/src/mediawiki/page/watch.js',
 		'dependencies' => [
-			'mediawiki.page.startup',
 			'mediawiki.api.watch',
 			'mediawiki.notify',
 			'mediawiki.util',
