@@ -102,19 +102,21 @@ class TemplateParser {
 			$key = $cache->makeKey( 'template', $templateName, $fastHash );
 			$code = $this->forceRecompile ? null : $cache->get( $key );
 
+			if ( $code ) {
+				// Verify the integrity of the cached PHP code
+				$keyedHash = substr( $code, 0, 64 );
+				$code = substr( $code, 64 );
+				if ( $keyedHash !== hash_hmac( 'sha256', $code, $secretKey ) ) {
+					// If the integrity check fails, don't use the cached code
+					// We'll update the invalid cache below
+					$code = null;
+				}
+			}
 			if ( !$code ) {
 				$code = $this->compileForEval( $fileContents, $filename );
 
 				// Prefix the cached code with a keyed hash (64 hex chars) as an integrity check
 				$cache->set( $key, hash_hmac( 'sha256', $code, $secretKey ) . $code );
-			} else {
-				// Verify the integrity of the cached PHP code
-				$keyedHash = substr( $code, 0, 64 );
-				$code = substr( $code, 64 );
-				if ( $keyedHash !== hash_hmac( 'sha256', $code, $secretKey ) ) {
-					// Generate a notice if integrity check fails
-					trigger_error( "Template failed integrity check: {$filename}" );
-				}
 			}
 		// If there is no secret key available, don't use cache
 		} else {
