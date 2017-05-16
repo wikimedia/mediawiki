@@ -2737,6 +2737,39 @@ Templates: Don't strip whitespace from positional-param values
 !! end
 
 !! test
+Templates: Don't recognize targets split by newlines
+!! options
+parsoid=wt2html
+!! wikitext
+{{ech
+o|foo}}
+!! html/php
+<p>{{ech
+o|foo}}
+</p>
+!! html/parsoid
+<p>{{ech
+o|foo}}</p>
+!! end
+
+!! test
+Templates: Recognize targets when newlines and comments don't split the target
+!! options
+parsoid=wt2html
+!! wikitext
+{{  
+ <!--X--> ech<!--X-->o<!--X-->  
+   <!--X-->   <!--X-->
+
+ |foo}}
+!! html/php
+<p>foo
+</p>
+!! html/parsoid
+<p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"ech&lt;!--X-->o&lt;!--X-->  \n   &lt;!--X-->   &lt;!--X-->\n\n ","href":"./Template:Echo"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</p>
+!! end
+
+!! test
 Templates: Handle empty comment-and-ws-only lines correctly
 !! wikitext
 {{echo|foo
@@ -5270,6 +5303,49 @@ Bracketed external links with template-generated invalid target
 !! html
 <p>[http:/example.com title]
 </p>
+!! end
+
+# wt2html only because Parsoid would want to add <nowiki>s coming from html
+!! test
+Broken wikilinks (but not external links) prevent templates from closing
+!! options
+parsoid=wt2html
+!! wikitext
+[http://example.com x
+
+{{echo|[http://example.com x}}
+
+[[Foo
+
+{{echo|[[Foo}}
+!! html/php
+<p>[<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a> x
+</p><p>[<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a> x
+</p><p>[[Foo
+</p><p>{{echo|[[Foo}}
+</p>
+!! html/parsoid
+<p>[<a rel="mw:ExtLink" href="http://example.com">http://example.com</a> x</p>
+<p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[http://example.com x"}},"i":0}}]}'>[<a rel="mw:ExtLink" href="http://example.com">http://example.com</a> x</p>
+<p>[[Foo</p>
+<p>{{echo|[[Foo}}</p>
+!! end
+
+!! test
+Broken templates
+!! options
+parsoid=wt2html
+!! wikitext
+{{echo|[[Foo|}}]]
+
+[[Foo|{{echo|]]}}
+!! html/php
+<p>{{echo|<a href="/wiki/Foo" title="Foo">}}</a>
+</p><p>[[Foo|]]
+</p>
+!! html/parsoid
+<p>{{echo|<a rel="mw:WikiLink" href="./Foo" title="Foo">}}</a></p>
+<p>[[Foo|<span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"]]"}},"i":0}}]}'>]]</span></p>
 !! end
 
 !! test
@@ -7848,7 +7924,7 @@ File containing double quotes and spaces
 !! wikitext
 [[File:Cool "Gator".png]]
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[]}' data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}]}'><a href="./File:Cool_%22Gator%22.png" data-parsoid='{"a":{"href":"./File:Cool_%22Gator%22.png"},"sa":{"href":"File:Cool \"Gator\".png"}}'><img resource='./File:Cool_"Gator".png' src="./Special:FilePath/Cool_%22Gator%22.png" height="220" width="220" data-parsoid='{"a":{"resource":"./File:Cool_\"Gator\".png","height":"220","width":"220","src":"./Special:FilePath/Cool_%22Gator%22.png"},"sa":{"resource":"File:Cool \"Gator\".png","src":"./Special:FilePath/Cool_\"Gator\".png"}}'/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[]}' data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./File:Cool_%22Gator%22.png" data-parsoid='{"a":{"href":"./File:Cool_%22Gator%22.png"},"sa":{"href":"File:Cool \"Gator\".png"}}'><img resource='./File:Cool_"Gator".png' src="./Special:FilePath/Cool_%22Gator%22.png" height="220" width="220" data-parsoid='{"a":{"resource":"./File:Cool_\"Gator\".png","height":"220","width":"220","src":"./Special:FilePath/Cool_%22Gator%22.png"},"sa":{"resource":"File:Cool \"Gator\".png","src":"./Special:FilePath/Cool_\"Gator\".png"}}'/></a></span></p>
 !! end
 
 !! test
@@ -7896,7 +7972,7 @@ Link with double quotes in title part (literal) and alternate part (interpreted)
 </p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)"><i>Pentecoste</i></a>
 </p>
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}]}'><a href="./File:Denys_Savchenko_''Pentecoste''.jpg"><img resource="./File:Denys_Savchenko_''Pentecoste''.jpg" src="./Special:FilePath/Denys_Savchenko_''Pentecoste''.jpg" height="220" width="220"/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./File:Denys_Savchenko_''Pentecoste''.jpg"><img resource="./File:Denys_Savchenko_''Pentecoste''.jpg" src="./Special:FilePath/Denys_Savchenko_''Pentecoste''.jpg" height="220" width="220"/></a></span></p>
 <p><a rel="mw:WikiLink" href="./''Pentecoste''" title="''Pentecoste''">''Pentecoste''</a></p>
 <p><a rel="mw:WikiLink" href="./''Pentecoste''" title="''Pentecoste''">Pentecoste</a></p>
 <p><a rel="mw:WikiLink" href="./''Pentecoste''" title="''Pentecoste''"><i>Pentecoste</i></a></p>
@@ -7916,10 +7992,10 @@ Broken image links with HTML captions (T41700)
 <a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent" class="new" title="File:Nonexistent">abc</a>
 </p>
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"caption","ak":"&lt;script>&lt;/script>"}]}' data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}],"caption":"&amp;lt;script>&amp;lt;/script>"}'><a href="./File:Nonexistent" data-parsoid='{"a":{"href":"./File:Nonexistent"},"sa":{}}'><img resource="./File:Nonexistent" src="./Special:FilePath/Nonexistent" height="220" width="220" data-parsoid='{"a":{"resource":"./File:Nonexistent","height":"220","width":"220"},"sa":{"resource":"File:Nonexistent"}}'/></a></span>
-<span typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"width","ak":"100x100px"},{"ck":"caption","ak":"&lt;script>&lt;/script>"}]}' data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}],"caption":"&amp;lt;script>&amp;lt;/script>"}'><a href="./File:Nonexistent" data-parsoid='{"a":{"href":"./File:Nonexistent"},"sa":{}}'><img resource="./File:Nonexistent" src="./Special:FilePath/Nonexistent" height="100" width="100" data-parsoid='{"a":{"resource":"./File:Nonexistent","height":"100","width":"100"},"sa":{"resource":"File:Nonexistent"}}'/></a></span>
-<span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"caption","ak":"&amp;lt;"}]}' data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}],"caption":"&lt;span typeof=\"mw:Entity\" data-parsoid=&#39;{\"src\":\"&amp;amp;lt;\",\"srcContent\":\"&amp;lt;\",\"dsr\":[107,111,null,null]}&#39;>&amp;lt;&lt;/span>"}'><a href="./File:Nonexistent" data-parsoid='{"a":{"href":"./File:Nonexistent"},"sa":{}}'><img resource="./File:Nonexistent" src="./Special:FilePath/Nonexistent" height="220" width="220" data-parsoid='{"a":{"resource":"./File:Nonexistent","height":"220","width":"220"},"sa":{"resource":"File:Nonexistent"}}'/></a></span>
-<span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"caption","ak":"a&lt;i>b&lt;/i>c"}]}' data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}],"caption":"a&lt;i data-parsoid=&#39;{\"stx\":\"html\",\"dsr\":[134,142,3,4]}&#39;>b&lt;/i>c"}'><a href="./File:Nonexistent" data-parsoid='{"a":{"href":"./File:Nonexistent"},"sa":{}}'><img resource="./File:Nonexistent" src="./Special:FilePath/Nonexistent" height="220" width="220" data-parsoid='{"a":{"resource":"./File:Nonexistent","height":"220","width":"220"},"sa":{"resource":"File:Nonexistent"}}'/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"caption","ak":"&lt;script>&lt;/script>"}]}' data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}],"caption":"&amp;lt;script>&amp;lt;/script>"}'><a href="./File:Nonexistent" data-parsoid='{"a":{"href":"./File:Nonexistent"},"sa":{}}'><img resource="./File:Nonexistent" src="./Special:FilePath/Nonexistent" height="220" width="220" data-parsoid='{"a":{"resource":"./File:Nonexistent","height":"220","width":"220"},"sa":{"resource":"File:Nonexistent"}}'/></a></span>
+<span typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"width","ak":"100x100px"},{"ck":"caption","ak":"&lt;script>&lt;/script>"}]}' data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}],"caption":"&amp;lt;script>&amp;lt;/script>"}'><a href="./File:Nonexistent" data-parsoid='{"a":{"href":"./File:Nonexistent"},"sa":{}}'><img resource="./File:Nonexistent" src="./Special:FilePath/Nonexistent" height="100" width="100" data-parsoid='{"a":{"resource":"./File:Nonexistent","height":"100","width":"100"},"sa":{"resource":"File:Nonexistent"}}'/></a></span>
+<span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"caption","ak":"&amp;lt;"}]}' data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}],"caption":"&lt;span typeof=\"mw:Entity\" data-parsoid=&#39;{\"src\":\"&amp;amp;lt;\",\"srcContent\":\"&amp;lt;\",\"dsr\":[107,111,null,null]}&#39;>&amp;lt;&lt;/span>"}'><a href="./File:Nonexistent" data-parsoid='{"a":{"href":"./File:Nonexistent"},"sa":{}}'><img resource="./File:Nonexistent" src="./Special:FilePath/Nonexistent" height="220" width="220" data-parsoid='{"a":{"resource":"./File:Nonexistent","height":"220","width":"220"},"sa":{"resource":"File:Nonexistent"}}'/></a></span>
+<span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"caption","ak":"a&lt;i>b&lt;/i>c"}]}' data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}],"caption":"a&lt;i data-parsoid=&#39;{\"stx\":\"html\",\"dsr\":[134,142,3,4]}&#39;>b&lt;/i>c"}'><a href="./File:Nonexistent" data-parsoid='{"a":{"href":"./File:Nonexistent"},"sa":{}}'><img resource="./File:Nonexistent" src="./Special:FilePath/Nonexistent" height="220" width="220" data-parsoid='{"a":{"resource":"./File:Nonexistent","height":"220","width":"220"},"sa":{"resource":"File:Nonexistent"}}'/></a></span></p>
 !! end
 
 !! test
@@ -10435,15 +10511,26 @@ Parsoid: Page property magic word with magic word contents
 !! wikitext
 {{DISPLAYTITLE:''{{PAGENAME}}''}}
 !! html/parsoid
-<meta property="mw:PageProp/displaytitle" content="Main Page" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"src":"{{DISPLAYTITLE:&#39;&#39;{{PAGENAME}}&#39;&#39;}}"}' data-mw='{"attribs":[[{"txt":"content"},{"html":"&lt;i data-parsoid=&#39;{\"dsr\":[15,31,2,2]}&#39;>&lt;span about=\"#mwt2\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]],\"dsr\":[17,29,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"PAGENAME\",\"function\":\"pagename\"},\"params\":{},\"i\":0}}]}&#39;>Main Page&lt;/span>&lt;/i>"}]]}'/>
+<meta property="mw:PageProp/displaytitle" content="Main Page" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"src":"{{DISPLAYTITLE:&#39;&#39;{{PAGENAME}}&#39;&#39;}}"}' data-mw='{"attribs":[[{"txt":"content"},{"html":"DISPLAYTITLE:&lt;i data-parsoid=&#39;{\"dsr\":[15,31,2,2]}&#39;>&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]],\"dsr\":[17,29,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"PAGENAME\",\"function\":\"pagename\"},\"params\":{},\"i\":0}}]}&#39;>Main Page&lt;/span>&lt;/i>"}]]}'/>
 !! end
 
+# NOTE: mw:ExpandedAttrs is not the best typeof here. mw:Transclusion is better.
+# But, this is a limitation of our representation and is documented in
+# TemplateHandler.js in processSpecialMagicWord
 !! test
 Parsoid: Template-generated DISPLAYTITLE
 !! wikitext
 {{{{echo|DISPLAYTITLE}}:Foo}}
+!! options
+showtitle
+!! config
+wgAllowDisplayTitle=true
+wgRestrictDisplayTitle=false
+!! html/php
+Foo
+
 !! html/parsoid
-<meta property="mw:PageProp/displaytitle" content="Foo" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"{{echo|DISPLAYTITLE}}:Foo"},"params":{},"i":0}}]}'/>
+<meta property="mw:PageProp/displaytitle" content="Foo" about="#mwt1" typeof="mw:ExpandedAttrs" data-parsoid='{"pi":[[]]}' data-mw='{"attribs":[[{"txt":"content"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[2,23,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"DISPLAYTITLE\"}},\"i\":0}}]}&#39;>DISPLAYTITLE&lt;/span>:Foo"}]]}'/>
 !! end
 
 !! test
@@ -11007,6 +11094,39 @@ Template with complex template as argument
 !! end
 
 !! test
+Templates with templated name
+!! wikitext
+{{{{echo|echo}}|foo}}
+{{{{echo|inner list}} }}
+!! html
+<p>foo
+</p>
+<ul><li> item 1</li></ul>
+
+!! html/parsoid
+<p about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"{{echo|echo}}","href":"./Template:Echo"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</p>
+<ul about="#mwt4" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"{{echo|inner list}} ","href":"./Template:Inner_list"},"params":{},"i":0}}]}'><li> item 1</li></ul>
+!! end
+
+# Parsoid markup is deliberate "broken". This is an edge case.
+# See long comment in TemplateHandler.js:convertAttribsToString.
+!! test
+Templates with invalid templated targets
+!! wikitext
+{{echo
+{{echo|foo}}
+}}
+!! html/php
+<p>{{echo
+foo
+}}
+</p>
+!! html/parsoid
+<p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo\n{{echo|foo}}\n"},"params":{},"i":0}}]}'>{{echo
+foo }}</p>
+!! end
+
+!! test
 Template with thumb image (with link in description)
 !! wikitext
 {{paramtest|param=[[Image:noimage.png|thumb|[[no link|link]] [[no link|caption]]]]}}
@@ -11021,7 +11141,7 @@ This is a test template with parameter <div class="thumb tright"><div class="thu
 </div>
 </div>
 !! html/parsoid
-<p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"paramtest","href":"./Template:Paramtest"},"params":{"param":{"wt":"[[Image:noimage.png|thumb|[[no link|link]] [[no link|caption]]]]"}},"i":0}}]}'>This is a test template with parameter </p><figure class="mw-default-size" typeof="mw:Error mw:Image/Thumb" about="#mwt1" data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}]}'><a href="./File:Noimage.png" ><img resource="./File:Noimage.png" src="./Special:FilePath/Noimage.png" height="220" width="220"/></a><figcaption><a rel="mw:WikiLink" href="./No_link" title="No link">link</a> <a rel="mw:WikiLink" href="./No_link" title="No link">caption</a></figcaption></figure>
+<p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"paramtest","href":"./Template:Paramtest"},"params":{"param":{"wt":"[[Image:noimage.png|thumb|[[no link|link]] [[no link|caption]]]]"}},"i":0}}]}'>This is a test template with parameter </p><figure class="mw-default-size" typeof="mw:Error mw:Image/Thumb" about="#mwt1" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./File:Noimage.png" ><img resource="./File:Noimage.png" src="./Special:FilePath/Noimage.png" height="220" width="220"/></a><figcaption><a rel="mw:WikiLink" href="./No_link" title="No link">link</a> <a rel="mw:WikiLink" href="./No_link" title="No link">caption</a></figcaption></figure>
 !! end
 
 !! article
@@ -11253,17 +11373,23 @@ T2041: Template parameters shown as broken links
 
 !! test
 Template with targets containing wikilinks
+!! options
+parsoid=wt2html
 !! wikitext
 {{[[foo]]}}
 
 {{[[{{echo|foo}}]]}}
 
 {{{{echo|[[foo}}]]}}
-!! html
+!! html/php
 <p>{{<a href="/wiki/Foo" title="Foo">foo</a>}}
 </p><p>{{<a href="/wiki/Foo" title="Foo">foo</a>}}
 </p><p>{{[[foo}}]]
 </p>
+!! html/parsoid
+<p>{{<a rel="mw:WikiLink" href="./Foo" title="Foo">foo</a>}}</p>
+<p>{{<a typeof="mw:ExpandedAttrs" rel="mw:WikiLink" href="./Foo" title="Foo" data-mw='{"attribs":[[{"txt":"href"},{"html":"&lt;span about=\"#mwt3\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[17,29,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"foo\"}},\"i\":0}}]}&#39;>foo&lt;/span>"}]]}'>foo</a>}}</p>
+<p>{{<span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[[foo}}]]"}},"i":0}}]}'>[[foo}}]]</span></p>
 !! end
 
 !! article
@@ -13113,6 +13239,17 @@ pst
 !! end
 
 !! test
+Parsoid: backwards pipe trick
+!! wikitext
+[[|'''bar''']]
+!! html/php
+<p>[[|<b>bar</b>]]
+</p>
+!! html/parsoid
+<p>[[|<b>bar</b>]]</p>
+!! end
+
+!! test
 pre-save transform: trim trailing empty lines
 !! options
 pst
@@ -14318,7 +14455,7 @@ Entities in file name and attributes
 <p><a href="/index.php?title=Special:Upload&amp;wpDestFile=7%25_solution.gif" class="new" title="File:7% solution.gif">7% solution</a>
 </p>
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"bogus","ak":"manualthumb=7%25 solution.gif"},{"ck":"link","ak":"link=7%25 solution"},{"ck":"caption","ak":"[[7%25 solution]]"}]}' data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}],"caption":"&lt;a rel=\"mw:WikiLink\" href=\"./7%25_solution\" title=\"7% solution\" data-parsoid=&#39;{\"stx\":\"simple\",\"a\":{\"href\":\"./7%25_solution\"},\"sa\":{\"href\":\"7%25 solution\"},\"dsr\":[74,91,2,2]}&#39;>7% solution&lt;/a>"}'><a href="./7%25_solution" data-parsoid='{"a":{"href":"./7%25_solution"},"sa":{"href":"link=7%25 solution"}}'><img resource="./File:7%25_solution.gif" src="./Special:FilePath/7%25_solution.gif" height="220" width="220" data-parsoid='{"a":{"resource":"./File:7%25_solution.gif","height":"220","width":"220"},"sa":{"resource":"File:7%25 solution.gif"}}'/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"bogus","ak":"manualthumb=7%25 solution.gif"},{"ck":"link","ak":"link=7%25 solution"},{"ck":"caption","ak":"[[7%25 solution]]"}]}' data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}],"caption":"&lt;a rel=\"mw:WikiLink\" href=\"./7%25_solution\" title=\"7% solution\" data-parsoid=&#39;{\"stx\":\"simple\",\"a\":{\"href\":\"./7%25_solution\"},\"sa\":{\"href\":\"7%25 solution\"},\"dsr\":[74,91,2,2]}&#39;>7% solution&lt;/a>"}'><a href="./7%25_solution" data-parsoid='{"a":{"href":"./7%25_solution"},"sa":{"href":"link=7%25 solution"}}'><img resource="./File:7%25_solution.gif" src="./Special:FilePath/7%25_solution.gif" height="220" width="220" data-parsoid='{"a":{"resource":"./File:7%25_solution.gif","height":"220","width":"220"},"sa":{"resource":"File:7%25 solution.gif"}}'/></a></span></p>
 !! end
 
 !! test
@@ -14533,7 +14670,7 @@ wgEnableUploads=0
 <p><a href="/wiki/File:Foobaz.jpg" title="File:Foobaz.jpg">File:Foobaz.jpg</a>
 </p>
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}]}'><a href="./File:Foobaz.jpg"><img resource="./File:Foobaz.jpg" src="./Special:FilePath/Foobaz.jpg" height="220" width="220"/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./File:Foobaz.jpg"><img resource="./File:Foobaz.jpg" src="./Special:FilePath/Foobaz.jpg" height="220" width="220"/></a></span></p>
 !! end
 
 # Parsoid-specific testing for images
@@ -14866,6 +15003,7 @@ Render invalid page names as plain text (T53090)
 [[.]]
 [[..]]
 [[foo././bar]]
+[[foo[http://example.com]xyz]]
 
 [[{{echo|./../foo}}|bar]]
 [[{{echo|foo/.}}|bar]]
@@ -14889,6 +15027,7 @@ Render invalid page names as plain text (T53090)
 [[.]]
 [[..]]
 [[foo././bar]]
+[[foo<a rel="nofollow" class="external autonumber" href="http://example.com">[1]</a>xyz]]
 </p><p>[[./../foo|bar]]
 [[foo/.|bar]]
 [[foo/..|bar]]
@@ -14911,7 +15050,8 @@ Render invalid page names as plain text (T53090)
 [[foo[bar]]
 [[.]]
 [[..]]
-[[foo././bar]]</p>
+[[foo././bar]]
+[[foo<a rel="mw:ExtLink" href="http://example.com"></a>xyz]]</p>
 
 <p>[[<span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"./../foo"}},"i":0}}]}'>./../foo</span>|bar]]
 [[<span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo/."}},"i":0}}]}'>foo/.</span>|bar]]
@@ -15377,12 +15517,15 @@ Parsoid: Defaultsort
 <meta property="mw:PageProp/categorydefaultsort" content="Foo"/>
 !! end
 
+# NOTE: mw:ExpandedAttrs is not the best typeof here. mw:Transclusion is better.
+# But, this is a limitation of our representation and is documented in
+# TemplateHandler.js in processSpecialMagicWord
 !! test
 Parsoid: Defaultsort (template-generated)
 !! wikitext
 {{{{echo|DEFAULTSORT}}:Foo}}
 !! html/parsoid
-<meta property="mw:PageProp/categorydefaultsort" content="Foo" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"{{echo|DEFAULTSORT}}:Foo"},"params":{},"i":0}}]}'/>
+<meta property="mw:PageProp/categorydefaultsort" content="Foo" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"src":"{{{{echo|DEFAULTSORT}}:Foo}}","dsr":[0,26,null,null]}' data-mw='{"attribs":[[{"txt":"content"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[2,22,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"DEFAULTSORT\"}},\"i\":0}}]}&#39;>DEFAULTSORT&lt;/span>:Foo"}]]}'/>
 !! end
 
 ###
@@ -16374,18 +16517,22 @@ Nesting of <bdo>
 Media link
 !! wikitext
 [[Media:Foobar.jpg]]
-!! html
+!! html/php
 <p><a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">Media:Foobar.jpg</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:MediaLink" href="//example.com/images/3/3a/Foobar.jpg" title="Foobar.jpg">Media:Foobar.jpg</a></p>
 !! end
 
 !! test
 Media link with text
 !! wikitext
 [[Media:Foobar.jpg|A neat file to look at]]
-!! html
+!! html/php
 <p><a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">A neat file to look at</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:MediaLink" href="//example.com/images/3/3a/Foobar.jpg" title="Foobar.jpg">A neat file to look at</a></p>
 !! end
 
 # FIXME: this is still bad HTML tag nesting
@@ -16394,21 +16541,29 @@ Media link with text
 Media link with nasty text
 !! wikitext
 [[Media:Foobar.jpg|Safe Link<div style=display:none>" onmouseover="alert(document.cookie)" onfoo="</div>]]
-!! html
+!! html/php
 <a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">Safe Link&lt;div style="display:none"&gt;" onmouseover="alert(document.cookie)" onfoo="&lt;/div&gt;</a>
 
-!! html+tidy
+!! html+php/tidy
 <p><a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">Safe Link</a></p>
 <div style="display:none">" onmouseover="alert(document.cookie)" onfoo="</div>
+!! html/parsoid
+<p><a rel="mw:MediaLink" href="//example.com/images/3/3a/Foobar.jpg" title="Foobar.jpg" data-parsoid='{"autoInsertedEnd":true}'>Safe Link</a></p><div style="display:none" data-parsoid='{"stx":"html"}'><a rel="mw:MediaLink" href="//example.com/images/3/3a/Foobar.jpg" title="Foobar.jpg" data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'>" onmouseover="alert(document.cookie)" onfoo="</a></div>
+
 !! end
 
 !! test
 Media link to nonexistent file (T3702)
 !! wikitext
 [[Media:No such.jpg]]
-!! html
+[[Media:No_such file.jpg]]
+!! html/php
 <p><a href="/index.php?title=Special:Upload&amp;wpDestFile=No_such.jpg" class="new" title="No such.jpg">Media:No such.jpg</a>
+<a href="/index.php?title=Special:Upload&amp;wpDestFile=No_such_file.jpg" class="new" title="No such file.jpg">Media:No_such file.jpg</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:MediaLink" href="./Special:FilePath/No_such.jpg" title="No such.jpg" typeof="mw:Error" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}' data-parsoid='{"a":{"fileName":"No_such.jpg"},"sa":{"fileName":"No such.jpg"}}'>Media:No such.jpg</a>
+<a rel="mw:MediaLink" href="./Special:FilePath/No_such_file.jpg" title="No such file.jpg" typeof="mw:Error" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}' data-parsoid='{"a":{"fileName":"No_such_file.jpg"},"sa":{"fileName":"No_such file.jpg"}}'>Media:No_such file.jpg</a></p>
 !! end
 
 !! test
@@ -16419,7 +16574,7 @@ Image link to nonexistent file (T3850 - good)
 <p><a href="/index.php?title=Special:Upload&amp;wpDestFile=No_such.jpg" class="new" title="File:No such.jpg">File:No such.jpg</a>
 </p>
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}]}'><a href="./File:No_such.jpg"><img resource="./File:No_such.jpg" src="./Special:FilePath/No_such.jpg" height="220" width="220"/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./File:No_such.jpg"><img resource="./File:No_such.jpg" src="./Special:FilePath/No_such.jpg" height="220" width="220"/></a></span></p>
 !! end
 
 !! test
@@ -17427,14 +17582,12 @@ all additional text is vanished
 
 !! test
 Self closed html pairs (T7487)
-!! options
 !! wikitext
 <center><font id="bug" />Centered text</center>
 <div><font id="bug2" />In div text</div>
-!! html
-<center>&lt;font id="bug" /&gt;Centered text</center>
-<div>&lt;font id="bug2" /&gt;In div text</div>
-
+!! html+tidy
+<center><font id="bug"></font>Centered text</center>
+<div><font id="bug2"></font>In div text</div>
 !! end
 
 #
@@ -17888,8 +18041,8 @@ MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 
 !! html/parsoid
 <p data-parsoid='{"fostered":true,"autoInsertedEnd":true}'>{{{|
-<u class="|" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->&lt;noinclude>}}}}":null},"sa":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->&lt;noinclude>}}}}":""},"autoInsertedEnd":true}' data-mw='{"attribs":[[{"txt":"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->}}}}","html":"{&lt;span about=\"#mwt1\" typeof=\"mw:Param\" data-parsoid=&#39;{\"pi\":[[]],\"dsr\":[21,79,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"templatearg\":{\"target\":{\"wt\":\"SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->&amp;lt;noinclude>\"},\"params\":{},\"i\":0}}]}&#39;>{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->}}}&lt;/span>}"},{"html":""}]]}'>
-<br style="onmouseover='alert(document.cookie);' " data-parsoid='{"stx":"html","selfClose":true}'/></u></p><p data-parsoid='{"fostered":true,"autoInsertedEnd":true}'><u class="|" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->&lt;noinclude>}}}}":null},"sa":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->&lt;noinclude>}}}}":""},"autoInsertedEnd":true,"autoInsertedStart":true}' data-mw='{"attribs":[[{"txt":"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->}}}}","html":"{&lt;span about=\"#mwt1\" typeof=\"mw:Param\" data-parsoid=&#39;{\"pi\":[[]],\"dsr\":[21,79,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"templatearg\":{\"target\":{\"wt\":\"SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->&amp;lt;noinclude>\"},\"params\":{},\"i\":0}}]}&#39;>{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx-->}}}&lt;/span>}"},{"html":""}]]}'>MOVE YOUR MOUSE CURSOR OVER THIS TEXT</u></p><table data-parsoid='{"autoInsertedEnd":true}'>
+<u class="|" data-parsoid='{"stx":"html","a":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx--":null},"sa":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx--":""},"autoInsertedEnd":true}'><meta typeof="mw:Includes/NoInclude" data-parsoid='{"src":"&lt;noinclude>"}'/>}}}} >
+<br style="onmouseover='alert(document.cookie);' " data-parsoid='{"stx":"html","selfClose":true}'/></u></p><p data-parsoid='{"fostered":true,"autoInsertedEnd":true}'><u class="|" data-parsoid='{"stx":"html","a":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx--":null},"sa":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx--":""},"autoInsertedEnd":true,"autoInsertedStart":true}'>MOVE YOUR MOUSE CURSOR OVER THIS TEXT</u></p><table data-parsoid='{"autoInsertedEnd":true}'>
 
 
 
@@ -17966,7 +18119,7 @@ Fuzz testing: image with bogus manual thumbnail
 <div class="thumb tright"><div class="thumbinner" style="width:182px;">Error creating thumbnail:   <div class="thumbcaption"></div></div></div>
 
 !! html/parsoid
-<figure class="mw-default-size" typeof="mw:Error mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"manualthumb","ak":"thumbnail= "}]}' data-mw='{"errors":[{"key":"missing-thumbnail","message":"This thumbnail does not exist.","params":{"name":""}}],"thumb":""}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{}}'><img resource="./File:Foobar.jpg" src="./Special:FilePath/" height="220" width="220" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"220"},"sa":{"resource":"Image:foobar.jpg"}}'/></a></figure>
+<figure class="mw-default-size" typeof="mw:Error mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"manualthumb","ak":"thumbnail= "}]}' data-mw='{"errors":[{"key":"apierror-invalidtitle","message":"Invalid thumbnail title.","params":{"name":""}}],"thumb":""}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{"href":"Image:foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="./Special:FilePath/Foobar.jpg" height="220" width="220" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"220"},"sa":{"resource":"Image:foobar.jpg"}}'/></a></figure>
 !! end
 
 !! test
@@ -19988,7 +20141,7 @@ djvu
 <p><a href="/index.php?title=File:LoremIpsum.djvu&amp;page=2" class="image"><img alt="LoremIpsum.djvu" src="http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page2-2480px-LoremIpsum.djvu.jpg" width="2480" height="3508" srcset="http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page2-3720px-LoremIpsum.djvu.jpg 1.5x, http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page2-4960px-LoremIpsum.djvu.jpg 2x" /></a>
 </p>
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Image" data-parsoid='{"optList":[{"ck":"page","ak":"page=2"}]}'><a href="./File:LoremIpsum.djvu" data-parsoid='{"a":{"href":"./File:LoremIpsum.djvu"},"sa":{}}'><img resource="./File:LoremIpsum.djvu" src="//example.com/images/5/5f/LoremIpsum.djvu" data-file-width="2480" data-file-height="3508" data-file-type="bitmap" height="3508" width="2480" data-parsoid='{"a":{"resource":"./File:LoremIpsum.djvu","height":"3508","width":"2480"},"sa":{"resource":"File:LoremIpsum.djvu"}}'/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Image" data-parsoid='{"optList":[{"ck":"page","ak":"page=2"}]}' data-mw='{"page":"2"}'><a href="./File:LoremIpsum.djvu" data-parsoid='{"a":{"href":"./File:LoremIpsum.djvu"},"sa":{"href":"File:LoremIpsum.djvu"}}'><img resource="./File:LoremIpsum.djvu" src="//example.com/images/5/5f/LoremIpsum.djvu" data-file-width="2480" data-file-height="3508" data-file-type="bitmap" height="3508" width="2480" data-parsoid='{"a":{"resource":"./File:LoremIpsum.djvu","height":"3508","width":"2480"},"sa":{"resource":"File:LoremIpsum.djvu"}}'/></a></span></p>
 !! end
 
 !! test
@@ -20287,9 +20440,11 @@ ISBN ---
 ISBN with space-delimited number
 !! wikitext
 ISBN 92 9017 032 8
-!! html
+!! html/php
 <p><a href="/wiki/Special:BookSources/9290170328" class="internal mw-magiclink-isbn">ISBN 92 9017 032 8</a>
 </p>
+!! html/parsoid
+<p data-parsoid='{"dsr":[0,18,0,0]}'><a href="./Special:BookSources/9290170328" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink","dsr":[0,18,2,2]}'>ISBN 92 9017 032 8</a></p>
 !! end
 
 
@@ -20311,11 +20466,17 @@ ISBN 123456789
 ISBN 1234567890
 
 ISBN 12345678901
-!! html
+!! html/php
 <p>ISBN 123456789
 </p><p><a href="/wiki/Special:BookSources/1234567890" class="internal mw-magiclink-isbn">ISBN 1234567890</a>
 </p><p>ISBN 12345678901
 </p>
+!! html/parsoid
+<p>ISBN 123456789</p>
+
+<p><a href="./Special:BookSources/1234567890" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1234567890</a></p>
+
+<p>ISBN 12345678901</p>
 !! end
 
 
@@ -20325,10 +20486,14 @@ ISBN with trailing year (T9110)
 ISBN 1-234-56789-0 - 2006
 
 ISBN 1 234 56789 0 - 2006
-!! html
+!! html/php
 <p><a href="/wiki/Special:BookSources/1234567890" class="internal mw-magiclink-isbn">ISBN 1-234-56789-0</a> - 2006
 </p><p><a href="/wiki/Special:BookSources/1234567890" class="internal mw-magiclink-isbn">ISBN 1 234 56789 0</a> - 2006
 </p>
+!! html/parsoid
+<p><a href="./Special:BookSources/1234567890" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1-234-56789-0</a> - 2006</p>
+
+<p><a href="./Special:BookSources/1234567890" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1 234 56789 0</a> - 2006</p>
 !! end
 
 
@@ -22082,7 +22247,7 @@ percent-encoding and + signs in internal links (T28410)
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./User:+%25" title="User:+%" data-parsoid='{"stx":"simple","a":{"href":"./User:+%25"},"sa":{"href":"User:+%"}}'>User:+%</a> <a rel="mw:WikiLink" href="./Page+title%25" title="Page+title%" data-parsoid='{"stx":"simple","a":{"href":"./Page+title%25"},"sa":{"href":"Page+title%"}}'>Page+title%</a>
 <a rel="mw:WikiLink" href="./%25+" title="%+" data-parsoid='{"stx":"simple","a":{"href":"./%25+"},"sa":{"href":"%+"}}'>%+</a> <a rel="mw:WikiLink" href="./%25+" title="%+" data-parsoid='{"stx":"piped","a":{"href":"./%25+"},"sa":{"href":"%+"}}'>%20</a> <a rel="mw:WikiLink" href="./%25+" title="%+" data-parsoid='{"stx":"simple","a":{"href":"./%25+"},"sa":{"href":"%+ "}}'>%+ </a> <a rel="mw:WikiLink" href="./%25+r" title="%+r" data-parsoid='{"stx":"simple","a":{"href":"./%25+r"},"sa":{"href":"%+r"}}'>%+r</a>
-<a rel="mw:WikiLink" href="./%25" title="%" data-parsoid='{"stx":"simple","a":{"href":"./%25"},"sa":{"href":"%"}}'>%</a> <a rel="mw:WikiLink" href="./+" title="+" data-parsoid='{"stx":"simple","a":{"href":"./+"},"sa":{"href":"+"}}'>+</a> <span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"bogus","ak":"foo"},{"ck":"caption","ak":"[[bar]]"}]}' data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}],"caption":"&lt;a rel=\"mw:WikiLink\" href=\"./Bar\" title=\"Bar\" data-parsoid=&#39;{\"stx\":\"simple\",\"a\":{\"href\":\"./Bar\"},\"sa\":{\"href\":\"bar\"},\"dsr\":[94,101,2,2]}&#39;>bar&lt;/a>"}'><a href="./File:%25+abc9" data-parsoid='{"a":{"href":"./File:%25+abc9"},"sa":{}}'><img resource="./File:%25+abc9" src="./Special:FilePath/%25+abc9" height="220" width="220" data-parsoid='{"a":{"resource":"./File:%25+abc9","height":"220","width":"220"},"sa":{"resource":"File:%+abc%39"}}'/></a></span>
+<a rel="mw:WikiLink" href="./%25" title="%" data-parsoid='{"stx":"simple","a":{"href":"./%25"},"sa":{"href":"%"}}'>%</a> <a rel="mw:WikiLink" href="./+" title="+" data-parsoid='{"stx":"simple","a":{"href":"./+"},"sa":{"href":"+"}}'>+</a> <span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"bogus","ak":"foo"},{"ck":"caption","ak":"[[bar]]"}]}' data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}],"caption":"&lt;a rel=\"mw:WikiLink\" href=\"./Bar\" title=\"Bar\" data-parsoid=&#39;{\"stx\":\"simple\",\"a\":{\"href\":\"./Bar\"},\"sa\":{\"href\":\"bar\"},\"dsr\":[94,101,2,2]}&#39;>bar&lt;/a>"}'><a href="./File:%25+abc9" data-parsoid='{"a":{"href":"./File:%25+abc9"},"sa":{}}'><img resource="./File:%25+abc9" src="./Special:FilePath/%25+abc9" height="220" width="220" data-parsoid='{"a":{"resource":"./File:%25+abc9","height":"220","width":"220"},"sa":{"resource":"File:%+abc%39"}}'/></a></span>
 <a rel="mw:WikiLink" href="./3E" title="3E" data-parsoid='{"stx":"simple","a":{"href":"./3E"},"sa":{"href":"%33%45"}}'>3E</a> <a rel="mw:WikiLink" href="./3E+" title="3E+" data-parsoid='{"stx":"simple","a":{"href":"./3E+"},"sa":{"href":"%33%45+"}}'>3E+</a></p>
 !! end
 
@@ -22096,8 +22261,8 @@ Special characters in embedded file links (T29679)
 <a href="/index.php?title=Special:Upload&amp;wpDestFile=Does_not_exist.jpg" class="new" title="File:Does not exist.jpg">Title with &amp; ampersand</a>
 </p>
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}]}'><a href="./File:Contains_&amp;_ampersand.jpg"><img resource="./File:Contains_&amp;_ampersand.jpg" src="./Special:FilePath/Contains_&amp;_ampersand.jpg" height="220" width="220"/></a></span>
-<span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}],"caption":"Title with &amp;amp; ampersand"}'><a href="./File:Does_not_exist.jpg"><img resource="./File:Does_not_exist.jpg" src="./Special:FilePath/Does_not_exist.jpg" height="220" width="220"/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./File:Contains_&amp;_ampersand.jpg"><img resource="./File:Contains_&amp;_ampersand.jpg" src="./Special:FilePath/Contains_&amp;_ampersand.jpg" height="220" width="220"/></a></span>
+<span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}],"caption":"Title with &amp;amp; ampersand"}'><a href="./File:Does_not_exist.jpg"><img resource="./File:Does_not_exist.jpg" src="./Special:FilePath/Does_not_exist.jpg" height="220" width="220"/></a></span></p>
 !! end
 
 !! test
@@ -22220,6 +22385,12 @@ language=en
 </p>
 !! end
 
+# Note that Parsoid doesn't emit an explicit TOC.
+# Note also that the html2wt direction tends to emit an extra newline
+# between the __TOC__ magicword and the first heading unless *both*
+# the <meta> and the <h2> have a data-parsoid attribute set (even if
+# it's "{}").
+
 !! test
 T28375: TOC with italics
 !! options
@@ -22227,7 +22398,7 @@ title=[[Main Page]]
 !! wikitext
 __TOC__
 == ''Lost'' episodes ==
-!! html
+!! html/php
 <div id="toc" class="toc"><div id="toctitle" class="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Lost_episodes"><span class="tocnumber">1</span> <span class="toctext"><i>Lost</i> episodes</span></a></li>
@@ -22236,6 +22407,9 @@ __TOC__
 
 <h2><span class="mw-headline" id="Lost_episodes"><i>Lost</i> episodes</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Lost episodes">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
+!! html/parsoid
+<meta property="mw:PageProp/toc" data-parsoid='{}'/>
+<h2 data-parsoid='{}'> <i>Lost</i> episodes </h2>
 !! end
 
 !! test
@@ -22245,7 +22419,7 @@ title=[[Main Page]]
 !! wikitext
 __TOC__
 == '''should be bold''' then normal text ==
-!! html
+!! html/php
 <div id="toc" class="toc"><div id="toctitle" class="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#should_be_bold_then_normal_text"><span class="tocnumber">1</span> <span class="toctext"><b>should be bold</b> then normal text</span></a></li>
@@ -22254,6 +22428,9 @@ __TOC__
 
 <h2><span class="mw-headline" id="should_be_bold_then_normal_text"><b>should be bold</b> then normal text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: should be bold then normal text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
+!! html/parsoid
+<meta property="mw:PageProp/toc" data-parsoid='{}'/>
+<h2 data-parsoid='{}'> <b>should be bold</b> then normal text </h2>
 !! end
 
 !! test
@@ -22263,7 +22440,7 @@ title=[[Main Page]]
 !! wikitext
 __TOC__
 == Image [[Image:foobar.jpg]] ==
-!! html
+!! html/php
 <div id="toc" class="toc"><div id="toctitle" class="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Image"><span class="tocnumber">1</span> <span class="toctext">Image</span></a></li>
@@ -22272,6 +22449,9 @@ __TOC__
 
 <h2><span class="mw-headline" id="Image">Image <a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Image">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
+!! html/parsoid
+<meta property="mw:PageProp/toc" data-parsoid='{}'/>
+<h2 data-parsoid='{}'> Image <span class="mw-default-size" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"Image:foobar.jpg"}}'/></a></span> </h2>
 !! end
 
 !! test
@@ -22281,7 +22461,7 @@ title=[[Main Page]]
 !! wikitext
 __TOC__
 == <blockquote>Quote</blockquote> ==
-!! html
+!! html/php
 <div id="toc" class="toc"><div id="toctitle" class="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Quote"><span class="tocnumber">1</span> <span class="toctext">Quote</span></a></li>
@@ -22290,7 +22470,7 @@ __TOC__
 
 <h2><span class="mw-headline" id="Quote"><blockquote>Quote</blockquote></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Quote">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
-!! html+tidy
+!! html/php+tidy
 <p></p>
 <div id="toc" class="toc">
 <div id="toctitle" class="toctitle">
@@ -22306,6 +22486,9 @@ __TOC__
 <p><span class="mw-headline" id="Quote">Quote</span></p>
 </blockquote>
 <p><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Quote">edit</a><span class="mw-editsection-bracket">]</span></span></p>
+!! html/parsoid
+<meta property="mw:PageProp/toc" data-parsoid='{}'/>
+<h2 data-parsoid='{}'> <blockquote>Quote</blockquote> </h2>
 !! end
 
 !! test
@@ -22317,7 +22500,7 @@ __TOC__
 == Proof: 2 < 3 ==
 <small>Hanc marginis exiguitas non caperet.</small>
 QED
-!! html
+!! html/php
 <div id="toc" class="toc"><div id="toctitle" class="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Proof:_2_.3C_3"><span class="tocnumber">1</span> <span class="toctext">Proof: 2 &lt; 3</span></a></li>
@@ -22328,6 +22511,11 @@ QED
 <p><small>Hanc marginis exiguitas non caperet.</small>
 QED
 </p>
+!! html/parsoid
+<meta property="mw:PageProp/toc" data-parsoid='{}'/>
+<h2 data-parsoid='{}'> Proof: 2 &lt; 3 </h2>
+<p><small>Hanc marginis exiguitas non caperet.</small>
+QED</p>
 !! end
 
 !! test
@@ -22337,7 +22525,7 @@ __TOC__
 == <i>Foo</i> <b>Bar</b> ==
 
 == <i>Foo</i> <blockquote>Bar</blockquote> ==
-!! html
+!! html/php
 <div id="toc" class="toc"><div id="toctitle" class="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Foo_Bar"><span class="tocnumber">1</span> <span class="toctext"><i>Foo</i> <b>Bar</b></span></a></li>
@@ -22348,7 +22536,7 @@ __TOC__
 <h2><span class="mw-headline" id="Foo_Bar"><i>Foo</i> <b>Bar</b></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Foo Bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="Foo_Bar_2"><i>Foo</i> <blockquote>Bar</blockquote></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Foo Bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
-!! html+tidy
+!! html/php+tidy
 <p></p>
 <div id="toc" class="toc">
 <div id="toctitle" class="toctitle">
@@ -22366,6 +22554,10 @@ __TOC__
 <p><span class="mw-headline" id="Foo_Bar_2">Bar</span></p>
 </blockquote>
 <p><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Foo Bar">edit</a><span class="mw-editsection-bracket">]</span></span></p>
+!! html/parsoid
+<meta property="mw:PageProp/toc" data-parsoid='{}'/>
+<h2 data-parsoid='{}'> <i data-parsoid='{"stx":"html"}'>Foo</i> <b data-parsoid='{"stx":"html"}'>Bar</b> </h2>
+<h2> <i data-parsoid='{"stx":"html"}'>Foo</i> <blockquote>Bar</blockquote> </h2>
 !! end
 
 # Don't expect Parsoid to roundtrip this until the php parser comes closer to
@@ -22410,7 +22602,7 @@ __TOC__
 == <span style="font-style: italic" dir="ltr">All attributes on these span tags must be deleted from the TOC</span> ==
 
 == <span dir="ltr" style="font-style: italic">Attributes after dir on these span tags must be deleted from the TOC</span> ==
-!! html
+!! html/php
 <div id="toc" class="toc"><div id="toctitle" class="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#C.2B.2B"><span class="tocnumber">1</span> <span class="toctext"><span dir="ltr">C++</span></span></a></li>
@@ -22427,6 +22619,13 @@ __TOC__
 <h2><span class="mw-headline" id="All_attributes_on_these_span_tags_must_be_deleted_from_the_TOC"><span style="font-style: italic" dir="ltr">All attributes on these span tags must be deleted from the TOC</span></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: All attributes on these span tags must be deleted from the TOC">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="Attributes_after_dir_on_these_span_tags_must_be_deleted_from_the_TOC"><span dir="ltr" style="font-style: italic">Attributes after dir on these span tags must be deleted from the TOC</span></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: Attributes after dir on these span tags must be deleted from the TOC">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
+!! html/parsoid
+<meta property="mw:PageProp/toc" data-parsoid='{}'/>
+<h2 data-parsoid='{}'> <span dir="ltr">C++</span> </h2>
+<h2> <span dir="rtl">זבנג!</span> </h2>
+<h2> <span style="font-style: italic">The attributes on these span tags must be deleted from the TOC</span> </h2>
+<h2> <span style="font-style: italic" dir="ltr">All attributes on these span tags must be deleted from the TOC</span> </h2>
+<h2> <span dir="ltr" style="font-style: italic">Attributes after dir on these span tags must be deleted from the TOC</span> </h2>
 !! end
 
 !! test
@@ -22434,7 +22633,7 @@ T74884: bdi element in ToC
 !! wikitext
 __TOC__
 == <bdi>test</bdi> ==
-!! html
+!! html/php
 <div id="toc" class="toc"><div id="toctitle" class="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#test"><span class="tocnumber">1</span> <span class="toctext"><bdi>test</bdi></span></a></li>
@@ -22443,6 +22642,9 @@ __TOC__
 
 <h2><span class="mw-headline" id="test"><bdi>test</bdi></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: test">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
+!! html/parsoid
+<meta property="mw:PageProp/toc" data-parsoid='{}'/>
+<h2 data-parsoid='{}'> <bdi>test</bdi> </h2>
 !! end
 
 !! test
@@ -22450,7 +22652,7 @@ T35715: s/strike element in ToC
 !! wikitext
 __TOC__
 == <s>test</s> test <strike>test</strike> ==
-!! html
+!! html/php
 <div id="toc" class="toc"><div id="toctitle" class="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#test_test_test"><span class="tocnumber">1</span> <span class="toctext"><s>test</s> test <strike>test</strike></span></a></li>
@@ -22459,6 +22661,9 @@ __TOC__
 
 <h2><span class="mw-headline" id="test_test_test"><s>test</s> test <strike>test</strike></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: test test test">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
+!! html/parsoid
+<meta property="mw:PageProp/toc" data-parsoid='{}'/>
+<h2 data-parsoid='{}'> <s>test</s> test <strike>test</strike> </h2>
 !! end
 
 # Note that the html output does not have the <p></p>, but the
@@ -22469,7 +22674,7 @@ Empty <p> tag in TOC, removed by Sanitizer (T92892)
 !! wikitext
 __TOC__
 == x ==
-!! html
+!! html/php
 <div id="toc" class="toc"><div id="toctitle" class="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#x"><span class="tocnumber">1</span> <span class="toctext">x</span></a></li>
@@ -22478,7 +22683,7 @@ __TOC__
 
 <h2><span class="mw-headline" id="x">x</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: x">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
-!! html+tidy
+!! html/php+tidy
 <p></p>
 <div id="toc" class="toc">
 <div id="toctitle" class="toctitle">
@@ -22490,6 +22695,9 @@ __TOC__
 </div>
 <p></p>
 <h2><span class="mw-headline" id="x">x</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: x">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+!! html/parsoid
+<meta property="mw:PageProp/toc" data-parsoid='{}'/>
+<h2 data-parsoid='{}'> x </h2>
 !! end
 
 !! article
@@ -26698,6 +26906,16 @@ parsoid=html2wt
 <p data-parsoid='{}'><a rel="mw:ExtLink" href="http://test.com" data-parsoid='{"targetOff":17,"contentOffsets":[17,34]}'></a><a rel="mw:WikiLink" href="./One" title="One" data-parsoid='{"stx":"simple","a":{"href":"./One"},"sa":{"href":"one"},"misnested":true}'>one</a><span data-parsoid='{"misnested":true}'> two three</span></p>
 !! wikitext
 [http://test.com][[one]] two three
+!! end
+
+!! test
+Catch regression when unpacking misnested links
+!! options
+parsoid=wt2html
+!! wikitext
+{{echo|hi}}[http://example.com [[ho]]]
+!! html/parsoid
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"hi"}},"i":0}}]}'>hi</span><a rel="mw:ExtLink" href="http://example.com"></a><a rel="mw:WikiLink" href="./Ho" title="Ho" data-parsoid='{"misnested":true}'>ho</a></p>
 !! end
 
 !! test
