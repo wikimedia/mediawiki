@@ -29,6 +29,7 @@
     "wdio-junit-reporter": "0.2.0",
     "wdio-mocha-framework": "0.5.8",
     "wdio-spec-reporter": "0.0.5",
+    "wdio-visual-regression-service": "^0.8.0",
     "webdriverio": "4.6.2"
   }
 }
