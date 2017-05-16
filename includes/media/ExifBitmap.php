@@ -254,8 +254,23 @@ class ExifBitmapHandler extends BitmapHandler {
 		}
 
 		$dimensionsMetadata = [];
-		$dimensionsMetadata['width'] = $metadata['Width'];
-		$dimensionsMetadata['height'] = $metadata['Height'];
+
+		if ( $this->autoRotateEnabled() && isset( $metadata['Orientation'] ) ) {
+			switch ( $metadata['Orientation'] ) {
+				case 5: // CCW flipped
+				case 6: // CCW
+				case 7: // CW flipped
+				case 8: // CW
+					$dimensionsMetadata['width'] = $metadata['Height'];
+					$dimensionsMetadata['height'] = $metadata['Width'];
+					break;
+			}
+		}
+
+		if ( !isset( $dimensionsMetadata['width'] ) ) {
+			$dimensionsMetadata['width'] = $metadata['Width'];
+			$dimensionsMetadata['height'] = $metadata['Height'];
+		}
 
 		return parent::getContentHeaders( $dimensionsMetadata );
 	}
