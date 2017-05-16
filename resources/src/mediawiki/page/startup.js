@@ -4,7 +4,36 @@
 
 	$( function () {
 		var $diff;
-		mw.util.init();
+
+		/**
+		 * Initialisation of mw.util.$content
+		 */
+		mw.util.$content = ( function () {
+			var i, l, $node, selectors;
+
+			selectors = [
+				// The preferred standard is class "mw-body".
+				// You may also use class "mw-body mw-body-primary" if you use
+				// mw-body in multiple locations. Or class "mw-body-primary" if
+				// you use mw-body deeper in the DOM.
+				'.mw-body-primary',
+				'.mw-body',
+
+				// If the skin has no such class, fall back to the parser output
+				'#mw-content-text'
+			];
+
+			for ( i = 0, l = selectors.length; i < l; i++ ) {
+				$node = $( selectors[ i ] );
+				if ( $node.length ) {
+					return $node.first();
+				}
+			}
+
+			// Should never happen... well, it could if someone is not finished writing a
+			// skin and has not yet inserted bodytext yet.
+			return $( 'body' );
+		}() );
 
 		/**
 		 * Fired when wiki content is being added to the DOM
