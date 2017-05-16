@@ -74,4 +74,38 @@ class LanguagePlTest extends LanguageClassesTestCase {
 			[ 'other', 201 ],
 		];
 	}
+
+	/**
+	 * @dataProvider providerGrammar
+	 * @covers Language::convertGrammar
+	 */
+	public function testGrammar( $result, $word, $case ) {
+		$this->assertEquals( $result, $this->getLang()->convertGrammar( $word, $case ) );
+	}
+
+	public static function providerGrammar() {
+		return [
+			[
+				'Wikipedii',
+				'Wikipedia',
+				'genitive',
+			],
+			[
+				'Wikispecies',
+				'Wikispecies',
+				'genitive',
+			],
+			[
+				'Wikicytat',
+				'Wikicytaty',
+				'genitive',
+			],
+			[
+				'Wikipedię',
+				'Wikipedia',
+				'accusative',
+			],
+		];
+	}
+
 }
