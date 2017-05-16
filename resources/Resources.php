@@ -1148,7 +1148,10 @@ return [
 			'default' => 'resources/src/mediawiki/mediawiki.notification.css',
 		],
 		'scripts' => 'resources/src/mediawiki/mediawiki.notification.js',
-		'dependencies' => 'mediawiki.page.startup',
+		'dependencies' => [
+			'mediawiki.page.startup',
+			'mediawiki.util',
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.notify' => [
@@ -1713,6 +1716,7 @@ return [
 		'dependencies' => [
 			'mediawiki.api.rollback',
 			'mediawiki.notify',
+			'mediawiki.util',
 			'jquery.spinner',
 		],
 		'messages' => [
@@ -1857,6 +1861,7 @@ return [
 		'dependencies' => [
 			'mediawiki.api',
 			'mediawiki.jqueryMsg',
+			'mediawiki.util',
 			'oojs-ui',
 			'mediawiki.widgets.datetime',
 		],
@@ -2432,6 +2437,7 @@ return [
 			'oojs-ui-widgets',
 			'mediawiki.ForeignApi',
 			'mediawiki.Title',
+			'mediawiki.util',
 		],
 		'messages' => [
 			'mw-widgets-mediasearch-noresults',
