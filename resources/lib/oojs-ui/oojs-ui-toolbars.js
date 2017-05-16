@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.3
+ * OOjs UI v0.21.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-05-10T00:55:40Z
+ * Date: 2017-05-16T22:31:39Z
  */
 ( function ( OO ) {
 
@@ -629,10 +629,8 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 		.attr( 'role', 'button' );
 	this.$element
 		.data( 'oo-ui-tool', this )
-		.addClass(
-			'oo-ui-tool ' + 'oo-ui-tool-name-' +
-			this.constructor.static.name.replace( /^([^\/]+)\/([^\/]+).*$/, '$1-$2' )
-		)
+		.addClass( 'oo-ui-tool' )
+		.addClass( 'oo-ui-tool-name-' + this.constructor.static.name.replace( /^([^\/]+)\/([^\/]+).*$/, '$1-$2' ) )
 		.toggleClass( 'oo-ui-tool-with-label', this.constructor.static.displayBothIconAndLabel )
 		.append( this.$link );
 	this.setTitle( config.title || this.constructor.static.title );

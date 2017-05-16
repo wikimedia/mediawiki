@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.3
+ * OOjs UI v0.21.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-05-10T00:55:40Z
+ * Date: 2017-05-16T22:31:39Z
  */
 ( function ( OO ) {
 
@@ -2786,7 +2786,7 @@ OO.ui.MessageDialog.prototype.getReadyProcess = function ( data ) {
 				return action.getFlags().indexOf( 'primary' ) > -1;
 			} );
 			if ( actions.length > 0 ) {
-				actions[ 0 ].$button.focus();
+				actions[ 0 ].focus();
 			}
 		}, this );
 };

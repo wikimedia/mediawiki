@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.3
+ * OOjs UI v0.21.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-05-10T00:55:40Z
+ * Date: 2017-05-16T22:31:39Z
  */
 ( function ( OO ) {
 
@@ -1117,7 +1117,7 @@ OO.ui.TabPanelLayout.prototype.setActive = function ( active ) {
  * @extends OO.ui.TabPanelLayout
  *
  * @constructor
- * @deprecated since v0.22.0
+ * @deprecated since v0.21.3
  */
 OO.ui.CardLayout = function OoUiCardLayout() {
 	OO.ui.warnDeprecation( 'CardLayout has been renamed to TabPanel layout. Use that instead. See T155152' );
@@ -2281,7 +2281,7 @@ OO.ui.BookletLayout.prototype.selectFirstSelectablePage = function () {
  *
  *     var index = new OO.ui.IndexLayout();
  *
- *     index.addTabPanelss ( [ tabPanel1, tabPanel2 ] );
+ *     index.addTabPanels ( [ tabPanel1, tabPanel2 ] );
  *     $( 'body' ).append( index.$element );
  *
  * @class
@@ -2517,7 +2517,7 @@ OO.ui.IndexLayout.prototype.getClosestTabPanel = function ( tabPanel ) {
  *
  * @param {OO.ui.TabPanelLayout} tabPanel Tab panel to use as a reference point
  * @return {OO.ui.TabPanelLayout|null} Tab panel closest to the specified
- * @deprecated since v0.22.0, use `getClosestTabPanel` instead
+ * @deprecated since v0.21.3, use `getClosestTabPanel` instead
  */
 OO.ui.IndexLayout.prototype.getClosestCard = function ( tabPanel ) {
 	OO.ui.warnDeprecation( 'IndexLayout\'s getClosestCard method is deprecated. Use getClosestTabPanel instead. See T155152' );
@@ -2548,7 +2548,7 @@ OO.ui.IndexLayout.prototype.getTabPanel = function ( name ) {
  *
  * @param {string} name Symbolic name of tab panel
  * @return {OO.ui.TabPanelLayout|undefined} Tab panel, if found
- * @deprecated since v0.22.0, use `getTabPanel` instead
+ * @deprecated since v0.21.3, use `getTabPanel` instead
  */
 OO.ui.IndexLayout.prototype.getCard = function ( name ) {
 	OO.ui.warnDeprecation( 'IndexLayout\'s getCard method is deprecated. Use getTabPanel instead. See T155152' );
@@ -2569,7 +2569,7 @@ OO.ui.IndexLayout.prototype.getCurrentTabPanel = function () {
  * Get the current tab panel.
  *
  * @return {OO.ui.TabPanelLayout|undefined} Current tab panel, if found
- * @deprecated since v0.22.0, use `getCurrentTabPanel` instead
+ * @deprecated since v0.21.3, use `getCurrentTabPanel` instead
  */
 OO.ui.IndexLayout.prototype.getCurrentCard = function () {
 	OO.ui.warnDeprecation( 'IndexLayout\'s getCurrentCard method is deprecated. Use getCurrentTabPanel instead. See T155152' );
@@ -2589,7 +2589,7 @@ OO.ui.IndexLayout.prototype.getCurrentTabPanelName = function () {
  * Get the symbolic name of the current tab panel.
  *
  * @return {string|null} Symbolic name of the current tab panel
- * @deprecated since v0.22.0, use `getCurrentTabPanelName` instead
+ * @deprecated since v0.21.3, use `getCurrentTabPanelName` instead
  */
 OO.ui.IndexLayout.prototype.getCurrentCardName = function () {
 	OO.ui.warnDeprecation( 'IndexLayout\'s getCurrentCardName method is deprecated. Use getCurrentTabPanelName instead. See T155152' );
@@ -2661,7 +2661,7 @@ OO.ui.IndexLayout.prototype.addTabPanels = function ( tabPanels, index ) {
  * @param {number} index Index of the insertion point
  * @fires add
  * @chainable
- * @deprecated since v0.22.0, use `addTabPanels` instead
+ * @deprecated since v0.21.3, use `addTabPanels` instead
  */
 OO.ui.IndexLayout.prototype.addCards = function ( tabPanels, index ) {
 	OO.ui.warnDeprecation( 'IndexLayout\'s addCards method is deprecated. Use addTabPanels instead. See T155152' );
@@ -2706,7 +2706,7 @@ OO.ui.IndexLayout.prototype.removeTabPanels = function ( tabPanels ) {
  * @param {OO.ui.TabPanelLayout[]} tabPanels An array of tab panels to remove
  * @fires remove
  * @chainable
- * @deprecated since v0.22.0, use `removeTabPanels` instead
+ * @deprecated since v0.21.3, use `removeTabPanels` instead
  */
 OO.ui.IndexLayout.prototype.removeCards = function ( tabPanels ) {
 	OO.ui.warnDeprecation( 'IndexLayout\'s removeCards method is deprecated. Use removeTabPanels instead. See T155152.' );
@@ -2745,7 +2745,7 @@ OO.ui.IndexLayout.prototype.clearTabPanels = function () {
  *
  * @fires remove
  * @chainable
- * @deprecated since v0.22.0, use `clearTabPanels` instead
+ * @deprecated since v0.21.3, use `clearTabPanels` instead
  */
 OO.ui.IndexLayout.prototype.clearCards = function () {
 	OO.ui.warnDeprecation( 'IndexLayout\'s clearCards method is deprecated. Use clearTabPanels instead. See T155152.' );
@@ -2809,7 +2809,7 @@ OO.ui.IndexLayout.prototype.setTabPanel = function ( name ) {
  *
  * @fires set
  * @param {string} name Symbolic name of tab panel
- * @deprecated since v0.22.0, use `setTabPanel` instead
+ * @deprecated since v0.21.3, use `setTabPanel` instead
  */
 OO.ui.IndexLayout.prototype.setCard = function ( name ) {
 	OO.ui.warnDeprecation( 'IndexLayout\'s setCard method is deprecated. Use setTabPanel instead. See T155152.' );
@@ -2833,7 +2833,7 @@ OO.ui.IndexLayout.prototype.selectFirstSelectableTabPanel = function () {
  * Select the first selectable tab panel.
  *
  * @chainable
- * @deprecated since v0.22.0, use `selectFirstSelectableTabPanel` instead
+ * @deprecated since v0.21.3, use `selectFirstSelectableTabPanel` instead
  */
 OO.ui.IndexLayout.prototype.selectFirstSelectableCard = function () {
 	OO.ui.warnDeprecation( 'IndexLayout\'s selectFirstSelectableCard method is deprecated. Use selectFirestSelectableTabPanel instead. See T155152.' );
@@ -3806,13 +3806,6 @@ OO.ui.CapsuleItemWidget.prototype.onKeyDown = function ( e ) {
 };
 
 /**
- * Focuses the capsule
- */
-OO.ui.CapsuleItemWidget.prototype.focus = function () {
-	this.$element.focus();
-};
-
-/**
  * CapsuleMultiselectWidgets are something like a {@link OO.ui.ComboBoxInputWidget combo box widget}
  * that allows for selecting multiple values.
  *
@@ -4018,10 +4011,6 @@ OO.mixinClass( OO.ui.CapsuleMultiselectWidget, OO.ui.mixin.TabIndexedElement );
 OO.mixinClass( OO.ui.CapsuleMultiselectWidget, OO.ui.mixin.IndicatorElement );
 OO.mixinClass( OO.ui.CapsuleMultiselectWidget, OO.ui.mixin.IconElement );
 
-/* Static Properties */
-
-OO.ui.CapsuleMultiselectWidget.static.supportsSimpleLabel = true;
-
 /* Events */
 
 /**
@@ -4058,23 +4047,13 @@ OO.ui.CapsuleMultiselectWidget.prototype.createItemWidget = function ( data, lab
 };
 
 /**
- * Get the widget's input's id, or generate one, if it has an input.
- *
- * @return {string}
+ * @inheritdoc
  */
 OO.ui.CapsuleMultiselectWidget.prototype.getInputId = function () {
-	var id;
 	if ( !this.$input ) {
-		return false;
+		return null;
 	}
-
-	id = this.$input.attr( 'id' );
-	if ( id === undefined ) {
-		id = OO.ui.generateElementId();
-		this.$input.attr( 'id', id );
-	}
-
-	return id;
+	return OO.ui.mixin.TabIndexedElement.prototype.getInputId.call( this );
 };
 
 /**
@@ -4359,6 +4338,7 @@ OO.ui.CapsuleMultiselectWidget.prototype.getMenu = function () {
  */
 OO.ui.CapsuleMultiselectWidget.prototype.onInputFocus = function () {
 	if ( !this.isDisabled() ) {
+		this.updateInputSize();
 		this.menu.toggle( true );
 	}
 };
@@ -4627,7 +4607,6 @@ OO.ui.CapsuleMultiselectWidget.prototype.setDisabled = function ( disabled ) {
  * Focus the widget
  *
  * @chainable
- * @return {OO.ui.CapsuleMultiselectWidget}
  */
 OO.ui.CapsuleMultiselectWidget.prototype.focus = function () {
 	if ( !this.isDisabled() ) {
@@ -4636,9 +4615,7 @@ OO.ui.CapsuleMultiselectWidget.prototype.focus = function () {
 			this.popup.toggle( true );
 			OO.ui.findFocusable( this.popup.$element ).focus();
 		} else {
-			this.updateInputSize();
-			this.menu.toggle( true );
-			this.$input.focus();
+			OO.ui.mixin.TabIndexedElement.prototype.focus.call( this );
 		}
 	}
 	return this;
@@ -4810,15 +4787,6 @@ OO.ui.TagItemWidget.prototype.onKeyDown = function ( e ) {
 			e.keyCode === OO.ui.Keys.LEFT ?
 				movement.left : movement.right
 		);
-	}
-};
-
-/**
- * Focuses the capsule
- */
-OO.ui.TagItemWidget.prototype.focus = function () {
-	if ( !this.isDisabled() ) {
-		this.$element.focus();
 	}
 };
 
@@ -5188,7 +5156,7 @@ OO.ui.TagMultiselectWidget.prototype.doInputEnter = function () {
  * a meta key like 'ctrl'
  * @return {boolean} Whether to prevent defaults
  */
-OO.ui.TagMultiselectWidget.prototype.doInputBackspace = function () {
+OO.ui.TagMultiselectWidget.prototype.doInputBackspace = function ( e, withMetaKey ) {
 	var items, item;
 
 	if (
@@ -5199,8 +5167,12 @@ OO.ui.TagMultiselectWidget.prototype.doInputBackspace = function () {
 		// Delete the last item
 		items = this.getItems();
 		item = items[ items.length - 1 ];
-		this.input.setValue( item.getData() );
 		this.removeItems( [ item ] );
+		// If Ctrl/Cmd was pressed, delete item entirely.
+		// Otherwise put it into the text field for editing.
+		if ( !withMetaKey ) {
+			this.input.setValue( item.getData() );
+		}
 
 		return false;
 	}
@@ -5353,15 +5325,15 @@ OO.ui.TagMultiselectWidget.prototype.isDuplicateData = function ( data ) {
  * @return {boolean} Value is allowed
  */
 OO.ui.TagMultiselectWidget.prototype.isAllowedData = function ( data ) {
-	if ( this.allowArbitrary ) {
-		return true;
-	}
-
 	if (
 		!this.allowDuplicates &&
 		this.isDuplicateData( data )
 	) {
 		return false;
+	}
+
+	if ( this.allowArbitrary ) {
+		return true;
 	}
 
 	// Check with allowed values
@@ -5393,15 +5365,6 @@ OO.ui.TagMultiselectWidget.prototype.getAllowedValues = function () {
 OO.ui.TagMultiselectWidget.prototype.addAllowedValue = function ( value ) {
 	if ( this.allowedValues.indexOf( value ) === -1 ) {
 		this.allowedValues.push( value );
-	}
-};
-
-/**
- * Focus the widget
- */
-OO.ui.TagMultiselectWidget.prototype.focus = function () {
-	if ( this.hasInput ) {
-		this.input.focus();
 	}
 };
 
@@ -5758,7 +5721,7 @@ OO.ui.PopupTagMultiselectWidget = function OoUiPopupTagMultiselectWidget( config
 	this.on( 'resize', this.popup.updateDimensions.bind( this.popup ) );
 	this.popup.connect( this, { toggle: 'onPopupToggle' } );
 	this.$tabIndexed
-		.on( 'focus', this.focus.bind( this ) );
+		.on( 'focus', this.onFocus.bind( this ) );
 
 	// Initialize
 	this.$element
@@ -5774,17 +5737,11 @@ OO.mixinClass( OO.ui.PopupTagMultiselectWidget, OO.ui.mixin.PopupElement );
 /* Methods */
 
 /**
- * @inheritdoc
+ * Focus event handler.
+ *
+ * @private
  */
-OO.ui.PopupTagMultiselectWidget.prototype.focus = function () {
-	// Since the parent deals with input focus, only
-	// call the parent method if our input isn't in the
-	// popup
-	if ( !this.popupInput ) {
-		// Parent method
-		OO.ui.PopupTagMultiselectWidget.parent.prototype.focus.call( this );
-	}
-
+OO.ui.PopupTagMultiselectWidget.prototype.onFocus = function () {
 	this.popup.toggle( true );
 };
 
@@ -6075,18 +6032,6 @@ OO.ui.MenuTagMultiselectWidget.prototype.getAllowedValues = function () {
 };
 
 /**
- * @inheritdoc
- */
-OO.ui.MenuTagMultiselectWidget.prototype.focus = function () {
-	// Parent method
-	OO.ui.MenuTagMultiselectWidget.parent.prototype.focus.call( this );
-
-	if ( !this.isDisabled() ) {
-		this.menu.toggle( true );
-	}
-};
-
-/**
  * SelectFileWidgets allow for selecting files, using the HTML5 File API. These
  * widgets can be configured with {@link OO.ui.mixin.IconElement icons} and {@link
  * OO.ui.mixin.IndicatorElement indicators}.
@@ -6284,7 +6229,17 @@ OO.ui.SelectFileWidget.prototype.setValue = function ( file ) {
  * @chainable
  */
 OO.ui.SelectFileWidget.prototype.focus = function () {
-	this.selectButton.$button[ 0 ].focus();
+	this.selectButton.focus();
+	return this;
+};
+
+/**
+ * Blur the widget.
+ *
+ * @chainable
+ */
+OO.ui.SelectFileWidget.prototype.blur = function () {
+	this.selectButton.blur();
 	return this;
 };
 

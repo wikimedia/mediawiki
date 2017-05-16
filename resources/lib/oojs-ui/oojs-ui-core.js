@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.3
+ * OOjs UI v0.21.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-05-10T00:55:40Z
+ * Date: 2017-05-16T22:31:39Z
  */
 ( function ( OO ) {
 
@@ -1632,19 +1632,6 @@ OO.ui.Widget = function OoUiWidget( config ) {
 OO.inheritClass( OO.ui.Widget, OO.ui.Element );
 OO.mixinClass( OO.ui.Widget, OO.EventEmitter );
 
-/* Static Properties */
-
-/**
- * Whether this widget will behave reasonably when wrapped in an HTML `<label>`. If this is true,
- * wrappers such as OO.ui.FieldLayout may use a `<label>` instead of implementing own label click
- * handling.
- *
- * @static
- * @inheritable
- * @property {boolean}
- */
-OO.ui.Widget.static.supportsSimpleLabel = false;
-
 /* Events */
 
 /**
@@ -1708,6 +1695,16 @@ OO.ui.Widget.prototype.setDisabled = function ( disabled ) {
 OO.ui.Widget.prototype.updateDisabled = function () {
 	this.setDisabled( this.disabled );
 	return this;
+};
+
+/**
+ * Get an ID of a labelable node which is part of this widget, if any, to be used for `<label for>`
+ * value.
+ *
+ * @return {string|null} The ID of the labelable element
+ */
+OO.ui.Widget.prototype.getInputId = function () {
+	return null;
 };
 
 /**
@@ -1945,6 +1942,78 @@ OO.ui.mixin.TabIndexedElement.prototype.onTabIndexedElementDisable = function ()
  */
 OO.ui.mixin.TabIndexedElement.prototype.getTabIndex = function () {
 	return this.tabIndex;
+};
+
+/**
+ * Get an ID of a focusable element of this widget, if any, to be used for `<label for>` value.
+ *
+ * If the element already has an ID then that is returned, otherwise unique ID is
+ * generated, set on the element, and returned.
+ *
+ * @return {string|null} The ID of the focusable element
+ */
+OO.ui.mixin.TabIndexedElement.prototype.getInputId = function () {
+	var id;
+
+	if ( !this.$tabIndexed ) {
+		return null;
+	}
+	if ( !this.isLabelableNode( this.$tabIndexed ) ) {
+		return null;
+	}
+
+	id = this.$tabIndexed.attr( 'id' );
+	if ( id === undefined ) {
+		id = OO.ui.generateElementId();
+		this.$tabIndexed.attr( 'id', id );
+	}
+
+	return id;
+};
+
+/**
+ * Whether the node is 'labelable' according to the HTML spec
+ * (i.e., whether it can be interacted with through a `<label for="…">`).
+ * See: <https://html.spec.whatwg.org/multipage/forms.html#category-label>.
+ *
+ * @private
+ * @param {jQuery} $node
+ * @return {boolean}
+ */
+OO.ui.mixin.TabIndexedElement.prototype.isLabelableNode = function ( $node ) {
+	var
+		labelableTags = [ 'button', 'meter', 'output', 'progress', 'select', 'textarea' ],
+		tagName = $node.prop( 'tagName' ).toLowerCase();
+
+	if ( tagName === 'input' && $node.attr( 'type' ) !== 'hidden' ) {
+		return true;
+	}
+	if ( labelableTags.indexOf( tagName ) !== -1 ) {
+		return true;
+	}
+	return false;
+};
+
+/**
+ * Focus this element.
+ *
+ * @chainable
+ */
+OO.ui.mixin.TabIndexedElement.prototype.focus = function () {
+	if ( !this.isDisabled() ) {
+		this.$tabIndexed.focus();
+	}
+	return this;
+};
+
+/**
+ * Blur this element.
+ *
+ * @chainable
+ */
+OO.ui.mixin.TabIndexedElement.prototype.blur = function () {
+	this.$tabIndexed.blur();
+	return this;
 };
 
 /**
@@ -3848,12 +3917,12 @@ OO.ui.LabelWidget = function OoUiLabelWidget( config ) {
 	this.input = config.input;
 
 	// Initialization
-	if ( this.input instanceof OO.ui.InputWidget ) {
+	if ( this.input ) {
 		if ( this.input.getInputId() ) {
 			this.$element.attr( 'for', this.input.getInputId() );
 		} else {
 			this.$label.on( 'click', function () {
-				this.fieldWidget.focus();
+				this.input.focus();
 				return false;
 			}.bind( this ) );
 		}
@@ -8133,14 +8202,6 @@ OO.mixinClass( OO.ui.InputWidget, OO.ui.mixin.TabIndexedElement );
 OO.mixinClass( OO.ui.InputWidget, OO.ui.mixin.TitledElement );
 OO.mixinClass( OO.ui.InputWidget, OO.ui.mixin.AccessKeyedElement );
 
-/* Static Properties */
-
-/**
- * @static
- * @inheritdoc
- */
-OO.ui.InputWidget.static.supportsSimpleLabel = true;
-
 /* Static Methods */
 
 /**
@@ -8190,25 +8251,6 @@ OO.ui.InputWidget.static.gatherPreInfuseState = function ( node, config ) {
  */
 OO.ui.InputWidget.prototype.getInputElement = function () {
 	return $( '<input>' );
-};
-
-/**
- * Get input element's ID.
- *
- * If the element already has an ID then that is returned, otherwise unique ID is
- * generated, set on the element, and returned.
- *
- * @return {string} The ID of the element
- */
-OO.ui.InputWidget.prototype.getInputId = function () {
-	var id = this.$input.attr( 'id' );
-
-	if ( id === undefined ) {
-		id = OO.ui.generateElementId();
-		this.$input.attr( 'id', id );
-	}
-
-	return id;
 };
 
 /**
@@ -8322,26 +8364,6 @@ OO.ui.InputWidget.prototype.setDisabled = function ( state ) {
 };
 
 /**
- * Focus the input.
- *
- * @chainable
- */
-OO.ui.InputWidget.prototype.focus = function () {
-	this.$input[ 0 ].focus();
-	return this;
-};
-
-/**
- * Blur the input.
- *
- * @chainable
- */
-OO.ui.InputWidget.prototype.blur = function () {
-	this.$input[ 0 ].blur();
-	return this;
-};
-
-/**
  * @inheritdoc
  */
 OO.ui.InputWidget.prototype.restorePreInfuseState = function ( state ) {
@@ -8429,15 +8451,6 @@ OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.mixin.TitledElement );
 /* Static Properties */
 
 /**
- * Disable generating `<label>` elements for buttons. One would very rarely need additional label
- * for a button, and it's already a big clickable target, and it causes unexpected rendering.
- *
- * @static
- * @inheritdoc
- */
-OO.ui.ButtonInputWidget.static.supportsSimpleLabel = false;
-
-/**
  * @static
  * @inheritdoc
  */
@@ -8495,6 +8508,15 @@ OO.ui.ButtonInputWidget.prototype.setValue = function ( value ) {
 		OO.ui.ButtonInputWidget.parent.prototype.setValue.call( this, value );
 	}
 	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.ButtonInputWidget.prototype.getInputId = function () {
+	// Disable generating `<label>` elements for buttons. One would very rarely need additional label
+	// for a button, and it's already a big clickable target, and it causes unexpected rendering.
+	return null;
 };
 
 /**
@@ -8798,7 +8820,7 @@ OO.ui.DropdownInputWidget.prototype.setOptions = function ( options ) {
  * @inheritdoc
  */
 OO.ui.DropdownInputWidget.prototype.focus = function () {
-	this.dropdownWidget.getMenu().toggle( true );
+	this.dropdownWidget.focus();
 	return this;
 };
 
@@ -8806,7 +8828,7 @@ OO.ui.DropdownInputWidget.prototype.focus = function () {
  * @inheritdoc
  */
 OO.ui.DropdownInputWidget.prototype.blur = function () {
-	this.dropdownWidget.getMenu().toggle( false );
+	this.dropdownWidget.blur();
 	return this;
 };
 
@@ -8990,14 +9012,6 @@ OO.ui.RadioSelectInputWidget = function OoUiRadioSelectInputWidget( config ) {
 
 OO.inheritClass( OO.ui.RadioSelectInputWidget, OO.ui.InputWidget );
 
-/* Static Properties */
-
-/**
- * @static
- * @inheritdoc
- */
-OO.ui.RadioSelectInputWidget.static.supportsSimpleLabel = false;
-
 /* Static Methods */
 
 /**
@@ -9095,6 +9109,22 @@ OO.ui.RadioSelectInputWidget.prototype.setOptions = function ( options ) {
 };
 
 /**
+ * @inheritdoc
+ */
+OO.ui.RadioSelectInputWidget.prototype.focus = function () {
+	this.radioSelectWidget.focus();
+	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.RadioSelectInputWidget.prototype.blur = function () {
+	this.radioSelectWidget.blur();
+	return this;
+};
+
+/**
  * CheckboxMultiselectInputWidget is a
  * {@link OO.ui.CheckboxMultiselectWidget CheckboxMultiselectWidget} intended to be used within a
  * HTML form, such as a OO.ui.FormLayout. The selected values are synchronized with the value of
@@ -9149,14 +9179,6 @@ OO.ui.CheckboxMultiselectInputWidget = function OoUiCheckboxMultiselectInputWidg
 
 OO.inheritClass( OO.ui.CheckboxMultiselectInputWidget, OO.ui.InputWidget );
 
-/* Static Properties */
-
-/**
- * @static
- * @inheritdoc
- */
-OO.ui.CheckboxMultiselectInputWidget.static.supportsSimpleLabel = false;
-
 /* Static Methods */
 
 /**
@@ -9187,7 +9209,7 @@ OO.ui.CheckboxMultiselectInputWidget.static.reusePreInfuseDOM = function ( node,
  */
 OO.ui.CheckboxMultiselectInputWidget.prototype.getInputElement = function () {
 	// Actually unused
-	return $( '<div>' );
+	return $( '<unused>' );
 };
 
 /**
@@ -9494,7 +9516,7 @@ OO.ui.TextInputWidget.static.gatherPreInfuseState = function ( node, config ) {
  */
 OO.ui.TextInputWidget.prototype.onIconMouseDown = function ( e ) {
 	if ( e.which === OO.ui.MouseButtons.LEFT ) {
-		this.$input[ 0 ].focus();
+		this.focus();
 		return false;
 	}
 };
@@ -9511,7 +9533,7 @@ OO.ui.TextInputWidget.prototype.onIndicatorMouseDown = function ( e ) {
 			// Clear the text field
 			this.setValue( '' );
 		}
-		this.$input[ 0 ].focus();
+		this.focus();
 		return false;
 	}
 };
@@ -10224,7 +10246,7 @@ OO.ui.SearchInputWidget.prototype.onIndicatorMouseDown = function ( e ) {
 	if ( e.which === OO.ui.MouseButtons.LEFT ) {
 		// Clear the text field
 		this.setValue( '' );
-		this.$input[ 0 ].focus();
+		this.focus();
 		return false;
 	}
 };
@@ -10463,7 +10485,7 @@ OO.ui.ComboBoxInputWidget.prototype.onInputEnter = function () {
  */
 OO.ui.ComboBoxInputWidget.prototype.onDropdownButtonClick = function () {
 	this.menu.toggle();
-	this.$input[ 0 ].focus();
+	this.focus();
 };
 
 /**
@@ -10625,15 +10647,13 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	this.fieldWidget.connect( this, { disable: 'onFieldDisable' } );
 
 	// Initialization
-	if ( fieldWidget.constructor.static.supportsSimpleLabel ) {
-		if ( this.fieldWidget.getInputId() ) {
-			this.$label.attr( 'for', this.fieldWidget.getInputId() );
-		} else {
-			this.$label.on( 'click', function () {
-				this.fieldWidget.focus();
-				return false;
-			}.bind( this ) );
-		}
+	if ( this.fieldWidget.getInputId() ) {
+		this.$label.attr( 'for', this.fieldWidget.getInputId() );
+	} else {
+		this.$label.on( 'click', function () {
+			this.fieldWidget.focus();
+			return false;
+		}.bind( this ) );
 	}
 	this.$element
 		.addClass( 'oo-ui-fieldLayout' )

@@ -18,6 +18,7 @@
 	"ooui-dialog-process-retry": "Probeer weer",
 	"ooui-dialog-process-continue": "Gaan voort",
 	"ooui-selectfile-button-select": "Kies 'n lêer",
+	"ooui-selectfile-not-supported": "Lêers kan nie gekies word nie",
 	"ooui-selectfile-placeholder": "Geen lêer is gekies nie",
 	"ooui-selectfile-dragdrop-placeholder": "Laat val die lêer hier"
 }
