@@ -351,7 +351,7 @@
 	};
 
 	/**
-	 * Respond to add results event in the results widget.
+	 * Respond to change results event in the results widget.
 	 * Override the way SelectWidget and GroupElement append the items
 	 * into the group so we can append them in groups of rows.
 	 *
@@ -374,6 +374,12 @@
 			// Go over the added items
 			row = search.getAvailableRow();
 			for ( i = 0, ilen = items.length; i < ilen; i++ ) {
+
+				// Check item has just been added
+				if ( items[ i ].row !== null ) {
+					continue;
+				}
+
 				itemWidth = items[ i ].$element.outerWidth( true );
 
 				// Add items to row until it is full
@@ -408,6 +414,7 @@
 
 				// Append the item
 				search.rows[ row ].$element.append( items[ i ].$element );
+
 			}
 
 			// If we have less than 4 rows, call for more images
