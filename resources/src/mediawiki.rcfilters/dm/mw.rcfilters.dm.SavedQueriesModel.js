@@ -85,7 +85,7 @@
 			// not need this line when we release this to the general wikis.
 			// This method will automatically fix all saved queries anyways
 			// for existing users, who are only betalabs users at the moment.
-			normalizedData.highlights.highlight = !!Number( normalizedData.highlight );
+			normalizedData.highlights.highlight = !!Number( normalizedData.highlights.highlight );
 
 			items.push(
 				new mw.rcfilters.dm.SavedQueryItemModel(
