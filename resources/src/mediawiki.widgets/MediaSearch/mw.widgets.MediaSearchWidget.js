@@ -374,40 +374,47 @@
 			// Go over the added items
 			row = search.getAvailableRow();
 			for ( i = 0, ilen = items.length; i < ilen; i++ ) {
-				itemWidth = items[ i ].$element.outerWidth( true );
 
-				// Add items to row until it is full
-				if ( search.rows[ row ].width + itemWidth >= maxRowWidth ) {
-					// Mark this row as full
-					search.rows[ row ].isFull = true;
-					search.rows[ row ].$element.attr( 'data-full', true );
+				// Check item has just been added
+				if ( items[ i ].row === null ) {
 
-					// Find the resize factor
-					effectiveWidth = search.rows[ row ].width;
-					resizeFactor = maxRowWidth / effectiveWidth;
+					itemWidth = items[ i ].$element.outerWidth( true );
 
-					search.rows[ row ].$element.attr( 'data-effectiveWidth', effectiveWidth );
-					search.rows[ row ].$element.attr( 'data-resizeFactor', resizeFactor );
-					search.rows[ row ].$element.attr( 'data-row', row );
+					// Add items to row until it is full
+					if ( search.rows[ row ].width + itemWidth >= maxRowWidth ) {
+						// Mark this row as full
+						search.rows[ row ].isFull = true;
+						search.rows[ row ].$element.attr( 'data-full', true );
 
-					// Resize all images in the row to fit the width
-					for ( j = 0, jlen = search.rows[ row ].items.length; j < jlen; j++ ) {
-						search.rows[ row ].items[ j ].resizeThumb( resizeFactor );
+						// Find the resize factor
+						effectiveWidth = search.rows[ row ].width;
+						resizeFactor = maxRowWidth / effectiveWidth;
+
+						search.rows[ row ].$element.attr( 'data-effectiveWidth', effectiveWidth );
+						search.rows[ row ].$element.attr( 'data-resizeFactor', resizeFactor );
+						search.rows[ row ].$element.attr( 'data-row', row );
+
+						// Resize all images in the row to fit the width
+						for ( j = 0, jlen = search.rows[ row ].items.length; j < jlen; j++ ) {
+							search.rows[ row ].items[ j ].resizeThumb( resizeFactor );
+						}
+
+						// find another row
+						row = search.getAvailableRow();
 					}
 
-					// find another row
-					row = search.getAvailableRow();
+					// Add the cumulative
+					search.rows[ row ].width += itemWidth;
+
+					// Store reference to the item and to the row
+					search.rows[ row ].items.push( items[ i ] );
+					items[ i ].setRow( row );
+
+					// Append the item
+					search.rows[ row ].$element.append( items[ i ].$element );
+
 				}
 
-				// Add the cumulative
-				search.rows[ row ].width += itemWidth;
-
-				// Store reference to the item and to the row
-				search.rows[ row ].items.push( items[ i ] );
-				items[ i ].setRow( row );
-
-				// Append the item
-				search.rows[ row ].$element.append( items[ i ].$element );
 			}
 
 			// If we have less than 4 rows, call for more images
