@@ -23,6 +23,7 @@
 	 */
 	function convertmessagebox( options ) {
 		var $msgBox, type, autoHide, msg, notif,
+			notification = require( 'mediawiki.notification' ),
 			$successBox = $( '.mw-notify-success' ),
 			$warningBox = $( '.mw-notify-warning' ),
 			$errorBox = $( '.mw-notify-error' );
@@ -47,7 +48,7 @@
 		msg = options && options.msg || $msgBox.text();
 		$msgBox.detach();
 
-		notif = mw.notification.notify( msg, { autoHide: autoHide, type: type } );
+		notif = notification.notify( msg, { autoHide: autoHide, type: type } );
 		if ( !autoHide ) {
 			// 'change' event not reliable!
 			$( document ).one( 'keydown mousedown', function () {

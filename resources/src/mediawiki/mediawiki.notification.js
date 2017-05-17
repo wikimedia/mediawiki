@@ -436,6 +436,9 @@
 		}
 	} );
 
-	mw.notification = notification;
+	module.exports = notification;
+	mw.log.deprecate( mw, 'notification', notification,
+		'Use "require( \'mediawiki.notification\' )" or "mw.notify" instead.'
+	);
 
 }( mediaWiki, jQuery ) );

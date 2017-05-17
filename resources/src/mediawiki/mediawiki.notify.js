@@ -14,9 +14,10 @@
 	mw.notify = function ( message, options ) {
 		// Don't bother loading the whole notification system if we never use it.
 		return mw.loader.using( 'mediawiki.notification' )
-			.then( function () {
+			.then( function ( require ) {
+				var notification = require( 'mediawiki.notification' );
 				// Call notify with the notification the user requested of us.
-				return mw.notification.notify( message, options );
+				return notification.notify( message, options );
 			} );
 	};
 
