@@ -278,6 +278,7 @@ class RefreshLinks extends Maintenance {
 			$page->getTitle(), /* $old = */ null, /* $recursive = */ false );
 		foreach ( $updates as $update ) {
 			DeferredUpdates::addUpdate( $update );
+			DeferredUpdates::doUpdates();
 		}
 	}
 
