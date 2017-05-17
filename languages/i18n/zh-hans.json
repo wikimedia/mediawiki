@@ -94,7 +94,8 @@
 			"Myy730",
 			"SolidBlock",
 			"D41D8CD98F",
-			"Wmr"
+			"Wmr",
+			"逆襲的天邪鬼"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -1367,7 +1368,7 @@
 	"action-deletechangetags": "从数据库删除标签",
 	"action-purge": "刷新此页面",
 	"nchanges": "$1次更改",
-	"enhancedrc-since-last-visit": "{{PLURAL:$1|上次访问后}}$1个",
+	"enhancedrc-since-last-visit": "{{PLURAL:$1|自上次访问}}有$1次",
 	"enhancedrc-history": "历史",
 	"recentchanges": "最近更改",
 	"recentchanges-legend": "最近更改选项",
@@ -1389,7 +1390,7 @@
 	"rcfilters-savedqueries-defaultlabel": "保存的过滤器",
 	"rcfilters-savedqueries-rename": "重命名",
 	"rcfilters-savedqueries-setdefault": "设置为默认",
-	"rcfilters-savedqueries-unsetdefault": "取消设置为默认",
+	"rcfilters-savedqueries-unsetdefault": "移除为默认",
 	"rcfilters-savedqueries-remove": "移除",
 	"rcfilters-savedqueries-new-name-label": "名称",
 	"rcfilters-savedqueries-apply-label": "创建快速链接",

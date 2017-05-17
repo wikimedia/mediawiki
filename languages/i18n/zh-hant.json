@@ -83,7 +83,8 @@
 			"Wmr",
 			"烈羽",
 			"和平奮鬥救地球",
-			"Arthur2e5"
+			"Arthur2e5",
+			"逆襲的天邪鬼"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -1354,7 +1355,7 @@
 	"action-deletechangetags": "從資料庫刪除標籤",
 	"action-purge": "清除此頁面",
 	"nchanges": "$1 次變更",
-	"enhancedrc-since-last-visit": "{{PLURAL:$1|自上次拜訪}}已有 $1",
+	"enhancedrc-since-last-visit": "{{PLURAL:$1|自上次拜訪}}有$1次",
 	"enhancedrc-history": "歷史",
 	"recentchanges": "近期變更",
 	"recentchanges-legend": "近期變更選項",

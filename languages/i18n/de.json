@@ -1385,7 +1385,7 @@
 	"rcfilters-savedqueries-defaultlabel": "Gespeicherte Filter",
 	"rcfilters-savedqueries-rename": "Umbenennen",
 	"rcfilters-savedqueries-setdefault": "Als Standard festlegen",
-	"rcfilters-savedqueries-unsetdefault": "Nicht als Standard festlegen",
+	"rcfilters-savedqueries-unsetdefault": "Als Standard entfernen",
 	"rcfilters-savedqueries-remove": "Entfernen",
 	"rcfilters-savedqueries-new-name-label": "Name",
 	"rcfilters-savedqueries-apply-label": "Schnell-Link erstellen",
