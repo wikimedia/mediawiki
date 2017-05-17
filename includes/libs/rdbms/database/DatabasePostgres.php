@@ -828,7 +828,7 @@ __INDEXATTR__;
 		$oldName = $this->addIdentifierQuotes( $oldName );
 
 		return $this->query( 'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . " TABLE $newName " .
-			"(LIKE $oldName INCLUDING DEFAULTS)", $fname );
+			"(LIKE $oldName INCLUDING DEFAULTS INCLUDING INDEXES)", $fname );
 	}
 
 	public function listTables( $prefix = null, $fname = __METHOD__ ) {
