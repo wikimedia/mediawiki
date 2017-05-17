@@ -50,6 +50,23 @@ class ApiLogin extends ApiBase {
 	}
 
 	/**
+	 * Format a message for the response
+	 * @param Message|string|array $message
+	 * @return string|array
+	 */
+	private function formatMessage( $message ) {
+		$message = Message::newFromSpecifier( $message );
+		$errorFormatter = $this->getErrorFormatter();
+		if ( $errorFormatter instanceof ApiErrorFormatter_BackCompat ) {
+			return ApiErrorFormatter::stripMarkup(
+				$message->useDatabase( false )->inLanguage( 'en' )->text()
+			);
+		} else {
+			return $errorFormatter->formatMessage( $message );
+		}
+	}
+
+	/**
 	 * Executes the log-in attempt using the parameters passed. If
 	 * the log-in succeeds, it attaches a cookie to the session
 	 * and outputs the user id, username, and session token. If a
@@ -64,7 +81,7 @@ class ApiLogin extends ApiBase {
 		if ( $this->lacksSameOriginSecurity() ) {
 			$this->getResult()->addValue( null, 'login', [
 				'result' => 'Aborted',
-				'reason' => 'Cannot log in when the same-origin policy is not applied',
+				'reason' => $this->formatMessage( 'api-login-fail-sameorigin' ),
 			] );
 
 			return;
@@ -84,8 +101,10 @@ class ApiLogin extends ApiBase {
 		if ( !$session->canSetUser() ) {
 			$this->getResult()->addValue( null, 'login', [
 				'result' => 'Aborted',
-				'reason' => 'Cannot log in when using ' .
-					$session->getProvider()->describe( Language::factory( 'en' ) ),
+				'reason' => $this->formatMessage( [
+					'api-login-fail-badsessionprovider',
+					$session->getProvider()->describe( $this->getErrorFormatter()->getLanguage() ),
+				] )
 			] );
 
 			return;
@@ -190,25 +209,15 @@ class ApiLogin extends ApiBase {
 				break;
 
 			case 'Failed':
-				$errorFormatter = $this->getErrorFormatter();
-				if ( $errorFormatter instanceof ApiErrorFormatter_BackCompat ) {
-					$result['reason'] = ApiErrorFormatter::stripMarkup(
-						$message->useDatabase( false )->inLanguage( 'en' )->text()
-					);
-				} else {
-					$result['reason'] = $errorFormatter->formatMessage( $message );
-				}
+				$result['reason'] = $this->formatMessage( $message );
 				break;
 
 			case 'Aborted':
-				$result['reason'] = 'Authentication requires user interaction, ' .
-					'which is not supported by action=login.';
-				if ( $this->getConfig()->get( 'EnableBotPasswords' ) ) {
-					$result['reason'] .= ' To be able to login with action=login, see [[Special:BotPasswords]].';
-					$result['reason'] .= ' To continue using main-account login, see action=clientlogin.';
-				} else {
-					$result['reason'] .= ' To log in, see action=clientlogin.';
-				}
+				$result['reason'] = $this->formatMessage(
+					$this->getConfig()->get( 'EnableBotPasswords' )
+						? 'api-login-fail-aborted'
+						: 'api-login-fail-aborted-nobotpw'
+				);
 				break;
 
 			default:

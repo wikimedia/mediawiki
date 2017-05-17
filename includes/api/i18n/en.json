@@ -1495,6 +1495,11 @@
 	"api-format-prettyprint-header-only-html": "This is an HTML representation intended for debugging, and is unsuitable for application use.\n\nSee the [[mw:Special:MyLanguage/API|complete documentation]], or the [[Special:ApiHelp/main|API help]] for more information.",
 	"api-format-prettyprint-status": "This response would be returned with HTTP status $1 $2.",
 
+	"api-login-fail-aborted": "Authentication requires user interaction, which is not supported by <kbd>action=login</kbd>. To be able to login with <kbd>action=login</kbd>, see [[Special:BotPasswords]]. To continue using main-account login, see <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>.",
+	"api-login-fail-aborted-nobotpw": "Authentication requires user interaction, which is not supported by <kbd>action=login</kbd>. To log in, see <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>.",
+	"api-login-fail-badsessionprovider": "Cannot log in when using $1.",
+	"api-login-fail-sameorigin": "Cannot log in when the same-origin policy is not applied.",
+
 	"api-pageset-param-titles": "A list of titles to work on.",
 	"api-pageset-param-pageids": "A list of page IDs to work on.",
 	"api-pageset-param-revids": "A list of revision IDs to work on.",
