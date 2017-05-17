@@ -581,7 +581,8 @@ class WatchedItemStore implements StatsdAwareInterface {
 		);
 
 		foreach ( $res as $row ) {
-			$timestamps[$row->wl_namespace][$row->wl_title] = $row->wl_notificationtimestamp;
+			$timestamps[$row->wl_namespace][$row->wl_title] =
+				wfTimestampOrNull( TS_MW, $row->wl_notificationtimestamp );
 		}
 
 		return $timestamps;
