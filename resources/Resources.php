@@ -904,6 +904,7 @@ return [
 		'dependencies' => [
 			'mediawiki.api',
 			'mediawiki.Title',
+			'mediawiki.user',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -1754,6 +1755,7 @@ return [
 		'dependencies' => [
 			'oojs',
 			'mediawiki.Uri',
+			'mediawiki.user',
 		],
 	],
 	'mediawiki.rcfilters.filters.ui' => [
