@@ -15,7 +15,10 @@ class RangeChronologicalPagerTest extends MediaWikiLangTestCase {
 	 */
 	public function testGetDateCond( $inputYear, $inputMonth, $inputDay, $expected ) {
 		$pager = $this->getMockForAbstractClass( 'RangeChronologicalPager' );
-		$this->assertEquals( $expected, $pager->getDateCond( $inputYear, $inputMonth, $inputDay ) );
+		$this->assertEquals(
+			$expected,
+			wfTimestamp( TS_MW, $pager->getDateCond( $inputYear, $inputMonth, $inputDay ) )
+		);
 	}
 
 	/**
