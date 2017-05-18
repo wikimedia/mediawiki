@@ -4170,6 +4170,10 @@ class User implements IDBAccessObject {
 			$this->setToken(); // init token
 		}
 
+		if ( !is_string( $this->mName ) ) {
+			throw new RuntimeException( "User name field is not set." );
+		}
+
 		$this->mTouched = $this->newTouchedTimestamp();
 
 		$noPass = PasswordFactory::newInvalidPassword()->toString();
