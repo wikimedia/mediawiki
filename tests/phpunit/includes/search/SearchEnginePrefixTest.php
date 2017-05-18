@@ -183,6 +183,9 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 		$results = array_map( function( Title $t ) {
 			return $t->getPrefixedText();
 		}, $results );
+
+		sort( $case['results'] );
+		sort( $results );
 		$this->assertEquals(
 			$case['results'],
 			$results,
@@ -208,6 +211,8 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 			array_merge( $case['results'], $case['offsetresult'] ) :
 			$case['results'];
 
+		sort( $expected );
+		sort( $results );
 		$this->assertEquals(
 			$expected,
 			$results,
