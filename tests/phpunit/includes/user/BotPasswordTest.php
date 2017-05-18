@@ -382,6 +382,8 @@ class BotPasswordTest extends MediaWikiTestCase {
 		}
 
 		$token = $bp->getToken();
+		$this->assertEquals( 42, $bp->getUserCentralId() );
+		$this->assertEquals( 'TestSave', $bp->getAppId() );
 		$this->assertFalse( $bp->save( 'insert' ) );
 		$this->assertTrue( $bp->save( 'update' ) );
 		$this->assertNotEquals( $token, $bp->getToken() );
