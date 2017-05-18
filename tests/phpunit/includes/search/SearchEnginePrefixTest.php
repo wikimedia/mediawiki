@@ -28,6 +28,11 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 		$this->insertPage( 'Example Foo' );
 		$this->insertPage( 'Example Foo/Bar' );
 		$this->insertPage( 'Example/Baz' );
+		$this->insertPage( 'Sample' );
+		$this->insertPage( 'Sample Ban' );
+		$this->insertPage( 'Sample Eat' );
+		$this->insertPage( 'Sample Who' );
+		$this->insertPage( 'Sample Zoo' );
 		$this->insertPage( 'Redirect test', '#REDIRECT [[Redirect Test]]' );
 		$this->insertPage( 'Redirect Test' );
 		$this->insertPage( 'Redirect Test Worse Result' );
@@ -96,15 +101,15 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 			] ],
 			[ [
 				'Main namespace with title prefix',
-				'query' => 'Ex',
+				'query' => 'Sa',
 				'results' => [
-					'Example',
-					'Example/Baz',
-					'Example Bar',
+					'Sample',
+					'Sample Ban',
+					'Sample Eat',
 				],
 				// Third result when testing offset
 				'offsetresult' => [
-					'Example Foo',
+					'Sample Who',
 				],
 			] ],
 			[ [
@@ -183,6 +188,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 		$results = array_map( function( Title $t ) {
 			return $t->getPrefixedText();
 		}, $results );
+
 		$this->assertEquals(
 			$case['results'],
 			$results,
