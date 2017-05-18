@@ -865,7 +865,7 @@
 	"nextn-title": "$1 {{PLURAL:$1|sledeći rezultat|sledeća rezultata|sledećih rezultata}}",
 	"shown-title": "Prikaži $1 {{PLURAL:$1|rezultat|rezultata|rezultata}} po stranici",
 	"viewprevnext": "Pogledaj ($1 {{int:pipe-separator}} $2) ($3).",
-	"searchmenu-exists": "<strong>Postoji i stranica pod nazivom „[[:$1]]“.</strong> {{PLURAL:$2|0=|Vidi takođe rezultate pretrage.}}",
+	"searchmenu-exists": "<strong>Postoji stranica pod nazivom „[[:$1]]”!</strong> {{PLURAL:$2|0=|Takođe pogledajte druge pronađene rezultate pretrage.}}",
 	"searchmenu-new": "<strong>Napravite stranicu „[[:$1]]”!</strong> {{PLURAL:$2|0=|Takođe pogledajte rezultat pretrage.|Takođe pogledajte rezultate pretrage.}}",
 	"searchprofile-articles": "Članci",
 	"searchprofile-images": "Datoteke",

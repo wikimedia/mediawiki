@@ -110,7 +110,8 @@
 			"EVinente",
 			"Felipe L. Ewald",
 			"WikiUser22222",
-			"BarbaraAckles"
+			"BarbaraAckles",
+			"Trigonometria87"
 		]
 	},
 	"tog-underline": "Link sublinhado:",
@@ -798,7 +799,7 @@
 	"readonlywarning": "'''Aviso: O banco de dados foi bloqueado para manutenção, por isso você não poderá salvar a sua edição neste momento.'''\nTalvez você queira copiar o seu texto num editor externo e guardá-lo, para posterior envio.\n\nQuem bloqueou o banco de dados forneceu a seguinte explicação: $1",
 	"protectedpagewarning": "'''Atenção: Esta página foi protegida para que apenas usuários com privilégios de administrador possam editá-la.'''\nA última entrada no histórico é fornecida abaixo como referência:",
 	"semiprotectedpagewarning": "'''Nota:''' Esta página foi protegida, sendo que apenas usuários registrados poderão editá-la.\nA última entrada no histórico é fornecida abaixo para referência:",
-	"cascadeprotectedwarning": "<strong>Aviso:</strong> Esta página foi protegida para que somente usuários com [[Special:ListGroupRights grupos com|direitos específicos]] possam editá-la porque ela é transcluída {{PLURAL:$1|na seguinte página protegida|nas seguintes páginas protegidas}} por cascata:",
+	"cascadeprotectedwarning": "<strong>Aviso:</strong> Esta página foi protegida para que somente usuários com [[Special:ListGroupRights|grupos com direitos específicos]] possam editá-la porque ela é transcluída {{PLURAL:$1|na seguinte página protegida|nas seguintes páginas protegidas}} por cascata:",
 	"titleprotectedwarning": "'''Atenção: esta página foi protegida; [[Special:ListGroupRights|privilégios específicos]] são necessários para criá-la.'''\nA última entrada no histórico é fornecida abaixo como referência:",
 	"templatesused": "{{PLURAL:$1|Predefinição usada|Predefinições usadas}} nesta página:",
 	"templatesusedpreview": "{{PLURAL:$1|Predefinição usada|Predefinições usadas}} nesta previsão:",
@@ -1407,7 +1408,7 @@
 	"rcfilters-savedqueries-defaultlabel": "Filtros salvos",
 	"rcfilters-savedqueries-rename": "Renomear",
 	"rcfilters-savedqueries-setdefault": "Definir como padrão",
-	"rcfilters-savedqueries-unsetdefault": "Desativado como padrão",
+	"rcfilters-savedqueries-unsetdefault": "Remover como padrão",
 	"rcfilters-savedqueries-remove": "Remover",
 	"rcfilters-savedqueries-new-name-label": "Nome",
 	"rcfilters-savedqueries-apply-label": "Criar link rápido",

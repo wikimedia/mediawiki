@@ -3735,7 +3735,7 @@
 	"logentry-tag-update-revision": "$1 {{GENDER:$2|actualizó}} etiquetas de la revisión $4 de la página $3 ({{PLURAL:$7|agregó}} $6; {{PLURAL:$9|eliminó}} $8)",
 	"logentry-tag-update-logentry": "$1 {{GENDER:$2|actualizó}} etiquetas de la entrada del registro $5 de la página $3 ({{PLURAL:$7|agregó}} $6; {{PLURAL:$9|eliminó}} $8)",
 	"rightsnone": "(ninguno)",
-	"rightslogentry-temporary-group": "$1 (provisional, hasta $2)",
+	"rightslogentry-temporary-group": "$1 (temporal, hasta $2)",
 	"feedback-adding": "Añadiendo comentarios a la página...",
 	"feedback-back": "Volver",
 	"feedback-bugcheck": "¡Perfecto! Únicamente comprueba que no sea un [$1 fallo conocido].",

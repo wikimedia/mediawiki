@@ -1443,7 +1443,7 @@
 	"rcfilters-filter-watchlist-watched-description": "Zmiany na stronach, które masz na liście obserwowanych.",
 	"rcfilters-filter-watchlist-watchednew-label": "Nowe zmiany na obserwowanych stronach",
 	"rcfilters-filter-watchlist-watchednew-description": "Zmiany na obserwowanych stronach, których jeszcze nie odwiedziłeś.",
-	"rcfilters-filter-watchlist-notwatched-label": "Tylko z poza obserwowanych",
+	"rcfilters-filter-watchlist-notwatched-label": "Tylko spoza obserwowanych",
 	"rcfilters-filter-watchlist-notwatched-description": "Wszystko oprócz zmian na obserwowanych przez ciebie stronach.",
 	"rcfilters-filtergroup-changetype": "Rodzaj zmiany",
 	"rcfilters-filter-pageedits-label": "Edycje strony",

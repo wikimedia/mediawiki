@@ -1309,6 +1309,7 @@
 	"rcfilters-savedqueries-setdefault": "Усталяваць па змоўчаньні",
 	"rcfilters-savedqueries-unsetdefault": "Выдаліць пазнаку па змоўчаньні",
 	"rcfilters-savedqueries-remove": "Выдаліць",
+	"rcfilters-savedqueries-new-name-label": "Назва",
 	"rcfilters-restore-default-filters": "Аднавіць фільтры па змоўчаньні",
 	"rcfilters-clear-all-filters": "Ачысьціць усе фільтры",
 	"rcfilters-search-placeholder": "Фільтар апошніх зьменаў (праглядзець або пачніце друкаваць)",
