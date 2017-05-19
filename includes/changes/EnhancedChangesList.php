@@ -712,6 +712,11 @@ class EnhancedChangesList extends ChangesList {
 		if ( $rc->getAttribute( 'rc_type' ) == RC_CATEGORIZE ) {
 			// For categorizations we must swap the category title with the page title!
 			$pageTitle = Title::newFromID( $rc->getAttribute( 'rc_cur_id' ) );
+			if ( !$pageTitle ) {
+				// The page has been deleted, but the RC entry
+				// deletion job has not run yet. Just skip.
+				return;
+			}
 		}
 
 		$retVal = ' ' . $this->msg( 'parentheses' )
