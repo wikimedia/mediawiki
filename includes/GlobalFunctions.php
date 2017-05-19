@@ -3586,6 +3586,7 @@ function wfCanIPUseHTTPS( $ip ) {
  * @since 1.25
  */
 function wfIsInfinity( $str ) {
+	// These are hardcoded elsewhere in MediaWiki (e.g. mediawiki.special.block.js).
 	$infinityValues = [ 'infinite', 'indefinite', 'infinity', 'never' ];
 	return in_array( $str, $infinityValues );
 }

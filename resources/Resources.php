@@ -1924,6 +1924,9 @@ return [
 			'mediawiki.util',
 			'mediawiki.htmlform',
 		],
+		'messages' => [
+			'ipb-hideusertooltip',
+		],
 	],
 	'mediawiki.special.changecredentials.js' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.changecredentials.js',

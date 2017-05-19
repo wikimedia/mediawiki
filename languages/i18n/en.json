@@ -2481,6 +2481,7 @@
 	"ipb-confirmhideuser": "You are about to block a user with \"hide user\" enabled. This will suppress the user's name in all lists and log entries. Are you sure you want to do that?",
 	"ipb-confirmaction": "If you are sure you really want to do it, please check the \"{{int:ipb-confirm}}\" field at the bottom.",
 	"ipb-edit-dropdown": "Edit block reasons",
+	"ipb-hideusertooltip": "Only infinitely blocked users can be hidden.",
 	"ipb-unblock-addr": "Unblock $1",
 	"ipb-unblock": "Unblock a username or IP address",
 	"ipb-blocklist": "View existing blocks",
