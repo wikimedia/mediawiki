@@ -77,7 +77,7 @@ class ThumbnailRenderJob extends Job {
 		}
 	}
 
-	protected function hitThumbUrl( $file, $transformParams, &$thumbUrl ) {
+	protected function hitThumbUrl( LocalFile $file, $transformParams, &$thumbUrl ) {
 		global $wgUploadThumbnailRenderHttpCustomHost, $wgUploadThumbnailRenderHttpCustomDomain;
 
 		$thumbName = $file->thumbName( $transformParams );
