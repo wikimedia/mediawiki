@@ -57,7 +57,7 @@ class MimeMagicTest extends PHPUnit_Framework_TestCase {
 	function testOggRecognize() {
 		$oggFile = __DIR__ . '/../../../data/media/say-test.ogg';
 		$actualType = $this->mimeAnalyzer->getMediaType( $oggFile, 'application/ogg' );
-		$this->assertEquals( $actualType, MEDIATYPE_AUDIO );
+		$this->assertEquals( MEDIATYPE_AUDIO, $actualType  );
 	}
 
 	/**
@@ -67,6 +67,6 @@ class MimeMagicTest extends PHPUnit_Framework_TestCase {
 	function testOpusRecognize() {
 		$oggFile = __DIR__ . '/../../../data/media/say-test.opus';
 		$actualType = $this->mimeAnalyzer->getMediaType( $oggFile, 'application/ogg' );
-		$this->assertEquals( $actualType, MEDIATYPE_AUDIO );
+		$this->assertEquals( MEDIATYPE_AUDIO, $actualType );
 	}
 }
