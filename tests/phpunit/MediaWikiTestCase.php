@@ -1,5 +1,6 @@
 <?php
 
+use Closure;
 use MediaWiki\Logger\LegacySpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\MonologSpi;
@@ -738,6 +739,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				) {
 					$this->mwGlobals[$globalKey] = clone $GLOBALS[$globalKey];
 				} else {
+					if ( $GLOBALS[$globalKey] instanceof Closure ) {
+						// Serializing Closure only gives a warning on HHVM while
+						// it throws an Exception on Zend.
+						// Workaround for https://github.com/facebook/hhvm/issues/6206
+						$this->mwGlobals[$globalKey] = $GLOBALS[$globalKey];
+						continue;
+					}
 					try {
 						$this->mwGlobals[$globalKey] = unserialize( serialize( $GLOBALS[$globalKey] ) );
 					} catch ( Exception $e ) {
