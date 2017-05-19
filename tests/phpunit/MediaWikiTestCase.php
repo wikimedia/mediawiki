@@ -1,6 +1,5 @@
 <?php
 
-use Closure;
 use MediaWiki\Logger\LegacySpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\MonologSpi;
@@ -738,7 +737,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 					$GLOBALS[$globalKey] instanceof FauxRequest
 				) {
 					$this->mwGlobals[$globalKey] = clone $GLOBALS[$globalKey];
-				} elseif ( $GLOBALS[$globalKey] instanceof Closure ) {
+				} elseif ( $this->containsClosure( $GLOBALS[$globalKey] ) ) {
 					// Serializing Closure only gives a warning on HHVM while
 					// it throws an Exception on Zend.
 					// Workaround for https://github.com/facebook/hhvm/issues/6206
@@ -752,6 +751,28 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				}
 			}
 		}
+	}
+
+	/**
+	 * @param mixed $var
+	 * @param int $maxDepth
+	 *
+	 * @return bool
+	 */
+	private function containsClosure( $var, $maxDepth = 15 ) {
+		if ( $var instanceof Closure ) {
+			return true;
+		}
+		if ( !is_array( $var ) || $maxDepth === 0 ) {
+			return false;
+		}
+
+		foreach ( $var as $value ) {
+			if ( $this->containsClosure( $value, $maxDepth - 1 ) ) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
