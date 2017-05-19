@@ -179,8 +179,8 @@ class MysqlInstaller extends DatabaseInstaller {
 
 		# Determine existing default character set
 		if ( $conn->tableExists( "revision", __METHOD__ ) ) {
-			$revision = $conn->buildLike( $this->getVar( 'wgDBprefix' ) . 'revision' );
-			$res = $conn->query( "SHOW TABLE STATUS $revision", __METHOD__ );
+			$revision = $this->escapeLikeInternal( $this->getVar( 'wgDBprefix' ) . 'revision' );
+			$res = $conn->query( "SHOW TABLE STATUS LIKE '$revision'", __METHOD__ );
 			$row = $conn->fetchObject( $res );
 			if ( !$row ) {
 				$this->parent->showMessage( 'config-show-table-status' );
@@ -219,6 +219,16 @@ class MysqlInstaller extends DatabaseInstaller {
 		# just copy these two
 		$wgDBuser = $this->getVar( '_InstallUser' );
 		$wgDBpassword = $this->getVar( '_InstallPassword' );
+	}
+
+	/**
+	 * @param string $s
+	 * @return string
+	 */
+	protected function escapeLikeInternal( $s, $escapeChar = '`' ) {
+		return str_replace( [ $escapeChar, '%', '_' ],
+			[ "{$escapeChar}{$escapeChar}", "{$escapeChar}%", "{$escapeChar}_" ],
+			$s );
 	}
 
 	/**
