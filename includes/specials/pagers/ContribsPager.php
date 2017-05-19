@@ -45,6 +45,11 @@ class ContribsPager extends ReverseChronologicalPager {
 	 */
 	protected $mParentLens;
 
+	/**
+	 * @var TemplateParser
+	 */
+	protected $templateParser;
+
 	function __construct( IContextSource $context, array $options ) {
 		parent::__construct( $context );
 
@@ -80,6 +85,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		// queries should use a regular replica DB since the lookup pattern is not all by user.
 		$this->mDbSecondary = wfGetDB( DB_REPLICA ); // any random replica DB
 		$this->mDb = wfGetDB( DB_REPLICA, 'contributions' );
+		$this->templateParser = new TemplateParser();
 	}
 
 	function getDefaultQuery() {
@@ -516,8 +522,7 @@ class ContribsPager extends ReverseChronologicalPager {
 					$this->msg( 'rev-deleted-user-contribs' )->escaped();
 			}
 
-			$templateParser = new TemplateParser();
-			$ret = $templateParser->processTemplate(
+			$ret = $this->templateParser->processTemplate(
 				'SpecialContributionsLine',
 				$templateParams
 			);
