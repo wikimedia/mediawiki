@@ -253,6 +253,7 @@ changes to languages because of Phabricator reports.
   should be used instead.
 * (T178451) SECURITY: Potential XSS when $wgShowExceptionDetails = false and browser
   sends non-standard url escaping.
+* (T165846) SECURITY: BotPassword login attempts weren't throttled.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
