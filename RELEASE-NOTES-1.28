@@ -19,6 +19,7 @@ This is not a release yet!
 * Updated dev dependancy phpunit/phpunit from v4.8.24 to v4.8.36.
 * (T178451) SECURITY: Potential XSS when $wgShowExceptionDetails = false and browser
   sends non-standard url escaping.
+* (T165846) SECURITY: BotPassword login attempts weren't throttled.
 
 == MediaWiki 1.28.1 ==
 
