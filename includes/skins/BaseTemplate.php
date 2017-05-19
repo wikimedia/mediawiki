@@ -201,13 +201,13 @@ abstract class BaseTemplate extends QuickTemplate {
 				];
 				break;
 			case 'LANGUAGES':
-				if ( $this->data['language_urls'] ) {
+				if ( $this->data['language_urls'] !== false ) {
 					$msgObj = $this->getMsg( 'otherlanguages' );
 					$boxes[$boxName] = [
 						'id' => 'p-lang',
 						'header' => $msgObj->exists() ? $msgObj->text() : 'otherlanguages',
 						'generated' => false,
-						'content' => $this->data['language_urls'],
+						'content' => $this->data['language_urls'] ?: [],
 					];
 				}
 				break;
