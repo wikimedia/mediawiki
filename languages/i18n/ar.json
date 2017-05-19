@@ -1400,7 +1400,7 @@
 	"rcfilters-filter-user-experience-level-newcomer-label": "القادمون الجدد",
 	"rcfilters-filter-user-experience-level-newcomer-description": "أقل من 10 تعديلات و4 أيام من النشاط.",
 	"rcfilters-filter-user-experience-level-learner-label": "المتعلمون",
-	"rcfilters-filter-user-experience-level-learner-description": "المزيد من الخبرة أكثر من \"القادمين الجدد\" ولكن أقل من \"المستخدمين ذوي الخبرة\".",
+	"rcfilters-filter-user-experience-level-learner-description": "خبرة أكثر من \"القادمين الجدد\" ولكن أقل من \"المستخدمين ذوي الخبرة\".",
 	"rcfilters-filter-user-experience-level-experienced-label": "المستخدمون ذوو الخبرة",
 	"rcfilters-filter-user-experience-level-experienced-description": "أكثر من 30 يوما من النشاط و500 تعديل.",
 	"rcfilters-filtergroup-automated": "المساهمات الأوتوماتيكية",

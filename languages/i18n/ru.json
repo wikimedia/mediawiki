@@ -108,7 +108,8 @@
 			"Ivan-r",
 			"Choomaq",
 			"Facenapalm",
-			"Esukhovnina"
+			"Esukhovnina",
+			"Av6"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -502,7 +503,7 @@
 	"createacct-yourpassword-ph": "Введите пароль",
 	"yourpasswordagain": "Повторный набор пароля:",
 	"createacct-yourpasswordagain": "Подтвердите пароль",
-	"createacct-yourpasswordagain-ph": "Введите пароль еще раз",
+	"createacct-yourpasswordagain-ph": "Введите пароль ещё раз",
 	"userlogin-remembermypassword": "Оставаться в системе",
 	"userlogin-signwithsecure": "Защищённое соединение",
 	"cannotlogin-title": "Невозможно войти",

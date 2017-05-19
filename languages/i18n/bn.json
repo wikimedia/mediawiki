@@ -731,7 +731,7 @@
 	"nocreate-loggedin": "আপনার নতুন পাতা তৈরি করার অনুমোদন নেই।",
 	"sectioneditnotsupported-title": "অনুচ্ছেদ সম্পাদনা সমর্থন করে না",
 	"sectioneditnotsupported-text": "এই সম্পাদনা পাতায় অনুচ্ছেদ সম্পাদনা সমর্থন করে না",
-	"permissionserrors": "অনুমতি ত্রুটিসমূহ",
+	"permissionserrors": "অনুমতি ত্রুটি",
 	"permissionserrorstext": "নিন্মলিখিত {{PLURAL:$1|কারণটির|কারণগুলির}} জন্য আপনার এটা করার অনুমতি নেই:",
 	"permissionserrorstext-withaction": "আপনার $2 অনুমতি নেই, যার {{PLURAL:$1|কারণটি|কারণগুলি}} হল:",
 	"contentmodelediterror": "আপনি এই পুনর্বিবেচনা সম্পাদনা করতে পারবেন না কারণ এর বিষয়বস্তু মডেল <code>$1</code>, যা বর্তমান বিষয়বস্তু মডেল <code>$2</code>-এর থেকে ভিন্ন।",

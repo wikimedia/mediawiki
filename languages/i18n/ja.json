@@ -3561,7 +3561,7 @@
 	"tags-display-header": "変更一覧に表示されるもの",
 	"tags-description-header": "詳細な意味の説明",
 	"tags-source-header": "由来",
-	"tags-active-header": "アクティブ?",
+	"tags-active-header": "使用中?",
 	"tags-hitcount-header": "タグが付与された変更",
 	"tags-actions-header": "対処操作",
 	"tags-active-yes": "はい",

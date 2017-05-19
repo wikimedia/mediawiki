@@ -13,7 +13,8 @@
 			"아라",
 			"Macofe",
 			"Uchup19",
-			"WikiKaruhun"
+			"WikiKaruhun",
+			"Dipusparaga"
 		]
 	},
 	"tog-underline": "Gurat-handapan tutumbu",
@@ -1190,6 +1191,10 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (tempo ogé [[Special:NewPages|béréndélan kaca anyar]])",
 	"recentchanges-submit": "Témbongkeun",
 	"rcfilters-activefilters": "Panyaringan aktif",
+	"rcfilters-savedqueries-rename": "Robah ngaran",
+	"rcfilters-savedqueries-remove": "Hapus",
+	"rcfilters-savedqueries-new-name-label": "Ngaran",
+	"rcfilters-savedqueries-cancel-label": "Bolay",
 	"rcfilters-restore-default-filters": "Balikeun panyaringan bawaan",
 	"rcfilters-clear-all-filters": "Pupus sakumna panyaringan",
 	"rcfilters-search-placeholder": "Sarinh parobahan panganyarna (langlang atawa mimitian ngetik)",
@@ -1235,6 +1240,8 @@
 	"rcfilters-filter-newpages-description": "Éditan nu nyieun kaca anyar.",
 	"rcfilters-filter-categorization-label": "Parobahan kategori",
 	"rcfilters-filter-logactions-label": "Tarékah kacatet",
+	"rcfilters-filtergroup-lastRevision": "Révisi kiwari",
+	"rcfilters-filter-lastrevision-label": "Révisi kiwari",
 	"rcnotefrom": "Di handap ieu parobahan saprak <b>$2</b> (nu ditémbongkeun nepi ka <b>$1</b>).",
 	"rclistfromreset": "Rését pilihan kaping",
 	"rclistfrom": "Témbongkeun nu anyar robah nepi ka $3 $2",
