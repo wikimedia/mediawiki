@@ -1,4 +1,8 @@
 <?php
+/*
+ * @group Media
+ * @covers MimeAnalyzer
+ */
 class MimeMagicTest extends PHPUnit_Framework_TestCase {
 	/** @var MimeAnalyzer */
 	private $mimeAnalyzer;
@@ -18,6 +22,13 @@ class MimeMagicTest extends PHPUnit_Framework_TestCase {
 			]
 		] );
 		parent::setUp();
+	}
+
+	function doGuessMimeType( array $parameters = [] ) {
+		$class = new ReflectionClass( get_class( $this->mimeAnalyzer ) );
+		$method = $class->getMethod( 'doGuessMimeType' );
+		$method->setAccessible( true );
+		return $method->invokeArgs( $this->mimeAnalyzer, $parameters );
 	}
 
 	/**
@@ -68,5 +79,50 @@ class MimeMagicTest extends PHPUnit_Framework_TestCase {
 		$oggFile = __DIR__ . '/../../../data/media/say-test.opus';
 		$actualType = $this->mimeAnalyzer->getMediaType( $oggFile, 'application/ogg' );
 		$this->assertEquals( $actualType, MEDIATYPE_AUDIO );
+	}
+
+	/**
+	 * Test to make sure that mp3 files are detected as audio type
+	 */
+	function testMP3AsAudio() {
+		$file = __DIR__ . '/../../../data/media/say-test-with-id3.mp3';
+		$actualType = $this->mimeAnalyzer->getMediaType( $file );
+		$this->assertEquals( MEDIATYPE_AUDIO, $actualType );
+	}
+
+	/**
+	 * Test to make sure that MP3 with id3 tag is recognized
+	 */
+	function testMP3WithID3Recognize() {
+		$file = __DIR__ . '/../../../data/media/say-test-with-id3.mp3';
+		$actualType = $this->doGuessMimeType( [ $file, 'mp3' ] );
+		$this->assertEquals( 'audio/mpeg', $actualType );
+	}
+
+	/**
+	 * Test to make sure that MP3 without id3 tag is recognized (MPEG-1 sample rates)
+	 */
+	function testMP3NoID3RecognizeMPEG1() {
+		$file = __DIR__ . '/../../../data/media/say-test-mpeg1.mp3';
+		$actualType = $this->doGuessMimeType( [ $file, 'mp3' ] );
+		$this->assertEquals( 'audio/mpeg', $actualType );
+	}
+
+	/**
+	 * Test to make sure that MP3 without id3 tag is recognized (MPEG-2 sample rates)
+	 */
+	function testMP3NoID3RecognizeMPEG2() {
+		$file = __DIR__ . '/../../../data/media/say-test-mpeg2.mp3';
+		$actualType = $this->doGuessMimeType( [ $file, 'mp3' ] );
+		$this->assertEquals( 'audio/mpeg', $actualType );
+	}
+
+	/**
+	 * Test to make sure that MP3 without id3 tag is recognized (MPEG-2.5 sample rates)
+	 */
+	function testMP3NoID3RecognizeMPEG2_5() {
+		$file = __DIR__ . '/../../../data/media/say-test-mpeg2.5.mp3';
+		$actualType = $this->doGuessMimeType( [ $file, 'mp3' ] );
+		$this->assertEquals( 'audio/mpeg', $actualType );
 	}
 }
