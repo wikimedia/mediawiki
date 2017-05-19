@@ -21,30 +21,36 @@
 /**
  * Temporary workaround for incorrect collation of Persian language ('fa') in ICU 52 (bug T139110).
  *
- * All of the following will be considered separate letters for category headings in Persian:
+ * Replace with other letters that appear in an okish spot in the alphabet
+ *
  *  - Characters 'و' 'ا' (often appear at the beginning of words)
  *  - Characters 'ٲ' 'ٳ' (may appear at the beginning of words in loanwords)
- *  - Characters 'ء' 'ئ' (don't appear at the beginning of words, but it's easier to implement)
  *
  * @since 1.29
  */
 class CollationFa extends IcuCollation {
-	private $tertiaryCollator;
+
+	// Really hacky - replace with stuff from other blocks.
+	private $override = [
+		"\xd8\xa7" => "\u{0621}",
+		"\xd9\x88" => "\u{0649}",
+		"\xd9\xb2" => "\xF3\xB3\x80\x81",
+		"\xd9\xb3" => "\xF3\xB3\x80\x82",
+	];
 
 	public function __construct() {
 		parent::__construct( 'fa' );
-		$this->tertiaryCollator = Collator::create( 'fa' );
 	}
 
-	public function getPrimarySortKey( $string ) {
-		$primary = parent::getPrimarySortKey( $string );
-		// We have to use a tertiary sortkey for everything with the primary sortkey of 2627.
-		// Otherwise, the "Remove duplicate prefixes" logic in IcuCollation would remove them.
-		// This matches sortkeys for the following characters: ء ئ ا و ٲ ٳ
-		if ( substr( $primary, 0, 2 ) === "\x26\x27" ) {
-			wfDebug( "Using tertiary sortkey for '$string'\n" );
-			return $this->tertiaryCollator->getSortKey( $string );
+	public function getSortKey( $string ) {
+		$modified = strtr( $string, $this->override );
+		return parent::getSortKey( $modified );
+	}
+
+	public function getFirstLetter( $string ) {
+		if ( isset( $this->override[substr( $string, 0, 2 )] ) ) {
+			return substr( $string, 0, 2 );
 		}
-		return $primary;
+		return parent::getFirstLetter( $string );
 	}
 }
