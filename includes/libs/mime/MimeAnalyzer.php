@@ -529,7 +529,7 @@ EOT;
 			// Formats we recognize magic numbers for
 			'djvu', 'ogx', 'ogg', 'ogv', 'oga', 'spx', 'opus',
 			'mid', 'pdf', 'wmf', 'xcf', 'webm', 'mkv', 'mka',
-			'webp',
+			'webp', 'mp3',
 
 			// XML formats we sure hope we recognize reliably
 			'svg',
@@ -670,6 +670,10 @@ EOT;
 			// Multimedia...
 			'MThd'             => 'audio/midi',
 			'OggS'             => 'application/ogg',
+			'ID3'              => 'audio/mpeg',
+			"\xff\xfb"         => 'audio/mpeg', // MPEG-1 layer 3
+			"\xff\xf3"         => 'audio/mpeg', // MPEG-2 layer 3 (lower sample rates)
+			"\xff\xe3"         => 'audio/mpeg', // MPEG-2.5 layer 3 (very low sample rates)
 
 			// Image formats...
 			// Note that WMF may have a bare header, no magic number.
