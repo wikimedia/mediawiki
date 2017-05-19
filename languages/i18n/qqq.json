@@ -2668,6 +2668,7 @@
 	"ipb-confirmhideuser": "Used as confirmation message in [[Special:Block]].\n\nSee also:\n* {{msg-mw|Ipb-blockingself}}",
 	"ipb-confirmaction": "Confirmation message displayed to users asking them to think again before really blocking someone.\n\n<code>to check</code> refers here to a check box with the text \"{{int:ipb-confirm}}\"",
 	"ipb-edit-dropdown": "Shown beneath the user block form on the right side. It is a link to {{msg-mw|Ipbreason-dropdown|notext=1}}.\n\nSee also:\n* {{msg-mw|Delete-edit-reasonlist}}\n* {{msg-mw|Protect-edit-reasonlist}}",
+	"ipb-hideusertooltip": "Shown as a tooltip when the checkbox to hide a user is disabled because the expiry of the user block is not set to infinity.",
 	"ipb-unblock-addr": "Used as page title in [[Special:Block]], if the target user is specified.\n\nParameters:\n* $1 - target username\n\nSee also:\n* {{msg-mw|Ipb-unblock}}\n{{Identical|Unblock}}",
 	"ipb-unblock": "Used as page title in [[Special:Block]], if the target user is not specified.\n\nSee also:\n* {{msg-mw|Ipb-unblock-addr}}",
 	"ipb-blocklist": "Used as link text in [[Special:Block]].\n\nThe link points to Specil:BlockList.",
