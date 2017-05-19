@@ -17552,10 +17552,10 @@ Sanitizer: Validating that <meta> and <link> work, but only for Microdata
 <p>	<meta itemprop="hello" content="world" />
 	&lt;meta http-equiv="refresh" content="5"&gt;
 	<meta itemprop="hello" content="5" />
-</p>
 	<link itemprop="hello" href="http&#58;//example.org" />
 	&lt;link rel="stylesheet" href="<a rel="nofollow" class="external free" href="http://example.org">http://example.org</a>"&gt;
 	<link itemprop="hello" href="http&#58;//example.org" />
+</p>
 </div>
 
 !! end
