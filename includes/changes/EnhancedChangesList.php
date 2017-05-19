@@ -33,6 +33,11 @@ class EnhancedChangesList extends ChangesList {
 	protected $rc_cache;
 
 	/**
+	 * @var TemplateParser
+	 */
+	protected $templateParser;
+
+	/**
 	 * @param IContextSource|Skin $obj
 	 * @param array $filterGroups Array of ChangesListFilterGroup objects (currently optional)
 	 * @throws MWException
@@ -58,6 +63,7 @@ class EnhancedChangesList extends ChangesList {
 			$this->message,
 			$this->linkRenderer
 		);
+		$this->templateParser = new TemplateParser();
 	}
 
 	/**
@@ -340,8 +346,7 @@ class EnhancedChangesList extends ChangesList {
 
 		$this->rcCacheIndex++;
 
-		$templateParser = new TemplateParser();
-		return $templateParser->processTemplate(
+		return $this->templateParser->processTemplate(
 			'EnhancedChangesListGroup',
 			$templateParams
 		);
