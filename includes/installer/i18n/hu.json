@@ -10,7 +10,8 @@
 			"Dorgan",
 			"Macofe",
 			"Máté",
-			"Seb35"
+			"Seb35",
+			"Urbalazs"
 		]
 	},
 	"config-desc": "A MediaWiki telepítője",
@@ -70,6 +71,7 @@
 	"config-apc": "Az [http://www.php.net/apc APC] telepítve van",
 	"config-apcu": "Az [http://www.php.net/apcu APCu] telepítve van",
 	"config-wincache": "A [http://www.iis.net/download/WinCacheForPhp WinCache] telepítve van",
+	"config-no-cache-apcu": "<strong>Figyelmeztetés:</strong> nem találhatók a következők: [http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] vagy [http://www.iis.net/download/WinCacheForPhp WinCache].\nAz objektum gyorsítótárazása nincs engedélyezve.",
 	"config-diff3-bad": "GNU diff3 nem található.",
 	"config-git": "Megtaláltam a Git verziókezelő szoftvert: <code>$1</code>.",
 	"config-git-bad": "A Git verziókezelő rendszer nem található.",

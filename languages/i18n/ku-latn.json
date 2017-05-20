@@ -1646,6 +1646,7 @@
 	"bydate": "li gor dîrokê",
 	"sp-newimages-showfrom": "Daneyên nû ji dema $1, saet $2 ve bibîne",
 	"seconds-abbrev": "$1 s",
+	"minutes-abbrev": "$1 d",
 	"hours-abbrev": "$1 st",
 	"days-abbrev": "$1 r",
 	"seconds": "{{PLURAL:$1|$1 saniye}}",
