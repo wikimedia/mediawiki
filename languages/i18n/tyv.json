@@ -480,7 +480,6 @@
 	"prefs-signature": "Хол үжүү",
 	"prefs-diffs": "Ылгалдар",
 	"editusergroup": "Ажыглакчының бөлгүмнерни өскертири",
-	"editinguser": "Changing user rights of user '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 	"userrights-editusergroup": "Ажыглакчының бөлгүмнерни өскертири",
 	"saveusergroups": "{{GENDER:$1|Ажыглакчының|Ажыглакчының}} бөлгүмнерин шыгжаар",
 	"userrights-reason": "Чылдагаан:",
