@@ -72,7 +72,13 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 			$params['default'] = $values;
 		}
 
-		return new UsersMultiselectWidget( $params );
+		// Make the field auto-infusable when it's used inside a legacy HTMLForm rather than OOUIHTMLForm
+		$params['infusable'] = true;
+		$params['classes'] = [ 'mw-htmlform-field-autoinfuse' ];
+		$widget = new UsersMultiselectWidget( $params );
+		$widget->setAttributes( [ 'data-mw-modules' => implode( ',', $this->getOOUIModules() ) ] );
+
+		return $widget;
 	}
 
 	protected function shouldInfuseOOUI() {
