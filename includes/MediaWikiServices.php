@@ -1,4 +1,5 @@
 <?php
+
 namespace MediaWiki;
 
 use Config;
@@ -37,6 +38,7 @@ use TitleFormatter;
 use TitleParser;
 use VirtualRESTServiceClient;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Exception\Renderer;
 
 /**
  * Service locator for MediaWiki core services.
@@ -679,6 +681,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getReadOnlyMode() {
 		return $this->getService( 'ReadOnlyMode' );
+	}
+
+	/**
+	 * @since 1.30
+	 * @return Renderer
+	 */
+	public function getExceptionRenderer() {
+		return $this->getService( 'ExceptionRenderer' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////
