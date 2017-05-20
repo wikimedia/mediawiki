@@ -25,7 +25,8 @@
 	font-size: 0.9em;
 }
 
-#wpSummary {
+.mw-editform-ooui #wpSummaryWidget,
+.mw-editform-legacy #wpSummary {
 	display: block;
 	width: 80%;
 	margin-bottom: 1em;
@@ -75,7 +76,7 @@
 	line-height: 1.26;
 }
 
-.mw-editform-ooui #wpSummary {
+.mw-editform-ooui #wpSummaryWidget {
 	max-width: none;
 }
 

@@ -22,7 +22,7 @@
 		// Make sure edit summary does not exceed byte limit
 		// TODO: Replace with this when $wgOOUIEditPage is removed:
 		// OO.ui.infuse( 'wpSummary' ).$input.byteLimit( 255 );
-		$( 'input#wpSummary, #wpSummary > input' ).byteLimit( 255 );
+		$( '#wpSummary' ).byteLimit( 255 );
 
 		// Restore the edit box scroll state following a preview operation,
 		// and set up a form submission handler to remember this state.
