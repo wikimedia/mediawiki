@@ -1119,7 +1119,7 @@
 	"apihelp-query+search-param-limit": "How many total pages to return.",
 	"apihelp-query+search-param-interwiki": "Include interwiki results in the search, if available.",
 	"apihelp-query+search-param-backend": "Which search backend to use, if not the default.",
-	"apihelp-query+search-param-enablerewrites": "Enable internal query rewriting. Some search backends can rewrite the query into one its thinks gives better results, such as correcting spelling errors.",
+	"apihelp-query+search-param-enablerewrites": "Enable internal query rewriting. Some search backends can rewrite the query into another which is thought to provide better results, for instance by correcting spelling errors.",
 	"apihelp-query+search-example-simple": "Search for <kbd>meaning</kbd>.",
 	"apihelp-query+search-example-text": "Search texts for <kbd>meaning</kbd>.",
 	"apihelp-query+search-example-generator": "Get page info about the pages returned for a search for <kbd>meaning</kbd>.",
@@ -1177,7 +1177,7 @@
 	"apihelp-query+tags-example-simple": "List available tags.",
 
 	"apihelp-query+templates-description": "Returns all pages transcluded on the given pages.",
-	"apihelp-query+templates-param-namespace": "Show templates in this namespaces only.",
+	"apihelp-query+templates-param-namespace": "Show templates in these namespaces only.",
 	"apihelp-query+templates-param-limit": "How many templates to return.",
 	"apihelp-query+templates-param-templates": "Only list these templates. Useful for checking whether a certain page uses a certain template.",
 	"apihelp-query+templates-param-dir": "The direction in which to list.",
