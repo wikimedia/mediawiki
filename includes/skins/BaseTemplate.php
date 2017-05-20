@@ -523,7 +523,6 @@ abstract class BaseTemplate extends QuickTemplate {
 			'type' => 'search',
 			'name' => 'search',
 			'placeholder' => wfMessage( 'searchsuggest-search' )->text(),
-			'value' => $this->get( 'search', '' ),
 		];
 		$realAttrs = array_merge( $realAttrs, Linker::tooltipAndAccesskeyAttribs( 'search' ), $attrs );
 		return Html::element( 'input', $realAttrs );
