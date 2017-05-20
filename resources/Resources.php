@@ -1416,6 +1416,7 @@ return [
 			'jquery.textSelection',
 			'jquery.byteLimit',
 			'mediawiki.api',
+			'oojs-ui-core'
 		],
 	],
 	'mediawiki.action.edit.styles' => [
