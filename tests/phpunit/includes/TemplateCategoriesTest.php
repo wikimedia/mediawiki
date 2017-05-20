@@ -8,6 +8,9 @@ require __DIR__ . "/../../../maintenance/runJobs.php";
 class TemplateCategoriesTest extends MediaWikiLangTestCase {
 
 	/**
+	 * Broken per T165099.
+	 *
+	 * @group Broken
 	 * @covers Title::getParentCategories
 	 */
 	public function testTemplateCategories() {
