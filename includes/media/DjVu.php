@@ -465,9 +465,12 @@ class DjVuHandler extends ImageHandler {
 	/**
 	* Get useful response headers for GET/HEAD requests for a file with the given metadata
 	* @param $metadata Array Contains this handler's unserialized getMetadata() for a file
-	* @return array
+	* @param $fallbackWidth int Width to fall back to if metadata doesn't have any
+	* @param $fallbackHeight int Height to fall back to if metadata doesn't have any
+	* @return Array
+	* @since 1.30
 	*/
-	public function getContentHeaders( $metadata ) {
+	public function getContentHeaders( $metadata, $fallbackWidth = null, $fallbackHeight = null ) {
 		if ( !is_array( $metadata ) || !isset( $metadata['xml'] ) ) {
 			return [];
 		}

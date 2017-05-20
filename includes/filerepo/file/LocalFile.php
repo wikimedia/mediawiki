@@ -1202,7 +1202,9 @@ class LocalFile extends File {
 		if ( $handler ) {
 			$metadata = MediaWiki\quietCall( 'unserialize', $props['metadata'] );
 
-			$options['headers'] = $handler->getContentHeaders( $metadata );
+			$options['headers'] = $handler->getContentHeaders(
+				$metadata, $props['width'], $props['height']
+			);
 		} else {
 			$options['headers'] = [];
 		}
