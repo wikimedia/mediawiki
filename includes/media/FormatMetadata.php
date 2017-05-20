@@ -101,9 +101,6 @@ class FormatMetadata extends ContextSource {
 	public function makeFormattedData( $tags ) {
 		$resolutionunit = !isset( $tags['ResolutionUnit'] ) || $tags['ResolutionUnit'] == 2 ? 2 : 3;
 		unset( $tags['ResolutionUnit'] );
-		// Width and height are for internal use and already available & displayed outside of metadata
-		unset( $tags['Width'] );
-		unset( $tags['Height'] );
 
 		foreach ( $tags as $tag => &$vals ) {
 			// This seems ugly to wrap non-array's in an array just to unwrap again,
