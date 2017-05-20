@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Exception\Renderer;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LogLevel;
@@ -64,6 +65,7 @@ class MWExceptionHandler {
 	 * @param Exception|Throwable $e
 	 */
 	protected static function report( $e ) {
+		$renderer = MediaWikiServices::getInstance()->getExceptionRenderer();
 		try {
 			// Try and show the exception prettily, with the normal skin infrastructure
 			if ( $e instanceof MWException ) {
@@ -72,13 +74,13 @@ class MWExceptionHandler {
 				// removed.
 				$e->report();
 			} else {
-				MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_PRETTY );
+				$renderer->output( $e, Renderer::AS_PRETTY );
 			}
 		} catch ( Exception $e2 ) {
 			// Exception occurred from within exception handler
 			// Show a simpler message for the original exception,
 			// don't try to invoke report()
-			MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_RAW, $e2 );
+			$renderer->output( $e, Renderer::AS_RAW, $e2 );
 		}
 	}
 

@@ -37,6 +37,7 @@
  *      MediaWiki code base.
  */
 
+use MediaWiki\Exception\StandardRenderer;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
@@ -415,6 +416,10 @@ return [
 			$services->getConfiguredReadOnlyMode(),
 			$services->getDBLoadBalancer()
 		);
+	},
+
+	'ExceptionRenderer' => function( MediaWikiServices $services ) {
+		return new StandardRenderer();
 	},
 
 	///////////////////////////////////////////////////////////////////////////
