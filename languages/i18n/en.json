@@ -2012,6 +2012,7 @@
 	"apisandbox-sending-request": "Sending API request...",
 	"apisandbox-loading-results": "Receiving API results...",
 	"apisandbox-results-error": "An error occurred while loading the API query response: $1.",
+	"apisandbox-results-login-suppressed": "This request has been processed as a logged-out user as it could be used to bypass browser Same-Origin security. Note that ApiSandbox's automatic token handling does not work properly with such requests, please fill them in manually.",
 	"apisandbox-request-selectformat-label": "Show request data as:",
 	"apisandbox-request-format-url-label": "URL query string",
 	"apisandbox-request-url-label": "Request URL:",
