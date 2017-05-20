@@ -175,9 +175,6 @@ class XCFHandler extends BitmapHandler {
 				$metadata['colorType'] = 'unknown';
 
 			}
-
-			$metadata['width'] = $header['width'];
-			$metadata['height'] = $header['height'];
 		} else {
 			// Marker to prevent repeated attempted extraction
 			$metadata['error'] = true;
