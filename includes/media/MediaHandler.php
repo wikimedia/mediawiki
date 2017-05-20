@@ -916,12 +916,26 @@ abstract class MediaHandler {
 	/**
 	* Get useful response headers for GET/HEAD requests for a file with the given metadata
 	* @param $metadata Array Contains this handler's unserialized getMetadata() for a file
+	* @param $fallbackWidth int Width to fall back to if metadata doesn't have any
+	* @param $fallbackHeight int Height to fall back to if metadata doesn't have any
 	* @return Array
 	* @since 1.30
 	*/
-	public function getContentHeaders( $metadata ) {
-		if ( !isset( $metadata['width'] ) || !isset( $metadata['height'] ) ) {
-			return [];
+	public function getContentHeaders( $metadata, $fallbackWidth = null, $fallbackHeight = null ) {
+		if ( !isset( $metadata['width'] ) ) {
+			if ( is_null( $fallbackWidth ) ) {
+				return [];
+			}
+
+			$metadata['width'] = $fallbackWidth;
+		}
+
+		if ( !isset( $metadata['height'] ) ) {
+			if ( is_null( $fallbackWidth ) ) {
+				return [];
+			}
+
+			$metadata['height'] = $fallbackHeight;
 		}
 
 		$dimensionString = $metadata['width'] . 'x' . $metadata['height'];

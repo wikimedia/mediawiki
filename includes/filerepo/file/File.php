@@ -2170,7 +2170,7 @@ abstract class File implements IDBAccessObject {
 					$metadata = MediaWiki\quietCall( 'unserialize', $metadata );
 				}
 
-				return $handler->getContentHeaders( $metadata );
+				return $handler->getContentHeaders( $metadata, $this->width, $this->height );
 			}
 		}
 

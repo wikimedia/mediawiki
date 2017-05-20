@@ -406,8 +406,6 @@ class PNGMetadataExtractor {
 			'text' => $text,
 			'bitDepth' => $bitDepth,
 			'colorType' => $colorType,
-			'width' => $width,
-			'height' => $height,
 		];
 	}
 
