@@ -40,7 +40,8 @@ production.
 * …
 
 === Bug fixes in 1.30 ===
-* …
+* (T151633) Ordered list items use now Devanagari digits in Nepalese
+  (thanks to Sfic)
 
 === Action API changes in 1.30 ===
 * (T37247) action=parse output will be wrapped in a div with
