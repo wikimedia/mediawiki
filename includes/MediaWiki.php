@@ -542,7 +542,7 @@ class MediaWiki {
 				$cache = new HTMLFileCache( $context->getTitle(), $action );
 				if ( $cache->isCached() ) {
 					$cache->loadFromFileCache( $context, HTMLFileCache::MODE_OUTAGE );
-					print MWExceptionRenderer::getHTML( $e );
+					print MediaWikiServices::getInstance()->getExceptionRenderer()->getHTML( $e );
 					exit;
 				}
 			}
