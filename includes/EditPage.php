@@ -3119,6 +3119,10 @@ class EditPage {
 			$this->getSummaryInputAttributes( $inputAttrs )
 		);
 
+		// For compatibility with old scripts and extensions, we want the legacy 'id' on the `<input>`
+		$inputAttrs['inputId'] = $inputAttrs['id'];
+		$inputAttrs['id'] = 'wpSummaryWidget';
+
 		return new OOUI\FieldLayout(
 			new OOUI\TextInputWidget( [
 				'value' => $summary,
@@ -4268,7 +4272,8 @@ HTML
 				new OOUI\CheckboxInputWidget( [
 					'tabIndex' => ++$tabindex,
 					'accessKey' => $accesskey,
-					'id' => $options['id'],
+					'id' => $options['id'] . 'Widget',
+					'inputId' => $options['id'],
 					'name' => $name,
 					'selected' => $options['default'],
 					'infusable' => true,
@@ -4330,7 +4335,8 @@ HTML
 		$buttonLabelKey = $this->getSaveButtonLabel();
 
 		$attribs = [
-			'id' => 'wpSave',
+			'id' => 'wpSaveWidget',
+			'inputId' => 'wpSave',
 			'name' => 'wpSave',
 			'tabindex' => ++$tabindex,
 		] + Linker::tooltipAndAccesskeyAttribs( 'save' );
@@ -4354,7 +4360,8 @@ HTML
 		}
 
 		$attribs = [
-			'id' => 'wpPreview',
+			'id' => 'wpPreviewWidget',
+			'inputId' => 'wpPreview',
 			'name' => 'wpPreview',
 			'tabindex' => ++$tabindex,
 		] + Linker::tooltipAndAccesskeyAttribs( 'preview' );
@@ -4374,7 +4381,8 @@ HTML
 			);
 		}
 		$attribs = [
-			'id' => 'wpDiff',
+			'id' => 'wpDiffWidget',
+			'inputId' => 'wpDiff',
 			'name' => 'wpDiff',
 			'tabindex' => ++$tabindex,
 		] + Linker::tooltipAndAccesskeyAttribs( 'diff' );
