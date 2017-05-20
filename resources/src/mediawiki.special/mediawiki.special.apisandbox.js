@@ -1100,25 +1100,18 @@
 					}
 				} )
 					.then( null, function ( code, data, result, jqXHR ) {
+						var deferred = $.Deferred();
+
 						if ( code !== 'http' ) {
 							// Not really an error, work around mw.Api thinking it is.
-							return $.Deferred()
-								.resolve( result, jqXHR )
-								.promise();
+							deferred.resolve( result, jqXHR );
+						} else {
+							// Just forward it.
+							deferred.reject.apply( deferred, arguments );
 						}
-						return this;
+						return deferred.promise();
 					} )
-					.fail( function ( code, data ) {
-						var details = 'HTTP error: ' + data.exception;
-						$result.empty()
-							.append(
-								new OO.ui.LabelWidget( {
-									label: mw.message( 'apisandbox-results-error', details ).text(),
-									classes: [ 'error' ]
-								} ).$element
-							);
-					} )
-					.done( function ( data, jqXHR ) {
+					.then( function ( data, jqXHR ) {
 						var m, loadTime, button, clear,
 							ct = jqXHR.getResponseHeader( 'Content-Type' );
 
@@ -1195,6 +1188,15 @@
 								.on( 'click', button.setDisabled, [ true ], button )
 								.$element.appendTo( $result );
 						}
+					}, function ( code, data ) {
+						var details = 'HTTP error: ' + data.exception;
+						$result.empty()
+							.append(
+								new OO.ui.LabelWidget( {
+									label: mw.message( 'apisandbox-results-error', details ).text(),
+									classes: [ 'error' ]
+								} ).$element
+							);
 					} );
 			} );
 		},
