@@ -2405,26 +2405,10 @@ class OutputPage extends ContextSource {
 			}
 
 			$sk = $this->getSkin();
-			// add skin specific modules
-			$modules = $sk->getDefaultModules();
-
-			// Enforce various default modules for all pages and all skins
-			$coreModules = [
-				// Keep this list as small as possible
-				'site',
-				'mediawiki.page.startup',
-				'mediawiki.user',
-			];
-
-			// Support for high-density display images if enabled
-			if ( $config->get( 'ResponsiveImages' ) ) {
-				$coreModules[] = 'mediawiki.hidpi';
-			}
-
-			$this->addModules( $coreModules );
-			foreach ( $modules as $group ) {
+			foreach ( $sk->getDefaultModules() as $group ) {
 				$this->addModules( $group );
 			}
+
 			MWDebug::addModules( $this );
 
 			// Avoid PHP 7.1 warning of passing $this by reference
