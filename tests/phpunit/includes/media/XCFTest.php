@@ -70,13 +70,13 @@ class XCFHandlerTest extends MediaWikiMediaTestCase {
 	public static function provideGetMetadata() {
 		return [
 			[ '80x60-2layers.xcf',
-				'a:3:{s:9:"colorType";s:16:"truecolour-alpha";s:5:"width";i:80;s:6:"height";i:60;}'
+				'a:1:{s:9:"colorType";s:16:"truecolour-alpha";}'
 			],
 			[ '80x60-RGB.xcf',
-				'a:3:{s:9:"colorType";s:16:"truecolour-alpha";s:5:"width";i:80;s:6:"height";i:60;}'
+				'a:1:{s:9:"colorType";s:16:"truecolour-alpha";}'
 			],
 			[ '80x60-Greyscale.xcf',
-				'a:3:{s:9:"colorType";s:15:"greyscale-alpha";s:5:"width";i:80;s:6:"height";i:60;}'
+				'a:1:{s:9:"colorType";s:15:"greyscale-alpha";}'
 			],
 		];
 	}

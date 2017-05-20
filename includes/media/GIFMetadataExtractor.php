@@ -254,8 +254,6 @@ class GIFMetadataExtractor {
 			'duration' => $duration,
 			'xmp' => $xmp,
 			'comment' => $comment,
-			'width' => $width,
-			'height' => $height,
 		];
 	}
 
