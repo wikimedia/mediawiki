@@ -1415,7 +1415,7 @@ return [
 			'mediawiki.action.edit.styles',
 			'jquery.textSelection',
 			'jquery.byteLimit',
-			'mediawiki.api',
+			'mediawiki.api'
 		],
 	],
 	'mediawiki.action.edit.styles' => [
