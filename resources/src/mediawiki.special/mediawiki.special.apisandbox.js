@@ -480,10 +480,10 @@
 						throw new Error( 'Unknown parameter type ' + pi.type );
 					}
 
-					items = $.map( pi.type, function ( v ) {
-						return new OO.ui.MenuOptionWidget( { data: String( v ), label: String( v ) } );
-					} );
 					if ( Util.apiBool( pi.multi ) ) {
+						items = $.map( pi.type, function ( v ) {
+							return new OO.ui.MenuOptionWidget( { data: String( v ), label: String( v ) } );
+						} );
 						if ( pi.allspecifier !== undefined ) {
 							items.unshift( new OO.ui.MenuOptionWidget( {
 								data: pi.allspecifier,
@@ -502,9 +502,23 @@
 							widget.on( 'change', ApiSandbox.updateUI );
 						}
 					} else {
-						widget = new OO.ui.DropdownWidget( {
-							menu: { items: items },
-							$overlay: $( '#mw-apisandbox-ui' )
+						items = $.map( pi.type, function ( v ) {
+							return { data: String( v ), label: String( v ) };
+						} );
+						widget = new OO.ui.ComboBoxInputWidget( {
+							options: items,
+							menu: {
+								filterFromInput: true
+							},
+							$overlay: $( '#mw-apisandbox-ui' ),
+							validate: function ( value ) {
+								for ( var i in pi.type ) {
+									if ( pi.type[i] === value ) {
+										return true;
+									}
+								}
+								return false;
+							}
 						} );
 						widget.paramInfo = pi;
 						$.extend( widget, WidgetMethods.dropdownWidget );
