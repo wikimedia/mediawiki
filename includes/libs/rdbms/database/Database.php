@@ -416,6 +416,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $conn;
 	}
 
+	/**
+	 * Set the PSR-3 logger interface to use for query logging. (The logger
+	 * interfaces for connection logging and error logging can be set with the
+	 * constructor.)
+	 *
+	 * @param LoggerInterface $logger
+	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->queryLogger = $logger;
 	}
@@ -576,6 +583,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->mTrxLevel ? $this->mTrxWriteCallers : [];
 	}
 
+	/**
+	 * Get the list of method names that have pending write queries or callbacks
+	 * for this transaction
+	 *
+	 * @return array
+	 */
 	protected function pendingWriteAndCallbackCallers() {
 		if ( !$this->mTrxLevel ) {
 			return [];
@@ -664,6 +677,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	abstract function strencode( $s );
 
+	/**
+	 * Set a custom error handler for logging errors during database connection
+	 */
 	protected function installErrorHandler() {
 		$this->mPHPError = false;
 		$this->htmlErrors = ini_set( 'html_errors', '0' );
@@ -671,6 +687,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
+	 * Restore the previous error handler and return the last PHP error for this DB
+	 *
 	 * @return bool|string
 	 */
 	protected function restoreErrorHandler() {
@@ -697,6 +715,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
+	 * Error handler for logging errors during database connection
 	 * This method should not be used outside of Database classes
 	 *
 	 * @param int $errno
@@ -953,6 +972,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $res;
 	}
 
+	/**
+	 * Helper method for query() that handles profiling and logging and sends
+	 * the query to doQuery()
+	 *
+	 * @param string $sql Original SQL query
+	 * @param string $commentedSql SQL query with debugging/trace comment
+	 * @param bool $isWrite Whether the query is a (non-temporary) write operation
+	 * @param string $fname Name of the calling function
+	 * @return bool|ResultWrapper True for a successful write query, ResultWrapper
+	 *     object for a successful read query, or false on failure
+	 */
 	private function doProfiledQuery( $sql, $commentedSql, $isWrite, $fname ) {
 		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
 		# generalizeSQL() will probably cut down the query to reasonable
@@ -1034,6 +1064,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * Determine whether or not it is safe to retry queries after a database
+	 * connection is lost
+	 *
+	 * @param string $sql SQL query
+	 * @param bool $priorWritesPending Whether there is a transaction open with
+	 *     possible write queries or transaction pre-commit/idle callbacks
+	 *     waiting on it to finish.
+	 * @return bool True if it is safe to retry the query, false otherwise
+	 */
 	private function canRecoverFromDisconnect( $sql, $priorWritesPending ) {
 		# Transaction dropped; this can mean lost writes, or REPEATABLE-READ snapshots.
 		# Dropped connections also mean that named locks are automatically released.
@@ -1054,6 +1094,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return true;
 	}
 
+	/**
+	 * Clean things up after transaction loss due to disconnection
+	 *
+	 * @return null|Exception
+	 */
 	private function handleSessionLoss() {
 		$this->mTrxLevel = 0;
 		$this->mTrxIdleCallbacks = []; // T67263
@@ -2338,6 +2383,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->insert( $destTable, $rows, $fname, $insertOptions );
 	}
 
+	/**
+	 * Native server-side implementation of insertSelect() for situations where
+	 * we don't want to select everything into memory
+	 *
+	 * @see IDatabase::insertSelect()
+	 */
 	protected function nativeInsertSelect( $destTable, $srcTable, $varMap, $conds,
 		$fname = __METHOD__,
 		$insertOptions = [], $selectOptions = []
@@ -2982,7 +3033,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @return bool
+	 * Close existing database connection and open a new connection
+	 *
+	 * @return bool True if new connection is opened successfully, false if error
 	 */
 	protected function reconnect() {
 		$this->closeConnection();
@@ -3350,6 +3403,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->doLockTables( $read, $write, $method );
 	}
 
+	/**
+	 * Helper function for lockTables() that handles the actual table locking
+	 *
+	 * @param array $read Array of tables to lock for read access
+	 * @param array $write Array of tables to lock for write access
+	 * @param string $method Name of caller
+	 * @return true
+	 */
 	protected function doLockTables( array $read, array $write, $method ) {
 		return true;
 	}
@@ -3364,6 +3425,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->doUnlockTables( $method );
 	}
 
+	/**
+	 * Helper function for unlockTables() that handles the actual table unlocking
+	 *
+	 * @param string $method Name of caller
+	 * @return true
+	 */
 	protected function doUnlockTables( $method ) {
 		return true;
 	}
