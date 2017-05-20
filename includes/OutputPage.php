@@ -285,9 +285,9 @@ class OutputPage extends ContextSource {
 	private $mTarget = null;
 
 	/**
-	 * @var bool Whether parser output should contain table of contents
+	 * @var bool Whether parser output contains a table of contents
 	 */
-	private $mEnableTOC = true;
+	private $mEnableTOC = false;
 
 	/**
 	 * @var bool Whether parser output should contain section edit links
@@ -1839,6 +1839,14 @@ class OutputPage extends ContextSource {
 		$outputPage = $this;
 		Hooks::run( 'LanguageLinks', [ $this->getTitle(), &$this->mLanguageLinks, &$linkFlags ] );
 		Hooks::run( 'OutputPageParserOutput', [ &$outputPage, $parserOutput ] );
+
+		// This check must be after 'OutputPageParserOutput' runs in addParserOutputMetadata
+		// so that extensions may modify ParserOutput to toggle TOC.
+		// This cannot be moved to addParserOutputText because that is not
+		// called by EditPage for Preview.
+		if ( $parserOutput->getTOCEnabled() && $parserOutput->getTOCHTML() ) {
+			$this->mEnableTOC = true;
+		}
 	}
 
 	/**
@@ -1879,7 +1887,6 @@ class OutputPage extends ContextSource {
 	 */
 	function addParserOutput( $parserOutput ) {
 		$this->addParserOutputMetadata( $parserOutput );
-		$parserOutput->setTOCEnabled( $this->mEnableTOC );
 
 		// Touch section edit links only if not previously disabled
 		if ( $parserOutput->getEditSectionTokens() ) {
@@ -3902,15 +3909,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Enables/disables TOC, doesn't override __NOTOC__
-	 * @param bool $flag
-	 * @since 1.22
-	 */
-	public function enableTOC( $flag = true ) {
-		$this->mEnableTOC = $flag;
-	}
-
-	/**
+	 * Whether the output has a table of contents
 	 * @return bool
 	 * @since 1.22
 	 */

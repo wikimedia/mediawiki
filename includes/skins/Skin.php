@@ -196,6 +196,10 @@ abstract class Skin extends ContextSource {
 			$modules['content'][] = 'jquery.makeCollapsible';
 		}
 
+		if ( $out->isTOCEnabled() ) {
+			$modules['content'][] = 'mediawiki.toc';
+		}
+
 		// Add various resources if required
 		if ( $wgUseAjax && $wgEnableAPI ) {
 			if ( $wgEnableWriteAPI && $user->isLoggedIn()
