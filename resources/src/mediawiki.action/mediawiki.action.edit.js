@@ -19,10 +19,29 @@
 	$( function () {
 		var editBox, scrollTop, $editForm;
 
+		this.editSummaryInput = $( 'input#wpSummary, #wpSummary > input' );
+
 		// Make sure edit summary does not exceed byte limit
 		// TODO: Replace with this when $wgOOUIEditPage is removed:
-		// OO.ui.infuse( 'wpSummary' ).$input.byteLimit( 255 );
-		$( 'input#wpSummary, #wpSummary > input' ).byteLimit( 255 );
+		// OO.ui.infuse( 'wpSummary' ).$input.byteLimit( this.editSummaryByteLimit );
+		this.editSummaryInput.byteLimit( this.editSummaryByteLimit );
+
+		if ( $( '#editform' ).hasClass( 'mw-editform-ooui' ) ) {
+			mw.loader.using( 'oojs-ui' ).then( function () {
+				var wpSummary = OO.ui.infuse( $( '#wpSummary' ) );
+
+				function updateSummaryLabelCount() {
+					// TODO: This looks a bit weird, there is no unit in the UI, just numbers
+					// Users likely assume characters but then it seems to count down quicker
+					// than expected. Facing users with the word "byte" is bad? (bug 40035)
+					wpSummary.setLabel( String( 255 - $.byteLength( wpSummary.getValue() ) ) );
+				}
+
+				wpSummary.on( 'change', updateSummaryLabelCount );
+				// Initialise value
+				updateSummaryLabelCount();
+			} );
+		}
 
 		// Restore the edit box scroll state following a preview operation,
 		// and set up a form submission handler to remember this state.
