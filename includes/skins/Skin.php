@@ -158,8 +158,17 @@ abstract class Skin extends ContextSource {
 		global $wgUseAjax, $wgEnableAPI, $wgEnableWriteAPI;
 
 		$out = $this->getOutput();
+		$config = $this->getConfig();
 		$user = $out->getUser();
 		$modules = [
+			// modules not specific to any specific skin or page
+			'core' => [
+				// Enforce various default modules for all pages and all skins
+				// Keep this list as small as possible
+				'site',
+				'mediawiki.page.startup',
+				'mediawiki.user',
+			],
 			// modules that enhance the page content in some way
 			'content' => [
 				'mediawiki.page.ready',
@@ -171,6 +180,11 @@ abstract class Skin extends ContextSource {
 			// modules which relate to the current users preferences
 			'user' => [],
 		];
+
+		// Support for high-density display images if enabled
+		if ( $config->get( 'ResponsiveImages' ) ) {
+			$modules['core'][] = 'mediawiki.hidpi';
+		}
 
 		// Preload jquery.tablesorter for mediawiki.page.ready
 		if ( strpos( $out->getHTML(), 'sortable' ) !== false ) {
