@@ -1120,9 +1120,16 @@
 					} )
 					.done( function ( data, jqXHR ) {
 						var m, loadTime, button, clear,
-							ct = jqXHR.getResponseHeader( 'Content-Type' );
+							ct = jqXHR.getResponseHeader( 'Content-Type' ),
+							loginSuppressed = jqXHR.getResponseHeader( 'MediaWiki-Login-Suppressed' ) || 'false';
 
 						$result.empty();
+						if ( loginSuppressed !== 'false' ) {
+							$( '<div>' )
+								.addClass( 'warning' )
+								.append( Util.parseMsg( 'apisandbox-results-login-suppressed' ) )
+								.appendTo( $result );
+						}
 						if ( /^text\/mediawiki-api-prettyprint-wrapped(?:;|$)/.test( ct ) ) {
 							data = JSON.parse( data );
 							if ( data.modules.length ) {
