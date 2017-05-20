@@ -30,8 +30,8 @@ class AutoLoaderTest extends MediaWikiTestCase {
 		$results = self::checkAutoLoadConf();
 
 		$this->assertEquals(
-			$results['expected'],
-			$results['actual']
+			$results['actual'],
+			$results['expected']
 		);
 	}
 
