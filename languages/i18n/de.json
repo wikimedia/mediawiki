@@ -3980,8 +3980,8 @@
 	"pageid": "Seitenkennung $1",
 	"rawhtml-notallowed": "&lt;html&gt;-Tags können nicht außerhalb von normalen Seiten verwendet werden.",
 	"gotointerwiki": "{{SITENAME}} verlassen",
-	"gotointerwiki-invalid": "Der angegebene Titel war ungültig.",
-	"gotointerwiki-external": "Du bist dabei, {{SITENAME}} zu verlassen, um [[$2]] zu besuchen, was eine externe Website ist.\n\n[$1 Hier klicken, um auf $1 fortzufahren].",
+	"gotointerwiki-invalid": "Der angegebene Titel ist ungültig.",
+	"gotointerwiki-external": "Du bist dabei, {{SITENAME}} zu verlassen, um [[$2]] zu besuchen, was eine externe Website ist.\n\n'''[$1 Auf $1 fortfahren]'''",
 	"undelete-cantedit": "Du kannst diese Seite nicht wiederherstellen, da du nicht berechtigt bist, diese Seite zu bearbeiten.",
 	"undelete-cantcreate": "Du kannst diese Seite nicht wiederherstellen, da es keine vorhandene Seite mit diesem Namen gibt und du nicht berechtigt bist, diese Seite zu erstellen."
 }

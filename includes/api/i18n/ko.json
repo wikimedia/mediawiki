@@ -459,6 +459,7 @@
 	"apihelp-query+tags-paramvalue-prop-name": "태그의 이름을 추가합니다.",
 	"apihelp-query+tags-paramvalue-prop-description": "태그의 설명을 추가합니다.",
 	"apihelp-query+tags-paramvalue-prop-hitcount": "판의 수와 이 판을 가진 로그 엔트리를 추가합니다.",
+	"apihelp-query+templates-param-namespace": "이 이름공간에 속한 틀만 표시합니다.",
 	"apihelp-query+templates-param-limit": "반환할 틀 수.",
 	"apihelp-query+tokens-param-type": "요청할 토큰의 종류.",
 	"apihelp-query+tokens-example-simple": "csrf 토큰을 가져옵니다. (기본값)",

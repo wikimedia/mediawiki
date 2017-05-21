@@ -3955,7 +3955,7 @@
 	"rawhtml-notallowed": "&lt;html&gt; tags kunnen alleen op normale pagina's geplaatst worden.",
 	"gotointerwiki": "{{SITENAME}} verlaten",
 	"gotointerwiki-invalid": "De opgegeven titel is ongeldig.",
-	"gotointerwiki-external": "U staat op het punt om {{SITENAME}} te verlaten en [[$2]] te bezoeken. [[$2]] is een aparte website.\n\n[$1 Klik hier om door te gaan naar $1].",
+	"gotointerwiki-external": "U staat op het punt om {{SITENAME}} te verlaten en [[$2]] te bezoeken. [[$2]] is een aparte website.\n\n'''[$1 Doorgaan naar $1]'''",
 	"undelete-cantedit": "U kunt deze pagina niet terug plaatsen omdat u niet het recht hebt om deze pagina te bewerken.",
 	"undelete-cantcreate": "U kunt deze pagina niet terugplaatsen omdat er geen bestaande pagina met deze naam is en u geen toestemming hebt om deze pagina aan te maken."
 }

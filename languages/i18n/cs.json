@@ -3948,8 +3948,8 @@
 	"pageid": "Stránka s ID $1",
 	"rawhtml-notallowed": "Značky &lt;html&gt; nelze používat mimo běžné stránky.",
 	"gotointerwiki": "Opustit {{GENDER:4sg|{{SITENAME}}}}",
-	"gotointerwiki-invalid": "Zadaný název byl neplatný.",
-	"gotointerwiki-external": "Chystáte se opustit {{GRAMMAR:4sg|{{SITENAME}}}} a navštívit [[$2]], což je jiná webová stránka.\n\n[$1 Kliknutím zde budete pokračovat na $1].",
+	"gotointerwiki-invalid": "Zadaný název je neplatný.",
+	"gotointerwiki-external": "Chystáte se opustit {{GRAMMAR:4sg|{{SITENAME}}}} a navštívit [[$2]], což je jiná webová stránka.\n\n'''[$1 Pokračovat na $1].'''",
 	"undelete-cantedit": "Tuto stránku nemůžete obnovit, protože ji nejste oprávněni editovat.",
 	"undelete-cantcreate": "Tuto stránku nemůžete obnovit, protože stránka s tímto názvem neexistuje a vy ji nejste oprávněni vytvořit."
 }

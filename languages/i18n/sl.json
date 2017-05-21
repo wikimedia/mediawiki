@@ -3868,7 +3868,7 @@
 	"rawhtml-notallowed": "Oznak &lt;html&gt; ni možno uporabljati izven normalnih strani.",
 	"gotointerwiki": "Zapuščate {{GRAMMAR:tožilnik|{{SITENAME}}}}",
 	"gotointerwiki-invalid": "Naveden naslov je neveljaven.",
-	"gotointerwiki-external": "Zapuščate {{GRAMMAR:tožilnik|{{SITENAME}}}}, da obiščete [[$2]], ki je ločena spletna stran.\n\n[$1 Kliknite tukaj, da nadaljujete na $1].",
+	"gotointerwiki-external": "Zapuščate {{GRAMMAR:tožilnik|{{SITENAME}}}}, da obiščete [[$2]], ki je ločena spletna stran.\n\n'''[$1 Nadaljujte na $1]'''",
 	"undelete-cantedit": "Strani ne morete obnoviti, saj vam ni dovoljeno, da jo urejate.",
 	"undelete-cantcreate": "Strani ne morete obnoviti, saj stran s tem imenom ne obstaja in je nimate dovoljenja ustvariti."
 }

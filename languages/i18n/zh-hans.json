@@ -1617,7 +1617,7 @@
 	"upload-description": "文件说明",
 	"upload-options": "上传选项",
 	"watchthisupload": "监视这个文件",
-	"filewasdeleted": "之前已经有一个同名文件被上传后又被删除了。在上传此文件之前您需要检查$1。",
+	"filewasdeleted": "之前已经上传过一个同名文件，后来又删除了。在上传此文件之前您应该检查$1。",
 	"filename-thumb-name": "这看起来像是缩略图标题。请不要将缩略图上传回同一wiki。否则，请修改文件名使其更有意义，并且没有缩略图前缀。",
 	"filename-bad-prefix": "您上传的文件名称是以<strong>“$1”</strong>作为开头，通常这种没有含意的文件名称是由数码相机中自动编排。请在您的文件中重新选择一个更加有意义的文件名称。",
 	"filename-prefix-blacklist": " #<!-- 请将本行保留为原样 --> <pre>\n# 语法如下：\n#  * 任何以“#”开头到结尾的行为注释\n#  * 任何非空行是根据相机自动分配特定文件名的前缀\nCIMG # 卡西欧\nDSC_ # 尼康\nDSCF # 富士\nDSCN # 尼康\nDUW # 部分手机\nIMG # 一般\nJD # 业纳\nMGP # 宾得\nPICT # 其他\n #</pre> <!-- 请将本行保留为原样 -->",
@@ -3981,7 +3981,7 @@
 	"rawhtml-notallowed": "&lt;html&gt;标签不能在一般页面以外使用。",
 	"gotointerwiki": "离开{{SITENAME}}",
 	"gotointerwiki-invalid": "指定的标题无效。",
-	"gotointerwiki-external": "您将要离开{{SITENAME}}来访问[[$2]]，这是一个独立网站。\n\n[$1 点此继续访问$1]。",
+	"gotointerwiki-external": "您将要离开{{SITENAME}}来访问[[$2]]，这是一个独立网站。\n\n'''[$1 继续访问$1]'''",
 	"undelete-cantedit": "您不能还原该页面，因为您未被允许编辑该页面。",
 	"undelete-cantcreate": "您不能还原该页面，因为没有使用该页面名称的现有页面，并且您未被允许编辑该页面。"
 }

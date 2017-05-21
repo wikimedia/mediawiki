@@ -1312,6 +1312,7 @@
 	"rcfilters-savedqueries-new-name-label": "Naziv",
 	"rcfilters-savedqueries-apply-label": "Napravi brzi link",
 	"rcfilters-savedqueries-cancel-label": "Otkaži",
+	"rcfilters-savedqueries-add-new-title": "Sačuvaj filtere kao brzi link",
 	"rcfilters-restore-default-filters": "Vrati predodređene filtere",
 	"rcfilters-clear-all-filters": "Ukloni sve filtere",
 	"rcfilters-search-placeholder": "Filtriraj nedavne izmjene (prelistajte mogućnosti ili počnite kucati)",
