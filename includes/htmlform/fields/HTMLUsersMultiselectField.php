@@ -15,18 +15,19 @@ use MediaWiki\Widget\UsersMultiselectWidget;
  * @note This widget is not likely to remain functional in non-OOUI forms.
  */
 class HTMLUsersMultiselectField extends HTMLUserTextField {
-
 	public function loadDataFromRequest( $request ) {
-		if ( !$request->getCheck( $this->mName ) ) {
-			return $this->getDefault();
+		if ( $request->getCheck( $this->mName ) ) {
+			$value = $request->getText( $this->mName );
+		} else {
+			$value = $this->getDefault();
 		}
 
-		$usersArray = explode( "\n", $request->getText( $this->mName ) );
+		$usersArray = explode( "\n", $value );
 		// Remove empty lines
 		$usersArray = array_values( array_filter( $usersArray, function( $username ) {
 			return trim( $username ) !== '';
 		} ) );
-		return $usersArray;
+		return implode( "\n", $usersArray );
 	}
 
 	public function validate( $value, $alldata ) {
@@ -38,7 +39,8 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 			return false;
 		}
 
-		foreach ( $value as $username ) {
+		$usersArray = explode( "\n", $value );
+		foreach ( $usersArray as $username ) {
 			$result = parent::validate( $username, $alldata );
 			if ( $result !== true ) {
 				return $result;
@@ -48,12 +50,12 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 		return true;
 	}
 
-	public function getInputHTML( $values ) {
+	public function getInputHTML( $value ) {
 		$this->mParent->getOutput()->enableOOUI();
-		return $this->getInputOOUI( $values );
+		return $this->getInputOOUI( $value );
 	}
 
-	public function getInputOOUI( $values ) {
+	public function getInputOOUI( $value ) {
 		$params = [ 'name' => $this->mName ];
 
 		if ( isset( $this->mParams['default'] ) ) {
@@ -68,8 +70,8 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 							->plain();
 		}
 
-		if ( !is_null( $values ) ) {
-			$params['default'] = $values;
+		if ( !is_null( $value ) ) {
+			$params['default'] = explode( "\n", $value );
 		}
 
 		// Make the field auto-infusable when it's used inside a legacy HTMLForm rather than OOUIHTMLForm
