@@ -59,7 +59,7 @@
 			mw.hook( 'wikipage.categories' ).fire( $nodes );
 		}
 
-		$( '#t-print' ).click( function ( e ) {
+		$( '#t-print a' ).click( function ( e ) {
 			window.print();
 			e.preventDefault();
 		} );
