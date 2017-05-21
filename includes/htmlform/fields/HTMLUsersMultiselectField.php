@@ -15,19 +15,37 @@ use MediaWiki\Widget\UsersMultiselectWidget;
  * @note This widget is not likely to remain functional in non-OOUI forms.
  */
 class HTMLUsersMultiselectField extends HTMLUserTextField {
-
 	public function loadDataFromRequest( $request ) {
-		if ( !$request->getCheck( $this->mName ) ) {
-			return $this->getDefault();
+		if ( $request->getCheck( $this->mName ) ) {
+			$value = $request->getText( $this->mName );
+		} else {
+			$value = $this->getDefault();
 		}
 
-		$usersArray = explode( "\n", $request->getText( $this->mName ) );
+		$usersArray = explode( "\n", $value );
 		// Remove empty lines
 		$usersArray = array_values( array_filter( $usersArray, function( $username ) {
 			return trim( $username ) !== '';
 		} ) );
 		return $usersArray;
 	}
+
+	/**
+	 * Convert back to newline-separated
+	 *
+	 * @param array $value Array of users
+	 */
+	public function filter( $value, $alldata ) {
+		$value = implode( "\n", $value );
+
+		if ( isset( $this->mFilterCallback ) ) {
+			$value = call_user_func( $this->mFilterCallback, $value, $alldata, $this->mParent );
+		}
+
+		return $value;
+	}
+
+
 
 	public function validate( $value, $alldata ) {
 		if ( !$this->mParams['exists'] ) {
