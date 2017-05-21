@@ -17,6 +17,7 @@ production.
   This is intended for extensions that want control
   over the instantiation of their jobs,
   to allow for proper dependency injection.
+* $wgExceptionHooks has been removed.
 
 === New features in 1.30 ===
 * (T37247) Output from Parser::parse() will now be wrapped in a div with
