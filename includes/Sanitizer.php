@@ -835,7 +835,7 @@ class Sanitizer {
 
 			# NOTE: even though elements using href/src are not allowed directly, supply
 			#       validation code that can be used by tag hook handlers, etc
-			if ( $attribute === 'href' || $attribute === 'src' ) {
+			if ( $attribute === 'href' || $attribute === 'src' || $attribute === 'poster' ) {
 				if ( !preg_match( $hrefExp, $value ) ) {
 					continue; // drop any href or src attributes not using an allowed protocol.
 					// NOTE: this also drops all relative URLs
@@ -1759,6 +1759,10 @@ class Sanitizer {
 			# such as <math> when it is rasterized, or if $wgAllowImageTag is
 			# true
 			'img'        => array_merge( $common, [ 'alt', 'src', 'width', 'height' ] ),
+
+			'video'      => array_merge( $common, [ 'poster', 'controls', 'preload', 'width', 'height' ] ),
+			'source'     => array_merge( $common, [ 'type', 'src' ] ),
+			'track'      => array_merge( $common, [ 'type', 'src', 'srclang', 'kind', 'label' ] ),
 
 			# 15.2.1
 			'tt'         => $common,
