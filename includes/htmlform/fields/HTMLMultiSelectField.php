@@ -3,7 +3,7 @@
 /**
  * Multi-select field
  */
-class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable {
+class HTMLMultiSelectField extends HTMLFormField {
 	/**
 	 * @param array $params
 	 *   In adition to the usual HTMLFormField parameters, this can take the following fields:
