@@ -58,6 +58,11 @@
 			 */
 			mw.hook( 'wikipage.categories' ).fire( $nodes );
 		}
+
+		$( '#t-print' ).click( function ( e ) {
+			window.print();
+			e.preventDefault();
+		} );
 	} );
 
 }( mediaWiki, jQuery ) );
