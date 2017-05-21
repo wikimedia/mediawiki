@@ -14,19 +14,33 @@ use MediaWiki\Widget\UsersMultiselectWidget;
  *
  * @note This widget is not likely to remain functional in non-OOUI forms.
  */
-class HTMLUsersMultiselectField extends HTMLUserTextField {
+class HTMLUsersMultiselectField extends HTMLUserTextField implements HTMLNestedFilterable {
 
 	public function loadDataFromRequest( $request ) {
-		if ( !$request->getCheck( $this->mName ) ) {
-			return $this->getDefault();
+		if ( $request->getCheck( $this->mName ) ) {
+			$value = $request->getText( $this->mName );
+		} else {
+			$value = $this->getDefault();
 		}
 
-		$usersArray = explode( "\n", $request->getText( $this->mName ) );
+		$usersArray = explode( "\n", $value );
 		// Remove empty lines
 		$usersArray = array_values( array_filter( $usersArray, function( $username ) {
 			return trim( $username ) !== '';
 		} ) );
 		return $usersArray;
+	}
+
+	/**
+	 * Support for seperating multi-option preferences into multiple preferences
+	 * Due to lack of array support.
+	 *
+	 * @param array $data
+	 */
+	public function filterDataForSubmit( $data ) {
+		return [
+			'' => implode( "\n", $data ),
+		];
 	}
 
 	public function validate( $value, $alldata ) {
