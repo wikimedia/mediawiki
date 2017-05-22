@@ -6,7 +6,8 @@ MediaWiki 1.31 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.31 ===
-* …
+* $wgLogoHD has been updated to support svg images and uses $wgLogo where
+  possible for fallback images such as png.
 
 === New features in 1.31 ===
 * …
