@@ -21,6 +21,7 @@ production.
   to plain class names, using the 'factory' key in the module description
   array. This allows dependency injection to be used for ResourceLoader modules.
 * $wgExceptionHooks has been removed.
+* $wgLogoHD has been updated to support svg images and uses $wgLogo where possible for fallback images such as png.
 
 === New features in 1.30 ===
 * (T37247) Output from Parser::parse() will now be wrapped in a div with
