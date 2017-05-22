@@ -127,6 +127,8 @@ changes to languages because of Phabricator reports.
   WikiPage::makeParserOptions() to create the ParserOptions object and only
   change options that affect the parser cache key.
 * Article::viewRedirect() is deprecated.
+* Sortable table headers now contain an inner button element. Use ".headerSort"
+  rather than "th.headerSort" to select this button in CSS.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
