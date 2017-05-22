@@ -1975,6 +1975,7 @@
 	"booksources-search": "検索",
 	"booksources-text": "お探しの書籍の新品/中古品を販売している外部サイトへのリンクを以下に列挙します。この書籍についてさらに詳しい情報があるかもしれません:",
 	"booksources-invalid-isbn": "指定した ISBN は有効ではないようです。情報源から写し間違えていないか確認してください。",
+	"magiclink-tracking-isbn": "ISBNリンクを使用しているページ",
 	"specialloguserlabel": "実行者:",
 	"speciallogtitlelabel": "対象 (ページ名または利用者の場合、{{ns:user}}:利用者名):",
 	"log": "記録",
@@ -3686,6 +3687,9 @@
 	"logentry-delete-delete": "$1 がページ「$3」を{{GENDER:$2|削除しました}}",
 	"logentry-delete-delete_redir": "$1 がリダイレクト「$3」を上書きにより{{GENDER:$2|削除しました}}",
 	"logentry-delete-restore": "$1 がページ「$3 ($4)」を{{GENDER:$2|復元しました}}",
+	"logentry-delete-restore-nocount": "$1 がページ「$3」を{{GENDER:$2|復元しました}}",
+	"restore-count-revisions": "$1{{PLURAL:$1|版}}",
+	"restore-count-files": "{{PLURAL:$1|$1ファイル}}",
 	"logentry-delete-event": "$1 が $3 の{{PLURAL:$5|記録項目|記録項目$5件}}の閲覧レベルを{{GENDER:$2|変更しました}}: $4",
 	"logentry-delete-revision": "$1 がページ「$3」の{{PLURAL:$5|版|$5件の版}}の閲覧レベルを{{GENDER:$2|変更しました}}: $4",
 	"logentry-delete-event-legacy": "$1 が $3 の記録項目の閲覧レベルを{{GENDER:$2|変更しました}}",
@@ -3829,6 +3833,7 @@
 	"pagelang-reason": "理由",
 	"pagelang-submit": "変更",
 	"pagelang-nonexistent-page": "ページ $1 は存在しません。",
+	"pagelang-unchanged-language": "ページ「$1」の言語は既に$2に設定されています。",
 	"right-pagelang": "ページの言語を変更",
 	"action-pagelang": "ページの言語の変更",
 	"log-name-pagelang": "言語変更の記録",
@@ -4026,5 +4031,7 @@
 	"usercssispublic": "注意: CSS のサブページは第三者が閲覧可能なため、機微な情報を含めないでください。",
 	"restrictionsfield-badip": "無効な IP アドレス、またはその範囲: $1",
 	"restrictionsfield-label": "許可する IP の範囲:",
-	"restrictionsfield-help": "一行につき、単一の IP アドレス、もしくは CIDR による範囲。全帯域からの接続を許可する場合: <pre>0.0.0.0/0\n::/0</pre>"
+	"restrictionsfield-help": "一行につき、単一の IP アドレス、もしくは CIDR による範囲。全帯域からの接続を許可する場合: <pre>0.0.0.0/0\n::/0</pre>",
+	"revid": "版 $1",
+	"undelete-cantcreate": "同名のページが存在せず、また作成する許可があなたに無いため、このページを復元できません。"
 }

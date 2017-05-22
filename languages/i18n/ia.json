@@ -687,7 +687,7 @@
 	"editingsection": "Modification de $1 (section)",
 	"editingcomment": "Modification de $1 (nove section)",
 	"editconflict": "Conflicto de modification: $1",
-	"explainconflict": "Alicuno ha modificate iste pagina post que tu\nha comenciate a modificar lo.\nLe area de texto superior contine le texto del pagina como illo existe actualmente.\nTu modificationes se monstra in le area de texto inferior.\nTu debera incorporar tu modificationes in le texto existente.\n'''Solmente''' le texto del area superior essera publicate quando tu clicca super \"$1\".",
+	"explainconflict": "Alicuno ha modificate iste pagina post que tu\nha comenciate a modificar lo.\nLe area de texto superior contine le texto del pagina como illo existe actualmente.\nTu modificationes se monstra in le area de texto inferior.\nTu debera incorporar tu modificationes in le texto existente.\n<strong>Solmente</strong> le texto del area superior essera publicate quando tu clicca super \"$1\".",
 	"yourtext": "Tu texto",
 	"storedversion": "Version immagazinate",
 	"nonunicodebrowser": "'''Attention: Tu utilisa un navigator non compatibile con le characteres Unicode.'''\nUn systema de modification alternative ha essite activate, que te permitte modificar articulos con securitate: le characteres non ASCII apparera in le quadro de modification como codices hexadecimal.",

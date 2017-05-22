@@ -14,7 +14,8 @@
 			"MojoMann",
 			"Mikey641",
 			"Esh77",
-			"שמזן"
+			"שמזן",
+			"Or"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|תיעוד]]\n* [[mw:Special:MyLanguage/API:FAQ|שו\"ת]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api רשימת דיוור]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce הודעות על API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R באגים ובקשות]\n</div>\n<strong>מצב:</strong> כל האפשרויות שמוצגות בדף הזה אמורות לעבוד, אבל ה־API עדיין בפיתוח פעיל, ויכול להשתנות בכל זמן. עשו מינוי ל[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ רשימת הדיוור mediawiki-api-announce] להודעות על עדכונים.\n\n<strong>בקשות שגויות:</strong> כשבקשות שגויות נשלחות ל־API, תישלח כותרת HTTP עם המפתח \"MediaWiki-API-Error\" ואז גם הערך של הכותרת וגם קוד השגיאה יוגדרו לאותו ערך. למידע נוסף ר' [[mw:Special:MyLanguage/API:Errors_and_warnings|API: שגיאות ואזהרות]].\n\n<strong>בדיקה:</strong> לבדיקה קלה יותר של בקשות ר' [[Special:ApiSandbox]].",
@@ -1004,7 +1005,7 @@
 	"apihelp-query+revisions+base-paramvalue-prop-ids": "מזהה הגרסה.",
 	"apihelp-query+revisions+base-paramvalue-prop-flags": "דגלי גרסה (משני).",
 	"apihelp-query+revisions+base-paramvalue-prop-timestamp": "חותם־הזמן של הגרסה.",
-	"apihelp-query+revisions+base-paramvalue-prop-user": "המתמש שעשה את הגרסה",
+	"apihelp-query+revisions+base-paramvalue-prop-user": "המשתמש שעשה את הגרסה",
 	"apihelp-query+revisions+base-paramvalue-prop-userid": "מזהה המשתמש של יוצר הגרסה.",
 	"apihelp-query+revisions+base-paramvalue-prop-size": "אורך (בבייטים) של הגרסה.",
 	"apihelp-query+revisions+base-paramvalue-prop-sha1": "SHA-1 (בבסיס 16) של הגרסה.",

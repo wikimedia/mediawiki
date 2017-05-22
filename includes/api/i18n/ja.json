@@ -858,6 +858,8 @@
 	"apihelp-rollback-example-simple": "利用者 <kbd>Example</kbd> による <kbd>Main Page</kbd> への最後の一連の編集を巻き戻す。",
 	"apihelp-rollback-example-summary": "IP利用者 <kbd>192.0.2.5</kbd> による <kbd>Main Page</kbd> への最後の一連の編集を <kbd>Reverting vandalism</kbd> という理由で、それらの編集とその差し戻しをボットの編集としてマークして差し戻す。",
 	"apihelp-stashedit-param-title": "編集されているページのページ名。",
+	"apihelp-stashedit-param-section": "節番号です。先頭の節の場合は <kbd>0</kbd>、新しい節の場合は <kbd>new</kbd>を指定します。",
+	"apihelp-stashedit-param-sectiontitle": "新しい節の名前です。",
 	"apihelp-stashedit-param-text": "ページの本文。",
 	"apihelp-stashedit-param-contentmodel": "新しいコンテンツのコンテンツ・モデル。",
 	"apihelp-tag-description": "個々の版または記録項目に対しタグの追加または削除を行います。",
@@ -889,6 +891,7 @@
 	"apihelp-userrights-param-userid": "利用者ID。",
 	"apihelp-userrights-param-add": "利用者をこのグループに追加します。",
 	"apihelp-userrights-param-reason": "変更の理由。",
+	"apihelp-userrights-example-expiry": "利用者 <kbd>SometimeSysop</kbd> を 1ヶ月間 <kbd>sysop</kbd> グループに追加する。",
 	"apihelp-watch-description": "現在の利用者のウォッチリストにページを追加/除去します。",
 	"apihelp-watch-example-watch": "<kbd>Main Page</kbd> をウォッチする。",
 	"apihelp-watch-example-unwatch": "<kbd>Main Page</kbd> のウォッチを解除する。",
@@ -947,6 +950,8 @@
 	"api-help-permissions-granted-to": "{{PLURAL:$1|権限を持つグループ}}: $2",
 	"api-help-open-in-apisandbox": "<small>[サンドボックスで開く]</small>",
 	"apierror-missingparam": "パラメーター <var>$1</var> を設定してください。",
+	"apiwarn-invalidcategory": "「$1」はカテゴリではありません。",
+	"apiwarn-notfile": "「$1」はファイルではありません。",
 	"api-credits-header": "クレジット",
 	"api-credits": "API の開発者:\n* Roan Kattouw (2007年9月-2009年の主任開発者)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (作成者、2006年9月-2007年9月の主任開発者)\n* Brad Jorsch (2013年-現在の主任開発者)\n\nコメント、提案、質問は mediawiki-api@lists.wikimedia.org にお送りください。\nバグはこちらへご報告ください: https://phabricator.wikimedia.org/"
 }

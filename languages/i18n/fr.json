@@ -3378,7 +3378,7 @@
 	"confirmemail_subject": "Confirmation d’adresse de courriel pour {{SITENAME}}",
 	"confirmemail_body": "Quelqu’un, probablement vous, à partir de l’adresse IP $1,\na créé un compte « $2 » avec cette adresse de courriel sur le site {{SITENAME}}.\n\nPour confirmer que ce compte vous appartient vraiment et afin\nd’activer les fonctions de messagerie sur {{SITENAME}},\nveuillez suivre ce lien dans votre navigateur :\n\n$3\n\nSi vous n’avez *pas* créé ce compte, suivez le lien ci-dessous \npour annuler la confirmation de votre adresse courriel :\n\n$5\n\nCe code de confirmation expirera le $4.",
 	"confirmemail_body_changed": "Quelqu’un, probablement vous, à partir de l’adresse IP $1,\na modifié l’adresse de courriel associée au compte « $2 » de {{SITENAME}}\nen cette adresse.\n\nPour confirmer que ce compte vous appartient vraiment et afin\nde réactiver les fonctions de messagerie sur {{SITENAME}},\nveuillez suivre ce lien dans votre navigateur :\n\n$3\n\nSi ce compte ne vous appartient *pas*, n’ouvrez pas ce lien ;\nvous pouvez suivre l’autre lien ci-dessous pour annuler la\nconfirmation de votre adresse courriel :\n\n$5\n\nCe code de confirmation expirera le $4.",
-	"confirmemail_body_set": "Quelqu’un, probablement vous, depuis l’adresse IP $1, a modifié l’adresse de courriel du compte « $2 » en celle-ci sur {{SITENAME}}.\n\nPour confirmer que ce compte vous appartient et réactiver les fonctions de courriel sur {{SITENAME}}, ouvrez ce lien dans votre navigateur Web :\n\n$3\n\nCe code de confirmation expirera le $4.\n\nSi le compte ne vous appartient *pas*, suivez plutôt ce lien pour annuler la confirmation de l’adresse de courriel :\n\n$5",
+	"confirmemail_body_set": "Quelqu’un, probablement vous, depuis l’adresse IP $1, a modifié l’adresse de courriel du compte « $2 » en celle-ci sur {{SITENAME}}.\n\nPour confirmer que ce compte vous appartient et réactiver les fonctions de courriel sur {{SITENAME}}, ouvrez ce lien dans votre navigateur Web :\n\n$3\n\nSi le compte ne vous appartient *pas*, suivez plutôt ce lien pour annuler la confirmation de l’adresse de courriel :\n\n$5\n\nCe code de confirmation expirera le $4.",
 	"confirmemail_invalidated": "Confirmation de l’adresse courriel annulée",
 	"invalidateemail": "Annuler la confirmation de l'adresse de courriel",
 	"notificationemail_subject_changed": "L’adresse courriel enregistrée sur {{SITENAME}} a été changée",
@@ -4123,7 +4123,7 @@
 	"rawhtml-notallowed": "Les balises &lt;html&gt; ne peuvent pas être utilisées en dehors des pages normales.",
 	"gotointerwiki": "Quitter {{SITENAME}}",
 	"gotointerwiki-invalid": "Le titre spécifié n’est pas valide.",
-	"gotointerwiki-external": "Vous allez quitter {{SITENAME}} pour visiter [[$2]], qui est un site web distinct.\n\n[$1 Cliquer ici pour continuer vers $1].",
+	"gotointerwiki-external": "Vous allez quitter {{SITENAME}} pour visiter [[$2]], qui est un site web distinct.\n\n'''[$1 Continuer vers $1]'''",
 	"undelete-cantedit": "Vous ne pouvez pas annuler la suppression de cette page car vous n’êtes pas autorisé à la modifier.",
 	"undelete-cantcreate": "Vous ne pouvez pas annuler la suppression de cette page car il n’existe pas de page avec ce nom, et vous n’êtes pas autorisé à la créer."
 }

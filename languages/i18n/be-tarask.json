@@ -1368,6 +1368,7 @@
 	"rcfilters-filter-watchlist-watched-description": "Зьмены старонак у вашым сьпісе назіраньня.",
 	"rcfilters-filter-watchlist-watchednew-label": "Новыя зьмены ў сьпісе назіраньня",
 	"rcfilters-filter-watchlist-watchednew-description": "Зьмены старонак у вашым сьпісе назіраньня, якія вы не наведвалі з моманту гэтых зьменаў.",
+	"rcfilters-filter-watchlist-notwatched-label": "Ня ў сьпісе назіраньня",
 	"rcfilters-filtergroup-changetype": "Тып зьмены",
 	"rcfilters-filter-pageedits-label": "Рэдагаваньні старонкі",
 	"rcfilters-filter-pageedits-description": "Рэдагаваньні вікізьместу, абмеркаваньняў, апісаньняў катэгорыяў…",
