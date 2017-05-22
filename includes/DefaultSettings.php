@@ -290,6 +290,17 @@ $wgLogo = false;
  * ];
  * @endcode
  *
+ * SVG is also supported but when enabled, it
+ * disables 1.5x and 2x as svg will already
+ * be optimised for screen resolution.
+ *
+ * @par Example:
+ * @code
+ * $wgLogoHD = [
+ *	"svg" => "path/to/svg_version.svg",
+ * ];
+ * @endcode
+ *
  * @since 1.25
  */
 $wgLogoHD = false;
