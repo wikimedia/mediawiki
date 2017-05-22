@@ -643,6 +643,17 @@ class OutputPageTest extends MediaWikiTestCase {
 			[
 				[
 					'ResourceBasePath' => '/w',
+					'Logo' => '/img/default.png',
+					'LogoHD' => [
+						'svg' => '/img/vector.svg',
+					],
+				],
+				'Link: </img/vector.svg>;rel=preload;as=image'
+
+			],
+			[
+				[
+					'ResourceBasePath' => '/w',
 					'Logo' => '/w/test.jpg',
 					'LogoHD' => false,
 					'UploadPath' => '/w/images',
