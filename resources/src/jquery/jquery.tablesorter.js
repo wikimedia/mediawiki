@@ -21,19 +21,19 @@
  *      // Create a tablesorter interface, initially sorting on the first and second column
  *      $( 'table' ).tablesorter( { sortList: [ { 0: 'desc' }, { 1: 'asc' } ] } );
  *
- * @param {string} [cssHeader="header"] A string of the class name to be appended to sortable
- *         tr elements in the thead of the table.
+ * @param {string} [cssHeader="header"] A string of the class name to be appended to buttons
+ *         in sortable tr elements in the thead of the table.
  *
  * @param {string} [cssAsc="headerSortUp"] A string of the class name to be appended to
- *         sortable tr elements in the thead on a ascending sort.
+ *         buttons in sortable tr elements in the thead on a ascending sort.
  *
  * @param {string} [cssDesc="headerSortDown"] A string of the class name to be appended to
- *         sortable tr elements in the thead on a descending sort.
+ *         buttons in sortable tr elements in the thead on a descending sort.
  *
  * @param {string} [sortMultisortKey="shiftKey"] A string of the multi-column sort key.
  *
- * @param {boolean} [cancelSelection=true] Boolean flag indicating iftablesorter should cancel
- *         selection of the table headers text.
+ * @param {boolean} [cancelSelection=true] Boolean flag indicating if tablesorter should
+ *         cancel selection of the table headers text.
  *
  * @param {Array} [sortList] An array containing objects specifying sorting. By passing more
  *         than one object, multi-sorting will be applied. Object structure:
@@ -356,13 +356,20 @@
 			columns = [];
 
 			if ( !$cell.hasClass( config.unsortableClass ) ) {
-				$cell
-					.addClass( config.cssHeader )
-					.prop( 'tabIndex', 0 )
-					.attr( {
-						role: 'columnheader button',
-						title: msg[ 1 ]
-					} );
+				$cell.data( {
+					headerIndex: headerIndex,
+					order: 0,
+					count: 0
+				} )
+				.wrapInner(
+					$( '<div>' )
+						.addClass( config.cssHeader )
+						.prop( 'tabIndex', 0 )
+						.attr( {
+							role: 'button',
+							title: msg[ 1 ]
+						} )
+				);
 
 				for ( k = 0; k < this.colSpan; k++ ) {
 					config.columnToHeader[ colspanOffset + k ] = headerIndex;
@@ -370,12 +377,6 @@
 				}
 
 				config.headerToColumns[ headerIndex ] = columns;
-
-				$cell.data( {
-					headerIndex: headerIndex,
-					order: 0,
-					count: 0
-				} );
 
 				// add only sortable cells to headerList
 				config.headerList[ headerIndex ] = this;
@@ -444,13 +445,18 @@
 	function setHeadersCss( table, $headers, list, css, msg, columnToHeader ) {
 		var i, len;
 		// Remove all header information and reset titles to default message
-		$headers.removeClass( css[ 0 ] ).removeClass( css[ 1 ] ).attr( 'title', msg[ 1 ] );
+		$headers
+			.children( '[role="button"]' )
+				.removeClass( css[ 0 ] )
+				.removeClass( css[ 1 ] )
+				.attr( 'title', msg[ 1 ] );
 
 		for ( i = 0, len = list.length; i < len; i++ ) {
 			$headers
 				.eq( columnToHeader[ list[ i ][ 0 ] ] )
-				.addClass( css[ list[ i ][ 1 ] ] )
-				.attr( 'title', msg[ list[ i ][ 1 ] ] );
+				.children( '[role="button"]' )
+					.addClass( css[ list[ i ][ 1 ] ] )
+					.attr( 'title', msg[ list[ i ][ 1 ] ] );
 		}
 	}
 
@@ -911,7 +917,6 @@
 							count: $cell.data( 'count' ) + 1
 						} );
 
-						cell = this;
 						// Get current column index
 						columns = config.headerToColumns[ $cell.data( 'headerIndex' ) ];
 						newSortList = $.map( columns, function ( c ) {
