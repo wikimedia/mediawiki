@@ -1672,7 +1672,6 @@ return [
 	'mediawiki.page.patrol.ajax' => [
 		'scripts' => 'resources/src/mediawiki/page/patrol.ajax.js',
 		'dependencies' => [
-			'mediawiki.page.startup',
 			'mediawiki.api',
 			'mediawiki.util',
 			'mediawiki.Title',
