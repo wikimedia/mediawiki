@@ -28,18 +28,22 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 	protected $iwLookup;
 	/** @var $output */
 	protected $output;
+	/** @var bool $showMultimedia */
+	protected $showMultimedia;
 
 	public function __construct(
 		SpecialSearch $specialSearch,
 		SearchResultWidget $resultWidget,
 		LinkRenderer $linkRenderer,
-		InterwikiLookup $iwLookup
+		InterwikiLookup $iwLookup,
+		$showMultimedia = false
 	) {
 		$this->specialSearch = $specialSearch;
 		$this->resultWidget = $resultWidget;
 		$this->linkRenderer = $linkRenderer;
 		$this->iwLookup = $iwLookup;
 		$this->output = $specialSearch->getOutput();
+		$this->showMultimedia = $showMultimedia;
 	}
 	/**
 	 * @param string $term User provided search term
@@ -54,7 +58,9 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 
 		$this->loadCustomCaptions();
 
-		$this->output->addModules( 'mediawiki.special.search.commonsInterwikiWidget' );
+		if ( $this->showMultimedia ) {
+			$this->output->addModules( 'mediawiki.special.search.commonsInterwikiWidget' );
+		}
 		$this->output->addModuleStyles( 'mediawiki.special.search.interwikiwidget.styles' );
 
 		$iwResults = [];
