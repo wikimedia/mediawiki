@@ -4026,6 +4026,13 @@ class OutputPage extends ContextSource {
 			return;
 		}
 
+		if ( isset( $logo['svg'] ) ) {
+			// No media queries required if we only have a 1x and svg variant
+			// because all preload-capable browsers support SVGs
+			$this->addLinkHeader( '<' . $logo['svg'] . '>;rel=preload;as=image' );
+			return;
+		}
+
 		foreach ( $logo as $dppx => $src ) {
 			// Keys are in this format: "1.5x"
 			$dppx = substr( $dppx, 0, -1 );
