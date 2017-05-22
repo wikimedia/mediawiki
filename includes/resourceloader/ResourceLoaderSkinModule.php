@@ -37,7 +37,15 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 				'; }';
 
 		if ( is_array( $logo ) ) {
-			if ( isset( $logo['1.5x'] ) ) {
+			if ( isset( $logo['svg'] ) ) {
+				$styles['all'][] = '.mw-wiki-logo { ' .
+					'background-image: -webkit-linear-gradient(transparent, transparent), ' .
+						CSSMin::buildUrlValue( $logo['svg'] ) . '; ' .
+					'background-image: linear-gradient(transparent, transparent), ' .
+						CSSMin::buildUrlValue( $logo['svg'] ) . ';' .
+					'background-size: 135px auto; }';
+			}
+			if ( isset( $logo['1.5x'] ) && !isset( $logo['svg'] ) ) {
 				$styles[
 					'(-webkit-min-device-pixel-ratio: 1.5), ' .
 					'(min--moz-device-pixel-ratio: 1.5), ' .
@@ -47,7 +55,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 				CSSMin::buildUrlValue( $logo['1.5x'] ) . ';' .
 				'background-size: 135px auto; }';
 			}
-			if ( isset( $logo['2x'] ) ) {
+			if ( isset( $logo['2x'] ) && !isset( $logo['svg'] ) ) {
 				$styles[
 					'(-webkit-min-device-pixel-ratio: 2), ' .
 					'(min--moz-device-pixel-ratio: 2),' .
@@ -82,6 +90,12 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 			'1x' => $logo1Url,
 		];
 
+		if ( isset( $logoHD['svg'] ) ) {
+			$logoUrls['svg'] = OutputPage::transformResourcePath(
+				$conf,
+				$logoHD['svg']
+			);
+		}
 		// Only 1.5x and 2x are supported
 		if ( isset( $logoHD['1.5x'] ) ) {
 			$logoUrls['1.5x'] = OutputPage::transformResourcePath(
