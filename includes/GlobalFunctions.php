@@ -2960,6 +2960,8 @@ function wfGetPrecompiledData( $name ) {
 }
 
 /**
+ * @deprecated since 1.30 Call makeKey on a ObjectCache instance
+ *
  * Make a cache key for the local wiki.
  *
  * @param string $args,...
@@ -2992,6 +2994,8 @@ function wfForeignMemcKey( $db, $prefix /*...*/ ) {
 }
 
 /**
+ * @deprecated since 1.30 Call makeGlobalKey on a ObjectCache instance
+ *
  * Make a cache key with database-agnostic prefix.
  *
  * Doesn't have a wiki-specific namespace. Uses a generic 'global' prefix
