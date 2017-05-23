@@ -1660,7 +1660,7 @@ class AuthManager implements LoggerAwareInterface {
 			}
 		}
 
-		$backoffKey = wfMemcKey( 'AuthManager', 'autocreate-failed', md5( $username ) );
+		$backoffKey = $cache->makeKey( 'AuthManager', 'autocreate-failed', md5( $username ) );
 		if ( $cache->get( $backoffKey ) ) {
 			$this->logger->debug( __METHOD__ . ': {username} denied by prior creation attempt failures', [
 				'username' => $username,
