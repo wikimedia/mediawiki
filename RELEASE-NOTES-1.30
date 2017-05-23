@@ -38,7 +38,8 @@ production.
 * …
 
 ==== New external libraries ====
-* …
+* The class \TestingAccessWrapper has been moved to the external library
+  wikimedia/testing-access-wrapper and renamed \Wikimedia\TestingAccessWrapper.
 
 ==== Removed and replaced external libraries ====
 * …
