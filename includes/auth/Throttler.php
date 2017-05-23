@@ -127,7 +127,7 @@ class Throttler implements LoggerAwareInterface {
 				continue;
 			}
 
-			$throttleKey = wfGlobalCacheKey( 'throttler', $this->type, $index, $ipKey, $userKey );
+			$throttleKey = $this->cache->makeGlobalKey( 'throttler', $this->type, $index, $ipKey, $userKey );
 			$throttleCount = $this->cache->get( $throttleKey );
 
 			if ( !$throttleCount ) { // counter not started yet
@@ -170,7 +170,7 @@ class Throttler implements LoggerAwareInterface {
 		$userKey = $username ? md5( $username ) : null;
 		foreach ( $this->conditions as $index => $specificThrottle ) {
 			$ipKey = isset( $specificThrottle['allIPs'] ) ? null : $ip;
-			$throttleKey = wfGlobalCacheKey( 'throttler', $this->type, $index, $ipKey, $userKey );
+			$throttleKey = $this->cache->makeGlobalKey( 'throttler', $this->type, $index, $ipKey, $userKey );
 			$this->cache->delete( $throttleKey );
 		}
 	}
