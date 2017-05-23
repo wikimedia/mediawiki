@@ -2311,7 +2311,7 @@ Entities inside <pre>
 <pre>Foo &#8594;bar</pre>
 
 !! html/parsoid
-<pre about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"#tag:pre","function":"#tag"},"params":{"1":{"wt":"Foo &lt;nowiki>&amp;rarr;bar&lt;/nowiki>"}},"i":0}}]}'>Foo <span typeof="mw:Entity">→</span>bar</pre>
+<pre about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"#tag:pre","function":"tag"},"params":{"1":{"wt":"Foo &lt;nowiki>&amp;rarr;bar&lt;/nowiki>"}},"i":0}}]}'>Foo <span typeof="mw:Entity">→</span>bar</pre>
 !! end
 
 ## Don't expect this to rt, Parsoid drops the unmatched closing pre tags that
@@ -5329,6 +5329,21 @@ parsoid=wt2html
 <p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[http://example.com x"}},"i":0}}]}'>[<a rel="mw:ExtLink" href="http://example.com">http://example.com</a> x</p>
 <p>[[Foo</p>
 <p>{{echo|[[Foo}}</p>
+!! end
+
+!! test
+Wikilinks with embedded newlines are not broken
+!! wikitext
+{{echo|[[ Foo
+B
+C]]}}
+!! html/php
+<p>[[ Foo
+B
+C]]
+</p>
+!! html/parsoid
+<p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[[ Foo\nB\nC]]"}},"i":0}}]}'>[[ Foo B C]]</p>
 !! end
 
 !! test
@@ -11218,7 +11233,7 @@ Don't abort table cell attribute parsing if wikilink is found in template arg
 |}
 !! html/parsoid
 <table>
-<tbody><tr><td> Test <ref about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"#tag:ref","function":"#tag"},"params":{"1":{"wt":"One two \"[[three]]\" four"}},"i":0}}]}'>One two "<a rel="mw:WikiLink" href="./Three" title="Three">three</a>" four</ref></td></tr>
+<tbody><tr><td> Test <ref about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"#tag:ref","function":"tag"},"params":{"1":{"wt":"One two \"[[three]]\" four"}},"i":0}}]}'>One two "<a rel="mw:WikiLink" href="./Three" title="Three">three</a>" four</ref></td></tr>
 </tbody></table>
 !! end
 
@@ -19529,9 +19544,8 @@ Special:Search page linking.
 | is not a magic word here but | is still a magic word here
 </p>
 !! html/parsoid
-<p><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"!","href":"./Template:!"},"params":{},"i":0}}]}'>|</span> is a magic word there and <span about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"!","href":"./Template:!"},"params":{},"i":0}}]}'>|</span> is still a magic word here
-| is not a magic word here but <span about="#mwt3" typeof="mw:Transclusion" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"!","href":"./Template:!"},"params":{},"i":0}}]}'>|</span> is still a magic word here</p>
-
+<p><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"!","function":"!"},"params":{},"i":0}}]}'>|</span> is a magic word there and <span about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"!","function":"!"},"params":{},"i":0}}]}'>|</span> is still a magic word here
+| is not a magic word here but <span about="#mwt3" typeof="mw:Transclusion" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"!","function":"!"},"params":{},"i":0}}]}'>|</span> is still a magic word here</p>
 !! end
 
 !! test
@@ -25802,7 +25816,7 @@ Properly encapsulate empty-content transclusions in fosterable positions
 }}
 </table>
 !! html/parsoid
-<table about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":["&lt;table>\n",{"template":{"target":{"wt":"#if:","function":"#if"},"params":{"1":{"wt":"\n&lt;td>foo&lt;/td>\n"}},"i":0}},"\n&lt;/table>"]}' data-parsoid='{"stx":"html","pi":[[{"k":"1"}]]}'>
+<table about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":["&lt;table>\n",{"template":{"target":{"wt":"#if:","function":"if"},"params":{"1":{"wt":"\n&lt;td>foo&lt;/td>\n"}},"i":0}},"\n&lt;/table>"]}' data-parsoid='{"stx":"html","pi":[[{"k":"1"}]]}'>
 
 </table>
 !! end
