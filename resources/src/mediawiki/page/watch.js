@@ -96,8 +96,10 @@
 	}
 
 	// Expose public methods
-	mw.page.watch = {
-		updateWatchLink: updateWatchLink
+	mw.page = {
+		watch: {
+			updateWatchLink: updateWatchLink
+		}
 	};
 
 	$( function () {

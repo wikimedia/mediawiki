@@ -1,7 +1,5 @@
 ( function ( mw, $ ) {
 
-	mw.page = {};
-
 	$( function () {
 		var $diff;
 
