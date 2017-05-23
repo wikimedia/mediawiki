@@ -5,8 +5,9 @@
  * @class mw.page.watch.ajax
  */
 ( function ( mw, $ ) {
-	// The name of the page to watch or unwatch
-	var title = mw.config.get( 'wgRelevantPageName' );
+	var watch,
+		// The name of the page to watch or unwatch
+		title = mw.config.get( 'wgRelevantPageName' );
 
 	/**
 	 * Update the link text, link href attribute and (if applicable)
@@ -96,11 +97,17 @@
 	}
 
 	// Expose public methods
-	mw.page = {
-		watch: {
-			updateWatchLink: updateWatchLink
-		}
+	watch = {
+		updateWatchLink: updateWatchLink
 	};
+	module.exports = watch;
+
+	// Deprecated since 1.30
+	mw.log.deprecate( mw, 'page',
+		{ watch: watch },
+		'Use require( \'mediawiki.page.watch.ajax\' ) instead.',
+		'mw.page'
+	);
 
 	$( function () {
 		var $links = $( '.mw-watchlink a, a.mw-watchlink' );
