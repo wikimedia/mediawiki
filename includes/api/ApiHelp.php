@@ -25,6 +25,7 @@
  */
 
 use HtmlFormatter\HtmlFormatter;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Class to output help for an API module
@@ -108,7 +109,7 @@ class ApiHelp extends ApiBase {
 		}
 		$out->setPageTitle( $context->msg( 'api-help-title' ) );
 
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$cacheKey = null;
 		if ( count( $modules ) == 1 && $modules[0] instanceof ApiMain &&
 			$options['recursivesubmodules'] && $context->getLanguage() === $wgContLang
@@ -116,7 +117,7 @@ class ApiHelp extends ApiBase {
 			$cacheHelpTimeout = $context->getConfig()->get( 'APICacheHelpTimeout' );
 			if ( $cacheHelpTimeout > 0 ) {
 				// Get help text from cache if present
-				$cacheKey = wfMemcKey( 'apihelp', $modules[0]->getModulePath(),
+				$cacheKey = $cache->makeKey( 'apihelp', $modules[0]->getModulePath(),
 					(int)!empty( $options['toc'] ),
 					str_replace( ' ', '_', SpecialVersion::getVersion( 'nodb' ) ) );
 				$cached = $cache->get( $cacheKey );
