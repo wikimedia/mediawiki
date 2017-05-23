@@ -1185,7 +1185,7 @@
 	"recentchanges-summary": "Pratite skorašnje izmene na ovoj stranici.",
 	"recentchanges-noresult": "Nema promena u zadatom vremenu za zadate kriterijume.",
 	"recentchanges-feed-description": "Pratite skorašnje izmene uz pomoć ovog dovoda.",
-	"recentchanges-label-newpage": "Nova stranica",
+	"recentchanges-label-newpage": "Ovom izmenom napravljena je nova izmena",
 	"recentchanges-label-minor": "Ovo je manja izmena",
 	"recentchanges-label-bot": "Ovu izmenu je napravio bot",
 	"recentchanges-label-unpatrolled": "Ova izmena još nije patrolirana",
@@ -3437,5 +3437,6 @@
 	"authmanager-email-label": "Imejl",
 	"authmanager-email-help": "Imejl adresa",
 	"changecredentials": "Promjena akreditiva",
-	"removecredentials": "Uklanjanje akreditiva"
+	"removecredentials": "Uklanjanje akreditiva",
+	"gotointerwiki-external": "Upravo ćete da napustite projekat {{SITENAME}} da biste na zasebnom veb-sajtu posetili [[$2]].\n\n'''[$1 Produži na $1]'''"
 }

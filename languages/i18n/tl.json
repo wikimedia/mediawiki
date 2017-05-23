@@ -1086,6 +1086,11 @@
 	"recentchanges-label-plusminus": "Nagbago ang laki ng pahina sa ganitong bilang ng mga byte",
 	"recentchanges-legend-heading": "<strong>Gabay:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (tingnan din [[Special:NewPages|ang talaan ng mga bagong pahina]])",
+	"rcfilters-quickfilters": "Mga mabilisang kawing",
+	"rcfilters-savedqueries-rename": "Pangalanang muli",
+	"rcfilters-savedqueries-remove": "Alisin",
+	"rcfilters-savedqueries-new-name-label": "Pangalan",
+	"rcfilters-savedqueries-cancel-label": "Balewalain",
 	"rcfilters-restore-default-filters": "Ibalik ang mga napagkaukulang 'filters'",
 	"rcfilters-clear-all-filters": "Burahin lahat ng mga 'filters'",
 	"rcfilters-empty-filter": "Walang aktibong panangga. Lahat ay ipinamalas.",
@@ -3010,5 +3015,7 @@
 	"special-characters-group-khmer": "Khmer",
 	"mw-widgets-dateinput-placeholder-day": "TTTT-BB-AA",
 	"mw-widgets-dateinput-placeholder-month": "TTTT-BB",
-	"randomrootpage": "Alin mang pinag-ugatang/pinagmulang pahina"
+	"date-range-from": "Mula sa petsang:",
+	"randomrootpage": "Alin mang pinag-ugatang/pinagmulang pahina",
+	"gotointerwiki-invalid": "Di-wasto ang tinukoy na pamagat."
 }

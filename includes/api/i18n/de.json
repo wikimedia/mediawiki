@@ -322,6 +322,7 @@
 	"apihelp-parse-param-preview": "Im Vorschaumodus parsen.",
 	"apihelp-parse-param-sectionpreview": "Im Abschnitt Vorschau-Modus parsen (aktiviert ebenfalls den Vorschau-Modus)",
 	"apihelp-parse-param-disabletoc": "Inhaltsverzeichnis in der Ausgabe weglassen.",
+	"apihelp-parse-param-useskin": "Wendet die ausgewählte Benutzeroberfläche auf die Parserausgabe an. Kann Auswirkungen auf die folgenden Eigenschaften haben: <kbd>langlinks</kbd>, <kbd>headitems</kbd>, <kbd>modules</kbd>, <kbd>jsconfigvars</kbd>, <kbd>indicators</kbd>.",
 	"apihelp-parse-param-contentmodel": "Inhaltsmodell des eingegebenen Textes. Fall ausgelassen, muss $1title angegeben werden und Standardwert wird das Modell des angegebenen Titels. Ist nur gültig im Zusammenhang mit $1text.",
 	"apihelp-parse-example-page": "Eine Seite parsen.",
 	"apihelp-parse-example-text": "Wikitext parsen.",

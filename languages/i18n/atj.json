@@ -430,7 +430,7 @@
 	"historyaction-submit": "Wapata",
 	"dellogpage": " Nesitc ka wepinikatek kanaweritcikan",
 	"rollbacklink": "e maninakatek",
-	"rollbacklinkcount": " nesitc wepina$1 {{PLURAL:$1|kweskisinikan|kweskisinihikana}}",
+	"rollbacklinkcount": " nesitc wepina $1 {{PLURAL:$1|kweskisinikan|kweskisinihikana}}",
 	"protectlogpage": "Nanakatisiwina wapatcikan",
 	"restriction-edit": "Meckotcita",
 	"undeleteviewlink": "tapwatcike",

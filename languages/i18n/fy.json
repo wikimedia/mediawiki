@@ -17,7 +17,8 @@
 			"Xð",
 			"Robin van der Vliet",
 			"PiefPafPier",
-			"Catrope"
+			"Catrope",
+			"Sjoerddebruin"
 		]
 	},
 	"tog-underline": "Keppelings ûnderstreekje:",
@@ -1322,7 +1323,7 @@
 	"watching": "Dwaande mei op'e folchlist te setten ...",
 	"unwatching": "Dwaande mei fan'e folchlist ôf te heljen ...",
 	"enotif_impersonal_salutation": "meidogger fan {{SITENAME}}",
-	"enotif_body": "Bêste $WATCHINGUSERNAME,\n\nDe {{SITENAME}}side '$PAGETITLE' is op $PAGEEDITDATE $CHANGEDORCREATED troch meidogger $PAGEEDITOR;\nsjoch $PAGETITLE_URL foar de aktuele ferzje.\n\n$NEWPAGE\n\nGearfetting: $PAGESUMMARY $PAGEMINOREDIT\n\nFoar oerlis mei meidogger $PAGEEDITOR:\n- netpost: $PAGEEDITOR_EMAIL\n- wiki: $PAGEEDITOR_WIKI\n\nFierdere meldings wurde jo net tastjoerd, oant jo de side lêzen hawwe. Op jo folchlist kinne jo op 'e nij meldings foar al jo folge siden freegje.\n\n                 Jo freonlike {{SITENAME}}-meldingssysteem.\n\n--\nGean nei {{canonicalurl:{{#special:EditWatchlist}}}}\nom jo folchlistynstellings te feroarjen.\n\nReaksjes en fierdere help:\n$HELPPAGE",
+	"enotif_body": "Bêste $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nGearfetting: $PAGESUMMARY $PAGEMINOREDIT\n\nFoar oerlis mei meidogger:\nnetpost: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nFierdere meldings wurde jo net tastjoerd, oant jo de side lêzen hawwe. Op jo folchlist kinne jo op 'e nij meldings foar al jo folge siden freegje.\n\nJo freonlike {{SITENAME}}-meldingssysteem.\n\n--\nGean nei {{canonicalurl:{{#special:Preferences}}}}\nom jo netpostynstellings te feroarjen.\n\nGean nei {{canonicalurl:{{#special:EditWatchlist}}}}\nom jo folchlistynstellings te feroarjen.\n\nOm de side fan jo folchlist te ferwiderjen, gean nei\n$UNWATCHURL\n\nReaksjes en fierdere help:\n$HELPPAGE",
 	"created": "oanmakke",
 	"changed": "feroare",
 	"deletepage": "Wisk side",

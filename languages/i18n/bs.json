@@ -199,7 +199,7 @@
 	"permalink": "Trajni link",
 	"print": "Štampaj",
 	"view": "Pogled",
-	"view-foreign": "Vidi na $1",
+	"view-foreign": "Vidi na {{GRAMMAR:dativ|$1}}",
 	"edit": "Uredi",
 	"edit-local": "Uredi lokalni opis",
 	"create": "Napravi",
@@ -3846,6 +3846,6 @@
 	"rawhtml-notallowed": "&lt;html&gt; oznake ne mogu se koristiti van normalnih stranica.",
 	"gotointerwiki": "Napuštate {{GRAMMAR:akuzativ|{{SITENAME}}}}",
 	"gotointerwiki-invalid": "Navedeni naslov nije ispravan.",
-	"gotointerwiki-external": "Napuštate {{GRAMMAR:akuzativ|{{SITENAME}}}} da biste posjetili zasebni veb-sajt [[$2]].\n\n[$1 Kliknite ovdje da biste otišli na $1].",
+	"gotointerwiki-external": "Napuštate {{GRAMMAR:akuzativ|{{SITENAME}}}} da biste posjetili zasebni veb-sajt [[$2]].\n\n<strong>[$1 Idi na $1]</strong>",
 	"undelete-cantedit": "Ne možete vratiti ovu stranicu jer Vam nije dozvoljeno da je uređujete."
 }
