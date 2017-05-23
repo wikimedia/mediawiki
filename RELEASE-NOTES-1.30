@@ -76,6 +76,8 @@ changes to languages because of Phabricator reports.
 * The ExtractThumbParameters hook (deprecated in 1.21) was removed.
 * The OutputPage::addParserOutputNoText and ::getHeadLinks methods (both
   deprecated in 1.24) were removed.
+* wfMemcKey() and wfGlobalCacheKey() were deprecated. ObjectCache::makeKey() and
+  ObjectCache::makeGlobalKey() should be used instead.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
