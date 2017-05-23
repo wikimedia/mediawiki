@@ -1276,7 +1276,7 @@ function wfIncrStats( $key, $count = 1 ) {
  * @return bool
  */
 function wfReadOnly() {
-	return \MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()
+	return MediaWikiServices::getInstance()->getReadOnlyMode()
 		->isReadOnly();
 }
 
@@ -1289,7 +1289,7 @@ function wfReadOnly() {
  * @return string|bool String when in read-only mode; false otherwise
  */
 function wfReadOnlyReason() {
-	return \MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()
+	return MediaWikiServices::getInstance()->getReadOnlyMode()
 		->getReason();
 }
 
@@ -1300,7 +1300,7 @@ function wfReadOnlyReason() {
  * @since 1.27
  */
 function wfConfiguredReadOnlyReason() {
-	return \MediaWiki\MediaWikiServices::getInstance()->getConfiguredReadOnlyMode()
+	return MediaWikiServices::getInstance()->getConfiguredReadOnlyMode()
 		->getReason();
 }
 
@@ -3079,9 +3079,9 @@ function wfGetDB( $db, $groups = [], $wiki = false ) {
  */
 function wfGetLB( $wiki = false ) {
 	if ( $wiki === false ) {
-		return \MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancer();
+		return MediaWikiServices::getInstance()->getDBLoadBalancer();
 	} else {
-		$factory = \MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		return $factory->getMainLB( $wiki );
 	}
 }
@@ -3094,7 +3094,7 @@ function wfGetLB( $wiki = false ) {
  * @return \Wikimedia\Rdbms\LBFactory
  */
 function wfGetLBFactory() {
-	return \MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+	return MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 }
 
 /**
