@@ -62,34 +62,41 @@ class RefreshFileHeaders extends Maintenance {
 				$res->rewind();
 			}
 
+			$backendOperations = [];
+
 			foreach ( $res as $row ) {
 				$file = $repo->newFileFromRow( $row );
 				$headers = $file->getContentHeaders();
 				if ( count( $headers ) ) {
-					$this->updateFileHeaders( $file, $headers );
+					$backendOperations[] = [ 'op' => 'describe', 'src' => $file->getPath(), 'headers' => $headers ];
 				}
 				// Do all of the older file versions...
 				foreach ( $file->getHistory() as $oldFile ) {
 					$headers = $oldFile->getContentHeaders();
 					if ( count( $headers ) ) {
-						$this->updateFileHeaders( $oldFile, $headers );
+						$backendOperations[] = [ 'op' => 'describe', 'src' => $file->getPath(), 'headers' => $headers ];
 					}
 				}
 				if ( $this->hasOption( 'verbose' ) ) {
-					$this->output( "Updated headers for file '{$row->img_name}'.\n" );
+					$this->output( "Queue headers update for file '{$row->img_name}'.\n" );
 				}
-				++$count;
+
 				$start = $row->img_name; // advance
 			}
+
+			$backendOperationsCount = count( $backendOperations );
+			$count += $backendOperationsCount;
+
+			$this->output( "Update headers for {$backendOperationsCount} file(s).\n" );
+			$this->updateFileHeaders( $repo, $backendOperations );
 		} while ( $res->numRows() === $this->mBatchSize );
 
 		$this->output( "Done. Updated headers for $count file(s).\n" );
 	}
 
-	protected function updateFileHeaders( File $file, array $headers ) {
-		$status = $file->getRepo()->getBackend()->describe( [
-			'src' => $file->getPath(), 'headers' => $headers
-		] );
+	protected function updateFileHeaders( $repo, $backendOperations ) {
+		$status = $repo->getBackend()->doQuickOperations( $backendOperations );
+
 		if ( !$status->isGood() ) {
 			$this->error( "Encountered error: " . print_r( $status, true ) );
 		}
