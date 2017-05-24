@@ -725,7 +725,7 @@ class Language {
 	}
 
 	/**
-	 * @return array
+	 * @return string[]|bool List of date format preference keys, or false if disabled.
 	 */
 	public function getDatePreferences() {
 		return self::$dataCache->getItem( $this->mCode, 'datePreferences' );
