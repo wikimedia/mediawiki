@@ -137,7 +137,7 @@ class ExtensionRegistry {
 			$cache = new EmptyBagOStuff();
 		}
 		// See if this queue is in APC
-		$key = wfMemcKey(
+		$key = $cache->makeKey(
 			'registration',
 			md5( json_encode( $this->queued + $versions ) )
 		);
