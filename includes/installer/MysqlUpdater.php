@@ -301,6 +301,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropIndex', 'user_groups', 'ug_user_group', 'patch-user_groups-primary-key.sql' ],
 			[ 'addField', 'user_groups', 'ug_expiry', 'patch-user_groups-ug_expiry.sql' ],
 			[ 'addIndex', 'image', 'img_user_timestamp', 'patch-image-user-index-2.sql' ],
+			[ 'doPPSortKeyPopulation' ],
 		];
 	}
 
@@ -1007,6 +1008,23 @@ class MysqlUpdater extends DatabaseUpdater {
 			false,
 			'Making pl_namespace, tl_namespace and il_to indices non-UNIQUE'
 		);
+	}
+
+	protected function doPPSortKeyPopulation() {
+		if ( $this->updateRowExists( 'pp_sortkey' ) ) {
+			$this->output( "...pp_sortkey in page_props table already populated.\n" );
+			return;
+		}
+
+		$this->output(
+			"Populating pp_sortkey in page_props table, printing progress markers. " .
+			"For large databases, you\n" .
+			"may want to hit Ctrl-C and do this manually with maintenance/\n" .
+			"populatePPSortKey.php.\n"
+		);
+		$task = $this->maintenance->runChild( 'PopulatePPSortKey' );
+		$task->execute();
+		$this->output( "Done populating pp_sortkey in page_props table.\n" );
 	}
 
 	protected function doUpdateMimeMinorField() {
