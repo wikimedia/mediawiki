@@ -80,7 +80,7 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 			[ 'Something invalid!', PNGHandler::METADATA_BAD ],
 			// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
 			[
-				'a:8:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:8;s:9:"colorType";s:10:"truecolour";s:5:"width";i:50;s:6:"height";i:50;s:8:"metadata";a:1:{s:15:"_MW_PNG_VERSION";i:1;}}',
+				'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:8;s:9:"colorType";s:10:"truecolour";s:8:"metadata";a:1:{s:15:"_MW_PNG_VERSION";i:1;}}',
 				PNGHandler::METADATA_GOOD
 			],
 			// @codingStandardsIgnoreEnd
@@ -105,11 +105,11 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 			// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
 			[
 				'rgb-na-png.png',
-				'a:8:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:8;s:9:"colorType";s:10:"truecolour";s:5:"width";i:50;s:6:"height";i:50;s:8:"metadata";a:1:{s:15:"_MW_PNG_VERSION";i:1;}}'
+				'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:8;s:9:"colorType";s:10:"truecolour";s:8:"metadata";a:1:{s:15:"_MW_PNG_VERSION";i:1;}}'
 			],
 			[
 				'xmp.png',
-				'a:8:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:1;s:9:"colorType";s:14:"index-coloured";s:5:"width";i:50;s:6:"height";i:50;s:8:"metadata";a:2:{s:12:"SerialNumber";s:9:"123456789";s:15:"_MW_PNG_VERSION";i:1;}}'
+				'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:1;s:9:"colorType";s:14:"index-coloured";s:8:"metadata";a:2:{s:12:"SerialNumber";s:9:"123456789";s:15:"_MW_PNG_VERSION";i:1;}}'
 			],
 			// @codingStandardsIgnoreEnd
 		];
