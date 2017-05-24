@@ -146,7 +146,17 @@ class MWException extends Exception {
 	}
 
 	/**
+	 * Return the HTTP status code appropriate for this exception.
+	 *
+	 * @return int
+	 */
+	public function getStatusCode() {
+		return 500;
+	}
+
+	/**
 	 * Output the exception report using HTML.
+	 * @deprecated since 1.30, create an ExceptionRenderer instead
 	 */
 	public function reportHTML() {
 		global $wgOut, $wgSitename;
@@ -176,38 +186,10 @@ class MWException extends Exception {
 	/**
 	 * Output a report about the exception and takes care of formatting.
 	 * It will be either HTML or plain text based on isCommandLine().
+	 * @deprecated since 1.30, create an ExceptionRenderer instead
 	 */
 	public function report() {
-		global $wgMimeType;
-
-		if ( defined( 'MW_API' ) ) {
-			// Unhandled API exception, we can't be sure that format printer is alive
-			self::header( 'MediaWiki-API-Error: internal_api_error_' . static::class );
-			wfHttpError( 500, 'Internal Server Error', $this->getText() );
-		} elseif ( self::isCommandLine() ) {
-			$message = $this->getText();
-			// T17602: STDERR may not be available
-			if ( defined( 'STDERR' ) ) {
-				fwrite( STDERR, $message );
-			} else {
-				echo $message;
-			}
-		} else {
-			self::statusHeader( 500 );
-			self::header( "Content-Type: $wgMimeType; charset=utf-8" );
-
-			$this->reportHTML();
-		}
-	}
-
-	/**
-	 * Check whether we are in command line mode or not to report the exception
-	 * in the correct format.
-	 *
-	 * @return bool
-	 */
-	public static function isCommandLine() {
-		return !empty( $GLOBALS['wgCommandLineMode'] );
+		$this->reportHTML();
 	}
 
 	/**
@@ -218,11 +200,6 @@ class MWException extends Exception {
 	private static function header( $header ) {
 		if ( !headers_sent() ) {
 			header( $header );
-		}
-	}
-	private static function statusHeader( $code ) {
-		if ( !headers_sent() ) {
-			HttpStatus::header( $code );
 		}
 	}
 }
