@@ -149,7 +149,12 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		$this->debugLog( "set($key)" );
-		return $this->checkResult( $key, parent::set( $key, $value, $exptime ) );
+		$result = parent::set( $key, $value, $exptime );
+		if ( $result === false && $this->client->getResultCode() === Memcached::RES_NOTSTORED ) {
+			// "Not stored" is always used as the mcrouter response with AllAsyncRoute
+			return true;
+		}
+		return $this->checkResult( $key, $result );
 	}
 
 	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
@@ -163,9 +168,8 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		if ( $result === false && $this->client->getResultCode() === Memcached::RES_NOTFOUND ) {
 			// "Not found" is counted as success in our interface
 			return true;
-		} else {
-			return $this->checkResult( $key, $result );
 		}
+		return $this->checkResult( $key, $result );
 	}
 
 	public function add( $key, $value, $exptime = 0 ) {
