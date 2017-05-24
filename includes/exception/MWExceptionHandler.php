@@ -68,14 +68,7 @@ class MWExceptionHandler {
 		$renderer = MediaWikiServices::getInstance()->getExceptionRenderer();
 		try {
 			// Try and show the exception prettily, with the normal skin infrastructure
-			if ( $e instanceof MWException ) {
-				// Delegate to MWException until all subclasses are handled by
-				// MWExceptionRenderer and MWException::report() has been
-				// removed.
-				$e->report();
-			} else {
-				$renderer->output( $e, Renderer::AS_PRETTY );
-			}
+			$renderer->output( $e, Renderer::AS_PRETTY );
 		} catch ( Exception $e2 ) {
 			// Exception occurred from within exception handler
 			// Show a simpler message for the original exception,

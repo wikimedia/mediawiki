@@ -76,25 +76,6 @@ class MWExceptionTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideIsCommandLine
-	 * @covers MWException::isCommandLine
-	 */
-	public function testisCommandLine( $expected, $wgCommandLineMode ) {
-		$this->setMwGlobals( [
-			'wgCommandLineMode' => $wgCommandLineMode,
-		] );
-		$e = new MWException();
-		$this->assertEquals( $expected, $e->isCommandLine() );
-	}
-
-	public static function provideIsCommandLine() {
-		return [
-			[ false, null ],
-			[ true, true ],
-		];
-	}
-
-	/**
 	 * Verify the exception classes are JSON serializabe.
 	 *
 	 * @covers MWExceptionHandler::jsonSerializeException

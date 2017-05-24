@@ -26,9 +26,7 @@
  */
 class BadRequestError extends ErrorPageError {
 
-	public function report() {
-		global $wgOut;
-		$wgOut->setStatusCode( 400 );
-		parent::report();
+	public function getStatusCode() {
+		return 400;
 	}
 }

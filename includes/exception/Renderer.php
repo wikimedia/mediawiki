@@ -95,6 +95,19 @@ abstract class Renderer {
 	}
 
 	/**
+	 * Return the HTTP status code appropriate for this exception.
+	 * @param Exception|Throwable $e
+	 * @return int
+	 */
+	protected function getStatusCode( $e ) {
+		if ( $e instanceof MWException ) {
+			return $e->getStatusCode();
+		} else {
+			return 500;
+		}
+	}
+
+	/**
 	 * Add a status header, but only if it is safe to do.
 	 * @param int $code
 	 */
