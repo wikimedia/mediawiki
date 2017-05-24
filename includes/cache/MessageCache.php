@@ -217,10 +217,11 @@ class MessageCache {
 	 * Try to load the cache from APC.
 	 *
 	 * @param string $code Optional language code, see documenation of load().
+	 * @param WANObjectCache $wanCache
 	 * @return array|bool The cache array, or false if not in cache.
 	 */
-	protected function getLocalCache( $code ) {
-		$cacheKey = wfMemcKey( __CLASS__, $code );
+	protected function getLocalCache( $code, WANObjectCache $wanCache ) {
+		$cacheKey = $wanCache->makeKey( __CLASS__, $code );
 
 		return $this->srvCache->get( $cacheKey );
 	}
@@ -230,9 +231,10 @@ class MessageCache {
 	 *
 	 * @param string $code
 	 * @param array $cache The cache array
+	 * @param WANObjectCache $wanCache
 	 */
-	protected function saveToLocalCache( $code, $cache ) {
-		$cacheKey = wfMemcKey( __CLASS__, $code );
+	protected function saveToLocalCache( $code, $cache, WANObjectCache $wanCache ) {
+		$cacheKey = $wanCache->makeKey( __CLASS__, $code );
 		$this->srvCache->set( $cacheKey, $cache );
 	}
 
@@ -285,11 +287,11 @@ class MessageCache {
 
 		# Hash of the contents is stored in memcache, to detect if data-center cache
 		# or local cache goes out of date (e.g. due to replace() on some other server)
-		list( $hash, $hashVolatile ) = $this->getValidationHash( $code );
+		list( $hash, $hashVolatile ) = $this->getValidationHash( $code, $this->wanCache );
 		$this->mCacheVolatile[$code] = $hashVolatile;
 
 		# Try the local cache and check against the cluster hash key...
-		$cache = $this->getLocalCache( $code );
+		$cache = $this->getLocalCache( $code, $this->wanCache );
 		if ( !$cache ) {
 			$where[] = 'local cache is empty';
 		} elseif ( !isset( $cache['HASH'] ) || $cache['HASH'] !== $hash ) {
@@ -308,7 +310,7 @@ class MessageCache {
 		}
 
 		if ( !$success ) {
-			$cacheKey = wfMemcKey( 'messages', $code ); # Key in memc for messages
+			$cacheKey = $this->wanCache->makeKey( 'messages', $code ); # Key in memc for messages
 			# Try the global cache. If it is empty, try to acquire a lock. If
 			# the lock can't be acquired, wait for the other thread to finish
 			# and then try the global cache a second time.
@@ -334,7 +336,7 @@ class MessageCache {
 					} else {
 						$where[] = 'got from global cache';
 						$this->mCache[$code] = $cache;
-						$this->saveToCaches( $cache, 'local-only', $code );
+						$this->saveToCaches( $cache, 'local-only', $code, $this->wanCache );
 						$success = true;
 					}
 				}
@@ -347,7 +349,7 @@ class MessageCache {
 				# We need to call loadFromDB. Limit the concurrency to one process.
 				# This prevents the site from going down when the cache expires.
 				# Note that the DB slam protection lock here is non-blocking.
-				$loadStatus = $this->loadFromDBWithLock( $code, $where, $mode );
+				$loadStatus = $this->loadFromDBWithLock( $code, $where, $mode, $this->wanCache );
 				if ( $loadStatus === true ) {
 					$success = true;
 					break;
@@ -397,12 +399,14 @@ class MessageCache {
 	 * @param string $code
 	 * @param array $where List of wfDebug() comments
 	 * @param integer $mode Use MessageCache::FOR_UPDATE to use DB_MASTER
+	 * @param WANObjectCache $wanCache
 	 * @return bool|string True on success or one of ("cantacquire", "disabled")
 	 */
-	protected function loadFromDBWithLock( $code, array &$where, $mode = null ) {
+	protected function loadFromDBWithLock( $code, array &$where,
+										   $mode = null, WANObjectCache $wanCache ) {
 		# If cache updates on all levels fail, give up on message overrides.
 		# This is to avoid easy site outages; see $saveSuccess comments below.
-		$statusKey = wfMemcKey( 'messages', $code, 'status' );
+		$statusKey = $wanCache->makeKey( 'messages', $code, 'status' );
 		$status = $this->clusterCache->get( $statusKey );
 		if ( $status === 'error' ) {
 			$where[] = "could not load; method is still globally disabled";
@@ -416,7 +420,7 @@ class MessageCache {
 		# This lock is non-blocking so stale cache can quickly be used.
 		# Note that load() will call a blocking getReentrantScopedLock()
 		# after this if it really need to wait for any current thread.
-		$cacheKey = wfMemcKey( 'messages', $code );
+		$cacheKey = $wanCache->makeKey( 'messages', $code );
 		$scopedLock = $this->getReentrantScopedLock( $cacheKey, 0 );
 		if ( !$scopedLock ) {
 			$where[] = 'could not acquire main lock';
@@ -425,7 +429,7 @@ class MessageCache {
 
 		$cache = $this->loadFromDB( $code, $mode );
 		$this->mCache[$code] = $cache;
-		$saveSuccess = $this->saveToCaches( $cache, 'all', $code );
+		$saveSuccess = $this->saveToCaches( $cache, 'all', $code, $this->wanCache );
 
 		if ( !$saveSuccess ) {
 			/**
@@ -596,7 +600,7 @@ class MessageCache {
 			function () use ( $title, $msg, $code ) {
 				global $wgContLang, $wgMaxMsgCacheEntrySize;
 				// Allow one caller at a time to avoid race conditions
-				$scopedLock = $this->getReentrantScopedLock( wfMemcKey( 'messages', $code ) );
+				$scopedLock = $this->getReentrantScopedLock( $this->wanCache->makeKey( 'messages', $code ) );
 				if ( !$scopedLock ) {
 					LoggerFactory::getInstance( 'MessageCache' )->error(
 						__METHOD__ . ': could not acquire lock to update {title} ({code})',
@@ -612,7 +616,7 @@ class MessageCache {
 				$text = $this->getMessageTextFromContent( $page->getContent() );
 				// Check if an individual cache key should exist and update cache accordingly
 				if ( is_string( $text ) && strlen( $text ) > $wgMaxMsgCacheEntrySize ) {
-					$titleKey = $this->bigMessageCacheKey( $this->mCache[$code]['HASH'], $title );
+					$titleKey = $this->bigMessageCacheKey( $this->mCache[$code]['HASH'], $title, $this->wanCache );
 					$this->wanCache->set( $titleKey, ' ' . $text, $this->mExpiry );
 				}
 				// Mark this cache as definitely being "latest" (non-volatile) so
@@ -622,13 +626,13 @@ class MessageCache {
 				// blacklist changes are reflect immediately, as these often use MediaWiki: pages.
 				// The datacenter handling replace() calls should be the same one handling edits
 				// as they require HTTP POST.
-				$this->saveToCaches( $this->mCache[$code], 'all', $code );
+				$this->saveToCaches( $this->mCache[$code], 'all', $code, $this->wanCache );
 				// Release the lock now that the cache is saved
 				ScopedCallback::consume( $scopedLock );
 
 				// Relay the purge. Touching this check key expires cache contents
 				// and local cache (APC) validation hash across all datacenters.
-				$this->wanCache->touchCheckKey( wfMemcKey( 'messages', $code ) );
+				$this->wanCache->touchCheckKey( $this->wanCache->makeKey( 'messages', $code ) );
 				// Also delete cached sidebar... just in case it is affected
 				// @TODO: shouldn't this be $code === $wgLanguageCode?
 				if ( $code === 'en' ) {
@@ -639,7 +643,7 @@ class MessageCache {
 					$codes = [ $code ];
 				}
 				foreach ( $codes as $code ) {
-					$this->wanCache->delete( wfMemcKey( 'sidebar', $code ) );
+					$this->wanCache->delete( $this->wanCache->makeKey( 'sidebar', $code ) );
 				}
 
 				// Purge the message in the message blob store
@@ -680,18 +684,19 @@ class MessageCache {
 	 * @param string $dest Either "local-only" to save to local caches only
 	 *   or "all" to save to all caches.
 	 * @param string|bool $code Language code (default: false)
+	 * @param WANObjectCache $wanCache
 	 * @return bool
 	 */
-	protected function saveToCaches( array $cache, $dest, $code = false ) {
+	protected function saveToCaches( array $cache, $dest, $code = false, WANObjectCache $wanCache ) {
 		if ( $dest === 'all' ) {
-			$cacheKey = wfMemcKey( 'messages', $code );
+			$cacheKey = $wanCache->makeKey( 'messages', $code );
 			$success = $this->clusterCache->set( $cacheKey, $cache );
-			$this->setValidationHash( $code, $cache );
+			$this->setValidationHash( $code, $cache, $wanCache );
 		} else {
 			$success = true;
 		}
 
-		$this->saveToLocalCache( $code, $cache );
+		$this->saveToLocalCache( $code, $cache, $wanCache );
 
 		return $success;
 	}
@@ -700,14 +705,15 @@ class MessageCache {
 	 * Get the md5 used to validate the local APC cache
 	 *
 	 * @param string $code
+	 * @param WANObjectCache $wanCache
 	 * @return array (hash or false, bool expiry/volatility status)
 	 */
-	protected function getValidationHash( $code ) {
+	protected function getValidationHash( $code, WANObjectCache $wanCache ) {
 		$curTTL = null;
-		$value = $this->wanCache->get(
-			$this->wanCache->makeKey( 'messages', $code, 'hash', 'v1' ),
+		$value = $wanCache->get(
+			$wanCache->makeKey( 'messages', $code, 'hash', 'v1' ),
 			$curTTL,
-			[ wfMemcKey( 'messages', $code ) ]
+			[ $wanCache->makeKey( 'messages', $code ) ]
 		);
 
 		if ( $value ) {
@@ -739,10 +745,11 @@ class MessageCache {
 	 *
 	 * @param string $code
 	 * @param array $cache Cached messages with a version
+	 * @param WANObjectCache $wanCache
 	 */
-	protected function setValidationHash( $code, array $cache ) {
-		$this->wanCache->set(
-			$this->wanCache->makeKey( 'messages', $code, 'hash', 'v1' ),
+	protected function setValidationHash( $code, array $cache, WANObjectCache $wanCache ) {
+		$wanCache->set(
+			$wanCache->makeKey( 'messages', $code, 'hash', 'v1' ),
 			[
 				'hash' => $cache['HASH'],
 				'latest' => isset( $cache['LATEST'] ) ? $cache['LATEST'] : 0
@@ -1010,7 +1017,7 @@ class MessageCache {
 		}
 
 		// Individual message cache key
-		$titleKey = $this->bigMessageCacheKey( $this->mCache[$code]['HASH'], $title );
+		$titleKey = $this->bigMessageCacheKey( $this->mCache[$code]['HASH'], $title, $this->wanCache );
 
 		if ( $this->mCacheVolatile[$code] ) {
 			$entry = false;
@@ -1212,7 +1219,7 @@ class MessageCache {
 		$langs = Language::fetchLanguageNames( null, 'mw' );
 		foreach ( array_keys( $langs ) as $code ) {
 			# Global and local caches
-			$this->wanCache->touchCheckKey( wfMemcKey( 'messages', $code ) );
+			$this->wanCache->touchCheckKey( $this->wanCache->makeKey( 'messages', $code ) );
 		}
 
 		$this->mLoadedLanguages = [];
@@ -1321,9 +1328,10 @@ class MessageCache {
 	/**
 	 * @param string $hash Hash for this version of the entire key/value overrides map
 	 * @param string $title Message cache key with initial uppercase letter
+	 * @param WANObjectCache $wanCache
 	 * @return string
 	 */
-	private function bigMessageCacheKey( $hash, $title ) {
-		return $this->wanCache->makeKey( 'messages-big', $hash, $title );
+	private function bigMessageCacheKey( $hash, $title, WANObjectCache $wanCache ) {
+		return $wanCache->makeKey( 'messages-big', $hash, $title );
 	}
 }
