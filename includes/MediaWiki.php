@@ -545,7 +545,6 @@ class MediaWiki {
 					print MWExceptionRenderer::getHTML( $e );
 					exit;
 				}
-
 			}
 
 			MWExceptionHandler::handleException( $e );
@@ -720,21 +719,28 @@ class MediaWiki {
 	 * @since 1.26
 	 */
 	public function doPostOutputShutdown( $mode = 'normal' ) {
-		$timing = $this->context->getTiming();
-		$timing->mark( 'requestShutdown' );
+		// Perform the last synchronous operations...
+		try {
+			// Record backend request timing
+			$timing = $this->context->getTiming();
+			$timing->mark( 'requestShutdown' );
+			// Show visible profiling data if enabled (which cannot be post-send)
+			Profiler::instance()->logDataPageOutputOnly();
+		} catch ( Exception $e ) {
+			// An error may already have been shown in run(), so just log it to be safe
+			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+		}
 
-		// Show visible profiling data if enabled (which cannot be post-send)
-		Profiler::instance()->logDataPageOutputOnly();
-
+		// Defer everything else if possible...
 		$callback = function () use ( $mode ) {
 			try {
 				$this->restInPeace( $mode );
 			} catch ( Exception $e ) {
-				MWExceptionHandler::handleException( $e );
+				// If this is post-send, then displaying errors can cause broken HTML
+				MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 			}
 		};
 
-		// Defer everything else...
 		if ( function_exists( 'register_postsend_function' ) ) {
 			// https://github.com/facebook/hhvm/issues/1230
 			register_postsend_function( $callback );
