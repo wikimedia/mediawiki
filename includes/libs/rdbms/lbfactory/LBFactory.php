@@ -577,3 +577,5 @@ abstract class LBFactory implements ILBFactory {
 		$this->destroy();
 	}
 }
+
+class_alias( LBFactory::class, 'LBFactory' );
