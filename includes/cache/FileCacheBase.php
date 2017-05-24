@@ -21,6 +21,8 @@
  * @ingroup Cache
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Base class for data storage in the file system.
  *
@@ -242,7 +244,13 @@ abstract class FileCacheBase {
 				: IP::sanitizeRange( "$ip/16" );
 
 			# Bail out if a request already came from this range...
-			$key = wfMemcKey( static::class, 'attempt', $this->mType, $this->mKey, $ip );
+			$key = MediaWikiServices::getInstance()->getMainWANObjectCache()->makeKey(
+				static::class,
+				'attempt',
+				$this->mType,
+				$this->mKey,
+				$ip
+			);
 			if ( $cache->get( $key ) ) {
 				return; // possibly the same user
 			}
@@ -272,6 +280,11 @@ abstract class FileCacheBase {
 	 * @return string
 	 */
 	protected function cacheMissKey() {
-		return wfMemcKey( static::class, 'misses', $this->mType, $this->mKey );
+		return MediaWikiServices::getInstance()->getMainWANObjectCache()->makeKey(
+			static::class,
+			'misses',
+			$this->mType,
+			$this->mKey
+		);
 	}
 }
