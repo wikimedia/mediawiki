@@ -128,8 +128,6 @@ class MWExceptionHandler {
 	public static function handleException( $e ) {
 		self::rollbackMasterChangesAndLog( $e );
 		self::report( $e );
-		// Exit value should be nonzero for the benefit of shell jobs
-		exit( 1 );
 	}
 
 	/**
