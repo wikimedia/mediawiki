@@ -220,7 +220,7 @@ class MessageCache {
 	 * @return array|bool The cache array, or false if not in cache.
 	 */
 	protected function getLocalCache( $code ) {
-		$cacheKey = wfMemcKey( __CLASS__, $code );
+		$cacheKey = $this->srvCache->makeKey( __CLASS__, $code );
 
 		return $this->srvCache->get( $cacheKey );
 	}
@@ -232,7 +232,7 @@ class MessageCache {
 	 * @param array $cache The cache array
 	 */
 	protected function saveToLocalCache( $code, $cache ) {
-		$cacheKey = wfMemcKey( __CLASS__, $code );
+		$cacheKey = $this->srvCache->makeKey( __CLASS__, $code );
 		$this->srvCache->set( $cacheKey, $cache );
 	}
 
@@ -308,7 +308,7 @@ class MessageCache {
 		}
 
 		if ( !$success ) {
-			$cacheKey = wfMemcKey( 'messages', $code ); # Key in memc for messages
+			$cacheKey = $this->clusterCache->makeKey( 'messages', $code ); # Key in memc for messages
 			# Try the global cache. If it is empty, try to acquire a lock. If
 			# the lock can't be acquired, wait for the other thread to finish
 			# and then try the global cache a second time.
@@ -402,7 +402,7 @@ class MessageCache {
 	protected function loadFromDBWithLock( $code, array &$where, $mode = null ) {
 		# If cache updates on all levels fail, give up on message overrides.
 		# This is to avoid easy site outages; see $saveSuccess comments below.
-		$statusKey = wfMemcKey( 'messages', $code, 'status' );
+		$statusKey = $this->clusterCache->makeKey( 'messages', $code, 'status' );
 		$status = $this->clusterCache->get( $statusKey );
 		if ( $status === 'error' ) {
 			$where[] = "could not load; method is still globally disabled";
@@ -416,7 +416,7 @@ class MessageCache {
 		# This lock is non-blocking so stale cache can quickly be used.
 		# Note that load() will call a blocking getReentrantScopedLock()
 		# after this if it really need to wait for any current thread.
-		$cacheKey = wfMemcKey( 'messages', $code );
+		$cacheKey = $this->clusterCache->makeKey( 'messages', $code );
 		$scopedLock = $this->getReentrantScopedLock( $cacheKey, 0 );
 		if ( !$scopedLock ) {
 			$where[] = 'could not acquire main lock';
@@ -596,7 +596,9 @@ class MessageCache {
 			function () use ( $title, $msg, $code ) {
 				global $wgContLang, $wgMaxMsgCacheEntrySize;
 				// Allow one caller at a time to avoid race conditions
-				$scopedLock = $this->getReentrantScopedLock( wfMemcKey( 'messages', $code ) );
+				$scopedLock = $this->getReentrantScopedLock(
+					$this->clusterCache->makeKey( 'messages', $code )
+				);
 				if ( !$scopedLock ) {
 					LoggerFactory::getInstance( 'MessageCache' )->error(
 						__METHOD__ . ': could not acquire lock to update {title} ({code})',
@@ -628,7 +630,7 @@ class MessageCache {
 
 				// Relay the purge. Touching this check key expires cache contents
 				// and local cache (APC) validation hash across all datacenters.
-				$this->wanCache->touchCheckKey( wfMemcKey( 'messages', $code ) );
+				$this->wanCache->touchCheckKey( $this->wanCache->makeKey( 'messages', $code ) );
 				// Also delete cached sidebar... just in case it is affected
 				// @TODO: shouldn't this be $code === $wgLanguageCode?
 				if ( $code === 'en' ) {
@@ -639,7 +641,7 @@ class MessageCache {
 					$codes = [ $code ];
 				}
 				foreach ( $codes as $code ) {
-					$this->wanCache->delete( wfMemcKey( 'sidebar', $code ) );
+					$this->wanCache->delete( $this->wanCache->makeKey( 'sidebar', $code ) );
 				}
 
 				// Purge the message in the message blob store
@@ -684,7 +686,7 @@ class MessageCache {
 	 */
 	protected function saveToCaches( array $cache, $dest, $code = false ) {
 		if ( $dest === 'all' ) {
-			$cacheKey = wfMemcKey( 'messages', $code );
+			$cacheKey = $this->clusterCache->makeKey( 'messages', $code );
 			$success = $this->clusterCache->set( $cacheKey, $cache );
 			$this->setValidationHash( $code, $cache );
 		} else {
@@ -707,7 +709,7 @@ class MessageCache {
 		$value = $this->wanCache->get(
 			$this->wanCache->makeKey( 'messages', $code, 'hash', 'v1' ),
 			$curTTL,
-			[ wfMemcKey( 'messages', $code ) ]
+			[ $this->wanCache->makeKey( 'messages', $code ) ]
 		);
 
 		if ( $value ) {
@@ -1212,7 +1214,7 @@ class MessageCache {
 		$langs = Language::fetchLanguageNames( null, 'mw' );
 		foreach ( array_keys( $langs ) as $code ) {
 			# Global and local caches
-			$this->wanCache->touchCheckKey( wfMemcKey( 'messages', $code ) );
+			$this->wanCache->touchCheckKey( $this->wanCache->makeKey( 'messages', $code ) );
 		}
 
 		$this->mLoadedLanguages = [];
