@@ -21,6 +21,7 @@
  * @ingroup Change tagging
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\Database;
 
 class ChangeTags {
@@ -1177,8 +1178,9 @@ class ChangeTags {
 		if ( !Hooks::isRegistered( 'ChangeTagsListActive' ) ) {
 			return $tags;
 		}
-		return ObjectCache::getMainWANInstance()->getWithSetCallback(
-			wfMemcKey( 'active-tags' ),
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		return $cache->getWithSetCallback(
+			$cache->makeKey( 'active-tags' ),
 			WANObjectCache::TTL_MINUTE * 5,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags ) {
 				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
@@ -1188,7 +1190,7 @@ class ChangeTags {
 				return $tags;
 			},
 			[
-				'checkKeys' => [ wfMemcKey( 'active-tags' ) ],
+				'checkKeys' => [ $cache->makeKey( 'active-tags' ) ],
 				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
 				'pcTTL' => WANObjectCache::TTL_PROC_LONG
 			]
@@ -1231,8 +1233,9 @@ class ChangeTags {
 	public static function listExplicitlyDefinedTags() {
 		$fname = __METHOD__;
 
-		return ObjectCache::getMainWANInstance()->getWithSetCallback(
-			wfMemcKey( 'valid-tags-db' ),
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		return $cache->getWithSetCallback(
+			$cache->makeKey( 'valid-tags-db' ),
 			WANObjectCache::TTL_MINUTE * 5,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
 				$dbr = wfGetDB( DB_REPLICA );
@@ -1244,7 +1247,7 @@ class ChangeTags {
 				return array_filter( array_unique( $tags ) );
 			},
 			[
-				'checkKeys' => [ wfMemcKey( 'valid-tags-db' ) ],
+				'checkKeys' => [ $cache->makeKey( 'valid-tags-db' ) ],
 				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
 				'pcTTL' => WANObjectCache::TTL_PROC_LONG
 			]
@@ -1266,8 +1269,9 @@ class ChangeTags {
 		if ( !Hooks::isRegistered( 'ListDefinedTags' ) ) {
 			return $tags;
 		}
-		return ObjectCache::getMainWANInstance()->getWithSetCallback(
-			wfMemcKey( 'valid-tags-hook' ),
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		return $cache->getWithSetCallback(
+			$cache->makeKey( 'valid-tags-hook' ),
 			WANObjectCache::TTL_MINUTE * 5,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags ) {
 				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
@@ -1276,7 +1280,7 @@ class ChangeTags {
 				return array_filter( array_unique( $tags ) );
 			},
 			[
-				'checkKeys' => [ wfMemcKey( 'valid-tags-hook' ) ],
+				'checkKeys' => [ $cache->makeKey( 'valid-tags-hook' ) ],
 				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
 				'pcTTL' => WANObjectCache::TTL_PROC_LONG
 			]
@@ -1300,11 +1304,11 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function purgeTagCacheAll() {
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 
-		$cache->touchCheckKey( wfMemcKey( 'active-tags' ) );
-		$cache->touchCheckKey( wfMemcKey( 'valid-tags-db' ) );
-		$cache->touchCheckKey( wfMemcKey( 'valid-tags-hook' ) );
+		$cache->touchCheckKey( $cache->makeKey( 'active-tags' ) );
+		$cache->touchCheckKey( $cache->makeKey( 'valid-tags-db' ) );
+		$cache->touchCheckKey( $cache->makeKey( 'valid-tags-hook' ) );
 
 		self::purgeTagUsageCache();
 	}
@@ -1314,9 +1318,9 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function purgeTagUsageCache() {
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 
-		$cache->touchCheckKey( wfMemcKey( 'change-tag-statistics' ) );
+		$cache->touchCheckKey( $cache->makeKey( 'change-tag-statistics' ) );
 	}
 
 	/**
@@ -1331,8 +1335,9 @@ class ChangeTags {
 	 */
 	public static function tagUsageStatistics() {
 		$fname = __METHOD__;
-		return ObjectCache::getMainWANInstance()->getWithSetCallback(
-			wfMemcKey( 'change-tag-statistics' ),
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		return $cache->getWithSetCallback(
+			$cache->makeKey( 'change-tag-statistics' ),
 			WANObjectCache::TTL_MINUTE * 5,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
 				$dbr = wfGetDB( DB_REPLICA, 'vslow' );
@@ -1355,7 +1360,7 @@ class ChangeTags {
 				return $out;
 			},
 			[
-				'checkKeys' => [ wfMemcKey( 'change-tag-statistics' ) ],
+				'checkKeys' => [ $cache->makeKey( 'change-tag-statistics' ) ],
 				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
 				'pcTTL' => WANObjectCache::TTL_PROC_LONG
 			]
