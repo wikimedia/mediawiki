@@ -24,6 +24,7 @@ namespace MediaWiki\Exception;
 use Exception;
 use Html;
 use MessageCache;
+use MWException;
 use MWExceptionHandler;
 use Throwable;
 use WebRequest;
@@ -43,6 +44,10 @@ class StandardRenderer extends Renderer {
 	 * to show that information.
 	 */
 	public function getHTML( $e ) {
+		if ( $e instanceof MWException ) {
+			return $e->getHTML();
+		}
+
 		if ( $this->showBackTrace( $e ) ) {
 			$html = "<div class=\"errorbox mw-content-ltr\"><p>" .
 					nl2br( htmlspecialchars( MWExceptionHandler::getLogMessage( $e ) ) ) .
@@ -70,7 +75,9 @@ class StandardRenderer extends Renderer {
 	 * @inheritdoc
 	 */
 	public function getText( $e ) {
-		if ( $this->showBackTrace( $e ) ) {
+		if ( $e instanceof MWException ) {
+			return $e->getText();
+		} elseif ( $this->showBackTrace( $e ) ) {
 			return MWExceptionHandler::getLogMessage( $e ) .
 				   "\nBacktrace:\n" .
 				   MWExceptionHandler::getRedactedTraceAsString( $e ) . "\n";
@@ -86,7 +93,7 @@ class StandardRenderer extends Renderer {
 		global $wgMimeType;
 
 		if ( $mode === self::AS_PRETTY ) {
-			$this->statusHeader( 500 );
+			$this->statusHeader( $this->getStatusCode( $e ) );
 			if ( $e instanceof DBConnectionError ) {
 				$this->reportOutageHTML( $e );
 			} else {
@@ -130,6 +137,14 @@ class StandardRenderer extends Renderer {
 	 */
 	private function reportHTML( $e ) {
 		global $wgSitename;
+
+		if ( $e instanceof MWException ) {
+			// Delegate to MWException until all subclasses are handled by
+			// MWExceptionRenderer and MWException::report() has been
+			// removed.
+			$e->reportHTML();
+			return;
+		}
 
 		$outputPage = $this->getOutputPage( $e );
 		$pageTitle = $this->getErrorPageTitle( $e );
