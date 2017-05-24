@@ -1507,7 +1507,7 @@ abstract class Skin extends ContextSource {
 		}
 
 		// Use the extra hash appender to let eg SSL variants separately cache.
-		$key = wfMemcKey( $name . $wgRenderHashAppend );
+		$key = $parserMemc->makeKey( $name . $wgRenderHashAppend );
 		$cachedNotice = $parserMemc->get( $key );
 		if ( is_array( $cachedNotice ) ) {
 			if ( md5( $notice ) == $cachedNotice['hash'] ) {
