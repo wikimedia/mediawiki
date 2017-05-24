@@ -214,7 +214,7 @@ final class SessionManager implements SessionManagerInterface {
 		}
 
 		// Test if the session is in storage, and if so try to load it.
-		$key = wfMemcKey( 'MWSession', $id );
+		$key = $this->store->makeKey( 'MWSession', $id );
 		if ( is_array( $this->store->get( $key ) ) ) {
 			$create = false; // If loading fails, don't bother creating because it probably will fail too.
 			if ( $this->loadSessionInfoFromStore( $info, $request ) ) {
@@ -255,7 +255,7 @@ final class SessionManager implements SessionManagerInterface {
 				throw new \InvalidArgumentException( 'Invalid session ID' );
 			}
 
-			$key = wfMemcKey( 'MWSession', $id );
+			$key = $this->store->makeKey( 'MWSession', $id );
 			if ( is_array( $this->store->get( $key ) ) ) {
 				throw new \InvalidArgumentException( 'Session ID already exists' );
 			}
@@ -545,7 +545,7 @@ final class SessionManager implements SessionManagerInterface {
 	 * @return bool Whether the session info matches the stored data (if any)
 	 */
 	private function loadSessionInfoFromStore( SessionInfo &$info, WebRequest $request ) {
-		$key = wfMemcKey( 'MWSession', $info->getId() );
+		$key = $this->store->makeKey( 'MWSession', $info->getId() );
 		$blob = $this->store->get( $key );
 
 		// If we got data from the store and the SessionInfo says to force use,
@@ -934,7 +934,7 @@ final class SessionManager implements SessionManagerInterface {
 	public function generateSessionId() {
 		do {
 			$id = \Wikimedia\base_convert( \MWCryptRand::generateHex( 40 ), 16, 32, 32 );
-			$key = wfMemcKey( 'MWSession', $id );
+			$key = $this->store->makeKey( 'MWSession', $id );
 		} while ( isset( $this->allSessionIds[$id] ) || is_array( $this->store->get( $key ) ) );
 		return $id;
 	}

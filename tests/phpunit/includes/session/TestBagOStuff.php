@@ -61,7 +61,7 @@ class TestBagOStuff extends \CachedBagOStuff {
 			$expiry = \RequestContext::getMain()->getConfig()->get( 'ObjectCacheSessionExpiry' );
 		}
 
-		$this->set( wfMemcKey( 'MWSession', $id ), $blob, $expiry );
+		$this->set( $this->makeKey( 'MWSession', $id ), $blob, $expiry );
 	}
 
 	/**
@@ -69,7 +69,7 @@ class TestBagOStuff extends \CachedBagOStuff {
 	 * @return mixed
 	 */
 	public function getSession( $id ) {
-		return $this->get( wfMemcKey( 'MWSession', $id ) );
+		return $this->get( $this->makeKey( 'MWSession', $id ) );
 	}
 
 	/**
@@ -77,14 +77,14 @@ class TestBagOStuff extends \CachedBagOStuff {
 	 * @return mixed
 	 */
 	public function getSessionFromBackend( $id ) {
-		return $this->backend->get( wfMemcKey( 'MWSession', $id ) );
+		return $this->backend->get( $this->makeKey( 'MWSession', $id ) );
 	}
 
 	/**
 	 * @param string $id Session ID
 	 */
 	public function deleteSession( $id ) {
-		$this->delete( wfMemcKey( 'MWSession', $id ) );
+		$this->delete( $this->makeKey( 'MWSession', $id ) );
 	}
 
 }

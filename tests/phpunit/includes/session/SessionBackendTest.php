@@ -330,7 +330,9 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$backend->unpersist();
 		$this->assertFalse( $backend->isPersistent() );
 		$this->assertFalse( $this->store->getSession( self::SESSIONID ) );
-		$this->assertNotFalse( $wrap->store->get( wfMemcKey( 'MWSession', self::SESSIONID ) ) );
+		$this->assertNotFalse(
+			$wrap->store->get( $wrap->store->makeKey( 'MWSession', self::SESSIONID ) )
+		);
 	}
 
 	public function testRememberUser() {
