@@ -73,8 +73,9 @@ class InfoAction extends FormlessAction {
 			$revid = $revision ? $revision->getId() : null;
 		}
 		if ( $revid !== null ) {
-			$key = self::getCacheKey( $title, $revid );
-			ObjectCache::getMainWANInstance()->delete( $key );
+			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+			$key = self::getCacheKey( $cache, $title, $revid );
+			$cache->delete( $key );
 		}
 	}
 
@@ -690,9 +691,10 @@ class InfoAction extends FormlessAction {
 	protected function pageCounts( Page $page ) {
 		$fname = __METHOD__;
 		$config = $this->context->getConfig();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 
-		return ObjectCache::getMainWANInstance()->getWithSetCallback(
-			self::getCacheKey( $page->getTitle(), $page->getLatest() ),
+		return $cache->getWithSetCallback(
+			self::getCacheKey( $cache, $page->getTitle(), $page->getLatest() ),
 			WANObjectCache::TTL_WEEK,
 			function ( $oldValue, &$ttl, &$setOpts ) use ( $page, $config, $fname ) {
 				$title = $page->getTitle();
@@ -903,11 +905,12 @@ class InfoAction extends FormlessAction {
 	}
 
 	/**
+	 * @param WANObjectCache $cache
 	 * @param Title $title
 	 * @param int $revId
 	 * @return string
 	 */
-	protected static function getCacheKey( Title $title, $revId ) {
-		return wfMemcKey( 'infoaction', md5( $title->getPrefixedText() ), $revId, self::VERSION );
+	protected static function getCacheKey( WANObjectCache $cache, Title $title, $revId ) {
+		return $cache->makeKey( 'infoaction', md5( $title->getPrefixedText() ), $revId, self::VERSION );
 	}
 }
