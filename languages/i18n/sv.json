@@ -2474,7 +2474,7 @@
 	"ipb_hide_invalid": "Kan inte undanhålla detta konto; det har fler än {{PLURAL:$1|en redigering|$1 redigeringar}}.",
 	"ipb_already_blocked": "\"$1\" är redan blockerad",
 	"ipb-needreblock": "$1 är redan blockerad. Vill du ändra inställningarna?",
-	"ipb-otherblocks-header": "Andra {{PLURAL:$1|blockering|blockeringar}}",
+	"ipb-otherblocks-header": "{{PLURAL:$1|Annan blockering|Andra blockeringar}}",
 	"unblock-hideuser": "Du kan inte ta bort blockeringen här användaren, eftersom dens användarnamn har dolts.",
 	"ipb_cant_unblock": "Fel: Hittade inte blockering $1. Det är möjligt att den redan har upphävts.",
 	"ipb_blocked_as_range": "Fel: IP-adressen $1 är inte direkt blockerad, och kan därför inte avblockeras. Adressen är blockerad som en del av IP-intervallet $2, som kan avblockeras.",
@@ -3939,7 +3939,7 @@
 	"rawhtml-notallowed": "&lt;html&gt;-taggar kan inte användas utanför normala sidor.",
 	"gotointerwiki": "Lämnar {{SITENAME}}",
 	"gotointerwiki-invalid": "Den angivna titeln är ogiltig.",
-	"gotointerwiki-external": "Du håller på att lämna {{SITENAME}} för att besöka [[$2]] som är en separat webbplats.\n\n[$1 Klicka här för att $1].",
+	"gotointerwiki-external": "Du håller på att lämna {{SITENAME}} för att besöka [[$2]] som är en separat webbplats.\n\n'''[$1 Fortsätt till $1]'''",
 	"undelete-cantedit": "Du kan inte återställa denna sida eftersom du är inte tillåten att redigera denna sida.",
 	"undelete-cantcreate": "Du kan inte återställa denna sida eftersom det inte finns någon befintlig sida med detta namn och du tillåts inte att skapa denna sida."
 }

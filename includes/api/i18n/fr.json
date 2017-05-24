@@ -359,6 +359,7 @@
 	"apihelp-parse-param-preview": "Analyser en mode aperçu.",
 	"apihelp-parse-param-sectionpreview": "Analyser en mode aperçu de section (active aussi le mode aperçu).",
 	"apihelp-parse-param-disabletoc": "Omettre la table des matières dans la sortie.",
+	"apihelp-parse-param-useskin": "Appliquer l’habillage sélectionné à la sortie de l’analyseur. Cela peut affecter les propriétés suivantes : <kbd>langlinks</kbd>, <kbd>headitems</kbd>, <kbd>modules</kbd>, <kbd>jsconfigvars</kbd>, <kbd>indicators</kbd>.",
 	"apihelp-parse-param-contentformat": "Format de sérialisation du contenu utilisé pour le texte d’entrée. Valide uniquement si utilisé avec $1text.",
 	"apihelp-parse-param-contentmodel": "Modèle de contenu du texte d’entrée. Si omis, $1title doit être spécifié, et la valeur par défaut sera le modèle du titre spécifié. Valide uniquement quand utilisé avec $1text.",
 	"apihelp-parse-example-page": "Analyser une page.",

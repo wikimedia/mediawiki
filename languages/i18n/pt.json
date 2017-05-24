@@ -1362,11 +1362,11 @@
 	"recentchanges-submit": "Mostrar",
 	"rcfilters-activefilters": "Filtros ativos",
 	"rcfilters-quickfilters": "Links rápidos",
-	"rcfilters-quickfilters-placeholder": "Grave suas configurações de ferramentas favoritas para reutilizá-las mais tarde.",
+	"rcfilters-quickfilters-placeholder": "Grave as suas configurações preferidas das ferramentas para reutilizá-las mais tarde.",
 	"rcfilters-savedqueries-defaultlabel": "Filtros gravados",
 	"rcfilters-savedqueries-rename": "Alterar o nome",
 	"rcfilters-savedqueries-setdefault": "Ativar por padrão",
-	"rcfilters-savedqueries-unsetdefault": "Desativar por padrão",
+	"rcfilters-savedqueries-unsetdefault": "Remover por padrão",
 	"rcfilters-savedqueries-remove": "Remover",
 	"rcfilters-savedqueries-new-name-label": "Nome",
 	"rcfilters-savedqueries-apply-label": "Criar link rápido",
@@ -3924,7 +3924,7 @@
 	"rawhtml-notallowed": "As etiquetas &lt;html&gt; não podem ser utilizadas fora de páginas normais.",
 	"gotointerwiki": "A sair de {{SITENAME}}",
 	"gotointerwiki-invalid": "O título especificado é inválido.",
-	"gotointerwiki-external": "Está prestes a sair de {{SITENAME}} para visitar [[$2]], que é um sítio web externo.\n\n[$1 Clique aqui para continuar para $1]",
+	"gotointerwiki-external": "Está prestes a sair da wiki {{SITENAME}} para visitar [[$2]], que é um site externo.\n\n'''[$1 Continuar para $1]'''",
 	"undelete-cantedit": "Não pode restaurar esta página, porque não tem privilégios para editar esta página.",
 	"undelete-cantcreate": "Não pode restaurar esta página, porque não existe nenhuma página com este nome e não tem privilégios para criar esta página."
 }
