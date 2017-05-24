@@ -137,6 +137,9 @@ class MWExceptionHandler {
 			self::logException( $e2, self::CAUGHT_BY_HANDLER );
 		}
 
+		// Make sure any lazy jobs are pushed (exceptions already caught/logged there)
+		JobQueueGroup::pushLazyJobs();
+
 		self::logException( $e, self::CAUGHT_BY_HANDLER );
 		self::report( $e );
 
