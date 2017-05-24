@@ -24,6 +24,7 @@
  * @see http://exif.org/Exif2-2.PDF The Exif 2.2 specification
  * @file
  */
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
@@ -1584,14 +1585,14 @@ class FormatMetadata extends ContextSource {
 	 * @since 1.23
 	 */
 	public function fetchExtendedMetadata( File $file ) {
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 
 		// If revision deleted, exit immediately
 		if ( $file->isDeleted( File::DELETED_FILE ) ) {
 			return [];
 		}
 
-		$cacheKey = wfMemcKey(
+		$cacheKey = $cache->makeKey(
 			'getExtendedMetadata',
 			$this->getLanguage()->getCode(),
 			(int)$this->singleLang,
