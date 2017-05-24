@@ -142,8 +142,6 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 				'SerialNumber' => '123456789',
 				'_MW_PNG_VERSION' => 1,
 			],
-			'width' => 50,
-			'height' => 50,
 		];
 		$this->assertEquals( $expected, $result );
 	}
