@@ -1111,6 +1111,7 @@ $wgAutoloadLocalClasses = [
 	'PopulateInterwiki' => __DIR__ . '/maintenance/populateInterwiki.php',
 	'PopulateLogSearch' => __DIR__ . '/maintenance/populateLogSearch.php',
 	'PopulateLogUsertext' => __DIR__ . '/maintenance/populateLogUsertext.php',
+	'PopulatePPSortKey' => __DIR__ . '/maintenance/populatePPSortKey.php',
 	'PopulateParentId' => __DIR__ . '/maintenance/populateParentId.php',
 	'PopulateRecentChangesSource' => __DIR__ . '/maintenance/populateRecentChangesSource.php',
 	'PopulateRevisionLength' => __DIR__ . '/maintenance/populateRevisionLength.php',
