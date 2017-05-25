@@ -189,9 +189,9 @@ class SiteStats {
 	 * @return int
 	 */
 	static function numberingroup( $group ) {
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		return $cache->getWithSetCallback(
-			wfMemcKey( 'SiteStats', 'groupcounts', $group ),
+			$cache->makeKey( 'SiteStats', 'groupcounts', $group ),
 			$cache::TTL_HOUR,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $group ) {
 				$dbr = wfGetDB( DB_REPLICA );
