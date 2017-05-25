@@ -157,6 +157,15 @@
 				this.setIcon( ok ? null : 'alert' );
 				this.setIconTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
 				return $.Deferred().resolve( ok ).promise();
+			},
+			createItemWidget: function ( data, label ) {
+				var item = OO.ui.CapsuleMultiselectWidget.prototype.createItemWidget.call( this, data, label );
+				if ( this.paramInfo.deprecatedvalues &&
+					this.paramInfo.deprecatedvalues.indexOf( data ) >= 0
+				) {
+					item.$element.addClass( 'apihelp-deprecated-value' );
+				}
+				return item;
 			}
 		},
 
@@ -481,7 +490,15 @@
 					}
 
 					items = $.map( pi.type, function ( v ) {
-						return new OO.ui.MenuOptionWidget( { data: String( v ), label: String( v ) } );
+						var config = {
+							data: String( v ),
+							label: String( v ),
+							classes: []
+						};
+						if ( pi.deprecatedvalues && pi.deprecatedvalues.indexOf( v ) >= 0 ) {
+							config.classes.push( 'apihelp-deprecated-value' );
+						}
+						return new OO.ui.MenuOptionWidget( config );
 					} );
 					if ( Util.apiBool( pi.multi ) ) {
 						if ( pi.allspecifier !== undefined ) {
@@ -510,7 +527,15 @@
 						$.extend( widget, WidgetMethods.dropdownWidget );
 						if ( Util.apiBool( pi.submodules ) ) {
 							widget.getSubmodules = WidgetMethods.submoduleWidget.single;
-							widget.getMenu().on( 'choose', ApiSandbox.updateUI );
+							widget.getMenu().on( 'select', ApiSandbox.updateUI );
+						}
+						if ( pi.deprecatedvalues ) {
+							widget.getMenu().on( 'select', function ( item ) {
+								this.$element.toggleClass(
+									'apihelp-deprecated-value',
+									pi.deprecatedvalues.indexOf( item.data ) >= 0
+								);
+							}, [], widget );
 						}
 					}
 
@@ -1040,7 +1065,7 @@
 						menu: { items: [] },
 						$overlay: $( '#mw-apisandbox-ui' )
 					} );
-					formatDropdown.getMenu().on( 'choose', Util.onFormatDropdownChange );
+					formatDropdown.getMenu().on( 'select', Util.onFormatDropdownChange );
 				}
 
 				menu = formatDropdown.getMenu();
