@@ -2241,7 +2241,49 @@ abstract class ApiBase extends ContextSource {
 			}
 			$msgs[$param] = [ $msg ];
 
-			if ( isset( $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] ) ) {
+			if ( isset( $settings[ApiBase::PARAM_TYPE] ) &&
+				$settings[ApiBase::PARAM_TYPE] === 'submodule'
+			) {
+				if ( isset( $settings[ApiBase::PARAM_SUBMODULE_MAP] ) ) {
+					$map = $settings[ApiBase::PARAM_SUBMODULE_MAP];
+				} else {
+					$prefix = $this->isMain() ? '' : ( $this->getModulePath() . '+' );
+					$map = [];
+					foreach ( $this->getModuleManager()->getNames( $param ) as $submoduleName ) {
+						$map[$submoduleName] = $prefix . $submoduleName;
+					}
+				}
+				ksort( $map );
+				$submodules = [];
+				$deprecatedSubmodules = [];
+				foreach ( $map as $v => $m ) {
+					$arr = &$submodules;
+					$isDeprecated = false;
+					$summary = null;
+					try {
+						$submod = $this->getModuleFromPath( $m );
+						if ( $submod ) {
+							$summary = $submod->getFinalSummary();
+							$isDeprecated = $submod->isDeprecated();
+							if ( $isDeprecated ) {
+								$arr = &$deprecatedSubmodules;
+							}
+						}
+					} catch ( ApiUsageException $ex ) {
+						// Ignore
+					}
+					if ( $summary ) {
+						$key = $summary->getKey();
+						$params = $summary->getParams();
+					} else {
+						$key = 'api-help-undocumented-module';
+						$params = [ $m ];
+					}
+					$m = new ApiHelpParamValueMessage( "[[Special:ApiHelp/$m|$v]]", $key, $params, $isDeprecated );
+					$arr[] = $m->setContext( $this->getContext() );
+				}
+				$msgs[$param] = array_merge( $msgs[$param], $submodules, $deprecatedSubmodules );
+			} elseif ( isset( $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] ) ) {
 				if ( !is_array( $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] ) ) {
 					self::dieDebug( __METHOD__,
 						'ApiBase::PARAM_HELP_MSG_PER_VALUE is not valid' );

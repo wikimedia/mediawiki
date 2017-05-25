@@ -529,23 +529,42 @@ class ApiHelp extends ApiBase {
 							switch ( $type ) {
 								case 'submodule':
 									$groups[] = $name;
+
 									if ( isset( $settings[ApiBase::PARAM_SUBMODULE_MAP] ) ) {
 										$map = $settings[ApiBase::PARAM_SUBMODULE_MAP];
-										ksort( $map );
-										$submodules = [];
-										foreach ( $map as $v => $m ) {
-											$submodules[] = "[[Special:ApiHelp/{$m}|{$v}]]";
-										}
+										$defaultAttrs = [];
 									} else {
-										$submodules = $module->getModuleManager()->getNames( $name );
-										sort( $submodules );
-										$prefix = $module->isMain()
-											? '' : ( $module->getModulePath() . '+' );
-										$submodules = array_map( function ( $name ) use ( $prefix ) {
-											$text = Html::element( 'span', [ 'dir' => 'ltr', 'lang' => 'en' ], $name );
-											return "[[Special:ApiHelp/{$prefix}{$name}|{$text}]]";
-										}, $submodules );
+										$prefix = $module->isMain() ? '' : ( $module->getModulePath() . '+' );
+										$map = [];
+										foreach ( $module->getModuleManager()->getNames( $name ) as $submoduleName ) {
+											$map[$submoduleName] = $prefix . $submoduleName;
+										}
+										$defaultAttrs = [ 'dir' => 'ltr', 'lang' => 'en' ];
 									}
+									ksort( $map );
+
+									$submodules = [];
+									$deprecatedSubmodules = [];
+									foreach ( $map as $v => $m ) {
+										$attrs = $defaultAttrs;
+										$arr = &$submodules;
+										try {
+											$submod = $module->getModuleFromPath( $m );
+											if ( $submod ) {
+												if ( $submod->isDeprecated() ) {
+													$arr = &$deprecatedSubmodules;
+													$attrs['class'] = 'apihelp-deprecated-value';
+												}
+											}
+										} catch ( ApiUsageException $ex ) {
+											// Ignore
+										}
+										if ( $attrs ) {
+											$v = Html::element( 'span', $attrs, $v );
+										}
+										$arr[] = "[[Special:ApiHelp/{$m}|{$v}]]";
+									}
+									$submodules = array_merge( $submodules, $deprecatedSubmodules );
 									$count = count( $submodules );
 									$info[] = $context->msg( 'api-help-param-list' )
 										->params( $multi ? 2 : 1 )

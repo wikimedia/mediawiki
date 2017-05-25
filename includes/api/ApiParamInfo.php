@@ -401,6 +401,25 @@ class ApiParamInfo extends ApiBase {
 					if ( isset( $settings[ApiBase::PARAM_SUBMODULE_PARAM_PREFIX] ) ) {
 						$item['submoduleparamprefix'] = $settings[ApiBase::PARAM_SUBMODULE_PARAM_PREFIX];
 					}
+
+					$deprecatedSubmodules = [];
+					foreach ( $item['submodules'] as $v => $submodulePath ) {
+						try {
+							$submod = $this->getModuleFromPath( $submodulePath );
+							if ( $submod && $submod->isDeprecated() ) {
+								$deprecatedSubmodules[] = $v;
+							}
+						} catch ( ApiUsageException $ex ) {
+							// Ignore
+						}
+					}
+					if ( $deprecatedSubmodules ) {
+						$item['type'] = array_merge(
+							array_diff( $item['type'], $deprecatedSubmodules ),
+							$deprecatedSubmodules
+						);
+						$item['deprecatedvalues'] = $deprecatedSubmodules;
+					}
 				} elseif ( $settings[ApiBase::PARAM_TYPE] === 'tags' ) {
 					$item['type'] = ChangeTags::listExplicitlyDefinedTags();
 				} else {
