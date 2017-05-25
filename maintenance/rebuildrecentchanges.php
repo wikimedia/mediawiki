@@ -478,15 +478,16 @@ class RebuildRecentchanges extends Maintenance {
 	}
 
 	/**
-	 * Purge cached feeds in $messageMemc
+	 * Purge cached feeds in $wanCache
 	 */
 	private function purgeFeeds() {
-		global $wgFeedClasses, $messageMemc;
+		global $wgFeedClasses;
 
 		$this->output( "Deleting feed timestamps.\n" );
 
+		$wanCache = ObjectCache::getMainWANInstance();
 		foreach ( $wgFeedClasses as $feed => $className ) {
-			$messageMemc->delete( wfMemcKey( 'rcfeed', $feed, 'timestamp' ) ); # Good enough for now.
+			$wanCache->delete( $wanCache->makeKey( 'rcfeed', $feed, 'timestamp' ) ); # Good enough for now.
 		}
 	}
 }
