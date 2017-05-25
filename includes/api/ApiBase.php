@@ -188,12 +188,21 @@ abstract class ApiBase extends ContextSource {
 	 */
 	const PARAM_EXTRA_NAMESPACES = 18;
 
-	/*
+	/**
 	 * (boolean) Is the parameter sensitive? Note 'password'-type fields are
 	 * always sensitive regardless of the value of this field.
 	 * @since 1.29
 	 */
 	const PARAM_SENSITIVE = 19;
+
+	/**
+	 * (array) When PARAM_TYPE is an array, this indicates which of the values are deprecated.
+	 * Keys are the deprecated parameter values, values define the warning
+	 * message to emit: either boolean true (to use a default message) or a
+	 * $msg for ApiBase::makeMessage().
+	 * @since 1.30
+	 */
+	const PARAM_DEPRECATED_VALUES = 20;
 
 	/**@}*/
 
@@ -1025,6 +1034,9 @@ abstract class ApiBase extends ContextSource {
 		$deprecated = isset( $paramSettings[self::PARAM_DEPRECATED] )
 			? $paramSettings[self::PARAM_DEPRECATED]
 			: false;
+		$deprecatedValues = isset( $paramSettings[self::PARAM_DEPRECATED_VALUES] )
+			? $paramSettings[self::PARAM_DEPRECATED_VALUES]
+			: [];
 		$required = isset( $paramSettings[self::PARAM_REQUIRED] )
 			? $paramSettings[self::PARAM_REQUIRED]
 			: false;
@@ -1265,6 +1277,29 @@ abstract class ApiBase extends ContextSource {
 					$m = $p;
 				}
 				$this->addDeprecation( [ 'apiwarn-deprecation-parameter', $encParamName ], $feature );
+			}
+
+			// Set a warning if a deprecated parameter value has been passed
+			$usedDeprecatedValues = $deprecatedValues && $value !== false
+				? array_intersect( array_keys( $deprecatedValues ), (array)$value )
+				: [];
+			if ( $usedDeprecatedValues ) {
+				$feature = "$encParamName=";
+				$m = $this;
+				while ( !$m->isMain() ) {
+					$p = $m->getParent();
+					$name = $m->getModuleName();
+					$param = $p->encodeParamName( $p->getModuleManager()->getModuleGroup( $name ) );
+					$feature = "{$param}={$name}&{$feature}";
+					$m = $p;
+				}
+				foreach ( $usedDeprecatedValues as $v ) {
+					$msg = $deprecatedValues[$v];
+					if ( $msg === true ) {
+						$msg = [ 'apiwarn-deprecation-parameter', "$encParamName=$v" ];
+					}
+					$this->addDeprecation( $msg, "$feature$v" );
+				}
 			}
 		} elseif ( $required ) {
 			$this->dieWithError( [ 'apierror-missingparam', $paramName ] );
@@ -2133,6 +2168,10 @@ abstract class ApiBase extends ContextSource {
 				}
 
 				$valueMsgs = $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE];
+				$deprecatedValues = isset( $settings[ApiBase::PARAM_DEPRECATED_VALUES] )
+					? $settings[ApiBase::PARAM_DEPRECATED_VALUES]
+					: [];
+
 				foreach ( $settings[ApiBase::PARAM_TYPE] as $value ) {
 					if ( isset( $valueMsgs[$value] ) ) {
 						$msg = $valueMsgs[$value];
@@ -2145,7 +2184,8 @@ abstract class ApiBase extends ContextSource {
 						$m = new ApiHelpParamValueMessage(
 							$value,
 							[ $m->getKey(), 'api-help-param-no-description' ],
-							$m->getParams()
+							$m->getParams(),
+							isset( $deprecatedValues[$value] )
 						);
 						$msgs[$param][] = $m->setContext( $this->getContext() );
 					} else {

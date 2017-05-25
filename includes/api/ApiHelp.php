@@ -489,12 +489,22 @@ class ApiHelp extends ApiBase {
 
 						if ( is_array( $type ) ) {
 							$count = count( $type );
+							$deprecatedValues = isset( $settings[ApiBase::PARAM_DEPRECATED_VALUES] )
+								? $settings[ApiBase::PARAM_DEPRECATED_VALUES]
+								: [];
 							$links = isset( $settings[ApiBase::PARAM_VALUE_LINKS] )
 								? $settings[ApiBase::PARAM_VALUE_LINKS]
 								: [];
-							$values = array_map( function ( $v ) use ( $links ) {
-								// We can't know whether this contains LTR or RTL text.
-								$ret = $v === '' ? $v : Html::element( 'span', [ 'dir' => 'auto' ], $v );
+							$values = array_map( function ( $v ) use ( $links, $deprecatedValues ) {
+								$attr = [];
+								if ( $v !== '' ) {
+									// We can't know whether this contains LTR or RTL text.
+									$attr['dir'] = 'auto';
+								}
+								if ( isset( $deprecatedValues[$v] ) ) {
+									$attr['class'] = 'apihelp-deprecated-value';
+								}
+								$ret = $attr ? Html::element( 'span', $attr, $v ) : $v;
 								if ( isset( $links[$v] ) ) {
 									$ret = "[[{$links[$v]}|$ret]]";
 								}

@@ -60,7 +60,8 @@ production.
   formatted as specified by the error formatter parameters.
 
 === Action API internal changes in 1.30 ===
-* …
+* (T123931) Individual values of multi-valued parameters can now be marked as
+  deprecated.
 
 === Languages updated in 1.30 ===
 MediaWiki supports over 350 languages. Many localisations are updated
