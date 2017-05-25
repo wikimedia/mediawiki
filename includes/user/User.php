@@ -2527,8 +2527,9 @@ class User implements IDBAccessObject {
 	public function touch() {
 		$id = $this->getId();
 		if ( $id ) {
-			$key = wfMemcKey( 'user-quicktouched', 'id', $id );
-			ObjectCache::getMainWANInstance()->touchCheckKey( $key );
+			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+			$key = $cache->makeKey( 'user-quicktouched', 'id', $id );
+			$cache->touchCheckKey( $key );
 			$this->mQuickTouched = null;
 		}
 	}
@@ -2555,8 +2556,8 @@ class User implements IDBAccessObject {
 
 		if ( $this->mId ) {
 			if ( $this->mQuickTouched === null ) {
-				$key = wfMemcKey( 'user-quicktouched', 'id', $this->mId );
-				$cache = ObjectCache::getMainWANInstance();
+				$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+				$key = $cache->makeKey( 'user-quicktouched', 'id', $this->mId );
 
 				$this->mQuickTouched = wfTimestamp( TS_MW, $cache->getCheckKeyTime( $key ) );
 			}
