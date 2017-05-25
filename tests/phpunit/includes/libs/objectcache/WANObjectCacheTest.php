@@ -310,10 +310,12 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase  {
 			$keyedIds, 30, $genFunc, [ 'lowTTL' => 0, 'lockTSE' => 5, ] + $extOpts );
 		$this->assertEquals( $value, $v[$keyB], "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value regenerated" );
+		$this->assertEquals( 0, $cache->getWarmupKeyMisses(), "Keys warmed yet in process cache" );
 		$v = $cache->getMultiWithSetCallback(
 			$keyedIds, 30, $genFunc, [ 'lowTTL' => 0, 'lockTSE' => 5, ] + $extOpts );
 		$this->assertEquals( $value, $v[$keyB], "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value not regenerated" );
+		$this->assertEquals( 0, $cache->getWarmupKeyMisses(), "Keys warmed in process cache" );
 
 		$priorTime = microtime( true );
 		usleep( 1 );
