@@ -32,6 +32,10 @@ production.
   X-Content-Dimensions header for originals that contain the media's dimensions
   as page ranges keyed by dimensions.
 
+=== Languages updated in 1.30 ===
+
+* Support for kbp (Kabɩyɛ / Kabiyè) was added.
+
 === External library changes in 1.30 ===
 
 ==== Upgraded external libraries ====
