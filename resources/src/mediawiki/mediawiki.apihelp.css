@@ -40,6 +40,10 @@ div.apihelp-linktrail {
 	color: #f00;
 }
 
+.apihelp-deprecated-value {
+	text-decoration: line-through;
+}
+
 .apihelp-unknown {
 	color: #888;
 }

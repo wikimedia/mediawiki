@@ -81,6 +81,8 @@ production.
 * ApiBase::getDescriptionMessage() and the "apihelp-*-description" messages are
   deprecated. The existing message should be split between "apihelp-*-summary"
   and "apihelp-*-extended-description".
+* (T123931) Individual values of multi-valued parameters can now be marked as
+  deprecated.
 
 === Languages updated in 1.30 ===
 MediaWiki supports over 350 languages. Many localisations are updated
