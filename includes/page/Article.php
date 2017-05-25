@@ -980,8 +980,8 @@ class Article implements Page {
 		}
 
 		// Check for cached results
-		$key = wfMemcKey( 'unpatrollable-page', $title->getArticleID() );
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$key = $cache->makeKey( 'unpatrollable-page', $title->getArticleID() );
 		if ( $cache->get( $key ) ) {
 			return false;
 		}
@@ -1121,8 +1121,8 @@ class Article implements Page {
 	 * @since 1.27
 	 */
 	public static function purgePatrolFooterCache( $articleID ) {
-		$cache = ObjectCache::getMainWANInstance();
-		$cache->delete( wfMemcKey( 'unpatrollable-page', $articleID ) );
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$cache->delete( $cache->makeKey( 'unpatrollable-page', $articleID ) );
 	}
 
 	/**
@@ -1177,8 +1177,8 @@ class Article implements Page {
 		# Show delete and move logs if there were any such events.
 		# The logging query can DOS the site when bots/crawlers cause 404 floods,
 		# so be careful showing this. 404 pages must be cheap as they are hard to cache.
-		$cache = ObjectCache::getMainStashInstance();
-		$key = wfMemcKey( 'page-recent-delete', md5( $title->getPrefixedText() ) );
+		$cache = MediaWikiServices::getInstance()->getMainObjectStash();
+		$key = $cache->makeKey( 'page-recent-delete', md5( $title->getPrefixedText() ) );
 		$loggedIn = $this->getContext()->getUser()->isLoggedIn();
 		if ( $loggedIn || $cache->get( $key ) ) {
 			$logTypes = [ 'delete', 'move' ];
