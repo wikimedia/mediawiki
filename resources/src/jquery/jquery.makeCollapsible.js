@@ -152,7 +152,8 @@
 		if ( e ) {
 			if (
 				e.type === 'click' &&
-				e.target.nodeName.toLowerCase() === 'a'
+				e.target.nodeName.toLowerCase() === 'a' &&
+				$( e.target ).attr( 'href' )
 			) {
 				// Don't fire if a link was clicked (for premade togglers)
 				return;
