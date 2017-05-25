@@ -673,6 +673,7 @@ $wgAutoloadLocalClasses = [
 	'JobQueueAggregatorRedis' => __DIR__ . '/includes/jobqueue/aggregator/JobQueueAggregatorRedis.php',
 	'JobQueueConnectionError' => __DIR__ . '/includes/jobqueue/JobQueue.php',
 	'JobQueueDB' => __DIR__ . '/includes/jobqueue/JobQueueDB.php',
+	'JobQueueDebug' => __DIR__ . '/includes/jobqueue/JobQueueDebug.php',
 	'JobQueueError' => __DIR__ . '/includes/jobqueue/JobQueue.php',
 	'JobQueueFederated' => __DIR__ . '/includes/jobqueue/JobQueueFederated.php',
 	'JobQueueGroup' => __DIR__ . '/includes/jobqueue/JobQueueGroup.php',
