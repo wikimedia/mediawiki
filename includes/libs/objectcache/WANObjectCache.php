@@ -1049,7 +1049,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
-	 * Method to fetch/regenerate multiple cache keys at once
+	 * Method to fetch multiple cache keys at once with regeneration
 	 *
 	 * This works the same as getWithSetCallback() except:
 	 *   - a) The $keys argument expects the result of WANObjectCache::makeMultiKeys()
@@ -1078,7 +1078,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *         // Time-to-live (in seconds)
 	 *         $cache::TTL_DAY,
 	 *         // Function that derives the new key value
-	 *         return function ( $id, $oldValue, &$ttl, array &$setOpts ) {
+	 *         function ( $id, $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = wfGetDB( DB_REPLICA );
 	 *             // Account for any snapshot/replica DB lag
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
@@ -1110,38 +1110,124 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	) {
 		$checkKeys = isset( $opts['checkKeys'] ) ? $opts['checkKeys'] : [];
 
-		$keysWarmUp = [];
-		// Get all the value keys to fetch...
-		foreach ( $keyedIds as $key => $id ) {
-			$keysWarmUp[] = self::VALUE_KEY_PREFIX . $key;
-		}
-		// Get all the check keys to fetch...
-		foreach ( $checkKeys as $i => $checkKeyOrKeys ) {
-			if ( is_int( $i ) ) {
-				// Single check key that applies to all value keys
-				$keysWarmUp[] = self::TIME_KEY_PREFIX . $checkKeyOrKeys;
-			} else {
-				// List of check keys that apply to value key $i
-				$keysWarmUp = array_merge(
-					$keysWarmUp,
-					self::prefixCacheKeys( $checkKeyOrKeys, self::TIME_KEY_PREFIX )
-				);
-			}
-		}
-
-		$this->keyFetchCount += count( $keysWarmUp );
-		$this->warmupCache = $this->cache->getMulti( $keysWarmUp );
-		$this->warmupCache += array_fill_keys( $keysWarmUp, false );
+		// Load required keys into process cache in one go
+		$this->warmupCache = $this->getRawKeysForWarmup( $keyedIds, $checkKeys );
 
 		// Wrap $callback to match the getWithSetCallback() format while passing $id to $callback
-		$id = null;
-		$func = function ( $oldValue, &$ttl, array $setOpts, $oldAsOf ) use ( $callback, &$id ) {
+		$id = null; // current entity ID
+		$func = function ( $oldValue, &$ttl, &$setOpts, $oldAsOf ) use ( $callback, &$id ) {
 			return $callback( $id, $oldValue, $ttl, $setOpts, $oldAsOf );
 		};
 
 		$values = [];
-		foreach ( $keyedIds as $key => $id ) {
+		foreach ( $keyedIds as $key => $id ) { // preserve order
 			$values[$key] = $this->getWithSetCallback( $key, $ttl, $func, $opts );
+		}
+
+		$this->warmupCache = [];
+
+		return $values;
+	}
+
+	/**
+	 * Method to fetch/regenerate multiple cache keys at once
+	 *
+	 * This works the same as getWithSetCallback() except:
+	 *   - a) The $keys argument expects the result of WANObjectCache::makeMultiKeys()
+	 *   - b) The $callback argument expects a callback returning a map of (ID => new value)
+	 *        for all entity IDs in $regenById and it takes the following arguments:
+	 *          - $regenById: map of (entity ID => ("oldValue": mixed, "oldAsOf": float))
+	 *          - &$ttls: a reference to the (entity ID => new TTL) map
+	 *          - &$setOpts: a reference to options for set() which can be altered
+	 *   - c) The return value is a map of (cache key => value) in the order of $keyedIds
+	 *   - d) The "lockTSE" and "busyValue" options are ignored
+	 *
+	 * @see WANObjectCache::getWithSetCallback()
+	 * @see WANObjectCache::getMultiWithSetCallback()
+	 *
+	 * Example usage:
+	 * @code
+	 *     $rows = $cache->getMultiWithUnionSetCallback(
+	 *         // Map of cache keys to entity IDs
+	 *         $cache->makeMultiKeys(
+	 *             $this->fileVersionIds(),
+	 *             function ( $id, WANObjectCache $cache ) {
+	 *                 return $cache->makeKey( 'file-version', $id );
+	 *             }
+	 *         ),
+	 *         // Time-to-live (in seconds)
+	 *         $cache::TTL_DAY,
+	 *         // Function that derives the new key value
+	 *         function ( array $regenById, array &$ttls, array &$setOpts ) {
+	 *             $dbr = wfGetDB( DB_REPLICA );
+	 *             // Account for any snapshot/replica DB lag
+	 *             $setOpts += Database::getCacheSetOptions( $dbr );
+	 *
+	 *             // Load the rows for these files
+	 *             $rows = [];
+	 *             $ids = array_keys( $regenById );
+	 *             $res = $dbr->select( 'file', '*', [ 'id' => $ids ], __METHOD__ );
+	 *             foreach ( $res as $row ) {
+	 *                 $rows[$row->id] = $row;
+	 *                 $mtime = wfTimestamp( TS_UNIX, $row->timestamp );
+	 *                 $ttls[$row->id] = $this->adaptiveTTL( $mtime, $ttls[$row->id] );
+	 *             }
+	 *
+	 *             return $rows;
+	 *         },
+	 *         ]
+	 *     );
+	 *     $files = array_map( [ __CLASS__, 'newFromRow' ], $rows );
+	 * @endcode
+	 *
+	 * @param ArrayIterator $keyedIds Result of WANObjectCache::makeMultiKeys()
+	 * @param integer $ttl Seconds to live for key updates
+	 * @param callable $callback Callback the yields entity regeneration callbacks
+	 * @param array $opts Options map
+	 * @return array Map of (cache key => value) in the same order as $keyedIds
+	 * @since 1.30
+	 */
+	final public function getMultiWithUnionSetCallback(
+		ArrayIterator $keyedIds, $ttl, callable $callback, array $opts = []
+	) {
+		$checkKeys = isset( $opts['checkKeys'] ) ? $opts['checkKeys'] : [];
+		unset( $opts['lockTSE'] ); // incompatible
+		unset( $opts['busyValue'] ); // incompatible
+
+		// Load required keys into process cache in one go
+		$this->warmupCache = $this->getRawKeysForWarmup( $keyedIds, $checkKeys );
+
+		// Current entity ID cursor for callback loop
+		$id = null;
+		// Regenration info by ID for keys that needed to renegerate,
+		// (e.g. if absent, stale, miss-versioned, preemptive/popularity refresh).
+		$regenById = [];
+
+		// Use a dummy callback just to populate $regenById
+		$func = function ( $oldValue, &$ttl, &$setOpts, $oldAsOf ) use ( &$id, &$regenById ) {
+			$regenById[$id] = [ 'oldValue' => $oldValue, 'oldAsOf' => $oldAsOf ];
+
+			return false; // uncacheable
+		};
+
+		// Run the cache-aside logic using warmupCache instead of persistent cache queries
+		$values = [];
+		foreach ( $keyedIds as $key => $id ) { // preserve order
+			$values[$key] = $this->getWithSetCallback( $key, $ttl, $func, $opts );
+		}
+
+		if ( $regenById ) {
+			// Initialize default TTLs and set options
+			$ttls = array_fill_keys( array_keys( $regenById ), $ttl );
+			$setOpts = [];
+			// Run the callback to regenerate the values for all required IDs
+			$valuesById = $callback( $regenById, $ttls, $setOpts );
+			foreach ( $keyedIds as $key => $id ) {
+				if ( array_key_exists( $id, $valuesById ) ) {
+					$values[$key] = $valuesById[$id]; // override dummy value
+					$this->set( $key, $valuesById[$id], $ttls[$id], $setOpts );
+				}
+			}
 		}
 
 		$this->warmupCache = [];
@@ -1605,5 +1691,37 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		}
 
 		return $this->processCaches[$group];
+	}
+
+	/**
+	 * @param ArrayIterator $keyedIds Result of WANObjectCache::makeMultiKeys()
+	 * @param array $checkKeys
+	 * @return array Map of (cache key => mixed)
+	 */
+	private function getRawKeysForWarmup( ArrayIterator $keyedIds, array $checkKeys ) {
+		$keysWarmUp = [];
+		// Get all the value keys to fetch...
+		foreach ( $keyedIds as $key => $id ) {
+			$keysWarmUp[] = self::VALUE_KEY_PREFIX . $key;
+		}
+		// Get all the check keys to fetch...
+		foreach ( $checkKeys as $i => $checkKeyOrKeys ) {
+			if ( is_int( $i ) ) {
+				// Single check key that applies to all value keys
+				$keysWarmUp[] = self::TIME_KEY_PREFIX . $checkKeyOrKeys;
+			} else {
+				// List of check keys that apply to value key $i
+				$keysWarmUp = array_merge(
+					$keysWarmUp,
+					self::prefixCacheKeys( $checkKeyOrKeys, self::TIME_KEY_PREFIX )
+				);
+			}
+		}
+
+		$this->keyFetchCount += count( $keysWarmUp );
+		$warmupCache = $this->cache->getMulti( $keysWarmUp );
+		$warmupCache += array_fill_keys( $keysWarmUp, false );
+
+		return $warmupCache;
 	}
 }
