@@ -292,12 +292,14 @@ class ApiParse extends ApiBase {
 		}
 
 		$outputPage = null;
-		if ( $skin || isset( $prop['headhtml'] ) ) {
-			// Enabling the skin via 'useskin' or 'headhtml' gets OutputPage and
-			// Skin involved, which (among others) applies these hooks:
+		if ( $skin || isset( $prop['headhtml'] ) || isset( $prop['categorieshtml'] ) ) {
+			// Enabling the skin via 'useskin', 'headhtml', or 'categorieshtml'
+			// gets OutputPage and Skin involved, which (among others) applies
+			// these hooks:
 			// - ParserOutputHooks
 			// - Hook: LanguageLinks
 			// - Hook: OutputPageParserOutput
+			// - Hook: OutputPageMakeCategoryLinks
 			$context = new DerivativeContext( $this->getContext() );
 			$context->setTitle( $titleObj );
 			$context->setWikiPage( $pageObj );
@@ -307,6 +309,11 @@ class ApiParse extends ApiBase {
 				$context->setSkin( $skin );
 				// Context clones the skin, refetch to stay in sync. (T166022)
 				$skin = $context->getSkin();
+			} else {
+				// Make sure the context's skin refers to the context. Without this,
+				// $outputPage->getSkin()->getOutput() !== $outputPage which
+				// confuses some of the output.
+				$context->setSkin( $context->getSkin() );
 			}
 
 			$outputPage = new OutputPage( $context );
@@ -361,7 +368,7 @@ class ApiParse extends ApiBase {
 			$result_array['categories'] = $this->formatCategoryLinks( $p_result->getCategories() );
 		}
 		if ( isset( $prop['categorieshtml'] ) ) {
-			$result_array['categorieshtml'] = $this->categoriesHtml( $p_result->getCategories() );
+			$result_array['categorieshtml'] = $outputPage->getSkin()->getCategories();
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'categorieshtml';
 		}
 		if ( isset( $prop['links'] ) ) {
@@ -707,13 +714,6 @@ class ApiParse extends ApiBase {
 		}
 
 		return $result;
-	}
-
-	private function categoriesHtml( $categories ) {
-		$context = $this->getContext();
-		$context->getOutput()->addCategoryLinks( $categories );
-
-		return $context->getSkin()->getCategories();
 	}
 
 	private function formatLinks( $links ) {
