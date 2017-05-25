@@ -1446,6 +1446,7 @@
 	"api-help-title": "Page title for the auto-generated help output",
 	"api-help-lead": "Text displayed at the top of the API help page",
 	"api-help-main-header": "Text for the header of the main module",
+	"api-help-undocumented-module": "Text displayed for the summary of a submodule parameter when the module can't be loaded.\n\nParameters:\n* $1 - The module path.",
 	"api-help-fallback-description": "{{notranslate}}",
 	"api-help-fallback-parameter": "{{notranslate}}",
 	"api-help-fallback-example": "{{notranslate}}",
