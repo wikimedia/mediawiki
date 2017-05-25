@@ -97,6 +97,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	private $callbackDepth = 0;
 	/** @var mixed[] Temporary warm-up cache */
 	private $warmupCache = [];
+	/** @var integer Key fetched */
+	private $keyFetchCount = 0;
 
 	/** Max time expected to pass between delete() and DB commit finishing */
 	const MAX_COMMIT_DELAY = 3;
@@ -301,7 +303,10 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		} else {
 			$wrappedValues = [];
 		}
-		$wrappedValues += $this->cache->getMulti( $keysGet );
+		if ( $keysGet ) {
+			$this->keyFetchCount += count( $keysGet );
+			$wrappedValues += $this->cache->getMulti( $keysGet );
+		}
 		// Time used to compare/init "check" keys (derived after getMulti() to be pessimistic)
 		$now = microtime( true );
 
@@ -1103,16 +1108,28 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	final public function getMultiWithSetCallback(
 		ArrayIterator $keyedIds, $ttl, callable $callback, array $opts = []
 	) {
-		$keysWarmUp = iterator_to_array( $keyedIds, true );
 		$checkKeys = isset( $opts['checkKeys'] ) ? $opts['checkKeys'] : [];
+
+		$keysWarmUp = [];
+		// Get all the value keys to fetch...
+		foreach ( $keyedIds as $key => $id ) {
+			$keysWarmUp[] = self::VALUE_KEY_PREFIX . $key;
+		}
+		// Get all the check keys to fetch...
 		foreach ( $checkKeys as $i => $checkKeyOrKeys ) {
 			if ( is_int( $i ) ) {
-				$keysWarmUp[] = $checkKeyOrKeys;
+				// Single check key that applies to all value keys
+				$keysWarmUp[] = self::TIME_KEY_PREFIX . $checkKeyOrKeys;
 			} else {
-				$keysWarmUp = array_merge( $keysWarmUp, $checkKeyOrKeys );
+				// List of check keys that apply to value key $i
+				$keysWarmUp = array_merge(
+					$keysWarmUp,
+					self::prefixCacheKeys( $checkKeyOrKeys, self::TIME_KEY_PREFIX )
+				);
 			}
 		}
 
+		$this->keyFetchCount += count( $keysWarmUp );
 		$this->warmupCache = $this->cache->getMulti( $keysWarmUp );
 		$this->warmupCache += array_fill_keys( $keysWarmUp, false );
 
@@ -1314,6 +1331,22 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$age = time() - $mtime;
 
 		return (int)min( $maxTTL, max( $minTTL, $factor * $age ) );
+	}
+
+	/**
+	 * @return integer Could of cache keys fetched
+	 * @since 1.30
+	 */
+	public function getKeyFetchCount() {
+		return $this->keyFetchCount;
+	}
+
+	/**
+	 * Clear the count of cache keys fetched
+	 * @since 1.30
+	 */
+	public function clearKeyFetchCount() {
+		$this->keyFetchCount = 0;
 	}
 
 	/**
