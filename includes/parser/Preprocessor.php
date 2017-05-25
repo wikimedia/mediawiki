@@ -72,12 +72,12 @@ abstract class Preprocessor {
 			return false;
 		}
 
-		$key = wfMemcKey(
+		$cache = ObjectCache::getLocalClusterInstance();
+		$key = $cache->makeKey(
 			defined( 'static::CACHE_PREFIX' ) ? static::CACHE_PREFIX : static::class,
 			md5( $text ), $flags );
 		$value = sprintf( "%08d", static::CACHE_VERSION ) . $tree;
 
-		$cache = ObjectCache::getInstance( $config->get( 'MainCacheType' ) );
 		$cache->set( $key, $value, 86400 );
 
 		LoggerFactory::getInstance( 'Preprocessor' )
@@ -101,9 +101,9 @@ abstract class Preprocessor {
 			return false;
 		}
 
-		$cache = ObjectCache::getInstance( $config->get( 'MainCacheType' ) );
+		$cache = ObjectCache::getLocalClusterInstance();
 
-		$key = wfMemcKey(
+		$key = $cache->makeKey(
 			defined( 'static::CACHE_PREFIX' ) ? static::CACHE_PREFIX : static::class,
 			md5( $text ), $flags );
 
