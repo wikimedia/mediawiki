@@ -1073,7 +1073,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *         // Time-to-live (in seconds)
 	 *         $cache::TTL_DAY,
 	 *         // Function that derives the new key value
-	 *         return function ( $id, $oldValue, &$ttl, array &$setOpts ) {
+	 *         function ( $id, $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = wfGetDB( DB_REPLICA );
 	 *             // Account for any snapshot/replica DB lag
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
@@ -1118,7 +1118,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 		// Wrap $callback to match the getWithSetCallback() format while passing $id to $callback
 		$id = null;
-		$func = function ( $oldValue, &$ttl, array $setOpts, $oldAsOf ) use ( $callback, &$id ) {
+		$func = function ( $oldValue, &$ttl, array &$setOpts, $oldAsOf ) use ( $callback, &$id ) {
 			return $callback( $id, $oldValue, $ttl, $setOpts, $oldAsOf );
 		};
 
