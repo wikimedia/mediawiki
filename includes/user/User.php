@@ -1941,11 +1941,12 @@ class User implements IDBAccessObject {
 		$id = $this->getId();
 		$userLimit = false;
 		$isNewbie = $this->isNewbie();
+		$cache = ObjectCache::getLocalClusterInstance();
 
 		if ( $id == 0 ) {
 			// limits for anons
 			if ( isset( $limits['anon'] ) ) {
-				$keys[wfMemcKey( 'limiter', $action, 'anon' )] = $limits['anon'];
+				$keys[$cache->makeKey( 'limiter', $action, 'anon' )] = $limits['anon'];
 			}
 		} else {
 			// limits for logged-in users
@@ -1954,7 +1955,7 @@ class User implements IDBAccessObject {
 			}
 			// limits for newbie logged-in users
 			if ( $isNewbie && isset( $limits['newbie'] ) ) {
-				$keys[wfMemcKey( 'limiter', $action, 'user', $id )] = $limits['newbie'];
+				$keys[$cache->makeKey( 'limiter', $action, 'user', $id )] = $limits['newbie'];
 			}
 		}
 
@@ -1991,7 +1992,7 @@ class User implements IDBAccessObject {
 		if ( $userLimit !== false ) {
 			list( $max, $period ) = $userLimit;
 			wfDebug( __METHOD__ . ": effective user limit: $max in {$period}s\n" );
-			$keys[wfMemcKey( 'limiter', $action, 'user', $id )] = $userLimit;
+			$keys[$cache->makeKey( 'limiter', $action, 'user', $id )] = $userLimit;
 		}
 
 		// ip-based limits for all ping-limitable users
@@ -2017,8 +2018,6 @@ class User implements IDBAccessObject {
 				}
 			}
 		}
-
-		$cache = ObjectCache::getLocalClusterInstance();
 
 		$triggered = false;
 		foreach ( $keys as $key => $limit ) {
