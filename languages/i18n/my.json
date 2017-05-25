@@ -536,7 +536,7 @@
 	"post-expand-template-argument-warning": "'''သတိပေးချက် -''' ဤစာမျက်နှာတွင် ပမာဏအားဖြင့် ကြီးမားကျယ်ပြန့်သော template argument တစ်ခုပါဝင်သည်။\nယင်း arguments များကို ဖယ်ထုတ်လိုက်သည်။",
 	"post-expand-template-argument-category": "ဖယ်ထုတ်ထားသော template arguments များပါဝင်သည့် စာမျက်နှာများ",
 	"parser-template-loop-warning": "တမ်းပလိတ်များ လှည့်ပတ်ဆက်စပ် နေသည်ကို တွေ့ရသည်။ [[$1]]",
-	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|ဆွေးနွေး]]) ၏ $1 ပြင်ဆင်ချက် $1 ကို ပြန်လည်ပယ်ဖျက်လိုက်သည်",
+	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|ဆွေးနွေး]]) ၏ တည်းဖြတ်မူ $1 ကို ပြန်လည်ပယ်ဖျက်လိုက်သည်",
 	"viewpagelogs": "ဤစာမျက်နှာအတွက် မှတ်တမ်းများကို ကြည့်ရန်",
 	"nohistory": "ဤစာမျက်နှာတွင် တည်းဖြတ်မှု ရာဇဝင်မရှိပါ",
 	"currentrev": "နောက်ဆုံးမူ",

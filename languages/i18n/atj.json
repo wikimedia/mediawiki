@@ -11,6 +11,8 @@
 			"Catrope"
 		]
 	},
+	"underline-always": "Mocak",
+	"underline-never": "Nama wiskat",
 	"sunday": "manactakaniwon",
 	"monday": "ockorkananiwon",
 	"tuesday": "nicw kicikaw",
@@ -73,6 +75,8 @@
 	"october-date": "Namekosi pisimw $1",
 	"november-date": "Atikamekw pisimw $1",
 	"december-date": "Pitcipipon pisimw $1",
+	"period-am": "E pwamici apita kicikak",
+	"period-pm": "E ickwa apita kicikak",
 	"pagecategories": "{{PLURAL:$1|Ka ici arimotcikatek|Ka ici arimotcikateki}}",
 	"category_header": "Masinahikana ka ici arimotcikateki \"$1\"",
 	"subcategories": "Awocamec ke ici arimotcikateki",
@@ -92,6 +96,8 @@
 	"and": "&#32;kaie",
 	"qbbrowse": "Nantowepaha",
 	"qbedit": "Meckotcita",
+	"qbpageoptions": "Nohwe paskickwemakan",
+	"qbmyoptions": "Nipaskickwemakana",
 	"namespaces": "Ka ici masinasotcik",
 	"variants": "Pitoc",
 	"navigation-heading": "Matcecikinikana",

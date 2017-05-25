@@ -3393,7 +3393,7 @@
 	"confirmrecreate": "L’utilisat{{GENDER:$1|eur|rice}} [[User:$1|$1]] ([[User talk:$1|Discussion]]) a supprimé cette page, alors que vous aviez commencé à la modifier, pour le motif suivant :\n: <em>$2</em>\nVeuillez confirmer que vous désirez réellement recréer cette page.",
 	"confirmrecreate-noreason": "L’utilisat{{GENDER:$1|eur|rice}} [[User:$1|$1]] ([[User talk:$1|Discussion]]) a supprimé cette page, alors que vous aviez commencé à la modifier. Veuillez confirmer que vous désirez réellement recréer cette page.",
 	"recreate": "Recréer",
-	"confirm-purge-title": "Détruire cette page",
+	"confirm-purge-title": "Purger cette page",
 	"confirm_purge_button": "Confirmer",
 	"confirm-purge-top": "Voulez-vous rafraîchir cette page (purger le cache) ?",
 	"confirm-purge-bottom": "Purger une page l’efface du cache et force sa dernière version à être affichée.",

@@ -1053,7 +1053,7 @@
 	"apihelp-query+search-param-limit": "Cuántas páginas en total se devolverán.",
 	"apihelp-query+search-param-interwiki": "Incluir resultados interwiki en la búsqueda, si es posible.",
 	"apihelp-query+search-param-backend": "Qué servidor de búsqueda utilizar, si no es el servidor por defecto.",
-	"apihelp-query+search-param-enablerewrites": "Habilita la reescritura de consultas internas. Algunos servidores de búsqueda pueden reescribir la consulta a una que considere que da mejores resultados, por ejemplo, corrigiendo las faltas ortográficas.",
+	"apihelp-query+search-param-enablerewrites": "Habilitar la reescritura de consultas internas. Algunos servidores de búsqueda pueden reescribir la consulta a una que considere que da mejores resultados, por ejemplo, corrigiendo las faltas ortográficas.",
 	"apihelp-query+search-example-simple": "Buscar <kbd>meaning</kbd>.",
 	"apihelp-query+search-example-text": "Buscar <kbd>meaning</kbd> en los textos.",
 	"apihelp-query+search-example-generator": "Obtener información acerca de las páginas devueltas por una búsqueda de <kbd>meaning</kbd>.",

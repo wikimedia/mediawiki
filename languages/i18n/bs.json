@@ -25,7 +25,8 @@
 			"Semso98",
 			"Matma Rex",
 			"Сербијана",
-			"Asmen"
+			"Asmen",
+			"Obsuser"
 		]
 	},
 	"tog-underline": "Podvlačenje linkova:",
@@ -3620,12 +3621,12 @@
 	"limitreport-walltime-value": "$1 {{PLURAL:$1|sekunda|sekunde|sekundi}}",
 	"limitreport-ppvisitednodes": "Broj predprocesiranih posjećenih nodova",
 	"limitreport-ppgeneratednodes": "Broj predprocesiranih generiranih nodova",
-	"limitreport-postexpandincludesize": "Nakon proširenja navedi i veličinu",
+	"limitreport-postexpandincludesize": "Uključena veličina nakon proširenja",
 	"limitreport-postexpandincludesize-value": "$1/$2 {{PLURAL:$2|bajt|bajta|bajtova}}",
-	"limitreport-templateargumentsize": "Veličina stavke šablona",
+	"limitreport-templateargumentsize": "Veličina argumenata šablona",
 	"limitreport-templateargumentsize-value": "$1/$2 {{PLURAL:$2|bajt|bajta|bajtova}}",
 	"limitreport-expansiondepth": "Najveća dubina proširenja",
-	"limitreport-expensivefunctioncount": "Broj funkcije ekspenzivnog analizatora",
+	"limitreport-expensivefunctioncount": "Broj složenih funkcija raščlanjivača",
 	"expandtemplates": "Proširi šablone",
 	"expand_templates_intro": "Ova posebna stranica uzima neki tekst i proširuje sve šablone u njemu rekurzivno.\nOna također proširuje parserske funkcije poput\n<code><nowiki>{{</nowiki>#language:…}}</code> i varijable poput\n<code><nowiki>{{</nowiki>CURRENTDAY}}</code>. U principu proširuje gotovo sve između dvostrukih zagrada.",
 	"expand_templates_title": "Naslov konteksta, za {{FULLPAGENAME}} itd.:",

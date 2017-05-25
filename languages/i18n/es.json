@@ -1450,7 +1450,7 @@
 	"rcfilters-savedqueries-defaultlabel": "Filtros guardados",
 	"rcfilters-savedqueries-rename": "Cambiar nombre",
 	"rcfilters-savedqueries-setdefault": "Activar por defecto",
-	"rcfilters-savedqueries-unsetdefault": "Desactivar por defecto",
+	"rcfilters-savedqueries-unsetdefault": "Eliminar por defecto",
 	"rcfilters-savedqueries-remove": "Eliminar",
 	"rcfilters-savedqueries-new-name-label": "Nombre",
 	"rcfilters-savedqueries-apply-label": "Crear enlace rápido",
@@ -4029,7 +4029,7 @@
 	"rawhtml-notallowed": "No se pueden emplear las etiquetas &lt;html&gt; si no es en las páginas normales.",
 	"gotointerwiki": "Salir de {{SITENAME}}",
 	"gotointerwiki-invalid": "El título especificado no es válido.",
-	"gotointerwiki-external": "Estás a punto de abandonar {{SITENAME}} para visitar [[$2]], un sitio web separado.\n\n[$1 Continuar a $1].",
+	"gotointerwiki-external": "Estás a punto de abandonar {{SITENAME}} para visitar [[$2]], un sitio web diferente.\n\n'''[$1 Continuar a $1]'''",
 	"undelete-cantedit": "No puedes deshacer el borrado de esta página porque no tienes permisos para editarla.",
 	"undelete-cantcreate": "No puedes deshacer el borrado de esta página porque no existe ninguna página con este nombre y no tienes permisos para crearla."
 }
