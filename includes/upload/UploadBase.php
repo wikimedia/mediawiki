@@ -2113,9 +2113,10 @@ abstract class UploadBase {
 	 * @return Status[]|bool
 	 */
 	public static function getSessionStatus( User $user, $statusKey ) {
-		$key = wfMemcKey( 'uploadstatus', $user->getId() ?: md5( $user->getName() ), $statusKey );
+		$cache = MediaWikiServices::getInstance()->getMainObjectStash();
+		$key = $cache->makeKey( 'uploadstatus', $user->getId() ?: md5( $user->getName() ), $statusKey );
 
-		return MediaWikiServices::getInstance()->getMainObjectStash()->get( $key );
+		return $cache->get( $key );
 	}
 
 	/**
@@ -2129,9 +2130,9 @@ abstract class UploadBase {
 	 * @return void
 	 */
 	public static function setSessionStatus( User $user, $statusKey, $value ) {
-		$key = wfMemcKey( 'uploadstatus', $user->getId() ?: md5( $user->getName() ), $statusKey );
-
 		$cache = MediaWikiServices::getInstance()->getMainObjectStash();
+		$key = $cache->makeKey( 'uploadstatus', $user->getId() ?: md5( $user->getName() ), $statusKey );
+
 		if ( $value === false ) {
 			$cache->delete( $key );
 		} else {
