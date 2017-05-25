@@ -28,7 +28,7 @@
  * For example, one can set $wgJobTypeConf['refreshLinks'] to point to a
  * JobQueueFederated instance, which itself would consist of three JobQueueRedis
  * instances, each using their own redis server. This would allow for the jobs
- * to be split (evenly or based on weights) accross multiple servers if a single
+ * to be split (evenly or based on weights) across multiple servers if a single
  * server becomes impractical or expensive. Different JobQueue classes can be mixed.
  *
  * The basic queue configuration (e.g. "order", "claimTTL") of a federated queue
