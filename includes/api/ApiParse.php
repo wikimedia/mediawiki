@@ -401,7 +401,6 @@ class ApiParse extends ApiBase {
 			} else {
 				$result_array['headitems'] = $this->formatHeadItems( $p_result->getHeadItems() );
 			}
-			$this->addDeprecation( 'apiwarn-deprecation-parse-headitems', 'action=parse&prop=headitems' );
 		}
 
 		if ( isset( $prop['headhtml'] ) ) {
@@ -820,7 +819,6 @@ class ApiParse extends ApiBase {
 					'sections',
 					'revid',
 					'displaytitle',
-					'headitems',
 					'headhtml',
 					'modules',
 					'jsconfigvars',
@@ -832,10 +830,14 @@ class ApiParse extends ApiBase {
 					'limitreportdata',
 					'limitreporthtml',
 					'parsetree',
-					'parsewarnings'
+					'parsewarnings',
+					'headitems',
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [
 					'parsetree' => [ 'apihelp-parse-paramvalue-prop-parsetree', CONTENT_MODEL_WIKITEXT ],
+				],
+				ApiBase::PARAM_DEPRECATED_VALUES => [
+					'headitems' => 'apiwarn-deprecation-parse-headitems',
 				],
 			],
 			'wrapoutputclass' => 'mw-parser-output',

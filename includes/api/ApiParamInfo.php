@@ -448,6 +448,16 @@ class ApiParamInfo extends ApiBase {
 			if ( !empty( $settings[ApiBase::PARAM_RANGE_ENFORCE] ) ) {
 				$item['enforcerange'] = true;
 			}
+			if ( !empty( $settings[ApiBase::PARAM_DEPRECATED_VALUES] ) ) {
+				$deprecatedValues = array_keys( $settings[ApiBase::PARAM_DEPRECATED_VALUES] );
+				if ( is_array( $item['type'] ) ) {
+					$deprecatedValues = array_intersect( $deprecatedValues, $item['type'] );
+				}
+				if ( $deprecatedValues ) {
+					$item['deprecatedvalues'] = array_values( $deprecatedValues );
+					ApiResult::setIndexedTagName( $item['deprecatedvalues'], 'v' );
+				}
+			}
 
 			if ( !empty( $settings[ApiBase::PARAM_HELP_MSG_INFO] ) ) {
 				$item['info'] = [];
