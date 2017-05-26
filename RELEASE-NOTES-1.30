@@ -67,7 +67,9 @@ production.
   returning users and edit comments.
 
 === Action API internal changes in 1.30 ===
-* …
+* ApiBase::getDescriptionMessage() and the "apihelp-*-description" messages are
+  deprecated. The existing message should be split between "apihelp-*-summary"
+  and "apihelp-*-extended-description".
 
 === Languages updated in 1.30 ===
 MediaWiki supports over 350 languages. Many localisations are updated
