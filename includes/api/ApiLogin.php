@@ -41,11 +41,11 @@ class ApiLogin extends ApiBase {
 		parent::__construct( $main, $action, 'lg' );
 	}
 
-	protected function getDescriptionMessage() {
+	protected function getHelpTopTextMessage() {
 		if ( $this->getConfig()->get( 'EnableBotPasswords' ) ) {
-			return 'apihelp-login-description';
+			return 'apihelp-login-toptext';
 		} else {
-			return 'apihelp-login-description-nobotpasswords';
+			return 'apihelp-login-toptext-nobotpasswords';
 		}
 	}
 

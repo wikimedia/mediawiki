@@ -79,7 +79,8 @@ class ApiDocumentationTest extends MediaWikiTestCase {
 		}
 
 		// Module description messages.
-		$this->checkMessage( $module->getDescriptionMessage(), 'Module description' );
+		$this->checkMessage( $module->getSummaryMessage(), 'Module summary' );
+		$this->checkMessage( $module->getHelpTopTextMessage(), 'Module help top text' );
 
 		// Parameters. Lots of messages in here.
 		$params = $module->getFinalParams( ApiBase::GET_VALUES_FOR_HELP );
