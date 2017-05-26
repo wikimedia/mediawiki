@@ -33,7 +33,12 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
  * @ingroup Maintenance
  */
 class TextPassDumper extends BackupDumper {
+	/** @var BaseDump */
 	public $prefetch = null;
+	/** @var string|bool */
+	private $thisPage;
+	/** @var string|bool */
+	private $thisRev;
 
 	// when we spend more than maxTimeAllowed seconds on this run, we continue
 	// processing until we write out the next complete page, then save output file(s),
@@ -583,8 +588,7 @@ TEXT
 				if ( $text === false && isset( $this->prefetch ) && $prefetchNotTried ) {
 					$prefetchNotTried = false;
 					$tryIsPrefetch = true;
-					$text = $this->prefetch->prefetch( intval( $this->thisPage ),
-						intval( $this->thisRev ) );
+					$text = $this->prefetch->prefetch( (int)$this->thisPage, (int)$this->thisRev );
 
 					if ( $text === null ) {
 						$text = false;
