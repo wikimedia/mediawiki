@@ -246,6 +246,26 @@ class BlockListPager extends TablePager {
 		return $info;
 	}
 
+	/**
+	 * Get total number of autoblocks at any given time
+	 *
+	 * @return int Total number of unexpired active autoblocks
+	 */
+	function getTotalAutoblocks() {
+		$dbr = $this->getDatabase();
+		$res = $dbr->selectField( 'ipblocks',
+			[ 'COUNT(*) AS totalautoblocks' ],
+			[
+				'ipb_auto' => '1',
+				'ipb_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() ),
+			]
+		);
+		if ( $res ) {
+			return $res;
+		}
+		return 0; // We found nothing
+	}
+
 	protected function getTableClass() {
 		return parent::getTableClass() . ' mw-blocklist';
 	}
