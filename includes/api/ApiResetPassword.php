@@ -43,11 +43,11 @@ class ApiResetPassword extends ApiBase {
 		return $this->hasAnyRoutes;
 	}
 
-	protected function getDescriptionMessage() {
+	protected function getExtendedDescription() {
 		if ( !$this->hasAnyRoutes() ) {
-			return 'apihelp-resetpassword-description-noroutes';
+			return 'apihelp-resetpassword-extended-description-noroutes';
 		}
-		return parent::getDescriptionMessage();
+		return parent::getExtendedDescription();
 	}
 
 	public function execute() {
