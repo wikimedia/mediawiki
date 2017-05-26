@@ -81,6 +81,7 @@ TEXT
 		);
 		$this->addOption( 'image-base-path', 'Import files from a specified path', false, true );
 		$this->addArg( 'file', 'Dump file to import [else use stdin]', false );
+		$this->addArg( 'skip-to', 'Start from nth page by skipping first n-1 pages', false );
 	}
 
 	public function execute() {
@@ -102,8 +103,8 @@ TEXT
 			$this->setNsfilter( explode( '|', $this->getOption( 'namespaces' ) ) );
 		}
 
-		if ( $this->hasArg() ) {
-			$this->importFromFile( $this->getArg() );
+		if ( $this->hasArg( 0 ) ) {
+			$this->importFromFile( $this->getArg( 0 ) );
 		} else {
 			$this->importFromStdin();
 		}
@@ -300,6 +301,11 @@ TEXT
 				$this->error( $statusRootPage->getMessage()->text(), 1 );
 				return false;
 			}
+		}
+		if ( $this->hasArg( 1 ) ) {
+			$nthPage = (int)$this->getArg( 1 );
+			$importer->setSkipTo( $nthPage );
+			$this->pageCount = $nthPage - 1;
 		}
 		$importer->setPageCallback( [ $this, 'reportPage' ] );
 		$this->importCallback = $importer->setRevisionCallback(
