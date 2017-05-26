@@ -321,8 +321,10 @@ class EnhancedChangesList extends ChangesList {
 			while ( $last < $first && $block[$first]->mAttribs['rc_old_len'] === null ) {
 				$first--;
 			}
-			# Get net change
-			$charDifference = $this->formatCharacterDifference( $block[$first], $block[$last] );
+			if ( $last < $first ) {
+				# Get net change
+				$charDifference = $this->formatCharacterDifference( $block[$first], $block[$last] );
+			}
 		}
 
 		$numberofWatchingusers = $this->numberofWatchingusers( $block[0]->numberofWatchingusers );
