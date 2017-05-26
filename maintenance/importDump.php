@@ -80,6 +80,7 @@ TEXT
 			'Disable link table updates. Is faster but leaves the wiki in an inconsistent state'
 		);
 		$this->addOption( 'image-base-path', 'Import files from a specified path', false, true );
+		$this->addOption( 'skip-to', 'Start from nth page by skipping first n-1 pages', false, true );
 		$this->addArg( 'file', 'Dump file to import [else use stdin]', false );
 	}
 
@@ -300,6 +301,11 @@ TEXT
 				$this->error( $statusRootPage->getMessage()->text(), 1 );
 				return false;
 			}
+		}
+		if ( $this->hasOption( 'skip-to' ) ) {
+			$nthPage = (int)$this->getOption( 'skip-to' );
+			$importer->setPageOffset( $nthPage );
+			$this->pageCount = $nthPage - 1;
 		}
 		$importer->setPageCallback( [ $this, 'reportPage' ] );
 		$this->importCallback = $importer->setRevisionCallback(
