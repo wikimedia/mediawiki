@@ -108,10 +108,6 @@
 							.append(
 								$( '<div>' )
 									.addClass( 'mw-rcfilters-ui-cell' )
-									.addClass( 'mw-rcfilters-ui-savedLinksListItemWidget-icon' )
-									.append( this.$icon ),
-								$( '<div>' )
-									.addClass( 'mw-rcfilters-ui-cell' )
 									.addClass( 'mw-rcfilters-ui-savedLinksListItemWidget-content' )
 									.append(
 										this.$label
@@ -119,6 +115,10 @@
 										this.editInput.$element,
 										this.saveButton.$element
 									),
+								$( '<div>' )
+									.addClass( 'mw-rcfilters-ui-cell' )
+									.addClass( 'mw-rcfilters-ui-savedLinksListItemWidget-icon' )
+									.append( this.$icon ),
 								this.popupButton.$element
 									.addClass( 'mw-rcfilters-ui-cell' )
 							)
@@ -257,6 +257,7 @@
 
 			this.editInput.toggle( isEdit );
 			this.$label.toggleClass( 'oo-ui-element-hidden', isEdit );
+			this.$icon.toggleClass( 'oo-ui-element-hidden', isEdit );
 			this.popupButton.toggle( !isEdit );
 			this.saveButton.toggle( isEdit );
 

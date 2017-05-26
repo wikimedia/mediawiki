@@ -1,5 +1,5 @@
 .mw-rcfilters-ui-savedLinksListItemWidget {
-	padding: 0.5em;
+	padding: 0.2em 0.7em;
 
 	&:hover {
 		// Mimicking optionWidget styles
@@ -11,13 +11,13 @@
 		vertical-align: middle;
 	}
 
-	&:not( .oo-ui-iconElement ) .oo-ui-iconElement-icon {
-		// The iconElement-icon class still appears when we
-		// have an empty icon, and we need it to pretend to
-		// be there so the text has the same alignment as
-		// text next to a visible icon. #ThanksOOUI
-		width: 1.875em;
-		height: 1.875em;
+	.oo-ui-iconElement-icon {
+		// Since we made the rows narrower (height smaller than usual)
+		// then the icon needs to be slightly smaller as well, so that
+		// when we toggle 'default' the icon doesn't bounce the option
+		// height up a little
+		width: 1.7em;
+		height: 1.7em;
 	}
 
 	&-icon span {
@@ -38,6 +38,7 @@
 		overflow: hidden;
 		cursor: pointer;
 		margin-left: 0.5px;
+		color: #36c; // Accent50;
 	}
 
 	&-icon,
