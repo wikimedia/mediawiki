@@ -267,7 +267,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @param array $checkKeys List of check keys to apply to all $keys. May also apply "check"
 	 *  keys to specific cache keys only by using cache keys as keys in the $checkKeys array.
 	 * @param float[] &$asOfs Map of (key =>  UNIX timestamp of cached value; null on failure)
-	 * @return array Map of (key => value) for keys that exist
+	 * @return array Map of (key => value) for keys that exist and are not tombstoned
 	 */
 	final public function getMulti(
 		array $keys, &$curTTLs = [], array $checkKeys = [], array &$asOfs = []
@@ -1049,7 +1049,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
-	 * Method to fetch/regenerate multiple cache keys at once
+	 * Method to fetch multiple cache keys at once with regeneration
 	 *
 	 * This works the same as getWithSetCallback() except:
 	 *   - a) The $keys argument expects the result of WANObjectCache::makeMultiKeys()
@@ -1108,39 +1108,24 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	final public function getMultiWithSetCallback(
 		ArrayIterator $keyedIds, $ttl, callable $callback, array $opts = []
 	) {
+		$valueKeys = array_keys( iterator_to_array( $keyedIds, true ) );
 		$checkKeys = isset( $opts['checkKeys'] ) ? $opts['checkKeys'] : [];
 
-		$keysWarmUp = [];
-		// Get all the value keys to fetch...
-		foreach ( $keyedIds as $key => $id ) {
-			$keysWarmUp[] = self::VALUE_KEY_PREFIX . $key;
-		}
-		// Get all the check keys to fetch...
-		foreach ( $checkKeys as $i => $checkKeyOrKeys ) {
-			if ( is_int( $i ) ) {
-				// Single check key that applies to all value keys
-				$keysWarmUp[] = self::TIME_KEY_PREFIX . $checkKeyOrKeys;
-			} else {
-				// List of check keys that apply to value key $i
-				$keysWarmUp = array_merge(
-					$keysWarmUp,
-					self::prefixCacheKeys( $checkKeyOrKeys, self::TIME_KEY_PREFIX )
-				);
-			}
-		}
-
-		$this->warmupCache = $this->cache->getMulti( $keysWarmUp );
-		$this->warmupCache += array_fill_keys( $keysWarmUp, false );
+		// Load required keys into process cache in one go
+		$this->warmupCache = $this->getRawKeysForWarmup(
+			$this->getNonProcessCachedKeys( $valueKeys, $opts ),
+			$checkKeys
+		);
 		$this->warmupKeyMisses = 0;
 
 		// Wrap $callback to match the getWithSetCallback() format while passing $id to $callback
-		$id = null;
-		$func = function ( $oldValue, &$ttl, array &$setOpts, $oldAsOf ) use ( $callback, &$id ) {
+		$id = null; // current entity ID
+		$func = function ( $oldValue, &$ttl, &$setOpts, $oldAsOf ) use ( $callback, &$id ) {
 			return $callback( $id, $oldValue, $ttl, $setOpts, $oldAsOf );
 		};
 
 		$values = [];
-		foreach ( $keyedIds as $key => $id ) {
+		foreach ( $keyedIds as $key => $id ) { // preserve order
 			$values[$key] = $this->getWithSetCallback( $key, $ttl, $func, $opts );
 		}
 
@@ -1503,7 +1488,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 * @param array|string|bool $wrapped
 	 * @param float $now Unix Current timestamp (preferrably pre-query)
-	 * @return array (mixed; false if absent/invalid, current time left)
+	 * @return array (mixed; false if absent/tombstoned/invalid, current time left)
 	 */
 	protected function unwrap( $wrapped, $now ) {
 		// Check if the value is a tombstone
@@ -1597,5 +1582,60 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		}
 
 		return $this->processCaches[$group];
+	}
+
+	/**
+	 * @param array $keys
+	 * @param array $opts
+	 * @return array List of keys
+	 */
+	private function getNonProcessCachedKeys( array $keys, array $opts ) {
+		$keysFound = [];
+		if ( isset( $opts['pcTTL'] ) && $opts['pcTTL'] > 0 && $this->callbackDepth == 0 ) {
+			$pcGroup = isset( $opts['pcGroup'] ) ? $opts['pcGroup'] : self::PC_PRIMARY;
+			$procCache = $this->getProcessCache( $pcGroup );
+			foreach ( $keys as $key ) {
+				if ( $procCache->get( $key ) !== false ) {
+					$keysFound[] = $key;
+				}
+			}
+		}
+
+		return array_diff( $keys, $keysFound );
+	}
+
+		/**
+	 * @param array $keys
+	 * @param array $checkKeys
+	 * @return array Map of (cache key => mixed)
+	 */
+	private function getRawKeysForWarmup( array $keys, array $checkKeys ) {
+		if ( !$keys ) {
+			return [];
+		}
+
+		$keysWarmUp = [];
+		// Get all the value keys to fetch...
+		foreach ( $keys as $key ) {
+			$keysWarmUp[] = self::VALUE_KEY_PREFIX . $key;
+		}
+		// Get all the check keys to fetch...
+		foreach ( $checkKeys as $i => $checkKeyOrKeys ) {
+			if ( is_int( $i ) ) {
+				// Single check key that applies to all value keys
+				$keysWarmUp[] = self::TIME_KEY_PREFIX . $checkKeyOrKeys;
+			} else {
+				// List of check keys that apply to value key $i
+				$keysWarmUp = array_merge(
+					$keysWarmUp,
+					self::prefixCacheKeys( $checkKeyOrKeys, self::TIME_KEY_PREFIX )
+				);
+			}
+		}
+
+		$warmupCache = $this->cache->getMulti( $keysWarmUp );
+		$warmupCache += array_fill_keys( $keysWarmUp, false );
+
+		return $warmupCache;
 	}
 }
