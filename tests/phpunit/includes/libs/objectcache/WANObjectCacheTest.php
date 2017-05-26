@@ -406,6 +406,153 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase  {
 	}
 
 	/**
+	 * @dataProvider getMultiWithUnionSetCallback_provider
+	 * @covers WANObjectCache::getMultiWithUnionSetCallback()
+	 * @covers WANObjectCache::makeMultiKeys()
+	 * @param array $extOpts
+	 * @param bool $versioned
+	 */
+	public function testGetMultiWithUnionSetCallback( array $extOpts, $versioned ) {
+		$cache = $this->cache;
+
+		$keyA = wfRandomString();
+		$keyB = wfRandomString();
+		$keyC = wfRandomString();
+		$cKey1 = wfRandomString();
+		$cKey2 = wfRandomString();
+
+		$wasSet = 0;
+		$genFunc = function ( array $ids, array &$ttls, array &$setOpts ) use (
+			&$wasSet, &$priorValue, &$priorAsOf
+		) {
+			$newValues = [];
+			foreach ( $ids as $id ) {
+				++$wasSet;
+				$newValues[$id] = "@$id$";
+				$ttls[$id] = 20; // override with another value
+			}
+
+			return $newValues;
+		};
+
+		$wasSet = 0;
+		$keyedIds = new ArrayIterator( [ $keyA => 3353 ] );
+		$value = "@3353$";
+		$v = $cache->getMultiWithUnionSetCallback(
+			$keyedIds, 30, $genFunc, $extOpts );
+		$this->assertEquals( $value, $v[$keyA], "Value returned" );
+		$this->assertEquals( 1, $wasSet, "Value regenerated" );
+
+		$curTTL = null;
+		$cache->get( $keyA, $curTTL );
+		$this->assertLessThanOrEqual( 20, $curTTL, 'Current TTL between 19-20 (overriden)' );
+		$this->assertGreaterThanOrEqual( 19, $curTTL, 'Current TTL between 19-20 (overriden)' );
+
+		$wasSet = 0;
+		$value = "@efef$";
+		$keyedIds = new ArrayIterator( [ $keyB => 'efef' ] );
+		$v = $cache->getMultiWithUnionSetCallback(
+			$keyedIds, 30, $genFunc, [ 'lowTTL' => 0 ] + $extOpts );
+		$this->assertEquals( $value, $v[$keyB], "Value returned" );
+		$this->assertEquals( 1, $wasSet, "Value regenerated" );
+		$this->assertEquals( 0, $cache->getWarmupKeyMisses(), "Keys warmed yet in process cache" );
+		$v = $cache->getMultiWithUnionSetCallback(
+			$keyedIds, 30, $genFunc, [ 'lowTTL' => 0 ] + $extOpts );
+		$this->assertEquals( $value, $v[$keyB], "Value returned" );
+		$this->assertEquals( 1, $wasSet, "Value not regenerated" );
+		$this->assertEquals( 0, $cache->getWarmupKeyMisses(), "Keys warmed in process cache" );
+
+		$priorTime = microtime( true );
+		usleep( 1 );
+		$wasSet = 0;
+		$keyedIds = new ArrayIterator( [ $keyB => 'efef' ] );
+		$v = $cache->getMultiWithUnionSetCallback(
+			$keyedIds, 30, $genFunc, [ 'checkKeys' => [ $cKey1, $cKey2 ] ] + $extOpts
+		);
+		$this->assertEquals( $value, $v[$keyB], "Value returned" );
+		$this->assertEquals( 1, $wasSet, "Value regenerated due to check keys" );
+		$t1 = $cache->getCheckKeyTime( $cKey1 );
+		$this->assertGreaterThanOrEqual( $priorTime, $t1, 'Check keys generated on miss' );
+		$t2 = $cache->getCheckKeyTime( $cKey2 );
+		$this->assertGreaterThanOrEqual( $priorTime, $t2, 'Check keys generated on miss' );
+
+		$priorTime = microtime( true );
+		$value = "@43636$";
+		$wasSet = 0;
+		$keyedIds = new ArrayIterator( [ $keyC => 43636 ] );
+		$v = $cache->getMultiWithUnionSetCallback(
+			$keyedIds, 30, $genFunc, [ 'checkKeys' => [ $cKey1, $cKey2 ] ] + $extOpts
+		);
+		$this->assertEquals( $value, $v[$keyC], "Value returned" );
+		$this->assertEquals( 1, $wasSet, "Value regenerated due to still-recent check keys" );
+		$t1 = $cache->getCheckKeyTime( $cKey1 );
+		$this->assertLessThanOrEqual( $priorTime, $t1, 'Check keys did not change again' );
+		$t2 = $cache->getCheckKeyTime( $cKey2 );
+		$this->assertLessThanOrEqual( $priorTime, $t2, 'Check keys did not change again' );
+
+		$curTTL = null;
+		$v = $cache->get( $keyC, $curTTL, [ $cKey1, $cKey2 ] );
+		if ( $versioned ) {
+			$this->assertEquals( $value, $v[$cache::VFLD_DATA], "Value returned" );
+		} else {
+			$this->assertEquals( $value, $v, "Value returned" );
+		}
+		$this->assertLessThanOrEqual( 0, $curTTL, "Value has current TTL < 0 due to check keys" );
+
+		$wasSet = 0;
+		$key = wfRandomString();
+		$keyedIds = new ArrayIterator( [ $key => 242424 ] );
+		$v = $cache->getMultiWithUnionSetCallback(
+			$keyedIds, 30, $genFunc, [ 'pcTTL' => 5 ] + $extOpts );
+		$this->assertEquals( "@{$keyedIds[$key]}$", $v[$key], "Value returned" );
+		$cache->delete( $key );
+		$keyedIds = new ArrayIterator( [ $key => 242424 ] );
+		$v = $cache->getMultiWithUnionSetCallback(
+			$keyedIds, 30, $genFunc, [ 'pcTTL' => 5 ] + $extOpts );
+		$this->assertEquals( "@{$keyedIds[$key]}$", $v[$key], "Value still returned after deleted" );
+		$this->assertEquals( 1, $wasSet, "Value process cached while deleted" );
+
+		$calls = 0;
+		$ids = [ 1, 2, 3, 4, 5, 6 ];
+		$keyFunc = function ( $id, WANObjectCache $wanCache ) {
+			return $wanCache->makeKey( 'test', $id );
+		};
+		$keyedIds = $cache->makeMultiKeys( $ids, $keyFunc );
+		$genFunc = function ( array $ids, array &$ttls, array &$setOpts ) use ( &$calls ) {
+			$newValues = [];
+			foreach ( $ids as $id ) {
+				++$calls;
+				$newValues[$id] = "val-{$id}";
+			}
+
+			return $newValues;
+		};
+		$values = $cache->getMultiWithUnionSetCallback( $keyedIds, 10, $genFunc );
+
+		$this->assertEquals(
+			[ "val-1", "val-2", "val-3", "val-4", "val-5", "val-6" ],
+			array_values( $values ),
+			"Correct values in correct order"
+		);
+		$this->assertEquals(
+			array_map( $keyFunc, $ids, array_fill( 0, count( $ids ), $this->cache ) ),
+			array_keys( $values ),
+			"Correct keys in correct order"
+		);
+		$this->assertEquals( count( $ids ), $calls );
+
+		$cache->getMultiWithUnionSetCallback( $keyedIds, 10, $genFunc );
+		$this->assertEquals( count( $ids ), $calls, "Values cached" );
+	}
+
+	public static function getMultiWithUnionSetCallback_provider() {
+		return [
+			[ [], false ],
+			[ [ 'version' => 1 ], true ]
+		];
+	}
+
+	/**
 	 * @covers WANObjectCache::getWithSetCallback()
 	 * @covers WANObjectCache::doGetWithSetCallback()
 	 */
