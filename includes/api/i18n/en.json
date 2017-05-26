@@ -6,7 +6,8 @@
 		]
 	},
 
-	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentation]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailing list]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API Announcements]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & requests]\n</div>\n<strong>Status:</strong> All features shown on this page should be working, but the API is still in active development, and may change at any time. Subscribe to [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce mailing list] for notice of updates.\n\n<strong>Erroneous requests:</strong> When erroneous requests are sent to the API, an HTTP header will be sent with the key \"MediaWiki-API-Error\" and then both the value of the header and the error code sent back will be set to the same value. For more information see [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]].\n\n<strong>Testing:</strong> For ease of testing API requests, see [[Special:ApiSandbox]].",
+	"apihelp-main-summary": "",
+	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentation]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailing list]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API Announcements]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & requests]\n</div>\n<strong>Status:</strong> All features shown on this page should be working, but the API is still in active development, and may change at any time. Subscribe to [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce mailing list] for notice of updates.\n\n<strong>Erroneous requests:</strong> When erroneous requests are sent to the API, an HTTP header will be sent with the key \"MediaWiki-API-Error\" and then both the value of the header and the error code sent back will be set to the same value. For more information see [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]].\n\n<strong>Testing:</strong> For ease of testing API requests, see [[Special:ApiSandbox]].",
 	"apihelp-main-param-action": "Which action to perform.",
 	"apihelp-main-param-format": "The format of the output.",
 	"apihelp-main-param-maxlag": "Maximum lag can be used when MediaWiki is installed on a database replicated cluster. To save actions causing any more site replication lag, this parameter can make the client wait until the replication lag is less than the specified value. In case of excessive lag, error code <samp>maxlag</samp> is returned with a message like <samp>Waiting for $host: $lag seconds lagged</samp>.<br />See [[mw:Special:MyLanguage/Manual:Maxlag_parameter|Manual: Maxlag parameter]] for more information.",
@@ -24,7 +25,7 @@
 	"apihelp-main-param-errorlang": "Language to use for warnings and errors. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> with <kbd>siprop=languages</kbd> returns a list of language codes, or specify <kbd>content</kbd> to use this wiki's content language, or specify <kbd>uselang</kbd> to use the same value as the <var>uselang</var> parameter.",
 	"apihelp-main-param-errorsuselocal": "If given, error texts will use locally-customized messages from the {{ns:MediaWiki}} namespace.",
 
-	"apihelp-block-description": "Block a user.",
+	"apihelp-block-summary": "Block a user.",
 	"apihelp-block-param-user": "Username, IP address, or IP address range to block. Cannot be used together with <var>$1userid</var>",
 	"apihelp-block-param-userid": "User ID to block. Cannot be used together with <var>$1user</var>.",
 	"apihelp-block-param-expiry": "Expiry time. May be relative (e.g. <kbd>5 months</kbd> or <kbd>2 weeks</kbd>) or absolute (e.g. <kbd>2014-09-18T12:34:56Z</kbd>). If set to <kbd>infinite</kbd>, <kbd>indefinite</kbd>, or <kbd>never</kbd>, the block will never expire.",
@@ -41,23 +42,24 @@
 	"apihelp-block-example-ip-simple": "Block IP address <kbd>192.0.2.5</kbd> for three days with reason <kbd>First strike</kbd>.",
 	"apihelp-block-example-user-complex": "Block user <kbd>Vandal</kbd> indefinitely with reason <kbd>Vandalism</kbd>, and prevent new account creation and email sending.",
 
-	"apihelp-changeauthenticationdata-description": "Change authentication data for the current user.",
+	"apihelp-changeauthenticationdata-summary": "Change authentication data for the current user.",
 	"apihelp-changeauthenticationdata-example-password": "Attempt to change the current user's password to <kbd>ExamplePassword</kbd>.",
 
-	"apihelp-checktoken-description": "Check the validity of a token from <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd>.",
+	"apihelp-checktoken-summary": "Check the validity of a token from <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd>.",
 	"apihelp-checktoken-param-type": "Type of token being tested.",
 	"apihelp-checktoken-param-token": "Token to test.",
 	"apihelp-checktoken-param-maxtokenage": "Maximum allowed age of the token, in seconds.",
 	"apihelp-checktoken-example-simple": "Test the validity of a <kbd>csrf</kbd> token.",
 
-	"apihelp-clearhasmsg-description": "Clears the <code>hasmsg</code> flag for the current user.",
+	"apihelp-clearhasmsg-summary": "Clears the <code>hasmsg</code> flag for the current user.",
 	"apihelp-clearhasmsg-example-1": "Clear the <code>hasmsg</code> flag for the current user.",
 
-	"apihelp-clientlogin-description": "Log in to the wiki using the interactive flow.",
+	"apihelp-clientlogin-summary": "Log in to the wiki using the interactive flow.",
 	"apihelp-clientlogin-example-login": "Start the process of logging in to the wiki as user <kbd>Example</kbd> with password <kbd>ExamplePassword</kbd>.",
 	"apihelp-clientlogin-example-login2": "Continue logging in after a <samp>UI</samp> response for two-factor auth, supplying an <var>OATHToken</var> of <kbd>987654</kbd>.",
 
-	"apihelp-compare-description": "Get the difference between two pages.\n\nA revision number, a page title, a page ID, text, or a relative reference for both \"from\" and \"to\" must be passed.",
+	"apihelp-compare-summary": "Get the difference between two pages.",
+	"apihelp-compare-extended-description": "A revision number, a page title, a page ID, text, or a relative reference for both \"from\" and \"to\" must be passed.",
 	"apihelp-compare-param-fromtitle": "First title to compare.",
 	"apihelp-compare-param-fromid": "First page ID to compare.",
 	"apihelp-compare-param-fromrev": "First revision to compare.",
@@ -85,7 +87,7 @@
 	"apihelp-compare-paramvalue-prop-size": "The size of the 'from' and 'to' revisions.",
 	"apihelp-compare-example-1": "Create a diff between revision 1 and 2.",
 
-	"apihelp-createaccount-description": "Create a new user account.",
+	"apihelp-createaccount-summary": "Create a new user account.",
 	"apihelp-createaccount-param-preservestate": "If <kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> returned true for <samp>hasprimarypreservedstate</samp>, requests marked as <samp>primary-required</samp> should be omitted. If it returned a non-empty value for <samp>preservedusername</samp>, that username must be used for the <var>username</var> parameter.",
 	"apihelp-createaccount-example-create": "Start the process of creating user <kbd>Example</kbd> with password <kbd>ExamplePassword</kbd>.",
 	"apihelp-createaccount-param-name": "Username.",
@@ -99,10 +101,12 @@
 	"apihelp-createaccount-param-language": "Language code to set as default for the user (optional, defaults to content language).",
 	"apihelp-createaccount-example-pass": "Create user <kbd>testuser</kbd> with password <kbd>test123</kbd>.",
 	"apihelp-createaccount-example-mail": "Create user <kbd>testmailuser</kbd> and email a randomly-generated password.",
-	"apihelp-cspreport-description": "Used by browsers to report violations of the Content Security Policy. This module should never be used, except when used automatically by a CSP compliant web browser.",
+
+	"apihelp-cspreport-summary": "Used by browsers to report violations of the Content Security Policy. This module should never be used, except when used automatically by a CSP compliant web browser.",
 	"apihelp-cspreport-param-reportonly": "Mark as being a report from a monitoring policy, not an enforced policy",
 	"apihelp-cspreport-param-source": "What generated the CSP header that triggered this report",
-	"apihelp-delete-description": "Delete a page.",
+
+	"apihelp-delete-summary": "Delete a page.",
 	"apihelp-delete-param-title": "Title of the page to delete. Cannot be used together with <var>$1pageid</var>.",
 	"apihelp-delete-param-pageid": "Page ID of the page to delete. Cannot be used together with <var>$1title</var>.",
 	"apihelp-delete-param-reason": "Reason for the deletion. If not set, an automatically generated reason will be used.",
@@ -114,9 +118,9 @@
 	"apihelp-delete-example-simple": "Delete <kbd>Main Page</kbd>.",
 	"apihelp-delete-example-reason": "Delete <kbd>Main Page</kbd> with the reason <kbd>Preparing for move</kbd>.",
 
-	"apihelp-disabled-description": "This module has been disabled.",
+	"apihelp-disabled-summary": "This module has been disabled.",
 
-	"apihelp-edit-description": "Create and edit pages.",
+	"apihelp-edit-summary": "Create and edit pages.",
 	"apihelp-edit-param-title": "Title of the page to edit. Cannot be used together with <var>$1pageid</var>.",
 	"apihelp-edit-param-pageid": "Page ID of the page to edit. Cannot be used together with <var>$1title</var>.",
 	"apihelp-edit-param-section": "Section number. <kbd>0</kbd> for the top section, <kbd>new</kbd> for a new section.",
@@ -148,14 +152,14 @@
 	"apihelp-edit-example-prepend": "Prepend <kbd>_&#95;NOTOC_&#95;</kbd> to a page.",
 	"apihelp-edit-example-undo": "Undo revisions 13579 through 13585 with autosummary.",
 
-	"apihelp-emailuser-description": "Email a user.",
+	"apihelp-emailuser-summary": "Email a user.",
 	"apihelp-emailuser-param-target": "User to send email to.",
 	"apihelp-emailuser-param-subject": "Subject header.",
 	"apihelp-emailuser-param-text": "Mail body.",
 	"apihelp-emailuser-param-ccme": "Send a copy of this mail to me.",
 	"apihelp-emailuser-example-email": "Send an email to user <kbd>WikiSysop</kbd> with the text <kbd>Content</kbd>.",
 
-	"apihelp-expandtemplates-description": "Expands all templates within wikitext.",
+	"apihelp-expandtemplates-summary": "Expands all templates within wikitext.",
 	"apihelp-expandtemplates-param-title": "Title of page.",
 	"apihelp-expandtemplates-param-text": "Wikitext to convert.",
 	"apihelp-expandtemplates-param-revid": "Revision ID, for <nowiki>{{REVISIONID}}</nowiki> and similar variables.",
@@ -173,7 +177,7 @@
 	"apihelp-expandtemplates-param-generatexml": "Generate XML parse tree (replaced by $1prop=parsetree).",
 	"apihelp-expandtemplates-example-simple": "Expand the wikitext <kbd><nowiki>{{Project:Sandbox}}</nowiki></kbd>.",
 
-	"apihelp-feedcontributions-description": "Returns a user contributions feed.",
+	"apihelp-feedcontributions-summary": "Returns a user contributions feed.",
 	"apihelp-feedcontributions-param-feedformat": "The format of the feed.",
 	"apihelp-feedcontributions-param-user": "What users to get the contributions for.",
 	"apihelp-feedcontributions-param-namespace": "Which namespace to filter the contributions by.",
@@ -187,7 +191,7 @@
 	"apihelp-feedcontributions-param-showsizediff": "Show the size difference between revisions.",
 	"apihelp-feedcontributions-example-simple": "Return contributions for user <kbd>Example</kbd>.",
 
-	"apihelp-feedrecentchanges-description": "Returns a recent changes feed.",
+	"apihelp-feedrecentchanges-summary": "Returns a recent changes feed.",
 	"apihelp-feedrecentchanges-param-feedformat": "The format of the feed.",
 	"apihelp-feedrecentchanges-param-namespace": "Namespace to limit the results to.",
 	"apihelp-feedrecentchanges-param-invert": "All namespaces but the selected one.",
@@ -210,20 +214,20 @@
 	"apihelp-feedrecentchanges-example-simple": "Show recent changes.",
 	"apihelp-feedrecentchanges-example-30days": "Show recent changes for 30 days.",
 
-	"apihelp-feedwatchlist-description": "Returns a watchlist feed.",
+	"apihelp-feedwatchlist-summary": "Returns a watchlist feed.",
 	"apihelp-feedwatchlist-param-feedformat": "The format of the feed.",
 	"apihelp-feedwatchlist-param-hours": "List pages modified within this many hours from now.",
 	"apihelp-feedwatchlist-param-linktosections": "Link directly to changed sections if possible.",
 	"apihelp-feedwatchlist-example-default": "Show the watchlist feed.",
 	"apihelp-feedwatchlist-example-all6hrs": "Show all changes to watched pages in the past 6 hours.",
 
-	"apihelp-filerevert-description": "Revert a file to an old version.",
+	"apihelp-filerevert-summary": "Revert a file to an old version.",
 	"apihelp-filerevert-param-filename": "Target filename, without the File: prefix.",
 	"apihelp-filerevert-param-comment": "Upload comment.",
 	"apihelp-filerevert-param-archivename": "Archive name of the revision to revert to.",
 	"apihelp-filerevert-example-revert": "Revert <kbd>Wiki.png</kbd> to the version of <kbd>2011-03-05T15:27:40Z</kbd>.",
 
-	"apihelp-help-description": "Display help for the specified modules.",
+	"apihelp-help-summary": "Display help for the specified modules.",
 	"apihelp-help-param-modules": "Modules to display help for (values of the <var>action</var> and <var>format</var> parameters, or <kbd>main</kbd>). Can specify submodules with a <kbd>+</kbd>.",
 	"apihelp-help-param-submodules": "Include help for submodules of the named module.",
 	"apihelp-help-param-recursivesubmodules": "Include help for submodules recursively.",
@@ -236,13 +240,14 @@
 	"apihelp-help-example-help": "Help for the help module itself.",
 	"apihelp-help-example-query": "Help for two query submodules.",
 
-	"apihelp-imagerotate-description": "Rotate one or more images.",
+	"apihelp-imagerotate-summary": "Rotate one or more images.",
 	"apihelp-imagerotate-param-rotation": "Degrees to rotate image clockwise.",
 	"apihelp-imagerotate-param-tags": "Tags to apply to the entry in the upload log.",
 	"apihelp-imagerotate-example-simple": "Rotate <kbd>File:Example.png</kbd> by <kbd>90</kbd> degrees.",
 	"apihelp-imagerotate-example-generator": "Rotate all images in <kbd>Category:Flip</kbd> by <kbd>180</kbd> degrees.",
 
-	"apihelp-import-description": "Import a page from another wiki, or from an XML file.\n\nNote that the HTTP POST must be done as a file upload (i.e. using multipart/form-data) when sending a file for the <var>xml</var> parameter.",
+	"apihelp-import-summary": "Import a page from another wiki, or from an XML file.",
+	"apihelp-import-extended-description": "Note that the HTTP POST must be done as a file upload (i.e. using multipart/form-data) when sending a file for the <var>xml</var> parameter.",
 	"apihelp-import-param-summary": "Log entry import summary.",
 	"apihelp-import-param-xml": "Uploaded XML file.",
 	"apihelp-import-param-interwikisource": "For interwiki imports: wiki to import from.",
@@ -254,11 +259,12 @@
 	"apihelp-import-param-tags": "Change tags to apply to the entry in the import log and to the null revision on the imported pages.",
 	"apihelp-import-example-import": "Import [[meta:Help:ParserFunctions]] to namespace 100 with full history.",
 
-	"apihelp-linkaccount-description": "Link an account from a third-party provider to the current user.",
+	"apihelp-linkaccount-summary": "Link an account from a third-party provider to the current user.",
 	"apihelp-linkaccount-example-link": "Start the process of linking to an account from <kbd>Example</kbd>.",
 
-	"apihelp-login-description": "Log in and get authentication cookies.\n\nThis action should only be used in combination with [[Special:BotPasswords]]; use for main-account login is deprecated and may fail without warning. To safely log in to the main account, use <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>.",
-	"apihelp-login-description-nobotpasswords": "Log in and get authentication cookies.\n\nThis action is deprecated and may fail without warning. To safely log in, use <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>.",
+	"apihelp-login-summary": "Log in and get authentication cookies.",
+	"apihelp-login-extended-description": "This action should only be used in combination with [[Special:BotPasswords]]; use for main-account login is deprecated and may fail without warning. To safely log in to the main account, use <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>.",
+	"apihelp-login-extended-description-nobotpasswords": "This action is deprecated and may fail without warning. To safely log in, use <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>.",
 	"apihelp-login-param-name": "User name.",
 	"apihelp-login-param-password": "Password.",
 	"apihelp-login-param-domain": "Domain (optional).",
@@ -266,10 +272,10 @@
 	"apihelp-login-example-gettoken": "Retrieve a login token.",
 	"apihelp-login-example-login": "Log in.",
 
-	"apihelp-logout-description": "Log out and clear session data.",
+	"apihelp-logout-summary": "Log out and clear session data.",
 	"apihelp-logout-example-logout": "Log the current user out.",
 
-	"apihelp-managetags-description": "Perform management tasks relating to change tags.",
+	"apihelp-managetags-summary": "Perform management tasks relating to change tags.",
 	"apihelp-managetags-param-operation": "Which operation to perform:\n;create:Create a new change tag for manual use.\n;delete:Remove a change tag from the database, including removing the tag from all revisions, recent change entries and log entries on which it is used.\n;activate:Activate a change tag, allowing users to apply it manually.\n;deactivate:Deactivate a change tag, preventing users from applying it manually.",
 	"apihelp-managetags-param-tag": "Tag to create, delete, activate or deactivate. For tag creation, the tag must not exist. For tag deletion, the tag must exist. For tag activation, the tag must exist and not be in use by an extension. For tag deactivation, the tag must be currently active and manually defined.",
 	"apihelp-managetags-param-reason": "An optional reason for creating, deleting, activating or deactivating the tag.",
@@ -280,7 +286,7 @@
 	"apihelp-managetags-example-activate": "Activate a tag named <kbd>spam</kbd> with the reason <kbd>For use in edit patrolling</kbd>",
 	"apihelp-managetags-example-deactivate": "Deactivate a tag named <kbd>spam</kbd> with the reason <kbd>No longer required</kbd>",
 
-	"apihelp-mergehistory-description": "Merge page histories.",
+	"apihelp-mergehistory-summary": "Merge page histories.",
 	"apihelp-mergehistory-param-from": "Title of the page from which history will be merged. Cannot be used together with <var>$1fromid</var>.",
 	"apihelp-mergehistory-param-fromid": "Page ID of the page from which history will be merged. Cannot be used together with <var>$1from</var>.",
 	"apihelp-mergehistory-param-to": "Title of the page to which history will be merged. Cannot be used together with <var>$1toid</var>.",
@@ -290,7 +296,7 @@
 	"apihelp-mergehistory-example-merge": "Merge the entire history of <kbd>Oldpage</kbd> into <kbd>Newpage</kbd>.",
 	"apihelp-mergehistory-example-merge-timestamp": "Merge the page revisions of <kbd>Oldpage</kbd> dating up to <kbd>2015-12-31T04:37:41Z</kbd> into <kbd>Newpage</kbd>.",
 
-	"apihelp-move-description": "Move a page.",
+	"apihelp-move-summary": "Move a page.",
 	"apihelp-move-param-from": "Title of the page to rename. Cannot be used together with <var>$1fromid</var>.",
 	"apihelp-move-param-fromid": "Page ID of the page to rename. Cannot be used together with <var>$1from</var>.",
 	"apihelp-move-param-to": "Title to rename the page to.",
@@ -305,7 +311,7 @@
 	"apihelp-move-param-tags": "Change tags to apply to the entry in the move log and to the null revision on the destination page.",
 	"apihelp-move-example-move": "Move <kbd>Badtitle</kbd> to <kbd>Goodtitle</kbd> without leaving a redirect.",
 
-	"apihelp-opensearch-description": "Search the wiki using the OpenSearch protocol.",
+	"apihelp-opensearch-summary": "Search the wiki using the OpenSearch protocol.",
 	"apihelp-opensearch-param-search": "Search string.",
 	"apihelp-opensearch-param-limit": "Maximum number of results to return.",
 	"apihelp-opensearch-param-namespace": "Namespaces to search.",
@@ -315,7 +321,8 @@
 	"apihelp-opensearch-param-warningsaserror": "If warnings are raised with <kbd>format=json</kbd>, return an API error instead of ignoring them.",
 	"apihelp-opensearch-example-te": "Find pages beginning with <kbd>Te</kbd>.",
 
-	"apihelp-options-description": "Change preferences of the current user.\n\nOnly options which are registered in core or in one of installed extensions, or options with keys prefixed with <code>userjs-</code> (intended to be used by user scripts), can be set.",
+	"apihelp-options-summary": "Change preferences of the current user.",
+	"apihelp-options-extended-description": "Only options which are registered in core or in one of installed extensions, or options with keys prefixed with <code>userjs-</code> (intended to be used by user scripts), can be set.",
 	"apihelp-options-param-reset": "Resets preferences to the site defaults.",
 	"apihelp-options-param-resetkinds": "List of types of options to reset when the <var>$1reset</var> option is set.",
 	"apihelp-options-param-change": "List of changes, formatted name=value (e.g. skin=vector). If no value is given (not even an equals sign), e.g., optionname|otheroption|..., the option will be reset to its default value. If any value passed contains the pipe character (<kbd>|</kbd>), use the [[Special:ApiHelp/main#main/datatypes|alternative multiple-value separator]] for correct operation.",
@@ -325,7 +332,7 @@
 	"apihelp-options-example-change": "Change <kbd>skin</kbd> and <kbd>hideminor</kbd> preferences.",
 	"apihelp-options-example-complex": "Reset all preferences, then set <kbd>skin</kbd> and <kbd>nickname</kbd>.",
 
-	"apihelp-paraminfo-description": "Obtain information about API modules.",
+	"apihelp-paraminfo-summary": "Obtain information about API modules.",
 	"apihelp-paraminfo-param-modules": "List of module names (values of the <var>action</var> and <var>format</var> parameters, or <kbd>main</kbd>). Can specify submodules with a <kbd>+</kbd>, or all submodules with <kbd>+*</kbd>, or all submodules recursively with <kbd>+**</kbd>.",
 	"apihelp-paraminfo-param-helpformat": "Format of help strings.",
 	"apihelp-paraminfo-param-querymodules": "List of query module names (value of <var>prop</var>, <var>meta</var> or <var>list</var> parameter). Use <kbd>$1modules=query+foo</kbd> instead of <kbd>$1querymodules=foo</kbd>.",
@@ -335,7 +342,8 @@
 	"apihelp-paraminfo-example-1": "Show info for <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>, <kbd>[[Special:ApiHelp/jsonfm|format=jsonfm]]</kbd>, <kbd>[[Special:ApiHelp/query+allpages|action=query&list=allpages]]</kbd>, and <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd>.",
 	"apihelp-paraminfo-example-2": "Show info for all submodules of <kbd>[[Special:ApiHelp/query|action=query]]</kbd>.",
 
-	"apihelp-parse-description": "Parses content and returns parser output.\n\nSee the various prop-modules of <kbd>[[Special:ApiHelp/query|action=query]]</kbd> to get information from the current version of a page.\n\nThere are several ways to specify the text to parse:\n# Specify a page or revision, using <var>$1page</var>, <var>$1pageid</var>, or <var>$1oldid</var>.\n# Specify content explicitly, using <var>$1text</var>, <var>$1title</var>, and <var>$1contentmodel</var>.\n# Specify only a summary to parse. <var>$1prop</var> should be given an empty value.",
+	"apihelp-parse-summary": "Parses content and returns parser output.",
+	"apihelp-parse-extended-description": "See the various prop-modules of <kbd>[[Special:ApiHelp/query|action=query]]</kbd> to get information from the current version of a page.\n\nThere are several ways to specify the text to parse:\n# Specify a page or revision, using <var>$1page</var>, <var>$1pageid</var>, or <var>$1oldid</var>.\n# Specify content explicitly, using <var>$1text</var>, <var>$1title</var>, and <var>$1contentmodel</var>.\n# Specify only a summary to parse. <var>$1prop</var> should be given an empty value.",
 	"apihelp-parse-param-title": "Title of page the text belongs to. If omitted, <var>$1contentmodel</var> must be specified, and [[API]] will be used as the title.",
 	"apihelp-parse-param-text": "Text to parse. Use <var>$1title</var> or <var>$1contentmodel</var> to control the content model.",
 	"apihelp-parse-param-summary": "Summary to parse.",
@@ -390,14 +398,14 @@
 	"apihelp-parse-example-texttitle": "Parse wikitext, specifying the page title.",
 	"apihelp-parse-example-summary": "Parse a summary.",
 
-	"apihelp-patrol-description": "Patrol a page or revision.",
+	"apihelp-patrol-summary": "Patrol a page or revision.",
 	"apihelp-patrol-param-rcid": "Recentchanges ID to patrol.",
 	"apihelp-patrol-param-revid": "Revision ID to patrol.",
 	"apihelp-patrol-param-tags": "Change tags to apply to the entry in the patrol log.",
 	"apihelp-patrol-example-rcid": "Patrol a recent change.",
 	"apihelp-patrol-example-revid": "Patrol a revision.",
 
-	"apihelp-protect-description": "Change the protection level of a page.",
+	"apihelp-protect-summary": "Change the protection level of a page.",
 	"apihelp-protect-param-title": "Title of the page to (un)protect. Cannot be used together with $1pageid.",
 	"apihelp-protect-param-pageid": "ID of the page to (un)protect. Cannot be used together with $1title.",
 	"apihelp-protect-param-protections": "List of protection levels, formatted <kbd>action=level</kbd> (e.g. <kbd>edit=sysop</kbd>). A level of <kbd>all</kbd> means everyone is allowed to take the action, i.e. no restriction.\n\n<strong>Note:</strong> Any actions not listed will have restrictions removed.",
@@ -411,13 +419,14 @@
 	"apihelp-protect-example-unprotect": "Unprotect a page by setting restrictions to <kbd>all</kbd> (i.e. everyone is allowed to take the action).",
 	"apihelp-protect-example-unprotect2": "Unprotect a page by setting no restrictions.",
 
-	"apihelp-purge-description": "Purge the cache for the given titles.",
+	"apihelp-purge-summary": "Purge the cache for the given titles.",
 	"apihelp-purge-param-forcelinkupdate": "Update the links tables.",
 	"apihelp-purge-param-forcerecursivelinkupdate": "Update the links table, and update the links tables for any page that uses this page as a template.",
 	"apihelp-purge-example-simple": "Purge the <kbd>Main Page</kbd> and the <kbd>API</kbd> page.",
 	"apihelp-purge-example-generator": "Purge the first 10 pages in the main namespace.",
 
-	"apihelp-query-description": "Fetch data from and about MediaWiki.\n\nAll data modifications will first have to use query to acquire a token to prevent abuse from malicious sites.",
+	"apihelp-query-summary": "Fetch data from and about MediaWiki.",
+	"apihelp-query-extended-description": "All data modifications will first have to use query to acquire a token to prevent abuse from malicious sites.",
 	"apihelp-query-param-prop": "Which properties to get for the queried pages.",
 	"apihelp-query-param-list": "Which lists to get.",
 	"apihelp-query-param-meta": "Which metadata to get.",
@@ -429,7 +438,7 @@
 	"apihelp-query-example-revisions": "Fetch [[Special:ApiHelp/query+siteinfo|site info]] and [[Special:ApiHelp/query+revisions|revisions]] of <kbd>Main Page</kbd>.",
 	"apihelp-query-example-allpages": "Fetch revisions of pages beginning with <kbd>API/</kbd>.",
 
-	"apihelp-query+allcategories-description": "Enumerate all categories.",
+	"apihelp-query+allcategories-summary": "Enumerate all categories.",
 	"apihelp-query+allcategories-param-from": "The category to start enumerating from.",
 	"apihelp-query+allcategories-param-to": "The category to stop enumerating at.",
 	"apihelp-query+allcategories-param-prefix": "Search for all category titles that begin with this value.",
@@ -443,7 +452,7 @@
 	"apihelp-query+allcategories-example-size": "List categories with information on the number of pages in each.",
 	"apihelp-query+allcategories-example-generator": "Retrieve info about the category page itself for categories beginning <kbd>List</kbd>.",
 
-	"apihelp-query+alldeletedrevisions-description": "List all deleted revisions by a user or in a namespace.",
+	"apihelp-query+alldeletedrevisions-summary": "List all deleted revisions by a user or in a namespace.",
 	"apihelp-query+alldeletedrevisions-paraminfo-useronly": "May only be used with <var>$3user</var>.",
 	"apihelp-query+alldeletedrevisions-paraminfo-nonuseronly": "Cannot be used with <var>$3user</var>.",
 	"apihelp-query+alldeletedrevisions-param-start": "The timestamp to start enumerating from.",
@@ -460,7 +469,7 @@
 	"apihelp-query+alldeletedrevisions-example-user": "List the last 50 deleted contributions by user <kbd>Example</kbd>.",
 	"apihelp-query+alldeletedrevisions-example-ns-main": "List the first 50 deleted revisions in the main namespace.",
 
-	"apihelp-query+allfileusages-description": "List all file usages, including non-existing.",
+	"apihelp-query+allfileusages-summary": "List all file usages, including non-existing.",
 	"apihelp-query+allfileusages-param-from": "The title of the file to start enumerating from.",
 	"apihelp-query+allfileusages-param-to": "The title of the file to stop enumerating at.",
 	"apihelp-query+allfileusages-param-prefix": "Search for all file titles that begin with this value.",
@@ -475,7 +484,7 @@
 	"apihelp-query+allfileusages-example-unique-generator": "Gets all file titles, marking the missing ones.",
 	"apihelp-query+allfileusages-example-generator": "Gets pages containing the files.",
 
-	"apihelp-query+allimages-description": "Enumerate all images sequentially.",
+	"apihelp-query+allimages-summary": "Enumerate all images sequentially.",
 	"apihelp-query+allimages-param-sort": "Property to sort by.",
 	"apihelp-query+allimages-param-dir": "The direction in which to list.",
 	"apihelp-query+allimages-param-from": "The image title to start enumerating from. Can only be used with $1sort=name.",
@@ -496,7 +505,7 @@
 	"apihelp-query+allimages-example-mimetypes": "Show a list of files with MIME type <kbd>image/png</kbd> or <kbd>image/gif</kbd>",
 	"apihelp-query+allimages-example-generator": "Show info about 4 files starting at the letter <kbd>T</kbd>.",
 
-	"apihelp-query+alllinks-description": "Enumerate all links that point to a given namespace.",
+	"apihelp-query+alllinks-summary": "Enumerate all links that point to a given namespace.",
 	"apihelp-query+alllinks-param-from": "The title of the link to start enumerating from.",
 	"apihelp-query+alllinks-param-to": "The title of the link to stop enumerating at.",
 	"apihelp-query+alllinks-param-prefix": "Search for all linked titles that begin with this value.",
@@ -512,7 +521,7 @@
 	"apihelp-query+alllinks-example-unique-generator": "Gets all linked titles, marking the missing ones.",
 	"apihelp-query+alllinks-example-generator": "Gets pages containing the links.",
 
-	"apihelp-query+allmessages-description": "Return messages from this site.",
+	"apihelp-query+allmessages-summary": "Return messages from this site.",
 	"apihelp-query+allmessages-param-messages": "Which messages to output. <kbd>*</kbd> (default) means all messages.",
 	"apihelp-query+allmessages-param-prop": "Which properties to get.",
 	"apihelp-query+allmessages-param-enableparser": "Set to enable parser, will preprocess the wikitext of message (substitute magic words, handle templates, etc.).",
@@ -529,7 +538,7 @@
 	"apihelp-query+allmessages-example-ipb": "Show messages starting with <kbd>ipb-</kbd>.",
 	"apihelp-query+allmessages-example-de": "Show messages <kbd>august</kbd> and <kbd>mainpage</kbd> in German.",
 
-	"apihelp-query+allpages-description": "Enumerate all pages sequentially in a given namespace.",
+	"apihelp-query+allpages-summary": "Enumerate all pages sequentially in a given namespace.",
 	"apihelp-query+allpages-param-from": "The page title to start enumerating from.",
 	"apihelp-query+allpages-param-to": "The page title to stop enumerating at.",
 	"apihelp-query+allpages-param-prefix": "Search for all page titles that begin with this value.",
@@ -548,7 +557,7 @@
 	"apihelp-query+allpages-example-generator": "Show info about 4 pages starting at the letter <kbd>T</kbd>.",
 	"apihelp-query+allpages-example-generator-revisions": "Show content of first 2 non-redirect pages beginning at <kbd>Re</kbd>.",
 
-	"apihelp-query+allredirects-description": "List all redirects to a namespace.",
+	"apihelp-query+allredirects-summary": "List all redirects to a namespace.",
 	"apihelp-query+allredirects-param-from": "The title of the redirect to start enumerating from.",
 	"apihelp-query+allredirects-param-to": "The title of the redirect to stop enumerating at.",
 	"apihelp-query+allredirects-param-prefix": "Search for all target pages that begin with this value.",
@@ -566,7 +575,7 @@
 	"apihelp-query+allredirects-example-unique-generator": "Gets all target pages, marking the missing ones.",
 	"apihelp-query+allredirects-example-generator": "Gets pages containing the redirects.",
 
-	"apihelp-query+allrevisions-description": "List all revisions.",
+	"apihelp-query+allrevisions-summary": "List all revisions.",
 	"apihelp-query+allrevisions-param-start": "The timestamp to start enumerating from.",
 	"apihelp-query+allrevisions-param-end": "The timestamp to stop enumerating at.",
 	"apihelp-query+allrevisions-param-user": "Only list revisions by this user.",
@@ -576,14 +585,14 @@
 	"apihelp-query+allrevisions-example-user": "List the last 50 contributions by user <kbd>Example</kbd>.",
 	"apihelp-query+allrevisions-example-ns-main": "List the first 50 revisions in the main namespace.",
 
-	"apihelp-query+mystashedfiles-description": "Get a list of files in the current user's upload stash.",
+	"apihelp-query+mystashedfiles-summary": "Get a list of files in the current user's upload stash.",
 	"apihelp-query+mystashedfiles-param-prop": "Which properties to fetch for the files.",
 	"apihelp-query+mystashedfiles-paramvalue-prop-size": "Fetch the file size and image dimensions.",
 	"apihelp-query+mystashedfiles-paramvalue-prop-type": "Fetch the file's MIME type and media type.",
 	"apihelp-query+mystashedfiles-param-limit": "How many files to get.",
 	"apihelp-query+mystashedfiles-example-simple": "Get the filekey, file size, and pixel size of files in the current user's upload stash.",
 
-	"apihelp-query+alltransclusions-description": "List all transclusions (pages embedded using &#123;&#123;x&#125;&#125;), including non-existing.",
+	"apihelp-query+alltransclusions-summary": "List all transclusions (pages embedded using &#123;&#123;x&#125;&#125;), including non-existing.",
 	"apihelp-query+alltransclusions-param-from": "The title of the transclusion to start enumerating from.",
 	"apihelp-query+alltransclusions-param-to": "The title of the transclusion to stop enumerating at.",
 	"apihelp-query+alltransclusions-param-prefix": "Search for all transcluded titles that begin with this value.",
@@ -599,7 +608,7 @@
 	"apihelp-query+alltransclusions-example-unique-generator": "Gets all transcluded titles, marking the missing ones.",
 	"apihelp-query+alltransclusions-example-generator": "Gets pages containing the transclusions.",
 
-	"apihelp-query+allusers-description": "Enumerate all registered users.",
+	"apihelp-query+allusers-summary": "Enumerate all registered users.",
 	"apihelp-query+allusers-param-from": "The user name to start enumerating from.",
 	"apihelp-query+allusers-param-to": "The user name to stop enumerating at.",
 	"apihelp-query+allusers-param-prefix": "Search for all users that begin with this value.",
@@ -621,14 +630,14 @@
 	"apihelp-query+allusers-param-attachedwiki": "With <kbd>$1prop=centralids</kbd>, also indicate whether the user is attached with the wiki identified by this ID.",
 	"apihelp-query+allusers-example-Y": "List users starting at <kbd>Y</kbd>.",
 
-	"apihelp-query+authmanagerinfo-description": "Retrieve information about the current authentication status.",
+	"apihelp-query+authmanagerinfo-summary": "Retrieve information about the current authentication status.",
 	"apihelp-query+authmanagerinfo-param-securitysensitiveoperation": "Test whether the user's current authentication status is sufficient for the specified security-sensitive operation.",
 	"apihelp-query+authmanagerinfo-param-requestsfor": "Fetch information about the authentication requests needed for the specified authentication action.",
 	"apihelp-query+authmanagerinfo-example-login": "Fetch the requests that may be used when beginning a login.",
 	"apihelp-query+authmanagerinfo-example-login-merged": "Fetch the requests that may be used when beginning a login, with form fields merged.",
 	"apihelp-query+authmanagerinfo-example-securitysensitiveoperation": "Test whether authentication is sufficient for action <kbd>foo</kbd>.",
 
-	"apihelp-query+backlinks-description": "Find all pages that link to the given page.",
+	"apihelp-query+backlinks-summary": "Find all pages that link to the given page.",
 	"apihelp-query+backlinks-param-title": "Title to search. Cannot be used together with <var>$1pageid</var>.",
 	"apihelp-query+backlinks-param-pageid": "Page ID to search. Cannot be used together with <var>$1title</var>.",
 	"apihelp-query+backlinks-param-namespace": "The namespace to enumerate.",
@@ -639,7 +648,7 @@
 	"apihelp-query+backlinks-example-simple": "Show links to <kbd>Main page</kbd>.",
 	"apihelp-query+backlinks-example-generator": "Get information about pages linking to <kbd>Main page</kbd>.",
 
-	"apihelp-query+blocks-description": "List all blocked users and IP addresses.",
+	"apihelp-query+blocks-summary": "List all blocked users and IP addresses.",
 	"apihelp-query+blocks-param-start": "The timestamp to start enumerating from.",
 	"apihelp-query+blocks-param-end": "The timestamp to stop enumerating at.",
 	"apihelp-query+blocks-param-ids": "List of block IDs to list (optional).",
@@ -661,7 +670,7 @@
 	"apihelp-query+blocks-example-simple": "List blocks.",
 	"apihelp-query+blocks-example-users": "List blocks of users <kbd>Alice</kbd> and <kbd>Bob</kbd>.",
 
-	"apihelp-query+categories-description": "List all categories the pages belong to.",
+	"apihelp-query+categories-summary": "List all categories the pages belong to.",
 	"apihelp-query+categories-param-prop": "Which additional properties to get for each category:",
 	"apihelp-query+categories-paramvalue-prop-sortkey": "Adds the sortkey (hexadecimal string) and sortkey prefix (human-readable part) for the category.",
 	"apihelp-query+categories-paramvalue-prop-timestamp": "Adds timestamp of when the category was added.",
@@ -673,10 +682,10 @@
 	"apihelp-query+categories-example-simple": "Get a list of categories the page <kbd>Albert Einstein</kbd> belongs to.",
 	"apihelp-query+categories-example-generator": "Get information about all categories used in the page <kbd>Albert Einstein</kbd>.",
 
-	"apihelp-query+categoryinfo-description": "Returns information about the given categories.",
+	"apihelp-query+categoryinfo-summary": "Returns information about the given categories.",
 	"apihelp-query+categoryinfo-example-simple": "Get information about <kbd>Category:Foo</kbd> and <kbd>Category:Bar</kbd>.",
 
-	"apihelp-query+categorymembers-description": "List all pages in a given category.",
+	"apihelp-query+categorymembers-summary": "List all pages in a given category.",
 	"apihelp-query+categorymembers-param-title": "Which category to enumerate (required). Must include the <kbd>{{ns:category}}:</kbd> prefix. Cannot be used together with <var>$1pageid</var>.",
 	"apihelp-query+categorymembers-param-pageid": "Page ID of the category to enumerate. Cannot be used together with <var>$1title</var>.",
 	"apihelp-query+categorymembers-param-prop": "Which pieces of information to include:",
@@ -702,7 +711,7 @@
 	"apihelp-query+categorymembers-example-simple": "Get first 10 pages in <kbd>Category:Physics</kbd>.",
 	"apihelp-query+categorymembers-example-generator": "Get page info about first 10 pages in <kbd>Category:Physics</kbd>.",
 
-	"apihelp-query+contributors-description": "Get the list of logged-in contributors and the count of anonymous contributors to a page.",
+	"apihelp-query+contributors-summary": "Get the list of logged-in contributors and the count of anonymous contributors to a page.",
 	"apihelp-query+contributors-param-group": "Only include users in the given groups. Does not include implicit or auto-promoted groups like *, user, or autoconfirmed.",
 	"apihelp-query+contributors-param-excludegroup": "Exclude users in the given groups. Does not include implicit or auto-promoted groups like *, user, or autoconfirmed.",
 	"apihelp-query+contributors-param-rights": "Only include users having the given rights. Does not include rights granted by implicit or auto-promoted groups like *, user, or autoconfirmed.",
@@ -710,7 +719,8 @@
 	"apihelp-query+contributors-param-limit": "How many contributors to return.",
 	"apihelp-query+contributors-example-simple": "Show contributors to the page <kbd>Main Page</kbd>.",
 
-	"apihelp-query+deletedrevisions-description": "Get deleted revision information.\n\nMay be used in several ways:\n# Get deleted revisions for a set of pages, by setting titles or pageids. Ordered by title and timestamp.\n# Get data about a set of deleted revisions by setting their IDs with revids. Ordered by revision ID.",
+	"apihelp-query+deletedrevisions-summary": "Get deleted revision information.",
+	"apihelp-query+deletedrevisions-extended-description": "May be used in several ways:\n# Get deleted revisions for a set of pages, by setting titles or pageids. Ordered by title and timestamp.\n# Get data about a set of deleted revisions by setting their IDs with revids. Ordered by revision ID.",
 	"apihelp-query+deletedrevisions-param-start": "The timestamp to start enumerating from. Ignored when processing a list of revision IDs.",
 	"apihelp-query+deletedrevisions-param-end": "The timestamp to stop enumerating at. Ignored when processing a list of revision IDs.",
 	"apihelp-query+deletedrevisions-param-tag": "Only list revisions tagged with this tag.",
@@ -719,7 +729,8 @@
 	"apihelp-query+deletedrevisions-example-titles": "List the deleted revisions of the pages <kbd>Main Page</kbd> and <kbd>Talk:Main Page</kbd>, with content.",
 	"apihelp-query+deletedrevisions-example-revids": "List the information for deleted revision <kbd>123456</kbd>.",
 
-	"apihelp-query+deletedrevs-description": "List deleted revisions.\n\nOperates in three modes:\n# List deleted revisions for the given titles, sorted by timestamp.\n# List deleted contributions for the given user, sorted by timestamp (no titles specified).\n# List all deleted revisions in the given namespace, sorted by title and timestamp (no titles specified, $1user not set).\n\nCertain parameters only apply to some modes and are ignored in others.",
+	"apihelp-query+deletedrevs-summary": "List deleted revisions.",
+	"apihelp-query+deletedrevs-extended-description": "Operates in three modes:\n# List deleted revisions for the given titles, sorted by timestamp.\n# List deleted contributions for the given user, sorted by timestamp (no titles specified).\n# List all deleted revisions in the given namespace, sorted by title and timestamp (no titles specified, $1user not set).\n\nCertain parameters only apply to some modes and are ignored in others.",
 	"apihelp-query+deletedrevs-paraminfo-modes": "{{PLURAL:$1|Mode|Modes}}: $2",
 	"apihelp-query+deletedrevs-param-start": "The timestamp to start enumerating from.",
 	"apihelp-query+deletedrevs-param-end": "The timestamp to stop enumerating at.",
@@ -738,16 +749,16 @@
 	"apihelp-query+deletedrevs-example-mode3-main": "List the first 50 deleted revisions in the main namespace (mode 3).",
 	"apihelp-query+deletedrevs-example-mode3-talk": "List the first 50 deleted pages in the {{ns:talk}} namespace (mode 3).",
 
-	"apihelp-query+disabled-description": "This query module has been disabled.",
+	"apihelp-query+disabled-summary": "This query module has been disabled.",
 
-	"apihelp-query+duplicatefiles-description": "List all files that are duplicates of the given files based on hash values.",
+	"apihelp-query+duplicatefiles-summary": "List all files that are duplicates of the given files based on hash values.",
 	"apihelp-query+duplicatefiles-param-limit": "How many duplicate files to return.",
 	"apihelp-query+duplicatefiles-param-dir": "The direction in which to list.",
 	"apihelp-query+duplicatefiles-param-localonly": "Look only for files in the local repository.",
 	"apihelp-query+duplicatefiles-example-simple": "Look for duplicates of [[:File:Albert Einstein Head.jpg]].",
 	"apihelp-query+duplicatefiles-example-generated": "Look for duplicates of all files.",
 
-	"apihelp-query+embeddedin-description": "Find all pages that embed (transclude) the given title.",
+	"apihelp-query+embeddedin-summary": "Find all pages that embed (transclude) the given title.",
 	"apihelp-query+embeddedin-param-title": "Title to search. Cannot be used together with $1pageid.",
 	"apihelp-query+embeddedin-param-pageid": "Page ID to search. Cannot be used together with $1title.",
 	"apihelp-query+embeddedin-param-namespace": "The namespace to enumerate.",
@@ -757,14 +768,14 @@
 	"apihelp-query+embeddedin-example-simple": "Show pages transcluding <kbd>Template:Stub</kbd>.",
 	"apihelp-query+embeddedin-example-generator": "Get information about pages transcluding <kbd>Template:Stub</kbd>.",
 
-	"apihelp-query+extlinks-description": "Returns all external URLs (not interwikis) from the given pages.",
+	"apihelp-query+extlinks-summary": "Returns all external URLs (not interwikis) from the given pages.",
 	"apihelp-query+extlinks-param-limit": "How many links to return.",
 	"apihelp-query+extlinks-param-protocol": "Protocol of the URL. If empty and <var>$1query</var> is set, the protocol is <kbd>http</kbd>. Leave both this and <var>$1query</var> empty to list all external links.",
 	"apihelp-query+extlinks-param-query": "Search string without protocol. Useful for checking whether a certain page contains a certain external url.",
 	"apihelp-query+extlinks-param-expandurl": "Expand protocol-relative URLs with the canonical protocol.",
 	"apihelp-query+extlinks-example-simple": "Get a list of external links on <kbd>Main Page</kbd>.",
 
-	"apihelp-query+exturlusage-description": "Enumerate pages that contain a given URL.",
+	"apihelp-query+exturlusage-summary": "Enumerate pages that contain a given URL.",
 	"apihelp-query+exturlusage-param-prop": "Which pieces of information to include:",
 	"apihelp-query+exturlusage-paramvalue-prop-ids": "Adds the ID of page.",
 	"apihelp-query+exturlusage-paramvalue-prop-title": "Adds the title and namespace ID of the page.",
@@ -776,7 +787,7 @@
 	"apihelp-query+exturlusage-param-expandurl": "Expand protocol-relative URLs with the canonical protocol.",
 	"apihelp-query+exturlusage-example-simple": "Show pages linking to <kbd>http://www.mediawiki.org</kbd>.",
 
-	"apihelp-query+filearchive-description": "Enumerate all deleted files sequentially.",
+	"apihelp-query+filearchive-summary": "Enumerate all deleted files sequentially.",
 	"apihelp-query+filearchive-param-from": "The image title to start enumerating from.",
 	"apihelp-query+filearchive-param-to": "The image title to stop enumerating at.",
 	"apihelp-query+filearchive-param-prefix": "Search for all image titles that begin with this value.",
@@ -799,11 +810,11 @@
 	"apihelp-query+filearchive-paramvalue-prop-archivename": "Adds the filename of the archive version for non-latest versions.",
 	"apihelp-query+filearchive-example-simple": "Show a list of all deleted files.",
 
-	"apihelp-query+filerepoinfo-description": "Return meta information about image repositories configured on the wiki.",
+	"apihelp-query+filerepoinfo-summary": "Return meta information about image repositories configured on the wiki.",
 	"apihelp-query+filerepoinfo-param-prop": "Which repository properties to get (there may be more available on some wikis):\n;apiurl:URL to the repository API - helpful for getting image info from the host.\n;name:The key of the repository - used in e.g. <var>[[mw:Special:MyLanguage/Manual:$wgForeignFileRepos|$wgForeignFileRepos]]</var> and [[Special:ApiHelp/query+imageinfo|imageinfo]] return values.\n;displayname:The human-readable name of the repository wiki.\n;rooturl:Root URL for image paths.\n;local:Whether that repository is the local one or not.",
 	"apihelp-query+filerepoinfo-example-simple": "Get information about file repositories.",
 
-	"apihelp-query+fileusage-description": "Find all pages that use the given files.",
+	"apihelp-query+fileusage-summary": "Find all pages that use the given files.",
 	"apihelp-query+fileusage-param-prop": "Which properties to get:",
 	"apihelp-query+fileusage-paramvalue-prop-pageid": "Page ID of each page.",
 	"apihelp-query+fileusage-paramvalue-prop-title": "Title of each page.",
@@ -814,7 +825,7 @@
 	"apihelp-query+fileusage-example-simple": "Get a list of pages using [[:File:Example.jpg]].",
 	"apihelp-query+fileusage-example-generator": "Get information about pages using [[:File:Example.jpg]].",
 
-	"apihelp-query+imageinfo-description": "Returns file information and upload history.",
+	"apihelp-query+imageinfo-summary": "Returns file information and upload history.",
 	"apihelp-query+imageinfo-param-prop": "Which file information to get:",
 	"apihelp-query+imageinfo-paramvalue-prop-timestamp": "Adds timestamp for the uploaded version.",
 	"apihelp-query+imageinfo-paramvalue-prop-user": "Adds the user who uploaded each file version.",
@@ -851,14 +862,14 @@
 	"apihelp-query+imageinfo-example-simple": "Fetch information about the current version of [[:File:Albert Einstein Head.jpg]].",
 	"apihelp-query+imageinfo-example-dated": "Fetch information about versions of [[:File:Test.jpg]] from 2008 and later.",
 
-	"apihelp-query+images-description": "Returns all files contained on the given pages.",
+	"apihelp-query+images-summary": "Returns all files contained on the given pages.",
 	"apihelp-query+images-param-limit": "How many files to return.",
 	"apihelp-query+images-param-images": "Only list these files. Useful for checking whether a certain page has a certain file.",
 	"apihelp-query+images-param-dir": "The direction in which to list.",
 	"apihelp-query+images-example-simple": "Get a list of files used in the [[Main Page]].",
 	"apihelp-query+images-example-generator": "Get information about all files used in the [[Main Page]].",
 
-	"apihelp-query+imageusage-description": "Find all pages that use the given image title.",
+	"apihelp-query+imageusage-summary": "Find all pages that use the given image title.",
 	"apihelp-query+imageusage-param-title": "Title to search. Cannot be used together with $1pageid.",
 	"apihelp-query+imageusage-param-pageid": "Page ID to search. Cannot be used together with $1title.",
 	"apihelp-query+imageusage-param-namespace": "The namespace to enumerate.",
@@ -869,7 +880,7 @@
 	"apihelp-query+imageusage-example-simple": "Show pages using [[:File:Albert Einstein Head.jpg]].",
 	"apihelp-query+imageusage-example-generator": "Get information about pages using [[:File:Albert Einstein Head.jpg]].",
 
-	"apihelp-query+info-description": "Get basic page information.",
+	"apihelp-query+info-summary": "Get basic page information.",
 	"apihelp-query+info-param-prop": "Which additional properties to get:",
 	"apihelp-query+info-paramvalue-prop-protection": "List the protection level of each page.",
 	"apihelp-query+info-paramvalue-prop-talkid": "The page ID of the talk page for each non-talk page.",
@@ -887,7 +898,8 @@
 	"apihelp-query+info-example-simple": "Get information about the page <kbd>Main Page</kbd>.",
 	"apihelp-query+info-example-protection": "Get general and protection information about the page <kbd>Main Page</kbd>.",
 
-	"apihelp-query+iwbacklinks-description": "Find all pages that link to the given interwiki link.\n\nCan be used to find all links with a prefix, or all links to a title (with a given prefix). Using neither parameter is effectively \"all interwiki links\".",
+	"apihelp-query+iwbacklinks-summary": "Find all pages that link to the given interwiki link.",
+	"apihelp-query+iwbacklinks-extended-description": "Can be used to find all links with a prefix, or all links to a title (with a given prefix). Using neither parameter is effectively \"all interwiki links\".",
 	"apihelp-query+iwbacklinks-param-prefix": "Prefix for the interwiki.",
 	"apihelp-query+iwbacklinks-param-title": "Interwiki link to search for. Must be used with <var>$1blprefix</var>.",
 	"apihelp-query+iwbacklinks-param-limit": "How many total pages to return.",
@@ -898,7 +910,7 @@
 	"apihelp-query+iwbacklinks-example-simple": "Get pages linking to [[wikibooks:Test]].",
 	"apihelp-query+iwbacklinks-example-generator": "Get information about pages linking to [[wikibooks:Test]].",
 
-	"apihelp-query+iwlinks-description": "Returns all interwiki links from the given pages.",
+	"apihelp-query+iwlinks-summary": "Returns all interwiki links from the given pages.",
 	"apihelp-query+iwlinks-param-url": "Whether to get the full URL (cannot be used with $1prop).",
 	"apihelp-query+iwlinks-param-prop": "Which additional properties to get for each interlanguage link:",
 	"apihelp-query+iwlinks-paramvalue-prop-url": "Adds the full URL.",
@@ -908,7 +920,8 @@
 	"apihelp-query+iwlinks-param-dir": "The direction in which to list.",
 	"apihelp-query+iwlinks-example-simple": "Get interwiki links from the page <kbd>Main Page</kbd>.",
 
-	"apihelp-query+langbacklinks-description": "Find all pages that link to the given language link.\n\nCan be used to find all links with a language code, or all links to a title (with a given language). Using neither parameter is effectively \"all language links\".\n\nNote that this may not consider language links added by extensions.",
+	"apihelp-query+langbacklinks-summary": "Find all pages that link to the given language link.",
+	"apihelp-query+langbacklinks-extended-description": "Can be used to find all links with a language code, or all links to a title (with a given language). Using neither parameter is effectively \"all language links\".\n\nNote that this may not consider language links added by extensions.",
 	"apihelp-query+langbacklinks-param-lang": "Language for the language link.",
 	"apihelp-query+langbacklinks-param-title": "Language link to search for. Must be used with $1lang.",
 	"apihelp-query+langbacklinks-param-limit": "How many total pages to return.",
@@ -919,7 +932,7 @@
 	"apihelp-query+langbacklinks-example-simple": "Get pages linking to [[:fr:Test]].",
 	"apihelp-query+langbacklinks-example-generator": "Get information about pages linking to [[:fr:Test]].",
 
-	"apihelp-query+langlinks-description": "Returns all interlanguage links from the given pages.",
+	"apihelp-query+langlinks-summary": "Returns all interlanguage links from the given pages.",
 	"apihelp-query+langlinks-param-limit": "How many langlinks to return.",
 	"apihelp-query+langlinks-param-url": "Whether to get the full URL (cannot be used with <var>$1prop</var>).",
 	"apihelp-query+langlinks-param-prop": "Which additional properties to get for each interlanguage link:",
@@ -932,7 +945,7 @@
 	"apihelp-query+langlinks-param-inlanguagecode": "Language code for localised language names.",
 	"apihelp-query+langlinks-example-simple": "Get interlanguage links from the page <kbd>Main Page</kbd>.",
 
-	"apihelp-query+links-description": "Returns all links from the given pages.",
+	"apihelp-query+links-summary": "Returns all links from the given pages.",
 	"apihelp-query+links-param-namespace": "Show links in these namespaces only.",
 	"apihelp-query+links-param-limit": "How many links to return.",
 	"apihelp-query+links-param-titles": "Only list links to these titles. Useful for checking whether a certain page links to a certain title.",
@@ -941,7 +954,7 @@
 	"apihelp-query+links-example-generator": "Get information about the link pages in the page <kbd>Main Page</kbd>.",
 	"apihelp-query+links-example-namespaces": "Get links from the page <kbd>Main Page</kbd> in the {{ns:user}} and {{ns:template}} namespaces.",
 
-	"apihelp-query+linkshere-description": "Find all pages that link to the given pages.",
+	"apihelp-query+linkshere-summary": "Find all pages that link to the given pages.",
 	"apihelp-query+linkshere-param-prop": "Which properties to get:",
 	"apihelp-query+linkshere-paramvalue-prop-pageid": "Page ID of each page.",
 	"apihelp-query+linkshere-paramvalue-prop-title": "Title of each page.",
@@ -952,7 +965,7 @@
 	"apihelp-query+linkshere-example-simple": "Get a list of pages linking to the [[Main Page]].",
 	"apihelp-query+linkshere-example-generator": "Get information about pages linking to the [[Main Page]].",
 
-	"apihelp-query+logevents-description": "Get events from logs.",
+	"apihelp-query+logevents-summary": "Get events from logs.",
 	"apihelp-query+logevents-param-prop": "Which properties to get:",
 	"apihelp-query+logevents-paramvalue-prop-ids": "Adds the ID of the log event.",
 	"apihelp-query+logevents-paramvalue-prop-title": "Adds the title of the page for the log event.",
@@ -976,15 +989,15 @@
 	"apihelp-query+logevents-param-limit": "How many total event entries to return.",
 	"apihelp-query+logevents-example-simple": "List recent log events.",
 
-	"apihelp-query+pagepropnames-description": "List all page property names in use on the wiki.",
+	"apihelp-query+pagepropnames-summary": "List all page property names in use on the wiki.",
 	"apihelp-query+pagepropnames-param-limit": "The maximum number of names to return.",
 	"apihelp-query+pagepropnames-example-simple": "Get first 10 property names.",
 
-	"apihelp-query+pageprops-description": "Get various page properties defined in the page content.",
+	"apihelp-query+pageprops-summary": "Get various page properties defined in the page content.",
 	"apihelp-query+pageprops-param-prop": "Only list these page properties (<kbd>[[Special:ApiHelp/query+pagepropnames|action=query&list=pagepropnames]]</kbd> returns page property names in use). Useful for checking whether pages use a certain page property.",
 	"apihelp-query+pageprops-example-simple": "Get properties for the pages <kbd>Main Page</kbd> and <kbd>MediaWiki</kbd>.",
 
-	"apihelp-query+pageswithprop-description": "List all pages using a given page property.",
+	"apihelp-query+pageswithprop-summary": "List all pages using a given page property.",
 	"apihelp-query+pageswithprop-param-propname": "Page property for which to enumerate pages (<kbd>[[Special:ApiHelp/query+pagepropnames|action=query&list=pagepropnames]]</kbd> returns page property names in use).",
 	"apihelp-query+pageswithprop-param-prop": "Which pieces of information to include:",
 	"apihelp-query+pageswithprop-paramvalue-prop-ids": "Adds the page ID.",
@@ -995,7 +1008,8 @@
 	"apihelp-query+pageswithprop-example-simple": "List the first 10 pages using <code>&#123;&#123;DISPLAYTITLE:&#125;&#125;</code>.",
 	"apihelp-query+pageswithprop-example-generator": "Get additional information about the first 10 pages using <code>_&#95;NOTOC_&#95;</code>.",
 
-	"apihelp-query+prefixsearch-description": "Perform a prefix search for page titles.\n\nDespite the similarity in names, this module is not intended to be equivalent to [[Special:PrefixIndex]]; for that, see <kbd>[[Special:ApiHelp/query+allpages|action=query&list=allpages]]</kbd> with the <kbd>apprefix</kbd> parameter. The purpose of this module is similar to <kbd>[[Special:ApiHelp/opensearch|action=opensearch]]</kbd>: to take user input and provide the best-matching titles. Depending on the search engine backend, this might include typo correction, redirect avoidance, or other heuristics.",
+	"apihelp-query+prefixsearch-summary": "Perform a prefix search for page titles.",
+	"apihelp-query+prefixsearch-extended-description": "Despite the similarity in names, this module is not intended to be equivalent to [[Special:PrefixIndex]]; for that, see <kbd>[[Special:ApiHelp/query+allpages|action=query&list=allpages]]</kbd> with the <kbd>apprefix</kbd> parameter. The purpose of this module is similar to <kbd>[[Special:ApiHelp/opensearch|action=opensearch]]</kbd>: to take user input and provide the best-matching titles. Depending on the search engine backend, this might include typo correction, redirect avoidance, or other heuristics.",
 	"apihelp-query+prefixsearch-param-search": "Search string.",
 	"apihelp-query+prefixsearch-param-namespace": "Namespaces to search.",
 	"apihelp-query+prefixsearch-param-limit": "Maximum number of results to return.",
@@ -1003,7 +1017,7 @@
 	"apihelp-query+prefixsearch-example-simple": "Search for page titles beginning with <kbd>meaning</kbd>.",
 	"apihelp-query+prefixsearch-param-profile": "Search profile to use.",
 
-	"apihelp-query+protectedtitles-description": "List all titles protected from creation.",
+	"apihelp-query+protectedtitles-summary": "List all titles protected from creation.",
 	"apihelp-query+protectedtitles-param-namespace": "Only list titles in these namespaces.",
 	"apihelp-query+protectedtitles-param-level": "Only list titles with these protection levels.",
 	"apihelp-query+protectedtitles-param-limit": "How many total pages to return.",
@@ -1020,12 +1034,13 @@
 	"apihelp-query+protectedtitles-example-simple": "List protected titles.",
 	"apihelp-query+protectedtitles-example-generator": "Find links to protected titles in the main namespace.",
 
-	"apihelp-query+querypage-description": "Get a list provided by a QueryPage-based special page.",
+	"apihelp-query+querypage-summary": "Get a list provided by a QueryPage-based special page.",
 	"apihelp-query+querypage-param-page": "The name of the special page. Note, this is case sensitive.",
 	"apihelp-query+querypage-param-limit": "Number of results to return.",
 	"apihelp-query+querypage-example-ancientpages": "Return results from [[Special:Ancientpages]].",
 
-	"apihelp-query+random-description": "Get a set of random pages.\n\nPages are listed in a fixed sequence, only the starting point is random. This means that if, for example, <samp>Main Page</samp> is the first random page in the list, <samp>List of fictional monkeys</samp> will <em>always</em> be second, <samp>List of people on stamps of Vanuatu</samp> third, etc.",
+	"apihelp-query+random-summary": "Get a set of random pages.",
+	"apihelp-query+random-extended-description": "Pages are listed in a fixed sequence, only the starting point is random. This means that if, for example, <samp>Main Page</samp> is the first random page in the list, <samp>List of fictional monkeys</samp> will <em>always</em> be second, <samp>List of people on stamps of Vanuatu</samp> third, etc.",
 	"apihelp-query+random-param-namespace": "Return pages in these namespaces only.",
 	"apihelp-query+random-param-limit": "Limit how many random pages will be returned.",
 	"apihelp-query+random-param-redirect": "Use <kbd>$1filterredir=redirects</kbd> instead.",
@@ -1033,7 +1048,7 @@
 	"apihelp-query+random-example-simple": "Return two random pages from the main namespace.",
 	"apihelp-query+random-example-generator": "Return page info about two random pages from the main namespace.",
 
-	"apihelp-query+recentchanges-description": "Enumerate recent changes.",
+	"apihelp-query+recentchanges-summary": "Enumerate recent changes.",
 	"apihelp-query+recentchanges-param-start": "The timestamp to start enumerating from.",
 	"apihelp-query+recentchanges-param-end": "The timestamp to end enumerating.",
 	"apihelp-query+recentchanges-param-namespace": "Filter changes to only these namespaces.",
@@ -1064,7 +1079,7 @@
 	"apihelp-query+recentchanges-example-simple": "List recent changes.",
 	"apihelp-query+recentchanges-example-generator": "Get page info about recent unpatrolled changes.",
 
-	"apihelp-query+redirects-description": "Returns all redirects to the given pages.",
+	"apihelp-query+redirects-summary": "Returns all redirects to the given pages.",
 	"apihelp-query+redirects-param-prop": "Which properties to get:",
 	"apihelp-query+redirects-paramvalue-prop-pageid": "Page ID of each redirect.",
 	"apihelp-query+redirects-paramvalue-prop-title": "Title of each redirect.",
@@ -1075,7 +1090,8 @@
 	"apihelp-query+redirects-example-simple": "Get a list of redirects to the [[Main Page]].",
 	"apihelp-query+redirects-example-generator": "Get information about all redirects to the [[Main Page]].",
 
-	"apihelp-query+revisions-description": "Get revision information.\n\nMay be used in several ways:\n# Get data about a set of pages (last revision), by setting titles or pageids.\n# Get revisions for one given page, by using titles or pageids with start, end, or limit.\n# Get data about a set of revisions by setting their IDs with revids.",
+	"apihelp-query+revisions-summary": "Get revision information.",
+	"apihelp-query+revisions-extended-description": "May be used in several ways:\n# Get data about a set of pages (last revision), by setting titles or pageids.\n# Get revisions for one given page, by using titles or pageids with start, end, or limit.\n# Get data about a set of revisions by setting their IDs with revids.",
 	"apihelp-query+revisions-paraminfo-singlepageonly": "May only be used with a single page (mode #2).",
 	"apihelp-query+revisions-param-startid": "Start enumeration from this revision's timestamp. The revision must exist, but need not belong to this page.",
 	"apihelp-query+revisions-param-endid": "Stop enumeration at this revision's timestamp. The revision must exist, but need not belong to this page.",
@@ -1116,7 +1132,7 @@
 	"apihelp-query+revisions+base-param-difftotextpst": "Perform a pre-save transform on the text before diffing it. Only valid when used with <var>$1difftotext</var>.",
 	"apihelp-query+revisions+base-param-contentformat": "Serialization format used for <var>$1difftotext</var> and expected for output of content.",
 
-	"apihelp-query+search-description": "Perform a full text search.",
+	"apihelp-query+search-summary": "Perform a full text search.",
 	"apihelp-query+search-param-search": "Search for page titles or content matching this value. You can use the search string to invoke special search features, depending on what the wiki's search backend implements.",
 	"apihelp-query+search-param-namespace": "Search only within these namespaces.",
 	"apihelp-query+search-param-what": "Which type of search to perform.",
@@ -1144,7 +1160,7 @@
 	"apihelp-query+search-example-text": "Search texts for <kbd>meaning</kbd>.",
 	"apihelp-query+search-example-generator": "Get page info about the pages returned for a search for <kbd>meaning</kbd>.",
 
-	"apihelp-query+siteinfo-description": "Return general information about the site.",
+	"apihelp-query+siteinfo-summary": "Return general information about the site.",
 	"apihelp-query+siteinfo-param-prop": "Which information to get:",
 	"apihelp-query+siteinfo-paramvalue-prop-general": "Overall system information.",
 	"apihelp-query+siteinfo-paramvalue-prop-namespaces": "List of registered namespaces and their canonical names.",
@@ -1178,13 +1194,13 @@
 	"apihelp-query+siteinfo-example-interwiki": "Fetch a list of local interwiki prefixes.",
 	"apihelp-query+siteinfo-example-replag": "Check the current replication lag.",
 
-	"apihelp-query+stashimageinfo-description": "Returns file information for stashed files.",
+	"apihelp-query+stashimageinfo-summary": "Returns file information for stashed files.",
 	"apihelp-query+stashimageinfo-param-filekey": "Key that identifies a previous upload that was stashed temporarily.",
 	"apihelp-query+stashimageinfo-param-sessionkey": "Alias for $1filekey, for backward compatibility.",
 	"apihelp-query+stashimageinfo-example-simple": "Returns information for a stashed file.",
 	"apihelp-query+stashimageinfo-example-params": "Returns thumbnails for two stashed files.",
 
-	"apihelp-query+tags-description": "List change tags.",
+	"apihelp-query+tags-summary": "List change tags.",
 	"apihelp-query+tags-param-limit": "The maximum number of tags to list.",
 	"apihelp-query+tags-param-prop": "Which properties to get:",
 	"apihelp-query+tags-paramvalue-prop-name": "Adds name of tag.",
@@ -1196,7 +1212,7 @@
 	"apihelp-query+tags-paramvalue-prop-active": "Whether the tag is still being applied.",
 	"apihelp-query+tags-example-simple": "List available tags.",
 
-	"apihelp-query+templates-description": "Returns all pages transcluded on the given pages.",
+	"apihelp-query+templates-summary": "Returns all pages transcluded on the given pages.",
 	"apihelp-query+templates-param-namespace": "Show templates in these namespaces only.",
 	"apihelp-query+templates-param-limit": "How many templates to return.",
 	"apihelp-query+templates-param-templates": "Only list these templates. Useful for checking whether a certain page uses a certain template.",
@@ -1205,12 +1221,12 @@
 	"apihelp-query+templates-example-generator": "Get information about the template pages used on <kbd>Main Page</kbd>.",
 	"apihelp-query+templates-example-namespaces": "Get pages in the {{ns:user}} and {{ns:template}} namespaces that are transcluded on the page <kbd>Main Page</kbd>.",
 
-	"apihelp-query+tokens-description": "Gets tokens for data-modifying actions.",
+	"apihelp-query+tokens-summary": "Gets tokens for data-modifying actions.",
 	"apihelp-query+tokens-param-type": "Types of token to request.",
 	"apihelp-query+tokens-example-simple": "Retrieve a csrf token (the default).",
 	"apihelp-query+tokens-example-types": "Retrieve a watch token and a patrol token.",
 
-	"apihelp-query+transcludedin-description": "Find all pages that transclude the given pages.",
+	"apihelp-query+transcludedin-summary": "Find all pages that transclude the given pages.",
 	"apihelp-query+transcludedin-param-prop": "Which properties to get:",
 	"apihelp-query+transcludedin-paramvalue-prop-pageid": "Page ID of each page.",
 	"apihelp-query+transcludedin-paramvalue-prop-title": "Title of each page.",
@@ -1221,7 +1237,7 @@
 	"apihelp-query+transcludedin-example-simple": "Get a list of pages transcluding <kbd>Main Page</kbd>.",
 	"apihelp-query+transcludedin-example-generator": "Get information about pages transcluding <kbd>Main Page</kbd>.",
 
-	"apihelp-query+usercontribs-description": "Get all edits by a user.",
+	"apihelp-query+usercontribs-summary": "Get all edits by a user.",
 	"apihelp-query+usercontribs-param-limit": "The maximum number of contributions to return.",
 	"apihelp-query+usercontribs-param-start": "The start timestamp to return from.",
 	"apihelp-query+usercontribs-param-end": "The end timestamp to return to.",
@@ -1246,7 +1262,7 @@
 	"apihelp-query+usercontribs-example-user": "Show contributions of user <kbd>Example</kbd>.",
 	"apihelp-query+usercontribs-example-ipprefix": "Show contributions from all IP addresses with prefix <kbd>192.0.2.</kbd>.",
 
-	"apihelp-query+userinfo-description": "Get information about the current user.",
+	"apihelp-query+userinfo-summary": "Get information about the current user.",
 	"apihelp-query+userinfo-param-prop": "Which pieces of information to include:",
 	"apihelp-query+userinfo-paramvalue-prop-blockinfo": "Tags if the current user is blocked, by whom, and for what reason.",
 	"apihelp-query+userinfo-paramvalue-prop-hasmsg": "Adds a tag <samp>messages</samp> if the current user has pending messages.",
@@ -1269,7 +1285,7 @@
 	"apihelp-query+userinfo-example-simple": "Get information about the current user.",
 	"apihelp-query+userinfo-example-data": "Get additional information about the current user.",
 
-	"apihelp-query+users-description": "Get information about a list of users.",
+	"apihelp-query+users-summary": "Get information about a list of users.",
 	"apihelp-query+users-param-prop": "Which pieces of information to include:",
 	"apihelp-query+users-paramvalue-prop-blockinfo": "Tags if the user is blocked, by whom, and for what reason.",
 	"apihelp-query+users-paramvalue-prop-groups": "Lists all the groups each user belongs to.",
@@ -1288,7 +1304,7 @@
 	"apihelp-query+users-param-token": "Use <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd> instead.",
 	"apihelp-query+users-example-simple": "Return information for user <kbd>Example</kbd>.",
 
-	"apihelp-query+watchlist-description": "Get recent changes to pages in the current user's watchlist.",
+	"apihelp-query+watchlist-summary": "Get recent changes to pages in the current user's watchlist.",
 	"apihelp-query+watchlist-param-allrev": "Include multiple revisions of the same page within given timeframe.",
 	"apihelp-query+watchlist-param-start": "The timestamp to start enumerating from.",
 	"apihelp-query+watchlist-param-end": "The timestamp to end enumerating.",
@@ -1325,7 +1341,7 @@
 	"apihelp-query+watchlist-example-generator-rev": "Fetch revision info for recent changes to pages on the current user's watchlist.",
 	"apihelp-query+watchlist-example-wlowner": "List the top revision for recently changed pages on the watchlist of user <kbd>Example</kbd>.",
 
-	"apihelp-query+watchlistraw-description": "Get all pages on the current user's watchlist.",
+	"apihelp-query+watchlistraw-summary": "Get all pages on the current user's watchlist.",
 	"apihelp-query+watchlistraw-param-namespace": "Only list pages in the given namespaces.",
 	"apihelp-query+watchlistraw-param-limit": "How many total results to return per request.",
 	"apihelp-query+watchlistraw-param-prop": "Which additional properties to get:",
@@ -1339,17 +1355,17 @@
 	"apihelp-query+watchlistraw-example-simple": "List pages on the current user's watchlist.",
 	"apihelp-query+watchlistraw-example-generator": "Fetch page info for pages on the current user's watchlist.",
 
-	"apihelp-removeauthenticationdata-description": "Remove authentication data for the current user.",
+	"apihelp-removeauthenticationdata-summary": "Remove authentication data for the current user.",
 	"apihelp-removeauthenticationdata-example-simple": "Attempt to remove the current user's data for <kbd>FooAuthenticationRequest</kbd>.",
 
-	"apihelp-resetpassword-description": "Send a password reset email to a user.",
-	"apihelp-resetpassword-description-noroutes": "No password reset routes are available.\n\nEnable routes in <var>[[mw:Special:MyLanguage/Manual:$wgPasswordResetRoutes|$wgPasswordResetRoutes]]</var> to use this module.",
+	"apihelp-resetpassword-summary": "Send a password reset email to a user.",
+	"apihelp-resetpassword-extended-description-noroutes": "No password reset routes are available.\n\nEnable routes in <var>[[mw:Special:MyLanguage/Manual:$wgPasswordResetRoutes|$wgPasswordResetRoutes]]</var> to use this module.",
 	"apihelp-resetpassword-param-user": "User being reset.",
 	"apihelp-resetpassword-param-email": "Email address of the user being reset.",
 	"apihelp-resetpassword-example-user": "Send a password reset email to user <kbd>Example</kbd>.",
 	"apihelp-resetpassword-example-email": "Send a password reset email for all users with email address <kbd>user@example.com</kbd>.",
 
-	"apihelp-revisiondelete-description": "Delete and undelete revisions.",
+	"apihelp-revisiondelete-summary": "Delete and undelete revisions.",
 	"apihelp-revisiondelete-param-type": "Type of revision deletion being performed.",
 	"apihelp-revisiondelete-param-target": "Page title for the revision deletion, if required for the type.",
 	"apihelp-revisiondelete-param-ids": "Identifiers for the revisions to be deleted.",
@@ -1361,7 +1377,8 @@
 	"apihelp-revisiondelete-example-revision": "Hide content for revision <kbd>12345</kbd> on the page <kbd>Main Page</kbd>.",
 	"apihelp-revisiondelete-example-log": "Hide all data on log entry <kbd>67890</kbd> with the reason <kbd>BLP violation</kbd>.",
 
-	"apihelp-rollback-description": "Undo the last edit to the page.\n\nIf the last user who edited the page made multiple edits in a row, they will all be rolled back.",
+	"apihelp-rollback-summary": "Undo the last edit to the page.",
+	"apihelp-rollback-extended-description": "If the last user who edited the page made multiple edits in a row, they will all be rolled back.",
 	"apihelp-rollback-param-title": "Title of the page to roll back. Cannot be used together with <var>$1pageid</var>.",
 	"apihelp-rollback-param-pageid": "Page ID of the page to roll back. Cannot be used together with <var>$1title</var>.",
 	"apihelp-rollback-param-tags": "Tags to apply to the rollback.",
@@ -1372,10 +1389,11 @@
 	"apihelp-rollback-example-simple": "Roll back the last edits to page <kbd>Main Page</kbd> by user <kbd>Example</kbd>.",
 	"apihelp-rollback-example-summary": "Roll back the last edits to page <kbd>Main Page</kbd> by IP user <kbd>192.0.2.5</kbd> with summary <kbd>Reverting vandalism</kbd>, and mark those edits and the revert as bot edits.",
 
-	"apihelp-rsd-description": "Export an RSD (Really Simple Discovery) schema.",
+	"apihelp-rsd-summary": "Export an RSD (Really Simple Discovery) schema.",
 	"apihelp-rsd-example-simple": "Export the RSD schema.",
 
-	"apihelp-setnotificationtimestamp-description": "Update the notification timestamp for watched pages.\n\nThis affects the highlighting of changed pages in the watchlist and history, and the sending of email when the \"{{int:tog-enotifwatchlistpages}}\" preference is enabled.",
+	"apihelp-setnotificationtimestamp-summary": "Update the notification timestamp for watched pages.",
+	"apihelp-setnotificationtimestamp-extended-description": "This affects the highlighting of changed pages in the watchlist and history, and the sending of email when the \"{{int:tog-enotifwatchlistpages}}\" preference is enabled.",
 	"apihelp-setnotificationtimestamp-param-entirewatchlist": "Work on all watched pages.",
 	"apihelp-setnotificationtimestamp-param-timestamp": "Timestamp to which to set the notification timestamp.",
 	"apihelp-setnotificationtimestamp-param-torevid": "Revision to set the notification timestamp to (one page only).",
@@ -1385,8 +1403,8 @@
 	"apihelp-setnotificationtimestamp-example-pagetimestamp": "Set the notification timestamp for <kbd>Main page</kbd> so all edits since 1 January 2012 are unviewed.",
 	"apihelp-setnotificationtimestamp-example-allpages": "Reset the notification status for pages in the <kbd>{{ns:user}}</kbd> namespace.",
 
-	"apihelp-setpagelanguage-description": "Change the language of a page.",
-	"apihelp-setpagelanguage-description-disabled": "Changing the language of a page is not allowed on this wiki.\n\nEnable <var>[[mw:Special:MyLanguage/Manual:$wgPageLanguageUseDB|$wgPageLanguageUseDB]]</var> to use this action.",
+	"apihelp-setpagelanguage-summary": "Change the language of a page.",
+	"apihelp-setpagelanguage-extended-description-disabled": "Changing the language of a page is not allowed on this wiki.\n\nEnable <var>[[mw:Special:MyLanguage/Manual:$wgPageLanguageUseDB|$wgPageLanguageUseDB]]</var> to use this action.",
 	"apihelp-setpagelanguage-param-title": "Title of the page whose language you wish to change. Cannot be used together with <var>$1pageid</var>.",
 	"apihelp-setpagelanguage-param-pageid": "Page ID of the page whose language you wish to change. Cannot be used together with <var>$1title</var>.",
 	"apihelp-setpagelanguage-param-lang": "Language code of the language to change the page to. Use <kbd>default</kbd> to reset the page to the wiki's default content language.",
@@ -1395,7 +1413,8 @@
 	"apihelp-setpagelanguage-example-language": "Change the language of <kbd>Main Page</kbd> to Basque.",
 	"apihelp-setpagelanguage-example-default": "Change the language of the page with ID 123 to the wiki's default content language.",
 
-	"apihelp-stashedit-description": "Prepare an edit in shared cache.\n\nThis is intended to be used via AJAX from the edit form to improve the performance of the page save.",
+	"apihelp-stashedit-summary": "Prepare an edit in shared cache.",
+	"apihelp-stashedit-extended-description": "This is intended to be used via AJAX from the edit form to improve the performance of the page save.",
 	"apihelp-stashedit-param-title": "Title of the page being edited.",
 	"apihelp-stashedit-param-section": "Section number. <kbd>0</kbd> for the top section, <kbd>new</kbd> for a new section.",
 	"apihelp-stashedit-param-sectiontitle": "The title for a new section.",
@@ -1406,7 +1425,7 @@
 	"apihelp-stashedit-param-baserevid": "Revision ID of the base revision.",
 	"apihelp-stashedit-param-summary": "Change summary.",
 
-	"apihelp-tag-description": "Add or remove change tags from individual revisions or log entries.",
+	"apihelp-tag-summary": "Add or remove change tags from individual revisions or log entries.",
 	"apihelp-tag-param-rcid": "One or more recent changes IDs from which to add or remove the tag.",
 	"apihelp-tag-param-revid": "One or more revision IDs from which to add or remove the tag.",
 	"apihelp-tag-param-logid": "One or more log entry IDs from which to add or remove the tag.",
@@ -1417,12 +1436,13 @@
 	"apihelp-tag-example-rev": "Add the <kbd>vandalism</kbd> tag to revision ID 123 without specifying a reason",
 	"apihelp-tag-example-log": "Remove the <kbd>spam</kbd> tag from log entry ID 123 with the reason <kbd>Wrongly applied</kbd>",
 
-	"apihelp-tokens-description": "Get tokens for data-modifying actions.\n\nThis module is deprecated in favor of [[Special:ApiHelp/query+tokens|action=query&meta=tokens]].",
+	"apihelp-tokens-summary": "Get tokens for data-modifying actions.",
+	"apihelp-tokens-extended-description": "This module is deprecated in favor of [[Special:ApiHelp/query+tokens|action=query&meta=tokens]].",
 	"apihelp-tokens-param-type": "Types of token to request.",
 	"apihelp-tokens-example-edit": "Retrieve an edit token (the default).",
 	"apihelp-tokens-example-emailmove": "Retrieve an email token and a move token.",
 
-	"apihelp-unblock-description": "Unblock a user.",
+	"apihelp-unblock-summary": "Unblock a user.",
 	"apihelp-unblock-param-id": "ID of the block to unblock (obtained through <kbd>list=blocks</kbd>). Cannot be used together with <var>$1user</var> or <var>$1userid</var>.",
 	"apihelp-unblock-param-user": "Username, IP address or IP address range to unblock. Cannot be used together with <var>$1id</var> or <var>$1userid</var>.",
 	"apihelp-unblock-param-userid": "User ID to unblock. Cannot be used together with <var>$1id</var> or <var>$1user</var>.",
@@ -1431,7 +1451,8 @@
 	"apihelp-unblock-example-id": "Unblock block ID #<kbd>105</kbd>.",
 	"apihelp-unblock-example-user": "Unblock user <kbd>Bob</kbd> with reason <kbd>Sorry Bob</kbd>.",
 
-	"apihelp-undelete-description": "Restore revisions of a deleted page.\n\nA list of deleted revisions (including timestamps) can be retrieved through [[Special:ApiHelp/query+deletedrevisions|prop=deletedrevisions]], and a list of deleted file IDs can be retrieved through [[Special:ApiHelp/query+filearchive|list=filearchive]].",
+	"apihelp-undelete-summary": "Restore revisions of a deleted page.",
+	"apihelp-undelete-extended-description": "A list of deleted revisions (including timestamps) can be retrieved through [[Special:ApiHelp/query+deletedrevisions|prop=deletedrevisions]], and a list of deleted file IDs can be retrieved through [[Special:ApiHelp/query+filearchive|list=filearchive]].",
 	"apihelp-undelete-param-title": "Title of the page to restore.",
 	"apihelp-undelete-param-reason": "Reason for restoring.",
 	"apihelp-undelete-param-tags": "Change tags to apply to the entry in the deletion log.",
@@ -1441,10 +1462,11 @@
 	"apihelp-undelete-example-page": "Undelete page <kbd>Main Page</kbd>.",
 	"apihelp-undelete-example-revisions": "Undelete two revisions of page <kbd>Main Page</kbd>.",
 
-	"apihelp-unlinkaccount-description": "Remove a linked third-party account from the current user.",
+	"apihelp-unlinkaccount-summary": "Remove a linked third-party account from the current user.",
 	"apihelp-unlinkaccount-example-simple": "Attempt to remove the current user's link for the provider associated with <kbd>FooAuthenticationRequest</kbd>.",
 
-	"apihelp-upload-description": "Upload a file, or get the status of pending uploads.\n\nSeveral methods are available:\n* Upload file contents directly, using the <var>$1file</var> parameter.\n* Upload the file in pieces, using the <var>$1filesize</var>, <var>$1chunk</var>, and <var>$1offset</var> parameters.\n* Have the MediaWiki server fetch a file from a URL, using the <var>$1url</var> parameter.\n* Complete an earlier upload that failed due to warnings, using the <var>$1filekey</var> parameter.\nNote that the HTTP POST must be done as a file upload (i.e. using <code>multipart/form-data</code>) when sending the <var>$1file</var>.",
+	"apihelp-upload-summary": "Upload a file, or get the status of pending uploads.",
+	"apihelp-upload-extended-description": "Several methods are available:\n* Upload file contents directly, using the <var>$1file</var> parameter.\n* Upload the file in pieces, using the <var>$1filesize</var>, <var>$1chunk</var>, and <var>$1offset</var> parameters.\n* Have the MediaWiki server fetch a file from a URL, using the <var>$1url</var> parameter.\n* Complete an earlier upload that failed due to warnings, using the <var>$1filekey</var> parameter.\nNote that the HTTP POST must be done as a file upload (i.e. using <code>multipart/form-data</code>) when sending the <var>$1file</var>.",
 	"apihelp-upload-param-filename": "Target filename.",
 	"apihelp-upload-param-comment": "Upload comment. Also used as the initial page text for new files if <var>$1text</var> is not specified.",
 	"apihelp-upload-param-tags": "Change tags to apply to the upload log entry and file page revision.",
@@ -1465,7 +1487,7 @@
 	"apihelp-upload-example-url": "Upload from a URL.",
 	"apihelp-upload-example-filekey": "Complete an upload that failed due to warnings.",
 
-	"apihelp-userrights-description": "Change a user's group membership.",
+	"apihelp-userrights-summary": "Change a user's group membership.",
 	"apihelp-userrights-param-user": "User name.",
 	"apihelp-userrights-param-userid": "User ID.",
 	"apihelp-userrights-param-add": "Add the user to these groups, or if they are already a member, update the expiry of their membership in that group.",
@@ -1477,7 +1499,8 @@
 	"apihelp-userrights-example-userid": "Add the user with ID <kbd>123</kbd> to group <kbd>bot</kbd>, and remove from groups <kbd>sysop</kbd> and <kbd>bureaucrat</kbd>.",
 	"apihelp-userrights-example-expiry": "Add user <kbd>SometimeSysop</kbd> to group <kbd>sysop</kbd> for 1 month.",
 
-	"apihelp-validatepassword-description": "Validate a password against the wiki's password policies.\n\nValidity is reported as <samp>Good</samp> if the password is acceptable, <samp>Change</samp> if the password may be used for login but must be changed, or <samp>Invalid</samp> if the password is not usable.",
+	"apihelp-validatepassword-summary": "Validate a password against the wiki's password policies.",
+	"apihelp-validatepassword-extended-description": "Validity is reported as <samp>Good</samp> if the password is acceptable, <samp>Change</samp> if the password may be used for login but must be changed, or <samp>Invalid</samp> if the password is not usable.",
 	"apihelp-validatepassword-param-password": "Password to validate.",
 	"apihelp-validatepassword-param-user": "User name, for use when testing account creation. The named user must not exist.",
 	"apihelp-validatepassword-param-email": "Email address, for use when testing account creation.",
@@ -1485,7 +1508,7 @@
 	"apihelp-validatepassword-example-1": "Validate the password <kbd>foobar</kbd> for the current user.",
 	"apihelp-validatepassword-example-2": "Validate the password <kbd>qwerty</kbd> for creating user <kbd>Example</kbd>.",
 
-	"apihelp-watch-description": "Add or remove pages from the current user's watchlist.",
+	"apihelp-watch-summary": "Add or remove pages from the current user's watchlist.",
 	"apihelp-watch-param-title": "The page to (un)watch. Use <var>$1titles</var> instead.",
 	"apihelp-watch-param-unwatch": "If set the page will be unwatched rather than watched.",
 	"apihelp-watch-example-watch": "Watch the page <kbd>Main Page</kbd>.",
@@ -1494,21 +1517,21 @@
 
 	"apihelp-format-example-generic": "Return the query result in the $1 format.",
 	"apihelp-format-param-wrappedhtml": "Return the pretty-printed HTML and associated ResourceLoader modules as a JSON object.",
-	"apihelp-json-description": "Output data in JSON format.",
+	"apihelp-json-summary": "Output data in JSON format.",
 	"apihelp-json-param-callback": "If specified, wraps the output into a given function call. For safety, all user-specific data will be restricted.",
 	"apihelp-json-param-utf8": "If specified, encodes most (but not all) non-ASCII characters as UTF-8 instead of replacing them with hexadecimal escape sequences. Default when <var>formatversion</var> is not <kbd>1</kbd>.",
 	"apihelp-json-param-ascii": "If specified, encodes all non-ASCII using hexadecimal escape sequences. Default when <var>formatversion</var> is <kbd>1</kbd>.",
 	"apihelp-json-param-formatversion": "Output formatting:\n;1:Backwards-compatible format (XML-style booleans, <samp>*</samp> keys for content nodes, etc.).\n;2:Experimental modern format. Details may change!\n;latest:Use the latest format (currently <kbd>2</kbd>), may change without warning.",
-	"apihelp-jsonfm-description": "Output data in JSON format (pretty-print in HTML).",
-	"apihelp-none-description": "Output nothing.",
-	"apihelp-php-description": "Output data in serialized PHP format.",
+	"apihelp-jsonfm-summary": "Output data in JSON format (pretty-print in HTML).",
+	"apihelp-none-summary": "Output nothing.",
+	"apihelp-php-summary": "Output data in serialized PHP format.",
 	"apihelp-php-param-formatversion": "Output formatting:\n;1:Backwards-compatible format (XML-style booleans, <samp>*</samp> keys for content nodes, etc.).\n;2:Experimental modern format. Details may change!\n;latest:Use the latest format (currently <kbd>2</kbd>), may change without warning.",
-	"apihelp-phpfm-description": "Output data in serialized PHP format (pretty-print in HTML).",
-	"apihelp-rawfm-description": "Output data, including debugging elements, in JSON format (pretty-print in HTML).",
-	"apihelp-xml-description": "Output data in XML format.",
+	"apihelp-phpfm-summary": "Output data in serialized PHP format (pretty-print in HTML).",
+	"apihelp-rawfm-summary": "Output data, including debugging elements, in JSON format (pretty-print in HTML).",
+	"apihelp-xml-summary": "Output data in XML format.",
 	"apihelp-xml-param-xslt": "If specified, adds the named page as an XSL stylesheet. The value must be a title in the {{ns:MediaWiki}} namespace ending in <code>.xsl</code>.",
 	"apihelp-xml-param-includexmlnamespace": "If specified, adds an XML namespace.",
-	"apihelp-xmlfm-description": "Output data in XML format (pretty-print in HTML).",
+	"apihelp-xmlfm-summary": "Output data in XML format (pretty-print in HTML).",
 
 	"api-format-title": "MediaWiki API result",
 	"api-format-prettyprint-header": "This is the HTML representation of the $1 format. HTML is good for debugging, but is unsuitable for application use.\n\nSpecify the <var>format</var> parameter to change the output format. To see the non-HTML representation of the $1 format, set <kbd>format=$2</kbd>.\n\nSee the [[mw:Special:MyLanguage/API|complete documentation]], or the [[Special:ApiHelp/main|API help]] for more information.",
@@ -1584,6 +1607,7 @@
 	"api-help-permissions-granted-to": "{{PLURAL:$1|Granted to}}: $2",
 	"api-help-right-apihighlimits": "Use higher limits in API queries (slow queries: $1; fast queries: $2). The limits for slow queries also apply to multivalue parameters.",
 	"api-help-open-in-apisandbox": "<small>[open in sandbox]</small>",
+	"api-help-no-extended-description": "",
 
 	"api-help-authmanager-general-usage": "The general procedure to use this module is:\n# Fetch the fields available from <kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> with <kbd>amirequestsfor=$4</kbd>, and a <kbd>$5</kbd> token from <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd>.\n# Present the fields to the user, and obtain their submission.\n# Post to this module, supplying <var>$1returnurl</var> and any relevant fields.\n# Check the <samp>status</samp> in the response.\n#* If you received <samp>PASS</samp> or <samp>FAIL</samp>, you're done. The operation either succeeded or it didn't.\n#* If you received <samp>UI</samp>, present the new fields to the user and obtain their submission. Then post to this module with <var>$1continue</var> and the relevant fields set, and repeat step 4.\n#* If you received <samp>REDIRECT</samp>, direct the user to the <samp>redirecttarget</samp> and wait for the return to <var>$1returnurl</var>. Then post to this module with <var>$1continue</var> and any fields passed to the return URL, and repeat step 4.\n#* If you received <samp>RESTART</samp>, that means the authentication worked but we don't have a linked user account. You might treat this as <samp>UI</samp> or as <samp>FAIL</samp>.",
 	"api-help-authmanagerhelper-requests": "Only use these authentication requests, by the <samp>id</samp> returned from <kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> with <kbd>amirequestsfor=$1</kbd> or from a previous response from this module.",
