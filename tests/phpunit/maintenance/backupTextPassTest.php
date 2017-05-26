@@ -103,7 +103,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 		// increasing
 		$this->assertEquals(
 			[ $this->pageId2, $this->pageId3, $this->pageId4 ],
-			[ $this->pageId1 + 1, $this->pageId2 + 1, $this->pageId3 + 1 ],
+			[ $this->pageId1 + 1, $this->pageId1 + 2, $this->pageId1 + 3 ],
 			"Page ids increasing without holes" );
 	}
 
