@@ -8,7 +8,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
  * @author Addshore
  * @since 1.27
  */
-class NullStatsdDataFactory implements StatsdDataFactoryInterface {
+class NullStatsdDataFactory implements MediawikiStatsdDataFactory {
 
 	/**
 	 * This function creates a 'timing' StatsdData.
@@ -108,4 +108,28 @@ class NullStatsdDataFactory implements StatsdDataFactoryInterface {
 		return $data;
 	}
 
+	/**
+	 * Check whether this data factory has any data.
+	 * @return boolean
+	 */
+	public function hasData() {
+		return false;
+	}
+
+	/**
+	 * Return data from the factory.
+	 * @return StatsdData[]
+	 */
+	public function getData() {
+		return [];
+	}
+
+	/**
+	 * Set collection enable status.
+	 * @param bool $enabled Will collection be enabled?
+	 * @return void
+	 */
+	public function setEnabled( $enabled ) {
+		// Nothing to do, null factory is always disabled.
+	}
 }

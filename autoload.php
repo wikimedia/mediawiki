@@ -960,6 +960,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Widget\\TitleInputWidget' => __DIR__ . '/includes/widget/TitleInputWidget.php',
 	'MediaWiki\\Widget\\UserInputWidget' => __DIR__ . '/includes/widget/UserInputWidget.php',
 	'MediaWiki\\Widget\\UsersMultiselectWidget' => __DIR__ . '/includes/widget/UsersMultiselectWidget.php',
+	'MediawikiStatsdDataFactory' => __DIR__ . '/includes/libs/stats/MediawikiStatsdDataFactory.php',
 	'MemCachedClientforWiki' => __DIR__ . '/includes/compat/MemcachedClientCompat.php',
 	'MemcLockManager' => __DIR__ . '/includes/libs/lockmanager/MemcLockManager.php',
 	'MemcachedBagOStuff' => __DIR__ . '/includes/libs/objectcache/MemcachedBagOStuff.php',

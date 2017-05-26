@@ -9,9 +9,9 @@ use EventRelayerGroup;
 use GenderCache;
 use GlobalVarConfig;
 use Hooks;
+use MediawikiStatsdDataFactory;
 use Wikimedia\Rdbms\LBFactory;
 use LinkCache;
-use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use Wikimedia\Rdbms\LoadBalancer;
 use MediaHandlerFactory;
 use MediaWiki\Linker\LinkRenderer;
@@ -446,7 +446,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.27
-	 * @return StatsdDataFactory
+	 * @return MediawikiStatsdDataFactory
 	 */
 	public function getStatsdDataFactory() {
 		return $this->getService( 'StatsdDataFactory' );
