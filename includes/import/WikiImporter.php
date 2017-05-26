@@ -39,6 +39,7 @@ class WikiImporter {
 	private $mNoticeCallback, $mDebug;
 	private $mImportUploads, $mImageBasePath;
 	private $mNoUpdates = false;
+	private $pageOffset = 0;
 	/** @var Config */
 	private $config;
 	/** @var ImportTitleFactory */
@@ -144,6 +145,16 @@ class WikiImporter {
 	 */
 	function setNoUpdates( $noupdates ) {
 		$this->mNoUpdates = $noupdates;
+	}
+
+	/**
+	 * Sets 'pageOffset' value. So it will skip the first n-1 pages
+	 * and start from the nth page. It's 1-based indexing.
+	 * @param int $nthPage
+	 * @since 1.29
+	 */
+	function setPageOffset( $nthPage ) {
+		$this->pageOffset = $nthPage;
 	}
 
 	/**
@@ -562,9 +573,21 @@ class WikiImporter {
 		$keepReading = $this->reader->read();
 		$skip = false;
 		$rethrow = null;
+		$pageCount = 0;
 		try {
 			while ( $keepReading ) {
 				$tag = $this->reader->localName;
+				if ( $this->pageOffset ) {
+					if ( $tag === 'page' ) {
+						$pageCount++;
+					}
+					if ( $pageCount < $this->pageOffset ) {
+						$keepReading = $this->reader->next();
+						continue;
+					} else {
+						$skipping = false;
+					}
+				}
 				$type = $this->reader->nodeType;
 
 				if ( !Hooks::run( 'ImportHandleToplevelXMLTag', [ $this ] ) ) {
