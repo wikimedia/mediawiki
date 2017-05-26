@@ -40,6 +40,7 @@
  * @ingroup Maintenance
  */
 class BaseDump {
+	/** @var XMLReader */
 	protected $reader = null;
 	protected $atEnd = false;
 	protected $atPageEnd = false;

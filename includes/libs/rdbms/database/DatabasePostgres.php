@@ -776,7 +776,7 @@ __INDEXATTR__;
 		$safeseq = str_replace( "'", "''", $seqName );
 		$res = $this->query( "SELECT nextval('$safeseq')" );
 		$row = $this->fetchRow( $res );
-		$this->mInsertId = $row[0];
+		$this->mInsertId = is_null( $row[0] ) ? null : (int)$row[0];
 
 		return $this->mInsertId;
 	}

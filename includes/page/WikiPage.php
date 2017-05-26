@@ -1177,7 +1177,7 @@ class WikiPage implements Page, IDBAccessObject {
 		);
 
 		if ( $dbw->affectedRows() > 0 ) {
-			$newid = $pageId ?: $dbw->insertId();
+			$newid = $pageId ? (int)$pageId : $dbw->insertId();
 			$this->mId = $newid;
 			$this->mTitle->resetArticleID( $newid );
 
