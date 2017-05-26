@@ -1064,6 +1064,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *   - c) The return value is a map of (cache key => value) in the order of $keyedIds
 	 *
 	 * @see WANObjectCache::getWithSetCallback()
+	 * @see WANObjectCache::getMultiWithUnionSetCallback()
 	 *
 	 * Example usage:
 	 * @code
@@ -1126,6 +1127,127 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 		$values = [];
 		foreach ( $keyedIds as $key => $id ) { // preserve order
+			$values[$key] = $this->getWithSetCallback( $key, $ttl, $func, $opts );
+		}
+
+		$this->warmupCache = [];
+
+		return $values;
+	}
+
+	/**
+	 * Method to fetch/regenerate multiple cache keys at once
+	 *
+	 * This works the same as getWithSetCallback() except:
+	 *   - a) The $keys argument expects the result of WANObjectCache::makeMultiKeys()
+	 *   - b) The $callback argument expects a callback returning a map of (ID => new value)
+	 *        for all entity IDs in $regenById and it takes the following arguments:
+	 *          - $ids: a list of entity IDs to regenerate
+	 *          - &$ttls: a reference to the (entity ID => new TTL) map
+	 *          - &$setOpts: a reference to options for set() which can be altered
+	 *   - c) The return value is a map of (cache key => value) in the order of $keyedIds
+	 *   - d) The "lockTSE" and "busyValue" options are ignored
+	 *
+	 * @see WANObjectCache::getWithSetCallback()
+	 * @see WANObjectCache::getMultiWithSetCallback()
+	 *
+	 * Example usage:
+	 * @code
+	 *     $rows = $cache->getMultiWithUnionSetCallback(
+	 *         // Map of cache keys to entity IDs
+	 *         $cache->makeMultiKeys(
+	 *             $this->fileVersionIds(),
+	 *             function ( $id, WANObjectCache $cache ) {
+	 *                 return $cache->makeKey( 'file-version', $id );
+	 *             }
+	 *         ),
+	 *         // Time-to-live (in seconds)
+	 *         $cache::TTL_DAY,
+	 *         // Function that derives the new key value
+	 *         function ( array $idsRegen, array &$ttls, array &$setOpts ) {
+	 *             $dbr = wfGetDB( DB_REPLICA );
+	 *             // Account for any snapshot/replica DB lag
+	 *             $setOpts += Database::getCacheSetOptions( $dbr );
+	 *
+	 *             // Load the rows for these files
+	 *             $rows = [];
+	 *             $res = $dbr->select( 'file', '*', [ 'id' => $idsRegen ], __METHOD__ );
+	 *             foreach ( $res as $row ) {
+	 *                 $rows[$row->id] = $row;
+	 *                 $mtime = wfTimestamp( TS_UNIX, $row->timestamp );
+	 *                 $ttls[$row->id] = $this->adaptiveTTL( $mtime, $ttls[$row->id] );
+	 *             }
+	 *
+	 *             return $rows;
+	 *         },
+	 *         ]
+	 *     );
+	 *     $files = array_map( [ __CLASS__, 'newFromRow' ], $rows );
+	 * @endcode
+	 *
+	 * @param ArrayIterator $keyedIds Result of WANObjectCache::makeMultiKeys()
+	 * @param integer $ttl Seconds to live for key updates
+	 * @param callable $callback Callback the yields entity regeneration callbacks
+	 * @param array $opts Options map
+	 * @return array Map of (cache key => value) in the same order as $keyedIds
+	 * @since 1.30
+	 */
+	final public function getMultiWithUnionSetCallback(
+		ArrayIterator $keyedIds, $ttl, callable $callback, array $opts = []
+	) {
+		$idsByValueKey = iterator_to_array( $keyedIds, true );
+		$valueKeys = array_keys( $idsByValueKey );
+		$checkKeys = isset( $opts['checkKeys'] ) ? $opts['checkKeys'] : [];
+		unset( $opts['lockTSE'] ); // incompatible
+		unset( $opts['busyValue'] ); // incompatible
+
+		// Load required keys into process cache in one go
+		$keysGet = $this->getNonProcessCachedKeys( $valueKeys, $opts );
+		$this->warmupCache = $this->getRawKeysForWarmup( $keysGet, $checkKeys );
+		$this->warmupKeyMisses = 0;
+
+		// IDs of entities known to be in need of regeneration
+		$idsRegen = [];
+
+		// Find out which keys are missing/deleted/stale
+		$curTTLs = [];
+		$asOfs = [];
+		$curByKey = $this->getMulti( $keysGet, $curTTLs, $checkKeys, $asOfs );
+		foreach ( $keysGet as $key ) {
+			if ( !array_key_exists( $key, $curByKey ) || $curTTLs[$key] < 0 ) {
+				$idsRegen[] = $idsByValueKey[$key];
+			}
+		}
+
+		// Run the callback to populate the regeneration value map for all required IDs
+		$newSetOpts = [];
+		$newTTLsById = array_fill_keys( $idsRegen, $ttl );
+		$newValsById = $idsRegen ? $callback( $idsRegen, $newTTLsById, $newSetOpts ) : [];
+
+		// Wrap $callback to match the getWithSetCallback() format while passing $id to $callback
+		$id = null; // current entity ID
+		$func = function ( $oldValue, &$ttl, &$setOpts, $oldAsOf )
+			use ( $callback, &$id, $newValsById, $newTTLsById, $newSetOpts )
+		{
+			if ( array_key_exists( $id, $newValsById ) ) {
+				// Value was already regerated as expected, so use the value in $newValsById
+				$newValue = $newValsById[$id];
+				$ttl = $newTTLsById[$id];
+				$setOpts = $newSetOpts;
+			} else {
+				// Pre-emptive/popularity refresh and version mismatch cases are not detected
+				// above and thus $newValsById has no entry. Run $callback on this single entity.
+				$ttls = [ $id => $ttl ];
+				$newValue = $callback( [ $id ], $ttls, $setOpts )[$id];
+				$ttl = $ttls[$id];
+			}
+
+			return $newValue;
+		};
+
+		// Run the cache-aside logic using warmupCache instead of persistent cache queries
+		$values = [];
+		foreach ( $idsByValueKey as $key => $id ) { // preserve order
 			$values[$key] = $this->getWithSetCallback( $key, $ttl, $func, $opts );
 		}
 
