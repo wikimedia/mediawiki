@@ -541,7 +541,8 @@
 	 * @param {Object} [params] Extra parameters to add to the API call
 	 */
 	mw.rcfilters.Controller.prototype._updateURL = function ( params ) {
-		var updatedUri,
+		var filterState, newFilterState, updatedUri,
+			defaults = this._getDefaultParams(),
 			notEquivalent = function ( obj1, obj2 ) {
 				var keys = Object.keys( obj1 ).concat( Object.keys( obj2 ) );
 				return keys.some( function ( key ) {
@@ -554,7 +555,15 @@
 		updatedUri = this._getUpdatedUri();
 		updatedUri.extend( params );
 
-		if ( notEquivalent( updatedUri.query, new mw.Uri().query ) ) {
+		// Compare states instead of parameters
+		// This will mean that even if we go back to an empty query
+		// for the first load, or if we have a trimmed URL, the comparison
+		// of whether to pushState will be correct, loading the previous
+		// page in history correctly
+		filterState = this.filtersModel.getFiltersFromParameters( $.extend( {}, defaults, updatedUri.query ) );
+		newFilterState = this.filtersModel.getFiltersFromParameters( $.extend( {}, defaults, new mw.Uri().query ) );
+
+		if ( notEquivalent( filterState, newFilterState ) ) {
 			window.history.pushState( { tag: 'rcfilters' }, document.title, updatedUri.toString() );
 		}
 	};
