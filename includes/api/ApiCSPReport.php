@@ -186,9 +186,9 @@ class ApiCSPReport extends ApiBase {
 			'method' => $method,
 			'user-agent' => $this->getRequest()->getHeader( 'user-agent' )
 		] );
-		// 500 so it shows up in browser's developer console.
+		// Return 400 on error for user agents to display, e.g. to the console.
 		$this->dieWithError(
-			[ 'apierror-csp-report', wfEscapeWikiText( $code ) ], 'cspreport-' . $code, [], 500
+			[ 'apierror-csp-report', wfEscapeWikiText( $code ) ], 'cspreport-' . $code, [], 400
 		);
 	}
 
