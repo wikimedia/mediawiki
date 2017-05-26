@@ -201,6 +201,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	private $mTrxWriteQueryCount = 0;
 	/**
+	 * @var integer Number of rows affected by write queries for the current transaction
+	 */
+	private $mTrxWriteAffectedRows = 0;
+	/**
 	 * @var float Like mTrxWriteQueryCount but excludes lock-bound, easy to replicate, queries
 	 */
 	private $mTrxWriteAdjDuration = 0.0;
@@ -581,6 +585,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function pendingWriteCallers() {
 		return $this->mTrxLevel ? $this->mTrxWriteCallers : [];
+	}
+
+	public function pendingWriteRowsAffected() {
+		return $this->mTrxWriteAffectedRows;
 	}
 
 	/**
@@ -1011,7 +1019,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $ret !== false ) {
 			$this->lastPing = $startTime;
 			if ( $isWrite && $this->mTrxLevel ) {
-				$this->updateTrxWriteQueryTime( $sql, $queryRuntime );
+				$this->updateTrxWriteQueryTime( $sql, $queryRuntime, $this->affectedRows() );
 				$this->mTrxWriteCallers[] = $fname;
 			}
 		}
@@ -1042,8 +1050,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * @param string $sql A SQL write query
 	 * @param float $runtime Total runtime, including RTT
+	 * @param integer $affected Affected row count
 	 */
-	private function updateTrxWriteQueryTime( $sql, $runtime ) {
+	private function updateTrxWriteQueryTime( $sql, $runtime, $affected ) {
 		// Whether this is indicative of replica DB runtime (except for RBR or ws_repl)
 		$indicativeOfReplicaRuntime = true;
 		if ( $runtime > self::SLOW_WRITE_SEC ) {
@@ -1058,6 +1067,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$this->mTrxWriteDuration += $runtime;
 		$this->mTrxWriteQueryCount += 1;
+		$this->mTrxWriteAffectedRows += $affected;
 		if ( $indicativeOfReplicaRuntime ) {
 			$this->mTrxWriteAdjDuration += $runtime;
 			$this->mTrxWriteAdjQueryCount += 1;
@@ -2805,6 +2815,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->mTrxShortId = sprintf( '%06x', mt_rand( 0, 0xffffff ) );
 		$this->mTrxWriteDuration = 0.0;
 		$this->mTrxWriteQueryCount = 0;
+		$this->mTrxWriteAffectedRows = 0;
 		$this->mTrxWriteAdjDuration = 0.0;
 		$this->mTrxWriteAdjQueryCount = 0;
 		$this->mTrxWriteCallers = [];
@@ -2871,7 +2882,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $this->mTrxDoneWrites ) {
 			$this->mLastWriteTime = microtime( true );
 			$this->trxProfiler->transactionWritingOut(
-				$this->mServer, $this->mDBname, $this->mTrxShortId, $writeTime );
+				$this->mServer,
+				$this->mDBname,
+				$this->mTrxShortId,
+				$writeTime,
+				$this->mTrxWriteAffectedRows
+			);
 		}
 
 		$this->runOnTransactionIdleCallbacks( self::TRIGGER_COMMIT );
@@ -2916,7 +2932,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->mTrxAtomicLevels = [];
 		if ( $this->mTrxDoneWrites ) {
 			$this->trxProfiler->transactionWritingOut(
-				$this->mServer, $this->mDBname, $this->mTrxShortId );
+				$this->mServer,
+				$this->mDBname,
+				$this->mTrxShortId
+			);
 		}
 
 		$this->mTrxIdleCallbacks = []; // clear
