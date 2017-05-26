@@ -39,6 +39,7 @@ class WikiImporter {
 	private $mNoticeCallback, $mDebug;
 	private $mImportUploads, $mImageBasePath;
 	private $mNoUpdates = false;
+	private $skipTo = null;
 	/** @var Config */
 	private $config;
 	/** @var ImportTitleFactory */
@@ -144,6 +145,14 @@ class WikiImporter {
 	 */
 	function setNoUpdates( $noupdates ) {
 		$this->mNoUpdates = $noupdates;
+	}
+
+	/**
+	 * Set 'skip-to' value. It will skip the first n-1 pages and start from the nth page
+	 * @param int $nthRecord
+	 */
+	function setSkipTo( $nthPage ) {
+		$this->skipTo = $nthPage;
 	}
 
 	/**
@@ -562,9 +571,26 @@ class WikiImporter {
 		$keepReading = $this->reader->read();
 		$skip = false;
 		$rethrow = null;
+		$pageCount = 0;
+		if ( isset( $this->skipTo ) ) {
+			$skipping = true;
+		} else {
+			$skipping = false;
+		}
 		try {
 			while ( $keepReading ) {
 				$tag = $this->reader->localName;
+				if ($skipping) {
+					if ( $tag == 'page' ) {
+						$pageCount++;
+					}
+					if ( $pageCount < $this->skipTo ) {
+						$keepReading = $this->reader->next();
+						continue;
+					} else {
+						$skipping = false;
+					}
+				}
 				$type = $this->reader->nodeType;
 
 				if ( !Hooks::run( 'ImportHandleToplevelXMLTag', [ $this ] ) ) {
