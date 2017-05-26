@@ -14,6 +14,7 @@
 		this.requestCounter = 0;
 		this.baseFilterState = {};
 		this.emptyParameterState = {};
+		this.initializing = false;
 	};
 
 	/* Initialization */
@@ -72,6 +73,7 @@
 			// There are parameters in the url, update model state
 			this.updateStateBasedOnUrl();
 		} else {
+			this.initializing = true;
 			// No valid parameters are given, load defaults
 			this._updateModelState(
 				$.extend(
@@ -86,6 +88,7 @@
 				)
 			);
 			this.updateChangesList();
+			this.initializing = false;
 		}
 
 		// Update the changes list with the existing data
@@ -615,7 +618,7 @@
 	 * @param {Object} [params] Extra parameters to add to the API call
 	 */
 	mw.rcfilters.Controller.prototype._updateURL = function ( params ) {
-		var updatedUri,
+		var currentFilterState, updatedFilterState, updatedUri,
 			notEquivalent = function ( obj1, obj2 ) {
 				var keys = Object.keys( obj1 ).concat( Object.keys( obj2 ) );
 				return keys.some( function ( key ) {
@@ -628,8 +631,21 @@
 		updatedUri = this._getUpdatedUri();
 		updatedUri.extend( params );
 
-		if ( notEquivalent( updatedUri.query, new mw.Uri().query ) ) {
-			window.history.pushState( { tag: 'rcfilters' }, document.title, updatedUri.toString() );
+		// Compare states instead of parameters
+		// This will allow us to always have a proper check of whether
+		// the requested new url is one to change or not, regardless of
+		// actual parameter visibility/representation in the URL
+		currentFilterState = this.filtersModel.getFiltersFromParameters( new mw.Uri().query );
+		updatedFilterState = this.filtersModel.getFiltersFromParameters( updatedUri.query );
+
+		if ( notEquivalent( currentFilterState, updatedFilterState ) ) {
+			if ( this.initializing ) {
+				// Initially, when we just build the first page load
+				// out of defaults, we want to replace the history
+				window.history.replaceState( { tag: 'rcfilters' }, document.title, updatedUri.toString() );
+			} else {
+				window.history.pushState( { tag: 'rcfilters' }, document.title, updatedUri.toString() );
+			}
 		}
 	};
 
