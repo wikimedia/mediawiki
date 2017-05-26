@@ -732,7 +732,9 @@ class SpecialVersion extends SpecialPage {
 				}
 			}
 			$cache = wfGetCache( CACHE_ANYTHING );
-			$memcKey = wfMemcKey( 'specialversion-ext-version-text', $extension['path'], $this->coreId );
+			$memcKey = $cache->makeKey(
+				'specialversion-ext-version-text', $extension['path'], $this->coreId
+			);
 			list( $vcsVersion, $vcsLink, $vcsDate ) = $cache->get( $memcKey );
 
 			if ( !$vcsVersion ) {
