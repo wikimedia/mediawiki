@@ -421,6 +421,7 @@
 	"apihelp-query+stashimageinfo-param-filekey": "Nyckel som identifierar en tidigare uppladdning som lagrats temporärt.",
 	"apihelp-query+stashimageinfo-example-simple": "Returnerar information för en temporär fil",
 	"apihelp-query+tags-example-simple": "Lista tillgängliga taggar.",
+	"apihelp-query+templates-param-namespace": "Visa mallar i endast denna namnrymd.",
 	"apihelp-query+userinfo-example-simple": "Få information om den aktuella användaren.",
 	"apihelp-query+userinfo-example-data": "Få ytterligare information om den aktuella användaren.",
 	"apihelp-query+watchlist-description": "Hämta de senaste ändringarna på sidor i den nuvarande användarens bevakningslista.",

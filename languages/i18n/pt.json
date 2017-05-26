@@ -3789,7 +3789,7 @@
 	"date-range-to": "Até à data:",
 	"sessionmanager-tie": "Não se pode combinar múltiplas solicitações de tipos de autenticação: $1.",
 	"sessionprovider-generic": "Sessões $1",
-	"sessionprovider-mediawiki-session-cookiesessionprovider": "sessões baseadas em cookie",
+	"sessionprovider-mediawiki-session-cookiesessionprovider": "sessões baseadas em cookies",
 	"sessionprovider-nocookies": "Os cookies podem estar desativados. Certifique-se de que os cookies estão ativados e inicie novamente.",
 	"randomrootpage": "Página aleatória de raiz",
 	"log-action-filter-block": "Tipo de bloqueio:",
