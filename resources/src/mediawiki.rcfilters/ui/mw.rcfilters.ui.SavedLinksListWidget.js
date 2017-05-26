@@ -51,7 +51,7 @@
 			popup: {
 				width: 300,
 				anchor: false,
-				align: 'forwards',
+				align: 'backwards',
 				$autoCloseIgnore: this.$overlay,
 				$content: this.menu.$element
 			}
