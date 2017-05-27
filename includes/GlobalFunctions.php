@@ -3515,7 +3515,9 @@ function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
 	}
 
 	$cache = ObjectCache::getLocalServerInstance( 'hash' );
-	$key = wfMemcKey( 'bad-image-list', ( $blacklist === null ) ? 'default' : md5( $blacklist ) );
+	$key = $cache->makeKey(
+		'bad-image-list', ( $blacklist === null ) ? 'default' : md5( $blacklist )
+	);
 	$badImages = $cache->get( $key );
 
 	if ( $badImages === false ) { // cache miss
