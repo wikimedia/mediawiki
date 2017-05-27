@@ -1404,7 +1404,7 @@
 	"recentchanges-submit": "Exibir",
 	"rcfilters-activefilters": "Filtros ativos",
 	"rcfilters-quickfilters": "Links Rápidos",
-	"rcfilters-quickfilters-placeholder": "Salve suas configurações de ferramentas favoritas para reutilizá-las mais tarde.",
+	"rcfilters-quickfilters-placeholder-title": "Ainda não foi gravado nenhum link",
 	"rcfilters-savedqueries-defaultlabel": "Filtros salvos",
 	"rcfilters-savedqueries-rename": "Renomear",
 	"rcfilters-savedqueries-setdefault": "Definir como padrão",
@@ -3962,8 +3962,8 @@
 	"pageid": "ID da página $1",
 	"rawhtml-notallowed": "As tags &lt;html&gt; não podem ser usadas fora das páginas normais.",
 	"gotointerwiki": "Saindo {{SITENAME}}",
-	"gotointerwiki-invalid": "O título especificado é invalido.",
-	"gotointerwiki-external": "Você está prestes a sair {{SITENAME}} para visitar [[$2]] que é um site externo.\n\n[$1 Clique aqui para continuar para $1].",
+	"gotointerwiki-invalid": "O título especificado é inválido.",
+	"gotointerwiki-external": "Você está prestes a sair {{SITENAME}} para visitar [[$2]] que é um website separado.\n\n[$1 Continuar para $1].",
 	"undelete-cantedit": "Você não pode restaurar esta página, porque você não está autorizado a editar esta página.",
 	"undelete-cantcreate": "Você não pode restaurar esta página, pois não há uma página com este nome e você não está autorizado a criar esta página."
 }

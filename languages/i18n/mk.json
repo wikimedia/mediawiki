@@ -1316,7 +1316,8 @@
 	"recentchanges-submit": "Прикажи",
 	"rcfilters-activefilters": "Активни филтри",
 	"rcfilters-quickfilters": "Брзи врски",
-	"rcfilters-quickfilters-placeholder": "Зачувајте ги вашите омилени поставки за алатки за да ги употребите подоцна.",
+	"rcfilters-quickfilters-placeholder-title": "Засега нема зачувани врски",
+	"rcfilters-quickfilters-placeholder-description": "За да ги зачувате вашите филтерски псотавки за да ги употребите другпат, стиснете на иконката за бележник во подрачјето „Активен филтер“ подолу.",
 	"rcfilters-savedqueries-defaultlabel": "Зачувани филтри",
 	"rcfilters-savedqueries-rename": "Преименувај",
 	"rcfilters-savedqueries-setdefault": "Задај како основно",
@@ -4030,8 +4031,8 @@
 	"pageid": "назнака на страницата $1",
 	"rawhtml-notallowed": "&lt;html&gt;-ознаките не може да се користат вон нормалните страници.",
 	"gotointerwiki": "Го напуштате {{SITENAME}}",
-	"gotointerwiki-invalid": "Укажаниот наслов беше неважечки.",
-	"gotointerwiki-external": "Го напуштате {{SITENAME}} упатени кон [[$2]], кое е посебно мрежно место.\n\n[$1 Тука продолжете кон $1].",
+	"gotointerwiki-invalid": "Укажаниот наслов е неважечки.",
+	"gotointerwiki-external": "Го напуштате {{SITENAME}} упатени кон [[$2]], кое е посебно мрежно место.\n\n'''[$1 Продолжете кон $1]'''",
 	"undelete-cantedit": "Не можете да ја вратите избришаната страница бидејќи уредувањето на страницава не ви е дозволено.",
 	"undelete-cantcreate": "Не можете да ја вратите страницава бидејќи не постои страница со таков назив и не ви е дозволено да ја создадете."
 }

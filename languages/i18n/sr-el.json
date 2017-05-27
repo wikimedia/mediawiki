@@ -228,7 +228,7 @@
 	"toolbox": "Alatke",
 	"tool-link-userrights": "Promeni {{GENDER:$1|korisnik}} grupe",
 	"tool-link-userrights-readonly": "Prikaži {{GENDER:$1|korisnik}} grupe",
-	"tool-link-emailuser": "Pošalji imejl {{GENDER:$1|korisniku|korisnici}}",
+	"tool-link-emailuser": "Pošalji imejl",
 	"userpage": "Pogledaj korisničku stranicu",
 	"projectpage": "Pogledaj stranicu projekta",
 	"imagepage": "Pogledaj stranicu datoteke",

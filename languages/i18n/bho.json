@@ -1617,6 +1617,7 @@
 	"namespacesall": "सगरी",
 	"monthsall": "सगरी",
 	"confirmemail": "ईमेल पता कन्फर्म करीं",
+	"autoredircomment": "पन्ना [[$1]] पर अनुप्रेषित कइल गइल",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|बात करीं]])",
 	"version-no-ext-name": "[अज्ञात नाम]",
 	"fileduplicatesearch": "नकल प्रति फाइल खोजीं",

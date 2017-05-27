@@ -1251,7 +1251,6 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|списак нових страница]])",
 	"recentchanges-submit": "Прикажи",
 	"rcfilters-quickfilters": "Брзе везе",
-	"rcfilters-quickfilters-placeholder": "Спреми своја омиљена подешавања за алатке за каснију употребу.",
 	"rcfilters-savedqueries-defaultlabel": "Сачувани филтери",
 	"rcfilters-savedqueries-rename": "Преименуј",
 	"rcfilters-savedqueries-setdefault": "Постави као подразумевано",
