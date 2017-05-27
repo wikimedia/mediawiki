@@ -67,7 +67,7 @@ class ParserCache {
 		$pageid = $article->getId();
 		$renderkey = (int)( $wgRequest->getVal( 'action' ) == 'render' );
 
-		$key = wfMemcKey( 'pcache', 'idhash', "{$pageid}-{$renderkey}!{$hash}" );
+		$key = $this->mMemc->makeKey( 'pcache', 'idhash', "{$pageid}-{$renderkey}!{$hash}" );
 		return $key;
 	}
 
@@ -76,7 +76,7 @@ class ParserCache {
 	 * @return mixed|string
 	 */
 	protected function getOptionsKey( $page ) {
-		return wfMemcKey( 'pcache', 'idoptions', $page->getId() );
+		return $this->mMemc->makeKey( 'pcache', 'idoptions', $page->getId() );
 	}
 
 	/**
