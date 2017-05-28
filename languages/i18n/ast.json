@@ -1303,6 +1303,8 @@
 	"recentchanges-submit": "Amosar",
 	"rcfilters-activefilters": "Filtros activos",
 	"rcfilters-quickfilters": "Enllaces rápidos",
+	"rcfilters-quickfilters-placeholder-title": "Entá nun se guardaron enllaces",
+	"rcfilters-quickfilters-placeholder-description": "Pa guardar les preferencies del filtru y volver a usales sero, pulsia nel iconu del marcador del área de Filtru Activu más abaxo.",
 	"rcfilters-savedqueries-defaultlabel": "Filtros guardaos",
 	"rcfilters-savedqueries-rename": "Renomar",
 	"rcfilters-savedqueries-setdefault": "Guardar como predeterminao",

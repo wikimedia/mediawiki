@@ -2501,7 +2501,7 @@
 	"confirmemail_success": "Tava e-pasta adrese ir apstiprināta.\nTagad vari [[Special:UserLogin|doties iekšā]] ar savu lietotājvārdu un pilnvērtīgi izmantot wiki iespējas.",
 	"confirmemail_loggedin": "Tava e-pasta adrese tagad ir apstiprināta.",
 	"confirmemail_subject": "E-pasta adreses apstiprinajums no {{grammar:ģenitīvs|{{SITENAME}}}}",
-	"confirmemail_body": "Kads, iespejams, tu pats, no IP adreses $1 ir registrejis {{grammar:ģenitīvs|{{SITENAME}}}} lietotaja vardu \"$2\" ar so e-pasta adresi.\n\nLai apstiprinatu, ka so lietotaja vardu esi izveidojis tu pats, un aktivizetu e-pasta izmantosanu {{SITENAME}}, atver so saiti sava interneta parluka:\n\n$3\n\nJa tu *neesi* registrejis sadu lietotaja vardu, atver sho saiti savaa interneta browserii, lai atceltu shiis e-pasta adreses apstiprinaashanu:\n\n$5\n\nSi apstiprinajuma koda deriguma termins ir $4.",
+	"confirmemail_body": "Kāds, iespējams, tu pats, no IP adreses $1 ir reģistrējis {{grammar:ģenitīvs|{{SITENAME}}}} lietotāja vārdu \"$2\" ar šo e-pasta adresi.\n\nLai apstiprinātu, ka šo lietotāja vārdu esi izveidojis tu pats, un aktivizētu e-pasta izmantošanu {{SITENAME}}, atver šo saiti savā interneta pārlūkprogrammā:\n\n$3\n\nJa tu *neesi* reģistrējis šādu lietotāja vārdu, atver šo saiti savā interneta pārlūkprogrammā, lai atceltu šīs e-pasta adreses apstiprināšanu:\n\n$5\n\nŠi apstiprinājuma koda derīguma termiņš ir $4.",
 	"confirmemail_invalidated": "E-pasta adreses apstiprināšana atcelta",
 	"invalidateemail": "Atcelt e-pasta adreses apstiprināšanu",
 	"scarytranscludedisabled": "[Starpviki saišu iekļaušana ir atspējota.]",
@@ -2798,5 +2798,6 @@
 	"authmanager-realname-label": "Tavs īstais vārds",
 	"authmanager-realname-help": "Dalībnieka īstais vārds",
 	"authprovider-resetpass-skip-label": "Izlaist",
-	"specialpage-securitylevel-not-allowed-title": "Nav atļauts"
+	"specialpage-securitylevel-not-allowed-title": "Nav atļauts",
+	"credentialsform-account": "Konta nosaukums:"
 }

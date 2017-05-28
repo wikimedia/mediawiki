@@ -1355,6 +1355,7 @@
 	"rcfilters-filter-minor-label": "Mindre redigeringer",
 	"rcfilters-filter-minor-description": "Redigeringer som ophavsmanden har markeret som mindre.",
 	"rcnotefrom": "Nedenfor er op til '''$1''' {{PLURAL:$5|ændring|ændringer}} siden '''$2''' vist.",
+	"rclistfromreset": "Nulstil datovalg",
 	"rclistfrom": "Vis nye ændringer startende fra den $3 kl. $2",
 	"rcshowhideminor": "$1 mindre ændringer",
 	"rcshowhideminor-show": "Vis",

@@ -1386,6 +1386,8 @@
 	"recentchanges-submit": "显示",
 	"rcfilters-activefilters": "激活的过滤器",
 	"rcfilters-quickfilters": "快速链接",
+	"rcfilters-quickfilters-placeholder-title": "尚未保存链接",
+	"rcfilters-quickfilters-placeholder-description": "要保存您的过滤器设置并供日后再利用，点击下方激活的过滤器区域内的书签图标。",
 	"rcfilters-savedqueries-defaultlabel": "保存的过滤器",
 	"rcfilters-savedqueries-rename": "重命名",
 	"rcfilters-savedqueries-setdefault": "设置为默认",

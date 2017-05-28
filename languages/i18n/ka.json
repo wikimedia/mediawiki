@@ -1063,7 +1063,7 @@
 	"prefs-memberingroups": "{{PLURAL:$1|ჯგუფის|ჯგუფების}} {{GENDER:$2|წევრი}}:",
 	"prefs-memberingroups-type": "$1",
 	"group-membership-link-with-expiry": "$1 ($2-მდე)",
-	"prefs-registration": "რეგისტრაციის თარიღი",
+	"prefs-registration": "რეგისტრაციის დრო:",
 	"prefs-registration-date-time": "$1",
 	"yourrealname": "ნამდვილი სახელი:",
 	"yourlanguage": "ენა:",

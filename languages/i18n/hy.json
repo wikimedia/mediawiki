@@ -28,7 +28,8 @@
 			"KeepingCalm",
 			"Macofe",
 			"Kareyac",
-			"Irus"
+			"Irus",
+			"Narek"
 		]
 	},
 	"tog-underline": "ընդգծել հղումները՝",
@@ -228,6 +229,7 @@
 	"views": "Դիտումները",
 	"toolbox": "Գործիքներ",
 	"tool-link-userrights": "Փոփոխել {{GENDER:$1|մասնակից}} խմբեր",
+	"tool-link-userrights-readonly": "Տեսնել {{GENDER:$1|մասնակից}} խումբը",
 	"tool-link-emailuser": "Ուղարկել էլ այս նամակ {{GENDER:$1|մասնակցին}}",
 	"userpage": "Դիտել մասնակցի էջը",
 	"projectpage": "Դիտել նախագծի էջը",
@@ -348,6 +350,7 @@
 	"filedeleteerror": "Չհաջողվեց ջնջել «$1» ֆայլը։",
 	"directorycreateerror": "Չհաջողվեց ստեղծել «$1» պանակը։",
 	"directoryreadonlyerror": "$1 թղթապանակը միայն ընթերցելու համար է:",
+	"directorynotreadableerror": "«$1» ցուցակն անընթեռնելի է։",
 	"filenotfound": "Չհաջողվեց գտնել «$1» ֆայլը։",
 	"unexpected": "Անսպասելի արժեք. «$1»=«$2»։",
 	"formerror": "Սխալ. չհաջողվեց փոխանցել տվյալները",
@@ -405,6 +408,8 @@
 	"createacct-yourpasswordagain-ph": "Կրկին մուտքագրեք գաղտնաբառը",
 	"userlogin-remembermypassword": "Մուտք գործած մնալ",
 	"userlogin-signwithsecure": "Օգտագործել անվտանգ միացում",
+	"cannotlogin-title": "Հնարավոր չէ մուտք գործել",
+	"cannotlogin-text": "Հնարավոր չէ մուտք գործել համակարգ։",
 	"cannotloginnow-title": "Այժմ դուրս գալ անհնար է",
 	"cannotloginnow-text": "$1 օգտագործելիս դուրս գալն անհնար է:",
 	"cannotcreateaccount-title": "Անհնար է ստեղծել հաշիվներ",
@@ -897,6 +902,7 @@
 	"userrights-groupsmember": "Անդամ է՝ $2-ին",
 	"userrights-reason": "Պատճառ.",
 	"userrights-changeable-col": "Խմբեր, որոնք դուք կարող եք ձևափոխել",
+	"userrights-unchangeable-col": "Խմբեր, որոնք Դուք չեք կարող փոփոխել",
 	"group": "Խումբ.",
 	"group-user": "Մասնակիցներ",
 	"group-autoconfirmed": "Ավտովավերացված մասնակիցներ",

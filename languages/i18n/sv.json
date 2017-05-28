@@ -1365,6 +1365,8 @@
 	"recentchanges-submit": "Visa",
 	"rcfilters-activefilters": "Aktiva filter",
 	"rcfilters-quickfilters": "Snabblänkar",
+	"rcfilters-quickfilters-placeholder-title": "Inga länkar har sparats ännu",
+	"rcfilters-quickfilters-placeholder-description": "För att spara dina filterinställningar och återanvända dem senare, klicka på bokmärkesikonen under \"Aktiva filter\" nedan.",
 	"rcfilters-savedqueries-defaultlabel": "Sparade filter",
 	"rcfilters-savedqueries-rename": "Döp om",
 	"rcfilters-savedqueries-setdefault": "Ange som standard",
