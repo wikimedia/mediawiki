@@ -1407,7 +1407,7 @@
 	"rcfilters-filtergroup-user-experience-level-conflicts-unregistered": "Experience filters find only registered users, so this filter conflicts with the “Unregistered” filter.",
 	"rcfilters-filtergroup-user-experience-level-conflicts-unregistered-global": "The \"Unregistered\" filter conflicts with one or more Experience filters, which find registered users only. The conflicting filters are marked in the Active Filters area, above.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Newcomers",
-	"rcfilters-filter-user-experience-level-newcomer-description": "Fewer than 10 edits and 4 days of activity.",
+	"rcfilters-filter-user-experience-level-newcomer-description": "Fewer than 10 edits or 4 days of activity.",
 	"rcfilters-filter-user-experience-level-learner-label": "Learners",
 	"rcfilters-filter-user-experience-level-learner-description": "More experience than \"Newcomers\" but less than \"Experienced users\".",
 	"rcfilters-filter-user-experience-level-experienced-label": "Experienced users",
