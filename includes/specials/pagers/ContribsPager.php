@@ -465,14 +465,13 @@ class ContribsPager extends ReverseChronologicalPager {
 			}
 
 			# Show user names for /newbies as there may be different users.
-			# Note that we already excluded rows with hidden user names.
-			if ( $this->contribs == 'newbie' ) {
+			# Note that only unprivileged users have rows with hidden user names excluded.
+			$userlink = '';
+			if ( $this->contribs == 'newbie' && !$rev->isDeleted( Revision::DELETED_USER ) ) {
 				$userlink = ' . . ' . $lang->getDirMark()
 					. Linker::userLink( $rev->getUser(), $rev->getUserText() );
 				$userlink .= ' ' . $this->msg( 'parentheses' )->rawParams(
-						Linker::userTalkLink( $rev->getUser(), $rev->getUserText() ) )->escaped() . ' ';
-			} else {
-				$userlink = '';
+					Linker::userTalkLink( $rev->getUser(), $rev->getUserText() ) )->escaped() . ' ';
 			}
 
 			$flags = [];
