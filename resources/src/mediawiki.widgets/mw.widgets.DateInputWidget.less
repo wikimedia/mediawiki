@@ -47,7 +47,6 @@
 		position: relative;
 		.oo-ui-box-sizing( border-box );
 		width: 100%;
-		.oo-ui-unselectable();
 		cursor: pointer;
 		padding: 0.5em 1em;
 		border: 1px solid #a2a9b1;
@@ -59,6 +58,10 @@
 		 * Equal to line height + top padding + bottom padding
 		 */
 		height: 2.275em;
+	}
+
+	&-handle {
+		.oo-ui-unselectable();
 
 		> .oo-ui-labelElement-label {
 			padding: 0;
