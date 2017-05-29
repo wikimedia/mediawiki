@@ -27,75 +27,80 @@
 	 */
 	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure ) {
 		var parsedSavedQueries, validParameterNames,
+			controller = this,
 			uri = new mw.Uri(),
 			$changesList = $( '.mw-changeslist' ).first().contents();
 
 		// Initialize the model
-		this.filtersModel.initializeFilters( filterStructure, namespaceStructure );
-
-		this._buildBaseFilterState();
-		this._buildEmptyParameterState();
-		validParameterNames = Object.keys( this._getEmptyParameterState() )
-			.filter( function ( param ) {
-				// Remove 'highlight' and 'invert' parameters from this check;
-				// if it's the only parameter in the URL we still
-				// want to consider the URL 'empty' for defaults to load
-				return param !== 'highlight' && param !== 'invert';
-			} );
-
-		try {
-			parsedSavedQueries = JSON.parse( mw.user.options.get( 'rcfilters-saved-queries' ) || '{}' );
-		} catch ( err ) {
-			parsedSavedQueries = {};
-		}
-
-		// The queries are saved in a minimized state, so we need
-		// to send over the base state so the saved queries model
-		// can normalize them per each query item
-		this.savedQueriesModel.initialize(
-			parsedSavedQueries,
-			this._getBaseFilterState()
-		);
-
-		// Check whether we need to load defaults.
-		// We do this by checking whether the current URI query
-		// is a subset of the base state. If it is, we don't load
-		// defaults. If it isn't, we have no values at all, and
-		// we need to load defaults.
-		// Defaults should only be applied on load (if necessary)
-		// or on request
-		if (
-			Object.keys( uri.query ).some( function ( parameter ) {
-				return validParameterNames.indexOf( parameter ) > -1;
+		this._fetchEditTags()
+			.then( function ( tagList ) {
+				controller.filtersModel.initializeFilters( filterStructure, namespaceStructure, tagList );
 			} )
-		) {
-			// There are parameters in the url, update model state
-			this.updateStateBasedOnUrl();
-		} else {
-			// No valid parameters are given, load defaults
-			this._updateModelState(
-				$.extend( true,
-					// We're ignoring the highlight and invert parameters,
-					// if they exist, in the check for "emptiness" but we
-					// should retain their value when we update the model state
-					{
-						highlight: String( Number( uri.query.highlight ) ),
-						invert: String( Number( uri.query.invert ) )
-					},
-					this._getDefaultParams()
-				)
-			);
-			this.updateChangesList();
-		}
+			.then( function () {
+				this._buildBaseFilterState();
+				this._buildEmptyParameterState();
+				validParameterNames = Object.keys( this._getEmptyParameterState() )
+					.filter( function ( param ) {
+						// Remove 'highlight' and 'invert' parameters from this check;
+						// if it's the only parameter in the URL we still
+						// want to consider the URL 'empty' for defaults to load
+						return param !== 'highlight' && param !== 'invert';
+					} );
 
-		this.switchView( 'default' );
+				try {
+					parsedSavedQueries = JSON.parse( mw.user.options.get( 'rcfilters-saved-queries' ) || '{}' );
+				} catch ( err ) {
+					parsedSavedQueries = {};
+				}
 
-		// Update the changes list with the existing data
-		// so it gets processed
-		this.changesListModel.update(
-			$changesList.length ? $changesList : 'NO_RESULTS',
-			$( 'fieldset.rcoptions' ).first()
-		);
+				// The queries are saved in a minimized state, so we need
+				// to send over the base state so the saved queries model
+				// can normalize them per each query item
+				this.savedQueriesModel.initialize(
+					parsedSavedQueries,
+					this._getBaseFilterState()
+				);
+
+				// Check whether we need to load defaults.
+				// We do this by checking whether the current URI query
+				// is a subset of the base state. If it is, we don't load
+				// defaults. If it isn't, we have no values at all, and
+				// we need to load defaults.
+				// Defaults should only be applied on load (if necessary)
+				// or on request
+				if (
+					Object.keys( uri.query ).some( function ( parameter ) {
+						return validParameterNames.indexOf( parameter ) > -1;
+					} )
+				) {
+					// There are parameters in the url, update model state
+					this.updateStateBasedOnUrl();
+				} else {
+					// No valid parameters are given, load defaults
+					this._updateModelState(
+						$.extend( true,
+							// We're ignoring the highlight and invert parameters,
+							// if they exist, in the check for "emptiness" but we
+							// should retain their value when we update the model state
+							{
+								highlight: String( Number( uri.query.highlight ) ),
+								invert: String( Number( uri.query.invert ) )
+							},
+							this._getDefaultParams()
+						)
+					);
+					this.updateChangesList();
+				}
+
+				this.switchView( 'default' );
+
+				// Update the changes list with the existing data
+				// so it gets processed
+				this.changesListModel.update(
+					$changesList.length ? $changesList : 'NO_RESULTS',
+					$( 'fieldset.rcoptions' ).first()
+				);
+			}.bind( this ) );
 	};
 
 	/**
@@ -750,6 +755,39 @@
 						changes: 'NO_RESULTS',
 						fieldset: $parsed.find( 'fieldset.rcoptions' ).first()
 					} ).promise();
+				}
+			);
+	};
+
+	/**
+	 * Fetch edit tags
+	 *
+	 * @return {jQuery.Promise} Promise that is resolved with the
+	 *  array of edit tag information from the API.
+	 */
+	mw.rcfilters.Controller.prototype._fetchEditTags = function () {
+		var api = new mw.Api( { ajax: { cache: false } } );
+
+		return api.get( {
+				action: 'query',
+				list: 'tags',
+				tgprop: 'displayname|hitcount|description',
+				tglimit: 500
+			} )
+			.then(
+				function ( result ) {
+					var tags = OO.getProp( result, 'query', 'tags' ) || [];
+
+					// Clean up the result. Displayname has html in it, and we
+					// don't want that in our view.
+					tags.forEach( function ( tagData ) {
+						tagData.displayname = $( '<span>' ).append( tagData.displayname ).text();
+					} );
+
+					return tags;
+				},
+				function () {
+					return [];
 				}
 			);
 	};

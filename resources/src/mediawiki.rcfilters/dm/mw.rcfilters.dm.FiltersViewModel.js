@@ -201,12 +201,14 @@
 	 *
 	 * @param {Array} filters Filter group definition
 	 * @param {Object} [namespaces] Namespace definition
+	 * @param {Object[]} [tags] Tag array definition
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.initializeFilters = function ( filters, namespaces ) {
+	mw.rcfilters.dm.FiltersViewModel.prototype.initializeFilters = function ( filters, namespaces, tags ) {
 		var filterItem, filterConflictResult, groupConflictResult,
 			model = this,
 			items = [],
 			namespaceDefinition = [],
+			tagDefinition = [],
 			groupConflictMap = {},
 			filterConflictMap = {},
 			/*!
@@ -353,8 +355,43 @@
 			items = items.concat( model.groups.namespace.getItems() );
 		}
 
+		tags = tags || [];
+		if ( tags.length ) {
+			// Define view
+			this.views.tags = { name: 'tags', label: mw.msg( 'rcfilters-view-tags' ), trigger: '#' };
+
+			// Build item data
+			tags.forEach( function ( tagData ) {
+				tagDefinition.push( {
+					name: tagData.name,
+					label: tagData.displayname,
+					description: tagData.description
+				} );
+			} );
+
+			// Add the group
+			model.groups.tags = new mw.rcfilters.dm.FilterGroup(
+				'tags',
+				{
+					type: 'string_options',
+					view: 'tags',
+					title: 'rcfilters-view-tags', // Message key
+					labelPrefixKey: 'rcfilters-tag-prefix-tags',
+					separator: ',',
+					fullCoverage: false
+				}
+			);
+
+			// Add tag items to group
+			model.groups.tags.initializeFilters( tagDefinition );
+
+			// Add item references to the model, for lookup
+			items = items.concat( model.groups.tags.getItems() );
+		}
+
 		// Add item references to the model, for lookup
 		this.addItems( items );
+
 		// Expand conflicts
 		groupConflictResult = expandConflictDefinitions( groupConflictMap );
 		filterConflictResult = expandConflictDefinitions( filterConflictMap );
@@ -756,12 +793,12 @@
 			groupTitle,
 			result = {},
 			flatResult = [],
-			view = query.indexOf( this.getViewTrigger( 'namespaces' ) ) === 0 ? 'namespaces' : 'default',
+			view = this.getViewByTrigger( query.substr( 0, 1 ) ),
 			items = this.getFiltersByView( view );
 
 		// Normalize so we can search strings regardless of case and view
 		query = query.toLowerCase();
-		if ( view === 'namespaces' ) {
+		if ( view !== 'default' ) {
 			query = query.substr( 1 );
 		}
 
@@ -837,6 +874,22 @@
 
 	mw.rcfilters.dm.FiltersViewModel.prototype.getCurrentViewLabel = function () {
 		return this.views[ this.getCurrentView() ].label;
+	};
+
+	mw.rcfilters.dm.FiltersViewModel.prototype.getAvailableViews = function () {
+		return Object.keys( this.views );
+	};
+
+	mw.rcfilters.dm.FiltersViewModel.prototype.getViewByTrigger = function ( trigger ) {
+		var result = 'default';
+
+		$.each( this.views, function ( name, data ) {
+			if ( data.trigger === trigger ) {
+				result = name;
+			}
+		} );
+
+		return result;
 	};
 
 	/**

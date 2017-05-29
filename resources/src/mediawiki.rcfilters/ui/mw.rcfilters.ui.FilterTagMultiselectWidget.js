@@ -171,6 +171,8 @@
 
 		if ( value.indexOf( this.model.getViewTrigger( 'namespaces' ) ) === 0 ) {
 			view = 'namespaces';
+		} else if ( value.indexOf( this.model.getViewTrigger( 'tags' ) ) === 0 ) {
+			view = 'tags';
 		}
 
 		this.controller.switchView( view );
@@ -271,15 +273,19 @@
 			newInputValue = inputValue;
 
 		switch ( view ) {
+			case 'tags':
 			case 'namespaces':
-				if ( inputValue.indexOf( this.model.getViewTrigger( 'namespaces' ) ) !== 0 ) {
+				if ( inputValue.indexOf( this.model.getViewTrigger( view ) ) !== 0 ) {
 					// Add the prefix to the input
-					newInputValue = this.model.getViewTrigger( 'namespaces' ) + inputValue;
+					newInputValue = this.model.getViewTrigger( view ) + inputValue;
 				}
 				break;
 			default:
 			case 'default':
-				if ( inputValue.indexOf( this.model.getViewTrigger( 'namespaces' ) ) === 0 ) {
+				if (
+					inputValue.indexOf( this.model.getViewTrigger( 'namespaces' ) ) === 0 ||
+					inputValue.indexOf( this.model.getViewTrigger( 'tags' ) ) === 0
+				) {
 					// Remove the prefix
 					newInputValue = inputValue.substr( 1 );
 				}
