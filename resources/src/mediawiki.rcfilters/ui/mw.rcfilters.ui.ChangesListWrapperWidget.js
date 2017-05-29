@@ -39,7 +39,10 @@
 			update: 'onModelUpdate'
 		} );
 
-		this.$element.addClass( 'mw-rcfilters-ui-changesListWrapperWidget' );
+		this.$element
+			.addClass( 'mw-rcfilters-ui-changesListWrapperWidget' )
+			// We handle our own display/hide of the empty results message
+			.removeClass( 'mw-changeslist-empty' );
 
 		// Set up highlight containers
 		this.setupHighlightContainers( this.$element );
@@ -92,7 +95,6 @@
 			isEmpty = $changesListContent === 'NO_RESULTS';
 
 		this.$element.toggleClass( 'mw-changeslist', !isEmpty );
-		this.$element.toggleClass( 'mw-changeslist-empty', isEmpty );
 		if ( isEmpty ) {
 			this.$changesListContent = null;
 			this.$element.empty();
