@@ -911,6 +911,12 @@ class MediaWiki {
 			$this->triggerJobs();
 		}
 
+		// Re-run deferred updates if jobs executed above added some
+		DeferredUpdates::doUpdates( 'enqueue' );
+
+		// Push remaining lazy jobs added by jobs executed above
+		JobQueueGroup::pushLazyJobs();
+
 		// Log profiling data, e.g. in the database or UDP
 		wfLogProfilingData();
 
