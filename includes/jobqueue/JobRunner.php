@@ -268,6 +268,8 @@ class JobRunner implements LoggerAwareInterface {
 
 			DeferredUpdates::doUpdates();
 			$this->commitMasterChanges( $job );
+			// Push lazy jobs added by the job or its deferred udpates
+			JobQueueGroup::pushLazyJobs();
 			$job->teardown();
 		} catch ( Exception $e ) {
 			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
