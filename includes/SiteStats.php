@@ -222,13 +222,6 @@ class SiteStats {
 			} catch ( JobQueueError $e ) {
 				self::$jobs = 0;
 			}
-			/**
-			 * Zero rows still do single row read for row that doesn't exist,
-			 * but people are annoyed by that
-			 */
-			if ( self::$jobs == 1 ) {
-				self::$jobs = 0;
-			}
 		}
 		return self::$jobs;
 	}
