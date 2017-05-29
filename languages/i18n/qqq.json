@@ -1644,6 +1644,8 @@
 	"rcfilters-filter-excluded": "Label for a menu item in [[Special:RecentChanges]] noting that the item is being excluded from the results.",
 	"rcfilters-tag-prefix-namespace": "Prefix for the namespace tags in [[Special:RecentChanges]]. Namespace tags use a colon (:) as prefix. Please keep this format.\n\nParameters:\n* $1 - Filter name.",
 	"rcfilters-tag-prefix-namespace-inverted": "Prefix for the namespace inverted tags in [[Special:RecentChanges]]. Namespace tags use a colon (:) as prefix. Please keep this format.\n\nParameters:\n* $1 - Filter name.",
+	"rcfilters-tag-prefix-tags": "Prefix for the edit tags in [[Special:RecentChanges]]. Namespace tags use a colon (:) as prefix. Please keep this format.\n\nParameters:\n* $1 - Tag display name.",
+	"rcfilters-view-tags": "Title for the tags view in [[Special:RecentChanges]]",
 	"rcnotefrom": "This message is displayed at [[Special:RecentChanges]] when viewing recentchanges from some specific time.\n\nThe corresponding message is {{msg-mw|Rclistfrom}}.\n\nParameters:\n* $1 - the maximum number of changes that are displayed\n* $2 - (Optional) a date and time\n* $3 - a date\n* $4 - a time\n* $5 - Number of changes are displayed, for use with PLURAL",
 	"rclistfromreset": "Used on [[Special:RecentChanges]] to reset a selection of a certain date range.",
 	"rclistfrom": "Used on [[Special:RecentChanges]]. Parameters:\n* $1 - (Currently not use) date and time. The date and the time adds to the rclistfrom description.\n* $2 - time. The time adds to the rclistfrom link description (with split of date and time).\n* $3 - date. The date adds to the rclistfrom link description (with split of date and time).\n\nThe corresponding message is {{msg-mw|Rcnotefrom}}.",
