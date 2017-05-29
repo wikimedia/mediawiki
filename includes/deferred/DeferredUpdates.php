@@ -91,8 +91,6 @@ class DeferredUpdates {
 		}
 
 		if ( self::$immediateMode ) {
-			// No more explicit doUpdates() calls will happen, so run this now
-			self::doUpdates( 'run' );
 			return;
 		}
 

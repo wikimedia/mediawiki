@@ -911,6 +911,9 @@ class MediaWiki {
 			$this->triggerJobs();
 		}
 
+		// Rerun deferred jobs if normal jobs added some
+		DeferredUpdates::doUpdates( 'enqueue' );
+
 		// Log profiling data, e.g. in the database or UDP
 		wfLogProfilingData();
 
