@@ -167,11 +167,7 @@
 	 * @param {string} value Value of the input
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onInputChange = function ( value ) {
-		var view = 'default';
-
-		if ( value.indexOf( this.model.getViewTrigger( 'namespaces' ) ) === 0 ) {
-			view = 'namespaces';
-		}
+		var view = this.model.getViewByTrigger( value.substr( 0, 1 ) );
 
 		this.controller.switchView( view );
 	};
@@ -279,26 +275,21 @@
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.updateElementsForView = function () {
 		var view = this.model.getCurrentView(),
 			inputValue = this.input.getValue(),
+			inputView = this.model.getViewByTrigger( inputValue.substr( 0, 1 ) ),
 			newInputValue = inputValue;
 
-		switch ( view ) {
-			case 'namespaces':
-				if ( inputValue.indexOf( this.model.getViewTrigger( 'namespaces' ) ) !== 0 ) {
-					// Add the prefix to the input
-					newInputValue = this.model.getViewTrigger( 'namespaces' ) + inputValue;
-				}
-				break;
-			default:
-			case 'default':
-				if ( inputValue.indexOf( this.model.getViewTrigger( 'namespaces' ) ) === 0 ) {
-					// Remove the prefix
-					newInputValue = inputValue.substr( 1 );
-				}
-				break;
+		if ( inputView !== 'default' ) {
+			// We have a prefix already, remove it
+			inputValue = inputValue.substr( 1 );
+		}
+
+		if ( inputView !== view ) {
+			// Add the correct prefix
+			inputValue = this.model.getViewTrigger( view ) + inputValue;
 		}
 
 		// Update input
-		this.input.setValue( newInputValue );
+		this.input.setValue( inputValue );
 	};
 
 	/**
