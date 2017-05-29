@@ -132,6 +132,7 @@
 		// Hide namespaces
 		if ( mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' ) ) {
 			$namespaceSelect.closest( 'tr' ).detach();
+			this.$element.find( '.mw-tagfilter-label' ).closest( 'tr' ).detach();
 		}
 
 		// Collapse legend

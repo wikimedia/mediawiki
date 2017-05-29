@@ -24,7 +24,11 @@
 			new mw.rcfilters.ui.ChangesListWrapperWidget(
 				filtersModel, changesListModel, $( '.mw-changeslist, .mw-changeslist-empty' ) );
 
-			controller.initialize( mw.config.get( 'wgStructuredChangeFilters' ), mw.config.get( 'wgFormattedNamespaces' ) );
+			controller.initialize(
+				mw.config.get( 'wgStructuredChangeFilters' ),
+				mw.config.get( 'wgFormattedNamespaces' ),
+				mw.config.get( 'wgRCFiltersChangeTags' )
+			);
 
 			// eslint-disable-next-line no-new
 			new mw.rcfilters.ui.FormWrapperWidget(
