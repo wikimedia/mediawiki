@@ -167,11 +167,7 @@
 	 * @param {string} value Value of the input
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onInputChange = function ( value ) {
-		var view = 'default';
-
-		if ( value.indexOf( this.model.getViewTrigger( 'namespaces' ) ) === 0 ) {
-			view = 'namespaces';
-		}
+		var view = this.model.getViewByTrigger( value.substr( 0, 1 ) );
 
 		this.controller.switchView( view );
 	};
@@ -281,20 +277,12 @@
 			inputValue = this.input.getValue(),
 			newInputValue = inputValue;
 
-		switch ( view ) {
-			case 'namespaces':
-				if ( inputValue.indexOf( this.model.getViewTrigger( 'namespaces' ) ) !== 0 ) {
-					// Add the prefix to the input
-					newInputValue = this.model.getViewTrigger( 'namespaces' ) + inputValue;
-				}
-				break;
-			default:
-			case 'default':
-				if ( inputValue.indexOf( this.model.getViewTrigger( 'namespaces' ) ) === 0 ) {
-					// Remove the prefix
-					newInputValue = inputValue.substr( 1 );
-				}
-				break;
+		if ( this.model.getViewByTrigger( inputValue.substr( 0, 1 ) ) !== view ) {
+			newInputValue = view === 'default' ?
+				// Remove the prefix
+				inputValue.substr( 1 ) :
+				// Add the prefix to the input
+				this.model.getViewTrigger( view ) + inputValue;
 		}
 
 		// Update input
