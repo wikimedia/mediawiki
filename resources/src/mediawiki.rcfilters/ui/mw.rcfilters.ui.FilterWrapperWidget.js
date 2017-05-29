@@ -33,16 +33,28 @@
 			{ $overlay: this.$overlay }
 		);
 
-		this.namespaceButton = new OO.ui.ButtonWidget( {
-			label: mw.msg( 'namespaces' ),
-			icon: 'article',
-			classes: [ 'mw-rcfilters-ui-filterWrapperWidget-namespaceToggle' ]
+		this.viewToggle = new OO.ui.ButtonGroupWidget( {
+			classes: [ 'mw-rcfilters-ui-filterWrapperWidget-viewToggleButtons' ],
+			items: [
+				new OO.ui.ButtonWidget( {
+					data: 'namespaces',
+					label: mw.msg( 'namespaces' ),
+					icon: 'article',
+					classes: [ 'mw-rcfilters-ui-filterWrapperWidget-viewToggleButtons-namespace' ]
+				} ),
+				new OO.ui.ButtonWidget( {
+					data: 'tags',
+					label: mw.msg( 'rcfilters-view-tags' ),
+					icon: 'tag',
+					classes: [ 'mw-rcfilters-ui-filterWrapperWidget-viewToggleButtons-tags' ]
+				} )
+			]
 		} );
-		this.namespaceButton.setActive( this.model.getCurrentView() === 'namespaces' );
 
 		// Events
 		this.model.connect( this, { update: 'onModelUpdate' } );
-		this.namespaceButton.connect( this, { click: 'onNamespaceToggleClick' } );
+		this.viewToggle.aggregate( { click: 'itemClick' } );
+		this.viewToggle.connect( this, { itemClick: 'onViewToggleClick' } );
 
 		// Initialize
 		this.$element
@@ -63,9 +75,9 @@
 
 		this.$element.append(
 			this.filterTagWidget.$element,
-			this.namespaceButton.$element
+			this.viewToggle.$element
 		);
-		this.namespaceButton.toggle( !!mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' ) );
+		this.viewToggle.toggle( !!mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' ) );
 	};
 
 	/* Initialization */
@@ -79,15 +91,22 @@
 	 * Respond to model update event
 	 */
 	mw.rcfilters.ui.FilterWrapperWidget.prototype.onModelUpdate = function () {
-		// Synchronize the state of the toggle button with the current view
-		this.namespaceButton.setActive( this.model.getCurrentView() === 'namespaces' );
+		var widget = this;
+
+		// Synchronize the state of the toggle buttons with the current view
+		this.viewToggle.getItems().forEach( function ( buttonWidget ) {
+			buttonWidget.setActive( widget.model.getCurrentView() === buttonWidget.getData() );
+		} );
 	};
 
 	/**
 	 * Respond to namespace toggle button click
+	 *
+	 * @param {OO.ui.ButtonWidget} buttonWidget The button that was clicked
 	 */
-	mw.rcfilters.ui.FilterWrapperWidget.prototype.onNamespaceToggleClick = function () {
-		this.controller.switchView( 'namespaces' );
+	mw.rcfilters.ui.FilterWrapperWidget.prototype.onViewToggleClick = function ( buttonWidget ) {
+		this.controller.switchView( buttonWidget.getData() );
 		this.filterTagWidget.focus();
 	};
+
 }( mediaWiki ) );
