@@ -889,7 +889,6 @@ class MediaWiki {
 
 		// Do any deferred jobs
 		DeferredUpdates::doUpdates( 'enqueue' );
-		DeferredUpdates::setImmediateMode( true );
 
 		// Make sure any lazy jobs are pushed
 		JobQueueGroup::pushLazyJobs();

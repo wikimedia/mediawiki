@@ -52,8 +52,6 @@ class DeferredUpdates {
 	private static $preSendUpdates = [];
 	/** @var DeferrableUpdate[] Updates to be deferred until after request end */
 	private static $postSendUpdates = [];
-	/** @var bool Whether to just run updates in addUpdate() */
-	private static $immediateMode = false;
 
 	const ALL = 0; // all updates; in web requests, use only after flushing the output buffer
 	const PRESEND = 1; // for updates that should run before flushing output buffer
@@ -85,12 +83,6 @@ class DeferredUpdates {
 			self::push( self::$preSendUpdates, $update );
 		} else {
 			self::push( self::$postSendUpdates, $update );
-		}
-
-		if ( self::$immediateMode ) {
-			// No more explicit doUpdates() calls will happen, so run this now
-			self::doUpdates( 'run' );
-			return;
 		}
 
 		// Try to run the updates now if in CLI mode and no transaction is active.
@@ -137,9 +129,10 @@ class DeferredUpdates {
 	/**
 	 * @param bool $value Whether to just immediately run updates in addUpdate()
 	 * @since 1.28
+	 * @deprecated 1.29 Causes issues in Web-executed jobs - see T165714 and T100085.
 	 */
 	public static function setImmediateMode( $value ) {
-		self::$immediateMode = (bool)$value;
+		wfDeprecated( __METHOD__, '1.29' );
 	}
 
 	/**
