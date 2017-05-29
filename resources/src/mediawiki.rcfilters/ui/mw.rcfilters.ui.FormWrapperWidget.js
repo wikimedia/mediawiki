@@ -131,6 +131,8 @@
 
 		// Hide namespaces
 		$namespaceSelect.closest( 'tr' ).detach();
+		// Hide tags
+		this.$element.find( '.mw-tagfilter-label' ).closest( 'tr' ).detach();
 
 		// Collapse legend
 		// see resources/src/mediawiki.special/mediawiki.special.changelist.legend.js

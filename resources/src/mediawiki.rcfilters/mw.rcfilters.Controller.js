@@ -25,14 +25,15 @@
 	 *
 	 * @param {Array} filterStructure Filter definition and structure for the model
 	 * @param {Object} [namespaceStructure] Namespace definition
+	 * @param {Object} [tagList] Tag definition
 	 */
-	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure ) {
+	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure, tagList ) {
 		var parsedSavedQueries, validParameterNames,
 			uri = new mw.Uri(),
 			$changesList = $( '.mw-changeslist' ).first().contents();
 
 		// Initialize the model
-		this.filtersModel.initializeFilters( filterStructure, namespaceStructure );
+		this.filtersModel.initializeFilters( filterStructure, namespaceStructure, tagList );
 
 		this._buildBaseFilterState();
 		this._buildEmptyParameterState();
