@@ -900,7 +900,6 @@ class MediaWiki {
 
 		// Do any deferred jobs
 		DeferredUpdates::doUpdates( 'enqueue' );
-		DeferredUpdates::setImmediateMode( true );
 
 		// Make sure any lazy jobs are pushed
 		JobQueueGroup::pushLazyJobs();
@@ -910,6 +909,9 @@ class MediaWiki {
 		if ( $mode === 'normal' ) {
 			$this->triggerJobs();
 		}
+
+		// Push remaining lazy jobs added by jobs executed above
+		JobQueueGroup::pushLazyJobs();
 
 		// Log profiling data, e.g. in the database or UDP
 		wfLogProfilingData();
