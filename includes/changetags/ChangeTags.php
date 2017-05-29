@@ -120,6 +120,32 @@ class ChangeTags {
 	}
 
 	/**
+	 * Get the message object for the tag's long description.
+	 *
+	 * Checks if message key "mediawiki:tag-$tag-description" exists. If it does not,
+	 * or if message is disabled, returns false. Otherwise, returns the message object
+	 * for the long description.
+	 *
+	 * @param string $tag Tag
+	 * @param IContextSource $context
+	 * @return Message|bool Message object of the tag long description or false if
+	 *  there is no description.
+	 */
+	public static function tagLongDescriptionMessage( $tag, IContextSource $context ) {
+		$msg = $context->msg( "tag-$tag-description" );
+		if ( !$msg->exists() ) {
+			return false;
+		}
+		if ( $msg->isDisabled() ) {
+			// The message exists but is disabled, hide the description.
+			return false;
+		}
+
+		// Message exists and isn't disabled, use it.
+		return $msg;
+	}
+
+	/**
 	 * Add tags to a change given its rc_id, rev_id and/or log_id
 	 *
 	 * @param string|string[] $tags Tags to add to the change
