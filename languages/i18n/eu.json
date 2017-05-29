@@ -1411,7 +1411,7 @@
 	"lockmanager-fail-svr-release": "Ezin izan da $1 zerbitzarian giltzaraporik askatu.",
 	"zip-wrong-format": "Zehaztutako fitxategia ez zen ZIP motakoa.",
 	"uploadstash": "Gordailu bat igo",
-	"uploadstash-clear": "Kodetutako fitxategiak izkutatu",
+	"uploadstash-clear": "Ezabatu fitxategi ezkutuak",
 	"uploadstash-nofiles": "Ez duzu kodetutako fitxategirik.",
 	"uploadstash-errclear": "Fitxategiak ezabatzeak akatsa eman du.",
 	"uploadstash-refresh": "Fitxategien zerrenda eguneratu",

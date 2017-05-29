@@ -1354,6 +1354,8 @@
 	"recentchanges-submit": "보기",
 	"rcfilters-activefilters": "사용 중인 필터",
 	"rcfilters-quickfilters": "빠른 링크",
+	"rcfilters-quickfilters-placeholder-title": "저장된 링크가 아직 없습니다",
+	"rcfilters-quickfilters-placeholder-description": "필터 설정을 저장하고 나중에 다시 사용하려면 아래의 사용 중인 필터 영역의 북마크 아이콘을 클릭하십시오.",
 	"rcfilters-savedqueries-defaultlabel": "저장된 필터",
 	"rcfilters-savedqueries-rename": "이름 바꾸기",
 	"rcfilters-savedqueries-setdefault": "기본값으로 설정",

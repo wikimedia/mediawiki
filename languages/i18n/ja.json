@@ -4033,5 +4033,6 @@
 	"restrictionsfield-label": "許可する IP の範囲:",
 	"restrictionsfield-help": "一行につき、単一の IP アドレス、もしくは CIDR による範囲。全帯域からの接続を許可する場合: <pre>0.0.0.0/0\n::/0</pre>",
 	"revid": "版 $1",
-	"undelete-cantcreate": "同名のページが存在せず、また作成する許可があなたに無いため、このページを復元できません。"
+	"undelete-cantedit": "このページを編集する許可がないため復元できません。",
+	"undelete-cantcreate": "同名のページが存在せず、このページを作成する許可がないため復元できません。"
 }

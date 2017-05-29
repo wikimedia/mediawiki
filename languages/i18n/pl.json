@@ -1992,7 +1992,7 @@
 	"booksources-search-legend": "Szukaj informacji o książkach",
 	"booksources-search": "Szukaj",
 	"booksources-text": "Poniżej znajduje się lista odnośników do innych witryn, które pośredniczą w sprzedaży nowych i używanych książek, a także mogą posiadać dalsze informacje na temat poszukiwanej przez Ciebie książki.",
-	"booksources-invalid-isbn": "Podany numer ISBN został rozpoznany jako nieprawidłowy. Sprawdź czy podany numer zgadza się z numerem zaczerpniętym ze źródła.",
+	"booksources-invalid-isbn": "Podany numer ISBN został rozpoznany jako nieprawidłowy. Sprawdź, czy podany numer zgadza się z numerem zaczerpniętym ze źródła.",
 	"magiclink-tracking-rfc": "Strony używające magicznych linków RFC",
 	"magiclink-tracking-rfc-desc": "Ta strona zawiera magiczne linki do RFC. Zobacz w [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org], jak dokonać migracji.",
 	"magiclink-tracking-pmid": "Strony używające magicznych linków PMID",
