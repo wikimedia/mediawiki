@@ -34,9 +34,6 @@ class SiteStats {
 	/** @var bool */
 	private static $loaded = false;
 
-	/** @var int */
-	private static $jobs;
-
 	/** @var int[] */
 	private static $pageCount = [];
 
@@ -213,17 +210,25 @@ class SiteStats {
 	}
 
 	/**
+	 * Total number of jobs in the job queue.
 	 * @return int
 	 */
 	static function jobs() {
-		if ( !isset( self::$jobs ) ) {
-			try{
-				self::$jobs = array_sum( JobQueueGroup::singleton()->getQueueSizes() );
-			} catch ( JobQueueError $e ) {
-				self::$jobs = 0;
-			}
-		}
-		return self::$jobs;
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$jobs = $cache->getWithSetCallback(
+			$cache->makeKey( 'SiteStats', 'jobscount' ),
+			$cache::TTL_MINUTE,
+			function ( $oldValue, &$ttl, array &$setOpts ) {
+				try{
+					$jobs = array_sum( JobQueueGroup::singleton()->getQueueSizes() );
+				} catch ( JobQueueError $e ) {
+					$jobs = 0;
+				}
+				return $jobs;
+			},
+			[ 'pcTTL' => $cache::TTL_PROC_LONG ]
+		);
+		return $jobs;
 	}
 
 	/**
