@@ -231,8 +231,15 @@ class ExtensionProcessor implements Processor {
 	protected function extractNamespaces( array $info ) {
 		if ( isset( $info['namespaces'] ) ) {
 			foreach ( $info['namespaces'] as $ns ) {
-				$id = $ns['id'];
-				$this->defines[$ns['constant']] = $id;
+				if ( defined( $ns['constant'] ) ) {
+					// If the namespace constant is already defined, use it.
+					// This allows namespace IDs to be overwritten locally.
+					$id = constant( $ns['constant'] );
+				} else {
+					$id = $ns['id'];
+					$this->defines[ $ns['constant'] ] = $id;
+				}
+
 				$this->attributes['ExtensionNamespaces'][$id] = $ns['name'];
 				if ( isset( $ns['gender'] ) ) {
 					$this->globals['wgExtraGenderNamespaces'][$id] = $ns['gender'];
