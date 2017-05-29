@@ -1405,6 +1405,7 @@
 	"rcfilters-activefilters": "Filtros ativos",
 	"rcfilters-quickfilters": "Links Rápidos",
 	"rcfilters-quickfilters-placeholder-title": "Ainda não foi gravado nenhum link",
+	"rcfilters-quickfilters-placeholder-description": "Para gravar as suas configurações dos filtros e reutilizá-las mais tarde, clique o ícone do marcador de página, na área Filtro Ativo abaixo.",
 	"rcfilters-savedqueries-defaultlabel": "Filtros salvos",
 	"rcfilters-savedqueries-rename": "Renomear",
 	"rcfilters-savedqueries-setdefault": "Definir como padrão",

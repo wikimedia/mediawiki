@@ -1397,6 +1397,7 @@
 	"recentchanges-submit": "Mostra",
 	"rcfilters-activefilters": "Filtri attivi",
 	"rcfilters-quickfilters": "Collegamenti rapidi",
+	"rcfilters-quickfilters-placeholder-title": "Nessun collegamento salvato ancora",
 	"rcfilters-savedqueries-defaultlabel": "Filtri salvati",
 	"rcfilters-savedqueries-rename": "Rinomina",
 	"rcfilters-savedqueries-setdefault": "Imposta come predefinito",

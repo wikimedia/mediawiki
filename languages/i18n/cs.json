@@ -1325,6 +1325,8 @@
 	"recentchanges-submit": "Zobrazit",
 	"rcfilters-activefilters": "Aktivní filtry",
 	"rcfilters-quickfilters": "Od data:",
+	"rcfilters-quickfilters-placeholder-title": "Zatím neuloženy žádné odkazy",
+	"rcfilters-quickfilters-placeholder-description": "Pokud chcete uložit svá nastavení filtrů a použít je později, klikněte na ikonku záložky v ploše aktivních filtrů níže.",
 	"rcfilters-savedqueries-defaultlabel": "Uložené filtry",
 	"rcfilters-savedqueries-rename": "Přejmenovat",
 	"rcfilters-savedqueries-setdefault": "Nastavit jako výchozí",
