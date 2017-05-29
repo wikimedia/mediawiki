@@ -1838,6 +1838,8 @@ return [
 			'rcfilters-filter-excluded',
 			'rcfilters-tag-prefix-namespace',
 			'rcfilters-tag-prefix-namespace-inverted',
+			'rcfilters-tag-prefix-tags',
+			'rcfilters-view-tags',
 			'blanknamespace',
 			'namespaces',
 			'invert',
