@@ -189,7 +189,45 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				'wgStructuredChangeFiltersEnableExperimentalViews',
 				$wgStructuredChangeFiltersEnableExperimentalViews
 			);
+			$out->addJsConfigVars(
+				'wgRCFiltersChangeTags',
+				$this->buildChangeTagList()
+			);
 		}
+	}
+
+	/**
+	 * Use the API response to build the available tag
+	 * list with ordering, then clean it up per the enhanced RCFilters
+	 * specifications.
+	 *
+	 * @return Array Tag data
+	 */
+	protected function buildChangeTagList() {
+		$params = new DerivativeRequest(
+			$this->getRequest(), // Fallback upon $wgRequest if you can't access context.
+			[
+				'action' => 'query',
+				'list' => 'tags',
+				'tgprop' => 'displayname|hitcount|description',
+				'tglimit' => 500
+			]
+		);
+
+		$api = new ApiMain( $params );
+		$api->execute();
+		$data = $api->getResult()->getResultData();
+
+		// Prepare for JavaScript consumption
+		$result = [];
+		foreach ( $data[ 'query' ][ 'tags' ] as &$tag ) {
+			// Parse description
+			$desc = ChangeTags::tagLongDescriptionMessage( $tag[ 'name' ], $this->getContext() );
+			$tag[ 'description' ] = $desc ? $desc->parse() : '';
+			$tag[ 'cssClass' ] = Sanitizer::escapeClass( 'mw-tag-' . $tag[ 'name' ] );
+		}
+
+		return $data[ 'query' ][ 'tags' ];
 	}
 
 	/**
