@@ -189,7 +189,54 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				'wgStructuredChangeFiltersEnableExperimentalViews',
 				$wgStructuredChangeFiltersEnableExperimentalViews
 			);
+			$out->addJsConfigVars(
+				'wgRCFiltersChangeTags',
+				$this->buildChangeTagList()
+			);
 		}
+	}
+
+	/**
+	 * Fetch the change tags list for the front end
+	 *
+	 * @return Array Tag data
+	 */
+	protected function buildChangeTagList() {
+		function stripAllHtml( $input ) {
+			return trim( html_entity_decode( strip_tags( $input ) ) );
+		}
+
+		$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
+		$softwareActivatedTags = array_fill_keys( ChangeTags::listSoftwareActivatedTags(), 0 );
+		$tagStats = ChangeTags::tagUsageStatistics();
+
+		$tagHitCounts = array_merge( $explicitlyDefinedTags, $softwareActivatedTags, $tagStats );
+
+		// Sort by hits
+		asort( $tagHitCounts );
+
+		// Build the list and data
+		$result = [];
+		foreach ( $tagHitCounts as $tagName => $hits ) {
+			if (
+				// Only get active tags
+				isset( $explicitlyDefinedTags[ $tagName ] ) ||
+				isset( $softwareActivatedTags[ $tagName ] )
+			) {
+				// Parse description
+				$desc = ChangeTags::tagLongDescriptionMessage( $tagName, $this->getContext() );
+
+				$result[] = [
+					'name' => $tagName,
+					'label' => stripAllHtml( ChangeTags::tagDescription( $tagName, $this->getContext() ) ),
+					'description' => $desc ? stripAllHtml( $desc->parse() ) : '',
+					'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
+					'hits' => $hits,
+				];
+			}
+		}
+
+		return $result;
 	}
 
 	/**

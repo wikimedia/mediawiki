@@ -129,9 +129,10 @@
 			this.parentNode.removeChild( this );
 		} );
 
-		// Hide namespaces
+		// Hide namespaces and tags
 		if ( mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' ) ) {
 			$namespaceSelect.closest( 'tr' ).detach();
+			this.$element.find( '.mw-tagfilter-label' ).closest( 'tr' ).detach();
 		}
 
 		// Collapse legend
