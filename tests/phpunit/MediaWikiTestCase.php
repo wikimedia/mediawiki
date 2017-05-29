@@ -1073,10 +1073,15 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$page->doEditContent(
 				new WikitextContent( 'UTContent' ),
 				'UTPageSummary',
-				EDIT_NEW,
+				EDIT_NEW | EDIT_SUPPRESS_RC,
 				false,
 				$user
 			);
+			// an edit always attempt to purge backlink links such as history
+			// pages. That is unneccessary.
+			JobQueueGroup::singleton()->get( 'htmlCacheUpdate' )->delete();
+			// WikiPages::doEditUpdates randomly adds RC purges
+			JobQueueGroup::singleton()->get( 'recentChangesUpdate' )->delete();
 
 			// doEditContent() probably started the session via
 			// User::loadFromSession(). Close it now.
