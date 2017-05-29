@@ -91,8 +91,11 @@ class DeferredUpdates {
 		}
 
 		if ( self::$immediateMode ) {
-			// No more explicit doUpdates() calls will happen, so run this now
-			self::doUpdates( 'run' );
+			// Previously deferred updates in this mode were run immediately, but this is
+			// a very different environment compared to normal mode (in main MediaWiki),
+			// hence jobs executed in MediaWiki::restInPeace() are now postponed to a
+			// second call of DeferredUpdates::doUpdates(), after these Web-executed
+			// jobs are really executed - see T165714 (and T154425, T100085)
 			return;
 		}
 
