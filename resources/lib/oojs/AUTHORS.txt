@@ -1,0 +1,10 @@
+Bartosz Dziewoński <matmarex@wikimedia.org>
+C. Scott Ananian <cscott@cscott.net>
+David Chan <dchan@wikimedia.org>
+Ed Sanders <ejsanders@gmail.com>
+James D. Forrester <jforrester@wikimedia.org>
+Moriel Schottlender <moriel@gmail.com>
+Ori Livneh <ori@wikimedia.org>
+Roan Kattouw <roan.kattouw@gmail.com>
+Timo Tijhof <krinklemail@gmail.com>
+Trevor Parscal <trevorparscal@gmail.com>
