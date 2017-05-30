@@ -165,6 +165,7 @@ class FeedUtils {
 		} else {
 			$rev = Revision::newFromId( $newid );
 			if ( $wgFeedDiffCutoff <= 0 || is_null( $rev ) ) {
+				// NOTE: makeEmptyContent() can return null for some kinds of content
 				$newContent = ContentHandler::getForTitle( $title )->makeEmptyContent();
 			} else {
 				$newContent = $rev->getContent();

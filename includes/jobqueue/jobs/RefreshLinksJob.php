@@ -175,7 +175,8 @@ class RefreshLinksJob extends Job {
 
 		$content = $revision->getContent( Revision::RAW );
 		if ( !$content ) {
-			// If there is no content, pretend the content is empty
+			// If there is no content, pretend the content is empty.
+			// NOTE: makeEmptyContent() can return null for some kinds of content.
 			$content = $revision->getContentHandler()->makeEmptyContent();
 		}
 
@@ -223,7 +224,7 @@ class RefreshLinksJob extends Job {
 		} else {
 			$start = microtime( true );
 			// Revision ID must be passed to the parser output to get revision variables correct
-			$parserOutput = $content->getParserOutput(
+			$parserOutput = $content === null ? new ParserOutput() : $content->getParserOutput(
 				$title, $revision->getId(), $parserOptions, false );
 			$elapsed = microtime( true ) - $start;
 			// If it took a long time to render, then save this back to the cache to avoid
@@ -241,7 +242,7 @@ class RefreshLinksJob extends Job {
 			$stats->increment( 'refreshlinks.parser_uncached' );
 		}
 
-		$updates = $content->getSecondaryDataUpdates(
+		$updates = $content === null ? [] : $content->getSecondaryDataUpdates(
 			$title,
 			null,
 			!empty( $this->params['useRecursiveLinksUpdate'] ),

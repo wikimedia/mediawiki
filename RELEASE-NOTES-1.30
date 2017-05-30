@@ -87,6 +87,8 @@ changes to languages because of Phabricator reports.
   As a result of the new uniform handling, '-{' may need to be escaped
   (for example, as '-<nowiki/>{') where it occurs inside template arguments
   or wikilinks.
+* ContentHandler::makeEmptyContent() may now return null for content models
+  that do not support direct editing.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for

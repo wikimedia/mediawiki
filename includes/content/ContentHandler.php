@@ -464,9 +464,14 @@ abstract class ContentHandler {
 	 * Creates an empty Content object of the type supported by this
 	 * ContentHandler.
 	 *
-	 * @since 1.21
+	 * @note This method is guaranteed to return a Content object if supportsDirectEditing()
+	 * or supportsDirectApiEditing() returns true. If both of these methods return false
+	 * (meaning no direct editing is supported), implementations of this method MAY return
+	 * null.
 	 *
-	 * @return Content
+	 * @since 1.21 (may return null since 1.30)
+	 *
+	 * @return Content|null
 	 */
 	abstract public function makeEmptyContent();
 
@@ -1074,7 +1079,10 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * Return true if this content model supports direct editing, such as via EditPage.
+	 * Return true if this content model supports direct editing via EditPage.
+	 *
+	 * @note ContentHandlers that return true from this method MUST return a Content
+	 * object from makeEmptyContent().
 	 *
 	 * @return bool Default is false, and true for TextContent and it's derivatives.
 	 */
@@ -1084,6 +1092,9 @@ abstract class ContentHandler {
 
 	/**
 	 * Whether or not this content model supports direct editing via ApiEditPage
+	 *
+	 * @note ContentHandlers that return true from this method MUST return a Content
+	 * object from makeEmptyContent().
 	 *
 	 * @return bool Default is false, and true for TextContent and derivatives.
 	 */
