@@ -28,6 +28,7 @@
 
 		this.filtersViewModel = filtersViewModel;
 		this.changesListViewModel = changesListViewModel;
+		this.ranOnce = false;
 
 		// Events
 		this.filtersViewModel.connect( this, {
@@ -41,8 +42,8 @@
 
 		this.$element.addClass( 'mw-rcfilters-ui-changesListWrapperWidget' );
 
-		// Set up highlight containers
-		this.setupHighlightContainers( this.$element );
+		// Process container
+		this.processContainer( this.$element.clone() );
 	};
 
 	/* Initialization */
@@ -81,11 +82,11 @@
 	};
 
 	/**
-	 * Respond to changes list model update
+	 * Process the container
 	 *
 	 * @param {jQuery|string} $changesListContent The content of the updated changes list
 	 */
-	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onModelUpdate = function ( $changesListContent ) {
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.processContainer = function ( $changesListContent ) {
 		var conflictItem,
 			$message = $( '<div>' )
 				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results' ),
@@ -127,10 +128,25 @@
 
 			// Apply highlight
 			this.applyHighlight();
-
-			// Make sure enhanced RC re-initializes correctly
-			mw.hook( 'wikipage.content' ).fire( this.$element );
 		}
+	};
+
+	/**
+	 * Respond to changes list model update
+	 *
+	 * @param {jQuery|string} $changesListContent The content of the updated changes list
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onModelUpdate = function ( $changesListContent ) {
+		this.processContainer( $changesListContent );
+
+		if ( $changesListContent !== 'NO_RESULTS' ) {
+			if ( this.ranOnce ) {
+				// Make sure enhanced RC re-initializes correctly
+				mw.hook( 'wikipage.content' ).fire( this.$element );
+			}
+			this.ranOnce = true;
+		}
+
 		this.popPending();
 	};
 
