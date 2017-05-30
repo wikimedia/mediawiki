@@ -168,7 +168,12 @@ class FeedUtils {
 		} else {
 			$rev = Revision::newFromId( $newid );
 			if ( $wgFeedDiffCutoff <= 0 || is_null( $rev ) ) {
-				$newContent = ContentHandler::getForTitle( $title )->makeEmptyContent();
+				try {
+					// NOTE: makeEmptyContent() may throw for some kinds of content
+					$newContent = ContentHandler::getForTitle( $title )->makeEmptyContent();
+				} catch ( MWException $ex ) {
+					$newContent = null;
+				}
 			} else {
 				$newContent = $rev->getContent();
 			}

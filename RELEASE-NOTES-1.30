@@ -149,6 +149,10 @@ changes to languages because of Phabricator reports.
   As a result of the new uniform handling, '-{' may need to be escaped
   (for example, as '-<nowiki/>{') where it occurs inside template arguments
   or wikilinks.
+* ContentHandler::makeEmptyContent() may now throw MWException for content models
+  that have no well defined notion of empty content. Such content models must
+  then also return false from supportsDirectEditing() and from
+  supportsDirectApiEditing().
 * (T163966) Page moves are now counted as edits for the purposes of
   autopromotion, i.e., they increment the user_editcount field in the database.
 * Two new hooks, LogEventsListLineEnding and NewPagesLineEnding, were added for

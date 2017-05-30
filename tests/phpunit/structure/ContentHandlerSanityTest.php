@@ -21,7 +21,7 @@ use Wikimedia\TestingAccessWrapper;
 
 class ContentHandlerSanityTest extends MediaWikiTestCase {
 
-	public static function provideHandlers() {
+	public static function provideMakeEmptyContent() {
 		$models = ContentHandler::getContentModels();
 		$handlers = [];
 		foreach ( $models as $model ) {
@@ -32,26 +32,26 @@ class ContentHandlerSanityTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideHandlers
+	 * @dataProvider provideMakeEmptyContent
 	 * @param ContentHandler $handler
 	 */
 	public function testMakeEmptyContent( ContentHandler $handler ) {
-		$content = $handler->makeEmptyContent();
-		$this->assertInstanceOf( Content::class, $content );
-		if ( $handler instanceof TextContentHandler ) {
-			// TextContentHandler::getContentClass() is protected, so bypass
-			// that restriction
-			$testingWrapper = TestingAccessWrapper::newFromObject( $handler );
-			$this->assertInstanceOf( $testingWrapper->getContentClass(), $content );
-		}
-
 		$handlerClass = get_class( $handler );
-		$contentClass = get_class( $content );
 
-		if ( $handler->supportsDirectEditing() ) {
-			$this->assertTrue(
-				$content->isValid(),
-				"$handlerClass::makeEmptyContent() did not return a valid content ($contentClass::isValid())"
+		try {
+			$content = $handler->makeEmptyContent();
+			$this->assertInstanceOf( Content::class, $content, $handlerClass );
+		} catch ( MWException $ex ) {
+			$this->assertFalse(
+				$handler->supportsDirectEditing(),
+				"$handlerClass::makeEmptyContent() throw an exception - that's only allowed if "
+					. "$handlerClass::supportsDirectEditing() returns false."
+			);
+
+			$this->assertFalse(
+				$handler->supportsDirectApiEditing(),
+				"$handlerClass::makeEmptyContent() throw an exception - that's only allowed if "
+				. "$handlerClass::supportsDirectApiEditing() returns false."
 			);
 		}
 	}
