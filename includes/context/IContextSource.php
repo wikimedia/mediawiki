@@ -131,7 +131,7 @@ interface IContextSource {
 	 * @deprecated since 1.27 use a StatsdDataFactory from MediaWikiServices (preferably injected)
 	 *
 	 * @since 1.25
-	 * @return StatsdDataFactory
+	 * @return MediawikiStatsdDataFactory
 	 */
 	public function getStats();
 

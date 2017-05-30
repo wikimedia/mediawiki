@@ -1191,7 +1191,8 @@ function wfLogProfilingData() {
 	$profiler->logData();
 
 	$config = $context->getConfig();
-	if ( $config->get( 'StatsdServer' ) ) {
+	$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+	if ( $config->get( 'StatsdServer' ) && $stats->hasData() ) {
 		try {
 			$statsdServer = explode( ':', $config->get( 'StatsdServer' ) );
 			$statsdHost = $statsdServer[0];
@@ -1199,9 +1200,7 @@ function wfLogProfilingData() {
 			$statsdSender = new SocketSender( $statsdHost, $statsdPort );
 			$statsdClient = new SamplingStatsdClient( $statsdSender, true, false );
 			$statsdClient->setSamplingRates( $config->get( 'StatsdSamplingRates' ) );
-			$statsdClient->send(
-				MediaWikiServices::getInstance()->getStatsdDataFactory()->getBuffer()
-			);
+			$statsdClient->send( $stats->getData() );
 		} catch ( Exception $ex ) {
 			MWExceptionHandler::logException( $ex );
 		}
