@@ -21,18 +21,25 @@ use Wikimedia\TestingAccessWrapper;
 
 class ContentHandlerSanityTest extends MediaWikiTestCase {
 
-	public static function provideHandlers() {
+	public static function provideMakeEmptyContent() {
 		$models = ContentHandler::getContentModels();
 		$handlers = [];
 		foreach ( $models as $model ) {
-			$handlers[] = [ ContentHandler::getForModelID( $model ) ];
+			$handler = ContentHandler::getForModelID( $model );
+
+			// Only check makeEmptyContent() for handlers that support direct editing.
+			// Content types that do not support direct editing do not have to support empty
+			// content, either.
+			if ( $handler->supportsDirectEditing() || $handler->supportsDirectApiEditing() ) {
+				$handlers[] = [ $handler ];
+			}
 		}
 
 		return $handlers;
 	}
 
 	/**
-	 * @dataProvider provideHandlers
+	 * @dataProvider provideMakeEmptyContent
 	 * @param ContentHandler $handler
 	 */
 	public function testMakeEmptyContent( ContentHandler $handler ) {
