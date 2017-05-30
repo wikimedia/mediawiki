@@ -40,8 +40,11 @@ class SpecialContributions extends IncludableSpecialPage {
 		$out->addModuleStyles( [
 			'mediawiki.special',
 			'mediawiki.special.changeslist',
+			'mediawiki.widgets.DateInputWidget',
 		] );
+		$out->addModules( 'mediawiki.special.contributions' );
 		$this->addHelpLink( 'Help:User contributions' );
+		$out->enableOOUI();
 
 		$this->opts = [];
 		$request = $this->getRequest();
@@ -130,8 +133,12 @@ class SpecialContributions extends IncludableSpecialPage {
 			$this->opts['year'] = '';
 			$this->opts['month'] = '';
 		} else {
-			$this->opts['year'] = $request->getIntOrNull( 'year' );
-			$this->opts['month'] = $request->getIntOrNull( 'month' );
+			$this->opts['year'] = $request->getVal( 'year' );
+			$this->opts['month'] = $request->getVal( 'month' );
+
+			$this->opts['start'] = $request->getVal( 'start' );
+			$this->opts['end'] = $request->getVal( 'end' );
+			$this->opts = SpecialContributions::processDateFilter( $this->opts );
 		}
 
 		$feedType = $request->getVal( 'feed' );
@@ -190,8 +197,8 @@ class SpecialContributions extends IncludableSpecialPage {
 				'contribs' => $this->opts['contribs'],
 				'namespace' => $this->opts['namespace'],
 				'tagfilter' => $this->opts['tagfilter'],
-				'year' => $this->opts['year'],
-				'month' => $this->opts['month'],
+				'start' => $this->opts['start'],
+				'end' => $this->opts['end'],
 				'deletedOnly' => $this->opts['deletedOnly'],
 				'topOnly' => $this->opts['topOnly'],
 				'newOnly' => $this->opts['newOnly'],
@@ -432,12 +439,12 @@ class SpecialContributions extends IncludableSpecialPage {
 			$this->opts['contribs'] = 'user';
 		}
 
-		if ( !isset( $this->opts['year'] ) ) {
-			$this->opts['year'] = '';
+		if ( !isset( $this->opts['start'] ) ) {
+			$this->opts['start'] = '';
 		}
 
-		if ( !isset( $this->opts['month'] ) ) {
-			$this->opts['month'] = '';
+		if ( !isset( $this->opts['end'] ) ) {
+			$this->opts['end'] = '';
 		}
 
 		if ( $this->opts['contribs'] == 'newbie' ) {
@@ -478,6 +485,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			'contribs',
 			'year',
 			'month',
+			'start',
+			'end',
 			'topOnly',
 			'newOnly',
 			'hideMinor',
@@ -652,15 +661,32 @@ class SpecialContributions extends IncludableSpecialPage {
 			implode( '', $filters )
 		);
 
-		$dateSelectionAndSubmit = Xml::tags( 'div', [],
-			Xml::dateMenu(
-				$this->opts['year'] === '' ? MWTimestamp::getInstance()->format( 'Y' ) : $this->opts['year'],
-				$this->opts['month']
-			) . ' ' .
-				Html::submitButton(
-					$this->msg( 'sp-contributions-submit' )->text(),
-					[ 'class' => 'mw-submit' ], [ 'mw-ui-progressive' ]
-				)
+		$dateRangeSelection = Html::rawElement(
+			'div',
+			[],
+			Xml::label( wfMessage( 'date-range-from' )->text(), 'mw-date-start' ) . ' ' .
+			new \Mediawiki\Widget\DateInputWidget( [
+				'infusable' => true,
+				'id' => 'mw-date-start',
+				'name' => 'start',
+				'value' => $this->opts['start'],
+				'longDisplayFormat' => true,
+			] ) . '<br>' .
+			Xml::label( wfMessage( 'date-range-to' )->text(), 'mw-date-end' ) . ' ' .
+			new \Mediawiki\Widget\DateInputWidget( [
+				'infusable' => true,
+				'id' => 'mw-date-end',
+				'name' => 'end',
+				'value' => $this->opts['end'],
+				'longDisplayFormat' => true,
+			] )
+		);
+
+		$submit = Xml::tags( 'div', [],
+			Html::submitButton(
+				$this->msg( 'sp-contributions-submit' )->text(),
+				[ 'class' => 'mw-submit' ], [ 'mw-ui-progressive' ]
+			)
 		);
 
 		$form .= Xml::fieldset(
@@ -669,7 +695,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			$namespaceSelection .
 			$filterSelection .
 			$extraOptions .
-			$dateSelectionAndSubmit,
+			$dateRangeSelection .
+			$submit,
 			[ 'class' => 'mw-contributions-table' ]
 		);
 
@@ -699,6 +726,46 @@ class SpecialContributions extends IncludableSpecialPage {
 		}
 		// Autocomplete subpage as user list - public to allow caching
 		return UserNamePrefixSearch::search( 'public', $search, $limit, $offset );
+	}
+
+	/**
+	 * Set up date filter options, given request data.
+	 *
+	 * @param array $opts Options array
+	 * @return array Options array with processed start and end date filter options
+	 */
+	public static function processDateFilter( $opts ) {
+		$start = $opts['start'] ?: '';
+		$end = $opts['end'] ?: '';
+		$year = $opts['year'] ?: '';
+		$month = $opts['month'] ?: '';
+
+		if ( $start !== '' && $end !== '' &&
+			$start > $end
+		) {
+			$temp = $start;
+			$start = $end;
+			$end = $temp;
+		}
+
+		// If year/month legacy filtering options are set, convert them to display the new stamp
+		if ( $year !== '' || $month !== '' ) {
+			// Reuse getDateCond logic, but subtract a day because
+			// the endpoints of our date range appear inclusive
+			// but the internal end offsets are always exclusive
+			$legacyTimestamp = ReverseChronologicalPager::getOffsetDate( $year, $month );
+			$legacyDateTime = new DateTime( $legacyTimestamp->getTimestamp( TS_ISO_8601 ) );
+			$legacyDateTime = $legacyDateTime->modify( '-1 day' );
+
+			// Clear the new timestamp range options if used and
+			// replace with the converted legacy timestamp
+			$start = '';
+			$end = $legacyDateTime->format( 'Y-m-d' );
+		}
+
+		$opts['start'] = $start;
+		$opts['end'] = $end;
+		return $opts;
 	}
 
 	protected function getGroupName() {
