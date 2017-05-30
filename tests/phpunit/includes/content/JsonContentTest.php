@@ -8,23 +8,24 @@ class JsonContentTest extends MediaWikiLangTestCase {
 
 	public static function provideValidConstruction() {
 		return [
-			[ 'foo', false, null ],
-			[ '[]', true, [] ],
-			[ '{}', true, (object)[] ],
-			[ '""', true, '' ],
-			[ '"0"', true, '0' ],
-			[ '"bar"', true, 'bar' ],
-			[ '0', true, '0' ],
-			[ '{ "0": "bar" }', true, (object)[ 'bar' ] ],
+			[ 'foo', false, true, null ],
+			[ '[]', true, true, [] ],
+			[ '{}', true, true, (object)[] ],
+			[ '""', true, false, '' ],
+			[ '"0"', true, false, '0' ],
+			[ '"bar"', true, false, 'bar' ],
+			[ '0', true, false, '0' ],
+			[ '{ "0": "bar" }', true, false, (object)[ 'bar' ] ],
 		];
 	}
 
 	/**
 	 * @dataProvider provideValidConstruction
 	 */
-	public function testIsValid( $text, $isValid, $expected ) {
+	public function testIsValid( $text, $isValid, $isEmpty, $expected ) {
 		$obj = new JsonContent( $text, CONTENT_MODEL_JSON );
-		$this->assertEquals( $isValid, $obj->isValid() );
+		$this->assertEquals( $isValid, $obj->isValid(), 'isValid()' );
+		$this->assertEquals( $isEmpty, $obj->isEmpty(), 'isEmpty()' );
 		$this->assertEquals( $expected, $obj->getData()->getValue() );
 	}
 

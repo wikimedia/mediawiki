@@ -461,16 +461,6 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * Creates an empty Content object of the type supported by this
-	 * ContentHandler.
-	 *
-	 * @since 1.21
-	 *
-	 * @return Content
-	 */
-	abstract public function makeEmptyContent();
-
-	/**
 	 * Creates a new Content object that acts as a redirect to the given page,
 	 * or null if redirects are not supported by this content model.
 	 *
@@ -490,6 +480,21 @@ abstract class ContentHandler {
 	public function makeRedirectContent( Title $destination, $text = '' ) {
 		return null;
 	}
+
+	/**
+	 * Creates an empty Content object of the type supported by this ContentHandler.
+	 *
+	 * @note This method is guaranteed to return a Content object if supportsDirectEditing()
+	 * or supportsDirectApiEditing() returns true. If both of these methods return false
+	 * (meaning no direct editing is supported), implementations of this method MAY throw
+	 * an MWException.
+	 *
+	 * @since 1.21 (may throw an MWException since 1.30)
+	 *
+	 * @throws MWException if this type of Content has no well defined notion of empty.
+	 * @return Content
+	 */
+	abstract public function makeEmptyContent();
 
 	/**
 	 * Returns the model id that identifies the content model this
@@ -1074,7 +1079,11 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * Return true if this content model supports direct editing, such as via EditPage.
+	 * Return true if this content model supports direct editing via EditPage.
+	 *
+	 * @note ContentHandlers that return true from this method MUST return a Content
+	 * object from makeEmptyContent(). Content models that have no well defined notion
+	 * of "empty" should not support direct editing.
 	 *
 	 * @return bool Default is false, and true for TextContent and it's derivatives.
 	 */
@@ -1084,6 +1093,10 @@ abstract class ContentHandler {
 
 	/**
 	 * Whether or not this content model supports direct editing via ApiEditPage
+	 *
+	 * @note ContentHandlers that return true from this method MUST return a Content
+	 * object from makeEmptyContent(). Content models that have no well defined notion
+	 * of "empty" should not support direct editing.
 	 *
 	 * @return bool Default is false, and true for TextContent and derivatives.
 	 */
