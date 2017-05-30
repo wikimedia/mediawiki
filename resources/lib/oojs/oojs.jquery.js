@@ -1,12 +1,12 @@
 /*!
- * OOjs v2.0.0 optimised for jQuery
+ * OOjs v2.1.0 optimised for jQuery
  * https://www.mediawiki.org/wiki/OOjs
  *
  * Copyright 2011-2017 OOjs Team and other contributors.
  * Released under the MIT license
  * https://oojs.mit-license.org
  *
- * Date: 2017-04-05T02:18:04Z
+ * Date: 2017-05-30T22:56:52Z
  */
 ( function ( global ) {
 
@@ -683,6 +683,24 @@ oo.isPlainObject = $.isPlainObject;
 		}
 	}
 
+	/**
+	 * @private
+	 * @param {OO.EventEmitter} ee
+	 * @param {Function|string} method Function or method name
+	 * @param {Object} binding
+	 */
+	function addBinding( ee, event, binding ) {
+		var bindings;
+		// Auto-initialize bindings list
+		if ( hasOwn.call( ee.bindings, event ) ) {
+			bindings = ee.bindings[ event ];
+		} else {
+			bindings = ee.bindings[ event ] = [];
+		}
+		// Add binding
+		bindings.push( binding );
+	}
+
 	/* Methods */
 
 	/**
@@ -699,21 +717,14 @@ oo.isPlainObject = $.isPlainObject;
 	 * @chainable
 	 */
 	oo.EventEmitter.prototype.on = function ( event, method, args, context ) {
-		var bindings;
-
 		validateMethod( method, context );
 
-		if ( hasOwn.call( this.bindings, event ) ) {
-			bindings = this.bindings[ event ];
-		} else {
-			// Auto-initialize bindings list
-			bindings = this.bindings[ event ] = [];
-		}
-		// Add binding
-		bindings.push( {
+		// Ensure consistent object shape (optimisation)
+		addBinding( this, event, {
 			method: method,
 			args: args,
-			context: ( arguments.length < 4 ) ? null : context
+			context: ( arguments.length < 4 ) ? null : context,
+			once: false
 		} );
 		return this;
 	};
@@ -726,12 +737,16 @@ oo.isPlainObject = $.isPlainObject;
 	 * @chainable
 	 */
 	oo.EventEmitter.prototype.once = function ( event, listener ) {
-		var eventEmitter = this,
-			wrapper = function () {
-				eventEmitter.off( event, wrapper );
-				return listener.apply( this, arguments );
-			};
-		return this.on( event, wrapper );
+		validateMethod( listener );
+
+		// Ensure consistent object shape (optimisation)
+		addBinding( this, event, {
+			method: listener,
+			args: undefined,
+			context: null,
+			once: true
+		} );
+		return this;
 	};
 
 	/**
@@ -806,6 +821,11 @@ oo.isPlainObject = $.isPlainObject;
 				} else {
 					method = binding.method;
 				}
+				if ( binding.once ) {
+					// Must unbind before calling method to avoid
+					// any nested triggers.
+					this.off( event, method );
+				}
 				method.apply(
 					binding.context,
 					binding.args ? binding.args.concat( args ) : args
@@ -823,7 +843,7 @@ oo.isPlainObject = $.isPlainObject;
 	 * @param {Object.<string,string>|Object.<string,Function>|Object.<string,Array>} methods List of
 	 *  event bindings keyed by event name containing either method names, functions or arrays containing
 	 *  method name or function followed by a list of arguments to be passed to callback before emitted
-	 *  arguments
+	 *  arguments.
 	 * @chainable
 	 */
 	oo.EventEmitter.prototype.connect = function ( context, methods ) {
@@ -849,8 +869,13 @@ oo.isPlainObject = $.isPlainObject;
 	 *
 	 * @param {Object} context Object to disconnect methods from
 	 * @param {Object.<string,string>|Object.<string,Function>|Object.<string,Array>} [methods] List of
-	 * event bindings keyed by event name. Values can be either method names or functions, but must be
-	 * consistent with those used in the corresponding call to "connect".
+	 *  event bindings keyed by event name. Values can be either method names, functions or arrays
+	 *  containing a method name.
+	 *  NOTE: To allow matching call sites with connect(), array values are allowed to contain the
+	 *  parameters as well, but only the method name is used to find bindings. Tt is discouraged to
+	 *  have multiple bindings for the same event to the same listener, but if used (and only the
+	 *  parameters vary), disconnecting one variation of (event name, event listener, parameters)
+	 *  will disconnect other variations as well.
 	 * @chainable
 	 */
 	oo.EventEmitter.prototype.disconnect = function ( context, methods ) {
@@ -1109,8 +1134,10 @@ oo.isPlainObject = $.isPlainObject;
 		// Remove the item from the current index
 		this.items.splice( existingIndex, 1 );
 
-		// Adjust new index after removal
-		newIndex--;
+		// If necessary, adjust new index after removal
+		if ( existingIndex < newIndex ) {
+			newIndex--;
+		}
 
 		// Move the item to the new index
 		this.items.splice( newIndex, 0, item );
@@ -1572,6 +1599,8 @@ oo.Factory.prototype.create = function ( name ) {
 };
 
 /* eslint-env node */
+
+/* istanbul ignore next */
 if ( typeof module !== 'undefined' && module.exports ) {
 	module.exports = oo;
 } else {
