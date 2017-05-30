@@ -3431,6 +3431,7 @@ function wfGetMessageCacheStorage() {
 /**
  * Get the cache object used by the parser cache
  *
+ * @deprecated since 1.30, use MediaWikiServices::getParserCache()->getCacheStorage()
  * @return BagOStuff
  */
 function wfGetParserCacheStorage() {
