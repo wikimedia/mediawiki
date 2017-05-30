@@ -2908,7 +2908,7 @@ class EditPage {
 				}
 			}
 
-			$buttonLabelKey = $this->getSaveButtonLabel();
+			$buttonLabel = $this->context->msg( $this->getSaveButtonLabel() )->text();
 
 			if ( $this->missingComment ) {
 				$wgOut->wrapWikiMsg( "<div id='mw-missingcommenttext'>\n$1\n</div>", 'missingcommenttext' );
@@ -2917,28 +2917,28 @@ class EditPage {
 			if ( $this->missingSummary && $this->section != 'new' ) {
 				$wgOut->wrapWikiMsg(
 					"<div id='mw-missingsummary'>\n$1\n</div>",
-					[ 'missingsummary', $buttonLabelKey ]
+					[ 'missingsummary', $buttonLabel ]
 				);
 			}
 
 			if ( $this->missingSummary && $this->section == 'new' ) {
 				$wgOut->wrapWikiMsg(
 					"<div id='mw-missingcommentheader'>\n$1\n</div>",
-					[ 'missingcommentheader', $buttonLabelKey ]
+					[ 'missingcommentheader', $buttonLabel ]
 				);
 			}
 
 			if ( $this->blankArticle ) {
 				$wgOut->wrapWikiMsg(
 					"<div id='mw-blankarticle'>\n$1\n</div>",
-					[ 'blankarticle', $buttonLabelKey ]
+					[ 'blankarticle', $buttonLabel ]
 				);
 			}
 
 			if ( $this->selfRedirect ) {
 				$wgOut->wrapWikiMsg(
 					"<div id='mw-selfredirect'>\n$1\n</div>",
-					[ 'selfredirect', $buttonLabelKey ]
+					[ 'selfredirect', $buttonLabel ]
 				);
 			}
 
@@ -4327,7 +4327,7 @@ HTML
 	public function getEditButtons( &$tabindex ) {
 		$buttons = [];
 
-		$buttonLabelKey = $this->getSaveButtonLabel();
+		$buttonLabel = $this->context->msg( $this->getSaveButtonLabel() )->text();
 
 		$attribs = [
 			'id' => 'wpSave',
@@ -4341,13 +4341,13 @@ HTML
 				// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
 				'useInputTag' => true,
 				'flags' => [ 'constructive', 'primary' ],
-				'label' => $this->context->msg( $buttonLabelKey )->text(),
+				'label' => $buttonLabel,
 				'infusable' => true,
 				'type' => 'submit',
 			] + $saveConfig );
 		} else {
 			$buttons['save'] = Html::submitButton(
-				$this->context->msg( $buttonLabelKey )->text(),
+				$buttonLabel,
 				$attribs,
 				[ 'mw-ui-progressive' ]
 			);
@@ -4697,7 +4697,7 @@ HTML
 	protected function addExplainConflictHeader( OutputPage $out ) {
 		$out->wrapWikiMsg(
 			"<div class='mw-explainconflict'>\n$1\n</div>",
-			[ 'explainconflict', $this->getSaveButtonLabel() ]
+			[ 'explainconflict', $this->context->msg( $this->getSaveButtonLabel() )->text() ]
 		);
 	}
 
