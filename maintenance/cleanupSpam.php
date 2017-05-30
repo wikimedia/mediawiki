@@ -135,7 +135,7 @@ class CleanupSpam extends Maintenance {
 					$rev->getId()
 				);
 			} elseif ( $this->hasOption( 'delete' ) ) {
-				// Didn't find a non-spammy revision, blank the page
+				// Didn't find a non-spammy revision, delete the page
 				$this->output( "deleting\n" );
 				$page->doDeleteArticle(
 					wfMessage( 'spam_deleting', $domain )->inContentLanguage()->text()
@@ -143,13 +143,18 @@ class CleanupSpam extends Maintenance {
 			} else {
 				// Didn't find a non-spammy revision, blank the page
 				$handler = ContentHandler::getForTitle( $title );
-				$content = $handler->makeEmptyContent();
 
-				$this->output( "blanking\n" );
-				$page->doEditContent(
-					$content,
-					wfMessage( 'spam_blanking', $domain )->inContentLanguage()->text()
-				);
+				// NOTE: makeEmptyContent() can return null for some kinds of content.
+				try {
+					$content = $handler->makeEmptyContent();
+					$this->output( "blanking\n" );
+					$page->doEditContent(
+						$content,
+						wfMessage( 'spam_blanking', $domain )->inContentLanguage()->text()
+					);
+				} catch ( MWException $ex ) {
+					$this->output( "can't blank: {$ex->getMessage()}\n" );
+				}
 			}
 			$this->commitTransaction( $dbw, __METHOD__ );
 		}
