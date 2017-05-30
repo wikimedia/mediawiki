@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.4
+ * OOjs UI v0.22.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-05-16T22:31:39Z
+ * Date: 2017-05-30T22:04:06Z
  */
 ( function ( OO ) {
 
@@ -3137,6 +3137,16 @@ OO.ui.ToggleSwitchWidget.prototype.setValue = function ( value ) {
 };
 
 /**
+ * @inheritdoc
+ */
+OO.ui.ToggleSwitchWidget.prototype.simulateLabelClick = function () {
+	if ( !this.isDisabled() ) {
+		this.setValue( !this.value );
+	}
+	this.focus();
+};
+
+/**
  * OutlineControlsWidget is a set of controls for an {@link OO.ui.OutlineSelectWidget outline select widget}.
  * Controls include moving items up and down, removing items, and adding different kinds of items.
  *
@@ -5863,6 +5873,11 @@ OO.ui.MenuTagMultiselectWidget = function OoUiMenuTagMultiselectWidget( config )
 		.append( this.menu.$element );
 	this.$element
 		.addClass( 'oo-ui-menuTagMultiselectWidget' );
+	// TagMultiselectWidget already does this, but it doesn't work right because this.menu is not yet
+	// set up while the parent constructor runs, and #getAllowedValues rejects everything.
+	if ( config.selected ) {
+		this.setValue( config.selected );
+	}
 };
 
 /* Initialization */
@@ -5939,6 +5954,7 @@ OO.ui.MenuTagMultiselectWidget.prototype.onTagSelect = function ( tagItem ) {
  */
 OO.ui.MenuTagMultiselectWidget.prototype.addTagFromInput = function () {
 	var inputValue = this.input.getValue(),
+		validated = false,
 		highlightedItem = this.menu.getHighlightedItem(),
 		item = this.menu.getItemFromData( inputValue );
 
@@ -5947,14 +5963,19 @@ OO.ui.MenuTagMultiselectWidget.prototype.addTagFromInput = function () {
 
 	// Look for a highlighted item first
 	if ( highlightedItem ) {
-		this.addTag( highlightedItem.getData(), highlightedItem.getLabel() );
+		validated = this.addTag( highlightedItem.getData(), highlightedItem.getLabel() );
 	} else if ( item ) {
 		// Look for the element that fits the data
-		this.addTag( item.getData(), item.getLabel() );
+		validated = this.addTag( item.getData(), item.getLabel() );
 	} else {
 		// Otherwise, add the tag - the method will only add if the
 		// tag is valid or if invalid tags are allowed
-		this.addTag( inputValue );
+		validated = this.addTag( inputValue );
+	}
+
+	if ( validated ) {
+		this.clearInput();
+		this.focus();
 	}
 };
 
@@ -6025,9 +6046,13 @@ OO.ui.MenuTagMultiselectWidget.prototype.getMenu = function () {
  * @return {string[]} Allowed data values
  */
 OO.ui.MenuTagMultiselectWidget.prototype.getAllowedValues = function () {
-	var menuDatas = this.menu.getItems().map( function ( menuItem ) {
-		return menuItem.getData();
-	} );
+	var menuDatas = [];
+	if ( this.menu ) {
+		// If the parent constructor is calling us, we're not ready yet, this.menu is not set up.
+		menuDatas = this.menu.getItems().map( function ( menuItem ) {
+			return menuItem.getData();
+		} );
+	}
 	return this.allowedValues.concat( menuDatas );
 };
 
@@ -6241,6 +6266,13 @@ OO.ui.SelectFileWidget.prototype.focus = function () {
 OO.ui.SelectFileWidget.prototype.blur = function () {
 	this.selectButton.blur();
 	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.SelectFileWidget.prototype.simulateLabelClick = function () {
+	this.focus();
 };
 
 /**
@@ -6734,7 +6766,7 @@ OO.ui.NumberInputWidget = function OoUiNumberInputWidget( config ) {
 				disabled: this.isDisabled(),
 				tabIndex: -1,
 				classes: [ 'oo-ui-numberInputWidget-minusButton' ],
-				label: '−'
+				icon: 'subtract'
 			},
 			config.minusButton
 		) );
@@ -6743,7 +6775,7 @@ OO.ui.NumberInputWidget = function OoUiNumberInputWidget( config ) {
 				disabled: this.isDisabled(),
 				tabIndex: -1,
 				classes: [ 'oo-ui-numberInputWidget-plusButton' ],
-				label: '+'
+				icon: 'add'
 			},
 			config.plusButton
 		) );

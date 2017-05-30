@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.4
+ * OOjs UI v0.22.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-05-16T22:31:46Z
+ * Date: 2017-05-30T22:04:14Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -58,19 +58,24 @@
 }
 .oo-ui-buttonElement > .oo-ui-buttonElement-button {
   color: #333;
+  border-radius: 0.3em;
 }
-.oo-ui-buttonElement.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
+.oo-ui-buttonElement > .oo-ui-buttonElement-button:focus {
+  outline: 0;
+}
+.oo-ui-buttonElement > input.oo-ui-buttonElement-button,
+.oo-ui-buttonElement.oo-ui-labelElement .oo-ui-labelElement-label {
+  line-height: 1.875em;
+}
+.oo-ui-buttonElement.oo-ui-iconElement .oo-ui-iconElement-icon {
+  height: 100%;
   margin-left: 0;
 }
-.oo-ui-buttonElement.oo-ui-indicatorElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator {
-  margin: 0.46875em;
-}
-.oo-ui-buttonElement.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator {
+.oo-ui-buttonElement.oo-ui-iconElement .oo-ui-indicatorElement-indicator {
   margin-left: 0.46875em;
 }
-.oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:hover,
-.oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:focus {
-  outline: 0;
+.oo-ui-buttonElement.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
+  margin: 0.46875em;
 }
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:hover > .oo-ui-iconElement-icon,
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:focus > .oo-ui-iconElement-icon {
@@ -83,8 +88,25 @@
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
   color: #333;
 }
-.oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
+.oo-ui-buttonElement-frameless.oo-ui-labelElement:first-child,
+.oo-ui-buttonElement-frameless.oo-ui-iconElement:first-child {
+  margin-left: -0.3125em;
+}
+.oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button,
+.oo-ui-buttonElement-frameless.oo-ui-iconElement > .oo-ui-buttonElement-button {
+  padding: 0.3125em 0.3125em;
+}
+.oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label,
+.oo-ui-buttonElement-frameless.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
+  color: #333;
   margin-left: 0.25em;
+}
+.oo-ui-buttonElement-frameless.oo-ui-labelElement.oo-ui-indicatorElement > .oo-ui-buttonElement-button,
+.oo-ui-buttonElement-frameless.oo-ui-iconElement.oo-ui-indicatorElement > .oo-ui-buttonElement-button {
+  padding: 0.3125em 0.3125em;
+}
+.oo-ui-buttonElement-frameless.oo-ui-indicatorElement > .oo-ui-buttonElement-button {
+  padding: 0;
 }
 .oo-ui-buttonElement-frameless > input.oo-ui-buttonElement-button {
   padding-left: 0.25em;
@@ -110,8 +132,7 @@
   color: #ccc;
 }
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button {
-  padding: 0.2em 0.8em;
-  border-radius: 0.3em;
+  padding: 0.234375em 0.78125em;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
   border: 1px #c9c9c9 solid;
   -webkit-transition: border-color 100ms ease;
@@ -127,7 +148,6 @@
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:hover,
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:focus {
   border-color: #aaa;
-  outline: 0;
 }
 .oo-ui-buttonElement-framed > input.oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
@@ -324,10 +344,6 @@
 .oo-ui-fieldLayout .oo-ui-fieldLayout-help > .oo-ui-popupWidget > .oo-ui-popupWidget-popup {
   z-index: 1;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-top .oo-ui-fieldLayout-help,
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline .oo-ui-fieldLayout-help {
-  margin-top: -0.3em;
-}
 .oo-ui-fieldLayout:first-child {
   margin-top: 0;
 }
@@ -362,6 +378,10 @@
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-top.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
   max-width: 50em;
   padding: 0.5em 0;
+}
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-top .oo-ui-fieldLayout-help,
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline .oo-ui-fieldLayout-help {
+  margin-top: -0.3em;
 }
 .oo-ui-fieldLayout > .oo-ui-popupButtonWidget {
   margin-right: 0;
@@ -454,7 +474,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-fieldsetLayout.oo-ui-labelElement > .oo-ui-fieldsetLayout-header > .oo-ui-labelElement-label {
   display: inline-block;
-  font-size: 1.1em;
+  font-size: 1.15em;
   margin-bottom: 0.5em;
   padding: 0.25em 0;
   font-weight: bold;
@@ -722,7 +742,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   user-select: none;
 }
 .oo-ui-popupWidget-head > .oo-ui-buttonWidget {
-  float: right;
+  position: absolute;
 }
 .oo-ui-popupWidget-head > .oo-ui-labelElement-label {
   float: left;
@@ -821,10 +841,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   height: 2.5em;
 }
 .oo-ui-popupWidget-head > .oo-ui-buttonWidget {
-  margin: 0.25em;
+  top: 0.25em;
+  right: 0.25em;
 }
 .oo-ui-popupWidget-head > .oo-ui-labelElement-label {
-  margin: 0.75em 1em;
+  margin: 0.75em 2.125em 0.75em 1em;
 }
 .oo-ui-popupWidget-body {
   line-height: 1.4;
@@ -999,7 +1020,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-textInputWidget input,
 .oo-ui-textInputWidget textarea {
-  padding: 0.5em;
+  padding: 0.546875em 0.5em 0.625em 0.5em;
   line-height: 1.275em;
   font-size: inherit;
   font-family: inherit;
@@ -1116,7 +1137,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-menuOptionWidget.oo-ui-optionWidget-selected {
   background-color: transparent;
 }
-.oo-ui-menuOptionWidget.oo-ui-optionWidget-selected .oo-ui-iconElement-icon {
+.oo-ui-menuOptionWidget.oo-ui-optionWidget-selected > .oo-ui-iconElement-icon {
   background-image: url('themes/apex/images/icons/check.png');
   background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url('themes/apex/images/icons/check.svg');
   background-image: linear-gradient(transparent, transparent), /* @embed */ url('themes/apex/images/icons/check.svg');

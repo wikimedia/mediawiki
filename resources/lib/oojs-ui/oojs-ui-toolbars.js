@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.4
+ * OOjs UI v0.22.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-05-16T22:31:39Z
+ * Date: 2017-05-30T22:04:06Z
  */
 ( function ( OO ) {
 
@@ -1041,8 +1041,8 @@ OO.ui.ToolGroup.prototype.onMouseKeyDown = function ( e ) {
 			this.pressed.setActive( true );
 			this.getElementDocument().addEventListener( 'mouseup', this.onCapturedMouseKeyUpHandler, true );
 			this.getElementDocument().addEventListener( 'keyup', this.onCapturedMouseKeyUpHandler, true );
+			return false;
 		}
-		return false;
 	}
 };
 
