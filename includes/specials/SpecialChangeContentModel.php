@@ -198,7 +198,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			$oldContent = $this->oldRevision->getContent();
 			try {
 				$newContent = ContentHandler::makeContent(
-					$oldContent->getNativeData(), $this->title, $data['model']
+					$oldContent->serialize(), $this->title, $data['model']
 				);
 			} catch ( MWException $e ) {
 				return Status::newFatal(
@@ -211,7 +211,18 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			}
 		} else {
 			// Page doesn't exist, create an empty content object
+			// NOTE: makeEmptyContent() can return null for some kinds of content.
 			$newContent = ContentHandler::getForModelID( $data['model'] )->makeEmptyContent();
+
+			if ( !$newContent ) {
+				return Status::newFatal(
+					$this->msg( 'changecontentmodel-cannot-convert' )
+						->params(
+							$this->title->getPrefixedText(),
+							ContentHandler::getLocalizedName( $data['model'] )
+						)
+				);
+			}
 		}
 
 		// All other checks have passed, let's check rate limits
