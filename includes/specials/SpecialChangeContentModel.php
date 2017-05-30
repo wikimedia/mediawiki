@@ -209,7 +209,19 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			}
 		} else {
 			// Page doesn't exist, create an empty content object
-			$newContent = ContentHandler::getForModelID( $data['model'] )->makeEmptyContent();
+			// NOTE: makeEmptyContent() may throw for some kinds of content.
+			$model = ContentHandler::getForModelID( $data['model'] );
+			try {
+				$newContent = $model->makeEmptyContent();
+			} catch ( MWException $ex ) {
+				return Status::newFatal(
+					$this->msg( 'changecontentmodel-cannot-convert' )
+						->params(
+							$this->title->getPrefixedText(),
+							ContentHandler::getLocalizedName( $data['model'] )
+						)
+				);
+			}
 		}
 
 		// All other checks have passed, let's check rate limits
