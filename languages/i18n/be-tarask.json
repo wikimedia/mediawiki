@@ -1387,6 +1387,7 @@
 	"rcfilters-filter-lastrevision-label": "Апошняя вэрсія",
 	"rcfilters-filter-lastrevision-description": "Апошняя зьмена на старонцы.",
 	"rcfilters-filter-previousrevision-label": "Ранейшыя вэрсіі",
+	"rcfilters-filter-previousrevision-description": "Усе зьмены, якія не зьяўляюцца самымі апошнімі на старонцы.",
 	"rcnotefrom": "Ніжэй {{PLURAL:$5|знаходзіцца зьмена|знаходзяцца зьмены}} з <strong>$4 $3</strong> (да <strong>$1</strong> на старонку).",
 	"rclistfromreset": "Скінуць выбар даты",
 	"rclistfrom": "Паказаць зьмены з $2 $3",

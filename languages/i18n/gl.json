@@ -1329,6 +1329,7 @@
 	"recentchanges-submit": "Mostrar",
 	"rcfilters-activefilters": "Filtros activos",
 	"rcfilters-quickfilters": "Ligazóns rápidas",
+	"rcfilters-quickfilters-placeholder-title": "Aínda non se gardou ningunha ligazón",
 	"rcfilters-savedqueries-defaultlabel": "Filtros gardados",
 	"rcfilters-savedqueries-rename": "Renomear",
 	"rcfilters-savedqueries-setdefault": "Activar por defecto",

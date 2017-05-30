@@ -1446,6 +1446,7 @@
 	"recentchanges-submit": "Mostrar",
 	"rcfilters-activefilters": "Filtros activos",
 	"rcfilters-quickfilters": "Enlaces rápidos",
+	"rcfilters-quickfilters-placeholder-title": "Ningún enlace guardado aún",
 	"rcfilters-savedqueries-defaultlabel": "Filtros guardados",
 	"rcfilters-savedqueries-rename": "Cambiar nombre",
 	"rcfilters-savedqueries-setdefault": "Activar por defecto",

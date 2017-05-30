@@ -87,7 +87,8 @@
 			"Mateon1",
 			"Jdx",
 			"Kirsan",
-			"Krottyianock"
+			"Krottyianock",
+			"Mazab IZW"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -1378,10 +1379,11 @@
 	"recentchanges-submit": "Pokaż",
 	"rcfilters-activefilters": "Aktywne filtry",
 	"rcfilters-quickfilters": "Szybkie linki",
+	"rcfilters-quickfilters-placeholder-title": "Nie można zapisać linków.",
 	"rcfilters-savedqueries-defaultlabel": "Zapisane filtry",
 	"rcfilters-savedqueries-rename": "Zmień nazwę",
 	"rcfilters-savedqueries-setdefault": "Ustaw jako domyślne",
-	"rcfilters-savedqueries-unsetdefault": "Wyłącz ustawienie jako domyślne",
+	"rcfilters-savedqueries-unsetdefault": "Usuń ustawienie jako domyślne",
 	"rcfilters-savedqueries-remove": "Usuń",
 	"rcfilters-savedqueries-new-name-label": "Nazwa",
 	"rcfilters-savedqueries-apply-label": "Utwórz szybki link",
@@ -1408,7 +1410,7 @@
 	"rcfilters-filter-unregistered-label": "Niezarejestrowani",
 	"rcfilters-filter-unregistered-description": "Niezalogowani",
 	"rcfilters-filter-unregistered-conflicts-user-experience-level": "Ten filtr koliduje z {{PLURAL:$2|poniższym filtrem|poniższymi filtrami}} doświadczenia, {{PLURAL:$2|który wyszukuje|które wyszukują}} tylko zarejestrowanych użytkowników: $1",
-	"rcfilters-filtergroup-authorship": "Autorstwo edycji",
+	"rcfilters-filtergroup-authorship": "Autorstwo wkładu",
 	"rcfilters-filter-editsbyself-label": "Zmiany dokonane przeze mnie",
 	"rcfilters-filter-editsbyself-description": "Czynności dokonane przez Ciebie.",
 	"rcfilters-filter-editsbyother-label": "Zmiany dokonane przez innych",
@@ -1992,7 +1994,7 @@
 	"booksources-search-legend": "Szukaj informacji o książkach",
 	"booksources-search": "Szukaj",
 	"booksources-text": "Poniżej znajduje się lista odnośników do innych witryn, które pośredniczą w sprzedaży nowych i używanych książek, a także mogą posiadać dalsze informacje na temat poszukiwanej przez Ciebie książki.",
-	"booksources-invalid-isbn": "Podany numer ISBN został rozpoznany jako nieprawidłowy. Sprawdź, czy podany numer zgadza się z numerem zaczerpniętym ze źródła.",
+	"booksources-invalid-isbn": "Podany numer ISBN został rozpoznany jako nieprawidłowy. Sprawdź, czy zgadza się z numerem zaczerpniętym ze źródła.",
 	"magiclink-tracking-rfc": "Strony używające magicznych linków RFC",
 	"magiclink-tracking-rfc-desc": "Ta strona zawiera magiczne linki do RFC. Zobacz w [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org], jak dokonać migracji.",
 	"magiclink-tracking-pmid": "Strony używające magicznych linków PMID",
@@ -3970,7 +3972,7 @@
 	"rawhtml-notallowed": "Znaczniki &lt;html&gt; nie mogą być stosowane poza zwykłymi stronami.",
 	"gotointerwiki": "Opuszczasz {{SITENAME}}",
 	"gotointerwiki-invalid": "Podany tytuł jest nieprawidłowy.",
-	"gotointerwiki-external": "Zamierzasz przejść z witryny {{SITENAME}} do innej witryny:\n [[$2]].\n\n[$1 Kliknij, aby przejść do: $1].",
+	"gotointerwiki-external": "Zamierzasz przejść opuścić {{SITENAME}} by odwiedzić:\n [[$2]], która jest oddzielną witryną internetową.\n\n[$1 Kontynuuj do: $1].",
 	"undelete-cantedit": "Nie możesz odtworzyć tej strony, ponieważ nie masz uprawnień do edytowania tej strony.",
 	"undelete-cantcreate": "Nie możesz odtworzyć tej strony, ponieważ nie istnieje strona o tej nazwie, a nie masz uprawnień do jej utworzenia."
 }

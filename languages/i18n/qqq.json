@@ -187,7 +187,8 @@
 			"Joao Xavier",
 			"Winstonyin",
 			"Jhertel",
-			"Stryn"
+			"Stryn",
+			"Mazab IZW"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -1554,7 +1555,7 @@
 	"recentchanges-submit": "Label for submit button in [[Special:RecentChanges]]\n{{Identical|Show}}",
 	"rcfilters-activefilters": "Title for the filters selection showing the active filters.",
 	"rcfilters-quickfilters": "Label for the button that opens the quick filters menu in [[Special:RecentChanges]]",
-	"rcfilters-quickfilters-placeholder-title": "Title for the text shown in the quick filters menu on [[Special:RecentChanges]] if the user has not saved any quick filters.",
+	"rcfilters-quickfilters-placeholder-title": "Nie można zapisać linków.",
 	"rcfilters-quickfilters-placeholder-description": "Description for the text shown in the quick filters menu on [[Special:RecentChanges]] if the user has not saved any quick filters.",
 	"rcfilters-savedqueries-defaultlabel": "Default name for saving a new set of quick filters [[Special:RecentChanges]]",
 	"rcfilters-savedqueries-rename": "Label for the menu option that edits a quick filter in [[Special:RecentChanges]]\n{{Identical|Rename}}",

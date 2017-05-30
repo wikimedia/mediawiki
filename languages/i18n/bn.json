@@ -1323,6 +1323,7 @@
 	"recentchanges-submit": "দেখাও",
 	"rcfilters-activefilters": "সক্রিয় ছাঁকনিসমূহ",
 	"rcfilters-quickfilters": "দ্রুত সংযোগ",
+	"rcfilters-quickfilters-placeholder-title": "এখনো কোন সংযোগ সংরক্ষণ হয়নি",
 	"rcfilters-savedqueries-defaultlabel": "ছাঁকনি সংরক্ষণ",
 	"rcfilters-savedqueries-rename": "নামান্তর",
 	"rcfilters-savedqueries-remove": "সরান",
@@ -3955,7 +3956,7 @@
 	"pageid": "পাতার আইডি $1",
 	"rawhtml-notallowed": "&lt;html&gt; ট্যাগ স্বাভাবিক পৃষ্ঠাগুলির বাহিরে ব্যবহার করা যাবে না।",
 	"gotointerwiki": "{{SITENAME}} ছেড়ে যাচ্ছেন",
-	"gotointerwiki-invalid": "নিদিষ্টকৃত শিরোনামটি অবৈধ ছিল।",
+	"gotointerwiki-invalid": "নিদিষ্টকৃত শিরোনামটি অবৈধ।",
 	"gotointerwiki-external": "আপনি [[$2]] পরিদর্শন করতে {{SITENAME}} ছাড়তে চলেছেন যা একটি ভিন্ন ওয়েবসাইট।\n\n'''[$1 $1-এ চলুন]'''",
 	"undelete-cantedit": "আপনি এই পাতাটি ফিরিয়ে আনতে পারবেন না কারণ আপনার এই পাতাটি সম্পাদনা করার অনুমতি নেই।",
 	"undelete-cantcreate": "আপনি এই পাতাটি ফিরিয়ে আনতে পারবেন না কারণ এই নামে কোন পাতা বিদ্যমান নেই ও আপনার এই পাতাটি তৈরি করার অনুমতি নেই।"

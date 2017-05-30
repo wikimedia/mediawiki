@@ -1674,7 +1674,7 @@
 	"withoutinterwiki-legend": "முன்னொட்டு",
 	"withoutinterwiki-submit": "காட்டு",
 	"fewestrevisions": "மிகக் குறைந்த திருத்தங்களைக் கொண்டப் பக்கங்கள்",
-	"nbytes": "$1 {{PLURAL:$1|பைட்டு|பைட்டுகள்}}",
+	"nbytes": "$1 {{PLURAL:$1|எண்ணுன்மி|எண்ணுன்மிகள்}}",
 	"ncategories": "$1 {{PLURAL:$1|பகுப்பு|பகுப்புகள்}}",
 	"ninterwikis": "$1 {{PLURAL:$1|இடைவிக்கி|இடைவிக்கிகள்}}",
 	"nlinks": "$1 {{PLURAL:$1|இணைப்பு|இணைப்புக்கள்}}",

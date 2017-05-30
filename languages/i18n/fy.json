@@ -1483,7 +1483,7 @@
 	"autoblocker": "Jo wiene útsletten om't jo ynternet-adres oerienkomt mei dat fan \"[[User:$1|$1]]\". Foar it útsluten fan dy meidogger waard dizze reden jûn: \"$2\".",
 	"blocklogpage": "Utslútloch",
 	"blocklogentry": "\"[[$1]]\" útsletten foar $2 $3",
-	"blocklogtext": "Dit is in loch fan it útsluten en talitten fan meidoggers. Fansels útsletten net-adressen binne net opnaam. Sjoch de [[Special:BlockList|útsletlist]] foar de no jildende utslettings.",
+	"blocklogtext": "Dit is in loch fan it útsluten en talitten fan meidoggers. Fansels útsletten IP-adressen binne net opnaam. Sjoch de [[Special:BlockList|útslútlist]] foar de no jildende útslutings.",
 	"unblocklogentry": "hat de blokkade fan $1 fuorthelle",
 	"ipb_expiry_invalid": "Tiid fan ferrinnen is net goed.",
 	"ipb_already_blocked": "\"$1\" is al útsluten",
