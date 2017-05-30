@@ -25,7 +25,10 @@
 	 */
 	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure ) {
 		var parsedSavedQueries,
+			uri = new mw.Uri(),
+			defaultParams = this._getDefaultParams(),
 			$changesList = $( '.mw-changeslist' ).first().contents();
+
 		// Initialize the model
 		this.filtersModel.initializeFilters( filterStructure );
 
@@ -45,14 +48,9 @@
 			this._getBaseState()
 		);
 
-		this.updateStateBasedOnUrl();
-
-		// Update the changes list with the existing data
-		// so it gets processed
-		this.changesListModel.update(
-			$changesList.length ? $changesList : 'NO_RESULTS',
-			$( 'fieldset.rcoptions' ).first()
-		);
+		// Update model state without updating the changes list
+		// because this is the first load anyways
+		this._updateModelState( $.extend( {}, defaultParams, uri.query ) );
 	};
 
 	/**

@@ -26,6 +26,7 @@
 		this.filtersModel = filtersModel;
 		this.controller = controller;
 		this.$submitButton = this.$element.find( 'form input[type=submit]' );
+		this.ranOnce = false;
 
 		this.$element
 			.on( 'click', 'a[data-params]', this.onLinkClick.bind( this ) );
@@ -40,7 +41,7 @@
 		} );
 
 		// Initialize
-		this.cleanUpFieldset();
+		this.processContainer( this.$element.clone() );
 		this.$element
 			.addClass( 'mw-rcfilters-ui-FormWrapperWidget' );
 	};
@@ -97,16 +98,28 @@
 	 * @param {jQuery} $fieldset Updated fieldset
 	 */
 	mw.rcfilters.ui.FormWrapperWidget.prototype.onChangesModelUpdate = function ( $changesList, $fieldset ) {
+		this.processContainer( $fieldset );
+
+		if ( this.ranOnce ) {
+			// Make sure enhanced RC re-initializes correctly
+			mw.hook( 'wikipage.content' ).fire( this.$element );
+		}
+		this.ranOnce = true;
+		this.popPending();
+	};
+
+	/**
+	 * Process the container
+	 *
+	 * @param {jQuery|string} $changesList Updated changes list
+	 */
+	mw.rcfilters.ui.FormWrapperWidget.prototype.processContainer = function ( $fieldset ) {
 		this.$submitButton.prop( 'disabled', false );
 
 		// Replace the entire fieldset
 		this.$element.empty().append( $fieldset.contents() );
-		// Make sure enhanced RC re-initializes correctly
-		mw.hook( 'wikipage.content' ).fire( this.$element );
 
 		this.cleanUpFieldset();
-
-		this.popPending();
 	};
 
 	/**
