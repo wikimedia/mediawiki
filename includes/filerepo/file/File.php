@@ -2165,13 +2165,11 @@ abstract class File implements IDBAccessObject {
 		if ( $handler ) {
 			$metadata = $this->getMetadata();
 
-			if ( $metadata ) {
-				if ( is_string( $metadata ) ) {
-					$metadata = MediaWiki\quietCall( 'unserialize', $metadata );
-				}
-
-				return $handler->getContentHeaders( $metadata, $this->getWidth(), $this->getHeight() );
+			if ( is_string( $metadata ) ) {
+				$metadata = MediaWiki\quietCall( 'unserialize', $metadata );
 			}
+
+			return $handler->getContentHeaders( $metadata, $this->getWidth(), $this->getHeight() );
 		}
 
 		return [];
