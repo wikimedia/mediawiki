@@ -317,6 +317,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'CryptHKDF' => [ 'CryptHKDF', CryptHKDF::class ],
 			'MediaHandlerFactory' => [ 'MediaHandlerFactory', MediaHandlerFactory::class ],
 			'Parser' => [ 'Parser', Parser::class ],
+			'ParserCache' => [ 'ParserCache', ParserCache::class ],
 			'GenderCache' => [ 'GenderCache', GenderCache::class ],
 			'LinkCache' => [ 'LinkCache', LinkCache::class ],
 			'LinkRenderer' => [ 'LinkRenderer', LinkRenderer::class ],
