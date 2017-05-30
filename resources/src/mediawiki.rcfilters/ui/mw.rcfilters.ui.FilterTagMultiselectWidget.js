@@ -216,6 +216,17 @@
 	};
 
 	/**
+	 * @inheritdoc
+	 */
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.doInputEscape = function () {
+		// Parent
+		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.prototype.doInputEscape.call( this );
+
+		// Blur the input
+		this.input.$input.blur();
+	};
+
+	/**
 	 * @inheridoc
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onChangeTags = function () {
