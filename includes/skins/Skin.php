@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 /**
  * @defgroup Skins Skins
  */
@@ -1485,7 +1486,7 @@ abstract class Skin extends ContextSource {
 	 *   should fall back to the next notice in its sequence
 	 */
 	private function getCachedNotice( $name ) {
-		global $wgRenderHashAppend, $parserMemc, $wgContLang;
+		global $wgRenderHashAppend, $wgContLang;
 
 		$needParse = false;
 
@@ -1506,9 +1507,11 @@ abstract class Skin extends ContextSource {
 			$notice = $msg->plain();
 		}
 
+		// TODO: Should this really be using the parser cache?
+		$cache = MediaWikiServices::getInstance()->getParserCache()->getCacheStorage();
 		// Use the extra hash appender to let eg SSL variants separately cache.
-		$key = $parserMemc->makeKey( $name . $wgRenderHashAppend );
-		$cachedNotice = $parserMemc->get( $key );
+		$key = $cache->makeKey( $name . $wgRenderHashAppend );
+		$cachedNotice = $cache->get( $key );
 		if ( is_array( $cachedNotice ) ) {
 			if ( md5( $notice ) == $cachedNotice['hash'] ) {
 				$notice = $cachedNotice['html'];
@@ -1521,7 +1524,7 @@ abstract class Skin extends ContextSource {
 
 		if ( $needParse ) {
 			$parsed = $this->getOutput()->parse( $notice );
-			$parserMemc->set( $key, [ 'html' => $parsed, 'hash' => md5( $notice ) ], 600 );
+			$cache->set( $key, [ 'html' => $parsed, 'hash' => md5( $notice ) ], 600 );
 			$notice = $parsed;
 		}
 

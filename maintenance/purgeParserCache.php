@@ -24,6 +24,8 @@
 
 require __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Maintenance script to remove old objects from the parser cache.
  *
@@ -67,7 +69,7 @@ class PurgeParserCache extends Maintenance {
 		$this->output( "Deleting objects expiring before " .
 			$english->timeanddate( $date ) . "\n" );
 
-		$pc = wfGetParserCacheStorage();
+		$pc = MediaWikiServices::getInstance()->getParserCache()->getCacheStorage();
 		$success = $pc->deleteObjectsExpiringBefore( $date, [ $this, 'showProgressAndWait' ] );
 		if ( !$success ) {
 			$this->error( "\nCannot purge this kind of parser cache.", 1 );

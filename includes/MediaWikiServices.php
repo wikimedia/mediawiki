@@ -23,6 +23,7 @@ use MWException;
 use MimeAnalyzer;
 use ObjectCache;
 use Parser;
+use ParserCache;
 use ProxyLookup;
 use SearchEngine;
 use SearchEngineConfig;
@@ -571,6 +572,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getParser() {
 		return $this->getService( 'Parser' );
+	}
+
+	/**
+	 * @since 1.30
+	 * @return ParserCache
+	 */
+	public function getParserCache() {
+		return $this->getService( 'ParserCache' );
 	}
 
 	/**

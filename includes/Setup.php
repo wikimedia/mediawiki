@@ -665,17 +665,23 @@ $ps_memcached = Profiler::instance()->scopedProfileIn( $fname . '-memcached' );
 
 $wgMemc = wfGetMainCache();
 $messageMemc = wfGetMessageCacheStorage();
-$parserMemc = wfGetParserCacheStorage();
+$realParserMemc = MediaWikiServices::getInstance()->getParserCache()->getCacheStorage();
+
+/**
+ * @deprecated since 1.30
+ */
+$parserMemc = new DeprecatedGlobal( 'parserMemc', $realParserMemc, '1.30' );
 
 wfDebugLog( 'caches',
 	'cluster: ' . get_class( $wgMemc ) .
 	', WAN: ' . ( $wgMainWANCache === CACHE_NONE ? 'CACHE_NONE' : $wgMainWANCache ) .
 	', stash: ' . $wgMainStash .
 	', message: ' . get_class( $messageMemc ) .
-	', parser: ' . get_class( $parserMemc ) .
+	', parser: ' . get_class( $realParserMemc ) .
 	', session: ' . get_class( ObjectCache::getInstance( $wgSessionCacheType ) )
 );
 
+unset( $realParserMemc );
 Profiler::instance()->scopedProfileOut( $ps_memcached );
 
 // Most of the config is out, some might want to run hooks here.

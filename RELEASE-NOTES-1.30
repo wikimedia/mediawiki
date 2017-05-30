@@ -87,6 +87,10 @@ changes to languages because of Phabricator reports.
   As a result of the new uniform handling, '-{' may need to be escaped
   (for example, as '-<nowiki/>{') where it occurs inside template arguments
   or wikilinks.
+* The $parserMemc global, wfGetParserCacheStorage(), and ParserCache::singleton()
+  are all deprecated. The main ParserCache instance should be obtained from
+  MediaWikiServices instead. Access to the underlying BagOStuff is possible
+  through the new ParserCache::getCacheStorage() method.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for

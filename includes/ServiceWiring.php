@@ -287,6 +287,15 @@ return [
 		return ObjectFactory::constructClassInstance( $conf['class'], [ $conf ] );
 	},
 
+	'ParserCache' => function( MediaWikiServices $services ) {
+		$config = $services->getMainConfig();
+
+		return new ParserCache(
+			ObjectCache::getInstance( $config->get( 'ParserCacheType' ) ),
+			$config->get( 'CacheEpoch' )
+		);
+	},
+
 	'LinkCache' => function( MediaWikiServices $services ) {
 		return new LinkCache(
 			$services->getTitleFormatter(),
