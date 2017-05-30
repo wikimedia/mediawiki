@@ -396,6 +396,27 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase  {
 
 		$cache->getMultiWithSetCallback( $keyedIds, 10, $genFunc );
 		$this->assertEquals( count( $ids ), $calls, "Values cached" );
+
+		// Mock the BagOStuff to assure only one getMulti() call given process caching
+		$localBag = $this->getMockBuilder( 'HashBagOStuff' )
+			->setMethods( [ 'getMulti' ] )->getMock();
+		$localBag->expects( $this->exactly( 1 ) )->method( 'getMulti' )->willReturn( [
+			WANObjectCache::VALUE_KEY_PREFIX . 'k1' => 'val-id1',
+			WANObjectCache::VALUE_KEY_PREFIX . 'k2' => 'val-id2'
+		] );
+		$wanCache = new WANObjectCache( [ 'cache' => $localBag, 'pool' => 'testcache-hash' ] );
+
+		// Warm the process cache
+		$keyedIds = new ArrayIterator( [ 'k1' => 'id1', 'k2' => 'id2' ] );
+		$this->assertEquals(
+			[ 'k1' => 'val-id1', 'k2' => 'val-id2' ],
+			$wanCache->getMultiWithSetCallback( $keyedIds, 10, $genFunc, [ 'pcTTL' => 5 ] )
+		);
+		// Use the process cache
+		$this->assertEquals(
+			[ 'k1' => 'val-id1', 'k2' => 'val-id2' ],
+			$wanCache->getMultiWithSetCallback( $keyedIds, 10, $genFunc, [ 'pcTTL' => 5 ] )
+		);
 	}
 
 	public static function getMultiWithSetCallback_provider() {
