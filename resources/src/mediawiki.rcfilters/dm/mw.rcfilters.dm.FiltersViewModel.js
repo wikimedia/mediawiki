@@ -405,9 +405,13 @@
 	mw.rcfilters.dm.FiltersViewModel.prototype.getDefaultParams = function () {
 		var result = {};
 
+		// Get default filter state
 		$.each( this.groups, function ( name, model ) {
 			result = $.extend( true, {}, result, model.getDefaultParams() );
 		} );
+
+		// Get default highlight state
+		result = $.extend( true, {}, result, this.getHighlightParameters() );
 
 		return result;
 	};
@@ -505,11 +509,13 @@
 	 *                  are the selected highlight colors.
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getHighlightParameters = function () {
-		var result = { highlight: Number( this.isHighlightEnabled() ) };
+		var result = {};
 
 		this.getItems().forEach( function ( filterItem ) {
-			result[ filterItem.getName() + '_color' ] = filterItem.getHighlightColor();
+			result[ filterItem.getName() + '_color' ] = filterItem.getHighlightColor() || null;
 		} );
+		result.highlight = String( Number( this.isHighlightEnabled() ) );
+
 		return result;
 	};
 
