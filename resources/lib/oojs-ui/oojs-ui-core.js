@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.4
+ * OOjs UI v0.22.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-05-16T22:31:39Z
+ * Date: 2017-05-30T22:04:06Z
  */
 ( function ( OO ) {
 
@@ -579,6 +579,7 @@ OO.ui.mixin = {};
  *  Data can also be specified with the #setData method.
  */
 OO.ui.Element = function OoUiElement( config ) {
+	this.initialConfig = config;
 	// Configuration initialization
 	config = config || {};
 
@@ -1701,10 +1702,27 @@ OO.ui.Widget.prototype.updateDisabled = function () {
  * Get an ID of a labelable node which is part of this widget, if any, to be used for `<label for>`
  * value.
  *
+ * If this function returns null, the widget should have a meaningful #simulateLabelClick method
+ * instead.
+ *
  * @return {string|null} The ID of the labelable element
  */
 OO.ui.Widget.prototype.getInputId = function () {
 	return null;
+};
+
+/**
+ * Simulate the behavior of clicking on a label (a HTML `<label>` element) bound to this input.
+ * HTML only allows `<label>` to act on specific "labelable" elements; complex widgets might need to
+ * override this method to provide intuitive, accessible behavior.
+ *
+ * By default, this does nothing. OO.ui.mixin.TabIndexedElement overrides it for focusable widgets.
+ * Individual widgets may override it too.
+ *
+ * This method is called by OO.ui.LabelWidget and OO.ui.FieldLayout. It should not be called
+ * directly.
+ */
+OO.ui.Widget.prototype.simulateLabelClick = function () {
 };
 
 /**
@@ -2014,6 +2032,13 @@ OO.ui.mixin.TabIndexedElement.prototype.focus = function () {
 OO.ui.mixin.TabIndexedElement.prototype.blur = function () {
 	this.$tabIndexed.blur();
 	return this;
+};
+
+/**
+ * @inheritdoc OO.ui.Widget
+ */
+OO.ui.mixin.TabIndexedElement.prototype.simulateLabelClick = function () {
+	this.focus();
 };
 
 /**
@@ -3747,6 +3772,29 @@ OO.mixinClass( OO.ui.ButtonGroupWidget, OO.ui.mixin.GroupElement );
  */
 OO.ui.ButtonGroupWidget.static.tagName = 'span';
 
+/* Methods */
+
+/**
+ * Focus the widget
+ *
+ * @chainable
+ */
+OO.ui.ButtonGroupWidget.prototype.focus = function () {
+	if ( !this.isDisabled() ) {
+		if ( this.items[ 0 ] ) {
+			this.items[ 0 ].focus();
+		}
+	}
+	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.ButtonGroupWidget.prototype.simulateLabelClick = function () {
+	this.focus();
+};
+
 /**
  * IconWidget is a generic widget for {@link OO.ui.mixin.IconElement icons}. In general, IconWidgets should be used with OO.ui.LabelWidget,
  * which creates a label that identifies the icon’s function. See the [OOjs UI documentation on MediaWiki] [1]
@@ -3922,7 +3970,7 @@ OO.ui.LabelWidget = function OoUiLabelWidget( config ) {
 			this.$element.attr( 'for', this.input.getInputId() );
 		} else {
 			this.$label.on( 'click', function () {
-				this.input.focus();
+				this.input.simulateLabelClick();
 				return false;
 			}.bind( this ) );
 		}
@@ -5193,7 +5241,7 @@ OO.ui.PopupWidget.prototype.computePosition = function () {
 		hPosMap = {
 			forwards: 'start',
 			center: 'center',
-			backwards: 'before'
+			backwards: this.anchored ? 'before' : 'end'
 		},
 		vPosMap = {
 			forwards: 'top',
@@ -5250,22 +5298,26 @@ OO.ui.PopupWidget.prototype.computePosition = function () {
 		popupPos[ near ] = popupPos[ far ] - popupSize;
 	}
 
-	// Position the anchor (which is positioned relative to the popup) to point to $floatableContainer
-	anchorPos = ( floatablePos[ start ] + floatablePos[ end ] ) / 2;
-	anchorOffset = ( start === far ? -1 : 1 ) * ( anchorPos - popupPos[ start ] );
+	if ( this.anchored ) {
+		// Position the anchor (which is positioned relative to the popup) to point to $floatableContainer
+		anchorPos = ( floatablePos[ start ] + floatablePos[ end ] ) / 2;
+		anchorOffset = ( start === far ? -1 : 1 ) * ( anchorPos - popupPos[ start ] );
 
-	// If the anchor is less than 2*anchorSize from either edge, move the popup to make more space
-	// this.$anchor.width()/height() returns 0 because of the CSS trickery we use, so use scrollWidth/Height
-	anchorSize = this.$anchor[ 0 ][ 'scroll' + sizeProp ];
-	anchorMargin = parseFloat( this.$anchor.css( 'margin-' + start ) );
-	if ( anchorOffset + anchorMargin < 2 * anchorSize ) {
-		// Not enough space for the anchor on the start side; pull the popup startwards
-		positionAdjustment = ( positionProp === start ? -1 : 1 ) *
-			( 2 * anchorSize - ( anchorOffset + anchorMargin ) );
-	} else if ( anchorOffset + anchorMargin > popupSize - 2 * anchorSize ) {
-		// Not enough space for the anchor on the end side; pull the popup endwards
-		positionAdjustment = ( positionProp === end ? -1 : 1 ) *
-			( anchorOffset + anchorMargin - ( popupSize - 2 * anchorSize ) );
+		// If the anchor is less than 2*anchorSize from either edge, move the popup to make more space
+		// this.$anchor.width()/height() returns 0 because of the CSS trickery we use, so use scrollWidth/Height
+		anchorSize = this.$anchor[ 0 ][ 'scroll' + sizeProp ];
+		anchorMargin = parseFloat( this.$anchor.css( 'margin-' + start ) );
+		if ( anchorOffset + anchorMargin < 2 * anchorSize ) {
+			// Not enough space for the anchor on the start side; pull the popup startwards
+			positionAdjustment = ( positionProp === start ? -1 : 1 ) *
+				( 2 * anchorSize - ( anchorOffset + anchorMargin ) );
+		} else if ( anchorOffset + anchorMargin > popupSize - 2 * anchorSize ) {
+			// Not enough space for the anchor on the end side; pull the popup endwards
+			positionAdjustment = ( positionProp === end ? -1 : 1 ) *
+				( anchorOffset + anchorMargin - ( popupSize - 2 * anchorSize ) );
+		} else {
+			positionAdjustment = 0;
+		}
 	} else {
 		positionAdjustment = 0;
 	}
@@ -5286,12 +5338,15 @@ OO.ui.PopupWidget.prototype.computePosition = function () {
 			( popupPos[ far ] - ( containerPos[ far ] - this.containerPadding ) );
 	}
 
-	// Adjust anchorOffset for positionAdjustment
-	anchorOffset += ( positionProp === start ? -1 : 1 ) * positionAdjustment;
+	if ( this.anchored ) {
+		// Adjust anchorOffset for positionAdjustment
+		anchorOffset += ( positionProp === start ? -1 : 1 ) * positionAdjustment;
 
-	// Position the anchor
-	anchorCss[ start ] = anchorOffset;
-	this.$anchor.css( anchorCss );
+		// Position the anchor
+		anchorCss[ start ] = anchorOffset;
+		this.$anchor.css( anchorCss );
+	}
+
 	// Move the popup if needed
 	parentPosition[ positionProp ] += positionAdjustment;
 
@@ -5418,6 +5473,9 @@ OO.ui.mixin.PopupElement.prototype.getPopup = function () {
  *  See <https://www.mediawiki.org/wiki/OOjs_UI/Concepts#Overlays>.
  */
 OO.ui.PopupButtonWidget = function OoUiPopupButtonWidget( config ) {
+	// Configuration initialization
+	config = config || {};
+
 	// Parent constructor
 	OO.ui.PopupButtonWidget.parent.call( this, config );
 
@@ -7989,6 +8047,29 @@ OO.ui.CheckboxMultiselectWidget.prototype.onClick = function ( e ) {
 };
 
 /**
+ * Focus the widget
+ *
+ * @chainable
+ */
+OO.ui.CheckboxMultiselectWidget.prototype.focus = function () {
+	var item;
+	if ( !this.isDisabled() ) {
+		item = this.getRelativeFocusableItem( null, 1 );
+		if ( item ) {
+			item.focus();
+		}
+	}
+	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.CheckboxMultiselectWidget.prototype.simulateLabelClick = function () {
+	this.focus();
+};
+
+/**
  * FloatingMenuSelectWidget was a menu that would stick under a specified
  * container, even when it is inserted elsewhere in the document.
  * This functionality is now included in MenuSelectWidget, and FloatingMenuSelectWidget
@@ -8155,6 +8236,7 @@ OO.ui.ProgressBarWidget.prototype.setProgress = function ( progress ) {
  * @cfg {string} [name=''] The value of the input’s HTML `name` attribute.
  * @cfg {string} [value=''] The value of the input.
  * @cfg {string} [dir] The directionality of the input (ltr/rtl).
+ * @cfg {string} [inputId] The value of the input’s HTML `id` attribute.
  * @cfg {Function} [inputFilter] The name of an input filter function. Input filters modify the value of an input
  *  before it is accepted.
  */
@@ -8191,6 +8273,9 @@ OO.ui.InputWidget = function OoUiInputWidget( config ) {
 	this.setValue( config.value );
 	if ( config.dir ) {
 		this.setDir( config.dir );
+	}
+	if ( config.inputId !== undefined ) {
+		this.setInputId( config.inputId );
 	}
 };
 
@@ -8336,23 +8421,6 @@ OO.ui.InputWidget.prototype.cleanUpValue = function ( value ) {
 };
 
 /**
- * Simulate the behavior of clicking on a label bound to this input. This method is only called by
- * {@link OO.ui.LabelWidget LabelWidget} and {@link OO.ui.FieldLayout FieldLayout}. It should not be
- * called directly.
- */
-OO.ui.InputWidget.prototype.simulateLabelClick = function () {
-	OO.ui.warnDeprecation( 'InputWidget: simulateLabelClick() is deprecated.' );
-	if ( !this.isDisabled() ) {
-		if ( this.$input.is( ':checkbox, :radio' ) ) {
-			this.$input.click();
-		}
-		if ( this.$input.is( ':input' ) ) {
-			this.$input[ 0 ].focus();
-		}
-	}
-};
-
-/**
  * @inheritdoc
  */
 OO.ui.InputWidget.prototype.setDisabled = function ( state ) {
@@ -8360,6 +8428,17 @@ OO.ui.InputWidget.prototype.setDisabled = function ( state ) {
 	if ( this.$input ) {
 		this.$input.prop( 'disabled', this.isDisabled() );
 	}
+	return this;
+};
+
+/**
+ * Set the 'id' attribute of the `<input>` element.
+ *
+ * @param {string} id
+ * @chainable
+ */
+OO.ui.InputWidget.prototype.setInputId = function ( id ) {
+	this.$input.attr( 'id', id );
 	return this;
 };
 
@@ -8375,6 +8454,45 @@ OO.ui.InputWidget.prototype.restorePreInfuseState = function ( state ) {
 		this.focus();
 	}
 };
+
+/**
+ * Data widget intended for creating 'hidden'-type inputs.
+ *
+ * @class
+ * @extends OO.ui.Widget
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {string} [value=''] The value of the input.
+ * @cfg {string} [name=''] The value of the input’s HTML `name` attribute.
+ */
+OO.ui.HiddenInputWidget = function OoUiHiddenInputWidget( config ) {
+	// Configuration initialization
+	config = $.extend( { value: '', name: '' }, config );
+
+	// Parent constructor
+	OO.ui.HiddenInputWidget.parent.call( this, config );
+
+	// Initialization
+	this.$element.attr( {
+		type: 'hidden',
+		value: config.value,
+		name: config.name
+	} );
+	this.$element.removeAttr( 'aria-disabled' );
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.HiddenInputWidget, OO.ui.Widget );
+
+/* Static Properties */
+
+/**
+ * @static
+ * @inheritdoc
+ */
+OO.ui.HiddenInputWidget.static.tagName = 'input';
 
 /**
  * ButtonInputWidget is used to submit HTML forms and is intended to be used within
@@ -8570,7 +8688,7 @@ OO.ui.CheckboxInputWidget = function OoUiCheckboxInputWidget( config ) {
 	// Initialization
 	this.$element
 		.addClass( 'oo-ui-checkboxInputWidget' )
-		// Required for pretty styling in MediaWiki theme
+		// Required for pretty styling in WikimediaUI theme
 		.append( $( '<span>' ) );
 	this.setSelected( config.selected !== undefined ? config.selected : false );
 };
@@ -8650,6 +8768,16 @@ OO.ui.CheckboxInputWidget.prototype.isSelected = function () {
 		this.setSelected( selected );
 	}
 	return this.selected;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.CheckboxInputWidget.prototype.simulateLabelClick = function () {
+	if ( !this.isDisabled() ) {
+		this.$input.click();
+	}
+	this.focus();
 };
 
 /**
@@ -8883,7 +9011,7 @@ OO.ui.RadioInputWidget = function OoUiRadioInputWidget( config ) {
 	// Initialization
 	this.$element
 		.addClass( 'oo-ui-radioInputWidget' )
-		// Required for pretty styling in MediaWiki theme
+		// Required for pretty styling in WikimediaUI theme
 		.append( $( '<span>' ) );
 	this.setSelected( config.selected !== undefined ? config.selected : false );
 };
@@ -8947,6 +9075,16 @@ OO.ui.RadioInputWidget.prototype.setSelected = function ( state ) {
  */
 OO.ui.RadioInputWidget.prototype.isSelected = function () {
 	return this.$input.prop( 'checked' );
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.RadioInputWidget.prototype.simulateLabelClick = function () {
+	if ( !this.isDisabled() ) {
+		this.$input.click();
+	}
+	this.focus();
 };
 
 /**
@@ -9303,6 +9441,14 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.setOptions = function ( options )
 };
 
 /**
+ * @inheritdoc
+ */
+OO.ui.CheckboxMultiselectInputWidget.prototype.focus = function () {
+	this.checkboxMultiselectWidget.focus();
+	return this;
+};
+
+/**
  * TextInputWidgets, like HTML text inputs, can be configured with options that customize the
  * size of the field as well as its presentation. In addition, these widgets can be configured
  * with {@link OO.ui.mixin.IconElement icons}, {@link OO.ui.mixin.IndicatorElement indicators}, an optional
@@ -9330,13 +9476,8 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.setOptions = function ( options )
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {string} [type='text'] The value of the HTML `type` attribute: 'text', 'password', 'search',
+ * @cfg {string} [type='text'] The value of the HTML `type` attribute: 'text', 'password'
  *  'email', 'url' or 'number'. Ignored if `multiline` is true.
- *
- *  Some values of `type` result in additional behaviors:
- *
- *  - `search`: implies `icon: 'search'` and `indicator: 'clear'`; when clicked, the indicator
- *    empties the text field
  * @cfg {string} [placeholder] Placeholder text
  * @cfg {boolean} [autofocus=false] Use an HTML `autofocus` attribute to
  *  instruct the browser to focus this widget.
@@ -9365,14 +9506,6 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 		type: 'text',
 		labelPosition: 'after'
 	}, config );
-
-	if ( config.type === 'search' ) {
-		OO.ui.warnDeprecation( 'TextInputWidget: config.type=\'search\' is deprecated. Use the SearchInputWidget instead. See T148471 for details.' );
-		if ( config.icon === undefined ) {
-			config.icon = 'search';
-		}
-		// indicator: 'clear' is set dynamically later, depending on value
-	}
 
 	// Parent constructor
 	OO.ui.TextInputWidget.parent.call( this, config );
@@ -9417,8 +9550,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	this.$indicator.on( 'mousedown', this.onIndicatorMouseDown.bind( this ) );
 	this.on( 'labelChange', this.updatePosition.bind( this ) );
 	this.connect( this, {
-		change: 'onChange',
-		disable: 'onDisable'
+		change: 'onChange'
 	} );
 	this.on( 'change', OO.ui.debounce( this.onDebouncedChange.bind( this ), 250 ) );
 
@@ -9428,7 +9560,6 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 		.append( this.$icon, this.$indicator );
 	this.setReadOnly( !!config.readOnly );
 	this.setRequired( !!config.required );
-	this.updateSearchIndicator();
 	if ( config.placeholder !== undefined ) {
 		this.$input.attr( 'placeholder', config.placeholder );
 	}
@@ -9529,10 +9660,6 @@ OO.ui.TextInputWidget.prototype.onIconMouseDown = function ( e ) {
  */
 OO.ui.TextInputWidget.prototype.onIndicatorMouseDown = function ( e ) {
 	if ( e.which === OO.ui.MouseButtons.LEFT ) {
-		if ( this.type === 'search' ) {
-			// Clear the text field
-			this.setValue( '' );
-		}
 		this.focus();
 		return false;
 	}
@@ -9597,7 +9724,6 @@ OO.ui.TextInputWidget.prototype.onElementAttach = function () {
  * @private
  */
 OO.ui.TextInputWidget.prototype.onChange = function () {
-	this.updateSearchIndicator();
 	this.adjustSize();
 };
 
@@ -9609,16 +9735,6 @@ OO.ui.TextInputWidget.prototype.onChange = function () {
  */
 OO.ui.TextInputWidget.prototype.onDebouncedChange = function () {
 	this.setValidityFlag();
-};
-
-/**
- * Handle disable events.
- *
- * @param {boolean} disabled Element is disabled
- * @private
- */
-OO.ui.TextInputWidget.prototype.onDisable = function () {
-	this.updateSearchIndicator();
 };
 
 /**
@@ -9639,7 +9755,6 @@ OO.ui.TextInputWidget.prototype.isReadOnly = function () {
 OO.ui.TextInputWidget.prototype.setReadOnly = function ( state ) {
 	this.readOnly = !!state;
 	this.$input.prop( 'readOnly', this.readOnly );
-	this.updateSearchIndicator();
 	return this;
 };
 
@@ -9675,7 +9790,6 @@ OO.ui.TextInputWidget.prototype.setRequired = function ( state ) {
 			this.setIndicator( null );
 		}
 	}
-	this.updateSearchIndicator();
 	return this;
 };
 
@@ -9855,7 +9969,6 @@ OO.ui.TextInputWidget.prototype.getSaneType = function ( config ) {
 	var allowedTypes = [
 		'text',
 		'password',
-		'search',
 		'email',
 		'url',
 		'number'
@@ -10134,20 +10247,6 @@ OO.ui.TextInputWidget.prototype.updatePosition = function () {
 	this.positionLabel();
 
 	return this;
-};
-
-/**
- * Update the 'clear' indicator displayed on type: 'search' text fields, hiding it when the field is
- * already empty or when it's not editable.
- */
-OO.ui.TextInputWidget.prototype.updateSearchIndicator = function () {
-	if ( this.type === 'search' ) {
-		if ( this.getValue() === '' || this.isDisabled() || this.isReadOnly() ) {
-			this.setIndicator( null );
-		} else {
-			this.setIndicator( 'clear' );
-		}
-	}
 };
 
 /**
@@ -10651,7 +10750,7 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 		this.$label.attr( 'for', this.fieldWidget.getInputId() );
 	} else {
 		this.$label.on( 'click', function () {
-			this.fieldWidget.focus();
+			this.fieldWidget.simulateLabelClick();
 			return false;
 		}.bind( this ) );
 	}

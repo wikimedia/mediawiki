@@ -4,10 +4,6 @@
 	"images": {
 		"add": { "file": "images/icons/add.svg" },
 		"advanced": { "file": "images/icons/advanced.svg" },
-		"bookmark": { "file": {
-			"ltr": "images/icons/bookmark-ltr.svg",
-			"rtl": "images/icons/bookmark-rtl.svg"
-		} },
 		"browser": { "file": {
 			"ltr": "images/icons/browser-ltr.svg",
 			"rtl": "images/icons/browser-rtl.svg"

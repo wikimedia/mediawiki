@@ -51,7 +51,7 @@
 			"rtl": "images/icons/halfStar-rtl.svg"
 		}, "variants": [ "constructive", "progressive" ] },
 		"unStar": { "file": "images/icons/unStar.svg", "variants": [ "constructive", "progressive" ] },
-		"trash": { "file": "images/icons/trash.svg" },
+		"trash": { "file": "images/icons/trash.svg", "variants": [ "destructive" ] },
 		"unTrash": { "file": {
 			"ltr": "images/icons/unTrash-ltr.svg",
 			"rtl": "images/icons/unTrash-rtl.svg"
