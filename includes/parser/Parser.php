@@ -245,7 +245,7 @@ class Parser {
 	public $currentRevisionCache;
 
 	/**
-	 * @var bool Recursive call protection.
+	 * @var bool|string Recursive call protection.
 	 * This variable should be treated as if it were private.
 	 */
 	public $mInParse = false;
@@ -6072,9 +6072,13 @@ class Parser {
 	protected function lock() {
 		if ( $this->mInParse ) {
 			throw new MWException( "Parser state cleared while parsing. "
-				. "Did you call Parser::parse recursively?" );
+				. "Did you call Parser::parse recursively? Lock is held by: " . $this->mInParse );
 		}
-		$this->mInParse = true;
+
+		// Save the backtrace when locking, so that if some code tries locking again,
+		// we can print the lock owner's backtrace for easier debugging
+		$e = new Exception;
+		$this->mInParse = $e->getTraceAsString();
 
 		$recursiveCheck = new ScopedCallback( function() {
 			$this->mInParse = false;
