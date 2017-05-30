@@ -41,12 +41,12 @@
 			icon: 'ellipsis',
 			framed: false
 		} );
-		this.menu = new OO.ui.FloatingMenuSelectWidget( {
+		this.menu = new OO.ui.MenuSelectWidget( {
 			classes: [ 'mw-rcfilters-ui-savedLinksListItemWidget-menu' ],
 			widget: this.popupButton,
 			width: 200,
 			horizontalPosition: 'end',
-			$container: this.popupButton.$element,
+			$floatableContainer: this.popupButton.$element,
 			items: [
 				new OO.ui.MenuOptionWidget( {
 					data: 'edit',
