@@ -108,6 +108,10 @@ changes to languages because of Phabricator reports.
   $data['attribs'] subarray.
 * DeprecatedGlobal no longer supports passing in a direct value, it requires a
   callable factory function or a class name.
+* The $parserMemc global, wfGetParserCacheStorage(), and ParserCache::singleton()
+  are all deprecated. The main ParserCache instance should be obtained from
+  MediaWikiServices instead. Access to the underlying BagOStuff is possible
+  through the new ParserCache::getCacheStorage() method.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for

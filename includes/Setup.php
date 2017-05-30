@@ -669,14 +669,19 @@ $ps_memcached = Profiler::instance()->scopedProfileIn( $fname . '-memcached' );
 
 $wgMemc = wfGetMainCache();
 $messageMemc = wfGetMessageCacheStorage();
-$parserMemc = wfGetParserCacheStorage();
+
+/**
+ * @deprecated since 1.30
+ */
+$parserMemc = new DeprecatedGlobal( 'parserMemc', function() {
+	return MediaWikiServices::getInstance()->getParserCache()->getCacheStorage();
+}, '1.30' );
 
 wfDebugLog( 'caches',
 	'cluster: ' . get_class( $wgMemc ) .
 	', WAN: ' . ( $wgMainWANCache === CACHE_NONE ? 'CACHE_NONE' : $wgMainWANCache ) .
 	', stash: ' . $wgMainStash .
 	', message: ' . get_class( $messageMemc ) .
-	', parser: ' . get_class( $parserMemc ) .
 	', session: ' . get_class( ObjectCache::getInstance( $wgSessionCacheType ) )
 );
 
