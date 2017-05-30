@@ -86,7 +86,7 @@
 	 */
 	mw.rcfilters.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
 		var i,
-			itemWasHighlighted = false,
+			itemWasSelected = false,
 			inputVal = this.$input.val(),
 			items = this.getItems();
 
@@ -96,22 +96,20 @@
 			// Parent method
 			mw.rcfilters.ui.MenuSelectWidget.parent.prototype.updateItemVisibility.call( this );
 
-			if ( inputVal !== '' ) {
-				// Highlight the first item in the list
-				for ( i = 0; i < items.length; i++ ) {
-					if (
-						!( items[ i ] instanceof OO.ui.MenuSectionOptionWidget ) &&
-						items[ i ].isVisible()
-					) {
-						itemWasHighlighted = true;
-						this.highlightItem( items[ i ] );
-						break;
-					}
+			// Select the first item in the list
+			for ( i = 0; i < items.length; i++ ) {
+				if (
+					!( items[ i ] instanceof OO.ui.MenuSectionOptionWidget ) &&
+					items[ i ].isVisible()
+				) {
+					itemWasSelected = true;
+					this.selectItem( items[ i ] );
+					break;
 				}
 			}
 
-			if ( !itemWasHighlighted ) {
-				this.highlightItem( null );
+			if ( !itemWasSelected ) {
+				this.selectItem( null );
 			}
 
 			// Cache value
@@ -132,6 +130,41 @@
 		return function ( item ) {
 			return results.indexOf( item.getModel() ) > -1;
 		};
+	};
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.rcfilters.ui.MenuSelectWidget.prototype.onKeyDown = function ( e ) {
+		var nextItem,
+			currentItem = this.getHighlightedItem() || this.getSelectedItem();
+
+		// Call parent
+		mw.rcfilters.ui.MenuSelectWidget.parent.prototype.onKeyDown.call( this, e );
+
+		// We want to select the item on arrow movement
+		// rather than just highlight it, like the menu
+		// does by default
+		if ( !this.isDisabled() && this.isVisible() ) {
+			switch ( e.keyCode ) {
+				case OO.ui.Keys.UP:
+				case OO.ui.Keys.LEFT:
+					// Get the next item
+					nextItem = this.getRelativeSelectableItem( currentItem, -1 );
+					break;
+				case OO.ui.Keys.DOWN:
+				case OO.ui.Keys.RIGHT:
+					// Get the next item
+					nextItem = this.getRelativeSelectableItem( currentItem, 1 );
+					break;
+			}
+
+			nextItem = nextItem && nextItem.constructor.static.selectable ?
+				nextItem : null;
+
+			// Select the next item
+			this.selectItem( nextItem );
+		}
 	};
 
 	/**
