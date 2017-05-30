@@ -70,8 +70,18 @@
 				return validParameterNames.indexOf( parameter ) > -1;
 			} )
 		) {
-			// There are parameters in the url, update model state
-			this.updateStateBasedOnUrl();
+			// There are parameters in the url
+			// Update model state without updating the changes list
+			// because this is the first load anyways
+			this._updateModelState(
+				( new mw.Uri() ).query
+			);
+			// Update the changes list with the existing data
+			// so it gets processed
+			this.changesListModel.update(
+				$changesList.length ? $changesList : 'NO_RESULTS',
+				$( 'fieldset.rcoptions' ).first()
+			);
 		} else {
 			this.initializing = true;
 			// No valid parameters are given, load defaults
@@ -87,16 +97,10 @@
 					this._getDefaultParams()
 				)
 			);
-			this.updateChangesList();
+
 			this.initializing = false;
 		}
 
-		// Update the changes list with the existing data
-		// so it gets processed
-		this.changesListModel.update(
-			$changesList.length ? $changesList : 'NO_RESULTS',
-			$( 'fieldset.rcoptions' ).first()
-		);
 	};
 
 	/**
