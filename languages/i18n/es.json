@@ -157,7 +157,8 @@
 			"Igv",
 			"Juanpabl",
 			"AlimanRuna",
-			"Luzcaru"
+			"Luzcaru",
+			"Javiersanp"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -1447,6 +1448,7 @@
 	"rcfilters-activefilters": "Filtros activos",
 	"rcfilters-quickfilters": "Enlaces rápidos",
 	"rcfilters-quickfilters-placeholder-title": "Ningún enlace guardado aún",
+	"rcfilters-quickfilters-placeholder-description": "Para guardar sus ajustes de filtro y reutilizarlos más tarde, haga clic en el icono del marcador en el área de Filtro Activo a continuación.",
 	"rcfilters-savedqueries-defaultlabel": "Filtros guardados",
 	"rcfilters-savedqueries-rename": "Cambiar nombre",
 	"rcfilters-savedqueries-setdefault": "Activar por defecto",
@@ -1597,7 +1599,7 @@
 	"upload-preferred": "{{PLURAL:$2|Tipo de archivo preferido|Tipos de archivo preferidos}}: $1.",
 	"upload-prohibited": "{{PLURAL:$2|Tipo de archivo prohibido|Tipos de archivo prohibidos}}: $1.",
 	"uploadlogpage": "Registro de subidas",
-	"uploadlogpagetext": "Debajo se muestra una lista de los últimos archivos subidos.\nVéase la [[Special:NewFiles|galería de archivos nuevos]] para una vista más estilizada",
+	"uploadlogpagetext": "Debajo se muestra una lista de los últimos archivos subidos.\nConsulta la [[Special:NewFiles|galería de archivos nuevos]] para una presentación más visual.",
 	"filename": "Nombre del archivo",
 	"filedesc": "Resumen",
 	"fileuploadsummary": "Resumen:",
@@ -2501,6 +2503,7 @@
 	"autoblocklist-submit": "Buscar",
 	"autoblocklist-legend": "Mostrar bloqueos automáticos",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Bloqueo automático local|Bloqueos automáticos locales}}",
+	"autoblocklist-total-autoblocks": "Número total de autobloques: $1",
 	"autoblocklist-empty": "La lista de bloqueos automáticos está vacía.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Otro bloqueo automático|Otros bloqueos automáticos}}",
 	"ipblocklist": "Usuarios bloqueados",
@@ -2949,7 +2952,7 @@
 	"file-info-png-frames": "$1 {{PLURAL:$1|marco|marcos}}",
 	"file-no-thumb-animation": "<strong>Nota: debido a limitaciones técnicas, las miniaturas de este archivo no estarán animadas.</strong>",
 	"file-no-thumb-animation-gif": "<strong>Nota: debido a limitaciones técnicas, las miniaturas de imágenes GIF de alta resolución como esta no estarán animadas.</strong>",
-	"newimages": "Galería de imágenes nuevas",
+	"newimages": "Galería de archivos nuevos",
 	"imagelisttext": "Debajo hay una lista de <strong>$1</strong> {{PLURAL:$1|archivo ordenado|archivos ordenados}} $2.",
 	"newimages-summary": "Esta página especial muestra una galería de los últimos archivos subidos.",
 	"newimages-legend": "Filtro",

@@ -61,7 +61,8 @@
 			"Anders Feder",
 			"Jhertel",
 			"IBDJ",
-			"SimmeD"
+			"SimmeD",
+			"BoBrandt"
 		]
 	},
 	"tog-underline": "Understreg henvisninger:",
@@ -1342,7 +1343,7 @@
 	"rcfilters-filter-user-experience-level-newcomer-description": "Færre end 10 redigeringer og 4 dages aktivitet",
 	"rcfilters-filter-user-experience-level-learner-description": "Mere erfaring end \"nybegyndere\" men mindre end \"erfarne brugere\".",
 	"rcfilters-filter-user-experience-level-experienced-label": "Erfarne brugere",
-	"rcfilters-filter-user-experience-level-experienced-description": "Mere end 30 dages aktivitet og 500 redigeringer.",
+	"rcfilters-filter-user-experience-level-experienced-description": "Over 30 dages aktivitet og 500 redigeringer.",
 	"rcfilters-filtergroup-automated": "Automatiserede bidrag",
 	"rcfilters-filter-bots-label": "Bot",
 	"rcfilters-filter-bots-description": "Redigeringer udført af automatiserede værktøjer.",

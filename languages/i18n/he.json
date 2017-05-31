@@ -2386,6 +2386,7 @@
 	"autoblocklist-submit": "חיפוש",
 	"autoblocklist-legend": "רשימת חסימות אוטומטיות",
 	"autoblocklist-localblocks": "{{PLURAL:$1|חסימה אוטומטית מקומית|חסימות אוטומטיות מקומיות}}",
+	"autoblocklist-total-autoblocks": "המספר הכולל של חסימות אוטומטיות: $1",
 	"autoblocklist-empty": "רשימת החסימות האוטומטיות ריקה.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|חסימה אוטומטית אחרת|חסימות אוטומטיות אחרות}}",
 	"ipblocklist": "משתמשים חסומים",

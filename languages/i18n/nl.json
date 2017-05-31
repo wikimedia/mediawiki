@@ -1404,7 +1404,7 @@
 	"rcfilters-filter-unregistered-label": "Niet-geregistreerd",
 	"rcfilters-filter-unregistered-description": "Gebruikers die niet zijn ingelogd.",
 	"rcfilters-filter-unregistered-conflicts-user-experience-level": "Het \"Niet geregistreerd\" filter is niet actief, omdat het effect ongedaan wordt gemaakt door de volgende {{PLURAL:$2|filter|filters}} die alleen geregistreerde gebruikers {{PLURAL:$2|vindt|vinden}}: $1",
-	"rcfilters-filtergroup-authorship": "Bijdragen auteurschap",
+	"rcfilters-filtergroup-authorship": "Auteur van de bijdragen",
 	"rcfilters-filter-editsbyself-label": "Uw eigen wijzigingen",
 	"rcfilters-filter-editsbyself-description": "Uw eigen bijdragen.",
 	"rcfilters-filter-editsbyother-label": "Wijzigingen door anderen",

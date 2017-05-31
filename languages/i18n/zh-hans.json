@@ -2445,6 +2445,7 @@
 	"autoblocklist-submit": "搜索",
 	"autoblocklist-legend": "自动封禁列表",
 	"autoblocklist-localblocks": "本地{{PLURAL:$1|自动封禁}}",
+	"autoblocklist-total-autoblocks": "自动封禁总数：$1",
 	"autoblocklist-empty": "自动封禁列表为空。",
 	"autoblocklist-otherblocks": "其他{{PLURAL:$1|自动封禁}}",
 	"ipblocklist": "被封禁用户",

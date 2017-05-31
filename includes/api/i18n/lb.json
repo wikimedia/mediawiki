@@ -136,6 +136,7 @@
 	"apihelp-query+search-param-namespace": "Nëmmen an dësen Nummräim sichen.",
 	"apihelp-query+search-paramvalue-prop-wordcount": "Setzt d'Zuel vun de Wierder vun der Säit derbäi.",
 	"apihelp-query+search-paramvalue-prop-timestamp": "Setzt den Zäitstempel vun der leschter Ännerung vun der Säit derbäi.",
+	"apihelp-query+templates-param-namespace": "Schablounen nëmmen an dësen Nummräim weisen.",
 	"apihelp-query+transcludedin-paramvalue-prop-title": "Titel vun all Säit.",
 	"apihelp-query+usercontribs-description": "All Ännerunge vun engem Benotzer kréien.",
 	"apihelp-query+usercontribs-paramvalue-prop-timestamp": "Setzt den Zäitstempel vun derÄnnerung derbäi.",

@@ -1255,7 +1255,7 @@
 	"apihelp-resetpassword-param-user": "Utilisateur ayant été réinitialisé.",
 	"apihelp-resetpassword-param-email": "Adresse courriel de l’utilisateur ayant été réinitialisé.",
 	"apihelp-resetpassword-example-user": "Envoyer un courriel de réinitialisation du mot de passe à l’utilisateur <kbd>Exemple</kbd>.",
-	"apihelp-resetpassword-example-email": "Envoyer un courriel pour la réinitialisation de mot de passe à tous les utilisateurs avec une adresse email <kbd>user@example.com</kbd>.",
+	"apihelp-resetpassword-example-email": "Envoyer un courriel pour la réinitialisation de mot de passe à tous les utilisateurs avec l’adresse <kbd>user@example.com</kbd>.",
 	"apihelp-revisiondelete-description": "Supprimer et rétablir des révisions.",
 	"apihelp-revisiondelete-param-type": "Type de suppression de révision en cours de traitement.",
 	"apihelp-revisiondelete-param-target": "Titre de page pour la suppression de révision, s’il est nécessaire pour le type.",

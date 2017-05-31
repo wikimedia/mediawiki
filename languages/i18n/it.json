@@ -2425,6 +2425,7 @@
 	"autoblocklist-submit": "Ricerca",
 	"autoblocklist-legend": "Elenca autoblocchi",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Autoblocco locale|Autoblocchi locali}}",
+	"autoblocklist-total-autoblocks": "Numero totale di autoblocchi: $1",
 	"autoblocklist-empty": "L'elenco dei autoblocchi è vuoto.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Altro autoblocco|Altri autoblocchi}}",
 	"ipblocklist": "Utenti bloccati",

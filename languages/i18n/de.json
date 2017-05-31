@@ -2439,6 +2439,7 @@
 	"autoblocklist-submit": "Suchen",
 	"autoblocklist-legend": "Automatische Sperren auflisten",
 	"autoblocklist-localblocks": "Lokale automatische {{PLURAL:$1|Sperre|Sperren}}",
+	"autoblocklist-total-autoblocks": "Gesamte Anzahl der automatischen Sperren: $1",
 	"autoblocklist-empty": "Die Liste der automatischen Sperren ist leer.",
 	"autoblocklist-otherblocks": "Andere automatische {{PLURAL:$1|Sperre|Sperren}}",
 	"ipblocklist": "Gesperrte Benutzer",
