@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.21.4
+ * OOjs UI v0.22.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-05-16T22:31:39Z
+ * Date: 2017-05-31T19:07:36Z
  */
 ( function ( OO ) {
 
@@ -18,21 +18,21 @@
  *
  * @constructor
  */
-OO.ui.MediaWikiTheme = function OoUiMediaWikiTheme() {
+OO.ui.WikimediaUITheme = function OoUiWikimediaUITheme() {
 	// Parent constructor
-	OO.ui.MediaWikiTheme.parent.call( this );
+	OO.ui.WikimediaUITheme.parent.call( this );
 };
 
 /* Setup */
 
-OO.inheritClass( OO.ui.MediaWikiTheme, OO.ui.Theme );
+OO.inheritClass( OO.ui.WikimediaUITheme, OO.ui.Theme );
 
 /* Methods */
 
 /**
  * @inheritdoc
  */
-OO.ui.MediaWikiTheme.prototype.getElementClasses = function ( element ) {
+OO.ui.WikimediaUITheme.prototype.getElementClasses = function ( element ) {
 	// Parent method
 	var variant, isFramed, isActive,
 		variants = {
@@ -43,7 +43,7 @@ OO.ui.MediaWikiTheme.prototype.getElementClasses = function ( element ) {
 			destructive: false
 		},
 		// Parent method
-		classes = OO.ui.MediaWikiTheme.parent.prototype.getElementClasses.call( this, element );
+		classes = OO.ui.WikimediaUITheme.parent.prototype.getElementClasses.call( this, element );
 
 	if ( element.supports( [ 'hasFlag' ] ) ) {
 		isFramed = element.supports( [ 'isFramed' ] ) && element.isFramed();
@@ -78,14 +78,14 @@ OO.ui.MediaWikiTheme.prototype.getElementClasses = function ( element ) {
 /**
  * @inheritdoc
  */
-OO.ui.MediaWikiTheme.prototype.getDialogTransitionDuration = function () {
+OO.ui.WikimediaUITheme.prototype.getDialogTransitionDuration = function () {
 	return 250;
 };
 
 /* Instantiation */
 
-OO.ui.theme = new OO.ui.MediaWikiTheme();
+OO.ui.theme = new OO.ui.WikimediaUITheme();
 
 }( OO ) );
 
-//# sourceMappingURL=oojs-ui-mediawiki.js.map
+//# sourceMappingURL=oojs-ui-wikimediaui.js.map

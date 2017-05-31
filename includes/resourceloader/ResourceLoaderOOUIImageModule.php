@@ -31,7 +31,7 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 		}
 
 		// Core default themes
-		$themes = [ 'default' => 'mediawiki' ];
+		$themes = [ 'default' => 'wikimediaui' ];
 		$themes += ExtensionRegistry::getInstance()->getAttribute( 'SkinOOUIThemes' );
 
 		$name = $this->definition['name'];

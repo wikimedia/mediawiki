@@ -30,7 +30,7 @@ return call_user_func( function () {
 	$themes = ExtensionRegistry::getInstance()->getAttribute( 'SkinOOUIThemes' );
 	// We only use the theme names for file names, and they are lowercase
 	$themes = array_map( 'strtolower', $themes );
-	$themes['default'] = 'mediawiki';
+	$themes['default'] = 'wikimediaui';
 
 	// Helper function to generate paths to files used in 'skinStyles' and 'skinScripts'.
 	$getSkinSpecific = function ( $module, $ext = 'css' ) use ( $themes ) {
