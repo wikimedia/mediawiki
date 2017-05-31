@@ -1340,7 +1340,7 @@
 					nooptional: true
 				} );
 				button = new OO.ui.ButtonWidget( {
-					icon: 'remove',
+					icon: 'trash',
 					flags: 'destructive'
 				} );
 				layout = new OO.ui.ActionFieldLayout(
