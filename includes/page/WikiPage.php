@@ -3496,7 +3496,10 @@ class WikiPage implements Page, IDBAccessObject {
 			);
 			foreach ( $rows as $row ) {
 				$cat = Category::newFromRow( $row );
-				$cat->refreshCounts();
+				// T166757: do the update after this DB commit
+				DeferredUpdates::addCallableUpdate( function () use ( $cat ) {
+					$cat->refreshCounts();
+				} );
 			}
 		}
 	}
