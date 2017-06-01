@@ -1,0 +1,91 @@
+<?php
+
+/**
+ * Special page to act as a data endpoint for the linked data web.
+ * The web server should generally be configured to make this accessible via a canonical URL/URI,
+ * such as <http://my.domain.org/data/Foo>.
+ *
+ * Note that this is implemented as a special page and not a per-page action, so there is no need
+ * for the web server to map ID prefixes to wiki namespaces.
+ *
+ * @license GPL-2.0+
+ */
+class SpecialPageData extends SpecialPage {
+
+	/**
+	 * @var PageDataRequestHandler|null
+	 */
+	private $requestHandler = null;
+
+	public function __construct() {
+		parent::__construct( 'PageData' );
+	}
+
+	/**
+	 * Sets the request handler to be used by the special page.
+	 * May be used when a particular instance of EntityDataRequestHandler is already
+	 * known, e.g. during testing.
+	 *
+	 * If no request handler is set using this method, a default handler is created
+	 * on demand by initDependencies().
+	 *
+	 * @param PageDataRequestHandler $requestHandler
+	 */
+	public function setRequestHandler( PageDataRequestHandler $requestHandler ) {
+		$this->requestHandler = $requestHandler;
+	}
+
+	/**
+	 * Initialize any un-initialized members from global context.
+	 * In particular, this initializes $this->requestHandler
+	 *
+	 * This is called by
+	 */
+	protected function initDependencies() {
+		if ( $this->requestHandler === null ) {
+			$this->requestHandler = $this->newDefaultRequestHandler();
+		}
+	}
+
+	/**
+	 * Creates a PageDataRequestHandler based on global defaults.
+	 *
+	 * @return PageDataRequestHandler
+	 */
+	private function newDefaultRequestHandler() {
+		$defaultFormat = empty( $formats ) ? 'html' : $formats[0];
+
+		return new PageDataRequestHandler( $defaultFormat );
+	}
+
+	/**
+	 * @see SpecialWikibasePage::execute
+	 *
+	 * @param string|null $subPage
+	 *
+	 * @throws HttpError
+	 */
+	public function execute( $subPage ) {
+		$this->initDependencies();
+
+		// If there is no ID, show an HTML form
+		// TODO: Don't do this if HTML is not acceptable according to HTTP headers.
+		if ( !$this->requestHandler->canHandleRequest( $subPage, $this->getRequest() ) ) {
+			$this->showForm();
+			return;
+		}
+
+		$this->requestHandler->handleRequest( $subPage, $this->getRequest(), $this->getOutput() );
+	}
+
+	/**
+	 * Shows an informative page to the user; Called when there is no entity to output.
+	 */
+	public function showForm() {
+		$this->getOutput()->showErrorPage(
+			'wikibase-entitydata-title',
+			'wikibase-entitydata-text'
+		);
+	}
+
+}

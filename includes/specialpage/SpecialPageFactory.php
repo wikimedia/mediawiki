@@ -186,6 +186,7 @@ class SpecialPageFactory {
 		'Revisiondelete' => 'SpecialRevisionDelete',
 		'RunJobs' => 'SpecialRunJobs',
 		'Specialpages' => 'SpecialSpecialpages',
+		'PageData' => 'SpecialPageData'
 	];
 
 	private static $list;
