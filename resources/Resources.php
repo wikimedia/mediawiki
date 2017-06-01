@@ -2552,5 +2552,155 @@ return [
 	],
 
 	/* OOjs UI */
-	// @see ResourcesOOUI.php
+
+	// Omnibus module.
+	'oojs-ui' => [
+		'dependencies' => [
+			'oojs-ui-core',
+			'oojs-ui-widgets',
+			'oojs-ui-toolbars',
+			'oojs-ui-windows',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+
+	// The core JavaScript library.
+	'oojs-ui-core' => [
+		'class' => 'ResourceLoaderOOUIFileModule',
+		'scripts' => [
+			'resources/lib/oojs-ui/oojs-ui-core.js',
+			'resources/src/oojs-ui-local.js',
+		],
+		'themeScripts' => 'core',
+		'dependencies' => [
+			'oojs',
+			'oojs-ui-core.styles',
+			'oojs-ui.styles.indicators',
+			'oojs-ui.styles.textures',
+			'mediawiki.language',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	// This contains only the styles required by core widgets.
+	'oojs-ui-core.styles' => [
+		'class' => 'ResourceLoaderOOUIFileModule',
+		'styles' => 'resources/src/oojs-ui-local.css', // HACK, see inside the file
+		'themeStyles' => 'core',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	// Additional widgets and layouts module.
+	'oojs-ui-widgets' => [
+		'class' => 'ResourceLoaderOOUIFileModule',
+		'scripts' => 'resources/lib/oojs-ui/oojs-ui-widgets.js',
+		'themeStyles' => 'widgets',
+		'dependencies' => 'oojs-ui-core',
+		'messages' => [
+			'ooui-outline-control-move-down',
+			'ooui-outline-control-move-up',
+			'ooui-outline-control-remove',
+			'ooui-selectfile-button-select',
+			'ooui-selectfile-dragdrop-placeholder',
+			'ooui-selectfile-not-supported',
+			'ooui-selectfile-placeholder',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	// Toolbar and tools module.
+	'oojs-ui-toolbars' => [
+		'class' => 'ResourceLoaderOOUIFileModule',
+		'scripts' => 'resources/lib/oojs-ui/oojs-ui-toolbars.js',
+		'themeStyles' => 'toolbars',
+		'dependencies' => 'oojs-ui-core',
+		'messages' => [
+			'ooui-toolbar-more',
+			'ooui-toolgroup-collapse',
+			'ooui-toolgroup-expand',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	// Windows and dialogs module.
+	'oojs-ui-windows' => [
+		'class' => 'ResourceLoaderOOUIFileModule',
+		'scripts' => 'resources/lib/oojs-ui/oojs-ui-windows.js',
+		'themeStyles' => 'windows',
+		'dependencies' => 'oojs-ui-core',
+		'messages' => [
+			'ooui-dialog-message-accept',
+			'ooui-dialog-message-reject',
+			'ooui-dialog-process-continue',
+			'ooui-dialog-process-dismiss',
+			'ooui-dialog-process-error',
+			'ooui-dialog-process-retry',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+
+	'oojs-ui.styles.indicators' => [
+		'class' => 'ResourceLoaderOOUIImageModule',
+		'themeImages' => 'indicators',
+	],
+	'oojs-ui.styles.textures' => [
+		'class' => 'ResourceLoaderOOUIImageModule',
+		'themeImages' => 'textures',
+	],
+	'oojs-ui.styles.icons-accessibility' => [
+		'class' => 'ResourceLoaderOOUIImageModule',
+		'themeImages' => 'icons-accessibility',
+	],
+	'oojs-ui.styles.icons-alerts' => [
+		'class' => 'ResourceLoaderOOUIImageModule',
+		'themeImages' => 'icons-alerts',
+	],
+	'oojs-ui.styles.icons-content' => [
+		'class' => 'ResourceLoaderOOUIImageModule',
+		'themeImages' => 'icons-content',
+	],
+	'oojs-ui.styles.icons-editing-advanced' => [
+		'class' => 'ResourceLoaderOOUIImageModule',
+		'themeImages' => 'icons-editing-advanced',
+	],
+	'oojs-ui.styles.icons-editing-core' => [
+		'class' => 'ResourceLoaderOOUIImageModule',
+		'themeImages' => 'icons-editing-core',
+	],
+	'oojs-ui.styles.icons-editing-list' => [
+		'class' => 'ResourceLoaderOOUIImageModule',
+		'themeImages' => 'icons-editing-list',
+	],
+	'oojs-ui.styles.icons-editing-styling' => [
+		'class' => 'ResourceLoaderOOUIImageModule',
+		'themeImages' => 'icons-editing-styling',
+	],
+	'oojs-ui.styles.icons-interactions' => [
+		'class' => 'ResourceLoaderOOUIImageModule',
+		'themeImages' => 'icons-interactions',
+	],
+	'oojs-ui.styles.icons-layout' => [
+		'class' => 'ResourceLoaderOOUIImageModule',
+		'themeImages' => 'icons-layout',
+	],
+	'oojs-ui.styles.icons-location' => [
+		'class' => 'ResourceLoaderOOUIImageModule',
+		'themeImages' => 'icons-location',
+	],
+	'oojs-ui.styles.icons-media' => [
+		'class' => 'ResourceLoaderOOUIImageModule',
+		'themeImages' => 'icons-media',
+	],
+	'oojs-ui.styles.icons-moderation' => [
+		'class' => 'ResourceLoaderOOUIImageModule',
+		'themeImages' => 'icons-moderation',
+	],
+	'oojs-ui.styles.icons-movement' => [
+		'class' => 'ResourceLoaderOOUIImageModule',
+		'themeImages' => 'icons-movement',
+	],
+	'oojs-ui.styles.icons-user' => [
+		'class' => 'ResourceLoaderOOUIImageModule',
+		'themeImages' => 'icons-user',
+	],
+	'oojs-ui.styles.icons-wikimedia' => [
+		'class' => 'ResourceLoaderOOUIImageModule',
+		'themeImages' => 'icons-wikimedia',
+	],
 ];

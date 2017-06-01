@@ -253,7 +253,6 @@ class ResourceLoader implements LoggerAwareInterface {
 
 		// Register core modules
 		$this->register( include "$IP/resources/Resources.php" );
-		$this->register( include "$IP/resources/ResourcesOOUI.php" );
 		// Register extension modules
 		$this->register( $config->get( 'ResourceModules' ) );
 
