@@ -63,7 +63,12 @@
 	( function () {
 		var orgModule = QUnit.module;
 
-		QUnit.module = function ( name, localEnv ) {
+		QUnit.module = function ( name, localEnv, executeNow ) {
+			if ( arguments.length === 2 && typeof localEnv === 'function' ) {
+				executeNow = localEnv;
+				localEnv = undefined;
+			}
+
 			localEnv = localEnv || {};
 			orgModule( name, {
 				setup: function () {
@@ -80,9 +85,11 @@
 						localEnv.teardown.call( this );
 					}
 
-					this.sandbox.verifyAndRestore();
+					if ( this.sandbox ) {
+						this.sandbox.verifyAndRestore();
+					}
 				}
-			} );
+			}, executeNow );
 		};
 	}() );
 
@@ -90,8 +97,14 @@
 	( function () {
 		var orgModule = QUnit.module;
 
-		QUnit.module = function ( name, localEnv ) {
+		QUnit.module = function ( name, localEnv, executeNow ) {
 			var fixture;
+
+			if ( arguments.length === 2 && typeof localEnv === 'function' ) {
+				executeNow = localEnv;
+				localEnv = undefined;
+			}
+
 			localEnv = localEnv || {};
 			orgModule( name, {
 				setup: function () {
@@ -110,7 +123,7 @@
 
 					fixture.parentNode.removeChild( fixture );
 				}
-			} );
+			}, executeNow );
 		};
 	}() );
 
