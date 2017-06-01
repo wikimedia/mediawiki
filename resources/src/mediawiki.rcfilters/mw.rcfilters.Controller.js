@@ -619,6 +619,9 @@
 	 */
 	mw.rcfilters.Controller.prototype._updateURL = function ( params ) {
 		var currentFilterState, updatedFilterState, updatedUri,
+			currentHighlights = {},
+			updatedHighlight = {},
+			uri = new mw.Uri(),
 			notEquivalent = function ( obj1, obj2 ) {
 				var keys = Object.keys( obj1 ).concat( Object.keys( obj2 ) );
 				return keys.some( function ( key ) {
@@ -635,8 +638,20 @@
 		// This will allow us to always have a proper check of whether
 		// the requested new url is one to change or not, regardless of
 		// actual parameter visibility/representation in the URL
-		currentFilterState = this.filtersModel.getFiltersFromParameters( new mw.Uri().query );
+		currentFilterState = this.filtersModel.getFiltersFromParameters( uri.query );
 		updatedFilterState = this.filtersModel.getFiltersFromParameters( updatedUri.query );
+
+		// Include highlight states
+		$.extend( true,
+			currentFilterState,
+			this.filtersModel.extractHighlightValues( uri.query ),
+			{ highlight: !!Number( uri.query.highlight ) }
+		);
+		$.extend( true,
+			updatedFilterState,
+			this.filtersModel.extractHighlightValues( updatedUri.query ),
+			{ highlight: !!Number( updatedUri.query.highlight ) }
+		);
 
 		if ( notEquivalent( currentFilterState, updatedFilterState ) ) {
 			if ( this.initializing ) {

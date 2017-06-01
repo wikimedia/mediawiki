@@ -520,6 +520,26 @@
 	};
 
 	/**
+	 * Extract the highlight values from given object. Since highlights are
+	 * the same for filter and parameters, it doesn't matter which one is
+	 * given; values will be returned with a full list of the highlights
+	 * with colors or null values.
+	 *
+	 * @return {object} Object where keys are "<filter name>_color" and values
+	 *                  are the selected highlight colors.
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.extractHighlightValues = function ( representation ) {
+		var result = {};
+
+		this.getItems().forEach( function ( filterItem ) {
+			var highlightName = filterItem.getName() + '_color';
+			result[ highlightName ] = representation[ highlightName ] || null;
+		} );
+
+		return result;
+	};
+
+	/**
 	 * Sanitize value group of a string_option groups type
 	 * Remove duplicates and make sure to only use valid
 	 * values.
