@@ -100,3 +100,16 @@
 .hlist li ol > li:first-child:before {
 	content: '(' counter( list-item ) ' ';
 }
+
+/* Support hlist styles inside *boxes */
+.errorbox .hlist,
+.successbox .hlist,
+.warningbox .hlist {
+	margin-left: 0;
+}
+
+.errorbox .hlist li:after,
+.successbox .hlist li:after,
+.warningbox .hlist li:after {
+	margin-right: 3px;
+}
