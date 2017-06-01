@@ -1863,6 +1863,7 @@ return [
 			'mediawiki.jqueryMsg',
 			'mediawiki.util',
 			'oojs-ui',
+			'oojs-ui.styles.icons-moderation',
 			'mediawiki.widgets.datetime',
 		],
 		'messages' => [
