@@ -290,6 +290,9 @@ class JobRunner implements LoggerAwareInterface {
 			$error = $job->getLastError();
 			$this->commitMasterChanges( $lbFactory, $job, $fnameTrxOwner );
 			// Run any deferred update tasks; doUpdates() manages transactions itself
+			DeferredUpdates::addCallableUpdate( function () {
+				JobQueueGroup::pushLazyJobs();
+			} );
 			DeferredUpdates::doUpdates();
 		} catch ( Exception $e ) {
 			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
