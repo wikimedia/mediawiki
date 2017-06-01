@@ -85,7 +85,8 @@
 			"和平奮鬥救地球",
 			"Arthur2e5",
 			"逆襲的天邪鬼",
-			"A2093064"
+			"A2093064",
+			"Wwycheuk"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -1377,7 +1378,7 @@
 	"rcfilters-savedqueries-defaultlabel": "儲存過濾器",
 	"rcfilters-savedqueries-rename": "重新命名",
 	"rcfilters-savedqueries-setdefault": "定為預設",
-	"rcfilters-savedqueries-unsetdefault": "取消預設",
+	"rcfilters-savedqueries-unsetdefault": "取消作為預設",
 	"rcfilters-savedqueries-remove": "移除",
 	"rcfilters-savedqueries-new-name-label": "名稱",
 	"rcfilters-savedqueries-apply-label": "建立快速連結",
@@ -1568,8 +1569,8 @@
 	"uploadwarning": "上傳警告",
 	"uploadwarning-text": "請修改以下的檔案描述並重試。",
 	"savefile": "儲存檔案",
-	"uploaddisabled": "己停用上傳。",
-	"copyuploaddisabled": "己停用使用 URL 上傳。",
+	"uploaddisabled": "已停用上傳。",
+	"copyuploaddisabled": "已停止使用 URL 上傳。",
 	"uploaddisabledtext": "已停用檔案上傳。",
 	"php-uploaddisabledtext": "PHP 已停用檔案上傳。\n請檢查 file_uploads 設定。",
 	"uploadscripted": "此檔案包含可能會被網頁瀏覽器錯誤執行的 HTML 或 Script。",

@@ -2360,6 +2360,7 @@
 	"autoblocklist-submit": "Išči",
 	"autoblocklist-legend": "Seznam samodejnih blokad",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Lokalna samodejna blokada|Lokalni samodejni blokadi|Lokalne samodejne blokade}}",
+	"autoblocklist-total-autoblocks": "Skupno število samodejnih blokad: $1",
 	"autoblocklist-empty": "Seznam samodejnih blokad je prazen.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Druga samodejna blokada|Drugi samodejni blokadi|Druge samodejne blokade}}",
 	"ipblocklist": "Blokirani uporabniki",

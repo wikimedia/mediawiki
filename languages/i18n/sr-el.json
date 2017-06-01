@@ -153,7 +153,7 @@
 	"hidden-category-category": "Skrivene kategorije",
 	"category-subcat-count": "{{PLURAL:$2|1=Ova kategorija sadrži samo sledeću potkategoriju.|Ova kategorija ima {{PLURAL:$1|1=sledeću potkategoriju|sledeće $1 potkategorije|sledećih $1 potkategorija}}, od ukupno $2.}}",
 	"category-subcat-count-limited": "Ova kategorija sadrži {{PLURAL:$1|sledeću potkategoriju|sledeće $1 potkategorije|sledećih $1 potkategorija}}.",
-	"category-article-count": "{{PLURAL:$2|1=Ova kategorija sadrži samo sledeću stranicu.|{{PLURAL:$1|Sledeća stranica je|Sledeće $1 stranice su|Sledećih $1 stranica je}} u ovoj kategoriji, od ukupno $2.}}",
+	"category-article-count": "{{PLURAL:$2|1=Ova kategorija sadrži samo sledeću stranicu.|{{PLURAL:$1|Sledeća $1 stranica je|Sledeće $1 stranice su|Sledećih $1 stranica je}} u ovoj kategoriji, od ukupno $2.}}",
 	"category-article-count-limited": "{{PLURAL:$1|1=Sledeća stranica je|Sledeće $1 stranice su|Sledećih $1 stranica je}} u ovoj kategoriji.",
 	"category-file-count": "{{PLURAL:$2|1=Ova kategorija sadrži samo sledeću datoteku.|{{PLURAL:$1|1=Sledeća datoteka je|Sledeće $1 datoteke su|Sledećih $1 datoteka je}} u ovoj kategoriji, od ukupno $2.}}",
 	"category-file-count-limited": "{{PLURAL:$1|1=Sledeća datoteka je|Sledeće $1 datoteke su|Sledećih $1 datoteka je}} u ovoj kategoriji.",

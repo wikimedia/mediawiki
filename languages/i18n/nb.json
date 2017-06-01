@@ -1341,6 +1341,8 @@
 	"recentchanges-submit": "Vis",
 	"rcfilters-activefilters": "Aktive filtre",
 	"rcfilters-quickfilters": "Raske lenker",
+	"rcfilters-quickfilters-placeholder-title": "Ingen lenker lagret enda",
+	"rcfilters-quickfilters-placeholder-description": "For å lagre filterinnstillingene og gjenbruk dem senere, klikk på bokmerkeikonet i området Aktive Filtre under.",
 	"rcfilters-savedqueries-defaultlabel": "Lagrede filtre",
 	"rcfilters-savedqueries-rename": "Gi nytt navn",
 	"rcfilters-savedqueries-setdefault": "Sett som standard",
@@ -3949,8 +3951,8 @@
 	"pageid": "side-ID $1",
 	"rawhtml-notallowed": "&lt;html&gt;-tagger kan ikke brukes utenfor normale sider.",
 	"gotointerwiki": "Forlater {{SITENAME}}",
-	"gotointerwiki-invalid": "Den gitte tittelen var ugyldig.",
-	"gotointerwiki-external": "Du er i ferd med å forlate {{SITENAME}} for å besøke [[$2]], som er et annet nettsted.\n\n[$1 Klikk her for å fortsette til $1].",
+	"gotointerwiki-invalid": "Den gitte tittelen er ugyldig.",
+	"gotointerwiki-external": "Du er i ferd med å forlate {{SITENAME}} for å besøke [[$2]], som er et annet nettsted.\n\n'''[$1 Fortsett til $1]'''",
 	"undelete-cantedit": "Du kan ikke gjenopprette denne siden fordi du ikke har tillatelse til å redigere den.",
 	"undelete-cantcreate": "Du kan ikke gjenopprette denne siden fordi det ikke er noen eksisterende side med dette navnet, og du ikke har tillatelse til å opprette siden."
 }

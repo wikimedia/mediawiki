@@ -2425,6 +2425,7 @@
 	"autoblocklist-submit": "Zoeken",
 	"autoblocklist-legend": "Automatische blokkades tonen",
 	"autoblocklist-localblocks": "Lokale {{PLURAL:$1|automatische blokkades}}",
+	"autoblocklist-total-autoblocks": "Totaal aantal autoblokkades: $",
 	"autoblocklist-empty": "De lijst met automatische blokkades is leeg.",
 	"autoblocklist-otherblocks": "Andere {{PLURAL:$1|automatische blokkades}}",
 	"ipblocklist": "Geblokkeerde gebruikers",

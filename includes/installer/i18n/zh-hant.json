@@ -18,7 +18,8 @@
 			"Reke",
 			"Suchichi02",
 			"Winstonyin",
-			"Wehwei"
+			"Wehwei",
+			"Wwycheuk"
 		]
 	},
 	"config-desc": "MediaWiki 安裝程式",
@@ -41,7 +42,7 @@
 	"config-back": "← 返回",
 	"config-continue": "繼續 →",
 	"config-page-language": "語言",
-	"config-page-welcome": "歡迎您來到 MediaWiki！",
+	"config-page-welcome": "歡迎使用 MediaWiki！",
 	"config-page-dbconnect": "連線到資料庫",
 	"config-page-upgrade": "升級目前安裝的版本",
 	"config-page-dbsettings": "資料庫設定",

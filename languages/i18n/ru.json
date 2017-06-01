@@ -2458,6 +2458,7 @@
 	"autoblocklist-submit": "Найти",
 	"autoblocklist-legend": "Список автоблокировок",
 	"autoblocklist-localblocks": "{{PLURAL:$1|Локальная автоблокировка|Локальные автоблокировки}}",
+	"autoblocklist-total-autoblocks": "Всего автоблоков: $1",
 	"autoblocklist-empty": "Список автоблокировок пуст.",
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Другая автоблокировка|Другие автоблокировки}}",
 	"ipblocklist": "Заблокированные участники",

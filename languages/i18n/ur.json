@@ -1814,7 +1814,7 @@
 	"listusers-blocked": "(مسدود)",
 	"activeusers": "متحرک صارفین کی فہرست",
 	"activeusers-intro": "ذیل میں ان صارفین کی فہرست ہے جو گزشتہ $1 {{PLURAL:$1|دن|دنوں}} میں کسی بھی قسم کی سرگرمی میں شریک رہے ہوں۔",
-	"activeusers-count": "گزشتہ {{PLURAL:$3|دن|$3 دنوں}} میں $1 {{PLURAL:$1|اقدام|اقدامات}}",
+	"activeusers-count": "گزشتہ {{PLURAL:$3|دن|$3 دنوں}} میں $1 {{PLURAL:$1|ترمیم|ترامیم}}",
 	"activeusers-from": "اس حرف سے شروع ہونے والے صارفین کے نام دکھائیں:",
 	"activeusers-noresult": "یہ صارف نہیں مل سکا",
 	"activeusers-submit": "فعال صارفین دکھائیں",
