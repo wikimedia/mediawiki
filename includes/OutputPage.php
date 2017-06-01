@@ -3976,7 +3976,6 @@ class OutputPage extends ContextSource {
 		);
 		$this->addModuleStyles( [
 			'oojs-ui-core.styles',
-			'oojs-ui.styles.icons',
 			'oojs-ui.styles.indicators',
 			'oojs-ui.styles.textures',
 			'mediawiki.widgets.styles',
