@@ -63,7 +63,12 @@
 	( function () {
 		var orgModule = QUnit.module;
 
-		QUnit.module = function ( name, localEnv ) {
+		QUnit.module = function ( name, localEnv, executeNow ) {
+			if (typeof localEnv === 'function') {
+				executeNow = localEnv;
+				localEnv = undefined;
+			}
+
 			localEnv = localEnv || {};
 			orgModule( name, {
 				setup: function () {
@@ -80,9 +85,11 @@
 						localEnv.teardown.call( this );
 					}
 
-					this.sandbox.verifyAndRestore();
+					if (this.sandbox) {
+						this.sandbox.verifyAndRestore();
+					}
 				}
-			} );
+			}, executeNow );
 		};
 	}() );
 
@@ -90,8 +97,13 @@
 	( function () {
 		var orgModule = QUnit.module;
 
-		QUnit.module = function ( name, localEnv ) {
+		QUnit.module = function ( name, localEnv, executeNow ) {
 			var fixture;
+			if (typeof localEnv === 'function') {
+				executeNow = localEnv;
+				localEnv = undefined;
+			}
+
 			localEnv = localEnv || {};
 			orgModule( name, {
 				setup: function () {
@@ -110,7 +122,7 @@
 
 					fixture.parentNode.removeChild( fixture );
 				}
-			} );
+			}, executeNow );
 		};
 	}() );
 
@@ -521,6 +533,41 @@
 		);
 
 	} );
+
+	(function () {
+		var level0testRun = $.Deferred();
+		var level1testRun = $.Deferred();
+		var level2testRun = $.Deferred();
+		QUnit.module( 'test.mediawiki.qunit.testrunner-nestedModules-test' );
+
+		QUnit.test( 'all nested tests are executed', function ( assert ) {
+			var done = assert.async();
+			assert.expect( 1 );
+			$.when( level0testRun, level1testRun, level2testRun ).then( function () {
+				assert.ok( true );
+				done();
+			} );
+		} );
+
+		QUnit.module( 'test.mediawiki.qunit.testrunner-nestedModules', function () {
+			QUnit.test( 'level-0 test', function ( assert ) {
+				level0testRun.resolve();
+				assert.ok( true );
+			} );
+			QUnit.module( 'level-1', function ( hooks ) {
+				QUnit.test( 'level-1 test', function ( assert ) {
+					level1testRun.resolve();
+					assert.ok( true );
+				} );
+				QUnit.module( 'level-2', function ( hooks ) {
+					QUnit.test( 'level-2 test', function ( assert ) {
+						level2testRun.resolve();
+						assert.ok( true );
+					} );
+				} );
+			} );
+		} );
+	})();
 
 	QUnit.module( 'test.mediawiki.qunit.testrunner-after', QUnit.newMwEnvironment() );
 
