@@ -411,6 +411,19 @@ table.wikitable > caption {
 	*display: inline; /* stylelint-disable-line declaration-block-no-duplicate-properties */
 }
 
+.errorbox .hlist,
+.successbox .hlist,
+.warningbox .hlist {
+	margin-left: 0;
+}
+
+.errorbox .hlist li:after,
+.successbox .hlist li:after,
+.warningbox .hlist li:after {
+	margin-right: 3px;
+}
+
+
 .errorbox h2,
 .warningbox h2,
 .successbox h2 {
