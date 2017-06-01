@@ -4327,5 +4327,9 @@
 	"gotointerwiki-invalid": "The specified title is invalid.",
 	"gotointerwiki-external": "You are about to leave {{SITENAME}} to visit [[$2]], which is a separate website.\n\n'''[$1 Continue to $1]'''",
 	"undelete-cantedit": "You cannot undelete this page as you are not allowed to edit this page.",
-	"undelete-cantcreate": "You cannot undelete this page as there is no existing page with this name and you are not allowed to create this page."
+	"undelete-cantcreate": "You cannot undelete this page as there is no existing page with this name and you are not allowed to create this page.",
+	"pagedata-title": "Page data",
+	"pagedata-text": "This page provides a data interface to pages. Please provide the page title in the URL, using subpage syntax.\n* Content negotiation applies based on you client's Accept header. This means that the entity data will be provided in the format preferred by your client. For a web browser, this will be raw format of the page, causing your browser to be redirected to the regular page.",
+	"pagedata-not-acceptable": "No matching format found. Supported MIME types: $1",
+	"pagedata-bad-title": "Invalid title: $1."
 }
