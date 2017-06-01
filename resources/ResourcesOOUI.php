@@ -67,7 +67,6 @@ return call_user_func( function () {
 		'dependencies' => [
 			'oojs',
 			'oojs-ui-core.styles',
-			'oojs-ui.styles.icons',
 			'oojs-ui.styles.indicators',
 			'oojs-ui.styles.textures',
 			'mediawiki.language',
