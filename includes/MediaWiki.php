@@ -901,9 +901,6 @@ class MediaWiki {
 		// Do any deferred jobs
 		DeferredUpdates::doUpdates( 'enqueue' );
 
-		// Make sure any lazy jobs are pushed
-		JobQueueGroup::pushLazyJobs();
-
 		// Now that everything specific to this request is done,
 		// try to occasionally run jobs (if enabled) from the queues
 		if ( $mode === 'normal' ) {

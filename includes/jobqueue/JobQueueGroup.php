@@ -181,6 +181,11 @@ class JobQueueGroup {
 		$this->assertValidJobs( $jobs );
 
 		$this->bufferedJobs = array_merge( $this->bufferedJobs, $jobs );
+
+		$that = $this;
+		DeferredUpdates::addCallableUpdate( function() use ( $that ) {
+			$that->pushLazyJobs();
+		} );
 	}
 
 	/**
