@@ -857,6 +857,9 @@ if ( !$wgCommandLineMode ) {
 	Pingback::schedulePingback();
 }
 
+// Deferred update to push lazilly-pushed jobs
+DeferredUpdates::addCallableUpdate( [ 'JobQueueGroup', 'pushLazyJobs' ] );
+
 $wgFullyInitialised = true;
 
 Profiler::instance()->scopedProfileOut( $ps_extensions );

@@ -163,7 +163,7 @@ class JobQueueGroup {
 	/**
 	 * Buffer jobs for insertion via push() or call it now if in CLI mode
 	 *
-	 * Note that MediaWiki::restInPeace() calls pushLazyJobs()
+	 * Note that pushLazyJobs() is registered as a deferred update in Setup.php.
 	 *
 	 * @param IJobSpecification|IJobSpecification[] $jobs A single Job or a list of Jobs
 	 * @return void
