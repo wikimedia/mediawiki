@@ -1840,6 +1840,7 @@ return [
 			'mediawiki.language',
 			'mediawiki.user',
 			'mediawiki.rcfilters.filters.dm',
+			'oojs-ui.styles.icons-content',
 			'oojs-ui.styles.icons-moderation',
 			'oojs-ui.styles.icons-editing-core',
 			'oojs-ui.styles.icons-editing-styling',
