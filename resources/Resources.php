@@ -2393,6 +2393,7 @@ return [
 		],
 		'dependencies' => [
 			'oojs-ui-core',
+			'oojs-ui.styles.icons-moderation',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
