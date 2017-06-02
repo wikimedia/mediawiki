@@ -126,6 +126,70 @@ class ApiBaseTest extends ApiTestCase {
 		];
 	}
 
+	/**
+	 * @dataProvider provideGetParameterFromSettingsLimit
+	 * @param array $request
+	 * @param integer $expected
+	 * @param string $warning
+	 */
+	public function testLimitParameter( $request, $expected, $warning = null ) {
+		$mock = new MockApi();
+		$wrapper = TestingAccessWrapper::newFromObject( $mock );
+
+		$context = new DerivativeContext( $mock );
+		$context->setRequest( new FauxRequest( $request ) );
+		$wrapper->mMainModule = new ApiMain( $context );
+		$wrapper->mModulePrefix = 'acme';
+
+		$limitSettings = [
+			ApiBase::PARAM_TYPE => 'limit',
+			ApiBase::PARAM_DFLT => 10,
+			ApiBase::PARAM_MIN => 1,
+			ApiBase::PARAM_MAX => 100,
+			ApiBase::PARAM_MAX2 => 200
+		];
+
+		$result = $wrapper->getParameterFromSettings( 'limit', $limitSettings, true );
+		$this->assertEquals( $expected, $result );
+		if ( $warning ) {
+			$first = reset( $mock->warnings );
+			$this->assertEquals( $warning, $first->getApiCode() );
+		} else {
+			$this->assertSame( [], $mock->warnings );
+		}
+
+	}
+
+	public function provideGetParameterFromSettingsLimit() {
+		return [
+			'simple limit' => [
+				[ 'acmelimit' => '20' ],
+			    20
+			],
+			'global limit' => [
+				[ 'limit' => '21' ],
+				21
+			],
+			'both limits' => [
+				[ 'limit' => '42', 'acmelimit' => '22' ],
+				22
+			],
+			'no limits' => [
+				[],
+				10
+			],
+		    'max limit' => [
+			    [ 'limit' => 'max' ],
+			    100
+		    ],
+			'less than min' => [
+				[ 'limit' => '-5' ],
+				1,
+			    'integeroutofrange'
+			],
+		];
+	}
+
 	public function testErrorArrayToStatus() {
 		$mock = new MockApi();
 

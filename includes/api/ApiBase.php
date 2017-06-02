@@ -1081,6 +1081,12 @@ abstract class ApiBase extends ContextSource {
 				}
 			}
 		} else {
+			if ( $type == 'limit' && $this->getMain()->getVal( $encParamName ) === null &&
+			     $this->getMain()->getVal( $paramName ) !== null
+			) {
+				// If "gcmlimit" is not specified but "limit" is, use "limit"
+				$encParamName = $paramName;
+			}
 			$value = $this->getMain()->getVal( $encParamName, $default );
 
 			if ( isset( $value ) && $type == 'namespace' ) {
