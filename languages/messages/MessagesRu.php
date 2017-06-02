@@ -431,3 +431,4 @@ $imageFiles = [
 ];
 
 $linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюя]+)(.*)$/sDu';
+$minimumGroupingDigits = 2; // As per CLDR 31, this value is 1

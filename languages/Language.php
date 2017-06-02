@@ -3247,17 +3247,65 @@ class Language {
 	 * @todo check if it's viable to use localeconv() for the decimal separator thing.
 	 * @param int|float $number The string to be formatted, should be an integer
 	 *   or a floating point number.
-	 * @param bool $nocommafy Set to true for special numbers like dates
+	 * @param bool $noSeperators Set to true for special numbers like dates
 	 * @return string
 	 */
-	public function formatNum( $number, $nocommafy = false ) {
+	public function formatNum( $number, $noSeperators = false ) {
 		global $wgTranslateNumerals;
-		if ( !$nocommafy ) {
-			$number = $this->commafy( $number );
-			$s = $this->separatorTransformTable();
-			if ( $s ) {
-				$number = strtr( $number, $s );
+
+		if ( !is_numeric( $number ) ) {
+			return $number;
+		}
+
+		$separatorTransformTable = $this->separatorTransformTable();
+
+		if ( !$noSeperators ) {
+			if ( class_exists( NumberFormatter::class ) ) {
+				$digitGroupingPattern = $this->digitGroupingPattern();
+
+				if ( $digitGroupingPattern ) {
+					$fmt = new NumberFormatter(
+						$this->getCode(), NumberFormatter::PATTERN_DECIMAL, $digitGroupingPattern
+					);
+				} else {
+					$fmt = new NumberFormatter( $this->getCode(), NumberFormatter::DECIMAL );
+				}
+
+				// minimumGroupingDigits can be used to suppress groupings below a certain value.
+				// This is used for languages such as Polish, where one would only write the grouping
+				// separator for values above 9999 - numbers with more than 4 digits.
+				// NumberFormatter is yet to support minimumGroupingDigits, ICU has it as experimental feature.
+				// The attribute value is used by adding it to the grouping separator value. If
+				// the input number has fewer integer digits, the grouping separator is suppressed.
+				$minimumGroupingDigits = (int)$this->minimumGroupingDigits();
+				if ( $minimumGroupingDigits > 1 && strlen( (string)abs( (int)$number ) )
+					< $minimumGroupingDigits + $fmt->getAttribute( NumberFormatter::GROUPING_SIZE )
+				) {
+					// Even if numbers does not need commafy, do decimal seperator tranformation.
+					// For example 1234.56 becoms 1234,56 in pl with $minimumGroupingDigits = 2
+					return strtr( $number, $separatorTransformTable ?: [] );
+				}
+
+				// NumberFormatter supports seperator transformation, but it does not know all
+				// languages MW supports. Example: arq. Also, languages like pl has customisation.
+				// So manually set it.
+				if ( $separatorTransformTable ) {
+					$fmt->setSymbol( NumberFormatter::DECIMAL_SEPARATOR_SYMBOL, $separatorTransformTable[ '.' ] );
+					$fmt->setSymbol( NumberFormatter::GROUPING_SEPARATOR_SYMBOL, $separatorTransformTable[ ',' ] );
+				}
+
+				if ( strpos( $number, '.0' ) === strlen( $number ) - 2 ) {
+					// Setting to retain fraction part for values like 5.0, 9898.0 etc.
+					$fmt->setAttribute( NumberFormatter::MIN_FRACTION_DIGITS, 1 );
+				};
+
+				$number = $fmt->format( $number );
+			} else {
+				// Fallback implementation. Follows fixed thousands seperator pattern
+				$trans = $separatorTransformTable ?: [ ',' => ',', '.' => '.' ];
+				$number = number_format( $number, 3, $trans[ '.' ], $trans[ ',' ] );
 			}
+
 		}
 
 		if ( $wgTranslateNumerals ) {
@@ -3280,6 +3328,10 @@ class Language {
 	 */
 	public function formatNumNoSeparators( $number ) {
 		return $this->formatNum( $number, true );
+	}
+
+	public function minimumGroupingDigits() {
+		return self::$dataCache->getItem( $this->mCode, 'minimumGroupingDigits' );
 	}
 
 	/**
@@ -3306,58 +3358,18 @@ class Language {
 	}
 
 	/**
-	 * Adds commas to a given number
+	 * Adds commas to a given number.
+	 * This is a very simple fallback implementation with grouping of 3 digits.
+	 * NumberFormatting class is used when available for correct implamentation as per tr35
+	 * specification of unicode.
+	 *
 	 * @since 1.19
+	 * @deprecated in 1.30 use formatNum directly
 	 * @param mixed $number
 	 * @return string
 	 */
 	function commafy( $number ) {
-		$digitGroupingPattern = $this->digitGroupingPattern();
-		if ( $number === null ) {
-			return '';
-		}
-
-		if ( !$digitGroupingPattern || $digitGroupingPattern === "###,###,###" ) {
-			// default grouping is at thousands,  use the same for ###,###,### pattern too.
-			return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $number ) ) );
-		} else {
-			// Ref: http://cldr.unicode.org/translation/number-patterns
-			$sign = "";
-			if ( intval( $number ) < 0 ) {
-				// For negative numbers apply the algorithm like positive number and add sign.
-				$sign = "-";
-				$number = substr( $number, 1 );
-			}
-			$integerPart = [];
-			$decimalPart = [];
-			$numMatches = preg_match_all( "/(#+)/", $digitGroupingPattern, $matches );
-			preg_match( "/\d+/", $number, $integerPart );
-			preg_match( "/\.\d*/", $number, $decimalPart );
-			$groupedNumber = ( count( $decimalPart ) > 0 ) ? $decimalPart[0] : "";
-			if ( $groupedNumber === $number ) {
-				// the string does not have any number part. Eg: .12345
-				return $sign . $groupedNumber;
-			}
-			$start = $end = ( $integerPart ) ? strlen( $integerPart[0] ) : 0;
-			while ( $start > 0 ) {
-				$match = $matches[0][$numMatches - 1];
-				$matchLen = strlen( $match );
-				$start = $end - $matchLen;
-				if ( $start < 0 ) {
-					$start = 0;
-				}
-				$groupedNumber = substr( $number, $start, $end - $start ) . $groupedNumber;
-				$end = $start;
-				if ( $numMatches > 1 ) {
-					// use the last pattern for the rest of the number
-					$numMatches--;
-				}
-				if ( $start > 0 ) {
-					$groupedNumber = "," . $groupedNumber;
-				}
-			}
-			return $sign . $groupedNumber;
-		}
+		return self::formatNum( $number, false );
 	}
 
 	/**

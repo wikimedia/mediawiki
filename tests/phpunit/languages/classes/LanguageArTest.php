@@ -6,13 +6,19 @@
 
 /** Tests for MediaWiki languages/LanguageAr.php */
 class LanguageArTest extends LanguageClassesTestCase {
+	public static function provideNumber() {
+		return [
+			[ '1234567', '١٬٢٣٤٬٥٦٧' ],
+			[ '1289.456', '١٬٢٨٩٫٤٥٦' ]
+		];
+	}
+
 	/**
+	 * @dataProvider provideNumber
 	 * @covers Language::formatNum
-	 * @todo split into a test and a dataprovider
 	 */
-	public function testFormatNum() {
-		$this->assertEquals( '١٬٢٣٤٬٥٦٧', $this->getLang()->formatNum( '1234567' ) );
-		$this->assertEquals( '-١٢٫٨٩', $this->getLang()->formatNum( -12.89 ) );
+	public function testFormatNum( $value, $result ) {
+		$this->assertEquals( $result, $this->getLang()->formatNum( $value ) );
 	}
 
 	/**
