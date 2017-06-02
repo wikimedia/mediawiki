@@ -174,23 +174,18 @@
 			this.setFilekey( this.filekey );
 		}
 
-		return this.upload.getApi().then(
-			function ( api ) {
-				// If the user can't upload anything, don't give them the option to.
-				return api.getUserInfo().then(
-					function ( userInfo ) {
-						if ( userInfo.rights.indexOf( 'upload' ) === -1 ) {
-							if ( mw.user.isAnon() ) {
-								booklet.getPage( 'upload' ).$element.msg( 'apierror-mustbeloggedin', mw.msg( 'action-upload' ) );
-							} else {
-								booklet.getPage( 'upload' ).$element.msg( 'apierror-permissiondenied', mw.msg( 'action-upload' ) );
-							}
-						}
-						return $.Deferred().resolve();
-					},
-					// Always resolve, never reject
-					function () { return $.Deferred().resolve(); }
-				);
+		return this.upload.isUploadAllowed().then(
+			function ( res ) {
+				if (!res.allowed) {
+					// If the user can't upload anything, don't give them the option to.
+					if ( mw.user.isAnon() ) {
+						booklet.getPage( 'upload' ).$element.msg( 'apierror-mustbeloggedin', mw.msg( 'action-' + res.uploadRight ) );
+					} else {
+						booklet.getPage( 'upload' ).$element.msg( 'apierror-permissiondenied', mw.msg( 'action-' +  + res.uploadRight ) );
+					}
+				}
+
+				return $.Deferred().resolve();
 			},
 			function ( errorMsg ) {
 				booklet.getPage( 'upload' ).$element.msg( errorMsg );

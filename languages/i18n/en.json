@@ -1305,6 +1305,7 @@
 	"action-move-categorypages": "move category pages",
 	"action-movefile": "move this file",
 	"action-upload": "upload this file",
+	"action-crosswiki-upload": "upload file to shared repository",
 	"action-reupload": "overwrite this existing file",
 	"action-reupload-shared": "override this file on a shared repository",
 	"action-upload_by_url": "upload this file from a URL",

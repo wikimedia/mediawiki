@@ -260,5 +260,23 @@
 		return '[[' + namespace + ':' + username + '|' + username + ']]';
 	};
 
+	/**
+	 * @inheritdoc
+	 */
+	ForeignStructuredUpload.prototype.isUploadAllowed = function() {
+		var promise = new $.Deferred(),
+			userright = ( this.target === 'local' ) ? 'upload' : 'crosswiki-upload';
+
+		this.apiPromise.then( function ( api ) {
+			api.getUserInfo().then(
+				function ( userInfo ) {
+					promise.resolve( { allowed: userInfo.rights.indexOf( userright ) != -1, userInfo: userInfo, uploadRight: userright });
+				}
+			);
+		});
+
+		return promise;
+	}
+
 	mw.ForeignStructuredUpload = ForeignStructuredUpload;
 }( mediaWiki, jQuery, OO ) );

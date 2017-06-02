@@ -366,6 +366,22 @@
 	};
 
 	/**
+	 * Get info whether the user have sufficent access rights for upload
+	 *
+	 * @return {jQuery.Promise}
+	 */
+	UP.isUploadAllowed = function() {
+		var promise = new $.Deferred();
+
+		this.api.getUserInfo().then(
+			function ( userInfo ) {
+				promise.resolve( { allowed: userInfo.rights.indexOf( 'upload' ) != -1, userInfo: userInfo, uploadRight: 'upload' });
+			}
+		);
+		return promise;
+	}
+
+	/**
 	 * @enum mw.Upload.State
 	 * State of uploads represented in simple terms.
 	 */

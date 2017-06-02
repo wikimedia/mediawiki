@@ -186,6 +186,7 @@ class User implements IDBAccessObject {
 		'undelete',
 		'unwatchedpages',
 		'upload',
+		'crosswiki-upload',
 		'upload_by_url',
 		'userrights',
 		'userrights-interwiki',

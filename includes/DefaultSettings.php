@@ -5125,6 +5125,7 @@ $wgGroupPermissions['user']['writeapi'] = true;
 $wgGroupPermissions['user']['upload'] = true;
 $wgGroupPermissions['user']['reupload'] = true;
 $wgGroupPermissions['user']['reupload-shared'] = true;
+$wgGroupPermissions['user']['crosswiki-upload'] = true;
 $wgGroupPermissions['user']['minoredit'] = true;
 $wgGroupPermissions['user']['purge'] = true;
 $wgGroupPermissions['user']['sendemail'] = true;

@@ -1494,6 +1494,7 @@
 	"action-move-categorypages": "{{Doc-action|move-categorypages}}",
 	"action-movefile": "{{doc-action|movefile}}",
 	"action-upload": "{{Doc-action|upload}}",
+	"action-crosswiki-upload": "{{Doc-action|crosswiki-upload}}",
 	"action-reupload": "{{Doc-action|reupload}}",
 	"action-reupload-shared": "{{Doc-action|reupload-shared}}",
 	"action-upload_by_url": "{{Doc-action|upload_by_url}}",
