@@ -355,4 +355,4 @@ $magicWords = [
 
 $linkTrail = "/^([a-z\x{0D02}-\x{0D7F}]+)(.*)$/sDu";
 
-$digitGroupingPattern = "##,##,###";
+$digitGroupingPattern = "#,##,##0.###";
