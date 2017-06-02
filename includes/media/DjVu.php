@@ -471,7 +471,7 @@ class DjVuHandler extends ImageHandler {
 	* @since 1.30
 	*/
 	public function getContentHeaders( $metadata, $fallbackWidth = null, $fallbackHeight = null ) {
-		if ( !is_array( $metadata ) || !isset( $metadata['xml'] ) ) {
+		if ( !isset( $metadata['xml'] ) ) {
 			return [];
 		}
 
