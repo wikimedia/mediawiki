@@ -505,7 +505,7 @@
 	/**
 	 * Get the highlight parameters based on current filter configuration
 	 *
-	 * @return {object} Object where keys are "<filter name>_color" and values
+	 * @return {Object} Object where keys are "<filter name>_color" and values
 	 *                  are the selected highlight colors.
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getHighlightParameters = function () {
@@ -515,6 +515,30 @@
 			result[ filterItem.getName() + '_color' ] = filterItem.getHighlightColor() || null;
 		} );
 		result.highlight = String( Number( this.isHighlightEnabled() ) );
+
+		return result;
+	};
+
+	/**
+	 * Extract the highlight values from given object. Since highlights are
+	 * the same for filter and parameters, it doesn't matter which one is
+	 * given; values will be returned with a full list of the highlights
+	 * with colors or null values.
+	 *
+	 * @param {Object} representation Object containing representation of
+	 *  some or all highlight values
+	 * @return {Object} Object where keys are "<filter name>_color" and values
+	 *                  are the selected highlight colors. The returned object
+	 *                  contains all available filters either with a color value
+	 *                  or with null.
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.extractHighlightValues = function ( representation ) {
+		var result = {};
+
+		this.getItems().forEach( function ( filterItem ) {
+			var highlightName = filterItem.getName() + '_color';
+			result[ highlightName ] = representation[ highlightName ] || null;
+		} );
 
 		return result;
 	};
