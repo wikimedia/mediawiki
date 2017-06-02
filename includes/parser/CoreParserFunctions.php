@@ -296,29 +296,32 @@ class CoreParserFunctions {
 			self::matchAgainstMagicword( $parser->getMagicWordFactory(), 'nocommafysuffix', $arg )
 		) {
 			$func = [ $parser->getFunctionLang(), 'formatNumNoSeparators' ];
+			$func = self::getLegacyFormatNum( $parser, $func );
 		} else {
-			$func = self::getLegacyFormatNum( $parser );
+			$func = [ $parser->getFunctionLang(), 'formatNum' ];
+			$func = self::getLegacyFormatNum( $parser, $func );
 		}
 		return $parser->markerSkipCallback( $num, $func );
 	}
 
 	/**
 	 * @param Parser $parser
+	 * @param callable $callback
 	 *
-	 * @return Closure
+	 * @return callable
 	 */
-	private static function getLegacyFormatNum( $parser ) {
+	private static function getLegacyFormatNum( $parser, $callback ) {
 		// For historic reasons, the formatNum parser function will
 		// take arguments which are not actually formatted numbers,
-		// which then trigger deprecation warnings in commafy.  Instead
-		// emit a tracking category instead to allow linting.
-		$validNumberRe = '(-(?=[\d\.]))?(\d+|(?=\.\d))(\.\d*)?';
-		return function ( $number ) use ( $parser, $validNumberRe ) {
+		// which then trigger deprecation warnings in Language::formatNum*.
+		// Instead emit a tracking category instead to allow linting.
+		return function ( $number ) use ( $parser, $callback ) {
+			$validNumberRe = '(-(?=[\d\.]))?(\d+|(?=\.\d))(\.\d*)?';
 			if ( !preg_match( "/^{$validNumberRe}$/", $number ) ) {
 				$parser->addTrackingCategory( 'nonnumeric-formatnum' );
 			}
-			return preg_replace_callback( "/{$validNumberRe}/", function ( $m ) use ( $parser ) {
-				return $parser->getFunctionLang()->formatNum( $m[0] );
+			return preg_replace_callback( "/{$validNumberRe}/", function ( $m ) use ( $callback ) {
+				return call_user_func( $callback, $m[0] );
 			}, $number );
 		};
 	}

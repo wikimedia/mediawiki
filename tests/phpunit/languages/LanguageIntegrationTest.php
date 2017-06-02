@@ -1669,14 +1669,19 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider provideFormatNum
 	 * @covers Language::formatNum
+	 * @covers Language::formatNumNoSeparators
 	 */
 	public function testFormatNum(
-		$translateNumerals, $langCode, $number, $nocommafy, $expected
+		$translateNumerals, $langCode, $number, $noSeparators, $expected
 	) {
-		$this->hideDeprecated( 'Language::commafy with a non-numeric string' );
+		$this->hideDeprecated( 'Language::formatNum with a non-numeric string' );
 		$this->setMwGlobals( [ 'wgTranslateNumerals' => $translateNumerals ] );
 		$lang = Language::factory( $langCode );
-		$formattedNum = $lang->formatNum( $number, $nocommafy );
+		if ( $noSeparators ) {
+			$formattedNum = $lang->formatNumNoSeparators( $number );
+		} else {
+			$formattedNum = $lang->formatNum( $number );
+		}
 		$this->assertIsString( $formattedNum );
 		$this->assertEquals( $expected, $formattedNum );
 	}
@@ -1687,6 +1692,28 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[ true, 'en', 101, true, '101' ],
 			[ false, 'en', 103, false, '103' ],
 			[ false, 'en', 104, true, '104' ],
+			[ true, 'en', '105', false, '105' ],
+			[ true, 'en', '106', true, '106' ],
+			[ false, 'en', '107', false, '107' ],
+			[ false, 'en', '108', true, '108' ],
+			[ true, 'en', -1, false, '-1' ],
+			[ true, 'en', 10, false, '10' ],
+			[ true, 'en', 100, false, '100' ],
+			[ true, 'en', 1000, false, '1,000' ],
+			[ true, 'en', 10000, false, '10,000' ],
+			[ true, 'en', 100000, false, '100,000' ],
+			[ true, 'en', 1000000, false, '1,000,000' ],
+			[ true, 'en', -1.001, false, '-1.001' ],
+			[ true, 'en', 1.001, false, '1.001' ],
+			[ true, 'en', 10.0001, false, '10.0001' ],
+			[ true, 'en', 100.001, false, '100.001' ],
+			[ true, 'en', 1000.001, false, '1,000.001' ],
+			[ true, 'en', 10000.001, false, '10,000.001' ],
+			[ true, 'en', 100000.001, false, '100,000.001' ],
+			[ true, 'en', 1000000.0001, false, '1,000,000.0001' ],
+			[ true, 'en', -1.0001, false, '-1.0001' ],
+			[ true, 'en', '200000000000000000000', false, '200,000,000,000,000,000,000' ],
+			[ true, 'en', '-200000000000000000000', false, '-200,000,000,000,000,000,000' ],
 			[ true, 'kn', '1050', false, '೧,೦೫೦' ],
 			[ true, 'kn', '1060', true, '೧೦೬೦' ],
 			[ false, 'kn', '1070', false, '1,070' ],
@@ -1696,8 +1723,8 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			// Make sure non-numeric strings are not destroyed
 			[ false, 'en', 'The number is 1234', false, 'The number is 1,234' ],
 			[ false, 'en', '1234 is the number', false, '1,234 is the number' ],
-			[ false, 'de', '.', false, ',' ],
-			[ false, 'de', ',', false, '.' ],
+			[ false, 'de', '.', false, '.' ],
+			[ false, 'de', ',', false, ',' ],
 
 			/** @see https://phabricator.wikimedia.org/T237467 */
 			[ false, 'kn', "೭\u{FFFD}0", false, "೭\u{FFFD}0" ],
@@ -1735,7 +1762,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @dataProvider provideCommafyData
 	 */
 	public function testCommafy( $number, $numbersWithCommas ) {
-		$this->hideDeprecated( 'Language::commafy with a non-numeric string' );
+		$this->hideDeprecated( 'Language::formatNum with a non-numeric string' );
 		$this->assertEquals(
 			$numbersWithCommas,
 			$this->getLang()->commafy( $number ),

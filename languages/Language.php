@@ -1503,8 +1503,10 @@ class Language {
 				} elseif ( $hebrewNum ) {
 					$s .= self::hebrewNumeral( $num );
 					$hebrewNum = false;
+				} elseif ( preg_match( '/^[\d.]+$/', $num ) ) {
+					$s .= $this->formatNumNoSeparators( $num );
 				} else {
-					$s .= $this->formatNum( $num, true );
+					$s .= $num;
 				}
 			}
 		}
@@ -3249,30 +3251,130 @@ class Language {
 	 * See $separatorTransformTable on MessageIs.php for
 	 * the , => . and . => , implementation.
 	 *
-	 * @todo check if it's viable to use localeconv() for the decimal separator thing.
 	 * @param string|int|float $number Expected to be a pre-formatted (e.g. leading zeros, number
 	 *  of decimal places) numeric string. Any non-string will be cast to string.
-	 * @param bool $nocommafy Set to true for special numbers like dates
+	 * @param bool $noSeparators Set to true for special numbers like dates
+	 *     (deprecated: use ::formatNumNoSeparators instead of this param)
 	 * @return string
 	 */
-	public function formatNum( $number, $nocommafy = false ) {
+	public function formatNum( $number, $noSeparators = false ) {
+		return $this->formatNumInternal( (string)$number, false, $noSeparators );
+	}
+
+	/**
+	 * Internal implementation function, shared between commafy, formatNum,
+	 * and formatNumNoSeparators.
+	 *
+	 * @param string $number
+	 * @param bool $noTranslate Whether to translate digits and separators
+	 * @param bool $noSeparators Whether to add separators
+	 * @return string
+	 */
+	private function formatNumInternal(
+		string $number, bool $noTranslate, bool $noSeparators
+	): string {
 		global $wgTranslateNumerals;
 
-		$number = (string)$number;
-		if ( !$nocommafy ) {
-			$number = $this->commafy( $number );
-			$s = $this->separatorTransformTable();
-			if ( $s ) {
-				$number = strtr( $number, $s );
+		if ( $number === '' ) {
+			return $number;
+		}
+		if ( !is_numeric( $number ) ) {
+			wfDeprecated( 'Language::formatNum with a non-numeric string', '1.36' );
+			$validNumberRe = '(-(?=[\d\.]))?(\d+|(?=\.\d))(\.\d*)?';
+			// For backwards-compat, apply formatNum piecewise on the valid
+			// numbers in the string.
+			return preg_replace_callback( "/{$validNumberRe}/", function ( $m )  use ( $noTranslate, $noSeparators ) {
+				return $this->formatNumInternal( $m[0], $noTranslate, $noSeparators );
+			}, $number );
+		}
+
+		if ( !$noSeparators ) {
+			$separatorTransformTable = $this->separatorTransformTable();
+			$digitGroupingPattern = $this->digitGroupingPattern();
+
+			if ( $digitGroupingPattern ) {
+				$fmt = new NumberFormatter(
+					$this->getCode(), NumberFormatter::PATTERN_DECIMAL, $digitGroupingPattern
+				);
+			} else {
+				/** @suppress PhanParamTooFew Phan thinks this always requires 3 parameters, that's wrong */
+				$fmt = new NumberFormatter( $this->getCode(), NumberFormatter::DECIMAL );
+			}
+
+			// minimumGroupingDigits can be used to suppress groupings below a certain value.
+			// This is used for languages such as Polish, where one would only write the grouping
+			// separator for values above 9999 - numbers with more than 4 digits.
+			// NumberFormatter is yet to support minimumGroupingDigits, ICU has it as experimental feature.
+			// The attribute value is used by adding it to the grouping separator value. If
+			// the input number has fewer integer digits, the grouping separator is suppressed.
+			$minimumGroupingDigits = $this->minimumGroupingDigits() ?? 0;
+			// Note that MediaWiki historically has had an off-by-off error
+			// in its definition minimumGroupingDigits, so (for example) pl
+			// sets minimumGroupingDigits = 2 where the Unicode CLDR would say
+			// that minimumGroupingDigits should be 1.  So subtract one from
+			// minimumGroupingDigits.  (T262500 will eventually fix this!)
+			if ( $minimumGroupingDigits > 1 ) {
+				$minimumGroupingDigits -= 1;
+			}
+			// Maximum length of a number to suppress digit grouping for.
+			// http://unicode.org/reports/tr35/tr35-numbers.html#Examples_of_minimumGroupingDigits
+			$maximumLength = $minimumGroupingDigits + $fmt->getAttribute( NumberFormatter::GROUPING_SIZE );
+			if ( $minimumGroupingDigits && preg_match( '/^\-?\d{1,' . $maximumLength . '}(\.\d+)?$/', $number ) ) {
+				// Even if number does not need commafy, do decimal
+				// separator tranformation.  For example 1234.56 becoms
+				// 1234,56 in pl with $minimumGroupingDigits = 2
+				if ( !$noTranslate ) {
+					$number = strtr( $number, $separatorTransformTable ?: [] );
+				}
+			} elseif ( $number === '-0' ) {
+				// Special case to ensure we don't lose the minus sign by
+				// converting to an int.
+				if ( !$noTranslate ) {
+					$number = strtr( $number, $separatorTransformTable ?: [] );
+				}
+			} else {
+				// NumberFormatter supports separator transformation,
+				// but it does not know all languages MW
+				// supports. Example: arq. Also, languages like pl has
+				// customisation.  So manually set it.
+				if ( $noTranslate ) {
+					$fmt->setSymbol( NumberFormatter::DECIMAL_SEPARATOR_SYMBOL, '.' );
+					$fmt->setSymbol( NumberFormatter::GROUPING_SEPARATOR_SYMBOL, ',' );
+				} elseif ( $separatorTransformTable ) {
+					$fmt->setSymbol( NumberFormatter::DECIMAL_SEPARATOR_SYMBOL, $separatorTransformTable[ '.' ] );
+					$fmt->setSymbol( NumberFormatter::GROUPING_SEPARATOR_SYMBOL, $separatorTransformTable[ ',' ] );
+				}
+
+				// Maintain # of digits before and after the decimal point
+				// (and presence of decimal point)
+				if ( preg_match( '/^-?(\d*)(\.(\d*))?$/', $number, $m ) ) {
+					$fmt->setAttribute( NumberFormatter::MIN_INTEGER_DIGITS, strlen( $m[1] ) );
+					if ( isset( $m[2] ) ) {
+						$fmt->setAttribute( NumberFormatter::DECIMAL_ALWAYS_SHOWN, true );
+					}
+					$fmt->setAttribute( NumberFormatter::FRACTION_DIGITS, strlen( $m[3] ?? '' ) );
+				}
+				$number = $fmt->format( $number );
 			}
 		}
 
-		if ( $wgTranslateNumerals ) {
+		if ( $wgTranslateNumerals && !$noTranslate ) {
 			$s = $this->digitTransformTable();
 			if ( $s ) {
 				$number = strtr( $number, $s );
 			}
 		}
+
+		// Remove any LRM or RLM characters generated from NumberFormatter,
+		// since directionality is handled outside of this context.
+		// Similarly remove \u61C, the "Arabic Letter mark" (unicode 6.3.0)
+		// https://en.wikipedia.org/wiki/Arabic_letter_mark
+		// which is added starting PHP 7.3+
+		$number = strtr( $number, [
+			"\u{200E}" => '', // LRM
+			"\u{200F}" => '', // RLM
+			"\u{061C}" => '', // ALM
+		] );
 
 		return $number;
 	}
@@ -3286,7 +3388,7 @@ class Language {
 	 * @return string
 	 */
 	public function formatNumNoSeparators( $number ) {
-		return $this->formatNum( $number, true );
+		return $this->formatNumInternal( (string)$number, false, true );
 	}
 
 	/**
@@ -3313,8 +3415,12 @@ class Language {
 	}
 
 	/**
-	 * Adds commas to a given number
+	 * Adds commas to a given number.  NumberFormatting class is used
+	 * when available for correct implementation as per tr35
+	 * specification of unicode.
+	 *
 	 * @since 1.19
+	 * @deprecated in 1.36 use formatNum
 	 * @param string|null $number Expected to be a numeric string without (thousand) group
 	 *  separators. Decimal seperator, if present, must be a dot. Any non-string will be cast to
 	 *  string.
@@ -3325,74 +3431,7 @@ class Language {
 		if ( $number === null || $number === '' ) {
 			return '';
 		}
-		if ( !is_string( $number ) ) {
-			$number = (string)$number;
-		}
-		$validNumberRe = '(-(?=[\d\.]))?(\d+|(?=\.\d))(\.\d*)?';
-		if ( !preg_match( "/^{$validNumberRe}$/", $number ) ) {
-			wfDeprecated( __METHOD__ . ' with a non-numeric string', '1.36' );
-			// For backwards-compat, return commafy piecewise on the valid
-			// numbers in the string.
-			return preg_replace_callback( "/{$validNumberRe}/", function ( $m ) {
-				return $this->commafy( $m[0] );
-			}, $number );
-		}
-
-		$digitGroupingPattern = $this->digitGroupingPattern();
-		$minimumGroupingDigits = $this->minimumGroupingDigits();
-		if ( !$digitGroupingPattern || $digitGroupingPattern === "###,###,###" ) {
-			// Default grouping is at thousands, use the same for ###,###,### pattern too.
-			// In some languages it's conventional not to insert a thousands separator
-			// in numbers that are four digits long (1000-9999).
-			if ( $minimumGroupingDigits ) {
-				// Number of '#' characters after last comma in the grouping pattern.
-				// The pattern is hardcoded here, but this would vary for different patterns.
-				$primaryGroupingSize = 3;
-				// Maximum length of a number to suppress digit grouping for.
-				$maximumLength = $minimumGroupingDigits + $primaryGroupingSize - 1;
-				if ( preg_match( '/^\-?\d{1,' . $maximumLength . '}(\.\d+)?$/', $number ) ) {
-					return $number;
-				}
-			}
-			return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $number ) ) );
-		} else {
-			// Ref: http://cldr.unicode.org/translation/numbers-currency/number-patterns
-			$sign = "";
-			if ( substr( $number, 0, 1 ) === '-' ) {
-				// For negative numbers apply the algorithm like positive number and add sign.
-				$sign = "-";
-				$number = substr( $number, 1 );
-			}
-			$integerPart = [];
-			$decimalPart = [];
-			$numMatches = preg_match_all( "/(#+)/", $digitGroupingPattern, $matches );
-			preg_match( "/^\d+/", $number, $integerPart );
-			preg_match( "/\.\d*/", $number, $decimalPart );
-			$groupedNumber = ( count( $decimalPart ) > 0 ) ? $decimalPart[0] : "";
-			if ( $groupedNumber === $number ) {
-				// the string does not have any number part. Eg: .12345
-				return $sign . $groupedNumber;
-			}
-			$start = $end = ( $integerPart ) ? strlen( $integerPart[0] ) : 0;
-			while ( $start > 0 ) {
-				$match = $matches[0][$numMatches - 1];
-				$matchLen = strlen( $match );
-				$start = $end - $matchLen;
-				if ( $start < 0 ) {
-					$start = 0;
-				}
-				$groupedNumber = substr( $number, $start, $end - $start ) . $groupedNumber;
-				$end = $start;
-				if ( $numMatches > 1 ) {
-					// use the last pattern for the rest of the number
-					$numMatches--;
-				}
-				if ( $start > 0 ) {
-					$groupedNumber = "," . $groupedNumber;
-				}
-			}
-			return $sign . $groupedNumber;
-		}
+		return $this->formatNumInternal( $number, true, false );
 	}
 
 	/**

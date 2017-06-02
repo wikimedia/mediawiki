@@ -1,5 +1,5 @@
 {
-    "@": "Last generated with generateJqueryMsgData.php at Thu, 23 Apr 2020 20:59:43 +0000",
+    "@": "Last generated with generateJqueryMsgData.php at Thu, 10 Sep 2020 03:30:38 +0000",
     "messages": {
         "en_undelete_short": "Undelete {{PLURAL:$1|one edit|$1 edits}}",
         "en_category-subcat-count": "{{PLURAL:$2|This category has only the following subcategory.|This category has the following {{PLURAL:$1|subcategory|$1 subcategories}}, out of $2 total.}}",
@@ -782,7 +782,7 @@
             "pluralRules": [
                 "i = 1 and v = 0 @integer 1"
             ],
-            "digitGroupingPattern": null,
+            "digitGroupingPattern": "#,##0.###",
             "fallbackLanguages": [],
             "bcp47Map": {
                 "als": "gsw",
@@ -827,7 +827,7 @@
             "pluralRules": [
                 "i = 0,1 @integer 0, 1 @decimal 0.0~1.5"
             ],
-            "digitGroupingPattern": null,
+            "digitGroupingPattern": "#,##0.###",
             "fallbackLanguages": [
                 "en"
             ],
@@ -889,7 +889,7 @@
                 "n % 100 = 3..10 @integer 3~10, 103~110, 1003, \u2026 @decimal 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 103.0, 1003.0, \u2026",
                 "n % 100 = 11..99 @integer 11~26, 111, 1011, \u2026 @decimal 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 111.0, 1011.0, \u2026"
             ],
-            "digitGroupingPattern": null,
+            "digitGroupingPattern": "#,##0.###",
             "fallbackLanguages": [
                 "en"
             ],
@@ -933,7 +933,7 @@
             "pluralRules": [
                 "i = 1 and v = 0 @integer 1"
             ],
-            "digitGroupingPattern": null,
+            "digitGroupingPattern": "#,##0.###",
             "fallbackLanguages": [
                 "en"
             ],
@@ -977,7 +977,7 @@
             "pluralRules": [
                 "i = 1 and v = 0 @integer 1"
             ],
-            "digitGroupingPattern": null,
+            "digitGroupingPattern": "#,##0.###",
             "fallbackLanguages": [
                 "zh-hans",
                 "en"
@@ -1025,7 +1025,7 @@
             "pluralRules": [
                 "i = 1 and v = 0 @integer 1"
             ],
-            "digitGroupingPattern": null,
+            "digitGroupingPattern": "#,##0.###",
             "fallbackLanguages": [
                 "en"
             ],
@@ -1069,7 +1069,7 @@
             "pluralRules": [
                 "n = 1 @integer 1 @decimal 1.0, 1.00, 1.000, 1.0000"
             ],
-            "digitGroupingPattern": "##,##,###",
+            "digitGroupingPattern": "#,##,##0.###",
             "fallbackLanguages": [
                 "en"
             ],
@@ -1124,7 +1124,7 @@
             "pluralRules": [
                 "i = 0 or n = 1 @integer 0, 1 @decimal 0.0~1.0, 0.00~0.04"
             ],
-            "digitGroupingPattern": "##,##,###",
+            "digitGroupingPattern": "#,##,##0.###",
             "fallbackLanguages": [
                 "en"
             ],

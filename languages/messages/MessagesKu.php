@@ -9,3 +9,4 @@
  */
 
 $fallback = 'ku-latn';
+$minimumGroupingDigits = 2;

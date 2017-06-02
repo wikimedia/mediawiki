@@ -17,6 +17,7 @@ class LanguageArTest extends LanguageClassesTestCase {
 		return [
 			[ '1234567', '١٬٢٣٤٬٥٦٧' ],
 			[ -12.89, '-١٢٫٨٩' ],
+			[ '1289.456', '١٬٢٨٩٫٤٥٦' ]
 		];
 	}
 
