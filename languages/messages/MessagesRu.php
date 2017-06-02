@@ -431,3 +431,4 @@ $imageFiles = [
 ];
 
 $linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюя]+)(.*)$/sDu';
+$minimumGroupingDigits = 4;

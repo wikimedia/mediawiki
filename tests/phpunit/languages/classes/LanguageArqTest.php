@@ -19,8 +19,9 @@ class LanguageArqTest extends LanguageClassesTestCase {
 	public static function provideNumber() {
 		return [
 			[ '1.234.567', '1234567' ],
-			[ '-12,89', -12.89 ],
-			];
+			[ '1.234.567,568', '1234567.568' ],
+			[ '-12,89', '-12.89' ]
+		];
 	}
 
 }
