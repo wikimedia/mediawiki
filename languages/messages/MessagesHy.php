@@ -255,3 +255,5 @@ $specialPageAliases = [
 ];
 
 $linkTrail = '/^([a-zաբգդեզէըթժիլխծկհձղճմյնշոչպջռսվտրցւփքօֆև«»]+)(.*)$/sDu';
+
+$minimumGroupingDigits = 4;

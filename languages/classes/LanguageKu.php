@@ -227,7 +227,7 @@ class KuConverter extends LanguageConverter {
  *
  * @ingroup Language
  */
-class LanguageKu extends LanguageKu_ku {
+class LanguageKu extends Language {
 
 	function __construct() {
 		parent::__construct();
