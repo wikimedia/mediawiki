@@ -28,11 +28,11 @@ class LanguageBe_taraskTest extends LanguageClassesTestCase {
 
 	/**
 	 * @see T25156 & r64981
-	 * @covers Language::commafy
+	 * @covers Language::formatNum
 	 */
-	public function testCommafy() {
-		$this->assertEquals( '1,234,567', $this->getLang()->commafy( '1234567' ) );
-		$this->assertEquals( '12,345', $this->getLang()->commafy( '12345' ) );
+	public function testformatNum() {
+		$this->assertEquals( '1 234 567', $this->getLang()->formatNum( '1234567' ) );
+		$this->assertEquals( '12 345', $this->getLang()->formatNum( '12345' ) );
 	}
 
 	/**
@@ -40,7 +40,7 @@ class LanguageBe_taraskTest extends LanguageClassesTestCase {
 	 * @covers Language::commafy
 	 */
 	public function testDoesNotCommafyFourDigitsNumber() {
-		$this->assertEquals( '1234', $this->getLang()->commafy( '1234' ) );
+		$this->assertEquals( '1234', $this->getLang()->formatNum( '1234' ) );
 	}
 
 	/**

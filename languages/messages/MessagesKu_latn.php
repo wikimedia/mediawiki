@@ -110,3 +110,4 @@ $magicWords = [
 ];
 
 $linkTrail = '/^([a-zçêîşûẍḧÇÊÎŞÛẌḦ]+)(.*)$/sDu';
+$minimumGroupingDigits = 4;
