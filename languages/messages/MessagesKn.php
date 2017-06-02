@@ -61,4 +61,4 @@ $digitTransformTable = [
 	'9' => '೯', # &#x0cef;
 ];
 
-$digitGroupingPattern = "##,##,###";
+$digitGroupingPattern = "#,##,##0.###";

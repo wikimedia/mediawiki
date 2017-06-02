@@ -282,4 +282,4 @@ $magicWords = [
 	'protectionlevel'           => [ '1', 'रक्षास्तर', 'PROTECTIONLEVEL' ],
 ];
 
-$digitGroupingPattern = "##,##,###";
+$digitGroupingPattern = "#,##,##0.###";
