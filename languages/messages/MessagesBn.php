@@ -47,7 +47,7 @@ $digitTransformTable = [
 	'9' => '৯'
 ];
 
-$digitGroupingPattern = "##,##,###";
+$digitGroupingPattern = "#,##,##0.###";
 
 $specialPageAliases = [
 	'Activeusers'               => [ 'সক্রিয়_ব্যবহারকারী' ],
