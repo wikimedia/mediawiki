@@ -1653,6 +1653,24 @@ class LanguageTest extends LanguageClassesTestCase {
 			[ true, 'en', '106', true, '106' ],
 			[ false, 'en', '107', false, '107' ],
 			[ false, 'en', '108', true, '108' ],
+			[ true, 'en', -1, false, '-1' ],
+			[ true, 'en', 10, false, '10' ],
+			[ true, 'en', 100, false, '100' ],
+			[ true, 'en', 1000, false, '1,000' ],
+			[ true, 'en', 10000, false, '10,000' ],
+			[ true, 'en', 100000, false, '100,000' ],
+			[ true, 'en', 1000000, false, '1,000,000' ],
+			[ true, 'en', -1.001, false, '-1.001' ],
+			[ true, 'en', 1.001, false, '1.001' ],
+			[ true, 'en', 10.0001, false, '10' ],
+			[ true, 'en', 100.001, false, '100.001' ],
+			[ true, 'en', 1000.001, false, '1,000.001' ],
+			[ true, 'en', 10000.001, false, '10,000.001' ],
+			[ true, 'en', 100000.001, false, '100,000.001' ],
+			[ true, 'en', 1000000.0001, false, '1,000,000' ],
+			[ true, 'en', -1.0001, false, '-1' ],
+			[ true, 'en', '200000000000000000000', false, '200,000,000,000,000,000,000' ],
+			[ true, 'en', '-200000000000000000000', false, '-200,000,000,000,000,000,000' ],
 		];
 	}
 
@@ -1677,40 +1695,6 @@ class LanguageTest extends LanguageClassesTestCase {
 			[ 'ar', 1844 ],
 			[ 'lzh', 3731 ],
 			[ 'zh-classical', 7432 ]
-		];
-	}
-
-	/**
-	 * @covers Language::commafy()
-	 * @dataProvider provideCommafyData
-	 */
-	public function testCommafy( $number, $numbersWithCommas ) {
-		$this->assertEquals(
-			$numbersWithCommas,
-			$this->getLang()->commafy( $number ),
-			"commafy('$number')"
-		);
-	}
-
-	public static function provideCommafyData() {
-		return [
-			[ -1, '-1' ],
-			[ 10, '10' ],
-			[ 100, '100' ],
-			[ 1000, '1,000' ],
-			[ 10000, '10,000' ],
-			[ 100000, '100,000' ],
-			[ 1000000, '1,000,000' ],
-			[ -1.0001, '-1.0001' ],
-			[ 1.0001, '1.0001' ],
-			[ 10.0001, '10.0001' ],
-			[ 100.0001, '100.0001' ],
-			[ 1000.0001, '1,000.0001' ],
-			[ 10000.0001, '10,000.0001' ],
-			[ 100000.0001, '100,000.0001' ],
-			[ 1000000.0001, '1,000,000.0001' ],
-			[ '200000000000000000000', '200,000,000,000,000,000,000' ],
-			[ '-200000000000000000000', '-200,000,000,000,000,000,000' ],
 		];
 	}
 
