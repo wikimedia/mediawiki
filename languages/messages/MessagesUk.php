@@ -391,3 +391,4 @@ $magicWords = [
 
 $linkTrail = '/^([a-zабвгґдеєжзиіїйклмнопрстуфхцчшщьєюяёъы“»]+)(.*)$/sDu';
 $linkPrefixCharset = '„«';
+$minimumGroupingDigits = 4;
