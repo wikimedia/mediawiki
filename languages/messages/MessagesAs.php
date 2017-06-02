@@ -164,4 +164,4 @@ $digitTransformTable = [
 	'9' => '৯', # &#x09ef;
 ];
 
-$digitGroupingPattern = "##,##,###";
+$digitGroupingPattern = "#,##,##0.###";
