@@ -1654,18 +1654,18 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * @covers Language::commafy()
-	 * @dataProvider provideCommafyData
+	 * @covers Language::formatNum()
+	 * @dataProvider provideFormatNumData
 	 */
-	public function testCommafy( $number, $numbersWithCommas ) {
+	public function testFormatNum( $number, $numbersWithCommas ) {
 		$this->assertEquals(
 			$numbersWithCommas,
-			$this->getLang()->commafy( $number ),
-			"commafy('$number')"
+			$this->getLang()->formatNum( $number ),
+			"formatNum('$number')"
 		);
 	}
 
-	public static function provideCommafyData() {
+	public static function provideFormatNumData() {
 		return [
 			[ -1, '-1' ],
 			[ 10, '10' ],
@@ -1674,14 +1674,15 @@ class LanguageTest extends LanguageClassesTestCase {
 			[ 10000, '10,000' ],
 			[ 100000, '100,000' ],
 			[ 1000000, '1,000,000' ],
-			[ -1.0001, '-1.0001' ],
-			[ 1.0001, '1.0001' ],
-			[ 10.0001, '10.0001' ],
-			[ 100.0001, '100.0001' ],
-			[ 1000.0001, '1,000.0001' ],
-			[ 10000.0001, '10,000.0001' ],
-			[ 100000.0001, '100,000.0001' ],
-			[ 1000000.0001, '1,000,000.0001' ],
+			[ -1.001, '-1.001' ],
+			[ 1.001, '1.001' ],
+			[ 10.0001, '10' ],
+			[ 100.001, '100.001' ],
+			[ 1000.001, '1,000.001' ],
+			[ 10000.001, '10,000.001' ],
+			[ 100000.001, '100,000.001' ],
+			[ 1000000.0001, '1,000,000' ],
+			[ -1.0001, '-1' ],
 			[ '200000000000000000000', '200,000,000,000,000,000,000' ],
 			[ '-200000000000000000000', '-200,000,000,000,000,000,000' ],
 		];

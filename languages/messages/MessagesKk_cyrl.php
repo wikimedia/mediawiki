@@ -345,3 +345,5 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'Мында_сілтегендер' ],
 	'Withoutinterwiki'          => [ 'Уики-аралықсыздар' ],
 ];
+
+$minimumGroupingDigits = 4;

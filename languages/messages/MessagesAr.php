@@ -444,3 +444,5 @@ $imageFiles = [
 	'button-headline' => 'ar/button_headline.png',
 	'button-nowiki'   => 'ar/button_nowiki.png',
 ];
+
+$digitGroupingPattern = "#,##0.###";
