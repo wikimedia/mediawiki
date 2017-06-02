@@ -6765,7 +6765,7 @@ $wgUseRCPatrol = true;
 /**
  * Whether to allow users to save their RecentChanges filters
  */
-$wgStructuredChangeFiltersEnableSaving = false;
+$wgStructuredChangeFiltersEnableSaving = true;
 
 /**
  * Use new page patrolling to check new pages on Special:Newpages
