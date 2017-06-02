@@ -291,3 +291,5 @@ $dateFormats = [
 	'et roman date' => 'j. xrm Y',
 	'et roman both' => 'j. xrm Y, "kell" H:i',
 ];
+
+$minimumGroupingDigits = 2;
