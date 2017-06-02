@@ -251,4 +251,4 @@ $magicWords = [
 	'url_query'                 => [ '0', 'ପ୍ରଶ୍ନ', 'QUERY' ],
 ];
 
-$digitGroupingPattern = "##,##,###";
+$digitGroupingPattern = "#,##,##0.###";
