@@ -1028,6 +1028,7 @@ return [
 		'styles' => 'resources/src/mediawiki/mediawiki.filewarning.less',
 		'dependencies' => [
 			'oojs-ui-core',
+			'oojs-ui.styles.icons-alerts',
 		],
 	],
 	'mediawiki.ForeignApi' => [
@@ -1647,7 +1648,8 @@ return [
 			'oojs',
 			'oojs-ui-core',
 			'oojs-ui-widgets',
-			'oojs-ui.styles.icons-media'
+			'oojs-ui.styles.icons-media',
+			'oojs-ui.styles.icons-movement'
 		],
 		'messages' => [
 			'gallery-slideshow-toggle'
@@ -1864,6 +1866,9 @@ return [
 			'mediawiki.jqueryMsg',
 			'mediawiki.util',
 			'oojs-ui',
+			'oojs-ui.styles.icons-content',
+			'oojs-ui.styles.icons-editing-advanced',
+			'oojs-ui.styles.icons-interactions',
 			'oojs-ui.styles.icons-moderation',
 			'mediawiki.widgets.datetime',
 		],
@@ -2331,6 +2336,7 @@ return [
 		],
 		'dependencies' => [
 			'oojs-ui-widgets',
+			'oojs-ui.styles.icons-movement',
 			'moment',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
@@ -2396,6 +2402,7 @@ return [
 		'dependencies' => [
 			'oojs-ui-core',
 			'oojs-ui.styles.icons-moderation',
+			'oojs-ui.styles.icons-movement',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -2485,6 +2492,7 @@ return [
 		],
 		'dependencies' => [
 			'mediawiki.searchSuggest',
+			'oojs-ui.styles.icons-interactions',
 			// FIXME: Needs TitleInputWidget only
 			'mediawiki.widgets',
 		],
