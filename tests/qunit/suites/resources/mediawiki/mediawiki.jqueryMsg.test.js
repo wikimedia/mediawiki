@@ -876,7 +876,7 @@
 		{
 			lang: 'hi',
 			number: '123456789.123456789',
-			result: '१२,३४,५६,७८९',
+			result: '१२,३४,५६,७८९.१२३',
 			description: 'formatnum test for Hindi'
 		},
 		{

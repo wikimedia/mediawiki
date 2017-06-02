@@ -391,3 +391,4 @@ $magicWords = [
 
 $linkTrail = '/^([a-zабвгґдеєжзиіїйклмнопрстуфхцчшщьєюяёъы“»]+)(.*)$/sDu';
 $linkPrefixCharset = '„«';
+$minimumGroupingDigits = 2; // As per CLDR 31, this value is 1

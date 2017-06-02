@@ -255,3 +255,5 @@ $specialPageAliases = [
 ];
 
 $linkTrail = '/^([a-zաբգդեզէըթժիլխծկհձղճմյնշոչպջռսվտրցւփքօֆև«»]+)(.*)$/sDu';
+
+$minimumGroupingDigits = 2; // As per CLDR 31, this value is 1
