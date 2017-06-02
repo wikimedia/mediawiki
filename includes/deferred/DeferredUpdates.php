@@ -332,6 +332,7 @@ class DeferredUpdates {
 
 	/**
 	 * @param integer $stage DeferredUpdates constant (PRESEND, POSTSEND, or ALL)
+	 * @return DeferrableUpdate[]
 	 * @since 1.29
 	 */
 	public static function getPendingUpdates( $stage = self::ALL ) {
