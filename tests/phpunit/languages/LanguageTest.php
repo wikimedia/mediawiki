@@ -1687,6 +1687,25 @@ class LanguageTest extends LanguageClassesTestCase {
 		];
 	}
 
+	public static function provideCommafyNumberByPattern() {
+		return [
+			[ 12345.67, '#,###.##', '12,345.67' ],
+			[ 12345.67, '#,##0.##', '12,345.67' ],
+			[ 1234567.89, '#,##0.##', '1,23,45,67.89' ]
+		];
+	}
+	/**
+	 * @covers Language::commafyNumberByPattern()
+	 * @dataProvider provideCommafyNumberByPattern
+	 */
+	public function testCommafyNumberByPattern( $number, $pattern, $numbersWithCommas ) {
+		$this->assertEquals(
+			$numbersWithCommas,
+			$this->getLang()->commafyNumberByPattern( $number, $pattern ),
+			"commafyNumberByPattern('$number', '$pattern')"
+		);
+	}
+
 	/**
 	 * @covers Language::listToText
 	 */
