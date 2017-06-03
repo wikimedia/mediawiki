@@ -3247,11 +3247,29 @@ class Language {
 	 */
 	public function formatNum( $number, $nocommafy = false ) {
 		global $wgTranslateNumerals;
+
+		if ( $number === null || $number === '' ) {
+			return '';
+		}
+
 		if ( !$nocommafy ) {
-			$number = $this->commafy( $number );
-			$s = $this->separatorTransformTable();
-			if ( $s ) {
-				$number = strtr( $number, $s );
+			$digitGroupingPattern = $this->digitGroupingPattern();
+			if ( function_exists( 'numfmt_create' ) ) {
+				if ( $digitGroupingPattern ) {
+					$fmt = numfmt_create(
+						$this->getCode(), NumberFormatter::PATTERN_DECIMAL, $digitGroupingPattern
+					);
+				} else {
+					$fmt = numfmt_create( $this->getCode(), NumberFormatter::DECIMAL );
+				}
+
+				$number = numfmt_format( $fmt, $number );
+			} else {
+				$number = $this->commafy( $number );
+				$s = $this->separatorTransformTable();
+				if ( $s ) {
+					$number = strtr( $number, $s );
+				}
 			}
 		}
 
@@ -3308,51 +3326,24 @@ class Language {
 	 */
 	function commafy( $number ) {
 		$digitGroupingPattern = $this->digitGroupingPattern();
-		if ( $number === null ) {
+		if ( $number === null || $number === '' ) {
 			return '';
 		}
 
-		if ( !$digitGroupingPattern || $digitGroupingPattern === "###,###,###" ) {
-			// default grouping is at thousands,  use the same for ###,###,### pattern too.
-			return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $number ) ) );
-		} else {
-			// Ref: http://cldr.unicode.org/translation/number-patterns
-			$sign = "";
-			if ( intval( $number ) < 0 ) {
-				// For negative numbers apply the algorithm like positive number and add sign.
-				$sign = "-";
-				$number = substr( $number, 1 );
+		if ( function_exists( 'numfmt_create' ) ) {
+			if ( $digitGroupingPattern ) {
+				$fmt = numfmt_create(
+					$this->getCode(), NumberFormatter::PATTERN_DECIMAL, $digitGroupingPattern
+				);
+			} else {
+				$fmt = numfmt_create( $this->getCode(), NumberFormatter::DECIMAL );
 			}
-			$integerPart = [];
-			$decimalPart = [];
-			$numMatches = preg_match_all( "/(#+)/", $digitGroupingPattern, $matches );
-			preg_match( "/\d+/", $number, $integerPart );
-			preg_match( "/\.\d*/", $number, $decimalPart );
-			$groupedNumber = ( count( $decimalPart ) > 0 ) ? $decimalPart[0] : "";
-			if ( $groupedNumber === $number ) {
-				// the string does not have any number part. Eg: .12345
-				return $sign . $groupedNumber;
-			}
-			$start = $end = ( $integerPart ) ? strlen( $integerPart[0] ) : 0;
-			while ( $start > 0 ) {
-				$match = $matches[0][$numMatches - 1];
-				$matchLen = strlen( $match );
-				$start = $end - $matchLen;
-				if ( $start < 0 ) {
-					$start = 0;
-				}
-				$groupedNumber = substr( $number, $start, $end -$start ) . $groupedNumber;
-				$end = $start;
-				if ( $numMatches > 1 ) {
-					// use the last pattern for the rest of the number
-					$numMatches--;
-				}
-				if ( $start > 0 ) {
-					$groupedNumber = "," . $groupedNumber;
-				}
-			}
-			return $sign . $groupedNumber;
+
+			return numfmt_format( $fmt, $number );
 		}
+
+		// default grouping is at thousands, use the same for ###,###,### pattern too.
+		return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $number ) ) );
 	}
 
 	/**
