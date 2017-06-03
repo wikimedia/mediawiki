@@ -19,6 +19,6 @@ class LanguageNlTest extends LanguageClassesTestCase {
 		$this->assertEquals( '123', $this->getLang()->formatNum( '123' ) );
 		$this->assertEquals( '1.234', $this->getLang()->formatNum( '1234' ) );
 		$this->assertEquals( '12.345,56', $this->getLang()->formatNum( '12345.56' ) );
-		$this->assertEquals( ',1234556', $this->getLang()->formatNum( '.1234556' ) );
+		$this->assertEquals( '0,123', $this->getLang()->formatNum( '.1234556' ) );
 	}
 }
