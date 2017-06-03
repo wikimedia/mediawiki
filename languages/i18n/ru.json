@@ -111,7 +111,8 @@
 			"Esukhovnina",
 			"Av6",
 			"Санюн Вадик",
-			"MustangDSG"
+			"MustangDSG",
+			"Valeri'swiki"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -1400,7 +1401,7 @@
 	"recentchanges-submit": "Показать",
 	"rcfilters-activefilters": "Активные фильтры",
 	"rcfilters-quickfilters": "Сохранённые настройки фильтра",
-	"rcfilters-quickfilters-placeholder-title": "Ещё нет сохранённых ссылок",
+	"rcfilters-quickfilters-placeholder-title": "Сохраненных ссылок еще нет",
 	"rcfilters-quickfilters-placeholder-description": "Чтобы сохранить настройки фильтра и повторно использовать их позже, щелкните значок закладки в области «Активный фильтр» ниже.",
 	"rcfilters-savedqueries-defaultlabel": "Сохранённые фильтры",
 	"rcfilters-savedqueries-rename": "Переименовать",

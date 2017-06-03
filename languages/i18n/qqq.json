@@ -188,7 +188,8 @@
 			"Winstonyin",
 			"Jhertel",
 			"Stryn",
-			"Mazab IZW"
+			"Mazab IZW",
+			"Mainframe98"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -1554,7 +1555,7 @@
 	"recentchanges-legend-plusminus": "{{optional}}\nA plus/minus sign with a number for the legend.",
 	"recentchanges-submit": "Label for submit button in [[Special:RecentChanges]]\n{{Identical|Show}}",
 	"rcfilters-activefilters": "Title for the filters selection showing the active filters.",
-	"rcfilters-quickfilters": "Label for the button that opens the quick filters menu in [[Special:RecentChanges]]",
+	"rcfilters-quickfilters": "Label for the button that opens the saved filter settings menu in [[Special:RecentChanges]]",
 	"rcfilters-quickfilters-placeholder-title": "Title for the text shown in the quick filters menu on [[Special:RecentChanges]] if the user has not saved any quick filters.",
 	"rcfilters-quickfilters-placeholder-description": "Description for the text shown in the quick filters menu on [[Special:RecentChanges]] if the user has not saved any quick filters.",
 	"rcfilters-savedqueries-defaultlabel": "Default name for saving a new set of quick filters [[Special:RecentChanges]]",
@@ -1563,7 +1564,7 @@
 	"rcfilters-savedqueries-unsetdefault": "Label for the menu option that unsets a quick filter as default in [[Special:RecentChanges]]",
 	"rcfilters-savedqueries-remove": "Label for the menu option that removes a quick filter as default in [[Special:RecentChanges]]\n{{Identical|Remove}}",
 	"rcfilters-savedqueries-new-name-label": "Label for the input that holds the name of the new saved filters in [[Special:RecentChanges]]\n{{Identical|Name}}",
-	"rcfilters-savedqueries-apply-label": "Label for the button to apply saving a new quick link in [[Special:RecentChanges]]",
+	"rcfilters-savedqueries-apply-label": "Label for the button to apply saving a new filter setting in [[Special:RecentChanges]]",
 	"rcfilters-savedqueries-cancel-label": "Label for the button to cancel the saving of a new quick link in [[Special:RecentChanges]]\n{{Identical|Cancel}}",
 	"rcfilters-savedqueries-add-new-title": "Title for the popup to add new quick link in [[Special:RecentChanges]]",
 	"rcfilters-restore-default-filters": "Label for the button that resets filters to defaults",
@@ -2163,7 +2164,7 @@
 	"unusedcategoriestext": "Used as page header in [[Special:UnusedCategories]].",
 	"notargettitle": "Used as title of error message.\n\nSee also:\n* {{msg-mw|Notargettitle|title}}\n* {{msg-mw|Notargettext|text}}",
 	"notargettext": "Used as error message in [[Special:MovePage]].\n\nSee also:\n* {{msg-mw|Notargettitle|title}}\n* {{msg-mw|Notargettext|text}}",
-	"nopagetitle": "Used as title on special pages like [[Special:MovePage]] (when the oldtitle does not exist) or [[Special:PermaLink]].\n\nThe text is {{msg-mw|nopagetext}}.\n\nSee also:\n* {{msg-mw|Nopagetitle|title}}\n* {{msg-mw|Nopagetext|text}}",
+	"nopagetitle": "Used as title on special pages like [[Special:MovePage]] (when the oldtitle does not exist), [[Special:Diff]] or [[Special:PermaLink]].\n\nThe text is {{msg-mw|nopagetext}}.\n\nSee also:\n* {{msg-mw|Nopagetitle|title}}\n* {{msg-mw|Nopagetext|text}}",
 	"nopagetext": "Used as text on special pages like [[Special:MovePage]] (when the oldtitle does not exist) or [[Special:PermaLink]].\n\nThe title is {{msg-mw|nopagetitle}}.\n\nSee also:\n* {{msg-mw|Nopagetitle|title}}\n* {{msg-mw|Nopagetext|text}}",
 	"pager-newer-n": "This is part of the navigation message on the top and bottom of Special pages which are lists of things in date order, e.g. the User's contributions page. It is passed as the second argument of {{msg-mw|Viewprevnext}}. $1 is the number of items shown per page.\n{{Identical|Newer}}",
 	"pager-older-n": "This is part of the navigation message on the top and bottom of Special pages which are lists of things in date order, e.g. the User's contributions page. It is passed as the first argument of {{msg-mw|Viewprevnext}}. $1 is the number of items shown per page.",

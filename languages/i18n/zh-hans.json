@@ -95,7 +95,8 @@
 			"SolidBlock",
 			"D41D8CD98F",
 			"Wmr",
-			"逆襲的天邪鬼"
+			"逆襲的天邪鬼",
+			"WhitePhosphorus"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -895,7 +896,7 @@
 	"rev-deleted-text-view": "本页面版本已被<strong>删除</strong>。您可以查看它，详情请见[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]。",
 	"rev-suppressed-text-view": "该页面版本已经被<strong>监督隐藏</strong>。您可以查看它。在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 监督日志]中可以找到详细的信息。",
 	"rev-deleted-no-diff": "您不能查看该差异，因为其中一个版本已被<strong>删除</strong>。详情请见[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]。",
-	"rev-suppressed-no-diff": "无法查看该差异，因为其中一个版本已被<strong>删除<strong>。",
+	"rev-suppressed-no-diff": "无法查看该差异，因为其中一个版本已被<strong>删除</strong>。",
 	"rev-deleted-unhide-diff": "该差异对比的其中的一个版本已经被<strong>删除</strong>。在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可以找到更多的信息。如果您想继续的话，您仍然可以[$1 查看此版本]。",
 	"rev-suppressed-unhide-diff": "该页面的其中一次版本已经被<strong>屏蔽</strong>。在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 监督日志]中可以找到更多的资料。如果您想继续的话，您仍然可以[$1 查看该差异]。",
 	"rev-deleted-diff-view": "差异对比中的一次版本已被<strong>删除</strong>。您可以对比此差异。详细信息可在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中找到。",
@@ -1385,7 +1386,7 @@
 	"recentchanges-legend-plusminus": "（<em>±123</em>）",
 	"recentchanges-submit": "显示",
 	"rcfilters-activefilters": "激活的过滤器",
-	"rcfilters-quickfilters": "保存的过滤器设置",
+	"rcfilters-quickfilters": "已保存过滤器设置",
 	"rcfilters-quickfilters-placeholder-title": "尚未保存链接",
 	"rcfilters-quickfilters-placeholder-description": "要保存您的过滤器设置并供日后再利用，点击下方激活的过滤器区域内的书签图标。",
 	"rcfilters-savedqueries-defaultlabel": "保存的过滤器",
