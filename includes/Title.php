@@ -2197,10 +2197,17 @@ class Title implements LinkTarget {
 			if ( $right == '' ) {
 				continue;
 			}
-			if ( !$user->isAllowed( $right ) ) {
-				$errors[] = [ 'protectedpagetext', $right, $action ];
-			} elseif ( $this->mCascadeRestriction && !$user->isAllowed( 'protect' ) ) {
-				$errors[] = [ 'protectedpagetext', 'protect', $action ];
+
+			// Only add the protected page error if the action is permitted. If the
+			// error array is empty, then either checkActionPermissions() has not been
+			// run, or it did not throw an error.
+			$tempErrors = $this->checkActionPermissions( $action, $user, [], $rigor, true );
+			if ( !$tempErrors || !$errors ) {
+				if ( !$user->isAllowed( $right ) ) {
+					$errors[] = [ 'protectedpagetext', $right, $action ];
+				} elseif ( $this->mCascadeRestriction && !$user->isAllowed( 'protect' ) ) {
+					$errors[] = [ 'protectedpagetext', 'protect', $action ];
+				}
 			}
 		}
 
@@ -2328,6 +2335,7 @@ class Title implements LinkTarget {
 				$errors[] = [ 'undelete-cantcreate' ];
 			}
 		}
+
 		return $errors;
 	}
 
@@ -2508,9 +2516,9 @@ class Title implements LinkTarget {
 			$checks = [
 				'checkQuickPermissions',
 				'checkPermissionHooks',
-				'checkPageRestrictions',
 				'checkCascadingSourcesRestrictions',
 				'checkActionPermissions',
+				'checkPageRestrictions',
 				'checkUserBlock'
 			];
 		} else {
