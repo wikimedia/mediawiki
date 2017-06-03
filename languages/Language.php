@@ -3313,46 +3313,58 @@ class Language {
 		}
 
 		if ( !$digitGroupingPattern || $digitGroupingPattern === "###,###,###" ) {
-			// default grouping is at thousands,  use the same for ###,###,### pattern too.
+			// default grouping is at thousands, use the same for ###,###,### pattern too.
 			return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $number ) ) );
 		} else {
-			// Ref: http://cldr.unicode.org/translation/number-patterns
-			$sign = "";
-			if ( intval( $number ) < 0 ) {
-				// For negative numbers apply the algorithm like positive number and add sign.
-				$sign = "-";
-				$number = substr( $number, 1 );
-			}
-			$integerPart = [];
-			$decimalPart = [];
-			$numMatches = preg_match_all( "/(#+)/", $digitGroupingPattern, $matches );
-			preg_match( "/\d+/", $number, $integerPart );
-			preg_match( "/\.\d*/", $number, $decimalPart );
-			$groupedNumber = ( count( $decimalPart ) > 0 ) ? $decimalPart[0] : "";
-			if ( $groupedNumber === $number ) {
-				// the string does not have any number part. Eg: .12345
-				return $sign . $groupedNumber;
-			}
-			$start = $end = ( $integerPart ) ? strlen( $integerPart[0] ) : 0;
-			while ( $start > 0 ) {
-				$match = $matches[0][$numMatches - 1];
-				$matchLen = strlen( $match );
-				$start = $end - $matchLen;
-				if ( $start < 0 ) {
-					$start = 0;
-				}
-				$groupedNumber = substr( $number, $start, $end -$start ) . $groupedNumber;
-				$end = $start;
-				if ( $numMatches > 1 ) {
-					// use the last pattern for the rest of the number
-					$numMatches--;
-				}
-				if ( $start > 0 ) {
-					$groupedNumber = "," . $groupedNumber;
-				}
-			}
+			return $this->commafyNumberByPattern($number, $digitGroupingPattern );
+		}
+	}
+
+	/**
+	 * Commafy a number using given digit grouping pattern as per CLDR number pattern.
+	 * Ref: http://www.unicode.org/reports/tr35/tr35-numbers.html#Number_Format_Patterns
+	 * @param mixed $number
+	 * @param string $pattern
+	 * @return string
+	 */
+	function commafyNumberByPattern( $number, $digitGroupingPattern ) {
+		$sign = "";
+		if ( intval( $number ) < 0 ) {
+			// For negative numbers apply the algorithm like positive number and add sign.
+			$sign = "-";
+			$number = substr( $number, 1 );
+		}
+		$integerPart = [];
+		$decimalPart = [];
+		$numMatches = preg_match_all( "/(#+)/", $digitGroupingPattern, $matches );
+		preg_match( "/\d+/", $number, $integerPart );
+		preg_match( "/\.\d*/", $number, $decimalPart );
+		$groupedNumber = ( count( $decimalPart ) > 0 ) ? $decimalPart[0] : "";
+		if ( $groupedNumber === $number ) {
+			// the string does not have any number part. Eg: .12345
 			return $sign . $groupedNumber;
 		}
+		$start = $end = ( $integerPart ) ? strlen( $integerPart[0] ) : 0;
+
+		// First match is primary grouping pattern.
+		$match = $matches[0][$numMatches - 1];
+		while ( $start > 0 ) {
+			$matchLen = strlen( $match );
+			$start = $end - $matchLen;
+			if ( $start < 0 ) {
+				$start = 0;
+			}
+			$groupedNumber = substr( $number, $start, $end -$start ) . $groupedNumber;
+			$end = $start;
+			if ( $numMatches > 1 ) {
+				// Use the seconday pattern for the rest of the number
+				$match =  $matches[0][$numMatches - 2];
+			}
+			if ( $start > 0 ) {
+				$groupedNumber = "," . $groupedNumber;
+			}
+		}
+		return $sign . $groupedNumber;
 	}
 
 	/**
