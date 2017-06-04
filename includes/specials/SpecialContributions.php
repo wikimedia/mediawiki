@@ -138,7 +138,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 			$this->opts['start'] = $request->getVal( 'start' );
 			$this->opts['end'] = $request->getVal( 'end' );
-			$this->opts = SpecialContributions::processDateFilter( $this->opts );
+			$this->opts = ContribsPager::processDateFilter( $this->opts );
 		}
 
 		$feedType = $request->getVal( 'feed' );
@@ -726,46 +726,6 @@ class SpecialContributions extends IncludableSpecialPage {
 		}
 		// Autocomplete subpage as user list - public to allow caching
 		return UserNamePrefixSearch::search( 'public', $search, $limit, $offset );
-	}
-
-	/**
-	 * Set up date filter options, given request data.
-	 *
-	 * @param array $opts Options array
-	 * @return array Options array with processed start and end date filter options
-	 */
-	public static function processDateFilter( $opts ) {
-		$start = $opts['start'] ?: '';
-		$end = $opts['end'] ?: '';
-		$year = $opts['year'] ?: '';
-		$month = $opts['month'] ?: '';
-
-		if ( $start !== '' && $end !== '' &&
-			$start > $end
-		) {
-			$temp = $start;
-			$start = $end;
-			$end = $temp;
-		}
-
-		// If year/month legacy filtering options are set, convert them to display the new stamp
-		if ( $year !== '' || $month !== '' ) {
-			// Reuse getDateCond logic, but subtract a day because
-			// the endpoints of our date range appear inclusive
-			// but the internal end offsets are always exclusive
-			$legacyTimestamp = ReverseChronologicalPager::getOffsetDate( $year, $month );
-			$legacyDateTime = new DateTime( $legacyTimestamp->getTimestamp( TS_ISO_8601 ) );
-			$legacyDateTime = $legacyDateTime->modify( '-1 day' );
-
-			// Clear the new timestamp range options if used and
-			// replace with the converted legacy timestamp
-			$start = '';
-			$end = $legacyDateTime->format( 'Y-m-d' );
-		}
-
-		$opts['start'] = $start;
-		$opts['end'] = $end;
-		return $opts;
 	}
 
 	protected function getGroupName() {
