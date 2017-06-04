@@ -26,7 +26,8 @@
 	 * @param {Array} filterStructure Filter definition and structure for the model
 	 */
 	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure ) {
-		var parsedSavedQueries, validParameterNames,
+		var parsedSavedQueries, validParameterNames, baseParams,
+			useDataFromServer = false,
 			uri = new mw.Uri(),
 			$changesList = $( '.mw-changeslist' ).first().contents();
 
@@ -65,6 +66,7 @@
 		// the user loads the base-page and we load defaults.
 		// Defaults should only be applied on load (if necessary)
 		// or on request
+		this.initializing = true;
 		if (
 			Object.keys( uri.query ).some( function ( parameter ) {
 				return validParameterNames.indexOf( parameter ) > -1;
@@ -72,31 +74,52 @@
 		) {
 			// There are parameters in the url, update model state
 			this.updateStateBasedOnUrl();
+			useDataFromServer = true;
 		} else {
-			this.initializing = true;
 			// No valid parameters are given, load defaults
-			this._updateModelState(
-				$.extend(
-					true,
-					// We've ignored the highlight parameter for the sake
-					// of seeing whether we need to apply defaults - but
-					// while we do load the defaults, we still want to retain
-					// the actual value given in the URL for it on top of the
-					// defaults
-					{ highlight: String( Number( uri.query.highlight ) ) },
-					this._getDefaultParams()
-				)
-			);
-			this.updateChangesList();
-			this.initializing = false;
+			if ( this.savedQueriesModel.getDefault() ) {
+				// We have defaults from a saved query.
+				// We will load them straight-forward (as if
+				// they were clicked in the menu) so we trigger
+				// a full ajax request and change of URL
+				this.applySavedQuery( this.savedQueriesModel.getDefault() );
+				useDataFromServer = false;
+			} else {
+				baseParams = this.filtersModel.getDefaultParams();
+				if ( uri.query.urlversion === '2' ) {
+					baseParams = {};
+				}
+
+				this._updateModelState(
+					$.extend(
+						true,
+						baseParams,
+						// We've ignored the highlight parameter for
+						// the sake of seeing whether we need to apply defaults - but
+						// while we do load the defaults, we still want to retain
+						// the actual value given in the URL for it on top of the
+						// defaults
+						{
+							highlight: String( Number( uri.query.highlight ) )
+						}
+					)
+				);
+				// In this case, there's no need to re-request the AJAX call
+				// the initial data will be processed because we are getting
+				// exactly what the server produced for us
+				useDataFromServer = true;
+			}
 		}
 
-		// Update the changes list with the existing data
-		// so it gets processed
-		this.changesListModel.update(
-			$changesList.length ? $changesList : 'NO_RESULTS',
-			$( 'fieldset.rcoptions' ).first()
-		);
+		if ( useDataFromServer ) {
+			// Update the changes list with the existing data
+			// so it gets processed
+			this.changesListModel.update(
+				$changesList.length ? $changesList : 'NO_RESULTS',
+				$( 'fieldset.rcoptions' ).first()
+			);
+		}
+		this.initializing = false;
 	};
 
 	/**
@@ -515,9 +538,22 @@
 	 * on current URL values.
 	 */
 	mw.rcfilters.Controller.prototype.updateStateBasedOnUrl = function () {
-		var uri = new mw.Uri();
+		var uri = new mw.Uri(),
+			base = this.filtersModel.getDefaultParams();
 
-		this._updateModelState( uri.query );
+		// Check whether we are dealing with urlversion=2
+		// If we are, we do not merge the initial request with
+		// defaults. Not having urlversion=2 means we need to
+		// reproduce the server-side request and merge the
+		// requested parameters (or starting state) with the
+		// wiki default.
+		// Any subsequent change of the URL through the RCFilters
+		// system will receive 'urlversion=2'
+		if ( uri.query.urlversion === '2' ) {
+			base = {};
+		}
+
+		this._updateModelState( $.extend( true, {}, base, uri.query ) );
 		this.updateChangesList();
 	};
 
@@ -638,7 +674,6 @@
 		// actual parameter visibility/representation in the URL
 		currentFilterState = this.filtersModel.getFiltersFromParameters( uri.query );
 		updatedFilterState = this.filtersModel.getFiltersFromParameters( updatedUri.query );
-
 		// Include highlight states
 		$.extend( true,
 			currentFilterState,
@@ -651,7 +686,10 @@
 			{ highlight: !!Number( updatedUri.query.highlight ) }
 		);
 
-		if ( notEquivalent( currentFilterState, updatedFilterState ) ) {
+		if (
+			uri.query.urlversion !== '2' ||
+			notEquivalent( currentFilterState, updatedFilterState )
+		) {
 			if ( this.initializing ) {
 				// Initially, when we just build the first page load
 				// out of defaults, we want to replace the history
@@ -686,11 +724,6 @@
 		} );
 
 		// highlight params
-		if ( this.filtersModel.isHighlightEnabled() ) {
-			uri.query.highlight = Number( this.filtersModel.isHighlightEnabled() );
-		} else {
-			delete uri.query.highlight;
-		}
 		$.each( highlightParams, function ( paramName, value ) {
 			// Only output if it is different than the base parameters
 			if ( baseParams[ paramName ] !== value ) {
@@ -699,6 +732,15 @@
 				delete uri.query[ paramName ];
 			}
 		} );
+
+		if ( this.filtersModel.isHighlightEnabled() ) {
+			uri.query.highlight = '1';
+		} else {
+			delete uri.query.highlight;
+		}
+
+		// Add the urlversion=2 param for all URLs made by the RCFilters system
+		uri.query.urlversion = '2';
 
 		return uri;
 	};
