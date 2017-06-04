@@ -1749,6 +1749,7 @@ return [
 			'resources/src/mediawiki.rcfilters/dm/mw.rcfilters.dm.SavedQueriesModel.js',
 			'resources/src/mediawiki.rcfilters/dm/mw.rcfilters.dm.ChangesListViewModel.js',
 			'resources/src/mediawiki.rcfilters/mw.rcfilters.Controller.js',
+			'resources/src/mediawiki.rcfilters/mw.rcfilters.UriProcessor.js',
 		],
 		'dependencies' => [
 			'oojs',
