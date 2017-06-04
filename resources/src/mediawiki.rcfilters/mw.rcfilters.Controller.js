@@ -13,7 +13,7 @@
 		this.savedQueriesModel = savedQueriesModel;
 		this.requestCounter = 0;
 		this.baseFilterState = {};
-		this.emptyParameterState = {};
+		this.uriProcessor = null;
 		this.initializing = false;
 	};
 
@@ -26,7 +26,7 @@
 	 * @param {Array} filterStructure Filter definition and structure for the model
 	 */
 	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure ) {
-		var parsedSavedQueries, validParameterNames,
+		var parsedSavedQueries,
 			uri = new mw.Uri(),
 			$changesList = $( '.mw-changeslist' ).first().contents();
 
@@ -34,14 +34,9 @@
 		this.filtersModel.initializeFilters( filterStructure );
 
 		this._buildBaseFilterState();
-		this._buildEmptyParameterState();
-		validParameterNames = Object.keys( this._getEmptyParameterState() )
-			.filter( function ( param ) {
-				// Remove 'highlight' parameter from this check;
-				// if it's the only parameter in the URL we still
-				// want to consider the URL 'empty' for defaults to load
-				return param !== 'highlight';
-			} );
+		this.uriProcessor = new mw.rcfilters.UriProcessor(
+			this.filtersModel
+		);
 
 		try {
 			parsedSavedQueries = JSON.parse( mw.user.options.get( 'rcfilters-saved-queries' ) || '{}' );
@@ -65,45 +60,39 @@
 		// the user loads the base-page and we load defaults.
 		// Defaults should only be applied on load (if necessary)
 		// or on request
+		this.initializing = true;
 		if (
-			Object.keys( uri.query ).some( function ( parameter ) {
-				return validParameterNames.indexOf( parameter ) > -1;
-			} )
+			this.savedQueriesModel.getDefault() &&
+			!this.uriProcessor.doesQueryContainRecognizedParams( uri.query )
 		) {
-			// There are parameters in the url, update model state
-			this.updateStateBasedOnUrl();
+			// We have defaults from a saved query.
+			// We will load them straight-forward (as if
+			// they were clicked in the menu) so we trigger
+			// a full ajax request and change of URL
+			this.applySavedQuery( this.savedQueriesModel.getDefault() );
 		} else {
-			this.initializing = true;
-			// No valid parameters are given, load defaults
-			this._updateModelState(
-				$.extend(
-					true,
-					// We've ignored the highlight parameter for the sake
-					// of seeing whether we need to apply defaults - but
-					// while we do load the defaults, we still want to retain
-					// the actual value given in the URL for it on top of the
-					// defaults
-					{ highlight: String( Number( uri.query.highlight ) ) },
-					this._getDefaultParams()
-				)
-			);
-			this.updateChangesList();
-			this.initializing = false;
-		}
+			// There are either recognized parameters in the URL
+			// or there are none, but there is also no default
+			// saved query (so defaults are from the backend)
+			// We want to update the state but not fetch results
+			// again
+			this.updateStateFromUrl( false );
 
-		// Update the changes list with the existing data
-		// so it gets processed
-		this.changesListModel.update(
-			$changesList.length ? $changesList : 'NO_RESULTS',
-			$( 'fieldset.rcoptions' ).first()
-		);
+			// Update the changes list with the existing data
+			// so it gets processed
+			this.changesListModel.update(
+				$changesList.length ? $changesList : 'NO_RESULTS',
+				$( 'fieldset.rcoptions' ).first()
+			);
+		}
+		this.initializing = false;
 	};
 
 	/**
 	 * Reset to default filters
 	 */
 	mw.rcfilters.Controller.prototype.resetToDefaults = function () {
-		this._updateModelState( $.extend( true, { highlight: '0' }, this._getDefaultParams() ) );
+		this.uriProcessor.updateModelBasedOnQuery( this._getDefaultParams() );
 		this.updateChangesList();
 	};
 
@@ -386,24 +375,6 @@
 	};
 
 	/**
-	 * Build an empty representation of the parameters, where all parameters
-	 * are either set to '0' or '' depending on their type.
-	 * This must run during initialization, before highlights are set.
-	 */
-	mw.rcfilters.Controller.prototype._buildEmptyParameterState = function () {
-		var emptyParams = this.filtersModel.getParametersFromFilters( {} ),
-			emptyHighlights = this.filtersModel.getHighlightParameters();
-
-		this.emptyParameterState = $.extend(
-			true,
-			{},
-			emptyParams,
-			emptyHighlights,
-			{ highlight: '0' }
-		);
-	};
-
-	/**
 	 * Get an object representing the base filter state of both
 	 * filters and highlights. The structure is similar to what we use
 	 * to store each query in the saved queries object:
@@ -421,22 +392,6 @@
 	 */
 	mw.rcfilters.Controller.prototype._getBaseFilterState = function () {
 		return this.baseFilterState;
-	};
-
-	/**
-	 * Get an object representing the base state of parameters
-	 * and highlights. The structure is similar to what we use
-	 * to store each query in the saved queries object:
-	 * {
-	 *    param1: "value",
-	 *    param2: "value1|value2"
-	 * }
-	 *
-	 * @return {Object} Object representing the base state of
-	 *  parameters and highlights
-	 */
-	mw.rcfilters.Controller.prototype._getEmptyParameterState = function () {
-		return this.emptyParameterState;
 	};
 
 	/**
@@ -503,22 +458,25 @@
 	 * without adding an history entry.
 	 */
 	mw.rcfilters.Controller.prototype.replaceUrl = function () {
-		window.history.replaceState(
-			{ tag: 'rcfilters' },
-			document.title,
-			this._getUpdatedUri().toString()
-		);
+		mw.rcfilters.UriProcessor.static.replaceState( this._getUpdatedUri() );
 	};
 
 	/**
 	 * Update filter state (selection and highlighting) based
 	 * on current URL values.
+	 *
+	 * @param {boolean} [fetchChangesList=true] Fetch new results into the changes
+	 *  list based on the updated model.
 	 */
-	mw.rcfilters.Controller.prototype.updateStateBasedOnUrl = function () {
-		var uri = new mw.Uri();
+	mw.rcfilters.Controller.prototype.updateStateFromUrl = function ( fetchChangesList ) {
+		fetchChangesList = fetchChangesList === undefined ? true : !!fetchChangesList;
 
-		this._updateModelState( uri.query );
-		this.updateChangesList();
+		this.uriProcessor.updateModelBasedOnQuery( new mw.Uri().query );
+
+		// Only update and fetch new results if it is requested
+		if ( fetchChangesList ) {
+			this.updateChangesList();
+		}
 	};
 
 	/**
@@ -542,35 +500,40 @@
 	};
 
 	/**
-	 * Update the model state from given the given parameters.
+	 * Get an object representing the default parameter state, whether
+	 * it is from the model defaults or from the saved queries.
 	 *
-	 * This is an internal method, and should only be used from inside
-	 * the controller.
-	 *
-	 * @param {Object} parameters Object representing the parameters for
-	 *  filters and highlights
+	 * @return {Object} Default parameters
 	 */
-	mw.rcfilters.Controller.prototype._updateModelState = function ( parameters ) {
-		// Update filter states
-		this.filtersModel.toggleFiltersSelected(
-			this.filtersModel.getFiltersFromParameters(
-				parameters
-			)
+	mw.rcfilters.Controller.prototype._getDefaultParams = function () {
+		var data, queryHighlights,
+			savedParams = {},
+			savedHighlights = {},
+			defaultSavedQueryItem = this.savedQueriesModel.getItemByID( this.savedQueriesModel.getDefault() );
+
+		if ( mw.config.get( 'wgStructuredChangeFiltersEnableSaving' ) &&
+			defaultSavedQueryItem ) {
+
+			data = defaultSavedQueryItem.getData();
+
+			queryHighlights = data.highlights || {};
+			savedParams = this.filtersModel.getParametersFromFilters( data.filters || {} );
+
+			// Translate highlights to parameters
+			savedHighlights.highlight = String( Number( queryHighlights.highlight ) );
+			$.each( queryHighlights, function ( filterName, color ) {
+				if ( filterName !== 'highlights' ) {
+					savedHighlights[ filterName + '_color' ] = color;
+				}
+			} );
+
+			return $.extend( true, {}, savedParams, savedHighlights );
+		}
+
+		return $.extend(
+			{ highlight: '0' },
+			this.filtersModel.getDefaultParams()
 		);
-
-		// Update highlight state
-		this.filtersModel.toggleHighlight( !!Number( parameters.highlight ) );
-		this.filtersModel.getItems().forEach( function ( filterItem ) {
-			var color = parameters[ filterItem.getName() + '_color' ];
-			if ( color ) {
-				filterItem.setHighlightColor( color );
-			} else {
-				filterItem.clearHighlightColor();
-			}
-		} );
-
-		// Check all filter interactions
-		this.filtersModel.reassessFilterInteractions();
 	};
 
 	/**
@@ -618,53 +581,21 @@
 	 * @param {Object} [params] Extra parameters to add to the API call
 	 */
 	mw.rcfilters.Controller.prototype._updateURL = function ( params ) {
-		var currentFilterState, updatedFilterState, updatedUri,
-			uri = new mw.Uri(),
-			notEquivalent = function ( obj1, obj2 ) {
-				var keys = Object.keys( obj1 ).concat( Object.keys( obj2 ) );
-				return keys.some( function ( key ) {
-					return obj1[ key ] != obj2[ key ]; // eslint-disable-line eqeqeq
-				} );
-			};
+		var currentUri = new mw.Uri(),
+			updatedUri = this._getUpdatedUri();
 
-		params = params || {};
+		updatedUri.extend( params || {} );
 
-		updatedUri = this._getUpdatedUri();
-		updatedUri.extend( params );
-
-		// Compare states instead of parameters
-		// This will allow us to always have a proper check of whether
-		// the requested new url is one to change or not, regardless of
-		// actual parameter visibility/representation in the URL
-		currentFilterState = this.filtersModel.getFiltersFromParameters( uri.query );
-		updatedFilterState = this.filtersModel.getFiltersFromParameters( updatedUri.query );
-		// HACK: Re-merge extra parameters in
-		// This is a hack and a quickfix; a better, more sustainable
-		// fix is being worked on with a UriProcessor, but for now
-		// we need to make sure the **comparison** of whether currentFilterState
-		// and updatedFilterState differ **includes** the extra parameters in the URL
-		currentFilterState = $.extend( true, {}, uri.query, currentFilterState );
-		updatedFilterState = $.extend( true, {}, updatedUri.query, updatedFilterState );
-
-		// Include highlight states
-		$.extend( true,
-			currentFilterState,
-			this.filtersModel.extractHighlightValues( uri.query ),
-			{ highlight: !!Number( uri.query.highlight ) }
-		);
-		$.extend( true,
-			updatedFilterState,
-			this.filtersModel.extractHighlightValues( updatedUri.query ),
-			{ highlight: !!Number( updatedUri.query.highlight ) }
-		);
-
-		if ( notEquivalent( currentFilterState, updatedFilterState ) ) {
+		if (
+			this.uriProcessor.getVersion( currentUri.query ) !== 2 ||
+			this.uriProcessor.isNewState( currentUri.query, updatedUri.query )
+		) {
 			if ( this.initializing ) {
 				// Initially, when we just build the first page load
 				// out of defaults, we want to replace the history
-				window.history.replaceState( { tag: 'rcfilters' }, document.title, updatedUri.toString() );
+				mw.rcfilters.UriProcessor.static.replaceState( updatedUri );
 			} else {
-				window.history.pushState( { tag: 'rcfilters' }, document.title, updatedUri.toString() );
+				mw.rcfilters.UriProcessor.static.pushState( updatedUri );
 			}
 		}
 	};
@@ -675,37 +606,23 @@
 	 * @return {mw.Uri} Updated Uri
 	 */
 	mw.rcfilters.Controller.prototype._getUpdatedUri = function () {
-		var uri = new mw.Uri(),
-			highlightParams = this.filtersModel.getHighlightParameters(),
-			modelParameters = this.filtersModel.getParametersFromFilters(),
-			baseParams = this._getEmptyParameterState();
+		var uri = new mw.Uri();
 
-		// Minimize values of the model parameters; show only the values that
-		// are non-zero. We assume that all parameters that are not literally
-		// showing in the URL are set to zero or empty
-		$.each( modelParameters, function ( paramName, value ) {
-			if ( baseParams[ paramName ] !== value ) {
-				uri.query[ paramName ] = value;
-			} else {
-				// We need to remove this value from the url
-				delete uri.query[ paramName ];
-			}
-		} );
-
-		// highlight params
-		if ( this.filtersModel.isHighlightEnabled() ) {
-			uri.query.highlight = Number( this.filtersModel.isHighlightEnabled() );
-		} else {
-			delete uri.query.highlight;
-		}
-		$.each( highlightParams, function ( paramName, value ) {
-			// Only output if it is different than the base parameters
-			if ( baseParams[ paramName ] !== value ) {
-				uri.query[ paramName ] = value;
-			} else {
-				delete uri.query[ paramName ];
-			}
-		} );
+		// Minimize url
+		uri.query = this.uriProcessor.minimizeQuery(
+			$.extend(
+				true,
+				{},
+				// We want to retain unrecognized params
+				// The uri params from model will override
+				// any recognized value in the current uri
+				// query, retain unrecognized params, and
+				// the result will then be minimized
+				uri.query,
+				this.uriProcessor.getUriParametersFromModel(),
+				{ urlversion: '2' }
+			)
+		);
 
 		return uri;
 	};
