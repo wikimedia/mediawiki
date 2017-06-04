@@ -37,8 +37,7 @@
 			$( '.rcfilters-head' ).addClass( 'mw-rcfilters-ui-ready' );
 
 			window.addEventListener( 'popstate', function () {
-				controller.updateStateBasedOnUrl();
-				controller.updateChangesList();
+				controller.updateModelAndViewFromUrl();
 			} );
 
 			$( 'a.mw-helplink' ).attr(
