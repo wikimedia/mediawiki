@@ -94,6 +94,7 @@ return [
 			'tests/qunit/suites/resources/mediawiki.special/mediawiki.special.recentchanges.test.js',
 			'tests/qunit/suites/resources/mediawiki.rcfilters/dm.FiltersViewModel.test.js',
 			'tests/qunit/suites/resources/mediawiki.rcfilters/dm.FilterItem.test.js',
+			'tests/qunit/suites/resources/mediawiki.rcfilters/UriProcessor.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.language.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.cldr.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.cookie.test.js',
