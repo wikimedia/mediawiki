@@ -1944,6 +1944,9 @@ return [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.css',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.special.changeslist.enhanced' => [
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.enhanced.css',
+	],
 	'mediawiki.special.changeslist.legend' => [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.legend.css',
 		'targets' => [ 'desktop', 'mobile' ],
@@ -1955,9 +1958,6 @@ return [
 			'mediawiki.cookie',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
-	],
-	'mediawiki.special.changeslist.enhanced' => [
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.enhanced.css',
 	],
 	'mediawiki.special.changeslist.visitedstatus' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.visitedstatus.js',
@@ -2027,13 +2027,6 @@ return [
 			'mediawiki.notification.convertmessagebox',
 		],
 	],
-	'mediawiki.special.userrights' => [
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.userrights.css',
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.userrights.js',
-		'dependencies' => [
-			'mediawiki.notification.convertmessagebox',
-		],
-	],
 	'mediawiki.special.preferences.styles' => [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.preferences.styles.css',
 	],
@@ -2051,15 +2044,6 @@ return [
 			'powersearch-togglenone',
 		],
 	],
-	'mediawiki.special.search.styles' => [
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.search.styles.css',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
-	'mediawiki.special.search.interwikiwidget.styles' => [
-		'styles' => 'resources/src/mediawiki.special/'
-			. 'mediawiki.special.search.interwikiwidget.styles.less',
-		'targets' => [ 'desktop', 'mobile' ]
-	],
 	'mediawiki.special.search.commonsInterwikiWidget' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.search.commonsInterwikiWidget.js',
 		'dependencies' => [
@@ -2072,8 +2056,37 @@ return [
 			'searchprofile-images'
 		],
 	],
+	'mediawiki.special.search.interwikiwidget.styles' => [
+		'styles' => 'resources/src/mediawiki.special/'
+			. 'mediawiki.special.search.interwikiwidget.styles.less',
+		'targets' => [ 'desktop', 'mobile' ]
+	],
+	'mediawiki.special.search.styles' => [
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.search.styles.css',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.special.undelete' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.undelete.js',
+	],
+	'mediawiki.special.unwatchedPages' => [
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.unwatchedPages.js',
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.unwatchedPages.css',
+		'messages' => [
+			'addedwatchtext-short',
+			'removedwatchtext-short',
+			'unwatch',
+			'unwatching',
+			'watch',
+			'watcherrortext',
+			'watching',
+		],
+		'dependencies' => [
+			'mediawiki.api',
+			'mediawiki.api.watch',
+			'mediawiki.notify',
+			'mediawiki.Title',
+			'mediawiki.util',
+		],
 	],
 	'mediawiki.special.upload' => [
 		'templates' => [
@@ -2111,11 +2124,6 @@ return [
 			'resources/src/mediawiki.special/mediawiki.special.userlogin.common.css',
 		],
 	],
-	'mediawiki.special.userlogin.signup.styles' => [
-		'styles' => [
-			'resources/src/mediawiki.special/mediawiki.special.userlogin.signup.css',
-		],
-	],
 	'mediawiki.special.userlogin.login.styles' => [
 		'styles' => [
 			'resources/src/mediawiki.special/mediawiki.special.userlogin.login.css',
@@ -2135,24 +2143,16 @@ return [
 			'mediawiki.htmlform.checker',
 		],
 	],
-	'mediawiki.special.unwatchedPages' => [
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.unwatchedPages.js',
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.unwatchedPages.css',
-		'messages' => [
-			'addedwatchtext-short',
-			'removedwatchtext-short',
-			'unwatch',
-			'unwatching',
-			'watch',
-			'watcherrortext',
-			'watching',
+	'mediawiki.special.userlogin.signup.styles' => [
+		'styles' => [
+			'resources/src/mediawiki.special/mediawiki.special.userlogin.signup.css',
 		],
+	],
+	'mediawiki.special.userrights' => [
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.userrights.css',
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.userrights.js',
 		'dependencies' => [
-			'mediawiki.api',
-			'mediawiki.api.watch',
-			'mediawiki.notify',
-			'mediawiki.Title',
-			'mediawiki.util',
+			'mediawiki.notification.convertmessagebox',
 		],
 	],
 	'mediawiki.special.watchlist' => [
