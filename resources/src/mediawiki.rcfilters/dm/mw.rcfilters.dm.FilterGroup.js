@@ -75,8 +75,8 @@
 			var subsetNames = [],
 				filterItem = new mw.rcfilters.dm.FilterItem( filter.name, model, {
 					group: model.getName(),
-					label: mw.msg( filter.label ),
-					description: mw.msg( filter.description ),
+					label: filter.label ? mw.msg( filter.label ) : filter.name,
+					description: filter.description ? mw.msg( filter.description ) : '',
 					cssClass: filter.cssClass
 				} );
 
