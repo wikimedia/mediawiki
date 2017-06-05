@@ -596,8 +596,6 @@ class EnhancedChangesList extends ChangesList {
 	protected function recentChangesBlockLine( $rcObj ) {
 		$data = [];
 
-		$query['curid'] = $rcObj->mAttribs['rc_cur_id'];
-
 		$type = $rcObj->mAttribs['rc_type'];
 		$logType = $rcObj->mAttribs['rc_log_type'];
 		$classes = $this->getHTMLClasses( $rcObj, $rcObj->watched );
@@ -637,8 +635,7 @@ class EnhancedChangesList extends ChangesList {
 
 		# Diff and hist links
 		if ( $type != RC_LOG && $type != RC_CATEGORIZE ) {
-			$query['action'] = 'history';
-			$data['historyLink'] = $this->getDiffHistLinks( $rcObj, $query );
+			$data['historyLink'] = $this->getDiffHistLinks( $rcObj );
 		}
 		$data['separatorAfterLinks'] = ' <span class="mw-changeslist-separator">. .</span> ';
 
@@ -660,7 +657,7 @@ class EnhancedChangesList extends ChangesList {
 			$data['userTalkLink'] = $rcObj->usertalklink;
 			$data['comment'] = $this->insertComment( $rcObj );
 			if ( $type == RC_CATEGORIZE ) {
-				$data['historyLink'] = $this->getDiffHistLinks( $rcObj, $query );
+				$data['historyLink'] = $this->getDiffHistLinks( $rcObj );
 			}
 			$data['rollback'] = $this->getRollback( $rcObj );
 		}
@@ -712,7 +709,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @param array $query array of key/value pairs to append as a query string
 	 * @return string HTML
 	 */
-	public function getDiffHistLinks( RCCacheEntry $rc, array $query ) {
+	public function getDiffHistLinks( RCCacheEntry $rc, array $query = [] ) {
 		$pageTitle = $rc->getTitle();
 		if ( $rc->getAttribute( 'rc_type' ) == RC_CATEGORIZE ) {
 			// For categorizations we must swap the category title with the page title!
@@ -725,13 +722,19 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		$retVal = ' ' . $this->msg( 'parentheses' )
-				->rawParams( $rc->difflink . $this->message['pipe-separator']
-					. $this->linkRenderer->makeKnownLink(
-						$pageTitle,
-						new HtmlArmor( $this->message['hist'] ),
-						[ 'class' => 'mw-changeslist-history' ],
-						$query
-					) )->escaped();
+			->rawParams(
+				$rc->difflink .
+				$this->message['pipe-separator'] .
+				$this->linkRenderer->makeKnownLink(
+					$pageTitle,
+					new HtmlArmor( $this->message['hist'] ),
+					[ 'class' => 'mw-changeslist-history' ],
+					$query + [
+						'action' => 'history',
+						'curid' => $rc->getAttribute( 'rc_cur_id' )
+					]
+				)
+			)->escaped();
 		return $retVal;
 	}
 
