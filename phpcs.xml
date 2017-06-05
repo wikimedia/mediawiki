@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="MediaWiki">
-	<rule ref="vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
+	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
 		<!-- Disable rules added in 0.8.0 that don't pass yet -->
 		<exclude name="MediaWiki.Commenting.FunctionComment.ExtraParamComment" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingParamComment" />
