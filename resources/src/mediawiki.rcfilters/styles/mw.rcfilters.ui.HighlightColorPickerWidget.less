@@ -9,12 +9,24 @@
 
 	&-buttonSelect {
 		&-color {
-			.oo-ui-iconElement-icon {
-				width: 2em;
-				height: 2em;
+			// Make the rule much more specific to override OOUI
+			.oo-ui-iconElement-icon.oo-ui-icon-check {
+				// Override OOUI icon dimensions
+				// The parent is 2em with 0.5em margin
+				// (see mw-rcfilters-mixin-circle below)
+				// so here we want 2em - 0.5em = 1.5em
+				width: 1.5em;
+				height: 1.5em;
+				// By eye, this is centered horizontally for the color circle
+				margin-left: -0.1em;
 			}
 
 			&-none {
+				.oo-ui-iconElement-icon.oo-ui-icon-check {
+					// By eye, this is centered horizontally for the white circle
+					margin-left: -0.2em;
+				}
+
 				.mw-rcfilters-mixin-circle( @highlight-none, 2em, 0.5em, true );
 				// Override border to dashed
 				border: 1px dashed #565656;
