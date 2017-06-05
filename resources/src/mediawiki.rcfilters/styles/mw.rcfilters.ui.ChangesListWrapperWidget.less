@@ -107,7 +107,12 @@
 
 	// Two colors
 	.highlight-color-mix( c1, c2 );
-	.highlight-color-mix( c1, c3 );
+	// Overriding .highlight-color-mix( c1, c3 ); to produce
+	// a custom color rather than the computed tint
+	// see https://phabricator.wikimedia.org/T161267
+	.mw-rcfilters-highlight-color-c1.mw-rcfilters-highlight-color-c3 {
+		background-color: #ccdecc;
+	}
 	.highlight-color-mix( c1, c4 );
 	.highlight-color-mix( c1, c5 );
 	.highlight-color-mix( c2, c3 );
