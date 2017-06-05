@@ -29,10 +29,52 @@ class ResourceLoaderOOUIFileModule extends ResourceLoaderFileModule {
 
 	public function __construct( $options = [] ) {
 		if ( isset( $options[ 'themeScripts' ] ) ) {
-			$options['skinScripts'] = $this->getSkinSpecific( $options[ 'themeScripts' ], 'scripts' );
+			$skinScripts = $this->getSkinSpecific( $options[ 'themeScripts' ], 'scripts' );
+
+			if ( !isset( $options['skinScripts'] ) ) {
+				$options['skinScripts'] = [];
+			}
+			// For each skin where skinScripts are defined, add our ones at the beginning
+			foreach ( $options['skinScripts'] as $skin => $files ) {
+				if ( !is_array( $files ) ) {
+					$files = [ $files ];
+				}
+				if ( isset( $skinScripts[$skin] ) ) {
+					$options['skinScripts'][$skin] = array_merge( [ $skinScripts[$skin] ], $files );
+				} elseif ( isset( $skinScripts['default'] ) ) {
+					$options['skinScripts'][$skin] = array_merge( [ $skinScripts['default'] ], $files );
+				}
+			}
+			// Add our remaining skinScripts for skins that did not have them defined
+			foreach ( $skinScripts as $skin => $file ) {
+				if ( !isset( $options['skinScripts'][$skin] ) ) {
+					$options['skinScripts'][$skin] = $file;
+				}
+			}
 		}
 		if ( isset( $options[ 'themeStyles' ] ) ) {
-			$options['skinStyles'] = $this->getSkinSpecific( $options[ 'themeStyles' ], 'styles' );
+			$skinStyles = $this->getSkinSpecific( $options[ 'themeStyles' ], 'styles' );
+
+			if ( !isset( $options['skinStyles'] ) ) {
+				$options['skinStyles'] = [];
+			}
+			// For each skin where skinStyles are defined, add our ones at the beginning
+			foreach ( $options['skinStyles'] as $skin => $files ) {
+				if ( !is_array( $files ) ) {
+					$files = [ $files ];
+				}
+				if ( isset( $skinStyles[$skin] ) ) {
+					$options['skinStyles'][$skin] = array_merge( [ $skinStyles[$skin] ], $files );
+				} elseif ( isset( $skinStyles['default'] ) ) {
+					$options['skinStyles'][$skin] = array_merge( [ $skinStyles['default'] ], $files );
+				}
+			}
+			// Add our remaining skinStyles for skins that did not have them defined
+			foreach ( $skinStyles as $skin => $file ) {
+				if ( !isset( $options['skinStyles'][$skin] ) ) {
+					$options['skinStyles'][$skin] = $file;
+				}
+			}
 		}
 
 		parent::__construct( $options );
