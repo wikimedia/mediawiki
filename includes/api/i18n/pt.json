@@ -1501,7 +1501,6 @@
 	"apierror-changeauth-norequest": "A criação do pedido de modificação falhou.",
 	"apierror-chunk-too-small": "O tamanho de segmento mínimo é $1 {{PLURAL:$1|byte|bytes}} para segmentos que não sejam segmentos finais.",
 	"apierror-cidrtoobroad": "Não são aceites intervalos CIDR $1 maiores do que /$2.",
-	"apierror-compare-inputneeded": "É necessário um título, um identificador de página, ou um número de revisão, tanto para o parâmetro <var>from</var> como para o parâmetro <var>to</var>.",
 	"apierror-contentserializationexception": "A seriação do conteúdo falhou: $1",
 	"apierror-contenttoobig": "O conteúdo que forneceu excede o tamanho máximo dos artigos que é $1 {{PLURAL:$1|kilobyte|kilobytes}}.",
 	"apierror-copyuploadbaddomain": "Não são permitidos carregamentos por URL a partir deste domínio.",
