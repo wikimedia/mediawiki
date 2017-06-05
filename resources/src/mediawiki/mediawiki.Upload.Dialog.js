@@ -209,7 +209,7 @@
 			} );
 		}
 		if ( action === 'cancel' ) {
-			return new OO.ui.Process( this.close() );
+			return new OO.ui.Process( this.close().closed );
 		}
 		if ( action === 'cancelupload' ) {
 			return new OO.ui.Process( this.uploadBooklet.initialize() );
