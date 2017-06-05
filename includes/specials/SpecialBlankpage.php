@@ -35,5 +35,37 @@ class SpecialBlankpage extends UnlistedSpecialPage {
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->getOutput()->addWikiMsg( 'intentionallyblankpage' );
+		$out = $this->getOutput();
+
+		$form = [];
+
+		$form['selectandother'] = [
+			'type' => 'selectandother',
+			'label' => 'selectandother',
+			'default' => 'Lmao',
+			'options' => [ # The options available within the menu (displayed => value)
+				'Option 0' => 0,
+				'Option 1' => 1,
+				'Option 2' => 'option2id'
+			],
+			'size' => 18, # Display size of 'other' field
+			'maxlength'=> 10 # Input size of 'other' field
+		];
+
+		$form['selectorother'] = [
+			'type' => 'selectorother',
+			'label' => 'Or!',
+			'default' => 'lol',
+			'options' => [ # The options available within the menu (displayed => value)
+				'Foo' => 'lol',
+				'Bar' => 1,
+				'Baz' => 'option2id'
+			],
+			'size' => 18, # Display size of 'other' field
+			'maxlength'=> 10 # Input size of 'other' field
+		];
+
+		$htmlForm = HTMLForm::factory( 'ooui', $form, $this->getContext() );
+		$out->addHTML( $htmlForm->prepareForm()->getHTML( false ) );
 	}
 }
