@@ -32,34 +32,64 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		$styles = parent::getStyles( $context );
 
 		$default = !is_array( $logo ) ? $logo : $logo['1x'];
-		$styles['all'][] = '.mw-wiki-logo { background-image: ' .
+
+		$this->appendStyles(
+			$styles,
+			'all',
+			'.mw-wiki-logo { background-image: ' .
 				CSSMin::buildUrlValue( $default ) .
-				'; }';
+				'; }'
+		);
 
 		if ( is_array( $logo ) ) {
 			if ( isset( $logo['1.5x'] ) ) {
-				$styles[
+				$this->appendStyles(
+					$styles,
 					'(-webkit-min-device-pixel-ratio: 1.5), ' .
-					'(min--moz-device-pixel-ratio: 1.5), ' .
-					'(min-resolution: 1.5dppx), ' .
-					'(min-resolution: 144dpi)'
-				][] = '.mw-wiki-logo { background-image: ' .
-				CSSMin::buildUrlValue( $logo['1.5x'] ) . ';' .
-				'background-size: 135px auto; }';
+						'(min--moz-device-pixel-ratio: 1.5), ' .
+						'(min-resolution: 1.5dppx), ' .
+						'(min-resolution: 144dpi)',
+					'.mw-wiki-logo { background-image: ' .
+						CSSMin::buildUrlValue( $logo['1.5x'] ) . ';' .
+						'background-size: 135px auto; }'
+				);
 			}
 			if ( isset( $logo['2x'] ) ) {
-				$styles[
+				$this->appendStyles(
+					$styles,
 					'(-webkit-min-device-pixel-ratio: 2), ' .
-					'(min--moz-device-pixel-ratio: 2),' .
-					'(min-resolution: 2dppx), ' .
-					'(min-resolution: 192dpi)'
-				][] = '.mw-wiki-logo { background-image: ' .
-				CSSMin::buildUrlValue( $logo['2x'] ) . ';' .
-				'background-size: 135px auto; }';
+						'(min--moz-device-pixel-ratio: 2),' .
+						'(min-resolution: 2dppx), ' .
+						'(min-resolution: 192dpi)',
+					'.mw-wiki-logo { background-image: ' .
+						CSSMin::buildUrlValue( $logo['2x'] ) . ';' .
+						'background-size: 135px auto; }'
+				);
 			}
 		}
 
 		return $styles;
+	}
+
+	/**
+	 * Add some more CSS code to a 'styles' array in the format returned
+	 * by the ResourceLoaderFileModule::getStyles() method.
+	 *
+	 * @param array &$styles Associative array, keys are strings (media queries),
+	 *   values are strings or arrays
+	 * @param string $mediaQuery Media query, e.g. 'all' or 'print'
+	 * @param string $cssCode
+	 */
+	private function appendStyles( &$styles, $mediaQuery, $cssCode ) {
+		if ( !isset( $styles[$mediaQuery] ) ) {
+			$styles[$mediaQuery] = $cssCode;
+		} elseif ( is_string( $styles[$mediaQuery] ) ) {
+			$styles[$mediaQuery] .= "\n" . $cssCode;
+		} elseif ( is_array( $styles[$mediaQuery] ) ) {
+			$styles[$mediaQuery][] = $cssCode;
+		} else {
+			throw new InvalidArgumentException( "Unknown type of the value in 'styles' array" );
+		}
 	}
 
 	/**
