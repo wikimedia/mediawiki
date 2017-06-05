@@ -75,8 +75,7 @@
 			"Larske",
 			"Rockyfelle",
 			"Johan",
-			"Martin Wiss",
-			"Mdjarv"
+			"Martin Wiss"
 		]
 	},
 	"tog-underline": "Stryk under länkar:",
@@ -1365,7 +1364,7 @@
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "Visa",
 	"rcfilters-activefilters": "Aktiva filter",
-	"rcfilters-quickfilters": "Sparade filterinställningar",
+	"rcfilters-quickfilters": "Snabblänkar",
 	"rcfilters-quickfilters-placeholder-title": "Inga länkar har sparats ännu",
 	"rcfilters-quickfilters-placeholder-description": "För att spara dina filterinställningar och återanvända dem senare, klicka på bokmärkesikonen under \"Aktiva filter\" nedan.",
 	"rcfilters-savedqueries-defaultlabel": "Sparade filter",
@@ -1374,9 +1373,9 @@
 	"rcfilters-savedqueries-unsetdefault": "Ta bort som standard",
 	"rcfilters-savedqueries-remove": "Ta bort",
 	"rcfilters-savedqueries-new-name-label": "Namn",
-	"rcfilters-savedqueries-apply-label": "Skapa inställningar",
+	"rcfilters-savedqueries-apply-label": "Skapa snabblänk",
 	"rcfilters-savedqueries-cancel-label": "Avbryt",
-	"rcfilters-savedqueries-add-new-title": "Spara filterinställningar",
+	"rcfilters-savedqueries-add-new-title": "Spara filter som en snabblänk",
 	"rcfilters-restore-default-filters": "Återställ standardfilter",
 	"rcfilters-clear-all-filters": "Rensa alla filter",
 	"rcfilters-search-placeholder": "Filtrera senaste ändringar (bläddra eller börja skriva)",

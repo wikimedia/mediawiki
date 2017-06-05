@@ -1385,8 +1385,6 @@
 	"rcfilters-filter-major-description": "যেসব সম্পাদনাকে অনুল্লেখ্য হিসেবে চিহ্নিত করা হয়নি।",
 	"rcfilters-filtergroup-watchlist": "নজরতালিকার পাতা",
 	"rcfilters-filter-watchlist-watched-label": "নজরতালিকায়",
-	"rcfilters-filter-watchlist-watchednew-label": "নজরতালিকার নতুন পরিবর্তন",
-	"rcfilters-filter-watchlist-notwatched-label": "নজরতালিকাভুক্ত নয়",
 	"rcfilters-filtergroup-changetype": "পরিবর্তনের ধরন",
 	"rcfilters-filter-pageedits-label": "পাতার সম্পাদনা",
 	"rcfilters-filter-pageedits-description": "উইকি বিষয়বস্তু, আলোচনা, বিষয়শ্রেণীর বিবরণ... ইত্যাদিতে সম্পাদনা",
