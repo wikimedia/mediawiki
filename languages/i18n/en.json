@@ -1343,6 +1343,7 @@
 	"action-deletechangetags": "delete tags from the database",
 	"action-purge": "purge this page",
 	"nchanges": "$1 {{PLURAL:$1|change|changes}}",
+	"ntimes": "$1×",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|since last visit}}",
 	"enhancedrc-history": "history",
 	"recentchanges": "Recent changes",
