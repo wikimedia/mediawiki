@@ -64,7 +64,63 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	}
 
 	public function getInputOOUI( $value ) {
-		return false;
+		# Textbox (from getInputHTML)
+		$textAttribs = [
+			'id' => $this->mID . '-other',
+			'size' => $this->getSize(),
+			'class' => [ 'mw-htmlform-select-and-other-field' ],
+			'data-id-select' => $this->mID,
+		];
+
+		if ( $this->mClass !== '' ) {
+			$textAttribs['class'][] = $this->mClass;
+		}
+
+		$allowedParams = [
+			'required',
+			'autofocus',
+			'multiple',
+			'disabled',
+			'tabindex',
+			'maxlength', // gets dynamic with javascript, see mediawiki.htmlform.js
+		];
+
+		$textAttribs = OOUI\Element::configFromHtmlAttributes(
+			$this->getAttributes( $allowedParams )
+		);
+
+		# DropdownInput (from HTMLSelectField::getInputOOUI (which is this class's parent))
+		$disabled = false;
+		$allowedParams = [ 'tabindex' ];
+		$dropdownInputAttribs = OOUI\Element::configFromHtmlAttributes(
+			$this->getAttributes( $allowedParams )
+		);
+
+		if ( $this->mClass !== '' ) {
+			$dropdownInputAttribs['classes'] = [ $this->mClass ];
+		}
+
+		if ( !empty( $this->mParams['disabled'] ) ) {
+			$disabled = true;
+		}
+
+		$dropdownInputAttribs += [
+			'name' => $this->mName,
+			'id' => $this->mID,
+			'options' => $this->getOptionsOOUI(),
+			'value' => strval( $value ),
+			'disabled' => $disabled,
+		];
+
+		return $this->getInputWidget( [
+			"textinput" => $textAttribs,
+			"dropdowninput" => $dropdownInputAttribs,
+			"or" => false,
+		] );
+	}
+
+	public function getInputWidget( $params ) {
+		return new Mediawiki\Widget\SelectWithInputWidget( $params );
 	}
 
 	/**
