@@ -575,9 +575,15 @@ class ResourceLoader implements LoggerAwareInterface {
 		$info = $this->moduleInfos[$name];
 		if (
 			isset( $info['object'] ) ||
-			// This special case is dumb, but we need $wgResourceModuleSkinStyles
-			// to work for 'oojs-ui-core.styles'. See T167042.
-			( isset( $info['class'] ) && $info['class'] !== 'ResourceLoaderOOUIFileModule' )
+			// These special cases are dumb, but not every subclass of ResourceLoaderFileModule
+			// is necessarily able to handle skinStyles ($wgResourceModuleSkinStyles)...
+			(
+				isset( $info['class'] ) &&
+				// For 'oojs-ui-core.styles' (T167042)
+				$info['class'] !== 'ResourceLoaderOOUIFileModule' &&
+				// For 'mediawiki.skinning.interface'
+				$info['class'] !== 'ResourceLoaderSkinModule'
+			)
 		) {
 			return false;
 		}
