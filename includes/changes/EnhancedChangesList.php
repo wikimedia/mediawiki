@@ -631,8 +631,6 @@ class EnhancedChangesList extends ChangesList {
 	protected function recentChangesBlockLine( $rcObj ) {
 		$data = [];
 
-		$query = [ 'curid' => $rcObj->mAttribs['rc_cur_id'] ];
-
 		$type = $rcObj->mAttribs['rc_type'];
 		$logType = $rcObj->mAttribs['rc_log_type'];
 		$classes = $this->getHTMLClasses( $rcObj, $rcObj->watched );
@@ -673,8 +671,7 @@ class EnhancedChangesList extends ChangesList {
 
 		# Diff and hist links
 		if ( $type != RC_LOG && $type != RC_CATEGORIZE ) {
-			$query['action'] = 'history';
-			$data['historyLink'] = $this->getDiffHistLinks( $rcObj, $query, false );
+			$data['historyLink'] = $this->getDiffHistLinks( $rcObj, false );
 		}
 		$data['separatorAfterLinks'] = ' <span class="mw-changeslist-separator"></span> ';
 
@@ -696,7 +693,7 @@ class EnhancedChangesList extends ChangesList {
 			$data['userTalkLink'] = $rcObj->usertalklink;
 			$data['comment'] = $this->insertComment( $rcObj );
 			if ( $type == RC_CATEGORIZE ) {
-				$data['historyLink'] = $this->getDiffHistLinks( $rcObj, $query, false );
+				$data['historyLink'] = $this->getDiffHistLinks( $rcObj, false );
 			}
 			$data['rollback'] = $this->getRollback( $rcObj );
 		}
@@ -772,11 +769,19 @@ class EnhancedChangesList extends ChangesList {
 	 * @since 1.27
 	 *
 	 * @param RCCacheEntry $rc
-	 * @param array $query array of key/value pairs to append as a query string
-	 * @param bool $useParentheses (optional) Wrap comments in parentheses where needed
+	 * @param bool|array|null $query deprecated
+	 * @param bool|null $useParentheses (optional) Wrap comments in parentheses where needed
 	 * @return string HTML
 	 */
-	public function getDiffHistLinks( RCCacheEntry $rc, array $query, $useParentheses = true ) {
+	public function getDiffHistLinks( RCCacheEntry $rc, $query = null, $useParentheses = null ) {
+		if ( is_bool( $query ) ) {
+			$useParentheses = $query;
+		} elseif ( $query !== null ) {
+			wfDeprecated( __METHOD__ . ' with $query parameter', '1.35' );
+		}
+		if ( $useParentheses === null ) {
+			$useParentheses = true;
+		}
 		$pageTitle = $rc->getTitle();
 		if ( $rc->getAttribute( 'rc_type' ) == RC_CATEGORIZE ) {
 			// For categorizations we must swap the category title with the page title!
@@ -792,7 +797,10 @@ class EnhancedChangesList extends ChangesList {
 			$pageTitle,
 			new HtmlArmor( $this->message['hist'] ),
 			[ 'class' => 'mw-changeslist-history' ],
-			$query
+			[
+				'action' => 'history',
+				'curid' => $rc->getAttribute( 'rc_cur_id' )
+			]
 		);
 		if ( $useParentheses ) {
 			$retVal = $this->msg( 'parentheses' )
