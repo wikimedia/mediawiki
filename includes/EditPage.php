@@ -3059,7 +3059,7 @@ class EditPage {
 			'id' => 'wpSummary',
 			'name' => 'wpSummary',
 			'maxlength' => '200',
-			'tabindex' => '1',
+			'tabindex' => 1,
 			'size' => 60,
 			'spellcheck' => 'true',
 		] + Linker::tooltipAndAccesskeyAttribs( 'summary' );
