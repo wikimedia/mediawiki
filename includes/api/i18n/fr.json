@@ -1521,6 +1521,7 @@
 	"apierror-changeauth-norequest": "Échec à la création de la requête de modification.",
 	"apierror-chunk-too-small": "La taille minimale d’un segment est de $1 {{PLURAL:$1|octet|octets}} pour les segments hors le dernier.",
 	"apierror-cidrtoobroad": "Les plages CIDR $1 plus large que /$2 ne sont pas acceptées.",
+	"apierror-compare-inputneeded": "Un titre, un ID de page ou un numéro de révision est nécessaire pour les paramètres <var>from</var> et <var>to</var>.",
 	"apierror-contentserializationexception": "Échec de sérialisation du contenu : $1",
 	"apierror-contenttoobig": "Le contenu que vous avez fourni dépasse la limite de taille d’un article, qui est de $1 {{PLURAL:$1|kilooctet|kilooctets}}.",
 	"apierror-copyuploadbaddomain": "Les téléversements par URL ne sont pas autorisés pour ce domaine.",
