@@ -3740,6 +3740,7 @@
 	"mw-widgets-categoryselector-add-category-placeholder": "Дадаць катэгорыю…",
 	"mw-widgets-usersmultiselect-placeholder": "Дадаць яшчэ…",
 	"date-range-from": "З даты:",
+	"date-range-to": "Да даты:",
 	"sessionmanager-tie": "Немагчыма выкарыстаць адначасова некалькі тыпаў аўтэнтыфікацыі: $1.",
 	"sessionprovider-generic": "$1 сэсіі",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "сэсіі на падставе файлаў-кукі",

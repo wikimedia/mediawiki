@@ -98,7 +98,7 @@
 	"config-diff3-bad": "GNU diff3 no se encuentra.",
 	"config-git": "Se encontró el software de control de versiones Git: <code>$1</code>.",
 	"config-git-bad": "No se encontró el software de control de versiones Git.",
-	"config-imagemagick": "ImageMagick encontrado: <code>$1</code>.\nLa miniaturización de imágenes se habilitará si habilitas las cargas.",
+	"config-imagemagick": "ImageMagick encontrado: <code>$1</code>.\nLa miniaturización de imágenes se habilitará si habilitas la subida de archivos.",
 	"config-gd": "Se ha encontrado una biblioteca de gráficos GD integrada.\nLa miniaturización de imágenes se habilitará si habilitas las subidas.",
 	"config-no-scaling": "No se ha encontrado la biblioteca GD o ImageMagik.\nSe desactivará la miniaturización de imágenes.",
 	"config-no-uri": "<strong>Error:</strong> no se pudo determinar el URI actual.\nSe interrumpió la instalación.",

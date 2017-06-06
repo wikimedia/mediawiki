@@ -1455,7 +1455,7 @@
 	"rcfilters-savedqueries-unsetdefault": "Desmarcar como predeterminado",
 	"rcfilters-savedqueries-remove": "Eliminar",
 	"rcfilters-savedqueries-new-name-label": "Nombre",
-	"rcfilters-savedqueries-apply-label": "Guardar ajustes",
+	"rcfilters-savedqueries-apply-label": "Guardar la configuración",
 	"rcfilters-savedqueries-cancel-label": "Cancelar",
 	"rcfilters-savedqueries-add-new-title": "Guardar ajustes de filtro actuales",
 	"rcfilters-restore-default-filters": "Restaurar filtros predeterminados",

@@ -439,6 +439,7 @@
 	"apihelp-upload-param-stash": "Om angiven, kommer servern att temporärt lagra filen istället för att lägga till den i centralförvaret.",
 	"apihelp-upload-example-url": "Ladda upp från URL.",
 	"apihelp-upload-example-filekey": "Slutför en uppladdning som misslyckades på grund av varningar.",
+	"api-login-fail-badsessionprovider": "Kan inte logga in med $1.",
 	"api-help-main-header": "Huvudmodul",
 	"api-help-flag-deprecated": "Denna modul är föråldrad.",
 	"api-help-flag-internal": "<strong>Denna modul är intern eller instabil.</strong> Dess funktion kan ändras utan föregående meddelande.",
