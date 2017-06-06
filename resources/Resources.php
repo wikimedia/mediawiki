@@ -2587,6 +2587,9 @@ return [
 			'oojs-ui.styles.indicators',
 			'oojs-ui.styles.textures',
 			'mediawiki.language',
+			'oojs-ui.styles.icons-content',
+			'oojs-ui.styles.icons-alerts',
+			'oojs-ui.styles.icons-interactions',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -2602,7 +2605,14 @@ return [
 		'class' => 'ResourceLoaderOOUIFileModule',
 		'scripts' => 'resources/lib/oojs-ui/oojs-ui-widgets.js',
 		'themeStyles' => 'widgets',
-		'dependencies' => 'oojs-ui-core',
+		'dependencies' => [
+			'oojs-ui-core',
+			'oojs-ui.styles.icons-interactions',
+			'oojs-ui.styles.icons-content',
+			'oojs-ui.styles.icons-editing-advanced',
+			'oojs-ui.styles.icons-movement',
+			'oojs-ui.styles.icons-moderation',
+		],
 		'messages' => [
 			'ooui-outline-control-move-down',
 			'ooui-outline-control-move-up',
@@ -2619,7 +2629,10 @@ return [
 		'class' => 'ResourceLoaderOOUIFileModule',
 		'scripts' => 'resources/lib/oojs-ui/oojs-ui-toolbars.js',
 		'themeStyles' => 'toolbars',
-		'dependencies' => 'oojs-ui-core',
+		'dependencies' => [
+			'oojs-ui-core',
+			'oojs-ui.styles.icons-movement',
+		],
 		'messages' => [
 			'ooui-toolbar-more',
 			'ooui-toolgroup-collapse',
@@ -2632,7 +2645,10 @@ return [
 		'class' => 'ResourceLoaderOOUIFileModule',
 		'scripts' => 'resources/lib/oojs-ui/oojs-ui-windows.js',
 		'themeStyles' => 'windows',
-		'dependencies' => 'oojs-ui-core',
+		'dependencies' => [
+			'oojs-ui-core',
+			'oojs-ui.styles.icons-movement',
+		],
 		'messages' => [
 			'ooui-dialog-message-accept',
 			'ooui-dialog-message-reject',
