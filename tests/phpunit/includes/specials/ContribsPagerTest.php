@@ -3,14 +3,14 @@
 /**
  * @group Database
  */
-class SpecialContributionsTest extends \PHPUnit_Framework_TestCase {
+class ContribsPagerTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider dateFilterOptionProcessingProvider
 	 * @param array $inputOpts Input options
 	 * @param array $expectedOpts Expected options
 	 */
 	public function testDateFilterOptionProcessing( $inputOpts, $expectedOpts ) {
-		$this->assertArraySubset( $expectedOpts, SpecialContributions::processDateFilter( $inputOpts ) );
+		$this->assertArraySubset( $expectedOpts, ContribsPager::processDateFilter( $inputOpts ) );
 	}
 
 	public static function dateFilterOptionProcessingProvider() {
