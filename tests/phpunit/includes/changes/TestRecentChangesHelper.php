@@ -119,6 +119,8 @@ class TestRecentChangesHelper {
 				'rc_last_oldid' => $lastid,
 				'rc_cur_id' => $curid,
 				'rc_comment' => '[[:Testpage]] added to category',
+				'rc_comment_text' => '[[:Testpage]] added to category',
+				'rc_comment_data' => null,
 				'rc_old_len' => 0,
 				'rc_new_len' => 0,
 			]
@@ -139,6 +141,8 @@ class TestRecentChangesHelper {
 			'rc_old_len' => 212,
 			'rc_new_len' => 188,
 			'rc_comment' => '',
+			'rc_comment_text' => '',
+			'rc_comment_data' => null,
 			'rc_minor' => 0,
 			'rc_bot' => 0,
 			'rc_type' => 0,

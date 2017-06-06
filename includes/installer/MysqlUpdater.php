@@ -326,6 +326,8 @@ class MysqlUpdater extends DatabaseUpdater {
 				'patch-user_former_groups-fix-pk.sql' ],
 			[ 'renameIndex', 'user_properties', 'user_properties_user_property', 'PRIMARY', false,
 				'patch-user_properties-fix-pk.sql' ],
+			[ 'addTable', 'comment', 'patch-comment-table.sql' ],
+			[ 'migrateComments' ],
 		];
 	}
 

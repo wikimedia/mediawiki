@@ -813,7 +813,7 @@ class WikiImporter {
 		$this->debug( "Enter revision handler" );
 		$revisionInfo = [];
 
-		$normalFields = [ 'id', 'timestamp', 'comment', 'minor', 'model', 'format', 'text' ];
+		$normalFields = [ 'id', 'timestamp', 'comment', 'minor', 'model', 'format', 'text', 'sha1' ];
 
 		$skip = false;
 
@@ -915,6 +915,9 @@ class WikiImporter {
 			$revision->setUsername( $revisionInfo['contributor']['username'] );
 		} else {
 			$revision->setUsername( 'Unknown user' );
+		}
+		if ( isset( $revisionInfo['sha1'] ) ) {
+			$revision->setSha1Base36( $revisionInfo['sha1'] );
 		}
 		$revision->setNoUpdates( $this->mNoUpdates );
 

@@ -2670,24 +2670,33 @@ class Title implements LinkTarget {
 
 		if ( $this->mTitleProtection === null ) {
 			$dbr = wfGetDB( DB_REPLICA );
+			$commentStore = new CommentStore( 'pt_reason' );
+			$commentQuery = $commentStore->getJoin();
 			$res = $dbr->select(
-				'protected_titles',
+				[ 'protected_titles' ] + $commentQuery['tables'],
 				[
 					'user' => 'pt_user',
-					'reason' => 'pt_reason',
 					'expiry' => 'pt_expiry',
 					'permission' => 'pt_create_perm'
-				],
+				] + $commentQuery['fields'],
 				[ 'pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBkey() ],
-				__METHOD__
+				__METHOD__,
+				[],
+				$commentQuery['joins']
 			);
 
 			// fetchRow returns false if there are no rows.
 			$row = $dbr->fetchRow( $res );
 			if ( $row ) {
-				$row['expiry'] = $dbr->decodeExpiry( $row['expiry'] );
+				$this->mTitleProtection = [
+					'user' => $row['user'],
+					'expiry' => $dbr->decodeExpiry( $row['expiry'] ),
+					'permission' => $row['permission'],
+					'reason' => $commentStore->getComment( $row )->text,
+				];
+			} else {
+				$this->mTitleProtection = false;
 			}
-			$this->mTitleProtection = $row;
 		}
 		return $this->mTitleProtection;
 	}

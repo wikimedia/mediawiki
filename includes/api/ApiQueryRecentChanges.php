@@ -36,6 +36,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		parent::__construct( $query, $moduleName, 'rc' );
 	}
 
+	private $commentStore;
+
 	private $fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
 		$fld_flags = false, $fld_timestamp = false, $fld_title = false, $fld_ids = false,
 		$fld_sizes = false, $fld_redirect = false, $fld_patrolled = false, $fld_loginfo = false,
@@ -274,7 +276,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 			/* Add fields to our query if they are specified as a needed parameter. */
 			$this->addFieldsIf( [ 'rc_this_oldid', 'rc_last_oldid' ], $this->fld_ids );
-			$this->addFieldsIf( 'rc_comment', $this->fld_comment || $this->fld_parsedcomment );
 			$this->addFieldsIf( 'rc_user', $this->fld_user || $this->fld_userid );
 			$this->addFieldsIf( 'rc_user_text', $this->fld_user );
 			$this->addFieldsIf( [ 'rc_minor', 'rc_type', 'rc_bot' ], $this->fld_flags );
@@ -286,6 +287,14 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			);
 			$showRedirects = $this->fld_redirect || isset( $show['redirect'] )
 				|| isset( $show['!redirect'] );
+
+			if ( $this->fld_comment || $this->fld_parsedcomment ) {
+				$this->commentStore = new CommentStore( 'rc_comment' );
+				$commentQuery = $this->commentStore->getJoin();
+				$this->addTables( $commentQuery['tables'] );
+				$this->addFields( $commentQuery['fields'] );
+				$this->addJoinConds( $commentQuery['joins'] );
+			}
 		}
 		$this->addFieldsIf( [ 'rc_this_oldid' ],
 			$resultPageSet && $params['generaterevisions'] );
@@ -500,12 +509,13 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				$anyHidden = true;
 			}
 			if ( Revision::userCanBitfield( $row->rc_deleted, Revision::DELETED_COMMENT, $user ) ) {
-				if ( $this->fld_comment && isset( $row->rc_comment ) ) {
-					$vals['comment'] = $row->rc_comment;
+				$comment = $this->commentStore->getComment( $row )->text;
+				if ( $this->fld_comment ) {
+					$vals['comment'] = $comment;
 				}
 
-				if ( $this->fld_parsedcomment && isset( $row->rc_comment ) ) {
-					$vals['parsedcomment'] = Linker::formatComment( $row->rc_comment, $title );
+				if ( $this->fld_parsedcomment ) {
+					$vals['parsedcomment'] = Linker::formatComment( $comment, $title );
 				}
 			}
 		}

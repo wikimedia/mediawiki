@@ -171,20 +171,21 @@ class PageArchive {
 
 	/**
 	 * List the revisions of the given page. Returns result wrapper with
-	 * (ar_minor_edit, ar_timestamp, ar_user, ar_user_text, ar_comment) fields.
+	 * various archive table fields.
 	 *
 	 * @return ResultWrapper
 	 */
 	public function listRevisions() {
 		$dbr = wfGetDB( DB_REPLICA );
+		$commentQuery = CommentStore::newKey( 'ar_comment' )->getJoin();
 
-		$tables = [ 'archive' ];
+		$tables = [ 'archive' ] + $commentQuery['tables'];
 
 		$fields = [
 			'ar_minor_edit', 'ar_timestamp', 'ar_user', 'ar_user_text',
-			'ar_comment', 'ar_len', 'ar_deleted', 'ar_rev_id', 'ar_sha1',
+			'ar_len', 'ar_deleted', 'ar_rev_id', 'ar_sha1',
 			'ar_page_id'
-		];
+		] + $commentQuery['fields'];
 
 		if ( $this->config->get( 'ContentHandlerUseDB' ) ) {
 			$fields[] = 'ar_content_format';
@@ -196,7 +197,7 @@ class PageArchive {
 
 		$options = [ 'ORDER BY' => 'ar_timestamp DESC' ];
 
-		$join_conds = [];
+		$join_conds = [] + $commentQuery['joins'];
 
 		ChangeTags::modifyDisplayQuery(
 			$tables,
@@ -248,11 +249,13 @@ class PageArchive {
 	 */
 	public function getRevision( $timestamp ) {
 		$dbr = wfGetDB( DB_REPLICA );
+		$commentQuery = CommentStore::newKey( 'ar_comment' )->getJoin();
+
+		$tables = [ 'archive' ] + $commentQuery['tables'];
 
 		$fields = [
 			'ar_rev_id',
 			'ar_text',
-			'ar_comment',
 			'ar_user',
 			'ar_user_text',
 			'ar_timestamp',
@@ -262,19 +265,27 @@ class PageArchive {
 			'ar_deleted',
 			'ar_len',
 			'ar_sha1',
-		];
+		] + $commentQuery['fields'];
 
 		if ( $this->config->get( 'ContentHandlerUseDB' ) ) {
 			$fields[] = 'ar_content_format';
 			$fields[] = 'ar_content_model';
 		}
 
-		$row = $dbr->selectRow( 'archive',
+		$join_conds = [] + $commentQuery['joins'];
+
+		$row = $dbr->selectRow(
+			$tables,
 			$fields,
-			[ 'ar_namespace' => $this->title->getNamespace(),
+			[
+				'ar_namespace' => $this->title->getNamespace(),
 				'ar_title' => $this->title->getDBkey(),
-				'ar_timestamp' => $dbr->timestamp( $timestamp ) ],
-			__METHOD__ );
+				'ar_timestamp' => $dbr->timestamp( $timestamp )
+			],
+			__METHOD__,
+			[],
+			$join_conds
+		);
 
 		if ( $row ) {
 			return Revision::newFromArchiveRow( $row, [ 'title' => $this->title ] );
@@ -552,12 +563,15 @@ class PageArchive {
 			$oldWhere['ar_timestamp'] = array_map( [ &$dbw, 'timestamp' ], $timestamps );
 		}
 
+		$commentQuery = CommentStore::newKey( 'ar_comment' )->getJoin();
+
+		$tables = [ 'archive', 'revision' ] + $commentQuery['tables'];
+
 		$fields = [
 			'ar_id',
 			'ar_rev_id',
 			'rev_id',
 			'ar_text',
-			'ar_comment',
 			'ar_user',
 			'ar_user_text',
 			'ar_timestamp',
@@ -568,24 +582,28 @@ class PageArchive {
 			'ar_page_id',
 			'ar_len',
 			'ar_sha1'
-		];
+		] + $commentQuery['fields'];
 
 		if ( $this->config->get( 'ContentHandlerUseDB' ) ) {
 			$fields[] = 'ar_content_format';
 			$fields[] = 'ar_content_model';
 		}
 
+		$join_conds = [
+			'revision' => [ 'LEFT JOIN', 'ar_rev_id=rev_id' ],
+		] + $commentQuery['joins'];
+
 		/**
 		 * Select each archived revision...
 		 */
 		$result = $dbw->select(
-			[ 'archive', 'revision' ],
+			$tables,
 			$fields,
 			$oldWhere,
 			__METHOD__,
 			/* options */
 			[ 'ORDER BY' => 'ar_timestamp' ],
-			[ 'revision' => [ 'LEFT JOIN', 'ar_rev_id=rev_id' ] ]
+			$join_conds
 		);
 
 		$rev_count = $result->numRows();
