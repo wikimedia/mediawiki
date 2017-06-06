@@ -36,7 +36,7 @@ class ApiQueryContributions extends ApiQueryBase {
 	}
 
 	private $params, $prefixMode, $userprefix, $multiUserMode, $idMode, $usernames, $userids,
-		$parentLens;
+		$parentLens, $commentStore;
 	private $fld_ids = false, $fld_title = false, $fld_timestamp = false,
 		$fld_comment = false, $fld_parsedcomment = false, $fld_flags = false,
 		$fld_patrolled = false, $fld_tags = false, $fld_size = false, $fld_sizediff = false;
@@ -61,6 +61,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		// with extra user based indexes or partioning by user. The additional metadata
 		// queries should use a regular replica DB since the lookup pattern is not all by user.
 		$dbSecondary = $this->getDB(); // any random replica DB
+		$this->commentStore = new CommentStore( $dbSecondary );
 
 		// TODO: if the query is going only against the revision table, should this be done?
 		$this->selectNamedDB( 'contributions', DB_REPLICA, 'contributions' );
@@ -341,11 +342,17 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->addFieldsIf( 'rev_page', $this->fld_ids );
 		$this->addFieldsIf( 'page_latest', $this->fld_flags );
 		// $this->addFieldsIf( 'rev_text_id', $this->fld_ids ); // Should this field be exposed?
-		$this->addFieldsIf( 'rev_comment', $this->fld_comment || $this->fld_parsedcomment );
 		$this->addFieldsIf( 'rev_len', $this->fld_size || $this->fld_sizediff );
 		$this->addFieldsIf( 'rev_minor_edit', $this->fld_flags );
 		$this->addFieldsIf( 'rev_parent_id', $this->fld_flags || $this->fld_sizediff || $this->fld_ids );
 		$this->addFieldsIf( 'rc_patrolled', $this->fld_patrolled );
+
+		if ( $this->fld_comment || $this->fld_parsedcomment ) {
+			$commentQuery = $this->commentStore->getJoin( 'rev_comment' );
+			$this->addTables( $commentQuery['tables'] );
+			$this->addFields( $commentQuery['fields'] );
+			$this->addJoinConds( $commentQuery['joins'] );
+		}
 
 		if ( $this->fld_tags ) {
 			$this->addTables( 'tag_summary' );
@@ -416,7 +423,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			$vals['top'] = $row->page_latest == $row->rev_id;
 		}
 
-		if ( ( $this->fld_comment || $this->fld_parsedcomment ) && isset( $row->rev_comment ) ) {
+		if ( $this->fld_comment || $this->fld_parsedcomment ) {
 			if ( $row->rev_deleted & Revision::DELETED_COMMENT ) {
 				$vals['commenthidden'] = true;
 				$anyHidden = true;
@@ -428,12 +435,13 @@ class ApiQueryContributions extends ApiQueryBase {
 			);
 
 			if ( $userCanView ) {
+				$comment = $this->commentStore->getComment( 'rev_comment', $row )->text;
 				if ( $this->fld_comment ) {
-					$vals['comment'] = $row->rev_comment;
+					$vals['comment'] = $comment;
 				}
 
 				if ( $this->fld_parsedcomment ) {
-					$vals['parsedcomment'] = Linker::formatComment( $row->rev_comment, $title );
+					$vals['parsedcomment'] = Linker::formatComment( $comment, $title );
 				}
 			}
 		}

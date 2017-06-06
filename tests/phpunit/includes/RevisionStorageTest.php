@@ -146,7 +146,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$orig = $this->makeRevision();
 
 		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'revision', '*', [ 'rev_id' => $orig->getId() ] );
+		$res = $dbr->select( 'revision', Revision::selectFields(), [ 'rev_id' => $orig->getId() ] );
 		$this->assertTrue( is_object( $res ), 'query failed' );
 
 		$row = $res->fetchObject();
@@ -164,7 +164,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$orig = $this->makeRevision();
 
 		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'revision', '*', [ 'rev_id' => $orig->getId() ] );
+		$res = $dbr->select( 'revision', Revision::selectFields(), [ 'rev_id' => $orig->getId() ] );
 		$this->assertTrue( is_object( $res ), 'query failed' );
 
 		$row = $res->fetchObject();
@@ -188,7 +188,9 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$page->doDeleteArticle( 'test Revision::newFromArchiveRow' );
 
 		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'archive', '*', [ 'ar_rev_id' => $orig->getId() ] );
+		$res = $dbr->select(
+			'archive', Revision::selectArchiveFields(), [ 'ar_rev_id' => $orig->getId() ]
+		);
 		$this->assertTrue( is_object( $res ), 'query failed' );
 
 		$row = $res->fetchObject();
