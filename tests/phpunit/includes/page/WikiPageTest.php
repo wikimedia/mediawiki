@@ -17,6 +17,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 			$this->tablesUsed,
 			[ 'page',
 				'revision',
+				'archive',
 				'text',
 
 				'recentchanges',
@@ -1123,4 +1124,84 @@ more stuff
 		$page = WikiPage::factory( $title );
 		$this->assertEquals( 'WikiPage', get_class( $page ) );
 	}
+
+	/**
+	 * @dataProvider provideCommentMigrationOnDeletion
+	 * @param int $wstage
+	 * @param int $rstage
+	 */
+	public function testCommentMigrationOnDeletion( $wstage, $rstage ) {
+		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', $wstage );
+		$dbr = wfGetDB( DB_REPLICA );
+
+		$page = $this->createPage(
+			"WikiPageTest_testCommentMigrationOnDeletion",
+			"foo",
+			CONTENT_MODEL_WIKITEXT
+		);
+		$revid = $page->getLatest();
+		if ( $wstage > MIGRATION_OLD ) {
+			$comment_id = $dbr->selectField(
+				'revision_comment_temp',
+				'revcomment_comment_id',
+				[ 'revcomment_rev' => $revid ],
+				__METHOD__
+			);
+		}
+
+		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', $rstage );
+
+		$page->doDeleteArticle( "testing deletion" );
+
+		if ( $rstage > MIGRATION_OLD ) {
+			// Didn't leave behind any 'revision_comment_temp' rows
+			$n = $dbr->selectField(
+				'revision_comment_temp', 'COUNT(*)', [ 'revcomment_rev' => $revid ], __METHOD__
+			);
+			$this->assertEquals( 0, $n, 'no entry in revision_comment_temp after deletion' );
+
+			// Copied or upgraded the comment_id, as applicable
+			$ar_comment_id = $dbr->selectField(
+				'archive',
+				'ar_comment_id',
+				[ 'ar_rev_id' => $revid ],
+				__METHOD__
+			);
+			if ( $wstage > MIGRATION_OLD ) {
+				$this->assertSame( $comment_id, $ar_comment_id );
+			} else {
+				$this->assertNotEquals( 0, $ar_comment_id );
+			}
+		}
+
+		// Copied rev_comment, if applicable
+		if ( $rstage <= MIGRATION_WRITE_BOTH && $wstage <= MIGRATION_WRITE_BOTH ) {
+			$ar_comment = $dbr->selectField(
+				'archive',
+				'ar_comment',
+				[ 'ar_rev_id' => $revid ],
+				__METHOD__
+			);
+			$this->assertSame( 'testing', $ar_comment );
+		}
+	}
+
+	public static function provideCommentMigrationOnDeletion() {
+		return [
+			[ MIGRATION_OLD, MIGRATION_OLD ],
+			[ MIGRATION_OLD, MIGRATION_WRITE_BOTH ],
+			[ MIGRATION_OLD, MIGRATION_WRITE_NEW ],
+			[ MIGRATION_WRITE_BOTH, MIGRATION_OLD ],
+			[ MIGRATION_WRITE_BOTH, MIGRATION_WRITE_BOTH ],
+			[ MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW ],
+			[ MIGRATION_WRITE_BOTH, MIGRATION_NEW ],
+			[ MIGRATION_WRITE_NEW, MIGRATION_WRITE_BOTH ],
+			[ MIGRATION_WRITE_NEW, MIGRATION_WRITE_NEW ],
+			[ MIGRATION_WRITE_NEW, MIGRATION_NEW ],
+			[ MIGRATION_NEW, MIGRATION_WRITE_BOTH ],
+			[ MIGRATION_NEW, MIGRATION_WRITE_NEW ],
+			[ MIGRATION_NEW, MIGRATION_NEW ],
+		];
+	}
+
 }

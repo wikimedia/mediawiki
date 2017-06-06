@@ -41,6 +41,11 @@ production.
   LanguageConverter variant.  This allows English-speaking developers
   to develop and test LanguageConverter more easily.  Pig Latin can be
   enabled by setting $wgUsePigLatinVariant to true.
+* Edit summaries, block reasons, and other "comments" are now stored in a
+  separate database table. Use the CommentFormatter class to access them.
+** This is currently gated by $wgCommentTableSchemaMigrationStage. Most wikis
+   can set this to MIGRATION_NEW and run maintenance/migrateComments.php as
+   soon as any necessary extensions are updated.
 
 === Languages updated in 1.30 ===
 

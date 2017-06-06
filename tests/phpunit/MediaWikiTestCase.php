@@ -1281,12 +1281,16 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	private function resetDB( $db, $tablesUsed ) {
 		if ( $db ) {
 			$userTables = [ 'user', 'user_groups', 'user_properties' ];
-			$coreDBDataTables = array_merge( $userTables, [ 'page', 'revision' ] );
+			$pageTables = [ 'page', 'revision', 'revision_comment_temp', 'comment' ];
+			$coreDBDataTables = array_merge( $userTables, $pageTables );
 
-			// If any of the user tables were marked as used, we should clear all of them.
+			// If any of the user or page tables were marked as used, we should clear all of them.
 			if ( array_intersect( $tablesUsed, $userTables ) ) {
 				$tablesUsed = array_unique( array_merge( $tablesUsed, $userTables ) );
 				TestUserRegistry::clear();
+			}
+			if ( array_intersect( $tablesUsed, $pageTables ) ) {
+				$tablesUsed = array_unique( array_merge( $tablesUsed, $pageTables ) );
 			}
 
 			$truncate = in_array( $db->getType(), [ 'oracle', 'mysql' ] );

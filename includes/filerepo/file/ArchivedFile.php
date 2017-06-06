@@ -232,14 +232,13 @@ class ArchivedFile {
 			'fa_media_type',
 			'fa_major_mime',
 			'fa_minor_mime',
-			'fa_description',
 			'fa_user',
 			'fa_user_text',
 			'fa_timestamp',
 			'fa_deleted',
 			'fa_deleted_timestamp', /* Used by LocalFileRestoreBatch */
 			'fa_sha1',
-		];
+		] + CommentStore::newNull()->getFields( 'fa_description' );
 	}
 
 	/**
@@ -261,7 +260,7 @@ class ArchivedFile {
 		$this->metadata = $row->fa_metadata;
 		$this->mime = "$row->fa_major_mime/$row->fa_minor_mime";
 		$this->media_type = $row->fa_media_type;
-		$this->description = $row->fa_description;
+		$this->description = CommentStore::newReplica()->getComment( 'fa_description', $row )->text;
 		$this->user = $row->fa_user;
 		$this->user_text = $row->fa_user_text;
 		$this->timestamp = $row->fa_timestamp;

@@ -69,14 +69,18 @@ class DeletedContribsPager extends IndexPager {
 				' != ' . Revision::SUPPRESSED_USER;
 		}
 
+		list( $commentTables, $commentFields, $commentJoins ) =
+			array_values( CommentStore::newNull()->getJoin( 'ar_comment' ) );
+
 		return [
-			'tables' => [ 'archive' ],
+			'tables' => [ 'archive' ] + $commentTables,
 			'fields' => [
-				'ar_rev_id', 'ar_namespace', 'ar_title', 'ar_timestamp', 'ar_comment',
+				'ar_rev_id', 'ar_namespace', 'ar_title', 'ar_timestamp',
 				'ar_minor_edit', 'ar_user', 'ar_user_text', 'ar_deleted'
-			],
+			] + $commentFields,
 			'conds' => $conds,
-			'options' => [ 'USE INDEX' => $index ]
+			'options' => [ 'USE INDEX' => [ 'archive' => $index ] ],
+			'join_conds' => $commentJoins,
 		];
 	}
 
@@ -253,7 +257,7 @@ class DeletedContribsPager extends IndexPager {
 		$rev = new Revision( [
 			'title' => $page,
 			'id' => $row->ar_rev_id,
-			'comment' => $row->ar_comment,
+			'comment' => CommentStore::newReplica()->getComment( 'ar_comment', $row )->text,
 			'user' => $row->ar_user,
 			'user_text' => $row->ar_user_text,
 			'timestamp' => $row->ar_timestamp,
