@@ -2,6 +2,10 @@
 
 /**
  * @group large
+ * @covers BcryptPassword
+ * @covers ParameterizedPassword
+ * @covers Password
+ * @covers PasswordFactory
  */
 class BcryptPasswordTest extends PasswordTestCase {
 	protected function getTypeConfigs() {
