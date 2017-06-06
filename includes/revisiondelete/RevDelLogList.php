@@ -63,7 +63,13 @@ class RevDelLogList extends RevDelList {
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );
 
-		return $db->select( 'logging', [
+		$commentStore = new CommentStore( $db );
+		list( $commentTables, $commentFields, $commentJoins ) =
+			array_values( $commentStore->getJoin( 'log_comment' ) );
+
+		return $db->select(
+			[ 'logging' ] + $commentTables,
+			[
 				'log_id',
 				'log_type',
 				'log_action',
@@ -73,13 +79,13 @@ class RevDelLogList extends RevDelList {
 				'log_namespace',
 				'log_title',
 				'log_page',
-				'log_comment',
 				'log_params',
 				'log_deleted'
-			],
+			] + $commentFields,
 			[ 'log_id' => $ids ],
 			__METHOD__,
-			[ 'ORDER BY' => 'log_id DESC' ]
+			[ 'ORDER BY' => 'log_id DESC' ],
+			$commentJoins
 		);
 	}
 

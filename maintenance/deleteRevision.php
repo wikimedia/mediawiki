@@ -37,6 +37,8 @@ class DeleteRevision extends Maintenance {
 	}
 
 	public function execute() {
+		global $wgCommentTableSchemaMigrationStage;
+
 		if ( count( $this->mArgs ) == 0 ) {
 			$this->error( "No revisions specified", true );
 		}
@@ -45,28 +47,67 @@ class DeleteRevision extends Maintenance {
 			" from " . wfWikiID() . "...\n" );
 		$dbw = $this->getDB( DB_MASTER );
 
+		$tables = [ 'page', 'revision' ];
+		$fields = [
+			'ar_namespace' => 'page_namespace',
+			'ar_title' => 'page_title',
+			'ar_text' => $dbw->addQuotes( '' ),
+			'ar_user' => 'rev_user',
+			'ar_user_text' => 'rev_user_text',
+			'ar_timestamp' => 'rev_timestamp',
+			'ar_minor_edit' => 'rev_minor_edit',
+			'ar_flags' => $dbw->addQuotes( '' ),
+			'ar_rev_id' => 'rev_id',
+			'ar_text_id' => 'rev_text_id',
+			'ar_deleted' => 'rev_deleted',
+			'ar_len' => 'rev_len',
+			'ar_page_id' => 'page_id',
+			'ar_parent_id' => 'rev_parent_id',
+			'ar_sha1' => 'rev_sha1',
+			'ar_content_model' => 'rev_content_model',
+			'ar_content_format' => 'rev_content_format',
+		];
+		$joins = [ 'page' => [ 'JOIN', [ 'page_id = rev_page' ] ] ];
+
+		if ( $wgCommentTableSchemaMigrationStage <= MIGRATION_WRITE_BOTH ) {
+			$fields['ar_comment'] = 'rev_comment';
+		}
+		if ( $wgCommentTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
+			$tables[] = 'revision_comment_temp';
+			$fields['ar_comment_id'] = 'revcomment_comment_id';
+			$joins['revision_comment_temp'] = [
+				$wgCommentTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
+				[ 'revcomment_rev = rev_id' ]
+			];
+		}
+
+		if ( $wgCommentTableSchemaMigrationStage !== MIGRATION_OLD &&
+			$wgCommentTableSchemaMigrationStage !== MIGRATION_NEW
+		) {
+			// Upgrade any rows that are still old-style. Otherwise an upgrade
+			// might be missed if a deletion happens while the migration script
+			// is running.
+			$commentStore = new CommentStore( $dbw );
+			$this->beginTransaction( $dbw, __METHOD__ );
+			$res = $dbw->select(
+				[ 'revision', 'revision_comment_temp' ],
+				[ 'rev_id', 'rev_comment' ],
+				[ 'rev_id' => $this->mArgs, 'revcomment_rev' => null ],
+				__METHOD__,
+				[ 'FOR UPDATE' ],
+				[ 'revision_comment_temp' => [ 'LEFT JOIN', [ 'revcomment_rev = rev_id' ] ] ]
+			);
+			foreach ( $res as $row ) {
+				list( , $callback ) = $commentStore->insertWithTempTable( 'rev_comment', $row->rev_comment );
+				$callback( $row->rev_id );
+			}
+			$this->commitTransaction( $dbw, __METHOD__ );
+		}
+
 		$affected = 0;
 		foreach ( $this->mArgs as $revID ) {
-			$dbw->insertSelect( 'archive', [ 'page', 'revision' ],
-				[
-					'ar_namespace' => 'page_namespace',
-					'ar_title' => 'page_title',
-					'ar_page_id' => 'page_id',
-					'ar_comment' => 'rev_comment',
-					'ar_user' => 'rev_user',
-					'ar_user_text' => 'rev_user_text',
-					'ar_timestamp' => 'rev_timestamp',
-					'ar_minor_edit' => 'rev_minor_edit',
-					'ar_rev_id' => 'rev_id',
-					'ar_text_id' => 'rev_text_id',
-					'ar_deleted' => 'rev_deleted',
-					'ar_len' => 'rev_len',
-				],
-				[
-					'rev_id' => $revID,
-					'page_id = rev_page'
-				],
-				__METHOD__
+			$dbw->insertSelect(
+				'archive', $tables, $fields, [ 'rev_id' => $revID ], __METHOD__, [], [], $joins
 			);
 			if ( !$dbw->affectedRows() ) {
 				$this->output( "Revision $revID not found\n" );
@@ -85,6 +126,9 @@ class DeleteRevision extends Maintenance {
 					__METHOD__
 				);
 				$dbw->delete( 'revision', [ 'rev_id' => $revID ] );
+				if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
+					$dbw->delete( 'revision_comment_temp', [ 'revcomment_rev' => $revID ] );
+				}
 				if ( $pageLatest == $revID ) {
 					$newLatest = $dbw->selectField(
 						'revision',
