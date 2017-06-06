@@ -1191,4 +1191,22 @@ abstract class DatabaseUpdater {
 			$wgContentHandlerUseDB = $this->holdContentHandlerUseDB;
 		}
 	}
+
+	/**
+	 * Populates the externallinks.el_index_60 field
+	 * @since 1.30
+	 */
+	protected function migrateComments() {
+		if ( !$this->updateRowExists( 'MigrateComments' ) ) {
+			$this->output(
+				"Migrating comments to the 'comments' table, printing progress markers. For large\n" .
+				"databases, you may want to hit Ctrl-C and do this manually with\n" .
+				"maintenance/migrateComments.php.\n"
+			);
+			$task = $this->maintenance->runChild( 'MigrateComments', 'migrateComments.php' );
+			$task->execute();
+			$this->output( "done.\n" );
+		}
+	}
+
 }
