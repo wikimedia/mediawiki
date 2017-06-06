@@ -346,10 +346,9 @@ CREATE TABLE /*_*/revision (
   -- or a rollback to a previous version.
   rev_text_id int unsigned NOT NULL,
 
-  -- Text comment summarizing the change.
-  -- This text is shown in the history and other changes lists,
-  -- rendered in a subset of wiki markup by Linker::formatComment()
-  rev_comment varbinary(767) NOT NULL,
+  -- Text comment summarizing the change. Deprecated in favor of
+  -- revision_comment_temp.revcomment_comment_id.
+  rev_comment varbinary(767) NOT NULL default '',
 
   -- Key to user.user_id of the user who made this edit.
   -- Stores 0 for anonymous edits and for some mass imports.
@@ -411,6 +410,23 @@ CREATE INDEX /*i*/usertext_timestamp ON /*_*/revision (rev_user_text,rev_timesta
 CREATE INDEX /*i*/page_user_timestamp ON /*_*/revision (rev_page,rev_user,rev_timestamp);
 
 --
+-- Temporary table to avoid blocking on an alter of revision.
+--
+-- On large wikis like the English Wikipedia, altering the revision table is a
+-- months-long process. This table is being created to avoid such an alter, and
+-- will be merged back into revision in the future.
+--
+CREATE TABLE /*_*/revision_comment_temp (
+  -- Key to rev_id
+  revcomment_rev int unsigned NOT NULL,
+  -- Key to comment_id
+  revcomment_comment_id bigint unsigned NOT NULL,
+  PRIMARY KEY (revcomment_rev, revcomment_comment_id)
+) /*$wgDBTableOptions*/;
+-- Ensure uniqueness
+CREATE UNIQUE INDEX /*i*/ revcomment_rev ON /*_*/revision_comment_temp (revcomment_rev);
+
+--
 -- Holds text of individual page revisions.
 --
 -- Field names are a holdover from the 'old' revisions table in
@@ -452,6 +468,34 @@ CREATE TABLE /*_*/text (
 
 
 --
+-- Edits, blocks, and other actions typically have a textual comment describing
+-- the action. They are stored here to reduce the size of the main tables, and
+-- to allow for deduplication.
+--
+CREATE TABLE /*_*/comment (
+  -- Unique ID to identify each comment
+  comment_id bigint unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
+
+  -- Text comment summarizing the change.
+  -- This text is shown in the history and other changes lists,
+  -- rendered in a subset of wiki markup by Linker::formatComment()
+  -- Size limits are enforced at the application level, and should
+  -- take care to crop UTF-8 strings appropriately.
+  comment_text BLOB NOT NULL,
+
+  -- JSON data, intended for localizing auto-generated comments.
+  -- This holds structured data that is intended to be used to provide
+  -- localized versions of automatically-generated comments. When not empty,
+  -- comment_text should be the generated comment localized using the wiki's
+  -- content language.
+  comment_data BLOB
+) /*$wgDBTableOptions*/;
+-- Index used for deduplication. The first 100 bytes should be enough to limit
+-- the number of rows that need to be scanned for an exact match.
+CREATE INDEX /*i*/comment_text ON comment (comment_text(100));
+
+
+--
 -- Holding area for deleted articles, which may be viewed
 -- or restored by admins through the Special:Undelete interface.
 -- The fields generally correspond to the page, revision, and text
@@ -472,7 +516,8 @@ CREATE TABLE /*_*/archive (
   ar_text mediumblob NOT NULL,
 
   -- Basic revision stuff...
-  ar_comment varbinary(767) NOT NULL,
+  ar_comment varbinary(767) NOT NULL default '', -- Deprecated in favor of ar_comment_id
+  ar_comment_id bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that ar_comment should be used)
   ar_user int unsigned NOT NULL default 0,
   ar_user_text varchar(255) binary NOT NULL,
   ar_timestamp binary(14) NOT NULL default '',
@@ -851,8 +896,12 @@ CREATE TABLE /*_*/ipblocks (
   -- User name of blocker
   ipb_by_text varchar(255) binary NOT NULL default '',
 
-  -- Text comment made by blocker.
-  ipb_reason varbinary(767) NOT NULL,
+  -- Text comment made by blocker. Deprecated in favor of ipb_reason_id
+  ipb_reason varbinary(767) NOT NULL default '',
+
+  -- Key to comment_id. Text comment made by blocker.
+  -- ("DEFAULT 0" is temporary, signaling that ipb_reason should be used)
+  ipb_reason_id bigint unsigned NOT NULL DEFAULT 0,
 
   -- Creation (or refresh) date in standard YMDHMS form.
   -- IP blocks expire automatically.
@@ -959,7 +1008,8 @@ CREATE TABLE /*_*/image (
 
   -- Description field as entered by the uploader.
   -- This is displayed in image upload history and logs.
-  img_description varbinary(767) NOT NULL,
+  -- Deprecated in favor of image_comment_temp.imgcomment_description_id.
+  img_description varbinary(767) NOT NULL default '',
 
   -- user_id and user_name of uploader.
   img_user int unsigned NOT NULL default 0,
@@ -984,6 +1034,23 @@ CREATE INDEX /*i*/img_sha1 ON /*_*/image (img_sha1(10));
 -- Used to get media of one type
 CREATE INDEX /*i*/img_media_mime ON /*_*/image (img_media_type,img_major_mime,img_minor_mime);
 
+--
+-- Temporary table to avoid blocking on an alter of image.
+--
+-- On large wikis like Wikimedia Commons, altering the image table is a
+-- months-long process. This table is being created to avoid such an alter, and
+-- will be merged back into image in the future.
+--
+CREATE TABLE /*_*/image_comment_temp (
+  -- Key to img_name (ugh)
+  imgcomment_name varchar(255) binary NOT NULL,
+  -- Key to comment_id
+  imgcomment_description_id bigint unsigned NOT NULL,
+  PRIMARY KEY (imgcomment_name, imgcomment_description_id)
+) /*$wgDBTableOptions*/;
+-- Ensure uniqueness
+CREATE UNIQUE INDEX /*i*/ imgcomment_name ON /*_*/image_comment_temp (imgcomment_name);
+
 
 --
 -- Previous revisions of uploaded files.
@@ -1003,7 +1070,8 @@ CREATE TABLE /*_*/oldimage (
   oi_width int NOT NULL default 0,
   oi_height int NOT NULL default 0,
   oi_bits int NOT NULL default 0,
-  oi_description varbinary(767) NOT NULL,
+  oi_description varbinary(767) NOT NULL default '', -- Deprecated.
+  oi_description_id bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that oi_description should be used)
   oi_user int unsigned NOT NULL default 0,
   oi_user_text varchar(255) binary NOT NULL,
   oi_timestamp binary(14) NOT NULL default '',
@@ -1051,7 +1119,8 @@ CREATE TABLE /*_*/filearchive (
   -- Deletion information, if this file is deleted.
   fa_deleted_user int,
   fa_deleted_timestamp binary(14) default '',
-  fa_deleted_reason varbinary(767) default '',
+  fa_deleted_reason varbinary(767) default '', -- Deprecated
+  fa_deleted_reason_id bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that fa_deleted_reason should be used)
 
   -- Duped fields from image
   fa_size int unsigned default 0,
@@ -1062,7 +1131,8 @@ CREATE TABLE /*_*/filearchive (
   fa_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE") default NULL,
   fa_major_mime ENUM("unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart", "chemical") default "unknown",
   fa_minor_mime varbinary(100) default "unknown",
-  fa_description varbinary(767),
+  fa_description varbinary(767) default '', -- Deprecated
+  fa_description_id bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that fa_description should be used)
   fa_user int unsigned default 0,
   fa_user_text varchar(255) binary,
   fa_timestamp binary(14) default '',
@@ -1160,7 +1230,8 @@ CREATE TABLE /*_*/recentchanges (
   rc_title varchar(255) binary NOT NULL default '',
 
   -- as in revision...
-  rc_comment varbinary(767) NOT NULL default '',
+  rc_comment varbinary(767) NOT NULL default '', -- Deprecated.
+  rc_comment_id bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that rc_comment should be used)
   rc_minor tinyint unsigned NOT NULL default 0,
 
   -- Edits by user accounts with the 'bot' rights key are
@@ -1391,7 +1462,12 @@ CREATE TABLE /*_*/logging (
   log_page int unsigned NULL,
 
   -- Freeform text. Interpreted as edit history comments.
+  -- Deprecated in favor of log_comment_id.
   log_comment varbinary(767) NOT NULL default '',
+
+  -- Key to comment_id. Comment summarizing the change.
+  -- ("DEFAULT 0" is temporary, signaling that log_comment should be used)
+  log_comment_id bigint unsigned NOT NULL DEFAULT 0,
 
   -- miscellaneous parameters:
   -- LF separated list (old system) or serialized PHP array (new system)
@@ -1568,7 +1644,8 @@ CREATE TABLE /*_*/protected_titles (
   pt_namespace int NOT NULL,
   pt_title varchar(255) binary NOT NULL,
   pt_user int unsigned NOT NULL,
-  pt_reason varbinary(767),
+  pt_reason varbinary(767) default '', -- Deprecated.
+  pt_reason_id bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that pt_reason should be used)
   pt_timestamp binary(14) NOT NULL,
   pt_expiry varbinary(14) NOT NULL default '',
   pt_create_perm varbinary(60) NOT NULL
