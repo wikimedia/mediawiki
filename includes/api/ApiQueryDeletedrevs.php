@@ -44,6 +44,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		$user = $this->getUser();
 		$db = $this->getDB();
+		$commentStore = new CommentStore( 'ar_comment' );
 		$params = $this->extractRequestParams( false );
 		$prop = array_flip( $params['prop'] );
 		$fld_parentid = isset( $prop['parentid'] );
@@ -115,10 +116,16 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$this->addFieldsIf( 'ar_rev_id', $fld_revid );
 		$this->addFieldsIf( 'ar_user_text', $fld_user );
 		$this->addFieldsIf( 'ar_user', $fld_userid );
-		$this->addFieldsIf( 'ar_comment', $fld_comment || $fld_parsedcomment );
 		$this->addFieldsIf( 'ar_minor_edit', $fld_minor );
 		$this->addFieldsIf( 'ar_len', $fld_len );
 		$this->addFieldsIf( 'ar_sha1', $fld_sha1 );
+
+		if ( $fld_comment || $fld_parsedcomment ) {
+			$commentQuery = $commentStore->getJoin();
+			$this->addTables( $commentQuery['tables'] );
+			$this->addFields( $commentQuery['fields'] );
+			$this->addJoinConds( $commentQuery['joins'] );
+		}
 
 		if ( $fld_tags ) {
 			$this->addTables( 'tag_summary' );
@@ -322,12 +329,13 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					$anyHidden = true;
 				}
 				if ( Revision::userCanBitfield( $row->ar_deleted, Revision::DELETED_COMMENT, $user ) ) {
+					$comment = $commentStore->getComment( $row )->text;
 					if ( $fld_comment ) {
-						$rev['comment'] = $row->ar_comment;
+						$rev['comment'] = $comment;
 					}
 					if ( $fld_parsedcomment ) {
 						$title = Title::makeTitle( $row->ar_namespace, $row->ar_title );
-						$rev['parsedcomment'] = Linker::formatComment( $row->ar_comment, $title );
+						$rev['parsedcomment'] = Linker::formatComment( $comment, $title );
 					}
 				}
 			}

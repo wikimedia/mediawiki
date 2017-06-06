@@ -12,6 +12,7 @@ SET client_min_messages = 'ERROR';
 DROP SEQUENCE IF EXISTS user_user_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS page_page_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS revision_rev_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS comment_comment_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS text_old_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS page_restrictions_pr_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS ipblocks_ipb_id_seq CASCADE;
@@ -132,7 +133,7 @@ CREATE TABLE revision (
   rev_id             INTEGER      NOT NULL  UNIQUE DEFAULT nextval('revision_rev_id_seq'),
   rev_page           INTEGER          NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   rev_text_id        INTEGER          NULL, -- FK
-  rev_comment        TEXT,
+  rev_comment        TEXT         NOT NULL DEFAULT '',
   rev_user           INTEGER      NOT NULL  REFERENCES mwuser(user_id) ON DELETE RESTRICT DEFERRABLE INITIALLY DEFERRED,
   rev_user_text      TEXT         NOT NULL,
   rev_timestamp      TIMESTAMPTZ  NOT NULL,
@@ -150,6 +151,12 @@ CREATE INDEX rev_timestamp_idx      ON revision (rev_timestamp);
 CREATE INDEX rev_user_idx           ON revision (rev_user);
 CREATE INDEX rev_user_text_idx      ON revision (rev_user_text);
 
+CREATE TABLE revision_comment_temp (
+	revcomment_rev        INTEGER NOT NULL,
+	revcomment_comment_id INTEGER NOT NULL,
+	PRIMARY KEY (revcomment_rev, revcomment_comment_id)
+);
+CREATE UNIQUE INDEX revcomment_rev ON revision_comment_temp (revcomment_rev);
 
 CREATE SEQUENCE text_old_id_seq;
 CREATE TABLE pagecontent ( -- replaces reserved word 'text'
@@ -157,6 +164,16 @@ CREATE TABLE pagecontent ( -- replaces reserved word 'text'
   old_text   TEXT,
   old_flags  TEXT
 );
+
+
+CREATE SEQUENCE comment_comment_id_seq;
+CREATE TABLE comment (
+  comment_id   INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('comment_comment_id_seq'),
+  comment_hash INTEGER NOT NULL,
+  comment_text TEXT    NOT NULL,
+  comment_data TEXT
+);
+CREATE INDEX comment_hash ON comment (comment_hash);
 
 
 CREATE SEQUENCE page_restrictions_pr_id_seq;
@@ -191,7 +208,8 @@ CREATE TABLE archive (
   ar_page_id        INTEGER          NULL,
   ar_parent_id      INTEGER          NULL,
   ar_sha1           TEXT         NOT NULL DEFAULT '',
-  ar_comment        TEXT,
+  ar_comment        TEXT         NOT NULL DEFAULT '',
+  ar_comment_id     INTEGER      NOT NULL DEFAULT 0,
   ar_user           INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   ar_user_text      TEXT         NOT NULL,
   ar_timestamp      TIMESTAMPTZ  NOT NULL,
@@ -296,7 +314,8 @@ CREATE TABLE ipblocks (
   ipb_user              INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   ipb_by                INTEGER      NOT NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   ipb_by_text           TEXT         NOT NULL  DEFAULT '',
-  ipb_reason            TEXT         NOT NULL,
+  ipb_reason            TEXT         NOT NULL  DEFAULT '',
+  ipb_reason_id         INTEGER      NOT NULL  DEFAULT 0,
   ipb_timestamp         TIMESTAMPTZ  NOT NULL,
   ipb_auto              SMALLINT     NOT NULL  DEFAULT 0,
   ipb_anon_only         SMALLINT     NOT NULL  DEFAULT 0,
@@ -327,7 +346,7 @@ CREATE TABLE image (
   img_media_type   TEXT,
   img_major_mime   TEXT                DEFAULT 'unknown',
   img_minor_mime   TEXT                DEFAULT 'unknown',
-  img_description  TEXT      NOT NULL,
+  img_description  TEXT      NOT NULL  DEFAULT '',
   img_user         INTEGER       NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   img_user_text    TEXT      NOT NULL,
   img_timestamp    TIMESTAMPTZ,
@@ -337,6 +356,13 @@ CREATE INDEX img_size_idx      ON image (img_size);
 CREATE INDEX img_timestamp_idx ON image (img_timestamp);
 CREATE INDEX img_sha1          ON image (img_sha1);
 
+CREATE TABLE image_comment_temp (
+	imgcomment_name       TEXT NOT NULL,
+	imgcomment_comment_id INTEGER NOT NULL,
+	PRIMARY KEY (imgcomment_name, imgcomment_comment_id)
+);
+CREATE UNIQUE INDEX imgcomment_name ON image_comment_temp (imgcomment_rev);
+
 CREATE TABLE oldimage (
   oi_name          TEXT         NOT NULL,
   oi_archive_name  TEXT         NOT NULL,
@@ -344,7 +370,8 @@ CREATE TABLE oldimage (
   oi_width         INTEGER      NOT NULL,
   oi_height        INTEGER      NOT NULL,
   oi_bits          SMALLINT         NULL,
-  oi_description   TEXT,
+  oi_description   TEXT         NOT NULL DEFAULT '',
+  oi_description_id INTEGER     NOT NULL DEFAULT 0,
   oi_user          INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   oi_user_text     TEXT         NOT NULL,
   oi_timestamp     TIMESTAMPTZ      NULL,
@@ -370,7 +397,8 @@ CREATE TABLE filearchive (
   fa_storage_key        TEXT,
   fa_deleted_user       INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   fa_deleted_timestamp  TIMESTAMPTZ  NOT NULL,
-  fa_deleted_reason     TEXT,
+  fa_deleted_reason     TEXT         NOT NULL  DEFAULT '',
+  fa_deleted_reason_id  INTEGER      NOT NULL  DEFAULT 0,
   fa_size               INTEGER      NOT NULL,
   fa_width              INTEGER      NOT NULL,
   fa_height             INTEGER      NOT NULL,
@@ -379,7 +407,8 @@ CREATE TABLE filearchive (
   fa_media_type         TEXT,
   fa_major_mime         TEXT                   DEFAULT 'unknown',
   fa_minor_mime         TEXT                   DEFAULT 'unknown',
-  fa_description        TEXT         NOT NULL,
+  fa_description        TEXT         NOT NULL DEFAULT '',
+  fa_description_id     INTEGER      NOT NULL DEFAULT 0,
   fa_user               INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   fa_user_text          TEXT         NOT NULL,
   fa_timestamp          TIMESTAMPTZ,
@@ -429,7 +458,8 @@ CREATE TABLE recentchanges (
   rc_user_text       TEXT         NOT NULL,
   rc_namespace       SMALLINT     NOT NULL,
   rc_title           TEXT         NOT NULL,
-  rc_comment         TEXT,
+  rc_comment         TEXT         NOT NULL  DEFAULT '',
+  rc_comment_id      INTEGER      NOT NULL  DEFAULT 0,
   rc_minor           SMALLINT     NOT NULL  DEFAULT 0,
   rc_bot             SMALLINT     NOT NULL  DEFAULT 0,
   rc_new             SMALLINT     NOT NULL  DEFAULT 0,
@@ -528,7 +558,8 @@ CREATE TABLE logging (
   log_user        INTEGER                REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   log_namespace   SMALLINT     NOT NULL,
   log_title       TEXT         NOT NULL,
-  log_comment     TEXT,
+  log_comment     TEXT         NOT NULL DEFAULT '',
+  log_comment_id  INTEGER      NOT NULL DEFAULT 0,
   log_params      TEXT,
   log_deleted     SMALLINT     NOT NULL DEFAULT 0,
   log_user_text   TEXT         NOT NULL DEFAULT '',
@@ -635,7 +666,8 @@ CREATE TABLE protected_titles (
   pt_namespace   SMALLINT    NOT NULL,
   pt_title       TEXT        NOT NULL,
   pt_user        INTEGER         NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
-  pt_reason      TEXT            NULL,
+  pt_reason      TEXT        NOT NULL DEFAULT '',
+  pt_reason_id   INTEGER     NOT NULL DEFAULT 0,
   pt_timestamp   TIMESTAMPTZ NOT NULL,
   pt_expiry      TIMESTAMPTZ     NULL,
   pt_create_perm TEXT        NOT NULL DEFAULT ''

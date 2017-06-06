@@ -103,6 +103,8 @@ class OldLocalFile extends LocalFile {
 
 	/**
 	 * Fields in the oldimage table
+	 * @todo Deprecate this in favor of a method that returns tables and joins
+	 *  as well, and use CommentStore::getJoin().
 	 * @return array
 	 */
 	static function selectFields() {
@@ -117,13 +119,12 @@ class OldLocalFile extends LocalFile {
 			'oi_media_type',
 			'oi_major_mime',
 			'oi_minor_mime',
-			'oi_description',
 			'oi_user',
 			'oi_user_text',
 			'oi_timestamp',
 			'oi_deleted',
 			'oi_sha1',
-		];
+		] + CommentStore::newKey( 'oi_description' )->getFields();
 	}
 
 	/**
@@ -367,6 +368,7 @@ class OldLocalFile extends LocalFile {
 			return false;
 		}
 
+		$commentFields = CommentStore::newKey( 'oi_description' )->insert( $dbw, $comment );
 		$dbw->insert( 'oldimage',
 			[
 				'oi_name' => $this->getName(),
@@ -376,7 +378,6 @@ class OldLocalFile extends LocalFile {
 				'oi_height' => intval( $props['height'] ),
 				'oi_bits' => $props['bits'],
 				'oi_timestamp' => $dbw->timestamp( $timestamp ),
-				'oi_description' => $comment,
 				'oi_user' => $user->getId(),
 				'oi_user_text' => $user->getName(),
 				'oi_metadata' => $props['metadata'],
@@ -384,7 +385,7 @@ class OldLocalFile extends LocalFile {
 				'oi_major_mime' => $props['major_mime'],
 				'oi_minor_mime' => $props['minor_mime'],
 				'oi_sha1' => $props['sha1'],
-			], __METHOD__
+			] + $commentFields, __METHOD__
 		);
 
 		return true;

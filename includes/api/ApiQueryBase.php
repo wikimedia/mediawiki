@@ -456,10 +456,13 @@ abstract class ApiQueryBase extends ApiBase {
 				'ipb_id',
 				'ipb_by',
 				'ipb_by_text',
-				'ipb_reason',
 				'ipb_expiry',
 				'ipb_timestamp'
 			] );
+			$commentQuery = CommentStore::newKey( 'ipb_reason' )->getJoin();
+			$this->addTables( $commentQuery['tables'] );
+			$this->addFields( $commentQuery['fields'] );
+			$this->addJoinConds( $commentQuery['joins'] );
 		}
 
 		// Don't show hidden names

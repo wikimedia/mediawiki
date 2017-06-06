@@ -193,6 +193,8 @@ class LocalFile extends File {
 
 	/**
 	 * Fields in the image table
+	 * @todo Deprecate this in favor of a method that returns tables and joins
+	 *  as well, and use CommentStore::getJoin().
 	 * @return array
 	 */
 	static function selectFields() {
@@ -206,12 +208,11 @@ class LocalFile extends File {
 			'img_media_type',
 			'img_major_mime',
 			'img_minor_mime',
-			'img_description',
 			'img_user',
 			'img_user_text',
 			'img_timestamp',
 			'img_sha1',
-		];
+		] + CommentStore::newKey( 'img_description' )->getFields();
 	}
 
 	/**
@@ -1299,6 +1300,8 @@ class LocalFile extends File {
 	function recordUpload2(
 		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null, $tags = []
 	) {
+		global $wgCommentTableSchemaMigrationStage;
+
 		if ( is_null( $user ) ) {
 			global $wgUser;
 			$user = $wgUser;
@@ -1334,6 +1337,9 @@ class LocalFile extends File {
 		# Test to see if the row exists using INSERT IGNORE
 		# This avoids race conditions by locking the row until the commit, and also
 		# doesn't deadlock. SELECT FOR UPDATE causes a deadlock for every race condition.
+		$commentStore = new CommentStore( 'img_description' );
+		list( $commentFields, $commentCallback ) =
+			$commentStore->insertWithTempTable( $dbw, $comment );
 		$dbw->insert( 'image',
 			[
 				'img_name' => $this->getName(),
@@ -1345,17 +1351,16 @@ class LocalFile extends File {
 				'img_major_mime' => $this->major_mime,
 				'img_minor_mime' => $this->minor_mime,
 				'img_timestamp' => $timestamp,
-				'img_description' => $comment,
 				'img_user' => $user->getId(),
 				'img_user_text' => $user->getName(),
 				'img_metadata' => $dbw->encodeBlob( $this->metadata ),
 				'img_sha1' => $this->sha1
-			],
+			] + $commentFields,
 			__METHOD__,
 			'IGNORE'
 		);
-
 		$reupload = ( $dbw->affectedRows() == 0 );
+
 		if ( $reupload ) {
 			if ( $allowTimeKludge ) {
 				# Use LOCK IN SHARE MODE to ignore any transaction snapshotting
@@ -1376,33 +1381,65 @@ class LocalFile extends File {
 				}
 			}
 
+			$tables = [ 'image' ];
+			$fields = [
+				'oi_name' => 'img_name',
+				'oi_archive_name' => $dbw->addQuotes( $oldver ),
+				'oi_size' => 'img_size',
+				'oi_width' => 'img_width',
+				'oi_height' => 'img_height',
+				'oi_bits' => 'img_bits',
+				'oi_timestamp' => 'img_timestamp',
+				'oi_user' => 'img_user',
+				'oi_user_text' => 'img_user_text',
+				'oi_metadata' => 'img_metadata',
+				'oi_media_type' => 'img_media_type',
+				'oi_major_mime' => 'img_major_mime',
+				'oi_minor_mime' => 'img_minor_mime',
+				'oi_sha1' => 'img_sha1',
+			];
+			$joins = [];
+
+			if ( $wgCommentTableSchemaMigrationStage <= MIGRATION_WRITE_BOTH ) {
+				$fields['oi_description'] = 'img_description';
+			}
+			if ( $wgCommentTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
+				$tables[] = 'image_comment_temp';
+				$fields['oi_description_id'] = 'imgcomment_description_id';
+				$joins['image_comment_temp'] = [
+					$wgCommentTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
+					[ 'imgcomment_name = img_name' ]
+				];
+			}
+
+			if ( $wgCommentTableSchemaMigrationStage !== MIGRATION_OLD &&
+				$wgCommentTableSchemaMigrationStage !== MIGRATION_NEW
+			) {
+				// Upgrade any rows that are still old-style. Otherwise an upgrade
+				// might be missed if a deletion happens while the migration script
+				// is running.
+				$res = $dbw->select(
+					[ 'image', 'image_comment_temp' ],
+					[ 'img_name', 'img_description' ],
+					[ 'img_name' => $this->getName(), 'imgcomment_name' => null ],
+					__METHOD__,
+					[],
+					[ 'image_comment_temp' => [ 'LEFT JOIN', [ 'imgcomment_name = img_name' ] ] ]
+				);
+				foreach ( $res as $row ) {
+					list( , $callback ) = $commentStore->insertWithTempTable( $dbw, $row->img_description );
+					$callback( $row->img_name );
+				}
+			}
+
 			# (T36993) Note: $oldver can be empty here, if the previous
 			# version of the file was broken. Allow registration of the new
 			# version to continue anyway, because that's better than having
 			# an image that's not fixable by user operations.
 			# Collision, this is an update of a file
 			# Insert previous contents into oldimage
-			$dbw->insertSelect( 'oldimage', 'image',
-				[
-					'oi_name' => 'img_name',
-					'oi_archive_name' => $dbw->addQuotes( $oldver ),
-					'oi_size' => 'img_size',
-					'oi_width' => 'img_width',
-					'oi_height' => 'img_height',
-					'oi_bits' => 'img_bits',
-					'oi_timestamp' => 'img_timestamp',
-					'oi_description' => 'img_description',
-					'oi_user' => 'img_user',
-					'oi_user_text' => 'img_user_text',
-					'oi_metadata' => 'img_metadata',
-					'oi_media_type' => 'img_media_type',
-					'oi_major_mime' => 'img_major_mime',
-					'oi_minor_mime' => 'img_minor_mime',
-					'oi_sha1' => 'img_sha1'
-				],
-				[ 'img_name' => $this->getName() ],
-				__METHOD__
-			);
+			$dbw->insertSelect( 'oldimage', $tables, $fields,
+				[ 'img_name' => $this->getName() ], __METHOD__, [], [], $joins );
 
 			# Update the current image row
 			$dbw->update( 'image',
@@ -1415,16 +1452,20 @@ class LocalFile extends File {
 					'img_major_mime' => $this->major_mime,
 					'img_minor_mime' => $this->minor_mime,
 					'img_timestamp' => $timestamp,
-					'img_description' => $comment,
 					'img_user' => $user->getId(),
 					'img_user_text' => $user->getName(),
 					'img_metadata' => $dbw->encodeBlob( $this->metadata ),
 					'img_sha1' => $this->sha1
-				],
+				] + $commentFields,
 				[ 'img_name' => $this->getName() ],
 				__METHOD__
 			);
+			if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
+				// So $commentCallback can insert the new row
+				$dbw->delete( 'image_comment_temp', [ 'imgcomment_name' => $this->getName() ], __METHOD__ );
+			}
 		}
+		$commentCallback( $this->getName() );
 
 		$descTitle = $this->getTitle();
 		$descId = $descTitle->getArticleID();
@@ -2255,8 +2296,16 @@ class LocalFileDeleteBatch {
 	}
 
 	protected function doDBInserts() {
+		global $wgCommentTableSchemaMigrationStage;
+
 		$now = time();
 		$dbw = $this->file->repo->getMasterDB();
+
+		$commentStoreImgDesc = new CommentStore( 'img_description' );
+		$commentStoreOiDesc = new CommentStore( 'oi_description' );
+		$commentStoreFaDesc = new CommentStore( 'fa_description' );
+		$commentStoreFaReason = new CommentStore( 'fa_deleted_reason' );
+
 		$encTimestamp = $dbw->addQuotes( $dbw->timestamp( $now ) );
 		$encUserId = $dbw->addQuotes( $this->user->getId() );
 		$encReason = $dbw->addQuotes( $this->reason );
@@ -2274,39 +2323,70 @@ class LocalFileDeleteBatch {
 		}
 
 		if ( $deleteCurrent ) {
-			$dbw->insertSelect(
-				'filearchive',
-				'image',
-				[
-					'fa_storage_group' => $encGroup,
-					'fa_storage_key' => $dbw->conditional(
-						[ 'img_sha1' => '' ],
-						$dbw->addQuotes( '' ),
-						$dbw->buildConcat( [ "img_sha1", $encExt ] )
-					),
-					'fa_deleted_user' => $encUserId,
-					'fa_deleted_timestamp' => $encTimestamp,
-					'fa_deleted_reason' => $encReason,
-					'fa_deleted' => $this->suppress ? $bitfield : 0,
-					'fa_name' => 'img_name',
-					'fa_archive_name' => 'NULL',
-					'fa_size' => 'img_size',
-					'fa_width' => 'img_width',
-					'fa_height' => 'img_height',
-					'fa_metadata' => 'img_metadata',
-					'fa_bits' => 'img_bits',
-					'fa_media_type' => 'img_media_type',
-					'fa_major_mime' => 'img_major_mime',
-					'fa_minor_mime' => 'img_minor_mime',
-					'fa_description' => 'img_description',
-					'fa_user' => 'img_user',
-					'fa_user_text' => 'img_user_text',
-					'fa_timestamp' => 'img_timestamp',
-					'fa_sha1' => 'img_sha1'
-				],
-				[ 'img_name' => $this->file->getName() ],
-				__METHOD__
-			);
+			$tables = [ 'image' ];
+			$fields = [
+				'fa_storage_group' => $encGroup,
+				'fa_storage_key' => $dbw->conditional(
+					[ 'img_sha1' => '' ],
+					$dbw->addQuotes( '' ),
+					$dbw->buildConcat( [ "img_sha1", $encExt ] )
+				),
+				'fa_deleted_user' => $encUserId,
+				'fa_deleted_timestamp' => $encTimestamp,
+				'fa_deleted' => $this->suppress ? $bitfield : 0,
+				'fa_name' => 'img_name',
+				'fa_archive_name' => 'NULL',
+				'fa_size' => 'img_size',
+				'fa_width' => 'img_width',
+				'fa_height' => 'img_height',
+				'fa_metadata' => 'img_metadata',
+				'fa_bits' => 'img_bits',
+				'fa_media_type' => 'img_media_type',
+				'fa_major_mime' => 'img_major_mime',
+				'fa_minor_mime' => 'img_minor_mime',
+				'fa_user' => 'img_user',
+				'fa_user_text' => 'img_user_text',
+				'fa_timestamp' => 'img_timestamp',
+				'fa_sha1' => 'img_sha1'
+			];
+			$joins = [];
+
+			$fields += $commentStoreFaReason->insert( $dbw, $encReason );
+
+			if ( $wgCommentTableSchemaMigrationStage <= MIGRATION_WRITE_BOTH ) {
+				$fields['fa_description'] = 'img_description';
+			}
+			if ( $wgCommentTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
+				$tables[] = 'image_comment_temp';
+				$fields['fa_description_id'] = 'imgcomment_description_id';
+				$joins['image_comment_temp'] = [
+					$wgCommentTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
+					[ 'imgcomment_name = img_name' ]
+				];
+			}
+
+			if ( $wgCommentTableSchemaMigrationStage !== MIGRATION_OLD &&
+				$wgCommentTableSchemaMigrationStage !== MIGRATION_NEW
+			) {
+				// Upgrade any rows that are still old-style. Otherwise an upgrade
+				// might be missed if a deletion happens while the migration script
+				// is running.
+				$res = $dbw->select(
+					[ 'image', 'image_comment_temp' ],
+					[ 'img_name', 'img_description' ],
+					[ 'img_name' => $this->file->getName(), 'imgcomment_name' => null ],
+					__METHOD__,
+					[],
+					[ 'image_comment_temp' => [ 'LEFT JOIN', [ 'imgcomment_name = img_name' ] ] ]
+				);
+				foreach ( $res as $row ) {
+					list( , $callback ) = $commentStoreImgDesc->insertWithTempTable( $dbw, $row->img_description );
+					$callback( $row->img_name );
+				}
+			}
+
+			$dbw->insertSelect( 'filearchive', $tables, $fields,
+				[ 'img_name' => $this->file->getName() ], __METHOD__, [], [], $joins );
 		}
 
 		if ( count( $oldRels ) ) {
@@ -2321,34 +2401,38 @@ class LocalFileDeleteBatch {
 				[ 'FOR UPDATE' ]
 			);
 			$rowsInsert = [];
-			foreach ( $res as $row ) {
-				$rowsInsert[] = [
-					// Deletion-specific fields
-					'fa_storage_group' => 'deleted',
-					'fa_storage_key' => ( $row->oi_sha1 === '' )
+			if ( $res->numRows() ) {
+				$reason = $commentStoreFaReason->createComment( $dbw, $this->reason );
+				foreach ( $res as $row ) {
+					// Legacy from OldLocalFile::selectFields() just above
+					$comment = $commentStoreOiDesc->getCommentLegacy( $dbw, $row );
+					$rowsInsert[] = [
+						// Deletion-specific fields
+						'fa_storage_group' => 'deleted',
+						'fa_storage_key' => ( $row->oi_sha1 === '' )
 						? ''
 						: "{$row->oi_sha1}{$dotExt}",
-					'fa_deleted_user' => $this->user->getId(),
-					'fa_deleted_timestamp' => $dbw->timestamp( $now ),
-					'fa_deleted_reason' => $this->reason,
-					// Counterpart fields
-					'fa_deleted' => $this->suppress ? $bitfield : $row->oi_deleted,
-					'fa_name' => $row->oi_name,
-					'fa_archive_name' => $row->oi_archive_name,
-					'fa_size' => $row->oi_size,
-					'fa_width' => $row->oi_width,
-					'fa_height' => $row->oi_height,
-					'fa_metadata' => $row->oi_metadata,
-					'fa_bits' => $row->oi_bits,
-					'fa_media_type' => $row->oi_media_type,
-					'fa_major_mime' => $row->oi_major_mime,
-					'fa_minor_mime' => $row->oi_minor_mime,
-					'fa_description' => $row->oi_description,
-					'fa_user' => $row->oi_user,
-					'fa_user_text' => $row->oi_user_text,
-					'fa_timestamp' => $row->oi_timestamp,
-					'fa_sha1' => $row->oi_sha1
-				];
+						'fa_deleted_user' => $this->user->getId(),
+						'fa_deleted_timestamp' => $dbw->timestamp( $now ),
+						// Counterpart fields
+						'fa_deleted' => $this->suppress ? $bitfield : $row->oi_deleted,
+						'fa_name' => $row->oi_name,
+						'fa_archive_name' => $row->oi_archive_name,
+						'fa_size' => $row->oi_size,
+						'fa_width' => $row->oi_width,
+						'fa_height' => $row->oi_height,
+						'fa_metadata' => $row->oi_metadata,
+						'fa_bits' => $row->oi_bits,
+						'fa_media_type' => $row->oi_media_type,
+						'fa_major_mime' => $row->oi_major_mime,
+						'fa_minor_mime' => $row->oi_minor_mime,
+						'fa_user' => $row->oi_user,
+						'fa_user_text' => $row->oi_user_text,
+						'fa_timestamp' => $row->oi_timestamp,
+						'fa_sha1' => $row->oi_sha1
+					] + $commentStoreFaReason->insert( $dbw, $reason )
+					+ $commentStoreFaDesc->insert( $dbw, $comment );
+				}
 			}
 
 			$dbw->insert( 'filearchive', $rowsInsert, __METHOD__ );
@@ -2356,6 +2440,8 @@ class LocalFileDeleteBatch {
 	}
 
 	function doDBDeletes() {
+		global $wgUpdateCompatibleMetadata;
+
 		$dbw = $this->file->repo->getMasterDB();
 		list( $oldRels, $deleteCurrent ) = $this->getOldRels();
 
@@ -2369,6 +2455,11 @@ class LocalFileDeleteBatch {
 
 		if ( $deleteCurrent ) {
 			$dbw->delete( 'image', [ 'img_name' => $this->file->getName() ], __METHOD__ );
+			if ( $wgUpdateCompatibleMetadata > MIGRATION_OLD ) {
+				$dbw->delete(
+					'image_comment_temp', [ 'imgcomment_name' => $this->file->getName() ], __METHOD__
+				);
+			}
 		}
 	}
 
@@ -2537,6 +2628,11 @@ class LocalFileRestoreBatch {
 		$lockOwnsTrx = $this->file->lock();
 
 		$dbw = $this->file->repo->getMasterDB();
+
+		$commentStoreImgDesc = new CommentStore( 'img_description' );
+		$commentStoreOiDesc = new CommentStore( 'oi_description' );
+		$commentStoreFaDesc = new CommentStore( 'fa_description' );
+
 		$status = $this->file->repo->newGood();
 
 		$exists = (bool)$dbw->selectField( 'image', '1',
@@ -2621,9 +2717,13 @@ class LocalFileRestoreBatch {
 				];
 			}
 
+			// Legacy from ArchivedFile::selectFields() just above
+			$comment = $commentStoreFaDesc->getCommentLegacy( $dbw, $row );
 			if ( $first && !$exists ) {
 				// This revision will be published as the new current version
 				$destRel = $this->file->getRel();
+				list( $commentFields, $commentCallback ) =
+					$commentStoreImgDesc->insertWithTempTable( $dbw, $comment );
 				$insertCurrent = [
 					'img_name' => $row->fa_name,
 					'img_size' => $row->fa_size,
@@ -2634,12 +2734,11 @@ class LocalFileRestoreBatch {
 					'img_media_type' => $props['media_type'],
 					'img_major_mime' => $props['major_mime'],
 					'img_minor_mime' => $props['minor_mime'],
-					'img_description' => $row->fa_description,
 					'img_user' => $row->fa_user,
 					'img_user_text' => $row->fa_user_text,
 					'img_timestamp' => $row->fa_timestamp,
 					'img_sha1' => $sha1
-				];
+				] + $commentFields;
 
 				// The live (current) version cannot be hidden!
 				if ( !$this->unsuppress && $row->fa_deleted ) {
@@ -2671,7 +2770,6 @@ class LocalFileRestoreBatch {
 					'oi_width' => $row->fa_width,
 					'oi_height' => $row->fa_height,
 					'oi_bits' => $row->fa_bits,
-					'oi_description' => $row->fa_description,
 					'oi_user' => $row->fa_user,
 					'oi_user_text' => $row->fa_user_text,
 					'oi_timestamp' => $row->fa_timestamp,
@@ -2680,7 +2778,8 @@ class LocalFileRestoreBatch {
 					'oi_major_mime' => $props['major_mime'],
 					'oi_minor_mime' => $props['minor_mime'],
 					'oi_deleted' => $this->unsuppress ? 0 : $row->fa_deleted,
-					'oi_sha1' => $sha1 ];
+					'oi_sha1' => $sha1
+				] + $commentStoreOiDesc->insert( $dbw, $comment );
 			}
 
 			$deleteIds[] = $row->fa_id;
@@ -2738,6 +2837,7 @@ class LocalFileRestoreBatch {
 		// This is not ideal, which is why it's important to lock the image row.
 		if ( $insertCurrent ) {
 			$dbw->insert( 'image', $insertCurrent, __METHOD__ );
+			$commentCallback( $insertCurrent['img_name'] );
 		}
 
 		if ( $insertBatch ) {
