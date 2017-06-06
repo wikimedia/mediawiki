@@ -580,6 +580,8 @@ class WikiRevision {
 	 * @return bool
 	 */
 	public function importOldRevision() {
+		global $wgCommentTableSchemaMigrationStage;
+
 		$dbw = wfGetDB( DB_MASTER );
 
 		# Sneak a single revision into place
@@ -607,13 +609,41 @@ class WikiRevision {
 			$pageId = $page->getId();
 			$created = false;
 
-			$prior = $dbw->selectField( 'revision', '1',
-				[ 'rev_page' => $pageId,
-					'rev_timestamp' => $dbw->timestamp( $this->timestamp ),
-					'rev_user_text' => $userText,
-					'rev_comment' => $this->getComment() ],
-				__METHOD__
-			);
+			$tables = [ 'revision' ];
+			$conds = [
+				'rev_page' => $pageId,
+				'rev_timestamp' => $dbw->timestamp( $this->timestamp ),
+				'rev_user_text' => $userText,
+			];
+			$joins = [];
+
+			$comment = $this->getComment();
+			$commentCond = [];
+			if ( $wgCommentTableSchemaMigrationStage === MIGRATION_OLD ) {
+				$commentCond['rev_comment'] = $comment;
+			} else {
+				$join = $wgCommentTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN';
+				$tables[] = 'revision_comment_temp';
+				$tables[] = 'comment';
+				$joins += [
+					'revision_comment_temp' => [ $join, 'revcomment_rev = rev_id' ],
+					'comment' => [ $join, 'comment_id = revcomment_comment_id' ],
+				];
+				$commentCond['comment_text'] = $comment;
+				if ( $wgCommentTableSchemaMigrationStage < MIGRATION_NEW ) {
+					if ( $comment === '' ) {
+						$commentCond[] = $dbw->makeList( [
+							'rev_comment' => '',
+							'revcomment_rev' => null,
+						], LIST_AND );
+					} else {
+						$commentCond['rev_comment'] = $comment;
+					}
+				}
+			}
+			$conds[] = $dbw->makeList( $commentCond, LIST_OR );
+
+			$prior = $dbw->selectField( $tables, '1', $conds, __METHOD__, [], $joins );
 			if ( $prior ) {
 				// @todo FIXME: This could fail slightly for multiple matches :P
 				wfDebug( __METHOD__ . ": skipping existing revision for [[" .
@@ -683,7 +713,10 @@ class WikiRevision {
 	 * @return bool
 	 */
 	public function importLogItem() {
+		global $wgCommentTableSchemaMigrationStage;
+
 		$dbw = wfGetDB( DB_MASTER );
+		$commentStore = new CommentStore( $dbw );
 
 		$user = $this->getUserObj() ?: User::newFromName( $this->getUser() );
 		if ( $user ) {
@@ -702,17 +735,44 @@ class WikiRevision {
 		}
 		# Check if it exists already
 		// @todo FIXME: Use original log ID (better for backups)
-		$prior = $dbw->selectField( 'logging', '1',
-			[ 'log_type' => $this->getType(),
-				'log_action' => $this->getAction(),
-				'log_timestamp' => $dbw->timestamp( $this->timestamp ),
-				'log_namespace' => $this->getTitle()->getNamespace(),
-				'log_title' => $this->getTitle()->getDBkey(),
-				'log_comment' => $this->getComment(),
-				# 'log_user_text' => $this->user_text,
-				'log_params' => $this->params ],
-			__METHOD__
-		);
+
+		$tables = [ 'logging' ];
+		$conds = [
+			'log_type' => $this->getType(),
+			'log_action' => $this->getAction(),
+			'log_timestamp' => $dbw->timestamp( $this->timestamp ),
+			'log_namespace' => $this->getTitle()->getNamespace(),
+			'log_title' => $this->getTitle()->getDBkey(),
+			# 'log_user_text' => $this->user_text,
+			'log_params' => $this->params
+		];
+		$joins = [];
+
+		$comment = $this->getComment();
+		$commentCond = [];
+		if ( $wgCommentTableSchemaMigrationStage === MIGRATION_OLD ) {
+			$commentCond['log_comment'] = $comment;
+		} else {
+			$join = $wgCommentTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN';
+			$tables[] = 'comment';
+			$joins += [
+				'comment' => [ $join, 'comment_id = log_comment_id' ],
+			];
+			$commentCond['comment_text'] = $comment;
+			if ( $wgCommentTableSchemaMigrationStage < MIGRATION_NEW ) {
+				if ( $comment === '' ) {
+					$commentCond[] = $dbw->makeList( [
+						'log_comment' => '',
+						'log_comment_id' => 0,
+					], LIST_AND );
+				} else {
+					$commentCond['log_comment'] = $comment;
+				}
+			}
+		}
+		$conds[] = $dbw->makeList( $commentCond, LIST_OR );
+
+		$prior = $dbw->selectField( $tables, '1', $conds, __METHOD__, [], $joins );
 		// @todo FIXME: This could fail slightly for multiple matches :P
 		if ( $prior ) {
 			wfDebug( __METHOD__
@@ -730,9 +790,8 @@ class WikiRevision {
 			'log_user_text' => $userText,
 			'log_namespace' => $this->getTitle()->getNamespace(),
 			'log_title' => $this->getTitle()->getDBkey(),
-			'log_comment' => $this->getComment(),
 			'log_params' => $this->params
-		];
+		] + $commentStore->insert( 'log_comment', $comment );
 		$dbw->insert( 'logging', $data, __METHOD__ );
 
 		return true;

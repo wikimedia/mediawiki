@@ -207,7 +207,6 @@ class Block {
 			'ipb_address',
 			'ipb_by',
 			'ipb_by_text',
-			'ipb_reason',
 			'ipb_timestamp',
 			'ipb_auto',
 			'ipb_anon_only',
@@ -218,7 +217,7 @@ class Block {
 			'ipb_block_email',
 			'ipb_allow_usertalk',
 			'ipb_parent_block_id',
-		];
+		] + CommentStore::newNull()->getFields( 'ipb_reason' );
 	}
 
 	/**
@@ -411,7 +410,7 @@ class Block {
 			$this->setBlocker( $row->ipb_by_text );
 		}
 
-		$this->mReason = $row->ipb_reason;
+		$this->mReason = CommentStore::newReplica()->getComment( 'ipb_reason', $row )->text;
 		$this->mTimestamp = wfTimestamp( TS_MW, $row->ipb_timestamp );
 		$this->mAuto = $row->ipb_auto;
 		$this->mHideName = $row->ipb_deleted;
@@ -488,7 +487,7 @@ class Block {
 			self::purgeExpired();
 		}
 
-		$row = $this->getDatabaseArray();
+		$row = $this->getDatabaseArray( $dbw );
 		$row['ipb_id'] = $dbw->nextSequenceValue( "ipblocks_ipb_id_seq" );
 
 		$dbw->insert( 'ipblocks', $row, __METHOD__, [ 'IGNORE' ] );
@@ -558,7 +557,7 @@ class Block {
 			// update corresponding autoblock(s) (T50813)
 			$dbw->update(
 				'ipblocks',
-				$this->getAutoblockUpdateArray(),
+				$this->getAutoblockUpdateArray( $dbw ),
 				[ 'ipb_parent_block_id' => $this->getId() ],
 				__METHOD__
 			);
@@ -583,14 +582,11 @@ class Block {
 
 	/**
 	 * Get an array suitable for passing to $dbw->insert() or $dbw->update()
-	 * @param IDatabase $db
+	 * @param IDatabase $dbw
 	 * @return array
 	 */
-	protected function getDatabaseArray( $db = null ) {
-		if ( !$db ) {
-			$db = wfGetDB( DB_REPLICA );
-		}
-		$expiry = $db->encodeExpiry( $this->mExpiry );
+	protected function getDatabaseArray( IDatabase $dbw ) {
+		$expiry = $dbw->encodeExpiry( $this->mExpiry );
 
 		if ( $this->forcedTargetID ) {
 			$uid = $this->forcedTargetID;
@@ -603,8 +599,7 @@ class Block {
 			'ipb_user'             => $uid,
 			'ipb_by'               => $this->getBy(),
 			'ipb_by_text'          => $this->getByName(),
-			'ipb_reason'           => $this->mReason,
-			'ipb_timestamp'        => $db->timestamp( $this->mTimestamp ),
+			'ipb_timestamp'        => $dbw->timestamp( $this->mTimestamp ),
 			'ipb_auto'             => $this->mAuto,
 			'ipb_anon_only'        => !$this->isHardblock(),
 			'ipb_create_account'   => $this->prevents( 'createaccount' ),
@@ -616,23 +611,23 @@ class Block {
 			'ipb_block_email'      => $this->prevents( 'sendemail' ),
 			'ipb_allow_usertalk'   => !$this->prevents( 'editownusertalk' ),
 			'ipb_parent_block_id'  => $this->mParentBlockId
-		];
+		] + ( new CommentStore( $dbw ) )->insert( 'ipb_reason', $this->mReason );
 
 		return $a;
 	}
 
 	/**
+	 * @param IDatabase $dbw
 	 * @return array
 	 */
-	protected function getAutoblockUpdateArray() {
+	protected function getAutoblockUpdateArray( IDatabase $dbw ) {
 		return [
 			'ipb_by'               => $this->getBy(),
 			'ipb_by_text'          => $this->getByName(),
-			'ipb_reason'           => $this->mReason,
 			'ipb_create_account'   => $this->prevents( 'createaccount' ),
 			'ipb_deleted'          => (int)$this->mHideName, // typecast required for SQLite
 			'ipb_allow_usertalk'   => !$this->prevents( 'editownusertalk' ),
-		];
+		] + ( new CommentStore( $dbw ) )->insert( 'ipb_reason', $this->mReason );
 	}
 
 	/**

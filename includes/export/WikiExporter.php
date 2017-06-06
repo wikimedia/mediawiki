@@ -260,7 +260,7 @@ class WikiExporter {
 	protected function dumpFrom( $cond = '', $orderRevs = false ) {
 		# For logging dumps...
 		if ( $this->history & self::LOGS ) {
-			$where = [ 'user_id = log_user' ];
+			$where = [];
 			# Hide private logs
 			$hideLogs = LogEventsList::getExcludeClause( $this->db );
 			if ( $hideLogs ) {
@@ -277,12 +277,17 @@ class WikiExporter {
 				$prev = $this->db->bufferResults( false );
 			}
 			$result = null; // Assuring $result is not undefined, if exception occurs early
+
+			list( $commentTables, $commentFields, $commentJoins ) =
+				array_values( CommentStore::newNull()->getJoin( 'log_comment' ) );
+
 			try {
-				$result = $this->db->select( [ 'logging', 'user' ],
-					[ "{$logging}.*", 'user_name' ], // grab the user name
+				$result = $this->db->select( [ 'logging', 'user' ] + $commentTables,
+					[ "{$logging}.*", 'user_name' ] + $commentFields, // grab the user name
 					$where,
 					__METHOD__,
-					[ 'ORDER BY' => 'log_id', 'USE INDEX' => [ 'logging' => 'PRIMARY' ] ]
+					[ 'ORDER BY' => 'log_id', 'USE INDEX' => [ 'logging' => 'PRIMARY' ] ],
+					[ 'user' => [ 'JOIN', 'user_id = log_user' ] ] + $commentJoins
 				);
 				$this->outputLogStream( $result );
 				if ( $this->buffer == self::STREAM ) {
@@ -395,8 +400,18 @@ class WikiExporter {
 				Hooks::run( 'ModifyExportQuery',
 						[ $this->db, &$tables, &$cond, &$opts, &$join ] );
 
+				list( $commentTables, $commentFields, $commentJoins ) =
+					array_values( CommentStore::newNull()->getJoin( 'rev_comment' ) );
+
 				# Do the query!
-				$result = $this->db->select( $tables, '*', $cond, __METHOD__, $opts, $join );
+				$result = $this->db->select(
+					$tables + $commentTables,
+					[ '*' ] + $commentFields,
+					$cond,
+					__METHOD__,
+					$opts,
+					$join + $commentJoins
+				);
 				# Output dump results
 				$this->outputPageStream( $result );
 

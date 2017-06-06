@@ -244,7 +244,9 @@ class ImageListPager extends TablePager {
 		$prefix = $table === 'oldimage' ? 'oi' : 'img';
 
 		$tables = [ $table ];
-		$fields = array_keys( $this->getFieldNames() );
+		$fields = $this->getFieldNames();
+		unset( $fields['img_description'] );
+		$fields = array_keys( $fields );
 
 		if ( $table === 'oldimage' ) {
 			foreach ( $fields as $id => &$field ) {
@@ -263,6 +265,14 @@ class ImageListPager extends TablePager {
 		$fields[array_search( 'thumb', $fields )] = $prefix . '_name AS thumb';
 
 		$options = $join_conds = [];
+
+		# Description field
+		list( $commentTables, $commentFields, $commentJoins ) =
+			array_values( CommentStore::newNull()->getJoin( $prefix . '_description' ) );
+		$tables += $commentTables;
+		$fields += $commentFields;
+		$join_conds += $commentJoins;
+		$fields['description_field'] = "'{$prefix}_description'";
 
 		# Depends on $wgMiserMode
 		# Will also not happen if mShowAll is true.
@@ -497,6 +507,8 @@ class ImageListPager extends TablePager {
 			case 'img_size':
 				return htmlspecialchars( $this->getLanguage()->formatSize( $value ) );
 			case 'img_description':
+				$field = $this->mCurrentRow->description_field;
+				$value = CommentStore::newReplica()->getComment( $field, $this->mCurrentRow )->text;
 				return Linker::formatComment( $value );
 			case 'count':
 				return $this->getLanguage()->formatNum( intval( $value ) + 1 );

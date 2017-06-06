@@ -1074,6 +1074,8 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			'rc_user' => 0,
 			'rc_user_text' => 'External User',
 			'rc_comment' => '',
+			'rc_comment_text' => '',
+			'rc_comment_data' => null,
 			'rc_this_oldid' => $title->getLatestRevID(),
 			'rc_last_oldid' => $title->getLatestRevID(),
 			'rc_bot' => 0,

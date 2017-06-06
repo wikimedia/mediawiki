@@ -2702,7 +2702,7 @@ class EditPage {
 
 		if ( $this->wasDeletedSinceLastEdit() && 'save' == $this->formtype ) {
 			$username = $this->lastDelete->user_name;
-			$comment = $this->lastDelete->log_comment;
+			$comment = CommentStore::newReplica()->getComment( 'log_comment', $this->lastDelete )->text;
 
 			// It is better to not parse the comment at all than to have templates expanded in the middle
 			// TODO: can the checkLabel be moved outside of the div so that wrapWikiMsg could be used?
@@ -3688,8 +3688,11 @@ class EditPage {
 	 */
 	protected function getLastDelete() {
 		$dbr = wfGetDB( DB_REPLICA );
+		$commentStore = new CommentStore( $dbr );
+		list( $commentTables, $commentFields, $commentJoins ) =
+			array_values( $commentStore->getJoin( 'log_comment' ) );
 		$data = $dbr->selectRow(
-			[ 'logging', 'user' ],
+			[ 'logging', 'user' ] + $commentTables,
 			[
 				'log_type',
 				'log_action',
@@ -3697,11 +3700,10 @@ class EditPage {
 				'log_user',
 				'log_namespace',
 				'log_title',
-				'log_comment',
 				'log_params',
 				'log_deleted',
 				'user_name'
-			], [
+			] + $commentFields, [
 				'log_namespace' => $this->mTitle->getNamespace(),
 				'log_title' => $this->mTitle->getDBkey(),
 				'log_type' => 'delete',
@@ -3709,7 +3711,10 @@ class EditPage {
 				'user_id=log_user'
 			],
 			__METHOD__,
-			[ 'LIMIT' => 1, 'ORDER BY' => 'log_timestamp DESC' ]
+			[ 'LIMIT' => 1, 'ORDER BY' => 'log_timestamp DESC' ],
+			[
+				'user' => [ 'JOIN', 'user_id=log_user' ],
+			] + $commentJoins
 		);
 		// Quick paranoid permission checks...
 		if ( is_object( $data ) ) {
@@ -3718,7 +3723,8 @@ class EditPage {
 			}
 
 			if ( $data->log_deleted & LogPage::DELETED_COMMENT ) {
-				$data->log_comment = $this->context->msg( 'rev-deleted-comment' )->escaped();
+				$data->log_comment_text = $this->context->msg( 'rev-deleted-comment' )->escaped();
+				$data->log_comment_data = null;
 			}
 		}
 

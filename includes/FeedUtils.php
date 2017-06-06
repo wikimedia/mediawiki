@@ -72,7 +72,8 @@ class FeedUtils {
 	/**
 	 * Format a diff for the newsfeed
 	 *
-	 * @param object $row Row from the recentchanges table
+	 * @param object $row Row from the recentchanges table, including fields as
+	 *  appropriate for CommentStore
 	 * @return string
 	 */
 	public static function formatDiff( $row ) {
@@ -88,7 +89,7 @@ class FeedUtils {
 			$timestamp,
 			$row->rc_deleted & Revision::DELETED_COMMENT
 				? wfMessage( 'rev-deleted-comment' )->escaped()
-				: $row->rc_comment,
+				: CommentStore::newReplica()->getComment( 'rc_comment', $row )->text,
 			$actiontext
 		);
 	}

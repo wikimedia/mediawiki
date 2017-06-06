@@ -79,6 +79,8 @@ class RebuildRecentchanges extends Maintenance {
 	 * Rebuild pass 1: Insert `recentchanges` entries for page revisions.
 	 */
 	private function rebuildRecentChangesTablePass1() {
+		global $wgCommentTableSchemaMigrationStage;
+
 		$dbw = $this->getDB( DB_MASTER );
 
 		if ( $this->hasOption( 'from' ) && $this->hasOption( 'to' ) ) {
@@ -113,53 +115,76 @@ class RebuildRecentchanges extends Maintenance {
 		}
 
 		$this->output( "Loading from page and revision tables...\n" );
+		$tables = [ 'revision', 'page' ];
+		$fields = [
+			'rev_timestamp',
+			'rev_user',
+			'rev_user_text',
+			'rev_minor_edit',
+			'rev_id',
+			'rev_deleted',
+			'page_namespace',
+			'page_title',
+			'page_is_new',
+			'page_id'
+		];
+		$joins = [
+			'page' => [ 'JOIN', 'rev_page=page_id' ],
+		];
+
+		if ( $wgCommentTableSchemaMigrationStage < MIGRATION_NEW ) {
+			$fields[] = 'rev_comment';
+		}
+		if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
+			$tables[] = 'revision_comment_temp';
+			$fields[] = 'revcomment_comment_id';
+			$joins['revision_comment_temp'] = [
+				$wgCommentTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
+				'revcomment_rev = rev_id'
+			];
+		}
+
 		$res = $dbw->select(
-			[ 'page', 'revision' ],
-			[
-				'rev_timestamp',
-				'rev_user',
-				'rev_user_text',
-				'rev_comment',
-				'rev_minor_edit',
-				'rev_id',
-				'rev_deleted',
-				'page_namespace',
-				'page_title',
-				'page_is_new',
-				'page_id'
-			],
+			$tables,
+			$fields,
 			[
 				'rev_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
-				'rev_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ),
-				'rev_page=page_id'
+				'rev_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) )
 			],
 			__METHOD__,
-			[ 'ORDER BY' => 'rev_timestamp DESC' ]
+			[ 'ORDER BY' => 'rev_timestamp DESC' ],
+			$joins
 		);
 
 		$this->output( "Inserting from page and revision tables...\n" );
 		$inserted = 0;
 		foreach ( $res as $row ) {
+			$fields = [
+				'rc_timestamp' => $row->rev_timestamp,
+				'rc_user' => $row->rev_user,
+				'rc_user_text' => $row->rev_user_text,
+				'rc_namespace' => $row->page_namespace,
+				'rc_title' => $row->page_title,
+				'rc_minor' => $row->rev_minor_edit,
+				'rc_bot' => 0,
+				'rc_new' => $row->page_is_new,
+				'rc_cur_id' => $row->page_id,
+				'rc_this_oldid' => $row->rev_id,
+				'rc_last_oldid' => 0, // is this ok?
+				'rc_type' => $row->page_is_new ? RC_NEW : RC_EDIT,
+				'rc_source' => $row->page_is_new ? RecentChange::SRC_NEW : RecentChange::SRC_EDIT,
+				'rc_deleted' => $row->rev_deleted
+			];
+			if ( $wgCommentTableSchemaMigrationStage < MIGRATION_NEW ) {
+				$fields['rc_comment'] = $row->rev_comment;
+			}
+			if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
+				$fields['rc_comment_id'] = $row->revcomment_comment_id;
+			}
+
 			$dbw->insert(
 				'recentchanges',
-				[
-					'rc_timestamp' => $row->rev_timestamp,
-					'rc_user' => $row->rev_user,
-					'rc_user_text' => $row->rev_user_text,
-					'rc_namespace' => $row->page_namespace,
-					'rc_title' => $row->page_title,
-					'rc_comment' => $row->rev_comment,
-					'rc_minor' => $row->rev_minor_edit,
-					'rc_bot' => 0,
-					'rc_new' => $row->page_is_new,
-					'rc_cur_id' => $row->page_id,
-					'rc_this_oldid' => $row->rev_id,
-					'rc_last_oldid' => 0, // is this ok?
-					'rc_type' => $row->page_is_new ? RC_NEW : RC_EDIT,
-					'rc_source' => $row->page_is_new ? RecentChange::SRC_NEW : RecentChange::SRC_EDIT
-					,
-					'rc_deleted' => $row->rev_deleted
-				],
+				$fields,
 				__METHOD__
 			);
 			if ( ( ++$inserted % $this->mBatchSize ) == 0 ) {
@@ -263,28 +288,35 @@ class RebuildRecentchanges extends Maintenance {
 	 * Rebuild pass 3: Insert `recentchanges` entries for action logs.
 	 */
 	private function rebuildRecentChangesTablePass3() {
-		global $wgLogTypes, $wgLogRestrictions;
+		global $wgLogTypes, $wgLogRestrictions, $wgCommentTableSchemaMigrationStage;
 
 		$dbw = $this->getDB( DB_MASTER );
 
 		$this->output( "Loading from user, page, and logging tables...\n" );
 
+		$fields = [
+			'log_timestamp',
+			'log_user',
+			'user_name',
+			'log_namespace',
+			'log_title',
+			'page_id',
+			'log_type',
+			'log_action',
+			'log_id',
+			'log_params',
+			'log_deleted'
+		];
+		if ( $wgCommentTableSchemaMigrationStage < MIGRATION_NEW ) {
+			$fields[] = 'log_comment';
+		}
+		if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
+			$fields[] = 'log_comment_id';
+		}
+
 		$res = $dbw->select(
 			[ 'user', 'logging', 'page' ],
-			[
-				'log_timestamp',
-				'log_user',
-				'user_name',
-				'log_namespace',
-				'log_title',
-				'log_comment',
-				'page_id',
-				'log_type',
-				'log_action',
-				'log_id',
-				'log_params',
-				'log_deleted'
-			],
+			$fields,
 			[
 				'log_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
 				'log_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ),
@@ -305,32 +337,39 @@ class RebuildRecentchanges extends Maintenance {
 
 		$inserted = 0;
 		foreach ( $res as $row ) {
+			$fields = [
+				'rc_timestamp' => $row->log_timestamp,
+				'rc_user' => $row->log_user,
+				'rc_user_text' => $row->user_name,
+				'rc_namespace' => $row->log_namespace,
+				'rc_title' => $row->log_title,
+				'rc_minor' => 0,
+				'rc_bot' => 0,
+				'rc_patrolled' => 1,
+				'rc_new' => 0,
+				'rc_this_oldid' => 0,
+				'rc_last_oldid' => 0,
+				'rc_type' => RC_LOG,
+				'rc_source' => RecentChange::SRC_LOG,
+				'rc_cur_id' => $field->isNullable()
+					? $row->page_id
+					: (int)$row->page_id, // NULL => 0,
+				'rc_log_type' => $row->log_type,
+				'rc_log_action' => $row->log_action,
+				'rc_logid' => $row->log_id,
+				'rc_params' => $row->log_params,
+				'rc_deleted' => $row->log_deleted
+			];
+			if ( $wgCommentTableSchemaMigrationStage < MIGRATION_NEW ) {
+				$fields['rc_comment'] = $row->log_comment;
+			}
+			if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
+				$fields['rc_comment_id'] = $row->log_comment_id;
+			}
+
 			$dbw->insert(
 				'recentchanges',
-				[
-					'rc_timestamp' => $row->log_timestamp,
-					'rc_user' => $row->log_user,
-					'rc_user_text' => $row->user_name,
-					'rc_namespace' => $row->log_namespace,
-					'rc_title' => $row->log_title,
-					'rc_comment' => $row->log_comment,
-					'rc_minor' => 0,
-					'rc_bot' => 0,
-					'rc_patrolled' => 1,
-					'rc_new' => 0,
-					'rc_this_oldid' => 0,
-					'rc_last_oldid' => 0,
-					'rc_type' => RC_LOG,
-					'rc_source' => RecentChange::SRC_LOG,
-					'rc_cur_id' => $field->isNullable()
-						? $row->page_id
-						: (int)$row->page_id, // NULL => 0,
-					'rc_log_type' => $row->log_type,
-					'rc_log_action' => $row->log_action,
-					'rc_logid' => $row->log_id,
-					'rc_params' => $row->log_params,
-					'rc_deleted' => $row->log_deleted
-				],
+				$fields,
 				__METHOD__
 			);
 

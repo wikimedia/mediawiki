@@ -75,20 +75,25 @@ class Orphans extends Maintenance {
 	 */
 	private function checkOrphans( $fix ) {
 		$dbw = $this->getDB( DB_MASTER );
-		$page = $dbw->tableName( 'page' );
-		$revision = $dbw->tableName( 'revision' );
+		$commentStore = new CommentStore( $dbw );
 
 		if ( $fix ) {
 			$this->lockTables( $dbw );
 		}
 
+		list( $commentTables, $commentFields, $commentJoins ) =
+			array_values( $commentStore->getJoin( 'rev_comment' ) );
+
 		$this->output( "Checking for orphan revision table entries... "
 			. "(this may take a while on a large wiki)\n" );
-		$result = $dbw->query( "
-			SELECT *
-			FROM $revision LEFT OUTER JOIN $page ON rev_page=page_id
-			WHERE page_id IS NULL
-		" );
+		$result = $dbw->select(
+			[ 'revision', 'page' ] + $commentTables,
+			[ 'rev_id', 'rev_page', 'rev_timestamp', 'rev_user_text' ] + $commentFields,
+			[ 'page_id' => null ],
+			__METHOD__,
+			[],
+			[ 'page' => [ 'LEFT JOIN', [ 'rev_page=page_id' ] ] ] + $commentJoins
+		);
 		$orphans = $result->numRows();
 		if ( $orphans > 0 ) {
 			global $wgContLang;
@@ -100,9 +105,10 @@ class Orphans extends Maintenance {
 			) );
 
 			foreach ( $result as $row ) {
-				$comment = ( $row->rev_comment == '' )
-					? ''
-					: '(' . $wgContLang->truncate( $row->rev_comment, 40 ) . ')';
+				$comment = $commentStore->getComment( 'rev_comment', $row )->text;
+				if ( $comment !== '' ) {
+					$comment = '(' . $wgContLang->truncate( $comment, 40 ) . ')';
+				}
 				$this->output( sprintf( "%10d %10d %14s %20s %s\n",
 					$row->rev_id,
 					$row->rev_page,

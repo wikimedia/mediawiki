@@ -299,7 +299,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 */
 	protected function revisionFromRcResult( stdClass $result ) {
 		return new Revision( [
-			'comment' => $result->rc_comment,
+			'comment' => CommentStore::newReplica()->getComment( 'rc_comment', $result )->text,
 			'deleted' => $result->rc_deleted,
 			'user_text' => $result->rc_user_text,
 			'user' => $result->rc_user,

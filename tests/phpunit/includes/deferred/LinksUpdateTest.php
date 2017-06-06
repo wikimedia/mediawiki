@@ -378,16 +378,33 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	protected function assertRecentChangeByCategorization(
 		Title $pageTitle, ParserOutput $parserOutput, Title $categoryTitle, $expectedRows
 	) {
-		$this->assertSelect(
-			'recentchanges',
-			'rc_title, rc_comment',
-			[
-				'rc_type' => RC_CATEGORIZE,
-				'rc_namespace' => NS_CATEGORY,
-				'rc_title' => $categoryTitle->getDBkey()
-			],
-			$expectedRows
-		);
+		global $wgCommentTableSchemaMigrationStage;
+
+		if ( $wgCommentTableSchemaMigrationStage <= MIGRATION_WRITE_BOTH ) {
+			$this->assertSelect(
+				'recentchanges',
+				'rc_title, rc_comment',
+				[
+					'rc_type' => RC_CATEGORIZE,
+					'rc_namespace' => NS_CATEGORY,
+					'rc_title' => $categoryTitle->getDBkey()
+				],
+				$expectedRows
+			);
+		}
+		if ( $wgCommentTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
+			$this->assertSelect(
+				[ 'recentchanges', 'comment' ],
+				'rc_title, comment_text',
+				[
+					'rc_type' => RC_CATEGORIZE,
+					'rc_namespace' => NS_CATEGORY,
+					'rc_title' => $categoryTitle->getDBkey(),
+					'comment_id = rc_comment_id',
+				],
+				$expectedRows
+			);
+		}
 	}
 
 	private function runAllRelatedJobs() {
