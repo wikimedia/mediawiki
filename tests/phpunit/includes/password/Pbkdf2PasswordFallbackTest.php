@@ -1,21 +1,21 @@
 <?php
 
+
 /**
  * @group large
  * @covers Pbkdf2Password
- * @covers Password
- * @covers ParameterizedPassword
- * @requires function hash_pbkdf2
  */
-class Pbkdf2PasswordTest extends PasswordTestCase {
+class Pbkdf2PasswordFallbackTest extends PasswordTestCase {
 	protected function getTypeConfigs() {
-		return [ 'pbkdf2' => [
-			'class' => 'Pbkdf2Password',
-			'algo' => 'sha256',
-			'cost' => '10000',
-			'length' => '128',
-			'use-hash-extension' => true,
-		] ];
+		return [
+			'pbkdf2' => [
+				'class' => 'Pbkdf2Password',
+				'algo' => 'sha256',
+				'cost' => '10000',
+				'length' => '128',
+				'use-hash-extension' => false,
+			],
+		];
 	}
 
 	public static function providePasswordTests() {

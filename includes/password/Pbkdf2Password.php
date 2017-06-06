@@ -41,12 +41,17 @@ class Pbkdf2Password extends ParameterizedPassword {
 		return ':';
 	}
 
+	protected function shouldUseHashExtension() {
+		return isset( $this->config['use-hash-extension'] ) ?
+			$this->config['use-hash-extension'] : function_exists( 'hash_pbkdf2' );
+	}
+
 	public function crypt( $password ) {
 		if ( count( $this->args ) == 0 ) {
 			$this->args[] = base64_encode( MWCryptRand::generate( 16, true ) );
 		}
 
-		if ( function_exists( 'hash_pbkdf2' ) ) {
+		if ( $this->shouldUseHashExtension() ) {
 			$hash = hash_pbkdf2(
 				$this->params['algo'],
 				$password,
