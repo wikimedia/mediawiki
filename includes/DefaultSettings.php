@@ -8659,6 +8659,13 @@ $wgExperiencedUserMemberSince = 30; # days
 $wgInterwikiPrefixDisplayTypes = [];
 
 /**
+ * Comment table schema migration stage.
+ * @since 1.30
+ * @var int One of the MIGRATION_* constants
+ */
+$wgCommentTableSchemaMigrationStage = MIGRATION_NEW;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}

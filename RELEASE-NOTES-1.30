@@ -39,6 +39,10 @@ production.
   as page ranges keyed by dimensions.
 * Added a 'ParserOptionsRegister' hook to allow extensions to register
   additional parser options.
+* Edit summaries, block reasons, and other "comments" are now stored in a
+  separate database table. Use the CommentFormatter class to access them.
+** Large wikis may want to use $wgCommentTableSchemaMigrationStage to perform
+   the update at leisure.
 
 === Languages updated in 1.30 ===
 
