@@ -20,10 +20,10 @@
  * @file
  */
 
+/**
+ * @covers InvalidPassword
+ */
 class PasswordTest extends MediaWikiTestCase {
-	/**
-	 * @covers InvalidPassword::equals
-	 */
 	public function testInvalidUnequalInvalid() {
 		$passwordFactory = new PasswordFactory();
 		$invalid1 = $passwordFactory->newFromCiphertext( null );
