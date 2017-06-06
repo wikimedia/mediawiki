@@ -573,7 +573,12 @@ class ResourceLoader implements LoggerAwareInterface {
 			return false;
 		}
 		$info = $this->moduleInfos[$name];
-		if ( isset( $info['object'] ) || isset( $info['class'] ) ) {
+		if (
+			isset( $info['object'] ) ||
+			// This special case is dumb, but we need $wgResourceModuleSkinStyles
+			// to work for 'oojs-ui-core.styles'. See T167042.
+			( isset( $info['class'] ) && $info['class'] !== 'ResourceLoaderOOUIFileModule' )
+		) {
 			return false;
 		}
 		return true;

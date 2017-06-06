@@ -29,10 +29,18 @@ class ResourceLoaderOOUIFileModule extends ResourceLoaderFileModule {
 
 	public function __construct( $options = [] ) {
 		if ( isset( $options[ 'themeScripts' ] ) ) {
-			$options['skinScripts'] = $this->getSkinSpecific( $options[ 'themeScripts' ], 'scripts' );
+			$skinScripts = $this->getSkinSpecific( $options[ 'themeScripts' ], 'scripts' );
+			if ( !isset( $options['skinScripts'] ) ) {
+				$options['skinScripts'] = [];
+			}
+			$this->extendSkinSpecific( $options['skinScripts'], $skinScripts );
 		}
 		if ( isset( $options[ 'themeStyles' ] ) ) {
-			$options['skinStyles'] = $this->getSkinSpecific( $options[ 'themeStyles' ], 'styles' );
+			$skinStyles = $this->getSkinSpecific( $options[ 'themeStyles' ], 'styles' );
+			if ( !isset( $options['skinStyles'] ) ) {
+				$options['skinStyles'] = [];
+			}
+			$this->extendSkinSpecific( $options['skinStyles'], $skinStyles );
 		}
 
 		parent::__construct( $options );
@@ -59,5 +67,32 @@ class ResourceLoaderOOUIFileModule extends ResourceLoaderFileModule {
 				}
 			}, array_values( $themes ) )
 		);
+	}
+
+	/**
+	 * Prepend the $extraSkinSpecific assoc. array to the $skinSpecific assoc. array.
+	 * Both of them represent a 'skinScripts' or 'skinStyles' definition.
+	 *
+	 * @param array &$skinSpecific
+	 * @param array $extraSkinSpecific
+	 */
+	private function extendSkinSpecific( &$skinSpecific, $extraSkinSpecific ) {
+		// For each skin where skinStyles/skinScripts are defined, add our ones at the beginning
+		foreach ( $skinSpecific as $skin => $files ) {
+			if ( !is_array( $files ) ) {
+				$files = [ $files ];
+			}
+			if ( isset( $extraSkinSpecific[$skin] ) ) {
+				$skinSpecific[$skin] = array_merge( [ $extraSkinSpecific[$skin] ], $files );
+			} elseif ( isset( $extraSkinSpecific['default'] ) ) {
+				$skinSpecific[$skin] = array_merge( [ $extraSkinSpecific['default'] ], $files );
+			}
+		}
+		// Add our remaining skinStyles/skinScripts for skins that did not have them defined
+		foreach ( $extraSkinSpecific as $skin => $file ) {
+			if ( !isset( $skinSpecific[$skin] ) ) {
+				$skinSpecific[$skin] = $file;
+			}
+		}
 	}
 }
