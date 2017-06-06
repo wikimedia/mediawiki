@@ -8,32 +8,32 @@ use Wikimedia\TestingAccessWrapper;
 class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 
 	public static $commonImageData = [
-		'add' => 'add.gif',
-		'remove' => [
-			'file' => 'remove.svg',
+		'abc' => 'abc.gif',
+		'def' => [
+			'file' => 'def.svg',
 			'variants' => [ 'destructive' ],
 		],
-		'next' => [
+		'ghi' => [
 			'file' => [
-				'ltr' => 'next.svg',
-				'rtl' => 'prev.svg'
+				'ltr' => 'ghi.svg',
+				'rtl' => 'jkl.svg'
 			],
 		],
-		'help' => [
+		'mno' => [
 			'file' => [
-				'ltr' => 'help-ltr.svg',
-				'rtl' => 'help-rtl.svg',
+				'ltr' => 'mno-ltr.svg',
+				'rtl' => 'mno-rtl.svg',
 				'lang' => [
-					'he' => 'help-ltr.svg',
+					'he' => 'mno-ltr.svg',
 				]
 			],
 		],
-		'bold' => [
+		'pqr' => [
 			'file' => [
-				'default' => 'bold-a.svg',
+				'default' => 'pqr-a.svg',
 				'lang' => [
-					'en' => 'bold-b.svg',
-					'ar,de' => 'bold-f.svg',
+					'en' => 'pqr-b.svg',
+					'ar,de' => 'pqr-f.svg',
 				]
 			],
 		]
@@ -64,37 +64,37 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 					'variants' => self::$commonImageVariants,
 					'images' => self::$commonImageData,
 				],
-				'.oo-ui-icon-add {
+				'.oo-ui-icon-abc {
 	...
 }
-.oo-ui-icon-add-invert {
+.oo-ui-icon-abc-invert {
 	...
 }
-.oo-ui-icon-remove {
+.oo-ui-icon-def {
 	...
 }
-.oo-ui-icon-remove-invert {
+.oo-ui-icon-def-invert {
 	...
 }
-.oo-ui-icon-remove-destructive {
+.oo-ui-icon-def-destructive {
 	...
 }
-.oo-ui-icon-next {
+.oo-ui-icon-ghi {
 	...
 }
-.oo-ui-icon-next-invert {
+.oo-ui-icon-ghi-invert {
 	...
 }
-.oo-ui-icon-help {
+.oo-ui-icon-mno {
 	...
 }
-.oo-ui-icon-help-invert {
+.oo-ui-icon-mno-invert {
 	...
 }
-.oo-ui-icon-bold {
+.oo-ui-icon-pqr {
 	...
 }
-.oo-ui-icon-bold-invert {
+.oo-ui-icon-pqr-invert {
 	...
 }',
 			],
@@ -107,37 +107,37 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 					'variants' => self::$commonImageVariants,
 					'images' => self::$commonImageData,
 				],
-				'.mw-ui-icon-add:after, .mw-ui-icon-add:before {
+				'.mw-ui-icon-abc:after, .mw-ui-icon-abc:before {
 	...
 }
-.mw-ui-icon-add-invert:after, .mw-ui-icon-add-invert:before {
+.mw-ui-icon-abc-invert:after, .mw-ui-icon-abc-invert:before {
 	...
 }
-.mw-ui-icon-remove:after, .mw-ui-icon-remove:before {
+.mw-ui-icon-def:after, .mw-ui-icon-def:before {
 	...
 }
-.mw-ui-icon-remove-invert:after, .mw-ui-icon-remove-invert:before {
+.mw-ui-icon-def-invert:after, .mw-ui-icon-def-invert:before {
 	...
 }
-.mw-ui-icon-remove-destructive:after, .mw-ui-icon-remove-destructive:before {
+.mw-ui-icon-def-destructive:after, .mw-ui-icon-def-destructive:before {
 	...
 }
-.mw-ui-icon-next:after, .mw-ui-icon-next:before {
+.mw-ui-icon-ghi:after, .mw-ui-icon-ghi:before {
 	...
 }
-.mw-ui-icon-next-invert:after, .mw-ui-icon-next-invert:before {
+.mw-ui-icon-ghi-invert:after, .mw-ui-icon-ghi-invert:before {
 	...
 }
-.mw-ui-icon-help:after, .mw-ui-icon-help:before {
+.mw-ui-icon-mno:after, .mw-ui-icon-mno:before {
 	...
 }
-.mw-ui-icon-help-invert:after, .mw-ui-icon-help-invert:before {
+.mw-ui-icon-mno-invert:after, .mw-ui-icon-mno-invert:before {
 	...
 }
-.mw-ui-icon-bold:after, .mw-ui-icon-bold:before {
+.mw-ui-icon-pqr:after, .mw-ui-icon-pqr:before {
 	...
 }
-.mw-ui-icon-bold-invert:after, .mw-ui-icon-bold-invert:before {
+.mw-ui-icon-pqr-invert:after, .mw-ui-icon-pqr-invert:before {
 	...
 }',
 			],
