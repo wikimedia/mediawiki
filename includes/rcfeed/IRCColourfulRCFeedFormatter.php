@@ -89,7 +89,9 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 			) );
 			$flag = $attribs['rc_log_action'];
 		} else {
-			$comment = self::cleanupForIRC( $attribs['rc_comment'] );
+			$comment = self::cleanupForIRC(
+				CommentStore::newKey( 'rc_comment' )->getComment( $attribs )->text
+			);
 			$flag = '';
 			if ( !$attribs['rc_patrolled']
 				&& ( $wgUseRCPatrol || $attribs['rc_type'] == RC_NEW && $wgUseNPPatrol )

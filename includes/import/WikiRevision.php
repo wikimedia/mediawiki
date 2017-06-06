@@ -607,13 +607,15 @@ class WikiRevision {
 			$pageId = $page->getId();
 			$created = false;
 
+			// Note: sha1 has been in XML dumps since 2012. If you have an
+			// older dump, the duplicate detection here won't work.
 			$prior = $dbw->selectField( 'revision', '1',
 				[ 'rev_page' => $pageId,
 					'rev_timestamp' => $dbw->timestamp( $this->timestamp ),
-					'rev_user_text' => $userText,
-					'rev_comment' => $this->getComment() ],
+					'rev_sha1' => $this->sha1base36 ],
 				__METHOD__
 			);
+
 			if ( $prior ) {
 				// @todo FIXME: This could fail slightly for multiple matches :P
 				wfDebug( __METHOD__ . ": skipping existing revision for [[" .
@@ -702,13 +704,13 @@ class WikiRevision {
 		}
 		# Check if it exists already
 		// @todo FIXME: Use original log ID (better for backups)
+
 		$prior = $dbw->selectField( 'logging', '1',
 			[ 'log_type' => $this->getType(),
 				'log_action' => $this->getAction(),
 				'log_timestamp' => $dbw->timestamp( $this->timestamp ),
 				'log_namespace' => $this->getTitle()->getNamespace(),
 				'log_title' => $this->getTitle()->getDBkey(),
-				'log_comment' => $this->getComment(),
 				# 'log_user_text' => $this->user_text,
 				'log_params' => $this->params ],
 			__METHOD__
@@ -730,9 +732,8 @@ class WikiRevision {
 			'log_user_text' => $userText,
 			'log_namespace' => $this->getTitle()->getNamespace(),
 			'log_title' => $this->getTitle()->getDBkey(),
-			'log_comment' => $this->getComment(),
 			'log_params' => $this->params
-		];
+		] + CommentStore::newKey( 'log_comment' )->insert( $dbw, $comment );
 		$dbw->insert( 'logging', $data, __METHOD__ );
 
 		return true;

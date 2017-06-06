@@ -61,6 +61,11 @@ section).
   just been unwatched.
 * Added $wgParserTestMediaHandlers, where mock media handlers can be passed to
   MediaHandlerFactory for parser tests.
+* Edit summaries, block reasons, and other "comments" are now stored in a
+  separate database table. Use the CommentFormatter class to access them.
+** This is currently gated by $wgCommentTableSchemaMigrationStage. Most wikis
+   can set this to MIGRATION_NEW and run maintenance/migrateComments.php as
+   soon as any necessary extensions are updated.
 
 === Languages updated in 1.30 ===
 

@@ -173,6 +173,7 @@ class BlockListPager extends TablePager {
 				break;
 
 			case 'ipb_reason':
+				$value = CommentStore::newKey( 'ipb_reason' )->getComment( $row )->text;
 				$formatted = Linker::formatComment( $value );
 				break;
 
@@ -208,8 +209,10 @@ class BlockListPager extends TablePager {
 	}
 
 	function getQueryInfo() {
+		$commentQuery = CommentStore::newKey( 'ipb_reason' )->getJoin();
+
 		$info = [
-			'tables' => [ 'ipblocks', 'user' ],
+			'tables' => [ 'ipblocks', 'user' ] + $commentQuery['tables'],
 			'fields' => [
 				'ipb_id',
 				'ipb_address',
@@ -217,7 +220,6 @@ class BlockListPager extends TablePager {
 				'ipb_by',
 				'ipb_by_text',
 				'by_user_name' => 'user_name',
-				'ipb_reason',
 				'ipb_timestamp',
 				'ipb_auto',
 				'ipb_anon_only',
@@ -229,9 +231,9 @@ class BlockListPager extends TablePager {
 				'ipb_deleted',
 				'ipb_block_email',
 				'ipb_allow_usertalk',
-			],
+			] + $commentQuery['fields'],
 			'conds' => $this->conds,
-			'join_conds' => [ 'user' => [ 'LEFT JOIN', 'user_id = ipb_by' ] ]
+			'join_conds' => [ 'user' => [ 'LEFT JOIN', 'user_id = ipb_by' ] ] + $commentQuery['joins']
 		];
 
 		# Filter out any expired blocks
