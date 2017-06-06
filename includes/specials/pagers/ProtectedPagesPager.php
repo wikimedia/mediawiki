@@ -236,6 +236,7 @@ class ProtectedPagesPager extends TablePager {
 						LogPage::DELETED_COMMENT,
 						$this->getUser()
 					) ) {
+						$value = CommentStore::newReplica()->getComment( 'log_comment', $row )->text;
 						$formatted = Linker::formatComment( $value !== null ? $value : '' );
 					} else {
 						$formatted = $this->msg( 'rev-deleted-comment' )->escaped();
@@ -284,8 +285,11 @@ class ProtectedPagesPager extends TablePager {
 			$conds[] = 'page_namespace=' . $this->mDb->addQuotes( $this->namespace );
 		}
 
+		list( $commentTables, $commentFields, $commentJoins ) =
+			array_values( CommentStore::newNull()->getJoin( 'log_comment' ) );
+
 		return [
-			'tables' => [ 'page', 'page_restrictions', 'log_search', 'logging' ],
+			'tables' => [ 'page', 'page_restrictions', 'log_search', 'logging' ] + $commentTables,
 			'fields' => [
 				'pr_id',
 				'page_namespace',
@@ -297,9 +301,8 @@ class ProtectedPagesPager extends TablePager {
 				'pr_cascade',
 				'log_timestamp',
 				'log_user',
-				'log_comment',
 				'log_deleted',
-			],
+			] + $commentFields,
 			'conds' => $conds,
 			'join_conds' => [
 				'log_search' => [
@@ -312,7 +315,7 @@ class ProtectedPagesPager extends TablePager {
 						'ls_log_id = log_id'
 					]
 				]
-			]
+			] + $commentJoins
 		];
 	}
 

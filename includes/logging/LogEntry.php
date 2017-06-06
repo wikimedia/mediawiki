@@ -170,19 +170,22 @@ class DatabaseLogEntry extends LogEntryBase {
 	 * @return array
 	 */
 	public static function getSelectQueryData() {
-		$tables = [ 'logging', 'user' ];
+		list( $commentTables, $commentFields, $commentJoins ) =
+			array_values( CommentStore::newNull()->getJoin( 'log_comment' ) );
+
+		$tables = [ 'logging', 'user' ] + $commentTables;
 		$fields = [
 			'log_id', 'log_type', 'log_action', 'log_timestamp',
 			'log_user', 'log_user_text',
 			'log_namespace', 'log_title', // unused log_page
-			'log_comment', 'log_params', 'log_deleted',
+			'log_params', 'log_deleted',
 			'user_id', 'user_name', 'user_editcount',
-		];
+		] + $commentFields;
 
 		$joins = [
 			// IPs don't have an entry in user table
 			'user' => [ 'LEFT JOIN', 'log_user=user_id' ],
-		];
+		] + $commentJoins;
 
 		return [
 			'tables' => $tables,
@@ -322,7 +325,7 @@ class DatabaseLogEntry extends LogEntryBase {
 	}
 
 	public function getComment() {
-		return $this->row->log_comment;
+		return CommentStore::newReplica()->getComment( 'log_comment', $this->row )->text;
 	}
 
 	public function getDeleted() {
@@ -380,7 +383,7 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 	}
 
 	public function getComment() {
-		return $this->row->rc_comment;
+		return CommentStore::newReplica()->getComment( 'rc_comment', $this->row )->text;
 	}
 
 	public function getDeleted() {
@@ -614,6 +617,8 @@ class ManualLogEntry extends LogEntryBase {
 			$relations['associated_rev_id'] = $revId;
 		}
 
+		$commentStore = new CommentStore( $dbw );
+
 		$data = [
 			'log_id' => $id,
 			'log_type' => $this->getType(),
@@ -624,12 +629,12 @@ class ManualLogEntry extends LogEntryBase {
 			'log_namespace' => $this->getTarget()->getNamespace(),
 			'log_title' => $this->getTarget()->getDBkey(),
 			'log_page' => $this->getTarget()->getArticleID(),
-			'log_comment' => $comment,
 			'log_params' => LogEntryBase::makeParamBlob( $params ),
 		];
 		if ( isset( $this->deleted ) ) {
 			$data['log_deleted'] = $this->deleted;
 		}
+		$data += $commentStore->insert( 'log_comment', $comment );
 
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$this->id = $dbw->insertId();

@@ -2481,6 +2481,8 @@ class WikiPage implements Page, IDBAccessObject {
 			$cascade = false;
 
 			if ( $limit['create'] != '' ) {
+				$commentStore = new CommentStore( $dbw );
+				$commentFields = $commentStore->insert( 'pt_reason', $reason );
 				$dbw->replace( 'protected_titles',
 					[ [ 'pt_namespace', 'pt_title' ] ],
 					[
@@ -2490,8 +2492,7 @@ class WikiPage implements Page, IDBAccessObject {
 						'pt_timestamp' => $dbw->timestamp(),
 						'pt_expiry' => $dbw->encodeExpiry( $expiry['create'] ),
 						'pt_user' => $user->getId(),
-						'pt_reason' => $reason,
-					], __METHOD__
+					] + $commentFields, __METHOD__
 				);
 				$logParamsDetails[] = [
 					'type' => 'create',
@@ -2743,7 +2744,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', User $user = null,
 		$tags = [], $logsubtype = 'delete'
 	) {
-		global $wgUser, $wgContentHandlerUseDB;
+		global $wgUser, $wgContentHandlerUseDB, $wgCommentTableSchemaMigrationStage;
 
 		wfDebug( __METHOD__ . "\n" );
 
@@ -2807,8 +2808,26 @@ class WikiPage implements Page, IDBAccessObject {
 			$content = null;
 		}
 
+		$tables = [ 'revision' ];
 		$fields = Revision::selectFields();
+		$joins = [];
 		$bitfield = false;
+
+		// Handle comment migration
+		if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
+			$tables[] = 'revision_comment_temp';
+			$fields[] = 'revcomment_comment_id';
+			$joins['revision_comment_temp'] = [
+				$wgCommentTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
+				[ 'revcomment_rev = rev_id' ]
+			];
+		}
+		if ( $wgCommentTableSchemaMigrationStage < MIGRATION_NEW ) {
+			$fields[] = 'rev_comment';
+		}
+		$migrateComments = $wgCommentTableSchemaMigrationStage > MIGRATION_OLD &&
+			$wgCommentTableSchemaMigrationStage < MIGRATION_NEW;
+		$commentStore = new CommentStore( $dbw );
 
 		// Bitfields to further suppress the content
 		if ( $suppress ) {
@@ -2825,19 +2844,20 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Get all of the page revisions
 		$res = $dbw->select(
-			'revision',
+			$tables,
 			$fields,
 			[ 'rev_page' => $id ],
 			__METHOD__,
-			'FOR UPDATE'
+			'FOR UPDATE',
+			$joins
 		);
 		// Build their equivalent archive rows
 		$rowsInsert = [];
+		$revids = [];
 		foreach ( $res as $row ) {
 			$rowInsert = [
 				'ar_namespace'  => $namespace,
 				'ar_title'      => $dbKey,
-				'ar_comment'    => $row->rev_comment,
 				'ar_user'       => $row->rev_user,
 				'ar_user_text'  => $row->rev_user_text,
 				'ar_timestamp'  => $row->rev_timestamp,
@@ -2856,7 +2876,18 @@ class WikiPage implements Page, IDBAccessObject {
 				$rowInsert['ar_content_model'] = $row->rev_content_model;
 				$rowInsert['ar_content_format'] = $row->rev_content_format;
 			}
+			if ( $migrateComments && !$row->revcomment_comment_id ) {
+				$rowInsert += $commentStore->insert( 'ar_comment', $row->rev_comment );
+			} else {
+				if ( $wgCommentTableSchemaMigrationStage <= MIGRATION_WRITE_BOTH ) {
+					$rowInsert['ar_comment'] = $row->rev_comment;
+				}
+				if ( $wgCommentTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
+					$rowInsert['ar_comment_id'] = $row->revcomment_comment_id;
+				}
+			}
 			$rowsInsert[] = $rowInsert;
+			$revids[] = $row->rev_id;
 		}
 		// Copy them into the archive table
 		$dbw->insert( 'archive', $rowsInsert, __METHOD__ );
@@ -2871,6 +2902,9 @@ class WikiPage implements Page, IDBAccessObject {
 		// Now that it's safely backed up, delete it
 		$dbw->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
 		$dbw->delete( 'revision', [ 'rev_page' => $id ], __METHOD__ );
+		if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
+			$dbw->delete( 'revision_comment_temp', [ 'revcomment_rev' => $revids ], __METHOD__ );
+		}
 
 		// Log the deletion, if the page was suppressed, put it in the suppression log instead
 		$logtype = $suppress ? 'suppress' : 'delete';

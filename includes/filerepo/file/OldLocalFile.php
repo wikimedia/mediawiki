@@ -117,13 +117,12 @@ class OldLocalFile extends LocalFile {
 			'oi_media_type',
 			'oi_major_mime',
 			'oi_minor_mime',
-			'oi_description',
 			'oi_user',
 			'oi_user_text',
 			'oi_timestamp',
 			'oi_deleted',
 			'oi_sha1',
-		];
+		] + CommentStore::newNull()->getFields( 'oi_description' );
 	}
 
 	/**
@@ -360,6 +359,7 @@ class OldLocalFile extends LocalFile {
 	 */
 	protected function recordOldUpload( $srcPath, $archiveName, $timestamp, $comment, $user ) {
 		$dbw = $this->repo->getMasterDB();
+		$commentStore = new CommentStore( $dbw );
 
 		$dstPath = $this->repo->getZonePath( 'public' ) . '/' . $this->getRel();
 		$props = $this->repo->getFileProps( $dstPath );
@@ -367,6 +367,7 @@ class OldLocalFile extends LocalFile {
 			return false;
 		}
 
+		$commentFields = $commentStore->insert( 'oi_description', $comment );
 		$dbw->insert( 'oldimage',
 			[
 				'oi_name' => $this->getName(),
@@ -376,7 +377,6 @@ class OldLocalFile extends LocalFile {
 				'oi_height' => intval( $props['height'] ),
 				'oi_bits' => $props['bits'],
 				'oi_timestamp' => $dbw->timestamp( $timestamp ),
-				'oi_description' => $comment,
 				'oi_user' => $user->getId(),
 				'oi_user_text' => $user->getName(),
 				'oi_metadata' => $props['metadata'],
@@ -384,7 +384,7 @@ class OldLocalFile extends LocalFile {
 				'oi_major_mime' => $props['major_mime'],
 				'oi_minor_mime' => $props['minor_mime'],
 				'oi_sha1' => $props['sha1'],
-			], __METHOD__
+			] + $commentFields, __METHOD__
 		);
 
 		return true;
