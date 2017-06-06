@@ -93,6 +93,7 @@ class LogPage {
 
 		$dbw = wfGetDB( DB_MASTER );
 		$log_id = $dbw->nextSequenceValue( 'logging_log_id_seq' );
+		$commentStore = new CommentStore( $dbw );
 
 		// @todo FIXME private/protected/public property?
 		$this->timestamp = $now = wfTimestampNow();
@@ -106,9 +107,9 @@ class LogPage {
 			'log_namespace' => $this->target->getNamespace(),
 			'log_title' => $this->target->getDBkey(),
 			'log_page' => $this->target->getArticleID(),
-			'log_comment' => $this->comment,
 			'log_params' => $this->params
 		];
+		$data += $commentStore->insert( 'log_comment', $this->comment );
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$newId = $dbw->insertId();
 
