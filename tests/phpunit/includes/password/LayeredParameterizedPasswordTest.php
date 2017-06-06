@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @covers LayeredParameterizedPassword
+ * @covers Password
+ */
 class LayeredParameterizedPasswordTest extends PasswordTestCase {
 	protected function getTypeConfigs() {
 		return [
@@ -24,6 +28,10 @@ class LayeredParameterizedPasswordTest extends PasswordTestCase {
 				'cost' => 5,
 			]
 		];
+	}
+
+	protected function getValidTypes() {
+		return [ 'testLargeLayeredFinal' ];
 	}
 
 	public static function providePasswordTests() {
