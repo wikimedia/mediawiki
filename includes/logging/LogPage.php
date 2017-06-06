@@ -104,9 +104,9 @@ class LogPage {
 			'log_namespace' => $this->target->getNamespace(),
 			'log_title' => $this->target->getDBkey(),
 			'log_page' => $this->target->getArticleID(),
-			'log_comment' => $this->comment,
 			'log_params' => $this->params
 		];
+		$data += CommentStore::newKey( 'log_comment' )->insert( $dbw, $this->comment );
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$newId = $dbw->insertId();
 

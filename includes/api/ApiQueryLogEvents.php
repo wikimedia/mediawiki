@@ -31,6 +31,8 @@
  */
 class ApiQueryLogEvents extends ApiQueryBase {
 
+	private $commentStore;
+
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'le' );
 	}
@@ -43,6 +45,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$db = $this->getDB();
+		$this->commentStore = new CommentStore( 'log_comment' );
 		$this->requireMaxOneParameter( $params, 'title', 'prefix', 'namespace' );
 
 		$prop = array_flip( $params['prop'] );
@@ -91,8 +94,14 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			[ 'log_namespace', 'log_title' ],
 			$this->fld_title || $this->fld_parsedcomment
 		);
-		$this->addFieldsIf( 'log_comment', $this->fld_comment || $this->fld_parsedcomment );
 		$this->addFieldsIf( 'log_params', $this->fld_details );
+
+		if ( $this->fld_comment || $this->fld_parsedcomment ) {
+			$commentQuery = $this->commentStore->getJoin();
+			$this->addTables( $commentQuery['tables'] );
+			$this->addFields( $commentQuery['fields'] );
+			$this->addJoinConds( $commentQuery['joins'] );
+		}
 
 		if ( $this->fld_tags ) {
 			$this->addTables( 'tag_summary' );
@@ -327,18 +336,19 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->log_timestamp );
 		}
 
-		if ( ( $this->fld_comment || $this->fld_parsedcomment ) && isset( $row->log_comment ) ) {
+		if ( $this->fld_comment || $this->fld_parsedcomment ) {
 			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_COMMENT ) ) {
 				$vals['commenthidden'] = true;
 				$anyHidden = true;
 			}
 			if ( LogEventsList::userCan( $row, LogPage::DELETED_COMMENT, $user ) ) {
+				$comment = $this->commentStore->getComment( $row )->text;
 				if ( $this->fld_comment ) {
-					$vals['comment'] = $row->log_comment;
+					$vals['comment'] = $comment;
 				}
 
 				if ( $this->fld_parsedcomment ) {
-					$vals['parsedcomment'] = Linker::formatComment( $row->log_comment, $title );
+					$vals['parsedcomment'] = Linker::formatComment( $comment, $title );
 				}
 			}
 		}

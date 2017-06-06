@@ -99,6 +99,7 @@ class ApiQueryUsers extends ApiQueryBase {
 
 	public function execute() {
 		$db = $this->getDB();
+		$commentStore = new CommentStore( 'ipb_reason' );
 
 		$params = $this->extractRequestParams();
 		$this->requireMaxOneParameter( $params, 'userids', 'users' );
@@ -236,7 +237,7 @@ class ApiQueryUsers extends ApiQueryBase {
 					$data[$key]['blockedby'] = $row->ipb_by_text;
 					$data[$key]['blockedbyid'] = (int)$row->ipb_by;
 					$data[$key]['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $row->ipb_timestamp );
-					$data[$key]['blockreason'] = $row->ipb_reason;
+					$data[$key]['blockreason'] = $commentStore->getComment( $row )->text;
 					$data[$key]['blockexpiry'] = $row->ipb_expiry;
 				}
 

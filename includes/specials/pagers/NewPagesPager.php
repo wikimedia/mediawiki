@@ -90,15 +90,17 @@ class NewPagesPager extends ReverseChronologicalPager {
 			$conds['page_is_redirect'] = 0;
 		}
 
+		$commentQuery = CommentStore::newKey( 'rc_comment' )->getJoin();
+
 		// Allow changes to the New Pages query
-		$tables = [ 'recentchanges', 'page' ];
+		$tables = [ 'recentchanges', 'page' ] + $commentQuery['tables'];
 		$fields = [
 			'rc_namespace', 'rc_title', 'rc_cur_id', 'rc_user', 'rc_user_text',
-			'rc_comment', 'rc_timestamp', 'rc_patrolled', 'rc_id', 'rc_deleted',
+			'rc_timestamp', 'rc_patrolled', 'rc_id', 'rc_deleted',
 			'length' => 'page_len', 'rev_id' => 'page_latest', 'rc_this_oldid',
 			'page_namespace', 'page_title'
-		];
-		$join_conds = [ 'page' => [ 'INNER JOIN', 'page_id=rc_cur_id' ] ];
+		] + $commentQuery['fields'];
+		$join_conds = [ 'page' => [ 'INNER JOIN', 'page_id=rc_cur_id' ] ] + $commentQuery['joins'];
 
 		// Avoid PHP 7.1 warning from passing $this by reference
 		$pager = $this;

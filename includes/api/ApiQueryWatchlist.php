@@ -34,6 +34,8 @@ use MediaWiki\MediaWikiServices;
  */
 class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
+	private $commentStore;
+
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'wl' );
 	}
@@ -84,6 +86,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 					$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'patrol' );
 				}
+			}
+
+			if ( $this->fld_comment || $this->fld_parsedcomment ) {
+				$this->commentStore = new CommentStore( 'rc_comment' );
 			}
 		}
 
@@ -353,12 +359,13 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				Revision::DELETED_COMMENT,
 				$user
 			) ) {
-				if ( $this->fld_comment && isset( $recentChangeInfo['rc_comment'] ) ) {
-					$vals['comment'] = $recentChangeInfo['rc_comment'];
+				$comment = $this->commentStore->getComment( $recentChangeInfo )->text;
+				if ( $this->fld_comment ) {
+					$vals['comment'] = $comment;
 				}
 
-				if ( $this->fld_parsedcomment && isset( $recentChangeInfo['rc_comment'] ) ) {
-					$vals['parsedcomment'] = Linker::formatComment( $recentChangeInfo['rc_comment'], $title );
+				if ( $this->fld_parsedcomment ) {
+					$vals['parsedcomment'] = Linker::formatComment( $comment, $title );
 				}
 			}
 		}
