@@ -295,7 +295,7 @@ class OutputPage extends ContextSource {
 	private $mEnableSectionEditLinks = true;
 
 	/**
-	 * @var string|null The URL to send in a <link> element with rel=copyright
+	 * @var string|null The URL to send in a <link> element with rel=license
 	 */
 	private $copyrightUrl;
 
@@ -3446,7 +3446,7 @@ class OutputPage extends ContextSource {
 
 		if ( $copyright ) {
 			$tags['copyright'] = Html::element( 'link', [
-				'rel' => 'copyright',
+				'rel' => 'license',
 				'href' => $copyright ]
 			);
 		}
