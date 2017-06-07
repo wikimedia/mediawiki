@@ -97,6 +97,8 @@ changes to languages because of Phabricator reports.
   As a result of the new uniform handling, '-{' may need to be escaped
   (for example, as '-<nowiki/>{') where it occurs inside template arguments
   or wikilinks.
+* (T163966) Page moves are now counted as edits for the purposes of
+  autopromotion, i.e., they increment the user_editcount field in the database.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
