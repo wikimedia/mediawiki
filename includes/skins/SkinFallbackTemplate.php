@@ -16,7 +16,7 @@ class SkinFallbackTemplate extends BaseTemplate {
 	/**
 	 * @return array
 	 */
-	private function findInstalledSkins() {
+	protected function findInstalledSkins() {
 		$styleDirectory = $this->config->get( 'StyleDirectory' );
 		// Get all subdirectories which might contains skins
 		$possibleSkins = scandir( $styleDirectory );
@@ -39,7 +39,7 @@ class SkinFallbackTemplate extends BaseTemplate {
 	 *
 	 * @return string
 	 */
-	private function buildHelpfulInformationMessage() {
+	protected function buildHelpfulInformationMessage() {
 		$defaultSkin = $this->config->get( 'DefaultSkin' );
 		$installedSkins = $this->findInstalledSkins();
 		$enabledSkins = SkinFactory::getDefaultInstance()->getSkinNames();
