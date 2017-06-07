@@ -205,6 +205,7 @@
 	"apierror-invalidcategory": "Den Numm vun der Kategorie deen Dir aginn hutt ass net valabel.",
 	"apierror-invalidtitle": "Schlechten Titel \"$1\".",
 	"apierror-invaliduserid": "Benotzer ID <var>$1</var> ass net valabel.",
+	"apierror-missingrev-title": "Keng aktuell Versioun vum Titel $1.",
 	"apierror-missingtitle": "D'Säit déi Dir spezifizéiert hutt gëtt et net.",
 	"apierror-missingtitle-byname": "D'Säit $1 gëtt et net.",
 	"apierror-moduledisabled": "De(n) <kbd>$1</kbd> Modul gouf ausgeschalt.",
