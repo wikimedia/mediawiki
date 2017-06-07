@@ -289,10 +289,11 @@ class JobRunner implements LoggerAwareInterface {
 			$status = $job->run();
 			$error = $job->getLastError();
 			$this->commitMasterChanges( $lbFactory, $job, $fnameTrxOwner );
+			// Push lazilly-pushed jobs
+			// Important: this must be the last deferred update added (T100085, T154425)
+			DeferredUpdates::addCallableUpdate( [ 'JobQueueGroup', 'pushLazyJobs' ] );
 			// Run any deferred update tasks; doUpdates() manages transactions itself
 			DeferredUpdates::doUpdates();
-			// Push lazy jobs added by the job or its deferred udpates
-			JobQueueGroup::pushLazyJobs();
 		} catch ( Exception $e ) {
 			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 			$status = false;
