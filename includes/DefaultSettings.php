@@ -3681,7 +3681,7 @@ $wgIncludeLegacyJavaScript = false;
  *
  * @deprecated since 1.29
  */
-$wgUsejQueryThree = true;
+$wgUsejQueryThree = false;
 
 /**
  * Whether or not to assign configuration variables to the global window object.
