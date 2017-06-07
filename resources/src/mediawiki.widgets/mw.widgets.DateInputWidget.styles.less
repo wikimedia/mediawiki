@@ -1,0 +1,53 @@
+/*!
+ * MediaWiki Widgets – PHP DateInputWidget styles.
+ *
+ * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
+ * @license The MIT License (MIT); see LICENSE.txt
+ */
+
+.oo-ui-box-sizing( @type: border-box ) {
+	-webkit-box-sizing: @type;
+	-moz-box-sizing: @type;
+	box-sizing: @type;
+}
+
+.oo-ui-inline-spacing( @spacing, @cancelled-spacing: 0 ) {
+	margin-right: @spacing;
+
+	&:last-child {
+		margin-right: @cancelled-spacing;
+	}
+}
+
+.mw-widget-dateInputWidget {
+	&.oo-ui-textInputWidget {
+		display: inline-block;
+		position: relative;
+		width: 21em;
+		margin-top: 0.25em;
+		.oo-ui-inline-spacing( 0.5em );
+		margin-bottom: 0.25em;
+		margin-left: 0;
+	}
+
+	// Note that this block applies to both the PHP widget and the JS widget
+	&-handle,
+	&.oo-ui-textInputWidget input {
+		background-color: #fff;
+		display: inline-block;
+		position: relative;
+		.oo-ui-box-sizing( border-box );
+		width: 100%;
+		cursor: pointer;
+		padding: 0.5em 1em;
+		border: 1px solid #a2a9b1;
+		border-radius: 2px;
+		outline: 0;
+		line-height: 1.275;
+		/**
+		 * Ensures non-infused and infused widget have the same height.
+		 * Equal to line height + top padding + bottom padding
+		 */
+		height: 2.275em;
+	}
+}
