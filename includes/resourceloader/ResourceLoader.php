@@ -1129,8 +1129,12 @@ MESSAGE;
 			}
 		} else {
 			if ( count( $states ) ) {
-				$this->errors[] = 'Problematic modules: ' .
-					FormatJson::encode( $states, ResourceLoader::inDebugMode() );
+				if ( $context->getDebug() ) {
+					$this->errors[] = 'Problematic modules: ' .
+						FormatJson::encode( $states, ResourceLoader::inDebugMode() );
+				} else {
+					$this->errors[] = 'Could not load specified modules.';
+				}
 			}
 		}
 
