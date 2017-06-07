@@ -194,7 +194,14 @@ class SquidPurgeClient {
 	 *
 	 * @param string $url
 	 */
-	public function queuePurge( $url ) {
+	// Miraheze specific PATCH: $mobileHeader was added
+	// because it's needed to add X-Device upon purge.
+	// When purging an url we call queuePurge twice
+	// with $mobileHeader first being 'desktop', and
+	// the second time being 'phone-tablet'.
+	// Due to Varnish' vcl_hash, this is needed in
+	// order to properly PURGE pages.
+	public function queuePurge( $url, $deviceHeader ) {
 		global $wgSquidPurgeUseHostHeader;
 		$url = CdnCacheUpdate::expand( str_replace( "\n", '', $url ) );
 		$request = [];
@@ -216,6 +223,7 @@ class SquidPurgeClient {
 		$request[] = "Connection: Keep-Alive";
 		$request[] = "Proxy-Connection: Keep-Alive";
 		$request[] = "User-Agent: " . Http::userAgent() . ' ' . __CLASS__;
+		$request[] = "X-Device: " . $deviceHeader;
 		// Two ''s to create \r\n\r\n
 		$request[] = '';
 		$request[] = '';

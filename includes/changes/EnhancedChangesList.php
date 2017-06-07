@@ -291,6 +291,10 @@ class EnhancedChangesList extends ChangesList {
 		// Further down are some assumptions that $block is a 0-indexed array
 		// with (count-1) as last key. Let's make sure it is.
 		$block = array_values( $block );
+		if ( empty( $block ) ) {
+			// if we can't show anything, don't display this block altogether
+			return '';
+		}
 
 		if ( empty( $block ) || !$lines ) {
 			// if we can't show anything, don't display this block altogether

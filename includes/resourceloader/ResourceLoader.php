@@ -195,7 +195,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		if ( $result === false ) {
 			$stats->increment( "resourceloader_cache.$filter.miss" );
 			$result = self::applyFilter( $filter, $data );
-			$cache->set( $key, $result, 24 * 3600 );
+			//$cache->set( $key, $result, 24 * 3600 ); - repull 1.26 comment out
 		} else {
 			$stats->increment( "resourceloader_cache.$filter.hit" );
 		}
