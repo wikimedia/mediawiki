@@ -125,7 +125,7 @@ class MWNamespace {
 		}
 
 		return self::isTalk( $index )
-			? $index - 1
+			? $index - NS_TALK
 			: $index;
 	}
 
