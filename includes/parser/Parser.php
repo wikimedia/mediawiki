@@ -22,6 +22,7 @@
  */
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Assert\Assert;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -4857,6 +4858,8 @@ class Parser {
 	 */
 	public function setFunctionHook( $id, $callback, $flags = 0 ) {
 		global $wgContLang;
+
+		Assert::parameterType( 'callable', $callback, '$callback' );
 
 		$oldVal = isset( $this->mFunctionHooks[$id] ) ? $this->mFunctionHooks[$id][0] : null;
 		$this->mFunctionHooks[$id] = [ $callback, $flags ];
