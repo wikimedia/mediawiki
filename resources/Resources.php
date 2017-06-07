@@ -2338,6 +2338,15 @@ return [
 			'oojs-ui-widgets',
 			'oojs-ui.styles.icons-movement',
 			'moment',
+			'mediawiki.widgets.DateInputWidget.styles',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	'mediawiki.widgets.DateInputWidget.styles' => [
+		'skinStyles' => [
+			'default' => [
+				'resources/src/mediawiki.widgets/mw.widgets.DateInputWidget.styles.less',
+			],
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
