@@ -911,7 +911,12 @@ class DifferenceEngine extends ContextSource {
 		if ( function_exists( 'wikidiff2_do_diff' ) && $wgExternalDiffEngine === false ) {
 			# Better external diff engine, the 2 may some day be dropped
 			# This one does the escaping and segmenting itself
-			$text = wikidiff2_do_diff( $otext, $ntext, 2 );
+			$text = wikidiff2_do_diff(
+				$otext,
+				$ntext,
+				2,
+				$this->getConfig()->get( 'WikiDiff2MoveParagraphDetectionCutoff ' )
+			);
 			$text .= $this->debug( 'wikidiff2' );
 
 			return $text;

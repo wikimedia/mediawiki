@@ -22,7 +22,8 @@
  * @param string $text1
  * @param string $text2
  * @param int $numContextLines
+ * @param int $moveParagraphDetectionCutoff
  * @return string
  */
-function wikidiff2_do_diff( $text1, $text2, $numContextLines ) {
+function wikidiff2_do_diff( $text1, $text2, $numContextLines, $moveParagraphDetectionCutoff = 0 ) {
 }
