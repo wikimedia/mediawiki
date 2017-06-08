@@ -4335,8 +4335,6 @@ HTML
 		$buttonLabel = $this->context->msg( $this->getSaveButtonLabel() )->text();
 
 		$attribs = [
-			'id' => 'wpSaveWidget',
-			'inputId' => 'wpSave',
 			'name' => 'wpSave',
 			'tabindex' => ++$tabindex,
 		] + Linker::tooltipAndAccesskeyAttribs( 'save' );
@@ -4344,6 +4342,8 @@ HTML
 		if ( $this->oouiEnabled ) {
 			$saveConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
 			$buttons['save'] = new OOUI\ButtonInputWidget( [
+				'id' => 'wpSaveWidget',
+				'inputId' => 'wpSave',
 				// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
 				'useInputTag' => true,
 				'flags' => [ 'constructive', 'primary' ],
@@ -4354,20 +4354,20 @@ HTML
 		} else {
 			$buttons['save'] = Html::submitButton(
 				$buttonLabel,
-				$attribs,
+				$attribs + [ 'id' => 'wpSave' ],
 				[ 'mw-ui-progressive' ]
 			);
 		}
 
 		$attribs = [
-			'id' => 'wpPreviewWidget',
-			'inputId' => 'wpPreview',
 			'name' => 'wpPreview',
 			'tabindex' => ++$tabindex,
 		] + Linker::tooltipAndAccesskeyAttribs( 'preview' );
 		if ( $this->oouiEnabled ) {
 			$previewConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
 			$buttons['preview'] = new OOUI\ButtonInputWidget( [
+				'id' => 'wpPreviewWidget',
+				'inputId' => 'wpPreview',
 				// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
 				'useInputTag' => true,
 				'label' => $this->context->msg( 'showpreview' )->text(),
@@ -4377,18 +4377,18 @@ HTML
 		} else {
 			$buttons['preview'] = Html::submitButton(
 				$this->context->msg( 'showpreview' )->text(),
-				$attribs
+				$attribs + [ 'id' => 'wpPreview' ]
 			);
 		}
 		$attribs = [
-			'id' => 'wpDiffWidget',
-			'inputId' => 'wpDiff',
 			'name' => 'wpDiff',
 			'tabindex' => ++$tabindex,
 		] + Linker::tooltipAndAccesskeyAttribs( 'diff' );
 		if ( $this->oouiEnabled ) {
 			$diffConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
 			$buttons['diff'] = new OOUI\ButtonInputWidget( [
+				'id' => 'wpDiffWidget',
+				'inputId' => 'wpDiff',
 				// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
 				'useInputTag' => true,
 				'label' => $this->context->msg( 'showdiff' )->text(),
@@ -4398,7 +4398,7 @@ HTML
 		} else {
 			$buttons['diff'] = Html::submitButton(
 				$this->context->msg( 'showdiff' )->text(),
-				$attribs
+				$attribs + [ 'id' => 'wpDiff' ]
 			);
 		}
 
