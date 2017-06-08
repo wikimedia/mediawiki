@@ -908,10 +908,29 @@ class DifferenceEngine extends ContextSource {
 			$wgExternalDiffEngine = false;
 		}
 
+		# Better external diff engine, the 2 may some day be dropped
+		# This one does the escaping and segmenting itself
 		if ( function_exists( 'wikidiff2_do_diff' ) && $wgExternalDiffEngine === false ) {
-			# Better external diff engine, the 2 may some day be dropped
-			# This one does the escaping and segmenting itself
-			$text = wikidiff2_do_diff( $otext, $ntext, 2 );
+			$wikidiff2Version = phpversion( 'wikidiff2' );
+			if (
+				$wikidiff2Version !== false &&
+				version_compare( $wikidiff2Version, '0.3.0', '>=' )
+			) {
+				$text = wikidiff2_do_diff(
+					$otext,
+					$ntext,
+					2,
+					$this->getConfig()->get( 'WikiDiff2MoveParagraphDetectionCutoff' )
+				);
+			} else {
+				# Don't pass the 4th parameter for compatibility with older versions of wikidiff2
+				$text = wikidiff2_do_diff(
+					$otext,
+					$ntext,
+					2
+				);
+			}
+
 			$text .= $this->debug( 'wikidiff2' );
 
 			return $text;
