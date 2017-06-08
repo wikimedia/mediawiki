@@ -1250,7 +1250,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return array
 	 */
 	protected function sanitizeOpHeaders( array $op ) {
-		static $longs = [ 'content-disposition', 'x-content-dimensions' ];
+		static $longs = [ 'content-disposition' ];
 
 		if ( isset( $op['headers'] ) ) { // op sets HTTP headers
 			$newHeaders = [];
