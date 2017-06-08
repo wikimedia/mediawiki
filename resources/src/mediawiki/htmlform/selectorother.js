@@ -51,9 +51,9 @@
 			}
 		}
 
-		$root
-			.on( 'change', '.mw-htmlform-select-or-other', handleSelectOrOther )
+		$root.find( '.mw-htmlform-select-or-other' )
 			.each( function () {
+				$( this ).on( 'change', handleSelectOrOther );
 				handleSelectOrOther.call( this, true );
 			} );
 	} );
