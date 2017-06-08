@@ -50,7 +50,7 @@ class RefreshFileHeaders extends Maintenance {
 		$dbr = $this->getDB( DB_REPLICA );
 
 		do {
-			$conds = [ "img_name > {$dbr->addQuotes( $start )}" ];
+			$conds = [ "img_name >= {$dbr->addQuotes( $start )}" ];
 
 			if ( strlen( $end ) ) {
 				$conds[] = "img_name <= {$dbr->addQuotes( $end )}";
