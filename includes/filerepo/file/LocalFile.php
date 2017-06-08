@@ -1206,9 +1206,7 @@ class LocalFile extends File {
 				$metadata = [];
 			}
 
-			$options['headers'] = $handler->getContentHeaders(
-				$metadata, $props['width'], $props['height']
-			);
+			$options['headers'] = $handler->getContentHeaders( $metadata );
 		} else {
 			$options['headers'] = [];
 		}
