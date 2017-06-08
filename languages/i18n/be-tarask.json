@@ -3832,6 +3832,7 @@
 	"authprovider-confirmlink-request-label": "Рахункі, якія павінны быць злучаныя",
 	"authprovider-confirmlink-success-line": "$1: пасьпяхова далучаны.",
 	"authprovider-confirmlink-failed": "Далучэньне рахунку не атрымалася цалкам: $1",
+	"authprovider-confirmlink-ok-help": "Працягнуць пасьля паказу паведамленьняў пра памылкі далучэньня.",
 	"changecredentials": "Зьмена ўліковых зьвестак",
 	"removecredentials": "Выдаленьне ўліковых зьвестак",
 	"removecredentials-submit": "Выдаліць уліковыя зьвесткі",

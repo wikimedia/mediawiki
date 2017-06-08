@@ -1010,7 +1010,7 @@
 	"rcfilters-filter-minor-description": "«Кече үзгәртү» дип тамгаланган үзгәртүләр",
 	"rcfilters-filter-pageedits-label": "Бит үзгәртүләре",
 	"rcfilters-filter-newpages-label": "Бит төзүләре",
-	"rcfilters-filter-logactions-label": "Беркетмәләнә торган гамәлләр",
+	"rcfilters-filter-logactions-label": "Беркетмәләнүче гамәлләр",
 	"rcfilters-filter-logactions-description": "Административ гамәлләр, хисап язмасын төзүләр, битне бетерүләр, файл йөкләүләр...",
 	"rcnotefrom": "Астарак <strong>$3, $4</strong> өчен {{PLURAL:$5|үзгәртүләр күрсәтелгән}} (<strong>$1</strong> артык түгел).",
 	"rclistfrom": "$3 $2 башлап яңа үзгәртүләрне күрсәт",

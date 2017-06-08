@@ -3823,6 +3823,10 @@
 	"authpage-cannot-link-continue": "Ситимниир кыах суох. Сиэссийэттэн тахсан хаалбыккын быһыылаах.",
 	"cannotauth-not-allowed-title": "Киирэр көҥүллэммэт",
 	"cannotauth-not-allowed": "Бу сирэйи туһанарыҥ сатаммат эбит",
+	"removecredentials": "Бэлиэ-ааты сот",
+	"removecredentials-submit": "Бэлиэ-ааты сот",
+	"removecredentials-invalidsubpage": "$1 бэлиэтэнии сатаммат көрүҥэ эбит.",
+	"removecredentials-success": "Бэлиэтэнии сотулунна.",
 	"credentialsform-provider": "Учуоттуур дааннай көрүҥэ:",
 	"credentialsform-account": "Бэлиэ-аат:",
 	"cannotlink-no-provider-title": "Бэлиэ-ааттар суохтар",
@@ -3836,5 +3840,10 @@
 	"userjsispublic": "Болҕой: JavaScript сирэйигэр кистэлэҥ сибидиэнньэ суох буолуохтаах, тоҕо диэтэххэ ону атын кыттааччылар хааччаҕа суох көрөр кыахтаахтар.",
 	"usercssispublic": "Болҕой: CSS  сирэйигэр кистэлэҥ сибидиэнньэ суох буолуохтаах, тоҕо диэтэххэ ону атын кыттааччылар хааччаҕа суох көрөр кыахтаахтар.",
 	"restrictionsfield-badip": "IP эбэтэр IP-лар диапазоннара сатаммат: $1",
-	"restrictionsfield-label": "Көҥүллэммит IP диапазона:"
+	"restrictionsfield-label": "Көҥүллэммит IP диапазона:",
+	"revid": "$1 торум",
+	"pageid": "$1 сирэй нүөмэрэ",
+	"gotointerwiki": "{{SITENAME}} сиртэн тахсарга",
+	"gotointerwiki-invalid": "Аат алҕастаах.",
+	"gotointerwiki-external": "[[$2]] диэн сиргэ бараары {{SITENAME}} сиртэн тахсан эрэҕин.\n\n'''[$1 Манна $1 көс]'''"
 }

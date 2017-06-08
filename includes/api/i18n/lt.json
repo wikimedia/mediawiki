@@ -14,6 +14,7 @@
 	"apihelp-compare-param-fromid": "Pirmojo lyginamo puslapio ID.",
 	"apihelp-compare-param-totitle": "Antrasis pavadinimas palyginimui.",
 	"apihelp-compare-param-toid": "Antrojo lyginamo puslapio ID.",
+	"apihelp-compare-param-prop": "Kokią informaciją gauti.",
 	"apihelp-createaccount-description": "Kurti naują vartotojo paskyrą.",
 	"apihelp-createaccount-param-name": "Naudotojo vardas.",
 	"apihelp-createaccount-param-email": "Vartotojo el. pašto adresas (nebūtina).",
