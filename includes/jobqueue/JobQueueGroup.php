@@ -163,7 +163,9 @@ class JobQueueGroup {
 	/**
 	 * Buffer jobs for insertion via push() or call it now if in CLI mode
 	 *
-	 * Note that MediaWiki::restInPeace() calls pushLazyJobs()
+	 * Note that pushLazyJobs() is registered as a deferred update just before
+	 * DeferredUpdates::doUpdates() in MediaWiki and JobRunner classes in order
+	 * to be executed as the very last deferred update (T100085, T154425).
 	 *
 	 * @param IJobSpecification|IJobSpecification[] $jobs A single Job or a list of Jobs
 	 * @return void
