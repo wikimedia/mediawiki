@@ -2173,7 +2173,7 @@ abstract class File implements IDBAccessObject {
 				$metadata = [];
 			}
 
-			return $handler->getContentHeaders( $metadata, $this->getWidth(), $this->getHeight() );
+			return $handler->getContentHeaders( $metadata );
 		}
 
 		return [];
