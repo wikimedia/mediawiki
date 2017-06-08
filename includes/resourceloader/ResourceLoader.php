@@ -1170,7 +1170,7 @@ MESSAGE;
 	 * @param array $templates Keys are name of templates and values are the source of
 	 *   the template.
 	 * @throws MWException
-	 * @return string
+	 * @return string JavaScript code
 	 */
 	protected static function makeLoaderImplementScript(
 		$name, $scripts, $styles, $messages, $templates
@@ -1200,7 +1200,7 @@ MESSAGE;
 	 *
 	 * @param mixed $messages Either an associative array mapping message key to value, or a
 	 *   JSON-encoded message blob containing the same data, wrapped in an XmlJsCode object.
-	 * @return string
+	 * @return string JavaScript code
 	 */
 	public static function makeMessageSetScript( $messages ) {
 		return Xml::encodeJsCall(
@@ -1256,7 +1256,7 @@ MESSAGE;
 	 *
 	 * @param string $name
 	 * @param string $state
-	 * @return string
+	 * @return string JavaScript code
 	 */
 	public static function makeLoaderStateScript( $name, $state = null ) {
 		if ( is_array( $name ) ) {
@@ -1286,7 +1286,7 @@ MESSAGE;
 	 * @param string $group Group which the module is in.
 	 * @param string $source Source of the module, or 'local' if not foreign.
 	 * @param string $script JavaScript code
-	 * @return string
+	 * @return string JavaScript code
 	 */
 	public static function makeCustomLoaderScript( $name, $version, $dependencies,
 		$group, $source, $script
@@ -1358,7 +1358,7 @@ MESSAGE;
 	 * @param string $group Group which the module is in
 	 * @param string $source Source of the module, or 'local' if not foreign
 	 * @param string $skip Script body of the skip function
-	 * @return string
+	 * @return string JavaScript code
 	 */
 	public static function makeLoaderRegisterScript( $name, $version = null,
 		$dependencies = null, $group = null, $source = null, $skip = null
@@ -1412,7 +1412,7 @@ MESSAGE;
 	 *
 	 * @param string $id Source ID
 	 * @param string $loadUrl load.php url
-	 * @return string
+	 * @return string JavaScript code
 	 */
 	public static function makeLoaderSourcesScript( $id, $loadUrl = null ) {
 		if ( is_array( $id ) ) {
@@ -1436,7 +1436,7 @@ MESSAGE;
 	 *
 	 * @deprecated since 1.25; use makeInlineScript instead
 	 * @param string $script JavaScript code
-	 * @return string
+	 * @return string JavaScript code
 	 */
 	public static function makeLoaderConditionalScript( $script ) {
 		return '(window.RLQ=window.RLQ||[]).push(function(){' .
@@ -1466,7 +1466,7 @@ MESSAGE;
 	 * the given value.
 	 *
 	 * @param array $configuration List of configuration values keyed by variable name
-	 * @return string
+	 * @return string JavaScript code
 	 */
 	public static function makeConfigSetScript( array $configuration ) {
 		return Xml::encodeJsCall(
