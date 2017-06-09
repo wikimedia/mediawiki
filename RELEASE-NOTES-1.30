@@ -99,6 +99,7 @@ changes to languages because of Phabricator reports.
   or wikilinks.
 * (T163966) Page moves are now counted as edits for the purposes of
   autopromotion, i.e., they increment the user_editcount field in the database.
+* (T167470) $wgExperimentalHtmlIds was deprecated and does nothing now.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
