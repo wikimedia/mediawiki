@@ -86,7 +86,7 @@ exports.config = {
 		browserName: 'chrome',
 		// Since Chrome v57 https://bugs.chromium.org/p/chromedriver/issues/detail?id=1625
 		chromeOptions: {
-			args: [ '--enable-automation' ]
+			args: [ '--enable-automation', '--headless', '--disable-gpu' ]
 		}
 	} ],
 	//
