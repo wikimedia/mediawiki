@@ -675,6 +675,47 @@ class TitleTest extends MediaWikiTestCase {
 		);
 	}
 
+	public function provideCanHaveTalkPage() {
+		return [
+			'User page has talk page' => [
+				Title::makeTitle( NS_USER, 'Jane' ), true
+			],
+			'Talke page has talk page' => [
+				Title::makeTitle( NS_TALK, 'Foo' ), true
+			],
+			'Special page cannot have talk page' => [
+				Title::makeTitle( NS_SPECIAL, 'Thing' ), false
+			],
+			'Virtual namespace cannot have talk page' => [
+				Title::makeTitle( NS_MEDIA, 'Kitten.jpg' ), false
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideCanHaveTalkPage
+	 * @covers Title::canHaveTalkPage
+	 *
+	 * @param Title $title
+	 * @param bool $expected
+	 */
+	public function testCanHaveTalkPage( Title $title, $expected ) {
+		$actual = $title->canHaveTalkPage();
+		$this->assertSame( $actual, $expected, $title->getPrefixedDBkey() );
+	}
+
+	/**
+	 * @dataProvider provideCanHaveTalkPage
+	 * @covers Title::canTalk
+	 *
+	 * @param Title $title
+	 * @param bool $expected
+	 */
+	public function testCanTalk( Title $title, $expected ) {
+		$actual = $title->canTalk();
+		$this->assertSame( $actual, $expected, $title->getPrefixedDBkey() );
+	}
+
 	public function provideCreateFragmentTitle() {
 		return [
 			[ Title::makeTitle( NS_MAIN, 'Test' ), 'foo' ],
