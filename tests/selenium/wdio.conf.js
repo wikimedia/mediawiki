@@ -2,7 +2,16 @@
 
 const password = 'vagrant',
 	path = require( 'path' ),
-	username = 'Admin';
+	username = 'Admin',
+	// --enable-automation: since Chrome 57 https://bugs.chromium.org/p/chromedriver/issues/detail?id=1625
+	// --headless: since Chrome 59 https://chromium.googlesource.com/chromium/src/+/59.0.3030.0/headless/README.md
+	chromeArgs = [
+		'--enable-automation'
+	],
+	chromeHeadlessArgs = chromeArgs.concat( [
+		'--headless',
+		'--disable-gpu'
+	] );
 
 function relPath( foo ) {
 	return path.resolve( __dirname, '../..', foo );
@@ -84,9 +93,11 @@ exports.config = {
 		maxInstances: 1,
 		//
 		browserName: 'chrome',
-		// Since Chrome v57 https://bugs.chromium.org/p/chromedriver/issues/detail?id=1625
 		chromeOptions: {
-			args: [ '--enable-automation' ]
+			// Run headless when there is no DISPLAY
+			args: process.env.DISPLAY === undefined ?
+				chromeHeadlessArgs :
+				chromeArgs
 		}
 	} ],
 	//
