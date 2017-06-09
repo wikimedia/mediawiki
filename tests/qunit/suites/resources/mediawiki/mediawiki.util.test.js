@@ -93,7 +93,6 @@
 	} );
 
 	QUnit.test( 'escapeId', function ( assert ) {
-		mw.config.set( 'wgExperimentalHtmlIds', false );
 		$.each( {
 			'+': '.2B',
 			'&': '.26',
