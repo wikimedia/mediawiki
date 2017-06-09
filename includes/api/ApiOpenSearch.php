@@ -233,7 +233,7 @@ class ApiOpenSearch extends ApiBase {
 				break;
 
 			case 'xml':
-				// http://msdn.microsoft.com/en-us/library/cc891508%28v=vs.85%29.aspx
+				// https://msdn.microsoft.com/en-us/library/cc891508(v=vs.85).aspx
 				$imageKeys = [
 					'source' => true,
 					'alt' => true,

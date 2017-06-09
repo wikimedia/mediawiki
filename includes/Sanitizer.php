@@ -793,7 +793,7 @@ class Sanitizer {
 			}
 
 			# Strip javascript "expression" from stylesheets.
-			# http://msdn.microsoft.com/workshop/author/dhtml/overview/recalc.asp
+			# https://msdn.microsoft.com/en-us/library/ms537634.aspx
 			if ( $attribute == 'style' ) {
 				$value = Sanitizer::checkCss( $value );
 			}
