@@ -193,6 +193,13 @@ interface ILBFactory {
 	public function rollbackMasterChanges( $fname = __METHOD__ );
 
 	/**
+	 * Check if a transaction round is active
+	 * @return bool
+	 * @since 1.30
+	 */
+	public function hasTransactionRound();
+
+	/**
 	 * Determine if any master connection has pending changes
 	 * @return bool
 	 */
