@@ -85,6 +85,10 @@ changes to languages because of Phabricator reports.
   deprecated. There are no known callers.
 * File::getStreamHeaders() was deprecated.
 * MediaHandler::getStreamHeaders() was deprecated.
+* Title::canTalk() was deprecated, the new Title::canHaveTalkPage() should be
+  used instead.
+* MWNamespace::canTalk() was deprecated, the new MWNamespace::hasTalkNamespace()
+  should be used instead.
 * The ExtractThumbParameters hook (deprecated in 1.21) was removed.
 * The OutputPage::addParserOutputNoText and ::getHeadLinks methods (both
   deprecated in 1.24) were removed.
