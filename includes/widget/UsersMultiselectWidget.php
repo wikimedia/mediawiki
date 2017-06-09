@@ -53,7 +53,7 @@ class UsersMultiselectWidget extends \OOUI\Widget {
 
 	public function getConfig( &$config ) {
 		if ( $this->usersArray !== null ) {
-			$config['data'] = $this->usersArray;
+			$config['selected'] = $this->usersArray;
 		}
 		if ( $this->inputName !== null ) {
 			$config['name'] = $this->inputName;
