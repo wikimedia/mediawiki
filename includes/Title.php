@@ -1020,12 +1020,27 @@ class Title implements LinkTarget {
 	}
 
 	/**
-	 * Could this title have a corresponding talk page?
+	 * Can this title have a corresponding talk page?
+	 * Note that this methods also returns true if this Title itself is in a talk namespace.
+	 *
+	 * @deprecated since 1.30, use canHaveTalkPage() instead.
 	 *
 	 * @return bool
 	 */
 	public function canTalk() {
-		return MWNamespace::canTalk( $this->mNamespace );
+		return $this->canHaveTalkPage();
+	}
+
+	/**
+	 * Can this title have a corresponding talk page?
+	 * Note that this methods also returns true if this Title itself is in a talk namespace.
+	 *
+	 * @see MWNamespace::hasTalkNamespace
+	 *
+	 * @return bool
+	 */
+	public function canHaveTalkPage() {
+		return MWNamespace::hasTalkNamespace( $this->mNamespace );
 	}
 
 	/**
