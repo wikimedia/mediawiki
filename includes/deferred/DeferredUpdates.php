@@ -283,7 +283,7 @@ class DeferredUpdates {
 		}
 
 		// Avoiding running updates without them having outer scope
-		if ( !self::getBusyDbConnections() ) {
+		if ( !self::areDatabaseTransactionsActive() ) {
 			self::doUpdates( $mode );
 			return true;
 		}
@@ -337,16 +337,19 @@ class DeferredUpdates {
 	}
 
 	/**
-	 * @return IDatabase[] Connection where commit() cannot be called yet
+	 * @return bool If a transaction round is active or connection is not ready for commit()
 	 */
-	private static function getBusyDbConnections() {
-		$connsBusy = [];
-
+	private static function areDatabaseTransactionsActive() {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		if ( $lbFactory->hasTransactionRound() ) {
+			return true;
+		}
+
+		$connsBusy = false;
 		$lbFactory->forEachLB( function ( LoadBalancer $lb ) use ( &$connsBusy ) {
 			$lb->forEachOpenMasterConnection( function ( IDatabase $conn ) use ( &$connsBusy ) {
 				if ( $conn->writesOrCallbacksPending() || $conn->explicitTrxActive() ) {
-					$connsBusy[] = $conn;
+					$connsBusy = true;
 				}
 			} );
 		} );

@@ -181,13 +181,16 @@ class JobQueueDB extends JobQueue {
 	 * @return void
 	 */
 	protected function doBatchPush( array $jobs, $flags ) {
-		DeferredUpdates::addUpdate( new AutoCommitUpdate(
-			wfGetDB( DB_MASTER ),
-			__METHOD__,
-			function ( IDatabase $dbw, $fname ) use ( $jobs, $flags ) {
-				$this->doBatchPushInternal( $dbw, $jobs, $flags, $fname );
-			}
-		) );
+		DeferredUpdates::addUpdate(
+			new AutoCommitUpdate(
+				$this->getMasterDB(),
+				__METHOD__,
+				function ( IDatabase $dbw, $fname ) use ( $jobs, $flags ) {
+					$this->doBatchPushInternal( $dbw, $jobs, $flags, $fname );
+				}
+			),
+			DeferredUpdates::PRESEND
+		);
 	}
 
 	/**
