@@ -568,11 +568,12 @@ interface IDatabase {
 	 * @param string|array $cond The condition array. See IDatabase::select() for details.
 	 * @param string $fname The function name of the caller.
 	 * @param string|array $options The query options. See IDatabase::select() for details.
+	 * @param string|array $join_conds The query join conditions. See IDatabase::select() for details.
 	 *
 	 * @return bool|mixed The value from the field, or false on failure.
 	 */
 	public function selectField(
-		$table, $var, $cond = '', $fname = __METHOD__, $options = []
+		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	);
 
 	/**
@@ -589,12 +590,13 @@ interface IDatabase {
 	 * @param string|array $cond The condition array. See IDatabase::select() for details.
 	 * @param string $fname The function name of the caller.
 	 * @param string|array $options The query options. See IDatabase::select() for details.
+	 * @param string|array $join_conds The query join conditions. See IDatabase::select() for details.
 	 *
 	 * @return bool|array The values from the field, or false on failure
 	 * @since 1.25
 	 */
 	public function selectFieldValues(
-		$table, $var, $cond = '', $fname = __METHOD__, $options = []
+		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	);
 
 	/**
@@ -1247,12 +1249,14 @@ interface IDatabase {
 	 *    IDatabase::insert() for details.
 	 * @param array $selectOptions Options for the SELECT part of the query, see
 	 *    IDatabase::select() for details.
+	 * @param array $selectJoinConds Join conditions for the SELECT part of the query, see
+	 *    IDatabase::select() for details.
 	 *
 	 * @return IResultWrapper
 	 */
 	public function insertSelect( $destTable, $srcTable, $varMap, $conds,
 		$fname = __METHOD__,
-		$insertOptions = [], $selectOptions = []
+		$insertOptions = [], $selectOptions = [], $selectJoinConds = []
 	);
 
 	/**

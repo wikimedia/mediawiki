@@ -1150,7 +1150,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function selectField(
-		$table, $var, $cond = '', $fname = __METHOD__, $options = []
+		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
 		if ( $var === '*' ) { // sanity
 			throw new DBUnexpectedError( $this, "Cannot use a * field: got '$var'" );
@@ -1162,7 +1162,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$options['LIMIT'] = 1;
 
-		$res = $this->select( $table, $var, $cond, $fname, $options );
+		$res = $this->select( $table, $var, $cond, $fname, $options, $join_conds );
 		if ( $res === false || !$this->numRows( $res ) ) {
 			return false;
 		}
@@ -2356,7 +2356,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function insertSelect(
 		$destTable, $srcTable, $varMap, $conds,
-		$fname = __METHOD__, $insertOptions = [], $selectOptions = []
+		$fname = __METHOD__, $insertOptions = [], $selectOptions = [], $selectJoinConds = []
 	) {
 		if ( $this->cliMode ) {
 			// For massive migrations with downtime, we don't want to select everything
@@ -2368,7 +2368,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$conds,
 				$fname,
 				$insertOptions,
-				$selectOptions
+				$selectOptions,
+				$selectJoinConds
 			);
 		}
 
@@ -2380,7 +2381,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$fields[] = $this->fieldNameWithAlias( $sourceColumnOrSql, $dstColumn );
 		}
 		$selectOptions[] = 'FOR UPDATE';
-		$res = $this->select( $srcTable, implode( ',', $fields ), $conds, $fname, $selectOptions );
+		$res = $this->select(
+			$srcTable, implode( ',', $fields ), $conds, $fname, $selectOptions, $selectJoinConds
+		);
 		if ( !$res ) {
 			return false;
 		}
@@ -2401,7 +2404,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	protected function nativeInsertSelect( $destTable, $srcTable, $varMap, $conds,
 		$fname = __METHOD__,
-		$insertOptions = [], $selectOptions = []
+		$insertOptions = [], $selectOptions = [], $selectJoinConds = []
 	) {
 		$destTable = $this->tableName( $destTable );
 
@@ -2411,32 +2414,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$insertOptions = $this->makeInsertOptions( $insertOptions );
 
-		if ( !is_array( $selectOptions ) ) {
-			$selectOptions = [ $selectOptions ];
-		}
-
-		list( $startOpts, $useIndex, $tailOpts, $ignoreIndex ) = $this->makeSelectOptions(
-			$selectOptions );
-
-		if ( is_array( $srcTable ) ) {
-			$srcTable = implode( ',', array_map( [ $this, 'tableName' ], $srcTable ) );
-		} else {
-			$srcTable = $this->tableName( $srcTable );
-		}
+		$selectSql = $this->selectSQLText(
+			$srcTable,
+			array_values( $varMap ),
+			$conds,
+			$fname,
+			$selectOptions,
+			$selectJoinConds
+		);
 
 		$sql = "INSERT $insertOptions" .
-			" INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ')' .
-			" SELECT $startOpts " . implode( ',', $varMap ) .
-			" FROM $srcTable $useIndex $ignoreIndex ";
-
-		if ( $conds != '*' ) {
-			if ( is_array( $conds ) ) {
-				$conds = $this->makeList( $conds, self::LIST_AND );
-			}
-			$sql .= " WHERE $conds";
-		}
-
-		$sql .= " $tailOpts";
+			" INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ') ' .
+			$selectSql;
 
 		return $this->query( $sql, $fname );
 	}
