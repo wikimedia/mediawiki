@@ -14,7 +14,7 @@
 	 * newline-separated usernames.
 	 *
 	 * @class
-	 * @extends OO.ui.CapsuleMultiselectWidget
+	 * @extends OO.ui.MenuTagMultiselectWidget
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
@@ -57,16 +57,12 @@
 
 		// Events
 		// Update contents of autocomplete menu as user types letters
-		this.$input.on( {
+		this.input.$input.on( {
 			keyup: this.updateMenuItems.bind( this )
-		} );
-		// When option is selected from autocomplete menu, update the menu
-		this.menu.connect( this, {
-			select: 'updateMenuItems'
 		} );
 		// When list of selected usernames changes, update hidden input
 		this.connect( this, {
-			change: 'updateHiddenInput'
+			change: 'onMultiselectChange'
 		} );
 
 		// API init
@@ -75,7 +71,7 @@
 
 	/* Setup */
 
-	OO.inheritClass( mw.widgets.UsersMultiselectWidget, OO.ui.CapsuleMultiselectWidget );
+	OO.inheritClass( mw.widgets.UsersMultiselectWidget, OO.ui.MenuTagMultiselectWidget );
 	OO.mixinClass( mw.widgets.UsersMultiselectWidget, OO.ui.mixin.PendingElement );
 
 	/* Methods */
@@ -83,10 +79,10 @@
 	/**
 	 * Get currently selected usernames
 	 *
-	 * @return {Array} usernames
+	 * @return {string[]} usernames
 	 */
 	mw.widgets.UsersMultiselectWidget.prototype.getSelectedUsernames = function () {
-		return this.getItemsData();
+		return this.getValue();
 	};
 
 	/**
@@ -95,7 +91,7 @@
 	 * @private
 	 */
 	mw.widgets.UsersMultiselectWidget.prototype.updateMenuItems = function () {
-		var inputValue = this.$input.val();
+		var inputValue = this.input.getValue();
 
 		if ( inputValue === this.inputValue ) {
 			// Do not restart api query if nothing has changed in the input
@@ -134,12 +130,9 @@
 
 				// Remove all items from menu add fill it with new
 				this.menu.clearItems();
-
-				// Additional check to prevent bug of autoinserting first suggestion
-				// while removing user from the list
-				if ( inputValue.length > 1 || suggestions.length > 1 ) {
-					this.menu.addItems( suggestions );
-				}
+				this.menu.addItems( suggestions );
+				// Make the menu visible; it might not be if it was previously empty
+				this.menu.toggle( true );
 
 				this.popPending();
 			}.bind( this ) ).fail( this.popPending.bind( this ) );
@@ -158,6 +151,16 @@
 		if ( 'hiddenInput' in this ) {
 			this.hiddenInput.val( this.getSelectedUsernames().join( '\n' ) );
 		}
+	};
+
+	/**
+	 * React to the 'change' event.
+	 *
+	 * Updates the hidden input and clears the text from the text box.
+	 */
+	mw.widgets.UsersMultiselectWidget.prototype.onMultiselectChange = function () {
+		this.updateHiddenInput();
+		this.input.setValue( '' );
 	};
 
 }( jQuery, mediaWiki ) );
