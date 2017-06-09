@@ -1419,13 +1419,22 @@ class Title implements LinkTarget {
 	 * @return string The prefixed text
 	 */
 	private function prefix( $name ) {
+		global $wgContLang;
+
 		$p = '';
 		if ( $this->isExternal() ) {
 			$p = $this->mInterwiki . ':';
 		}
 
 		if ( 0 != $this->mNamespace ) {
-			$p .= $this->getNsText() . ':';
+			$nsText = $this->getNsText();
+
+			if ( $nsText === false ) {
+				// See T165149. Awkward, but better than erroneously linking to the main namespace.
+				$nsText = $wgContLang->getNsText( NS_SPECIAL ) . ":Badtitle/NS{$this->mNamespace}";
+			}
+
+			$p .= $nsText . ':';
 		}
 		return $p . $name;
 	}
