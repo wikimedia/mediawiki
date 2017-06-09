@@ -84,9 +84,12 @@ exports.config = {
 		maxInstances: 1,
 		//
 		browserName: 'chrome',
-		// Since Chrome v57 https://bugs.chromium.org/p/chromedriver/issues/detail?id=1625
 		chromeOptions: {
-			args: [ '--enable-automation' ]
+			// Run headless when there is no DISPLAY
+			args: process.env.DISPLAY === undefined ?
+				// --headless: since Chrome 59 https://chromium.googlesource.com/chromium/src/+/59.0.3030.0/headless/README.md
+				[ '--headless' ] :
+				[]
 		}
 	} ],
 	//
