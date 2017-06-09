@@ -3833,6 +3833,7 @@
 	"authprovider-confirmlink-success-line": "$1: пасьпяхова далучаны.",
 	"authprovider-confirmlink-failed": "Далучэньне рахунку не атрымалася цалкам: $1",
 	"authprovider-confirmlink-ok-help": "Працягнуць пасьля паказу паведамленьняў пра памылкі далучэньня.",
+	"authprovider-resetpass-skip-label": "Прапусьціць",
 	"changecredentials": "Зьмена ўліковых зьвестак",
 	"removecredentials": "Выдаленьне ўліковых зьвестак",
 	"removecredentials-submit": "Выдаліць уліковыя зьвесткі",

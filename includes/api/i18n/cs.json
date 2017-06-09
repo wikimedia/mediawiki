@@ -10,7 +10,8 @@
 			"Macofe",
 			"Danny B.",
 			"LordMsz",
-			"Dvorapa"
+			"Dvorapa",
+			"Matěj Suchánek"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentace]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api E-mailová konference]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Oznámení k API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Chyby a požadavky]\n</div>\n<strong>Stav:</strong> Všechny funkce uvedené na této stránce by měly fungovat, ale API se stále aktivně vyvíjí a může se kdykoli změnit. Upozornění na změny získáte přihlášením se k [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ e-mailové konferenci mediawiki-api-announce].\n\n<strong>Chybné požadavky:</strong> Pokud jsou do API zaslány chybné požadavky, bude vrácena HTTP hlavička s klíčem „MediaWiki-API-Error“ a hodnota této hlavičky a chybový kód budou nastaveny na stejnou hodnotu. Více informací najdete [[mw:Special:MyLanguage/API:Errors_and_warnings|v dokumentaci]].\n\n<strong>Testování:</strong> Pro jednoduché testování požadavků na API zkuste [[Special:ApiSandbox]].",
@@ -80,7 +81,7 @@
 	"apihelp-edit-param-nocreate": "Pokud stránka neexistuje, vrátit chybu.",
 	"apihelp-edit-param-watch": "Přidat stránku na seznam sledovaných.",
 	"apihelp-edit-param-unwatch": "Odstranit stránku ze seznamu sledovaných.",
-	"apihelp-edit-param-watchlist": "Bezpodmíněnečně přidat nebo odstranit stránku ze sledovaných stránek aktuálního uživatele, použít nastavení nebo neměnit sledování.",
+	"apihelp-edit-param-watchlist": "Bezpodmínečně přidat nebo odstranit stránku ze sledovaných stránek aktuálního uživatele, použít nastavení nebo neměnit sledování.",
 	"apihelp-edit-param-redirect": "Automaticky opravit přesměrování.",
 	"apihelp-edit-example-edit": "Upravit stránku.",
 	"apihelp-emailuser-description": "Poslat uživateli e-mail.",

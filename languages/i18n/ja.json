@@ -3905,6 +3905,8 @@
 	"mw-widgets-titleinput-description-new-page": "ページは存在しません",
 	"mw-widgets-titleinput-description-redirect": "$1 へのリダイレクト",
 	"mw-widgets-categoryselector-add-category-placeholder": "カテゴリを追加...",
+	"date-range-from": "開始日:",
+	"date-range-to": "終了日:",
 	"sessionmanager-tie": "複数の要求の認証方法を組み合わせることはできません: $1。",
 	"sessionprovider-generic": "$1 セッション",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "クッキーベースのセッション",

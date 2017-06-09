@@ -76,7 +76,8 @@
 			"Rockyfelle",
 			"Johan",
 			"Martin Wiss",
-			"Mdjarv"
+			"Mdjarv",
+			"Frisko"
 		]
 	},
 	"tog-underline": "Stryk under länkar:",
@@ -3803,7 +3804,7 @@
 	"mw-widgets-titleinput-description-redirect": "omdirigerar till $1",
 	"mw-widgets-categoryselector-add-category-placeholder": "Lägg till en kategori...",
 	"mw-widgets-usersmultiselect-placeholder": "Lägg till fler...",
-	"date-range-from": "From. den",
+	"date-range-from": "Från datum:",
 	"date-range-to": "Till datum:",
 	"sessionmanager-tie": "Kan inte kombinera flera begäransautentiseringstyper: $1.",
 	"sessionprovider-generic": "$1-sessioner",

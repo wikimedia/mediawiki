@@ -1002,6 +1002,7 @@
 	"recentchanges-legend-heading": "<strong>Аңлатма:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (шулай ук [[Special:NewPages|яңа битләр исемлеген]] карагыз)",
 	"recentchanges-submit": "Күрсәт",
+	"rcfilters-quickfilters": "Сакланган филтр көйләнмәләре",
 	"rcfilters-clear-all-filters": "Барлык филтерләрне чистарту",
 	"rcfilters-filter-registered-label": "Теркәлгән",
 	"rcfilters-filter-registered-description": "Теркәлгән мөхәррирләр.",
