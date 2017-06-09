@@ -17,13 +17,13 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	protected function assertLastSql( $sqlText ) {
 		$this->assertEquals(
-			$this->database->getLastSqls(),
-			$sqlText
+			$sqlText,
+			$this->database->getLastSqls()
 		);
 	}
 
 	protected function assertLastSqlDb( $sqlText, $db ) {
-		$this->assertEquals( $db->getLastSqls(), $sqlText );
+		$this->assertEquals( $sqlText, $db->getLastSqls() );
 	}
 
 	/**
@@ -397,7 +397,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 				"INSERT INTO insert_table " .
 					"(field_insert,field) " .
 					"SELECT field_select,field2 " .
-					"FROM select_table",
+					"FROM select_table WHERE *",
 				"SELECT field_select AS field_insert,field2 AS field " .
 				"FROM select_table WHERE *   FOR UPDATE",
 				"INSERT INTO insert_table (field_insert,field) VALUES ('0','1')"
