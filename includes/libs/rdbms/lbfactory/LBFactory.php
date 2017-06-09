@@ -243,6 +243,10 @@ abstract class LBFactory implements ILBFactory {
 		} );
 	}
 
+	public function hasTransactionRound() {
+		return ( $this->trxRoundId !== false );
+	}
+
 	/**
 	 * Log query info if multi DB transactions are going to be committed now
 	 */

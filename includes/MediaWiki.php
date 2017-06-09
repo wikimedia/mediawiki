@@ -887,9 +887,8 @@ class MediaWiki {
 			__METHOD__
 		);
 
-		// Push lazilly-pushed jobs
 		// Important: this must be the last deferred update added (T100085, T154425)
-		DeferredUpdates::addCallableUpdate( [ 'JobQueueGroup', 'pushLazyJobs' ] );
+		DeferredUpdates::addCallableUpdate( [ JobQueueGroup::class, 'pushLazyJobs' ] );
 
 		// Do any deferred jobs
 		DeferredUpdates::doUpdates( 'enqueue' );
