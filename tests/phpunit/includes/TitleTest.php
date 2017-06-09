@@ -716,28 +716,33 @@ class TitleTest extends MediaWikiTestCase {
 		return [
 			// ns = 0
 			[
-				Title::makeTitle( NS_MAIN, 'Foobar' ),
-				'Foobar'
+				Title::makeTitle( NS_MAIN, 'Foo bar' ),
+				'Foo bar'
 			],
 			// ns = 2
 			[
-				Title::makeTitle( NS_USER, 'Foobar' ),
-				'User:Foobar'
+				Title::makeTitle( NS_USER, 'Foo bar' ),
+				'User:Foo bar'
+			],
+			// ns = 3
+			[
+				Title::makeTitle( NS_USER_TALK, 'Foo bar' ),
+				'User talk:Foo bar'
 			],
 			// fragment not included
 			[
-				Title::makeTitle( NS_MAIN, 'Foobar', 'fragment' ),
-				'Foobar'
+				Title::makeTitle( NS_MAIN, 'Foo bar', 'fragment' ),
+				'Foo bar'
 			],
 			// ns = -2
 			[
-				Title::makeTitle( NS_MEDIA, 'Foobar' ),
-				'Media:Foobar'
+				Title::makeTitle( NS_MEDIA, 'Foo bar' ),
+				'Media:Foo bar'
 			],
 			// non-existent namespace
 			[
-				Title::makeTitle( 100000, 'Foobar' ),
-				':Foobar'
+				Title::makeTitle( 100777, 'Foo bar' ),
+				'Special:Badtitle/NS100777:Foo bar'
 			],
 		];
 	}
@@ -748,5 +753,48 @@ class TitleTest extends MediaWikiTestCase {
 	 */
 	public function testGetPrefixedText( Title $title, $expected ) {
 		$this->assertEquals( $expected, $title->getPrefixedText() );
+	}
+
+	public function provideGetPrefixedDBKey() {
+		return [
+			// ns = 0
+			[
+				Title::makeTitle( NS_MAIN, 'Foo_bar' ),
+				'Foo_bar'
+			],
+			// ns = 2
+			[
+				Title::makeTitle( NS_USER, 'Foo_bar' ),
+				'User:Foo_bar'
+			],
+			// ns = 3
+			[
+				Title::makeTitle( NS_USER_TALK, 'Foo_bar' ),
+				'User_talk:Foo_bar'
+			],
+			// fragment not included
+			[
+				Title::makeTitle( NS_MAIN, 'Foo_bar', 'fragment' ),
+				'Foo_bar'
+			],
+			// ns = -2
+			[
+				Title::makeTitle( NS_MEDIA, 'Foo_bar' ),
+				'Media:Foo_bar'
+			],
+			// non-existent namespace
+			[
+				Title::makeTitle( 100777, 'Foo_bar' ),
+				'Special:Badtitle/NS100777:Foo_bar'
+			],
+		];
+	}
+
+	/**
+	 * @covers Title::getPrefixedDBKey
+	 * @dataProvider provideGetPrefixedDBKey
+	 */
+	public function testGetPrefixedDBKey( Title $title, $expected ) {
+		$this->assertEquals( $expected, $title->getPrefixedDBkey() );
 	}
 }
