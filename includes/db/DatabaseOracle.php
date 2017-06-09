@@ -558,19 +558,9 @@ class DatabaseOracle extends Database {
 	}
 
 	function nativeInsertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
-		$insertOptions = [], $selectOptions = []
+		$insertOptions = [], $selectOptions = [], $selectJoinConds = []
 	) {
 		$destTable = $this->tableName( $destTable );
-		if ( !is_array( $selectOptions ) ) {
-			$selectOptions = [ $selectOptions ];
-		}
-		list( $startOpts, $useIndex, $tailOpts, $ignoreIndex ) =
-			$this->makeSelectOptions( $selectOptions );
-		if ( is_array( $srcTable ) ) {
-			$srcTable = implode( ',', array_map( [ $this, 'tableName' ], $srcTable ) );
-		} else {
-			$srcTable = $this->tableName( $srcTable );
-		}
 
 		$sequenceData = $this->getSequenceData( $destTable );
 		if ( $sequenceData !== false &&
@@ -585,13 +575,16 @@ class DatabaseOracle extends Database {
 			$val = $val . ' field' . ( $i++ );
 		}
 
-		$sql = "INSERT INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ')' .
-			" SELECT $startOpts " . implode( ',', $varMap ) .
-			" FROM $srcTable $useIndex $ignoreIndex ";
-		if ( $conds != '*' ) {
-			$sql .= ' WHERE ' . $this->makeList( $conds, LIST_AND );
-		}
-		$sql .= " $tailOpts";
+		$selectSql = $this->selectSQLText(
+			$srcTable,
+			array_values( $varMap ),
+			$conds,
+			$fname,
+			$selectOptions,
+			$selectJoinConds
+		);
+
+		$sql = "INSERT INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ') ' . $selectSql;
 
 		if ( in_array( 'IGNORE', $insertOptions ) ) {
 			$this->ignoreDupValOnIndex = true;

@@ -681,14 +681,13 @@ __INDEXATTR__;
 	 * @param string $fname
 	 * @param array $insertOptions
 	 * @param array $selectOptions
+	 * @param array $selectJoinConds
 	 * @return bool
 	 */
 	public function nativeInsertSelect(
 		$destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
-		$insertOptions = [], $selectOptions = []
+		$insertOptions = [], $selectOptions = [], $selectJoinConds = []
 	) {
-		$destTable = $this->tableName( $destTable );
-
 		if ( !is_array( $insertOptions ) ) {
 			$insertOptions = [ $insertOptions ];
 		}
@@ -705,28 +704,9 @@ __INDEXATTR__;
 			$savepoint->savepoint();
 		}
 
-		if ( !is_array( $selectOptions ) ) {
-			$selectOptions = [ $selectOptions ];
-		}
-		list( $startOpts, $useIndex, $tailOpts, $ignoreIndex ) =
-			$this->makeSelectOptions( $selectOptions );
-		if ( is_array( $srcTable ) ) {
-			$srcTable = implode( ',', array_map( [ $this, 'tableName' ], $srcTable ) );
-		} else {
-			$srcTable = $this->tableName( $srcTable );
-		}
+		$res = parent::nativeInsertSelect( $destTable, $srcTable, $varMap, $conds, $fname,
+			$insertOptions, $selectOptions, $selectJoinConds );
 
-		$sql = "INSERT INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ')' .
-			" SELECT $startOpts " . implode( ',', $varMap ) .
-			" FROM $srcTable $useIndex $ignoreIndex ";
-
-		if ( $conds != '*' ) {
-			$sql .= ' WHERE ' . $this->makeList( $conds, LIST_AND );
-		}
-
-		$sql .= " $tailOpts";
-
-		$res = (bool)$this->query( $sql, $fname, $savepoint );
 		if ( $savepoint ) {
 			$bar = pg_result_error( $this->mLastResult );
 			if ( $bar != false ) {

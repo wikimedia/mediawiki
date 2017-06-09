@@ -243,13 +243,13 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function selectField(
-		$table, $var, $cond = '', $fname = __METHOD__, $options = []
+		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
 	public function selectFieldValues(
-		$table, $var, $cond = '', $fname = __METHOD__, $options = []
+		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
@@ -407,7 +407,7 @@ class DBConnRef implements IDatabase {
 
 	public function insertSelect(
 		$destTable, $srcTable, $varMap, $conds,
-		$fname = __METHOD__, $insertOptions = [], $selectOptions = []
+		$fname = __METHOD__, $insertOptions = [], $selectOptions = [], $selectJoinConds = []
 	) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}

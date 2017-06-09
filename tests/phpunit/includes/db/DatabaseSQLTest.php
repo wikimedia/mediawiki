@@ -17,13 +17,13 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	protected function assertLastSql( $sqlText ) {
 		$this->assertEquals(
-			$this->database->getLastSqls(),
-			$sqlText
+			$sqlText,
+			$this->database->getLastSqls()
 		);
 	}
 
 	protected function assertLastSqlDb( $sqlText, $db ) {
-		$this->assertEquals( $db->getLastSqls(), $sqlText );
+		$this->assertEquals( $sqlText, $db->getLastSqls() );
 	}
 
 	/**
@@ -365,7 +365,8 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 			$sql['conds'],
 			__METHOD__,
 			isset( $sql['insertOptions'] ) ? $sql['insertOptions'] : [],
-			isset( $sql['selectOptions'] ) ? $sql['selectOptions'] : []
+			isset( $sql['selectOptions'] ) ? $sql['selectOptions'] : [],
+			isset( $sql['selectJoinConds'] ) ? $sql['selectJoinConds'] : []
 		);
 		$this->assertLastSql( $sqlTextNative );
 
@@ -380,7 +381,8 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 			$sql['conds'],
 			__METHOD__,
 			isset( $sql['insertOptions'] ) ? $sql['insertOptions'] : [],
-			isset( $sql['selectOptions'] ) ? $sql['selectOptions'] : []
+			isset( $sql['selectOptions'] ) ? $sql['selectOptions'] : [],
+			isset( $sql['selectJoinConds'] ) ? $sql['selectJoinConds'] : []
 		);
 		$this->assertLastSqlDb( implode( '; ', [ $sqlSelect, $sqlInsert ] ), $dbWeb );
 	}
@@ -397,7 +399,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 				"INSERT INTO insert_table " .
 					"(field_insert,field) " .
 					"SELECT field_select,field2 " .
-					"FROM select_table",
+					"FROM select_table WHERE *",
 				"SELECT field_select AS field_insert,field2 AS field " .
 				"FROM select_table WHERE *   FOR UPDATE",
 				"INSERT INTO insert_table (field_insert,field) VALUES ('0','1')"
@@ -436,6 +438,28 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 				"SELECT field_select AS field_insert,field2 AS field " .
 				"FROM select_table WHERE field = '2' ORDER BY field  FOR UPDATE",
 				"INSERT IGNORE INTO insert_table (field_insert,field) VALUES ('0','1')"
+			],
+			[
+				[
+					'destTable' => 'insert_table',
+					'srcTable' => [ 'select_table1', 'select_table2' ],
+					'varMap' => [ 'field_insert' => 'field_select', 'field' => 'field2' ],
+					'conds' => [ 'field' => 2 ],
+					'selectOptions' => [ 'ORDER BY' => 'field', 'FORCE INDEX' => [ 'select_table1' => 'index1'] ],
+					'selectJoinConds' => [
+						'select_table2' => [ 'LEFT JOIN', [ 'select_table1.foo = select_table2.bar' ] ],
+					],
+				],
+				"INSERT INTO insert_table " .
+					"(field_insert,field) " .
+					"SELECT field_select,field2 " .
+					"FROM select_table1 LEFT JOIN select_table2 ON ((select_table1.foo = select_table2.bar)) " .
+					"WHERE field = '2' " .
+					"ORDER BY field",
+				"SELECT field_select AS field_insert,field2 AS field " .
+				"FROM select_table1 LEFT JOIN select_table2 ON ((select_table1.foo = select_table2.bar)) " .
+				"WHERE field = '2' ORDER BY field  FOR UPDATE",
+				"INSERT INTO insert_table (field_insert,field) VALUES ('0','1')"
 			],
 		];
 	}
