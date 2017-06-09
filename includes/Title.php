@@ -1425,7 +1425,15 @@ class Title implements LinkTarget {
 		}
 
 		if ( 0 != $this->mNamespace ) {
-			$p .= $this->getNsText() . ':';
+			$nsText = $this->getNsText();
+
+			if ( $nsText === false ) {
+				// See T165149. Awkward, but better than erroneously linking to the main namespace.
+				$dummy = Title::makeTitle( NS_SPECIAL, 'Badtitle/NS' . $this->mNamespace );
+				$nsText = $dummy->getPrefixedDBkey();
+			}
+
+			$p .= $nsText . ':';
 		}
 		return $p . $name;
 	}
