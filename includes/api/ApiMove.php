@@ -53,13 +53,13 @@ class ApiMove extends ApiBase {
 		if ( !$fromTitle->exists() ) {
 			$this->dieWithError( 'apierror-missingtitle' );
 		}
-		$fromTalk = $fromTitle->getTalkPage();
+		$fromTalk = $fromTitle->getTalkPageIfDefined();
 
 		$toTitle = Title::newFromText( $params['to'] );
 		if ( !$toTitle || $toTitle->isExternal() ) {
 			$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['to'] ) ] );
 		}
-		$toTalk = $toTitle->canTalk() ? $toTitle->getTalkPage() : null;
+		$toTalk = $toTitle->getTalkPageIfDefined();
 
 		if ( $toTitle->getNamespace() == NS_FILE
 			&& !RepoGroup::singleton()->getLocalRepo()->findFile( $toTitle )
@@ -109,7 +109,12 @@ class ApiMove extends ApiBase {
 		$r['moveoverredirect'] = $toTitleExists;
 
 		// Move the talk page
-		if ( $params['movetalk'] && $toTalk && $fromTalk->exists() && !$fromTitle->isTalkPage() ) {
+		if ( $params['movetalk']
+			&& $toTalk
+			&& $fromTalk
+			&& $fromTalk->exists()
+			&& !$fromTitle->isTalkPage()
+		) {
 			$toTalkExists = $toTalk->exists();
 			$status = $this->movePage(
 				$fromTalk,
@@ -141,7 +146,7 @@ class ApiMove extends ApiBase {
 			);
 			ApiResult::setIndexedTagName( $r['subpages'], 'subpage' );
 
-			if ( $params['movetalk'] ) {
+			if ( $params['movetalk'] && $fromTalk ) {
 				$r['subpages-talk'] = $this->moveSubpages(
 					$fromTalk,
 					$toTalk,

@@ -753,7 +753,18 @@ class TitleTest extends MediaWikiTestCase {
 		return [
 			[ Title::makeTitle( NS_SPECIAL, 'Test' ) ],
 			[ Title::makeTitle( NS_MEDIA, 'Test' ) ],
+			[ Title::makeTitle( 33667799, 'Test' ) ],
+			[ Title::makeTitle( 33667788, 'Test' ) ],
 		];
+	}
+
+	/**
+	 * @dataProvider provideGetTalkPage_bad
+	 * @covers Title::getTalkPage
+	 */
+	public function testGetTalkPage_bad( Title $title ) {
+		$this->setExpectedException( MWException::class );
+		$title->getTalkPage();
 	}
 
 	/**

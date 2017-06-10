@@ -465,7 +465,9 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$title = Title::makeTitle( intval( $row->rc_namespace ), $row->rc_title );
 		if ( $title ) {
 			$date = $row->rc_timestamp;
-			$comments = $title->getTalkPage()->getFullURL();
+			$comments = $title->canHaveTalkPage()
+				? $title->getTalkPage()->getFullURL()
+				: '';
 
 			return new FeedItem(
 				$title->getPrefixedText(),

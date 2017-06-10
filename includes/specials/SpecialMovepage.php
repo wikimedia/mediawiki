@@ -210,9 +210,9 @@ class MovePageForm extends UnlistedSpecialPage {
 			$err = [];
 		}
 
-		$oldTalk = $this->oldTitle->getTalkPage();
+		$oldTalk = $this->oldTitle->getTalkPageIfDefined();
 		$oldTitleSubpages = $this->oldTitle->hasSubpages();
-		$oldTitleTalkSubpages = $this->oldTitle->getTalkPage()->hasSubpages();
+		$oldTitleTalkSubpages = $oldTalk ? $oldTalk->hasSubpages() : false;
 
 		$canMoveSubpage = ( $oldTitleSubpages || $oldTitleTalkSubpages ) &&
 			!count( $this->oldTitle->getUserPermissionsErrors( 'move-subpages', $user ) );
@@ -220,7 +220,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		# We also want to be able to move assoc. subpage talk-pages even if base page
 		# has no associated talk page, so || with $oldTitleTalkSubpages.
 		$considerTalk = !$this->oldTitle->isTalkPage() &&
-			( $oldTalk->exists()
+			( $oldTalk && $oldTalk->exists()
 				|| ( $oldTitleTalkSubpages && $canMoveSubpage ) );
 
 		$dbr = wfGetDB( DB_REPLICA );
@@ -661,6 +661,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		if ( $this->moveSubpages && (
 			MWNamespace::hasSubpages( $nt->getNamespace() ) || (
 				$this->moveTalk
+					&& $nt->canHaveTalkPage()
 					&& MWNamespace::hasSubpages( $nt->getTalkPage()->getNamespace() )
 			)
 		) ) {
@@ -672,12 +673,12 @@ class MovePageForm extends UnlistedSpecialPage {
 			if ( MWNamespace::hasSubpages( $nt->getNamespace() ) ) {
 				$conds['page_namespace'][] = $ot->getNamespace();
 			}
-			if ( $this->moveTalk &&
+			if ( $this->moveTalk && $nt->canHaveTalkPage() &&
 				MWNamespace::hasSubpages( $nt->getTalkPage()->getNamespace() )
 			) {
 				$conds['page_namespace'][] = $ot->getTalkPage()->getNamespace();
 			}
-		} elseif ( $this->moveTalk ) {
+		} elseif ( $this->moveTalk && $ot->canHaveTalkPage() ) {
 			$conds = [
 				'page_namespace' => $ot->getTalkPage()->getNamespace(),
 				'page_title' => $ot->getDBkey()
@@ -715,7 +716,8 @@ class MovePageForm extends UnlistedSpecialPage {
 			if ( $oldSubpage->isSubpage() && ( $ot->isTalkPage() xor $nt->isTalkPage() ) ) {
 				// Moving a subpage from a subject namespace to a talk namespace or vice-versa
 				$newNs = $nt->getNamespace();
-			} elseif ( $oldSubpage->isTalkPage() ) {
+			} elseif ( $oldSubpage->isTalkPage() && $nt->canHaveTalkPage() ) {
+				// FIXME: this can get funky if the target NS doesn't have a talk NS associated
 				$newNs = $nt->getTalkPage()->getNamespace();
 			} else {
 				$newNs = $nt->getSubjectPage()->getNamespace();
@@ -803,7 +805,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$count = $subpages instanceof TitleArray ? $subpages->count() : 0;
 
 		$titleIsTalk = $title->isTalkPage();
-		$subpagesTalk = $title->getTalkPage()->getSubpages();
+		$subpagesTalk = $title->canHaveTalkPage() ? $title->getTalkPage()->getSubpages() : null;
 		$countTalk = $subpagesTalk instanceof TitleArray ? $subpagesTalk->count() : 0;
 		$totalCount = $count + $countTalk;
 
