@@ -716,6 +716,69 @@ class TitleTest extends MediaWikiTestCase {
 		$this->assertSame( $actual, $expected, $title->getPrefixedDBkey() );
 	}
 
+	public static function provideGetTalkPage_good() {
+		return [
+			[ Title::makeTitle( NS_MAIN, 'Test' ), Title::makeTitle( NS_TALK, 'Test' ) ],
+			[ Title::makeTitle( NS_TALK, 'Test' ), Title::makeTitle( NS_TALK, 'Test' ) ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetTalkPage_good
+	 * @covers Title::getTalkPage
+	 */
+	public function testGetTalkPage_good( Title $title, Title $expected ) {
+		$talk = $title->getTalkPage();
+		$this->assertSame(
+			$expected->getPrefixedDBKey(),
+			$talk->getPrefixedDBKey(),
+			$title->getPrefixedDBKey()
+		);
+	}
+
+	/**
+	 * @dataProvider provideGetTalkPage_good
+	 * @covers Title::getTalkPageIfDefined
+	 */
+	public function testGetTalkPageIfDefined_good( Title $title ) {
+		$talk = $title->getTalkPageIfDefined();
+		$this->assertInstanceOf(
+			Title::class,
+			$talk,
+			$title->getPrefixedDBKey()
+		);
+	}
+
+	public static function provideGetTalkPage_bad() {
+		return [
+			[ Title::makeTitle( NS_SPECIAL, 'Test' ) ],
+			[ Title::makeTitle( NS_MEDIA, 'Test' ) ],
+			[ Title::makeTitle( 33667799, 'Test' ) ],
+			[ Title::makeTitle( 33667788, 'Test' ) ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetTalkPage_bad
+	 * @covers Title::getTalkPage
+	 */
+	public function testGetTalkPage_bad( Title $title ) {
+		$this->setExpectedException( MWException::class );
+		$title->getTalkPage();
+	}
+
+	/**
+	 * @dataProvider provideGetTalkPage_bad
+	 * @covers Title::getTalkPageIfDefined
+	 */
+	public function testGetTalkPageIfDefined_bad( Title $title ) {
+		$talk = $title->getTalkPageIfDefined();
+		$this->assertNull(
+			$talk,
+			$title->getPrefixedDBKey()
+		);
+	}
+
 	public function provideCreateFragmentTitle() {
 		return [
 			[ Title::makeTitle( NS_MAIN, 'Test' ), 'foo' ],

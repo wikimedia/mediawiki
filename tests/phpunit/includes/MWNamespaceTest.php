@@ -80,6 +80,20 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers MWNamespace::isSpecial
+	 */
+	public function testIsSpecial() {
+		// Special namespaces
+		$this->assertIsSpecial( NS_MEDIA );
+		$this->assertIsSpecial( NS_SPECIAL );
+
+		// Subject pages
+		$this->assertIsNotSpecial( NS_MAIN );
+		$this->assertIsNotSpecial( NS_TALK );
+		$this->assertIsNotSpecial( 100 ); # user defined
+	}
+
+	/**
 	 * @covers MWNamespace::getSubject
 	 */
 	public function testGetSubject() {
@@ -272,8 +286,8 @@ class MWNamespaceTest extends MediaWikiTestCase {
 			[ NS_USER, true ],
 			[ NS_USER_TALK, true ],
 
-			[ 100, true ],
-			[ 101, true ],
+			[ 33557788, false ], // doesn't exist
+			[ 33557799, false ], // doesn't exist
 		];
 	}
 
@@ -593,7 +607,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		}
 
 		if ( preg_match(
-			'/^assert(Has|Is|Can)(Not|)(Subject|Talk|Watchable|Content|Subpages|Capitalized)$/',
+			'/^assert(Has|Is|Can)(Not|)(Subject|Talk|Special|Watchable|Content|Subpages|Capitalized)$/',
 			$method,
 			$m
 		) ) {
