@@ -46,6 +46,11 @@ class VersionChecker {
 	private $versionParser;
 
 	/**
+	 * @var callable A callable, which is called whenever an extension is not loaded.
+	 */
+	private $extensionNotLoadedCallback;
+
+	/**
 	 * @param string $coreVersion Current version of core
 	 */
 	public function __construct( $coreVersion ) {
@@ -169,7 +174,18 @@ class VersionChecker {
 	private function handleExtensionDependency( $dependencyName, $constraint, $checkedExt ) {
 		// Check if the dependency is even installed
 		if ( !isset( $this->loaded[$dependencyName] ) ) {
-			return "{$checkedExt} requires {$dependencyName} to be installed.";
+			// if the extension isn't installed, execute the callback, which could load the
+			// extension on the fly and return the required information
+			$extensionData = null;
+			if ( is_callable( $this->extensionNotLoadedCallback ) ) {
+				$extensionData = call_user_func_array(
+					$this->extensionNotLoadedCallback, [ $dependencyName ] );
+			}
+			if ( is_array( $extensionData ) ) {
+				$this->loaded[$dependencyName] = $extensionData;
+			} else {
+				return "{$checkedExt} requires {$dependencyName} to be installed.";
+			}
 		}
 		// Check if the dependency has specified a version
 		if ( !isset( $this->loaded[$dependencyName]['version'] ) ) {
@@ -207,5 +223,25 @@ class VersionChecker {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Sets the notLoadedCallback, which is called whenever a required extension is not loaded.
+	 * The callback can return an array of information about that extension, which will then be
+	 * merged into the already passed in array of loaded extensions. If this is the case, the
+	 * requirement is further handled as it would be loaded in the first place.
+	 *
+	 * If nothing or false is returned, the extension will be handled as if it would not be loaded.
+	 *
+	 * When the callback is called, it will have the name of the required extension as the first
+	 * parameter.
+	 *
+	 * @param callable $cb
+	 * @return VersionChecker
+	 */
+	public function setExtensionNotLoadedCallback( callable $cb ) {
+		$this->extensionNotLoadedCallback = $cb;
+
+		return $this;
 	}
 }

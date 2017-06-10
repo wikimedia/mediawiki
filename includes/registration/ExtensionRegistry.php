@@ -253,6 +253,7 @@ class ExtensionRegistry {
 			$incompatible,
 			$versionChecker
 				->setLoadedExtensionsAndSkins( $data['credits'] )
+				->setExtensionNotLoadedCallback( [ $this, 'attemptLoadRequiredExtension' ] )
 				->checkArray( $extDependencies )
 		);
 
@@ -269,6 +270,36 @@ class ExtensionRegistry {
 		$data['autoload'] = $autoloadClasses;
 		$data['autoloaderPaths'] = $autoloaderPaths;
 		return $data;
+	}
+
+	/**
+	 * Callback function for VersionChecker, which is called, when an extension is not loaded.
+	 * Tries to load this extension on the fly using extension registration and will return the
+	 * extension credits, if loading it succeeds, false otherwise.
+	 *
+	 * @param $extensionName
+	 * @return bool|array
+	 */
+	public function attemptLoadRequiredExtension( $extensionName ) {
+		global $wgExtensionDirectory;
+		$path = "$wgExtensionDirectory/$extensionName/extension.json";
+
+		// save the currently queued extensions to later re-apply them
+		$originalQueue = $this->queued;
+		$this->queued = [];
+		try {
+			$this->queue( $path );
+		} catch ( Exception $e ) {
+			$this->queued = $originalQueue;
+			// something went wrong, let's assume that the extension could not be loaded
+			return false;
+		}
+		$this->loadFromQueue();
+		$this->queued = $originalQueue;
+		if ( $this->isLoaded( $extensionName ) ) {
+			return $this->getAllThings()[$extensionName];
+		}
+		return false;
 	}
 
 	protected function exportExtractedData( array $info ) {
