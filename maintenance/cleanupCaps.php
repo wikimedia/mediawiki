@@ -96,7 +96,7 @@ class CapsCleanup extends TableCleanup {
 		);
 		if ( $ok ) {
 			$this->progress( 1 );
-			if ( $row->page_namespace == $this->namespace ) {
+			if ( $row->page_namespace == $this->namespace && $target->canHaveTalkPage() ) {
 				$talk = $target->getTalkPage();
 				$row->page_namespace = $talk->getNamespace();
 				if ( $talk->exists() ) {
@@ -132,7 +132,7 @@ class CapsCleanup extends TableCleanup {
 		$ok = $this->movePage( $current, $target, 'Converting page titles to lowercase', true );
 		if ( $ok === true ) {
 			$this->progress( 1 );
-			if ( $row->page_namespace == $this->namespace ) {
+			if ( $row->page_namespace == $this->namespace && $target->canHaveTalkPage() ) {
 				$talk = $target->getTalkPage();
 				$row->page_namespace = $talk->getNamespace();
 				if ( $talk->exists() ) {

@@ -317,7 +317,9 @@ class HistoryAction extends FormlessAction {
 			$this->getTitle()->getFullURL(),
 			wfTimestamp( TS_MW ),
 			'',
-			$this->getTitle()->getTalkPage()->getFullURL()
+			$this->getTitle()->canHaveTalkPage()
+				? $this->getTitle()->getTalkPage()->getFullURL()
+				: ''
 		);
 	}
 
@@ -358,7 +360,9 @@ class HistoryAction extends FormlessAction {
 			$this->getTitle()->getFullURL( 'diff=' . $rev->getId() . '&oldid=prev' ),
 			$rev->getTimestamp(),
 			$rev->getUserText(),
-			$this->getTitle()->getTalkPage()->getFullURL()
+			$this->getTitle()->canHaveTalkPage()
+				? $this->getTitle()->getTalkPage()->getFullURL()
+				: ''
 		);
 	}
 }
