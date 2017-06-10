@@ -2611,7 +2611,7 @@ class Parser {
 				) ) );
 				break;
 			case 'talkpagename':
-				if ( $this->mTitle->canTalk() ) {
+				if ( $this->mTitle->canHaveTalkPage() ) {
 					$talkPage = $this->mTitle->getTalkPage();
 					$value = wfEscapeWikiText( $talkPage->getPrefixedText() );
 				} else {
@@ -2619,7 +2619,7 @@ class Parser {
 				}
 				break;
 			case 'talkpagenamee':
-				if ( $this->mTitle->canTalk() ) {
+				if ( $this->mTitle->canHaveTalkPage() ) {
 					$talkPage = $this->mTitle->getTalkPage();
 					$value = wfEscapeWikiText( $talkPage->getPrefixedURL() );
 				} else {
