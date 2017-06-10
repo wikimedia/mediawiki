@@ -83,7 +83,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			&& $request->wasPosted()
 			&& $user->matchEditToken( $request->getVal( 'token' ) )
 		) {
-			$user->clearAllNotifications();
+			$timestamp = $request->getVal( 'timestamp' );
+			if ( $timestamp !== null ) $timestamp = wfTimestamp( TS_UNIX, $timestamp );
+			$user->clearAllNotifications( $timestamp );
 			$output->redirect( $this->getPageTitle()->getFullURL( $opts->getChangedValues() ) );
 
 			return;
@@ -661,6 +663,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				'id' => 'mw-watchlist-resetbutton' ] ) . "\n" .
 			Xml::submitButton( $this->msg( 'enotif_reset' )->text(),
 				[ 'name' => 'mw-watchlist-reset-submit' ] ) . "\n" .
+			Html::hidden( 'timestamp', wfTimestampNow() ) . "\n" .
 			Html::hidden( 'token', $user->getEditToken() ) . "\n" .
 			Html::hidden( 'reset', 'all' ) . "\n";
 			foreach ( $nondefaults as $key => $value ) {
