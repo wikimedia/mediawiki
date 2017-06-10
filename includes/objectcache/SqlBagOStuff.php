@@ -588,7 +588,7 @@ class SqlBagOStuff extends BagOStuff {
 					while ( true ) {
 						$conds = $baseConds;
 						if ( $maxExpTime !== false ) {
-							$conds[] = 'exptime > ' . $db->addQuotes( $maxExpTime );
+							$conds[] = 'exptime >= ' . $db->addQuotes( $maxExpTime );
 						}
 						$rows = $db->select(
 							$this->getTableNameByShard( $i ),
