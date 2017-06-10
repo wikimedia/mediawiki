@@ -46,6 +46,16 @@ class VersionChecker {
 	private $versionParser;
 
 	/**
+	 * @var array
+	 */
+	private $errors = [];
+
+	/**
+	 * @var array
+	 */
+	private $missing = [];
+
+	/**
 	 * @param string $coreVersion Current version of core
 	 */
 	public function __construct( $coreVersion ) {
@@ -100,25 +110,25 @@ class VersionChecker {
 	 *     }
 	 *
 	 * @param array $extDependencies All extensions that depend on other ones
-	 * @return array
 	 */
 	public function checkArray( array $extDependencies ) {
-		$errors = [];
 		foreach ( $extDependencies as $extension => $dependencies ) {
 			foreach ( $dependencies as $dependencyType => $values ) {
 				switch ( $dependencyType ) {
 					case ExtensionRegistry::MEDIAWIKI_CORE:
 						$mwError = $this->handleMediaWikiDependency( $values, $extension );
 						if ( $mwError !== false ) {
-							$errors[] = $mwError;
+							$this->errors[] = $mwError;
 						}
 						break;
 					case 'extensions':
 					case 'skin':
 						foreach ( $values as $dependency => $constraint ) {
 							$extError = $this->handleExtensionDependency( $dependency, $constraint, $extension );
-							if ( $extError !== false ) {
-								$errors[] = $extError;
+							if ( $extError === $dependency ) {
+								$this->missing[] = [ $extension, $extError ];
+							} else if ( $extError !== false ) {
+								$this->errors[] = $extError;
 							}
 						}
 						break;
@@ -128,8 +138,41 @@ class VersionChecker {
 				}
 			}
 		}
+	}
 
-		return $errors;
+	/**
+	 * @return array
+	 */
+	public function getErrors() {
+		return $this->errors;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getMissing() {
+		return $this->missing;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isOk() {
+		return !$this->errors && !$this->missing;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function hasError() {
+		return (bool)$this->errors;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function hasMissing() {
+		return (bool)$this->missing;
 	}
 
 	/**
@@ -169,7 +212,7 @@ class VersionChecker {
 	private function handleExtensionDependency( $dependencyName, $constraint, $checkedExt ) {
 		// Check if the dependency is even installed
 		if ( !isset( $this->loaded[$dependencyName] ) ) {
-			return "{$checkedExt} requires {$dependencyName} to be installed.";
+			return $dependencyName;
 		}
 		// Check if the dependency has specified a version
 		if ( !isset( $this->loaded[$dependencyName]['version'] ) ) {

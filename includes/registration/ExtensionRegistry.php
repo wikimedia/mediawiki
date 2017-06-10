@@ -194,11 +194,9 @@ class ExtensionRegistry {
 	 * @throws Exception
 	 */
 	public function readFromQueue( array $queue ) {
-		global $wgVersion;
 		$autoloadClasses = [];
 		$autoloaderPaths = [];
 		$processor = new ExtensionProcessor();
-		$versionChecker = new VersionChecker( $wgVersion );
 		$extDependencies = [];
 		$incompatible = [];
 		$warnings = false;
@@ -248,13 +246,8 @@ class ExtensionRegistry {
 		$data = $processor->getExtractedInfo();
 		$data['warnings'] = $warnings;
 
-		// check for incompatible extensions
-		$incompatible = array_merge(
-			$incompatible,
-			$versionChecker
-				->setLoadedExtensionsAndSkins( $data['credits'] )
-				->checkArray( $extDependencies )
-		);
+		$data['credits'] = $this->resolveDependencies(
+			$data['credits'], $extDependencies, $incompatible );
 
 		if ( $incompatible ) {
 			if ( count( $incompatible ) === 1 ) {
@@ -269,6 +262,77 @@ class ExtensionRegistry {
 		$data['autoload'] = $autoloadClasses;
 		$data['autoloaderPaths'] = $autoloaderPaths;
 		return $data;
+	}
+
+	private function resolveDependencies( array $credits, array $dependencies,
+		array &$incompatibilities
+	) {
+		global $wgVersion;
+
+		$versionChecker = new VersionChecker( $wgVersion );
+		$versionChecker
+			->setLoadedExtensionsAndSkins( $credits )
+			->checkArray( $dependencies );
+
+		if ( $versionChecker->isOk() ) {
+			return $credits;
+		}
+
+		if ( $versionChecker->hasError() ) {
+			$incompatibilities = array_merge(
+				$incompatibilities,
+				$versionChecker->getErrors()
+			);
+		}
+
+		if ( $versionChecker->hasMissing() ) {
+			$violations = $versionChecker->getMissing();
+			foreach ( $violations as list( $extension, $missingExt ) ) {
+				$newExtInfo = $this->attemptLoadRequiredExtension( $missingExt );
+				if ( $newExtInfo === false ) {
+					$incompatibilities[] =
+						"{$extension} requires {$missingExt} to be installed.";
+					continue;
+				}
+				$newRequirements = $newExtInfo['requires'];
+				if ( is_array( $newRequirements ) && $newRequirements ) {
+					$dependencies[$missingExt] = $newRequirements;
+				}
+				$credits[$missingExt] = $newExtInfo;
+				return $this->resolveDependencies( $credits, $dependencies, $incompatibilities );
+			}
+		}
+
+		return $credits;
+	}
+
+	/**
+	 * Tries to load this extension on the fly using extension registration and will return the
+	 * extension credits, if loading it succeeds, false otherwise.
+	 *
+	 * @param $extensionName
+	 * @return bool|array
+	 */
+	private function attemptLoadRequiredExtension( $extensionName ) {
+		global $wgExtensionDirectory;
+		$path = "$wgExtensionDirectory/$extensionName/extension.json";
+
+		// save the currently queued extensions to later re-apply them
+		$originalQueue = $this->queued;
+		$this->queued = [];
+		try {
+			$this->queue( $path );
+		} catch ( Exception $e ) {
+			$this->queued = $originalQueue;
+			// something went wrong, let's assume that the extension could not be loaded
+			return false;
+		}
+		$this->loadFromQueue();
+		$this->queued = $originalQueue;
+		if ( $this->isLoaded( $extensionName ) ) {
+			return $this->getAllThings()[$extensionName];
+		}
+		return false;
 	}
 
 	protected function exportExtractedData( array $info ) {
