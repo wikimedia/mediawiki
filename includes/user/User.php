@@ -3632,9 +3632,15 @@ class User implements IDBAccessObject {
 	 */
 	public function addWatch( $title, $checkRights = self::CHECK_USER_RIGHTS ) {
 		if ( !$checkRights || $this->isAllowed( 'editmywatchlist' ) ) {
+			if ( $title->canHaveTalkPage() ) {
+				$batch = [ $title->getSubjectPage(), $title->getTalkPage() ];
+			} else {
+				$batch = [ $title ];
+			}
+
 			MediaWikiServices::getInstance()->getWatchedItemStore()->addWatchBatchForUser(
 				$this,
-				[ $title->getSubjectPage(), $title->getTalkPage() ]
+				$batch
 			);
 		}
 		$this->invalidateCache();
@@ -3651,7 +3657,10 @@ class User implements IDBAccessObject {
 		if ( !$checkRights || $this->isAllowed( 'editmywatchlist' ) ) {
 			$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 			$store->removeWatch( $this, $title->getSubjectPage() );
-			$store->removeWatch( $this, $title->getTalkPage() );
+
+			if ( $title->canHaveTalkPage() ) {
+				$store->removeWatch( $this, $title->getTalkPage() );
+			}
 		}
 		$this->invalidateCache();
 	}

@@ -694,7 +694,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				if ( $this->fld_subjectid ) {
 					$getTitles[] = $t->getSubjectPage();
 				}
-			} elseif ( $this->fld_talkid ) {
+			} elseif ( $this->fld_talkid && $t->canHaveTalkPage() ) {
 				$getTitles[] = $t->getTalkPage();
 			}
 		}
@@ -713,6 +713,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->addWhere( $lb->constructSet( 'page', $db ) );
 		$res = $this->select( __METHOD__ );
 		foreach ( $res as $row ) {
+			// FIXME: what to do here, if a namespace doesn't exist or doesn't have an assoc NS?
 			if ( MWNamespace::isTalk( $row->page_namespace ) ) {
 				$this->talkids[MWNamespace::getSubject( $row->page_namespace )][$row->page_title] =
 					intval( $row->page_id );

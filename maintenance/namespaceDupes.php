@@ -474,7 +474,10 @@ class NamespaceConflictChecker extends Maintenance {
 			$dbk = "$name-" . $dbk;
 		}
 		$destNS = $ns;
-		if ( $sourceNs == NS_TALK && MWNamespace::isSubject( $ns ) ) {
+		if ( $sourceNs == NS_TALK
+			&& MWNamespace::isSubject( $ns )
+			&& MWNamespace::hasTalkNamespace( $ns )
+		) {
 			// This is an associated talk page moved with the --move-talk feature.
 			$destNS = MWNamespace::getTalk( $destNS );
 		}

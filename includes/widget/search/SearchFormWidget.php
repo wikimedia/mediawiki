@@ -236,7 +236,7 @@ class SearchFormWidget {
 		$rows = [];
 		$activeNamespaces = $this->specialSearch->getNamespaces();
 		foreach ( $this->searchConfig->searchableNamespaces() as $namespace => $name ) {
-			$subject = MWNamespace::getSubject( $namespace );
+			$subject = MWNamespace::getSubjectUnsafe( $namespace );
 			if ( !isset( $rows[$subject] ) ) {
 				$rows[$subject] = "";
 			}

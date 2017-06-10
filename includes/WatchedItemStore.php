@@ -928,7 +928,10 @@ class WatchedItemStore implements StatsdAwareInterface {
 		$newTarget = Title::newFromLinkTarget( $newTarget );
 
 		$this->duplicateEntry( $oldTarget->getSubjectPage(), $newTarget->getSubjectPage() );
-		$this->duplicateEntry( $oldTarget->getTalkPage(), $newTarget->getTalkPage() );
+
+		if ( $oldTarget->canHaveTalkPage() && $newTarget->canHaveTalkPage() ) {
+			$this->duplicateEntry( $oldTarget->getTalkPage(), $newTarget->getTalkPage() );
+		}
 	}
 
 	/**

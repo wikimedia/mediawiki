@@ -67,7 +67,18 @@ changes to languages because of Phabricator reports.
 * File::getStreamHeaders() was deprecated.
 * MediaHandler::getStreamHeaders() was deprecated.
 * Title::canTalk was deprecated in favor of Title::canHaveTalkPage
-* MWNamespace::canTalk was deprecated in favor of MWNamespace::hasTalkNamespace
+* MWNamespace::canTalk was deprecated in favor of MWNamespace::hasTalkNamespace.
+  The behavior was changed to return false if the given namespace is not defined,
+  or no associated talk namespace is defined. MWNamespace::isTalk continues to
+  return true for odd namespace indexes, regardless of whether the namespace exists.
+* The requirement that every namespace must have an associated talk namespace was dropped.
+  Defining a talk namespace is still recommended, but it is no longer a hard requirement.
+  All namespaces defined by MediaWiki per default continue to have a talk namespace associated.
+* Title::getTalkPage now throws an exception if there is no associated talk namespace.
+  Callers should call Title::canHaveTalkPage() first to avoid this.
+* MWNamespace::getTalk and MWNamespace::getAssociatedNamespace will now throw an Exception
+  when called on an undefined namespace, or if the desired associated namespace does not exist.
+* Introduced MWNamespace::isSpecial() to go with isTalk() and isSubject().
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for

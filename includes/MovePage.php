@@ -386,9 +386,11 @@ class MovePage {
 		# Update watchlists
 		$oldtitle = $this->oldTitle->getDBkey();
 		$newtitle = $this->newTitle->getDBkey();
-		$oldsnamespace = MWNamespace::getSubject( $this->oldTitle->getNamespace() );
-		$newsnamespace = MWNamespace::getSubject( $this->newTitle->getNamespace() );
-		if ( $oldsnamespace != $newsnamespace || $oldtitle != $newtitle ) {
+		$subjectEquals = MWNamespace::subjectEquals(
+			$this->oldTitle->getNamespace(),
+			$this->newTitle->getNamespace()
+		);
+		if ( !$subjectEquals || $oldtitle != $newtitle ) {
 			$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 			$store->duplicateAllAssociatedEntries( $this->oldTitle, $this->newTitle );
 		}
