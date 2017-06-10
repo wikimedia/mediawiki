@@ -3744,7 +3744,7 @@ class User implements IDBAccessObject {
 	 * the next change of any watched page.
 	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
 	 */
-	public function clearAllNotifications() {
+	public function clearAllNotifications( $timestamp = null ) {
 		global $wgUseEnotif, $wgShowUpdatedMarker;
 		// Do nothing if not allowed to edit the watchlist
 		if ( wfReadOnly() || !$this->isAllowed( 'editmywatchlist' ) ) {
@@ -3762,10 +3762,17 @@ class User implements IDBAccessObject {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
+		$conditions = [
+			'wl_user' => $id,
+			'wl_notificationtimestamp IS NOT NULL'
+		];
+		if ( $timestamp !== null ) {
+			$conditions[] = 'wl_notificationtimestamp < ' . $dbw->timestamp( $timestamp );
+		}
 		$asOfTimes = array_unique( $dbw->selectFieldValues(
 			'watchlist',
 			'wl_notificationtimestamp',
-			[ 'wl_user' => $id, 'wl_notificationtimestamp IS NOT NULL' ],
+			$conditions,
 			__METHOD__,
 			[ 'ORDER BY' => 'wl_notificationtimestamp DESC', 'LIMIT' => 500 ]
 		) );
@@ -3784,7 +3791,7 @@ class User implements IDBAccessObject {
 		DeferredUpdates::addUpdate( new AutoCommitUpdate(
 			$dbw,
 			__METHOD__,
-			function () use ( $dbw, $id ) {
+			function () use ( $dbw, $id, $conditions ) {
 				global $wgUpdateRowsPerQuery;
 
 				$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
@@ -3792,7 +3799,7 @@ class User implements IDBAccessObject {
 				$asOfTimes = array_unique( $dbw->selectFieldValues(
 					'watchlist',
 					'wl_notificationtimestamp',
-					[ 'wl_user' => $id, 'wl_notificationtimestamp IS NOT NULL' ],
+					$conditions,
 					__METHOD__
 				) );
 				foreach ( array_chunk( $asOfTimes, $wgUpdateRowsPerQuery ) as $asOfTimeBatch ) {
