@@ -3834,6 +3834,7 @@
 	"authprovider-confirmlink-failed": "Далучэньне рахунку не атрымалася цалкам: $1",
 	"authprovider-confirmlink-ok-help": "Працягнуць пасьля паказу паведамленьняў пра памылкі далучэньня.",
 	"authprovider-resetpass-skip-label": "Прапусьціць",
+	"authprovider-resetpass-skip-help": "Прапусьціць скіданьне паролю.",
 	"changecredentials": "Зьмена ўліковых зьвестак",
 	"removecredentials": "Выдаленьне ўліковых зьвестак",
 	"removecredentials-submit": "Выдаліць уліковыя зьвесткі",

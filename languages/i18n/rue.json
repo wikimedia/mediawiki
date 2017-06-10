@@ -12,7 +12,8 @@
 			"Dicto23456",
 			"Macofe",
 			"Matma Rex",
-			"KHMELNYTSKYIA"
+			"KHMELNYTSKYIA",
+			"Igor Kercsa"
 		]
 	},
 	"tog-underline": "Підкреслёвати одказы:",
@@ -284,7 +285,7 @@
 	"nstab-mediawiki": "Повідомлїня",
 	"nstab-template": "Шаблона",
 	"nstab-help": "Сторінка помочі",
-	"nstab-category": "Категорѣя",
+	"nstab-category": "Катеґорія",
 	"mainpage-nstab": "Головна сторінка",
 	"nosuchaction": "Такой дїї не має",
 	"nosuchactiontext": "Дїя, уведжена в URL, неправилна.\nМогли сьте неправилно написати URL або перейти через некоректный одказ .\nМоже тыж значіти ґанч в проґрамовім забеспечіню {{GRAMMAR:genitive|{{SITENAME}}}}.",

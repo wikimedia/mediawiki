@@ -52,7 +52,8 @@
 			"Ανώνυμος Βικιπαιδιστής",
 			"GR",
 			"Thodoris",
-			"Ftsalamp"
+			"Ftsalamp",
+			"Kostas20142"
 		]
 	},
 	"tog-underline": "Υπογράμμιση συνδέσμων:",
@@ -1327,6 +1328,8 @@
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "Προβολή",
 	"rcfilters-activefilters": "Ενεργά φίλτρα",
+	"rcfilters-savedqueries-rename": "Μετονομασία",
+	"rcfilters-savedqueries-setdefault": "Ορισμός ως προεπιλογή",
 	"rcfilters-restore-default-filters": "Επαναφορά προεπιλεγμένων φίλτρων",
 	"rcfilters-clear-all-filters": "Εκκαθάριση όλων των φίλτρων",
 	"rcfilters-search-placeholder": "Φιλτράρισμα πρόσφατων αλλαγών (περιηγηθείτε ή αρχίστε να πληκτρολογείτε)",

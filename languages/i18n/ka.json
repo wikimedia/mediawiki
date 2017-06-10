@@ -3782,6 +3782,8 @@
 	"mw-widgets-titleinput-description-redirect": "გადამისამართება $1-ზე",
 	"mw-widgets-categoryselector-add-category-placeholder": "კატეგორიის დამატება...",
 	"mw-widgets-usersmultiselect-placeholder": "კიდევ დამატება...",
+	"date-range-from": "თარიღიდან:",
+	"date-range-to": "თარიღით:",
 	"sessionmanager-tie": "შეუძლებელია მრავალი მოთხოვნის ავთენთიფიკაციის ტიპების გაერთიანება: $1.",
 	"sessionprovider-generic": "$1 სესიები",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "cookie-სთან დაკავშირებული სესიები",
