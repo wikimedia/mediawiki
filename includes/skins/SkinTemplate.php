@@ -801,7 +801,7 @@ class SkinTemplate extends Skin {
 		if ( !is_object( $title ) ) {
 			throw new MWException( __METHOD__ . " given invalid pagename $name" );
 		}
-		$title = $title->getTalkPage();
+		$title = $title->getTalkPageIfDefined();
 		self::checkTitle( $title, $name );
 		return [
 			'href' => $title->getLocalURL( $urlaction ),
@@ -888,7 +888,7 @@ class SkinTemplate extends Skin {
 		if ( $title->canExist() ) {
 			// Gets page objects for the related namespaces
 			$subjectPage = $title->getSubjectPage();
-			$talkPage = $title->getTalkPage();
+			$talkPage = $title->getTalkPageIfDefined();
 
 			// Determines if this is a talk page
 			$isTalk = $title->isTalkPage();
@@ -913,10 +913,13 @@ class SkinTemplate extends Skin {
 				$subjectPage, $subjectMsg, !$isTalk && !$preventActiveTabs, '', $userCanRead
 			);
 			$content_navigation['namespaces'][$subjectId]['context'] = 'subject';
-			$content_navigation['namespaces'][$talkId] = $this->tabAction(
-				$talkPage, [ "nstab-$talkId", 'talk' ], $isTalk && !$preventActiveTabs, '', $userCanRead
-			);
-			$content_navigation['namespaces'][$talkId]['context'] = 'talk';
+
+			if ( $talkPage ) {
+				$content_navigation['namespaces'][$talkId] = $this->tabAction(
+					$talkPage, [ "nstab-$talkId", 'talk' ], $isTalk && !$preventActiveTabs, '', $userCanRead
+				);
+				$content_navigation['namespaces'][$talkId]['context'] = 'talk';
+			}
 
 			if ( $userCanRead ) {
 				// Adds "view" view link

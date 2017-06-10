@@ -243,7 +243,7 @@ abstract class Skin extends ContextSource {
 		if ( $title->canExist() ) {
 			if ( $title->isTalkPage() ) {
 				$titles[] = $title->getSubjectPage();
-			} else {
+			} elseif ( $title->canHaveTalkPage() ) {
 				$titles[] = $title->getTalkPage();
 			}
 		}

@@ -809,7 +809,7 @@ abstract class QueryPage extends SpecialPage {
 		if ( $title ) {
 			$date = isset( $row->timestamp ) ? $row->timestamp : '';
 			$comments = '';
-			if ( $title ) {
+			if ( $title && $title->canHaveTalkPage() ) {
 				$talkpage = $title->getTalkPage();
 				$comments = $talkpage->getFullURL();
 			}
