@@ -91,7 +91,7 @@ class BlockLogFormatter extends LogFormatter {
 	public function getPreloadTitles() {
 		$title = $this->entry->getTarget();
 		// Preload user page for non-autoblocks
-		if ( substr( $title->getText(), 0, 1 ) !== '#' ) {
+		if ( $title->canHaveTalkPage() && substr( $title->getText(), 0, 1 ) !== '#' ) {
 			return [ $title->getTalkPage() ];
 		}
 		return [];

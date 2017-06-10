@@ -39,25 +39,6 @@ class MWNamespace {
 	private static $alwaysCapitalizedNamespaces = [ NS_SPECIAL, NS_USER, NS_MEDIAWIKI ];
 
 	/**
-	 * Throw an exception when trying to get the subject or talk page
-	 * for a given namespace where it does not make sense.
-	 * Special namespaces are defined in includes/Defines.php and have
-	 * a value below 0 (ex: NS_SPECIAL = -1 , NS_MEDIA = -2)
-	 *
-	 * @param int $index
-	 * @param string $method
-	 *
-	 * @throws MWException
-	 * @return bool
-	 */
-	private static function isMethodValidFor( $index, $method ) {
-		if ( $index < NS_MAIN ) {
-			throw new MWException( "$method does not make any sense for given namespace $index" );
-		}
-		return true;
-	}
-
-	/**
 	 * Can pages in the given namespace be moved?
 	 *
 	 * @param int $index Namespace index
@@ -66,7 +47,7 @@ class MWNamespace {
 	public static function isMovable( $index ) {
 		global $wgAllowImageMoving;
 
-		$result = !( $index < NS_MAIN || ( $index == NS_FILE && !$wgAllowImageMoving ) );
+		$result = !( self::isSpecial( $index ) || ( $index == NS_FILE && !$wgAllowImageMoving ) );
 
 		/**
 		 * @since 1.20
@@ -74,6 +55,18 @@ class MWNamespace {
 		Hooks::run( 'NamespaceIsMovable', [ $index, &$result ] );
 
 		return $result;
+	}
+
+	/**
+	 * Is the given namespace is a special (below zero) namespace?
+	 *
+	 * @since 1.30
+	 *
+	 * @param int $index Namespace index
+	 * @return bool
+	 */
+	public static function isSpecial( $index ) {
+		return $index < NS_MAIN;
 	}
 
 	/**
@@ -99,13 +92,25 @@ class MWNamespace {
 	}
 
 	/**
-	 * Get the talk namespace index for a given namespace
+	 * Get the talk namespace index for a given namespace.
+	 * This method cannot be used with special namespaces (NS_MEDIA, NS_SPECIAL).
+	 * If the given namespace is a talk namespace, it is itself considered its own talk namespace.
+	 *
+	 * This method does not take into consideration whether the given namespace or the
+	 * associated talk namespace are actually defined. Use the exists() method to check that.
 	 *
 	 * @param int $index Namespace index
+	 *
+	 * @throws MWException if called on a special (negative) namespace index.
 	 * @return int
 	 */
 	public static function getTalk( $index ) {
-		self::isMethodValidFor( $index, __METHOD__ );
+		if ( self::isSpecial( $index ) ) {
+			throw new MWException(
+				"Special namespace no. $index can not have a talk namespace associated."
+			);
+		}
+
 		return self::isTalk( $index )
 			? $index
 			: $index + 1;
@@ -113,14 +118,18 @@ class MWNamespace {
 
 	/**
 	 * Get the subject namespace index for a given namespace
-	 * Special namespaces (NS_MEDIA, NS_SPECIAL) are always the subject.
+	 * If $index is not a talk namespace, $index itself will be returned.
+	 * Special namespaces (NS_MEDIA, NS_SPECIAL) are always their own subject.
+	 *
+	 * This method does not take into consideration whether the given namespace or the
+	 * associated subject namespace are actually defined. Use the exists() method to check that.
+	 *
 	 *
 	 * @param int $index Namespace index
 	 * @return int
 	 */
 	public static function getSubject( $index ) {
-		# Handle special namespaces
-		if ( $index < NS_MAIN ) {
+		if ( self::isSpecial( $index ) ) {
 			return $index;
 		}
 
@@ -131,26 +140,33 @@ class MWNamespace {
 
 	/**
 	 * Get the associated namespace.
-	 * For talk namespaces, returns the subject (non-talk) namespace
-	 * For subject (non-talk) namespaces, returns the talk namespace
+	 * For talk namespaces, returns the subject (non-talk) namespace.
+	 * For subject (non-talk) namespaces, returns the talk namespace.
+	 *
+	 * This method does not take into consideration whether the given namespace or the
+	 * associated namespace are actually defined. Use the exists() method to check that.
 	 *
 	 * @param int $index Namespace index
-	 * @return int|null If no associated namespace could be found
+	 *
+	 * @return int The index of the associated namespace.
+	 * @throws MWException if called on a special namespace
 	 */
 	public static function getAssociated( $index ) {
-		self::isMethodValidFor( $index, __METHOD__ );
-
-		if ( self::isSubject( $index ) ) {
-			return self::getTalk( $index );
+		if ( self::isSpecial( $index ) ) {
+			throw new MWException( "Special namespace no. $index can not have associated namespace." );
+		} elseif ( self::isSubject( $index ) ) {
+			$assoc = $index +1; // talk
 		} elseif ( self::isTalk( $index ) ) {
-			return self::getSubject( $index );
+			$assoc = $index -1; // subject
 		} else {
-			return null;
+			throw new LogicException( "Namespace $index is neither a talk nor a subject namespace" );
 		}
+
+		return $assoc;
 	}
 
 	/**
-	 * Returns whether the specified namespace exists
+	 * Returns whether the specified namespace exists.
 	 *
 	 * @param int $index
 	 *
@@ -290,15 +306,26 @@ class MWNamespace {
 	}
 
 	/**
-	 * Does this namespace ever have a talk namespace?
+	 * Does this namespace have a talk namespace defined?
+	 * Will return false if the associated talk namespace is not defined.
+	 * Will return false for special namespaces.
 	 *
 	 * @since 1.30
 	 *
 	 * @param int $index Namespace ID
-	 * @return bool True if this namespace either is or has a corresponding talk namespace.
+	 * @return bool True if this namespace either is or has a corresponding
+	 *         talk namesp defined.
 	 */
 	public static function hasTalkNamespace( $index ) {
-		return $index >= NS_MAIN;
+		// NOTE: make sure this is in sync with getTalk().
+
+		if ( self::isSpecial( $index ) ) {
+			return false;
+		} elseif ( self::isTalk( $index ) ) {
+			return self::exists( $index );
+		} else {
+			return self::exists( self::getTalk( $index ) );
+		}
 	}
 
 	/**
@@ -332,7 +359,7 @@ class MWNamespace {
 	 * @return bool
 	 */
 	public static function isWatchable( $index ) {
-		return $index >= NS_MAIN;
+		return !self::isSpecial( $index );
 	}
 
 	/**
