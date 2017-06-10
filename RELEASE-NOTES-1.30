@@ -89,7 +89,15 @@ changes to languages because of Phabricator reports.
 * File::getStreamHeaders() was deprecated.
 * MediaHandler::getStreamHeaders() was deprecated.
 * Title::canTalk was deprecated in favor of Title::canHaveTalkPage
-* MWNamespace::canTalk was deprecated in favor of MWNamespace::hasTalkNamespace
+* MWNamespace::canTalk was deprecated in favor of MWNamespace::hasTalkNamespace.
+* The requirement that every namespace must have an associated talk namespace was dropped.
+  Defining a talk namespace is still recommended, but it is no longer a hard requirement.
+  All namespaces defined by MediaWiki per default continue to have a talk namespace associated.
+* Title::getTalkPage now throws an exception if there is no associated talk namespace.
+  Callers should check Title::canHaveTalkPage() to avoid this.
+* Introduced MWNamespace::isSpecial() to go with isTalk() and isSubject().
+  Note that special namespaces are considered subject namespaces in most contexts,
+  but they cannot be used everywhere subjects namespaces can be used.
 * The ExtractThumbParameters hook (deprecated in 1.21) was removed.
 * The OutputPage::addParserOutputNoText and ::getHeadLinks methods (both
   deprecated in 1.24) were removed.

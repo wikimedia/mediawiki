@@ -977,7 +977,7 @@ class Title implements LinkTarget {
 	/**
 	 * Get the namespace text
 	 *
-	 * @return string|false Namespace text
+	 * @return string|false Namespace text, or false if the namespace is not defined
 	 */
 	public function getNsText() {
 		if ( $this->isExternal() ) {
@@ -1002,7 +1002,7 @@ class Title implements LinkTarget {
 	/**
 	 * Get the namespace text of the subject (rather than talk) page
 	 *
-	 * @return string Namespace text
+	 * @return string|bool Namespace text, or false if the namespace is not defined
 	 */
 	public function getSubjectNsText() {
 		global $wgContLang;
@@ -1012,7 +1012,7 @@ class Title implements LinkTarget {
 	/**
 	 * Get the namespace text of the talk page
 	 *
-	 * @return string Namespace text
+	 * @return string|bool Namespace text, or false if the namespace is not defined
 	 */
 	public function getTalkNsText() {
 		global $wgContLang;
@@ -1313,9 +1313,29 @@ class Title implements LinkTarget {
 	 * Get a Title object associated with the talk page of this article
 	 *
 	 * @return Title The object for the talk page
+	 * @throws MWException If no associated talk page can exist, according to canHaveTalkPage().
 	 */
 	public function getTalkPage() {
+		if ( !$this->canHaveTalkPage() ) {
+			throw new MWException( 'No talk page associated' );
+		}
+
 		return Title::makeTitle( MWNamespace::getTalk( $this->getNamespace() ), $this->getDBkey() );
+	}
+
+	/**
+	 * Get a Title object associated with the talk page of this article,
+	 * if such a talk page can exist.
+	 *
+	 * @return Title The object for the talk page,
+	 *         or null if no associated talk page can exist, according to canHaveTalkPage().
+	 */
+	public function getTalkPageIfDefined() {
+		if ( !$this->canHaveTalkPage() ) {
+			return null;
+		}
+
+		return $this->getTalkPage();
 	}
 
 	/**
@@ -3813,20 +3833,24 @@ class Title implements LinkTarget {
 					'#^' . preg_quote( $this->getDBkey(), '#' ) . '#',
 					StringUtils::escapeRegexReplacement( $nt->getDBkey() ), # T23234
 					$oldSubpage->getDBkey() );
-			if ( $oldSubpage->isTalkPage() ) {
-				$newNs = $nt->getTalkPage()->getNamespace();
-			} else {
-				$newNs = $nt->getSubjectPage()->getNamespace();
-			}
-			# T16385: we need makeTitleSafe because the new page names may
-			# be longer than 255 characters.
-			$newSubpage = Title::makeTitleSafe( $newNs, $newPageName );
 
-			$success = $oldSubpage->moveTo( $newSubpage, $auth, $reason, $createRedirect, $changeTags );
+			$success = false;
+			$newNs = MWNamespace::getAssociated( $nt->getNamespace() );
+
+			if ( $newNs !== null ) {
+				# T16385: we need makeTitleSafe because the new page names may
+				# be longer than 255 characters.
+				$newSubpage = Title::makeTitleSafe( $newNs, $newPageName );
+
+				if ( $newSubpage ) {
+					$success = $oldSubpage->moveTo( $newSubpage, $auth, $reason, $createRedirect, $changeTags );
+				}
+			}
+
 			if ( $success === true ) {
 				$retval[$oldSubpage->getPrefixedText()] = $newSubpage->getPrefixedText();
 			} else {
-				$retval[$oldSubpage->getPrefixedText()] = $success;
+				$retval[$oldSubpage->getPrefixedText()] = false;
 			}
 		}
 		return $retval;
