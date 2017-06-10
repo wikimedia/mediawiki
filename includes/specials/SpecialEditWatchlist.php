@@ -296,7 +296,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 			if ( $title instanceof Title ) {
 				$batch->addObj( $title );
-				$batch->addObj( $title->getTalkPage() );
+
+				if ( $title->canHaveTalkPage() ) {
+					$batch->addObj( $title->getTalkPage() );
+				}
 			}
 		}
 
@@ -312,11 +315,15 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			}
 
 			if ( $title instanceof Title ) {
+				$talk = $title->canHaveTalkPage()
+					? $this->msg( 'parentheses' )->rawParams(
+							$linkRenderer->makeLink( $title->getTalkPage(), $talk )
+						)->escaped()
+					: '';
+
 				$output .= '<li>' .
 					$linkRenderer->makeLink( $title ) . ' ' .
-					$this->msg( 'parentheses' )->rawParams(
-						$linkRenderer->makeLink( $title->getTalkPage(), $talk )
-					)->escaped() .
+					$talk .
 					"</li>\n";
 			}
 		}
@@ -478,8 +485,14 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 			$ns = $target->getNamespace();
 			$dbKey = $target->getDBkey();
-			$expandedTargets[] = new TitleValue( MWNamespace::getSubject( $ns ), $dbKey );
-			$expandedTargets[] = new TitleValue( MWNamespace::getTalk( $ns ), $dbKey );
+
+			if ( MWNamespace::hasTalkNamespace( $ns ) ) {
+				// FIXME: we can't be sure that the subject namespace exists
+				$expandedTargets[] = new TitleValue( MWNamespace::getSubject( $ns ), $dbKey );
+				$expandedTargets[] = new TitleValue( MWNamespace::getTalk( $ns ), $dbKey );
+			} else {
+				$expandedTargets[] = $target;
+			}
 		}
 
 		MediaWikiServices::getInstance()->getWatchedItemStore()->addWatchBatchForUser(
@@ -506,7 +519,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 			if ( $title instanceof Title ) {
 				$store->removeWatch( $this->getUser(), $title->getSubjectPage() );
-				$store->removeWatch( $this->getUser(), $title->getTalkPage() );
+
+				if ( $title->canHaveTalkPage() ) {
+					$store->removeWatch( $this->getUser(), $title->getTalkPage() );
+				}
 
 				$page = WikiPage::factory( $title );
 				Hooks::run( 'UnwatchArticleComplete', [ $this->getUser(), &$page ] );
@@ -621,10 +637,12 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$linkRenderer = $this->getLinkRenderer();
 		$link = $linkRenderer->makeLink( $title );
 
-		$tools['talk'] = $linkRenderer->makeLink(
-			$title->getTalkPage(),
-			$this->msg( 'talkpagelinktext' )->text()
-		);
+		if ( $title->canHaveTalkPage() ) {
+			$tools['talk'] = $linkRenderer->makeLink(
+				$title->getTalkPage(),
+				$this->msg( 'talkpagelinktext' )->text()
+			);
+		}
 
 		if ( $title->exists() ) {
 			$tools['history'] = $linkRenderer->makeKnownLink(
