@@ -1108,7 +1108,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	final public function getMultiWithSetCallback(
 		ArrayIterator $keyedIds, $ttl, callable $callback, array $opts = []
 	) {
-		$valueKeys = array_keys( iterator_to_array( $keyedIds, true ) );
+		$valueKeys = array_keys( $keyedIds->getArrayCopy() );
 		$checkKeys = isset( $opts['checkKeys'] ) ? $opts['checkKeys'] : [];
 
 		// Load required keys into process cache in one go
@@ -1194,7 +1194,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	final public function getMultiWithUnionSetCallback(
 		ArrayIterator $keyedIds, $ttl, callable $callback, array $opts = []
 	) {
-		$idsByValueKey = iterator_to_array( $keyedIds, true );
+		$idsByValueKey = $keyedIds->getArrayCopy();
 		$valueKeys = array_keys( $idsByValueKey );
 		$checkKeys = isset( $opts['checkKeys'] ) ? $opts['checkKeys'] : [];
 		unset( $opts['lockTSE'] ); // incompatible
