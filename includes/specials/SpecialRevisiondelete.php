@@ -106,7 +106,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	];
 
 	public function __construct() {
-		parent::__construct( 'Revisiondelete', 'deleterevision' );
+		parent::__construct( 'Revisiondelete', 'deletedhistory' );
 	}
 
 	public function doesWrites() {
@@ -210,19 +210,17 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$this->showForm();
 		}
 
-		if ( $user->isAllowed( 'deletedhistory' ) ) {
-			$qc = $this->getLogQueryCond();
-			# Show relevant lines from the deletion log
-			$deleteLogPage = new LogPage( 'delete' );
-			$output->addHTML( "<h2>" . $deleteLogPage->getName()->escaped() . "</h2>\n" );
-			LogEventsList::showLogExtract(
-				$output,
-				'delete',
-				$this->targetObj,
-				'', /* user */
-				[ 'lim' => 25, 'conds' => $qc, 'useMaster' => $this->wasSaved ]
-			);
-		}
+		$qc = $this->getLogQueryCond();
+		# Show relevant lines from the deletion log
+		$deleteLogPage = new LogPage( 'delete' );
+		$output->addHTML( "<h2>" . $deleteLogPage->getName()->escaped() . "</h2>\n" );
+		LogEventsList::showLogExtract(
+			$output,
+			'delete',
+			$this->targetObj,
+			'', /* user */
+			[ 'lim' => 25, 'conds' => $qc, 'useMaster' => $this->wasSaved ]
+		);
 		# Show relevant lines from the suppression log
 		if ( $user->isAllowed( 'suppressionlog' ) ) {
 			$suppressLogPage = new LogPage( 'suppress' );
