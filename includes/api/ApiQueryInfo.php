@@ -694,7 +694,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				if ( $this->fld_subjectid ) {
 					$getTitles[] = $t->getSubjectPage();
 				}
-			} elseif ( $this->fld_talkid ) {
+			} elseif ( $this->fld_talkid && $t->canHaveTalkPage() ) {
 				$getTitles[] = $t->getTalkPage();
 			}
 		}
