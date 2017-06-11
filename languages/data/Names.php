@@ -321,7 +321,8 @@ class Names {
 		'nn' => 'norsk nynorsk', # Norwegian (Nynorsk)
 		'no' => 'norsk', # Norwegian macro language (falls back to nb).
 		'nov' => 'Novial', # Novial
-		'nrm' => 'Nouormand', # Norman
+		'nrf' => 'Nouormand', # Norman
+		'nrm' => 'Nouormand', # Norman -- not a valid code, for compatibility. See nrf.
 		'nso' => 'Sesotho sa Leboa', # Northern Sotho
 		'nv' => 'Diné bizaad', # Navajo
 		'ny' => 'Chi-Chewa', # Chichewa
