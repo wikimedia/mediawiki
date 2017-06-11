@@ -28,9 +28,20 @@
 class DeprecatedGlobal extends StubObject {
 	protected $realValue, $version;
 
+	/**
+	 * @param string $name Global name
+	 * @param callable|string|object $realValue Callable or class name (for lazy loading) or object
+	 * @param bool|string $version Version global was deprecated in
+	 */
 	function __construct( $name, $realValue, $version = false ) {
-		parent::__construct( $name );
-		$this->realValue = $realValue;
+		$class = null;
+		if ( is_callable( $realValue ) || is_string( $class ) ) {
+			$class = $realValue; // Being lazy-loaded
+		} else {
+			// Object already exists
+			$this->realValue = $realValue;
+		}
+		parent::__construct( $name, $class );
 		$this->version = $version;
 	}
 
@@ -52,7 +63,10 @@ class DeprecatedGlobal extends StubObject {
 		 * rather unlikely.
 		 */
 		wfDeprecated( '$' . $this->global, $this->version, false, 6 );
-		return $this->realValue;
+		if ( $this->realValue !== null ) {
+			return $this->realValue;
+		}
+		return parent::_newObject();
 	}
 	// @codingStandardsIgnoreEnd
 }
