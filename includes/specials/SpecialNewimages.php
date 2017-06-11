@@ -34,7 +34,6 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		$this->outputHeader();
 
 		$out = $this->getOutput();
-		$out->addModules( 'mediawiki.special.newFiles' );
 		$this->addHelpLink( 'Help:New images' );
 
 		$opts = new FormOptions();
@@ -149,6 +148,8 @@ class SpecialNewFiles extends IncludableSpecialPage {
 			->setMethod( 'get' )
 			->prepareForm()
 			->displayForm( false );
+
+		$this->getOutput()->addModules( 'mediawiki.special.newFiles' );
 	}
 
 	protected function getGroupName() {
