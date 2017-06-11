@@ -34,7 +34,6 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		$this->outputHeader();
 
 		$out = $this->getOutput();
-		$out->addModules( 'mediawiki.special.newFiles' );
 		$this->addHelpLink( 'Help:New images' );
 
 		$opts = new FormOptions();
@@ -80,6 +79,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 
 		$out->addHTML( $pager->getBody() );
 		if ( !$this->including() ) {
+			$out->addModules( 'mediawiki.special.newFiles' );
 			$out->addHTML( $pager->getNavigationBar() );
 		}
 	}
