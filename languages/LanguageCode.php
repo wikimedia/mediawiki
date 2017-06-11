@@ -45,6 +45,9 @@ class LanguageCode {
 			'bat-smg' => 'sgs',
 			'be-x-old' => 'be-tarask',
 			'fiu-vro' => 'vro',
+			// Note that als is actually a valid ISO 639 code (Narom), but it
+			// was previously used in MediaWiki for Jersey Norman, which comes under gsw
+			'nrm' => 'nrf',
 			'roa-rup' => 'rup',
 			'zh-classical' => 'lzh',
 			'zh-min-nan' => 'nan',
