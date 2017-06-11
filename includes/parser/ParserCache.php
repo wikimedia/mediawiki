@@ -327,6 +327,13 @@ class ParserCache {
 			// ...and its pointer
 			$this->mMemc->set( $this->getOptionsKey( $page ), $optionsKey, $expire );
 
+			// Normally, when there was no key change, the above would have
+			// overwritten the old entry. Delete that old entry to save disk
+			// space.
+			$oldParserOutputKey = $this->getParserOutputKey( $page,
+				$popts->optionsHashPre30( $optionsKey->mUsedOptions, $page->getTitle() ) );
+			$this->mMemc->delete( $oldParserOutputKey );
+
 			Hooks::run(
 				'ParserCacheSaveComplete',
 				[ $this, $parserOutput, $page->getTitle(), $popts, $revId ]
