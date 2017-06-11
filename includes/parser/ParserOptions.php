@@ -60,7 +60,6 @@ class ParserOptions {
 	 */
 	private static $inCacheKey = [
 		'dateformat' => true,
-		'editsection' => true,
 		'numberheadings' => true,
 		'thumbsize' => true,
 		'stubthreshold' => true,
@@ -81,6 +80,13 @@ class ParserOptions {
 	 * @note Caching based on parse time is handled externally
 	 */
 	private $mTimestamp;
+
+	/**
+	 * The edit section flag is in ParserOptions for historical reasons, but
+	 * doesn't actually affect the parser output since Feb 2015.
+	 * @var bool
+	 */
+	private $mEditSection = true;
 
 	/**
 	 * Stored user object
@@ -242,23 +248,6 @@ class ParserOptions {
 	 */
 	public function setEnableImageWhitelist( $x ) {
 		return $this->setOptionLegacy( 'enableImageWhitelist', $x );
-	}
-
-	/**
-	 * Create "edit section" links?
-	 * @return bool
-	 */
-	public function getEditSection() {
-		return $this->getOption( 'editsection' );
-	}
-
-	/**
-	 * Create "edit section" links?
-	 * @param bool|null $x New value (null is no change)
-	 * @return bool Old value
-	 */
-	public function setEditSection( $x ) {
-		return $this->setOptionLegacy( 'editsection', $x );
 	}
 
 	/**
@@ -879,6 +868,23 @@ class ParserOptions {
 	}
 
 	/**
+	 * Create "edit section" links?
+	 * @return bool
+	 */
+	public function getEditSection() {
+		return $this->mEditSection;
+	}
+
+	/**
+	 * Create "edit section" links?
+	 * @param bool|null $x New value (null is no change)
+	 * @return bool Old value
+	 */
+	public function setEditSection( $x ) {
+		return wfSetVar( $this->mEditSection, $x );
+	}
+
+	/**
 	 * Set the redirect target.
 	 *
 	 * Note that setting or changing this does not *make* the page a redirect
@@ -1041,7 +1047,6 @@ class ParserOptions {
 			// *UPDATE* ParserOptions::matches() if any of this changes as needed
 			self::$defaults = [
 				'dateformat' => null,
-				'editsection' => true,
 				'tidy' => false,
 				'interfaceMessage' => false,
 				'targetLanguage' => null,
@@ -1256,16 +1261,32 @@ class ParserOptions {
 	public function optionsHash( $forOptions, $title = null ) {
 		global $wgRenderHashAppend;
 
+		$options = $this->options;
+		$defaults = self::getCanonicalOverrides() + self::getDefaults();
+		$inCacheKey = self::$inCacheKey;
+
+		// Historical hack: 'editsection' hasn't been a true parser option since
+		// Feb 2015 (instead the parser outputs a constant placeholder and post-parse
+		// processing handles the option). But Wikibase forces it in $forOptions
+		// and expects the cache key to still vary on it for T85252.
+		// @todo Deprecate and remove this behavior after optionsHashPre30() is
+		//  removed (Wikibase can use addExtraKey() or something instead).
+		if ( in_array( 'editsection', $forOptions, true ) ) {
+			$options['editsection'] = $this->mEditSection;
+			$defaults['editsection'] = true;
+			$inCacheKey['editsection'] = true;
+			ksort( $inCacheKey );
+		}
+
 		// We only include used options with non-canonical values in the key
 		// so adding a new option doesn't invalidate the entire parser cache.
 		// The drawback to this is that changing the default value of an option
 		// requires manual invalidation of existing cache entries, as mentioned
 		// in the docs on the relevant methods and hooks.
-		$defaults = self::getCanonicalOverrides() + self::getDefaults();
 		$values = [];
-		foreach ( self::$inCacheKey as $option => $include ) {
+		foreach ( $inCacheKey as $option => $include ) {
 			if ( $include && in_array( $option, $forOptions, true ) ) {
-				$v = $this->optionToString( $this->options[$option] );
+				$v = $this->optionToString( $options[$option] );
 				$d = $this->optionToString( $defaults[$option] );
 				if ( $v !== $d ) {
 					$values[] = "$option=$v";
@@ -1364,7 +1385,7 @@ class ParserOptions {
 		// directly. At least Wikibase does at this point in time.
 		if ( !in_array( 'editsection', $forOptions ) ) {
 			$confstr .= '!*';
-		} elseif ( !$this->options['editsection'] ) {
+		} elseif ( !$this->mEditSection ) {
 			$confstr .= '!edit=0';
 		}
 

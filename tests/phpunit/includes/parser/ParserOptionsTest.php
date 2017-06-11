@@ -22,7 +22,6 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		return [
 			'No overrides' => [ true, [] ],
 			'In-key options are ok' => [ true, [
-				'editsection' => false,
 				'thumbsize' => 1e100,
 				'wrapclass' => false,
 			] ],
@@ -65,14 +64,14 @@ class ParserOptionsTest extends MediaWikiTestCase {
 	}
 
 	public static function provideOptionsHashPre30() {
-		$used = [ 'wrapclass', 'editsection', 'printable' ];
+		$used = [ 'wrapclass', 'printable' ];
 
 		return [
 			'Canonical options, nothing used' => [ [], '*!*!*!*!*!*', [] ],
-			'Canonical options, used some options' => [ $used, '*!*!*!*!*', [] ],
+			'Canonical options, used some options' => [ $used, '*!*!*!*!*!*', [] ],
 			'Used some options, non-default values' => [
 				$used,
-				'*!*!*!*!*!printable=1!wrapclass=foobar',
+				'*!*!*!*!*!*!printable=1!wrapclass=foobar',
 				[
 					'setWrapOutputClass' => 'foobar',
 					'setIsPrintable' => true,
@@ -87,6 +86,14 @@ class ParserOptionsTest extends MediaWikiTestCase {
 					'wgHooks' => [ 'PageRenderingHash' => [ [ __CLASS__ . '::onPageRenderingHash' ] ] ],
 				]
 			],
+
+			// Test weird historical behavior is still weird
+			'Canonical options, editsection=true used' => [ [ 'editsection' ], '*!*!*!*!*', [
+				'setEditSection' => true,
+			] ],
+			'Canonical options, editsection=false used' => [ [ 'editsection' ], '*!*!*!*!*!edit=0', [
+				'setEditSection' => false,
+			] ],
 		];
 	}
 
@@ -117,7 +124,7 @@ class ParserOptionsTest extends MediaWikiTestCase {
 	}
 
 	public static function provideOptionsHash() {
-		$used = [ 'wrapclass', 'editsection', 'printable' ];
+		$used = [ 'wrapclass', 'printable' ];
 
 		$classWrapper = TestingAccessWrapper::newFromClass( ParserOptions::class );
 		$classWrapper->getDefaults();
@@ -152,6 +159,30 @@ class ParserOptionsTest extends MediaWikiTestCase {
 
 	public static function onPageRenderingHash( &$confstr ) {
 		$confstr .= '!onPageRenderingHash';
+	}
+
+	// Test weird historical behavior is still weird
+	public function testOptionsHashEditSection() {
+		global $wgHooks;
+
+		$this->setMwGlobals( [
+			'wgRenderHashAppend' => '',
+			'wgHooks' => [ 'PageRenderingHash' => [] ] + $wgHooks,
+		] );
+
+		$popt = ParserOptions::newCanonical();
+		$popt->registerWatcher( function ( $name ) {
+			$this->assertNotEquals( 'editsection', $name );
+		} );
+
+		$this->assertTrue( $popt->getEditSection() );
+		$this->assertSame( 'canonical', $popt->optionsHash( [] ) );
+		$this->assertSame( 'canonical', $popt->optionsHash( [ 'editsection' ] ) );
+
+		$popt->setEditSection( false );
+		$this->assertFalse( $popt->getEditSection() );
+		$this->assertSame( 'canonical', $popt->optionsHash( [] ) );
+		$this->assertSame( 'editsection=0', $popt->optionsHash( [ 'editsection' ] ) );
 	}
 
 	/**
