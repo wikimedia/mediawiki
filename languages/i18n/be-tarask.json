@@ -3835,6 +3835,7 @@
 	"authprovider-confirmlink-ok-help": "Працягнуць пасьля паказу паведамленьняў пра памылкі далучэньня.",
 	"authprovider-resetpass-skip-label": "Прапусьціць",
 	"authprovider-resetpass-skip-help": "Прапусьціць скіданьне паролю.",
+	"authform-nosession-login": "Аўтэнтыфікацыя была пасьпяховай, але ваш браўзэр ня змог «запомніць» уваход у сыстэму.\n\n$1",
 	"changecredentials": "Зьмена ўліковых зьвестак",
 	"removecredentials": "Выдаленьне ўліковых зьвестак",
 	"removecredentials-submit": "Выдаліць уліковыя зьвесткі",

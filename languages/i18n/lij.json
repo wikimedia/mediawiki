@@ -3432,7 +3432,7 @@
 	"htmlform-user-not-exists": "'''$1''' o no l'existe.",
 	"htmlform-user-not-valid": "<strong>$1</strong> o no l'è un nomme utente vallido.",
 	"logentry-delete-delete": "$1 {{GENDER:$2|o l'ha scassou}} a paggina $3",
-	"logentry-delete-restore": "$1 {{GENDER:$2|o|a}} l'ha ripristinou a paggina $3",
+	"logentry-delete-restore": "$1 {{GENDER:$2|o|a}} l'ha ripristinou a paggina $3 ($4)",
 	"logentry-delete-event": "$1 {{GENDER:$2|o|a}} l'ha modificou a vixibilitæ de {{PLURAL:$5|un'açion do registro|$5 açioin do registro}} de \"$3\": $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|o l'ha modificou}} a vixibilitæ pe {{PLURAL:$5|una verscion|$5 verscioin}} da paggina $3: $4",
 	"logentry-delete-event-legacy": "$1 {{GENDER:$2|o l'ha modificou}} a vixibilitæ de quarche açion do registro de $3",

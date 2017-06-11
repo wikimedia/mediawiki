@@ -939,7 +939,7 @@
 	"revdelete-reasonotherlist": "其它原因",
 	"revdelete-edit-reasonlist": "編輯刪除原因",
 	"revdelete-offender": "修訂作者：",
-	"suppressionlog": "禁止顯示日誌",
+	"suppressionlog": "監督日誌",
 	"suppressionlogtext": "以下清單為管理員透過刪除或封鎖所隱藏的內容。\n請至 [[Special:BlockList|封鎖清單]] 取得目前已封鎖的清單。",
 	"mergehistory": "合併頁面歷史",
 	"mergehistory-header": "這頁可以讓您合併一個來源頁面的歷史到另一個新頁面中。\n請確認這次更改能夠繼續保留該頁面先前歷史版本的連續性。",
