@@ -132,6 +132,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 	// @codingStandardsIgnoreEnd
 
+	public function createPager( FormOptions $opts ) {
+		return new RecentChangesPager( $this->getContext(), $opts, $this->filterGroups );
+	}
+
 	/**
 	 * Main execution point
 	 *
@@ -498,81 +502,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		}
 
 		return $query;
-	}
-
-	/**
-	 * Build and output the actual changes list.
-	 *
-	 * @param ResultWrapper $rows Database rows
-	 * @param FormOptions $opts
-	 */
-	public function outputChangesList( $rows, $opts ) {
-		$limit = $opts['limit'];
-
-		$showWatcherCount = $this->getConfig()->get( 'RCShowWatchingUsers' )
-			&& $this->getUser()->getOption( 'shownumberswatching' );
-		$watcherCache = [];
-
-		$dbr = $this->getDB();
-
-		$counter = 1;
-		$list = ChangesList::newFromContext( $this->getContext(), $this->filterGroups );
-		$list->initChangesListRows( $rows );
-
-		$userShowHiddenCats = $this->getUser()->getBoolOption( 'showhiddencats' );
-		$rclistOutput = $list->beginRecentChangesList();
-		foreach ( $rows as $obj ) {
-			if ( $limit == 0 ) {
-				break;
-			}
-			$rc = RecentChange::newFromRow( $obj );
-
-			# Skip CatWatch entries for hidden cats based on user preference
-			if (
-				$rc->getAttribute( 'rc_type' ) == RC_CATEGORIZE &&
-				!$userShowHiddenCats &&
-				$rc->getParam( 'hidden-cat' )
-			) {
-				continue;
-			}
-
-			$rc->counter = $counter++;
-			# Check if the page has been updated since the last visit
-			if ( $this->getConfig()->get( 'ShowUpdatedMarker' )
-				&& !empty( $obj->wl_notificationtimestamp )
-			) {
-				$rc->notificationtimestamp = ( $obj->rc_timestamp >= $obj->wl_notificationtimestamp );
-			} else {
-				$rc->notificationtimestamp = false; // Default
-			}
-			# Check the number of users watching the page
-			$rc->numberofWatchingusers = 0; // Default
-			if ( $showWatcherCount && $obj->rc_namespace >= 0 ) {
-				if ( !isset( $watcherCache[$obj->rc_namespace][$obj->rc_title] ) ) {
-					$watcherCache[$obj->rc_namespace][$obj->rc_title] =
-						MediaWikiServices::getInstance()->getWatchedItemStore()->countWatchers(
-							new TitleValue( (int)$obj->rc_namespace, $obj->rc_title )
-						);
-				}
-				$rc->numberofWatchingusers = $watcherCache[$obj->rc_namespace][$obj->rc_title];
-			}
-
-			$changeLine = $list->recentChangesLine( $rc, !empty( $obj->wl_user ), $counter );
-			if ( $changeLine !== false ) {
-				$rclistOutput .= $changeLine;
-				--$limit;
-			}
-		}
-		$rclistOutput .= $list->endRecentChangesList();
-
-		if ( $rows->numRows() === 0 ) {
-			$this->outputNoResults();
-			if ( !$this->including() ) {
-				$this->getOutput()->setStatusCode( 404 );
-			}
-		} else {
-			$this->getOutput()->addHTML( $rclistOutput );
-		}
 	}
 
 	/**

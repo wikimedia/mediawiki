@@ -37,6 +37,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/** @var FormOptions */
 	protected $rcOptions;
 
+	/** @var ChangesListPager */
+	protected $pager;
+
 	/** @var array */
 	protected $customFilters;
 
@@ -462,6 +465,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
+	 *
+	 * @param FormOptions $opts
+	 * @return ChangesListPager
+	 */
+	abstract public function createPager( FormOptions $opts );
+
+	/**
 	 * Check if filters are in conflict and guaranteed to return no results.
 	 *
 	 * @return bool
@@ -517,9 +527,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$this->outputHeader();
 		$this->addModules();
 
-		$rows = $this->getRows();
 		$opts = $this->getOptions();
-		if ( $rows === false ) {
+
+		$this->pager = $this->createPager( $opts );
+
+		// FIXME if all results were dropped hidden categories, numrows will be >0
+		if ( $this->pager->getNumRows() === 0 ) {
 			if ( !$this->including() ) {
 				$this->doHeader( $opts, 0 );
 				$this->outputNoResults();
@@ -529,22 +542,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			return;
 		}
 
-		$batch = new LinkBatch;
-		foreach ( $rows as $row ) {
-			$batch->add( NS_USER, $row->rc_user_text );
-			$batch->add( NS_USER_TALK, $row->rc_user_text );
-			$batch->add( $row->rc_namespace, $row->rc_title );
-			if ( $row->rc_source === RecentChange::SRC_LOG ) {
-				$formatter = LogFormatter::newFromRow( $row );
-				foreach ( $formatter->getPreloadTitles() as $title ) {
-					$batch->addObj( $title );
-				}
-			}
+		if ( !$this->including() ) {
+			$this->outputFeedLinks();
+			$this->doHeader( $opts, $this->pager->getNumRows() );
 		}
-		$batch->execute();
-		$this->webOutput( $rows, $opts );
 
-		$rows->free();
+		$this->getOutput()->addHTML( $this->pager->getNavigationBar() );
+		$this->getOutput()->addHTML( $this->pager->getBody() );
 
 		if ( $this->getConfig()->get( 'EnableWANCacheReaper' ) ) {
 			// Clean up any bad page entries for titles showing up in RC
@@ -1172,34 +1176,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Send output to the OutputPage object, only called if not used feeds
-	 *
-	 * @param ResultWrapper $rows Database rows
-	 * @param FormOptions $opts
-	 */
-	public function webOutput( $rows, $opts ) {
-		if ( !$this->including() ) {
-			$this->outputFeedLinks();
-			$this->doHeader( $opts, $rows->numRows() );
-		}
-
-		$this->outputChangesList( $rows, $opts );
-	}
-
-	/**
 	 * Output feed links.
 	 */
 	public function outputFeedLinks() {
 		// nothing by default
 	}
-
-	/**
-	 * Build and output the actual changes list.
-	 *
-	 * @param ResultWrapper $rows Database rows
-	 * @param FormOptions $opts
-	 */
-	abstract public function outputChangesList( $rows, $opts );
 
 	/**
 	 * Set the text to be displayed above the changes
