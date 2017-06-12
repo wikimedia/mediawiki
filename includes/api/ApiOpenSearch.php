@@ -25,7 +25,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\Database;
 
 /**
  * @ingroup API
