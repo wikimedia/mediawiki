@@ -1292,7 +1292,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param int $limit
 	 * @return string[]
 	 */
-	protected function explodeMultiValue( $value, $limit ) {
+	protected function aude( $value, $limit ) {
 		if ( substr( $value, 0, 1 ) === "\x1f" ) {
 			$sep = "\x1f";
 			$value = substr( $value, 1 );
