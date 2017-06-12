@@ -8302,6 +8302,21 @@ subpage
 !! end
 
 !! test
+Serialization of purely hash wikilink
+!! options
+title=[[User:Test/123]]
+subpage
+parsoid=html2wt
+!! html/parsoid
+<p><a href="#a">[[</a></p>
+!! wikitext
+[[#a|<nowiki>[[</nowiki>]]
+!! html/php
+<p><a href="#a">[[</a>
+</p>
+!! end
+
+!! test
 1. Interaction of linktrail and template encapsulation
 !! wikitext
 {{echo|[[Foo]]}}l
@@ -17896,6 +17911,19 @@ Sanitizer: Validating that <meta> and <link> work, but only for Microdata
 !! end
 
 !! test
+Sanitizer: Strip comments from CSS attributes
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+<span style="margin:/*negate mbox-text padding */-0.125em -0.45em; /*rainbow*/rgba(255, 0, 0, 0.3)">2013</span>
+!! html/php
+<p><span style="margin: -0.125em -0.45em;  rgba(255, 0, 0, 0.3)">2013</span>
+</p>
+!! html/parsoid
+<p><span style="margin: -0.125em -0.45em;  rgba(255, 0, 0, 0.3)">2013</span></p>
+!! end
+
+!! test
 Language converter: output gets cut off unexpectedly (T7757)
 !! options
 language=zh
@@ -23420,26 +23448,26 @@ parsoid={
 <meta typeof="mw:Extension/LabeledSectionTransclusion/end" content="2014-04-10 (MW 1.23wmf22)"/></p>
 !! end
 
-## The unconventional output is the result of `usePHPPreProcessor` being
-## disabled in parserTests.js.  This test is mainly just to show <section> is
-## recognized as an extension tag w/o a native handler.
 !! test
 LST Sections: Newfangled approach
 !! wikitext
 <section begin="2011-05-16" />
 <section end="2014-04-10 (MW 1.23wmf22)" />
 !! html/parsoid
-<p><span typeof="mw:Error mw:Extension/section" about="#mwt1" data-mw='{"name":"section","attrs":{"begin":"2011-05-16"},"body":null,"errors":[{"key":"mw-api-extexpand-error","message":"Could not expand extension source."}]}'>&lt;section begin="2011-05-16" /></span>
-<span typeof="mw:Error mw:Extension/section" about="#mwt2" data-mw='{"name":"section","attrs":{"end":"2014-04-10 (MW 1.23wmf22)"},"body":null,"errors":[{"key":"mw-api-extexpand-error","message":"Could not expand extension source."}]}'>&lt;section end="2014-04-10 (MW 1.23wmf22)" /></span></p>
+<p><span typeof="mw:Extension/section" about="#mwt4" data-mw='{"name":"section","attrs":{"begin":"2011-05-16"},"body":null}'>
+</span>
+<span typeof="mw:Extension/section" about="#mwt6" data-mw='{"name":"section","attrs":{"end":"2014-04-10 (MW 1.23wmf22)"},"body":null}'>
+</span></p>
 !! end
 
 #--------- Test stripping of empty nodes in template content ----------
-!!test
+
+!! test
 Empty LI and TR nodes should be stripped from template content
-!!wikitext
+!! wikitext
 {{EmptyLITest}}
 {{EmptyTRTest}}
-!!html/parsoid
+!! html/parsoid
 <ul about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"EmptyLITest","href":"./Template:EmptyLITest"},"params":{},"i":0}}]}'>
 <li>a</li>
 <li>b</li>
@@ -23454,11 +23482,11 @@ Empty LI and TR nodes should be stripped from template content
 </tr>
 </tbody>
 </table>
-!!end
+!! end
 
-!!test
+!! test
 Empty LI and TR nodes should not be stripped from top-level content
-!!wikitext
+!! wikitext
 * a
 *
 * b
@@ -23467,7 +23495,7 @@ Empty LI and TR nodes should not be stripped from top-level content
 |-
 |foo
 |}
-!!html/parsoid
+!! html/parsoid
 <ul>
 <li> a</li>
 <li></li>
@@ -23481,20 +23509,20 @@ Empty LI and TR nodes should not be stripped from top-level content
 </tr>
 </tbody>
 </table>
-!!end
+!! end
 
-!!test
+!! test
 Empty TR nodes should not be stripped if they have any attributes set
-!!wikitext
+!! wikitext
 {{EmptyTRWithHTMLAttrTest}}
-!!html/parsoid
+!! html/parsoid
 <table about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"EmptyTRWithHTMLAttrTest","href":"./Template:EmptyTRWithHTMLAttrTest"},"params":{},"i":0}}]}'>
 <tr align="center"></tr>
 <tr><td>foo</td></tr>
 <tr align="center"></tr>
 <tr><td>bar</td></tr>
 </table>
-!!end
+!! end
 
 #### ----------------------------------------------------------------
 #### The following section of tests are primarily to test
@@ -25911,6 +25939,41 @@ parsoid=html2wt
 [[Foo]]
 !! end
 
+!! test
+Parsoid should accept interwiki shortcuts
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><a rel='mw:WikiLink' href='./fr:Foo'>Foo</a>
+<a rel='mw:ExtLink' href='./fr:Foo'>Foo</a>
+<a href='./fr:Foo'>Foo</a></p>
+<p><a rel='mw:WikiLink' href='fr%3AFoo'>Foo</a>
+<a rel='mw:ExtLink' href='fr%3AFoo'>Foo</a>
+<a href='fr%3AFoo'>Foo</a></p>
+!! wikitext
+[[:fr:Foo|Foo]]
+[[:fr:Foo|Foo]]
+[[:fr:Foo|Foo]]
+
+[[:fr:Foo|Foo]]
+[[:fr:Foo|Foo]]
+[[:fr:Foo|Foo]]
+!! end
+
+!! test
+Parsoid should not accept invalid interwiki shortcuts
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><a rel='mw:WikiLink' href='news:Foo'>Foo</a>
+<a rel='mw:ExtLink' href='news:Foo'>Foo</a>
+<a href='news:Foo'>Foo</a></p>
+!! wikitext
+[news:Foo Foo]
+[news:Foo Foo]
+[news:Foo Foo]
+!! end
+
 # See T93839
 !! test
 New wikilinks should be serialized properly
@@ -28080,6 +28143,17 @@ parsoid={ "modes": ["html2wt"], "suppressErrors": true }
 
 dice
 <span name="foo"></span>
+!! end
+
+!! test
+New transclusion added after a list should be serialized after the list
+!! options
+parsoid=html2wt
+!! html/parsoid
+<ul><li>a</li></ul><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:echo"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</span>
+!! wikitext
+* a
+{{echo|foo}}
 !! end
 
 # -----------------------------------------------------------------
