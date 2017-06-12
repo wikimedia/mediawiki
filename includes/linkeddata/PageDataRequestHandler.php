@@ -28,7 +28,7 @@ class PageDataRequestHandler {
 	 */
 	public function canHandleRequest( $title, WebRequest $request ) {
 		if ( $title === '' || $title === null ) {
-			if ( $request->getText( 'title', '' ) === '' ) {
+			if ( $request->getText( 'target', '' ) === '' ) {
 				return false;
 			}
 		}
@@ -57,7 +57,7 @@ class PageDataRequestHandler {
 
 		$revision = 0;
 
-		$title = $request->getText( 'title', $title );
+		$title = $request->getText( 'target', $title );
 		$revision = $request->getInt( 'oldid', $revision );
 		$revision = $request->getInt( 'revision', $revision );
 
