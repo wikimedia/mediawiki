@@ -8559,6 +8559,15 @@ $wgPopularPasswordFile = __DIR__ . '/../serialized/commonpasswords.cdb';
  */
 $wgMaxUserDBWriteDuration = false;
 
+/*
+ * Max time (in seconds) a job-generated transaction can spend in writes.
+ * If exceeded, the transaction is rolled back with an error instead of being committed.
+ *
+ * @var int|bool Disabled if false
+ * @since 1.30
+ */
+$wgMaxJobDBWriteDuration = false;
+
 /**
  * Mapping of event channels (or channel categories) to EventRelayer configuration.
  *
