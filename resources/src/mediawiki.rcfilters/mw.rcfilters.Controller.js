@@ -638,6 +638,13 @@
 		// actual parameter visibility/representation in the URL
 		currentFilterState = this.filtersModel.getFiltersFromParameters( uri.query );
 		updatedFilterState = this.filtersModel.getFiltersFromParameters( updatedUri.query );
+		// HACK: Re-merge extra parameters in
+		// This is a hack and a quickfix; a better, more sustainable
+		// fix is being worked on with a UriProcessor, but for now
+		// we need to make sure the **comparison** of whether currentFilterState
+		// and updatedFilterState differ **includes** the extra parameters in the URL
+		currentFilterState = $.extend( true, {}, uri.query, currentFilterState );
+		updatedFilterState = $.extend( true, {}, updatedUri.query, updatedFilterState );
 
 		// Include highlight states
 		$.extend( true,
