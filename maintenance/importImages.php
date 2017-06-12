@@ -309,9 +309,7 @@ class ImportImages extends Maintenance {
 					if ( $handler ) {
 						$metadata = MediaWiki\quietCall( 'unserialize', $props['metadata'] );
 
-						$publishOptions['headers'] = $handler->getContentHeaders(
-							$metadata, $props['width'], $props['height']
-						);
+						$publishOptions['headers'] = $handler->getContentHeaders( $metadata );
 					} else {
 						$publishOptions['headers'] = [];
 					}

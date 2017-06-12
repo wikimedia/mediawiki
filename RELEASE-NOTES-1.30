@@ -34,9 +34,6 @@ production.
   ParserOptions::setWrapOutputClass().
 * Added 'ChangeTagsAllowedAdd' hook, enabling extensions to allow software-
   specific tags to be added by users.
-* File storage backends that supports headers (eg. Swift) now store an
-  X-Content-Dimensions header for originals that contain the media's dimensions
-  as page ranges keyed by dimensions.
 * Added a 'ParserOptionsRegister' hook to allow extensions to register
   additional parser options.
 

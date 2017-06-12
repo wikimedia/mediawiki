@@ -461,43 +461,4 @@ class DjVuHandler extends ImageHandler {
 			return false;
 		}
 	}
-
-	/**
-	* Get useful response headers for GET/HEAD requests for a file with the given metadata
-	* @param $metadata Array Contains this handler's unserialized getMetadata() for a file
-	* @param $fallbackWidth int|null Width to fall back to if metadata doesn't have any
-	* @param $fallbackHeight int|null Height to fall back to if metadata doesn't have any
-	* @return Array
-	* @since 1.30
-	*/
-	public function getContentHeaders( $metadata, $fallbackWidth = null, $fallbackHeight = null ) {
-		if ( !isset( $metadata['xml'] ) ) {
-			return [];
-		}
-
-		$trees = $this->extractTreesFromMetadata( $metadata['xml'] );
-		$dimensionInfo = $this->getDimensionInfoFromMetaTree( $trees['MetaTree'] );
-
-		if ( !$dimensionInfo ) {
-			return [];
-		}
-
-		$pagesByDimensions = [];
-		$count = $dimensionInfo['pageCount'];
-
-		for ( $i = 1; $i <= $count; $i++ ) {
-			$dimensions = $dimensionInfo['dimensionsByPage'][ $i - 1 ];
-			$dimensionString = $dimensions['width'] . 'x' . $dimensions['height'];
-
-			if ( isset ( $pagesByDimensions[ $dimensionString ] ) ) {
-				$pagesByDimensions[ $dimensionString ][] = $i;
-			} else {
-				$pagesByDimensions[ $dimensionString ] = [ $i ];
-			}
-		}
-
-		$pageRangesByDimensions = MediaHandler::getPageRangesByDimensions( $pagesByDimensions );
-
-		return [ 'X-Content-Dimensions' => $pageRangesByDimensions ];
-	}
 }
