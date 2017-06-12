@@ -58,7 +58,6 @@
  *
  * temporary:       not stored in the database
  *      notificationtimestamp
- *      numberofWatchingusers
  */
 class RecentChange {
 	// Constants for the rc_source field.  Extensions may also have
@@ -82,7 +81,6 @@ class RecentChange {
 	 */
 	private $mPerformer = false;
 
-	public $numberofWatchingusers = 0; # Dummy to prevent error message in SpecialRecentChangesLinked
 	public $notificationtimestamp;
 
 	/**

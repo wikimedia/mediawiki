@@ -63,7 +63,6 @@ class RCCacheEntryFactory {
 		$cacheEntry->unpatrolled = ChangesList::isUnpatrolled( $baseRC, $user );
 
 		$cacheEntry->watched = $cacheEntry->mAttribs['rc_type'] == RC_LOG ? false : $watched;
-		$cacheEntry->numberofWatchingusers = $baseRC->numberofWatchingusers;
 
 		$cacheEntry->link = $this->buildCLink( $cacheEntry );
 		$cacheEntry->timestamp = $this->buildTimestamp( $cacheEntry );
