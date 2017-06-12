@@ -1,9 +1,9 @@
 <?php
 
-use MediaWiki\Http\HttpAcceptNegotiator;
+use Wikimedia\Http\HttpAcceptNegotiator;
 
 /**
- * @covers MediaWiki\Http\HttpAcceptNegotiator
+ * @covers Wikimedia\Http\HttpAcceptNegotiator
  *
  * @license GPL-2.0+
  * @author Daniel Kinzler
