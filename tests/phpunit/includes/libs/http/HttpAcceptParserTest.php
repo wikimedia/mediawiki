@@ -1,9 +1,9 @@
 <?php
 
-use MediaWiki\Http\HttpAcceptParser;
+use Wikimedia\Http\HttpAcceptParser;
 
 /**
- * @covers MediaWiki\Http\HttpAcceptParser
+ * @covers Wikimedia\Http\HttpAcceptParser
  *
  * @license GPL-2.0+
  * @author Daniel Kinzler

@@ -1,7 +1,7 @@
 <?php
 
-use MediaWiki\Http\HttpAcceptParser;
-use MediaWiki\Http\HttpAcceptNegotiator;
+use Wikimedia\Http\HttpAcceptParser;
+use Wikimedia\Http\HttpAcceptNegotiator;
 
 /**
  * Request handler implementing a data interface for mediawiki pages.

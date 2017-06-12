@@ -13,7 +13,7 @@
  * @author Thiemo Mättig
  */
 
-namespace MediaWiki\Http;
+namespace Wikimedia\Http;
 
 class HttpAcceptNegotiator {
 

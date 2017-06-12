@@ -8,7 +8,7 @@
  * @author Daniel Kinzler
  */
 
-namespace MediaWiki\Http;
+namespace Wikimedia\Http;
 
 class HttpAcceptParser {
 
