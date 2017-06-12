@@ -30,7 +30,7 @@ class SpecialPageDataTest extends SpecialPageTestBase {
 
 		$cases['Only title specified'] = [
 			'',
-			[ 'title' => 'Helsinki' ],
+			[ 'target' => 'Helsinki' ],
 			[],
 			'!!',
 			303,
@@ -54,7 +54,7 @@ class SpecialPageDataTest extends SpecialPageTestBase {
 
 		$cases['Accept only HTML'] = [
 			'',
-			[ 'title' => 'Helsinki' ],
+			[ 'target' => 'Helsinki' ],
 			[ 'Accept' => 'text/HTML' ],
 			'!!',
 			303,
@@ -64,7 +64,7 @@ class SpecialPageDataTest extends SpecialPageTestBase {
 		$cases['Accept only HTML with revid'] = [
 			'',
 			[
-				'title' => 'Helsinki',
+				'target' => 'Helsinki',
 				'revision' => '4242',
 			],
 			[ 'Accept' => 'text/HTML' ],

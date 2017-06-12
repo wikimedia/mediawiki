@@ -82,16 +82,16 @@ class PageDataRequestHandlerTest extends \MediaWikiTestCase {
 
 		$cases[] = [ '', [], [], '!!', 400 ];
 
-		$cases[] = [ '', [ 'title' => 'Helsinki' ], [], '!!', 303,  [ 'Location' => '!.+!' ] ];
+		$cases[] = [ '', [ 'target' => 'Helsinki' ], [], '!!', 303,  [ 'Location' => '!.+!' ] ];
 
 		$subpageCases = [];
 		foreach ( $cases as $c ) {
 			$case = $c;
 			$case[0] = '';
 
-			if ( isset( $case[1]['title'] ) ) {
-				$case[0] .= $case[1]['title'];
-				unset( $case[1]['title'] );
+			if ( isset( $case[1]['target'] ) ) {
+				$case[0] .= $case[1]['target'];
+				unset( $case[1]['target'] );
 			}
 
 			$subpageCases[] = $case;
@@ -101,7 +101,7 @@ class PageDataRequestHandlerTest extends \MediaWikiTestCase {
 
 		$cases[] = [
 			'',
-			[ 'title' => 'Helsinki' ],
+			[ 'target' => 'Helsinki' ],
 			[ 'Accept' => 'text/HTML' ],
 			'!!',
 			303,
@@ -111,7 +111,7 @@ class PageDataRequestHandlerTest extends \MediaWikiTestCase {
 		$cases[] = [
 			'',
 			[
-				'title' => 'Helsinki',
+				'target' => 'Helsinki',
 				'revision' => '4242',
 			],
 			[ 'Accept' => 'text/HTML' ],
