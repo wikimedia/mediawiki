@@ -1863,6 +1863,23 @@ abstract class ApiBase extends ContextSource {
 			throw new MWException( 'Successful status passed to ApiBase::dieStatus' );
 		}
 
+		// ApiUsageException needs a fatal status, but this method has
+		// historically accepted any non-good status. Convert it if necessary.
+		$status->setOK( false );
+		if ( !$status->getErrorsByType( 'error' ) ) {
+			$newStatus = Status::newGood();
+			foreach ( $status->getErrorsByType( 'warning' ) as $err ) {
+				call_user_func_array(
+					[ $newStatus, 'fatal' ],
+					array_merge( [ $err['message'] ], $err['params'] )
+				);
+			}
+			if ( !$newStatus->getErrorsByType( 'error' ) ) {
+				$newStatus->fatal( 'unknownerror-nocode' );
+			}
+			$status = $newStatus;
+		}
+
 		throw new ApiUsageException( $this, $status );
 	}
 
