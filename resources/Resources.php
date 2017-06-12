@@ -1058,7 +1058,9 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.hlist' => [
-		'styles' => 'resources/src/mediawiki/mediawiki.hlist.css',
+		'skinStyles' => [
+			'default' => 'resources/src/mediawiki/mediawiki.hlist.css',
+		],
 	],
 	'mediawiki.htmlform' => [
 		'scripts' => [
