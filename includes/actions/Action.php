@@ -34,7 +34,7 @@
  * format (protect, delete, move, etc), and the just-do-something format (watch, rollback,
  * patrol, etc). The FormAction and FormlessAction classes represent these two groups.
  */
-abstract class Action {
+abstract class Action implements MessageLocalizer {
 
 	/**
 	 * Page on which we're performing the action
@@ -253,7 +253,7 @@ abstract class Action {
 	 *
 	 * @return Message
 	 */
-	final public function msg() {
+	final public function msg( $key ) {
 		$params = func_get_args();
 		return call_user_func_array( [ $this->getContext(), 'msg' ], $params );
 	}
