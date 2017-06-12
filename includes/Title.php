@@ -253,6 +253,9 @@ class Title implements LinkTarget {
 	 * Create a new Title from text, such as what one would find in a link. De-
 	 * codes any HTML entities in the text.
 	 *
+	 * Title objects returned by this method are guaranteed to be valid, and
+	 * thus return true from the isValid() method.
+	 *
 	 * @param string|int|null $text The link text; spaces, prefixes, and an
 	 *   initial ':' indicating the main namespace are accepted.
 	 * @param int $defaultNamespace The namespace to use if none is specified
@@ -283,6 +286,9 @@ class Title implements LinkTarget {
 	 * rather than returning null.
 	 *
 	 * The exception subclasses encode detailed information about why the title is invalid.
+	 *
+	 * Title objects returned by this method are guaranteed to be valid, and
+	 * thus return true from the isValid() method.
 	 *
 	 * @see Title::newFromText
 	 *
@@ -500,10 +506,19 @@ class Title implements LinkTarget {
 
 	/**
 	 * Create a new Title from a namespace index and a DB key.
-	 * It's assumed that $ns and $title are *valid*, for instance when
-	 * they came directly from the database or a special page name.
-	 * For convenience, spaces are converted to underscores so that
-	 * eg user_text fields can be used directly.
+	 *
+	 * It's assumed that $ns and $title are safe, for instance when
+	 * they came directly from the database or a special page name,
+	 * not from user input.
+	 *
+	 * To validation is applied. For convenience, spaces are normalized
+	 * to underscores, so that e.g. user_text fields can be used directly.
+	 *
+	 * @note This method may return Title objects that are "invalid"
+	 * according to the isValid() method. This is usually caused by
+	 * configuration changes: e.g. a namespace that was once defined is
+	 * no longer configured, or a character that was once allowed in
+	 * titles is now forbidden.
 	 *
 	 * @param int $ns The namespace of the article
 	 * @param string $title The unprefixed database key form
@@ -529,6 +544,10 @@ class Title implements LinkTarget {
 	 * The parameters will be checked for validity, which is a bit slower
 	 * than makeTitle() but safer for user-provided data.
 	 *
+	 * Title objects returned by makeTitleSafe() are guaranteed to be valid,
+	 * that is, they return true from the isValid() method. If no valid Title
+	 * can be constructed from the input, this method returns null.
+	 *
 	 * @param int $ns The namespace of the article
 	 * @param string $title Database key form
 	 * @param string $fragment The link fragment (after the "#")
@@ -536,6 +555,9 @@ class Title implements LinkTarget {
 	 * @return Title|null The new object, or null on an error
 	 */
 	public static function makeTitleSafe( $ns, $title, $fragment = '', $interwiki = '' ) {
+		// NOTE: ideally, this would just call makeTitle() and then isValid(),
+		// but presently, that means more overhead on a potential performance hotspot.
+
 		if ( !MWNamespace::exists( $ns ) ) {
 			return null;
 		}
@@ -772,6 +794,36 @@ class Title implements LinkTarget {
 			return strcmp( $a->getText(), $b->getText() );
 		} else {
 			return $a->getNamespace() - $b->getNamespace();
+		}
+	}
+
+	/**
+	 * Returns true if the title is valid, false if it is invalid.
+	 *
+	 * Valid titles can be round-tripped via makeTitleSafe() and newFromText().
+	 * Invalid titles may get returned from makeTitle(), and it may be useful to
+	 * allow them to exist, e.g. in order to process log entries about pages in
+	 * namespaces that belong to extensions that are no longer installed.
+	 *
+	 * @note that this method is relatively expensive. When constructing Title
+	 * objects that need to be valid, use an instantiator method that is guaranteed
+	 * to return valid titles, such as makeTitleSafe() or newFromText().
+	 *
+	 * @return bool
+	 */
+	public function isValid() {
+		$ns = $this->getNamespace();
+
+		if ( !MWNamespace::exists( $ns ) ) {
+			return false;
+		}
+
+		try {
+			$parser = MediaWikiServices::getInstance()->getTitleParser();
+			$parser->parseTitle( $this->getDBkey(), $ns );
+			return true;
+		} catch ( MalformedTitleException $ex ) {
+			return false;
 		}
 	}
 
