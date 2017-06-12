@@ -1,0 +1,155 @@
+<?php
+
+/**
+ * @covers SpecialPageData
+ *
+ * @group Database
+ *
+ * @group SpecialPage
+ *
+ * @license GPL-2.0+
+ * @author Daniel Kinzler
+ */
+class SpecialPageDataTest extends SpecialPageTestBase {
+
+	protected function newSpecialPage() {
+		$page = new SpecialPageData();
+
+		// why is this needed?
+		$page->getContext()->setOutput( new OutputPage( $page->getContext() ) );
+
+		$page->setRequestHandler( new PageDataRequestHandler() );
+
+		return $page;
+	}
+
+	public function provideExecute() {
+		$cases = [];
+
+		$cases['Empty request'] = [ '', [], [], '!!', 200 ];
+
+		$cases['Only title specified'] = [
+			'',
+			[ 'title' => 'Helsinki' ],
+			[],
+			'!!',
+			303,
+			[ 'Location' => '!.+!' ]
+		];
+
+		$subpageCases = [];
+		foreach ( $cases as $c ) {
+			$case = $c;
+			$case[0] = '';
+
+			if ( isset( $case[1]['title'] ) ) {
+				$case[0] .= $case[1]['title'];
+				unset( $case[1]['title'] );
+			}
+
+			$subpageCases[] = $case;
+		}
+
+		$cases = array_merge( $cases, $subpageCases );
+
+		$cases['Accept only HTML'] = [
+			'',
+			[ 'title' => 'Helsinki' ],
+			[ 'Accept' => 'text/HTML' ],
+			'!!',
+			303,
+			[ 'Location' => '!Helsinki$!' ]
+		];
+
+		$cases['Accept only HTML with revid'] = [
+			'',
+			[
+				'title' => 'Helsinki',
+				'revision' => '4242',
+			],
+			[ 'Accept' => 'text/HTML' ],
+			'!!',
+			303,
+			[ 'Location' => '!Helsinki(\?|&)oldid=4242!' ]
+		];
+
+		$cases['Nothing specified'] = [
+			'Helsinki',
+			[],
+			[],
+			'!!',
+			303,
+			[ 'Location' => '!Helsinki&action=raw!' ]
+		];
+
+		$cases['Invalid Accept header'] = [
+			'Helsinki',
+			[],
+			[ 'Accept' => 'text/foobar' ],
+			'!!',
+			406,
+			[],
+		];
+
+		return $cases;
+	}
+
+	/**
+	 * @dataProvider provideExecute
+	 *
+	 * @param string $subpage The subpage to request (or '')
+	 * @param array  $params  Request parameters
+	 * @param array  $headers  Request headers
+	 * @param string $expRegExp   Regex to match the output against.
+	 * @param int    $expCode     Expected HTTP status code
+	 * @param array  $expHeaders  Expected HTTP response headers
+	 */
+	public function testExecute(
+		$subpage,
+		array $params,
+		array $headers,
+		$expRegExp,
+		$expCode = 200,
+		array $expHeaders = []
+	) {
+		$request = new FauxRequest( $params );
+		$request->response()->header( 'Status: 200 OK', true, 200 ); // init/reset
+
+		foreach ( $headers as $name => $value ) {
+			$request->setHeader( strtoupper( $name ), $value );
+		}
+
+		try {
+			/* @var FauxResponse $response */
+			list( $output, $response ) = $this->executeSpecialPage( $subpage, $request );
+
+			$this->assertEquals( $expCode, $response->getStatusCode(), "status code" );
+			$this->assertRegExp( $expRegExp, $output, "output" );
+
+			foreach ( $expHeaders as $name => $exp ) {
+				$value = $response->getHeader( $name );
+				$this->assertNotNull( $value, "header: $name" );
+				$this->assertInternalType( 'string', $value, "header: $name" );
+				$this->assertRegExp( $exp, $value, "header: $name" );
+			}
+		} catch ( HttpError $e ) {
+			$this->assertEquals( $expCode, $e->getStatusCode(), "status code" );
+			$this->assertRegExp( $expRegExp, $e->getHTML(), "error output" );
+		}
+	}
+
+	public function testSpecialPageWithoutParameters() {
+		$this->setContentLang( Language::factory( 'en' ) );
+		$request = new FauxRequest();
+		$request->response()->header( 'Status: 200 OK', true, 200 ); // init/reset
+
+		list( $output, ) = $this->executeSpecialPage( '', $request );
+
+		$this->assertContains(
+			"Content negotiation applies based on you client's Accept header.",
+			$output,
+			"output"
+		);
+	}
+
+}
