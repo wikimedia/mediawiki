@@ -44,11 +44,13 @@ class ApiDelete extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		$pageObj = $this->getTitleOrPageId( $params, 'fromdbmaster' );
-		if ( !$pageObj->exists() ) {
+		$titleObj = $pageObj->getTitle();
+		if ( !$pageObj->exists() &&
+			!( $titleObj->getNamespace() == NS_FILE && self::canDeleteFile( $pageObj->getFile() ) )
+		) {
 			$this->dieWithError( 'apierror-missingtitle' );
 		}
 
-		$titleObj = $pageObj->getTitle();
 		$reason = $params['reason'];
 		$user = $this->getUser();
 
@@ -129,6 +131,14 @@ class ApiDelete extends ApiBase {
 	}
 
 	/**
+	 * @param File $file
+	 * @return bool
+	 */
+	protected static function canDeleteFile( File $file ) {
+		return $file->exists() && $file->isLocal() && !$file->getRedirected();
+	}
+
+	/**
 	 * @param Page $page Object to work on
 	 * @param User $user User doing the action
 	 * @param string $oldimage Archive name
@@ -143,7 +153,7 @@ class ApiDelete extends ApiBase {
 		$title = $page->getTitle();
 
 		$file = $page->getFile();
-		if ( !$file->exists() || !$file->isLocal() || $file->getRedirected() ) {
+		if ( !self::canDeleteFile( $file ) ) {
 			return self::delete( $page, $user, $reason, $tags );
 		}
 
