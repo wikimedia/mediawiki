@@ -181,10 +181,12 @@ abstract class ContextSource implements IContextSource {
 	 * Parameters are the same as wfMessage()
 	 *
 	 * @since 1.18
+	 * @param string|string[]|MessageSpecifier $key Message key, or array of keys,
+	 *   or a MessageSpecifier.
 	 * @param mixed ...
 	 * @return Message
 	 */
-	public function msg( /* $args */ ) {
+	public function msg( $key /* $args */ ) {
 		$args = func_get_args();
 
 		return call_user_func_array( [ $this->getContext(), 'msg' ], $args );
