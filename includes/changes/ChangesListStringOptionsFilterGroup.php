@@ -185,8 +185,7 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 	 * @param string $value URL parameter value
 	 */
 	public function modifyQuery( IDatabase $dbr, ChangesListSpecialPage $specialPage,
-		&$tables, &$fields, &$conds, &$query_options, &$join_conds, $value
-	) {
+		&$tables, &$fields, &$conds, &$query_options, &$join_conds, $value ) {
 		$allowedFilterNames = [];
 		foreach ( $this->filters as $filter ) {
 			$allowedFilterNames[] = $filter->getName();

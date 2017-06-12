@@ -138,8 +138,9 @@ class OldChangesList extends ChangesList {
 		$this->insertExtra( $html, $rc, $classes );
 
 		# How many users watch this page
-		if ( $rc->numberofWatchingusers > 0 ) {
-			$html .= ' ' . $this->numberofWatchingusers( $rc->numberofWatchingusers );
+		$numberofWatchingusers = $this->numberofWatchingusers( $rc );
+		if ( $numberofWatchingusers !== '' ) {
+			$html .= ' ' . $numberofWatchingusers;
 		}
 
 		return $html;

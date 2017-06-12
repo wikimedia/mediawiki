@@ -41,6 +41,9 @@ class ChangesList extends ContextSource {
 	protected $rclistOpen;
 	protected $rcMoveIndex;
 
+	/** @var WatchedItemStore */
+	protected $watchedItemStore;
+
 	/** @var BagOStuff */
 	protected $watchMsgCache;
 
@@ -68,10 +71,16 @@ class ChangesList extends ContextSource {
 			$this->setContext( $obj->getContext() );
 			$this->skin = $obj;
 		}
-		$this->preCacheMessages();
-		$this->watchMsgCache = new HashBagOStuff( [ 'maxKeys' => 50 ] );
-		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$this->filterGroups = $filterGroups;
+
+		$this->preCacheMessages();
+		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$this->showWatcherCount = $this->getConfig()->get( 'RCShowWatchingUsers' ) &&
+			$this->getUser()->getOption( 'shownumberswatching' );
+		if ( $this->showWatcherCount ) {
+			$this->watchMsgCache = new HashBagOStuff( [ 'maxKeys' => 50 ] );
+			$this->watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
+		}
 	}
 
 	/**
@@ -250,6 +259,13 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
+	 * Add any ResourceLoader modules necessary for rendering the output.
+	 */
+	public function addModules() {
+		$this->getOutput()->addModuleStyles( 'mediawiki.special.changeslist' );
+	}
+
+	/**
 	 * Returns text for the start of the tabular part of RC
 	 * @return string
 	 */
@@ -259,7 +275,6 @@ class ChangesList extends ContextSource {
 		$this->rcCacheIndex = 0;
 		$this->lastdate = '';
 		$this->rclistOpen = false;
-		$this->getOutput()->addModuleStyles( 'mediawiki.special.changeslist' );
 
 		return '<div class="mw-changeslist">';
 	}
@@ -563,16 +578,24 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * Returns the string which indicates the number of watching users
-	 * @param int $count Number of user watching a page
-	 * @return string
+	 * @param RecentChange $rc
+	 * @return string Message escaped for HTML output, or empty string
 	 */
-	protected function numberofWatchingusers( $count ) {
-		if ( $count <= 0 ) {
+	protected function numberofWatchingusers( RecentChange $rc ) {
+		$ns = $rc->getAttribute( 'rc_namespace' );
+		$title = $rc->getAttribute( 'rc_title' );
+		if ( !$this->showWatcherCount || $ns < 0 ) {
 			return '';
 		}
+
 		$cache = $this->watchMsgCache;
-		return $cache->getWithSetCallback( $count, $cache::TTL_INDEFINITE,
-			function () use ( $count ) {
+		return $cache->getWithSetCallback( "$ns:$title", $cache::TTL_INDEFINITE,
+			function () use ( $ns, $title ) {
+				$titleValue = new TitleValue( (int)$ns, $title );
+				$count = $this->watchedItemStore->countWatchers( $titleValue );
+				if ( $count === 0 ) {
+					return '';
+				}
 				return $this->msg( 'number_of_watching_users_RCview' )
 					->numParams( $count )->escaped();
 			}
