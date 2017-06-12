@@ -5,7 +5,6 @@ namespace MediaWiki\Tidy;
 use RemexHtml\HTMLData;
 use RemexHtml\Serializer\HtmlFormatter;
 use RemexHtml\Serializer\SerializerNode;
-use RemexHtml\Tokenizer\PlainAttributes;
 
 /**
  * @internal

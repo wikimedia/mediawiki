@@ -23,7 +23,6 @@ namespace MediaWiki\Logger\Monolog;
 use AvroIODatumWriter;
 use AvroIOBinaryEncoder;
 use AvroIOTypeException;
-use AvroNamedSchemata;
 use AvroSchema;
 use AvroStringIO;
 use AvroValidator;
