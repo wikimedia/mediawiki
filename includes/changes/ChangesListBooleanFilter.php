@@ -176,14 +176,14 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	 * in effect (taking into account the default).
 	 *
 	 * @param IDatabase $dbr Database, for addQuotes, makeList, and similar
-	 * @param ChangesListSpecialPage $specialPage Current special page
+	 * @param ChangesListSpecialPage $pager Current pager
 	 * @param array &$tables Array of tables; see IDatabase::select $table
 	 * @param array &$fields Array of fields; see IDatabase::select $vars
 	 * @param array &$conds Array of conditions; see IDatabase::select $conds
 	 * @param array &$query_options Array of query options; see IDatabase::select $options
 	 * @param array &$join_conds Array of join conditions; see IDatabase::select $join_conds
 	 */
-	public function modifyQuery( IDatabase $dbr, ChangesListSpecialPage $specialPage,
+	public function modifyQuery( IDatabase $dbr, ChangesListPager $pager,
 		&$tables, &$fields, &$conds, &$query_options, &$join_conds ) {
 
 		if ( $this->queryCallable === null ) {
@@ -193,8 +193,8 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 		call_user_func_array(
 			$this->queryCallable,
 			[
-				get_class( $specialPage ),
-				$specialPage->getContext(),
+				get_class( $pager ),
+				$pager->getContext(),
 				$dbr,
 				&$tables,
 				&$fields,
