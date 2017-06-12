@@ -132,6 +132,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 	// @codingStandardsIgnoreEnd
 
+	public function createPager( FormOptions $opts ) {
+		return new RecentChangesPager( $this->getContext(), $opts, $this->filterGroups );
+	}
+
 	/**
 	 * Main execution point
 	 *
@@ -360,107 +364,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 	public function validateOptions( FormOptions $opts ) {
 		$opts->validateIntBounds( 'limit', 0, 5000 );
-		parent::validateOptions( $opts );
+		return parent::validateOptions( $opts );
 	}
 
-	/**
-	 * @inheritdoc
-	 */
-	protected function buildQuery( &$tables, &$fields, &$conds,
-		&$query_options, &$join_conds, FormOptions $opts ) {
-
-		$dbr = $this->getDB();
-		parent::buildQuery( $tables, $fields, $conds,
-			$query_options, $join_conds, $opts );
-
-		// Calculate cutoff
-		$cutoff_unixtime = time() - ( $opts['days'] * 86400 );
-		$cutoff_unixtime = $cutoff_unixtime - ( $cutoff_unixtime % 86400 );
-		$cutoff = $dbr->timestamp( $cutoff_unixtime );
-
-		$fromValid = preg_match( '/^[0-9]{14}$/', $opts['from'] );
-		if ( $fromValid && $opts['from'] > wfTimestamp( TS_MW, $cutoff ) ) {
-			$cutoff = $dbr->timestamp( $opts['from'] );
-		} else {
-			$opts->reset( 'from' );
-		}
-
-		$conds[] = 'rc_timestamp >= ' . $dbr->addQuotes( $cutoff );
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	protected function doMainQuery( $tables, $fields, $conds, $query_options,
-		$join_conds, FormOptions $opts ) {
-
-		$dbr = $this->getDB();
-		$user = $this->getUser();
-
-		$tables[] = 'recentchanges';
-		$fields = array_merge( RecentChange::selectFields(), $fields );
-
-		// JOIN on watchlist for users
-		if ( $user->isLoggedIn() && $user->isAllowed( 'viewmywatchlist' ) ) {
-			$tables[] = 'watchlist';
-			$fields[] = 'wl_user';
-			$fields[] = 'wl_notificationtimestamp';
-			$join_conds['watchlist'] = [ 'LEFT JOIN', [
-				'wl_user' => $user->getId(),
-				'wl_title=rc_title',
-				'wl_namespace=rc_namespace'
-			] ];
-		}
-
-		// JOIN on page, used for 'last revision' filter highlight
-		$tables[] = 'page';
-		$fields[] = 'page_latest';
-		$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
-
-		ChangeTags::modifyDisplayQuery(
-			$tables,
-			$fields,
-			$conds,
-			$join_conds,
-			$query_options,
-			$opts['tagfilter']
-		);
-
-		if ( !$this->runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds,
-			$opts )
-		) {
-			return false;
-		}
-
-		if ( $this->areFiltersInConflict() ) {
-			return false;
-		}
-
-		// array_merge() is used intentionally here so that hooks can, should
-		// they so desire, override the ORDER BY / LIMIT condition(s); prior to
-		// MediaWiki 1.26 this used to use the plus operator instead, which meant
-		// that extensions weren't able to change these conditions
-		$query_options = array_merge( [
-			'ORDER BY' => 'rc_timestamp DESC',
-			'LIMIT' => $opts['limit'] ], $query_options );
-		$rows = $dbr->select(
-			$tables,
-			$fields,
-			// rc_new is not an ENUM, but adding a redundant rc_new IN (0,1) gives mysql enough
-			// knowledge to use an index merge if it wants (it may use some other index though).
-			$conds + [ 'rc_new' => [ 0, 1 ] ],
-			__METHOD__,
-			$query_options,
-			$join_conds
-		);
-
-		// Build the final data
-		if ( $this->getConfig()->get( 'AllowCategorizedRecentChanges' ) ) {
-			$this->filterByCategories( $rows, $opts );
-		}
-
-		return $rows;
-	}
 
 	protected function runMainQueryHook( &$tables, &$fields, &$conds,
 		&$query_options, &$join_conds, $opts
@@ -498,81 +404,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		}
 
 		return $query;
-	}
-
-	/**
-	 * Build and output the actual changes list.
-	 *
-	 * @param ResultWrapper $rows Database rows
-	 * @param FormOptions $opts
-	 */
-	public function outputChangesList( $rows, $opts ) {
-		$limit = $opts['limit'];
-
-		$showWatcherCount = $this->getConfig()->get( 'RCShowWatchingUsers' )
-			&& $this->getUser()->getOption( 'shownumberswatching' );
-		$watcherCache = [];
-
-		$dbr = $this->getDB();
-
-		$counter = 1;
-		$list = ChangesList::newFromContext( $this->getContext(), $this->filterGroups );
-		$list->initChangesListRows( $rows );
-
-		$userShowHiddenCats = $this->getUser()->getBoolOption( 'showhiddencats' );
-		$rclistOutput = $list->beginRecentChangesList();
-		foreach ( $rows as $obj ) {
-			if ( $limit == 0 ) {
-				break;
-			}
-			$rc = RecentChange::newFromRow( $obj );
-
-			# Skip CatWatch entries for hidden cats based on user preference
-			if (
-				$rc->getAttribute( 'rc_type' ) == RC_CATEGORIZE &&
-				!$userShowHiddenCats &&
-				$rc->getParam( 'hidden-cat' )
-			) {
-				continue;
-			}
-
-			$rc->counter = $counter++;
-			# Check if the page has been updated since the last visit
-			if ( $this->getConfig()->get( 'ShowUpdatedMarker' )
-				&& !empty( $obj->wl_notificationtimestamp )
-			) {
-				$rc->notificationtimestamp = ( $obj->rc_timestamp >= $obj->wl_notificationtimestamp );
-			} else {
-				$rc->notificationtimestamp = false; // Default
-			}
-			# Check the number of users watching the page
-			$rc->numberofWatchingusers = 0; // Default
-			if ( $showWatcherCount && $obj->rc_namespace >= 0 ) {
-				if ( !isset( $watcherCache[$obj->rc_namespace][$obj->rc_title] ) ) {
-					$watcherCache[$obj->rc_namespace][$obj->rc_title] =
-						MediaWikiServices::getInstance()->getWatchedItemStore()->countWatchers(
-							new TitleValue( (int)$obj->rc_namespace, $obj->rc_title )
-						);
-				}
-				$rc->numberofWatchingusers = $watcherCache[$obj->rc_namespace][$obj->rc_title];
-			}
-
-			$changeLine = $list->recentChangesLine( $rc, !empty( $obj->wl_user ), $counter );
-			if ( $changeLine !== false ) {
-				$rclistOutput .= $changeLine;
-				--$limit;
-			}
-		}
-		$rclistOutput .= $list->endRecentChangesList();
-
-		if ( $rows->numRows() === 0 ) {
-			$this->outputNoResults();
-			if ( !$this->including() ) {
-				$this->getOutput()->setStatusCode( 404 );
-			}
-		} else {
-			$this->getOutput()->addHTML( $rclistOutput );
-		}
 	}
 
 	/**

@@ -176,7 +176,7 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 	 * one or more valid and allowed filters were selected.
 	 *
 	 * @param IDatabase $dbr Database, for addQuotes, makeList, and similar
-	 * @param ChangesListSpecialPage $specialPage Current special page
+	 * @param ChangesListPager $pager Current pager
 	 * @param array &$tables Array of tables; see IDatabase::select $table
 	 * @param array &$fields Array of fields; see IDatabase::select $vars
 	 * @param array &$conds Array of conditions; see IDatabase::select $conds
@@ -184,7 +184,7 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 	 * @param array &$join_conds Array of join conditions; see IDatabase::select $join_conds
 	 * @param string $value URL parameter value
 	 */
-	public function modifyQuery( IDatabase $dbr, ChangesListSpecialPage $specialPage,
+	public function modifyQuery( IDatabase $dbr, ChangesListPager $pager,
 		&$tables, &$fields, &$conds, &$query_options, &$join_conds, $value ) {
 
 		$allowedFilterNames = [];
@@ -218,8 +218,8 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 		call_user_func_array(
 			$this->queryCallable,
 			[
-				get_class( $specialPage ),
-				$specialPage->getContext(),
+				get_class( $pager ),
+				$pager->getContext(),
 				$dbr,
 				&$tables,
 				&$fields,
