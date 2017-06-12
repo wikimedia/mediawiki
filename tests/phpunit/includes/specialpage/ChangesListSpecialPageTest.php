@@ -864,7 +864,9 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 		$this->assertEquals(
 			$expectedConflicts,
-			$this->changesListSpecialPage->areFiltersInConflict()
+			$this->changesListSpecialPage->areFiltersInConflict(
+				$this->changesListSpecialPage->getOptions()
+			)
 		);
 	}
 

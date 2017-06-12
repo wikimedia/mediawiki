@@ -40,6 +40,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		return true;
 	}
 
+	public function createPager( FormOptions $opts ) {
+		return new WatchlistPager( $this->getContext(), $opts, $this->filterGroups );
+	}
+
 	/**
 	 * Main execution point
 	 *
@@ -167,6 +171,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$opts = parent::getDefaultOptions();
 		$user = $this->getUser();
 
+		$opts->add( 'limit', $user->getIntOption( 'wllimit' ) );
 		$opts->add( 'days', $user->getOption( 'watchlistdays' ), FormOptions::FLOAT );
 		$opts->add( 'extended', $user->getBoolOption( 'extendwatchlist' ) );
 
@@ -407,12 +412,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$user = $this->getUser();
 		$output = $this->getOutput();
 
-		# Show a message about replica DB lag, if applicable
-		$lag = wfGetLB()->safeGetLag( $dbr );
-		if ( $lag > 0 ) {
-			$output->showLagWarning( $lag );
-		}
-
 		# If no rows to display, show message before try to render the list
 		if ( $rows->numRows() == 0 ) {
 			$output->wrapWikiMsg(
@@ -583,6 +582,13 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$this->getOutput()->addHTML( $form );
 
 		$this->setBottomText( $opts );
+
+		# Show a message about replica DB lag, if applicable
+		$dbr = $this->getDB();
+		$lag = wfGetLB()->safeGetLag( $dbr );
+		if ( $lag > 0 ) {
+			$out->showLagWarning( $lag );
+		}
 	}
 
 	function cutoffselector( $options ) {

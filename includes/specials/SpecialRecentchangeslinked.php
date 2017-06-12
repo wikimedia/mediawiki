@@ -28,10 +28,14 @@
  */
 class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	/** @var bool|Title */
-	protected $rclTargetTitle;
+	protected $rclTargetTitle = false;
 
 	function __construct() {
 		parent::__construct( 'Recentchangeslinked' );
+	}
+
+	public function createPager( FormOptions $opts ) {
+		return new RecentChangesLinkedPager( $this->getContext(), $opts, $this->filterGroups, $this->getTargetTitle() );
 	}
 
 	public function getDefaultOptions() {
@@ -46,6 +50,31 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$opts['target'] = $par;
 	}
 
+	public function validateOptions( FormOptions $opts ) {
+		if ( isset( $opts['target'] ) && $opts['target'] !== '' ) {
+			$this->rclTargetTitle = Title::newFromText( $opts['target'] );
+		}
+		if ( !$this->rclTargetTitle || $this->rclTargetTitle->isExternal() ) {
+			$this->getOutput()->addHTML( '<div class="errorbox">' . $this->msg( 'allpagesbadtitle' )
+					->parse() . '</div>' );
+
+			return false;
+		}
+
+		if (
+			!$opts['showlinkedto'] &&
+			!$this->rclTargetTitle->exists() &&
+			$this->rclTargetTitle->getNamespace() !== NS_CATEGORY
+		) {
+			// There are no outgoing links from a nonexistent page
+			// We do allow this for categories, because of special handling for the
+			// category&&!showlinkedto case in RecentChangesLinkedPager::reallyDoQuery()
+			return false;
+		}
+
+		return parent::validateOptions( $opts );
+	}
+
 	/**
 	 * @inheritdoc
 	 */
@@ -55,20 +84,6 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$target = $opts['target'];
 		$showlinkedto = $opts['showlinkedto'];
 		$limit = $opts['limit'];
-
-		if ( $target === '' ) {
-			return false;
-		}
-		$outputPage = $this->getOutput();
-		$title = Title::newFromText( $target );
-		if ( !$title || $title->isExternal() ) {
-			$outputPage->addHTML( '<div class="errorbox">' . $this->msg( 'allpagesbadtitle' )
-					->parse() . '</div>' );
-
-			return false;
-		}
-
-		$outputPage->setPageTitle( $this->msg( 'recentchangeslinked-title', $title->getPrefixedText() ) );
 
 		/*
 		 * Ordinary links are in the pagelinks table, while transclusions are
@@ -228,6 +243,11 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		if ( $target ) {
 			$this->getOutput()->addBacklinkSubtitle( $target );
 			$this->getSkin()->setRelevantTitle( $target );
+			$this->getOutput()->setPageTitle(
+				$this->msg( 'recentchangeslinked-title' )
+					->params( $target->getPrefixedText() )
+					->text()
+			);
 		}
 	}
 
@@ -255,15 +275,8 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	 * @return Title
 	 */
 	function getTargetTitle() {
-		if ( $this->rclTargetTitle === null ) {
-			$opts = $this->getOptions();
-			if ( isset( $opts['target'] ) && $opts['target'] !== '' ) {
-				$this->rclTargetTitle = Title::newFromText( $opts['target'] );
-			} else {
-				$this->rclTargetTitle = false;
-			}
-		}
-
+		// HACK this causes validateOptions() to run which sets $this->rclTargetTitle
+		$this->getOptions();
 		return $this->rclTargetTitle;
 	}
 
