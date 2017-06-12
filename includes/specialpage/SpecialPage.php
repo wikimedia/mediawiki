@@ -743,7 +743,7 @@ class SpecialPage {
 	 * @return Message
 	 * @see wfMessage
 	 */
-	public function msg( /* $args */ ) {
+	public function msg( $key /* $args */ ) {
 		$message = call_user_func_array(
 			[ $this->getContext(), 'msg' ],
 			func_get_args()
