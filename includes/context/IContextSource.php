@@ -146,10 +146,12 @@ interface IContextSource {
 	/**
 	 * Get a Message object with context set.  See wfMessage for parameters.
 	 *
+	 * @param string|string[]|MessageSpecifier $key Message key, or array of keys,
+	 *   or a MessageSpecifier.
 	 * @param mixed ...
 	 * @return Message
 	 */
-	public function msg();
+	public function msg( $key );
 
 	/**
 	 * Export the resolved user IP, HTTP headers, user ID, and session ID.

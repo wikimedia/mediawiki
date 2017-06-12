@@ -253,7 +253,7 @@ abstract class Action {
 	 *
 	 * @return Message
 	 */
-	final public function msg() {
+	final public function msg( $key ) {
 		$params = func_get_args();
 		return call_user_func_array( [ $this->getContext(), 'msg' ], $params );
 	}
