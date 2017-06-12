@@ -191,6 +191,10 @@ class OOUIHTMLForm extends HTMLForm {
 	 * @return string
 	 */
 	public function getErrorsOrWarnings( $elements, $elementsType ) {
+		if ( $elements === '' ) {
+			return '';
+		}
+
 		if ( !in_array( $elementsType, [ 'error', 'warning' ], true ) ) {
 			throw new DomainException( $elementsType . ' is not a valid type.' );
 		}
