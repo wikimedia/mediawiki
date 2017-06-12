@@ -66,24 +66,21 @@ class EnhancedChangesList extends ChangesList {
 		$this->templateParser = new TemplateParser();
 	}
 
-	/**
-	 * Add the JavaScript file for enhanced changeslist
-	 * @return string
-	 */
+	public function addModules() {
+		parent::addModules();
+		$this->getOutput()->addModuleStyles( 'mediawiki.special.changeslist.enhanced' );
+		$this->getOutput()->addModules( [
+			'jquery.makeCollapsible',
+			'mediawiki.icon',
+		] );
+	}
+
 	public function beginRecentChangesList() {
 		$this->rc_cache = [];
 		$this->rcMoveIndex = 0;
 		$this->rcCacheIndex = 0;
 		$this->lastdate = '';
 		$this->rclistOpen = false;
-		$this->getOutput()->addModuleStyles( [
-			'mediawiki.special.changeslist',
-			'mediawiki.special.changeslist.enhanced',
-		] );
-		$this->getOutput()->addModules( [
-			'jquery.makeCollapsible',
-			'mediawiki.icon',
-		] );
 
 		return '<div class="mw-changeslist">';
 	}
@@ -323,7 +320,7 @@ class EnhancedChangesList extends ChangesList {
 			$charDifference = $this->formatCharacterDifference( $block[$first], $block[$last] );
 		}
 
-		$numberofWatchingusers = $this->numberofWatchingusers( $block[0]->numberofWatchingusers );
+		$numberofWatchingusers = $this->numberofWatchingusers( $block[0] );
 		$usersList = $this->msg( 'brackets' )->rawParams(
 			implode( $this->message['semicolon-separator'], $users )
 		)->escaped();
@@ -671,7 +668,7 @@ class EnhancedChangesList extends ChangesList {
 		$data['tags'] = $this->getTags( $rcObj, $classes );
 
 		# Show how many people are watching this if enabled
-		$data['watchingUsers'] = $this->numberofWatchingusers( $rcObj->numberofWatchingusers );
+		$data['watchingUsers'] = $this->numberofWatchingusers( $rcObj );
 
 		$data['attribs'] = array_merge( $this->getDataAttributes( $rcObj ), [ 'class' => $classes ] );
 

@@ -184,8 +184,7 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	 * @param array &$join_conds Array of join conditions; see IDatabase::select $join_conds
 	 */
 	public function modifyQuery( IDatabase $dbr, ChangesListSpecialPage $specialPage,
-		&$tables, &$fields, &$conds, &$query_options, &$join_conds
-	) {
+		&$tables, &$fields, &$conds, &$query_options, &$join_conds ) {
 		if ( $this->queryCallable === null ) {
 			return;
 		}
