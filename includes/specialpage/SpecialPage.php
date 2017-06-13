@@ -783,6 +783,10 @@ class SpecialPage {
 	 * @since 1.25
 	 */
 	public function addHelpLink( $to, $overrideBaseUrl = false ) {
+		if ( $this->including() ) {
+			return;
+		}
+
 		global $wgContLang;
 		$msg = $this->msg( $wgContLang->lc( $this->getName() ) . '-helppage' );
 
