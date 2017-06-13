@@ -20,26 +20,36 @@ class PageDataRequestHandler {
 	 * This does not check whether the request is valid and will actually produce a successful
 	 * response.
 	 *
-	 * @param string|null $title Page title
+	 * @param string|null $subPage
 	 * @param WebRequest $request
 	 *
 	 * @return bool
 	 * @throws HttpError
 	 */
-	public function canHandleRequest( $title, WebRequest $request ) {
-		if ( $title === '' || $title === null ) {
+	public function canHandleRequest( $subPage, WebRequest $request ) {
+		if ( $subPage === '' || $subPage === null ) {
 			if ( $request->getText( 'target', '' ) === '' ) {
 				return false;
+			} else {
+				return true;
 			}
 		}
 
-		return true;
+		$parts = explode( '/', $subPage, 2 );
+		if ( $parts !== 2 ) {
+			$slot = $parts[0];
+			if ( $slot === 'main' or $slot === '' ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
 	 * Main method for handling requests.
 	 *
-	 * @param string $title Page title
+	 * @param string $subPage
 	 * @param WebRequest $request The request parameters. Known parameters are:
 	 *        - title: the page title
 	 *        - format: the format
@@ -51,13 +61,23 @@ class PageDataRequestHandler {
 	 *
 	 * @throws HttpError
 	 */
-	public function handleRequest( $title, WebRequest $request, OutputPage $output ) {
+	public function handleRequest( $subPage, WebRequest $request, OutputPage $output ) {
 		// No matter what: The response is always public
 		$output->getRequest()->response()->header( 'Access-Control-Allow-Origin: *' );
 
+		if ( !$this->canHandleRequest( $subPage, $request ) ) {
+			throw new HttpError( 400, wfMessage( 'pagedata-bad-title', $subPage ) );
+		}
+
 		$revision = 0;
 
-		$title = $request->getText( 'target', $title );
+		$parts = explode( '/', $subPage, 2 );
+		if ( $subPage !== '' ) {
+			$title = $parts[1];
+		} else {
+			$title = $request->getText( 'target', '' );
+		}
+
 		$revision = $request->getInt( 'oldid', $revision );
 		$revision = $request->getInt( 'revision', $revision );
 

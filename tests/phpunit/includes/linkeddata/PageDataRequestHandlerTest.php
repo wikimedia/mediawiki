@@ -87,7 +87,7 @@ class PageDataRequestHandlerTest extends \MediaWikiTestCase {
 		$subpageCases = [];
 		foreach ( $cases as $c ) {
 			$case = $c;
-			$case[0] = '';
+			$case[0] = 'main/';
 
 			if ( isset( $case[1]['target'] ) ) {
 				$case[0] .= $case[1]['target'];
@@ -121,7 +121,7 @@ class PageDataRequestHandlerTest extends \MediaWikiTestCase {
 		];
 
 		$cases[] = [
-			'Helsinki',
+			'/Helsinki',
 			[],
 			[],
 			'!!',
@@ -131,7 +131,7 @@ class PageDataRequestHandlerTest extends \MediaWikiTestCase {
 
 		// #31: /Q5 with "Accept: text/foobar" triggers a 406
 		$cases[] = [
-			'Helsinki',
+			'main/Helsinki',
 			[],
 			[ 'Accept' => 'text/foobar' ],
 			'!!',
@@ -140,12 +140,30 @@ class PageDataRequestHandlerTest extends \MediaWikiTestCase {
 		];
 
 		$cases[] = [
-			'Helsinki',
+			'main/Helsinki',
 			[],
 			[ 'Accept' => 'text/HTML' ],
 			'!!',
 			303,
 			[ 'Location' => '!Helsinki$!' ]
+		];
+
+		$cases[] = [
+			'/Helsinki',
+			[],
+			[ 'Accept' => 'text/HTML' ],
+			'!!',
+			303,
+			[ 'Location' => '!Helsinki$!' ]
+		];
+
+		$cases[] = [
+			'main/AC/DC',
+			[],
+			[ 'Accept' => 'text/HTML' ],
+			'!!',
+			303,
+			[ 'Location' => '!AC/DC$!' ]
 		];
 
 		return $cases;
