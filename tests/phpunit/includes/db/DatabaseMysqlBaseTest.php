@@ -19,10 +19,8 @@
  *
  * @file
  * @author Antoine Musso
- * @author Bryan Davis
  * @copyright © 2013 Antoine Musso
- * @copyright © 2013 Bryan Davis
- * @copyright © 2013 Wikimedia Foundation Inc.
+ * @copyright © 2013 Wikimedia Foundation Inc and contributors
  */
 
 use Wikimedia\Rdbms\TransactionProfiler;

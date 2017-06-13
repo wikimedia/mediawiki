@@ -40,8 +40,7 @@ use ObjectFactory;
  *
  * @see \MediaWiki\Logger\Spi
  * @since 1.25
- * @author Bryan Davis <bd808@wikimedia.org>
- * @copyright © 2014 Bryan Davis and Wikimedia Foundation.
+ * @copyright © 2014 Wikimedia Foundation and contributors
  */
 class LoggerFactory {
 

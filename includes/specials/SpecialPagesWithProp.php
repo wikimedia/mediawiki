@@ -20,7 +20,6 @@
  * @since 1.21
  * @file
  * @ingroup SpecialPage
- * @author Brad Jorsch
  */
 
 /**
