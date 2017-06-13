@@ -5,7 +5,7 @@
  *
  * Created on Jun 18, 2012
  *
- * Copyright © 2012 Brad Jorsch
+ * Copyright © 2012 Wikimedia Foundation and contributors
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

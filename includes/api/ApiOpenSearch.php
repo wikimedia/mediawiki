@@ -4,7 +4,7 @@
  *
  * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  * Copyright © 2008 Brion Vibber <brion@wikimedia.org>
- * Copyright © 2014 Brad Jorsch <bjorsch@wikimedia.org>
+ * Copyright © 2014 Wikimedia Foundation and contributors
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
