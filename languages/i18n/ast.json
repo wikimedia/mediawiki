@@ -3861,6 +3861,7 @@
 	"undelete-cantedit": "Nun puedes desfacer el borráu d'esta páxina porque nun tienes permisu pa editala.",
 	"undelete-cantcreate": "Nun puedes desfacer el borráu d'esta páxina porque nun existe nenguna páxina con esti nome y nun tienes permisu pa creala.",
 	"pagedata-title": "Datos de la páxina",
+	"pagedata-text": "Esta páxina ufre una interfaz de datos pa les páxines. Escribe'l títulu de la páxina na URL, usando la sintaxis de subpáxina.\n* Aplícase la negociación de conteníu en base a la testera Accept del to cliente. Esto significa que los datos de la páxina van dase nel formatu que prefiera'l to cliente.",
 	"pagedata-not-acceptable": "Nun s'alcontró nengún formatu que coincidiera. Tipos MIME soportaos: $1",
 	"pagedata-bad-title": "Títulu inválidu: $1."
 }

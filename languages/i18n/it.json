@@ -3937,5 +3937,7 @@
 	"gotointerwiki-invalid": "Il titolo specificato non è valido.",
 	"gotointerwiki-external": "Stai per lasciare {{SITENAME}} per visitare [[$2]], che è un sito web diverso.\n\n'''[$1 Continua su $1]'''",
 	"undelete-cantedit": "Non puoi ripristinare questa pagina poiché non hai sufficienti permessi per modificarla.",
-	"undelete-cantcreate": "Non puoi ripristinare questa pagina poiché la pagina con questo nome non è ancora inesistente e non hai sufficienti permessi per crearla."
+	"undelete-cantcreate": "Non puoi ripristinare questa pagina poiché la pagina con questo nome non è ancora inesistente e non hai sufficienti permessi per crearla.",
+	"pagedata-not-acceptable": "Nessun formato corrispondente trovato. Tipi MIME supportati: $1",
+	"pagedata-bad-title": "Titolo non valido: $1."
 }

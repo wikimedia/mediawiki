@@ -3912,5 +3912,9 @@
 	"gotointerwiki-invalid": "O título especificado é inválido.",
 	"gotointerwiki-external": "Está prestes a sair da wiki {{SITENAME}} para visitar [[$2]], que é um site externo.\n\n'''[$1 Continuar para $1]'''",
 	"undelete-cantedit": "Não pode restaurar esta página, porque não tem privilégios para editar esta página.",
-	"undelete-cantcreate": "Não pode restaurar esta página, porque não existe nenhuma página com este nome e não tem privilégios para criar esta página."
+	"undelete-cantcreate": "Não pode restaurar esta página, porque não existe nenhuma página com este nome e não tem privilégios para criar esta página.",
+	"pagedata-title": "Dados de página",
+	"pagedata-text": "Esta página fornece uma interface de dados para páginas. Forneça o título da página no URL, usando a sintaxe de subpáginas, por favor.\n* Aplica-se a negociação de conteúdo com base no cabeçalho Accept do seu cliente. Isto significa que os dados da página serão fornecidos no formato preferido do seu cliente.",
+	"pagedata-not-acceptable": "Não foi encontrado nenhum formato correspondente. Tipos MIME suportados: $1",
+	"pagedata-bad-title": "Título inválido: $1."
 }

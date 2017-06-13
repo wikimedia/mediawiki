@@ -63,6 +63,7 @@
 	"apihelp-compare-param-fromtitle": "Primeiro título para comparar.",
 	"apihelp-compare-param-fromid": "Identificador da primeira páxina a comparar.",
 	"apihelp-compare-param-fromrev": "Primeira revisión a comparar.",
+	"apihelp-compare-param-fromtext": "Uso este texto en vez do contido da revisión especificada por <var>fromtitle</var>, <var>fromid</var> ou <var>fromrev</var>.",
 	"apihelp-compare-param-totitle": "Segundo título para comparar.",
 	"apihelp-compare-param-toid": "Identificador da segunda páxina a comparar.",
 	"apihelp-compare-param-torev": "Segunda revisión a comparar.",

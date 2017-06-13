@@ -3950,5 +3950,9 @@
 	"gotointerwiki-invalid": "O título especificado non é válido.",
 	"gotointerwiki-external": "Vai sair de {{SITENAME}} para visitar [[$2]], que é un sitio web externo.\n\n'''[$1 Continuar en $1]'''",
 	"undelete-cantedit": "Non pode anular o borrado desta páxina porque non ten permisos para editar esta páxina.",
-	"undelete-cantcreate": "Non pode anular o borrado desta páxina xa que non hai ningunha páxina con ese nome e non ten permisos para creala."
+	"undelete-cantcreate": "Non pode anular o borrado desta páxina xa que non hai ningunha páxina con ese nome e non ten permisos para creala.",
+	"pagedata-title": "Datos da páxina",
+	"pagedata-text": "Esta páxina porporciona unha interface de datos para páxinas. Por favor, proporcione o título da páxina na URL, usando a sintaxe de subpáxinas.\n* A negociación de contido aplícase baseándose na cabeceira Accept do seu cliente. Isto significa que os datos da páxina serán proporcionados no formato preferido polo seu cliente.",
+	"pagedata-not-acceptable": "Non se atopou ningún formato correspondente. Tipos MIME soportadosː $1",
+	"pagedata-bad-title": "Título non válido: $1."
 }
