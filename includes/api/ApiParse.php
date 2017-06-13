@@ -38,6 +38,9 @@ class ApiParse extends ApiBase {
 	/** @var Content $pstContent */
 	private $pstContent = null;
 
+	/** @var bool */
+	private $contentIsDeleted = false, $contentIsSuppressed = false;
+
 	public function execute() {
 		// The data is hot but user-dependent, like page views, so we set vary cookies
 		$this->getMain()->setCacheMode( 'anon-public-user-private' );
@@ -110,27 +113,9 @@ class ApiParse extends ApiBase {
 				$wgTitle = $titleObj;
 				$pageObj = WikiPage::factory( $titleObj );
 				list( $popts, $reset, $suppressCache ) = $this->makeParserOptions( $pageObj, $params );
-
-				// If for some reason the "oldid" is actually the current revision, it may be cached
-				// Deliberately comparing $pageObj->getLatest() with $rev->getId(), rather than
-				// checking $rev->isCurrent(), because $pageObj is what actually ends up being used,
-				// and if its ->getLatest() is outdated, $rev->isCurrent() won't tell us that.
-				if ( !$suppressCache && $rev->getId() == $pageObj->getLatest() ) {
-					// May get from/save to parser cache
-					$p_result = $this->getParsedContent( $pageObj, $popts,
-						$pageid, isset( $prop['wikitext'] ) );
-				} else { // This is an old revision, so get the text differently
-					$this->content = $rev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
-
-					if ( $this->section !== false ) {
-						$this->content = $this->getSectionContent(
-							$this->content, $this->msg( 'revid', $rev->getId() )
-						);
-					}
-
-					// Should we save old revision parses to the parser cache?
-					$p_result = $this->content->getParserOutput( $titleObj, $rev->getId(), $popts );
-				}
+				$p_result = $this->getParsedContent(
+					$pageObj, $popts, $suppressCache, $pageid, $rev, isset( $prop['wikitext'] )
+				);
 			} else { // Not $oldid, but $pageid or $page
 				if ( $params['redirects'] ) {
 					$reqParams = [
@@ -172,25 +157,9 @@ class ApiParse extends ApiBase {
 				}
 
 				list( $popts, $reset, $suppressCache ) = $this->makeParserOptions( $pageObj, $params );
-
-				// Don't pollute the parser cache when setting options that aren't
-				// in ParserOptions::optionsHash()
-				/// @todo: This should be handled closer to the actual cache instead of here, see T110269
-				$suppressCache = $suppressCache ||
-					$params['disablepp'] ||
-					$params['disablelimitreport'] ||
-					$params['preview'] ||
-					$params['sectionpreview'] ||
-					$params['disabletidy'];
-
-				if ( $suppressCache ) {
-					$this->content = $this->getContent( $pageObj, $pageid );
-					$p_result = $this->content->getParserOutput( $titleObj, null, $popts );
-				} else {
-					// Potentially cached
-					$p_result = $this->getParsedContent( $pageObj, $popts, $pageid,
-						isset( $prop['wikitext'] ) );
-				}
+				$p_result = $this->getParsedContent(
+					$pageObj, $popts, $suppressCache, $pageid, null, isset( $prop['wikitext'] )
+				);
 			}
 		} else { // Not $oldid, $pageid, $page. Hence based on $text
 			$titleObj = Title::newFromText( $title );
@@ -249,6 +218,12 @@ class ApiParse extends ApiBase {
 			if ( $params['onlypst'] ) {
 				// Build a result and bail out
 				$result_array = [];
+				if ( $this->contentIsDeleted ) {
+					$result_array['textdeleted'] = true;
+				}
+				if ( $this->contentIsSuppressed ) {
+					$result_array['textsuppressed'] = true;
+				}
 				$result_array['text'] = $this->pstContent->serialize( $format );
 				$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'text';
 				if ( isset( $prop['wikitext'] ) ) {
@@ -279,6 +254,12 @@ class ApiParse extends ApiBase {
 
 		$result_array['title'] = $titleObj->getPrefixedText();
 		$result_array['pageid'] = $pageid ?: $pageObj->getId();
+		if ( $this->contentIsDeleted ) {
+			$result_array['textdeleted'] = true;
+		}
+		if ( $this->contentIsSuppressed ) {
+			$result_array['textsuppressed'] = true;
+		}
 
 		if ( $params['disabletoc'] ) {
 			$p_result->setTOCEnabled( false );
@@ -541,56 +522,64 @@ class ApiParse extends ApiBase {
 		Hooks::run( 'ApiMakeParserOptions',
 			[ $popts, $pageObj->getTitle(), $params, $this, &$reset, &$suppressCache ] );
 
+		// Force cache suppression when $popts aren't cacheable.
+		$suppressCache = $suppressCache || !$popts->isSafeToCache();
+
 		return [ $popts, $reset, $suppressCache ];
 	}
 
 	/**
 	 * @param WikiPage $page
 	 * @param ParserOptions $popts
+	 * @param bool $suppressCache
 	 * @param int $pageId
-	 * @param bool $getWikitext
+	 * @param Revision|null $rev
+	 * @param bool $getContent
 	 * @return ParserOutput
 	 */
-	private function getParsedContent( WikiPage $page, $popts, $pageId = null, $getWikitext = false ) {
-		$this->content = $this->getContent( $page, $pageId );
+	private function getParsedContent(
+		WikiPage $page, $popts, $suppressCache, $pageId, $rev, $getContent
+	) {
+		$revId = $rev ? $rev->getId() : null;
+		$isDeleted = $rev && $rev->isDeleted( Revision::DELETED_TEXT );
 
-		if ( $this->section !== false && $this->content !== null ) {
-			// Not cached (save or load)
-			return $this->content->getParserOutput( $page->getTitle(), null, $popts );
+		if ( $getContent || $this->section !== false || $isDeleted ) {
+			if ( $rev ) {
+				$this->content = $rev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
+				if ( !$this->content ) {
+					$this->dieWithError( [ 'apierror-missingcontent-revid', $revId ] );
+				}
+			} else {
+				$this->content = $page->getContent( Revision::FOR_THIS_USER, $this->getUser() );
+				if ( !$this->content ) {
+					$this->dieWithError( [ 'apierror-missingcontent-pageid', $pageId ] );
+				}
+			}
+			$this->contentIsDeleted = $isDeleted;
+			$this->contentIsSuppressed = $rev &&
+				$rev->isDeleted( Revision::DELETED_TEXT | Revision::DELETED_RESTRICTED );
 		}
 
-		// Try the parser cache first
-		// getParserOutput will save to Parser cache if able
-		$pout = $page->getParserOutput( $popts );
+		if ( $this->section !== false ) {
+			$this->content = $this->getSectionContent(
+				$this->content,
+				$pageId === null ? $page->getTitle()->getPrefixedText() : $this->msg( 'pageid', $pageId )
+			);
+			return $this->content->getParserOutput( $page->getTitle(), $revId, $popts );
+		}
+
+		if ( $isDeleted ) {
+			// getParserOutput can't do revdeled revisions
+			$pout = $this->content->getParserOutput( $page->getTitle(), $revId, $popts );
+		} else {
+			// getParserOutput will save to Parser cache if able
+			$pout = $page->getParserOutput( $popts, $revId, $suppressCache );
+		}
 		if ( !$pout ) {
-			$this->dieWithError( [ 'apierror-nosuchrevid', $page->getLatest() ] );
-		}
-		if ( $getWikitext ) {
-			$this->content = $page->getContent( Revision::RAW );
+			$this->dieWithError( [ 'apierror-nosuchrevid', $revId ?: $page->getLatest() ] );
 		}
 
 		return $pout;
-	}
-
-	/**
-	 * Get the content for the given page and the requested section.
-	 *
-	 * @param WikiPage $page
-	 * @param int $pageId
-	 * @return Content
-	 */
-	private function getContent( WikiPage $page, $pageId = null ) {
-		$content = $page->getContent( Revision::RAW ); // XXX: really raw?
-
-		if ( $this->section !== false && $content !== null ) {
-			$content = $this->getSectionContent(
-				$content,
-				!is_null( $pageId )
-					? $this->msg( 'pageid', $pageId )
-					: $page->getTitle()->getPrefixedText()
-			);
-		}
-		return $content;
 	}
 
 	/**
@@ -598,7 +587,7 @@ class ApiParse extends ApiBase {
 	 *
 	 * @param Content $content
 	 * @param string|Message $what Identifies the content in error messages, e.g. page title.
-	 * @return Content|bool
+	 * @return Content
 	 */
 	private function getSectionContent( Content $content, $what ) {
 		// Not cached (save or load)
