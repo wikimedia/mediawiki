@@ -25,8 +25,7 @@ namespace MediaWiki\Logger\Monolog;
  * wiki / request ID, and MediaWiki version.
  *
  * @since 1.25
- * @author Bryan Davis <bd808@wikimedia.org>
- * @copyright © 2013 Bryan Davis and Wikimedia Foundation.
+ * @copyright © 2013 Wikimedia Foundation and contributors
  */
 class WikiProcessor {
 

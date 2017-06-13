@@ -37,8 +37,7 @@ use MWExceptionHandler;
  * will be used to redact the trace information.
  *
  * @since 1.26
- * @author Bryan Davis <bd808@wikimedia.org>
- * @copyright © 2015 Bryan Davis and Wikimedia Foundation.
+ * @copyright © 2015 Wikimedia Foundation and contributors
  */
 class LineFormatter extends MonologLineFormatter {
 
