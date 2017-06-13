@@ -44,8 +44,7 @@ use UnexpectedValueException;
  * replacement for \Monolog\Handler\StreamHandler.
  *
  * @since 1.25
- * @author Bryan Davis <bd808@wikimedia.org>
- * @copyright © 2013 Bryan Davis and Wikimedia Foundation.
+ * @copyright © 2013 Wikimedia Foundation and conttributors
  */
 class LegacyHandler extends AbstractProcessingHandler {
 
