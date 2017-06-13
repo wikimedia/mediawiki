@@ -8,7 +8,6 @@
  *
  * @author Ahmed-Najib-Biabani-Ibrahimkhel
  * @author Kaganer
- * @author Umherirrender
  */
 
 $rtl = true;
