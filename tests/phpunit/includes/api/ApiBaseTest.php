@@ -174,4 +174,43 @@ class ApiBaseTest extends ApiTestCase {
 		], $user ) );
 	}
 
+	/**
+	 * @covers ApiBase::dieStatus
+	 */
+	public function testDieStatus() {
+		$mock = new MockApi();
+
+		$status = StatusValue::newGood();
+		$status->error( 'foo' );
+		$status->warning( 'bar' );
+		try {
+			$mock->dieStatus( $status );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( ApiUsageException $ex ) {
+			$this->assertTrue( ApiTestCase::apiExceptionHasCode( $ex, 'foo' ), 'Exception has "foo"' );
+			$this->assertFalse( ApiTestCase::apiExceptionHasCode( $ex, 'bar' ), 'Exception has "bar"' );
+		}
+
+		$status = StatusValue::newGood();
+		$status->warning( 'foo' );
+		$status->warning( 'bar' );
+		try {
+			$mock->dieStatus( $status );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( ApiUsageException $ex ) {
+			$this->assertTrue( ApiTestCase::apiExceptionHasCode( $ex, 'foo' ), 'Exception has "foo"' );
+			$this->assertTrue( ApiTestCase::apiExceptionHasCode( $ex, 'bar' ), 'Exception has "bar"' );
+		}
+
+		$status = StatusValue::newGood();
+		$status->setOk( false );
+		try {
+			$mock->dieStatus( $status );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( ApiUsageException $ex ) {
+			$this->assertTrue( ApiTestCase::apiExceptionHasCode( $ex, 'unknownerror-nocode' ),
+				'Exception has "unknownerror-nocode"' );
+		}
+	}
+
 }
