@@ -88,6 +88,9 @@ class ApiParse extends ApiBase {
 
 		$redirValues = null;
 
+		$needContent = isset( $prop['wikitext'] ) ||
+			isset( $prop['parsetree'] ) || $params['generatexml'];
+
 		// Return result
 		$result = $this->getResult();
 
@@ -114,7 +117,7 @@ class ApiParse extends ApiBase {
 				$pageObj = WikiPage::factory( $titleObj );
 				list( $popts, $reset, $suppressCache ) = $this->makeParserOptions( $pageObj, $params );
 				$p_result = $this->getParsedContent(
-					$pageObj, $popts, $suppressCache, $pageid, $rev, isset( $prop['wikitext'] )
+					$pageObj, $popts, $suppressCache, $pageid, $rev, $needContent
 				);
 			} else { // Not $oldid, but $pageid or $page
 				if ( $params['redirects'] ) {
@@ -158,7 +161,7 @@ class ApiParse extends ApiBase {
 
 				list( $popts, $reset, $suppressCache ) = $this->makeParserOptions( $pageObj, $params );
 				$p_result = $this->getParsedContent(
-					$pageObj, $popts, $suppressCache, $pageid, null, isset( $prop['wikitext'] )
+					$pageObj, $popts, $suppressCache, $pageid, null, $needContent
 				);
 			}
 		} else { // Not $oldid, $pageid, $page. Hence based on $text
