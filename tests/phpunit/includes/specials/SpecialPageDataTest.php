@@ -37,21 +37,6 @@ class SpecialPageDataTest extends SpecialPageTestBase {
 			[ 'Location' => '!.+!' ]
 		];
 
-		$subpageCases = [];
-		foreach ( $cases as $c ) {
-			$case = $c;
-			$case[0] = '';
-
-			if ( isset( $case[1]['title'] ) ) {
-				$case[0] .= $case[1]['title'];
-				unset( $case[1]['title'] );
-			}
-
-			$subpageCases[] = $case;
-		}
-
-		$cases = array_merge( $cases, $subpageCases );
-
 		$cases['Accept only HTML'] = [
 			'',
 			[ 'target' => 'Helsinki' ],
@@ -74,7 +59,16 @@ class SpecialPageDataTest extends SpecialPageTestBase {
 		];
 
 		$cases['Nothing specified'] = [
-			'Helsinki',
+			'main/Helsinki',
+			[],
+			[],
+			'!!',
+			303,
+			[ 'Location' => '!Helsinki&action=raw!' ]
+		];
+
+		$cases['Nothing specified'] = [
+			'/Helsinki',
 			[],
 			[],
 			'!!',
@@ -83,7 +77,7 @@ class SpecialPageDataTest extends SpecialPageTestBase {
 		];
 
 		$cases['Invalid Accept header'] = [
-			'Helsinki',
+			'main/Helsinki',
 			[],
 			[ 'Accept' => 'text/foobar' ],
 			'!!',
