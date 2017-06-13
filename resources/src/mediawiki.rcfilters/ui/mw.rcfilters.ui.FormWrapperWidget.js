@@ -72,9 +72,13 @@
 
 		// Collect all data from form
 		$( e.target ).find( 'input:not([type="hidden"],[type="submit"]), select' ).each( function () {
+			var value = '';
+
 			if ( !$( this ).is( ':checkbox' ) || $( this ).is( ':checked' ) ) {
-				data[ $( this ).prop( 'name' ) ] = $( this ).val();
+				value = $( this ).val();
 			}
+
+			data[ $( this ).prop( 'name' ) ] = value;
 		} );
 
 		this.controller.updateChangesList( data );
