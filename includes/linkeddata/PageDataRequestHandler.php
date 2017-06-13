@@ -51,11 +51,18 @@ class PageDataRequestHandler {
 	 *
 	 * @throws HttpError
 	 */
-	public function handleRequest( $title, WebRequest $request, OutputPage $output ) {
+	public function handleRequest( $subPage, WebRequest $request, OutputPage $output ) {
 		// No matter what: The response is always public
 		$output->getRequest()->response()->header( 'Access-Control-Allow-Origin: *' );
 
 		$revision = 0;
+
+		// See T163923
+		if ( strpos( $subPage, '/' ) !== false ) {
+			$title = explode( '/', $subPage )[1];
+		} else {
+			$title = $subPage;
+		}
 
 		$title = $request->getText( 'target', $title );
 		$revision = $request->getInt( 'oldid', $revision );

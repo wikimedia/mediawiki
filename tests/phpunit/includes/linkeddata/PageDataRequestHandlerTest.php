@@ -148,6 +148,15 @@ class PageDataRequestHandlerTest extends \MediaWikiTestCase {
 			[ 'Location' => '!Helsinki$!' ]
 		];
 
+		$cases[] = [
+			'Foo/Helsinki',
+			[],
+			[ 'Accept' => 'text/HTML' ],
+			'!!',
+			303,
+			[ 'Location' => '!Helsinki$!' ]
+		];
+
 		return $cases;
 	}
 
