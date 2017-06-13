@@ -1190,7 +1190,7 @@ class Sanitizer {
 		];
 
 		$id = urlencode( strtr( $id, ' ', '_' ) );
-		$id = str_replace( array_keys( $replace ), array_values( $replace ), $id );
+		$id = strtr( $id, $replace );
 
 		if ( !preg_match( '/^[a-zA-Z]/', $id ) && !in_array( 'noninitial', $options ) ) {
 			// Initial character must be a letter!
