@@ -40,7 +40,9 @@ class ContentHandlerSanityTest extends MediaWikiTestCase {
 
 		try {
 			$content = $handler->makeEmptyContent();
-			$this->assertInstanceOf( Content::class, $content, $handlerClass );
+			$this->assertInstanceOf( Content::class, $content, $handlerClass . ' instanceof Content' );
+			$this->assertTrue( $content->isValid(), "$handlerClass::isValid()" );
+			$this->assertTrue( $content->isEmpty(), "$handlerClass::isEmpty()" );
 		} catch ( MWException $ex ) {
 			$this->assertFalse(
 				$handler->supportsDirectEditing(),
