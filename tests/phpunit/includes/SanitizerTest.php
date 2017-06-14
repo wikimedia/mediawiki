@@ -364,13 +364,13 @@ class SanitizerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideIsReservedDataAttribute
+	 * @dataProvider provideIsSafeDataAttribute
 	 */
-	public function testIsReservedDataAttribute( $attr, $expected ) {
-		$this->assertSame( $expected, Sanitizer::isReservedDataAttribute( $attr ) );
+	public function testIsSafeDataAttribute( $attr, $expected ) {
+		$this->assertSame( $expected, Sanitizer::isSafeDataAttribute( $attr ) );
 	}
 
-	public static function provideIsReservedDataAttribute() {
+	public static function provideIsSafeDataAttribute() {
 		return [
 			[ 'foo', false ],
 			[ 'data', false ],
