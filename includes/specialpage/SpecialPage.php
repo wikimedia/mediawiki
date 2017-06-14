@@ -33,7 +33,7 @@ use MediaWiki\MediaWikiServices;
  *
  * @ingroup SpecialPage
  */
-class SpecialPage {
+class SpecialPage implements MessageLocalizer {
 	// The canonical name of this special page
 	// Also used for the default <h1> heading, @see getDescription()
 	protected $mName;
@@ -743,7 +743,7 @@ class SpecialPage {
 	 * @return Message
 	 * @see wfMessage
 	 */
-	public function msg( /* $args */ ) {
+	public function msg( $key /* $args */ ) {
 		$message = call_user_func_array(
 			[ $this->getContext(), 'msg' ],
 			func_get_args()
