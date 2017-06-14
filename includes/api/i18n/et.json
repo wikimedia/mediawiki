@@ -4,7 +4,7 @@
 			"Pikne"
 		]
 	},
-	"apihelp-query+imageinfo-description": "Tagastab failiteabe ja üleslaadimisajaloo.",
+	"apihelp-query+imageinfo-summary": "Tagastab failiteabe ja üleslaadimisajaloo.",
 	"apihelp-query+imageinfo-param-prop": "Millist teavet faili kohta hankida:",
 	"apihelp-query+imageinfo-paramvalue-prop-timestamp": "Lisab üles laaditud versiooni ajatempli.",
 	"apihelp-query+imageinfo-paramvalue-prop-user": "Lisab kasutaja, kes iga failiversiooni üles laadis.",

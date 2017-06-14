@@ -8,6 +8,6 @@
 	"apihelp-createaccount-param-name": "प्रयोगकर्ता नाम।",
 	"apihelp-edit-param-minor": "सामान्य सम्पादन।",
 	"apihelp-edit-example-edit": "पृष्ठ सम्पादन गर्नुहोस्।",
-	"apihelp-emailuser-description": "प्रयोगकर्तालाई इमेल गर्नुहोस्।",
+	"apihelp-emailuser-summary": "प्रयोगकर्तालाई इमेल गर्नुहोस्।",
 	"apihelp-parse-param-prop": "जानकारीको कुन भाग लिनेः"
 }

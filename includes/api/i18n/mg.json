@@ -4,7 +4,8 @@
 			"Jagwar"
 		]
 	},
-	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [https://www.mediawiki.org/wiki/API:Main_page Torohevitra be kokoa]\n* [https://www.mediawiki.org/wiki/API:FAQ Fanontaniana miverina matetika]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lisitry ny mailaka manaraka]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Filazana API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Baogy & hataka]\n</div>\n<strong>Status:</strong> \nTokony mandeha avokoa ny fitaovana aseho eto amin'ity pehy ity, na dia izany aza mbola am-panamboarana ny API ary mety hiova na oviana na oviana. Araho amin'ny alalan'ny fisoratana ny mailakao ao amin'ny [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce lisitra fampielezana] ny fiovana.\n\n<strong>Hataka diso:</strong> \nRehefa alefa ao amin'i API ny hata, ho alefa miaraka amin'ny lakile \"MediaWiki-API-Error\" ny header HTTP ary samy homen-tsanda mitovy ny header ary ny kaodin-kadisoana. Ho an'ny torohay fanampiny dia jereo https://www.mediawiki.org/wiki/API:Errors_and_warnings.",
+	"apihelp-main-summary": "",
+	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [https://www.mediawiki.org/wiki/API:Main_page Torohevitra be kokoa]\n* [https://www.mediawiki.org/wiki/API:FAQ Fanontaniana miverina matetika]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lisitry ny mailaka manaraka]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Filazana API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Baogy & hataka]\n</div>\n<strong>Status:</strong> \nTokony mandeha avokoa ny fitaovana aseho eto amin'ity pehy ity, na dia izany aza mbola am-panamboarana ny API ary mety hiova na oviana na oviana. Araho amin'ny alalan'ny fisoratana ny mailakao ao amin'ny [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce lisitra fampielezana] ny fiovana.\n\n<strong>Hataka diso:</strong> \nRehefa alefa ao amin'i API ny hata, ho alefa miaraka amin'ny lakile \"MediaWiki-API-Error\" ny header HTTP ary samy homen-tsanda mitovy ny header ary ny kaodin-kadisoana. Ho an'ny torohay fanampiny dia jereo https://www.mediawiki.org/wiki/API:Errors_and_warnings.",
 	"apihelp-main-param-action": "Inona ny zavatra ho atao.",
 	"apihelp-main-param-format": "Format mivoaka",
 	"apihelp-block-param-user": "Anaram-pikambana, adiresy IP na valan' IP hosakanana.",
@@ -26,7 +27,7 @@
 	"apihelp-compare-param-toid": "ID pejy faharoa ampitahaina.",
 	"apihelp-compare-param-torev": "Versiona faharoa ampitahaina.",
 	"apihelp-compare-example-1": "Hamorona raki-pahasamihafan'ny versiona 1 sy 2.",
-	"apihelp-createaccount-description": "Hamorona kaontim-pikambana vaovao.",
+	"apihelp-createaccount-summary": "Hamorona kaontim-pikambana vaovao.",
 	"apihelp-createaccount-param-name": "Anaram-pikambana.",
 	"apihelp-createaccount-param-password": "Tenimiafina (tsy raharahiana raha voafaritra i <var>$1mailpassword</var>).",
 	"apihelp-createaccount-param-domain": "Vala ho an'ilay famantarana avy any ivelany (azo tsy fenoina).",
