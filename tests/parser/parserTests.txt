@@ -28315,3 +28315,20 @@ unclosed internal link XSS (T137264)
 !! html/parsoid
 <p>[[#%3Cscript%3Ealert(1)%3C/script%3E|</p>
 !! end
+
+!! test
+Validating that <style> isn't eaten by tidy (T167349)
+!! options
+# Use $wgRawHtml to inject a <style> tag, since you normally can't in wikitext
+wgRawHtml=1
+!! wikitext
+<div class="foo">
+<html><style>.foo::before { content: "<foo>"; }</style></html>
+<html><style data-mw-foobar="baz">.foo::after { content: "<bar>"; }</style></html>
+</div>
+!! html+tidy
+<div class="foo">
+<style>.foo::before { content: "<foo>"; }</style>
+<style data-mw-foobar="baz">.foo::after { content: "<bar>"; }</style>
+</div>
+!! end

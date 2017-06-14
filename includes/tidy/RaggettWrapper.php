@@ -48,6 +48,12 @@ class RaggettWrapper {
 		// Modify inline Microdata <link> and <meta> elements so they say <html-link> and <html-meta> so
 		// we can trick Tidy into not stripping them out by including them in tidy's new-empty-tags config
 		$wrappedtext = preg_replace( '!<(link|meta)([^>]*?)(/{0,1}>)!', '<html-$1$2$3', $wrappedtext );
+		// Similar for inline <style> tags, but those aren't empty.
+		$wrappedtext = preg_replace_callback( '!<style([^>]*)>(.*?)</style>!s', function ( $m ) {
+			return '<html-style' . $m[1] . '>'
+				. $this->replaceCallback( [ $m[2] ] )
+				. '</html-style>';
+		}, $wrappedtext );
 
 		// Preserve empty li elements (T49673) by abusing Tidy's datafld hack
 		// The whitespace class is as in TY_(InitMap)
@@ -78,8 +84,9 @@ class RaggettWrapper {
 	 * @return string
 	 */
 	public function postprocess( $text ) {
-		// Revert <html-{link,meta}> back to <{link,meta}>
+		// Revert <html-{link,meta,style}> back to <{link,meta,style}>
 		$text = preg_replace( '!<html-(link|meta)([^>]*?)(/{0,1}>)!', '<$1$2$3', $text );
+		$text = preg_replace( '!<(/?)html-(style)([^>]*)>!', '<$1$2$3>', $text );
 
 		// Remove datafld
 		$text = str_replace( '<li datafld=""', '<li', $text );
