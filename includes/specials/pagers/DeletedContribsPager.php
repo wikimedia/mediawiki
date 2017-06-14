@@ -195,7 +195,6 @@ class DeletedContribsPager extends IndexPager {
 	function formatRow( $row ) {
 		$ret = '';
 		$classes = [];
-		$attribs = [];
 
 		/*
 		 * There may be more than just revision rows. To make sure that we'll only be processing
@@ -214,20 +213,17 @@ class DeletedContribsPager extends IndexPager {
 		MediaWiki\restoreWarnings();
 
 		if ( $validRevision ) {
-			$attribs['data-mw-revid'] = $rev->getId();
 			$ret = $this->formatRevisionRow( $row );
 		}
 
 		// Let extensions add data
-		Hooks::run( 'DeletedContributionsLineEnding', [ $this, &$ret, $row, &$classes, &$attribs ] );
-		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isReservedDataAttribute' ] );
+		Hooks::run( 'DeletedContributionsLineEnding', [ $this, &$ret, $row, &$classes ] );
 
-		if ( $classes === [] && $attribs === [] && $ret === '' ) {
+		if ( $classes === [] && $ret === '' ) {
 			wfDebug( "Dropping Special:DeletedContribution row that could not be formatted\n" );
 			$ret = "<!-- Could not format Special:DeletedContribution row. -->\n";
 		} else {
-			$attribs['class'] = $classes;
-			$ret = Html::rawElement( 'li', $attribs, $ret ) . "\n";
+			$ret = Html::rawElement( 'li', [ 'class' => $classes ], $ret ) . "\n";
 		}
 
 		return $ret;

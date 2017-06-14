@@ -50,23 +50,16 @@ class OldChangesList extends ChangesList {
 				$rc->mAttribs['rc_namespace'] . '-' . $rc->mAttribs['rc_title'] );
 		}
 
-		$attribs = $this->getDataAttributes( $rc );
-
 		// Avoid PHP 7.1 warning from passing $this by reference
 		$list = $this;
-		if ( !Hooks::run( 'OldChangesListRecentChangesLine',
-			[ &$list, &$html, $rc, &$classes, &$attribs ] )
-		) {
+		if ( !Hooks::run( 'OldChangesListRecentChangesLine', [ &$list, &$html, $rc, &$classes ] ) ) {
 			return false;
 		}
-		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isReservedDataAttribute' ] );
 
 		$dateheader = ''; // $html now contains only <li>...</li>, for hooks' convenience.
 		$this->insertDateHeader( $dateheader, $rc->mAttribs['rc_timestamp'] );
 
-		$attribs['class'] = implode( ' ', $classes );
-
-		return $dateheader . Html::rawElement( 'li', $attribs,  $html ) . "\n";
+		return "$dateheader<li class=\"" . implode( ' ', $classes ) . "\">" . $html . "</li>\n";
 	}
 
 	/**

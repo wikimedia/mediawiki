@@ -739,26 +739,4 @@ class ChangesList extends ContextSource {
 			&& intval( $rcObj->getAttribute( 'rc_this_oldid' ) ) === 0;
 	}
 
-	/**
-	 * Get recommended data attributes for a change line.
-	 * @param RecentChange $rc
-	 * @return string[] attribute name => value
-	 */
-	protected function getDataAttributes( RecentChange $rc ) {
-		$type = $rc->getAttribute( 'rc_source' );
-		switch ( $type ) {
-			case RecentChange::SRC_EDIT:
-			case RecentChange::SRC_NEW:
-				return [
-					'data-mw-revid' => $rc->mAttribs['rc_this_oldid'],
-				];
-			case RecentChange::SRC_LOG:
-				return [
-					'data-mw-logid' => $rc->mAttribs['rc_logid'],
-					'data-mw-logaction' => $rc->mAttribs['rc_log_type'] . '/' . $rc->mAttribs['rc_log_action'],
-				];
-			default:
-				return [];
-		}
-	}
 }

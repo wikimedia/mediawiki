@@ -98,9 +98,6 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 		$recentChange = $this->getEditChange( '20131103092153' );
 		$enhancedChangesList->recentChangesLine( $recentChange, false );
 
-		$html = $enhancedChangesList->endRecentChangesList();
-		$this->assertContains( 'data-mw-revid="5"', $html );
-
 		$recentChange2 = $this->getEditChange( '20131103092253' );
 		$enhancedChangesList->recentChangesLine( $recentChange2, false );
 
@@ -108,13 +105,6 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 
 		preg_match_all( '/td class="mw-enhanced-rc-nested"/', $html, $matches );
 		$this->assertCount( 2, $matches[0] );
-
-		$recentChange3 = $this->getLogChange();
-		$enhancedChangesList->recentChangesLine( $recentChange3, false );
-
-		$html = $enhancedChangesList->endRecentChangesList();
-		$this->assertContains( 'data-mw-logaction="foo/bar"', $html );
-		$this->assertContains( 'data-mw-logid="25"', $html );
 	}
 
 	/**
@@ -134,15 +124,6 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 		$user = $this->getMutableTestUser()->getUser();
 		$recentChange = $this->testRecentChangesHelper->makeEditRecentChange(
 			$user, 'Cat', $timestamp, 5, 191, 190, 0, 0
-		);
-
-		return $recentChange;
-	}
-
-	private function getLogChange() {
-		$user = $this->getMutableTestUser()->getUser();
-		$recentChange = $this->testRecentChangesHelper->makeLogRecentChange( 'foo', 'bar', $user,
-			'Title', '20131103092153', 0, 0
 		);
 
 		return $recentChange;

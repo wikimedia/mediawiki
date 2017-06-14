@@ -362,25 +362,4 @@ class SanitizerTest extends MediaWikiTestCase {
 			[ '+1 +2', '+1', '+2' ],
 		];
 	}
-
-	/**
-	 * @dataProvider provideIsReservedDataAttribute
-	 */
-	public function testIsReservedDataAttribute( $attr, $expected ) {
-		$this->assertSame( $expected, Sanitizer::isReservedDataAttribute( $attr ) );
-	}
-
-	public static function provideIsReservedDataAttribute() {
-		return [
-			[ 'foo', false ],
-			[ 'data', false ],
-			[ 'data-foo', false ],
-			[ 'data-mw', true ],
-			[ 'data-ooui', true ],
-			[ 'data-parsoid', true ],
-			[ 'data-mw-foo', true ],
-			[ 'data-ooui-foo', true ],
-			[ 'data-mwfoo', true ], // could be false but this is how it's implemented currently
-		];
-	}
 }
