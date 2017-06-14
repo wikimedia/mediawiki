@@ -1191,4 +1191,40 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase  {
 			[ null, 86400, 800, .2, 800 ]
 		];
 	}
+
+	/**
+	 * @covers WANObjectCache::makeKey
+	 */
+	public function testMakeKey() {
+		$backend = $this->getMockBuilder( HashBagOStuff::class )
+			->setMethods( [ 'makeKey' ] )->getMock();
+		$backend->expects( $this->once() )->method( 'makeKey' )
+			->willReturn( 'special' );
+
+		$wanCache = new WANObjectCache( [
+			'cache' => $backend,
+			'pool' => 'testcache-hash',
+			'relayer' => new EventRelayerNull( [] )
+		] );
+
+		$this->assertSame( 'special', $wanCache->makeKey( 'a', 'b' ) );
+	}
+
+	/**
+	 * @covers WANObjectCache::makeGlobalKey
+	 */
+	public function testMakeGlobalKey() {
+		$backend = $this->getMockBuilder( HashBagOStuff::class )
+			->setMethods( [ 'makeGlobalKey' ] )->getMock();
+		$backend->expects( $this->once() )->method( 'makeGlobalKey' )
+			->willReturn( 'special' );
+
+		$wanCache = new WANObjectCache( [
+			'cache' => $backend,
+			'pool' => 'testcache-hash',
+			'relayer' => new EventRelayerNull( [] )
+		] );
+
+		$this->assertSame( 'special', $wanCache->makeGlobalKey( 'a', 'b' ) );
+	}
 }
