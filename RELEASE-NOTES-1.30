@@ -96,13 +96,6 @@ changes to languages because of Phabricator reports.
   or wikilinks.
 * (T163966) Page moves are now counted as edits for the purposes of
   autopromotion, i.e., they increment the user_editcount field in the database.
-* Two new hooks, LogEventsListLineEnding and NewPagesLineEnding were added for
-  manipulating Special:Log and Special:NewPages lines.
-* The OldChangesListRecentChangesLine, EnhancedChangesListModifyLineData,
-  PageHistoryLineEnding, ContributionsLineEnding and DeletedContributionsLineEnding
-  hooks have an additional parameter, for manipulating HTML data attributes of
-  RC/history lines. EnhancedChangesListModifyBlockLineData can do that via the
-  $data['attribs'] subarray.
 * (T130632) The OutputPage::enableTOC() method was removed.
 
 == Compatibility ==
