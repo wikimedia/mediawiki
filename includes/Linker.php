@@ -1619,7 +1619,7 @@ class Linker {
 			. "<span class=\"mw-headline\" id=\"$anchor\">$html</span>"
 			. $link
 			. "</h$level>";
-		if ( $legacyAnchor !== false ) {
+		if ( $legacyAnchor !== false && $anchor !== $legacyAnchor ) {
 			$ret = "<div id=\"$legacyAnchor\"></div>$ret";
 		}
 		return $ret;

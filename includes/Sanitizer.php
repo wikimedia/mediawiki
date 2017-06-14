@@ -1175,27 +1175,39 @@ class Sanitizer {
 	 *   'noninitial': This is a non-initial fragment of an id, not a full id,
 	 *       so don't pay attention if the first character isn't valid at the
 	 *       beginning of an id.
+	 *   'html5' : Use HTML5 style ID escaping.
 	 *   'legacy': Behave the way the old HTML 4-based ID escaping worked.
 	 * @return string
 	 */
 	static function escapeId( $id, $options = [] ) {
+		global $wgSectionFragmentFlavor;
+
 		$options = (array)$options;
 
 		$id = Sanitizer::decodeCharReferences( $id );
 
-		// HTML4-style escaping
-		static $replace = [
-			'%3A' => ':',
-			'%' => '.'
-		];
+		$html5 = ( $wgSectionFragmentFlavor[0] === 'html5' && !in_array( 'legacy', $options ) )
+			|| in_array( 'html5', $options );
 
 		$id = urlencode( strtr( $id, ' ', '_' ) );
-		$id = strtr( $id, $replace );
 
-		if ( !preg_match( '/^[a-zA-Z]/', $id ) && !in_array( 'noninitial', $options ) ) {
-			// Initial character must be a letter!
-			$id = "x$id";
+		if ( $html5 ) {
+			$id = str_replace( '%3A', ':', $id );
+		} else {
+			// HTML4-style escaping
+			static $replace = [
+				'%3A' => ':',
+				'%' => '.'
+			];
+
+			$id = strtr( $id, $replace );
+
+			if ( !preg_match( '/^[a-zA-Z]/', $id ) && !in_array( 'noninitial', $options ) ) {
+				// Initial character must be a letter!
+				$id = "x$id";
+			}
 		}
+
 		return $id;
 	}
 

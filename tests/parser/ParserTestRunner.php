@@ -219,6 +219,8 @@ class ParserTestRunner {
 		$setup['wgHtml5'] = true;
 		$setup['wgDisableLangConversion'] = false;
 		$setup['wgDisableTitleConversion'] = false;
+		$setup['wgLinkFragmentFlavor'] = 'legacy';
+		$setup['$wgSectionFragmentFlavor'] = [ 'legacy' ];
 
 		// "extra language links"
 		// see https://gerrit.wikimedia.org/r/111390

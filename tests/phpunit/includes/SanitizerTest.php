@@ -3,6 +3,8 @@
 /**
  * @todo Tests covering decodeCharReferences can be refactored into a single
  * method and dataprovider.
+ *
+ * @group Sanitizer
  */
 class SanitizerTest extends MediaWikiTestCase {
 
@@ -381,6 +383,40 @@ class SanitizerTest extends MediaWikiTestCase {
 			[ 'data-mw-foo', true ],
 			[ 'data-ooui-foo', true ],
 			[ 'data-mwfoo', true ], // could be false but this is how it's implemented currently
+		];
+	}
+
+	/**
+	 * @dataProvider provideEscapeId
+	 *
+	 * @param string $id
+	 * @param string $modeSetting
+	 * @param array $options
+	 * @param string $expected
+	 */
+	public function testEscapeId( $id, $modeSetting, $options, $expected ) {
+		$this->setMwGlobals( 'wgLinkFragmentFlavor', $modeSetting );
+		$result = Sanitizer::escapeId( $id, $options );
+		self::assertEquals( $expected, $result );
+	}
+
+	public function provideEscapeId() {
+		return [
+			[
+				'',
+				'legacy',
+				[],
+				'x',
+			],
+			[
+				'',
+				'html5',
+				[],
+				'_',
+			],
+			[
+				'Тест'
+			],
 		];
 	}
 }

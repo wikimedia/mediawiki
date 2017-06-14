@@ -4052,7 +4052,7 @@ class Parser {
 	 * @private
 	 */
 	public function formatHeadings( $text, $origText, $isMain = true ) {
-		global $wgMaxTocLevel;
+		global $wgMaxTocLevel, $wgSectionFragmentFlavor;
 
 		# Inhibit editsection links if requested in the page
 		if ( isset( $this->mDoubleUnderscores['noeditsection'] ) ) {
@@ -4123,6 +4123,10 @@ class Parser {
 		$byteOffset = 0;
 		$tocraw = [];
 		$refers = [];
+		$primaryIdEncoding = $wgSectionFragmentFlavor[0];
+		$secondaryIdEncoding = count( $wgSectionFragmentFlavor ) > 1
+			? $wgSectionFragmentFlavor[1]
+			: false;
 
 		$headlines = $numMatches !== false ? $matches[3] : [];
 
@@ -4246,7 +4250,12 @@ class Parser {
 			# Save headline for section edit hint before it's escaped
 			$headlineHint = $safeHeadline;
 
-			$safeHeadline = Sanitizer::escapeId( $safeHeadline, 'noninitial' );
+			$legacyHeadline = $secondaryIdEncoding
+				? Sanitizer::escapeId( $safeHeadline, [ 'noninitial', $secondaryIdEncoding ] )
+				: false;
+			$safeHeadline = Sanitizer::escapeId( $safeHeadline,
+				[ 'noninitial', $primaryIdEncoding ]
+			);
 
 			# HTML names must be case-insensitively unique (T12721).
 			# This does not apply to Unicode characters per
@@ -4261,6 +4270,9 @@ class Parser {
 				for ( $i = 2; isset( $refers["${arrayKey}_$i"] ); ++$i );
 				// @codingStandardsIgnoreEnd
 				$anchor .= "_$i";
+				if ( $legacyHeadline !== false ) {
+					$legacyHeadline .= "_$i";
+				}
 				$refers["${arrayKey}_$i"] = true;
 			} else {
 				$refers[$arrayKey] = true;
@@ -4344,7 +4356,7 @@ class Parser {
 			}
 			$head[$headlineCount] = Linker::makeHeadline( $level,
 				$matches['attrib'][$headlineCount], $anchor, $headline,
-				$editlink, false );
+				$editlink, $legacyHeadline );
 
 			$headlineCount++;
 		}

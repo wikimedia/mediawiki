@@ -3374,6 +3374,20 @@ $wgDisableOutputCompression = false;
  */
 $wgExperimentalHtmlIds = false;
 
+//$wgLinkFragmentFlavor = 'legacy';
+
+/**
+ * Specifies one or more modes of section fragment escaping
+ *
+ * The first element is considered primary and is used for escaping
+ * fragments in links.
+ *
+ * Currently supported modes:
+ *   'legacy' - old MediaWiki HTML4 escaping (.BE.EF)
+ *   'html5'  - modern HTML5 mode, should display Unicode characters
+ */
+$wgFragmentFlavor = [ 'legacy' ];
+
 /**
  * Abstract list of footer icons for skins in place of old copyrightico and poweredbyico code
  * You can add new icons to the built in copyright or poweredby, or you can create

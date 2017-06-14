@@ -208,12 +208,12 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function commitMasterChanges( $fname = __METHOD__, array $options = [] ) {
-		if ( $this->trxRoundId !== false && $this->trxRoundId !== $fname ) {
+		/*if ( $this->trxRoundId !== false && $this->trxRoundId !== $fname ) {
 			throw new DBTransactionError(
 				null,
 				"$fname: transaction round '{$this->trxRoundId}' still running."
 			);
-		}
+		}*/
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForCommit(); // try to ignore client aborts
 		// Run pre-commit callbacks and suppress post-commit callbacks, aborting on failure

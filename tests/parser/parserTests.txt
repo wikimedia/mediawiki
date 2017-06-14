@@ -28315,3 +28315,56 @@ unclosed internal link XSS (T137264)
 !! html/parsoid
 <p>[[#%3Cscript%3Ealert(1)%3C/script%3E|</p>
 !! end
+
+!! test
+HTML5 section links: legacy first, then html5
+!! config
+wgSectionFragmentFlavor=legacy, html5
+!! wikitext
+== Heading 1 ==
+<!-- don't add duplicate IDs if html5 and legacy encoding are the same -->
+
+== Секция 2 ==
+
+== ¡Dupe! ==
+
+== ¡Dupe! ==
+<!-- both IDs should be different -->
+
+!! html/php
+<h2><span class="mw-headline" id="Heading_1">Heading 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Heading 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+!! end
+
+!! test
+HTML5 section links: html5 first, then legacy
+!! config
+wgSectionFragmentFlavor=[ "html5", "legacy" ]
+!! wikitext
+== Heading 1 ==
+<!-- don't add duplicate IDs if html5 and legacy encoding are the same -->
+
+== Секция 2 ==
+
+== ¡Dupe! ==
+
+== ¡Dupe! ==
+<!-- both IDs should be different -->
+
+!! html/php
+<div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Heading_1"><span class="tocnumber">1</span> <span class="toctext">Heading 1</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#%D0%A1%D0%B5%D0%BA%D1%86%D0%B8%D1%8F_2"><span class="tocnumber">2</span> <span class="toctext">Секция 2</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#%C2%A1Dupe%21"><span class="tocnumber">3</span> <span class="toctext">¡Dupe!</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#%C2%A1Dupe%21_2"><span class="tocnumber">4</span> <span class="toctext">¡Dupe!</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Heading_1">Heading 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Heading 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<div id=".D0.A1.D0.B5.D0.BA.D1.86.D0.B8.D1.8F_2"></div><h2><span class="mw-headline" id="%D0%A1%D0%B5%D0%BA%D1%86%D0%B8%D1%8F_2">Секция 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Секция 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<div id=".C2.A1Dupe.21"></div><h2><span class="mw-headline" id="%C2%A1Dupe%21">¡Dupe!</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: ¡Dupe!">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<div id=".C2.A1Dupe.21_2"></div><h2><span class="mw-headline" id="%C2%A1Dupe%21_2">¡Dupe!</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: ¡Dupe!">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+
+!! end
+
+!! test
