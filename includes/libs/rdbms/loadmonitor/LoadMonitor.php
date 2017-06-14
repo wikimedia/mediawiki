@@ -161,7 +161,10 @@ class LoadMonitor implements ILoadMonitor {
 			if ( !$conn ) {
 				$lagTimes[$i] = false;
 				$host = $this->parent->getServerName( $i );
-				$this->replLogger->error( __METHOD__ . ": host $host is unreachable" );
+				$this->replLogger->error(
+					__METHOD__ . ": host {db_server} is unreachable",
+					[ 'db_server' => $host ]
+				);
 				continue;
 			}
 
@@ -171,7 +174,10 @@ class LoadMonitor implements ILoadMonitor {
 				$lagTimes[$i] = $conn->getLag();
 				if ( $lagTimes[$i] === false ) {
 					$host = $this->parent->getServerName( $i );
-					$this->replLogger->error( __METHOD__ . ": host $host is not replicating?" );
+					$this->replLogger->error(
+						__METHOD__ . ": host {db_server} is not replicating?",
+						[ 'db_server' => $host ]
+					);
 				}
 			}
 
