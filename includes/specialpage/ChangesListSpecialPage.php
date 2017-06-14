@@ -791,16 +791,18 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$config = $this->getConfig();
 		$opts = new FormOptions();
 		$structuredUI = $this->getUser()->getOption( 'rcenhancedfilters' );
+		// If urlversion=2 is set, ignore the filter defaults and set them all to false/empty
+		$useDefaults = $this->getRequest()->getInt( 'urlversion' ) !== 2;
 
 		// Add all filters
 		foreach ( $this->filterGroups as $filterGroup ) {
 			// URL parameters can be per-group, like 'userExpLevel',
 			// or per-filter, like 'hideminor'.
 			if ( $filterGroup->isPerGroupRequestParameter() ) {
-				$opts->add( $filterGroup->getName(), $filterGroup->getDefault() );
+				$opts->add( $filterGroup->getName(), $useDefaults ? $filterGroup->getDefault() : '' );
 			} else {
 				foreach ( $filterGroup->getFilters() as $filter ) {
-					$opts->add( $filter->getName(), $filter->getDefault( $structuredUI ) );
+					$opts->add( $filter->getName(), $useDefaults ? $filter->getDefault( $structuredUI ) : false );
 				}
 			}
 		}
@@ -808,6 +810,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$opts->add( 'namespace', '', FormOptions::STRING );
 		$opts->add( 'invert', false );
 		$opts->add( 'associated', false );
+		$opts->add( 'urlversion', 1 );
 
 		return $opts;
 	}
