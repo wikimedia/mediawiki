@@ -686,7 +686,9 @@ class EnhancedChangesList extends ChangesList {
 		}
 		$attribs = $data['attribs'];
 		unset( $data['attribs'] );
-		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isReservedDataAttribute' ] );
+		$attribs = wfArrayFilterByKey( $attribs, function( $key ) {
+			return $key === 'class' || Sanitizer::isReservedDataAttribute( $key );
+		} );
 
 		$line = Html::openElement( 'table', $attribs ) . Html::openElement( 'tr' );
 		$line .= '<td class="mw-enhanced-rc"><span class="mw-enhancedchanges-arrow-space"></span>';
