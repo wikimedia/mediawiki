@@ -59,7 +59,7 @@ class OldChangesList extends ChangesList {
 		) {
 			return false;
 		}
-		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isReservedDataAttribute' ] );
+		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isSafeDataAttribute' ] );
 
 		$dateheader = ''; // $html now contains only <li>...</li>, for hooks' convenience.
 		$this->insertDateHeader( $dateheader, $rc->mAttribs['rc_timestamp'] );
