@@ -22,8 +22,8 @@
  */
 
 /**
- * Class representing an in memory fake file.
- * This is intended for unit testing / developement when you do not want
+ * Class representing an in-memory fake file.
+ * This is intended for unit testing / development when you do not want
  * to hit the filesystem.
  *
  * It reimplements abstract methods with some hardcoded values. Might
