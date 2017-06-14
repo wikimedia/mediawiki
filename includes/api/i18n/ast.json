@@ -5,7 +5,8 @@
 			"Enolp"
 		]
 	},
-	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentación]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Llista d'alderique]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anuncios de la API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Fallos y solicitúes]\n</div>\n<strong>Estau:</strong> Toles carauterístiques qu'apaecen nesta páxina tendríen de funcionar, pero la API inda ta en desendolcu activu, y puede camudar en cualquier momentu. Suscríbete a la [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ llista de corréu mediawiki-api-announce] p'avisos sobro anovamientos.\n\n<strong>Solicitúes incorreutes:</strong> Cuando s'unvíen solicitúes incorreutes a la API, unvíase una cabecera HTTP cola clave \"MediaWiki-API-Error\" y, darréu, tanto'l valor de la cabecera como'l códigu d'error devueltu pondránse al mesmu valor. Pa más información, consulta [[mw:API:Errors_and_warnings|API: Errores y avisos]].\n\n<strong>Pruebes:</strong> Pa facilitar les pruebes de solicitúes API, consulta [[Special:ApiSandbox]].",
+	"apihelp-main-summary": "",
+	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentación]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Llista d'alderique]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anuncios de la API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Fallos y solicitúes]\n</div>\n<strong>Estau:</strong> Toles carauterístiques qu'apaecen nesta páxina tendríen de funcionar, pero la API inda ta en desendolcu activu, y puede camudar en cualquier momentu. Suscríbete a la [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ llista de corréu mediawiki-api-announce] p'avisos sobro anovamientos.\n\n<strong>Solicitúes incorreutes:</strong> Cuando s'unvíen solicitúes incorreutes a la API, unvíase una cabecera HTTP cola clave \"MediaWiki-API-Error\" y, darréu, tanto'l valor de la cabecera como'l códigu d'error devueltu pondránse al mesmu valor. Pa más información, consulta [[mw:API:Errors_and_warnings|API: Errores y avisos]].\n\n<strong>Pruebes:</strong> Pa facilitar les pruebes de solicitúes API, consulta [[Special:ApiSandbox]].",
 	"apihelp-main-param-action": "Qué aición facer.",
 	"apihelp-main-param-format": "El formatu de la salida.",
 	"apihelp-main-param-maxlag": "El retrasu (lag) máximu puede utilizase cuando MediaWiki ta instaláu nun conxuntu de bases de datos replicaes. Pa evitar les aiciones que pudieran causar un retrasu entá mayor na replicación del sitiu, esti parámetru puede causar que'l cliente espere hasta que'l retrasu de replicación sía menor que'l valor especificáu. En casu de retrasu escesivu, devuélvese un códigu d'error <samp>maxlag</samp> con un mensaxe asemeyáu a <samp>Esperando a $host: $lag segundos de retrasu<s/amp>.<br />Ver [[mw:Manual:Maxlag_parameter|Manual:Parámetru maxlag]] pa más información.",
@@ -15,7 +16,7 @@
 	"apihelp-main-param-assertuser": "Comprobar que'l usuariu actual ye l'usuariu nomáu.",
 	"apihelp-main-param-servedby": "Incluyir el nome del host que sirvió la solicitú nes resultancies.",
 	"apihelp-main-param-curtimestamp": "Incluyir la marca de tiempu actual na resultancia.",
-	"apihelp-block-description": "Bloquiar a un usuariu.",
+	"apihelp-block-summary": "Bloquiar a un usuariu.",
 	"apihelp-block-param-user": "Nome d'usuariu, dirección #IP o intervalu d'IP que quies bloquiar. Nun puede utilizase con <var>$1userid</var>",
 	"apihelp-block-param-expiry": "Fecha de caducidá. Puede ser relativa (por casu, <kbd>5 meses</kbd> o <kbd>2 selmanes</kbd>) o absoluta (por casu, 2016-01-16T12:34:56Z). Si s'establez a <kbd>infinitu</kbd>, <kbd>indefiníu</kbd>, o <kbd>nunca</kbd>, el bloquéu nun caducará nunca.",
 	"apihelp-block-param-reason": "Motivu del bloquéu.",
@@ -28,9 +29,9 @@
 	"apihelp-block-param-watchuser": "Vixilar les páxines d'usuariu y d'alderique del usuariu o de la dirección IP.",
 	"apihelp-block-example-ip-simple": "Bloquiar la dirección IP <kbd>192.0.2.5</kbd> mientres 3 díes col motivu <kbd>Primer avisu</kbd>.",
 	"apihelp-block-example-user-complex": "Bloquiar al usuariu <kbd>Vandal</kbd> indefinidamente col motivu <kbd>Vandalismu</kbd> y torgar que cree nueves cuentes o unvie correos.",
-	"apihelp-changeauthenticationdata-description": "Camudar los datos d'identificación del usuariu actual.",
+	"apihelp-changeauthenticationdata-summary": "Camudar los datos d'identificación del usuariu actual.",
 	"apihelp-changeauthenticationdata-example-password": "Intentar camudar la contraseña del usuariu actual a <kbd>ContraseñaExemplu</kbd>.",
 	"apihelp-createaccount-param-name": "Nome d'usuariu.",
 	"apihelp-createaccount-param-language": "Códigu de llingua p'afitar como predetermináu al usuariu (opcional, predetermina la llingua del conteníu).",
-	"apihelp-disabled-description": "Esti módulu deshabilitóse."
+	"apihelp-disabled-summary": "Esti módulu deshabilitóse."
 }
