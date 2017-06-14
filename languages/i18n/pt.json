@@ -279,7 +279,7 @@
 	"jumptonavigation": "navegação",
 	"jumptosearch": "pesquisa",
 	"view-pool-error": "Desculpe, mas de momento os servidores estão sobrecarregados.\nHá demasiados utilizadores a tentar visualizar esta página.\nEspere um pouco antes de tentar aceder à página novamente, por favor.\n\n$1",
-	"generic-pool-error": "Desculpe, os servidores estão sobrecarregados nesse momento.\nDemasiados utilizadores estão tentando visualizar este recurso.\nPor favor, espere um pouco antes de tentar aceder a este recurso novamente.",
+	"generic-pool-error": "Desculpe, neste momento os servidores estão sobrecarregados.\nHá demasiados utilizadores a tentar ver este recurso.\nEspere um pouco antes de tentar aceder a este recurso novamente, por favor.",
 	"pool-timeout": "Tempo limite de espera para o bloqueio excedido",
 	"pool-queuefull": "A fila de processos está cheia",
 	"pool-errorunknown": "Erro desconhecido",
