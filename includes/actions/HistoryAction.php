@@ -783,7 +783,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$attribs = [ 'data-mw-revid' => $rev->getId() ];
 
 		Hooks::run( 'PageHistoryLineEnding', [ $this, &$row, &$s, &$classes, &$attribs ] );
-		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isReservedDataAttribute' ] );
+		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isSafeDataAttribute' ] );
 
 		if ( $classes ) {
 			$attribs['class'] = implode( ' ', $classes );
