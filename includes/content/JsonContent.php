@@ -61,6 +61,17 @@ class JsonContent extends TextContent {
 	}
 
 	/**
+	 * @return bool Whether content is an empty JSON object or array
+	 */
+	public function isEmpty() {
+		// NOTE: casting to array turns an empty stdClass instance into an empty array,
+		// but will turn an empty string, 0, or false into a non-empty array.
+		// This exactly matches the intended semantics of isEmpty for JSON.
+		$data = (array)$this->getData()->getValue();
+		return empty( $data );
+	}
+
+	/**
 	 * Pretty-print JSON.
 	 *
 	 * If called before validation, it may return JSON "null".
