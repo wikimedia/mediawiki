@@ -780,11 +780,9 @@ class HistoryPager extends ReverseChronologicalPager {
 			$s .= ' <span class="mw-changeslist-separator">. .</span> ' . $s2;
 		}
 
-		$attribs = [ 'data-mw-revid' => $rev->getId() ];
+		Hooks::run( 'PageHistoryLineEnding', [ $this, &$row, &$s, &$classes ] );
 
-		Hooks::run( 'PageHistoryLineEnding', [ $this, &$row, &$s, &$classes, &$attribs ] );
-		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isReservedDataAttribute' ] );
-
+		$attribs = [];
 		if ( $classes ) {
 			$attribs['class'] = implode( ' ', $classes );
 		}

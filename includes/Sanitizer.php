@@ -782,12 +782,15 @@ class Sanitizer {
 
 			# Allow any attribute beginning with "data-"
 			# However:
-			# * Disallow data attributes used by MediaWiki code
+			# * data-ooui is reserved for ooui
+			# * data-mw and data-parsoid are reserved for parsoid
+			# * data-mw-<name here> is reserved for extensions (or core) if
+			#   they need to communicate some data to the client and want to be
+			#   sure that it isn't coming from an untrusted user.
 			# * Ensure that the attribute is not namespaced by banning
 			#   colons.
-			if ( !preg_match( '/^data-[^:]*$/i', $attribute )
+			if ( !preg_match( '/^data-(?!ooui|mw|parsoid)[^:]*$/i', $attribute )
 				&& !isset( $whitelist[$attribute] )
-				|| self::isReservedDataAttribute( $attribute )
 			) {
 				continue;
 			}
@@ -853,24 +856,6 @@ class Sanitizer {
 		# TODO: Strip itemprop if we aren't descendants of an itemscope or pointed to by an itemref.
 
 		return $out;
-	}
-
-	/**
-	 * Given an attribute name, checks whether it is a reserved data attribute
-	 * (such as data-mw-foo) which is unavailable to user-generated HTML so MediaWiki
-	 * core and extension code can safely use it to communicate with frontend code.
-	 * @param string $attr Attribute name.
-	 * @return bool
-	 */
-	public static function isReservedDataAttribute( $attr ) {
-		// data-ooui is reserved for ooui.
-		// data-mw and data-parsoid are reserved for parsoid.
-		// data-mw-<name here> is reserved for extensions (or core) if
-		// they need to communicate some data to the client and want to be
-		// sure that it isn't coming from an untrusted user.
-		// We ignore the possibility of namespaces since user-generated HTML
-		// can't use them anymore.
-		return (bool)preg_match( '/^data-(ooui|mw|parsoid)/i', $attr );
 	}
 
 	/**

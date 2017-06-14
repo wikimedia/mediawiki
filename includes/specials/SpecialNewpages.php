@@ -314,7 +314,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$rev->setTitle( $title );
 
 		$classes = [];
-		$attribs = [ 'data-mw-revid' => $result->rev_id ];
 
 		$lang = $this->getLanguage();
 		$dm = $lang->getDirMark();
@@ -379,19 +378,11 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$tagDisplay = '';
 		}
 
+		$css = count( $classes ) ? ' class="' . implode( ' ', $classes ) . '"' : '';
+
 		# Display the old title if the namespace/title has been changed
 		$oldTitleText = '';
 		$oldTitle = Title::makeTitle( $result->rc_namespace, $result->rc_title );
-		$ret = "{$time} {$dm}{$plink} {$hist} {$dm}{$length} {$dm}{$ulink} {$comment} "
-			. "{$tagDisplay} {$oldTitleText}";
-
-		// Let extensions add data
-		Hooks::run( 'NewPagesLineEnding', [ $this, &$ret, $result, &$classes, &$attribs ] );
-		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isReservedDataAttribute' ] );
-
-		if ( count( $classes ) ) {
-			$attribs['class'] = implode( ' ', $classes );
-		}
 
 		if ( !$title->equals( $oldTitle ) ) {
 			$oldTitleText = $oldTitle->getPrefixedText();
@@ -402,7 +393,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 			);
 		}
 
-		return Html::rawElement( 'li', $attribs, $ret ) . "\n";
+		return "<li{$css}>{$time} {$dm}{$plink} {$hist} {$dm}{$length} "
+			. "{$dm}{$ulink} {$comment} {$tagDisplay} {$oldTitleText}</li>\n";
 	}
 
 	/**

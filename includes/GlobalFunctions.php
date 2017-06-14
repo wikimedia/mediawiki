@@ -204,38 +204,6 @@ function wfArrayDiff2_cmp( $a, $b ) {
 }
 
 /**
- * Like array_filter with ARRAY_FILTER_USE_BOTH, but works pre-5.6.
- *
- * @param array $arr
- * @param callable $callback Will be called with the array value and key (in that order) and
- *   should return a bool which will determine whether the array element is kept.
- * @return array
- */
-function wfArrayFilter( array $arr, callable $callback ) {
-	if ( defined( 'ARRAY_FILTER_USE_BOTH' ) ) {
-		return array_filter( $arr, $callback, ARRAY_FILTER_USE_BOTH );
-	}
-	$filteredKeys = array_filter( array_keys( $arr ), function ( $key ) use ( $arr, $callback ) {
-		return call_user_func( $callback, $arr[$key], $key );
-	} );
-	return array_intersect_key( $arr, array_fill_keys( $filteredKeys, true ) );
-}
-
-/**
- * Like array_filter with ARRAY_FILTER_USE_KEY, but works pre-5.6.
- *
- * @param array $arr
- * @param callable $callback Will be called with the array key and should return a bool which
- *   will determine whether the array element is kept.
- * @return array
- */
-function wfArrayFilterByKey( array $arr, callable $callback ) {
-	return wfArrayFilter( $arr, function ( $val, $key ) use ( $callback ) {
-		return call_user_func( $callback, $key );
-	} );
-}
-
-/**
  * Appends to second array if $value differs from that in $default
  *
  * @param string|int $key
