@@ -54,6 +54,8 @@ class ContentHandlerSanityTest extends MediaWikiTestCase {
 			);
 		} else {
 			$this->assertInstanceOf( Content::class, $content );
+			$this->assertTrue( $content->isValid(), 'isValid()' );
+			$this->assertTrue( $content->isEmpty(), 'isEmpty()' );
 		}
 	}
 
