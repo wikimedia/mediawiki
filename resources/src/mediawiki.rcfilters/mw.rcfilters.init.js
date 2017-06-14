@@ -36,12 +36,6 @@
 			// Set as ready
 			$( '.rcfilters-head' ).addClass( 'mw-rcfilters-ui-ready' );
 
-			window.addEventListener( 'popstate', function () {
-				// Update the state of the model from the URL
-				// and re-fetch results into the changes list
-				controller.updateStateFromUrl();
-			} );
-
 			$( 'a.mw-helplink' ).attr(
 				'href',
 				'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:New_filters_for_edit_review'

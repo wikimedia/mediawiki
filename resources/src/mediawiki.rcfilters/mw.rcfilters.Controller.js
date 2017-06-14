@@ -590,13 +590,7 @@
 			this.uriProcessor.getVersion( currentUri.query ) !== 2 ||
 			this.uriProcessor.isNewState( currentUri.query, updatedUri.query )
 		) {
-			if ( this.initializing ) {
-				// Initially, when we just build the first page load
-				// out of defaults, we want to replace the history
-				mw.rcfilters.UriProcessor.static.replaceState( updatedUri );
-			} else {
-				mw.rcfilters.UriProcessor.static.pushState( updatedUri );
-			}
+			mw.rcfilters.UriProcessor.static.replaceState( updatedUri );
 		}
 	};
 
