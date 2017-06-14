@@ -98,17 +98,19 @@ class WebInstallerLanguage extends WebInstallerPage {
 	 * @return string
 	 */
 	public function getLanguageSelector( $name, $label, $selectedCode, $helpHtml = '' ) {
-		global $wgDummyLanguageCodes;
+		global $wgExtraLanguageCodes;
 
 		$output = $helpHtml;
 
 		$select = new XmlSelect( $name, $name, $selectedCode );
 		$select->setAttribute( 'tabindex', $this->parent->nextTabIndex() );
 
+		$unwantedLanguageCodes = $wgExtraLanguageCodes +
+			LanguageCode::getDeprecatedCodeMapping();
 		$languages = Language::fetchLanguageNames();
 		ksort( $languages );
 		foreach ( $languages as $code => $lang ) {
-			if ( isset( $wgDummyLanguageCodes[$code] ) ) {
+			if ( isset( $unwantedLanguageCodes[$code] ) ) {
 				continue;
 			}
 			$select->addOption( "$code - $lang", $code );
