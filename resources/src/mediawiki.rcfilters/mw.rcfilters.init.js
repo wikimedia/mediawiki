@@ -37,8 +37,9 @@
 			$( '.rcfilters-head' ).addClass( 'mw-rcfilters-ui-ready' );
 
 			window.addEventListener( 'popstate', function () {
-				controller.updateStateBasedOnUrl();
-				controller.updateChangesList();
+				// Update the state of the model from the URL
+				// and re-fetch results into the changes list
+				controller.updateStateFromUrl();
 			} );
 
 			$( 'a.mw-helplink' ).attr(
