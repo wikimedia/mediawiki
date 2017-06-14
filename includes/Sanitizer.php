@@ -787,7 +787,7 @@ class Sanitizer {
 			#   colons.
 			if ( !preg_match( '/^data-[^:]*$/i', $attribute )
 				&& !isset( $whitelist[$attribute] )
-				|| self::isReservedDataAttribute( $attribute )
+				|| !self::isSafeDataAttribute( $attribute )
 			) {
 				continue;
 			}
@@ -856,13 +856,13 @@ class Sanitizer {
 	}
 
 	/**
-	 * Given an attribute name, checks whether it is a reserved data attribute
+	 * Given an attribute name, checks that it is not a reserved data attribute
 	 * (such as data-mw-foo) which is unavailable to user-generated HTML so MediaWiki
 	 * core and extension code can safely use it to communicate with frontend code.
 	 * @param string $attr Attribute name.
 	 * @return bool
 	 */
-	public static function isReservedDataAttribute( $attr ) {
+	public static function isSafeDataAttribute( $attr ) {
 		// data-ooui is reserved for ooui.
 		// data-mw and data-parsoid are reserved for parsoid.
 		// data-mw-<name here> is reserved for extensions (or core) if
@@ -870,7 +870,7 @@ class Sanitizer {
 		// sure that it isn't coming from an untrusted user.
 		// We ignore the possibility of namespaces since user-generated HTML
 		// can't use them anymore.
-		return (bool)preg_match( '/^data-(ooui|mw|parsoid)/i', $attr );
+		return !(bool)preg_match( '/^data-(ooui|mw|parsoid)/i', $attr );
 	}
 
 	/**

@@ -456,7 +456,7 @@ class EnhancedChangesList extends ChangesList {
 			// skip entry if hook aborted it
 			return [];
 		}
-		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isReservedDataAttribute' ] );
+		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isSafeDataAttribute' ] );
 
 		$lineParams['recentChangesFlagsRaw'] = [];
 		if ( isset( $data['recentChangesFlags'] ) ) {
@@ -686,7 +686,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 		$attribs = $data['attribs'];
 		unset( $data['attribs'] );
-		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isReservedDataAttribute' ] );
+		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isSafeDataAttribute' ] );
 
 		$line = Html::openElement( 'table', $attribs ) . Html::openElement( 'tr' );
 		$line .= '<td class="mw-enhanced-rc"><span class="mw-enhancedchanges-arrow-space"></span>';

@@ -220,7 +220,7 @@ class DeletedContribsPager extends IndexPager {
 
 		// Let extensions add data
 		Hooks::run( 'DeletedContributionsLineEnding', [ $this, &$ret, $row, &$classes, &$attribs ] );
-		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isReservedDataAttribute' ] );
+		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isSafeDataAttribute' ] );
 
 		if ( $classes === [] && $attribs === [] && $ret === '' ) {
 			wfDebug( "Dropping Special:DeletedContribution row that could not be formatted\n" );
