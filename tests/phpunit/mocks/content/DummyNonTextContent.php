@@ -48,7 +48,21 @@ class DummyNonTextContent extends AbstractContent {
 	 *  structure, an object, a binary blob... anything, really.
 	 */
 	public function getNativeData() {
+		return $this->getData();
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getData() {
 		return $this->data;
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getHtml() {
+		return htmlspecialchars( strval( $this->getData() ) );
 	}
 
 	/**
@@ -102,7 +116,7 @@ class DummyNonTextContent extends AbstractContent {
 	public function getParserOutput( Title $title, $revId = null,
 		ParserOptions $options = null, $generateHtml = true
 	) {
-		return new ParserOutput( $this->getNativeData() );
+		return new ParserOutput( $this->getHtml() );
 	}
 
 	/**
@@ -116,6 +130,6 @@ class DummyNonTextContent extends AbstractContent {
 	 */
 	protected function fillParserOutput( Title $title, $revId,
 			ParserOptions $options, $generateHtml, ParserOutput &$output ) {
-		$output = new ParserOutput( $this->getNativeData() );
+		$output = new ParserOutput( $this->getHtml() );
 	}
 }

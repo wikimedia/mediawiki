@@ -197,7 +197,7 @@ abstract class AbstractContent implements Content {
 			return false;
 		}
 
-		return $this->getNativeData() === $that->getNativeData();
+		return $this == $that;
 	}
 
 	/**

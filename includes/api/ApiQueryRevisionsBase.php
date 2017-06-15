@@ -278,8 +278,8 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		}
 		if ( $this->fld_parsetree || ( $this->fld_content && $this->generateXML ) ) {
 			if ( $content ) {
-				if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
-					$t = $content->getNativeData(); # note: don't set $text
+				if ( $content instanceof WikitextContent ) {
+					$t = $content->getText(); # note: don't set $text
 
 					$wgParser->startExternalParse(
 						$title,
@@ -312,8 +312,8 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 			if ( $this->expandTemplates && !$this->parseContent ) {
 				# XXX: implement template expansion for all content types in ContentHandler?
-				if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
-					$text = $content->getNativeData();
+				if ( $content instanceof WikitextContent ) {
+					$text = $content->getText();
 
 					$text = $wgParser->preprocess(
 						$text,
