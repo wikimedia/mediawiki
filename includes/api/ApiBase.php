@@ -2098,6 +2098,7 @@ abstract class ApiBase extends ContextSource {
 		if ( $summary->exists() ) {
 			$msgs = [ $summary, $extendedDescription ];
 		} else {
+			var_dump( $summary );
 			wfDeprecated( 'API help "description" messages', '1.30' );
 			$description = ApiBase::makeMessage( $this->getDescriptionMessage(), $this->getContext(), [
 				$this->getModulePrefix(),
