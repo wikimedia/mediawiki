@@ -39,6 +39,10 @@ class TextContentTest extends MediaWikiLangTestCase {
 		parent::tearDown();
 	}
 
+	/**
+	 * @param string $text
+	 * @return TextContent
+	 */
 	public function newContent( $text ) {
 		return new TextContent( $text );
 	}
@@ -126,7 +130,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 			$options
 		);
 
-		$this->assertEquals( $expected, $content->getNativeData() );
+		$this->assertEquals( $expected, $content->getText() );
 	}
 
 	public static function dataPreloadTransform() {
@@ -149,7 +153,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 		$content = $this->newContent( $text );
 		$content = $content->preloadTransform( $this->context->getTitle(), $options );
 
-		$this->assertEquals( $expected, $content->getNativeData() );
+		$this->assertEquals( $expected, $content->getText() );
 	}
 
 	public static function dataGetRedirectTarget() {
@@ -274,7 +278,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 		$copy = $content->copy();
 
 		$this->assertTrue( $content->equals( $copy ), 'copy must be equal to original' );
-		$this->assertEquals( 'hello world.', $copy->getNativeData() );
+		$this->assertEquals( 'hello world.', $copy->getText() );
 	}
 
 	/**
@@ -287,12 +291,21 @@ class TextContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @covers TextContent::getText
+	 */
+	public function testGetText() {
+		$content = $this->newContent( 'hello world.' );
+
+		$this->assertEquals( 'hello world.', $content->getText() );
+	}
+
+	/**
 	 * @covers TextContent::getNativeData
 	 */
 	public function testGetNativeData() {
 		$content = $this->newContent( 'hello world.' );
 
-		$this->assertEquals( 'hello world.', $content->getNativeData() );
+		$this->assertEquals( 'hello world.', $content->getText() );
 	}
 
 	/**
@@ -455,7 +468,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 			$this->assertFalse( $converted, "conversion to $model was expected to fail!" );
 		} else {
 			$this->assertInstanceOf( 'Content', $converted );
-			$this->assertEquals( $expectedNative, $converted->getNativeData() );
+			$this->assertEquals( $expectedNative, $converted->getText() );
 		}
 	}
 

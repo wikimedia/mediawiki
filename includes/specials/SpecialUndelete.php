@@ -469,7 +469,7 @@ class SpecialUndelete extends SpecialPage {
 				'readonly' => 'readonly',
 				'cols' => 80,
 				'rows' => 25
-			], $content->getNativeData() . "\n" );
+			], $content->getText() . "\n" );
 
 			$buttonFields[] = new OOUI\ButtonInputWidget( [
 				'type' => 'submit',
