@@ -4974,6 +4974,7 @@ class Parser {
 
 		$ig->setContextTitle( $this->mTitle );
 		$ig->setShowBytes( false );
+		$ig->setShowDimensions( false );
 		$ig->setShowFilename( false );
 		$ig->setParser( $this );
 		$ig->setHideBadImages();

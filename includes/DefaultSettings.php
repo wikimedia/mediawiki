@@ -1455,6 +1455,8 @@ $wgGalleryOptions = [
 	'captionLength' => true,
 	// Show the filesize in bytes in categories
 	'showBytes' => true,
+	// Show the dimensions (width x height) in categories
+	'showDimensions' => true,
 	'mode' => 'traditional',
 ];
 
