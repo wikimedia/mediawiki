@@ -25,6 +25,15 @@
 				.addClass( 'mw-rcfilters-ui-filterMenuHeaderWidget-title' )
 		}, config ) );
 
+		// "Back" to default view button
+		this.backButton = new OO.ui.ButtonWidget( {
+			icon: 'previous',
+			framed: false,
+			title: mw.msg( 'rcfilters-filterlist-title' ),
+			classes: [ 'mw-rcfilters-ui-filterMenuHeaderWidget-backButton' ]
+		} );
+		this.backButton.toggle( this.model.getCurrentView() !== 'default' );
+
 		// Highlight button
 		this.highlightButton = new OO.ui.ToggleButtonWidget( {
 			icon: 'highlight',
@@ -41,6 +50,7 @@
 		this.invertNamespacesButton.toggle( this.model.getCurrentView() === 'namespaces' );
 
 		// Events
+		this.backButton.connect( this, { click: 'onBackButtonClick' } );
 		this.highlightButton
 			.connect( this, { click: 'onHighlightButtonClick' } );
 		this.invertNamespacesButton
@@ -62,6 +72,10 @@
 						$( '<div>' )
 							.addClass( 'mw-rcfilters-ui-row' )
 							.append(
+								$( '<div>' )
+									.addClass( 'mw-rcfilters-ui-cell' )
+									.addClass( 'mw-rcfilters-ui-filterMenuHeaderWidget-header-back' )
+									.append( this.backButton.$element ),
 								$( '<div>' )
 									.addClass( 'mw-rcfilters-ui-cell' )
 									.addClass( 'mw-rcfilters-ui-filterMenuHeaderWidget-header-title' )
@@ -90,9 +104,12 @@
 	 * Respond to model update event
 	 */
 	mw.rcfilters.ui.FilterMenuHeaderWidget.prototype.onModelUpdate = function () {
+		var currentView = this.model.getCurrentView();
+
 		this.setLabel( this.model.getCurrentViewLabel() );
 
-		this.invertNamespacesButton.toggle( this.model.getCurrentView() === 'namespaces' );
+		this.invertNamespacesButton.toggle( currentView === 'namespaces' );
+		this.backButton.toggle( currentView !== 'default' );
 	};
 
 	/**
@@ -111,6 +128,10 @@
 	 */
 	mw.rcfilters.ui.FilterMenuHeaderWidget.prototype.onModelInvertChange = function ( isInverted ) {
 		this.invertNamespacesButton.setActive( isInverted );
+	};
+
+	mw.rcfilters.ui.FilterMenuHeaderWidget.prototype.onBackButtonClick = function () {
+		this.controller.switchView( 'default' );
 	};
 
 	/**

@@ -20,7 +20,7 @@
 		this.parameterMap = {};
 
 		this.views = {};
-		this.currentView = null;
+		this.currentView = 'default';
 
 		// Events
 		this.aggregate( { update: 'filterItemUpdate' } );
@@ -496,7 +496,7 @@
 	 * @return {string} View trigger, if exists
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getViewTrigger = function ( view ) {
-		return this.views[ view ] && this.views[ view ].trigger;
+		return ( this.views[ view ] && this.views[ view ].trigger ) || '';
 	};
 	/**
 	 * Get the value of a specific parameter
