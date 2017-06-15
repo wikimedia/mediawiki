@@ -164,7 +164,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$content = $page->getContent();
 		$this->assertNotNull( $content, 'Page should have been created' );
 
-		$text = $content->getNativeData();
+		$text = $content->getText();
 
 		$this->assertEquals( $expected, $text );
 	}
@@ -188,7 +188,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertEquals( 'Success', $re['edit']['result'] );
 		$newtext = WikiPage::factory( Title::newFromText( $name ) )
 			->getContent( Revision::RAW )
-			->getNativeData();
+			->getText();
 		$this->assertEquals( "==section 1==\nnew content 1\n\n==section 2==\ncontent2", $newtext );
 
 		// Test that we raise a 'nosuchsection' error
@@ -228,7 +228,7 @@ class ApiEditPageTest extends ApiTestCase {
 		// Check the page text is correct
 		$text = WikiPage::factory( Title::newFromText( $name ) )
 			->getContent( Revision::RAW )
-			->getNativeData();
+			->getText();
 		$this->assertEquals( "== header ==\n\ntest", $text );
 
 		// Now on one that does
@@ -244,7 +244,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertEquals( 'Success', $re2['edit']['result'] );
 		$text = WikiPage::factory( Title::newFromText( $name ) )
 			->getContent( Revision::RAW )
-			->getNativeData();
+			->getText();
 		$this->assertEquals( "== header ==\n\ntest\n\n== header ==\n\ntest", $text );
 	}
 

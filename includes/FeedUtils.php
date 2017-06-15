@@ -173,7 +173,7 @@ class FeedUtils {
 
 			if ( $newContent instanceof TextContent ) {
 				// only textual content has a "source view".
-				$text = $newContent->getNativeData();
+				$text = $newContent->getText();
 
 				if ( $wgFeedDiffCutoff <= 0 || strlen( $text ) > $wgFeedDiffCutoff ) {
 					$html = null;

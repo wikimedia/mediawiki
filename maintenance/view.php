@@ -51,7 +51,7 @@ class ViewCLI extends Maintenance {
 			$this->fatalError( "Non-text content models not supported" );
 		}
 
-		$this->output( $content->getNativeData() );
+		$this->output( $content->getText() );
 	}
 }
 

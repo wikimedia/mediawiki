@@ -169,7 +169,7 @@ class RawAction extends FormlessAction {
 						// section not found (or section not supported, e.g. for JS and CSS)
 						$text = false;
 					} else {
-						$text = $content->getNativeData();
+						$text = $content->getText();
 					}
 				}
 			}
