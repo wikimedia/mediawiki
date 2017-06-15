@@ -74,6 +74,20 @@ class NewFilesPager extends RangeChronologicalPager {
 			}
 		}
 
+		if ( $opts->getValue( 'newbies' ) ) {
+			// newbie = most recent 1% of users
+			$dbr = wfGetDB( DB_REPLICA );
+			$max = $dbr->selectField( 'user', 'max(user_id)', false, __METHOD__ );
+			$conds[] = 'img_user >' . (int)( $max - $max / 100 );
+
+			// there's no point in looking for new user activity in a far past;
+			// beyond a certain point, we'd just end up scanning the rest of the
+			// table even though the users we're looking for didn't yet exist...
+			// see T140537, (for ContribsPages, but similar to this)
+			$conds[] = 'img_timestamp > ' .
+				$dbr->addQuotes( $dbr->timestamp( wfTimestamp() - 30 * 24 * 60 * 60 ) );
+		}
+
 		if ( !$opts->getValue( 'showbots' ) ) {
 			$groupsWithBotPermission = User::getGroupsWithPermission( 'bot' );
 
