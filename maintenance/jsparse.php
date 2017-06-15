@@ -24,7 +24,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Maintenance script to do test JavaScript validity parses using jsmin+'s parser
+ * Maintenance script to test JavaScript validity using JsMinPlus' parser
  *
  * @ingroup Maintenance
  */
