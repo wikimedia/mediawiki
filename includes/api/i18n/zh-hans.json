@@ -1405,6 +1405,7 @@
 	"api-format-title": "MediaWiki API 结果",
 	"api-format-prettyprint-header": "这是$1格式的HTML实现。HTML对调试很有用，但不适合应用程序使用。\n\n指定<var>format</var>参数以更改输出格式。要查看$1格式的非HTML实现，设置<kbd>format=$2</kbd>。\n\n参见[[mw:Special:MyLanguage/API|完整文档]]，或[[Special:ApiHelp/main|API帮助]]以获取更多信息。",
 	"api-format-prettyprint-header-only-html": "这是用来调试的HTML实现，不适合实际使用。\n\n参见[[mw:Special:MyLanguage/API|完整文档]]，或[[Special:ApiHelp/main|API帮助]]以获取更多信息。",
+	"api-format-prettyprint-header-hyperlinked": "这是$1格式的HTML实现。HTML对调试很有用，但不适合应用程序使用。\n\n指定<var>format</var>参数以更改输出格式。要查看$1格式的非HTML实现，设置[$3 <kbd>format=$2</kbd>]。\n\n参见[[mw:API|完整文档]]，或[[Special:ApiHelp/main|API帮助]]以获取更多信息。",
 	"api-format-prettyprint-status": "此响应将会返回HTTP状态$1 $2。",
 	"api-login-fail-aborted": "身份验证需要用户交互，而其不被<kbd>action=login</kbd>支持。要通过<kbd>action=login</kbd>登录，请参见[[Special:BotPasswords]]。要继续使用主账户登录，请参见<kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>。",
 	"api-login-fail-aborted-nobotpw": "身份验证需要用户交互，而其不被<kbd>action=login</kbd>支持。要登录，请参见<kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>。",

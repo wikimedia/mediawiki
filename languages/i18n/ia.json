@@ -3850,5 +3850,8 @@
 	"gotointerwiki-external": "Tu es sur le puncto de quitar {{SITENAME}} pro visitar [[$2]], un sito web separate.\n\n'''[$1 Continuar a $1]'''",
 	"undelete-cantedit": "Tu non pote restaurar iste pagina perque tu non ha le permission de modificar iste pagina.",
 	"undelete-cantcreate": "Tu non pote restaurar iste pagina perque il non ha pagina existente con iste nomine e tu non ha le permission de crear lo.",
-	"pagedata-title": "Datos de pagina"
+	"pagedata-title": "Datos de pagina",
+	"pagedata-text": "Iste pagina forni un interfacie de datos a paginas. Forni le titulo del pagina in le URL, usante le syntaxe de subpaginas.\n* Le negotiation de contento depende del capite \"Accept\" de tu cliente. Isto significa que le datos del pagina essera fornite in le formato que tu cliente prefere.",
+	"pagedata-not-acceptable": "Nulle formato correspondente trovate. Typos MIME supportate: $1",
+	"pagedata-bad-title": "Titulo invalide: $1."
 }

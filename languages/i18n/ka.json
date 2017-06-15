@@ -451,7 +451,7 @@
 	"createacct-another-submit": "ანგარიშის შექმნა",
 	"createacct-continue-submit": "განაგრძე ანგარიშის შექმნა",
 	"createacct-another-continue-submit": "განაგრძე ანგარიშის შექმნა",
-	"createacct-benefit-heading": "{{SITENAME}} შექმნილია თქვენნაირი ადამიანების მიერ.",
+	"createacct-benefit-heading": "{{SITENAME}} შექმნილია თქვენნაირი ადამიანების მიერ",
 	"createacct-benefit-body1": "{{PLURAL:$1|რედაქტირება|რედაქტირება}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|გვერდი|გვერდი}}",
 	"createacct-benefit-body3": "ბოლო {{PLURAL:$1|რედაქტორი|რედაქტორი}}",

@@ -71,6 +71,7 @@
 	"apihelp-compare-param-totitle": "Zweiter zu vergleichender Titel.",
 	"apihelp-compare-param-toid": "Zweite zu vergleichende Seitennummer.",
 	"apihelp-compare-param-torev": "Zweite zu vergleichende Version.",
+	"apihelp-compare-paramvalue-prop-title": "Die Seitentitel der Versionen „Von“ und „Nach“.",
 	"apihelp-compare-example-1": "Unterschied zwischen Version 1 und 2 abrufen",
 	"apihelp-createaccount-description": "Erstellen eines neuen Benutzerkontos.",
 	"apihelp-createaccount-param-preservestate": "Falls <kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> für <samp>hasprimarypreservedstate</samp> wahr ausgegeben hat, sollten Anfragen, die als <samp>primary-required</samp> markiert wurden, ausgelassen werden. Falls ein nicht-leerer Wert für <samp>preservedusername</samp> zurückgegeben wurde, muss dieser Benutzername für den Parameter <var>username</var> verwendet werden.",
