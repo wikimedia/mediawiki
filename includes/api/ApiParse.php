@@ -486,12 +486,12 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['parsetree'] ) || $params['generatexml'] ) {
-			if ( $this->content->getModel() != CONTENT_MODEL_WIKITEXT ) {
+			if ( !$this->content instanceof WikitextContent ) {
 				$this->dieWithError( 'apierror-parsetree-notwikitext', 'notwikitext' );
 			}
 
 			$wgParser->startExternalParse( $titleObj, $popts, Parser::OT_PREPROCESS );
-			$dom = $wgParser->preprocessToDom( $this->content->getNativeData() );
+			$dom = $wgParser->preprocessToDom( $this->content->getText() );
 			if ( is_callable( [ $dom, 'saveXML' ] ) ) {
 				$xml = $dom->saveXML();
 			} else {
