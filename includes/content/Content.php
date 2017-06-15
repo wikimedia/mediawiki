@@ -77,6 +77,9 @@ interface Content {
 	 *
 	 * @since 1.21
 	 *
+	 * @deprecated since 1.30 Use getText() for TextContent instances.
+	 *             For other content models, use specialized getters.
+	 *
 	 * @return mixed The native representation of the content. Could be a
 	 *    string, a nested array structure, an object, a binary blob...
 	 *    anything, really.

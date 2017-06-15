@@ -2,6 +2,8 @@
 
 class DummyNonTextContent extends AbstractContent {
 
+	private $data;
+
 	public function __construct( $data ) {
 		parent::__construct( "testing-nontext" );
 
@@ -48,7 +50,21 @@ class DummyNonTextContent extends AbstractContent {
 	 *  structure, an object, a binary blob... anything, really.
 	 */
 	public function getNativeData() {
+		return $this->getData();
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getData() {
 		return $this->data;
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getHtml() {
+		return htmlspecialchars( strval( $this->getData() ) );
 	}
 
 	/**
@@ -57,25 +73,19 @@ class DummyNonTextContent extends AbstractContent {
 	 * @return int
 	 */
 	public function getSize() {
-		return strlen( $this->data );
+		return strlen( $this->serialize() );
 	}
 
 	/**
-	 * Return a copy of this Content object. The following must be true for the object returned
-	 * if $copy = $original->copy()
+	 * Return a new DummyNonTextContent wrapping a deep clone of the data value
+	 * originally passed to the constructor.
 	 *
-	 * * get_class($original) === get_class($copy)
-	 * * $original->getModel() === $copy->getModel()
-	 * * $original->equals( $copy )
-	 *
-	 * If and only if the Content object is imutable, the copy() method can and should
-	 * return $this. That is,  $copy === $original may be true, but only for imutable content
-	 * objects.
-	 *
-	 * @return Content A copy of this object
+	 * @return Content
 	 */
 	public function copy() {
-		return $this;
+		// deep clone
+		$data = unserialize( serialize( $this->data ) );
+		return new DummyNonTextContent( $data );
 	}
 
 	/**
@@ -102,7 +112,7 @@ class DummyNonTextContent extends AbstractContent {
 	public function getParserOutput( Title $title, $revId = null,
 		ParserOptions $options = null, $generateHtml = true
 	) {
-		return new ParserOutput( $this->getNativeData() );
+		return new ParserOutput( $this->getHtml() );
 	}
 
 	/**
@@ -116,6 +126,6 @@ class DummyNonTextContent extends AbstractContent {
 	 */
 	protected function fillParserOutput( Title $title, $revId,
 			ParserOptions $options, $generateHtml, ParserOutput &$output ) {
-		$output = new ParserOutput( $this->getNativeData() );
+		$output = new ParserOutput( $this->getHtml() );
 	}
 }

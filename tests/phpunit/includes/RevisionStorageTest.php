@@ -299,7 +299,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$orig = $this->makeRevision( [ 'text' => 'hello hello.' ] );
 		$rev = Revision::newFromId( $orig->getId() );
 
-		$this->assertEquals( 'hello hello.', $rev->getContent()->getNativeData() );
+		$this->assertEquals( 'hello hello.', $rev->getContent()->getText() );
 	}
 
 	/**
@@ -435,7 +435,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 			'new null revision shold have a different id from the original revision' );
 		$this->assertEquals( $orig->getTextId(), $rev->getTextId(),
 			'new null revision shold have the same text id as the original revision' );
-		$this->assertEquals( 'some testing text', $rev->getContent()->getNativeData() );
+		$this->assertEquals( 'some testing text', $rev->getContent()->getText() );
 	}
 
 	public static function provideUserWasLastToEdit() {

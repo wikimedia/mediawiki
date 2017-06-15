@@ -81,12 +81,12 @@ class PreprocessDump extends DumpIterator {
 	public function processRevision( $rev ) {
 		$content = $rev->getContent( Revision::RAW );
 
-		if ( $content->getModel() !== CONTENT_MODEL_WIKITEXT ) {
+		if ( !$content instanceof WikitextContent ) {
 			return;
 		}
 
 		try {
-			$this->mPreprocessor->preprocessToObj( strval( $content->getNativeData() ), 0 );
+			$this->mPreprocessor->preprocessToObj( strval( $content->getText() ), 0 );
 		} catch ( Exception $e ) {
 			$this->error( "Caught exception " . $e->getMessage() . " in "
 				. $rev->getTitle()->getPrefixedText() );

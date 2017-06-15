@@ -35,7 +35,7 @@ class JsonContent extends TextContent {
 	 */
 	public function getJsonData() {
 		wfDeprecated( __METHOD__, '1.25' );
-		return FormatJson::decode( $this->getNativeData(), true );
+		return FormatJson::decode( $this->getText(), true );
 	}
 
 	/**
@@ -48,7 +48,7 @@ class JsonContent extends TextContent {
 	 */
 	public function getData() {
 		if ( $this->jsonParse === null ) {
-			$this->jsonParse = FormatJson::parse( $this->getNativeData() );
+			$this->jsonParse = FormatJson::parse( $this->getText() );
 		}
 		return $this->jsonParse;
 	}
