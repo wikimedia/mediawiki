@@ -3813,7 +3813,7 @@
 	"tags-create-reason": "Reason:",
 	"tags-create-submit": "Create",
 	"tags-create-no-name": "You must specify a tag name.",
-	"tags-create-invalid-chars": "Tag names must not contain commas (<code>,</code>) or forward slashes (<code>/</code>).",
+	"tags-create-invalid-chars": "Tag names must not contain commas (<code>,</code>), pipes (<code>|</code>), or forward slashes (<code>/</code>).",
 	"tags-create-invalid-title-chars": "Tag names must not contain characters that cannot be used in page titles.",
 	"tags-create-already-exists": "The tag \"$1\" already exists.",
 	"tags-create-warnings-above": "The following {{PLURAL:$2|warning was|warnings were}} encountered when attempting to create the tag \"$1\":",
