@@ -23,8 +23,16 @@
 	}
 
 	&-footer {
-		background-color: #f8f9fa;
-		text-align: right;
 		padding: 0.5em;
+		background-color: #f8f9fa;
+		border-top: 1px solid #c8ccd1;
+
+		& + & {
+			border-top: 0;
+		}
+
+		&-feedback {
+			text-align: right;
+		}
 	}
 }
