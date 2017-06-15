@@ -248,7 +248,10 @@ class DatabasePostgres extends Database {
 		}
 		/* Transaction stays in the ERROR state until rolled back */
 		if ( $this->mTrxLevel ) {
-			$this->rollback( __METHOD__ );
+			// Throw away the transaction state, then raise the error as normal.
+			// Note that if this connection is managed by LBFactory, it's already expected
+			// that the other transactions LBFactory manages will be rolled back.
+			$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
 		}
 		parent::reportQueryError( $error, $errno, $sql, $fname, false );
 	}
