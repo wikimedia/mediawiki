@@ -126,6 +126,48 @@
 			);
 		}
 
+		if ( mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' ) ) {
+			// Add a selector at the right of the input
+			this.viewsSelectWidget = new OO.ui.ButtonSelectWidget( {
+				classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-views-select-widget' ],
+				items: [
+					new OO.ui.ButtonOptionWidget( {
+						data: 'namespaces',
+						icon: 'article',
+						title: mw.msg( 'namespaces' )
+					} ),
+					new OO.ui.ButtonOptionWidget( {
+						data: 'tags',
+						icon: 'tag',
+						title: mw.msg( 'rcfilters-view-tags' )
+					} )
+				]
+			} );
+
+			// Rearrange the UI so the select widget is at the right of the input
+			this.$element.append(
+				$( '<div>' )
+					.addClass( 'mw-rcfilters-ui-table' )
+					.append(
+						$( '<div>' )
+							.addClass( 'mw-rcfilters-ui-row' )
+							.append(
+								$( '<div>' )
+									.addClass( 'mw-rcfilters-ui-cell' )
+									.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-views-input' )
+									.append( this.input.$element ),
+								$( '<div>' )
+									.addClass( 'mw-rcfilters-ui-cell' )
+									.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-views-select' )
+									.append( this.viewsSelectWidget.$element )
+							)
+					)
+			);
+
+			// Event
+			this.viewsSelectWidget.connect( this, { choose: 'onViewsSelectWidgetChoose' } );
+		}
+
 		rcFiltersRow.append(
 			$( '<div>' )
 				.addClass( 'mw-rcfilters-ui-cell' )
@@ -160,6 +202,17 @@
 	OO.inheritClass( mw.rcfilters.ui.FilterTagMultiselectWidget, OO.ui.MenuTagMultiselectWidget );
 
 	/* Methods */
+
+	/**
+	 * Respond to view select widget choose event
+	 *
+	 * @param {OO.ui.ButtonOptionWidget} buttonOptionWidget Chosen widget
+	 */
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onViewsSelectWidgetChoose = function ( buttonOptionWidget ) {
+		this.controller.switchView( buttonOptionWidget.getData() );
+		this.viewsSelectWidget.selectItem( null );
+		this.focus();
+	};
 
 	/**
 	 * Respond to input change event
