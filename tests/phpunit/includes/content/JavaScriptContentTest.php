@@ -247,7 +247,7 @@ class JavaScriptContentTest extends TextContentTest {
 		$content = new JavaScriptContent( $oldText );
 		$newContent = $content->updateRedirect( $target );
 
-		$this->assertEquals( $expectedText, $newContent->getNativeData() );
+		$this->assertEquals( $expectedText, $newContent->getText() );
 	}
 
 	public static function provideUpdateRedirect() {
