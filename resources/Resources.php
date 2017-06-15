@@ -1755,6 +1755,8 @@ return [
 		],
 		'dependencies' => [
 			'oojs',
+			'mediawiki.api',
+			'mediawiki.api.options',
 			'mediawiki.Uri',
 			'mediawiki.user',
 		],
@@ -2057,6 +2059,7 @@ return [
 	'mediawiki.special.search.commonsInterwikiWidget' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.search.commonsInterwikiWidget.js',
 		'dependencies' => [
+			'mediawiki.api',
 			'mediawiki.Uri',
 			'mediawiki.jqueryMsg'
 		],
@@ -2492,6 +2495,7 @@ return [
 			'resources/src/mediawiki.widgets/mw.widgets.UserInputWidget.js',
 		],
 		'dependencies' => [
+			'mediawiki.api',
 			'oojs-ui-widgets',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
@@ -2501,6 +2505,7 @@ return [
 			'resources/src/mediawiki.widgets/mw.widgets.UsersMultiselectWidget.js',
 		],
 		'dependencies' => [
+			'mediawiki.api',
 			'oojs-ui-widgets',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
@@ -2534,6 +2539,7 @@ return [
 			],
 		],
 		'dependencies' => [
+			'mediawiki.api',
 			'oojs-ui-core',
 		],
 	],
