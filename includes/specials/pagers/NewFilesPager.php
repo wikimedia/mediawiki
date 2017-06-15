@@ -126,6 +126,10 @@ class NewFilesPager extends RangeChronologicalPager {
 			$options[] = 'STRAIGHT_JOIN';
 		}
 
+		if ( $opts->getValue( 'mediatype' ) ) {
+			$conds['img_media_type'] = $opts->getValue( 'mediatype' );
+		}
+
 		$likeVal = $opts->getValue( 'like' );
 		if ( !$this->getConfig()->get( 'MiserMode' ) && $likeVal !== '' ) {
 			$dbr = wfGetDB( DB_REPLICA );
