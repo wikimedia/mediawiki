@@ -35,15 +35,20 @@ require_once __DIR__ . '/../Maintenance.php';
  */
 abstract class Benchmarker extends Maintenance {
 	protected $defaultCount = 100;
+	private $lang;
 
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( 'count', 'How many times to run a benchmark', false, true );
+		$this->addOption( 'verbose', 'Verbose logging of resource usage', false, false, 'v' );
 	}
 
 	public function bench( array $benchs ) {
+		$this->lang = Language::factory( 'en' );
+
 		$this->startBench();
 		$count = $this->getOption( 'count', $this->defaultCount );
+		$verbose = $this->hasOption( 'verbose' );
 		foreach ( $benchs as $key => $bench ) {
 			// Shortcut for simple functions
 			if ( is_callable( $bench ) ) {
@@ -66,6 +71,9 @@ abstract class Benchmarker extends Maintenance {
 				$t = microtime( true );
 				call_user_func_array( $bench['function'], $bench['args'] );
 				$t = ( microtime( true ) - $t ) * 1000;
+				if ( $verbose ) {
+					$this->verboseRun( $i );
+				}
 				$times[] = $t;
 			}
 
@@ -104,6 +112,10 @@ abstract class Benchmarker extends Maintenance {
 				'median' => $median,
 				'mean' => $mean,
 				'max' => $max,
+				'usage' => [
+					'mem' => memory_get_usage( true ),
+					'mempeak' => memory_get_peak_usage( true ),
+				],
 			] );
 		}
 	}
@@ -126,12 +138,32 @@ abstract class Benchmarker extends Maintenance {
 			'times',
 			$res['count']
 		);
+
 		foreach ( [ 'total', 'min', 'median', 'mean', 'max' ] as $metric ) {
 			$ret .= sprintf( "  %' 6s: %6.2fms\n",
 				$metric,
 				$res[$metric]
 			);
 		}
+
+		foreach ( [
+			'mem' => 'Current memory usage',
+			'mempeak' => 'Peak memory usage'
+		] as $key => $label ) {
+			$ret .= sprintf( "%' 20s: %s\n",
+				$label,
+				$this->lang->formatSize( $res['usage'][$key] )
+			);
+		}
+
 		$this->output( "$ret\n" );
+	}
+
+	protected function verboseRun( $iteration ) {
+		$this->output( sprintf( "#%3d - memory: %-10s - peak: %-10s\n",
+			$iteration,
+			$this->lang->formatSize( memory_get_usage( true ) ),
+			$this->lang->formatSize( memory_get_peak_usage( true ) )
+		) );
 	}
 }
