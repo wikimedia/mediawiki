@@ -1367,6 +1367,13 @@ SQL;
 		return false;
 	}
 
+	public function serverIsReadOnly() {
+		$res = $this->query( "SHOW default_transaction_read_only", __METHOD__ );
+		$row = $this->fetchObject( $res );
+
+		return $row ? ( strtolower( $row->default_transaction_read_only ) === 'on' ) : false;
+	}
+
 	/**
 	 * @param string $lockName
 	 * @return string Integer
