@@ -80,9 +80,22 @@ class MessageContent extends AbstractContent {
 	/**
 	 * Returns the message object, with any parameters already substituted.
 	 *
+	 * @deprecated since 1.31 use getMessage() instead.
+	 *
 	 * @return Message The message object.
 	 */
 	public function getNativeData() {
+		return $this->getMessage();
+	}
+
+	/**
+	 * Returns the message object, with any parameters already substituted.
+	 *
+	 * @since 1.31
+	 *
+	 * @return Message The message object.
+	 */
+	public function getMessage() {
 		// NOTE: Message objects are mutable. Cloning here makes MessageContent immutable.
 		return clone $this->mMessage;
 	}

@@ -527,7 +527,7 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 			'new null revision should have a different id from the original revision' );
 		$this->assertEquals( $orig->getTextId(), $rev->getTextId(),
 			'new null revision should have the same text id as the original revision' );
-		$this->assertEquals( __METHOD__, $rev->getContent()->getNativeData() );
+		$this->assertEquals( __METHOD__, $rev->getContent()->getText() );
 	}
 
 	/**

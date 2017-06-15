@@ -138,14 +138,14 @@ class CompareParsers extends DumpIterator {
 
 		$content = $rev->getContent();
 
-		if ( $content->getModel() !== CONTENT_MODEL_WIKITEXT ) {
+		if ( !( $content instanceof WikitextContent ) ) {
 			$this->error( "Page {$title->getPrefixedText()} does not contain wikitext "
 				. "but {$content->getModel()}\n" );
 
 			return;
 		}
 
-		$text = strval( $content->getNativeData() );
+		$text = $content->getText();
 
 		$output1 = $parser1->parse( $text, $title, $this->options );
 		$output2 = $parser2->parse( $text, $title, $this->options );

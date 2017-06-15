@@ -250,7 +250,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$rev = $page->getRevision();
 
 		$this->assertEquals( $page->getLatest(), $rev->getId() );
-		$this->assertEquals( "some text", $rev->getContent()->getNativeData() );
+		$this->assertEquals( "some text", $rev->getContent()->getText() );
 	}
 
 	/**
@@ -266,7 +266,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$this->createPage( $page, "some text", CONTENT_MODEL_WIKITEXT );
 
 		$content = $page->getContent();
-		$this->assertEquals( "some text", $content->getNativeData() );
+		$this->assertEquals( "some text", $content->getText() );
 	}
 
 	/**
@@ -682,7 +682,7 @@ more stuff
 		$content = ContentHandler::makeContent( $with, $page->getTitle(), $page->getContentModel() );
 		$c = $page->replaceSectionContent( $section, $content, $sectionTitle );
 
-		$this->assertEquals( $expected, is_null( $c ) ? null : trim( $c->getNativeData() ) );
+		$this->assertEquals( $expected, is_null( $c ) ? null : trim( $c->getText() ) );
 	}
 
 	/**
@@ -698,7 +698,7 @@ more stuff
 		$content = ContentHandler::makeContent( $with, $page->getTitle(), $page->getContentModel() );
 		$c = $page->replaceSectionAtRev( $section, $content, $sectionTitle, $baseRevId );
 
-		$this->assertEquals( $expected, is_null( $c ) ? null : trim( $c->getNativeData() ) );
+		$this->assertEquals( $expected, is_null( $c ) ? null : trim( $c->getText() ) );
 	}
 
 	/* @todo FIXME: fix this!
@@ -866,7 +866,7 @@ more stuff
 		$page = new WikiPage( $page->getTitle() );
 		$this->assertEquals( $rev2->getSha1(), $page->getRevision()->getSha1(),
 			"rollback did not revert to the correct revision" );
-		$this->assertEquals( "one\n\ntwo", $page->getContent()->getNativeData() );
+		$this->assertEquals( "one\n\ntwo", $page->getContent()->getText() );
 	}
 
 	/**
@@ -921,7 +921,7 @@ more stuff
 		$page = new WikiPage( $page->getTitle() );
 		$this->assertEquals( $rev1->getSha1(), $page->getRevision()->getSha1(),
 			"rollback did not revert to the correct revision" );
-		$this->assertEquals( "one", $page->getContent()->getNativeData() );
+		$this->assertEquals( "one", $page->getContent()->getText() );
 	}
 
 	/**
@@ -990,7 +990,7 @@ more stuff
 		$page = new WikiPage( $page->getTitle() );
 		$this->assertEquals( $rev1->getSha1(), $page->getRevision()->getSha1(),
 			"rollback did not revert to the correct revision" );
-		$this->assertEquals( "one", $page->getContent()->getNativeData() );
+		$this->assertEquals( "one", $page->getContent()->getText() );
 	}
 
 	public static function provideGetAutoDeleteReason() {

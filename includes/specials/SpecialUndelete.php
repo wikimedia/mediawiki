@@ -467,7 +467,7 @@ class SpecialUndelete extends SpecialPage {
 					'cols' => 80,
 					'rows' => 25
 				],
-				$content->getNativeData() . "\n"
+				$content->getText() . "\n"
 			);
 
 			$previewButton = Xml::element( 'input', [
