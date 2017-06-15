@@ -44,16 +44,29 @@
 				hideWhenOutOfView: false,
 				hideOnChoose: false,
 				width: 650,
-				$footer: $( '<div>' )
-					.append(
-						new OO.ui.ButtonWidget( {
-							framed: false,
-							icon: 'feedback',
-							flags: [ 'progressive' ],
-							label: mw.msg( 'rcfilters-filterlist-feedbacklink' ),
-							href: 'https://www.mediawiki.org/wiki/Help_talk:New_filters_for_edit_review'
-						} ).$element
-					)
+				footers: [
+					{
+						name: 'viewSelect',
+						// View select menu, appears on default view only
+						$element: $( '<div>' )
+							.append( new mw.rcfilters.ui.ViewSwitchWidget( this.controller, this.model ).$element ),
+						views: [ 'default' ]
+					},
+					{
+						name: 'feedback',
+						// Feedback footer, appears on all views
+						$element: $( '<div>' )
+							.append(
+								new OO.ui.ButtonWidget( {
+									framed: false,
+									icon: 'feedback',
+									flags: [ 'progressive' ],
+									label: mw.msg( 'rcfilters-filterlist-feedbacklink' ),
+									href: 'https://www.mediawiki.org/wiki/Help_talk:New_filters_for_edit_review'
+								} ).$element
+							)
+					}
+				]
 			},
 			input: {
 				icon: 'search',
@@ -126,6 +139,48 @@
 			);
 		}
 
+		if ( mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' ) ) {
+			// Add a selector at the right of the input
+			this.viewsSelectWidget = new OO.ui.ButtonSelectWidget( {
+				classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-views-select-widget' ],
+				items: [
+					new OO.ui.ButtonOptionWidget( {
+						data: 'namespaces',
+						icon: 'article',
+						title: mw.msg( 'namespaces' )
+					} ),
+					new OO.ui.ButtonOptionWidget( {
+						data: 'tags',
+						icon: 'tag',
+						title: mw.msg( 'rcfilters-view-tags' )
+					} )
+				]
+			} );
+
+			// Rearrange the UI so the select widget is at the right of the input
+			this.$element.append(
+				$( '<div>' )
+					.addClass( 'mw-rcfilters-ui-table' )
+					.append(
+						$( '<div>' )
+							.addClass( 'mw-rcfilters-ui-row' )
+							.append(
+								$( '<div>' )
+									.addClass( 'mw-rcfilters-ui-cell' )
+									.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-views-input' )
+									.append( this.input.$element ),
+								$( '<div>' )
+									.addClass( 'mw-rcfilters-ui-cell' )
+									.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-views-select' )
+									.append( this.viewsSelectWidget.$element )
+							)
+					)
+			);
+
+			// Event
+			this.viewsSelectWidget.connect( this, { choose: 'onViewsSelectWidgetChoose' } );
+		}
+
 		rcFiltersRow.append(
 			$( '<div>' )
 				.addClass( 'mw-rcfilters-ui-cell' )
@@ -160,6 +215,17 @@
 	OO.inheritClass( mw.rcfilters.ui.FilterTagMultiselectWidget, OO.ui.MenuTagMultiselectWidget );
 
 	/* Methods */
+
+	/**
+	 * Respond to view select widget choose event
+	 *
+	 * @param {OO.ui.ButtonOptionWidget} buttonOptionWidget Chosen widget
+	 */
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onViewsSelectWidgetChoose = function ( buttonOptionWidget ) {
+		this.controller.switchView( buttonOptionWidget.getData() );
+		this.viewsSelectWidget.selectItem( null );
+		this.focus();
+	};
 
 	/**
 	 * Respond to input change event
@@ -275,8 +341,7 @@
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.updateElementsForView = function () {
 		var view = this.model.getCurrentView(),
 			inputValue = this.input.getValue(),
-			inputView = this.model.getViewByTrigger( inputValue.substr( 0, 1 ) ),
-			newInputValue = inputValue;
+			inputView = this.model.getViewByTrigger( inputValue.substr( 0, 1 ) );
 
 		if ( inputView !== 'default' ) {
 			// We have a prefix already, remove it

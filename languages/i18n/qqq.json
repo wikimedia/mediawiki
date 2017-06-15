@@ -1539,6 +1539,7 @@
 	"recentchanges-legend-plusminus": "{{optional}}\nA plus/minus sign with a number for the legend.",
 	"recentchanges-submit": "Label for submit button in [[Special:RecentChanges]]\n{{Identical|Show}}",
 	"rcfilters-activefilters": "Title for the filters selection showing the active filters.",
+	"rcfilters-advancedfilters": "Title for the buttons allowing the user to switch to the various advanced filters view.",
 	"rcfilters-quickfilters": "Label for the button that opens the saved filter settings menu in [[Special:RecentChanges]]",
 	"rcfilters-quickfilters-placeholder-title": "Title for the text shown in the quick filters menu on [[Special:RecentChanges]] if the user has not saved any quick filters.",
 	"rcfilters-quickfilters-placeholder-description": "Description for the text shown in the quick filters menu on [[Special:RecentChanges]] if the user has not saved any quick filters.",

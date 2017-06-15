@@ -15,19 +15,48 @@
 		margin-top: 1.6em;
 	}
 
-	.mw-rcfilters-ui-table {
-		margin-top: 0.3em;
-	}
-
-	&-wrapper-content {
-		&-title {
-			font-weight: bold;
-			color: #54595d;
+	&-wrapper {
+		.mw-rcfilters-ui-table {
+			margin-top: 0.3em;
 		}
 
-		&-savedQueryTitle {
-			color: #72777d;
-			margin-left: 1em;
+		&-content {
+			&-title {
+				font-weight: bold;
+				color: #54595d;
+			}
+
+			&-savedQueryTitle {
+				color: #72777d;
+				margin-left: 1em;
+			}
+		}
+	}
+
+	&-views {
+		&-input {
+			width: 100%;
+		}
+
+		&-select {
+			width: 1em;
+
+			&-widget.oo-ui-widget {
+				display: block;
+				text-align: right;
+
+				// Override OOUI rules
+				&.oo-ui-buttonSelectWidget .oo-ui-buttonOptionWidget:first-child a.oo-ui-buttonElement-button,
+				.oo-ui-buttonOptionWidget a.oo-ui-buttonElement-button {
+					border-radius: 0;
+					border-left: 0;
+				}
+
+				&.oo-ui-buttonSelectWidget .oo-ui-buttonOptionWidget:last-child a.oo-ui-buttonElement-button {
+					border-radius: 0;
+				}
+
+			}
 		}
 	}
 

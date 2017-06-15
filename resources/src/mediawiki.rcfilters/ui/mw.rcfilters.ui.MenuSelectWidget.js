@@ -9,7 +9,17 @@
 	 * @param {mw.rcfilters.dm.FiltersViewModel} model View model
 	 * @param {Object} [config] Configuration object
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
-	 * @cfg {jQuery} [$footer] An optional footer for the menu
+	 * @cfg {Object[]} [footers] An array of objects defining the footers for
+	 *  this menu, with a definition whether they appear per specific views.
+	 *  The expected structure is:
+	 *  [
+	 *     {
+	 *        name: {string} A unique name for the footer object
+	 *        $element: {jQuery} A jQuery object for the content of the footer
+	 *        views: {string[]} Optional. An array stating which views this footer is
+	 *               active on. Use null or omit to display this on all views.
+	 *     }
+	 *  ]
 	 */
 	mw.rcfilters.ui.MenuSelectWidget = function MwRcfiltersUiMenuSelectWidget( controller, model, config ) {
 		var header;
@@ -23,9 +33,9 @@
 
 		this.inputValue = '';
 		this.$overlay = config.$overlay || this.$element;
-		this.$footer = config.$footer;
 		this.$body = $( '<div>' )
 				.addClass( 'mw-rcfilters-ui-menuSelectWidget-body' );
+		this.footers = [];
 
 		// Parent
 		mw.rcfilters.ui.MenuSelectWidget.parent.call( this, $.extend( {
@@ -67,12 +77,24 @@
 					.append( this.$group, this.noResults.$element )
 			);
 
-		if ( this.$footer ) {
-			this.$element.append(
-				this.$footer
+		// Append all footers; we will control their visibility
+		// based on view
+		config.footers = config.footers || [];
+		config.footers.forEach( function ( footerData ) {
+			var adjustedData = {
+				// Wrap the element with our own footer wrapper
+				$element: $( '<div>' )
 					.addClass( 'mw-rcfilters-ui-menuSelectWidget-footer' )
-			);
-		}
+					.addClass( 'mw-rcfilters-ui-menuSelectWidget-footer-' + footerData.name )
+					.append( footerData.$element ),
+				views: footerData.views
+			};
+
+			this.footers.push( adjustedData );
+			this.$element.append( adjustedData.$element );
+		}.bind( this ) );
+
+		// Switch to the correct view
 		this.switchView( this.model.getCurrentView() );
 	};
 
@@ -167,6 +189,7 @@
 		if ( this.views[ viewName ] && this.currentView !== viewName ) {
 			this.clearItems();
 			this.addItems( this.views[ viewName ] );
+			this.updateFooterVisibility( viewName );
 
 			this.$element
 				.data( 'view', viewName )
@@ -174,7 +197,22 @@
 				.addClass( 'mw-rcfilters-ui-menuSelectWidget-view-' + viewName );
 
 			this.currentView = viewName;
+			this.clip();
 		}
+	};
+
+	/**
+	 * Go over the available footers and decide which should be visible
+	 * for this view
+	 */
+	mw.rcfilters.ui.MenuSelectWidget.prototype.updateFooterVisibility = function ( currentView ) {
+		this.footers.forEach( function ( data ) {
+			data.$element.toggle(
+				// This footer should only be shown if it is configured
+				// for all views or for this specific view
+				!data.views || data.views.length === 0 || data.views.indexOf( currentView ) > -1
+			);
+		} );
 	};
 
 	/**
