@@ -31,8 +31,15 @@
 }
 
 .mw-search-results {
-	margin: 0;
 	max-width: 38em;
+}
+
+/*
+ * this selector is overly specific in order to override any
+ * margin rules that may be applied to global `ul` elements.
+*/
+#bodyContent ul.mw-search-results {
+	margin: 0;
 }
 
 .mw-search-visualclear {
