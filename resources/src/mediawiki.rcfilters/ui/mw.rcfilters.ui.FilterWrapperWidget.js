@@ -33,27 +33,27 @@
 			{ $overlay: this.$overlay }
 		);
 
-		this.viewToggle = new OO.ui.ButtonSelectWidget( {
-			classes: [ 'mw-rcfilters-ui-filterWrapperWidget-viewToggleButtons' ],
-			items: [
-				new OO.ui.ButtonOptionWidget( {
-					data: 'namespaces',
-					label: mw.msg( 'namespaces' ),
-					icon: 'article',
-					classes: [ 'mw-rcfilters-ui-filterWrapperWidget-viewToggleButtons-namespaces' ]
-				} ),
-				new OO.ui.ButtonOptionWidget( {
-					data: 'tags',
-					label: mw.msg( 'rcfilters-view-tags' ),
-					icon: 'tag',
-					classes: [ 'mw-rcfilters-ui-filterWrapperWidget-viewToggleButtons-tags' ]
-				} )
-			]
-		} );
+		// this.viewToggle = new OO.ui.ButtonSelectWidget( {
+		// 	classes: [ 'mw-rcfilters-ui-filterWrapperWidget-viewToggleButtons' ],
+		// 	items: [
+		// 		new OO.ui.ButtonOptionWidget( {
+		// 			data: 'namespaces',
+		// 			label: mw.msg( 'namespaces' ),
+		// 			icon: 'article',
+		// 			classes: [ 'mw-rcfilters-ui-filterWrapperWidget-viewToggleButtons-namespaces' ]
+		// 		} ),
+		// 		new OO.ui.ButtonOptionWidget( {
+		// 			data: 'tags',
+		// 			label: mw.msg( 'rcfilters-view-tags' ),
+		// 			icon: 'tag',
+		// 			classes: [ 'mw-rcfilters-ui-filterWrapperWidget-viewToggleButtons-tags' ]
+		// 		} )
+		// 	]
+		// } );
 
 		// Events
-		this.model.connect( this, { update: 'onModelUpdate' } );
-		this.viewToggle.connect( this, { select: 'onViewToggleSelect' } );
+		// this.model.connect( this, { update: 'onModelUpdate' } );
+		// this.viewToggle.connect( this, { select: 'onViewToggleSelect' } );
 
 		// Initialize
 		this.$element
@@ -73,10 +73,9 @@
 		}
 
 		this.$element.append(
-			this.filterTagWidget.$element,
-			this.viewToggle.$element
+			this.filterTagWidget.$element
 		);
-		this.viewToggle.toggle( !!mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' ) );
+		// this.viewToggle.toggle( !!mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' ) );
 	};
 
 	/* Initialization */
@@ -86,24 +85,24 @@
 
 	/* Methods */
 
-	/**
-	 * Respond to model update event
-	 */
-	mw.rcfilters.ui.FilterWrapperWidget.prototype.onModelUpdate = function () {
-		// Synchronize the state of the toggle buttons with the current view
-		this.viewToggle.selectItemByData( this.model.getCurrentView() );
-	};
+	// /**
+	//  * Respond to model update event
+	//  */
+	// mw.rcfilters.ui.FilterWrapperWidget.prototype.onModelUpdate = function () {
+	// 	// Synchronize the state of the toggle buttons with the current view
+	// 	this.viewToggle.selectItemByData( this.model.getCurrentView() );
+	// };
 
-	/**
-	 * Respond to namespace toggle button click
-	 *
-	 * @param {OO.ui.ButtonWidget} buttonWidget The button that was clicked
-	 */
-	mw.rcfilters.ui.FilterWrapperWidget.prototype.onViewToggleSelect = function ( buttonWidget ) {
-		if ( buttonWidget ) {
-			this.controller.switchView( buttonWidget.getData() );
-			this.filterTagWidget.focus();
-		}
-	};
+	// *
+	//  * Respond to namespace toggle button click
+	//  *
+	//  * @param {OO.ui.ButtonWidget} buttonWidget The button that was clicked
+	 
+	// mw.rcfilters.ui.FilterWrapperWidget.prototype.onViewToggleSelect = function ( buttonWidget ) {
+	// 	if ( buttonWidget ) {
+	// 		this.controller.switchView( buttonWidget.getData() );
+	// 		this.filterTagWidget.focus();
+	// 	}
+	// };
 
 }( mediaWiki ) );
