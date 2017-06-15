@@ -3400,7 +3400,7 @@
 	"tags-create-reason": "Razlog:",
 	"tags-create-submit": "Napravi",
 	"tags-create-no-name": "Morate navesti ime oznake.",
-	"tags-create-invalid-chars": "Nazivi oznaka ne smiju sadržavati zareze (<code>,</code>) ni kose crte (<code>/</code>).",
+	"tags-create-invalid-chars": "Nazivi oznaka ne smiju sadržavati zareze (<code>,</code>), uspravne (<code>|</code>) ni kose crte (<code>/</code>).",
 	"tags-create-invalid-title-chars": "Nazivi oznaka ne smiju sadržavati znakove koje se ne mogu koristiti u naslovima stranica.",
 	"tags-create-already-exists": "Oznaka \"$1\" već postoji.",
 	"tags-create-warnings-above": "{{PLURAL:$2|Dogodila se sljedeća greška|Dogodile su se sljedeće greške}} pri stvaranju oznake \"$1\":",

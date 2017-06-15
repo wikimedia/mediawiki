@@ -58,7 +58,8 @@
 			"Namo",
 			"Alifakoor",
 			"Dejavu",
-			"AzorAhai"
+			"AzorAhai",
+			"Yoosef Pooranvary"
 		]
 	},
 	"tog-underline": "خط کشیدن زیر پیوندها:",
@@ -1335,7 +1336,7 @@
 	"rcfilters-activefilters": "پالایه‌های فعال",
 	"rcfilters-quickfilters": "تنظیمات ذخیره‌شدهٔ پالایه",
 	"rcfilters-quickfilters-placeholder-title": "هنوز پیوندی ذخیره نشده‌است",
-	"rcfilters-quickfilters-placeholder-description": "برای ذخیره پالایه‌هایتان و استفاده مجدد آِنها، در محیط فعال پالایه در پایین بر روی دکمهٔ بوک‌مارک کلیک کنید.",
+	"rcfilters-quickfilters-placeholder-description": "برای ذخیره پالایه‌هایتان و استفاده مجدد آنها، در محیط فعال پالایه در پایین بر روی دکمهٔ بوک‌مارک کلیک کنید.",
 	"rcfilters-savedqueries-defaultlabel": "پالایه‌های ذخیره‌شده",
 	"rcfilters-savedqueries-rename": "تغییر نام",
 	"rcfilters-savedqueries-setdefault": "تنظیم به عنوان پیش‌فرض",

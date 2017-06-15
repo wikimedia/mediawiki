@@ -1578,6 +1578,7 @@
 	"upload-http-error": "Kesalahan HTTP terjadi: $1",
 	"upload-copy-upload-invalid-domain": "Unggahan salinan tidak tersedia dari domain ini.",
 	"upload-foreign-cant-upload": "Wiki ini tidak diatur untuk mengunggah berkas ke gudang penyimpangan asing.",
+	"upload-foreign-cant-load-config": "Gagal memuat konfigurasi untuk pengunggahan berkas ke repositori berkas eksternal",
 	"upload-dialog-disabled": "Unggah berkas menggunakan dialog ini dinonaktifkan pada wiki ini.",
 	"upload-dialog-title": "Unggah berkas",
 	"upload-dialog-button-cancel": "Batalkan",
