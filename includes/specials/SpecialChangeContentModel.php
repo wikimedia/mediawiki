@@ -198,7 +198,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			$oldContent = $this->oldRevision->getContent();
 			try {
 				$newContent = ContentHandler::makeContent(
-					$oldContent->getNativeData(), $this->title, $data['model']
+					$oldContent->serialize(), $this->title, $data['model']
 				);
 			} catch ( MWException $e ) {
 				return Status::newFatal(
