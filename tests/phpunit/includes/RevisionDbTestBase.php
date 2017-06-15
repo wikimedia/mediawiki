@@ -616,7 +616,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			'new null revision should have the same SHA1 as the original revision' );
 		$this->assertTrue( $orig->getRevisionRecord()->hasSameContent( $rev->getRevisionRecord() ),
 			'new null revision should have the same content as the original revision' );
-		$this->assertEquals( __METHOD__, $rev->getContent()->getNativeData() );
+		$this->assertEquals( __METHOD__, $rev->getContent()->getText() );
 	}
 
 	/**
