@@ -421,6 +421,69 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	}
 
 	/**
+	 * Special handling for targeting the rc_name_type_patrolled_timestamp index
+	 *
+	 * If there are multiple values for rc_namespace or rc_type, the query
+	 * can't effectively use any of the available indexes. In that situation,
+	 * turn it into a UNION ALL over the Cartesian product of the specified
+	 * namespaces and types (and rc_patrolled, if necessary).
+	 *
+	 * @inheritdoc
+	 */
+	protected function reallyDoSelect( $tables, $fields, $where, $method, $options, $join_conds ) {
+		$allTypes = RecentChange::parseToRCType( RecentChange::getChangeTypes() );
+		sort( $allTypes );
+		sort( $where['rc_type'] );
+		if ( $where['rc_type'] == $allTypes ) {
+			unset( $where['rc_type'] );
+		}
+
+		$allNamespaces = array_merge( [ NS_MEDIA, NS_SPECIAL ], MWNamespace::getValidNamespaces() );
+		if ( isset( $where['rc_namespace'] ) ) {
+			sort( $allNamespaces );
+			sort( $where['rc_namespace'] );
+			if ( $where['rc_namespace'] == $allNamespaces ) {
+				unset( $where['rc_namespace'] );
+			}
+		}
+
+		if ( isset( $where['rc_namespace'] ) || isset( $where['rc_type'] ) &&
+			// @hack temporary tables and unions don't mix in MySQL/MariaDB
+			( !defined( 'MW_PHPUNIT_TEST' ) || $this->getDB()->getType() !== 'mysql' )
+		) {
+			$namespaces = isset( $where['rc_namespace'] ) ? $where['rc_namespace'] : $allNamespaces;
+			$types = isset( $where['rc_type'] ) ? $where['rc_type'] : $allTypes;
+			$patrolled = [ 0, 1 ];
+			foreach ( $where as $clause ) {
+				if ( is_string( $clause ) && substr( $clause, 0, 13 ) === 'rc_patrolled ' ) {
+					$patrolled = [];
+					break;
+				}
+			}
+			if ( count( $namespaces ) > 1 || count( $types ) > 1 ) {
+				unset( $where['rc_namespace'], $where['rc_type'] );
+				$db = $this->getDB();
+				$sql = $db->unionConditionPermutations(
+					$tables,
+					$fields,
+					[
+						'rc_namespace' => $namespaces,
+						'rc_type' => $types,
+						'rc_patrolled' => $patrolled,
+					],
+					$where,
+					$method,
+					$options,
+					$join_conds
+				);
+				return $db->query( $sql, $method );
+			}
+		}
+
+		return parent::reallyDoSelect( $tables, $fields, $where, $method, $options, $join_conds );
+	}
+
+	/**
 	 * Extracts from a single sql row the data needed to describe one recent change.
 	 *
 	 * @param stdClass $row The row from which to extract the data.

@@ -29,7 +29,9 @@ production.
 * …
 
 === Action API internal changes in 1.31 ===
-* …
+* (T149077) ApiQueryBase has a new protected method for overriding the default
+  call to $db->select(). ApiQueryRecentChanges uses this to make better use of
+  the rc_name_type_patrolled_timestamp index.
 
 === Languages updated in 1.31 ===
 MediaWiki supports over 350 languages. Many localisations are updated
