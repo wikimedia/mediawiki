@@ -47,7 +47,7 @@ class ShortPagesPage extends QueryPage {
 			'page_is_redirect' => 0
 		];
 		$joinConds = [];
-		$options = [ 'USE INDEX' => [ 'page' => 'page_redirect_namespace_len' ] ];
+		$options = [];
 
 		// Allow extensions to modify the query
 		Hooks::run( 'ShortPagesQuery', [ &$tables, &$conds, &$joinConds, &$options ] );
