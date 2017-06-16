@@ -34,36 +34,54 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	public function getStyles( ResourceLoaderContext $context ) {
 		$logo = $this->getLogo( $this->getConfig() );
 		$styles = parent::getStyles( $context );
+		$this->normalizeStyles( $styles );
 
 		$default = !is_array( $logo ) ? $logo : $logo['1x'];
+
 		$styles['all'][] = '.mw-wiki-logo { background-image: ' .
 				CSSMin::buildUrlValue( $default ) .
 				'; }';
 
 		if ( is_array( $logo ) ) {
 			if ( isset( $logo['1.5x'] ) ) {
-				$styles[
-					'(-webkit-min-device-pixel-ratio: 1.5), ' .
-					'(min--moz-device-pixel-ratio: 1.5), ' .
-					'(min-resolution: 1.5dppx), ' .
-					'(min-resolution: 144dpi)'
-				][] = '.mw-wiki-logo { background-image: ' .
-				CSSMin::buildUrlValue( $logo['1.5x'] ) . ';' .
-				'background-size: 135px auto; }';
+				$styles['(-webkit-min-device-pixel-ratio: 1.5), ' .
+						'(min--moz-device-pixel-ratio: 1.5), ' .
+						'(min-resolution: 1.5dppx), ' .
+						'(min-resolution: 144dpi)'][] =
+					'.mw-wiki-logo { background-image: ' .
+						CSSMin::buildUrlValue( $logo['1.5x'] ) . ';' .
+						'background-size: 135px auto; }'
+				;
 			}
 			if ( isset( $logo['2x'] ) ) {
-				$styles[
-					'(-webkit-min-device-pixel-ratio: 2), ' .
-					'(min--moz-device-pixel-ratio: 2),' .
-					'(min-resolution: 2dppx), ' .
-					'(min-resolution: 192dpi)'
-				][] = '.mw-wiki-logo { background-image: ' .
-				CSSMin::buildUrlValue( $logo['2x'] ) . ';' .
-				'background-size: 135px auto; }';
+				$styles['(-webkit-min-device-pixel-ratio: 2), ' .
+						'(min--moz-device-pixel-ratio: 2),' .
+						'(min-resolution: 2dppx), ' .
+						'(min-resolution: 192dpi)'][] =
+					'.mw-wiki-logo { background-image: ' .
+						CSSMin::buildUrlValue( $logo['2x'] ) . ';' .
+						'background-size: 135px auto; }'
+				;
 			}
 		}
 
 		return $styles;
+	}
+
+	/**
+	 * Ensure all media keys use array values.
+	 *
+	 * Normalises arrays returned by the ResourceLoaderFileModule::getStyles() method.
+	 *
+	 * @param array &$styles Associative array, keys are strings (media queries),
+	 *   values are strings or arrays
+	 */
+	private function normalizeStyles( &$styles ) {
+		foreach ( $styles as $key => $val ) {
+			if ( !is_array( $val ) ) {
+				$styles[$key] = [ $val ];
+			}
+		}
 	}
 
 	/**
