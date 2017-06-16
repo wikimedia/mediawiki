@@ -56,7 +56,7 @@
 					)
 			},
 			input: {
-				icon: 'search',
+				icon: 'menu',
 				placeholder: mw.msg( 'rcfilters-search-placeholder' )
 			}
 		}, config ) );
@@ -221,6 +221,8 @@
 				this.input.setValue( '' );
 			}
 		}
+
+		this.input.setIcon( isVisible ? 'search' : 'menu' );
 	};
 
 	/**
