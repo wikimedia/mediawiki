@@ -968,6 +968,7 @@
 	"parser-template-loop-warning": "Parameters:\n* $1 - page title",
 	"template-loop-category": "This message is used as a category name for a [[mw:Special:MyLanguage/Help:Tracking categories|tracking category]] where pages with template loops will be listed.",
 	"template-loop-category-desc": "Pages with template loops category description. Shown on [[Special:TrackingCategories]].\n\nSee also:\n* {{msg-mw|Template-loop-category}}",
+	"template-loop-warning": "This message is displayed in edit preview when a template loop is detected on the previewed page.\n\nParameters:\n* $1 - the full title of template which causes the template loop.",
 	"parser-template-recursion-depth-warning": "Parameters:\n* $1 - limit value of recursion depth",
 	"language-converter-depth-warning": "Error message shown when a page uses too deeply nested language conversion syntax. Parameters:\n* $1 - the value of the depth limit",
 	"node-count-exceeded-category": "This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if the node-count of the preprocessor exceeds the limit.\n\nSee also:\n* {{msg-mw|Node-count-exceeded-warning}}",
