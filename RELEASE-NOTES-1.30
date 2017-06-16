@@ -77,6 +77,9 @@ production.
   and "apihelp-*-extended-description".
 * (T123931) Individual values of multi-valued parameters can now be marked as
   deprecated.
+* (T149077) ApiQueryBase has a new protected method for overriding the default
+  call to $db->select(). ApiQueryRecentChanges uses this to make better use of
+  the rc_name_type_patrolled_timestamp index.
 
 === Languages updated in 1.30 ===
 MediaWiki supports over 350 languages. Many localisations are updated

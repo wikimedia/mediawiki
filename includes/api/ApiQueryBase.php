@@ -383,13 +383,32 @@ abstract class ApiQueryBase extends ApiBase {
 			);
 		}
 
-		$res = $this->getDB()->select( $tables, $fields, $where, $method, $options, $join_conds );
+		$res = $this->reallyDoSelect( $tables, $fields, $where, $method, $options, $join_conds );
 
 		if ( $hookData !== null ) {
 			Hooks::run( 'ApiQueryBaseAfterQuery', [ $this, $res, &$hookData ] );
 		}
 
 		return $res;
+	}
+
+	/**
+	 * Actually do the select
+	 *
+	 * This exists in case a module needs to do strange things to the query
+	 * just before it's sent (e.g. ApiQueryRecentChanges). Don't use it directly.
+	 *
+	 * @since 1.30
+	 * @param array $tables See IDatabase::select()
+	 * @param array $fields See IDatabase::select()
+	 * @param array $where See IDatabase::select()
+	 * @param string $method See IDatabase::select()
+	 * @param array $options See IDatabase::select()
+	 * @param array $join_conds See IDatabase::select()
+	 * @return ResultWrapper
+	 */
+	protected function reallyDoSelect( $tables, $fields, $where, $method, $options, $join_conds ) {
+		return $this->getDB()->select( $tables, $fields, $where, $method, $options, $join_conds );
 	}
 
 	/**
