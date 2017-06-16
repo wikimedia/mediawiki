@@ -42,7 +42,6 @@
 			}
 		}, config ) );
 
-		this.positioned = false;
 		this.popupTimeoutShow = null;
 		this.popupTimeoutHide = null;
 
@@ -108,12 +107,6 @@
 
 		if ( labelText ) {
 			this.popupLabel.setLabel( labelText );
-
-			if ( !this.positioned ) {
-				// Recalculate anchor position to be center of the capsule item
-				this.popup.$anchor.css( 'margin-left', ( this.$element.width() / 2 ) );
-				this.positioned = true;
-			}
 
 			// Set timeout for the popup to show
 			this.popupTimeoutShow = setTimeout( function () {
