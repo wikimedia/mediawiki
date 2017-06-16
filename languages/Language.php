@@ -827,7 +827,7 @@ class Language {
 	 * @return array Language code => language name
 	 */
 	private static function fetchLanguageNamesUncached( $inLanguage = null, $include = 'mw' ) {
-		global $wgExtraLanguageNames;
+		global $wgExtraLanguageNames, $wgUsePigLatinVariant;
 
 		// If passed an invalid language code to use, fallback to en
 		if ( $inLanguage !== null && !Language::isValidCode( $inLanguage ) ) {
@@ -842,6 +842,11 @@ class Language {
 		}
 
 		$mwNames = $wgExtraLanguageNames + MediaWiki\Languages\Data\Names::$names;
+		if ( $wgUsePigLatinVariant ) {
+			// Pig Latin (for variant development)
+			$mwNames['en-x-piglatin'] = 'Igpay Atinlay';
+		}
+
 		foreach ( $mwNames as $mwCode => $mwName ) {
 			# - Prefer own MediaWiki native name when not using the hook
 			# - For other names just add if not added through the hook
