@@ -90,7 +90,8 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 			$iwResultListOutput .= Html::rawElement( 'li',
 				[
 					'class' => 'iw-resultset',
-					'data-iw-resultset-pos' => $iwResultSetPos
+					'data-iw-resultset-pos' => $iwResultSetPos,
+					'data-iw-resultset-source' => $iwPrefix
 				],
 
 				$iwResultItemOutput .
