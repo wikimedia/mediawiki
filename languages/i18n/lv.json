@@ -1128,6 +1128,7 @@
 	"rcfilters-filter-categorization-description": "Ieraksti par lapu pievienošanu vai noņemšanu no kategorijām.",
 	"rcfilters-filter-logactions-label": "Reģistrētās darbības",
 	"rcfilters-filter-logactions-description": "Administratīvās darbības, kontu veidošana, lapu dzēšana, augšupielādes...",
+	"rcfilters-view-tags": "Iezīmes",
 	"rcnotefrom": "Šobrīd redzamas izmaiņas kopš '''$2''' (parādītas ne vairāk par '''$1''').",
 	"rclistfromreset": "Atiestatīt datuma izvēli",
 	"rclistfrom": "Parādīt jaunas izmaiņas kopš $3 $2",

@@ -59,7 +59,8 @@
 			"Alifakoor",
 			"Dejavu",
 			"AzorAhai",
-			"Yoosef Pooranvary"
+			"Yoosef Pooranvary",
+			"DEXi"
 		]
 	},
 	"tog-underline": "خط کشیدن زیر پیوندها:",
@@ -1420,6 +1421,7 @@
 	"rcfilters-filter-lastrevision-description": "جدیدترین تغییر در یک صفحه.",
 	"rcfilters-filter-previousrevision-label": "نسخه‌های قبلی",
 	"rcfilters-filter-previousrevision-description": "تمام تغییراتی که تازه‌ترین تغییر در یک صفحه نیستند.",
+	"rcfilters-view-tags": "برچسب‌ها",
 	"rcnotefrom": "در زیر تغییرات از <strong>$3, $4</strong> (تا <strong>$1</strong> {{PLURAL:$5|نشان داده شده‌است|نشان داده شده‌اند}}).",
 	"rclistfromreset": "از نو کردن انتخاب تاریخ",
 	"rclistfrom": "نمایش تغییرات تازه با شروع از $3 $2",
@@ -2833,8 +2835,10 @@
 	"newimages-legend": "پالودن",
 	"newimages-label": "نام پرونده (یا قسمتی از آن):",
 	"newimages-user": "نشانی آی‌پی یا نام کاربری",
+	"newimages-newbies": "فقط مشارکت‌های کاربران جدید نمایش داده شود",
 	"newimages-showbots": "نمایش بارگذاری‌ها توسط ربات‌ها",
 	"newimages-hidepatrolled": "مخفی کردن بارگذاری گشت‌زن‌ها",
+	"newimages-mediatype": "نوع رسانه",
 	"noimages": "چیزی برای دیدن نیست.",
 	"gallery-slideshow-toggle": "فعال یا غیرفعال کردن تصاویر بندانگشتی",
 	"ilsubmit": "جستجو",
@@ -3487,7 +3491,7 @@
 	"tags-create-reason": "دلیل:",
 	"tags-create-submit": "ایجاد",
 	"tags-create-no-name": "نام تگ باید مشخص شود.",
-	"tags-create-invalid-chars": "نام تگ‌ها نباید حاوی کاما (<code>,</code>) یا خط مورب (<code>/</code>) باشد.",
+	"tags-create-invalid-chars": "نام برچسب‌ها نباید حاوی کاما (<code>,</code>) یا خط مورب (<code>/</code>) باشد.",
 	"tags-create-invalid-title-chars": "نام تگ‌ها نباید شامل حروفی شود که نمی‌توان از آن‌ها در عنوان صفحات استفاده کرد.",
 	"tags-create-already-exists": "تگ \"$1\" هم‌اکنون موجود است.",
 	"tags-create-warnings-above": "در هنگام ایجاد تگ \"$1\" با {{PLURAL:$2|هشدار|هشدارهای}} زیر پیش آمد:",
@@ -3960,5 +3964,8 @@
 	"gotointerwiki-invalid": "عنوان مشخص شده نامجاز است.",
 	"gotointerwiki-external": "شما در حال ترک {{SITENAME}} هستید تا [[$2]] را ببینید که یک وب‌گاه مجزا است.\n\n'''[$1 ادامه تا $1]'''",
 	"undelete-cantedit": "شما نمی‌توانید این صفحه را احیا کنید چون مجاز به ویرایش این صفحه نیستید.",
-	"undelete-cantcreate": "شما نمی‌توانید این صفحه را احیا کنید چرا که صفحه‌ای به این نام همینک وجود ندارد و شما مجاز به ساختن آن نیستید."
+	"undelete-cantcreate": "شما نمی‌توانید این صفحه را احیا کنید چرا که صفحه‌ای به این نام همینک وجود ندارد و شما مجاز به ساختن آن نیستید.",
+	"pagedata-title": "اطلاعات صفحه",
+	"pagedata-not-acceptable": "هیچ قالب تطبیقی یافت نشد. انواع MIME پشتیبانی شده: $1",
+	"pagedata-bad-title": "عنوان نامعتبر: «$1»."
 }
