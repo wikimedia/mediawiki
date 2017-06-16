@@ -34,6 +34,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	public function getStyles( ResourceLoaderContext $context ) {
 		$logo = $this->getLogo( $this->getConfig() );
 		$styles = parent::getStyles( $context );
+		$this->normalizeStyles( $styles );
 
 		$default = !is_array( $logo ) ? $logo : $logo['1x'];
 		$styles['all'][] = '.mw-wiki-logo { background-image: ' .
@@ -64,6 +65,22 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		}
 
 		return $styles;
+	}
+
+	/**
+	 * Ensure all media keys use array values.
+	 *
+	 * Normalises arrays returned by the ResourceLoaderFileModule::getStyles() method.
+	 *
+	 * @param array &$styles Associative array, keys are strings (media queries),
+	 *   values are strings or arrays
+	 */
+	private function normalizeStyles( &$styles ) {
+		foreach ( $styles as $key => $val ) {
+			if ( !is_array( $val ) ) {
+				$styles[$key] = [ $val ];
+			}
+		}
 	}
 
 	/**
