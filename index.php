@@ -1,3 +1,18 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <?php
 /**
  * This is the main web entry point for MediaWiki.
