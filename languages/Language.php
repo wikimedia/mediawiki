@@ -3489,15 +3489,16 @@ class Language {
 	 * @return string
 	 */
 	function truncate( $string, $length, $ellipsis = '...', $adjustLength = true ) {
+		# Check if there is no need to truncate
+		if ( strlen( $string ) <= abs( $length ) ) {
+			return $string; // no need to truncate
+		}
 		# Use the localized ellipsis character
 		if ( $ellipsis == '...' ) {
 			$ellipsis = wfMessage( 'ellipsis' )->inLanguage( $this )->escaped();
 		}
-		# Check if there is no need to truncate
 		if ( $length == 0 ) {
 			return $ellipsis; // convention
-		} elseif ( strlen( $string ) <= abs( $length ) ) {
-			return $string; // no need to truncate
 		}
 		$stringOriginal = $string;
 		# If ellipsis length is >= $length then we can't apply $adjustLength
