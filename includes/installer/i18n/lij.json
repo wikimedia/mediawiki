@@ -291,5 +291,22 @@
 	"config-install-stats": "Iniçializaçion de statisteghe",
 	"config-install-keys": "Generaçion de ciave segrette",
 	"config-insecure-keys": "'''Atençion:''' {{PLURAL:$2|Una ciave segûa|De ciave segûe}} ($1) {{PLURAL:$2|generâ|generæ}} durante l'instalaçion {{PLURAL:$2|a|}} no {{PLURAL:$2|l'è|son}} completamente {{PLURAL:$2|segûa|segûe}}. Consciddera de cangiâ{{PLURAL:$2|la|le}} manoalmente.",
-	"config-install-updates": "Impedî l'esecuçion di agiornamenti non necessai"
+	"config-install-updates": "Impedî l'esecuçion di agiornamenti non necessai",
+	"config-install-updates-failed": "<strong>Erô:</strong> l'inseimento de ciave de agiornamento inte tabelle o no l'è ariescio pe-o seguente erô: $1",
+	"config-install-sysop": "Creaçion de l'utença pe l'aministratô",
+	"config-install-subscribe-fail": "Imposcibbile sottoscrive mediawiki-announce: $1",
+	"config-install-subscribe-notpossible": "cURL o no l'è instalou e <code>allow_url_fopen</code> o no l'è disponibbile.",
+	"config-install-mainpage": "Creaçion da paggina prinçipâ con contegnuo predefinio",
+	"config-install-mainpage-exists": "A paggina prinçipâ a l'existe za, ignorou",
+	"config-install-extension-tables": "Creaçion de tabelle pe i estenscioin attivæ",
+	"config-install-mainpage-failed": "Imposcibbile insei a paggina prinçipâ: $1",
+	"config-install-done": "<strong>Complimenti!</strong>\nT'hæ instalou MediaWiki.\n\nO programma d'instalaçion o l'ha generou un file <code>LocalSettings.php</code> ch'o conten tutte e impostaçioin.\n\nTi devi scaregâlo e inseilo inta directory base da to wiki (a mæxima dovve gh'è index.php). O download o doviæ partî aotomaticamente.\n\nSe o download o no s'inandia, ò s'o l'è stæto annulou, ti poeu ricomençâ clicando in sce l'ingancio chì aproeuvo:\n\n$3\n\n<strong>Notta:</strong> se ti sciorti aoa da l'installaçion sença scaregâ o file de configuaçion ch'o l'è stæto generou, questo doppo o no saiâ ciu disponibbile.\n\nQuande t'hæ fæto, ti poeu <strong>[$2 intrâ inta to wiki]</strong>.",
+	"config-install-done-path": "<strong>Complimenti!</strong>\nT'hæ instalou MediaWiki.\n\nO programma d'instalaçion o l'ha generou un file <code>LocalSettings.php</code> ch'o conten tutte e impostaçioin.\n\nTi devi scaregâlo e inseilo in <code>$4</code>. O download o doviæ partî aotomaticamente.\n\nSe o download o no s'inandia, ò s'o l'è stæto annulou, ti poeu inandiâlo torna clicando in sce l'ingancio chì de sotta:\n\n$3\n\n<strong>Notta:</strong> se ti sciorti aoa da l'installaçion sença scaregâ o file de configuaçion ch'o l'è stæto generou, questo doppo o no saiâ ciu disponibbile.\n\nQuande t'hæ fæto, ti poeu <strong>[$2 intrâ inta to wiki]</strong>.",
+	"config-download-localsettings": "Scarega <code>LocalSettings.php</code>",
+	"config-help": "agiutto",
+	"config-help-tooltip": "clicca pe espande",
+	"config-nofile": "O file \"$1\" o no poeu vese atrovou. O l'è stæto eliminou?",
+	"config-extension-link": "Ti o saveivi che o to wiki o suporta i  [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions estenscioin]?\n\nTi poeu navegâ tra i [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category estenscioin pe categoria].",
+	"mainpagetext": "<strong>MediaWiki o l'è stæto instalou.</strong>",
+	"mainpagedocfooter": "Consurta a [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents guidda utente] pe ciu informaçioin in sce l'uso de questo software wiki.\n\n== Pe començâ ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Impostaçioin de configuaçion]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Domande frequente sciu MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list anonçi MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Troeuva MediaWiki inta to lengoa]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Imprendi a combatte o spam in sciâ to wiki]"
 }

@@ -558,6 +558,7 @@
 	"apihelp-undelete-example-revisions": "<kbd>대문</kbd> 문서의 두 판을 복구합니다.",
 	"apihelp-unlinkaccount-description": "현재 사용자에 연결된 타사 계정을 제거합니다.",
 	"apihelp-unlinkaccount-example-simple": "<kbd>FooAuthenticationRequest</kbd>와 연결된 제공자에 대한 현재 사용자의 토론 링크 제거를 시도합니다.",
+	"apihelp-upload-description": "파일을 업로드하거나 대기 중인 업로드 상태를 가져옵니다.\n\n몇 가지 방식을 사용할 수 있습니다:\n* <var>$1file</var> 변수를 사용하여 파일의 내용을 직접 업로드합니다.\n* <var>$1filesize</var>, <var>$1chunk</var>, <var>$1offset</var> 변수를 사용하여 파일을 부분적으로 업로드합니다.\n* <var>$1url</var> 변수를 사용하여 미디어위키 서버가 URL로부터 파일을 가져오게 합니다.\n* <var>$1filekey</var> 변수를 사용하여 경고로 실패한 과거의 업로드를 완료합니다.\n<var>$1file</var>을(를) 보낼 때 HTTP POST는 파일 업로드로 끝나야 합니다. (예: <code>multipart/form-data</code>를 사용하여)",
 	"apihelp-upload-param-filename": "대상 파일 이름.",
 	"apihelp-upload-param-comment": "업로드 주석입니다. 또, <var>$1text</var>가 지정되지 않은 경우 새로운 파일들의 초기 페이지 텍스트로 사용됩니다.",
 	"apihelp-upload-param-tags": "업로드 기록 항목과 파일 문서 판에 적용할 태그를 변경합니다.",

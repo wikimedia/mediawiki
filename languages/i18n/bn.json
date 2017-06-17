@@ -1389,6 +1389,7 @@
 	"rcfilters-filter-lastrevision-description": "একটি পাতার সর্বশেষ সাম্প্রতিক পরিবর্তন।",
 	"rcfilters-filter-previousrevision-label": "পূর্ববর্তী সংশোধন",
 	"rcfilters-filter-previousrevision-description": "সব পরিবর্তন যা একটি পাতার সর্বশেষ সাম্প্রতিক পরিবর্তন নয়।",
+	"rcfilters-view-tags": "ট্যাগসমূহ",
 	"rcnotefrom": "<strong>$2</strong>টা থেকে সংঘটিত পরিবর্তনগুলি (সর্বোচ্চ <strong>$1টি</strong> দেখানো হয়েছে)।",
 	"rclistfromreset": "তারিখ নির্বাচন পুনঃস্থাপন করুন",
 	"rclistfrom": "$2, $3 তারিখের পর সংঘটিত নতুন পরিবর্তনগুলো দেখাও",
