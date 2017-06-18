@@ -1516,6 +1516,7 @@
 	"rcfilters-filter-lastrevision-description": "El cambio más reciente a una página.",
 	"rcfilters-filter-previousrevision-label": "Revisiones anteriores",
 	"rcfilters-filter-previousrevision-description": "Todos los cambios que no son los más recientes cambian a una página.",
+	"rcfilters-view-tags": "Etiquetas",
 	"rcnotefrom": "Debajo {{PLURAL:$5|aparece el cambio|aparecen los cambios}} desde <strong>$3, $4</strong> (se muestran hasta <strong>$1</strong>).",
 	"rclistfromreset": "Restablecer selección de fecha",
 	"rclistfrom": "Mostrar cambios nuevos desde las $2 del $3",

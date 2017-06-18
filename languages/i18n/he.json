@@ -1912,7 +1912,7 @@
 	"apisandbox-sending-request": "בקשת ה־API בשליחה...",
 	"apisandbox-loading-results": "תוצאות ה־API בתהליך קבלה...",
 	"apisandbox-results-error": "אירעה שגיאה בעת טעינת תשובת ה־API לבקשה: $1.",
-	"apisandbox-request-selectformat-label": "הצגת המידע שבבקשה כ:",
+	"apisandbox-request-selectformat-label": "הצגת נתוני הבקשה בתור:",
 	"apisandbox-request-format-url-label": "מחרוזת השאילתה (query string) של כתובת ה־URL",
 	"apisandbox-request-url-label": "כתובת ה־URL של הבקשה:",
 	"apisandbox-request-json-label": "ייצוג הבקשה כ־JSON:",

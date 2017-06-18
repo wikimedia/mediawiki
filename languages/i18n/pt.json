@@ -2554,7 +2554,7 @@
 	"exporttext": "Pode exportar o texto e o histórico de edições de uma página em particular para um ficheiro XML. Poderá então importar esse conteúdo noutra wiki que utilize o programa MediaWiki, através da [[Special:Import|página de importações]].\n\nPara exportar páginas, introduza os títulos na caixa de texto abaixo (um título por linha) e selecione se deseja todas as versões, com as linhas de histórico de edições, ou apenas a edição atual e informações sobre a mais recente das edições.\n\nSe desejar, pode utilizar um link (por exemplo, [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] para a [[{{MediaWiki:Mainpage}}]]).",
 	"exportall": "Exportar todas as páginas",
 	"exportcuronly": "Incluir apenas a edição atual, não o histórico completo",
-	"exportnohistory": "----\n<strong>Nota:</strong> A exportação do histórico completo de páginas através deste formulário foi desativada devido a motivos de desempenho.",
+	"exportnohistory": "----\n<strong>Nota:</strong> A exportação do histórico completo de páginas através deste formulário foi desativada por motivos de desempenho.",
 	"exportlistauthors": "Incluir uma lista completa de colaboradores para cada página",
 	"export-submit": "Exportar",
 	"export-addcattext": "Adicionar à lista páginas da categoria:",
