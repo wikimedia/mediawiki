@@ -811,10 +811,24 @@ function wfUrlProtocolsWithoutProtRel() {
  * 1) Does not raise warnings on bad URLs (just returns false).
  * 2) Handles protocols that don't use :// (e.g., mailto: and news:, as well as
  *    protocol-relative URLs) correctly.
- * 3) Adds a "delimiter" element to the array, either '://', ':' or '//' (see (2)).
+ * 3) Adds a "delimiter" element to the array (see (2)).
+ * 4) Verifies that the protocol is on the $wgUrlProtocols whitelist.
+ * 5) Rejects some invalid URLs that parse_url doesn't, e.g. the empty string or URLs starting with
+ *    a line feed character.
  *
  * @param string $url A URL to parse
- * @return string[]|bool Bits of the URL in an associative array, per PHP docs, false on failure
+ * @return string[]|bool Bits of the URL in an associative array, or false on failure.
+ *   Possible fields:
+ *   - scheme: URI scheme (protocol), e.g. 'http', 'mailto'. Lowercase, always present, but can
+ *       be an empty string for protocol-relative URLs.
+ *   - delimiter: either '://', ':' or '//'. Always present.
+ *   - host: domain name / IP. Always present, but could be an empty string, e.g. for file: URLs.
+ *   - user: user name, e.g. for HTTP Basic auth URLs such as http://user:pass@example.com/
+ *       Missing when there is no username.
+ *   - pass: password, same as above.
+ *   - path: path including the leading /. Will be missing when empty (e.g. 'http://example.com')
+ *   - query: query string (as a string; see wfCgiToArray() for parsing it), can be missing.
+ *   - fragment: the part after #, can be missing.
  */
 function wfParseUrl( $url ) {
 	global $wgUrlProtocols; // Allow all protocols defined in DefaultSettings/LocalSettings.php
