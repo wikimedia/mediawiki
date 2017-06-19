@@ -48,7 +48,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 	 * @param ApiPageSet|null $resultPageSet
 	 * @param int $limit Number of pages to fetch
 	 * @param string|null $start Starting page_random
-	 * @param int|null $startId Starting page_id
+	 * @param int $startId Starting page_id
 	 * @param string|null $end Ending page_random
 	 * @return array (int, string|null) Number of pages left to query and continuation string
 	 */
@@ -75,8 +75,8 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 
 		if ( $start !== null ) {
 			$start = $this->getDB()->addQuotes( $start );
-			if ( $startId !== null ) {
-				$startId = (int)$startId;
+			if ( $startId > 0 ) {
+				$startId = (int)$startId; // safety
 				$this->addWhere( "page_random = $start AND page_id >= $startId OR page_random > $start" );
 			} else {
 				$this->addWhere( "page_random >= $start" );
@@ -144,8 +144,17 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		} else {
 			$rand = wfRandom();
 			$start = $rand;
-			$startId = null;
+			$startId = 0;
 			$end = null;
+		}
+
+		// Set the non-continue if this is being used as a generator
+		// (as a list it doesn't matter because lists never non-continue)
+		if ( $resultPageSet !== null ) {
+			$endFlag = $end === null ? 0 : 1;
+			$this->getContinuationManager()->addGeneratorNonContinueParam(
+				$this, 'continue', "$rand|$start|$startId|$endFlag"
+			);
 		}
 
 		list( $left, $continue ) =
