@@ -1372,6 +1372,7 @@
 	"rcfilters-filter-lastrevision-description": "El cambio más recien d'una páxina.",
 	"rcfilters-filter-previousrevision-label": "Revisiones anteriores",
 	"rcfilters-filter-previousrevision-description": "Tolos cambios que nun son los más recien d'una páxina.",
+	"rcfilters-filter-excluded": "Escluíu",
 	"rcnotefrom": "Abaxo {{PLURAL:$5|tá'l cambiu|tan los cambios}} dende'l <strong>$3</strong>, a les <strong>$4</strong> (s'amuesen un máximu de <strong>$1</strong>).",
 	"rclistfromreset": "Reaniciar la seleición de data",
 	"rclistfrom": "Amosar los nuevos cambios dende'l $3 a les $2",

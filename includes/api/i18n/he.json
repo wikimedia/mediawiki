@@ -14,7 +14,8 @@
 			"Mikey641",
 			"Esh77",
 			"שמזן",
-			"Or"
+			"Or",
+			"Umherirrender"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|תיעוד]]\n* [[mw:Special:MyLanguage/API:FAQ|שו\"ת]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api רשימת דיוור]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce הודעות על API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R באגים ובקשות]\n</div>\n<strong>מצב:</strong> כל האפשרויות שמוצגות בדף הזה אמורות לעבוד, אבל ה־API עדיין בפיתוח פעיל, ויכול להשתנות בכל זמן. עשו מינוי ל[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ רשימת הדיוור mediawiki-api-announce] להודעות על עדכונים.\n\n<strong>בקשות שגויות:</strong> כשבקשות שגויות נשלחות ל־API, תישלח כותרת HTTP עם המפתח \"MediaWiki-API-Error\" ואז גם הערך של הכותרת וגם קוד השגיאה יוגדרו לאותו ערך. למידע נוסף ר' [[mw:Special:MyLanguage/API:Errors_and_warnings|API: שגיאות ואזהרות]].\n\n<strong>בדיקה:</strong> לבדיקה קלה יותר של בקשות ר' [[Special:ApiSandbox]].",
@@ -1410,6 +1411,7 @@
 	"api-format-title": "תוצאה של API של מדיה־ויקי",
 	"api-format-prettyprint-header": "זהו ייצוג ב־HTML של תסדיר $1. תסדיר HTML טוב לתיקון שגיאות, אבל אינו מתאים ליישומים.\n\nיש לציין את הפרמטר <var>format</var> כדי לשנות את תסדיר הפלט. כדי לראות ייצוג של תסדיר $1 לא ב־HTML יש לרשום <kbd>format=$2</kbd>.\n\nר' את [[mw:Special:MyLanguage/API|התיעוד המלא]], או את [[Special:ApiHelp/main|העזרה של API]] למידע נוסף.",
 	"api-format-prettyprint-header-only-html": "זה ייצוג HTML שמיועד לניפוי שגיאות ואינו מתאים לשימוש ביישומים.\n\nר' את [[mw:Special:MyLanguage/API|התיעוד המלא]] או את [[Special:ApiHelp/main|העזרה של API]] למידע נוסף.",
+	"api-format-prettyprint-header-hyperlinked": "זהו ייצוג ב־HTML של תסדיר $1. תסדיר HTML טוב לתיקון שגיאות, אבל אינו מתאים ליישומים.\n\nיש לציין את הפרמטר <var>format</var> כדי לשנות את תסדיר הפלט. כדי לראות ייצוג של תסדיר $1 לא ב־HTML יש להגדיר [$3 <kbd>format=$2</kbd>].\n\nר' את [[mw:API|התיעוד המלא]], או את [[Special:ApiHelp/main|העזרה של API]] למידע נוסף.",
 	"api-format-prettyprint-status": "התשובה הזאת הייתה מוחזרת עם סטטוס ה־HTTP מס' $1 עם הטקסט $2.",
 	"api-login-fail-aborted": "אימות דורש הידוד עם המשתמש, שאינו נתמך ב־<kbd>action=login</kbd>. כדי שיהיה אפשר להיכנס לחשבון עם <kbd>action=login</kbd>, נא לראות את [[Special:BotPasswords]]. כדי להמשיך להשתמש בכניסה עם חשבון ראשי, ר' <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>.",
 	"api-login-fail-aborted-nobotpw": "אימות דורש הידוד עם המשתמש, שאינו נתמך ב־<kbd>action=login</kbd>. כדי להיכנס לחשבון, ר' <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>.",

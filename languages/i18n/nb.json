@@ -3946,7 +3946,7 @@
 	"undelete-cantedit": "Du kan ikke gjenopprette denne siden fordi du ikke har tillatelse til å redigere den.",
 	"undelete-cantcreate": "Du kan ikke gjenopprette denne siden fordi det ikke er noen eksisterende side med dette navnet, og du ikke har tillatelse til å opprette siden.",
 	"pagedata-title": "Sidedata",
-	"pagedata-text": "Denne siden gir et datagrensesnitt til sidene. Oppgi en sidetittel i URL-en, med undersidesyntaks.\n* Innholdsforhandling gjelder basert på din klients Accept-header. Dette betyr at sidedataene vil bli gitt i det formatet som foretrekkes av klienten din.",
+	"pagedata-text": "Denne siden gir et datagrensesnitt til sidene. Oppgi en sidetittel i URL-en, med undersidesyntaks.\n* Innholdsforhandlingen er basert på din klients Accept-header. Dette betyr at data for siden blir angitt på formatet som foretrekkes av din klient.",
 	"pagedata-not-acceptable": "Ingen passende format funnet. Støttede MIME-typer: $1",
 	"pagedata-bad-title": "Ugyldig tittel: $1."
 }

@@ -2822,6 +2822,7 @@
 	"newimages-newbies": "Zobrazit pouze příspěvky nových účtů",
 	"newimages-showbots": "Zobrazit soubory načtené roboty",
 	"newimages-hidepatrolled": "Skrýt prověřená načtení souborů",
+	"newimages-mediatype": "Typ média:",
 	"noimages": "Není co zobrazit.",
 	"gallery-slideshow-toggle": "Přepnout náhledy",
 	"ilsubmit": "Hledat",
@@ -3939,5 +3940,9 @@
 	"gotointerwiki-invalid": "Zadaný název je neplatný.",
 	"gotointerwiki-external": "Chystáte se opustit {{GRAMMAR:4sg|{{SITENAME}}}} a navštívit [[$2]], což je jiná webová stránka.\n\n'''[$1 Pokračovat na $1].'''",
 	"undelete-cantedit": "Tuto stránku nemůžete obnovit, protože ji nejste oprávněni editovat.",
-	"undelete-cantcreate": "Tuto stránku nemůžete obnovit, protože stránka s tímto názvem neexistuje a vy ji nejste oprávněni vytvořit."
+	"undelete-cantcreate": "Tuto stránku nemůžete obnovit, protože stránka s tímto názvem neexistuje a vy ji nejste oprávněni vytvořit.",
+	"pagedata-title": "Data stránky",
+	"pagedata-text": "Tato stránka poskytuje datové rozhraní ke stránkám. Uveďte prosím název stránky v URL pomocí syntaxe pro podstránky.\n* Funguje dohadování o obsahu na základě hlavičky Accept vašeho klienta. To znamená, že data stránky budou poskytnuta ve formátu preferovaném vaším klientem.",
+	"pagedata-not-acceptable": "Nenalezen odpovídající formát. Podporované MIME typy: $1",
+	"pagedata-bad-title": "Neplatný název: $1."
 }

@@ -1227,6 +1227,7 @@
 	"rcfilters-savedqueries-remove": "Ukloni",
 	"rcfilters-savedqueries-new-name-label": "Ime",
 	"rcfilters-savedqueries-apply-label": "Spremi postavke",
+	"rcfilters-savedqueries-cancel-label": "Odustani",
 	"rcfilters-savedqueries-add-new-title": "Spremi trenutačne postavke filtera",
 	"rcfilters-restore-default-filters": "Vrati zadane filtre",
 	"rcfilters-clear-all-filters": "Očisti sve filtre",
