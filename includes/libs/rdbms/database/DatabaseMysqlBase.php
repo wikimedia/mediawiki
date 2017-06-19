@@ -532,11 +532,25 @@ abstract class DatabaseMysqlBase extends Database {
 			return true; // already known to exist and won't show in SHOW TABLES anyway
 		}
 
+		// Split database and table into proper variables as Database::tableName() returns
+		// shared tables prefixed with their database, which do not work in SHOW TABLES statements
+		list( $database, $schema, $prefix, $table ) = $this->qualifiedTableComponents( $table );
+
+		$table = $prefix . $table;
+
+		// Database::qualifiedTableComponents() can return an empty string for $database, so if
+		// that's the case, set the database value to the current database name
+		if ( $database === '' ) {
+			$database = $this->mDBname;
+		}
+
 		// We can't use buildLike() here, because it specifies an escape character
 		// other than the backslash, which is the only one supported by SHOW TABLES
 		$encLike = $this->escapeLikeInternal( $table, '\\' );
 
-		return $this->query( "SHOW TABLES LIKE '$encLike'", $fname )->numRows() > 0;
+		$database = $this->addIdentifierQuotes( $database );
+
+		return $this->query( "SHOW TABLES FROM $database LIKE '$encLike'", $fname )->numRows() > 0;
 	}
 
 	/**
