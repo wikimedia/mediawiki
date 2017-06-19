@@ -243,8 +243,7 @@ class EnhancedChangesList extends ChangesList {
 			$text = $userlink;
 			$text .= $this->getLanguage()->getDirMark();
 			if ( $count > 1 ) {
-				// @todo FIXME: Hardcoded '×'. Should be a message.
-				$formattedCount = $this->getLanguage()->formatNum( $count ) . '×';
+				$formattedCount = $this->msg( 'ntimes' )->numParams( $count )->escaped();
 				$text .= ' ' . $this->msg( 'parentheses' )->rawParams( $formattedCount )->escaped();
 			}
 			array_push( $users, $text );
