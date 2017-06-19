@@ -4,36 +4,6 @@
 		MAX_INT32_UNSIGNED = 4294967295;
 
 	/**
-	 * An implementation of Jenkins' one-at-a-time hash.
-	 *
-	 * @see https://en.wikipedia.org/wiki/Jenkins_hash_function
-	 *
-	 * @param {string} string String to hash
-	 * @return {number} The hash as a 32-bit unsigned integer
-	 * @ignore
-	 *
-	 * @author Ori Livneh <ori@wikimedia.org>
-	 * @see https://jsbin.com/kejewi/4/watch?js,console
-	 */
-	function hashString( string ) {
-		/* eslint-disable no-bitwise */
-		var hash = 0,
-			i = string.length;
-
-		while ( i-- ) {
-			hash += string.charCodeAt( i );
-			hash += ( hash << 10 );
-			hash ^= ( hash >> 6 );
-		}
-		hash += ( hash << 3 );
-		hash ^= ( hash >> 11 );
-		hash += ( hash << 15 );
-
-		return hash >>> 0;
-		/* eslint-enable no-bitwise */
-	}
-
-	/**
 	 * Provides an API for bucketing users in experiments.
 	 *
 	 * @class mw.experiments
@@ -93,7 +63,7 @@
 				range += buckets[ key ];
 			}
 
-			hash = hashString( experiment.name + ':' + token );
+			hash = mw.hash.jenkins( experiment.name + ':' + token );
 			max = ( hash / MAX_INT32_UNSIGNED ) * range;
 
 			for ( key in buckets ) {

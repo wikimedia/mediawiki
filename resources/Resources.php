@@ -1400,9 +1400,14 @@ return [
 		'styles' => 'resources/src/mediawiki.toolbar/toolbar.less',
 		'dependencies' => 'jquery.textSelection',
 	],
+	'mediawiki.hash' => [
+		'scripts' => 'resources/src/mediawiki/mediawiki.hash.js',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.experiments' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.experiments.js',
 		'targets' => [ 'desktop', 'mobile' ],
+		'dependencies' => 'mediawiki.hash',
 	],
 
 	/* MediaWiki Action */
