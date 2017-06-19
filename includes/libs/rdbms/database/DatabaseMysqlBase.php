@@ -536,7 +536,16 @@ abstract class DatabaseMysqlBase extends Database {
 		// other than the backslash, which is the only one supported by SHOW TABLES
 		$encLike = $this->escapeLikeInternal( $table, '\\' );
 
-		return $this->query( "SHOW TABLES LIKE '$encLike'", $fname )->numRows() > 0;
+		// Database::tableName returns shared tables prefixed with their database, which do not
+		// work in SHOW TABLES statements, so split them up.
+		if ( strpos( $encLike, '.' ) === false ) {
+			$db = $this->mDBname;
+			$table = $encLike;
+		} else {
+			list( $db, $table ) = explode( '.', $encLike, 2 );
+		}
+
+		return $this->query( "SHOW TABLES FROM $db LIKE '$table'", $fname )->numRows() > 0;
 	}
 
 	/**
