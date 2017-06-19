@@ -21,7 +21,6 @@
  * @author Saiddzone
  * @author Thanlwin
  * @author Thitaung
- * @author Umherirrender
  * @author Zawthet
  * @author ကိုရာဝီ
  */
