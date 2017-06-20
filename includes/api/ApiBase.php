@@ -2004,12 +2004,62 @@ abstract class ApiBase extends ContextSource {
 	 */
 
 	/**
-	 * Return the description message.
+	 * Return the summary message.
 	 *
+	 * This is a one-line description of the module, suitable for display in a
+	 * list of modules.
+	 *
+	 * @since 1.30
 	 * @return string|array|Message
 	 */
-	protected function getDescriptionMessage() {
-		return "apihelp-{$this->getModulePath()}-description";
+	protected function getSummaryMessage() {
+		return "apihelp-{$this->getModulePath()}-summary";
+	}
+
+	/**
+	 * Return the extended help text message.
+	 *
+	 * This is additional text to display at the top of the help section, below
+	 * the summary.
+	 *
+	 * @since 1.30
+	 * @return string|array|Message
+	 */
+	protected function getExtendedDescription() {
+		return [ [
+			"apihelp-{$this->getModulePath()}-extended-description",
+			'api-help-no-extended-description',
+		] ];
+	}
+
+	/**
+	 * Get final module summary
+	 *
+	 * Ideally this will just be the getSummaryMessage(). However, for
+	 * backwards compatibility, if that message does not exist then the first
+	 * line of wikitext from the description message will be used instead.
+	 *
+	 * @since 1.30
+	 * @return Message
+	 */
+	public function getFinalSummary() {
+		$msg = ApiBase::makeMessage( $this->getSummaryMessage(), $this->getContext(), [
+			$this->getModulePrefix(),
+			$this->getModuleName(),
+			$this->getModulePath(),
+		] );
+		if ( !$msg->exists() ) {
+			wfDeprecated( 'API help "description" messages', '1.30' );
+			$msg = ApiBase::makeMessage( $this->getDescriptionMessage(), $this->getContext(), [
+				$this->getModulePrefix(),
+				$this->getModuleName(),
+				$this->getModulePath(),
+			] );
+			$msg = ApiBase::makeMessage( 'rawmessage', $this->getContext(), [
+				preg_replace( '/\n.*/s', '', $msg->text() )
+			] );
+		}
+		return $msg;
 	}
 
 	/**
@@ -2032,15 +2082,33 @@ abstract class ApiBase extends ContextSource {
 			$desc = (string)$desc;
 		}
 
-		$msg = ApiBase::makeMessage( $this->getDescriptionMessage(), $this->getContext(), [
+		$summary = ApiBase::makeMessage( $this->getSummaryMessage(), $this->getContext(), [
 			$this->getModulePrefix(),
 			$this->getModuleName(),
 			$this->getModulePath(),
 		] );
-		if ( !$msg->exists() ) {
-			$msg = $this->msg( 'api-help-fallback-description', $desc );
+		$extendedDescription = ApiBase::makeMessage(
+			$this->getExtendedDescription(), $this->getContext(), [
+				$this->getModulePrefix(),
+				$this->getModuleName(),
+				$this->getModulePath(),
+			]
+		);
+
+		if ( $summary->exists() ) {
+			$msgs = [ $summary, $extendedDescription ];
+		} else {
+			wfDeprecated( 'API help "description" messages', '1.30' );
+			$description = ApiBase::makeMessage( $this->getDescriptionMessage(), $this->getContext(), [
+				$this->getModulePrefix(),
+				$this->getModuleName(),
+				$this->getModulePath(),
+			] );
+			if ( !$description->exists() ) {
+				$description = $this->msg( 'api-help-fallback-description', $desc );
+			}
+			$msgs = [ $description ];
 		}
-		$msgs = [ $msg ];
 
 		Hooks::run( 'APIGetDescriptionMessages', [ $this, &$msgs ] );
 
@@ -2753,6 +2821,21 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function dieUsageMsgOrDebug( $error ) {
 		$this->dieWithErrorOrDebug( $this->parseMsgInternal( $error ) );
+	}
+
+	/**
+	 * Return the description message.
+	 *
+	 * This is additional text to display on the help page after the summary.
+	 *
+	 * @deprecated since 1.30
+	 * @return string|array|Message
+	 */
+	protected function getDescriptionMessage() {
+		return [ [
+			"apihelp-{$this->getModulePath()}-description",
+			"apihelp-{$this->getModulePath()}-summary",
+		] ];
 	}
 
 	/**@}*/
