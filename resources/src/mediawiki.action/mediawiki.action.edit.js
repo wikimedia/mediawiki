@@ -23,6 +23,10 @@
 			mw.loader.using( 'oojs-ui-core' ).then( function () {
 				var wpSummary = OO.ui.infuse( $( '#wpSummaryWidget' ) );
 
+				// Restore appropriate modifier keys for the accesskey in the 'title' attribute
+				// TODO: This should be an OOjs UI feature, or somehow happen automatically after infusing.
+				wpSummary.$input.updateTooltipAccessKeys();
+
 				// Make sure edit summary does not exceed byte limit
 				wpSummary.$input.byteLimit( 255 );
 
