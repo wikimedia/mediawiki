@@ -1452,7 +1452,7 @@
 	"rcfilters-filtergroup-changetype": "Tipo di modifica",
 	"rcfilters-filter-pageedits-label": "Modifiche alle pagine",
 	"rcfilters-filter-pageedits-description": "Modifiche al contenuto wiki, discussioni, descrizioni categoria…",
-	"rcfilters-filter-newpages-label": "Creazioni pagine",
+	"rcfilters-filter-newpages-label": "Creazioni di pagine",
 	"rcfilters-filter-newpages-description": "Modifiche che creano nuove pagine.",
 	"rcfilters-filter-categorization-label": "Modifiche alle categorie",
 	"rcfilters-filter-categorization-description": "Registri di pagine aggiunte o rimosse dalle categorie.",

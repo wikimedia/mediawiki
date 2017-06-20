@@ -3629,7 +3629,7 @@
 	"feedback-bugnew": "Eu verifiquei. Comunicar um novo defeito.",
 	"feedback-bugornote": "Se está pronto para descrever um problema técnico em detalhe, por favor, [$1 comunique o defeito].\nCaso contrário, pode facilmente usar o formulário abaixo. O seu comentário será adicionado à página \"[$3 $2]\", junto com o seu nome de utilizador e o navegador que está a usar.",
 	"feedback-cancel": "Cancelar",
-	"feedback-close": "Feito",
+	"feedback-close": "Concluído",
 	"feedback-external-bug-report-button": "Assinalar erro técnico",
 	"feedback-dialog-title": "Enviar opinião",
 	"feedback-dialog-intro": "Pode usar o fácil formulário abaixo para enviar os seus comentários. A sua opinião será adicionada à página \"$1\", juntamente com o seu nome de utilizador(a).",
