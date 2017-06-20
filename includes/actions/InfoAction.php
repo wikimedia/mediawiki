@@ -390,7 +390,10 @@ class InfoAction extends FormlessAction {
 			$prefixIndex = SpecialPage::getTitleFor(
 				'Prefixindex', $title->getPrefixedText() . '/' );
 			$pageInfo['header-basic'][] = [
-				Linker::link( $prefixIndex, $this->msg( 'pageinfo-subpages-name' )->escaped() ),
+				$linkRenderer->makeLink(
+					$prefixIndex,
+					$this->msg( 'pageinfo-subpages-name' )->text()
+				),
 				$this->msg( 'pageinfo-subpages-value' )
 					->numParams(
 						$pageCounts['subpages']['total'],
