@@ -98,3 +98,12 @@
 	/* Leave at least enough space for icon, indicator, and a sliver of text */
 	min-width: 6em;
 }
+
+.apihelp-deprecated {
+	font-weight: bold;
+	color: #f00;
+}
+
+.apihelp-deprecated-value .oo-ui-labelElement-label {
+	text-decoration: line-through;
+}
