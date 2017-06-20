@@ -72,4 +72,21 @@ interface SearchIndexField {
 	 * @return SearchIndexField|false New definition or false if not mergeable.
 	 */
 	public function merge( SearchIndexField $that );
+
+	/**
+	 * A list of search engine hints for this field.
+	 * Hints are usually specific to a search engine implementation
+	 * and allow to fine control how the search engine will handle this
+	 * particular field.
+	 *
+	 * For example some search engine permits some optimizations
+	 * at index time by ignoring an update if the updated value
+	 * does not change by more than X% on a numeric value.
+	 *
+	 * @param SearchEngine $engine
+	 * @return array an array of hints generally indexed by hint name. The type of
+	 * values is search engine specific
+	 * @since 1.30
+	 */
+	public function getEngineHints( SearchEngine $engine );
 }
