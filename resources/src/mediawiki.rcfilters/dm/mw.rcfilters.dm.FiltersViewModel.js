@@ -424,6 +424,42 @@
 			}
 		} );
 
+		items = [];
+		// Initialize parameter range model
+		this.groups.limit = new mw.rcfilters.dm.FilterGroup( 'limit', {
+			type: 'single_value',
+			view: 'param_range',
+			labelPrefixKey: 'limit_',
+			title: 'Limit', // TODO: i18n
+		} );
+		limitItems = [];
+		[ 20, 50, 100, 250, 500 ].forEach( function ( i ) {
+			limitItems.push( {
+				name: i,
+				label: mw.language.convertNumber( i )
+			} );
+		} );
+		this.groups.limit.initializeFilters( limitItems, '50' ); // TODO: Take from actual default
+		items = items.concat( model.groups.limit.getItems() );
+
+		this.groups.days = new mw.rcfilters.dm.FilterGroup( 'days', {
+			type: 'single_value',
+			view: 'param_range',
+			labelPrefixKey: 'days_',
+			title: 'Days' // TODO: i18n
+		} );
+		daysItems = [];
+		[ 1, 3, 7, 14, 30 ].forEach( function ( i ) {
+			daysItems.push( {
+				name: i,
+				label: mw.language.convertNumber( i )
+			} );
+		} );
+		this.groups.days.initializeFilters( daysItems, '7' ); // TODO: Take from actual default
+		// Add item references to the model, for lookup
+		items = items.concat( model.groups.days.getItems() );
+		this.addItems( items );
+
 		this.currentView = 'default';
 
 		// Finish initialization

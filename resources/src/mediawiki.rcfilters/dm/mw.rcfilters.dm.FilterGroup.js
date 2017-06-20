@@ -14,6 +14,7 @@
 	 * @cfg {string} [title] Group title
 	 * @cfg {string} [separator='|'] Value separator for 'string_options' groups
 	 * @cfg {boolean} [active] Group is active
+	 * @cfg {boolean} [hidden] This group is hidden from the regular menu views
 	 * @cfg {boolean} [fullCoverage] This filters in this group collectively cover all results
 	 * @cfg {Object} [conflicts] Defines the conflicts for this filter group
 	 * @cfg {string|Object} [labelPrefixKey] An i18n key defining the prefix label for this
@@ -38,6 +39,7 @@
 		this.title = config.title;
 		this.separator = config.separator || '|';
 		this.labelPrefixKey = config.labelPrefixKey;
+		this.hidden = !!config.hidden;
 
 		this.active = !!config.active;
 		this.fullCoverage = !!config.fullCoverage;
@@ -46,6 +48,10 @@
 
 		this.conflicts = config.conflicts || {};
 		this.defaultParams = {};
+
+		if ( config.items ) {
+			this.addItems( config.items );
+		}
 
 		this.aggregate( { update: 'filterItemUpdate' } );
 		this.connect( this, { filterItemUpdate: 'onFilterItemUpdate' } );
@@ -156,6 +162,12 @@
 					return item.getParamName();
 				} )
 			).join( this.getSeparator() );
+		} else if ( this.getType() === 'single_value' ) {
+			// For this group, the parameter is the group name,
+			// and a single item can be selected, or none at all
+			// The item also must be recognized or none is set as
+			// default
+			model.defaultParams[ this.getName() ] = this.getItemByParamName( groupDefault ) ? groupDefault : '';
 		}
 	};
 
@@ -164,14 +176,25 @@
 	 *
 	 * @fires update
 	 */
-	mw.rcfilters.dm.FilterGroup.prototype.onFilterItemUpdate = function () {
+	mw.rcfilters.dm.FilterGroup.prototype.onFilterItemUpdate = function ( item ) {
 		// Update state
-		var active = this.areAnySelected();
+		var active = this.areAnySelected(),
+			itemName = item && item.getName();
+
+		if ( item.isSelected() && this.getType() === 'single_value' ) {
+			// Change the selection to only be the newly selected item
+			this.getItems().forEach( function ( filterItem ) {
+				if ( filterItem.getName() !== itemName ) {
+					filterItem.toggleSelected( false );
+				}
+			} );
+		}
 
 		if ( this.active !== active ) {
 			this.active = active;
 			this.emit( 'update' );
 		}
+
 	};
 
 	/**
@@ -181,6 +204,15 @@
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.isActive = function () {
 		return this.active;
+	};
+
+	/**
+	 * Get group hidden state
+	 *
+	 * @return {boolean} Hidden state
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.isHidden = function () {
+		return this.hidden;
 	};
 
 	/**
@@ -388,7 +420,22 @@
 			areAnySelected = false,
 			buildFromCurrentState = !filterRepresentation,
 			result = {},
-			filterParamNames = {};
+			model = this,
+			filterParamNames = {},
+			getSelectedParameter = function ( filters ) {
+				var item,
+					selected = [];
+
+				// Find if any are selected
+				$.each( filters, function ( name, value ) {
+					if ( value ) {
+						selected.push( name );
+					}
+				} );
+
+				item = model.getItemByName( selected[ 0 ] );
+				return ( item && item.getParamName() ) || '';
+			};
 
 		filterRepresentation = filterRepresentation || {};
 
@@ -438,6 +485,8 @@
 
 			result[ this.getName() ] = ( values.length === Object.keys( filterRepresentation ).length ) ?
 				'all' : values.join( this.getSeparator() );
+		} else if ( this.getType() === 'single_value' ) {
+			result[ this.getName() ] = getSelectedParameter( filterRepresentation );
 		}
 
 		return result;
@@ -454,13 +503,14 @@
 	 * @return {Object} Filter representation
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation ) {
-		var areAnySelected, paramValues,
+		var areAnySelected, paramValues, item,
 			model = this,
 			paramToFilterMap = {},
 			result = {};
 
 		if ( this.getType() === 'send_unselected_if_any' ) {
 			paramRepresentation = paramRepresentation || {};
+
 			// Expand param representation to include all filters in the group
 			this.getItems().forEach( function ( filterItem ) {
 				var paramName = filterItem.getParamName();
@@ -513,6 +563,11 @@
 					// Otherwise, the filter is selected only if it appears in the parameter values
 					paramValues.indexOf( filterItem.getParamName() ) > -1;
 			} );
+		} else if ( this.getType() === 'single_value' ) {
+			// There is parameter that fits a single filter, or none at all
+			this.getItems().forEach( function ( filterItem ) {
+				result[ filterItem.getName() ] = !!model.getItemByParamName( paramRepresentation );
+			} );
 		}
 
 		// Go over result and make sure all filters are represented.
@@ -533,6 +588,18 @@
 	mw.rcfilters.dm.FilterGroup.prototype.getItemByParamName = function ( paramName ) {
 		return this.getItems().filter( function ( item ) {
 			return item.getParamName() === paramName;
+		} )[ 0 ];
+	};
+
+	/**
+	 * Get item by its filter name
+	 *
+	 * @param {string} filterName Filter name
+	 * @return {mw.rcfilters.dm.FilterItem} Filter item
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.getItemByName = function ( filterName ) {
+		return this.getItems().filter( function ( item ) {
+			return item.getName() === filterName;
 		} )[ 0 ];
 	};
 

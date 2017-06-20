@@ -1745,6 +1745,7 @@ return [
 			'resources/src/mediawiki.rcfilters/mw.rcfilters.js',
 			'resources/src/mediawiki.rcfilters/dm/mw.rcfilters.dm.ItemModel.js',
 			'resources/src/mediawiki.rcfilters/dm/mw.rcfilters.dm.FilterItem.js',
+			'resources/src/mediawiki.rcfilters/dm/mw.rcfilters.dm.ParameterRangeModel.js',
 			'resources/src/mediawiki.rcfilters/dm/mw.rcfilters.dm.FilterGroup.js',
 			'resources/src/mediawiki.rcfilters/dm/mw.rcfilters.dm.FiltersViewModel.js',
 			'resources/src/mediawiki.rcfilters/dm/mw.rcfilters.dm.SavedQueryItemModel.js',
