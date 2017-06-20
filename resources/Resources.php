@@ -1920,6 +1920,7 @@ return [
 			'apisandbox-sending-request',
 			'apisandbox-loading-results',
 			'apisandbox-results-error',
+			'apisandbox-results-login-suppressed',
 			'apisandbox-request-selectformat-label',
 			'apisandbox-request-format-url-label',
 			'apisandbox-request-url-label',

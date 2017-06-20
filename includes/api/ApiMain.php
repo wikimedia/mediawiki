@@ -236,6 +236,7 @@ class ApiMain extends ApiBase {
 				wfDebug( "API: stripping user credentials when the same-origin policy is not applied\n" );
 				$wgUser = new User();
 				$this->getContext()->setUser( $wgUser );
+				$request->response()->header( 'MediaWiki-Login-Suppressed: true' );
 			}
 		}
 
@@ -778,7 +779,8 @@ class ApiMain extends ApiBase {
 
 			if ( !$preflight ) {
 				$response->header(
-					'Access-Control-Expose-Headers: MediaWiki-API-Error, Retry-After, X-Database-Lag'
+					'Access-Control-Expose-Headers: MediaWiki-API-Error, Retry-After, X-Database-Lag, '
+					. 'MediaWiki-Login-Suppressed'
 				);
 			}
 		}
