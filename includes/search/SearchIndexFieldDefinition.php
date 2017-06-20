@@ -140,4 +140,13 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 	public function setMergeCallback( $callback ) {
 		$this->mergeCallback = $callback;
 	}
+
+	/**
+	 * A list of search engine hints for this field
+	 *
+	 * @return array
+	 */
+	public function getEngineHints() {
+		return [];
+	}
 }

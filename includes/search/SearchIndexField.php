@@ -72,4 +72,12 @@ interface SearchIndexField {
 	 * @return SearchIndexField|false New definition or false if not mergeable.
 	 */
 	public function merge( SearchIndexField $that );
+
+	/**
+	 * A list of search engine hints for this field
+	 *
+	 * @return array
+	 * @since 1.30
+	 */
+	public function getEngineHints();
 }
