@@ -1421,6 +1421,7 @@ return [
 		],
 	],
 	'mediawiki.action.edit.styles' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.styles.css',
 	],
 	'mediawiki.action.edit.collapsibleFooter' => [
