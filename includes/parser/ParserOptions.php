@@ -1269,8 +1269,7 @@ class ParserOptions {
 		// Feb 2015 (instead the parser outputs a constant placeholder and post-parse
 		// processing handles the option). But Wikibase forces it in $forOptions
 		// and expects the cache key to still vary on it for T85252.
-		// @todo Deprecate and remove this behavior after optionsHashPre30() is
-		//  removed (Wikibase can use addExtraKey() or something instead).
+		// @deprecated since 1.30, Wikibase should use addExtraKey() or something instead.
 		if ( in_array( 'editsection', $forOptions, true ) ) {
 			$options['editsection'] = $this->mEditSection;
 			$defaults['editsection'] = true;
@@ -1306,98 +1305,6 @@ class ParserOptions {
 		}
 
 		$confstr .= $wgRenderHashAppend;
-
-		if ( $this->mExtraKey != '' ) {
-			$confstr .= $this->mExtraKey;
-		}
-
-		// Give a chance for extensions to modify the hash, if they have
-		// extra options or other effects on the parser cache.
-		Hooks::run( 'PageRenderingHash', [ &$confstr, $this->getUser(), &$forOptions ] );
-
-		// Make it a valid memcached key fragment
-		$confstr = str_replace( ' ', '_', $confstr );
-
-		return $confstr;
-	}
-
-	/**
-	 * Generate the hash used before MediaWiki 1.30
-	 * @since 1.30
-	 * @deprecated since 1.30. Do not use this unless you're ParserCache.
-	 * @param array $forOptions
-	 * @param Title $title Used to get the content language of the page (since r97636)
-	 * @return string Page rendering hash
-	 */
-	public function optionsHashPre30( $forOptions, $title = null ) {
-		global $wgRenderHashAppend;
-
-		// FIXME: Once the cache key is reorganized this argument
-		// can be dropped. It was used when the math extension was
-		// part of core.
-		$confstr = '*';
-
-		// Space assigned for the stubthreshold but unused
-		// since it disables the parser cache, its value will always
-		// be 0 when this function is called by parsercache.
-		if ( in_array( 'stubthreshold', $forOptions ) ) {
-			$confstr .= '!' . $this->options['stubthreshold'];
-		} else {
-			$confstr .= '!*';
-		}
-
-		if ( in_array( 'dateformat', $forOptions ) ) {
-			$confstr .= '!' . $this->getDateFormat();
-		}
-
-		if ( in_array( 'numberheadings', $forOptions ) ) {
-			$confstr .= '!' . ( $this->options['numberheadings'] ? '1' : '' );
-		} else {
-			$confstr .= '!*';
-		}
-
-		if ( in_array( 'userlang', $forOptions ) ) {
-			$confstr .= '!' . $this->options['userlang']->getCode();
-		} else {
-			$confstr .= '!*';
-		}
-
-		if ( in_array( 'thumbsize', $forOptions ) ) {
-			$confstr .= '!' . $this->options['thumbsize'];
-		} else {
-			$confstr .= '!*';
-		}
-
-		// add in language specific options, if any
-		// @todo FIXME: This is just a way of retrieving the url/user preferred variant
-		if ( !is_null( $title ) ) {
-			$confstr .= $title->getPageLanguage()->getExtraHashOptions();
-		} else {
-			global $wgContLang;
-			$confstr .= $wgContLang->getExtraHashOptions();
-		}
-
-		$confstr .= $wgRenderHashAppend;
-
-		// @note: as of Feb 2015, core never sets the editsection flag, since it uses
-		// <mw:editsection> tags to inject editsections on the fly. However, extensions
-		// may be using it by calling ParserOption::optionUsed resp. ParserOutput::registerOption
-		// directly. At least Wikibase does at this point in time.
-		if ( !in_array( 'editsection', $forOptions ) ) {
-			$confstr .= '!*';
-		} elseif ( !$this->mEditSection ) {
-			$confstr .= '!edit=0';
-		}
-
-		if ( $this->options['printable'] && in_array( 'printable', $forOptions ) ) {
-			$confstr .= '!printable=1';
-		}
-
-		if ( $this->options['wrapclass'] !== 'mw-parser-output' &&
-			in_array( 'wrapclass', $forOptions )
-		) {
-			$confstr .= '!wrapclass=' . $this->options['wrapclass'];
-		}
 
 		if ( $this->mExtraKey != '' ) {
 			$confstr .= $this->mExtraKey;

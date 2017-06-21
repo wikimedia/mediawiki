@@ -138,20 +138,6 @@ class ParserCache {
 	 * @return bool|mixed|string
 	 */
 	public function getKey( $article, $popts, $useOutdated = true ) {
-		$dummy = null;
-		return $this->getKeyReal( $article, $popts, $useOutdated, $dummy );
-	}
-
-	/**
-	 * Temporary internal function to allow accessing $usedOptions
-	 * @todo Merge this back to self::getKey() when ParserOptions::optionsHashPre30() is removed
-	 * @param WikiPage $article
-	 * @param ParserOptions $popts
-	 * @param bool $useOutdated (default true)
-	 * @param array &$usedOptions Don't use this, it will go away soon
-	 * @return bool|mixed|string
-	 */
-	private function getKeyReal( $article, $popts, $useOutdated, &$usedOptions ) {
 		global $wgCacheEpoch;
 
 		if ( $popts instanceof User ) {
@@ -218,8 +204,7 @@ class ParserCache {
 
 		$touched = $article->getTouched();
 
-		$usedOptions = null;
-		$parserOutputKey = $this->getKeyReal( $article, $popts, $useOutdated, $usedOptions );
+		$parserOutputKey = $this->getKey( $article, $popts, $useOutdated );
 		if ( $parserOutputKey === false ) {
 			wfIncrStats( 'pcache.miss.absent' );
 			return false;
@@ -228,13 +213,6 @@ class ParserCache {
 		$casToken = null;
 		/** @var ParserOutput $value */
 		$value = $this->mMemc->get( $parserOutputKey, $casToken, BagOStuff::READ_VERIFIED );
-		if ( !$value ) {
-			$parserOutputKey = $this->getParserOutputKey(
-				$article,
-				$popts->optionsHashPre30( $usedOptions, $article->getTitle() )
-			);
-			$value = $this->mMemc->get( $parserOutputKey, $casToken, BagOStuff::READ_VERIFIED );
-		}
 		if ( !$value ) {
 			wfDebug( "ParserOutput cache miss.\n" );
 			wfIncrStats( "pcache.miss.absent" );
@@ -326,13 +304,6 @@ class ParserCache {
 
 			// ...and its pointer
 			$this->mMemc->set( $this->getOptionsKey( $page ), $optionsKey, $expire );
-
-			// Normally, when there was no key change, the above would have
-			// overwritten the old entry. Delete that old entry to save disk
-			// space.
-			$oldParserOutputKey = $this->getParserOutputKey( $page,
-				$popts->optionsHashPre30( $optionsKey->mUsedOptions, $page->getTitle() ) );
-			$this->mMemc->delete( $oldParserOutputKey );
 
 			Hooks::run(
 				'ParserCacheSaveComplete',

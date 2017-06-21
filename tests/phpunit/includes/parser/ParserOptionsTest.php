@@ -38,66 +38,6 @@ class ParserOptionsTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideOptionsHashPre30
-	 * @param array $usedOptions Used options
-	 * @param string $expect Expected value
-	 * @param array $options Options to set
-	 * @param array $globals Globals to set
-	 */
-	public function testOptionsHashPre30( $usedOptions, $expect, $options, $globals = [] ) {
-		global $wgHooks;
-
-		$globals += [
-			'wgRenderHashAppend' => '',
-			'wgHooks' => [],
-		];
-		$globals['wgHooks'] += [
-			'PageRenderingHash' => [],
-		] + $wgHooks;
-		$this->setMwGlobals( $globals );
-
-		$popt = new ParserOptions();
-		foreach ( $options as $setter => $value ) {
-			$popt->$setter( $value );
-		}
-		$this->assertSame( $expect, $popt->optionsHashPre30( $usedOptions ) );
-	}
-
-	public static function provideOptionsHashPre30() {
-		$used = [ 'wrapclass', 'printable' ];
-
-		return [
-			'Canonical options, nothing used' => [ [], '*!*!*!*!*!*', [] ],
-			'Canonical options, used some options' => [ $used, '*!*!*!*!*!*', [] ],
-			'Used some options, non-default values' => [
-				$used,
-				'*!*!*!*!*!*!printable=1!wrapclass=foobar',
-				[
-					'setWrapOutputClass' => 'foobar',
-					'setIsPrintable' => true,
-				]
-			],
-			'Canonical options, nothing used, but with hooks and $wgRenderHashAppend' => [
-				[],
-				'*!*!*!*!*!wgRenderHashAppend!*!onPageRenderingHash',
-				[],
-				[
-					'wgRenderHashAppend' => '!wgRenderHashAppend',
-					'wgHooks' => [ 'PageRenderingHash' => [ [ __CLASS__ . '::onPageRenderingHash' ] ] ],
-				]
-			],
-
-			// Test weird historical behavior is still weird
-			'Canonical options, editsection=true used' => [ [ 'editsection' ], '*!*!*!*!*', [
-				'setEditSection' => true,
-			] ],
-			'Canonical options, editsection=false used' => [ [ 'editsection' ], '*!*!*!*!*!edit=0', [
-				'setEditSection' => false,
-			] ],
-		];
-	}
-
-	/**
 	 * @dataProvider provideOptionsHash
 	 * @param array $usedOptions Used options
 	 * @param string $expect Expected value
