@@ -704,13 +704,17 @@ class ApiMain extends ApiBase {
 		$request = $this->getRequest();
 		$response = $request->response();
 
-		$matchOrigin = false;
+		$matchedOrigin = false;
 		$allowTiming = false;
 		$varyOrigin = true;
 
 		if ( $originParam === '*' ) {
 			// Request for anonymous CORS
-			$matchOrigin = true;
+			// Technically we should check for the presence of an Origin header
+			// and not process it as CORS if it's not set, but that would
+			// require us to vary on Origin for all 'origin=*' requests which
+			// we don't want to do.
+			$matchedOrigin = true;
 			$allowOrigin = '*';
 			$allowCredentials = 'false';
 			$varyOrigin = false; // No need to vary
@@ -737,7 +741,7 @@ class ApiMain extends ApiBase {
 			}
 
 			$config = $this->getConfig();
-			$matchOrigin = count( $origins ) === 1 && self::matchOrigin(
+			$matchedOrigin = count( $origins ) === 1 && self::matchOrigin(
 				$originParam,
 				$config->get( 'CrossSiteAJAXdomains' ),
 				$config->get( 'CrossSiteAJAXdomainExceptions' )
@@ -748,19 +752,21 @@ class ApiMain extends ApiBase {
 			$allowTiming = $originHeader;
 		}
 
-		if ( $matchOrigin ) {
+		if ( $matchedOrigin ) {
 			$requestedMethod = $request->getHeader( 'Access-Control-Request-Method' );
 			$preflight = $request->getMethod() === 'OPTIONS' && $requestedMethod !== false;
 			if ( $preflight ) {
 				// This is a CORS preflight request
 				if ( $requestedMethod !== 'POST' && $requestedMethod !== 'GET' ) {
 					// If method is not a case-sensitive match, do not set any additional headers and terminate.
+					$response->header( 'MediaWiki-CORS-Rejection: Unsupported method requested in preflight' );
 					return true;
 				}
 				// We allow the actual request to send the following headers
 				$requestedHeaders = $request->getHeader( 'Access-Control-Request-Headers' );
 				if ( $requestedHeaders !== false ) {
 					if ( !self::matchRequestedHeaders( $requestedHeaders ) ) {
+						$response->header( 'MediaWiki-CORS-Rejection: Unsupported header requested in preflight' );
 						return true;
 					}
 					$response->header( 'Access-Control-Allow-Headers: ' . $requestedHeaders );
@@ -768,6 +774,12 @@ class ApiMain extends ApiBase {
 
 				// We only allow the actual request to be GET or POST
 				$response->header( 'Access-Control-Allow-Methods: POST, GET' );
+			} elseif ( $request->getMethod() !== 'POST' && $request->getMethod() !== 'GET' ) {
+				// Unsupported non-preflight method, don't handle it as CORS
+				$response->header(
+					'MediaWiki-CORS-Rejection: Unsupported method for simple request or actual request'
+				);
+				return true;
 			}
 
 			$response->header( "Access-Control-Allow-Origin: $allowOrigin" );
@@ -783,6 +795,8 @@ class ApiMain extends ApiBase {
 					. 'MediaWiki-Login-Suppressed'
 				);
 			}
+		} else {
+			$response->header( 'MediaWiki-CORS-Rejection: Origin mismatch' );
 		}
 
 		if ( $varyOrigin ) {
