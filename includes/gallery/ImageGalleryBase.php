@@ -141,7 +141,9 @@ abstract class ImageGalleryBase extends ContextSource {
 		$galleryOptions = $this->getConfig()->get( 'GalleryOptions' );
 		$this->mImages = [];
 		$this->mShowBytes = $galleryOptions['showBytes'];
-		$this->mShowDimensions = $galleryOptions['showDimensions'];
+		$this->mShowDimensions = isset( $galleryOptions['showDimensions'] )
+			? $galleryOptions['showDimensions']
+			: true;
 		$this->mShowFilename = true;
 		$this->mParser = false;
 		$this->mHideBadImages = false;
