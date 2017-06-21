@@ -206,15 +206,34 @@
 	 * Set filters and preserve a group relationship based on
 	 * the definition given by an object
 	 *
-	 * @param {Array} filters Filter group definition
-	 * @param {Object} [namespaces] Namespace definition
-	 * @param {Object[]} [tags] Tag array definition
+	 * @param {Array} filters Filters definition
+	 * @param {Object} [views] Extra views definition
+	 *  Expected in the following format:
+	 *  {
+	 *     namespaces: {
+	 *       label: 'namespaces', // Message key
+	 *       trigger: ':',
+	 *       groups: [
+	 *         {
+	 *            // Group info
+	 *            name: 'namespaces' // Parameter name
+	 *            definition: {
+	 *               title: 'namespaces' // Message key
+	 *               type: 'string_options',
+	 *               separator: ';',
+	 *               labelPrefixKey: { 'default': 'rcfilters-tag-prefix-namespace', inverted: 'rcfilters-tag-prefix-namespace-inverted' },
+	 *               fullCoverage: true
+	 *            },
+	 *            items: []
+	 *         }
+	 *       ]
+	 *     }
+	 *  }
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.initializeFilters = function ( filters, namespaces, tags ) {
+	mw.rcfilters.dm.FiltersViewModel.prototype.initializeFilters = function ( filters, views ) {
 		var filterItem, filterConflictResult, groupConflictResult,
 			model = this,
 			items = [],
-			namespaceDefinition = [],
 			groupConflictMap = {},
 			filterConflictMap = {},
 			/*!
@@ -280,6 +299,8 @@
 		this.groups = {};
 		this.views = {};
 
+		views = views || {};
+
 		// Filters
 		this.views.default = { name: 'default', label: mw.msg( 'rcfilters-filterlist-title' ) };
 		filters.forEach( function ( data ) {
@@ -326,70 +347,28 @@
 			}
 		} );
 
-		namespaces = namespaces || {};
-		if (
-			mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' ) &&
-			!$.isEmptyObject( namespaces )
-		) {
-			// Namespaces group
-			this.views.namespaces = { name: 'namespaces', label: mw.msg( 'namespaces' ), trigger: ':' };
-			$.each( namespaces, function ( namespaceID, label ) {
-				// Build and clean up the definition
-				namespaceDefinition.push( {
-					name: namespaceID,
-					label: label || mw.msg( 'blanknamespace' ),
-					description: '',
-					identifiers: [
-						( namespaceID < 0 || namespaceID % 2 === 0 ) ?
-							'subject' : 'talk'
-					],
-					cssClass: 'mw-changeslist-ns-' + namespaceID
+		if ( mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' ) ) {
+			$.each( views, function ( viewName, viewData ) {
+				model.views[ viewName ] = {
+					name: viewData.name,
+					title: viewData.title,
+					trigger: viewData.trigger
+				};
+
+				// Group
+				viewData.groups.forEach( function ( groupData ) {
+					model.groups[ groupData.name ] = new mw.rcfilters.dm.FilterGroup(
+						groupData.name,
+						$.extend( true, {}, groupData.definition, { view: viewName } )
+					);
+
+					// Add items
+					model.groups[ groupData.name ].initializeFilters( groupData.items );
+
+					// Add to global search list
+					items = items.concat( model.groups[ groupData.name ].getItems() );
 				} );
 			} );
-
-			// Add the group
-			model.groups.namespace = new mw.rcfilters.dm.FilterGroup(
-				'namespace', // Parameter name is singular
-				{
-					type: 'string_options',
-					view: 'namespaces',
-					title: 'namespaces', // Message key
-					separator: ';',
-					labelPrefixKey: { 'default': 'rcfilters-tag-prefix-namespace', inverted: 'rcfilters-tag-prefix-namespace-inverted' },
-					fullCoverage: true
-				}
-			);
-			// Add namespace items to group
-			model.groups.namespace.initializeFilters( namespaceDefinition );
-			items = items.concat( model.groups.namespace.getItems() );
-		}
-
-		tags = tags || [];
-		if (
-			mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' ) &&
-			tags.length > 0
-		) {
-			// Define view
-			this.views.tags = { name: 'tags', label: mw.msg( 'rcfilters-view-tags' ), trigger: '#' };
-
-			// Add the group
-			model.groups.tags = new mw.rcfilters.dm.FilterGroup(
-				'tags',
-				{
-					type: 'string_options',
-					view: 'tags',
-					title: 'rcfilters-view-tags', // Message key
-					labelPrefixKey: 'rcfilters-tag-prefix-tags',
-					separator: '|',
-					fullCoverage: false
-				}
-			);
-
-			// Add tag items to group
-			model.groups.tags.initializeFilters( tags );
-
-			// Add item references to the model, for lookup
-			items = items.concat( model.groups.tags.getItems() );
 		}
 
 		// Add item references to the model, for lookup
@@ -929,7 +908,7 @@
 	 * @return {string} Label for the current view
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getCurrentViewLabel = function () {
-		return this.views[ this.getCurrentView() ].label;
+		return this.views[ this.getCurrentView() ].title;
 	};
 
 	/**
