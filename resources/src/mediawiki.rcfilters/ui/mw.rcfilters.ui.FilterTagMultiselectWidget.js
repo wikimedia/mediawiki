@@ -455,6 +455,8 @@
 			menuOption = this.menu.getItemFromModel( tagItem.getModel() ),
 			oldInputValue = this.input.getValue();
 
+		this.menu.setUserSelecting( true );
+
 		// Reset input
 		this.input.setValue( '' );
 
@@ -475,11 +477,16 @@
 			// user filtered the results
 			this.getMenu().once(
 				'itemVisibilityChange',
-				function () { widget.scrollToTop( menuOption.$element ); }
+				function () {
+					widget.scrollToTop( menuOption.$element );
+					widget.menu.setUserSelecting( false );
+				}
 			);
 		} else {
 			this.scrollToTop( menuOption.$element );
+			this.menu.setUserSelecting( false );
 		}
+
 	};
 
 	/**
