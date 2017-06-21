@@ -1907,6 +1907,7 @@
 	"apisandbox-sending-request": "Odesílá se API požadavek…",
 	"apisandbox-loading-results": "Přijímají se API výsledky…",
 	"apisandbox-results-error": "Došlo k chybě při načítání odpovědi na API dotaz: $1.",
+	"apisandbox-results-login-suppressed": "Tento požadavek byl zpracován jako od nepřihlášeného uživatele, neboť by jinak mohl sloužit k obcházení bezpečnostních funkcionalit prohlížeče zajišťujících shodný původ. Automatická správa tokenů pro takové požadavky nefunguje, vyplňte je prosím ručně.",
 	"apisandbox-request-selectformat-label": "Zobrazit data požadavku jako:",
 	"apisandbox-request-format-url-label": "řetězec dotazu do URL",
 	"apisandbox-request-url-label": "URL požadavku:",

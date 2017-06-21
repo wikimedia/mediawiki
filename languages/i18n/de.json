@@ -1966,6 +1966,7 @@
 	"apisandbox-sending-request": "Sende API-Anfrage …",
 	"apisandbox-loading-results": "Rufe API-Ergebnisse ab …",
 	"apisandbox-results-error": "Beim Laden der API-Anfragenantwort ist ein Fehler aufgetreten: $1.",
+	"apisandbox-results-login-suppressed": "Diese Anfrage wurde als ein abgemeldeter Benutzer verarbeitet, da sie zur Umgehung der Gleicher-Ursprung-Sicherheit des Browsers verwendet werden könnte. Beachte, dass die automatische Tokenbearbeitung der API-Spielwiese mit solchen Anfragen nicht ordnungsgemäß funktioniert. Bitte fülle sie manuell aus.",
 	"apisandbox-request-selectformat-label": "Anfragedaten anzeigen als:",
 	"apisandbox-request-format-url-label": "URL-Abfrage-Zeichenfolge",
 	"apisandbox-request-url-label": "Anforderungs-URL:",

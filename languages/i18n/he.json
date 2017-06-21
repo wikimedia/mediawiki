@@ -1912,6 +1912,7 @@
 	"apisandbox-sending-request": "בקשת ה־API בשליחה...",
 	"apisandbox-loading-results": "תוצאות ה־API בתהליך קבלה...",
 	"apisandbox-results-error": "אירעה שגיאה בעת טעינת תשובת ה־API לבקשה: $1.",
+	"apisandbox-results-login-suppressed": "בקשה זו טופלה כבקשה של משתמש אנונימי, כי היא עלולה הייתה לשמש לעקיפת מדיניות האבטחה \"מקור־זהה\" (Same-Origin) של הדפדפן. יש לציין שהטיפול האוטומטי באסימונים של ארגז החול של ה־API אינו עובד כראוי עם בקשות מסוג זה, לכן יש למלא אותם ידנית.",
 	"apisandbox-request-selectformat-label": "הצגת נתוני הבקשה בתור:",
 	"apisandbox-request-format-url-label": "מחרוזת השאילתה (query string) של כתובת ה־URL",
 	"apisandbox-request-url-label": "כתובת ה־URL של הבקשה:",

@@ -1886,6 +1886,7 @@
 	"apisandbox-sending-request": "Адпраўка API-запыту…",
 	"apisandbox-loading-results": "Атрымліваем API-вынікі…",
 	"apisandbox-results-error": "Адбылася памылка пры загрузцы адказу на API-запыт: $1.",
+	"apisandbox-results-login-suppressed": "Гэты запыт быў апрацаваны, як выкананы ўдзельнікам, які не ўвайшоў у сыстэму, бо ён мог быць выкарыстаны, каб абысьці бясьпеку Same-Origin браўзэру. Заўважце, што аўтаматычная апрацоўка токенаў API-пясочніцы не працуе правільна з такімі запытамі, калі ласка, запаўняйце іх уручную.",
 	"apisandbox-request-selectformat-label": "Паказаць зьвесткі запыту як:",
 	"apisandbox-request-format-url-label": "Радок запыту URL",
 	"apisandbox-request-url-label": "URL-адрас запыту:",
