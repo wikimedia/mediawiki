@@ -56,18 +56,31 @@
 	 * Set the current muted view of the widget based on its state
 	 */
 	mw.rcfilters.ui.FilterMenuOptionWidget.prototype.setCurrentMuteState = function () {
-		this.setFlags( {
-			muted: (
-				this.model.isConflicted() ||
-				(
-					// Item is also muted when any of the items in its group is active
-					this.model.getGroupModel().isActive() &&
-					// But it isn't selected
-					!this.model.isSelected() &&
-					// And also not included
-					!this.model.isIncluded()
+		if (
+			this.model.getGroupModel().getView() === 'namespaces' &&
+			this.model.isInverted()
+		) {
+			// This is an inverted behavior than the other rules, specifically
+			// for inverted namespaces
+			this.setFlags( {
+				muted: this.model.isSelected()
+			} );
+		} else {
+			this.setFlags( {
+				muted: (
+					this.model.isConflicted() ||
+					(
+						// Item is also muted when any of the items in its group is active
+						this.model.getGroupModel().isActive() &&
+						// But it isn't selected
+						!this.model.isSelected() &&
+						// And also not included
+						!this.model.isIncluded()
+					)
 				)
-			)
-		} );
+			} );
+		}
+
+
 	};
 }( mediaWiki ) );
