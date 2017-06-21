@@ -5,6 +5,42 @@ use Wikimedia\ScopedCallback;
 
 class ParserOptionsTest extends MediaWikiTestCase {
 
+	private static function clearCache() {
+		$wrap = TestingAccessWrapper::newFromClass( ParserOptions::class );
+		$wrap->defaults = null;
+		$wrap->lazyOptions = [
+			'dateformat' => [ ParserOptions::class, 'initDateFormat' ],
+		];
+		$wrap->inCacheKey = [
+			'dateformat' => true,
+			'numberheadings' => true,
+			'thumbsize' => true,
+			'stubthreshold' => true,
+			'printable' => true,
+			'userlang' => true,
+			'wrapclass' => true,
+		];
+	}
+
+	protected function setUp() {
+		global $wgHooks;
+
+		parent::setUp();
+		self::clearCache();
+
+		$this->setMwGlobals( [
+			'wgRenderHashAppend' => '',
+			'wgHooks' => [
+				'PageRenderingHash' => [],
+			] + $wgHooks,
+		] );
+	}
+
+	protected function tearDown() {
+		self::clearCache();
+		parent::tearDown();
+	}
+
 	/**
 	 * @dataProvider provideIsSafeToCache
 	 * @param bool $expect Expected value
@@ -48,7 +84,6 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		global $wgHooks;
 
 		$globals += [
-			'wgRenderHashAppend' => '',
 			'wgHooks' => [],
 		];
 		$globals['wgHooks'] += [
@@ -103,13 +138,6 @@ class ParserOptionsTest extends MediaWikiTestCase {
 
 	// Test weird historical behavior is still weird
 	public function testOptionsHashEditSection() {
-		global $wgHooks;
-
-		$this->setMwGlobals( [
-			'wgRenderHashAppend' => '',
-			'wgHooks' => [ 'PageRenderingHash' => [] ] + $wgHooks,
-		] );
-
 		$popt = ParserOptions::newCanonical();
 		$popt->registerWatcher( function ( $name ) {
 			$this->assertNotEquals( 'editsection', $name );
@@ -173,6 +201,35 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		$this->assertFalse( $popt1->matches( $popt2 ) );
 
 		ScopedCallback::consume( $reset );
+	}
+
+	public function testAllCacheVaryingOptions() {
+		global $wgHooks;
+
+		// $wgHooks is already saved in self::setUp(), so we can modify it freely here
+		$wgHooks['ParserOptionsRegister'] = [];
+		$this->assertSame( [
+			'dateformat', 'numberheadings', 'printable', 'stubthreshold',
+			'thumbsize', 'userlang', 'wrapclass',
+		], ParserOptions::allCacheVaryingOptions() );
+
+		self::clearCache();
+
+		$wgHooks['ParserOptionsRegister'][] = function ( &$defaults, &$inCacheKey ) {
+			$defaults += [
+				'foo' => 'foo',
+				'bar' => 'bar',
+				'baz' => 'baz',
+			];
+			$inCacheKey += [
+				'foo' => true,
+				'bar' => false,
+			];
+		};
+		$this->assertSame( [
+			'dateformat', 'foo', 'numberheadings', 'printable', 'stubthreshold',
+			'thumbsize', 'userlang', 'wrapclass',
+		], ParserOptions::allCacheVaryingOptions() );
 	}
 
 }
