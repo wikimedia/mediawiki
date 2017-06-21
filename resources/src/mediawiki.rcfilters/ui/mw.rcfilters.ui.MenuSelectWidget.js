@@ -30,6 +30,7 @@
 		this.model = model;
 		this.currentView = '';
 		this.views = {};
+		this.userSelecting = false;
 
 		this.inputValue = '';
 		this.$overlay = config.$overlay || this.$element;
@@ -231,7 +232,10 @@
 
 		// Since the method hides/shows items, we don't want to
 		// call it unless the input actually changed
-		if ( this.inputValue !== inputVal ) {
+		if (
+			!this.userSelecting &&
+			this.inputValue !== inputVal
+		) {
 			// Parent method
 			mw.rcfilters.ui.MenuSelectWidget.parent.prototype.updateItemVisibility.call( this );
 
@@ -323,5 +327,17 @@
 	 */
 	mw.rcfilters.ui.MenuSelectWidget.prototype.scrollToTop = function () {
 		this.$body.scrollTop( 0 );
+	};
+
+	/**
+	 * Set whether the user is currently selecting an item.
+	 * This is important when the user selects an item that is in between
+	 * different views, and makes sure we do not re-select a different
+	 * item (like the item on top) when this is happening.
+	 *
+	 * @param {boolean} isSelecting User is selecting
+	 */
+	mw.rcfilters.ui.MenuSelectWidget.prototype.setUserSelecting = function ( isSelecting ) {
+		this.userSelecting = !!isSelecting;
 	};
 }( mediaWiki ) );
