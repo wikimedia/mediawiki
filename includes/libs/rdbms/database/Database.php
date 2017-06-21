@@ -1802,8 +1802,31 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		# Split database and table into proper variables.
-		# We reverse the explode so that database.table and table both output
-		# the correct table.
+		list( $database, $schema, $prefix, $table ) = $this->qualifiedTableComponents( $name );
+
+		# Quote $table and apply the prefix if not quoted.
+		# $tableName might be empty if this is called from Database::replaceVars()
+		$tableName = "{$prefix}{$table}";
+		if ( $format === 'quoted'
+			&& !$this->isQuotedIdentifier( $tableName )
+			&& $tableName !== ''
+		) {
+			$tableName = $this->addIdentifierQuotes( $tableName );
+		}
+
+		# Quote $schema and $database and merge them with the table name if needed
+		$tableName = $this->prependDatabaseOrSchema( $schema, $tableName, $format );
+		$tableName = $this->prependDatabaseOrSchema( $database, $tableName, $format );
+
+		return $tableName;
+	}
+
+	/**
+	 * @param string $name Table name
+	 * @return array (DB name, schema name, table prefix, table name)
+	 */
+	protected function qualifiedTableComponents( $name ) {
+		# We reverse the explode so that database.table and table both output the correct table.
 		$dbDetails = explode( '.', $name, 3 );
 		if ( count( $dbDetails ) == 3 ) {
 			list( $database, $schema, $table ) = $dbDetails;
@@ -1833,21 +1856,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			}
 		}
 
-		# Quote $table and apply the prefix if not quoted.
-		# $tableName might be empty if this is called from Database::replaceVars()
-		$tableName = "{$prefix}{$table}";
-		if ( $format === 'quoted'
-			&& !$this->isQuotedIdentifier( $tableName )
-			&& $tableName !== ''
-		) {
-			$tableName = $this->addIdentifierQuotes( $tableName );
-		}
-
-		# Quote $schema and $database and merge them with the table name if needed
-		$tableName = $this->prependDatabaseOrSchema( $schema, $tableName, $format );
-		$tableName = $this->prependDatabaseOrSchema( $database, $tableName, $format );
-
-		return $tableName;
+		return [ $database, $schema, $prefix, $table ];
 	}
 
 	/**
