@@ -113,6 +113,58 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		);
 	}
 
+	public function provideTestIsFileModule() {
+		$fileModuleObj = $this->getMockBuilder( ResourceLoaderFileModule::class )
+			->disableOriginalConstructor()
+			->getMock();
+		return [
+			'object' => [ false,
+				new ResourceLoaderTestModule()
+			],
+			'FileModule object' => [ false,
+				$fileModuleObj
+			],
+			'simple empty' => [ true,
+				[]
+			],
+			'simple scripts' => [ true,
+				[ 'scripts' => 'example.js' ]
+			],
+			'simple scripts, raw and targets' => [ true, [
+				'scripts' => [ 'a.js', 'b.js' ],
+				'raw' => true,
+				'targets' => [ 'desktop', 'mobile' ],
+			] ],
+			'FileModule' => [ true,
+				[ 'class' => ResourceLoaderFileModule::class, 'scripts' => 'example.js' ]
+			],
+			'TestModule' => [ false,
+				[ 'class' => ResourceLoaderTestModule::class, 'scripts' => 'example.js' ]
+			],
+			'SkinModule (FileModule subclass)' => [ true,
+				[ 'class' => ResourceLoaderSkinModule::class, 'scripts' => 'example.js' ]
+			],
+			'JqueryMsgModule (FileModule subclass)' => [ true, [
+				'class' => ResourceLoaderJqueryMsgModule::class,
+				'scripts' => 'example.js',
+			] ],
+			'WikiModule' => [ false, [
+				'class' => ResourceLoaderWikiModule::class,
+				'scripts' => [ 'MediaWiki:Example.js' ],
+			] ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideTestIsFileModule
+	 * @covers ResourceLoader::isFileModule
+	 */
+	public function testIsFileModule( $expected, $module ) {
+		$rl = TestingAccessWrapper::newFromObject( new EmptyResourceLoader() );
+		$rl->register( 'test', $module );
+		$this->assertSame( $expected, $rl->isFileModule( 'test' ) );
+	}
+
 	/**
 	 * @covers ResourceLoader::isModuleRegistered
 	 */
