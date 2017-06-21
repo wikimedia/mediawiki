@@ -26,6 +26,26 @@
  * @todo document
  */
 class ParserCache {
+	/**
+	 * Constants for self::getKey()
+	 * @since 1.30
+	 */
+
+	/** Use only current data */
+	const USE_CURRENT_ONLY = 0;
+
+	/** Use expired data if current data is unavailable */
+	const USE_EXPIRED = 1;
+
+	/** Use expired data or data from different revisions if current data is unavailable */
+	const USE_OUTDATED = 2;
+
+	/**
+	 * Use expired data and data from different revisions, and if all else
+	 * fails vary on all variable options
+	 */
+	const USE_ANYTHING = 3;
+
 	/** @var BagOStuff */
 	private $mMemc;
 	/**
@@ -103,7 +123,7 @@ class ParserCache {
 	 */
 	public function getETag( $article, $popts ) {
 		return 'W/"' . $this->getParserOutputKey( $article,
-			$popts->optionsHash( ParserOptions::legacyOptions(), $article->getTitle() ) ) .
+			$popts->optionsHash( ParserOptions::allCacheVaryingOptions(), $article->getTitle() ) ) .
 				"--" . $article->getTouched() . '"';
 	}
 
@@ -130,15 +150,20 @@ class ParserCache {
 	 * It would be preferable to have this code in get()
 	 * instead of having Article looking in our internals.
 	 *
-	 * @todo Document parameter $useOutdated
-	 *
 	 * @param WikiPage $article
 	 * @param ParserOptions $popts
-	 * @param bool $useOutdated (default true)
+	 * @param int|bool $useOutdated One of the USE constants. For backwards
+	 *  compatibility, boolean false is treated as USE_CURRENT_ONLY and
+	 *  boolean true is treated as USE_ANYTHING.
 	 * @return bool|mixed|string
+	 * @since 1.30 Changed $useOutdated to an int and added the non-boolean values
 	 */
-	public function getKey( $article, $popts, $useOutdated = true ) {
+	public function getKey( $article, $popts, $useOutdated = self::USE_ANYTHING ) {
 		global $wgCacheEpoch;
+
+		if ( is_bool( $useOutdated ) ) {
+			$useOutdated = $useOutdated ? self::USE_ANYTHING : self::USE_CURRENT_ONLY;
+		}
 
 		if ( $popts instanceof User ) {
 			wfWarn( "Use of outdated prototype ParserCache::getKey( &\$article, &\$user )\n" );
@@ -150,14 +175,16 @@ class ParserCache {
 		$optionsKey = $this->mMemc->get(
 			$this->getOptionsKey( $article ), $casToken, BagOStuff::READ_VERIFIED );
 		if ( $optionsKey instanceof CacheTime ) {
-			if ( !$useOutdated && $optionsKey->expired( $article->getTouched() ) ) {
+			if ( $useOutdated < self::USE_EXPIRED && $optionsKey->expired( $article->getTouched() ) ) {
 				wfIncrStats( "pcache.miss.expired" );
 				$cacheTime = $optionsKey->getCacheTime();
 				wfDebugLog( "ParserCache",
 					"Parser options key expired, touched " . $article->getTouched()
 					. ", epoch $wgCacheEpoch, cached $cacheTime\n" );
 				return false;
-			} elseif ( !$useOutdated && $optionsKey->isDifferentRevision( $article->getLatest() ) ) {
+			} elseif ( $useOutdated < self::USE_OUTDATED &&
+				$optionsKey->isDifferentRevision( $article->getLatest() )
+			) {
 				wfIncrStats( "pcache.miss.revid" );
 				$revId = $article->getLatest();
 				$cachedRevId = $optionsKey->getCacheRevisionId();
@@ -171,10 +198,10 @@ class ParserCache {
 			$usedOptions = $optionsKey->mUsedOptions;
 			wfDebug( "Parser cache options found.\n" );
 		} else {
-			if ( !$useOutdated ) {
+			if ( $useOutdated < self::USE_ANYTHING ) {
 				return false;
 			}
-			$usedOptions = ParserOptions::legacyOptions();
+			$usedOptions = ParserOptions::allCacheVaryingOptions();
 		}
 
 		return $this->getParserOutputKey(
@@ -204,7 +231,9 @@ class ParserCache {
 
 		$touched = $article->getTouched();
 
-		$parserOutputKey = $this->getKey( $article, $popts, $useOutdated );
+		$parserOutputKey = $this->getKey( $article, $popts,
+			$useOutdated ? self::USE_OUTDATED : self::USE_CURRENT_ONLY
+		);
 		if ( $parserOutputKey === false ) {
 			wfIncrStats( 'pcache.miss.absent' );
 			return false;
