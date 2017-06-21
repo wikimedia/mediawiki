@@ -2,7 +2,13 @@
 
 .mw-rcfilters-ui-filterMenuOptionWidget {
 	&.oo-ui-flaggedElement-muted {
-		background-color: #f8f9fa; // Base90 AAA
+		&:not( .oo-ui-optionWidget-selected ) {
+			// Namespaces are muted 'the other way around' when they
+			// are also inverted, so if they are also selected, we
+			// should make sure the selected background is shown rather
+			// than the muted one
+			background-color: #f8f9fa; // Base90 AAA
+		}
 
 		.mw-rcfilters-ui-itemMenuOptionWidget-label-title,
 		.mw-rcfilters-ui-itemMenuOptionWidget-label-desc {
