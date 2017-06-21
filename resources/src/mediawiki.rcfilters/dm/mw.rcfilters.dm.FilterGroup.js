@@ -35,7 +35,7 @@
 		this.name = name;
 		this.type = config.type || 'send_unselected_if_any';
 		this.view = config.view || 'default';
-		this.title = config.title;
+		this.title = config.title || name;
 		this.separator = config.separator || '|';
 		this.labelPrefixKey = config.labelPrefixKey;
 
