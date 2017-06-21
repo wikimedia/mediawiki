@@ -563,7 +563,8 @@ class ResourceLoader implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Return whether the definition of a module corresponds to a simple ResourceLoaderFileModule.
+	 * Return whether the definition of a module corresponds to a simple ResourceLoaderFileModule
+	 * or one of its subclasses.
 	 *
 	 * @param string $name Module name
 	 * @return bool
@@ -573,11 +574,13 @@ class ResourceLoader implements LoggerAwareInterface {
 			return false;
 		}
 		$info = $this->moduleInfos[$name];
+		if ( isset( $info['object'] ) ) {
+			return false;
+		}
 		if (
-			isset( $info['object'] ) ||
-			// This special case is dumb, but we need $wgResourceModuleSkinStyles
-			// to work for 'oojs-ui-core.styles'. See T167042.
-			( isset( $info['class'] ) && $info['class'] !== 'ResourceLoaderOOUIFileModule' )
+			isset( $info['class'] ) &&
+			$info['class'] !== 'ResourceLoaderFileModule' &&
+			!is_subclass_of( $info['class'], 'ResourceLoaderFileModule' )
 		) {
 			return false;
 		}
