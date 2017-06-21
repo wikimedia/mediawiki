@@ -66,15 +66,26 @@
 					}
 				]
 			} ],
-			namespaces = {
-				0: 'Main',
-				1: 'Talk',
-				2: 'User',
-				3: 'User talk'
+			views = {
+				namespaces: {
+					label: 'Namespaces',
+					trigger: ':',
+					groups: [ {
+						name: 'namespace',
+						label: 'Namespaces',
+						separator: ';',
+						items: [
+							{ name: 0, label: 'Main' },
+							{ name: 1, label: 'Talk' },
+							{ name: 2, label: 'User' },
+							{ name: 3, label: 'User talk' }
+						]
+					} ],
+				}
 			},
 			model = new mw.rcfilters.dm.FiltersViewModel();
 
-		model.initializeFilters( definition, namespaces );
+		model.initializeFilters( definition, views );
 
 		assert.ok(
 			model.getItemByName( 'group1__filter1' ) instanceof mw.rcfilters.dm.FilterItem &&
@@ -256,11 +267,22 @@
 					}
 				]
 			} ],
-			namespaces = {
-				0: 'Main',
-				1: 'Talk',
-				2: 'User',
-				3: 'User talk'
+			views = {
+				namespaces: {
+					label: 'Namespaces',
+					trigger: ':',
+					groups: [ {
+						name: 'namespace',
+						label: 'Namespaces',
+						separator: ';',
+						items: [
+							{ name: 0, label: 'Main' },
+							{ name: 1, label: 'Talk' },
+							{ name: 2, label: 'User' },
+							{ name: 3, label: 'User talk' }
+						]
+					} ],
+				}
 			},
 			testCases = [
 				{
@@ -311,7 +333,7 @@
 				return result;
 			};
 
-		model.initializeFilters( definition, namespaces );
+		model.initializeFilters( definition, views );
 
 		testCases.forEach( function ( testCase ) {
 			matches = model.findMatches( testCase.query );

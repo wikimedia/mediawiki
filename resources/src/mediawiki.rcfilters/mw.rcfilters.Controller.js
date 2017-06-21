@@ -29,11 +29,66 @@
 	 */
 	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure, tagList ) {
 		var parsedSavedQueries,
+			views = {},
+			items = [],
 			uri = new mw.Uri(),
 			$changesList = $( '.mw-changeslist' ).first().contents();
 
+		// Prepare views
+		if ( namespaceStructure ) {
+			items = [];
+			$.each( namespaceStructure, function ( namespaceID, label ) {
+				// Build and clean up the individual namespace items definition
+				items.push( {
+					name: namespaceID,
+					label: label || mw.msg( 'blanknamespace' ),
+					description: '',
+					identifiers: [
+						( namespaceID < 0 || namespaceID % 2 === 0 ) ?
+							'subject' : 'talk'
+					],
+					cssClass: 'mw-changeslist-ns-' + namespaceID
+				} );
+			} );
+
+			views.namespaces = {
+				title: mw.msg( 'namespaces' ),
+				trigger: ':',
+				groups: [ {
+					// Group definition (single group)
+					name: 'namespaces',
+					definition: {
+						type: 'string_options',
+						title: mw.msg( 'namespaces' ),
+						labelPrefixKey: { 'default': 'rcfilters-tag-prefix-namespace', inverted: 'rcfilters-tag-prefix-namespace-inverted' },
+						separator: ';',
+						fullCoverage: true
+					},
+					items: items
+				} ]
+			};
+		}
+		if ( tagList ) {
+			views.tags = {
+				title: mw.msg( 'rcfilters-view-tags' ),
+				trigger: '#',
+				groups: [ {
+					// Group definition (single group)
+					name: 'tags',
+					definition: {
+						type: 'string_options',
+						title: 'rcfilters-view-tags', // Message key
+						labelPrefixKey: 'rcfilters-tag-prefix-tags',
+						separator: '|',
+						fullCoverage: false
+					},
+					items: tagList
+				} ]
+			};
+		}
+
 		// Initialize the model
-		this.filtersModel.initializeFilters( filterStructure, namespaceStructure, tagList );
+		this.filtersModel.initializeFilters( filterStructure, views );
 
 		this._buildBaseFilterState();
 
