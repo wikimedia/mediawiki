@@ -68,7 +68,8 @@
 	 * @fires initialize
 	 */
 	mw.rcfilters.dm.SavedQueriesModel.prototype.initialize = function ( savedQueries, baseState ) {
-		var items = [];
+		var items = [],
+			defaultItem = null;
 
 		savedQueries = savedQueries || {};
 
@@ -76,7 +77,9 @@
 
 		this.clearItems();
 		$.each( savedQueries.queries || {}, function ( id, obj ) {
-			var normalizedData = $.extend( true, {}, baseState, obj.data );
+			var item,
+				normalizedData = $.extend( true, {}, baseState, obj.data ),
+				isDefault = String( savedQueries.default ) === String( id );
 
 			// Backwards-compat fix: We stored the 'highlight' state with
 			// "1" and "0" instead of true/false; for already-stored states,
@@ -87,17 +90,23 @@
 			// for existing users, who are only betalabs users at the moment.
 			normalizedData.highlights.highlight = !!Number( normalizedData.highlights.highlight );
 
-			items.push(
-				new mw.rcfilters.dm.SavedQueryItemModel(
-					id,
-					obj.label,
-					normalizedData,
-					{ 'default': savedQueries.default === id }
-				)
+			item = new mw.rcfilters.dm.SavedQueryItemModel(
+				id,
+				obj.label,
+				normalizedData,
+				{ 'default': isDefault }
 			);
+
+			if ( isDefault ) {
+				defaultItem = item;
+			}
+
+			items.push( item );
 		} );
 
-		this.default = savedQueries.default;
+		if ( defaultItem ) {
+			this.default = defaultItem.getID();
+		}
 
 		this.addItems( items );
 
@@ -122,6 +131,25 @@
 				normalizedData
 			)
 		] );
+	};
+
+	/**
+	 * Remove query from model
+	 *
+	 * @param {string} queryID Query ID
+	 */
+	mw.rcfilters.dm.SavedQueriesModel.prototype.removeQuery = function ( queryID ) {
+		var query = this.getItemByID( queryID );
+
+		if ( query ) {
+			// Check if this item was the default
+			if ( String( this.getDefault() ) === String( queryID ) ) {
+				// Nulify the default
+				this.savedQueriesModel.setDefault( null );
+			}
+
+			this.savedQueriesModel.removeItems( [ query ] );
+		}
 	};
 
 	/**
