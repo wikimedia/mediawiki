@@ -976,7 +976,7 @@ abstract class HTMLFormField {
 	}
 
 	/**
-	 * Returns the attributes required for the tooltip and accesskey.
+	 * Returns the attributes required for the tooltip and accesskey, for Html::element() etc.
 	 *
 	 * @return array Attributes
 	 */
@@ -986,6 +986,22 @@ abstract class HTMLFormField {
 		}
 
 		return Linker::tooltipAndAccesskeyAttribs( $this->mParams['tooltip'] );
+	}
+
+	/**
+	 * Returns the attributes required for the tooltip and accesskey, for OOUI widgets' config.
+	 *
+	 * @return array Attributes
+	 */
+	public function getTooltipAndAccessKeyOOUI() {
+		if ( empty( $this->mParams['tooltip'] ) ) {
+			return [];
+		}
+
+		return [
+			'title' => Linker::titleAttrib( $this->mParams['tooltip'] ),
+			'accessKey' => Linker::accesskey( $this->mParams['tooltip'] ),
+		];
 	}
 
 	/**
