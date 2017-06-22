@@ -124,6 +124,24 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			"Plain search failed" );
 	}
 
+	public function testPhraseSearch() {
+		$res = $this->search->searchText( '"smithee is one who smiths"' );
+		$this->assertEquals(
+			[ 'Smithee' ],
+			$this->fetchIds( $res ),
+			"Phrase search failed" );
+		$res = $this->search->searchText( '"smithee is one who smiths"' );
+		$match = $res->next();
+		$terms = [ 'smithee', 'is', 'one', 'who', 'smiths' ];
+		$snippet = "";
+		foreach ( $terms as $term ) {
+			$snippet .= " <span class='searchmatch'>" . $term . "</span>";
+		}
+		$this->assertRegexp( '/' . preg_quote( $snippet, '/' ) . '/',
+			$match->getTextSnippet( $res->termMatches() ),
+			"Phrase search failed to highlight" );
+	}
+
 	public function testTextPowerSearch() {
 		$this->search->setNamespaces( [ 0, 1, 4 ] );
 		$this->assertEquals(

@@ -266,7 +266,7 @@ class SearchOracle extends SearchDatabase {
 			[] );
 	}
 
-	public static function legalSearchChars() {
-		return "\"" . parent::legalSearchChars();
+	public function legalSearchCharsForUpdate() {
+		return "\"" . parent::legalSearchCharsForUpdate();
 	}
 }
