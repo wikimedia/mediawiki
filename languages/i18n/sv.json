@@ -1952,6 +1952,7 @@
 	"apisandbox-sending-request": "Skickar API-begäran...",
 	"apisandbox-loading-results": "Hämtar API-resultat...",
 	"apisandbox-results-error": "Ett fel uppstod när API-förfrågans svar lästes in: $1.",
+	"apisandbox-results-login-suppressed": "Denna begäran har behandlats som en utloggad användare eftersom den kan användas för att kringgå webbläsarens Same-Origin-skydd. Observera att den automatiska hanteringen av nycklar i API:ets sandlåda inte fungerar korrekt med sådana begäran, fyll i dem manuellt.",
 	"apisandbox-request-selectformat-label": "Visa begärd data som:",
 	"apisandbox-request-format-url-label": "URL-frågesträng",
 	"apisandbox-request-url-label": "Begärd URL:",

@@ -1888,6 +1888,7 @@
 	"apisandbox-sending-request": "Pošiljanje zahteve API ...",
 	"apisandbox-loading-results": "Prejemanje zahteve API ...",
 	"apisandbox-results-error": "Med nalaganjem odgovora poizvedbe API je prišlo do napake: $1.",
+	"apisandbox-results-login-suppressed": "To zahtevo smo obdelali kot odjavljen uporabnik, saj bi lahko bila uporabljena za izogib varnosti istega izvora (Same-Origin) v brskalniku. Pomnite, da samodejni žeton peskovnika API s takšnimi zahtevami ne deluje pravilno, zato ga, prosimo, vnesite ročno.",
 	"apisandbox-request-selectformat-label": "Prikaži zahtevane podatke kot:",
 	"apisandbox-request-format-url-label": "Niz poizvedbe URL",
 	"apisandbox-request-url-label": "URL zahteve:",

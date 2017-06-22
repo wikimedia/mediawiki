@@ -1844,7 +1844,7 @@
 	"statistics-header-hooks": "Другая статистика",
 	"statistics-articles": "Статей",
 	"statistics-pages": "Страниц",
-	"statistics-pages-desc": "Все страницы в вики, включая страницы обсуждения, перенаправления и прочее.",
+	"statistics-pages-desc": "Все страницы в вики, включая страницы обсуждения, перенаправления и прочее",
 	"statistics-files": "Загружено файлов",
 	"statistics-edits": "Число правок с момента установки {{grammar:genitive|{{SITENAME}}}}",
 	"statistics-edits-average": "Среднее число правок на страницу",

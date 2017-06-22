@@ -1888,6 +1888,7 @@
 	"apisandbox-sending-request": "Invia requesta API...",
 	"apisandbox-loading-results": "Recipe resultatos API...",
 	"apisandbox-results-error": "Un error ha occurrite durante le cargamento del responsa al consulta API: $1.",
+	"apisandbox-results-login-suppressed": "Iste requesta ha essite processate como usator sin session aperte; alteremente illo poterea esser usate pro contornar le securitate \"Same-Origin\" del navigator. Nota ben que le gestion automatic de indicios del sabliera API non functiona ben con tal requestas; per favor completa los manualmente.",
 	"apisandbox-request-selectformat-label": "Monstrar datos del requesta como:",
 	"apisandbox-request-format-url-label": "Catena de requesta del URL",
 	"apisandbox-request-url-label": "URL de requesta:",

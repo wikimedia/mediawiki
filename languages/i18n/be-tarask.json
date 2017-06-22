@@ -3830,6 +3830,7 @@
 	"authform-newtoken": "Адсутнічае токен. $1",
 	"authform-notoken": "Адсутнічае токен",
 	"authform-wrongtoken": "Няслушны токен",
+	"specialpage-securitylevel-not-allowed-title": "Не дазволена",
 	"changecredentials": "Зьмена ўліковых зьвестак",
 	"removecredentials": "Выдаленьне ўліковых зьвестак",
 	"removecredentials-submit": "Выдаліць уліковыя зьвесткі",

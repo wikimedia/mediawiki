@@ -1945,6 +1945,7 @@
 	"apisandbox-sending-request": "A enviar solicitação de API...",
 	"apisandbox-loading-results": "A receber resultados da API...",
 	"apisandbox-results-error": "Ocorreu um erro ao carregar a resposta à consulta por API: $1",
+	"apisandbox-results-login-suppressed": "Este pedido foi processado como o de um utilizador sem sessão iniciada, porque podia ter sido usado para ultrapassar a segurança da mesma origem, do browser. Note que o tratamento de chaves automático da área de testes da API não funciona devidamente com tais pedidos: preencha-os manualmente, por favor.",
 	"apisandbox-request-selectformat-label": "Mostrar dados do pedido como:",
 	"apisandbox-request-format-url-label": "Sequência de consulta da URL",
 	"apisandbox-request-url-label": "URL do pedido:",

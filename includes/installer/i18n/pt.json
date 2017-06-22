@@ -159,7 +159,7 @@
 	"config-sqlite-mkdir-error": "Ocorreu um erro ao criar o diretório de dados \"$1\".\nVerifique a localização e tente novamente.",
 	"config-sqlite-dir-unwritable": "Não foi possível escrever no diretório \"$1\".\nAltere as permissões para que ele possa ser escrito pelo servidor de internet e tente novamente.",
 	"config-sqlite-connection-error": "$1.\n\nVerifique o diretório de dados e o nome da base de dados abaixo e tente novamente.",
-	"config-sqlite-readonly": "Não é possivel escrever no ficheiro <code>$1</code>.",
+	"config-sqlite-readonly": "Não é possível escrever no ficheiro <code>$1</code>.",
 	"config-sqlite-cant-create-db": "Não foi possível criar o ficheiro da base de dados <code>$1</code>.",
 	"config-sqlite-fts3-downgrade": "O PHP não tem suporte FTS3; a reverter o esquema das tabelas para o anterior",
 	"config-can-upgrade": "Esta base de dados contém tabelas do MediaWiki.\nPara atualizá-las para o MediaWiki $1, clique '''Continuar'''.",
