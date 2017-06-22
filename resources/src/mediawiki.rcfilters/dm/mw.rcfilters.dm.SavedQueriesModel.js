@@ -92,12 +92,13 @@
 					id,
 					obj.label,
 					normalizedData,
-					{ 'default': savedQueries.default === id }
+					{ 'default': Number( savedQueries.default ) === Number( id ) }
 				)
 			);
 		} );
 
 		this.default = savedQueries.default;
+
 
 		this.addItems( items );
 
