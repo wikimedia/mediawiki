@@ -66,7 +66,10 @@ class OOUIHTMLForm extends HTMLForm {
 			}
 
 			if ( isset( $this->mSubmitTooltip ) ) {
-				$attribs += Linker::tooltipAndAccesskeyAttribs( $this->mSubmitTooltip );
+				$attribs += [
+					'title' => Linker::titleAttrib( $this->mSubmitTooltip ),
+					'accessKey' => Linker::accesskey( $this->mSubmitTooltip ),
+				];
 			}
 
 			$attribs['classes'] = [ 'mw-htmlform-submit' ];

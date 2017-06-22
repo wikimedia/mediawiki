@@ -140,7 +140,7 @@ class HTMLTextField extends HTMLFormField {
 			$value = '';
 		}
 
-		$attribs = $this->getTooltipAndAccessKey();
+		$attribs = $this->getTooltipAndAccessKeyOOUI();
 
 		if ( $this->mClass !== '' ) {
 			$attribs['classes'] = [ $this->mClass ];

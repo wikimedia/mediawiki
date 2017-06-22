@@ -3062,7 +3062,7 @@ class EditPage {
 			'tabindex' => 1,
 			'size' => 60,
 			'spellcheck' => 'true',
-		] + Linker::tooltipAndAccesskeyAttribs( 'summary' );
+		];
 	}
 
 	/**
@@ -3083,6 +3083,7 @@ class EditPage {
 		$inputAttrs = null, $spanLabelAttrs = null
 	) {
 		$inputAttrs = $this->getSummaryInputAttributes( $inputAttrs );
+		$inputAttrs += Linker::tooltipAndAccesskeyAttribs( 'summary' );
 
 		$spanLabelAttrs = ( is_array( $spanLabelAttrs ) ? $spanLabelAttrs : [] ) + [
 			'class' => $this->missingSummary ? 'mw-summarymissed' : 'mw-summary',
@@ -3118,6 +3119,10 @@ class EditPage {
 		$inputAttrs = OOUI\Element::configFromHtmlAttributes(
 			$this->getSummaryInputAttributes( $inputAttrs )
 		);
+		$inputAttrs += [
+			'title' => Linker::titleAttrib( 'summary' ),
+			'accessKey' => Linker::accesskey( 'summary' ),
+		];
 
 		// For compatibility with old scripts and extensions, we want the legacy 'id' on the `<input>`
 		$inputAttrs['inputId'] = $inputAttrs['id'];
@@ -4259,7 +4264,7 @@ HTML
 			$accesskey = null;
 			if ( isset( $options['tooltip'] ) ) {
 				$accesskey = $this->context->msg( "accesskey-{$options['tooltip']}" )->text();
-				$title = Linker::titleAttrib( $options['tooltip'], 'withaccess' );
+				$title = Linker::titleAttrib( $options['tooltip'] );
 			}
 			if ( isset( $options['title-message'] ) ) {
 				$title = $this->context->msg( $options['title-message'] )->text();
@@ -4337,8 +4342,7 @@ HTML
 		$attribs = [
 			'name' => 'wpSave',
 			'tabindex' => ++$tabindex,
-		] + Linker::tooltipAndAccesskeyAttribs( 'save' );
-
+		];
 		if ( $this->oouiEnabled ) {
 			$saveConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
 			$buttons['save'] = new OOUI\ButtonInputWidget( [
@@ -4350,11 +4354,13 @@ HTML
 				'label' => $buttonLabel,
 				'infusable' => true,
 				'type' => 'submit',
+				'title' => Linker::titleAttrib( 'save' ),
+				'accessKey' => Linker::accesskey( 'save' ),
 			] + $saveConfig );
 		} else {
 			$buttons['save'] = Html::submitButton(
 				$buttonLabel,
-				$attribs + [ 'id' => 'wpSave' ],
+				$attribs + Linker::tooltipAndAccesskeyAttribs( 'save' ) + [ 'id' => 'wpSave' ],
 				[ 'mw-ui-progressive' ]
 			);
 		}
@@ -4362,7 +4368,7 @@ HTML
 		$attribs = [
 			'name' => 'wpPreview',
 			'tabindex' => ++$tabindex,
-		] + Linker::tooltipAndAccesskeyAttribs( 'preview' );
+		];
 		if ( $this->oouiEnabled ) {
 			$previewConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
 			$buttons['preview'] = new OOUI\ButtonInputWidget( [
@@ -4372,18 +4378,20 @@ HTML
 				'useInputTag' => true,
 				'label' => $this->context->msg( 'showpreview' )->text(),
 				'infusable' => true,
-				'type' => 'submit'
+				'type' => 'submit',
+				'title' => Linker::titleAttrib( 'preview' ),
+				'accessKey' => Linker::accesskey( 'preview' ),
 			] + $previewConfig );
 		} else {
 			$buttons['preview'] = Html::submitButton(
 				$this->context->msg( 'showpreview' )->text(),
-				$attribs + [ 'id' => 'wpPreview' ]
+				$attribs + Linker::tooltipAndAccesskeyAttribs( 'preview' ) + [ 'id' => 'wpPreview' ]
 			);
 		}
 		$attribs = [
 			'name' => 'wpDiff',
 			'tabindex' => ++$tabindex,
-		] + Linker::tooltipAndAccesskeyAttribs( 'diff' );
+		];
 		if ( $this->oouiEnabled ) {
 			$diffConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
 			$buttons['diff'] = new OOUI\ButtonInputWidget( [
@@ -4394,11 +4402,13 @@ HTML
 				'label' => $this->context->msg( 'showdiff' )->text(),
 				'infusable' => true,
 				'type' => 'submit',
+				'title' => Linker::titleAttrib( 'diff' ),
+				'accessKey' => Linker::accesskey( 'diff' ),
 			] + $diffConfig );
 		} else {
 			$buttons['diff'] = Html::submitButton(
 				$this->context->msg( 'showdiff' )->text(),
-				$attribs + [ 'id' => 'wpDiff' ]
+				$attribs + Linker::tooltipAndAccesskeyAttribs( 'diff' ) + [ 'id' => 'wpDiff' ]
 			);
 		}
 
