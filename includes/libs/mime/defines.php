@@ -43,4 +43,6 @@ define( 'MEDIATYPE_TEXT', 'TEXT' );
 define( 'MEDIATYPE_EXECUTABLE', 'EXECUTABLE' );
 // archive file (zip, tar, etc)
 define( 'MEDIATYPE_ARCHIVE', 'ARCHIVE' );
+// 3D file types (stl)
+define( 'MEDIATYPE_3D', '3D' );
 /**@}*/
