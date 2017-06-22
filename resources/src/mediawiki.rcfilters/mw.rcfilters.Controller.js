@@ -257,15 +257,8 @@
 	 * @param {string} queryID Query id
 	 */
 	mw.rcfilters.Controller.prototype.removeSavedQuery = function ( queryID ) {
-		var query = this.savedQueriesModel.getItemByID( queryID );
+		this.savedQueriesModel.removeQuery( queryID );
 
-		this.savedQueriesModel.removeItems( [ query ] );
-
-		// Check if this item was the default
-		if ( this.savedQueriesModel.getDefault() === queryID ) {
-			// Nulify the default
-			this.savedQueriesModel.setDefault( null );
-		}
 		this._saveSavedQueries();
 	};
 
