@@ -206,12 +206,22 @@ abstract class SearchEngine {
 	}
 
 	/**
-	 * Get chars legal for search.
+	 * Get chars legal for search (at query time).
 	 * NOTE: usage as static is deprecated and preserved only as BC measure
 	 * @return string
 	 */
 	public static function legalSearchChars() {
 		return "A-Za-z_'.0-9\\x80-\\xFF\\-";
+	}
+
+	/**
+	 * Get chars legal for search (at index time).
+	 *
+	 * @since 1.30
+	 * @return string
+	 */
+	public function legalSearchCharsForUpdate() {
+		return static::legalSearchChars();
 	}
 
 	/**

@@ -141,8 +141,8 @@ class SearchSqlite extends SearchDatabase {
 		return $regex;
 	}
 
-	public static function legalSearchChars() {
-		return "\"*" . parent::legalSearchChars();
+	public function legalSearchCharsForUpdate() {
+		return "\"*" . parent::legalSearchCharsForUpdate();
 	}
 
 	/**
