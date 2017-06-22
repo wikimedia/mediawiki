@@ -329,20 +329,23 @@ class TransactionProfiler implements LoggerAwareInterface {
 	/**
 	 * @param string $expect
 	 * @param string $query
-	 * @param string|float|int $actual [optional]
+	 * @param string|float|int $actual
 	 */
-	protected function reportExpectationViolated( $expect, $query, $actual = null ) {
+	protected function reportExpectationViolated( $expect, $query, $actual ) {
 		if ( $this->silenced ) {
 			return;
 		}
 
-		$n = $this->expect[$expect];
-		$by = $this->expectBy[$expect];
-		$actual = ( $actual !== null ) ? " (actual: $actual)" : "";
-
 		$this->logger->info(
-			"Expectation ($expect <= $n) by $by not met$actual:\n$query\n" .
-			( new RuntimeException() )->getTraceAsString()
+			"Expectation ({measure} <= {max}) by {by} not met (actual: {actual}):\n{query}\n" .
+			( new RuntimeException() )->getTraceAsString(),
+			[
+				'measure' => $expect,
+				'max' => $this->expect[$expect],
+				'by' => $this->expectBy[$expect],
+				'actual' => $actual,
+				'query' => $query
+			]
 		);
 	}
 }
