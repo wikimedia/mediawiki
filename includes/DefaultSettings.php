@@ -6124,7 +6124,10 @@ $wgTrxProfilerLimits = [
 	'PostSend' => [
 		'readQueryTime' => 5,
 		'writeQueryTime' => 1,
-		'maxAffected' => 1000
+		'maxAffected' => 1000,
+		// Log master queries under the post-send entry point as they are discouraged
+		'masterConns' => 0,
+		'writes' => 0,
 	],
 	// Background job runner
 	'JobRunner' => [
