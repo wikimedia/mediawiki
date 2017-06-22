@@ -2094,9 +2094,6 @@ class Linker {
 	 * @return array
 	 */
 	public static function tooltipAndAccesskeyAttribs( $name, array $msgParams = [] ) {
-		# @todo FIXME: If Sanitizer::expandAttributes() treated "false" as "output
-		# no attribute" instead of "output '' as value for attribute", this
-		# would be three lines.
 		$attribs = [
 			'title' => self::titleAttrib( $name, 'withaccess', $msgParams ),
 			'accesskey' => self::accesskey( $name )
@@ -2118,9 +2115,6 @@ class Linker {
 	 * @return null|string
 	 */
 	public static function tooltip( $name, $options = null ) {
-		# @todo FIXME: If Sanitizer::expandAttributes() treated "false" as "output
-		# no attribute" instead of "output '' as value for attribute", this
-		# would be two lines.
 		$tooltip = self::titleAttrib( $name, $options );
 		if ( $tooltip === false ) {
 			return '';
