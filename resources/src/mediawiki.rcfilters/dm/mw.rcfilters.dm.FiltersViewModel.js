@@ -373,8 +373,8 @@
 			this.views.tags = { name: 'tags', label: mw.msg( 'rcfilters-view-tags' ), trigger: '#' };
 
 			// Add the group
-			model.groups.tags = new mw.rcfilters.dm.FilterGroup(
-				'tags',
+			model.groups.tagfilter = new mw.rcfilters.dm.FilterGroup(
+				'tagfilter',
 				{
 					type: 'string_options',
 					view: 'tags',
@@ -386,10 +386,10 @@
 			);
 
 			// Add tag items to group
-			model.groups.tags.initializeFilters( tags );
+			model.groups.tagfilter.initializeFilters( tags );
 
 			// Add item references to the model, for lookup
-			items = items.concat( model.groups.tags.getItems() );
+			items = items.concat( model.groups.tagfilter.getItems() );
 		}
 
 		// Add item references to the model, for lookup
