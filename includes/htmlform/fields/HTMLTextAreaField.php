@@ -71,7 +71,7 @@ class HTMLTextAreaField extends HTMLFormField {
 			throw new Exception( "OOUIHTMLForm does not support the 'cols' parameter for textareas" );
 		}
 
-		$attribs = $this->getTooltipAndAccessKey();
+		$attribs = $this->getTooltipAndAccessKeyOOUI();
 
 		if ( $this->mClass !== '' ) {
 			$attribs['classes'] = [ $this->mClass ];
