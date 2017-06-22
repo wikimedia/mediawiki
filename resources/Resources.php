@@ -1887,6 +1887,7 @@ return [
 			'oojs-ui.styles.icons-interactions',
 			'oojs-ui.styles.icons-moderation',
 			'mediawiki.widgets.datetime',
+			'jquery.makeCollapsible',
 		],
 		'messages' => [
 			'apisandbox-intro',

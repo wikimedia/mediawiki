@@ -1513,10 +1513,16 @@
 						}
 
 						descriptionContainer = $( '<div>' );
-						descriptionContainer.append( $( '<div>', {
-							addClass: 'description',
-							append: Util.parseHTML( pi.parameters[ i ].description )
-						} ) );
+
+						tmp = Util.parseHTML( pi.parameters[ i ].description );
+						tmp.filter( 'dl' ).makeCollapsible( {
+							collapsed: true
+						} ).children( '.mw-collapsible-toggle' ).each( function () {
+							var $this = $( this );
+							$this.parent().prev( 'p' ).append( $this );
+						} );
+						descriptionContainer.append( $( '<div>', { addClass: 'description', append: tmp } ) );
+
 						if ( pi.parameters[ i ].info && pi.parameters[ i ].info.length ) {
 							for ( j = 0; j < pi.parameters[ i ].info.length; j++ ) {
 								descriptionContainer.append( $( '<div>', {
