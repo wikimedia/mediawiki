@@ -1423,7 +1423,6 @@ return [
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.css',
 		'dependencies' => [
 			'mediawiki.action.edit.styles',
-			'jquery.accessKeyLabel',
 			'jquery.textSelection',
 			'jquery.byteLimit',
 			'mediawiki.widgets.visibleByteLimit',
