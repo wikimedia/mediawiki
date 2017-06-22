@@ -979,6 +979,8 @@ abstract class Skin extends ContextSource {
 			$options['oldid'] = intval( $this->getRevisionId() );
 		}
 
+		Hooks::run( 'UpdateEditUrlOptions', [ $this, &$options ] );
+
 		return $options;
 	}
 
