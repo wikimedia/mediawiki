@@ -32,8 +32,8 @@ class CollationFa extends IcuCollation {
 
 	// Really hacky - replace with stuff from other blocks.
 	private $override = [
-		"\xd8\xa7" => "\u{0621}",
-		"\xd9\x88" => "\u{0649}",
+		"\xd8\xa7" => "\xd8\xa1",
+		"\xd9\x88" => "\xd9\x89",
 		"\xd9\xb2" => "\xF3\xB3\x80\x81",
 		"\xd9\xb3" => "\xF3\xB3\x80\x82",
 	];
