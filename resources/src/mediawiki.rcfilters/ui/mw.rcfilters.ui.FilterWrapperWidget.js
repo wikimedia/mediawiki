@@ -33,6 +33,22 @@
 			{ $overlay: this.$overlay }
 		);
 
+		this.numChangesWidget = new mw.rcfilters.ui.ChangesLimitButtonWidget(
+			this.controller,
+			this.model,
+			{
+				$overlay: this.$overlay
+			}
+		);
+
+		this.dateWidget = new mw.rcfilters.ui.DateButtonWidget(
+			this.controller,
+			this.model,
+			{
+				$overlay: this.$overlay
+			}
+		);
+
 		// Initialize
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget' );
@@ -51,7 +67,10 @@
 		}
 
 		this.$element.append(
-			this.filterTagWidget.$element
+			this.filterTagWidget.$element,
+			$( '<div>' )
+				.addClass( 'mw-rcfilters-ui-filterWrapperWidget-bottom' )
+				.append( this.numChangesWidget.$element, this.dateWidget.$element )
 		);
 	};
 
