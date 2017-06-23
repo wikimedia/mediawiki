@@ -138,6 +138,9 @@
 			this.$element.find( '.mw-tagfilter-label' ).closest( 'tr' ).detach();
 		}
 
+		// Hide limit and days
+		this.$element.find( '.rclinks' ).detach();
+
 		if ( !this.$element.find( '.mw-recentchanges-table tr' ).length ) {
 			this.$element.find( 'hr' ).detach();
 		}
