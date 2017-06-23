@@ -1775,6 +1775,8 @@ return [
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterMenuHeaderWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.MenuSelectWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.ViewSwitchWidget.js',
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.ChangesLimitPopupWidget.js',
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.ChangesLimitButtonWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterWrapperWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.ChangesListWrapperWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.SavedLinksListWidget.js',
@@ -1817,6 +1819,8 @@ return [
 		'messages' => [
 			'rcfilters-activefilters',
 			'rcfilters-advancedfilters',
+			'rcfilters-limit-title',
+			'rcfilters-limit-shownum',
 			'rcfilters-quickfilters',
 			'rcfilters-quickfilters-placeholder-title',
 			'rcfilters-quickfilters-placeholder-description',

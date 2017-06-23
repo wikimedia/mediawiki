@@ -174,11 +174,15 @@
 	 * @fires update
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.onFilterItemUpdate = function ( item ) {
-		// Update state
-		var active = this.areAnySelected(),
+		var prevSelected, currSelected,
+			// Update state
+			active = this.areAnySelected(),
 			itemName = item && item.getName();
 
 		if ( item.isSelected() && this.getType() === 'single_option' ) {
+			prevSelected = this.getSelectedItems()[ 0 ];
+			currSelected = item;
+
 			// Change the selection to only be the newly selected item
 			this.getItems().forEach( function ( filterItem ) {
 				if ( filterItem.getName() !== itemName ) {
@@ -187,7 +191,13 @@
 			} );
 		}
 
-		if ( this.active !== active ) {
+		if (
+			this.active !== active ||
+			(
+				prevSelected && currSelected &&
+				prevSelected.getName() !== currSelected.getName()
+			)
+		) {
 			this.active = active;
 			this.emit( 'update' );
 		}
