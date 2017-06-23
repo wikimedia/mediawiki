@@ -182,6 +182,20 @@ $wgLockManagers[] = [
 ];
 
 /**
+ * Default parameters for the "<gallery>" tag.
+ * @see DefaultSettings.php for description of the fields.
+ */
+$wgGalleryOptions += [
+	'imagesPerRow' => 0,
+	'imageWidth' => 120,
+	'imageHeight' => 120,
+	'captionLength' => true,
+	'showBytes' => true,
+	'showDimensions' => true,
+	'mode' => 'traditional',
+];
+
+/**
  * Initialise $wgLocalFileRepo from backwards-compatible settings
  */
 if ( !$wgLocalFileRepo ) {
