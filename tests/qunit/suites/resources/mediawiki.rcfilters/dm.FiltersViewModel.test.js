@@ -57,11 +57,19 @@
 		}, {
 			name: 'group4',
 			type: 'single_option',
-			default: 'option1',
+			default: 'option2',
 			filters: [
 				{ name: 'option1', label: 'group4option1-label', description: 'group4option1-desc' },
 				{ name: 'option2', label: 'group4option2-label', description: 'group4option2-desc' },
 				{ name: 'option3', label: 'group4option3-label', description: 'group4option3-desc' }
+			]
+		}, {
+			name: 'group5',
+			type: 'single_option',
+			filters: [
+				{ name: 'option1', label: 'group5option1-label', description: 'group5option1-desc' },
+				{ name: 'option2', label: 'group5option2-label', description: 'group5option2-desc' },
+				{ name: 'option3', label: 'group5option3-label', description: 'group5option3-desc' }
 			]
 		} ],
 		viewsDefinition = {
@@ -90,7 +98,8 @@
 			filter5: '1',
 			filter6: '0',
 			group3: 'filter8',
-			group4: 'option1',
+			group4: 'option2',
+			group5: 'option1',
 			namespace: ''
 		},
 		baseParamRepresentation = {
@@ -101,7 +110,8 @@
 			filter5: '0',
 			filter6: '0',
 			group3: '',
-			group4: '',
+			group4: 'option2',
+			group5: 'option1',
 			namespace: ''
 		},
 		baseFilterRepresentation = {
@@ -114,9 +124,14 @@
 			group3__filter7: false,
 			group3__filter8: false,
 			group3__filter9: false,
+			// The 'single_value' type of group can't have empty value; it's either
+			// the default given or the first item that will get the truthy value
 			group4__option1: false,
-			group4__option2: false,
+			group4__option2: true, // Default
 			group4__option3: false,
+			group5__option1: true, // No default set, first item is default value
+			group5__option2: false,
+			group5__option3: false,
 			namespace__0: false,
 			namespace__1: false,
 			namespace__2: false,
@@ -133,8 +148,11 @@
 			group3__filter8: { selected: false, conflicted: false, included: false },
 			group3__filter9: { selected: false, conflicted: false, included: false },
 			group4__option1: { selected: false, conflicted: false, included: false },
-			group4__option2: { selected: false, conflicted: false, included: false },
+			group4__option2: { selected: true, conflicted: false, included: false },
 			group4__option3: { selected: false, conflicted: false, included: false },
+			group5__option1: { selected: true, conflicted: false, included: false },
+			group5__option2: { selected: false, conflicted: false, included: false },
+			group5__option3: { selected: false, conflicted: false, included: false },
 			namespace__0: { selected: false, conflicted: false, included: false },
 			namespace__1: { selected: false, conflicted: false, included: false },
 			namespace__2: { selected: false, conflicted: false, included: false },
@@ -557,7 +575,7 @@
 		assert.deepEqual(
 			model.getFiltersFromParameters( {} ),
 			baseFilterRepresentation,
-			'Empty parameter query results in an object representing all filters set to false'
+			'Empty parameter query results in an object representing all filters set to their base state'
 		);
 
 		assert.deepEqual(
@@ -705,7 +723,8 @@
 		assert.deepEqual(
 			model.getSelectedState(),
 			$.extend( {}, baseFilterRepresentation, {
-				group4__option1: true
+				group4__option1: true,
+				group4__option2: false
 			} ),
 			'A \'single_option\' parameter reflects a single selected value.'
 		);
