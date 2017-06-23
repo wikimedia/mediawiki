@@ -89,13 +89,13 @@
 					identifiers: filter.identifiers
 				} );
 
-			filter.subset = filter.subset || [];
-			filter.subset = filter.subset.map( function ( el ) {
-				return el.filter;
-			} );
-
 			if ( filter.subset ) {
+				filter.subset = filter.subset.map( function ( el ) {
+					return el.filter;
+				} );
+
 				subsetNames = [];
+
 				filter.subset.forEach( function ( subsetFilterName ) { // eslint-disable-line no-loop-func
 					// Subsets (unlike conflicts) are always inside the same group
 					// We can re-map the names of the filters we are getting from
