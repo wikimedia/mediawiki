@@ -32,7 +32,19 @@
 			views = {},
 			items = [],
 			uri = new mw.Uri(),
-			$changesList = $( '.mw-changeslist' ).first().contents();
+			$changesList = $( '.mw-changeslist' ).first().contents(),
+			createFilterItemFromNumberArray = function ( numArray ) {
+				var result = [];
+
+				numArray.forEach( function ( num ) {
+					result.push( {
+						name: num,
+						label: mw.language.convertNumber( num )
+					} );
+				} );
+
+				return result;
+			};
 
 		// Prepare views
 		if ( namespaceStructure ) {
@@ -82,6 +94,27 @@
 				} ]
 			};
 		}
+
+		// Add parameter range operations
+		views.range = {
+			hidden: true,
+			groups: [
+				{
+					name: 'limit',
+					type: 'single_option',
+					title: 'Limit', // TODO: i18n
+					default: 50,
+					filters: createFilterItemFromNumberArray( [ 50, 100, 250, 500 ] )
+				},
+				{
+					name: 'days',
+					type: 'single_option',
+					title: 'Days', // TODO: i18n
+					default: 7,
+					filters: createFilterItemFromNumberArray( [ 1, 3, 7, 14, 30 ] )
+				}
+			]
+		};
 
 		// Initialize the model
 		this.filtersModel.initializeFilters( filterStructure, views );

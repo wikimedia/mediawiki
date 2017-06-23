@@ -349,10 +349,12 @@
 			viewData.groups.forEach( function ( groupData ) {
 				var group = groupData.name;
 
-				model.groups[ group ] = new mw.rcfilters.dm.FilterGroup(
-					group,
-					$.extend( true, {}, groupData, { view: viewName } )
-				);
+				if ( !model.groups[ group ] ) {
+					model.groups[ group ] = new mw.rcfilters.dm.FilterGroup(
+						group,
+						$.extend( true, {}, groupData, { view: viewName } )
+					);
+				}
 
 				model.groups[ group ].initializeFilters( groupData.filters, groupData.default );
 				items = items.concat( model.groups[ group ].getItems() );

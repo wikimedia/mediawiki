@@ -141,38 +141,40 @@
 			var currentItems = [],
 				view = groupModel.getView();
 
-			if ( viewGroupCount[ view ] > 1 ) {
-				// Only add a section header if there is more than
-				// one group
-				currentItems.push(
-					// Group section
-					new mw.rcfilters.ui.FilterMenuSectionOptionWidget(
-						widget.controller,
-						groupModel,
-						{
-							$overlay: widget.$overlay
-						}
-					)
-				);
+			if ( !groupModel.isHidden() ) {
+				if ( viewGroupCount[ view ] > 1 ) {
+					// Only add a section header if there is more than
+					// one group
+					currentItems.push(
+						// Group section
+						new mw.rcfilters.ui.FilterMenuSectionOptionWidget(
+							widget.controller,
+							groupModel,
+							{
+								$overlay: widget.$overlay
+							}
+						)
+					);
+				}
+
+				// Add items
+				widget.model.getGroupFilters( groupName ).forEach( function ( filterItem ) {
+					currentItems.push(
+						new mw.rcfilters.ui.FilterMenuOptionWidget(
+							widget.controller,
+							filterItem,
+							{
+								$overlay: widget.$overlay
+							}
+						)
+					);
+				} );
+
+				// Cache the items per view, so we can switch between them
+				// without rebuilding the widgets each time
+				widget.views[ view ] = widget.views[ view ] || [];
+				widget.views[ view ] = widget.views[ view ].concat( currentItems );
 			}
-
-			// Add items
-			widget.model.getGroupFilters( groupName ).forEach( function ( filterItem ) {
-				currentItems.push(
-					new mw.rcfilters.ui.FilterMenuOptionWidget(
-						widget.controller,
-						filterItem,
-						{
-							$overlay: widget.$overlay
-						}
-					)
-				);
-			} );
-
-			// Cache the items per view, so we can switch between them
-			// without rebuilding the widgets each time
-			widget.views[ view ] = widget.views[ view ] || [];
-			widget.views[ view ] = widget.views[ view ].concat( currentItems );
 		} );
 
 		this.switchView( this.model.getCurrentView() );
