@@ -54,6 +54,16 @@
 				{ name: 'filter8', label: 'group3filter8-label', description: 'group3filter8-desc' },
 				{ name: 'filter9', label: 'group3filter9-label', description: 'group3filter9-desc' }
 			]
+		}, {
+			name: 'group4',
+			type: 'single_option',
+			separator: ',',
+			default: 'option1',
+			filters: [
+				{ name: 'option1', label: 'group4option1-label', description: 'group4option1-desc' },
+				{ name: 'option2', label: 'group4option2-label', description: 'group4option2-desc' },
+				{ name: 'option3', label: 'group4option3-label', description: 'group4option3-desc' }
+			]
 		} ],
 		viewsDefinition = {
 			namespaces: {
@@ -81,6 +91,7 @@
 			filter5: '1',
 			filter6: '0',
 			group3: 'filter8',
+			group4: 'option1',
 			namespace: ''
 		},
 		baseParamRepresentation = {
@@ -91,6 +102,7 @@
 			filter5: '0',
 			filter6: '0',
 			group3: '',
+			group4: '',
 			namespace: ''
 		},
 		baseFilterRepresentation = {
@@ -103,6 +115,9 @@
 			group3__filter7: false,
 			group3__filter8: false,
 			group3__filter9: false,
+			group4__option1: false,
+			group4__option2: false,
+			group4__option3: false,
 			namespace__0: false,
 			namespace__1: false,
 			namespace__2: false,
@@ -118,6 +133,9 @@
 			group3__filter7: { selected: false, conflicted: false, included: false },
 			group3__filter8: { selected: false, conflicted: false, included: false },
 			group3__filter9: { selected: false, conflicted: false, included: false },
+			group4__option1: { selected: false, conflicted: false, included: false },
+			group4__option2: { selected: false, conflicted: false, included: false },
+			group4__option3: { selected: false, conflicted: false, included: false },
 			namespace__0: { selected: false, conflicted: false, included: false },
 			namespace__1: { selected: false, conflicted: false, included: false },
 			namespace__2: { selected: false, conflicted: false, included: false },
@@ -360,6 +378,36 @@
 			} ),
 			'All filters selected in "string_option" group returns \'all\'.'
 		);
+
+		// Reset
+		model = new mw.rcfilters.dm.FiltersViewModel();
+		model.initializeFilters( filterDefinition, viewsDefinition );
+
+		// Select an option from single_option group
+		model.toggleFiltersSelected( {
+			group4__option2: true
+		} );
+		// All filters of the group are selected == this is the same as not selecting any
+		assert.deepEqual(
+			model.getParametersFromFilters(),
+			$.extend( true, {}, baseParamRepresentation, {
+				group4: 'option2'
+			} ),
+			'Selecting an option from "single_option" group returns that option as a value.'
+		);
+
+		// Select a different option from single_option group
+		model.toggleFiltersSelected( {
+			group4__option3: true
+		} );
+		// All filters of the group are selected == this is the same as not selecting any
+		assert.deepEqual(
+			model.getParametersFromFilters(),
+			$.extend( true, {}, baseParamRepresentation, {
+				group4: 'option3'
+			} ),
+			'Selecting a different option from "single_option" group changes the selection.'
+		);
 	} );
 
 	QUnit.test( 'getParametersFromFilters (custom object)', function ( assert ) {
@@ -396,7 +444,26 @@
 					{ name: 'filter8', label: 'Hide filter 8', description: '' },
 					{ name: 'filter9', label: 'Hide filter 9', description: '' }
 				]
+			}, {
+				name: 'group4',
+				title: 'Group 4',
+				type: 'single_option',
+				filters: [
+					{ name: 'filter10', label: 'Hide filter 10', description: '' },
+					{ name: 'filter11', label: 'Hide filter 11', description: '' },
+					{ name: 'filter12', label: 'Hide filter 12', description: '' }
+				]
 			} ],
+			baseResult = {
+				hidefilter1: '0',
+				hidefilter2: '0',
+				hidefilter3: '0',
+				hidefilter4: '0',
+				hidefilter5: '0',
+				hidefilter6: '0',
+				group3: '',
+				group4: ''
+			},
 			cases = [
 				{
 					// This is mocking the cases above, both
@@ -413,17 +480,12 @@
 						group3__filter8: true,
 						group3__filter9: false
 					},
-					expected: {
+					expected: $.extend( true, {}, baseResult, {
 						// Group 1 (two selected, the others are true)
-						hidefilter1: '0',
-						hidefilter2: '0',
 						hidefilter3: '1',
-						// Group 2 (nothing is selected, all false)
-						hidefilter4: '0',
-						hidefilter5: '0',
-						hidefilter6: '0',
+						// Group 3 (two selected)
 						group3: 'filter7,filter8'
-					},
+					} ),
 					msg: 'Given an explicit (complete) filter state object, the result is the same as if the object given represented the model state.'
 				},
 				{
@@ -432,30 +494,35 @@
 					input: {
 						group1__hidefilter1: 1
 					},
-					expected: {
+					expected: $.extend( true, {}, baseResult, {
 						// Group 1 (one selected, the others are true)
-						hidefilter1: '0',
 						hidefilter2: '1',
-						hidefilter3: '1',
-						// Group 2 (nothing is selected, all false)
-						hidefilter4: '0',
-						hidefilter5: '0',
-						hidefilter6: '0',
-						group3: ''
-					},
+						hidefilter3: '1'
+					} ),
 					msg: 'Given an explicit (incomplete) filter state object, the result is the same as if the object give represented the model state.'
 				},
 				{
-					input: {},
-					expected: {
-						hidefilter1: '0',
-						hidefilter2: '0',
-						hidefilter3: '0',
-						hidefilter4: '0',
-						hidefilter5: '0',
-						hidefilter6: '0',
-						group3: ''
+					input: {
+						group4__filter10: true
 					},
+					expected: $.extend( true, {}, baseResult, {
+						group4: 'filter10'
+					} ),
+					msg: 'Given a single value for "single_option" that option is represented in the result.'
+				},
+				{
+					input: {
+						group4__filter10: true,
+						group4__filter11: true
+					},
+					expected: $.extend( true, {}, baseResult, {
+						group4: 'filter10'
+					} ),
+					msg: 'Given more than one true value for "single_option" (which should not happen!) only the first value counts, and the second is ignored.'
+				},
+				{
+					input: {},
+					expected: baseResult,
 					msg: 'Given an explicit empty object, the result is all filters set to their falsey unselected value.'
 				}
 			];
@@ -629,6 +696,47 @@
 				group3__filter9: true
 			} ),
 			'A \'string_options\' parameter containing an invalid value, results in the invalid value ignored and the valid corresponding filters checked.'
+		);
+
+		model.toggleFiltersSelected(
+			model.getFiltersFromParameters( {
+				group4: 'option1'
+			} )
+		);
+		assert.deepEqual(
+			model.getSelectedState(),
+			$.extend( {}, baseFilterRepresentation, {
+				group4__option1: true
+			} ),
+			'A \'single_option\' parameter reflects a single selected value.'
+		);
+
+		assert.deepEqual(
+			model.getFiltersFromParameters( {
+				group4: 'option1,option2'
+			} ),
+			baseFilterRepresentation,
+			'An invalid \'single_option\' parameter is ignored.'
+		);
+
+		// Change to one value
+		model.toggleFiltersSelected(
+			model.getFiltersFromParameters( {
+				group4: 'option1'
+			} )
+		);
+		// Change again to another value
+		model.toggleFiltersSelected(
+			model.getFiltersFromParameters( {
+				group4: 'option2'
+			} )
+		);
+		assert.deepEqual(
+			model.getSelectedState(),
+			$.extend( {}, baseFilterRepresentation, {
+				group4__option2: true
+			} ),
+			'A \'single_option\' parameter always reflects the latest selected value.'
 		);
 	} );
 
