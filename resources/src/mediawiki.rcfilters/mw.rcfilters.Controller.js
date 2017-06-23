@@ -32,7 +32,13 @@
 			views = {},
 			items = [],
 			uri = new mw.Uri(),
-			$changesList = $( '.mw-changeslist' ).first().contents();
+			$changesList = $( '.mw-changeslist' ).first().contents(),
+			createFilterDataFromNumber = function ( num, convertedNumForLabel ) {
+				return {
+					name: String( num ),
+					label: mw.language.convertNumber( convertedNumForLabel )
+				};
+			};
 
 		// Prepare views
 		if ( namespaceStructure ) {
@@ -82,6 +88,99 @@
 				} ]
 			};
 		}
+
+		// Add parameter range operations
+		views.range = {
+			groups: [
+				{
+					name: 'limit',
+					type: 'single_option',
+					title: '', // Because it's a hidden group, this title actually appears nowhere
+					hidden: true,
+					allowArbitrary: true,
+					validate: $.isNumeric,
+					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
+					'default': '50',
+					filters: [ 50, 100, 250, 500 ].map( function ( num ) {
+						return createFilterDataFromNumber( num, num );
+					} )
+				},
+				{
+					name: 'days',
+					type: 'single_option',
+					title: '', // Because it's a hidden group, this title actually appears nowhere
+					hidden: true,
+					allowArbitrary: true,
+					validate: $.isNumeric,
+					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
+					'default': '7',
+					filters: [
+						// Hours (1, 2, 6, 12)
+						0.04166, 0.0833, 0.25, 0.5,
+						// Days
+						1, 3, 7, 14, 30
+					].map( function ( num ) {
+						return createFilterDataFromNumber(
+							num,
+							// Convert fractions of days to number of hours for the labels
+							num < 1 ? Math.round( num * 24 ) : num
+						);
+					} )
+				}
+			]
+		};
+
+		// Before we do anything, we need to see if we require another item in the
+		// groups that have 'AllowArbitrary'. For the moment, those are only single_option
+		// groups; if we ever expand it, this might need further generalization:
+		$.each( views, function ( viewName, viewData ) {
+			viewData.groups.forEach( function ( groupData ) {
+				// This is only true for single_option and string_options
+				// We assume these are the only groups that will allow for
+				// arbitrary, since it doesn't make any sense for the other
+				// groups.
+				var uriValue = uri.query[ groupData.name ];
+
+				if (
+					// If the group allows for arbitrary data
+					groupData.allowArbitrary &&
+					// and it is single_option (or string_options, but we
+					// don't have cases of those yet, nor do we plan to)
+					groupData.type === 'single_option' &&
+					// and if there is a valid value in the URI already
+					uri.query[ groupData.name ] !== undefined &&
+					// and, if there is a validate method and it passes on
+					// the data
+					( !groupData.validate || groupData.validate( uri.query[ groupData.name ] ) ) &&
+					// but if that value isn't already in the definition
+					groupData.filters
+						.map( function ( filterData ) {
+							return filterData.name;
+						} )
+						.indexOf( uri.query[ groupData.name ] ) === -1
+				) {
+					// Add the filter information
+					if ( groupData.name === 'days' ) {
+						// Specific fix for hours/days which go by the same param
+						groupData.filters.push( createFilterDataFromNumber(
+							uriValue,
+							// In this case we don't want to round because it can be arbitrary
+							// weird numbers but we want to round to 2 decimal digits
+							Number( uriValue ) < 1 ?
+								( Number( uriValue ) * 24 ).toFixed( 2 ) :
+								Number( uriValue )
+						) );
+					} else {
+						groupData.filters.push( createFilterDataFromNumber( uriValue, uriValue ) );
+					}
+
+					// If there's a sort function set up, re-sort the values
+					if ( groupData.sortFunc ) {
+						groupData.filters.sort( groupData.sortFunc );
+					}
+				}
+			} );
+		} );
 
 		// Initialize the model
 		this.filtersModel.initializeFilters( filterStructure, views );
