@@ -32,7 +32,13 @@
 			views = {},
 			items = [],
 			uri = new mw.Uri(),
-			$changesList = $( '.mw-changeslist' ).first().contents();
+			$changesList = $( '.mw-changeslist' ).first().contents(),
+			createFilterDataFromNumberArray = function ( num ) {
+				return {
+					name: String( num ),
+					label: mw.language.convertNumber( num )
+				};
+			};
 
 		// Prepare views
 		if ( namespaceStructure ) {
@@ -82,6 +88,79 @@
 				} ]
 			};
 		}
+
+		// Add parameter range operations
+		views.range = {
+			groups: [
+				{
+					name: 'limit',
+					type: 'single_option',
+					title: '', // Because it's a hidden group, this title actually appears nowhere
+					hidden: true,
+					allowArbitrary: true,
+					'default': '50',
+					filters: [ 50, 100, 250, 500 ].map( createFilterDataFromNumberArray )
+				},
+				{
+					name: 'days',
+					type: 'single_option',
+					title: '', // Because it's a hidden group, this title actually appears nowhere
+					hidden: true,
+					allowArbitrary: true,
+					'default': '7',
+					filters: [ 1, 3, 7, 14, 30 ].map( createFilterDataFromNumberArray )
+				}
+			]
+		};
+
+		// Before we do anything, we need to see if we require another item in the
+		// groups that have 'AllowArbitrary'. For the moment, those are only single_option
+		// groups; if we ever expand it, this might need further generalization:
+		$.each( views, function ( viewName, viewData ) {
+			viewData.groups.forEach( function ( groupData ) {
+				// This is only true for single_option and string_options
+				// We assume these are the only groups that will allow for
+				// arbitrary, since it doesn't make any sense for the other
+				// groups.
+				var uriValue = uri.query[ groupData.name ];
+
+				if (
+					// If the group allows for arbitrary data
+					groupData.allowArbitrary &&
+					// and it is single_option (or string_options, but we
+					// don't have cases of those yet, nor do we plan to)
+					groupData.type === 'single_option' &&
+					// and if there is a valid value in the URI already
+					uri.query[ groupData.name ] !== undefined &&
+					// but if that value isn't already in the definition
+					groupData.filters
+						.map( function ( filterData ) {
+							return filterData.name;
+						} )
+						.indexOf( uri.query[ groupData.name ] ) === -1
+				) {
+					// Add the filter information
+					groupData.filters.push( createFilterDataFromNumberArray( uriValue ) );
+
+					// Now order the filters again, so the new filter
+					// is in order of the other filters.
+					// We can get away with this because we know that singla_option
+					// is our target, and that the single_option groups we have
+					// so far are numerical.
+					// NOTE: If we ever have a single_option group that is
+					// not numerical and allows for arbitrary, we will need
+					// to rethink this.
+					groupData.filters.sort( function ( a, b ) {
+						if ( Number( a.name ) < Number( b.name ) ) {
+							return -1;
+						} else if ( Number( a.name ) > Number( b.name ) ) {
+							return 1;
+						}
+						return 0;
+					} );
+				}
+			} );
+		} );
 
 		// Initialize the model
 		this.filtersModel.initializeFilters( filterStructure, views );
