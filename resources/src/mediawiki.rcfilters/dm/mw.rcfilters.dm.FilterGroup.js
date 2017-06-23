@@ -75,7 +75,8 @@
 	 * @param {string|Object} [groupDefault] Definition of the group default
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefault ) {
-		var supersetMap = {},
+		var defaultParam,
+			supersetMap = {},
 			model = this,
 			items = [];
 
@@ -159,11 +160,17 @@
 				} )
 			).join( this.getSeparator() );
 		} else if ( this.getType() === 'single_option' ) {
+			defaultParam = groupDefault !== undefined ?
+				groupDefault : model.getItems()[ 0 ].getParamName();
+
 			// For this group, the parameter is the group name,
-			// and a single item can be selected, or none at all
-			// The item also must be recognized or none is set as
-			// default
-			model.defaultParams[ this.getName() ] = this.getItemByParamName( groupDefault ) ? groupDefault : '';
+			// and a single item can be selected: default or first item
+			model.defaultParams[ this.getName() ] = defaultParam;
+
+			// Single option means there must be a single option
+			// selected, so we have to either select the default
+			// or select the first option
+			model.selectItemByParamName( defaultParam );
 		}
 	};
 
@@ -174,11 +181,15 @@
 	 * @fires update
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.onFilterItemUpdate = function ( item ) {
-		// Update state
-		var active = this.areAnySelected(),
+		var prevSelected, currSelected,
+			// Update state
+			active = this.areAnySelected(),
 			itemName = item && item.getName();
 
 		if ( item.isSelected() && this.getType() === 'single_option' ) {
+			prevSelected = this.getSelectedItems()[ 0 ];
+			currSelected = item;
+
 			// Change the selection to only be the newly selected item
 			this.getItems().forEach( function ( filterItem ) {
 				if ( filterItem.getName() !== itemName ) {
@@ -187,7 +198,13 @@
 			} );
 		}
 
-		if ( this.active !== active ) {
+		if (
+			this.active !== active ||
+			(
+				prevSelected && currSelected &&
+				prevSelected.getName() !== currSelected.getName()
+			)
+		) {
 			this.active = active;
 			this.emit( 'update' );
 		}
@@ -499,7 +516,8 @@
 	 * @return {Object} Filter representation
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation ) {
-		var areAnySelected, paramValues,
+		var areAnySelected, paramValues, defaultValue, item,
+			oneWasSelected = false,
 			model = this,
 			paramToFilterMap = {},
 			result = {};
@@ -559,9 +577,10 @@
 					paramValues.indexOf( filterItem.getParamName() ) > -1;
 			} );
 		} else if ( this.getType() === 'single_option' ) {
-			// There is parameter that fits a single filter, or none at all
+			// There is parameter that fits a single filter and if not, get the default
 			this.getItems().forEach( function ( filterItem ) {
 				result[ filterItem.getName() ] = filterItem.getParamName() === paramRepresentation;
+				oneWasSelected = oneWasSelected || filterItem.getParamName() === paramRepresentation;
 			} );
 		}
 
@@ -569,7 +588,22 @@
 		// If any filters are missing, they will get a falsey value
 		this.getItems().forEach( function ( filterItem ) {
 			result[ filterItem.getName() ] = !!result[ filterItem.getName() ];
+			oneWasSelected = oneWasSelected || !!result[ filterItem.getName() ];
 		} );
+
+		// Make sure that at least one option is selected in
+		// single_option groups, no matter what path was taken
+		// If none was selected by the given definition, then
+		// we need to select the one in the base state -- either
+		// the default given, or the first item
+		if (
+			this.getType() === 'single_option' &&
+			!oneWasSelected
+		) {
+			defaultValue = this.getDefaultParams();
+			item = this.getItemByParamName( defaultValue[ this.getName() ] );
+			result[ item.getName() ] = true;
+		}
 
 		return result;
 	};
@@ -584,6 +618,17 @@
 		return this.getItems().filter( function ( item ) {
 			return item.getName() === filterName;
 		} )[ 0 ];
+	};
+
+	/**
+	 * Select an item by its parameter name
+	 *
+	 * @param {string} paramName Filter parameter name
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.selectItemByParamName = function ( paramName ) {
+		this.getItems().forEach( function ( item ) {
+			item.toggleSelected( item.getParamName() === paramName );
+		} );
 	};
 
 	/**
