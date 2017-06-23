@@ -466,7 +466,7 @@
 		this.selectTag( tagItem );
 
 		// Scroll to the item
-		if ( oldInputValue ) {
+		if ( this.model.removeViewTriggers( oldInputValue ) ) {
 			// We're binding a 'once' to the itemVisibilityChange event
 			// so this happens when the menu is ready after the items
 			// are visible again, in case this is done right after the

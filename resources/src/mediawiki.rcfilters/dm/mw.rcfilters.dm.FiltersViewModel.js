@@ -1044,4 +1044,19 @@
 			filterItem.clearHighlightColor();
 		} );
 	};
+
+	/**
+	 * Return a version of the given string that is without any
+	 * view triggers.
+	 *
+	 * @param {string} str Given string
+	 * @return {string} Result
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.removeViewTriggers = function ( str ) {
+		if ( this.getViewByTrigger( str.substr( 0, 1 ) ) !== 'default' ) {
+			str = str.substr( 1 );
+		}
+
+		return str;
+	};
 }( mediaWiki, jQuery ) );
