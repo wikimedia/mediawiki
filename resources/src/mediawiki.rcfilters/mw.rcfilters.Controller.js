@@ -32,7 +32,19 @@
 			views = {},
 			items = [],
 			uri = new mw.Uri(),
-			$changesList = $( '.mw-changeslist' ).first().contents();
+			$changesList = $( '.mw-changeslist' ).first().contents(),
+			createFilterItemFromNumberArray = function ( numArray ) {
+				var result = [];
+
+				numArray.forEach( function ( num ) {
+					result.push( {
+						name: num,
+						label: mw.language.convertNumber( num )
+					} );
+				} );
+
+				return result;
+			};
 
 		// Prepare views
 		if ( namespaceStructure ) {
