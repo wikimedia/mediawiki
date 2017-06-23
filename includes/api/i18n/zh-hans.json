@@ -1454,6 +1454,7 @@
 	"api-help-title": "MediaWiki API 帮助",
 	"api-help-lead": "这是自动生成的MediaWiki API文档页面。\n\n文档和例子：https://www.mediawiki.org/wiki/API:Main_page/zh",
 	"api-help-main-header": "主模块",
+	"api-help-undocumented-module": "没有用于模块$1的文档。",
 	"api-help-flag-deprecated": "此模块已弃用。",
 	"api-help-flag-internal": "<strong>此模块是内部或不稳定的。</strong>它的操作可以更改而不另行通知。",
 	"api-help-flag-readrights": "此模块需要读取权限。",

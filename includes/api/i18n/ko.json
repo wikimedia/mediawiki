@@ -672,6 +672,7 @@
 	"api-help-title": "미디어위키 API 도움말",
 	"api-help-lead": "이 페이지는 자동으로 생성된 미디어위키 API 도움말 문서입니다.\n\n설명 문서 및 예시: https://www.mediawiki.org/wiki/API",
 	"api-help-main-header": "메인 모듈",
+	"api-help-undocumented-module": "$1 모듈에 대한 설명문이 없습니다.",
 	"api-help-flag-deprecated": "이 모듈은 사용되지 않습니다.",
 	"api-help-flag-internal": "<strong>이 모듈은 내부용이거나 불안정합니다.</strong> 동작은 예고 없이 변경될 수 있습니다.",
 	"api-help-flag-readrights": "이 모듈은 read 권한을 요구합니다.",

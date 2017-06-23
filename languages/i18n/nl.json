@@ -1440,7 +1440,7 @@
 	"rcfilters-filter-previousrevision-description": "Alle wijzigingen die niet de meest recente wijziging op de pagina zijn.",
 	"rcfilters-filter-excluded": "Uitgesloten",
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:niet</strong> $1",
-	"rcfilters-view-tags": "Labels",
+	"rcfilters-view-tags": "Gelabelde bewerkingen",
 	"rcnotefrom": "Wijzigingen sinds <strong>$3 om $4</strong> (maximaal <strong>$1</strong> {{PLURAL:$1|wijziging|wijzigingen}}).",
 	"rclistfromreset": "Datum selectie opnieuw instellen",
 	"rclistfrom": "Wijzigingen bekijken vanaf $3 $2",
