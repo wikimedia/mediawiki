@@ -230,8 +230,9 @@
 	 *     }
 	 *  }
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.initializeFilters = function ( filters, views ) {
+	mw.rcfilters.dm.FiltersViewModel.prototype.initializeFilters = function ( filterGroups, views ) {
 		var filterItem, filterConflictResult, groupConflictResult,
+			allViews = {},
 			model = this,
 			items = [],
 			groupConflictMap = {},
@@ -299,28 +300,22 @@
 		this.groups = {};
 		this.views = {};
 
-		views = views || {};
+		// Clone
+		filterGroups = OO.copy( filterGroups );
 
-		// Filters
-		this.views.default = { name: 'default', label: mw.msg( 'rcfilters-filterlist-title' ) };
-		filters.forEach( function ( data ) {
-			var i,
-				group = data.name;
+		// Normalize definition from the server
+		filterGroups.forEach( function ( data ) {
+			var i;
+			// What's this information needs to be normalized
+			data.whatsThis = {
+				body: data.whatsThisBody,
+				header: data.whatsThisHeader,
+				linkText: data.whatsThisLinkText,
+				url: data.whatsThisUrl
+			};
 
-			if ( !model.groups[ group ] ) {
-				model.groups[ group ] = new mw.rcfilters.dm.FilterGroup( group, {
-					type: data.type,
-					title: data.title ? mw.msg( data.title ) : group,
-					separator: data.separator,
-					fullCoverage: !!data.fullCoverage,
-					whatsThis: {
-						body: data.whatsThisBody,
-						header: data.whatsThisHeader,
-						linkText: data.whatsThisLinkText,
-						url: data.whatsThisUrl
-					}
-				} );
-			}
+			// Title is a msg-key
+			data.title = data.title ? mw.msg( data.title ) : data.name;
 
 			// Filters are given to us with msg-keys, we need
 			// to translate those before we hand them off
@@ -328,48 +323,57 @@
 				data.filters[ i ].label = data.filters[ i ].label ? mw.msg( data.filters[ i ].label ) : data.filters[ i ].name;
 				data.filters[ i ].description = data.filters[ i ].description ? mw.msg( data.filters[ i ].description ) : '';
 			}
-
-			model.groups[ group ].initializeFilters( data.filters, data.default );
-			items = items.concat( model.groups[ group ].getItems() );
-
-			// Prepare conflicts
-			if ( data.conflicts ) {
-				// Group conflicts
-				groupConflictMap[ group ] = data.conflicts;
-			}
-
-			for ( i = 0; i < data.filters.length; i++ ) {
-				// Filter conflicts
-				if ( data.filters[ i ].conflicts ) {
-					filterItem = model.groups[ group ].getItemByParamName( data.filters[ i ].name );
-					filterConflictMap[ filterItem.getName() ] = data.filters[ i ].conflicts;
-				}
-			}
 		} );
 
-		if ( mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' ) ) {
-			$.each( views, function ( viewName, viewData ) {
-				model.views[ viewName ] = {
-					name: viewData.name,
-					title: viewData.title,
-					trigger: viewData.trigger
-				};
+		// Collect views
+		allViews = {
+			default: {
+				label: mw.msg( 'rcfilters-filterlist-title' ),
+				groups: filterGroups
+			}
+		};
 
-				// Group
-				viewData.groups.forEach( function ( groupData ) {
-					model.groups[ groupData.name ] = new mw.rcfilters.dm.FilterGroup(
-						groupData.name,
-						$.extend( true, {}, groupData.definition, { view: viewName } )
-					);
-
-					// Add items
-					model.groups[ groupData.name ].initializeFilters( groupData.items );
-
-					// Add to global search list
-					items = items.concat( model.groups[ groupData.name ].getItems() );
-				} );
-			} );
+		if ( views && mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' ) ) {
+			// If we have extended views, add them in
+			$.extend( true, allViews, views );
 		}
+
+		// Go over all views
+		$.each( allViews, function ( viewName, viewData ) {
+			// Define the view
+			model.views[ viewName ] = {
+				name: viewData.name,
+				title: viewData.title,
+				trigger: viewData.trigger
+			};
+
+			// Go over groups
+			viewData.groups.forEach( function ( groupData ) {
+				var group = groupData.name;
+
+				model.groups[ group ] = new mw.rcfilters.dm.FilterGroup(
+					group,
+					$.extend( true, {}, groupData, { view: viewName } )
+				);
+
+				model.groups[ group ].initializeFilters( groupData.filters, groupData.default );
+				items = items.concat( model.groups[ group ].getItems() );
+
+				// Prepare conflicts
+				if ( groupData.conflicts ) {
+					// Group conflicts
+					groupConflictMap[ group ] = groupData.conflicts;
+				}
+
+				for ( i = 0; i < groupData.filters.length; i++ ) {
+					// Filter conflicts
+					if ( groupData.filters[ i ].conflicts ) {
+						filterItem = model.groups[ group ].getItemByParamName( groupData.filters[ i ].name );
+						filterConflictMap[ filterItem.getName() ] = groupData.filters[ i ].conflicts;
+					}
+				}
+			} );
+		} );
 
 		// Add item references to the model, for lookup
 		this.addItems( items );
