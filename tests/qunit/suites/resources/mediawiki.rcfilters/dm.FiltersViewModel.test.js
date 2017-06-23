@@ -54,6 +54,15 @@
 				{ name: 'filter8', label: 'group3filter8-label', description: 'group3filter8-desc' },
 				{ name: 'filter9', label: 'group3filter9-label', description: 'group3filter9-desc' }
 			]
+		}, {
+			name: 'group4',
+			type: 'single_option',
+			default: 'option1',
+			filters: [
+				{ name: 'option1', label: 'group4option1-label', description: 'group4option1-desc' },
+				{ name: 'option2', label: 'group4option2-label', description: 'group4option2-desc' },
+				{ name: 'option3', label: 'group4option3-label', description: 'group4option3-desc' }
+			]
 		} ],
 		viewsDefinition = {
 			namespaces: {
@@ -81,6 +90,7 @@
 			filter5: '1',
 			filter6: '0',
 			group3: 'filter8',
+			group4: 'option1',
 			namespace: ''
 		},
 		baseParamRepresentation = {
@@ -91,6 +101,7 @@
 			filter5: '0',
 			filter6: '0',
 			group3: '',
+			group4: '',
 			namespace: ''
 		},
 		baseFilterRepresentation = {
@@ -103,6 +114,9 @@
 			group3__filter7: false,
 			group3__filter8: false,
 			group3__filter9: false,
+			group4__option1: false,
+			group4__option2: false,
+			group4__option3: false,
 			namespace__0: false,
 			namespace__1: false,
 			namespace__2: false,
@@ -118,6 +132,9 @@
 			group3__filter7: { selected: false, conflicted: false, included: false },
 			group3__filter8: { selected: false, conflicted: false, included: false },
 			group3__filter9: { selected: false, conflicted: false, included: false },
+			group4__option1: { selected: false, conflicted: false, included: false },
+			group4__option2: { selected: false, conflicted: false, included: false },
+			group4__option3: { selected: false, conflicted: false, included: false },
 			namespace__0: { selected: false, conflicted: false, included: false },
 			namespace__1: { selected: false, conflicted: false, included: false },
 			namespace__2: { selected: false, conflicted: false, included: false },
@@ -359,6 +376,36 @@
 				group3: 'all'
 			} ),
 			'All filters selected in "string_option" group returns \'all\'.'
+		);
+
+		// Reset
+		model = new mw.rcfilters.dm.FiltersViewModel();
+		model.initializeFilters( filterDefinition, viewsDefinition );
+
+		// Select an option from single_option group
+		model.toggleFiltersSelected( {
+			group4__option2: true
+		} );
+		// All filters of the group are selected == this is the same as not selecting any
+		assert.deepEqual(
+			model.getParametersFromFilters(),
+			$.extend( true, {}, baseParamRepresentation, {
+				group4: 'option2'
+			} ),
+			'Selecting an option from "single_option" group returns that option as a value.'
+		);
+
+		// Select a different option from single_option group
+		model.toggleFiltersSelected( {
+			group4__option3: true
+		} );
+		// All filters of the group are selected == this is the same as not selecting any
+		assert.deepEqual(
+			model.getParametersFromFilters(),
+			$.extend( true, {}, baseParamRepresentation, {
+				group4: 'option3'
+			} ),
+			'Selecting a different option from "single_option" group changes the selection.'
 		);
 	} );
 
