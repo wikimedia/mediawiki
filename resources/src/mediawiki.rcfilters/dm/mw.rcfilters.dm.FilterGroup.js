@@ -81,7 +81,8 @@
 
 		filterDefinition.forEach( function ( filter ) {
 			// Instantiate an item
-			var subsetNames = [],
+			var defaultItem,
+				subsetNames = [],
 				filterItem = new mw.rcfilters.dm.FilterItem( filter.name, model, {
 					group: model.getName(),
 					label: filter.label || filter.name,
@@ -159,11 +160,18 @@
 				} )
 			).join( this.getSeparator() );
 		} else if ( this.getType() === 'single_option' ) {
+			defaultItem = this.getItemByParamName( groupDefault );
+
 			// For this group, the parameter is the group name,
 			// and a single item can be selected, or none at all
 			// The item also must be recognized or none is set as
 			// default
-			model.defaultParams[ this.getName() ] = this.getItemByParamName( groupDefault ) ? groupDefault : '';
+			model.defaultParams[ this.getName() ] = defaultItem ? groupDefault : '';
+
+			// Single option means there must be a single option
+			// selected, so we have to select the default upon
+			// initialization
+			model.selectItemByParamName( groupDefault );
 		}
 	};
 
@@ -174,11 +182,15 @@
 	 * @fires update
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.onFilterItemUpdate = function ( item ) {
-		// Update state
-		var active = this.areAnySelected(),
+		var prevSelected, currSelected,
+			// Update state
+			active = this.areAnySelected(),
 			itemName = item && item.getName();
 
 		if ( item.isSelected() && this.getType() === 'single_option' ) {
+			prevSelected = this.getSelectedItems()[ 0 ];
+			currSelected = item;
+
 			// Change the selection to only be the newly selected item
 			this.getItems().forEach( function ( filterItem ) {
 				if ( filterItem.getName() !== itemName ) {
@@ -187,7 +199,13 @@
 			} );
 		}
 
-		if ( this.active !== active ) {
+		if (
+			this.active !== active ||
+			(
+				prevSelected && currSelected &&
+				prevSelected.getName() !== currSelected.getName()
+			)
+		) {
 			this.active = active;
 			this.emit( 'update' );
 		}
@@ -584,6 +602,17 @@
 		return this.getItems().filter( function ( item ) {
 			return item.getName() === filterName;
 		} )[ 0 ];
+	};
+
+	/**
+	 * Select an item by its parameter name
+	 *
+	 * @param {string} paramName Filter parameter name
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.selectItemByParamName = function ( paramName ) {
+		this.getItems().forEach( function ( item ) {
+			item.toggleSelected( item.getParamName() === paramName );
+		} );
 	};
 
 	/**
