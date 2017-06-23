@@ -139,6 +139,9 @@
 			this.$element.find( '.mw-tagfilter-label' ).closest( 'tr' ).detach();
 		}
 
+		// Hide limit and days
+		this.$element.find( '.rclinks' ).detach();
+
 		// Collapse legend
 		// see resources/src/mediawiki.special/mediawiki.special.changelist.legend.js
 		this.$element.find( '.mw-changeslist-legend' )
