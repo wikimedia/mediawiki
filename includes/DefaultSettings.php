@@ -1439,26 +1439,20 @@ $wgUploadThumbnailRenderHttpCustomDomain = false;
 $wgUseTinyRGBForJPGThumbnails = false;
 
 /**
- * Default parameters for the "<gallery>" tag
+ * Parameters for the "<gallery>" tag.
+ * Fields are:
+ *   - imagesPerRow:   Default number of images per-row in the gallery. 0 -> Adapt to screensize
+ *   - imageWidth:     Width of the cells containing images in galleries (in "px")
+ *   - imageHeight:    Height of the cells containing images in galleries (in "px")
+ *   - captionLength:  Length to truncate filename to in caption when using "showfilename".
+ *                     A value of 'true' will truncate the filename to one line using CSS
+ *                     and will be the behaviour after deprecation.
+ *                     @deprecated since 1.28
+ *   - showBytes:      Show the filesize in bytes in categories
+ *   - showDimensions: Show the dimensions (width x height) in categories
+ *   - mode:           Gallery mode
  */
-$wgGalleryOptions = [
-	// Default number of images per-row in the gallery. 0 -> Adapt to screensize
-	'imagesPerRow' => 0,
-	// Width of the cells containing images in galleries (in "px")
-	'imageWidth' => 120,
-	// Height of the cells containing images in galleries (in "px")
-	'imageHeight' => 120,
-	// Length to truncate filename to in caption when using "showfilename".
-	// A value of 'true' will truncate the filename to one line using CSS
-	// and will be the behaviour after deprecation.
-	// @deprecated since 1.28
-	'captionLength' => true,
-	// Show the filesize in bytes in categories
-	'showBytes' => true,
-	// Show the dimensions (width x height) in categories
-	'showDimensions' => true,
-	'mode' => 'traditional',
-];
+$wgGalleryOptions = [];
 
 /**
  * Adjust width of upright images when parameter 'upright' is used
