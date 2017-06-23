@@ -33,6 +33,26 @@
 			{ $overlay: this.$overlay }
 		);
 
+		this.numChangesWidget = new mw.rcfilters.ui.ChangesLimitButtonWidget( this.controller, this.model );
+		// this.numChangesWidget = new OO.ui.PopupButtonWidget( {
+		// 	indicator: 'down',
+		// 	label: mw.msg( 'rcfilters-limit-shownum', 50 ),
+		// 	$overlay: this.$overlay,
+		// 	popup: {
+		// 		width: 300,
+		// 		anchor: false,
+		// 		align: 'backwards',
+		// 		$autoCloseIgnore: this.$overlay,
+		// 		$content: new mw.rcfilters.ui.ChangesLimitPopupWidget( this.controller, this.model ).$element
+		// 	}
+		// } );
+
+		// Events
+		// this.model.connect( this, {
+		// 	initialize: 'updateLimitLabel',
+		// 	itemUpdate: 'updateLimitLabel'
+		// } );
+
 		// Initialize
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget' );
@@ -51,7 +71,10 @@
 		}
 
 		this.$element.append(
-			this.filterTagWidget.$element
+			this.filterTagWidget.$element,
+			$( '<div>' )
+				.addClass( 'mw-rcfilters-ui-filterWrapperWidget-bottom' )
+				.append( this.numChangesWidget.$element )
 		);
 	};
 
@@ -59,4 +82,13 @@
 
 	OO.inheritClass( mw.rcfilters.ui.FilterWrapperWidget, OO.ui.Widget );
 	OO.mixinClass( mw.rcfilters.ui.FilterWrapperWidget, OO.ui.mixin.PendingElement );
+
+	// mw.rcfilters.ui.FilterWrapperWidget.prototype.updateLimitLabel = function () {
+	// 	this.numChangesWidget.setLabel(
+	// 		mw.msg(
+	// 			'rcfilters-limit-shownum',
+	// 			this.model.getGroup( 'limit' ).getParamRepresentation()
+	// 		)
+	// 	);
+	// };
 }( mediaWiki ) );
