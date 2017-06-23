@@ -32,7 +32,13 @@
 			views = {},
 			items = [],
 			uri = new mw.Uri(),
-			$changesList = $( '.mw-changeslist' ).first().contents();
+			$changesList = $( '.mw-changeslist' ).first().contents(),
+			createFilterDataFromNumberArray = function ( num ) {
+				return {
+					name: String( num ),
+					label: mw.language.convertNumber( num )
+				};
+			};
 
 		// Prepare views
 		if ( namespaceStructure ) {
@@ -82,6 +88,28 @@
 				} ]
 			};
 		}
+
+		// Add parameter range operations
+		views.range = {
+			groups: [
+				{
+					name: 'limit',
+					type: 'single_option',
+					title: '', // Because it's a hidden group, this title actually appears nowhere
+					hidden: true,
+					'default': '50',
+					filters: [ 50, 100, 250, 500 ].map( createFilterDataFromNumberArray )
+				},
+				{
+					name: 'days',
+					type: 'single_option',
+					title: '', // Because it's a hidden group, this title actually appears nowhere
+					hidden: true,
+					'default': '7',
+					filters: [ 1, 3, 7, 14, 30 ].map( createFilterDataFromNumberArray )
+				}
+			]
+		};
 
 		// Initialize the model
 		this.filtersModel.initializeFilters( filterStructure, views );

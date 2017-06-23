@@ -234,12 +234,22 @@
 		// wiki default.
 		// Any subsequent change of the URL through the RCFilters
 		// system will receive 'urlversion=2'
-		var base = this.getVersion( uriQuery ) === 2 ?
-			{} :
-			this.filtersModel.getDefaultParams();
+		var hiddenParamDefaults = {},
+			base = this.getVersion( uriQuery ) === 2 ?
+				{} :
+				this.filtersModel.getDefaultParams();
+
+		// Go over the model and get all hidden parameters' defaults
+		// These defaults should be applied regardless of the urlversion
+		// but be overridden by the URL params if they exist
+		$.each( this.filtersModel.getFilterGroups(), function ( groupName, groupModel ) {
+			if ( groupModel.isHidden() ) {
+				$.extend( true, hiddenParamDefaults, groupModel.getDefaultParams() );
+			}
+		} );
 
 		return this.minimizeQuery(
-			$.extend( true, {}, base, uriQuery, { urlversion: '2' } )
+			$.extend( true, {}, hiddenParamDefaults, base, uriQuery, { urlversion: '2' } )
 		);
 	};
 
