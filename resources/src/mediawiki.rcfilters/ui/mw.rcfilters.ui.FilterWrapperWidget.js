@@ -33,6 +33,14 @@
 			{ $overlay: this.$overlay }
 		);
 
+		this.numChangesWidget = new mw.rcfilters.ui.ChangesLimitButtonWidget(
+			this.controller,
+			this.model,
+			{
+				$overlay: this.$overlay
+			}
+		);
+
 		// Initialize
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget' );
@@ -51,7 +59,10 @@
 		}
 
 		this.$element.append(
-			this.filterTagWidget.$element
+			this.filterTagWidget.$element,
+			$( '<div>' )
+				.addClass( 'mw-rcfilters-ui-filterWrapperWidget-bottom' )
+				.append( this.numChangesWidget.$element )
 		);
 	};
 
@@ -59,4 +70,13 @@
 
 	OO.inheritClass( mw.rcfilters.ui.FilterWrapperWidget, OO.ui.Widget );
 	OO.mixinClass( mw.rcfilters.ui.FilterWrapperWidget, OO.ui.mixin.PendingElement );
+
+	// mw.rcfilters.ui.FilterWrapperWidget.prototype.updateLimitLabel = function () {
+	// 	this.numChangesWidget.setLabel(
+	// 		mw.msg(
+	// 			'rcfilters-limit-shownum',
+	// 			this.model.getGroup( 'limit' ).getParamRepresentation()
+	// 		)
+	// 	);
+	// };
 }( mediaWiki ) );

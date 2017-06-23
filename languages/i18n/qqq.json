@@ -1540,6 +1540,8 @@
 	"recentchanges-legend-plusminus": "{{optional}}\nA plus/minus sign with a number for the legend.",
 	"recentchanges-submit": "Label for submit button in [[Special:RecentChanges]]\n{{Identical|Show}}",
 	"rcfilters-activefilters": "Title for the filters selection showing the active filters.",
+	"rcfilters-limit-title": "Title for the options to change the number of results shown.",
+	"rcfilters-limit-shownum": "Title for the button that opens the operation to control how many results are shown. \n\nParameters: $1 - Number of results shown",
 	"rcfilters-advancedfilters": "Title for the buttons allowing the user to switch to the various advanced filters views.",
 	"rcfilters-quickfilters": "Label for the button that opens the saved filter settings menu in [[Special:RecentChanges]]",
 	"rcfilters-quickfilters-placeholder-title": "Title for the text shown in the quick filters menu on [[Special:RecentChanges]] if the user has not saved any quick filters.",
