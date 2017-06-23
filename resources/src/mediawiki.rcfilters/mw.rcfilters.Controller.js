@@ -57,14 +57,12 @@
 				groups: [ {
 					// Group definition (single group)
 					name: 'namespaces',
-					definition: {
-						type: 'string_options',
-						title: mw.msg( 'namespaces' ),
-						labelPrefixKey: { 'default': 'rcfilters-tag-prefix-namespace', inverted: 'rcfilters-tag-prefix-namespace-inverted' },
-						separator: ';',
-						fullCoverage: true
-					},
-					items: items
+					type: 'string_options',
+					title: mw.msg( 'namespaces' ),
+					labelPrefixKey: { 'default': 'rcfilters-tag-prefix-namespace', inverted: 'rcfilters-tag-prefix-namespace-inverted' },
+					separator: ';',
+					fullCoverage: true,
+					filters: items
 				} ]
 			};
 		}
@@ -75,14 +73,12 @@
 				groups: [ {
 					// Group definition (single group)
 					name: 'tagfilter', // Parameter name
-					definition: {
-						type: 'string_options',
-						title: 'rcfilters-view-tags', // Message key
-						labelPrefixKey: 'rcfilters-tag-prefix-tags',
-						separator: '|',
-						fullCoverage: false
-					},
-					items: tagList
+					type: 'string_options',
+					title: 'rcfilters-view-tags', // Message key
+					labelPrefixKey: 'rcfilters-tag-prefix-tags',
+					separator: '|',
+					fullCoverage: false,
+					filters: tagList
 				} ]
 			};
 		}
