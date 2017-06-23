@@ -27,18 +27,10 @@
 				// TODO: This should be an OOjs UI feature, or somehow happen automatically after infusing.
 				wpSummary.$input.updateTooltipAccessKeys();
 
-				// Make sure edit summary does not exceed byte limit
-				wpSummary.$input.byteLimit( 255 );
-
 				// Show a byte-counter to users with how many bytes are left for their edit summary.
 				// TODO: This looks a bit weird, as there is no unit in the UI, just numbers; showing
 				// 'bytes' confused users in testing, and showing 'chars' would be a lie. See T42035.
-				function updateSummaryLabelCount() {
-					wpSummary.setLabel( String( 255 - $.byteLength( wpSummary.getValue() ) ) );
-				}
-				wpSummary.on( 'change', updateSummaryLabelCount );
-				// Initialise value
-				updateSummaryLabelCount();
+				mw.widgets.visibleByteLimit( wpSummary, 255 );
 			} );
 		} else {
 			// Make sure edit summary does not exceed byte limit
