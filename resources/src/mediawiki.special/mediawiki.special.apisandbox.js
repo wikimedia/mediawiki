@@ -1415,8 +1415,7 @@
 						if ( $.isFunction( f.focus ) ) {
 							f.focus();
 						}
-					},
-					doNothing = function () {};
+					};
 
 				// This is something of a hack. We always want the 'format' and
 				// 'action' parameters from the main module to be specified,
@@ -1642,7 +1641,7 @@
 						// it makes it too hard to read and our "disabled"
 						// isn't really disabled.
 						widgetField.onFieldDisable( false );
-						widgetField.onFieldDisable = doNothing;
+						widgetField.onFieldDisable = $.noop;
 
 						if ( Util.apiBool( pi.parameters[ i ].deprecated ) ) {
 							deprecatedItems.push( widgetField, helpField );
