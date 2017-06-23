@@ -349,10 +349,12 @@
 			viewData.groups.forEach( function ( groupData ) {
 				var group = groupData.name;
 
-				model.groups[ group ] = new mw.rcfilters.dm.FilterGroup(
-					group,
-					$.extend( true, {}, groupData, { view: viewName } )
-				);
+				if ( !model.groups[ group ] ) {
+					model.groups[ group ] = new mw.rcfilters.dm.FilterGroup(
+						group,
+						$.extend( true, {}, groupData, { view: viewName } )
+					);
+				}
 
 				model.groups[ group ].initializeFilters( groupData.filters, groupData.default );
 				items = items.concat( model.groups[ group ].getItems() );
@@ -399,7 +401,10 @@
 				groupModel.getItems().forEach( function ( filterItem ) {
 					model.parameterMap[ filterItem.getParamName() ] = filterItem;
 				} );
-			} else if ( groupModel.getType() === 'string_options' ) {
+			} else if (
+				groupModel.getType() === 'string_options' ||
+				groupModel.getType() === 'single_option'
+			) {
 				// Group
 				model.parameterMap[ groupModel.getName() ] = groupModel;
 			}

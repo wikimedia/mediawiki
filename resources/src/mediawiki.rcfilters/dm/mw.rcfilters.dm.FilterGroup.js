@@ -12,6 +12,7 @@
 	 * @cfg {string} [view='default'] Name of the display group this group
 	 *  is a part of.
 	 * @cfg {string} [title] Group title
+	 * @cfg {boolean} [hidden] This group is hidden from the regular menu views
 	 * @cfg {string} [separator='|'] Value separator for 'string_options' groups
 	 * @cfg {boolean} [active] Group is active
 	 * @cfg {boolean} [fullCoverage] This filters in this group collectively cover all results
@@ -36,6 +37,7 @@
 		this.type = config.type || 'send_unselected_if_any';
 		this.view = config.view || 'default';
 		this.title = config.title || name;
+		this.hidden = !!config.hidden;
 		this.separator = config.separator || '|';
 		this.labelPrefixKey = config.labelPrefixKey;
 
@@ -156,17 +158,34 @@
 					return item.getParamName();
 				} )
 			).join( this.getSeparator() );
+		} else if ( this.getType() === 'single_option' ) {
+			// For this group, the parameter is the group name,
+			// and a single item can be selected, or none at all
+			// The item also must be recognized or none is set as
+			// default
+			model.defaultParams[ this.getName() ] = this.getItemByParamName( groupDefault ) ? groupDefault : '';
 		}
 	};
 
 	/**
 	 * Respond to filterItem update event
 	 *
+	 * @param {mw.rcfilters.dm.FilterItem} item Updated filter item
 	 * @fires update
 	 */
-	mw.rcfilters.dm.FilterGroup.prototype.onFilterItemUpdate = function () {
+	mw.rcfilters.dm.FilterGroup.prototype.onFilterItemUpdate = function ( item ) {
 		// Update state
-		var active = this.areAnySelected();
+		var active = this.areAnySelected(),
+			itemName = item && item.getName();
+
+		if ( item.isSelected() && this.getType() === 'single_option' ) {
+			// Change the selection to only be the newly selected item
+			this.getItems().forEach( function ( filterItem ) {
+				if ( filterItem.getName() !== itemName ) {
+					filterItem.toggleSelected( false );
+				}
+			} );
+		}
 
 		if ( this.active !== active ) {
 			this.active = active;
@@ -181,6 +200,15 @@
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.isActive = function () {
 		return this.active;
+	};
+
+	/**
+	 * Get group hidden state
+	 *
+	 * @return {boolean} Hidden state
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.isHidden = function () {
+		return this.hidden;
 	};
 
 	/**
@@ -388,7 +416,22 @@
 			areAnySelected = false,
 			buildFromCurrentState = !filterRepresentation,
 			result = {},
-			filterParamNames = {};
+			model = this,
+			filterParamNames = {},
+			getSelectedParameter = function ( filters ) {
+				var item,
+					selected = [];
+
+				// Find if any are selected
+				$.each( filters, function ( name, value ) {
+					if ( value ) {
+						selected.push( name );
+					}
+				} );
+
+				item = model.getItemByName( selected[ 0 ] );
+				return ( item && item.getParamName() ) || '';
+			};
 
 		filterRepresentation = filterRepresentation || {};
 
@@ -438,6 +481,8 @@
 
 			result[ this.getName() ] = ( values.length === Object.keys( filterRepresentation ).length ) ?
 				'all' : values.join( this.getSeparator() );
+		} else if ( this.getType() === 'single_option' ) {
+			result[ this.getName() ] = getSelectedParameter( filterRepresentation );
 		}
 
 		return result;
@@ -513,6 +558,11 @@
 					// Otherwise, the filter is selected only if it appears in the parameter values
 					paramValues.indexOf( filterItem.getParamName() ) > -1;
 			} );
+		} else if ( this.getType() === 'single_option' ) {
+			// There is parameter that fits a single filter, or none at all
+			this.getItems().forEach( function ( filterItem ) {
+				result[ filterItem.getName() ] = filterItem.getParamName() === paramRepresentation;
+			} );
 		}
 
 		// Go over result and make sure all filters are represented.
@@ -522,6 +572,18 @@
 		} );
 
 		return result;
+	};
+
+	/**
+	 * Get item by its filter name
+	 *
+	 * @param {string} filterName Filter name
+	 * @return {mw.rcfilters.dm.FilterItem} Filter item
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.getItemByName = function ( filterName ) {
+		return this.getItems().filter( function ( item ) {
+			return item.getName() === filterName;
+		} )[ 0 ];
 	};
 
 	/**
