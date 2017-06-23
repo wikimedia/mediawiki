@@ -1774,6 +1774,7 @@ return [
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterTagItemWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterMenuHeaderWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.MenuSelectWidget.js',
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.ViewSwitchWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterWrapperWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.ChangesListWrapperWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.SavedLinksListWidget.js',
@@ -1797,6 +1798,7 @@ return [
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.TagItemWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.FilterMenuHeaderWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.MenuSelectWidget.less',
+			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.ViewSwitchWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.FilterWrapperWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.ChangesListWrapperWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.HighlightColorPickerWidget.less',
@@ -1814,6 +1816,7 @@ return [
 		],
 		'messages' => [
 			'rcfilters-activefilters',
+			'rcfilters-advancedfilters',
 			'rcfilters-quickfilters',
 			'rcfilters-quickfilters-placeholder-title',
 			'rcfilters-quickfilters-placeholder-description',
