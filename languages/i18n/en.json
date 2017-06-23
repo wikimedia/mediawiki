@@ -1351,6 +1351,8 @@
 	"recentchanges-submit": "Show",
 	"rcfilters-activefilters": "Active filters",
 	"rcfilters-advancedfilters": "Advanced filters",
+	"rcfilters-limit-title": "Changes to show",
+	"rcfilters-limit-shownum": "Show last $1 changes",
 	"rcfilters-quickfilters": "Saved filter settings",
 	"rcfilters-quickfilters-placeholder-title": "No links saved yet",
 	"rcfilters-quickfilters-placeholder-description": "To save your filter settings and reuse them later, click the bookmark icon in the Active Filter area, below.",

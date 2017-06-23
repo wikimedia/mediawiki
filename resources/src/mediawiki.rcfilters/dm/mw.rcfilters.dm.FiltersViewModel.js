@@ -410,6 +410,7 @@
 			}
 		} );
 
+
 		this.currentView = 'default';
 
 		// Finish initialization
