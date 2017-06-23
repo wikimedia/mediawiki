@@ -95,6 +95,28 @@
 			};
 		}
 
+		// Add parameter range operations
+		views.range = {
+			groups: [
+				{
+					name: 'limit',
+					type: 'single_option',
+					title: 'Limit', // TODO: i18n
+					hidden: true,
+					default: 50,
+					filters: createFilterItemFromNumberArray( [ 50, 100, 250, 500 ] )
+				},
+				{
+					name: 'days',
+					type: 'single_option',
+					title: 'Days', // TODO: i18n
+					hidden: true,
+					default: 7,
+					filters: createFilterItemFromNumberArray( [ 1, 3, 7, 14, 30 ] )
+				}
+			]
+		};
+
 		// Initialize the model
 		this.filtersModel.initializeFilters( filterStructure, views );
 
