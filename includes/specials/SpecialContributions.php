@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Widget\DateInputWidget;
+
 /**
  * Special:Contributions, show user contributions in a paged list
  *
@@ -665,7 +667,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			'div',
 			[],
 			Xml::label( wfMessage( 'date-range-from' )->text(), 'mw-date-start' ) . ' ' .
-			new \Mediawiki\Widget\DateInputWidget( [
+			new DateInputWidget( [
 				'infusable' => true,
 				'id' => 'mw-date-start',
 				'name' => 'start',
@@ -673,7 +675,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				'longDisplayFormat' => true,
 			] ) . '<br>' .
 			Xml::label( wfMessage( 'date-range-to' )->text(), 'mw-date-end' ) . ' ' .
-			new \Mediawiki\Widget\DateInputWidget( [
+			new DateInputWidget( [
 				'infusable' => true,
 				'id' => 'mw-date-end',
 				'name' => 'end',
