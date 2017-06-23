@@ -2014,7 +2014,7 @@ return [
 	'mediawiki.special.movePage' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.movePage.js',
 		'dependencies' => [
-			'jquery.byteLimit',
+			'mediawiki.widgets.visibleByteLimit',
 			'mediawiki.widgets',
 		],
 	],
