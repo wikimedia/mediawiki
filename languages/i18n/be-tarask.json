@@ -3832,6 +3832,7 @@
 	"authform-notoken": "Адсутнічае токен",
 	"authform-wrongtoken": "Няслушны токен",
 	"specialpage-securitylevel-not-allowed-title": "Не дазволена",
+	"specialpage-securitylevel-not-allowed": "Выбачайце, вам не дазволена выкарыстоўваць гэтую старонку, бо вашая асоба ня можа быць пацьверджаная.",
 	"changecredentials": "Зьмена ўліковых зьвестак",
 	"removecredentials": "Выдаленьне ўліковых зьвестак",
 	"removecredentials-submit": "Выдаліць уліковыя зьвесткі",

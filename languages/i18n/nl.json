@@ -1357,8 +1357,10 @@
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "Weergeven",
 	"rcfilters-activefilters": "Actieve filters",
+	"rcfilters-advancedfilters": "Geavanceerde filters",
 	"rcfilters-quickfilters": "Opgeslagen filterinstellingen",
 	"rcfilters-quickfilters-placeholder-title": "Nog geen koppelingen opgeslagen",
+	"rcfilters-quickfilters-placeholder-description": "Om uw filterinstellingen op te slaan en later te kunnen hergebruiken, klik op het bladwijzer pictogram in het Actieve Filter gebied beneden.",
 	"rcfilters-savedqueries-defaultlabel": "Opgeslagen filters",
 	"rcfilters-savedqueries-rename": "Hernoemen",
 	"rcfilters-savedqueries-setdefault": "Als standaard instellen",
@@ -3949,6 +3951,7 @@
 	"gotointerwiki-external": "U staat op het punt om {{SITENAME}} te verlaten en [[$2]] te bezoeken. [[$2]] is een aparte website.\n\n'''[$1 Doorgaan naar $1]'''",
 	"undelete-cantedit": "U kunt deze pagina niet terug plaatsen omdat u niet het recht hebt om deze pagina te bewerken.",
 	"undelete-cantcreate": "U kunt deze pagina niet terugplaatsen omdat er geen bestaande pagina met deze naam is en u geen toestemming hebt om deze pagina aan te maken.",
+	"pagedata-title": "Pagina data",
 	"pagedata-not-acceptable": "Er is geen overeenkomende indeling gevonden. Ondersteunde MIME-typen: $1",
 	"pagedata-bad-title": "Ongeldige titel: $1."
 }

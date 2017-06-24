@@ -158,7 +158,8 @@
 			"Juanpabl",
 			"AlimanRuna",
 			"Luzcaru",
-			"Javiersanp"
+			"Javiersanp",
+			"Josecurioso"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -1430,6 +1431,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (véase también la [[Special:NewPages|lista de páginas nuevas]])",
 	"recentchanges-submit": "Mostrar",
 	"rcfilters-activefilters": "Filtros activos",
+	"rcfilters-advancedfilters": "Filtros avanzados",
 	"rcfilters-quickfilters": "Ajustes de filtro guardados",
 	"rcfilters-quickfilters-placeholder-title": "Ningún enlace guardado aún",
 	"rcfilters-quickfilters-placeholder-description": "Para guardar tus ajustes de filtro y reutilizarlos más tarde, pulsa en el icono del marcador en el área de Filtro activo que se encuentra a continuación.",
@@ -1516,7 +1518,9 @@
 	"rcfilters-filter-lastrevision-description": "El cambio más reciente a una página.",
 	"rcfilters-filter-previousrevision-label": "Revisiones anteriores",
 	"rcfilters-filter-previousrevision-description": "Todos los cambios que no son los más recientes cambian a una página.",
-	"rcfilters-view-tags": "Etiquetas",
+	"rcfilters-filter-excluded": "Excluido",
+	"rcfilters-tag-prefix-namespace-inverted": "<strong>Estado:</strong> $1",
+	"rcfilters-view-tags": "Ediciones etiquetadas",
 	"rcnotefrom": "Debajo {{PLURAL:$5|aparece el cambio|aparecen los cambios}} desde <strong>$3, $4</strong> (se muestran hasta <strong>$1</strong>).",
 	"rclistfromreset": "Restablecer selección de fecha",
 	"rclistfrom": "Mostrar cambios nuevos desde las $2 del $3",
@@ -2029,6 +2033,7 @@
 	"apisandbox-sending-request": "Enviando pedido a la API...",
 	"apisandbox-loading-results": "Recibiendo resultados de la API...",
 	"apisandbox-results-error": "Ocurrió un error durante la carga de la respuesta a la consulta API: $1",
+	"apisandbox-results-login-suppressed": "Esta petición ha sido procesada como un usuario sin sesión iniciada puesto que se podría usar para circunvenir la seguridad del navegador. Tenga en cuenta que la gestión del token automático del API sandbox no funciona correctamente con tales peticiones, por favor rellenalas manualmente.",
 	"apisandbox-request-selectformat-label": "Mostrar los datos de la petición como:",
 	"apisandbox-request-format-url-label": "Cadena de consulta de la URL",
 	"apisandbox-request-url-label": "URL solicitante:",
@@ -2943,8 +2948,10 @@
 	"newimages-legend": "Filtro",
 	"newimages-label": "Nombre del archivo (o una parte):",
 	"newimages-user": "Dirección IP o nombre de usuario",
+	"newimages-newbies": "Mostrar solo las contribuciones de cuentas nuevas",
 	"newimages-showbots": "Mostrar cargas de bots",
 	"newimages-hidepatrolled": "Ocultar las subidas verificadas",
+	"newimages-mediatype": "Tipo de medio:",
 	"noimages": "No hay nada que ver.",
 	"gallery-slideshow-toggle": "Activar o desactivar las miniaturas",
 	"ilsubmit": "Buscar",
@@ -4021,5 +4028,7 @@
 	"undelete-cantedit": "No puedes deshacer el borrado de esta página porque no tienes permisos para editarla.",
 	"undelete-cantcreate": "No puedes deshacer el borrado de esta página porque no existe ninguna página con este nombre y no tienes permisos para crearla.",
 	"pagedata-title": "Datos de la página",
+	"pagedata-text": "Esta página provee una interfaz de datos a otras páginas. Por favor proporcione el título de la página en la URL usando la sintaxis de subpáginas.\n* La negociación del contenido se aplica en base a la cabecera Accept de su cliente. Esto significa que los datos de la página se proporcionarán en su formato de preferencia.",
+	"pagedata-not-acceptable": "No se ha encontrado un formato coincidente. Tipos MIME admitidos:",
 	"pagedata-bad-title": "El título «$1» no es válido."
 }
