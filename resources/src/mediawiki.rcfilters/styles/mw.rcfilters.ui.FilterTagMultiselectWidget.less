@@ -5,6 +5,7 @@
 		// Make sure this uses the interface direction, not the content direction
 		direction: ltr;
 		border-bottom-right-radius: 0;
+		height: 2.5em;
 	}
 
 	&.oo-ui-widget-enabled .oo-ui-tagMultiselectWidget-handle {
@@ -43,18 +44,19 @@
 			width: 1em;
 
 			&-widget.oo-ui-widget {
+				border: 1px solid #a2a9b1;
+				border-left-width: 0;
+				border-top-left-radius: 0;
+				border-top-right-radius: 0;
+				border-bottom-left-radius: 0;
+
 				display: block;
 				text-align: right;
+				height: 2.5em;
+				box-sizing: border-box;
 
-				// Override OOUI rules
-				&.oo-ui-buttonSelectWidget .oo-ui-buttonOptionWidget:first-child a.oo-ui-buttonElement-button,
-				.oo-ui-buttonOptionWidget a.oo-ui-buttonElement-button {
-					border-radius: 0;
-					border-left: 0;
-				}
-
-				&.oo-ui-buttonSelectWidget .oo-ui-buttonOptionWidget:last-child a.oo-ui-buttonElement-button {
-					border-bottom-right-radius: 2px;
+				.oo-ui-buttonElement-frameless.oo-ui-iconElement:first-child {
+					margin-left: 0;
 				}
 
 			}
