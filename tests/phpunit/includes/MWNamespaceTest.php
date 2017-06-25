@@ -262,21 +262,43 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	}
 	*/
 
+	public function provideHasTalkNamespace() {
+		return [
+			[ NS_MEDIA, false ],
+			[ NS_SPECIAL, false ],
+
+			[ NS_MAIN, true ],
+			[ NS_TALK, true ],
+			[ NS_USER, true ],
+			[ NS_USER_TALK, true ],
+
+			[ 100, true ],
+			[ 101, true ],
+		];
+	}
+
 	/**
-	 * @covers MWNamespace::canTalk
+	 * @dataProvider provideHasTalkNamespace
+	 * @covers MWNamespace::hasTalkNamespace
+	 *
+	 * @param int $index
+	 * @param bool $expected
 	 */
-	public function testCanTalk() {
-		$this->assertCanNotTalk( NS_MEDIA );
-		$this->assertCanNotTalk( NS_SPECIAL );
+	public function testHasTalkNamespace( $index, $expected ) {
+		$actual = MWNamespace::hasTalkNamespace( $index );
+		$this->assertSame( $actual, $expected, "NS $index" );
+	}
 
-		$this->assertCanTalk( NS_MAIN );
-		$this->assertCanTalk( NS_TALK );
-		$this->assertCanTalk( NS_USER );
-		$this->assertCanTalk( NS_USER_TALK );
-
-		// User defined namespaces
-		$this->assertCanTalk( 100 );
-		$this->assertCanTalk( 101 );
+	/**
+	 * @dataProvider provideHasTalkNamespace
+	 * @covers MWNamespace::canTalk
+	 *
+	 * @param int $index
+	 * @param bool $expected
+	 */
+	public function testCanTalk( $index, $expected ) {
+		$actual = MWNamespace::canTalk( $index );
+		$this->assertSame( $actual, $expected, "NS $index" );
 	}
 
 	/**
