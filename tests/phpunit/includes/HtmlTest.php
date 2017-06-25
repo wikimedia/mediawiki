@@ -588,7 +588,7 @@ class HtmlTest extends MediaWikiTestCase {
 		];
 
 		# <button> specific handling
-		# see remarks on http://msdn.microsoft.com/en-us/library/ie/ms535211%28v=vs.85%29.aspx
+		# see remarks on https://msdn.microsoft.com/library/ms535211(v=vs.85).aspx
 		$cases[] = [ '<button type="submit"></button>',
 			'button', [ 'type' => 'submit' ],
 			'According to standard the default type is "submit". '
