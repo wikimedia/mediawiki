@@ -1394,7 +1394,7 @@
 	"rcfilters-filter-lastrevision-description": "Poslední změna stránky.",
 	"rcfilters-filter-previousrevision-label": "Dřívější verze",
 	"rcfilters-filter-previousrevision-description": "Všechny změny, které nejsou nejnovější úpravou stránky.",
-	"rcfilters-view-tags": "Značky",
+	"rcfilters-view-tags": "Označené editace",
 	"rcnotefrom": "Níže {{PLURAL:$5|je změna|jsou změny}} od <strong>$3, $4</strong> ({{PLURAL:$1|zobrazena|zobrazeny|zobrazeno}} nejvýše <strong>$1</strong>).",
 	"rclistfromreset": "Obnovit výběr data",
 	"rclistfrom": "Ukázat nové změny, počínaje od $2, $3",

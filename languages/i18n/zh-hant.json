@@ -1001,7 +1001,7 @@
 	"search-file-match": "(符合檔案內容)",
 	"search-suggest": "您指的是不是：$1",
 	"search-rewritten": "顯示 $1 的搜尋結果，改搜尋 $2。",
-	"search-interwiki-caption": "源自姐妹專案的結果",
+	"search-interwiki-caption": "源自姊妹專案的結果",
 	"search-interwiki-default": "來自 $1 的結果：",
 	"search-interwiki-more": "(更多)",
 	"search-interwiki-more-results": "更多結果",
