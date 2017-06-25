@@ -202,7 +202,27 @@ class FileDeleteForm {
 			if ( $deleteStatus->isOK() ) {
 				$status = $file->delete( $reason, $suppress, $user );
 				if ( $status->isOK() ) {
-					$status->value = $deleteStatus->value; // log id
+					if ( $deleteStatus->value === null ) {
+						// No log ID from doDeleteArticleReal(), probably
+						// because the page/revision didn't exist, so create
+						// one here.
+						$logtype = $suppress ? 'suppress' : 'delete';
+						$logEntry = new ManualLogEntry( $logtype, 'delete' );
+						$logEntry->setPerformer( $user );
+						$logEntry->setTarget( clone $title );
+						$logEntry->setComment( $reason );
+						$logEntry->setTags( $tags );
+						$logid = $logEntry->insert();
+						$dbw->onTransactionPreCommitOrIdle(
+							function () use ( $dbw, $logEntry, $logid ) {
+								$logEntry->publish( $logid );
+							},
+							__METHOD__
+						);
+						$status->value = $logid;
+					} else {
+						$status->value = $deleteStatus->value; // log id
+					}
 					$dbw->endAtomic( __METHOD__ );
 				} else {
 					// Page deleted but file still there? rollback page delete
