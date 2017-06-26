@@ -3692,7 +3692,7 @@
 	"logentry-import-upload-details": "$1 {{GENDER:$2|importó}} $3 subiendo un archivo ($4 {{PLURAL:$4|revisión|revisiones}})",
 	"logentry-import-interwiki": "$1 {{GENDER:$2|importó}} $3 desde otro wiki",
 	"logentry-import-interwiki-details": "$1 {{GENDER:$2|importó}} $3 desde $5 ($4 {{PLURAL:$4|revisión|revisiones}})",
-	"logentry-merge-merge": "$1 {{GENDER:$2|merged}} $3 en $4 (revisiones hasta el $5)",
+	"logentry-merge-merge": "$1 {{GENDER:$2|fusionó}} $3 en $4 (revisiones hasta el $5)",
 	"logentry-move-move": "$1 {{GENDER:$2|trasladó}} la página $3 a $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|trasladó}} la página $3 a $4 sin dejar una redirección",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|trasladó}} la página $3 a $4 sobre una redirección",

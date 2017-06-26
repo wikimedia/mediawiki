@@ -3834,6 +3834,7 @@
 	"specialpage-securitylevel-not-allowed-title": "Не дазволена",
 	"specialpage-securitylevel-not-allowed": "Выбачайце, вам не дазволена выкарыстоўваць гэтую старонку, бо вашая асоба ня можа быць пацьверджаная.",
 	"authpage-cannot-login": "Не атрымалася пачаць уваход у сыстэму.",
+	"authpage-cannot-login-continue": "Немагчыма працягнуць уваход у сыстэму. Падобна, што тэрмін вашай сэсіі скончыўся.",
 	"changecredentials": "Зьмена ўліковых зьвестак",
 	"removecredentials": "Выдаленьне ўліковых зьвестак",
 	"removecredentials-submit": "Выдаліць уліковыя зьвесткі",

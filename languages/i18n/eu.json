@@ -29,7 +29,8 @@
 			"Gorkaazk",
 			"Vriullop",
 			"Osoitz",
-			"Mikel Ibaiba"
+			"Mikel Ibaiba",
+			"MarcoAurelio"
 		]
 	},
 	"tog-underline": "Azpimarratu loturak:",
@@ -1904,7 +1905,7 @@
 	"rollbacklinkcount-morethan": "desegin {{PLURAL:$1|edizio bat|$1 edizio}} baino gehiago",
 	"rollbackfailed": "Desegiteak huts egin dud",
 	"cantrollback": "Ezin da aldaketa desegin; erabiltzaile bakarrak hartu du parte.",
-	"alreadyrolled": "Ezin da [[User:$2|$2]] ([[User talk:$2|Eztabaida]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) wikilariak «[[$1]]» orrian egindako azken aldaketa desegin;\nbeste norbaitek editatu edo desegin du jadanik.\n\n Azken aldaketa [[User:$3|$3]] ([[User talk:$3|Eztabaida]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) wikilariak egin du.",
+	"alreadyrolled": "Ezin da [[User:$2|$2]] ([[User talk:$2|eztabaida]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) wikilariak «[[:$1]]» orrian egindako azken aldaketa desegin;\nbeste norbaitek editatu edo desegin du jadanik.\n\nAzken aldaketa [[User:$3|$3]] ([[User talk:$3|eztabaida]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) wikilariak egin du.",
 	"editcomment": "Aldaketaren laburpena: <em>$1</em>.",
 	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) wikilariaren aldaketak deseginda, edukia [[User:$1|$1]] wikilariaren azken bertsiora itzuli da.",
 	"rollback-success": "$1 wikilariaren aldaketak deseginda,\nedukia $2 wikilariaren azken bertsiora itzuli da.",

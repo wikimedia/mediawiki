@@ -225,6 +225,8 @@
 	"apihelp-query+recentchanges-example-simple": "最近變更清單",
 	"apihelp-query+redirects-summary": "回傳連結至指定頁面的所有重新導向。",
 	"apihelp-query+redirects-param-limit": "要回傳的重新導向數量。",
+	"apihelp-query+search-paramvalue-prop-score": "已忽略",
+	"apihelp-query+search-paramvalue-prop-hasrelated": "已忽略",
 	"apihelp-query+search-param-limit": "要回傳的頁面總數。",
 	"apihelp-query+stashimageinfo-summary": "回傳多筆儲藏檔案的檔案資訊。",
 	"apihelp-query+stashimageinfo-example-simple": "回傳儲藏檔案的檔案資訊。",
