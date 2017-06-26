@@ -699,22 +699,21 @@
 	 */
 	Title.exists = function ( title ) {
 		var match,
-			type = $.type( title ),
 			obj = Title.exist.pages;
 
-		if ( type === 'string' ) {
+		if ( typeof title === 'string' ) {
 			match = obj[ title ];
-		} else if ( type === 'object' && title instanceof Title ) {
+		} else if ( title instanceof Title ) {
 			match = obj[ title.toString() ];
 		} else {
 			throw new Error( 'mw.Title.exists: title must be a string or an instance of Title' );
 		}
 
-		if ( typeof match === 'boolean' ) {
-			return match;
+		if ( typeof match !== 'boolean' ) {
+			return null;
 		}
 
-		return null;
+		return match;
 	};
 
 	/**
