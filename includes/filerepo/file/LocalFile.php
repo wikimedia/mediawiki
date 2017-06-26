@@ -716,6 +716,11 @@ class LocalFile extends File {
 	 * @return int
 	 */
 	public function getWidth( $page = 1 ) {
+		$page = (int)$page;
+		if ( $page < 1 ) {
+			$page = 1;
+		}
+
 		$this->load();
 
 		if ( $this->isMultipage() ) {
@@ -743,6 +748,11 @@ class LocalFile extends File {
 	 * @return int
 	 */
 	public function getHeight( $page = 1 ) {
+		$page = (int)$page;
+		if ( $page < 1 ) {
+			$page = 1;
+		}
+
 		$this->load();
 
 		if ( $this->isMultipage() ) {

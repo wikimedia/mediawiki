@@ -111,6 +111,11 @@ class UnregisteredLocalFile extends File {
 	 * @return bool
 	 */
 	private function cachePageDimensions( $page = 1 ) {
+		$page = (int)$page;
+		if ( $page < 1 ) {
+			$page = 1;
+		}
+
 		if ( !isset( $this->dims[$page] ) ) {
 			if ( !$this->getHandler() ) {
 				return false;
