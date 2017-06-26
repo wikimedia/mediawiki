@@ -1,3 +1,5 @@
+@import 'mw.rcfilters.variables';
+
 .mw-rcfilters-ui-filterTagMultiselectWidget {
 	max-width: none;
 
@@ -76,5 +78,13 @@
 	&-cell-reset {
 		text-align: right;
 		padding-left: 0.5em;
+	}
+
+	&-views-select-widget,
+	&-cell-save,
+	&-cell-reset {
+		> .oo-ui-buttonElement.oo-ui-widget-enabled > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
+			opacity: @base20-icon-opacity;
+		}
 	}
 }
