@@ -23,7 +23,7 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 
 		$usersArray = explode( "\n", $request->getText( $this->mName ) );
 		// Remove empty lines
-		$usersArray = array_values( array_filter( $usersArray, function( $username ) {
+		$usersArray = array_values( array_filter( $usersArray, function ( $username ) {
 			return trim( $username ) !== '';
 		} ) );
 		return $usersArray;

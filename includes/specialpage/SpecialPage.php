@@ -456,7 +456,7 @@ class SpecialPage implements MessageLocalizer {
 		$searchEngine->setLimitOffset( $limit, $offset );
 		$searchEngine->setNamespaces( [] );
 		$result = $searchEngine->defaultPrefixSearch( $search );
-		return array_map( function( Title $t ) {
+		return array_map( function ( Title $t ) {
 			return $t->getPrefixedText();
 		}, $result );
 	}

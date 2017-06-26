@@ -63,4 +63,3 @@ class FakeResultWrapper extends ResultWrapper {
 }
 
 class_alias( FakeResultWrapper::class, 'FakeResultWrapper' );
-

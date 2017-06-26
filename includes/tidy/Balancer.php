@@ -1891,7 +1891,7 @@ class Balancer {
 			$bad = array_uintersect_assoc(
 				$this->allowedHtmlElements,
 				BalanceSets::$unsupportedSet[BalanceSets::HTML_NAMESPACE],
-				function( $a, $b ) {
+				function ( $a, $b ) {
 					// Ignore the values (just intersect the keys) by saying
 					// all values are equal to each other.
 					return 0;

@@ -26,7 +26,7 @@ trait HTMLFormElement {
 			// And it's not needed anymore after infusing, so we don't put it in JS config at all.
 			$this->setAttributes( [ 'data-mw-modules' => implode( ',', $this->modules ) ] );
 		}
-		$this->registerConfigCallback( function( &$config ) {
+		$this->registerConfigCallback( function ( &$config ) {
 			if ( $this->hideIf !== null ) {
 				$config['hideIf'] = $this->hideIf;
 			}

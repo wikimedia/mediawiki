@@ -483,7 +483,7 @@ class LocalRepo extends FileRepo {
 	 * @return Closure
 	 */
 	protected function getDBFactory() {
-		return function( $index ) {
+		return function ( $index ) {
 			return wfGetDB( $index );
 		};
 	}

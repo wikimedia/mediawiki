@@ -3334,7 +3334,7 @@ class WikiPage implements Page, IDBAccessObject {
 		HTMLFileCache::clearFileCache( $title );
 
 		$revid = $revision ? $revision->getId() : null;
-		DeferredUpdates::addCallableUpdate( function() use ( $title, $revid ) {
+		DeferredUpdates::addCallableUpdate( function () use ( $title, $revid ) {
 			InfoAction::invalidateCache( $title, $revid );
 		} );
 	}

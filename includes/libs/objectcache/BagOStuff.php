@@ -475,7 +475,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 
 		$lSince = microtime( true ); // lock timestamp
 
-		return new ScopedCallback( function() use ( $key, $lSince, $expiry ) {
+		return new ScopedCallback( function () use ( $key, $lSince, $expiry ) {
 			$latency = .050; // latency skew (err towards keeping lock present)
 			$age = ( microtime( true ) - $lSince + $latency );
 			if ( ( $age + $latency ) >= $expiry ) {

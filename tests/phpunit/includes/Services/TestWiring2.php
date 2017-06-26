@@ -4,7 +4,7 @@
  */
 
 return [
-	'Bar' => function() {
+	'Bar' => function () {
 		return 'Bar!';
 	},
 ];

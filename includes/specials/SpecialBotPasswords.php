@@ -123,7 +123,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 					$showGrants
 				),
 				'default' => array_map(
-					function( $g ) {
+					function ( $g ) {
 						return "grant-$g";
 					},
 					$this->botPassword->getGrants()
@@ -131,14 +131,14 @@ class SpecialBotPasswords extends FormSpecialPage {
 				'tooltips' => array_combine(
 					array_map( 'MWGrants::getGrantsLink', $showGrants ),
 					array_map(
-						function( $rights ) use ( $lang ) {
+						function ( $rights ) use ( $lang ) {
 							return $lang->semicolonList( array_map( 'User::getRightDescription', $rights ) );
 						},
 						array_intersect_key( MWGrants::getRightsByGrant(), array_flip( $showGrants ) )
 					)
 				),
 				'force-options-on' => array_map(
-					function( $g ) {
+					function ( $g ) {
 						return "grant-$g";
 					},
 					MWGrants::getHiddenGrants()

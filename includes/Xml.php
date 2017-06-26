@@ -826,4 +826,3 @@ class Xml {
 		return $s;
 	}
 }
-

@@ -8,7 +8,7 @@ class ValidateRegistrationFile extends Maintenance {
 		$this->addArg( 'path', 'Path to extension.json/skin.json file.', true );
 	}
 	public function execute() {
-		$validator = new ExtensionJsonValidator( function( $msg ) {
+		$validator = new ExtensionJsonValidator( function ( $msg ) {
 			$this->error( $msg, 1 );
 		} );
 		$validator->checkDependencies();

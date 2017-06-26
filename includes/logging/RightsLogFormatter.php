@@ -176,7 +176,7 @@ class RightsLogFormatter extends LogFormatter {
 			$oldmetadata =& $params['oldmetadata'];
 			// unset old metadata entry to ensure metadata goes at the end of the params array
 			unset( $params['oldmetadata'] );
-			$params['oldmetadata'] = array_map( function( $index ) use ( $params, $oldmetadata ) {
+			$params['oldmetadata'] = array_map( function ( $index ) use ( $params, $oldmetadata ) {
 				$result = [ 'group' => $params['4:array:oldgroups'][$index] ];
 				if ( isset( $oldmetadata[$index] ) ) {
 					$result += $oldmetadata[$index];
@@ -194,7 +194,7 @@ class RightsLogFormatter extends LogFormatter {
 			$newmetadata =& $params['newmetadata'];
 			// unset old metadata entry to ensure metadata goes at the end of the params array
 			unset( $params['newmetadata'] );
-			$params['newmetadata'] = array_map( function( $index ) use ( $params, $newmetadata ) {
+			$params['newmetadata'] = array_map( function ( $index ) use ( $params, $newmetadata ) {
 				$result = [ 'group' => $params['5:array:newgroups'][$index] ];
 				if ( isset( $newmetadata[$index] ) ) {
 					$result += $newmetadata[$index];

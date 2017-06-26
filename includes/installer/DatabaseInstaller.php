@@ -336,7 +336,7 @@ abstract class DatabaseInstaller {
 		$services = \MediaWiki\MediaWikiServices::getInstance();
 
 		$connection = $status->value;
-		$services->redefineService( 'DBLoadBalancerFactory', function() use ( $connection ) {
+		$services->redefineService( 'DBLoadBalancerFactory', function () use ( $connection ) {
 			return LBFactorySingle::newFromConnection( $connection );
 		} );
 	}

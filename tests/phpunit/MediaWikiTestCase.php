@@ -309,7 +309,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		ConfigFactory $oldFactory,
 		array $configurations
 	) {
-		return function( MediaWikiServices $services ) use ( $oldFactory, $configurations ) {
+		return function ( MediaWikiServices $services ) use ( $oldFactory, $configurations ) {
 			$factory = new ConfigFactory();
 
 			// clone configurations from $oldFactory that are not overwritten by $configurations

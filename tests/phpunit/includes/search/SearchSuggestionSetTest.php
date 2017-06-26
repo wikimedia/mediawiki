@@ -43,7 +43,7 @@ class SearchSuggestionSetTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals( 3, $set->getBestScore() );
 		$this->assertEquals( 1, $suggestion->getScore() );
 
-		$scores = $set->map( function( $s ) {
+		$scores = $set->map( function ( $s ) {
 			return $s->getScore();
 		} );
 		$sorted = $scores;
@@ -80,7 +80,7 @@ class SearchSuggestionSetTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals( 6, $set->getBestScore() );
 		$this->assertEquals( 6, $suggestion->getScore() );
 
-		$scores = $set->map( function( $s ) {
+		$scores = $set->map( function ( $s ) {
 			return $s->getScore();
 		} );
 		$sorted = $scores;

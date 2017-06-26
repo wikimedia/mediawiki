@@ -101,7 +101,7 @@ class CachingSiteStoreTest extends MediaWikiTestCase {
 
 		$dbSiteStore->expects( $this->any() )
 			->method( 'getSites' )
-			->will( $this->returnCallback( function() {
+			->will( $this->returnCallback( function () {
 				$siteList = new SiteList();
 				$siteList->setSite( $this->getTestSite() );
 

@@ -63,7 +63,7 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 		// define new config instance
 		$newFactory = new ConfigFactory();
 		$newFactory->register( 'foo', 'GlobalVarConfig::newInstance' );
-		$newFactory->register( 'bar', function() {
+		$newFactory->register( 'bar', function () {
 			return new HashConfig();
 		} );
 

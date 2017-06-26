@@ -511,7 +511,7 @@ class SpecialVersion extends SpecialPage {
 				// in their proper section
 				continue;
 			}
-			$authors = array_map( function( $arr ) {
+			$authors = array_map( function ( $arr ) {
 				// If a homepage is set, link to it
 				if ( isset( $arr['homepage'] ) ) {
 					return "[{$arr['homepage']} {$arr['name']}]";

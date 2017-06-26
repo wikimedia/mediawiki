@@ -38,7 +38,7 @@ class PageDataRequestHandler {
 		$parts = explode( '/', $subPage, 2 );
 		if ( $parts !== 2 ) {
 			$slot = $parts[0];
-			if ( $slot === 'main' or $slot === '' ) {
+			if ( $slot === 'main' || $slot === '' ) {
 				return true;
 			}
 		}

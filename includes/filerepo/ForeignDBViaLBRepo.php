@@ -73,7 +73,7 @@ class ForeignDBViaLBRepo extends LocalRepo {
 	 * @return Closure
 	 */
 	protected function getDBFactory() {
-		return function( $index ) {
+		return function ( $index ) {
 			return wfGetLB( $this->wiki )->getConnectionRef( $index, [], $this->wiki );
 		};
 	}

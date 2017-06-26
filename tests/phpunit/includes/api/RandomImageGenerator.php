@@ -87,7 +87,7 @@ class RandomImageGenerator {
 					__DIR__ . '/words.txt'
 				] as $dictionaryFile
 			) {
-				if ( is_file( $dictionaryFile ) and is_readable( $dictionaryFile ) ) {
+				if ( is_file( $dictionaryFile ) && is_readable( $dictionaryFile ) ) {
 					$this->dictionaryFile = $dictionaryFile;
 					break;
 				}
