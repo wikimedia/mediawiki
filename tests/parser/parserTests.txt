@@ -8741,6 +8741,19 @@ Blah blah blah
 <a rel="mw:ExtLink" href="http://zh.wikipedia.org/wiki/Chinese" title="zh:Chinese"> zh : Chinese </a></p>
 !! end
 
+!! test
+Multiple colons escaping interlanguage links
+!! wikitext
+[[:es:Spanish]]
+[[::es:Spanish]]
+[[:::es:Spanish]]
+!! html/php
+<p><a href="http://es.wikipedia.org/wiki/Spanish" class="extiw" title="es:Spanish">es:Spanish</a>
+[[::es:Spanish]]
+[[:::es:Spanish]]
+</p>
+!! end
+
 ## parsoid html2wt will normalize the space to _
 !! test
 Space and question mark encoding in interlanguage links (T95473)
