@@ -1257,7 +1257,7 @@ class LoadBalancer implements ILoadBalancer {
 				// This happens if onTransactionIdle() callbacks leave callbacks on *another* DB
 				// (which finished its callbacks already). Warn and recover in this case. Let the
 				// callbacks run in the final commitMasterChanges() in LBFactory::shutdown().
-				$this->queryLogger->error( __METHOD__ . ": found writes/callbacks pending." );
+				$this->queryLogger->info( __METHOD__ . ": found writes/callbacks pending." );
 				return;
 			} elseif ( $conn->trxLevel() ) {
 				// This happens for single-DB setups where DB_REPLICA uses the master DB,
