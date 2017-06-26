@@ -49,4 +49,3 @@ class CodeCleanerGlobalsPass extends \Psy\CodeCleaner\CodeCleanerPass {
 		return $nodes;
 	}
 }
-

@@ -593,7 +593,7 @@ class LocalFile extends File {
 		if ( $upgrade ) {
 			$this->upgrading = true;
 			// Defer updates unless in auto-commit CLI mode
-			DeferredUpdates::addCallableUpdate( function() {
+			DeferredUpdates::addCallableUpdate( function () {
 				$this->upgrading = false; // avoid duplicate updates
 				try {
 					$this->upgradeRow();

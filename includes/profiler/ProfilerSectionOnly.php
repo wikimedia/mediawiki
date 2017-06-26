@@ -73,7 +73,7 @@ class ProfilerSectionOnly extends Profiler {
 	 */
 	protected function getFunctionReport() {
 		$data = $this->getFunctionStats();
-		usort( $data, function( $a, $b ) {
+		usort( $data, function ( $a, $b ) {
 			if ( $a['real'] === $b['real'] ) {
 				return 0;
 			}

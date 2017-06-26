@@ -48,7 +48,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->getMock();
 		$mock->expects( $this->any() )
 			->method( 'makeKey' )
-			->will( $this->returnCallback( function() {
+			->will( $this->returnCallback( function () {
 				return implode( ':', func_get_args() );
 			} ) );
 		return $mock;
@@ -313,12 +313,12 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->will( $this->returnValue( 7 ) );
 		$mockDb->expects( $this->exactly( 1 ) )
 			->method( 'addQuotes' )
-			->will( $this->returnCallback( function( $value ) {
+			->will( $this->returnCallback( function ( $value ) {
 				return "'$value'";
 			} ) );
 		$mockDb->expects( $this->exactly( 1 ) )
 			->method( 'timestamp' )
-			->will( $this->returnCallback( function( $value ) {
+			->will( $this->returnCallback( function ( $value ) {
 				return 'TS' . $value . 'TS';
 			} ) );
 
@@ -351,12 +351,12 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->exactly( 2 * 3 ) )
 			->method( 'addQuotes' )
-			->will( $this->returnCallback( function( $value ) {
+			->will( $this->returnCallback( function ( $value ) {
 				return "'$value'";
 			} ) );
 		$mockDb->expects( $this->exactly( 3 ) )
 			->method( 'timestamp' )
-			->will( $this->returnCallback( function( $value ) {
+			->will( $this->returnCallback( function ( $value ) {
 				return 'TS' . $value . 'TS';
 			} ) );
 		$mockDb->expects( $this->any() )
@@ -365,9 +365,9 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				$this->isType( 'array' ),
 				$this->isType( 'int' )
 			)
-			->will( $this->returnCallback( function( $a, $conj ) {
+			->will( $this->returnCallback( function ( $a, $conj ) {
 				$sqlConj = $conj === LIST_AND ? ' AND ' : ' OR ';
-				return join( $sqlConj, array_map( function( $s ) {
+				return join( $sqlConj, array_map( function ( $s ) {
 					return '(' . $s . ')';
 				}, $a
 				) );
@@ -446,12 +446,12 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->exactly( 2 * 3 ) )
 			->method( 'addQuotes' )
-			->will( $this->returnCallback( function( $value ) {
+			->will( $this->returnCallback( function ( $value ) {
 				return "'$value'";
 			} ) );
 		$mockDb->expects( $this->exactly( 3 ) )
 			->method( 'timestamp' )
-			->will( $this->returnCallback( function( $value ) {
+			->will( $this->returnCallback( function ( $value ) {
 				return 'TS' . $value . 'TS';
 			} ) );
 		$mockDb->expects( $this->any() )
@@ -460,9 +460,9 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				$this->isType( 'array' ),
 				$this->isType( 'int' )
 			)
-			->will( $this->returnCallback( function( $a, $conj ) {
+			->will( $this->returnCallback( function ( $a, $conj ) {
 				$sqlConj = $conj === LIST_AND ? ' AND ' : ' OR ';
-				return join( $sqlConj, array_map( function( $s ) {
+				return join( $sqlConj, array_map( function ( $s ) {
 					return '(' . $s . ')';
 				}, $a
 				) );
@@ -1970,7 +1970,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		// Note: This does not actually assert the job is correct
 		$callableCallCounter = 0;
-		$mockCallback = function( $callable ) use ( &$callableCallCounter ) {
+		$mockCallback = function ( $callable ) use ( &$callableCallCounter ) {
 			$callableCallCounter++;
 			$this->assertInternalType( 'callable', $callable );
 		};
@@ -2011,7 +2011,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		// Note: This does not actually assert the job is correct
 		$callableCallCounter = 0;
-		$mockCallback = function( $callable ) use ( &$callableCallCounter ) {
+		$mockCallback = function ( $callable ) use ( &$callableCallCounter ) {
 			$callableCallCounter++;
 			$this->assertInternalType( 'callable', $callable );
 		};
@@ -2105,13 +2105,13 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$callableCallCounter = 0;
 		$scopedOverride = $store->overrideDeferredUpdatesAddCallableUpdateCallback(
-			function( $callable ) use ( &$callableCallCounter, $title, $user ) {
+			function ( $callable ) use ( &$callableCallCounter, $title, $user ) {
 				$callableCallCounter++;
 				$this->verifyCallbackJob(
 					$callable,
 					$title,
 					$user->getId(),
-					function( $time ) {
+					function ( $time ) {
 						return $time === null;
 					}
 				);
@@ -2172,13 +2172,13 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$addUpdateCallCounter = 0;
 		$scopedOverrideDeferred = $store->overrideDeferredUpdatesAddCallableUpdateCallback(
-			function( $callable ) use ( &$addUpdateCallCounter, $title, $user ) {
+			function ( $callable ) use ( &$addUpdateCallCounter, $title, $user ) {
 				$addUpdateCallCounter++;
 				$this->verifyCallbackJob(
 					$callable,
 					$title,
 					$user->getId(),
-					function( $time ) {
+					function ( $time ) {
 						return $time !== null && $time > '20151212010101';
 					}
 				);
@@ -2187,7 +2187,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$getTimestampCallCounter = 0;
 		$scopedOverrideRevision = $store->overrideRevisionGetTimestampFromIdCallback(
-			function( $titleParam, $oldidParam ) use ( &$getTimestampCallCounter, $title, $oldid ) {
+			function ( $titleParam, $oldidParam ) use ( &$getTimestampCallCounter, $title, $oldid ) {
 				$getTimestampCallCounter++;
 				$this->assertEquals( $title, $titleParam );
 				$this->assertEquals( $oldid, $oldidParam );
@@ -2248,13 +2248,13 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$callableCallCounter = 0;
 		$scopedOverride = $store->overrideDeferredUpdatesAddCallableUpdateCallback(
-			function( $callable ) use ( &$callableCallCounter, $title, $user ) {
+			function ( $callable ) use ( &$callableCallCounter, $title, $user ) {
 				$callableCallCounter++;
 				$this->verifyCallbackJob(
 					$callable,
 					$title,
 					$user->getId(),
-					function( $time ) {
+					function ( $time ) {
 						return $time === null;
 					}
 				);
@@ -2315,13 +2315,13 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$addUpdateCallCounter = 0;
 		$scopedOverrideDeferred = $store->overrideDeferredUpdatesAddCallableUpdateCallback(
-			function( $callable ) use ( &$addUpdateCallCounter, $title, $user ) {
+			function ( $callable ) use ( &$addUpdateCallCounter, $title, $user ) {
 				$addUpdateCallCounter++;
 				$this->verifyCallbackJob(
 					$callable,
 					$title,
 					$user->getId(),
-					function( $time ) {
+					function ( $time ) {
 						return $time === '30151212010101';
 					}
 				);
@@ -2330,7 +2330,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$getTimestampCallCounter = 0;
 		$scopedOverrideRevision = $store->overrideRevisionGetTimestampFromIdCallback(
-			function( $titleParam, $oldidParam ) use ( &$getTimestampCallCounter, $title, $oldid ) {
+			function ( $titleParam, $oldidParam ) use ( &$getTimestampCallCounter, $title, $oldid ) {
 				$getTimestampCallCounter++;
 				$this->assertEquals( $title, $titleParam );
 				$this->assertEquals( $oldid, $oldidParam );
@@ -2393,13 +2393,13 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$addUpdateCallCounter = 0;
 		$scopedOverrideDeferred = $store->overrideDeferredUpdatesAddCallableUpdateCallback(
-			function( $callable ) use ( &$addUpdateCallCounter, $title, $user ) {
+			function ( $callable ) use ( &$addUpdateCallCounter, $title, $user ) {
 				$addUpdateCallCounter++;
 				$this->verifyCallbackJob(
 					$callable,
 					$title,
 					$user->getId(),
-					function( $time ) {
+					function ( $time ) {
 						return $time === false;
 					}
 				);
@@ -2408,7 +2408,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$getTimestampCallCounter = 0;
 		$scopedOverrideRevision = $store->overrideRevisionGetTimestampFromIdCallback(
-			function( $titleParam, $oldidParam ) use ( &$getTimestampCallCounter, $title, $oldid ) {
+			function ( $titleParam, $oldidParam ) use ( &$getTimestampCallCounter, $title, $oldid ) {
 				$getTimestampCallCounter++;
 				$this->assertEquals( $title, $titleParam );
 				$this->assertEquals( $oldid, $oldidParam );
@@ -2454,7 +2454,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->will( $this->returnValue( true ) );
 		$mockDb->expects( $this->exactly( 1 ) )
 			->method( 'timestamp' )
-			->will( $this->returnCallback( function( $value ) {
+			->will( $this->returnCallback( function ( $value ) {
 				return 'TS' . $value . 'TS';
 			} ) );
 
@@ -2484,7 +2484,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->will( $this->returnValue( true ) );
 		$mockDb->expects( $this->exactly( 0 ) )
 			->method( 'timestamp' )
-			->will( $this->returnCallback( function( $value ) {
+			->will( $this->returnCallback( function ( $value ) {
 				return 'TS' . $value . 'TS';
 			} ) );
 
@@ -2515,7 +2515,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->will( $this->returnValue( true ) );
 		$mockDb->expects( $this->exactly( 1 ) )
 			->method( 'timestamp' )
-			->will( $this->returnCallback( function( $value ) {
+			->will( $this->returnCallback( function ( $value ) {
 				return 'TS' . $value . 'TS';
 			} ) );
 		$mockDb->expects( $this->once() )

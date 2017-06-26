@@ -400,7 +400,7 @@ class ExtensionRegistry {
 	protected function processAutoLoader( $dir, array $info ) {
 		if ( isset( $info['AutoloadClasses'] ) ) {
 			// Make paths absolute, relative to the JSON file
-			return array_map( function( $file ) use ( $dir ) {
+			return array_map( function ( $file ) use ( $dir ) {
 				return "$dir/$file";
 			}, $info['AutoloadClasses'] );
 		} else {

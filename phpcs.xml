@@ -38,7 +38,7 @@
 		</properties>
 	</rule>
 	<file>.</file>
-	<arg name="encoding" value="utf8"/>
+	<arg name="encoding" value="UTF-8"/>
 	<arg name="extensions" value="php,php5,inc,sample"/>
 	<rule ref="Generic.Files.LineLength">
 		<exclude-pattern>*/languages/messages/Messages*.php</exclude-pattern>

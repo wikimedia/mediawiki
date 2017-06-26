@@ -847,7 +847,7 @@ class DifferenceEngine extends ContextSource {
 	 * @return bool|string
 	 */
 	public function generateTextDiffBody( $otext, $ntext ) {
-		$diff = function() use ( $otext, $ntext ) {
+		$diff = function () use ( $otext, $ntext ) {
 			$time = microtime( true );
 
 			$result = $this->textDiff( $otext, $ntext );
@@ -867,7 +867,7 @@ class DifferenceEngine extends ContextSource {
 		 * @param Status $status
 		 * @throws FatalError
 		 */
-		$error = function( $status ) {
+		$error = function ( $status ) {
 			throw new FatalError( $status->getWikiText() );
 		};
 

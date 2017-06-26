@@ -384,7 +384,7 @@ abstract class Installer {
 
 		// make sure we use the installer config as the main config
 		$configRegistry = $baseConfig->get( 'ConfigRegistry' );
-		$configRegistry['main'] = function() use ( $installerConfig ) {
+		$configRegistry['main'] = function () use ( $installerConfig ) {
 			return $installerConfig;
 		};
 

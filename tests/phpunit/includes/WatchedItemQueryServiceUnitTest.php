@@ -21,9 +21,9 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 				$this->isType( 'array' ),
 				$this->isType( 'int' )
 			)
-			->will( $this->returnCallback( function( $a, $conj ) {
+			->will( $this->returnCallback( function ( $a, $conj ) {
 				$sqlConj = $conj === LIST_AND ? ' AND ' : ' OR ';
-				return join( $sqlConj, array_map( function( $s ) {
+				return join( $sqlConj, array_map( function ( $s ) {
 					return '(' . $s . ')';
 				}, $a
 				) );
@@ -31,7 +31,7 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 
 		$mock->expects( $this->any() )
 			->method( 'addQuotes' )
-			->will( $this->returnCallback( function( $value ) {
+			->will( $this->returnCallback( function ( $value ) {
 				return "'$value'";
 			} ) );
 
@@ -41,7 +41,7 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 
 		$mock->expects( $this->any() )
 			->method( 'bitAnd' )
-			->willReturnCallback( function( $a, $b ) {
+			->willReturnCallback( function ( $a, $b ) {
 				return "($a & $b)";
 			} );
 
@@ -106,12 +106,12 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 
 		$mock->expects( $this->any() )
 			->method( 'isAllowed' )
-			->will( $this->returnCallback( function( $action ) use ( $notAllowedAction ) {
+			->will( $this->returnCallback( function ( $action ) use ( $notAllowedAction ) {
 				return $action !== $notAllowedAction;
 			} ) );
 		$mock->expects( $this->any() )
 			->method( 'isAllowedAny' )
-			->will( $this->returnCallback( function() use ( $notAllowedAction ) {
+			->will( $this->returnCallback( function () use ( $notAllowedAction ) {
 				$actions = func_get_args();
 				return !in_array( $notAllowedAction, $actions );
 			} ) );
@@ -1450,7 +1450,7 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->any() )
 			->method( 'addQuotes' )
-			->will( $this->returnCallback( function( $value ) {
+			->will( $this->returnCallback( function ( $value ) {
 				return "'$value'";
 			} ) );
 		$mockDb->expects( $this->any() )
@@ -1459,9 +1459,9 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 				$this->isType( 'array' ),
 				$this->isType( 'int' )
 			)
-			->will( $this->returnCallback( function( $a, $conj ) {
+			->will( $this->returnCallback( function ( $a, $conj ) {
 				$sqlConj = $conj === LIST_AND ? ' AND ' : ' OR ';
-				return join( $sqlConj, array_map( function( $s ) {
+				return join( $sqlConj, array_map( function ( $s ) {
 					return '(' . $s . ')';
 				}, $a
 				) );

@@ -183,7 +183,7 @@ class SpecialSearchTest extends MediaWikiTestCase {
 		$rewrittenQuery,
 		array $resultTitles
 	) {
-		$results = array_map( function( $title ) {
+		$results = array_map( function ( $title ) {
 			return SearchResult::newFromTitle( $title );
 		}, $resultTitles );
 

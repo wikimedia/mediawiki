@@ -1046,4 +1046,3 @@ class DatabaseSqlite extends Database {
 }
 
 class_alias( DatabaseSqlite::class, 'DatabaseSqlite' );
-

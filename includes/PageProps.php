@@ -55,7 +55,7 @@ class PageProps {
 		}
 		$previousValue = self::$instance;
 		self::$instance = $store;
-		return new ScopedCallback( function() use ( $previousValue ) {
+		return new ScopedCallback( function () use ( $previousValue ) {
 			self::$instance = $previousValue;
 		} );
 	}

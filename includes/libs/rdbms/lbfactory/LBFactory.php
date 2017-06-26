@@ -530,7 +530,7 @@ abstract class LBFactory implements ILBFactory {
 			$prefix
 		);
 
-		$this->forEachLB( function( ILoadBalancer $lb ) use ( $prefix ) {
+		$this->forEachLB( function ( ILoadBalancer $lb ) use ( $prefix ) {
 			$lb->setDomainPrefix( $prefix );
 		} );
 	}

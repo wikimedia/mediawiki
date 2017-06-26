@@ -685,7 +685,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 		$attribs = $data['attribs'];
 		unset( $data['attribs'] );
-		$attribs = wfArrayFilterByKey( $attribs, function( $key ) {
+		$attribs = wfArrayFilterByKey( $attribs, function ( $key ) {
 			return $key === 'class' || Sanitizer::isReservedDataAttribute( $key );
 		} );
 

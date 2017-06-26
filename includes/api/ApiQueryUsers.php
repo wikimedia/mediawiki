@@ -214,7 +214,7 @@ class ApiQueryUsers extends ApiQueryBase {
 				}
 
 				if ( isset( $this->prop['groupmemberships'] ) ) {
-					$data[$key]['groupmemberships'] = array_map( function( $ugm ) {
+					$data[$key]['groupmemberships'] = array_map( function ( $ugm ) {
 						return [
 							'group' => $ugm->getGroup(),
 							'expiry' => ApiResult::formatExpiry( $ugm->getExpiry() ),

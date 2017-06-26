@@ -176,7 +176,7 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase  {
 		$priorValue = null;
 		$priorAsOf = null;
 		$wasSet = 0;
-		$func = function( $old, &$ttl, &$opts, $asOf )
+		$func = function ( $old, &$ttl, &$opts, $asOf )
 		use ( &$wasSet, &$priorValue, &$priorAsOf, $value )
 		{
 			++$wasSet;
@@ -583,7 +583,7 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase  {
 		$value = wfRandomString();
 
 		$calls = 0;
-		$func = function() use ( &$calls, $value, $cache, $key ) {
+		$func = function () use ( &$calls, $value, $cache, $key ) {
 			++$calls;
 			// Immediately kill any mutex rather than waiting a second
 			$cache->delete( $cache::MUTEX_KEY_PREFIX . $key );
@@ -625,7 +625,7 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase  {
 		$value = wfRandomString();
 
 		$calls = 0;
-		$func = function( $oldValue, &$ttl, &$setOpts ) use ( &$calls, $value, $cache, $key ) {
+		$func = function ( $oldValue, &$ttl, &$setOpts ) use ( &$calls, $value, $cache, $key ) {
 			++$calls;
 			$setOpts['since'] = microtime( true ) - 10;
 			// Immediately kill any mutex rather than waiting a second
@@ -659,7 +659,7 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase  {
 		$busyValue = wfRandomString();
 
 		$calls = 0;
-		$func = function() use ( &$calls, $value, $cache, $key ) {
+		$func = function () use ( &$calls, $value, $cache, $key ) {
 			++$calls;
 			// Immediately kill any mutex rather than waiting a second
 			$cache->delete( $cache::MUTEX_KEY_PREFIX . $key );
@@ -921,7 +921,7 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase  {
 		$value = wfRandomString();
 
 		$wasSet = 0;
-		$func = function( $old, &$ttl ) use ( &$wasSet, $value ) {
+		$func = function ( $old, &$ttl ) use ( &$wasSet, $value ) {
 			++$wasSet;
 			return $value;
 		};

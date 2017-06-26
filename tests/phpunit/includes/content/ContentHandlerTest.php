@@ -28,7 +28,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 				CONTENT_MODEL_CSS => 'CssContentHandler',
 				CONTENT_MODEL_TEXT => 'TextContentHandler',
 				'testing' => 'DummyContentHandlerForTesting',
-				'testing-callbacks' => function( $modelId ) {
+				'testing-callbacks' => function ( $modelId ) {
 					return new DummyContentHandlerForTesting( $modelId );
 				}
 			],
@@ -418,7 +418,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 		$searchEngine->expects( $this->any() )
 			->method( 'makeSearchFieldMapping' )
-			->will( $this->returnCallback( function( $name, $type ) {
+			->will( $this->returnCallback( function ( $name, $type ) {
 					return new DummySearchIndexFieldDefinition( $name, $type );
 			} ) );
 

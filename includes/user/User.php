@@ -2506,7 +2506,7 @@ class User implements IDBAccessObject {
 			$cache->delete( $key, 1 );
 		} else {
 			wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle(
-				function() use ( $cache, $key ) {
+				function () use ( $cache, $key ) {
 					$cache->delete( $key );
 				},
 				__METHOD__
@@ -3698,7 +3698,7 @@ class User implements IDBAccessObject {
 			}
 
 			// Try to update the DB post-send and only if needed...
-			DeferredUpdates::addCallableUpdate( function() use ( $title, $oldid ) {
+			DeferredUpdates::addCallableUpdate( function () use ( $title, $oldid ) {
 				if ( !$this->getNewtalk() ) {
 					return; // no notifications to clear
 				}
