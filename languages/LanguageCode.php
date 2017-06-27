@@ -28,6 +28,27 @@
  */
 class LanguageCode {
 	/**
+	 * Mapping of deprecated language codes that were used in previous
+	 * versions of MediaWiki to up-to-date, current language codes.
+	 *
+	 * @var array Mapping from language code to language code
+	 *
+	 * @since 1.30
+	 */
+	private static $deprecatedLanguageCodeMapping = [
+		// Note that als is actually a valid ISO 639 code (Tosk Albanian), but it
+		// was previously used in MediaWiki for Alsatian, which comes under gsw
+		'als' => 'gsw',
+		'bat-smg' => 'sgs',
+		'be-x-old' => 'be-tarask',
+		'fiu-vro' => 'vro',
+		'roa-rup' => 'rup',
+		'zh-classical' => 'lzh',
+		'zh-min-nan' => 'nan',
+		'zh-yue' => 'yue',
+	];
+
+	/**
 	 * Returns a mapping of deprecated language codes that were used in previous
 	 * versions of MediaWiki to up-to-date, current language codes.
 	 *
@@ -36,19 +57,27 @@ class LanguageCode {
 	 * MediaWiki's localisation system.
 	 *
 	 * @return string[]
+	 *
+	 * @since 1.29
 	 */
 	public static function getDeprecatedCodeMapping() {
-		return [
-			// Note that als is actually a valid ISO 639 code (Tosk Albanian), but it
-			// was previously used in MediaWiki for Alsatian, which comes under gsw
-			'als' => 'gsw',
-			'bat-smg' => 'sgs',
-			'be-x-old' => 'be-tarask',
-			'fiu-vro' => 'vro',
-			'roa-rup' => 'rup',
-			'zh-classical' => 'lzh',
-			'zh-min-nan' => 'nan',
-			'zh-yue' => 'yue',
-		];
+		return self::$deprecatedLanguageCodeMapping;
+	}
+
+	/**
+	 * Replace deprecated language codes that were used in previous
+	 * versions of MediaWiki to up-to-date, current language codes.
+	 * Other values will returned unchanged.
+	 *
+	 * @param string $code Old language code
+	 * @return string New language code
+	 *
+	 * @since 1.30
+	 */
+	public static function replaceDeprecatedCodes( $code ) {
+		if ( isset( self::$deprecatedLanguageCodeMapping[$code] ) ) {
+			return self::$deprecatedLanguageCodeMapping[$code];
+		}
+		return $code;
 	}
 }
