@@ -19,7 +19,6 @@
  *
  * @file
  * @defgroup JobQueue JobQueue
- * @author Aaron Schulz
  */
 use MediaWiki\MediaWikiServices;
 

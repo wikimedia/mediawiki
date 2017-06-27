@@ -20,7 +20,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @author Aaron Schulz
  * @ingroup Maintenance
  */
 

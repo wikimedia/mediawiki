@@ -18,7 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @author Antoine Musso "<hashar at free dot fr>", Aaron Schulz
+ * @author Antoine Musso "<hashar at free dot fr>"
  */
 
 use IPSet\IPSet;

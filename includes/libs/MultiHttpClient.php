@@ -43,7 +43,6 @@ use Psr\Log\NullLogger;
  *                  - relayResponseHeaders : write out header via header()
  * Request maps can use integer index 0 instead of 'method' and 1 instead of 'url'.
  *
- * @author Aaron Schulz
  * @since 1.23
  */
 class MultiHttpClient implements LoggerAwareInterface {

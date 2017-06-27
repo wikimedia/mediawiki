@@ -20,7 +20,6 @@
  * @file
  * @ingroup FileRepo
  * @ingroup FileBackend
- * @author Aaron Schulz
  */
 
 use Wikimedia\Rdbms\DBConnRef;
