@@ -1,4 +1,10 @@
 == MediaWiki 1.28.1 ==
+This is not a release yet!
+
+=== Changes since 1.28.1 ==
+* (T168856) Allow SVGs created by Dia to be uploaded.
+
+== MediaWiki 1.28.1 ==
 
 This is a security and maintenance release of the MediaWiki 1.28 branch.
 
