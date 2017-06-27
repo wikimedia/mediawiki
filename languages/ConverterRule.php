@@ -230,7 +230,7 @@ class ConverterRule {
 			if ( $disp === false && array_key_exists( $variant, $unidtable ) ) {
 				$disp = array_values( $unidtable[$variant] )[0];
 			}
-			// or display frist text under disable manual convert
+			// or display first text under disable manual convert
 			if ( $disp === false && $this->mConverter->mManualLevel[$variant] == 'disable' ) {
 				if ( count( $bidtable ) > 0 ) {
 					$disp = array_values( $bidtable )[0];
