@@ -2372,6 +2372,7 @@
 	"undelete-search-title": "Search deleted pages",
 	"undelete-search-box": "Search deleted pages",
 	"undelete-search-prefix": "Show pages starting with:",
+	"undelete-search-full": "Show pages containing:",
 	"undelete-search-submit": "Search",
 	"undelete-no-results": "No matching pages found in the deletion archive.",
 	"undelete-filename-mismatch": "Cannot undelete file revision with timestamp $1: Filename mismatch.",
