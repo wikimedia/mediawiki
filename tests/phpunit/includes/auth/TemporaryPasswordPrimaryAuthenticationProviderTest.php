@@ -647,7 +647,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		$req->password = 'bar';
 
 		$expect = AuthenticationResponse::newPass( 'Foo' );
-		$expect->createRequest = clone( $req );
+		$expect->createRequest = clone $req;
 		$expect->createRequest->username = 'Foo';
 		$this->assertEquals( $expect, $provider->beginPrimaryAccountCreation( $user, $user, $reqs ) );
 		$this->assertNull( $this->manager->getAuthenticationSessionData( 'no-email' ) );
@@ -703,7 +703,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		} );
 
 		$expect = AuthenticationResponse::newPass( $user->getName() );
-		$expect->createRequest = clone( $req );
+		$expect->createRequest = clone $req;
 		$expect->createRequest->username = $user->getName();
 		$res = $provider->beginPrimaryAccountCreation( $user, $creator, [ $req ] );
 		$this->assertEquals( $expect, $res );

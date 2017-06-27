@@ -419,7 +419,7 @@ class Message implements MessageSpecifier, Serializable {
 		}
 
 		if ( $value instanceof Message ) { // Message, RawMessage, ApiMessage, etc
-			$message = clone( $value );
+			$message = clone $value;
 		} elseif ( $value instanceof MessageSpecifier ) {
 			$message = new Message( $value );
 		} elseif ( is_string( $value ) ) {

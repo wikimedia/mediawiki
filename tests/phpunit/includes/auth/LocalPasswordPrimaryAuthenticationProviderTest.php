@@ -626,7 +626,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		$req->password = 'bar';
 
 		$expect = AuthenticationResponse::newPass( 'Foo' );
-		$expect->createRequest = clone( $req );
+		$expect->createRequest = clone $req;
 		$expect->createRequest->username = 'Foo';
 		$this->assertEquals( $expect, $provider->beginPrimaryAccountCreation( $user, $user, $reqs ) );
 
