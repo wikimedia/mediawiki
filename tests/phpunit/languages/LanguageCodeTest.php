@@ -37,4 +37,9 @@ class LanguageCodeTest extends PHPUnit_Framework_TestCase {
 		$this->assertArrayNotHasKey( 'simple', $map );
 	}
 
+	public function testReplaceDeprecatedCodes() {
+		$this->assertEquals( 'gsw', LanguageCode::replaceDeprecatedCodes( 'als' ) );
+		$this->assertEquals( 'gsw', LanguageCode::replaceDeprecatedCodes( 'gsw' ) );
+	}
+
 }
