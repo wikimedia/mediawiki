@@ -29,8 +29,7 @@ use UnexpectedValueException;
  * Subclass of UnexpectedValueException that can be annotated with additional
  * data for debug logging.
  *
- * @author Bryan Davis <bd808@wikimedia.org>
- * @copyright © 2016 Bryan Davis and Wikimedia Foundation.
+ * @copyright © 2016 Wikimedia Foundation and contributors
  * @since 1.27
  */
 class MetadataMergeException extends UnexpectedValueException {

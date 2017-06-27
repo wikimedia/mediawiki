@@ -25,8 +25,7 @@ use RunningStat\RunningStat;
  * <https://github.com/phacility/xhprof>. XHProf can be installed as a PECL
  * package for use with PHP5 (Zend PHP) and is built-in to HHVM 3.3.0.
  *
- * @author Bryan Davis <bd808@wikimedia.org>
- * @copyright © 2014 Bryan Davis and Wikimedia Foundation.
+ * @copyright © 2014 Wikimedia Foundation and contributors
  * @since 1.28
  */
 class XhprofData {

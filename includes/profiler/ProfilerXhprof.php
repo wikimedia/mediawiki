@@ -47,8 +47,7 @@
  * a drop-in replacement for Xhprof. Just change the XHPROF_FLAGS_* constants
  * to TIDEWAYS_FLAGS_*.
  *
- * @author Bryan Davis <bd808@wikimedia.org>
- * @copyright © 2014 Bryan Davis and Wikimedia Foundation.
+ * @copyright © 2014 Wikimedia Foundation and contributors
  * @ingroup Profiler
  * @see Xhprof
  * @see https://php.net/xhprof
