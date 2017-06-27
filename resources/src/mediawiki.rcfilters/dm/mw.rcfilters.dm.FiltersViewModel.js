@@ -326,7 +326,7 @@
 		// Collect views
 		allViews = {
 			'default': {
-				label: mw.msg( 'rcfilters-filterlist-title' ),
+				title: mw.msg( 'rcfilters-filterlist-title' ),
 				groups: filterGroups
 			}
 		};
@@ -907,10 +907,13 @@
 	/**
 	 * Get the label for the current view
 	 *
+	 * @param {string} viewName View name
 	 * @return {string} Label for the current view
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.getCurrentViewLabel = function () {
-		return this.views[ this.getCurrentView() ].title;
+	mw.rcfilters.dm.FiltersViewModel.prototype.getViewTitle = function ( viewName ) {
+		viewName = viewName || this.getCurrentView();
+
+		return this.views[ viewName ] && this.views[ viewName ].title;
 	};
 
 	/**
