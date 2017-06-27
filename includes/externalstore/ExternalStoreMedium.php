@@ -19,7 +19,6 @@
  *
  * @file
  * @ingroup ExternalStorage
- * @author Aaron Schulz
  */
 
 /**

@@ -27,7 +27,6 @@
  * $wgProfiler['visible'] = true;
  * @endcode
  *
- * @author Aaron Schulz
  * @ingroup Profiler
  * @since 1.25
  */

@@ -19,7 +19,6 @@
  *
  * @file
  * @defgroup Redis Redis
- * @author Aaron Schulz
  */
 
 use Psr\Log\LoggerAwareInterface;

@@ -27,7 +27,6 @@ use MediaWiki\Logger\LoggerFactory;
  * Class to handle file lock manager registration
  *
  * @ingroup LockManager
- * @author Aaron Schulz
  * @since 1.19
  */
 class LockManagerGroup {

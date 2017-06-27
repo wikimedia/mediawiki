@@ -19,7 +19,6 @@
  *
  * @file
  * @ingroup Profiler
- * @author Aaron Schulz
  */
 
 namespace Wikimedia\Rdbms;
