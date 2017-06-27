@@ -288,6 +288,9 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		}
 	}
 
+	/**
+	 * @covers ResourceLoaderFileModule::stripBom
+	 */
 	public function testBomConcatenation() {
 		$basePath = __DIR__ . '/../../data/css';
 		$testModule = new ResourceLoaderFileModule( [
