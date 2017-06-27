@@ -527,25 +527,23 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	public function tableExists( $table, $fname = __METHOD__ ) {
-		$table = $this->tableName( $table, 'raw' );
-		if ( isset( $this->mSessionTempTables[$table] ) ) {
+		// Split database and table into proper variables as Database::tableName() returns
+		// shared tables prefixed with their database, which do not work in SHOW TABLES statements
+		list( $database, , $prefix, $table ) = $this->qualifiedTableComponents( $table );
+		$tableName = "{$prefix}{$table}";
+
+		if ( isset( $this->mSessionTempTables[$tableName] ) ) {
 			return true; // already known to exist and won't show in SHOW TABLES anyway
 		}
 
-		// Split database and table into proper variables as Database::tableName() returns
-		// shared tables prefixed with their database, which do not work in SHOW TABLES statements
-		list( $database, $schema, $prefix, $table ) = $this->qualifiedTableComponents( $table );
-
-		$table = $prefix . $table;
-
 		// We can't use buildLike() here, because it specifies an escape character
 		// other than the backslash, which is the only one supported by SHOW TABLES
-		$encLike = $this->escapeLikeInternal( $table, '\\' );
+		$encLike = $this->escapeLikeInternal( $tableName, '\\' );
 
-		// If the database has been specified (such as for shared tables), add a FROM $database clause
+		// If the database has been specified (such as for shared tables), use "FROM"
 		if ( $database !== '' ) {
-			$database = $this->addIdentifierQuotes( $database );
-			$query = "SHOW TABLES FROM $database LIKE '$encLike'";
+			$encDatabase = $this->addIdentifierQuotes( $database );
+			$query = "SHOW TABLES FROM $encDatabase LIKE '$encLike'";
 		} else {
 			$query = "SHOW TABLES LIKE '$encLike'";
 		}

@@ -1822,8 +1822,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @param string $name Table name
-	 * @return array (DB name, schema name, table prefix, table name)
+	 * Get the table components needed for a query given the currently selected database
+	 *
+	 * @param string $name Table name in the form of db.schema.table, db.table, or table
+	 * @return array (DB name or "" for default, schema name, table prefix, table name)
 	 */
 	protected function qualifiedTableComponents( $name ) {
 		# We reverse the explode so that database.table and table both output the correct table.
