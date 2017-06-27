@@ -1326,7 +1326,9 @@ abstract class UploadBase {
 			'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd',
 			'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd',
 			'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-basic.dtd',
-			'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-tiny.dtd'
+			'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-tiny.dtd',
+			// https://phabricator.wikimedia.org/T168856
+			'http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd',
 		];
 		if ( $type !== 'PUBLIC'
 			|| !in_array( $systemId, $allowedDTDs )
