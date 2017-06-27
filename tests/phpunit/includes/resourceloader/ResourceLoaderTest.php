@@ -607,6 +607,8 @@ mw.example();
 	 * Verify that when building module content in a load.php response,
 	 * an exception from one module will not break script output from
 	 * other modules.
+	 *
+	 * @covers ResourceLoader::makeModuleResponse
 	 */
 	public function testMakeModuleResponseError() {
 		$modules = [
@@ -643,6 +645,8 @@ mw.example();
 	 * Verify that when building the startup module response,
 	 * an exception from one module class will not break the entire
 	 * startup module response. See T152266.
+	 *
+	 * @covers ResourceLoader::makeModuleResponse
 	 */
 	public function testMakeModuleResponseStartupError() {
 		$rl = new EmptyResourceLoader();
