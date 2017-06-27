@@ -99,13 +99,6 @@ abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 	 * @return array
 	 */
 	protected function buildQueryInfo( $offset, $limit, $descending ) {
-		if ( count( $this->rangeConds ) > 0 ) {
-			// If range conditions are set, $offset is not used.
-			// However, if range conditions aren't set, (such as when using paging links)
-			// use the provided offset to get the proper query.
-			$offset = '';
-		}
-
 		list( $tables, $fields, $conds, $fname, $options, $join_conds ) = parent::buildQueryInfo(
 			$offset,
 			$limit,
