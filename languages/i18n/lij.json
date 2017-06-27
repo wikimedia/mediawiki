@@ -679,7 +679,7 @@
 	"readonlywarning": "<strong>Attençion</strong>: o database o l'è bloccou pe manutençion, no l'è momentaniamente poscibile sarvâ e modifiche effettuæ.\nPe no perdile, coppile in te'n file de testo e sarvilo in atteisa do sbrocco do database.\n\nL'amministratô de scistema ch'o l'ha misso l'abrocco o l'ha fornio questa spiegaçion: $1.",
 	"protectedpagewarning": "'''Attençion: questa paggina a l'è stæta bloccâ de moddo che solo i utenti co-i privileggi d'amministratô possan modificala.'''\nL'urtimo elemento do registro o l'è riportou chì appreuvo pe referença:",
 	"semiprotectedpagewarning": "'''Notta:''' Questa paggina a l'è stæta bloccä de moddo che solo i utenti registræ possan modificâla.\nL'urtimo elemento do registro o l'è riportou chì appreuvo pe referensa:",
-	"cascadeprotectedwarning": "'''Attençion:''' Questa paggina a l'è stæta bloccâ de moddo che solo i utenti co-i privileggi d'amministratô possan modificala da-o momento ch'a l'é inclusa seleçionando a proteçion \"ricorsciva\" {{PLURAL:$1|inta paggina|inte paggine}}:",
+	"cascadeprotectedwarning": "'''Attençion:''' Questa paggina a l'è stæta bloccâ de moddo che solo i utenti con [[Special:ListGroupRights|di driti speciffichi]] possan modificâla da-o momento ch'a l'è inclusa seleçionando a proteçion \"ricorsciva\" {{PLURAL:$1|inta paggina|inte paggine}}:",
 	"titleprotectedwarning": "'''Attension: Questa paggina a l'è stæta bloccâ de moddo che seggian necessai [[Special:ListGroupRights|di driti speciffichi]] pe creâla.'''\nL'urtimo elemento do registro o l'è riportou chì appreuvo pe referensa:",
 	"templatesused": "{{PLURAL:$1|Template dêuviòu|Template dêuviæ}} in sta pàgina:",
 	"templatesusedpreview": "{{PLURAL:$1|Template deuviou|Template deuviæ}} in te st'anteprimma:",

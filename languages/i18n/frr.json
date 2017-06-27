@@ -3106,6 +3106,7 @@
 	"htmlform-user-not-exists": "<strong>$1</strong> jaft at ei.",
 	"htmlform-user-not-valid": "<strong>$1</strong> as nään tuläät brükernööm",
 	"logentry-delete-delete": "$1 {{Gender:$2}} hää det sidj $3 stregen",
+	"logentry-delete-delete_redir": "$1 {{GENDER:$2|hää}} det widjerfeerang $3 stregen an auerskrewen",
 	"logentry-delete-restore": "$1 {{GENDER:$2}} hää det sidj $3 weder iinsteld ($4)",
 	"logentry-delete-event": "$1 {{GENDER:$2}} hää det uunsicht feranert faan {{PLURAL:$5|en logbuk iindrach|$5 logbuk iindracher}} üüb $3: $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2}} hää det uunsicht feranert faan {{PLURAL:$5|ian werjuun|$5 werjuunen}} faan det sidj $3: $4",

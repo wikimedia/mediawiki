@@ -1075,6 +1075,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (skatīt arī [[Special:NewPages|jaunās lapas]])",
 	"recentchanges-submit": "Rādīt",
 	"rcfilters-activefilters": "Aktīvie filtri",
+	"rcfilters-quickfilters": "Saglabātie filtra iestatījumi",
 	"rcfilters-restore-default-filters": "Atjaunot noklusētos filtrus",
 	"rcfilters-clear-all-filters": "Noņemt visus filtrus",
 	"rcfilters-search-placeholder": "Filtrēt pēdējās izmaiņas (pārlūko vai sāc rakstīt)",
