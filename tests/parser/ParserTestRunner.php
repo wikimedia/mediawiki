@@ -28,6 +28,7 @@
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @ingroup Testing
@@ -1046,7 +1047,10 @@ class ParserTestRunner {
 		$context->setLanguage( $lang );
 		$teardown[] = function () use ( $context ) {
 			// Clear language conversion tables
-			$context->getLanguage()->getConverter()->reloadTables();
+			$wrapper = TestingAccessWrapper::newFromObject(
+				$context->getLanguage()->getConverter()
+			);
+			$wrapper->reloadTables();
 			// Reset context to the restored globals
 			$context->setUser( $GLOBALS['wgUser'] );
 			$context->setLanguage( $GLOBALS['wgContLang'] );
