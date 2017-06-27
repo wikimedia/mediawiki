@@ -19,7 +19,6 @@
  *
  * @file
  * @ingroup Database
- * @author Aaron Schulz
  */
 namespace Wikimedia\Rdbms;
 

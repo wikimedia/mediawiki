@@ -19,7 +19,6 @@
  *
  * @file
  * @ingroup FileJournal
- * @author Aaron Schulz
  */
 
 use MediaWiki\MediaWikiServices;
