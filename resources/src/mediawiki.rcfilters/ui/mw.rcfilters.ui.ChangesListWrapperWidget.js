@@ -92,7 +92,8 @@
 		var conflictItem,
 			$message = $( '<div>' )
 				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results' ),
-			isEmpty = $changesListContent === 'NO_RESULTS';
+			isEmpty = $changesListContent === 'NO_RESULTS',
+			collapseCookieName = 'changeslist-state';
 
 		this.$element.toggleClass( 'mw-changeslist', !isEmpty );
 		if ( isEmpty ) {
@@ -129,6 +130,19 @@
 
 			// Apply highlight
 			this.applyHighlight();
+
+			// Collapse legend
+			// see resources/src/mediawiki.special/mediawiki.special.changelist.legend.js
+			this.$element.find( '.mw-changeslist-legend' )
+				.makeCollapsible( {
+					collapsed: mw.cookie.get( collapseCookieName ) === 'collapsed'
+				} )
+				.on( 'beforeExpand.mw-collapsible', function () {
+					mw.cookie.set( collapseCookieName, 'expanded' );
+				} )
+				.on( 'beforeCollapse.mw-collapsible', function () {
+					mw.cookie.set( collapseCookieName, 'collapsed' );
+				} );
 
 			// Make sure enhanced RC re-initializes correctly
 			mw.hook( 'wikipage.content' ).fire( this.$element );

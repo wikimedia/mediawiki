@@ -117,8 +117,7 @@
 	 * Clean up the old-style show/hide that we have implemented in the filter list
 	 */
 	mw.rcfilters.ui.FormWrapperWidget.prototype.cleanUpFieldset = function () {
-		var $namespaceSelect = this.$element.find( '#namespace' ),
-			collapseCookieName = 'changeslist-state';
+		var $namespaceSelect = this.$element.find( '#namespace' );
 
 		this.$element.find( '.rcshowhideoption[data-feature-in-structured-ui=1]' ).each( function () {
 			// HACK: Remove the text node after the span.
@@ -138,19 +137,5 @@
 			$namespaceSelect.closest( 'tr' ).detach();
 			this.$element.find( '.mw-tagfilter-label' ).closest( 'tr' ).detach();
 		}
-
-		// Collapse legend
-		// see resources/src/mediawiki.special/mediawiki.special.changelist.legend.js
-		this.$element.find( '.mw-changeslist-legend' )
-			.makeCollapsible( {
-				collapsed: mw.cookie.get( collapseCookieName ) === 'collapsed'
-			} )
-			.on( 'beforeExpand.mw-collapsible', function () {
-				mw.cookie.set( collapseCookieName, 'expanded' );
-			} )
-			.on( 'beforeCollapse.mw-collapsible', function () {
-				mw.cookie.set( collapseCookieName, 'collapsed' );
-			} );
-
 	};
 }( mediaWiki ) );
