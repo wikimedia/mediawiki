@@ -115,7 +115,7 @@ class Names {
 		'cho' => 'Choctaw', # Choctaw
 		'chr' => 'ᏣᎳᎩ', # Cherokee
 		'chy' => 'Tsetsêhestâhese', # Cheyenne
-		'ckb' => 'کوردیی ناوەندی', # Central Kurdish
+		'ckb' => 'کوردی', # Central Kurdish
 		'co' => 'corsu', # Corsican
 		'cps' => 'Capiceño', # Capiznon
 		'cr' => 'Nēhiyawēwin / ᓀᐦᐃᔭᐍᐏᐣ', # Cree
