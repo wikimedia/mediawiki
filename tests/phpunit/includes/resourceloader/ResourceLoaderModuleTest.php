@@ -94,6 +94,52 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		);
 	}
 
+	public static function provideBuildContentScripts() {
+		return [
+			[
+				"mw.foo()",
+				"mw.foo();\n",
+			],
+			[
+				"mw.foo();",
+				"mw.foo();",
+			],
+			[
+				"mw.foo();\n",
+				"mw.foo();\n",
+			],
+			[
+				"mw.foo()\n",
+				"mw.foo()\n;\n",
+			],
+			[
+				"mw.foo()\n// mw.bar();",
+				"mw.foo()\n// mw.bar();",
+			],
+			[
+				"mw.foo()// mw.bar();",
+				"mw.foo()// mw.bar();",
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideBuildContentScripts
+	 * @covers ResourceLoaderModule::buildContent
+	 */
+	public function testBuildContentScripts( $raw, $build, $message = null ) {
+		$context = $this->getResourceLoaderContext();
+		$module = new ResourceLoaderTestModule( [
+			'script' => $raw
+		] );
+		$this->assertEquals( $raw, $module->getScript( $context ), 'Raw script' );
+		$this->assertEquals(
+			[ 'scripts' => $build ],
+			$module->getModuleContent( $context ),
+			$message
+		);
+	}
+
 	/**
 	 * @covers ResourceLoaderModule::getRelativePaths
 	 * @covers ResourceLoaderModule::expandRelativePaths
