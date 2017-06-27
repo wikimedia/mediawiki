@@ -235,6 +235,7 @@ class SpecialUndelete extends SpecialPage {
 	function showSearchForm() {
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'undelete-search-title' ) );
+		$fuzzySearch = $this->getRequest()->getVal( "fuzzy", false );
 		$out->addHTML(
 			Xml::openElement( 'form', [ 'method' => 'get', 'action' => wfScript() ] ) .
 				Xml::fieldset( $this->msg( 'undelete-search-box' )->text() ) .
@@ -243,7 +244,8 @@ class SpecialUndelete extends SpecialPage {
 				Html::rawElement(
 					'label',
 					[ 'for' => 'prefix' ],
-					$this->msg( 'undelete-search-prefix' )->parse()
+					$this->msg( $fuzzySearch ? 'undelete-search-full' : 'undelete-search-prefix' )
+						->parse()
 				) .
 				Xml::input(
 					'prefix',
@@ -264,7 +266,7 @@ class SpecialUndelete extends SpecialPage {
 		if ( $this->mSearchPrefix ) {
 			// For now, we enable search engine match only when specifically asked to
 			// by using fuzzy=1 parameter.
-			if ( $this->getRequest()->getVal( "fuzzy", false ) ) {
+			if ( $fuzzySearch ) {
 				$result = PageArchive::listPagesBySearch( $this->mSearchPrefix );
 			} else {
 				$result = PageArchive::listPagesByPrefix( $this->mSearchPrefix );
