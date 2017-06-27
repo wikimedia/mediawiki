@@ -132,10 +132,30 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	 */
 	public function testDeprecatedModules( $name, $expected ) {
 		$modules = self::getModules();
-		$rl = new ResourceLoaderFileModule( $modules[$name] );
-		$rl->setName( $name );
+		$module = new ResourceLoaderFileModule( $modules[$name] );
+		$module->setName( $name );
 		$ctx = $this->getResourceLoaderContext();
-		$this->assertEquals( $rl->getScript( $ctx ), $expected );
+		$this->assertEquals( $module->getScript( $ctx ), $expected );
+	}
+
+	/**
+	 * @covers ResourceLoaderFileModule::getScript
+	 */
+	public function testGetScript() {
+		$module = new ResourceLoaderFileModule( [
+			'localBasePath' => __DIR__ . '/../../data/resourceloader',
+			'scripts' => [ 'script-nosemi.js', 'script-comment.js' ],
+		] );
+		$module->setName( 'testing' );
+		$ctx = $this->getResourceLoaderContext();
+		$this->assertEquals(
+			"/* eslint-disable */\nmw.foo()\n" .
+			"\n" .
+			"/* eslint-disable */\nmw.foo()\n// mw.bar();\n" .
+			"\n",
+			$module->getScript( $ctx ),
+			'scripts are concatenated with a new-line'
+		);
 	}
 
 	/**
