@@ -891,11 +891,11 @@ class LanguageConverter {
 	/**
 	 * Reload the conversion tables.
 	 *
-	 * Public only for use by test suites which need to reset the converter
-	 * state.
+	 * Also used by test suites which need to reset the converter state.
 	 *
+	 * @private
 	 */
-	function reloadTables() {
+	private function reloadTables() {
 		if ( $this->mTables ) {
 			unset( $this->mTables );
 		}

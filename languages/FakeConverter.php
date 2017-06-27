@@ -126,6 +126,11 @@ class FakeConverter {
 	public function updateConversionTable( Title $title ) {
 	}
 
-	public function reloadTables() {
+	/**
+	 * Used by test suites which need to reset the converter state.
+	 *
+	 * @private
+	 */
+	private function reloadTables() {
 	}
 }
