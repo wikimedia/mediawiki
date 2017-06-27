@@ -41,6 +41,12 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 				]
 			],
 
+			'htmlTemplateUnknown' => $base + [
+				'templates' => [
+					'templates/notfound.html',
+				]
+			],
+
 			'aliasedHtmlTemplateModule' => $base + [
 				'templates' => [
 					'foo.html' => 'templates/template.html',
@@ -259,6 +265,10 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 					'bar.html' => "<div>goodbye</div>\n",
 				],
 			],
+			[
+				$modules['htmlTemplateUnknown'],
+				false,
+			],
 		];
 	}
 
@@ -270,7 +280,12 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		$rl = new ResourceLoaderFileModule( $module );
 		$rl->setName( 'testing' );
 
-		$this->assertEquals( $rl->getTemplates(), $expected );
+		if ( $expected === false ) {
+			$this->setExpectedException( MWException::class );
+			$rl->getTemplates();
+		} else {
+			$this->assertEquals( $rl->getTemplates(), $expected );
+		}
 	}
 
 	public function testBomConcatenation() {
