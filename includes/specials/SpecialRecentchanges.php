@@ -521,6 +521,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		$userShowHiddenCats = $this->getUser()->getBoolOption( 'showhiddencats' );
 		$rclistOutput = $list->beginRecentChangesList();
+		if ( $this->isStructuredFilterUiEnabled() ) {
+			$rclistOutput .= $this->makeLegend();
+		}
+
 		foreach ( $rows as $obj ) {
 			if ( $limit == 0 ) {
 				break;
@@ -588,7 +592,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$nondefaults = $opts->getChangedValues();
 
 		$panel = [];
-		$panel[] = $this->makeLegend();
+		if ( !$this->isStructuredFilterUiEnabled() ) {
+			$panel[] = $this->makeLegend();
+		}
 		$panel[] = $this->optionsPanel( $defaults, $nondefaults, $numRows );
 		$panel[] = '<hr />';
 
