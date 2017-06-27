@@ -24,7 +24,7 @@
 		// Parent
 		mw.rcfilters.ui.SaveFiltersPopupButtonWidget.parent.call( this, $.extend( {
 			framed: false,
-			icon: 'clip',
+			icon: 'unClip',
 			$overlay: this.$overlay,
 			title: mw.msg( 'rcfilters-savedqueries-add-new-title' ),
 			popup: {
@@ -36,7 +36,7 @@
 			}
 		}, config ) );
 		// // HACK: Add an icon to the popup head label
-		this.popup.$head.prepend( ( new OO.ui.IconWidget( { icon: 'clip' } ) ).$element );
+		this.popup.$head.prepend( ( new OO.ui.IconWidget( { icon: 'unClip' } ) ).$element );
 
 		this.input = new OO.ui.TextInputWidget( {
 			validate: /\S/
@@ -107,15 +107,6 @@
 			this.popup.toggle( false );
 			return false;
 		}
-	};
-
-	/**
-	 * Respond to popup toggle event
-	 *
-	 * @param {boolean} isVisible Popup is visible
-	 */
-	mw.rcfilters.ui.SaveFiltersPopupButtonWidget.prototype.onPopupToggle = function ( isVisible ) {
-		this.setIcon( isVisible ? 'unClip' : 'clip' );
 	};
 
 	/**
