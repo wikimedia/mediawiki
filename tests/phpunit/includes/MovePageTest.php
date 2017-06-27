@@ -60,4 +60,28 @@ class MovePageTest extends MediaWikiTestCase {
 			WikiPage::factory( $newTitle )->getRevision()
 		);
 	}
+
+	/**
+	 * @see T118683
+	 */
+	public function testTitleMoveCompleteHookRegistration() {
+		$called = false;
+		$this->setTemporaryHook( 'TitleMoveComplete', function(
+			&$oldTitle, &$newTitle, &$user, $pageId, $redirid, $reason, $nullRev
+		) use ( &$called ) {
+			$called = true;
+			$this->assertTrue( true, 'No warnings raised' );
+		} );
+		$oldTitle = Title::newFromText( 'Help:Some title1' );
+		WikiPage::factory( $oldTitle )->doEditContent( new WikitextContent( 'foo' ), 'bar' );
+		$newTitle = Title::newFromText( 'Help:Some other title1' );
+		$this->assertNull(
+			WikiPage::factory( $newTitle )->getRevision()
+		);
+
+		$mp = new MovePage( $oldTitle, $newTitle );
+		$status = $mp->move( new User, 'reason', true );
+		$this->assertTrue( $status->isOK() );
+		$this->assertTrue( $called, 'Hook was called' );
+	}
 }
