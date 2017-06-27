@@ -54,7 +54,7 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 		$titles = $searchEngine->extractTitles( $searchEngine->completionSearchWithVariants( $search ) );
 
 		if ( $resultPageSet ) {
-			$resultPageSet->setRedirectMergePolicy( function( array $current, array $new ) {
+			$resultPageSet->setRedirectMergePolicy( function ( array $current, array $new ) {
 				if ( !isset( $current['index'] ) || $new['index'] < $current['index'] ) {
 					$current['index'] = $new['index'];
 				}

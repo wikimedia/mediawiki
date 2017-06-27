@@ -104,7 +104,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 		}
 		$previousValue = $this->deferredUpdatesAddCallableUpdateCallback;
 		$this->deferredUpdatesAddCallableUpdateCallback = $callback;
-		return new ScopedCallback( function() use ( $previousValue ) {
+		return new ScopedCallback( function () use ( $previousValue ) {
 			$this->deferredUpdatesAddCallableUpdateCallback = $previousValue;
 		} );
 	}
@@ -127,7 +127,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 		}
 		$previousValue = $this->revisionGetTimestampFromIdCallback;
 		$this->revisionGetTimestampFromIdCallback = $callback;
-		return new ScopedCallback( function() use ( $previousValue ) {
+		return new ScopedCallback( function () use ( $previousValue ) {
 			$this->revisionGetTimestampFromIdCallback = $previousValue;
 		} );
 	}
@@ -821,7 +821,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 		// Calls DeferredUpdates::addCallableUpdate in normal operation
 		call_user_func(
 			$this->deferredUpdatesAddCallableUpdateCallback,
-			function() use ( $job ) {
+			function () use ( $job ) {
 				$job->run();
 			}
 		);

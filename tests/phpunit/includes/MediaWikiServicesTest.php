@@ -77,7 +77,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 
 		$newServices->defineService(
 			'Test',
-			function() use ( $service1 ) {
+			function () use ( $service1 ) {
 				return $service1;
 			}
 		);
@@ -121,7 +121,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 
 		$newServices->defineService(
 			'Test',
-			function() use ( &$instantiatorReturnValues ) {
+			function () use ( &$instantiatorReturnValues ) {
 				return array_shift( $instantiatorReturnValues );
 			}
 		);
@@ -150,7 +150,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 
 		$newServices->redefineService(
 			'DBLoadBalancerFactory',
-			function() use ( $lbFactory ) {
+			function () use ( $lbFactory ) {
 				return $lbFactory;
 			}
 		);
@@ -194,7 +194,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 
 		$newServices->defineService(
 			'Test',
-			function() use ( &$instantiatorReturnValues ) {
+			function () use ( &$instantiatorReturnValues ) {
 				return array_shift( $instantiatorReturnValues );
 			}
 		);
@@ -217,7 +217,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 
 		$services->defineService(
 			'Test',
-			function() use ( &$serviceCounter ) {
+			function () use ( &$serviceCounter ) {
 				$serviceCounter++;
 				$service = $this->createMock( 'MediaWiki\Services\DestructibleService' );
 				$service->expects( $this->once() )->method( 'destroy' );
@@ -247,7 +247,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 
 		$services->defineService(
 			'Test',
-			function() {
+			function () {
 				$service = $this->createMock( 'MediaWiki\Services\DestructibleService' );
 				$service->expects( $this->never() )->method( 'destroy' );
 				return $service;

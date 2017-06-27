@@ -6070,7 +6070,7 @@ class Parser {
 		$e = new Exception;
 		$this->mInParse = $e->getTraceAsString();
 
-		$recursiveCheck = new ScopedCallback( function() {
+		$recursiveCheck = new ScopedCallback( function () {
 			$this->mInParse = false;
 		} );
 

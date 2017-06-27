@@ -179,7 +179,7 @@ class HashRing {
 		if ( $this->liveRing === null || $this->ejectionNextExpiry <= $now ) {
 			$this->ejectionExpiries = array_filter(
 				$this->ejectionExpiries,
-				function( $expiry ) use ( $now ) {
+				function ( $expiry ) use ( $now ) {
 					return ( $expiry > $now );
 				}
 			);

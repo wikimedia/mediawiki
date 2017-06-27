@@ -240,7 +240,7 @@ class ParserTestRunner {
 			'name' => 'nullLockManager',
 			'class' => 'NullLockManager',
 		] ];
-		$reset = function() {
+		$reset = function () {
 			LockManagerGroup::destroySingletons();
 		};
 		$setup[] = $reset;
@@ -288,7 +288,7 @@ class ParserTestRunner {
 		MediaWikiServices::getInstance()->disableService( 'MediaHandlerFactory' );
 		MediaWikiServices::getInstance()->redefineService(
 			'MediaHandlerFactory',
-			function() {
+			function () {
 				return new MockMediaHandlerFactory();
 			}
 		);
@@ -428,7 +428,7 @@ class ParserTestRunner {
 	 * @return ScopedCallback
 	 */
 	protected function createTeardownObject( $teardown, $nextTeardown = null ) {
-		return new ScopedCallback( function() use ( $teardown, $nextTeardown ) {
+		return new ScopedCallback( function () use ( $teardown, $nextTeardown ) {
 			// Schedule teardown snippets in reverse order
 			$teardown = array_reverse( $teardown );
 

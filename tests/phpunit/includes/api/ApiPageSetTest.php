@@ -14,7 +14,7 @@ class ApiPageSetTest extends ApiTestCase {
 			],
 
 			'A simple merge policy adds the redirect data in' => [
-				function( $current, $new ) {
+				function ( $current, $new ) {
 					if ( !isset( $current['index'] ) || $new['index'] < $current['index'] ) {
 						$current['index'] = $new['index'];
 					}

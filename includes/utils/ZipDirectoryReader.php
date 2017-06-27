@@ -715,4 +715,3 @@ class ZipDirectoryReader {
 		}
 	}
 }
-

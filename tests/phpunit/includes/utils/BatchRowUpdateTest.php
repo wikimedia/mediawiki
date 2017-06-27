@@ -36,7 +36,7 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 		$batchSize = 2;
 		$reader = new BatchRowIterator( $db, 'some_table', 'id_field', $batchSize );
 
-		$response = $this->genSelectResult( $batchSize, /*numRows*/ 5, function() {
+		$response = $this->genSelectResult( $batchSize, /*numRows*/ 5, function () {
 			static $i = 0;
 			return [ 'id_field' => ++$i ];
 		} );
@@ -171,7 +171,7 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 	public function testReaderSelectConditionsMultiplePrimaryKeys(
 		$message, $expectedSecondIteration, $primaryKeys, $batchSize = 3
 	) {
-		$results = $this->genSelectResult( $batchSize, $batchSize * 3, function() {
+		$results = $this->genSelectResult( $batchSize, $batchSize * 3, function () {
 			static $i = 0, $j = 100, $k = 1000;
 			return [ 'id_field' => ++$i, 'foo' => ++$j, 'bar' => ++$k ];
 		} );
@@ -204,7 +204,7 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 			->will( $this->consecutivelyReturnFromSelect( $retvals ) );
 		$db->expects( $this->any() )
 			->method( 'addQuotes' )
-			->will( $this->returnCallback( function( $value ) {
+			->will( $this->returnCallback( function ( $value ) {
 				return "'$value'"; // not real quoting: doesn't matter in test
 			} ) );
 

@@ -55,7 +55,7 @@ class SamplingStatsdClient extends StatsdClient {
 			$samplingRates = [ '*' => $sampleRate ];
 		}
 		if ( $samplingRates ) {
-			array_walk( $data, function( $item ) use ( $samplingRates ) {
+			array_walk( $data, function ( $item ) use ( $samplingRates ) {
 				/** @var $item StatsdData */
 				foreach ( $samplingRates as $pattern => $rate ) {
 					if ( fnmatch( $pattern, $item->getKey(), FNM_NOESCAPE ) ) {

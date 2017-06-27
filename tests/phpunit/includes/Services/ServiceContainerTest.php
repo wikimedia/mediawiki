@@ -20,7 +20,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$this->assertEmpty( $names );
 
 		$name = 'TestService92834576';
-		$services->defineService( $name, function() {
+		$services->defineService( $name, function () {
 			return null;
 		} );
 
@@ -34,7 +34,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$name = 'TestService92834576';
 		$this->assertFalse( $services->hasService( $name ) );
 
-		$services->defineService( $name, function() {
+		$services->defineService( $name, function () {
 			return null;
 		} );
 
@@ -50,7 +50,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 
 		$services->defineService(
 			$name,
-			function( $actualLocator, $extra ) use ( $services, $theService, &$count ) {
+			function ( $actualLocator, $extra ) use ( $services, $theService, &$count ) {
 				$count++;
 				PHPUnit_Framework_Assert::assertSame( $services, $actualLocator );
 				PHPUnit_Framework_Assert::assertSame( $extra, 'Foo' );
@@ -79,14 +79,14 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 
 		$services->defineService(
 			'Foo',
-			function() {
+			function () {
 				return new stdClass();
 			}
 		);
 
 		$services->defineService(
 			'Bar',
-			function() {
+			function () {
 				return new stdClass();
 			}
 		);
@@ -122,7 +122,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$theService = new stdClass();
 		$name = 'TestService92834576';
 
-		$services->defineService( $name, function( $actualLocator ) use ( $services, $theService ) {
+		$services->defineService( $name, function ( $actualLocator ) use ( $services, $theService ) {
 			PHPUnit_Framework_Assert::assertSame( $services, $actualLocator );
 			return $theService;
 		} );
@@ -137,13 +137,13 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$theService = new stdClass();
 		$name = 'TestService92834576';
 
-		$services->defineService( $name, function() use ( $theService ) {
+		$services->defineService( $name, function () use ( $theService ) {
 			return $theService;
 		} );
 
 		$this->setExpectedException( 'MediaWiki\Services\ServiceAlreadyDefinedException' );
 
-		$services->defineService( $name, function() use ( $theService ) {
+		$services->defineService( $name, function () use ( $theService ) {
 			return $theService;
 		} );
 	}
@@ -152,10 +152,10 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$services = $this->newServiceContainer();
 
 		$wiring = [
-			'Foo' => function() {
+			'Foo' => function () {
 				return 'Foo!';
 			},
-			'Bar' => function() {
+			'Bar' => function () {
 				return 'Bar!';
 			},
 		];
@@ -170,13 +170,13 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$services = $this->newServiceContainer();
 
 		$wiring = [
-			'Foo' => function() {
+			'Foo' => function () {
 				return 'Foo!';
 			},
-			'Bar' => function() {
+			'Bar' => function () {
 				return 'Bar!';
 			},
-			'Car' => function() {
+			'Car' => function () {
 				return 'FUBAR!';
 			},
 		];
@@ -187,7 +187,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 
 		// define a service before importing, so we can later check that
 		// existing service instances survive importWiring()
-		$newServices->defineService( 'Car', function() {
+		$newServices->defineService( 'Car', function () {
 			return 'Car!';
 		} );
 
@@ -196,7 +196,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 
 		// Define another service, so we can later check that extra wiring
 		// is not lost.
-		$newServices->defineService( 'Xar', function() {
+		$newServices->defineService( 'Xar', function () {
 			return 'Xar!';
 		} );
 
@@ -249,7 +249,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$theService1 = new stdClass();
 		$name = 'TestService92834576';
 
-		$services->defineService( $name, function() {
+		$services->defineService( $name, function () {
 			PHPUnit_Framework_Assert::fail(
 				'The original instantiator function should not get called'
 			);
@@ -258,7 +258,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		// redefine before instantiation
 		$services->redefineService(
 			$name,
-			function( $actualLocator, $extra ) use ( $services, $theService1 ) {
+			function ( $actualLocator, $extra ) use ( $services, $theService1 ) {
 				PHPUnit_Framework_Assert::assertSame( $services, $actualLocator );
 				PHPUnit_Framework_Assert::assertSame( 'Foo', $extra );
 				return $theService1;
@@ -275,14 +275,14 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$theService1 = new stdClass();
 		$name = 'TestService92834576';
 
-		$services->defineService( $name, function() {
+		$services->defineService( $name, function () {
 			return 'Foo';
 		} );
 
 		// disable the service. we should be able to redefine it anyway.
 		$services->disableService( $name );
 
-		$services->redefineService( $name, function() use ( $theService1 ) {
+		$services->redefineService( $name, function () use ( $theService1 ) {
 			return $theService1;
 		} );
 
@@ -298,7 +298,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 
 		$this->setExpectedException( 'MediaWiki\Services\NoSuchServiceException' );
 
-		$services->redefineService( $name, function() use ( $theService ) {
+		$services->redefineService( $name, function () use ( $theService ) {
 			return $theService;
 		} );
 	}
@@ -309,7 +309,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$theService = new stdClass();
 		$name = 'TestService92834576';
 
-		$services->defineService( $name, function() {
+		$services->defineService( $name, function () {
 			return 'Foo';
 		} );
 
@@ -318,7 +318,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 
 		$this->setExpectedException( 'MediaWiki\Services\CannotReplaceActiveServiceException' );
 
-		$services->redefineService( $name, function() use ( $theService ) {
+		$services->redefineService( $name, function () use ( $theService ) {
 			return $theService;
 		} );
 	}
@@ -331,13 +331,13 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$destructible->expects( $this->once() )
 			->method( 'destroy' );
 
-		$services->defineService( 'Foo', function() use ( $destructible ) {
+		$services->defineService( 'Foo', function () use ( $destructible ) {
 			return $destructible;
 		} );
-		$services->defineService( 'Bar', function() {
+		$services->defineService( 'Bar', function () {
 			return new stdClass();
 		} );
-		$services->defineService( 'Qux', function() {
+		$services->defineService( 'Qux', function () {
 			return new stdClass();
 		} );
 
@@ -377,7 +377,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 
 		$this->setExpectedException( 'MediaWiki\Services\NoSuchServiceException' );
 
-		$services->redefineService( $name, function() use ( $theService ) {
+		$services->redefineService( $name, function () use ( $theService ) {
 			return $theService;
 		} );
 	}
@@ -390,11 +390,11 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$destructible->expects( $this->once() )
 			->method( 'destroy' );
 
-		$services->defineService( 'Foo', function() use ( $destructible ) {
+		$services->defineService( 'Foo', function () use ( $destructible ) {
 			return $destructible;
 		} );
 
-		$services->defineService( 'Bar', function() {
+		$services->defineService( 'Bar', function () {
 			return new stdClass();
 		} );
 

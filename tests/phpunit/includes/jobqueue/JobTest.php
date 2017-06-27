@@ -112,7 +112,7 @@ class JobTest extends MediaWikiTestCase {
 	public function provideTestJobFactory() {
 		return [
 			'class name' => [ 'NullJob' ],
-			'closure' => [ function( Title $title, array $params ) {
+			'closure' => [ function ( Title $title, array $params ) {
 				return new NullJob( $title, $params );
 			} ],
 			'function' => [ [ $this, 'newNullJob' ] ],

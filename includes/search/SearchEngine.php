@@ -236,7 +236,7 @@ abstract class SearchEngine {
 		if ( $namespaces ) {
 			// Filter namespaces to only keep valid ones
 			$validNs = $this->searchableNamespaces();
-			$namespaces = array_filter( $namespaces, function( $ns ) use( $validNs ) {
+			$namespaces = array_filter( $namespaces, function ( $ns ) use( $validNs ) {
 				return $ns < 0 || isset( $validNs[$ns] );
 			} );
 		} else {
@@ -464,7 +464,7 @@ abstract class SearchEngine {
 			}
 		}
 
-		$ns = array_map( function( $space ) {
+		$ns = array_map( function ( $space ) {
 			return $space == NS_MEDIA ? NS_FILE : $space;
 		}, $ns );
 
@@ -550,7 +550,7 @@ abstract class SearchEngine {
 	 * @return Title[]
 	 */
 	public function extractTitles( SearchSuggestionSet $completionResults ) {
-		return $completionResults->map( function( SearchSuggestion $sugg ) {
+		return $completionResults->map( function ( SearchSuggestion $sugg ) {
 			return $sugg->getSuggestedTitle();
 		} );
 	}
@@ -564,14 +564,14 @@ abstract class SearchEngine {
 	protected function processCompletionResults( $search, SearchSuggestionSet $suggestions ) {
 		$search = trim( $search );
 		// preload the titles with LinkBatch
-		$titles = $suggestions->map( function( SearchSuggestion $sugg ) {
+		$titles = $suggestions->map( function ( SearchSuggestion $sugg ) {
 			return $sugg->getSuggestedTitle();
 		} );
 		$lb = new LinkBatch( $titles );
 		$lb->setCaller( __METHOD__ );
 		$lb->execute();
 
-		$results = $suggestions->map( function( SearchSuggestion $sugg ) {
+		$results = $suggestions->map( function ( SearchSuggestion $sugg ) {
 			return $sugg->getSuggestedTitle()->getPrefixedText();
 		} );
 

@@ -199,7 +199,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoader::getModule
 	 */
 	public function testGetModuleFactory() {
-		$factory = function( array $info ) {
+		$factory = function ( array $info ) {
 			$this->assertArrayHasKey( 'kitten', $info );
 			return new ResourceLoaderTestModule( $info );
 		};

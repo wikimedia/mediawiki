@@ -27,13 +27,13 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 		$obj = ObjectFactory::getObjectFromSpec( [
 			'class' => 'ObjectFactoryTestFixture',
 			'args' => [
-				function() {
+				function () {
 					return 'wrapped';
 				},
 				'unwrapped',
 			],
 			'calls' => [
-				'setter' => [ function() {
+				'setter' => [ function () {
 					return 'wrapped';
 				}, ],
 			],
@@ -54,13 +54,13 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 		$obj = ObjectFactory::getObjectFromSpec( [
 			'class' => 'ObjectFactoryTestFixture',
 			'args' => [
-				function() {
+				function () {
 					return 'wrapped';
 				},
 				'unwrapped',
 			],
 			'calls' => [
-				'setter' => [ function() {
+				'setter' => [ function () {
 					return 'wrapped';
 				}, ],
 			],
@@ -74,11 +74,11 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 
 		$obj = ObjectFactory::getObjectFromSpec( [
 			'class' => 'ObjectFactoryTestFixture',
-			'args' => [ function() {
+			'args' => [ function () {
 				return 'unwrapped';
 			}, ],
 			'calls' => [
-				'setter' => [ function() {
+				'setter' => [ function () {
 					return 'unwrapped';
 				}, ],
 			],

@@ -356,7 +356,7 @@ class CSSMin {
 
 		// Re-insert comments
 		$pattern = '/' . CSSMin::PLACEHOLDER . '(\d+)x/';
-		$source = preg_replace_callback( $pattern, function( $match ) use ( &$comments ) {
+		$source = preg_replace_callback( $pattern, function ( $match ) use ( &$comments ) {
 			return $comments[ $match[1] ];
 		}, $source );
 

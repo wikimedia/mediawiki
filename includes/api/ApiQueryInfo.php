@@ -766,7 +766,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		if ( $this->fld_watched ) {
 			foreach ( $timestamps as $namespaceId => $dbKeys ) {
 				$this->watched[$namespaceId] = array_map(
-					function( $x ) {
+					function ( $x ) {
 						return $x !== false;
 					},
 					$dbKeys
@@ -847,7 +847,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				$timestamps[$row->page_namespace][$row->page_title] = $revTimestamp - $age;
 			}
 			$titlesWithThresholds = array_map(
-				function( LinkTarget $target ) use ( $timestamps ) {
+				function ( LinkTarget $target ) use ( $timestamps ) {
 					return [
 						$target, $timestamps[$target->getNamespace()][$target->getDBkey()]
 					];
@@ -860,7 +860,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$titlesWithThresholds = array_merge(
 				$titlesWithThresholds,
 				array_map(
-					function( LinkTarget $target ) {
+					function ( LinkTarget $target ) {
 						return [ $target, null ];
 					},
 					$this->missing
