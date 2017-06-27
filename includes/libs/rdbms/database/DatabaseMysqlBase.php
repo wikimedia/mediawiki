@@ -536,8 +536,6 @@ abstract class DatabaseMysqlBase extends Database {
 		// shared tables prefixed with their database, which do not work in SHOW TABLES statements
 		list( $database, $schema, $prefix, $table ) = $this->qualifiedTableComponents( $table );
 
-		$table = $prefix . $table;
-
 		// We can't use buildLike() here, because it specifies an escape character
 		// other than the backslash, which is the only one supported by SHOW TABLES
 		$encLike = $this->escapeLikeInternal( $table, '\\' );
