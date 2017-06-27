@@ -106,7 +106,7 @@
 	mw.rcfilters.ui.FilterMenuHeaderWidget.prototype.onModelUpdate = function () {
 		var currentView = this.model.getCurrentView();
 
-		this.setLabel( this.model.getCurrentViewLabel() );
+		this.setLabel( this.model.getViewTitle( currentView ) );
 
 		this.invertNamespacesButton.toggle( currentView === 'namespaces' );
 		this.backButton.toggle( currentView !== 'default' );
