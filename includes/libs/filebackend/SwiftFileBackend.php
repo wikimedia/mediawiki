@@ -20,7 +20,6 @@
  * @file
  * @ingroup FileBackend
  * @author Russ Nelson
- * @author Aaron Schulz
  */
 
 /**

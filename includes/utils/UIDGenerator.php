@@ -18,7 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @author Aaron Schulz
  */
 use Wikimedia\Assert\Assert;
 use MediaWiki\MediaWikiServices;

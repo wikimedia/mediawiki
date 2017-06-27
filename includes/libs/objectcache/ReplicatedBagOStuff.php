@@ -17,7 +17,6 @@
  *
  * @file
  * @ingroup Cache
- * @author Aaron Schulz
  */
 
 /**
