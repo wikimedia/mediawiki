@@ -82,7 +82,8 @@
 		// based on view
 		config.footers = config.footers || [];
 		config.footers.forEach( function ( footerData ) {
-			var adjustedData = {
+			var isSticky = footerData.sticky === undefined ? true : !!footerData.sticky,
+				adjustedData = {
 				// Wrap the element with our own footer wrapper
 				$element: $( '<div>' )
 					.addClass( 'mw-rcfilters-ui-menuSelectWidget-footer' )
@@ -92,7 +93,12 @@
 			};
 
 			this.footers.push( adjustedData );
-			this.$element.append( adjustedData.$element );
+
+			if ( isSticky ) {
+				this.$element.append( adjustedData.$element );
+			} else {
+				this.$body.append( adjustedData.$element );
+			}
 		}.bind( this ) );
 
 		// Switch to the correct view
