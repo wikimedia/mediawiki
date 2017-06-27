@@ -121,7 +121,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		$this->assertEquals(
 			[ 'Smithee' ],
 			$this->fetchIds( $this->search->searchText( 'smithee' ) ),
-			"Plain search failed" );
+			"Plain search" );
 	}
 
 	public function testPhraseSearch() {
@@ -129,7 +129,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		$this->assertEquals(
 			[ 'Smithee' ],
 			$this->fetchIds( $res ),
-			"Phrase search failed" );
+			"Search a phrase" );
 		$res = $this->search->searchText( '"smithee is one who smiths"' );
 		$match = $res->next();
 		$terms = [ 'smithee', 'is', 'one', 'who', 'smiths' ];
@@ -139,7 +139,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		}
 		$this->assertRegexp( '/' . preg_quote( $snippet, '/' ) . '/',
 			$match->getTextSnippet( $res->termMatches() ),
-			"Phrase search failed to highlight" );
+			"Highlight a phrase search" );
 	}
 
 	public function testTextPowerSearch() {
@@ -150,7 +150,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 				'Talk:Not Main Page',
 			],
 			$this->fetchIds( $this->search->searchText( 'smithee' ) ),
-			"Power search failed" );
+			"Power search" );
 	}
 
 	public function testTitleSearch() {
@@ -160,7 +160,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 				'Smithee',
 			],
 			$this->fetchIds( $this->search->searchTitle( 'smithee' ) ),
-			"Title search failed" );
+			"Title search" );
 	}
 
 	public function testTextTitlePowerSearch() {
@@ -172,7 +172,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 				'Talk:Smithee',
 			],
 			$this->fetchIds( $this->search->searchTitle( 'smithee' ) ),
-			"Title power search failed" );
+			"Title power search" );
 	}
 
 	/**
