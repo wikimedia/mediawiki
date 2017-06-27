@@ -139,6 +139,10 @@
 			this.$element.find( '.mw-tagfilter-label' ).closest( 'tr' ).detach();
 		}
 
+		if ( !this.$element.find( '.mw-recentchanges-table tr' ).length ) {
+			this.$element.find( 'hr' ).detach();
+		}
+
 		// Collapse legend
 		// see resources/src/mediawiki.special/mediawiki.special.changelist.legend.js
 		this.$element.find( '.mw-changeslist-legend' )
