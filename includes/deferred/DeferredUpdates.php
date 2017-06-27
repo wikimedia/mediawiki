@@ -259,6 +259,7 @@ class DeferredUpdates {
 			$update->doUpdate();
 			$lbFactory->commitMasterChanges( $fnameTrxOwner );
 		} catch ( Exception $e ) {
+			wfDebugLog( 'DeferredUpdates', 'Exception triggered in ' . get_class( $update ) . '::doUpdate(): ' . $e );
 			// Reporting GUI exceptions does not work post-send
 			if ( $e instanceof ErrorPageError && $stage === self::PRESEND ) {
 				$guiError = $e;
