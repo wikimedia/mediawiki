@@ -1,3 +1,20 @@
+== MediaWiki 1.27.4 ==
+This not a release yet!
+
+=== Changes since 1.27.3 ===
+* (T168856) Allow SVGs created by Dia to be uploaded.
+
+== MediaWiki 1.27.3 ==
+Due to a packaging error, the wrong version of the SyntaxHighlight extension was
+included in the tarball version of MediaWiki 1.27.2. The version included had a
+serious security issue in it (T158689). There was also some minor code fixes in
+MediaWiki itself since 1.27.2, but none of them were security relevant.
+
+=== Changes since 1.27.2 ===
+* (T145664) Fix broken wincache merge() implementation
+* (T163434) Add wikimedia/testing-access-wrapper for forwards compatibility
+* (T153505) Fix php warnings on php 7.1 due to use of &$this
+
 == MediaWiki 1.27.2 ==
 This is a security and maintenance release of the MediaWiki 1.27 branch.
 
