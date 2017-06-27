@@ -125,4 +125,7 @@ class FakeConverter {
 
 	public function updateConversionTable( Title $title ) {
 	}
+
+	public function reloadTables() {
+	}
 }

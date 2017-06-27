@@ -1045,6 +1045,8 @@ class ParserTestRunner {
 		$context->setUser( $user );
 		$context->setLanguage( $lang );
 		$teardown[] = function () use ( $context ) {
+			// Clear language conversion tables
+			$context->getLanguage()->getConverter()->reloadTables();
 			// Reset context to the restored globals
 			$context->setUser( $GLOBALS['wgUser'] );
 			$context->setLanguage( $GLOBALS['wgContLang'] );

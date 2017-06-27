@@ -891,7 +891,9 @@ class LanguageConverter {
 	/**
 	 * Reload the conversion tables.
 	 *
-	 * @private
+	 * Public only for use by test suites which need to reset the converter
+	 * state.
+	 *
 	 */
 	function reloadTables() {
 		if ( $this->mTables ) {
