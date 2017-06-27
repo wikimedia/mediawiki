@@ -93,6 +93,8 @@ class MWExceptionHandler {
 	public static function rollbackMasterChangesAndLog( $e ) {
 		$services = MediaWikiServices::getInstance();
 		if ( $services->isServiceDisabled( 'DBLoadBalancerFactory' ) ) {
+			// Always log the exception
+			self::logException( $e );
 			return; // T147599
 		}
 
@@ -104,6 +106,10 @@ class MWExceptionHandler {
 				self::getLogMessage( $e ),
 				self::getLogContext( $e )
 			);
+		} else {
+			// Even if there are no master changes,
+			// still log the exception (T168347)
+			self::logException( $e );
 		}
 		$lbFactory->rollbackMasterChanges( __METHOD__ );
 	}
