@@ -98,11 +98,11 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		return [
 			[
 				"mw.foo()",
-				"mw.foo();\n",
+				"mw.foo()\n",
 			],
 			[
 				"mw.foo();",
-				"mw.foo();",
+				"mw.foo();\n",
 			],
 			[
 				"mw.foo();\n",
@@ -110,15 +110,19 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 			],
 			[
 				"mw.foo()\n",
-				"mw.foo()\n;\n",
+				"mw.foo()\n",
 			],
 			[
 				"mw.foo()\n// mw.bar();",
-				"mw.foo()\n// mw.bar();",
+				"mw.foo()\n// mw.bar();\n",
+			],
+			[
+				"mw.foo()\n// mw.bar()",
+				"mw.foo()\n// mw.bar()\n",
 			],
 			[
 				"mw.foo()// mw.bar();",
-				"mw.foo()// mw.bar();",
+				"mw.foo()// mw.bar();\n",
 			],
 		];
 	}

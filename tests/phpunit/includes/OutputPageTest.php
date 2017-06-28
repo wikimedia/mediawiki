@@ -293,7 +293,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			[
 				[ 'test.quux', ResourceLoaderModule::TYPE_SCRIPTS ],
 				"<script>(window.RLQ=window.RLQ||[]).push(function(){"
-					. "mw.test.baz({token:123});mw.loader.state({\"test.quux\":\"ready\"});"
+					. "mw.test.baz({token:123});\nmw.loader.state({\"test.quux\":\"ready\"});"
 					. "});</script>"
 			],
 		];
