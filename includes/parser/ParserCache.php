@@ -321,6 +321,17 @@ class ParserCache {
 			$parserOutput->mText .= "\n<!-- $msg -->\n";
 			wfDebug( $msg );
 
+			// HACK: Debug logging for T168040
+			if ( !$parserOutput->getTOCEnabled() ) {
+				$ex = new Exception( 'Saving a ParserOutput with getTOCEnabled() == false' );
+				wfDebugLog( 'AdHocDebug', $ex->getMessage(), 'private', [
+					'exception' => $ex,
+					'parserOutputKey' => $parserOutputKey,
+					'timestamp' => $cacheTime,
+					'revid' => $revId,
+				] );
+			}
+
 			// Save the parser output
 			$this->mMemc->set( $parserOutputKey, $parserOutput, $expire );
 
