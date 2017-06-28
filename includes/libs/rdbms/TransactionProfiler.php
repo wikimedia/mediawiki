@@ -155,11 +155,13 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 */
 	public function recordConnection( $server, $db, $isMaster ) {
 		// Report when too many connections happen...
-		if ( $this->hits['conns']++ == $this->expect['conns'] ) {
-			$this->reportExpectationViolated( 'conns', "[connect to $server ($db)]" );
+		if ( $this->hits['conns']++ >= $this->expect['conns'] ) {
+			$this->reportExpectationViolated(
+				'conns', "[connect to $server ($db)]", $this->hits['conns'] );
 		}
-		if ( $isMaster && $this->hits['masterConns']++ == $this->expect['masterConns'] ) {
-			$this->reportExpectationViolated( 'masterConns', "[connect to $server ($db)]" );
+		if ( $isMaster && $this->hits['masterConns']++ >= $this->expect['masterConns'] ) {
+			$this->reportExpectationViolated(
+				'masterConns', "[connect to $server ($db)]", $this->hits['masterConns'] );
 		}
 	}
 
@@ -210,11 +212,11 @@ class TransactionProfiler implements LoggerAwareInterface {
 		}
 
 		// Report when too many writes/queries happen...
-		if ( $this->hits['queries']++ == $this->expect['queries'] ) {
-			$this->reportExpectationViolated( 'queries', $query );
+		if ( $this->hits['queries']++ >= $this->expect['queries'] ) {
+			$this->reportExpectationViolated( 'queries', $query, $this->hits['queries'] );
 		}
-		if ( $isWrite && $this->hits['writes']++ == $this->expect['writes'] ) {
-			$this->reportExpectationViolated( 'writes', $query );
+		if ( $isWrite && $this->hits['writes']++ >= $this->expect['writes'] ) {
+			$this->reportExpectationViolated( 'writes', $query, $this->hits['writes'] );
 		}
 		// Report slow queries...
 		if ( !$isWrite && $elapsed > $this->expect['readQueryTime'] ) {
