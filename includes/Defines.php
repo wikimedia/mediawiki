@@ -267,3 +267,28 @@ define( 'CONTENT_FORMAT_XML', 'application/xml' );
  */
 define( 'SHELL_MAX_ARG_STRLEN', '100000' );
 /**@}*/
+
+/**@{
+ * Schema change migration flags.
+ *
+ * Used as values of a feature flag for an orderly transition from an old
+ * schema to a new schema.
+ *
+ * - MIGRATION_OLD: Only read and write the old schema. The new schema need not
+ *   even exist. This is used from when the patch is merged until the schema
+ *   change is actually applied to the database.
+ * - MIGRATION_WRITE_BOTH: Write both the old and new schema. Read the new
+ *   schema preferentially, falling back to the old. This is used while the
+ *   change is being tested, allowing easy roll-back to the old schema.
+ * - MIGRATION_WRITE_NEW: Write only the new schema. Read the new schema
+ *   preferentially, falling back to the old. This is used while running the
+ *   maintenance script to migrate existing entries in the old schema to the
+ *   new schema.
+ * - MIGRATION_NEW: Only read and write the new schema. The old schema (and the
+ *   feature flag) may now be removed.
+ */
+define( 'MIGRATION_OLD', 0 );
+define( 'MIGRATION_WRITE_BOTH', 1 );
+define( 'MIGRATION_WRITE_NEW', 2 );
+define( 'MIGRATION_NEW', 3 );
+/**@}*/
