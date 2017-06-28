@@ -5,15 +5,22 @@
 		}
 
 		> .oo-ui-popupWidget-popup > .oo-ui-popupWidget-head {
+			height: auto;
+			padding: 1em;
+			// Icon width + icon left position (rounded to 0.5 to give a little extra margin)
+			padding-right: 1.875em + 0.5em;
+
 			> .oo-ui-iconWidget {
-				margin: 0.75em 0.5em;
-				float: left;
+				float: none;
+				display: inline-block;
+				margin: 0;
 			}
 
 			> .oo-ui-labelElement-label {
+				float: none;
+				display: inline;
 				font-size: 1.2em;
-				padding: 0.3em;
-				margin-left: 0;
+				margin: 0;
 				font-weight: bold;
 			}
 		}
