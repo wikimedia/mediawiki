@@ -91,8 +91,10 @@
 				views: footerData.views
 			};
 
-			this.footers.push( adjustedData );
-			this.$element.append( adjustedData.$element );
+			if ( !footerData.disabled ) {
+				this.footers.push( adjustedData );
+				this.$element.append( adjustedData.$element );
+			}
 		}.bind( this ) );
 
 		// Switch to the correct view

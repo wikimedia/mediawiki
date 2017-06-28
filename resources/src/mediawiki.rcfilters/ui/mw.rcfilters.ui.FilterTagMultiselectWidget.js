@@ -47,6 +47,7 @@
 				footers: [
 					{
 						name: 'viewSelect',
+						disabled: !mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' ),
 						// View select menu, appears on default view only
 						$element: $( '<div>' )
 							.append( new mw.rcfilters.ui.ViewSwitchWidget( this.controller, this.model ).$element ),
