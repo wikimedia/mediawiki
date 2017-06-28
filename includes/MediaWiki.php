@@ -539,7 +539,7 @@ class MediaWiki {
 				HTMLFileCache::useFileCache( $this->context, HTMLFileCache::MODE_OUTAGE )
 			) {
 				// Try to use any (even stale) file during outages...
-				$cache = new HTMLFileCache( $context->getTitle(), 'view' );
+				$cache = new HTMLFileCache( $context->getTitle(), $action );
 				if ( $cache->isCached() ) {
 					$cache->loadFromFileCache( $context, HTMLFileCache::MODE_OUTAGE );
 					print MWExceptionRenderer::getHTML( $e );
