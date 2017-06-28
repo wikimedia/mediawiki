@@ -71,8 +71,7 @@
 
 		// Events
 		this.popup.connect( this, {
-			ready: 'onPopupReady',
-			toggle: 'onPopupToggle'
+			ready: 'onPopupReady'
 		} );
 		this.input.connect( this, { enter: 'onInputEnter' } );
 		this.input.$input.on( {
