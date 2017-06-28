@@ -333,7 +333,7 @@
 		 * @param {Object} data Other upload options, see action=upload API docs for more
 		 * @param {number} [chunkSize] Size (in bytes) per chunk (default: 5MB)
 		 * @param {number} [chunkRetries] Amount of times to retry a failed chunk (default: 1)
-		 * @returns {jQuery.Promise}
+		 * @return {jQuery.Promise}
 		 */
 		chunkedUpload: function ( file, data, chunkSize, chunkRetries ) {
 			var start, end, promise, next, active,
@@ -449,7 +449,7 @@
 		 * @param {File} file
 		 * @param {number} start
 		 * @param {number} stop
-		 * @returns {Blob}
+		 * @return {Blob}
 		 */
 		slice: function ( file, start, stop ) {
 			if ( file.mozSlice ) {
@@ -464,6 +464,52 @@
 				// We'll ignore that here...
 				return file.slice( start, stop, file.type );
 			}
+		},
+
+		/**
+		 * This function will handle how uploads to stash (via uploadToStash or
+		 * chunkedUploadToStash) are resolved/rejected.
+		 *
+		 * After a successful stash, it'll resolve with a callback which, when
+		 * called, will finalize the upload in stash (with the given data, or
+		 * with additional/conflicting data)
+		 *
+		 * A failed stash can still be recovered from as long as 'filekey' is
+		 * present. In that case, it'll also resolve with the callback to
+		 * finalize the upload (all warnings are then ignored.)
+		 * Otherwise, it'll just reject as you'd expect, with code & result.
+		 *
+		 * @private
+		 * @param {jQuery.Promise} uploadPromise
+		 * @param {Object} data
+		 * @return {jQuery.Promise}
+		 * @return {Function} return.finishUpload Call this function to finish the upload.
+		 * @return {Object} return.finishUpload.data Additional data for the upload.
+		 * @return {jQuery.Promise} return.finishUpload.return API promise for the final upload
+		 * @return {Object} return.finishUpload.return.data API return value for the final upload
+		 */
+		finishUploadToStash: function ( uploadPromise, data ) {
+			var filekey,
+				api = this;
+
+			function finishUpload( moreData ) {
+				return api.uploadFromStash( filekey, $.extend( data, moreData ) );
+			}
+
+			return uploadPromise.then(
+				function ( result ) {
+					filekey = result.upload.filekey;
+					return finishUpload;
+				},
+				function ( errorCode, result ) {
+					if ( result && result.upload && result.upload.filekey ) {
+						// Ignore any warnings if 'filekey' was returned, that's all we care about
+						filekey = result.upload.filekey;
+						return $.Deferred().resolve( finishUpload );
+					}
+					return $.Deferred().reject( errorCode, result );
+				}
+			);
 		},
 
 		/**
@@ -485,37 +531,55 @@
 		 * @param {File|HTMLInputElement} file
 		 * @param {Object} [data]
 		 * @return {jQuery.Promise}
-		 * @return {Function} return.finishStashUpload Call this function to finish the upload.
-		 * @return {Object} return.finishStashUpload.data Additional data for the upload.
-		 * @return {jQuery.Promise} return.finishStashUpload.return API promise for the final upload
-		 * @return {Object} return.finishStashUpload.return.data API return value for the final upload
+		 * @return {Function} return.finishUpload Call this function to finish the upload.
+		 * @return {Object} return.finishUpload.data Additional data for the upload.
+		 * @return {jQuery.Promise} return.finishUpload.return API promise for the final upload
+		 * @return {Object} return.finishUpload.return.data API return value for the final upload
 		 */
 		uploadToStash: function ( file, data ) {
-			var filekey,
-				api = this;
+			var promise;
 
 			if ( !data.filename ) {
 				throw new Error( 'Filename not included in file data.' );
 			}
 
-			function finishUpload( moreData ) {
-				return api.uploadFromStash( filekey, $.extend( data, moreData ) );
+			promise = this.upload( file, { stash: true, filename: data.filename } );
+
+			return this.finishUploadToStash( promise, data );
+		},
+
+		/**
+		 * Upload a file to the stash, in chunks.
+		 *
+		 * This function will return a promise, which when resolved, will pass back a function
+		 * to finish the stash upload.
+		 *
+		 * @see uploadToStash
+		 * @param {File|HTMLInputElement} file
+		 * @param {Object} [data]
+		 * @param {number} [chunkSize] Size (in bytes) per chunk (default: 5MB)
+		 * @param {number} [chunkRetries] Amount of times to retry a failed chunk (default: 1)
+		 * @return {jQuery.Promise}
+		 * @return {Function} return.finishUpload Call this function to finish the upload.
+		 * @return {Object} return.finishUpload.data Additional data for the upload.
+		 * @return {jQuery.Promise} return.finishUpload.return API promise for the final upload
+		 * @return {Object} return.finishUpload.return.data API return value for the final upload
+		 */
+		chunkedUploadToStash: function ( file, data, chunkSize, chunkRetries ) {
+			var promise;
+
+			if ( !data.filename ) {
+				throw new Error( 'Filename not included in file data.' );
 			}
 
-			return this.upload( file, { stash: true, filename: data.filename } ).then(
-				function ( result ) {
-					filekey = result.upload.filekey;
-					return finishUpload;
-				},
-				function ( errorCode, result ) {
-					if ( result && result.upload && result.upload.filekey ) {
-						// Ignore any warnings if 'filekey' was returned, that's all we care about
-						filekey = result.upload.filekey;
-						return $.Deferred().resolve( finishUpload );
-					}
-					return $.Deferred().reject( errorCode, result );
-				}
+			promise = this.chunkedUpload(
+				file,
+				{ stash: true, filename: data.filename },
+				chunkSize,
+				chunkRetries
 			);
+
+			return this.finishUploadToStash( promise, data );
 		},
 
 		/**
