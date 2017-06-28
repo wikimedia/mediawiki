@@ -47,6 +47,7 @@
 				footers: [
 					{
 						name: 'viewSelect',
+						disabled: !mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' ),
 						sticky: false,
 						// View select menu, appears on default view only
 						$element: $( '<div>' )

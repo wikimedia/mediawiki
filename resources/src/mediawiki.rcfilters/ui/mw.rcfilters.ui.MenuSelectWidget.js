@@ -92,12 +92,14 @@
 					views: footerData.views
 				};
 
-			this.footers.push( adjustedData );
+			if ( !footerData.disabled ) {
+				this.footers.push( adjustedData );
 
-			if ( isSticky ) {
-				this.$element.append( adjustedData.$element );
-			} else {
-				this.$body.append( adjustedData.$element );
+				if ( isSticky ) {
+					this.$element.append( adjustedData.$element );
+				} else {
+					this.$body.append( adjustedData.$element );
+				}
 			}
 		}.bind( this ) );
 
