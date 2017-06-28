@@ -42,4 +42,11 @@ class NullIndexField implements SearchIndexField {
 	public function merge( SearchIndexField $that ) {
 		return $that;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function getEngineHints( SearchEngine $engine ) {
+		return [];
+	}
 }
