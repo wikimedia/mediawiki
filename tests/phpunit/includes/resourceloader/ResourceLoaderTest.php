@@ -623,10 +623,10 @@ mw.example();
 				'modules' => [
 					'foo' => 'foo()',
 				],
-				'expected' => "foo();\n" . 'mw.loader.state( {
+				'expected' => "foo()\n" . 'mw.loader.state( {
     "foo": "ready"
 } );',
-				'minified' => "foo();" . 'mw.loader.state({"foo":"ready"});',
+				'minified' => "foo()\n" . 'mw.loader.state({"foo":"ready"});',
 				'message' => 'Script without semi-colon',
 			],
 			[
@@ -634,24 +634,22 @@ mw.example();
 					'foo' => 'foo()',
 					'bar' => 'bar()',
 				],
-				'expected' => "foo();\nbar();\n" . 'mw.loader.state( {
+				'expected' => "foo()\nbar()\n" . 'mw.loader.state( {
     "foo": "ready",
     "bar": "ready"
 } );',
-				'minified' => "foo();bar();" . 'mw.loader.state({"foo":"ready","bar":"ready"});',
+				'minified' => "foo()\nbar()\n" . 'mw.loader.state({"foo":"ready","bar":"ready"});',
 				'message' => 'Two scripts without semi-colon',
 			],
 			[
 				'modules' => [
 					'foo' => "foo()\n// bar();"
 				],
-				// FIXME: Invalid code (T162719)
-				'expected' => "foo()\n// bar();" . 'mw.loader.state( {
+				'expected' => "foo()\n// bar();\n" . 'mw.loader.state( {
     "foo": "ready"
 } );',
-				// FIXME: Invalid code (T162719)
-				'minified' => "foo()" . 'mw.loader.state({"foo":"ready"});',
-				'message' => 'Script with semi-colon in comment',
+				'minified' => "foo()\n" . 'mw.loader.state({"foo":"ready"});',
+				'message' => 'Script with semi-colon in comment (T162719)',
 			],
 		];
 		$ret = [];
@@ -695,7 +693,7 @@ mw.example();
 		);
 
 		$response = $rl->makeModuleResponse( $context, $modules );
-		$this->assertCount( 0, $rl->getErrors(), 'Error count' );
+		$this->assertSame( [], $rl->getErrors(), 'Errors' );
 		$this->assertEquals( $expected, $response, $message ?: 'Response' );
 	}
 
@@ -728,7 +726,7 @@ mw.example();
 		$this->assertCount( 1, $errors );
 		$this->assertRegExp( '/Ferry not found/', $errors[0] );
 		$this->assertEquals(
-			'foo();bar();mw.loader.state( {
+			"foo();\nbar();\n" . 'mw.loader.state( {
     "ferry": "error",
     "foo": "ready",
     "bar": "ready"

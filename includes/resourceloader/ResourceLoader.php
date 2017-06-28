@@ -1100,7 +1100,12 @@ MESSAGE;
 					$strContent = self::filter( $filter, $strContent );
 				}
 
-				$out .= $strContent;
+				if ( $context->getOnly() === 'scripts' ) {
+					// Use a linebreak between module scripts (T162719)
+					$out .= $this->ensureNewline( $strContent );
+				} else {
+					$out .= $strContent;
+				}
 
 			} catch ( Exception $e ) {
 				$this->outputErrorAndLog( $e, 'Generating module package failed: {exception}' );
@@ -1128,7 +1133,8 @@ MESSAGE;
 				if ( !$context->getDebug() ) {
 					$stateScript = self::filter( 'minify-js', $stateScript );
 				}
-				$out .= $stateScript;
+				// Use a linebreak between module script and state script (T162719)
+				$out = $this->ensureNewline( $out ) . $stateScript;
 			}
 		} else {
 			if ( count( $states ) ) {
@@ -1138,6 +1144,19 @@ MESSAGE;
 		}
 
 		return $out;
+	}
+
+	/**
+	 * Ensure the string is either empty or ends in a line break
+	 * @param string $str
+	 * @return string
+	 */
+	private function ensureNewline( $str ) {
+		$end = substr( $str, -1 );
+		if ( $end === false || $end === "\n" ) {
+			return $str;
+		}
+		return $str . "\n";
 	}
 
 	/**
