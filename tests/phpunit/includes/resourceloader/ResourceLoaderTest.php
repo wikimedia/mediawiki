@@ -166,6 +166,14 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	}
 
 	/**
+	 * @covers ResourceLoader::isFileModule
+	 */
+	public function testIsFileModuleUnknown() {
+		$rl = TestingAccessWrapper::newFromObject( new EmptyResourceLoader() );
+		$this->assertSame( false, $rl->isFileModule( 'unknown' ) );
+	}
+
+	/**
 	 * @covers ResourceLoader::isModuleRegistered
 	 */
 	public function testIsModuleRegistered() {
@@ -589,6 +597,12 @@ mw.example();
 		$context = $this->getResourceLoaderContext( [], $rl );
 
 		$this->assertEquals(
+			'',
+			$rl->getCombinedVersion( $context, [] ),
+			'empty list'
+		);
+
+		$this->assertEquals(
 			ResourceLoader::makeHash( self::BLANK_VERSION ),
 			$rl->getCombinedVersion( $context, [ 'foo' ] ),
 			'compute foo'
@@ -601,6 +615,88 @@ mw.example();
 			$rl->getCombinedVersion( $context, [ 'foo', 'ferry', 'bar' ] ),
 			'compute foo+ferry+bar (T152266)'
 		);
+	}
+
+	public static function provideMakeModuleResponseConcat() {
+		$testcases = [
+			[
+				'modules' => [
+					'foo' => 'foo()',
+				],
+				'expected' => "foo();\n" . 'mw.loader.state( {
+    "foo": "ready"
+} );',
+				'minified' => "foo();" . 'mw.loader.state({"foo":"ready"});',
+				'message' => 'Script without semi-colon',
+			],
+			[
+				'modules' => [
+					'foo' => 'foo()',
+					'bar' => 'bar()',
+				],
+				'expected' => "foo();\nbar();\n" . 'mw.loader.state( {
+    "foo": "ready",
+    "bar": "ready"
+} );',
+				'minified' => "foo();bar();" . 'mw.loader.state({"foo":"ready","bar":"ready"});',
+				'message' => 'Two scripts without semi-colon',
+			],
+			[
+				'modules' => [
+					'foo' => "foo()\n// bar();"
+				],
+				// FIXME: Invalid code (T162719)
+				'expected' => "foo()\n// bar();" . 'mw.loader.state( {
+    "foo": "ready"
+} );',
+				// FIXME: Invalid code (T162719)
+				'minified' => "foo()" . 'mw.loader.state({"foo":"ready"});',
+				'message' => 'Script with semi-colon in comment',
+			],
+		];
+		$ret = [];
+		foreach ( $testcases as $i => $case ) {
+			$ret["#$i"] = [
+				$case['modules'],
+				$case['expected'],
+				true, // debug
+				$case['message'],
+			];
+			$ret["#$i (minified)"] = [
+				$case['modules'],
+				$case['minified'],
+				false, // debug
+				$case['message'],
+			];
+		}
+		return $ret;
+	}
+
+	/**
+	 * Verify how multiple scripts and mw.loader.state() calls are concatenated.
+	 *
+	 * @dataProvider provideMakeModuleResponseConcat
+	 * @covers ResourceLoader::makeModuleResponse
+	 */
+	public function testMakeModuleResponseConcat( $scripts, $expected, $debug, $message = null ) {
+		$rl = new EmptyResourceLoader();
+		$modules = array_map( function ( $script ) {
+			return self::getSimpleModuleMock( $script );
+		}, $scripts );
+		$rl->register( $modules );
+
+		$this->setMwGlobals( 'wgResourceLoaderDebug', $debug );
+		$context = $this->getResourceLoaderContext(
+			[
+				'modules' => implode( '|', array_keys( $modules ) ),
+				'only' => 'scripts',
+			],
+			$rl
+		);
+
+		$response = $rl->makeModuleResponse( $context, $modules );
+		$this->assertCount( 0, $rl->getErrors(), 'Error count' );
+		$this->assertEquals( $expected, $response, $message ?: 'Response' );
 	}
 
 	/**
