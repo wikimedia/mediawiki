@@ -1827,6 +1827,7 @@ return [
 			'rcfilters-savedqueries-unsetdefault',
 			'rcfilters-savedqueries-remove',
 			'rcfilters-savedqueries-new-name-label',
+			'rcfilters-savedqueries-new-name-placeholder',
 			'rcfilters-savedqueries-add-new-title',
 			'rcfilters-savedqueries-apply-label',
 			'rcfilters-savedqueries-cancel-label',

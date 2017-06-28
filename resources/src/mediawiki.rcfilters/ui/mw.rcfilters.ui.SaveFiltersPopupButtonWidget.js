@@ -39,7 +39,7 @@
 		this.popup.$head.prepend( ( new OO.ui.IconWidget( { icon: 'unClip' } ) ).$element );
 
 		this.input = new OO.ui.TextInputWidget( {
-			validate: /\S/
+			placeholder: mw.msg( 'rcfilters-savedqueries-new-name-placeholder' )
 		} );
 		layout = new OO.ui.FieldLayout( this.input, {
 			label: mw.msg( 'rcfilters-savedqueries-new-name-label' ),
@@ -73,7 +73,10 @@
 		this.popup.connect( this, {
 			ready: 'onPopupReady'
 		} );
-		this.input.connect( this, { enter: 'onInputEnter' } );
+		this.input.connect( this, {
+			change: 'onInputChange',
+			enter: 'onInputEnter'
+		} );
 		this.input.$input.on( {
 			keyup: this.onInputKeyup.bind( this )
 		} );
@@ -81,6 +84,7 @@
 		this.applyButton.connect( this, { click: 'onApplyButtonClick' } );
 
 		// Initialize
+		this.applyButton.setDisabled( !this.input.getValue() );
 		this.$element
 			.addClass( 'mw-rcfilters-ui-saveFiltersPopupButtonWidget' );
 	};
@@ -93,6 +97,15 @@
 	 */
 	mw.rcfilters.ui.SaveFiltersPopupButtonWidget.prototype.onInputEnter = function () {
 		this.apply();
+	};
+
+	/**
+	 * Respond to input change event
+	 *
+	 * @param {string} value Input value
+	 */
+	mw.rcfilters.ui.SaveFiltersPopupButtonWidget.prototype.onInputChange = function ( value ) {
+		this.applyButton.setDisabled( !value );
 	};
 
 	/**
@@ -133,15 +146,16 @@
 	 * Apply and add the new quick link
 	 */
 	mw.rcfilters.ui.SaveFiltersPopupButtonWidget.prototype.apply = function () {
-		var widget = this,
-			label = this.input.getValue();
+		var label = this.input.getValue();
 
-		this.input.getValidity()
-			.done( function () {
-				widget.controller.saveCurrentQuery( label );
-				widget.input.setValue( this.input, '' );
-				widget.emit( 'saveCurrent' );
-				widget.popup.toggle( false );
-			} );
+		// This condition is more for sanity-check, since the
+		// apply button should be disabled if the label is empty
+		if ( label ) {
+			this.controller.saveCurrentQuery( label );
+			this.input.setValue( this.input, '' );
+			this.popup.toggle( false );
+
+			this.emit( 'saveCurrent' );
+		}
 	};
 }( mediaWiki ) );
