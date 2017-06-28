@@ -276,7 +276,7 @@
 
 		this.setState( Upload.State.UPLOADING );
 
-		return this.api.upload( this.getFile(), {
+		return this.api.chunkedUpload( this.getFile(), {
 			watchlist: ( this.getWatchlist() ) ? 1 : undefined,
 			comment: this.getComment(),
 			filename: this.getFilename(),
@@ -313,7 +313,7 @@
 
 		this.setState( Upload.State.UPLOADING );
 
-		this.stashPromise = this.api.uploadToStash( this.getFile(), {
+		this.stashPromise = this.api.chunkedUploadToStash( this.getFile(), {
 			filename: this.getFilename()
 		} ).then( function ( finishStash ) {
 			upload.setState( Upload.State.STASHED );
