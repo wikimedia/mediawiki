@@ -637,6 +637,7 @@ ol:lang( sdh ) li {
 
 ol:lang( hi ) li,
 ol:lang( mr ) li,
+ol:lang( mai ) li,
 ol:lang( ne ) li {
 	list-style-type: -moz-devanagari;
 	list-style-type: devanagari;
