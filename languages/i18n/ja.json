@@ -4072,5 +4072,6 @@
 	"gotointerwiki-invalid": "指定したページは無効です。",
 	"gotointerwiki-external": "{{SITENAME}}を離れ、別のウェブサイトである[[$2]]を訪れようとしています。\n\n'''[$1 $1に行く]'''",
 	"undelete-cantedit": "このページを編集する許可がないため復元できません。",
-	"undelete-cantcreate": "同名のページが存在せず、このページを作成する許可がないため復元できません。"
+	"undelete-cantcreate": "同名のページが存在せず、このページを作成する許可がないため復元できません。",
+	"pagedata-not-acceptable": "該当する形式が見つかりません。対応している MIME タイプ: $1"
 }

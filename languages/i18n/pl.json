@@ -88,7 +88,8 @@
 			"Jdx",
 			"Kirsan",
 			"Krottyianock",
-			"Mazab IZW"
+			"Mazab IZW",
+			"InternerowyGołąb"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -1363,7 +1364,7 @@
 	"recentchanges-submit": "Pokaż",
 	"rcfilters-activefilters": "Aktywne filtry",
 	"rcfilters-advancedfilters": "Zaawansowane filtry",
-	"rcfilters-quickfilters": "Zapisane ustawienia filtrów",
+	"rcfilters-quickfilters": "Zapisane filtry",
 	"rcfilters-quickfilters-placeholder-title": "Nie masz jeszcze zapisanych linków",
 	"rcfilters-quickfilters-placeholder-description": "Aby zapisać ustawienia filtrów i używać ich później, kliknij ikonkę zakładki w polu aktywnych filtrów znajdującym się niżej.",
 	"rcfilters-savedqueries-defaultlabel": "Zapisane filtry",
