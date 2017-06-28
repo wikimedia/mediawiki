@@ -643,16 +643,18 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 				$scripts = $this->getScriptURLsForDebug( $context );
 			} else {
 				$scripts = $this->getScript( $context );
-				// rtrim() because there are usually a few line breaks
-				// after the last ';'. A new line at EOF, a new line
-				// added by ResourceLoaderFileModule::readScriptFiles, etc.
+				// Make the script safe to concatenate by making sure there is at least one
+				// trailing new line at the end of the content. Previously, this looked for
+				// a semi-colon instead, but that breaks concatenation if the semicolon
+				// is inside a comment like "// foo();". Instead, simply use a
+				// line break as separator which matches JavaScript native logic for implicitly
+				// ending statements even if a semi-colon is missing.
+				// Bugs: T29054, T162719.
 				if ( is_string( $scripts )
 					&& strlen( $scripts )
-					&& substr( rtrim( $scripts ), -1 ) !== ';'
+					&& substr( $scripts, -1 ) !== "\n"
 				) {
-					// Append semicolon to prevent weird bugs caused by files not
-					// terminating their statements right (T29054)
-					$scripts .= ";\n";
+					$scripts .= "\n";
 				}
 			}
 			$content['scripts'] = $scripts;
