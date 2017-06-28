@@ -1494,6 +1494,20 @@ class EditPage {
 	}
 
 	/**
+	 * Log when a page was successfully saved after the edit conflict view
+	 */
+	private function logResolvedConflicts() {
+		global $wgRequest;
+
+		if ( $wgRequest->getText( 'mode' ) !== 'conflict' ) {
+			return;
+		}
+
+		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$stats->increment( 'edit.failures.conflict.resolved' );
+	}
+
+	/**
 	 * Handle status, such as after attempt save
 	 *
 	 * @param Status $status
@@ -1512,6 +1526,8 @@ class EditPage {
 		if ( $status->value == self::AS_SUCCESS_UPDATE
 			|| $status->value == self::AS_SUCCESS_NEW_ARTICLE
 		) {
+			$this->logResolvedConflicts();
+
 			$this->didSave = true;
 			if ( !$resultDetails['nullEdit'] ) {
 				$this->setPostEditCookie( $status->value );
