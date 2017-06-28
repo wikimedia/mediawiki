@@ -1418,6 +1418,7 @@ return [
 			'jquery.accessKeyLabel',
 			'jquery.textSelection',
 			'jquery.byteLimit',
+			'mediawiki.widgets.visibleByteLimit',
 			'mediawiki.api',
 		],
 	],
@@ -2372,6 +2373,16 @@ return [
 			],
 		],
 		'targets' => [ 'desktop', 'mobile' ],
+	],
+	'mediawiki.widgets.visibleByteLimit' => [
+		'scripts' => [
+			'resources/src/mediawiki.widgets.visibleByteLimit/mediawiki.widgets.visibleByteLimit.js'
+		],
+		'dependencies' => [
+			'oojs-ui-core',
+			'jquery.byteLimit'
+		],
+		'targets' => [ 'desktop', 'mobile' ]
 	],
 	'mediawiki.widgets.datetime' => [
 		'scripts' => [
