@@ -173,13 +173,24 @@ class WikiFilePage extends WikiPage {
 		if ( $this->mFile->exists() ) {
 			wfDebug( 'ImagePage::doPurge purging ' . $this->mFile->getName() . "\n" );
 			DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this->mTitle, 'imagelinks' ) );
+			// Purge current version and its thumbnails
 			$this->mFile->purgeCache( [ 'forThumbRefresh' => true ] );
+			// Purge the old versions and their thumbnails
+			foreach ( $this->mFile->getHistory() as $oldFile ) {
+				$oldFile->purgeCache( [ 'forThumbRefresh' => true ] );
+			}
 		} else {
 			wfDebug( 'ImagePage::doPurge no image for '
 				. $this->mFile->getName() . "; limiting purge to cache only\n" );
 			// even if the file supposedly doesn't exist, force any cached information
 			// to be updated (in case the cached information is wrong)
+			
+			// Purge current version and its thumbnails
 			$this->mFile->purgeCache( [ 'forThumbRefresh' => true ] );
+			// Purge the old versions and their thumbnails
+			foreach ( $this->mFile->getHistory() as $oldFile ) {
+				$oldFile->purgeCache( [ 'forThumbRefresh' => true ] );
+			}
 		}
 		if ( $this->mRepo ) {
 			// Purge redirect cache
