@@ -206,22 +206,14 @@ abstract class SearchEngine {
 	}
 
 	/**
-	 * Get chars legal for search (at query time).
+	 * Get chars legal for search
 	 * NOTE: usage as static is deprecated and preserved only as BC measure
+	 * @param bool $excludeSearchSyntaxChars exclude chars used by the search syntax parser
+	 * (usually double quotes for phrase search)
 	 * @return string
 	 */
-	public static function legalSearchChars() {
+	public static function legalSearchChars( $excludeSearchSyntaxChars = false ) {
 		return "A-Za-z_'.0-9\\x80-\\xFF\\-";
-	}
-
-	/**
-	 * Get chars legal for search (at index time).
-	 *
-	 * @since 1.30
-	 * @return string
-	 */
-	public function legalSearchCharsForUpdate() {
-		return static::legalSearchChars();
 	}
 
 	/**

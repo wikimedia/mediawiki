@@ -124,20 +124,58 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			"Plain search" );
 	}
 
+	public function testWildcardSearch() {
+		$res = $this->search->searchText( 'smith*' );
+		$this->assertEquals(
+			[ 'Smithee' ],
+			$this->fetchIds( $res ),
+			"Search with wildcards" );
+
+		$res = $this->search->searchText( 'smithson*' );
+		$this->assertEquals(
+			[],
+			$this->fetchIds( $res ),
+			"Search with wildcards must not find unrelated articles" );
+
+		$res = $this->search->searchText( 'smith* smithee' );
+		$this->assertEquals(
+			[ 'Smithee' ],
+			$this->fetchIds( $res ),
+			"Search with wildcards can be combined with simple terms" );
+
+		$res = $this->search->searchText( 'smith* "one who smiths"' );
+		$this->assertEquals(
+			[ 'Smithee' ],
+			$this->fetchIds( $res ),
+			"Search with wildcards can be combined with phrase search" );
+	}
+
 	public function testPhraseSearch() {
 		$res = $this->search->searchText( '"smithee is one who smiths"' );
 		$this->assertEquals(
 			[ 'Smithee' ],
 			$this->fetchIds( $res ),
 			"Search a phrase" );
-		$res = $this->search->searchText( '"smithee is one who smiths"' );
+
+		$res = $this->search->searchText( '"smithee is who smiths"' );
+		$this->assertEquals(
+			[],
+			$this->fetchIds( $res ),
+			"Phrase search is not sloppy, search terms must be adjacent" );
+
+		$res = $this->search->searchText( '"is smithee one who smiths"' );
+		$this->assertEquals(
+			[],
+			$this->fetchIds( $res ),
+			"Phrase search is ordered" );
+	}
+
+	public function testPhraseSearchHighlight() {
+		$phrase = "smithee is one who smiths";
+		$res = $this->search->searchText( "\"$phrase\"" );
 		$match = $res->next();
-		$terms = [ 'smithee', 'is', 'one', 'who', 'smiths' ];
-		$snippet = "";
-		foreach ( $terms as $term ) {
-			$snippet .= " <span class='searchmatch'>" . $term . "</span>";
-		}
-		$this->assertRegexp( '/' . preg_quote( $snippet, '/' ) . '/',
+		$snippet = "A <span class='searchmatch'>" . $phrase . "</span>";
+		$this->assertStringStartsWith( $snippet,
 			$match->getTextSnippet( $res->termMatches() ),
 			"Highlight a phrase search" );
 	}
