@@ -6,27 +6,21 @@ MediaWiki 1.30 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.30 ===
-* The C.UTF-8 locale should be used for $wgShellLocale, if available, to avoid
-  unexpected behavior when things use local-sensitive string comparisons. For
-  example, Scribunto considers "bar" < "Foo" in most locales since it ignores
-  case.
+* The "C.UTF-8" locale should be used for $wgShellLocale, if available, to avoid
+  unexpected behavior when code uses locale-sensitive string comparisons. For
+  example, the Scribunto extension considers "bar" < "Foo" in most locales
+  since it ignores case.
 * $wgShellLocale now affects LC_ALL rather than only LC_CTYPE. See
   documentation of $wgShellLocale for details.
-* $wgJobClasses may now specify callback functions
-  as an alternative to plain class names.
-  This is intended for extensions that want control
-  over the instantiation of their jobs,
-  to allow for proper dependency injection.
+* $wgShellLocale is now applied for all requests. wfInitShellLocale() is
+  deprecated and a no-op, as it is no longer needed.
+* $wgJobClasses may now specify callback functions as an alternative to plain
+  class names. This is intended for extensions that want control over the
+  instantiation of their jobs, to allow for proper dependency injection.
 * $wgResourceModules may now specify callback functions as an alternative
   to plain class names, using the 'factory' key in the module description
   array. This allows dependency injection to be used for ResourceLoader modules.
 * $wgExceptionHooks has been removed.
-* $wgShellLocale is now applied for all requests. wfInitShellLocale() is
-  deprecated and a no-op, as it is no longer needed.
-* WikiPage::getParserOutput() will now throw an exception if passed
-  ParserOptions would pollute the parser cache. Callers should use
-  WikiPage::makeParserOptions() to create the ParserOptions object and only
-  change options that affect the parser cache key.
 * (T45547) $wgUsePigLatinVariant added (off by default).
 
 === New features in 1.30 ===
@@ -105,9 +99,9 @@ changes to languages because of Phabricator reports.
   deprecated. There are no known callers.
 * File::getStreamHeaders() was deprecated.
 * MediaHandler::getStreamHeaders() was deprecated.
-* Title::canTalk() was deprecated, the new Title::canHaveTalkPage() should be
+* Title::canTalk() was deprecated. The new Title::canHaveTalkPage() should be
   used instead.
-* MWNamespace::canTalk() was deprecated, the new MWNamespace::hasTalkNamespace()
+* MWNamespace::canTalk() was deprecated. The new MWNamespace::hasTalkNamespace()
   should be used instead.
 * The ExtractThumbParameters hook (deprecated in 1.21) was removed.
 * The OutputPage::addParserOutputNoText and ::getHeadLinks methods (both
@@ -120,7 +114,7 @@ changes to languages because of Phabricator reports.
   or wikilinks.
 * (T163966) Page moves are now counted as edits for the purposes of
   autopromotion, i.e., they increment the user_editcount field in the database.
-* Two new hooks, LogEventsListLineEnding and NewPagesLineEnding were added for
+* Two new hooks, LogEventsListLineEnding and NewPagesLineEnding, were added for
   manipulating Special:Log and Special:NewPages lines.
 * The OldChangesListRecentChangesLine, EnhancedChangesListModifyLineData,
   PageHistoryLineEnding, ContributionsLineEnding and DeletedContributionsLineEnding
@@ -128,6 +122,10 @@ changes to languages because of Phabricator reports.
   RC/history lines. EnhancedChangesListModifyBlockLineData can do that via the
   $data['attribs'] subarray.
 * (T130632) The OutputPage::enableTOC() method was removed.
+* WikiPage::getParserOutput() will now throw an exception if passed
+  ParserOptions that would pollute the parser cache. Callers should use
+  WikiPage::makeParserOptions() to create the ParserOptions object and only
+  change options that affect the parser cache key.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
@@ -148,7 +146,7 @@ The supported versions are:
 == Upgrading ==
 1.30 has several database changes since 1.29, and will not work without schema
 updates. Note that due to changes to some very large tables like the revision
-table, the schema update may take quite long (minutes on a medium sized site,
+table, the schema update may take a long time (minutes on a medium sized site,
 many hours on a large site).
 
 Don't forget to always back up your database before upgrading!
