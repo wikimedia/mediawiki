@@ -174,7 +174,7 @@ class SearchOracle extends SearchDatabase {
 	 */
 	function parseQuery( $filteredText, $fulltext ) {
 		global $wgContLang;
-		$lc = $this->legalSearchChars();
+		$lc = $this->legalSearchChars( self::CHARS_NO_SYNTAX );
 		$this->searchTerms = [];
 
 		# @todo FIXME: This doesn't handle parenthetical expressions.
@@ -266,7 +266,12 @@ class SearchOracle extends SearchDatabase {
 			[] );
 	}
 
-	public function legalSearchCharsForUpdate() {
-		return "\"" . parent::legalSearchCharsForUpdate();
+	public static function legalSearchChars( $type = self::CHARS_ALL ) {
+		$searchChars = parent::legalSearchChars( $type );
+		if ( $type === self::CHARS_ALL ) {
+			// " for phrase, * for wildcard
+			$searchChars = "\"" . $searchChars;
+		}
+		return $searchChars;
 	}
 }
