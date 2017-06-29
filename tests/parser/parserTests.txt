@@ -28332,3 +28332,12 @@ wgRawHtml=1
 <style data-mw-foobar="baz">.foo::after { content: "<bar>"; }</style>
 </div>
 !! end
+
+!! test
+Decoding of HTML entities in fragments (T103714)
+!! wikitext
+[[#A&B&amp;C&amp;amp;D&amp;amp;amp;E]]
+!! html/php
+<p><a href="#A.26B.26C.26D.26amp.3BE">#A&amp;B&amp;C&amp;amp;D&amp;amp;amp;E</a>
+</p>
+!! end
