@@ -5,6 +5,8 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\MonologSpi;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\Database;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -1101,6 +1103,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			return;
 		}
 
+		Hooks::run( 'UnitTestsBeforeDatabaseTeardown' );
+
 		foreach ( $wgJobClasses as $type => $class ) {
 			// Delete any jobs under the clone DB (or old prefix in other stores)
 			JobQueueGroup::singleton()->get( $type )->delete();
@@ -1203,6 +1207,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		if ( $db->getType() == 'oracle' ) {
 			$db->query( 'BEGIN FILL_WIKI_INFO; END;' );
 		}
+
+		Hooks::run( 'UnitTestsAfterDatabaseSetup', [ $db, $prefix ] );
 	}
 
 	/**
