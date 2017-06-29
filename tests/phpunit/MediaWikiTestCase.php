@@ -215,6 +215,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected static function resetGlobalServices( Config $bootstrapConfig = null ) {
 		$oldServices = MediaWikiServices::getInstance();
 		$oldConfigFactory = $oldServices->getConfigFactory();
+		$oldLoadBalancerFactory = $oldServices->getDBLoadBalancerFactory();
 
 		$testConfig = self::makeTestConfig( $bootstrapConfig );
 
@@ -223,6 +224,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$serviceLocator = MediaWikiServices::getInstance();
 		self::installTestServices(
 			$oldConfigFactory,
+			$oldLoadBalancerFactory,
 			$serviceLocator
 		);
 		return $serviceLocator;
@@ -278,12 +280,14 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @param ConfigFactory $oldConfigFactory
+	 * @param LBFactory $oldLoadBalancerFactory
 	 * @param MediaWikiServices $newServices
 	 *
 	 * @throws MWException
 	 */
 	private static function installTestServices(
 		ConfigFactory $oldConfigFactory,
+		LBFactory $oldLoadBalancerFactory,
 		MediaWikiServices $newServices
 	) {
 		// Use bootstrap config for all configuration.
@@ -296,6 +300,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				$oldConfigFactory,
 				[ 'main' =>  $bootstrapConfig ]
 			)
+		);
+		$newServices->resetServiceForTesting( 'DBLoadBalancerFactory' );
+		$newServices->redefineService(
+			'DBLoadBalancerFactory',
+			function ( MediaWikiServices $services ) use ( $oldLoadBalancerFactory ) {
+				return $oldLoadBalancerFactory;
+			}
 		);
 	}
 
@@ -829,6 +840,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$oldInstance = MediaWikiServices::getInstance();
 		$oldConfigFactory = $oldInstance->getConfigFactory();
+		$oldLoadBalancerFactory = $oldInstance->getDBLoadBalancerFactory();
 
 		$testConfig = self::makeTestConfig( null, $configOverrides );
 		$newInstance = new MediaWikiServices( $testConfig );
@@ -847,6 +859,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		self::installTestServices(
 			$oldConfigFactory,
+			$oldLoadBalancerFactory,
 			$newInstance
 		);
 		MediaWikiServices::forceGlobalInstance( $newInstance );
