@@ -393,8 +393,7 @@
 		uploadChunk: function ( file, data, start, end, filekey, retries ) {
 			var upload, retry,
 				api = this,
-				chunk = this.slice( file, start, end ),
-				deferred = $.Deferred();
+				chunk = this.slice( file, start, end );
 
 			// When uploading in chunks, we're going to be issuing a lot more
 			// requests and there's always a chance of 1 getting dropped.
@@ -432,7 +431,7 @@
 			return upload.then(
 					null,
 					// If the call fails, we may want to try again...
-					retries === 0 ? deferred.reject : retry,
+					retries === 0 ? null : retry,
 					function ( fraction ) {
 						// Since we're only uploading small parts of a file, we
 						// need to adjust the reported progress to reflect where
