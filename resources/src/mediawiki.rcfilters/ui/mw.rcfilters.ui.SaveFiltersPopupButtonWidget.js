@@ -149,7 +149,7 @@
 		this.input.getValidity()
 			.done( function () {
 				widget.controller.saveCurrentQuery( label );
-				widget.input.setValue( this.input, '' );
+				widget.input.setValue( '' );
 				widget.emit( 'saveCurrent' );
 				widget.popup.toggle( false );
 			} );
