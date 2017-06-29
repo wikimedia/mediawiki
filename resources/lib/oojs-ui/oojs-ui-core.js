@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.22.1
+ * OOjs UI v0.22.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-05-31T19:07:36Z
+ * Date: 2017-06-28T19:51:59Z
  */
 ( function ( OO ) {
 
@@ -1163,7 +1163,9 @@ OO.ui.Element.static.getRootScrollableElement = function ( el ) {
 		scrollTop = body.scrollTop;
 		body.scrollTop = 1;
 
-		if ( body.scrollTop === 1 ) {
+		// In some browsers (observed in Chrome 56 on Linux Mint 18.1),
+		// body.scrollTop doesn't become exactly 1, but a fractional value like 0.76
+		if ( Math.round( body.scrollTop ) === 1 ) {
 			body.scrollTop = scrollTop;
 			OO.ui.scrollableElement = 'body';
 		} else {
@@ -1856,7 +1858,7 @@ OO.ui.Theme.prototype.getDialogTransitionDuration = function () {
  * @cfg {jQuery} [$tabIndexed] The element that should use the tabindex functionality. By default,
  *  the functionality is applied to the element created by the class ($element). If a different element is specified, the tabindex
  *  functionality will be applied to it instead.
- * @cfg {number|null} [tabIndex=0] Number that specifies the element’s position in the tab-navigation
+ * @cfg {string|number|null} [tabIndex=0] Number that specifies the element’s position in the tab-navigation
  *  order (e.g., 1 for the first focusable element). Use 0 to use the default navigation order; use -1
  *  to remove the element from the tab-navigation flow.
  */
@@ -1905,11 +1907,11 @@ OO.ui.mixin.TabIndexedElement.prototype.setTabIndexedElement = function ( $tabIn
 /**
  * Set the value of the tabindex.
  *
- * @param {number|null} tabIndex Tabindex value, or `null` for no tabindex
+ * @param {string|number|null} tabIndex Tabindex value, or `null` for no tabindex
  * @chainable
  */
 OO.ui.mixin.TabIndexedElement.prototype.setTabIndex = function ( tabIndex ) {
-	tabIndex = typeof tabIndex === 'number' ? tabIndex : null;
+	tabIndex = /^-?\d+$/.test( tabIndex ) ? Number( tabIndex ) : null;
 
 	if ( this.tabIndex !== tabIndex ) {
 		this.tabIndex = tabIndex;
@@ -3498,7 +3500,7 @@ OO.ui.mixin.AccessKeyedElement.prototype.getAccessKey = function () {
  *     // A button widget
  *     var button = new OO.ui.ButtonWidget( {
  *         label: 'Button with Icon',
- *         icon: 'remove',
+ *         icon: 'trash',
  *         iconTitle: 'Remove'
  *     } );
  *     $( 'body' ).append( button.$element );
@@ -7028,54 +7030,58 @@ OO.ui.MenuSelectWidget.prototype.onKeyDown = function ( e ) {
 };
 
 /**
- * Update menu item visibility after input changes.
+ * Update menu item visibility and clipping after input changes (if filterFromInput is enabled)
+ * or after items were added/removed (always).
  *
  * @protected
  */
 OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
-	var i, item, visible, section, sectionEmpty,
+	var i, item, visible, section, sectionEmpty, filter, exactFilter,
 		firstItemFound = false,
 		anyVisible = false,
 		len = this.items.length,
 		showAll = !this.isVisible(),
-		filter = showAll ? null : this.getItemMatcher( this.$input.val() ),
-		exactFilter = this.getItemMatcher( this.$input.val(), true ),
 		exactMatch = false;
 
-	// Hide non-matching options, and also hide section headers if all options
-	// in their section are hidden.
-	for ( i = 0; i < len; i++ ) {
-		item = this.items[ i ];
-		if ( item instanceof OO.ui.MenuSectionOptionWidget ) {
-			if ( section ) {
-				// If the previous section was empty, hide its header
-				section.toggle( showAll || !sectionEmpty );
-			}
-			section = item;
-			sectionEmpty = true;
-		} else if ( item instanceof OO.ui.OptionWidget ) {
-			visible = showAll || filter( item );
-			exactMatch = exactMatch || exactFilter( item );
-			anyVisible = anyVisible || visible;
-			sectionEmpty = sectionEmpty && !visible;
-			item.toggle( visible );
-			if ( this.highlightOnFilter && visible && !firstItemFound ) {
-				// Highlight the first item in the list
-				this.highlightItem( item );
-				firstItemFound = true;
+	if ( this.$input && this.filterFromInput ) {
+		filter = showAll ? null : this.getItemMatcher( this.$input.val() );
+		exactFilter = this.getItemMatcher( this.$input.val(), true );
+
+		// Hide non-matching options, and also hide section headers if all options
+		// in their section are hidden.
+		for ( i = 0; i < len; i++ ) {
+			item = this.items[ i ];
+			if ( item instanceof OO.ui.MenuSectionOptionWidget ) {
+				if ( section ) {
+					// If the previous section was empty, hide its header
+					section.toggle( showAll || !sectionEmpty );
+				}
+				section = item;
+				sectionEmpty = true;
+			} else if ( item instanceof OO.ui.OptionWidget ) {
+				visible = showAll || filter( item );
+				exactMatch = exactMatch || exactFilter( item );
+				anyVisible = anyVisible || visible;
+				sectionEmpty = sectionEmpty && !visible;
+				item.toggle( visible );
+				if ( this.highlightOnFilter && visible && !firstItemFound ) {
+					// Highlight the first item in the list
+					this.highlightItem( item );
+					firstItemFound = true;
+				}
 			}
 		}
-	}
-	// Process the final section
-	if ( section ) {
-		section.toggle( showAll || !sectionEmpty );
-	}
+		// Process the final section
+		if ( section ) {
+			section.toggle( showAll || !sectionEmpty );
+		}
 
-	if ( anyVisible && this.items.length && !exactMatch ) {
-		this.scrollItemIntoView( this.items[ 0 ] );
-	}
+		if ( anyVisible && this.items.length && !exactMatch ) {
+			this.scrollItemIntoView( this.items[ 0 ] );
+		}
 
-	this.$element.toggleClass( 'oo-ui-menuSelectWidget-invisible', !anyVisible );
+		this.$element.toggleClass( 'oo-ui-menuSelectWidget-invisible', !anyVisible );
+	}
 
 	// Reevaluate clipping
 	this.clip();
@@ -7157,8 +7163,7 @@ OO.ui.MenuSelectWidget.prototype.addItems = function ( items, index ) {
 	// Parent method
 	OO.ui.MenuSelectWidget.parent.prototype.addItems.call( this, items, index );
 
-	// Reevaluate clipping
-	this.clip();
+	this.updateItemVisibility();
 
 	return this;
 };
@@ -7170,8 +7175,7 @@ OO.ui.MenuSelectWidget.prototype.removeItems = function ( items ) {
 	// Parent method
 	OO.ui.MenuSelectWidget.parent.prototype.removeItems.call( this, items );
 
-	// Reevaluate clipping
-	this.clip();
+	this.updateItemVisibility();
 
 	return this;
 };
@@ -7183,8 +7187,7 @@ OO.ui.MenuSelectWidget.prototype.clearItems = function () {
 	// Parent method
 	OO.ui.MenuSelectWidget.parent.prototype.clearItems.call( this );
 
-	// Reevaluate clipping
-	this.clip();
+	this.updateItemVisibility();
 
 	return this;
 };
@@ -8847,6 +8850,9 @@ OO.ui.DropdownInputWidget = function OoUiDropdownInputWidget( config ) {
 
 	// Initialization
 	this.setOptions( config.options || [] );
+	// Set the value again, after we did setOptions(). The call from parent doesn't work because the
+	// widget has no valid options when it happens.
+	this.setValue( config.value );
 	this.$element
 		.addClass( 'oo-ui-dropdownInputWidget' )
 		.append( this.dropdownWidget.$element );
@@ -8872,10 +8878,10 @@ OO.ui.DropdownInputWidget.prototype.getInputElement = function () {
  * Handles menu select events.
  *
  * @private
- * @param {OO.ui.MenuOptionWidget} item Selected menu item
+ * @param {OO.ui.MenuOptionWidget|null} item Selected menu item
  */
 OO.ui.DropdownInputWidget.prototype.onMenuSelect = function ( item ) {
-	this.setValue( item.getData() );
+	this.setValue( item ? item.getData() : '' );
 };
 
 /**
@@ -8884,9 +8890,10 @@ OO.ui.DropdownInputWidget.prototype.onMenuSelect = function ( item ) {
 OO.ui.DropdownInputWidget.prototype.setValue = function ( value ) {
 	var selected;
 	value = this.cleanUpValue( value );
-	this.dropdownWidget.getMenu().selectItemByData( value );
 	// Only allow setting values that are actually present in the dropdown
-	selected = this.dropdownWidget.getMenu().getSelectedItem();
+	selected = this.dropdownWidget.getMenu().getItemFromData( value ) ||
+		this.dropdownWidget.getMenu().getFirstSelectableItem();
+	this.dropdownWidget.getMenu().selectItem( selected );
 	value = selected ? selected.getData() : '';
 	OO.ui.DropdownInputWidget.parent.prototype.setValue.call( this, value );
 	return this;
@@ -9477,19 +9484,12 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.focus = function () {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {string} [type='text'] The value of the HTML `type` attribute: 'text', 'password'
- *  'email', 'url' or 'number'. Ignored if `multiline` is true.
+ *  'email', 'url' or 'number'.
  * @cfg {string} [placeholder] Placeholder text
  * @cfg {boolean} [autofocus=false] Use an HTML `autofocus` attribute to
  *  instruct the browser to focus this widget.
  * @cfg {boolean} [readOnly=false] Prevent changes to the value of the text input.
  * @cfg {number} [maxLength] Maximum number of characters allowed in the input.
- * @cfg {boolean} [multiline=false] Allow multiple lines of text
- * @cfg {number} [rows] If multiline, number of visible lines in textarea. If used with `autosize`,
- *  specifies minimum number of rows to display.
- * @cfg {boolean} [autosize=false] Automatically resize the text input to fit its content.
- *  Use the #maxRows config to specify a maximum number of displayed rows.
- * @cfg {number} [maxRows] Maximum number of rows to display when #autosize is set to true.
- *  Defaults to the maximum of `10` and `2 * rows`, or `10` if `rows` isn't provided.
  * @cfg {string} [labelPosition='after'] The position of the inline label relative to that of
  *  the value or placeholder text: `'before'` or `'after'`
  * @cfg {boolean} [required=false] Mark the field as required. Implies `indicator: 'required'`.
@@ -9507,6 +9507,11 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 		labelPosition: 'after'
 	}, config );
 
+	if ( config.multiline ) {
+		OO.ui.warnDeprecation( 'TextInputWidget: config.multiline is deprecated. Use the MultilineTextInputWidget instead. See T130434 for details.' );
+		return new OO.ui.MultilineTextInputWidget( config );
+	}
+
 	// Parent constructor
 	OO.ui.TextInputWidget.parent.call( this, config );
 
@@ -9520,22 +9525,9 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	this.type = this.getSaneType( config );
 	this.readOnly = false;
 	this.required = false;
-	this.multiline = !!config.multiline;
-	this.autosize = !!config.autosize;
-	this.minRows = config.rows !== undefined ? config.rows : '';
-	this.maxRows = config.maxRows || Math.max( 2 * ( this.minRows || 0 ), 10 );
 	this.validate = null;
 	this.styleHeight = null;
 	this.scrollWidth = null;
-
-	// Clone for resizing
-	if ( this.autosize ) {
-		this.$clone = this.$input
-			.clone()
-			.insertAfter( this.$input )
-			.attr( 'aria-hidden', 'true' )
-			.addClass( 'oo-ui-element-hidden' );
-	}
 
 	this.setValidation( config.validate );
 	this.setLabelPosition( config.labelPosition );
@@ -9549,9 +9541,6 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	this.$icon.on( 'mousedown', this.onIconMouseDown.bind( this ) );
 	this.$indicator.on( 'mousedown', this.onIndicatorMouseDown.bind( this ) );
 	this.on( 'labelChange', this.updatePosition.bind( this ) );
-	this.connect( this, {
-		change: 'onChange'
-	} );
 	this.on( 'change', OO.ui.debounce( this.onDebouncedChange.bind( this ), 250 ) );
 
 	// Initialization
@@ -9584,10 +9573,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 			}.bind( this )
 		} );
 	}
-	if ( this.multiline && config.rows ) {
-		this.$input.attr( 'rows', config.rows );
-	}
-	if ( this.label || config.autosize ) {
+	if ( this.label ) {
 		this.isWaitingToBeAttached = true;
 		this.installParentChangeDetector();
 	}
@@ -9615,9 +9601,6 @@ OO.ui.TextInputWidget.static.validationPatterns = {
  */
 OO.ui.TextInputWidget.static.gatherPreInfuseState = function ( node, config ) {
 	var state = OO.ui.TextInputWidget.parent.static.gatherPreInfuseState( node, config );
-	if ( config.multiline ) {
-		state.scrollTop = config.$input.scrollTop();
-	}
 	return state;
 };
 
@@ -9626,15 +9609,7 @@ OO.ui.TextInputWidget.static.gatherPreInfuseState = function ( node, config ) {
 /**
  * An `enter` event is emitted when the user presses 'enter' inside the text box.
  *
- * Not emitted if the input is multiline.
- *
  * @event enter
- */
-
-/**
- * A `resize` event is emitted when autosize is set and the widget resizes
- *
- * @event resize
  */
 
 /* Methods */
@@ -9670,10 +9645,10 @@ OO.ui.TextInputWidget.prototype.onIndicatorMouseDown = function ( e ) {
  *
  * @private
  * @param {jQuery.Event} e Key press event
- * @fires enter If enter key is pressed and input is not multiline
+ * @fires enter If enter key is pressed
  */
 OO.ui.TextInputWidget.prototype.onKeyPress = function ( e ) {
-	if ( e.which === OO.ui.Keys.ENTER && !this.multiline ) {
+	if ( e.which === OO.ui.Keys.ENTER ) {
 		this.emit( 'enter', e );
 	}
 };
@@ -9713,18 +9688,7 @@ OO.ui.TextInputWidget.prototype.onElementAttach = function () {
 	this.isWaitingToBeAttached = false;
 	// Any previously calculated size is now probably invalid if we reattached elsewhere
 	this.valCache = null;
-	this.adjustSize();
 	this.positionLabel();
-};
-
-/**
- * Handle change events.
- *
- * @param {string} value
- * @private
- */
-OO.ui.TextInputWidget.prototype.onChange = function () {
-	this.adjustSize();
 };
 
 /**
@@ -9863,93 +9827,11 @@ OO.ui.TextInputWidget.prototype.installParentChangeDetector = function () {
 };
 
 /**
- * Automatically adjust the size of the text input.
- *
- * This only affects #multiline inputs that are {@link #autosize autosized}.
- *
- * @chainable
- * @fires resize
- */
-OO.ui.TextInputWidget.prototype.adjustSize = function () {
-	var scrollHeight, innerHeight, outerHeight, maxInnerHeight, measurementError,
-		idealHeight, newHeight, scrollWidth, property;
-
-	if ( this.isWaitingToBeAttached ) {
-		// #onElementAttach will be called soon, which calls this method
-		return this;
-	}
-
-	if ( this.multiline && this.$input.val() !== this.valCache ) {
-		if ( this.autosize ) {
-			this.$clone
-				.val( this.$input.val() )
-				.attr( 'rows', this.minRows )
-				// Set inline height property to 0 to measure scroll height
-				.css( 'height', 0 );
-
-			this.$clone.removeClass( 'oo-ui-element-hidden' );
-
-			this.valCache = this.$input.val();
-
-			scrollHeight = this.$clone[ 0 ].scrollHeight;
-
-			// Remove inline height property to measure natural heights
-			this.$clone.css( 'height', '' );
-			innerHeight = this.$clone.innerHeight();
-			outerHeight = this.$clone.outerHeight();
-
-			// Measure max rows height
-			this.$clone
-				.attr( 'rows', this.maxRows )
-				.css( 'height', 'auto' )
-				.val( '' );
-			maxInnerHeight = this.$clone.innerHeight();
-
-			// Difference between reported innerHeight and scrollHeight with no scrollbars present.
-			// This is sometimes non-zero on Blink-based browsers, depending on zoom level.
-			measurementError = maxInnerHeight - this.$clone[ 0 ].scrollHeight;
-			idealHeight = Math.min( maxInnerHeight, scrollHeight + measurementError );
-
-			this.$clone.addClass( 'oo-ui-element-hidden' );
-
-			// Only apply inline height when expansion beyond natural height is needed
-			// Use the difference between the inner and outer height as a buffer
-			newHeight = idealHeight > innerHeight ? idealHeight + ( outerHeight - innerHeight ) : '';
-			if ( newHeight !== this.styleHeight ) {
-				this.$input.css( 'height', newHeight );
-				this.styleHeight = newHeight;
-				this.emit( 'resize' );
-			}
-		}
-		scrollWidth = this.$input[ 0 ].offsetWidth - this.$input[ 0 ].clientWidth;
-		if ( scrollWidth !== this.scrollWidth ) {
-			property = this.$element.css( 'direction' ) === 'rtl' ? 'left' : 'right';
-			// Reset
-			this.$label.css( { right: '', left: '' } );
-			this.$indicator.css( { right: '', left: '' } );
-
-			if ( scrollWidth ) {
-				this.$indicator.css( property, scrollWidth );
-				if ( this.labelPosition === 'after' ) {
-					this.$label.css( property, scrollWidth );
-				}
-			}
-
-			this.scrollWidth = scrollWidth;
-			this.positionLabel();
-		}
-	}
-	return this;
-};
-
-/**
  * @inheritdoc
  * @protected
  */
 OO.ui.TextInputWidget.prototype.getInputElement = function ( config ) {
-	if ( config.multiline ) {
-		return $( '<textarea>' );
-	} else if ( this.getSaneType( config ) === 'number' ) {
+	if ( this.getSaneType( config ) === 'number' ) {
 		return $( '<input>' )
 			.attr( 'step', 'any' )
 			.attr( 'type', 'number' );
@@ -9974,24 +9856,6 @@ OO.ui.TextInputWidget.prototype.getSaneType = function ( config ) {
 		'number'
 	];
 	return allowedTypes.indexOf( config.type ) !== -1 ? config.type : 'text';
-};
-
-/**
- * Check if the input supports multiple lines.
- *
- * @return {boolean}
- */
-OO.ui.TextInputWidget.prototype.isMultiline = function () {
-	return !!this.multiline;
-};
-
-/**
- * Check if the input automatically adjusts its size.
- *
- * @return {boolean}
- */
-OO.ui.TextInputWidget.prototype.isAutosizing = function () {
-	return !!this.autosize;
 };
 
 /**
@@ -10243,7 +10107,6 @@ OO.ui.TextInputWidget.prototype.updatePosition = function () {
 
 	this.valCache = null;
 	this.scrollWidth = null;
-	this.adjustSize();
 	this.positionLabel();
 
 	return this;
@@ -10316,6 +10179,11 @@ OO.ui.SearchInputWidget = function OoUiSearchInputWidget( config ) {
 	// Parent constructor
 	OO.ui.SearchInputWidget.parent.call( this, config );
 
+	// Events
+	this.connect( this, {
+		change: 'onChange'
+	} );
+
 	// Initialization
 	this.$element.addClass( 'oo-ui-textInputWidget-type-search' );
 	this.updateSearchIndicator();
@@ -10364,10 +10232,11 @@ OO.ui.SearchInputWidget.prototype.updateSearchIndicator = function () {
 };
 
 /**
- * @inheritdoc
+ * Handle change events.
+ *
+ * @private
  */
 OO.ui.SearchInputWidget.prototype.onChange = function () {
-	OO.ui.SearchInputWidget.parent.prototype.onChange.call( this );
 	this.updateSearchIndicator();
 };
 
@@ -10388,6 +10257,211 @@ OO.ui.SearchInputWidget.prototype.setReadOnly = function ( state ) {
 	OO.ui.SearchInputWidget.parent.prototype.setReadOnly.call( this, state );
 	this.updateSearchIndicator();
 	return this;
+};
+
+/**
+ * @class
+ * @extends OO.ui.TextInputWidget
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {number} [rows] Number of visible lines in textarea. If used with `autosize`,
+ *  specifies minimum number of rows to display.
+ * @cfg {string} [labelPosition='after'] The position of the inline label relative to that of
+ * @cfg {boolean} [autosize=false] Automatically resize the text input to fit its content.
+ *  Use the #maxRows config to specify a maximum number of displayed rows.
+ * @cfg {boolean} [maxRows] Maximum number of rows to display when #autosize is set to true.
+ *  Defaults to the maximum of `10` and `2 * rows`, or `10` if `rows` isn't provided.
+ */
+OO.ui.MultilineTextInputWidget = function OoUiMultilineTextInputWidget( config ) {
+	config = $.extend( {
+		type: 'text'
+	}, config );
+	config.multiline = false;
+	// Parent constructor
+	OO.ui.MultilineTextInputWidget.parent.call( this, config );
+
+	// Properties
+	this.multiline = true;
+	this.autosize = !!config.autosize;
+	this.minRows = config.rows !== undefined ? config.rows : '';
+	this.maxRows = config.maxRows || Math.max( 2 * ( this.minRows || 0 ), 10 );
+
+	// Clone for resizing
+	if ( this.autosize ) {
+		this.$clone = this.$input
+			.clone()
+			.insertAfter( this.$input )
+			.attr( 'aria-hidden', 'true' )
+			.addClass( 'oo-ui-element-hidden' );
+	}
+
+	// Events
+	this.connect( this, {
+		change: 'onChange'
+	} );
+
+	// Initialization
+	if ( this.multiline && config.rows ) {
+		this.$input.attr( 'rows', config.rows );
+	}
+	if ( this.autosize ) {
+		this.isWaitingToBeAttached = true;
+		this.installParentChangeDetector();
+	}
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.MultilineTextInputWidget, OO.ui.TextInputWidget );
+
+/* Static Methods */
+
+/**
+ * @inheritdoc
+ */
+OO.ui.MultilineTextInputWidget.static.gatherPreInfuseState = function ( node, config ) {
+	var state = OO.ui.MultilineTextInputWidget.parent.static.gatherPreInfuseState( node, config );
+	state.scrollTop = config.$input.scrollTop();
+	return state;
+};
+
+/* Methods */
+
+/**
+ * @inheritdoc
+ */
+OO.ui.MultilineTextInputWidget.prototype.onElementAttach = function () {
+	OO.ui.MultilineTextInputWidget.parent.prototype.onElementAttach.call( this );
+	this.adjustSize();
+};
+
+/**
+ * Handle change events.
+ *
+ * @private
+ */
+OO.ui.MultilineTextInputWidget.prototype.onChange = function () {
+	this.adjustSize();
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.MultilineTextInputWidget.prototype.updatePosition = function () {
+	OO.ui.MultilineTextInputWidget.parent.prototype.updatePosition.call( this );
+	this.adjustSize();
+};
+
+/**
+ * Override TextInputWidget so it doesn't emit the 'enter' event.
+ *
+ * @private
+ * @param {jQuery.Event} e Key press event
+ */
+OO.ui.MultilineTextInputWidget.prototype.onKeyPress = function () {
+	return;
+};
+
+/**
+ * Automatically adjust the size of the text input.
+ *
+ * This only affects multiline inputs that are {@link #autosize autosized}.
+ *
+ * @chainable
+ * @fires resize
+ */
+OO.ui.MultilineTextInputWidget.prototype.adjustSize = function () {
+	var scrollHeight, innerHeight, outerHeight, maxInnerHeight, measurementError,
+		idealHeight, newHeight, scrollWidth, property;
+
+	if ( this.$input.val() !== this.valCache ) {
+		if ( this.autosize ) {
+			this.$clone
+				.val( this.$input.val() )
+				.attr( 'rows', this.minRows )
+				// Set inline height property to 0 to measure scroll height
+				.css( 'height', 0 );
+
+			this.$clone.removeClass( 'oo-ui-element-hidden' );
+
+			this.valCache = this.$input.val();
+
+			scrollHeight = this.$clone[ 0 ].scrollHeight;
+
+			// Remove inline height property to measure natural heights
+			this.$clone.css( 'height', '' );
+			innerHeight = this.$clone.innerHeight();
+			outerHeight = this.$clone.outerHeight();
+
+			// Measure max rows height
+			this.$clone
+				.attr( 'rows', this.maxRows )
+				.css( 'height', 'auto' )
+				.val( '' );
+			maxInnerHeight = this.$clone.innerHeight();
+
+			// Difference between reported innerHeight and scrollHeight with no scrollbars present.
+			// This is sometimes non-zero on Blink-based browsers, depending on zoom level.
+			measurementError = maxInnerHeight - this.$clone[ 0 ].scrollHeight;
+			idealHeight = Math.min( maxInnerHeight, scrollHeight + measurementError );
+
+			this.$clone.addClass( 'oo-ui-element-hidden' );
+
+			// Only apply inline height when expansion beyond natural height is needed
+			// Use the difference between the inner and outer height as a buffer
+			newHeight = idealHeight > innerHeight ? idealHeight + ( outerHeight - innerHeight ) : '';
+			if ( newHeight !== this.styleHeight ) {
+				this.$input.css( 'height', newHeight );
+				this.styleHeight = newHeight;
+				this.emit( 'resize' );
+			}
+		}
+		scrollWidth = this.$input[ 0 ].offsetWidth - this.$input[ 0 ].clientWidth;
+		if ( scrollWidth !== this.scrollWidth ) {
+			property = this.$element.css( 'direction' ) === 'rtl' ? 'left' : 'right';
+			// Reset
+			this.$label.css( { right: '', left: '' } );
+			this.$indicator.css( { right: '', left: '' } );
+
+			if ( scrollWidth ) {
+				this.$indicator.css( property, scrollWidth );
+				if ( this.labelPosition === 'after' ) {
+					this.$label.css( property, scrollWidth );
+				}
+			}
+
+			this.scrollWidth = scrollWidth;
+			this.positionLabel();
+		}
+	}
+	return this;
+};
+
+/**
+ * @inheritdoc
+ * @protected
+ */
+OO.ui.MultilineTextInputWidget.prototype.getInputElement = function () {
+	return $( '<textarea>' );
+};
+
+/**
+ * Check if the input supports multiple lines.
+ *
+ * @return {boolean}
+ */
+OO.ui.MultilineTextInputWidget.prototype.isMultiline = function () {
+	return !!this.multiline;
+};
+
+/**
+ * Check if the input automatically adjusts its size.
+ *
+ * @return {boolean}
+ */
+OO.ui.MultilineTextInputWidget.prototype.isAutosizing = function () {
+	return !!this.autosize;
 };
 
 /**

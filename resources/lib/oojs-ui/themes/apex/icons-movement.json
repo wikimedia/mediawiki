@@ -28,6 +28,7 @@
 		"caretUp": { "file": "images/icons/collapse.svg", "deprecated": "Replaced since v0.21.3, use 'collapse' instead." },
 		"collapse": { "file": "images/icons/collapse.svg" },
 		"downTriangle": { "file": "images/icons/downTriangle.svg" },
+		"draggable": { "file": "images/icons/draggable.svg" },
 		"expand": { "file": "images/icons/expand.svg" },
 		"move": { "file": "images/icons/move.svg" },
 		"next": { "file": {

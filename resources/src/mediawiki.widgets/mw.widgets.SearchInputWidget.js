@@ -114,7 +114,7 @@
 	};
 
 	/**
-	 * @inheritdoc
+	 * @see OO.ui.SearchInputWidget#onChange
 	 */
 	mw.widgets.SearchInputWidget.prototype.onChange = function () {
 		mw.widgets.SearchInputWidget.parent.prototype.onChange.call( this );
