@@ -134,7 +134,6 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 				'test.top',
 			],
 			'styles' => [
-				'test.styles.mixed',
 				'test.styles.pure',
 			],
 			'scripts' => [

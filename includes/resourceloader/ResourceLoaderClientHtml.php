@@ -170,14 +170,15 @@ class ResourceLoaderClientHtml {
 
 			if ( $module->getType() !== ResourceLoaderModule::LOAD_STYLES ) {
 				$logger = $rl->getLogger();
-				$logger->warning( 'Unexpected general module "{module}" in styles queue.', [
+				$logger->error( 'Unexpected general module "{module}" in styles queue.', [
 					'module' => $name,
 				] );
-			} else {
-				// Stylesheet doesn't trigger mw.loader callback.
-				// Set "ready" state to allow dependencies and avoid duplicate requests. (T87871)
-				$data['states'][$name] = 'ready';
+				continue;
 			}
+
+			// Stylesheet doesn't trigger mw.loader callback.
+			// Set "ready" state to allow dependencies and avoid duplicate requests. (T87871)
+			$data['states'][$name] = 'ready';
 
 			$group = $module->getGroup();
 			$context = $this->getContext( $group, ResourceLoaderModule::TYPE_STYLES );
