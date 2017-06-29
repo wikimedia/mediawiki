@@ -973,8 +973,6 @@ class JSParser
 					}
 					while (!$ss[$i]->isLoop && ($tt != KEYWORD_BREAK || $ss[$i]->type != KEYWORD_SWITCH));
 				}
-
-				$n->target = $ss[$i];
 			break;
 
 			case KEYWORD_TRY:
