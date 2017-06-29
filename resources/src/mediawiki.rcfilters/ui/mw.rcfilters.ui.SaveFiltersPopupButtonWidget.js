@@ -152,7 +152,7 @@
 		// apply button should be disabled if the label is empty
 		if ( label ) {
 			this.controller.saveCurrentQuery( label );
-			this.input.setValue( this.input, '' );
+			this.input.setValue( '' );
 			this.popup.toggle( false );
 
 			this.emit( 'saveCurrent' );
