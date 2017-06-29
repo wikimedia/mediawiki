@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.22.1
+ * OOjs UI v0.22.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-05-31T19:07:36Z
+ * Date: 2017-06-28T19:51:59Z
  */
 ( function ( OO ) {
 
@@ -1976,10 +1976,19 @@ OO.ui.BookletLayout.prototype.isOutlineVisible = function () {
  * @chainable
  */
 OO.ui.BookletLayout.prototype.toggleOutline = function ( show ) {
+	var booklet = this;
+
 	if ( this.outlined ) {
 		show = show === undefined ? !this.outlineVisible : !!show;
 		this.outlineVisible = show;
 		this.toggleMenu( show );
+		if ( show && this.editable ) {
+			// HACK: When the sidebar stops animating, kill dumb scrollbars (T161798). Only necessary when
+			// outline controls are present, The delay matches transition on `.oo-ui-menuLayout-menu`.
+			setTimeout( function () {
+				OO.ui.Element.static.reconsiderScrollbars( booklet.outlinePanel.$element[ 0 ] );
+			}, 200 );
+		}
 	}
 
 	return this;
@@ -3196,7 +3205,7 @@ OO.ui.OutlineControlsWidget = function OoUiOutlineControlsWidget( outline, confi
 	} );
 	this.removeButton = new OO.ui.ButtonWidget( {
 		framed: false,
-		icon: 'remove',
+		icon: 'trash',
 		title: OO.ui.msg( 'ooui-outline-control-remove' )
 	} );
 	this.abilities = { move: true, remove: true };
@@ -3742,7 +3751,7 @@ OO.ui.CapsuleItemWidget = function OoUiCapsuleItemWidget( config ) {
 	// Events
 	this.closeButton = new OO.ui.ButtonWidget( {
 		framed: false,
-		indicator: 'clear',
+		icon: 'close',
 		tabIndex: -1
 	} ).on( 'click', this.onCloseClick.bind( this ) );
 
@@ -4664,7 +4673,7 @@ OO.ui.TagItemWidget = function OoUiTagItemWidget( config ) {
 
 	this.closeButton = new OO.ui.ButtonWidget( {
 		framed: false,
-		indicator: 'clear',
+		icon: 'close',
 		tabIndex: -1
 	} );
 	this.closeButton.setDisabled( this.isDisabled() );

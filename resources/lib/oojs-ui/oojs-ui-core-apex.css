@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.22.1
+ * OOjs UI v0.22.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-05-31T19:07:44Z
+ * Date: 2017-06-28T19:52:08Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -344,9 +344,6 @@
 .oo-ui-fieldLayout .oo-ui-fieldLayout-help > .oo-ui-popupWidget > .oo-ui-popupWidget-popup {
   z-index: 1;
 }
-.oo-ui-fieldLayout:first-child {
-  margin-top: 0;
-}
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-help,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-help {
   margin-right: 0;
@@ -374,6 +371,9 @@
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
   padding: 0.25em 0 0.25em 0.5em;
+}
+.oo-ui-fieldLayout:first-child {
+  margin-top: 0;
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-top.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
   max-width: 50em;
@@ -539,7 +539,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin-right: 0;
 }
 .oo-ui-horizontalLayout > .oo-ui-layout {
-  margin-bottom: 0;
+  margin-top: 0;
 }
 .oo-ui-optionWidget {
   position: relative;
@@ -704,7 +704,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor {
   left: 0;
-  /* `top` property is to be set in theme's selector due to specific `@size-anchor` values */
 }
 .oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor:before,
 .oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor:after {
@@ -712,7 +711,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor {
   left: 0;
-  /* `bottom` property is to be set in theme's selector due to specific `@size-anchor` values */
 }
 .oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor:before,
 .oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor:after {
@@ -720,7 +718,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-popupWidget-anchored-start .oo-ui-popupWidget-anchor {
   top: 0;
-  /* `left` property is to be set in theme's selector due to specific `@size-anchor` values */
 }
 .oo-ui-popupWidget-anchored-start .oo-ui-popupWidget-anchor:before,
 .oo-ui-popupWidget-anchored-start .oo-ui-popupWidget-anchor:after {
@@ -728,7 +725,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-popupWidget-anchored-end .oo-ui-popupWidget-anchor {
   top: 0;
-  /* `right` property is to be set in theme's selector due to specific `@size-anchor` values */
 }
 .oo-ui-popupWidget-anchored-end .oo-ui-popupWidget-anchor:before,
 .oo-ui-popupWidget-anchored-end .oo-ui-popupWidget-anchor:after {

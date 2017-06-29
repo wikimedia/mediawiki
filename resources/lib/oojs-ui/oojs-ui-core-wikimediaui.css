@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.22.1
+ * OOjs UI v0.22.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-05-31T19:07:44Z
+ * Date: 2017-06-28T19:52:08Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -952,7 +952,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor {
   left: 0;
-  /* `top` property is to be set in theme's selector due to specific `@size-anchor` values */
 }
 .oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor:before,
 .oo-ui-popupWidget-anchored-top .oo-ui-popupWidget-anchor:after {
@@ -960,7 +959,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor {
   left: 0;
-  /* `bottom` property is to be set in theme's selector due to specific `@size-anchor` values */
 }
 .oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor:before,
 .oo-ui-popupWidget-anchored-bottom .oo-ui-popupWidget-anchor:after {
@@ -968,7 +966,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-popupWidget-anchored-start .oo-ui-popupWidget-anchor {
   top: 0;
-  /* `left` property is to be set in theme's selector due to specific `@size-anchor` values */
 }
 .oo-ui-popupWidget-anchored-start .oo-ui-popupWidget-anchor:before,
 .oo-ui-popupWidget-anchored-start .oo-ui-popupWidget-anchor:after {
@@ -976,7 +973,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-popupWidget-anchored-end .oo-ui-popupWidget-anchor {
   top: 0;
-  /* `right` property is to be set in theme's selector due to specific `@size-anchor` values */
 }
 .oo-ui-popupWidget-anchored-end .oo-ui-popupWidget-anchor:before,
 .oo-ui-popupWidget-anchored-end .oo-ui-popupWidget-anchor:after {
@@ -1344,12 +1340,10 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border: 1px solid transparent;
   border-radius: 100%;
 }
-.oo-ui-radioInputWidget [type='radio']:checked + span {
-  border-width: 0.390625em;
-}
+.oo-ui-radioInputWidget [type='radio']:checked + span,
 .oo-ui-radioInputWidget [type='radio']:checked:hover + span,
 .oo-ui-radioInputWidget [type='radio']:checked:focus:hover + span {
-  border-width: 0.390625em;
+  border-width: 0.46875em;
 }
 .oo-ui-radioInputWidget [type='radio']:disabled + span {
   background-color: #c8ccd1;
@@ -1377,12 +1371,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked + span {
   border-color: #36c;
 }
-.oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:hover + span {
-  border-color: #447ff5;
-}
+.oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:hover + span,
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:hover:focus + span {
   border-color: #447ff5;
-  box-shadow: inset 0 0 0 1px #447ff5;
 }
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:active + span,
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:active:focus + span {
@@ -1393,15 +1384,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:active:focus + span:before {
   border-color: #2a4b8d;
 }
-.oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:focus + span {
-  box-shadow: inset 0 0 0 1px #36c;
-}
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:focus + span:before {
   border-color: #fff;
-  top: -3px;
-  right: -3px;
-  bottom: -3px;
-  left: -3px;
 }
 .oo-ui-radioSelectInputWidget .oo-ui-fieldLayout {
   margin-top: 0;

@@ -27,7 +27,10 @@
 			"ltr": "images/icons/stripeFlow-ltr.svg",
 			"rtl": "images/icons/stripeFlow-rtl.svg"
 		} },
-		"stripeSideMenu": { "file": "images/icons/stripeSideMenu.svg" },
+		"stripeSideMenu": {
+			"file": "images/icons/draggable.svg",
+			"deprecated": "Replaced since v0.22.2, use 'draggable' from the 'movement' pack instead."
+		},
 		"stripeSummary": { "file": {
 			"ltr": "images/icons/stripeSummary-ltr.svg",
 			"rtl": "images/icons/stripeSummary-rtl.svg"
