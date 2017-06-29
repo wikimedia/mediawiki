@@ -10,12 +10,10 @@ namespace MediaWiki\Widget;
 /**
  * Search input widget.
  */
-class SearchInputWidget extends TitleInputWidget {
+class SearchInputWidget extends \OOUI\TextInputWidget {
 
 	protected $pushPending = false;
 	protected $performSearchOnClick = true;
-	protected $validateTitle = false;
-	protected $highlightFirst = false;
 	protected $dataLocation = 'header';
 
 	/**
@@ -30,7 +28,6 @@ class SearchInputWidget extends TitleInputWidget {
 	 */
 	public function __construct( array $config = [] ) {
 		$config = array_merge( [
-			'maxLength' => null,
 			'icon' => 'search',
 		], $config );
 
