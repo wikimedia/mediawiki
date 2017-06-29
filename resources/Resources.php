@@ -1293,6 +1293,8 @@ return [
 			'action-upload',
 			'apierror-mustbeloggedin',
 			'badaccess-groups',
+			'apierror-timeout',
+			'apierror-offline',
 			'apierror-unknownerror',
 			'api-error-unknown-warning',
 			'fileexists',
