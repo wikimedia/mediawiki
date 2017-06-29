@@ -360,7 +360,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			if ( $req->username !== null && $req->password !== null ) {
 				// Nothing we can do yet, because the user isn't in the DB yet
 				if ( $req->username !== $user->getName() ) {
-					$req = clone( $req );
+					$req = clone $req;
 					$req->username = $user->getName();
 				}
 
