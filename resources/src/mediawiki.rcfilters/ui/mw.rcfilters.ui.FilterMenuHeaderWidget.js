@@ -29,7 +29,7 @@
 		this.backButton = new OO.ui.ButtonWidget( {
 			icon: 'previous',
 			framed: false,
-			title: mw.msg( 'rcfilters-filterlist-title' ),
+			title: mw.msg( 'rcfilters-view-return-to-default-tooltip' ),
 			classes: [ 'mw-rcfilters-ui-filterMenuHeaderWidget-backButton' ]
 		} );
 		this.backButton.toggle( this.model.getCurrentView() !== 'default' );
