@@ -459,7 +459,7 @@ class SpecialPageFactory {
 		$pages = [];
 		foreach ( self::getPageList() as $name => $rec ) {
 			$page = self::getPage( $name );
-			if ( $page->isListed() && !$page->isRestricted() ) {
+			if ( $page && $page->isListed() && !$page->isRestricted() ) {
 				$pages[$name] = $page;
 			}
 		}
@@ -482,8 +482,8 @@ class SpecialPageFactory {
 		}
 		foreach ( self::getPageList() as $name => $rec ) {
 			$page = self::getPage( $name );
-			if (
-				$page->isListed()
+			if ( $page
+				&& $page->isListed()
 				&& $page->isRestricted()
 				&& $page->userCanExecute( $user )
 			) {
