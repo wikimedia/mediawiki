@@ -125,7 +125,7 @@ class SearchUpdate implements DeferrableUpdate {
 		# Language-specific strip/conversion
 		$text = $wgContLang->normalizeForSearch( $text );
 		$se = $se ?: MediaWikiServices::getInstance()->newSearchEngine();
-		$lc = $se->legalSearchCharsForUpdate() . '&#;';
+		$lc = $se->legalSearchChars() . '&#;';
 
 		$text = preg_replace( "/<\\/?\\s*[A-Za-z][^>]*?>/",
 			' ', $wgContLang->lc( " " . $text . " " ) ); # Strip HTML markup
@@ -208,7 +208,7 @@ class SearchUpdate implements DeferrableUpdate {
 		$ns = $this->title->getNamespace();
 		$title = $this->title->getText();
 
-		$lc = $search->legalSearchCharsForUpdate() . '&#;';
+		$lc = $search->legalSearchChars() . '&#;';
 		$t = $wgContLang->normalizeForSearch( $title );
 		$t = preg_replace( "/[^{$lc}]+/", ' ', $t );
 		$t = $wgContLang->lc( $t );
