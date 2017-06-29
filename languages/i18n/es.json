@@ -1433,7 +1433,7 @@
 	"recentchanges-submit": "Mostrar",
 	"rcfilters-activefilters": "Filtros activos",
 	"rcfilters-advancedfilters": "Filtros avanzados",
-	"rcfilters-quickfilters": "Ajustes de filtro guardados",
+	"rcfilters-quickfilters": "Filtros guardados",
 	"rcfilters-quickfilters-placeholder-title": "Ningún enlace guardado aún",
 	"rcfilters-quickfilters-placeholder-description": "Para guardar tus ajustes de filtro y reutilizarlos más tarde, pulsa en el icono del marcador en el área de Filtro activo que se encuentra a continuación.",
 	"rcfilters-savedqueries-defaultlabel": "Filtros guardados",
@@ -1442,7 +1442,8 @@
 	"rcfilters-savedqueries-unsetdefault": "Desmarcar como predeterminado",
 	"rcfilters-savedqueries-remove": "Eliminar",
 	"rcfilters-savedqueries-new-name-label": "Nombre",
-	"rcfilters-savedqueries-apply-label": "Guardar la configuración",
+	"rcfilters-savedqueries-new-name-placeholder": "Describe el propósito del filtro",
+	"rcfilters-savedqueries-apply-label": "Crear filtro",
 	"rcfilters-savedqueries-cancel-label": "Cancelar",
 	"rcfilters-savedqueries-add-new-title": "Guardar ajustes de filtro actuales",
 	"rcfilters-restore-default-filters": "Restaurar filtros predeterminados",
@@ -4030,6 +4031,6 @@
 	"undelete-cantcreate": "No puedes deshacer el borrado de esta página porque no existe ninguna página con este nombre y no tienes permisos para crearla.",
 	"pagedata-title": "Datos de la página",
 	"pagedata-text": "Esta página provee una interfaz de datos a otras páginas. Por favor proporcione el título de la página en la URL usando la sintaxis de subpáginas.\n* La negociación del contenido se aplica en base a la cabecera Accept de su cliente. Esto significa que los datos de la página se proporcionarán en su formato de preferencia.",
-	"pagedata-not-acceptable": "No se ha encontrado un formato coincidente. Tipos MIME admitidos:",
+	"pagedata-not-acceptable": "No se ha encontrado un formato coincidente. Tipos MIME admitidos: $1",
 	"pagedata-bad-title": "El título «$1» no es válido."
 }
