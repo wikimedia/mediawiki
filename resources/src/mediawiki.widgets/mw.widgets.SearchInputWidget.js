@@ -14,7 +14,7 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {boolean} [pushPending=true] Visually mark the input field as "pending", while
+	 * @cfg {boolean} [pushPending=false] Visually mark the input field as "pending", while
 	 *  requesting suggestions.
 	 * @cfg {boolean} [performSearchOnClick=true] If true, the script will start a search when-
 	 *  ever a user hits a suggestion. If false, the text of the suggestion is inserted into the
