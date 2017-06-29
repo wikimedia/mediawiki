@@ -145,10 +145,10 @@
 			// Check if this item was the default
 			if ( String( this.getDefault() ) === String( queryID ) ) {
 				// Nulify the default
-				this.savedQueriesModel.setDefault( null );
+				this.setDefault( null );
 			}
 
-			this.savedQueriesModel.removeItems( [ query ] );
+			this.removeItems( [ query ] );
 		}
 	};
 
