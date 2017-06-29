@@ -149,12 +149,12 @@
 					new OO.ui.ButtonOptionWidget( {
 						data: 'namespaces',
 						icon: 'article',
-						title: mw.msg( 'namespaces' )
+						title: mw.msg( 'rcfilters-view-namespaces-tooltip' )
 					} ),
 					new OO.ui.ButtonOptionWidget( {
 						data: 'tags',
 						icon: 'tag',
-						title: mw.msg( 'rcfilters-view-tags' )
+						title: mw.msg( 'rcfilters-view-tags-tooltip' )
 					} )
 				]
 			} );
