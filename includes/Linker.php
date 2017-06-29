@@ -1331,7 +1331,10 @@ class Linker {
 			$link = Linker::makeExternalLink(
 				WikiMap::getForeignURL(
 					$wikiId,
-					$title->getPrefixedText(),
+					$title->getNamespace() === 0
+						? $title->getDBkey()
+						: MWNamespace::getCanonicalName( $title->getNamespace() ) . ':'
+							. $title->getDBkey(),
 					$title->getFragment()
 				),
 				$text,
