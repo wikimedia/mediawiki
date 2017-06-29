@@ -531,11 +531,11 @@ class OutputPageTest extends MediaWikiTestCase {
 	 */
 	public function testGetCategories() {
 		$fakeResultWrapper = new FakeResultWrapper( [
-			(object) [
+			(object)[
 				'pp_value' => 1,
 				'page_title' => 'Test'
 			],
-			(object) [
+			(object)[
 				'page_title' => 'Test2'
 			]
 		] );
