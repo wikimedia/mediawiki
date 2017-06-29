@@ -136,7 +136,7 @@ class SearchMssql extends SearchDatabase {
 	 */
 	function parseQuery( $filteredText, $fulltext ) {
 		global $wgContLang;
-		$lc = $this->legalSearchChars();
+		$lc = $this->legalSearchChars( self::CHARS_NO_SYNTAX );
 		$this->searchTerms = [];
 
 		# @todo FIXME: This doesn't handle parenthetical expressions.

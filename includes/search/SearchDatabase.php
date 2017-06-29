@@ -51,7 +51,10 @@ class SearchDatabase extends SearchEngine {
 	 * @return string
 	 */
 	protected function filter( $text ) {
-		$lc = $this->legalSearchChars();
+		// List of chars allowed in the search query.
+		// This must include chars used in the search syntax.
+		// Usually " (phrase) or * (wildcards) if supported by the engine
+		$lc = $this->legalSearchChars( self::CHARS_ALL );
 		return trim( preg_replace( "/[^{$lc}]/", " ", $text ) );
 	}
 }
