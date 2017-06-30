@@ -344,6 +344,41 @@ class SanitizerTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * Test Sanitizer::escapeId
+	 *
+	 * @dataProvider provideEscapeId
+	 * @covers Sanitizer::escapeId
+	 */
+	public function testEscapeId( $input, $output ) {
+		$this->assertEquals(
+			$output,
+			Sanitizer::escapeId( $input, [ 'noninitial', 'legacy' ] )
+		);
+	}
+
+	public static function provideEscapeId() {
+		return [
+			[ '+', '.2B' ],
+			[ '&', '.26' ],
+			[ '=', '.3D' ],
+			[ ':', ':' ],
+			[ ';', '.3B' ],
+			[ '@', '.40' ],
+			[ '$', '.24' ],
+			[ '-_.', '-_.' ],
+			[ '!', '.21' ],
+			[ '*', '.2A' ],
+			[ '/', '.2F' ],
+			[ '[]', '.5B.5D' ],
+			[ '<>', '.3C.3E' ],
+			[ '\'', '.27' ],
+			[ '§', '.C2.A7' ],
+			[ 'Test:A & B/Here', 'Test:A_.26_B.2FHere' ],
+			[ 'A&B&amp;C&amp;amp;D&amp;amp;amp;E', 'A.26B.26C.26amp.3BD.26amp.3Bamp.3BE' ],
+		];
+	}
+
+	/**
 	 * Test escapeIdReferenceList for consistency with escapeId
 	 *
 	 * @dataProvider provideEscapeIdReferenceList
