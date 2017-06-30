@@ -4035,7 +4035,7 @@ class Parser {
 	 * @private
 	 */
 	public function formatHeadings( $text, $origText, $isMain = true ) {
-		global $wgMaxTocLevel, $wgExperimentalHtmlIds;
+		global $wgMaxTocLevel;
 
 		# Inhibit editsection links if requested in the page
 		if ( isset( $this->mDoubleUnderscores['noeditsection'] ) ) {
@@ -4229,61 +4229,44 @@ class Parser {
 			# Save headline for section edit hint before it's escaped
 			$headlineHint = $safeHeadline;
 
-			if ( $wgExperimentalHtmlIds ) {
-				# For reverse compatibility, provide an id that's
-				# HTML4-compatible, like we used to.
-				# It may be worth noting, academically, that it's possible for
-				# the legacy anchor to conflict with a non-legacy headline
-				# anchor on the page.  In this case likely the "correct" thing
-				# would be to either drop the legacy anchors or make sure
-				# they're numbered first.  However, this would require people
-				# to type in section names like "abc_.D7.93.D7.90.D7.A4"
-				# manually, so let's not bother worrying about it.
-				$legacyHeadline = Sanitizer::escapeId( $safeHeadline,
-					[ 'noninitial', 'legacy' ] );
-				$safeHeadline = Sanitizer::escapeId( $safeHeadline );
-
-				if ( $legacyHeadline == $safeHeadline ) {
-					# No reason to have both (in fact, we can't)
-					$legacyHeadline = false;
-				}
-			} else {
-				$legacyHeadline = false;
-				$safeHeadline = Sanitizer::escapeId( $safeHeadline,
-					'noninitial' );
+			$fallbackHeadline = Sanitizer::escapeIdForAttribute( $safeHeadline, Sanitizer::ID_FALLBACK );
+			$linkAnchor = Sanitizer::escapeIdForLink( $safeHeadline );
+			$safeHeadline = Sanitizer::escapeIdForAttribute( $safeHeadline, Sanitizer::ID_PRIMARY );
+			if ( $fallbackHeadline === $safeHeadline ) {
+				# No reason to have both (in fact, we can't)
+				$fallbackHeadline = false;
 			}
 
-			# HTML names must be case-insensitively unique (T12721).
-			# This does not apply to Unicode characters per
-			# https://www.w3.org/TR/html5/infrastructure.html#case-sensitivity-and-string-comparison
+			# HTML IDs must be case-insensitively unique for IE compatibility (T12721).
 			# @todo FIXME: We may be changing them depending on the current locale.
 			$arrayKey = strtolower( $safeHeadline );
-			if ( $legacyHeadline === false ) {
-				$legacyArrayKey = false;
+			if ( $fallbackHeadline === false ) {
+				$fallbackArrayKey = false;
 			} else {
-				$legacyArrayKey = strtolower( $legacyHeadline );
+				$fallbackArrayKey = strtolower( $fallbackHeadline );
 			}
 
 			# Create the anchor for linking from the TOC to the section
 			$anchor = $safeHeadline;
-			$legacyAnchor = $legacyHeadline;
+			$fallbackAnchor = $fallbackHeadline;
 			if ( isset( $refers[$arrayKey] ) ) {
 				// @codingStandardsIgnoreStart
 				for ( $i = 2; isset( $refers["${arrayKey}_$i"] ); ++$i );
 				// @codingStandardsIgnoreEnd
 				$anchor .= "_$i";
+				$linkAnchor .= "_$i";
 				$refers["${arrayKey}_$i"] = true;
 			} else {
 				$refers[$arrayKey] = true;
 			}
-			if ( $legacyHeadline !== false && isset( $refers[$legacyArrayKey] ) ) {
+			if ( $fallbackHeadline !== false && isset( $refers[$fallbackArrayKey] ) ) {
 				// @codingStandardsIgnoreStart
-				for ( $i = 2; isset( $refers["${legacyArrayKey}_$i"] ); ++$i );
+				for ( $i = 2; isset( $refers["${fallbackArrayKey}_$i"] ); ++$i );
 				// @codingStandardsIgnoreEnd
-				$legacyAnchor .= "_$i";
-				$refers["${legacyArrayKey}_$i"] = true;
+				$fallbackAnchor .= "_$i";
+				$refers["${fallbackArrayKey}_$i"] = true;
 			} else {
-				$refers[$legacyArrayKey] = true;
+				$refers[$fallbackArrayKey] = true;
 			}
 
 			# Don't number the heading if it is the only one (looks silly)
@@ -4297,7 +4280,7 @@ class Parser {
 			}
 
 			if ( $enoughToc && ( !isset( $wgMaxTocLevel ) || $toclevel < $wgMaxTocLevel ) ) {
-				$toc .= Linker::tocLine( $anchor, $tocline,
+				$toc .= Linker::tocLine( $linkAnchor, $tocline,
 					$numbering, $toclevel, ( $isTemplate ? false : $sectionIndex ) );
 			}
 
@@ -4364,7 +4347,7 @@ class Parser {
 			}
 			$head[$headlineCount] = Linker::makeHeadline( $level,
 				$matches['attrib'][$headlineCount], $anchor, $headline,
-				$editlink, $legacyAnchor );
+				$editlink, $fallbackAnchor );
 
 			$headlineCount++;
 		}
@@ -5806,22 +5789,33 @@ class Parser {
 		# Strip out wikitext links(they break the anchor)
 		$text = $this->stripSectionName( $text );
 		$text = Sanitizer::normalizeSectionNameWhitespace( $text );
-		return '#' . Sanitizer::escapeId( $text, 'noninitial' );
+		return '#' . Sanitizer::escapeIdForLink( $text );
 	}
 
 	/**
 	 * Same as guessSectionNameFromWikiText(), but produces legacy anchors
-	 * instead.  For use in redirects, since IE6 interprets Redirect: headers
-	 * as something other than UTF-8 (apparently?), resulting in breakage.
+	 * instead, if possible. For use in redirects, since various versions
+	 * of Microsoft browsers interpret Location: headers as something other
+	 * than UTF-8, resulting in breakage.
 	 *
 	 * @param string $text The section name
 	 * @return string An anchor
 	 */
 	public function guessLegacySectionNameFromWikiText( $text ) {
+		global $wgFragmentMode;
+
 		# Strip out wikitext links(they break the anchor)
 		$text = $this->stripSectionName( $text );
 		$text = Sanitizer::normalizeSectionNameWhitespace( $text );
-		return '#' . Sanitizer::escapeId( $text, [ 'noninitial', 'legacy' ] );
+
+		if ( isset( $wgFragmentMode[1] ) && $wgFragmentMode[1] === 'legacy' ) {
+			// ForAttribute() and ForLink() are the same for legacy encoding
+			$id = Sanitizer::escapeIdForAttribute( $text, Sanitizer::ID_FALLBACK );
+		} else {
+			$id = Sanitizer::escapeIdForLink( $text );
+		}
+
+		return "#$id";
 	}
 
 	/**

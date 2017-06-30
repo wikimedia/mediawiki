@@ -1230,6 +1230,7 @@ $wgAutoloadLocalClasses = [
 	'ResourceLoaderJqueryMsgModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderJqueryMsgModule.php',
 	'ResourceLoaderLanguageDataModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderLanguageDataModule.php',
 	'ResourceLoaderLanguageNamesModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderLanguageNamesModule.php',
+	'ResourceLoaderMediaWikiUtilModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderMediaWikiUtilModule.php',
 	'ResourceLoaderModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderModule.php',
 	'ResourceLoaderOOUIFileModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderOOUIFileModule.php',
 	'ResourceLoaderOOUIImageModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderOOUIImageModule.php',
