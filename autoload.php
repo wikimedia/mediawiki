@@ -1159,6 +1159,7 @@ $wgAutoloadLocalClasses = [
 	'PurgeList' => __DIR__ . '/maintenance/purgeList.php',
 	'PurgeModuleDeps' => __DIR__ . '/maintenance/purgeModuleDeps.php',
 	'PurgeOldText' => __DIR__ . '/maintenance/purgeOldText.php',
+	'PurgePage' => __DIR__ . '/maintenance/purgePage.php',
 	'PurgeParserCache' => __DIR__ . '/maintenance/purgeParserCache.php',
 	'QueryPage' => __DIR__ . '/includes/specialpage/QueryPage.php',
 	'QuickTemplate' => __DIR__ . '/includes/skins/QuickTemplate.php',
