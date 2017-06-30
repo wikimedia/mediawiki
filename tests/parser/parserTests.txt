@@ -28375,3 +28375,14 @@ Decoding of HTML entities in headings and links for IDs and link fragments (T103
 <p><a href="#A.26B.26C.26D.26amp.3BE">#A&amp;B&amp;C&amp;amp;D&amp;amp;amp;E</a>
 </p>
 !! end
+
+!! test
+Decoding of HTML entities in indicator names for IDs (T104196)
+!! options
+showindicators
+!! wikitext
+<indicator name="1&2&amp;3&amp;amp;4&amp;amp;amp;5">Indicator</indicator>
+!! html/php
+1&2&3&amp;4&amp;amp;5=Indicator
+
+!! end
