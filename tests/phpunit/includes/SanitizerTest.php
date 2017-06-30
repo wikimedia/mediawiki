@@ -3,6 +3,8 @@
 /**
  * @todo Tests covering decodeCharReferences can be refactored into a single
  * method and dataprovider.
+ *
+ * @group Sanitizer
  */
 class SanitizerTest extends MediaWikiTestCase {
 
@@ -379,7 +381,7 @@ class SanitizerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Test escapeIdReferenceList for consistency with escapeId
+	 * Test escapeIdReferenceList for consistency with escapeIdForAttribute
 	 *
 	 * @dataProvider provideEscapeIdReferenceList
 	 * @covers Sanitizer::escapeIdReferenceList
@@ -387,9 +389,9 @@ class SanitizerTest extends MediaWikiTestCase {
 	public function testEscapeIdReferenceList( $referenceList, $id1, $id2 ) {
 		$this->assertEquals(
 			Sanitizer::escapeIdReferenceList( $referenceList, 'noninitial' ),
-			Sanitizer::escapeId( $id1, 'noninitial' )
+			Sanitizer::escapeIdForAttribute( $id1 )
 				. ' '
-				. Sanitizer::escapeId( $id2, 'noninitial' )
+				. Sanitizer::escapeIdForAttribute( $id2 )
 		);
 	}
 
@@ -421,5 +423,120 @@ class SanitizerTest extends MediaWikiTestCase {
 			[ 'data-ooui-foo', true ],
 			[ 'data-mwfoo', true ], // could be false but this is how it's implemented currently
 		];
+	}
+
+	/**
+	 * @dataProvider provideEscapeIdForStuff
+	 *
+	 * @covers Sanitizer::escapeIdForAttribute()
+	 * @covers Sanitizer::escapeIdForLink()
+	 * @covers Sanitizer::escapeIdForExternalInterwiki()
+	 * @covers Sanitizer::escapeIdInternal()
+	 * @covers Sanitizer::urlEscapeId()
+	 *
+	 * @param string $stuff
+	 * @param string[] $config
+	 * @param string $id
+	 * @param string|false $expected
+	 * @param int|null $mode
+	 */
+	public function testEscapeIdForStuff( $stuff, array $config, $id, $expected, $mode = null ) {
+		$func = "Sanitizer::escapeIdFor{$stuff}";
+		$iwFlavor = array_pop( $config );
+		$this->setMwGlobals( [
+			'wgFragmentMode' => $config,
+			'wgExternalInterwikiFragmentMode' => $iwFlavor,
+		] );
+		$escaped = call_user_func( $func, $id, $mode );
+		self::assertEquals( $expected, $escaped );
+	}
+
+	public function provideEscapeIdForStuff() {
+		// Test inputs and outputs
+		$text = 'foo тест_#%!\'()[]:<>';
+		$legacyEncoded = 'foo_.D1.82.D0.B5.D1.81.D1.82_.23.25.21.27.28.29.5B.5D:.3C.3E';
+		$html5Encoded = 'foo_тест_#%!\'()[]:<>';
+		$html5Escaped = 'foo_%D1%82%D0%B5%D1%81%D1%82_%23%25%21%27%28%29%5B%5D:%3C%3E';
+		$html5Experimental = 'foo_тест_!_()[]:<>';
+
+		// Settings: last element is $wgExternalInterwikiFragmentMode, the rest is $wgFragmentMode
+		$legacy = [ 'legacy', 'legacy' ];
+		$legacyNew = [ 'legacy', 'html5', 'legacy' ];
+		$newLegacy = [ 'html5', 'legacy', 'legacy' ];
+		$new = [ 'html5', 'legacy' ];
+		$allNew = [ 'html5', 'html5' ];
+		$experimentalLegacy = [ 'html5-legacy', 'legacy', 'legacy' ];
+		$newExperimental = [ 'html5', 'html5-legacy', 'legacy' ];
+
+		return [
+			// Pure legacy: how MW worked before 2017
+			[ 'Attribute', $legacy, $text, $legacyEncoded, Sanitizer::ID_PRIMARY ],
+			[ 'Attribute', $legacy, $text, false, Sanitizer::ID_FALLBACK ],
+			[ 'Link', $legacy, $text, $legacyEncoded ],
+			[ 'ExternalInterwiki', $legacy, $text, $legacyEncoded ],
+
+			// Transition to a new world: legacy links with HTML5 fallback
+			[ 'Attribute', $legacyNew, $text, $legacyEncoded, Sanitizer::ID_PRIMARY ],
+			[ 'Attribute', $legacyNew, $text, $html5Encoded, Sanitizer::ID_FALLBACK ],
+			[ 'Link', $legacyNew, $text, $legacyEncoded ],
+			[ 'ExternalInterwiki', $legacyNew, $text, $legacyEncoded ],
+
+			// New world: HTML5 links, legacy fallbacks
+			[ 'Attribute', $newLegacy, $text, $html5Encoded, Sanitizer::ID_PRIMARY ],
+			[ 'Attribute', $newLegacy, $text, $legacyEncoded, Sanitizer::ID_FALLBACK ],
+			[ 'Link', $newLegacy, $text, $html5Escaped ],
+			[ 'ExternalInterwiki', $newLegacy, $text, $legacyEncoded ],
+
+			// Distant future: no legacy fallbacks, but still linking to leagacy wikis
+			[ 'Attribute', $new, $text, $html5Encoded, Sanitizer::ID_PRIMARY ],
+			[ 'Attribute', $new, $text, false, Sanitizer::ID_FALLBACK ],
+			[ 'Link', $new, $text, $html5Escaped ],
+			[ 'ExternalInterwiki', $new, $text, $legacyEncoded ],
+
+			// Just before the heat death of universe: external interwikis are also HTML5 \m/
+			[ 'Attribute', $allNew, $text, $html5Encoded, Sanitizer::ID_PRIMARY ],
+			[ 'Attribute', $allNew, $text, false, Sanitizer::ID_FALLBACK ],
+			[ 'Link', $allNew, $text, $html5Escaped ],
+			[ 'ExternalInterwiki', $allNew, $text, $html5Escaped ],
+
+			// Someone flipped $wgExperimentalHtmlIds on
+			[ 'Attribute', $experimentalLegacy, $text, $html5Experimental, Sanitizer::ID_PRIMARY ],
+			[ 'Attribute', $experimentalLegacy, $text, $legacyEncoded, Sanitizer::ID_FALLBACK ],
+			[ 'Link', $experimentalLegacy, $text, $html5Experimental ],
+			[ 'ExternalInterwiki', $experimentalLegacy, $text, $legacyEncoded ],
+
+			// Migration from $wgExperimentalHtmlIds to modern HTML5
+			[ 'Attribute', $newExperimental, $text, $html5Encoded, Sanitizer::ID_PRIMARY ],
+			[ 'Attribute', $newExperimental, $text, $html5Experimental, Sanitizer::ID_FALLBACK ],
+			[ 'Link', $newExperimental, $text, $html5Escaped ],
+			[ 'ExternalInterwiki', $newExperimental, $text, $legacyEncoded ],
+		];
+	}
+
+	/**
+	 * @expectedException InvalidArgumentException
+	 * @covers Sanitizer::escapeIdInternal()
+	 */
+	public function testInvalidFragmentThrows() {
+		$this->setMwGlobals( 'wgFragmentMode', [ 'boom!' ] );
+		Sanitizer::escapeIdForAttribute( 'This should throw' );
+	}
+
+	/**
+	 * @expectedException UnexpectedValueException
+	 * @covers Sanitizer::escapeIdForAttribute()
+	 */
+	public function testNoPrimaryFragmentModeThrows() {
+		$this->setMwGlobals( 'wgFragmentMode', [ 666 => 'html5' ] );
+		Sanitizer::escapeIdForAttribute( 'This should throw' );
+	}
+
+	/**
+	 * @expectedException UnexpectedValueException
+	 * @covers Sanitizer::escapeIdForLink()
+	 */
+	public function testNoPrimaryFragmentModeThrows2() {
+		$this->setMwGlobals( 'wgFragmentMode', [ 666 => 'html5' ] );
+		Sanitizer::escapeIdForLink( 'This should throw' );
 	}
 }

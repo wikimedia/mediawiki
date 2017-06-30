@@ -26,6 +26,13 @@ section).
   array. This allows dependency injection to be used for ResourceLoader modules.
 * $wgExceptionHooks has been removed.
 * (T45547) $wgUsePigLatinVariant added (off by default).
+* (T152540) MediaWiki now supports a section ID escaping style that allows to display
+  non-Latin characters verbatim on many modern browsers. This is controlled by the
+  new configuration setting, $wgFragmentMode.
+* $wgExperimentalHtmlIds is now deprecated and will be removed in a future version,
+  use $wgFragmentMode to migrate off it to a modern alternative.
+* $wgExternalInterwikiFragmentMode was introduced to control how fragments in
+  sinterwikis going outside of current wiki farm are encoded.
 
 === New features in 1.30 ===
 * (T37247) Output from Parser::parse() will now be wrapped in a div with
@@ -143,6 +150,14 @@ changes to languages because of Phabricator reports.
   MediaWikiServices instead. Access to the underlying BagOStuff is possible
   through the new ParserCache::getCacheStorage() method.
 * .mw-ui-constructive CSS class (deprecated in 1.27) was removed.
+* Sanitizer::escapeId() was deprecated, use escapeIdForAttribute(),
+  escapeIdForLink() or escapeIdForExternalInterwiki() instead.
+* Title::escapeFragmentForURL() was deprecated, use one of the aforementioned
+  Sanitizer functions or, if possible, Title::getFragmentForURL().
+* Second parameter to Sanitizer::escapeIdReferenceList() ($options) now does
+  nothing and is deprecated.
+* mw.util.escapeId() was deprecated, use escapeIdForAttribute() or
+  escapeIdForLink().
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
