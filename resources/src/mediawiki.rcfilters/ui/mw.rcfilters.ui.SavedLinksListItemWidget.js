@@ -81,8 +81,11 @@
 		this.menu.connect( this, {
 			choose: 'onMenuChoose'
 		} );
-		this.saveButton.connect( this, { click: 'onSaveButtonClick' } );
-		this.editInput.connect( this, { enter: 'onEditInputEnter' } );
+		this.saveButton.connect( this, { click: 'save' } );
+		this.editInput.connect( this, {
+			change: 'onInputChange',
+			enter: 'save'
+		} );
 		this.editInput.$input.on( {
 			blur: this.onInputBlur.bind( this ),
 			keyup: this.onInputKeyup.bind( this )
@@ -205,22 +208,6 @@
 	};
 
 	/**
-	 * Respond to save button click
-	 */
-	mw.rcfilters.ui.SavedLinksListItemWidget.prototype.onSaveButtonClick = function () {
-		this.emit( 'edit', this.editInput.getValue() );
-		this.toggleEdit( false );
-	};
-
-	/**
-	 * Respond to input enter event
-	 */
-	mw.rcfilters.ui.SavedLinksListItemWidget.prototype.onEditInputEnter = function () {
-		this.emit( 'edit', this.editInput.getValue() );
-		this.toggleEdit( false );
-	};
-
-	/**
 	 * Respond to input keyup event, this is the way to intercept 'escape' key
 	 *
 	 * @param {jQuery.Event} e Event data
@@ -239,8 +226,37 @@
 	 * Respond to blur event on the input
 	 */
 	mw.rcfilters.ui.SavedLinksListItemWidget.prototype.onInputBlur = function () {
-		this.emit( 'edit', this.editInput.getValue() );
+		this.save();
+
+		// Whether the save succeeded or not, the input-blur event
+		// means we need to cancel editing mode
 		this.toggleEdit( false );
+	};
+
+	/**
+	 * Respond to input change event
+	 *
+	 * @param {string} value Input value
+	 */
+	mw.rcfilters.ui.SavedLinksListItemWidget.prototype.onInputChange = function ( value ) {
+		value = value.trim();
+
+		this.saveButton.setDisabled( !value );
+	};
+
+	/**
+	 * Save the name of the query
+	 *
+	 * @param {string} [value] The value to save
+	 * @fires edit
+	 */
+	mw.rcfilters.ui.SavedLinksListItemWidget.prototype.save = function () {
+		var value = this.editInput.getValue().trim();
+
+		if ( value ) {
+			this.emit( 'edit', value );
+			this.toggleEdit( false );
+		}
 	};
 
 	/**

@@ -105,6 +105,8 @@
 	 * @param {string} value Input value
 	 */
 	mw.rcfilters.ui.SaveFiltersPopupButtonWidget.prototype.onInputChange = function ( value ) {
+		value = value.trim();
+
 		this.applyButton.setDisabled( !value );
 	};
 
@@ -146,7 +148,7 @@
 	 * Apply and add the new quick link
 	 */
 	mw.rcfilters.ui.SaveFiltersPopupButtonWidget.prototype.apply = function () {
-		var label = this.input.getValue();
+		var label = this.input.getValue().trim();
 
 		// This condition is more for sanity-check, since the
 		// apply button should be disabled if the label is empty
