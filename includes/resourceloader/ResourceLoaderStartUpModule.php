@@ -113,6 +113,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgResourceLoaderStorageEnabled' => $conf->get( 'ResourceLoaderStorageEnabled' ),
 			'wgForeignUploadTargets' => $conf->get( 'ForeignUploadTargets' ),
 			'wgEnableUploads' => $conf->get( 'EnableUploads' ),
+			'wgFragmentMode' => $conf->get( 'FragmentMode' ),
 		];
 
 		Hooks::run( 'ResourceLoaderGetConfigVars', [ &$vars ] );
