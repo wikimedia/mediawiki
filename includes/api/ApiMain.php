@@ -581,13 +581,7 @@ class ApiMain extends ApiBase {
 		// T65145: Rollback any open database transactions
 		if ( !( $e instanceof ApiUsageException || $e instanceof UsageException ) ) {
 			// UsageExceptions are intentional, so don't rollback if that's the case
-			try {
-				MWExceptionHandler::rollbackMasterChangesAndLog( $e );
-			} catch ( DBError $e2 ) {
-				// Rollback threw an exception too. Log it, but don't interrupt
-				// our regularly scheduled exception handling.
-				MWExceptionHandler::logException( $e2 );
-			}
+			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 		}
 
 		// Allow extra cleanup and logging
