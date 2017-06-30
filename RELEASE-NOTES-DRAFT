@@ -1,0 +1,11 @@
+Release notes are being drafted here, to avoid endless merge conflicts.
+
+== Deprecated functions ==
+* Sanitizer::escapeId() was deprecated, use escapeIdForHtml(), escapeIdForLink() or escapeIdForExternalInterwiki() instead.
+* Title::escapeFragmentForURL() was deprecated, use one of the aforementioned Sanitizer functions or, if possible, Title::getFragmentForURL().
+* Second parameter to Sanitizer::escapeIdReferenceList() ($options) now does nothing and is deprecated.
+
+== Configuration changes ==
+* (T152540) MediaWiki now supports a section ID escaping style that allows to display non-Latin characters verbatim on many modern browsers. This is controlled by the new configuration setting, $wgFragmentMode.
+* $wgExperimentalHtmlIds is now deprecated and will be removed in a future version, use $wgFragmentMode to migrate off it to a modern alternative.
+* $wgExternalInterwikiFragmentMode was introduced to control how fragments in interwikis going outside of current wiki farm are encoded.

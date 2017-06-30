@@ -254,15 +254,16 @@ class ImagePage extends Article {
 		$r .= "<table id=\"mw_metadata\" class=\"mw_metadata\">\n";
 		foreach ( $metadata as $type => $stuff ) {
 			foreach ( $stuff as $v ) {
-				# @todo FIXME: Why is this using escapeId for a class?!
-				$class = Sanitizer::escapeId( $v['id'] );
+				$class = str_replace( ' ', '_', $v['id'] );
 				if ( $type == 'collapsed' ) {
 					// Handled by mediawiki.action.view.metadata module.
 					$class .= ' collapsable';
 				}
-				$r .= "<tr class=\"$class\">\n";
-				$r .= "<th>{$v['name']}</th>\n";
-				$r .= "<td>{$v['value']}</td>\n</tr>";
+				$r .= Html::rawElement( 'tr',
+					[ 'class' => $class ],
+					Html::rawElement( 'th', [], $v['name'] )
+						. Html::rawElement( 'td', [], $v['value'] )
+				);
 			}
 		}
 		$r .= "</table>\n</div>\n";

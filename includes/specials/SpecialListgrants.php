@@ -20,6 +20,7 @@
  * @file
  * @ingroup SpecialPage
  */
+use Sanitizer;
 
 /**
  * This special page lists all defined rights grants and the associated rights.
@@ -69,7 +70,7 @@ class SpecialListGrants extends SpecialPage {
 				$grantCellHtml = '<ul><li>' . implode( "</li>\n<li>", $descs ) . '</li></ul>';
 			}
 
-			$id = \Sanitizer::escapeId( $grant );
+			$id = Sanitizer::escapeIdForHtml( $grant );
 			$out->addHTML( \Html::rawElement( 'tr', [ 'id' => $id ],
 				"<td>" .
 				$this->msg(
