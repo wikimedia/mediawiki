@@ -24,6 +24,7 @@ abstract class TidyDriverBase {
 	 *
 	 * @param string $text
 	 * @param string &$errorStr Return the error string
+	 * @throws \MWException
 	 * @return bool Whether the HTML is valid
 	 */
 	public function validate( $text, &$errorStr ) {
