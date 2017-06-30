@@ -5,7 +5,7 @@
 			"Aursani"
 		]
 	},
-	"apihelp-query+allrevisions-description": "سمورن ڀيرن جي فهرست پيش ڪريو.",
+	"apihelp-query+allrevisions-summary": "سمورن ڀيرن جي فهرست پيش ڪريو.",
 	"apihelp-query+watchlist-param-type": "ڪهڙن قسمن جون تبديليون ڏيکارجن:",
 	"apihelp-query+watchlist-paramvalue-type-edit": "قاعديوار صفحاتي ترميمون.",
 	"apihelp-query+watchlist-paramvalue-type-external": "خارجي تبديليون.",

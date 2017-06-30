@@ -4,9 +4,9 @@
 			"Milicevic01"
 		]
 	},
-	"apihelp-block-description": "Blokiraj korisnika.",
+	"apihelp-block-summary": "Blokiraj korisnika.",
 	"apihelp-block-param-reason": "Razlog za blokiranje.",
-	"apihelp-delete-description": "Obriši stranicu.",
+	"apihelp-delete-summary": "Obriši stranicu.",
 	"apihelp-edit-param-minor": "Manja izmena.",
 	"apihelp-feedrecentchanges-param-hidepatrolled": "Sakrij patrolirane izmene."
 }

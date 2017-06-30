@@ -6,7 +6,7 @@
 		]
 	},
 	"apihelp-createaccount-param-name": "Käyttäitunnus.",
-	"apihelp-delete-description": "Ota sivu iäre.",
+	"apihelp-delete-summary": "Ota sivu iäre.",
 	"apihelp-login-param-name": "Käyttäitunnus.",
 	"apihelp-login-param-password": "Salasana.",
 	"apihelp-login-example-login": "Kirjuttai."
