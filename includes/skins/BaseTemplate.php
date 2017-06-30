@@ -678,7 +678,7 @@ abstract class BaseTemplate extends QuickTemplate {
 		}
 		foreach ( $validFooterIcons as $blockName => $footerIcons ) {
 			$html .= Html::openElement( 'div', [
-				'id' => 'f-' . Sanitizer::escapeId( $blockName ) . 'ico',
+				'id' => 'f-' . Sanitizer::escapeIdForHtml( $blockName ) . 'ico',
 				'class' => 'footer-icons'
 			] );
 			foreach ( $footerIcons as $icon ) {
@@ -691,7 +691,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			foreach ( $validFooterLinks as $aLink ) {
 				$html .= Html::rawElement(
 					'li',
-					[ 'id' => Sanitizer::escapeId( $aLink ) ],
+					[ 'id' => Sanitizer::escapeIdForHtml( $aLink ) ],
 					$this->get( $aLink )
 				);
 			}
@@ -734,7 +734,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			$out .= Html::rawElement(
 				'div',
 				[
-					'id' => Sanitizer::escapeId( "mw-indicator-$id" ),
+					'id' => Sanitizer::escapeIdForHtml( "mw-indicator-$id" ),
 					'class' => 'mw-indicator',
 				],
 				$content

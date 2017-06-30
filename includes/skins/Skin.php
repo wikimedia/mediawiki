@@ -1373,7 +1373,9 @@ abstract class Skin extends ContextSource {
 					$bar[$heading][] = array_merge( [
 						'text' => $text,
 						'href' => $href,
-						'id' => 'n-' . Sanitizer::escapeId( strtr( $line[1], ' ', '-' ), 'noninitial' ),
+						'id' => 'n-' . Sanitizer::escapeIdForHtml( strtr( $line[1], ' ', '-' ),
+							Sanitizer::ID_PRIMARY
+						),
 						'active' => false
 					], $extraAttribs );
 				} else {
