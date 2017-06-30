@@ -238,6 +238,7 @@ return [
 		'scripts' => 'resources/lib/jquery/jquery.fullscreen.js',
 	],
 	'jquery.getAttrs' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'scripts' => 'resources/src/jquery/jquery.getAttrs.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -325,6 +326,7 @@ return [
 		'scripts' => 'resources/lib/jquery/jquery.jStorage.js',
 	],
 	'jquery.suggestions' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'scripts' => 'resources/src/jquery/jquery.suggestions.js',
 		'styles' => 'resources/src/jquery/jquery.suggestions.css',
 		'dependencies' => 'jquery.highlightText',
@@ -496,6 +498,7 @@ return [
 		'group' => 'jquery.ui',
 	],
 	'jquery.ui.dialog' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'scripts' => 'resources/lib/jquery.ui/jquery.ui.dialog.js',
 		'dependencies' => [
 			'jquery.ui.core',
@@ -1182,6 +1185,7 @@ return [
 		'styles' => 'resources/src/mediawiki/mediawiki.pager.tablePager.less',
 	],
 	'mediawiki.searchSuggest' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'scripts' => 'resources/src/mediawiki/mediawiki.searchSuggest.js',
 		'styles' => 'resources/src/mediawiki/mediawiki.searchSuggest.css',
 		'messages' => [
