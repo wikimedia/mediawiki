@@ -24,16 +24,47 @@
 		},
 
 		/**
-		 * Encode the string like Sanitizer::escapeId in PHP
+		 * Encode the string like Sanitizer::escapeId() in PHP
+		 * @deprecated since 1.30 just like that function
 		 *
 		 * @param {string} str String to be encoded.
 		 * @return {string} Encoded string
 		 */
 		escapeId: function ( str ) {
-			str = String( str );
-			return util.rawurlencode( str.replace( / /g, '_' ) )
-				.replace( /%3A/g, ':' )
-				.replace( /%/g, '.' );
+			return escapeIdInternal( str, 'legacy' ); // eslint-disable-line no-use-before-define
+		},
+
+		/**
+		 * Encode string into HTML id compatible form suitable for use in HTML
+		 * Analog to PHP Sanitizer::escapeIdForHtml()
+		 * @since 1.30
+		 *
+		 * @param {string} str String to encode
+		 * @return {string} Encoded string
+		 */
+		escapeIdForHtml: function ( str ) {
+			var mode = mw.config.get( 'wgFragmentMode' )[ 0 ];
+
+			return escapeIdInternal( str, mode ); // eslint-disable-line no-use-before-define
+		},
+
+		/**
+		 * Encode string into HTML id compatible form suitable for use in links
+		 * Analog to PHP Sanitizer::escapeIdForLink()
+		 * @since 1.30
+		 *
+		 * @param {string} str String to encode
+		 * @return {string} Encoded string
+		 */
+		escapeIdForLink: function ( str ) {
+			var mode = mw.config.get( 'wgFragmentMode' )[ 0 ],
+				id = escapeIdInternal( str, mode ); // eslint-disable-line no-use-before-define
+
+			if ( mode === 'html5' ) {
+				id = encodeURIComponent( id ).replace( /%3A/g, ':' );
+			}
+
+			return id;
 		},
 
 		/**
@@ -101,7 +132,7 @@
 
 			// Append the encoded fragment
 			if ( fragment.length ) {
-				url += '#' + util.escapeId( fragment );
+				url += '#' + util.escapeIdForLink( fragment );
 			}
 
 			return url;
@@ -480,6 +511,37 @@
 				util.isIPv6Address( address, allowBlock );
 		}
 	};
+
+	/**
+	 * Private helper function used by util.escapeId*()
+	 * @ignore jsduck being overzealous
+	 *
+	 * @param {string} str String to be encoded
+	 * @param {string} mode Encoding mode, see documentation for $wgFragmentMode
+	 *     in DefaultSettings.php
+	 * @return {string} Encoded string
+	 */
+	function escapeIdInternal( str, mode ) {
+		str = String( str );
+
+		switch ( mode ) {
+			case 'html5':
+				return str.replace( / /g, '_' );
+			case 'html5-legacy':
+				str = str.replace( /[ \t\n\r\f_'"&#%]+/g, '_' )
+					.replace( /^_+|_+$/, '' );
+				if ( str === '' ) {
+					str = '_';
+				}
+				return str;
+			case 'legacy':
+				return util.rawurlencode( str.replace( / /g, '_' ) )
+					.replace( /%3A/g, ':' )
+					.replace( /%/g, '.' );
+			default:
+				throw new Error( 'Unrecognized ID escaping mode ' + mode );
+		}
+	}
 
 	/**
 	 * @method wikiGetlink

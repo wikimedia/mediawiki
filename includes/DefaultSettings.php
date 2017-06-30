@@ -3372,15 +3372,55 @@ $wgApiFrameOptions = 'DENY';
 $wgDisableOutputCompression = false;
 
 /**
- * Should we allow a broader set of characters in id attributes, per HTML5?  If
- * not, use only HTML 4-compatible IDs.  This option is for testing -- when the
- * functionality is ready, it will be on by default with no option.
+ * @deprecated since 1.30, use $wgFragmentMode
  *
- * Currently this appears to work fine in all browsers, but it's disabled by
- * default because it normalizes id's a bit too aggressively, breaking preexisting
- * content (particularly Cite).  See T29733, T29694, T29474.
+ * Abandoned experiment with HTML5-style ID escaping. Normalized IDs a bit
+ * too aggressively, breaking preexisting content (particularly Cite).
+ * See T29733, T29694, T29474.
  */
 $wgExperimentalHtmlIds = false;
+
+/**
+ * How should section IDs be encoded?
+ * This array can contain 1 or 2 elements, each of them can be one of:
+ * - 'html5'  is modern HTML5 style encoding with minimal escaping. Allows to
+ *            display Unicode characters in many browsers' address bars.
+ * - 'legacy' is old MediaWiki-style encodng, e.g. 啤酒 turns into .E5.95.A4.E9.85.92
+ * - 'html5-legacy' corresponds to DEPRECATED $wgExperimentalHtmlIds mode. DO NOT use
+ *            it for anything but migration off that mode (see below).
+ *
+ * The first element of this array specifies the primary mode of escaping IDs. This
+ * is what users will see when they e.g. follow an [[#internal link]] to a section of
+ * a page.
+ *
+ * The optional second element defines an optional fallback mode, useful for migrations.
+ * If present, it will direct MediaWiki to add empty <span>s to every section with its
+ * id attribute set to fallback encoded title so that links using the previous encoding
+ * would still work.
+ *
+ * Example: you want to migrate your wiki from 'legacy' to 'html5'
+ *
+ * On the first step, set this variable to [ 'legacy', 'html5' ]. After a while, when
+ * all caches (parser, HTTP, etc.) contain only pages generated with this setting,
+ * flip the value to [ 'html5', 'legacy' ]. This will result in all internal links being
+ * generated in the new encoding while old links (both external and cached internal) will
+ * still work. After a long time, you might want to ditch backwards compatibility and
+ * set it to [ 'html5' ]. After all, pages get edited, breaking incoming links no matter which
+ * fragment mode is used.
+ *
+ * @since 1.30
+ */
+$wgFragmentMode = [ 'legacy' ];
+
+/**
+ * Which ID escaping mode should be used for external interwiki links? See documentation
+ * for $wgFragmentMode above for details of each mode. Because you can't control external sites,
+ * this setting should probably always be 'legacy', unless every wiki you link to has converted
+ * to 'html5'.
+ *
+ * @since 1.30
+ */
+$wgExternalInterwikiFragmentMode = 'legacy';
 
 /**
  * Abstract list of footer icons for skins in place of old copyrightico and poweredbyico code
