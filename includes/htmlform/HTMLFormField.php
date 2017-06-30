@@ -430,7 +430,7 @@ abstract class HTMLFormField {
 
 		if ( isset( $params['id'] ) ) {
 			$id = $params['id'];
-			$validId = Sanitizer::escapeId( $id );
+			$validId = Sanitizer::escapeIdForHtml( $id );
 
 			if ( $id != $validId ) {
 				throw new MWException( "Invalid id '$id' passed to " . __METHOD__ );

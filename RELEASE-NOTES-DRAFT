@@ -1,0 +1,6 @@
+Release notes are being drafted here, to avoid endless merge conflicts.
+
+== Deprecated functions ==
+* Sanitizer::escapeId() has neen deprecated, use escapeIdForHtml(), escapeIdForLink() or escapeIdForExternalInterwiki() instead.
+* Title::escapeFragmentForURL() has been deprecated, use one of the aforementioned Sanitizer functions or, if possible, Title::getFragmentForURL().
+* Second parameter to Sanitizer::escapeIdReferenceList() ($options) now does nothing and is deprecated.
