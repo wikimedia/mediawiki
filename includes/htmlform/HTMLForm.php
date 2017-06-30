@@ -1686,7 +1686,7 @@ class HTMLForm extends ContextSource {
 
 					$attributes = [];
 					if ( $fieldsetIDPrefix ) {
-						$attributes['id'] = Sanitizer::escapeId( "$fieldsetIDPrefix$key" );
+						$attributes['id'] = Sanitizer::escapeIdForHtml( "$fieldsetIDPrefix$key" );
 					}
 					$subsectionHtml .= $this->wrapFieldSetSection( $legend, $section, $attributes );
 				} else {
@@ -1735,7 +1735,7 @@ class HTMLForm extends ContextSource {
 		];
 
 		if ( $sectionName ) {
-			$attribs['id'] = Sanitizer::escapeId( $sectionName );
+			$attribs['id'] = Sanitizer::escapeIdForHtml( $sectionName );
 		}
 
 		if ( $displayFormat === 'table' ) {
