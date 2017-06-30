@@ -23,6 +23,7 @@
  * @file
  */
 
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -49,17 +50,22 @@ class LogEventsList extends ContextSource {
 	protected $allowedActions = null;
 
 	/**
+	 * @var LinkRenderer|null
+	 */
+	private $linkRenderer;
+
+	/**
 	 * Constructor.
 	 * The first two parameters used to be $skin and $out, but now only a context
 	 * is needed, that's why there's a second unused parameter.
 	 *
 	 * @param IContextSource|Skin $context Context to use; formerly it was
 	 *   a Skin object. Use of Skin is deprecated.
-	 * @param null $unused Unused; used to be an OutputPage object.
+	 * @param LinkRenderer|null $linkRenderer, previously unused
 	 * @param int $flags Can be a combination of self::NO_ACTION_LINK,
 	 *   self::NO_EXTRA_USER_LINKS or self::USE_CHECKBOXES.
 	 */
-	public function __construct( $context, $unused = null, $flags = 0 ) {
+	public function __construct( $context, $linkRenderer = null, $flags = 0 ) {
 		if ( $context instanceof IContextSource ) {
 			$this->setContext( $context );
 		} else {
@@ -69,6 +75,21 @@ class LogEventsList extends ContextSource {
 
 		$this->flags = $flags;
 		$this->showTagEditUI = ChangeTags::showTagEditingUI( $this->getUser() );
+		if ( $linkRenderer instanceof LinkRenderer ) {
+			$this->linkRenderer = $linkRenderer;
+		}
+	}
+
+	/**
+	 * @since 1.30
+	 * @return LinkRenderer
+	 */
+	protected function getLinkRenderer() {
+		if ( $this->linkRenderer !== null ) {
+			return $this->linkRenderer;
+		} else {
+			return MediaWikiServices::getInstance()->getLinkRenderer();
+		}
 	}
 
 	/**
@@ -149,7 +170,7 @@ class LogEventsList extends ContextSource {
 		// Option value -> message mapping
 		$links = [];
 		$hiddens = ''; // keep track for "go" button
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$linkRenderer = $this->getLinkRenderer();
 		foreach ( $filter as $type => $val ) {
 			// Should the below assignment be outside the foreach?
 			// Then it would have to be copied. Not certain what is more expensive.
@@ -359,6 +380,7 @@ class LogEventsList extends ContextSource {
 		$entry = DatabaseLogEntry::newFromRow( $row );
 		$formatter = LogFormatter::newFromEntry( $entry );
 		$formatter->setContext( $this->getContext() );
+		$formatter->setLinkRenderer( $this->getLinkRenderer() );
 		$formatter->setShowUserToolLinks( !( $this->flags & self::NO_EXTRA_USER_LINKS ) );
 
 		$time = htmlspecialchars( $this->getLanguage()->userTimeAndDate(
@@ -607,8 +629,11 @@ class LogEventsList extends ContextSource {
 			$context = RequestContext::getMain();
 		}
 
+		// FIXME: Figure out how to inject this
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+
 		# Insert list of top 50 (or top $lim) items
-		$loglist = new LogEventsList( $context, null, $flags );
+		$loglist = new LogEventsList( $context, $linkRenderer, $flags );
 		$pager = new LogPager( $loglist, $types, $user, $page, '', $conds );
 		if ( !$useRequestParams ) {
 			# Reset vars that may have been taken from the request
@@ -686,7 +711,7 @@ class LogEventsList extends ContextSource {
 				$urlParam = array_merge( $urlParam, $extraUrlParams );
 			}
 
-			$s .= MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
+			$s .= $linkRenderer->makeKnownLink(
 				SpecialPage::getTitleFor( 'Log' ),
 				$context->msg( 'log-fulllog' )->text(),
 				[],
