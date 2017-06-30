@@ -46,15 +46,29 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 
 			'test.styles.pure' => [ 'type' => ResourceLoaderModule::LOAD_STYLES ],
 			'test.styles.mixed' => [],
-			'test.styles.noscript' => [ 'group' => 'noscript', 'type' => ResourceLoaderModule::LOAD_STYLES ],
-			'test.styles.mixed.user' => [ 'group' => 'user' ],
-			'test.styles.mixed.user.empty' => [ 'group' => 'user', 'isKnownEmpty' => true ],
-			'test.styles.private' => [ 'group' => 'private', 'styles' => '.private{}' ],
+			'test.styles.noscript' => [
+				'type' => ResourceLoaderModule::LOAD_STYLES,
+				'group' => 'noscript',
+			],
+			'test.styles.user' => [
+				'type' => ResourceLoaderModule::LOAD_STYLES,
+				'group' => 'user',
+			],
+			'test.styles.user.empty' => [
+				'type' => ResourceLoaderModule::LOAD_STYLES,
+				'group' => 'user',
+				'isKnownEmpty' => true,
+			],
+			'test.styles.private' => [
+				'type' => ResourceLoaderModule::LOAD_STYLES,
+				'group' => 'private',
+				'styles' => '.private{}',
+			],
 
 			'test.scripts' => [],
 			'test.scripts.top' => [ 'position' => 'top' ],
-			'test.scripts.mixed.user' => [ 'group' => 'user' ],
-			'test.scripts.mixed.user.empty' => [ 'group' => 'user', 'isKnownEmpty' => true ],
+			'test.scripts.user' => [ 'group' => 'user' ],
+			'test.scripts.user.empty' => [ 'group' => 'user', 'isKnownEmpty' => true ],
 			'test.scripts.raw' => [ 'isRaw' => true ],
 		];
 		return array_map( function ( $options ) {
@@ -92,14 +106,14 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 		] );
 		$client->setModuleStyles( [
 			'test.styles.mixed',
-			'test.styles.mixed.user.empty',
+			'test.styles.user.empty',
 			'test.styles.private',
 			'test.styles.pure',
 			'test.unregistered.styles',
 		] );
 		$client->setModuleScripts( [
 			'test.scripts',
-			'test.scripts.mixed.user.empty',
+			'test.scripts.user.empty',
 			'test.scripts.top',
 			'test.unregistered.scripts',
 		] );
@@ -109,11 +123,11 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 				'test.private.top' => 'loading',
 				'test.private.bottom' => 'loading',
 				'test.styles.pure' => 'ready',
-				'test.styles.mixed.user.empty' => 'ready',
+				'test.styles.user.empty' => 'ready',
 				'test.styles.private' => 'ready',
 				'test.scripts' => 'loading',
 				'test.scripts.top' => 'loading',
-				'test.scripts.mixed.user.empty' => 'ready',
+				'test.scripts.user.empty' => 'ready',
 			],
 			'general' => [
 				'test',
@@ -240,9 +254,9 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 			],
 			[
 				'context' => [],
-				'modules' => [ 'test.scripts.mixed.user' ],
+				'modules' => [ 'test.scripts.user' ],
 				'only' => ResourceLoaderModule::TYPE_SCRIPTS,
-				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.scripts.mixed.user\u0026only=scripts\u0026skin=fallback\u0026user=Example\u0026version=0a56zyi");});</script>',
+				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.scripts.user\u0026only=scripts\u0026skin=fallback\u0026user=Example\u0026version=0a56zyi");});</script>',
 			],
 			[
 				'context' => [ 'debug' => true ],
