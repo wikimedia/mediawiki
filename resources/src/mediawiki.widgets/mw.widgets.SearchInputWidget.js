@@ -10,7 +10,9 @@
 	 * Creates a mw.widgets.SearchInputWidget object.
 	 *
 	 * @class
-	 * @extends mw.widgets.TitleInputWidget
+	 * @extends OO.ui.SearchInputWidget
+	 * @mixins mw.widgets.TitleWidget
+	 * @mixins OO.ui.mixin.LookupElement
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
@@ -30,21 +32,25 @@
 		var $form = config.$input ? config.$input.closest( 'form' ) : $();
 
 		config = $.extend( {
-			icon: 'search',
-			maxLength: undefined,
 			performSearchOnClick: true,
-			dataLocation: 'header',
-			namespace: 0
+			dataLocation: 'header'
 		}, config );
 
 		// Parent constructor
-		mw.widgets.SearchInputWidget.parent.call( this, config );
+		mw.widgets.SearchInputWidget.parent.call( this, $.extend( {}, config, {
+			autocomplete: false
+		} ) );
+
+		// Mixin constructors
+		mw.widgets.TitleWidget.call( this, config );
+		OO.ui.mixin.LookupElement.call( this, config );
 
 		// Initialization
 		this.$element.addClass( 'mw-widget-searchInputWidget' );
 		this.lookupMenu.$element.addClass( 'mw-widget-searchWidget-menu' );
 		this.lastLookupItems = [];
 		if ( !config.pushPending ) {
+			// TODO This actually overrides a method, that's pretty crazy. Surely there's a better way?
 			this.pushPending = false;
 		}
 		if ( config.dataLocation ) {
@@ -66,78 +72,28 @@
 				)
 			} );
 		}.bind( this ) );
-
-		this.$element.addClass( 'oo-ui-textInputWidget-type-search' );
-		this.updateSearchIndicator();
-		this.connect( this, {
-			disable: 'onDisable'
-		} );
 	};
 
 	/* Setup */
 
-	OO.inheritClass( mw.widgets.SearchInputWidget, mw.widgets.TitleInputWidget );
+	OO.inheritClass( mw.widgets.SearchInputWidget, OO.ui.SearchInputWidget );
+	OO.mixinClass( mw.widgets.SearchInputWidget, mw.widgets.TitleWidget );
+	OO.mixinClass( mw.widgets.SearchInputWidget, OO.ui.mixin.LookupElement );
 
 	/* Methods */
 
 	/**
-	 * @inheritdoc
-	 * @protected
+	 * @inheritdoc mw.widgets.TitleWidget
 	 */
-	mw.widgets.SearchInputWidget.prototype.getInputElement = function () {
-		return $( '<input>' ).attr( 'type', 'search' );
+	mw.widgets.SearchInputWidget.prototype.getQueryValue = function () {
+		return this.getValue();
 	};
 
 	/**
-	 * @inheritdoc
+	 * @inheritdoc OO.ui.mixin.LookupElement
 	 */
-	mw.widgets.SearchInputWidget.prototype.onIndicatorMouseDown = function ( e ) {
-		if ( e.which === OO.ui.MouseButtons.LEFT ) {
-			// Clear the text field
-			this.setValue( '' );
-			this.$input[ 0 ].focus();
-			return false;
-		}
-	};
-
-	/**
-	 * Update the 'clear' indicator displayed on type: 'search' text
-	 * fields, hiding it when the field is already empty or when it's not
-	 * editable.
-	 */
-	mw.widgets.SearchInputWidget.prototype.updateSearchIndicator = function () {
-		if ( this.getValue() === '' || this.isDisabled() || this.isReadOnly() ) {
-			this.setIndicator( null );
-		} else {
-			this.setIndicator( 'clear' );
-		}
-	};
-
-	/**
-	 * @see OO.ui.SearchInputWidget#onChange
-	 */
-	mw.widgets.SearchInputWidget.prototype.onChange = function () {
-		mw.widgets.SearchInputWidget.parent.prototype.onChange.call( this );
-		this.updateSearchIndicator();
-	};
-
-	/**
-	 * Handle disable events.
-	 *
-	 * @param {boolean} disabled Element is disabled
-	 * @private
-	 */
-	mw.widgets.SearchInputWidget.prototype.onDisable = function () {
-		this.updateSearchIndicator();
-	};
-
-	/**
-	 * @inheritdoc
-	 */
-	mw.widgets.SearchInputWidget.prototype.setReadOnly = function ( state ) {
-		mw.widgets.SearchInputWidget.parent.prototype.setReadOnly.call( this, state );
-		this.updateSearchIndicator();
-		return this;
+	mw.widgets.SearchInputWidget.prototype.getLookupRequest = function () {
+		return this.getSuggestionsPromise();
 	};
 
 	/**
@@ -160,13 +116,11 @@
 	};
 
 	/**
-	 * @inheritdoc mw.widgets.TitleInputWidget
+	 * @inheritdoc OO.ui.mixin.LookupElement
 	 */
 	mw.widgets.SearchInputWidget.prototype.getLookupCacheDataFromResponse = function ( response ) {
 		var resp;
 
-		// mw.widgets.TitleInputWidget uses response.query, which doesn't exist for opensearch,
-		// so return the whole response (titles only, and links)
 		resp = {
 			data: response || {},
 			metadata: {
@@ -230,10 +184,13 @@
 	};
 
 	/**
-	 * @inheritdoc
+	 * @inheritdoc OO.ui.mixin.LookupElement
 	 */
-	mw.widgets.SearchInputWidget.prototype.onLookupMenuItemChoose = function () {
-		mw.widgets.SearchInputWidget.parent.prototype.onLookupMenuItemChoose.apply( this, arguments );
+	mw.widgets.SearchInputWidget.prototype.onLookupMenuItemChoose = function ( item ) {
+		this.closeLookupMenu();
+		this.setLookupsDisabled( true );
+		this.setValue( item.getData() );
+		this.setLookupsDisabled( !this.suggestions );
 
 		if ( this.performSearchOnClick ) {
 			this.$element.closest( 'form' ).submit();
@@ -241,18 +198,33 @@
 	};
 
 	/**
-	 * @inheritdoc
+	 * @inheritdoc OO.ui.mixin.LookupElement
 	 */
-	mw.widgets.SearchInputWidget.prototype.getLookupMenuOptionsFromData = function () {
-		var items = mw.widgets.SearchInputWidget.parent.prototype.getLookupMenuOptionsFromData.apply(
-			this, arguments
-		);
+	mw.widgets.SearchInputWidget.prototype.getLookupMenuOptionsFromData = function ( response ) {
+		var items = this.getOptionsFromData( response );
 
 		this.lastLookupItems = items.map( function ( item ) {
 			return item.data;
 		} );
 
 		return items;
+	};
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.widgets.SearchInputWidget.prototype.focus = function () {
+		var retval;
+
+		// Prevent programmatic focus from opening the menu
+		this.setLookupsDisabled( true );
+
+		// Parent method
+		retval = mw.widgets.SearchInputWidget.parent.prototype.focus.apply( this, arguments );
+
+		this.setLookupsDisabled( !this.suggestions );
+
+		return retval;
 	};
 
 }( jQuery, mediaWiki ) );
