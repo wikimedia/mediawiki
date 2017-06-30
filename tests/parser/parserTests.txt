@@ -28332,3 +28332,65 @@ wgRawHtml=1
 <style data-mw-foobar="baz">.foo::after { content: "<bar>"; }</style>
 </div>
 !! end
+
+!! test
+HTML5 ids: fallback to legacy
+!! config
+wgFragmentMode=[ 'html5', 'legacy' ]
+!! wikitext
+== Foo bar ==
+
+== foo Bar ==
+
+== Тест ==
+
+== Тест ==
+
+== тест ==
+[[#Foo bar]] [[#foo Bar]] [[#Тест]] [[#тест]]
+!! html/php
+!! end
+
+!! test
+HTML5 ids: legacy with a fallback to modern
+!! config
+wgFragmentMode=[ 'legacy', 'html5' ]
+!! wikitext
+== Foo bar ==
+
+== foo Bar ==
+
+== Тест ==
+
+== Тест ==
+
+== тест ==
+[[#Foo bar]] [[#foo Bar]] [[#Тест]] [[#тест]]
+!! html/php
+!! end
+
+!! test
+HTML5 ids: no legacy
+!! config
+wgFragmentMode=[ 'html5' ]
+!! wikitext
+== Foo bar ==
+
+== foo Bar ==
+
+== Тест ==
+
+== Тест ==
+
+== тест ==
+[[#Foo bar]] [[#foo Bar]] [[#Тест]] [[#тест]]
+!! html/php
+!! end
+
+!! test
+HTML5 ids: {{anchorencode:}}
+!! config
+!! wikitext
+<span id="{{anchorencode:💩}}"></span>
+!! html/php
+!! end
