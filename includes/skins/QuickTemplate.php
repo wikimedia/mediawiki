@@ -26,6 +26,16 @@ use MediaWiki\MediaWikiServices;
  */
 abstract class QuickTemplate {
 
+	/**
+	 * @var array
+	 */
+	public $data;
+
+	/**
+	 * @var MediaWikiI18N
+	 */
+	public $translator;
+
 	/** @var Config $config */
 	protected $config;
 
