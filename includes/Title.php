@@ -748,6 +748,8 @@ class Title implements LinkTarget {
 	/**
 	 * Escape a text fragment, say from a link, for a URL
 	 *
+	 * @deprecated since 1.30, use Sanitizer::escapeIdForLink() or escapeIdForExternalInterwiki()
+	 *
 	 * @param string $fragment Containing a URL or link fragment (after the "#")
 	 * @return string Escaped string
 	 */
@@ -1382,14 +1384,16 @@ class Title implements LinkTarget {
 
 	/**
 	 * Get the fragment in URL form, including the "#" character if there is one
+	 *
 	 * @return string Fragment in URL form
 	 */
 	public function getFragmentForURL() {
 		if ( !$this->hasFragment() ) {
 			return '';
-		} else {
-			return '#' . Title::escapeFragmentForURL( $this->getFragment() );
+		} elseif ( $this->isExternal() && !$this->getTransWikiID() ) {
+			return '#' . Sanitizer::escapeIdForExternalInterwiki( $this->getFragment() );
 		}
+		return '#' . Sanitizer::escapeIdForLink( $this->getFragment() );
 	}
 
 	/**

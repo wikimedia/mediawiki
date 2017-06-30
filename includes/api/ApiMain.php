@@ -1931,14 +1931,15 @@ class ApiMain extends ApiBase {
 
 			$header = $this->msg( 'api-help-datatypes-header' )->parse();
 
-			// Add an additional span with sanitized ID
-			if ( !$this->getConfig()->get( 'ExperimentalHtmlIds' ) ) {
-				$header = Html::element( 'span', [ 'id' => Sanitizer::escapeId( 'main/datatypes' ) ] ) .
-					$header;
-			}
-			$help['datatypes'] .= Html::rawElement( 'h' . min( 6, $level ),
-				[ 'id' => 'main/datatypes', 'class' => 'apihelp-header' ],
-				$header
+			$id = Sanitizer::escapeIdForAttribute( 'main/datatypes', Sanitizer::ID_PRIMARY );
+			$idFallback = Sanitizer::escapeIdForAttribute( 'main/datatypes', Sanitizer::ID_FALLBACK );
+
+			$help['datatypes'] .= Linker::makeHeadline( min( 6, $level ),
+				' class="apihelp-header"',
+				$id,
+				$header,
+				'',
+				$idFallback
 			);
 			$help['datatypes'] .= $this->msg( 'api-help-datatypes' )->parseAsBlock();
 			if ( !isset( $tocData['main/datatypes'] ) ) {
@@ -1953,15 +1954,15 @@ class ApiMain extends ApiBase {
 				];
 			}
 
-			// Add an additional span with sanitized ID
-			if ( !$this->getConfig()->get( 'ExperimentalHtmlIds' ) ) {
-				$header = Html::element( 'span', [ 'id' => Sanitizer::escapeId( 'main/credits' ) ] ) .
-					$header;
-			}
 			$header = $this->msg( 'api-credits-header' )->parse();
-			$help['credits'] .= Html::rawElement( 'h' . min( 6, $level ),
-				[ 'id' => 'main/credits', 'class' => 'apihelp-header' ],
-				$header
+			$id = Sanitizer::escapeIdForAttribute( 'main/credits', Sanitizer::ID_PRIMARY );
+			$idFallback = Sanitizer::escapeIdForAttribute( 'main/credits', Sanitizer::ID_FALLBACK );
+			$help['credits'] .= Linker::makeHeadline( min( 6, $level ),
+				' class="apihelp-header"',
+				$id,
+				$header,
+				'',
+				$idFallback
 			);
 			$help['credits'] .= $this->msg( 'api-credits' )->useDatabase( false )->parseAsBlock();
 			if ( !isset( $tocData['main/credits'] ) ) {

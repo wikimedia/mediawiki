@@ -90,7 +90,7 @@ class HTMLRadioField extends HTMLFormField {
 				$html .= Html::rawElement( 'h1', [], $label ) . "\n";
 				$html .= $this->formatOptions( $info, $value );
 			} else {
-				$id = Sanitizer::escapeId( $this->mID . "-$info" );
+				$id = Sanitizer::escapeIdForAttribute( $this->mID . "-$info" );
 				$classes = [ 'mw-htmlform-flatlist-item' ];
 				if ( $wgUseMediaWikiUIEverywhere || $this->mParent instanceof VFormHTMLForm ) {
 					$classes[] = 'mw-ui-radio';
