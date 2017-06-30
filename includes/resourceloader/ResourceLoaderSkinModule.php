@@ -22,6 +22,10 @@
  */
 
 class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
+	/**
+	 * All skins are assumed to be compatible with mobile
+	 */
+	public $targets = [ 'desktop', 'mobile' ];
 
 	/**
 	 * @param ResourceLoaderContext $context
