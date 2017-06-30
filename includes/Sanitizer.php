@@ -56,6 +56,9 @@ class Sanitizer {
 	const EVIL_URI_PATTERN = '!(^|\s|\*/\s*)(javascript|vbscript)([^\w]|$)!i';
 	const XMLNS_ATTRIBUTE_PATTERN = "/^xmlns:[:A-Z_a-z-.0-9]+$/";
 
+	const ID_PRIMARY            = 0;
+	const ID_FALLBACK           = 1;
+
 	/**
 	 * List of all named character entities defined in HTML 4.01
 	 * https://www.w3.org/TR/html4/sgml/entities.html
@@ -800,7 +803,7 @@ class Sanitizer {
 
 			# Escape HTML id attributes
 			if ( $attribute === 'id' ) {
-				$value = Sanitizer::escapeId( $value, 'noninitial' );
+				$value = Sanitizer::escapeIdForHtml( $value, Sanitizer::ID_PRIMARY );
 			}
 
 			# Escape HTML id reference lists
@@ -1153,6 +1156,8 @@ class Sanitizer {
 	}
 
 	/**
+	 * @deprecated since 1.30, use one of this class' escapeIdFor*() functions
+	 *
 	 * Given a value, escape it so that it can be used in an id attribute and
 	 * return it.  This will use HTML5 validation if $wgExperimentalHtmlIds is
 	 * true, allowing anything but ASCII whitespace.  Otherwise it will use
@@ -1217,8 +1222,86 @@ class Sanitizer {
 	}
 
 	/**
+	 * @param $id
+	 * @param int $mode
+	 * @return string|bool
+	 */
+	public static function escapeIdForHtml( $id, $mode = self::ID_PRIMARY ) {
+		global $wgFragmentMode;
+
+		if ( !isset( $wgFragmentMode[$mode] ) ) {
+			if ( $mode === self::ID_PRIMARY ) {
+				throw new InvalidArgumentException( '$wgFragmentMode is configured with no primary mode' );
+			}
+			return false;
+		}
+
+		$internalMode = $wgFragmentMode[$mode];
+
+		return self::escapeIdInternal( $id, $internalMode );
+	}
+
+	public static function escapeIdForLink( $id ) {
+		global $wgFragmentMode;
+
+		$mode = $wgFragmentMode[self::ID_PRIMARY];
+		$id = self::escapeIdInternal( $id, $mode );
+
+		if ( $mode === 'html5' ) {
+			$id = urlencode( $id );
+		}
+
+		return $id;
+	}
+
+	public static function escapeIdForExternalInterwiki( $id ) {
+		global $wgExternalInterwikiFragmentMode;
+
+		return urlencode( self::escapeIdInternal( $id, $wgExternalInterwikiFragmentMode ) );
+	}
+
+	/**
+	 * @param string $id
+	 * @param string $mode
+	 * @return string
+	 */
+	private static function escapeIdInternal( $id, $mode ) {
+		$id = Sanitizer::decodeCharReferences( $id );
+
+		switch ( $mode ) {
+			case 'html5':
+				$id = trim( str_replace( ' ', '_', $id ) );
+				break;
+			case 'legacy':
+				// This corresponds to 'noninitial' mode of the old escapeId()
+				static $replace = [
+					'%3A' => ':',
+					'%' => '.'
+				];
+
+				$id = urlencode( strtr( $id, ' ', '_' ) );
+				$id = strtr( $id, $replace );
+				break;
+			case 'html5-legacy':
+				$id = preg_replace( '/[ \t\n\r\f_\'"&#%]+/', '_', $id );
+				$id = trim( $id, '_' );
+				if ( $id === '' ) {
+					// Must have been all whitespace to start with.
+					$id = '_';
+				}
+				break;
+			default:
+				throw new InvalidArgumentException( "Invalid mode '$mode' passed to '" . __METHOD__ );
+		}
+
+		return $id;
+	}
+
+	/**
 	 * Given a string containing a space delimited list of ids, escape each id
 	 * to match ids escaped by the escapeId() function.
+	 *
+	 * @todo Replace escapeId() with newer functions
 	 *
 	 * @since 1.27
 	 *
