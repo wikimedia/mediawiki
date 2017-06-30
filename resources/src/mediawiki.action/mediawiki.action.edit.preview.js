@@ -150,7 +150,7 @@
 					newList.push(
 						$( '<div>' )
 							.addClass( 'mw-indicator' )
-							.attr( 'id', mw.util.escapeId( 'mw-indicator-' + name ) )
+							.attr( 'id', mw.util.escapeIdForAttribute( 'mw-indicator-' + name ) )
 							.html( indicator )
 							.get( 0 ),
 						// Add a whitespace between the <div>s because

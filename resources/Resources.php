@@ -1379,6 +1379,7 @@ return [
 		]
 	],
 	'mediawiki.util' => [
+		'class' => 'ResourceLoaderMediaWikiUtilModule',
 		'scripts' => 'resources/src/mediawiki/mediawiki.util.js',
 		'dependencies' => [
 			'jquery.accessKeyLabel',
