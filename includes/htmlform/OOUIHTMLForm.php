@@ -177,7 +177,7 @@ class OOUIHTMLForm extends HTMLForm {
 			'items' => $fieldsHtml,
 		];
 		if ( $sectionName ) {
-			$config['id'] = Sanitizer::escapeId( $sectionName );
+			$config['id'] = Sanitizer::escapeIdForHtml( $sectionName );
 		}
 		if ( is_string( $this->mWrapperLegend ) ) {
 			$config['label'] = $this->mWrapperLegend;

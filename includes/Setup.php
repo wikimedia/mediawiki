@@ -282,6 +282,11 @@ foreach ( $wgForeignFileRepos as &$repo ) {
 }
 unset( $repo ); // no global pollution; destroy reference
 
+// Convert this deprected setting to modern system
+if ( $wgExperimentalHtmlIds ) {
+	$wgFragmentMode = [ 'html5-legacy', 'legacy' ];
+}
+
 $rcMaxAgeDays = $wgRCMaxAge / ( 3600 * 24 );
 if ( $wgRCFilterByAge ) {
 	// Trim down $wgRCLinkDays so that it only lists links which are valid
