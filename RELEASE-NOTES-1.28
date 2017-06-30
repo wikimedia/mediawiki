@@ -23,6 +23,7 @@ This is not a release yet!
 * (T128209) SECURITY: Reflected File Download from api.php.
 * (T134100) SECURITY: Do not reveal if user exists during login failure.
 * (T176247) SECURITY: Ensure Message::rawParams can't lead to XSS.
+* (T125163) SECURITY: Make anchor for headlines escape > and <.
 
 == MediaWiki 1.28.1 ==
 
