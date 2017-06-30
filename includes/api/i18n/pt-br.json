@@ -472,6 +472,7 @@
 	"apierror-permissiondenied": "Você não tem permissão para $1.",
 	"apierror-permissiondenied-unblock": "Você não tem permissão para desbloquear usuários.",
 	"apierror-specialpage-cantexecute": "Você não tem permissão para ver os resultados desta página especial.",
+	"apierror-timeout": "O servidor não respondeu dentro do tempo esperado.",
 	"apiwarn-invalidcategory": "\"$1\" não é uma categoria.",
 	"apiwarn-invalidtitle": "\"$1\" não é um título válido.",
 	"apiwarn-notfile": "\"$1\" não é um arquivo.",

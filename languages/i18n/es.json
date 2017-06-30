@@ -1466,7 +1466,7 @@
 	"rcfilters-filter-registered-description": "Editores conectados.",
 	"rcfilters-filter-unregistered-label": "No registrados",
 	"rcfilters-filter-unregistered-description": "Editores no conectados.",
-	"rcfilters-filter-unregistered-conflicts-user-experience-level": "Este filtro entra en conflicto con el siguiente nivel de Experiencia {{PLURAL:$2|filtro|filtros}}, que {{PLURAL:$2 |encuentra|encontrar}} sólo usuarios registrados: $1",
+	"rcfilters-filter-unregistered-conflicts-user-experience-level": "Este filtro está en conflicto con {{PLURAL:$2|el siguiente filtro|los siguientes filtros}} de nivel de experiencia, que solo {{PLURAL:$2|encuentra|encuentran}} usuarios registrados: $1",
 	"rcfilters-filtergroup-authorship": "Autoría de la contribución",
 	"rcfilters-filter-editsbyself-label": "Cambios tuyos",
 	"rcfilters-filter-editsbyself-description": "Tus propias contribuciones",

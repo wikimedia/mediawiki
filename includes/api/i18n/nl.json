@@ -18,7 +18,6 @@
 			"Mainframe98"
 		]
 	},
-	"apihelp-main-summary": "",
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentatie]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api E-maillijst]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-aankondigingen]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & verzoeken]\n</div>\n<strong>Status:</strong> Alle functies die op deze pagina worden weergegeven horen te werken. Aan de API wordt actief gewerkt, en deze kan gewijzigd worden. Abonneer u op  de [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ e-maillijst mediawiki-api-announce] voor meldingen over aanpassingen.\n\n<strong>Foutieve verzoeken:</strong> als de API foutieve verzoeken ontvangt, wordt er geantwoord met een HTTP-header met de sleutel \"MediaWiki-API-Error\" en daarna worden de waarde van de header en de foutcode op dezelfde waarde ingesteld. Zie [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Foutmeldingen en waarschuwingen]] voor meer informatie.\n\n<strong>Testen:</strong> u kunt [[Special:ApiSandbox|eenvoudig API-verzoeken testen]].",
 	"apihelp-main-param-action": "Welke handeling uit te voeren.",
 	"apihelp-main-param-format": "De opmaak van de uitvoer.",
@@ -378,6 +377,7 @@
 	"apierror-permissiondenied-generic": "Toegang geweigerd.",
 	"apierror-readonly": "De wiki is momenteel in alleen-lezen modus.",
 	"apierror-systemblocked": "U bent automatisch geblokkeerd door MediaWiki.",
+	"apierror-timeout": "De server heeft niet binnen de verwachte tijd geantwoord.",
 	"apierror-unknownerror-nocode": "Onbekende fout.",
 	"apierror-unknownerror": "Onbekende fout: \"$1\".",
 	"apierror-unrecognizedparams": "Niet-herkende {{PLURAL:$2|parameter|parameters}}: $1.",

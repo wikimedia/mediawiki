@@ -5,7 +5,6 @@
 			"Macofe"
 		]
 	},
-	"apihelp-main-summary": "",
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page/de|Dokemäntazjohn]]\n* [[mw:API:FAQ/de|Öff jefrohch]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mäileng_Leß]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Aanköndejonge zom <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i>]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Jemäldte Fähler un Wönsch]\n</div>\n<strong>Status:</strong> Alle op heh dä Sigg aanjzeischte Ußwahle sullte donn, ävver et <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i> weed jrahd noch äntwekeld un et kann sesch alle Nahslangs jädd ändere. Holl Der de [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ Mäileng_Leß med Aanköndejonge], öm automattesch övver Neujeschkeite enfommehrt ze wähde.\n\n<strong>Kapodde Aanfrohre:</strong> Wam_mer kapodde Aanfroheaan et API <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i> schek, kritt mer ene <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"HyperText Transfer Protocol\">HTTP</i>-Kopp ußjejovve met däm Täx „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">MediaWiki-API-Error</code>“ dren, dä mer als ene Schlößel bedraachte kann. Mih dohzoh fengk met op dä Sigg [[mw:API:Errors_and_warnings|<i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i>: Fähler un Warnonge]].",
 	"apihelp-main-param-action": "Wat för en Aufjahb.",
 	"apihelp-main-param-format": "Et Fommaht för ußzejävve.",
@@ -425,7 +424,7 @@
 	"apihelp-query+allrevisions-param-generatetitles": "Wann als ene  Jenerahtor enjesaz, brängk dat Övverschreffte un kein Kännonge vun Väsjohne.",
 	"apihelp-query+allrevisions-example-user": "Donn de läzde fuffzisch Beijdrähsch vum Metmaacher „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">Example</kbd>“ opleßte.",
 	"apihelp-query+allrevisions-example-ns-main": "Donn de eezde fuffzisch Väsjohne em Houp-Appachemang opleßte.",
-	"apihelp-query+mystashedfiles-summary": "Holl en Leß vun dem aktoälle Metmaacher singe upload stash.",
+	"apihelp-query+mystashedfiles-summary": "Holl en Leß vun dem aktoälle Metmaacher singe !!FUZZY!!upload stash.",
 	"apihelp-query+mystashedfiles-param-prop": "Wat för en Aanjahbe holle för di Datteije.",
 	"apihelp-query+mystashedfiles-param-limit": "Wi vill Datteije holle?",
 	"apihelp-query+alltransclusions-param-from": "De Övverschreff vun dä ennjeföhschte Sigg, woh de Leß medd aanfange sull.",
@@ -1043,6 +1042,7 @@
 	"api-help-permissions-granted-to": "Jejovve aan: $2{{PLURAL:$1|}}",
 	"api-help-right-apihighlimits": "Donn de Beschängkonge vun Opdrähscht aan de <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i> kleiner maache (langsamme Opdrähscht: $1; flöcke Opdrähscht: $2). De Beschränkonge för lahme Opdrähscht jällde och för Parramehtere met vill Wähte.",
 	"api-help-open-in-apisandbox": "<small>[en de Sandkeß opmaache]</small>",
+	"apierror-timeout": "Dä ẞööver hät en dä jewennde Zick nit jeantwoot.",
 	"api-credits-header": "Aanäkännong för Beijdrähsch",
 	"api-credits": "Dä <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i> ier Äntweklere:\n* Roan Kattouw (Aanföhrer zigg em Säptämber 2007 bes 2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (Bejenner un Aanföhrer vum Säptämber 2006 bes Säptämber 2007)\n* Brad Jorsch (Aanföhrer vun 2013 bes hük)\n\nDoht Ühr Aanmärkonge, Vörschlähsch un Frohre aan de Meijlengleß <code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">mediawiki-api@lists.wikimedia.org</code> scheke, Ühr Vörschlähsch un Fählermälldong doht op <code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">https://phabricator.wikimedia.org/</code> ennjävve."
 }

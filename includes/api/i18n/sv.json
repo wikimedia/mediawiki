@@ -502,6 +502,7 @@
 	"apihelp-watch-summary": "Lägg till eller ta bort sidor från aktuell användares bevakningslista.",
 	"api-login-fail-badsessionprovider": "Kan inte logga in med $1.",
 	"api-help-main-header": "Huvudmodul",
+	"api-help-undocumented-module": "Ingen dokumentation för modulen $1.",
 	"api-help-flag-deprecated": "Denna modul är föråldrad.",
 	"api-help-flag-internal": "<strong>Denna modul är intern eller instabil.</strong> Dess funktion kan ändras utan föregående meddelande.",
 	"api-help-flag-readrights": "Denna modul kräver läsrättigheter.",
@@ -521,9 +522,11 @@
 	"apierror-invalidoldimage": "Parametern <var>oldimage</var> har ett ogiltigt format.",
 	"apierror-invalidsection": "Parametern <var>section</var> måste vara ett giltigt avsnitts-ID eller <kbd>new</kbd>.",
 	"apierror-nosuchuserid": "Det finns ingen användare med ID $1.",
+	"apierror-offline": "Kunde inte fortsätta p.g.a. problem med nätverksanslutningen. Se till att du har en fungerande Internetanslutning och försök igen.",
 	"apierror-protect-invalidaction": "Ogiltig skyddstyp \"$1\".",
 	"apierror-revisions-badid": "Ingen revision hittades för parametern <var>$1</var>.",
 	"apierror-systemblocked": "Du har blockerats automatiskt av MediaWiki.",
+	"apierror-timeout": "Servern svarade inte inom förväntad tid.",
 	"apierror-unknownformat": "Okänt format \"$1\".",
 	"api-feed-error-title": "Fel ($1)"
 }

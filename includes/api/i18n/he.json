@@ -18,7 +18,6 @@
 			"Umherirrender"
 		]
 	},
-	"apihelp-main-summary": "",
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|תיעוד]]\n* [[mw:Special:MyLanguage/API:FAQ|שו\"ת]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api רשימת דיוור]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce הודעות על API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R באגים ובקשות]\n</div>\n<strong>מצב:</strong> כל האפשרויות שמוצגות בדף הזה אמורות לעבוד, אבל ה־API עדיין בפיתוח פעיל, ויכול להשתנות בכל זמן. עשו מינוי ל[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ רשימת הדיוור mediawiki-api-announce] להודעות על עדכונים.\n\n<strong>בקשות שגויות:</strong> כשבקשות שגויות נשלחות ל־API, תישלח כותרת HTTP עם המפתח \"MediaWiki-API-Error\" ואז גם הערך של הכותרת וגם קוד השגיאה יוגדרו לאותו ערך. למידע נוסף ר' [[mw:Special:MyLanguage/API:Errors_and_warnings|API: שגיאות ואזהרות]].\n\n<strong>בדיקה:</strong> לבדיקה קלה יותר של בקשות ר' [[Special:ApiSandbox]].",
 	"apihelp-main-param-action": "איזו פעולה לבצע.",
 	"apihelp-main-param-format": "תסדיר הפלט.",
@@ -1634,6 +1633,7 @@
 	"apierror-notarget": "לא נתת יעד תקין לפעולה הזאת.",
 	"apierror-notpatrollable": "לא ניתן לנטר את הגרסה $1 כי היא ישנה מדי.",
 	"apierror-nouploadmodule": "לא הוגדר מודול העלאה.",
+	"apierror-offline": "לא היה אפשר להמשיך בשל בעיות חיבור רשת. נא לוודא שיש לך חיבור אינטרנט פועל ולנסות שוב.",
 	"apierror-opensearch-json-warnings": "לא ניתן לייצג את האזהרות בתסדיר JSON של OpenSearch.",
 	"apierror-pagecannotexist": "מרחב השם אינו מתיר דפים אמתיים.",
 	"apierror-pagedeleted": "הדף הזה נמחק מאז שאחזרת את חותם הזמן שלו.",
@@ -1683,6 +1683,7 @@
 	"apierror-stashzerolength": "קובץ באורך אפס, ואל יכול משוחזר בסליק: $1.",
 	"apierror-systemblocked": "נחסמת אוטומטית על־ידי מדיה־ויקי.",
 	"apierror-templateexpansion-notwikitext": "הרחבת תבניות נתמכת רק בתוכן קוד ויקי (wikitext). $1 משתמש במודל התוכן $2.",
+	"apierror-timeout": "השרת לא השיב בזמן המצופה.",
 	"apierror-toofewexpiries": "{{PLURAL:$1|ניתן חותם זמן תפוגה אחד|ניתנו $1 חותמי זמן תפוגה}} כאשר {{PLURAL:$2|היה נחוץ אחד|היו נחוצים $1}}.",
 	"apierror-unknownaction": "הפעולה שניתנה, <kbd>$1</kbd>, אינה מוכרת.",
 	"apierror-unknownerror-editpage": "שגיאת EditPage בלתי־ידועה: $1.",

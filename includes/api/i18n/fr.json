@@ -30,7 +30,6 @@
 			"Umherirrender"
 		]
 	},
-	"apihelp-main-summary": "",
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentation]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Liste de diffusion]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bogues et demandes]\n</div>\n<strong>État :</strong> Toutes les fonctionnalités affichées sur cette page devraient fonctionner, mais l’API est encore en cours de développement et peut changer à tout moment. Inscrivez-vous à [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la liste de diffusion mediawiki-api-announce] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> Si des requêtes erronées sont envoyées à l’API, un entête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet entête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’information, voyez [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]].\n\n<strong>Test :</strong> Pour faciliter le test des requêtes de l’API, voyez [[Special:ApiSandbox]].",
 	"apihelp-main-param-action": "Quelle action effectuer.",
 	"apihelp-main-param-format": "Le format de sortie.",
@@ -1646,6 +1645,7 @@
 	"apierror-notarget": "Vous n’avez pas spécifié une cible valide pour cette action.",
 	"apierror-notpatrollable": "La révision r$1 ne peut pas être patrouillée car elle est trop ancienne.",
 	"apierror-nouploadmodule": "Aucun module de téléversement défini.",
+	"apierror-offline": "Impossible de continuer du fait de problèmes de connexion au réseau. Assurez-vous d’avoir une connexion internet active et réessayez.",
 	"apierror-opensearch-json-warnings": "Les avertissements ne peuvent pas être représentés dans le format JSON OpenSearch.",
 	"apierror-pagecannotexist": "L’espace de noms ne permet pas de pages réelles.",
 	"apierror-pagedeleted": "La page a été supprimée depuis que vous avez récupéré son horodatage.",
@@ -1695,6 +1695,7 @@
 	"apierror-stashzerolength": "Fichier est de longueur nulle, et n'a pas pu être mis dans la réserve: $1.",
 	"apierror-systemblocked": "Vous avez été bloqué automatiquement par MediaWiki.",
 	"apierror-templateexpansion-notwikitext": "Le développement du modèle n'est effectif que sur un contenu wikitext. $1 utilise le modèle de contenu $2.",
+	"apierror-timeout": "Le serveur n’a pas répondu dans le délai imparti.",
 	"apierror-toofewexpiries": "$1 {{PLURAL:$1|horodatage d’expiration a été fourni|horodatages d’expiration ont été fournis}} alors que $2 {{PLURAL:$2|était attendu|étaient attendus}}.",
 	"apierror-unknownaction": "L'action spécifiée, <kbd>$1</kbd>, n'est pas reconnue.",
 	"apierror-unknownerror-editpage": "Erreur inconnue EditPage: $1.",

@@ -841,7 +841,7 @@
 	"undo-nochange": "这次编辑似乎已被撤销。",
 	"undo-summary": "撤销[[Special:Contributions/$2|$2]]（[[User talk:$2|讨论]]）的版本$1",
 	"undo-summary-username-hidden": "取消由一匿名用户所作的版本$1",
-	"cantcreateaccount-text": "从该IP地址（<strong>$1</strong>）创建账户已被[[User:$3|$3]]禁止。\n\n$3的理由是<em>$2</em>",
+	"cantcreateaccount-text": "从该IP地址（<strong>$1</strong>）创建账户已被[[User:$3|$3]]禁止。\n\n$3的理由是$2",
 	"cantcreateaccount-range-text": "从该IP地址段<strong>$1</strong>的账户创建已被[[User:$3|$3]]禁止，而这也包括了您的IP地址（<strong>$4</strong>）。\n\n$3给出的原因是<em>$2</em>",
 	"viewpagelogs": "查看该页面的日志",
 	"nohistory": "本页面没有编辑历史记录。",

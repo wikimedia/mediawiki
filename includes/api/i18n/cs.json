@@ -14,7 +14,6 @@
 			"Matěj Suchánek"
 		]
 	},
-	"apihelp-main-summary": "",
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentace]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api E-mailová konference]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Oznámení k API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Chyby a požadavky]\n</div>\n<strong>Stav:</strong> Všechny funkce uvedené na této stránce by měly fungovat, ale API se stále aktivně vyvíjí a může se kdykoli změnit. Upozornění na změny získáte přihlášením se k [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ e-mailové konferenci mediawiki-api-announce].\n\n<strong>Chybné požadavky:</strong> Pokud jsou do API zaslány chybné požadavky, bude vrácena HTTP hlavička s klíčem „MediaWiki-API-Error“ a hodnota této hlavičky a chybový kód budou nastaveny na stejnou hodnotu. Více informací najdete [[mw:Special:MyLanguage/API:Errors_and_warnings|v dokumentaci]].\n\n<strong>Testování:</strong> Pro jednoduché testování požadavků na API zkuste [[Special:ApiSandbox]].",
 	"apihelp-main-param-action": "Která akce se má provést.",
 	"apihelp-main-param-format": "Formát výstupu.",
@@ -290,6 +289,7 @@
 	"api-help-open-in-apisandbox": "<small>[otevřít v pískovišti]</small>",
 	"apierror-nosuchsection-what": "$2 neobsahuje sekci $1.",
 	"apierror-sectionsnotsupported-what": "$1 nepodporuje sekce.",
+	"apierror-timeout": "Server neodpověděl v očekávaném čase.",
 	"api-credits-header": "Zásluhy",
 	"api-credits": "Vývojáři API:\n* Roan Kattouw (hlavní vývojář září 2007–2009)\n* Viktor Vasiljev\n* Bryan Tong Minh\n* Sam Reed\n* Jurij Astrachan (tvůrce, hlavní vývojář září 2006–září 2007)\n* Brad Jorsch (hlavní vývojář od 2013)\n\nSvé komentáře, návrhy či dotazy posílejte na mediawiki-api@lists.wikimedia.org\nnebo založte chybové hlášení na https://phabricator.wikimedia.org/."
 }

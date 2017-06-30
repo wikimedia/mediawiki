@@ -22,7 +22,6 @@
 			"Tacsipacsi"
 		]
 	},
-	"apihelp-main-summary": "",
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentation]]\n* [[mw:Special:MyLanguage/API:FAQ|Häufig gestellte Fragen]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailingliste]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-Ankündigungen]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Fehlerberichte und Anfragen]\n</div>\n<strong>Status:</strong> Alle auf dieser Seite gezeigten Funktionen sollten funktionieren, allerdings ist die API in aktiver Entwicklung und kann sich zu jeder Zeit ändern. Abonniere die [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ MediaWiki-API-Ankündigungs-Mailingliste], um über Aktualisierungen informiert zu werden.\n\n<strong>Fehlerhafte Anfragen:</strong> Wenn fehlerhafte Anfragen an die API gesendet werden, wird ein HTTP-Header mit dem Schlüssel „MediaWiki-API-Error“ gesendet. Der Wert des Headers und der Fehlercode werden auf den gleichen Wert gesetzt. Für weitere Informationen siehe [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Fehler und Warnungen]].\n\n<strong>Testen:</strong> Zum einfachen Testen von API-Anfragen, siehe [[Special:ApiSandbox]].",
 	"apihelp-main-param-action": "Auszuführende Aktion.",
 	"apihelp-main-param-format": "Format der Ausgabe.",
@@ -1050,6 +1049,7 @@
 	"apierror-invaliduserid": "Die Benutzerkennung <var>$1</var> ist nicht gültig.",
 	"apierror-nosuchsection": "Es gibt keinen Abschnitt $1.",
 	"apierror-nosuchuserid": "Es gibt keinen Benutzer mit der Kennung $1.",
+	"apierror-offline": "Aufgrund von Problemen bei der Netzwerkverbindung kannst du nicht weitermachen. Stelle sicher, dass du eine funktionierende Internetverbindung hast und versuche es erneut.",
 	"apierror-pagelang-disabled": "Das Ändern der Sprache von Seiten ist auf diesem Wiki nicht erlaubt.",
 	"apierror-protect-invalidaction": "Ungültiger Schutztyp „$1“.",
 	"apierror-readonly": "Das Wiki ist derzeit im schreibgeschützten Modus.",
@@ -1060,6 +1060,7 @@
 	"apierror-stashnosuchfilekey": "Kein derartiger Dateischlüssel: $1.",
 	"apierror-stashwrongowner": "Falscher Besitzer: $1",
 	"apierror-systemblocked": "Du wurdest von MediaWiki automatisch gesperrt.",
+	"apierror-timeout": "Der Server hat nicht innerhalb der erwarteten Zeit reagiert.",
 	"apierror-unknownerror-nocode": "Unbekannter Fehler.",
 	"apierror-unknownerror": "Unbekannter Fehler: „$1“.",
 	"apierror-unknownformat": "Nicht erkanntes Format „$1“.",

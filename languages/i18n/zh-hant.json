@@ -87,7 +87,8 @@
 			"逆襲的天邪鬼",
 			"A2093064",
 			"Wwycheuk",
-			"Corainn"
+			"Corainn",
+			"WhitePhosphorus"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -830,7 +831,7 @@
 	"undo-nochange": "此編輯已被還原。",
 	"undo-summary": "取消由 [[Special:Contributions/$2|$2]] ([[User talk:$2|對話]]) 所作出的修訂 $1",
 	"undo-summary-username-hidden": "還原隱藏使用者的修訂 $1",
-	"cantcreateaccount-text": "自這個 IP 位址 (<strong>$1</strong>) 建立帳號已經被 [[User:$3|$3]] 封鎖。\n\n$3 封鎖的原因是 <em>$2</em>",
+	"cantcreateaccount-text": "自這個 IP 位址 (<strong>$1</strong>) 建立帳號已經被 [[User:$3|$3]] 封鎖。\n\n$3 封鎖的原因是$2",
 	"cantcreateaccount-range-text": "來自 IP 位址範圍 <strong>$1</strong>，包含您的 IP 位址 (<strong>$4</strong>) 所建立的帳號已經被 [[User:$3|$3]] 封鎖。\n\n$3 封鎖的原因是 <em>$2</em>",
 	"viewpagelogs": "檢視此頁面的日誌",
 	"nohistory": "此頁沒有任何的修訂記錄。",

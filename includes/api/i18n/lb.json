@@ -236,6 +236,7 @@
 	"apierror-revwrongpage": "r$1 ass keng Versioun vu(n) $2.",
 	"apierror-stashwrongowner": "Falsche Besëtzer: $1",
 	"apierror-systemblocked": "Dir gouft automatesch vu MediaWiki gespaart.",
+	"apierror-timeout": "De Server huet net bannen där Zäit geäntwert déi virgesinn ass.",
 	"apierror-unknownerror-editpage": "Onbekannten EditPage-Feeler: $1",
 	"apierror-unknownerror-nocode": "Onbekannte Feeler.",
 	"apierror-unknownerror": "Onbekannte Feeler: \"$1\".",
