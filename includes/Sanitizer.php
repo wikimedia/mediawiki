@@ -57,6 +57,17 @@ class Sanitizer {
 	const XMLNS_ATTRIBUTE_PATTERN = "/^xmlns:[:A-Z_a-z-.0-9]+$/";
 
 	/**
+	 * Tells escapeUrlForHtml() to encode the ID using the wiki's primary encoding.
+	 */
+	const ID_PRIMARY            = 0;
+
+	/**
+	 * Tells escapeUrlForHtml() to encode the ID using the fallback encoding, or return false
+	 * if no fallback is configured.
+	 */
+	const ID_FALLBACK           = 1;
+
+	/**
 	 * List of all named character entities defined in HTML 4.01
 	 * https://www.w3.org/TR/html4/sgml/entities.html
 	 * As well as &apos; which is only defined starting in XHTML1.
@@ -800,7 +811,7 @@ class Sanitizer {
 
 			# Escape HTML id attributes
 			if ( $attribute === 'id' ) {
-				$value = Sanitizer::escapeId( $value, 'noninitial' );
+				$value = Sanitizer::escapeIdForHtml( $value, Sanitizer::ID_PRIMARY );
 			}
 
 			# Escape HTML id reference lists
@@ -1153,6 +1164,8 @@ class Sanitizer {
 	}
 
 	/**
+	 * @deprecated since 1.30, use one of this class' escapeIdFor*() functions
+	 *
 	 * Given a value, escape it so that it can be used in an id attribute and
 	 * return it.  This will use HTML5 validation if $wgExperimentalHtmlIds is
 	 * true, allowing anything but ASCII whitespace.  Otherwise it will use
@@ -1217,20 +1230,129 @@ class Sanitizer {
 	}
 
 	/**
+	 * Given a section name or other user-genrated or otherwise unsafe string, escapes it to be
+	 * a valid HTML id attribute.
+	 *
+	 * @param string $id String to escape
+	 * @param int $mode One of ID_* constants, specifying whether the primary or fallback encoding
+	 *     should be used.
+	 * @return string|bool Escaped ID or false if fallback encoding is requested but it's not
+	 *     configured.
+	 */
+	public static function escapeIdForHtml( $id, $mode = self::ID_PRIMARY ) {
+		global $wgFragmentMode;
+
+		if ( !isset( $wgFragmentMode[$mode] ) ) {
+			if ( $mode === self::ID_PRIMARY ) {
+				throw new InvalidArgumentException( '$wgFragmentMode is configured with no primary mode' );
+			}
+			return false;
+		}
+
+		$internalMode = $wgFragmentMode[$mode];
+
+		return self::escapeIdInternal( $id, $internalMode );
+	}
+
+	/**
+	 * Given a section name or other user-genrated or otherwise unsafe string, escapes it to be
+	 * a valid URL fragment.
+	 *
+	 * @param string $id String to escape
+	 * @return string Escaped ID
+	 */
+	public static function escapeIdForLink( $id ) {
+		global $wgFragmentMode;
+
+		$mode = $wgFragmentMode[self::ID_PRIMARY];
+
+		$id = self::escapeIdInternal( $id, $mode );
+		$id = self::urlEscapeId( $id, $mode );
+
+		return $id;
+	}
+
+	/**
+	 * Given a section name or other user-genrated or otherwise unsafe string, escapes it to be
+	 * a valid URL fragment for external interwikis.
+	 *
+	 * @param string $id String to escape
+	 * @return string Escaped ID
+	 */
+	public static function escapeIdForExternalInterwiki( $id ) {
+		global $wgExternalInterwikiFragmentMode;
+
+		$id = self::escapeIdInternal( $id, $wgExternalInterwikiFragmentMode );
+		$id = self::urlEscapeId( $id, $wgExternalInterwikiFragmentMode );
+
+		return $id;
+	}
+
+	/**
+	 * Helper for escapeIdFor*() functions. URL-escapes the ID if needed.
+	 *
+	 * @param string $id String to escape
+	 * @param string $mode One of modes from $wgFragmentMode
+	 * @return string
+	 */
+	private static function urlEscapeId( $id, $mode ) {
+		if ( $mode === 'html5' ) {
+			$id = urlencode( $id );
+			$id = str_replace( '%3A', ':', $id );
+		}
+
+		return $id;
+	}
+
+	/**
+	 * Helper for escapeIdFor*() functions. Performs most of the actual escaping.
+	 *
+	 * @param string $id String to escape
+	 * @param string $mode One of modes from $wgFragmentMode
+	 * @return string
+	 */
+	private static function escapeIdInternal( $id, $mode ) {
+		$id = Sanitizer::decodeCharReferences( $id );
+
+		switch ( $mode ) {
+			case 'html5':
+				$id = str_replace( ' ', '_', $id );
+				break;
+			case 'legacy':
+				// This corresponds to 'noninitial' mode of the old escapeId()
+				static $replace = [
+					'%3A' => ':',
+					'%' => '.'
+				];
+
+				$id = urlencode( strtr( $id, ' ', '_' ) );
+				$id = strtr( $id, $replace );
+				break;
+			case 'html5-legacy':
+				$id = preg_replace( '/[ \t\n\r\f_\'"&#%]+/', '_', $id );
+				$id = trim( $id, '_' );
+				if ( $id === '' ) {
+					// Must have been all whitespace to start with.
+					$id = '_';
+				}
+				break;
+			default:
+				throw new InvalidArgumentException( "Invalid mode '$mode' passed to '" . __METHOD__ );
+		}
+
+		return $id;
+	}
+
+	/**
 	 * Given a string containing a space delimited list of ids, escape each id
 	 * to match ids escaped by the escapeId() function.
+	 *
+	 * @todo wfDeprecated() uses of $options in 1.31, remove completely in 1.32
 	 *
 	 * @since 1.27
 	 *
 	 * @param string $referenceString Space delimited list of ids
-	 * @param string|array $options String or array of strings (default is array()):
-	 *   'noninitial': This is a non-initial fragment of an id, not a full id,
-	 *       so don't pay attention if the first character isn't valid at the
-	 *       beginning of an id.  Only matters if $wgExperimentalHtmlIds is
-	 *       false.
-	 *   'legacy': Behave the way the old HTML 4-based ID escaping worked even
-	 *       if $wgExperimentalHtmlIds is used, so we can generate extra
-	 *       anchors and links won't break.
+	 * @param string|array $options Deprecated and does nothing.
 	 * @return string
 	 */
 	static function escapeIdReferenceList( $referenceString, $options = [] ) {
@@ -1239,7 +1361,7 @@ class Sanitizer {
 
 		# Escape each token as an id
 		foreach ( $references as &$ref ) {
-			$ref = Sanitizer::escapeId( $ref, $options );
+			$ref = Sanitizer::escapeIdForHtml( $ref );
 		}
 
 		# Merge the array back to a space delimited list string
