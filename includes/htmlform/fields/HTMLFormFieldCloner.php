@@ -93,9 +93,9 @@ class HTMLFormFieldCloner extends HTMLFormField {
 				$info['name'] = $name;
 			}
 			if ( isset( $info['id'] ) ) {
-				$info['id'] = Sanitizer::escapeId( "{$this->mID}--$key--{$info['id']}" );
+				$info['id'] = Sanitizer::escapeIdForAttribute( "{$this->mID}--$key--{$info['id']}" );
 			} else {
-				$info['id'] = Sanitizer::escapeId( "{$this->mID}--$key--$fieldname" );
+				$info['id'] = Sanitizer::escapeIdForAttribute( "{$this->mID}--$key--$fieldname" );
 			}
 			// Copy the hide-if rules to "child" fields, so that the JavaScript code handling them
 			// (resources/src/mediawiki/htmlform/hide-if.js) doesn't have to handle nested fields.
@@ -313,7 +313,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 				'type' => 'submit',
 				'formnovalidate' => true,
 				'name' => $name,
-				'id' => Sanitizer::escapeId( "{$this->mID}--$key--delete" ),
+				'id' => Sanitizer::escapeIdForAttribute( "{$this->mID}--$key--delete" ),
 				'cssclass' => 'mw-htmlform-cloner-delete-button',
 				'default' => $this->getMessage( $label )->text(),
 			], $this->mParent );
@@ -386,7 +386,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			'type' => 'submit',
 			'formnovalidate' => true,
 			'name' => $name,
-			'id' => Sanitizer::escapeId( "{$this->mID}--create" ),
+			'id' => Sanitizer::escapeIdForAttribute( "{$this->mID}--create" ),
 			'cssclass' => 'mw-htmlform-cloner-create-button',
 			'default' => $this->getMessage( $label )->text(),
 		], $this->mParent );

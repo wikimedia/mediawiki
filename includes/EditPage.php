@@ -1698,7 +1698,7 @@ class EditPage {
 		global $wgParser;
 
 		if ( $this->sectiontitle !== '' ) {
-			$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $this->sectiontitle );
+			$sectionanchor = $this->guessSectionName( $this->sectiontitle );
 			// If no edit summary was specified, create one automatically from the section
 			// title and have it link to the new section. Otherwise, respect the summary as
 			// passed.
@@ -1708,7 +1708,7 @@ class EditPage {
 					->rawParams( $cleanSectionTitle )->inContentLanguage()->text();
 			}
 		} elseif ( $this->summary !== '' ) {
-			$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
+			$sectionanchor = $this->guessSectionName( $this->summary );
 			# This is a new section, so create a link to the new section
 			# in the revision summary.
 			$cleanSummary = $wgParser->stripSectionName( $this->summary );
@@ -1743,7 +1743,7 @@ class EditPage {
 	 * time.
 	 */
 	public function internalAttemptSave( &$result, $bot = false ) {
-		global $wgUser, $wgRequest, $wgParser, $wgMaxArticleSize;
+		global $wgUser, $wgRequest, $wgMaxArticleSize;
 		global $wgContentHandlerUseDB;
 
 		$status = Status::newGood();
@@ -2117,7 +2117,7 @@ class EditPage {
 				# We can't deal with anchors, includes, html etc in the header for now,
 				# headline would need to be parsed to improve this.
 				if ( $hasmatch && strlen( $matches[2] ) > 0 ) {
-					$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $matches[2] );
+					$sectionanchor = $this->guessSectionName( $matches[2] );
 				}
 			}
 			$result['sectionanchor'] = $sectionanchor;
@@ -4784,5 +4784,28 @@ HTML
 			return $wikitext;
 		}
 		return $wikitext;
+	}
+
+	/**
+	 * Turns section name wikitext into anchors for use in HTTP redirects. Various
+	 * versions of Microsoft browsers misinterpret fragment encoding of Location: headers
+	 * resulting in mojibake in address bar. Redirect them to legacy section IDs,
+	 * if possible. All the other browsers get HTML5 if the wiki is configured for it, to
+	 * spread the new style links more efficiently.
+	 *
+	 * @param string $text
+	 * @return string
+	 */
+	private function guessSectionName( $text ) {
+		global $wgParser;
+
+		// Detect Microsoft browsers
+		$userAgent = $this->context->getRequest()->getHeader( 'User-Agent' );
+		if ( $userAgent && preg_match( '/MSIE|Edge/', $userAgent ) ) {
+			// ...and redirect them to legacy encoding, if available
+			return $wgParser->guessLegacySectionNameFromWikiText( $text );
+		}
+		// Meanwhile, real browsers get real anchors
+		return $wgParser->guessSectionNameFromWikiText( $text );
 	}
 }
