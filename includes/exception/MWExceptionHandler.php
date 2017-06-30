@@ -83,29 +83,32 @@ class MWExceptionHandler {
 	}
 
 	/**
-	 * If there are any open database transactions, roll them back and log
-	 * the stack trace of the exception that should have been caught so the
-	 * transaction could be aborted properly.
+	 * Roll back any open database transactions and log the stack trace of the exception
+	 *
+	 * This method is used to attempt to recover from exceptions
 	 *
 	 * @since 1.23
 	 * @param Exception|Throwable $e
 	 */
 	public static function rollbackMasterChangesAndLog( $e ) {
 		$services = MediaWikiServices::getInstance();
-		if ( $services->isServiceDisabled( 'DBLoadBalancerFactory' ) ) {
-			return; // T147599
+		if ( !$services->isServiceDisabled( 'DBLoadBalancerFactory' ) ) {
+			// Rollback DBs to avoid transaction notices. This might fail
+			// to rollback some databases due to connection issues or exceptions.
+			// However, any sane DB driver will rollback implicitly anyway.
+			try {
+				$services->getDBLoadBalancerFactory()->rollbackMasterChanges( __METHOD__ );
+			} catch ( DBError $e2 ) {
+				// If the DB is unreacheable, rollback() will throw an error
+				// and the error report() method might need messages from the DB,
+				// which would result in an exception loop. PHP may escalate such
+				// errors to "Exception thrown without a stack frame" fatals, but
+				// it's better to be explicit here.
+				self::logException( $e2, self::CAUGHT_BY_HANDLER );
+			}
 		}
 
-		$lbFactory = $services->getDBLoadBalancerFactory();
-		if ( $lbFactory->hasMasterChanges() ) {
-			$logger = LoggerFactory::getInstance( 'Bug56269' );
-			$logger->warning(
-				'Exception thrown with an uncommited database transaction: ' .
-				self::getLogMessage( $e ),
-				self::getLogContext( $e )
-			);
-		}
-		$lbFactory->rollbackMasterChanges( __METHOD__ );
+		self::logException( $e, self::CAUGHT_BY_HANDLER );
 	}
 
 	/**
@@ -123,23 +126,8 @@ class MWExceptionHandler {
 	 * @param Exception|Throwable $e
 	 */
 	public static function handleException( $e ) {
-		try {
-			// Rollback DBs to avoid transaction notices. This may fail
-			// to rollback some DB due to connection issues or exceptions.
-			// However, any sane DB driver will rollback implicitly anyway.
-			self::rollbackMasterChangesAndLog( $e );
-		} catch ( DBError $e2 ) {
-			// If the DB is unreacheable, rollback() will throw an error
-			// and the error report() method might need messages from the DB,
-			// which would result in an exception loop. PHP may escalate such
-			// errors to "Exception thrown without a stack frame" fatals, but
-			// it's better to be explicit here.
-			self::logException( $e2, self::CAUGHT_BY_HANDLER );
-		}
-
-		self::logException( $e, self::CAUGHT_BY_HANDLER );
+		self::rollbackMasterChangesAndLog( $e );
 		self::report( $e );
-
 		// Exit value should be nonzero for the benefit of shell jobs
 		exit( 1 );
 	}
