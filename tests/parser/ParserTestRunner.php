@@ -1052,6 +1052,8 @@ class ParserTestRunner {
 			// wgEnableMagicLinks={"ISBN":false, "PMID":false, "RFC":false}
 			'wgEnableMagicLinks' => self::getOptionValue( 'wgEnableMagicLinks', $opts, [] )
 				+ [ 'ISBN' => true, 'PMID' => true, 'RFC' => true ],
+			// Test with legacy encoding by default until HTML5 is very stable and default
+			'wgFragmentMode' => [ 'legacy' ],
 		];
 
 		if ( $config ) {
