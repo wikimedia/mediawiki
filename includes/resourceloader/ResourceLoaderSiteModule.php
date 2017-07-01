@@ -42,7 +42,7 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 		return $pages;
 	}
 
-	/*
+	/**
 	 * @return array
 	 */
 	public function getDependencies( ResourceLoaderContext $context = null ) {
