@@ -109,7 +109,7 @@ class ResourceLoaderClientHtml {
 	 *
 	 * See OutputPage::buildExemptModules() for use cases.
 	 *
-	 * @param array $modules Module state keyed by module name
+	 * @param array $states Module state keyed by module name
 	 */
 	public function setExemptStates( array $states ) {
 		$this->exemptStates = $states;
@@ -370,7 +370,6 @@ class ResourceLoaderClientHtml {
 		sort( $modules );
 
 		if ( $mainContext->getDebug() && count( $modules ) > 1 ) {
-
 			$chunks = [];
 			// Recursively call us for every item
 			foreach ( $modules as $name ) {

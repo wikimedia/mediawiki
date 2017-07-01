@@ -980,18 +980,19 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$files = $compiler->AllParsedFiles();
 		$this->localFileRefs = array_merge( $this->localFileRefs, $files );
 
+		// Cache for 24 hours (86400 seconds).
 		$cache->set( $cacheKey, [
 			'css'   => $css,
 			'files' => $files,
 			'hash'  => FileContentsHasher::getFileContentsHash( $files ),
-		], 60 * 60 * 24 );  // 86400 seconds, or 24 hours.
+		], 3600 * 24 );
 
 		return $css;
 	}
 
 	/**
 	 * Takes named templates by the module and returns an array mapping.
-	 * @return array of templates mapping template alias to content
+	 * @return array Templates mapping template alias to content
 	 * @throws MWException
 	 */
 	public function getTemplates() {
@@ -1022,7 +1023,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * the BOM character is not valid in the middle of a string.
 	 * We already assume UTF-8 everywhere, so this should be safe.
 	 *
-	 * @return string input minus the intial BOM char
+	 * @param string $input
+	 * @return string Input minus the intial BOM char
 	 */
 	protected function stripBom( $input ) {
 		if ( substr_compare( "\xef\xbb\xbf", $input, 0, 3 ) === 0 ) {
