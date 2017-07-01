@@ -461,6 +461,7 @@
 	"apihelp-query+revisions+base-paramvalue-prop-contentmodel": "판의 콘텐츠 모델 ID.",
 	"apihelp-query+revisions+base-paramvalue-prop-content": "판의 텍스트.",
 	"apihelp-query+revisions+base-paramvalue-prop-tags": "판의 태그.",
+	"apihelp-query+revisions+base-param-parse": "<kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>를 대신 사용합니다. 판 내용의 구문을 분석합니다. ($1prop=content 필요) 성능 상의 이유로 이 옵션을 사용할 경우 $1limit은 1로 강제됩니다.",
 	"apihelp-query+search-summary": "전문 검색을 수행합니다.",
 	"apihelp-query+search-param-qiprofile": "쿼리 독립적인 프로파일 사용(순위 알고리즘에 영향있음)",
 	"apihelp-query+search-paramvalue-prop-size": "바이트 단위로 문서의 크기를 추가합니다.",

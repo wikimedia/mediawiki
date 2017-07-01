@@ -920,7 +920,7 @@
 	"revdelete-show-no-access": "Wystąpił błąd przy próbie wyświetlenia elementu datowanego na $2, $1. Widoczność tego elementu została ograniczona – nie masz prawa dostępu do niego.",
 	"revdelete-modify-no-access": "Wystąpił błąd przy próbie modyfikacji elementu datowanego na $2, $1. Widoczność tego elementu została ograniczona – nie masz prawa dostępu do niego.",
 	"revdelete-modify-missing": "Wystąpił błąd przy próbie modyfikacji elementu o ID $1 – brakuje go w bazie danych!",
-	"revdelete-no-change": "'''Uwaga:''' element datowany na $2, $1 posiada już wskazane ustawienia widoczności.",
+	"revdelete-no-change": "<strong>Uwaga:</strong> element datowany na $2, $1 posiada już wskazane ustawienia widoczności.",
 	"revdelete-concurrent-change": "Wystąpił błąd przy próbie modyfikacji elementu datowanego na $2, $1. Prawdopodobnie w międzyczasie ktoś zdążył zmienić ustawienia widoczności tego elementu.\nProszę sprawdzić rejestr operacji.",
 	"revdelete-only-restricted": "Nie można ukryć elementu z $2, $1 przed administratorami bez określenia jednej z pozostałych opcji ukrywania.",
 	"revdelete-reason-dropdown": "* Najczęstsze powody usunięcia\n** Naruszenie praw autorskich\n** Niestosowny komentarz lub informacja naruszająca prywatność\n** Niestosowna nazwa użytkownika\n** Potencjalnie oszczercza informacja",
