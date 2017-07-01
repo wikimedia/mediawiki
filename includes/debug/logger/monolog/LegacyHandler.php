@@ -194,7 +194,6 @@ class LegacyHandler extends AbstractProcessingHandler {
 
 		$text = (string)$record['formatted'];
 		if ( $this->useUdp() ) {
-
 			// Clean it up for the multiplexer
 			if ( $this->prefix !== '' ) {
 				$leader = ( $this->prefix === '{channel}' ) ?

@@ -326,8 +326,8 @@ class UserrightsPage extends SpecialPage {
 	 * @return array Tuple of added, then removed groups
 	 */
 	function doSaveUserGroups( $user, $add, $remove, $reason = '', $tags = [],
-		$groupExpiries = [] ) {
-
+		$groupExpiries = []
+	) {
 		// Validate input set...
 		$isself = $user->getName() == $this->getUser()->getName();
 		$groups = $user->getGroups();
@@ -433,8 +433,8 @@ class UserrightsPage extends SpecialPage {
 	 * @param array $newUGMs Associative array of (group name => UserGroupMembership)
 	 */
 	protected function addLogEntry( $user, $oldGroups, $newGroups, $reason, $tags,
-		$oldUGMs, $newUGMs ) {
-
+		$oldUGMs, $newUGMs
+	) {
 		// make sure $oldUGMs and $newUGMs are in the same order, and serialise
 		// each UGM object to a simplified array
 		$oldUGMs = array_map( function ( $group ) use ( $oldUGMs ) {

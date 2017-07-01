@@ -1391,7 +1391,6 @@ abstract class Skin extends ContextSource {
 	 * @return string
 	 */
 	function getNewtalks() {
-
 		$newMessagesAlert = '';
 		$user = $this->getUser();
 		$newtalks = $user->getNewMessageLinks();

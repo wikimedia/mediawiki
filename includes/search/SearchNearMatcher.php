@@ -70,7 +70,6 @@ class SearchNearMatcher {
 		}
 
 		foreach ( $allSearchTerms as $term ) {
-
 			# Exact match? No need to look further.
 			$title = Title::newFromText( $term );
 			if ( is_null( $title ) ) {

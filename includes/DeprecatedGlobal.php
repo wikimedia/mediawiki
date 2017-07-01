@@ -38,7 +38,6 @@ class DeprecatedGlobal extends StubObject {
 	// PSR2.Methods.MethodDeclaration.Underscore
 	// PSR2.Classes.PropertyDeclaration.ScopeMissing
 	function _newObject() {
-
 		/* Put the caller offset for wfDeprecated as 6, as
 		 * that gives the function that uses this object, since:
 		 * 1 = this function ( _newObject )

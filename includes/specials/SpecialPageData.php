@@ -48,7 +48,6 @@ class SpecialPageData extends SpecialPage {
 	 * @return PageDataRequestHandler
 	 */
 	private function newDefaultRequestHandler() {
-
 		return new PageDataRequestHandler();
 	}
 

@@ -751,7 +751,6 @@ END;
 	}
 
 	protected function setDefault( $table, $field, $default ) {
-
 		$info = $this->db->fieldInfo( $table, $field );
 		if ( $info->defaultValue() !== $default ) {
 			$this->output( "Changing '$table.$field' default value\n" );

@@ -148,7 +148,6 @@ class Preprocessor_DOM extends Preprocessor {
 	 * @return PPNode_DOM
 	 */
 	public function preprocessToObj( $text, $flags = 0 ) {
-
 		$xml = $this->cacheGetTree( $text, $flags );
 		if ( $xml === false ) {
 			$xml = $this->preprocessToXml( $text, $flags );
@@ -373,7 +372,6 @@ class Preprocessor_DOM extends Preprocessor {
 				}
 				// Handle comments
 				if ( isset( $matches[2] ) && $matches[2] == '!--' ) {
-
 					// To avoid leaving blank lines, when a sequence of
 					// space-separated comments is both preceded and followed by
 					// a newline (ignoring spaces), then

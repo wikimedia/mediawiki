@@ -69,7 +69,6 @@ class MediaWikiPageNameNormalizer {
 	 * @throws \MWException
 	 */
 	public function normalizePageName( $pageName, $apiUrl ) {
-
 		// Check if we have strings as arguments.
 		if ( !is_string( $pageName ) ) {
 			throw new \MWException( '$pageName must be a string' );

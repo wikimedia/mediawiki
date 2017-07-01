@@ -178,7 +178,6 @@ class RefreshLinks extends Maintenance {
 			$this->output( "Starting from page_id $start of $end.\n" );
 
 			for ( $id = $start; $id <= $end; $id++ ) {
-
 				if ( !( $id % self::REPORTING_INTERVAL ) ) {
 					$this->output( "$id\n" );
 					wfWaitForSlaves();
@@ -191,7 +190,6 @@ class RefreshLinks extends Maintenance {
 				$this->output( "Starting from page_id $start of $end.\n" );
 
 				for ( $id = $start; $id <= $end; $id++ ) {
-
 					if ( !( $id % self::REPORTING_INTERVAL ) ) {
 						$this->output( "$id\n" );
 						wfWaitForSlaves();

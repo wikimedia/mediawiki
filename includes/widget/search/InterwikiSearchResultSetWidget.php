@@ -123,7 +123,6 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 	 * @return string HTML
 	 */
 	protected function footerHtml( $term, $iwPrefix ) {
-
 		$href = Title::makeTitle( NS_SPECIAL, 'Search', null, $iwPrefix )->getLocalURL(
 			[ 'search' => $term, 'fulltext' => 1 ]
 		);
@@ -171,7 +170,6 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 	 * @return OOUI\IconWidget
 	 **/
 	protected function iwIcon( $iwPrefix ) {
-
 		$interwiki = $this->iwLookup->fetch( $iwPrefix );
 		$parsed = wfParseUrl( wfExpandUrl( $interwiki ? $interwiki->getURL() : '/' ) );
 

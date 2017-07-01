@@ -821,7 +821,6 @@ class MediaWiki {
 
 			// ATTENTION: This hook is likely to be removed soon due to overall design of the system.
 			if ( Hooks::run( 'BeforeHttpsRedirect', [ $this->context, &$redirUrl ] ) ) {
-
 				if ( $request->wasPosted() ) {
 					// This is weird and we'd hope it almost never happens. This
 					// means that a POST came in via HTTP and policy requires us

@@ -39,8 +39,8 @@ abstract class ChangeTagsList extends RevisionListBase {
 	 * @throws Exception If you give an unknown $typeName
 	 */
 	public static function factory( $typeName, IContextSource $context,
-		Title $title, array $ids ) {
-
+		Title $title, array $ids
+	) {
 		switch ( $typeName ) {
 			case 'revision':
 				$className = 'ChangeTagsRevisionList';

@@ -201,7 +201,6 @@ class ChangeTags {
 		&$rev_id = null, &$log_id = null, $params = null, RecentChange $rc = null,
 		User $user = null
 	) {
-
 		$tagsToAdd = array_filter( (array)$tagsToAdd ); // Make sure we're submitting all tags...
 		$tagsToRemove = array_filter( (array)$tagsToRemove );
 
@@ -275,8 +274,8 @@ class ChangeTags {
 		// update the tag_summary row
 		$prevTags = [];
 		if ( !self::updateTagSummaryRow( $tagsToAdd, $tagsToRemove, $rc_id, $rev_id,
-			$log_id, $prevTags ) ) {
-
+			$log_id, $prevTags )
+		) {
 			// nothing to do
 			return [ [], [], $prevTags ];
 		}
@@ -343,8 +342,8 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	protected static function updateTagSummaryRow( &$tagsToAdd, &$tagsToRemove,
-		$rc_id, $rev_id, $log_id, &$prevTags = [] ) {
-
+		$rc_id, $rev_id, $log_id, &$prevTags = []
+	) {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$tsConds = array_filter( [
@@ -419,9 +418,7 @@ class ChangeTags {
 	 * @return Status
 	 * @since 1.25
 	 */
-	public static function canAddTagsAccompanyingChange( array $tags,
-		User $user = null ) {
-
+	public static function canAddTagsAccompanyingChange( array $tags, User $user = null ) {
 		if ( !is_null( $user ) ) {
 			if ( !$user->isAllowed( 'applychangetags' ) ) {
 				return Status::newFatal( 'tags-apply-no-permission' );
@@ -465,7 +462,6 @@ class ChangeTags {
 	public static function addTagsAccompanyingChangeWithChecks(
 		array $tags, $rc_id, $rev_id, $log_id, $params, User $user
 	) {
-
 		// are we allowed to do this?
 		$result = self::canAddTagsAccompanyingChange( $tags, $user );
 		if ( !$result->isOK() ) {
@@ -491,8 +487,8 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function canUpdateTags( array $tagsToAdd, array $tagsToRemove,
-		User $user = null ) {
-
+		User $user = null
+	) {
 		if ( !is_null( $user ) ) {
 			if ( !$user->isAllowed( 'changetags' ) ) {
 				return Status::newFatal( 'tags-update-no-permission' );
@@ -554,8 +550,8 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function updateTagsWithChecks( $tagsToAdd, $tagsToRemove,
-		$rc_id, $rev_id, $log_id, $params, $reason, User $user ) {
-
+		$rc_id, $rev_id, $log_id, $params, $reason, User $user
+	) {
 		if ( is_null( $tagsToAdd ) ) {
 			$tagsToAdd = [];
 		}
@@ -792,8 +788,8 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	protected static function logTagManagementAction( $action, $tag, $reason,
-		User $user, $tagCount = null, array $logEntryTags = [] ) {
-
+		User $user, $tagCount = null, array $logEntryTags = []
+	) {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$logEntry = new ManualLogEntry( 'managetags', $action );
@@ -869,8 +865,8 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function activateTagWithChecks( $tag, $reason, User $user,
-		$ignoreWarnings = false, array $logEntryTags = [] ) {
-
+		$ignoreWarnings = false, array $logEntryTags = []
+	) {
 		// are we allowed to do this?
 		$result = self::canActivateTag( $tag, $user );
 		if ( $ignoreWarnings ? !$result->isOK() : !$result->isGood() ) {
@@ -932,8 +928,8 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function deactivateTagWithChecks( $tag, $reason, User $user,
-		$ignoreWarnings = false, array $logEntryTags = [] ) {
-
+		$ignoreWarnings = false, array $logEntryTags = []
+	) {
 		// are we allowed to do this?
 		$result = self::canDeactivateTag( $tag, $user );
 		if ( $ignoreWarnings ? !$result->isOK() : !$result->isGood() ) {
@@ -1034,8 +1030,8 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function createTagWithChecks( $tag, $reason, User $user,
-		$ignoreWarnings = false, array $logEntryTags = [] ) {
-
+		$ignoreWarnings = false, array $logEntryTags = []
+	) {
 		// are we allowed to do this?
 		$result = self::canCreateTag( $tag, $user );
 		if ( $ignoreWarnings ? !$result->isOK() : !$result->isGood() ) {
@@ -1165,8 +1161,8 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function deleteTagWithChecks( $tag, $reason, User $user,
-		$ignoreWarnings = false, array $logEntryTags = [] ) {
-
+		$ignoreWarnings = false, array $logEntryTags = []
+	) {
 		// are we allowed to do this?
 		$result = self::canDeleteTag( $tag, $user );
 		if ( $ignoreWarnings ? !$result->isOK() : !$result->isGood() ) {

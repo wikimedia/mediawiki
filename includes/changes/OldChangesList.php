@@ -32,7 +32,6 @@ class OldChangesList extends ChangesList {
 	 * @return string|bool
 	 */
 	public function recentChangesLine( &$rc, $watched = false, $linenumber = null ) {
-
 		$classes = $this->getHTMLClasses( $rc, $watched );
 		// use mw-line-even/mw-line-odd class only if linenumber is given (feature from T16468)
 		if ( $linenumber ) {

@@ -39,7 +39,6 @@ class InterwikiLookupAdapterTest extends MediaWikiTestCase {
 	}
 
 	public function testFetch() {
-
 		$interwiki = $this->interwikiLookup->fetch( '' );
 		$this->assertNull( $interwiki );
 

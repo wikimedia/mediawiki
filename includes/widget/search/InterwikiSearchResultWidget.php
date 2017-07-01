@@ -29,7 +29,6 @@ class InterwikiSearchResultWidget implements SearchResultWidget {
 	 * @return string HTML
 	 */
 	public function render( SearchResult $result, $terms, $position ) {
-
 		$title = $result->getTitle();
 		$iwPrefix = $result->getTitle()->getInterwiki();
 		$titleSnippet = $result->getTitleSnippet();
@@ -46,7 +45,6 @@ class InterwikiSearchResultWidget implements SearchResultWidget {
 		$redirectTitle = $result->getRedirectTitle();
 		$redirect = '';
 		if ( $redirectTitle !== null ) {
-
 			$redirectText = $result->getRedirectSnippet();
 
 			if ( $redirectText ) {

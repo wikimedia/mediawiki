@@ -60,7 +60,6 @@ class InterwikiLookupAdapter implements InterwikiLookup {
 	 * @return bool Whether it exists
 	 */
 	public function isValidInterwiki( $prefix ) {
-
 		return array_key_exists( $prefix, $this->getInterwikiMap() );
 	}
 

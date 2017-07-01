@@ -39,7 +39,6 @@ class RemoveUnusedAccounts extends Maintenance {
 	}
 
 	public function execute() {
-
 		$this->output( "Remove unused accounts\n\n" );
 
 		# Do an initial scan for inactive accounts and report the result

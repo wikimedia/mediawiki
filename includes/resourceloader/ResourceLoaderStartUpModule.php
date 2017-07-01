@@ -33,7 +33,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	protected function getConfigSettings( $context ) {
-
 		$hash = $context->getHash();
 		if ( isset( $this->configVars[$hash] ) ) {
 			return $this->configVars[$hash];
@@ -135,7 +134,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		// The list of implicit dependencies won't be altered, so we can
 		// cache them without having to worry.
 		if ( !isset( $dependencyCache[$moduleName] ) ) {
-
 			if ( !isset( $registryData[$moduleName] ) ) {
 				// Dependencies may not exist
 				$dependencyCache[$moduleName] = [];
