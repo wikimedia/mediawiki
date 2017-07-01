@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @defgroup Skins Skins
  */
@@ -1259,7 +1261,7 @@ abstract class Skin extends ContextSource {
 		};
 
 		if ( $wgEnableSidebarCache ) {
-			$cache = ObjectCache::getMainWANInstance();
+			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 			$sidebar = $cache->getWithSetCallback(
 				$cache->makeKey( 'sidebar', $this->getLanguage()->getCode() ),
 				MessageCache::singleton()->isDisabled()
@@ -1506,29 +1508,27 @@ abstract class Skin extends ContextSource {
 			$notice = $msg->plain();
 		}
 
-		$cache = wfGetCache( CACHE_ANYTHING );
-		// Use the extra hash appender to let eg SSL variants separately cache.
-		$key = $cache->makeKey( $name . $wgRenderHashAppend );
-		$cachedNotice = $cache->get( $key );
-		if ( is_array( $cachedNotice ) ) {
-			if ( md5( $notice ) == $cachedNotice['hash'] ) {
-				$notice = $cachedNotice['html'];
-			} else {
-				$needParse = true;
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$parsed = $cache->getWithSetCallback(
+			// Use the extra hash appender to let eg SSL variants separately cache
+			// Key is verified with md5 hash of unparsed wikitext
+			$cache->makeKey( $name, $wgRenderHashAppend, md5( $notice ) ),
+			// TTL in seconds
+			600,
+			function () use ( $notice ) {
+				return $this->getOutput()->parse( $notice );
 			}
-		} else {
-			$needParse = true;
-		}
+		);
 
-		if ( $needParse ) {
-			$parsed = $this->getOutput()->parse( $notice );
-			$cache->set( $key, [ 'html' => $parsed, 'hash' => md5( $notice ) ], 600 );
-			$notice = $parsed;
-		}
-
-		$notice = Html::rawElement( 'div', [ 'id' => 'localNotice',
-			'lang' => $wgContLang->getHtmlCode(), 'dir' => $wgContLang->getDir() ], $notice );
-		return $notice;
+		return Html::rawElement(
+			'div',
+			[
+				'id' => 'localNotice',
+				'lang' => $wgContLang->getHtmlCode(),
+				'dir' => $wgContLang->getDir()
+			],
+			$parsed
+		);
 	}
 
 	/**
