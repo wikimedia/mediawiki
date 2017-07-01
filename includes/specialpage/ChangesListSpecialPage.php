@@ -92,8 +92,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'showHideSuffix' => 'showhideliu',
 						'default' => false,
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) {
-
+							&$query_options, &$join_conds
+						) {
 							$conds[] = 'rc_user = 0';
 						},
 						'cssClassSuffix' => 'liu',
@@ -111,8 +111,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'showHideSuffix' => 'showhideanons',
 						'default' => false,
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) {
-
+							&$query_options, &$join_conds
+						) {
 							$conds[] = 'rc_user != 0';
 						},
 						'cssClassSuffix' => 'anon',
@@ -182,8 +182,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'showHideSuffix' => 'showhidemine',
 						'default' => false,
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) {
-
+							&$query_options, &$join_conds
+						) {
 							$user = $ctx->getUser();
 							$conds[] = 'rc_user_text != ' . $dbr->addQuotes( $user->getName() );
 						},
@@ -198,8 +198,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'description' => 'rcfilters-filter-editsbyother-description',
 						'default' => false,
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) {
-
+							&$query_options, &$join_conds
+						) {
 							$user = $ctx->getUser();
 							$conds[] = 'rc_user_text = ' . $dbr->addQuotes( $user->getName() );
 						},
@@ -225,8 +225,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'showHideSuffix' => 'showhidebots',
 						'default' => false,
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) {
-
+							&$query_options, &$join_conds
+						) {
 							$conds[] = 'rc_bot = 0';
 						},
 						'cssClassSuffix' => 'bot',
@@ -240,8 +240,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'description' => 'rcfilters-filter-humans-description',
 						'default' => false,
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) {
-
+							&$query_options, &$join_conds
+						) {
 							$conds[] = 'rc_bot = 1';
 						},
 						'cssClassSuffix' => 'human',
@@ -269,8 +269,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'showHideSuffix' => 'showhideminor',
 						'default' => false,
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) {
-
+							&$query_options, &$join_conds
+						) {
 							$conds[] = 'rc_minor = 0';
 						},
 						'cssClassSuffix' => 'minor',
@@ -284,8 +284,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'description' => 'rcfilters-filter-major-description',
 						'default' => false,
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) {
-
+							&$query_options, &$join_conds
+						) {
 							$conds[] = 'rc_minor = 1';
 						},
 						'cssClassSuffix' => 'major',
@@ -347,8 +347,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'default' => false,
 						'priority' => -2,
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) {
-
+							&$query_options, &$join_conds
+						) {
 							$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_EDIT );
 						},
 						'cssClassSuffix' => 'src-mw-edit',
@@ -363,8 +363,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'default' => false,
 						'priority' => -3,
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) {
-
+							&$query_options, &$join_conds
+						) {
 							$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_NEW );
 						},
 						'cssClassSuffix' => 'src-mw-new',
@@ -382,8 +382,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'default' => false,
 						'priority' => -5,
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) {
-
+							&$query_options, &$join_conds
+						) {
 							$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_LOG );
 						},
 						'cssClassSuffix' => 'src-mw-log',
@@ -412,8 +412,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'showHideSuffix' => 'showhidepatr',
 						'default' => false,
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) {
-
+							&$query_options, &$join_conds
+						) {
 							$conds[] = 'rc_patrolled = 0';
 						},
 						'cssClassSuffix' => 'patrolled',
@@ -427,8 +427,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'description' => 'rcfilters-filter-unpatrolled-description',
 						'default' => false,
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) {
-
+							&$query_options, &$join_conds
+						) {
 							$conds[] = 'rc_patrolled = 1';
 						},
 						'cssClassSuffix' => 'unpatrolled',
@@ -450,8 +450,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			'default' => false,
 			'priority' => -4,
 			'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-				&$query_options, &$join_conds ) {
-
+				&$query_options, &$join_conds
+			) {
 				$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_CATEGORIZE );
 			},
 			'cssClassSuffix' => 'src-mw-categorize',
@@ -470,7 +470,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$opts = $this->getOptions();
 		/** @var ChangesListFilterGroup $group */
 		foreach ( $this->getFilterGroups() as $group ) {
-
 			if ( $group->getConflictingGroups() ) {
 				wfLogWarning(
 					$group->getName() .
@@ -487,7 +486,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 			/** @var ChangesListFilter $filter */
 			foreach ( $group->getFilters() as $filter ) {
-
 				/** @var ChangesListFilter $conflictingFilter */
 				foreach ( $filter->getConflictingFilters() as $conflictingFilter ) {
 					if (
@@ -1061,8 +1059,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @param FormOptions $opts
 	 */
 	protected function buildQuery( &$tables, &$fields, &$conds, &$query_options,
-		&$join_conds, FormOptions $opts ) {
-
+		&$join_conds, FormOptions $opts
+	) {
 		$dbr = $this->getDB();
 		$user = $this->getUser();
 
@@ -1121,8 +1119,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return bool|ResultWrapper Result or false
 	 */
 	protected function doMainQuery( $tables, $fields, $conds,
-		$query_options, $join_conds, FormOptions $opts ) {
-
+		$query_options, $join_conds, FormOptions $opts
+	) {
 		$tables[] = 'recentchanges';
 		$fields = array_merge( RecentChange::selectFields(), $fields );
 
@@ -1332,8 +1330,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 *   (optional)
 	 */
 	public function filterOnUserExperienceLevel( $specialPageClassName, $context, $dbr,
-		&$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedExpLevels, $now = 0 ) {
-
+		&$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedExpLevels, $now = 0
+	) {
 		global $wgLearnerEdits,
 			$wgExperiencedUserEdits,
 			$wgLearnerMemberSince,

@@ -112,7 +112,6 @@ class PNGHandler extends BitmapHandler {
 	}
 
 	function isMetadataValid( $image, $metadata ) {
-
 		if ( $metadata === self::BROKEN_FILE ) {
 			// Do not repetitivly regenerate metadata on broken file.
 			return self::METADATA_GOOD;

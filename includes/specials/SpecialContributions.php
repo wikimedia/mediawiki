@@ -329,7 +329,6 @@ class SpecialContributions extends IncludableSpecialPage {
 	 * @return array
 	 */
 	public static function getUserLinks( SpecialPage $sp, User $target ) {
-
 		$id = $target->getId();
 		$username = $target->getName();
 		$userpage = $target->getUserPage();

@@ -339,7 +339,6 @@ class LanguageConverter {
 	 * @return string The converted text
 	 */
 	public function autoConvert( $text, $toVariant = false ) {
-
 		$this->loadTables();
 
 		if ( !$toVariant ) {

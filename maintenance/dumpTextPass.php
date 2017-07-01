@@ -575,7 +575,6 @@ TEXT
 		}
 
 		while ( $failures < $this->maxFailures ) {
-
 			// As soon as we found a good text for the $id, we will return immediately.
 			// Hence, if we make it past the try catch block, we know that we did not
 			// find a good text.

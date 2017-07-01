@@ -96,7 +96,6 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 		$includesCachedPages = false;
 
 		foreach ( $groups as $group => $sortedPages ) {
-
 			$out->wrapWikiMsg(
 				"<h2 class=\"mw-specialpagesgroup\" id=\"mw-specialpagesgroup-$group\">$1</h2>\n",
 				"specialpages-group-$group"

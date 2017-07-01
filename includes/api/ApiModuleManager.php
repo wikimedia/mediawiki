@@ -97,7 +97,6 @@ class ApiModuleManager extends ContextSource {
 	 * @param string $group Which group modules belong to (action,format,...)
 	 */
 	public function addModules( array $modules, $group ) {
-
 		foreach ( $modules as $name => $moduleSpec ) {
 			if ( is_array( $moduleSpec ) ) {
 				$class = $moduleSpec['class'];

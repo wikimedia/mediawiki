@@ -183,7 +183,6 @@ function wfDoContentLength( $length ) {
  * @return string
  */
 function wfHtmlValidationHandler( $s ) {
-
 	$errors = '';
 	if ( MWTidy::checkErrors( $s, $errors ) ) {
 		return $s;

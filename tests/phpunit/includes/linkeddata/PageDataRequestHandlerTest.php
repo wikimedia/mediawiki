@@ -77,7 +77,6 @@ class PageDataRequestHandlerTest extends \MediaWikiTestCase {
 	}
 
 	public function handleRequestProvider() {
-
 		$cases = [];
 
 		$cases[] = [ '', [], [], '!!', 400 ];

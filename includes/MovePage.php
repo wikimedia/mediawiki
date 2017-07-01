@@ -440,8 +440,8 @@ class MovePage {
 	 * @throws MWException
 	 */
 	private function moveToInternal( User $user, &$nt, $reason = '', $createRedirect = true,
-		array $changeTags = [] ) {
-
+		array $changeTags = []
+	) {
 		global $wgContLang;
 		if ( $nt->exists() ) {
 			$moveOverRedirect = true;

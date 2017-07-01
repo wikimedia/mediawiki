@@ -1314,7 +1314,6 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return bool
 	 */
 	public function updateIfNewerOn( $dbw, $revision ) {
-
 		$row = $dbw->selectRow(
 			[ 'revision', 'page' ],
 			[ 'rev_id', 'rev_timestamp', 'page_is_redirect' ],
@@ -1386,7 +1385,6 @@ class WikiPage implements Page, IDBAccessObject {
 	public function replaceSectionContent(
 		$sectionId, Content $sectionContent, $sectionTitle = '', $edittime = null
 	) {
-
 		$baseRevId = null;
 		if ( $edittime && $sectionId !== 'new' ) {
 			$dbr = wfGetDB( DB_REPLICA );
@@ -1425,7 +1423,6 @@ class WikiPage implements Page, IDBAccessObject {
 	public function replaceSectionAtRev( $sectionId, Content $sectionContent,
 		$sectionTitle = '', $baseRevId = null
 	) {
-
 		if ( strval( $sectionId ) === '' ) {
 			// Whole-page edit; let the whole text through
 			$newContent = $sectionContent;

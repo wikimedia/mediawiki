@@ -269,7 +269,6 @@ class Category {
 	 * @return TitleArray TitleArray object for category members.
 	 */
 	public function getMembers( $limit = false, $offset = '' ) {
-
 		$dbr = wfGetDB( DB_REPLICA );
 
 		$conds = [ 'cl_to' => $this->getName(), 'cl_from = page_id' ];

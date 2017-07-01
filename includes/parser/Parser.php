@@ -1075,7 +1075,6 @@ class Parser {
 	 * @return string
 	 */
 	public function doTableStuff( $text ) {
-
 		$lines = StringUtils::explode( "\n", $text );
 		$out = '';
 		$td_history = []; # Is currently a td tag open?
@@ -1279,7 +1278,6 @@ class Parser {
 	 * @return string
 	 */
 	public function internalParse( $text, $isMain = true, $frame = false ) {
-
 		$origText = $text;
 
 		// Avoid PHP 7.1 warning from passing $this by reference
@@ -1855,7 +1853,6 @@ class Parser {
 	 * @return string
 	 */
 	public function replaceExternalLinks( $text ) {
-
 		$bits = preg_split( $this->mExtLinkBracketedRegex, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 		if ( $bits === false ) {
 			throw new MWException( "PCRE needs to be compiled with "
@@ -3031,7 +3028,6 @@ class Parser {
 	 * @return string The text of the template
 	 */
 	public function braceSubstitution( $piece, $frame ) {
-
 		// Flags
 
 		// $text has been filled
@@ -3786,7 +3782,6 @@ class Parser {
 	 * @return array
 	 */
 	public function argSubstitution( $piece, $frame ) {
-
 		$error = false;
 		$parts = $piece['parts'];
 		$nameWithSpaces = $frame->expand( $piece['title'] );
@@ -3967,7 +3962,6 @@ class Parser {
 	 * @return string
 	 */
 	public function doDoubleUnderscore( $text ) {
-
 		# The position of __TOC__ needs to be recorded
 		$mw = MagicWord::get( 'toc' );
 		if ( $mw->match( $text ) ) {
@@ -4948,7 +4942,6 @@ class Parser {
 	 * @return string HTML
 	 */
 	public function renderImageGallery( $text, $params ) {
-
 		$mode = false;
 		if ( isset( $params['mode'] ) ) {
 			$mode = $params['mode'];

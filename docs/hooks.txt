@@ -74,9 +74,7 @@ Using a hook-running strategy, we can avoid having all this option-specific
 stuff in our mainline code. Using hooks, the function becomes:
 
 	function showAnArticle( $article ) {
-
 		if ( Hooks::run( 'ArticleShow', array( &$article ) ) ) {
-
 			# code to actually show the article goes here
 
 			Hooks::run( 'ArticleShowComplete', array( &$article ) );

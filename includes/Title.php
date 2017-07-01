@@ -3735,8 +3735,8 @@ class Title implements LinkTarget {
 	 * @return array|bool True on success, getUserPermissionsErrors()-like array on failure
 	 */
 	public function moveTo( &$nt, $auth = true, $reason = '', $createRedirect = true,
-		array $changeTags = [] ) {
-
+		array $changeTags = []
+	) {
 		global $wgUser;
 		$err = $this->isValidMoveOperation( $nt, $auth, $reason );
 		if ( is_array( $err ) ) {
@@ -3773,8 +3773,8 @@ class Title implements LinkTarget {
 	 *     no pages were moved
 	 */
 	public function moveSubpages( $nt, $auth = true, $reason = '', $createRedirect = true,
-		array $changeTags = [] ) {
-
+		array $changeTags = []
+	) {
 		global $wgMaximumMovedPages;
 		// Check permissions
 		if ( !$this->userCan( 'move-subpages' ) ) {

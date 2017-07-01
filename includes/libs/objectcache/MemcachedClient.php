@@ -469,7 +469,6 @@ class MemcachedClient {
 	 * @return mixed
 	 */
 	public function get( $key, &$casToken = null ) {
-
 		if ( $this->_debug ) {
 			$this->_debugprint( "get($key)" );
 		}

@@ -476,7 +476,6 @@ class IPTC {
 	 * only code that seems to have wide use. It does detect that code.
 	 */
 	static function getCharset( $tag ) {
-
 		// According to iim standard, charset is defined by the tag 1:90.
 		// in which there are iso 2022 escape sequences to specify the character set.
 		// the iim standard seems to encourage that all necessary escape sequences are

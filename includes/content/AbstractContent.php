@@ -488,8 +488,8 @@ abstract class AbstractContent implements Content {
 		$po = new ParserOutput();
 
 		if ( Hooks::run( 'ContentGetParserOutput',
-			[ $this, $title, $revId, $options, $generateHtml, &$po ] ) ) {
-
+			[ $this, $title, $revId, $options, $generateHtml, &$po ] )
+		) {
 			// Save and restore the old value, just in case something is reusing
 			// the ParserOptions object in some weird way.
 			$oldRedir = $options->getRedirectTarget();

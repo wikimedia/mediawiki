@@ -104,7 +104,6 @@ class BackupDumperLoggerTest extends DumpTestCase {
 	private function assertLogItem( $id, $user_name, $user_id, $comment, $type,
 		$subtype, $title, $parameters = []
 	) {
-
 		$this->assertNodeStart( "logitem" );
 		$this->skipWhitespace();
 

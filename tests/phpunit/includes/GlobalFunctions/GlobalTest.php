@@ -362,7 +362,6 @@ class GlobalTest extends MediaWikiTestCase {
 	 * @covers ::wfClientAcceptsGzip
 	 */
 	public function testClientAcceptsGzipTest() {
-
 		$settings = [
 			'gzip' => true,
 			'bzip' => false,
@@ -396,7 +395,6 @@ class GlobalTest extends MediaWikiTestCase {
 	 * @covers ::wfPercent
 	 */
 	public function testWfPercentTest() {
-
 		$pcts = [
 			[ 6 / 7, '0.86%', 2, false ],
 			[ 3 / 3, '1%' ],

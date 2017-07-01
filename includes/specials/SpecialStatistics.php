@@ -253,7 +253,6 @@ class SpecialStatistics extends SpecialPage {
 		foreach ( $stats as $header => $items ) {
 			// Identify the structure used
 			if ( is_array( $items ) ) {
-
 				// Ignore headers that are recursively set as legacy header
 				if ( $header !== 'statistics-header-hooks' ) {
 					$return .= $this->formatRowHeader( $header );

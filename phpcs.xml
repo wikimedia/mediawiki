@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <ruleset name="MediaWiki">
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
+		<exclude name="Generic.ControlStructures.InlineControlStructure" />
+		<!-- Rule will pass in 0.10.0 but update depends on T167168 -->
+		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeClassBrace.NoSpaceBeforeBrace" />
 		<!-- Disable rules added in 0.8.0 that don't pass yet -->
 		<exclude name="MediaWiki.Commenting.FunctionComment.ExtraParamComment" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingParamComment" />
@@ -17,9 +20,6 @@
 		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentEnd" />
 		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures" />
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
-		<exclude name="MediaWiki.WhiteSpace.DisallowEmptyLineFunctions.NoEmptyLine" />
-		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeControlStructureBrace.EmptyLines" />
-		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeClassBrace.NoSpaceBeforeBrace" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.SingleSpaceBeforeSingleLineComment" />
 		<exclude name="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound" />
@@ -36,18 +36,15 @@
 			<property name="ignoreList" type="array" value="$IP,$messageMemc,$parserMemc" />
 		</properties>
 	</rule>
-	<file>.</file>
-	<arg name="encoding" value="UTF-8"/>
-	<arg name="extensions" value="php,php5,inc,sample"/>
 	<rule ref="Generic.Files.LineLength">
 		<exclude-pattern>*/languages/messages/Messages*.php</exclude-pattern>
 	</rule>
 	<rule ref="PSR2.Methods.MethodDeclaration.Underscore">
 		<exclude-pattern>*/includes/StubObject.php</exclude-pattern>
 	</rule>
-	<rule ref="Generic.ControlStructures.InlineControlStructure.NotAllowed">
-		<severity>0</severity>
-	</rule>
+	<file>.</file>
+	<arg name="encoding" value="UTF-8"/>
+	<arg name="extensions" value="php,php5,inc,sample"/>
 	<exclude-pattern>node_modules/</exclude-pattern>
 	<exclude-pattern>vendor/</exclude-pattern>
 	<exclude-pattern type="relative">^extensions/</exclude-pattern>

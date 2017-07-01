@@ -362,7 +362,6 @@ class Exif {
 	 * if we make up our own types like Exif::DATE.
 	 */
 	function collapseData() {
-
 		$this->exifGPStoNumber( 'GPSLatitude' );
 		$this->exifGPStoNumber( 'GPSDestLatitude' );
 		$this->exifGPStoNumber( 'GPSLongitude' );
@@ -446,7 +445,6 @@ class Exif {
 	 */
 	private function charCodeString( $prop ) {
 		if ( isset( $this->mFilteredExifData[$prop] ) ) {
-
 			if ( strlen( $this->mFilteredExifData[$prop] ) <= 8 ) {
 				// invalid. Must be at least 9 bytes long.
 

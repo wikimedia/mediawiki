@@ -1882,7 +1882,6 @@ class Linker {
 	 * @return string HTML output
 	 */
 	public static function formatHiddenCategories( $hiddencats ) {
-
 		$outText = '';
 		if ( count( $hiddencats ) > 0 ) {
 			# Construct the HTML

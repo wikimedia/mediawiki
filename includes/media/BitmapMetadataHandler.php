@@ -230,7 +230,6 @@ class BitmapMetadataHandler {
 	 * @return array Metadata array
 	 */
 	public static function GIF( $filename ) {
-
 		$meta = new self();
 		$baseArray = GIFMetadataExtractor::getMetadata( $filename );
 

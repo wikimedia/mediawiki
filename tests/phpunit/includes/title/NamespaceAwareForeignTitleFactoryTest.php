@@ -76,7 +76,6 @@ class NamespaceAwareForeignTitleFactoryTest extends MediaWikiTestCase {
 	 * @dataProvider basicProvider
 	 */
 	public function testBasic( $title, $ns, ForeignTitle $foreignTitle ) {
-
 		$foreignNamespaces = [
 			0 => '', 1 => 'Talk', 100 => 'Portal', 9000 => 'Bogus'
 		];

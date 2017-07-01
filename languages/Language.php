@@ -361,7 +361,6 @@ class Language {
 	 * @return bool
 	 */
 	public static function isValidBuiltInCode( $code ) {
-
 		if ( !is_string( $code ) ) {
 			if ( is_object( $code ) ) {
 				$addmsg = " of class " . get_class( $code );

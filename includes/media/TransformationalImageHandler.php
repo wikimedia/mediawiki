@@ -156,7 +156,6 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			&& $scalerParams['physicalHeight'] == $scalerParams['srcHeight']
 			&& !isset( $scalerParams['quality'] )
 		) {
-
 			# normaliseParams (or the user) wants us to return the unscaled image
 			wfDebug( __METHOD__ . ": returning unscaled image\n" );
 

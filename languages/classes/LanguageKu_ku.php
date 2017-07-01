@@ -37,7 +37,6 @@ class LanguageKu_ku extends Language {
 	 * @return string
 	 */
 	function commafy( $_ ) {
-
 		if ( !preg_match( '/^\d{1,4}$/', $_ ) ) {
 			return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $_ ) ) );
 		} else {

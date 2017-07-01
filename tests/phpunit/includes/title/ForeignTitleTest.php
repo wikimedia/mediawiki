@@ -51,8 +51,8 @@ class ForeignTitleTest extends MediaWikiTestCase {
 	 * @dataProvider basicProvider
 	 */
 	public function testBasic( ForeignTitle $title, $expectedId, $expectedName,
-		$expectedText ) {
-
+		$expectedText
+	) {
 		$this->assertEquals( true, $title->isNamespaceIdKnown() );
 		$this->assertEquals( $expectedId, $title->getNamespaceId() );
 		$this->assertEquals( $expectedName, $title->getNamespaceName() );

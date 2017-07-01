@@ -1049,7 +1049,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 	private function addCoreDBData() {
 		if ( $this->db->getType() == 'oracle' ) {
-
 			# Insert 0 user to prevent FK violations
 			# Anonymous user
 			if ( !$this->db->selectField( 'user', '1', [ 'user_id' => 0 ] ) ) {
@@ -1713,7 +1712,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			if ( !isset( $wgNamespaceContentModels[$ns] ) ||
 				$wgNamespaceContentModels[$ns] === CONTENT_MODEL_WIKITEXT
 			) {
-
 				$wikitextNS = $ns;
 
 				return $wikitextNS;

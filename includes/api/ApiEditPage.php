@@ -64,7 +64,6 @@ class ApiEditPage extends ApiBase {
 
 				/** @var $newTitle Title */
 				foreach ( $titles as $id => $newTitle ) {
-
 					if ( !isset( $titles[$id - 1] ) ) {
 						$titles[$id - 1] = $oldTitle;
 					}
