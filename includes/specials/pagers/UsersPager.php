@@ -270,71 +270,85 @@ class UsersPager extends AlphabeticPager {
 	function getPageHeader() {
 		list( $self ) = explode( '/', $this->getTitle()->getPrefixedDBkey() );
 
-		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
-
-		# Form tag
-		$out = Xml::openElement(
-				'form',
-				[ 'method' => 'get', 'action' => wfScript(), 'id' => 'mw-listusers-form' ]
-			) .
-			Xml::fieldset( $this->msg( 'listusers' )->text() ) .
-			Html::hidden( 'title', $self );
-
-		# Username field (with autocompletion support)
-		$out .= Xml::label( $this->msg( 'listusersfrom' )->text(), 'offset' ) . ' ' .
-			Html::input(
-				'username',
-				$this->requestedUser,
-				'text',
-				[
-					'class' => 'mw-autocomplete-user',
-					'id' => 'offset',
-					'size' => 20,
-					'autofocus' => $this->requestedUser === ''
-				]
-			) . ' ';
-
-		# Group drop-down list
-		$sel = new XmlSelect( 'group', 'group', $this->requestedGroup );
-		$sel->addOption( $this->msg( 'group-all' )->text(), '' );
+		$groupOptions = [ $this->msg( 'group-all' )->text() =>  '' ];
 		foreach ( $this->getAllGroups() as $group => $groupText ) {
-			$sel->addOption( $groupText, $group );
+			$groupOptions[ $groupText ] = $group;
 		}
 
-		$out .= Xml::label( $this->msg( 'group' )->text(), 'group' ) . ' ';
-		$out .= $sel->getHTML() . '<br />';
-		$out .= Xml::checkLabel(
-			$this->msg( 'listusers-editsonly' )->text(),
-			'editsOnly',
-			'editsOnly',
-			$this->editsOnly
-		);
-		$out .= '&#160;';
-		$out .= Xml::checkLabel(
-			$this->msg( 'listusers-creationsort' )->text(),
-			'creationSort',
-			'creationSort',
-			$this->creationSort
-		);
-		$out .= '&#160;';
-		$out .= Xml::checkLabel(
-			$this->msg( 'listusers-desc' )->text(),
-			'desc',
-			'desc',
-			$this->mDefaultDirection
-		);
-		$out .= '<br />';
+		$optionsDefault = [];
+		if ( $this->editsOnly ) {
+			$optionsDefault[] = 'editsOnly';
+		}
+		if ( $this->creationSort ) {
+			$optionsDefault[] = 'creationSort';
+		}
+		if ( $this->mDefaultDirection ) {
+			$optionsDefault[] = 'desc';
+		}
 
-		Hooks::run( 'SpecialListusersHeaderForm', [ $this, &$out ] );
+		$beforeClosingFieldsetHookOut = '';
+		Hooks::run( 'SpecialListusersHeader', [ $this, &$beforeClosingFieldsetHookOut ] );
 
-		# Submit button and form bottom
-		$out .= Html::hidden( 'limit', $this->mLimit );
-		$out .= Xml::submitButton( $this->msg( 'listusers-submit' )->text() );
-		Hooks::run( 'SpecialListusersHeader', [ $this, &$out ] );
-		$out .= Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' );
+		$beforeSubmitButtonHookOut = '';
+		Hooks::run( 'SpecialListusersHeaderForm', [ $this, &$beforeSubmitButtonHookOut ] );
 
-		return $out;
+		$formDescriptor = [
+			'user' => [
+				'class' => 'HTMLUserTextField',
+				'label' => $this->msg( 'listusersfrom' )->text(),
+				'name' => 'username',
+				'value' => $this->requestedUser,
+			],
+			'dropdown' => [
+				'label' => $this->msg( 'group' ),
+				'name' => 'group',
+				'value' => $this->requestedGroup,
+				'class' => 'HTMLSelectField',
+				'options' => $groupOptions,
+			],
+			'options' => [
+				'class' => 'HTMLMultiSelectField',
+				'options' => [
+					$this->msg( 'listusers-editsonly' )->text() => 'editsOnly',
+					$this->msg( 'listusers-creationsort' )->text() => 'creationSort',
+					$this->msg( 'listusers-desc' )->text() => 'desc'
+				],
+				'default' => $optionsDefault
+			],
+			'limithiddenfield' => [
+				'class' => 'HTMLHiddenField',
+				'name' => 'limit',
+				'value' => $this->mLimit
+			],
+			// TODO: This is adding a bunch of empty space at the bottom
+			// Should we only add them if the value of `out` is not ''?
+			// Or, should we do this via CSS?
+			'beforeClosingFieldsetHookOut' => [
+				'class' => 'HTMLInfoField',
+				'raw' => true,
+				'default' => $beforeClosingFieldsetHookOut
+			],
+			// TODO: The documentation for the hook says
+			// > Called before adding the submit button
+			// So, technically after the fieldset is closed, and before
+			// the button is added.
+			// Am I correct in understanding that we don't need `suppressDefaultSubmit`?
+			// Is there a way to add something after the fieldset is closed? Is it required?
+			'beforeSubmitButtonHookOut' => [
+				'class' => 'HTMLInfoField',
+				'raw' => true,
+				'default' => $beforeSubmitButtonHookOut
+			]
+		];
+
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
+		$htmlForm
+			->setMethod( 'get' )
+			->setId( 'mw-listusers-form' )
+			->setFormIdentifier( 'mw-listusers-form' )
+			->setSubmitText( $this->msg( 'listusers-submit' )->text() )
+			->setWrapperLegendMsg( 'listusers' );
+		return $htmlForm->prepareForm()->getHTML( true );
 	}
 
 	/**
