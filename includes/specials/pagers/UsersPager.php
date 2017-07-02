@@ -325,14 +325,84 @@ class UsersPager extends AlphabeticPager {
 		);
 		$out .= '<br />';
 
-		Hooks::run( 'SpecialListusersHeaderForm', [ $this, &$out ] );
-
 		# Submit button and form bottom
 		$out .= Html::hidden( 'limit', $this->mLimit );
 		$out .= Xml::submitButton( $this->msg( 'listusers-submit' )->text() );
-		Hooks::run( 'SpecialListusersHeader', [ $this, &$out ] );
+
 		$out .= Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' );
+
+		// TODO: Try HTMLForm
+		$groupOptions = [ $this->msg( 'group-all' )->text() =>  '' ];
+		foreach ( $this->getAllGroups() as $group => $groupText ) {
+			$groupOptions[ $groupText ] = $group;
+		}
+
+		$optionsDefault = [];
+		if ( $this->editsOnly ) {
+			$optionsDefault[] = 'editsOnly';
+		}
+		if ( $this->creationSort ) {
+			$optionsDefault[] = 'creationSort';
+		}
+		if ( $this->mDefaultDirection ) {
+			$optionsDefault[] = 'desc';
+		}
+
+
+		$formDescriptor = [
+			'titlehiddenfield' => [
+				'class' => 'HTMLHiddenField',
+				'name' => 'title',
+				'value' => $self,
+			],
+			'user' => [
+				'class' => 'HTMLUserTextField',
+				'label' => $this->msg( 'listusersfrom' )->text(),
+				'name' => 'username',
+				'value' => $this->requestedUser,
+			],
+			'dropdown' => [
+				'label' => $this->msg( 'group' ),
+				'name' => 'group',
+				'value' => $thissss->requestedGroup,
+				'class' => 'HTMLSelectField',
+				'options' => $groupOptions,
+			],
+			'options' => [
+				'class' => 'HTMLMultiSelectField',
+				'options' => [
+					$this->msg( 'listusers-editsonly' )->text() => 'editsOnly',
+					$this->msg( 'listusers-creationsort' )->text() => 'creationSort',
+					$this->msg( 'listusers-desc' )->text() => 'desc'
+				],
+				'default' => $optionsDefault
+			],
+			'limithiddenfield' => [
+				'class' => 'HTMLHiddenField',
+				'name' => 'limit',
+				'value' => $this->mLimit
+			]
+		];
+
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
+		$htmlForm
+			->setMethod( 'get' )
+			// TODO: The form is not being submitted correctly, goes to index.php
+			->setAction( wfScript() )
+			->setId( 'mw-listusers-form' )
+			// TODO: Setting the identifier breaks infusion for user and group
+			// ->setFormIdentifier( 'mw-listusers-form' )
+			->setSubmitText( $this->msg( 'listusers-submit' )->text() )
+			->setWrapperLegendMsg( 'listusers' );
+
+		// TODO: $out =, instead of $out .=
+		// No need to append when you're done testing
+		$out .= $htmlForm->prepareForm()->getHTML( true );
+
+		// TODO: Run the hooks at the right time, is it possible?
+		Hooks::run( 'SpecialListusersHeaderForm', [ $this, &$out ] );
+		Hooks::run( 'SpecialListusersHeader', [ $this, &$out ] );
 
 		return $out;
 	}
