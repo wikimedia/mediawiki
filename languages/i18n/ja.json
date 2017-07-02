@@ -1342,7 +1342,7 @@
 	"action-applychangetags": "自分の編集にタグを適用する",
 	"action-changetags": "個々の版および記録項目への任意のタグの追加と除去",
 	"action-deletechangetags": "データベースからタグの削除",
-	"action-purge": "キャッシュの破棄",
+	"action-purge": "このページのキャッシュ破棄",
 	"nchanges": "$1 {{PLURAL:$1|回の変更}}",
 	"enhancedrc-since-last-visit": "最終閲覧以降 $1 {{PLURAL:$1|件}}",
 	"enhancedrc-history": "履歴",

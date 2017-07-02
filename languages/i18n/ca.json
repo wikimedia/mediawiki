@@ -1361,7 +1361,7 @@
 	"rcfilters-filter-unregistered-label": "No registrats",
 	"rcfilters-filter-unregistered-description": "Editors que no han iniciat una sessió.",
 	"rcfilters-filtergroup-authorship": "Autoria de les contribucions",
-	"rcfilters-filter-editsbyself-label": "Les vostres modificacions",
+	"rcfilters-filter-editsbyself-label": "Els vostres canvis",
 	"rcfilters-filter-editsbyself-description": "Les vostres pròpies contribucions.",
 	"rcfilters-filter-editsbyother-label": "Canvis d'altres",
 	"rcfilters-filter-editsbyother-description": "Tots els canvis excepte els vostres.",
@@ -1406,6 +1406,7 @@
 	"rcfilters-filter-lastrevision-label": "Darrera revisió",
 	"rcfilters-filter-lastrevision-description": "El canvi més recent a una pàgina.",
 	"rcfilters-filter-previousrevision-label": "Revisions anteriors",
+	"rcfilters-filter-excluded": "Exclòs",
 	"rcnotefrom": "A sota hi ha {{PLURAL:$5|el canvi|els canvis}} a partir de <strong>$3, $4</strong> (fins a <strong>$1</strong>).",
 	"rclistfrom": "Mostra els canvis nous des de $3, $2",
 	"rcshowhideminor": "$1 edicions menors",
@@ -2813,8 +2814,10 @@
 	"newimages-legend": "Nom del fitxer",
 	"newimages-label": "Nom de fitxer (o part d'ell):",
 	"newimages-user": "Adreça IP o nom d'usuari",
+	"newimages-newbies": "Mostra només les contribucions dels comptes nous",
 	"newimages-showbots": "Mostra les càrregues dels bots",
 	"newimages-hidepatrolled": "Amaga les càrregues patrullades",
+	"newimages-mediatype": "Tipus multimèdia:",
 	"noimages": "Res per veure.",
 	"gallery-slideshow-toggle": "Canvia les miniatures",
 	"ilsubmit": "Cerca",
@@ -3845,5 +3848,7 @@
 	"restrictionsfield-label": "Intervals d'IP permesos:",
 	"revid": "revisió $1",
 	"pageid": "ID de pàgina $1",
-	"gotointerwiki-invalid": "El títol especificat no és vàlid."
+	"gotointerwiki-invalid": "El títol especificat no és vàlid.",
+	"pagedata-title": "Dades de la pàgina",
+	"pagedata-bad-title": "Títol no vàlid: $1"
 }

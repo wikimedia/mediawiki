@@ -1447,6 +1447,7 @@
 	"api-help-title": "עזרה של MediaWiki API",
 	"api-help-lead": "זהו דף תיעוד של API שנוצר באופן אוטומטי.\n\nתיעוד ודוגמאות: https://www.mediawiki.org/wiki/API",
 	"api-help-main-header": "יחידה ראשית",
+	"api-help-undocumented-module": "אין תיעוד למודול $1.",
 	"api-help-flag-deprecated": "יחידה זו אינה מומלצת לשימוש.",
 	"api-help-flag-internal": "<strong>היחידה הזאת היא פנימית או בלתי־יציבה.</strong> הפעולה שלה יכולה להשתנות ללא הודעה מוקדמת.",
 	"api-help-flag-readrights": "יחידה זו דורשת הרשאות קריאה.",
