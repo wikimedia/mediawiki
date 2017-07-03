@@ -305,7 +305,7 @@ class MWExceptionRenderer {
 		if ( $wgShowHostnames || $wgShowSQLErrors ) {
 			$info = str_replace(
 				'$1',
-				Html::element( 'span', [ 'dir' => 'ltr' ], htmlspecialchars( $e->getMessage() ) ),
+				Html::element( 'span', [ 'dir' => 'ltr' ], $e->getMessage() ),
 				htmlspecialchars( self::msg( 'dberr-info', '($1)' ) )
 			);
 		} else {
