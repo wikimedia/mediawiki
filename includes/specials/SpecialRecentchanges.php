@@ -213,7 +213,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$tagHitCounts = array_merge( $explicitlyDefinedTags, $softwareActivatedTags, $tagStats );
 
 		// Sort by hits
-		asort( $tagHitCounts );
+		arsort( $tagHitCounts );
 
 		// Build the list and data
 		$result = [];
