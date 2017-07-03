@@ -1145,17 +1145,17 @@ class DifferenceEngine extends ContextSource {
 
 		if ( !$diff && !$otitle ) {
 			$header .= "
-			<tr style='vertical-align: top;' lang='{$userLang}'>
-			<td class='diff-ntitle'>{$ntitle}</td>
+			<tr style=\"vertical-align: top;\" lang=\"{$userLang}\">
+			<td class=\"diff-ntitle\">{$ntitle}</td>
 			</tr>";
 			$multiColspan = 1;
 		} else {
 			if ( $diff ) { // Safari/Chrome show broken output if cols not used
 				$header .= "
-				<col class='diff-marker' />
-				<col class='diff-content' />
-				<col class='diff-marker' />
-				<col class='diff-content' />";
+				<col class=\"diff-marker\" />
+				<col class=\"diff-content\" />
+				<col class=\"diff-marker\" />
+				<col class=\"diff-content\" />";
 				$colspan = 2;
 				$multiColspan = 4;
 			} else {
@@ -1164,20 +1164,20 @@ class DifferenceEngine extends ContextSource {
 			}
 			if ( $otitle || $ntitle ) {
 				$header .= "
-				<tr style='vertical-align: top;' lang='{$userLang}'>
-				<td colspan='$colspan' class='diff-otitle'>{$otitle}</td>
-				<td colspan='$colspan' class='diff-ntitle'>{$ntitle}</td>
+				<tr style=\"vertical-align: top;\" lang=\"{$userLang}\">
+				<td colspan=\"$colspan\" class=\"diff-otitle\">{$otitle}</td>
+				<td colspan=\"$colspan\" class=\"diff-ntitle\">{$ntitle}</td>
 				</tr>";
 			}
 		}
 
 		if ( $multi != '' ) {
-			$header .= "<tr><td colspan='{$multiColspan}' style='text-align: center;' " .
-				"class='diff-multi' lang='{$userLang}'>{$multi}</td></tr>";
+			$header .= "<tr><td colspan=\"{$multiColspan}\" style=\"text-align: center;\" " .
+				"class=\"diff-multi\" lang=\"{$userLang}\">{$multi}</td></tr>";
 		}
 		if ( $notice != '' ) {
-			$header .= "<tr><td colspan='{$multiColspan}' style='text-align: center;' " .
-				"lang='{$userLang}'>{$notice}</td></tr>";
+			$header .= "<tr><td colspan=\"{$multiColspan}\" style=\"text-align: center;\" " .
+				"lang=\"{$userLang}\">{$notice}</td></tr>";
 		}
 
 		return $header . $diff . "</table>";
