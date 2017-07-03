@@ -56,7 +56,7 @@
 				trigger: ':',
 				groups: [ {
 					// Group definition (single group)
-					name: 'namespaces',
+					name: 'namespace', // parameter name is singular
 					type: 'string_options',
 					title: mw.msg( 'namespaces' ),
 					labelPrefixKey: { 'default': 'rcfilters-tag-prefix-namespace', inverted: 'rcfilters-tag-prefix-namespace-inverted' },
