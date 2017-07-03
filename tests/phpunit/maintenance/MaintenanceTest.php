@@ -52,7 +52,6 @@ class MaintenanceFixup extends Maintenance {
 	 * Simulates what Maintenance wants to happen at script's end.
 	 */
 	public function simulateShutdown() {
-
 		if ( $this->shutdownSimulated ) {
 			$this->testCase->fail( __METHOD__ . " called more than once" );
 		}
@@ -175,7 +174,6 @@ class MaintenanceTest extends MediaWikiTestCase {
 	 *   after shutdown simulation.
 	 */
 	private function assertOutputPrePostShutdown( $preShutdownOutput, $expectNLAppending ) {
-
 		$this->assertEquals( $preShutdownOutput, $this->getActualOutput(),
 			"Output before shutdown simulation" );
 

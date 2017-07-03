@@ -182,7 +182,6 @@ class ApiQueryUsers extends ApiQueryBase {
 			}
 
 			foreach ( $res as $row ) {
-
 				// create user object and pass along $userGroups if set
 				// that reduces the number of database queries needed in User dramatically
 				if ( !isset( $userGroups ) ) {

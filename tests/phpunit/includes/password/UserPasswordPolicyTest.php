@@ -58,7 +58,6 @@ class UserPasswordPolicyTest extends MediaWikiTestCase {
 	}
 
 	public function testGetPoliciesForUser() {
-
 		$upp = $this->getUserPasswordPolicy();
 
 		$user = User::newFromName( 'TestUserPolicy' );
@@ -100,7 +99,6 @@ class UserPasswordPolicyTest extends MediaWikiTestCase {
 	 * @dataProvider provideCheckUserPassword
 	 */
 	public function testCheckUserPassword( $username, $groups, $password, $valid, $ok, $msg ) {
-
 		$upp = $this->getUserPasswordPolicy();
 
 		$user = User::newFromName( $username );

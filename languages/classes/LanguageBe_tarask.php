@@ -44,7 +44,6 @@ class LanguageBe_tarask extends Language {
 	 * @return string
 	 */
 	function normalizeForSearch( $string ) {
-
 		# MySQL fulltext index doesn't grok utf-8, so we
 		# need to fold cases and convert to hex
 

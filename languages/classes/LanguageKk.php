@@ -86,7 +86,6 @@ class KkConverter extends LanguageConverter {
 	}
 
 	function loadRegs() {
-
 		$this->mCyrl2Latn = [
 			# # Punctuation
 			'/№/u' => 'No.',
@@ -423,7 +422,6 @@ class LanguageKk extends LanguageKk_cyrl {
 	 * @return string
 	 */
 	function convertGrammar( $word, $case ) {
-
 		$variant = $this->getPreferredVariant();
 		switch ( $variant ) {
 			case 'kk-arab':

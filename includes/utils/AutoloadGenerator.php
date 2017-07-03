@@ -137,13 +137,11 @@ class AutoloadGenerator {
 		// format class-name : path when they get converted into json.
 		foreach ( $this->classes as $path => $contained ) {
 			foreach ( $contained as $fqcn ) {
-
 				// Using substr to remove the leading '/'
 				$json[$key][$fqcn] = substr( $path, 1 );
 			}
 		}
 		foreach ( $this->overrides as $path => $fqcn ) {
-
 			// Using substr to remove the leading '/'
 			$json[$key][$fqcn] = substr( $path, 1 );
 		}
@@ -223,7 +221,6 @@ EOD;
 	 * @return string
 	 */
 	public function getAutoload( $commandName = 'AutoloadGenerator' ) {
-
 		// We need to check whether an extenson.json or skin.json exists or not, and
 		// incase it doesn't, update the autoload.php file.
 

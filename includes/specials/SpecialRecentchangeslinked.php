@@ -50,8 +50,8 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	 * @inheritdoc
 	 */
 	protected function doMainQuery( $tables, $select, $conds, $query_options,
-		$join_conds, FormOptions $opts ) {
-
+		$join_conds, FormOptions $opts
+	) {
 		$target = $opts['target'];
 		$showlinkedto = $opts['showlinkedto'];
 		$limit = $opts['limit'];

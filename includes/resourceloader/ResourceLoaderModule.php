@@ -461,7 +461,6 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * @param array $localFileRefs List of files
 	 */
 	protected function saveFileDependencies( ResourceLoaderContext $context, $localFileRefs ) {
-
 		try {
 			// Related bugs and performance considerations:
 			// 1. Don't needlessly change the database value with the same list in a
@@ -757,7 +756,6 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		// (e.g. startup module) iterate more than once over all modules to get versions.
 		$contextHash = $context->getHash();
 		if ( !array_key_exists( $contextHash, $this->versionHash ) ) {
-
 			if ( $this->enableModuleContentVersion() ) {
 				// Detect changes directly
 				$str = json_encode( $this->getModuleContent( $context ) );

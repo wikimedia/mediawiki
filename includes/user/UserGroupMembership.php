@@ -344,8 +344,8 @@ class UserGroupMembership {
 	 * @return string
 	 */
 	public static function getLink( $ugm, IContextSource $context, $format,
-		$userName = null ) {
-
+		$userName = null
+	) {
 		if ( $format !== 'wiki' && $format !== 'html' ) {
 			throw new MWException( 'UserGroupMembership::getLink() $format parameter should be ' .
 				"'wiki' or 'html'" );

@@ -186,12 +186,8 @@ abstract class ChangesListFilter {
 	 * @param string $backwardKey i18n key for conflict message in reverse
 	 *  direction (when in UI context of $other object)
 	 */
-	public function conflictsWith( $other, $globalKey, $forwardKey,
-		$backwardKey ) {
-
-		if ( $globalKey === null || $forwardKey === null ||
-			$backwardKey === null ) {
-
+	public function conflictsWith( $other, $globalKey, $forwardKey, $backwardKey ) {
+		if ( $globalKey === null || $forwardKey === null || $backwardKey === null ) {
 			throw new MWException( 'All messages must be specified' );
 		}
 
@@ -220,9 +216,7 @@ abstract class ChangesListFilter {
 	 * @param string $contextDescription i18n key for conflict message in this
 	 *  direction (when in UI context of $this object)
 	 */
-	public function setUnidirectionalConflict( $other, $globalDescription,
-		$contextDescription ) {
-
+	public function setUnidirectionalConflict( $other, $globalDescription, $contextDescription ) {
 		if ( $other instanceof ChangesListFilterGroup ) {
 			$this->conflictingGroups[] = [
 				'group' => $other->getName(),

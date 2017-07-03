@@ -246,8 +246,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * @inheritdoc
 	 */
 	protected function buildQuery( &$tables, &$fields, &$conds, &$query_options,
-		&$join_conds, FormOptions $opts ) {
-
+		&$join_conds, FormOptions $opts
+	) {
 		$dbr = $this->getDB();
 		parent::buildQuery( $tables, $fields, $conds, $query_options, $join_conds,
 			$opts );
@@ -263,8 +263,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * @inheritdoc
 	 */
 	protected function doMainQuery( $tables, $fields, $conds, $query_options,
-		$join_conds, FormOptions $opts ) {
-
+		$join_conds, FormOptions $opts
+	) {
 		$dbr = $this->getDB();
 		$user = $this->getUser();
 

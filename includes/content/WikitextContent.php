@@ -68,7 +68,6 @@ class WikitextContent extends TextContent {
 	 * @see Content::replaceSection()
 	 */
 	public function replaceSection( $sectionId, Content $with, $sectionTitle = '' ) {
-
 		$myModelId = $this->getModel();
 		$sectionModelId = $with->getModel();
 

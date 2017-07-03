@@ -202,7 +202,6 @@
 
 			return {
 				setup: function () {
-
 					// Greetings, mock environment!
 					mw.config = new MwMap();
 					mw.config.set( freshConfigCopy( localEnv.config ) );

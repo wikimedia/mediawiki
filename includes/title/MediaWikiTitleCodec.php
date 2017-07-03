@@ -86,7 +86,6 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		if ( $this->language->needsGenderDistinction() &&
 			MWNamespace::hasGenderDistinction( $namespace )
 		) {
-
 			// NOTE: we are assuming here that the title text is a user name!
 			$gender = $this->genderCache->getGenderOf( $text, __METHOD__ );
 			$name = $this->language->getGenderNsText( $namespace, $gender );

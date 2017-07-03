@@ -356,7 +356,6 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return ResultWrapper
 	 */
 	protected function select( $method, $extraQuery = [], array &$hookData = null ) {
-
 		$tables = array_merge(
 			$this->tables,
 			isset( $extraQuery['tables'] ) ? (array)$extraQuery['tables'] : []

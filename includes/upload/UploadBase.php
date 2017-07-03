@@ -321,7 +321,6 @@ abstract class UploadBase {
 	 * @return mixed Const self::OK or else an array with error information
 	 */
 	public function verifyUpload() {
-
 		/**
 		 * If there was no filename or a zero size given, give up quick.
 		 */
@@ -1431,7 +1430,6 @@ abstract class UploadBase {
 	 * @return bool
 	 */
 	public function checkSvgScriptCallback( $element, $attribs, $data = null ) {
-
 		list( $namespace, $strippedElement ) = $this->splitXmlNamespace( $element );
 
 		// We specifically don't include:
@@ -1666,7 +1664,6 @@ abstract class UploadBase {
 	 * @return bool true if the CSS contains an illegal string, false if otherwise
 	 */
 	private static function checkCssFragment( $value ) {
-
 		# Forbid external stylesheets, for both reliability and to protect viewer's privacy
 		if ( stripos( $value, '@import' ) !== false ) {
 			return true;

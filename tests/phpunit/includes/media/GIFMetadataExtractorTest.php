@@ -24,7 +24,6 @@ class GIFMetadataExtractorTest extends MediaWikiTestCase {
 	}
 
 	public static function provideGetMetadata() {
-
 		$xmpNugget = <<<EOF
 <?xpacket begin='﻿' id='W5M0MpCehiHzreSzNTczkc9d'?>
 <x:xmpmeta xmlns:x='adobe:ns:meta/' x:xmptk='Image::ExifTool 7.30'>

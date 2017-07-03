@@ -234,7 +234,6 @@ class SpecialPageFactory {
 		global $wgPageLanguageUseDB, $wgContentHandlerUseDB;
 
 		if ( !is_array( self::$list ) ) {
-
 			self::$list = self::$coreList;
 
 			if ( !$wgDisableInternalSearch ) {

@@ -12,7 +12,6 @@ class TestRecentChangesHelper {
 	public function makeEditRecentChange( User $user, $titleText, $curid, $thisid, $lastid,
 		$timestamp, $counter, $watchingUsers
 	) {
-
 		$attribs = array_merge(
 			$this->getDefaultAttributes( $titleText, $timestamp ),
 			[
@@ -72,7 +71,6 @@ class TestRecentChangesHelper {
 	public function makeNewBotEditRecentChange( User $user, $titleText, $curid, $thisid, $lastid,
 		$timestamp, $counter, $watchingUsers
 	) {
-
 		$attribs = array_merge(
 			$this->getDefaultAttributes( $titleText, $timestamp ),
 			[
@@ -111,7 +109,6 @@ class TestRecentChangesHelper {
 	public function makeCategorizationRecentChange(
 		User $user, $titleText, $curid, $thisid, $lastid, $timestamp
 	) {
-
 		$attribs = array_merge(
 			$this->getDefaultAttributes( $titleText, $timestamp ),
 			[

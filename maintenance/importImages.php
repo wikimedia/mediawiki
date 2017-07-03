@@ -185,9 +185,7 @@ class ImportImages extends Maintenance {
 		# Batch "upload" operation
 		$count = count( $files );
 		if ( $count > 0 ) {
-
 			foreach ( $files as $file ) {
-
 				if ( $sleep && ( $processed > 0 ) ) {
 					sleep( $sleep );
 				}

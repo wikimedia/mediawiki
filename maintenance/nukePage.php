@@ -39,7 +39,6 @@ class NukePage extends Maintenance {
 	}
 
 	public function execute() {
-
 		$name = $this->getArg();
 		$delete = $this->getOption( 'delete', false );
 

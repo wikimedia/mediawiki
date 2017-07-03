@@ -60,7 +60,6 @@ abstract class DiffFormatter {
 	 * @return string The formatted output.
 	 */
 	public function format( $diff ) {
-
 		$xi = $yi = 1;
 		$block = false;
 		$context = [];

@@ -168,7 +168,6 @@ class CheckSyntax extends Maintenance {
 	 * @return array Resulting list of changed files
 	 */
 	private function getGitModifiedFiles( $path ) {
-
 		global $wgMaxShellMemory;
 
 		if ( !is_dir( "$path/.git" ) ) {

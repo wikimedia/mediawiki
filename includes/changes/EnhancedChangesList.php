@@ -98,7 +98,6 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string
 	 */
 	public function recentChangesLine( &$rc, $watched = false, $linenumber = null ) {
-
 		$date = $this->getLanguage()->userDate(
 			$rc->mAttribs['rc_timestamp'],
 			$this->getUser()

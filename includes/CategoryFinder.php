@@ -186,7 +186,6 @@ class CategoryFinder {
 	 * Scans a "parent layer" of the articles/categories in $this->next
 	 */
 	private function scanNextLayer() {
-
 		# Find all parents of the article currently in $this->next
 		$layer = [];
 		$res = $this->dbr->select(

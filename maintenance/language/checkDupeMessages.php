@@ -93,7 +93,6 @@ if ( $run ) {
 	$count = 0;
 
 	if ( ( $messageExist ) && ( $messageCExist ) ) {
-
 		if ( !strcmp( $runMode, 'php' ) ) {
 			print "<?php\n";
 			print '$dupeMessages = [' . "\n";

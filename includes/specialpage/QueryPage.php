@@ -601,7 +601,6 @@ abstract class QueryPage extends SpecialPage {
 			# Get the cached result, select one extra row for navigation
 			$res = $this->fetchFromCache( $dbLimit, $this->offset );
 			if ( !$this->listoutput ) {
-
 				# Fetch the timestamp of this update
 				$ts = $this->getCachedTimestamp();
 				$lang = $this->getLanguage();

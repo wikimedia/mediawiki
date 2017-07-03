@@ -256,7 +256,6 @@ class NamespaceConflictChecker extends Maintenance {
 
 		$ok = true;
 		foreach ( $targets as $row ) {
-
 			// Find the new title and determine the action to take
 
 			$newTitle = $this->getDestinationTitle( $ns, $name,

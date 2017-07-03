@@ -79,7 +79,6 @@ class DiffEngine {
 	 * @return DiffOp[]
 	 */
 	public function diff( $from_lines, $to_lines ) {
-
 		// Diff and store locally
 		$this->diffInternal( $from_lines, $to_lines );
 

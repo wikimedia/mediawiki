@@ -214,7 +214,6 @@ class Article implements Page {
 	 * @since 1.21
 	 */
 	protected function getContentObject() {
-
 		if ( $this->mPage->getId() === 0 ) {
 			# If this is a MediaWiki:x message, then load the messages
 			# and return the message value for x.
@@ -569,8 +568,8 @@ class Article implements Page {
 					$outputPage->setRevisionTimestamp( $this->mPage->getTimestamp() );
 
 					if ( !Hooks::run( 'ArticleContentViewCustom',
-							[ $this->fetchContentObject(), $this->getTitle(), $outputPage ] ) ) {
-
+						[ $this->fetchContentObject(), $this->getTitle(), $outputPage ] )
+					) {
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
 					}

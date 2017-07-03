@@ -394,8 +394,8 @@ class WikiImporter {
 	 * @return bool
 	 */
 	public function finishImportPage( $title, $foreignTitle, $revCount,
-			$sRevCount, $pageInfo ) {
-
+		$sRevCount, $pageInfo
+	) {
 		// Update article count statistics (T42009)
 		// The normal counting logic in WikiPage->doEditUpdates() is designed for
 		// one-revision-at-a-time editing, not bulk imports. In this situation it
@@ -691,7 +691,6 @@ class WikiImporter {
 	 * @return bool|mixed
 	 */
 	private function processLogItem( $logInfo ) {
-
 		$revision = new WikiRevision( $this->config );
 
 		if ( isset( $logInfo['id'] ) ) {

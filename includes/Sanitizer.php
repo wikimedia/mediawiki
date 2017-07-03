@@ -906,7 +906,6 @@ class Sanitizer {
 	 * @return string normalized css
 	 */
 	public static function normalizeCss( $value ) {
-
 		// Decode character references like &#123;
 		$value = Sanitizer::decodeCharReferences( $value );
 

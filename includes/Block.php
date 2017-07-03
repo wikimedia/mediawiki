@@ -829,7 +829,6 @@ class Block {
 	 * @return bool
 	 */
 	public function deleteIfExpired() {
-
 		if ( $this->isExpired() ) {
 			wfDebug( "Block::deleteIfExpired() -- deleting\n" );
 			$this->delete();
@@ -1111,7 +1110,6 @@ class Block {
 	 *     not be the same as the target you gave if you used $vagueTarget!
 	 */
 	public static function newFromTarget( $specificTarget, $vagueTarget = null, $fromMaster = false ) {
-
 		list( $target, $type ) = self::parseTarget( $specificTarget );
 		if ( $type == Block::TYPE_ID || $type == Block::TYPE_AUTO ) {
 			return Block::newFromID( $target );

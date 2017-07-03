@@ -60,8 +60,8 @@ class SubpageImportTitleFactoryTest extends MediaWikiTestCase {
 	 * @dataProvider basicProvider
 	 */
 	public function testBasic( ForeignTitle $foreignTitle, Title $rootPage,
-		Title $title ) {
-
+		Title $title
+	) {
 		$factory = new SubpageImportTitleFactory( $rootPage );
 		$testTitle = $factory->createTitleFromForeignTitle( $foreignTitle );
 

@@ -678,7 +678,6 @@ class SpecialUpload extends SpecialPage {
 	 */
 	protected function processVerificationError( $details ) {
 		switch ( $details['status'] ) {
-
 			/** Statuses that only require name changing **/
 			case UploadBase::MIN_LENGTH_PARTNAME:
 				$this->showRecoverableUploadError( $this->msg( 'minlength1' )->escaped() );

@@ -265,7 +265,6 @@ class LinkerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideCasesForFormatLinksInComment
 	 */
 	public function testFormatLinksInComment( $expected, $input, $wiki ) {
-
 		$conf = new SiteConfiguration();
 		$conf->settings = [
 			'wgServer' => [
