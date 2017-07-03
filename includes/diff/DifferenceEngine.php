@@ -1145,7 +1145,7 @@ class DifferenceEngine extends ContextSource {
 
 		if ( !$diff && !$otitle ) {
 			$header .= "
-			<tr style='vertical-align: top;' lang='{$userLang}'>
+			<tr style='vertical-align: top;' lang=\"{$userLang}\">
 			<td class='diff-ntitle'>{$ntitle}</td>
 			</tr>";
 			$multiColspan = 1;
@@ -1164,7 +1164,7 @@ class DifferenceEngine extends ContextSource {
 			}
 			if ( $otitle || $ntitle ) {
 				$header .= "
-				<tr style='vertical-align: top;' lang='{$userLang}'>
+				<tr style='vertical-align: top;' lang=\"{$userLang}\">
 				<td colspan='$colspan' class='diff-otitle'>{$otitle}</td>
 				<td colspan='$colspan' class='diff-ntitle'>{$ntitle}</td>
 				</tr>";
@@ -1173,11 +1173,11 @@ class DifferenceEngine extends ContextSource {
 
 		if ( $multi != '' ) {
 			$header .= "<tr><td colspan='{$multiColspan}' style='text-align: center;' " .
-				"class='diff-multi' lang='{$userLang}'>{$multi}</td></tr>";
+				"class='diff-multi' lang=\"{$userLang}\">{$multi}</td></tr>";
 		}
 		if ( $notice != '' ) {
 			$header .= "<tr><td colspan='{$multiColspan}' style='text-align: center;' " .
-				"lang='{$userLang}'>{$notice}</td></tr>";
+				"lang=\"{$userLang}\">{$notice}</td></tr>";
 		}
 
 		return $header . $diff . "</table>";
