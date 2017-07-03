@@ -67,7 +67,7 @@ class MWExceptionRenderer {
 					$message .= 'Original exception: ' .
 						MWExceptionHandler::getPublicLogMessage( $e );
 					$message .= "\n\nException caught inside exception handler.\n\n" .
-						self::getShowBacktraceError( $e );
+						self::getShowBacktraceError( $e ) . "\n";
 				}
 				$message .= "\n";
 			} else {
@@ -211,7 +211,7 @@ class MWExceptionRenderer {
 				"\nBacktrace:\n" .
 				MWExceptionHandler::getRedactedTraceAsString( $e ) . "\n";
 		} else {
-			return self::getShowBacktraceError( $e );
+			return self::getShowBacktraceError( $e ) . "\n";
 		}
 	}
 
@@ -242,7 +242,7 @@ class MWExceptionRenderer {
 			$vars[] = '$wgShowDBErrorBacktrace = true;';
 		}
 		$vars = implode( ' and ', $vars );
-		return "Set $vars at the bottom of LocalSettings.php to show detailed debugging information\n";
+		return "Set $vars at the bottom of LocalSettings.php to show detailed debugging information.";
 	}
 
 	/**
