@@ -442,6 +442,13 @@ return [
 		);
 	},
 
+	'WikiRevisionUploadImporter' => function ( MediaWikiServices $services ) {
+		return new UploadImporter(
+			$services->getMainConfig()->get( 'EnableUploads' ),
+			LoggerFactory::getInstance( 'WikiRevisionUploadImporter' )
+		);
+	},
+
 	'ShellCommandFactory' => function ( MediaWikiServices $services ) {
 		$config = $services->getMainConfig();
 
