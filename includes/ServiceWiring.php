@@ -446,6 +446,22 @@ return [
 		);
 	},
 
+	'OldRevisionImporter' => function ( MediaWikiServices $services ) {
+		return new ImportableOldRevisionImporter(
+			true,
+			LoggerFactory::getInstance( 'OldRevisionImporter' ),
+			$services->getDBLoadBalancer()
+		);
+	},
+
+	'WikiRevisionOldRevisionImporterNoUpdates' => function ( MediaWikiServices $services ) {
+		return new ImportableOldRevisionImporter(
+			false,
+			LoggerFactory::getInstance( 'OldRevisionImporter' ),
+			$services->getDBLoadBalancer()
+		);
+	},
+
 	'ShellCommandFactory' => function ( MediaWikiServices $services ) {
 		$config = $services->getMainConfig();
 
