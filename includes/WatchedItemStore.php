@@ -235,6 +235,13 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
+	 * @param callable|null $revisionGetTimestampFromIdCallback
+	 */
+	public function setRevisionGetTimestampFromIdCallback( $revisionGetTimestampFromIdCallback ) {
+
+		$this->revisionGetTimestampFromIdCallback = $revisionGetTimestampFromIdCallback;
+	}
+	/**
 	 * Deletes ALL watched items for the given user when under
 	 * MAX_INTERACTIVE_ITEM_DELETE entries exist.
 	 *
