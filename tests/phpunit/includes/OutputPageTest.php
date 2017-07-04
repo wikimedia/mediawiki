@@ -665,11 +665,13 @@ class OutputPageTest extends MediaWikiTestCase {
 			'EnableAPI' => false,
 			'EnableCanonicalServerLink' => false,
 			'Favicon' => false,
-			'Feed' => false,
+			'Feed' => true,
 			'LanguageCode' => false,
+			'OverrideSiteFeed' => false,
 			'ReferrerPolicy' => false,
 			'RightsPage' => false,
 			'RightsUrl' => false,
+			'Sitename' => false,
 			'UniversalEditButton' => false,
 		] ) );
 
