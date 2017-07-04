@@ -77,6 +77,66 @@ class PreferencesTest extends MediaWikiTestCase {
 		$this->assertEquals( 'mw-email-authenticated', $prefs['emailauthentication']['cssclass'] );
 	}
 
+	/**
+	 * Test that PreferencesFormPreSave hook has correct data:
+	 *  - user Object is passed
+	 *  - oldUserOptions contains previous user options (before save)
+	 *  - formData and User object have set up new properties
+	 *
+	 * @see https://phabricator.wikimedia.org/T169365
+	 * @covers Preferences::tryFormSubmit
+	 */
+	public function testPreferencesFormPreSaveHookHasCorrectData() {
+		$oldOptions = [
+			'test' => 'abc',
+			'option' => 'old'
+		];
+		$formData = [
+			'test' => 'abc',
+			'option' => 'new'
+		];
+		$configMock = new HashConfig( [
+			'HiddenPrefs' => []
+		] );
+		$form = $this->getMockBuilder( PreferencesForm::class )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$userMock = $this->getMutableTestUser()->getUser();
+		foreach ( $oldOptions as $option => $value ) {
+			$userMock->setOption( $option, $value );
+		}
+
+		$form->expects( $this->any() )
+			->method( 'getModifiedUser' )
+			->willReturn( $userMock );
+
+		$form->expects( $this->any() )
+			->method( 'getContext' )
+			->willReturn( $this->context );
+
+		$form->expects( $this->any() )
+			->method( 'getConfig' )
+			->willReturn( $configMock );
+
+		$this->setTemporaryHook( 'PreferencesFormPreSave', function(
+			$formData, $form, $user, &$result, $oldUserOptions )
+			use ( $formData, $oldOptions, $userMock ) {
+
+			$this->assertSame( $userMock, $user );
+			foreach ( $formData as $option => $value ) {
+				$this->assertSame( $value, $user->getOption( $option ) );
+			}
+			foreach ( $oldOptions as $option => $value ) {
+				$this->assertSame( $value, $oldUserOptions[ $option ] );
+			}
+			$this->assertEquals( true, $result );
+		}
+		);
+
+		Preferences::tryFormSubmit( $formData, $form );
+	}
+
 	/** Helper */
 	protected function prefsFor( $user_key ) {
 		$preferences = [];
