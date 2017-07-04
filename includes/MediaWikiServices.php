@@ -683,6 +683,14 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.31
+	 * @return \WikiRevisionUploadImporter
+	 */
+	public function getWikiRevisionUploadImporter() {
+		return $this->getService( 'WikiRevisionUploadImporter' );
+	}
+
+	/**
 	 * @since 1.30
 	 * @return CommandFactory
 	 */
