@@ -64,6 +64,8 @@ class DeferredUpdates {
 
 	/** @var array|null Information about the current execute() call or null if not running */
 	private static $executeContext;
+	/** @var bool Whether post-send job are being executed */
+	private static $postSendActive = false;
 
 	/**
 	 * Add an update to the deferred list to be run later by execute()
@@ -82,7 +84,9 @@ class DeferredUpdates {
 			return;
 		}
 
-		if ( $stage === self::PRESEND ) {
+		// While post-send updates are running, push any "pre-send" jobs to the
+		// active post-send queue to make sure they get run this round (or at all)
+		if ( $stage === self::PRESEND && !self::$postSendActive ) {
 			self::push( self::$preSendUpdates, $update );
 		} else {
 			self::push( self::$postSendUpdates, $update );
@@ -125,7 +129,12 @@ class DeferredUpdates {
 		}
 
 		if ( $stage === self::ALL || $stage == self::POSTSEND ) {
-			self::execute( self::$postSendUpdates, $mode, $stageEffective );
+			self::$postSendActive = true;
+			try {
+				self::execute( self::$postSendUpdates, $mode, $stageEffective );
+			} finally {
+				self::$postSendActive = false;
+			}
 		}
 	}
 
