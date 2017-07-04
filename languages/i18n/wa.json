@@ -1396,6 +1396,8 @@
 	"pageinfo-toolboxlink": "Infôrmåcion sol pådje",
 	"markaspatrolleddiff": "Marké come ricoridjî",
 	"markaspatrolledtext": "Marker cisse pådje ci come dedja patrouyeye",
+	"markedaspatrolled": "Markêye come ricoridjeye",
+	"markedaspatrolledtext": "Li relîte modêye di [[:$1]] a stî markêye come ricoridjeye",
 	"markedaspatrollednotify": "Ci candjmint cial di $1 a stî marké come ricoridjî",
 	"patrol-log-page": "Djournå des patrouyaedjes",
 	"patrol-log-header": "Çouchal c' est on djournå des modêyes k' ont stî patrouyeyes.",
