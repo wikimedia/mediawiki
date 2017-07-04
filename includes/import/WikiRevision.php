@@ -23,6 +23,8 @@
  * @file
  * @ingroup SpecialPage
  */
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Represents a revision, log entry or upload during the import process.
@@ -32,7 +34,7 @@
  *
  * @ingroup SpecialPage
  */
-class WikiRevision {
+class WikiRevision implements WikiRevisionUpload {
 
 	/**
 	 * @since 1.17
@@ -737,106 +739,26 @@ class WikiRevision {
 
 	/**
 	 * @since 1.12.2
+	 * @deprecated in 1.31. Use UploadImporter::import
 	 * @return bool
 	 */
 	public function importUpload() {
-		# Construct a file
-		$archiveName = $this->getArchiveName();
-		if ( $archiveName ) {
-			wfDebug( __METHOD__ . "Importing archived file as $archiveName\n" );
-			$file = OldLocalFile::newFromArchiveName( $this->getTitle(),
-				RepoGroup::singleton()->getLocalRepo(), $archiveName );
-		} else {
-			$file = wfLocalFile( $this->getTitle() );
-			$file->load( File::READ_LATEST );
-			wfDebug( __METHOD__ . 'Importing new file as ' . $file->getName() . "\n" );
-			if ( $file->exists() && $file->getTimestamp() > $this->getTimestamp() ) {
-				$archiveName = $file->getTimestamp() . '!' . $file->getName();
-				$file = OldLocalFile::newFromArchiveName( $this->getTitle(),
-					RepoGroup::singleton()->getLocalRepo(), $archiveName );
-				wfDebug( __METHOD__ . "File already exists; importing as $archiveName\n" );
-			}
-		}
-		if ( !$file ) {
-			wfDebug( __METHOD__ . ': Bad file for ' . $this->getTitle() . "\n" );
-			return false;
-		}
-
-		# Get the file source or download if necessary
-		$source = $this->getFileSrc();
-		$autoDeleteSource = $this->isTempSrc();
-		if ( !strlen( $source ) ) {
-			$source = $this->downloadSource();
-			$autoDeleteSource = true;
-		}
-		if ( !strlen( $source ) ) {
-			wfDebug( __METHOD__ . ": Could not fetch remote file.\n" );
-			return false;
-		}
-
-		$tmpFile = new TempFSFile( $source );
-		if ( $autoDeleteSource ) {
-			$tmpFile->autocollect();
-		}
-
-		$sha1File = ltrim( sha1_file( $source ), '0' );
-		$sha1 = $this->getSha1();
-		if ( $sha1 && ( $sha1 !== $sha1File ) ) {
-			wfDebug( __METHOD__ . ": Corrupt file $source.\n" );
-			return false;
-		}
-
-		$user = $this->getUserObj() ?: User::newFromName( $this->getUser() );
-
-		# Do the actual upload
-		if ( $archiveName ) {
-			$status = $file->uploadOld( $source, $archiveName,
-				$this->getTimestamp(), $this->getComment(), $user );
-		} else {
-			$flags = 0;
-			$status = $file->upload( $source, $this->getComment(), $this->getComment(),
-				$flags, false, $this->getTimestamp(), $user );
-		}
-
-		if ( $status->isGood() ) {
-			wfDebug( __METHOD__ . ": Successful\n" );
-			return true;
-		} else {
-			wfDebug( __METHOD__ . ': failed: ' . $status->getHTML() . "\n" );
-			return false;
-		}
+		$importer = MediaWikiServices::getInstance()->getWikiRevisionUploadImporter();
+		$statusValue = $importer->import( $this );
+		return $statusValue->isGood();
 	}
 
 	/**
 	 * @since 1.12.2
+	 * @deprecated in 1.31. Use UploadImporter::downloadSource
 	 * @return bool|string
 	 */
 	public function downloadSource() {
-		if ( !$this->config->get( 'EnableUploads' ) ) {
-			return false;
-		}
-
-		$tempo = tempnam( wfTempDir(), 'download' );
-		$f = fopen( $tempo, 'wb' );
-		if ( !$f ) {
-			wfDebug( "IMPORT: couldn't write to temp file $tempo\n" );
-			return false;
-		}
-
-		// @todo FIXME!
-		$src = $this->getSrc();
-		$data = Http::get( $src, [], __METHOD__ );
-		if ( !$data ) {
-			wfDebug( "IMPORT: couldn't fetch source $src\n" );
-			fclose( $f );
-			unlink( $tempo );
-			return false;
-		}
-
-		fwrite( $f, $data );
-		fclose( $f );
-
-		return $tempo;
+		$importer = new UploadImporter(
+			$this->config->get( 'EnableUploads' ),
+			LoggerFactory::getInstance( 'WikiRevisionUploadImporter' )
+		);
+		return $importer->downloadSource( $this );
 	}
 
 }
