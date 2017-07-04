@@ -90,6 +90,13 @@ class CommandLineInstaller extends Maintenance {
 		$this->addOption( 'env-checks', "Run environment checks only, don't change anything" );
 	}
 
+	public function getDbType() {
+		if ( $this->hasOption( 'env-checks' ) ) {
+			return Maintenance::DB_NONE;
+		}
+		return parent::getDbType();
+	}
+
 	function execute() {
 		global $IP;
 

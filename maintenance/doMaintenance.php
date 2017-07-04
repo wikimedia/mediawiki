@@ -113,14 +113,18 @@ $maintenance->execute();
 // Potentially debug globals
 $maintenance->globals();
 
-// Perform deferred updates.
-$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-$lbFactory->commitMasterChanges( $maintClass );
-DeferredUpdates::doUpdates();
+if ( $maintenance->getDbType() !== Maintenance::DB_NONE ) {
+	// Perform deferred updates.
+	$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+	$lbFactory->commitMasterChanges( $maintClass );
+	DeferredUpdates::doUpdates();
+}
 
 // log profiling info
 wfLogProfilingData();
 
-// Commit and close up!
-$lbFactory->commitMasterChanges( 'doMaintenance' );
-$lbFactory->shutdown( $lbFactory::SHUTDOWN_NO_CHRONPROT );
+if ( isset( $lbFactory ) ) {
+	// Commit and close up!
+	$lbFactory->commitMasterChanges( 'doMaintenance' );
+	$lbFactory->shutdown( $lbFactory::SHUTDOWN_NO_CHRONPROT );
+}
