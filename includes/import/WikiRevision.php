@@ -34,7 +34,7 @@ use MediaWiki\MediaWikiServices;
  *
  * @ingroup SpecialPage
  */
-class WikiRevision implements WikiRevisionUpload {
+class WikiRevision implements WikiRevisionUpload, WikiRevisionOldRevision {
 
 	/**
 	 * @since 1.17
@@ -514,6 +514,17 @@ class WikiRevision implements WikiRevisionUpload {
 	}
 
 	/**
+	 * @since 1.31
+	 * @return bool|string
+	 */
+	public function getSha1Base36() {
+		if ( $this->sha1base36 ) {
+			return $this->sha1base36;
+		}
+		return false;
+	}
+
+	/**
 	 * @since 1.17
 	 * @return string
 	 */
@@ -579,106 +590,16 @@ class WikiRevision implements WikiRevisionUpload {
 
 	/**
 	 * @since 1.4.1
+	 * @deprecated in 1.31. Use OldRevisionImporter::import
 	 * @return bool
 	 */
 	public function importOldRevision() {
-		$dbw = wfGetDB( DB_MASTER );
-
-		# Sneak a single revision into place
-		$user = $this->getUserObj() ?: User::newFromName( $this->getUser() );
-		if ( $user ) {
-			$userId = intval( $user->getId() );
-			$userText = $user->getName();
+		if ( $this->mNoUpdates ) {
+			$importer = MediaWikiServices::getInstance()->getWikiRevisionOldRevisionImporterNoUpdates();
 		} else {
-			$userId = 0;
-			$userText = $this->getUser();
-			$user = new User;
+			$importer = MediaWikiServices::getInstance()->getWikiRevisionOldRevisionImporter();
 		}
-
-		// avoid memory leak...?
-		Title::clearCaches();
-
-		$page = WikiPage::factory( $this->title );
-		$page->loadPageData( 'fromdbmaster' );
-		if ( !$page->exists() ) {
-			// must create the page...
-			$pageId = $page->insertOn( $dbw );
-			$created = true;
-			$oldcountable = null;
-		} else {
-			$pageId = $page->getId();
-			$created = false;
-
-			// Note: sha1 has been in XML dumps since 2012. If you have an
-			// older dump, the duplicate detection here won't work.
-			$prior = $dbw->selectField( 'revision', '1',
-				[ 'rev_page' => $pageId,
-					'rev_timestamp' => $dbw->timestamp( $this->timestamp ),
-					'rev_sha1' => $this->sha1base36 ],
-				__METHOD__
-			);
-			if ( $prior ) {
-				// @todo FIXME: This could fail slightly for multiple matches :P
-				wfDebug( __METHOD__ . ": skipping existing revision for [[" .
-					$this->title->getPrefixedText() . "]], timestamp " . $this->timestamp . "\n" );
-				return false;
-			}
-		}
-
-		if ( !$pageId ) {
-			// This seems to happen if two clients simultaneously try to import the
-			// same page
-			wfDebug( __METHOD__ . ': got invalid $pageId when importing revision of [[' .
-				$this->title->getPrefixedText() . ']], timestamp ' . $this->timestamp . "\n" );
-			return false;
-		}
-
-		// Select previous version to make size diffs correct
-		// @todo This assumes that multiple revisions of the same page are imported
-		// in order from oldest to newest.
-		$prevId = $dbw->selectField( 'revision', 'rev_id',
-			[
-				'rev_page' => $pageId,
-				'rev_timestamp <= ' . $dbw->addQuotes( $dbw->timestamp( $this->timestamp ) ),
-			],
-			__METHOD__,
-			[ 'ORDER BY' => [
-					'rev_timestamp DESC',
-					'rev_id DESC', // timestamp is not unique per page
-				]
-			]
-		);
-
-		# @todo FIXME: Use original rev_id optionally (better for backups)
-		# Insert the row
-		$revision = new Revision( [
-			'title' => $this->title,
-			'page' => $pageId,
-			'content_model' => $this->getModel(),
-			'content_format' => $this->getFormat(),
-			// XXX: just set 'content' => $this->getContent()?
-			'text' => $this->getContent()->serialize( $this->getFormat() ),
-			'comment' => $this->getComment(),
-			'user' => $userId,
-			'user_text' => $userText,
-			'timestamp' => $this->timestamp,
-			'minor_edit' => $this->minor,
-			'parent_id' => $prevId,
-			] );
-		$revision->insertOn( $dbw );
-		$changed = $page->updateIfNewerOn( $dbw, $revision );
-
-		if ( $changed !== false && !$this->mNoUpdates ) {
-			wfDebug( __METHOD__ . ": running updates\n" );
-			// countable/oldcountable stuff is handled in WikiImporter::finishImportPage
-			$page->doEditUpdates(
-				$revision,
-				$user,
-				[ 'created' => $created, 'oldcountable' => 'no-change' ]
-			);
-		}
-
-		return true;
+		return $importer->import( $this );
 	}
 
 	/**
