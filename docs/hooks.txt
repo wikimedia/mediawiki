@@ -2657,6 +2657,7 @@ $formData: array of user submitted data
 $form: PreferencesForm object, also a ContextSource
 $user: User object with preferences to be saved set
 &$result: boolean indicating success
+$oldUserOptions: array with user old options (before save)
 
 'PreferencesGetLegend': Override the text used for the <legend> of a
 preferences section.
