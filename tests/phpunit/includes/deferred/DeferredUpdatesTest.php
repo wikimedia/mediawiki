@@ -192,4 +192,30 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 
 		DeferredUpdates::doUpdates();
 	}
+
+	public function testPresendAddOnPostsendRun() {
+		$this->setMwGlobals( 'wgCommandLineMode', true );
+
+		$x = false;
+		$y = false;
+		wfGetLBFactory()->commitMasterChanges( __METHOD__ ); // clear anything
+
+		DeferredUpdates::addCallableUpdate(
+			function () use ( &$x, &$y ) {
+				$x = true;
+				DeferredUpdates::addCallableUpdate(
+					function () use ( &$y ) {
+						$y = true;
+					},
+					DeferredUpdates::PRESEND
+				);
+			},
+			DeferredUpdates::POSTSEND
+		);
+
+		DeferredUpdates::doUpdates();
+
+		$this->assertTrue( $x, "Outer POSTSEND update ran" );
+		$this->assertTrue( $y, "Nested PRESEND update ran" );
+	}
 }
