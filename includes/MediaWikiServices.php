@@ -680,6 +680,22 @@ class MediaWikiServices extends ServiceContainer {
 		return $this->getService( 'WikiRevisionUploadImporter' );
 	}
 
+	/**
+	 * @since 1.30
+	 * @return \WikiRevisionOldRevisionImporter
+	 */
+	public function getWikiRevisionOldRevisionImporter() {
+		return $this->getService( 'WikiRevisionOldRevisionImporter' );
+	}
+
+	/**
+	 * @since 1.30
+	 * @return \WikiRevisionOldRevisionImporter
+	 */
+	public function getWikiRevisionOldRevisionImporterNoUpdates() {
+		return $this->getService( 'WikiRevisionOldRevisionImporterNoUpdates' );
+	}
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service getter here, don't forget to add a test
 	// case for it in MediaWikiServicesTest::provideGetters() and in

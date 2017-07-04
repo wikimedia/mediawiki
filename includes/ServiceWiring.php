@@ -41,6 +41,7 @@ use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ConnectionManager;
 
 return [
 	'DBLoadBalancerFactory' => function ( MediaWikiServices $services ) {
@@ -421,6 +422,22 @@ return [
 		return new UploadImporter(
 			$services->getMainConfig()->get( 'EnableUploads' ),
 			LoggerFactory::getInstance( 'WikiRevisionUploadImporter' )
+		);
+	},
+
+	'WikiRevisionOldRevisionImporter' => function ( MediaWikiServices $services ) {
+		return new OldRevisionImporter(
+			true,
+			LoggerFactory::getInstance( 'WikiRevisionOldRevisionImporter' ),
+			$services->getDBLoadBalancer()
+		);
+	},
+
+	'WikiRevisionOldRevisionImporterNoUpdates' => function ( MediaWikiServices $services ) {
+		return new OldRevisionImporter(
+			false,
+			LoggerFactory::getInstance( 'WikiRevisionOldRevisionImporter' ),
+			$services->getDBLoadBalancer()
 		);
 	},
 
