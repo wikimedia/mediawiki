@@ -672,6 +672,14 @@ class MediaWikiServices extends ServiceContainer {
 		return $this->getService( 'ReadOnlyMode' );
 	}
 
+	/**
+	 * @since 1.30
+	 * @return \WikiRevisionUploadImporter
+	 */
+	public function getWikiRevisionUploadImporter() {
+		return $this->getService( 'WikiRevisionUploadImporter' );
+	}
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service getter here, don't forget to add a test
 	// case for it in MediaWikiServicesTest::provideGetters() and in

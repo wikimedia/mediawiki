@@ -417,6 +417,13 @@ return [
 		);
 	},
 
+	'WikiRevisionUploadImporter' => function ( MediaWikiServices $services ) {
+		return new UploadImporter(
+			$services->getMainConfig()->get( 'EnableUploads' ),
+			LoggerFactory::getInstance( 'WikiRevisionUploadImporter' )
+		);
+	},
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
 	// in the MediaWikiServices class. The convenience getter should just call
