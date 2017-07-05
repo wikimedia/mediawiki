@@ -1485,6 +1485,8 @@ class Preferences {
 		}
 
 		if ( $user->isAllowed( 'editmyoptions' ) ) {
+			$oldUserOptions = $user->getOptions();
+
 			foreach ( self::$saveBlacklist as $b ) {
 				unset( $formData[$b] );
 			}
@@ -1505,7 +1507,10 @@ class Preferences {
 				$user->setOption( $key, $value );
 			}
 
-			Hooks::run( 'PreferencesFormPreSave', [ $formData, $form, $user, &$result ] );
+			Hooks::run(
+				'PreferencesFormPreSave',
+				[ $formData, $form, $user, &$result, $oldUserOptions ]
+			);
 		}
 
 		MediaWiki\Auth\AuthManager::callLegacyAuthPlugin( 'updateExternalDB', [ $user ] );
