@@ -60,6 +60,12 @@ abstract class SearchEngine {
 	/** @const string profile type for query independent ranking features */
 	const FT_QUERY_INDEP_PROFILE_TYPE = 'fulltextQueryIndepProfile';
 
+	/** @const int flag for legalSearchChars: includes all chars allowed in a search query */
+	const CHARS_ALL = 1;
+
+	/** @const int flag for legalSearchChars: includes all chars allowed in a search term */
+	const CHARS_NO_SYNTAX = 2;
+
 	/**
 	 * Perform a full text search query and return a result set.
 	 * If full text searches are not supported or disabled, return null.
@@ -206,22 +212,14 @@ abstract class SearchEngine {
 	}
 
 	/**
-	 * Get chars legal for search (at query time).
+	 * Get chars legal for search
 	 * NOTE: usage as static is deprecated and preserved only as BC measure
+	 * @param int $type type of search chars (see self::CHARS_ALL
+	 * and self::CHARS_NO_SYNTAX). Defaults to CHARS_ALL
 	 * @return string
 	 */
-	public static function legalSearchChars() {
+	public static function legalSearchChars( $type = self::CHARS_ALL ) {
 		return "A-Za-z_'.0-9\\x80-\\xFF\\-";
-	}
-
-	/**
-	 * Get chars legal for search (at index time).
-	 *
-	 * @since 1.30
-	 * @return string
-	 */
-	public function legalSearchCharsForUpdate() {
-		return static::legalSearchChars();
 	}
 
 	/**
