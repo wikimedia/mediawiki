@@ -71,6 +71,11 @@ class SpecialNewFiles extends IncludableSpecialPage {
 
 			$opts->setValue( 'start', $start, true );
 			$opts->setValue( 'end', $end, true );
+
+			// also swap values in request object, which is used by HTMLForm
+			// to pre-populate the fields with the previous input
+			$this->getContext()->getRequest()->setVal( 'start', $start );
+			$this->getContext()->getRequest()->setVal( 'end', $end );
 		}
 
 		// if all media types have been selected, wipe out the array to prevent
@@ -192,8 +197,6 @@ class SpecialNewFiles extends IncludableSpecialPage {
 			->setMethod( 'get' )
 			->prepareForm()
 			->displayForm( false );
-
-		$this->getOutput()->addModules( 'mediawiki.special.newFiles' );
 	}
 
 	protected function getGroupName() {
