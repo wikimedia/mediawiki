@@ -33,6 +33,8 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	}
 
 	public function execute( $par ) {
+		$context = new DerivativeContext( $this->getContext() );
+
 		$this->setHeaders();
 		$this->outputHeader();
 		$mimeAnalyzer = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
@@ -71,6 +73,15 @@ class SpecialNewFiles extends IncludableSpecialPage {
 
 			$opts->setValue( 'start', $start, true );
 			$opts->setValue( 'end', $end, true );
+
+			// also swap values in request object, which is used by HTMLForm
+			// to pre-populate the fields with the previous input
+			$request = $context->getRequest();
+			$context->setRequest( new DerivativeRequest(
+				$request,
+				[ 'start' => $start, 'end' => $end ] + $request->getValues(),
+				$request->wasPosted()
+			) );
 		}
 
 		// if all media types have been selected, wipe out the array to prevent
@@ -87,10 +98,10 @@ class SpecialNewFiles extends IncludableSpecialPage {
 
 		if ( !$this->including() ) {
 			$this->setTopText();
-			$this->buildForm();
+			$this->buildForm( $context );
 		}
 
-		$pager = new NewFilesPager( $this->getContext(), $opts );
+		$pager = new NewFilesPager( $context, $opts );
 
 		$out->addHTML( $pager->getBody() );
 		if ( !$this->including() ) {
@@ -98,7 +109,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		}
 	}
 
-	protected function buildForm() {
+	protected function buildForm( IContextSource $context ) {
 		$mediaTypesText = array_map( function ( $type ) {
 			// mediastatistics-header-unknown, mediastatistics-header-bitmap,
 			// mediastatistics-header-drawing, mediastatistics-header-audio,
@@ -184,7 +195,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 			unset( $formDescriptor['hidepatrolled'] );
 		}
 
-		HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
+		HTMLForm::factory( 'ooui', $formDescriptor, $context )
 			// For the 'multiselect' field values to be preserved on submit
 			->setFormIdentifier( 'specialnewimages' )
 			->setWrapperLegendMsg( 'newimages-legend' )
@@ -192,8 +203,6 @@ class SpecialNewFiles extends IncludableSpecialPage {
 			->setMethod( 'get' )
 			->prepareForm()
 			->displayForm( false );
-
-		$this->getOutput()->addModules( 'mediawiki.special.newFiles' );
 	}
 
 	protected function getGroupName() {
