@@ -4136,6 +4136,7 @@
 	"mediastatistics-header-text": "Textual",
 	"mediastatistics-header-executable": "Executables",
 	"mediastatistics-header-archive": "Compressed formats",
+	"mediastatistics-header-3d": "3D",
 	"mediastatistics-header-total": "All files",
 	"json-warn-trailing-comma": "$1 trailing {{PLURAL:$1|comma was|commas were}} removed from JSON",
 	"json-error-unknown": "There was a problem with the JSON. Error: $1",

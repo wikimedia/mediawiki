@@ -105,6 +105,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 			// mediastatistics-header-video, mediastatistics-header-multimedia,
 			// mediastatistics-header-office, mediastatistics-header-text,
 			// mediastatistics-header-executable, mediastatistics-header-archive,
+			// mediastatistics-header-3d,
 			return $this->msg( 'mediastatistics-header-' . strtolower( $type ) )->text();
 		}, $this->mediaTypes );
 		$mediaTypesOptions = array_combine( $mediaTypesText, $this->mediaTypes );
