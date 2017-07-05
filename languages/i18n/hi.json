@@ -1358,7 +1358,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|नए पन्नों की सूची]] को भी देखें)",
 	"recentchanges-submit": "दिखाएँ",
 	"rcfilters-activefilters": "सक्रिय फिल्टर",
-	"rcfilters-quickfilters": "सहेजा फ़िल्टर सेटिंग",
+	"rcfilters-quickfilters": "सुरक्षित फ़िल्टर",
 	"rcfilters-quickfilters-placeholder-title": "कोई कड़ी अभी तक सहेजा नहीं गया",
 	"rcfilters-quickfilters-placeholder-description": "अपने फ़िल्टर सेटिंग को सहेजने और बाद में उपयोग करने के लिए नीचे दिये बूकमार्क छवि पर क्लिक करें।",
 	"rcfilters-savedqueries-defaultlabel": "सहेजे फ़िल्टर",

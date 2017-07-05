@@ -2046,7 +2046,7 @@
 	"usermaildisabled": "Email fogadás letiltva",
 	"usermaildisabledtext": "Nem küldhetsz emailt más felhasználóknak ezen a wikin",
 	"noemailtitle": "Nincs e-mail cím",
-	"noemailtext": "Ez a szerkesztő nem adott meg érvényes e-mail címet.",
+	"noemailtext": "Ez a szerkesztő nem adott meg érvényes e-mail-címet.",
 	"nowikiemailtext": "Ez a szerkesztő nem kíván másoktól e-mail üzeneteket fogadni.",
 	"emailnotarget": "A címzett nem létezik vagy a felhasználónév érvénytelen.",
 	"emailtarget": "Írd be címzett felhasználónevét",

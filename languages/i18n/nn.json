@@ -1819,6 +1819,7 @@
 	"modifiedarticleprotection": "endra nivået på vernet av «[[$1]]»",
 	"unprotectedarticle": "fjerna vern av «[[$1]]»",
 	"movedarticleprotection": "flytta verneinnstillingar frå «[[$2]]» til «[[$1]]»",
+	"protectedarticle-comment": "{{GENDER:$2|Verna}} «[[$1]]»",
 	"unprotectedarticle-comment": "{{GENDER:$2|Fjerna}} vern av «[[$1]]»",
 	"protect-title": "Vernar «$1»",
 	"protect-title-notallowed": "Sjå vernenivået til «$1»",
