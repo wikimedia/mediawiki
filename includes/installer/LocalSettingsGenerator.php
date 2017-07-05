@@ -41,8 +41,6 @@ class LocalSettingsGenerator {
 	protected $installer;
 
 	/**
-	 * Constructor.
-	 *
 	 * @param Installer $installer
 	 */
 	public function __construct( Installer $installer ) {

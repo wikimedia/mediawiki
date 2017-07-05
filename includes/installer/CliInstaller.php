@@ -47,8 +47,6 @@ class CliInstaller extends Installer {
 	];
 
 	/**
-	 * Constructor.
-	 *
 	 * @param string $siteName
 	 * @param string $admin
 	 * @param array $option
