@@ -518,13 +518,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$rows = $this->getRows();
 		$opts = $this->getOptions();
 		if ( $rows === false ) {
-			if ( !$this->including() ) {
-				$this->doHeader( $opts, 0 );
-				$this->outputNoResults();
-				$this->getOutput()->setStatusCode( 404 );
-			}
-
-			return;
+			$rows = new FakeResultWrapper( [] );
 		}
 
 		$batch = new LinkBatch;
