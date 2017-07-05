@@ -10,6 +10,12 @@ describe( 'User', function () {
 	var password,
 		username;
 
+	before( function () {
+		// disable VisualEditor welcome dialog
+		UserLoginPage.open();
+		browser.localStorage( 'POST', { key: 've-beta-welcome-dialog', value: '1' } );
+	} );
+
 	beforeEach( function () {
 		browser.deleteCookie();
 		username = `User-${Math.random().toString()}`;
