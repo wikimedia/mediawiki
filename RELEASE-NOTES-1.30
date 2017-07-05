@@ -43,7 +43,7 @@ production.
 === External library changes in 1.30 ===
 
 ==== Upgraded external libraries ====
-* …
+* mediawiki/mediawiki-codesniffer updated to 0.8.1.
 
 ==== New external libraries ====
 * The class \TestingAccessWrapper has been moved to the external library
