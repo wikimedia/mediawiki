@@ -421,6 +421,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @return StatusValue
 	 */
 	final public function doOperations( array $ops, array $opts = [] ) {
+		Hooks::run( 'FileBackend_doOperations', [ $this, $ops, $opts ] );
 		if ( empty( $opts['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return $this->newStatus( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
