@@ -1,12 +1,19 @@
 'use strict';
 const assert = require( 'assert' ),
 	HistoryPage = require( '../pageobjects/history.page' ),
-	EditPage = require( '../pageobjects/edit.page' );
+	EditPage = require( '../pageobjects/edit.page' ),
+	UserLoginPage = require( '../pageobjects/userlogin.page' );
 
 describe( 'Page', function () {
 
 	var content,
 		name;
+
+	before( function () {
+		// disable VisualEditor welcome dialog
+		UserLoginPage.open();
+		browser.localStorage( 'POST', { key: 've-beta-welcome-dialog', value: '1' } );
+	} );
 
 	beforeEach( function () {
 		content = Math.random().toString();
