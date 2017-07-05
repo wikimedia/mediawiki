@@ -1363,6 +1363,10 @@ new pages
 &$text: Text to preload with
 &$title: Title object representing the page being created
 
+'EditPage::actionURLOptions': Change options in URL to use in the form's action attribute
+$editPage: EditPage Object
+&$options: array of url params, eg. $options['myparam'] = 'myvalue';
+
 'EditPage::attemptSave': Called before an article is
 saved, that is before WikiPage::doEditContent() is called
 $editpage_Obj: the current EditPage object

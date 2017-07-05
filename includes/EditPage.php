@@ -3713,7 +3713,11 @@ HTML
 	 * @return string
 	 */
 	protected function getActionURL( Title $title ) {
-		return $title->getLocalURL( [ 'action' => $this->action ] );
+		$options = [ 'action' => $this->action ];
+
+		Hooks::run( 'EditPage::actionURLOptions', [ $this, &$options ] );
+
+		return $title->getLocalURL( $options );
 	}
 
 	/**
