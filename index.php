@@ -39,5 +39,6 @@ wfEntryPointCheck( 'index.php' );
 
 require __DIR__ . '/includes/WebStart.php';
 
+// test
 $mediaWiki = new MediaWiki();
 $mediaWiki->run();
