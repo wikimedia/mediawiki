@@ -43,7 +43,6 @@ class LinkBatch {
 	protected $caller;
 
 	/**
-	 * LinkBatch constructor.
 	 * @param LinkTarget[] $arr Initial items to be added to the batch
 	 */
 	public function __construct( $arr = [] ) {

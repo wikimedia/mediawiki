@@ -49,7 +49,6 @@ class LogEventsList extends ContextSource {
 	protected $allowedActions = null;
 
 	/**
-	 * Constructor.
 	 * The first two parameters used to be $skin and $out, but now only a context
 	 * is needed, that's why there's a second unused parameter.
 	 *

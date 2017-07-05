@@ -27,9 +27,6 @@ class FileContentsHasher {
 	/** @var FileContentsHasher */
 	private static $instance;
 
-	/**
-	 * Constructor.
-	 */
 	public function __construct() {
 		$this->cache = ObjectCache::getLocalServerInstance( 'hash' );
 	}

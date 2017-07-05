@@ -215,7 +215,6 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * Constructor.
 	 * Do not call this except from inside a repo class.
 	 * @param Title $title
 	 * @param FileRepo $repo

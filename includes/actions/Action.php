@@ -259,8 +259,6 @@ abstract class Action {
 	}
 
 	/**
-	 * Constructor.
-	 *
 	 * Only public since 1.21
 	 *
 	 * @param Page $page

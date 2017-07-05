@@ -130,8 +130,6 @@ class XMPReader implements LoggerAwareInterface {
 	private $logger;
 
 	/**
-	 * Constructor.
-	 *
 	 * Primary job is to initialize the XMLParser
 	 */
 	function __construct( LoggerInterface $logger = null ) {

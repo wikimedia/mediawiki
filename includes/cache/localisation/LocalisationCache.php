@@ -183,7 +183,6 @@ class LocalisationCache {
 	private $mergeableKeys = null;
 
 	/**
-	 * Constructor.
 	 * For constructor parameters, see the documentation in DefaultSettings.php
 	 * for $wgLocalisationCacheConf.
 	 *
