@@ -3453,6 +3453,14 @@ $title: Title object of the page that we're about to undelete
 $title: title object related to the revision
 $rev: revision (object) that will be viewed
 
+'UnitTestsAfterDatabaseSetup': Called right after MediaWiki's test infrastructure
+has finished creating/duplicating core tables for unit tests.
+$database: Database in question
+$prefix: Table prefix to be used in unit tests
+
+'UnitTestsBeforeDatabaseTeardown': Called right before MediaWiki tears down its
+database infrastructure used for unit tests.
+
 'UnitTestsList': Called when building a list of paths containing PHPUnit tests.
 Since 1.24: Paths pointing to a directory will be recursively scanned for
 test case files matching the suffix "Test.php".
