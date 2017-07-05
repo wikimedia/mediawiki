@@ -3472,6 +3472,10 @@ $article: article "acted on"
 $user: user that watched
 &$page: WikiPage object that was watched
 
+'UpdateEditUrlOptions': Before Return URL options for the 'edit page' link.
+$skin: Skin Object
+&$options: additional url params, eg. $options['myparam'] = 'myvalue';
+
 'UpdateUserMailerFormattedPageStatus': Before notification email gets sent.
 &$formattedPageStatus: list of valid page states
 
