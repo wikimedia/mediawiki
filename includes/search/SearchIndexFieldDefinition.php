@@ -39,7 +39,6 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 	private $mergeCallback;
 
 	/**
-	 * SearchIndexFieldDefinition constructor.
 	 * @param string $name Field name
 	 * @param int    $type Index type
 	 */

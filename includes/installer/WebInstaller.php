@@ -130,8 +130,6 @@ class WebInstaller extends Installer {
 	protected $currentPageName;
 
 	/**
-	 * Constructor.
-	 *
 	 * @param WebRequest $request
 	 */
 	public function __construct( WebRequest $request ) {

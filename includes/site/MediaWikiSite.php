@@ -40,8 +40,6 @@ class MediaWikiSite extends Site {
 	const PATH_PAGE = 'page_path';
 
 	/**
-	 * Constructor.
-	 *
 	 * @since 1.21
 	 *
 	 * @param string $type

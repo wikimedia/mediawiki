@@ -67,7 +67,6 @@ abstract class GenericArrayObject extends ArrayObject {
 	}
 
 	/**
-	 * Constructor.
 	 * @see ArrayObject::__construct
 	 *
 	 * @since 1.20
