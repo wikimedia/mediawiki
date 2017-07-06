@@ -217,8 +217,21 @@ exports.config = {
 	// },
 	//
 	// Function to be executed after a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
-	// afterTest: function (test) {
-	// },
+	// from https://github.com/webdriverio/webdriverio/issues/269#issuecomment-306342170
+	afterTest: function ( test ) {
+		var filename, filePath;
+		// if test passed, ignore, else take and save screenshot
+		if ( test.passed ) {
+			return;
+		}
+		// get current test title and clean it, to use it as file name
+		filename = encodeURIComponent( test.title.replace( /\s+/g, '-' ) );
+		// build file path
+		filePath = this.screenshotPath + filename + '.png';
+		// save screenshot
+		browser.saveScreenshot( filePath );
+		console.log( '\n\tScreenshot location:', filePath, '\n' );
+	},
 	//
 	// Hook that gets executed after the suite has ended
 	// afterSuite: function (suite) {
