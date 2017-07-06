@@ -127,7 +127,10 @@ class InfoAction extends FormlessAction {
 			// Messages:
 			// pageinfo-header-basic, pageinfo-header-edits, pageinfo-header-restrictions,
 			// pageinfo-header-properties, pageinfo-category-info
-			$content .= $this->makeHeader( $this->msg( "pageinfo-${header}" )->escaped() ) . "\n";
+			$content .= $this->makeHeader(
+				$this->msg( "pageinfo-${header}" )->escaped(),
+				"mw-pageinfo-${header}"
+			) . "\n";
 			$table = "\n";
 			foreach ( $infoTable as $infoRow ) {
 				$name = ( $infoRow[0] instanceof Message ) ? $infoRow[0]->escaped() : $infoRow[0];
@@ -152,10 +155,11 @@ class InfoAction extends FormlessAction {
 	 * @param string $header The header text.
 	 * @return string The HTML.
 	 */
-	protected function makeHeader( $header ) {
+	protected function makeHeader( $header, $canonicalId ) {
 		$spanAttribs = [ 'class' => 'mw-headline', 'id' => Sanitizer::escapeId( $header ) ];
+		$h2Attribs = [ 'id' => Sanitizer::escapeId( $canonicalId ) ];
 
-		return Html::rawElement( 'h2', [], Html::element( 'span', $spanAttribs, $header ) );
+		return Html::rawElement( 'h2', $h2Attribs, Html::element( 'span', $spanAttribs, $header ) );
 	}
 
 	/**
