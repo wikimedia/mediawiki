@@ -39,15 +39,25 @@
 		.oo-ui-box-sizing( border-box );
 		width: 100%;
 		cursor: pointer;
-		padding: 0.5em 1em;
+		padding: 0.625em 0.625em 0.546875em;
 		border: 1px solid #a2a9b1;
 		border-radius: 2px;
 		outline: 0;
-		line-height: 1.275;
+		line-height: 1.172em;
 		/**
 		 * Ensures non-infused and infused widget have the same height.
 		 * Equal to line height + top padding + bottom padding
 		 */
-		height: 2.275em;
+		min-height: 2.5em;
+	}
+
+	&.oo-ui-widget-enabled .mw-widget-dateInputWidget-handle > .oo-ui-labelElement-label {
+		cursor: pointer;
+	}
+
+	&-active {
+		&.oo-ui-textInputWidget input {
+			cursor: text;
+		}
 	}
 }
