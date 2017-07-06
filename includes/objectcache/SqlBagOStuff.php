@@ -148,7 +148,7 @@ class SqlBagOStuff extends BagOStuff {
 	protected function getSeparateMainLB() {
 		global $wgDBtype;
 
-		if ( $wgDBtype === 'mysql' && $this->usesMainDB() ) {
+		if ( $this->usesMainDB() && $wgDBtype !== 'sqlite' ) {
 			if ( !$this->separateMainLB ) {
 				// We must keep a separate connection to MySQL in order to avoid deadlocks
 				$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
@@ -156,8 +156,7 @@ class SqlBagOStuff extends BagOStuff {
 			}
 			return $this->separateMainLB;
 		} else {
-			// However, SQLite has an opposite behavior. And PostgreSQL needs to know
-			// if we are in transaction or not (@TODO: find some PostgreSQL work-around).
+			// However, SQLite has an opposite behavior due to DB-level locking	
 			return null;
 		}
 	}
