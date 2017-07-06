@@ -21,6 +21,8 @@
  * @ingroup Cache Parser
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @ingroup Cache Parser
  * @todo document
@@ -48,18 +50,21 @@ class ParserCache {
 
 	/** @var BagOStuff */
 	private $mMemc;
+
+	/**
+	 * Anything cached prior to this is invalidated
+	 *
+	 * @var string
+	 */
+	private $cacheEpoch;
 	/**
 	 * Get an instance of this object
 	 *
+	 * @deprecated since 1.30, use MediaWikiServices instead
 	 * @return ParserCache
 	 */
 	public static function singleton() {
-		static $instance;
-		if ( !isset( $instance ) ) {
-			global $parserMemc;
-			$instance = new ParserCache( $parserMemc );
-		}
-		return $instance;
+		return MediaWikiServices::getInstance()->getParserCache();
 	}
 
 	/**
@@ -68,11 +73,13 @@ class ParserCache {
 	 * This class use an invalidation strategy that is compatible with
 	 * MultiWriteBagOStuff in async replication mode.
 	 *
-	 * @param BagOStuff $memCached
+	 * @param BagOStuff $cache
+	 * @param string $cacheEpoch Anything before this timestamp is invalidated
 	 * @throws MWException
 	 */
-	protected function __construct( BagOStuff $memCached ) {
-		$this->mMemc = $memCached;
+	public function __construct( BagOStuff $cache, $cacheEpoch = '20030516000000' ) {
+		$this->mMemc = $cache;
+		$this->cacheEpoch = $cacheEpoch;
 	}
 
 	/**
@@ -159,8 +166,6 @@ class ParserCache {
 	 * @since 1.30 Changed $useOutdated to an int and added the non-boolean values
 	 */
 	public function getKey( $article, $popts, $useOutdated = self::USE_ANYTHING ) {
-		global $wgCacheEpoch;
-
 		if ( is_bool( $useOutdated ) ) {
 			$useOutdated = $useOutdated ? self::USE_ANYTHING : self::USE_CURRENT_ONLY;
 		}
@@ -180,7 +185,7 @@ class ParserCache {
 				$cacheTime = $optionsKey->getCacheTime();
 				wfDebugLog( "ParserCache",
 					"Parser options key expired, touched " . $article->getTouched()
-					. ", epoch $wgCacheEpoch, cached $cacheTime\n" );
+					. ", epoch {$this->cacheEpoch}, cached $cacheTime\n" );
 				return false;
 			} elseif ( $useOutdated < self::USE_OUTDATED &&
 				$optionsKey->isDifferentRevision( $article->getLatest() )
@@ -221,8 +226,6 @@ class ParserCache {
 	 * @return ParserOutput|bool False on failure
 	 */
 	public function get( $article, $popts, $useOutdated = false ) {
-		global $wgCacheEpoch;
-
 		$canCache = $article->checkTouched();
 		if ( !$canCache ) {
 			// It's a redirect now
@@ -264,7 +267,7 @@ class ParserCache {
 			$cacheTime = $value->getCacheTime();
 			wfDebugLog( "ParserCache",
 				"ParserOutput key expired, touched $touched, "
-				. "epoch $wgCacheEpoch, cached $cacheTime\n" );
+				. "epoch {$this->cacheEpoch}, cached $cacheTime\n" );
 			$value = false;
 		} elseif ( !$useOutdated && $value->isDifferentRevision( $article->getLatest() ) ) {
 			wfIncrStats( "pcache.miss.revid" );
@@ -341,5 +344,16 @@ class ParserCache {
 		} elseif ( $expire <= 0 ) {
 			wfDebug( "Parser output was marked as uncacheable and has not been saved.\n" );
 		}
+	}
+
+	/**
+	 * Get the backend BagOStuff instance that
+	 * powers the parser cache
+	 *
+	 * @since 1.30
+	 * @return BagOStuff
+	 */
+	public function getCacheStorage() {
+		return $this->mMemc;
 	}
 }
