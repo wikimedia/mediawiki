@@ -57,7 +57,7 @@ class UpdateRestrictions extends Maintenance {
 		$blockEnd = $start + $this->mBatchSize - 1;
 		$encodedExpiry = 'infinity';
 		while ( $blockEnd <= $end ) {
-			$this->output( "...doing page_id from $blockStart to $blockEnd\n" );
+			$this->output( "...doing page_id from $blockStart to $blockEnd out of $end\n" );
 			$cond = "page_id BETWEEN $blockStart AND $blockEnd AND page_restrictions !=''";
 			$res = $db->select(
 				'page',
