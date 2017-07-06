@@ -61,9 +61,12 @@ class ErrorPageError extends MWException implements ILocalizedException {
 	}
 
 	public function report() {
-		global $wgOut;
-
-		$wgOut->showErrorPage( $this->title, $this->msg, $this->params );
-		$wgOut->output();
+		if ( self::isCommandLine() || defined( 'MW_API' ) ) {
+			parent::report();
+		} else {
+			global $wgOut;
+			$wgOut->showErrorPage( $this->title, $this->msg, $this->params );
+			$wgOut->output();
+		}
 	}
 }
