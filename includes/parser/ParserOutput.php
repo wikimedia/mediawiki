@@ -217,6 +217,8 @@ class ParserOutput extends CacheTime {
 	/** @var integer Upper bound of expiry based on parse duration */
 	private $mMaxAdaptiveExpiry = INF;
 
+	public $mTOCDisabler = null;
+
 	const EDITSECTION_REGEX =
 		'#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#s';
 
@@ -463,6 +465,9 @@ class ParserOutput extends CacheTime {
 	}
 
 	public function setTOCEnabled( $flag ) {
+		if ( $flag === false ) {
+			$this->mTOCDisabler = wfGetAllCallers( false );
+		}
 		return wfSetVar( $this->mTOCEnabled, $flag );
 	}
 

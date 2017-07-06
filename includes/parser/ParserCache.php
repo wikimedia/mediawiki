@@ -329,6 +329,7 @@ class ParserCache {
 					'parserOutputKey' => $parserOutputKey,
 					'timestamp' => $cacheTime,
 					'revid' => $revId,
+					'disabler' => isset( $parserOutput->mTOCDisabler ) ? $parserOutput->mTOCDisabler : false,
 				] );
 			}
 
