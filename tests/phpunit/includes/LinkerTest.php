@@ -306,6 +306,11 @@ class LinkerTest extends MediaWikiLangTestCase {
 				'foo bar [[Special:BlankPage]]',
 				'enwiki',
 			],
+			[
+				'foo bar <a class="external" rel="nofollow" href="//en.example.org/w/File:Example">Image:Example</a>',
+				'foo bar [[Image:Example]]',
+				'enwiki',
+			],
 		];
 		// @codingStandardsIgnoreEnd
 	}
