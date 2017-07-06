@@ -1295,7 +1295,8 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (taip pat žiūrėkite [[Special:NewPages|naujausių straipsnių sąrašą]])",
 	"recentchanges-submit": "Rodyti",
 	"rcfilters-activefilters": "Aktyvūs filtrai",
-	"rcfilters-quickfilters": "Išsaugoti filtro nustatymai",
+	"rcfilters-advancedfilters": "Detalūs filtrai",
+	"rcfilters-quickfilters": "Išsaugoti filtrai",
 	"rcfilters-quickfilters-placeholder-title": "Nėra išsaugotų nuorodų",
 	"rcfilters-savedqueries-defaultlabel": "Išsaugoti filtrai",
 	"rcfilters-savedqueries-rename": "Pervadinti",
@@ -1303,6 +1304,7 @@
 	"rcfilters-savedqueries-unsetdefault": "Pašalinti kaip numatytą",
 	"rcfilters-savedqueries-remove": "Pašalinti",
 	"rcfilters-savedqueries-new-name-label": "Pavadinimas",
+	"rcfilters-savedqueries-new-name-placeholder": "Apibūdinkite šio filtro tikslą.",
 	"rcfilters-savedqueries-apply-label": "Išsaugoti nustatymus",
 	"rcfilters-savedqueries-cancel-label": "Atšaukti",
 	"rcfilters-savedqueries-add-new-title": "Išsaugoti dabartinius filtro nustatymus",
@@ -1359,6 +1361,7 @@
 	"rcfilters-filter-logactions-label": "Įrašyti veiksmai",
 	"rcfilters-filter-lastrevision-description": "Naujausias puslapio keitimas.",
 	"rcfilters-filter-previousrevision-description": "Visi keitimai, kurie nėra naujausi puslapio keitimai.",
+	"rcfilters-view-tags": "Pažymėti keitimai",
 	"rcnotefrom": "Žemiau yra {{PLURAL:$5|pakeitimas|pakeitimai}} pradedant <strong>$3, $4</strong> (rodoma iki <strong>$1</strong> pakeitimų).",
 	"rclistfromreset": "Nustatyti duomenų pasirinkimą iš naujo",
 	"rclistfrom": "Rodyti naujus pakeitimus pradedant $3 $2",
@@ -3737,5 +3740,6 @@
 	"pageid": "puslapio ID $1",
 	"rawhtml-notallowed": "&lt;html&gt; negali būti naudojamos ne normaliuose puslapiuose.",
 	"gotointerwiki": "Išeinama iš {{SITENAME}}",
-	"gotointerwiki-invalid": "Nurodytas pavadinimas negalimas."
+	"gotointerwiki-invalid": "Nurodytas pavadinimas negalimas.",
+	"pagedata-bad-title": "Negalimas pavadinimas: $1."
 }

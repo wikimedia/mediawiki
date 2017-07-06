@@ -3412,6 +3412,8 @@
 	"mw-widgets-dateinput-no-date": "Nadnevak nije naznačen",
 	"mw-widgets-dateinput-placeholder-day": "GGGG-MM-DD",
 	"mw-widgets-dateinput-placeholder-month": "GGGG-MM",
+	"mw-widgets-mediasearch-input-placeholder": "Pretraži medijske datoteke",
+	"mw-widgets-mediasearch-noresults": "Nema rezultata.",
 	"mw-widgets-titleinput-description-new-page": "stranica još ne postoji",
 	"mw-widgets-titleinput-description-redirect": "preusmjeravanje na $1",
 	"date-range-from": "Od nadnevka:",

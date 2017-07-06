@@ -813,7 +813,7 @@
 	"post-expand-template-inclusion-warning": "Uwaga – zbyt duża wielkość wykorzystanych szablonów.\nNiektóre szablony nie zostaną użyte.",
 	"post-expand-template-inclusion-category": "Strony, w których przekroczone jest ograniczenie wielkości użytych szablonów",
 	"post-expand-template-argument-warning": "Uwaga – strona zawiera co najmniej jeden argument szablonu, który po rozwinięciu jest zbyt duży.\nArgument ten będzie pominięty.",
-	"post-expand-template-argument-category": "Strony, w których użyto szablon z pominięciem argumentów",
+	"post-expand-template-argument-category": "Strony, w których użyto szablonu z pominięciem argumentów",
 	"parser-template-loop-warning": "Wykryto pętlę w szablonie [[$1]]",
 	"template-loop-category": "Strony z pętlami szablonów",
 	"template-loop-category-desc": "Strona zawiera pętlę szablonów, czyli szablon, który wywołuje sam siebie rekursywnie.",
