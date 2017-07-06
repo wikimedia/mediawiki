@@ -165,7 +165,7 @@ class SpecialLog extends SpecialPage {
 		# Create a LogPager item to get the results and a LogEventsList item to format them...
 		$loglist = new LogEventsList(
 			$this->getContext(),
-			null,
+			$this->getLinkRenderer(),
 			LogEventsList::USE_CHECKBOXES
 		);
 
