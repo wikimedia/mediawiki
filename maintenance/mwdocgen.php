@@ -105,7 +105,7 @@ class MWDocGen extends Maintenance {
 			$this->excludePatterns[] = 'extensions';
 		}
 
-		$this->doDot = `which dot`;
+		$this->doDot = shell_exec( 'which dot' );
 		$this->doMan = $this->hasOption( 'generate-man' );
 	}
 
