@@ -177,6 +177,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				)
 			);
 
+			$experimentalStructuredChangeFilters =
+				$this->getConfig()->get( 'StructuredChangeFiltersEnableExperimentalViews' );
+
 			$out->addJsConfigVars( 'wgStructuredChangeFilters', $jsData['groups'] );
 			$out->addJsConfigVars(
 				'wgStructuredChangeFiltersEnableSaving',
@@ -184,16 +187,18 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			);
 			$out->addJsConfigVars(
 				'wgStructuredChangeFiltersEnableExperimentalViews',
-				$this->getConfig()->get( 'StructuredChangeFiltersEnableExperimentalViews' )
+				$experimentalStructuredChangeFilters
 			);
 			$out->addJsConfigVars(
 				'wgStructuredChangeFiltersEnableLiveUpdate',
 				$this->getConfig()->get( 'StructuredChangeFiltersEnableLiveUpdate' )
 			);
-			$out->addJsConfigVars(
-				'wgRCFiltersChangeTags',
-				$this->buildChangeTagList()
-			);
+			if ( $experimentalStructuredChangeFilters ) {
+				$out->addJsConfigVars(
+					'wgRCFiltersChangeTags',
+					$this->buildChangeTagList()
+				);
+			}
 		}
 	}
 
