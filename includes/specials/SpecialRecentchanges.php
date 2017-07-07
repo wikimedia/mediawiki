@@ -189,10 +189,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				'wgStructuredChangeFiltersEnableExperimentalViews',
 				$wgStructuredChangeFiltersEnableExperimentalViews
 			);
-			$out->addJsConfigVars(
-				'wgRCFiltersChangeTags',
-				$this->buildChangeTagList()
-			);
+			if ( $wgStructuredChangeFiltersEnableExperimentalViews ) {
+				$out->addJsConfigVars(
+					'wgRCFiltersChangeTags',
+					$this->buildChangeTagList()
+				);
+			}
 		}
 	}
 
