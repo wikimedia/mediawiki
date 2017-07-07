@@ -266,7 +266,10 @@ class ParserTestRunner {
 		$setup['wgSVGConverters'] = [ 'null' => 'echo "1">$output' ];
 
 		// Fake constant timestamp
-		Hooks::register( 'ParserGetVariableValueTs', 'ParserTestRunner::getFakeTimestamp' );
+		Hooks::register( 'ParserGetVariableValueTs', function ( &$parser, &$ts ) {
+			$ts = $this->getFakeTimestamp();
+			return true;
+		} );
 		$teardown[] = function () {
 			Hooks::clear( 'ParserGetVariableValueTs' );
 		};
@@ -747,6 +750,7 @@ class ParserTestRunner {
 		$context = RequestContext::getMain();
 		$user = $context->getUser();
 		$options = ParserOptions::newFromContext( $context );
+		$options->setTimestamp( $this->getFakeTimestamp() );
 
 		if ( !isset( $opts['wrap'] ) ) {
 			$options->setWrapOutputClass( false );
@@ -1598,11 +1602,14 @@ class ParserTestRunner {
 	}
 
 	/**
-	 * The ParserGetVariableValueTs hook, used to make sure time-related parser
+	 * Fake constant timestamp to make sure time-related parser
 	 * functions give a persistent value.
+	 *
+	 * - Parser::getVariableValue (via ParserGetVariableValueTs hook)
+	 * - Parser::preSaveTransform (via ParserOptions)
 	 */
-	static function getFakeTimestamp( &$parser, &$ts ) {
-		$ts = 123; // parsed as '1970-01-01T00:02:03Z'
-		return true;
+	private function getFakeTimestamp() {
+		// parsed as '1970-01-01T00:02:03Z'
+		return 123;
 	}
 }
