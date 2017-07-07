@@ -1252,7 +1252,7 @@ interface IDatabase {
 	 * @param array $selectJoinConds Join conditions for the SELECT part of the query, see
 	 *    IDatabase::select() for details.
 	 *
-	 * @return IResultWrapper
+	 * @return bool
 	 */
 	public function insertSelect( $destTable, $srcTable, $varMap, $conds,
 		$fname = __METHOD__,
