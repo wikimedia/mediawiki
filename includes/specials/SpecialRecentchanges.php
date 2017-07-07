@@ -190,10 +190,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				'wgStructuredChangeFiltersEnableLiveUpdate',
 				$this->getConfig()->get( 'StructuredChangeFiltersEnableLiveUpdate' )
 			);
-			$out->addJsConfigVars(
-				'wgRCFiltersChangeTags',
-				$this->buildChangeTagList()
-			);
+			if ( $wgStructuredChangeFiltersEnableExperimentalViews ) {
+				$out->addJsConfigVars(
+					'wgRCFiltersChangeTags',
+					$this->buildChangeTagList()
+				);
+			}
 		}
 	}
 
