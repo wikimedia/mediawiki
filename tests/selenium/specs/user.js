@@ -1,9 +1,8 @@
 'use strict';
 const assert = require( 'assert' ),
 	CreateAccountPage = require( '../pageobjects/createaccount.page' ),
-	UserLoginPage = require( '../pageobjects/userlogin.page' ),
-	UserLogoutPage = require( '../pageobjects/userlogout.page' ),
-	PreferencesPage = require( '../pageobjects/preferences.page' );
+	PreferencesPage = require( '../pageobjects/preferences.page' ),
+	UserLoginPage = require( '../pageobjects/userlogin.page' );
 
 describe( 'User', function () {
 
@@ -11,6 +10,7 @@ describe( 'User', function () {
 		username;
 
 	beforeEach( function () {
+		browser.deleteCookie();
 		username = `User-${Math.random().toString()}`;
 		password = Math.random().toString();
 	} );
@@ -28,10 +28,9 @@ describe( 'User', function () {
 	it( 'should be able to log in', function () {
 
 		// create
-		CreateAccountPage.createAccount( username, password );
-
-		// logout
-		UserLogoutPage.open();
+		browser.call( function () {
+			return CreateAccountPage.apiCreateAccount( username, password );
+		} );
 
 		// log in
 		UserLoginPage.login( username, password );
@@ -46,9 +45,14 @@ describe( 'User', function () {
 		var realName = Math.random().toString();
 
 		// create
-		CreateAccountPage.createAccount( username, password );
+		browser.call( function () {
+			return CreateAccountPage.apiCreateAccount( username, password );
+		} );
 
-		// change real name
+		// log in
+		UserLoginPage.login( username, password );
+
+		// change
 		PreferencesPage.changeRealName( realName );
 
 		// check
