@@ -180,7 +180,7 @@ class CliInstaller extends Installer {
 
 		$text = preg_replace( '/<a href="(.*?)".*?>(.*?)<\/a>/', '$2 &lt;$1&gt;', $text );
 
-		return html_entity_decode( strip_tags( $text ), ENT_QUOTES );
+		return Sanitizer::stripAllTags( $text );
 	}
 
 	/**

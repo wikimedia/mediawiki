@@ -254,7 +254,7 @@ class ApiErrorFormatter {
 		$ret = preg_replace( '!</?(var|kbd|samp|code)>!', '"', $text );
 
 		// Strip tags and decode.
-		$ret = html_entity_decode( strip_tags( $ret ), ENT_QUOTES | ENT_HTML5 );
+		$ret = Sanitizer::stripAllTags( $ret );
 
 		return $ret;
 	}
