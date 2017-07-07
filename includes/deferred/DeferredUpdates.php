@@ -76,9 +76,12 @@ class DeferredUpdates {
 	public static function addUpdate( DeferrableUpdate $update, $stage = self::POSTSEND ) {
 		global $wgCommandLineMode;
 
-		// This is a sub-DeferredUpdate, run it right after its parent update
 		if ( self::$executeContext && self::$executeContext['stage'] >= $stage ) {
+			// This is a sub-DeferredUpdate; run it right after its parent update.
+			// Also, while post-send updates are running, push any "pre-send" jobs to the
+			// active post-send queue to make sure they get run this round (or at all).
 			self::$executeContext['subqueue'][] = $update;
+
 			return;
 		}
 
@@ -183,16 +186,6 @@ class DeferredUpdates {
 		while ( $updates ) {
 			$queue = []; // clear the queue
 
-			if ( $mode === 'enqueue' ) {
-				try {
-					// Push enqueuable updates to the job queue and get the rest
-					$updates = self::enqueueUpdates( $updates );
-				} catch ( Exception $e ) {
-					// Let other updates have a chance to run if this failed
-					MWExceptionHandler::rollbackMasterChangesAndLog( $e );
-				}
-			}
-
 			// Order will be DataUpdate followed by generic DeferrableUpdate tasks
 			$updatesByType = [ 'data' => [], 'generic' => [] ];
 			foreach ( $updates as $du ) {
@@ -212,13 +205,9 @@ class DeferredUpdates {
 			// Execute all remaining tasks...
 			foreach ( $updatesByType as $updatesForType ) {
 				foreach ( $updatesForType as $update ) {
-					self::$executeContext = [
-						'update' => $update,
-						'stage' => $stage,
-						'subqueue' => []
-					];
+					self::$executeContext = [ 'stage' => $stage, 'subqueue' => [] ];
 					/** @var DeferrableUpdate $update */
-					$guiError = self::runUpdate( $update, $lbFactory, $stage );
+					$guiError = self::runUpdate( $update, $lbFactory, $mode, $stage );
 					$reportableError = $reportableError ?: $guiError;
 					// Do the subqueue updates for $update until there are none
 					while ( self::$executeContext['subqueue'] ) {
@@ -230,7 +219,7 @@ class DeferredUpdates {
 							$subUpdate->setTransactionTicket( $ticket );
 						}
 
-						$guiError = self::runUpdate( $subUpdate, $lbFactory, $stage );
+						$guiError = self::runUpdate( $subUpdate, $lbFactory, $mode, $stage );
 						$reportableError = $reportableError ?: $guiError;
 					}
 					self::$executeContext = null;
@@ -248,16 +237,26 @@ class DeferredUpdates {
 	/**
 	 * @param DeferrableUpdate $update
 	 * @param LBFactory $lbFactory
+	 * @param string $mode
 	 * @param integer $stage
 	 * @return ErrorPageError|null
 	 */
-	private static function runUpdate( DeferrableUpdate $update, LBFactory $lbFactory, $stage ) {
+	private static function runUpdate(
+		DeferrableUpdate $update, LBFactory $lbFactory, $mode, $stage
+	) {
 		$guiError = null;
 		try {
-			$fnameTrxOwner = get_class( $update ) . '::doUpdate';
-			$lbFactory->beginMasterChanges( $fnameTrxOwner );
-			$update->doUpdate();
-			$lbFactory->commitMasterChanges( $fnameTrxOwner );
+			if ( $mode === 'enqueue' && $update instanceof EnqueueableDataUpdate ) {
+				// Run only the job enqueue logic to complete the update later
+				$spec = $update->getAsJobSpecification();
+				JobQueueGroup::singleton( $spec['wiki'] )->push( $spec['job'] );
+			} else {
+				// Run the bulk of the update now
+				$fnameTrxOwner = get_class( $update ) . '::doUpdate';
+				$lbFactory->beginMasterChanges( $fnameTrxOwner );
+				$update->doUpdate();
+				$lbFactory->commitMasterChanges( $fnameTrxOwner );
+			}
 		} catch ( Exception $e ) {
 			// Reporting GUI exceptions does not work post-send
 			if ( $e instanceof ErrorPageError && $stage === self::PRESEND ) {
