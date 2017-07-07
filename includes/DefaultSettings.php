@@ -6779,6 +6779,11 @@ $wgStructuredChangeFiltersEnableSaving = true;
 $wgStructuredChangeFiltersEnableExperimentalViews = false;
 
 /**
+ * Whether to allow users to use the experimental live update feature in the new RecentChanges UI
+ */
+$wgStructuredChangeFiltersEnableLiveUpdate = false;
+
+/**
  * Use new page patrolling to check new pages on Special:Newpages
  */
 $wgUseNPPatrol = true;

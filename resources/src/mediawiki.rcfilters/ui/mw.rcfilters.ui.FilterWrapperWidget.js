@@ -14,6 +14,7 @@
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
 	 */
 	mw.rcfilters.ui.FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget( controller, model, savedQueriesModel, config ) {
+		var $bottom;
 		config = config || {};
 
 		// Parent
@@ -33,6 +34,10 @@
 			{ $overlay: this.$overlay }
 		);
 
+		this.liveUpdateButton = new mw.rcfilters.ui.LiveUpdateButtonWidget(
+			this.controller
+		);
+
 		// Initialize
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget' );
@@ -50,8 +55,16 @@
 
 		}
 
+		$bottom = $( '<div>' )
+			.addClass( 'mw-rcfilters-ui-filterWrapperWidget-bottom' );
+
+		if ( mw.config.get( 'wgStructuredChangeFiltersEnableLiveUpdate' ) ) {
+			$bottom.append( this.liveUpdateButton.$element );
+		}
+
 		this.$element.append(
-			this.filterTagWidget.$element
+			this.filterTagWidget.$element,
+			$bottom
 		);
 	};
 
