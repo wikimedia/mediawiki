@@ -1842,10 +1842,10 @@ class Sanitizer {
 	 */
 	static function stripAllTags( $text ) {
 		# Actual <tags>
-		$text = StringUtils::delimiterReplace( '<', '>', '', $text );
+		$text = strip_tags($text);//StringUtils::delimiterReplace( '<', '>', '', $text );
 
 		# Normalize &entities and whitespace
-		$text = self::decodeCharReferences( $text );
+		$text = html_entity_decode($text);//self::decodeCharReferences( $text );
 		$text = self::normalizeWhitespace( $text );
 
 		return $text;
