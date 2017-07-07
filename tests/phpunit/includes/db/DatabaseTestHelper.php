@@ -31,6 +31,11 @@ class DatabaseTestHelper extends Database {
 	 */
 	protected $tablesExists;
 
+	/**
+	 * Value to return from unionSupportsOrderAndLimit()
+	 */
+	protected $unionSupportsOrderAndLimit = true;
+
 	public function __construct( $testName, array $opts = [] ) {
 		$this->testName = $testName;
 
@@ -202,5 +207,13 @@ class DatabaseTestHelper extends Database {
 		$this->nextResult = [];
 
 		return new FakeResultWrapper( $res );
+	}
+
+	public function unionSupportsOrderAndLimit() {
+		return $this->unionSupportsOrderAndLimit;
+	}
+
+	public function setUnionSupportsOrderAndLimit( $v ) {
+		$this->unionSupportsOrderAndLimit = (bool)$v;
 	}
 }

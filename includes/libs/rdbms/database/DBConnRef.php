@@ -424,6 +424,13 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function unionConditionPermutations(
+		$table, $vars, array $permute_conds, $extra_conds = '', $fname = __METHOD__,
+		$options = [], $join_conds = []
+	) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	public function conditional( $cond, $trueVal, $falseVal ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
