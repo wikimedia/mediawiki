@@ -894,7 +894,7 @@ abstract class ApiBase extends ContextSource {
 	 * Get a WikiPage object from a title or pageid param, if possible.
 	 * Can die, if no param is set or if the title or page id is not valid.
 	 *
-	 * @param array $params
+	 * @param array $params User provided set of parameters, as from $this->extractRequestParams()
 	 * @param bool|string $load Whether load the object's state from the database:
 	 *        - false: don't load (if the pageid is given, it will still be loaded)
 	 *        - 'fromdb': load from a replica DB
@@ -935,7 +935,7 @@ abstract class ApiBase extends ContextSource {
 	 * Can die, if no param is set or if the title or page id is not valid.
 	 *
 	 * @since 1.29
-	 * @param array $params
+	 * @param array $params User provided set of parameters, as from $this->extractRequestParams()
 	 * @return Title
 	 */
 	public function getTitleFromTitleOrPageId( $params ) {
