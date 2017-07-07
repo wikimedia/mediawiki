@@ -138,10 +138,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @param string $subpage
 	 */
 	public function execute( $subpage ) {
-		global $wgStructuredChangeFiltersEnableSaving,
-			$wgStructuredChangeFiltersEnableExperimentalViews,
-			$wgStructuredChangeFiltersEnableLiveUpdate;
-
 		// Backwards-compatibility: redirect to new feed URLs
 		$feedFormat = $this->getRequest()->getVal( 'feed' );
 		if ( !$this->including() && $feedFormat ) {
@@ -184,15 +180,15 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$out->addJsConfigVars( 'wgStructuredChangeFilters', $jsData['groups'] );
 			$out->addJsConfigVars(
 				'wgStructuredChangeFiltersEnableSaving',
-				$wgStructuredChangeFiltersEnableSaving
+				$this->getConfig()->get( 'StructuredChangeFiltersEnableSaving' )
 			);
 			$out->addJsConfigVars(
 				'wgStructuredChangeFiltersEnableExperimentalViews',
-				$wgStructuredChangeFiltersEnableExperimentalViews
+				$this->getConfig()->get( 'StructuredChangeFiltersEnableExperimentalViews' )
 			);
 			$out->addJsConfigVars(
 				'wgStructuredChangeFiltersEnableLiveUpdate',
-				$wgStructuredChangeFiltersEnableLiveUpdate
+				$this->getConfig()->get( 'StructuredChangeFiltersEnableLiveUpdate' )
 			);
 			$out->addJsConfigVars(
 				'wgRCFiltersChangeTags',
