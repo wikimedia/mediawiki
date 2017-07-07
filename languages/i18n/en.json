@@ -1446,6 +1446,7 @@
 	"rcfilters-view-namespaces-tooltip": "Filter results by namespace",
 	"rcfilters-view-tags-tooltip": "Filter results using edit tags",
 	"rcfilters-view-return-to-default-tooltip": "Return to main filter menu",
+	"rcfilters-liveupdates-button": "Live updates",
 	"rcnotefrom": "Below {{PLURAL:$5|is the change|are the changes}} since <strong>$3, $4</strong> (up to <strong>$1</strong> shown).",
 	"rclistfromreset": "Reset date selection",
 	"rclistfrom": "Show new changes starting from $2, $3",

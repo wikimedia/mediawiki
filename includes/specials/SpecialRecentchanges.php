@@ -139,7 +139,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 */
 	public function execute( $subpage ) {
 		global $wgStructuredChangeFiltersEnableSaving,
-			$wgStructuredChangeFiltersEnableExperimentalViews;
+			$wgStructuredChangeFiltersEnableExperimentalViews,
+			$wgStructuredChangeFiltersEnableLiveUpdate;
 
 		// Backwards-compatibility: redirect to new feed URLs
 		$feedFormat = $this->getRequest()->getVal( 'feed' );
@@ -188,6 +189,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$out->addJsConfigVars(
 				'wgStructuredChangeFiltersEnableExperimentalViews',
 				$wgStructuredChangeFiltersEnableExperimentalViews
+			);
+			$out->addJsConfigVars(
+				'wgStructuredChangeFiltersEnableLiveUpdate',
+				$wgStructuredChangeFiltersEnableLiveUpdate
 			);
 			$out->addJsConfigVars(
 				'wgRCFiltersChangeTags',
