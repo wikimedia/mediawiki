@@ -92,6 +92,11 @@ return [
 	 * setting 'dependencies' to the lower level the module is based on. For this reason avoid
 	 * including more than one of them into your skin as this will result in duplicate CSS.
 	 */
+	'mediawiki.skinning.language' => [
+		'styles' => [
+			'resources/src/mediawiki.skinning/directionality.css' => [ 'media' => 'screen' ],
+		],
+	],
 	'mediawiki.skinning.elements' => [
 		'styles' => [
 			'resources/src/mediawiki.skinning/elements.css' => [ 'media' => 'screen' ],
@@ -102,6 +107,9 @@ return [
 			'resources/src/mediawiki.skinning/elements.css' => [ 'media' => 'screen' ],
 			'resources/src/mediawiki.skinning/content.css' => [ 'media' => 'screen' ],
 		],
+		'dependencies' => [
+			'mediawiki.skinning.language'
+		],
 	],
 	// Used in the web installer. Test it after modifying this definition!
 	'mediawiki.skinning.interface' => [
@@ -110,6 +118,9 @@ return [
 			'resources/src/mediawiki.skinning/elements.css' => [ 'media' => 'screen' ],
 			'resources/src/mediawiki.skinning/content.css' => [ 'media' => 'screen' ],
 			'resources/src/mediawiki.skinning/interface.css' => [ 'media' => 'screen' ],
+		],
+		'dependencies' => [
+			'mediawiki.skinning.language'
 		],
 	],
 
