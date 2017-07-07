@@ -3843,6 +3843,7 @@
 	"authpage-cannot-create-continue": "Немагчыма працягнуць стварэньне рахунку. Падобна, што тэрмін вашай сэсіі скончыўся.",
 	"authpage-cannot-link": "Немагчыма пачаць далучэньне рахунку.",
 	"authpage-cannot-link-continue": "Немагчыма працягнуць далучэньне рахунку. Падобна, што тэрмін вашай сэсіі скончыўся.",
+	"cannotauth-not-allowed-title": "Доступ забаронены",
 	"changecredentials": "Зьмена ўліковых зьвестак",
 	"removecredentials": "Выдаленьне ўліковых зьвестак",
 	"removecredentials-submit": "Выдаліць уліковыя зьвесткі",

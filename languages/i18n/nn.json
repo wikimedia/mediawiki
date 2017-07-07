@@ -3032,6 +3032,8 @@
 	"logentry-protect-move_prot": "$1 {{GENDER:$2|flytte}} verneinnstillingar frå $4 til $3",
 	"logentry-protect-unprotect": "$1 {{GENDER:$2|fjerna}} vern av $3",
 	"logentry-protect-protect": "$1 {{GENDER:$2|verna}} $3 $4",
+	"logentry-protect-modify": "$1 {{GENDER:$2|endra}} vernenivå for $3 $4",
+	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|endra}} vernenivå for $3 $4 [djupvern]",
 	"logentry-rights-rights": "$1 {{GENDER:$2|endra}} gruppemedlemskap for $3 frå $4 til $5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|endra}} gruppemedlemskap for $3",
 	"logentry-rights-autopromote": "$1 vart automatisk {{GENDER:$2|forfremja}} frå $4 til $5",

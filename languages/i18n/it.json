@@ -150,7 +150,7 @@
 	"tog-watchlisthidepatrolled": "Nascondi le modifiche verificate negli osservati speciali",
 	"tog-watchlisthidecategorization": "Nascondi la categorizzazione delle pagine",
 	"tog-ccmeonemails": "Inviami una copia dei messaggi spediti agli altri utenti",
-	"tog-diffonly": "Non visualizzare il contenuto della pagina dopo il confronto tra versioni",
+	"tog-diffonly": "Non mostrare il contenuto della pagina dopo il confronto tra versioni",
 	"tog-showhiddencats": "Mostra le categorie nascoste",
 	"tog-norollbackdiff": "Non mostrare il confronto tra versioni dopo aver effettuato un rollback",
 	"tog-useeditwarning": "Avvisa quando si esce da una pagina di modifica con modifiche non salvate",

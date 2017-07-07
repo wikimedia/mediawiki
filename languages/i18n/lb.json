@@ -1322,6 +1322,7 @@
 	"rcfilters-filter-excluded": "Ausgeschloss",
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:net</strong> $1",
 	"rcfilters-view-tags": "Markéiert Ännerungen",
+	"rcfilters-view-namespaces-tooltip": "Resultater no Nummraum filteren",
 	"rcnotefrom": "Hei drënner {{PLURAL:$5|gëtt d'Ännerung|ginn d'Ännerungen}} zanter <strong>$3, $4</strong> (maximal <strong>$1</strong> Ännerunge gi gewisen).",
 	"rclistfrom": "Nei Ännerunge vum $3 $2 u weisen",
 	"rcshowhideminor": "Kleng Ännerunge $1",

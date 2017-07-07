@@ -2194,7 +2194,7 @@
 	"move-leave-redirect": "Lasse 'nu ridirezionamende rréte",
 	"protectedpagemovewarning": "'''Attenziò:''' Sta pàgene ha state bloccate accussì sulamende l'utinde cu le deritte d'amministratore 'a ponne spustà.\nL'urteme archivije de le trasute ha state mise aqquà sotte pe referimende:",
 	"semiprotectedpagemovewarning": "'''Vide Bbuène:''' Sta pàgene ha state blocchete accussì sulamende l'utinde reggistrate 'a ponne spustà.\nL'urteme archivije de le trasute ha state mise aqquà sotte pe referimende:",
-	"move-over-sharedrepo": "== 'U file esiste ==\n[[:$1]] esiste sus a 'n'archivie condivise. Spustanne 'u file sus a stu titele tu vè sovrascrive 'u file condivise.",
+	"move-over-sharedrepo": "[[:$1]] esiste sus a 'n'archivie condivise. Spustanne 'u file sus a stu titole vèje a sovrascrive 'u file condivise.",
 	"file-exists-sharedrepo": "'U nome d'u file ca è scacchiate jè già ausate sus a 'n'archivie condivise.\nPe piacere scacchiene 'notre.",
 	"export": "Pàggene esportete",
 	"exporttext": "Tu puè esportà 'u teste e cangià 'a storie de 'na particolare pàgene o 'n'inzieme de pàggene ca stonne jndr'à quacche XML.\nQuiste po essere 'mbortate jndr'à 'n'otra uicchi ausanne [[Special:Import|'mborta pàgene]] de MediaUicchi.\n\nPe esportà pàggene, mitte le titele jndr'à scatele de sotte, 'nu titele pe linèe e scacchie ce tu vuè 'a revisiona corrende o tutte le revisiune, ce le linèe d'a storie d'a pàgene, e 'a revisione corrende cu le 'mbormaziune sus a l'urteme cangiamende.\n\nCumme urteme case, tu puè pure ausà 'nu collegamende, pe esembie [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] pa pàgene \"[[{{MediaWiki:Mainpage}}]]\".",

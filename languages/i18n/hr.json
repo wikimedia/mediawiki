@@ -691,7 +691,7 @@
 	"permissionserrors": "Pogrješka u pravima",
 	"permissionserrorstext": "Nemate ovlasti za tu radnju iz sljedećih {{PLURAL:$1|razlog|razloga}}:",
 	"permissionserrorstext-withaction": "Nemate dopuštenje za $2, iz {{PLURAL:$1|navedenog|navedenih}} razloga:",
-	"recreate-moveddeleted-warn": "'''Upozorenje: Ponovno stvarate stranicu koja je prethodno bila izbrisana.'''\n\nRazmotrite je li prikladno nastaviti s uređivanje ove stranice.\nZa Vašu informaciju slijedi evidencija brisanja i premještanja ove stranice:",
+	"recreate-moveddeleted-warn": "<strong>Upozorenje: Ponovo stvarate stranicu koja je prethodno bila izbrisana.</strong>\n\nRazmotrite je li prikladno nastaviti s uređivanje ove stranice.\nZa Vašu informaciju slijedi evidencija brisanja i premještanja ove stranice:",
 	"moveddeleted-notice": "Ova stranica je bila izbrisana.\nEvidencija brisanja i evidencija premještanja za ovu stranicu je prikazana niže.",
 	"moveddeleted-notice-recent": "Žao nam je, ova stranica je izbrisana u prošla 24 sata. \nNiže je navedena evidencija brisanja i premještanja.",
 	"log-fulllog": "Prikaži cijelu evidenciju",
