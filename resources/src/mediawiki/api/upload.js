@@ -391,7 +391,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		uploadChunk: function ( file, data, start, end, filekey, retries ) {
-			var upload, retry,
+			var upload,
 				api = this,
 				chunk = this.slice( file, start, end );
 
@@ -400,22 +400,6 @@
 			// In such case, it could be useful to try again: a network hickup
 			// doesn't necessarily have to result in upload failure...
 			retries = retries === undefined ? 1 : retries;
-			retry = function ( code, result ) {
-				var deferred = $.Deferred(),
-					callback = function () {
-						api.uploadChunk( file, data, start, end, filekey, retries - 1 )
-							.then( deferred.resolve, deferred.reject );
-					};
-
-				// Don't retry if the request failed because we aborted it (or
-				// if it's another kind of request failure)
-				if ( code !== 'http' || result.textStatus === 'abort' ) {
-					return deferred.reject( code, result );
-				}
-
-				setTimeout( callback, 1000 );
-				return deferred.promise();
-			};
 
 			data.filesize = file.size;
 			data.chunk = chunk;
@@ -429,16 +413,82 @@
 
 			upload = this.uploadWithFormData( file, data );
 			return upload.then(
-					null,
-					// If the call fails, we may want to try again...
-					retries === 0 ? null : retry,
-					function ( fraction ) {
-						// Since we're only uploading small parts of a file, we
-						// need to adjust the reported progress to reflect where
-						// we actually are in the combined upload
-						return ( start + fraction * ( end - start ) ) / file.size;
+				null,
+				function ( code, result ) {
+					var retry;
+
+					// uploadWithFormData will reject uploads with warnings, but
+					// these warnings could be "harmless" or recovered from
+					// (e.g. exists-normalized, when it'll be renamed later)
+					// In the case of (only) a warning, we still want to
+					// continue the chunked upload until it completes: then
+					// reject it - at least it's been fully uploaded by then and
+					// failure handlers have a complete result object (including
+					// possibly more warnings, e.g. duplicate)
+					// This matches .upload, which also completes the upload.
+					if ( result.upload && result.upload.warnings && code in result.upload.warnings ) {
+						if ( end === file.size ) {
+							// uploaded last chunk = reject with result data
+							return $.Deferred().reject( code, result );
+						} else {
+							// still uploading chunks = resolve to keep going
+							return $.Deferred().resolve( result );
+						}
 					}
-				).promise( { abort: upload.abort } );
+
+					if ( retries === 0 ) {
+						return $.Deferred().reject( code, result );
+					}
+
+					// If the call flat out failed, we may want to try again...
+					retry = api.uploadChunk.bind( this, file, data, start, end, filekey, retries - 1 );
+					return api.retry( code, result, retry );
+				},
+				function ( fraction ) {
+					// Since we're only uploading small parts of a file, we
+					// need to adjust the reported progress to reflect where
+					// we actually are in the combined upload
+					return ( start + fraction * ( end - start ) ) / file.size;
+				}
+			).promise( { abort: upload.abort } );
+		},
+
+		/**
+		 * Launch the upload anew if it failed because of network issues.
+		 *
+		 * @private
+		 * @param {string} code Error code
+		 * @param {Object} result API result
+		 * @param {function} callable
+		 * @return {$.Promise}
+		 */
+		retry: function ( code, result, callable ) {
+			var uploadPromise,
+				retryTimer,
+				deferred = $.Deferred(),
+				// Wrap around the callable, so that once it completes, it'll
+				// resolve/reject the promise we'll return
+				retry = function () {
+					uploadPromise = callable();
+					uploadPromise.then( deferred.resolve, deferred.reject );
+				};
+
+			// Don't retry if the request failed because we aborted it (or if
+			// it's another kind of request failure)
+			if ( code !== 'http' || result.textStatus === 'abort' ) {
+				return deferred.reject( code, result );
+			}
+
+			retryTimer = setTimeout( retry, 1000 );
+			return deferred.promise( { abort: function () {
+				// Clear the scheduled upload, or abort if already in flight
+				if ( retryTimer ) {
+					clearTimeout( retryTimer );
+				}
+				if ( uploadPromise.abort ) {
+					uploadPromise.abort();
+				}
+			} } );
 		},
 
 		/**
