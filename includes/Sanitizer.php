@@ -1514,10 +1514,7 @@ class Sanitizer {
 	 * @return string
 	 */
 	public static function decodeCharReferences( $text ) {
-		return preg_replace_callback(
-			self::CHAR_REFS_REGEX,
-			[ 'Sanitizer', 'decodeCharReferencesCallback' ],
-			$text );
+		return html_entity_decode( $text, ENT_QUOTES | ENT_HTML5 );
 	}
 
 	/**
@@ -1842,7 +1839,7 @@ class Sanitizer {
 	 */
 	static function stripAllTags( $text ) {
 		# Actual <tags>
-		$text = StringUtils::delimiterReplace( '<', '>', '', $text );
+		$text = strip_tags( $text );
 
 		# Normalize &entities and whitespace
 		$text = self::decodeCharReferences( $text );
