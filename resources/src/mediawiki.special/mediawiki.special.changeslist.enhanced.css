@@ -16,11 +16,11 @@ table.mw-enhanced-rc td {
 
 td.mw-enhanced-rc {
 	white-space: nowrap;
-	font-family: monospace;
+	font-family: monospace, monospace;
 }
 
 .mw-enhanced-rc-time {
-	font-family: monospace;
+	font-family: monospace, monospace;
 }
 
 table.mw-enhanced-rc td.mw-enhanced-rc-nested {
