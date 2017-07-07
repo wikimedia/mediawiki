@@ -34,6 +34,11 @@ use Wikimedia\TestingAccessWrapper;
  * @ingroup Testing
  */
 class ParserTestRunner {
+
+	private static $coreTestFiles = [
+		'parserTests.txt',
+		'extraParserTests.txt',
+	];
 	/**
 	 * @var bool $useTemporaryTables Use temporary tables for the temporary database
 	 */
@@ -145,6 +150,43 @@ class ParserTestRunner {
 		if ( isset( $options['upload-dir'] ) ) {
 			$this->uploadDir = $options['upload-dir'];
 		}
+	}
+
+	/**
+	 * Get list of filenames to extension and core parser tests
+	 *
+	 * @return array
+	 */
+	public static function getParserTestFiles() {
+		global $wgParserTestFiles;
+
+		// Add core test files
+		$files = array_map( function( $item ) {
+			return __DIR__ . "/$item";
+		}, self::$coreTestFiles );
+
+		// Plus legacy global files
+		$files = array_merge( $files, $wgParserTestFiles );
+
+		// Auto-discover extension parser tests
+		$registry = ExtensionRegistry::getInstance();
+		foreach ( $registry->getAllThings() as $info ) {
+			$dir = dirname( $info['path'] ) . '/tests/parser';
+			if ( !file_exists( $dir ) ) {
+				continue;
+			}
+			$dirIterator = new RecursiveIteratorIterator(
+				new RecursiveDirectoryIterator( $dir )
+			);
+			foreach ( $dirIterator as $fileInfo ) {
+				/** @var SplFileInfo $fileInfo */
+				if ( substr( $fileInfo->getFilename(), -4 ) === '.txt' ) {
+					$files[] = $fileInfo->getPathname();
+				}
+			}
+		}
+
+		return array_unique( $files );
 	}
 
 	public function getRecorder() {
