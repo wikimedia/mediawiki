@@ -4502,12 +4502,16 @@ class Parser {
 		# which may corrupt this parser instance via its wfMessage()->text() call-
 
 		# Signatures
-		$sigText = $this->getUserSig( $user );
-		$text = strtr( $text, [
-			'~~~~~' => $d,
-			'~~~~' => "$sigText $d",
-			'~~~' => $sigText
-		] );
+		if ( strpos( $text, '~~~' ) !== false ) {
+			$sigText = $this->getUserSig( $user );
+			$text = strtr( $text, [
+				'~~~~~' => $d,
+				'~~~~' => "$sigText $d",
+				'~~~' => $sigText
+			] );
+			# The main two signature forms used above are time-sensitive
+			$this->mOutput->setFlag( 'user-signature' );
+		}
 
 		# Context links ("pipe tricks"): [[|name]] and [[name (context)|]]
 		$tc = '[' . Title::legalChars() . ']';
