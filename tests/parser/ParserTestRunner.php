@@ -778,6 +778,7 @@ class ParserTestRunner {
 
 		if ( isset( $opts['pst'] ) ) {
 			$out = $parser->preSaveTransform( $test['input'], $title, $user, $options );
+			$output = $parser->getOutput();
 		} elseif ( isset( $opts['msg'] ) ) {
 			$out = $parser->transformMsg( $test['input'], $options, $title );
 		} elseif ( isset( $opts['section'] ) ) {
@@ -826,6 +827,12 @@ class ParserTestRunner {
 					$out .= "cat=$name sort=$sortkey";
 				}
 			}
+		}
+
+		if ( isset( $output ) && isset( $opts['showflags'] ) ) {
+			$actualFlags = array_keys( TestingAccessWrapper::newFromObject( $output )->mFlags );
+			sort( $actualFlags );
+			$out .= "\nflags=" . join( ', ', $actualFlags );
 		}
 
 		ScopedCallback::consume( $teardownGuard );
