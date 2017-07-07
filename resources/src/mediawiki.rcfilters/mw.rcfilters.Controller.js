@@ -272,6 +272,42 @@
 	};
 
 	/**
+	 * Enable or disable live updates.
+	 * @param {boolean} enable True to enable, false to disable
+	 */
+	mw.rcfilters.Controller.prototype.toggleLiveUpdate = function ( enable ) {
+		if ( enable && !this.liveUpdateTimeout ) {
+			this._scheduleLiveUpdate();
+		} else if ( !enable && this.liveUpdateTimeout ) {
+			clearTimeout( this.liveUpdateTimeout );
+			this.liveUpdateTimeout = null;
+		}
+	};
+
+	/**
+	 * Set a timeout for the next live update.
+	 * @private
+	 */
+	mw.rcfilters.Controller.prototype._scheduleLiveUpdate = function () {
+		this.liveUpdateTimeout = setTimeout( this._doLiveUpdate.bind( this ), 3000 );
+	};
+
+	/**
+	 * Perform a live update.
+	 * @private
+	 */
+	mw.rcfilters.Controller.prototype._doLiveUpdate = function () {
+		var controller = this;
+		this.updateChangesList( {}, true )
+			.always( function () {
+				if ( controller.liveUpdateTimeout ) {
+					// Live update was not disabled in the meantime
+					controller._scheduleLiveUpdate();
+				}
+			} );
+	};
+
+	/**
 	 * Save the current model state as a saved query
 	 *
 	 * @param {string} [label] Label of the saved query
@@ -555,11 +591,15 @@
 	 * Update the list of changes and notify the model
 	 *
 	 * @param {Object} [params] Extra parameters to add to the API call
+	 * @param {boolean} [isLiveUpdate] Don't update the URL or invalidate the changes list
+	 * @return {jQuery.Promise} Promise that is resolved when the update is complete
 	 */
-	mw.rcfilters.Controller.prototype.updateChangesList = function ( params ) {
-		this._updateURL( params );
-		this.changesListModel.invalidate();
-		this._fetchChangesList()
+	mw.rcfilters.Controller.prototype.updateChangesList = function ( params, isLiveUpdate ) {
+		if ( !isLiveUpdate ) {
+			this._updateURL( params );
+			this.changesListModel.invalidate();
+		}
+		return this._fetchChangesList()
 			.then(
 				// Success
 				function ( pieces ) {

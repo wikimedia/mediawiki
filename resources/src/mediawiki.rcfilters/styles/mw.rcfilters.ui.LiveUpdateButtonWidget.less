@@ -1,0 +1,36 @@
+.mw-rcfilters-ui-liveUpdateButtonWidget {
+    &.oo-ui-toggleWidget-on {
+        position: relative;
+        overflow: hidden;
+        &:after {
+            content: '';
+            mix-blend-mode: screen;
+            position: absolute;
+            width: 1.875em;
+            height: 1.875em;
+            top: 1.875em / 4;
+            left: 0.46875em;
+            background: rgba(51, 102, 204, 0.5);
+            border-radius: 100%;
+            transform-origin: 50% 50%;
+            opacity: 0;
+            animation: ripple 1.2s ease-out infinite;
+            animation-delay: 1s;
+        }
+    }
+}
+
+@keyframes ripple {
+  0%, 35% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(4);
+  }
+}

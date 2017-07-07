@@ -1789,6 +1789,7 @@ return [
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FormWrapperWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterItemHighlightButton.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.HighlightColorPickerWidget.js',
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.LiveUpdateButtonWidget.js',
 			'resources/src/mediawiki.rcfilters/mw.rcfilters.HighlightColors.js',
 			'resources/src/mediawiki.rcfilters/mw.rcfilters.init.js',
 		],
@@ -1812,6 +1813,7 @@ return [
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.SavedLinksListWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.SavedLinksListItemWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.SaveFiltersPopupButtonWidget.less',
+			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.LiveUpdateButtonWidget.less',
 		],
 		'skinStyles' => [
 			'monobook' => [
@@ -1859,6 +1861,7 @@ return [
 			'rcfilters-view-namespaces-tooltip',
 			'rcfilters-view-tags-tooltip',
 			'rcfilters-view-return-to-default-tooltip',
+			'rcfilters-liveupdates-button',
 			'blanknamespace',
 			'namespaces',
 			'invert',
@@ -1877,6 +1880,7 @@ return [
 			'oojs-ui.styles.icons-interactions',
 			'oojs-ui.styles.icons-content',
 			'oojs-ui.styles.icons-layout',
+			'oojs-ui.styles.icons-media',
 		],
 	],
 	'mediawiki.special' => [
