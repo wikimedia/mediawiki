@@ -202,10 +202,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @return Array Tag data
 	 */
 	protected function buildChangeTagList() {
-		function stripAllHtml( $input ) {
-			return trim( html_entity_decode( strip_tags( $input ) ) );
-		}
-
 		$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
 		$softwareActivatedTags = array_fill_keys( ChangeTags::listSoftwareActivatedTags(), 0 );
 		$tagStats = ChangeTags::tagUsageStatistics();
@@ -228,8 +224,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 				$result[] = [
 					'name' => $tagName,
-					'label' => stripAllHtml( ChangeTags::tagDescription( $tagName, $this->getContext() ) ),
-					'description' => $desc ? stripAllHtml( $desc->parse() ) : '',
+					'label' => Sanitizer::stripAllTags(
+						ChangeTags::tagDescription( $tagName, $this->getContext() )
+					),
+					'description' => $desc ? Sanitizer::stripAllTags( $desc->parse() ) : '',
 					'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
 					'hits' => $hits,
 				];
