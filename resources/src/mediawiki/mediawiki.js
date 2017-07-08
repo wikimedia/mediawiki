@@ -2083,7 +2083,7 @@
 					// Filter out top-level modules that are unknown or failed to load before.
 					filtered = $.grep( modules, function ( module ) {
 						var state = mw.loader.getState( module );
-						return state !== null && state !== 'error' && state !== 'missing';
+						return state !== 'error' && state !== 'missing';
 					} );
 					// Resolve remaining list using the known dependency tree.
 					// This also filters out modules with unknown dependencies. (T36853)

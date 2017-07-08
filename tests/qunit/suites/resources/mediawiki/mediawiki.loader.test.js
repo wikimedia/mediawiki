@@ -230,9 +230,25 @@
 		).always( done );
 	} );
 
-	QUnit.test( '.load() - Error: Unregistered (ignored)', function ( assert ) {
-		assert.expect( 0 );
-		mw.loader.load( 'test.using.unreg2' );
+	QUnit.test( '.load() - Error: Unregistered', function ( assert ) {
+		var capture = [];
+		this.sandbox.stub( mw, 'track', function ( topic, data ) {
+			capture.push( {
+				topic: topic,
+				error: data.exception && data.exception.message,
+				source: data.source
+			} );
+		} );
+
+		mw.loader.load( 'test.load.unreg' );
+		assert.deepEqual(
+			[ {
+				topic: 'resourceloader.exception',
+				error: 'Unknown dependency: test.load.unreg',
+				source: 'resolve'
+			} ],
+			capture
+		);
 	} );
 
 	// Regression test for T36853
