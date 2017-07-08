@@ -85,9 +85,7 @@
 						localEnv.teardown.call( this );
 					}
 
-					if ( this.sandbox ) {
-						this.sandbox.verifyAndRestore();
-					}
+					this.sandbox.verifyAndRestore();
 				}
 			}, executeNow );
 		};
@@ -541,5 +539,13 @@
 		assert.equal( mw.config.get( 'testVar' ), null, 'config object restored to live in next module()' );
 		assert.equal( mw.messages.get( 'testMsg' ), null, 'messages object restored to live in next module()' );
 	} );
+
+	QUnit.module( 'test.mediawiki.qunit.testrunner-nested', function () {
+		QUnit.module( 'nested-module', function () {
+			QUnit.test( 'dummy', function ( assert ) {
+				assert.ok( true );
+			});
+		});
+	});
 
 }( jQuery, mediaWiki, QUnit ) );
