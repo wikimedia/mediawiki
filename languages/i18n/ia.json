@@ -1382,6 +1382,7 @@
 	"rcfilters-view-namespaces-tooltip": "Filtrar le resultatos per spatio de nomines",
 	"rcfilters-view-tags-tooltip": "Filtrar le resultatos usante etiquettas de version",
 	"rcfilters-view-return-to-default-tooltip": "Retornar al menu principal de filtros",
+	"rcfilters-liveupdates-button": "Fluxo continue",
 	"rcnotefrom": "Ecce le {{PLURAL:$5|modification|modificationes}} a partir del <strong>$3 a $4</strong> (usque a <strong>$1</strong> entratas monstrate).",
 	"rclistfromreset": "Reinitialisar selection de data",
 	"rclistfrom": "Monstrar nove modificationes a partir del $3 a $2",

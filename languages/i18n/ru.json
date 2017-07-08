@@ -1485,6 +1485,7 @@
 	"rcfilters-view-namespaces-tooltip": "Результаты фильтра по пространствам имён",
 	"rcfilters-view-tags-tooltip": "Результаты фильтра, использующего метки правок",
 	"rcfilters-view-return-to-default-tooltip": "Вернуться в главное меню фильтров",
+	"rcfilters-liveupdates-button": "Обновлять автоматически",
 	"rcnotefrom": "Ниже {{PLURAL:$5|указано изменение|перечислены изменения}} с <strong>$3, $4</strong> (показано не более <strong>$1</strong>).",
 	"rclistfromreset": "Сбросить выбор даты",
 	"rclistfrom": "Показать изменения с $3 $2.",

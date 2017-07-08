@@ -1458,6 +1458,7 @@
 	"rcfilters-view-namespaces-tooltip": "Ergebnisse nach Namensraum filtern",
 	"rcfilters-view-tags-tooltip": "Ergebnisse filtern, die Bearbeitungsmarkierungen verwenden",
 	"rcfilters-view-return-to-default-tooltip": "Zurück zum Hauptfiltermenü",
+	"rcfilters-liveupdates-button": "Live-Aktualisierungen",
 	"rcnotefrom": "Angezeigt {{PLURAL:$5|wird die Änderung|werden die Änderungen}} seit <strong>$3, $4</strong> (max. <strong>$1</strong> Einträge).",
 	"rclistfromreset": "Datumsauswahl zurücksetzen",
 	"rclistfrom": "Nur Änderungen seit $3, $2 Uhr zeigen.",

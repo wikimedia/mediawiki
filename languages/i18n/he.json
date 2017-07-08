@@ -1404,6 +1404,7 @@
 	"rcfilters-view-namespaces-tooltip": "סינון התוצאות לפי מרחב שם",
 	"rcfilters-view-tags-tooltip": "סינון התוצאות לפי תגיות עריכה",
 	"rcfilters-view-return-to-default-tooltip": "חזרה לתפריט המסננים הראשי",
+	"rcfilters-liveupdates-button": "עדכונים חיים",
 	"rcnotefrom": "להלן {{PLURAL:$5|השינוי שבוצע|השינויים שבוצעו}} מאז <strong>$3, $4</strong> (מוצגים עד <strong>$1</strong>).",
 	"rclistfromreset": "איפוס בחירת התאריך",
 	"rclistfrom": "הצגת שינויים חדשים החל מ־$2, $3",

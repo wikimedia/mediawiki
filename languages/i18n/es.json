@@ -1043,7 +1043,7 @@
 	"diff-multi-sameuser": "(No se {{PLURAL:$1|muestra una edición intermedia|muestran $1 ediciones intermedias}} del mismo usuario)",
 	"diff-multi-otherusers": "(No se {{PLURAL:$1|muestra una edición intermedia|muestran $1 ediciones intermedias}} de {{PLURAL:$2|otro usuario|$2 usuarios}})",
 	"diff-multi-manyusers": "(No se {{PLURAL:$1|muestra una edición intermedia|muestran $1 ediciones intermedias}} de más de {{PLURAL:$2|un usuario|$2 usuarios}})",
-	"difference-missing-revision": "No se {{PLURAL:$2|ha encontrado una revisión|han encontrado $2 revisiones}} de la comparación solicitada ($1).\n\nLa causa de esto suele ser un enlace obsoleto hacia una página que ya ha sido borrada.\nPara más información, consulta el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
+	"difference-missing-revision": "No se {{PLURAL:$2|ha encontrado una revisión|han encontrado $2 revisiones}} de la comparación solicitada ($1).\n\nLa causa de esto suele ser un enlace obsoleto hacia una edición de una página que ha sido borrada.\nPara más información, consulta el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
 	"searchresults": "Resultados de la búsqueda",
 	"searchresults-title": "Resultados de la búsqueda de «$1»",
 	"titlematches": "Resultados por título de página",
