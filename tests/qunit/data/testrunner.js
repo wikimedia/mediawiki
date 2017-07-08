@@ -64,6 +64,12 @@
 		var orgModule = QUnit.module;
 
 		QUnit.module = function ( name, localEnv, executeNow ) {
+			if ( QUnit.config.moduleStack.length ) {
+				// When inside a nested module, don't add our Sinon
+				// setup/teardown a second time.
+				return orgModule.apply( this, arguments );
+			}
+
 			if ( arguments.length === 2 && typeof localEnv === 'function' ) {
 				executeNow = localEnv;
 				localEnv = undefined;
@@ -85,9 +91,7 @@
 						localEnv.teardown.call( this );
 					}
 
-					if ( this.sandbox ) {
-						this.sandbox.verifyAndRestore();
-					}
+					this.sandbox.verifyAndRestore();
 				}
 			}, executeNow );
 		};
@@ -540,6 +544,14 @@
 		assert.equal( mw.html.escape( '<' ), '&lt;', 'teardown() callback was ran.' );
 		assert.equal( mw.config.get( 'testVar' ), null, 'config object restored to live in next module()' );
 		assert.equal( mw.messages.get( 'testMsg' ), null, 'messages object restored to live in next module()' );
+	} );
+
+	QUnit.module( 'test.mediawiki.qunit.testrunner-nested', function () {
+		QUnit.module( 'nested-module', function () {
+			QUnit.test( 'dummy', function ( assert ) {
+				assert.ok( true, 'assert true' );
+			} );
+		} );
 	} );
 
 }( jQuery, mediaWiki, QUnit ) );
