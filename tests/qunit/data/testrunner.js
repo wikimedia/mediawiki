@@ -85,9 +85,7 @@
 						localEnv.teardown.call( this );
 					}
 
-					if ( this.sandbox ) {
-						this.sandbox.verifyAndRestore();
-					}
+					this.sandbox.verifyAndRestore();
 				}
 			}, executeNow );
 		};
