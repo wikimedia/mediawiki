@@ -3,9 +3,11 @@ use Liuggio\StatsdClient\Entity\StatsdData;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 
 /**
- * Mediawiki adaptation of Statsd data factory.
+ * MediaWiki adaptation of StatsdDataFactory that provides buffering functionality.
+ *
+ * @see BufferingStatsdDataFactory
  */
-interface MediawikiStatsdDataFactory extends StatsdDataFactoryInterface {
+interface IBufferingStatsdDataFactory extends StatsdDataFactoryInterface {
 	/**
 	 * Check whether this data factory has any data.
 	 * @return boolean

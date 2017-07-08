@@ -303,7 +303,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'MainConfig' => [ 'MainConfig', Config::class ],
 			'SiteStore' => [ 'SiteStore', SiteStore::class ],
 			'SiteLookup' => [ 'SiteLookup', SiteLookup::class ],
-			'StatsdDataFactory' => [ 'StatsdDataFactory', MediawikiStatsdDataFactory::class ],
+			'StatsdDataFactory' => [ 'StatsdDataFactory', IBufferingStatsdDataFactory::class ],
 			'InterwikiLookup' => [ 'InterwikiLookup', InterwikiLookup::class ],
 			'EventRelayerGroup' => [ 'EventRelayerGroup', EventRelayerGroup::class ],
 			'SearchEngineFactory' => [ 'SearchEngineFactory', SearchEngineFactory::class ],

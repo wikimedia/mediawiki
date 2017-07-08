@@ -8,7 +8,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
  * @author Addshore
  * @since 1.27
  */
-class NullStatsdDataFactory implements MediawikiStatsdDataFactory {
+class NullStatsdDataFactory implements IBufferingStatsdDataFactory {
 
 	/**
 	 * This function creates a 'timing' StatsdData.
