@@ -6333,15 +6333,16 @@ $wgSiteStatsAsyncFactor = false;
  * Parser test suite files to be run by parserTests.php when no specific
  * filename is passed to it.
  *
- * Extensions may add their own tests to this array, or site-local tests
- * may be added via LocalSettings.php
+ * Extensions using extension.json will have any *.txt file in a
+ * tests/parser/ directory automatically run.
+ *
+ * Core tests can be added to ParserTestRunner::$coreTestFiles.
  *
  * Use full paths.
+ *
+ * @deprecated since 1.30
  */
-$wgParserTestFiles = [
-	"$IP/tests/parser/parserTests.txt",
-	"$IP/tests/parser/extraParserTests.txt"
-];
+$wgParserTestFiles = [];
 
 /**
  * Allow running of javascript test suites via [[Special:JavaScriptTest]] (such as QUnit).

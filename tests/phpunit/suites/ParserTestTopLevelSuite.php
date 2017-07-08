@@ -69,7 +69,7 @@ class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
 		if ( is_string( $flags ) ) {
 			$flags = self::CORE_ONLY;
 		}
-		global $wgParserTestFiles, $IP;
+		global $IP;
 
 		$mwTestDir = $IP . '/tests/';
 
@@ -81,7 +81,8 @@ class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
 		$filesToTest = [];
 
 		# Filter out .txt files
-		foreach ( $wgParserTestFiles as $parserTestFile ) {
+		$files = ParserTestRunner::getParserTestFiles();
+		foreach ( $files as $parserTestFile ) {
 			$isCore = ( 0 === strpos( $parserTestFile, $mwTestDir ) );
 
 			if ( $isCore && $wantsCore ) {
