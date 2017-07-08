@@ -28,6 +28,7 @@
 	/**
 	 * @event update
 	 * @param {jQuery|string} changesListContent
+	 * @param {jQuery} $fieldset
 	 *
 	 * The list of change is now up to date
 	 */
