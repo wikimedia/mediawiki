@@ -182,13 +182,18 @@ class ParserTestRunner {
 			if ( !file_exists( $dir ) ) {
 				continue;
 			}
+			$counter = 1;
 			$dirIterator = new RecursiveIteratorIterator(
 				new RecursiveDirectoryIterator( $dir )
 			);
 			foreach ( $dirIterator as $fileInfo ) {
 				/** @var SplFileInfo $fileInfo */
 				if ( substr( $fileInfo->getFilename(), -4 ) === '.txt' ) {
-					$files[] = $fileInfo->getPathname();
+					$name = $info['name'] . $counter;
+					while ( isset( $files[$name] ) ) {
+						$name = $info['name'] . '_' . $counter++;
+					}
+					$files[$name] = $fileInfo->getPathname();
 				}
 			}
 		}
