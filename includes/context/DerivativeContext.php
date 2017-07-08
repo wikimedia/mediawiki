@@ -109,7 +109,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 *
 	 * @deprecated since 1.27 use a StatsdDataFactory from MediaWikiServices (preferably injected)
 	 *
-	 * @return MediawikiStatsdDataFactory
+	 * @return IBufferingStatsdDataFactory
 	 */
 	public function getStats() {
 		return MediaWikiServices::getInstance()->getStatsdDataFactory();

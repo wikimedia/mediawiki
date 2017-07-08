@@ -9,7 +9,7 @@ use EventRelayerGroup;
 use GenderCache;
 use GlobalVarConfig;
 use Hooks;
-use MediawikiStatsdDataFactory;
+use IBufferingStatsdDataFactory;
 use Wikimedia\Rdbms\LBFactory;
 use LinkCache;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -447,7 +447,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.27
-	 * @return MediawikiStatsdDataFactory
+	 * @return IBufferingStatsdDataFactory
 	 */
 	public function getStatsdDataFactory() {
 		return $this->getService( 'StatsdDataFactory' );

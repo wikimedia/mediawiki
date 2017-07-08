@@ -131,7 +131,7 @@ interface IContextSource extends MessageLocalizer {
 	 * @deprecated since 1.27 use a StatsdDataFactory from MediaWikiServices (preferably injected)
 	 *
 	 * @since 1.25
-	 * @return MediawikiStatsdDataFactory
+	 * @return IBufferingStatsdDataFactory
 	 */
 	public function getStats();
 

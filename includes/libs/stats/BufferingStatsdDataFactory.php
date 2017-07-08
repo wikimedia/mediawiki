@@ -32,7 +32,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactory;
  *
  * @since 1.25
  */
-class BufferingStatsdDataFactory extends StatsdDataFactory implements MediawikiStatsdDataFactory {
+class BufferingStatsdDataFactory extends StatsdDataFactory implements IBufferingStatsdDataFactory {
 	protected $buffer = [];
 	/**
 	 * Collection enabled?
