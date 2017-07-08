@@ -191,14 +191,30 @@
 	} );
 
 	QUnit.test( '.load() - Error: Circular dependency', function ( assert ) {
+		var capture = [];
 		mw.loader.register( [
 			[ 'test.circleA', '0', [ 'test.circleB' ] ],
 			[ 'test.circleB', '0', [ 'test.circleC' ] ],
 			[ 'test.circleC', '0', [ 'test.circleA' ] ]
 		] );
-		assert.throws( function () {
-			mw.loader.load( 'test.circleC' );
-		}, /Circular/, 'Detect circular dependency' );
+		this.sandbox.stub( mw, 'track', function ( topic, data ) {
+			capture.push( {
+				topic: topic,
+				error: data.exception && data.exception.message,
+				source: data.source
+			} );
+		} );
+
+		mw.loader.load( 'test.circleC' );
+		assert.deepEqual(
+			[ {
+				topic: 'resourceloader.exception',
+				error: 'Circular reference detected: test.circleB -> test.circleC',
+				source: 'resolve'
+			} ],
+			capture,
+			'Detect circular dependency'
+		);
 	} );
 
 	QUnit.test( '.using() - Error: Unregistered', function ( assert ) {
@@ -217,6 +233,32 @@
 	QUnit.test( '.load() - Error: Unregistered (ignored)', function ( assert ) {
 		assert.expect( 0 );
 		mw.loader.load( 'test.using.unreg2' );
+	} );
+
+	// Regression test for T36853
+	QUnit.test( '.load() - Error: Missing dependency', function ( assert ) {
+		var capture = [];
+		this.sandbox.stub( mw, 'track', function ( topic, data ) {
+			capture.push( {
+				topic: topic,
+				error: data.exception && data.exception.message,
+				source: data.source
+			} );
+		} );
+
+		mw.loader.register( [
+			[ 'test.load.missingdep1', '0', [ 'test.load.missingdep2' ] ],
+			[ 'test.load.missingdep', '0', [ 'test.load.missingdep1' ] ]
+		] );
+		mw.loader.load( 'test.load.missingdep' );
+		assert.deepEqual(
+			[ {
+				topic: 'resourceloader.exception',
+				error: 'Unknown dependency: test.load.missingdep2',
+				source: 'resolve'
+			} ],
+			capture
+		);
 	} );
 
 	QUnit.test( '.implement( styles={ "css": [text, ..] } )', function ( assert ) {

@@ -754,6 +754,7 @@
 			 *     is used)
 			 *   - load-callback: exception thrown by user callback
 			 *   - module-execute: exception thrown by module code
+			 *   - resolve: failed to sort dependencies for a module in mw.loader.load
 			 *   - store-eval: could not evaluate module code cached in localStorage
 			 *   - store-localstorage-init: localStorage or JSON parse error in mw.loader.store.init
 			 *   - store-localstorage-json: JSON conversion error in mw.loader.store.set
@@ -1165,6 +1166,33 @@
 				var i, resolved = [];
 				for ( i = 0; i < modules.length; i++ ) {
 					sortDependencies( modules[ i ], resolved );
+				}
+				return resolved;
+			}
+
+			/**
+			 * Like #resolve(), except it will silently ignore modules that
+			 * are missing or have missing dependencies.
+			 *
+			 * @private
+			 * @param {string[]} modules Array of string module names
+			 * @return {Array} List of dependencies.
+			 */
+			function resolveStubbornly( modules ) {
+				var i, saved, resolved = [];
+				for ( i = 0; i < modules.length; i++ ) {
+					saved = resolved.slice();
+					try {
+						sortDependencies( modules[ i ], resolved );
+					} catch ( err ) {
+						// This module is unknown or has unknown dependencies.
+						// Undo any incomplete resolutions made and keep going.
+						resolved = saved;
+						mw.track( 'resourceloader.exception', {
+							exception: err,
+							source: 'resolve'
+						} );
+					}
 				}
 				return resolved;
 			}
@@ -2012,6 +2040,15 @@
 				/**
 				 * Load an external script or one or more modules.
 				 *
+				 * This method takes a list of unrelated modules. Use cases:
+				 *
+				 * - A web page will be composed of many different widgets. These widgets independently
+				 *   queue their ResourceLoader modules (`OutputPage::addModules()`). If any of them
+				 *   have problems, or are no longer known (e.g. cached HTML), the other modules
+				 *   should still be loaded.
+				 * - This method is used for preloading, which must not throw. Later code that
+				 *   calls #using() will handle the error.
+				 *
 				 * @param {string|Array} modules Either the name of a module, array of modules,
 				 *  or a URL of an external script or style
 				 * @param {string} [type='text/javascript'] MIME type to use if calling with a URL of an
@@ -2043,23 +2080,19 @@
 						modules = [ modules ];
 					}
 
-					// Filter out undefined modules, otherwise resolve() will throw
-					// an exception for trying to load an undefined module.
-					// Undefined modules are acceptable here in load(), because load() takes
-					// an array of unrelated modules, whereas the modules passed to
-					// using() are related and must all be loaded.
+					// Filter out top-level modules that are unknown or failed to load before.
 					filtered = $.grep( modules, function ( module ) {
 						var state = mw.loader.getState( module );
 						return state !== null && state !== 'error' && state !== 'missing';
 					} );
-
-					if ( filtered.length === 0 ) {
-						return;
-					}
-					// Resolve entire dependency map
-					filtered = resolve( filtered );
+					// Resolve remaining list using the known dependency tree.
+					// This also filters out modules with unknown dependencies. (T36853)
+					filtered = resolveStubbornly( filtered );
 					// If all modules are ready, or if any modules have errors, nothing to be done.
 					if ( allReady( filtered ) || anyFailed( filtered ) ) {
+						return;
+					}
+					if ( filtered.length === 0 ) {
 						return;
 					}
 					// Some modules are not yet ready, add to module load queue.
