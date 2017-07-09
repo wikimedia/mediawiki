@@ -645,7 +645,8 @@ class LogFormatter {
 	 */
 	protected function makePageLink( Title $title = null, $parameters = [], $html = null ) {
 		if ( !$this->plaintext ) {
-			$link = Linker::link( $title, $html, [], $parameters );
+			$html = $html !== null ? new HtmlArmor( $html ) : $html;
+			$link = $this->getLinkRenderer()->makeLink( $title, $html, [], $parameters );
 		} else {
 			if ( !$title instanceof Title ) {
 				throw new MWException( "Expected title, got null" );
