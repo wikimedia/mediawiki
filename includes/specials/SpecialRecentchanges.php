@@ -422,13 +422,14 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$fields[] = 'page_latest';
 		$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
 
+		$tagFilter = explode( '|', $opts['tagfilter'] );
 		ChangeTags::modifyDisplayQuery(
 			$tables,
 			$fields,
 			$conds,
 			$join_conds,
 			$query_options,
-			$opts['tagfilter']
+			$tagFilter
 		);
 
 		if ( !$this->runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds,
@@ -441,13 +442,24 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			return false;
 		}
 
+		$orderByAndLimit = [
+			'ORDER BY' => 'rc_timestamp DESC',
+			'LIMIT' => $opts['limit']
+		];
+		if ( in_array( 'DISTINCT', $query_options ) ) {
+			// ChangeTags::modifyDisplayQuery() adds DISTINCT when filtering on multiple tags.
+			// In order to prevent DISTINCT from causing query performance problems,
+			// we have to GROUP BY the primary key. This in turn requires us to add
+			// the primary key to the end of the ORDER BY, and the old ORDER BY to the
+			// start of the GROUP BY
+			$orderByAndLimit['ORDER BY'] = 'rc_timestamp DESC, rc_id DESC';
+			$orderByAndLimit['GROUP BY'] = 'rc_timestamp, rc_id';
+		}
 		// array_merge() is used intentionally here so that hooks can, should
 		// they so desire, override the ORDER BY / LIMIT condition(s); prior to
 		// MediaWiki 1.26 this used to use the plus operator instead, which meant
 		// that extensions weren't able to change these conditions
-		$query_options = array_merge( [
-			'ORDER BY' => 'rc_timestamp DESC',
-			'LIMIT' => $opts['limit'] ], $query_options );
+		$query_options = array_merge( $orderByAndLimit, $query_options );
 		$rows = $dbr->select(
 			$tables,
 			$fields,
