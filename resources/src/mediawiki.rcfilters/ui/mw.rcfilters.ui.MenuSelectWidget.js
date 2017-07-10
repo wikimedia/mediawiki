@@ -272,6 +272,10 @@
 
 			this.emit( 'itemVisibilityChange' );
 		}
+
+		this.noResults.toggle( !this.getItems().some( function ( item ) {
+			return item.isVisible();
+		} ) );
 	};
 
 	/**
