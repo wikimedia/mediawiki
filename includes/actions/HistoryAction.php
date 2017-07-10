@@ -445,6 +445,10 @@ class HistoryPager extends ReverseChronologicalPager {
 		return 'rev_timestamp';
 	}
 
+	protected function getExtraSortFields() {
+		return [ 'rev_id' ];
+	}
+
 	/**
 	 * @param stdClass $row
 	 * @return string

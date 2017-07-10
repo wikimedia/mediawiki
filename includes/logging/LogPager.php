@@ -354,6 +354,10 @@ class LogPager extends ReverseChronologicalPager {
 		return 'log_timestamp';
 	}
 
+	protected function getExtraSortFields() {
+		return [ 'log_id' ];
+	}
+
 	public function getStartBody() {
 		# Do a link batch query
 		if ( $this->getNumRows() > 0 ) {
