@@ -103,14 +103,32 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
 			$select[] = 'page_latest';
 		}
+
+		$tagFilter = explode( '|', $opts['tagfilter'] );
 		ChangeTags::modifyDisplayQuery(
 			$tables,
 			$select,
 			$conds,
 			$join_conds,
 			$query_options,
-			$opts['tagfilter']
+			$tagFilter
 		);
+
+		if ( $dbr->unionSupportsOrderAndLimit() ) {
+			if ( count( $tagFilter ) > 1 ) {
+				// ChangeTags::modifyDisplayQuery() will have added DISTINCT.
+				// To prevent this from causing query performance problems, we need to add
+				// a GROUP BY, and add rc_id to the ORDER BY.
+				$order = [
+					'GROUP BY' => 'rc_timestamp, rc_id',
+					'ORDER BY' => 'rc_timestamp DESC, rc_id DESC'
+				];
+			} else {
+				$order = [ 'ORDER BY' => 'rc_timestamp DESC' ];
+			}
+		} else {
+			$order = [];
+		}
 
 		if ( !$this->runMainQueryHook( $tables, $select, $conds, $query_options, $join_conds,
 			$opts )
@@ -179,12 +197,6 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 				} else {
 					$subjoin = [ "rc_namespace = {$pfx}_namespace", "rc_title = {$pfx}_title" ];
 				}
-			}
-
-			if ( $dbr->unionSupportsOrderAndLimit() ) {
-				$order = [ 'ORDER BY' => 'rc_timestamp DESC' ];
-			} else {
-				$order = [];
 			}
 
 			$query = $dbr->selectSQLText(
