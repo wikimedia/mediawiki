@@ -709,8 +709,21 @@ EOT;
 					$this->logger->info( __METHOD__ . ": recognized file as video/x-matroska\n" );
 					return "video/x-matroska";
 				} elseif ( strncmp( $data, "webm", 4 ) == 0 ) {
-					$this->logger->info( __METHOD__ . ": recognized file as video/webm\n" );
-					return "video/webm";
+					// XXX HACK look for a video track, if we don't find it, this is an audio file
+					$videotrack = strpos( $head, "\x86\x85" );
+
+					if ( $videotrack ) {
+						// The length is right, let's double check the string.
+						$trackhead = substr( $head, $videotrack + 2, 5 );
+
+						if ( strncmp( $trackhead, "V_VP", 4 ) == 0 ) {
+							$this->logger->info( __METHOD__ . ": recognized file as video/webm\n" );
+							return "video/webm";
+						}
+					}
+
+					$this->logger->info( __METHOD__ . ": recognized file as audio/webm\n" );
+					return "audio/webm";
 				}
 			}
 			$this->logger->info( __METHOD__ . ": unknown EBML file\n" );
