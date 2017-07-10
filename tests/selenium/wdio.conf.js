@@ -184,8 +184,21 @@ exports.config = {
 	// resolved to continue.
 	//
 	// Gets executed once before all workers get launched.
-	// onPrepare: function ( config, capabilities ) {
-	// }
+	onPrepare: function () {
+		// from https://stackoverflow.com/a/20643568/17469
+		const { exec } = require( 'child_process' );
+		// from https://gerrit.wikimedia.org/r/#/c/347116/30/tests/selenium/README.md
+		exec( 'echo \'include_once "$IP/extensions/RelatedArticles/tests/browser/LocalSettings.php";\' >> LocalSettings.php', ( err, stdout, stderr ) => {
+			if ( err ) {
+// node couldn't execute the command
+				return;
+			}
+
+// the *entire* stdout and stderr (buffered)
+			console.log( `stdout: ${stdout}` );
+			console.log( `stderr: ${stderr}` );
+		} );
+	},
 	//
 	// Gets executed before test execution begins. At this point you can access all global
 	// variables, such as `browser`. It is the perfect place to define custom commands.
