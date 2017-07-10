@@ -1539,6 +1539,7 @@
 	"recentchanges-legend-unpatrolled": "Used as legend on [[Special:RecentChanges]] and [[Special:Watchlist]].\n\nRefers to {{msg-mw|Recentchanges-label-unpatrolled}}.",
 	"recentchanges-legend-plusminus": "{{optional}}\nA plus/minus sign with a number for the legend.",
 	"recentchanges-submit": "Label for submit button in [[Special:RecentChanges]]\n{{Identical|Show}}",
+	"rcfilters-legend-heading": "Used as a heading for legend box on [[Special:RecentChanges]] and [[Special:Watchlist]] when RCFilters are enabled .\n{{Identical|Legend}}",
 	"rcfilters-activefilters": "Title for the filters selection showing the active filters.",
 	"rcfilters-advancedfilters": "Title for the buttons allowing the user to switch to the various advanced filters views.",
 	"rcfilters-quickfilters": "Label for the button that opens the saved filter settings menu in [[Special:RecentChanges]]",
