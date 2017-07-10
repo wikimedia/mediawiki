@@ -142,7 +142,8 @@
 	 * @param {jQuery|string} $content The content of the updated changes list
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.setupHighlightContainers = function ( $content ) {
-		var $highlights = $( '<div>' )
+		var uri = new mw.Uri(),
+			$highlights = $( '<div>' )
 				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlights' )
 				.append(
 					$( '<div>' )
@@ -163,7 +164,10 @@
 			);
 		} );
 
-		if ( Number( mw.user.options.get( 'usenewrc' ) ) ) {
+		if (
+			( uri.query.enhanced !== undefined && Number( uri.query.enhanced ) ) ||
+			( uri.query.enhanced === undefined && Number( mw.user.options.get( 'usenewrc' ) ) )
+		) {
 			// Enhanced RC
 			$content.find( 'td.mw-enhanced-rc' )
 				.parent()
