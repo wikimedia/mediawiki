@@ -306,7 +306,7 @@ class ContribsPager extends RangeChronologicalPager {
 	}
 
 	function getIndexField() {
-		return 'rev_timestamp';
+		return [ 'rev_timestamp', 'rev_id' ];
 	}
 
 	function doBatchLookups() {

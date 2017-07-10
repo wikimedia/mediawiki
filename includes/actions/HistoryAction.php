@@ -442,7 +442,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	function getIndexField() {
-		return 'rev_timestamp';
+		return [ 'rev_timestamp', 'rev_id' ];
 	}
 
 	/**

@@ -292,7 +292,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$tables = array_merge( [ 'recentchanges', 'watchlist' ], $tables );
 		$fields = array_merge( RecentChange::selectFields(), $fields );
 
-		$query_options = array_merge( [ 'ORDER BY' => 'rc_timestamp DESC' ], $query_options );
+		$query_options = array_merge( [ 'ORDER BY' => 'rc_timestamp DESC, rc_id DESC' ], $query_options );
 		$join_conds = array_merge(
 			[
 				'watchlist' => [
