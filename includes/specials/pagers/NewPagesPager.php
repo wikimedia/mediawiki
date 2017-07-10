@@ -136,6 +136,10 @@ class NewPagesPager extends ReverseChronologicalPager {
 		return 'rc_timestamp';
 	}
 
+	protected function getExtraSortFields() {
+		return [ 'rc_id' ];
+	}
+
 	function formatRow( $row ) {
 		return $this->mForm->formatRow( $row );
 	}

@@ -309,6 +309,10 @@ class ContribsPager extends RangeChronologicalPager {
 		return 'rev_timestamp';
 	}
 
+	protected function getExtraSortFields() {
+		return [ 'rev_id' ];
+	}
+
 	function doBatchLookups() {
 		# Do a link batch query
 		$this->mResult->seek( 0 );
