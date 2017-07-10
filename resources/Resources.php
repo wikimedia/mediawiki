@@ -1823,6 +1823,7 @@ return [
 			],
 		],
 		'messages' => [
+			'rcfilters-legend-heading',
 			'rcfilters-activefilters',
 			'rcfilters-advancedfilters',
 			'rcfilters-quickfilters',
