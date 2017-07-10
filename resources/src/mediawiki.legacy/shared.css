@@ -112,14 +112,17 @@ span.comment {
 }
 
 /* Keep this rule separate from the :not rule above so it still works in older browsers */
+.mw-editfont-monospace textarea,
 .mw-editfont-monospace {
 	font-family: monospace;
 }
 
+.mw-editfont-sans-serif textarea,
 .mw-editfont-sans-serif {
 	font-family: sans-serif;
 }
 
+.mw-editfont-serif textarea,
 .mw-editfont-serif {
 	font-family: serif;
 }

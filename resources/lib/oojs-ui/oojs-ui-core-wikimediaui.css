@@ -1492,8 +1492,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-textInputWidget textarea {
   -webkit-appearance: none;
   margin: 0;
-  font-size: inherit;
-  font-family: inherit;
   background-color: #fff;
   color: #000;
   border: 1px solid #a2a9b1;
@@ -1502,6 +1500,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-textInputWidget input {
   line-height: 1.172em;
+  font-size: inherit;
+  font-family: inherit;
 }
 .oo-ui-textInputWidget textarea {
   line-height: 1.275;
