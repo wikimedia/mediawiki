@@ -1287,9 +1287,14 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$legend .= Html::closeElement( 'dl' ) . "\n";
 
 		# Collapsibility
+		$legendHeading = $this->getUser()->getOption(
+			'rcenhancedfilters'
+		) ?
+			$context->msg( 'rcfilters-legend-heading' )->parse() :
+			$context->msg( 'recentchanges-legend-heading' )->parse();
 		$legend =
 			'<div class="mw-changeslist-legend">' .
-				$context->msg( 'recentchanges-legend-heading' )->parse() .
+				$legendHeading .
 				'<div class="mw-collapsible-content">' . $legend . '</div>' .
 			'</div>';
 
