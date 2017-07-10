@@ -643,12 +643,18 @@ class ChangeTags {
 	 * Handles selecting tags, and filtering.
 	 * Needs $tables to be set up properly, so we can figure out which join conditions to use.
 	 *
+	 * WARNING: If $filter_tag contains more than one tag, this function will add DISTINCT,
+	 * which may cause performance problems for your query unless you put the ID field of your
+	 * table at the end of the ORDER BY, and set a GROUP BY equal to the ORDER BY. For example,
+	 * if you had ORDER BY foo_timestamp DESC, you will now need GROUP BY foo_timestamp, foo_id
+	 * ORDER BY foo_timestamp DESC, foo_id DESC.
+	 *
 	 * @param string|array $tables Table names, see Database::select
 	 * @param string|array $fields Fields used in query, see Database::select
 	 * @param string|array $conds Conditions used in query, see Database::select
 	 * @param array $join_conds Join conditions, see Database::select
 	 * @param array $options Options, see Database::select
-	 * @param bool|string $filter_tag Tag to select on
+	 * @param bool|string|array $filter_tag Tag(s) to select on
 	 *
 	 * @throws MWException When unable to determine appropriate JOIN condition for tagging
 	 */
@@ -660,7 +666,7 @@ class ChangeTags {
 			$filter_tag = $wgRequest->getVal( 'tagfilter' );
 		}
 
-		// Figure out which conditions can be done.
+		// Figure out which ID field to use
 		if ( in_array( 'recentchanges', $tables ) ) {
 			$join_cond = 'ct_rc_id=rc_id';
 		} elseif ( in_array( 'logging', $tables ) ) {
@@ -683,7 +689,10 @@ class ChangeTags {
 
 			$tables[] = 'change_tag';
 			$join_conds['change_tag'] = [ 'INNER JOIN', $join_cond ];
-			$conds['ct_tag'] = explode( '|', $filter_tag );
+			$conds['ct_tag'] = $filter_tag;
+			if ( count( $filter_tag ) > 1 && !in_array( 'DISTINCT', $options ) ) {
+				$options[] = 'DISTINCT';
+			}
 		}
 	}
 
@@ -962,7 +971,7 @@ class ChangeTags {
 
 		// tags cannot contain commas (used as a delimiter in tag_summary table),
 		// pipe (used as a delimiter between multiple tags in
-		// modifyDisplayQuery), or slashes (would break tag description messages in
+		// SpecialRecentchanges and friends), or slashes (would break tag description messages in
 		// MediaWiki namespace)
 		if ( strpos( $tag, ',' ) !== false || strpos( $tag, '|' ) !== false
 			|| strpos( $tag, '/' ) !== false ) {
