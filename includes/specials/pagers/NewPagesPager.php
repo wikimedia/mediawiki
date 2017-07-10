@@ -133,7 +133,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	}
 
 	function getIndexField() {
-		return 'rc_timestamp';
+		return [ 'rc_timestamp', 'rc_id' ];
 	}
 
 	function formatRow( $row ) {

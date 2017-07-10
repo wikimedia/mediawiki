@@ -643,12 +643,16 @@ class ChangeTags {
 	 * Handles selecting tags, and filtering.
 	 * Needs $tables to be set up properly, so we can figure out which join conditions to use.
 	 *
+	 * Note that if $filter_tag contains more than one tag, this function will add DISTINCT,
+	 * which may cause performance problems for your query unless you put the ID field of your
+	 * table at the end of the ORDER BY.
+	 *
 	 * @param string|array $tables Table names, see Database::select
 	 * @param string|array $fields Fields used in query, see Database::select
 	 * @param string|array $conds Conditions used in query, see Database::select
 	 * @param array $join_conds Join conditions, see Database::select
 	 * @param array $options Options, see Database::select
-	 * @param bool|string $filter_tag Tag to select on
+	 * @param bool|string $filter_tag Tag(s) to select on, pipe-separated
 	 *
 	 * @throws MWException When unable to determine appropriate JOIN condition for tagging
 	 */
@@ -660,15 +664,15 @@ class ChangeTags {
 			$filter_tag = $wgRequest->getVal( 'tagfilter' );
 		}
 
-		// Figure out which conditions can be done.
+		// Figure out which ID field to use
 		if ( in_array( 'recentchanges', $tables ) ) {
-			$join_cond = 'ct_rc_id=rc_id';
+			$id_field = 'rc_id';
 		} elseif ( in_array( 'logging', $tables ) ) {
-			$join_cond = 'ct_log_id=log_id';
+			$id_field = 'log_id';
 		} elseif ( in_array( 'revision', $tables ) ) {
-			$join_cond = 'ct_rev_id=rev_id';
+			$id_field = 'rev_id';
 		} elseif ( in_array( 'archive', $tables ) ) {
-			$join_cond = 'ct_rev_id=ar_rev_id';
+			$id_field = 'ar_rev_id';
 		} else {
 			throw new MWException( 'Unable to determine appropriate JOIN condition for tagging.' );
 		}
@@ -682,8 +686,11 @@ class ChangeTags {
 			// Add an INNER JOIN on change_tag
 
 			$tables[] = 'change_tag';
-			$join_conds['change_tag'] = [ 'INNER JOIN', $join_cond ];
+			$join_conds['change_tag'] = [ 'INNER JOIN', "ct_rc_id=$id_field" ];
 			$conds['ct_tag'] = explode( '|', $filter_tag );
+			if ( count( $filter_tag ) > 1 && !in_array( 'DISTINCT', $options ) ) {
+				$options[] = 'DISTINCT';
+			}
 		}
 	}
 

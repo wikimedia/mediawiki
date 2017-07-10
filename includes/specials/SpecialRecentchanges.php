@@ -446,7 +446,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		// MediaWiki 1.26 this used to use the plus operator instead, which meant
 		// that extensions weren't able to change these conditions
 		$query_options = array_merge( [
-			'ORDER BY' => 'rc_timestamp DESC',
+			'ORDER BY' => 'rc_timestamp DESC, rc_id DESC',
 			'LIMIT' => $opts['limit'] ], $query_options );
 		$rows = $dbr->select(
 			$tables,
