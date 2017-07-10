@@ -27,7 +27,7 @@ class EditPage extends Page {
 				server: baseUrl.hostname,
 				port: baseUrl.port,
 				path: baseUrl.path,
-				debug: false
+				debug: true
 			} );
 
 		return new Promise( ( resolve, reject ) => {
