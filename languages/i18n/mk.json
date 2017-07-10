@@ -1394,6 +1394,7 @@
 	"rcfilters-view-namespaces-tooltip": "Филтрирај исход по именски постор",
 	"rcfilters-view-tags-tooltip": "Филтрирај исход по уредувачки ознаки",
 	"rcfilters-view-return-to-default-tooltip": "Назад на главното филтерско мени",
+	"rcfilters-liveupdates-button": "Поднови во живо",
 	"rcnotefrom": "Подолу {{PLURAL:$5|е прикажана промената|се прикажани промените}} почнувајќи од <strong>$3, $4</strong>  (се прикажуваат до <b>$1</b>).",
 	"rclistfromreset": "Нов избор на датуми",
 	"rclistfrom": "Прикажи нови промени почнувајќи од $3 $2",

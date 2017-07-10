@@ -1617,6 +1617,7 @@
 	"emailmessage": "Vēstījums:",
 	"emailsend": "Nosūtīt",
 	"emailccme": "Atsūtīt man uz e-pastu mana ziņojuma kopiju.",
+	"emailccsubject": "Ziņojuma kopija $1: $2",
 	"emailsent": "E-pasts nosūtīts",
 	"emailsenttext": "Tavs e-pasts ir nosūtīts.",
 	"emailuserfooter": "Šis e-pasts ir dalībnieka $1 sūtīts dalībniekam $2, izmantojot \"Sūtīt e-pastu šim dalībniekam\" funkciju {{SITENAME}}.",

@@ -35,7 +35,8 @@
 			"Walter Klosse",
 			"Martin Urbanec",
 			"Marek Pavlica",
-			"Asmen"
+			"Asmen",
+			"Meliganai"
 		]
 	},
 	"tog-underline": "Podtrhávat odkazy:",
@@ -1397,6 +1398,7 @@
 	"rcfilters-filter-previousrevision-label": "Dřívější verze",
 	"rcfilters-filter-previousrevision-description": "Všechny změny, které nejsou nejnovější úpravou stránky.",
 	"rcfilters-view-tags": "Označené editace",
+	"rcfilters-liveupdates-button": "Živé aktualizace",
 	"rcnotefrom": "Níže {{PLURAL:$5|je změna|jsou změny}} od <strong>$3, $4</strong> ({{PLURAL:$1|zobrazena|zobrazeny|zobrazeno}} nejvýše <strong>$1</strong>).",
 	"rclistfromreset": "Obnovit výběr data",
 	"rclistfrom": "Ukázat nové změny, počínaje od $2, $3",
