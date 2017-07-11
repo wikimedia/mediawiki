@@ -960,6 +960,23 @@ $wgTrustedMediaFormats = [
 $wgMediaHandlers = [];
 
 /**
+ * Media handler overrides for parser tests (they don't need to generate actual
+ * thumbnails, so a mock will do)
+ */
+$wgParserTestMediaHandlers = [
+	'image/jpeg' => 'MockBitmapHandler',
+	'image/png' => 'MockBitmapHandler',
+	'image/gif' => 'MockBitmapHandler',
+	'image/tiff' => 'MockBitmapHandler',
+	'image/webp' => 'MockBitmapHandler',
+	'image/x-ms-bmp' => 'MockBitmapHandler',
+	'image/x-bmp' => 'MockBitmapHandler',
+	'image/x-xcf' => 'MockBitmapHandler',
+	'image/svg+xml' => 'MockSvgHandler',
+	'image/vnd.djvu' => 'MockDjVuHandler',
+];
+
+/**
  * Plugins for page content model handling.
  * Each entry in the array maps a model id to a class name or callback
  * that creates an instance of the appropriate ContentHandler subclass.
