@@ -531,11 +531,10 @@
 			required: true,
 			validate: /.+/
 		} );
-		this.descriptionWidget = new OO.ui.TextInputWidget( {
+		this.descriptionWidget = new OO.ui.MultilineTextInputWidget( {
 			indicator: 'required',
 			required: true,
 			validate: /\S+/,
-			multiline: true,
 			autosize: true
 		} );
 
