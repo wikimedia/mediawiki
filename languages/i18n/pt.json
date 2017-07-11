@@ -1344,6 +1344,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|lista de páginas novas]])",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "Mostrar",
+	"rcfilters-legend-heading": "<strong>Lista de abreviações:</strong>",
 	"rcfilters-activefilters": "Filtros ativos",
 	"rcfilters-advancedfilters": "Filtros avançados",
 	"rcfilters-quickfilters": "Filtros gravados",

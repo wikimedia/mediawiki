@@ -88,7 +88,8 @@
 			"Schniggendiller",
 			"Predatorix",
 			"Matma Rex",
-			"ThePiscin"
+			"ThePiscin",
+			"Osnard"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -1363,6 +1364,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (siehe auch die [[Special:NewPages|Liste neuer Seiten]])",
 	"recentchanges-legend-plusminus": "''(±123)''",
 	"recentchanges-submit": "Anzeigen",
+	"rcfilters-legend-heading": "<strong>Liste von Abkürzungen:</strong>",
 	"rcfilters-activefilters": "Aktive Filter",
 	"rcfilters-advancedfilters": "Erweiterte Filter",
 	"rcfilters-quickfilters": "Gespeicherte Filter",
@@ -2323,6 +2325,7 @@
 	"undelete-search-title": "Nach gelöschten Seiten suchen",
 	"undelete-search-box": "Nach gelöschten Seiten suchen",
 	"undelete-search-prefix": "Suchbegriff (Wortanfang ohne Wildcards):",
+	"undelete-search-full": "Seitennamen anzeigen, die Folgendes enthalten:",
 	"undelete-search-submit": "Suchen",
 	"undelete-no-results": "Es wurde im Archiv keine zum Suchbegriff passende Seite gefunden.",
 	"undelete-filename-mismatch": "Die Dateiversion mit dem Zeitstempel $1 konnte nicht wiederhergestellt werden: Die Dateinamen passen nicht zueinander.",

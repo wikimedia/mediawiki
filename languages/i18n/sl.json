@@ -1286,6 +1286,7 @@
 	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (glej tudi [[Special:NewPages|seznam novih strani]])",
 	"recentchanges-submit": "Prikaži",
+	"rcfilters-legend-heading": "<strong>Seznam okrajšav:</strong>",
 	"rcfilters-activefilters": "Dejavni filtri",
 	"rcfilters-advancedfilters": "Napredni filtri",
 	"rcfilters-quickfilters": "Shranjeni filtri",

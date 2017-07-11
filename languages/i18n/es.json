@@ -160,7 +160,8 @@
 			"Luzcaru",
 			"Javiersanp",
 			"Josecurioso",
-			"Jnistal12"
+			"Jnistal12",
+			"Javier"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -1523,6 +1524,7 @@
 	"rcfilters-filter-excluded": "Excluido",
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>Estado:</strong> $1",
 	"rcfilters-view-tags": "Ediciones etiquetadas",
+	"rcfilters-view-tags-tooltip": "filtrado de resultados usando etiquetas de edición",
 	"rcnotefrom": "Debajo {{PLURAL:$5|aparece el cambio|aparecen los cambios}} desde <strong>$3, $4</strong> (se muestran hasta <strong>$1</strong>).",
 	"rclistfromreset": "Restablecer selección de fecha",
 	"rclistfrom": "Mostrar cambios nuevos desde las $2 del $3",

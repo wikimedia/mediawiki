@@ -178,7 +178,7 @@
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",
 	"config-mysql-charset": "Conjunto de caracteres da base de dados:",
-	"config-mysql-binary": "Binary",
+	"config-mysql-binary": "Binário",
 	"config-mysql-utf8": "UTF-8",
 	"config-mssql-auth": "Tipo de autenticação:",
 	"config-mssql-sqlauth": "Autenticação do SQL Server",

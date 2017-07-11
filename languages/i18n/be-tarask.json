@@ -3848,6 +3848,7 @@
 	"cannotauth-not-allowed": "Вам не дазволена выкарыстоўваць гэтую старонку",
 	"changecredentials": "Зьмена ўліковых зьвестак",
 	"changecredentials-submit": "Зьмяніць уліковыя зьвесткі",
+	"changecredentials-invalidsubpage": "$1 не зьяўляецца слушным тыпам уліковых зьвестак.",
 	"removecredentials": "Выдаленьне ўліковых зьвестак",
 	"removecredentials-submit": "Выдаліць уліковыя зьвесткі",
 	"credentialsform-provider": "Тып уліковых зьвестак:",

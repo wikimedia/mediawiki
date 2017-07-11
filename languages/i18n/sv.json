@@ -1349,6 +1349,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (se även [[Special:NewPages|listan över nya sidor]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "Visa",
+	"rcfilters-legend-heading": "<strong>Lista över förkortningar:</strong>",
 	"rcfilters-activefilters": "Aktiva filter",
 	"rcfilters-advancedfilters": "Avancerade filter",
 	"rcfilters-quickfilters": "Sparade filter",

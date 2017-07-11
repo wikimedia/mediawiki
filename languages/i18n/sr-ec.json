@@ -2366,7 +2366,7 @@
 	"thumbnail_gd-library": "Недовршене поставке графичке библиотеке: недостаје функција $1",
 	"thumbnail_image-missing": "Датотека недостаје: $1",
 	"import": "Увоз страница",
-	"importinterwiki": "Увоз из друго викија",
+	"importinterwiki": "Увоз са другог викија",
 	"import-interwiki-text": "Изаберите вики и наслов странице за увоз.\nДатуми и имена уредника ће бити сачувани.\nСве радње при увозу с других викија су забележене у [[Special:Log/import|дневнику увоза]].",
 	"import-interwiki-sourcewiki": "Изворна вики:",
 	"import-interwiki-sourcepage": "Изворна страница:",
