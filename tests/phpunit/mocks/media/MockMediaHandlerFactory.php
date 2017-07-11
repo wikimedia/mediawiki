@@ -33,7 +33,6 @@ class MockMediaHandlerFactory extends MediaHandlerFactory {
 	private static $overrides = [
 		'image/svg+xml' => MockSvgHandler::class,
 		'image/vnd.djvu' => MockDjVuHandler::class,
-		'application/ogg' => MockOggHandler::class,
 	];
 
 	public function __construct() {
