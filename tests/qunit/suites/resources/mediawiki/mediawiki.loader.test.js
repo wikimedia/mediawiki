@@ -90,7 +90,7 @@
 			isAwesomeDone = true;
 		};
 
-		mw.loader.implement( 'test.callback', [ QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/callMwLoaderTestCallback.js' ) ] );
+		mw.loader.implement( 'test.callback', [ QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/mwLoaderTestCallback.js' ) ] );
 
 		return mw.loader.using( 'test.callback', function () {
 			assert.strictEqual( isAwesomeDone, true, 'test.callback module should\'ve caused isAwesomeDone to be true' );
@@ -109,7 +109,7 @@
 			isAwesomeDone = true;
 		};
 
-		mw.loader.implement( 'hasOwnProperty', [ QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/callMwLoaderTestCallback.js' ) ], {}, {} );
+		mw.loader.implement( 'hasOwnProperty', [ QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/mwLoaderTestCallback.js' ) ], {}, {} );
 
 		return mw.loader.using( 'hasOwnProperty', function () {
 			assert.strictEqual( isAwesomeDone, true, 'hasOwnProperty module should\'ve caused isAwesomeDone to be true' );
@@ -128,7 +128,7 @@
 			isAwesomeDone = true;
 		};
 
-		mw.loader.implement( 'test.promise', [ QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/callMwLoaderTestCallback.js' ) ] );
+		mw.loader.implement( 'test.promise', [ QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/mwLoaderTestCallback.js' ) ] );
 
 		return mw.loader.using( 'test.promise' )
 		.done( function () {
@@ -680,38 +680,46 @@
 		);
 	} );
 
-	QUnit.asyncTest( '.load( "//protocol-relative" ) - T32825', function ( assert ) {
-		// This bug was actually already fixed in 1.18 and later when discovered in 1.17.
-		// Test is for regressions!
+	// This bug was actually already fixed in 1.18 and later when discovered in 1.17.
+	QUnit.test( '.load( "//protocol-relative" ) - T32825', function ( assert ) {
+		var target,
+			done = assert.async();
 
-		// Forge a URL to the test callback script
-		var target = QUnit.fixurl(
-			mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/qunitOkCall.js'
+		// URL to the callback script
+		target = QUnit.fixurl(
+			mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/mwLoaderTestCallback.js'
 		);
-
-		// Confirm that mw.loader.load() works with protocol-relative URLs
+		// Ensure a protocol-relative URL for this test
 		target = target.replace( /https?:/, '' );
+		assert.equal( target.slice( 0, 2 ), '//', 'URL is protocol-relative' );
 
-		assert.equal( target.slice( 0, 2 ), '//',
-			'URL must be relative to test relative URLs!'
-		);
+		mw.loader.testCallback = function () {
+			delete mw.loader.testCallback;
 
-		// Async!
-		// The target calls QUnit.start
+			assert.ok( true, 'callback' );
+			done();
+		};
+
+		// Go!
 		mw.loader.load( target );
 	} );
 
-	QUnit.asyncTest( '.load( "/absolute-path" )', function ( assert ) {
-		// Forge a URL to the test callback script
-		var target = QUnit.fixurl(
-			mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/qunitOkCall.js'
-		);
+	QUnit.test( '.load( "/absolute-path" )', function ( assert ) {
+		var target,
+			done = assert.async();
 
-		// Confirm that mw.loader.load() works with absolute-paths (relative to current hostname)
+		// URL to the callback script
+		target = QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/mwLoaderTestCallback.js' );
 		assert.equal( target.slice( 0, 1 ), '/', 'URL is relative to document root' );
 
-		// Async!
-		// The target calls QUnit.start
+		mw.loader.testCallback = function () {
+			delete mw.loader.testCallback;
+
+			assert.ok( true, 'callback' );
+			done();
+		};
+
+		// Go!
 		mw.loader.load( target );
 	} );
 
