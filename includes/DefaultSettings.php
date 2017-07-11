@@ -6348,6 +6348,23 @@ $wgSiteStatsAsyncFactor = false;
 $wgParserTestFiles = [];
 
 /**
+ * Media handler overrides for parser tests (they don't need to generate actual
+ * thumbnails, so a mock will do)
+ */
+$wgParserTestMediaHandlers = [
+	'image/jpeg' => MockBitmapHandler::class,
+	'image/png' => MockBitmapHandler::class,
+	'image/gif' => MockBitmapHandler::class,
+	'image/tiff' => MockBitmapHandler::class,
+	'image/webp' => MockBitmapHandler::class,
+	'image/x-ms-bmp' => MockBitmapHandler::class,
+	'image/x-bmp' => MockBitmapHandler::class,
+	'image/x-xcf' => MockBitmapHandler::class,
+	'image/svg+xml' => MockSvgHandler::class,
+	'image/vnd.djvu' => MockDjVuHandler::class,
+];
+
+/**
  * Allow running of javascript test suites via [[Special:JavaScriptTest]] (such as QUnit).
  */
 $wgEnableJavaScriptTest = false;

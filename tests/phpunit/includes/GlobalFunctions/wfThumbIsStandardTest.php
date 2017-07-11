@@ -92,7 +92,8 @@ class WfThumbIsStandardTest extends MediaWikiTestCase {
 	 * @dataProvider provideThumbParams
 	 */
 	public function testIsStandard( $message, $expected, $params ) {
-		$this->setService( 'MediaHandlerFactory', new MockMediaHandlerFactory() );
+	    global $wgParserTestMediaHandlers;
+		$this->setService( 'MediaHandlerFactory', new MediaHandlerFactory( $wgParserTestMediaHandlers ) );
 		$this->assertSame(
 			$expected,
 			wfThumbIsStandard( new FakeDimensionFile( [ 2000, 1800 ] ), $params ),

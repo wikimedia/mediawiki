@@ -342,7 +342,8 @@ class ParserTestRunner {
 		MediaWikiServices::getInstance()->redefineService(
 			'MediaHandlerFactory',
 			function () {
-				return new MockMediaHandlerFactory();
+				global $wgParserTestMediaHandlers;
+				return new MediaHandlerFactory( $wgParserTestMediaHandlers );
 			}
 		);
 		$teardown[] = function () {
