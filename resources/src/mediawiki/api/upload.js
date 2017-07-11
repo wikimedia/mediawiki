@@ -348,6 +348,7 @@
 
 			// Submit first chunk to get the filekey
 			active = promise = this.uploadChunk( file, data, 0, chunkSize, '', chunkRetries )
+				.done( chunkSize >= file.size ? deferred.resolve : null )
 				.fail( deferred.reject )
 				.progress( deferred.notify );
 
