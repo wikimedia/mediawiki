@@ -53,6 +53,8 @@ section).
   'watchlistunwatchlinks' preference option is enabled). With JavaScript
   enabled, these links toggle so the user can also re-watch pages that have
   just been unwatched.
+* Added $wgParserTestMediaHandlers, where mock media handlers can be passed to
+  MediaHandlerFactory for parser tests.
 
 === Languages updated in 1.30 ===
 

@@ -341,8 +341,9 @@ class ParserTestRunner {
 		MediaWikiServices::getInstance()->disableService( 'MediaHandlerFactory' );
 		MediaWikiServices::getInstance()->redefineService(
 			'MediaHandlerFactory',
-			function () {
-				return new MockMediaHandlerFactory();
+			function ( MediaWikiServices $services ) {
+				$handlers = $services->getMainConfig()->get( 'ParserTestMediaHandlers' );
+				return new MediaHandlerFactory( $handlers );
 			}
 		);
 		$teardown[] = function () {
