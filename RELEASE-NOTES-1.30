@@ -49,6 +49,8 @@ section).
 * Added RecentChangesPurgeRows hook to allow extensions to purge data that
   depends on the recentchanges table.
 * Added JS config values wgDiffOldId/wgDiffNewId to the output of diff pages.
+* Added $wgParserTestMediaHandlers, where mock media handlers can be passed to
+  MediaHandlerFactory for parser tests.
 
 === Languages updated in 1.30 ===
 
