@@ -2240,12 +2240,6 @@ class Parser {
 				$link = $origLink;
 			}
 
-			$noforce = ( substr( $origLink, 0, 1 ) !== ':' );
-			if ( !$noforce ) {
-				# Strip off leading ':'
-				$link = substr( $link, 1 );
-			}
-
 			$unstrip = $this->mStripState->unstripNoWiki( $link );
 			$nt = is_string( $unstrip ) ? Title::newFromText( $unstrip ) : null;
 			if ( $nt === null ) {
@@ -2255,6 +2249,8 @@ class Parser {
 
 			$ns = $nt->getNamespace();
 			$iw = $nt->getInterwiki();
+
+			$noforce = ( substr( $origLink, 0, 1 ) !== ':' );
 
 			if ( $might_be_img ) { # if this is actually an invalid link
 				if ( $ns == NS_FILE && $noforce ) { # but might be an image
@@ -2300,6 +2296,10 @@ class Parser {
 			$wasblank = ( $text == '' );
 			if ( $wasblank ) {
 				$text = $link;
+				if ( !$noforce ) {
+					# Strip off leading ':'
+					$text = substr( $text, 1 );
+				}
 			} else {
 				# T6598 madness. Handle the quotes only if they come from the alternate part
 				# [[Lista d''e paise d''o munno]] -> <a href="...">Lista d''e paise d''o munno</a>
@@ -2324,7 +2324,7 @@ class Parser {
 					}
 
 					$s = rtrim( $s . $prefix );
-					$s .= trim( $trail, "\n" ) == '' ? '': $prefix . $trail;
+					$s .= trim( $trail, "\n" ) == '' ? '' : $prefix . $trail;
 					continue;
 				}
 
