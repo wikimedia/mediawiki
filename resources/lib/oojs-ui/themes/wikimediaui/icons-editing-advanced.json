@@ -59,10 +59,7 @@
 			"ltr": "images/icons/outline-ltr.svg",
 			"rtl": "images/icons/outline-rtl.svg"
 		} },
-		"puzzle": { "file": {
-			"ltr": "images/icons/puzzle-ltr.svg",
-			"rtl": "images/icons/puzzle-rtl.svg"
-		} },
+		"puzzle": { "file": "images/icons/puzzle.svg" },
 		"quotes": { "file": {
 			"ltr": "images/icons/quotes-ltr.svg",
 			"rtl": "images/icons/quotes-rtl.svg"

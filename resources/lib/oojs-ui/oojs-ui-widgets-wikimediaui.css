@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.22.2
+ * OOjs UI v0.22.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-06-28T19:52:08Z
+ * Date: 2017-07-11T22:12:41Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -833,6 +833,9 @@
   height: 1px;
   width: 1px;
 }
+.oo-ui-tagMultiselectWidget-focusTrap:focus {
+  outline: 0;
+}
 .oo-ui-tagMultiselectWidget-handle {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -1057,6 +1060,9 @@
   display: inline-block;
   height: 1px;
   width: 1px;
+}
+.oo-ui-capsuleMultiselectWidget-focusTrap:focus {
+  outline: 0;
 }
 .oo-ui-capsuleMultiselectWidget-handle {
   -webkit-box-sizing: border-box;

@@ -2,6 +2,10 @@
 	"prefix": "oo-ui-icon",
 	"intro": "@import '../../../../src/styles/common';",
 	"images": {
+		"article": { "file": {
+			"ltr": "images/icons/article-ltr.svg",
+			"rtl": "images/icons/article-rtl.svg"
+		} },
 		"articles": { "file": {
 			"ltr": "images/icons/articles-ltr.svg",
 			"rtl": "images/icons/articles-rtl.svg"

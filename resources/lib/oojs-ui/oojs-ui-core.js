@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.22.2
+ * OOjs UI v0.22.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-06-28T19:51:59Z
+ * Date: 2017-07-11T22:12:33Z
  */
 ( function ( OO ) {
 
@@ -4912,7 +4912,7 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 
 	// Properties
 	this.$anchor = $( '<div>' );
-	// If undefined, will be computed lazily in updateDimensions()
+	// If undefined, will be computed lazily in computePosition()
 	this.$container = config.$container;
 	this.containerPadding = config.containerPadding !== undefined ? config.containerPadding : 10;
 	this.autoClose = !!config.autoClose;
@@ -5401,6 +5401,21 @@ OO.ui.PopupWidget.prototype.setPosition = function ( position ) {
  */
 OO.ui.PopupWidget.prototype.getPosition = function () {
 	return this.popupPosition;
+};
+
+/**
+ * Get an ID of the body element, this can be used as the
+ * `aria-describedby` attribute for an input field.
+ *
+ * @return {string} The ID of the body element
+ */
+OO.ui.PopupWidget.prototype.getBodyId = function () {
+	var id = this.$body.attr( 'id' );
+	if ( id === undefined ) {
+		id = OO.ui.generateElementId();
+		this.$body.attr( 'id', id );
+	}
+	return id;
 };
 
 /**
@@ -7230,6 +7245,8 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 			this.togglePositioning( !!this.$floatableContainer );
 			this.toggleClipping( true );
 
+			this.$focusOwner.attr( 'aria-expanded', 'true' );
+
 			if ( this.getSelectedItem() ) {
 				this.$focusOwner.attr( 'aria-activedescendant', this.getSelectedItem().getElementId() );
 				this.getSelectedItem().scrollElementIntoView( { duration: 0 } );
@@ -7245,6 +7262,7 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 			this.$focusOwner.removeAttr( 'aria-activedescendant' );
 			this.unbindKeyDownListener();
 			this.unbindKeyPressListener();
+			this.$focusOwner.attr( 'aria-expanded', 'false' );
 			this.getElementDocument().removeEventListener( 'mousedown', this.onDocumentMouseDownHandler, true );
 			this.togglePositioning( false );
 			this.toggleClipping( false );
@@ -7414,6 +7432,10 @@ OO.ui.DropdownWidget.prototype.onMenuSelect = function ( item ) {
  */
 OO.ui.DropdownWidget.prototype.onMenuToggle = function ( isVisible ) {
 	this.$element.toggleClass( 'oo-ui-dropdownWidget-open', isVisible );
+	this.$handle.attr(
+		'aria-expanded',
+		this.$element.hasClass( 'oo-ui-dropdownWidget-open' ).toString()
+	);
 };
 
 /**
@@ -10820,6 +10842,18 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	this.fieldWidget.connect( this, { disable: 'onFieldDisable' } );
 
 	// Initialization
+	if ( config.help ) {
+		// Set the 'aria-describedby' attribute on the fieldWidget
+		// Preference given to an input or a button
+		(
+			this.fieldWidget.$input ||
+			this.fieldWidget.$button ||
+			this.fieldWidget.$element
+		).attr(
+			'aria-describedby',
+			this.popupButtonWidget.getPopup().getBodyId()
+		);
+	}
 	if ( this.fieldWidget.getInputId() ) {
 		this.$label.attr( 'for', this.fieldWidget.getInputId() );
 	} else {
@@ -10893,6 +10927,7 @@ OO.ui.FieldLayout.prototype.makeMessage = function ( kind, text ) {
 	$listItem = $( '<li>' );
 	if ( kind === 'error' ) {
 		$icon = new OO.ui.IconWidget( { icon: 'alert', flags: [ 'warning' ] } ).$element;
+		$listItem.attr( 'role', 'alert' );
 	} else if ( kind === 'notice' ) {
 		$icon = new OO.ui.IconWidget( { icon: 'info' } ).$element;
 	} else {

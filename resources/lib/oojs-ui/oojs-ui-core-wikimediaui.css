@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.22.2
+ * OOjs UI v0.22.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-06-28T19:52:08Z
+ * Date: 2017-07-11T22:12:41Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -1081,21 +1081,24 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -moz-transition: width 100ms, height 100ms, left 100ms;
   transition: width 100ms, height 100ms, left 100ms;
 }
-.oo-ui-popupWidget-head {
-  height: 2.5em;
+.oo-ui-popupWidget-head > .oo-ui-labelElement-label {
+  margin: 0.703125em 2.5em 0.625em 0.9375em;
+  line-height: 1.172em;
 }
 .oo-ui-popupWidget-head > .oo-ui-buttonWidget {
-  top: 0.3125em;
-  right: 0.3125em;
-}
-.oo-ui-popupWidget-head > .oo-ui-labelElement-label {
-  margin: 0.75em 2.5em 0.75em 1em;
+  right: 0;
 }
 .oo-ui-popupWidget-body {
   line-height: 1.4;
 }
 .oo-ui-popupWidget-body-padded {
-  margin: 0.75em 1em;
+  margin: 0.703125em 0.9375em 0.625em;
+}
+.oo-ui-popupWidget-body-padded :first-child {
+  margin-top: 0;
+}
+.oo-ui-popupWidget-footer {
+  margin: 0.703125em 0.9375em 0.625em;
 }
 .oo-ui-popupButtonWidget {
   position: relative;
