@@ -6,7 +6,7 @@
 		}
 	} ) );
 
-	QUnit.asyncTest( 'toggleToc', function ( assert ) {
+	QUnit.test( 'toggleToc', function ( assert ) {
 		var tocHtml, $toc, $toggleLink, $tocList;
 
 		assert.strictEqual( $( '.toc' ).length, 0, 'There is no table of contents on the page at the beginning' );
@@ -29,13 +29,11 @@
 		assert.strictEqual( $tocList.is( ':hidden' ), false, 'The table of contents is now visible' );
 
 		$toggleLink.click();
-		$tocList.promise().done( function () {
+		return $tocList.promise().then( function () {
 			assert.strictEqual( $tocList.is( ':hidden' ), true, 'The table of contents is now hidden' );
 
 			$toggleLink.click();
-			$tocList.promise().done( function () {
-				QUnit.start();
-			} );
+			return $tocList.promise();
 		} );
 	} );
 }( mediaWiki, jQuery ) );
