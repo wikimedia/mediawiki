@@ -30,19 +30,18 @@
  */
 class MockMediaHandlerFactory extends MediaHandlerFactory {
 
-	private static $overrides = [
+	private $overrides = [
 		'image/svg+xml' => MockSvgHandler::class,
 		'image/vnd.djvu' => MockDjVuHandler::class,
-		'application/ogg' => MockOggHandler::class,
 	];
 
 	public function __construct() {
-		// override parent
+		Hooks::run( 'MockMediaHandlerFactoryOverrides', [ &$this->overrides ] );
 	}
 
 	protected function getHandlerClass( $type ) {
-		if ( isset( self::$overrides[$type] ) ) {
-			return self::$overrides[$type];
+		if ( isset( $this->overrides[$type] ) ) {
+			return $this->overrides[$type];
 		}
 
 		return MockBitmapHandler::class;

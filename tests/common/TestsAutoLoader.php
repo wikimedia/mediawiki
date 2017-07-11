@@ -157,7 +157,6 @@ $wgAutoloadClasses += [
 	'MockImageHandler' => "$testDir/phpunit/mocks/media/MockImageHandler.php",
 	'MockSvgHandler' => "$testDir/phpunit/mocks/media/MockSvgHandler.php",
 	'MockDjVuHandler' => "$testDir/phpunit/mocks/media/MockDjVuHandler.php",
-	'MockOggHandler' => "$testDir/phpunit/mocks/media/MockOggHandler.php",
 	'MockMediaHandlerFactory' => "$testDir/phpunit/mocks/media/MockMediaHandlerFactory.php",
 	'MockChangesListFilter' => "$testDir/phpunit/mocks/MockChangesListFilter.php",
 	'MockChangesListFilterGroup' => "$testDir/phpunit/mocks/MockChangesListFilterGroup.php",

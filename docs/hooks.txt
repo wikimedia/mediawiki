@@ -2266,6 +2266,9 @@ $mimeMagic: Instance of MimeMagic.
   Use $mimeMagic->addExtraTypes( $stringOfTypes );
   for adding new MIME types to the list.
 
+'MockMediaHandlerFactoryOverrides': Add MediaHandler overrides for parser tests.
+&$overrides: array of [mime type => media handler classname]
+
 'ModifyExportQuery': Modify the query used by the exporter.
 $db: The database object to be queried.
 &$tables: Tables in the query.

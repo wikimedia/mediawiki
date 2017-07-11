@@ -35,6 +35,8 @@ production.
   LanguageConverter variant.  This allows English-speaking developers
   to develop and test LanguageConverter more easily.  Pig Latin can be
   enabled by setting $wgUsePigLatinVariant to true.
+* Added a 'MockMediaHandlerFactoryOverrides' hook to allow extensions to
+  register additional MediaHandler overrides for parser tests.
 
 === Languages updated in 1.30 ===
 
