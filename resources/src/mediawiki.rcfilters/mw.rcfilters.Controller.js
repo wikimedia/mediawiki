@@ -15,6 +15,8 @@
 		this.baseFilterState = {};
 		this.uriProcessor = null;
 		this.initializing = false;
+
+		this.prevLoggedItems = [];
 	};
 
 	/* Initialization */
@@ -412,6 +414,14 @@
 			this.filtersModel.reassessFilterInteractions();
 
 			this.updateChangesList();
+
+			// Log filter grouping
+			this.trackFilterGroupings(
+				this.filtersModel.getSelectedItems().map( function ( item ) {
+					return item.getName();
+				} ),
+				'savedfilters'
+			);
 		}
 	};
 
@@ -802,4 +812,49 @@
 		);
 	};
 
+	/**
+	 * Track filter grouping usage
+	 *
+	 * @param {string[]} filters Filter names
+	 * @param {string} action Action taken
+	 */
+	mw.rcfilters.Controller.prototype.trackFilterGroupings = function ( filters, action ) {
+		var controller = this,
+			rightNow = new Date().getTime(),
+			randomIdentifier = mw.user.sessionId() + rightNow + Math.random();
+
+		action = action || 'filtermenu';
+
+		// Check if these filters were the ones we just logged previously
+		// (Don't log the same grouping twice, in case the user opens/closes)
+		// the menu without action, or with the same result
+
+		if (
+			// Only log if the two arrays are different in size
+			filters.length !== this.prevLoggedItems.length ||
+			// Or if any filters are not the same as the cached filters
+			filters.some( function ( filterName ) {
+				return controller.prevLoggedItems.indexOf( filterName ) === -1;
+			} ) ||
+			// Or if any cached filters are not the same as given filters
+			this.prevLoggedItems.some( function ( filterName ) {
+				return filters.indexOf( filterName ) === -1;
+			} )
+		) {
+			filters.forEach( function ( filterName ) {
+				mw.track(
+					'event.ChangesListFilterGrouping',
+					{
+						action: action,
+						groupIdentifier: randomIdentifier,
+						filter: filterName,
+						userId: mw.user.getId()
+					}
+				);
+			} );
+
+			// Cache the filter names
+			this.prevLoggedItems = filters;
+		}
+	};
 }( mediaWiki, jQuery ) );

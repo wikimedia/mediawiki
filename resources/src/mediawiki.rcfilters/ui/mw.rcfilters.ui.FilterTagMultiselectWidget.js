@@ -290,6 +290,14 @@
 				// Clear the input
 				this.input.setValue( '' );
 			}
+
+			// Log filter grouping
+			this.controller.trackFilterGroupings(
+				this.model.getSelectedItems().map( function ( item ) {
+					return item.getName();
+				} ),
+				'filtermenu'
+			);
 		}
 
 		this.input.setIcon( isVisible ? 'search' : 'menu' );
