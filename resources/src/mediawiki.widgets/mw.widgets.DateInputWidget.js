@@ -243,6 +243,16 @@
 	OO.inheritClass( mw.widgets.DateInputWidget, OO.ui.TextInputWidget );
 	OO.mixinClass( mw.widgets.DateInputWidget, OO.ui.mixin.IndicatorElement );
 
+	/* Events */
+
+	/**
+	 * Fired when the widget is deactivated (i.e. the calendar is closed). This can happen because
+	 * the user selected a value, or because the user blurred the widget.
+	 *
+	 * @event deactivate
+	 * @param {boolean} userSelected Whether the deactivation happened because the user selected a value
+	 */
+
 	/* Methods */
 
 	/**
@@ -387,13 +397,23 @@
 	 * Deactivate this input field for data entry. Closes the calendar and hides the text field.
 	 *
 	 * @private
+	 * @param {boolean} [userSelected] Whether we are deactivating because the user selected a value
 	 */
-	mw.widgets.DateInputWidget.prototype.deactivate = function () {
+	mw.widgets.DateInputWidget.prototype.deactivate = function ( userSelected ) {
 		this.$element.removeClass( 'mw-widget-dateInputWidget-active' );
 		this.$handle.show();
 		this.textInput.toggle( false );
 		this.calendar.toggle( false );
 		this.setValidityFlag();
+
+		if ( userSelected ) {
+			// Prevent focusing the handle from reopening the calendar
+			this.closing = true;
+			this.$handle.focus();
+			this.closing = false;
+		}
+
+		this.emit( 'deactivate', !!userSelected );
 	};
 
 	/**
@@ -542,13 +562,7 @@
 	 */
 	mw.widgets.DateInputWidget.prototype.onCalendarKeyPress = function ( e ) {
 		if ( !this.isDisabled() && e.which === OO.ui.Keys.ENTER ) {
-			// Prevent focusing the handle from reopening the calendar
-			this.closing = true;
-
-			this.deactivate();
-			this.$handle.focus();
-
-			this.closing = false;
+			this.deactivate( true );
 			return false;
 		}
 	};
@@ -566,13 +580,7 @@
 			e.which === 1 &&
 			$( e.target ).hasClass( 'mw-widget-calendarWidget-day' )
 		) {
-			// Prevent focusing the handle from reopening the calendar
-			this.closing = true;
-
-			this.deactivate();
-			this.$handle.focus();
-
-			this.closing = false;
+			this.deactivate( true );
 			return false;
 		}
 	};
@@ -583,13 +591,7 @@
 	 * @private
 	 */
 	mw.widgets.DateInputWidget.prototype.onEnter = function () {
-		// Prevent focusing the handle from reopening the calendar
-		this.closing = true;
-
-		this.deactivate();
-		this.$handle.focus();
-
-		this.closing = false;
+		this.deactivate( true );
 	};
 
 	/**
