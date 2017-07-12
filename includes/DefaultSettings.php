@@ -5027,6 +5027,9 @@ $wgBlockDisablesLogin = false;
  * @note Also that this will only protect _pages in the wiki_. Uploaded files
  * will remain readable. You can use img_auth.php to protect uploaded files,
  * see https://www.mediawiki.org/wiki/Manual:Image_Authorization
+ *
+ * @note Extensions should not modify this, but use the TitleReadWhitelist
+ * hook instead.
  */
 $wgWhitelistRead = false;
 
