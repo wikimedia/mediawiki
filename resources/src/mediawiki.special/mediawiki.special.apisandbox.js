@@ -371,8 +371,7 @@
 					break;
 
 				case 'text':
-					widget = new OO.ui.TextInputWidget( {
-						multiline: true,
+					widget = new OO.ui.MultilineTextInputWidget( {
 						required: Util.apiBool( pi.required )
 					} );
 					widget.paramInfo = pi;
@@ -684,10 +683,9 @@
 					new OO.ui.MenuOptionWidget( {
 						label: Util.parseMsg( 'apisandbox-request-format-json-label' ),
 						data: new OO.ui.FieldLayout(
-							jsonInput = new OO.ui.TextInputWidget( {
+							jsonInput = new OO.ui.MultilineTextInputWidget( {
 								classes: [ 'mw-apisandbox-textInputCode' ],
 								readOnly: true,
-								multiline: true,
 								autosize: true,
 								maxRows: 6,
 								value: JSON.stringify( displayParams, null, '\t' )
