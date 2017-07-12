@@ -333,17 +333,29 @@ class Sanitizer {
 	/**
 	 * Regular expression to match HTML/XML attribute pairs within a tag.
 	 * Allows some... latitude. Based on,
+	 * https://www.w3.org/TR/REC-xml/#NT-Name
+	 * HTML5 would allow more things, but since this is security sensitive, lets
+	 * err on the side of caution and use the more restrictive standard.
 	 * https://www.w3.org/TR/html5/syntax.html#before-attribute-value-state
 	 * Used in Sanitizer::fixTagAttributes and Sanitizer::decodeTagAttributes
 	 * @return string
 	 */
 	static function getAttribsRegex() {
 		if ( self::$attribsRegex === null ) {
-			$attribFirst = "[:_\p{L}\p{N}]";
-			$attrib = "[:_\.\-\p{L}\p{N}]";
+			// This matches the XML spec, except numbers are allowed first,
+			// and U+180E, U+180F, U+1680 are not allowed. These characters
+			// are sometimes considered spaces to old browsers, so as a precaution
+			// we do not allow them in attribute names.
+			$attribFirst = '0-9:_A-Za-z\xC0-\xD6\xD8-\xF6\xF8-\x{2FF}'
+				. '\x{370}-\x{37D}\x{37F}-\x{1679}\x{1681}-\x{180D}'
+				. '\x{1810}-\x{1FFF}\x{200C}-\x{200D}'
+				. '\x{2070}-\x{218F}\x{2C00}-\x{2FEF}\x{3001}-\x{D7FF}'
+				. '\x{F900}-\x{FDCF}\x{FDF0}-\x{FFFD}\x{10000}-\x{EFFFF}';
+			$attribFirstClass = "[$attribFirst]";
+			$attrib = "[-.\\x{B7}\\x{0300}-\\x{036F}\\x{203F}-\\x{2040}$attribFirst]";
 			$space = '[\x09\x0a\x0c\x0d\x20]';
 			self::$attribsRegex =
-				"/(?:^|$space)({$attribFirst}{$attrib}*)
+				"/(?:^|$space)({$attribFirstClass}{$attrib}*)
 					($space*=$space*
 					(?:
 						# The attribute value: quoted or alone
