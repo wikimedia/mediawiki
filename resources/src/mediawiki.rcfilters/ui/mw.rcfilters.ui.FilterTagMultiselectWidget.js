@@ -290,6 +290,9 @@
 				// Clear the input
 				this.input.setValue( '' );
 			}
+
+			// Log filter grouping
+			this.controller.trackFilterGroupings( 'filtermenu' );
 		}
 
 		this.input.setIcon( isVisible ? 'search' : 'menu' );

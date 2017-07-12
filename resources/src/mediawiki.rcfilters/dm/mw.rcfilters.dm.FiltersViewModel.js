@@ -888,6 +888,20 @@
 	};
 
 	/**
+	 * Get all selected items
+	 *
+	 * @return {mw.rcfilters.dm.FilterItem[]} Selected items
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getSelectedItems = function () {
+		var allSelected = [];
+
+		$.each( this.getFilterGroups(), function ( groupName, groupModel ) {
+			allSelected = allSelected.concat( groupModel.getSelectedItems() );
+		} );
+
+		return allSelected;
+	};
+	/**
 	 * Switch the current view
 	 *
 	 * @param {string} view View name
