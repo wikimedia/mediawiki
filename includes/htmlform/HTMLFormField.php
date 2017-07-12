@@ -1058,33 +1058,8 @@ abstract class HTMLFormField {
 				$this->mOptionsLabelsNotFromMessage = true;
 				$this->mOptions = self::forceToStringRecursive( $this->mParams['options'] );
 			} elseif ( array_key_exists( 'options-message', $this->mParams ) ) {
-				/** @todo This is copied from Xml::listDropDown(), deprecate/avoid duplication? */
 				$message = $this->getMessage( $this->mParams['options-message'] )->inContentLanguage()->plain();
-
-				$optgroup = false;
-				$this->mOptions = [];
-				foreach ( explode( "\n", $message ) as $option ) {
-					$value = trim( $option );
-					if ( $value == '' ) {
-						continue;
-					} elseif ( substr( $value, 0, 1 ) == '*' && substr( $value, 1, 1 ) != '*' ) {
-						# A new group is starting...
-						$value = trim( substr( $value, 1 ) );
-						$optgroup = $value;
-					} elseif ( substr( $value, 0, 2 ) == '**' ) {
-						# groupmember
-						$opt = trim( substr( $value, 2 ) );
-						if ( $optgroup === false ) {
-							$this->mOptions[$opt] = $opt;
-						} else {
-							$this->mOptions[$optgroup][$opt] = $opt;
-						}
-					} else {
-						# groupless reason list
-						$optgroup = false;
-						$this->mOptions[$option] = $option;
-					}
-				}
+				$this->mOptions = Xml::listDropDownOptions( $message );
 			} else {
 				$this->mOptions = null;
 			}
@@ -1104,16 +1079,7 @@ abstract class HTMLFormField {
 			return null;
 		}
 
-		$options = [];
-
-		foreach ( $oldoptions as $text => $data ) {
-			$options[] = [
-				'data' => (string)$data,
-				'label' => (string)$text,
-			];
-		}
-
-		return $options;
+		return Xml::listDropDownOptionsOoui( $oldoptions );
 	}
 
 	/**
