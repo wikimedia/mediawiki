@@ -46,6 +46,7 @@ production.
 
 ==== Upgraded external libraries ====
 * mediawiki/mediawiki-codesniffer updated to 0.8.1.
+* wikimedia/composer-merg-plugin updated from 1.4.0 to 1.4.1
 
 ==== New external libraries ====
 * The class \TestingAccessWrapper has been moved to the external library
