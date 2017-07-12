@@ -25,6 +25,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/cleanupTable.inc';
 
 /**
@@ -130,8 +132,11 @@ class TitleCleanup extends TableCleanup {
 	 * @param object $row
 	 * @param Title $title
 	 */
-	protected function moveInconsistentPage( $row, $title ) {
-		if ( $title->exists() || $title->getInterwiki() || !$title->canExist() ) {
+	protected function moveInconsistentPage( $row, Title $title ) {
+		if ( $title->exists( Title::GAID_FOR_UPDATE )
+			|| $title->getInterwiki()
+			|| !$title->canExist()
+		) {
 			if ( $title->getInterwiki() || !$title->canExist() ) {
 				$prior = $title->getPrefixedDBkey();
 			} else {
@@ -179,7 +184,7 @@ class TitleCleanup extends TableCleanup {
 				],
 				[ 'page_id' => $row->page_id ],
 				__METHOD__ );
-			LinkCache::singleton()->clear();
+			MediaWikiServices::getInstance()->getLinkCache()->clear();
 		}
 	}
 }
