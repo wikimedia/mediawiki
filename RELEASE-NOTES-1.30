@@ -35,6 +35,8 @@ production.
   LanguageConverter variant.  This allows English-speaking developers
   to develop and test LanguageConverter more easily.  Pig Latin can be
   enabled by setting $wgUsePigLatinVariant to true.
+* Added RecentChangesPurgeRows hook to allow extensions to purge data that
+  depends on the recentchanges table.
 
 === Languages updated in 1.30 ===
 
