@@ -2331,6 +2331,7 @@
 	"undelete-search-title": "搜索已删除页面",
 	"undelete-search-box": "搜索已删除页面",
 	"undelete-search-prefix": "显示页面自：",
+	"undelete-search-full": "显示页面标题包含：",
 	"undelete-search-submit": "搜索",
 	"undelete-no-results": "删除日志中没有匹配的结果。",
 	"undelete-filename-mismatch": "不能删除带有时间戳的文件版本$1：文件不匹配",

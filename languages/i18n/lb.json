@@ -1250,6 +1250,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (kuckt och [[Special:NewPages|Lëscht vun den neie Säiten]])",
 	"recentchanges-legend-plusminus": "''(±123)''",
 	"recentchanges-submit": "Weisen",
+	"rcfilters-legend-heading": "<strong>Lëscht vun Ofkierzungen:</strong>",
 	"rcfilters-activefilters": "Aktiv Filteren",
 	"rcfilters-advancedfilters": "Erweidert Filteren",
 	"rcfilters-quickfilters": "Gespäichert Filteren",

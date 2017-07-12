@@ -2244,6 +2244,7 @@
 	"undelete-search-title": "Buscar páxines desaniciaes",
 	"undelete-search-box": "Buscar páxines desaniciaes",
 	"undelete-search-prefix": "Amosar páxines qu'empecipien por:",
+	"undelete-search-full": "Amosar títulos de páxina que contengan:",
 	"undelete-search-submit": "Guetar",
 	"undelete-no-results": "Nun s'atoparon páxines afechisques a la busca nel archivu d'esborraos.",
 	"undelete-filename-mismatch": "Nun se pue restaurar la revisión del archivu con fecha $1: el nome d'archivu nun concuaya",

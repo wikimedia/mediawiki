@@ -1288,7 +1288,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (өссө көр: [[Special:NewPages|Саҥа сирэйдэр тиһиктэрэ]])",
 	"recentchanges-submit": "Көрдөр",
 	"rcfilters-activefilters": "Холбоммут сиидэлэр",
-	"rcfilters-quickfilters": "Сиидэ бигэргэммит туруоруулара",
+	"rcfilters-quickfilters": "Бигэргэммит сиидэлэр",
 	"rcfilters-quickfilters-placeholder-title": "Бигэргэммит сигэ билигин суох",
 	"rcfilters-quickfilters-placeholder-description": "Сиидэ туруорууларын кэлин туһанарга, \"Холбоммут сиидэ\" хонуутугар кыбытык ойуутун баттаа.",
 	"rcfilters-savedqueries-defaultlabel": "Бигэргэммит сиидэлэр",

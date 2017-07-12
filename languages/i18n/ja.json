@@ -3600,7 +3600,7 @@
 	"tags-create-reason": "理由:",
 	"tags-create-submit": "作成",
 	"tags-create-no-name": "タグの名前を指定しなければなりません。",
-	"tags-create-invalid-chars": "タグ名はコンマ (<code>,</code>) やスラッシュ (<code>/</code>) を含んではなりません。",
+	"tags-create-invalid-chars": "タグ名はコンマ (<code>,</code>)、バーティカルバー\n (<code>|</code>) やスラッシュ (<code>/</code>) を含んではなりません。",
 	"tags-create-invalid-title-chars": "タグ名はページ名として使用できない文字を含んではなりません。",
 	"tags-create-already-exists": "タグ「$1」は既に存在します。",
 	"tags-create-warnings-above": "タグ「$1」を作成しようとした際に以下の{{PLURAL:$2|警告}}にあいました:",

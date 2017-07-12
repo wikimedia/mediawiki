@@ -2318,6 +2318,7 @@
 	"undelete-search-title": "Przeszukiwanie usuniętych stron",
 	"undelete-search-box": "Wyszukiwanie usuniętych stron",
 	"undelete-search-prefix": "Strony o tytułach rozpoczynających się od:",
+	"undelete-search-full": "Zobacz tytuł strony zawierający:",
 	"undelete-search-submit": "Szukaj",
 	"undelete-no-results": "Nie znaleziono wskazanych stron w archiwum usuniętych.",
 	"undelete-filename-mismatch": "Nie można odtworzyć wersji pliku z datą $1: niezgodność nazwy pliku",

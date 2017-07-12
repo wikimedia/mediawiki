@@ -1285,6 +1285,7 @@
 	"recentchanges-legend-heading": "<strong>Легенда:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (глядзіце таксама [[Special:NewPages|сьпіс новых старонак]])",
 	"recentchanges-submit": "Паказаць",
+	"rcfilters-legend-heading": "<strong>Сьпіс абрэвіятураў:</strong>",
 	"rcfilters-activefilters": "Актыўныя фільтры",
 	"rcfilters-advancedfilters": "Пашыраныя фільтры",
 	"rcfilters-quickfilters": "Захаваныя фільтры",
