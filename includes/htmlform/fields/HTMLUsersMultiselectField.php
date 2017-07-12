@@ -70,7 +70,7 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 
 		if ( !is_null( $value ) ) {
 			// $value is a string, but the widget expects an array
-			$params['default'] = explode( "\n", $value );
+			$params['default'] = $value === '' ? [] : explode( "\n", $value );
 		}
 
 		// Make the field auto-infusable when it's used inside a legacy HTMLForm rather than OOUIHTMLForm
