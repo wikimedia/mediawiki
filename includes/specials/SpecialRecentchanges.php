@@ -210,12 +210,16 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	protected function buildChangeTagList() {
 		$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
 		$softwareActivatedTags = array_fill_keys( ChangeTags::listSoftwareActivatedTags(), 0 );
-		$tagStats = ChangeTags::tagUsageStatistics();
 
+		// Hit counts disabled for perf reasons, see T169997
+		/*
+		$tagStats = ChangeTags::tagUsageStatistics();
 		$tagHitCounts = array_merge( $explicitlyDefinedTags, $softwareActivatedTags, $tagStats );
 
 		// Sort by hits
 		arsort( $tagHitCounts );
+		*/
+		$tagHitCounts = array_merge( $explicitlyDefinedTags, $softwareActivatedTags );
 
 		// Build the list and data
 		$result = [];
@@ -239,6 +243,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				];
 			}
 		}
+
+		usort( $result, function ( $a, $b ) {
+			return strcasecmp( $a['label'], $b['label'] );
+		} );
 
 		return $result;
 	}
