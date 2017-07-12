@@ -507,38 +507,19 @@ class Xml {
 	public static function listDropDown( $name = '', $list = '', $other = '',
 		$selected = '', $class = '', $tabindex = null
 	) {
-		$optgroup = false;
+		$options = self::listDropDownOptions( $list, [ 'other' => $other ] );
+		$optionsHtml = '';
 
-		$options = self::option( $other, 'other', $selected === 'other' );
-
-		foreach ( explode( "\n", $list ) as $option ) {
-			$value = trim( $option );
-			if ( $value == '' ) {
-				continue;
-			} elseif ( substr( $value, 0, 1 ) == '*' && substr( $value, 1, 1 ) != '*' ) {
-				// A new group is starting ...
-				$value = trim( substr( $value, 1 ) );
-				if ( $optgroup ) {
-					$options .= self::closeElement( 'optgroup' );
+		foreach ( $options as $text => $value ) {
+			if ( is_array( $value ) ) {
+				$optionsHtml .= self::openElement( 'optgroup', [ 'label' => $text ] );
+				foreach ( $value as $text2 => $value2 ) {
+					$optionsHtml .= self::option( $text2, $value2, $selected === $value2 );
 				}
-				$options .= self::openElement( 'optgroup', [ 'label' => $value ] );
-				$optgroup = true;
-			} elseif ( substr( $value, 0, 2 ) == '**' ) {
-				// groupmember
-				$value = trim( substr( $value, 2 ) );
-				$options .= self::option( $value, $value, $selected === $value );
+				$optionsHtml .= self::closeElement( 'optgroup' );
 			} else {
-				// groupless reason list
-				if ( $optgroup ) {
-					$options .= self::closeElement( 'optgroup' );
-				}
-				$options .= self::option( $value, $value, $selected === $value );
-				$optgroup = false;
+				$optionsHtml .= self::option( $text, $value, $selected === $value );
 			}
-		}
-
-		if ( $optgroup ) {
-			$options .= self::closeElement( 'optgroup' );
 		}
 
 		$attribs = [];
@@ -558,9 +539,77 @@ class Xml {
 
 		return self::openElement( 'select', $attribs )
 			. "\n"
-			. $options
+			. $optionsHtml
 			. "\n"
 			. self::closeElement( 'select' );
+	}
+
+	/**
+	 * Build options for a drop-down box from a textual list.
+	 *
+	 * @param string $list Correctly formatted text (newline delimited) to be
+	 *   used to generate the options.
+	 * @param array $params Extra parameters
+	 * @param string $params['other'] If set, add an option with this as text and a value of 'other'
+	 * @return array Array keys are textual labels, values are internal values
+	 */
+	public static function listDropDownOptions( $list, $params = [] ) {
+		$options = [];
+
+		if ( isset( $params['other'] ) ) {
+			$options[ $params['other'] ] = 'other';
+		}
+
+		$optgroup = false;
+		foreach ( explode( "\n", $list ) as $option ) {
+			$value = trim( $option );
+			if ( $value == '' ) {
+				continue;
+			} elseif ( substr( $value, 0, 1 ) == '*' && substr( $value, 1, 1 ) != '*' ) {
+				# A new group is starting...
+				$value = trim( substr( $value, 1 ) );
+				$optgroup = $value;
+			} elseif ( substr( $value, 0, 2 ) == '**' ) {
+				# groupmember
+				$opt = trim( substr( $value, 2 ) );
+				if ( $optgroup === false ) {
+					$options[$opt] = $opt;
+				} else {
+					$options[$optgroup][$opt] = $opt;
+				}
+			} else {
+				# groupless reason list
+				$optgroup = false;
+				$options[$option] = $option;
+			}
+		}
+
+		return $options;
+	}
+
+	/**
+	 * Convert options for a drop-down box into a format accepted by OOUI\DropdownInputWidget etc.
+	 *
+	 * TODO Find a better home for this function.
+	 *
+	 * @param array $options Options, as returned e.g. by Xml::listDropDownOptions()
+	 * @return array
+	 */
+	public static function listDropDownOptionsOoui( $options ) {
+		$optionsOoui = [];
+
+		foreach ( $options as $text => $value ) {
+			if ( is_array( $value ) ) {
+				$optionsOoui[] = [ 'optgroup' => (string)$text ];
+				foreach ( $value as $text2 => $value2 ) {
+					$optionsOoui[] = [ 'data' => (string)$value2, 'label' => (string)$text2 ];
+				}
+			} else {
+				$optionsOoui[] = [ 'data' => (string)$value, 'label' => (string)$text ];
+			}
+		}
+
+		return $optionsOoui;
 	}
 
 	/**
