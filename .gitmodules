@@ -673,3 +673,7 @@
 [submodule "extensions/CodeMirror"]
 	path = extensions/CodeMirror
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CodeMirror.git
+[submodule "skins/MinervaNeue"]
+	path = skins/MinervaNeue
+	url = https://gerrit.wikimedia.org/r/mediawiki/skins/MinervaNeue
+	branch = wmf/1.30.0-wmf.7
