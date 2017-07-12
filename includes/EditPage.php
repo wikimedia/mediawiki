@@ -4727,12 +4727,7 @@ HTML
 				'style' => ''
 			];
 
-		// The following classes can be used here:
-		// * mw-editfont-default
-		// * mw-editfont-monospace
-		// * mw-editfont-sans-serif
-		// * mw-editfont-serif
-		$class = 'mw-editfont-' . $user->getOption( 'editfont' );
+		$class = $this->getEditFontClass( $user );
 
 		if ( isset( $attribs['class'] ) ) {
 			if ( is_string( $attribs['class'] ) ) {
@@ -4749,6 +4744,22 @@ HTML
 		$attribs['dir'] = $pageLang->getDir();
 
 		return $attribs;
+	}
+
+	/**
+	 * @since 1.30
+	 *
+	 * @param User $user
+	 *
+	 * @return string
+	 * The following classes can be used here:
+	 *  * mw-editfont-default
+	 *  * mw-editfont-monospace
+	 *  * mw-editfont-sans-serif
+	 *  * mw-editfont-serif
+	 */
+	protected function getEditFontClass( User $user ) {
+		return 'mw-editfont-' . $user->getOption( 'editfont' );
 	}
 
 	/**
