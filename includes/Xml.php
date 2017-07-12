@@ -493,7 +493,8 @@ class Xml {
 	}
 
 	/**
-	 * Build a drop-down box from a textual list.
+	 * Build a drop-down box from a textual list. This is a wrapper
+	 * for Xml::listDropDownOptions() plus the XmlSelect class.
 	 *
 	 * @param string $name Name and id for the drop-down
 	 * @param string $list Correctly formatted text (newline delimited) to be
@@ -507,60 +508,91 @@ class Xml {
 	public static function listDropDown( $name = '', $list = '', $other = '',
 		$selected = '', $class = '', $tabindex = null
 	) {
+		$options = self::listDropDownOptions( $list, [ 'other' => $other ] );
+
+		$xmlSelect = new XmlSelect( $name, $name, $selected );
+		$xmlSelect->addOptions( $options );
+
+		if ( $class ) {
+			$xmlSelect->setAttribute( 'class', $class );
+		}
+		if ( $tabindex ) {
+			$xmlSelect->setAttribute( 'tabindex', $tabindex );
+		}
+
+		return $xmlSelect->getHTML();
+	}
+
+	/**
+	 * Build options for a drop-down box from a textual list.
+	 *
+	 * The result of this function can be passed to XmlSelect::addOptions()
+	 * (to render a plain `<select>` dropdown box) or to Xml::listDropDownOptionsOoui()
+	 * and then OOUI\DropdownInputWidget() (to render a pretty one).
+	 *
+	 * @param string $list Correctly formatted text (newline delimited) to be
+	 *   used to generate the options.
+	 * @param array $params Extra parameters
+	 * @param string $params['other'] If set, add an option with this as text and a value of 'other'
+	 * @return array Array keys are textual labels, values are internal values
+	 */
+	public static function listDropDownOptions( $list, $params = [] ) {
+		$options = [];
+
+		if ( isset( $params['other'] ) ) {
+			$options[ $params['other'] ] = 'other';
+		}
+
 		$optgroup = false;
-
-		$options = self::option( $other, 'other', $selected === 'other' );
-
 		foreach ( explode( "\n", $list ) as $option ) {
 			$value = trim( $option );
 			if ( $value == '' ) {
 				continue;
 			} elseif ( substr( $value, 0, 1 ) == '*' && substr( $value, 1, 1 ) != '*' ) {
-				// A new group is starting ...
+				# A new group is starting...
 				$value = trim( substr( $value, 1 ) );
-				if ( $optgroup ) {
-					$options .= self::closeElement( 'optgroup' );
-				}
-				$options .= self::openElement( 'optgroup', [ 'label' => $value ] );
-				$optgroup = true;
+				$optgroup = $value;
 			} elseif ( substr( $value, 0, 2 ) == '**' ) {
-				// groupmember
-				$value = trim( substr( $value, 2 ) );
-				$options .= self::option( $value, $value, $selected === $value );
-			} else {
-				// groupless reason list
-				if ( $optgroup ) {
-					$options .= self::closeElement( 'optgroup' );
+				# groupmember
+				$opt = trim( substr( $value, 2 ) );
+				if ( $optgroup === false ) {
+					$options[$opt] = $opt;
+				} else {
+					$options[$optgroup][$opt] = $opt;
 				}
-				$options .= self::option( $value, $value, $selected === $value );
+			} else {
+				# groupless reason list
 				$optgroup = false;
+				$options[$option] = $option;
 			}
 		}
 
-		if ( $optgroup ) {
-			$options .= self::closeElement( 'optgroup' );
+		return $options;
+	}
+
+	/**
+	 * Convert options for a drop-down box into a format accepted by OOUI\DropdownInputWidget etc.
+	 *
+	 * TODO Find a better home for this function.
+	 *
+	 * @param array $options Options, as returned e.g. by Xml::listDropDownOptions()
+	 * @return array
+	 */
+	public static function listDropDownOptionsOoui( $options ) {
+		$optionsOoui = [];
+
+		foreach ( $options as $text => $value ) {
+			if ( is_array( $value ) ) {
+				$optionsOoui[] = [ 'optgroup' => (string)$text ];
+				foreach ( $value as $text2 => $value2 ) {
+					$optionsOoui[] = [ 'data' => (string)$value2, 'label' => (string)$text2 ];
+				}
+			} else {
+				$optionsOoui[] = [ 'data' => (string)$value, 'label' => (string)$text ];
+			}
 		}
 
-		$attribs = [];
-
-		if ( $name ) {
-			$attribs['id'] = $name;
-			$attribs['name'] = $name;
-		}
-
-		if ( $class ) {
-			$attribs['class'] = $class;
-		}
-
-		if ( $tabindex ) {
-			$attribs['tabindex'] = $tabindex;
-		}
-
-		return self::openElement( 'select', $attribs )
-			. "\n"
-			. $options
-			. "\n"
-			. self::closeElement( 'select' );
+		return $optionsOoui;
 	}
 
 	/**
