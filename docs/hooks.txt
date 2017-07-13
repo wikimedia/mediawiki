@@ -3116,7 +3116,7 @@ UsersPager::formatRow().
 &$item: HTML to be returned. Will be wrapped in <li></li> after the hook finishes
 $row: Database row object
 
-'SpecialListusersHeader': Called before closing the <fieldset> in
+'SpecialListusersHeader': Called after adding the submit button in
 UsersPager::getPageHeader().
 $pager: The UsersPager instance
 &$out: The header HTML
