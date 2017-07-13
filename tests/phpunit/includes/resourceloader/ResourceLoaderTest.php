@@ -588,7 +588,12 @@ mw.example();
 	 * @covers ResourceLoader::getCombinedVersion
 	 */
 	public function testGetCombinedVersion() {
-		$rl = new EmptyResourceLoader();
+		$rl = $this->getMockBuilder( EmptyResourceLoader::class )
+			// Disable outputErrorAndLog to avoid logspam
+			#->setMethods( [ 'outputErrorAndLog' ] )
+			->setMethods( null )
+			->getMock();
+
 		$rl->register( [
 			'foo' => self::getSimpleModuleMock(),
 			'ferry' => self::getFailFerryMock(),
