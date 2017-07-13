@@ -588,7 +588,9 @@ mw.example();
 	 * @covers ResourceLoader::getCombinedVersion
 	 */
 	public function testGetCombinedVersion() {
-		$rl = new EmptyResourceLoader();
+		$rl = $this->getMockBuilder( EmptyResourceLoader::class )
+			// Disable log from outputErrorAndLog
+			->setMethods( [ 'outputErrorAndLog' ] )->getMock();
 		$rl->register( [
 			'foo' => self::getSimpleModuleMock(),
 			'ferry' => self::getFailFerryMock(),
@@ -720,6 +722,9 @@ mw.example();
 			$rl
 		);
 
+		// Disable log from makeModuleResponse via outputErrorAndLog
+		$this->setLogger( 'exception', new Psr\Log\NullLogger() );
+
 		$response = $rl->makeModuleResponse( $context, $modules );
 		$errors = $rl->getErrors();
 
@@ -763,6 +768,9 @@ mw.example();
 			$rl->getModuleNames(),
 			'getModuleNames'
 		);
+
+		// Disable log from makeModuleResponse via outputErrorAndLog
+		$this->setLogger( 'exception', new Psr\Log\NullLogger() );
 
 		$modules = [ 'startup' => $rl->getModule( 'startup' ) ];
 		$response = $rl->makeModuleResponse( $context, $modules );
