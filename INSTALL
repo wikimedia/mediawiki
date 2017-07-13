@@ -8,7 +8,7 @@ Starting with MediaWiki 1.2.0, it's possible to install and configure the wiki
 Required software:
 * Web server with PHP 5.5.9 or higher.
 * A SQL server, the following types are supported
-** MySQL 5.0.3 or higher
+** MySQL 5.5.8 or higher
 ** PostgreSQL 8.3 or higher
 ** SQLite 3.3.7 or higher
 ** Oracle 9.0.1 or higher
