@@ -82,7 +82,8 @@
 			"Aefgh39622",
 			"Ayame",
 			"Omotecho",
-			"Thibaut120094"
+			"Thibaut120094",
+			"Translatealcd"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -1143,7 +1144,7 @@
 	"userrights-viewusergroup": "{{GENDER:$1|利用者}}グループ",
 	"saveusergroups": "{{GENDER:$1|利用者}}グループを保存",
 	"userrights-groupsmember": "所属グループ:",
-	"userrights-groupsmember-auto": "自動的に付与される権限:",
+	"userrights-groupsmember-auto": "秘匿した所属グループ",
 	"userrights-groupsmember-type": "$1",
 	"userrights-groups-help": "この利用者が属するグループを変更できます。\n* チェックが入っているボックスは、この利用者がそのグループに属していることを意味します。\n* チェックが入っていないボックスは、この利用者がそのグループに属していないことを意味します。\n*「*」はグループに一旦追加した場合に除去 (あるいはその逆) ができないことを示しています。\n*「#」は有効期限の延長のみを行うことができるグループの参加資格を示します; 現在の期限よりも短縮することはできません。",
 	"userrights-reason": "理由:",
@@ -1168,7 +1169,7 @@
 	"group-bot": "ボット",
 	"group-sysop": "管理者",
 	"group-bureaucrat": "ビューロクラット",
-	"group-suppress": "秘匿者",
+	"group-suppress": "監督員",
 	"group-all": "(全員)",
 	"group-user-member": "{{GENDER:$1|登録利用者}}",
 	"group-autoconfirmed-member": "{{GENDER:$1|自動承認された利用者}}",
@@ -1446,7 +1447,7 @@
 	"rcfilters-filtergroup-lastRevision": "最新版",
 	"rcfilters-filter-lastrevision-label": "最新版",
 	"rcfilters-filter-lastrevision-description": "ページの最新の変更",
-	"rcfilters-filter-previousrevision-label": "新しい版",
+	"rcfilters-filter-previousrevision-label": "古い版",
 	"rcfilters-filter-previousrevision-description": "ページの最新の変更ではない全ての変更。",
 	"rcnotefrom": "以下は<strong>$3 $4</strong>以降の{{PLURAL:$5|更新です}} (最大 <strong>$1</strong> 件)。",
 	"rclistfromreset": "日時指定をリセット",

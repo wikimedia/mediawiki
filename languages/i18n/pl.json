@@ -1362,6 +1362,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (zobacz też [[Special:NewPages|listę nowych stron]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "Pokaż",
+	"rcfilters-legend-heading": "<strong>Wykaz skrótów:</strong>",
 	"rcfilters-activefilters": "Aktywne filtry",
 	"rcfilters-advancedfilters": "Zaawansowane filtry",
 	"rcfilters-quickfilters": "Zapisane filtry",

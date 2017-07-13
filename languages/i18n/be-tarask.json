@@ -2244,6 +2244,7 @@
 	"undelete-search-title": "Пошук выдаленых старонак",
 	"undelete-search-box": "Пошук выдаленых старонак",
 	"undelete-search-prefix": "Паказаць старонкі, назвы якіх пачынаюцца з:",
+	"undelete-search-full": "Паказаць назвы старонак, якія ўтрымліваюць:",
 	"undelete-search-submit": "Паказаць",
 	"undelete-no-results": "У архіве выдаленьняў ня знойдзеныя адпаведныя старонкі.",
 	"undelete-filename-mismatch": "Немагчыма аднавіць вэрсію файла з датай $1: несупадзеньне назвы файла",
