@@ -17,6 +17,14 @@
 		margin-top: 1.6em;
 	}
 
+	.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled &-emphasize.oo-ui-tagMultiselectWidget-handle {
+		background-color: #eaf3ff !important; // Accent90
+		-webkit-transition: background-color 500ms ease-out 1s;
+		-moz-transition: background-color 500ms ease-out 1s;
+		-o-transition: background-color 500ms ease-out 1s;
+		transition: background-color 500ms ease-out 1s;
+	}
+
 	&-wrapper {
 		.mw-rcfilters-ui-table {
 			margin-top: 0.3em;
@@ -29,7 +37,8 @@
 			}
 
 			&-savedQueryTitle {
-				color: #72777d;
+				color: #222; // Base10
+				font-weight: bold;
 				margin-left: 1em;
 			}
 		}

@@ -332,6 +332,8 @@
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onModelInitialize = function () {
 		this.setSavedQueryVisibility();
+
+		this.emphasize();
 	};
 
 	/**
@@ -588,6 +590,11 @@
 		}
 	};
 
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.emphasize = function () {
+		this.$handle
+			.removeClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-emphasize' )
+			.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-emphasize' )
+	};
 	/**
 	 * Scroll the element to top within its container
 	 *
