@@ -776,7 +776,7 @@ class FileRepo {
 	public function getDescriptionRenderUrl( $name, $lang = null ) {
 		$query = 'action=render';
 		if ( !is_null( $lang ) ) {
-			$query .= '&uselang=' . $lang;
+			$query .= '&uselang=' . urlencode( $lang );
 		}
 		if ( isset( $this->scriptDirUrl ) ) {
 			return $this->makeUrl(
