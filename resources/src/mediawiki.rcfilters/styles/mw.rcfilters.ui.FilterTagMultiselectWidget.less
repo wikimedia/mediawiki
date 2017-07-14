@@ -17,6 +17,17 @@
 		margin-top: 1.6em;
 	}
 
+	.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled &-animate.oo-ui-tagMultiselectWidget-handle {
+		-webkit-transition: background-color 500ms ease-out;
+		-moz-transition: background-color 500ms ease-out;
+		-o-transition: background-color 500ms ease-out;
+		transition: background-color 500ms ease-out;
+	}
+
+	.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled &-emphasize.oo-ui-tagMultiselectWidget-handle {
+		background-color: #eaf3ff; // Accent90
+	}
+
 	&-wrapper {
 		.mw-rcfilters-ui-table {
 			margin-top: 0.3em;
@@ -29,7 +40,8 @@
 			}
 
 			&-savedQueryTitle {
-				color: #72777d;
+				color: #222; // Base10
+				font-weight: bold;
 				margin-left: 1em;
 			}
 		}
