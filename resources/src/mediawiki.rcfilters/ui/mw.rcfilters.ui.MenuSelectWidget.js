@@ -210,6 +210,7 @@
 				.addClass( 'mw-rcfilters-ui-menuSelectWidget-view-' + viewName );
 
 			this.currentView = viewName;
+			this.scrollToTop();
 			this.clip();
 		}
 	};
