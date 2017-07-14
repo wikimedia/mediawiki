@@ -86,8 +86,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				'filters' => [
 					[
 						'name' => 'hideliu',
-						'label' => 'rcfilters-filter-registered-label',
-						'description' => 'rcfilters-filter-registered-description',
 						// rcshowhideliu-show, rcshowhideliu-hide,
 						// wlshowhideliu
 						'showHideSuffix' => 'showhideliu',
@@ -97,16 +95,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						) {
 							$conds[] = 'rc_user = 0';
 						},
-						'cssClassSuffix' => 'liu',
-						'isRowApplicableCallable' => function ( $ctx, $rc ) {
-							return $rc->getAttribute( 'rc_user' );
-						},
+						'isReplacedInStructuredUi' => true,
 
 					],
 					[
 						'name' => 'hideanons',
-						'label' => 'rcfilters-filter-unregistered-label',
-						'description' => 'rcfilters-filter-unregistered-description',
 						// rcshowhideanons-show, rcshowhideanons-hide,
 						// wlshowhideanons
 						'showHideSuffix' => 'showhideanons',
@@ -116,10 +109,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						) {
 							$conds[] = 'rc_user != 0';
 						},
-						'cssClassSuffix' => 'anon',
-						'isRowApplicableCallable' => function ( $ctx, $rc ) {
-							return !$rc->getAttribute( 'rc_user' );
-						},
+						'isReplacedInStructuredUi' => true,
 					]
 				],
 			],
@@ -128,9 +118,26 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				'name' => 'userExpLevel',
 				'title' => 'rcfilters-filtergroup-userExpLevel',
 				'class' => ChangesListStringOptionsFilterGroup::class,
-				// Excludes unregistered users
-				'isFullCoverage' => false,
+				'isFullCoverage' => true,
 				'filters' => [
+					[
+						'name' => 'unregistered',
+						'label' => 'rcfilters-filter-user-experience-level-unregistered-label',
+						'description' => 'rcfilters-filter-user-experience-level-unregistered-description',
+						'cssClassSuffix' => 'user-unregistered',
+						'isRowApplicableCallable' => function ( $ctx, $rc ) {
+							return !$rc->getAttribute( 'rc_user' );
+						}
+					],
+					[
+						'name' => 'registered',
+						'label' => 'rcfilters-filter-user-experience-level-registered-label',
+						'description' => 'rcfilters-filter-user-experience-level-registered-description',
+						'cssClassSuffix' => 'user-registered',
+						'isRowApplicableCallable' => function ( $ctx, $rc ) {
+							return $rc->getAttribute( 'rc_user' );
+						}
+					],
 					[
 						'name' => 'newcomer',
 						'label' => 'rcfilters-filter-user-experience-level-newcomer-label',
@@ -632,19 +639,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$this->registerFiltersFromDefinitions( [ $unstructuredGroupDefinition ] );
 
 		$userExperienceLevel = $this->getFilterGroup( 'userExpLevel' );
-
-		$registration = $this->getFilterGroup( 'registration' );
-		$anons = $registration->getFilter( 'hideanons' );
-
-		// This means there is a conflict between any item in user experience level
-		// being checked and only anons being *shown* (hideliu=1&hideanons=0 in the
-		// URL, or equivalent).
-		$userExperienceLevel->conflictsWith(
-			$anons,
-			'rcfilters-filtergroup-user-experience-level-conflicts-unregistered-global',
-			'rcfilters-filtergroup-user-experience-level-conflicts-unregistered',
-			'rcfilters-filter-unregistered-conflicts-user-experience-level'
-		);
+		$registered = $userExperienceLevel->getFilter( 'registered' );
+		$registered->setAsSupersetOf( $userExperienceLevel->getFilter( 'newcomer' ) );
+		$registered->setAsSupersetOf( $userExperienceLevel->getFilter( 'learner' ) );
+		$registered->setAsSupersetOf( $userExperienceLevel->getFilter( 'experienced' ) );
 
 		$categoryFilter = $changeTypeGroup->getFilter( 'hidecategorization' );
 		$logactionsFilter = $changeTypeGroup->getFilter( 'hidelog' );
@@ -1337,12 +1335,32 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$wgLearnerMemberSince,
 			$wgExperiencedUserMemberSince;
 
-		$LEVEL_COUNT = 3;
+		$LEVEL_COUNT = 5;
 
-		// If all levels are selected, all logged-in users are included (but no
-		// anons), so we can short-circuit.
+		// If all levels are selected, don't filter
 		if ( count( $selectedExpLevels ) === $LEVEL_COUNT ) {
+			return;
+		}
+
+		// both 'registered' and 'unregistered', experience levels, if any, are included in 'registered'
+		if (
+			in_array( 'registered', $selectedExpLevels ) &&
+			in_array( 'unregistered', $selectedExpLevels )
+		) {
+			return;
+		}
+
+		// 'registered' but not 'unregistered', experience levels, if any, are included in 'registered'
+		if (
+			in_array( 'registered', $selectedExpLevels ) &&
+			!in_array( 'unregistered', $selectedExpLevels )
+		) {
 			$conds[] = 'rc_user != 0';
+			return;
+		}
+
+		if ( $selectedExpLevels === [ 'unregistered' ] ) {
+			$conds[] = 'rc_user = 0';
 			return;
 		}
 
@@ -1373,24 +1391,39 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			IDatabase::LIST_AND
 		);
 
+		$conditions = [];
+
+		if ( in_array( 'unregistered', $selectedExpLevels ) ) {
+			$selectedExpLevels = array_diff( $selectedExpLevels, [ 'unregistered' ] );
+			$conditions[] = 'rc_user = 0';
+		}
+
 		if ( $selectedExpLevels === [ 'newcomer' ] ) {
-			$conds[] = "NOT ( $aboveNewcomer )";
+			$conditions[] = "NOT ( $aboveNewcomer )";
 		} elseif ( $selectedExpLevels === [ 'learner' ] ) {
-			$conds[] = $dbr->makeList(
+			$conditions[] = $dbr->makeList(
 				[ $aboveNewcomer, "NOT ( $aboveLearner )" ],
 				IDatabase::LIST_AND
 			);
 		} elseif ( $selectedExpLevels === [ 'experienced' ] ) {
-			$conds[] = $aboveLearner;
+			$conditions[] = $aboveLearner;
 		} elseif ( $selectedExpLevels === [ 'learner', 'newcomer' ] ) {
-			$conds[] = "NOT ( $aboveLearner )";
+			$conditions[] = "NOT ( $aboveLearner )";
 		} elseif ( $selectedExpLevels === [ 'experienced', 'newcomer' ] ) {
-			$conds[] = $dbr->makeList(
+			$conditions[] = $dbr->makeList(
 				[ "NOT ( $aboveNewcomer )", $aboveLearner ],
 				IDatabase::LIST_OR
 			);
 		} elseif ( $selectedExpLevels === [ 'experienced', 'learner' ] ) {
-			$conds[] = $aboveNewcomer;
+			$conditions[] = $aboveNewcomer;
+		} elseif ( $selectedExpLevels === [ 'experienced', 'learner', 'newcomer' ] ) {
+			$conditions[] = 'rc_user != 0';
+		}
+
+		if ( count( $conditions ) > 1 ) {
+			$conds[] = $dbr->makeList( $conditions, IDatabase::LIST_OR );
+		} elseif ( count( $conditions ) === 1 ) {
+			$conds[] = reset( $conditions );
 		}
 	}
 }
