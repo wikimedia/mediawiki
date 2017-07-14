@@ -58,7 +58,11 @@
 		$bottom = $( '<div>' )
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget-bottom' );
 
-		if ( mw.config.get( 'wgStructuredChangeFiltersEnableLiveUpdate' ) ) {
+		if (
+			mw.config.get( 'wgStructuredChangeFiltersEnableLiveUpdate' ) ||
+			// Allow users to enable live update with ?liveupdate=1
+			new mw.Uri().query.liveupdate
+		) {
 			$bottom.append( this.liveUpdateButton.$element );
 		}
 
