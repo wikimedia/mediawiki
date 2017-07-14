@@ -305,12 +305,6 @@ class User implements IDBAccessObject {
 	/** @var integer User::READ_* constant bitfield used to load data */
 	protected $queryFlagsUsed = self::READ_NORMAL;
 
-	/** @var string Indicates type of block (used for eventlogging)
-	 * Permitted values: 'cookie-block', 'proxy-block', 'openproxy-block', 'xff-block',
-	 * 'config-block'
-	 */
-	public $blockTrigger = false;
-
 	public static $idCacheByName = [];
 
 	/**
@@ -1676,7 +1670,6 @@ class User implements IDBAccessObject {
 					'address' => $ip,
 					'systemBlock' => 'proxy',
 				] );
-				$this->blockTrigger = 'proxy-block';
 			} elseif ( $this->isAnon() && $this->isDnsBlacklisted( $ip ) ) {
 				$block = new Block( [
 					'byText' => wfMessage( 'sorbs' )->text(),
@@ -1684,7 +1677,6 @@ class User implements IDBAccessObject {
 					'address' => $ip,
 					'systemBlock' => 'dnsbl',
 				] );
-				$this->blockTrigger = 'openproxy-block';
 			}
 		}
 
@@ -1703,7 +1695,6 @@ class User implements IDBAccessObject {
 				# Mangle the reason to alert the user that the block
 				# originated from matching the X-Forwarded-For header.
 				$block->mReason = wfMessage( 'xffblockreason', $block->mReason )->text();
-				$this->blockTrigger = 'xff-block';
 			}
 		}
 
@@ -1719,7 +1710,6 @@ class User implements IDBAccessObject {
 				'anonOnly' => true,
 				'systemBlock' => 'wgSoftBlockRanges',
 			] );
-			$this->blockTrigger = 'config-block';
 		}
 
 		if ( $block instanceof Block ) {
@@ -1733,7 +1723,6 @@ class User implements IDBAccessObject {
 			$this->mBlockedby = '';
 			$this->mHideName = 0;
 			$this->mAllowUsertalk = false;
-			$this->blockTrigger = false;
 		}
 
 		// Avoid PHP 7.1 warning of passing $this by reference
@@ -1766,7 +1755,6 @@ class User implements IDBAccessObject {
 				$useBlockCookie = ( $config->get( 'CookieSetOnAutoblock' ) === true );
 				if ( $blockIsValid && $useBlockCookie ) {
 					// Use the block.
-					$this->blockTrigger = 'cookie-block';
 					return $tmpBlock;
 				} else {
 					// If the block is not valid, remove the cookie.
