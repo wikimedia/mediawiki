@@ -571,6 +571,7 @@
 	"apihelp-resetpassword-example-email": "<kbd>user@example.com</kbd> 이메일 주소를 가진 모든 사용자에 대해 비밀번호 재설정 이메일을 보냅니다.",
 	"apihelp-revisiondelete-summary": "판을 삭제하거나 되살립니다.",
 	"apihelp-revisiondelete-param-reason": "삭제 또는 복구 이유.",
+	"apihelp-rollback-summary": "문서의 마지막 편집을 취소합니다.",
 	"apihelp-rollback-param-tags": "되돌리기를 적용하기 위해 태그합니다.",
 	"apihelp-rollback-param-watchlist": "현재 사용자의 주시목록에서 문서를 무조건적으로 추가하거나 제거하거나, 환경 설정을 사용하거나 주시를 변경하지 않습니다.",
 	"apihelp-rollback-example-simple": "<kbd>Project:대문</kbd> 문서의 <kbd>예시</kbd>의 마지막 판을 되돌리기",

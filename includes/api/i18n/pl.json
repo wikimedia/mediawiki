@@ -57,6 +57,7 @@
 	"apihelp-compare-param-fromtitle": "Pierwszy tytuł do porównania.",
 	"apihelp-compare-param-fromid": "ID pierwszej strony do porównania.",
 	"apihelp-compare-param-fromrev": "Pierwsza wersja do porównania.",
+	"apihelp-compare-param-frompst": "Dokonaj zapisu wersji roboczej transformacji przeprowadzonej na <var>fromtext</var>.",
 	"apihelp-compare-param-totitle": "Drugi tytuł do porównania.",
 	"apihelp-compare-param-toid": "Numer drugiej strony do porównania.",
 	"apihelp-compare-param-torev": "Druga wersja do porównania.",

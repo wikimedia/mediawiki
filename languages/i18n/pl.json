@@ -3901,6 +3901,7 @@
 	"log-action-filter-suppress-reblock": "Ukrycie użytkownika poprzez ponowną blokadę",
 	"log-action-filter-upload-upload": "Nowe przesłane",
 	"log-action-filter-upload-overwrite": "Przesłane ponownie",
+	"authmanager-authn-not-in-progress": "Tworzenie konta nie jest wykonywane lub dane sesji zostały utracone. Zacznij od początku.",
 	"authmanager-authn-no-primary": "Podane dane nie mogą być użyte do kontroli poświadczeń.",
 	"authmanager-authn-no-local-user": "Żaden użytkownik nie korzysta z tych danych.",
 	"authmanager-authn-autocreate-failed": "Automatyczne tworzenie lokalnego konta nie powiodło się: $1",

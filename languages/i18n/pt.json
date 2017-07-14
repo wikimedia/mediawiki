@@ -2302,6 +2302,7 @@
 	"undelete-search-title": "Pesquisar páginas eliminadas",
 	"undelete-search-box": "Pesquisar páginas eliminadas",
 	"undelete-search-prefix": "Mostrar páginas que começam por:",
+	"undelete-search-full": "Mostrar os títulos de página que contenham:",
 	"undelete-search-submit": "Pesquisar",
 	"undelete-no-results": "Não foram encontradas páginas eliminadas, para esse critério de pesquisa, no arquivo de eliminações.",
 	"undelete-filename-mismatch": "Não foi possível restaurar a versão do ficheiro de $1: nome de ficheiro não combina",
