@@ -2702,7 +2702,7 @@
 	"pageinfo-language-change": "зьмяніць",
 	"pageinfo-content-model": "Мадэль зьместу старонкі",
 	"pageinfo-content-model-change": "зьмяніць",
-	"pageinfo-robot-policy": "Індэксацыя пашукавікамі",
+	"pageinfo-robot-policy": "Індэксацыя пошукавымі робатамі",
 	"pageinfo-robot-index": "Дазволеная",
 	"pageinfo-robot-noindex": "Не дазволеная",
 	"pageinfo-watchers": "Колькасьць назіральнікаў і назіральніц",
@@ -3854,6 +3854,7 @@
 	"changecredentials-success": "Вашыя ўліковыя зьвесткі былі зьмененыя.",
 	"removecredentials": "Выдаленьне ўліковых зьвестак",
 	"removecredentials-submit": "Выдаліць уліковыя зьвесткі",
+	"removecredentials-invalidsubpage": "$1 не зьяўляецца слушным тыпам уліковых зьвестак.",
 	"credentialsform-provider": "Тып уліковых зьвестак:",
 	"credentialsform-account": "Назва рахунку:"
 }
