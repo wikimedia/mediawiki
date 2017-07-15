@@ -455,6 +455,7 @@ class PostgresUpdater extends DatabaseUpdater {
 
 			// 1.30
 			[ 'modifyField', 'image', 'img_media_type', 'patch-add-3d.sql' ],
+			[ 'doChangeSiteStatsKey' ],
 		];
 	}
 
