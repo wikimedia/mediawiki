@@ -123,6 +123,9 @@ class OracleUpdater extends DatabaseUpdater {
 			[ 'addField', 'externallinks', 'el_index_60', 'patch-externallinks-el_index_60.sql' ],
 			[ 'addField', 'user_groups', 'ug_expiry', 'patch-user_groups-ug_expiry.sql' ],
 
+			// 1.30
+			[ 'dropIndex', 'site_stats', 'ss_row_id', 'patch-site_stats-pk.sql' ],
+
 			// KEEP THIS AT THE BOTTOM!!
 			[ 'doRebuildDuplicateFunction' ],
 
