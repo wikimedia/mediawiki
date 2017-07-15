@@ -296,7 +296,7 @@ CREATE INDEX langlinks_lang_title    ON langlinks (ll_lang,ll_title);
 
 
 CREATE TABLE site_stats (
-  ss_row_id         INTEGER  NOT NULL  UNIQUE,
+  ss_row_id         INTEGER  NOT NULL  PRIMARY KEY DEFAULT 0,
   ss_total_edits    INTEGER            DEFAULT 0,
   ss_good_articles  INTEGER            DEFAULT 0,
   ss_total_pages    INTEGER            DEFAULT -1,

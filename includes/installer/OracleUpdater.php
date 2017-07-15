@@ -125,6 +125,7 @@ class OracleUpdater extends DatabaseUpdater {
 
 			// 1.30
 			[ 'doAutoIncrementTriggers' ],
+			[ 'addIndex', 'site_stats', 'PRIMARY', 'patch-site_stats-pk.sql' ],
 
 			// KEEP THIS AT THE BOTTOM!!
 			[ 'doRebuildDuplicateFunction' ],
