@@ -654,17 +654,13 @@ class ChangeTags {
 	 * @param string|array $conds Conditions used in query, see Database::select
 	 * @param array $join_conds Join conditions, see Database::select
 	 * @param string|array $options Options, see Database::select
-	 * @param bool|string|array $filter_tag Tag(s) to select on
+	 * @param string|array $filter_tag Tag(s) to select on
 	 *
 	 * @throws MWException When unable to determine appropriate JOIN condition for tagging
 	 */
 	public static function modifyDisplayQuery( &$tables, &$fields, &$conds,
-										&$join_conds, &$options, $filter_tag = false ) {
-		global $wgRequest, $wgUseTagFilter;
-
-		if ( $filter_tag === false ) {
-			$filter_tag = $wgRequest->getVal( 'tagfilter' );
-		}
+										&$join_conds, &$options, $filter_tag = '' ) {
+		global $wgUseTagFilter;
 
 		// Figure out which ID field to use
 		if ( in_array( 'recentchanges', (array)$tables ) ) {
