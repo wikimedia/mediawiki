@@ -867,7 +867,7 @@ CREATE INDEX /*i*/iwl_prefix_from_title ON /*_*/iwlinks (iwl_prefix, iwl_from, i
 --
 CREATE TABLE /*_*/site_stats (
   -- The single row should contain 1 here.
-  ss_row_id int unsigned NOT NULL PRIMARY KEY,
+  ss_row_id int unsigned NOT NULL PRIMARY KEY default 0,
 
   -- Total number of edits performed.
   ss_total_edits bigint unsigned default 0,

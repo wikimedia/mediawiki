@@ -125,6 +125,7 @@ class OracleUpdater extends DatabaseUpdater {
 
 			// 1.30
 			[ 'doAutoIncrementTriggers' ],
+			[ 'doChangeSiteStatsKey' ],
 
 			// KEEP THIS AT THE BOTTOM!!
 			[ 'doRebuildDuplicateFunction' ],

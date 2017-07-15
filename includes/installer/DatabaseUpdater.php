@@ -1212,4 +1212,17 @@ abstract class DatabaseUpdater {
 		}
 	}
 
+	/**
+	 * Turns the unique key into primary key on table site_stats.
+	 */
+	protected function doChangeSiteStatsKey() {
+		if ( !$this->db->indexExists( 'site_stats', 'PRIMARY', __METHOD__ ) ) {
+			return $this->applyPatch( 'patch-site_stats-pk.sql', false,
+				"Converting unique key ss_row_id to primary key in table site_stats." );
+		} else {
+			$this->output( "...table site_stats already has primary key.\n" );
+		}
+
+		return true;
+	}
 }
