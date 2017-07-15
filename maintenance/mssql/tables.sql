@@ -450,7 +450,7 @@ CREATE INDEX /*i*/iwl_prefix_from_title ON /*_*/iwlinks (iwl_prefix, iwl_from, i
 --
 CREATE TABLE /*_*/site_stats (
   -- The single row should contain 1 here.
-  ss_row_id int NOT NULL,
+  ss_row_id int NOT NULL CONSTRAINT /*i*/ss_row_id PRIMARY KEY,
 
   -- Total number of edits performed.
   ss_total_edits bigint default 0,
@@ -474,9 +474,6 @@ CREATE TABLE /*_*/site_stats (
   -- Number of images, equivalent to SELECT COUNT(*) FROM image
   ss_images int default 0
 );
-
--- Pointless index to assuage developer superstitions
-CREATE UNIQUE INDEX /*i*/ss_row_id ON /*_*/site_stats (ss_row_id);
 
 
 --
