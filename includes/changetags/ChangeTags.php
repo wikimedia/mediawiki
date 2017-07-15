@@ -653,7 +653,7 @@ class ChangeTags {
 	 * @param string|array $fields Fields used in query, see Database::select
 	 * @param string|array $conds Conditions used in query, see Database::select
 	 * @param array $join_conds Join conditions, see Database::select
-	 * @param array $options Options, see Database::select
+	 * @param string|array $options Options, see Database::select
 	 * @param bool|string|array $filter_tag Tag(s) to select on
 	 *
 	 * @throws MWException When unable to determine appropriate JOIN condition for tagging
@@ -667,18 +667,19 @@ class ChangeTags {
 		}
 
 		// Figure out which ID field to use
-		if ( in_array( 'recentchanges', $tables ) ) {
+		if ( in_array( 'recentchanges', (array)$tables ) ) {
 			$join_cond = 'ct_rc_id=rc_id';
-		} elseif ( in_array( 'logging', $tables ) ) {
+		} elseif ( in_array( 'logging', (array)$tables ) ) {
 			$join_cond = 'ct_log_id=log_id';
-		} elseif ( in_array( 'revision', $tables ) ) {
+		} elseif ( in_array( 'revision', (array)$tables ) ) {
 			$join_cond = 'ct_rev_id=rev_id';
-		} elseif ( in_array( 'archive', $tables ) ) {
+		} elseif ( in_array( 'archive', (array)$tables ) ) {
 			$join_cond = 'ct_rev_id=ar_rev_id';
 		} else {
 			throw new MWException( 'Unable to determine appropriate JOIN condition for tagging.' );
 		}
 
+		$fields = (array)$fields;
 		$fields['ts_tags'] = wfGetDB( DB_REPLICA )->buildGroupConcatField(
 			',', 'change_tag', 'ct_tag', $join_cond
 		);
@@ -687,10 +688,13 @@ class ChangeTags {
 			// Somebody wants to filter on a tag.
 			// Add an INNER JOIN on change_tag
 
+			$tables = (array)$tables;
 			$tables[] = 'change_tag';
 			$join_conds['change_tag'] = [ 'INNER JOIN', $join_cond ];
+			$conds = (array)$conds;
 			$conds['ct_tag'] = $filter_tag;
-			if ( count( $filter_tag ) > 1 && !in_array( 'DISTINCT', $options ) ) {
+			if ( count( $filter_tag ) > 1 && !in_array( 'DISTINCT', (array)$options ) ) {
+				$options = (array)$options;
 				$options[] = 'DISTINCT';
 			}
 		}
