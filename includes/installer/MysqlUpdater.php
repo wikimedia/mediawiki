@@ -302,6 +302,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addField', 'user_groups', 'ug_expiry', 'patch-user_groups-ug_expiry.sql' ],
 			[ 'addIndex', 'image', 'img_user_timestamp', 'patch-image-user-index-2.sql' ],
 			[ 'modifyField', 'image', 'img_media_type', 'patch-add-3d.sql' ],
+
+			// 1.30
+			[ 'modifyTable', 'site_stats', 'patch-site_stats-pk.sql' ],
 		];
 	}
 

@@ -475,9 +475,6 @@ CREATE TABLE /*_*/site_stats (
   ss_images int default 0
 );
 
--- Pointless index to assuage developer superstitions
-CREATE UNIQUE INDEX /*i*/ss_row_id ON /*_*/site_stats (ss_row_id);
-
 
 --
 -- The internet is full of jerks, alas. Sometimes it's handy
