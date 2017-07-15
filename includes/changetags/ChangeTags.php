@@ -653,7 +653,7 @@ class ChangeTags {
 	 * @param string|array $fields Fields used in query, see Database::select
 	 * @param string|array $conds Conditions used in query, see Database::select
 	 * @param array $join_conds Join conditions, see Database::select
-	 * @param array $options Options, see Database::select
+	 * @param string|array $options Options, see Database::select
 	 * @param bool|string|array $filter_tag Tag(s) to select on
 	 *
 	 * @throws MWException When unable to determine appropriate JOIN condition for tagging
@@ -665,6 +665,12 @@ class ChangeTags {
 		if ( $filter_tag === false ) {
 			$filter_tag = $wgRequest->getVal( 'tagfilter' );
 		}
+
+		// Normalize to arrays
+		$tables = (array)$tables;
+		$fields = (array)$fields;
+		$conds = (array)$conds;
+		$options = (array)$options;
 
 		// Figure out which ID field to use
 		if ( in_array( 'recentchanges', $tables ) ) {
