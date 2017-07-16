@@ -63,7 +63,7 @@
 				label: mw.msg( 'rcfilters-limit-shownum', currentValue ),
 				$overlay: this.$overlay,
 				popup: {
-					width: 300,
+					width: 250,
 					padded: true,
 					anchor: false,
 					align: 'backwards',

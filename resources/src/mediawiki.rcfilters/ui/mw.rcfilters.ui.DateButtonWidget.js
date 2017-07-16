@@ -64,7 +64,7 @@
 				label: mw.msg( 'rcfilters-days-show-days', currentValue ),
 				$overlay: this.$overlay,
 				popup: {
-					width: 300,
+					width: 250,
 					padded: true,
 					anchor: false,
 					align: 'backwards',
@@ -96,12 +96,17 @@
 	 * @param {string} filterName Filter name
 	 */
 	mw.rcfilters.ui.DateButtonWidget.prototype.onDaysGroupModelUpdate = function () {
-		var item = this.daysGroupModel.getSelectedItems()[ 0 ],
-			label = item && item.getLabel();
+		var item = this.daysGroupModel.getSelectedItems()[ 0 ];
 
 		// Update the label
-		if ( label ) {
-			this.button.setLabel( mw.msg( 'rcfilters-days-show-days', label ) );
+		if ( item ) {
+			this.button.setLabel(
+				mw.msg(
+					Number( item.getParamName() ) < 1 ?
+						'rcfilters-days-show-hours' : 'rcfilters-days-show-days',
+					item.getLabel()
+				)
+			);
 		}
 	};
 }( mediaWiki ) );

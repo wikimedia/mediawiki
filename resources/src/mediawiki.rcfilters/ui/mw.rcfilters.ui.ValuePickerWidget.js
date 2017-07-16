@@ -9,6 +9,10 @@
 	 * @constructor
 	 * @param {mw.rcfilters.dm.FilterGroup} model Group model
 	 * @param {Object} [config] Configuration object
+	 * @cfg {Function} [itemFilter] A filter function for the items from the
+	 *  model. If not given, all items will be included. The function must
+	 *  handle item models and return a boolean whether the item is included
+	 *  or not. Example: function ( itemModel ) { return itemModel.isSelected(); }
 	 */
 	mw.rcfilters.ui.ValuePickerWidget = function MwRcfiltersUiValuePickerWidget( model, config ) {
 		config = config || {};
@@ -19,6 +23,7 @@
 		OO.ui.mixin.LabelElement.call( this, config );
 
 		this.model = model;
+		this.itemFilter = config.itemFilter || function () { return true; };
 
 		// Build the selection from the item models
 		this.selectWidget = new OO.ui.ButtonSelectWidget();
@@ -75,12 +80,14 @@
 	 * Initialize the select widget
 	 */
 	mw.rcfilters.ui.ValuePickerWidget.prototype.initializeSelectWidget = function () {
-		var items = this.model.getItems().map( function ( filterItem ) {
-			return new OO.ui.ButtonOptionWidget( {
-				data: filterItem.getName(),
-				label: filterItem.getLabel()
+		var items = this.model.getItems()
+			.filter( this.itemFilter )
+			.map( function ( filterItem ) {
+				return new OO.ui.ButtonOptionWidget( {
+					data: filterItem.getName(),
+					label: filterItem.getLabel()
+				} );
 			} );
-		} );
 
 		this.selectWidget.clearItems();
 		this.selectWidget.addItems( items );
