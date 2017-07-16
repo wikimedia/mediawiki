@@ -44,6 +44,7 @@
 		this.separator = config.separator || '|';
 		this.labelPrefixKey = config.labelPrefixKey;
 
+		this.currSelected = null;
 		this.active = !!config.active;
 		this.fullCoverage = !!config.fullCoverage;
 
@@ -184,31 +185,25 @@
 	 * @fires update
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.onFilterItemUpdate = function ( item ) {
-		var prevSelected, currSelected,
-			// Update state
-			active = this.areAnySelected(),
-			itemName = item && item.getName();
+		// Update state
+		var active = this.areAnySelected();
 
-		if ( item.isSelected() && this.getType() === 'single_option' ) {
-			prevSelected = this.getSelectedItems()[ 0 ];
-			currSelected = item;
-
-			// Change the selection to only be the newly selected item
-			this.getItems().forEach( function ( filterItem ) {
-				if ( filterItem.getName() !== itemName ) {
-					filterItem.toggleSelected( false );
-				}
-			} );
+		if (
+			item.isSelected() &&
+			this.getType() === 'single_option' &&
+			this.currSelected &&
+			this.currSelected !== item
+		) {
+			this.currSelected.toggleSelected( false );
 		}
 
 		if (
 			this.active !== active ||
-			(
-				prevSelected && currSelected &&
-				prevSelected.getName() !== currSelected.getName()
-			)
+			this.currSelected !== item
 		) {
 			this.active = active;
+			this.currSelected = item;
+
 			this.emit( 'update' );
 		}
 	};

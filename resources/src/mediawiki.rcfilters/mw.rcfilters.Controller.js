@@ -33,10 +33,10 @@
 			items = [],
 			uri = new mw.Uri(),
 			$changesList = $( '.mw-changeslist' ).first().contents(),
-			createFilterDataFromNumberArray = function ( num ) {
+			createFilterDataFromNumberArray = function ( num, convertedNumForLabel ) {
 				return {
 					name: String( num ),
-					label: mw.language.convertNumber( num )
+					label: mw.language.convertNumber( convertedNumForLabel )
 				};
 			};
 
@@ -99,7 +99,9 @@
 					hidden: true,
 					allowArbitrary: true,
 					'default': '50',
-					filters: [ 50, 100, 250, 500 ].map( createFilterDataFromNumberArray )
+					filters: [ 50, 100, 250, 500 ].map( function ( num ) {
+						return createFilterDataFromNumberArray( num, num );
+					} )
 				},
 				{
 					name: 'days',
@@ -108,7 +110,21 @@
 					hidden: true,
 					allowArbitrary: true,
 					'default': '7',
-					filters: [ 1, 3, 7, 14, 30 ].map( createFilterDataFromNumberArray )
+					filters: [
+						// Hours (1, 2, 6, 12)
+						0.04166, 0.0833, 0.25, 0.5,
+						// Days
+						1, 3, 7, 14, 30
+					].map( function ( num ) {
+						return createFilterDataFromNumberArray(
+							num,
+							num < 1 ?
+								// Convert fractions of days to
+								// number of hours for the labels
+								Math.round( num * 24 ) :
+								num
+						);
+					} )
 				}
 			]
 		};

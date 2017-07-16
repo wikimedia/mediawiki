@@ -16,20 +16,34 @@
 
 		this.model = model;
 
-		this.valuePicker = new mw.rcfilters.ui.ValuePickerWidget(
+		this.hoursValuePicker = new mw.rcfilters.ui.ValuePickerWidget(
 			this.model,
 			{
-				label: mw.msg( 'rcfilters-days-title' )
+				classes: [ 'mw-rcfilters-ui-datePopupWidget-hours' ],
+				label: mw.msg( 'rcfilters-hours-title' ),
+				itemFilter: function ( itemModel ) { return Number( itemModel.getParamName() ) < 1; }
+			}
+		);
+		this.daysValuePicker = new mw.rcfilters.ui.ValuePickerWidget(
+			this.model,
+			{
+				classes: [ 'mw-rcfilters-ui-datePopupWidget-days' ],
+				label: mw.msg( 'rcfilters-days-title' ),
+				itemFilter: function ( itemModel ) { return Number( itemModel.getParamName() ) >= 1; }
 			}
 		);
 
 		// Events
-		this.valuePicker.connect( this, { choose: [ 'emit', 'days' ] } );
+		this.hoursValuePicker.connect( this, { choose: [ 'emit', 'days' ] } );
+		this.daysValuePicker.connect( this, { choose: [ 'emit', 'days' ] } );
 
 		// Initialize
 		this.$element
 			.addClass( 'mw-rcfilters-ui-datePopupWidget' )
-			.append( this.valuePicker.$element );
+			.append(
+				this.hoursValuePicker.$element,
+				this.daysValuePicker.$element
+			);
 	};
 
 	/* Initialization */
