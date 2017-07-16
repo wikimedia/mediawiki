@@ -768,7 +768,7 @@
 	"apihelp-query+filearchive-paramvalue-prop-mime": "Ajoute le MIME de l’image.",
 	"apihelp-query+filearchive-paramvalue-prop-mediatype": "Ajoute le type de média de l’image.",
 	"apihelp-query+filearchive-paramvalue-prop-metadata": "Liste les métadonnées Exif pour la version de l’image.",
-	"apihelp-query+filearchive-paramvalue-prop-bitdepth": "Ajoute la profondeur de bit de la version.",
+	"apihelp-query+filearchive-paramvalue-prop-bitdepth": "Ajoute la profondeur de bits de la version.",
 	"apihelp-query+filearchive-paramvalue-prop-archivename": "Ajoute le nom de fichier de la version d’archive pour les versions autres que la dernière.",
 	"apihelp-query+filearchive-example-simple": "Afficher une liste de tous les fichiers supprimés",
 	"apihelp-query+filerepoinfo-summary": "Renvoyer les méta-informations sur les référentiels d’images configurés dans le wiki.",

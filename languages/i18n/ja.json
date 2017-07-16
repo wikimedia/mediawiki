@@ -1361,7 +1361,9 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|新しいページ一覧]]も参照)",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "表示",
+	"rcfilters-legend-heading": "<strong>略語のリスト:</strong>",
 	"rcfilters-activefilters": "絞り込み",
+	"rcfilters-advancedfilters": "詳細フィルター",
 	"rcfilters-quickfilters": "フィルターを保存",
 	"rcfilters-quickfilters-placeholder-title": "リンクはまだ保存されていません",
 	"rcfilters-quickfilters-placeholder-description": "フィルターの設定を保存し、後で再び使用するためには、下のアクティブフィルター内のブックマークアイコンをクリックしてください。",
@@ -1449,6 +1451,8 @@
 	"rcfilters-filter-lastrevision-description": "ページの最新の変更",
 	"rcfilters-filter-previousrevision-label": "古い版",
 	"rcfilters-filter-previousrevision-description": "ページの最新の変更ではない全ての変更。",
+	"rcfilters-view-namespaces-tooltip": "名前空間別のフィルター結果",
+	"rcfilters-view-tags-tooltip": "編集タグを利用した絞込み",
 	"rcnotefrom": "以下は<strong>$3 $4</strong>以降の{{PLURAL:$5|更新です}} (最大 <strong>$1</strong> 件)。",
 	"rclistfromreset": "日時指定をリセット",
 	"rclistfrom": "$3の$2以降の更新を表示する",
@@ -2880,6 +2884,7 @@
 	"newimages-legend": "絞り込み",
 	"newimages-label": "ファイル名 (またはその一部):",
 	"newimages-user": "IPアドレスまたは利用者名:",
+	"newimages-newbies": "新規利用者の投稿のみ表示",
 	"newimages-showbots": "ボットによるアップロードを表示",
 	"newimages-hidepatrolled": "巡回済みのアップロードを隠す",
 	"noimages": "表示できるものがありません。",
@@ -4075,5 +4080,7 @@
 	"gotointerwiki-external": "{{SITENAME}}を離れ、別のウェブサイトである[[$2]]を訪れようとしています。\n\n'''[$1 $1に行く]'''",
 	"undelete-cantedit": "このページを編集する許可がないため復元できません。",
 	"undelete-cantcreate": "同名のページが存在せず、このページを作成する許可がないため復元できません。",
-	"pagedata-not-acceptable": "該当する形式が見つかりません。対応している MIME タイプ: $1"
+	"pagedata-title": "ページ・データ",
+	"pagedata-not-acceptable": "該当する形式が見つかりません。対応している MIME タイプ: $1",
+	"pagedata-bad-title": "「$1」は無効なページ名です。"
 }

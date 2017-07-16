@@ -1631,7 +1631,7 @@
 	"rcfilters-filter-previousrevision-description": "Description for the filter for showing changes on previous revisions of a page.",
 	"rcfilters-filter-excluded": "Label for a menu item in [[Special:RecentChanges]] noting that the item is being excluded from the results.",
 	"rcfilters-tag-prefix-namespace": "Prefix for the namespace tags in [[Special:RecentChanges]]. Namespace tags use a colon (:) as prefix. Please keep this format.\n\nParameters:\n* $1 - Filter name.",
-	"rcfilters-tag-prefix-namespace-inverted": "Prefix for the namespace inverted tags in [[Special:RecentChanges]]. Namespace tags use a colon (:) as prefix. Please keep this format.\n\nParameters:\n* $1 - Filter name.",
+	"rcfilters-tag-prefix-namespace-inverted": "Prefix for the namespace inverted tags in [[Special:RecentChanges]]. Namespace tags use a colon (:) as prefix. Please keep this format.\n\nParameters:\n* $1 - Filter name.\n{{Identical|Not}}",
 	"rcfilters-tag-prefix-tags": "Prefix for the edit tags in [[Special:RecentChanges]]. Edit tags use a hash (#) as prefix. Please keep this format.\n\nParameters:\n* $1 - Tag display name.",
 	"rcfilters-view-tags": "Title for the tags view in [[Special:RecentChanges]]\n{{Identical|Tag}}",
 	"rcfilters-view-namespaces-tooltip": "Tooltip for the button that loads the namespace view in [[Special:RecentChanges]]",

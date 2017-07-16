@@ -1334,6 +1334,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (همچنین به [[Special:NewPages|فهرست صفحات تازه]] نگاه کنید)",
 	"recentchanges-legend-plusminus": "(<em>±۱۲۳</em>)",
 	"recentchanges-submit": "نمایش",
+	"rcfilters-legend-heading": "<strong>فهرست کوته‌نوشت‌ها:</strong>",
 	"rcfilters-activefilters": "پالایه‌های فعال",
 	"rcfilters-advancedfilters": "پالایه‌‌های پیشرفته",
 	"rcfilters-quickfilters": "پالایه‌های ذخیره‌شده",

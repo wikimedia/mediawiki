@@ -3855,6 +3855,7 @@
 	"removecredentials": "Выдаленьне ўліковых зьвестак",
 	"removecredentials-submit": "Выдаліць уліковыя зьвесткі",
 	"removecredentials-invalidsubpage": "$1 не зьяўляецца слушным тыпам уліковых зьвестак.",
+	"removecredentials-success": "Вашыя ўліковыя зьвесткі былі выдаленыя.",
 	"credentialsform-provider": "Тып уліковых зьвестак:",
 	"credentialsform-account": "Назва рахунку:"
 }
