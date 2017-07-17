@@ -15,7 +15,7 @@
 		mw.rcfilters.ui.LiveUpdateButtonWidget.parent.call( this, $.extend( {
 			icon: 'play',
 			label: mw.message( 'rcfilters-liveupdates-button' ).text()
-		} ), config );
+		}, config ) );
 
 		this.controller = controller;
 
