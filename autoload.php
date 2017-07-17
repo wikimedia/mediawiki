@@ -875,6 +875,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Auth\\UsernameAuthenticationRequest' => __DIR__ . '/includes/auth/UsernameAuthenticationRequest.php',
 	'MediaWiki\\Diff\\ComplexityException' => __DIR__ . '/includes/diff/ComplexityException.php',
 	'MediaWiki\\Diff\\WordAccumulator' => __DIR__ . '/includes/diff/WordAccumulator.php',
+	'MediaWiki\\Edit\\PreparedEdit' => __DIR__ . '/includes/edit/PreparedEdit.php',
 	'MediaWiki\\HeaderCallback' => __DIR__ . '/includes/HeaderCallback.php',
 	'MediaWiki\\Interwiki\\ClassicInterwikiLookup' => __DIR__ . '/includes/interwiki/ClassicInterwikiLookup.php',
 	'MediaWiki\\Interwiki\\InterwikiLookup' => __DIR__ . '/includes/interwiki/InterwikiLookup.php',
