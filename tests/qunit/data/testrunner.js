@@ -435,7 +435,7 @@
 	 * Small test suite to confirm proper functionality of the utilities and
 	 * initializations defined above in this file.
 	 */
-	QUnit.module( 'test.mediawiki.qunit.testrunner', QUnit.newMwEnvironment( {
+	QUnit.module( 'testrunner', QUnit.newMwEnvironment( {
 		setup: function () {
 			this.mwHtmlLive = mw.html;
 			mw.html = {
@@ -488,7 +488,7 @@
 		assert.deepEqual( missing, [], 'Modules in missing state' );
 	} );
 
-	QUnit.test( 'htmlEqual', function ( assert ) {
+	QUnit.test( 'assert.htmlEqual', function ( assert ) {
 		assert.htmlEqual(
 			'<div><p class="some classes" data-length="10">Child paragraph with <a href="http://example.com">A link</a></p>Regular text<span>A span</span></div>',
 			'<div><p data-length=\'10\'  class=\'some classes\'>Child paragraph with <a href=\'http://example.com\' >A link</a></p>Regular text<span>A span</span></div>',
@@ -538,12 +538,40 @@
 
 	} );
 
-	QUnit.module( 'test.mediawiki.qunit.testrunner-after', QUnit.newMwEnvironment() );
+	QUnit.module( 'testrunner-after', QUnit.newMwEnvironment() );
 
 	QUnit.test( 'Teardown', function ( assert ) {
 		assert.equal( mw.html.escape( '<' ), '&lt;', 'teardown() callback was ran.' );
 		assert.equal( mw.config.get( 'testVar' ), null, 'config object restored to live in next module()' );
 		assert.equal( mw.messages.get( 'testMsg' ), null, 'messages object restored to live in next module()' );
+	} );
+
+	QUnit.module( 'testrunner-each', {
+		beforeEach: function () {
+			this.mwHtmlLive = mw.html;
+		},
+		afterEach: function () {
+			mw.html = this.mwHtmlLive;
+		}
+	} );
+
+	QUnit.test( 'beforeEach', function ( assert ) {
+		assert.ok( this.mwHtmlLive, 'beforeEach() ran' );
+		mw.html = null;
+	} );
+
+	QUnit.test( 'afterEach', function ( assert ) {
+		assert.equal( mw.html.escape( '<' ), '&lt;', 'afterEach() ran' );
+	} );
+
+	// Regression test for 'this.sandbox undefined' error, fixed by
+	// ensuring Sinon setup/teardown is not re-run on inner module.
+	QUnit.module( 'testrunner-nested', function () {
+		QUnit.module( 'testrunner-nested-inner', function () {
+			QUnit.test( 'Dummy', function ( assert ) {
+				assert.ok( true, 'Nested modules supported' );
+			} );
+		} );
 	} );
 
 }( jQuery, mediaWiki, QUnit ) );
