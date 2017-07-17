@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Edit\PreparedEdit;
 use \MediaWiki\Logger\LoggerFactory;
 use \MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\FakeResultWrapper;
@@ -1969,7 +1970,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param string|null $serialFormat
 	 * @param bool $useCache Check shared prepared edit cache
 	 *
-	 * @return object
+	 * @return PreparedEdit
 	 *
 	 * @since 1.21
 	 */
@@ -2019,7 +2020,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$popts = ParserOptions::newFromUserAndLang( $user, $wgContLang );
 		Hooks::run( 'ArticlePrepareTextForEdit', [ $this, $popts ] );
 
-		$edit = (object)[];
+		$edit = new PreparedEdit();
 		if ( $cachedEdit ) {
 			$edit->timestamp = $cachedEdit->timestamp;
 		} else {
