@@ -10,6 +10,7 @@ This not a release yet!
 * Fixed case of SpecialRecentChanges class usage.
 * (T174255) Declare uploadCount property in importDump.php.
 * (T163646) Pass a string not an int to mysql_real_escape_string().
+* (T180143) Bump Bump justinrainbow/json-schema development dependency to ~5.2.
 
 == MediaWiki 1.29.1 ==
 
