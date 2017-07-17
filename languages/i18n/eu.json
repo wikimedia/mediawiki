@@ -2026,6 +2026,7 @@
 	"undelete-search-title": "Ezabatutako orrialdeak bilatu",
 	"undelete-search-box": "Ezabatutako orrialdeak bilatu",
 	"undelete-search-prefix": "Honela hasten diren orrialdeak erakutsi:",
+	"undelete-search-full": "Orrialde izenburuak erakutsi:",
 	"undelete-search-submit": "Bilatu",
 	"undelete-no-results": "Ez da bat datorren orrialderik aurkitu ezabaketen artxiboan.",
 	"undelete-filename-mismatch": "Ezin da $1 denbora-marka duten fitxategi aldaketa ezabatua berrezarri: fitxategi-izena ez dator bat",

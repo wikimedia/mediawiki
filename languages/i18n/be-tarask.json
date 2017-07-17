@@ -3857,5 +3857,6 @@
 	"removecredentials-invalidsubpage": "$1 не зьяўляецца слушным тыпам уліковых зьвестак.",
 	"removecredentials-success": "Вашыя ўліковыя зьвесткі былі выдаленыя.",
 	"credentialsform-provider": "Тып уліковых зьвестак:",
-	"credentialsform-account": "Назва рахунку:"
+	"credentialsform-account": "Назва рахунку:",
+	"cannotlink-no-provider-title": "Няма рахункаў для далучэньня"
 }

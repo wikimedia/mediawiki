@@ -3290,7 +3290,7 @@
 	"confirmrecreate": "在您編輯的同時，使用者 [[User:$1|$1]] ([[User talk:$1|對話]]) 刪除了此頁面，原因為：\n: <em>$2</em>\n請確認您是否真的要重新建立此頁面。",
 	"confirmrecreate-noreason": "在您編輯的同時，使用者 [[User:$1|$1]] ([[User talk:$1|對話]]) 刪除了此頁面，請確認您是否真的要重新建立此頁面。",
 	"recreate": "重新建立",
-	"confirm-purge-title": "刷新本頁",
+	"confirm-purge-title": "清除此頁快取",
 	"confirm_purge_button": "確定",
 	"confirm-purge-top": "要清除此頁面的快取嗎？",
 	"confirm-purge-bottom": "刷新頁面會清空頁面的快取記錄並強制顯示最近的頁面修訂。",

@@ -1336,6 +1336,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|새 문서 목록]]도 보세요)",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "보기",
+	"rcfilters-legend-heading": "<strong>약어 목록:</strong>",
 	"rcfilters-activefilters": "사용 중인 필터",
 	"rcfilters-advancedfilters": "고급 필터",
 	"rcfilters-quickfilters": "저장된 필터",
