@@ -346,15 +346,16 @@ class SpecialUpload extends SpecialPage {
 		$stashStatus = $this->mUpload->tryStashFile( $this->getUser() );
 		if ( $stashStatus->isGood() ) {
 			$sessionKey = $stashStatus->getValue()->getFileKey();
+			$uploadWarning = 'upload-tryagain';
 		} else {
 			$sessionKey = null;
-			// TODO Add a warning message about the failure to stash here?
+			$uploadWarning = 'upload-tryagain-nostash';
 		}
 		$message = '<h2>' . $this->msg( 'uploaderror' )->escaped() . "</h2>\n" .
 			'<div class="error">' . $message . "</div>\n";
 
 		$form = $this->getUploadForm( $message, $sessionKey );
-		$form->setSubmitText( $this->msg( 'upload-tryagain' )->escaped() );
+		$form->setSubmitText( $this->msg( $uploadWarning )->escaped() );
 		$this->showUploadForm( $form );
 	}
 
@@ -381,9 +382,10 @@ class SpecialUpload extends SpecialPage {
 		$stashStatus = $this->mUpload->tryStashFile( $this->getUser() );
 		if ( $stashStatus->isGood() ) {
 			$sessionKey = $stashStatus->getValue()->getFileKey();
+			$uploadWarning = 'uploadwarning-text';
 		} else {
 			$sessionKey = null;
-			// TODO Add a warning message about the failure to stash here?
+			$uploadWarning = 'uploadwarning-text-nostash';
 		}
 
 		// Add styles for the warning, reused from the live preview
@@ -445,7 +447,7 @@ class SpecialUpload extends SpecialPage {
 			$warningHtml .= $msg;
 		}
 		$warningHtml .= "</ul></div>\n";
-		$warningHtml .= $this->msg( 'uploadwarning-text' )->parseAsBlock();
+		$warningHtml .= $this->msg( $uploadWarning )->parseAsBlock();
 
 		$form = $this->getUploadForm( $warningHtml, $sessionKey, /* $hideIgnoreWarning */ true );
 		$form->setSubmitText( $this->msg( 'upload-tryagain' )->text() );
