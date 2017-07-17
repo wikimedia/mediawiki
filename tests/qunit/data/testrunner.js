@@ -4,6 +4,17 @@
 
 	var addons;
 
+	function normaliseLocalEnv( localEnv ) {
+		if ( localEnv.setup ) {
+			localEnv.beforeEach = localEnv.setup;
+			delete localEnv.setup;
+		}
+		if ( localEnv.teardown ) {
+			localEnv.afterEach = localEnv.teardown;
+			delete localEnv.teardown;
+		}
+	}
+
 	/**
 	 * Add bogus to url to prevent IE crazy caching
 	 *
@@ -42,9 +53,6 @@
 	 *
 	 * Glue code for nicer integration with QUnit setup/teardown
 	 * Inspired by http://sinonjs.org/releases/sinon-qunit-1.0.0.js
-	 * Fixes:
-	 * - Work properly with asynchronous QUnit by using module setup/teardown
-	 *   instead of synchronously wrapping QUnit.test.
 	 */
 	sinon.assert.fail = function ( msg ) {
 		QUnit.assert.ok( false, msg );
@@ -60,74 +68,91 @@
 		useFakeTimers: false,
 		useFakeServer: false
 	};
+	// Extend QUnit.module to provide a Sinon sandbox.
 	( function () {
 		var orgModule = QUnit.module;
-
 		QUnit.module = function ( name, localEnv, executeNow ) {
+			var orgBeforeEach, orgAfterEach;
 			if ( QUnit.config.moduleStack.length ) {
-				// When inside a nested module, don't add our Sinon
-				// setup/teardown a second time.
+				// In a nested module, don't re-run our handlers.
 				return orgModule.apply( this, arguments );
 			}
-
 			if ( arguments.length === 2 && typeof localEnv === 'function' ) {
 				executeNow = localEnv;
 				localEnv = undefined;
 			}
 
 			localEnv = localEnv || {};
-			orgModule( name, {
-				setup: function () {
-					var config = sinon.getConfig( sinon.config );
-					config.injectInto = this;
-					sinon.sandbox.create( config );
+			orgBeforeEach = localEnv.beforeEach;
+			orgAfterEach = localEnv.afterEach;
+			localEnv.beforeEach = function () {
+				var config = sinon.getConfig( sinon.config );
+				config.injectInto = this;
+				sinon.sandbox.create( config );
 
-					if ( localEnv.setup ) {
-						localEnv.setup.call( this );
-					}
-				},
-				teardown: function () {
-					if ( localEnv.teardown ) {
-						localEnv.teardown.call( this );
-					}
-
-					this.sandbox.verifyAndRestore();
+				if ( orgBeforeEach ) {
+					orgBeforeEach.apply( this, arguments );
 				}
-			}, executeNow );
+			};
+			localEnv.afterEach = function () {
+				if ( orgAfterEach ) {
+					orgAfterEach.apply( this, arguments );
+				}
+
+				this.sandbox.verifyAndRestore();
+			};
+			return orgModule( name, localEnv, executeNow );
 		};
 	}() );
 
 	// Extend QUnit.module to provide a fixture element.
 	( function () {
 		var orgModule = QUnit.module;
-
 		QUnit.module = function ( name, localEnv, executeNow ) {
-			var fixture;
-
+			var orgBeforeEach, orgAfterEach;
+			if ( QUnit.config.moduleStack.length ) {
+				// In a nested module, don't re-run our handlers.
+				return orgModule.apply( this, arguments );
+			}
 			if ( arguments.length === 2 && typeof localEnv === 'function' ) {
 				executeNow = localEnv;
 				localEnv = undefined;
 			}
 
 			localEnv = localEnv || {};
-			orgModule( name, {
-				setup: function () {
-					fixture = document.createElement( 'div' );
-					fixture.id = 'qunit-fixture';
-					document.body.appendChild( fixture );
+			orgBeforeEach = localEnv.beforeEach;
+			orgAfterEach = localEnv.afterEach;
+			localEnv.beforeEach = function () {
+				this.fixture = document.createElement( 'div' );
+				this.fixture.id = 'qunit-fixture';
+				document.body.appendChild( this.fixture );
 
-					if ( localEnv.setup ) {
-						localEnv.setup.call( this );
-					}
-				},
-				teardown: function () {
-					if ( localEnv.teardown ) {
-						localEnv.teardown.call( this );
-					}
-
-					fixture.parentNode.removeChild( fixture );
+				if ( orgBeforeEach ) {
+					orgBeforeEach.apply( this, arguments );
 				}
-			}, executeNow );
+			};
+			localEnv.afterEach = function () {
+				if ( orgAfterEach ) {
+					orgAfterEach.apply( this, arguments );
+				}
+
+				this.fixture.parentNode.removeChild( this.fixture );
+			};
+			return orgModule( name, localEnv, executeNow );
+		};
+	}() );
+
+	// Extend QUnit.module to normalise localEnv to avoid deprecated
+	// setup/teardown (deprecated in QUnit 1.16, removed in QUnit 2)
+	// This must be the last QUnit.module extension so that the above may assume
+	// beforeEach/afterEach.
+	( function () {
+		var orgModule = QUnit.module;
+		QUnit.module = function ( name, localEnv ) {
+			if ( typeof localEnv === 'object' ) {
+				normaliseLocalEnv( localEnv );
+			}
+			return orgModule.apply( this, arguments );
 		};
 	}() );
 
@@ -195,17 +220,15 @@
 		}
 
 		return function ( localEnv ) {
-			localEnv = $.extend( {
-				// QUnit
-				setup: $.noop,
-				teardown: $.noop,
-				// MediaWiki
-				config: {},
-				messages: {}
-			}, localEnv );
+			localEnv = localEnv || {};
+			// Cast any setup/teardown to beforeEach/afterEach
+			normaliseLocalEnv( localEnv );
+			// MediaWiki env testing
+			localEnv.config = localEnv.config || {};
+			localEnv.messages = localEnv.messages || {};
 
 			return {
-				setup: function () {
+				beforeEach: function () {
 					// Greetings, mock environment!
 					mw.config = new MwMap();
 					mw.config.set( freshConfigCopy( localEnv.config ) );
@@ -222,13 +245,17 @@
 					// Start tracking ajax requests
 					$( document ).on( 'ajaxSend', trackAjax );
 
-					localEnv.setup.call( this );
+					if ( localEnv.beforeEach ) {
+						localEnv.beforeEach.apply( this, arguments );
+					}
 				},
 
-				teardown: function () {
+				afterEach: function () {
 					var timers, pending, $activeLen;
 
-					localEnv.teardown.call( this );
+					if ( localEnv.afterEach ) {
+						localEnv.afterEach.apply( this, arguments );
+					}
 
 					// Stop tracking ajax requests
 					$( document ).off( 'ajaxSend', trackAjax );
@@ -435,7 +462,7 @@
 	 * Small test suite to confirm proper functionality of the utilities and
 	 * initializations defined above in this file.
 	 */
-	QUnit.module( 'test.mediawiki.qunit.testrunner', QUnit.newMwEnvironment( {
+	QUnit.module( 'testrunner', QUnit.newMwEnvironment( {
 		setup: function () {
 			this.mwHtmlLive = mw.html;
 			mw.html = {
@@ -488,7 +515,7 @@
 		assert.deepEqual( missing, [], 'Modules in missing state' );
 	} );
 
-	QUnit.test( 'htmlEqual', function ( assert ) {
+	QUnit.test( 'assert.htmlEqual', function ( assert ) {
 		assert.htmlEqual(
 			'<div><p class="some classes" data-length="10">Child paragraph with <a href="http://example.com">A link</a></p>Regular text<span>A span</span></div>',
 			'<div><p data-length=\'10\'  class=\'some classes\'>Child paragraph with <a href=\'http://example.com\' >A link</a></p>Regular text<span>A span</span></div>',
@@ -535,15 +562,56 @@
 			'foo<a href="http://example.com">example</a>quux',
 			'Outer text nodes are compared (last text node different)'
 		);
-
 	} );
 
-	QUnit.module( 'test.mediawiki.qunit.testrunner-after', QUnit.newMwEnvironment() );
+	QUnit.module( 'testrunner-after', QUnit.newMwEnvironment() );
 
 	QUnit.test( 'Teardown', function ( assert ) {
 		assert.equal( mw.html.escape( '<' ), '&lt;', 'teardown() callback was ran.' );
 		assert.equal( mw.config.get( 'testVar' ), null, 'config object restored to live in next module()' );
 		assert.equal( mw.messages.get( 'testMsg' ), null, 'messages object restored to live in next module()' );
+	} );
+
+	QUnit.module( 'testrunner-each', {
+		beforeEach: function () {
+			this.mwHtmlLive = mw.html;
+		},
+		afterEach: function () {
+			mw.html = this.mwHtmlLive;
+		}
+	} );
+	QUnit.test( 'beforeEach', function ( assert ) {
+		assert.ok( this.mwHtmlLive, 'setup() ran' );
+		mw.html = null;
+	} );
+	QUnit.test( 'afterEach', function ( assert ) {
+		assert.equal( mw.html.escape( '<' ), '&lt;', 'afterEach() ran' );
+	} );
+
+	QUnit.module( 'testrunner-each-compat', {
+		setup: function () {
+			this.mwHtmlLive = mw.html;
+		},
+		teardown: function () {
+			mw.html = this.mwHtmlLive;
+		}
+	} );
+	QUnit.test( 'setup', function ( assert ) {
+		assert.ok( this.mwHtmlLive, 'setup() ran' );
+		mw.html = null;
+	} );
+	QUnit.test( 'teardown', function ( assert ) {
+		assert.equal( mw.html.escape( '<' ), '&lt;', 'teardown() ran' );
+	} );
+
+	// Regression test for 'this.sandbox undefined' error, fixed by
+	// ensuring Sinon setup/teardown is not re-run on inner module.
+	QUnit.module( 'testrunner-nested', function () {
+		QUnit.module( 'testrunner-nested-inner', function () {
+			QUnit.test( 'Dummy', function ( assert ) {
+				assert.ok( true, 'Nested modules supported' );
+			} );
+		} );
 	} );
 
 }( jQuery, mediaWiki, QUnit ) );
