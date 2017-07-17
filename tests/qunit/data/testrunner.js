@@ -2,7 +2,7 @@
 ( function ( $, mw, QUnit ) {
 	'use strict';
 
-	var addons;
+	var addons, nested;
 
 	/**
 	 * Make a safe copy of localEnv:
@@ -77,14 +77,25 @@
 	( function () {
 		var orgModule = QUnit.module;
 		QUnit.module = function ( name, localEnv, executeNow ) {
-			var orgBeforeEach, orgAfterEach;
-			if ( QUnit.config.moduleStack.length ) {
+			var orgBeforeEach, orgAfterEach, orgExecute;
+			if ( nested ) {
 				// In a nested module, don't re-run our handlers.
 				return orgModule.apply( this, arguments );
 			}
 			if ( arguments.length === 2 && typeof localEnv === 'function' ) {
 				executeNow = localEnv;
 				localEnv = undefined;
+			}
+			if ( executeNow ) {
+				// Wrap executeNow() so that we can detect nested modules
+				orgExecute = executeNow;
+				executeNow = function () {
+					var ret;
+					nested = true;
+					ret = orgExecute.apply( this, arguments );
+					nested = false;
+					return ret;
+				};
 			}
 
 			localEnv = localEnv || {};
@@ -117,7 +128,7 @@
 		var orgModule = QUnit.module;
 		QUnit.module = function ( name, localEnv, executeNow ) {
 			var orgBeforeEach, orgAfterEach;
-			if ( QUnit.config.moduleStack.length ) {
+			if ( nested ) {
 				// In a nested module, don't re-run our handlers.
 				return orgModule.apply( this, arguments );
 			}
