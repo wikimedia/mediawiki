@@ -41,6 +41,7 @@ section).
   enabled by setting $wgUsePigLatinVariant to true.
 * Added RecentChangesPurgeRows hook to allow extensions to purge data that
   depends on the recentchanges table.
+* Added JS config values wgDiffOldId/wgDiffNewId to the output of diff pages.
 
 === Languages updated in 1.30 ===
 
