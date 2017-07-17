@@ -52,10 +52,11 @@
 	 *
 	 * @param {jQuery|string} changesListContent
 	 * @param {jQuery} $fieldset
+	 * @param {boolean} [isInitialDOM] Using the initial (already attached) DOM elements
 	 */
-	mw.rcfilters.dm.ChangesListViewModel.prototype.update = function ( changesListContent, $fieldset ) {
+	mw.rcfilters.dm.ChangesListViewModel.prototype.update = function ( changesListContent, $fieldset, isInitialDOM ) {
 		this.valid = true;
-		this.emit( 'update', changesListContent, $fieldset );
+		this.emit( 'update', changesListContent, $fieldset, isInitialDOM );
 	};
 
 }( mediaWiki ) );

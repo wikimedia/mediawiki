@@ -88,7 +88,7 @@
 	 *
 	 * @param {jQuery|string} $changesListContent The content of the updated changes list
 	 */
-	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onModelUpdate = function ( $changesListContent ) {
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onModelUpdate = function ( $changesListContent, $fieldset, isInitialDOM ) {
 		var conflictItem,
 			$message = $( '<div>' )
 				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results' ),
@@ -130,8 +130,10 @@
 			// Apply highlight
 			this.applyHighlight();
 
-			// Make sure enhanced RC re-initializes correctly
-			mw.hook( 'wikipage.content' ).fire( this.$element );
+			if ( !isInitialDOM ) {
+				// Make sure enhanced RC re-initializes correctly
+				mw.hook( 'wikipage.content' ).fire( this.$element );
+			}
 		}
 		this.popPending();
 	};
