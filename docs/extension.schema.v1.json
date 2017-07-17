@@ -39,7 +39,7 @@
 		"url": {
 			"type": "string",
 			"description": "URL to the homepage for the extension.",
-			"format": "uri"
+			"format": "uri-reference"
 		},
 		"description": {
 			"type": "string",
