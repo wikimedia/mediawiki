@@ -51,7 +51,7 @@ class MysqlInstaller extends DatabaseInstaller {
 
 	public $supportedEngines = [ 'InnoDB', 'MyISAM' ];
 
-	public $minimumVersion = '5.0.3';
+	public $minimumVersion = '5.5.8';
 
 	public $webUserPrivs = [
 		'DELETE',

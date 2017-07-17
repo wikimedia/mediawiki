@@ -5,6 +5,10 @@ THIS IS NOT A RELEASE YET
 MediaWiki 1.30 is an alpha-quality branch and is not recommended for use in
 production.
 
+=== MySQL version requirement in 1.30 ===
+As of 1.30, MediaWiki now requires MySQL 5.5.8 or higher (see Compatibility
+section).
+
 === Configuration changes in 1.30 ===
 * The "C.UTF-8" locale should be used for $wgShellLocale, if available, to avoid
   unexpected behavior when code uses locale-sensitive string comparisons. For
@@ -147,7 +151,7 @@ Oracle and Microsoft SQL Server.
 
 The supported versions are:
 
-* MySQL 5.0.3 or later
+* MySQL 5.5.8 or later
 * PostgreSQL 8.3 or later
 * SQLite 3.3.7 or later
 * Oracle 9.0.1 or later
