@@ -66,6 +66,7 @@ Change notes from older releases. For current info see RELEASE-NOTES-1.30.
   This will be removed later and OOjs UI will become the only option.
   To make testing easier, users can also force either mode by adding
   &ooui=true or &ooui=false to the action=edit URL.
+* Added JS config values wgDiffOldId and wgDiffNewId to the output of diff pages.
 
 === External library changes in 1.29 ===
 
