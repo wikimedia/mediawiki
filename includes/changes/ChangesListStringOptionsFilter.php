@@ -19,10 +19,12 @@ class ChangesListStringOptionsFilter extends ChangesListFilter {
 	 * @inheritdoc
 	 */
 	public function isSelected( FormOptions $opts ) {
-		$values = explode(
-			ChangesListStringOptionsFilterGroup::SEPARATOR,
-			$opts[ $this->getGroup()->getName() ]
-		);
+		$option = $opts[ $this->getGroup()->getName() ];
+		if ( $option === ChangesListStringOptionsFilterGroup::ALL ) {
+			return true;
+		}
+
+		$values = explode( ChangesListStringOptionsFilterGroup::SEPARATOR, $option );
 		return in_array( $this->getName(), $values );
 	}
 }
