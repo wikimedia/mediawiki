@@ -32,6 +32,7 @@
 		</testsuite>
 		<testsuite name="skins">
 			<directory>skins</directory>
+			<directory>../../skins/*/tests/phpunit</directory>
 			<directory>structure</directory>
 			<file>suites/LessTestSuite.php</file>
 		</testsuite>
