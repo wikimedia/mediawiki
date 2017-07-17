@@ -130,6 +130,7 @@
 		} );
 		this.inCalendar = 0;
 		this.inTextInput = 0;
+		this.closing = false;
 		this.inputFormat = config.inputFormat;
 		this.displayFormat = config.displayFormat;
 		this.longDisplayFormat = config.longDisplayFormat;
@@ -173,7 +174,7 @@
 		this.$handle.on( {
 			click: this.onClick.bind( this ),
 			keypress: this.onKeyPress.bind( this ),
-			focus: this.activate.bind( this )
+			focus: this.onFocus.bind( this )
 		} );
 
 		// Initialization
@@ -522,6 +523,17 @@
 	};
 
 	/**
+	 * Handle focus events.
+	 *
+	 * @private
+	 */
+	mw.widgets.DateInputWidget.prototype.onFocus = function () {
+		if ( !this.closing ) {
+			this.activate();
+		}
+	};
+
+	/**
 	 * Handle calendar key press events.
 	 *
 	 * @private
@@ -530,8 +542,13 @@
 	 */
 	mw.widgets.DateInputWidget.prototype.onCalendarKeyPress = function ( e ) {
 		if ( !this.isDisabled() && e.which === OO.ui.Keys.ENTER ) {
+			// Prevent focusing the handle from reopening the calendar
+			this.closing = true;
+
 			this.deactivate();
 			this.$handle.focus();
+
+			this.closing = false;
 			return false;
 		}
 	};
@@ -547,10 +564,18 @@
 		if (
 			!this.isDisabled() &&
 			e.which === 1 &&
-			$( e.target ).hasClass( 'mw-widget-calendarWidget-day' )
+			(
+				$( e.target ).hasClass( 'mw-widget-calendarWidget-day' ) ||
+				$( e.target ).hasClass( 'mw-widget-calendarWidget-month' )
+			)
 		) {
+			// Prevent focusing the handle from reopening the calendar
+			this.closing = true;
+
 			this.deactivate();
 			this.$handle.focus();
+
+			this.closing = false;
 			return false;
 		}
 	};
@@ -561,8 +586,13 @@
 	 * @private
 	 */
 	mw.widgets.DateInputWidget.prototype.onEnter = function () {
+		// Prevent focusing the handle from reopening the calendar
+		this.closing = true;
+
 		this.deactivate();
 		this.$handle.focus();
+
+		this.closing = false;
 	};
 
 	/**
