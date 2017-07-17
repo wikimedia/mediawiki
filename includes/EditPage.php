@@ -422,8 +422,6 @@ class EditPage {
 	 * @param Article $article
 	 */
 	public function __construct( Article $article ) {
-		global $wgOOUIEditPage;
-
 		$this->mArticle = $article;
 		$this->page = $article->getPage(); // model object
 		$this->mTitle = $article->getTitle();
@@ -434,7 +432,7 @@ class EditPage {
 		$handler = ContentHandler::getForModelID( $this->contentModel );
 		$this->contentFormat = $handler->getDefaultFormat();
 
-		$this->oouiEnabled = $wgOOUIEditPage;
+		$this->oouiEnabled = $this->context->getConfig()->get( 'OOUIEditPage' );
 	}
 
 	/**
