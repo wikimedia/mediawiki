@@ -1857,6 +1857,8 @@ return [
 			'rcfilters-tag-prefix-namespace',
 			'rcfilters-tag-prefix-namespace-inverted',
 			'rcfilters-tag-prefix-tags',
+			'rcfilters-exclude-button-off',
+			'rcfilters-exclude-button-on',
 			'rcfilters-view-tags',
 			'rcfilters-view-namespaces-tooltip',
 			'rcfilters-view-tags-tooltip',
