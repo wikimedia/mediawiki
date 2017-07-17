@@ -73,7 +73,7 @@
 		var orgModule = QUnit.module;
 		QUnit.module = function ( name, localEnv, executeNow ) {
 			var orgBeforeEach, orgAfterEach;
-			if ( QUnit.config.moduleStack.length ) {
+			if ( QUnit.config.currentModule.parentModule ) {
 				// In a nested module, don't re-run our handlers.
 				return orgModule.apply( this, arguments );
 			}
@@ -110,7 +110,7 @@
 		var orgModule = QUnit.module;
 		QUnit.module = function ( name, localEnv, executeNow ) {
 			var orgBeforeEach, orgAfterEach;
-			if ( QUnit.config.moduleStack.length ) {
+			if ( QUnit.config.currentModule.parentModule ) {
 				// In a nested module, don't re-run our handlers.
 				return orgModule.apply( this, arguments );
 			}
