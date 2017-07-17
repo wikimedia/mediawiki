@@ -4,8 +4,10 @@ use MediaWiki\Logger\LegacySpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\MonologSpi;
 use MediaWiki\MediaWikiServices;
-use Psr\Log\LoggerInterface;
+use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\TestingAccessWrapper;
+use Psr\Log\LoggerInterface;
 
 /**
  * @since 1.18
