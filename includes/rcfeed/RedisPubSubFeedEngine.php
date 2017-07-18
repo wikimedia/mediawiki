@@ -27,11 +27,13 @@
  * 'rc'. If the URI contains a query string, its parameters will be parsed
  * as RedisConnectionPool options.
  *
- * @example
+ * @par Example:
+ * @code
  * $wgRCFeeds['redis'] = array(
  *      'formatter' => 'JSONRCFeedFormatter',
  *      'uri'       => "redis://127.0.0.1:6379/rc.$wgDBname",
  * );
+ * @encode
  *
  * @since 1.22
  */

@@ -640,8 +640,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * The key is added to the array of globals that will be reset afterwards
 	 * in the tearDown().
 	 *
-	 * @example
-	 * <code>
+	 * @par Example
+	 * @code
 	 *     protected function setUp() {
 	 *         $this->setMwGlobals( 'wgRestrictStuff', true );
 	 *     }
@@ -656,7 +656,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *     }
 	 *
 	 *     function testQuux() {}
-	 * </code>
+	 * @endcode
 	 *
 	 * @param array|string $pairs Key to the global variable, or an array
 	 *  of key/value pairs.

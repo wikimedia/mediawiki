@@ -23,11 +23,12 @@
  * interpret a given string as being a JavaScript expression, instead of string
  * data.
  *
- * Example:
+ * @par Example:
+ * @code
+ *     Xml::encodeJsVar( new XmlJsCode( 'a + b' ) );
+ * @encode
  *
- *    Xml::encodeJsVar( new XmlJsCode( 'a + b' ) );
- *
- * Returns "a + b".
+ * This returns "a + b".
  *
  * @note As of 1.21, XmlJsCode objects cannot be nested inside objects or arrays. The sole
  *       exception is the $args argument to Xml::encodeJsCall() because Xml::encodeJsVar() is
