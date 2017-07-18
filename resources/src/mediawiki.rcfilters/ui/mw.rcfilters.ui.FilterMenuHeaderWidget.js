@@ -44,10 +44,10 @@
 		// Invert namespaces button
 		this.invertNamespacesButton = new OO.ui.ToggleButtonWidget( {
 			icon: '',
-			label: mw.msg( 'invert' ),
 			classes: [ 'mw-rcfilters-ui-filterMenuHeaderWidget-invertNamespacesButton' ]
 		} );
 		this.invertNamespacesButton.toggle( this.model.getCurrentView() === 'namespaces' );
+		this.updateInvertButton( this.model.areNamespacesInverted() );
 
 		// Events
 		this.backButton.connect( this, { click: 'onBackButtonClick' } );
@@ -127,7 +127,21 @@
 	 * @param {boolean} isInverted Namespaces selection is inverted
 	 */
 	mw.rcfilters.ui.FilterMenuHeaderWidget.prototype.onModelInvertChange = function ( isInverted ) {
+		this.updateInvertButton( isInverted );
+	};
+
+	/**
+	 * Update the state of the invert button
+	 *
+	 * @param {boolean} isInverted Namespaces selection is inverted
+	 */
+	mw.rcfilters.ui.FilterMenuHeaderWidget.prototype.updateInvertButton = function ( isInverted ) {
 		this.invertNamespacesButton.setActive( isInverted );
+		this.invertNamespacesButton.setLabel(
+			isInverted ?
+				mw.msg( 'rcfilters-exclude-button-on' ) :
+				mw.msg( 'rcfilters-exclude-button-off' )
+		);
 	};
 
 	mw.rcfilters.ui.FilterMenuHeaderWidget.prototype.onBackButtonClick = function () {
