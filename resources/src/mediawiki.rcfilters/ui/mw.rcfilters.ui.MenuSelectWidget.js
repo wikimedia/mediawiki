@@ -34,8 +34,7 @@
 
 		this.inputValue = '';
 		this.$overlay = config.$overlay || this.$element;
-		this.$body = $( '<div>' )
-				.addClass( 'mw-rcfilters-ui-menuSelectWidget-body' );
+		this.$body = $( '<div>' ).addClass( 'mw-rcfilters-ui-menuSelectWidget-body' );
 		this.footers = [];
 
 		// Parent

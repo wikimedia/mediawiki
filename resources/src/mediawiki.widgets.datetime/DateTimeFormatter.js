@@ -412,7 +412,7 @@
 		if ( v.normalize ) {
 			v = v.normalize();
 		}
-		re = new RegExp( '^\\s*' + v.replace( /([\\{}()|.?*+\-\^$\[\]])/g, '\\$1' ), 'i' );
+		re = new RegExp( '^\\s*' + v.replace( /([\\{}()|.?*+\-^$\[\]])/g, '\\$1' ), 'i' ); // eslint-disable-line no-useless-escape
 		for ( k in this.values ) {
 			k = +k;
 			if ( !isNaN( k ) && re.test( this.values[ k ] ) ) {

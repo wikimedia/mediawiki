@@ -206,16 +206,16 @@
 
 	QUnit.test( 'mw-made-collapsible data added', function ( assert ) {
 		var $collapsible = prepareCollapsible(
-				'<div>' + loremIpsum + '</div>'
-			);
+			'<div>' + loremIpsum + '</div>'
+		);
 
 		assert.equal( $collapsible.data( 'mw-made-collapsible' ), true, 'mw-made-collapsible data present' );
 	} );
 
 	QUnit.test( 'mw-collapsible added when missing', function ( assert ) {
 		var $collapsible = prepareCollapsible(
-				'<div>' + loremIpsum + '</div>'
-			);
+			'<div>' + loremIpsum + '</div>'
+		);
 
 		assert.assertTrue( $collapsible.hasClass( 'mw-collapsible' ), 'mw-collapsible class present' );
 	} );
@@ -223,8 +223,8 @@
 	QUnit.test( 'mw-collapsed added when missing', function ( assert ) {
 		var $collapsible = prepareCollapsible(
 			'<div>' + loremIpsum + '</div>',
-				{ collapsed: true }
-			);
+			{ collapsed: true }
+		);
 
 		assert.assertTrue( $collapsible.hasClass( 'mw-collapsed' ), 'mw-collapsed class present' );
 	} );

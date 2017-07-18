@@ -23,8 +23,7 @@ jQuery( function ( $ ) {
 			return true;
 		}
 
-		$lis
-		.each( function () {
+		$lis.each( function () {
 			$li = $( this );
 			$inputs = $li.find( 'input[type="radio"]' );
 			$oldidRadio = $inputs.filter( '[name="oldid"]' ).eq( 0 );
@@ -97,8 +96,7 @@ jQuery( function ( $ ) {
 			// Also remove potentially conflicting id attributes that we don't need anyway
 			$copyForm
 				.css( 'display', 'none' )
-				.find( '[id]' )
-					.removeAttr( 'id' )
+				.find( '[id]' ).removeAttr( 'id' )
 				.end()
 				.insertAfter( $historyCompareForm )
 				.submit();

@@ -42,7 +42,7 @@
 
 			// Look for rgb(num%,num%,num%)
 			// eslint-disable-next-line no-cond-assign
-			if ( result = /rgb\(\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*\)/.exec( color ) ) {
+			if ( result = /rgb\(\s*([0-9]+(?:\.[0-9]+)?)%\s*,\s*([0-9]+(?:\.[0-9]+)?)%\s*,\s*([0-9]+(?:\.[0-9]+)?)%\s*\)/.exec( color ) ) {
 				return [
 					parseFloat( result[ 1 ] ) * 2.55,
 					parseFloat( result[ 2 ] ) * 2.55,

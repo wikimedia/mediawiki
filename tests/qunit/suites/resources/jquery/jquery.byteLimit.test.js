@@ -160,9 +160,9 @@
 	byteLimitTest( {
 		description: 'Input filter that increases the length',
 		$input: $( '<input>' ).attr( 'type', 'text' )
-		.byteLimit( 10, function ( text ) {
-			return 'prefix' + text;
-		} ),
+			.byteLimit( 10, function ( text ) {
+				return 'prefix' + text;
+			} ),
 		sample: simpleSample,
 		// Prefix adds 6 characters, limit is reached after 4
 		expected: '1234'
@@ -172,9 +172,9 @@
 	byteLimitTest( {
 		description: 'Input filter of which the base exceeds the limit',
 		$input: $( '<input>' ).attr( 'type', 'text' )
-		.byteLimit( 3, function ( text ) {
-			return 'prefix' + text;
-		} ),
+			.byteLimit( 3, function ( text ) {
+				return 'prefix' + text;
+			} ),
 		sample: simpleSample,
 		hasLimit: true,
 		limit: 6, // 'prefix' length

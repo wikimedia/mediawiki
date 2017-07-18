@@ -301,8 +301,8 @@
 					role: 'navigation',
 					'aria-labelledby': 'p-lang-label'
 				} )
-				.append( $( '<h3>' ).attr( 'id', 'p-lang-label' ).text( mw.msg( 'otherlanguages' ) ) )
-				.append( $( '<div>' ).addClass( 'body' ).append( '<ul>' ) )
+					.append( $( '<h3>' ).attr( 'id', 'p-lang-label' ).text( mw.msg( 'otherlanguages' ) ) )
+					.append( $( '<div>' ).addClass( 'body' ).append( '<ul>' ) )
 			);
 		}
 

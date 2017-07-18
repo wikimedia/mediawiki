@@ -45,8 +45,8 @@
 					$( e.delegateTarget ).remove();
 				}, function ( errorCode, data ) {
 					var message = data && data.error && data.error.messageHtml ?
-						$.parseHTML( data.error.messageHtml ) :
-						mw.msg( 'rollbackfailed' ),
+							$.parseHTML( data.error.messageHtml ) :
+							mw.msg( 'rollbackfailed' ),
 						type = errorCode === 'alreadyrolled' ? 'warn' : 'error';
 
 					mw.notify( message, {

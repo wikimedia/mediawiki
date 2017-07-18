@@ -464,8 +464,8 @@
 
 			// Go over the items and define the correct values
 			$.each( filterRepresentation, function ( name, value ) {
+				// We must store all parameter values as strings '0' or '1'
 				result[ filterParamNames[ name ] ] = areAnySelected ?
-					// We must store all parameter values as strings '0' or '1'
 					String( Number( !value ) ) :
 					'0';
 			} );
@@ -521,10 +521,10 @@
 			$.each( paramRepresentation, function ( paramName, paramValue ) {
 				var filterItem = paramToFilterMap[ paramName ];
 
+				// Flip the definition between the parameter
+				// state and the filter state
+				// This is what the 'toggleSelected' value of the filter is
 				result[ filterItem.getName() ] = areAnySelected ?
-					// Flip the definition between the parameter
-					// state and the filter state
-					// This is what the 'toggleSelected' value of the filter is
 					!Number( paramValue ) :
 					// Otherwise, there are no selected items in the
 					// group, which means the state is false
@@ -546,14 +546,14 @@
 			);
 			// Translate the parameter values into a filter selection state
 			this.getItems().forEach( function ( filterItem ) {
+				// All true (either because all values are written or the term 'all' is written)
+				// is the same as all filters set to true
 				result[ filterItem.getName() ] = (
-						// If it is the word 'all'
-						paramValues.length === 1 && paramValues[ 0 ] === 'all' ||
-						// All values are written
-						paramValues.length === model.getItemCount()
-					) ?
-					// All true (either because all values are written or the term 'all' is written)
-					// is the same as all filters set to true
+					// If it is the word 'all'
+					paramValues.length === 1 && paramValues[ 0 ] === 'all' ||
+					// All values are written
+					paramValues.length === model.getItemCount()
+				) ?
 					true :
 					// Otherwise, the filter is selected only if it appears in the parameter values
 					paramValues.indexOf( filterItem.getParamName() ) > -1;
