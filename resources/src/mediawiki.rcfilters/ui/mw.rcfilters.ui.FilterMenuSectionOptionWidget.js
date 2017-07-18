@@ -72,7 +72,7 @@
 				classes: [ 'mw-rcfilters-ui-filterMenuSectionOptionWidget-whatsThisButton' ],
 				flags: [ 'progressive' ],
 				popup: {
-					$autoCloseIgnore: this.$element.add( this.$overlay ),
+					autoClose: true,
 					padded: false,
 					align: 'center',
 					position: 'above',
