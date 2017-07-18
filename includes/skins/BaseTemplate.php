@@ -687,7 +687,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			$html .= Html::closeElement( 'div' );
 		}
 		if ( count( $validFooterLinks ) > 0 ) {
-			$html .= Html::openElement( 'ul', [ 'id' => 'f-list', 'class' => 'footer-places' ] );
+			$html .= Html::openElement( 'ul', [ 'id' => 'f-list', 'class' => 'footer-places noprint' ] );
 			foreach ( $validFooterLinks as $aLink ) {
 				$html .= Html::rawElement(
 					'li',
@@ -729,7 +729,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @since 1.25
 	 */
 	public function getIndicators() {
-		$out = "<div class=\"mw-indicators mw-body-content\">\n";
+		$out = "<div class=\"mw-indicators noprint mw-body-content\">\n";
 		foreach ( $this->data['indicators'] as $id => $content ) {
 			$out .= Html::rawElement(
 				'div',

@@ -576,7 +576,7 @@ abstract class Skin extends ContextSource {
 		$showHidden = $this->getUser()->getBoolOption( 'showhiddencats' ) ||
 						$this->getTitle()->getNamespace() == NS_CATEGORY;
 
-		$classes = [ 'catlinks' ];
+		$classes = [ 'catlinks', 'noprint' ];
 		if ( empty( $allCats['normal'] ) && !( !empty( $allCats['hidden'] ) && $showHidden ) ) {
 			$classes[] = 'catlinks-allhidden';
 		}
