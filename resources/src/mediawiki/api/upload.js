@@ -430,16 +430,16 @@
 
 			upload = this.uploadWithFormData( file, data );
 			return upload.then(
-					null,
-					// If the call fails, we may want to try again...
-					retries === 0 ? null : retry,
-					function ( fraction ) {
-						// Since we're only uploading small parts of a file, we
-						// need to adjust the reported progress to reflect where
-						// we actually are in the combined upload
-						return ( start + fraction * ( end - start ) ) / file.size;
-					}
-				).promise( { abort: upload.abort } );
+				null,
+				// If the call fails, we may want to try again...
+				retries === 0 ? null : retry,
+				function ( fraction ) {
+					// Since we're only uploading small parts of a file, we
+					// need to adjust the reported progress to reflect where
+					// we actually are in the combined upload
+					return ( start + fraction * ( end - start ) ) / file.size;
+				}
+			).promise( { abort: upload.abort } );
 		},
 
 		/**

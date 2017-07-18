@@ -208,13 +208,13 @@
 			},
 			// brackets, greater than
 			{
-				pattern: /[\]\}>]/g,
+				pattern: /[}]>]/g,
 				replace: ')',
 				generalRule: true
 			},
 			// brackets, lower than
 			{
-				pattern: /[\[\{<]/g,
+				pattern: /[{[<]/g,
 				replace: '(',
 				generalRule: true
 			},
@@ -616,7 +616,7 @@
 		}
 
 		// Any remaining initial :s are illegal.
-		title = title.replace( /^\:+/, '' );
+		title = title.replace( /^:+/, '' );
 
 		return Title.newFromText( title, namespace );
 	};
@@ -654,16 +654,16 @@
 			thumbPhpRegex = /thumb\.php/,
 			regexes = [
 				// Thumbnails
-				/\/[a-f0-9]\/[a-f0-9]{2}\/([^\s\/]+)\/[^\s\/]+-[^\s\/]*$/,
+				/\/[a-f0-9]\/[a-f0-9]{2}\/([^\s/]+)\/[^\s/]+-[^\s/]*$/,
 
 				// Full size images
-				/\/[a-f0-9]\/[a-f0-9]{2}\/([^\s\/]+)$/,
+				/\/[a-f0-9]\/[a-f0-9]{2}\/([^\s/]+)$/,
 
 				// Thumbnails in non-hashed upload directories
-				/\/([^\s\/]+)\/[^\s\/]+-(?:\1|thumbnail)[^\s\/]*$/,
+				/\/([^\s/]+)\/[^\s/]+-(?:\1|thumbnail)[^\s/]*$/,
 
 				// Full-size images in non-hashed upload directories
-				/\/([^\s\/]+)$/
+				/\/([^\s/]+)$/
 			],
 
 			recount = regexes.length;

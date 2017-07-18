@@ -208,7 +208,7 @@
 		var queryValue = this.query.getValue().trim();
 
 		if ( queryValue.match( this.externalLinkUrlProtocolsRegExp ) ) {
-			queryValue = queryValue.match( /.+\/([^\/]+)/ )[ 1 ];
+			queryValue = queryValue.match( /.+\/([^/]+)/ )[ 1 ];
 		}
 		return queryValue;
 	};

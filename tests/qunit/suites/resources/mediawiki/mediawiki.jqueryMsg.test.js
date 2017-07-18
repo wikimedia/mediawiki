@@ -204,7 +204,7 @@
 		);
 		assert.equal(
 			formatParse( 'external-link-plural', 2, 'http://example.org' ),
-			'Foo <a href=\"http://example.org\">two</a> things.',
+			'Foo <a href="http://example.org">two</a> things.',
 			'Link is expanded inside an explicit plural form and is not escaped html'
 		);
 		assert.equal(

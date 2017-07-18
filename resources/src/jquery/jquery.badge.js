@@ -64,8 +64,7 @@
 			if ( $badge.length ) {
 				$badge
 					.toggleClass( 'mw-badge-important', isImportant )
-					.find( '.mw-badge-content' )
-						.text( text );
+					.find( '.mw-badge-content' ).text( text );
 			} else {
 				// Otherwise, create a new badge with the specified text and style
 				$badge = $( '<div class="mw-badge"></div>' )

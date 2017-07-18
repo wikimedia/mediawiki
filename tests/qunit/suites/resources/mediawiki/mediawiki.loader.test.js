@@ -131,13 +131,13 @@
 		mw.loader.implement( 'test.promise', [ QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/mwLoaderTestCallback.js' ) ] );
 
 		return mw.loader.using( 'test.promise' )
-		.done( function () {
-			assert.strictEqual( isAwesomeDone, true, 'test.promise module should\'ve caused isAwesomeDone to be true' );
-			delete mw.loader.testCallback;
-		} )
-		.fail( function () {
-			assert.ok( false, 'Error callback fired while loader.using "test.promise" module' );
-		} );
+			.done( function () {
+				assert.strictEqual( isAwesomeDone, true, 'test.promise module should\'ve caused isAwesomeDone to be true' );
+				delete mw.loader.testCallback;
+			} )
+			.fail( function () {
+				assert.ok( false, 'Error callback fired while loader.using "test.promise" module' );
+			} );
 	} );
 
 	// Covers mw.loader#sortDependencies (with native Set if available)
@@ -157,7 +157,7 @@
 				assert.ok( /Circular/.test( String( e ) ), 'Detect circular dependency' );
 			}
 		)
-		.always( done );
+			.always( done );
 	} );
 
 	// @covers mw.loader#sortDependencies (with fallback shim)
@@ -187,7 +187,7 @@
 				assert.ok( /Circular/.test( String( e ) ), 'Detect circular dependency' );
 			}
 		)
-		.always( done );
+			.always( done );
 	} );
 
 	QUnit.test( '.load() - Error: Circular dependency', function ( assert ) {
@@ -863,8 +863,7 @@
 				}
 			};
 		} );
-		return mw.loader.using( [ 'test.require1', 'test.require2', 'test.require3', 'test.require4' ] )
-		.then( function ( require ) {
+		return mw.loader.using( [ 'test.require1', 'test.require2', 'test.require3', 'test.require4' ] ).then( function ( require ) {
 			var module1, module2, module3, module4;
 
 			module1 = require( 'test.require1' );

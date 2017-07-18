@@ -19,8 +19,7 @@
 				title: String( page ),
 				user: user,
 				uselang: mw.config.get( 'wgUserLanguage' )
-			}, params ) )
-			.then( function ( data ) {
+			}, params ) ).then( function ( data ) {
 				return data.rollback;
 			} );
 		}

@@ -491,10 +491,12 @@
 			// recursive functions seem not to work in all browsers then. (Tested IE6-7, Opera, Safari, FF)
 			// This may be because, to save code, memoization was removed
 
+			/* eslint-disable no-useless-escape */
 			regularLiteral = makeRegexParser( /^[^{}\[\]$<\\]/ );
 			regularLiteralWithoutBar = makeRegexParser( /^[^{}\[\]$\\|]/ );
 			regularLiteralWithoutSpace = makeRegexParser( /^[^{}\[\]$\s]/ );
 			regularLiteralWithSquareBrackets = makeRegexParser( /^[^{}$\\]/ );
+			/* eslint-enable no-useless-escape */
 
 			backslash = makeStringParser( '\\' );
 			doubleQuote = makeStringParser( '"' );
@@ -811,7 +813,7 @@
 			templateName = transform(
 				// see $wgLegalTitleChars
 				// not allowing : due to the need to catch "PLURAL:$1"
-				makeRegexParser( /^[ !"$&'()*,.\/0-9;=?@A-Z\^_`a-z~\x80-\xFF+\-]+/ ),
+				makeRegexParser( /^[ !"$&'()*,./0-9;=?@A-Z^_`a-z~\x80-\xFF+-]+/ ),
 				function ( result ) { return result.toString(); }
 			);
 			function templateParam() {
@@ -1142,8 +1144,7 @@
 					$el.attr( {
 						role: 'button',
 						tabindex: 0
-					} )
-					.on( 'click keypress', function ( e ) {
+					} ).on( 'click keypress', function ( e ) {
 						if (
 							e.type === 'click' ||
 							e.type === 'keypress' && e.which === 13
@@ -1354,7 +1355,7 @@
 	// Replace the default message parser with jqueryMsg
 	oldParser = mw.Message.prototype.parser;
 	mw.Message.prototype.parser = function () {
-		if ( this.format === 'plain' || !/\{\{|[\[<>&]/.test( this.map.get( this.key ) ) ) {
+		if ( this.format === 'plain' || !/\{\{|[<>[&]/.test( this.map.get( this.key ) ) ) {
 			// Fall back to mw.msg's simple parser
 			return oldParser.apply( this );
 		}
