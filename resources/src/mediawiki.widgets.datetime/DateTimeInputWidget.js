@@ -184,6 +184,16 @@
 	/* Methods */
 
 	/**
+	 * Get the currently focused field, if any
+	 *
+	 * @private
+	 * @return {jQuery}
+	 */
+	mw.widgets.datetime.DateTimeInputWidget.prototype.getFocusedField = function () {
+		return this.$fields.find( this.getElementDocument().activeElement );
+	};
+
+	/**
 	 * Convert a date string to a Date
 	 *
 	 * @private
@@ -717,7 +727,7 @@
 		var delta = 0,
 			spec = $field.data( 'mw-widgets-datetime-dateTimeInputWidget-fieldSpec' );
 
-		if ( this.isDisabled() ) {
+		if ( this.isDisabled() || !this.getFocusedField().length ) {
 			return;
 		}
 
@@ -803,7 +813,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.focus = function () {
-		if ( !this.$fields.find( document.activeElement ).length ) {
+		if ( !this.getFocusedField().length ) {
 			this.$fields.find( '.mw-widgets-datetime-dateTimeInputWidget-editField' ).first().focus();
 		}
 		return this;
@@ -813,7 +823,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.blur = function () {
-		this.$fields.find( document.activeElement ).blur();
+		this.getFocusedField().blur();
 		return this;
 	};
 
