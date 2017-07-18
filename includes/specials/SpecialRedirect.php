@@ -33,16 +33,18 @@ class SpecialRedirect extends FormSpecialPage {
 	/**
 	 * The type of the redirect (user/file/revision)
 	 *
+	 * Example value: `'user'`
+	 *
 	 * @var string $mType
-	 * @example 'user'
 	 */
 	protected $mType;
 
 	/**
 	 * The identifier/value for the redirect (which id, which file)
 	 *
+	 * Example value: `'42'`
+	 *
 	 * @var string $mValue
-	 * @example '42'
 	 */
 	protected $mValue;
 
