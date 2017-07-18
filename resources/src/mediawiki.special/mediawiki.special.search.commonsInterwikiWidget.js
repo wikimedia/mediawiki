@@ -56,8 +56,7 @@
 		piprop: 'thumbnail',
 		pithumbsize: 300,
 		formatversion: 2
-	} )
-	.done( function ( resp ) {
+	} ).done( function ( resp ) {
 		var results = ( resp.query && resp.query.pages ) ? resp.query.pages : false,
 			multimediaWidgetTemplate;
 

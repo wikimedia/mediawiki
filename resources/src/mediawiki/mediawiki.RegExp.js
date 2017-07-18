@@ -16,7 +16,7 @@
 		 * @return {string} Escaped string
 		 */
 		escape: function ( str ) {
-			return str.replace( /([\\{}()|.?*+\-\^$\[\]])/g, '\\$1' );
+			return str.replace( /([\\{}()|.?*+\-^$\[\]])/g, '\\$1' ); // eslint-disable-line no-useless-escape
 		}
 	};
 }( mediaWiki ) );

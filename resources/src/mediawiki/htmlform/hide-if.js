@@ -20,7 +20,7 @@
 	 */
 	function hideIfGetField( $el, name ) {
 		var $found, $p, $widget,
-			suffix = name.replace( /^([^\[]+)/, '[$1]' );
+			suffix = name.replace( /^([^[]+)/, '[$1]' );
 
 		function nameFilter() {
 			return this.name === name ||

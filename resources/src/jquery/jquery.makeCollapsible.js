@@ -264,14 +264,15 @@
 			buildDefaultToggleLink = function () {
 				return $( '<a class="mw-collapsible-text"></a>' )
 					.text( collapseText )
-					.wrap( '<span class="mw-collapsible-toggle"></span>' ).parent()
-						.attr( {
-							role: 'button',
-							tabindex: 0
-						} )
-						.prepend( '<span>[</span>' )
-						.append( '<span>]</span>' )
-						.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler );
+					.wrap( '<span class="mw-collapsible-toggle"></span>' )
+					.parent()
+					.attr( {
+						role: 'button',
+						tabindex: 0
+					} )
+					.prepend( '<span>[</span>' )
+					.append( '<span>]</span>' )
+					.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler );
 			};
 
 			// Check if this element has a custom position for the toggle link

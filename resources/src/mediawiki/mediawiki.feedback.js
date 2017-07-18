@@ -285,12 +285,12 @@
 	 */
 	mw.Feedback.Dialog.prototype.validateFeedbackForm = function () {
 		var isValid = (
-				(
-					!this.useragentMandatory ||
-					this.useragentCheckbox.isSelected()
-				) &&
-				this.feedbackSubjectInput.getValue()
-			);
+			(
+				!this.useragentMandatory ||
+				this.useragentCheckbox.isSelected()
+			) &&
+			this.feedbackSubjectInput.getValue()
+		);
 
 		this.actions.setAbilities( { submit: isValid } );
 	};

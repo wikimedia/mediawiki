@@ -87,9 +87,9 @@
 		 */
 		function getInputLocation( context ) {
 			return context.config.$region
-					.closest( 'form' )
-					.find( '[data-search-loc]' )
-					.data( 'search-loc' ) || 'header';
+				.closest( 'form' )
+				.find( '[data-search-loc]' )
+				.data( 'search-loc' ) || 'header';
 		}
 
 		/**
@@ -252,8 +252,7 @@
 				var $this = $( this );
 				$this
 					.data( 'suggestions-context' )
-					.data.$container
-						.css( 'fontSize', $this.css( 'fontSize' ) );
+					.data.$container.css( 'fontSize', $this.css( 'fontSize' ) );
 			} );
 
 		// Ensure that the thing is actually present!
