@@ -990,6 +990,8 @@
 	"rcfilters-quickfilters": "Сакланган фильтрлар",
 	"rcfilters-clear-all-filters": "Барлык филтерләрне чистарту",
 	"rcfilters-search-placeholder": "Фильтрланы соңгы үзгәртү (карау яисә кертүне башлау)",
+	"rcfilters-filter-registered-label": "Теркәлгән",
+	"rcfilters-filter-registered-description": "Теркәлгән мөхәррирләр.",
 	"rcfilters-filter-user-experience-level-experienced-label": "Тәҗрибәле кулланучылар",
 	"rcfilters-filter-humans-label": "Кеше (бот түгел)",
 	"rcfilters-filter-minor-description": "«Кече үзгәртү» дип тамгаланган үзгәртүләр",

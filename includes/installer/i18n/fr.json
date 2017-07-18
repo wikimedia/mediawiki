@@ -81,7 +81,7 @@
 	"config-outdated-sqlite": "'''Attention''': vous avez SQLite $1, qui est inférieur à la version minimale requise $2. SQLite sera indisponible.",
 	"config-no-fts3": "'''Attention :''' SQLite est compilé sans le module [//sqlite.org/fts3.html FTS3] ; les fonctions de recherche ne seront pas disponibles sur ce moteur.",
 	"config-pcre-old": "'''Fatal :''' PCRE $1 ou ultérieur est nécessaire.\nVotre binaire PHP est lié avec PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/Plus d’information sur PCRE].",
-	"config-pcre-no-utf8": "<strong>Erreur fatale</strong>: le module PCRE de PHP semble être compilé sans la prise en charge de PCRE_UTF8.\nMédiaWiki a besoin de la gestion d’UTF-8 pour fonctionner correctement.",
+	"config-pcre-no-utf8": "'''Erreur fatale''': Le module PCRE de PHP semble être compilé sans la prise en charge de PCRE_UTF8.\nMédiaWiki nécessite la gestion d’UTF-8 pour fonctionner correctement.",
 	"config-memory-raised": "Le paramètre <code>memory_limit</code> de PHP était à $1, porté à $2.",
 	"config-memory-bad": "'''Attention :''' Le paramètre <code>memory_limit</code> de PHP est à $1.\nCette valeur est probablement trop faible.\nIl est possible que l’installation échoue !",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] est installé",

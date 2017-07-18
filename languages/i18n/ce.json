@@ -1159,6 +1159,8 @@
 	"rcfilters-filterlist-title": "Литтарш",
 	"rcfilters-filterlist-noresults": "Литтарш цакарий",
 	"rcfilters-filtergroup-registration": "Декъашхойн регистраци",
+	"rcfilters-filter-registered-label": "Регистрацийинарш",
+	"rcfilters-filter-unregistered-label": "Регистрацицайинарш",
 	"rcfilters-filtergroup-authorship": "Нисде авторалла",
 	"rcfilters-filter-editsbyself-label": "Хьан дисдарш",
 	"rcfilters-filter-editsbyself-description": "Хьан нисдарш.",
