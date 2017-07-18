@@ -99,14 +99,18 @@
 	 *
 	 * @param {jQuery|string} $changesList Updated changes list
 	 * @param {jQuery} $fieldset Updated fieldset
+	 * @param {boolean} isInitialDOM Whether $changesListContent is the existing (already attached) DOM
 	 */
-	mw.rcfilters.ui.FormWrapperWidget.prototype.onChangesModelUpdate = function ( $changesList, $fieldset ) {
+	mw.rcfilters.ui.FormWrapperWidget.prototype.onChangesModelUpdate = function ( $changesList, $fieldset, isInitialDOM ) {
 		this.$submitButton.prop( 'disabled', false );
 
 		// Replace the entire fieldset
 		this.$element.empty().append( $fieldset.contents() );
-		// Make sure enhanced RC re-initializes correctly
-		mw.hook( 'wikipage.content' ).fire( this.$element );
+
+		if ( !isInitialDOM ) {
+			// Make sure enhanced RC re-initializes correctly
+			mw.hook( 'wikipage.content' ).fire( this.$element );
+		}
 
 		this.cleanUpFieldset();
 

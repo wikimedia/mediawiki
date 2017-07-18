@@ -138,7 +138,8 @@
 			// so it gets processed
 			this.changesListModel.update(
 				$changesList.length ? $changesList : 'NO_RESULTS',
-				$( 'fieldset.rcoptions' ).first()
+				$( 'fieldset.rcoptions' ).first(),
+				true // We're using existing DOM elements
 			);
 		}
 
