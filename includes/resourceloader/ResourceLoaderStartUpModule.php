@@ -297,6 +297,16 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * @return array
+	 */
+	public function getPreloadLinks( ResourceLoaderContext $context ) {
+		$url = self::getStartupModulesUrl( $context );
+		return [
+			$url => [ 'as' => 'script' ]
+		];
+	}
+
+	/**
 	 * Base modules required for the base environment of ResourceLoader
 	 *
 	 * @return array
@@ -359,6 +369,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		}, [
 			'$VARS.wgLegacyJavaScriptGlobals' => $this->getConfig()->get( 'LegacyJavaScriptGlobals' ),
 			'$VARS.configuration' => $this->getConfigSettings( $context ),
+			// This url may be preloaded. See getPreloadLinks().
 			'$VARS.baseModulesUri' => self::getStartupModulesUrl( $context ),
 		] );
 		$pairs['$CODE.registrations()'] = str_replace(
