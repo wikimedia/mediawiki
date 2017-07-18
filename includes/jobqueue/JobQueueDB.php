@@ -768,7 +768,7 @@ class JobQueueDB extends JobQueue {
 	protected function getDB( $index ) {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$lb = ( $this->cluster !== false )
-			? $lbFactory->getExternalLB( $this->cluster, $this->wiki )
+			? $lbFactory->getExternalLB( $this->cluster )
 			: $lbFactory->getMainLB( $this->wiki );
 
 		return $lb->getConnectionRef( $index, [], $this->wiki );
