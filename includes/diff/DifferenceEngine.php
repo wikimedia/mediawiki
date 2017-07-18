@@ -377,6 +377,11 @@ class DifferenceEngine extends ContextSource {
 			}
 		}
 
+		$out->addJsConfigVars( [
+			'wgDiffOldId' => $this->mOldid,
+			'wgDiffNewId' => $this->mNewid,
+		] );
+
 		# Make "next revision link"
 		# Skip next link on the top revision
 		if ( $samePage && !$this->mNewRev->isCurrent() ) {
