@@ -794,4 +794,79 @@ mw.example();
 			'startup response sets state to error'
 		);
 	}
+
+	/**
+	 * Integration test for modules sending extra HTTP response headers.
+	 *
+	 * @covers ResourceLoaderModule::getHeaders
+	 * @covers ResourceLoaderModule::buildContent
+	 * @covers ResourceLoader::makeModuleResponse
+	 */
+	public function testMakeModuleResponseExtraHeaders() {
+		$module = $this->getMockBuilder( ResourceLoaderTestModule::class )
+			->setMethods( [ 'getPreloadLinks' ] )->getMock();
+		$module->method( 'getPreloadLinks' )->willReturn( [
+			 'https://example.org/script.js' => [ 'as' => 'script' ],
+		] );
+
+		$rl = new EmptyResourceLoader();
+		$rl->register( [
+			'foo' => $module,
+		] );
+		$context = $this->getResourceLoaderContext(
+			[ 'modules' => 'foo', 'only' => 'scripts' ],
+			$rl
+		);
+
+		$modules = [ 'foo' => $rl->getModule( 'foo' ) ];
+		$response = $rl->makeModuleResponse( $context, $modules );
+		$extraHeaders = TestingAccessWrapper::newFromObject( $rl )->extraHeaders;
+
+		$this->assertEquals(
+			[
+				'Link: <https://example.org/script.js>;rel=preload;as=script'
+			],
+			$extraHeaders,
+			'Extra headers'
+		);
+	}
+
+	/**
+	 * @covers ResourceLoaderModule::getHeaders
+	 * @covers ResourceLoaderModule::buildContent
+	 * @covers ResourceLoader::makeModuleResponse
+	 */
+	public function testMakeModuleResponseExtraHeadersMulti() {
+		$foo = $this->getMockBuilder( ResourceLoaderTestModule::class )
+			->setMethods( [ 'getPreloadLinks' ] )->getMock();
+		$foo->method( 'getPreloadLinks' )->willReturn( [
+			 'https://example.org/script.js' => [ 'as' => 'script' ],
+		] );
+
+		$bar = $this->getMockBuilder( ResourceLoaderTestModule::class )
+			->setMethods( [ 'getPreloadLinks' ] )->getMock();
+		$bar->method( 'getPreloadLinks' )->willReturn( [
+			 '/example.png' => [ 'as' => 'image' ],
+			 '/example.jpg' => [ 'as' => 'image' ],
+		] );
+
+		$rl = new EmptyResourceLoader();
+		$rl->register( [ 'foo' => $foo, 'bar' => $bar ] );
+		$context = $this->getResourceLoaderContext(
+			[ 'modules' => 'foo|bar', 'only' => 'scripts' ],
+			$rl
+		);
+
+		$modules = [ 'foo' => $rl->getModule( 'foo' ), 'bar' => $rl->getModule( 'bar' ) ];
+		$response = $rl->makeModuleResponse( $context, $modules );
+		$extraHeaders = TestingAccessWrapper::newFromObject( $rl )->extraHeaders;
+		$this->assertEquals(
+			[
+				'Link: <https://example.org/script.js>;rel=preload;as=script',
+				'Link: </example.png>;rel=preload;as=image,</example.jpg>;rel=preload;as=image'
+			],
+			$extraHeaders,
+			'Extra headers'
+		);
+	}
 }
