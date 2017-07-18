@@ -80,6 +80,15 @@ class ResourceLoader implements LoggerAwareInterface {
 	protected $errors = [];
 
 	/**
+	 * List of extra HTTP response headers provided by loaded modules.
+	 *
+	 * Populated by makeModuleResponse().
+	 *
+	 * @var array
+	 */
+	protected $extraHeaders = [];
+
+	/**
 	 * @var MessageBlobStore
 	 */
 	protected $blobStore;
@@ -794,7 +803,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			}
 		}
 
-		$this->sendResponseHeaders( $context, $etag, (bool)$this->errors );
+		$this->sendResponseHeaders( $context, $etag, (bool)$this->errors, $this->extraHeaders );
 
 		// Remove the output buffer and output the response
 		ob_end_clean();
@@ -827,9 +836,12 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @param ResourceLoaderContext $context
 	 * @param string $etag ETag header value
 	 * @param bool $errors Whether there are errors in the response
+	 * @param string[] $extra Array of extra HTTP response headers
 	 * @return void
 	 */
-	protected function sendResponseHeaders( ResourceLoaderContext $context, $etag, $errors ) {
+	protected function sendResponseHeaders(
+		ResourceLoaderContext $context, $etag, $errors, array $extra = []
+	) {
 		\MediaWiki\HeaderCallback::warnIfHeadersSent();
 		$rlMaxage = $this->config->get( 'ResourceLoaderMaxage' );
 		// Use a short cache expiry so that updates propagate to clients quickly, if:
@@ -872,6 +884,9 @@ class ResourceLoader implements LoggerAwareInterface {
 			header( "Cache-Control: public, max-age=$maxage, s-maxage=$smaxage" );
 			$exp = min( $maxage, $smaxage );
 			header( 'Expires: ' . wfTimestamp( TS_RFC2822, $exp + time() ) );
+		}
+		foreach ( $extra as $header ) {
+			header( $header );
 		}
 	}
 
@@ -1008,6 +1023,9 @@ class ResourceLoader implements LoggerAwareInterface {
 	/**
 	 * Generate code for a response.
 	 *
+	 * Calling this method also populates the `errors` and `headers` members,
+	 * later used by respond().
+	 *
 	 * @param ResourceLoaderContext $context Context in which to generate a response
 	 * @param ResourceLoaderModule[] $modules List of module objects keyed by module name
 	 * @param string[] $missing List of requested module names that are unregistered (optional)
@@ -1051,6 +1069,10 @@ MESSAGE;
 				$content = $module->getModuleContent( $context );
 				$implementKey = $name . '@' . $module->getVersionHash( $context );
 				$strContent = '';
+
+				if ( isset( $content['headers'] ) ) {
+					$this->extraHeaders = array_merge( $this->extraHeaders, $content['headers'] );
+				}
 
 				// Append output
 				switch ( $context->getOnly() ) {

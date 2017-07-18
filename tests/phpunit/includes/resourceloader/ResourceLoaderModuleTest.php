@@ -180,4 +180,28 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 			'Substitute placeholders'
 		);
 	}
+
+	/**
+	 * @covers ResourceLoaderModule::getHeaders
+	 * @covers ResourceLoaderModule::getPreloadLinks
+	 */
+	public function testGetHeaders() {
+		$context = $this->getResourceLoaderContext();
+
+		$module = new ResourceLoaderTestModule();
+		$this->assertSame( [], $module->getHeaders( $context ), 'Default' );
+
+		$module = $this->getMockBuilder( ResourceLoaderTestModule::class )
+			->setMethods( [ 'getPreloadLinks' ] )->getMock();
+		$module->method( 'getPreloadLinks' )->willReturn( [
+			 'https://example.org/script.js' => [ 'as' => 'script' ],
+		] );
+		$this->assertSame(
+			[
+				'Link: <https://example.org/script.js>;rel=preload;as=script'
+			],
+			$module->getHeaders( $context ),
+			'Preload script resource'
+		);
+	}
 }

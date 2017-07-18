@@ -794,4 +794,40 @@ mw.example();
 			'startup response sets state to error'
 		);
 	}
+
+	/**
+	 * Integration test for modules sending extra HTTP response headers.
+	 *
+	 * @covers ResourceLoaderModule::getHeaders
+	 * @covers ResourceLoaderModule::buildContent
+	 * @covers ResourceLoader::makeModuleResponse
+	 */
+	public function testMakeModuleResponseExtraHeaders() {
+		$module = $this->getMockBuilder( ResourceLoaderTestModule::class )
+			->setMethods( [ 'getPreloadLinks' ] )->getMock();
+		$module->method( 'getPreloadLinks' )->willReturn( [
+			 'https://example.org/script.js' => [ 'as' => 'script' ],
+		] );
+
+		$rl = new EmptyResourceLoader();
+		$rl->register( [
+			'foo' => $module,
+		] );
+		$context = $this->getResourceLoaderContext(
+			[ 'modules' => 'foo', 'only' => 'scripts' ],
+			$rl
+		);
+
+		$modules = [ 'foo' => $rl->getModule( 'foo' ) ];
+		$response = $rl->makeModuleResponse( $context, $modules );
+		$extraHeaders = TestingAccessWrapper::newFromObject( $rl )->extraHeaders;
+
+		$this->assertEquals(
+			[
+				'Link: <https://example.org/script.js>;rel=preload;as=script'
+			],
+			$extraHeaders,
+			'Extra headers'
+		);
+	}
 }
