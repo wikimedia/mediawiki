@@ -37,11 +37,8 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		return $mock;
 	}
 
-	/** helper to test SpecialRecentchanges::buildMainQueryConds() */
-	private function assertConditions(
-		$expected,
+	private function buildQuery(
 		$requestOptions = null,
-		$message = '',
 		$user = null
 	) {
 		$context = new RequestContext;
@@ -80,6 +77,18 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 			$queryConditions,
 			'ChangesListSpecialPageTest::filterOutRcTimestampCondition'
 		);
+
+		return $queryConditions;
+	}
+
+	/** helper to test SpecialRecentchanges::buildQuery() */
+	private function assertConditions(
+		$expected,
+		$requestOptions = null,
+		$message = '',
+		$user = null
+	) {
+		$queryConditions = $this->buildQuery( $requestOptions, $user );
 
 		$this->assertEquals(
 			self::normalizeCondition( $expected ),
@@ -373,6 +382,104 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 	}
 
+	public function testFilterUserExpLevelAll() {
+		$this->assertConditions(
+			[
+				# expected
+			],
+			[
+				'userExpLevel' => 'registered;unregistered;newcomer;learner;experienced',
+			],
+			"rc conditions: userExpLevel=registered;unregistered;newcomer;learner;experienced"
+		);
+	}
+
+	public function testFilterUserExpLevelRegisteredUnregistered() {
+		$this->assertConditions(
+			[
+				# expected
+			],
+			[
+				'userExpLevel' => 'registered;unregistered',
+			],
+			"rc conditions: userExpLevel=registered;unregistered"
+		);
+	}
+
+	public function testFilterUserExpLevelRegisteredUnregisteredLearner() {
+		$this->assertConditions(
+			[
+				# expected
+			],
+			[
+				'userExpLevel' => 'registered;unregistered;learner',
+			],
+			"rc conditions: userExpLevel=registered;unregistered;learner"
+		);
+	}
+
+	public function testFilterUserExpLevelAllExperienceLevels() {
+		$this->assertConditions(
+			[
+				# expected
+				'rc_user != 0',
+			],
+			[
+				'userExpLevel' => 'newcomer;learner;experienced',
+			],
+			"rc conditions: userExpLevel=newcomer;learner;experienced"
+		);
+	}
+
+	public function testFilterUserExpLevelRegistrered() {
+		$this->assertConditions(
+			[
+				# expected
+				'rc_user != 0',
+			],
+			[
+				'userExpLevel' => 'registered',
+			],
+			"rc conditions: userExpLevel=registered"
+		);
+	}
+
+	public function testFilterUserExpLevelUnregistrered() {
+		$this->assertConditions(
+			[
+				# expected
+				'rc_user' => 0,
+			],
+			[
+				'userExpLevel' => 'unregistered',
+			],
+			"rc conditions: userExpLevel=unregistered"
+		);
+	}
+
+	public function testFilterUserExpLevelRegistreredOrLearner() {
+		$this->assertConditions(
+			[
+				# expected
+				'rc_user != 0',
+			],
+			[
+				'userExpLevel' => 'registered;learner',
+			],
+			"rc conditions: userExpLevel=registered;learner"
+		);
+	}
+
+	public function testFilterUserExpLevelUnregistreredOrExperienced() {
+		$conds = $this->buildQuery( [ 'userExpLevel' => 'unregistered;experienced' ] );
+
+		$this->assertRegExp(
+			'/\(rc_user = 0\) OR \(\(user_editcount >= 500\) AND \(user_registration <= \'\d+\'\)\)/',
+			reset( $conds ),
+			"rc conditions: userExpLevel=unregistered;experienced"
+		);
+	}
+
 	public function testFilterUserExpLevel() {
 		$now = time();
 		$this->setMwGlobals( [
@@ -438,18 +545,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 			$this->fetchUsers( [ 'learner', 'experienced' ], $now ),
 			'Learner and more experienced'
 		);
-
-		// newcomers, learner, and more experienced
-		// TOOD: Fix test.  This needs to test that anons are excluded,
-		// and right now the join fails.
-		/* $this->assertArrayEquals( */
-		/* 	[ */
-		/* 		'Newcomer1', 'Newcomer2', 'Newcomer3', */
-		/* 		'Learner1', 'Learner2', 'Learner3', 'Learner4', */
-		/* 		'Experienced1', */
-		/* 	], */
-		/* 	$this->fetchUsers( [ 'newcomer', 'learner', 'experienced' ], $now ) */
-		/* ); */
 	}
 
 	private function createUsers( $specs, $now ) {
@@ -798,7 +893,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 					"hideliu" => true,
 					"userExpLevel" => "newcomer",
 				],
-				"expectedConflicts" => true,
+				"expectedConflicts" => false,
 			],
 			[
 				"parameters" => [
