@@ -704,6 +704,8 @@ class InfoAction extends FormlessAction {
 			self::getCacheKey( $cache, $page->getTitle(), $page->getLatest() ),
 			WANObjectCache::TTL_WEEK,
 			function ( $oldValue, &$ttl, &$setOpts ) use ( $page, $config, $fname ) {
+				global $wgActorTableSchemaMigrationStage;
+
 				$title = $page->getTitle();
 				$id = $title->getArticleID();
 
@@ -737,9 +739,20 @@ class InfoAction extends FormlessAction {
 				if ( $config->get( 'MiserMode' ) ) {
 					$result['authors'] = 0;
 				} else {
+					switch ( $wgActorTableSchemaMigrationStage ) {
+						case MIGRATION_OLD:
+						case MIGRATION_WRITE_BOTH:
+							$field = 'rev_user_text';
+							break;
+						case MIGRATION_WRITE_NEW:
+						case MIGRATION_NEW:
+						default:
+							$field = 'rev_actor';
+					}
+
 					$result['authors'] = (int)$dbr->selectField(
 						'revision',
-						'COUNT(DISTINCT rev_user_text)',
+						"COUNT(DISTINCT $field)",
 						[ 'rev_page' => $id ],
 						$fname
 					);

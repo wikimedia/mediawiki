@@ -41,6 +41,10 @@ section).
   enabled by setting $wgUsePigLatinVariant to true.
 * Added RecentChangesPurgeRows hook to allow extensions to purge data that
   depends on the recentchanges table.
+* Column pairs (*_user, *_user_text) are being replaced with references
+  to a shared 'actor' table in the database.
+** Large wikis may want to use $wgActorTableSchemaMigrationStage to perform
+   the update at leisure.
 
 === Languages updated in 1.30 ===
 

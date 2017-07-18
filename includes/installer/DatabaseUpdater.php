@@ -1191,4 +1191,18 @@ abstract class DatabaseUpdater {
 			$wgContentHandlerUseDB = $this->holdContentHandlerUseDB;
 		}
 	}
+
+	protected function migrateActor() {
+		if ( !$this->updateRowExists( 'MigrateActor' ) ) {
+			$this->output(
+				"Migrating actor refs to the 'actor' table, printing progress markers. For large\n" .
+				"databases, you may want to hit Ctrl-C and do this manually with\n" .
+				"maintenance/migrateActor.php.\n"
+			);
+			$task = $this->maintenance->runChild( 'MigrateActor', 'migrateActor.php' );
+			$task->execute();
+			$this->output( "done.\n" );
+		}
+	}
+
 }

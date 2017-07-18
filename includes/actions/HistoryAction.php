@@ -479,15 +479,15 @@ class HistoryPager extends ReverseChronologicalPager {
 		$batch = new LinkBatch();
 		$revIds = [];
 		foreach ( $this->mResult as $row ) {
-			if ( $row->rev_parent_id ) {
-				$revIds[] = $row->rev_parent_id;
+			$rev = Revision::newFromRow( $row );
+			$parentId = $rev->getParentId();
+			if ( $parentId ) {
+				$revIds[] = $parentId;
 			}
-			if ( !is_null( $row->user_name ) ) {
-				$batch->add( NS_USER, $row->user_name );
-				$batch->add( NS_USER_TALK, $row->user_name );
-			} else { # for anons or usernames of imported revisions
-				$batch->add( NS_USER, $row->rev_user_text );
-				$batch->add( NS_USER_TALK, $row->rev_user_text );
+			$name = $rev->getUserText( Revision::FOR_THIS_USER, $this->getUser() );
+			if ( $name !== '' ) {
+				$batch->add( NS_USER, $name );
+				$batch->add( NS_USER_TALK, $name );
 			}
 		}
 		$this->parentLens = Revision::getParentLengths( $this->mDb, $revIds );

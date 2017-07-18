@@ -431,13 +431,25 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * Return the value of a select() page conds array for the page table.
+	 * Return the value of a select() JOIN conds array for the page table.
 	 * This will assure that the revision(s) are not orphaned from live pages.
 	 * @since 1.19
 	 * @return array
 	 */
 	public static function pageJoinCond() {
 		return [ 'INNER JOIN', [ 'page_id = rev_page' ] ];
+	}
+
+	/**
+	 * Return the value of a select() JOIN conds array for the actor table.
+	 * This will get actor table rows for all users and other actor types.
+	 * @since 1.30
+	 * @return array
+	 */
+	public static function actorJoinCond() {
+		return [ 'LEFT JOIN',
+			[ '(rev_user = actor_user) OR ((rev_user = 0) AND rev_user_text=actor_text)' ] ];
+		//return [ 'LEFT JOIN', [ 'actor_id = rev_actor' ] ];
 	}
 
 	/**
@@ -625,10 +637,14 @@ class Revision implements IDBAccessObject {
 
 			// Use user_name for users and rev_user_text for IPs...
 			$this->mUserText = null; // lazy load if left null
-			if ( $this->mUser == 0 ) {
-				$this->mUserText = $row->rev_user_text; // IP user
-			} elseif ( isset( $row->user_name ) ) {
-				$this->mUserText = $row->user_name; // logged-in user
+			if ( isset( $row->actor_text ) ) {
+				$this->mUserText = $row->actor_text;
+			} else {
+				if ( $this->mUser == 0 ) {
+					$this->mUserText = $row->rev_user_text; // IP user
+				} elseif ( isset( $row->user_name ) ) {
+					$this->mUserText = $row->user_name; // logged-in user
+				}
 			}
 			$this->mOrigUserText = $row->rev_user_text;
 		} elseif ( is_array( $row ) ) {
