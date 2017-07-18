@@ -1317,6 +1317,10 @@
 	"rcfilters-state-message-subset": "Гэты фільтар ня мае эфэкту, бо яго вынікі ўключаныя ў вынікі больш {{PLURAL:$2|шырокага фільтру|шырокіх фільтраў}} (паспрабуйце вылучэньне, каб вызначыць яго): $1",
 	"rcfilters-state-message-fullcoverage": "Выбар усіх фільтраў у групе — тое ж самае, што і выбар ніводнага, адпаведна, гэты фільтар ня мае эфэкту. Група ўключае: $1",
 	"rcfilters-filtergroup-registration": "Рэгістрацыя ўдзельнікаў",
+	"rcfilters-filter-registered-label": "Зарэгістраваныя",
+	"rcfilters-filter-registered-description": "Рэдактары, якія ўвайшлі ў сыстэму.",
+	"rcfilters-filter-unregistered-label": "Незарэгістраваныя",
+	"rcfilters-filter-unregistered-description": "Рэдактары, якія не ўвайшлі ў сыстэму",
 	"rcfilters-filter-unregistered-conflicts-user-experience-level": "Гэты фільтар канфліктуе з {{PLURAL:$2|1=наступным фільтрам|наступнымі фільтрамі}} дасьведчаных удзельнікаў, {{PLURAL:$2|1=які знаходзіць|якія знаходзяць}} толькі зарэгістраваных удзельнікаў: $1",
 	"rcfilters-filtergroup-authorship": "Аўтарства ўнёску",
 	"rcfilters-filter-editsbyself-label": "Зьмены, зробленыя вамі",
@@ -3854,6 +3858,5 @@
 	"removecredentials-success": "Вашыя ўліковыя зьвесткі былі выдаленыя.",
 	"credentialsform-provider": "Тып уліковых зьвестак:",
 	"credentialsform-account": "Назва рахунку:",
-	"cannotlink-no-provider-title": "Няма рахункаў для далучэньня",
-	"cannotlink-no-provider": "Няма рахункаў для далучэньня."
+	"cannotlink-no-provider-title": "Няма рахункаў для далучэньня"
 }
