@@ -63,8 +63,70 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		return "$select<br />\n$textbox";
 	}
 
+	protected function getOOUIModules() {
+		return [ 'mediawiki.widgets.SelectWithInputWidget' ];
+	}
+
 	public function getInputOOUI( $value ) {
-		return false;
+		$this->mParent->getOutput()->addModuleStyles( 'mediawiki.widgets.SelectWithInputWidget.styles' );
+
+		# TextInput
+		$textAttribs = [
+			'id' => $this->mID . '-other',
+			'name' => $this->mName . '-other',
+			'size' => $this->getSize(),
+			'class' => [ 'mw-htmlform-select-and-other-field' ],
+			'data-id-select' => $this->mID,
+			'value' => $value[2],
+		];
+
+		$allowedParams = [
+			'required',
+			'autofocus',
+			'multiple',
+			'disabled',
+			'tabindex',
+			'maxlength',
+		];
+
+		$textAttribs += OOUI\Element::configFromHtmlAttributes(
+			$this->getAttributes( $allowedParams )
+		);
+
+		if ( $this->mClass !== '' ) {
+			$textAttribs['classes'] = [ $this->mClass ];
+		}
+
+		# DropdownInput
+		$dropdownInputAttribs = [
+			'name' => $this->mName,
+			'id' => $this->mID,
+			'options' => $this->getOptionsOOUI(),
+			'value' => $value[1],
+		];
+
+		$allowedParams = [
+			'tabindex',
+			'disabled',
+		];
+
+		$dropdownInputAttribs += OOUI\Element::configFromHtmlAttributes(
+			$this->getAttributes( $allowedParams )
+		);
+
+		if ( $this->mClass !== '' ) {
+			$dropdownInputAttribs['classes'] = [ $this->mClass ];
+		}
+
+		return $this->getInputWidget( [
+			'textinput' => $textAttribs,
+			'dropdowninput' => $dropdownInputAttribs,
+			'or' => false,
+		] );
+	}
+
+	public function getInputWidget( $params ) {
+		return new Mediawiki\Widget\SelectWithInputWidget( $params );
 	}
 
 	/**
