@@ -35,6 +35,7 @@ class DeleteDefaultMessages extends Maintenance {
 		parent::__construct();
 		$this->addDescription( 'Deletes all pages in the MediaWiki namespace' .
 			' which were last edited by "MediaWiki default"' );
+		$this->addOption( 'dry-run', 'Perform a dry run, delete nothing' );
 	}
 
 	public function execute() {
@@ -52,14 +53,23 @@ class DeleteDefaultMessages extends Maintenance {
 		);
 
 		if ( $dbr->numRows( $res ) == 0 ) {
-			# No more messages left
+			// No more messages left
 			$this->output( "done.\n" );
-
 			return;
 		}
 
-		# Deletions will be made by $user temporarly added to the bot group
-		# in order to hide it in RecentChanges.
+		$dryrun = $this->hasOption( 'dry-run' );
+		if ( $dryrun ) {
+			foreach ( $res as $row ) {
+				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+				$this->output( "\n* [[$title]]" );
+			}
+			$this->output( "\n\nRun again without --dry-run to delete these pages.\n" );
+			return;
+		}
+
+		// Deletions will be made by $user temporarly added to the bot group
+		// in order to hide it in RecentChanges.
 		$user = User::newFromName( 'MediaWiki default' );
 		if ( !$user ) {
 			$this->error( "Invalid username", true );
@@ -67,7 +77,7 @@ class DeleteDefaultMessages extends Maintenance {
 		$user->addGroup( 'bot' );
 		$wgUser = $user;
 
-		# Handle deletion
+		// Handle deletion
 		$this->output( "\n...deleting old default messages (this may take a long time!)...", 'msg' );
 		$dbw = $this->getDB( DB_MASTER );
 
