@@ -542,7 +542,7 @@
 
 		// Build RegEx
 		// Any date formated with . , ' - or /
-		ts.dateRegex[ 0 ] = new RegExp( /^\s*(\d{1,2})[\,\.\-\/'\s]{1,2}(\d{1,2})[\,\.\-\/'\s]{1,2}(\d{2,4})\s*?/i );
+		ts.dateRegex[ 0 ] = new RegExp( /^\s*(\d{1,2})[,.\-/'\s]{1,2}(\d{1,2})[,.\-/'\s]{1,2}(\d{2,4})\s*?/i );
 
 		// Written Month name, dmy
 		ts.dateRegex[ 1 ] = new RegExp(
@@ -684,7 +684,7 @@
 			}
 
 			columnToCell = [];
-			cellsInRow = ( $row[ 0 ].cells.length ) || 0;  // all cells in this row
+			cellsInRow = ( $row[ 0 ].cells.length ) || 0; // all cells in this row
 			index = 0; // real cell index in this row
 			for ( j = 0; j < columns; index++ ) {
 				if ( index === cellsInRow ) {
@@ -725,7 +725,7 @@
 		}
 		ts.rgx = {
 			IPAddress: [
-				new RegExp( /^\d{1,3}[\.]\d{1,3}[\.]\d{1,3}[\.]\d{1,3}$/ )
+				new RegExp( /^\d{1,3}[.]\d{1,3}[.]\d{1,3}[.]\d{1,3}$/ )
 			],
 			currency: [
 				new RegExp( /(^[£$€¥]|[£$€¥]$)/ ),
@@ -736,7 +736,7 @@
 				new RegExp( /(https?|ftp|file):\/\// )
 			],
 			isoDate: [
-				new RegExp( /^([-+]?\d{1,4})-([01]\d)-([0-3]\d)([T\s]((([01]\d|2[0-3])(:?[0-5]\d)?|24:?00)?(:?([0-5]\d|60))?([.,]\d+)?)([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?/ ),
+				new RegExp( /^([-+]?\d{1,4})-([01]\d)-([0-3]\d)([T\s]((([01]\d|2[0-3])(:?[0-5]\d)?|24:?00)?(:?([0-5]\d|60))?([.,]\d+)?)([zZ]|([+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?/ ),
 				new RegExp( /^([-+]?\d{1,4})-([01]\d)-([0-3]\d)/ )
 			],
 			usLongDate: [
@@ -1059,7 +1059,7 @@
 			return getParserById( id );
 		},
 
-		getParsers: function () {  // for table diagnosis
+		getParsers: function () { // for table diagnosis
 			return parsers;
 		}
 	};

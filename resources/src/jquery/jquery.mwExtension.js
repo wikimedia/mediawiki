@@ -11,7 +11,7 @@
 		},
 		trimRight: function ( str ) {
 			return str === null ?
-					'' : str.toString().replace( /\s+$/, '' );
+				'' : str.toString().replace( /\s+$/, '' );
 		},
 		ucFirst: function ( str ) {
 			return str.charAt( 0 ).toUpperCase() + str.slice( 1 );
@@ -122,7 +122,7 @@
 	} );
 
 	mw.log.deprecate( $, 'escapeRE', function ( str ) {
-		return str.replace( /([\\{}()|.?*+\-\^$\[\]])/g, '\\$1' );
+		return str.replace( /([\\{}()|.?*+\-^$\[\]])/g, '\\$1' ); // eslint-disable-line no-useless-escape
 	}, 'Use mediawiki.RegExp instead.' );
 
 }( jQuery, mediaWiki ) );

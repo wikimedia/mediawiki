@@ -118,11 +118,11 @@
 	function setGlobalMapValue( map, key, value ) {
 		map.values[ key ] = value;
 		log.deprecate(
-				window,
-				key,
-				value,
-				// Deprecation notice for mw.config globals (T58550, T72470)
-				map === mw.config && 'Use mw.config instead.'
+			window,
+			key,
+			value,
+			// Deprecation notice for mw.config globals (T58550, T72470)
+			map === mw.config && 'Use mw.config instead.'
 		);
 	}
 

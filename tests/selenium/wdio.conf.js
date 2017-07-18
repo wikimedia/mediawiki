@@ -1,7 +1,6 @@
-/* eslint comma-dangle: 0 */
-/* eslint no-undef: "error" */
-/* eslint no-console: 0 */
 /* eslint-env node */
+/* eslint no-undef: "error" */
+/* eslint-disable no-console, comma-dangle */
 'use strict';
 
 const path = require( 'path' );
@@ -114,12 +113,12 @@ exports.config = {
 	// with "/", then the base url gets prepended.
 	baseUrl: (
 		process.env.MW_SERVER === undefined ?
-		'http://127.0.0.1:8080' :
-		process.env.MW_SERVER
+			'http://127.0.0.1:8080' :
+			process.env.MW_SERVER
 	) + (
 		process.env.MW_SCRIPT_PATH === undefined ?
-		'/w' :
-		process.env.MW_SCRIPT_PATH
+			'/w' :
+			process.env.MW_SCRIPT_PATH
 	),
 	//
 	// Default timeout for all waitFor* commands.

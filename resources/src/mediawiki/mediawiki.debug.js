@@ -118,8 +118,7 @@
 				return $( '<div>' ).prop( {
 					id: 'mw-debug-' + id,
 					className: 'mw-debug-bit'
-				} )
-				.appendTo( $bits );
+				} ).appendTo( $bits );
 			}
 
 			/**
@@ -156,8 +155,8 @@
 					id: 'mw-debug-' + id,
 					className: 'mw-debug-bit mw-debug-panelink'
 				} )
-				.append( paneLabel( id, text ) )
-				.appendTo( $bits );
+					.append( paneLabel( id, text ) )
+					.appendTo( $bits );
 			}
 
 			paneTriggerBitDiv( 'console', 'Console', this.data.log.length );
@@ -288,7 +287,7 @@
 				.append( $( '<th>SQL</th>' ) )
 				.append( $( '<th>Time</th>' ).css( 'width', '8em' ) )
 				.append( $( '<th>Call</th>' ).css( 'width', '18em' ) )
-			.appendTo( $table );
+				.appendTo( $table );
 
 			for ( i = 0, length = this.data.queries.length; i < length; i += 1 ) {
 				query = this.data.queries[ i ];
@@ -298,7 +297,7 @@
 					.append( $( '<td>' ).text( query.sql ) )
 					.append( $( '<td class="stats">' ).text( ( query.time * 1000 ).toFixed( 4 ) + 'ms' ) )
 					.append( $( '<td>' ).text( query[ 'function' ] ) )
-				.appendTo( $table );
+					.appendTo( $table );
 			}
 
 			return $table;

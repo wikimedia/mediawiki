@@ -4,7 +4,7 @@
 
 		function syncText() {
 			var value = $( this ).val()
-				.replace( /[\[\]\{\}|#<>%+? ]/g, '_' )
+				.replace( /[\[\]{}|#<>%+? ]/g, '_' ) // eslint-disable-line no-useless-escape
 				.replace( /&/, '&amp;' )
 				.replace( /__+/g, '_' )
 				.replace( /^_+/, '' )
@@ -14,17 +14,13 @@
 		}
 
 		// Set up the help system
-		$( '.config-help-field-data' )
-			.hide()
-			.closest( '.config-help-field-container' )
-				.find( '.config-help-field-hint' )
-					.show()
-					.click( function () {
-						$( this )
-							.closest( '.config-help-field-container' )
-								.find( '.config-help-field-data' )
-									.slideToggle( 'fast' );
-					} );
+		$( '.config-help-field-data' ).hide()
+			.closest( '.config-help-field-container' ).find( '.config-help-field-hint' )
+			.show()
+			.click( function () {
+				$( this ).closest( '.config-help-field-container' ).find( '.config-help-field-data' )
+					.slideToggle( 'fast' );
+			} );
 
 		// Show/hide code for DB-specific options
 		// FIXME: Do we want slow, fast, or even non-animated (instantaneous) showing/hiding here?

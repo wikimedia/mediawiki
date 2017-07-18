@@ -104,8 +104,11 @@
 				'action=options&format=json&formatversion=2&optionname=foo%7Cbar%3Dquux&token=%2B%5C'
 			] ) !== -1 ) {
 				assert.ok( true, 'Repond to ' + request.requestBody );
-				request.respond( 200, { 'Content-Type': 'application/json' },
-						'{ "options": "success" }' );
+				request.respond(
+					200,
+					{ 'Content-Type': 'application/json' },
+					'{ "options": "success" }'
+				);
 			} else {
 				assert.ok( false, 'Unexpected request: ' + request.requestBody );
 			}

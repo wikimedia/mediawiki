@@ -35,7 +35,7 @@
 
 		if ( options.tag ) {
 			// Sanitize options.tag before it is used by any code. (Including Notification class methods)
-			options.tag = options.tag.replace( /[ _\-]+/g, '-' ).replace( /[^\-a-z0-9]+/ig, '' );
+			options.tag = options.tag.replace( /[ _-]+/g, '-' ).replace( /[^-a-z0-9]+/ig, '' );
 			if ( options.tag ) {
 				$notification.addClass( 'mw-notification-tag-' + options.tag );
 			} else {
@@ -45,7 +45,7 @@
 
 		if ( options.type ) {
 			// Sanitize options.type
-			options.type = options.type.replace( /[ _\-]+/g, '-' ).replace( /[^\-a-z0-9]+/ig, '' );
+			options.type = options.type.replace( /[ _-]+/g, '-' ).replace( /[^-a-z0-9]+/ig, '' );
 			$notification.addClass( 'mw-notification-type-' + options.type );
 		}
 

@@ -21,8 +21,8 @@
 				'aria-labelledby': labelFunc
 			} );
 		$fieldsets.not( '#mw-prefsection-personal' )
-				.hide()
-				.attr( 'aria-hidden', 'true' );
+			.hide()
+			.attr( 'aria-hidden', 'true' );
 
 		// T115692: The following is kept for backwards compatibility with older skins
 		$preferences.addClass( 'jsprefs' );
@@ -72,8 +72,7 @@
 				$tab.attr( {
 					tabIndex: 0,
 					'aria-selected': 'true'
-				} )
-				.focus()
+				} ).focus()
 					.parent().addClass( 'selected' );
 
 				$preferences.children( 'fieldset' ).hide().attr( 'aria-hidden', 'true' );
@@ -107,10 +106,10 @@
 		function detectHash() {
 			var hash = location.hash,
 				matchedElement, parentSection;
-			if ( hash.match( /^#mw-prefsection-[\w\-]+/ ) ) {
+			if ( hash.match( /^#mw-prefsection-[\w-]+/ ) ) {
 				mw.storage.session.remove( 'mwpreferences-prevTab' );
 				switchPrefTab( hash.replace( '#mw-prefsection-', '' ) );
-			} else if ( hash.match( /^#mw-[\w\-]+/ ) ) {
+			} else if ( hash.match( /^#mw-[\w-]+/ ) ) {
 				matchedElement = document.getElementById( hash.slice( 1 ) );
 				parentSection = $( matchedElement ).closest( '.prefsection' );
 				if ( parentSection.length ) {
@@ -133,14 +132,14 @@
 		) {
 			$( window ).on( 'hashchange', function () {
 				var hash = location.hash;
-				if ( hash.match( /^#mw-[\w\-]+/ ) ) {
+				if ( hash.match( /^#mw-[\w-]+/ ) ) {
 					detectHash();
 				} else if ( hash === '' ) {
 					switchPrefTab( 'personal', 'noHash' );
 				}
 			} )
-			// Run the function immediately to select the proper tab on startup.
-			.trigger( 'hashchange' );
+				// Run the function immediately to select the proper tab on startup.
+				.trigger( 'hashchange' );
 		// In older browsers we'll bind a click handler as fallback.
 		// We must not have onhashchange *and* the click handlers, otherwise
 		// the click handler calls switchPrefTab() which sets the hash value,

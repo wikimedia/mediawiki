@@ -45,8 +45,8 @@
 					$tocToggleLink
 						.wrap( '<span class="toctoggle"></span>' )
 						.parent()
-							.prepend( '&nbsp;[' )
-							.append( ']&nbsp;' )
+						.prepend( '&nbsp;[' )
+						.append( ']&nbsp;' )
 				);
 
 				if ( hideToc ) {
