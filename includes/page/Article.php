@@ -872,7 +872,7 @@ class Article implements Page {
 					[ 'redirect' => 'no' ]
 				);
 
-				$outputPage->addSubtitle( "<span class=\"mw-redirectedfrom\">" .
+				$outputPage->addSubtitle( "<span class=\"mw-redirectedfrom noprint\">" .
 					$context->msg( 'redirectedfrom' )->rawParams( $redir )->parse()
 				. "</span>" );
 
