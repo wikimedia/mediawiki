@@ -36,13 +36,13 @@
 			<property name="ignoreList" type="array" value="$IP,$messageMemc,$parserMemc" />
 		</properties>
 	</rule>
+	<file>.</file>
 	<rule ref="Generic.Files.LineLength">
 		<exclude-pattern>*/languages/messages/Messages*.php</exclude-pattern>
 	</rule>
 	<rule ref="PSR2.Methods.MethodDeclaration.Underscore">
 		<exclude-pattern>*/includes/StubObject.php</exclude-pattern>
 	</rule>
-	<file>.</file>
 	<arg name="bootstrap" value="vendor/mediawiki/mediawiki-codesniffer/utils/bootstrap-ci.php"/>
 	<arg name="encoding" value="UTF-8"/>
 	<arg name="extensions" value="php,php5,inc,sample"/>
