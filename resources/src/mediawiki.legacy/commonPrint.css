@@ -9,18 +9,22 @@
 /**
  * Hide all the elements irrelevant for printing
  */
+/* General hide-in-print class, please only use sparely */
 .noprint,
-#jump-to-nav,
+/* Various content classes, in alphabetical order */
+.catlinks,
+.magnify,
 .mw-jump,
-#column-one,
 .mw-editsection,
 .mw-editsection-like,
-#footer-places,
 .mw-hidden-catlinks,
+.mw-indicators,
+.mw-redirectedfrom,
 .usermessage,
 .patrollink,
-.ns-0 .mw-redirectedfrom,
-.magnify,
+#column-one,
+#footer-places,
+#jump-to-nav,
 #mw-navigation,
 #siteNotice,
 /* Deprecated, changed in core */
