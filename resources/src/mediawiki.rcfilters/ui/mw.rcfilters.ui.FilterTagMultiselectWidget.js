@@ -390,6 +390,10 @@
 	 * @param {mw.rcfilters.dm.FilterItem} item Filter item model
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onModelItemUpdate = function ( item ) {
+		if ( item.getGroupModel().isHidden() ) {
+			return;
+		}
+
 		if (
 			item.isSelected() ||
 			(
