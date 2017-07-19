@@ -195,7 +195,7 @@ class GenerateSitemap extends Maintenance {
 		}
 		$this->identifier = $this->getOption( 'identifier', wfWikiID() );
 		$this->compress = $this->getOption( 'compress', 'yes' ) !== 'no';
-		$this->skipRedirects = $this->getOption( 'skip-redirects', false ) !== false;
+		$this->skipRedirects = $this->hasOption( 'skip-redirects' );
 		$this->dbr = $this->getDB( DB_REPLICA );
 		$this->generateNamespaces();
 		$this->timestamp = wfTimestamp( TS_ISO_8601, wfTimestampNow() );

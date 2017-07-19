@@ -42,8 +42,8 @@ class FixDoubleRedirects extends Maintenance {
 	}
 
 	public function execute() {
-		$async = $this->getOption( 'async', false );
-		$dryrun = $this->getOption( 'dry-run', false );
+		$async = $this->hasOption( 'async' );
+		$dryrun = $this->hasOption( 'dry-run' );
 
 		if ( $this->hasOption( 'title' ) ) {
 			$title = Title::newFromText( $this->getOption( 'title' ) );
