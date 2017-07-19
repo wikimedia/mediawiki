@@ -436,9 +436,17 @@ class SpecialSearch extends SpecialPage {
 
 		// prev/next links
 		if ( $totalRes > $this->limit || $this->offset ) {
+			// Allow matches to define the correct offset, as interleaved
+			// AB testing may require a different next page offset.
+			if ( $textMatches && $textMatches->getOffset() !== null ) {
+				$offset = $textMatches->getOffset();
+			} else {
+				$offset = $this->offset;
+			}
+
 			$prevnext = $this->getLanguage()->viewPrevNext(
 				$this->getPageTitle(),
-				$this->offset,
+				$offset,
 				$this->limit,
 				$this->powerSearchOptions() + [ 'search' => $term ],
 				$this->limit + $this->offset >= $totalRes

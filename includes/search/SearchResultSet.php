@@ -264,4 +264,14 @@ class SearchResultSet {
 		$result->setExtensionData( $this->extraData[$id] );
 		return $this->extraData[$id];
 	}
+
+	/**
+	 * @return int|null The offset the current page starts at. Typically
+	 *  this should be null to allow the UI to decide on its own, but in
+	 *  special cases like interleaved AB tests specifying explicitly is
+	 *  necessary.
+	 */
+	public function getOffset() {
+		return null;
+	}
 }
