@@ -86,6 +86,8 @@
 	/* Initialization */
 	OO.inheritClass( mw.rcfilters.ui.SavedLinksListWidget, OO.ui.Widget );
 
+	/* Methods */
+
 	/**
 	 * Respond to menu item click event
 	 *

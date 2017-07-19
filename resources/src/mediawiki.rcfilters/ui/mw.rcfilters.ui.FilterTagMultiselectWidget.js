@@ -381,6 +381,10 @@
 				!this.isEmpty() &&
 				!this.matchingQuery
 			);
+
+			if ( this.matchingQuery ) {
+				this.emphasize();
+			}
 		}
 	};
 
@@ -595,6 +599,26 @@
 		}
 	};
 
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.emphasize = function () {
+		if (
+			!this.$handle.hasClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-animate' )
+		) {
+			this.$handle
+				.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-emphasize' )
+				.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-animate' );
+
+			setTimeout( function () {
+				this.$handle
+					.removeClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-emphasize' );
+
+				setTimeout( function () {
+					this.$handle
+						.removeClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-animate' );
+				}.bind( this ), 1000 );
+			}.bind( this ), 500 );
+
+		}
+	};
 	/**
 	 * Scroll the element to top within its container
 	 *

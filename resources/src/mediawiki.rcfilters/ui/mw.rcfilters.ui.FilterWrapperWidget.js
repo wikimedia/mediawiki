@@ -68,7 +68,6 @@
 			this.$element.append(
 				this.savedLinksListWidget.$element
 			);
-
 		}
 
 		$bottom = $( '<div>' )
