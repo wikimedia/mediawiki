@@ -2544,9 +2544,9 @@ return [
 		],
 		'dependencies' => [
 			'mediawiki.searchSuggest',
-			// FIXME: Needs TitleWidget only
+			'oojs-ui.styles.icons-interactions',
+			// FIXME: Needs TitleInputWidget only
 			'mediawiki.widgets',
-			'oojs-ui-widgets',
 		],
 	],
 	'mediawiki.widgets.SearchInputWidget.styles' => [
