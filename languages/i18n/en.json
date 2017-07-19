@@ -1391,7 +1391,7 @@
 	"rcfilters-filter-editsbyself-description": "Your own contributions.",
 	"rcfilters-filter-editsbyother-label": "Changes by others",
 	"rcfilters-filter-editsbyother-description": "All changes except your own.",
-	"rcfilters-filtergroup-userExpLevel": "Experience registration and experience",
+	"rcfilters-filtergroup-userExpLevel": "User registration and experience",
 	"rcfilters-filter-user-experience-level-registered-label": "Registered",
 	"rcfilters-filter-user-experience-level-registered-description": "Logged-in editors.",
 	"rcfilters-filter-user-experience-level-unregistered-label": "Unregistered",
