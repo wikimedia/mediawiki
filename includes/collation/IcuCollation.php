@@ -22,7 +22,7 @@
  * @since 1.16.3
  */
 class IcuCollation extends Collation {
-	const FIRST_LETTER_VERSION = 2;
+	const FIRST_LETTER_VERSION = 3;
 
 	/** @var Collator */
 	private $primaryCollator;
