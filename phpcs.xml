@@ -42,7 +42,7 @@
 	<rule ref="PSR2.Methods.MethodDeclaration.Underscore">
 		<exclude-pattern>*/includes/StubObject.php</exclude-pattern>
 	</rule>
-	<file>.</file>
+	<file>.</file><!-- Dummy comment for T170159 -->
 	<arg name="bootstrap" value="vendor/mediawiki/mediawiki-codesniffer/utils/bootstrap-ci.php"/>
 	<arg name="encoding" value="UTF-8"/>
 	<arg name="extensions" value="php,php5,inc,sample"/>

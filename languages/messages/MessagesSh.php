@@ -1,6 +1,7 @@
 <?php
 /** Serbo-Croatian (srpskohrvatski / српскохрватски)
  *
+ * Touched file for test of T170159
  * To improve a translation please visit https://translatewiki.net
  *
  * @ingroup Language
