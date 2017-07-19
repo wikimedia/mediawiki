@@ -180,7 +180,7 @@ class IcuCollation extends Collation {
 		'mk' => [ "Ѓ", "Ќ" ],
 		'ml' => [],
 		'mn' => [],
-		'mo' => [ "Ă", "Â", "Î", "Ş", "Ţ" ], // not in libicu
+		'mo' => [ "Ă", "Â", "Î", "Ș", "Ț" ], // not in libicu
 		'mr' => [ "\xe0\xa4\x82", "\xe0\xa4\x83", "ळ", "क्ष", "ज्ञ" ],
 		'ms' => [],
 		'mt' => [ "Ċ", "Ġ", "Għ", "Ħ", "Ż" ],
@@ -198,7 +198,7 @@ class IcuCollation extends Collation {
 		'rm' => [], // not in libicu
 		'ro' => [ "Ă", "Â", "Î", "Ș", "Ț" ],
 		'ru' => [],
-		'rup' => [ "Ă", "Â", "Î", "Ľ", "Ń", "Ş", "Ţ" ], // not in libicu
+		'rup' => [ "Ă", "Â", "Î", "Ľ", "Ń", "Ș", "Ț" ], // not in libicu
 		'sco' => [],
 		'se' => [
 			'Á', 'Č', 'Ʒ', 'Ǯ', 'Đ', 'Ǧ', 'Ǥ', 'Ǩ', 'Ŋ',
