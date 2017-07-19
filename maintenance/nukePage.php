@@ -40,7 +40,7 @@ class NukePage extends Maintenance {
 
 	public function execute() {
 		$name = $this->getArg();
-		$delete = $this->getOption( 'delete', false );
+		$delete = $this->hasOption( 'delete' );
 
 		$dbw = $this->getDB( DB_MASTER );
 		$this->beginTransaction( $dbw, __METHOD__ );

@@ -76,9 +76,9 @@ class RefreshLinks extends Maintenance {
 		} elseif ( ( $category = $this->getOption( 'tracking-category', false ) ) !== false ) {
 			$this->refreshTrackingCategory( $category );
 		} elseif ( !$this->hasOption( 'dfn-only' ) ) {
-			$new = $this->getOption( 'new-only', false );
-			$redir = $this->getOption( 'redirects-only', false );
-			$oldRedir = $this->getOption( 'old-redirects-only', false );
+			$new = $this->hasOption( 'new-only' );
+			$redir = $this->hasOption( 'redirects-only' );
+			$oldRedir = $this->hasOption( 'old-redirects-only' );
 			$this->doRefreshLinks( $start, $new, $end, $redir, $oldRedir );
 			$this->deleteLinksFromNonexistent( null, null, $this->mBatchSize, $dfnChunkSize );
 		} else {
