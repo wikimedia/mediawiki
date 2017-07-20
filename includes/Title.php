@@ -3172,7 +3172,7 @@ class Title implements LinkTarget {
 		if ( $limit > -1 ) {
 			$options['LIMIT'] = $limit;
 		}
-		$this->mSubpages = TitleArray::newFromResult(
+		return TitleArray::newFromResult(
 			$dbr->select( 'page',
 				[ 'page_id', 'page_namespace', 'page_title', 'page_is_redirect' ],
 				$conds,
@@ -3180,7 +3180,6 @@ class Title implements LinkTarget {
 				$options
 			)
 		);
-		return $this->mSubpages;
 	}
 
 	/**
