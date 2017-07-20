@@ -396,7 +396,10 @@
 
 		// Create a map between known parameters and their models
 		$.each( this.groups, function ( group, groupModel ) {
-			if ( groupModel.getType() === 'send_unselected_if_any' ) {
+			if (
+				groupModel.getType() === 'send_unselected_if_any' ||
+				groupModel.getType() === 'boolean'
+			) {
 				// Individual filters
 				groupModel.getItems().forEach( function ( filterItem ) {
 					model.parameterMap[ filterItem.getParamName() ] = filterItem;
@@ -645,7 +648,6 @@
 		this.getItems().forEach( function ( filterItem ) {
 			result[ filterItem.getName() + '_color' ] = filterItem.getHighlightColor() || null;
 		} );
-		result.highlight = String( Number( this.isHighlightEnabled() ) );
 
 		return result;
 	};
@@ -969,16 +971,18 @@
 	 * @fires highlightChange
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.toggleHighlight = function ( enable ) {
-		enable = enable === undefined ? !this.highlightEnabled : enable;
+		var highlightItem = this.getGroup( 'displayState' ).getItemByParamName( 'highlight' );
 
-		if ( this.highlightEnabled !== enable ) {
-			this.highlightEnabled = enable;
+		enable = enable === undefined ? !this.isHighlightEnabled() : !!enable;
+
+		if ( this.isHighlightEnabled() !== enable ) {
+			highlightItem.toggleSelected( enable );
 
 			this.getItems().forEach( function ( filterItem ) {
-				filterItem.toggleHighlight( this.highlightEnabled );
+				filterItem.toggleHighlight( enable );
 			}.bind( this ) );
 
-			this.emit( 'highlightChange', this.highlightEnabled );
+			this.emit( 'highlightChange', enable );
 		}
 	};
 
@@ -987,7 +991,10 @@
 	 * @return {boolean}
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.isHighlightEnabled = function () {
-		return !!this.highlightEnabled;
+		var group = this.getGroup( 'displayState' ),
+			highlightItem = group && group.getItemByParamName( 'highlight' );
+
+		return highlightItem && highlightItem.isSelected();
 	};
 
 	/**
@@ -998,16 +1005,18 @@
 	 * @fires invertChange
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.toggleInvertedNamespaces = function ( enable ) {
-		enable = enable === undefined ? !this.invertedNamespaces : enable;
+		var invertItem = this.getGroup( 'displayState' ).getItemByParamName( 'invert' );
 
-		if ( this.invertedNamespaces !== enable ) {
-			this.invertedNamespaces = enable;
+		enable = enable === undefined ? !this.areNamespacesInverted() : !!enable;
+
+		if ( this.areNamespacesInverted() !== enable ) {
+			invertItem.toggleSelected( enable );
 
 			this.getFiltersByView( 'namespaces' ).forEach( function ( filterItem ) {
-				filterItem.toggleInverted( this.invertedNamespaces );
+				filterItem.toggleInverted( enable );
 			}.bind( this ) );
 
-			this.emit( 'invertChange', this.invertedNamespaces );
+			this.emit( 'invertChange', enable );
 		}
 	};
 
@@ -1016,7 +1025,10 @@
 	 * @return {boolean}
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.areNamespacesInverted = function () {
-		return !!this.invertedNamespaces;
+		var group = this.getGroup( 'displayState' ),
+			invertItem = group && group.getItemByParamName( 'invert' );
+
+		return invertItem && invertItem.isSelected();
 	};
 
 	/**
