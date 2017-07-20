@@ -10,7 +10,7 @@
 	};
 	OO.ui.isMobile = function () {
 		if ( isMobile === undefined ) {
-			isMobile = mw.config.get( 'skin' ) === 'minerva';
+			isMobile = !!mw.config.get( 'wgMFMode' );
 		}
 		return isMobile;
 	};
