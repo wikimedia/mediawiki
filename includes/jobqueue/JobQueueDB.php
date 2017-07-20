@@ -184,16 +184,25 @@ class JobQueueDB extends JobQueue {
 	 * @return void
 	 */
 	protected function doBatchPush( array $jobs, $flags ) {
-		DeferredUpdates::addUpdate(
-			new AutoCommitUpdate(
-				$this->getMasterDB(),
-				__METHOD__,
-				function ( IDatabase $dbw, $fname ) use ( $jobs, $flags ) {
-					$this->doBatchPushInternal( $dbw, $jobs, $flags, $fname );
-				}
-			),
-			DeferredUpdates::PRESEND
-		);
+		$dbw = $this->getMasterDB();
+		if ( !$dbw->getFlag( $dbw::DBO_TRX ) && !$dbw->trxLevel() ) {
+			// No transaction is active or will be started by writes, so push the jobs
+			// immediately so that any errors show up now as the interface expects.
+			$this->doBatchPushInternal( $dbw, $jobs, $flags, __METHOD__ );
+		} else {
+			// If the connection is busy with a transaction or DBO_TRX round, defer the
+			// write until right after the main round commit step.
+			DeferredUpdates::addUpdate(
+				new AutoCommitUpdate(
+					$dbw,
+					__METHOD__,
+					function ( IDatabase $dbw, $fname ) use ( $jobs, $flags ) {
+						$this->doBatchPushInternal( $dbw, $jobs, $flags, $fname );
+					}
+				),
+				DeferredUpdates::PRESEND
+			);
+		}
 	}
 
 	/**
@@ -771,7 +780,12 @@ class JobQueueDB extends JobQueue {
 			? $lbFactory->getExternalLB( $this->cluster )
 			: $lbFactory->getMainLB( $this->wiki );
 
-		return $lb->getConnectionRef( $index, [], $this->wiki );
+		return ( $lb->getServerType( $lb->getWriterIndex() ) !== 'sqlite' )
+			// Keep a separate connection to avoid contention and deadlocks;
+			// However, SQLite has the opposite behavior due to DB-level locking.
+			? $lb->getConnectionRef( $index, [], $this->wiki, $lb::CONN_TRX_AUTO )
+			// Jobs insertion will be defered until the PRESEND stage to reduce contention.
+			: $lb->getConnectionRef( $index, [], $this->wiki );
 	}
 
 	/**
