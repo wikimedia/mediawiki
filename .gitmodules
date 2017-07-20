@@ -18,10 +18,6 @@
 	path = extensions/Renameuser
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Renameuser
 	branch = REL1_29
-[submodule "extensions/Vector"]
-	path = extensions/Vector
-	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Vector
-	branch = REL1_29
 [submodule "extensions/WikiEditor"]
 	path = extensions/WikiEditor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikiEditor
@@ -49,10 +45,6 @@
 [submodule "extensions/Poem"]
 	path = extensions/Poem
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Poem
-	branch = REL1_29
-[submodule "extensions/SimpleAntiSpam"]
-	path = extensions/SimpleAntiSpam
-	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SimpleAntiSpam
 	branch = REL1_29
 [submodule "extensions/SyntaxHighlight_GeSHi"]
 	path = extensions/SyntaxHighlight_GeSHi
@@ -85,4 +77,12 @@
 [submodule "vendor"]
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/vendor
+	branch = REL1_29
+[submodule "extensions/PdfHandler"]
+	path = extensions/PdfHandler
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/PdfHandler
+	branch = REL1_29
+[submodule "extensions/SpamBlacklist"]
+	path = extensions/SpamBlacklist
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SpamBlacklist
 	branch = REL1_29
