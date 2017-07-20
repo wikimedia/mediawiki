@@ -1036,6 +1036,9 @@ class ParserTestRunner {
 		$linkHolderBatchSize =
 			self::getOptionValue( 'wgLinkHolderBatchSize', $opts, 1000 );
 
+		// Default to fallback skin, but allow it to be overridden
+		$skin = self::getOptionValue( 'skin', $opts, 'fallback' );
+
 		$setup = [
 			'wgEnableUploads' => self::getOptionValue( 'wgEnableUploads', $opts, true ),
 			'wgLanguageCode' => $langCode,
@@ -1105,7 +1108,13 @@ class ParserTestRunner {
 		$context = RequestContext::getMain();
 		$context->setUser( $user );
 		$context->setLanguage( $lang );
-		$teardown[] = function () use ( $context ) {
+		// And the skin!
+		$oldSkin = $context->getSkin();
+		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
+		$context->setSkin( $skinFactory->makeSkin( $skin ) );
+		$context->setOutput( new OutputPage( $context ) );
+		$setup['wgOut'] = $context->getOutput();
+		$teardown[] = function () use ( $context, $oldSkin ) {
 			// Clear language conversion tables
 			$wrapper = TestingAccessWrapper::newFromObject(
 				$context->getLanguage()->getConverter()
@@ -1114,6 +1123,7 @@ class ParserTestRunner {
 			// Reset context to the restored globals
 			$context->setUser( $GLOBALS['wgUser'] );
 			$context->setLanguage( $GLOBALS['wgContLang'] );
+			$context->setSkin( $oldSkin );
 		};
 
 		$teardown[] = $this->executeSetupSnippets( $setup );
