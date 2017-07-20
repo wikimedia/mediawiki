@@ -1621,13 +1621,19 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function setDomainPrefix( $prefix ) {
-		if ( $this->mConns['foreignUsed'] ) {
-			// Do not switch connections to explicit foreign domains unless marked as free
-			$domains = [];
-			foreach ( $this->mConns['foreignUsed'] as $i => $connsByDomain ) {
-				$domains = array_merge( $domains, array_keys( $connsByDomain ) );
+		// Find connections to explicit foreign domains still marked as in-use...
+		$domainsInUse = [];
+		$this->forEachOpenConnection( function ( IDatabase $conn ) use ( &$domainsInUse ) {
+			// Once reuseConnection() is called on a handle, its reference count goes from 1 to 0.
+			// Until then, it is still in use by the caller (explicitly or via DBConnRef scope).
+			if ( $conn->getLBInfo( 'foreignPoolRefCount' ) > 0 ) {
+				$domainsInUse[] = $conn->getDomainID();
 			}
-			$domains = implode( ', ', $domains );
+		} );
+
+		// Do not switch connections to explicit foreign domains unless marked as safe
+		if ( $domainsInUse ) {
+			$domains = implode( ', ', $domainsInUse );
 			throw new DBUnexpectedError( null,
 				"Foreign domain connections are still in use ($domains)." );
 		}
