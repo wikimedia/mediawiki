@@ -110,6 +110,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 				'id' => 'nsfrom',
 				'size' => 30,
 				'label-message' => 'allpagesfrom',
+				'vertical-label' => false,
 				'default' => str_replace( '_', ' ', $from ),
 			],
 			'to' => [
@@ -118,6 +119,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 				'id' => 'nsto',
 				'size' => 30,
 				'label-message' => 'allpagesto',
+				'vertical-label' => false,
 				'default' => str_replace( '_', ' ', $to ),
 			],
 			'namespace' => [
@@ -125,6 +127,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 				'name' => 'namespace',
 				'id' => 'namespace',
 				'label-message' => 'namespace',
+				'vertical-label' => false,
 				'all' => null,
 				'value' => $namespace,
 			],
@@ -141,7 +144,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 			unset( $fields['hideredirects'] );
 		}
 
-		$form = HTMLForm::factory( 'table', $fields, $this->getContext() );
+		$form = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
 		$form->setMethod( 'get' )
 			->setWrapperLegendMsg( 'allpages' )
 			->setSubmitTextMsg( 'allpagessubmit' )

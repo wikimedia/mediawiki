@@ -32,6 +32,11 @@
 	margin-bottom: 0;
 }
 
+/* Max width for fields */
+.mw-special-Allpages .oo-ui-fieldLayout-header {
+	max-width: 15em;
+}
+
 .allpagesredirect {
 	font-style: italic;
 }
