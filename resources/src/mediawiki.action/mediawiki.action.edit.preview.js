@@ -3,6 +3,8 @@
  */
 ( function ( mw, $ ) {
 
+	var oojsuieditform = $( '#editform' ).hasClass( 'mw-editform-ooui' );
+
 	/**
 	 * @ignore
 	 * @param {jQuery.Event} e
@@ -16,7 +18,15 @@
 		$wikiDiff = $( '#wikiDiff' );
 		$editform = $( '#editform' );
 		$textbox = $editform.find( '#wpTextbox1' );
-		$summary = $editform.find( '#wpSummary' );
+
+		if ( oojsuieditform ) {
+			mw.loader.using( 'oojs-ui-core' ).then( function () {
+				$summary = OO.ui.infuse( $( '#wpSummaryWidget' ) );
+			} );
+		} else {
+			$summary = $editform.find( '#wpSummary' );
+		}
+
 		$spinner = $( '.mw-spinner-preview' );
 		$errorBox = $( '.errorbox' );
 		section = $editform.find( '[name="wpSection"]' ).val();
@@ -78,7 +88,7 @@
 			formatversion: 2,
 			action: 'parse',
 			title: mw.config.get( 'wgPageName' ),
-			summary: $summary.textSelection( 'getContents' ),
+			summary: oojsuieditform ? $summary.getValue() : $summary.val(),
 			prop: ''
 		};
 
