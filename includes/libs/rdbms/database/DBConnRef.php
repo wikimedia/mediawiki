@@ -23,16 +23,17 @@ class DBConnRef implements IDatabase {
 	const FLD_INDEX = 0;
 	const FLD_GROUP = 1;
 	const FLD_DOMAIN = 2;
+	const FLD_FLAGS = 3;
 
 	/**
 	 * @param ILoadBalancer $lb Connection manager for $conn
-	 * @param Database|array $conn New connection handle or (server index, query groups, domain)
+	 * @param Database|array $conn Database handle or (server index, query groups, domain, flags)
 	 */
 	public function __construct( ILoadBalancer $lb, $conn ) {
 		$this->lb = $lb;
 		if ( $conn instanceof Database ) {
 			$this->conn = $conn; // live handle
-		} elseif ( count( $conn ) >= 3 && $conn[self::FLD_DOMAIN] !== false ) {
+		} elseif ( count( $conn ) >= 4 && $conn[self::FLD_DOMAIN] !== false ) {
 			$this->params = $conn;
 		} else {
 			throw new InvalidArgumentException( "Missing lazy connection arguments." );
@@ -41,8 +42,8 @@ class DBConnRef implements IDatabase {
 
 	function __call( $name, array $arguments ) {
 		if ( $this->conn === null ) {
-			list( $db, $groups, $wiki ) = $this->params;
-			$this->conn = $this->lb->getConnection( $db, $groups, $wiki );
+			list( $db, $groups, $wiki, $flags ) = $this->params;
+			$this->conn = $this->lb->getConnection( $db, $groups, $wiki, $flags );
 		}
 
 		return call_user_func_array( [ $this->conn, $name ], $arguments );
