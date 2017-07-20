@@ -832,10 +832,10 @@ class Preferences {
 				'section' => 'editing/editor',
 				'label-message' => 'editfont-style',
 				'options' => [
-					$context->msg( 'editfont-default' )->text() => 'default',
 					$context->msg( 'editfont-monospace' )->text() => 'monospace',
 					$context->msg( 'editfont-sansserif' )->text() => 'sans-serif',
 					$context->msg( 'editfont-serif' )->text() => 'serif',
+					$context->msg( 'editfont-default' )->text() => 'default',
 				]
 			];
 		}
