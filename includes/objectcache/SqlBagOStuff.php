@@ -145,27 +145,11 @@ class SqlBagOStuff extends BagOStuff {
 		$this->replicaOnly = !empty( $params['slaveOnly'] );
 	}
 
-	protected function getSeparateMainLB() {
-		global $wgDBtype;
-
-		if ( $this->usesMainDB() && $wgDBtype !== 'sqlite' ) {
-			if ( !$this->separateMainLB ) {
-				// We must keep a separate connection to MySQL in order to avoid deadlocks
-				$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-				$this->separateMainLB = $lbFactory->newMainLB();
-			}
-			return $this->separateMainLB;
-		} else {
-			// However, SQLite has an opposite behavior due to DB-level locking
-			return null;
-		}
-	}
-
 	/**
 	 * Get a connection to the specified database
 	 *
 	 * @param int $serverIndex
-	 * @return IDatabase
+	 * @return Database
 	 * @throws MWException
 	 */
 	protected function getDB( $serverIndex ) {
@@ -181,8 +165,8 @@ class SqlBagOStuff extends BagOStuff {
 				throw $this->connFailureErrors[$serverIndex];
 			}
 
-			# If server connection info was given, use that
 			if ( $this->serverInfos ) {
+				// Use custom database defined by server connection info
 				$info = $this->serverInfos[$serverIndex];
 				$type = isset( $info['type'] ) ? $info['type'] : 'mysql';
 				$host = isset( $info['host'] ) ? $info['host'] : '[unknown]';
@@ -190,17 +174,22 @@ class SqlBagOStuff extends BagOStuff {
 				// Use a blank trx profiler to ignore expections as this is a cache
 				$info['trxProfiler'] = new TransactionProfiler();
 				$db = Database::factory( $type, $info );
-				$db->clearFlag( DBO_TRX );
+				$db->clearFlag( DBO_TRX ); // auto-commit mode
 			} else {
+				// Use the main LB database
+				$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 				$index = $this->replicaOnly ? DB_REPLICA : DB_MASTER;
-				if ( $this->getSeparateMainLB() ) {
-					$db = $this->getSeparateMainLB()->getConnection( $index );
-					$db->clearFlag( DBO_TRX ); // auto-commit mode
+				if ( $lb->getServerType( $lb->getWriterIndex() ) !== 'sqlite' ) {
+					// We must keep a separate connection to MySQL in order to avoid deadlocks;
+					// However, SQLite has an opposite behavior due to DB-level locking.
+					$db = $lb->getConnection( $index, [], false, $lb::CONN_TRX_AUTO );
+					// @TODO: Use a blank trx profiler to ignore expections as this is a cache
 				} else {
-					$db = wfGetDB( $index );
 					// Can't mess with transaction rounds (DBO_TRX) :(
+					$db = $lb->getConnection( $index );
 				}
 			}
+
 			$this->logger->debug( sprintf( "Connection %s will be used for SqlBagOStuff", $db ) );
 			$this->conns[$serverIndex] = $db;
 		}
@@ -812,9 +801,7 @@ class SqlBagOStuff extends BagOStuff {
 			return true;
 		}
 
-		$lb = $this->getSeparateMainLB()
-			?: MediaWikiServices::getInstance()->getDBLoadBalancer();
-
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		if ( $lb->getServerCount() <= 1 ) {
 			return true; // no replica DBs
 		}
