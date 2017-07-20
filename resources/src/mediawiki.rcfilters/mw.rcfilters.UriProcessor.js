@@ -71,7 +71,10 @@
 	 * @param {Object} [uriQuery] URI query
 	 */
 	mw.rcfilters.UriProcessor.prototype.updateModelBasedOnQuery = function ( uriQuery ) {
-		var parameters = this._getNormalizedQueryParams( uriQuery || new mw.Uri().query );
+		var parameters = this._getNormalizedQueryParams( uriQuery || new mw.Uri().query ),
+			displayStateGroup = this.filtersModel.getGroup( 'displayState' ),
+			invertItem = displayStateGroup.getItemByParamName( 'invert' ),
+			highlightItem = displayStateGroup.getItemByParamName( 'highlight' );
 
 		// Update filter states
 		this.filtersModel.toggleFiltersSelected(
@@ -80,10 +83,10 @@
 			)
 		);
 
-		this.filtersModel.toggleInvertedNamespaces( !!Number( parameters.invert ) );
+		this.filtersModel.toggleInvertedNamespaces( invertItem.isSelected() );
 
 		// Update highlight state
-		this.filtersModel.toggleHighlight( !!Number( parameters.highlight ) );
+		this.filtersModel.toggleHighlight( highlightItem.isSelected() );
 		this.filtersModel.getItems().forEach( function ( filterItem ) {
 			var color = parameters[ filterItem.getName() + '_color' ];
 			if ( color ) {
@@ -107,11 +110,7 @@
 			true,
 			{},
 			this.filtersModel.getParametersFromFilters(),
-			this.filtersModel.getHighlightParameters(),
-			{
-				highlight: String( Number( this.filtersModel.isHighlightEnabled() ) ),
-				invert: String( Number( this.filtersModel.areNamespacesInverted() ) )
-			}
+			this.filtersModel.getHighlightParameters()
 		);
 	};
 
@@ -129,11 +128,7 @@
 			{},
 			uriQuery,
 			this.filtersModel.getParametersFromFilters( filterRepresentation ),
-			this.filtersModel.extractHighlightValues( uriQuery ),
-			{
-				highlight: String( Number( uriQuery.highlight ) ),
-				invert: String( Number( uriQuery.invert ) )
-			}
+			this.filtersModel.extractHighlightValues( uriQuery )
 		);
 	};
 
@@ -278,8 +273,7 @@
 			true,
 			{},
 			emptyParams,
-			emptyHighlights,
-			{ highlight: '0', invert: '0' }
+			emptyHighlights
 		);
 	};
 }( mediaWiki, jQuery ) );
