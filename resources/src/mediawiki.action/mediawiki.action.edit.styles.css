@@ -28,7 +28,6 @@
 .mw-editform-ooui #wpSummaryWidget,
 .mw-editform-legacy #wpSummary {
 	display: block;
-	width: 80%;
 	margin-bottom: 1em;
 }
 
@@ -43,6 +42,10 @@
 
 .mw-editform-legacy .cancelLink {
 	margin-left: 0.5em;
+}
+
+.mw-editform-legacy #wpSummary {
+	width: 80%;
 }
 
 .mw-editform-legacy input#wpSummary {
