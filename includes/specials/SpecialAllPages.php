@@ -97,13 +97,13 @@ class SpecialAllPages extends IncludableSpecialPage {
 	 * @param int $namespace A namespace constant (default NS_MAIN).
 	 * @param string $from DbKey we are starting listing at.
 	 * @param string $to DbKey we are ending listing at.
-	 * @param bool $hideRedirects Dont show redirects  (default false)
+	 * @param bool $hideRedirects Don't show redirects  (default false)
 	 */
 	protected function outputHTMLForm( $namespace = NS_MAIN,
 		$from = '', $to = '', $hideRedirects = false
 	) {
 		$miserMode = (bool)$this->getConfig()->get( 'MiserMode' );
-		$fields = [
+		$formDescriptor = [
 			'from' => [
 				'type' => 'text',
 				'name' => 'from',
@@ -138,11 +138,11 @@ class SpecialAllPages extends IncludableSpecialPage {
 		];
 
 		if ( $miserMode ) {
-			unset( $fields['hideredirects'] );
+			unset( $formDescriptor['hideredirects'] );
 		}
 
-		$form = HTMLForm::factory( 'table', $fields, $this->getContext() );
-		$form->setMethod( 'get' )
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
+		$htmlForm->setMethod( 'get' )
 			->setWrapperLegendMsg( 'allpages' )
 			->setSubmitTextMsg( 'allpagessubmit' )
 			->prepareForm()
@@ -153,7 +153,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 	 * @param int $namespace (default NS_MAIN)
 	 * @param string $from List all pages from this name
 	 * @param string $to List all pages to this name
-	 * @param bool $hideredirects Dont show redirects (default false)
+	 * @param bool $hideredirects Don't show redirects (default false)
 	 */
 	function showToplevel( $namespace = NS_MAIN, $from = '', $to = '', $hideredirects = false ) {
 		$from = Title::makeTitleSafe( $namespace, $from );
@@ -168,7 +168,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 	 * @param int $namespace Namespace (Default NS_MAIN)
 	 * @param string $from List all pages from this name (default false)
 	 * @param string $to List all pages to this name (default false)
-	 * @param bool $hideredirects Dont show redirects (default false)
+	 * @param bool $hideredirects Don't show redirects (default false)
 	 */
 	function showChunk( $namespace = NS_MAIN, $from = false, $to = false, $hideredirects = false ) {
 		$output = $this->getOutput();
