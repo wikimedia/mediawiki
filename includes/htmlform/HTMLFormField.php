@@ -655,6 +655,9 @@ abstract class HTMLFormField {
 	 * @return string 'left', 'right', 'top' or 'inline'
 	 */
 	protected function getLabelAlignOOUI() {
+		if ( $this->mParams['vertical-label'] === false	) {
+			return 'left';
+		}
 		return 'top';
 	}
 
