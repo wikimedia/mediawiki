@@ -393,7 +393,7 @@ CREATE INDEX fa_nouser    ON filearchive (fa_deleted_user);
 CREATE INDEX fa_sha1      ON filearchive (fa_sha1);
 
 CREATE SEQUENCE uploadstash_us_id_seq;
-CREATE TYPE media_type AS ENUM ('UNKNOWN','BITMAP','DRAWING','AUDIO','VIDEO','MULTIMEDIA','OFFICE','TEXT','EXECUTABLE','ARCHIVE');
+CREATE TYPE media_type AS ENUM ('UNKNOWN','BITMAP','DRAWING','AUDIO','VIDEO','MULTIMEDIA','OFFICE','TEXT','EXECUTABLE','ARCHIVE','3D');
 
 CREATE TABLE uploadstash (
   us_id           INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('uploadstash_us_id_seq'),
