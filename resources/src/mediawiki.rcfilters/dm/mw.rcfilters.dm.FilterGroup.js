@@ -52,6 +52,7 @@
 
 		this.conflicts = config.conflicts || {};
 		this.defaultParams = {};
+		this.defaultFilters = {};
 
 		this.aggregate( { update: 'filterItemUpdate' } );
 		this.connect( this, { filterItemUpdate: 'onFilterItemUpdate' } );
@@ -89,6 +90,7 @@
 			var subsetNames = [],
 				filterItem = new mw.rcfilters.dm.FilterItem( filter.name, model, {
 					group: model.getName(),
+					useDefaultAsBaseValue: !!filter.useDefaultAsBaseValue,
 					label: filter.label || filter.name,
 					description: filter.description || '',
 					labelPrefixKey: model.labelPrefixKey,
@@ -131,7 +133,10 @@
 			items.push( filterItem );
 
 			// Store default parameter state; in this case, default is defined per filter
-			if ( model.getType() === 'send_unselected_if_any' ) {
+			if (
+				model.getType() === 'send_unselected_if_any' ||
+				model.getType() === 'boolean'
+			) {
 				// Store the default parameter state
 				// For this group type, parameter values are direct
 				// We need to convert from a boolean to a string ('1' and '0')
@@ -176,6 +181,25 @@
 			// or select the first option
 			this.selectItemByParamName( defaultParam );
 		}
+
+		// Store default filter state based on default params
+		this.defaultFilters = this.getFilterRepresentation( this.getDefaultParams() );
+
+		// Check for filters that should be initially selected by their default value
+		this.getItems().forEach( function ( item ) {
+			if (
+				item.isUsingDefaultAsBaseValue() &&
+				(
+					// This setting can only be applied to these groups
+					// the other groups are way too complex for that
+					model.getType() === 'single_option' ||
+					model.getType() === 'boolean'
+				)
+			) {
+				// Apply selection
+				item.toggleSelected( !!model.defaultFilters[ item.getName() ] );
+			}
+		} );
 	};
 
 	/**
@@ -251,6 +275,15 @@
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.getDefaultParams = function () {
 		return this.defaultParams;
+	};
+
+	/**
+	 * Get the default filter state of this group
+	 *
+	 * @return {Object} Default filter state
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.getDefaultFilters = function () {
+		return this.defaultFilters;
 	};
 
 	/**
@@ -448,6 +481,7 @@
 		var values,
 			areAnySelected = false,
 			buildFromCurrentState = !filterRepresentation,
+			defaultFilters = this.getDefaultFilters(),
 			result = {},
 			model = this,
 			filterParamNames = {},
@@ -480,8 +514,22 @@
 			} else if ( !filterRepresentation[ item.getName() ] ) {
 				// We are given a filter representation, but we have to make
 				// sure that we fill in the missing filters if there are any
-				// we will assume they are all falsey
-				filterRepresentation[ item.getName() ] = false;
+				// we will assume they are all falsey, unless they have
+				// isUsingDefaultAsBaseValue, in which case they get their
+				// default state
+				if (
+					item.isUsingDefaultAsBaseValue() &&
+					(
+						// This setting can only be applied to these groups
+						// the other groups are way too complex for that
+						model.getType() === 'single_option' ||
+						model.getType() === 'boolean'
+					)
+				) {
+					filterRepresentation[ item.getName() ] = !!defaultFilters[ item.getName() ];
+				} else {
+					filterRepresentation[ item.getName() ] = false;
+				}
 			}
 
 			if ( filterRepresentation[ item.getName() ] ) {
@@ -490,7 +538,10 @@
 		} );
 
 		// Build result
-		if ( this.getType() === 'send_unselected_if_any' ) {
+		if (
+			this.getType() === 'send_unselected_if_any' ||
+			this.getType() === 'boolean'
+		) {
 			// First, check if any of the items are selected at all.
 			// If none is selected, we're treating it as if they are
 			// all false
@@ -498,9 +549,15 @@
 			// Go over the items and define the correct values
 			$.each( filterRepresentation, function ( name, value ) {
 				// We must store all parameter values as strings '0' or '1'
-				result[ filterParamNames[ name ] ] = areAnySelected ?
-					String( Number( !value ) ) :
-					'0';
+				if ( model.getType() === 'send_unselected_if_any' ) {
+					result[ filterParamNames[ name ] ] = areAnySelected ?
+						String( Number( !value ) ) :
+						'0';
+				} else if ( model.getType() === 'boolean' ) {
+					// Representation is straight-forward and direct from
+					// the parameter value to the filter state
+					result[ filterParamNames[ name ] ] = String( Number( !!value ) );
+				}
 			} );
 		} else if ( this.getType() === 'string_options' ) {
 			values = [];
@@ -525,26 +582,32 @@
 	 * Get the filter representation this group would provide
 	 * based on given parameter states.
 	 *
-	 * @param {Object|string} [paramRepresentation] An object defining a parameter
+	 * @param {Object} [paramRepresentation] An object defining a parameter
 	 *  state to translate the filter state from. If not given, an object
 	 *  representing all filters as falsey is returned; same as if the parameter
 	 *  given were an empty object, or had some of the filters missing.
 	 * @return {Object} Filter representation
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation ) {
-		var areAnySelected, paramValues, defaultValue, item,
+		var areAnySelected, paramValues, defaultValue, item, currentValue,
 			oneWasSelected = false,
+			defaultParams = this.getDefaultParams(),
+			defaultFilters = this.getDefaultFilters(),
+			expandedParams = $.extend( true, {}, paramRepresentation ),
 			model = this,
 			paramToFilterMap = {},
 			result = {};
 
-		if ( this.getType() === 'send_unselected_if_any' ) {
-			paramRepresentation = paramRepresentation || {};
-			// Expand param representation to include all filters in the group
+		paramRepresentation = paramRepresentation || {};
+		if (
+			this.getType() === 'send_unselected_if_any' ||
+			this.getType() === 'boolean'
+		) {
+			// Go over param representation; map and check for selections
 			this.getItems().forEach( function ( filterItem ) {
 				var paramName = filterItem.getParamName();
 
-				paramRepresentation[ paramName ] = paramRepresentation[ paramName ] || '0';
+				expandedParams[ paramName ] = paramRepresentation[ paramName ] || '0';
 				paramToFilterMap[ paramName ] = filterItem;
 
 				if ( Number( paramRepresentation[ filterItem.getParamName() ] ) ) {
@@ -552,25 +615,37 @@
 				}
 			} );
 
-			$.each( paramRepresentation, function ( paramName, paramValue ) {
-				var filterItem = paramToFilterMap[ paramName ];
+			$.each( expandedParams, function ( paramName, paramValue ) {
+				var value = paramValue,
+					filterItem = paramToFilterMap[ paramName ];
 
-				// Flip the definition between the parameter
-				// state and the filter state
-				// This is what the 'toggleSelected' value of the filter is
-				result[ filterItem.getName() ] = areAnySelected ?
-					!Number( paramValue ) :
-					// Otherwise, there are no selected items in the
-					// group, which means the state is false
-					false;
+				if ( model.getType() === 'send_unselected_if_any' ) {
+					// Flip the definition between the parameter
+					// state and the filter state
+					// This is what the 'toggleSelected' value of the filter is
+					result[ filterItem.getName() ] = areAnySelected ?
+						!Number( paramValue ) :
+						// Otherwise, there are no selected items in the
+						// group, which means the state is false
+						false;
+				} else if ( model.getType() === 'boolean' ) {
+					// Straight-forward definition of state
+					if (
+						filterItem.isUsingDefaultAsBaseValue() &&
+						paramRepresentation[ filterItem.getParamName() ] === undefined
+					) {
+						value = defaultParams[ filterItem.getParamName() ];
+					}
+					result[ filterItem.getName() ] = !!Number( value );
+				}
 			} );
 		} else if ( this.getType() === 'string_options' ) {
-			paramRepresentation = paramRepresentation || '';
+			currentValue = paramRepresentation[ this.getName() ] || '';
 
 			// Normalize the given parameter values
 			paramValues = mw.rcfilters.utils.normalizeParamOptions(
 				// Given
-				paramRepresentation.split(
+				currentValue.split(
 					this.getSeparator()
 				),
 				// Allowed values
@@ -595,15 +670,36 @@
 		} else if ( this.getType() === 'single_option' ) {
 			// There is parameter that fits a single filter and if not, get the default
 			this.getItems().forEach( function ( filterItem ) {
-				result[ filterItem.getName() ] = filterItem.getParamName() === paramRepresentation;
-				oneWasSelected = oneWasSelected || filterItem.getParamName() === paramRepresentation;
+				var selected = false;
+
+				if (
+					filterItem.isUsingDefaultAsBaseValue() &&
+					paramRepresentation[ model.getName() ] === undefined
+				) {
+					selected = !!Number( paramRepresentation[ model.getName() ] );
+				} else {
+					selected = filterItem.getParamName() === paramRepresentation[ model.getName() ];
+				}
+				result[ filterItem.getName() ] = selected;
+				oneWasSelected = oneWasSelected || selected;
 			} );
 		}
 
 		// Go over result and make sure all filters are represented.
 		// If any filters are missing, they will get a falsey value
 		this.getItems().forEach( function ( filterItem ) {
-			result[ filterItem.getName() ] = !!result[ filterItem.getName() ];
+			if (
+				(
+					// This setting can only be applied to these groups
+					// the other groups are way too complex for that
+					model.getType() === 'single_option' ||
+					model.getType() === 'boolean'
+				) &&
+				result[ filterItem.getName() ] === undefined &&
+				filterItem.isUsingDefaultAsBaseValue()
+			) {
+				result[ filterItem.getName() ] = !!defaultFilters[ filterItem.getName() ];
+			}
 			oneWasSelected = oneWasSelected || !!result[ filterItem.getName() ];
 		} );
 
