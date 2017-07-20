@@ -7,6 +7,8 @@
 	 * @constructor
 	 * @param {string} param Filter param name
 	 * @param {Object} config Configuration object
+	 * @cfg {boolean} [useDefaultAsBaseValue] Use the default value of this filter as the
+	 *  base representation, overriding any other base representation method for the group.
 	 * @cfg {string} [label] The label for the filter
 	 * @cfg {string} [description] The description of the filter
 	 * @cfg {string|Object} [labelPrefixKey] An i18n key defining the prefix label for this
@@ -32,6 +34,7 @@
 		this.namePrefix = config.namePrefix || 'item_';
 		this.name = this.namePrefix + param;
 
+		this.useDefaultAsBaseValue = !!config.useDefaultAsBaseValue;
 		this.label = config.label || this.name;
 		this.labelPrefixKey = config.labelPrefixKey;
 		this.description = config.description || '';
@@ -294,5 +297,9 @@
 	 */
 	mw.rcfilters.dm.ItemModel.prototype.isHighlighted = function () {
 		return this.isHighlightEnabled() && !!this.getHighlightColor();
+	};
+
+	mw.rcfilters.dm.ItemModel.prototype.isUseDefaultAsBaseValue = function () {
+		return this.useDefaultAsBaseValue;
 	};
 }( mediaWiki ) );

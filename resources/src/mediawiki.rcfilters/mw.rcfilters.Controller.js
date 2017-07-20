@@ -133,6 +133,24 @@
 			]
 		};
 
+		views.display = {
+			groups: [
+				{
+					name: 'usenewrc',
+					type: 'boolean',
+					title: '', // Because it's a hidden group, this title actually appears nowhere
+					hidden: true,
+					filters: [
+						{
+							name: 'enhanced',
+							'default': String( Number( mw.user.options.get( 'usenewrc' ) ) ),
+							useDefaultAsBaseValue: true
+						}
+					]
+				}
+			]
+		};
+
 		// Before we do anything, we need to see if we require another item in the
 		// groups that have 'AllowArbitrary'. For the moment, those are only single_option
 		// groups; if we ever expand it, this might need further generalization:
@@ -718,6 +736,34 @@
 				}.bind( this )
 				// Do nothing for failure
 			);
+	};
+
+	/**
+	 * Update the option to group by page
+	 *
+	 * @param {boolean} [isSelected] The option is selected
+	 */
+	mw.rcfilters.Controller.prototype.toggleGroupByPage = function ( isSelected ) {
+		var currentValue = !!mw.user.options.get( 'usenewrc' ),
+			deferred = $.Deferred();
+
+		isSelected = isSelected === undefined ? !currentValue : !!isSelected;
+
+		if ( currentValue !== isSelected ) {
+			// Update the preference for this session
+			mw.user.options.set( 'usenewrc', Number( isSelected ) );
+			// Save the preference
+			return new mw.Api().saveOption( 'usenewrc', Number( isSelected ) )
+				// Pull results again
+				.then( function () {
+					debugger;
+					this.updateChangesList();
+				}.bind( this ) );
+		} else {
+			deferred.resolve();
+		}
+
+		return deferred.promise();
 	};
 
 	/**

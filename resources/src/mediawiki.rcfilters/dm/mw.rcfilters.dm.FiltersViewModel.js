@@ -396,7 +396,10 @@
 
 		// Create a map between known parameters and their models
 		$.each( this.groups, function ( group, groupModel ) {
-			if ( groupModel.getType() === 'send_unselected_if_any' ) {
+			if (
+				groupModel.getType() === 'send_unselected_if_any' ||
+				groupModel.getType() === 'boolean'
+			) {
 				// Individual filters
 				groupModel.getItems().forEach( function ( filterItem ) {
 					model.parameterMap[ filterItem.getParamName() ] = filterItem;
@@ -571,7 +574,9 @@
 			// all filters (set to false)
 			this.getItems().forEach( function ( filterItem ) {
 				groupItemDefinition[ filterItem.getGroupName() ] = groupItemDefinition[ filterItem.getGroupName() ] || {};
-				groupItemDefinition[ filterItem.getGroupName() ][ filterItem.getName() ] = !!filterDefinition[ filterItem.getName() ];
+				if ( filterDefinition[ filterItem.getName() ] !== undefined ) {
+					groupItemDefinition[ filterItem.getGroupName() ][ filterItem.getName() ] = !!filterDefinition[ filterItem.getName() ];
+				}
 			} );
 		}
 
@@ -612,23 +617,29 @@
 		//    group2: "param4|param5"
 		// }
 		$.each( params, function ( paramName, paramValue ) {
-			var itemOrGroup = model.parameterMap[ paramName ];
+			var groupName,
+				itemOrGroup = model.parameterMap[ paramName ];
 
-			if ( itemOrGroup instanceof mw.rcfilters.dm.FilterItem ) {
-				groupMap[ itemOrGroup.getGroupName() ] = groupMap[ itemOrGroup.getGroupName() ] || {};
-				groupMap[ itemOrGroup.getGroupName() ][ itemOrGroup.getParamName() ] = paramValue;
-			} else if ( itemOrGroup instanceof mw.rcfilters.dm.FilterGroup ) {
-				// This parameter represents a group (values are the filters)
-				// this is equivalent to checking if the group is 'string_options'
-				groupMap[ itemOrGroup.getName() ] = groupMap[ itemOrGroup.getName() ] || {};
-				groupMap[ itemOrGroup.getName() ] = paramValue;
+			// Verify this is a recognized parameter
+			if ( itemOrGroup ) {
+				groupName = itemOrGroup && itemOrGroup instanceof mw.rcfilters.dm.FilterItem ?
+						itemOrGroup.getGroupName() : itemOrGroup.getName();
+
+				groupMap[ groupName ] = groupMap[ groupName ] || {};
+				groupMap[ groupName ][ paramName ] = paramValue;
 			}
 		} );
 
 		// Go over all groups, so we make sure we get the complete output
 		// even if the parameters don't include a certain group
 		$.each( this.groups, function ( groupName, groupModel ) {
-			result = $.extend( true, {}, result, groupModel.getFilterRepresentation( groupMap[ groupName ] ) );
+			if ( groupName === 'usenewrc' ) { debugger; }
+			result = $.extend(
+				true,
+				{},
+				result,
+				groupModel.getFilterRepresentation( groupMap[ groupName ] || {} )
+			);
 		} );
 
 		return result;
