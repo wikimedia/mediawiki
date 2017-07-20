@@ -145,20 +145,17 @@ class SqlBagOStuff extends BagOStuff {
 		$this->replicaOnly = !empty( $params['slaveOnly'] );
 	}
 
-	protected function getSeparateMainLB() {
+	protected function useSeparateConnection() {
 		global $wgDBtype;
 
+		// @TODO: move DB type check to LB
 		if ( $this->usesMainDB() && $wgDBtype !== 'sqlite' ) {
-			if ( !$this->separateMainLB ) {
-				// We must keep a separate connection to MySQL in order to avoid deadlocks
-				$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-				$this->separateMainLB = $lbFactory->newMainLB();
-			}
-			return $this->separateMainLB;
-		} else {
-			// However, SQLite has an opposite behavior due to DB-level locking
-			return null;
+			// We must keep a separate connection to MySQL in order to avoid deadlocks
+			return true;
 		}
+
+		// However, SQLite has an opposite behavior due to DB-level locking
+		return null;
 	}
 
 	/**
@@ -193,9 +190,9 @@ class SqlBagOStuff extends BagOStuff {
 				$db->clearFlag( DBO_TRX );
 			} else {
 				$index = $this->replicaOnly ? DB_REPLICA : DB_MASTER;
-				if ( $this->getSeparateMainLB() ) {
-					$db = $this->getSeparateMainLB()->getConnection( $index );
-					$db->clearFlag( DBO_TRX ); // auto-commit mode
+				if ( $this->useSeparateConnection() ) {
+					$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+					$db = $lb->getConnection( $index, [], false, $lb::CONN_TRX_AUTO );
 				} else {
 					$db = wfGetDB( $index );
 					// Can't mess with transaction rounds (DBO_TRX) :(
@@ -812,9 +809,7 @@ class SqlBagOStuff extends BagOStuff {
 			return true;
 		}
 
-		$lb = $this->getSeparateMainLB()
-			?: MediaWikiServices::getInstance()->getDBLoadBalancer();
-
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		if ( $lb->getServerCount() <= 1 ) {
 			return true; // no replica DBs
 		}
