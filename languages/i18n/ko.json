@@ -1374,7 +1374,7 @@
 	"rcfilters-filter-editsbyself-description": "당신의 기여.",
 	"rcfilters-filter-editsbyother-label": "다른 사용자의 변경사항",
 	"rcfilters-filter-editsbyother-description": "당신을 제외한 모든 변경사항.",
-	"rcfilters-filtergroup-userExpLevel": "경험 수준 (등록된 사용자만)",
+	"rcfilters-filtergroup-userExpLevel": "사용자 등록 및 경험",
 	"rcfilters-filter-user-experience-level-registered-label": "등록됨",
 	"rcfilters-filter-user-experience-level-registered-description": "로그인된 편집자.",
 	"rcfilters-filter-user-experience-level-unregistered-label": "등록 안 됨",
