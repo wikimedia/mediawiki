@@ -78,6 +78,7 @@
 
 .mw-editform-ooui #wpSummaryWidget {
 	max-width: none;
+	width: 100%;
 }
 
 .mw-editform-ooui #wpSummaryLabel {
