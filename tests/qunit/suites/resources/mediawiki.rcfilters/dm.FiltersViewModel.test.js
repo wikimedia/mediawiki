@@ -590,7 +590,6 @@
 		var model = new mw.rcfilters.dm.FiltersViewModel();
 
 		model.initializeFilters( filterDefinition, viewsDefinition );
-
 		// Empty query = only default values
 		assert.deepEqual(
 			model.getFiltersFromParameters( {} ),

@@ -132,6 +132,24 @@
 			]
 		};
 
+		views.display = {
+			groups: [
+				{
+					name: 'displayState',
+					title: '', // Because it's a hidden group, this title actually appears nowhere
+					type: 'boolean',
+					filters: [
+						{
+							name: 'highlight',
+						},
+						{
+							name: 'invert'
+						}
+					]
+				}
+			]
+		};
+
 		// Before we do anything, we need to see if we require another item in the
 		// groups that have 'AllowArbitrary'. For the moment, those are only single_option
 		// groups; if we ever expand it, this might need further generalization:
@@ -426,16 +444,13 @@
 			highlightedItems[ item.getName() ] = highlightEnabled ?
 				item.getHighlightColor() : null;
 		} );
-		// These are filter states; highlight is stored as boolean
-		highlightedItems.highlight = this.filtersModel.isHighlightEnabled();
 
 		// Add item
 		this.savedQueriesModel.addNewQuery(
 			label || mw.msg( 'rcfilters-savedqueries-defaultlabel' ),
 			{
 				filters: this.filtersModel.getSelectedState(),
-				highlights: highlightedItems,
-				invert: this.filtersModel.areNamespacesInverted()
+				highlights: highlightedItems
 			}
 		);
 
@@ -494,7 +509,7 @@
 			highlights = data.highlights;
 
 			// Backwards compatibility; initial version mispelled 'highlight' with 'highlights'
-			highlights.highlight = highlights.highlights || highlights.highlight;
+			// highlights.highlight = highlights.highlights || highlights.highlight;
 
 			// Update model state from filters
 			this.filtersModel.toggleFiltersSelected( data.filters );
@@ -541,8 +556,7 @@
 		return this.savedQueriesModel.findMatchingQuery(
 			{
 				filters: this.filtersModel.getSelectedState(),
-				highlights: highlightedItems,
-				invert: this.filtersModel.areNamespacesInverted()
+				highlights: highlightedItems
 			}
 		);
 	};
@@ -585,8 +599,7 @@
 
 		this.baseFilterState = {
 			filters: this.filtersModel.getFiltersFromParameters( defaultParams ),
-			highlights: highlightedItems,
-			invert: false
+			highlights: highlightedItems
 		};
 	};
 
@@ -740,20 +753,16 @@
 			savedParams = this.filtersModel.getParametersFromFilters( data.filters || {} );
 
 			// Translate highlights to parameters
-			savedHighlights.highlight = String( Number( queryHighlights.highlight ) );
 			$.each( queryHighlights, function ( filterName, color ) {
 				if ( filterName !== 'highlights' ) {
 					savedHighlights[ filterName + '_color' ] = color;
 				}
 			} );
 
-			return $.extend( true, {}, savedParams, savedHighlights, { invert: data.invert } );
+			return $.extend( true, {}, savedParams, savedHighlights );
 		}
 
-		return $.extend(
-			{ highlight: '0' },
-			this.filtersModel.getDefaultParams()
-		);
+		return this.filtersModel.getDefaultParams();
 	};
 
 	/**
