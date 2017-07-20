@@ -76,13 +76,16 @@ use InvalidArgumentException;
  * @ingroup Database
  */
 interface ILoadBalancer {
-	/** @var integer Request a replica DB connection */
+	/** @var int Request a replica DB connection */
 	const DB_REPLICA = -1;
-	/** @var integer Request a master DB connection */
+	/** @var int Request a master DB connection */
 	const DB_MASTER = -2;
 
 	/** @var string Domain specifier when no specific database needs to be selected */
 	const DOMAIN_ANY = '';
+
+	/** @var int DB handle should have DBO_TRX disabled and the caller will leave it as such */
+	const CONN_TRX_AUTO = 1;
 
 	/**
 	 * Construct a manager of IDatabase connection objects
@@ -172,11 +175,12 @@ interface ILoadBalancer {
 	 * @param int $i Server index or DB_MASTER/DB_REPLICA
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
 	 * @param string|bool $domain Domain ID, or false for the current domain
+	 * @param int $flags Bitfield of CONN_* class constants
 	 *
 	 * @throws DBError
 	 * @return Database
 	 */
-	public function getConnection( $i, $groups = [], $domain = false );
+	public function getConnection( $i, $groups = [], $domain = false, $flags = 0 );
 
 	/**
 	 * Mark a foreign connection as being available for reuse under a different DB domain
@@ -241,10 +245,11 @@ interface ILoadBalancer {
 	 *
 	 * @param int $i Server index (does not support DB_MASTER/DB_REPLICA)
 	 * @param string|bool $domain Domain ID, or false for the current domain
+	 * @param int $flags Bitfield of CONN_* class constants
 	 * @return Database|bool Returns false on errors
 	 * @throws DBAccessError
 	 */
-	public function openConnection( $i, $domain = false );
+	public function openConnection( $i, $domain = false, $flags = 0 );
 
 	/**
 	 * @return int
@@ -254,7 +259,7 @@ interface ILoadBalancer {
 	/**
 	 * Returns true if the specified index is a valid server index
 	 *
-	 * @param string $i
+	 * @param int $i
 	 * @return bool
 	 */
 	public function haveIndex( $i );
@@ -262,7 +267,7 @@ interface ILoadBalancer {
 	/**
 	 * Returns true if the specified index is valid and has non-zero load
 	 *
-	 * @param string $i
+	 * @param int $i
 	 * @return bool
 	 */
 	public function isNonZeroLoad( $i );
@@ -276,11 +281,20 @@ interface ILoadBalancer {
 
 	/**
 	 * Get the host name or IP address of the server with the specified index
-	 * Prefer a readable name if available.
-	 * @param string $i
-	 * @return string
+	 *
+	 * @param int $i
+	 * @return string Readable name if available or IP/host otherwise
 	 */
 	public function getServerName( $i );
+
+	/**
+	 * Get DB type of the server with the specified index
+	 *
+	 * @param int $i
+	 * @return string One of (mysql,postgres,sqlite,...) or "unknown" for bad indexes
+	 * @since 1.30
+	 */
+	public function getServerType( $i );
 
 	/**
 	 * Return the server info structure for a given index, or false if the index is invalid.
