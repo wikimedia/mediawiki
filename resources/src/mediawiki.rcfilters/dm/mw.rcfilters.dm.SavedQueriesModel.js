@@ -81,14 +81,8 @@
 				normalizedData = $.extend( true, {}, baseState, obj.data ),
 				isDefault = String( savedQueries.default ) === String( id );
 
-			// Backwards-compat fix: We stored the 'highlight' state with
-			// "1" and "0" instead of true/false; for already-stored states,
-			// we need to fix that.
-			// NOTE: Since this feature is only available in beta, we should
-			// not need this line when we release this to the general wikis.
-			// This method will automatically fix all saved queries anyways
-			// for existing users, who are only betalabs users at the moment.
-			normalizedData.highlights.highlight = !!Number( normalizedData.highlights.highlight );
+			// TODO: BACKWARDS-COMPAT for highlight and invert being separate
+			// than the filters.
 
 			item = new mw.rcfilters.dm.SavedQueryItemModel(
 				id,

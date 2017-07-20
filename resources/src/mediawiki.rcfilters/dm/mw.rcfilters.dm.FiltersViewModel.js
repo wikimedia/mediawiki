@@ -645,7 +645,6 @@
 		this.getItems().forEach( function ( filterItem ) {
 			result[ filterItem.getName() + '_color' ] = filterItem.getHighlightColor() || null;
 		} );
-		result.highlight = String( Number( this.isHighlightEnabled() ) );
 
 		return result;
 	};
