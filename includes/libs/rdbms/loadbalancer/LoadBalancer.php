@@ -41,7 +41,7 @@ use Exception;
 class LoadBalancer implements ILoadBalancer {
 	/** @var array[] Map of (server index => server config array) */
 	private $mServers;
-	/** @var Database[][][] Map of local/foreignUsed/foreignFree => server index => IDatabase array */
+	/** @var Database[][][] Map of local/foreignUsed/foreignFree => server index => IDatabase[] */
 	private $mConns;
 	/** @var float[] Map of (server index => weight) */
 	private $mLoads;
