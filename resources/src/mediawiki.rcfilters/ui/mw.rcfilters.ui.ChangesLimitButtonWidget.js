@@ -15,6 +15,8 @@
 
 		// Parent
 		mw.rcfilters.ui.ChangesLimitButtonWidget.parent.call( this, config );
+		// Mixin constructors
+		OO.ui.mixin.PendingElement.call( this, config );
 
 		this.controller = controller;
 		this.model = model;
@@ -35,6 +37,7 @@
 	/* Initialization */
 
 	OO.inheritClass( mw.rcfilters.ui.ChangesLimitButtonWidget, OO.ui.Widget );
+	OO.mixinClass( mw.rcfilters.ui.ChangesLimitButtonWidget, OO.ui.mixin.PendingElement );
 
 	/**
 	 * Respond to model initialize event
@@ -71,10 +74,14 @@
 					$content: changesLimitPopupWidget.$element
 				}
 			} );
+			this.setPendingElement( changesLimitPopupWidget.$element );
 
 			// Events
 			this.limitGroupModel.connect( this, { update: 'onLimitGroupModelUpdate' } );
-			changesLimitPopupWidget.connect( this, { limit: 'onPopupLimit' } );
+			changesLimitPopupWidget.connect( this, {
+				limit: 'onPopupLimit',
+				groupResults: 'onGroupResults'
+			} );
 
 			this.$element.append( this.button.$element );
 		}
@@ -104,4 +111,9 @@
 		}
 	};
 
+	mw.rcfilters.ui.ChangesLimitButtonWidget.prototype.onGroupResults = function ( isSelected ) {
+		this.pushPending();
+		this.controller.toggleGroupByPage( isSelected )
+			.always( this.popPending.bind( this ) );
+	};
 }( mediaWiki ) );

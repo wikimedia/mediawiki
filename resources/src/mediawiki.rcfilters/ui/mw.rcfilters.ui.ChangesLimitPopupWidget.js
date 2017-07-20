@@ -23,13 +23,32 @@
 			}
 		);
 
+		this.groupByPageCheckbox = new OO.ui.CheckboxInputWidget( {
+			selected: mw.user.options.get( 'usenewrc' )
+		} );
+
 		// Events
 		this.valuePicker.connect( this, { choose: [ 'emit', 'limit' ] } );
+		this.groupByPageCheckbox.connect( this, { change: [ 'emit', 'groupResults' ] } );
 
 		// Initialize
 		this.$element
 			.addClass( 'mw-rcfilters-ui-changesLimitPopupWidget' )
-			.append( this.valuePicker.$element );
+			.append(
+				this.valuePicker.$element,
+				new OO.ui.FieldsetLayout( {
+					label: mw.msg( 'rcfilters-group-results-by-page-title' ),
+					items: [
+						new OO.ui.FieldLayout(
+							this.groupByPageCheckbox,
+							{
+								align: 'inline',
+								label: mw.msg( 'rcfilters-group-results-by-page' )
+							}
+						)
+					]
+				} ).$element
+			);
 	};
 
 	/* Initialization */
@@ -44,4 +63,13 @@
 	 *
 	 * A limit item was chosen
 	 */
+
+	/**
+	 * Respond to group by page checkbox change event
+	 *
+	 * @param {boolean} isSelected Checkbox is selected
+	 */
+	mw.rcfilters.ui.ChangesLimitPopupWidget.prototype.onGroupByPageCheckboxChange = function ( isSelected ) {
+		this.controller.toggleGroupByPage( isSelected );
+	};
 }( mediaWiki ) );

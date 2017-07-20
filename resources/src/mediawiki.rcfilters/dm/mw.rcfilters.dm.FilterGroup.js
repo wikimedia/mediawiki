@@ -52,6 +52,7 @@
 
 		this.conflicts = config.conflicts || {};
 		this.defaultParams = {};
+		this.defaultFilters = {};
 
 		this.aggregate( { update: 'filterItemUpdate' } );
 		this.connect( this, { filterItemUpdate: 'onFilterItemUpdate' } );
@@ -89,6 +90,7 @@
 			var subsetNames = [],
 				filterItem = new mw.rcfilters.dm.FilterItem( filter.name, model, {
 					group: model.getName(),
+					useDefaultAsBaseValue: filter.useDefaultAsBaseValue,
 					label: filter.label || filter.name,
 					description: filter.description || '',
 					labelPrefixKey: model.labelPrefixKey,
@@ -131,9 +133,12 @@
 			items.push( filterItem );
 
 			// Store default parameter state; in this case, default is defined per filter
-			if ( model.getType() === 'send_unselected_if_any' ) {
+			if (
+				model.getType() === 'send_unselected_if_any' ||
+				model.getType() === 'boolean'
+			) {
 				// Store the default parameter state
-				// For this group type, parameter values are direct
+				// For these group types, parameter values are direct
 				// We need to convert from a boolean to a string ('1' and '0')
 				model.defaultParams[ filter.name ] = String( Number( !!filter.default ) );
 			}
@@ -175,7 +180,19 @@
 			// selected, so we have to either select the default
 			// or select the first option
 			this.selectItemByParamName( defaultParam );
+		} else if ( this.getType() === 'boolean' ) {
+			// Boolean groups mean the parameter is directly related
+			// to the on/off state of the filter. Apply defaults directly
+			$.each( this.defaultParams, function ( paramName, paramValue ) {
+				var filter = model.getItemByParamName( paramName );
+				if ( filter ) {
+					filter.toggleSelected( !!Number( paramValue ) );
+				}
+			} );
 		}
+
+		// Store default filter state
+		this.defaultFilters = this.getFilterRepresentation( this.getDefaultParams() );
 	};
 
 	/**
@@ -251,6 +268,15 @@
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.getDefaultParams = function () {
 		return this.defaultParams;
+	};
+
+	/**
+	 * Get the default filter state of this group
+	 *
+	 * @return {Object} Default filter state
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.getDefaultFilters = function () {
+		return this.defaultFilters;
 	};
 
 	/**
@@ -448,6 +474,7 @@
 		var values,
 			areAnySelected = false,
 			buildFromCurrentState = !filterRepresentation,
+			defaultFilters = this.getDefaultFilters(),
 			result = {},
 			model = this,
 			filterParamNames = {},
@@ -478,10 +505,18 @@
 				// so we are building one based on current state
 				filterRepresentation[ item.getName() ] = item.isSelected();
 			} else if ( !filterRepresentation[ item.getName() ] ) {
-				// We are given a filter representation, but we have to make
-				// sure that we fill in the missing filters if there are any
-				// we will assume they are all falsey
-				filterRepresentation[ item.getName() ] = false;
+				// We are given a filter representation, but it's missing this specific
+				// filter. We have to make sure that we fill in the missing filters with
+				// their values
+
+				// If this item's base is the default
+				if ( item.isUseDefaultAsBaseValue() ) {
+					// Defaults are per param
+					filterRepresentation[ item.getName() ] = !!defaultFilters[ item.getName() ];
+				} else {
+					// Assume any other missing filters are falsy
+					filterRepresentation[ item.getName() ] = false;
+				}
 			}
 
 			if ( filterRepresentation[ item.getName() ] ) {
@@ -490,17 +525,24 @@
 		} );
 
 		// Build result
-		if ( this.getType() === 'send_unselected_if_any' ) {
-			// First, check if any of the items are selected at all.
-			// If none is selected, we're treating it as if they are
-			// all false
-
+		if (
+			this.getType() === 'send_unselected_if_any' ||
+			this.getType() === 'boolean'
+		) {
 			// Go over the items and define the correct values
 			$.each( filterRepresentation, function ( name, value ) {
-				result[ filterParamNames[ name ] ] = areAnySelected ?
-					// We must store all parameter values as strings '0' or '1'
-					String( Number( !value ) ) :
-					'0';
+				if ( model.getType() === 'send_unselected_if_any' ) {
+					// First, check if any of the items are selected at all.
+					// If none is selected, we're treating it as if they are
+					// all false
+					result[ filterParamNames[ name ] ] = areAnySelected ?
+						// We must store all parameter values as strings '0' or '1'
+						String( Number( !value ) ) :
+						'0';
+				} else if ( model.getType() === 'boolean' ) {
+					// Representation is direct 'on' or 'off' based on the filters
+					result[ filterParamNames[ name ] ] = String( Number( !!value ) );
+				}
 			} );
 		} else if ( this.getType() === 'string_options' ) {
 			values = [];
@@ -527,18 +569,22 @@
 	 *
 	 * @param {Object|string} [paramRepresentation] An object defining a parameter
 	 *  state to translate the filter state from. If not given, an object
-	 *  representing all filters as falsey is returned; same as if the parameter
+	 *  representing all filters as their base state is returned; same as if the parameter
 	 *  given were an empty object, or had some of the filters missing.
 	 * @return {Object} Filter representation
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation ) {
-		var areAnySelected, paramValues, defaultValue, item,
+		var areAnySelected, paramValues, defaultValue, item, currentValue,
 			oneWasSelected = false,
+			defaultFilters = this.getDefaultFilters(),
 			model = this,
 			paramToFilterMap = {},
 			result = {};
 
-		if ( this.getType() === 'send_unselected_if_any' ) {
+		if (
+			this.getType() === 'send_unselected_if_any' ||
+			this.getType() === 'boolean'
+		) {
 			paramRepresentation = paramRepresentation || {};
 			// Expand param representation to include all filters in the group
 			this.getItems().forEach( function ( filterItem ) {
@@ -555,22 +601,30 @@
 			$.each( paramRepresentation, function ( paramName, paramValue ) {
 				var filterItem = paramToFilterMap[ paramName ];
 
-				result[ filterItem.getName() ] = areAnySelected ?
-					// Flip the definition between the parameter
-					// state and the filter state
-					// This is what the 'toggleSelected' value of the filter is
-					!Number( paramValue ) :
-					// Otherwise, there are no selected items in the
-					// group, which means the state is false
-					false;
+				if ( model.getType() === 'send_unselected_if_any' ) {
+					result[ filterItem.getName() ] = areAnySelected ?
+						// Flip the definition between the parameter
+						// state and the filter state
+						// This is what the 'toggleSelected' value of the filter is
+						!Number( paramValue ) :
+						// Otherwise, there are no selected items in the
+						// group, which means the state is false
+						false;
+				} else if ( model.getType() === 'boolean' ) {
+					// This group is similar to 'send_unselected_if_any' except the
+					// state of the filter is directly related to the state of the
+					// parameter
+					result[ filterItem.getName() ] = !!Number( paramValue );
+				}
 			} );
 		} else if ( this.getType() === 'string_options' ) {
-			paramRepresentation = paramRepresentation || '';
+			paramRepresentation = paramRepresentation || {};
+			currentValue = paramRepresentation[ this.getName() ] || '';
 
 			// Normalize the given parameter values
 			paramValues = mw.rcfilters.utils.normalizeParamOptions(
 				// Given
-				paramRepresentation.split(
+				currentValue.split(
 					this.getSeparator()
 				),
 				// Allowed values
@@ -603,7 +657,11 @@
 		// Go over result and make sure all filters are represented.
 		// If any filters are missing, they will get a falsey value
 		this.getItems().forEach( function ( filterItem ) {
-			result[ filterItem.getName() ] = !!result[ filterItem.getName() ];
+			if ( result[ filterItem.getName() ] === undefined && filterItem.isUseDefaultAsBaseValue() ) {
+				result[ filterItem.getName() ] = !!defaultFilters[ filterItem.getName() ];
+			} else {
+				result[ filterItem.getName() ] = !!result[ filterItem.getName() ];
+			}
 			oneWasSelected = oneWasSelected || !!result[ filterItem.getName() ];
 		} );
 

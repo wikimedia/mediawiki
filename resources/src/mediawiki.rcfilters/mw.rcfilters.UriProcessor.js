@@ -239,6 +239,7 @@
 				{} :
 				this.filtersModel.getDefaultParams();
 
+debugger;
 		// Go over the model and get all hidden parameters' defaults
 		// These defaults should be applied regardless of the urlversion
 		// but be overridden by the URL params if they exist
@@ -247,7 +248,7 @@
 				$.extend( true, hiddenParamDefaults, groupModel.getDefaultParams() );
 			}
 		} );
-
+debugger;
 		return this.minimizeQuery(
 			$.extend( true, {}, hiddenParamDefaults, base, uriQuery, { urlversion: '2' } )
 		);
@@ -271,9 +272,9 @@
 	 * @private
 	 */
 	mw.rcfilters.UriProcessor.prototype._buildEmptyParameterState = function () {
+debugger;
 		var emptyParams = this.filtersModel.getParametersFromFilters( {} ),
 			emptyHighlights = this.filtersModel.getHighlightParameters();
-
 		this.emptyParameterState = $.extend(
 			true,
 			{},
