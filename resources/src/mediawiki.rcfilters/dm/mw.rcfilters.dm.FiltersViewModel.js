@@ -702,7 +702,7 @@
 		// Check if there are either any selected items or any items
 		// that have highlight enabled
 		return !this.getItems().some( function ( filterItem ) {
-			return filterItem.isSelected() || filterItem.isHighlighted();
+			return !filterItem.getGroupModel().isHidden() && ( filterItem.isSelected() || filterItem.isHighlighted() );
 		} );
 	};
 
