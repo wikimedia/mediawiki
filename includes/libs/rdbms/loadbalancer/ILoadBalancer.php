@@ -233,12 +233,13 @@ interface ILoadBalancer {
 
 	/**
 	 * Open a connection to the server given by the specified index
-	 * Index must be an actual index into the array.
-	 * If the server is already open, returns it.
+	 *
+	 * The index must be an actual index into the array. If a connection to the server is
+	 * already open and not considered an "in use" foreign connection, this simply returns it.
 	 *
 	 * @note If disable() was called on this LoadBalancer, this method will throw a DBAccessError.
 	 *
-	 * @param int $i Server index or DB_MASTER/DB_REPLICA
+	 * @param int $i Server index (does not support DB_MASTER/DB_REPLICA)
 	 * @param string|bool $domain Domain ID, or false for the current domain
 	 * @return Database|bool Returns false on errors
 	 * @throws DBAccessError
