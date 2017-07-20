@@ -25,6 +25,26 @@
 	page-break-inside: avoid;
 	-webkit-column-break-inside: avoid;
 }
+
+/*-- Max width --*/
+/*.mw-special-Allpages .oo-ui-fieldLayout-header {
+	max-width: 15em;
+}*/
+
+/*-- Table cell --*/
+/*.mw-special-Allpages .oo-ui-fieldLayout-group {
+	display: table;
+}
+
+.mw-special-Allpages .oo-ui-fieldLayout {
+	display: table-row;
+}
+
+.mw-special-Allpages .oo-ui-fieldLayout-header,
+.mw-special-Allpages .oo-ui-fieldLayout-field {
+	display: table-cell;
+}*/
+
 .allpagesredirect {
 	font-style: italic;
 }
