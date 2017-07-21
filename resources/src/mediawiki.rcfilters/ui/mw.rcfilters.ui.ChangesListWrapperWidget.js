@@ -125,7 +125,9 @@
 			this.$element.append( $message );
 		} else {
 			this.$changesListContent = $changesListContent;
-			this.$element.empty().append( this.$changesListContent );
+			if ( !isInitialDOM ) {
+				this.$element.empty().append( this.$changesListContent );
+			}
 			// Set up highlight containers
 			this.setupHighlightContainers( this.$element );
 
