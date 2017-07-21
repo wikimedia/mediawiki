@@ -44,8 +44,6 @@ class SpecialAllPages extends IncludableSpecialPage {
 	protected $nsfromMsg = 'allpagesfrom';
 
 	/**
-	 * Constructor
-	 *
 	 * @param string $name Name of the special page, as seen in links and URLs (default: 'Allpages')
 	 */
 	function __construct( $name = 'Allpages' ) {

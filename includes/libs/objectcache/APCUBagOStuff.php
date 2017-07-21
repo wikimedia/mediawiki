@@ -28,8 +28,6 @@
  */
 class APCUBagOStuff extends APCBagOStuff {
 	/**
-	 * Constructor
-	 *
 	 * Available parameters are:
 	 *   - nativeSerialize:     If true, pass objects to apcu_store(), and trust it
 	 *                          to serialize them correctly. If false, serialize

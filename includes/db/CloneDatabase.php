@@ -46,8 +46,6 @@ class CloneDatabase {
 	private $db;
 
 	/**
-	 * Constructor
-	 *
 	 * @param IMaintainableDatabase $db A database subclass
 	 * @param array $tablesToClone An array of tables to clone, unprefixed
 	 * @param string $newTablePrefix Prefix to assign to the tables

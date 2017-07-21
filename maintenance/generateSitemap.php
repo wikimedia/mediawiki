@@ -140,9 +140,6 @@ class GenerateSitemap extends Maintenance {
 	 */
 	private $identifier;
 
-	/**
-	 * Constructor
-	 */
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Creates a sitemap for the site' );

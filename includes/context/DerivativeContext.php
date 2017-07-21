@@ -75,7 +75,6 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	private $timing;
 
 	/**
-	 * Constructor
 	 * @param IContextSource $context Context to inherit from
 	 */
 	public function __construct( IContextSource $context ) {

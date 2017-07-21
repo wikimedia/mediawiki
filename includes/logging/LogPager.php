@@ -49,8 +49,6 @@ class LogPager extends ReverseChronologicalPager {
 	public $mLogEventsList;
 
 	/**
-	 * Constructor
-	 *
 	 * @param LogEventsList $list
 	 * @param string|array $types Log types to show
 	 * @param string $performer The user who made the log entries

@@ -33,7 +33,6 @@ use MediaWiki\MediaWikiServices;
  */
 class SpecialUpload extends SpecialPage {
 	/**
-	 * Constructor : initialise object
 	 * Get data POSTed through the form and assign them to the object
 	 * @param WebRequest $request Data posted.
 	 */

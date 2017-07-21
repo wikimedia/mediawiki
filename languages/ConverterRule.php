@@ -38,8 +38,6 @@ class ConverterRule {
 	public $mUnidtable = [];// array of the translation in each variant
 
 	/**
-	 * Constructor
-	 *
 	 * @param string $text The text between -{ and }-
 	 * @param LanguageConverter $converter
 	 */

@@ -559,8 +559,6 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * Constructor
-	 *
 	 * @param object|array $row Either a database row or an array
 	 * @throws MWException
 	 * @access private

@@ -927,7 +927,6 @@ class ParserOptions {
 	}
 
 	/**
-	 * Constructor
 	 * @warning For interaction with the parser cache, use
 	 *  WikiPage::makeParserOptions(), ContentHandler::makeParserOptions(), or
 	 *  ParserOptions::newCanonical() instead.

@@ -296,7 +296,6 @@ class SiteStatsInit {
 	private $mUsers = null, $mFiles = null;
 
 	/**
-	 * Constructor
 	 * @param bool|IDatabase $database
 	 * - boolean: Whether to use the master DB
 	 * - IDatabase: Database connection to use

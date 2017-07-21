@@ -96,8 +96,6 @@ class Exif {
 	private $byteOrder;
 
 	/**
-	 * Constructor
-	 *
 	 * @param string $file Filename.
 	 * @param string $byteOrder Type of byte ordering either 'BE' (Big Endian)
 	 *   or 'LE' (Little Endian). Default ''.
