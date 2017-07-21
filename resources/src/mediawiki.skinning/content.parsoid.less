@@ -80,31 +80,14 @@ figure[typeof*='mw:Audio'] {
 	&.mw-halign-center {
 		margin: 0 auto 0.5em auto;
 		display: table;
+		border-collapse: collapse;
 		clear: none;
 		float: none;
 	}
 
+	/* Hide the caption for frameless and plain floated images */
 	> figcaption {
-		display: table-caption;
-		caption-side: bottom;
-		/* In mw-core the font-size is duplicated, 94% in thumbiner
-		 * and again 94% in thumbcaption. 88.4% for font size of the
-		 * caption results in the same behavior. */
-		font-size: 88.4%;
-		line-height: 1.4em;
-		text-align: left;
-
-		border: 1px solid #c8ccd1;
-		border-top: 0;
-
-		/* taken from .thumbcaption, plus .thumbinner */
-		padding: 0 6px 6px 6px;
-		background-color: #f8f9fa;
-
-		table {
-			/* reset caption side for tables inside figcaptions */
-			caption-side: top;
-		}
+		display: none;
 	}
 }
 
@@ -115,12 +98,14 @@ figure[typeof~='mw:Image/Frame'],
 figure[typeof~='mw:Video/Frame'],
 figure[typeof~='mw:Audio/Frame'] {
 	display: table;
-	overflow: auto;
 	text-align: center;
 	border: 1px solid #c8ccd1;
-	border-bottom: 0; // No border to caption
-	border-collapse: collapse;
+	border-collapse: separate;
+	&.mw-halign-center { border-collapse: separate; }  // Avoid !important
+	border-spacing: 3px;
 	background-color: #f8f9fa;
+	width: 1px;  // From https://stackoverflow.com/a/6536025
+
 	// Default to right alignment. This is needed since Parsoid only specifies the
 	// alignment class when the alignment is explicitly set.
 	margin: 0.5em 0 1.3em 1.4em;
@@ -131,9 +116,22 @@ figure[typeof~='mw:Audio/Frame'] {
 		> img,
 		> video {
 			border: 1px solid #c8ccd1;
-			margin: 3px;
 			background: #fff;
 		}
+	}
+
+	> figcaption {
+		display: block;
+
+		/* In mw-core the font-size is duplicated, 94% in thumbiner
+		 * and again 94% in thumbcaption. 88.4% for font size of the
+		 * caption results in the same behavior. */
+		font-size: 88.4%;
+		line-height: 1.4em;
+		text-align: left;
+
+		/* taken from .thumbcaption, plus .thumbinner */
+		padding: 3px;
 	}
 }
 
@@ -142,17 +140,5 @@ figure[typeof~='mw:Audio/Frame'] {
 	> img,
 	> video {
 		border: 1px solid #eaecf0;
-	}
-}
-
-/* Hide the caption for frameless and plain floated images */
-figure[typeof~='mw:Image/Frameless'],
-figure[typeof~='mw:Video/Frameless'],
-figure[typeof~='mw:Audio/Frameless'],
-figure[typeof~='mw:Image'],
-figure[typeof~='mw:Video'],
-figure[typeof~='mw:Audio'] {
-	> figcaption {
-		display: none;
 	}
 }
