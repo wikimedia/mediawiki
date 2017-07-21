@@ -186,7 +186,8 @@
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.onFilterItemUpdate = function ( item ) {
 		// Update state
-		var active = this.areAnySelected();
+		var changed = false,
+			active = this.areAnySelected();
 
 		if (
 			item.isSelected() &&
@@ -197,7 +198,26 @@
 			this.currSelected.toggleSelected( false );
 		}
 
+		// For 'single_option' groups, check if we just unselected all
+		// items. This should never be the result. If we did unselect
+		// all (like resetting all filters to false) then this group
+		// must choose its default item or the first item in the group
 		if (
+			this.getType() === 'single_option' &&
+			!this.getItems().some( function ( filterItem ) {
+				return filterItem.isSelected();
+			} )
+		) {
+			// Single option means there must be a single option
+			// selected, so we have to either select the default
+			// or select the first option
+			this.currSelected = this.getItemByParamName( this.defaultParams[ this.getName() ] );
+			this.currSelected.toggleSelected( true );
+			changed = true;
+		}
+
+		if (
+			changed ||
 			this.active !== active ||
 			this.currSelected !== item
 		) {
