@@ -40,8 +40,6 @@ class NumericUppercaseCollation extends UppercaseCollation {
 	private $digitTransformLang;
 
 	/**
-	 * Constructor
-	 *
 	 * @param $lang Language How to convert digits.
 	 *  For example, if given language "my" than ၇ is treated like 7.
 	 *

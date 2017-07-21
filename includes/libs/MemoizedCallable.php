@@ -46,8 +46,6 @@ class MemoizedCallable {
 	private $callableName;
 
 	/**
-	 * Constructor.
-	 *
 	 * @throws InvalidArgumentException if $callable is not a callable.
 	 * @param callable $callable Function or method to memoize.
 	 * @param int $ttl TTL in seconds. Defaults to 3600 (1hr). Capped at 86400 (24h).

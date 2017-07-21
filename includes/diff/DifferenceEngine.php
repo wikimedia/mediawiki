@@ -104,7 +104,6 @@ class DifferenceEngine extends ContextSource {
 	/**#@-*/
 
 	/**
-	 * Constructor
 	 * @param IContextSource $context Context to use, anything else will be ignored
 	 * @param int $old Old ID we want to show and diff with.
 	 * @param string|int $new Either revision ID or 'prev' or 'next'. Default: 0.

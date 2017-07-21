@@ -42,8 +42,6 @@ class APCBagOStuff extends BagOStuff {
 	const KEY_SUFFIX = ':2';
 
 	/**
-	 * Constructor
-	 *
 	 * Available parameters are:
 	 *   - nativeSerialize:     If true, pass objects to apc_store(), and trust it
 	 *                          to serialize them correctly. If false, serialize

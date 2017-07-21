@@ -40,8 +40,6 @@ class DjVuImage {
 	const DJVUTXT_MEMORY_LIMIT = 300000;
 
 	/**
-	 * Constructor
-	 *
 	 * @param string $filename The DjVu file name.
 	 */
 	function __construct( $filename ) {

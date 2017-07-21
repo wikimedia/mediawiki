@@ -102,8 +102,6 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	private $db;
 
 	/**
-	 * Constructor
-	 *
 	 * @param Title $title Title of the page we're updating
 	 * @param ParserOutput $parserOutput Output from a full parse of this page
 	 * @param bool $recursive Queue jobs for recursive updates?

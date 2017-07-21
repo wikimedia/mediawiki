@@ -437,8 +437,6 @@ class ManualLogEntry extends LogEntryBase {
 	protected $legacy = false;
 
 	/**
-	 * Constructor.
-	 *
 	 * @since 1.19
 	 * @param string $type
 	 * @param string $subtype

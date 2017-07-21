@@ -81,8 +81,6 @@ class RemexCompatMunger implements TreeHandler {
 	];
 
 	/**
-	 * Constructor
-	 *
 	 * @param Serializer $serializer
 	 */
 	public function __construct( Serializer $serializer ) {

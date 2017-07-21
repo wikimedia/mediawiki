@@ -29,8 +29,6 @@
 class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 
 	/**
-	 * Constructor
-	 *
 	 * Available parameters are:
 	 *   - servers:             The list of IP:port combinations holding the memcached servers.
 	 *   - persistent:          Whether to use a persistent connection

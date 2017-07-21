@@ -46,9 +46,6 @@ class SpecialImport extends SpecialPage {
 	private $pageLinkDepth;
 	private $importSources;
 
-	/**
-	 * Constructor
-	 */
 	public function __construct() {
 		parent::__construct( 'Import', 'import' );
 	}

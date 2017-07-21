@@ -122,8 +122,6 @@ class Site implements Serializable {
 	protected $internalId = null;
 
 	/**
-	 * Constructor.
-	 *
 	 * @since 1.21
 	 *
 	 * @param string $type

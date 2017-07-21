@@ -29,8 +29,6 @@ use Wikimedia\Rdbms\IDatabase;
 class UserRightsProxy {
 
 	/**
-	 * Constructor.
-	 *
 	 * @see newFromId()
 	 * @see newFromName()
 	 * @param IDatabase $db Db connection

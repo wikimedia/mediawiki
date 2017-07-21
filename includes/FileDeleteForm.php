@@ -47,8 +47,6 @@ class FileDeleteForm {
 	private $oldimage = '';
 
 	/**
-	 * Constructor
-	 *
 	 * @param File $file File object we're deleting
 	 */
 	public function __construct( $file ) {

@@ -31,8 +31,6 @@ class ChangesFeed {
 	public $format, $type, $titleMsg, $descMsg;
 
 	/**
-	 * Constructor
-	 *
 	 * @param string $format Feed's format (either 'rss' or 'atom')
 	 * @param string $type Type of feed (for cache keys)
 	 */

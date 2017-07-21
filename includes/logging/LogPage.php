@@ -72,8 +72,6 @@ class LogPage {
 	private $target;
 
 	/**
-	 * Constructor
-	 *
 	 * @param string $type One of '', 'block', 'protect', 'rights', 'delete',
 	 *   'upload', 'move'
 	 * @param bool $rc Whether to update recent changes as well as the logging table
