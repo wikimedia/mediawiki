@@ -274,11 +274,13 @@ table.mw_metadata {
 	margin: 1em 0;
 	border: 1pt solid #aaa;
 	border-collapse: collapse;
+	font-size: 10pt;
 }
 
 table.wikitable > caption,
 .mw_metadata caption {
-	font-weight: bold;
+	padding: 5px;
+	font-size: 13px;
 }
 
 table.wikitable > tr > th,
@@ -287,15 +289,19 @@ table.wikitable > * > tr > th,
 table.wikitable > * > tr > td,
 .mw_metadata th,
 .mw_metadata td {
-	border: 1pt solid #aaa;
-	padding: 0.2em;
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	padding: 0.4em 0.6em;
 }
 
+table.wikitable th,
+table.wikitable tr,
+table.wikitable td {
+	/* Important is required to override any inline styles provided by editors */
+	background-color: #fff !important;
+}
 table.wikitable > tr > th,
 table.wikitable > * > tr > th,
 .mw_metadata th {
-	background: #fff;
-	font-weight: bold;
 	text-align: center;
 }
 
