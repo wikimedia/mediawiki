@@ -1607,7 +1607,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$meta = [
 			'bot' => ( $flags & EDIT_FORCE_BOT ),
 			'minor' => ( $flags & EDIT_MINOR ) && $user->isAllowed( 'minoredit' ),
-			'serialized' => $editInfo->pst,
+			'serialized' => $pstContent->serialize( $serialFormat ),
 			'serialFormat' => $serialFormat,
 			'baseRevId' => $baseRevId,
 			'oldRevision' => $old_revision,
