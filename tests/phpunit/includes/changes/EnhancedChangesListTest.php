@@ -99,7 +99,7 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 		$enhancedChangesList->recentChangesLine( $recentChange, false );
 
 		$html = $enhancedChangesList->endRecentChangesList();
-		$this->assertRegExp( '/data-mw-revid="5" class="[^"]*mw-enhanced-rc[^"]*"/', $html );
+		$this->assertRegExp( '/data-mw-revid="5" data-mw-ts="20131103092153" class="[^"]*mw-enhanced-rc[^"]*"/', $html );
 
 		$recentChange2 = $this->getEditChange( '20131103092253' );
 		$enhancedChangesList->recentChangesLine( $recentChange2, false );
@@ -133,7 +133,7 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 	private function getEditChange( $timestamp ) {
 		$user = $this->getMutableTestUser()->getUser();
 		$recentChange = $this->testRecentChangesHelper->makeEditRecentChange(
-			$user, 'Cat', $timestamp, 5, 191, 190, 0, 0
+			$user, 'Cat', 0, 5, 191, $timestamp, 0, 0
 		);
 
 		return $recentChange;
