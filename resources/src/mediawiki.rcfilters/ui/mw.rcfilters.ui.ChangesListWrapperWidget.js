@@ -8,12 +8,14 @@
 	 * @constructor
 	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersViewModel View model
 	 * @param {mw.rcfilters.dm.ChangesListViewModel} changesListViewModel View model
+	 * @param {mw.rcfilters.Controller} controller
 	 * @param {jQuery} $changesListRoot Root element of the changes list to attach to
-	 * @param {Object} config Configuration object
+	 * @param {Object} [config] Configuration object
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget = function MwRcfiltersUiChangesListWrapperWidget(
 		filtersViewModel,
 		changesListViewModel,
+		controller,
 		$changesListRoot,
 		config
 	) {
@@ -28,6 +30,7 @@
 
 		this.filtersViewModel = filtersViewModel;
 		this.changesListViewModel = changesListViewModel;
+		this.controller = controller;
 
 		// Events
 		this.filtersViewModel.connect( this, {
@@ -36,7 +39,8 @@
 		} );
 		this.changesListViewModel.connect( this, {
 			invalidate: 'onModelInvalidate',
-			update: 'onModelUpdate'
+			update: 'onModelUpdate',
+			newChangesExist: 'onNewChangesExist'
 		} );
 
 		this.$element
@@ -46,6 +50,8 @@
 
 		// Set up highlight containers
 		this.setupHighlightContainers( this.$element );
+
+		this.setupNewChangesButtonContainer( this.$element );
 	};
 
 	/* Initialization */
@@ -89,16 +95,19 @@
 	 * @param {jQuery|string} $changesListContent The content of the updated changes list
 	 * @param {jQuery} $fieldset The content of the updated fieldset
 	 * @param {boolean} isInitialDOM Whether $changesListContent is the existing (already attached) DOM
+	 * @param {boolean} fromLiveUpdate These are new changes fetched via Live Update
 	 */
-	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onModelUpdate = function ( $changesListContent, $fieldset, isInitialDOM ) {
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onModelUpdate = function (
+		$changesListContent, $fieldset, isInitialDOM, fromLiveUpdate
+	) {
 		var conflictItem,
 			$message = $( '<div>' )
 				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results' ),
-			isEmpty = $changesListContent === 'NO_RESULTS';
+			isEmpty = $changesListContent === 'NO_RESULTS',
+			$indicator;
 
 		this.$element.toggleClass( 'mw-changeslist', !isEmpty );
 		if ( isEmpty ) {
-			this.$changesListContent = null;
 			this.$element.empty();
 
 			if ( this.filtersViewModel.hasConflict() ) {
@@ -124,10 +133,29 @@
 
 			this.$element.append( $message );
 		} else {
-			this.$changesListContent = $changesListContent;
 			if ( !isInitialDOM ) {
-				this.$element.empty().append( this.$changesListContent );
+				this.$element.find( '.mw-rcfilters-ui-changesListWrapperWidget-previousChangesIndicator' ).detach();
+				this.$element.find( '.mw-changeslist-legend' ).detach();
+
+				if ( fromLiveUpdate ) {
+					$indicator = $( '<div>' )
+						.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-previousChangesIndicator' )
+						.text( mw.message( 'rcfilters-previous-changes-label' ).text() );
+
+					$indicator.on( 'click', function () {
+						$indicator.detach();
+					} );
+
+					this.$element.prepend( $indicator );
+				} else {
+					this.$element.empty();
+				}
+
+				this.$element.prepend( $changesListContent );
+
+				// todo: prune old changes to keep only the amount specified by the "limit" parameter
 			}
+
 			// Set up highlight containers
 			this.setupHighlightContainers( this.$element );
 
@@ -143,24 +171,59 @@
 	};
 
 	/**
+	 * Respond to changes list model newChangesExist
+	 *
+	 * @param {boolean} newChangesExist Whether new changes exist
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onNewChangesExist = function ( newChangesExist ) {
+		this.showNewChangesLink.toggle( newChangesExist );
+	};
+
+	/**
+	 * Respond to the user clicking the 'show new changes' button
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onShowNewChangesClick = function () {
+		this.controller.showNewChanges();
+	};
+
+	/**
+	 * Setup the container for the 'new changes' button.
+	 *
+	 * @param {jQuery} $content
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.setupNewChangesButtonContainer = function ( $content ) {
+		this.showNewChangesLink = new OO.ui.ButtonWidget( {
+			framed: false,
+			label: mw.message( 'rcfilters-show-new-changes' ).text(),
+			flags: [ 'progressive' ]
+		} );
+		this.showNewChangesLink.connect( this, { click: 'onShowNewChangesClick' } );
+		this.showNewChangesLink.toggle( false );
+
+		$content.before(
+			$( '<div>' )
+				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-newChanges' )
+				.append( this.showNewChangesLink.$element )
+		);
+	};
+
+	/**
 	 * Set up the highlight containers with all color circle indicators.
 	 *
 	 * @param {jQuery|string} $content The content of the updated changes list
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.setupHighlightContainers = function ( $content ) {
 		var uri = new mw.Uri(),
+			highlightClass = 'mw-rcfilters-ui-changesListWrapperWidget-highlights',
 			$highlights = $( '<div>' )
-				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlights' )
+				.addClass( highlightClass )
 				.append(
 					$( '<div>' )
 						.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlights-color-none' )
 						.prop( 'data-color', 'none' )
 				);
 
-		if ( $( '.mw-rcfilters-ui-changesListWrapperWidget-highlights' ).length ) {
-			// Already set up
-			return;
-		}
+		$( '.' + highlightClass ).detach();
 
 		mw.rcfilters.HighlightColors.forEach( function ( color ) {
 			$highlights.append(
