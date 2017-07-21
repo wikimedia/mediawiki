@@ -352,7 +352,7 @@ class SpecialSearch extends SpecialPage {
 			$out->addHTML( $dymWidget->render( $term, $textMatches ) );
 		}
 
-		$hasErrors = $textStatus && $textStatus->getErrors();
+		$hasErrors = $textStatus && $textStatus->getErrors() !== [];
 		$hasOtherResults = $textMatches &&
 			$textMatches->hasInterwikiResults( SearchResultSet::INLINE_RESULTS );
 
