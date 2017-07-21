@@ -747,20 +747,22 @@ class ChangesList extends ContextSource {
 	 * @return string[] attribute name => value
 	 */
 	protected function getDataAttributes( RecentChange $rc ) {
+		$attrs = [];
+
 		$type = $rc->getAttribute( 'rc_source' );
 		switch ( $type ) {
 			case RecentChange::SRC_EDIT:
 			case RecentChange::SRC_NEW:
-				return [
-					'data-mw-revid' => $rc->mAttribs['rc_this_oldid'],
-				];
+				$attrs[ 'data-mw-revid' ] = $rc->mAttribs['rc_this_oldid'];
+				break;
 			case RecentChange::SRC_LOG:
-				return [
-					'data-mw-logid' => $rc->mAttribs['rc_logid'],
-					'data-mw-logaction' => $rc->mAttribs['rc_log_type'] . '/' . $rc->mAttribs['rc_log_action'],
-				];
-			default:
-				return [];
+				$attrs[ 'data-mw-logid' ] = $rc->mAttribs['rc_logid'];
+				$attrs[ 'data-mw-logaction' ] = $rc->mAttribs['rc_log_type'] . '/' . $rc->mAttribs['rc_log_action'];
+				break;
 		}
+
+		$attrs[ 'data-mw-ts' ] = $rc->getAttribute( 'rc_timestamp' );
+
+		return $attrs;
 	}
 }
