@@ -145,11 +145,22 @@
 			this.$element.find( '.mw-recentchanges-table' ).detach();
 			this.$element.find( 'hr' ).detach();
 		}
+
 		if ( !this.$element.find( '.rcshowhide' ).contents().length ) {
 			this.$element.find( '.rcshowhide' ).detach();
 			// If we're hiding rcshowhide, the '<br>'s are around it,
 			// there's no need for them either.
 			this.$element.find( 'br' ).detach();
+		}
+
+		this.$element.find( 'legend' ).detach();
+
+		this.$element.find(
+			'.rclistfrom, .rcnotefrom, .rcoptions-listfromreset'
+		).detach();
+
+		if ( this.$element.text().trim() === '' ) {
+			this.$element.detach();
 		}
 	};
 }( mediaWiki ) );

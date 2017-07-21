@@ -1856,6 +1856,8 @@ return [
 			'rcfilters-savedqueries-cancel-label',
 			'rcfilters-restore-default-filters',
 			'rcfilters-clear-all-filters',
+			'rcfilters-show-new-changes',
+			'rcfilters-previous-changes-label',
 			'rcfilters-search-placeholder',
 			'rcfilters-invalid-filter',
 			'rcfilters-empty-filter',
