@@ -107,7 +107,7 @@ class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 class DatabaseMysqlBaseTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider provideDiapers
-	 * @covers DatabaseMysqlBase::addIdentifierQuotes
+	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::addIdentifierQuotes
 	 */
 	public function testAddIdentifierQuotes( $expected, $in ) {
 		$db = new FakeDatabaseMysqlBase();
@@ -189,7 +189,7 @@ class DatabaseMysqlBaseTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @covers DatabaseMysqlBase::listViews
+	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::listViews
 	 */
 	public function testListviews() {
 		$db = $this->getMockForViews();
@@ -210,7 +210,7 @@ class DatabaseMysqlBaseTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider provideComparePositions
-	 * @covers MySQLMasterPos
+	 * @covers Wikimedia\Rdbms\MySQLMasterPos
 	 */
 	public function testHasReached( MySQLMasterPos $lowerPos, MySQLMasterPos $higherPos, $match ) {
 		if ( $match ) {
@@ -283,7 +283,7 @@ class DatabaseMysqlBaseTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider provideChannelPositions
-	 * @covers MySQLMasterPos
+	 * @covers Wikimedia\Rdbms\MySQLMasterPos
 	 */
 	public function testChannelsMatch( MySQLMasterPos $pos1, MySQLMasterPos $pos2, $matches ) {
 		$this->assertEquals( $matches, $pos1->channelsMatch( $pos2 ) );
@@ -317,8 +317,8 @@ class DatabaseMysqlBaseTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider provideLagAmounts
-	 * @covers DatabaseMysqlBase::getLag
-	 * @covers DatabaseMysqlBase::getLagFromPtHeartbeat
+	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::getLag
+	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::getLagFromPtHeartbeat
 	 */
 	public function testPtHeartbeat( $lag ) {
 		$db = $this->getMockBuilder( 'DatabaseMysqli' )

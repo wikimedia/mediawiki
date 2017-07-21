@@ -3,10 +3,10 @@
 use Wikimedia\Rdbms\LikeMatch;
 
 /**
- * Test the abstract database layer
- * This is a non DBMS depending test.
+ * Test the parts of the Database abstract class that deal
+ * with creating SQL text.
  */
-class DatabaseSQLTest extends MediaWikiTestCase {
+class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 	/** @var DatabaseTestHelper */
 	private $database;
 
@@ -28,7 +28,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideSelect
-	 * @covers Database::select
+	 * @covers Wikimedia\Rdbms\Database::select
 	 */
 	public function testSelect( $sql, $sqlText ) {
 		$this->database->select(
@@ -134,7 +134,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideUpdate
-	 * @covers Database::update
+	 * @covers Wikimedia\Rdbms\Database::update
 	 */
 	public function testUpdate( $sql, $sqlText ) {
 		$this->database->update(
@@ -186,7 +186,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideDelete
-	 * @covers Database::delete
+	 * @covers Wikimedia\Rdbms\Database::delete
 	 */
 	public function testDelete( $sql, $sqlText ) {
 		$this->database->delete(
@@ -219,7 +219,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideUpsert
-	 * @covers Database::upsert
+	 * @covers Wikimedia\Rdbms\Database::upsert
 	 */
 	public function testUpsert( $sql, $sqlText ) {
 		$this->database->upsert(
@@ -255,7 +255,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideDeleteJoin
-	 * @covers Database::deleteJoin
+	 * @covers Wikimedia\Rdbms\Database::deleteJoin
 	 */
 	public function testDeleteJoin( $sql, $sqlText ) {
 		$this->database->deleteJoin(
@@ -302,7 +302,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideInsert
-	 * @covers Database::insert
+	 * @covers Wikimedia\Rdbms\Database::insert
 	 */
 	public function testInsert( $sql, $sqlText ) {
 		$this->database->insert(
@@ -355,7 +355,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideInsertSelect
-	 * @covers Database::insertSelect
+	 * @covers Wikimedia\Rdbms\Database::insertSelect
 	 */
 	public function testInsertSelect( $sql, $sqlTextNative, $sqlSelect, $sqlInsert ) {
 		$this->database->insertSelect(
@@ -466,7 +466,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideReplace
-	 * @covers Database::replace
+	 * @covers Wikimedia\Rdbms\Database::replace
 	 */
 	public function testReplace( $sql, $sqlText ) {
 		$this->database->replace(
@@ -581,7 +581,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideNativeReplace
-	 * @covers Database::nativeReplace
+	 * @covers Wikimedia\Rdbms\Database::nativeReplace
 	 */
 	public function testNativeReplace( $sql, $sqlText ) {
 		$this->database->nativeReplace(
@@ -608,7 +608,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideConditional
-	 * @covers Database::conditional
+	 * @covers Wikimedia\Rdbms\Database::conditional
 	 */
 	public function testConditional( $sql, $sqlText ) {
 		$this->assertEquals( trim( $this->database->conditional(
@@ -649,7 +649,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideBuildConcat
-	 * @covers Database::buildConcat
+	 * @covers Wikimedia\Rdbms\Database::buildConcat
 	 */
 	public function testBuildConcat( $stringList, $sqlText ) {
 		$this->assertEquals( trim( $this->database->buildConcat(
@@ -672,7 +672,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideBuildLike
-	 * @covers Database::buildLike
+	 * @covers Wikimedia\Rdbms\Database::buildLike
 	 */
 	public function testBuildLike( $array, $sqlText ) {
 		$this->assertEquals( trim( $this->database->buildLike(
@@ -715,7 +715,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideUnionQueries
-	 * @covers Database::unionQueries
+	 * @covers Wikimedia\Rdbms\Database::unionQueries
 	 */
 	public function testUnionQueries( $sql, $sqlText ) {
 		$this->assertEquals( trim( $this->database->unionQueries(
@@ -752,7 +752,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideUnionConditionPermutations
-	 * @covers Database::unionConditionPermutations
+	 * @covers Wikimedia\Rdbms\Database::unionConditionPermutations
 	 */
 	public function testUnionConditionPermutations( $params, $expect ) {
 		if ( isset( $params['unionSupportsOrderAndLimit'] ) ) {
@@ -920,7 +920,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers Database::commit
+	 * @covers Wikimedia\Rdbms\Database::commit
 	 */
 	public function testTransactionCommit() {
 		$this->database->begin( __METHOD__ );
@@ -929,7 +929,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers Database::rollback
+	 * @covers Wikimedia\Rdbms\Database::rollback
 	 */
 	public function testTransactionRollback() {
 		$this->database->begin( __METHOD__ );
@@ -938,7 +938,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers Database::dropTable
+	 * @covers Wikimedia\Rdbms\Database::dropTable
 	 */
 	public function testDropTable() {
 		$this->database->setExistingTables( [ 'table' ] );
@@ -947,7 +947,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers Database::dropTable
+	 * @covers Wikimedia\Rdbms\Database::dropTable
 	 */
 	public function testDropNonExistingTable() {
 		$this->assertFalse(
@@ -957,7 +957,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideMakeList
-	 * @covers Database::makeList
+	 * @covers Wikimedia\Rdbms\Database::makeList
 	 */
 	public function testMakeList( $list, $mode, $sqlText ) {
 		$this->assertEquals( trim( $this->database->makeList(
