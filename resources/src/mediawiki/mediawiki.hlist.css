@@ -2,31 +2,6 @@
  * Stylesheet for mediawiki.hlist module
  * @author [[User:Edokter]]
  */
-.hlist dl,
-.hlist ol,
-.hlist ul {
-	margin: 0;
-	padding: 0;
-}
-/* Display list items inline */
-.hlist dd,
-.hlist dt,
-.hlist li {
-	margin: 0;
-	display: inline;
-}
-/* Display nested lists inline */
-.hlist dl dl,
-.hlist dl ol,
-.hlist dl ul,
-.hlist ol dl,
-.hlist ol ol,
-.hlist ol ul,
-.hlist ul dl,
-.hlist ul ol,
-.hlist ul ul {
-	display: inline;
-}
 /* Generate interpuncts */
 .hlist dt:after {
 	content: ':';

@@ -1060,6 +1060,9 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.hlist' => [
+		'styles' => [
+			'resources/src/mediawiki/mediawiki.hlist-allskins.less',
+		],
 		'skinStyles' => [
 			'default' => 'resources/src/mediawiki/mediawiki.hlist.css',
 		],
