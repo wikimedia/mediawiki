@@ -165,7 +165,7 @@
 	"errorpagetitle": "Diar as wat skiaf gingen",
 	"returnto": "Turag tu sidj $1.",
 	"tagline": "Faan {{SITENAME}}",
-	"help": "Halep",
+	"help": "MediaWiki Halep",
 	"search": "Schük",
 	"search-ignored-headings": " #<!-- Detdiar rä ei feranre --> <pre>\n# Auerskraften, diar bi't schüken ei beaachtet wurd.\n# Jodiar feranrangen wurd seekert, wan det sidj mä det auerskraft indeksiaret wurden as.\n# Dü könst det sidjenindeksiarang föörtji, wan dü en nul-edit maagest.\n# Syntax:\n#   * Ales, wat bääft en dobelkrüs („#“) stäänt, as en komentaar.\n#   * Arke rä, wat ei leesag as, as di akeroot tiitel, diar ei beaachtet woort.\nFutnuuten\nFerwisangen\nLuke uk diar\n #</pre> <!-- Detdiar rä ei feranre -->",
 	"searchbutton": "Schük",

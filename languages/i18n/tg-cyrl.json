@@ -13,7 +13,8 @@
 			"아라",
 			"Macofe",
 			"AryanSogd",
-			"ToJack"
+			"ToJack",
+			"Vashgird"
 		]
 	},
 	"tog-underline": "Пайвандҳо хаткашида:",
@@ -1012,6 +1013,7 @@
 	"license": "Иҷозатнома:",
 	"license-header": "Иҷозатнома",
 	"nolicense": "Ҳеҷ яке интихоб нашудааст",
+	"licenses-edit": "Тағйири имконоти иҷозатнома",
 	"license-nopreview": "(Пешнамоиш вуҷуд надорад)",
 	"upload_source_url": "(як нишони интернетии мӯътабар ва оммавӣ)",
 	"upload_source_file": " (парвандае дар компютери шумо)",
