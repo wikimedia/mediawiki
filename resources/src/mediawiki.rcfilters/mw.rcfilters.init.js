@@ -15,13 +15,13 @@
 				$overlay = $( '<div>' )
 					.addClass( 'mw-rcfilters-ui-overlay' ),
 				filtersWidget = new mw.rcfilters.ui.FilterWrapperWidget(
-					controller, filtersModel, savedQueriesModel, { $overlay: $overlay } );
+					controller, filtersModel, savedQueriesModel, changesListModel, { $overlay: $overlay } );
 
 			// TODO: The changesListWrapperWidget should be able to initialize
 			// after the model is ready.
 			// eslint-disable-next-line no-new
 			new mw.rcfilters.ui.ChangesListWrapperWidget(
-				filtersModel, changesListModel, $( '.mw-changeslist, .mw-changeslist-empty' ) );
+				filtersModel, changesListModel, controller, $( '.mw-changeslist, .mw-changeslist-empty' ) );
 
 			controller.initialize(
 				mw.config.get( 'wgStructuredChangeFilters' ),
