@@ -526,6 +526,10 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 	 * @param array $expect
 	 */
 	public function testGetMessageFromException( $exception, $options, $expect ) {
+		if ( $exception instanceof UsageException ) {
+			$this->hideDeprecated( 'UsageException::getMessageArray' );
+		}
+
 		$result = new ApiResult( 8388608 );
 		$formatter = new ApiErrorFormatter( $result, Language::factory( 'en' ), 'html', false );
 
@@ -571,6 +575,12 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideGetMessageFromException() {
+		MediaWiki\suppressWarnings();
+		$usageException = new UsageException(
+			'<b>Something broke!</b>', 'ue-code', 0, [ 'xxx' => 'yyy', 'baz' => 23 ]
+		);
+		MediaWiki\restoreWarnings();
+
 		return [
 			'Normal exception' => [
 				new RuntimeException( '<b>Something broke!</b>' ),
@@ -591,7 +601,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 				]
 			],
 			'UsageException' => [
-				new UsageException( '<b>Something broke!</b>', 'ue-code', 0, [ 'xxx' => 'yyy', 'baz' => 23 ] ),
+				$usageException,
 				[],
 				[
 					'text' => '&#60;b&#62;Something broke!&#60;/b&#62;',
@@ -600,7 +610,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 				]
 			],
 			'UsageException, wrapped' => [
-				new UsageException( '<b>Something broke!</b>', 'ue-code', 0, [ 'xxx' => 'yyy', 'baz' => 23 ] ),
+				$usageException,
 				[ 'wrap' => 'parentheses', 'code' => 'some-code', 'data' => [ 'foo' => 'bar', 'baz' => 42 ] ],
 				[
 					'text' => '(&#60;b&#62;Something broke!&#60;/b&#62;)',
