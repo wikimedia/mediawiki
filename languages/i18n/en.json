@@ -1373,6 +1373,8 @@
 	"rcfilters-savedqueries-add-new-title": "Save current filter settings",
 	"rcfilters-restore-default-filters": "Restore default filters",
 	"rcfilters-clear-all-filters": "Clear all filters",
+	"rcfilters-show-new-changes": "Show new changes",
+	"rcfilters-previous-changes-label": "Previously viewed changes",
 	"rcfilters-search-placeholder": "Filter recent changes (browse or start typing)",
 	"rcfilters-invalid-filter": "Invalid filter",
 	"rcfilters-empty-filter": "No active filters. All contributions are shown.",
