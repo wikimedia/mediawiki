@@ -231,25 +231,25 @@ div.floatleft p {
  */
 div.thumb {
 	background-color: transparent;
-	border: 0;
 	width: auto;
-	margin-top: 0.5em;
-	margin-bottom: 0.8em;
+}
+
+div.thumb a {
+	border-bottom: 0;
 }
 
 div.thumbinner {
 	background-color: #fff;
-	border: 1pt solid #ccc;
-	padding: 3px;
-	font-size: 94%;
-	text-align: center;
+	border: 0;
+	border-radius: 2px;
+	padding: 5px;
+	font-size: 10pt;
+	color: #666;
+	text-align: left;
 	/* new block formatting context,
 	 * to clear background from floating content  */
 	overflow: hidden;
-}
-
-html .thumbimage {
-	border: 1pt solid #ccc;
+	min-width: 100px;
 }
 
 html .thumbcaption {
@@ -257,7 +257,6 @@ html .thumbcaption {
 	text-align: left;
 	line-height: 1.4;
 	padding: 3px;
-	font-size: 94%;
 }
 
 img.thumbborder {
