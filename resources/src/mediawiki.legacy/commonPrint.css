@@ -197,28 +197,49 @@ ul {
  * Floating divs (and thumbnails)
  */
 /* @noflip */
+table.floatright,
 div.floatright,
 div.tright {
 	float: right;
 	clear: right;
 	position: relative;
-	margin: 0.5em 0 0.8em 1.4em;
-}
-
-div.floatright p {
-	font-style: italic;
 }
 
 /* @noflip */
+table.floatleft,
 div.floatleft,
 div.tleft {
 	float: left;
 	clear: left;
 	position: relative;
-	margin: 0.5em 1.4em 0.8em 0;
 }
 
-div.floatleft p {
+/* @noflip */
+div.tleft {
+	margin: 0.5em 0 1.3em 1.4em;
+}
+
+/* @noflip */
+div.tright {
+	margin: 0.5em 0 1.3em 1.4em;
+}
+
+/* @noflip */
+table.floatright,
+div.floatright {
+	margin: 0 0 0.5em 0.5em;
+	border: 0;
+}
+
+/* @noflip */
+table.floatleft,
+div.floatleft {
+	margin: 0 0.5em 0.5em 0;
+	border: 0;
+}
+
+div.floatleft p,
+div.floatright p {
 	font-style: italic;
 }
 
