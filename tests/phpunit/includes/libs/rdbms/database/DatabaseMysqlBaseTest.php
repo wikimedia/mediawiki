@@ -1,6 +1,6 @@
 <?php
 /**
- * Holds tests for DatabaseMysqlBase MediaWiki class.
+ * Holds tests for DatabaseMysqlBase class.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -104,7 +104,7 @@ class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 	}
 }
 
-class DatabaseMysqlBaseTest extends MediaWikiTestCase {
+class DatabaseMysqlBaseTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider provideDiapers
 	 * @covers DatabaseMysqlBase::addIdentifierQuotes
@@ -120,7 +120,7 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 	 *
 	 * Named per T22281 convention.
 	 */
-	function provideDiapers() {
+	public static function provideDiapers() {
 		return [
 			// Format: expected, input
 			[ '``', '' ],
@@ -171,7 +171,7 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 		return json_decode( '"' . $str . '"' );
 	}
 
-	function getMockForViews() {
+	private function getMockForViews() {
 		$db = $this->getMockBuilder( 'DatabaseMysqli' )
 			->disableOriginalConstructor()
 			->setMethods( [ 'fetchRow', 'query' ] )
@@ -187,10 +187,11 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 
 		return $db;
 	}
+
 	/**
 	 * @covers DatabaseMysqlBase::listViews
 	 */
-	function testListviews() {
+	public function testListviews() {
 		$db = $this->getMockForViews();
 
 		$this->assertEquals( [ 'view1', 'view2', 'myview' ],
@@ -209,8 +210,9 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideComparePositions
+	 * @covers MySQLMasterPos
 	 */
-	function testHasReached( MySQLMasterPos $lowerPos, MySQLMasterPos $higherPos, $match ) {
+	public function testHasReached( MySQLMasterPos $lowerPos, MySQLMasterPos $higherPos, $match ) {
 		if ( $match ) {
 			$this->assertTrue( $lowerPos->channelsMatch( $higherPos ) );
 
@@ -226,7 +228,7 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 		}
 	}
 
-	function provideComparePositions() {
+	public static function provideComparePositions() {
 		return [
 			// Binlog style
 			[
@@ -281,13 +283,14 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideChannelPositions
+	 * @covers MySQLMasterPos
 	 */
-	function testChannelsMatch( MySQLMasterPos $pos1, MySQLMasterPos $pos2, $matches ) {
+	public function testChannelsMatch( MySQLMasterPos $pos1, MySQLMasterPos $pos2, $matches ) {
 		$this->assertEquals( $matches, $pos1->channelsMatch( $pos2 ) );
 		$this->assertEquals( $matches, $pos2->channelsMatch( $pos1 ) );
 	}
 
-	function provideChannelPositions() {
+	public static function provideChannelPositions() {
 		return [
 			[
 				new MySQLMasterPos( 'db1034-bin.000876', '44' ),
@@ -314,8 +317,10 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideLagAmounts
+	 * @covers DatabaseMysqlBase::getLag
+	 * @covers DatabaseMysqlBase::getLagFromPtHeartbeat
 	 */
-	function testPtHeartbeat( $lag ) {
+	public function testPtHeartbeat( $lag ) {
 		$db = $this->getMockBuilder( 'DatabaseMysqli' )
 			->disableOriginalConstructor()
 			->setMethods( [
@@ -351,7 +356,7 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 		$this->assertLessThan( $lag + .010, $lagEst, "Correct heatbeat lag" );
 	}
 
-	function provideLagAmounts() {
+	public static function provideLagAmounts() {
 		return [
 			[ 0 ],
 			[ 0.3 ],
