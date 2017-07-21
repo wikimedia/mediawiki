@@ -40,17 +40,22 @@
  * @since 1.25
  */
 class StatusValue {
+
 	/** @var bool */
 	protected $ok = true;
-	/** @var array */
+
+	/** @var array[] */
 	protected $errors = [];
 
 	/** @var mixed */
 	public $value;
-	/** @var array Map of (key => bool) to indicate success of each part of batch operations */
+
+	/** @var bool[] Map of (key => bool) to indicate success of each part of batch operations */
 	public $success = [];
+
 	/** @var int Counter for batch operations */
 	public $successCount = 0;
+
 	/** @var int Counter for batch operations */
 	public $failCount = 0;
 
@@ -138,7 +143,7 @@ class StatusValue {
 	 *
 	 * Each error is a (message:string or MessageSpecifier,params:array) map
 	 *
-	 * @return array
+	 * @return array[]
 	 */
 	public function getErrors() {
 		return $this->errors;
@@ -230,7 +235,7 @@ class StatusValue {
 	 *   - params: array list of parameters
 	 *
 	 * @param string $type
-	 * @return array
+	 * @return array[]
 	 */
 	public function getErrorsByType( $type ) {
 		$result = [];
