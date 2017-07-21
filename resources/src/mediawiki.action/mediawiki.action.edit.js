@@ -19,23 +19,18 @@
 	$( function () {
 		var editBox, scrollTop, $editForm;
 
-		if ( $( '#editform' ).hasClass( 'mw-editform-ooui' ) ) {
-			mw.loader.using( 'oojs-ui-core' ).then( function () {
-				var wpSummary = OO.ui.infuse( $( '#wpSummaryWidget' ) );
+		mw.loader.using( 'oojs-ui-core' ).then( function () {
+			var wpSummary = OO.ui.infuse( $( '#wpSummaryWidget' ) );
 
-				// Restore appropriate modifier keys for the accesskey in the 'title' attribute
-				// TODO: This should be an OOjs UI feature, or somehow happen automatically after infusing.
-				wpSummary.$input.updateTooltipAccessKeys();
+			// Restore appropriate modifier keys for the accesskey in the 'title' attribute
+			// TODO: This should be an OOjs UI feature, or somehow happen automatically after infusing.
+			wpSummary.$input.updateTooltipAccessKeys();
 
-				// Show a byte-counter to users with how many bytes are left for their edit summary.
-				// TODO: This looks a bit weird, as there is no unit in the UI, just numbers; showing
-				// 'bytes' confused users in testing, and showing 'chars' would be a lie. See T42035.
-				mw.widgets.visibleByteLimit( wpSummary, 255 );
-			} );
-		} else {
-			// Make sure edit summary does not exceed byte limit
-			$( '#wpSummary' ).byteLimit( 255 );
-		}
+			// Show a byte-counter to users with how many bytes are left for their edit summary.
+			// TODO: This looks a bit weird, as there is no unit in the UI, just numbers; showing
+			// 'bytes' confused users in testing, and showing 'chars' would be a lie. See T42035.
+			mw.widgets.visibleByteLimit( wpSummary, 255 );
+		} );
 
 		// Restore the edit box scroll state following a preview operation,
 		// and set up a form submission handler to remember this state.
