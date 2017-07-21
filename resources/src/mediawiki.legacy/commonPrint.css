@@ -233,19 +233,26 @@ div.thumb {
 	background-color: transparent;
 	border: 0;
 	width: auto;
-	margin-top: 0.5em;
-	margin-bottom: 0.8em;
+	margin: 0.5em auto;
+	text-align: center;
+}
+
+div.thumb a {
+	border-bottom: 0;
 }
 
 div.thumbinner {
 	background-color: #fff;
 	border: 1pt solid #ccc;
-	padding: 3px;
-	font-size: 94%;
-	text-align: center;
+	border-radius: 2px;
+	padding: 5px;
+	font-size: 12px;
+	color: #666;
+	text-align: left;
 	/* new block formatting context,
 	 * to clear background from floating content  */
 	overflow: hidden;
+	min-width: 100px;
 }
 
 html .thumbimage {
