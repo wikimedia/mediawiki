@@ -139,6 +139,32 @@ figure[typeof~='mw:Audio/Frame'] {
 	}
 }
 
+.mw-content-ltr figure[typeof*='mw:Image/Thumb'] > a:after,
+.mw-content-ltr figure[typeof*='mw:Video/Thumb'] > a:after,
+.mw-content-ltr figure[typeof*='mw:Audio/Thumb'] > a:after {
+	content: '';
+	width: 15px;
+	height: 11px;
+	float: right;
+	margin: 3px;
+	margin-bottom: 0;
+	background-image: url( images/magnify-clip-ltr.png );
+	background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-ltr.svg );
+}
+
+.mw-content-rtl figure[typeof*='mw:Image/Thumb'] > a:after,
+.mw-content-rtl figure[typeof*='mw:Video/Thumb'] > a:after,
+.mw-content-rtl figure[typeof*='mw:Audio/Thumb'] > a:after {
+	content: '';
+	width: 15px;
+	height: 11px;
+	float: left;
+	margin: 3px;
+	margin-bottom: 0;
+	background-image: url( images/magnify-clip-rtl.png );
+	background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-rtl.svg );
+}
+
 /* Same as img.thumbborder in content.css */
 .mw-image-border > *:first-child {
 	> img,
