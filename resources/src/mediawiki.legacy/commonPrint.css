@@ -266,19 +266,34 @@ img.thumbborder {
 
 /**
  * Table rendering
- * As on shared.css but with white background.
  */
 table.wikitable,
-table.mw_metadata {
-	background: #fff;
-	margin: 1em 0;
+table.wikitable > tr > th,
+table.wikitable > tr > td,
+table.wikitable > * > tr > th,
+table.wikitable > * > tr > td,
+.mw_metadata
+.mw_metadata th,
+.mw_metadata td {
+	/* Important is required to override any inline styles provided by editors */
+	background: #fff !important; /* stylelint-disable-line declaration-no-important */
+	/* We need to also set color in case editors applied a light text color */
+	color: #000 !important; /* stylelint-disable-line declaration-no-important */
 	border: 1pt solid #aaa;
+}
+
+/* Compare `table.wikitable` in shared.css */
+table.wikitable,
+.mw_metadata {
+	margin: 1em 0;
 	border-collapse: collapse;
+	font-size: 10pt;
 }
 
 table.wikitable > caption,
 .mw_metadata caption {
-	font-weight: bold;
+	padding: 5px;
+	font-size: 10pt;
 }
 
 table.wikitable > tr > th,
@@ -287,15 +302,12 @@ table.wikitable > * > tr > th,
 table.wikitable > * > tr > td,
 .mw_metadata th,
 .mw_metadata td {
-	border: 1pt solid #aaa;
-	padding: 0.2em;
+	padding: 0.4em 0.6em;
 }
 
 table.wikitable > tr > th,
 table.wikitable > * > tr > th,
 .mw_metadata th {
-	background: #fff;
-	font-weight: bold;
 	text-align: center;
 }
 
