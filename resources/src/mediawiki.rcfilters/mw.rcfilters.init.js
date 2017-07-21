@@ -39,6 +39,7 @@
 
 			// Set as ready
 			$( '.rcfilters-head' ).addClass( 'mw-rcfilters-ui-ready' );
+			$( '.rcfilters-spinner' ).detach();
 
 			$( 'a.mw-helplink' ).attr(
 				'href',
