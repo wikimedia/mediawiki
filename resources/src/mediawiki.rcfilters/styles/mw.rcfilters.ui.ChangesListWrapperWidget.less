@@ -1,6 +1,26 @@
 @import 'mw.rcfilters.mixins';
 
 .mw-rcfilters-ui-changesListWrapperWidget {
+
+	&-newChanges {
+		min-height: 34px;
+		margin: 10px 0;
+		text-align: center;
+	}
+
+	&-previousChangesIndicator {
+		margin: 10px 0;
+		color: #36c;
+		border-top: 2px solid #36c;
+		text-align: center;
+
+		&:hover {
+			color: #72777d;
+			border-top-color: #72777d;
+			cursor: pointer;
+		}
+	}
+
 	&-results {
 		width: 35em;
 		margin: 5em auto;
