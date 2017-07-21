@@ -28,8 +28,6 @@ li.gallerycaption {
 
 li.gallerybox div.thumb {
 	text-align: center;
-	border: 1px solid #c8ccd1;
-	background-color: #f8f9fa;
 	margin: 2px;
 }
 
@@ -179,4 +177,12 @@ ul.mw-gallery-slideshow li.gallerycarousel {
 
 .mw-gallery-slideshow-img-container a {
 	display: block;
+}
+
+@media screen {
+	/* Background and border colors are defined separately for print mode */
+	li.gallerybox div.thumb {
+		border: 1px solid #c8ccd1;
+		background-color: #f8f9fa;
+	}
 }

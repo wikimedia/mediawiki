@@ -23,14 +23,13 @@ li.gallerycaption {
 }
 
 li.gallerybox div.thumb {
-	text-align: center;
+	background-color: #fff;
 	border: 1px solid #ccc;
-	margin: 2px;
 }
 
 div.gallerytext {
 	overflow: hidden;
-	font-size: 94%;
+	font-size: 10pt;
 	padding: 2px 4px;
 	word-wrap: break-word;
 }
