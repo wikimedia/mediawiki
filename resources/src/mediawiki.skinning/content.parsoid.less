@@ -2,7 +2,7 @@
  * Style Parsoid HTML+RDFa output consistent with wikitext from PHP parser.
  */
 
-/*csslint regex-selectors:false */
+/* csslint regex-selectors:false */
 
 /*
  * Auto-numbered external links
@@ -135,6 +135,38 @@ figure[typeof~='mw:Audio/Frame'] {
 			border: 1px solid #c8ccd1;
 			margin: 3px;
 			background: #fff;
+		}
+	}
+}
+
+figure[typeof*='mw:Image/Thumb'],
+figure[typeof*='mw:Video/Thumb'],
+figure[typeof*='mw:Audio/Thumb'] {
+	> figcaption:before {
+		content: '';
+		width: 15px;
+		height: 11px;
+
+		.mw-content-ltr & {
+			/* @noflip */
+			margin-left: 3px;
+			/* @noflip */
+			float: right;
+			/* @noflip */
+			background-image: url( images/magnify-clip-ltr.png );
+			/* @noflip */
+			background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-ltr.svg );
+		}
+
+		.mw-content-rtl & {
+			/* @noflip */
+			margin-right: 3px;
+			/* @noflip */
+			float: left;
+			/* @noflip */
+			background-image: url( images/magnify-clip-rtl.png );
+			/* @noflip */
+			background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-rtl.svg );
 		}
 	}
 }
