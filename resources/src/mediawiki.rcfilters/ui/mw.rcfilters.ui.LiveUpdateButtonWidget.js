@@ -6,9 +6,10 @@
 	 *
 	 * @constructor
 	 * @param {mw.rcfilters.Controller} controller
-	 * @param {Object} config Configuration object
+	 * @param {mw.rcfilters.dm.ChangesListViewModel} changesListModel
+	 * @param {Object} [config] Configuration object
 	 */
-	mw.rcfilters.ui.LiveUpdateButtonWidget = function MwRcfiltersUiLiveUpdateButtonWidget( controller, config ) {
+	mw.rcfilters.ui.LiveUpdateButtonWidget = function MwRcfiltersUiLiveUpdateButtonWidget( controller, changesListModel, config ) {
 		config = config || {};
 
 		// Parent
@@ -18,9 +19,11 @@
 		}, config ) );
 
 		this.controller = controller;
+		this.model = changesListModel;
 
 		// Events
-		this.connect( this, { change: 'onChange' } );
+		this.connect( this, { click: 'onClick' } );
+		this.model.connect( this, { liveUpdateChange: 'onLiveUpdateChange' } );
 
 		this.$element.addClass( 'mw-rcfilters-ui-liveUpdateButtonWidget' );
 	};
@@ -32,11 +35,19 @@
 	/* Methods */
 
 	/**
-	 * Respond to the button being toggled.
-	 * @param {boolean} enable Whether the button is now pressed/enabled
+	 * Respond to the button being clicked
 	 */
-	mw.rcfilters.ui.LiveUpdateButtonWidget.prototype.onChange = function ( enable ) {
-		this.controller.toggleLiveUpdate( enable );
+	mw.rcfilters.ui.LiveUpdateButtonWidget.prototype.onClick = function () {
+		this.controller.toggleLiveUpdate();
+	};
+
+	/**
+	 * Respond to the 'live update' feature being turned on/off
+	 *
+	 * @param {boolean} enable Whether the 'live update' feature is now on/off
+	 */
+	mw.rcfilters.ui.LiveUpdateButtonWidget.prototype.onLiveUpdateChange = function ( enable ) {
+		this.setValue( enable );
 	};
 
 }( mediaWiki ) );
