@@ -135,6 +135,36 @@ figure[typeof~='mw:Audio/Frame'] {
 	}
 }
 
+figure[typeof*='mw:Image/Thumb'],
+figure[typeof*='mw:Video/Thumb'],
+figure[typeof*='mw:Audio/Thumb'] {
+	> a:after {
+		content: '';
+		width: 15px;
+		height: 11px;
+		margin: 3px;
+		margin-bottom: 0;
+
+		.mw-content-ltr & {
+			/* @noflip */
+			float: right;
+			/* @noflip */
+			background-image: url( images/magnify-clip-ltr.png );
+			/* @noflip */
+			background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-ltr.svg );
+		}
+
+		.mw-content-rtl & {
+			/* @noflip */
+			float: left;
+			/* @noflip */
+			background-image: url( images/magnify-clip-rtl.png );
+			/* @noflip */
+			background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-rtl.svg );
+		}
+	}
+}
+
 /* Same as img.thumbborder in content.css */
 .mw-image-border > *:first-child {
 	> img,
