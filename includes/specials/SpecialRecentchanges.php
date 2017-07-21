@@ -669,6 +669,15 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				[ 'class' => 'rcfilters-container' ]
 			);
 
+			$loadingContainer = Html::rawElement(
+				'div',
+				[ 'class' => 'rcfilters-spinner' ],
+				Html::element(
+					'div',
+					[ 'class' => 'rcfilters-spinner-bounce' ]
+				)
+			);
+
 			// Wrap both with rcfilters-head
 			$this->getOutput()->addHTML(
 				Html::rawElement(
@@ -677,6 +686,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 					$rcfilterContainer . $rcoptions
 				)
 			);
+
+			// Add spinner
+			$this->getOutput()->addHTML( $loadingContainer );
 		} else {
 			$this->getOutput()->addHTML( $rcoptions );
 		}
