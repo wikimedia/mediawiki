@@ -197,12 +197,24 @@ ul {
  * Floating divs (and thumbnails)
  */
 /* @noflip */
+table.floatright,
 div.floatright,
 div.tright {
 	float: right;
 	clear: right;
 	position: relative;
-	margin: 0.5em 0 0.8em 1.4em;
+}
+
+/* @noflip */
+div.tright {
+	margin: 0.5em 0 1.3em 1.4em;
+}
+
+/* @noflip */
+div.floatright,
+table.floatright {
+	margin: 0 0 0.5em 0.5em;
+	border: 0;
 }
 
 div.floatright p {
@@ -210,12 +222,13 @@ div.floatright p {
 }
 
 /* @noflip */
+table.floatleft,
 div.floatleft,
 div.tleft {
 	float: left;
 	clear: left;
 	position: relative;
-	margin: 0.5em 1.4em 0.8em 0;
+	margin: 0.5em 1.4em 1.3em 0;
 }
 
 div.floatleft p {
