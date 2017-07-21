@@ -307,9 +307,14 @@
 		}
 
 		if ( !$( '.mw-summary-preview' ).length ) {
-			$( '#wpSummary' ).after(
-				$( '<div>' ).addClass( 'mw-summary-preview' )
-			);
+			if ( oojsuieditform ) {
+				var summary = OO.ui.infuse( $( '#wpSummaryWidget' ) );
+				summary.setValue( 'asc' );
+			} else {
+				$( '#wpSummary' ).after(
+					$( '<div>' ).addClass( 'mw-summary-preview' )
+				);
+			}
 		}
 
 		if ( !document.getElementById( 'wikiDiff' ) && document.getElementById( 'wikiPreview' ) ) {
