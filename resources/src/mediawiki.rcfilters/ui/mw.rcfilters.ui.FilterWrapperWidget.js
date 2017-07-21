@@ -9,11 +9,14 @@
 	 * @param {mw.rcfilters.Controller} controller Controller
 	 * @param {mw.rcfilters.dm.FiltersViewModel} model View model
 	 * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
+	 * @param {mw.rcfilters.dm.ChangesListViewModel} changesListModel
 	 * @param {Object} [config] Configuration object
 	 * @cfg {Object} [filters] A definition of the filter groups in this list
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
 	 */
-	mw.rcfilters.ui.FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget( controller, model, savedQueriesModel, config ) {
+	mw.rcfilters.ui.FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget(
+		controller, model, savedQueriesModel, changesListModel, config
+	) {
 		var $bottom;
 		config = config || {};
 
@@ -35,7 +38,8 @@
 		);
 
 		this.liveUpdateButton = new mw.rcfilters.ui.LiveUpdateButtonWidget(
-			this.controller
+			this.controller,
+			changesListModel
 		);
 
 		this.numChangesWidget = new mw.rcfilters.ui.ChangesLimitButtonWidget(
