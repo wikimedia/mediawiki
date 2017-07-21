@@ -414,11 +414,6 @@ class EditPage {
 	private $isOldRev = false;
 
 	/**
-	 * @var bool Whether OOUI should be enabled here
-	 */
-	private $oouiEnabled = false;
-
-	/**
 	 * @param Article $article
 	 */
 	public function __construct( Article $article ) {
@@ -431,8 +426,6 @@ class EditPage {
 
 		$handler = ContentHandler::getForModelID( $this->contentModel );
 		$this->contentFormat = $handler->getDefaultFormat();
-
-		$this->oouiEnabled = $this->context->getConfig()->get( 'OOUIEditPage' );
 	}
 
 	/**
@@ -481,14 +474,6 @@ class EditPage {
 		} else {
 			return $this->mContextTitle;
 		}
-	}
-
-	/**
-	 * Check if the edit page is using OOUI controls
-	 * @return bool
-	 */
-	public function isOouiEnabled() {
-		return $this->oouiEnabled;
 	}
 
 	/**
@@ -857,9 +842,6 @@ class EditPage {
 	 */
 	public function importFormData( &$request ) {
 		global $wgContLang, $wgUser;
-
-		# Allow users to change the mode for testing
-		$this->oouiEnabled = $request->getFuzzyBool( 'ooui', $this->oouiEnabled );
 
 		# Section edit can come from either the form or a link
 		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section' ) );
@@ -2667,7 +2649,7 @@ class EditPage {
 		$wgOut->addHTML( Html::openElement(
 			'form',
 			[
-				'class' => $this->oouiEnabled ? 'mw-editform-ooui' : 'mw-editform-legacy',
+				'class' => 'mw-editform-ooui',
 				'id' => self::EDITFORM_ID,
 				'name' => self::EDITFORM_ID,
 				'method' => 'post',
@@ -2767,13 +2749,8 @@ class EditPage {
 		$wgOut->addHTML( Html::hidden( 'format', $this->contentFormat ) );
 		$wgOut->addHTML( Html::hidden( 'model', $this->contentModel ) );
 
-		// Preserve &ooui=1 / &ooui=0 from URL parameters after submitting the page for preview
-		$wgOut->addHTML( Html::hidden( 'ooui', $this->oouiEnabled ? '1' : '0' ) );
-
 		// following functions will need OOUI, enable it only once; here.
-		if ( $this->oouiEnabled ) {
-			$wgOut->enableOOUI();
-		}
+		$wgOut->enableOOUI();
 
 		if ( $this->section == 'new' ) {
 			$this->showSummaryInput( true, $this->summary );
@@ -3173,20 +3150,11 @@ class EditPage {
 		}
 
 		$labelText = $this->context->msg( $isSubjectPreview ? 'subject' : 'summary' )->parse();
-		if ( $this->oouiEnabled ) {
-			$wgOut->addHTML( $this->getSummaryInputOOUI(
-				$summary,
-				$labelText,
-				[ 'class' => $summaryClass ]
-			) );
-		} else {
-			list( $label, $input ) = $this->getSummaryInput(
-				$summary,
-				$labelText,
-				[ 'class' => $summaryClass ]
-			);
-			$wgOut->addHTML( "{$label} {$input}" );
-		}
+		$wgOut->addHTML( $this->getSummaryInputOOUI(
+			$summary,
+			$labelText,
+			[ 'class' => $summaryClass ]
+		) );
 	}
 
 	/**
@@ -3596,19 +3564,11 @@ HTML
 			$wgOut->addHTML( $this->getSummaryPreview( false, $this->summary ) );
 		}
 
-		if ( $this->oouiEnabled ) {
-			$checkboxes = $this->getCheckboxesOOUI(
-				$tabindex,
-				[ 'minor' => $this->minoredit, 'watch' => $this->watchthis ]
-			);
-			$checkboxesHTML = new OOUI\HorizontalLayout( [ 'items' => $checkboxes ] );
-		} else {
-			$checkboxes = $this->getCheckboxes(
-				$tabindex,
-				[ 'minor' => $this->minoredit, 'watch' => $this->watchthis ]
-			);
-			$checkboxesHTML = implode( $checkboxes, "\n" );
-		}
+		$checkboxes = $this->getCheckboxesOOUI(
+			$tabindex,
+			[ 'minor' => $this->minoredit, 'watch' => $this->watchthis ]
+		);
+		$checkboxesHTML = new OOUI\HorizontalLayout( [ 'items' => $checkboxes ] );
 
 		$wgOut->addHTML( "<div class='editCheckboxes'>" . $checkboxesHTML . "</div>\n" );
 
@@ -3698,23 +3658,14 @@ HTML
 		} elseif ( $this->getContextTitle()->isRedirect() ) {
 			$cancelParams['redirect'] = 'no';
 		}
-		if ( $this->oouiEnabled ) {
-			return new OOUI\ButtonWidget( [
-				'id' => 'mw-editform-cancel',
-				'href' => $this->getContextTitle()->getLinkUrl( $cancelParams ),
-				'label' => new OOUI\HtmlSnippet( $this->context->msg( 'cancel' )->parse() ),
-				'framed' => false,
-				'infusable' => true,
-				'flags' => 'destructive',
-			] );
-		} else {
-			return MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
-				$this->getContextTitle(),
-				new HtmlArmor( $this->context->msg( 'cancel' )->parse() ),
-				Html::buttonAttributes( [ 'id' => 'mw-editform-cancel' ], [ 'mw-ui-quiet' ] ),
-				$cancelParams
-			);
-		}
+		return new OOUI\ButtonWidget( [
+			'id' => 'mw-editform-cancel',
+			'href' => $this->getContextTitle()->getLinkUrl( $cancelParams ),
+			'label' => new OOUI\HtmlSnippet( $this->context->msg( 'cancel' )->parse() ),
+			'framed' => false,
+			'infusable' => true,
+			'flags' => 'destructive',
+		] );
 	}
 
 	/**
@@ -4353,68 +4304,48 @@ HTML
 			'tabindex' => ++$tabindex,
 		] + Linker::tooltipAndAccesskeyAttribs( 'save' );
 
-		if ( $this->oouiEnabled ) {
-			$saveConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
-			$buttons['save'] = new OOUI\ButtonInputWidget( [
-				'id' => 'wpSaveWidget',
-				'inputId' => 'wpSave',
-				// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
-				'useInputTag' => true,
-				'flags' => [ 'constructive', 'primary' ],
-				'label' => $buttonLabel,
-				'infusable' => true,
-				'type' => 'submit',
-			] + $saveConfig );
-		} else {
-			$buttons['save'] = Html::submitButton(
-				$buttonLabel,
-				$attribs + [ 'id' => 'wpSave' ],
-				[ 'mw-ui-progressive' ]
-			);
-		}
+		$saveConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
+		$buttons['save'] = new OOUI\ButtonInputWidget( [
+			'id' => 'wpSaveWidget',
+			'inputId' => 'wpSave',
+			// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
+			'useInputTag' => true,
+			'flags' => [ 'constructive', 'primary' ],
+			'label' => $buttonLabel,
+			'infusable' => true,
+			'type' => 'submit',
+		] + $saveConfig );
 
 		$attribs = [
 			'name' => 'wpPreview',
 			'tabindex' => ++$tabindex,
 		] + Linker::tooltipAndAccesskeyAttribs( 'preview' );
-		if ( $this->oouiEnabled ) {
-			$previewConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
-			$buttons['preview'] = new OOUI\ButtonInputWidget( [
-				'id' => 'wpPreviewWidget',
-				'inputId' => 'wpPreview',
-				// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
-				'useInputTag' => true,
-				'label' => $this->context->msg( 'showpreview' )->text(),
-				'infusable' => true,
-				'type' => 'submit'
-			] + $previewConfig );
-		} else {
-			$buttons['preview'] = Html::submitButton(
-				$this->context->msg( 'showpreview' )->text(),
-				$attribs + [ 'id' => 'wpPreview' ]
-			);
-		}
+
+		$previewConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
+		$buttons['preview'] = new OOUI\ButtonInputWidget( [
+			'id' => 'wpPreviewWidget',
+			'inputId' => 'wpPreview',
+			// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
+			'useInputTag' => true,
+			'label' => $this->context->msg( 'showpreview' )->text(),
+			'infusable' => true,
+			'type' => 'submit'
+		] + $previewConfig );
+
 		$attribs = [
 			'name' => 'wpDiff',
 			'tabindex' => ++$tabindex,
 		] + Linker::tooltipAndAccesskeyAttribs( 'diff' );
-		if ( $this->oouiEnabled ) {
-			$diffConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
-			$buttons['diff'] = new OOUI\ButtonInputWidget( [
-				'id' => 'wpDiffWidget',
-				'inputId' => 'wpDiff',
-				// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
-				'useInputTag' => true,
-				'label' => $this->context->msg( 'showdiff' )->text(),
-				'infusable' => true,
-				'type' => 'submit',
-			] + $diffConfig );
-		} else {
-			$buttons['diff'] = Html::submitButton(
-				$this->context->msg( 'showdiff' )->text(),
-				$attribs + [ 'id' => 'wpDiff' ]
-			);
-		}
+		$diffConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
+		$buttons['diff'] = new OOUI\ButtonInputWidget( [
+			'id' => 'wpDiffWidget',
+			'inputId' => 'wpDiff',
+			// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
+			'useInputTag' => true,
+			'label' => $this->context->msg( 'showdiff' )->text(),
+			'infusable' => true,
+			'type' => 'submit',
+		] + $diffConfig );
 
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$editPage = $this;

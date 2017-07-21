@@ -307,9 +307,7 @@
 		}
 
 		if ( !$( '.mw-summary-preview' ).length ) {
-			$( '#wpSummary' ).after(
-				$( '<div>' ).addClass( 'mw-summary-preview' )
-			);
+			OO.ui.infuse( $( '#wpSummaryWidget' ) ).setValue( 'asc' );
 		}
 
 		if ( !document.getElementById( 'wikiDiff' ) && document.getElementById( 'wikiPreview' ) ) {
