@@ -42,7 +42,10 @@
 class StatusValue {
 	/** @var bool */
 	protected $ok = true;
-	/** @var array */
+
+	/**
+	 * @var array[]
+	 */
 	protected $errors = [];
 
 	/** @var mixed */
@@ -138,7 +141,7 @@ class StatusValue {
 	 *
 	 * Each error is a (message:string or MessageSpecifier,params:array) map
 	 *
-	 * @return array
+	 * @return array[]
 	 */
 	public function getErrors() {
 		return $this->errors;
@@ -230,7 +233,7 @@ class StatusValue {
 	 *   - params: array list of parameters
 	 *
 	 * @param string $type
-	 * @return array
+	 * @return array[]
 	 */
 	public function getErrorsByType( $type ) {
 		$result = [];

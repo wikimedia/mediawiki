@@ -1092,7 +1092,7 @@ class Language {
 	 *      YYYYMMDDHHMMSS
 	 *      01234567890123
 	 * @param DateTimeZone $zone Timezone of $ts
-	 * @param[out] int $ttl The amount of time (in seconds) the output may be cached for.
+	 * @param int &$ttl The amount of time (in seconds) the output may be cached for.
 	 * Only makes sense if $ts is the current time.
 	 * @todo handling of "o" format character for Iranian, Hebrew, Hijri & Thai?
 	 *
