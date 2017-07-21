@@ -11,7 +11,7 @@
 		this.filtersModel = filtersModel;
 		this.changesListModel = changesListModel;
 		this.savedQueriesModel = savedQueriesModel;
-		this.requestCounter = 0;
+		this.requestCounter = {};
 		this.baseFilterState = {};
 		this.uriProcessor = null;
 		this.initializing = false;
@@ -378,9 +378,12 @@
 
 	/**
 	 * Enable or disable live updates.
-	 * @param {boolean} enable True to enable, false to disable
 	 */
-	mw.rcfilters.Controller.prototype.toggleLiveUpdate = function ( enable ) {
+	mw.rcfilters.Controller.prototype.toggleLiveUpdate = function () {
+		var enable;
+
+		this.changesListModel.toggleLiveUpdate();
+		enable = this.changesListModel.getLiveUpdate();
 		if ( enable && !this.liveUpdateTimeout ) {
 			this._scheduleLiveUpdate();
 		} else if ( !enable && this.liveUpdateTimeout ) {
@@ -402,14 +405,56 @@
 	 * @private
 	 */
 	mw.rcfilters.Controller.prototype._doLiveUpdate = function () {
-		var controller = this;
-		this.updateChangesList( {}, true )
-			.always( function () {
-				if ( controller.liveUpdateTimeout ) {
-					// Live update was not disabled in the meantime
-					controller._scheduleLiveUpdate();
+		this._checkForNewChanges()
+			.then( function ( data ) {
+				if ( data.changes !== 'NO_RESULTS' ) {
+					this.changesListModel.setNewChangesExist( true );
+				} else {
+					if ( this.liveUpdateTimeout ) {
+						this._scheduleLiveUpdate();
+					}
 				}
-			} );
+			}.bind( this ) );
+	};
+
+	/**
+	 * Check if new changes, newer than those currently shown, are available
+	 *
+	 * @return {jQuery.Promise} Promise object that resolves after trying
+	 * to fetch 1 change newer than the last known 'from' parameter value
+	 *
+	 * @private
+	 */
+	mw.rcfilters.Controller.prototype._checkForNewChanges = function () {
+		return this._fetchChangesList(
+			'liveUpdate',
+			{
+				limit: 1,
+				from: this.changesListModel.getNextFrom()
+			}
+		);
+	};
+
+	/**
+	 * Show the new changes
+	 *
+	 * @return {jQuery.Promise} Promise object that resolves after the
+	 * new changes have been fetched and probably displayed
+	 */
+	mw.rcfilters.Controller.prototype.showNewChanges = function () {
+		this.changesListModel.invalidate();
+		return this._fetchChangesList()
+			.then(
+				// Success
+				function ( pieces ) {
+					var $changesListContent = pieces.changes,
+						$fieldset = pieces.fieldset;
+					this.changesListModel.update( $changesListContent, $fieldset, false, true );
+					if ( this.changesListModel.getLiveUpdate() ) {
+						this._scheduleLiveUpdate();
+					}
+				}.bind( this )
+			);
 	};
 
 	/**
@@ -844,15 +889,28 @@
 	/**
 	 * Fetch the list of changes from the server for the current filters
 	 *
+	 * @param {string} [counterId='updateChangesList'] Id for this request. To allow concurrent requests
+	 *  not to invalidate each other.
+	 * @param {Object} [params={}] Parameters to add to the query
+	 *
 	 * @return {jQuery.Promise} Promise object that will resolve with the changes list
 	 *  or with a string denoting no results.
 	 */
-	mw.rcfilters.Controller.prototype._fetchChangesList = function () {
+	mw.rcfilters.Controller.prototype._fetchChangesList = function ( counterId, params ) {
 		var uri = this._getUpdatedUri(),
-			requestId = ++this.requestCounter,
-			latestRequest = function () {
-				return requestId === this.requestCounter;
-			}.bind( this );
+			requestId,
+			latestRequest;
+
+		counterId = counterId || 'updateChangesList';
+		params = params || {};
+
+		uri.extend( params );
+
+		this.requestCounter[ counterId ] = this.requestCounter[ counterId ] || 0;
+		requestId = ++this.requestCounter[ counterId ];
+		latestRequest = function () {
+			return requestId === this.requestCounter[ counterId ];
+		}.bind( this );
 
 		return $.ajax( uri.toString(), { contentType: 'html' } )
 			.then(

@@ -8,12 +8,14 @@
 	 * @constructor
 	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersViewModel View model
 	 * @param {mw.rcfilters.dm.ChangesListViewModel} changesListViewModel View model
+	 * @param {mw.rcfilters.Controller} controller
 	 * @param {jQuery} $changesListRoot Root element of the changes list to attach to
-	 * @param {Object} config Configuration object
+	 * @param {Object} [config] Configuration object
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget = function MwRcfiltersUiChangesListWrapperWidget(
 		filtersViewModel,
 		changesListViewModel,
+		controller,
 		$changesListRoot,
 		config
 	) {
@@ -28,6 +30,7 @@
 
 		this.filtersViewModel = filtersViewModel;
 		this.changesListViewModel = changesListViewModel;
+		this.controller = controller;
 
 		// Events
 		this.filtersViewModel.connect( this, {
@@ -36,7 +39,8 @@
 		} );
 		this.changesListViewModel.connect( this, {
 			invalidate: 'onModelInvalidate',
-			update: 'onModelUpdate'
+			update: 'onModelUpdate',
+			newChangesExist: 'onNewChangesExist'
 		} );
 
 		this.$element
@@ -46,6 +50,8 @@
 
 		// Set up highlight containers
 		this.setupHighlightContainers( this.$element );
+
+		this.setupNewChangesButtonContainer( this.$element );
 	};
 
 	/* Initialization */
@@ -89,12 +95,17 @@
 	 * @param {jQuery|string} $changesListContent The content of the updated changes list
 	 * @param {jQuery} $fieldset The content of the updated fieldset
 	 * @param {boolean} isInitialDOM Whether $changesListContent is the existing (already attached) DOM
+	 * @param {number} rcId ID of the last change that was seen prior to the current data update
 	 */
-	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onModelUpdate = function ( $changesListContent, $fieldset, isInitialDOM ) {
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onModelUpdate = function (
+		$changesListContent, $fieldset, isInitialDOM, rcId
+	) {
 		var conflictItem,
 			$message = $( '<div>' )
 				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results' ),
-			isEmpty = $changesListContent === 'NO_RESULTS';
+			isEmpty = $changesListContent === 'NO_RESULTS',
+			$lastSeen,
+			$indicator;
 
 		this.$element.toggleClass( 'mw-changeslist', !isEmpty );
 		if ( isEmpty ) {
@@ -134,12 +145,74 @@
 			// Apply highlight
 			this.applyHighlight();
 
+			// add a separator between old and new changes
+			if ( rcId ) {
+				$lastSeen = this.$element.find( '[data-mw-revid="' + rcId + '"]' );
+				if ( $lastSeen ) {
+
+					$indicator = $( '<div>' )
+						.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-previousChangesIndicator' )
+						.text( mw.message( 'rcfilters-previous-changes-label' ).text() );
+
+					$indicator.on( 'click', function () {
+						$indicator.detach();
+					} );
+
+					if ( $lastSeen.is( 'tr' ) ) {
+						// TODO: figure out how to handle enhanced rc
+					} else {
+						if ( $lastSeen.is( ':first-child' ) ) {
+							$lastSeen = $lastSeen.parent().prev();
+						}
+
+						$lastSeen.before( $indicator );
+					}
+				}
+			}
+
 			if ( !isInitialDOM ) {
 				// Make sure enhanced RC re-initializes correctly
 				mw.hook( 'wikipage.content' ).fire( this.$element );
 			}
 		}
 		this.popPending();
+	};
+
+	/**
+	 * Respond to changes list model newChangesExist
+	 *
+	 * @param {boolean} newChangesExist Whether new changes exist
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onNewChangesExist = function ( newChangesExist ) {
+		this.showNewChangesLink.toggle( newChangesExist );
+	};
+
+	/**
+	 * Respond to the user clicking the 'show new changes' button
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onShowNewChangesClick = function () {
+		this.controller.showNewChanges();
+	};
+
+	/**
+	 * Setup the container for the 'new changes' button.
+	 *
+	 * @param {jQuery} $content
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.setupNewChangesButtonContainer = function ( $content ) {
+		this.showNewChangesLink = new OO.ui.ButtonWidget( {
+			framed: false,
+			label: mw.message( 'rcfilters-show-new-changes' ).text(),
+			flags: [ 'progressive' ]
+		} );
+		this.showNewChangesLink.connect( this, { click: 'onShowNewChangesClick' } );
+		this.showNewChangesLink.toggle( false );
+
+		$content.before(
+			$( '<div>' )
+				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-newChanges' )
+				.append( this.showNewChangesLink.$element )
+		);
 	};
 
 	/**
