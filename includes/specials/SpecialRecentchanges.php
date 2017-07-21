@@ -973,15 +973,20 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$resetLink = $this->makeOptionsLink( $this->msg( 'rclistfromreset' ),
 				[ 'from' => '' ], $nondefaults );
 
-			$note .= $this->msg( 'rcnotefrom' )
+			$noteFromMsg = $this->msg( 'rcnotefrom' )
 				->numParams( $options['limit'] )
 				->params(
 					$lang->userTimeAndDate( $options['from'], $user ),
 					$lang->userDate( $options['from'], $user ),
 					$lang->userTime( $options['from'], $user )
 				)
-				->numParams( $numRows )
-				->parse() . ' ' .
+				->numParams( $numRows );
+			$note .= Html::rawElement(
+					'span',
+					[ 'class' => 'rcnotefrom' ],
+					$noteFromMsg->parse()
+				) .
+				' ' .
 				Html::rawElement(
 					'span',
 					[ 'class' => 'rcoptions-listfromreset' ],

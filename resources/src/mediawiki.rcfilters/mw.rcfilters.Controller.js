@@ -13,7 +13,7 @@
 		this.filtersModel = filtersModel;
 		this.changesListModel = changesListModel;
 		this.savedQueriesModel = savedQueriesModel;
-		this.requestCounter = 0;
+		this.requestCounter = {};
 		this.baseFilterState = {};
 		this.uriProcessor = null;
 		this.initializing = false;
@@ -223,6 +223,8 @@
 
 		this.initializing = false;
 		this.switchView( 'default' );
+
+		this._scheduleLiveUpdate();
 	};
 
 	/**
@@ -423,11 +425,9 @@
 	 * @param {boolean} enable True to enable, false to disable
 	 */
 	mw.rcfilters.Controller.prototype.toggleLiveUpdate = function ( enable ) {
-		if ( enable && !this.liveUpdateTimeout ) {
-			this._scheduleLiveUpdate();
-		} else if ( !enable && this.liveUpdateTimeout ) {
-			clearTimeout( this.liveUpdateTimeout );
-			this.liveUpdateTimeout = null;
+		this.changesListModel.toggleLiveUpdate( enable );
+		if ( this.changesListModel.getLiveUpdate() && this.changesListModel.getNewChangesExist() ) {
+			this.showNewChanges();
 		}
 	};
 
@@ -436,7 +436,7 @@
 	 * @private
 	 */
 	mw.rcfilters.Controller.prototype._scheduleLiveUpdate = function () {
-		this.liveUpdateTimeout = setTimeout( this._doLiveUpdate.bind( this ), 3000 );
+		setTimeout( this._doLiveUpdate.bind( this ), 3000 );
 	};
 
 	/**
@@ -444,14 +444,71 @@
 	 * @private
 	 */
 	mw.rcfilters.Controller.prototype._doLiveUpdate = function () {
-		var controller = this;
-		this.updateChangesList( {}, true )
-			.always( function () {
-				if ( controller.liveUpdateTimeout ) {
-					// Live update was not disabled in the meantime
-					controller._scheduleLiveUpdate();
+		if ( !this._shouldCheckForNewChanges() ) {
+			// skip this turn and check back later
+			this._scheduleLiveUpdate();
+			return;
+		}
+
+		this._checkForNewChanges()
+			.then( function ( data ) {
+				if ( !this._shouldCheckForNewChanges() ) {
+					// by the time the response is received,
+					// it may not be appropriate anymore
+					return;
 				}
-			} );
+
+				if ( data.changes !== 'NO_RESULTS' ) {
+					if ( this.changesListModel.getLiveUpdate() ) {
+						return this.updateChangesList( false, null, true, false );
+					} else {
+						this.changesListModel.setNewChangesExist( true );
+					}
+				}
+			}.bind( this ) )
+			.always( this._scheduleLiveUpdate.bind( this ) );
+	};
+
+	/**
+	 * @return {boolean} It's appropriate to check for new changes now
+	 * @private
+	 */
+	mw.rcfilters.Controller.prototype._shouldCheckForNewChanges = function () {
+		var liveUpdateFeatureFlag = mw.config.get( 'wgStructuredChangeFiltersEnableLiveUpdate' ) ||
+			new mw.Uri().query.liveupdate;
+
+		return !document.hidden &&
+			!this.changesListModel.getNewChangesExist() &&
+			!this.updatingChangesList &&
+			liveUpdateFeatureFlag;
+	};
+
+	/**
+	 * Check if new changes, newer than those currently shown, are available
+	 *
+	 * @return {jQuery.Promise} Promise object that resolves after trying
+	 * to fetch 1 change newer than the last known 'from' parameter value
+	 *
+	 * @private
+	 */
+	mw.rcfilters.Controller.prototype._checkForNewChanges = function () {
+		return this._fetchChangesList(
+			'liveUpdate',
+			{
+				limit: 1,
+				from: this.changesListModel.getNextFrom()
+			}
+		);
+	};
+
+	/**
+	 * Show the new changes
+	 *
+	 * @return {jQuery.Promise} Promise object that resolves after
+	 * fetching and showing the new changes
+	 */
+	mw.rcfilters.Controller.prototype.showNewChanges = function () {
+		return this.updateChangesList( false, null, true, true );
 	};
 
 	/**
@@ -823,25 +880,36 @@
 	/**
 	 * Update the list of changes and notify the model
 	 *
+	 * @param {boolean} [updateUrl=true] Whether the URL should be updated with the current state of the filters
 	 * @param {Object} [params] Extra parameters to add to the API call
-	 * @param {boolean} [isLiveUpdate] Don't update the URL or invalidate the changes list
+	 * @param {boolean} [isLiveUpdate=false] The purpose of this update is to show new results for the same filters
+	 * @param {boolean} [invalidateCurrentChanges=true] Invalidate current changes by default (show spinner)
 	 * @return {jQuery.Promise} Promise that is resolved when the update is complete
 	 */
-	mw.rcfilters.Controller.prototype.updateChangesList = function ( params, isLiveUpdate ) {
-		if ( !isLiveUpdate ) {
+	mw.rcfilters.Controller.prototype.updateChangesList = function ( updateUrl, params, isLiveUpdate, invalidateCurrentChanges ) {
+		updateUrl = updateUrl === undefined ? true : updateUrl;
+		invalidateCurrentChanges = invalidateCurrentChanges === undefined ? true : invalidateCurrentChanges;
+		if ( updateUrl ) {
 			this._updateURL( params );
+		}
+		if ( invalidateCurrentChanges ) {
 			this.changesListModel.invalidate();
 		}
+		this.changesListModel.setNewChangesExist( false );
+		this.updatingChangesList = true;
 		return this._fetchChangesList()
 			.then(
 				// Success
 				function ( pieces ) {
 					var $changesListContent = pieces.changes,
 						$fieldset = pieces.fieldset;
-					this.changesListModel.update( $changesListContent, $fieldset );
+					this.changesListModel.update( $changesListContent, $fieldset, false, isLiveUpdate );
 				}.bind( this )
 				// Do nothing for failure
-			);
+			)
+			.always( function () {
+				this.updatingChangesList = false;
+			}.bind( this ) );
 	};
 
 	/**
@@ -935,16 +1003,29 @@
 	/**
 	 * Fetch the list of changes from the server for the current filters
 	 *
+	 * @param {string} [counterId='updateChangesList'] Id for this request. To allow concurrent requests
+	 *  not to invalidate each other.
+	 * @param {Object} [params={}] Parameters to add to the query
+	 *
 	 * @return {jQuery.Promise} Promise object that will resolve with the changes list
 	 *  or with a string denoting no results.
 	 */
-	mw.rcfilters.Controller.prototype._fetchChangesList = function () {
+	mw.rcfilters.Controller.prototype._fetchChangesList = function ( counterId, params ) {
 		var uri = this._getUpdatedUri(),
 			stickyParams = this.filtersModel.getStickyParams(),
-			requestId = ++this.requestCounter,
-			latestRequest = function () {
-				return requestId === this.requestCounter;
-			}.bind( this );
+			requestId,
+			latestRequest;
+
+		counterId = counterId || 'updateChangesList';
+		params = params || {};
+
+		uri.extend( params );
+
+		this.requestCounter[ counterId ] = this.requestCounter[ counterId ] || 0;
+		requestId = ++this.requestCounter[ counterId ];
+		latestRequest = function () {
+			return requestId === this.requestCounter[ counterId ];
+		}.bind( this );
 
 		// Sticky parameters override the URL params
 		// this is to make sure that whether we represent

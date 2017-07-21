@@ -54,7 +54,7 @@
 	 * @return {boolean} false
 	 */
 	mw.rcfilters.ui.FormWrapperWidget.prototype.onLinkClick = function ( e ) {
-		this.controller.updateChangesList( $( e.target ).data( 'params' ) );
+		this.controller.updateChangesList( true, $( e.target ).data( 'params' ) );
 		return false;
 	};
 
@@ -78,7 +78,7 @@
 			data[ $( this ).prop( 'name' ) ] = value;
 		} );
 
-		this.controller.updateChangesList( data );
+		this.controller.updateChangesList( true, data );
 		return false;
 	};
 
@@ -143,11 +143,20 @@
 			this.$element.find( '.mw-recentchanges-table' ).detach();
 			this.$element.find( 'hr' ).detach();
 		}
+
 		if ( !this.$element.find( '.rcshowhide' ).contents().length ) {
 			this.$element.find( '.rcshowhide' ).detach();
 			// If we're hiding rcshowhide, the '<br>'s are around it,
 			// there's no need for them either.
 			this.$element.find( 'br' ).detach();
+		}
+
+		this.$element.find(
+			'legend, .rclistfrom, .rcnotefrom, .rcoptions-listfromreset'
+		).detach();
+
+		if ( this.$element.text().trim() === '' ) {
+			this.$element.detach();
 		}
 	};
 }( mediaWiki ) );
