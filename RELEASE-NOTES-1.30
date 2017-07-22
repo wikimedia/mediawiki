@@ -46,6 +46,7 @@ section).
 === Languages updated in 1.30 ===
 
 * Support for kbp (Kabɩyɛ / Kabiyè) was added.
+* Support for skr (Saraiki, سرائیکی) was added.
 
 === External library changes in 1.30 ===
 
