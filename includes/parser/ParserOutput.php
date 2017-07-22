@@ -23,6 +23,11 @@
  */
 class ParserOutput extends CacheTime {
 	/**
+	 * @var Skin $skin
+	 */
+	protected $skin;
+
+	/**
 	 * @var string $mText The output text
 	 */
 	public $mText;
@@ -249,13 +254,21 @@ class ParserOutput extends CacheTime {
 		return $this->mText;
 	}
 
+	/**
+	 * set the skin associated with the parse
+	 * @param Skin $skin
+	 */
+	public function setSkin( Skin $skin ) {
+		$this->skin = $skin;
+	}
+
 	public function getText() {
 		$text = $this->mText;
 		if ( $this->mEditSectionTokens ) {
 			$text = preg_replace_callback(
 				ParserOutput::EDITSECTION_REGEX,
 				function ( $m ) {
-					global $wgOut, $wgLang;
+					global $wgLang;
 					$editsectionPage = Title::newFromText( htmlspecialchars_decode( $m[1] ) );
 					$editsectionSection = htmlspecialchars_decode( $m[2] );
 					$editsectionContent = isset( $m[4] ) ? $m[3] : null;
@@ -264,7 +277,10 @@ class ParserOutput extends CacheTime {
 						throw new MWException( "Bad parser output text." );
 					}
 
-					$skin = $wgOut->getSkin();
+
+					$this->setSkin( new SkinFallback() );
+					$skin = $this->skin;
+
 					return call_user_func_array(
 						[ $skin, 'doEditSectionLink' ],
 						[ $editsectionPage, $editsectionSection,
