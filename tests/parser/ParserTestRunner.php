@@ -823,6 +823,7 @@ class ParserTestRunner {
 		$local = isset( $opts['local'] );
 		$preprocessor = isset( $opts['preprocessor'] ) ? $opts['preprocessor'] : null;
 		$parser = $this->getParser( $preprocessor );
+		$parser->setSkin( new DefaultSkin() );
 		$title = Title::newFromText( $titleText );
 
 		if ( isset( $opts['pst'] ) ) {
