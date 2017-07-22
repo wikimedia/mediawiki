@@ -11,7 +11,8 @@
 			"Winstonyin",
 			"Arthur2e5",
 			"烈羽",
-			"Corainn"
+			"Corainn",
+			"A2093064"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|說明文件]]\n* [[mw:API:FAQ|常見問題]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 郵寄清單]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 報告錯誤及請求功能]\n</div>\n<strong>狀態資訊：</strong>本頁所展示的所有功能都應正常工作，但是API仍在開發當中，將會隨時變化。請訂閱[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 郵件清單]以便得到更新通知。\n\n<strong>錯誤的請求：</strong>當API收到錯誤的請求時，會發出以「MediaWiki-API-Error」為鍵的HTTP頭欄位，隨後頭欄位的值與錯誤碼將會被設為相同的值。詳細資訊請參閱[[mw:API:Errors_and_warnings|API: 錯誤與警告]]。\n\n<strong>測試：</strong>要簡化API請求的測試過程，請見[[Special:ApiSandbox]]。",
@@ -57,7 +58,7 @@
 	"apihelp-createaccount-summary": "建立新使用者帳號。",
 	"apihelp-createaccount-param-name": "使用者名稱。",
 	"apihelp-createaccount-param-password": "密碼 (若有設定 <var>$1mailpassword</var> 則可略過)。",
-	"apihelp-createaccount-param-domain": "外部認証使用的網域 (選填)。",
+	"apihelp-createaccount-param-domain": "外部認證使用的網域 (選填)。",
 	"apihelp-createaccount-param-token": "在第一次請求時已取得的帳號建立金鑰。",
 	"apihelp-createaccount-param-email": "使用者的電子郵件地址 (選填) 。",
 	"apihelp-createaccount-param-realname": "使用者的真實姓名 (選填)。",
