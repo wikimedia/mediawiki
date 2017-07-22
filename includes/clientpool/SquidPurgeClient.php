@@ -213,6 +213,30 @@ class SquidPurgeClient {
 		} else {
 			$request[] = "PURGE $url HTTP/1.0";
 		}
+
+		$this->queueRequest( $request );
+	}
+
+	/**
+	 * Queue a xkey purge operation
+	 *
+	 * @param string $key
+	 */
+	public function queueXKeyPurge( $key ) {
+		// TODO: pull in the purge method name from config to support SecondHash.
+
+		$request = [];
+		$request[] = "XKEY-PURGE $key HTTP/1.0";
+
+		$this->queueRequest( $request );
+	}
+
+	/**
+	 * Queue a purge operation
+	 *
+	 * @param string[] $request Request headers
+	 */
+	private function queueRequest( $request ) {
 		$request[] = "Connection: Keep-Alive";
 		$request[] = "Proxy-Connection: Keep-Alive";
 		$request[] = "User-Agent: " . Http::userAgent() . ' ' . __CLASS__;

@@ -21,6 +21,7 @@
  * @ingroup Cache
  */
 
+use MediaWiki\Cdn\CdnResourceSet;
 use Wikimedia\Assert\Assert;
 use MediaWiki\MediaWikiServices;
 
@@ -29,14 +30,15 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Cache
  */
 class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
-	/** @var string[] Collection of URLs to purge */
-	protected $urls = [];
+
+	/** @var CdnResourceSet resources to purge */
+	private $resources;
 
 	/**
-	 * @param string[] $urlArr Collection of URLs to purge
+	 * @param CdnResourceSet $resources resources to purge
 	 */
-	public function __construct( array $urlArr ) {
-		$this->urls = $urlArr;
+	public function __construct( CdnResourceSet $resources ) {
+		$this->resources = $resources;
 	}
 
 	public function merge( MergeableUpdate $update ) {
