@@ -1180,7 +1180,7 @@ class Article implements Page {
 		$key = $cache->makeKey( 'page-recent-delete', md5( $title->getPrefixedText() ) );
 		$loggedIn = $this->getContext()->getUser()->isLoggedIn();
 		if ( $loggedIn || $cache->get( $key ) ) {
-			$logTypes = [ 'delete', 'move' ];
+			$logTypes = [ 'delete', 'move', 'protect' ];
 
 			$dbr = wfGetDB( DB_REPLICA );
 
@@ -1197,8 +1197,8 @@ class Article implements Page {
 					'conds' => $conds,
 					'showIfEmpty' => false,
 					'msgKey' => [ $loggedIn
-						? 'moveddeleted-notice'
-						: 'moveddeleted-notice-recent'
+						? 'movedprotecteddeleted-notice'
+						: 'movedprotecteddeleted-notice-recent'
 					]
 				]
 			);
