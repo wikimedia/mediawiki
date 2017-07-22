@@ -31,7 +31,8 @@
 			"Liashko",
 			"Mechanizatar",
 			"Artsiom91",
-			"Andrus"
+			"Andrus",
+			"Da voli"
 		]
 	},
 	"tog-underline": "Падкрэсліваць спасылкі:",
@@ -1332,6 +1333,7 @@
 	"rcfilters-filter-unpatrolled-label": "Недагледжаны",
 	"rcfilters-filtergroup-lastRevision": "Цяперашняя версія",
 	"rcfilters-filter-lastrevision-label": "Актуальная версія",
+	"rcfilters-exclude-button-on": "За выключэннем выбранага",
 	"rcnotefrom": "Ніжэй {{PLURAL:$5|паказана змяненне|паказаны змены}} з <strong>$3, $4</strong> (не больш за <strong>$1</strong>).",
 	"rclistfrom": "Паказаць змены з $3 $2",
 	"rcshowhideminor": "$1 дробныя праўкі",
