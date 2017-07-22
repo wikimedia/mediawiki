@@ -616,7 +616,7 @@ class MediaWiki {
 			$flags = $lbFactory::SHUTDOWN_CHRONPROT_ASYNC;
 			$cpPosTime = microtime( true );
 			// Client's next request should see 1+ positions with this DBMasterPos::asOf() time
-			if ( $urlDomainDistance === 'local' ) {
+			if ( $urlDomainDistance === 'local' && !headers_sent() ) {
 				// Client will stay on this domain, so set an unobtrusive cookie
 				$expires = time() + ChronologyProtector::POSITION_TTL;
 				$options = [ 'prefix' => '' ];
@@ -633,7 +633,7 @@ class MediaWiki {
 			// OutputPage::output() is fairly slow; run it in $postCommitWork to mask
 			// the latency of syncing DB positions accross all datacenters synchronously
 			$flags = $lbFactory::SHUTDOWN_CHRONPROT_SYNC;
-			if ( $lbFactory->hasOrMadeRecentMasterChanges( INF ) ) {
+			if ( $lbFactory->hasOrMadeRecentMasterChanges( INF ) && !headers_sent() ) {
 				$cpPosTime = microtime( true );
 				// Set a cookie in case the DB position store cannot sync accross datacenters.
 				// This will at least cover the common case of the user staying on the domain.
