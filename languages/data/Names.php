@@ -383,6 +383,8 @@ class Names {
 		'si' => 'සිංහල', # Sinhalese
 		'simple' => 'Simple English', # Simple English
 		'sk' => 'slovenčina', # Slovak
+		'skr' => 'سرائیکی', # Saraiki (multiple scripts - defaults to Arabic)
+		'skr-arab' => 'سرائیکی', # Saraiki (Arabic script)
 		'sl' => 'slovenščina', # Slovenian
 		'sli' => 'Schläsch', # Lower Selisian
 		'sm' => 'Gagana Samoa', # Samoan
