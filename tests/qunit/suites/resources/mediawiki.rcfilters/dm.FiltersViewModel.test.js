@@ -71,6 +71,14 @@
 				{ name: 'option2', label: 'group5option2-label', description: 'group5option2-desc' },
 				{ name: 'option3', label: 'group5option3-label', description: 'group5option3-desc' }
 			]
+		}, {
+			name: 'group6',
+			type: 'boolean',
+			filters: [
+				{ name: 'group6option1', label: 'group6option1-label', description: 'group5option1-desc' },
+				{ name: 'group6option2', label: 'group6option2-label', description: 'group5option2-desc', default: true, useDefaultAsBaseValue: true },
+				{ name: 'group6option3', label: 'group6option3-label', description: 'group5option3-desc', default: true }
+			]
 		} ],
 		viewsDefinition = {
 			namespaces: {
@@ -100,6 +108,9 @@
 			group3: 'filter8',
 			group4: 'option2',
 			group5: 'option1',
+			group6option1: '0',
+			group6option2: '1',
+			group6option3: '1',
 			namespace: ''
 		},
 		baseParamRepresentation = {
@@ -112,6 +123,9 @@
 			group3: '',
 			group4: 'option2',
 			group5: 'option1',
+			group6option1: '0',
+			group6option2: '1',
+			group6option3: '0',
 			namespace: ''
 		},
 		baseFilterRepresentation = {
@@ -132,6 +146,9 @@
 			group5__option1: true, // No default set, first item is default value
 			group5__option2: false,
 			group5__option3: false,
+			group6__group6option1: false,
+			group6__group6option2: true,
+			group6__group6option3: false,
 			namespace__0: false,
 			namespace__1: false,
 			namespace__2: false,
@@ -153,6 +170,9 @@
 			group5__option1: { selected: true, conflicted: false, included: false },
 			group5__option2: { selected: false, conflicted: false, included: false },
 			group5__option3: { selected: false, conflicted: false, included: false },
+			group6__group6option1: { selected: false, conflicted: false, included: false },
+			group6__group6option2: { selected: true, conflicted: false, included: false },
+			group6__group6option3: { selected: false, conflicted: false, included: false },
 			namespace__0: { selected: false, conflicted: false, included: false },
 			namespace__1: { selected: false, conflicted: false, included: false },
 			namespace__2: { selected: false, conflicted: false, included: false },
