@@ -1221,6 +1221,22 @@ class Article implements Page {
 			return;
 		}
 
+		# Show protection log if create-protected
+		if ( $title->isProtected() ) {
+			LogEventsList::showLogExtract(
+				$outputPage,
+				'protect',
+				$title,
+				'',
+				[
+					'lim' => 1,
+					'showIfEmpty' => false,
+					'msgKey' => [ 'titleprotectedwarning' ],
+					'wrap' => "<div class=\"mw-titleprotectedwarning\">\n$1</div>"
+				]
+			);
+		}
+
 		# Show error message
 		$oldid = $this->getOldID();
 		if ( !$oldid && $title->getNamespace() === NS_MEDIAWIKI && $title->hasSourceText() ) {
