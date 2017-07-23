@@ -205,7 +205,7 @@ class LogPage {
 	 * @return bool
 	 */
 	public static function isLogType( $type ) {
-		return in_array( $type, LogPage::validTypes() );
+		return in_array( $type, self::validTypes() );
 	}
 
 	/**
@@ -348,7 +348,7 @@ class LogPage {
 		$this->action = $action;
 		$this->target = $target;
 		$this->comment = $comment;
-		$this->params = LogPage::makeParamBlob( $params );
+		$this->params = self::makeParamBlob( $params );
 
 		if ( $doer === null ) {
 			global $wgUser;

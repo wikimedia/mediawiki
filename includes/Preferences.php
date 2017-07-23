@@ -1316,7 +1316,7 @@ class Preferences {
 		$formClass = 'PreferencesForm',
 		array $remove = []
 	) {
-		$formDescriptor = Preferences::getPreferences( $user, $context );
+		$formDescriptor = self::getPreferences( $user, $context );
 		if ( count( $remove ) ) {
 			$removeKeys = array_flip( $remove );
 			$formDescriptor = array_diff_key( $formDescriptor, $removeKeys );

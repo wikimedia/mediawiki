@@ -485,7 +485,7 @@ class Block {
 
 		# Periodic purge via commit hooks
 		if ( mt_rand( 0, 9 ) == 0 ) {
-			Block::purgeExpired();
+			self::purgeExpired();
 		}
 
 		$row = $this->getDatabaseArray();
@@ -778,12 +778,12 @@ class Block {
 		# It's okay to autoblock. Go ahead and insert/update the block...
 
 		# Do not add a *new* block if the IP is already blocked.
-		$ipblock = Block::newFromTarget( $autoblockIP );
+		$ipblock = self::newFromTarget( $autoblockIP );
 		if ( $ipblock ) {
 			# Check if the block is an autoblock and would exceed the user block
 			# if renewed. If so, do nothing, otherwise prolong the block time...
 			if ( $ipblock->mAuto && // @todo Why not compare $ipblock->mExpiry?
-				$this->mExpiry > Block::getAutoblockExpiry( $ipblock->mTimestamp )
+				$this->mExpiry > self::getAutoblockExpiry( $ipblock->mTimestamp )
 			) {
 				# Reset block timestamp to now and its expiry to
 				# $wgAutoblockExpiry in the future
@@ -810,11 +810,11 @@ class Block {
 
 		if ( $this->mExpiry == 'infinity' ) {
 			# Original block was indefinite, start an autoblock now
-			$autoblock->mExpiry = Block::getAutoblockExpiry( $timestamp );
+			$autoblock->mExpiry = self::getAutoblockExpiry( $timestamp );
 		} else {
 			# If the user is already blocked with an expiry date, we don't
 			# want to pile on top of that.
-			$autoblock->mExpiry = min( $this->mExpiry, Block::getAutoblockExpiry( $timestamp ) );
+			$autoblock->mExpiry = min( $this->mExpiry, self::getAutoblockExpiry( $timestamp ) );
 		}
 
 		# Insert the block...
@@ -870,7 +870,7 @@ class Block {
 	public function updateTimestamp() {
 		if ( $this->mAuto ) {
 			$this->mTimestamp = wfTimestamp();
-			$this->mExpiry = Block::getAutoblockExpiry( $this->mTimestamp );
+			$this->mExpiry = self::getAutoblockExpiry( $this->mTimestamp );
 
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'ipblocks',
@@ -1111,8 +1111,8 @@ class Block {
 	 */
 	public static function newFromTarget( $specificTarget, $vagueTarget = null, $fromMaster = false ) {
 		list( $target, $type ) = self::parseTarget( $specificTarget );
-		if ( $type == Block::TYPE_ID || $type == Block::TYPE_AUTO ) {
-			return Block::newFromID( $target );
+		if ( $type == self::TYPE_ID || $type == self::TYPE_AUTO ) {
+			return self::newFromID( $target );
 
 		} elseif ( $target === null && $vagueTarget == '' ) {
 			# We're not going to find anything useful here
@@ -1122,7 +1122,7 @@ class Block {
 
 		} elseif ( in_array(
 			$type,
-			[ Block::TYPE_USER, Block::TYPE_IP, Block::TYPE_RANGE, null ] )
+			[ self::TYPE_USER, self::TYPE_IP, self::TYPE_RANGE, null ] )
 		) {
 			$block = new Block();
 			$block->fromMaster( $fromMaster );
@@ -1189,7 +1189,7 @@ class Block {
 		}
 		$selectFields = array_merge(
 			[ 'ipb_range_start', 'ipb_range_end' ],
-			Block::selectFields()
+			self::selectFields()
 		);
 		$rows = $db->select( 'ipblocks',
 			$selectFields,
@@ -1350,12 +1350,12 @@ class Block {
 			# off validation checking (which would exclude IP addresses)
 			return [
 				User::newFromName( IP::sanitizeIP( $target ), false ),
-				Block::TYPE_IP
+				self::TYPE_IP
 			];
 
 		} elseif ( IP::isValidBlock( $target ) ) {
 			# Can't create a User from an IP range
-			return [ IP::sanitizeRange( $target ), Block::TYPE_RANGE ];
+			return [ IP::sanitizeRange( $target ), self::TYPE_RANGE ];
 		}
 
 		# Consider the possibility that this is not a username at all
@@ -1370,11 +1370,11 @@ class Block {
 			# Note that since numbers are valid usernames, a $target of "12345" will be
 			# considered a User.  If you want to pass a block ID, prepend a hash "#12345",
 			# since hash characters are not valid in usernames or titles generally.
-			return [ $userObj, Block::TYPE_USER ];
+			return [ $userObj, self::TYPE_USER ];
 
 		} elseif ( preg_match( '/^#\d+$/', $target ) ) {
 			# Autoblock reference in the form "#12345"
-			return [ substr( $target, 1 ), Block::TYPE_AUTO ];
+			return [ substr( $target, 1 ), self::TYPE_AUTO ];
 
 		} else {
 			# WTF?

@@ -178,7 +178,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @return string Filtered data, or a comment containing an error message
 	 */
 	public static function filter( $filter, $data, array $options = [] ) {
-		if ( strpos( $data, ResourceLoader::FILTER_NOMIN ) !== false ) {
+		if ( strpos( $data, self::FILTER_NOMIN ) !== false ) {
 			return $data;
 		}
 
@@ -1079,7 +1079,7 @@ MESSAGE;
 								// mw.loader.implement will use globalEval if scripts is a string.
 								// Minify manually here, because general response minification is
 								// not effective due it being a string literal, not a function.
-								if ( !ResourceLoader::inDebugMode() ) {
+								if ( !self::inDebugMode() ) {
 									$scripts = self::filter( 'minify-js', $scripts ); // T107377
 								}
 							} else {
@@ -1139,7 +1139,7 @@ MESSAGE;
 		} else {
 			if ( count( $states ) ) {
 				$this->errors[] = 'Problematic modules: ' .
-					FormatJson::encode( $states, ResourceLoader::inDebugMode() );
+					FormatJson::encode( $states, self::inDebugMode() );
 			}
 		}
 
@@ -1214,7 +1214,7 @@ MESSAGE;
 		];
 		self::trimArray( $module );
 
-		return Xml::encodeJsCall( 'mw.loader.implement', $module, ResourceLoader::inDebugMode() );
+		return Xml::encodeJsCall( 'mw.loader.implement', $module, self::inDebugMode() );
 	}
 
 	/**
@@ -1228,7 +1228,7 @@ MESSAGE;
 		return Xml::encodeJsCall(
 			'mw.messages.set',
 			[ (object)$messages ],
-			ResourceLoader::inDebugMode()
+			self::inDebugMode()
 		);
 	}
 
@@ -1285,13 +1285,13 @@ MESSAGE;
 			return Xml::encodeJsCall(
 				'mw.loader.state',
 				[ $name ],
-				ResourceLoader::inDebugMode()
+				self::inDebugMode()
 			);
 		} else {
 			return Xml::encodeJsCall(
 				'mw.loader.state',
 				[ $name, $state ],
-				ResourceLoader::inDebugMode()
+				self::inDebugMode()
 			);
 		}
 	}
@@ -1317,7 +1317,7 @@ MESSAGE;
 		return Xml::encodeJsCall(
 			"( function ( name, version, dependencies, group, source ) {\n\t$script\n} )",
 			[ $name, $version, $dependencies, $group, $source ],
-			ResourceLoader::inDebugMode()
+			self::inDebugMode()
 		);
 	}
 
@@ -1409,7 +1409,7 @@ MESSAGE;
 			return Xml::encodeJsCall(
 				'mw.loader.register',
 				[ $name ],
-				ResourceLoader::inDebugMode()
+				self::inDebugMode()
 			);
 		} else {
 			$registration = [ $name, $version, $dependencies, $group, $source, $skip ];
@@ -1417,7 +1417,7 @@ MESSAGE;
 			return Xml::encodeJsCall(
 				'mw.loader.register',
 				$registration,
-				ResourceLoader::inDebugMode()
+				self::inDebugMode()
 			);
 		}
 	}
@@ -1441,13 +1441,13 @@ MESSAGE;
 			return Xml::encodeJsCall(
 				'mw.loader.addSource',
 				[ $id ],
-				ResourceLoader::inDebugMode()
+				self::inDebugMode()
 			);
 		} else {
 			return Xml::encodeJsCall(
 				'mw.loader.addSource',
 				[ $id, $loadUrl ],
-				ResourceLoader::inDebugMode()
+				self::inDebugMode()
 			);
 		}
 	}
@@ -1494,7 +1494,7 @@ MESSAGE;
 		return Xml::encodeJsCall(
 			'mw.config.set',
 			[ $configuration ],
-			ResourceLoader::inDebugMode()
+			self::inDebugMode()
 		);
 	}
 

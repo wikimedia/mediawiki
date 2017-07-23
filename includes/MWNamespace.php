@@ -370,7 +370,7 @@ class MWNamespace {
 	 */
 	public static function getSubjectNamespaces() {
 		return array_filter(
-			MWNamespace::getValidNamespaces(),
+			self::getValidNamespaces(),
 			'MWNamespace::isSubject'
 		);
 	}
@@ -383,7 +383,7 @@ class MWNamespace {
 	 */
 	public static function getTalkNamespaces() {
 		return array_filter(
-			MWNamespace::getValidNamespaces(),
+			self::getValidNamespaces(),
 			'MWNamespace::isTalk'
 		);
 	}

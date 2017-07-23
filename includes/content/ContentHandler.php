@@ -136,7 +136,7 @@ abstract class ContentHandler {
 			$modelId = $title->getContentModel();
 		}
 
-		$handler = ContentHandler::getForModelID( $modelId );
+		$handler = self::getForModelID( $modelId );
 
 		return $handler->unserializeContent( $text, $format );
 	}
@@ -240,7 +240,7 @@ abstract class ContentHandler {
 	public static function getForTitle( Title $title ) {
 		$modelId = $title->getContentModel();
 
-		return ContentHandler::getForModelID( $modelId );
+		return self::getForModelID( $modelId );
 	}
 
 	/**
@@ -256,7 +256,7 @@ abstract class ContentHandler {
 	public static function getForContent( Content $content ) {
 		$modelId = $content->getModel();
 
-		return ContentHandler::getForModelID( $modelId );
+		return self::getForModelID( $modelId );
 	}
 
 	/**
@@ -293,8 +293,8 @@ abstract class ContentHandler {
 	public static function getForModelID( $modelId ) {
 		global $wgContentHandlers;
 
-		if ( isset( ContentHandler::$handlers[$modelId] ) ) {
-			return ContentHandler::$handlers[$modelId];
+		if ( isset( self::$handlers[$modelId] ) ) {
+			return self::$handlers[$modelId];
 		}
 
 		if ( empty( $wgContentHandlers[$modelId] ) ) {
@@ -327,9 +327,9 @@ abstract class ContentHandler {
 		wfDebugLog( 'ContentHandler', 'Created handler for ' . $modelId
 			. ': ' . get_class( $handler ) );
 
-		ContentHandler::$handlers[$modelId] = $handler;
+		self::$handlers[$modelId] = $handler;
 
-		return ContentHandler::$handlers[$modelId];
+		return self::$handlers[$modelId];
 	}
 
 	/**
@@ -372,7 +372,7 @@ abstract class ContentHandler {
 		$formats = [];
 
 		foreach ( $wgContentHandlers as $model => $class ) {
-			$handler = ContentHandler::getForModelID( $model );
+			$handler = self::getForModelID( $model );
 			$formats = array_merge( $formats, $handler->getSupportedFormats() );
 		}
 

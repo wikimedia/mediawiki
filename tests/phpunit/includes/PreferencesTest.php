@@ -131,10 +131,9 @@ class PreferencesTest extends MediaWikiTestCase {
 			->method( 'getConfig' )
 			->willReturn( $configMock );
 
-		$this->setTemporaryHook( 'PreferencesFormPreSave', function(
+		$this->setTemporaryHook( 'PreferencesFormPreSave', function (
 			$formData, $form, $user, &$result, $oldUserOptions )
 			use ( $newOptions, $oldOptions, $userMock ) {
-
 			$this->assertSame( $userMock, $user );
 			foreach ( $newOptions as $option => $value ) {
 				$this->assertSame( $value, $formData[ $option ] );

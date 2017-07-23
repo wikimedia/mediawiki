@@ -411,7 +411,7 @@ class BotPassword implements IDBAccessObject {
 	 * @return array|false
 	 */
 	public static function canonicalizeLoginData( $username, $password ) {
-		$sep = BotPassword::getSeparator();
+		$sep = self::getSeparator();
 		// the strlen check helps minimize the password information obtainable from timing
 		if ( strlen( $password ) >= 32 && strpos( $username, $sep ) !== false ) {
 			// the separator is not valid in new usernames but might appear in legacy ones

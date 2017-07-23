@@ -664,7 +664,7 @@ class MagicWord {
 		$search = [];
 		$replace = [];
 		foreach ( $magicarr as $id => $replacement ) {
-			$mw = MagicWord::get( $id );
+			$mw = self::get( $id );
 			$search[] = $mw->getRegex();
 			$replace[] = $replacement;
 		}

@@ -1328,7 +1328,7 @@ class Linker {
 		Title $title, $text, $wikiId = null, $options = []
 	) {
 		if ( $wikiId !== null && !$title->isExternal() ) {
-			$link = Linker::makeExternalLink(
+			$link = self::makeExternalLink(
 				WikiMap::getForeignURL(
 					$wikiId,
 					$title->getNamespace() === 0
@@ -1341,7 +1341,7 @@ class Linker {
 				/* escape = */ false // Already escaped
 			);
 		} else {
-			$link = Linker::link( $title, $text, [], [], $options );
+			$link = self::link( $title, $text, [], [], $options );
 		}
 
 		return $link;
@@ -2021,7 +2021,7 @@ class Linker {
 		}
 
 		if ( !$rev->userCan( Revision::DELETED_RESTRICTED, $user ) ) {
-			return Linker::revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
+			return self::revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
 		} else {
 			if ( $rev->getId() ) {
 				// RevDelete links using revision ID are stable across
@@ -2040,7 +2040,7 @@ class Linker {
 					'ids' => $rev->getTimestamp()
 				];
 			}
-			return Linker::revDeleteLink( $query,
+			return self::revDeleteLink( $query,
 				$rev->isDeleted( Revision::DELETED_RESTRICTED ), $canHide );
 		}
 	}

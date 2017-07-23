@@ -603,7 +603,7 @@ class User implements IDBAccessObject {
 			]
 		);
 
-		return $id ? User::newFromId( $id ) : null;
+		return $id ? self::newFromId( $id ) : null;
 	}
 
 	/**
@@ -842,7 +842,7 @@ class User implements IDBAccessObject {
 		global $wgContLang, $wgMaxNameChars;
 
 		if ( $name == ''
-			|| User::isIP( $name )
+			|| self::isIP( $name )
 			|| strpos( $name, '/' ) !== false
 			|| strlen( $name ) > $wgMaxNameChars
 			|| $name != $wgContLang->ucfirst( $name )
@@ -1109,17 +1109,17 @@ class User implements IDBAccessObject {
 			case false:
 				break;
 			case 'valid':
-				if ( !User::isValidUserName( $name ) ) {
+				if ( !self::isValidUserName( $name ) ) {
 					$name = false;
 				}
 				break;
 			case 'usable':
-				if ( !User::isUsableName( $name ) ) {
+				if ( !self::isUsableName( $name ) ) {
 					$name = false;
 				}
 				break;
 			case 'creatable':
-				if ( !User::isCreatableName( $name ) ) {
+				if ( !self::isCreatableName( $name ) ) {
 					$name = false;
 				}
 				break;
@@ -1591,7 +1591,7 @@ class User implements IDBAccessObject {
 		// since extensions may change the set of searchable namespaces depending
 		// on user groups/permissions.
 		foreach ( $wgNamespacesToBeSearchedDefault as $nsnum => $val ) {
-			$defOpt['searchNs' . $nsnum] = (boolean)$val;
+			$defOpt['searchNs' . $nsnum] = (bool)$val;
 		}
 		$defOpt['skin'] = Skin::normalizeKey( $wgDefaultSkin );
 
@@ -2212,7 +2212,7 @@ class User implements IDBAccessObject {
 	 * @return int The user's ID; 0 if the user is anonymous or nonexistent
 	 */
 	public function getId() {
-		if ( $this->mId === null && $this->mName !== null && User::isIP( $this->mName ) ) {
+		if ( $this->mId === null && $this->mName !== null && self::isIP( $this->mName ) ) {
 			// Special case, we know the user is anonymous
 			return 0;
 		} elseif ( !$this->isItemLoaded( 'id' ) ) {
@@ -4131,7 +4131,7 @@ class User implements IDBAccessObject {
 		}
 		$dbw->insert( 'user', $fields, __METHOD__, [ 'IGNORE' ] );
 		if ( $dbw->affectedRows() ) {
-			$newUser = User::newFromId( $dbw->insertId() );
+			$newUser = self::newFromId( $dbw->insertId() );
 		} else {
 			$newUser = null;
 		}
@@ -5036,7 +5036,7 @@ class User implements IDBAccessObject {
 			// Do nothing
 		} elseif ( $wgGroupsAddToSelf[$group] === true ) {
 			// No idea WHY this would be used, but it's there
-			$groups['add-self'] = User::getAllGroups();
+			$groups['add-self'] = self::getAllGroups();
 		} elseif ( is_array( $wgGroupsAddToSelf[$group] ) ) {
 			$groups['add-self'] = $wgGroupsAddToSelf[$group];
 		}
@@ -5044,7 +5044,7 @@ class User implements IDBAccessObject {
 		if ( empty( $wgGroupsRemoveFromSelf[$group] ) ) {
 			// Do nothing
 		} elseif ( $wgGroupsRemoveFromSelf[$group] === true ) {
-			$groups['remove-self'] = User::getAllGroups();
+			$groups['remove-self'] = self::getAllGroups();
 		} elseif ( is_array( $wgGroupsRemoveFromSelf[$group] ) ) {
 			$groups['remove-self'] = $wgGroupsRemoveFromSelf[$group];
 		}
@@ -5065,7 +5065,7 @@ class User implements IDBAccessObject {
 			// compatibility with old "userrights lets you change
 			// everything")
 			// Using array_merge to make the groups reindexed
-			$all = array_merge( User::getAllGroups() );
+			$all = array_merge( self::getAllGroups() );
 			return [
 				'add' => $all,
 				'remove' => $all,
@@ -5491,7 +5491,7 @@ class User implements IDBAccessObject {
 		global $wgLang;
 
 		$groups = [];
-		foreach ( User::getGroupsWithPermission( $permission ) as $group ) {
+		foreach ( self::getGroupsWithPermission( $permission ) as $group ) {
 			$groups[] = UserGroupMembership::getLink( $group, RequestContext::getMain(), 'wiki' );
 		}
 

@@ -425,7 +425,7 @@ class MWDebug {
 		$html = '';
 
 		if ( self::$enabled ) {
-			MWDebug::log( 'MWDebug output complete' );
+			self::log( 'MWDebug output complete' );
 			$debugInfo = self::getDebugInfo( $context );
 
 			// Cannot use OutputPage::addJsConfigVars because those are already outputted
@@ -495,7 +495,7 @@ class MWDebug {
 			}
 		}
 
-		MWDebug::log( 'MWDebug output complete' );
+		self::log( 'MWDebug output complete' );
 		$debugInfo = self::getDebugInfo( $context );
 
 		ApiResult::setIndexedTagName( $debugInfo, 'debuginfo' );

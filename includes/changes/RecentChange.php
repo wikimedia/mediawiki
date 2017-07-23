@@ -130,7 +130,7 @@ class RecentChange {
 		if ( is_array( $type ) ) {
 			$retval = [];
 			foreach ( $type as $t ) {
-				$retval[] = RecentChange::parseToRCType( $t );
+				$retval[] = self::parseToRCType( $t );
 			}
 
 			return $retval;
@@ -459,7 +459,7 @@ class RecentChange {
 
 		$change = $change instanceof RecentChange
 			? $change
-			: RecentChange::newFromId( $change );
+			: self::newFromId( $change );
 
 		if ( !$change instanceof RecentChange ) {
 			return null;

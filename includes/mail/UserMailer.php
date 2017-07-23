@@ -175,18 +175,18 @@ class UserMailer {
 				// first send to non-split address list, then to split addresses one by one
 				$status = Status::newGood();
 				if ( $to ) {
-					$status->merge( UserMailer::sendInternal(
+					$status->merge( self::sendInternal(
 						$to, $from, $subject, $body, $options ) );
 				}
 				foreach ( $splitTo as $newTo ) {
-					$status->merge( UserMailer::sendInternal(
+					$status->merge( self::sendInternal(
 						[ $newTo ], $from, $subject, $body, $options ) );
 				}
 				return $status;
 			}
 		}
 
-		return UserMailer::sendInternal( $to, $from, $subject, $body, $options );
+		return self::sendInternal( $to, $from, $subject, $body, $options );
 	}
 
 	/**

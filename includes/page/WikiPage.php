@@ -2971,7 +2971,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// Clear caches
-		WikiPage::onArticleDelete( $this->mTitle );
+		self::onArticleDelete( $this->mTitle );
 		ResourceLoaderWikiModule::invalidateModuleCache(
 			$this->mTitle, $revision, null, wfWikiID()
 		);

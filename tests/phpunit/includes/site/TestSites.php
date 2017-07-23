@@ -109,6 +109,6 @@ class TestSites {
 	public static function insertIntoDb() {
 		$sitesTable = \MediaWiki\MediaWikiServices::getInstance()->getSiteStore();
 		$sitesTable->clear();
-		$sitesTable->saveSites( TestSites::getSites() );
+		$sitesTable->saveSites( self::getSites() );
 	}
 }

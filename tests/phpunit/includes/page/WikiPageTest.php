@@ -625,15 +625,15 @@ more stuff
 		return [
 			[ 'Help:WikiPageTest_testReplaceSection',
 				CONTENT_MODEL_WIKITEXT,
-				WikiPageTest::$sections,
+				self::$sections,
 				"0",
 				"No more",
 				null,
-				trim( preg_replace( '/^Intro/sm', 'No more', WikiPageTest::$sections ) )
+				trim( preg_replace( '/^Intro/sm', 'No more', self::$sections ) )
 			],
 			[ 'Help:WikiPageTest_testReplaceSection',
 				CONTENT_MODEL_WIKITEXT,
-				WikiPageTest::$sections,
+				self::$sections,
 				"",
 				"No more",
 				null,
@@ -641,29 +641,29 @@ more stuff
 			],
 			[ 'Help:WikiPageTest_testReplaceSection',
 				CONTENT_MODEL_WIKITEXT,
-				WikiPageTest::$sections,
+				self::$sections,
 				"2",
 				"== TEST ==\nmore fun",
 				null,
 				trim( preg_replace( '/^== test ==.*== foo ==/sm',
 					"== TEST ==\nmore fun\n\n== foo ==",
-					WikiPageTest::$sections ) )
+					self::$sections ) )
 			],
 			[ 'Help:WikiPageTest_testReplaceSection',
 				CONTENT_MODEL_WIKITEXT,
-				WikiPageTest::$sections,
+				self::$sections,
 				"8",
 				"No more",
 				null,
-				trim( WikiPageTest::$sections )
+				trim( self::$sections )
 			],
 			[ 'Help:WikiPageTest_testReplaceSection',
 				CONTENT_MODEL_WIKITEXT,
-				WikiPageTest::$sections,
+				self::$sections,
 				"new",
 				"No more",
 				"New",
-				trim( WikiPageTest::$sections ) . "\n\n== New ==\n\nNo more"
+				trim( self::$sections ) . "\n\n== New ==\n\nNo more"
 			],
 		];
 	}

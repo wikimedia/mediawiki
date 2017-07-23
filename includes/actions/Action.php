@@ -151,7 +151,7 @@ abstract class Action implements MessageLocalizer {
 			return 'view';
 		}
 
-		$action = Action::factory( $actionName, $context->getWikiPage(), $context );
+		$action = self::factory( $actionName, $context->getWikiPage(), $context );
 		if ( $action instanceof Action ) {
 			return $action->getName();
 		}
@@ -388,7 +388,7 @@ abstract class Action implements MessageLocalizer {
 	public function addHelpLink( $to, $overrideBaseUrl = false ) {
 		global $wgContLang;
 		$msg = wfMessage( $wgContLang->lc(
-			Action::getActionName( $this->getContext() )
+			self::getActionName( $this->getContext() )
 			) . '-helppage' );
 
 		if ( !$msg->isDisabled() ) {

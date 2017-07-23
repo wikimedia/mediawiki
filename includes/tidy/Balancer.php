@@ -2156,7 +2156,7 @@ class Balancer {
 		if (
 			$this->allowComments &&
 			!( $this->inRCDATA || $this->inRAWTEXT ) &&
-			preg_match( Balancer::VALID_COMMENT_REGEX, $x, $regs, PREG_OFFSET_CAPTURE ) &&
+			preg_match( self::VALID_COMMENT_REGEX, $x, $regs, PREG_OFFSET_CAPTURE ) &&
 			// verify EOF condition where necessary
 			( $regs[4][1] < 0 || !$this->bitsIterator->valid() )
 		) {

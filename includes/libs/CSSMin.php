@@ -252,7 +252,7 @@ class CSSMin {
 		// quotation marks (e.g. "foo /* bar").
 		$comments = [];
 
-		$pattern = '/(?!' . CSSMin::EMBED_REGEX . ')(' . CSSMin::COMMENT_REGEX . ')/s';
+		$pattern = '/(?!' . self::EMBED_REGEX . ')(' . self::COMMENT_REGEX . ')/s';
 
 		$source = preg_replace_callback(
 			$pattern,
@@ -355,7 +355,7 @@ class CSSMin {
 			}, $source );
 
 		// Re-insert comments
-		$pattern = '/' . CSSMin::PLACEHOLDER . '(\d+)x/';
+		$pattern = '/' . self::PLACEHOLDER . '(\d+)x/';
 		$source = preg_replace_callback( $pattern, function ( $match ) use ( &$comments ) {
 			return $comments[ $match[1] ];
 		}, $source );

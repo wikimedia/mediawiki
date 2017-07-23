@@ -106,7 +106,7 @@ class Http {
 			$options['timeout'] = $args[1];
 			$caller = __METHOD__;
 		}
-		return Http::request( 'GET', $url, $options, $caller );
+		return self::request( 'GET', $url, $options, $caller );
 	}
 
 	/**
@@ -119,7 +119,7 @@ class Http {
 	 * @return string|bool false on error
 	 */
 	public static function post( $url, $options = [], $caller = __METHOD__ ) {
-		return Http::request( 'POST', $url, $options, $caller );
+		return self::request( 'POST', $url, $options, $caller );
 	}
 
 	/**

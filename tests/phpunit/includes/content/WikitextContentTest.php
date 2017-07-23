@@ -103,16 +103,16 @@ more stuff
 
 	public static function dataGetSection() {
 		return [
-			[ WikitextContentTest::$sections,
+			[ self::$sections,
 				"0",
 				"Intro"
 			],
-			[ WikitextContentTest::$sections,
+			[ self::$sections,
 				"2",
 				"== test ==
 just a test"
 			],
-			[ WikitextContentTest::$sections,
+			[ self::$sections,
 				"8",
 				false
 			],
@@ -138,38 +138,38 @@ just a test"
 
 	public static function dataReplaceSection() {
 		return [
-			[ WikitextContentTest::$sections,
+			[ self::$sections,
 				"0",
 				"No more",
 				null,
-				trim( preg_replace( '/^Intro/sm', 'No more', WikitextContentTest::$sections ) )
+				trim( preg_replace( '/^Intro/sm', 'No more', self::$sections ) )
 			],
-			[ WikitextContentTest::$sections,
+			[ self::$sections,
 				"",
 				"No more",
 				null,
 				"No more"
 			],
-			[ WikitextContentTest::$sections,
+			[ self::$sections,
 				"2",
 				"== TEST ==\nmore fun",
 				null,
 				trim( preg_replace(
 					'/^== test ==.*== foo ==/sm', "== TEST ==\nmore fun\n\n== foo ==",
-					WikitextContentTest::$sections
+					self::$sections
 				) )
 			],
-			[ WikitextContentTest::$sections,
+			[ self::$sections,
 				"8",
 				"No more",
 				null,
-				WikitextContentTest::$sections
+				self::$sections
 			],
-			[ WikitextContentTest::$sections,
+			[ self::$sections,
 				"new",
 				"No more",
 				"New",
-				trim( WikitextContentTest::$sections ) . "\n\n\n== New ==\n\nNo more"
+				trim( self::$sections ) . "\n\n\n== New ==\n\nNo more"
 			],
 		];
 	}

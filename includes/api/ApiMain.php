@@ -1829,7 +1829,7 @@ class ApiMain extends ApiBase {
 				ApiBase::PARAM_TYPE => 'submodule',
 			],
 			'format' => [
-				ApiBase::PARAM_DFLT => ApiMain::API_DEFAULT_FORMAT,
+				ApiBase::PARAM_DFLT => self::API_DEFAULT_FORMAT,
 				ApiBase::PARAM_TYPE => 'submodule',
 			],
 			'maxlag' => [

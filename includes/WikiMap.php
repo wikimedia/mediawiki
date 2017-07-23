@@ -115,7 +115,7 @@ class WikiMap {
 	 * @return string|int Wiki's name or $wiki_id if the wiki was not found
 	 */
 	public static function getWikiName( $wikiID ) {
-		$wiki = WikiMap::getWiki( $wikiID );
+		$wiki = self::getWiki( $wikiID );
 
 		if ( $wiki ) {
 			return $wiki->getDisplayName();
@@ -166,7 +166,7 @@ class WikiMap {
 	 * @return string|bool URL or false if the wiki was not found
 	 */
 	public static function getForeignURL( $wikiID, $page, $fragmentId = null ) {
-		$wiki = WikiMap::getWiki( $wikiID );
+		$wiki = self::getWiki( $wikiID );
 
 		if ( $wiki ) {
 			return $wiki->getFullUrl( $page, $fragmentId );

@@ -687,7 +687,7 @@ $messageMemc = wfGetMessageCacheStorage();
 /**
  * @deprecated since 1.30
  */
-$parserMemc = new DeprecatedGlobal( 'parserMemc', function() {
+$parserMemc = new DeprecatedGlobal( 'parserMemc', function () {
 	return MediaWikiServices::getInstance()->getParserCache()->getCacheStorage();
 }, '1.30' );
 

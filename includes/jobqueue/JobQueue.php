@@ -378,7 +378,7 @@ abstract class JobQueue {
 		// Flag this job as an old duplicate based on its "root" job...
 		try {
 			if ( $job && $this->isRootJobOldDuplicate( $job ) ) {
-				JobQueue::incrStats( 'dupe_pops', $this->type );
+				self::incrStats( 'dupe_pops', $this->type );
 				$job = DuplicateJob::newFromJob( $job ); // convert to a no-op
 			}
 		} catch ( Exception $e ) {

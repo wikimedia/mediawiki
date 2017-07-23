@@ -535,7 +535,7 @@ class IcuCollation extends Collation {
 	 * @return string|bool
 	 */
 	static function getUnicodeVersionForICU() {
-		$icuVersion = IcuCollation::getICUVersion();
+		$icuVersion = self::getICUVersion();
 		if ( !$icuVersion ) {
 			return false;
 		}

@@ -549,7 +549,7 @@ class IP {
 	 */
 	private static function parseCIDR6( $range ) {
 		# Explode into <expanded IP,range>
-		$parts = explode( '/', IP::sanitizeIP( $range ), 2 );
+		$parts = explode( '/', self::sanitizeIP( $range ), 2 );
 		if ( count( $parts ) != 2 ) {
 			return [ false, false ];
 		}
@@ -590,7 +590,7 @@ class IP {
 	 */
 	private static function parseRange6( $range ) {
 		# Expand any IPv6 IP
-		$range = IP::sanitizeIP( $range );
+		$range = self::sanitizeIP( $range );
 		// CIDR notation...
 		if ( strpos( $range, '/' ) !== false ) {
 			list( $network, $bits ) = self::parseCIDR6( $range );
@@ -732,8 +732,8 @@ class IP {
 	public static function getSubnet( $ip ) {
 		$matches = [];
 		$subnet = false;
-		if ( IP::isIPv6( $ip ) ) {
-			$parts = IP::parseRange( "$ip/64" );
+		if ( self::isIPv6( $ip ) ) {
+			$parts = self::parseRange( "$ip/64" );
 			$subnet = $parts[0];
 		} elseif ( preg_match( '/^(\d+\.\d+\.\d+)\.\d+$/', $ip, $matches ) ) {
 			// IPv4

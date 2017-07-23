@@ -344,7 +344,7 @@ abstract class Maintenance {
 	 * @return mixed
 	 */
 	protected function getStdin( $len = null ) {
-		if ( $len == Maintenance::STDIN_ALL ) {
+		if ( $len == self::STDIN_ALL ) {
 			return file_get_contents( 'php://stdin' );
 		}
 		$f = fopen( 'php://stdin', 'rt' );
@@ -457,7 +457,7 @@ abstract class Maintenance {
 	 * @return int
 	 */
 	public function getDbType() {
-		return Maintenance::DB_STD;
+		return self::DB_STD;
 	}
 
 	/**

@@ -816,7 +816,7 @@ class MessageCache {
 		}
 
 		// Normalise title-case input (with some inlining)
-		$lckey = MessageCache::normalizeKey( $key );
+		$lckey = self::normalizeKey( $key );
 
 		Hooks::run( 'MessageCache::get', [ &$lckey ] );
 

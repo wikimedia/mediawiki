@@ -677,7 +677,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				ApiBase::PARAM_DFLT => -1,
 				ApiBase::PARAM_HELP_MSG => [
 					'apihelp-query+imageinfo-param-urlwidth',
-					ApiQueryImageInfo::TRANSFORM_LIMIT,
+					self::TRANSFORM_LIMIT,
 				],
 			],
 			'urlheight' => [

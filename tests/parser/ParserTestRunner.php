@@ -168,7 +168,7 @@ class ParserTestRunner {
 		global $wgParserTestFiles;
 
 		// Add core test files
-		$files = array_map( function( $item ) {
+		$files = array_map( function ( $item ) {
 			return __DIR__ . "/$item";
 		}, self::$coreTestFiles );
 

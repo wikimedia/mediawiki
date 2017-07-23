@@ -548,7 +548,7 @@ abstract class ApiBase extends ContextSource {
 		// Main module has this method overridden
 		// Safety - avoid infinite loop:
 		if ( $this->isMain() ) {
-			ApiBase::dieDebug( __METHOD__, 'base method was called on main module.' );
+			self::dieDebug( __METHOD__, 'base method was called on main module.' );
 		}
 
 		return $this->getMain()->lacksSameOriginSecurity();
@@ -620,7 +620,7 @@ abstract class ApiBase extends ContextSource {
 		// Main module has getResult() method overridden
 		// Safety - avoid infinite loop:
 		if ( $this->isMain() ) {
-			ApiBase::dieDebug( __METHOD__, 'base method was called on main module. ' );
+			self::dieDebug( __METHOD__, 'base method was called on main module. ' );
 		}
 
 		return $this->getMain()->getResult();
@@ -634,7 +634,7 @@ abstract class ApiBase extends ContextSource {
 		// Main module has getErrorFormatter() method overridden
 		// Safety - avoid infinite loop:
 		if ( $this->isMain() ) {
-			ApiBase::dieDebug( __METHOD__, 'base method was called on main module. ' );
+			self::dieDebug( __METHOD__, 'base method was called on main module. ' );
 		}
 
 		return $this->getMain()->getErrorFormatter();
@@ -660,7 +660,7 @@ abstract class ApiBase extends ContextSource {
 		// Main module has getContinuationManager() method overridden
 		// Safety - avoid infinite loop:
 		if ( $this->isMain() ) {
-			ApiBase::dieDebug( __METHOD__, 'base method was called on main module. ' );
+			self::dieDebug( __METHOD__, 'base method was called on main module. ' );
 		}
 
 		return $this->getMain()->getContinuationManager();
@@ -674,7 +674,7 @@ abstract class ApiBase extends ContextSource {
 		// Main module has setContinuationManager() method overridden
 		// Safety - avoid infinite loop:
 		if ( $this->isMain() ) {
-			ApiBase::dieDebug( __METHOD__, 'base method was called on main module. ' );
+			self::dieDebug( __METHOD__, 'base method was called on main module. ' );
 		}
 
 		$this->getMain()->setContinuationManager( $manager );
@@ -1059,7 +1059,7 @@ abstract class ApiBase extends ContextSource {
 		if ( $type == 'boolean' ) {
 			if ( isset( $default ) && $default !== false ) {
 				// Having a default value of anything other than 'false' is not allowed
-				ApiBase::dieDebug(
+				self::dieDebug(
 					__METHOD__,
 					"Boolean param $encParamName's default is set to '$default'. " .
 						'Boolean parameters must default to false.'
@@ -1070,13 +1070,13 @@ abstract class ApiBase extends ContextSource {
 		} elseif ( $type == 'upload' ) {
 			if ( isset( $default ) ) {
 				// Having a default value is not allowed
-				ApiBase::dieDebug(
+				self::dieDebug(
 					__METHOD__,
 					"File upload param $encParamName's default is set to " .
 						"'$default'. File upload parameters may not have a default." );
 			}
 			if ( $multi ) {
-				ApiBase::dieDebug( __METHOD__, "Multi-values not supported for $encParamName" );
+				self::dieDebug( __METHOD__, "Multi-values not supported for $encParamName" );
 			}
 			$value = $this->getMain()->getUpload( $encParamName );
 			if ( !$value->exists() ) {
@@ -1138,7 +1138,7 @@ abstract class ApiBase extends ContextSource {
 
 		$allSpecifier = ( is_string( $allowAll ) ? $allowAll : self::ALL_DEFAULT_STRING );
 		if ( $allowAll && $multi && is_array( $type ) && in_array( $allSpecifier, $type, true ) ) {
-			ApiBase::dieDebug(
+			self::dieDebug(
 				__METHOD__,
 				"For param $encParamName, PARAM_ALL collides with a possible value" );
 		}
@@ -1194,13 +1194,13 @@ abstract class ApiBase extends ContextSource {
 						if ( !isset( $paramSettings[self::PARAM_MAX] )
 							|| !isset( $paramSettings[self::PARAM_MAX2] )
 						) {
-							ApiBase::dieDebug(
+							self::dieDebug(
 								__METHOD__,
 								"MAX1 or MAX2 are not defined for the limit $encParamName"
 							);
 						}
 						if ( $multi ) {
-							ApiBase::dieDebug( __METHOD__, "Multi-values not supported for $encParamName" );
+							self::dieDebug( __METHOD__, "Multi-values not supported for $encParamName" );
 						}
 						$min = isset( $paramSettings[self::PARAM_MIN] ) ? $paramSettings[self::PARAM_MIN] : 0;
 						if ( $value == 'max' ) {
@@ -1221,7 +1221,7 @@ abstract class ApiBase extends ContextSource {
 						break;
 					case 'boolean':
 						if ( $multi ) {
-							ApiBase::dieDebug( __METHOD__, "Multi-values not supported for $encParamName" );
+							self::dieDebug( __METHOD__, "Multi-values not supported for $encParamName" );
 						}
 						break;
 					case 'timestamp':
@@ -1255,7 +1255,7 @@ abstract class ApiBase extends ContextSource {
 						}
 						break;
 					default:
-						ApiBase::dieDebug( __METHOD__, "Param $encParamName's type is unknown - $type" );
+						self::dieDebug( __METHOD__, "Param $encParamName's type is unknown - $type" );
 				}
 			}
 
@@ -2077,19 +2077,19 @@ abstract class ApiBase extends ContextSource {
 	 * @return Message
 	 */
 	public function getFinalSummary() {
-		$msg = ApiBase::makeMessage( $this->getSummaryMessage(), $this->getContext(), [
+		$msg = self::makeMessage( $this->getSummaryMessage(), $this->getContext(), [
 			$this->getModulePrefix(),
 			$this->getModuleName(),
 			$this->getModulePath(),
 		] );
 		if ( !$msg->exists() ) {
 			wfDeprecated( 'API help "description" messages', '1.30' );
-			$msg = ApiBase::makeMessage( $this->getDescriptionMessage(), $this->getContext(), [
+			$msg = self::makeMessage( $this->getDescriptionMessage(), $this->getContext(), [
 				$this->getModulePrefix(),
 				$this->getModuleName(),
 				$this->getModulePath(),
 			] );
-			$msg = ApiBase::makeMessage( 'rawmessage', $this->getContext(), [
+			$msg = self::makeMessage( 'rawmessage', $this->getContext(), [
 				preg_replace( '/\n.*/s', '', $msg->text() )
 			] );
 		}
@@ -2116,12 +2116,12 @@ abstract class ApiBase extends ContextSource {
 			$desc = (string)$desc;
 		}
 
-		$summary = ApiBase::makeMessage( $this->getSummaryMessage(), $this->getContext(), [
+		$summary = self::makeMessage( $this->getSummaryMessage(), $this->getContext(), [
 			$this->getModulePrefix(),
 			$this->getModuleName(),
 			$this->getModulePath(),
 		] );
-		$extendedDescription = ApiBase::makeMessage(
+		$extendedDescription = self::makeMessage(
 			$this->getExtendedDescription(), $this->getContext(), [
 				$this->getModulePrefix(),
 				$this->getModuleName(),
@@ -2133,7 +2133,7 @@ abstract class ApiBase extends ContextSource {
 			$msgs = [ $summary, $extendedDescription ];
 		} else {
 			wfDeprecated( 'API help "description" messages', '1.30' );
-			$description = ApiBase::makeMessage( $this->getDescriptionMessage(), $this->getContext(), [
+			$description = self::makeMessage( $this->getDescriptionMessage(), $this->getContext(), [
 				$this->getModulePrefix(),
 				$this->getModuleName(),
 				$this->getModulePath(),
@@ -2165,10 +2165,10 @@ abstract class ApiBase extends ContextSource {
 
 		if ( $this->needsToken() ) {
 			$params['token'] = [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true,
-				ApiBase::PARAM_SENSITIVE => true,
-				ApiBase::PARAM_HELP_MSG => [
+				self::PARAM_TYPE => 'string',
+				self::PARAM_REQUIRED => true,
+				self::PARAM_SENSITIVE => true,
+				self::PARAM_HELP_MSG => [
 					'api-help-param-token',
 					$this->needsToken(),
 				],
@@ -2205,7 +2205,7 @@ abstract class ApiBase extends ContextSource {
 		}
 		$desc = self::escapeWikiText( $desc );
 
-		$params = $this->getFinalParams( ApiBase::GET_VALUES_FOR_HELP );
+		$params = $this->getFinalParams( self::GET_VALUES_FOR_HELP );
 		$msgs = [];
 		foreach ( $params as $param => $settings ) {
 			if ( !is_array( $settings ) ) {
@@ -2224,15 +2224,15 @@ abstract class ApiBase extends ContextSource {
 				$d = implode( ' ', $d );
 			}
 
-			if ( isset( $settings[ApiBase::PARAM_HELP_MSG] ) ) {
-				$msg = $settings[ApiBase::PARAM_HELP_MSG];
+			if ( isset( $settings[self::PARAM_HELP_MSG] ) ) {
+				$msg = $settings[self::PARAM_HELP_MSG];
 			} else {
 				$msg = $this->msg( "apihelp-{$path}-param-{$param}" );
 				if ( !$msg->exists() ) {
 					$msg = $this->msg( 'api-help-fallback-parameter', $d );
 				}
 			}
-			$msg = ApiBase::makeMessage( $msg, $this->getContext(),
+			$msg = self::makeMessage( $msg, $this->getContext(),
 				[ $prefix, $param, $name, $path ] );
 			if ( !$msg ) {
 				self::dieDebug( __METHOD__,
@@ -2240,11 +2240,11 @@ abstract class ApiBase extends ContextSource {
 			}
 			$msgs[$param] = [ $msg ];
 
-			if ( isset( $settings[ApiBase::PARAM_TYPE] ) &&
-				$settings[ApiBase::PARAM_TYPE] === 'submodule'
+			if ( isset( $settings[self::PARAM_TYPE] ) &&
+				$settings[self::PARAM_TYPE] === 'submodule'
 			) {
-				if ( isset( $settings[ApiBase::PARAM_SUBMODULE_MAP] ) ) {
-					$map = $settings[ApiBase::PARAM_SUBMODULE_MAP];
+				if ( isset( $settings[self::PARAM_SUBMODULE_MAP] ) ) {
+					$map = $settings[self::PARAM_SUBMODULE_MAP];
 				} else {
 					$prefix = $this->isMain() ? '' : ( $this->getModulePath() . '+' );
 					$map = [];
@@ -2282,29 +2282,29 @@ abstract class ApiBase extends ContextSource {
 					$arr[] = $m->setContext( $this->getContext() );
 				}
 				$msgs[$param] = array_merge( $msgs[$param], $submodules, $deprecatedSubmodules );
-			} elseif ( isset( $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] ) ) {
-				if ( !is_array( $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] ) ) {
+			} elseif ( isset( $settings[self::PARAM_HELP_MSG_PER_VALUE] ) ) {
+				if ( !is_array( $settings[self::PARAM_HELP_MSG_PER_VALUE] ) ) {
 					self::dieDebug( __METHOD__,
 						'ApiBase::PARAM_HELP_MSG_PER_VALUE is not valid' );
 				}
-				if ( !is_array( $settings[ApiBase::PARAM_TYPE] ) ) {
+				if ( !is_array( $settings[self::PARAM_TYPE] ) ) {
 					self::dieDebug( __METHOD__,
 						'ApiBase::PARAM_HELP_MSG_PER_VALUE may only be used when ' .
 						'ApiBase::PARAM_TYPE is an array' );
 				}
 
-				$valueMsgs = $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE];
-				$deprecatedValues = isset( $settings[ApiBase::PARAM_DEPRECATED_VALUES] )
-					? $settings[ApiBase::PARAM_DEPRECATED_VALUES]
+				$valueMsgs = $settings[self::PARAM_HELP_MSG_PER_VALUE];
+				$deprecatedValues = isset( $settings[self::PARAM_DEPRECATED_VALUES] )
+					? $settings[self::PARAM_DEPRECATED_VALUES]
 					: [];
 
-				foreach ( $settings[ApiBase::PARAM_TYPE] as $value ) {
+				foreach ( $settings[self::PARAM_TYPE] as $value ) {
 					if ( isset( $valueMsgs[$value] ) ) {
 						$msg = $valueMsgs[$value];
 					} else {
 						$msg = "apihelp-{$path}-paramvalue-{$param}-{$value}";
 					}
-					$m = ApiBase::makeMessage( $msg, $this->getContext(),
+					$m = self::makeMessage( $msg, $this->getContext(),
 						[ $prefix, $param, $name, $path, $value ] );
 					if ( $m ) {
 						$m = new ApiHelpParamValueMessage(
@@ -2321,13 +2321,13 @@ abstract class ApiBase extends ContextSource {
 				}
 			}
 
-			if ( isset( $settings[ApiBase::PARAM_HELP_MSG_APPEND] ) ) {
-				if ( !is_array( $settings[ApiBase::PARAM_HELP_MSG_APPEND] ) ) {
+			if ( isset( $settings[self::PARAM_HELP_MSG_APPEND] ) ) {
+				if ( !is_array( $settings[self::PARAM_HELP_MSG_APPEND] ) ) {
 					self::dieDebug( __METHOD__,
 						'Value for ApiBase::PARAM_HELP_MSG_APPEND is not an array' );
 				}
-				foreach ( $settings[ApiBase::PARAM_HELP_MSG_APPEND] as $m ) {
-					$m = ApiBase::makeMessage( $m, $this->getContext(),
+				foreach ( $settings[self::PARAM_HELP_MSG_APPEND] as $m ) {
+					$m = self::makeMessage( $m, $this->getContext(),
 						[ $prefix, $param, $name, $path ] );
 					if ( $m ) {
 						$msgs[$param][] = $m;

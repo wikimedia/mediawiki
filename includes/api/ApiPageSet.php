@@ -121,7 +121,7 @@ class ApiPageSet extends ApiBase {
 	public function __construct( ApiBase $dbSource, $flags = 0, $defaultNamespace = NS_MAIN ) {
 		parent::__construct( $dbSource->getMain(), $dbSource->getModuleName() );
 		$this->mDbSource = $dbSource;
-		$this->mAllowGenerator = ( $flags & ApiPageSet::DISABLE_GENERATORS ) == 0;
+		$this->mAllowGenerator = ( $flags & self::DISABLE_GENERATORS ) == 0;
 		$this->mDefaultNamespace = $defaultNamespace;
 
 		$this->mParams = $this->extractRequestParams();
@@ -166,7 +166,7 @@ class ApiPageSet extends ApiBase {
 			}
 			// Create a temporary pageset to store generator's output,
 			// add any additional fields generator may need, and execute pageset to populate titles/pageids
-			$tmpPageSet = new ApiPageSet( $dbSource, ApiPageSet::DISABLE_GENERATORS );
+			$tmpPageSet = new ApiPageSet( $dbSource, self::DISABLE_GENERATORS );
 			$generator->setGeneratorMode( $tmpPageSet );
 			$this->mCacheMode = $generator->getCacheMode( $generator->extractRequestParams() );
 

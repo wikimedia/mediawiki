@@ -227,7 +227,7 @@ class Parser {
 	 * @var string Deprecated accessor for the strip marker prefix.
 	 * @deprecated since 1.26; use Parser::MARKER_PREFIX instead.
 	 */
-	public $mUniqPrefix = Parser::MARKER_PREFIX;
+	public $mUniqPrefix = self::MARKER_PREFIX;
 
 	/**
 	 * @var array Array with the language name of each language link (i.e. the
@@ -1295,7 +1295,7 @@ class Parser {
 			if ( !$frame->depth ) {
 				$flag = 0;
 			} else {
-				$flag = Parser::PTD_FOR_INCLUSION;
+				$flag = self::PTD_FOR_INCLUSION;
 			}
 			$dom = $this->preprocessToDom( $text, $flag );
 			$text = $frame->expand( $dom );

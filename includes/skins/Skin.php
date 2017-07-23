@@ -95,7 +95,7 @@ abstract class Skin extends ContextSource {
 	static function normalizeKey( $key ) {
 		global $wgDefaultSkin, $wgFallbackSkin;
 
-		$skinNames = Skin::getSkinNames();
+		$skinNames = self::getSkinNames();
 
 		// Make keys lowercase for case-insensitive matching.
 		$skinNames = array_change_key_case( $skinNames, CASE_LOWER );

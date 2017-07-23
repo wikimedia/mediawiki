@@ -276,7 +276,7 @@ class StringUtils {
 
 		// Replace instances of the separator inside HTML-like tags with the placeholder
 		$replacer = new DoubleReplacer( $separator, $placeholder );
-		$cleaned = StringUtils::delimiterReplaceCallback( '<', '>', $replacer->cb(), $text );
+		$cleaned = self::delimiterReplaceCallback( '<', '>', $replacer->cb(), $text );
 
 		// Explode, then put the replaced separators back in
 		$items = explode( $separator, $cleaned );
@@ -303,7 +303,7 @@ class StringUtils {
 
 		// Replace instances of the separator inside HTML-like tags with the placeholder
 		$replacer = new DoubleReplacer( $search, $placeholder );
-		$cleaned = StringUtils::delimiterReplaceCallback( '<', '>', $replacer->cb(), $text );
+		$cleaned = self::delimiterReplaceCallback( '<', '>', $replacer->cb(), $text );
 
 		// Explode, then put the replaced separators back in
 		$cleaned = str_replace( $search, $replace, $cleaned );

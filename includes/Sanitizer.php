@@ -465,7 +465,7 @@ class Sanitizer {
 		extract( self::getRecognizedTagData( $extratags, $removetags ) );
 
 		# Remove HTML comments
-		$text = Sanitizer::removeHTMLcomments( $text );
+		$text = self::removeHTMLcomments( $text );
 		$bits = explode( '<', $text );
 		$text = str_replace( '>', '&gt;', array_shift( $bits ) );
 		if ( !MWTidy::isEnabled() ) {
@@ -583,12 +583,12 @@ class Sanitizer {
 							call_user_func_array( $processCallback, [ &$params, $args ] );
 						}
 
-						if ( !Sanitizer::validateTag( $params, $t ) ) {
+						if ( !self::validateTag( $params, $t ) ) {
 							$badtag = true;
 						}
 
 						# Strip non-approved attributes from the tag
-						$newparams = Sanitizer::fixTagAttributes( $params, $t );
+						$newparams = self::fixTagAttributes( $params, $t );
 					}
 					if ( !$badtag ) {
 						$rest = str_replace( '>', '&gt;', $rest );
@@ -629,11 +629,11 @@ class Sanitizer {
 								call_user_func_array( $warnCallback, [ 'deprecated-self-close-category' ] );
 							}
 						}
-						if ( !Sanitizer::validateTag( $params, $t ) ) {
+						if ( !self::validateTag( $params, $t ) ) {
 							$badtag = true;
 						}
 
-						$newparams = Sanitizer::fixTagAttributes( $params, $t );
+						$newparams = self::fixTagAttributes( $params, $t );
 						if ( !$badtag ) {
 							if ( $brace === '/>' && !isset( $htmlsingleonly[$t] ) ) {
 								# Interpret self-closing tags as empty tags even when
@@ -710,7 +710,7 @@ class Sanitizer {
 	 * @return bool
 	 */
 	static function validateTag( $params, $element ) {
-		$params = Sanitizer::decodeTagAttributes( $params );
+		$params = self::decodeTagAttributes( $params );
 
 		if ( $element == 'meta' || $element == 'link' ) {
 			if ( !isset( $params['itemprop'] ) ) {
@@ -746,8 +746,8 @@ class Sanitizer {
 	 * @todo Check for unique id attribute :P
 	 */
 	static function validateTagAttributes( $attribs, $element ) {
-		return Sanitizer::validateAttributes( $attribs,
-			Sanitizer::attributeWhitelist( $element ) );
+		return self::validateAttributes( $attribs,
+			self::attributeWhitelist( $element ) );
 	}
 
 	/**
@@ -795,12 +795,12 @@ class Sanitizer {
 			# Strip javascript "expression" from stylesheets.
 			# https://msdn.microsoft.com/en-us/library/ms537634.aspx
 			if ( $attribute == 'style' ) {
-				$value = Sanitizer::checkCss( $value );
+				$value = self::checkCss( $value );
 			}
 
 			# Escape HTML id attributes
 			if ( $attribute === 'id' ) {
-				$value = Sanitizer::escapeId( $value, 'noninitial' );
+				$value = self::escapeId( $value, 'noninitial' );
 			}
 
 			# Escape HTML id reference lists
@@ -809,7 +809,7 @@ class Sanitizer {
 				|| $attribute === 'aria-labelledby'
 				|| $attribute === 'aria-owns'
 			) {
-				$value = Sanitizer::escapeIdReferenceList( $value, 'noninitial' );
+				$value = self::escapeIdReferenceList( $value, 'noninitial' );
 			}
 
 			// RDFa and microdata properties allow URLs, URIs and/or CURIs.
@@ -907,7 +907,7 @@ class Sanitizer {
 	 */
 	public static function normalizeCss( $value ) {
 		// Decode character references like &#123;
-		$value = Sanitizer::decodeCharReferences( $value );
+		$value = self::decodeCharReferences( $value );
 
 		// Decode escape sequences and line continuation
 		// See the grammar in the CSS 2 spec, appendix D.
@@ -1087,14 +1087,14 @@ class Sanitizer {
 			return '';
 		}
 
-		$decoded = Sanitizer::decodeTagAttributes( $text );
-		$stripped = Sanitizer::validateTagAttributes( $decoded, $element );
+		$decoded = self::decodeTagAttributes( $text );
+		$stripped = self::validateTagAttributes( $decoded, $element );
 
 		if ( $sorted ) {
 			ksort( $stripped );
 		}
 
-		return Sanitizer::safeEncodeTagAttributes( $stripped );
+		return self::safeEncodeTagAttributes( $stripped );
 	}
 
 	/**
@@ -1124,7 +1124,7 @@ class Sanitizer {
 	 * @return string HTML-encoded text fragment
 	 */
 	static function safeEncodeAttribute( $text ) {
-		$encValue = Sanitizer::encodeAttribute( $text );
+		$encValue = self::encodeAttribute( $text );
 
 		# Templates and links may be expanded in later parsing,
 		# creating invalid or dangerous output. Suppress this.
@@ -1186,7 +1186,7 @@ class Sanitizer {
 		global $wgExperimentalHtmlIds;
 		$options = (array)$options;
 
-		$id = Sanitizer::decodeCharReferences( $id );
+		$id = self::decodeCharReferences( $id );
 
 		if ( $wgExperimentalHtmlIds && !in_array( 'legacy', $options ) ) {
 			$id = preg_replace( '/[ \t\n\r\f_\'"&#%]+/', '_', $id );
@@ -1238,7 +1238,7 @@ class Sanitizer {
 
 		# Escape each token as an id
 		foreach ( $references as &$ref ) {
-			$ref = Sanitizer::escapeId( $ref, $options );
+			$ref = self::escapeId( $ref, $options );
 		}
 
 		# Merge the array back to a space delimited list string
@@ -1275,7 +1275,7 @@ class Sanitizer {
 	 * @return string Escaped input
 	 */
 	static function escapeHtmlAllowEntities( $html ) {
-		$html = Sanitizer::decodeCharReferences( $html );
+		$html = self::decodeCharReferences( $html );
 		# It seems wise to escape ' as well as ", as a matter of course.  Can't
 		# hurt. Use ENT_SUBSTITUTE so that incorrectly truncated multibyte characters
 		# don't cause the entire string to disappear.
@@ -1317,14 +1317,14 @@ class Sanitizer {
 
 		foreach ( $pairs as $set ) {
 			$attribute = strtolower( $set[1] );
-			$value = Sanitizer::getTagAttributeCallback( $set );
+			$value = self::getTagAttributeCallback( $set );
 
 			// Normalize whitespace
 			$value = preg_replace( '/[\t\r\n ]+/', ' ', $value );
 			$value = trim( $value );
 
 			// Decode character references
-			$attribs[$attribute] = Sanitizer::decodeCharReferences( $value );
+			$attribs[$attribute] = self::decodeCharReferences( $value );
 		}
 		return $attribs;
 	}
@@ -1340,7 +1340,7 @@ class Sanitizer {
 		$attribs = [];
 		foreach ( $assoc_array as $attribute => $value ) {
 			$encAttribute = htmlspecialchars( $attribute );
-			$encValue = Sanitizer::safeEncodeAttribute( $value );
+			$encValue = self::safeEncodeAttribute( $value );
 
 			$attribs[] = "$encAttribute=\"$encValue\"";
 		}
@@ -1427,11 +1427,11 @@ class Sanitizer {
 	static function normalizeCharReferencesCallback( $matches ) {
 		$ret = null;
 		if ( $matches[1] != '' ) {
-			$ret = Sanitizer::normalizeEntity( $matches[1] );
+			$ret = self::normalizeEntity( $matches[1] );
 		} elseif ( $matches[2] != '' ) {
-			$ret = Sanitizer::decCharReference( $matches[2] );
+			$ret = self::decCharReference( $matches[2] );
 		} elseif ( $matches[3] != '' ) {
-			$ret = Sanitizer::hexCharReference( $matches[3] );
+			$ret = self::hexCharReference( $matches[3] );
 		}
 		if ( is_null( $ret ) ) {
 			return htmlspecialchars( $matches[0] );
@@ -1468,7 +1468,7 @@ class Sanitizer {
 	 */
 	static function decCharReference( $codepoint ) {
 		$point = intval( $codepoint );
-		if ( Sanitizer::validateCodepoint( $point ) ) {
+		if ( self::validateCodepoint( $point ) ) {
 			return sprintf( '&#%d;', $point );
 		} else {
 			return null;
@@ -1481,7 +1481,7 @@ class Sanitizer {
 	 */
 	static function hexCharReference( $codepoint ) {
 		$point = hexdec( $codepoint );
-		if ( Sanitizer::validateCodepoint( $point ) ) {
+		if ( self::validateCodepoint( $point ) ) {
 			return sprintf( '&#x%x;', $point );
 		} else {
 			return null;
@@ -1550,11 +1550,11 @@ class Sanitizer {
 	 */
 	static function decodeCharReferencesCallback( $matches ) {
 		if ( $matches[1] != '' ) {
-			return Sanitizer::decodeEntity( $matches[1] );
+			return self::decodeEntity( $matches[1] );
 		} elseif ( $matches[2] != '' ) {
-			return Sanitizer::decodeChar( intval( $matches[2] ) );
+			return self::decodeChar( intval( $matches[2] ) );
 		} elseif ( $matches[3] != '' ) {
-			return Sanitizer::decodeChar( hexdec( $matches[3] ) );
+			return self::decodeChar( hexdec( $matches[3] ) );
 		}
 		# Last case should be an ampersand by itself
 		return $matches[0];
@@ -1568,7 +1568,7 @@ class Sanitizer {
 	 * @private
 	 */
 	static function decodeChar( $codepoint ) {
-		if ( Sanitizer::validateCodepoint( $codepoint ) ) {
+		if ( self::validateCodepoint( $codepoint ) ) {
 			return UtfNormal\Utils::codepointToUtf8( $codepoint );
 		} else {
 			return UtfNormal\Constants::UTF8_REPLACEMENT;
@@ -1601,7 +1601,7 @@ class Sanitizer {
 	 * @return array
 	 */
 	static function attributeWhitelist( $element ) {
-		$list = Sanitizer::setupAttributeWhitelist();
+		$list = self::setupAttributeWhitelist();
 		return isset( $list[$element] )
 			? $list[$element]
 			: [];
@@ -1876,7 +1876,7 @@ class Sanitizer {
 	static function cleanUrl( $url ) {
 		# Normalize any HTML entities in input. They will be
 		# re-escaped by makeExternalLink().
-		$url = Sanitizer::decodeCharReferences( $url );
+		$url = self::decodeCharReferences( $url );
 
 		# Escape any control characters introduced by the above step
 		$url = preg_replace_callback( '/[\][<>"\\x00-\\x20\\x7F\|]/',

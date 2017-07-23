@@ -1002,7 +1002,7 @@ class Revision implements IDBAccessObject {
 
 		return RecentChange::newFromConds(
 			[
-				'rc_user_text' => $this->getUserText( Revision::RAW ),
+				'rc_user_text' => $this->getUserText( self::RAW ),
 				'rc_timestamp' => $dbr->timestamp( $this->getTimestamp() ),
 				'rc_this_oldid' => $this->getId()
 			],
@@ -1466,7 +1466,7 @@ class Revision implements IDBAccessObject {
 				? $this->getPreviousRevisionId( $dbw )
 				: $this->mParentId,
 			'rev_sha1'       => $this->mSha1 === null
-				? Revision::base36Sha1( $this->mText )
+				? self::base36Sha1( $this->mText )
 				: $this->mSha1,
 		];
 
@@ -1555,7 +1555,7 @@ class Revision implements IDBAccessObject {
 			}
 		}
 
-		$content = $this->getContent( Revision::RAW );
+		$content = $this->getContent( self::RAW );
 		$prefixedDBkey = $title->getPrefixedDBkey();
 		$revId = $this->mId;
 

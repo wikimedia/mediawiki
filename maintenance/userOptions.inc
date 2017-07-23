@@ -47,7 +47,7 @@ class UserOptions {
 	 */
 	function __construct( $opts, $args ) {
 		if ( !$this->checkOpts( $opts, $args ) ) {
-			UserOptions::showUsageAndExit();
+			self::showUsageAndExit();
 		} else {
 			$this->mReady = $this->initializeOpts( $opts, $args );
 		}

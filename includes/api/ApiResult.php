@@ -287,12 +287,12 @@ class ApiResult implements ApiSerializable {
 	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP.
 	 */
 	public static function setValue( array &$arr, $name, $value, $flags = 0 ) {
-		if ( ( $flags & ApiResult::NO_VALIDATE ) !== ApiResult::NO_VALIDATE ) {
+		if ( ( $flags & self::NO_VALIDATE ) !== self::NO_VALIDATE ) {
 			$value = self::validateValue( $value );
 		}
 
 		if ( $name === null ) {
-			if ( $flags & ApiResult::ADD_ON_TOP ) {
+			if ( $flags & self::ADD_ON_TOP ) {
 				array_unshift( $arr, $value );
 			} else {
 				array_push( $arr, $value );
@@ -301,8 +301,8 @@ class ApiResult implements ApiSerializable {
 		}
 
 		$exists = isset( $arr[$name] );
-		if ( !$exists || ( $flags & ApiResult::OVERRIDE ) ) {
-			if ( !$exists && ( $flags & ApiResult::ADD_ON_TOP ) ) {
+		if ( !$exists || ( $flags & self::OVERRIDE ) ) {
+			if ( !$exists && ( $flags & self::ADD_ON_TOP ) ) {
 				$arr = [ $name => $value ] + $arr;
 			} else {
 				$arr[$name] = $value;
@@ -403,13 +403,13 @@ class ApiResult implements ApiSerializable {
 	 * @since 1.21 int $flags replaced boolean $override
 	 */
 	public function addValue( $path, $name, $value, $flags = 0 ) {
-		$arr = &$this->path( $path, ( $flags & ApiResult::ADD_ON_TOP ) ? 'prepend' : 'append' );
+		$arr = &$this->path( $path, ( $flags & self::ADD_ON_TOP ) ? 'prepend' : 'append' );
 
-		if ( $this->checkingSize && !( $flags & ApiResult::NO_SIZE_CHECK ) ) {
+		if ( $this->checkingSize && !( $flags & self::NO_SIZE_CHECK ) ) {
 			// self::size needs the validated value. Then flag
 			// to not re-validate later.
 			$value = self::validateValue( $value );
-			$flags |= ApiResult::NO_VALIDATE;
+			$flags |= self::NO_VALIDATE;
 
 			$newsize = $this->size + self::size( $value );
 			if ( $this->maxSize !== false && $newsize > $this->maxSize ) {
@@ -459,7 +459,7 @@ class ApiResult implements ApiSerializable {
 			$name = array_pop( $path );
 		}
 		$ret = self::unsetValue( $this->path( $path, 'dummy' ), $name );
-		if ( $this->checkingSize && !( $flags & ApiResult::NO_SIZE_CHECK ) ) {
+		if ( $this->checkingSize && !( $flags & self::NO_SIZE_CHECK ) ) {
 			$newsize = $this->size - self::size( $ret );
 			$this->size = max( $newsize, 0 );
 		}
@@ -511,7 +511,7 @@ class ApiResult implements ApiSerializable {
 	public function addParsedLimit( $moduleName, $limit ) {
 		// Add value, allowing overwriting
 		$this->addValue( 'limits', $moduleName, $limit,
-			ApiResult::OVERRIDE | ApiResult::NO_SIZE_CHECK );
+			self::OVERRIDE | self::NO_SIZE_CHECK );
 	}
 
 	/**@}*/
@@ -551,7 +551,7 @@ class ApiResult implements ApiSerializable {
 	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP.
 	 */
 	public function addContentField( $path, $name, $flags = 0 ) {
-		$arr = &$this->path( $path, ( $flags & ApiResult::ADD_ON_TOP ) ? 'prepend' : 'append' );
+		$arr = &$this->path( $path, ( $flags & self::ADD_ON_TOP ) ? 'prepend' : 'append' );
 		self::setContentField( $arr, $name, $flags );
 	}
 
@@ -1156,7 +1156,7 @@ class ApiResult implements ApiSerializable {
 		$bools = [];
 		foreach ( $vars as $k => $v ) {
 			if ( is_array( $v ) || is_object( $v ) ) {
-				$vars[$k] = ApiResult::addMetadataToResultVars( (array)$v, is_object( $v ) );
+				$vars[$k] = self::addMetadataToResultVars( (array)$v, is_object( $v ) );
 			} elseif ( is_bool( $v ) ) {
 				// Better here to use real bools even in BC formats
 				$bools[] = $k;
@@ -1176,22 +1176,22 @@ class ApiResult implements ApiSerializable {
 			// Get the list of keys we actually care about. Unfortunately, we can't support
 			// certain keys that conflict with ApiResult metadata.
 			$keys = array_diff( array_keys( $vars ), [
-				ApiResult::META_TYPE, ApiResult::META_PRESERVE_KEYS, ApiResult::META_KVP_KEY_NAME,
-				ApiResult::META_INDEXED_TAG_NAME, ApiResult::META_BC_BOOLS
+				self::META_TYPE, self::META_PRESERVE_KEYS, self::META_KVP_KEY_NAME,
+				self::META_INDEXED_TAG_NAME, self::META_BC_BOOLS
 			] );
 
 			return [
-				ApiResult::META_TYPE => 'kvp',
-				ApiResult::META_KVP_KEY_NAME => 'key',
-				ApiResult::META_PRESERVE_KEYS => $keys,
-				ApiResult::META_BC_BOOLS => $bools,
-				ApiResult::META_INDEXED_TAG_NAME => 'var',
+				self::META_TYPE => 'kvp',
+				self::META_KVP_KEY_NAME => 'key',
+				self::META_PRESERVE_KEYS => $keys,
+				self::META_BC_BOOLS => $bools,
+				self::META_INDEXED_TAG_NAME => 'var',
 			] + $vars;
 		} else {
 			return [
-				ApiResult::META_TYPE => 'array',
-				ApiResult::META_BC_BOOLS => $bools,
-				ApiResult::META_INDEXED_TAG_NAME => 'value',
+				self::META_TYPE => 'array',
+				self::META_BC_BOOLS => $bools,
+				self::META_INDEXED_TAG_NAME => 'value',
 			] + $vars;
 		}
 	}

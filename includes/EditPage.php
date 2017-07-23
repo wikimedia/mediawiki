@@ -2783,7 +2783,7 @@ class EditPage {
 		$wgOut->addHTML( $this->editFormTextBeforeContent );
 
 		if ( !$this->isCssJsSubpage && $showToolbar && $wgUser->getOption( 'showtoolbar' ) ) {
-			$wgOut->addHTML( EditPage::getEditToolbar( $this->mTitle ) );
+			$wgOut->addHTML( self::getEditToolbar( $this->mTitle ) );
 		}
 
 		if ( $this->blankArticle ) {

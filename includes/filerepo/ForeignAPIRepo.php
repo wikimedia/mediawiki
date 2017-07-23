@@ -528,7 +528,7 @@ class ForeignAPIRepo extends FileRepo {
 		}
 
 		$req = MWHttpRequest::factory( $url, $options, __METHOD__ );
-		$req->setUserAgent( ForeignAPIRepo::getUserAgent() );
+		$req->setUserAgent( self::getUserAgent() );
 		$status = $req->execute();
 
 		if ( $status->isOK() ) {

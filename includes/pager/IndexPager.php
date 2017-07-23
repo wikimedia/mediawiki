@@ -737,6 +737,6 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @return bool
 	 */
 	protected function getDefaultDirections() {
-		return IndexPager::DIR_ASCENDING;
+		return self::DIR_ASCENDING;
 	}
 }

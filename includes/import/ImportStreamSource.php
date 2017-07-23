@@ -93,7 +93,7 @@ class ImportStreamSource implements ImportSource {
 		}
 		$fname = $upload['tmp_name'];
 		if ( is_uploaded_file( $fname ) ) {
-			return ImportStreamSource::newFromFile( $fname );
+			return self::newFromFile( $fname );
 		} else {
 			return Status::newFatal( 'importnofile' );
 		}
@@ -178,6 +178,6 @@ class ImportStreamSource implements ImportSource {
 
 		$url = wfAppendQuery( $link, $params );
 		# For interwikis, use POST to avoid redirects.
-		return ImportStreamSource::newFromURL( $url, "POST" );
+		return self::newFromURL( $url, "POST" );
 	}
 }

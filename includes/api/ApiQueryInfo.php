@@ -128,7 +128,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * @deprecated since 1.24
 	 */
 	public static function resetTokenCache() {
-		ApiQueryInfo::$cachedTokens = [];
+		self::$cachedTokens = [];
 	}
 
 	/**
@@ -144,11 +144,11 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		// The token is always the same, let's exploit that
-		if ( !isset( ApiQueryInfo::$cachedTokens['edit'] ) ) {
-			ApiQueryInfo::$cachedTokens['edit'] = $wgUser->getEditToken();
+		if ( !isset( self::$cachedTokens['edit'] ) ) {
+			self::$cachedTokens['edit'] = $wgUser->getEditToken();
 		}
 
-		return ApiQueryInfo::$cachedTokens['edit'];
+		return self::$cachedTokens['edit'];
 	}
 
 	/**
@@ -161,11 +161,11 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		// The token is always the same, let's exploit that
-		if ( !isset( ApiQueryInfo::$cachedTokens['delete'] ) ) {
-			ApiQueryInfo::$cachedTokens['delete'] = $wgUser->getEditToken();
+		if ( !isset( self::$cachedTokens['delete'] ) ) {
+			self::$cachedTokens['delete'] = $wgUser->getEditToken();
 		}
 
-		return ApiQueryInfo::$cachedTokens['delete'];
+		return self::$cachedTokens['delete'];
 	}
 
 	/**
@@ -178,11 +178,11 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		// The token is always the same, let's exploit that
-		if ( !isset( ApiQueryInfo::$cachedTokens['protect'] ) ) {
-			ApiQueryInfo::$cachedTokens['protect'] = $wgUser->getEditToken();
+		if ( !isset( self::$cachedTokens['protect'] ) ) {
+			self::$cachedTokens['protect'] = $wgUser->getEditToken();
 		}
 
-		return ApiQueryInfo::$cachedTokens['protect'];
+		return self::$cachedTokens['protect'];
 	}
 
 	/**
@@ -195,11 +195,11 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		// The token is always the same, let's exploit that
-		if ( !isset( ApiQueryInfo::$cachedTokens['move'] ) ) {
-			ApiQueryInfo::$cachedTokens['move'] = $wgUser->getEditToken();
+		if ( !isset( self::$cachedTokens['move'] ) ) {
+			self::$cachedTokens['move'] = $wgUser->getEditToken();
 		}
 
-		return ApiQueryInfo::$cachedTokens['move'];
+		return self::$cachedTokens['move'];
 	}
 
 	/**
@@ -212,11 +212,11 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		// The token is always the same, let's exploit that
-		if ( !isset( ApiQueryInfo::$cachedTokens['block'] ) ) {
-			ApiQueryInfo::$cachedTokens['block'] = $wgUser->getEditToken();
+		if ( !isset( self::$cachedTokens['block'] ) ) {
+			self::$cachedTokens['block'] = $wgUser->getEditToken();
 		}
 
-		return ApiQueryInfo::$cachedTokens['block'];
+		return self::$cachedTokens['block'];
 	}
 
 	/**
@@ -237,11 +237,11 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		// The token is always the same, let's exploit that
-		if ( !isset( ApiQueryInfo::$cachedTokens['email'] ) ) {
-			ApiQueryInfo::$cachedTokens['email'] = $wgUser->getEditToken();
+		if ( !isset( self::$cachedTokens['email'] ) ) {
+			self::$cachedTokens['email'] = $wgUser->getEditToken();
 		}
 
-		return ApiQueryInfo::$cachedTokens['email'];
+		return self::$cachedTokens['email'];
 	}
 
 	/**
@@ -254,11 +254,11 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		// The token is always the same, let's exploit that
-		if ( !isset( ApiQueryInfo::$cachedTokens['import'] ) ) {
-			ApiQueryInfo::$cachedTokens['import'] = $wgUser->getEditToken();
+		if ( !isset( self::$cachedTokens['import'] ) ) {
+			self::$cachedTokens['import'] = $wgUser->getEditToken();
 		}
 
-		return ApiQueryInfo::$cachedTokens['import'];
+		return self::$cachedTokens['import'];
 	}
 
 	/**
@@ -271,11 +271,11 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		// The token is always the same, let's exploit that
-		if ( !isset( ApiQueryInfo::$cachedTokens['watch'] ) ) {
-			ApiQueryInfo::$cachedTokens['watch'] = $wgUser->getEditToken( 'watch' );
+		if ( !isset( self::$cachedTokens['watch'] ) ) {
+			self::$cachedTokens['watch'] = $wgUser->getEditToken( 'watch' );
 		}
 
-		return ApiQueryInfo::$cachedTokens['watch'];
+		return self::$cachedTokens['watch'];
 	}
 
 	/**
@@ -288,11 +288,11 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		// The token is always the same, let's exploit that
-		if ( !isset( ApiQueryInfo::$cachedTokens['options'] ) ) {
-			ApiQueryInfo::$cachedTokens['options'] = $wgUser->getEditToken();
+		if ( !isset( self::$cachedTokens['options'] ) ) {
+			self::$cachedTokens['options'] = $wgUser->getEditToken();
 		}
 
-		return ApiQueryInfo::$cachedTokens['options'];
+		return self::$cachedTokens['options'];
 	}
 
 	public function execute() {

@@ -35,7 +35,7 @@ class MimeMagic extends MimeAnalyzer {
 		$instance = MediaWikiServices::getInstance()->getMimeAnalyzer();
 		Assert::postcondition(
 			$instance instanceof MimeMagic,
-			__METHOD__ . ' should return an instance of ' . MimeMagic::class
+			__METHOD__ . ' should return an instance of ' . self::class
 		);
 		return $instance;
 	}

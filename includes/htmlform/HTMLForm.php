@@ -285,7 +285,7 @@ class HTMLForm extends ContextSource {
 				return ObjectFactory::constructClassInstance( OOUIHTMLForm::class, $arguments );
 			default:
 				/** @var HTMLForm $form */
-				$form = ObjectFactory::constructClassInstance( HTMLForm::class, $arguments );
+				$form = ObjectFactory::constructClassInstance( self::class, $arguments );
 				$form->setDisplayFormat( $displayFormat );
 				return $form;
 		}

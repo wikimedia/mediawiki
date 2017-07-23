@@ -272,7 +272,7 @@ class Title implements LinkTarget {
 		}
 
 		try {
-			return Title::newFromTextThrow( strval( $text ), $defaultNamespace );
+			return self::newFromTextThrow( strval( $text ), $defaultNamespace );
 		} catch ( MalformedTitleException $ex ) {
 			return null;
 		}
@@ -411,7 +411,7 @@ class Title implements LinkTarget {
 			__METHOD__
 		);
 		if ( $row !== false ) {
-			$title = Title::newFromRow( $row );
+			$title = self::newFromRow( $row );
 		} else {
 			$title = null;
 		}
@@ -439,7 +439,7 @@ class Title implements LinkTarget {
 
 		$titles = [];
 		foreach ( $res as $row ) {
-			$titles[] = Title::newFromRow( $row );
+			$titles[] = self::newFromRow( $row );
 		}
 		return $titles;
 	}
@@ -541,7 +541,7 @@ class Title implements LinkTarget {
 		}
 
 		$t = new Title();
-		$t->mDbkeyform = Title::makeName( $ns, $title, $fragment, $interwiki, true );
+		$t->mDbkeyform = self::makeName( $ns, $title, $fragment, $interwiki, true );
 
 		try {
 			$t->secureAndSplit();
@@ -557,10 +557,10 @@ class Title implements LinkTarget {
 	 * @return Title The new object
 	 */
 	public static function newMainPage() {
-		$title = Title::newFromText( wfMessage( 'mainpage' )->inContentLanguage()->text() );
+		$title = self::newFromText( wfMessage( 'mainpage' )->inContentLanguage()->text() );
 		// Don't give fatal errors if the message is broken
 		if ( !$title ) {
-			$title = Title::newFromText( 'Main Page' );
+			$title = self::newFromText( 'Main Page' );
 		}
 		return $title;
 	}
@@ -933,7 +933,7 @@ class Title implements LinkTarget {
 	 */
 	public function getContentModel( $flags = 0 ) {
 		if ( !$this->mForcedContentModel
-			&& ( !$this->mContentModel || $flags === Title::GAID_FOR_UPDATE )
+			&& ( !$this->mContentModel || $flags === self::GAID_FOR_UPDATE )
 			&& $this->getArticleID( $flags )
 		) {
 			$linkCache = LinkCache::singleton();
@@ -1096,7 +1096,7 @@ class Title implements LinkTarget {
 			if ( $canonicalName ) {
 				$localName = SpecialPageFactory::getLocalNameFor( $canonicalName, $par );
 				if ( $localName != $this->mDbkeyform ) {
-					return Title::makeTitle( NS_SPECIAL, $localName );
+					return self::makeTitle( NS_SPECIAL, $localName );
 				}
 			}
 		}
@@ -1195,7 +1195,7 @@ class Title implements LinkTarget {
 	 * @return bool
 	 */
 	public function isMainPage() {
-		return $this->equals( Title::newMainPage() );
+		return $this->equals( self::newMainPage() );
 	}
 
 	/**
@@ -1313,7 +1313,7 @@ class Title implements LinkTarget {
 	 * @return Title The object for the talk page
 	 */
 	public function getTalkPage() {
-		return Title::makeTitle( MWNamespace::getTalk( $this->getNamespace() ), $this->getDBkey() );
+		return self::makeTitle( MWNamespace::getTalk( $this->getNamespace() ), $this->getDBkey() );
 	}
 
 	/**
@@ -1328,7 +1328,7 @@ class Title implements LinkTarget {
 		if ( $this->getNamespace() == $subjectNS ) {
 			return $this;
 		}
-		return Title::makeTitle( $subjectNS, $this->getDBkey() );
+		return self::makeTitle( $subjectNS, $this->getDBkey() );
 	}
 
 	/**
@@ -1388,7 +1388,7 @@ class Title implements LinkTarget {
 		if ( !$this->hasFragment() ) {
 			return '';
 		} else {
-			return '#' . Title::escapeFragmentForURL( $this->getFragment() );
+			return '#' . self::escapeFragmentForURL( $this->getFragment() );
 		}
 	}
 
@@ -1535,7 +1535,7 @@ class Title implements LinkTarget {
 	 * @since 1.20
 	 */
 	public function getRootTitle() {
-		return Title::makeTitle( $this->getNamespace(), $this->getRootText() );
+		return self::makeTitle( $this->getNamespace(), $this->getRootText() );
 	}
 
 	/**
@@ -1575,7 +1575,7 @@ class Title implements LinkTarget {
 	 * @since 1.20
 	 */
 	public function getBaseTitle() {
-		return Title::makeTitle( $this->getNamespace(), $this->getBaseText() );
+		return self::makeTitle( $this->getNamespace(), $this->getBaseText() );
 	}
 
 	/**
@@ -1611,7 +1611,7 @@ class Title implements LinkTarget {
 	 * @since 1.20
 	 */
 	public function getSubpage( $text ) {
-		return Title::makeTitleSafe( $this->getNamespace(), $this->getText() . '/' . $text );
+		return self::makeTitleSafe( $this->getNamespace(), $this->getText() . '/' . $text );
 	}
 
 	/**
@@ -2847,7 +2847,7 @@ class Title implements LinkTarget {
 					$page_id = $row->pr_page;
 					$page_ns = $row->page_namespace;
 					$page_title = $row->page_title;
-					$sources[$page_id] = Title::makeTitle( $page_ns, $page_title );
+					$sources[$page_id] = self::makeTitle( $page_ns, $page_title );
 					# Add groups needed for each restriction type if its not already there
 					# Make sure this restriction type still exists
 
@@ -3329,7 +3329,7 @@ class Title implements LinkTarget {
 	 * @return int Int or 0 if the page doesn't exist
 	 */
 	public function getLatestRevID( $flags = 0 ) {
-		if ( !( $flags & Title::GAID_FOR_UPDATE ) && $this->mLatestID !== false ) {
+		if ( !( $flags & self::GAID_FOR_UPDATE ) && $this->mLatestID !== false ) {
 			return intval( $this->mLatestID );
 		}
 		if ( !$this->getArticleID( $flags ) ) {
@@ -3489,7 +3489,7 @@ class Title implements LinkTarget {
 		if ( $res->numRows() ) {
 			$linkCache = LinkCache::singleton();
 			foreach ( $res as $row ) {
-				$titleObj = Title::makeTitle( $row->page_namespace, $row->page_title );
+				$titleObj = self::makeTitle( $row->page_namespace, $row->page_title );
 				if ( $titleObj ) {
 					$linkCache->addGoodLinkObjFromRow( $titleObj, $row );
 					$retVal[] = $titleObj;
@@ -3557,9 +3557,9 @@ class Title implements LinkTarget {
 		$linkCache = LinkCache::singleton();
 		foreach ( $res as $row ) {
 			if ( $row->page_id ) {
-				$titleObj = Title::newFromRow( $row );
+				$titleObj = self::newFromRow( $row );
 			} else {
-				$titleObj = Title::makeTitle( $row->$blNamespace, $row->$blTitle );
+				$titleObj = self::makeTitle( $row->$blNamespace, $row->$blTitle );
 				$linkCache->addBadLinkObj( $titleObj );
 			}
 			$retVal[] = $titleObj;
@@ -3615,7 +3615,7 @@ class Title implements LinkTarget {
 
 		$retVal = [];
 		foreach ( $res as $row ) {
-			$retVal[] = Title::makeTitle( $row->pl_namespace, $row->pl_title );
+			$retVal[] = self::makeTitle( $row->pl_namespace, $row->pl_title );
 		}
 		return $retVal;
 	}
@@ -3827,7 +3827,7 @@ class Title implements LinkTarget {
 			}
 			# T16385: we need makeTitleSafe because the new page names may
 			# be longer than 255 characters.
-			$newSubpage = Title::makeTitleSafe( $newNs, $newPageName );
+			$newSubpage = self::makeTitleSafe( $newNs, $newPageName );
 
 			$success = $oldSubpage->moveTo( $newSubpage, $auth, $reason, $createRedirect, $changeTags );
 			if ( $success === true ) {
@@ -3989,7 +3989,7 @@ class Title implements LinkTarget {
 					# Circular reference
 					$stack[$parent] = [];
 				} else {
-					$nt = Title::newFromText( $parent );
+					$nt = self::newFromText( $parent );
 					if ( $nt ) {
 						$stack[$parent] = $nt->getParentCategoryTree( $children + [ $parent => 1 ] );
 					}

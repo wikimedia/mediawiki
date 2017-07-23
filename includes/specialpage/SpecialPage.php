@@ -383,7 +383,7 @@ class SpecialPage implements MessageLocalizer {
 			return true;
 		} elseif ( $securityStatus === AuthManager::SEC_REAUTH ) {
 			$request = $this->getRequest();
-			$title = SpecialPage::getTitleFor( 'Userlogin' );
+			$title = self::getTitleFor( 'Userlogin' );
 			$query = [
 				'returnto' => $this->getFullTitle()->getPrefixedDBkey(),
 				'returntoquery' => wfArrayToCgi( array_diff_key( $request->getQueryValues(),

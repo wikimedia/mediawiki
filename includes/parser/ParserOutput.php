@@ -253,7 +253,7 @@ class ParserOutput extends CacheTime {
 		$text = $this->mText;
 		if ( $this->mEditSectionTokens ) {
 			$text = preg_replace_callback(
-				ParserOutput::EDITSECTION_REGEX,
+				self::EDITSECTION_REGEX,
 				function ( $m ) {
 					global $wgOut, $wgLang;
 					$editsectionPage = Title::newFromText( htmlspecialchars_decode( $m[1] ) );
@@ -274,7 +274,7 @@ class ParserOutput extends CacheTime {
 				$text
 			);
 		} else {
-			$text = preg_replace( ParserOutput::EDITSECTION_REGEX, '', $text );
+			$text = preg_replace( self::EDITSECTION_REGEX, '', $text );
 		}
 
 		// If you have an old cached version of this class - sorry, you can't disable the TOC
