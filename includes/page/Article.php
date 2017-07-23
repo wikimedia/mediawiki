@@ -1594,7 +1594,7 @@ class Article implements Page {
 			[ 'delete', $this->getTitle()->getPrefixedText() ] )
 		) {
 			# Flag to hide all contents of the archived revisions
-			$suppress = $request->getVal( 'wpSuppress' ) && $user->isAllowed( 'suppressrevision' );
+			$suppress = $request->getCheck( 'wpSuppress' ) && $user->isAllowed( 'suppressrevision' );
 
 			$this->doDelete( $reason, $suppress );
 
@@ -1692,14 +1692,6 @@ class Article implements Page {
 		Hooks::run( 'ArticleConfirmDelete', [ $this, $outputPage, &$reason ] );
 
 		$user = $this->getContext()->getUser();
-		if ( $user->isAllowed( 'suppressrevision' ) ) {
-			$suppress = Html::openElement( 'div', [ 'id' => 'wpDeleteSuppressRow' ] ) .
-				Xml::checkLabel( wfMessage( 'revdelete-suppress' )->text(),
-					'wpSuppress', 'wpSuppress', false, [ 'tabindex' => '4' ] ) .
-				Html::closeElement( 'div' );
-		} else {
-			$suppress = '';
-		}
 		$checkWatch = $user->getBoolOption( 'watchdeletion' ) || $user->isWatched( $title );
 
 		$outputPage->enableOOUI();
@@ -1764,6 +1756,21 @@ class Article implements Page {
 				] ),
 				[
 					'label' => $ctx->msg( 'watchthis' )->text(),
+					'align' => 'inline',
+					'infusable' => true,
+				]
+			);
+		}
+
+		if ( $user->isAllowed( 'suppressrevision' ) ) {
+			$fields[] = new OOUI\FieldLayout(
+				new OOUI\CheckboxInputWidget( [
+					'name' => 'wpSuppress',
+					'inputId' => 'wpSuppress',
+					'tabIndex' => 4,
+				] ),
+				[
+					'label' => $ctx->msg( 'revdelete-suppress' )->text(),
 					'align' => 'inline',
 					'infusable' => true,
 				]
