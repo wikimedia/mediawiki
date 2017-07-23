@@ -247,7 +247,8 @@ class DifferenceEngine extends ContextSource {
 		Hooks::run( 'DifferenceEngineShowDiffPage', [ $out ] );
 
 		if ( !$this->loadRevisionData() ) {
-			if ( Hooks::run( 'DifferenceEngineShowDiffPageMaybeShowMissingRevision', [ $this ] ) ) {
+			$differenceEngine = $this; // PHP 7+ workaround
+			if ( Hooks::run( 'DifferenceEngineShowDiffPageMaybeShowMissingRevision', [ $differenceEngine ] ) ) {
 				$this->showMissingRevision();
 			}
 			return;
@@ -360,7 +361,8 @@ class DifferenceEngine extends ContextSource {
 				'<div id="mw-diff-otitle4">' . $prevlink . '</div>';
 
 			// Allow extensions to change the $oldHeader variable
-			Hooks::run( 'DifferenceEngineOldHeader', [ $this, &$oldHeader, $prevlink, $oldminor,
+			$differenceEngine = $this; // PHP 7+ workaround
+			Hooks::run( 'DifferenceEngineOldHeader', [ $differenceEngine, &$oldHeader, $prevlink, $oldminor,
 				$diffOnly, $ldel, $this->unhide ] );
 
 			if ( $this->mOldRev->isDeleted( Revision::DELETED_TEXT ) ) {
@@ -429,8 +431,10 @@ class DifferenceEngine extends ContextSource {
 			'<div id="mw-diff-ntitle5">' . $newChangeTags[0] . '</div>' .
 			'<div id="mw-diff-ntitle4">' . $nextlink . $this->markPatrolledLink() . '</div>';
 
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$diffEngine = $this;
 		// Allow extensions to change the $newHeader variable
-		Hooks::run( 'DifferenceEngineNewHeader', [ $this, &$newHeader, $formattedRevisionTools,
+		Hooks::run( 'DifferenceEngineNewHeader', [ $diffEngine, &$newHeader, $formattedRevisionTools,
 			$nextlink, $rollback, $newminor, $diffOnly, $rdel, $this->unhide ] );
 
 		if ( $this->mNewRev->isDeleted( Revision::DELETED_TEXT ) ) {
@@ -505,7 +509,8 @@ class DifferenceEngine extends ContextSource {
 						]
 					) . ']</span>';
 				// Allow extensions to change the markpatrolled link
-				Hooks::run( 'DifferenceEngineMarkPatrolledLink', [ $this,
+				$diffEngine = $this; // PHP 7+ workaround
+				Hooks::run( 'DifferenceEngineMarkPatrolledLink', [ $diffEngine,
 					&$this->mMarkPatrolledLink, $linkInfo['rcid'] ] );
 			}
 		}
@@ -555,7 +560,8 @@ class DifferenceEngine extends ContextSource {
 			// For example the rcid might be set to zero due to the user
 			// being the same as the performer of the change but an extension
 			// might still want to show it under certain conditions
-			Hooks::run( 'DifferenceEngineMarkPatrolledRCID', [ &$rcid, $this, $change, $user ] );
+			$differenceEngine = $this; // PHP 7+ workaround
+			Hooks::run( 'DifferenceEngineMarkPatrolledRCID', [ &$rcid, $differenceEngine, $change, $user ] );
 
 			// Build the link
 			if ( $rcid ) {
@@ -601,7 +607,8 @@ class DifferenceEngine extends ContextSource {
 		<h2 class='diff-currentversion-title'>{$revHeader}</h2>\n" );
 		# Page content may be handled by a hooked call instead...
 		# @codingStandardsIgnoreStart Ignoring long lines.
-		if ( Hooks::run( 'ArticleContentOnDiff', [ $this, $out ] ) ) {
+		$differenceEngine = $this; // PHP 7+ workaround
+		if ( Hooks::run( 'ArticleContentOnDiff', [ $differenceEngine, $out ] ) ) {
 			$this->loadNewText();
 			$out->setRevisionId( $this->mNewid );
 			$out->setRevisionTimestamp( $this->mNewRev->getTimestamp() );
@@ -626,7 +633,8 @@ class DifferenceEngine extends ContextSource {
 				# WikiPage::getParserOutput() should not return false, but just in case
 				if ( $parserOutput ) {
 					// Allow extensions to change parser output here
-					if ( Hooks::run( 'DifferenceEngineRenderRevisionAddParserOutput', [ $this, $out, $parserOutput, $wikiPage ] ) ) {
+					$differenceEngine = $this; // PHP 7+ workaround
+					if ( Hooks::run( 'DifferenceEngineRenderRevisionAddParserOutput', [ $differenceEngine, $out, $parserOutput, $wikiPage ] ) ) {
 						$out->addParserOutput( $parserOutput );
 					}
 				}
@@ -664,8 +672,11 @@ class DifferenceEngine extends ContextSource {
 	 * @return bool
 	 */
 	public function showDiff( $otitle, $ntitle, $notice = '' ) {
+		// PHP 7+ *really* doesn't like it if you pass $this directly to the
+		// hook handler so we call it something else here and it...just works
+		$differenceEngine = $this;
 		// Allow extensions to affect the output here
-		Hooks::run( 'DifferenceEngineShowDiff', [ $this ] );
+		Hooks::run( 'DifferenceEngineShowDiff', [ $differenceEngine ] );
 
 		$diff = $this->getDiff( $otitle, $ntitle, $notice );
 		if ( $diff === false ) {
@@ -732,11 +743,15 @@ class DifferenceEngine extends ContextSource {
 		) {
 			return false;
 		}
+
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$diffEngine = $this;
+
 		// Short-circuit
 		if ( $this->mOldRev === false || ( $this->mOldRev && $this->mNewRev
 			&& $this->mOldRev->getId() == $this->mNewRev->getId() )
 		) {
-			if ( Hooks::run( 'DifferenceEngineShowEmptyOldContent', [ $this ] ) ) {
+			if ( Hooks::run( 'DifferenceEngineShowEmptyOldContent', [ $diffEngine ] ) ) {
 				return '';
 			}
 		}
@@ -766,9 +781,6 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		$difftext = $this->generateContentDiffBody( $this->mOldContent, $this->mNewContent );
-
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$diffEngine = $this;
 
 		// Save to cache for 7 days
 		if ( !Hooks::run( 'AbortDiffCache', [ &$diffEngine ] ) ) {
@@ -1403,7 +1415,8 @@ class DifferenceEngine extends ContextSource {
 
 		if ( $this->mNewRev ) {
 			$this->mNewContent = $this->mNewRev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
-			Hooks::run( 'DifferenceEngineLoadTextAfterNewContentIsLoaded', [ $this ] );
+			$differenceEngine = $this; // PHP 7+ workaround
+			Hooks::run( 'DifferenceEngineLoadTextAfterNewContentIsLoaded', [ $differenceEngine ] );
 			if ( $this->mNewContent === null ) {
 				return false;
 			}
@@ -1430,7 +1443,8 @@ class DifferenceEngine extends ContextSource {
 
 		$this->mNewContent = $this->mNewRev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
 
-		Hooks::run( 'DifferenceEngineAfterLoadNewText', [ $this ] );
+		$differenceEngine = $this; // PHP 7+ workaround
+		Hooks::run( 'DifferenceEngineAfterLoadNewText', [ $differenceEngine ] );
 
 		return true;
 	}
