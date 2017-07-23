@@ -23,7 +23,7 @@ class GitInfoTest extends MediaWikiTestCase {
 	public function testValidJsonData() {
 		global $IP;
 
-		$this->assertValidGitInfo( new GitInfo( "$IP/testValidJsonData") );
+		$this->assertValidGitInfo( new GitInfo( "$IP/testValidJsonData" ) );
 		$this->assertValidGitInfo( new GitInfo( __DIR__ . "/../data/gitinfo/extension" ) );
 	}
 
