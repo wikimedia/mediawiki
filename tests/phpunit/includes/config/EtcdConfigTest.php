@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 class EtcConfigTest extends PHPUnit_Framework_TestCase {
 
 	private function createConfigMock( array $options = [] ) {
@@ -358,5 +360,52 @@ class EtcConfigTest extends PHPUnit_Framework_TestCase {
 		$mock->expects( $this->never() )->method( 'fetchAllFromEtcd' );
 
 		$this->assertSame( 'from-cache-expired', $mock->get( 'known' ) );
+	}
+
+	public static function provideFetchFromServer() {
+		return [
+			[
+				'http' => [
+					'code' => 200,
+					'reason' => 'OK',
+					'headers' => [
+						'content-length' => 0,
+					],
+					'body' => '',
+					'error' => '(curl error: no status set)',
+				],
+				'expect' => [
+					// FIXME: Returning 4 values instead of 3
+					null,
+					200,
+					"Unexpected JSON response; missing 'nodes' list.",
+					false
+				],
+			],
+		];
+	}
+
+	/**
+	 * @covers EtcdConfig::fetchAllFromEtcdServer
+	 * @dataProvider provideFetchFromServer
+	 */
+	public function testFetchFromServer( array $httpResponse, array $expected ) {
+		$http = $this->getMockBuilder( MultiHttpClient::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$http->expects( $this->once() )->method( 'run' )
+			->willReturn( array_values( $httpResponse ) );
+
+		$conf = $this->getMockBuilder( EtcdConfig::class )
+			->disableOriginalConstructor()
+			->getMock();
+		// Access for protected member and method
+		$conf = TestingAccessWrapper::newFromObject( $conf );
+		$conf->http = $http;
+
+		$this->assertSame(
+			$expected,
+			$conf->fetchAllFromEtcdServer( 'etcd-tcp.example.net' )
+		);
 	}
 }
