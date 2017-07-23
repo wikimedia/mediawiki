@@ -2205,6 +2205,7 @@
 	"delete-warning-toobig": "Ta strona ma bardzo długą historię edycji – ponad $1 {{PLURAL:$1|zmianę|zmiany|zmian}}.<br />\nBądź ostrożny, ponieważ usunięcie jej może spowodować zakłócenia w pracy {{GRAMMAR:D.lp|{{SITENAME}}}}.",
 	"deleteprotected": "Nie możesz usunąć tej strony, ponieważ została zabezpieczona.",
 	"deleting-backlinks-warning": "<strong>Uwaga:</strong> Do strony, którą masz zamiar usunąć, odwołują się [[Special:WhatLinksHere/{{FULLPAGENAME}}|inne strony]].",
+	"deleting-subpages-warning": "<strong>Ostrzeżenie:</strong> Strona którą chcesz usunąć ma [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|jedną podstronę|$1 podstrony|$1 podstron|51=ponad 50 podstron}}]].",
 	"rollback": "Cofnij edycję",
 	"rollbacklink": "cofnij",
 	"rollbacklinkcount": "cofnij $1 {{PLURAL:$1|edycję|edycje|edycji}}",

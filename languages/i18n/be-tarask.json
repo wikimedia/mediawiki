@@ -1291,6 +1291,8 @@
 	"rcfilters-limit-title": "Паказаць зьменаў",
 	"rcfilters-limit-shownum": "Паказаць апошнія $1 зьменаў",
 	"rcfilters-days-title": "Апошнія дні",
+	"rcfilters-hours-title": "Апошнія гадзіны",
+	"rcfilters-days-show-days": "$1 {{PLURAL:$1|дзень|дні|дзён}}",
 	"rcfilters-quickfilters": "Захаваныя фільтры",
 	"rcfilters-quickfilters-placeholder-title": "Спасылкі яшчэ не захаваныя",
 	"rcfilters-quickfilters-placeholder-description": "Каб захаваць налады вашага фільтру і выкарыстаць іх пазьней, націсьніце на выяву закладкі ў зоне актыўнага фільтру ніжэй.",

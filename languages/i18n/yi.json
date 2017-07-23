@@ -1252,6 +1252,8 @@
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "ווייזן",
 	"rcfilters-activefilters": "אַקטיווע פילטערס",
+	"rcfilters-days-show-days": "$1 {{PLURAL:$1|טאג|טעג}}",
+	"rcfilters-days-show-hours": "$1 {{PLURAL:$1|שעה|שעה'ן}}",
 	"rcfilters-quickfilters": "אויפֿגעהיטענע פֿילטערס",
 	"rcfilters-quickfilters-placeholder-title": "קיין לינקען נאך נישט אויפֿגעהיטן",
 	"rcfilters-savedqueries-defaultlabel": "אױפֿגעהיטענע פֿילטערס",

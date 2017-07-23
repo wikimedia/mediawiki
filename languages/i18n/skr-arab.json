@@ -4,6 +4,9 @@
 			"Saraiki"
 		]
 	},
+	"tog-underline": "لنک  ہیٹھ لکیر",
+	"tog-hideminor": "چھوٹیاں تبدیلیاں لُکاؤ",
+	"tog-showtoolbar": "آلات ترمیم ݙکھاؤ",
 	"sunday": "اتوار",
 	"monday": "سونوار",
 	"tuesday": "منگل",
@@ -116,7 +119,7 @@
 	"privacy": "پرائیویسی پالیسی",
 	"privacypage": "Project:پرائیویسی پالیسی",
 	"retrievedfrom": "\"$1\" توں گھدا",
-	"youhavenewmessages": "تہاݙے کیتے ہک $1 ہے۔ ($2)",
+	"youhavenewmessages": "{{PLURAL:$3| تہاݙے کیتے}} $1 ($2).",
 	"newmessagesdifflinkplural": "چھیکڑی {{PLURAL:$1|تبدیلی|تبدیلیاں}}",
 	"editsection": "لکھو",
 	"editold": "لکھو",
@@ -155,7 +158,7 @@
 	"createaccount": "کھاتہ کھولو",
 	"userlogin-resetpassword-link": "پاسورڈ بھل ڳئے ہو؟",
 	"userlogin-helplink2": "لاگ ان تھیوݨ کیتے مدد دی لوڑ ہے؟",
-	"createacct-emailoptional": "(ای-میل پتہ(مرضی نال",
+	"createacct-emailoptional": "ای-میل پتہ، آپشنل",
 	"createacct-email-ph": "اپنا ای-میل پتہ لکھو",
 	"createacct-submit": "اپݨاں کھاتا کھولو",
 	"createacct-benefit-heading": "{{SITENAME}} تہاݙے وانگوں علم دوست افراد دا مرہون منت ہے۔",
