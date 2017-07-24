@@ -315,7 +315,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$opts = parent::getDefaultOptions();
 		$user = $this->getUser();
 
-		$opts->add( 'days', $user->getIntOption( 'rcdays' ) );
+		$opts->add( 'days', $user->getIntOption( 'rcdays' ), FormOptions::FLOAT );
 		$opts->add( 'limit', $user->getIntOption( 'rclimit' ) );
 		$opts->add( 'from', '' );
 
@@ -359,7 +359,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			if ( preg_match( '/^limit=(\d+)$/', $bit, $m ) ) {
 				$opts['limit'] = $m[1];
 			}
-			if ( preg_match( '/^days=(\d+)$/', $bit, $m ) ) {
+			if ( preg_match( '/^days=(\d+(?:\.\d+)?)$/', $bit, $m ) ) {
 				$opts['days'] = $m[1];
 			}
 			if ( preg_match( '/^namespace=(.*)$/', $bit, $m ) ) {
@@ -388,7 +388,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		// Calculate cutoff
 		$cutoff_unixtime = time() - ( $opts['days'] * 86400 );
-		$cutoff_unixtime = $cutoff_unixtime - ( $cutoff_unixtime % 86400 );
 		$cutoff = $dbr->timestamp( $cutoff_unixtime );
 
 		$fromValid = preg_match( '/^[0-9]{14}$/', $opts['from'] );
