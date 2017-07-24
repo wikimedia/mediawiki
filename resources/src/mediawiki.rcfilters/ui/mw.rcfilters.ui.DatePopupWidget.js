@@ -16,6 +16,8 @@
 
 		this.model = model;
 
+		/*
+		// HACK: Temporarily remove hours from UI
 		this.hoursValuePicker = new mw.rcfilters.ui.ValuePickerWidget(
 			this.model,
 			{
@@ -23,25 +25,28 @@
 				label: mw.msg( 'rcfilters-hours-title' ),
 				itemFilter: function ( itemModel ) { return Number( itemModel.getParamName() ) < 1; }
 			}
-		);
+		);*/
 		this.daysValuePicker = new mw.rcfilters.ui.ValuePickerWidget(
 			this.model,
 			{
 				classes: [ 'mw-rcfilters-ui-datePopupWidget-days' ],
-				label: mw.msg( 'rcfilters-days-title' ),
-				itemFilter: function ( itemModel ) { return Number( itemModel.getParamName() ) >= 1; }
+				label: mw.msg( 'rcfilters-days-title' )
+				// HACK: Temporarily remove hours from UI
+				// itemFilter: function ( itemModel ) { return Number( itemModel.getParamName() ) >= 1; }
 			}
 		);
 
 		// Events
-		this.hoursValuePicker.connect( this, { choose: [ 'emit', 'days' ] } );
+		// HACK: Temporarily remove hours from UI
+		// this.hoursValuePicker.connect( this, { choose: [ 'emit', 'days' ] } );
 		this.daysValuePicker.connect( this, { choose: [ 'emit', 'days' ] } );
 
 		// Initialize
 		this.$element
 			.addClass( 'mw-rcfilters-ui-datePopupWidget' )
 			.append(
-				this.hoursValuePicker.$element,
+				// HACK: Temporarily remove hours from UI
+				// this.hoursValuePicker.$element,
 				this.daysValuePicker.$element
 			);
 	};
