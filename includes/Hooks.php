@@ -24,6 +24,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Hooks class.
  *
@@ -138,19 +140,25 @@ class Hooks {
 			if ( !array_filter( $hook ) ) {
 				// Either array is empty or it's an array filled with null/false/empty.
 				continue;
-			} elseif ( is_array( $hook[0] ) ) {
+			} elseif ( array_key_exists(0, $hook) && is_array( $hook[0] ) ) {
 				// First element is an array, meaning the developer intended
 				// the first element to be a callback. Merge it in so that
 				// processing can be uniform.
 				$hook = array_merge( $hook[0], array_slice( $hook, 1 ) );
 			}
-
 			/**
 			 * $hook can be: a function, an object, an array of $function and
 			 * $data, an array of just a function, an array of object and
 			 * method, or an array of object, method, and data.
 			 */
-			if ( $hook[0] instanceof Closure ) {
+			if ( is_array( $hook ) && array_key_exists( 'service', $hook ) ) {
+				$method = array_key_exists( 'method', $hook ) ? $hook[ 'method' ] : "on$event";
+				$service = MediaWikiServices::getInstance()->getService( $hook[ 'service' ] );
+				$callback = [ $service, $method ];
+				$func = get_class( $service ) . '::' . $method;
+				unset( $hook[ 'service' ] );
+				unset( $hook[ 'method' ] );
+			} else if ( $hook[0] instanceof Closure ) {
 				$func = "hook-$event-closure";
 				$callback = array_shift( $hook );
 			} elseif ( is_object( $hook[0] ) ) {
@@ -161,7 +169,6 @@ class Hooks {
 				if ( $method === null ) {
 					$method = "on$event";
 				}
-
 				$func = get_class( $object ) . '::' . $method;
 				$callback = [ $object, $method ];
 			} elseif ( is_string( $hook[0] ) ) {
