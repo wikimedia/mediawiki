@@ -858,11 +858,12 @@ class SpecialUndelete extends SpecialPage {
 			$misc = Html::hidden( 'target', $this->mTarget );
 			$misc .= Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() );
 			$history .= $misc;
+
+			$form->appendContent( new OOUI\HtmlSnippet( $history ) );
+			$out->addHTML( $form );
+		} else {
+			$out->addHTML( $history );
 		}
-
-		$form->appendContent( new OOUI\HtmlSnippet( $history ) );
-
-		$out->addHTML( $form );
 
 		return true;
 	}
