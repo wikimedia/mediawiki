@@ -3549,6 +3549,7 @@
 	"fileduplicatesearch-noresults": "Не найден файл с именем «$1».",
 	"specialpages": "Спецстраницы",
 	"specialpages-note-top": "Легенда",
+	"specialpages-note": "* Обычные служебные страницы.\n* <span class=\"mw-specialpagerestricted\">Служебные страницы с ограниченным доступом.</span>",
 	"specialpages-group-maintenance": "Отчёты технического обслуживания",
 	"specialpages-group-other": "Другие служебные страницы",
 	"specialpages-group-login": "Представиться / Зарегистрироваться",

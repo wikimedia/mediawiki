@@ -3466,6 +3466,7 @@
 	"fileduplicatesearch-noresults": "没有文件命名为\"$1\"发现。",
 	"specialpages": "特殊页面",
 	"specialpages-note-top": "说明",
+	"specialpages-note": "*普通特殊页面。\n*<span class=\"mw-specialpagerestricted\">受限特殊页面。</span>",
 	"specialpages-group-maintenance": "维护报告",
 	"specialpages-group-other": "其它特殊页面",
 	"specialpages-group-login": "登录/创建账户",

@@ -3353,6 +3353,7 @@
 	"fileduplicatesearch-noresults": "Nun s'alcontró dengún ficheru nomáu «$1».",
 	"specialpages": "Páxines especiales",
 	"specialpages-note-top": "Lleenda",
+	"specialpages-note": "* Páxines especiales normales.\n* <span class=\"mw-specialpagerestricted\">Páxines especiales restrinxíes.</span>",
 	"specialpages-group-maintenance": "Informes de mantenimientu",
 	"specialpages-group-other": "Otres páxines especiales",
 	"specialpages-group-login": "Entrar / crear cuenta",

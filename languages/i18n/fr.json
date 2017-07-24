@@ -3605,6 +3605,7 @@
 	"fileduplicatesearch-noresults": "Aucun fichier nommé « $1 » n'a été trouvé.",
 	"specialpages": "Pages spéciales",
 	"specialpages-note-top": "Légende",
+	"specialpages-note": "* Pages spéciales normales.\n* <span class=\"mw-specialpagerestricted\">Pages spéciales restreintes.</span>",
 	"specialpages-group-maintenance": "Rapports de maintenance",
 	"specialpages-group-other": "Autres pages spéciales",
 	"specialpages-group-login": "S'identifier / s'inscrire",

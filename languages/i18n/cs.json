@@ -3423,6 +3423,7 @@
 	"fileduplicatesearch-noresults": "Žádný soubor s názvem „$1“ nebyl nalezen.",
 	"specialpages": "Speciální stránky",
 	"specialpages-note-top": "Legenda",
+	"specialpages-note": "* Normální speciální stránky\n* <span class=\"mw-specialpagerestricted\">Speciální stránky s&nbsp;vyhrazeným přístupem</span>",
 	"specialpages-group-maintenance": "Údržba",
 	"specialpages-group-other": "Ostatní",
 	"specialpages-group-login": "Přihlášení / vytvoření účtu",

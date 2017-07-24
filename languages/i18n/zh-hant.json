@@ -3427,6 +3427,7 @@
 	"fileduplicatesearch-noresults": "查無名稱為 \"$1\" 的檔案。",
 	"specialpages": "特殊頁面",
 	"specialpages-note-top": "說明",
+	"specialpages-note": "* 一般特殊頁面。\n* <span class=\"mw-specialpagerestricted\">受限制的特殊頁面。</span>",
 	"specialpages-group-maintenance": "維護報表",
 	"specialpages-group-other": "其它特殊頁面",
 	"specialpages-group-login": "登入 / 建立帳號",

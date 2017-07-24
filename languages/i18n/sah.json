@@ -3327,6 +3327,7 @@
 	"fileduplicatesearch-noresults": "«$1» диэн билэ суох эбит.",
 	"specialpages": "Анал сирэйдэр",
 	"specialpages-note-top": "Легендата",
+	"specialpages-note": "* Көннөрү анал сирэйдэр.\n* <span class=\"mw-specialpagerestricted\">Хааччахтардаах анал сирэйдэр.</span>",
 	"specialpages-group-maintenance": "Техническэй отчуоттар",
 	"specialpages-group-other": "Атын аналлаах сирэйдэр",
 	"specialpages-group-login": "Киирии / бэлиэтэнии",

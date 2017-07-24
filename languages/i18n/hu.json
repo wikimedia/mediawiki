@@ -3369,6 +3369,7 @@
 	"fileduplicatesearch-noresults": "Nincs „$1” nevű fájl.",
 	"specialpages": "Speciális lapok",
 	"specialpages-note-top": "Jelmagyarázat",
+	"specialpages-note": "* Mindenki számára elérhető speciális lapok.\n* <span class=\"mw-specialpagerestricted\">Korlátozott hozzáférésű speciális lapok.</span>",
 	"specialpages-group-maintenance": "Állapotjelentések",
 	"specialpages-group-other": "További speciális lapok",
 	"specialpages-group-login": "Bejelentkezés / fiók létrehozása",

@@ -3432,6 +3432,7 @@
 	"fileduplicatesearch-noresults": "Không tìm thấy tập tin nào tên “$1”.",
 	"specialpages": "Các trang đặc biệt",
 	"specialpages-note-top": "Chú giải",
+	"specialpages-note": "* Trang đặc biệt thông thường.\n* <strong class=\"mw-specialpagerestricted\">Trang đặc biệt được hạn chế.</strong>",
 	"specialpages-group-maintenance": "Báo cáo bảo quản",
 	"specialpages-group-other": "Trang đặc biệt khác",
 	"specialpages-group-login": "Đăng nhập / Mở tài khoản",

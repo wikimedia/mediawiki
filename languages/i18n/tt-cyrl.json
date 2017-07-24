@@ -2051,6 +2051,7 @@
 	"fileduplicatesearch": "Бер үк файлларны эзләү",
 	"fileduplicatesearch-submit": "Эзләү",
 	"specialpages": "Махсус битләр",
+	"specialpages-note": "* Гади махсус битләр.\n* <span class=\"mw-specialpagerestricted\">Чикләнелгән махсус битләр.</span>",
 	"specialpages-group-maintenance": "Техник карау хисапнамәсе",
 	"specialpages-group-other": "Башка махсус битләр",
 	"specialpages-group-login": "Керү / Теркәлү",
