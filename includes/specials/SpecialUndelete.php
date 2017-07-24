@@ -860,9 +860,12 @@ class SpecialUndelete extends SpecialPage {
 			$history .= $misc;
 		}
 
-		$form->appendContent( new OOUI\HtmlSnippet( $history ) );
-
-		$out->addHTML( $form );
+		if ( $this->mAllowed ) {
+			$form->appendContent( new OOUI\HtmlSnippet( $history ) );
+			$out->addHTML( $form );
+		} else {
+			$out->addHTML( $history );
+		}
 
 		return true;
 	}
