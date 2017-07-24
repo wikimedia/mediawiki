@@ -703,7 +703,7 @@ class WebInstaller extends Installer {
 			"<span class=\"config-help-field-hint\" title=\"" .
 			wfMessage( 'config-help-tooltip' )->escaped() . "\">" .
 			wfMessage( 'config-help' )->escaped() . "</span>\n" .
-			"<span class=\"config-help-field-data\">" . $html . "</span>\n" .
+			"<div class=\"config-help-field-data\">" . $html . "</div>\n" .
 			"</div>\n";
 	}
 
