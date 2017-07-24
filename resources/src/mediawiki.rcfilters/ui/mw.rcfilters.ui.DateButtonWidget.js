@@ -105,11 +105,8 @@
 		if ( item ) {
 			this.button.setLabel(
 				mw.msg(
-					// Number( item.getParamName() ) < 1 ?
-					// 	'rcfilters-days-show-hours' : 'rcfilters-days-show-days',
-
-					// Temporarily hide the functionality for hours, use days only
-					'rcfilters-days-show-days',
+					Number( item.getParamName() ) < 1 ?
+						'rcfilters-days-show-hours' : 'rcfilters-days-show-days',
 					item.getLabel()
 				)
 			);
