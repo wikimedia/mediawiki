@@ -364,7 +364,86 @@ class EtcConfigTest extends PHPUnit_Framework_TestCase {
 
 	public static function provideFetchFromServer() {
 		return [
-			'200 OK - Empty' => [
+			'200 OK - Success' => [
+				'http' => [
+					'code' => 200,
+					'reason' => 'OK',
+					'headers' => [],
+					'body' => json_encode( [ 'node' => [ 'nodes' => [
+						[
+							'key' => '/example/foo',
+							'value' => json_encode( [ 'val' => true ] )
+						],
+					] ] ] ),
+					'error' => '',
+				],
+				'expect' => [
+					[ 'foo' => true ], // data
+					null,
+					false // retry
+				],
+			],
+			'200 OK - Skip dir' => [
+				'http' => [
+					'code' => 200,
+					'reason' => 'OK',
+					'headers' => [],
+					'body' => json_encode( [ 'node' => [ 'nodes' => [
+						[
+							'key' => '/example/foo',
+							'value' => json_encode( [ 'val' => true ] )
+						],
+						[
+							'key' => '/example/sub',
+							'dir' => true
+						],
+						[
+							'key' => '/example/bar',
+							'value' => json_encode( [ 'val' => false ] )
+						],
+					] ] ] ),
+					'error' => '',
+				],
+				'expect' => [
+					[ 'foo' => true, 'bar' => false ], // data
+					null,
+					false // retry
+				],
+			],
+			'200 OK - Bad value' => [
+				'http' => [
+					'code' => 200,
+					'reason' => 'OK',
+					'headers' => [],
+					'body' => json_encode( [ 'node' => [ 'nodes' => [
+						[
+							'key' => '/example/foo',
+							'value' => ';"broken{value'
+						]
+					] ] ] ),
+					'error' => '',
+				],
+				'expect' => [
+					null, // data
+					"Failed to parse value for 'foo'.",
+					false // retry
+				],
+			],
+			'200 OK - Empty node list' => [
+				'http' => [
+					'code' => 200,
+					'reason' => 'OK',
+					'headers' => [],
+					'body' => '{"node":{"nodes":[]}}',
+					'error' => '',
+				],
+				'expect' => [
+					[], // data
+					null,
+					false // retry
+				],
+			],
+			'200 OK - Invalid JSON' => [
 				'http' => [
 					'code' => 200,
 					'reason' => 'OK',
@@ -378,11 +457,40 @@ class EtcConfigTest extends PHPUnit_Framework_TestCase {
 					false // retry
 				],
 			],
+			'404 Not Found' => [
+				'http' => [
+					'code' => 404,
+					'reason' => 'Not Found',
+					'headers' => [ 'content-length' => 0 ],
+					'body' => '',
+					'error' => '',
+				],
+				'expect' => [
+					null, // data
+					'HTTP 404 (Not Found)',
+					false // retry
+				],
+			],
+			'400 Bad Request - custom error' => [
+				'http' => [
+					'code' => 400,
+					'reason' => 'Bad Request',
+					'headers' => [ 'content-length' => 0 ],
+					'body' => '',
+					'error' => 'No good reason',
+				],
+				'expect' => [
+					null, // data
+					'No good reason',
+					true // retry
+				],
+			],
 		];
 	}
 
 	/**
 	 * @covers EtcdConfig::fetchAllFromEtcdServer
+	 * @covers EtcdConfig::unserialize
 	 * @dataProvider provideFetchFromServer
 	 */
 	public function testFetchFromServer( array $httpResponse, array $expected ) {
