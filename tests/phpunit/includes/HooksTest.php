@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 class HooksTest extends MediaWikiTestCase {
 
 	function setUp() {
@@ -143,6 +145,59 @@ class HooksTest extends MediaWikiTestCase {
 		$foo = 'original';
 		Hooks::run( 'MediaWikiHooksTest001', [ &$foo ] );
 		$this->assertSame( 'original', $foo, 'Hooks continued processing after a false return.' );
+	}
+
+	/**
+	 * @covers Hooks::run
+	 */
+	public function testServiceHandlingWhenServiceAndMethodIsPassed() {
+		$serviceMock = $this->getMockBuilder( stdClass::class )
+			->setMethods( [ 'doHookTest' ] )
+			->getMock();
+
+		$serviceMock->expects( $this->once() )
+			->method( 'doHookTest' )
+			->with( 'arguments', 'test' );
+
+		// We cannot use $this->setService as it allows to override only existing service
+		$this->overrideMwServices();
+		MediaWikiServices::getInstance()->defineService( 'HooksTestService',
+			function () use ( $serviceMock ) {
+				return $serviceMock;
+			}
+		);
+
+		Hooks::register( 'MediaWikiHooksTest001', [ [
+			'service' => 'HooksTestService',
+			'method' => 'doHookTest'
+		] ] );
+		Hooks::run( 'MediaWikiHooksTest001', [ 'arguments', 'test' ] );
+		MediaWikiServices::getInstance()->disableService( 'HooksTestService' );
+	}
+
+	/**
+	 * @covers Hooks::run
+	 */
+	public function testServiceHandlingWhenOnlyServiceIsPassed() {
+		$serviceMock = $this->getMockBuilder( stdClass::class )
+			->setMethods( [ 'onMediaWikiHooksTest001' ] )
+			->getMock();
+
+		$serviceMock->expects( $this->once() )
+			->method( 'onMediaWikiHooksTest001' )
+			->with( 'arguments', 'test' );
+
+		// We cannot use $this->setService as it allows to override only existing service
+		$this->overrideMwServices();
+		MediaWikiServices::getInstance()->defineService( 'HooksTestService',
+			function () use ( $serviceMock ) {
+				return $serviceMock;
+			}
+		);
+
+		Hooks::register( 'MediaWikiHooksTest001', [ 'service' => 'HooksTestService' ] );
+		Hooks::run( 'MediaWikiHooksTest001', [ 'arguments', 'test' ] );
+		MediaWikiServices::getInstance()->disableService( 'HooksTestService' );
 	}
 
 	/**
