@@ -3552,7 +3552,6 @@
 	"fileduplicatesearch-noresults": "「$1」という名前のファイルはありません。",
 	"specialpages": "特別ページ",
 	"specialpages-note-top": "凡例",
-	"specialpages-note": "* 通常の特別ページ\n* <span class=\"mw-specialpagerestricted\">制限されている特別ページ</span>",
 	"specialpages-group-maintenance": "メンテナンス報告",
 	"specialpages-group-other": "その他の特別ページ",
 	"specialpages-group-login": "ログインまたはアカウント作成",

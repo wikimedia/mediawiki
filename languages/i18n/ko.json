@@ -3418,7 +3418,6 @@
 	"fileduplicatesearch-noresults": "\"$1\"이라는 이름을 가진 파일이 없습니다.",
 	"specialpages": "특수 문서 목록",
 	"specialpages-note-top": "범례",
-	"specialpages-note": "* 일반 특수 문서입니다.\n* <span class=\"mw-specialpagerestricted\">제한된 특수 문서입니다.</span>",
 	"specialpages-group-maintenance": "관리용 목록",
 	"specialpages-group-other": "다른 특수 문서",
 	"specialpages-group-login": "로그인 / 계정 만들기",

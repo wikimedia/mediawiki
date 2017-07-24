@@ -2731,7 +2731,6 @@
 	"fileduplicatesearch-result-n": "'t Bestandj \"$1\" haet {{PLURAL:$2|1 identieke döbbelversie|$2 identiek döbbelversies}}.",
 	"fileduplicatesearch-noresults": "d'r Is gei bestandj mitte naam \"$1\" gevónje.",
 	"specialpages": "Speciaal pagina's",
-	"specialpages-note": "* Normaal speciaal pagina's\n* <strong class=\"mw-specialpagerestricted\">Beperk toegankelike speciaal pagina's</strong>\n* <span class=\"mw-specialpagecached\">Speciaal pagina's mit allein gegaeves oete cache (meugelik verajerd)</span>",
 	"specialpages-group-maintenance": "Óngerhajingsrapporter",
 	"specialpages-group-other": "Euverige speciaal pazjena's",
 	"specialpages-group-login": "Aanmelje / registrere",

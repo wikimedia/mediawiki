@@ -3510,7 +3510,6 @@
 	"fileduplicatesearch-noresults": "لا ملف بالاسم \"$1\" تم العثور عليه.",
 	"specialpages": "الصفحات الخاصة",
 	"specialpages-note-top": "المفتاح",
-	"specialpages-note": "* صفحات خاصة عادية.\n* <span class=\"mw-specialpagerestricted\">صفحات خاصة للمخولين.</span>",
 	"specialpages-group-maintenance": "تقارير الصيانة",
 	"specialpages-group-other": "صفحات خاصة أخرى",
 	"specialpages-group-login": "دخول / إنشاء حساب",
