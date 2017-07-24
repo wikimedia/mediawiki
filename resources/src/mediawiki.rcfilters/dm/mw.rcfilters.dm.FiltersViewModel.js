@@ -18,6 +18,7 @@
 		this.highlightEnabled = false;
 		this.invertedNamespaces = false;
 		this.parameterMap = {};
+		this.groupByPageView = false;
 
 		this.views = {};
 		this.currentView = 'default';
@@ -414,6 +415,7 @@
 		} );
 
 		this.currentView = 'default';
+		this.groupByPageView = this.getGroup( 'displayState' ).getItemByParamName( 'enhanced' ).isSelected();
 
 		// Finish initialization
 		this.emit( 'initialize' );
@@ -973,9 +975,9 @@
 	mw.rcfilters.dm.FiltersViewModel.prototype.toggleHighlight = function ( enable ) {
 		var highlightItem = this.getGroup( 'displayState' ).getItemByParamName( 'highlight' );
 
-		enable = enable === undefined ? !this.isHighlightEnabled() : !!enable;
+		enable = enable === undefined ? !highlightItem.isSelected() : !!enable;
 
-		if ( this.isHighlightEnabled() !== enable ) {
+		if ( highlightItem.isSelected() !== enable ) {
 			highlightItem.toggleSelected( enable );
 
 			this.getItems().forEach( function ( filterItem ) {
@@ -998,6 +1000,35 @@
 	};
 
 	/**
+	 * Toggle the enhanced view feature on and off.
+	 *
+	 * @param {boolean} enable Enhanced view should be enabled
+	 * @fires enhancedChange
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.toggleEnhancedView = function ( enable ) {
+		var group = this.getGroup( 'displayState' ),
+			enhancedItem = group && group.getItemByParamName( 'enhanced' );
+
+		enable = enable === undefined ? !this.groupByPageView : !!enable;
+
+		if ( this.groupByPageView !== enable ) {
+			this.groupByPageView = enable;
+			enhancedItem.toggleSelected( this.groupByPageView );
+
+			this.emit( 'enhancedChange', this.groupByPageView );
+		}
+	};
+
+	/**
+	 * Check if the group by pages feature is enabled
+	 *
+	 * @return {boolean}
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.isEnhancedViewEnabled = function () {
+		return this.groupByPageView;
+	};
+
+	/**
 	 * Toggle the inverted namespaces property on and off.
 	 * Propagate the change to namespace filter items.
 	 *
@@ -1007,9 +1038,9 @@
 	mw.rcfilters.dm.FiltersViewModel.prototype.toggleInvertedNamespaces = function ( enable ) {
 		var invertItem = this.getGroup( 'displayState' ).getItemByParamName( 'invert' );
 
-		enable = enable === undefined ? !this.areNamespacesInverted() : !!enable;
+		enable = enable === undefined ? !invertItem.isSelected() : !!enable;
 
-		if ( this.areNamespacesInverted() !== enable ) {
+		if ( invertItem.isSelected() !== enable ) {
 			invertItem.toggleSelected( enable );
 
 			this.getFiltersByView( 'namespaces' ).forEach( function ( filterItem ) {

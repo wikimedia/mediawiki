@@ -15,6 +15,7 @@
 		this.baseFilterState = {};
 		this.uriProcessor = null;
 		this.initializing = false;
+		this.groupByPages = false;
 
 		this.prevLoggedItems = [];
 	};
@@ -141,7 +142,11 @@
 					type: 'boolean',
 					filters: [
 						{ name: 'highlight' },
-						{ name: 'invert' }
+						{ name: 'invert' },
+						{
+							name: 'enhanced',
+							'default':  String( Number( mw.user.options.get( 'enhanced' ) ) )
+						}
 					]
 				}
 			]
@@ -366,6 +371,18 @@
 	mw.rcfilters.Controller.prototype.toggleInvertedNamespaces = function () {
 		this.filtersModel.toggleInvertedNamespaces();
 		this.updateChangesList();
+	};
+
+
+	/**
+	 * Toggle the highlight feature on and off
+	 */
+	mw.rcfilters.Controller.prototype.toggleEnhancedView = function ( isSelected ) {
+		this.filtersModel.toggleEnhancedView( isSelected );
+		this.updateChangesList( { enhanced: String( Number( isSelected ) ) } );
+		// this._updateURL();
+
+		// TODO: update the user option
 	};
 
 	/**

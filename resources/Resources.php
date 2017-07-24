@@ -1834,6 +1834,8 @@ return [
 			'rcfilters-advancedfilters',
 			'rcfilters-limit-title',
 			'rcfilters-limit-shownum',
+			'rcfilters-group-results-by-page',
+			'rcfilters-group-results-by-page-title',
 			'rcfilters-days-title',
 			'rcfilters-hours-title',
 			'rcfilters-days-show-days',

@@ -1544,6 +1544,8 @@
 	"rcfilters-advancedfilters": "Title for the buttons allowing the user to switch to the various advanced filters views.",
 	"rcfilters-limit-title": "Title for the options to change the number of results shown.",
 	"rcfilters-limit-shownum": "Title for the button that opens the operation to control how many results are shown. \n\nParameters: $1 - Number of results shown",
+	"rcfilters-group-results-by-page": "Title for the option that enables grouping results by page in [[Special:RecentChanges]]",
+	"rcfilters-group-results-by-page-title": "Title for the options that change the grouping of the results in [[Special:RecentChanges]]",
 	"rcfilters-days-title": "Title for the options to change the number of days for the results shown.",
 	"rcfilters-hours-title": "Title for the options to change the number of hours for the results shown.",
 	"rcfilters-days-show-days": "Title for the button that opens the operation to control the day range for the results. \n\nParameters: $1 - Number of days shown",

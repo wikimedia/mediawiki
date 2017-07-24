@@ -40,9 +40,11 @@
 	 * Respond to model initialize event
 	 */
 	mw.rcfilters.ui.ChangesLimitButtonWidget.prototype.onModelInitialize = function () {
-		var changesLimitPopupWidget, selectedItem, currentValue;
+		var changesLimitPopupWidget, selectedItem, currentValue,
+			displayGroup = this.model.getGroup( 'displayState' );
 
 		this.limitGroupModel = this.model.getGroup( 'limit' );
+		this.enhancedItemModel = displayGroup.getItemByParamName( 'enhanced' );
 
 		// HACK: We need the model to be ready before we populate the button
 		// and the widget, because we require the filter items for the
@@ -51,7 +53,8 @@
 		// Note: This will be fixed soon!
 		if ( this.limitGroupModel ) {
 			changesLimitPopupWidget = new mw.rcfilters.ui.ChangesLimitPopupWidget(
-				this.limitGroupModel
+				this.limitGroupModel,
+				this.enhancedItemModel
 			);
 
 			selectedItem = this.limitGroupModel.getSelectedItems()[ 0 ];
@@ -74,7 +77,11 @@
 
 			// Events
 			this.limitGroupModel.connect( this, { update: 'onLimitGroupModelUpdate' } );
-			changesLimitPopupWidget.connect( this, { limit: 'onPopupLimit' } );
+			this.enhancedItemModel.connect( this, { update: 'onEnhancedItemModelUpdate' } )
+			changesLimitPopupWidget.connect( this, {
+				limit: 'onPopupLimit',
+				groupResults: 'onPopupGroupResults'
+			} );
 
 			this.$element.append( this.button.$element );
 		}
@@ -102,6 +109,29 @@
 		if ( label ) {
 			this.button.setLabel( mw.msg( 'rcfilters-limit-shownum', label ) );
 		}
+	};
+
+	/**
+	 * Respond to enhanced item model update event
+	 */
+	mw.rcfilters.ui.ChangesLimitButtonWidget.prototype.onEnhancedItemModelUpdate = function () {
+		// var item = this.limitGroupModel.getSelectedItems()[ 0 ],
+		// 	label = item && item.getLabel();
+
+		// // Update the label
+		// if ( label ) {
+		// 	this.button.setLabel( mw.msg( 'rcfilters-limit-shownum', label ) );
+		// }
+	};
+
+	/**
+	 * Respond to popup group results event
+	 *
+	 * @param {boolean} isSelected Grouping is selected
+	 */
+	mw.rcfilters.ui.ChangesLimitButtonWidget.prototype.onPopupGroupResults = function ( isSelected ) {
+debugger;
+		this.controller.toggleEnhancedView( isSelected );
 	};
 
 }( mediaWiki ) );

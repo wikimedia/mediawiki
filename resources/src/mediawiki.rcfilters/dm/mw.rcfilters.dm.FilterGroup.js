@@ -211,7 +211,7 @@
 	mw.rcfilters.dm.FilterGroup.prototype.onFilterItemUpdate = function ( item ) {
 		// Update state
 		var active = this.areAnySelected();
-
+debugger;
 		if (
 			item.isSelected() &&
 			this.getType() === 'single_option' &&
