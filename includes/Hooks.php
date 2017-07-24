@@ -24,6 +24,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Hooks class.
  *
@@ -129,7 +131,7 @@ class Hooks {
 			return null;
 		}
 
-		if ( is_array( $hook[0] ) ) {
+		if ( array_key_exists(0, $hook) && is_array( $hook[0] ) ) {
 			// First element is an array, meaning the developer intended
 			// the first element to be a callback. Merge it in so that
 			// processing can be uniform.
@@ -139,9 +141,15 @@ class Hooks {
 		/**
 		 * $hook can be: a function, an object, an array of $function and
 		 * $data, an array of just a function, an array of object and
-		 * method, or an array of object, method, and data.
+		 * method, or an array of object|service, method, and data.
 		 */
-		if ( $hook[0] instanceof Closure ) {
+		if ( is_array( $hook ) && array_key_exists( 'service', $hook ) ) {
+			$method = array_key_exists( 'method', $hook ) ? $hook[ 'method' ] : "on$event";
+			$service = MediaWikiServices::getInstance()->getService( $hook[ 'service' ] );
+			$callback = [ $service, $method ];
+			$fname = get_class( $service ) . '::' . $method;
+			unset( $hook[ 'service' ], $hook[ 'method' ] );
+		} else if ( $hook[0] instanceof Closure ) {
 			$fname = "hook-$event-closure";
 			$callback = array_shift( $hook );
 		} elseif ( is_object( $hook[0] ) ) {
