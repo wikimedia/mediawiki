@@ -24,6 +24,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Hooks class.
  *
@@ -161,11 +163,20 @@ class Hooks {
 				if ( $method === null ) {
 					$method = "on$event";
 				}
-
 				$func = get_class( $object ) . '::' . $method;
 				$callback = [ $object, $method ];
 			} elseif ( is_string( $hook[0] ) ) {
-				$func = $callback = array_shift( $hook );
+				if ( $hook[0][0] === '@' ) {
+					list( $serviceName, $method ) = explode( '::',
+						substr( array_shift( $hook ), 1 ) );
+
+					$service = MediaWikiServices::getInstance()->getService( $serviceName );
+					$callback = [ $service, $method ];
+					$func = get_class( $service ) . '::' . $method;
+				} else {
+					$func = $callback = array_shift( $hook );
+				}
+
 			} else {
 				throw new MWException( 'Unknown datatype in hooks for ' . $event . "\n" );
 			}
