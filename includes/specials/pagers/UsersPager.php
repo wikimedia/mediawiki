@@ -275,17 +275,6 @@ class UsersPager extends AlphabeticPager {
 			$groupOptions[ $groupText ] = $group;
 		}
 
-		$optionsDefault = [];
-		if ( $this->editsOnly ) {
-			$optionsDefault[] = 'editsOnly';
-		}
-		if ( $this->creationSort ) {
-			$optionsDefault[] = 'creationSort';
-		}
-		if ( $this->mDefaultDirection ) {
-			$optionsDefault[] = 'desc';
-		}
-
 		$formDescriptor = [
 			'user' => [
 				'class' => 'HTMLUserTextField',
@@ -300,14 +289,26 @@ class UsersPager extends AlphabeticPager {
 				'class' => 'HTMLSelectField',
 				'options' => $groupOptions,
 			],
-			'options' => [
-				'class' => 'HTMLMultiSelectField',
-				'options' => [
-					$this->msg( 'listusers-editsonly' )->text() => 'editsOnly',
-					$this->msg( 'listusers-creationsort' )->text() => 'creationSort',
-					$this->msg( 'listusers-desc' )->text() => 'desc'
-				],
-				'default' => $optionsDefault
+			'editsOnly' => [
+				'type' => 'check',
+				'label' => $this->msg( 'listusers-editsonly' )->text(),
+				'name' => 'editsOnly',
+				'id' => 'editsOnly',
+				'value' => $this->editsOnly
+			],
+			'creationSort' => [
+				'type' => 'check',
+				'label' => $this->msg( 'listusers-creationsort' )->text(),
+				'name' => 'creationSort',
+				'id' => 'creationSort',
+				'value' => $this->creationSort
+			],
+			'desc' => [
+				'type' => 'check',
+				'label' => $this->msg( 'listusers-desc' )->text(),
+				'name' => 'desc',
+				'id' => 'desc',
+				'value' => $this->mDefaultDirection
 			],
 			'limithiddenfield' => [
 				'class' => 'HTMLHiddenField',
