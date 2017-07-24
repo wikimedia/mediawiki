@@ -118,7 +118,8 @@
 					'default': '7',
 					filters: [
 						// Hours (1, 2, 6, 12)
-						0.04166, 0.0833, 0.25, 0.5,
+						// TEMPORARY: Hide hours temporarily
+						// 0.04166, 0.0833, 0.25, 0.5,
 						// Days
 						1, 3, 7, 14, 30
 					].map( function ( num ) {
@@ -168,9 +169,12 @@
 							uriValue,
 							// In this case we don't want to round because it can be arbitrary
 							// weird numbers but we want to round to 2 decimal digits
-							Number( uriValue ) < 1 ?
-								( Number( uriValue ) * 24 ).toFixed( 2 ) :
-								Number( uriValue )
+
+							// HACK: Temporarily remove hours from UI
+							// Number( uriValue ) < 1 ?
+							// 	( Number( uriValue ) * 24 ).toFixed( 2 ) :
+							// 	Number( uriValue )
+							Number( uriValue )
 						) );
 					} else {
 						groupData.filters.push( createFilterDataFromNumber( uriValue, uriValue ) );
