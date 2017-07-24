@@ -3492,6 +3492,10 @@ HTML
 		}
 	}
 
+	/**
+	 * Inserts optional text shown below edit and upload forms. Can be used to offer special characters not present on
+	 * most keyboards for copying/pasting.
+	 */
 	protected function showEditTools() {
 		global $wgOut;
 		$wgOut->addHTML( '<div class="mw-editTools">' .
