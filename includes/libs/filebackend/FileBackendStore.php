@@ -1840,14 +1840,11 @@ abstract class FileBackendStore extends FileBackend {
 			return call_user_func_array( $this->mimeCallback, func_get_args() );
 		}
 
-		$mime = null;
-		if ( $fsPath !== null && function_exists( 'finfo_file' ) ) {
-			$finfo = finfo_open( FILEINFO_MIME_TYPE );
-			$mime = finfo_file( $finfo, $fsPath );
-			finfo_close( $finfo );
+		if ( $fsPath === null ) {
+			return 'unknown/unknown';
 		}
 
-		return is_string( $mime ) ? $mime : 'unknown/unknown';
+		return mime_content_type( $fsPath ) ?: 'unknown/unknown';
 	}
 }
 

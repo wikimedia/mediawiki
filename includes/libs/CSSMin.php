@@ -188,17 +188,7 @@ class CSSMin {
 			return self::$mimeTypes[$ext];
 		}
 
-		$realpath = realpath( $file );
-		if (
-			$realpath
-			&& function_exists( 'finfo_file' )
-			&& function_exists( 'finfo_open' )
-			&& defined( 'FILEINFO_MIME_TYPE' )
-		) {
-			return finfo_file( finfo_open( FILEINFO_MIME_TYPE ), $realpath );
-		}
-
-		return false;
+		return mime_content_type( realpath( $file ) );
 	}
 
 	/**
