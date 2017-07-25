@@ -19,8 +19,6 @@
 		mw.rcfilters.ui.FormWrapperWidget.parent.call( this, $.extend( {}, config, {
 			$element: $formRoot
 		} ) );
-		// Mixin constructors
-		OO.ui.mixin.PendingElement.call( this, config );
 
 		this.changeListModel = changeListModel;
 		this.filtersModel = filtersModel;
@@ -48,7 +46,6 @@
 	/* Initialization */
 
 	OO.inheritClass( mw.rcfilters.ui.FormWrapperWidget, OO.ui.Widget );
-	OO.mixinClass( mw.rcfilters.ui.FormWrapperWidget, OO.ui.mixin.PendingElement );
 
 	/**
 	 * Respond to link click
@@ -89,7 +86,6 @@
 	 * Respond to model invalidate
 	 */
 	mw.rcfilters.ui.FormWrapperWidget.prototype.onChangesModelInvalidate = function () {
-		this.pushPending();
 		this.$submitButton.prop( 'disabled', true );
 	};
 
@@ -113,8 +109,6 @@
 		}
 
 		this.cleanUpFieldset();
-
-		this.popPending();
 	};
 
 	/**
