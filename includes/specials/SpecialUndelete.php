@@ -669,13 +669,7 @@ class SpecialUndelete extends SpecialPage {
 
 		$archive = new PageArchive( $this->mTargetObj, $this->getConfig() );
 		Hooks::run( 'UndeleteForm::showHistory', [ &$archive, $this->mTargetObj ] );
-		/*
-		$text = $archive->getLastRevisionText();
-		if( is_null( $text ) ) {
-			$out->addWikiMsg( 'nohistory' );
-			return;
-		}
-		*/
+
 		$out->addHTML( '<div class="mw-undelete-history">' );
 		if ( $this->mAllowed ) {
 			$out->addWikiMsg( 'undeletehistory' );
