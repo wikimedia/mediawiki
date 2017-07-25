@@ -22,13 +22,14 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
-	protected function assertLastSqlDb( $sqlText, $db ) {
+	protected function assertLastSqlDb( $sqlText, DatabaseTestHelper $db ) {
 		$this->assertEquals( $sqlText, $db->getLastSqls() );
 	}
 
 	/**
 	 * @dataProvider provideSelect
 	 * @covers Wikimedia\Rdbms\Database::select
+	 * @covers Wikimedia\Rdbms\Database::selectSQLText
 	 */
 	public function testSelect( $sql, $sqlText ) {
 		$this->database->select(
@@ -135,6 +136,8 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider provideUpdate
 	 * @covers Wikimedia\Rdbms\Database::update
+	 * @covers Wikimedia\Rdbms\Database::makeUpdateOptions
+	 * @covers Wikimedia\Rdbms\Database::makeUpdateOptionsArray
 	 */
 	public function testUpdate( $sql, $sqlText ) {
 		$this->database->update(
@@ -303,6 +306,7 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider provideInsert
 	 * @covers Wikimedia\Rdbms\Database::insert
+	 * @covers Wikimedia\Rdbms\Database::makeInsertOptions
 	 */
 	public function testInsert( $sql, $sqlText ) {
 		$this->database->insert(
@@ -356,6 +360,7 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider provideInsertSelect
 	 * @covers Wikimedia\Rdbms\Database::insertSelect
+	 * @covers Wikimedia\Rdbms\Database::nativeInsertSelect
 	 */
 	public function testInsertSelect( $sql, $sqlTextNative, $sqlSelect, $sqlInsert ) {
 		$this->database->insertSelect(
@@ -673,6 +678,7 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider provideBuildLike
 	 * @covers Wikimedia\Rdbms\Database::buildLike
+	 * @covers Wikimedia\Rdbms\Database::escapeLikeInternal
 	 */
 	public function testBuildLike( $array, $sqlText ) {
 		$this->assertEquals( trim( $this->database->buildLike(
@@ -921,6 +927,7 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @covers Wikimedia\Rdbms\Database::commit
+	 * @covers Wikimedia\Rdbms\Database::doCommit
 	 */
 	public function testTransactionCommit() {
 		$this->database->begin( __METHOD__ );
@@ -930,6 +937,7 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @covers Wikimedia\Rdbms\Database::rollback
+	 * @covers Wikimedia\Rdbms\Database::doRollback
 	 */
 	public function testTransactionRollback() {
 		$this->database->begin( __METHOD__ );
@@ -1035,6 +1043,9 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 		];
 	}
 
+	/**
+	 * @covers Wikimedia\Rdbms\Database::registerTempTableOperation
+	 */
 	public function testSessionTempTables() {
 		$temp1 = $this->database->tableName( 'tmp_table_1' );
 		$temp2 = $this->database->tableName( 'tmp_table_2' );
