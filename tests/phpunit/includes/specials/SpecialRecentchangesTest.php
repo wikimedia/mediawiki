@@ -27,6 +27,8 @@ class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
 
 			[ 'days=3', [ 'days' => '3' ] ],
 
+			[ 'days=0.25', [ 'days' => '0.25'] ],
+
 			[ 'namespace=5', [ 'namespace' => '5' ] ],
 
 			[ 'namespace=5|3', [ 'namespace' => '5|3' ] ],
