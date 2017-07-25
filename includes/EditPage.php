@@ -3220,16 +3220,13 @@ class EditPage {
 
 	protected function showFormBeforeText() {
 		global $wgOut;
-		$section = htmlspecialchars( $this->section );
-		$wgOut->addHTML( <<<HTML
-<input type='hidden' value="{$section}" name="wpSection"/>
-<input type='hidden' value="{$this->starttime}" name="wpStarttime" />
-<input type='hidden' value="{$this->edittime}" name="wpEdittime" />
-<input type='hidden' value="{$this->editRevId}" name="editRevId" />
-<input type='hidden' value="{$this->scrolltop}" name="wpScrolltop" id="wpScrolltop" />
 
-HTML
-		);
+		$wgOut->addHTML( Html::hidden( 'wpSection', htmlspecialchars( $this->section ) ) );
+		$wgOut->addHTML( Html::hidden( 'wpStarttime', $this->starttime ) );
+		$wgOut->addHTML( Html::hidden( 'wpEdittime', $this->edittime ) );
+		$wgOut->addHTML( Html::hidden( 'editRevId', $this->editRevId ) );
+		$wgOut->addHTML( Html::hidden( 'wpScrolltop', $this->scrolltop ) );
+
 		if ( !$this->checkUnicodeCompliantBrowser() ) {
 			$wgOut->addHTML( Html::hidden( 'safemode', '1' ) );
 		}
@@ -3493,8 +3490,8 @@ HTML
 	}
 
 	/**
-	 * Inserts optional text shown below edit and upload forms. Can be used to offer special characters not present on
-	 * most keyboards for copying/pasting.
+	 * Inserts optional text shown below edit and upload forms. Can be used to offer special
+	 * characters not present on most keyboards for copying/pasting.
 	 */
 	protected function showEditTools() {
 		global $wgOut;
