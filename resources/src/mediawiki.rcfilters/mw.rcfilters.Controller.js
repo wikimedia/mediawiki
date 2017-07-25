@@ -30,18 +30,13 @@
 	 * @param {Object} [tagList] Tag definition
 	 */
 	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure, tagList ) {
-		var parsedSavedQueries,
+		var parsedSavedQueries, limitDefault,
+			controller = this,
 			views = {},
 			items = [],
 			uri = new mw.Uri(),
 			$changesList = $( '.mw-changeslist' ).first().contents(),
-			experimentalViews = mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' ),
-			createFilterDataFromNumber = function ( num, convertedNumForLabel ) {
-				return {
-					name: String( num ),
-					label: mw.language.convertNumber( convertedNumForLabel )
-				};
-			};
+			experimentalViews = mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' );
 
 		// Prepare views
 		if ( namespaceStructure && experimentalViews ) {
@@ -92,6 +87,12 @@
 			};
 		}
 
+		limitDefault = Number( mw.user.options.get( 'rcfilters-rclimit' ) );
+		if ( !limitDefault ) {
+			limitDefault = mw.user.options.get( 'rclimit' );
+			this.updateLimitDefault( limitDefault );
+		}
+
 		// Add parameter range operations
 		views.range = {
 			groups: [
@@ -101,11 +102,13 @@
 					title: '', // Because it's a hidden group, this title actually appears nowhere
 					hidden: true,
 					allowArbitrary: true,
+					useDefaultAsBaseValue: true,
+					isStickyPreference: true,
 					validate: $.isNumeric,
 					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
-					'default': '50',
+					'default': limitDefault,
 					filters: [ 50, 100, 250, 500 ].map( function ( num ) {
-						return createFilterDataFromNumber( num, num );
+						return controller._createFilterDataFromNumber( num, num );
 					} )
 				},
 				{
@@ -116,14 +119,16 @@
 					allowArbitrary: true,
 					validate: $.isNumeric,
 					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
-					'default': '7',
+					'default': mw.user.options.get( 'rcdays' ),
+					useDefaultAsBaseValue: true, // TODO: Is this even needed anymore?
+					isStickyPreference: true,
 					filters: [
 						// Hours (1, 2, 6, 12)
 						0.04166, 0.0833, 0.25, 0.5,
 						// Days
 						1, 3, 7, 14, 30
 					].map( function ( num ) {
-						return createFilterDataFromNumber(
+						return controller._createFilterDataFromNumber(
 							num,
 							// Convert fractions of days to number of hours for the labels
 							num < 1 ? Math.round( num * 24 ) : num
@@ -138,49 +143,20 @@
 		// groups; if we ever expand it, this might need further generalization:
 		$.each( views, function ( viewName, viewData ) {
 			viewData.groups.forEach( function ( groupData ) {
-				// This is only true for single_option and string_options
-				// We assume these are the only groups that will allow for
-				// arbitrary, since it doesn't make any sense for the other
-				// groups.
-				var uriValue = uri.query[ groupData.name ];
-
 				if (
-					// If the group allows for arbitrary data
 					groupData.allowArbitrary &&
-					// and it is single_option (or string_options, but we
-					// don't have cases of those yet, nor do we plan to)
-					groupData.type === 'single_option' &&
-					// and if there is a valid value in the URI already
-					uri.query[ groupData.name ] !== undefined &&
-					// and, if there is a validate method and it passes on
-					// the data
-					( !groupData.validate || groupData.validate( uri.query[ groupData.name ] ) ) &&
-					// but if that value isn't already in the definition
-					groupData.filters
-						.map( function ( filterData ) {
-							return filterData.name;
-						} )
-						.indexOf( uri.query[ groupData.name ] ) === -1
+					(
+						uri.query[ groupData.name ] !== undefined ||
+						groupData.default !== undefined
+					)
 				) {
-					// Add the filter information
-					if ( groupData.name === 'days' ) {
-						// Specific fix for hours/days which go by the same param
-						groupData.filters.push( createFilterDataFromNumber(
-							uriValue,
-							// In this case we don't want to round because it can be arbitrary
-							// weird numbers but we want to round to 2 decimal digits
-							Number( uriValue ) < 1 ?
-								( Number( uriValue ) * 24 ).toFixed( 2 ) :
-								Number( uriValue )
-						) );
-					} else {
-						groupData.filters.push( createFilterDataFromNumber( uriValue, uriValue ) );
-					}
-
-					// If there's a sort function set up, re-sort the values
-					if ( groupData.sortFunc ) {
-						groupData.filters.sort( groupData.sortFunc );
-					}
+					controller.addNumberValueToGroup(
+						groupData,
+						[
+							uri.query[ groupData.name ],
+							groupData.default // Make sure default is in too
+						]
+					);
 				}
 			} );
 		} );
@@ -245,6 +221,80 @@
 
 		this.initializing = false;
 		this.switchView( 'default' );
+	};
+
+	/**
+	 * Create filter data from a number, for the filters that are numerical value
+	 *
+	 * @param {Number} num Number
+	 * @param {Number} convertedNumForLabel Number for the label
+	 * @return {Object} Filter data
+	 */
+	mw.rcfilters.Controller.prototype._createFilterDataFromNumber = function ( num, convertedNumForLabel ) {
+		return {
+			name: String( num ),
+			label: mw.language.convertNumber( convertedNumForLabel )
+		};
+	};
+
+	/**
+	 * Add an arbitrary value to groups that allow arbitrary values
+	 *
+	 * @param {Object} groupData Group data
+	 * @param {string|string[]} arbitraryValues An array of arbitrary values to add to the group
+	 * @return {Object} Group data with new values
+	 */
+	mw.rcfilters.Controller.prototype.addNumberValueToGroup = function ( groupData, arbitraryValues ) {
+		var controller = this;
+
+		arbitraryValues = Array.isArray( arbitraryValues ) ? arbitraryValues : [ arbitraryValues ];
+		// This is only true for single_option and string_options
+		// We assume these are the only groups that will allow for
+		// arbitrary, since it doesn't make any sense for the other
+		// groups.
+
+		arbitraryValues.forEach( function ( val ) {
+			if (
+				// If the group allows for arbitrary data
+				groupData.allowArbitrary &&
+				// and it is single_option (or string_options, but we
+				// don't have cases of those yet, nor do we plan to)
+				groupData.type === 'single_option' &&
+				// and if there is a valid value in the URI already
+				val !== undefined &&
+				// and, if there is a validate method and it passes on
+				// the data
+				( !groupData.validate || groupData.validate( val ) ) &&
+				// but if that value isn't already in the definition
+				groupData.filters
+					.map( function ( filterData ) {
+						return filterData.name;
+					} )
+					.indexOf( val ) === -1
+			) {
+				// Add the filter information
+				if ( groupData.name === 'days' ) {
+					// Specific fix for hours/days which go by the same param
+					groupData.filters.push( controller._createFilterDataFromNumber(
+						val,
+						// In this case we don't want to round because it can be arbitrary
+						// weird numbers but we want to round to 2 decimal digits
+						Number( val ) < 1 ?
+							( Number( val ) * 24 ).toFixed( 2 ) :
+							Number( val )
+					) );
+				} else {
+					groupData.filters.push( controller._createFilterDataFromNumber( val, val ) );
+				}
+
+				// If there's a sort function set up, re-sort the values
+				if ( groupData.sortFunc ) {
+					groupData.filters.sort( groupData.sortFunc );
+				}
+			}
+		} );
+
+		return groupData;
 	};
 
 	/**
@@ -718,6 +768,42 @@
 				}.bind( this )
 				// Do nothing for failure
 			);
+	};
+
+	/**
+	 * Update the limit default value
+	 *
+	 * @param {number} newValue New value
+	 */
+	mw.rcfilters.Controller.prototype.updateLimitDefault = function ( newValue ) {
+		if ( !$.isNumeric( newValue ) ) {
+			return;
+		}
+
+		newValue = Number( newValue );
+
+		// Save the preference
+		new mw.Api().saveOption( 'rcfilters-rclimit', newValue );
+		// Update the preference for this session
+		mw.user.options.set( 'rcfilters-rclimit', newValue );
+	};
+
+	/**
+	 * Update the days default value
+	 *
+	 * @param {number} newValue New value
+	 */
+	mw.rcfilters.Controller.prototype.updateDaysDefault = function ( newValue ) {
+		if ( !$.isNumeric( newValue ) ) {
+			return;
+		}
+
+		newValue = Number( newValue );
+
+		// Save the preference
+		new mw.Api().saveOption( 'rcdays', newValue );
+		// Update the preference for this session
+		mw.user.options.set( 'rcdays', newValue );
 	};
 
 	/**
