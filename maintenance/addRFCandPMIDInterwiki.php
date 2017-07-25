@@ -39,7 +39,7 @@ class AddRFCAndPMIDInterwiki extends LoggedUpdateMaintenance {
 	}
 
 	protected function updateSkippedMessage() {
-		return 'RFC and PMID already added to interwiki database table';
+		return 'RFC and PMID already added to interwiki database table.';
 	}
 
 	protected function doDBUpdates() {
