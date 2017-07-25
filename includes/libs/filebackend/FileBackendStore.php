@@ -1841,10 +1841,8 @@ abstract class FileBackendStore extends FileBackend {
 		}
 
 		$mime = null;
-		if ( $fsPath !== null && function_exists( 'finfo_file' ) ) {
-			$finfo = finfo_open( FILEINFO_MIME_TYPE );
-			$mime = finfo_file( $finfo, $fsPath );
-			finfo_close( $finfo );
+		if ( $fsPath !== null ) {
+			$mime = mime_content_type( $fsPath );
 		}
 
 		return is_string( $mime ) ? $mime : 'unknown/unknown';
