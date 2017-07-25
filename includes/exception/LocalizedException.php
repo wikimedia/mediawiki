@@ -26,7 +26,9 @@
  */
 interface ILocalizedException {
 	/**
-	 * Return a Message object for this exception
+	 * Return a Message object for this exception. This will be used in place of the exception
+	 * message (ie. Exception::getMessage()) by language-aware handlers, and is expected to
+	 * contain the same information.
 	 * @return Message
 	 */
 	public function getMessageObject();
