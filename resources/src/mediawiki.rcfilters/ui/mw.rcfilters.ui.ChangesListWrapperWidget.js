@@ -3,7 +3,6 @@
 	 * List of changes
 	 *
 	 * @extends OO.ui.Widget
-	 * @mixins OO.ui.mixin.PendingElement
 	 *
 	 * @constructor
 	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersViewModel View model
@@ -23,8 +22,6 @@
 
 		// Parent
 		mw.rcfilters.ui.ChangesListWrapperWidget.parent.call( this, config );
-		// Mixin constructors
-		OO.ui.mixin.PendingElement.call( this, config );
 
 		this.filtersViewModel = filtersViewModel;
 		this.changesListViewModel = changesListViewModel;
@@ -51,7 +48,6 @@
 	/* Initialization */
 
 	OO.inheritClass( mw.rcfilters.ui.ChangesListWrapperWidget, OO.ui.Widget );
-	OO.mixinClass( mw.rcfilters.ui.ChangesListWrapperWidget, OO.ui.mixin.PendingElement );
 
 	/**
 	 * Respond to the highlight feature being toggled on and off
@@ -80,7 +76,9 @@
 	 * Respond to changes list model invalidate
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onModelInvalidate = function () {
-		this.pushPending();
+		$( '.rcfilters-head' ).removeClass( 'mw-rcfilters-ui-ready' );
+		$( '.rcfilters-spinner' ).removeClass( 'mw-rcfilters-ui-ready' );
+		this.$element.removeClass( 'mw-rcfilters-ui-ready' );
 	};
 
 	/**
@@ -139,7 +137,10 @@
 				mw.hook( 'wikipage.content' ).fire( this.$element );
 			}
 		}
-		this.popPending();
+
+		$( '.rcfilters-head' ).addClass( 'mw-rcfilters-ui-ready' );
+		$( '.rcfilters-spinner' ).addClass( 'mw-rcfilters-ui-ready' );
+		this.$element.addClass( 'mw-rcfilters-ui-ready' );
 	};
 
 	/**
