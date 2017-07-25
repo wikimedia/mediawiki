@@ -50,7 +50,7 @@ class WikiPage implements Page, IDBAccessObject {
 	public $mLatest = false;             // !< Integer (false means "not loaded")
 	/**@}}*/
 
-	/** @var stdClass Map of cache fields (text, parser output, ect) for a proposed/new edit */
+	/** @var PreparedEdit Map of cache fields (text, parser output, ect) for a proposed/new edit */
 	public $mPreparedEdit = false;
 
 	/**
@@ -782,7 +782,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Determine whether a page would be suitable for being counted as an
 	 * article in the site_stats table based on the title & its content
 	 *
-	 * @param object|bool $editInfo (false): object returned by prepareTextForEdit(),
+	 * @param PreparedEdit|bool $editInfo (false): object returned by prepareTextForEdit(),
 	 *   if false, the current database state will be used
 	 * @return bool
 	 */
@@ -1961,7 +1961,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * Prepare content which is about to be saved.
-	 * Returns a stdClass with source, pst and output members
+	 *
+	 * Prior to 1.30, this returned a stdClass object with the same class
+	 * members.
 	 *
 	 * @param Content $content
 	 * @param Revision|int|null $revision Revision object. For backwards compatibility, a
