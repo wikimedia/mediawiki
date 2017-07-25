@@ -61,6 +61,23 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 			],
 			[
 				[
+					// 'tables' with space prepended indicates pre-escaped table name
+					'tables' => ' table LEFT JOIN table2',
+					'fields' => [ 'field' ],
+					'conds' => [ 'field' => 'text' ],
+				],
+				"SELECT field FROM  table LEFT JOIN table2 WHERE field = 'text'"
+			],
+			[
+				[
+					// Empty 'tables' is allowed
+					'tables' => '',
+					'fields' => [ 'SPECIAL_QUERY()' ],
+				],
+				"SELECT SPECIAL_QUERY()"
+			],
+			[
+				[
 					'tables' => 'table',
 					'fields' => [ 'field', 'alias' => 'field2' ],
 					'conds' => [ 'alias' => 'text' ],
@@ -133,6 +150,30 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 				"SELECT field AS alias " .
 					"FROM table " .
 					"WHERE alias IN ('1','2','3','4')"
+			],
+			[
+				[
+					'tables' => 'table',
+					'fields' => [ 'field' ],
+					'options' => [ 'DISTINCT', 'LOCK IN SHARE MODE' ],
+				],
+				"SELECT DISTINCT field FROM table      LOCK IN SHARE MODE"
+			],
+			[
+				[
+					'tables' => 'table',
+					'fields' => [ 'field' ],
+					'options' => [ 'EXPLAIN' => true ],
+				],
+				'EXPLAIN SELECT field FROM table'
+			],
+			[
+				[
+					'tables' => 'table',
+					'fields' => [ 'field' ],
+					'options' => [ 'FOR UPDATE' ],
+				],
+				"SELECT field FROM table      FOR UPDATE"
 			],
 		];
 	}
