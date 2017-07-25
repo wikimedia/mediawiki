@@ -988,18 +988,8 @@ EOT;
 		$m = null;
 		if ( $callback ) {
 			$m = $callback( $file );
-		} elseif ( function_exists( "finfo_open" ) && function_exists( "finfo_file" ) ) {
-			$mime_magic_resource = finfo_open( FILEINFO_MIME );
-
-			if ( $mime_magic_resource ) {
-				$m = finfo_file( $mime_magic_resource, $file );
-				finfo_close( $mime_magic_resource );
-			} else {
-				$this->logger->info( __METHOD__ .
-					": finfo_open failed on " . FILEINFO_MIME . "!\n" );
-			}
 		} else {
-			$this->logger->info( __METHOD__ . ": no magic mime detector found!\n" );
+			$m = mime_content_type(  $file );
 		}
 
 		if ( $m ) {
