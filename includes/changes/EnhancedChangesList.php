@@ -102,15 +102,17 @@ class EnhancedChangesList extends ChangesList {
 			$rc->mAttribs['rc_timestamp'],
 			$this->getUser()
 		);
+		if ( $this->lastdate === '' ) {
+			$this->lastdate = $date;
+		}
 
 		$ret = '';
 
-		# If it's a new day, add the headline and flush the cache
-		if ( $date != $this->lastdate ) {
-			# Process current cache
+		# If it's a new day, flush the cache and update $this->lastdate
+		if ( $date !== $this->lastdate ) {
+			# Process current cache (uses $this->lastdate to generate a heading)
 			$ret = $this->recentChangesBlock();
 			$this->rc_cache = [];
-			$ret .= Xml::element( 'h4', null, $date ) . "\n";
 			$this->lastdate = $date;
 		}
 
@@ -763,7 +765,11 @@ class EnhancedChangesList extends ChangesList {
 			}
 		}
 
-		return '<div>' . $blockOut . '</div>';
+		if ( $blockOut === '' ) {
+			return '';
+		}
+		// $this->lastdate is kept up to date by recentChangesLine()
+		return Xml::element( 'h4', null, $this->lastdate ) . "\n<div>" . $blockOut . '</div>';
 	}
 
 	/**
