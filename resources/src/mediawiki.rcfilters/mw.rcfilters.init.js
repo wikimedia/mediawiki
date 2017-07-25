@@ -37,10 +37,6 @@
 			$( '.rcfilters-container' ).append( filtersWidget.$element );
 			$( 'body' ).append( $overlay );
 
-			// Set as ready
-			$( '.rcfilters-head' ).addClass( 'mw-rcfilters-ui-ready' );
-			$( '.rcfilters-spinner' ).detach();
-
 			$( 'a.mw-helplink' ).attr(
 				'href',
 				'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:New_filters_for_edit_review'
