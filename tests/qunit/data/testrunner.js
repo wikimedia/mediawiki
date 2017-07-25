@@ -59,12 +59,6 @@
 	 * Glue code for nicer integration with QUnit setup/teardown
 	 * Inspired by http://sinonjs.org/releases/sinon-qunit-1.0.0.js
 	 */
-	sinon.assert.fail = function ( msg ) {
-		QUnit.assert.ok( false, msg );
-	};
-	sinon.assert.pass = function ( msg ) {
-		QUnit.assert.ok( true, msg );
-	};
 	sinon.config = {
 		injectIntoThis: true,
 		injectInto: null,
