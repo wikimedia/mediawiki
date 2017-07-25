@@ -21,6 +21,8 @@
 
 namespace Wikimedia\Rdbms;
 
+use Message;
+
 /**
  * @ingroup Database
  */
@@ -34,6 +36,9 @@ class DBQueryError extends DBExpectedError {
 	/** @var string */
 	public $fname;
 
+	/** @var Message */
+	private $messageObject;
+
 	/**
 	 * @param IDatabase $db
 	 * @param string $error
@@ -42,25 +47,39 @@ class DBQueryError extends DBExpectedError {
 	 * @param string $fname
 	 */
 	function __construct( IDatabase $db, $error, $errno, $sql, $fname ) {
-		if ( $db instanceof Database && $db->wasConnectionError( $errno ) ) {
-			$message = "A connection error occured. \n" .
-				"Query: $sql\n" .
-				"Function: $fname\n" .
-				"Error: $errno $error\n";
-		} else {
-			$message = "A database query error has occurred. Did you forget to run " .
-				"your application's database schema updater after upgrading? \n" .
-				"Query: $sql\n" .
-				"Function: $fname\n" .
-				"Error: $errno $error\n";
-		}
+		$key = ( $db instanceof Database && $db->wasConnectionError( $errno ) )
+			? 'databaseerror-connection' : 'databaseerror-real';
+		$this->messageObject = new Message( $key, [ $sql, $fname, $errno, $error ] );
 
+		$message = Message::newFromSpecifier( $this->messageObject )->useDatabase( false )
+			->inLanguage( 'en' )->plain();
 		parent::__construct( $db, $message );
 
 		$this->error = $error;
 		$this->errno = $errno;
 		$this->sql = $sql;
 		$this->fname = $fname;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getKey() {
+		return $this->messageObject->getKey();
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getParams() {
+		return $this->messageObject->getParams();
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getMessageObject() {
+		return $this->messageObject;
 	}
 }
 
