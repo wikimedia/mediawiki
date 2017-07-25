@@ -88,7 +88,7 @@ class PopulatePPSortKey extends LoggedUpdateMaintenance {
 			$this->commitTransaction( $dbw, __METHOD__ );
 
 			// We need to get the last element's page ID
-			$lastPageValue = $row->pp_value;
+			$lastPageValue = $row->pp_page;
 			// And the propname...
 			$lastProp = $row->pp_propname;
 		}
