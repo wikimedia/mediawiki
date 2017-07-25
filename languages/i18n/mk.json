@@ -3514,7 +3514,7 @@
 	"fileduplicatesearch-noresults": "Не пронајдов податотека со име „$1“.",
 	"specialpages": "Службени страници",
 	"specialpages-note-top": "Легенда",
-	"specialpages-note": "* Нормални службени страници.\n* <span class=\"mw-specialpagerestricted\">Ограничени службени страници.</span>",
+	"specialpages-note-restricted": "* Нормални службени страници.\n* <span class=\"mw-specialpagerestricted\">Ограничени службени страници.</span>",
 	"specialpages-group-maintenance": "Извештаи за одржување",
 	"specialpages-group-other": "Други службени страници",
 	"specialpages-group-login": "Најава / направи сметка",

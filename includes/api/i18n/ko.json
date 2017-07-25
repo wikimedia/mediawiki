@@ -584,6 +584,7 @@
 	"apihelp-setpagelanguage-param-lang": "문서를 변경할 언어의 언어 코드입니다. 문서를 위키의 기본 콘텐츠 언어로 재설정하려면 <kbd>default</kbd>를 사용하십시오.",
 	"apihelp-setpagelanguage-param-reason": "변경 이유.",
 	"apihelp-setpagelanguage-example-language": "<kbd>Main Page</kbd>의 언어를 바스크어로 변경합니다.",
+	"apihelp-stashedit-summary": "공유된 캐시에서 편집을 준비합니다.",
 	"apihelp-stashedit-param-sectiontitle": "새 문단을 위한 제목.",
 	"apihelp-stashedit-param-text": "문서 내용.",
 	"apihelp-stashedit-param-contentmodel": "새 콘텐츠의 콘텐츠 모델.",

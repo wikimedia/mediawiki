@@ -3350,7 +3350,7 @@
 	"fileduplicatesearch-noresults": "Datoteke imenovane »$1« ni mogoče najti.",
 	"specialpages": "Posebne strani",
 	"specialpages-note-top": "Legenda",
-	"specialpages-note": "* Navadne posebne strani.\n* <span class=\"mw-specialpagerestricted\">Omejene posebne strani.</span>",
+	"specialpages-note-restricted": "* Navadne posebne strani.\n* <span class=\"mw-specialpagerestricted\">Omejene posebne strani.</span>",
 	"specialpages-group-maintenance": "Vzdrževalna poročila",
 	"specialpages-group-other": "Ostale posebne strani",
 	"specialpages-group-login": "Prijavite se / ustvarite račun",

@@ -96,7 +96,8 @@
 			"D41D8CD98F",
 			"Wmr",
 			"逆襲的天邪鬼",
-			"WhitePhosphorus"
+			"WhitePhosphorus",
+			"A2093064"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -1469,7 +1470,7 @@
 	"rcfilters-view-namespaces-tooltip": "按名字空间过滤结果",
 	"rcfilters-view-tags-tooltip": "按编辑标签过滤结果",
 	"rcfilters-view-return-to-default-tooltip": "返回主过滤菜单",
-	"rcfilters-liveupdates-button": "在线更新",
+	"rcfilters-liveupdates-button": "实时更新",
 	"rcnotefrom": "下面{{PLURAL:$5|是}}<strong>$3 $4</strong>之后的更改（最多显示<strong>$1</strong>个）。",
 	"rclistfromreset": "重置时间选择",
 	"rclistfrom": "显示$3 $2之后的新更改",
@@ -3466,7 +3467,7 @@
 	"fileduplicatesearch-noresults": "没有文件命名为\"$1\"发现。",
 	"specialpages": "特殊页面",
 	"specialpages-note-top": "说明",
-	"specialpages-note": "*普通特殊页面。\n*<span class=\"mw-specialpagerestricted\">受限特殊页面。</span>",
+	"specialpages-note-restricted": "* 普通特殊页面。\n* <span class=\"mw-specialpagerestricted\">受限特殊页面。</span>",
 	"specialpages-group-maintenance": "维护报告",
 	"specialpages-group-other": "其它特殊页面",
 	"specialpages-group-login": "登录/创建账户",

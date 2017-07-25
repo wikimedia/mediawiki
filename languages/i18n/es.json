@@ -3512,7 +3512,6 @@
 	"fileduplicatesearch-noresults": "Ningún archivo con el nombre «$1» encontrado.",
 	"specialpages": "Páginas especiales",
 	"specialpages-note-top": "Leyenda",
-	"specialpages-note": "* Páginas especiales normales.\n* <span class=\"mw-specialpagerestricted\">Páginas especiales restringidas.</span>",
 	"specialpages-group-maintenance": "Informes de mantenimiento",
 	"specialpages-group-other": "Otras páginas especiales",
 	"specialpages-group-login": "Acceder/crear cuenta",

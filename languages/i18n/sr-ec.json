@@ -3283,7 +3283,6 @@
 	"fileduplicatesearch-noresults": "Датотека под називом „$1“ није пронађена.",
 	"specialpages": "Посебне странице",
 	"specialpages-note-top": "Легенда",
-	"specialpages-note": "* Нормалне посебне странице\n* <span class=\"mw-specialpagerestricted\">Ограничене посебне странице</span>",
 	"specialpages-group-maintenance": "Извештаји одржавања",
 	"specialpages-group-other": "Остале посебне странице",
 	"specialpages-group-login": "Пријава / регистрација",
