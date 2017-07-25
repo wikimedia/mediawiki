@@ -243,7 +243,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 
 		$info = json_decode( $rbody, true );
 		if ( $info === null || !isset( $info['node']['nodes'] ) ) {
-			return [ null, $rcode, "Unexpected JSON response; missing 'nodes' list.", false ];
+			return [ null, "Unexpected JSON response; missing 'nodes' list.", false ];
 		}
 
 		$config = [];

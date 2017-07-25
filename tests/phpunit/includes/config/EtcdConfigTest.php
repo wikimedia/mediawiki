@@ -364,22 +364,18 @@ class EtcConfigTest extends PHPUnit_Framework_TestCase {
 
 	public static function provideFetchFromServer() {
 		return [
-			[
+			'200 OK - Empty' => [
 				'http' => [
 					'code' => 200,
 					'reason' => 'OK',
-					'headers' => [
-						'content-length' => 0,
-					],
+					'headers' => [ 'content-length' => 0 ],
 					'body' => '',
 					'error' => '(curl error: no status set)',
 				],
 				'expect' => [
-					// FIXME: Returning 4 values instead of 3
-					null,
-					200,
+					null, // data
 					"Unexpected JSON response; missing 'nodes' list.",
-					false
+					false // retry
 				],
 			],
 		];
