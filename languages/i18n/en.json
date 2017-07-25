@@ -309,6 +309,8 @@
 	"databaseerror-query": "Query: $1",
 	"databaseerror-function": "Function: $1",
 	"databaseerror-error": "Error: $1",
+	"databaseerror-connection": "A connection error occured.\nQuery: $1\nFunction: $2\nError: $3 $4\n",
+	"databaseerror-real": "A database query error has occurred. Did you forget to run your application's database schema updater after upgrading?\nQuery: $1\nFunction: $2\nError: $3 $4\n",
 	"transaction-duration-limit-exceeded": "To avoid creating high replication lag, this transaction was aborted because the write duration ($1) exceeded the $2 second limit.\nIf you are changing many items at once, try doing multiple smaller operations instead.",
 	"laggedslavemode": "<strong>Warning:</strong> Page may not contain recent updates.",
 	"readonly": "Database locked",
