@@ -312,6 +312,7 @@
 	 * Reset to default filters
 	 */
 	mw.rcfilters.Controller.prototype.resetToDefaults = function () {
+debugger;
 		this.uriProcessor.updateModelBasedOnQuery( this._getDefaultParams() );
 		this.updateChangesList();
 	};
@@ -540,6 +541,7 @@
 	 */
 	mw.rcfilters.Controller.prototype.applySavedQuery = function ( queryID ) {
 		var data, highlights,
+			controller = this,
 			queryItem = this.savedQueriesModel.getItemByID( queryID );
 
 		if ( queryItem ) {
@@ -548,6 +550,15 @@
 
 			// Backwards compatibility; initial version mispelled 'highlight' with 'highlights'
 			highlights.highlight = highlights.highlights || highlights.highlight;
+
+			// Backwards compatibility: take out any value that is of a hidden item
+			$.each( data.filters, function ( filterName, value ) {
+				var item = controller.filtersModel.getItemByName( filterName );
+
+				if ( item && item.getGroupModel().isHidden() ) {
+					delete data.filters[ filterName ];
+				}
+			} );
 
 			// Update model state from filters
 			this.filtersModel.toggleFiltersSelected( data.filters );
@@ -637,7 +648,7 @@
 		highlightedItems.highlight = false;
 
 		this.baseFilterState = {
-			filters: this.filtersModel.getFiltersFromParameters( defaultParams ),
+			filters: this.filtersModel.getFiltersFromParameters( defaultParams, true ),
 			highlights: highlightedItems,
 			invert: false
 		};
@@ -835,10 +846,10 @@
 					savedHighlights[ filterName + '_color' ] = color;
 				}
 			} );
-
+debugger;
 			return $.extend( true, {}, savedParams, savedHighlights, { invert: data.invert } );
 		}
-
+debugger;
 		return $.extend(
 			{ highlight: '0' },
 			this.filtersModel.getDefaultParams()

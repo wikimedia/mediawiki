@@ -83,7 +83,10 @@
 	 * @param {string} filterName Chosen filter name
 	 */
 	mw.rcfilters.ui.DateButtonWidget.prototype.onPopupDays = function ( filterName ) {
+		var filterItem = this.daysGroupModel.getItemByName( filterName );
+
 		this.controller.toggleFilterSelect( filterName, true );
+		this.controller.updateDaysDefault( filterItem.getParamName() );
 	};
 
 	/**

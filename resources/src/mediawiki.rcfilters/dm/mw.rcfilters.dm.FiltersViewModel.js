@@ -487,6 +487,7 @@
 	mw.rcfilters.dm.FiltersViewModel.prototype.getViewTrigger = function ( view ) {
 		return ( this.views[ view ] && this.views[ view ].trigger ) || '';
 	};
+
 	/**
 	 * Get the value of a specific parameter
 	 *
@@ -498,7 +499,7 @@
 	};
 
 	/**
-	 * Get the current selected state of the filters
+	 * Get the current selected state of the visible filters
 	 *
 	 * @return {Object} Filters selected state
 	 */
@@ -508,7 +509,9 @@
 			result = {};
 
 		for ( i = 0; i < items.length; i++ ) {
-			result[ items[ i ].getName() ] = items[ i ].isSelected();
+			if ( !items[ i ].getGroupModel().isHidden() ) {
+				result[ items[ i ].getName() ] = items[ i ].isSelected();
+			}
 		}
 
 		return result;
@@ -559,7 +562,7 @@
 	 *  keyed by filter names.
 	 * @return {Object} Parameter state object
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.getParametersFromFilters = function ( filterDefinition ) {
+	mw.rcfilters.dm.FiltersViewModel.prototype.getParametersFromFilters = function ( filterDefinition, hideStickyFilters ) {
 		var groupItemDefinition,
 			result = {},
 			groupItems = this.getFilterGroups();
@@ -583,7 +586,8 @@
 				result,
 				model.getParamRepresentation(
 					groupItemDefinition ?
-						groupItemDefinition[ group ] : null
+						groupItemDefinition[ group ] : null,
+					hideStickyFilters
 				)
 			);
 		} );
@@ -596,9 +600,10 @@
 	 * the given parameters and translates into a selected/unselected value in the filters.
 	 *
 	 * @param {Object} params Parameters query object
+	 * @param {boolean} [hideStickyFilters] Hide sticky filters
 	 * @return {Object} Filter state object
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.getFiltersFromParameters = function ( params ) {
+	mw.rcfilters.dm.FiltersViewModel.prototype.getFiltersFromParameters = function ( params, hideStickyFilters ) {
 		var groupMap = {},
 			model = this,
 			result = {};
@@ -630,7 +635,7 @@
 		// Go over all groups, so we make sure we get the complete output
 		// even if the parameters don't include a certain group
 		$.each( this.groups, function ( groupName, groupModel ) {
-			result = $.extend( true, {}, result, groupModel.getFilterRepresentation( groupMap[ groupName ] ) );
+			result = $.extend( true, {}, result, groupModel.getFilterRepresentation( groupMap[ groupName ], hideStickyFilters ) );
 		} );
 
 		return result;

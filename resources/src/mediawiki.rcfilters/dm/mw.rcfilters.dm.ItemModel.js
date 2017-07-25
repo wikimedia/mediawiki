@@ -18,6 +18,8 @@
 	 *  this parameter.
 	 * @cfg {string} [namePrefix='item_'] A prefix to add to the param name to act as a unique
 	 *  identifier
+	 * @cfg {boolean} [isStickyPreference] The value is always sticky - meaning the default
+	 *  and base values are always the current value of this filter.
 	 * @cfg {string} [cssClass] The class identifying the results that match this filter
 	 * @cfg {string[]} [identifiers] An array of identifiers for this item. They will be
 	 *  added and considered in the view.
@@ -33,6 +35,7 @@
 		this.name = this.namePrefix + param;
 
 		this.useDefaultAsBaseValue = !!config.useDefaultAsBaseValue;
+		this.stickyPreference = !!config.isStickyPreference;
 		this.label = config.label || this.name;
 		this.labelPrefixKey = config.labelPrefixKey;
 		this.description = config.description || '';
@@ -256,6 +259,15 @@
 	 */
 	mw.rcfilters.dm.ItemModel.prototype.isUsingDefaultAsBaseValue = function () {
 		return this.useDefaultAsBaseValue;
+	};
+
+	/**
+	 * Check whether the item uses its default state as a base value
+	 *
+	 * @return {boolean} Use default as base value
+	 */
+	mw.rcfilters.dm.ItemModel.prototype.isStickyPreference = function () {
+		return this.stickyPreference;
 	};
 
 	/**

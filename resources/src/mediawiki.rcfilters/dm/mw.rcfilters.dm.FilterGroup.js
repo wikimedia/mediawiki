@@ -41,6 +41,7 @@
 		this.title = config.title || name;
 		this.hidden = !!config.hidden;
 		this.allowArbitrary = !!config.allowArbitrary;
+		this.stickyPreference = !!config.isStickyPreference;
 		this.separator = config.separator || '|';
 		this.labelPrefixKey = config.labelPrefixKey;
 
@@ -91,6 +92,7 @@
 				filterItem = new mw.rcfilters.dm.FilterItem( filter.name, model, {
 					group: model.getName(),
 					useDefaultAsBaseValue: !!filter.useDefaultAsBaseValue,
+					isStickyPreference: !!filter.isStickyPreference,
 					label: filter.label || filter.name,
 					description: filter.description || '',
 					labelPrefixKey: model.labelPrefixKey,
@@ -183,7 +185,7 @@
 		}
 
 		// Store default filter state based on default params
-		this.defaultFilters = this.getFilterRepresentation( this.getDefaultParams() );
+		this.defaultFilters = this.getFilterRepresentation( this.getDefaultParams(), true );
 
 		// Check for filters that should be initially selected by their default value
 		this.getItems().forEach( function ( item ) {
@@ -238,6 +240,22 @@
 			this.currSelected = this.getItemByParamName( this.defaultParams[ this.getName() ] );
 			this.currSelected.toggleSelected( true );
 			changed = true;
+		}
+
+		// For parameters that have isStickyPreference, if they change
+		// we need to change their default value
+		if ( item.isStickyPreference() ) {
+			if (
+				// The sticky preference isn't available for group-parameters
+				// like 'string_options'. If it ever becomes available for those
+				// we will need to expand this condition to accomodate
+				this.getType() === 'send_unselected_if_any' ||
+				this.getType() === 'boolean'
+			) {
+				// For this group type, parameter values are direct
+				// We need to convert from a boolean to a string ('1' and '0')
+				this.defaultParams[ item.getParamName() ] = String( Number( !!item.isSelected() ) );
+			}
 		}
 
 		if (
@@ -497,7 +515,7 @@
 	 *  state value.
 	 * @return {Object} Parameter representation
 	 */
-	mw.rcfilters.dm.FilterGroup.prototype.getParamRepresentation = function ( filterRepresentation ) {
+	mw.rcfilters.dm.FilterGroup.prototype.getParamRepresentation = function ( filterRepresentation, hideStickyFilters ) {
 		var values,
 			areAnySelected = false,
 			buildFromCurrentState = !filterRepresentation,
@@ -521,6 +539,10 @@
 			};
 
 		filterRepresentation = filterRepresentation || {};
+
+		if ( hideStickyFilters && this.isStickyPreference() ) {
+			return {};
+		}
 
 		// Create or complete the filterRepresentation definition
 		this.getItems().forEach( function ( item ) {
@@ -608,7 +630,7 @@
 	 *  given were an empty object, or had some of the filters missing.
 	 * @return {Object} Filter representation
 	 */
-	mw.rcfilters.dm.FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation ) {
+	mw.rcfilters.dm.FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation, hideStickyFilters ) {
 		var areAnySelected, paramValues, defaultValue, item, currentValue,
 			oneWasSelected = false,
 			defaultParams = this.getDefaultParams(),
@@ -617,6 +639,10 @@
 			model = this,
 			paramToFilterMap = {},
 			result = {};
+
+		if ( hideStickyFilters && this.isStickyPreference() ) {
+			return {};
+		}
 
 		paramRepresentation = paramRepresentation || {};
 		if (
@@ -838,5 +864,14 @@
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.isFullCoverage = function () {
 		return this.fullCoverage;
+	};
+
+	/**
+	 * Check whether the item uses its default state as a base value
+	 *
+	 * @return {boolean} Use default as base value
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.isStickyPreference = function () {
+		return this.stickyPreference;
 	};
 }( mediaWiki ) );
