@@ -15,6 +15,10 @@
 		&:not( .mw-rcfilters-ui-ready ) {
 			opacity: 0.5;
 			pointer-events: none;
+
+			.rcoptions {
+				display: none;
+			}
 		}
 	}
 
@@ -23,19 +27,29 @@
 		margin: 0;
 	}
 
-	.mw-changeslist-empty {
-		// Hide the 'empty' message when we load rcfilters
-		// since we replace it anyways with a specific
-		// message of our own
-		display: none;
+	.mw-changeslist {
+		&-empty {
+			// Hide the 'empty' message when we load rcfilters
+			// since we replace it anyways with a specific
+			// message of our own
+			display: none;
+		}
+
+		&:not( .mw-rcfilters-ui-ready ) {
+			opacity: 0.5;
+		}
 	}
 
 	.rcfilters-spinner {
 		margin: -2em auto 0;
 		width: 70px;
 		opacity: 0.8;
-		display: block;
+		display: none;
 		white-space: nowrap;
+
+		&:not( .mw-rcfilters-ui-ready ) {
+			display: block;
+		}
 
 		& .rcfilters-spinner-bounce,
 		&:before,
