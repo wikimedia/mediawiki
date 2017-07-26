@@ -761,7 +761,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		if ( $this->showCreateAccountLink() ) {
 			# Pass any language selection on to the mode switch link
 			if ( $this->mLanguage ) {
-				$linkq .= '&uselang=' . $this->mLanguage;
+				$linkq .= '&uselang=' . urlencode( $this->mLanguage );
 			}
 			// Supply URL, login template creates the button.
 			$template->set( 'createOrLoginHref', $titleObj->getLocalURL( $linkq ) );
@@ -1149,7 +1149,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				$linkq = $this->getReturnToQueryStringFragment();
 				// Pass any language selection on to the mode switch link
 				if ( $this->mLanguage ) {
-					$linkq .= '&uselang=' . $this->mLanguage;
+					$linkq .= '&uselang=' . urlencode( $this->mLanguage );
 				}
 				$loggedIn = $this->getUser()->isLoggedIn();
 
