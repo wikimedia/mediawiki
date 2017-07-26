@@ -34,6 +34,8 @@ use Wikimedia\Rdbms\IDatabase;
 class SpecialWatchlist extends ChangesListSpecialPage {
 	public function __construct( $page = 'Watchlist', $restriction = 'viewmywatchlist' ) {
 		parent::__construct( $page, $restriction );
+
+		$this->maxDays = $this->getConfig()->get( 'RCMaxAge' ) / ( 3600 * 24 );
 	}
 
 	public function doesWrites() {
@@ -173,6 +175,11 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		return $opts;
 	}
 
+	public function validateOptions( FormOptions $opts ) {
+		$opts->validateBounds( 'days', 0, $this->maxDays );
+		parent::validateOptions( $opts );
+	}
+
 	/**
 	 * Get all custom filters
 	 *
@@ -255,7 +262,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		// Calculate cutoff
 		if ( $opts['days'] > 0 ) {
 			$conds[] = 'rc_timestamp > ' .
-				$dbr->addQuotes( $dbr->timestamp( time() - intval( $opts['days'] * 86400 ) ) );
+				$dbr->addQuotes( $dbr->timestamp( time() - $opts['days'] * 3600 * 24 ) );
 		}
 	}
 
@@ -499,7 +506,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		if ( $opts['days'] > 0 ) {
 			$days = $opts['days'];
 		} else {
-			$days = $this->getConfig()->get( 'RCMaxAge' ) / ( 3600 * 24 );
+			$days = $this->maxDays;
 		}
 		$timestamp = wfTimestampNow();
 		$wlInfo = $this->msg( 'wlnote' )->numParams( $numRows, round( $days * 24 ) )->params(
@@ -599,7 +606,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$days[] = $userWatchlistOption;
 		}
 
-		$maxDays = (string)( $this->getConfig()->get( 'RCMaxAge' ) / ( 3600 * 24 ) );
+		$maxDays = (string)$this->maxDays;
 		// add the maximum possible value, if it isn't available already
 		if ( !in_array( $maxDays, $days ) ) {
 			$days[] = $maxDays;

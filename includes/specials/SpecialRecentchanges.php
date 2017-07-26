@@ -373,6 +373,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 	public function validateOptions( FormOptions $opts ) {
 		$opts->validateIntBounds( 'limit', 0, 5000 );
+		$opts->validateBounds( 'days', 0, $this->getConfig()->get( 'RCMaxAge' ) / ( 3600 * 24 ) );
 		parent::validateOptions( $opts );
 	}
 
@@ -387,7 +388,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$query_options, $join_conds, $opts );
 
 		// Calculate cutoff
-		$cutoff_unixtime = time() - ( $opts['days'] * 86400 );
+		$cutoff_unixtime = time() - $opts['days'] * 3600 * 24;
 		$cutoff = $dbr->timestamp( $cutoff_unixtime );
 
 		$fromValid = preg_match( '/^[0-9]{14}$/', $opts['from'] );
