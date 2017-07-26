@@ -43,6 +43,7 @@ class PopulatePPSortKey extends LoggedUpdateMaintenance {
 		$lastPageValue = 0;
 		$editedRowCount = 0;
 
+		$this->output( "Populating page_props.pp_sortkey...\n" );
 		while ( true ) {
 			$conditions = [ 'pp_sortkey IS NULL' ];
 			if ( $lastPageValue !== 0 ) {
@@ -93,7 +94,7 @@ class PopulatePPSortKey extends LoggedUpdateMaintenance {
 			$lastProp = $row->pp_propname;
 		}
 
-		$this->output( "Done!\n" );
+		$this->output( "Populating page_props.pp_sortkey complete.\n" );
 	}
 
 	protected function getUpdateKey() {
