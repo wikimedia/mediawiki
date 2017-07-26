@@ -104,7 +104,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			$select[] = 'page_latest';
 		}
 
-		$tagFilter = explode( '|', $opts['tagfilter'] );
+		$tagFilter = $opts['tagfilter'] ? explode( '|', $opts['tagfilter'] ) : [];
 		ChangeTags::modifyDisplayQuery(
 			$tables,
 			$select,
