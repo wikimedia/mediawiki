@@ -36,6 +36,7 @@
 
 			$( '.rcfilters-container' ).append( filtersWidget.$element );
 			$( 'body' ).append( $overlay );
+			$( '.rcfilters-head' ).addClass( 'mw-rcfilters-ui-ready' );
 
 			$( 'a.mw-helplink' ).attr(
 				'href',
