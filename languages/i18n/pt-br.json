@@ -3445,6 +3445,7 @@
 	"fileduplicatesearch-noresults": "Não foi encontrado nenhum arquivo com o nome \"$1\".",
 	"specialpages": "Páginas especiais",
 	"specialpages-note-top": "Legenda",
+	"specialpages-note-restricted": "* Páginas especiais normais.\n* <span class=\"mw-specialpagerestricted\">Páginas especiais restritas.</span>",
 	"specialpages-group-maintenance": "Relatórios de manutenção",
 	"specialpages-group-other": "Outras páginas especiais",
 	"specialpages-group-login": "Entrar / Criar conta",

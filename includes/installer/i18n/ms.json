@@ -6,7 +6,8 @@
 			"SNN95",
 			"MaxSem",
 			"Aviator",
-			"Macofe"
+			"Macofe",
+			"Jeluang Terluang"
 		]
 	},
 	"config-desc": "Pemasang MediaWiki",
@@ -56,7 +57,7 @@
 	"config-outdated-sqlite": "<strong>Amaran:</strong> anda mempunyai SQLite $1 yang lebih rendah daripada versi keperluan minimum $1. SQLite tidak akan disediakan.",
 	"config-no-fts3": "<strong>Amaran:</strong> SQLite disusun tanpa [//sqlite.org/fts3.html modil FTS3], maka ciri-ciri pencarian tidak akan disediakan pada backend ini.",
 	"config-pcre-old": "<strong>Amaran keras:</strong> PCRE $1 ke atas diperlukan.\nBinari PHP anda berpaut dengan PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Keterangan lanjut].",
-	"config-memory-bad": "<strong>Amaran:</strong> <code>memory_limit</code> (Had memori) PHP adalah $1.\nIni mungkin terlalu rendah.\nPemasangan mungkin akan gagal!",
+	"config-memory-bad": "<strong>Amaran:</strong> <code>memory_limit</code> (Had memori) PHP ialah $1.\nIni mungkin terlalu rendah.\nPemasangan mungkin akan gagal!",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] dipasang",
 	"config-apc": "[http://www.php.net/apc APC] dipasang",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] dipasang",
@@ -97,7 +98,7 @@
 	"config-mysql-engine": "Enjin storan:",
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",
-	"config-mysql-only-myisam-dep": "<strong>Amaran:</strong> MyISAM adalah satu-satunya enjin storan yang terdapat untuk MySQL di mesin ini, dan penggunaannya dengan MediaWiki tidak digalakkan kerana:\n* ia tidak menyokong keserempakan (''concurrency'') disebabkan penguncian jadual\n* ia lebih terdedah kepada korupsi daripada enjin-enjin lain\n* pangkalan kod MediaWiki tidak sentiasa mengendalikan MyISAM seperti yang diharapkan\n\nPemasangan MySQL anda tidak menyokong InnoDB. Mungkin tiba masanya untuk naik taraf.",
+	"config-mysql-only-myisam-dep": "<strong>Amaran:</strong> MyISAM ialah satu-satunya enjin storan yang terdapat untuk MySQL di mesin ini, dan penggunaannya dengan MediaWiki tidak digalakkan kerana:\n* ia tidak menyokong keserempakan (''concurrency'') disebabkan penguncian jadual\n* ia lebih terdedah kepada korupsi daripada enjin-enjin lain\n* pangkalan kod MediaWiki tidak sentiasa mengendalikan MyISAM seperti yang diharapkan\n\nPemasangan MySQL anda tidak menyokong InnoDB. Mungkin tiba masanya untuk naik taraf.",
 	"config-mysql-charset": "Peranggu aksara pangkalan data:",
 	"config-mysql-binary": "Perduaan",
 	"config-mysql-utf8": "UTF-8",

@@ -3444,6 +3444,7 @@
 	"fileduplicatesearch-noresults": "Non se atopou ningún ficheiro chamado \"$1\".",
 	"specialpages": "Páxinas especiais",
 	"specialpages-note-top": "Lenda",
+	"specialpages-note-restricted": "* Páxinas especiais normais.\n* <span class=\"mw-specialpagerestricted\">Páxinas especiais restrinxidas.</span>",
 	"specialpages-group-maintenance": "Informes de mantemento",
 	"specialpages-group-other": "Outras páxinas especiais",
 	"specialpages-group-login": "Rexistro",

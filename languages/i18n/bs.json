@@ -1044,7 +1044,7 @@
 	"gender-unknown": "Kad Vas spominje, softver će pokušati izbjegavati rod kad god je to moguće",
 	"gender-male": "On uređuje wiki stranice",
 	"gender-female": "Ona uređuje wiki stranice",
-	"prefs-help-gender": "Postavljanje ovih podešavanja nije obavezno.\nSoftver koristi ove vrijednosti za vaše naslovljanje i ispravke gramatičkog roda u porukama softvera. Ova će informacija biti javna.",
+	"prefs-help-gender": "Ova postavka nije obavezna.\nSoftver koristi datu vrijednost da bi Vam se obratio i spomenuo Vas drugima koristeći odgovarajući gramatički rod.\nPodatak će biti javan.",
 	"email": "E-pošta",
 	"prefs-help-realname": "Pravo ime nije obavezno.\nAko izaberete da date ime, biće korišteno za pripisivanje vašem radu.",
 	"prefs-help-email": "Adresa e-pošte nije obavezna, ali je potrebna u slučaju ponovnog postavljanja šifre, ako je zaboravite.",
