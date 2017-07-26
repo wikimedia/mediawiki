@@ -400,7 +400,13 @@ class HTMLForm extends ContextSource {
 
 		if ( !in_array( $format, $this->availableDisplayFormats, true ) ) {
 			throw new MWException( 'Display format must be one of ' .
-				print_r( $this->availableDisplayFormats, true ) );
+				print_r(
+					array_merge(
+						$this->availableDisplayFormats,
+						$this->availableSubclassDisplayFormats
+					),
+					true
+				) );
 		}
 
 		// Evil hack for mobile :(
