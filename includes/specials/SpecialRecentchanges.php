@@ -387,7 +387,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$query_options, $join_conds, $opts );
 
 		// Calculate cutoff
-		$cutoff_unixtime = time() - ( $opts['days'] * 86400 );
+		$seconds = min( $opts['days'] * 86400, $this->getConfig()->get( 'RCMaxAge' ) );
+		$cutoff_unixtime = time() - $seconds;
 		$cutoff = $dbr->timestamp( $cutoff_unixtime );
 
 		$fromValid = preg_match( '/^[0-9]{14}$/', $opts['from'] );

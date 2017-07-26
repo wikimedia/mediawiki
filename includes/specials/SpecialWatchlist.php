@@ -254,8 +254,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		// Calculate cutoff
 		if ( $opts['days'] > 0 ) {
+			$seconds = min( $opts['days'] * 86400, $this->getConfig()->get( 'RCMaxAge' ) );
 			$conds[] = 'rc_timestamp > ' .
-				$dbr->addQuotes( $dbr->timestamp( time() - intval( $opts['days'] * 86400 ) ) );
+				$dbr->addQuotes( $dbr->timestamp( time() - $seconds ) );
 		}
 	}
 
