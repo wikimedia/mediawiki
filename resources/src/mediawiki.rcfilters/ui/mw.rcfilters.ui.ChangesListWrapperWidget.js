@@ -76,7 +76,6 @@
 	 * Respond to changes list model invalidate
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onModelInvalidate = function () {
-		$( '.rcfilters-head' ).removeClass( 'mw-rcfilters-ui-ready' );
 		$( '.rcfilters-spinner' ).removeClass( 'mw-rcfilters-ui-ready' );
 		this.$element.removeClass( 'mw-rcfilters-ui-ready' );
 	};
@@ -138,7 +137,6 @@
 			}
 		}
 
-		$( '.rcfilters-head' ).addClass( 'mw-rcfilters-ui-ready' );
 		$( '.rcfilters-spinner' ).addClass( 'mw-rcfilters-ui-ready' );
 		this.$element.addClass( 'mw-rcfilters-ui-ready' );
 	};
