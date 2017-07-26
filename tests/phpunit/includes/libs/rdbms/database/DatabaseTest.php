@@ -1,6 +1,7 @@
 <?php
 
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\TestingAccessWrapper;
 
@@ -133,6 +134,71 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
 			__METHOD__
 		);
 		$this->assertFalse( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
+	}
+
+	/**
+	 * @covers Wikimedia\Rdbms\Database::onTransactionPreCommitOrIdle
+	 * @covers Wikimedia\Rdbms\Database::runOnTransactionPreCommitCallbacks
+	 */
+	public function testTransactionPreCommitOrIdle() {
+		$db = $this->getMockDB( [ 'isOpen' ] );
+		$db->method( 'isOpen' )->willReturn( true );
+		$db->clearFlag( DBO_TRX );
+
+		$this->assertFalse( $db->getFlag( DBO_TRX ), 'DBO_TRX is not set' );
+
+		$called = false;
+		$db->onTransactionPreCommitOrIdle(
+			function () use ( &$called ) {
+				$called = true;
+			},
+			__METHOD__
+		);
+		$this->assertTrue( $called, 'Called when idle' );
+
+		$db->begin( __METHOD__ );
+		$called = false;
+		$db->onTransactionPreCommitOrIdle(
+			function () use ( &$called ) {
+				$called = true;
+			},
+			__METHOD__
+		);
+		$this->assertFalse( $called, 'Not called when transaction is active' );
+		$db->commit( __METHOD__ );
+		$this->assertTrue( $called, 'Called when transaction is committed' );
+	}
+
+	/**
+	 * @covers Wikimedia\Rdbms\Database::onTransactionPreCommitOrIdle
+	 * @covers Wikimedia\Rdbms\Database::runOnTransactionPreCommitCallbacks
+	 */
+	public function testTransactionPreCommitOrIdle_TRX() {
+		$db = $this->getMockDB( [ 'isOpen' ] );
+		$db->method( 'isOpen' )->willReturn( true );
+		$db->setFlag( DBO_TRX );
+
+		$lbFactory = LBFactorySingle::newFromConnection( $db );
+		// Ask for the connectin so that LB sets internal state
+		// about this connection being the master connection
+		$lb = $lbFactory->getMainLB();
+		$conn = $lb->openConnection( $lb->getWriterIndex() );
+		$this->assertSame( $db, $conn, 'Same DB instance' );
+		$this->assertTrue( $db->getFlag( DBO_TRX ), 'DBO_TRX is set' );
+
+		$called = false;
+		$db->onTransactionPreCommitOrIdle(
+			function () use ( &$called ) {
+				$called = true;
+			}
+		);
+		$this->assertFalse( $called, 'Not called when idle if DBO_TRX is set' );
+
+		$lbFactory->beginMasterChanges( __METHOD__ );
+		$this->assertFalse( $called, 'Not called when lb-transaction is active' );
+
+		$lbFactory->commitMasterChanges( __METHOD__ );
+		$this->assertTrue( $called, 'Called when lb-transaction is committed' );
 	}
 
 	/**
