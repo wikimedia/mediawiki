@@ -280,12 +280,12 @@ class UsersPager extends AlphabeticPager {
 				'class' => 'HTMLUserTextField',
 				'label' => $this->msg( 'listusersfrom' )->text(),
 				'name' => 'username',
-				'value' => $this->requestedUser,
+				'default' => $this->requestedUser,
 			],
 			'dropdown' => [
 				'label' => $this->msg( 'group' ),
 				'name' => 'group',
-				'value' => $this->requestedGroup,
+				'default' => $this->requestedGroup,
 				'class' => 'HTMLSelectField',
 				'options' => $groupOptions,
 			],
@@ -294,26 +294,26 @@ class UsersPager extends AlphabeticPager {
 				'label' => $this->msg( 'listusers-editsonly' )->text(),
 				'name' => 'editsOnly',
 				'id' => 'editsOnly',
-				'value' => $this->editsOnly
+				'default' => $this->editsOnly
 			],
 			'creationSort' => [
 				'type' => 'check',
 				'label' => $this->msg( 'listusers-creationsort' )->text(),
 				'name' => 'creationSort',
 				'id' => 'creationSort',
-				'value' => $this->creationSort
+				'default' => $this->creationSort
 			],
 			'desc' => [
 				'type' => 'check',
 				'label' => $this->msg( 'listusers-desc' )->text(),
 				'name' => 'desc',
 				'id' => 'desc',
-				'value' => $this->mDefaultDirection
+				'default' => $this->mDefaultDirection
 			],
 			'limithiddenfield' => [
 				'class' => 'HTMLHiddenField',
 				'name' => 'limit',
-				'value' => $this->mLimit
+				'default' => $this->mLimit
 			]
 		];
 
@@ -347,6 +347,7 @@ class UsersPager extends AlphabeticPager {
 		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
 		$htmlForm
 			->setMethod( 'get' )
+			->setAction( Title::newFromText( $self )->getLocalURL() )
 			->setId( 'mw-listusers-form' )
 			->setFormIdentifier( 'mw-listusers-form' )
 			->suppressDefaultSubmit()
