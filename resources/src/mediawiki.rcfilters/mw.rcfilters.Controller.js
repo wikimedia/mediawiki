@@ -35,6 +35,7 @@
 			items = [],
 			uri = new mw.Uri(),
 			$changesList = $( '.mw-changeslist' ).first().contents(),
+			experimentalViews = mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' ),
 			createFilterDataFromNumber = function ( num, convertedNumForLabel ) {
 				return {
 					name: String( num ),
@@ -43,7 +44,7 @@
 			};
 
 		// Prepare views
-		if ( namespaceStructure ) {
+		if ( namespaceStructure && experimentalViews ) {
 			items = [];
 			$.each( namespaceStructure, function ( namespaceID, label ) {
 				// Build and clean up the individual namespace items definition
@@ -74,7 +75,7 @@
 				} ]
 			};
 		}
-		if ( tagList ) {
+		if ( tagList && experimentalViews ) {
 			views.tags = {
 				title: mw.msg( 'rcfilters-view-tags' ),
 				trigger: '#',

@@ -324,17 +324,12 @@
 		} );
 
 		// Collect views
-		allViews = {
+		allViews = $.extend( true, {
 			'default': {
 				title: mw.msg( 'rcfilters-filterlist-title' ),
 				groups: filterGroups
 			}
-		};
-
-		if ( views && mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' ) ) {
-			// If we have extended views, add them in
-			$.extend( true, allViews, views );
-		}
+		}, views );
 
 		// Go over all views
 		$.each( allViews, function ( viewName, viewData ) {
