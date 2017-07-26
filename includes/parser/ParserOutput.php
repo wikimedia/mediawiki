@@ -144,7 +144,8 @@ class ParserOutput extends CacheTime {
 	public $mSections = [];
 
 	/**
-	 * @var bool $mEditSectionTokens prefix/suffix markers if edit sections were output as tokens.
+	 * @deprecated since 1.30 Use getText() options.
+	 * @var bool $mEditSectionTokens Whether to strip or to expand edit section tokens.
 	 */
 	public $mEditSectionTokens = false;
 
@@ -164,6 +165,7 @@ class ParserOutput extends CacheTime {
 	public $mTimestamp;
 
 	/**
+	 * @deprecated since 1.30 Use getText() options.
 	 * @var bool $mTOCEnabled Whether TOC should be shown, can't override __NOTOC__.
 	 */
 	public $mTOCEnabled = true;
@@ -244,14 +246,44 @@ class ParserOutput extends CacheTime {
 	 * for display to the user.
 	 *
 	 * @since 1.27
+	 * @return string HTML
 	 */
 	public function getRawText() {
 		return $this->mText;
 	}
 
-	public function getText() {
+	/**
+	 * Get the parser output HTML.
+	 *
+	 * @param array $options (since 1.30) Transformation options.
+	 *  For backwards-compatibility with the stateful setEditSectionTokens and setTOCHTML
+	 *  methods, if called without options parameter, the internal state is used.
+	 *  If the parameter is passed as array (empty or with some options), then the
+	 *  internal state is ignored, and the real defaults will consistently apply instead.
+	 *  - 'allowTOC' (bool) Whether a TOC may be included (can't override __NOTOC__).
+	 *    If false, any TOC will be removed.
+	 *    Default: true.
+	 *  - 'enableSectionEditLinks' (bool) Whether section edit links may be included.
+	 *    If true, edit section tokens will be expanded into links. Otherwise, they
+	 *    will be removed.
+	 * @return string HTML
+	 */
+	public function getText( array $options = null ) {
+		if ( $options === null ) {
+			$options = [
+				// ParserCache serialises this object. Old values might lack this property.
+				'allowTOC' => isset( $this->mTOCEnabled ) && $this->mTOCEnabled,
+				'enableSectionEditLinks' => $this->mEditSectionTokens,
+			];
+		} else {
+			// Defaults
+			$options += [
+				'allowTOC' => true,
+				'enableSectionEditLinks' => true,
+			];
+		}
 		$text = $this->mText;
-		if ( $this->mEditSectionTokens ) {
+		if ( $options['enableSectionEditLinks'] ) {
 			$text = preg_replace_callback(
 				self::EDITSECTION_REGEX,
 				function ( $m ) {
@@ -277,8 +309,7 @@ class ParserOutput extends CacheTime {
 			$text = preg_replace( self::EDITSECTION_REGEX, '', $text );
 		}
 
-		// If you have an old cached version of this class - sorry, you can't disable the TOC
-		if ( isset( $this->mTOCEnabled ) && $this->mTOCEnabled ) {
+		if ( $options['allowTOC'] ) {
 			$text = str_replace( [ Parser::TOC_START, Parser::TOC_END ], '', $text );
 		} else {
 			$text = preg_replace(
@@ -446,6 +477,9 @@ class ParserOutput extends CacheTime {
 		return wfSetVar( $this->mSections, $toc );
 	}
 
+	/**
+	 * @deprecated since 1.30 Use getText() options.
+	 */
 	public function setEditSectionTokens( $t ) {
 		return wfSetVar( $this->mEditSectionTokens, $t );
 	}
@@ -454,6 +488,9 @@ class ParserOutput extends CacheTime {
 		return wfSetVar( $this->mIndexPolicy, $policy );
 	}
 
+	/**
+	 * @deprecated since 1.30 Use getText() options.
+	 */
 	public function setTOCHTML( $tochtml ) {
 		return wfSetVar( $this->mTOCHTML, $tochtml );
 	}
