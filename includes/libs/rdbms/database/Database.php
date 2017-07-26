@@ -2664,10 +2664,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function onTransactionPreCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
-		if ( $this->mTrxLevel ) {
+		if ( $this->mTrxLevel || $this->getFlag( self::DBO_TRX ) ) {
+			// As long as DBO_TRX is set, writes will accumulate until the load balancer issues
+			// an implicit commit of all peer databases. This is true even if a transaction has
+			// not yet been triggered by writes; make sure $callback runs *after* any such writes.
 			$this->mTrxPreCommitCallbacks[] = [ $callback, $fname ];
 		} else {
-			// If no transaction is active, then make one for this callback
+			// No transaction is active nor will start implicitly, so make one for this callback
 			$this->startAtomic( __METHOD__ );
 			try {
 				call_user_func( $callback );
