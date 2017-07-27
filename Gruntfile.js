@@ -143,6 +143,6 @@ module.exports = function ( grunt ) {
 	grunt.registerTask( 'lint', [ 'eslint', 'banana', 'stylelint' ] );
 	grunt.registerTask( 'qunit', [ 'assert-mw-env', 'karma:main' ] );
 
-	grunt.registerTask( 'test', [ 'lint' ] );
+	grunt.registerTask( 'test', [ 'lint', 'stylelint' ] );
 	grunt.registerTask( 'default', 'test' );
 };
