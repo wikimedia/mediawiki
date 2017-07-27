@@ -2,6 +2,7 @@
 	/**
 	 * Widget defining the button controlling the popup for the date range for the results
 	 *
+	 * @class
 	 * @extends OO.ui.Widget
 	 *
 	 * @constructor

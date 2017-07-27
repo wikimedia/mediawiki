@@ -2,12 +2,11 @@
  * JavaScript for Special:RecentChanges
  */
 ( function ( mw, $ ) {
-	/**
-	 * @class mw.rcfilters
-	 * @singleton
-	 */
 	var rcfilters = {
-		/** */
+		/**
+		 * @member mw.rcfilters
+		 * @private
+		 */
 		init: function () {
 			var filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
 				changesListModel = new mw.rcfilters.dm.ChangesListViewModel(),

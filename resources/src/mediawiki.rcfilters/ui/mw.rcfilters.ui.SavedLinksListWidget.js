@@ -2,6 +2,7 @@
 	/**
 	 * Quick links widget
 	 *
+	 * @class
 	 * @extends OO.ui.Widget
 	 *
 	 * @constructor
