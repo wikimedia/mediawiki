@@ -74,10 +74,21 @@
 		}, {
 			name: 'group6',
 			type: 'boolean',
+			isSticky: true,
 			filters: [
-				{ name: 'group6option1', label: 'group6option1-label', description: 'group5option1-desc' },
-				{ name: 'group6option2', label: 'group6option2-label', description: 'group5option2-desc', default: true, useDefaultAsBaseValue: true },
-				{ name: 'group6option3', label: 'group6option3-label', description: 'group5option3-desc', default: true }
+				{ name: 'group6option1', label: 'group6option1-label', description: 'group6option1-desc' },
+				{ name: 'group6option2', label: 'group6option2-label', description: 'group6option2-desc', default: true },
+				{ name: 'group6option3', label: 'group6option3-label', description: 'group6option3-desc', default: true }
+			]
+		}, {
+			name: 'group7',
+			type: 'single_option',
+			isSticky: true,
+			default: 'group7option2',
+			filters: [
+				{ name: 'group7option1', label: 'group7option1-label', description: 'group7option1-desc' },
+				{ name: 'group7option2', label: 'group7option2-label', description: 'group7option2-desc' },
+				{ name: 'group7option3', label: 'group7option3-label', description: 'group7option3-desc' }
 			]
 		} ],
 		viewsDefinition = {
@@ -111,6 +122,7 @@
 			group6option1: '0',
 			group6option2: '1',
 			group6option3: '1',
+			group7: 'group7option2',
 			namespace: ''
 		},
 		baseParamRepresentation = {
@@ -125,7 +137,8 @@
 			group5: 'option1',
 			group6option1: '0',
 			group6option2: '1',
-			group6option3: '0',
+			group6option3: '1',
+			group7: 'group7option2',
 			namespace: ''
 		},
 		baseFilterRepresentation = {
@@ -148,7 +161,10 @@
 			group5__option3: false,
 			group6__group6option1: false,
 			group6__group6option2: true,
-			group6__group6option3: false,
+			group6__group6option3: true,
+			group7__group7option1: false,
+			group7__group7option2: true,
+			group7__group7option3: false,
 			namespace__0: false,
 			namespace__1: false,
 			namespace__2: false,
@@ -172,7 +188,10 @@
 			group5__option3: { selected: false, conflicted: false, included: false },
 			group6__group6option1: { selected: false, conflicted: false, included: false },
 			group6__group6option2: { selected: true, conflicted: false, included: false },
-			group6__group6option3: { selected: false, conflicted: false, included: false },
+			group6__group6option3: { selected: true, conflicted: false, included: false },
+			group7__group7option1: { selected: false, conflicted: false, included: false },
+			group7__group7option2: { selected: true, conflicted: false, included: false },
+			group7__group7option3: { selected: false, conflicted: false, included: false },
 			namespace__0: { selected: false, conflicted: false, included: false },
 			namespace__1: { selected: false, conflicted: false, included: false },
 			namespace__2: { selected: false, conflicted: false, included: false },
@@ -244,6 +263,20 @@
 		assert.deepEqual(
 			model.getDefaultParams(),
 			defaultParameters,
+			'Default parameters are stored properly per filter and group'
+		);
+
+		// Change sticky filter
+		model.toggleFiltersSelected( {
+			group7__group7option1: true
+		} );
+
+		// Make sure defaults have changed
+		assert.deepEqual(
+			model.getDefaultParams(),
+			$.extend( true, {}, defaultParameters, {
+				group7: 'group7option1'
+			} ),
 			'Default parameters are stored properly per filter and group'
 		);
 	} );
