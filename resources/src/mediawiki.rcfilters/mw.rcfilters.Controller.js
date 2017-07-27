@@ -146,7 +146,7 @@
 					}
 					// If the default value isn't in the group, add it
 					if ( groupData.default !== undefined ) {
-						extraValues.push( groupData.default );
+						extraValues.push( String( groupData.default ) );
 					}
 					controller.addNumberValuesToGroup( groupData, extraValues );
 				}
