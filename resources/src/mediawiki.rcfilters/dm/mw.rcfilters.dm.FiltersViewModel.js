@@ -547,6 +547,40 @@
 	};
 
 	/**
+	 * Get a parameter representation of all sticky parameters
+	 *
+	 * @return {Object} Sticky parameter values
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getStickyParams = function () {
+		var result = {};
+
+		$.each( this.groups, function ( name, model ) {
+			if ( model.isSticky() ) {
+				$.extend( true, result, model.getDefaultParams() );
+			}
+		} );
+
+		return result;
+	};
+
+	/**
+	 * Get a filter representation of all sticky parameters
+	 *
+	 * @return {Object} Sticky filters values
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getStickyFiltersState = function () {
+		var result = {};
+
+		$.each( this.groups, function ( name, model ) {
+			if ( model.isSticky() ) {
+				$.extend( true, result, model.getSelectedState() );
+			}
+		} );
+
+		return result;
+	};
+
+	/**
 	 * Analyze the groups and their filters and output an object representing
 	 * the state of the parameters they represent.
 	 *
