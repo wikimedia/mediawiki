@@ -32,7 +32,7 @@
 	 * @param {Object} [tagList] Tag definition
 	 */
 	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure, tagList ) {
-		var parsedSavedQueries,
+		var parsedSavedQueries, limitDefault,
 			controller = this,
 			views = {},
 			items = [],
@@ -88,6 +88,11 @@
 			};
 		}
 
+		// Convert the default from the old preference
+		// since the limit preference actually affects more
+		// than just the RecentChanges page
+		limitDefault = Number( mw.user.options.get( 'rcfilters-rclimit', mw.user.options.get( 'rclimit', '50' ) ) );
+
 		// Add parameter range operations
 		views.range = {
 			groups: [
@@ -99,7 +104,8 @@
 					allowArbitrary: true,
 					validate: $.isNumeric,
 					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
-					'default': mw.user.options.get( 'rclimit' ),
+					'default': String( limitDefault ),
+					isSticky: true,
 					filters: [ 50, 100, 250, 500 ].map( function ( num ) {
 						return controller._createFilterDataFromNumber( num, num );
 					} )
@@ -117,7 +123,8 @@
 							( Number( i ) * 24 ).toFixed( 2 ) :
 							Number( i );
 					},
-					'default': mw.user.options.get( 'rcdays' ),
+					'default': mw.user.options.get( 'rcdays', '30' ),
+					isSticky: true,
 					filters: [
 						// Hours (1, 2, 6, 12)
 						0.04166, 0.0833, 0.25, 0.5,
@@ -174,7 +181,9 @@
 		// can normalize them per each query item
 		this.savedQueriesModel.initialize(
 			parsedSavedQueries,
-			this._getBaseFilterState()
+			this._getBaseFilterState(),
+			// This is for backwards compatibility - delete all sticky filter states
+			Object.keys( this.filtersModel.getStickyFiltersState() )
 		);
 
 		// Check whether we need to load defaults.
@@ -292,6 +301,7 @@
 	 */
 	mw.rcfilters.Controller.prototype.resetToDefaults = function () {
 		this.uriProcessor.updateModelBasedOnQuery( this._getDefaultParams() );
+
 		this.updateChangesList();
 	};
 
@@ -451,7 +461,8 @@
 	 */
 	mw.rcfilters.Controller.prototype.saveCurrentQuery = function ( label ) {
 		var highlightedItems = {},
-			highlightEnabled = this.filtersModel.isHighlightEnabled();
+			highlightEnabled = this.filtersModel.isHighlightEnabled(),
+			selectedState = this.filtersModel.getSelectedState();
 
 		// Prepare highlights
 		this.filtersModel.getHighlightedItems().forEach( function ( item ) {
@@ -461,11 +472,14 @@
 		// These are filter states; highlight is stored as boolean
 		highlightedItems.highlight = this.filtersModel.isHighlightEnabled();
 
+		// Delete all sticky filters
+		this._deleteStickyValuesFromFilterState( selectedState );
+
 		// Add item
 		this.savedQueriesModel.addNewQuery(
 			label || mw.msg( 'rcfilters-savedqueries-defaultlabel' ),
 			{
-				filters: this.filtersModel.getSelectedState(),
+				filters: selectedState,
 				highlights: highlightedItems,
 				invert: this.filtersModel.areNamespacesInverted()
 			}
@@ -529,7 +543,10 @@
 			highlights.highlight = highlights.highlights || highlights.highlight;
 
 			// Update model state from filters
-			this.filtersModel.toggleFiltersSelected( data.filters );
+			this.filtersModel.toggleFiltersSelected(
+				// Merge filters with sticky values
+				$.extend( true, {}, data.filters, this.filtersModel.getStickyFiltersState() )
+			);
 
 			// Update namespace inverted property
 			this.filtersModel.toggleInvertedNamespaces( !!Number( data.invert ) );
@@ -562,7 +579,8 @@
 	 * @return {boolean} Query exists
 	 */
 	mw.rcfilters.Controller.prototype.findQueryMatchingCurrentState = function () {
-		var highlightedItems = {};
+		var highlightedItems = {},
+			selectedState = this.filtersModel.getSelectedState();
 
 		// Prepare highlights of the current query
 		this.filtersModel.getItemsSupportingHighlights().forEach( function ( item ) {
@@ -570,13 +588,28 @@
 		} );
 		highlightedItems.highlight = this.filtersModel.isHighlightEnabled();
 
+		// Remove sticky filters
+		this._deleteStickyValuesFromFilterState( selectedState );
+
 		return this.savedQueriesModel.findMatchingQuery(
 			{
-				filters: this.filtersModel.getSelectedState(),
+				filters: selectedState,
 				highlights: highlightedItems,
 				invert: this.filtersModel.areNamespacesInverted()
 			}
 		);
+	};
+
+	/**
+	 * Delete sticky filters from given object
+	 *
+	 * @param {Object} filterState Filter state
+	 */
+	mw.rcfilters.Controller.prototype._deleteStickyValuesFromFilterState = function ( filterState ) {
+		// Remove sticky filters
+		$.each( this.filtersModel.getStickyFiltersState(), function ( filterName ) {
+			delete filterState[ filterName ];
+		} );
 	};
 
 	/**
@@ -702,6 +735,56 @@
 	};
 
 	/**
+	 * Update sticky preferences with current model state
+	 */
+	mw.rcfilters.Controller.prototype.updateStickyPreferences = function () {
+		// Update default sticky values with selected, whether they came from
+		// the initial defaults or from the URL value that is being normalized
+		this.updateDaysDefault( this.filtersModel.getGroup( 'days' ).getSelectedItems()[ 0 ].getParamName() );
+		this.updateLimitDefault( this.filtersModel.getGroup( 'limit' ).getSelectedItems()[ 0 ].getParamName() );
+	};
+
+	/**
+	 * Update the limit default value
+	 *
+	 * @param {number} newValue New value
+	 */
+	mw.rcfilters.Controller.prototype.updateLimitDefault = function ( newValue ) {
+		if ( !$.isNumeric( newValue ) ) {
+			return;
+		}
+
+		newValue = Number( newValue );
+
+		if ( mw.user.options.get( 'rcfilters-rclimit' ) !== newValue ) {
+			// Save the preference
+			new mw.Api().saveOption( 'rcfilters-rclimit', newValue );
+			// Update the preference for this session
+			mw.user.options.set( 'rcfilters-rclimit', newValue );
+		}
+	};
+
+	/**
+	 * Update the days default value
+	 *
+	 * @param {number} newValue New value
+	 */
+	mw.rcfilters.Controller.prototype.updateDaysDefault = function ( newValue ) {
+		if ( !$.isNumeric( newValue ) ) {
+			return;
+		}
+
+		newValue = Number( newValue );
+
+		if ( mw.user.options.get( 'rcdays' ) !== newValue ) {
+			// Save the preference
+			new mw.Api().saveOption( 'rcdays', newValue );
+			// Update the preference for this session
+			mw.user.options.set( 'rcdays', newValue );
+		}
+	};
+
+	/**
 	 * Synchronize the URL with the current state of the filters
 	 * without adding an history entry.
 	 */
@@ -720,6 +803,10 @@
 		fetchChangesList = fetchChangesList === undefined ? true : !!fetchChangesList;
 
 		this.uriProcessor.updateModelBasedOnQuery( new mw.Uri().query );
+
+		// Update the sticky preferences, in case we received a value
+		// from the URL
+		this.updateStickyPreferences();
 
 		// Only update and fetch new results if it is requested
 		if ( fetchChangesList ) {
@@ -769,7 +856,10 @@
 			data = defaultSavedQueryItem.getData();
 
 			queryHighlights = data.highlights || {};
-			savedParams = this.filtersModel.getParametersFromFilters( data.filters || {} );
+			savedParams = this.filtersModel.getParametersFromFilters(
+				// Merge filters with sticky values
+				$.extend( true, {}, data.filters, this.filtersModel.getStickyFiltersState() )
+			);
 
 			// Translate highlights to parameters
 			savedHighlights.highlight = String( Number( queryHighlights.highlight ) );
@@ -844,10 +934,19 @@
 	 */
 	mw.rcfilters.Controller.prototype._fetchChangesList = function () {
 		var uri = this._getUpdatedUri(),
+			stickyParams = this.filtersModel.getStickyParams(),
 			requestId = ++this.requestCounter,
 			latestRequest = function () {
 				return requestId === this.requestCounter;
 			}.bind( this );
+
+		// Sticky parameters override the URL params
+		// this is to make sure that whether we represent
+		// the sticky params in the URL or not (they may
+		// be normalized out) the sticky parameters are
+		// always being sent to the server with their
+		// current/default values
+		uri.extend( stickyParams );
 
 		return $.ajax( uri.toString(), { contentType: 'html' } )
 			.then(
