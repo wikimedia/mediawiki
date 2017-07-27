@@ -778,43 +778,6 @@
 				}
 			} );
 
-			return $.extend( true, {}, savedParams, savedHighlights, { invert: data.invert } );
-		}
-
-		return $.extend(
-			{ highlight: '0' },
-			this.filtersModel.getDefaultParams()
-		);
-	};
-
-	/**
-	 * Get an object representing the default parameter state, whether
-	 * it is from the model defaults or from the saved queries.
-	 *
-	 * @return {Object} Default parameters
-	 */
-	mw.rcfilters.Controller.prototype._getDefaultParams = function () {
-		var data, queryHighlights,
-			savedParams = {},
-			savedHighlights = {},
-			defaultSavedQueryItem = this.savedQueriesModel.getItemByID( this.savedQueriesModel.getDefault() );
-
-		if ( mw.config.get( 'wgStructuredChangeFiltersEnableSaving' ) &&
-			defaultSavedQueryItem ) {
-
-			data = defaultSavedQueryItem.getData();
-
-			queryHighlights = data.highlights || {};
-			savedParams = this.filtersModel.getParametersFromFilters( data.filters || {} );
-
-			// Translate highlights to parameters
-			savedHighlights.highlight = String( Number( queryHighlights.highlight ) );
-			$.each( queryHighlights, function ( filterName, color ) {
-				if ( filterName !== 'highlights' ) {
-					savedHighlights[ filterName + '_color' ] = color;
-				}
-			} );
-
 			return $.extend( true, {}, savedParams, savedHighlights );
 		}
 
