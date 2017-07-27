@@ -26,7 +26,9 @@ use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\Throttler;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
+use Wikimedia\ScopedCallback;
 
 /**
  * Holds shared logic for login and account creation pages.
@@ -212,6 +214,19 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @param string|null $subPage
 	 */
 	public function execute( $subPage ) {
+		if ( $this->mPosted ) {
+			$timing = $this->getContext()->getTiming();
+			$timing->mark( 'login.ui' );
+			$profilingScope = new ScopedCallback( function () use ( $timing ) {
+				$time = $timing->measure( 'login.ui' );
+				if ( !$time ) {
+					return;
+				}
+				$statsd = MediaWikiServices::getInstance()->getStatsdDataFactory();
+				$statsd->timing( "timing.login.ui.{$this->authAction}", $time['duration'] * 1000 );
+			} );
+		}
+
 		$authManager = AuthManager::singleton();
 		$session = SessionManager::getGlobalSession();
 
