@@ -759,7 +759,7 @@
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.selectItemByParamName = function ( paramName ) {
 		this.getItems().forEach( function ( item ) {
-			item.toggleSelected( item.getParamName() === paramName );
+			item.toggleSelected( item.getParamName() === String( paramName ) );
 		} );
 	};
 
@@ -771,7 +771,7 @@
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.getItemByParamName = function ( paramName ) {
 		return this.getItems().filter( function ( item ) {
-			return item.getParamName() === paramName;
+			return item.getParamName() === String( paramName );
 		} )[ 0 ];
 	};
 
