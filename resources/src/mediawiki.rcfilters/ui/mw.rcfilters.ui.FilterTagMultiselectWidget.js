@@ -2,6 +2,7 @@
 	/**
 	 * List displaying all filter groups
 	 *
+	 * @class
 	 * @extends OO.ui.MenuTagMultiselectWidget
 	 * @mixins OO.ui.mixin.PendingElement
 	 *
@@ -321,7 +322,7 @@
 	};
 
 	/**
-	 * @inheridoc
+	 * @inheritdoc
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onChangeTags = function () {
 		// Parent method

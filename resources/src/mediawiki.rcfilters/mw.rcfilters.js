@@ -1,4 +1,8 @@
 ( function ( mw ) {
+	/**
+	 * @class
+	 * @singleton
+	 */
 	mw.rcfilters = {
 		dm: {},
 		ui: {},

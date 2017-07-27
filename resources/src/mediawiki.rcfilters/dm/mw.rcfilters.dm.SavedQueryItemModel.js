@@ -2,6 +2,7 @@
 	/**
 	 * View model for a single saved query
 	 *
+	 * @class
 	 * @mixins OO.EventEmitter
 	 *
 	 * @constructor
@@ -31,7 +32,7 @@
 	/* Events */
 
 	/**
-	 * @update
+	 * @event update
 	 *
 	 * Model has been updated
 	 */
@@ -63,7 +64,7 @@
 	/**
 	 * Get query label
 	 *
-	 * @return {label} Query label
+	 * @return {string} Query label
 	 */
 	mw.rcfilters.dm.SavedQueryItemModel.prototype.getLabel = function () {
 		return this.label;

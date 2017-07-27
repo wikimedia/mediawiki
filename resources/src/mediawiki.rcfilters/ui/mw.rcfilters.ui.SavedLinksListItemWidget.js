@@ -2,6 +2,7 @@
 	/**
 	 * Quick links menu option widget
 	 *
+	 * @class
 	 * @extends OO.ui.Widget
 	 * @mixins OO.ui.mixin.LabelElement
 	 * @mixins OO.ui.mixin.IconElement
