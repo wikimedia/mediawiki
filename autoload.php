@@ -193,6 +193,7 @@ $wgAutoloadLocalClasses = [
 	'BenchmarkDeleteTruncate' => __DIR__ . '/maintenance/benchmarks/bench_delete_truncate.php',
 	'BenchmarkHooks' => __DIR__ . '/maintenance/benchmarks/benchmarkHooks.php',
 	'BenchmarkJSMinPlus' => __DIR__ . '/maintenance/benchmarks/benchmarkJSMinPlus.php',
+	'BenchmarkLruHash' => __DIR__ . '/maintenance/benchmarks/benchmarkLruHash.php',
 	'BenchmarkParse' => __DIR__ . '/maintenance/benchmarks/benchmarkParse.php',
 	'BenchmarkPurge' => __DIR__ . '/maintenance/benchmarks/benchmarkPurge.php',
 	'BenchmarkTidy' => __DIR__ . '/maintenance/benchmarks/benchmarkTidy.php',
