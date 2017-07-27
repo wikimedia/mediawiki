@@ -283,7 +283,7 @@ class UsersPager extends AlphabeticPager {
 				'value' => $this->requestedUser,
 			],
 			'dropdown' => [
-				'label' => $this->msg( 'group' ),
+				'label' => $this->msg( 'group' )->text(),
 				'name' => 'group',
 				'value' => $this->requestedGroup,
 				'class' => 'HTMLSelectField',
