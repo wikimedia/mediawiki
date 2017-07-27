@@ -889,7 +889,7 @@
 	 * Track usage of highlight feature
 	 *
 	 * @param {string} action
-	 * @param {array|object|string} filters
+	 * @param {Array|Object|string} filters
 	 */
 	mw.rcfilters.Controller.prototype._trackHighlight = function ( action, filters ) {
 		filters = typeof filters === 'string' ? { name: filters } : filters;

@@ -1,4 +1,7 @@
 ( function ( mw ) {
+	/**
+	 * @class
+	 */
 	mw.rcfilters = {
 		dm: {},
 		ui: {},

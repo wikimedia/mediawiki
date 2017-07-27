@@ -2,6 +2,7 @@
 	/**
 	 * Menu header for the RCFilters filters menu
 	 *
+	 * @class
 	 * @extends OO.ui.Widget
 	 *
 	 * @constructor
