@@ -29,6 +29,8 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
+use Wikimedia\ScopedCallback;
 
 /**
  * Unit to authenticate log-in attempts to the current wiki.
@@ -92,6 +94,14 @@ class ApiLogin extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		$result = [];
+
+		$timing = $this->getTiming();
+		$timing->mark( 'login.api' );
+		$profilingScope = new ScopedCallback( function() use ( $timing ) {
+			$time = $timing->measure( 'login.api' );
+			$statsd = MediaWikiServices::getInstance()->getStatsdDataFactory();
+			$statsd->timing( 'timing.login.api', $time['duration'] * 1000 );
+		} );
 
 		// Make sure session is persisted
 		$session = MediaWiki\Session\SessionManager::getGlobalSession();
