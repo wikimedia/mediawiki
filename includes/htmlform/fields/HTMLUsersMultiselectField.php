@@ -63,9 +63,7 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 		if ( isset( $this->mParams['placeholder'] ) ) {
 			$params['placeholder'] = $this->mParams['placeholder'];
 		} else {
-			$params['placeholder'] = $this->msg( 'mw-widgets-usersmultiselect-placeholder' )
-							->inContentLanguage()
-							->plain();
+			$params['placeholder'] = $this->msg( 'mw-widgets-usersmultiselect-placeholder' )->plain();
 		}
 
 		if ( !is_null( $value ) ) {
