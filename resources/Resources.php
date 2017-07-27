@@ -2239,6 +2239,7 @@ return [
 	],
 	// Used in the web installer. Test it after modifying this definition!
 	'mediawiki.legacy.shared' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'styles' => [
 			'resources/src/mediawiki.legacy/shared.css' => [ 'media' => 'screen' ]
 		],
