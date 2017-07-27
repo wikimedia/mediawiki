@@ -32,7 +32,6 @@
 		this.namePrefix = config.namePrefix || 'item_';
 		this.name = this.namePrefix + param;
 
-		this.useDefaultAsBaseValue = !!config.useDefaultAsBaseValue;
 		this.label = config.label || this.name;
 		this.labelPrefixKey = config.labelPrefixKey;
 		this.description = config.description || '';
@@ -247,15 +246,6 @@
 	 */
 	mw.rcfilters.dm.ItemModel.prototype.getIdentifiers = function () {
 		return this.identifiers;
-	};
-
-	/**
-	 * Check whether the item uses its default state as a base value
-	 *
-	 * @return {boolean} Use default as base value
-	 */
-	mw.rcfilters.dm.ItemModel.prototype.isUsingDefaultAsBaseValue = function () {
-		return this.useDefaultAsBaseValue;
 	};
 
 	/**

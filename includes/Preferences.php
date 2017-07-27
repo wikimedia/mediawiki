@@ -918,6 +918,9 @@ class Preferences {
 		$defaultPreferences['rcfilters-saved-queries'] = [
 			'type' => 'api',
 		];
+		$defaultPreferences['rcfilters-rclimit'] = [
+			'type' => 'api',
+		];
 
 		if ( $config->get( 'RCWatchCategoryMembership' ) ) {
 			$defaultPreferences['hidecategorization'] = [
