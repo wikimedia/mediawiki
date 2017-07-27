@@ -133,10 +133,8 @@
 		} );
 
 		// Hide namespaces and tags
-		if ( mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' ) ) {
-			$namespaceSelect.closest( 'tr' ).detach();
-			this.$element.find( '.mw-tagfilter-label' ).closest( 'tr' ).detach();
-		}
+		$namespaceSelect.closest( 'tr' ).detach();
+		this.$element.find( '.mw-tagfilter-label' ).closest( 'tr' ).detach();
 
 		// Hide limit and days
 		this.$element.find( '.rclinks' ).detach();
