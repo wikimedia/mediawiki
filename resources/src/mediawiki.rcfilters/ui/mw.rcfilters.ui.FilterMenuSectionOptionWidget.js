@@ -2,6 +2,7 @@
 	/**
 	 * A widget representing a menu section for filter groups
 	 *
+	 * @class
 	 * @extends OO.ui.MenuSectionOptionWidget
 	 *
 	 * @constructor
