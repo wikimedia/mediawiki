@@ -4089,7 +4089,14 @@ $wgTrackingCategories = [];
  * contain "content" which should be considered when generating a count of the
  * number of articles in the wiki.
  */
-$wgContentNamespaces = [ NS_MAIN ];
+$wgContentNamespaces = [];
+
+/**
+ * Optional array of namespaces which should be blacklisted from Special:ShortPages
+ * Only pages inside $wgContentNamespaces but not $wgShortPagesNamespaceBlacklist will
+ * be shown on that page.
+ */
+$wgShortPagesNamespaceBlacklist = [];
 
 /**
  * Array of namespaces, in addition to the talk namespaces, where signatures

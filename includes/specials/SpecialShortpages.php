@@ -41,9 +41,11 @@ class ShortPagesPage extends QueryPage {
 	}
 
 	public function getQueryInfo() {
+		$config = $this->getConfig();
+		$blacklist = $config->get( 'ShortPagesNamespaceBlacklist' );
 		$tables = [ 'page' ];
 		$conds = [
-			'page_namespace' => MWNamespace::getContentNamespaces(),
+			'page_namespace' => array_diff( MWNamespace::getContentNamespaces(), $blacklist ),
 			'page_is_redirect' => 0
 		];
 		$joinConds = [];
