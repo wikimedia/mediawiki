@@ -31,7 +31,8 @@
 			"Jdforrester",
 			"قیصرانی",
 			"Junaid Ahmad",
-			"Abuaneeqa"
+			"Abuaneeqa",
+			"Saraiki"
 		]
 	},
 	"tog-underline": "ربط کی خط کشیدگی:",
@@ -636,7 +637,7 @@
 	"selfredirect": "<strong>انتباہ:</strong> آپ پیش نظر صفحہ کو خود اسی کی جانب رجوع مکرر کر رہے ہیں۔\nشاید آپ نے رجوع مکرر کا غلط ہدف درج کیا ہے یا غلط صفحہ میں ترمیم کر رہے ہیں۔\nتاہم اگر آپ «$1» پر دوبارہ کلک کریں تو بہرصورت اس رجوع مکرر کو بنا دیا جائے گا۔",
 	"missingcommenttext": "براہِ کرم! تبصرہ نیچے درج کیجئے.",
 	"missingcommentheader": "<strong>یاددہانی:</strong>  آپ نے اِس تبصرہ کیلئے عنوان یا شہ سرخی مہیّا نہیں کی ہے۔\nاگر آپ نے \"$1\" کا بٹن دوبارہ دبایا تو آپ کا تبصرہ بغیر کسی عنوان کے محفوظ ہوجائے گا۔",
-	"summary-preview": "نمائش خلاصہ:",
+	"summary-preview": "خلاصہِ ترمیم کی نمائش:",
 	"subject-preview": "عنوان/شہ سرخی کی نمائش:",
 	"previewerrortext": "آپ کی تبدیلیوں کی نمائش دکھانے کے دوران میں کوئی نقص واقع ہو گیا ہے۔",
 	"blockedtitle": "صارف مسدود ہے",
@@ -3141,7 +3142,6 @@
 	"fileduplicatesearch-noresults": "«$1» کے نام سے کوئی فائل نہیں مل سکی۔",
 	"specialpages": "خصوصی صفحات",
 	"specialpages-note-top": "وضاحت",
-	"specialpages-note": "* عام خصوصی صفحات۔\n* <span class=\"mw-specialpagerestricted\">ممنوع خصوصی صفحات</span>",
 	"specialpages-group-maintenance": "نگہداشت کی رپورٹیں",
 	"specialpages-group-other": "دیگر خصوصی صفحات",
 	"specialpages-group-login": "کھاتہ کھولیں یا اندراج کریں",

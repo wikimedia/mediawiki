@@ -3423,6 +3423,7 @@
 	"fileduplicatesearch-noresults": "Ingen fil med namnet \"$1\" hittades.",
 	"specialpages": "Specialsidor",
 	"specialpages-note-top": "Teckenförklaring",
+	"specialpages-note-restricted": "* Normala specialsidor.\n* <span class=\"mw-specialpagerestricted\">Specialsidor med begränsad åtkomst.</span>",
 	"specialpages-group-maintenance": "Underhållsrapporter",
 	"specialpages-group-other": "Övriga specialsidor",
 	"specialpages-group-login": "Logga in / skapa konto",

@@ -1791,6 +1791,8 @@
 	"pageswithprop-legend": "דפים עם מאפיין דף",
 	"pageswithprop-text": "בדף זה מופיעה רשימת דפים שמשתמשים במאפיין דף מסוים.",
 	"pageswithprop-prop": "שם המאפיין:",
+	"pageswithprop-reverse": "מיון בסדר הפוך",
+	"pageswithprop-sortbyvalue": "מיון לפי הערך של המאפיין",
 	"pageswithprop-submit": "הצגה",
 	"pageswithprop-prophidden-long": "ערך ארוך של מאפיין טקסטואלי הוסתר ($1)",
 	"pageswithprop-prophidden-binary": "ערך של מאפיין בינארי הוסתר ($1)",

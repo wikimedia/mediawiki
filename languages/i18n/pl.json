@@ -1843,6 +1843,8 @@
 	"pageswithprop-legend": "Strony z właściwościami",
 	"pageswithprop-text": "Ta strona zawiera listę stron korzystających z właściwości.",
 	"pageswithprop-prop": "Nazwa właściwości:",
+	"pageswithprop-reverse": "Sortuj w odwrotnej kolejności",
+	"pageswithprop-sortbyvalue": "Sortuj według wartości właściwości",
 	"pageswithprop-submit": "Pokaż",
 	"pageswithprop-prophidden-long": "długa wartość własności ukryta ($1)",
 	"pageswithprop-prophidden-binary": "binarna wartość własności ukryta ($1)",
