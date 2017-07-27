@@ -2,6 +2,7 @@
 	/**
 	 * View model for saved queries
 	 *
+	 * @class
 	 * @mixins OO.EventEmitter
 	 * @mixins OO.EmitterList
 	 *

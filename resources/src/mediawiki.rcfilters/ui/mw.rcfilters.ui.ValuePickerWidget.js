@@ -3,6 +3,7 @@
 	 * Widget defining the behavior used to choose from a set of values
 	 * in a single_value group
 	 *
+	 * @class
 	 * @extends OO.ui.Widget
 	 * @mixins OO.ui.mixin.LabelElement
 	 *
