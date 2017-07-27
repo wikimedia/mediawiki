@@ -331,4 +331,23 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 			'Leading BOM removed when concatenating files'
 		);
 	}
+
+	/**
+	 * @covers ResourceLoaderFileModule::getDefinitionSummary
+	 */
+	public function testGetVersionHash() {
+		$context = $this->getResourceLoaderContext();
+
+		// Less variables
+		$module = new ResourceLoaderFileTestModule();
+		$version = $module->getVersionHash( $context );
+		$module = new ResourceLoaderFileTestModule( [], [
+			'lessVars' => [ 'key' => 'value' ],
+		] );
+		$this->assertNotEquals(
+			$version,
+			$module->getVersionHash( $context ),
+			'Using less variables is significant'
+		);
+	}
 }

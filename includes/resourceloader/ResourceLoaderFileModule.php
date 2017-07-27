@@ -580,6 +580,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			'fileHashes' => $this->getFileHashes( $context ),
 			'messageBlob' => $this->getMessageBlob( $context ),
 		];
+
+		$lessVars = $this->getLessVars( $context );
+		if ( $lessVars ) {
+			$summary[] = [ 'lessVars' => $lessVars ];
+		}
+
 		return $summary;
 	}
 
