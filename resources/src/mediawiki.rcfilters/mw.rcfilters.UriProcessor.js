@@ -260,7 +260,8 @@
 	 * @return {Object} Empty parameter state
 	 */
 	mw.rcfilters.UriProcessor.prototype._getEmptyParameterState = function () {
-		return this.emptyParameterState;
+		// Override empty parameter state with the sticky parameter values
+		return $.extend( true, {}, this.emptyParameterState, this.filtersModel.getStickyParams() );
 	};
 
 	/**

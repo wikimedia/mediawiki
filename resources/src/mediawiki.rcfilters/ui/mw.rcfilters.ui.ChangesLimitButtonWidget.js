@@ -86,7 +86,10 @@
 	 * @param {string} filterName Chosen filter name
 	 */
 	mw.rcfilters.ui.ChangesLimitButtonWidget.prototype.onPopupLimit = function ( filterName ) {
+		var item = this.limitGroupModel.getItemByName( filterName );
+
 		this.controller.toggleFilterSelect( filterName, true );
+		this.controller.updateLimitDefault( item.getParamName() );
 	};
 
 	/**

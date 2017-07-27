@@ -63,15 +63,18 @@
 	 *
 	 * @param {Object} [savedQueries] An object with the saved queries with
 	 *  the above structure.
+	 * @param {string[]} [ignoreFilters] Filters to ignore and remove from
+	 *  the data
 	 * @param {Object} [baseState] An object representing the base state
 	 *  so we can normalize the data
 	 * @fires initialize
 	 */
-	mw.rcfilters.dm.SavedQueriesModel.prototype.initialize = function ( savedQueries, baseState ) {
+	mw.rcfilters.dm.SavedQueriesModel.prototype.initialize = function ( savedQueries, baseState, ignoreFilters ) {
 		var items = [],
 			defaultItem = null;
 
 		savedQueries = savedQueries || {};
+		ignoreFilters = ignoreFilters || {};
 
 		this.baseState = baseState;
 
@@ -89,6 +92,12 @@
 			// This method will automatically fix all saved queries anyways
 			// for existing users, who are only betalabs users at the moment.
 			normalizedData.highlights.highlight = !!Number( normalizedData.highlights.highlight );
+
+			// Backwrads-compat fix: Remove sticky parameters from the 'ignoreFilters' list
+			ignoreFilters.forEach( function ( name ) {
+				delete normalizedData.filters[ name ];
+			} );
+
 
 			item = new mw.rcfilters.dm.SavedQueryItemModel(
 				id,
@@ -156,9 +165,11 @@
 	 * Get an item that matches the requested query
 	 *
 	 * @param {Object} fullQueryComparison Object representing all filters and highlights to compare
+	 * @param {Object} [ignoreFilters] Filters to ignore in the comparison
 	 * @return {mw.rcfilters.dm.SavedQueryItemModel} Matching item model
 	 */
 	mw.rcfilters.dm.SavedQueriesModel.prototype.findMatchingQuery = function ( fullQueryComparison ) {
+
 		return this.getItems().filter( function ( item ) {
 			return OO.compare(
 				item.getData(),
