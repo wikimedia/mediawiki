@@ -483,6 +483,8 @@ class Title implements LinkTarget {
 			}
 			if ( isset( $row->page_lang ) ) {
 				$this->mDbPageLanguage = (string)$row->page_lang;
+				// Replace deprecated language codes
+				$this->mDbPageLanguage = LanguageCode::replaceDeprecatedCodes( $this->mDbPageLanguage );
 			}
 			if ( isset( $row->page_restrictions ) ) {
 				$this->mOldRestrictions = $row->page_restrictions;
@@ -4768,6 +4770,8 @@ class Title implements LinkTarget {
 			$linkCache = LinkCache::singleton();
 			$linkCache->addLinkObj( $this );
 			$this->mDbPageLanguage = $linkCache->getGoodLinkFieldObj( $this, 'lang' );
+			// Replace deprecated language codes
+			$this->mDbPageLanguage = LanguageCode::replaceDeprecatedCodes( $this->mDbPageLanguage );
 		}
 
 		return $this->mDbPageLanguage;
