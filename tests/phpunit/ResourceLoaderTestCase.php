@@ -153,6 +153,22 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 	}
 }
 
+class ResourceLoaderFileTestModule extends ResourceLoaderFileModule {
+	protected $lessVars = [];
+
+	public function __construct( $options = [], $test = [] ) {
+		parent::__construct( $options );
+
+		foreach ( $test as $key => $value ) {
+			$this->$key = $value;
+		}
+	}
+
+	public function getLessVars( ResourceLoaderContext $context ) {
+		return $this->lessVars;
+	}
+}
+
 class ResourceLoaderFileModuleTestModule extends ResourceLoaderFileModule {
 }
 
