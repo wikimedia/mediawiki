@@ -21,13 +21,10 @@
 .mw-body .mw-search-nonefound {
 	margin: 0;
 }
-.mw-search-interwiki-header,
+
 .searchdidyoumean em,
 .searchmatch {
 	font-weight: bold;
-}
-.mw-search-nonefound + .mw-search-interwiki-header {
-	margin-top: 0;
 }
 
 .mw-search-results {
