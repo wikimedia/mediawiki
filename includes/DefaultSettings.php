@@ -3754,20 +3754,18 @@ $wgResourceLoaderValidateStaticJS = false;
  * at the beginning of all your .less files, with all the consequences.
  * In particular, string values must be escaped and quoted.
  *
- * Changes to LESS variables do not trigger cache invalidation.
- *
- * If the LESS variables need to be dynamic, you can use the
- * ResourceLoaderGetLessVars hook (since 1.25).
+ * Changes to this configuration do NOT trigger cache invalidation.
  *
  * @par Example:
  * @code
  *   $wgResourceLoaderLESSVars = [
- *     'baseFontSize'  => '1em',
- *     'smallFontSize' => '0.75em',
- *     'WikimediaBlue' => '#006699',
+ *     'exampleFontSize'  => '1em',
+ *     'exampleBlue' => '#eee',
  *   ];
  * @endcode
  * @since 1.22
+ * @deprecated since 1.30 Use ResourceLoaderModule::getLessVars() instead to
+ *  add variables to individual modules that need them.
  */
 $wgResourceLoaderLESSVars = [
 	/**
