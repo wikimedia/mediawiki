@@ -235,7 +235,11 @@
 	 * @param {string} value Value of the input
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onInputChange = function ( value ) {
-		var view = this.model.getViewByTrigger( value.substr( 0, 1 ) );
+		var view;
+
+		value = value.trim();
+
+		view = this.model.getViewByTrigger( value.substr( 0, 1 ) );
 
 		this.controller.switchView( view );
 	};
@@ -283,7 +287,7 @@
 
 			// Clear input if the only thing in the input is the prefix
 			if (
-				this.input.getValue() === this.model.getViewTrigger( this.model.getCurrentView() )
+				this.input.getValue().trim() === this.model.getViewTrigger( this.model.getCurrentView() )
 			) {
 				// Clear the input
 				this.input.setValue( '' );
@@ -347,7 +351,7 @@
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.updateElementsForView = function () {
 		var view = this.model.getCurrentView(),
-			inputValue = this.input.getValue(),
+			inputValue = this.input.getValue().trim(),
 			inputView = this.model.getViewByTrigger( inputValue.substr( 0, 1 ) );
 
 		if ( inputView !== 'default' ) {
@@ -466,7 +470,7 @@
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onTagSelect = function ( tagItem ) {
 		var widget = this,
 			menuOption = this.menu.getItemFromModel( tagItem.getModel() ),
-			oldInputValue = this.input.getValue();
+			oldInputValue = this.input.getValue().trim();
 
 		this.menu.setUserSelecting( true );
 
