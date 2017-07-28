@@ -8,7 +8,10 @@
 		 * @private
 		 */
 		init: function () {
-			var filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
+			var topLinksCookieName = 'rcfilters-toplinks-collapsed-state',
+				topLinksCookie = mw.cookie.get( topLinksCookieName ),
+				topLinksCookieValue = topLinksCookie || 'collapsed',
+				filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
 				changesListModel = new mw.rcfilters.dm.ChangesListViewModel(),
 				savedQueriesModel = new mw.rcfilters.dm.SavedQueriesModel(),
 				controller = new mw.rcfilters.Controller( filtersModel, changesListModel, savedQueriesModel ),
@@ -43,6 +46,24 @@
 			);
 
 			controller.replaceUrl();
+
+			$( '.mw-recentchanges-toplinks' )
+				.addClass( 'mw-rcfilters-ui-ready' )
+				.makeCollapsible( {
+					collapsed: topLinksCookieValue === 'collapsed'
+				} )
+				// .prepend(
+				// 	$( '<div>' )
+				// 		.addClass( 'mw-recentchanges-toplinks-title' )
+				// 		.text( 'foo' )
+				// )
+				// .prepend( $( '<span>' ).text( 'FOO' ) )
+				.on( 'beforeExpand.mw-collapsible', function () {
+					mw.cookie.set( topLinksCookieName, 'expanded' );
+				} )
+				.on( 'beforeCollapse.mw-collapsible', function () {
+					mw.cookie.set( topLinksCookieName, 'collapsed' );
+				} );
 		}
 	};
 

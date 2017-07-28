@@ -9,8 +9,27 @@
 		}
 	}
 
+	.mw-recentchanges-toplinks {
+		// Same as legend
+		border: 1px solid #ddd;
+		padding: 0.5em;
+
+		&-title {
+			font-size: 0.85em;
+		}
+
+		.mw-collapsible-text {
+			font-size: 0.85em;
+		}
+
+		&:not( .mw-rcfilters-ui-ready ) {
+			display: none;
+		}
+	}
+
 	.rcfilters-head {
 		min-height: 310px;
+		margin-top: 1em;
 
 		&:not( .mw-rcfilters-ui-ready ) {
 			opacity: 0.5;
