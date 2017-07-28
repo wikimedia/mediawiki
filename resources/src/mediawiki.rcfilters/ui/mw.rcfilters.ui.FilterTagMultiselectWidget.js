@@ -238,7 +238,11 @@
 	 * @param {string} value Value of the input
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onInputChange = function ( value ) {
-		var view = this.model.getViewByTrigger( value.substr( 0, 1 ) );
+		var view;
+
+		value = value.trim();
+
+		view = this.model.getViewByTrigger( value.substr( 0, 1 ) );
 
 		this.controller.switchView( view );
 	};
@@ -350,7 +354,7 @@
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.updateElementsForView = function () {
 		var view = this.model.getCurrentView(),
-			inputValue = this.input.getValue(),
+			inputValue = this.input.getValue().trim(),
 			inputView = this.model.getViewByTrigger( inputValue.substr( 0, 1 ) );
 
 		if ( inputView !== 'default' ) {

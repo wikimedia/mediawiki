@@ -810,7 +810,7 @@
 			items = this.getFiltersByView( view );
 
 		// Normalize so we can search strings regardless of case and view
-		query = query.toLowerCase();
+		query = query.trim().toLowerCase();
 		if ( view !== 'default' ) {
 			query = query.substr( 1 );
 		}
