@@ -48,7 +48,6 @@
 				footers: [
 					{
 						name: 'viewSelect',
-						disabled: !mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' ),
 						sticky: false,
 						// View select menu, appears on default view only
 						$element: $( '<div>' )
@@ -142,49 +141,47 @@
 			);
 		}
 
-		if ( mw.config.get( 'wgStructuredChangeFiltersEnableExperimentalViews' ) ) {
-			// Add a selector at the right of the input
-			this.viewsSelectWidget = new OO.ui.ButtonSelectWidget( {
-				classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-views-select-widget' ],
-				items: [
-					new OO.ui.ButtonOptionWidget( {
-						framed: false,
-						data: 'namespaces',
-						icon: 'article',
-						title: mw.msg( 'rcfilters-view-namespaces-tooltip' )
-					} ),
-					new OO.ui.ButtonOptionWidget( {
-						framed: false,
-						data: 'tags',
-						icon: 'tag',
-						title: mw.msg( 'rcfilters-view-tags-tooltip' )
-					} )
-				]
-			} );
+		// Add a selector at the right of the input
+		this.viewsSelectWidget = new OO.ui.ButtonSelectWidget( {
+			classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-views-select-widget' ],
+			items: [
+				new OO.ui.ButtonOptionWidget( {
+					framed: false,
+					data: 'namespaces',
+					icon: 'article',
+					title: mw.msg( 'rcfilters-view-namespaces-tooltip' )
+				} ),
+				new OO.ui.ButtonOptionWidget( {
+					framed: false,
+					data: 'tags',
+					icon: 'tag',
+					title: mw.msg( 'rcfilters-view-tags-tooltip' )
+				} )
+			]
+		} );
 
-			// Rearrange the UI so the select widget is at the right of the input
-			this.$element.append(
-				$( '<div>' )
-					.addClass( 'mw-rcfilters-ui-table' )
-					.append(
-						$( '<div>' )
-							.addClass( 'mw-rcfilters-ui-row' )
-							.append(
-								$( '<div>' )
-									.addClass( 'mw-rcfilters-ui-cell' )
-									.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-views-input' )
-									.append( this.input.$element ),
-								$( '<div>' )
-									.addClass( 'mw-rcfilters-ui-cell' )
-									.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-views-select' )
-									.append( this.viewsSelectWidget.$element )
-							)
-					)
-			);
+		// Rearrange the UI so the select widget is at the right of the input
+		this.$element.append(
+			$( '<div>' )
+				.addClass( 'mw-rcfilters-ui-table' )
+				.append(
+					$( '<div>' )
+						.addClass( 'mw-rcfilters-ui-row' )
+						.append(
+							$( '<div>' )
+								.addClass( 'mw-rcfilters-ui-cell' )
+								.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-views-input' )
+								.append( this.input.$element ),
+							$( '<div>' )
+								.addClass( 'mw-rcfilters-ui-cell' )
+								.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-views-select' )
+								.append( this.viewsSelectWidget.$element )
+						)
+				)
+		);
 
-			// Event
-			this.viewsSelectWidget.connect( this, { choose: 'onViewsSelectWidgetChoose' } );
-		}
+		// Event
+		this.viewsSelectWidget.connect( this, { choose: 'onViewsSelectWidgetChoose' } );
 
 		rcFiltersRow.append(
 			$( '<div>' )
