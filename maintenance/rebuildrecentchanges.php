@@ -266,7 +266,7 @@ class RebuildRecentchanges extends Maintenance {
 	 * Rebuild pass 3: Insert `recentchanges` entries for action logs.
 	 */
 	private function rebuildRecentChangesTablePass3() {
-		global $wgLogTypes, $wgLogRestrictions;
+		global $wgLogTypes, $wgLogRestrictions, $wgFilterLogTypes;
 
 		$dbw = $this->getDB( DB_MASTER );
 		$commentStore = CommentStore::getStore();
