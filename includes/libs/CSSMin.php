@@ -384,6 +384,9 @@ class CSSMin {
 		return false;
 	}
 
+	/**
+	 * @codeCoverageIgnore
+	 */
 	private static function getUrlRegex() {
 		static $urlRegex;
 		if ( $urlRegex === null ) {
