@@ -24,6 +24,7 @@ class CSSMinTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider mimeTypeProvider
+	 * @covers CSSMin::getMimeType
 	 */
 	public function testGetMimeType( $fileContents, $fileExtension, $expected ) {
 		$fileName = wfTempDir() . DIRECTORY_SEPARATOR . uniqid( 'MW_PHPUnit_CSSMinTest_' ) . '.'
@@ -167,7 +168,7 @@ class CSSMinTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideIsRemoteUrl
-	 * @cover CSSMin::isRemoteUrl
+	 * @covers CSSMin::isRemoteUrl
 	 */
 	public function testIsRemoteUrl( $expect, $url ) {
 		$this->assertEquals( CSSMinTestable::isRemoteUrl( $url ), $expect );
@@ -184,18 +185,19 @@ class CSSMinTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideIsLocalUrls
-	 * @cover CSSMin::isLocalUrl
+	 * @covers CSSMin::isLocalUrl
 	 */
 	public function testIsLocalUrl( $expect, $url ) {
 		$this->assertEquals( CSSMinTestable::isLocalUrl( $url ), $expect );
 	}
 
 	/**
-	 * This tests funky parameters to CSSMin::remap. testRemapRemapping tests
-	 * the basic functionality.
+	 * This test tests funky parameters to CSSMin::remap.
 	 *
+	 * @see testRemapRemapping for testing of the basic functionality
 	 * @dataProvider provideRemapCases
 	 * @covers CSSMin::remap
+	 * @covers CSSMin::remapOne
 	 */
 	public function testRemap( $message, $params, $expectedOutput ) {
 		$remapped = call_user_func_array( 'CSSMin::remap', $params );
@@ -246,10 +248,11 @@ class CSSMinTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * This tests basic functionality of CSSMin::remap. testRemapRemapping tests funky parameters.
+	 * This tests the basic functionality of CSSMin::remap.
 	 *
+	 * @see testRemap for testing of funky parameters
 	 * @dataProvider provideRemapRemappingCases
-	 * @covers CSSMin::remap
+	 * @covers CSSMin
 	 */
 	public function testRemapRemapping( $message, $input, $expectedOutput ) {
 		$localPath = __DIR__ . '/../../data/cssmin';
