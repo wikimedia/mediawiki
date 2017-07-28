@@ -1,4 +1,5 @@
 <?php
+/** temp **/
 /**
  * Rebuild recent changes from scratch.  This takes several hours,
  * depending on the database size and server configuration.
