@@ -85,6 +85,7 @@
 	 */
 	mw.rcfilters.ui.DateButtonWidget.prototype.onPopupDays = function ( filterName ) {
 		this.controller.toggleFilterSelect( filterName, true );
+		this.button.popup.toggle( false );
 	};
 
 	/**

@@ -88,6 +88,7 @@
 	 */
 	mw.rcfilters.ui.ChangesLimitButtonWidget.prototype.onPopupLimit = function ( filterName ) {
 		this.controller.toggleFilterSelect( filterName, true );
+		this.button.popup.toggle( false );
 	};
 
 	/**
