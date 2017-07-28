@@ -63,7 +63,7 @@
 					width: 300,
 					padded: true,
 					anchor: false,
-					align: 'backwards',
+					align: 'forwards',
 					$autoCloseIgnore: this.$overlay,
 					$content: datePopupWidget.$element
 				}
