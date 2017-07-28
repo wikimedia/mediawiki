@@ -1782,6 +1782,8 @@
 	"pageswithprop-legend": "Страници со својство",
 	"pageswithprop-text": "На страницава се наведени страници што користат дадено својство.",
 	"pageswithprop-prop": "Име на својството:",
+	"pageswithprop-reverse": "Подреди обратно",
+	"pageswithprop-sortbyvalue": "Подреди по својствена вредност",
 	"pageswithprop-submit": "Дај",
 	"pageswithprop-prophidden-long": "долгата вредност на текстуалното својство е скриена ($1)",
 	"pageswithprop-prophidden-binary": "бинарната вредност на својството за долгиот текст е скриена  ($1)",

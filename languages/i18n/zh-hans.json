@@ -1852,6 +1852,8 @@
 	"pageswithprop-legend": "有页面属性的页面",
 	"pageswithprop-text": "本页面列出使用特定页面属性的页面。",
 	"pageswithprop-prop": "属性名称：",
+	"pageswithprop-reverse": "倒序排序",
+	"pageswithprop-sortbyvalue": "按属性值排序",
 	"pageswithprop-submit": "提交",
 	"pageswithprop-prophidden-long": "长文本属性值已隐藏($1)",
 	"pageswithprop-prophidden-binary": "已隐藏二进制属性值($1)",

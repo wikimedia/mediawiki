@@ -2264,7 +2264,7 @@
 	"undeletepage": "Se og gjenopprett slettede sider",
 	"undeletepagetitle": "'''Følgende innhold er slettede revisjoner av [[:$1]].'''",
 	"viewdeletedpage": "Vis slettede sider",
-	"undeletepagetext": "Følgende {{PLURAL:$1|side|sider}} er slettet, men finnes fortsatt i arkivet og kan gjenopprettes. Arkivet blir periodevis slettet.",
+	"undeletepagetext": "Følgende {{PLURAL:$1|side|sider}} er slettet, men finnes fortsatt i arkivet og kan gjenopprettes. Arkivet kan periodevis bli slettet.",
 	"undelete-fieldset-title": "Gjenopprett revisjoner",
 	"undeleteextrahelp": "For å gjenopprette hele sidens historikk, la alle boksene være tomme og klikk '''''{{int:undeletebtn}}'''''.\nFor å gjenopprette kun deler, kryss av boksene for revisjonene du vil gjenopprette og klikk '''''{{int:undeletebtn}}'''''.",
 	"undeleterevisions": "{{PLURAL:$1|Én revisjon|$1 revisjoner}} slettet",

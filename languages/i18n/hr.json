@@ -1859,7 +1859,7 @@
 	"emailmessage": "Poruka:",
 	"emailsend": "Pošalji",
 	"emailccme": "Pošalji mi e-mailom kopiju moje poruke.",
-	"emailccsubject": "Kopija Vaše poruke suradniku $1: $2",
+	"emailccsubject": "Kopija Vaše poruke za $1: $2",
 	"emailsent": "E-poruka je poslana!",
 	"emailsenttext": "Vaša poruka je poslana.",
 	"emailuserfooter": "Ovu je e-poruku {{GENDER:$1|poslao suradnik|poslala suradnica}} $1 {{GENDER:$2|suradniku $2|suradnici $2}} uporabom mogućnosti \"{{int:emailuser}}\" s projekta {{SITENAME}}. Ukoliko {{GENDER:$2|odgovorite}} na tu e-poruku, {{GENDER:$2|Vaša}} će poruka biti izravno poslana {{GENDER:$1|izvornom pošiljatelju}}, otkrivajući pritom {{GENDER:$2|Vašu}} adresu e-pošte {{GENDER:$1|pošiljatelju|pošiljateljici}}.",

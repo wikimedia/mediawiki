@@ -1841,7 +1841,7 @@
 	"statistics-users-active-desc": "Użytkownicy, którzy byli aktywni w ciągu {{PLURAL:$1|ostatniego dnia|ostatnich $1 dni}}",
 	"pageswithprop": "Strony z właściwościami",
 	"pageswithprop-legend": "Strony z właściwościami",
-	"pageswithprop-text": "Ta strona zawiera listę stron korzystających z właściwości.",
+	"pageswithprop-text": "Ta strona zawiera listę stron korzystających z określonej właściwości strony.",
 	"pageswithprop-prop": "Nazwa właściwości:",
 	"pageswithprop-reverse": "Sortuj w odwrotnej kolejności",
 	"pageswithprop-sortbyvalue": "Sortuj według wartości właściwości",
