@@ -716,16 +716,30 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	function setTopText( FormOptions $opts ) {
 		global $wgContLang;
 
-		$message = $this->msg( 'recentchangestext' )->inContentLanguage();
+		$message = $this->msg( 'recentchangestext' )->inContentLanguage()->parse();
 		if ( !$message->isDisabled() ) {
-			$this->getOutput()->addWikiText(
+			$content = "\n" . $message->plain() . "\n";
+
+			if ( $this->getUser()->getOption( 'rcenhancedfilters' ) ) {
+				$contentTitle = Html::rawElement( 'div',
+					[ 'class' => 'mw-recentchanges-toplinks-title' ],
+					$this->msg( 'rcfilters-other-review-tools' )->parse()
+				);
+				$contentWrapper = Html::rawElement( 'div',
+					[ 'class' => 'mw-collapsible-content' ],
+					$content
+				);
+				$content = $contentTitle . $contentWrapper;
+			}
+
+			$this->getOutput()->addHTML(
 				Html::rawElement( 'div',
 					[
 						'class' => 'mw-recentchanges-toplinks',
 						'lang' => $wgContLang->getHtmlCode(),
 						'dir' => $wgContLang->getDir()
 					],
-					"\n" . $message->plain() . "\n"
+					$content
 				),
 				/* $lineStart */ true,
 				/* $interface */ false
