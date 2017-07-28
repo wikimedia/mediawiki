@@ -448,9 +448,11 @@
 	 * Save the current model state as a saved query
 	 *
 	 * @param {string} [label] Label of the saved query
+	 * @param {boolean} setAsDefault This query should be set as the default
 	 */
-	mw.rcfilters.Controller.prototype.saveCurrentQuery = function ( label ) {
-		var highlightedItems = {},
+	mw.rcfilters.Controller.prototype.saveCurrentQuery = function ( label, setAsDefault ) {
+		var queryID,
+			highlightedItems = {},
 			highlightEnabled = this.filtersModel.isHighlightEnabled();
 
 		// Prepare highlights
@@ -462,7 +464,7 @@
 		highlightedItems.highlight = this.filtersModel.isHighlightEnabled();
 
 		// Add item
-		this.savedQueriesModel.addNewQuery(
+		queryID = this.savedQueriesModel.addNewQuery(
 			label || mw.msg( 'rcfilters-savedqueries-defaultlabel' ),
 			{
 				filters: this.filtersModel.getSelectedState(),
@@ -470,6 +472,10 @@
 				invert: this.filtersModel.areNamespacesInverted()
 			}
 		);
+
+		if ( setAsDefault ) {
+			this.savedQueriesModel.setDefault( queryID );
+		}
 
 		// Save item
 		this._saveSavedQueries();
