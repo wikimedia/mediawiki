@@ -352,27 +352,28 @@ a.mw-selflink:visited {
 }
 
 /**
- * wikitable class for skinning normal tables
+ * `.wikitable` class for skinning normal tables
  * keep in sync with commonPrint.css
  */
-table.wikitable {
-	margin: 1em 0;
+table.wikitable,
+table.wikitable tr > th,
+table.wikitable tr > td {
 	background-color: #f8f9fa;
-	border: 1px solid #a2a9b1;
-	border-collapse: collapse;
 	color: #000;
+	border: 1px solid #a2a9b1;
 }
 
-table.wikitable > tr > th,
-table.wikitable > tr > td,
-table.wikitable > * > tr > th,
-table.wikitable > * > tr > td {
-	border: 1px solid #a2a9b1;
+table.wikitable {
+	margin: 1em 0;
+	border-collapse: collapse;
+}
+
+table.wikitable tr > th,
+table.wikitable tr > td {
 	padding: 0.2em 0.4em;
 }
 
-table.wikitable > tr > th,
-table.wikitable > * > tr > th {
+table.wikitable tr > th {
 	background-color: #eaecf0;
 	text-align: center;
 }
