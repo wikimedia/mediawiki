@@ -1888,6 +1888,7 @@ return [
 		],
 		'dependencies' => [
 			'oojs-ui',
+			'jquery.makeCollapsible',
 			'mediawiki.language',
 			'mediawiki.user',
 			'mediawiki.rcfilters.filters.dm',

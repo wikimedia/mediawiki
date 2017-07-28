@@ -9,8 +9,15 @@
 		}
 	}
 
+	.mw-recentchanges-toplinks {
+		&:not( .mw-rcfilters-ui-ready ) {
+			display: none;
+		}
+	}
+
 	.rcfilters-head {
 		min-height: 310px;
+		margin-top: 2.5em;
 
 		&:not( .mw-rcfilters-ui-ready ) {
 			opacity: 0.5;
