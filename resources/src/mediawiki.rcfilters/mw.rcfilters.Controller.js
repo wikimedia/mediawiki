@@ -2,7 +2,9 @@
 	/* eslint no-underscore-dangle: "off" */
 	/**
 	 * Controller for the filters in Recent Changes
+	 * @class
 	 *
+	 * @constructor
 	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersModel Filters view model
 	 * @param {mw.rcfilters.dm.ChangesListViewModel} changesListModel Changes list view model
 	 * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
@@ -889,7 +891,7 @@
 	 * Track usage of highlight feature
 	 *
 	 * @param {string} action
-	 * @param {array|object|string} filters
+	 * @param {Array|Object|string} filters
 	 */
 	mw.rcfilters.Controller.prototype._trackHighlight = function ( action, filters ) {
 		filters = typeof filters === 'string' ? { name: filters } : filters;

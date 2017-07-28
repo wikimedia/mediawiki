@@ -52,7 +52,6 @@
 
 	/**
 	 * @static
-	 * @inheritdoc
 	 */
 	mw.rcfilters.ui.FilterItemHighlightButton.static.cancelButtonMouseDownEvents = true;
 

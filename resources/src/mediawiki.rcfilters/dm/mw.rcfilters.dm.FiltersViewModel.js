@@ -634,7 +634,7 @@
 	/**
 	 * Get the highlight parameters based on current filter configuration
 	 *
-	 * @return {Object} Object where keys are "<filter name>_color" and values
+	 * @return {Object} Object where keys are `<filter name>_color` and values
 	 *                  are the selected highlight colors.
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getHighlightParameters = function () {
@@ -656,7 +656,7 @@
 	 *
 	 * @param {Object} representation Object containing representation of
 	 *  some or all highlight values
-	 * @return {Object} Object where keys are "<filter name>_color" and values
+	 * @return {Object} Object where keys are `<filter name>_color` and values
 	 *                  are the selected highlight colors. The returned object
 	 *                  contains all available filters either with a color value
 	 *                  or with null.
