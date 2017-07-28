@@ -156,8 +156,7 @@ class RebuildRecentchanges extends Maintenance {
 					'rc_this_oldid' => $row->rev_id,
 					'rc_last_oldid' => 0, // is this ok?
 					'rc_type' => $row->page_is_new ? RC_NEW : RC_EDIT,
-					'rc_source' => $row->page_is_new ? RecentChange::SRC_NEW : RecentChange::SRC_EDIT
-					,
+					'rc_source' => $row->page_is_new ? RecentChange::SRC_NEW : RecentChange::SRC_EDIT,
 					'rc_deleted' => $row->rev_deleted
 				],
 				__METHOD__
@@ -263,7 +262,7 @@ class RebuildRecentchanges extends Maintenance {
 	 * Rebuild pass 3: Insert `recentchanges` entries for action logs.
 	 */
 	private function rebuildRecentChangesTablePass3() {
-		global $wgLogTypes, $wgLogRestrictions;
+		global $wgLogTypes, $wgLogRestrictions, $wgFilterLogTypes;
 
 		$dbw = $this->getDB( DB_MASTER );
 
@@ -289,9 +288,8 @@ class RebuildRecentchanges extends Maintenance {
 				'log_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
 				'log_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ),
 				'log_user=user_id',
-				// Some logs don't go in RC since they are private.
-				// @FIXME: core/extensions also have spammy logs that don't go in RC.
-				'log_type' => array_diff( $wgLogTypes, array_keys( $wgLogRestrictions ) ),
+				// Some logs don't go in RC since they are private, or can be filtered out.
+				'log_type' => array_diff( $wgLogTypes, array_keys( array_merge( $wgLogRestrictions, $wgFilterLogTypes ) ) ),
 			],
 			__METHOD__,
 			[ 'ORDER BY' => 'log_timestamp DESC' ],
