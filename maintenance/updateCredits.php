@@ -69,7 +69,8 @@ foreach ( $lines as $line ) {
 }
 
 $contributors = array_keys( $contributors );
-$collator = Collator::create( 'uca-default-u-kn' );
+$collator = Collator::create( 'root' );
+$collator->setAttribute( Collator::NUMERIC_COLLATION, Collator::ON );
 $collator->sort( $contributors );
 array_walk( $contributors, function ( &$v, $k ) {
 	$v = "* {$v}";
