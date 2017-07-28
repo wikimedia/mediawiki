@@ -718,14 +718,28 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		$message = $this->msg( 'recentchangestext' )->inContentLanguage();
 		if ( !$message->isDisabled() ) {
-			$this->getOutput()->addWikiText(
+			$content = "\n" . $message->parse() . "\n";
+
+			if ( $this->getUser()->getOption( 'rcenhancedfilters' ) ) {
+				$contentTitle = Html::rawElement( 'div',
+					[ 'class' => 'mw-recentchanges-toplinks-title' ],
+					$this->msg( 'rcfilters-other-review-tools' )->parse()
+				);
+				$contentWrapper = Html::rawElement( 'div',
+					[ 'class' => 'mw-collapsible-content' ],
+					$content
+				);
+				$content = $contentTitle . $contentWrapper;
+			}
+
+			$this->getOutput()->addHTML(
 				Html::rawElement( 'div',
 					[
 						'class' => 'mw-recentchanges-toplinks',
 						'lang' => $wgContLang->getHtmlCode(),
 						'dir' => $wgContLang->getDir()
 					],
-					"\n" . $message->plain() . "\n"
+					$content
 				),
 				/* $lineStart */ true,
 				/* $interface */ false
