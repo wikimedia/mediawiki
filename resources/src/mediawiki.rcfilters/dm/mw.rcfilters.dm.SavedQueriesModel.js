@@ -119,6 +119,7 @@
 	 *
 	 * @param {string} label Label for the new query
 	 * @param {Object} data Data for the new query
+	 * @return {string} ID of the newly added query
 	 */
 	mw.rcfilters.dm.SavedQueriesModel.prototype.addNewQuery = function ( label, data ) {
 		var randomID = ( new Date() ).getTime(),
@@ -132,6 +133,8 @@
 				normalizedData
 			)
 		] );
+
+		return randomID;
 	};
 
 	/**

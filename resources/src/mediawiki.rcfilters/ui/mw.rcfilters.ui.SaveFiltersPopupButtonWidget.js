@@ -14,6 +14,7 @@
 	 */
 	mw.rcfilters.ui.SaveFiltersPopupButtonWidget = function MwRcfiltersUiSaveFiltersPopupButtonWidget( controller, model, config ) {
 		var layout,
+			checkBoxLayout,
 			$popupContent = $( '<div>' );
 
 		config = config || {};
@@ -46,6 +47,12 @@
 			align: 'top'
 		} );
 
+		this.setAsDefaultCheckbox = new OO.ui.CheckboxInputWidget();
+		checkBoxLayout = new OO.ui.FieldLayout( this.setAsDefaultCheckbox, {
+			label: mw.msg( 'rcfilters-savedqueries-setdefault' ),
+			align: 'inline'
+		} );
+
 		this.applyButton = new OO.ui.ButtonWidget( {
 			label: mw.msg( 'rcfilters-savedqueries-apply-label' ),
 			classes: [ 'mw-rcfilters-ui-saveFiltersPopupButtonWidget-popup-buttons-apply' ],
@@ -61,6 +68,9 @@
 				$( '<div>' )
 					.addClass( 'mw-rcfilters-ui-saveFiltersPopupButtonWidget-popup-layout' )
 					.append( layout.$element ),
+				$( '<div>' )
+					.addClass( 'mw-rcfilters-ui-saveFiltersPopupButtonWidget-popup-options' )
+					.append( checkBoxLayout.$element ),
 				$( '<div>' )
 					.addClass( 'mw-rcfilters-ui-saveFiltersPopupButtonWidget-popup-buttons' )
 					.append(
@@ -80,6 +90,7 @@
 		this.input.$input.on( {
 			keyup: this.onInputKeyup.bind( this )
 		} );
+		this.setAsDefaultCheckbox.connect( this, { change: 'onSetAsDefaultChange' } );
 		this.cancelButton.connect( this, { click: 'onCancelButtonClick' } );
 		this.applyButton.connect( this, { click: 'onApplyButtonClick' } );
 
@@ -131,6 +142,20 @@
 	};
 
 	/**
+	 * Respond to "set as default" checkbox change
+	 * @param {boolean} checked State of the checkbox
+	 */
+	mw.rcfilters.ui.SaveFiltersPopupButtonWidget.prototype.onSetAsDefaultChange = function ( checked ) {
+		var messageKey = checked ?
+			'rcfilters-savedqueries-apply-and-setdefault-label' :
+			'rcfilters-savedqueries-apply-label';
+
+		this.applyButton
+			.setIcon( checked ? 'pushPin' : null )
+			.setLabel( mw.msg( messageKey ) );
+	};
+
+	/**
 	 * Respond to cancel button click event
 	 */
 	mw.rcfilters.ui.SaveFiltersPopupButtonWidget.prototype.onCancelButtonClick = function () {
@@ -153,8 +178,9 @@
 		// This condition is more for sanity-check, since the
 		// apply button should be disabled if the label is empty
 		if ( label ) {
-			this.controller.saveCurrentQuery( label );
+			this.controller.saveCurrentQuery( label, this.setAsDefaultCheckbox.isSelected() );
 			this.input.setValue( '' );
+			this.setAsDefaultCheckbox.setSelected( false );
 			this.popup.toggle( false );
 
 			this.emit( 'saveCurrent' );

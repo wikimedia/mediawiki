@@ -1853,6 +1853,7 @@ return [
 			'rcfilters-savedqueries-new-name-placeholder',
 			'rcfilters-savedqueries-add-new-title',
 			'rcfilters-savedqueries-apply-label',
+			'rcfilters-savedqueries-apply-and-setdefault-label',
 			'rcfilters-savedqueries-cancel-label',
 			'rcfilters-restore-default-filters',
 			'rcfilters-clear-all-filters',
