@@ -14,7 +14,7 @@
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
 	 */
 	mw.rcfilters.ui.FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget( controller, model, savedQueriesModel, config ) {
-		var $bottom;
+		var $top, $topRow, $bottom;
 		config = config || {};
 
 		// Parent
@@ -55,8 +55,24 @@
 		);
 
 		// Initialize
-		this.$element
-			.addClass( 'mw-rcfilters-ui-filterWrapperWidget' );
+		$topRow = $( '<div>' )
+			.addClass( 'mw-rcfilters-ui-row' )
+			.append(
+				$( '<div>' )
+					.addClass( 'mw-rcfilters-ui-cell' )
+					.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top-placeholder' )
+			);
+		$top = $( '<div>' )
+			.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top' )
+			.addClass( 'mw-rcfilters-ui-table' )
+			.append( $topRow );
+
+		$bottom = $( '<div>' )
+			.addClass( 'mw-rcfilters-ui-filterWrapperWidget-bottom' )
+			.append(
+				this.numChangesWidget.$element,
+				this.dateWidget.$element
+			);
 
 		if ( mw.config.get( 'wgStructuredChangeFiltersEnableSaving' ) ) {
 			this.savedLinksListWidget = new mw.rcfilters.ui.SavedLinksListWidget(
@@ -65,17 +81,13 @@
 				{ $overlay: this.$overlay }
 			);
 
-			this.$element.append(
-				this.savedLinksListWidget.$element
+			$topRow.append(
+				$( '<div>' )
+					.addClass( 'mw-rcfilters-ui-cell' )
+					.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top-savedLinks' )
+					.append( this.savedLinksListWidget.$element )
 			);
 		}
-
-		$bottom = $( '<div>' )
-			.addClass( 'mw-rcfilters-ui-filterWrapperWidget-bottom' )
-			.append(
-				this.numChangesWidget.$element,
-				this.dateWidget.$element
-			);
 
 		if (
 			mw.config.get( 'wgStructuredChangeFiltersEnableLiveUpdate' ) ||
@@ -85,10 +97,13 @@
 			$bottom.append( this.liveUpdateButton.$element );
 		}
 
-		this.$element.append(
-			this.filterTagWidget.$element,
-			$bottom
-		);
+		this.$element
+			.addClass( 'mw-rcfilters-ui-filterWrapperWidget' )
+			.append(
+				$top,
+				this.filterTagWidget.$element,
+				$bottom
+			);
 	};
 
 	/* Initialization */
