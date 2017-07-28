@@ -1880,6 +1880,7 @@ return [
 			'rcfilters-view-tags-tooltip',
 			'rcfilters-view-return-to-default-tooltip',
 			'rcfilters-liveupdates-button',
+			'rcfilters-other-review-tools',
 			'blanknamespace',
 			'namespaces',
 			'invert',
@@ -1888,6 +1889,7 @@ return [
 		],
 		'dependencies' => [
 			'oojs-ui',
+			'jquery.makeCollapsible',
 			'mediawiki.language',
 			'mediawiki.user',
 			'mediawiki.rcfilters.filters.dm',

@@ -718,17 +718,40 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		$message = $this->msg( 'recentchangestext' )->inContentLanguage();
 		if ( !$message->isDisabled() ) {
-			$this->getOutput()->addWikiText(
-				Html::rawElement( 'div',
+			$content = $message->parse();
+
+			$langVars = [
+				'lang' => $wgContLang->getHtmlCode(),
+				'dir' => $wgContLang->getDir(),
+			];
+
+			$topLinksAttributes = [ 'class' => 'mw-recentchanges-toplinks' ];
+
+			if ( $this->getUser()->getOption( 'rcenhancedfilters' ) ) {
+				$contentTitle = Html::rawElement( 'div',
+					[ 'class' => 'mw-recentchanges-toplinks-title' ],
+					$this->msg( 'rcfilters-other-review-tools' )->parse()
+				);
+				$contentWrapper = Html::rawElement( 'div',
 					[
-						'class' => 'mw-recentchanges-toplinks',
+						'class' => 'mw-collapsible-content',
 						'lang' => $wgContLang->getHtmlCode(),
 						'dir' => $wgContLang->getDir()
+
 					],
-					"\n" . $message->plain() . "\n"
-				),
-				/* $lineStart */ true,
-				/* $interface */ false
+					$content
+				);
+				$content = $contentTitle . $contentWrapper;
+			} else {
+				// Language direction should be on the top div only
+				// if the title is not there. If it is there, it's
+				// interface direction, and the language/dir attributes
+				// should be on the content itself
+				$topLinksAttributes = array_merge( $divAttrs, $langVars );
+			}
+
+			$this->getOutput()->addHTML(
+				Html::rawElement( 'div', $topLinksAttributes, $content )
 			);
 		}
 	}
