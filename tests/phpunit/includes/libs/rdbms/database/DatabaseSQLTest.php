@@ -31,6 +31,8 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 	 * @covers Wikimedia\Rdbms\Database::select
 	 * @covers Wikimedia\Rdbms\Database::selectSQLText
 	 * @covers Wikimedia\Rdbms\Database::tableNamesWithIndexClauseOrJOIN
+	 * @covers Wikimedia\Rdbms\Database::useIndexClause
+	 * @covers Wikimedia\Rdbms\Database::ignoreIndexClause
 	 * @covers Wikimedia\Rdbms\Database::makeSelectOptions
 	 * @covers Wikimedia\Rdbms\Database::makeOrderBy
 	 * @covers Wikimedia\Rdbms\Database::makeGroupByWithHaving
@@ -150,6 +152,24 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 				"SELECT field AS alias " .
 					"FROM table " .
 					"WHERE alias IN ('1','2','3','4')"
+			],
+			[
+				[
+					'tables' => 'table',
+					'fields' => [ 'field' ],
+					'options' => [ 'USE INDEX' => [ 'X' ] ],
+				],
+				// No-op by default
+				"SELECT field FROM table"
+			],
+			[
+				[
+					'tables' => 'table',
+					'fields' => [ 'field' ],
+					'options' => [ 'IGNORE INDEX' => [ 'X' ] ],
+				],
+				// No-op by default
+				"SELECT field FROM table"
 			],
 			[
 				[
