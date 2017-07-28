@@ -7,11 +7,10 @@
 	var
 		cookieName = 'changeslist-state',
 		// Expanded by default
-		isCollapsed = mw.cookie.get( cookieName ) === 'collapsed',
 		doCollapsibleLegend = function ( $container ) {
 			$container.find( '.mw-changeslist-legend' )
 				.makeCollapsible( {
-					collapsed: isCollapsed
+					collapsed: mw.cookie.get( cookieName ) === 'collapsed'
 				} )
 				.on( 'beforeExpand.mw-collapsible', function () {
 					mw.cookie.set( cookieName, 'expanded' );
