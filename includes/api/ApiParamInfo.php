@@ -371,11 +371,15 @@ class ApiParamInfo extends ApiBase {
 
 			$item['multi'] = !empty( $settings[ApiBase::PARAM_ISMULTI] );
 			if ( $item['multi'] ) {
-				$item['limit'] = $this->getMain()->canApiHighLimits() ?
-					ApiBase::LIMIT_SML2 :
-					ApiBase::LIMIT_SML1;
-				$item['lowlimit'] = ApiBase::LIMIT_SML1;
-				$item['highlimit'] = ApiBase::LIMIT_SML2;
+				$item['lowlimit'] = !empty( $settings[ApiBase::PARAM_ISMULTI_LIMIT1] )
+					? $settings[ApiBase::PARAM_ISMULTI_LIMIT1]
+					: ApiBase::LIMIT_SML1;
+				$item['highlimit'] = !empty( $settings[ApiBase::PARAM_ISMULTI_LIMIT2] )
+					? $settings[ApiBase::PARAM_ISMULTI_LIMIT2]
+					: ApiBase::LIMIT_SML2;
+				$item['limit'] = $this->getMain()->canApiHighLimits()
+					? $item['highlimit']
+					: $item['lowlimit'];
 			}
 
 			if ( !empty( $settings[ApiBase::PARAM_ALLOW_DUPLICATES] ) ) {
