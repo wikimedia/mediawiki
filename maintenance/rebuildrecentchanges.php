@@ -267,11 +267,12 @@ class RebuildRecentchanges extends Maintenance {
 	 * Rebuild pass 3: Insert `recentchanges` entries for action logs.
 	 */
 	private function rebuildRecentChangesTablePass3() {
-		global $wgLogTypes, $wgLogRestrictions;
+		global $wgLogTypes, $wgLogRestrictions, $wgFilterLogTypes;
 
 		$dbw = $this->getDB( DB_MASTER );
 		$logCommentStore = new CommentStore( 'log_comment' );
 		$rcCommentStore = new CommentStore( 'rc_comment' );
+		$nonRCLogs = array_merge ( $wgLogRestrictions, $wgFilterLogTypes );
 
 		$this->output( "Loading from user, page, and logging tables...\n" );
 
@@ -295,9 +296,8 @@ class RebuildRecentchanges extends Maintenance {
 				'log_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
 				'log_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ),
 				'log_user=user_id',
-				// Some logs don't go in RC since they are private.
-				// @FIXME: core/extensions also have spammy logs that don't go in RC.
-				'log_type' => array_diff( $wgLogTypes, array_keys( $wgLogRestrictions ) ),
+				// Some logs don't go in RC since they are private, or can be filtered out.
+				'log_type' => array_diff( $wgLogTypes, array_keys( $nonRCLogs ) ),
 			],
 			__METHOD__,
 			[ 'ORDER BY' => 'log_timestamp DESC' ],
