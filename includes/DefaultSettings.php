@@ -6770,11 +6770,6 @@ $wgRCWatchCategoryMembership = false;
 $wgUseRCPatrol = true;
 
 /**
- * Whether to allow users to save their RecentChanges filters
- */
-$wgStructuredChangeFiltersEnableSaving = true;
-
-/**
  * Whether to show the new experimental views (like namespaces, tags, and users) in
  * RecentChanges filters
  */

@@ -58,17 +58,15 @@
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget' );
 
-		if ( mw.config.get( 'wgStructuredChangeFiltersEnableSaving' ) ) {
-			this.savedLinksListWidget = new mw.rcfilters.ui.SavedLinksListWidget(
-				this.controller,
-				this.queriesModel,
-				{ $overlay: this.$overlay }
-			);
+		this.savedLinksListWidget = new mw.rcfilters.ui.SavedLinksListWidget(
+			this.controller,
+			this.queriesModel,
+			{ $overlay: this.$overlay }
+		);
 
-			this.$element.append(
-				this.savedLinksListWidget.$element
-			);
-		}
+		this.$element.append(
+			this.savedLinksListWidget.$element
+		);
 
 		$bottom = $( '<div>' )
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget-bottom' )
