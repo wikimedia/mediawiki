@@ -153,7 +153,8 @@
 			"Benoit Rochon",
 			"Fitoschido",
 			"Archaeodontosaurus",
-			"Trizek (WMF)"
+			"Trizek (WMF)",
+			"Framawiki"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -1438,6 +1439,7 @@
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "Lister",
 	"rcfilters-legend-heading": "<strong>Liste des abréviations :</strong>",
+	"rcfilters-other-review-tools": "<strong>Autres outils de relecture:</strong>",
 	"rcfilters-activefilters": "Filtres actifs",
 	"rcfilters-advancedfilters": "Filtres avancés",
 	"rcfilters-limit-title": "Modifications à afficher",
@@ -1457,6 +1459,7 @@
 	"rcfilters-savedqueries-new-name-label": "Nom",
 	"rcfilters-savedqueries-new-name-placeholder": "Décrire l'objet du filtre",
 	"rcfilters-savedqueries-apply-label": "Créer un filtre",
+	"rcfilters-savedqueries-apply-and-setdefault-label": "Créer le filtre par défaut",
 	"rcfilters-savedqueries-cancel-label": "Annuler",
 	"rcfilters-savedqueries-add-new-title": "Sauvegarder la configuration du filtre courant",
 	"rcfilters-restore-default-filters": "Rétablir les filtres par défaut",
