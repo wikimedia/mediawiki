@@ -474,7 +474,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$conds = $this->buildQuery( [ 'userExpLevel' => 'unregistered;experienced' ] );
 
 		$this->assertRegExp(
-			'/\(rc_user = 0\) OR \(\(user_editcount >= 500\) AND \(user_registration <= \'\d+\'\)\)/',
+			'/\(rc_user = 0\) OR \(\(user_editcount >= 500\) AND \(user_registration <= \'[^\']+\'\)\)/',
 			reset( $conds ),
 			"rc conditions: userExpLevel=unregistered;experienced"
 		);
