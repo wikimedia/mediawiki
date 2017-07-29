@@ -66,13 +66,16 @@
 	 *  the above structure.
 	 * @param {Object} [baseState] An object representing the base state
 	 *  so we can normalize the data
+	 * @param {string[]} [ignoreFilters] Filters to ignore and remove from
+	 *  the data
 	 * @fires initialize
 	 */
-	mw.rcfilters.dm.SavedQueriesModel.prototype.initialize = function ( savedQueries, baseState ) {
+	mw.rcfilters.dm.SavedQueriesModel.prototype.initialize = function ( savedQueries, baseState, ignoreFilters ) {
 		var items = [],
 			defaultItem = null;
 
 		savedQueries = savedQueries || {};
+		ignoreFilters = ignoreFilters || {};
 
 		this.baseState = baseState;
 
@@ -90,6 +93,11 @@
 			// This method will automatically fix all saved queries anyways
 			// for existing users, who are only betalabs users at the moment.
 			normalizedData.highlights.highlight = !!Number( normalizedData.highlights.highlight );
+
+			// Backwards-compat fix: Remove sticky parameters from the 'ignoreFilters' list
+			ignoreFilters.forEach( function ( name ) {
+				delete normalizedData.filters[ name ];
+			} );
 
 			item = new mw.rcfilters.dm.SavedQueryItemModel(
 				id,
