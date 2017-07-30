@@ -26,6 +26,13 @@ section).
   array. This allows dependency injection to be used for ResourceLoader modules.
 * $wgExceptionHooks has been removed.
 * (T45547) $wgUsePigLatinVariant added (off by default).
+* A new permission called "viewsource" was added. By default all users have this
+  permission, including anonymous users. Users without this permission
+  cannot view the source of pages that they cannot edit, through the web
+  interface. Before this change, every user could see the source of all pages
+  including those they cannot edit, through the web interface. This change does
+  not completely eliminate the ability to view the page source (e.g. one can
+  still use the API), but makes it more inconvenient.
 
 === New features in 1.30 ===
 * (T37247) Output from Parser::parse() will now be wrapped in a div with
