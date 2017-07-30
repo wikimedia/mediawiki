@@ -72,7 +72,7 @@ class RefreshLinks extends Maintenance {
 			if ( !$title ) {
 				$this->error( "'$category' is an invalid category name!\n", true );
 			}
-			$this->refreshCategory( $category );
+			$this->refreshCategory( $title );
 		} elseif ( ( $category = $this->getOption( 'tracking-category', false ) ) !== false ) {
 			$this->refreshTrackingCategory( $category );
 		} elseif ( !$this->hasOption( 'dfn-only' ) ) {
