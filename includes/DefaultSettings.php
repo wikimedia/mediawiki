@@ -5101,6 +5101,7 @@ $wgGroupPermissions = [];
 // Implicit group for all visitors
 $wgGroupPermissions['*']['createaccount'] = true;
 $wgGroupPermissions['*']['read'] = true;
+$wgGroupPermissions['*']['viewsource'] = true;
 $wgGroupPermissions['*']['edit'] = true;
 $wgGroupPermissions['*']['createpage'] = true;
 $wgGroupPermissions['*']['createtalk'] = true;

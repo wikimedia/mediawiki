@@ -357,6 +357,7 @@
 	"protectedpagetext": "This page has been protected to prevent editing or other actions.",
 	"viewsourcetext": "You can view and copy the source of this page.",
 	"viewyourtext": "You can view and copy the source of <strong>your edits</strong> to this page.",
+	"cannotviewsource": "You cannot view the source of this page.",
 	"protectedinterface": "This page provides interface text for the software on this wiki, and is protected to prevent abuse.\nTo add or change translations for all wikis, please use [https://translatewiki.net/ translatewiki.net], the MediaWiki localisation project.",
 	"editinginterface": "<strong>Warning:</strong> You are editing a page that is used to provide interface text for the software.\nChanges to this page will affect the appearance of the user interface for other users on this wiki.",
 	"translateinterface": "To add or change translations for all wikis, please use [https://translatewiki.net/ translatewiki.net], the MediaWiki localisation project.",
