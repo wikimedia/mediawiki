@@ -33,6 +33,13 @@ section).
   use $wgFragmentMode to migrate off it to a modern alternative.
 * $wgExternalInterwikiFragmentMode was introduced to control how fragments in
   sinterwikis going outside of current wiki farm are encoded.
+* A new permission called "viewsource" was added. By default all users have this
+  permission, including anonymous users. Users without this permission
+  cannot view the source of pages that they cannot edit, through the web
+  interface. Before this change, every user could see the source of all pages
+  including those they cannot edit, through the web interface. This change does
+  not completely eliminate the ability to view the page source (e.g. one can
+  still use the API), but makes it more inconvenient.
 
 === New features in 1.30 ===
 * (T37247) Output from Parser::parse() will now be wrapped in a div with

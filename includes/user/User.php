@@ -191,6 +191,7 @@ class User implements IDBAccessObject {
 		'userrights-interwiki',
 		'viewmyprivateinfo',
 		'viewmywatchlist',
+		'viewsource',
 		'viewsuppressed',
 		'writeapi',
 	];

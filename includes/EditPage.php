@@ -738,47 +738,50 @@ class EditPage {
 	 * @param string $errorMessage additional wikitext error message to display
 	 */
 	protected function displayViewSourcePage( Content $content, $errorMessage = '' ) {
-		global $wgOut;
+		global $wgOut, $wgUser;
+		if ( $this->mTitle->userCan( 'viewsource', $wgUser ) ) {
+			Hooks::run( 'EditPage::showReadOnlyForm:initial', [ $this, &$wgOut ] );
 
-		Hooks::run( 'EditPage::showReadOnlyForm:initial', [ $this, &$wgOut ] );
+			$wgOut->setRobotPolicy( 'noindex,nofollow' );
+			$wgOut->setPageTitle( $this->context->msg(
+				'viewsource-title',
+				$this->getContextTitle()->getPrefixedText()
+			) );
+			$wgOut->addBacklinkSubtitle( $this->getContextTitle() );
+			$wgOut->addHTML( $this->editFormPageTop );
+			$wgOut->addHTML( $this->editFormTextTop );
 
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		$wgOut->setPageTitle( $this->context->msg(
-			'viewsource-title',
-			$this->getContextTitle()->getPrefixedText()
-		) );
-		$wgOut->addBacklinkSubtitle( $this->getContextTitle() );
-		$wgOut->addHTML( $this->editFormPageTop );
-		$wgOut->addHTML( $this->editFormTextTop );
-
-		if ( $errorMessage !== '' ) {
-			$wgOut->addWikiText( $errorMessage );
-			$wgOut->addHTML( "<hr />\n" );
-		}
-
-		# If the user made changes, preserve them when showing the markup
-		# (This happens when a user is blocked during edit, for instance)
-		if ( !$this->firsttime ) {
-			$text = $this->textbox1;
-			$wgOut->addWikiMsg( 'viewyourtext' );
-		} else {
-			try {
-				$text = $this->toEditText( $content );
-			} catch ( MWException $e ) {
-				# Serialize using the default format if the content model is not supported
-				# (e.g. for an old revision with a different model)
-				$text = $content->serialize();
+			if ( $errorMessage !== '' ) {
+				$wgOut->addWikiText( $errorMessage );
+				$wgOut->addHTML( "<hr />\n" );
 			}
-			$wgOut->addWikiMsg( 'viewsourcetext' );
+
+			# If the user made changes, preserve them when showing the markup
+			# (This happens when a user is blocked during edit, for instance)
+			if ( !$this->firsttime ) {
+				$text = $this->textbox1;
+				$wgOut->addWikiMsg( 'viewyourtext' );
+			} else {
+				try {
+					$text = $this->toEditText( $content );
+				} catch ( MWException $e ) {
+					# Serialize using the default format if the content model is not supported
+					# (e.g. for an old revision with a different model)
+					$text = $content->serialize();
+				}
+				$wgOut->addWikiMsg( 'viewsourcetext' );
+			}
+
+			$wgOut->addHTML( $this->editFormTextBeforeContent );
+			$this->showTextbox( $text, 'wpTextbox1', [ 'readonly' ] );
+			$wgOut->addHTML( $this->editFormTextAfterContent );
+
+			$wgOut->addHTML( $this->makeTemplatesOnThisPageList( $this->getTemplates() ) );
+
+			$wgOut->addModules( 'mediawiki.action.edit.collapsibleFooter' );
+		} else {
+			$wgOut->addWikiMsg( 'cannotviewsource' );
 		}
-
-		$wgOut->addHTML( $this->editFormTextBeforeContent );
-		$this->showTextbox( $text, 'wpTextbox1', [ 'readonly' ] );
-		$wgOut->addHTML( $this->editFormTextAfterContent );
-
-		$wgOut->addHTML( $this->makeTemplatesOnThisPageList( $this->getTemplates() ) );
-
-		$wgOut->addModules( 'mediawiki.action.edit.collapsibleFooter' );
 
 		$wgOut->addHTML( $this->editFormTextBottom );
 		if ( $this->mTitle->exists() ) {
