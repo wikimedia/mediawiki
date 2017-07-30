@@ -22,6 +22,17 @@
  * @covers DeprecatedGlobal
  */
 class DeprecatedGlobalTest extends MediaWikiTestCase {
+
+	public function setUp() {
+		parent::setUp();
+		$this->oldErrorLevel = error_reporting( -1 );
+	}
+
+	public function tearDown() {
+		error_reporting( $this->oldErrorLevel );
+		parent::tearDown();
+	}
+
 	public function testObjectDeStub() {
 		global $wgDummy;
 
