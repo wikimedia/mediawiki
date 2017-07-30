@@ -7,11 +7,12 @@
 # complement that setup by testing MediaWiki on travis
 #
 language: php
-# Use the slower sudo-enabled VMs instead of fast containers:
-# - Package 'djvulibre-bin' is not yet whitelisted for trusty containers.
-#   https://github.com/travis-ci/apt-package-whitelist/issues/4036
-sudo: required
-# Use Trusty instead of Travis default (precise)
+
+
+# Use fast containers instead of the slower sudo-enabled VMs:
+sudo: false
+# Use Ubuntu 14 Trusty (not Ubuntu 12 Precise)
+# <https://docs.travis-ci.com/user/reference/trusty/>
 # - Required in order to use HHVM 3.6 or higher.
 # - Required for non-buggy xml library for XmlTypeCheck/UploadBaseTest (T75176).
 dist: trusty
@@ -25,10 +26,11 @@ matrix:
       php: 5.5
     - env: dbtype=postgres dbuser=travis
       php: 5.5
+    # https://docs.travis-ci.com/user/languages/php#HHVM-versions
     - env: dbtype=mysql dbuser=root
-      # https://docs.travis-ci.com/user/languages/php#HHVM-versions
-      # https://github.com/travis-ci/travis-ci/issues/7368
       php: hhvm-3.12
+    - env: dbtype=mysql dbuser=root
+      php: hhvm-3.18
     - env: dbtype=mysql dbuser=root
       php: 7
 
