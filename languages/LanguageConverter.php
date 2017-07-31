@@ -39,6 +39,7 @@ class LanguageConverter {
 	 */
 	static public $languagesWithVariants = [
 		'en',
+		'crh',
 		'gan',
 		'iu',
 		'kk',
