@@ -91,7 +91,13 @@
 		var conflictItem,
 			$message = $( '<div>' )
 				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results' ),
-			isEmpty = $changesListContent === 'NO_RESULTS';
+			isEmpty = $changesListContent === 'NO_RESULTS',
+			loaderPromise = mw.user.options.get( 'usenewrc' ) ?
+				// For enhanced mode, we have to load these modules, which are
+				// not loaded for the 'regular' mode in the backend
+				mw.loader.using( [ 'mediawiki.special.changeslist.enhanced', 'mediawiki.icon' ] ) :
+				$.Deferred().resolve(),
+			widget = this;
 
 		this.$element.toggleClass( 'mw-changeslist', !isEmpty );
 		if ( isEmpty ) {
@@ -131,14 +137,17 @@
 			// Apply highlight
 			this.applyHighlight();
 
-			if ( !isInitialDOM ) {
-				// Make sure enhanced RC re-initializes correctly
-				mw.hook( 'wikipage.content' ).fire( this.$element );
-			}
 		}
 
-		$( '.rcfilters-spinner' ).addClass( 'mw-rcfilters-ui-ready' );
-		this.$element.addClass( 'mw-rcfilters-ui-ready' );
+		loaderPromise.done( function () {
+			if ( !isInitialDOM && !isEmpty ) {
+				// Make sure enhanced RC re-initializes correctly
+				mw.hook( 'wikipage.content' ).fire( widget.$element );
+			}
+
+			$( '.rcfilters-spinner' ).addClass( 'mw-rcfilters-ui-ready' );
+			widget.$element.addClass( 'mw-rcfilters-ui-ready' );
+		} );
 	};
 
 	/**
