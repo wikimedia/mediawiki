@@ -104,6 +104,14 @@
 					allowArbitrary: true,
 					validate: $.isNumeric,
 					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
+					normalizeFunc: function ( a ) {
+						if ( a < 0 ) {
+							return 0; // Min
+						} else if ( a >= 1000 ) {
+							return 500; // Max
+						}
+						return a;
+					},
 					'default': String( limitDefault ),
 					isSticky: true,
 					filters: [ 50, 100, 250, 500 ].map( function ( num ) {
@@ -118,6 +126,14 @@
 					allowArbitrary: true,
 					validate: $.isNumeric,
 					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
+					normalizeFunc: function ( a ) {
+						if ( a < 0 ) {
+							return 0; // Min
+						} else if ( a >= 800000 ) {
+							return 30; // Max
+						}
+						return a;
+					},
 					numToLabelFunc: function ( i ) {
 						return Number( i ) < 1 ?
 							( Number( i ) * 24 ).toFixed( 2 ) :
@@ -251,6 +267,11 @@
 		var controller = this;
 
 		arbitraryValues = Array.isArray( arbitraryValues ) ? arbitraryValues : [ arbitraryValues ];
+
+		// Normalize the arbitrary values
+		if ( groupData.normalizeFunc ) {
+			arbitraryValues = arbitraryValues.map( groupData.normalizeFunc( val ) );
+		}
 
 		// This is only true for single_option group
 		// We assume these are the only groups that will allow for
