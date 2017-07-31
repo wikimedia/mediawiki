@@ -17,6 +17,8 @@
 	 * @cfg {boolean} [hidden] This group is hidden from the regular menu views
 	 * @cfg {boolean} [allowArbitrary] Allows for an arbitrary value to be added to the
 	 *  group from the URL, even if it wasn't initially set up.
+	 * @cfg {number} [range] An object defining minimum and maximum values for numeric
+	 *  groups. { min: x, max: y }
 	 * @cfg {string} [separator='|'] Value separator for 'string_options' groups
 	 * @cfg {boolean} [active] Group is active
 	 * @cfg {boolean} [fullCoverage] This filters in this group collectively cover all results
@@ -44,6 +46,7 @@
 		this.title = config.title || name;
 		this.hidden = !!config.hidden;
 		this.allowArbitrary = !!config.allowArbitrary;
+		this.numericRange = config.range;
 		this.separator = config.separator || '|';
 		this.labelPrefixKey = config.labelPrefixKey;
 
@@ -286,6 +289,24 @@
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.isAllowArbitrary = function () {
 		return this.allowArbitrary;
+	};
+
+	/**
+	 * Get group maximum value for numeric groups
+	 *
+	 * @return {number|null} Group max value
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.getMaxValue = function () {
+		return ( this.numericRange && this.numericRange.max ) || null;
+	};
+
+	/**
+	 * Get group minimum value for numeric groups
+	 *
+	 * @return {number|null} Group max value
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.getMinValue = function () {
+		return ( this.numericRange && this.numericRange.min ) || null;
 	};
 
 	/**
