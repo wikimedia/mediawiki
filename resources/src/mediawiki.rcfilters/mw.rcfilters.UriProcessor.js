@@ -71,7 +71,34 @@
 	 * @param {Object} [uriQuery] URI query
 	 */
 	mw.rcfilters.UriProcessor.prototype.updateModelBasedOnQuery = function ( uriQuery ) {
-		var parameters = this._getNormalizedQueryParams( uriQuery || new mw.Uri().query );
+		var parameters;
+
+		uriQuery = uriQuery || new mw.Uri().query;
+
+		// For arbitrary numeric single_option values, check the uri and see if it's beyond the limit
+		$.each( this.filtersModel.getFilterGroups(), function ( groupName, groupModel ) {
+			if (
+				groupModel.getType() === 'single_option' &&
+				groupModel.isAllowArbitrary()
+			) {
+				if (
+					groupModel.getMaxValue() !== null &&
+					uriQuery[ groupName ] > groupModel.getMaxValue()
+				) {
+					// Change the value to the actual max value
+					uriQuery[ groupName ] = String( groupModel.getMaxValue() );
+				} else if (
+					groupModel.getMinValue() !== null &&
+					uriQuery[ groupName ] < groupModel.getMinValue()
+				) {
+					// Change the value to the actual min value
+					uriQuery[ groupName ] = String( groupModel.getMinValue() );
+				}
+			}
+		} );
+
+		// Normalize
+		parameters = this._getNormalizedQueryParams( uriQuery );
 
 		// Update filter states
 		this.filtersModel.toggleFiltersSelected(
