@@ -53,6 +53,7 @@
 
 		$root
 			.on( 'change', '.mw-htmlform-select-or-other', handleSelectOrOther )
+			.find( '.mw-htmlform-select-or-other' )
 			.each( function () {
 				handleSelectOrOther.call( this, true );
 			} );
