@@ -37,6 +37,7 @@ class LanguageConverter {
 	 */
 	static public $languagesWithVariants = [
 		'en',
+		'crh',
 		'gan',
 		'iu',
 		'kk',
@@ -864,7 +865,7 @@ class LanguageConverter {
 		if ( $fromCache ) {
 			$this->mTables = $cache->get( $cacheKey );
 		}
-		if ( !$this->mTables || !array_key_exists( self::CACHE_VERSION_KEY, $this->mTables ) ) {
+		if ( 1 || !$this->mTables || !array_key_exists( self::CACHE_VERSION_KEY, $this->mTables ) ) {
 			// not in cache, or we need a fresh reload.
 			// We will first load the default tables
 			// then update them using things in MediaWiki:Conversiontable/*
