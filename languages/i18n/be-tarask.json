@@ -1381,6 +1381,7 @@
 	"rcfilters-filter-previousrevision-description": "Усе зьмены, якія не зьяўляюцца самай апошняй вэрсіяй.",
 	"rcfilters-filter-excluded": "Выключаны",
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:не</strong> $1",
+	"rcfilters-exclude-button-off": "Выключыць абранае",
 	"rcfilters-view-tags": "Праўкі зь меткамі",
 	"rcfilters-view-namespaces-tooltip": "Фільтар вынікаў паводле прасторы назваў",
 	"rcfilters-view-tags-tooltip": "Фільтар вынікаў з дапамогай метак правак",
