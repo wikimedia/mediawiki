@@ -33,6 +33,7 @@
 	 */
 	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure, tagList ) {
 		var parsedSavedQueries, limitDefault,
+			displayConfig = mw.config.get( 'StructuredChangeFiltersDisplayConfig' ),
 			controller = this,
 			views = {},
 			items = [],
@@ -103,6 +104,10 @@
 					hidden: true,
 					allowArbitrary: true,
 					validate: $.isNumeric,
+					range: {
+						min: 1,
+						max: 1000
+					},
 					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
 					'default': String( limitDefault ),
 					// Temporarily making this not sticky until we resolve the problem
@@ -110,7 +115,7 @@
 					// we should remove all sticky behavior methods completely
 					// See T172156
 					// isSticky: true,
-					filters: [ 50, 100, 250, 500 ].map( function ( num ) {
+					filters: displayConfig.arrayLimit.map( function ( num ) {
 						return controller._createFilterDataFromNumber( num, num );
 					} )
 				},
@@ -121,6 +126,10 @@
 					hidden: true,
 					allowArbitrary: true,
 					validate: $.isNumeric,
+					range: {
+						min: 0,
+						max: displayConfig.maxLimit
+					},
 					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
 					numToLabelFunc: function ( i ) {
 						return Number( i ) < 1 ?
@@ -132,16 +141,16 @@
 					// isSticky: true,
 					filters: [
 						// Hours (1, 2, 6, 12)
-						0.04166, 0.0833, 0.25, 0.5,
-						// Days
-						1, 3, 7, 14, 30
-					].map( function ( num ) {
-						return controller._createFilterDataFromNumber(
-							num,
-							// Convert fractions of days to number of hours for the labels
-							num < 1 ? Math.round( num * 24 ) : num
-						);
-					} )
+						0.04166, 0.0833, 0.25, 0.5
+					// Days
+					].concat( displayConfig.arrayDays )
+						.map( function ( num ) {
+							return controller._createFilterDataFromNumber(
+								num,
+								// Convert fractions of days to number of hours for the labels
+								num < 1 ? Math.round( num * 24 ) : num
+							);
+						} )
 				}
 			]
 		};
@@ -257,6 +266,18 @@
 
 		arbitraryValues = Array.isArray( arbitraryValues ) ? arbitraryValues : [ arbitraryValues ];
 
+		// Normalize the arbitrary values
+		if ( groupData.range ) {
+			arbitraryValues = arbitraryValues.map( function ( val ) {
+				if ( val < 0 ) {
+					return groupData.range.min; // Min
+				} else if ( val >= groupData.range.max ) {
+					return groupData.range.max; // Max
+				}
+				return val;
+			} );
+		}
+
 		// This is only true for single_option group
 		// We assume these are the only groups that will allow for
 		// arbitrary, since it doesn't make any sense for the other
@@ -274,9 +295,9 @@
 				// but if that value isn't already in the definition
 				groupData.filters
 					.map( function ( filterData ) {
-						return filterData.name;
+						return String( filterData.name );
 					} )
-					.indexOf( val ) === -1
+					.indexOf( String( val ) ) === -1
 			) {
 				// Add the filter information
 				groupData.filters.push( controller._createFilterDataFromNumber(
