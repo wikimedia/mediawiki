@@ -575,13 +575,13 @@
 	 * @return {boolean} False to cancel the default event
 	 */
 	mw.widgets.DateInputWidget.prototype.onCalendarClick = function ( e ) {
+		var targetClass = this.calendar.getPrecision() === 'month' ?
+			'mw-widget-calendarWidget-month' :
+			'mw-widget-calendarWidget-day';
 		if (
 			!this.isDisabled() &&
 			e.which === 1 &&
-			(
-				$( e.target ).hasClass( 'mw-widget-calendarWidget-day' ) ||
-				$( e.target ).hasClass( 'mw-widget-calendarWidget-month' )
-			)
+			$( e.target ).hasClass( targetClass )
 		) {
 			this.deactivate( true );
 			return false;
