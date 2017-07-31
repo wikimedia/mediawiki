@@ -41,9 +41,11 @@
 	 * Respond to model initialize event
 	 */
 	mw.rcfilters.ui.ChangesLimitButtonWidget.prototype.onModelInitialize = function () {
-		var changesLimitPopupWidget, selectedItem, currentValue;
+		var changesLimitPopupWidget, selectedItem, currentValue,
+			displayGroupModel = this.model.getGroup( 'display' );
 
 		this.limitGroupModel = this.model.getGroup( 'limit' );
+		this.groupByPageItemModel = displayGroupModel.getItemByParamName( 'enhanced' );
 
 		// HACK: We need the model to be ready before we populate the button
 		// and the widget, because we require the filter items for the
@@ -52,7 +54,8 @@
 		// Note: This will be fixed soon!
 		if ( this.limitGroupModel ) {
 			changesLimitPopupWidget = new mw.rcfilters.ui.ChangesLimitPopupWidget(
-				this.limitGroupModel
+				this.limitGroupModel,
+				this.groupByPageItemModel
 			);
 
 			selectedItem = this.limitGroupModel.getSelectedItems()[ 0 ];
@@ -75,7 +78,10 @@
 
 			// Events
 			this.limitGroupModel.connect( this, { update: 'onLimitGroupModelUpdate' } );
-			changesLimitPopupWidget.connect( this, { limit: 'onPopupLimit' } );
+			changesLimitPopupWidget.connect( this, {
+				limit: 'onPopupLimit',
+				groupByPage: 'onPopupGroupByPage'
+			} );
 
 			this.$element.append( this.button.$element );
 		}
@@ -91,6 +97,17 @@
 
 		this.controller.toggleFilterSelect( filterName, true );
 		this.controller.updateLimitDefault( item.getParamName() );
+		this.button.popup.toggle( false );
+	};
+
+	/**
+	 * Respond to popup limit change event
+	 *
+	 * @param {boolean} isGrouped The result set is grouped by page
+	 */
+	mw.rcfilters.ui.ChangesLimitButtonWidget.prototype.onPopupGroupByPage = function ( isGrouped ) {
+		this.controller.toggleFilterSelect( this.groupByPageItemModel.getName(), isGrouped );
+		this.controller.updateGroupByPageDefault( Number( isGrouped ) );
 		this.button.popup.toggle( false );
 	};
 

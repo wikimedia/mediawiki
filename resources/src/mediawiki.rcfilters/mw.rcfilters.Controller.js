@@ -141,6 +141,24 @@
 			]
 		};
 
+		views.display = {
+			groups: [
+				{
+					name: 'display',
+					type: 'boolean',
+					title: '', // Because it's a hidden group, this title actually appears nowhere
+					hidden: true,
+					isSticky: true,
+					filters: [
+						{
+							name: 'enhanced',
+							'default': String( mw.user.options.get( 'usenewrc', 0 ) )
+						}
+					]
+				}
+			]
+		};
+
 		// Before we do anything, we need to see if we require additional items in the
 		// groups that have 'AllowArbitrary'. For the moment, those are only single_option
 		// groups; if we ever expand it, this might need further generalization:
@@ -805,6 +823,9 @@
 		// the initial defaults or from the URL value that is being normalized
 		this.updateDaysDefault( this.filtersModel.getGroup( 'days' ).getSelectedItems()[ 0 ].getParamName() );
 		this.updateLimitDefault( this.filtersModel.getGroup( 'limit' ).getSelectedItems()[ 0 ].getParamName() );
+
+		// TODO: Make these automatic by having the model go over sticky
+		// items and update their default values automatically
 	};
 
 	/**
@@ -844,6 +865,26 @@
 			new mw.Api().saveOption( 'rcdays', newValue );
 			// Update the preference for this session
 			mw.user.options.set( 'rcdays', newValue );
+		}
+	};
+
+	/**
+	 * Update the group by page default value
+	 *
+	 * @param {number} newValue New value
+	 */
+	mw.rcfilters.Controller.prototype.updateGroupByPageDefault = function ( newValue ) {
+		if ( !$.isNumeric( newValue ) ) {
+			return;
+		}
+
+		newValue = Number( newValue );
+
+		if ( mw.user.options.get( 'usenewrc' ) !== newValue ) {
+			// Save the preference
+			new mw.Api().saveOption( 'usenewrc', newValue );
+			// Update the preference for this session
+			mw.user.options.set( 'usenewrc', newValue );
 		}
 	};
 
