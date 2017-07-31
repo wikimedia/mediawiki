@@ -134,6 +134,7 @@ abstract class Installer {
 		'envCheckUploadsDirectory',
 		'envCheckLibicu',
 		'envCheckSuhosinMaxValueLength',
+		'envCheck64Bit',
 	];
 
 	/**
@@ -1076,6 +1077,21 @@ abstract class Installer {
 		if ( $maxValueLength > 0 && $maxValueLength < 1024 ) {
 			// Only warn if the value is below the sane 1024
 			$this->showMessage( 'config-suhosin-max-value-length', $maxValueLength );
+		}
+
+		return true;
+	}
+
+	/**
+	 * Checks if we're running on 64 bit or not. 32 bit is becoming increasingly
+	 * hard to support, so let's at least warn people.
+	 *
+	 * @return bool
+	 */
+	protected function envCheck64Bit() {
+
+		if ( PHP_INT_SIZE == 4 ) {
+			$this->showMessage( 'config-using-32bit' );
 		}
 
 		return true;
