@@ -33,6 +33,7 @@
 	 */
 	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure, tagList ) {
 		var parsedSavedQueries, limitDefault,
+			displayConfig = mw.config.get( 'displayConfig' ),
 			controller = this,
 			views = {},
 			items = [],
@@ -104,9 +105,17 @@
 					allowArbitrary: true,
 					validate: $.isNumeric,
 					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
+					normalizeFunc: function ( a ) {
+						if ( a < 0 ) {
+							return 0; // Min
+						} else if ( a >= 1000 ) {
+							return 1000; // Max
+						}
+						return a;
+					},
 					'default': String( limitDefault ),
 					isSticky: true,
-					filters: [ 50, 100, 250, 500 ].map( function ( num ) {
+					filters: displayConfig.wgRCLinkLimits.map( function ( num ) {
 						return controller._createFilterDataFromNumber( num, num );
 					} )
 				},
@@ -117,7 +126,17 @@
 					hidden: true,
 					allowArbitrary: true,
 					validate: $.isNumeric,
+					minValue: 0,
+					maxValue: displayConfig.wgRCMaxAge,
 					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
+					normalizeFunc: function ( a ) {
+						if ( a < 0 ) {
+							return 0; // Min
+						} else if ( a >= displayConfig.wgRCMaxAge ) {
+							return displayConfig.wgRCMaxAge; // Max
+						}
+						return a;
+					},
 					numToLabelFunc: function ( i ) {
 						return Number( i ) < 1 ?
 							( Number( i ) * 24 ).toFixed( 2 ) :
@@ -127,16 +146,16 @@
 					isSticky: true,
 					filters: [
 						// Hours (1, 2, 6, 12)
-						0.04166, 0.0833, 0.25, 0.5,
-						// Days
-						1, 3, 7, 14, 30
-					].map( function ( num ) {
-						return controller._createFilterDataFromNumber(
-							num,
-							// Convert fractions of days to number of hours for the labels
-							num < 1 ? Math.round( num * 24 ) : num
-						);
-					} )
+						0.04166, 0.0833, 0.25, 0.5
+					// Days
+					].concat( displayConfig.wgRCLinkDays )
+						.map( function ( num ) {
+							return controller._createFilterDataFromNumber(
+								num,
+								// Convert fractions of days to number of hours for the labels
+								num < 1 ? Math.round( num * 24 ) : num
+							);
+						} )
 				}
 			]
 		};
@@ -252,6 +271,11 @@
 
 		arbitraryValues = Array.isArray( arbitraryValues ) ? arbitraryValues : [ arbitraryValues ];
 
+		// Normalize the arbitrary values
+		if ( groupData.normalizeFunc ) {
+			arbitraryValues = arbitraryValues.map( groupData.normalizeFunc );
+		}
+
 		// This is only true for single_option group
 		// We assume these are the only groups that will allow for
 		// arbitrary, since it doesn't make any sense for the other
@@ -269,9 +293,9 @@
 				// but if that value isn't already in the definition
 				groupData.filters
 					.map( function ( filterData ) {
-						return filterData.name;
+						return String( filterData.name );
 					} )
-					.indexOf( val ) === -1
+					.indexOf( String( val ) ) === -1
 			) {
 				// Add the filter information
 				groupData.filters.push( controller._createFilterDataFromNumber(
