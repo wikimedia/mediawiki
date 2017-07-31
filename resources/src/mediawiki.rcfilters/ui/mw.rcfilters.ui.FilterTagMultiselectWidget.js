@@ -15,7 +15,6 @@
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( controller, model, savedQueriesModel, config ) {
 		var rcFiltersRow,
-			areSavedQueriesEnabled = mw.config.get( 'wgStructuredChangeFiltersEnableSaving' ),
 			title = new OO.ui.LabelWidget( {
 				label: mw.msg( 'rcfilters-activefilters' ),
 				classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-content-title' ]
@@ -30,7 +29,6 @@
 		this.queriesModel = savedQueriesModel;
 		this.$overlay = config.$overlay || this.$element;
 		this.matchingQuery = null;
-		this.areSavedQueriesEnabled = areSavedQueriesEnabled;
 
 		// Parent
 		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.call( this, $.extend( true, {
@@ -86,19 +84,17 @@
 			classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-resetButton' ]
 		} );
 
-		if ( areSavedQueriesEnabled ) {
-			this.saveQueryButton = new mw.rcfilters.ui.SaveFiltersPopupButtonWidget(
-				this.controller,
-				this.queriesModel
-			);
+		this.saveQueryButton = new mw.rcfilters.ui.SaveFiltersPopupButtonWidget(
+			this.controller,
+			this.queriesModel
+		);
 
-			this.saveQueryButton.$element.on( 'mousedown', function ( e ) { e.stopPropagation(); } );
+		this.saveQueryButton.$element.on( 'mousedown', function ( e ) { e.stopPropagation(); } );
 
-			this.saveQueryButton.connect( this, {
-				click: 'onSaveQueryButtonClick',
-				saveCurrent: 'setSavedQueryVisibility'
-			} );
-		}
+		this.saveQueryButton.connect( this, {
+			click: 'onSaveQueryButtonClick',
+			saveCurrent: 'setSavedQueryVisibility'
+		} );
 
 		this.emptyFilterMessage = new OO.ui.LabelWidget( {
 			label: mw.msg( 'rcfilters-empty-filter' ),
@@ -132,14 +128,12 @@
 					.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-cell-filters' )
 			);
 
-		if ( areSavedQueriesEnabled ) {
-			rcFiltersRow.append(
-				$( '<div>' )
-					.addClass( 'mw-rcfilters-ui-cell' )
-					.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-cell-save' )
-					.append( this.saveQueryButton.$element )
-			);
-		}
+		rcFiltersRow.append(
+			$( '<div>' )
+				.addClass( 'mw-rcfilters-ui-cell' )
+				.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-cell-save' )
+				.append( this.saveQueryButton.$element )
+		);
 
 		// Add a selector at the right of the input
 		this.viewsSelectWidget = new OO.ui.ButtonSelectWidget( {
@@ -372,21 +366,19 @@
 	 * Set the visibility of the saved query button
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.setSavedQueryVisibility = function () {
-		if ( this.areSavedQueriesEnabled ) {
-			this.matchingQuery = this.controller.findQueryMatchingCurrentState();
+		this.matchingQuery = this.controller.findQueryMatchingCurrentState();
 
-			this.savedQueryTitle.setLabel(
-				this.matchingQuery ? this.matchingQuery.getLabel() : ''
-			);
-			this.savedQueryTitle.toggle( !!this.matchingQuery );
-			this.saveQueryButton.toggle(
-				!this.isEmpty() &&
-				!this.matchingQuery
-			);
+		this.savedQueryTitle.setLabel(
+			this.matchingQuery ? this.matchingQuery.getLabel() : ''
+		);
+		this.savedQueryTitle.toggle( !!this.matchingQuery );
+		this.saveQueryButton.toggle(
+			!this.isEmpty() &&
+			!this.matchingQuery
+		);
 
-			if ( this.matchingQuery ) {
-				this.emphasize();
-			}
+		if ( this.matchingQuery ) {
+			this.emphasize();
 		}
 	};
 

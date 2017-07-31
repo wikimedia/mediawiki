@@ -74,20 +74,18 @@
 				this.dateWidget.$element
 			);
 
-		if ( mw.config.get( 'wgStructuredChangeFiltersEnableSaving' ) ) {
-			this.savedLinksListWidget = new mw.rcfilters.ui.SavedLinksListWidget(
-				this.controller,
-				this.queriesModel,
-				{ $overlay: this.$overlay }
-			);
+		this.savedLinksListWidget = new mw.rcfilters.ui.SavedLinksListWidget(
+			this.controller,
+			this.queriesModel,
+			{ $overlay: this.$overlay }
+		);
 
-			$topRow.append(
-				$( '<div>' )
-					.addClass( 'mw-rcfilters-ui-cell' )
-					.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top-savedLinks' )
-					.append( this.savedLinksListWidget.$element )
-			);
-		}
+		$topRow.append(
+			$( '<div>' )
+				.addClass( 'mw-rcfilters-ui-cell' )
+				.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top-savedLinks' )
+				.append( this.savedLinksListWidget.$element )
+		);
 
 		if (
 			mw.config.get( 'wgStructuredChangeFiltersEnableLiveUpdate' ) ||

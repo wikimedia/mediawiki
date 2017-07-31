@@ -856,9 +856,7 @@
 			savedHighlights = {},
 			defaultSavedQueryItem = this.savedQueriesModel.getItemByID( this.savedQueriesModel.getDefault() );
 
-		if ( mw.config.get( 'wgStructuredChangeFiltersEnableSaving' ) &&
-			defaultSavedQueryItem ) {
-
+		if ( defaultSavedQueryItem ) {
 			data = defaultSavedQueryItem.getData();
 
 			queryHighlights = data.highlights || {};
