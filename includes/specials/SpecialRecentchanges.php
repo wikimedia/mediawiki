@@ -193,6 +193,14 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				'wgRCFiltersChangeTags',
 				$this->buildChangeTagList()
 			);
+			$out->addJsConfigVars(
+				'StructuredChangeFiltersDisplayConfig',
+				[
+					'maxLimit' => (int)$this->getConfig()->get( 'RCMaxAge' ) / ( 24 * 3600 ), // Translate to days
+					'arrayLimit' => $this->getConfig()->get( 'RCLinkLimits' ),
+					'arrayDays' => $this->getConfig()->get( 'RCLinkDays' ),
+				]
+			);
 		}
 	}
 
