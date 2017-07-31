@@ -88,11 +88,6 @@
 			};
 		}
 
-		// Convert the default from the old preference
-		// since the limit preference actually affects more
-		// than just the RecentChanges page
-		limitDefault = Number( mw.user.options.get( 'rcfilters-rclimit', mw.user.options.get( 'rclimit', '50' ) ) );
-
 		// Add parameter range operations
 		views.range = {
 			groups: [
@@ -104,7 +99,7 @@
 					allowArbitrary: true,
 					validate: $.isNumeric,
 					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
-					'default': String( limitDefault ),
+					'default': String( mw.user.options.get( 'rclimit', '50' ) ),
 					isSticky: true,
 					filters: [ 50, 100, 250, 500 ].map( function ( num ) {
 						return controller._createFilterDataFromNumber( num, num );
@@ -819,11 +814,11 @@
 
 		newValue = Number( newValue );
 
-		if ( mw.user.options.get( 'rcfilters-rclimit' ) !== newValue ) {
+		if ( mw.user.options.get( 'rclimit' ) !== newValue ) {
 			// Save the preference
-			new mw.Api().saveOption( 'rcfilters-rclimit', newValue );
+			new mw.Api().saveOption( 'rclimit', newValue );
 			// Update the preference for this session
-			mw.user.options.set( 'rcfilters-rclimit', newValue );
+			mw.user.options.set( 'rclimit', newValue );
 		}
 	};
 
