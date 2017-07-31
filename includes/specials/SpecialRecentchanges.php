@@ -182,10 +182,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 			$out->addJsConfigVars( 'wgStructuredChangeFilters', $jsData['groups'] );
 			$out->addJsConfigVars(
-				'wgStructuredChangeFiltersEnableSaving',
-				$this->getConfig()->get( 'StructuredChangeFiltersEnableSaving' )
-			);
-			$out->addJsConfigVars(
 				'wgStructuredChangeFiltersEnableExperimentalViews',
 				$experimentalStructuredChangeFilters
 			);
