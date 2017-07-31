@@ -189,6 +189,15 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				'wgStructuredChangeFiltersEnableLiveUpdate',
 				$this->getConfig()->get( 'StructuredChangeFiltersEnableLiveUpdate' )
 			);
+			$out->addJsConfigVars(
+				'StructuredChangeFiltersDisplayConfig',
+				[
+					'maxLimit' => (int)$this->getConfig()->get( 'RCMaxAge' ) / ( 24 * 3600 ), // Translate to days
+					'arrayLimit' => $this->getConfig()->get( 'RCLinkLimits' ),
+					'arrayDays' => $this->getConfig()->get( 'RCLinkDays' ),
+				]
+			);
+
 			if ( $experimentalStructuredChangeFilters ) {
 				$out->addJsConfigVars(
 					'wgRCFiltersChangeTags',
