@@ -235,7 +235,7 @@ class SpecialUndelete extends SpecialPage {
 	function showSearchForm() {
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'undelete-search-title' ) );
-		$fuzzySearch = $this->getRequest()->getVal( 'fuzzy', false );
+		$fuzzySearch = $this->getRequest()->getVal( 'fuzzy', true );
 
 		$out->enableOOUI();
 
