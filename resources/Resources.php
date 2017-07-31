@@ -1835,6 +1835,7 @@ return [
 		'messages' => [
 			'rcfilters-activefilters',
 			'rcfilters-advancedfilters',
+			'rcfilters-group-results-by-page',
 			'rcfilters-limit-title',
 			'rcfilters-limit-shownum',
 			'rcfilters-days-title',

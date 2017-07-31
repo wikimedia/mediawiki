@@ -142,7 +142,7 @@
 				// Store the default parameter state
 				// For this group type, parameter values are direct
 				// We need to convert from a boolean to a string ('1' and '0')
-				model.defaultParams[ filter.name ] = String( Number( !!filter.default ) );
+				model.defaultParams[ filter.name ] = String( Number( filter.default ) );
 			}
 		} );
 

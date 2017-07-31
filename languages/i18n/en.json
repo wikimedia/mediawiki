@@ -1351,6 +1351,7 @@
 	"recentchanges-submit": "Show",
 	"rcfilters-legend-heading": "<strong>List of abbreviations:</strong>",
 	"rcfilters-other-review-tools": "<strong>Other review tools:</strong>",
+	"rcfilters-group-results-by-page": "Group results by page",
 	"rcfilters-activefilters": "Active filters",
 	"rcfilters-advancedfilters": "Advanced filters",
 	"rcfilters-limit-title": "Changes to show",
