@@ -25,10 +25,6 @@
 			mw.loader.using( 'oojs-ui-core' ).then( function () {
 				var wpSummary = OO.ui.infuse( $( '#wpSummaryWidget' ) );
 
-				// Restore appropriate modifier keys for the accesskey in the 'title' attribute
-				// TODO: This should be an OOjs UI feature, or somehow happen automatically after infusing.
-				wpSummary.$input.updateTooltipAccessKeys();
-
 				// Show a byte-counter to users with how many bytes are left for their edit summary.
 				// TODO: This looks a bit weird, as there is no unit in the UI, just numbers; showing
 				// 'bytes' confused users in testing, and showing 'chars' would be a lie. See T42035.
