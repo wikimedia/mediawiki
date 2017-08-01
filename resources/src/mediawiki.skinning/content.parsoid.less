@@ -8,11 +8,11 @@
  * counting. This way the counting style can be customized, and counts update
  * automatically when content is modified.
  */
-.mw-body-content {
+.mw-parser-output {
 	counter-reset: mw-numbered-ext-link;
 }
 
-.mw-body-content a[rel~='mw:ExtLink']:empty:after {
+.mw-parser-output a[rel~='mw:ExtLink']:empty:after {
 	content: '[' counter( mw-numbered-ext-link ) ']';
 	counter-increment: mw-numbered-ext-link;
 }
