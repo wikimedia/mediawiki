@@ -73,6 +73,7 @@ class DoubleRedirectsPage extends QueryPage {
 				// not actually be a page table row for this target (e.g. for interwiki redirects)
 				'nsc' => 'rb.rd_namespace',
 				'tc' => 'rb.rd_title',
+				'td' => 'rb.rd_fragment',
 				'iwc' => 'rb.rd_interwiki',
 			],
 			'conds' => [
@@ -146,7 +147,7 @@ class DoubleRedirectsPage extends QueryPage {
 		}
 
 		$titleB = Title::makeTitle( $result->nsb, $result->tb );
-		$titleC = Title::makeTitle( $result->nsc, $result->tc, '', $result->iwc );
+		$titleC = Title::makeTitle( $result->nsc, $result->tc, $result->td, $result->iwc );
 
 		$linkA = $linkRenderer->makeKnownLink(
 			$titleA,
@@ -179,7 +180,11 @@ class DoubleRedirectsPage extends QueryPage {
 			[ 'redirect' => 'no' ]
 		);
 
-		$linkC = $linkRenderer->makeKnownLink( $titleC );
+		if ( $result->td !== '' ) {
+			$linkC = $linkRenderer->makeKnownLink( $titleC, $result->tc . '#' . $result->td );
+		} else {
+			$linkC = $linkRenderer->makeKnownLink( $titleC );
+		}
 
 		$lang = $this->getLanguage();
 		$arr = $lang->getArrow() . $lang->getDirMark();
