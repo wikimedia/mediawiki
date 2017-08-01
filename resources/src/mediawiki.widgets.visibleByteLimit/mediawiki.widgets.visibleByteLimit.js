@@ -9,15 +9,12 @@
 mediaWiki.widgets.visibleByteLimit = function ( textInputWidget, limit ) {
 	limit = limit || +textInputWidget.$input.attr( 'maxlength' );
 
-	// Temporarily disabled whilst upstream bug is fixed; T169982
-	/*
 	function updateCount() {
 		textInputWidget.setLabel( ( limit - $.byteLength( textInputWidget.getValue() ) ).toString() );
 	}
 	textInputWidget.on( 'change', updateCount );
 	// Initialise value
 	updateCount();
-	*/
 
 	// Actually enforce limit
 	textInputWidget.$input.byteLimit( limit );
