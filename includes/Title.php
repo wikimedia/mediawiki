@@ -1317,6 +1317,21 @@ class Title implements LinkTarget {
 	}
 
 	/**
+	 * Get a Title object associated with the talk page of this article,
+	 * if such a talk page can exist.
+	 *
+	 * @return Title The object for the talk page,
+	 *         or null if no associated talk page can exist, according to canHaveTalkPage().
+	 */
+	public function getTalkPageIfDefined() {
+		if ( !$this->canHaveTalkPage() ) {
+			return null;
+		}
+
+		return $this->getTalkPage();
+	}
+
+	/**
 	 * Get a title object associated with the subject page of this
 	 * talk page
 	 *
