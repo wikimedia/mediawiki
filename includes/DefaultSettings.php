@@ -4090,6 +4090,13 @@ $wgTrackingCategories = [];
 $wgContentNamespaces = [ NS_MAIN ];
 
 /**
+ * Optional array of namespaces which should be blacklisted from Special:ShortPages
+ * Only pages inside $wgContentNamespaces but not $wgShortPagesNamespaceBlacklist will
+ * be shown on that page.
+ */
+$wgShortPagesNamespaceBlacklist = [];
+
+/**
  * Array of namespaces, in addition to the talk namespaces, where signatures
  * (~~~~) are likely to be used. This determines whether to display the
  * Signature button on the edit toolbar, and may also be used by extensions.
