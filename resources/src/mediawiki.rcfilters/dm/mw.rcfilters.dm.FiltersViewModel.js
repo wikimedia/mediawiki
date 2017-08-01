@@ -848,6 +848,9 @@
 		if ( view !== 'default' ) {
 			query = query.substr( 1 );
 		}
+		// Trim again to also intercept cases where the spaces were after the trigger
+		// eg: '#   str'
+		query = query.trim();
 
 		// Check if the search if actually empty; this can be a problem when
 		// we use prefixes to denote different views
