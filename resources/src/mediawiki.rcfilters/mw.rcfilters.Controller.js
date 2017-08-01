@@ -105,7 +105,11 @@
 					validate: $.isNumeric,
 					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
 					'default': String( limitDefault ),
-					isSticky: true,
+					// Temporarily making this not sticky until we resolve the problem
+					// with the misleading preference. Note that if this is to be permanent
+					// we should remove all sticky behavior methods completely
+					// See T172156
+					// isSticky: true,
 					filters: [ 50, 100, 250, 500 ].map( function ( num ) {
 						return controller._createFilterDataFromNumber( num, num );
 					} )
@@ -124,7 +128,8 @@
 							Number( i );
 					},
 					'default': mw.user.options.get( 'rcdays', '30' ),
-					isSticky: true,
+					// Temporarily making this not sticky while limit is not sticky, see above
+					// isSticky: true,
 					filters: [
 						// Hours (1, 2, 6, 12)
 						0.04166, 0.0833, 0.25, 0.5,
@@ -813,6 +818,10 @@
 	 * @param {number} newValue New value
 	 */
 	mw.rcfilters.Controller.prototype.updateLimitDefault = function ( newValue ) {
+		// HACK: Temporarily remove this from being sticky
+		// See T172156
+
+		/*
 		if ( !$.isNumeric( newValue ) ) {
 			return;
 		}
@@ -825,6 +834,8 @@
 			// Update the preference for this session
 			mw.user.options.set( 'rcfilters-rclimit', newValue );
 		}
+		*/
+		return;
 	};
 
 	/**
@@ -833,6 +844,10 @@
 	 * @param {number} newValue New value
 	 */
 	mw.rcfilters.Controller.prototype.updateDaysDefault = function ( newValue ) {
+		// HACK: Temporarily remove this from being sticky
+		// See T172156
+
+		/*
 		if ( !$.isNumeric( newValue ) ) {
 			return;
 		}
@@ -845,6 +860,8 @@
 			// Update the preference for this session
 			mw.user.options.set( 'rcdays', newValue );
 		}
+		*/
+		return;
 	};
 
 	/**
