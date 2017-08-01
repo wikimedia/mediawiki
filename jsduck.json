@@ -37,7 +37,12 @@
 		"resources/src/jquery/jquery.suggestions.js",
 		"resources/src/jquery/jquery.tabIndex.js",
 		"resources/lib/jquery.client/jquery.client.js",
-		"resources/lib/oojs",
-		"resources/lib/oojs-ui"
+		"resources/lib/oojs/oojs.jquery.js",
+		"resources/lib/oojs-ui/oojs-ui-core.js",
+		"resources/lib/oojs-ui/oojs-ui-widgets.js",
+		"resources/lib/oojs-ui/oojs-ui-toolbars.js",
+		"resources/lib/oojs-ui/oojs-ui-windows.js",
+		"resources/lib/oojs-ui/oojs-ui-wikimediaui.js",
+		"resources/lib/oojs-ui/oojs-ui-apex.js"
 	]
 }
