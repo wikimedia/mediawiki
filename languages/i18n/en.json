@@ -1354,7 +1354,7 @@
 	"rcfilters-activefilters": "Active filters",
 	"rcfilters-advancedfilters": "Advanced filters",
 	"rcfilters-limit-title": "Changes to show",
-	"rcfilters-limit-shownum": "Show last $1 changes",
+	"rcfilters-limit-shownum": "Show last {{PLURAL:$1|change|$1 changes}}",
 	"rcfilters-days-title": "Recent days",
 	"rcfilters-hours-title": "Recent hours",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|day|days}}",
