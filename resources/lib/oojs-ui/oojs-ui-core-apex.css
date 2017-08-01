@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.22.3
+ * OOjs UI v0.22.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-07-11T22:12:41Z
+ * Date: 2017-08-01T20:24:44Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -58,7 +58,8 @@
 }
 .oo-ui-buttonElement > .oo-ui-buttonElement-button {
   color: #333;
-  border-radius: 0.3em;
+  position: relative;
+  border-radius: 4px;
 }
 .oo-ui-buttonElement > .oo-ui-buttonElement-button:focus {
   outline: 0;
@@ -116,6 +117,26 @@
 .oo-ui-buttonElement-frameless > input.oo-ui-buttonElement-button:focus {
   color: #000;
 }
+.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-iconElement > .oo-ui-buttonElement-button:focus,
+.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-labelElement > .oo-ui-buttonElement-button:focus {
+  border-color: #ace;
+  box-shadow: 0 0 2px 2px #ace;
+}
+.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-iconElement > .oo-ui-buttonElement-button:focus:active,
+.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-labelElement > .oo-ui-buttonElement-button:focus:active {
+  border-color: #fff;
+  border-color: transparent;
+  box-shadow: none;
+}
+.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-indicatorElement:not( .oo-ui-iconElement ):not( .oo-ui-labelElement ) > .oo-ui-buttonElement-button {
+  border-radius: 4px;
+}
+.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-indicatorElement:not( .oo-ui-iconElement ):not( .oo-ui-labelElement ) > .oo-ui-buttonElement-button:focus {
+  box-shadow: 0 0 2px 2px #ace;
+}
+.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-indicatorElement:not( .oo-ui-iconElement ):not( .oo-ui-labelElement ) > .oo-ui-buttonElement-button:focus:active {
+  box-shadow: none;
+}
 .oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
   color: #087ecc;
 }
@@ -145,9 +166,12 @@
   background-image: linear-gradient(to bottom, #fff 0, #ddd 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffffff', endColorstr='#ffdddddd' )";
 }
-.oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:hover,
-.oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:focus {
+.oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:hover {
   border-color: #aaa;
+}
+.oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:focus {
+  border-color: #ace;
+  box-shadow: 0 0 2px 2px #ace;
 }
 .oo-ui-buttonElement-framed > input.oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
@@ -165,6 +189,12 @@
   background-image: -moz-linear-gradient(top, #ddd 0, #fff 100%);
   background-image: linear-gradient(to bottom, #ddd 0, #fff 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffdddddd', endColorstr='#ffffffff' )";
+}
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active:focus,
+.oo-ui-buttonElement-framed.oo-ui-buttonElement-active > .oo-ui-buttonElement-button:focus,
+.oo-ui-buttonElement-framed.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button:focus {
+  border-color: #ace;
+  box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.07), 0 0 2px 2px #ace;
 }
 .oo-ui-buttonElement-framed.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
   margin-left: -0.5em;
@@ -193,8 +223,7 @@
   background-image: linear-gradient(to bottom, #eaf4fa 0, #b0d9ee 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeaf4fa', endColorstr='#ffb0d9ee' )";
 }
-.oo-ui-buttonElement-framed.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:hover,
-.oo-ui-buttonElement-framed.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:focus {
+.oo-ui-buttonElement-framed.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:hover {
   border-color: #9dc2d4;
 }
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-progressive.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active,
@@ -217,8 +246,7 @@
   background-image: linear-gradient(to bottom, #f0fbe1 0, #c3e59a 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff0fbe1', endColorstr='#ffc3e59a' )";
 }
-.oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button:hover,
-.oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button:focus {
+.oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button:hover {
   border-color: #adcb89;
 }
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active,
@@ -648,8 +676,10 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-buttonGroupWidget {
   display: inline-block;
   white-space: nowrap;
-  border-radius: 0.3em;
+  border-radius: 4px;
   margin-right: 0.5em;
+  z-index: 0;
+  position: relative;
 }
 .oo-ui-buttonGroupWidget .oo-ui-buttonWidget.oo-ui-buttonElement-active .oo-ui-buttonElement-button {
   cursor: default;
@@ -668,13 +698,29 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin-left: -1px;
 }
 .oo-ui-buttonGroupWidget .oo-ui-buttonElement-framed:first-child .oo-ui-buttonElement-button {
-  border-bottom-left-radius: 0.3em;
-  border-top-left-radius: 0.3em;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
   margin-left: 0;
 }
 .oo-ui-buttonGroupWidget .oo-ui-buttonElement-framed:last-child .oo-ui-buttonElement-button {
-  border-bottom-right-radius: 0.3em;
-  border-top-right-radius: 0.3em;
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.oo-ui-buttonGroupWidget.oo-ui-widget-enabled .oo-ui-buttonElement.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active {
+  z-index: 1;
+}
+.oo-ui-buttonGroupWidget.oo-ui-widget-enabled .oo-ui-buttonElement.oo-ui-widget-enabled > .oo-ui-buttonElement-button:focus {
+  z-index: 2;
+}
+.oo-ui-buttonGroupWidget.oo-ui-widget-enabled .oo-ui-buttonElement.oo-ui-buttonElement-active > .oo-ui-buttonElement-button {
+  z-index: 3;
+}
+.oo-ui-buttonGroupWidget.oo-ui-widget-enabled .oo-ui-buttonElement.oo-ui-widget-disabled > .oo-ui-buttonElement-button {
+  z-index: -1;
+}
+.oo-ui-buttonGroupWidget.oo-ui-widget-enabled .oo-ui-buttonElement.oo-ui-toggleWidget-on + .oo-ui-toggleWidget-on > .oo-ui-buttonElement-button,
+.oo-ui-buttonGroupWidget.oo-ui-widget-enabled .oo-ui-buttonElement.oo-ui-toggleWidget-on + .oo-ui-toggleWidget-on > .oo-ui-buttonElement-button:active {
+  z-index: 3;
 }
 .oo-ui-popupWidget {
   position: absolute;
@@ -909,10 +955,13 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   height: 1.5em;
   padding: 0.5em 1em;
 }
-.oo-ui-dropdownInputWidget.oo-ui-widget-enabled select:hover,
-.oo-ui-dropdownInputWidget.oo-ui-widget-enabled select:focus {
+.oo-ui-dropdownInputWidget.oo-ui-widget-enabled select:hover {
   border-color: rgba(0, 0, 0, 0.2);
+}
+.oo-ui-dropdownInputWidget.oo-ui-widget-enabled select:focus {
   outline: 0;
+  border-color: #ace;
+  box-shadow: 0 0 2px 2px #ace;
 }
 .oo-ui-dropdownInputWidget.oo-ui-widget-disabled select {
   color: #ccc;
@@ -1017,7 +1066,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-textInputWidget input,
 .oo-ui-textInputWidget textarea {
   padding: 0.546875em 0.5em 0.625em 0.5em;
-  line-height: 1.275em;
   font-size: inherit;
   font-family: inherit;
   background-color: #fff;
@@ -1058,11 +1106,17 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   color: #767676;
   opacity: 1;
 }
+.oo-ui-textInputWidget input {
+  line-height: 1.172em;
+}
+.oo-ui-textInputWidget textarea {
+  line-height: 1.275;
+}
 .oo-ui-textInputWidget.oo-ui-widget-enabled input:focus,
 .oo-ui-textInputWidget.oo-ui-widget-enabled textarea:focus {
   outline: 0;
-  border-color: #a7dcff;
-  box-shadow: 0 0 0.3em #a7dcff, 0 0 0 #fff;
+  border-color: #ace;
+  box-shadow: 0 0 2px 2px #ace;
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled input[readonly],
 .oo-ui-textInputWidget.oo-ui-widget-enabled textarea[readonly] {
@@ -1092,7 +1146,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   padding-left: 2.475em;
 }
 .oo-ui-textInputWidget.oo-ui-iconElement .oo-ui-iconElement-icon {
-  max-height: 2.375em;
+  max-height: 2.5em;
   margin-left: 0.3em;
 }
 .oo-ui-textInputWidget.oo-ui-indicatorElement input,
@@ -1100,12 +1154,13 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   padding-right: 2.4875em;
 }
 .oo-ui-textInputWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
-  max-height: 2.375em;
+  max-height: 2.5em;
   margin-right: 0.775em;
 }
 .oo-ui-textInputWidget > .oo-ui-labelElement-label {
-  padding: 0.4em;
-  line-height: 1.5em;
+  top: 1px;
+  padding: 0.546875em 0.4em 0.625em 0.4em;
+  line-height: 1.172em;
   color: #767676;
 }
 .oo-ui-textInputWidget-labelPosition-after.oo-ui-indicatorElement > .oo-ui-labelElement-label {
@@ -1205,6 +1260,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-dropdownWidget-handle:hover {
   border-color: rgba(0, 0, 0, 0.2);
 }
+.oo-ui-dropdownWidget-handle:focus {
+  outline: 0;
+}
 .oo-ui-dropdownWidget-handle .oo-ui-iconElement-icon {
   left: 0.25em;
   margin: 0 0.3em;
@@ -1217,14 +1275,15 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   right: 0;
   margin: 0 0.775em;
 }
+.oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle:focus {
+  border-color: #ace;
+  box-shadow: 0 0 2px 2px #ace;
+}
 .oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-dropdownWidget-handle {
   color: #ccc;
   text-shadow: 0 1px 1px #fff;
   border-color: #ddd;
   background-color: #f3f3f3;
-}
-.oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-dropdownWidget-handle:focus {
-  outline: 0;
 }
 .oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-indicatorElement-indicator {
   opacity: 0.2;
@@ -1297,7 +1356,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-comboBoxInputWidget-php .oo-ui-indicatorWidget {
   right: 0;
-  max-height: 2.375em;
+  max-height: 2.5em;
   margin: 0;
   margin-right: 0.775em;
 }

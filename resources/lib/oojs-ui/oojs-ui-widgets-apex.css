@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.22.3
+ * OOjs UI v0.22.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-07-11T22:12:41Z
+ * Date: 2017-08-01T20:24:44Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -160,24 +160,43 @@
 .oo-ui-buttonSelectWidget {
   display: inline-block;
   white-space: nowrap;
-  border-radius: 0.3em;
+  border-radius: 4px;
   margin-right: 0.5em;
+  z-index: 0;
+  position: relative;
 }
 .oo-ui-buttonSelectWidget:last-child {
   margin-right: 0;
+}
+.oo-ui-buttonSelectWidget:focus {
+  outline: 0;
 }
 .oo-ui-buttonSelectWidget .oo-ui-buttonOptionWidget .oo-ui-buttonElement-button {
   border-radius: 0;
   margin-left: -1px;
 }
 .oo-ui-buttonSelectWidget .oo-ui-buttonOptionWidget:first-child .oo-ui-buttonElement-button {
-  border-bottom-left-radius: 0.3em;
-  border-top-left-radius: 0.3em;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
   margin-left: 0;
 }
 .oo-ui-buttonSelectWidget .oo-ui-buttonOptionWidget:last-child .oo-ui-buttonElement-button {
-  border-bottom-right-radius: 0.3em;
-  border-top-right-radius: 0.3em;
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.oo-ui-buttonSelectWidget.oo-ui-widget-enabled:focus .oo-ui-buttonOptionWidget.oo-ui-optionWidget-selected .oo-ui-buttonElement-button {
+  border-color: #ace;
+  box-shadow: 0 0 2px 2px #ace;
+}
+.oo-ui-buttonSelectWidget.oo-ui-widget-enabled .oo-ui-buttonElement.oo-ui-widget-enabled > .oo-ui-buttonElement-button:hover,
+.oo-ui-buttonSelectWidget.oo-ui-widget-enabled .oo-ui-buttonElement.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active {
+  z-index: 1;
+}
+.oo-ui-buttonSelectWidget.oo-ui-widget-enabled .oo-ui-buttonElement.oo-ui-buttonElement-active > .oo-ui-buttonElement-button {
+  z-index: 3;
+}
+.oo-ui-buttonSelectWidget.oo-ui-widget-enabled .oo-ui-buttonElement.oo-ui-widget-disabled > .oo-ui-buttonElement-button {
+  z-index: -1;
 }
 .oo-ui-buttonOptionWidget {
   display: inline-block;
@@ -246,6 +265,14 @@
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:hover,
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:hover .oo-ui-toggleSwitchWidget-grip {
   border-color: #aaa;
+}
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:focus {
+  outline: 0;
+  border-color: #ace;
+  box-shadow: 0 0 2px 2px #ace;
+}
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:focus .oo-ui-toggleSwitchWidget-grip {
+  border-color: #ace;
 }
 .oo-ui-toggleSwitchWidget-grip {
   top: 0.25em;
@@ -795,8 +822,13 @@
   right: 0;
   margin: 0 0.775em;
 }
-.oo-ui-tagMultiselectWidget:hover .oo-ui-tagMultiselectWidget-handle {
+.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-inlined:hover .oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-inlined-handle {
   border-color: rgba(0, 0, 0, 0.2);
+}
+.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-inlined.oo-ui-tagMultiselectWidget-focus .oo-ui-tagMultiselectWidget-handle {
+  border-color: #ace;
+  outline: 0;
+  box-shadow: 0 0 2px 2px #ace;
 }
 .oo-ui-tagMultiselectWidget.oo-ui-widget-disabled .oo-ui-tagMultiselectWidget-handle {
   color: #ccc;
@@ -973,8 +1005,13 @@
   right: 0;
   margin: 0 0.775em;
 }
-.oo-ui-capsuleMultiselectWidget:hover .oo-ui-capsuleMultiselectWidget-handle {
+.oo-ui-capsuleMultiselectWidget.oo-ui-widget-enabled:hover .oo-ui-capsuleMultiselectWidget-handle {
   border-color: rgba(0, 0, 0, 0.2);
+}
+.oo-ui-capsuleMultiselectWidget.oo-ui-widget-enabled.oo-ui-capsuleMultiselectWidget-open .oo-ui-capsuleMultiselectWidget-handle {
+  border-color: #ace;
+  outline: 0;
+  box-shadow: 0 0 2px 2px #ace;
 }
 .oo-ui-capsuleMultiselectWidget.oo-ui-widget-disabled .oo-ui-capsuleMultiselectWidget-handle {
   color: #ccc;

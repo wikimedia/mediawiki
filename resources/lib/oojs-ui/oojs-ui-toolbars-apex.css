@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.22.3
+ * OOjs UI v0.22.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-07-11T22:12:41Z
+ * Date: 2017-08-01T20:24:44Z
  */
 .oo-ui-popupTool .oo-ui-popupWidget-popup,
 .oo-ui-popupTool .oo-ui-popupWidget-anchor {
@@ -18,12 +18,12 @@
   margin: 0;
 }
 .oo-ui-toolGroupTool:first-child > .oo-ui-popupToolGroup {
-  border-top-left-radius: 0.3125em;
-  border-bottom-left-radius: 0.3125em;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
 .oo-ui-toolGroupTool:last-child > .oo-ui-popupToolGroup {
-  border-top-right-radius: 0.3125em;
-  border-bottom-right-radius: 0.3125em;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 .oo-ui-toolGroupTool > .oo-ui-popupToolGroup > .oo-ui-popupToolGroup-handle {
   height: 1.875em;
@@ -40,7 +40,7 @@
   display: inline-block;
   vertical-align: middle;
   margin: 0.375em;
-  border-radius: 0.3125em;
+  border-radius: 4px;
   border: 1px solid transparent;
   -webkit-transition: border-color 250ms ease;
   -moz-transition: border-color 250ms ease;
@@ -93,13 +93,13 @@
   border: 1px solid transparent;
 }
 .oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool:first-child {
-  border-top-left-radius: 0.3125em;
-  border-bottom-left-radius: 0.3125em;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
 .oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool:last-child {
   margin-right: -1px;
-  border-top-right-radius: 0.3125em;
-  border-bottom-right-radius: 0.3125em;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 .oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool > .oo-ui-tool-link {
   height: 1.875em;
@@ -293,16 +293,16 @@
   margin-left: -2px;
 }
 .oo-ui-buttonGroupWidget .oo-ui-popupToolGroup:first-child > .oo-ui-popupToolGroup-handle {
-  border-bottom-left-radius: 0.3em;
-  border-top-left-radius: 0.3em;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
   margin-left: 0;
 }
 .oo-ui-buttonGroupWidget .oo-ui-popupToolGroup:last-child {
   margin-right: 0.5em;
 }
 .oo-ui-buttonGroupWidget .oo-ui-popupToolGroup:last-child > .oo-ui-popupToolGroup-handle {
-  border-bottom-right-radius: 0.3em;
-  border-top-right-radius: 0.3em;
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
 }
 .oo-ui-popupToolGroup-handle .oo-ui-indicatorElement-indicator {
   width: 0.9375em;
@@ -518,10 +518,10 @@
 }
 .oo-ui-toolbar-bar {
   background-color: #f8fbfd;
-  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #fff), color-stop(100%, #F1F7FB));
-  background-image: -webkit-linear-gradient(top, #fff 0, #F1F7FB 100%);
-  background-image: -moz-linear-gradient(top, #fff 0, #F1F7FB 100%);
-  background-image: linear-gradient(to bottom, #fff 0, #F1F7FB 100%);
+  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #fff), color-stop(100%, #f1f7fb));
+  background-image: -webkit-linear-gradient(top, #fff 0, #f1f7fb 100%);
+  background-image: -moz-linear-gradient(top, #fff 0, #f1f7fb 100%);
+  background-image: linear-gradient(to bottom, #fff 0, #f1f7fb 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffffff', endColorstr='#fff1f7fb' )";
 }
 .oo-ui-toolbar-position-top > .oo-ui-toolbar-bar {
