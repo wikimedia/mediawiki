@@ -1,13 +1,24 @@
 /*!
- * OOjs UI v0.22.3
+ * OOjs UI v0.22.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-07-11T22:12:41Z
+ * Date: 2017-08-01T20:24:44Z
  */
+/**
+ * WikimediaUI Base v0.9.2
+ * Wikimedia Foundation user interface base variables
+ */
+/* Colors */
+/* Positioning */
+/* Box Model properties */
+/* Max Widths */
+/* Typography incl. print properties */
+/* Other Properties */
+/* Animation & Transition */
 .oo-ui-element-hidden {
   display: none !important;
 }
@@ -59,6 +70,7 @@
 .oo-ui-buttonElement > .oo-ui-buttonElement-button {
   position: relative;
   border-radius: 2px;
+  padding-top: 2.34375em;
   font-weight: bold;
   text-decoration: none;
 }
@@ -157,6 +169,7 @@
 .oo-ui-buttonElement-frameless.oo-ui-indicatorElement > .oo-ui-buttonElement-button {
   min-width: 12px;
   min-height: 12px;
+  padding-top: 0;
 }
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled > .oo-ui-buttonElement-button {
   color: #222;
@@ -284,7 +297,7 @@
 .oo-ui-buttonElement-framed.oo-ui-widget-disabled > .oo-ui-buttonElement-button {
   background-color: #c8ccd1;
   color: #fff;
-  border-color: #c8ccd1;
+  border-color: #72777d;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button {
   background-color: #f8f9fa;
@@ -887,6 +900,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-buttonGroupWidget .oo-ui-buttonElement {
   margin-right: 0;
+  z-index: 0;
 }
 .oo-ui-buttonGroupWidget .oo-ui-buttonElement:last-child {
   margin-right: 0;
@@ -1122,6 +1136,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   position: relative;
   line-height: 1.5625em;
   white-space: nowrap;
+  display: inline-block;
 }
 .oo-ui-checkboxInputWidget * {
   font: inherit;
@@ -1161,11 +1176,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-checkboxInputWidget [type='checkbox']:disabled + span {
   background-color: #c8ccd1;
-  border-color: #c8ccd1;
+  border-color: #72777d;
 }
 .oo-ui-checkboxInputWidget [type='checkbox']:disabled:hover + span {
   background-color: #c8ccd1;
-  border-color: #c8ccd1;
+  border-color: #72777d;
 }
 .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox'] {
   cursor: pointer;
@@ -1301,12 +1316,13 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-dropdownInputWidget.oo-ui-widget-disabled select {
   background-color: #eaecf0;
   color: #72777d;
-  border-color: #c8ccd1;
+  border-color: #72777d;
 }
 .oo-ui-radioInputWidget {
   position: relative;
   line-height: 1.5625em;
   white-space: nowrap;
+  display: inline-block;
 }
 .oo-ui-radioInputWidget * {
   font: inherit;
@@ -1350,7 +1366,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-radioInputWidget [type='radio']:disabled + span {
   background-color: #c8ccd1;
-  border-color: #c8ccd1;
+  border-color: #72777d;
 }
 .oo-ui-radioInputWidget [type='radio']:disabled:checked + span {
   background-color: #fff;
@@ -1591,7 +1607,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -webkit-text-fill-color: #72777d;
   color: #72777d;
   text-shadow: 0 1px 1px #fff;
-  border-color: #c8ccd1;
+  border-color: #72777d;
 }
 .oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-iconElement-icon,
 .oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-indicatorElement-indicator {
@@ -1776,7 +1792,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-dropdownWidget-handle {
   color: #72777d;
   text-shadow: 0 1px 1px #fff;
-  border-color: #c8ccd1;
+  border-color: #72777d;
   background-color: #eaecf0;
 }
 .oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-dropdownWidget-handle:focus {

@@ -7,6 +7,10 @@
 		"imageGallery": { "file": {
 			"ltr": "images/icons/imageGallery-ltr.svg",
 			"rtl": "images/icons/imageGallery-rtl.svg"
+		} },
+		"play": { "file": {
+			"ltr": "images/icons/play-ltr.svg",
+			"rtl": "images/icons/play-rtl.svg"
 		} }
 	}
 }

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.22.3
+ * OOjs UI v0.22.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-07-11T22:12:33Z
+ * Date: 2017-08-01T20:24:38Z
  */
 ( function ( OO ) {
 
@@ -3344,7 +3344,7 @@ OO.ui.mixin.TitledElement.prototype.setTitledElement = function ( $titled ) {
 
 	this.$titled = $titled;
 	if ( this.title ) {
-		this.$titled.attr( 'title', this.title );
+		this.updateTitle();
 	}
 };
 
@@ -3359,16 +3359,32 @@ OO.ui.mixin.TitledElement.prototype.setTitle = function ( title ) {
 	title = ( typeof title === 'string' && title.length ) ? title : null;
 
 	if ( this.title !== title ) {
-		if ( this.$titled ) {
-			if ( title !== null ) {
-				this.$titled.attr( 'title', title );
-			} else {
-				this.$titled.removeAttr( 'title' );
-			}
-		}
 		this.title = title;
+		this.updateTitle();
 	}
 
+	return this;
+};
+
+/**
+ * Update the title attribute, in case of changes to title or accessKey.
+ *
+ * @protected
+ * @chainable
+ */
+OO.ui.mixin.TitledElement.prototype.updateTitle = function () {
+	var title = this.getTitle();
+	if ( this.$titled ) {
+		if ( title !== null ) {
+			// Only if this is an AccessKeyedElement
+			if ( this.formatTitleWithAccessKey ) {
+				title = this.formatTitleWithAccessKey( title );
+			}
+			this.$titled.attr( 'title', title );
+		} else {
+			this.$titled.removeAttr( 'title' );
+		}
+	}
 	return this;
 };
 
@@ -3474,6 +3490,11 @@ OO.ui.mixin.AccessKeyedElement.prototype.setAccessKey = function ( accessKey ) {
 			}
 		}
 		this.accessKey = accessKey;
+
+		// Only if this is a TitledElement
+		if ( this.updateTitle ) {
+			this.updateTitle();
+		}
 	}
 
 	return this;
@@ -3486,6 +3507,27 @@ OO.ui.mixin.AccessKeyedElement.prototype.setAccessKey = function ( accessKey ) {
  */
 OO.ui.mixin.AccessKeyedElement.prototype.getAccessKey = function () {
 	return this.accessKey;
+};
+
+/**
+ * Add information about the access key to the element's tooltip label.
+ * (This is only public for hacky usage in FieldLayout.)
+ *
+ * @param {string} title Tooltip label for `title` attribute
+ * @return {string}
+ */
+OO.ui.mixin.AccessKeyedElement.prototype.formatTitleWithAccessKey = function ( title ) {
+	var accessKey;
+	// Use jquery.accessKeyLabel if available to show modifiers, otherwise just display the single key
+	if ( $.fn.updateTooltipAccessKeys && $.fn.updateTooltipAccessKeys.getAccessKeyLabel ) {
+		accessKey = $.fn.updateTooltipAccessKeys.getAccessKeyLabel( this.$accessKeyed[ 0 ] );
+	} else {
+		accessKey = this.getAccessKey();
+	}
+	if ( accessKey ) {
+		title += ' [' + accessKey + ']';
+	}
+	return title;
 };
 
 /**
@@ -9340,6 +9382,11 @@ OO.ui.CheckboxMultiselectInputWidget = function OoUiCheckboxMultiselectInputWidg
 	this.setOptions( config.options || [] );
 	// Have to repeat this from parent, as we need options to be set up for this to make sense
 	this.setValue( config.value );
+
+	// setValue when checkboxMultiselectWidget changes
+	this.checkboxMultiselectWidget.on( 'change', function () {
+		this.setValue( this.checkboxMultiselectWidget.getSelectedItemsData() );
+	}.bind( this ) );
 };
 
 /* Setup */
@@ -10141,25 +10188,24 @@ OO.ui.TextInputWidget.prototype.updatePosition = function () {
  * @chainable
  */
 OO.ui.TextInputWidget.prototype.positionLabel = function () {
-	var after, rtl, property;
+	var after, rtl, property, newCss;
 
 	if ( this.isWaitingToBeAttached ) {
 		// #onElementAttach will be called soon, which calls this method
 		return this;
 	}
 
-	// Clear old values
-	this.$input
-		// Clear old values if present
-		.css( {
-			'padding-right': '',
-			'padding-left': ''
-		} );
+	newCss = {
+		'padding-right': '',
+		'padding-left': ''
+	};
 
 	if ( this.label ) {
 		this.$element.append( this.$label );
 	} else {
 		this.$label.detach();
+		// Clear old values if present
+		this.$input.css( newCss );
 		return;
 	}
 
@@ -10167,7 +10213,9 @@ OO.ui.TextInputWidget.prototype.positionLabel = function () {
 	rtl = this.$element.css( 'direction' ) === 'rtl';
 	property = after === rtl ? 'padding-left' : 'padding-right';
 
-	this.$input.css( property, this.$label.outerWidth( true ) + ( after ? this.scrollWidth : 0 ) );
+	newCss[ property ] = this.$label.outerWidth( true ) + ( after ? this.scrollWidth : 0 );
+	// We have to clear the padding on the other side, in case the element direction changed
+	this.$input.css( newCss );
 
 	return this;
 };
@@ -10876,6 +10924,8 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	this.setErrors( config.errors || [] );
 	this.setNotices( config.notices || [] );
 	this.setAlignment( config.align );
+	// Call this again to take into account the widget's accessKey
+	this.updateTitle();
 };
 
 /* Setup */
@@ -11034,6 +11084,21 @@ OO.ui.FieldLayout.prototype.updateMessages = function () {
 };
 
 /**
+ * Include information about the widget's accessKey in our title. TitledElement calls this method.
+ * (This is a bit of a hack.)
+ *
+ * @protected
+ * @param {string} title Tooltip label for 'title' attribute
+ * @return {string}
+ */
+OO.ui.FieldLayout.prototype.formatTitleWithAccessKey = function ( title ) {
+	if ( this.fieldWidget && this.fieldWidget.formatTitleWithAccessKey ) {
+		return this.fieldWidget.formatTitleWithAccessKey( title );
+	}
+	return title;
+};
+
+/**
  * ActionFieldLayouts are used with OO.ui.FieldsetLayout. The layout consists of a field-widget, a button,
  * and an optional label and/or help text. The field-widget (e.g., a {@link OO.ui.TextInputWidget TextInputWidget}),
  * is required and is specified before any optional configuration settings.
@@ -11168,11 +11233,11 @@ OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 
 	// Mixin constructors
 	OO.ui.mixin.IconElement.call( this, config );
-	OO.ui.mixin.LabelElement.call( this, $.extend( {}, config, { $label: $( '<div>' ) } ) );
+	OO.ui.mixin.LabelElement.call( this, config );
 	OO.ui.mixin.GroupElement.call( this, config );
 
 	// Properties
-	this.$header = $( '<div>' );
+	this.$header = $( '<legend>' );
 	if ( config.help ) {
 		this.popupButtonWidget = new OO.ui.PopupButtonWidget( {
 			$overlay: config.$overlay,
