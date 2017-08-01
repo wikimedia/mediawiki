@@ -173,10 +173,8 @@ class SpecialImport extends SpecialPage {
 
 		$out = $this->getOutput();
 		if ( !$source->isGood() ) {
-			$out->wrapWikiMsg(
-				"<p class=\"error\">\n$1\n</p>",
-				[ 'importfailed', $source->getWikiText() ]
-			);
+			$out->addWikiText( "<p class=\"error\">\n" .
+				$this->msg( 'importfailed', $source->getWikiText() )->parse() . "\n</p>" );
 		} else {
 			$importer = new WikiImporter( $source->value, $this->getConfig() );
 			if ( !is_null( $this->namespace ) ) {
