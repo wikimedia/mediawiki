@@ -105,7 +105,11 @@
 					validate: $.isNumeric,
 					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
 					'default': String( limitDefault ),
-					isSticky: true,
+					// Temporarily making this not sticky until we resolve the proble
+					// with the misleading preference. Note that if this is to be permanent
+					// we should remove all sticky behavior methods completely
+					// See T172156
+					// isSticky: true,
 					filters: [ 50, 100, 250, 500 ].map( function ( num ) {
 						return controller._createFilterDataFromNumber( num, num );
 					} )
@@ -813,6 +817,10 @@
 	 * @param {number} newValue New value
 	 */
 	mw.rcfilters.Controller.prototype.updateLimitDefault = function ( newValue ) {
+		// HACK: Temporarily remove this from being sticky
+		// See T172156
+
+		/*
 		if ( !$.isNumeric( newValue ) ) {
 			return;
 		}
@@ -825,6 +833,8 @@
 			// Update the preference for this session
 			mw.user.options.set( 'rcfilters-rclimit', newValue );
 		}
+		*/
+		return;
 	};
 
 	/**
