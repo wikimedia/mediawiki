@@ -1390,6 +1390,8 @@
 	"rcfilters-savedqueries-add-new-title": "Aktuelle Filtereinstellungen speichern",
 	"rcfilters-restore-default-filters": "Standardfilter wiederherstellen",
 	"rcfilters-clear-all-filters": "Alle Filter löschen",
+	"rcfilters-show-new-changes": "Neue Änderungen anzeigen",
+	"rcfilters-previous-changes-label": "Zuletzt angesehene Änderungen",
 	"rcfilters-search-placeholder": "Letzte Änderungen filtern (durchsuchen oder beginne mit der Eingabe)",
 	"rcfilters-invalid-filter": "Ungültiger Filter",
 	"rcfilters-empty-filter": "Keine aktiven Filter. Es werden alle Beiträge angezeigt.",

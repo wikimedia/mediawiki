@@ -1335,6 +1335,8 @@
 	"rcfilters-savedqueries-add-new-title": "שמירת הגדרות המסננים הנוכחיות",
 	"rcfilters-restore-default-filters": "שחזור למסנני ברירת המחדל",
 	"rcfilters-clear-all-filters": "מחיקת כל המסננים",
+	"rcfilters-show-new-changes": "הצגת שינויים חדשים",
+	"rcfilters-previous-changes-label": "שינויים שהוצגו בעבר",
 	"rcfilters-search-placeholder": "סינון שינויים אחרונים (עיינו או התחילו להקליד)",
 	"rcfilters-invalid-filter": "מסנן בלתי־תקין",
 	"rcfilters-empty-filter": "אין מסננים פעילים. כל התרומות מוצגות.",

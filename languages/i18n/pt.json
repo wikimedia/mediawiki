@@ -1370,6 +1370,8 @@
 	"rcfilters-savedqueries-add-new-title": "Gravar configurações atuais de filtros",
 	"rcfilters-restore-default-filters": "Restaurar os filtros padrão",
 	"rcfilters-clear-all-filters": "Limpar todos os filtros",
+	"rcfilters-show-new-changes": "Mostrar as novas mudanças",
+	"rcfilters-previous-changes-label": "Mudanças vistas anteriormente",
 	"rcfilters-search-placeholder": "Filtrar mudanças recentes (navegue ou começe a escrever)",
 	"rcfilters-invalid-filter": "Filtro inválido",
 	"rcfilters-empty-filter": "Não há filtros ativos. São mostradas todas as contribuições.",

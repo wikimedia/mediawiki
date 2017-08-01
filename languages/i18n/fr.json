@@ -154,7 +154,8 @@
 			"Fitoschido",
 			"Archaeodontosaurus",
 			"Trizek (WMF)",
-			"Framawiki"
+			"Framawiki",
+			"Jona"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -1464,6 +1465,8 @@
 	"rcfilters-savedqueries-add-new-title": "Sauvegarder la configuration du filtre courant",
 	"rcfilters-restore-default-filters": "Rétablir les filtres par défaut",
 	"rcfilters-clear-all-filters": "Effacer tous les filtres",
+	"rcfilters-show-new-changes": "Afficher les nouvelles modifications",
+	"rcfilters-previous-changes-label": "Modifications précédemment affichées",
 	"rcfilters-search-placeholder": "Filtrer les modifications récentes (naviguer ou commencer à saisir)",
 	"rcfilters-invalid-filter": "Filtre non valide",
 	"rcfilters-empty-filter": "Aucun filtre actif. Toutes les contributions sont affichées.",
@@ -3611,7 +3614,7 @@
 	"fileduplicatesearch-noresults": "Aucun fichier nommé « $1 » n'a été trouvé.",
 	"specialpages": "Pages spéciales",
 	"specialpages-note-top": "Légende",
-	"specialpages-note-restricted": "* Pages spéciales normales.\n* <span class=\"mw-specialpagerestricted\">Pas spéciales restreintes.</span>",
+	"specialpages-note-restricted": "* Pages spéciales normales.\n* <span class=\"mw-specialpagerestricted\">Pages spéciales restreintes.</span>",
 	"specialpages-group-maintenance": "Rapports de maintenance",
 	"specialpages-group-other": "Autres pages spéciales",
 	"specialpages-group-login": "S'identifier / s'inscrire",

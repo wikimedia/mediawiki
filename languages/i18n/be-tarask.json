@@ -1311,6 +1311,7 @@
 	"rcfilters-savedqueries-add-new-title": "Захаваць цяперашнія налады фільтру",
 	"rcfilters-restore-default-filters": "Аднавіць фільтры па змоўчаньні",
 	"rcfilters-clear-all-filters": "Ачысьціць усе фільтры",
+	"rcfilters-show-new-changes": "Паказаць новыя зьмены",
 	"rcfilters-search-placeholder": "Фільтар апошніх зьменаў (праглядзець або пачніце друкаваць)",
 	"rcfilters-invalid-filter": "Няслушны фільтар",
 	"rcfilters-empty-filter": "Няма актыўных фільтраў. Паказаны ўвесь унёсак.",
