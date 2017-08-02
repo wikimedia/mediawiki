@@ -399,7 +399,17 @@
 	 */
 	mw.rcfilters.Controller.prototype.toggleInvertedNamespaces = function () {
 		this.filtersModel.toggleInvertedNamespaces();
-		this.updateChangesList();
+
+		if (
+			this.filtersModel.getFiltersByView( 'namespaces' )
+				.filter( function ( filterItem ) {
+					return filterItem.isSelected();
+				} )
+				.length
+		) {
+			// Only re-fetch results if there are namespace items that are actually selected
+			this.updateChangesList();
+		}
 	};
 
 	/**
@@ -601,9 +611,18 @@
 	 */
 	mw.rcfilters.Controller.prototype.applySavedQuery = function ( queryID ) {
 		var data, highlights,
-			queryItem = this.savedQueriesModel.getItemByID( queryID );
+			queryItem = this.savedQueriesModel.getItemByID( queryID ),
+			currentMatchingQuery = this.findQueryMatchingCurrentState();
 
-		if ( queryItem ) {
+		if (
+			queryItem &&
+			(
+				// If there's already a query, don't reload it
+				// if it's the same as the one that already exists
+				!currentMatchingQuery ||
+				currentMatchingQuery.getID() !== queryItem.getID()
+			)
+		) {
 			data = queryItem.getData();
 			highlights = data.highlights;
 
