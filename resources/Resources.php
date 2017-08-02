@@ -1877,6 +1877,7 @@ return [
 			'rcfilters-tag-prefix-tags',
 			'rcfilters-exclude-button-off',
 			'rcfilters-exclude-button-on',
+			'rcfilters-view-advanced-filters-label',
 			'rcfilters-view-tags',
 			'rcfilters-view-namespaces-tooltip',
 			'rcfilters-view-tags-tooltip',

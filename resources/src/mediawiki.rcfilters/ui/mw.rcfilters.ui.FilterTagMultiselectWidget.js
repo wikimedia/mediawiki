@@ -142,6 +142,13 @@
 			items: [
 				new OO.ui.ButtonOptionWidget( {
 					framed: false,
+					data: '',
+					disabled: true,
+					classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-views-select-widget-label' ],
+					label: mw.msg( 'rcfilters-view-advanced-filters-label' )
+				} ),
+				new OO.ui.ButtonOptionWidget( {
+					framed: false,
 					data: 'namespaces',
 					icon: 'article',
 					title: mw.msg( 'rcfilters-view-namespaces-tooltip' )
