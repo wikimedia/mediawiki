@@ -196,9 +196,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$out->addJsConfigVars(
 				'StructuredChangeFiltersDisplayConfig',
 				[
-					'maxLimit' => (int)$this->getConfig()->get( 'RCMaxAge' ) / ( 24 * 3600 ), // Translate to days
-					'arrayLimit' => $this->getConfig()->get( 'RCLinkLimits' ),
-					'arrayDays' => $this->getConfig()->get( 'RCLinkDays' ),
+					'maxDays' => (int)$this->getConfig()->get( 'RCMaxAge' ) / ( 24 * 3600 ), // Translate to days
+					'limitArray' => $this->getConfig()->get( 'RCLinkLimits' ),
+					'daysArray' => $this->getConfig()->get( 'RCLinkDays' ),
 				]
 			);
 		}
