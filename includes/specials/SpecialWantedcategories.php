@@ -125,6 +125,26 @@ class WantedCategoriesPage extends WantedQueryPage {
 		return $this->getLanguage()->specialList( $plink, $nlinks );
 	}
 
+	function getPageHeader() {
+		$query = [ 'limit' => $this->limit, 'offset' => $this->offset, 'sort' => $this->getOrderFields()[ 1 ] ];
+		if ( $this->getOrderFields()[0] == 'title' ) {
+			return Html::element( 'a', [ 'href' => $this->getTitle()->getLocalURL( $query ) ], $this->msg( 'pageswithprop-sortbyvalue' )->text() ) . ' | <b>' . $this->msg( 'changecontentmodel-title-label' )->text() . '</b>';
+		}
+		else {
+			return '<b>' . $this->msg( 'pageswithprop-sortbyvalue' )->text() . '</b> | ' . 
+				Html::element( 'a', [ 'href' => $this->getTitle()->getLocalURL( $query ) ], $this->msg( 'changecontentmodel-title-label' )->text() );
+		}
+	}
+
+	function getOrderFields() {
+		if ( $this->getRequest()->getText( 'sort' ) == 'title' ) return [ 'title', 'value DESC' ];
+		else return [ 'value DESC', 'title' ];
+	}
+
+	function linkParameters() {
+		return [ 'sort' => $this->getOrderFields()[ 0 ] ];
+	}
+
 	protected function getGroupName() {
 		return 'maintenance';
 	}
