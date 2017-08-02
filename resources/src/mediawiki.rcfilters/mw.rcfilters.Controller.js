@@ -92,7 +92,7 @@
 		// Convert the default from the old preference
 		// since the limit preference actually affects more
 		// than just the RecentChanges page
-		limitDefault = Number( mw.user.options.get( 'rcfilters-rclimit', mw.user.options.get( 'rclimit', '50' ) ) );
+		limitDefault = Number( mw.user.options.get( 'rclimit', '50' ) );
 
 		// Add parameter range operations
 		views.range = {
@@ -280,20 +280,28 @@
 	 * @param {string|string[]} arbitraryValues An array of arbitrary values to add to the group
 	 */
 	mw.rcfilters.Controller.prototype.addNumberValuesToGroup = function ( groupData, arbitraryValues ) {
-		var controller = this;
+		var controller = this,
+			normalizeWithinRange = function ( range, val ) {
+				if ( val < range.min ) {
+					return range.min; // Min
+				} else if ( val >= range.max ) {
+					return range.max; // Max
+				}
+				return val;
+			};
 
 		arbitraryValues = Array.isArray( arbitraryValues ) ? arbitraryValues : [ arbitraryValues ];
 
-		// Normalize the arbitrary values
+		// Normalize the arbitrary values and the default value for a range
 		if ( groupData.range ) {
 			arbitraryValues = arbitraryValues.map( function ( val ) {
-				if ( val < 0 ) {
-					return groupData.range.min; // Min
-				} else if ( val >= groupData.range.max ) {
-					return groupData.range.max; // Max
-				}
-				return val;
+				return normalizeWithinRange( groupData.range, val );
 			} );
+
+			// Normalize the default, since that's user defined
+			if ( groupData.default !== undefined ) {
+				groupData.default = String( normalizeWithinRange( groupData.range, groupData.default ) );
+			}
 		}
 
 		// This is only true for single_option group
