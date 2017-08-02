@@ -103,7 +103,13 @@
 			isEmpty = $changesListContent === 'NO_RESULTS',
 			$lastSeen,
 			$indicator,
-			$newChanges = $( [] );
+			$newChanges = $( [] ),
+			// For enhanced mode, we have to load these modules, which are
+			// not loaded for the 'regular' mode in the backend
+			loaderPromise = mw.user.options.get( 'usenewrc' ) ?
+				mw.loader.using( [ 'mediawiki.special.changeslist.enhanced', 'mediawiki.icon' ] ) :
+				$.Deferred().resolve(),
+			widget = this;
 
 		this.$element.toggleClass( 'mw-changeslist', !isEmpty );
 		if ( isEmpty ) {
@@ -173,14 +179,17 @@
 			// Apply highlight
 			this.applyHighlight();
 
-			if ( !isInitialDOM ) {
-				// Make sure enhanced RC re-initializes correctly
-				mw.hook( 'wikipage.content' ).fire( this.$element );
-			}
 		}
 
-		$( '.rcfilters-spinner' ).addClass( 'mw-rcfilters-ui-ready' );
-		this.$element.addClass( 'mw-rcfilters-ui-ready' );
+		loaderPromise.done( function () {
+			if ( !isInitialDOM && !isEmpty ) {
+				// Make sure enhanced RC re-initializes correctly
+				mw.hook( 'wikipage.content' ).fire( widget.$element );
+			}
+
+			$( '.rcfilters-spinner' ).addClass( 'mw-rcfilters-ui-ready' );
+			widget.$element.addClass( 'mw-rcfilters-ui-ready' );
+		} );
 	};
 
 	/**

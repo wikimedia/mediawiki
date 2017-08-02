@@ -1814,6 +1814,7 @@ return [
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.MenuSelectWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.ViewSwitchWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.ValuePickerWidget.less',
+			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.ChangesLimitPopupWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.DatePopupWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.FilterWrapperWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.ChangesListWrapperWidget.less',
@@ -1834,6 +1835,8 @@ return [
 		'messages' => [
 			'rcfilters-activefilters',
 			'rcfilters-advancedfilters',
+			'rcfilters-group-results-by-page',
+			'rcfilters-grouping-title',
 			'rcfilters-limit-title',
 			'rcfilters-limit-shownum',
 			'rcfilters-days-title',

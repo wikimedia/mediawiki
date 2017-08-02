@@ -1541,6 +1541,8 @@
 	"recentchanges-submit": "Label for submit button in [[Special:RecentChanges]]\n{{Identical|Show}}",
 	"rcfilters-legend-heading": "Used as a heading for legend box on [[Special:RecentChanges]] and [[Special:Watchlist]] when RCFilters are enabled.",
 	"rcfilters-other-review-tools": "Used as a heading for the community collection of other links on [[Special:RecentChanges]] when RCFilters are enabled.",
+	"rcfilters-group-results-by-page": "A label for the checkbox describing whether the results in [[Special:RecentChanges]] are grouped by page when RCFilters are enabled.",
+	"rcfilters-grouping-title": "Title for the section showing display options for grouping results in [[Special:RecentChanges]] when RCFilters are enabled.",
 	"rcfilters-activefilters": "Title for the filters selection showing the active filters.",
 	"rcfilters-advancedfilters": "Title for the buttons allowing the user to switch to the various advanced filters views.",
 	"rcfilters-limit-title": "Title for the options to change the number of results shown.",

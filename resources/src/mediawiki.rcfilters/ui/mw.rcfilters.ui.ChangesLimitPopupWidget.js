@@ -5,31 +5,52 @@
 	 * @extends OO.ui.Widget
 	 *
 	 * @constructor
-	 * @param {mw.rcfilters.dm.FilterGroup} model Group model for 'limit'
+	 * @param {mw.rcfilters.dm.FilterGroup} limitModel Group model for 'limit'
+	 * @param {mw.rcfilters.dm.FilterItem} groupByPageItemModel Group model for 'limit'
 	 * @param {Object} [config] Configuration object
 	 */
-	mw.rcfilters.ui.ChangesLimitPopupWidget = function MwRcfiltersUiChangesLimitPopupWidget( model, config ) {
+	mw.rcfilters.ui.ChangesLimitPopupWidget = function MwRcfiltersUiChangesLimitPopupWidget( limitModel, groupByPageItemModel, config ) {
 		config = config || {};
 
 		// Parent
 		mw.rcfilters.ui.ChangesLimitPopupWidget.parent.call( this, config );
 
-		this.model = model;
+		this.limitModel = limitModel;
+		this.groupByPageItemModel = groupByPageItemModel;
 
 		this.valuePicker = new mw.rcfilters.ui.ValuePickerWidget(
-			this.model,
+			this.limitModel,
 			{
 				label: mw.msg( 'rcfilters-limit-title' )
 			}
 		);
 
+		this.groupByPageCheckbox = new OO.ui.CheckboxInputWidget( {
+			selected: this.groupByPageItemModel.isSelected()
+		} );
+
 		// Events
 		this.valuePicker.connect( this, { choose: [ 'emit', 'limit' ] } );
+		this.groupByPageCheckbox.connect( this, { change: [ 'emit', 'groupByPage' ] } );
 
 		// Initialize
 		this.$element
 			.addClass( 'mw-rcfilters-ui-changesLimitPopupWidget' )
-			.append( this.valuePicker.$element );
+			.append(
+				this.valuePicker.$element,
+				new OO.ui.FieldsetLayout( {
+					label: mw.msg( 'rcfilters-grouping-title' ),
+					items: [
+						new OO.ui.FieldLayout(
+							this.groupByPageCheckbox,
+							{
+								align: 'inline',
+								label: mw.msg( 'rcfilters-group-results-by-page' )
+							}
+						)
+					]
+				} ).$element
+			);
 	};
 
 	/* Initialization */
@@ -44,4 +65,18 @@
 	 *
 	 * A limit item was chosen
 	 */
+
+	/**
+	 * @event groupByPage
+	 * @param {boolean} isGrouped The results are grouped by page
+	 *
+	 * Results are grouped by page
+	 */
+
+	/**
+	 * Respond to group by page model update
+	 */
+	mw.rcfilters.ui.ChangesLimitPopupWidget.prototype.onGroupByPageModelUpdate = function () {
+		this.groupByPageCheckbox.setSelected( this.groupByPageItemModel.isSelected() );
+	};
 }( mediaWiki ) );
