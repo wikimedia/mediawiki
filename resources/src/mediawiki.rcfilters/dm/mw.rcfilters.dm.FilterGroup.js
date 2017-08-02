@@ -736,11 +736,11 @@
 			this.getType() === 'single_option' &&
 			!oneWasSelected
 		) {
+			item = this.getItems()[ 0 ];
 			if ( defaultParams[ this.getName() ] ) {
 				item = this.getItemByParamName( defaultParams[ this.getName() ] );
-			} else {
-				item = this.getItems()[ 0 ];
 			}
+
 			result[ item.getName() ] = true;
 		}
 
