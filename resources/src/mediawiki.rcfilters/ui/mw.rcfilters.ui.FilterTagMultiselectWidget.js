@@ -29,6 +29,7 @@
 		this.queriesModel = savedQueriesModel;
 		this.$overlay = config.$overlay || this.$element;
 		this.matchingQuery = null;
+		this.currentView = this.model.getCurrentView();
 
 		// Parent
 		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.call( this, $.extend( true, {
@@ -360,6 +361,11 @@
 
 		// Update input
 		this.input.setValue( inputValue );
+
+		if ( this.currentView !== view ) {
+			this.scrollToTop( this.$element );
+			this.currentView = view;
+		}
 	};
 
 	/**
