@@ -14,7 +14,6 @@
 
 		// Parent
 		mw.rcfilters.ui.LiveUpdateButtonWidget.parent.call( this, $.extend( {
-			icon: 'play',
 			label: mw.message( 'rcfilters-liveupdates-button' ).text()
 		}, config ) );
 
@@ -26,6 +25,8 @@
 		this.model.connect( this, { liveUpdateChange: 'onLiveUpdateChange' } );
 
 		this.$element.addClass( 'mw-rcfilters-ui-liveUpdateButtonWidget' );
+
+		this.setState( false );
 	};
 
 	/* Initialization */
@@ -42,13 +43,27 @@
 	};
 
 	/**
+	 * Set the button's state and change its appearance
+	 *
+	 * @param {boolean} enable Whether the 'live update' feature is now on/off
+	 */
+	mw.rcfilters.ui.LiveUpdateButtonWidget.prototype.setState = function ( enable ) {
+		this.setValue( enable );
+		this.setIcon( enable ? 'stop' : 'play' );
+		this.setTitle( mw.message(
+			enable ?
+				'rcfilters-liveupdates-button-title-on' :
+				'rcfilters-liveupdates-button-title-off'
+		).text() );
+	};
+
+	/**
 	 * Respond to the 'live update' feature being turned on/off
 	 *
 	 * @param {boolean} enable Whether the 'live update' feature is now on/off
 	 */
 	mw.rcfilters.ui.LiveUpdateButtonWidget.prototype.onLiveUpdateChange = function ( enable ) {
-		this.setValue( enable );
-		this.setIcon( enable ? 'stop' : 'play' );
+		this.setState( enable );
 	};
 
 }( mediaWiki ) );

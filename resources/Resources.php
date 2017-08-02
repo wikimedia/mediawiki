@@ -1887,6 +1887,8 @@ return [
 			'rcfilters-view-tags-tooltip',
 			'rcfilters-view-return-to-default-tooltip',
 			'rcfilters-liveupdates-button',
+			'rcfilters-liveupdates-button-title-on',
+			'rcfilters-liveupdates-button-title-off',
 			'rcfilters-other-review-tools',
 			'blanknamespace',
 			'namespaces',
