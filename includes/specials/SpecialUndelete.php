@@ -277,7 +277,7 @@ class SpecialUndelete extends SpecialPage {
 			$fieldset,
 			new OOUI\HtmlSnippet(
 				Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) .
-				Html::hidden( 'fuzzy', $this->getRequest()->getVal( 'fuzzy' ) )
+				Html::hidden( 'fuzzy', $fuzzySearch )
 			)
 		);
 
