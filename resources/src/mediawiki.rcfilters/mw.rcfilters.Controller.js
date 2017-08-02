@@ -105,7 +105,7 @@
 					allowArbitrary: true,
 					validate: $.isNumeric,
 					range: {
-						min: 1,
+						min: 0, // The server normalizes negative numbers to 0 results
 						max: 1000
 					},
 					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
