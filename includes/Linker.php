@@ -1633,7 +1633,7 @@ class Linker {
 		$fallback = '';
 		if ( $fallbackAnchor !== false && $fallbackAnchor !== $anchor ) {
 			$fallbackAnchor = htmlspecialchars( $fallbackAnchor );
-			$fallback = "<span id=\"$fallbackAnchor\"></span>";
+			$fallback = "<span class=\"mw-headline-fallback\" id=\"$fallbackAnchor\"></span>";
 		}
 		$ret = "<h$level$attribs"
 			. "$fallback<span class=\"mw-headline\" id=\"$anchorEscaped\">$html</span>"
