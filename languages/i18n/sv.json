@@ -1375,6 +1375,8 @@
 	"rcfilters-savedqueries-add-new-title": "Spara filterinställningar",
 	"rcfilters-restore-default-filters": "Återställ standardfilter",
 	"rcfilters-clear-all-filters": "Rensa alla filter",
+	"rcfilters-show-new-changes": "Visa nya ändringar",
+	"rcfilters-previous-changes-label": "Ändringar som visades tidigare",
 	"rcfilters-search-placeholder": "Filtrera senaste ändringar (bläddra eller börja skriva)",
 	"rcfilters-invalid-filter": "Ogiltigt filter",
 	"rcfilters-empty-filter": "Inga aktiva filter. Alla bidrag visas.",

@@ -1176,6 +1176,7 @@
 	"rcfilters-filter-major-description": "Endringar ikkje merkte som småplukk.",
 	"rcfilters-filter-watchlist-watched-label": "På overvakingslista",
 	"rcfilters-filter-watchlist-watched-description": "Endringar på sider du overvakar",
+	"rcfilters-filter-watchlist-watchednew-label": "Nye endringar på overvakingslista",
 	"rcfilters-filter-watchlist-watchednew-description": "Endringar på sider du overvakar som du ikkje har vitja sidan endringane vart gjorde.",
 	"rcfilters-filter-watchlist-notwatched-label": "Ikkje på overvakingslista",
 	"rcfilters-filter-watchlist-notwatched-description": "Alt utanom endringar på sider du overvakar.",
