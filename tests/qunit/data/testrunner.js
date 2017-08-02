@@ -170,6 +170,11 @@
 	( function () {
 		var orgModule = QUnit.module;
 		QUnit.module = function ( name, localEnv, executeNow ) {
+			if ( arguments.length === 2 && typeof localEnv === 'function' ) {
+				executeNow = localEnv;
+				localEnv = undefined;
+			}
+
 			if ( typeof localEnv === 'object' ) {
 				localEnv = makeSafeEnv( localEnv );
 			}
@@ -682,6 +687,33 @@
 
 	QUnit.test( '`before` hook was executed', function ( assert ) {
 		assert.ok(beforeHookWasExecuted);
+	} );
+
+	var nestedTestsExecuted = 0;
+	QUnit.module( 'testrunner-nested-modules', {
+		after: function () {
+			// This way we can be sure that module `testrunner-nested-modules-execution` will always
+			// be executed after module `testrunner-nested-modules`
+			QUnit.module( 'testrunner-nested-modules-execution');
+			QUnit.test(
+				'all nested tests in `testrunner-nested-modules` were executed',
+				function ( assert ) {
+					assert.equal(nestedTestsExecuted, 2);
+				}
+			);
+		}
+	}, function () {
+		QUnit.module( 'inner', function () {
+			QUnit.test( 'inner test', function ( assert ) {
+				nestedTestsExecuted++;
+				assert.ok(true);
+			} );
+		} );
+
+		QUnit.test( 'test', function ( assert ) {
+			nestedTestsExecuted++;
+			assert.ok(true);
+		} );
 	} );
 
 }( jQuery, mediaWiki, QUnit ) );
