@@ -28,11 +28,14 @@
 		this.filtersViewModel = filtersViewModel;
 		this.changesListViewModel = changesListViewModel;
 		this.controller = controller;
+		this.highlightClasses = null;
+		this.filtersModelInitialized = false;
 
 		// Events
 		this.filtersViewModel.connect( this, {
 			itemUpdate: 'onItemUpdate',
-			highlightChange: 'onHighlightChange'
+			highlightChange: 'onHighlightChange',
+			initialize: 'onFiltersModelInitialize'
 		} );
 		this.changesListViewModel.connect( this, {
 			invalidate: 'onModelInvalidate',
@@ -45,15 +48,39 @@
 			// We handle our own display/hide of the empty results message
 			.removeClass( 'mw-changeslist-empty' );
 
-		// Set up highlight containers
-		this.setupHighlightContainers( this.$element );
-
 		this.setupNewChangesButtonContainer( this.$element );
 	};
 
 	/* Initialization */
 
 	OO.inheritClass( mw.rcfilters.ui.ChangesListWrapperWidget, OO.ui.Widget );
+
+	/**
+	 * Respond to filters model initialize event
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onFiltersModelInitialize = function () {
+		this.filtersModelInitialized = true;
+		// Set up highlight containers. We need to wait for the filters model
+		// to be initialized, so we can make sure we have all the css class definitions
+		// we get from the server with our filters
+		this.setupHighlightContainers( this.$element );
+	};
+
+	/**
+	 * Get all available highlight classes
+	 *
+	 * @return {string[]} An array of available highlight class names
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.getHighlightClasses = function () {
+		if ( !this.highlightClasses || !this.highlightClasses.length ) {
+			this.highlightClasses = this.filtersViewModel.getItemsSupportingHighlights()
+				.map( function ( filterItem ) {
+					return filterItem.getCssClass();
+				} );
+		}
+
+		return this.highlightClasses;
+	};
 
 	/**
 	 * Respond to the highlight feature being toggled on and off
@@ -72,7 +99,7 @@
 	 * Respond to a filter item model update
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onItemUpdate = function () {
-		if ( this.filtersViewModel.isHighlightEnabled() ) {
+		if ( this.filtersModelInitialized && this.filtersViewModel.isHighlightEnabled() ) {
 			this.clearHighlight();
 			this.applyHighlight();
 		}
@@ -246,7 +273,9 @@
 	 * @param {jQuery|string} $content The content of the updated changes list
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.setupHighlightContainers = function ( $content ) {
-		var highlightClass = 'mw-rcfilters-ui-changesListWrapperWidget-highlights',
+		var $enhancedTopPageCell, $enhancedNestedPagesCell,
+			widget = this,
+			highlightClass = 'mw-rcfilters-ui-changesListWrapperWidget-highlights',
 			$highlights = $( '<div>' )
 				.addClass( highlightClass )
 				.append(
@@ -269,18 +298,107 @@
 		} );
 
 		if ( this.inEnhancedMode() ) {
-			// Enhanced RC
-			$content.find( 'td.mw-enhanced-rc' )
-				.parent()
+			$enhancedTopPageCell = $content.find( 'table.mw-enhanced-rc.mw-collapsible' );
+			$enhancedNestedPagesCell = $content.find( 'td.mw-enhanced-rc-nested' );
+
+			// Enhanced RC highlight containers
+			$content.find( 'table.mw-enhanced-rc tr:first-child' )
+				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-enhanced-toplevel' )
 				.prepend(
 					$( '<td>' )
 						.append( $highlights.clone() )
 				);
+
+			// We are adding and changing cells in a table that, despite having nested rows,
+			// is actually all one big table. To do that right, we want to remove the 'placeholder'
+			// cell from the top row, because we're actually adding that placeholder in the children
+			// with the highlights.
+			$content.find( 'table.mw-enhanced-rc tr:first-child td.mw-changeslist-line-prefix' )
+				.detach();
+			$content.find( 'table.mw-enhanced-rc tr:first-child td.mw-enhanced-rc' )
+				.prop( 'colspan', '2' );
+
+			$enhancedNestedPagesCell
+				.before(
+					$( '<td>' )
+						.append( $highlights.clone().addClass( 'mw-enhanced-rc-nested' ) )
+				);
+
+			// We need to target the nested rows differently than the top rows so that the
+			// LESS rules applies correctly. In top rows, the rule should highlight all but
+			// the first 2 cells td:not( :nth-child( -n+2 ) and the nested rows, the rule
+			// should highlight all but the first 3 cells td:not( :nth-child( -n+3 )
+			$enhancedNestedPagesCell
+				.closest( 'tr' )
+				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-enhanced-nested' );
+
+			// Go over pages that have sub results
+			// HACK: We really only can collect those by targetting the collapsible class
+			$enhancedTopPageCell.each( function () {
+				var collectedClasses,
+					$table = $( this );
+
+				// Go over <tr>s and pick up all recognized classes
+				collectedClasses = widget.getHighlightClasses().filter( function ( className ) {
+					return $table.find( 'tr' ).hasClass( className );
+				} );
+
+				$table.find( 'tr:first-child' )
+					.addClass( collectedClasses.join( ' ' ) );
+			} );
+
+			$content.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-enhancedView' );
 		} else {
 			// Regular RC
 			$content.find( 'ul.special li' )
 				.prepend( $highlights.clone() );
 		}
+	};
+
+	/**
+	 * In enhanced mode, we need to check whether the grouped results all have the
+	 * same active highlights in order to see whether the "parent" of the group should
+	 * be grey or highlighted normally.
+	 *
+	 * This is called every time highlights are applied.
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.updateEnhancedParentHighlight = function () {
+		var activeHighlightClasses,
+			$enhancedTopPageCell = this.$element.find( 'table.mw-enhanced-rc.mw-collapsible' );
+
+		activeHighlightClasses = this.filtersViewModel.getCurrentlyUsedHighlightColors().map( function ( color ) {
+			return 'mw-rcfilters-highlight-color-' + color;
+		} );
+
+		// Go over top pages and their children, and figure out if all sub-pages have the
+		// same highlights between themselves. If they do, the parent should be highlighted
+		// with all colors. If classes are different, the parent should receive a grey
+		// background
+		$enhancedTopPageCell.each( function () {
+			var firstChildClasses, $rowsWithDifferentHighlights,
+				$table = $( this );
+
+			// Collect the relevant classes from the first nested child
+			firstChildClasses = activeHighlightClasses.filter( function ( className ) {
+				return $table.find( 'tr:nth-child(2)' ).hasClass( className );
+			} );
+			// Filter the non-head rows and see if they all have the same classes
+			// to the first row
+			$rowsWithDifferentHighlights = $table.find( 'tr:not(:first-child)' ).filter( function () {
+				var classesInThisRow,
+					$this = $( this );
+
+				classesInThisRow = activeHighlightClasses.filter( function ( className ) {
+					return $this.hasClass( className );
+				} );
+
+				return !OO.compare( firstChildClasses, classesInThisRow );
+			} );
+
+			// If classes are different, tag the row for using grey color
+			$table.find( 'tr:first-child' )
+				.toggleClass( 'mw-rcfilters-ui-changesListWrapperWidget-enhanced-grey', $rowsWithDifferentHighlights.length > 0 );
+		} );
 	};
 
 	/**
@@ -329,6 +447,10 @@
 			}
 		} );
 
+		if ( this.inEnhancedMode() ) {
+			this.updateEnhancedParentHighlight();
+		}
+
 		// Turn on highlights
 		this.$element.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlighted' );
 	};
@@ -345,6 +467,11 @@
 		this.$element.find( '[data-highlightedFilters]' )
 			.removeAttr( 'title' )
 			.removeAttr( 'data-highlightedFilters' );
+
+		// Remove grey from enhanced rows
+		this.$element.find( '.mw-rcfilters-ui-changesListWrapperWidget-enhanced-grey' )
+			.removeClass( 'mw-rcfilters-ui-changesListWrapperWidget-enhanced-grey' );
+
 		// Turn off highlights
 		this.$element.removeClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlighted' );
 	};
