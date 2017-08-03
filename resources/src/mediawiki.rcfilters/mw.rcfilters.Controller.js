@@ -8,11 +8,15 @@
 	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersModel Filters view model
 	 * @param {mw.rcfilters.dm.ChangesListViewModel} changesListModel Changes list view model
 	 * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
+	 * @param {Object} config Additional configuration
+	 * @cfg {string} savedQueriesPreferenceName Where to save the saved queries
 	 */
-	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel, savedQueriesModel ) {
+	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel, savedQueriesModel, config ) {
 		this.filtersModel = filtersModel;
 		this.changesListModel = changesListModel;
 		this.savedQueriesModel = savedQueriesModel;
+		this.savedQueriesPreferenceName = config.savedQueriesPreferenceName;
+
 		this.requestCounter = {};
 		this.baseFilterState = {};
 		this.uriProcessor = null;
@@ -209,7 +213,7 @@
 		);
 
 		try {
-			parsedSavedQueries = JSON.parse( mw.user.options.get( 'rcfilters-saved-queries' ) || '{}' );
+			parsedSavedQueries = JSON.parse( mw.user.options.get( this.savedQueriesPreferenceName ) || '{}' );
 		} catch ( err ) {
 			parsedSavedQueries = {};
 		}
@@ -254,7 +258,7 @@
 			// so it gets processed
 			this.changesListModel.update(
 				$changesList.length ? $changesList : 'NO_RESULTS',
-				$( 'fieldset.rcoptions' ).first(),
+				$( 'fieldset.cloptions' ).first(),
 				true // We're using existing DOM elements
 			);
 		}
@@ -868,9 +872,9 @@
 		}
 
 		// Save the preference
-		new mw.Api().saveOption( 'rcfilters-saved-queries', stringified );
+		new mw.Api().saveOption( this.savedQueriesPreferenceName, stringified );
 		// Update the preference for this session
-		mw.user.options.set( 'rcfilters-saved-queries', stringified );
+		mw.user.options.set( this.savedQueriesPreferenceName, stringified );
 	};
 
 	/**
@@ -880,7 +884,9 @@
 		// Update default sticky values with selected, whether they came from
 		// the initial defaults or from the URL value that is being normalized
 		this.updateDaysDefault( this.filtersModel.getGroup( 'days' ).getSelectedItems()[ 0 ].getParamName() );
-		this.updateLimitDefault( this.filtersModel.getGroup( 'limit' ).getSelectedItems()[ 0 ].getParamName() );
+		if ( this.filtersModel.getGroup( 'limit' ) ) {
+			this.updateLimitDefault( this.filtersModel.getGroup( 'limit' ).getSelectedItems()[ 0 ].getParamName() );
+		}
 
 		// TODO: Make these automatic by having the model go over sticky
 		// items and update their default values automatically
@@ -1163,7 +1169,7 @@
 						// Changes list
 						changes: $parsed.find( '.mw-changeslist' ).first().contents(),
 						// Fieldset
-						fieldset: $parsed.find( 'fieldset.rcoptions' ).first()
+						fieldset: $parsed.find( 'fieldset.cloptions' ).first()
 					};
 				},
 				// Failure
@@ -1179,7 +1185,7 @@
 					// Force a resolve state to this promise
 					return $.Deferred().resolve( {
 						changes: 'NO_RESULTS',
-						fieldset: $parsed.find( 'fieldset.rcoptions' ).first()
+						fieldset: $parsed.find( 'fieldset.cloptions' ).first()
 					} ).promise();
 				}
 			);
