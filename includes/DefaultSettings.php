@@ -6847,6 +6847,11 @@ $wgStructuredChangeFiltersEnableExperimentalViews = false;
 $wgStructuredChangeFiltersEnableLiveUpdate = false;
 
 /**
+ * Whether to enable RCFilters app on Special:Watchlist
+ */
+$wgRcfiltersOnWatchlist = false;
+
+/**
  * Use new page patrolling to check new pages on Special:Newpages
  */
 $wgUseNPPatrol = true;

@@ -920,6 +920,9 @@ class Preferences {
 		$defaultPreferences['rcfilters-saved-queries'] = [
 			'type' => 'api',
 		];
+		$defaultPreferences['rcfilters-wl-saved-queries'] = [
+			'type' => 'api',
+		];
 		$defaultPreferences['rcfilters-rclimit'] = [
 			'type' => 'api',
 		];
