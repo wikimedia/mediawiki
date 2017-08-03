@@ -583,10 +583,10 @@ class ContribsPager extends RangeChronologicalPager {
 	 * @return array Options array with processed start and end date filter options
 	 */
 	public static function processDateFilter( $opts ) {
-		$start = $opts['start'] ?: '';
-		$end = $opts['end'] ?: '';
-		$year = $opts['year'] ?: '';
-		$month = $opts['month'] ?: '';
+		$start = isset( $opts['start'] ) ? $opts['start'] : '';
+		$end = isset( $opts['end'] ) ? $opts['end'] : '';
+		$year = isset( $opts['year'] ) ? $opts['year'] : '';
+		$month = isset( $opts['month'] ) ? $opts['month'] : '';
 
 		if ( $start !== '' && $end !== '' && $start > $end ) {
 			$temp = $start;
