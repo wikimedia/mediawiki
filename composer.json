@@ -16,6 +16,7 @@
 		"wiki": "https://www.mediawiki.org/"
 	},
 	"require": {
+		"afarkas/html5shiv": "3.7.3",
 		"composer/semver": "1.4.2",
 		"cssjanus/cssjanus": "1.2.0",
 		"ext-ctype": "*",

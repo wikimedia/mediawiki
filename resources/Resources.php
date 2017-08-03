@@ -2614,6 +2614,15 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
+	/* html5shiv */
+	'html5shiv' => [
+		'scripts' => [
+			'resources/lib/html5shiv/html5shiv.js',
+		],
+		'raw' => true,
+		'targets' => [ 'desktop' ],
+	],
+
 	/* OOjs */
 	'oojs' => [
 		'scripts' => [
