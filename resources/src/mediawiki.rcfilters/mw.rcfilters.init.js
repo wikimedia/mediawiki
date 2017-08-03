@@ -12,10 +12,18 @@
 				topLinksCookieName = 'rcfilters-toplinks-collapsed-state',
 				topLinksCookie = mw.cookie.get( topLinksCookieName ),
 				topLinksCookieValue = topLinksCookie || 'collapsed',
+				savedQueriesPreferenceName = mw.config.get( 'wgSavedQueriesPreferenceName' ),
+				enableLimit = mw.config.get( 'wgEnableLimit' ),
 				filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
 				changesListModel = new mw.rcfilters.dm.ChangesListViewModel(),
 				savedQueriesModel = new mw.rcfilters.dm.SavedQueriesModel(),
-				controller = new mw.rcfilters.Controller( filtersModel, changesListModel, savedQueriesModel ),
+				controller = new mw.rcfilters.Controller(
+					filtersModel, changesListModel, savedQueriesModel,
+					{
+						savedQueriesPreferenceName: savedQueriesPreferenceName,
+						enableLimit: enableLimit
+					}
+				),
 				$overlay = $( '<div>' )
 					.addClass( 'mw-rcfilters-ui-overlay' ),
 				filtersWidget = new mw.rcfilters.ui.FilterWrapperWidget(
@@ -35,7 +43,7 @@
 
 			// eslint-disable-next-line no-new
 			new mw.rcfilters.ui.FormWrapperWidget(
-				filtersModel, changesListModel, controller, $( 'fieldset.rcoptions' ) );
+				filtersModel, changesListModel, controller, $( 'fieldset.cloptions' ) );
 
 			$( '.rcfilters-container' ).append( filtersWidget.$element );
 			$( 'body' ).append( $overlay );
