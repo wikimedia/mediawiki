@@ -28,6 +28,7 @@
 		this.filtersViewModel = filtersViewModel;
 		this.changesListViewModel = changesListViewModel;
 		this.controller = controller;
+		this.highlightClasses = null;
 
 		// Events
 		this.filtersViewModel.connect( this, {
@@ -45,8 +46,8 @@
 			// We handle our own display/hide of the empty results message
 			.removeClass( 'mw-changeslist-empty' );
 
-		// Set up highlight containers
-		this.setupHighlightContainers( this.$element );
+		// // Set up highlight containers
+		// this.setupHighlightContainers( this.$element );
 
 		if ( mw.rcfilters.featureFlags.liveUpdate ) {
 			this.setupNewChangesButtonContainer( this.$element );
@@ -56,6 +57,22 @@
 	/* Initialization */
 
 	OO.inheritClass( mw.rcfilters.ui.ChangesListWrapperWidget, OO.ui.Widget );
+
+	/**
+	 * Get all available highlight classes
+	 *
+	 * @return {string[]} An array of available highlight class names
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.getHighlightClasses = function () {
+		if ( !this.highlightClasses ) {
+			this.highlightClasses = this.filtersViewModel.getItemsSupportingHighlights()
+				.map( function ( filterItem ) {
+					return filterItem.getCssClass();
+				} );
+		}
+
+		return this.highlightClasses;
+	};
 
 	/**
 	 * Respond to the highlight feature being toggled on and off
@@ -248,7 +265,9 @@
 	 * @param {jQuery|string} $content The content of the updated changes list
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.setupHighlightContainers = function ( $content ) {
-		var highlightClass = 'mw-rcfilters-ui-changesListWrapperWidget-highlights',
+		var $enhancedTopPageCell, $enhancedNestedPagesCell,
+			widget = this,
+			highlightClass = 'mw-rcfilters-ui-changesListWrapperWidget-highlights',
 			$highlights = $( '<div>' )
 				.addClass( highlightClass )
 				.append(
@@ -271,13 +290,41 @@
 		} );
 
 		if ( this.inEnhancedMode() ) {
-			// Enhanced RC
-			$content.find( 'td.mw-enhanced-rc' )
-				.parent()
+			$enhancedTopPageCell = $content.find( 'table.mw-enhanced-rc.mw-collapsible' );
+			$enhancedNestedPagesCell = $content.find( 'td.mw-enhanced-rc-nested' );
+
+			// Enhanced RC highlight containers
+			$content.find( 'table.mw-enhanced-rc tr:first-child' )
 				.prepend(
 					$( '<td>' )
 						.append( $highlights.clone() )
 				);
+
+			$enhancedNestedPagesCell
+				.before(
+					$( '<td>' )
+						.append( $highlights.clone().addClass( 'mw-enhanced-rc-nested' ) )
+				);
+
+			// Go over pages that have sub results
+			// HACK: We really only can collect those by targetting the collapsible class
+			$enhancedTopPageCell.each( function () {
+				var collectedClasses = [],
+					$table = $( this );
+				// Go over <tr>s and pick up all recognized classes
+				widget.getHighlightClasses().forEach( function ( className ) {
+					$table.find( 'tr' ).each( function () {
+						if ( $( this ).hasClass( className ) ) {
+							collectedClasses.push( className );
+							return false;
+						}
+					} );
+				} );
+
+				$table.addClass( collectedClasses.join( ' ' ) );
+			} );
+
+			$content.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-enhancedView' );
 		} else {
 			// Regular RC
 			$content.find( 'ul.special li' )
