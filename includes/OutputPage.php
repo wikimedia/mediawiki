@@ -2908,6 +2908,17 @@ class OutputPage extends ContextSource {
 		$pieces[] = $this->buildExemptModules();
 		$pieces = array_merge( $pieces, array_values( $this->getHeadLinksArray() ) );
 		$pieces = array_merge( $pieces, array_values( $this->mHeadItems ) );
+
+		$pieces = array_merge( $pieces, [
+			'<!--[if lt IE 9]>',
+			$this->makeResourceLoaderLink(
+				'html5shiv',
+				ResourceLoaderModule::TYPE_SCRIPTS,
+				[ 'sync' => true ]
+			),
+			'<![endif]-->',
+		]);
+
 		$pieces[] = Html::closeElement( 'head' );
 
 		$bodyClasses = [];

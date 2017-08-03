@@ -33,7 +33,7 @@ module.exports = function ( grunt ) {
 				'**/*.js',
 				'!docs/**',
 				'!node_modules/**',
-				'!resources/lib/**',
+				'!resources/lib/**/*.js',
 				'!resources/src/jquery.tipsy/**',
 				'!resources/src/jquery/jquery.farbtastic.js',
 				'!resources/src/mediawiki.libs/**',
