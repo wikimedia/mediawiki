@@ -164,43 +164,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		parent::execute( $subpage );
 
 		if ( $this->isStructuredFilterUiEnabled() ) {
-			$jsData = $this->getStructuredFilterJsData();
-
-			$messages = [];
-			foreach ( $jsData['messageKeys'] as $key ) {
-				$messages[$key] = $this->msg( $key )->plain();
-			}
-
-			$out->addHTML(
-				ResourceLoader::makeInlineScript(
-					ResourceLoader::makeMessageSetScript( $messages )
-				)
-			);
-
-			$experimentalStructuredChangeFilters =
-				$this->getConfig()->get( 'StructuredChangeFiltersEnableExperimentalViews' );
-
-			$out->addJsConfigVars( 'wgStructuredChangeFilters', $jsData['groups'] );
-			$out->addJsConfigVars(
-				'wgStructuredChangeFiltersEnableExperimentalViews',
-				$experimentalStructuredChangeFilters
-			);
-			$out->addJsConfigVars(
-				'wgStructuredChangeFiltersEnableLiveUpdate',
-				$this->getConfig()->get( 'StructuredChangeFiltersEnableLiveUpdate' )
-			);
-			$out->addJsConfigVars(
-				'wgRCFiltersChangeTags',
-				$this->buildChangeTagList()
-			);
-			$out->addJsConfigVars(
-				'StructuredChangeFiltersDisplayConfig',
-				[
-					'maxDays' => (int)$this->getConfig()->get( 'RCMaxAge' ) / ( 24 * 3600 ), // Translate to days
-					'limitArray' => $this->getConfig()->get( 'RCLinkLimits' ),
-					'daysArray' => $this->getConfig()->get( 'RCLinkDays' ),
-				]
-			);
+			$out->addJsConfigVars( 'wgStructuredChangeFiltersLiveUpdateSupported', true );
+			$out->addJsConfigVars( 'wgSavedQueriesPreferenceName', 'rcfilters-saved-queries' );
+			$out->addJsConfigVars( 'wgEnableLimit', true );
 		}
 	}
 
@@ -540,8 +506,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			&& $this->getUser()->getOption( 'shownumberswatching' );
 		$watcherCache = [];
 
-		$dbr = $this->getDB();
-
 		$counter = 1;
 		$list = ChangesList::newFromContext( $this->getContext(), $this->filterGroups );
 		$list->initChangesListRows( $rows );
@@ -636,7 +600,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			++$count;
 			$addSubmit = ( $count === $extraOptsCount ) ? $submit : '';
 
-			$out .= Xml::openElement( 'tr' );
+			$out .= Xml::openElement( 'tr', [ 'class' => $name . 'Form' ] );
 			if ( is_array( $optionRow ) ) {
 				$out .= Xml::tags(
 					'td',
@@ -673,11 +637,11 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$rcoptions = Xml::fieldset(
 			$this->msg( 'recentchanges-legend' )->text(),
 			$panelString,
-			[ 'class' => 'rcoptions' ]
+			[ 'class' => 'rcoptions cloptions' ]
 		);
 
 		// Insert a placeholder for RCFilters
-		if ( $this->getUser()->getOption( 'rcenhancedfilters' ) ) {
+		if ( $this->isStructuredFilterUiEnabled() ) {
 			$rcfilterContainer = Html::element(
 				'div',
 				[ 'class' => 'rcfilters-container' ]
@@ -729,7 +693,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 			$topLinksAttributes = [ 'class' => 'mw-recentchanges-toplinks' ];
 
-			if ( $this->getUser()->getOption( 'rcenhancedfilters' ) ) {
+			if ( $this->isStructuredFilterUiEnabled() ) {
 				$contentTitle = Html::rawElement( 'div',
 					[ 'class' => 'mw-recentchanges-toplinks-title' ],
 					$this->msg( 'rcfilters-other-review-tools' )->parse()
@@ -786,27 +750,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Check whether the structured filter UI is enabled
-	 *
-	 * @return bool
-	 */
-	protected function isStructuredFilterUiEnabled() {
-		return $this->getUser()->getOption(
-			'rcenhancedfilters'
-		);
-	}
-
-	/**
 	 * Add page-specific modules.
 	 */
 	protected function addModules() {
 		parent::addModules();
 		$out = $this->getOutput();
 		$out->addModules( 'mediawiki.special.recentchanges' );
-		if ( $this->isStructuredFilterUiEnabled() ) {
-			$out->addModules( 'mediawiki.rcfilters.filters.ui' );
-			$out->addModuleStyles( 'mediawiki.rcfilters.filters.base.styles' );
-		}
 	}
 
 	/**
@@ -1030,7 +979,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		$filterGroups = $this->getFilterGroups();
 
-		$context = $this->getContext();
 		foreach ( $filterGroups as $groupName => $group ) {
 			if ( !$group->isPerGroupRequestParameter() ) {
 				foreach ( $group->getFilters() as $key => $filter ) {
@@ -1047,7 +995,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 							[ $key => 1 - $options[$key] ], $nondefaults );
 
 						$attribs = [
-							'class' => "$msg rcshowhideoption",
+							'class' => "$msg rcshowhideoption clshowhideoption",
 							'data-filter-name' => $filter->getName(),
 						];
 
