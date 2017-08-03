@@ -63,7 +63,23 @@ class RevisionDeleteUser {
 
 		# Normalize user name
 		$userTitle = Title::makeTitleSafe( NS_USER, $name );
+		$userTalkTitle = Title::makeTitleSafe( NS_USER_TALK, $name );
 		$userDbKey = $userTitle->getDBkey();
+
+		# Suppress both user and user talk pages
+		if ( $op == '|' ) {
+			$userPage = new Article ( $userTitle );
+			$userTalkPage = new Article( $userTalkTitle );
+			
+			$userPage->doDelete( '', true );
+			$userTalkPage->doDelete( '', true );
+		} elseif ( $op == '&' ) {
+			$archivedUserPage =  new PageArchive( $userTitle );
+			$archivedUserTalkPage = new PageArchive( $userTalkTitle );
+			
+			$archivedUserPage->undelete( [], '', $unsuppress = true );
+			$archivedUserTalkPage->undelete( [], '', $unsuppress = true );
+		}
 
 		# Hide name from live edits
 		$dbw->update(
