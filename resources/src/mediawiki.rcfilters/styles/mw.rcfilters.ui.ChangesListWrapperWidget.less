@@ -34,6 +34,13 @@
 		}
 	}
 
+	// Rule needs to be specific
+	// We want the expand button to appear outside the color
+	// to match the way the general highlight background appears
+	&-enhanced-grey td:not( :nth-child( -n+2 ) ) {
+		background-color: #dee0e3;
+	}
+
 	h4:first-of-type {
 		margin-top: 0;
 		padding-top: 0;
@@ -77,8 +84,9 @@
 		// and then plus the general margin
 		width: ~'calc( ( @{result-circle-diameter} + @{result-circle-margin} ) * 5 )';
 		// And we want to shift the entire block to the left of the li
-		position: absolute;
-		left: 0;
+		position: relative;
+		// Negative left margin of width + padding
+		margin-left: ~'calc( ( @{result-circle-diameter} + @{result-circle-margin} ) * -5 - @{result-circle-general-margin} )';
 
 		.mw-rcfilters-ui-changesListWrapperWidget-highlighted & {
 			display: inline-block;
@@ -114,66 +122,66 @@
 			.result-circle( c5 );
 		}
 	}
+}
 
-	// One color
-	.mw-rcfilters-highlight-color-c1 {
-		background-color: tint( @highlight-c1, 70% );
-	}
+// One color
+.mw-rcfilters-highlight-color-c1 {
+	.highlight-changesListWrapperWidget( tint( @highlight-c1, 70% ); );
+}
 
-	.mw-rcfilters-highlight-color-c2 {
-		background-color: tint( @highlight-c2, 70% );
-	}
+.mw-rcfilters-highlight-color-c2 {
+	.highlight-changesListWrapperWidget( tint( @highlight-c2, 70% ); );
+}
 
-	.mw-rcfilters-highlight-color-c3 {
-		background-color: tint( @highlight-c3, 70% );
-	}
+.mw-rcfilters-highlight-color-c3 {
+	.highlight-changesListWrapperWidget( tint( @highlight-c3, 70% ); );
+}
 
-	.mw-rcfilters-highlight-color-c4 {
-		background-color: tint( @highlight-c4, 70% );
-	}
+.mw-rcfilters-highlight-color-c4 {
+	.highlight-changesListWrapperWidget( tint( @highlight-c4, 70% ); );
+}
 
-	.mw-rcfilters-highlight-color-c5 {
-		background-color: tint( @highlight-c5, 70% );
-	}
+.mw-rcfilters-highlight-color-c5 {
+	.highlight-changesListWrapperWidget( tint( @highlight-c5, 70% ); );
+}
 
-	// Two colors
-	.highlight-color-mix( c1, c2 );
-	// Overriding .highlight-color-mix( c1, c3 ); to produce
-	// a custom color rather than the computed tint
-	// see https://phabricator.wikimedia.org/T161267
-	.mw-rcfilters-highlight-color-c1.mw-rcfilters-highlight-color-c3 {
-		background-color: #ccdecc;
-	}
-	.highlight-color-mix( c1, c4 );
-	.highlight-color-mix( c1, c5 );
-	.highlight-color-mix( c2, c3 );
-	.highlight-color-mix( c2, c4 );
-	.highlight-color-mix( c2, c5 );
-	.highlight-color-mix( c3, c4 );
-	.highlight-color-mix( c3, c5 );
-	.highlight-color-mix( c4, c5 );
+// Two colors
+.highlight-color-mix( c1, c2 );
+// Overriding .highlight-color-mix( c1, c3 ); to produce
+// a custom color rather than the computed tint
+// see https://phabricator.wikimedia.org/T161267
+.mw-rcfilters-highlight-color-c1.mw-rcfilters-highlight-color-c3 {
+	.highlight-changesListWrapperWidget( #ccdecc );
+}
+.highlight-color-mix( c1, c4 );
+.highlight-color-mix( c1, c5 );
+.highlight-color-mix( c2, c3 );
+.highlight-color-mix( c2, c4 );
+.highlight-color-mix( c2, c5 );
+.highlight-color-mix( c3, c4 );
+.highlight-color-mix( c3, c5 );
+.highlight-color-mix( c4, c5 );
 
-	// Three colors
-	.highlight-color-mix( c1, c2, c3 );
-	.highlight-color-mix( c1, c2, c5 );
-	.highlight-color-mix( c1, c2, c4 );
-	.highlight-color-mix( c1, c3, c4 );
-	.highlight-color-mix( c1, c3, c5 );
-	.highlight-color-mix( c1, c4, c5 );
-	.highlight-color-mix( c2, c3, c4 );
-	.highlight-color-mix( c2, c3, c5 );
-	.highlight-color-mix( c2, c4, c5 );
-	.highlight-color-mix( c3, c4, c5 );
+// Three colors
+.highlight-color-mix( c1, c2, c3 );
+.highlight-color-mix( c1, c2, c5 );
+.highlight-color-mix( c1, c2, c4 );
+.highlight-color-mix( c1, c3, c4 );
+.highlight-color-mix( c1, c3, c5 );
+.highlight-color-mix( c1, c4, c5 );
+.highlight-color-mix( c2, c3, c4 );
+.highlight-color-mix( c2, c3, c5 );
+.highlight-color-mix( c2, c4, c5 );
+.highlight-color-mix( c3, c4, c5 );
 
-	// Four colors
-	.highlight-color-mix( c1, c2, c3, c4 );
-	.highlight-color-mix( c1, c2, c3, c5 );
-	.highlight-color-mix( c1, c2, c4, c5 );
-	.highlight-color-mix( c1, c3, c4, c5 );
-	.highlight-color-mix( c2, c3, c4, c5 );
+// Four colors
+.highlight-color-mix( c1, c2, c3, c4 );
+.highlight-color-mix( c1, c2, c3, c5 );
+.highlight-color-mix( c1, c2, c4, c5 );
+.highlight-color-mix( c1, c3, c4, c5 );
+.highlight-color-mix( c2, c3, c4, c5 );
 
-	// Five colors:
-	.mw-rcfilters-highlight-color-c1.mw-rcfilters-highlight-color-c2.mw-rcfilters-highlight-color-c3.mw-rcfilters-highlight-color-c4.mw-rcfilters-highlight-color-c5 {
-		background-color: tint( mix( @highlight-c1, mix( @highlight-c2, mix( @highlight-c3, average( @highlight-c4, @highlight-c5 ), 20% ), 20% ), 20% ), 15% );
-	}
+// Five colors:
+.mw-rcfilters-highlight-color-c1.mw-rcfilters-highlight-color-c2.mw-rcfilters-highlight-color-c3.mw-rcfilters-highlight-color-c4.mw-rcfilters-highlight-color-c5 {
+	.highlight-changesListWrapperWidget( tint( mix( @highlight-c1, mix( @highlight-c2, mix( @highlight-c3, average( @highlight-c4, @highlight-c5 ), 20% ), 20% ), 20% ), 15% ) );
 }

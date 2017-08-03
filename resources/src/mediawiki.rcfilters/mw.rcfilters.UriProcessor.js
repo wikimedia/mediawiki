@@ -110,7 +110,6 @@
 		this.filtersModel.toggleInvertedNamespaces( !!Number( parameters.invert ) );
 
 		// Update highlight state
-		this.filtersModel.toggleHighlight( !!Number( parameters.highlight ) );
 		this.filtersModel.getItems().forEach( function ( filterItem ) {
 			var color = parameters[ filterItem.getName() + '_color' ];
 			if ( color ) {
@@ -119,6 +118,7 @@
 				filterItem.clearHighlightColor();
 			}
 		} );
+		this.filtersModel.toggleHighlight( !!Number( parameters.highlight ) );
 
 		// Check all filter interactions
 		this.filtersModel.reassessFilterInteractions();
