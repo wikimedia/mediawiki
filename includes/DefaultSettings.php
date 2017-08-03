@@ -8279,10 +8279,15 @@ $wgHTTPProxy = false;
  * Local virtual hosts.
  *
  * This lists domains that are configured as virtual hosts on the same machine.
- * If a request is to be made to a domain listed here, or any subdomain thereof,
- * then no proxy will be used.
- * Command-line scripts are not affected by this setting and will always use
- * proxy if it is configured.
+ *
+ * This affects the following:
+ * - MWHttpRequest: If a request is to be made to a domain listed here, or any
+ *   subdomain thereof, then no proxy will be used.
+ *   Command-line scripts are not affected by this setting and will always use
+ *   the proxy if it is configured.
+ * - ChronologyProtector: Decide to shutdown LBFactory asynchronously instead
+ *   synchronously if the current response redirects to a local virtual host.
+ *
  * @since 1.25
  */
 $wgLocalVirtualHosts = [];
