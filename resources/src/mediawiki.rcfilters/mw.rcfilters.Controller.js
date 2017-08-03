@@ -540,6 +540,7 @@
 			new mw.Uri().query.liveupdate;
 
 		return !document.hidden &&
+			!this.filtersModel.hasConflict() &&
 			!this.changesListModel.getNewChangesExist() &&
 			!this.updatingChangesList &&
 			liveUpdateFeatureFlag;
