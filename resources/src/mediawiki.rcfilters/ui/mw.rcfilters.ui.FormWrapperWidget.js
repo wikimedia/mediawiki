@@ -117,9 +117,7 @@
 	 * Clean up the old-style show/hide that we have implemented in the filter list
 	 */
 	mw.rcfilters.ui.FormWrapperWidget.prototype.cleanUpFieldset = function () {
-		var $namespaceSelect = this.$element.find( '#namespace' );
-
-		this.$element.find( '.rcshowhideoption[data-feature-in-structured-ui=1]' ).each( function () {
+		this.$element.find( '.clshowhideoption[data-feature-in-structured-ui=1]' ).each( function () {
 			// HACK: Remove the text node after the span.
 			// If there isn't one, we're at the end, so remove the text node before the span.
 			// This would be unnecessary if we added separators with CSS.
@@ -133,11 +131,11 @@
 		} );
 
 		// Hide namespaces and tags
-		$namespaceSelect.closest( 'tr' ).detach();
+		this.$element.find( '.namespaceForm' ).detach();
 		this.$element.find( '.mw-tagfilter-label' ).closest( 'tr' ).detach();
 
 		// Hide limit and days
-		this.$element.find( '.rclinks' ).detach();
+		this.$element.find( '.rclinks, .cldays' ).detach();
 
 		if ( !this.$element.find( '.mw-recentchanges-table tr' ).length ) {
 			this.$element.find( '.mw-recentchanges-table' ).detach();
@@ -149,6 +147,10 @@
 			// If we're hiding rcshowhide, the '<br>'s are around it,
 			// there's no need for them either.
 			this.$element.find( 'br' ).detach();
+		}
+
+		if ( this.$element.find( '.cloption' ).text().trim() === '' ) {
+			this.$element.find( '.cloption-submit' ).detach();
 		}
 
 		if ( mw.rcfilters.featureFlags.liveUpdate ) {
