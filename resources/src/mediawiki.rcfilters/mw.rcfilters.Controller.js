@@ -115,7 +115,7 @@
 					// we should remove all sticky behavior methods completely
 					// See T172156
 					// isSticky: true,
-					filters: displayConfig.arrayLimit.map( function ( num ) {
+					filters: displayConfig.limitArray.map( function ( num ) {
 						return controller._createFilterDataFromNumber( num, num );
 					} )
 				},
@@ -128,7 +128,7 @@
 					validate: $.isNumeric,
 					range: {
 						min: 0,
-						max: displayConfig.maxLimit
+						max: displayConfig.maxDays
 					},
 					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
 					numToLabelFunc: function ( i ) {
@@ -143,7 +143,7 @@
 						// Hours (1, 2, 6, 12)
 						0.04166, 0.0833, 0.25, 0.5
 					// Days
-					].concat( displayConfig.arrayDays )
+					].concat( displayConfig.daysArray )
 						.map( function ( num ) {
 							return controller._createFilterDataFromNumber(
 								num,
