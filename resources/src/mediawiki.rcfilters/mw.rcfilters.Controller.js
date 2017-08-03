@@ -8,11 +8,17 @@
 	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersModel Filters view model
 	 * @param {mw.rcfilters.dm.ChangesListViewModel} changesListModel Changes list view model
 	 * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
+	 * @param {Object} config Additional configuration
+	 * @cfg {string} savedQueriesPreferenceName Where to save the saved queries
+	 * @cfg {boolean} enableLimit Whether to enable the limit parameter
 	 */
-	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel, savedQueriesModel ) {
+	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel, savedQueriesModel, config ) {
 		this.filtersModel = filtersModel;
 		this.changesListModel = changesListModel;
 		this.savedQueriesModel = savedQueriesModel;
+		this.savedQueriesPreferenceName = config.savedQueriesPreferenceName;
+		this.enableLimit = config.enableLimit;
+
 		this.requestCounter = {};
 		this.baseFilterState = {};
 		this.uriProcessor = null;
@@ -99,67 +105,68 @@
 		limitDefault = Number( mw.user.options.get( 'rclimit', '50' ) );
 
 		// Add parameter range operations
-		views.range = {
-			groups: [
-				{
-					name: 'limit',
-					type: 'single_option',
-					title: '', // Because it's a hidden group, this title actually appears nowhere
-					hidden: true,
-					allowArbitrary: true,
-					validate: $.isNumeric,
-					range: {
-						min: 0, // The server normalizes negative numbers to 0 results
-						max: 1000
-					},
-					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
-					'default': String( limitDefault ),
-					// Temporarily making this not sticky until we resolve the problem
-					// with the misleading preference. Note that if this is to be permanent
-					// we should remove all sticky behavior methods completely
-					// See T172156
-					// isSticky: true,
-					excludedFromSavedQueries: true,
-					filters: displayConfig.limitArray.map( function ( num ) {
-						return controller._createFilterDataFromNumber( num, num );
-					} )
+		views.range = { groups: [] };
+
+		if ( this.enableLimit ) {
+			views.range.groups.push( {
+				name: 'limit',
+				type: 'single_option',
+				title: '', // Because it's a hidden group, this title actually appears nowhere
+				hidden: true,
+				allowArbitrary: true,
+				validate: $.isNumeric,
+				range: {
+					min: 0, // The server normalizes negative numbers to 0 results
+					max: 1000
 				},
-				{
-					name: 'days',
-					type: 'single_option',
-					title: '', // Because it's a hidden group, this title actually appears nowhere
-					hidden: true,
-					allowArbitrary: true,
-					validate: $.isNumeric,
-					range: {
-						min: 0,
-						max: displayConfig.maxDays
-					},
-					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
-					numToLabelFunc: function ( i ) {
-						return Number( i ) < 1 ?
-							( Number( i ) * 24 ).toFixed( 2 ) :
-							Number( i );
-					},
-					'default': mw.user.options.get( 'rcdays', '30' ),
-					// Temporarily making this not sticky while limit is not sticky, see above
-					// isSticky: true,
-					excludedFromSavedQueries: true,
-					filters: [
-						// Hours (1, 2, 6, 12)
-						0.04166, 0.0833, 0.25, 0.5
-					// Days
-					].concat( displayConfig.daysArray )
-						.map( function ( num ) {
-							return controller._createFilterDataFromNumber(
-								num,
-								// Convert fractions of days to number of hours for the labels
-								num < 1 ? Math.round( num * 24 ) : num
-							);
-						} )
-				}
-			]
-		};
+				sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
+				'default': String( limitDefault ),
+				// Temporarily making this not sticky until we resolve the problem
+				// with the misleading preference. Note that if this is to be permanent
+				// we should remove all sticky behavior methods completely
+				// See T172156
+				// isSticky: true,
+				excludedFromSavedQueries: true,
+				filters: displayConfig.limitArray.map( function ( num ) {
+					return controller._createFilterDataFromNumber( num, num );
+				} )
+			} );
+		}
+
+		views.range.groups.push( {
+			name: 'days',
+			type: 'single_option',
+			title: '', // Because it's a hidden group, this title actually appears nowhere
+			hidden: true,
+			allowArbitrary: true,
+			validate: $.isNumeric,
+			range: {
+				min: 0,
+				max: displayConfig.maxDays
+			},
+			sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
+			numToLabelFunc: function ( i ) {
+				return Number( i ) < 1 ?
+					( Number( i ) * 24 ).toFixed( 2 ) :
+					Number( i );
+			},
+			'default': mw.user.options.get( 'rcdays', '30' ),
+			// Temporarily making this not sticky while limit is not sticky, see above
+			// isSticky: true,
+			excludedFromSavedQueries: true,
+			filters: [
+				// Hours (1, 2, 6, 12)
+				0.04166, 0.0833, 0.25, 0.5
+				// Days
+			].concat( displayConfig.daysArray )
+				.map( function ( num ) {
+					return controller._createFilterDataFromNumber(
+						num,
+						// Convert fractions of days to number of hours for the labels
+						num < 1 ? Math.round( num * 24 ) : num
+					);
+				} )
+		} );
 
 		views.display = {
 			groups: [
@@ -209,7 +216,7 @@
 		);
 
 		try {
-			parsedSavedQueries = JSON.parse( mw.user.options.get( 'rcfilters-saved-queries' ) || '{}' );
+			parsedSavedQueries = JSON.parse( mw.user.options.get( this.savedQueriesPreferenceName ) || '{}' );
 		} catch ( err ) {
 			parsedSavedQueries = {};
 		}
@@ -254,7 +261,7 @@
 			// so it gets processed
 			this.changesListModel.update(
 				$changesList.length ? $changesList : 'NO_RESULTS',
-				$( 'fieldset.rcoptions' ).first(),
+				$( 'fieldset.cloptions' ).first(),
 				true // We're using existing DOM elements
 			);
 		}
@@ -868,9 +875,9 @@
 		}
 
 		// Save the preference
-		new mw.Api().saveOption( 'rcfilters-saved-queries', stringified );
+		new mw.Api().saveOption( this.savedQueriesPreferenceName, stringified );
 		// Update the preference for this session
-		mw.user.options.set( 'rcfilters-saved-queries', stringified );
+		mw.user.options.set( this.savedQueriesPreferenceName, stringified );
 	};
 
 	/**
@@ -880,7 +887,9 @@
 		// Update default sticky values with selected, whether they came from
 		// the initial defaults or from the URL value that is being normalized
 		this.updateDaysDefault( this.filtersModel.getGroup( 'days' ).getSelectedItems()[ 0 ].getParamName() );
-		this.updateLimitDefault( this.filtersModel.getGroup( 'limit' ).getSelectedItems()[ 0 ].getParamName() );
+		if ( this.filtersModel.getGroup( 'limit' ) ) {
+			this.updateLimitDefault( this.filtersModel.getGroup( 'limit' ).getSelectedItems()[ 0 ].getParamName() );
+		}
 
 		// TODO: Make these automatic by having the model go over sticky
 		// items and update their default values automatically
@@ -1163,7 +1172,7 @@
 						// Changes list
 						changes: $parsed.find( '.mw-changeslist' ).first().contents(),
 						// Fieldset
-						fieldset: $parsed.find( 'fieldset.rcoptions' ).first()
+						fieldset: $parsed.find( 'fieldset.cloptions' ).first()
 					};
 				},
 				// Failure
@@ -1179,7 +1188,7 @@
 					// Force a resolve state to this promise
 					return $.Deferred().resolve( {
 						changes: 'NO_RESULTS',
-						fieldset: $parsed.find( 'fieldset.rcoptions' ).first()
+						fieldset: $parsed.find( 'fieldset.cloptions' ).first()
 					} ).promise();
 				}
 			);

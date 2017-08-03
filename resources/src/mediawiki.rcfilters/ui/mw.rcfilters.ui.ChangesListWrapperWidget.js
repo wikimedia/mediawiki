@@ -48,7 +48,9 @@
 		// Set up highlight containers
 		this.setupHighlightContainers( this.$element );
 
-		this.setupNewChangesButtonContainer( this.$element );
+		if ( mw.rcfilters.featureFlags.liveUpdate ) {
+			this.setupNewChangesButtonContainer( this.$element );
+		}
 	};
 
 	/* Initialization */
