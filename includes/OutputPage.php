@@ -2908,6 +2908,21 @@ class OutputPage extends ContextSource {
 		$pieces[] = $this->buildExemptModules();
 		$pieces = array_merge( $pieces, array_values( $this->getHeadLinksArray() ) );
 		$pieces = array_merge( $pieces, array_values( $this->mHeadItems ) );
+
+		$min = $this->getRequest()->getFuzzyBool( 'debug' ) ? '' : '.min';
+		// Use a raw comment since the content of IE conditional comments
+		// needs to parse as normal page content.
+		$pieces[] = Html::rawComment(
+			'[if lt IE 9]>' .
+			Html::element( 'script', [
+				'src' => OutputPage::transformResourcePath(
+					$this->getConfig(),
+					"/resources/lib/html5shiv/html5shiv{$min}.js"
+				),
+			] ) .
+			'<![endif]'
+		);
+
 		$pieces[] = Html::closeElement( 'head' );
 
 		$bodyClasses = [];
