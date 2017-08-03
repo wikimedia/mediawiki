@@ -72,14 +72,14 @@
 	 * @param {jQuery|string} changesListContent
 	 * @param {jQuery} $fieldset
 	 * @param {boolean} [isInitialDOM] Using the initial (already attached) DOM elements
-	 * @param {boolean} [fromLiveUpdate] These are new changes fetched via Live Update
+	 * @param {boolean} [separateOldAndNew] Whether a logical separation between old and new changes is needed
 	 * @fires update
 	 */
-	mw.rcfilters.dm.ChangesListViewModel.prototype.update = function ( changesListContent, $fieldset, isInitialDOM, fromLiveUpdate ) {
+	mw.rcfilters.dm.ChangesListViewModel.prototype.update = function ( changesListContent, $fieldset, isInitialDOM, separateOldAndNew ) {
 		var from = this.nextFrom;
 		this.valid = true;
 		this.extractNextFrom( $fieldset );
-		this.emit( 'update', changesListContent, $fieldset, isInitialDOM, fromLiveUpdate ? from : null );
+		this.emit( 'update', changesListContent, $fieldset, isInitialDOM, separateOldAndNew ? from : null );
 	};
 
 	/**

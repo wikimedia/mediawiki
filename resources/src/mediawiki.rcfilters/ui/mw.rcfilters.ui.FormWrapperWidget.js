@@ -54,7 +54,7 @@
 	 * @return {boolean} false
 	 */
 	mw.rcfilters.ui.FormWrapperWidget.prototype.onLinkClick = function ( e ) {
-		this.controller.updateChangesList( true, $( e.target ).data( 'params' ) );
+		this.controller.updateChangesList( $( e.target ).data( 'params' ) );
 		return false;
 	};
 
@@ -78,7 +78,7 @@
 			data[ $( this ).prop( 'name' ) ] = value;
 		} );
 
-		this.controller.updateChangesList( true, data );
+		this.controller.updateChangesList( data );
 		return false;
 	};
 
