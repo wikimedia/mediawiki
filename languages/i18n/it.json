@@ -139,7 +139,7 @@
 	"tog-shownumberswatching": "Mostra il numero di utenti che hanno la pagina in osservazione",
 	"tog-oldsig": "La tua firma attuale:",
 	"tog-fancysig": "Gestisci la firma come wikitesto (senza collegamento automatico)",
-	"tog-uselivepreview": "Abilita la funzione ''Live preview'' (anteprima in diretta)",
+	"tog-uselivepreview": "Mostra anteprime senza ricaricare la pagina",
 	"tog-forceeditsummary": "Chiedi conferma se il campo oggetto è vuoto",
 	"tog-watchlisthideown": "Nascondi le mie modifiche negli osservati speciali",
 	"tog-watchlisthidebots": "Nascondi le modifiche dei bot negli osservati speciali",

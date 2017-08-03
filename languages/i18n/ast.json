@@ -14,7 +14,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Tokvo",
-			"Crucifunked"
+			"Crucifunked",
+			"Enolp"
 		]
 	},
 	"tog-underline": "Sorrayar enllaces:",
@@ -1286,6 +1287,7 @@
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "Amosar",
 	"rcfilters-legend-heading": "<strong>Llista d'abreviatures:</strong>",
+	"rcfilters-other-review-tools": "<strong>Otres ferramientes de revisión</strong>",
 	"rcfilters-activefilters": "Filtros activos",
 	"rcfilters-advancedfilters": "Filtros avanzaos",
 	"rcfilters-limit-title": "Cambios a amosar",
