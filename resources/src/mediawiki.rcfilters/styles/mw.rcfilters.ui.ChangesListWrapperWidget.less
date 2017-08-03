@@ -109,24 +109,27 @@
 	}
 
 	// One color
-	.mw-rcfilters-highlight-color-c1 {
-		background-color: tint( @highlight-c1, 70% );
-	}
+	tr:first-child,
+	td:not( :nth-child( -n+3 ) ) {
+		.mw-rcfilters-highlight-color-c1 & {
+			background-color: tint( @highlight-c1, 70% );
+		}
 
-	.mw-rcfilters-highlight-color-c2 {
-		background-color: tint( @highlight-c2, 70% );
-	}
+		.mw-rcfilters-highlight-color-c2 & {
+			background-color: tint( @highlight-c2, 70% );
+		}
 
-	.mw-rcfilters-highlight-color-c3 {
-		background-color: tint( @highlight-c3, 70% );
-	}
+		.mw-rcfilters-highlight-color-c3 & {
+			background-color: tint( @highlight-c3, 70% );
+		}
 
-	.mw-rcfilters-highlight-color-c4 {
-		background-color: tint( @highlight-c4, 70% );
-	}
+		.mw-rcfilters-highlight-color-c4 & {
+			background-color: tint( @highlight-c4, 70% );
+		}
 
-	.mw-rcfilters-highlight-color-c5 {
-		background-color: tint( @highlight-c5, 70% );
+		.mw-rcfilters-highlight-color-c5 & {
+			background-color: tint( @highlight-c5, 70% );
+		}
 	}
 
 	// Two colors

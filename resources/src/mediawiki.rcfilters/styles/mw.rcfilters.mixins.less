@@ -46,18 +46,27 @@
 
 	// Two colors
 	@{highlight-color-class-var} when ( @color3 = false ) and ( @color4 = false ) and not ( @color1 = false ), ( @color2 = false ) {
-		background-color: tint( average( @@c1var, @@c2var ), 50% );
+		tr:first-child,
+		td:not( :nth-child( -n+3 ) ) {
+			background-color: tint( average( @@c1var, @@c2var ), 50% );
+		}
 	}
 	// Three colors
 	@{highlight-color-class-var}.mw-rcfilters-highlight-color-@{color3} when ( @color4 = false ) and not ( @color3 = false ) {
-		@c3var: ~'highlight-@{color3}';
-		background-color: tint( mix( @@c1var, average( @@c2var, @@c3var ), 33% ), 30% );
+		tr:first-child,
+		td:not( :nth-child( -n+3 ) ) {
+			@c3var: ~'highlight-@{color3}';
+			background-color: tint( mix( @@c1var, average( @@c2var, @@c3var ), 33% ), 30% );
+		}
 	}
 
 	// Four colors
 	@{highlight-color-class-var}.mw-rcfilters-highlight-color-@{color3}.mw-rcfilters-highlight-color-@{color4} when not ( @color4 = false ) {
-		@c3var: ~'highlight-@{color3}';
-		@c4var: ~'highlight-@{color4}';
-		background-color: tint( mix( @@c1var, mix( @@c2var, average( @@c3var, @@c4var ), 25% ), 25% ), 25% );
+		tr:first-child,
+		td:not( :nth-child( -n+3 ) ) {
+			@c3var: ~'highlight-@{color3}';
+			@c4var: ~'highlight-@{color4}';
+			background-color: tint( mix( @@c1var, mix( @@c2var, average( @@c3var, @@c4var ), 25% ), 25% ), 25% );
+		}
 	}
 }
