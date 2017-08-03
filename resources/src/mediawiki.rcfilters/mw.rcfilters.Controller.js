@@ -19,6 +19,10 @@
 		this.initializing = false;
 
 		this.prevLoggedItems = [];
+
+		this.FILTER_CHANGE = 'filterChange';
+		this.SHOW_NEW_CHANGES = 'showNewChanges';
+		this.LIVE_UPDATE = 'liveUpdate';
 	};
 
 	/* Initialization */
@@ -489,7 +493,7 @@
 	mw.rcfilters.Controller.prototype.toggleLiveUpdate = function ( enable ) {
 		this.changesListModel.toggleLiveUpdate( enable );
 		if ( this.changesListModel.getLiveUpdate() && this.changesListModel.getNewChangesExist() ) {
-			this.showNewChanges();
+			this.updateChangesList( null, this.LIVE_UPDATE );
 		}
 	};
 
@@ -522,7 +526,7 @@
 
 				if ( data.changes !== 'NO_RESULTS' ) {
 					if ( this.changesListModel.getLiveUpdate() ) {
-						return this.updateChangesList( false, null, true, false );
+						return this.updateChangesList( null, this.LIVE_UPDATE );
 					} else {
 						this.changesListModel.setNewChangesExist( true );
 					}
@@ -571,7 +575,7 @@
 	 * fetching and showing the new changes
 	 */
 	mw.rcfilters.Controller.prototype.showNewChanges = function () {
-		return this.updateChangesList( false, null, true, true );
+		return this.updateChangesList( null, this.SHOW_NEW_CHANGES );
 	};
 
 	/**
@@ -987,19 +991,17 @@
 	/**
 	 * Update the list of changes and notify the model
 	 *
-	 * @param {boolean} [updateUrl=true] Whether the URL should be updated with the current state of the filters
 	 * @param {Object} [params] Extra parameters to add to the API call
-	 * @param {boolean} [isLiveUpdate=false] The purpose of this update is to show new results for the same filters
-	 * @param {boolean} [invalidateCurrentChanges=true] Invalidate current changes by default (show spinner)
+	 * @param {string} [updateMode='filterChange'] One of 'filterChange', 'liveUpdate', 'showNewChanges'
 	 * @return {jQuery.Promise} Promise that is resolved when the update is complete
 	 */
-	mw.rcfilters.Controller.prototype.updateChangesList = function ( updateUrl, params, isLiveUpdate, invalidateCurrentChanges ) {
-		updateUrl = updateUrl === undefined ? true : updateUrl;
-		invalidateCurrentChanges = invalidateCurrentChanges === undefined ? true : invalidateCurrentChanges;
-		if ( updateUrl ) {
+	mw.rcfilters.Controller.prototype.updateChangesList = function ( params, updateMode ) {
+		updateMode = updateMode === undefined ? this.FILTER_CHANGE : updateMode;
+
+		if ( updateMode === this.FILTER_CHANGE ) {
 			this._updateURL( params );
 		}
-		if ( invalidateCurrentChanges ) {
+		if ( updateMode === this.FILTER_CHANGE || updateMode === this.SHOW_NEW_CHANGES ) {
 			this.changesListModel.invalidate();
 		}
 		this.changesListModel.setNewChangesExist( false );
@@ -1010,7 +1012,12 @@
 				function ( pieces ) {
 					var $changesListContent = pieces.changes,
 						$fieldset = pieces.fieldset;
-					this.changesListModel.update( $changesListContent, $fieldset, false, isLiveUpdate );
+					this.changesListModel.update(
+						$changesListContent,
+						$fieldset,
+						false,
+						updateMode === this.SHOW_NEW_CHANGES
+					);
 				}.bind( this )
 				// Do nothing for failure
 			)
