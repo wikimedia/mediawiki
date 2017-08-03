@@ -1,3 +1,6 @@
+@import 'mediawiki.mixins.animation';
+@import 'mw.rcfilters.mixins';
+
 // Corrections for the standard special page
 .client-js {
 	.rcoptions {
@@ -79,19 +82,16 @@
 			height: 12px;
 			background-color: #c8ccd1;
 			border-radius: 100%;
-			animation: rcfiltersBouncedelay 1.5s infinite ease-in-out;
-			animation-fill-mode: both;
-			animation-delay: -0.16s;
+			.animation( rcfiltersBouncedelay 1.5s ease-in-out -0.16s infinite both );
 		}
 
 		&:before {
-			animation-delay: -0.33s;
+			.animation-delay( -0.33s );
 		}
 
 		&:after {
-			animation-delay: 0s;
+			.animation-delay( 0s );
 		}
-
 	}
 }
 
@@ -99,14 +99,42 @@
 	font-weight: bold;
 }
 
-@keyframes rcfiltersBouncedelay {
+@-webkit-keyframes rcfiltersBouncedelay {
 	0%,
-	100%,
-	80% {
+	80%,
+	100% {
+		-webkit-transform: scale( 0.7 );
 		transform: scale( 0.7 );
 	}
 	40% {
-		transform: scale( 1 );
 		background-color: #a2a9b1;
+		-webkit-transform: scale( 1 );
+		transform: scale( 1 );
+	}
+}
+
+@-moz-keyframes rcfiltersBouncedelay {
+	0%,
+	80%,
+	100% {
+		-moz-transform: scale( 0.7 );
+		transform: scale( 0.7 );
+	}
+	40% {
+		background-color: #a2a9b1;
+		-moz-transform: scale( 0.7 );
+		transform: scale( 1 );
+	}
+}
+
+@keyframes rcfiltersBouncedelay {
+	0%,
+	80%,
+	100% {
+		transform: scale( 0.7 );
+	}
+	40% {
+		background-color: #a2a9b1;
+		transform: scale( 1 );
 	}
 }
