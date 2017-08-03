@@ -119,6 +119,7 @@
 					// we should remove all sticky behavior methods completely
 					// See T172156
 					// isSticky: true,
+					excludedFromSavedQueries: true,
 					filters: displayConfig.limitArray.map( function ( num ) {
 						return controller._createFilterDataFromNumber( num, num );
 					} )
@@ -143,6 +144,7 @@
 					'default': mw.user.options.get( 'rcdays', '30' ),
 					// Temporarily making this not sticky while limit is not sticky, see above
 					// isSticky: true,
+					excludedFromSavedQueries: true,
 					filters: [
 						// Hours (1, 2, 6, 12)
 						0.04166, 0.0833, 0.25, 0.5
@@ -218,8 +220,8 @@
 		this.savedQueriesModel.initialize(
 			parsedSavedQueries,
 			this._getBaseFilterState(),
-			// This is for backwards compatibility - delete all sticky filter states
-			Object.keys( this.filtersModel.getStickyFiltersState() )
+			// This is for backwards compatibility - delete all excluded filter states
+			Object.keys( this.filtersModel.getExcludedFiltersState() )
 		);
 
 		// Check whether we need to load defaults.
@@ -598,8 +600,8 @@
 		// These are filter states; highlight is stored as boolean
 		highlightedItems.highlight = this.filtersModel.isHighlightEnabled();
 
-		// Delete all sticky filters
-		this._deleteStickyValuesFromFilterState( selectedState );
+		// Delete all excluded filters
+		this._deleteExcludedValuesFromFilterState( selectedState );
 
 		// Add item
 		queryID = this.savedQueriesModel.addNewQuery(
@@ -683,8 +685,8 @@
 
 			// Update model state from filters
 			this.filtersModel.toggleFiltersSelected(
-				// Merge filters with sticky values
-				$.extend( true, {}, data.filters, this.filtersModel.getStickyFiltersState() )
+				// Merge filters with excluded values
+				$.extend( true, {}, data.filters, this.filtersModel.getExcludedFiltersState() )
 			);
 
 			// Update namespace inverted property
@@ -727,8 +729,9 @@
 		} );
 		highlightedItems.highlight = this.filtersModel.isHighlightEnabled();
 
-		// Remove sticky filters
-		this._deleteStickyValuesFromFilterState( selectedState );
+		// Remove anything that should be excluded from the saved query
+		// this includes sticky filters and filters marked with 'excludedFromSavedQueries'
+		this._deleteExcludedValuesFromFilterState( selectedState );
 
 		return this.savedQueriesModel.findMatchingQuery(
 			{
@@ -744,9 +747,9 @@
 	 *
 	 * @param {Object} filterState Filter state
 	 */
-	mw.rcfilters.Controller.prototype._deleteStickyValuesFromFilterState = function ( filterState ) {
-		// Remove sticky filters
-		$.each( this.filtersModel.getStickyFiltersState(), function ( filterName ) {
+	mw.rcfilters.Controller.prototype._deleteExcludedValuesFromFilterState = function ( filterState ) {
+		// Remove excluded filters
+		$.each( this.filtersModel.getExcludedFiltersState(), function ( filterName ) {
 			delete filterState[ filterName ];
 		} );
 	};

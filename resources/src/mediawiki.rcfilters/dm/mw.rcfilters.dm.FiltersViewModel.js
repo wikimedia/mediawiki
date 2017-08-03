@@ -581,6 +581,24 @@
 	};
 
 	/**
+	 * Get a filter representation of all parameters that are marked
+	 * as being excluded from saved query.
+	 *
+	 * @return {Object} Excluded filters values
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getExcludedFiltersState = function () {
+		var result = {};
+
+		$.each( this.groups, function ( name, model ) {
+			if ( model.isExcludedFromSavedQueries() ) {
+				$.extend( true, result, model.getSelectedState() );
+			}
+		} );
+
+		return result;
+	};
+
+	/**
 	 * Analyze the groups and their filters and output an object representing
 	 * the state of the parameters they represent.
 	 *
