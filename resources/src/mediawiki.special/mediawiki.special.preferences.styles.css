@@ -1,6 +1,6 @@
 /* Reuses colors from mediawiki.legacy/shared.css */
 .mw-email-not-authenticated .mw-input,
-.mw-email-none .mw-input{
+.mw-email-none .mw-input {
 	border: 1px solid #fde29b;
 	background-color: #fdf1d1;
 	color: #000;
