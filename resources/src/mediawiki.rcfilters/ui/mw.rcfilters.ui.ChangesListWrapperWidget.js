@@ -28,11 +28,13 @@
 		this.filtersViewModel = filtersViewModel;
 		this.changesListViewModel = changesListViewModel;
 		this.controller = controller;
+		this.highlightClasses = null;
 
 		// Events
 		this.filtersViewModel.connect( this, {
 			itemUpdate: 'onItemUpdate',
-			highlightChange: 'onHighlightChange'
+			highlightChange: 'onHighlightChange',
+			initialize: 'onFiltersModelInitialize'
 		} );
 		this.changesListViewModel.connect( this, {
 			invalidate: 'onModelInvalidate',
@@ -45,15 +47,38 @@
 			// We handle our own display/hide of the empty results message
 			.removeClass( 'mw-changeslist-empty' );
 
-		// Set up highlight containers
-		this.setupHighlightContainers( this.$element );
-
 		this.setupNewChangesButtonContainer( this.$element );
 	};
 
 	/* Initialization */
 
 	OO.inheritClass( mw.rcfilters.ui.ChangesListWrapperWidget, OO.ui.Widget );
+
+	/**
+	 * Respond to filters model initialize event
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onFiltersModelInitialize = function () {
+		// Set up highlight containers. We need to wait for the filters model
+		// to be initialized, so we can make sure we have all the css class definitions
+		// we get from the server with our filters
+		this.setupHighlightContainers( this.$element );
+	};
+
+	/**
+	 * Get all available highlight classes
+	 *
+	 * @return {string[]} An array of available highlight class names
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.getHighlightClasses = function () {
+		if ( !this.highlightClasses || !this.highlightClasses.length ) {
+			this.highlightClasses = this.filtersViewModel.getItemsSupportingHighlights()
+				.map( function ( filterItem ) {
+					return filterItem.getCssClass();
+				} );
+		}
+
+		return this.highlightClasses;
+	};
 
 	/**
 	 * Respond to the highlight feature being toggled on and off
@@ -246,7 +271,9 @@
 	 * @param {jQuery|string} $content The content of the updated changes list
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.setupHighlightContainers = function ( $content ) {
-		var highlightClass = 'mw-rcfilters-ui-changesListWrapperWidget-highlights',
+		var $enhancedTopPageCell, $enhancedNestedPagesCell,
+			widget = this,
+			highlightClass = 'mw-rcfilters-ui-changesListWrapperWidget-highlights',
 			$highlights = $( '<div>' )
 				.addClass( highlightClass )
 				.append(
@@ -269,13 +296,35 @@
 		} );
 
 		if ( this.inEnhancedMode() ) {
-			// Enhanced RC
-			$content.find( 'td.mw-enhanced-rc' )
-				.parent()
+			$enhancedTopPageCell = $content.find( 'table.mw-enhanced-rc.mw-collapsible' );
+			$enhancedNestedPagesCell = $content.find( 'td.mw-enhanced-rc-nested' );
+
+			// Enhanced RC highlight containers
+			$content.find( 'table.mw-enhanced-rc tr:first-child' )
 				.prepend(
 					$( '<td>' )
 						.append( $highlights.clone() )
 				);
+
+			$enhancedNestedPagesCell
+				.before(
+					$( '<td>' )
+						.append( $highlights.clone().addClass( 'mw-enhanced-rc-nested' ) )
+				);
+
+			// Go over pages that have sub results
+			// HACK: We really only can collect those by targetting the collapsible class
+			$enhancedTopPageCell.each( function () {
+				var $table = $( this );
+					// Go over <tr>s and pick up all recognized classes
+					collectedClasses = widget.getHighlightClasses().filter( function ( className ) {
+						return $table.find( 'tr' ).hasClass( className );
+					} );
+
+				$table.find( 'tr:first-child' ).addClass( collectedClasses.join( ' ' ) );
+			} );
+
+			$content.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-enhancedView' );
 		} else {
 			// Regular RC
 			$content.find( 'ul.special li' )
