@@ -56,14 +56,34 @@ class RevisionDeleteUser {
 		# The same goes for the sysop-restricted *_deleted bit.
 		$delUser = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
 		$delAction = LogPage::DELETED_ACTION | Revision::DELETED_RESTRICTED;
+		$delAll = Revision::SUPPRESSED_ALL;
 		if ( $op == '&' ) {
 			$delUser = $dbw->bitNot( $delUser );
 			$delAction = $dbw->bitNot( $delAction );
+			$delAll = $dbw->bitNot( $delAll );
 		}
 
 		# Normalize user name
 		$userTitle = Title::makeTitleSafe( NS_USER, $name );
 		$userDbKey = $userTitle->getDBkey();
+
+		# Hide content from live user pages
+		foreach( self::fetchLiveUserPages( $name ) as $row ) {
+			$dbw->update(
+				'revision',
+				[ self::buildSetBitDeletedField( 'rev_deleted', $op, $delAll, $dbw ) ],
+				[ 'rev_id' => $row->rev_id ],
+			   __METHOD__ );
+		}
+
+		# Hide content from deleted user pages
+		foreach( self::fetchDeletedUserPages( $name ) as $row ) {
+			$dbw->update(
+				'archive',
+				[ self::buildSetBitDeletedField( 'ar_deleted', $op, $delAll, $dbw ) ],
+				[ 'ar_id' => $row->ar_id ],
+			   __METHOD__ );
+		}
 
 		# Hide name from live edits
 		$dbw->update(
@@ -132,6 +152,34 @@ class RevisionDeleteUser {
 		return $field . ' = ' . ( $op === '&'
 			? $dbw->bitAnd( $field, $value )
 			: $dbw->bitOr( $field, $value ) );
+	}
+
+	private static function fetchLiveUserPages( $name ) {
+		$dbr = wfGetDB( DB_REPLICA );
+		return $res = $dbr->select(
+				[ 'revision', 'page' ],
+				[ 'rev_id' ],
+				[
+					'page_namespace = 2 OR page_namespace = 3',
+					'page_title' => $name
+				],
+				__METHOD__,
+				[],
+				[ 'page' => [ 'LEFT JOIN', [ 'rev_page=page_id' ] ] ]
+			);
+	}
+	private static function fetchDeletedUserPages( $name ) {
+		$dbr = wfGetDB( DB_REPLICA );
+		return $res = $dbr->select(
+				'archive',
+				[ 'ar_id' ],
+				[
+					'ar_namespace = 2 OR ar_namespace = 3',
+					'ar_title' => $name
+				],
+				__METHOD__,
+				[]
+			);
 	}
 
 	public static function suppressUserName( $name, $userId, $dbw = null ) {
