@@ -40,6 +40,13 @@ class ResourceLoaderMediaWikiUtilModule extends ResourceLoaderFileModule {
 	/**
 	 * @inheritdoc
 	 */
+	public function supportsURLLoading() {
+		return false;
+	}
+
+	/**
+	 * @inheritdoc
+	 */
 	public function enableModuleContentVersion() {
 		return true;
 	}
