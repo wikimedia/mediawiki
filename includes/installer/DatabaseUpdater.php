@@ -940,10 +940,10 @@ abstract class DatabaseUpdater {
 	 *
 	 * @param string $table Name of the table to modify
 	 * @param string $patch Name of the patch file to apply
-	 * @param string $fullpath Whether to treat $patch path as relative or not, defaults to false
+	 * @param string|bool $fullpath Whether to treat $patch path as relative or not, defaults to false
 	 * @return bool False if this was skipped because of schema changes being skipped
 	 */
-	public function modifyTable( $table, $patch,  $fullpath = false ) {
+	public function modifyTable( $table, $patch, $fullpath = false ) {
 		if ( !$this->doTable( $table ) ) {
 			return true;
 		}
