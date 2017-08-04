@@ -1322,6 +1322,8 @@ class Title implements LinkTarget {
 	 * Get a Title object associated with the talk page of this article,
 	 * if such a talk page can exist.
 	 *
+	 * @since 1.30
+	 *
 	 * @return Title The object for the talk page,
 	 *         or null if no associated talk page can exist, according to canHaveTalkPage().
 	 */
