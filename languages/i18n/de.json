@@ -2677,7 +2677,7 @@
 	"import-nonewrevisions": "Es wurden keine Versionen importiert. Entweder waren alle bereits vorhanden oder wurden aufgrund von Fehlern übersprungen.",
 	"xml-error-string": "$1 Zeile $2, Spalte $3, (Byte $4): $5",
 	"import-upload": "XML-Dateien importieren",
-	"import-token-mismatch": "Die Sitzungsdaten sind verloren gegangen.\n\nDu wurdest eventuell abgemeldet. <strong>Bitte verifiziere, dass du noch angemeldet bist und versuche es erneut</strong>.\nFalls dies nicht funktioniert, versuche dich [[Special:UserLogout|abzumelden]] und anschließend wieder anzumelden und überprüfe, ob dein Browser Cookies von dieser Website akzeptiert.",
+	"import-token-mismatch": "Die Sitzungsdaten sind verloren gegangen.\n\nDu wurdest eventuell abgemeldet. '''Bitte verifiziere, dass du noch angemeldet bist und versuche es erneut'''.\nFalls dies nicht funktioniert, versuche dich [[Special:UserLogout|abzumelden]] und anschließend wieder anzumelden und überprüfe, ob dein Browser Cookies von dieser Website akzeptiert.",
 	"import-invalid-interwiki": "Aus dem angegebenen Wiki ist kein Import möglich.",
 	"import-error-edit": "Die Seite „$1“ wurde nicht importiert, da du nicht berechtigt bist, sie zu bearbeiten.",
 	"import-error-create": "Die Seite „$1“ wurde nicht importiert, da du nicht berechtigt bist, sie zu erstellen.",

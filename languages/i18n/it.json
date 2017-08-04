@@ -2673,7 +2673,7 @@
 	"import-nonewrevisions": "Nessuna versione importata (erano già tutte presenti, o saltate a causa di errori)",
 	"xml-error-string": "$1 a riga $2, colonna $3 (byte $4): $5",
 	"import-upload": "Carica dati XML",
-	"import-token-mismatch": "I dati relativi alla sessione sono andati persi. Riprovare.\n\nPotresti essere stato disconnesso. <strong>Verifica di essere ancora collegato e riprova</strong>.\nSe il problema persiste, puoi provare a [[Special:UserLogout|scollegarti]] ed effettuare un nuovo l'accesso, controllando che il tuo browser accetti i cookie da questo sito.",
+	"import-token-mismatch": "I dati relativi alla sessione sono andati persi.\n\nPotresti essere stato disconnesso. '''Verifica di essere ancora collegato e riprova'''.\nSe il problema persiste, puoi provare a [[Special:UserLogout|scollegarti]] ed effettuare di nuovo l'accesso, controllando che il tuo browser accetti i cookie da questo sito.",
 	"import-invalid-interwiki": "Impossibile importare dal progetto wiki indicato.",
 	"import-error-edit": "La pagina \"$1\" non è stata importata poiché non sei autorizzato a modificarla.",
 	"import-error-create": "La pagina \"$1\" non è stata importata poiché non sei autorizzato a crearla.",

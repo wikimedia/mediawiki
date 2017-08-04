@@ -1362,7 +1362,7 @@
 	"rcfilters-savedqueries-add-new-title": "현재의 필터 설정 저장",
 	"rcfilters-restore-default-filters": "기본 필터 복구",
 	"rcfilters-clear-all-filters": "필터 모두 지우기",
-	"rcfilters-show-new-changes": "새로운 변경사항 표시",
+	"rcfilters-show-new-changes": "최신 변경사항 보기",
 	"rcfilters-previous-changes-label": "이전에 표시된 변경사항",
 	"rcfilters-search-placeholder": "필터 최근 바뀜 (찾아보거나 입력을 시작하십시오)",
 	"rcfilters-invalid-filter": "유효하지 않은 필터",

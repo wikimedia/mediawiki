@@ -1182,6 +1182,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|spisak novih stranica]])",
 	"recentchanges-submit": "Prikaži",
 	"rcfilters-legend-heading": "<strong>Spisak skraćenica:</strong>",
+	"rcfilters-other-review-tools": "<strong>Ostali alati za pregled:</strong>",
 	"rcfilters-activefilters": "Aktivni filteri",
 	"rcfilters-limit-title": "Prikazati izmjena",
 	"rcfilters-limit-shownum": "Prikaži posljednjih $1 izmjena",
