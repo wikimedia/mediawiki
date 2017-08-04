@@ -42,6 +42,17 @@ a.stub {
 	color: #723;
 }
 
+a.blocked,
+span.blocked a {
+	font-style: italic;
+	color: #bbf;
+}
+
+a.blocked:visited,
+span.blocked a:visited {
+	color: #dbf;
+}
+
 a.new,
 #p-personal a.new {
 	color: #ba0000;
