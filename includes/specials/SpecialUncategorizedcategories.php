@@ -68,7 +68,7 @@ class UncategorizedCategoriesPage extends UncategorizedPagesPage {
 	}
 
 	public function getQueryInfo() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$query = parent::getQueryInfo();
 		$exceptionList = $this->getExceptionList();
 		if ( $exceptionList ) {

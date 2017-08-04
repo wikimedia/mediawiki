@@ -117,7 +117,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$id = $page->getId();
 
 		# ------------------------
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$res = $dbr->select( 'pagelinks', '*', [ 'pl_from' => $id ] );
 		$n = $res->numRows();
 		$res->free();
@@ -147,7 +147,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $content->equals( $retrieved ), 'retrieved content doesn\'t equal original' );
 
 		# ------------------------
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$res = $dbr->select( 'pagelinks', '*', [ 'pl_from' => $id ] );
 		$n = $res->numRows();
 		$res->free();
@@ -195,7 +195,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$jobs->execute();
 
 		# ------------------------
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$res = $dbr->select( 'pagelinks', '*', [ 'pl_from' => $id ] );
 		$n = $res->numRows();
 		$res->free();
@@ -225,7 +225,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$jobs->execute();
 
 		# ------------------------
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$res = $dbr->select( 'pagelinks', '*', [ 'pl_from' => $id ] );
 		$n = $res->numRows();
 		$res->free();
@@ -827,7 +827,7 @@ more stuff
 		# we are having issues with doRollback spuriously failing. Apparently
 		# the last revision somehow goes missing or not committed under some
 		# circumstances. So, make sure the last revision has the right user name.
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$this->assertEquals( 3, Revision::countByPageId( $dbr, $page->getId() ) );
 
 		$page = new WikiPage( $page->getTitle() );

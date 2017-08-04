@@ -88,8 +88,8 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$dbw = $lb->getConnection( DB_MASTER );
 		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
 
-		$dbr = $lb->getConnection( DB_SLAVE );
-		$this->assertTrue( $dbr->getLBInfo( 'master' ), 'DB_SLAVE also gets the master' );
+		$dbr = $lb->getConnection( DB_REPLICA );
+		$this->assertTrue( $dbr->getLBInfo( 'master' ), 'DB_REPLICA also gets the master' );
 
 		$factory->shutdown();
 		$lb->closeAll();
@@ -134,7 +134,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 			$dbw->getLBInfo( 'clusterMasterHost' ),
 			'cluster master set' );
 
-		$dbr = $lb->getConnection( DB_SLAVE );
+		$dbr = $lb->getConnection( DB_REPLICA );
 		$this->assertTrue( $dbr->getLBInfo( 'replica' ), 'slave shows as slave' );
 		$this->assertEquals(
 			( $wgDBserver != '' ) ? $wgDBserver : 'localhost',
@@ -175,7 +175,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$dbw = $lb->getConnection( DB_MASTER );
 		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
 
-		$dbr = $lb->getConnection( DB_SLAVE );
+		$dbr = $lb->getConnection( DB_REPLICA );
 		$this->assertTrue( $dbr->getLBInfo( 'replica' ), 'slave shows as slave' );
 
 		$factory->shutdown();

@@ -150,7 +150,7 @@ if ( !$wgEnableProfileInfo ) {
 	exit( 1 );
 }
 
-$dbr = wfGetDB( DB_SLAVE );
+$dbr = wfGetDB( DB_REPLICA );
 
 if ( !$dbr->tableExists( 'profiling' ) ) {
 	echo '<p>No <code>profiling</code> table exists, so we can\'t show you anything.</p>'
