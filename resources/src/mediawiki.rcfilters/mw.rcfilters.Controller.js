@@ -1016,7 +1016,8 @@
 						$changesListContent,
 						$fieldset,
 						false,
-						updateMode === this.SHOW_NEW_CHANGES
+						// separator between old and new changes
+						updateMode === this.SHOW_NEW_CHANGES || updateMode === this.LIVE_UPDATE
 					);
 				}.bind( this )
 				// Do nothing for failure
