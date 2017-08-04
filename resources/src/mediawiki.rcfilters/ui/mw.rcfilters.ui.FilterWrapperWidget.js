@@ -91,11 +91,7 @@
 				.append( this.savedLinksListWidget.$element )
 		);
 
-		if (
-			mw.config.get( 'wgStructuredChangeFiltersEnableLiveUpdate' ) ||
-			// Allow users to enable live update with ?liveupdate=1
-			new mw.Uri().query.liveupdate
-		) {
+		if ( mw.rcfilters.featureFlags.liveUpdate ) {
 			$bottom.append( this.liveUpdateButton.$element );
 		}
 

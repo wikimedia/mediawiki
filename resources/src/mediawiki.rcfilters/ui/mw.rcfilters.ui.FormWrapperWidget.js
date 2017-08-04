@@ -151,9 +151,11 @@
 			this.$element.find( 'br' ).detach();
 		}
 
-		this.$element.find(
-			'legend, .rclistfrom, .rcnotefrom, .rcoptions-listfromreset'
-		).detach();
+		if ( mw.rcfilters.featureFlags.liveUpdate ) {
+			this.$element.find(
+				'legend, .rclistfrom, .rcnotefrom, .rcoptions-listfromreset'
+			).detach();
+		}
 
 		if ( this.$element.text().trim() === '' ) {
 			this.$element.detach();

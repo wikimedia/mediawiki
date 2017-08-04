@@ -479,13 +479,10 @@
 	 * @private
 	 */
 	mw.rcfilters.Controller.prototype._shouldCheckForNewChanges = function () {
-		var liveUpdateFeatureFlag = mw.config.get( 'wgStructuredChangeFiltersEnableLiveUpdate' ) ||
-			new mw.Uri().query.liveupdate;
-
 		return !document.hidden &&
 			!this.changesListModel.getNewChangesExist() &&
 			!this.updatingChangesList &&
-			liveUpdateFeatureFlag;
+			mw.rcfilters.featureFlags.liveUpdate;
 	};
 
 	/**
