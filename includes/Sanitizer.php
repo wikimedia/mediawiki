@@ -1914,7 +1914,7 @@ class Sanitizer {
 			# Not usually allowed, but may be used for extension-style hooks
 			# such as <math> when it is rasterized, or if $wgAllowImageTag is
 			# true
-			'img'        => array_merge( $common, [ 'alt', 'src', 'width', 'height' ] ),
+			'img'        => array_merge( $common, [ 'alt', 'src', 'width', 'height', 'srcset' ] ),
 
 			'video'      => array_merge( $common, [ 'poster', 'controls', 'preload', 'width', 'height' ] ),
 			'source'     => array_merge( $common, [ 'type', 'src' ] ),
@@ -1951,6 +1951,10 @@ class Sanitizer {
 			# https://www.w3.org/TR/REC-MathML/
 			'math'       => [ 'class', 'style', 'id', 'title' ],
 
+			// HTML 5 section 4.5
+			'figure'     => $common,
+			'figcaption' => $common,
+
 			# HTML 5 section 4.6
 			'bdi' => $common,
 
@@ -1966,7 +1970,7 @@ class Sanitizer {
 			// (ie: validateTag rejects tags missing the attributes needed for Microdata)
 			// So we don't bother including $common attributes that have no purpose.
 			'meta' => [ 'itemprop', 'content' ],
-			'link' => [ 'itemprop', 'href' ],
+			'link' => [ 'itemprop', 'href', 'title' ],
 		];
 
 		return $whitelist;
