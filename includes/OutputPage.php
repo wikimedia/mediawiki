@@ -2918,6 +2918,7 @@ class OutputPage extends ContextSource {
 					"/resources/lib/html5shiv/html5shiv{$min}.js"
 				),
 			] ) .
+			Html::element( 'script' , null, 'html5.addElements(\'figure-inline\');' ) .
 			'<![endif]-->';
 
 		$pieces[] = Html::closeElement( 'head' );
