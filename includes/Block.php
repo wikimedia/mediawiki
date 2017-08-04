@@ -77,7 +77,7 @@ class Block {
 	protected $isAutoblocking;
 
 	/** @var string|null */
-	protected $systemBlockType;
+	private $systemBlockType;
 
 	# TYPE constants
 	const TYPE_USER = 1;
@@ -958,6 +958,7 @@ class Block {
 
 	/**
 	 * Get the system block type, if any
+	 * @since 1.29
 	 * @return string|null
 	 */
 	public function getSystemBlockType() {
