@@ -178,10 +178,9 @@ CREATE INDEX /*i*/ug_expiry ON /*_*/user_groups (ug_expiry);
 CREATE TABLE /*_*/user_former_groups (
   -- Key to user_id
   ufg_user int unsigned NOT NULL default 0,
-  ufg_group varbinary(255) NOT NULL default ''
+  ufg_group varbinary(255) NOT NULL default '',
+  PRIMARY KEY (ufg_user,ufg_group)
 ) /*$wgDBTableOptions*/;
-
-CREATE UNIQUE INDEX /*i*/ufg_user_group ON /*_*/user_former_groups (ufg_user,ufg_group);
 
 --
 -- Stores notifications of user talk page changes, for the display
@@ -220,10 +219,10 @@ CREATE TABLE /*_*/user_properties (
   up_property varbinary(255) NOT NULL,
 
   -- Property value as a string.
-  up_value blob
+  up_value blob,
+  PRIMARY KEY (up_user,up_property)
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/user_properties_user_property ON /*_*/user_properties (up_user,up_property);
 CREATE INDEX /*i*/user_properties_property ON /*_*/user_properties (up_property);
 
 --
@@ -576,11 +575,9 @@ CREATE TABLE /*_*/pagelinks (
   -- and deletions may refer to different page records as time
   -- goes by.
   pl_namespace int NOT NULL default 0,
-  pl_title varchar(255) binary NOT NULL default ''
+  pl_title varchar(255) binary NOT NULL default '',
+  PRIMARY KEY (pl_from,pl_namespace,pl_title)
 ) /*$wgDBTableOptions*/;
-
--- Forward index, for page edit, save
-CREATE UNIQUE INDEX /*i*/pl_from ON /*_*/pagelinks (pl_from,pl_namespace,pl_title);
 
 -- Reverse index, for Special:Whatlinkshere
 CREATE INDEX /*i*/pl_namespace ON /*_*/pagelinks (pl_namespace,pl_title,pl_from);
@@ -603,11 +600,9 @@ CREATE TABLE /*_*/templatelinks (
   -- and deletions may refer to different page records as time
   -- goes by.
   tl_namespace int NOT NULL default 0,
-  tl_title varchar(255) binary NOT NULL default ''
+  tl_title varchar(255) binary NOT NULL default '',
+  PRIMARY KEY (tl_from,tl_namespace,tl_title)
 ) /*$wgDBTableOptions*/;
-
--- Forward index, for page edit, save
-CREATE UNIQUE INDEX /*i*/tl_from ON /*_*/templatelinks (tl_from,tl_namespace,tl_title);
 
 -- Reverse index, for Special:Whatlinkshere
 CREATE INDEX /*i*/tl_namespace ON /*_*/templatelinks (tl_namespace,tl_title,tl_from);
@@ -630,11 +625,9 @@ CREATE TABLE /*_*/imagelinks (
   -- Filename of target image.
   -- This is also the page_title of the file's description page;
   -- all such pages are in namespace 6 (NS_FILE).
-  il_to varchar(255) binary NOT NULL default ''
+  il_to varchar(255) binary NOT NULL default '',
+  PRIMARY KEY (il_from,il_to)
 ) /*$wgDBTableOptions*/;
-
--- Forward index, for cache invalidation on file update, etc.
-CREATE UNIQUE INDEX /*i*/il_from ON /*_*/imagelinks (il_from,il_to);
 
 -- Reverse index, for Special:Whatlinkshere and file description page local usage
 CREATE INDEX /*i*/il_to ON /*_*/imagelinks (il_to,il_from);
@@ -685,10 +678,10 @@ CREATE TABLE /*_*/categorylinks (
   -- paginate the three categories separately.  This never has to be updated
   -- after the page is created, since none of these page types can be moved to
   -- any other.
-  cl_type ENUM('page', 'subcat', 'file') NOT NULL default 'page'
+  cl_type ENUM('page', 'subcat', 'file') NOT NULL default 'page',
+  PRIMARY KEY (cl_from,cl_to)
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/cl_from ON /*_*/categorylinks (cl_from,cl_to);
 
 -- We always sort within a given category, and within a given type.  FIXME:
 -- Formerly this index didn't cover cl_type (since that didn't exist), so old
@@ -787,11 +780,9 @@ CREATE TABLE /*_*/langlinks (
   ll_lang varbinary(20) NOT NULL default '',
 
   -- Title of the target, including namespace
-  ll_title varchar(255) binary NOT NULL default ''
+  ll_title varchar(255) binary NOT NULL default '',
+  PRIMARY KEY (ll_from,ll_lang)
 ) /*$wgDBTableOptions*/;
-
--- Forward index, for page edit, save, ApiQueryLanglinks
-CREATE UNIQUE INDEX /*i*/ll_from ON /*_*/langlinks (ll_from, ll_lang);
 
 -- Index for ApiQueryLangbacklinks
 CREATE INDEX /*i*/ll_lang ON /*_*/langlinks (ll_lang, ll_title);
@@ -808,11 +799,9 @@ CREATE TABLE /*_*/iwlinks (
   iwl_prefix varbinary(20) NOT NULL default '',
 
   -- Title of the target, including namespace
-  iwl_title varchar(255) binary NOT NULL default ''
+  iwl_title varchar(255) binary NOT NULL default '',
+  PRIMARY KEY (iwl_from,iwl_prefix,iwl_title)
 ) /*$wgDBTableOptions*/;
-
--- Forward index, for page edit, save, ApiQueryIWLinks
-CREATE UNIQUE INDEX /*i*/iwl_from ON /*_*/iwlinks (iwl_from, iwl_prefix, iwl_title);
 
 -- Index for ApiQueryIWBacklinks
 CREATE INDEX /*i*/iwl_prefix_title_from ON /*_*/iwlinks (iwl_prefix, iwl_title, iwl_from);
@@ -827,7 +816,7 @@ CREATE INDEX /*i*/iwl_prefix_from_title ON /*_*/iwlinks (iwl_prefix, iwl_from, i
 --
 CREATE TABLE /*_*/site_stats (
   -- The single row should contain 1 here.
-  ss_row_id int unsigned NOT NULL,
+  ss_row_id int unsigned NOT NULL PRIMARY KEY,
 
   -- Total number of edits performed.
   ss_total_edits bigint unsigned default 0,
@@ -851,9 +840,6 @@ CREATE TABLE /*_*/site_stats (
   -- Number of images, equivalent to SELECT COUNT(*) FROM image
   ss_images int default 0
 ) /*$wgDBTableOptions*/;
-
--- Pointless index to assuage developer superstitions
-CREATE UNIQUE INDEX /*i*/ss_row_id ON /*_*/site_stats (ss_row_id);
 
 --
 -- The internet is full of jerks, alas. Sometimes it's handy
@@ -1381,12 +1367,10 @@ CREATE INDEX /*i*/exptime ON /*_*/objectcache (exptime);
 -- Cache of interwiki transclusion
 --
 CREATE TABLE /*_*/transcache (
-  tc_url varbinary(255) NOT NULL,
+  tc_url varbinary(255) NOT NULL PRIMARY KEY,
   tc_contents text,
   tc_time binary(14) NOT NULL
 ) /*$wgDBTableOptions*/;
-
-CREATE UNIQUE INDEX /*i*/tc_url_idx ON /*_*/transcache (tc_url);
 
 
 CREATE TABLE /*_*/logging (
@@ -1460,9 +1444,9 @@ CREATE TABLE /*_*/log_search (
   -- The value of the ID
   ls_value varchar(255) NOT NULL,
   -- Key to log_id
-  ls_log_id int unsigned NOT NULL default 0
+  ls_log_id int unsigned NOT NULL default 0,
+  PRIMARY KEY (ls_field,ls_value,ls_log_id)
 ) /*$wgDBTableOptions*/;
-CREATE UNIQUE INDEX /*i*/ls_field_val ON /*_*/log_search (ls_field,ls_value,ls_log_id);
 CREATE INDEX /*i*/ls_log_id ON /*_*/log_search (ls_log_id);
 
 
@@ -1514,13 +1498,11 @@ CREATE INDEX /*i*/job_timestamp ON /*_*/job (job_timestamp);
 CREATE TABLE /*_*/querycache_info (
   -- Special page name
   -- Corresponds to a qc_type value
-  qci_type varbinary(32) NOT NULL default '',
+  qci_type varbinary(32) NOT NULL default '' PRIMARY KEY,
 
   -- Timestamp of last update
   qci_timestamp binary(14) NOT NULL default '19700101000000'
 ) /*$wgDBTableOptions*/;
-
-CREATE UNIQUE INDEX /*i*/qci_type ON /*_*/querycache_info (qci_type);
 
 
 -- For each redirect, this table contains exactly one row defining its target
@@ -1686,9 +1668,9 @@ CREATE TABLE /*_*/module_deps (
   -- Module context vary (includes skin and language; called "md_skin" for legacy reasons)
   md_skin varbinary(32) NOT NULL,
   -- JSON blob with file dependencies
-  md_deps mediumblob NOT NULL
+  md_deps mediumblob NOT NULL,
+  PRIMARY KEY (md_module,md_skin)
 ) /*$wgDBTableOptions*/;
-CREATE UNIQUE INDEX /*i*/md_module_skin ON /*_*/module_deps (md_module, md_skin);
 
 -- Holds all the sites known to the wiki.
 CREATE TABLE /*_*/sites (
