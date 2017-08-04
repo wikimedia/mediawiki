@@ -4133,6 +4133,7 @@ $wgContentNamespaces = [ NS_MAIN ];
  * Optional array of namespaces which should be blacklisted from Special:ShortPages
  * Only pages inside $wgContentNamespaces but not $wgShortPagesNamespaceBlacklist will
  * be shown on that page.
+ * @since 1.30
  */
 $wgShortPagesNamespaceBlacklist = [];
 
