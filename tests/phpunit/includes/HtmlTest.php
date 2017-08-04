@@ -65,6 +65,45 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Html::comment
+	 * @covers Html::conditionalComment
+	 */
+	public function testCommentBasics() {
+		$this->assertEquals(
+			'<!-- hi -->',
+			Html::comment( 'hi' ),
+			'Basic comment'
+		);
+
+		$this->assertEquals(
+			'<!--\nhi\n-->',
+			Html::comment( 'hi', '\n' ),
+			'Basic comment with non-standard padding'
+		);
+
+		$this->assertEquals(
+			'<!-- - -->',
+			Html::comment( '-' ),
+			'Comment not requiring escaping'
+		);
+
+		$this->assertEquals(
+			'<!-- &#43;&#43;> -->',
+			Html::comment( '-->' ),
+			'Comment requiring escaping'
+		);
+
+		$this->assertEquals(
+			'<!--[if lt IE 9]><script>alert(\'hi\');</script><![endif]-->',
+			Html::conditionalComment(
+				'lt IE 9',
+				Html::element( 'script', [], 'alert(\'hi\');' )
+			),
+			'An IE conditional comment'
+		);
+	}
+
 	public function dataXmlMimeType() {
 		return [
 			// ( $mimetype, $isXmlMimeType )
