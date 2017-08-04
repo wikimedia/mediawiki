@@ -2746,7 +2746,7 @@
 	"import-nonewrevisions": "No revisions imported (all were either already present, or skipped due to errors).",
 	"xml-error-string": "$1 at line $2, col $3 (byte $4): $5",
 	"import-upload": "Upload XML data",
-	"import-token-mismatch": "Loss of session data.\n\nYou might have been logged out. <strong>Please verify that you're still logged in and try again</strong>.\nIf it still does not work, try [[Special:UserLogout|logging out]] and logging back in, and check that your browser allows cookies from this site.",
+	"import-token-mismatch": "Loss of session data.\n\nYou might have been logged out. '''Please verify that you're still logged in and try again'''.\nIf it still does not work, try [[Special:UserLogout|logging out]] and logging back in, and check that your browser allows cookies from this site.",
 	"import-invalid-interwiki": "Cannot import from the specified wiki.",
 	"import-error-edit": "Page \"$1\" was not imported because you are not allowed to edit it.",
 	"import-error-create": "Page \"$1\" was not imported because you are not allowed to create it.",
