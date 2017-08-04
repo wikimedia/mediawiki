@@ -185,6 +185,8 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'transcache', 'tc_url_idx', 'PRIMARY', false, 'patch-transcache-fix-pk.sql' ],
 			[ 'renameIndex', 'user_former_groups', 'ufg_user_group', 'PRIMARY', false, 'patch-user_former_groups-fix-pk.sql' ],
 			[ 'renameIndex', 'user_properties', 'user_properties_user_property', 'PRIMARY', false, 'patch-user_properties-fix-pk.sql' ],
+			[ 'dropIndex', 'pagelinks', 'pl_from', 'patch-pagelinks-drop-index-pl_from.sql' ],
+			[ 'dropIndex', 'templatelinks', 'tl_from', 'patch-templatelinks-drop-index-tl_from.sql' ],
 		];
 	}
 
