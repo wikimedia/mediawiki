@@ -958,6 +958,7 @@ class Block {
 
 	/**
 	 * Get the system block type, if any
+	 * @since 1.29
 	 * @return string|null
 	 */
 	public function getSystemBlockType() {
@@ -1450,6 +1451,8 @@ class Block {
 	 * Set the 'BlockID' cookie to this block's ID and expiry time. The cookie's expiry will be
 	 * the same as the block's, to a maximum of 24 hours.
 	 *
+	 * @since 1.29
+	 *
 	 * @param WebResponse $response The response on which to set the cookie.
 	 */
 	public function setCookie( WebResponse $response ) {
@@ -1472,6 +1475,8 @@ class Block {
 	/**
 	 * Unset the 'BlockID' cookie.
 	 *
+	 * @since 1.29
+	 *
 	 * @param WebResponse $response The response on which to unset the cookie.
 	 */
 	public static function clearCookie( WebResponse $response ) {
@@ -1482,6 +1487,9 @@ class Block {
 	 * Get the BlockID cookie's value for this block. This is usually the block ID concatenated
 	 * with an HMAC in order to avoid spoofing (T152951), but if wgSecretKey is not set will just
 	 * be the block ID.
+	 *
+	 * @since 1.29
+	 *
 	 * @return string The block ID, probably concatenated with "!" and the HMAC.
 	 */
 	public function getCookieValue() {
@@ -1500,7 +1508,11 @@ class Block {
 	/**
 	 * Get the stored ID from the 'BlockID' cookie. The cookie's value is usually a combination of
 	 * the ID and a HMAC (see Block::setCookie), but will sometimes only be the ID.
+	 *
+	 * @since 1.29
+	 *
 	 * @param string $cookieValue The string in which to find the ID.
+	 *
 	 * @return integer|null The block ID, or null if the HMAC is present and invalid.
 	 */
 	public static function getIdFromCookieValue( $cookieValue ) {
