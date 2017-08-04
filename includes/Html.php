@@ -238,6 +238,40 @@ class Html {
 	}
 
 	/**
+	 * An html commment.  The default padding and escaping minimally ensure
+	 * the contents conforms to the spec,
+	 * https://www.w3.org/TR/html5/syntax.html#comments
+	 *
+	 * @since 1.30
+	 *
+	 * @param string $contents
+	 * @param string $padding
+	 *
+	 * @return string
+	 */
+	public static function comment( $contents, $padding = ' ' ) {
+		assert( strlen( $padding ) > 0 && !preg_match( '/[\->]/', $padding ) );
+		$contents = strtr( $contents, [
+			'--' => '&#43;&#43;',
+		] );
+		return "<!--$padding$contents$padding-->";
+	}
+
+	/**
+	 * An IE conditional comment to serve the script only to old IE.
+	 *
+	 * @since 1.30
+	 *
+	 * @param string $condition
+	 * @param string $script
+	 *
+	 * @return string
+	 */
+	public static function conditionalComment( $condition, $script = '' ) {
+		return "<!--[if $condition]>$script<![endif]-->";
+	}
+
+	/**
 	 * Identical to rawElement(), but has no third parameter and omits the end
 	 * tag (and the self-closing '/' in XML mode for empty elements).
 	 *

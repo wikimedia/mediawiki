@@ -2911,15 +2911,15 @@ class OutputPage extends ContextSource {
 		$pieces = array_merge( $pieces, array_values( $this->mHeadItems ) );
 
 		$min = ResourceLoader::inDebugMode() ? '' : '.min';
-		// Use an IE conditional comment to serve the script only to old IE
-		$pieces[] = '<!--[if lt IE 9]>' .
+		$pieces[] = Html::conditionalComment(
+			'lt IE 9',
 			Html::element( 'script', [
 				'src' => self::transformResourcePath(
 					$this->getConfig(),
 					"/resources/lib/html5shiv/html5shiv{$min}.js"
 				),
-			] ) .
-			'<![endif]-->';
+			] )
+		);
 
 		$pieces[] = Html::closeElement( 'head' );
 
@@ -3735,7 +3735,7 @@ class OutputPage extends ContextSource {
 
 		if ( isset( $options['condition'] ) ) {
 			$condition = htmlspecialchars( $options['condition'] );
-			$link = "<!--[if $condition]>$link<![endif]-->";
+			$link = Html::conditionalComment( $condition, $link );
 		}
 		return $link;
 	}

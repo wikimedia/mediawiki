@@ -177,7 +177,7 @@ class MWExceptionRenderer {
 					$logId,
 					MWExceptionHandler::getURL()
 				) . "</div>\n" .
-				"<!-- " . wordwrap( self::getShowBacktraceError( $e ), 50 ) . " -->";
+				Html::comment( wordwrap( self::getShowBacktraceError( $e ), 50 ) );
 		}
 
 		return $html;
