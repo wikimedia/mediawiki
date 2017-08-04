@@ -65,6 +65,24 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Html::comment
+	 * @covers Html::rawComment
+	 */
+	public function testCommentBasics() {
+		$this->assertEquals(
+			'<!-- hi -->',
+			Html::comment( 'hi' ),
+			'Basic comment'
+		);
+
+		$this->assertEquals(
+			'<!-- &#43;&#43;&gt; -->',
+			Html::comment( '-->' ),
+			'Comment requiring escaping'
+		);
+	}
+
 	public function dataXmlMimeType() {
 		return [
 			// ( $mimetype, $isXmlMimeType )

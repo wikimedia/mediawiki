@@ -238,6 +238,29 @@ class Html {
 	}
 
 	/**
+	 * @param string $contents
+	 *
+	 * @return string
+	 */
+	public static function rawComment( $contents = '' ) {
+		return "<!--{$contents}-->";
+	}
+
+	/**
+	 * @param string $contents
+	 *
+	 * @return string
+	 */
+	public static function comment( $contents = '' ) {
+		$contents = strtr( $contents, [
+			'-' => '&#43;',
+			'>' => '&gt;',
+			'&' => '&amp;',
+		] );
+		return self::rawComment( ' ' . $contents . ' ' );
+	}
+
+	/**
 	 * Identical to rawElement(), but has no third parameter and omits the end
 	 * tag (and the self-closing '/' in XML mode for empty elements).
 	 *
