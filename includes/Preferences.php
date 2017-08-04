@@ -901,6 +901,8 @@ class Preferences {
 		];
 		$defaultPreferences['rclimit'] = [
 			'type' => 'int',
+			'min' => 0,
+			'max' => 1000,
 			'label-message' => 'recentchangescount',
 			'help-message' => 'prefs-help-recentchangescount',
 			'section' => 'rc/displayrc',
