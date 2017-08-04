@@ -44,40 +44,40 @@ class Block {
 	public $mParentBlockId;
 
 	/** @var int */
-	protected $mId;
+	private $mId;
 
 	/** @var bool */
-	protected $mFromMaster;
+	private $mFromMaster;
 
 	/** @var bool */
-	protected $mBlockEmail;
+	private $mBlockEmail;
 
 	/** @var bool */
-	protected $mDisableUsertalk;
+	private $mDisableUsertalk;
 
 	/** @var bool */
-	protected $mCreateAccount;
+	private $mCreateAccount;
 
 	/** @var User|string */
-	protected $target;
+	private $target;
 
 	/** @var int Hack for foreign blocking (CentralAuth) */
-	protected $forcedTargetID;
+	private $forcedTargetID;
 
 	/** @var int Block::TYPE_ constant. Can only be USER, IP or RANGE internally */
-	protected $type;
+	private $type;
 
 	/** @var User */
-	protected $blocker;
+	private $blocker;
 
 	/** @var bool */
-	protected $isHardblock;
+	private $isHardblock;
 
 	/** @var bool */
-	protected $isAutoblocking;
+	private $isAutoblocking;
 
 	/** @var string|null */
-	protected $systemBlockType;
+	private $systemBlockType;
 
 	# TYPE constants
 	const TYPE_USER = 1;
