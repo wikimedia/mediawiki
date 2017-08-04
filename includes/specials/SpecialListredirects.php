@@ -137,7 +137,7 @@ class ListredirectsPage extends QueryPage {
 			# Make a link to the destination page
 			$lang = $this->getLanguage();
 			$arr = $lang->getArrow() . $lang->getDirMark();
-			$targetLink = $linkRenderer->makeLink( $target );
+			$targetLink = $linkRenderer->makeLink( $target, $target->getFullText() );
 
 			return "$rd_link $arr $targetLink";
 		} else {
