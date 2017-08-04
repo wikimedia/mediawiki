@@ -44,6 +44,9 @@
 
 				return result;
 			}
+		},
+		featureFlags: {
+			liveUpdate: mw.config.get( 'wgStructuredChangeFiltersEnableLiveUpdate' ) || new mw.Uri().query.liveupdate
 		}
 	};
 }( mediaWiki ) );
