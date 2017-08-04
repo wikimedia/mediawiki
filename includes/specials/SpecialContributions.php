@@ -131,17 +131,14 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		$skip = $request->getText( 'offset' ) || $request->getText( 'dir' ) == 'prev';
 		# Offset overrides year/month selection
-		if ( $skip ) {
-			$this->opts['year'] = '';
-			$this->opts['month'] = '';
-		} else {
+		if ( !$skip ) {
 			$this->opts['year'] = $request->getVal( 'year' );
 			$this->opts['month'] = $request->getVal( 'month' );
 
 			$this->opts['start'] = $request->getVal( 'start' );
 			$this->opts['end'] = $request->getVal( 'end' );
-			$this->opts = ContribsPager::processDateFilter( $this->opts );
 		}
+		$this->opts = ContribsPager::processDateFilter( $this->opts );
 
 		$feedType = $request->getVal( 'feed' );
 
