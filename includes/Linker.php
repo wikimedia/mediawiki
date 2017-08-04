@@ -902,6 +902,19 @@ class Linker {
 			$page = Title::makeTitle( NS_USER, $userName );
 		}
 
+		$user = User::newFromId( $userId );
+
+		if ( $user->getBlock() !== null || $user->isBlockedGlobally( $userName ) ) {
+			$classes .= ' mw-userlink-blocked';
+		}
+
+		// T172348
+		if ( class_exists( 'CentralAuthUser' ) ) {
+			if ( CentralAuthUser::getInstance( $user )->canAuthenticate() === "locked" ) {
+				$classes .= ' mw-userlink-locked';
+			}
+		}
+
 		// Wrap the output with <bdi> tags for directionality isolation
 		return self::link(
 			$page,
@@ -960,11 +973,17 @@ class Linker {
 			$items[] = self::emailLink( $userId, $userText );
 		}
 
+		$classes = 'mw-usertoollinks';
+		$user = User::newFromId( $userId );
+		if ( $user->getBlock() !== null || $user->isBlockedGlobally( $userText ) ) {
+			$classes .= ' mw-user-link-blocked';
+		}
+
 		Hooks::run( 'UserToolLinksEdit', [ $userId, $userText, &$items ] );
 
 		if ( $items ) {
 			return wfMessage( 'word-separator' )->escaped()
-				. '<span class="mw-usertoollinks">'
+				. '<span class="' . $classes . '">'
 				. wfMessage( 'parentheses' )->rawParams( $wgLang->pipeList( $items ) )->escaped()
 				. '</span>';
 		} else {
