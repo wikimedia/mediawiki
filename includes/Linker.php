@@ -897,6 +897,10 @@ class Linker {
 			$page = Title::makeTitle( NS_USER, $userName );
 		}
 
+		if ( User::newFromId( $userId )->getBlock() !== null ) {
+			$classes .= ' blocked';
+		}
+
 		// Wrap the output with <bdi> tags for directionality isolation
 		return self::link(
 			$page,
@@ -955,11 +959,16 @@ class Linker {
 			$items[] = self::emailLink( $userId, $userText );
 		}
 
+		$classes = 'mw-usertoollinks';
+		if ( User::newFromId( $userId )->getBlock() !== null ) {
+			$classes .= ' blocked';
+		}
+
 		Hooks::run( 'UserToolLinksEdit', [ $userId, $userText, &$items ] );
 
 		if ( $items ) {
 			return wfMessage( 'word-separator' )->escaped()
-				. '<span class="mw-usertoollinks">'
+				. '<span class="' . $classes . '">'
 				. wfMessage( 'parentheses' )->rawParams( $wgLang->pipeList( $items ) )->escaped()
 				. '</span>';
 		} else {

@@ -42,14 +42,36 @@ a.stub {
 	color: #723;
 }
 
+a.blocked,
+span.blocked a {
+	font-style: italic;
+	color: #bbf;
+}
+
+a.blocked:visited,
+span.blocked a:visited {
+	color: #dbf;
+}
+
 a.new,
 #p-personal a.new {
 	color: #ba0000;
 }
 
+a.new.blocked,
+span.blocked a.new {
+	font-style: italic;
+	color: #e99;
+}
+
 a.new:visited,
 #p-personal a.new:visited {
 	color: #a55858;
+}
+
+a.new.blocked:visited,
+span.blcoked a.new:visited {
+	color: #c99;
 }
 
 /* Interwiki Styling */
