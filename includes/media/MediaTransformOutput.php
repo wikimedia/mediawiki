@@ -222,6 +222,7 @@ abstract class MediaTransformOutput {
 
 	/**
 	 * Wrap some XHTML text in an anchor tag with the given attributes
+	 * or, fallback to a span in the absence thereof.
 	 *
 	 * @param array $linkAttribs
 	 * @param string $contents
@@ -231,7 +232,7 @@ abstract class MediaTransformOutput {
 		if ( $linkAttribs ) {
 			return Xml::tags( 'a', $linkAttribs, $contents );
 		} else {
-			return $contents;
+			return Xml::tags( 'span', null, $contents );
 		}
 	}
 
@@ -407,12 +408,15 @@ class ThumbnailImage extends MediaTransformOutput {
 			$attribs['width'] = $this->width;
 			$attribs['height'] = $this->height;
 		}
+
+		// FIXME: Can we remove these?
 		if ( !empty( $options['valign'] ) ) {
 			$attribs['style'] = "vertical-align: {$options['valign']}";
 		}
 		if ( !empty( $options['img-class'] ) ) {
 			$attribs['class'] = $options['img-class'];
 		}
+
 		if ( isset( $options['override-height'] ) ) {
 			$attribs['height'] = $options['override-height'];
 		}

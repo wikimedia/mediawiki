@@ -1939,8 +1939,9 @@ class Sanitizer {
 			'math'       => [ 'class', 'style', 'id', 'title' ],
 
 			// HTML 5 section 4.5
-			'figure'     => $common,
-			'figcaption' => $common,
+			'figure'        => $common,
+			'figure-inline' => $common,
+			'figcaption'    => $common,
 
 			# HTML 5 section 4.6
 			'bdi' => $common,

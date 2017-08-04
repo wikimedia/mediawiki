@@ -406,7 +406,10 @@ class Linker {
 			return self::makeThumbLink2( $title, $file, $frameParams, $handlerParams, $time, $query, $classes );
 		}
 
+		$rdfaType = '';
+
 		if ( $file && isset( $frameParams['frameless'] ) ) {
+			$rdfaType = '/Frameless';
 			$srcWidth = $file->getWidth( $page );
 			# For "frameless" option: do not present an image bigger than the
 			# source (for bitmap-style images). This is the same behavior as the
@@ -431,28 +434,41 @@ class Linker {
 			$params = [
 				'alt' => $frameParams['alt'],
 				'title' => $frameParams['title'],
-				'valign' => isset( $frameParams['valign'] ) ? $frameParams['valign'] : false,
-				'img-class' => $frameParams['class'] ];
-			if ( isset( $frameParams['border'] ) ) {
-				$params['img-class'] .= ( $params['img-class'] !== '' ? ' ' : '' ) . 'thumbborder';
-			}
+			];
 			$params = self::getImageLinkMTOParams( $frameParams, $query, $parser ) + $params;
-
 			$s = $thumb->toHtml( $params );
 		}
 
-		$classes .= "mw-halign-{$frameParams['align']} ";
-		$classes = rtrim( $classes );
+		$inline = '-inline';
+		$caption = '';
 
 		if ( $frameParams['align'] != '' ) {
-			$s = "<figure class=\"{$classes}\" typeof=\"mw:Image\">{$s}";
+			$inline = '';
+			$classes .= "mw-halign-{$frameParams['align']} ";
 			if ( strlen( $frameParams['caption'] ) ) {
-				$s .= '<figcaption>'
+				$caption = '<figcaption>'
 					. $frameParams['caption']
 					. '</figcaption>';
 			}
-			$s .= "</figure>";
+		} else if ( isset( $frameParams['valign'] ) ) {
+			// TODO: Parsoid seems to set this on blocks too?
+			$classes .= "mw-valign-{$frameParams['valign']} ";
 		}
+
+		if ( isset( $frameParams['border'] ) ) {
+			$classes .= 'mw-image-border ';
+		}
+
+		$classes .= $frameParams['class'];
+		$classes = rtrim( $classes );
+
+		if ( strlen( $classes ) ) {
+			$classes = "class=\"{$classes}\" ";
+		}
+
+		$s = "<figure{$inline} {$classes}typeof=\"mw:Image{$rdfaType}\">"
+			. "{$s}{$caption}"
+			. "</figure{$inline}>";
 
 		return str_replace( "\n", ' ', $s );
 	}
@@ -518,6 +534,7 @@ class Linker {
 		if ( $manualthumb ) {
 			$frameParams['manualthumb'] = $manualthumb;
 		}
+		// FIXME: default class
 		return self::makeThumbLink2( $title, $file, $frameParams, $params );
 	}
 
@@ -550,6 +567,7 @@ class Linker {
 			$frameParams['caption'] = '';
 		}
 
+		// FIXME: Shouldn't this use the stuff from makeImageLink?
 		if ( empty( $handlerParams['width'] ) ) {
 			// Reduce width for upright images when parameter 'upright' is used
 			$handlerParams['width'] = isset( $frameParams['upright'] ) ? 130 : 180;
