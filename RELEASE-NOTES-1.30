@@ -185,8 +185,12 @@ changes to languages because of Phabricator reports.
 * EditPage::isOouiEnabled() is deprecated and will always return true.
 * Parser::getRandomString() (deprecated in 1.26) was removed.
 * Parser::uniqPrefix() (deprecated in 1.26) was removed.
-* Parser::extractTagsAndParams() now only accepts three arguments.  The fourth,
+* Parser::extractTagsAndParams() now only accepts three arguments. The fourth,
   $uniq_prefix was deprecated in 1.26 and has now been removed.
+* (T172514) The following tables have had their UNIQUE indexes turned into proper
+  PRIMARY KEYs for increased maintainability: categorylinks, imagelinks, iwlinks,
+  langlinks, log_search, module_deps, objectcache, pagelinks, query_cache, site_stats,
+  templatelinks, text, transcache, user_former_groups, user_properties.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
