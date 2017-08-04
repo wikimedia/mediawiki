@@ -1490,7 +1490,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				' method should return true. Use @group Database or $this->tablesUsed.' );
 		}
 
-		$db = wfGetDB( DB_SLAVE );
+		$db = wfGetDB( DB_REPLICA );
 
 		$res = $db->select( $table, $fields, $condition, wfGetCaller(), [ 'ORDER BY' => $fields ] );
 		$this->assertNotEmpty( $res, "query failed: " . $db->lastError() );

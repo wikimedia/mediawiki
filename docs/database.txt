@@ -17,7 +17,7 @@ description of the tables and their contents, please see:
 
 To make a read query, something like this usually suffices:
 
-$dbr = wfGetDB( DB_SLAVE );
+$dbr = wfGetDB( DB_REPLICA );
 $res = $dbr->select( /* ...see docs... */ );
 foreach ( $res as $row ) {
 	...

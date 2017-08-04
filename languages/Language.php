@@ -4537,7 +4537,7 @@ class Language {
 	public function formatExpiry( $expiry, $format = true, $infinity = 'infinity' ) {
 		static $dbInfinity;
 		if ( $dbInfinity === null ) {
-			$dbInfinity = wfGetDB( DB_SLAVE )->getInfinity();
+			$dbInfinity = wfGetDB( DB_REPLICA )->getInfinity();
 		}
 
 		if ( $expiry == '' || $expiry === 'infinity' || $expiry == $dbInfinity ) {

@@ -58,7 +58,7 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 			->getMock();
 		$mock->expects( $this->any() )
 			->method( 'getConnectionRef' )
-			->with( DB_SLAVE )
+			->with( DB_REPLICA )
 			->will( $this->returnValue( $mockDb ) );
 		return $mock;
 	}
