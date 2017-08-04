@@ -883,6 +883,26 @@ class Linker {
 	}
 
 	/**
+	 * Get the block/lock status of an acccount
+	 * @param int $userId User id in database.
+	 * @return array
+	 */
+	public static function getUserBlockStatus( $userId ) {
+		if ( $userId === 0 ) {
+			return false;
+		}
+
+		$user = User::newFromId( $userId );
+
+		$status = [];
+		$status['blocked'] = $user->getBlock() !== null;
+		$status['globally-blocked'] = $user->isBlockedGlobally();
+		$status['locked'] = $user->isLocked();
+
+		return $status;
+	}
+
+	/**
 	 * Make user link (or user contributions for unregistered users)
 	 * @param int $userId User id in database.
 	 * @param string $userName User name in database.
@@ -916,6 +936,22 @@ class Linker {
 			$classes .= ' mw-anonuserlink'; // Separate link class for anons (T45179)
 		} else {
 			$page = Title::makeTitle( NS_USER, $userName );
+		}
+
+		if ( $userId != 0 ) {
+			$blockStatus = self::getUserBlockStatus( $userId );
+
+			if ( $blockStatus[ 'blocked' ] ) {
+				$classes .= ' mw-userlink-blocked';
+			}
+
+			if ( $blockStatus[ 'globally-blocked' ] ) {
+				$classes .= ' mw-userlink-globally-blocked';
+			}
+
+			if ( $blockStatus[ 'locked' ] ) {
+				$classes .= ' mw-userlink-locked';
+			}
 		}
 
 		// Wrap the output with <bdi> tags for directionality isolation
@@ -982,11 +1018,29 @@ class Linker {
 			$items[] = self::emailLink( $userId, $userText );
 		}
 
+		$classes = 'mw-usertoollinks';
+
+		if ( $userId != 0 ) {
+			$blockStatus = self::getUserBlockStatus( $userId );
+
+			if ( $blockStatus['blocked'] ) {
+				$classes .= ' mw-userlink-blocked';
+			}
+
+			if ( $blockStatus['globally-blocked'] ) {
+				$classes .= ' mw-userlink-globally-blocked';
+			}
+
+			if ( $blockStatus['locked'] ) {
+				$classes .= ' mw-userlink-locked';
+			}
+		}
+
 		Hooks::run( 'UserToolLinksEdit', [ $userId, $userText, &$items ] );
 
 		if ( $items ) {
 			return wfMessage( 'word-separator' )->escaped()
-				. '<span class="mw-usertoollinks">'
+				. '<span class="' . $classes . '">'
 				. wfMessage( 'parentheses' )->rawParams( $wgLang->pipeList( $items ) )->escaped()
 				. '</span>';
 		} else {
