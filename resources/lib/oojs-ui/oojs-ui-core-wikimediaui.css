@@ -6,7 +6,7 @@
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-08-01T20:24:44Z
+ * Date: 2017-08-03T19:36:56Z
  */
 /**
  * WikimediaUI Base v0.9.2
@@ -297,7 +297,7 @@
 .oo-ui-buttonElement-framed.oo-ui-widget-disabled > .oo-ui-buttonElement-button {
   background-color: #c8ccd1;
   color: #fff;
-  border-color: #72777d;
+  border-color: #c8ccd1;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button {
   background-color: #f8f9fa;
@@ -1176,11 +1176,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-checkboxInputWidget [type='checkbox']:disabled + span {
   background-color: #c8ccd1;
-  border-color: #72777d;
+  border-color: #c8ccd1;
 }
 .oo-ui-checkboxInputWidget [type='checkbox']:disabled:hover + span {
   background-color: #c8ccd1;
-  border-color: #72777d;
+  border-color: #c8ccd1;
 }
 .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox'] {
   cursor: pointer;
@@ -1316,7 +1316,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-dropdownInputWidget.oo-ui-widget-disabled select {
   background-color: #eaecf0;
   color: #72777d;
-  border-color: #72777d;
+  border-color: #c8ccd1;
 }
 .oo-ui-radioInputWidget {
   position: relative;
@@ -1366,7 +1366,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-radioInputWidget [type='radio']:disabled + span {
   background-color: #c8ccd1;
-  border-color: #72777d;
+  border-color: #c8ccd1;
 }
 .oo-ui-radioInputWidget [type='radio']:disabled:checked + span {
   background-color: #fff;
@@ -1607,7 +1607,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -webkit-text-fill-color: #72777d;
   color: #72777d;
   text-shadow: 0 1px 1px #fff;
-  border-color: #72777d;
+  border-color: #c8ccd1;
 }
 .oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-iconElement-icon,
 .oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-indicatorElement-indicator {
@@ -1792,7 +1792,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-dropdownWidget-handle {
   color: #72777d;
   text-shadow: 0 1px 1px #fff;
-  border-color: #72777d;
+  border-color: #c8ccd1;
   background-color: #eaecf0;
 }
 .oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-dropdownWidget-handle:focus {
