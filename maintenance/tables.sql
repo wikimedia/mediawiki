@@ -555,9 +555,6 @@ CREATE TABLE /*_*/pagelinks (
   PRIMARY KEY (pl_from,pl_namespace,pl_title)
 ) /*$wgDBTableOptions*/;
 
--- Forward index, for page edit, save
-CREATE UNIQUE INDEX /*i*/pl_from ON /*_*/pagelinks (pl_from,pl_namespace,pl_title);
-
 -- Reverse index, for Special:Whatlinkshere
 CREATE INDEX /*i*/pl_namespace ON /*_*/pagelinks (pl_namespace,pl_title,pl_from);
 
@@ -582,9 +579,6 @@ CREATE TABLE /*_*/templatelinks (
   tl_title varchar(255) binary NOT NULL default '',
   PRIMARY KEY (tl_from,tl_namespace,tl_title)
 ) /*$wgDBTableOptions*/;
-
--- Forward index, for page edit, save
-CREATE UNIQUE INDEX /*i*/tl_from ON /*_*/templatelinks (tl_from,tl_namespace,tl_title);
 
 -- Reverse index, for Special:Whatlinkshere
 CREATE INDEX /*i*/tl_namespace ON /*_*/templatelinks (tl_namespace,tl_title,tl_from);
