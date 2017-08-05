@@ -66,15 +66,15 @@ class DoubleRedirectsPage extends QueryPage {
 				'title' => 'pa.page_title',
 				'value' => 'pa.page_title',
 
-				'nsb' => 'pb.page_namespace',
-				'tb' => 'pb.page_title',
+				'b_namespace' => 'pb.page_namespace',
+				'b_title' => 'pb.page_title',
 
 				// Select fields from redirect instead of page. Because there may
 				// not actually be a page table row for this target (e.g. for interwiki redirects)
-				'nsc' => 'rb.rd_namespace',
-				'tc' => 'rb.rd_title',
-				'fc' => 'rb.rd_fragment',
-				'iwc' => 'rb.rd_interwiki',
+				'c_namespace' => 'rb.rd_namespace',
+				'c_title' => 'rb.rd_title',
+				'c_fragment' => 'rb.rd_fragment',
+				'c_interwiki' => 'rb.rd_interwiki',
 			],
 			'conds' => [
 				'ra.rd_from = pa.page_id',
@@ -117,14 +117,12 @@ class DoubleRedirectsPage extends QueryPage {
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
-		$titleA = Title::makeTitle( $result->namespace, $result->title );
-
-		// If only titleA is in the query, it means this came from
-		// querycache (which only saves 3 columns).
+		// If no Title B or C is in the query, it means this came from
+		// querycache (which only saves the 3 columns for title A).
 		// That does save the bulk of the query cost, but now we need to
 		// get a little more detail about each individual entry quickly
 		// using the filter of reallyGetQueryInfo.
-		if ( $result && !isset( $result->nsb ) ) {
+		if ( $result && !isset( $result->b_namespace ) ) {
 			$dbr = wfGetDB( DB_REPLICA );
 			$qi = $this->reallyGetQueryInfo(
 				$result->namespace,
@@ -141,20 +139,13 @@ class DoubleRedirectsPage extends QueryPage {
 				$result = $dbr->fetchObject( $res );
 			}
 		}
+
+		$titleA = Title::makeTitle( $result->namespace, $result->title );
+
 		$linkRenderer = $this->getLinkRenderer();
 		if ( !$result ) {
 			return '<del>' . $linkRenderer->makeLink( $titleA, null, [], [ 'redirect' => 'no' ] ) . '</del>';
 		}
-
-		$titleB = Title::makeTitle( $result->nsb, $result->tb );
-		$titleC = Title::makeTitle( $result->nsc, $result->tc, $result->fc, $result->iwc );
-
-		$linkA = $linkRenderer->makeKnownLink(
-			$titleA,
-			null,
-			[],
-			[ 'redirect' => 'no' ]
-		);
 
 		// if the page is editable, add an edit link
 		if (
@@ -173,6 +164,14 @@ class DoubleRedirectsPage extends QueryPage {
 			$edit = '';
 		}
 
+		$linkA = $linkRenderer->makeKnownLink(
+			$titleA,
+			null,
+			[],
+			[ 'redirect' => 'no' ]
+		);
+
+		$titleB = Title::makeTitle( $result->b_namespace, $result->b_title );
 		$linkB = $linkRenderer->makeKnownLink(
 			$titleB,
 			null,
@@ -180,6 +179,12 @@ class DoubleRedirectsPage extends QueryPage {
 			[ 'redirect' => 'no' ]
 		);
 
+		$titleC = Title::makeTitle(
+			$result->c_namespace,
+			$result->c_title,
+			$result->c_fragment,
+			$result->c_interwiki
+		);
 		$linkC = $linkRenderer->makeKnownLink( $titleC, $titleC->getFullText() );
 
 		$lang = $this->getLanguage();
@@ -202,13 +207,13 @@ class DoubleRedirectsPage extends QueryPage {
 		$batch = new LinkBatch;
 		foreach ( $res as $row ) {
 			$batch->add( $row->namespace, $row->title );
-			if ( isset( $row->nsb ) ) {
+			if ( isset( $row->b_namespace ) ) {
 				// lazy loaded when using cached results
-				$batch->add( $row->nsb, $row->tb );
+				$batch->add( $row->b_namespace, $row->b_title );
 			}
-			if ( isset( $row->iwc ) && !$row->iwc ) {
+			if ( isset( $row->c_interwiki ) && !$row->c_interwiki ) {
 				// lazy loaded when using cached result, not added when interwiki link
-				$batch->add( $row->nsc, $row->tc );
+				$batch->add( $row->c_namespace, $row->c_title );
 			}
 		}
 		$batch->execute();
