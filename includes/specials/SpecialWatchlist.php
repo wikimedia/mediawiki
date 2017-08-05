@@ -277,7 +277,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		# Toggle watchlist content (all recent edits or just the latest)
 		if ( $opts['extended'] ) {
-			$limitWatchlist = $user->getIntOption( 'wllimit' );
 			$usePage = false;
 		} else {
 			# Top log Ids for a page are not stored
@@ -292,14 +291,16 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					LIST_OR
 				);
 			}
-			$limitWatchlist = 0;
 			$usePage = true;
 		}
 
 		$tables = array_merge( [ 'recentchanges', 'watchlist' ], $tables );
 		$fields = array_merge( RecentChange::selectFields(), $fields );
 
-		$query_options = array_merge( [ 'ORDER BY' => 'rc_timestamp DESC' ], $query_options );
+		$query_options = array_merge( [
+			'ORDER BY' => 'rc_timestamp DESC',
+			'LIMIT' => $user->getIntOption( 'wllimit' )
+		], $query_options );
 		$join_conds = array_merge(
 			[
 				'watchlist' => [
@@ -316,9 +317,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		if ( $this->getConfig()->get( 'ShowUpdatedMarker' ) ) {
 			$fields[] = 'wl_notificationtimestamp';
-		}
-		if ( $limitWatchlist ) {
-			$query_options['LIMIT'] = $limitWatchlist;
 		}
 
 		$rollbacker = $user->isAllowed( 'rollback' );

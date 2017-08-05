@@ -1021,7 +1021,7 @@
 	"prefs-editwatchlist-clear": "Clear your watchlist",
 	"prefs-watchlist-days": "Days to show in watchlist:",
 	"prefs-watchlist-days-max": "Maximum $1 {{PLURAL:$1|day|days}}",
-	"prefs-watchlist-edits": "Maximum number of changes to show in expanded watchlist:",
+	"prefs-watchlist-edits": "Maximum number of changes to show in watchlist:",
 	"prefs-watchlist-edits-max": "Maximum number: 1000",
 	"prefs-watchlist-token": "Watchlist token:",
 	"prefs-misc": "Misc",
