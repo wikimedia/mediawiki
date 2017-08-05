@@ -3784,7 +3784,7 @@
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (सक्षम)",
 	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 (<strong>असक्षम</strong>)",
 	"mediastatistics": "मीडिया के आंकड़े",
-	"mediastatistics-summary": "अपलोड किए गए फ़ाइल प्रकारों के आंकड़े। इसमें केवल नवीनतम फ़ाइल के अवतरण शामिल हैं। पुराने या हटाए गए फ़ाइलों के अवतरणों को अलग रखा गया है। \n\nThis only includes the most recent version of a file. Old or deleted versions of files are excluded.",
+	"mediastatistics-summary": "अपलोड किए गए फ़ाइल प्रकारों के आंकड़े। इसमें केवल नवीनतम फ़ाइल के अवतरण शामिल हैं। पुराने या हटाए गए फ़ाइलों के अवतरणों को अलग रखा गया है।",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 बाइट|$1 बाइट्स}} ($2; $3%)",
 	"mediastatistics-bytespertype": "इस अनुभाग का कुल फ़ाइल आकार : {{PLURAL:$1|$1 बाइट|$1 बाइट्स}} ($2; $3%)",
 	"mediastatistics-allbytes": "सभी फ़ाइल का कुल फ़ाइल आकार : {{PLURAL:$1|$1 बाइट|$1 बाइट्स}} ($2)",

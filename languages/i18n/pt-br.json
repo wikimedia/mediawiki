@@ -1070,7 +1070,7 @@
 	"prefs-editwatchlist-clear": "Limpar sua lista de páginas vigiadas",
 	"prefs-watchlist-days": "Dias a mostrar na lista de páginas vigiadas:",
 	"prefs-watchlist-days-max": "Máximo $1 {{PLURAL:$1|dia|dias}}",
-	"prefs-watchlist-edits": "Número de edições mostradas na lista de páginas vigiadas expandida:",
+	"prefs-watchlist-edits": "Número máximo de alterações para mostrar na lista de observação:",
 	"prefs-watchlist-edits-max": "Número máximo: 1000",
 	"prefs-watchlist-token": "Senha para a lista de páginas vigiadas:",
 	"prefs-misc": "Diversos",
