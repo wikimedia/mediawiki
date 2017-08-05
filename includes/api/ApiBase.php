@@ -2860,7 +2860,7 @@ abstract class ApiBase extends ContextSource {
 	 * Return the error message related to a certain array
 	 * @deprecated since 1.29
 	 * @param array|string|MessageSpecifier $error Element of a getUserPermissionsErrors()-style array
-	 * @return [ 'code' => code, 'info' => info ]
+	 * @return array [ 'code' => code, 'info' => info ]
 	 */
 	public function parseMsg( $error ) {
 		wfDeprecated( __METHOD__, '1.29' );
