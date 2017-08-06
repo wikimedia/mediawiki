@@ -18,6 +18,17 @@
 			display: table-cell;
 			white-space: pre;
 		}
+		&[data-placeholder]:not(:focus):before {
+			content: attr( data-placeholder );
+			float: left;
+			margin-left: 2px;
+		}
+	}
+
+	&-empty {
+		.mw-widgets-datetime-dateTimeInputWidget-field {
+			opacity: 0;
+		}
 	}
 
 	&-handle {
