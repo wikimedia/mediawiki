@@ -70,9 +70,9 @@ textarea {
 #contentSub,
 #contentSub2 {
 	font-size: 84%;
-	line-height: 1.2em;
+	line-height: 1.2;
 	margin: 0 0 1.4em 1em;
-	color: #545454;
+	color: #54595d;
 	width: auto;
 }
 
