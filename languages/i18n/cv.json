@@ -11,7 +11,8 @@
 			"아라",
 			"Chuvash2014",
 			"Macofe",
-			"Chuvash"
+			"Chuvash",
+			"Marat-avgust"
 		]
 	},
 	"tog-underline": "Ссылкăсене аялтан туртса палармалла:",
@@ -527,6 +528,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (пăхăр [[Special:NewPages|çĕнĕ страницăсен списокĕ]])",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "Кăтарт",
+	"rcfilters-filter-user-experience-level-newcomer-label": "Çĕнĕ хутшăнакансем",
 	"rclistfrom": "$2, $3 тытăнса çĕнĕ улăшăнисене кăтартни",
 	"rcshowhideminor": "пĕчĕк тӳрлетнисене $1",
 	"rcshowhideminor-show": "кăтартмалла",

@@ -1046,7 +1046,7 @@
 	"prefs-editwatchlist-clear": "Wyczyść listę obserwowanych",
 	"prefs-watchlist-days": "Liczba dni widocznych na liście obserwowanych:",
 	"prefs-watchlist-days-max": "Maksymalnie $1 {{PLURAL:$1|dzień|dni}}",
-	"prefs-watchlist-edits": "Liczba edycji pokazywanych w rozszerzonej liście obserwowanych:",
+	"prefs-watchlist-edits": "Liczba edycji pokazywanych w liście obserwowanych:",
 	"prefs-watchlist-edits-max": "Maksymalnie 1000",
 	"prefs-watchlist-token": "Identyfikator listy obserwowanych:",
 	"prefs-misc": "Ustawienia różne",

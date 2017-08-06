@@ -937,7 +937,7 @@
 	"prefs-editwatchlist-clear": "Испразни списак",
 	"prefs-watchlist-days": "Број дана у списку надгледања:",
 	"prefs-watchlist-days-max": "Највише $1 {{PLURAL:$1|дан|дана|дана}}",
-	"prefs-watchlist-edits": "Највећи број измена у проширеном списку надгледања:",
+	"prefs-watchlist-edits": "Највећи број измена приказаних на списку надгледања:",
 	"prefs-watchlist-edits-max": "Највећа вредност је хиљаду",
 	"prefs-watchlist-token": "Жетон списка надгледања:",
 	"prefs-misc": "Друга подешавања",

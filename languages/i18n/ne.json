@@ -24,7 +24,8 @@
 			"जनक राज भट्ट",
 			"Suniltheblue",
 			"Irus",
-			"रमेश सिंह बोहरा"
+			"रमेश सिंह बोहरा",
+			"Nirajan pant"
 		]
 	},
 	"tog-underline": "रेखाङ्कित लिङ्क:",
@@ -1196,6 +1197,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|नयाँ पृष्ठहरूको सूची]] यो पनि हेर्नुहोस्)",
 	"recentchanges-legend-plusminus": "(''±१२३'')",
 	"recentchanges-submit": "देखाउनुहोस्",
+	"rcfilters-show-new-changes": "नवीनतम परिवर्तनहरू हेर्नुहोस्",
 	"rcnotefrom": "तल <strong>$2</strong> देखि (<strong>$1</strong> सम्म) {{PLURAL:$5|भएका परिवर्तनहरू देखाइएको छ|भएका परिवर्तनहरू देखाइन्छ}}।",
 	"rclistfrom": "$3 $2 देखिका नयाँ परिवर्तनहरू देखाउनु",
 	"rcshowhideminor": "$1 सामान्य सम्पादन",
@@ -3075,7 +3077,6 @@
 	"fileduplicatesearch-noresults": "\"$1\" नामको फाइल पाइएन।",
 	"specialpages": "विशेष पृष्ठ",
 	"specialpages-note-top": "आदर्श वाक्य",
-	"specialpages-note": "* साधारण विशेष पृष्ठहरू।\n* <span class=\"mw-specialpagerestricted\">निषेधित विशेष पृष्ठहरू।</span>",
 	"specialpages-group-maintenance": "मर्मत प्रतिवेदनहरू",
 	"specialpages-group-other": "अरू विशेष पृष्ठहरू",
 	"specialpages-group-login": "प्रवेश गर्ने / नयाँ खाता बनाउने",
