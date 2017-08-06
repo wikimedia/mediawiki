@@ -36,6 +36,7 @@
 	 * @cfg {boolean} [required=false] Whether a value is required.
 	 * @cfg {boolean} [clearable=true] Whether to provide for blanking the value.
 	 * @cfg {Date|null} [value=null] Default value for the widget
+	 * @cfg {string|null} [placeholder=null] Default value for the widget
 	 * @cfg {Date|string|null} [min=null] Minimum allowed date
 	 * @cfg {Date|string|null} [max=null] Maximum allowed date
 	 */
@@ -45,6 +46,7 @@
 			type: 'datetime',
 			clearable: true,
 			required: false,
+			placeholder: null,
 			min: null,
 			max: null,
 			formatter: {},
@@ -154,6 +156,9 @@
 
 		this.$fields.addClass( 'mw-widgets-datetime-dateTimeInputWidget-fields' );
 		this.setupFields();
+		if ( config.placeholder ) {
+			this.$fields.attr( 'data-placeholder', config.placeholder );
+		}
 
 		this.$handle
 			.addClass( 'mw-widgets-datetime-dateTimeInputWidget-handle' )
