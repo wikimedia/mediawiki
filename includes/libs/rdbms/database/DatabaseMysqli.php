@@ -23,6 +23,7 @@
 namespace Wikimedia\Rdbms;
 
 use mysqli;
+use mysqli_result;
 use IP;
 
 /**
@@ -190,7 +191,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	/**
-	 * @param mysqli $res
+	 * @param mysqli_result $res
 	 * @return bool
 	 */
 	protected function mysqlFreeResult( $res ) {
@@ -200,7 +201,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	/**
-	 * @param mysqli $res
+	 * @param mysqli_result $res
 	 * @return bool
 	 */
 	protected function mysqlFetchObject( $res ) {
@@ -213,7 +214,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	/**
-	 * @param mysqli $res
+	 * @param mysqli_result $res
 	 * @return bool
 	 */
 	protected function mysqlFetchArray( $res ) {
@@ -226,7 +227,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	/**
-	 * @param mysqli $res
+	 * @param mysqli_result $res
 	 * @return mixed
 	 */
 	protected function mysqlNumRows( $res ) {
@@ -287,7 +288,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	/**
-	 * @param mysqli $res
+	 * @param mysqli_result $res
 	 * @param int $row
 	 * @return mixed
 	 */
