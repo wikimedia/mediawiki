@@ -1568,7 +1568,6 @@
 	"rcfilters-restore-default-filters": "Label for the button that resets filters to defaults",
 	"rcfilters-clear-all-filters": "Title for the button that clears all filters",
 	"rcfilters-show-new-changes": "Label for the button to show new changes.",
-	"rcfilters-previous-changes-label": "Label to indicate the changes below have been previously viewed.",
 	"rcfilters-search-placeholder": "Placeholder for the filter search input.",
 	"rcfilters-invalid-filter": "A label for an invalid filter.",
 	"rcfilters-empty-filter": "Placeholder for the filter list when no filters were chosen.",
