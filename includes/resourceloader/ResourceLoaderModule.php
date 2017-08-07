@@ -587,6 +587,81 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Get headers to send as part of a module web response.
+	 *
+	 * It is not supported to send headers through this method that are
+	 * required to be unique or otherwise sent once in an HTTP response
+	 * because clients may make batch requests for multiple modules (as
+	 * is the default behaviour for ResourceLoader clients).
+	 *
+	 * For exclusive or aggregated headers, see ResourceLoader::sendResponseHeaders().
+	 *
+	 * @since 1.30
+	 * @param ResourceLoaderContext $context
+	 * @return string[] Array of HTTP response headers
+	 */
+	final public function getHeaders( ResourceLoaderContext $context ) {
+		$headers = [];
+
+		$formattedLinks = [];
+		foreach ( $this->getPreloadLinks( $context ) as $url => $attribs ) {
+			$link = "<{$url}>;rel=preload";
+			foreach ( $attribs as $key => $val ) {
+				$link .= ";{$key}={$val}";
+			}
+			$formattedLinks[] = $link;
+		}
+		if ( $formattedLinks ) {
+			$headers[] = 'Link: ' . implode( ',', $formattedLinks );
+		}
+
+		return $headers;
+	}
+
+	/**
+	 * Get a list of resources that web browsers may preload.
+	 *
+	 * Behaviour of rel=preload link is specified at <https://www.w3.org/TR/preload/>.
+	 *
+	 * Use case for ResourceLoader originally part of T164299.
+	 *
+	 * @par Example
+	 * @code
+	 *     protected function getPreloadLinks() {
+	 *         return [
+	 *             'https://example.org/script.js' => [ 'as' => 'script' ],
+	 *             'https://example.org/image.png' => [ 'as' => 'image' ],
+	 *         ];
+	 *     }
+	 * @encode
+	 *
+	 * @par Example using HiDPI image variants
+	 * @code
+	 *     protected function getPreloadLinks() {
+	 *         return [
+	 *             'https://example.org/logo.png' => [
+	 *                 'as' => 'image',
+	 *                 'media' => 'not all and (min-resolution: 2dppx)',
+	 *             ],
+	 *             'https://example.org/logo@2x.png' => [
+	 *                 'as' => 'image',
+	 *                 'media' => '(min-resolution: 2dppx)',
+	 *             ],
+	 *         ];
+	 *     }
+	 * @encode
+	 *
+	 * @see ResourceLoaderModule::getHeaders
+	 * @since 1.30
+	 * @param ResourceLoaderContext $context
+	 * @return array Keyed by url, values must be an array containing
+	 *  at least an 'as' key. Optionally a 'media' key as well.
+	 */
+	protected function getPreloadLinks( ResourceLoaderContext $context ) {
+		return [];
+	}
+
+	/**
 	 * Get module-specific LESS variables, if any.
 	 *
 	 * @since 1.27
@@ -709,6 +784,11 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		$templates = $this->getTemplates();
 		if ( $templates ) {
 			$content['templates'] = $templates;
+		}
+
+		$headers = $this->getHeaders( $context );
+		if ( $headers ) {
+			$content['headers'] = $headers;
 		}
 
 		$statTiming = microtime( true ) - $statStart;
