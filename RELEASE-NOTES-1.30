@@ -169,6 +169,8 @@ changes to languages because of Phabricator reports.
   class. Prior to that, the Config parameter was optional (a behavior deprecated in
   1.25).
 * Removed 'jquery.mwExtension' module. (deprecated since 1.26)
+* mediawiki.ui: Deprecate greys, which are not part of WikimediaUI color palette
+  any more.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
