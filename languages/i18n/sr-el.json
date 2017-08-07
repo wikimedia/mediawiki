@@ -3095,6 +3095,7 @@
 	"timezone-utc": "UTC",
 	"duplicate-defaultsort": "<strong>Upozorenje:</strong> Podrazumevani ključ svrstavanja „$2“ menja raniji podrazumevani ključ svrstavanja „$1“.",
 	"duplicate-displaytitle": "<strong>Upozorenje:</strong> naslov za prikaz „$2“ zameniće postojeći „$1“.",
+	"restricted-displaytitle": "<strong>Upozorenje:</strong> Naslov za prikaz „$1” je ignorisan pošto nije ekvivalentan stvarnom naslovu stranice.",
 	"version": "Verzija",
 	"version-extensions": "Instalirana proširenja",
 	"version-skins": "Instalirane teme",

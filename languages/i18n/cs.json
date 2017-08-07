@@ -992,7 +992,7 @@
 	"prefs-editwatchlist-clear": "Vyprázdnit seznam sledovaných stránek",
 	"prefs-watchlist-days": "Počet dní zobrazených ve sledovaných stránkách:",
 	"prefs-watchlist-days-max": "Maximálně $1 {{PLURAL:$1|den|dny|dní}}",
-	"prefs-watchlist-edits": "Počet editací zobrazených ve zdokonalených sledovaných stránkách:",
+	"prefs-watchlist-edits": "Maximální počet editací zobrazených ve sledovaných stránkách:",
 	"prefs-watchlist-edits-max": "Maximum: 1000",
 	"prefs-watchlist-token": "Klíč k seznamu sledovaných stránek:",
 	"prefs-misc": "Různé",
