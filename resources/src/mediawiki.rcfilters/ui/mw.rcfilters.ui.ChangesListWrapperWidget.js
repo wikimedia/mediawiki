@@ -167,7 +167,7 @@
 	 * @param {string} from Anything newer than this is considered 'new'
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.emphasizeNewChanges = function ( from ) {
-		var $lastSeen,
+		var $firstNew,
 			$indicator,
 			$newChanges = $( [] ),
 			selector = this.inEnhancedMode() ?
@@ -182,25 +182,20 @@
 
 			if ( ts >= from ) {
 				$newChanges = $newChanges.add( $this );
-				$lastSeen = $this;
+				$firstNew = $this;
 
 				// guards against putting the marker after the last element
 				if ( index === ( length - 1 ) ) {
-					$lastSeen = null;
+					$firstNew = null;
 				}
 			}
 		} );
 
-		if ( $lastSeen ) {
+		if ( $firstNew ) {
 			$indicator = $( '<div>' )
-				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-previousChangesIndicator' )
-				.text( mw.message( 'rcfilters-previous-changes-label' ).text() );
+				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-previousChangesIndicator' );
 
-			$indicator.on( 'click', function () {
-				$indicator.detach();
-			} );
-
-			$lastSeen.after( $indicator );
+			$firstNew.after( $indicator );
 		}
 
 		$newChanges

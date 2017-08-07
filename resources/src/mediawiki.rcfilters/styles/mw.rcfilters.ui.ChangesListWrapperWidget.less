@@ -1,5 +1,14 @@
 @import 'mw.rcfilters.mixins';
 
+@keyframes fadeBlue {
+	60% {
+		border-top-color: #36c;
+	}
+	100% {
+		border-top-color: #c8ccd1;
+	}
+}
+
 .mw-rcfilters-ui-changesListWrapperWidget {
 
 	&-newChanges {
@@ -10,15 +19,8 @@
 
 	&-previousChangesIndicator {
 		margin: 10px 0;
-		color: #36c;
-		border-top: 2px solid #36c;
-		text-align: center;
-
-		&:hover {
-			color: #72777d;
-			border-top-color: #72777d;
-			cursor: pointer;
-		}
+		border-top: 2px solid #c8ccd1;
+		animation: 1s ease fadeBlue;
 	}
 
 	&-results {
