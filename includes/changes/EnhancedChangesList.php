@@ -341,6 +341,7 @@ class EnhancedChangesList extends ChangesList {
 			'rev-deleted-event' => $revDeletedMsg,
 			'tableClasses' => $tableClasses,
 			'timestamp' => $block[0]->timestamp,
+			'fullTimestamp' => $block[0]->getAttribute( 'rc_timestamp' ),
 			'users' => $usersList,
 		];
 
