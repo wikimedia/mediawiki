@@ -383,11 +383,12 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( is_int( $from ) ) {
 			list( $index, $opts ) = DBAccessObjectUtils::getDBOptions( $from );
 			$data = $this->pageDataFromTitle( wfGetDB( $index ), $this->mTitle, $opts );
+			$loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
 
 			if ( !$data
 				&& $index == DB_REPLICA
-				&& wfGetLB()->getServerCount() > 1
-				&& wfGetLB()->hasOrMadeRecentMasterChanges()
+				&& $loadBalancer->getServerCount() > 1
+				&& $loadBalancer->hasOrMadeRecentMasterChanges()
 			) {
 				$from = self::READ_LATEST;
 				list( $index, $opts ) = DBAccessObjectUtils::getDBOptions( $from );
