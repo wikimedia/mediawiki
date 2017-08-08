@@ -297,6 +297,10 @@ return [
 	 * to this black-list to inhibit them from being reported.
 	 */
 	'suppress_issue_types' => [
+		// approximate error count: 16
+		"PhanCommentParamOnEmptyParamList",
+		// approximate error count: 35
+		"PhanCommentParamWithoutRealParam",
 		// approximate error count: 8
 		"PhanDeprecatedClass",
 		// approximate error count: 415
@@ -325,12 +329,18 @@ return [
 		"PhanTypeMismatchArgument",
 		// approximate error count: 13
 		"PhanTypeMismatchArgumentInternal",
+		// approximate error count: 117
+		"PhanTypeMismatchDeclaredParamNullable",
 		// approximate error count: 14
 		"PhanTypeMismatchForeach",
 		// approximate error count: 56
 		"PhanTypeMismatchProperty",
+		// approximate error count: 7
+		"PhanTypeMismatchDeclaredParam",
 		// approximate error count: 74
 		"PhanTypeMismatchReturn",
+		// approximate error count: 2
+		"PhanMisspelledAnnotation",
 		// approximate error count: 11
 		"PhanTypeMissingReturn",
 		// approximate error count: 5
@@ -341,8 +351,12 @@ return [
 		"PhanUndeclaredMethod",
 		// approximate error count: 1224
 		"PhanUndeclaredProperty",
+		// approximate error count: 13
+		"PhanUndeclaredVariable",
 		// approximate error count: 3
 		"PhanUndeclaredStaticMethod",
+		// approximate error count: 62
+		"PhanUndeclaredVariableDim",
 	],
 
 	/**
