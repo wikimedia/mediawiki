@@ -67,7 +67,8 @@
 			"Jerrykim306",
 			"Sukjong0406",
 			"Garam",
-			"렌즈"
+			"렌즈",
+			"CYAN"
 		]
 	},
 	"tog-underline": "링크에 밑줄:",
@@ -751,8 +752,8 @@
 	"permissionserrorstext-withaction": "$2 권한이 없습니다. 다음 {{PLURAL:$1|이유}}를 확인해주세요:",
 	"contentmodelediterror": "이 판을 편집할 수 없습니다. 콘텐츠 모델은 <code>$1</code>이며, 이 문서의 현재 콘텐츠 모델은 <code>$2</code>이므로 차이가 있습니다.",
 	"recreate-moveddeleted-warn": "<strong>경고: 삭제된 문서를 다시 만들고 있습니다.</strong>\n\n이 문서를 계속 편집하는 것이 적합한 것인지 확인해주세요.\n편의를 위해 삭제와 이동 기록을 다음과 같이 제공합니다:",
-	"moveddeleted-notice": "이 문서는 삭제되었습니다.\n이 문서의 삭제 및 이동 기록은 다음과 같습니다.",
-	"moveddeleted-notice-recent": "죄송합니다, 이 문서는 최근 (24시간 내)에 삭제된 적이 있습니다.\n삭제와 이동 기록이 참고를 위해 남겨져 있습니다.",
+	"moveddeleted-notice": "이 문서는 삭제되었습니다.\n이 문서의 삭제 및 이동, 보호 기록은 다음과 같습니다.",
+	"moveddeleted-notice-recent": "죄송합니다, 이 문서는 최근 (24시간 내)에 삭제된 적이 있습니다.\n삭제와 보호, 이동 기록이 참고를 위해 남겨져 있습니다.",
 	"log-fulllog": "전체 기록 보기",
 	"edit-hook-aborted": "훅에 의해 편집이 중단되었습니다.\n아무런 설명도 주어지지 않았습니다.",
 	"edit-gone-missing": "문서를 저장하지 못했습니다.\n문서가 삭제된 것 같습니다.",

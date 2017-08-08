@@ -3004,7 +3004,7 @@
 	"autosumm-replace": "Zamijenjen sadržaj stranice s »$1«",
 	"autoredircomment": "Preusmjeravanje stranice na [[$1]]",
 	"autosumm-new": "Stvorena nova stranica sa sadržajem: »$1«.",
-	"autosumm-newblank": "stvorena prazna stranica",
+	"autosumm-newblank": "Stvorena prazna stranica.",
 	"size-bytes": "$1 {{PLURAL:$1|bajt|bajta|bajtova}}",
 	"lag-warn-normal": "Moguće je da izmjene nastale posljednjih $1 {{PLURAL:$1|sekundu|sekundi}} neće biti vidljive na ovom popisu.",
 	"lag-warn-high": "Zbog kašnjenja baze podataka, moguće je da promjene napravljene u posljednjih $1 {{PLURAL:$1|sekundu|sekunde|sekundi}} nisu prikazane u popisu.",
