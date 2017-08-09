@@ -1453,6 +1453,7 @@ return [
 			'mediawiki.diff.styles',
 			'mediawiki.util',
 			'mediawiki.jqueryMsg',
+			'oojs-ui-core',
 		],
 		'messages' => [
 			// Keep the uses message keys in sync with EditPage#setHeaders
