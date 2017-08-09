@@ -290,7 +290,10 @@ return [
 	],
 	'jquery.makeCollapsible' => [
 		'scripts' => 'resources/src/jquery/jquery.makeCollapsible.js',
-		'styles' => 'resources/src/jquery/jquery.makeCollapsible.css',
+		'styles' => [
+			'resources/src/jquery/jquery.makeCollapsible.css',
+			'resources/src/jquery/jquery.makeCollapsible.print.css' => [ 'media', 'print' ],
+		],
 		'messages' => [ 'collapsible-expand', 'collapsible-collapse' ],
 		'targets' => [ 'desktop', 'mobile' ],
 	],

@@ -1,0 +1,12 @@
+.mw-collapsible-toggle {
+	display: none;
+}
+.mw-collapsed .mw-collapsible-content {
+	display: block !important; /* stylelint-disable-line declaration-no-important */
+}
+.mw-collapsed > * > tr {
+	display: table-row !important; /* stylelint-disable-line declaration-no-important */
+}
+.mw-collapsed > li {
+	display: list-item !important; /* stylelint-disable-line declaration-no-important */
+}
