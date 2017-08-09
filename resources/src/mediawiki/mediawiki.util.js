@@ -550,7 +550,7 @@
 	 * @inheritdoc #getUrl
 	 * @deprecated since 1.23 Use #getUrl instead.
 	 */
-	mw.log.deprecate( util, 'wikiGetlink', util.getUrl, 'Use mw.util.getUrl instead.' );
+	mw.log.deprecate( util, 'wikiGetlink', util.getUrl, 'Use mw.util.getUrl instead.', 'mw.util.wikiGetlink' );
 
 	/**
 	 * Add the appropriate prefix to the accesskey shown in the tooltip.
@@ -570,7 +570,7 @@
 		}
 
 		$nodes.updateTooltipAccessKeys();
-	}, 'Use jquery.accessKeyLabel instead.' );
+	}, 'Use jquery.accessKeyLabel instead.', 'mw.util.updateTooltipAccessKeys' );
 
 	/**
 	 * Add a little box at the top of the screen to inform the user of
@@ -591,7 +591,7 @@
 		}
 		mw.notify( message, { autoHide: true, tag: 'legacy' } );
 		return true;
-	}, 'Use mw.notify instead.' );
+	}, 'Use mw.notify instead.', 'mw.util.jsMessage' );
 
 	/**
 	 * Encode the string like Sanitizer::escapeId() in PHP
@@ -603,7 +603,7 @@
 	 */
 	mw.log.deprecate( util, 'escapeId', function ( str ) {
 		return escapeIdInternal( str, 'legacy' );
-	}, 'Use mw.util.escapeIdForAttribute or mw.util.escapeIdForLink instead.' );
+	}, 'Use mw.util.escapeIdForAttribute or mw.util.escapeIdForLink instead.', 'mw.util.escapeId' );
 
 	/**
 	 * Initialisation of mw.util.$content
