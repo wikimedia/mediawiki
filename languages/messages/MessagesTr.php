@@ -352,5 +352,14 @@ $magicWords = [
 	'pagesincategory_files'     => [ '0', 'dosyalar', 'files' ],
 ];
 
+$dateFormats = [
+	'mdy time' => 'H.i',
+	'mdy both' => 'H.i, F j, Y',
+	'dmy time' => 'H.i',
+	'dmy both' => 'H.i, j F Y',
+	'ymd time' => 'H.i',
+	'ymd both' => 'H.i, Y F j',
+];
+
 $separatorTransformTable = [ ',' => '.', '.' => ',' ];
 $linkTrail = '/^([a-zÇĞçğİıÖöŞşÜüÂâÎîÛû]+)(.*)$/sDu';
