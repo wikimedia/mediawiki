@@ -99,7 +99,7 @@
 	$.each( [ 'write', 'writeln' ], function ( idx, method ) {
 		mw.log.deprecate( document, method, function () {
 			$( 'body' ).append( $.parseHTML( Array.prototype.join.call( arguments, '' ) ) );
-		}, 'Use jQuery or mw.loader.load instead.' );
+		}, 'Use jQuery or mw.loader.load instead.', 'document.' + method );
 	} );
 
 }( mediaWiki, jQuery ) );

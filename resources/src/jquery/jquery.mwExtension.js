@@ -118,11 +118,11 @@
 			return true;
 		}
 	}, function ( key, value ) {
-		mw.log.deprecate( $, key, value );
+		mw.log.deprecate( $, key, value, null, '$.' + key );
 	} );
 
 	mw.log.deprecate( $, 'escapeRE', function ( str ) {
 		return str.replace( /([\\{}()|.?*+\-^$\[\]])/g, '\\$1' ); // eslint-disable-line no-useless-escape
-	}, 'Use mediawiki.RegExp instead.' );
+	}, 'Use mediawiki.RegExp instead.', '$.escapeRE' );
 
 }( jQuery, mediaWiki ) );
