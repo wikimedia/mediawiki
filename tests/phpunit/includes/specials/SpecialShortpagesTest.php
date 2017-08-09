@@ -18,7 +18,7 @@ class SpecialShortpagesTest extends MediaWikiTestCase {
 			'wgShortPagesNamespaceBlacklist' => $blacklistNS,
 			'wgContentNamespaces' => $contentNS
 		] );
-		$this->setTemporaryHook( 'ShortPagesQuery', function() {
+		$this->setTemporaryHook( 'ShortPagesQuery', function () {
 			// empty hook handler
 		} );
 

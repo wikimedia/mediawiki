@@ -815,7 +815,7 @@ class Sanitizer {
 
 			# Escape HTML id attributes
 			if ( $attribute === 'id' ) {
-				$value = self::escapeIdForAttribute( $value, Sanitizer::ID_PRIMARY );
+				$value = self::escapeIdForAttribute( $value, self::ID_PRIMARY );
 			}
 
 			# Escape HTML id reference lists
@@ -1331,7 +1331,7 @@ class Sanitizer {
 	 * @return string
 	 */
 	private static function escapeIdInternal( $id, $mode ) {
-		$id = Sanitizer::decodeCharReferences( $id );
+		$id = self::decodeCharReferences( $id );
 
 		switch ( $mode ) {
 			case 'html5':
