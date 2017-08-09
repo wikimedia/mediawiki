@@ -36,6 +36,7 @@ class PHPVersionCheck {
 		'ctype_digit' => 'ctype',
 		'json_decode' => 'json',
 		'iconv'       => 'iconv',
+		'mime_content_type' => 'fileinfo',
 	);
 
 	/**
