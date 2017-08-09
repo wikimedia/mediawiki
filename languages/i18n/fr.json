@@ -1548,7 +1548,7 @@
 	"rcfilters-view-return-to-default-tooltip": "Retour au menu principal du filtre",
 	"rcfilters-liveupdates-button": "Mises à jour en direct",
 	"rcfilters-liveupdates-button-title-on": "Désactiver les mises à jour à chaud",
-	"rcfilters-liveupdates-button-title-off": "Afficher les nouveaux changements quand ils se produisent",
+	"rcfilters-liveupdates-button-title-off": "Afficher les nouveaux changements dès qu'ils se produisent",
 	"rcnotefrom": "Ci-dessous {{PLURAL:$5|la modification effectuée|les modifications effectuées}} depuis le <strong>$3, $4</strong> (affichées jusqu’à <strong>$1</strong>).",
 	"rclistfromreset": "Réinitialiser la sélection de la date",
 	"rclistfrom": "Afficher les nouvelles modifications depuis le $3 à $2",

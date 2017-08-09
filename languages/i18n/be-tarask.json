@@ -1387,6 +1387,7 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:не</strong> $1",
 	"rcfilters-exclude-button-off": "Выключыць абранае",
 	"rcfilters-exclude-button-on": "За выключэньнем абранага",
+	"rcfilters-view-advanced-filters-label": "Пашыраныя фільтры",
 	"rcfilters-view-tags": "Праўкі зь меткамі",
 	"rcfilters-view-namespaces-tooltip": "Фільтар вынікаў паводле прасторы назваў",
 	"rcfilters-view-tags-tooltip": "Фільтар вынікаў з дапамогай метак правак",
