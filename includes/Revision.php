@@ -860,7 +860,7 @@ class Revision implements IDBAccessObject {
 	 *   Revision::FOR_PUBLIC       to be displayed to all users
 	 *   Revision::FOR_THIS_USER    to be displayed to the given user
 	 *   Revision::RAW              get the ID regardless of permissions
-	 * @param User $user User object to check for, only if FOR_THIS_USER is passed
+	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter
 	 * @return int
 	 */
@@ -894,7 +894,7 @@ class Revision implements IDBAccessObject {
 	 *   Revision::FOR_PUBLIC       to be displayed to all users
 	 *   Revision::FOR_THIS_USER    to be displayed to the given user
 	 *   Revision::RAW              get the text regardless of permissions
-	 * @param User $user User object to check for, only if FOR_THIS_USER is passed
+	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter
 	 * @return string
 	 */
@@ -938,7 +938,7 @@ class Revision implements IDBAccessObject {
 	 *   Revision::FOR_PUBLIC       to be displayed to all users
 	 *   Revision::FOR_THIS_USER    to be displayed to the given user
 	 *   Revision::RAW              get the text regardless of permissions
-	 * @param User $user User object to check for, only if FOR_THIS_USER is passed
+	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter
 	 * @return string
 	 */

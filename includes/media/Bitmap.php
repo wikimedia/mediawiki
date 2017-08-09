@@ -129,7 +129,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
 	 *
-	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
+	 * @return MediaTransformError|bool Error object if error occurred, false (=no error) otherwise
 	 */
 	protected function transformImageMagick( $image, $params ) {
 		# use ImageMagick
@@ -272,7 +272,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
 	 *
-	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
+	 * @return MediaTransformError Error|bool object if error occurred, false (=no error) otherwise
 	 */
 	protected function transformImageMagickExt( $image, $params ) {
 		global $wgSharpenReductionThreshold, $wgSharpenParameter, $wgMaxAnimatedGifArea,
@@ -367,7 +367,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
 	 *
-	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
+	 * @return MediaTransformError Error|bool object if error occurred, false (=no error) otherwise
 	 */
 	protected function transformCustom( $image, $params ) {
 		# Use a custom convert command
@@ -399,7 +399,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
 	 *
-	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
+	 * @return MediaTransformError|bool Error object if error occurred, false (=no error) otherwise
 	 */
 	protected function transformGd( $image, $params ) {
 		# Use PHP's builtin GD library functions.
