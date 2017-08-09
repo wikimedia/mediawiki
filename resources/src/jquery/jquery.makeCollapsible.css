@@ -45,3 +45,19 @@ li .mw-collapsible-toggle,
 .mw-collapsible-toggle-li {
 	list-style: none;
 }
+
+@media print {
+	.mw-collapsible-toggle {
+		display: none;
+	}
+	.mw-collapsed .mw-collapsible-content {
+		display: block !important;
+	}
+	.mw-collapsed > * > tr {
+		display: table-row !important;
+	}
+	.mw-collapsed > li,
+	.mw-collapsed > li {
+		display: list-item !important;
+	}
+}
