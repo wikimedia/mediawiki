@@ -1602,8 +1602,14 @@ class FileRepo {
 		$path = $this->resolveToStoragePath( $virtualUrl );
 		$params = [ 'src' => $path, 'headers' => $headers, 'options' => $optHeaders ];
 
+		// T172851: HHVM does not flush the output properly, causing OOM
+		ob_start( NULL, 1048576 );
+		ob_implicit_flush( true );
+
 		$status = $this->newGood();
 		$status->merge( $this->backend->streamFile( $params ) );
+
+		ob_end_flush();
 
 		return $status;
 	}
