@@ -66,17 +66,6 @@
 		rawurlencode: rawurlencode,
 
 		/**
-		 * Encode the string like Sanitizer::escapeId() in PHP
-		 * @deprecated since 1.30 use escapeIdForAttribute() or escapeIdForLink()
-		 *
-		 * @param {string} str String to be encoded.
-		 * @return {string} Encoded string
-		 */
-		escapeId: function ( str ) {
-			return escapeIdInternal( str, 'legacy' );
-		},
-
-		/**
 		 * Encode string into HTML id compatible form suitable for use in HTML
 		 * Analog to PHP Sanitizer::escapeIdForAttribute()
 		 *
@@ -603,6 +592,18 @@
 		mw.notify( message, { autoHide: true, tag: 'legacy' } );
 		return true;
 	}, 'Use mw.notify instead.' );
+
+	/**
+	 * Encode the string like Sanitizer::escapeId() in PHP
+	 *
+	 * @method
+	 * @deprecated since 1.30 use escapeIdForAttribute() or escapeIdForLink()
+	 * @param {string} str String to be encoded.
+	 * @return {string} Encoded string
+	 */
+	mw.log.deprecate( util, 'escapeId', function ( str ) {
+		return escapeIdInternal( str, 'legacy' );
+	}, 'Use mw.util.escapeIdForAttribute or mw.util.escapeIdForLink instead.' );
 
 	/**
 	 * Initialisation of mw.util.$content
