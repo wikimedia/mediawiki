@@ -233,6 +233,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 		$title = $result->getTitle();
 		ApiQueryBase::addTitleInfo( $vals, $title );
+		$vals['pageid'] = $title->getArticleID();
 
 		if ( isset( $prop['size'] ) ) {
 			$vals['size'] = $result->getByteSize();
