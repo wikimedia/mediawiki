@@ -52,8 +52,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 
 			return $redirect;
 		} else {
-			$class = static::class;
-			throw new MWException( "RedirectSpecialPage $class doesn't redirect!" );
+			$this->showNoRedirectPage();
 		}
 	}
 
@@ -105,6 +104,11 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	 */
 	public function personallyIdentifiableTarget() {
 		return false;
+	}
+	
+	protected function showNoRedirectPage() {
+		$class = static::class;
+		throw new MWException( "RedirectSpecialPage $class doesn't redirect!" );
 	}
 }
 

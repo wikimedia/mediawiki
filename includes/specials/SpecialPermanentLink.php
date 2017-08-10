@@ -39,11 +39,44 @@ class SpecialPermanentLink extends RedirectSpecialPage {
 	public function getRedirect( $subpage ) {
 		$subpage = intval( $subpage );
 		if ( $subpage === 0 ) {
-			# throw an error page when no subpage was given
-			throw new ErrorPageError( 'nopagetitle', 'nopagetext' );
+			return false;
 		}
 		$this->mAddedRedirectParams['oldid'] = $subpage;
 
 		return true;
+	}
+
+	protected function showNoRedirectPage() {
+		$this->setHeaders();
+		$this->outputHeader();
+		$this->showForm();
+	}
+
+	private function showForm() {
+		$form = HTMLForm::factory( 'ooui', [
+			'revid' => [
+				'type' => 'int',
+				'name' => 'revid',
+				'label-message' => 'permanentlink-revid',
+			],
+		], $this->getContext(), 'permanentlink' );
+		$form->setSubmitTextMsg( 'permanentlink-submit' );
+		$form->setSubmitCallback( [ $this, 'onFormSubmit' ] );
+		$form->show();
+	}
+
+	public function onFormSubmit( $formData ) {
+		$revid = $formData['revid'];
+		$title = $this->getPageTitle( $revid ?: null );
+		$url = $title->getFullUrlForRedirect();
+		$this->getOutput()->redirect( $url );
+	}
+
+	public function isListed() {
+		return true;
+	}
+
+	protected function getGroupName() {
+		return 'redirects';
 	}
 }
