@@ -108,7 +108,7 @@ class CliInstaller extends Installer {
 		}
 
 		// Set up the default skins
-		$skins = $this->findExtensions( 'skins' );
+		$skins = array_keys( $this->findExtensions( 'skins' ) );
 		$this->setVar( '_Skins', $skins );
 
 		if ( $skins ) {
