@@ -3,15 +3,13 @@
  */
 ( function ( mw, $ ) {
 
-	var oojsuieditform;
-
 	/**
 	 * @ignore
 	 * @param {jQuery.Event} e
 	 */
 	function doLivePreview( e ) {
 		var isDiff, api, parseRequest, diffRequest, postData, copySelectors, section, summary,
-			$wikiPreview, $wikiDiff, $editform, $textbox, $summary, $copyElements, $spinner, $errorBox;
+			$wikiPreview, $wikiDiff, $editform, $textbox, $copyElements, $spinner, $errorBox;
 
 		isDiff = ( e.target.name === 'wpDiff' );
 		$wikiPreview = $( '#wikiPreview' );
@@ -19,11 +17,7 @@
 		$editform = $( '#editform' );
 		$textbox = $editform.find( '#wpTextbox1' );
 
-		if ( oojsuieditform ) {
-			summary = OO.ui.infuse( $( '#wpSummaryWidget' ) );
-		} else {
-			$summary = $editform.find( '#wpSummary' );
-		}
+		summary = OO.ui.infuse( $( '#wpSummaryWidget' ) );
 
 		$spinner = $( '.mw-spinner-preview' );
 		$errorBox = $( '.errorbox' );
@@ -86,7 +80,7 @@
 			formatversion: 2,
 			action: 'parse',
 			title: mw.config.get( 'wgPageName' ),
-			summary: oojsuieditform ? summary.getValue() : $summary.val(),
+			summary: summary.getValue(),
 			prop: ''
 		};
 
@@ -289,8 +283,6 @@
 	}
 
 	$( function () {
-		oojsuieditform = $( '#editform' ).hasClass( 'mw-editform-ooui' );
-
 		// Do not enable on user .js/.css pages, as there's no sane way of "previewing"
 		// the scripts or styles without reloading the page.
 		if ( $( '#mw-userjsyoucanpreview' ).length || $( '#mw-usercssyoucanpreview' ).length ) {
@@ -317,9 +309,7 @@
 		}
 
 		if ( !$( '.mw-summary-preview' ).length ) {
-			$( oojsuieditform ? '#wpSummaryWidget' : '#wpSummary' ).after(
-				$( '<div>' ).addClass( 'mw-summary-preview' )
-			);
+			$( '#wpSummaryWidget' ).after( $( '<div>' ).addClass( 'mw-summary-preview' ) );
 		}
 
 		if ( !document.getElementById( 'wikiDiff' ) && document.getElementById( 'wikiPreview' ) ) {
