@@ -3574,6 +3574,7 @@
 	"compare-invalid-title": "Il titolo che hai specificato non è valido.",
 	"compare-title-not-exists": "Il titolo che hai specificato non esiste.",
 	"compare-revision-not-exists": "La versione che hai specificato non esiste.",
+	"diff-form": "un '''modulo'''",
 	"dberr-problems": "Questo sito sta avendo dei problemi tecnici.",
 	"dberr-again": "Prova ad attendere qualche minuto e ricaricare.",
 	"dberr-info": "(Impossibile accedere al server del database: $1)",

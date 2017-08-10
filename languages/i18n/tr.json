@@ -3361,6 +3361,7 @@
 	"compare-invalid-title": "Belirttiğiniz başlık geçersiz.",
 	"compare-title-not-exists": "Belirttiğiniz başlık mevcut değil.",
 	"compare-revision-not-exists": "Belirttiğiniz sürüm mevcut değil.",
+	"diff-form": "bir '''form'''",
 	"dberr-problems": "Üzgünüz! Bu site teknik zorluklar yaşıyor.",
 	"dberr-again": "Bir kaç dakika bekleyip tekrar yüklemeyi deneyin.",
 	"dberr-info": "(Veritabanı sunucusuyla irtibat kurulamıyor: $1)",

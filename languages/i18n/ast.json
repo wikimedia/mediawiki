@@ -3473,6 +3473,7 @@
 	"compare-invalid-title": "El títulu que conseñasti nun ye válidu.",
 	"compare-title-not-exists": "El títulu que conseñasti nun esiste.",
 	"compare-revision-not-exists": "La revisión que conseñasti nun esiste.",
+	"diff-form": "un '''formulariu'''",
 	"dberr-problems": "¡Sentímoslo! Esti sitiu ta esperimentando dificultaes téuniques.",
 	"dberr-again": "Tenta esperar dellos minutos y recargar.",
 	"dberr-info": "(Nun se pue entrar na base de datos: $1)",

@@ -3006,6 +3006,7 @@
 	"compare-invalid-title": "Tittelen du oppgav er ugild.",
 	"compare-title-not-exists": "Tittelen du oppgav finst ikkje.",
 	"compare-revision-not-exists": "Versjonen du oppgav finst ikkje.",
+	"diff-form": "eit '''skjema'''",
 	"dberr-problems": "Nettstaden har tekniske problem.",
 	"dberr-again": "Venta nokre minutt og last sida inn på nytt.",
 	"dberr-info": "(Kan ikkje kontakta databasetenaren: $1)",

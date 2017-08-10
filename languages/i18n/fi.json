@@ -3496,6 +3496,7 @@
 	"compare-invalid-title": "Antamasi sivun nimi on virheellinen.",
 	"compare-title-not-exists": "Määrittämääsi sivua ei ole.",
 	"compare-revision-not-exists": "Määrittämääsi versiota ei ole.",
+	"diff-form": "'''lomake'''",
 	"dberr-problems": "Tällä sivustolla on teknisiä ongelmia.",
 	"dberr-again": "Odota hetki ja lataa sivu uudelleen.",
 	"dberr-info": "(Tietokantaan ei saada yhteyttä: $1)",

@@ -3597,6 +3597,7 @@
 	"compare-invalid-title": "שם הדף שציינת אינו תקין.",
 	"compare-title-not-exists": "הדף שציינת אינו קיים.",
 	"compare-revision-not-exists": "הגרסה שציינת אינה קיימת.",
+	"diff-form": "'''טופס'''",
 	"dberr-problems": "מצטערים! קיימת בעיה טכנית באתר זה.",
 	"dberr-again": "נסו להמתין מספר שניות ולהעלות מחדש את הדף.",
 	"dberr-info": "(לא ניתן לגשת לבסיס הנתונים: $1)",

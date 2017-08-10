@@ -3646,6 +3646,7 @@
 	"compare-invalid-title": "El título especificado es inválido.",
 	"compare-title-not-exists": "El título especificado no existe.",
 	"compare-revision-not-exists": "La revisión especificada no existe.",
+	"diff-form": "un '''formulario'''",
 	"dberr-problems": "Lo sentimos. Este sitio está experimentando dificultades técnicas.",
 	"dberr-again": "Prueba a recargar dentro de unos minutos.",
 	"dberr-info": "(No se puede acceder a la base de datos: $1)",

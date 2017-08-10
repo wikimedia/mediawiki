@@ -2874,6 +2874,7 @@
 	"compare-invalid-title": "De opgegaeve pazjenanaam is óngeljig.",
 	"compare-title-not-exists": "Aangegaeve titel besteit neet.",
 	"compare-revision-not-exists": "Aangegaeve versie besteit neet.",
+	"diff-form": "'n '''formulier'''",
 	"dberr-problems": "Os excuses. Deze site ongervindj op t moment technische probleme.",
 	"dberr-again": "Wach n aantal minute en probeer t daonao opnuuj.",
 	"dberr-info": "(Kan gein verbinjing make mit de databaseserver: $1)",

@@ -3670,6 +3670,7 @@
 	"compare-invalid-title": "指定したページ名は無効です。",
 	"compare-title-not-exists": "指定したページは存在しません。",
 	"compare-revision-not-exists": "指定した版は存在しません。",
+	"diff-form": "'''フォーム'''",
 	"dberr-problems": "申し訳ありません! このウェブサイトに技術的な障害が発生しています。",
 	"dberr-again": "数分間待った後、もう一度読み込んでください。",
 	"dberr-info": "(データベース $1 にアクセスできません)",

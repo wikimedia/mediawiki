@@ -3495,6 +3495,7 @@
 	"compare-invalid-title": "Naslov koji ste unijeli je nevaljan.",
 	"compare-title-not-exists": "Naslov koji ste naveli ne postoji.",
 	"compare-revision-not-exists": "Izmjena koji ste naveli ne postoji.",
+	"diff-form": "'''obrazac'''",
 	"dberr-problems": "Žao nam je! Ova stranica ima određene tehničke poteškoće.",
 	"dberr-again": "Pokušajte pričekati par minuta i zatim osvježiti.",
 	"dberr-info": "(ne može se pristupiti bazi podataka: $1)",

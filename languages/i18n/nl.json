@@ -3574,6 +3574,7 @@
 	"compare-invalid-title": "De opgegeven pagina is ongeldig.",
 	"compare-title-not-exists": "De titel die u hebt opgegeven bestaat niet.",
 	"compare-revision-not-exists": "De versie die u hebt opgegeven bestaat niet.",
+	"diff-form": "een '''formulier'''",
 	"dberr-problems": "Onze excuses. Deze site ondervindt op het moment technische problemen.",
 	"dberr-again": "Wacht een aantal minuten en probeer het daarna opnieuw.",
 	"dberr-info": "(Kan geen toegang krijgen tot de database: $1)",

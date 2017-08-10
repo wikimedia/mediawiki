@@ -3237,6 +3237,7 @@
 	"compare-invalid-title": "Navedeni naslov je neispravan.",
 	"compare-title-not-exists": "Navedeni naslov ne postoji.",
 	"compare-revision-not-exists": "Navedena izmena ne postoji.",
+	"diff-form": "'''forma'''",
 	"dberr-problems": "Došlo je do tehničkih problema.",
 	"dberr-again": "Sačekajte nekoliko minuta i ponovo učitajte stranicu.",
 	"dberr-info": "(Ne mogu pristupiti bazi podataka: $1)",

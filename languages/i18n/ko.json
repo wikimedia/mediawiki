@@ -3552,6 +3552,7 @@
 	"compare-invalid-title": "입력한 제목이 잘못되었습니다.",
 	"compare-title-not-exists": "입력한 문서가 존재하지 않습니다.",
 	"compare-revision-not-exists": "지정한 판이 없습니다.",
+	"diff-form": "'''양식'''",
 	"dberr-problems": "죄송합니다! 이 사이트에 기술적인 문제가 발생하고 있습니다.",
 	"dberr-again": "잠시 기다리고 나서 다시 불러오세요.",
 	"dberr-info": "(데이터베이스 서버에 연결할 수 없습니다: $1)",

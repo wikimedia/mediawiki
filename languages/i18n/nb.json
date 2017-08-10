@@ -3563,6 +3563,7 @@
 	"compare-invalid-title": "Tittelen du oppga er ugyldig.",
 	"compare-title-not-exists": "Tittelen du oppga eksisterer ikke.",
 	"compare-revision-not-exists": "Versjonen du oppga eksisterer ikke.",
+	"diff-form": "et '''skjema'''",
 	"dberr-problems": "Siden har tekniske problemer.",
 	"dberr-again": "Prøv å oppdatere siden om noen minutter.",
 	"dberr-info": "(Kan ikke kontakte databasetjeneren: $1)",

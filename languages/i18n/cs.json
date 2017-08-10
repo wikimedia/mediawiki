@@ -3555,6 +3555,7 @@
 	"compare-invalid-title": "Zadaný název je neplatný.",
 	"compare-title-not-exists": "Zadaný název neexistuje.",
 	"compare-revision-not-exists": "Zadaná revize neexistuje.",
+	"diff-form": "'''formulář'''",
 	"dberr-problems": "Promiňte! Tento server má v tuto chvíli technické problémy.",
 	"dberr-again": "Zkuste několik minut počkat a poté znovu načíst stránku.",
 	"dberr-info": "(Nelze se připojit k databázi: $1)",

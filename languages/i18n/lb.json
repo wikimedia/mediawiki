@@ -3312,6 +3312,7 @@
 	"compare-invalid-title": "Den Titel deen Dir uginn hutt ass net valabel.",
 	"compare-title-not-exists": "Den Titel deen Dir uginn hutt gëtt et net.",
 	"compare-revision-not-exists": "D'Versioun déi Dir uginn hutt gëtt et net.",
+	"diff-form": "ein '''Formulair'''",
 	"dberr-problems": "Pardon! Dëse Site huet technesch Schwieregkeeten.",
 	"dberr-again": "Versicht e puer Minutten ze waarden an dann nei ze lueden.",
 	"dberr-info": "(D'Datebank kann net erreecht ginn: $1)",
