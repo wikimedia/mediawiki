@@ -1340,7 +1340,7 @@ abstract class Installer {
 	 * Reasonable values for $directory include 'extensions' (the default) and 'skins'.
 	 *
 	 * @param string $directory Directory to search in
-	 * @return array
+	 * @return array [ $extName => [ 'screenshots' => [ '...' ] ]
 	 */
 	public function findExtensions( $directory = 'extensions' ) {
 		if ( $this->getVar( 'IP' ) === null ) {
@@ -1362,7 +1362,15 @@ abstract class Installer {
 				continue;
 			}
 			if ( file_exists( "$extDir/$file/$jsonFile" ) || file_exists( "$extDir/$file/$file.php" ) ) {
-				$exts[] = $file;
+				// Extension exists. Now see if there are screenshots
+				$exts[$file] = [];
+				if ( is_dir( "$extDir/$file/screenshots" ) ) {
+					$paths = glob( "$extDir/$file/screenshots/*.png" );
+					foreach ( $paths as $path ) {
+						$exts[$file]['screenshots'][] = str_replace( $extDir, "../$directory", $path );
+					}
+
+				}
 			}
 		}
 		closedir( $dh );
