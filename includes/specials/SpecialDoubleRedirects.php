@@ -122,28 +122,33 @@ class DoubleRedirectsPage extends QueryPage {
 		// That does save the bulk of the query cost, but now we need to
 		// get a little more detail about each individual entry quickly
 		// using the filter of reallyGetQueryInfo.
-		if ( $result && !isset( $result->b_namespace ) ) {
-			$dbr = wfGetDB( DB_REPLICA );
-			$qi = $this->reallyGetQueryInfo(
-				$result->namespace,
-				$result->title
-			);
-			$res = $dbr->select(
-				$qi['tables'],
-				$qi['fields'],
-				$qi['conds'],
-				__METHOD__
-			);
+		$deep = false;
+		if ( $result ) {
+			if ( isset( $result->b_namespace ) ) {
+				$deep = $result;
+			} else {
+				$dbr = wfGetDB( DB_REPLICA );
+				$qi = $this->reallyGetQueryInfo(
+					$result->namespace,
+					$result->title
+				);
+				$res = $dbr->select(
+					$qi['tables'],
+					$qi['fields'],
+					$qi['conds'],
+					__METHOD__
+				);
 
-			if ( $res ) {
-				$result = $dbr->fetchObject( $res );
+				if ( $res ) {
+					$deep = $dbr->fetchObject( $res ) ?: false;
+				}
 			}
 		}
 
 		$titleA = Title::makeTitle( $result->namespace, $result->title );
 
 		$linkRenderer = $this->getLinkRenderer();
-		if ( !$result ) {
+		if ( !$deep ) {
 			return '<del>' . $linkRenderer->makeLink( $titleA, null, [], [ 'redirect' => 'no' ] ) . '</del>';
 		}
 
@@ -171,7 +176,7 @@ class DoubleRedirectsPage extends QueryPage {
 			[ 'redirect' => 'no' ]
 		);
 
-		$titleB = Title::makeTitle( $result->b_namespace, $result->b_title );
+		$titleB = Title::makeTitle( $deep->b_namespace, $deep->b_title );
 		$linkB = $linkRenderer->makeKnownLink(
 			$titleB,
 			null,
@@ -180,10 +185,10 @@ class DoubleRedirectsPage extends QueryPage {
 		);
 
 		$titleC = Title::makeTitle(
-			$result->c_namespace,
-			$result->c_title,
-			$result->c_fragment,
-			$result->c_interwiki
+			$deep->c_namespace,
+			$deep->c_title,
+			$deep->c_fragment,
+			$deep->c_interwiki
 		);
 		$linkC = $linkRenderer->makeKnownLink( $titleC, $titleC->getFullText() );
 
