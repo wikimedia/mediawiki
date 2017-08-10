@@ -37,6 +37,8 @@ class JobQueueGroup {
 	protected $wiki;
 	/** @var string|bool Read only rationale (or false if r/w) */
 	protected $readOnlyReason;
+	/** @var bool Whether the wiki is not recognized in configuration */
+	protected $invalidWiki = false;
 
 	/** @var array Map of (bucket => (queue => JobQueue, types => list of types) */
 	protected $coalescedQueues;
@@ -68,9 +70,17 @@ class JobQueueGroup {
 	 * @return JobQueueGroup
 	 */
 	public static function singleton( $wiki = false ) {
+		global $wgLocalDatabases;
+
 		$wiki = ( $wiki === false ) ? wfWikiID() : $wiki;
+
 		if ( !isset( self::$instances[$wiki] ) ) {
 			self::$instances[$wiki] = new self( $wiki, wfConfiguredReadOnlyReason() );
+			// Make sure jobs are not getting pushed to bogus wikis. This can confuse
+			// the job runner system into spawning endless RPC requests that fail (T171371).
+			if ( $wiki !== wfWikiID() && !in_array( $wiki, $wgLocalDatabases ) ) {
+				self::$instances[$wiki]->invalidWiki = true;
+			}
 		}
 
 		return self::$instances[$wiki];
@@ -120,6 +130,13 @@ class JobQueueGroup {
 	 */
 	public function push( $jobs ) {
 		global $wgJobTypesExcludedFromDefaultQueue;
+
+		if ( $this->invalidWiki ) {
+			// Do not enqueue job that cannot be run (T171371)
+			$e = new LogicException( "Domain '{$this->wiki}' is not recognized." );
+			MWExceptionHandler::logException( $e );
+			return;
+		}
 
 		$jobs = is_array( $jobs ) ? $jobs : [ $jobs ];
 		if ( !count( $jobs ) ) {
@@ -171,6 +188,11 @@ class JobQueueGroup {
 	 * @since 1.26
 	 */
 	public function lazyPush( $jobs ) {
+		if ( $this->invalidWiki ) {
+			// Do not enqueue job that cannot be run (T171371)
+			throw new LogicException( "Domain '{$this->wiki}' is not recognized." );
+		}
+
 		if ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' ) {
 			$this->push( $jobs );
 			return;
