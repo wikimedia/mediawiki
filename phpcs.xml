@@ -10,7 +10,6 @@
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingReturn" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.Missing.Protected" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.Missing.Public" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.ParamNameNoMatch" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.SpacingAfter" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.SpacingAfterParamName" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.SpacingAfterParamType" />

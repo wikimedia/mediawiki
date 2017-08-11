@@ -169,7 +169,7 @@ class MediaStatisticsPage extends QueryPage {
 	 *
 	 * @param string $mime mime type (e.g. image/jpeg)
 	 * @param int $count Number of images of this type
-	 * @param int $totalBytes Total space for images of this type
+	 * @param int $bytes Total space for images of this type
 	 */
 	protected function outputTableRow( $mime, $count, $bytes ) {
 		$mimeSearch = SpecialPage::getTitleFor( 'MIMEsearch', $mime );
