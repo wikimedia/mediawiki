@@ -747,7 +747,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * Make a global cache key.
 	 *
 	 * @since 1.27
-	 * @param string ... Key component (variadic)
+	 * @param string $keys,... Key component
 	 * @return string
 	 */
 	public function makeGlobalKey() {
@@ -758,7 +758,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * Make a cache key, scoped to this instance's keyspace.
 	 *
 	 * @since 1.27
-	 * @param string ... Key component (variadic)
+	 * @param string $keys,... Key component
 	 * @return string
 	 */
 	public function makeKey() {

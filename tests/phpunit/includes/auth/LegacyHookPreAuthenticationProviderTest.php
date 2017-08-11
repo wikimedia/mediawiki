@@ -282,7 +282,7 @@ class LegacyHookPreAuthenticationProviderTest extends \MediaWikiTestCase {
 	 * @dataProvider provideTestForAccountCreation
 	 * @param string $msg
 	 * @param Status|null $status
-	 * @param StatusValue Result
+	 * @param StatusValue $result Result
 	 */
 	public function testTestForAccountCreation( $msg, $status, $result ) {
 		$this->hook( 'AbortNewAccount', $this->once() )

@@ -40,7 +40,7 @@ interface ILBFactory {
 	 *
 	 * Sub-classes will extend the required keys in $conf with additional parameters
 	 *
-	 * @param $conf $params Array with keys:
+	 * @param array $conf Array with keys:
 	 *  - localDomain: A DatabaseDomain or domain ID string.
 	 *  - readOnlyReason : Reason the master DB is read-only if so [optional]
 	 *  - srvCache : BagOStuff object for server cache [optional]

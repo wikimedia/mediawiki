@@ -134,7 +134,7 @@ class MemoizedCallable {
 	 *
 	 * Like MemoizedCallable::invokeArgs(), but variadic.
 	 *
-	 * @param mixed ...$params Parameters for memoized function or method.
+	 * @param mixed $params,... Parameters for memoized function or method.
 	 * @return mixed The memoized callable's return value.
 	 */
 	public function invoke() {

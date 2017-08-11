@@ -174,7 +174,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 * @param integer $count
 	 * @param bool $asyncWrites
 	 * @param string $method
-	 * @param mixed ...
+	 * @param mixed $args,...
 	 * @return bool
 	 */
 	protected function doWrite( $count, $asyncWrites, $method /*, ... */ ) {

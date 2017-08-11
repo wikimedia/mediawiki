@@ -688,7 +688,7 @@ class OutputPage extends ContextSource {
 	 * Add one or more head items to the output
 	 *
 	 * @since 1.28
-	 * @param string|string[] $value Raw HTML
+	 * @param string|string[] $values Raw HTML
 	 */
 	public function addHeadItems( $values ) {
 		$this->mHeadItems = array_merge( $this->mHeadItems, (array)$values );
@@ -3797,7 +3797,7 @@ class OutputPage extends ContextSource {
 	 * Caller is responsible for ensuring the file exists. Emits a PHP warning otherwise.
 	 *
 	 * @since 1.27
-	 * @param string $remotePath URL path prefix that points to $localPath
+	 * @param string $remotePathPrefix URL path prefix that points to $localPath
 	 * @param string $localPath File directory exposed at $remotePath
 	 * @param string $file Path to target file relative to $localPath
 	 * @return string URL
