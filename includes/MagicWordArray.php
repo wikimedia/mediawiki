@@ -260,7 +260,7 @@ class MagicWordArray {
 	 * Returns an associative array, ID => param value, for all items that match
 	 * Removes the matched items from the input string (passed by reference)
 	 *
-	 * @param string $text
+	 * @param string &$text
 	 *
 	 * @return array
 	 */
@@ -304,7 +304,7 @@ class MagicWordArray {
 	 * Return false if no match found and $text is not modified.
 	 * Does not match parameters.
 	 *
-	 * @param string $text
+	 * @param string &$text
 	 *
 	 * @return int|bool False on failure
 	 */

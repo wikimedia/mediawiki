@@ -1307,7 +1307,7 @@ class Revision implements IDBAccessObject {
 	 * data is compressed, and 'utf-8' if we're saving in UTF-8
 	 * mode.
 	 *
-	 * @param mixed $text Reference to a text
+	 * @param mixed &$text Reference to a text
 	 * @return string
 	 */
 	public static function compressRevisionText( &$text ) {

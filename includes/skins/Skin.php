@@ -449,7 +449,7 @@ abstract class Skin extends ContextSource {
 	 * "<body>" tag, skins can override it if they have a need to add in any
 	 * body attributes or classes of their own.
 	 * @param OutputPage $out
-	 * @param array $bodyAttrs
+	 * @param array &$bodyAttrs
 	 */
 	function addToBodyAttributes( $out, &$bodyAttrs ) {
 		// does nothing by default
@@ -1215,7 +1215,7 @@ abstract class Skin extends ContextSource {
 	/**
 	 * make sure we have some title to operate on
 	 *
-	 * @param Title $title
+	 * @param Title &$title
 	 * @param string $name
 	 */
 	static function checkTitle( &$title, $name ) {
@@ -1286,7 +1286,7 @@ abstract class Skin extends ContextSource {
 	 *
 	 * This is just a wrapper around addToSidebarPlain() for backwards compatibility
 	 *
-	 * @param array $bar
+	 * @param array &$bar
 	 * @param string $message
 	 */
 	public function addToSidebar( &$bar, $message ) {
@@ -1296,7 +1296,7 @@ abstract class Skin extends ContextSource {
 	/**
 	 * Add content from plain text
 	 * @since 1.17
-	 * @param array $bar
+	 * @param array &$bar
 	 * @param string $text
 	 * @return array
 	 */

@@ -1350,7 +1350,7 @@ class Linker {
 	/**
 	 * @param Title $contextTitle
 	 * @param string $target
-	 * @param string $text
+	 * @param string &$text
 	 * @return string
 	 */
 	public static function normalizeSubpageLink( $contextTitle, $target, &$text ) {

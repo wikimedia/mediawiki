@@ -1715,7 +1715,7 @@ class OutputPage extends ContextSource {
 	 * Add wikitext with a custom Title object
 	 *
 	 * @param string $text Wikitext
-	 * @param Title $title
+	 * @param Title &$title
 	 * @param bool $linestart Is this the start of a line?
 	 */
 	public function addWikiTextWithTitle( $text, &$title, $linestart = true ) {
@@ -1726,7 +1726,7 @@ class OutputPage extends ContextSource {
 	 * Add wikitext with a custom Title object and tidy enabled.
 	 *
 	 * @param string $text Wikitext
-	 * @param Title $title
+	 * @param Title &$title
 	 * @param bool $linestart Is this the start of a line?
 	 */
 	function addWikiTextTitleTidy( $text, &$title, $linestart = true ) {
@@ -1899,7 +1899,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add the output of a QuickTemplate to the output buffer
 	 *
-	 * @param QuickTemplate $template
+	 * @param QuickTemplate &$template
 	 */
 	public function addTemplate( &$template ) {
 		$this->addHTML( $template->getHTML() );

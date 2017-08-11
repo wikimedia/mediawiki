@@ -229,7 +229,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @note: This method is only needed if merge() uses mergeViaCas()
 	 *
 	 * @param string $key
-	 * @param mixed $casToken
+	 * @param mixed &$casToken
 	 * @param integer $flags Bitfield of BagOStuff::READ_* constants [optional]
 	 * @return mixed Returns false on failure and if the item does not exist
 	 * @throws Exception

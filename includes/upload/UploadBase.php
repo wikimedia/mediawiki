@@ -155,7 +155,7 @@ abstract class UploadBase {
 	/**
 	 * Create a form of UploadBase depending on wpSourceType and initializes it
 	 *
-	 * @param WebRequest $request
+	 * @param WebRequest &$request
 	 * @param string|null $type
 	 * @return null|UploadBase
 	 */
@@ -241,7 +241,7 @@ abstract class UploadBase {
 	/**
 	 * Initialize from a WebRequest. Override this in a subclass.
 	 *
-	 * @param WebRequest $request
+	 * @param WebRequest &$request
 	 */
 	abstract public function initializeFromRequest( &$request );
 

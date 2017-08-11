@@ -36,7 +36,7 @@ use MediaWiki\MediaWikiServices;
 abstract class TransformationalImageHandler extends ImageHandler {
 	/**
 	 * @param File $image
-	 * @param array $params Transform parameters. Entries with the keys 'width'
+	 * @param array &$params Transform parameters. Entries with the keys 'width'
 	 * and 'height' are the respective screen width and height, while the keys
 	 * 'physicalWidth' and 'physicalHeight' indicate the thumbnail dimensions.
 	 * @return bool
@@ -588,7 +588,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * Runs the 'BitmapHandlerCheckImageArea' hook.
 	 *
 	 * @param File $file
-	 * @param array $params
+	 * @param array &$params
 	 * @return bool
 	 * @since 1.25
 	 */

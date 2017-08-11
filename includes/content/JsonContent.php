@@ -96,7 +96,7 @@ class JsonContent extends TextContent {
 	 * @param int $revId
 	 * @param ParserOptions $options
 	 * @param bool $generateHtml
-	 * @param ParserOutput $output
+	 * @param ParserOutput &$output
 	 */
 	protected function fillParserOutput( Title $title, $revId,
 		ParserOptions $options, $generateHtml, ParserOutput &$output

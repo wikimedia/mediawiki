@@ -66,7 +66,7 @@ class SectionProfiler {
 	}
 
 	/**
-	 * @param ScopedCallback $section
+	 * @param ScopedCallback &$section
 	 */
 	public function scopedProfileOut( ScopedCallback &$section ) {
 		$section = null;

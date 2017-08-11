@@ -450,7 +450,7 @@ class HTMLForm extends ContextSource {
 	 * @since 1.23
 	 *
 	 * @param string $fieldname Name of the field
-	 * @param array $descriptor Input Descriptor, as described above
+	 * @param array &$descriptor Input Descriptor, as described above
 	 *
 	 * @throws MWException
 	 * @return string Name of a HTMLFormField subclass
