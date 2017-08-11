@@ -1122,6 +1122,9 @@ class Preferences {
 
 	/**
 	 * Dummy, kept for backwards-compatibility.
+	 * @param User $user
+	 * @param IContextSource $context
+	 * @param array &$defaultPreferences
 	 */
 	static function miscPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 	}

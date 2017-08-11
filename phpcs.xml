@@ -3,11 +3,7 @@
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
 		<exclude name="Generic.ControlStructures.InlineControlStructure" />
 		<!-- Disable rules added in 0.8.0 that don't pass yet -->
-		<exclude name="MediaWiki.Commenting.FunctionComment.ExtraParamComment" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingParamComment" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.MissingParamName" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.MissingParamTag" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.MissingReturn" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.Missing.Protected" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.Missing.Public" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.SpacingAfter" />

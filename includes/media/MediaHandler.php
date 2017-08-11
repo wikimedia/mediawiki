@@ -304,8 +304,10 @@ abstract class MediaHandler {
 	}
 
 	/**
-	* @deprecated since 1.30, use MediaHandler::getContentHeaders instead
-	*/
+	 * @deprecated since 1.30, use MediaHandler::getContentHeaders instead
+	 * @param array $metadata
+	 * @return array
+	 */
 	public function getStreamHeaders( $metadata ) {
 		wfDeprecated( __METHOD__, '1.30' );
 		return $this->getContentHeaders( $metadata );

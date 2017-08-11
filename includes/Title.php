@@ -1896,6 +1896,8 @@ class Title implements LinkTarget {
 	 * protocol-relative, the URL will be expanded to http://
 	 *
 	 * @see self::getLocalURL for the arguments.
+	 * @param string $query
+	 * @param string|bool $query2
 	 * @return string The URL
 	 */
 	public function getInternalURL( $query = '', $query2 = false ) {

@@ -426,6 +426,7 @@ class RecentChange {
 	 * @since 1.22
 	 * @deprecated since 1.29 Use RCFeed::factory() instead
 	 * @param string $uri URI to get the engine object for
+	 * @param array $params
 	 * @return RCFeedEngine The engine object
 	 * @throws MWException
 	 */

@@ -32,6 +32,7 @@ class SearchHighlighter {
 	/**
 	 * @warning If you pass false to this constructor, then
 	 *  the caller is responsible for HTML escaping.
+	 * @param bool $cleanupWikitext
 	 */
 	function __construct( $cleanupWikitext = true ) {
 		$this->mCleanWikitext = $cleanupWikitext;
