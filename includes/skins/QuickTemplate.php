@@ -92,14 +92,14 @@ abstract class QuickTemplate {
 
 	/**
 	 * @param string $name
-	 * @param mixed $value
+	 * @param mixed &$value
 	 */
 	public function setRef( $name, &$value ) {
 		$this->data[$name] =& $value;
 	}
 
 	/**
-	 * @param MediaWikiI18N $t
+	 * @param MediaWikiI18N &$t
 	 */
 	public function setTranslator( &$t ) {
 		$this->translator = &$t;

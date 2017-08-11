@@ -1896,6 +1896,8 @@ class Title implements LinkTarget {
 	 * protocol-relative, the URL will be expanded to http://
 	 *
 	 * @see self::getLocalURL for the arguments.
+	 * @param string $query
+	 * @param string|bool $query2
 	 * @return string The URL
 	 */
 	public function getInternalURL( $query = '', $query2 = false ) {
@@ -1917,6 +1919,8 @@ class Title implements LinkTarget {
 	 * NOTE: Unlike getInternalURL(), the canonical URL includes the fragment
 	 *
 	 * @see self::getLocalURL for the arguments.
+	 * @param string $query
+	 * @param string|bool $query2
 	 * @return string The URL
 	 * @since 1.18
 	 */
@@ -3673,6 +3677,7 @@ class Title implements LinkTarget {
 
 	/**
 	 * @deprecated since 1.27 use getCdnUrls()
+	 * @return array
 	 */
 	public function getSquidURLs() {
 		return $this->getCdnUrls();
@@ -3693,7 +3698,7 @@ class Title implements LinkTarget {
 	 * Returns true if ok, or a getUserPermissionsErrors()-like array otherwise
 	 *
 	 * @deprecated since 1.25, use MovePage's methods instead
-	 * @param Title $nt The new title
+	 * @param Title &$nt The new title
 	 * @param bool $auth Whether to check user permissions (uses $wgUser)
 	 * @param string $reason Is the log summary of the move, used for spam checking
 	 * @return array|bool True on success, getUserPermissionsErrors()-like array on failure
@@ -3745,7 +3750,7 @@ class Title implements LinkTarget {
 	 * Move a title to a new location
 	 *
 	 * @deprecated since 1.25, use the MovePage class instead
-	 * @param Title $nt The new title
+	 * @param Title &$nt The new title
 	 * @param bool $auth Indicates whether $wgUser's permissions
 	 *  should be checked
 	 * @param string $reason The reason for the move

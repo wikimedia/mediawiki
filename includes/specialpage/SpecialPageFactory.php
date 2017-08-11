@@ -501,8 +501,8 @@ class SpecialPageFactory {
 	 * Returns a title object if the page is redirected, false if there was no such special
 	 * page, and true if it was successful.
 	 *
-	 * @param Title $title
-	 * @param IContextSource $context
+	 * @param Title &$title
+	 * @param IContextSource &$context
 	 * @param bool $including Bool output is being captured for use in {{special:whatever}}
 	 * @param LinkRenderer|null $linkRenderer (since 1.28)
 	 *

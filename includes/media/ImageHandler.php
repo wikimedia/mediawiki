@@ -80,7 +80,7 @@ abstract class ImageHandler extends MediaHandler {
 
 	/**
 	 * @param File $image
-	 * @param array $params
+	 * @param array &$params
 	 * @return bool
 	 */
 	function normaliseParams( $image, &$params ) {
@@ -152,8 +152,8 @@ abstract class ImageHandler extends MediaHandler {
 	/**
 	 * Validate thumbnail parameters and fill in the correct height
 	 *
-	 * @param int $width Specified width (input/output)
-	 * @param int $height Height (output only)
+	 * @param int &$width Specified width (input/output)
+	 * @param int &$height Height (output only)
 	 * @param int $srcWidth Width of the source image
 	 * @param int $srcHeight Height of the source image
 	 * @param string $mimeType Unused

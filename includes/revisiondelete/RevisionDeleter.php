@@ -98,7 +98,7 @@ class RevisionDeleter {
 	 * @param int $field The bitmask describing the single option.
 	 * @param int $diff The xor of the old and new bitfields.
 	 * @param int $new The new bitfield
-	 * @param array $arr The array to update.
+	 * @param array &$arr The array to update.
 	 */
 	protected static function checkItem( $desc, $field, $diff, $new, &$arr ) {
 		if ( $diff & $field ) {
@@ -234,7 +234,7 @@ class RevisionDeleter {
 	 * @since 1.22
 	 * @param array $bitPars ExtractBitParams() params
 	 * @param int $oldfield Current bitfield
-	 * @return integer
+	 * @return int
 	 */
 	public static function extractBitfield( array $bitPars, $oldfield ) {
 		// Build the actual new rev_deleted bitfield

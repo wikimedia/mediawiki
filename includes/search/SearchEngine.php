@@ -566,6 +566,7 @@ abstract class SearchEngine {
 	/**
 	 * Process completion search results.
 	 * Resolves the titles and rescores.
+	 * @param string $search
 	 * @param SearchSuggestionSet $suggestions
 	 * @return SearchSuggestionSet
 	 */

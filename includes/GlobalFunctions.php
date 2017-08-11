@@ -241,7 +241,7 @@ function wfArrayFilterByKey( array $arr, callable $callback ) {
  * @param string|int $key
  * @param mixed $value
  * @param mixed $default
- * @param array $changed Array to alter
+ * @param array &$changed Array to alter
  * @throws MWException
  */
 function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
@@ -1750,7 +1750,7 @@ function wfEscapeWikiText( $text ) {
  * If source is NULL, it just returns the value, it doesn't set the variable
  * If force is true, it will set the value even if source is NULL
  *
- * @param mixed $dest
+ * @param mixed &$dest
  * @param mixed $source
  * @param bool $force
  * @return mixed
@@ -1766,7 +1766,7 @@ function wfSetVar( &$dest, $source, $force = false ) {
 /**
  * As for wfSetVar except setting a bit
  *
- * @param int $dest
+ * @param int &$dest
  * @param int $bit
  * @param bool $state
  *
@@ -2234,7 +2234,8 @@ function wfIniGetBool( $setting ) {
  * (https://bugs.php.net/bug.php?id=26285) and the locale problems on Linux in
  * PHP 5.2.6+ (bug backported to earlier distro releases of PHP).
  *
- * @param string ... strings to escape and glue together, or a single array of strings parameter
+ * @param string $args,... strings to escape and glue together,
+ *  or a single array of strings parameter
  * @return string
  */
 function wfEscapeShellArg( /*...*/ ) {
@@ -2618,7 +2619,7 @@ function wfShellWikiCmd( $script, array $parameters = [], array $options = [] ) 
  * @param string $old
  * @param string $mine
  * @param string $yours
- * @param string $result
+ * @param string &$result
  * @return bool
  */
 function wfMerge( $old, $mine, $yours, &$result ) {

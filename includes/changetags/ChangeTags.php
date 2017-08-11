@@ -649,11 +649,11 @@ class ChangeTags {
 	 * if you had ORDER BY foo_timestamp DESC, you will now need GROUP BY foo_timestamp, foo_id
 	 * ORDER BY foo_timestamp DESC, foo_id DESC.
 	 *
-	 * @param string|array $tables Table names, see Database::select
-	 * @param string|array $fields Fields used in query, see Database::select
-	 * @param string|array $conds Conditions used in query, see Database::select
-	 * @param array $join_conds Join conditions, see Database::select
-	 * @param string|array $options Options, see Database::select
+	 * @param string|array &$tables Table names, see Database::select
+	 * @param string|array &$fields Fields used in query, see Database::select
+	 * @param string|array &$conds Conditions used in query, see Database::select
+	 * @param array &$join_conds Join conditions, see Database::select
+	 * @param string|array &$options Options, see Database::select
 	 * @param string|array $filter_tag Tag(s) to select on
 	 *
 	 * @throws MWException When unable to determine appropriate JOIN condition for tagging
@@ -1328,6 +1328,7 @@ class ChangeTags {
 	 *
 	 * @see listSoftwareDefinedTags
 	 * @deprecated since 1.28
+	 * @return array
 	 */
 	public static function listExtensionDefinedTags() {
 		wfDeprecated( __METHOD__, '1.28' );

@@ -22,6 +22,7 @@ class JsonContent extends TextContent {
 
 	/**
 	 * @param string $text JSON
+	 * @param string $modelId
 	 */
 	public function __construct( $text, $modelId = CONTENT_MODEL_JSON ) {
 		parent::__construct( $text, $modelId );
@@ -96,7 +97,7 @@ class JsonContent extends TextContent {
 	 * @param int $revId
 	 * @param ParserOptions $options
 	 * @param bool $generateHtml
-	 * @param ParserOutput $output
+	 * @param ParserOutput &$output
 	 */
 	protected function fillParserOutput( Title $title, $revId,
 		ParserOptions $options, $generateHtml, ParserOutput &$output

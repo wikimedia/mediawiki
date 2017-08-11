@@ -189,7 +189,7 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 	}
 
 	/**
-	 * @param string $sql
+	 * @param string &$sql
 	 * @param string $field
 	 * @param int $delta
 	 */
