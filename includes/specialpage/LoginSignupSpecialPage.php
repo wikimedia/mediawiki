@@ -1247,6 +1247,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	/**
 	 * Returns a string that can be appended to the URL (without encoding) to preserve the
 	 * return target. Does not include leading '?'/'&'.
+	 * @return string
 	 */
 	protected function getReturnToQueryStringFragment() {
 		$returnto = '';

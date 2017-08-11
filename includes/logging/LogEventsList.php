@@ -60,7 +60,7 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param IContextSource|Skin $context Context to use; formerly it was
 	 *   a Skin object. Use of Skin is deprecated.
-	 * @param LinkRenderer|null $linkRenderer, previously unused
+	 * @param LinkRenderer|null $linkRenderer previously unused
 	 * @param int $flags Can be a combination of self::NO_ACTION_LINK,
 	 *   self::NO_EXTRA_USER_LINKS or self::USE_CHECKBOXES.
 	 */
