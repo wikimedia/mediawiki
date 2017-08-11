@@ -53,7 +53,7 @@ class SearchSuggestion {
 	/**
 	 * Construct a new suggestion
 	 * @param float $score the suggestion score
-	 * @param string $text|null the suggestion text
+	 * @param string|null $text the suggestion text
 	 * @param Title|null $suggestedTitle the suggested title
 	 * @param int|null $suggestedTitleID the suggested title ID
 	 */

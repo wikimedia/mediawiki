@@ -3519,7 +3519,7 @@ class User implements IDBAccessObject {
 	/**
 	 * Check if user is allowed to access a feature / make an action
 	 *
-	 * @param string ... Permissions to test
+	 * @param string $permissions,... Permissions to test
 	 * @return bool True if user is allowed to perform *any* of the given actions
 	 */
 	public function isAllowedAny() {
@@ -3534,7 +3534,7 @@ class User implements IDBAccessObject {
 
 	/**
 	 *
-	 * @param string ... Permissions to test
+	 * @param string $permissions,... Permissions to test
 	 * @return bool True if the user is allowed to perform *all* of the given actions
 	 */
 	public function isAllowedAll() {
@@ -3661,7 +3661,7 @@ class User implements IDBAccessObject {
 	 * If e-notif e-mails are on, they will receive notification mails on
 	 * the next change of the page if it's watched etc.
 	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
-	 * @param Title $title Title of the article to look at
+	 * @param Title &$title Title of the article to look at
 	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
 	 */
 	public function clearNotification( &$title, $oldid = 0 ) {

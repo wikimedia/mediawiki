@@ -218,7 +218,7 @@ class SearchMySQL extends SearchDatabase {
 
 	/**
 	 * Add special conditions
-	 * @param array $query
+	 * @param array &$query
 	 * @since 1.18
 	 */
 	protected function queryFeatures( &$query ) {
@@ -231,7 +231,7 @@ class SearchMySQL extends SearchDatabase {
 
 	/**
 	 * Add namespace conditions
-	 * @param array $query
+	 * @param array &$query
 	 * @since 1.18 (changed)
 	 */
 	function queryNamespaces( &$query ) {
@@ -245,7 +245,7 @@ class SearchMySQL extends SearchDatabase {
 
 	/**
 	 * Add limit options
-	 * @param array $query
+	 * @param array &$query
 	 * @since 1.18
 	 */
 	protected function limitResult( &$query ) {

@@ -672,7 +672,7 @@ class SqlBagOStuff extends BagOStuff {
 	 * On typical message and page data, this can provide a 3X decrease
 	 * in storage requirements.
 	 *
-	 * @param mixed $data
+	 * @param mixed &$data
 	 * @return string
 	 */
 	protected function serialize( &$data ) {

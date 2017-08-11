@@ -57,7 +57,7 @@ class UploadSourceAdapter {
 	 * @param string $path
 	 * @param string $mode
 	 * @param array $options
-	 * @param string $opened_path
+	 * @param string &$opened_path
 	 * @return bool
 	 */
 	function stream_open( $path, $mode, $options, &$opened_path ) {

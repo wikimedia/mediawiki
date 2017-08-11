@@ -86,7 +86,7 @@ class WebPHandler extends BitmapHandler {
 	/**
 	 * Extracts the image size and WebP type from a file
 	 *
-	 * @param string $chunks Chunks as extracted by RiffExtractor
+	 * @param string $filename
 	 * @return array|bool Header data array with entries 'compression', 'width' and 'height',
 	 * where 'compression' can be 'lossy', 'lossless', 'animated' or 'unknown'. False if
 	 * file is not a valid WebP file.
@@ -118,6 +118,7 @@ class WebPHandler extends BitmapHandler {
 	/**
 	 * Extracts the image size and WebP type from a file based on the chunk list
 	 * @param array $chunks Chunks as extracted by RiffExtractor
+	 * @param string $filename
 	 * @return array Header data array with entries 'compression', 'width' and 'height', where
 	 * 'compression' can be 'lossy', 'lossless', 'animated' or 'unknown'
 	 */
@@ -245,7 +246,7 @@ class WebPHandler extends BitmapHandler {
 	}
 
 	/**
-	 * @param $file
+	 * @param File $file
 	 * @return bool True, not all browsers support WebP
 	 */
 	public function mustRender( $file ) {
@@ -253,7 +254,7 @@ class WebPHandler extends BitmapHandler {
 	}
 
 	/**
-	 * @param $file
+	 * @param File $file
 	 * @return bool False if we are unable to render this image
 	 */
 	public function canRender( $file ) {
@@ -286,9 +287,9 @@ class WebPHandler extends BitmapHandler {
 	/**
 	 * Render files as PNG
 	 *
-	 * @param $ext
-	 * @param $mime
-	 * @param $params
+	 * @param string $ext
+	 * @param string $mime
+	 * @param array|null $params
 	 * @return array
 	 */
 	public function getThumbType( $ext, $mime, $params = null ) {
@@ -298,6 +299,8 @@ class WebPHandler extends BitmapHandler {
 	/**
 	 * Must use "im" for XCF
 	 *
+	 * @param string $dstPath
+	 * @param bool $checkDstPath
 	 * @return string
 	 */
 	protected function getScalerType( $dstPath, $checkDstPath = true ) {

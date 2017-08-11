@@ -40,7 +40,7 @@ interface ILBFactory {
 	 *
 	 * Sub-classes will extend the required keys in $conf with additional parameters
 	 *
-	 * @param $conf $params Array with keys:
+	 * @param array $conf Array with keys:
 	 *  - localDomain: A DatabaseDomain or domain ID string.
 	 *  - readOnlyReason : Reason the master DB is read-only if so [optional]
 	 *  - srvCache : BagOStuff object for server cache [optional]
@@ -138,7 +138,7 @@ interface ILBFactory {
 
 	/**
 	 * Prepare all tracked load balancers for shutdown
-	 * @param integer $mode One of the class SHUTDOWN_* constants
+	 * @param int $mode One of the class SHUTDOWN_* constants
 	 * @param callable|null $workCallback Work to mask ChronologyProtector writes
 	 */
 	public function shutdown(

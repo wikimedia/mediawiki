@@ -242,7 +242,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	/**
 	 * @deprecated since 1.25 Use LogFormatter::formatParametersForApi instead
 	 * @param ApiResult $result
-	 * @param array $vals
+	 * @param array &$vals
 	 * @param string $params
 	 * @param string $type
 	 * @param string $action

@@ -34,7 +34,7 @@ class DumpNamespaceFilter extends DumpFilter {
 	public $namespaces = [];
 
 	/**
-	 * @param DumpOutput $sink
+	 * @param DumpOutput &$sink
 	 * @param array $param
 	 * @throws MWException
 	 */

@@ -155,7 +155,7 @@ abstract class UploadBase {
 	/**
 	 * Create a form of UploadBase depending on wpSourceType and initializes it
 	 *
-	 * @param WebRequest $request
+	 * @param WebRequest &$request
 	 * @param string|null $type
 	 * @return null|UploadBase
 	 */
@@ -241,7 +241,7 @@ abstract class UploadBase {
 	/**
 	 * Initialize from a WebRequest. Override this in a subclass.
 	 *
-	 * @param WebRequest $request
+	 * @param WebRequest &$request
 	 */
 	abstract public function initializeFromRequest( &$request );
 
@@ -1496,6 +1496,7 @@ abstract class UploadBase {
 	 * @param string $type PUBLIC or SYSTEM
 	 * @param string $publicId The well-known public identifier for the dtd
 	 * @param string $systemId The url for the external dtd
+	 * @return bool|array
 	 */
 	public static function checkSvgExternalDTD( $type, $publicId, $systemId ) {
 		// This doesn't include the XHTML+MathML+SVG doctype since we don't
@@ -1521,6 +1522,7 @@ abstract class UploadBase {
 	 * @todo Replace this with a whitelist filter!
 	 * @param string $element
 	 * @param array $attribs
+	 * @param array $data
 	 * @return bool
 	 */
 	public function checkSvgScriptCallback( $element, $attribs, $data = null ) {
