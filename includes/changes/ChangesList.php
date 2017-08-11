@@ -753,11 +753,12 @@ class ChangesList extends ContextSource {
 		switch ( $type ) {
 			case RecentChange::SRC_EDIT:
 			case RecentChange::SRC_NEW:
-				$attrs[ 'data-mw-revid' ] = $rc->mAttribs['rc_this_oldid'];
+				$attrs['data-mw-revid'] = $rc->mAttribs['rc_this_oldid'];
 				break;
 			case RecentChange::SRC_LOG:
-				$attrs[ 'data-mw-logid' ] = $rc->mAttribs['rc_logid'];
-				$attrs[ 'data-mw-logaction' ] = $rc->mAttribs['rc_log_type'] . '/' . $rc->mAttribs['rc_log_action'];
+				$attrs['data-mw-logid'] = $rc->mAttribs['rc_logid'];
+				$attrs['data-mw-logaction'] =
+					$rc->mAttribs['rc_log_type'] . '/' . $rc->mAttribs['rc_log_action'];
 				break;
 		}
 

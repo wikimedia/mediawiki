@@ -99,7 +99,10 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 		$enhancedChangesList->recentChangesLine( $recentChange, false );
 
 		$html = $enhancedChangesList->endRecentChangesList();
-		$this->assertRegExp( '/data-mw-revid="5" data-mw-ts="20131103092153" class="[^"]*mw-enhanced-rc[^"]*"/', $html );
+		$this->assertRegExp(
+			'/data-mw-revid="5" data-mw-ts="20131103092153" class="[^"]*mw-enhanced-rc[^"]*"/',
+			$html
+		);
 
 		$recentChange2 = $this->getEditChange( '20131103092253' );
 		$enhancedChangesList->recentChangesLine( $recentChange2, false );
