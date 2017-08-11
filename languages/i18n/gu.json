@@ -1077,6 +1077,8 @@
 	"recentchanges-legend-heading": "<strong>કળ:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|નવા પાનાઓની યાદી]] પણ જુઓ)",
 	"recentchanges-submit": "બતાવો",
+	"rcfilters-other-review-tools": "<strong>અન્ય ચકાસણી સાધનો</strong>",
+	"rcfilters-savedqueries-cancel-label": "રદ કરો",
 	"rcnotefrom": "નીચે <strong>$3, $4</strong> થી {{PLURAL:$5|ફેરફાર|ફેરફારો}} દર્શાવેલ છે (<strong>$1</strong> સુધી દર્શાવેલ છે).",
 	"rclistfrom": "$3 $2 બાદ થયેલા નવા ફેરફારો બતાવો",
 	"rcshowhideminor": "નાના ફેરફારો $1",

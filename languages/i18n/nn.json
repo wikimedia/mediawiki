@@ -1195,6 +1195,7 @@
 	"rcfilters-filter-previousrevision-description": "Alle endringar som ikkje er den siste versjonen.",
 	"rcfilters-filter-excluded": "Utelate",
 	"rcfilters-exclude-button-off": "Utelat dei valde",
+	"rcfilters-view-advanced-filters-label": "Avanserte filter",
 	"rcfilters-view-tags": "Endringar med merke",
 	"rcfilters-view-namespaces-tooltip": "Filtrer resultat etter namnerom",
 	"rcfilters-view-tags-tooltip": "Filtrer resultat etter endringsmerke",

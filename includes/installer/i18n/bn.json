@@ -141,6 +141,8 @@
 	"config-install-mainpage-exists": "প্রধান পাতা ইতিমধ্যেই বিদ্যমান, এডিয়ে যাওয়া হচ্ছে",
 	"config-help": "সাহায্য",
 	"config-help-tooltip": "প্রসারিত করতে ক্লিক করুন",
+	"config-skins-screenshots": "$1 (স্ক্রিনশট: $2)",
+	"config-screenshot": "স্ক্রিনশট",
 	"mainpagetext": "<strong>মিডিয়াউইকি ইনস্টল করা হয়েছে।</strong>",
 	"mainpagedocfooter": "কীভাবে উইকি সফটওয়্যারটি ব্যবহারকার করবেন, তা জানতে [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents ব্যবহারকারী সহায়িকা] দেখুন।\n\n== কোথা থেকে শুরু করবেন ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings কনফিগারেশন সেটিং তালিকা]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ প্রশ্নোত্তরে মিডিয়াউইকি]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce মিডিয়াউইকি মুক্তির মেইলিং লিস্ট]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources আপনার ভাষার জন্য মিডিয়াউইকি স্থানীয়করণ করুন]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam আপনার উইকিতে স্প্যামের সাথে লড়াই করার উপায় সম্পর্কে জানুন]"
 }

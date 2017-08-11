@@ -3570,7 +3570,7 @@
 	"logentry-import-upload-details": "$1 {{GENDER:$2|importálta}} a(z) $3 lapot fájlfeltöltéssel ($4 lapváltozat).",
 	"logentry-import-interwiki": "$1 {{GENDER:$2|importálta}} $3 lapot egy másik wikiből",
 	"logentry-import-interwiki-details": "$1 {{GENDER:$2|importálta}} a(z) $3 lapot a(z) $5 wikiről ($4 lapváltozat).",
-	"logentry-merge-merge": "$1 {{GENDER:$2|összevonta}} $3 lapot $4 lappal ($5 változtig)",
+	"logentry-merge-merge": "$1 {{GENDER:$2|összevonta}} $3 lapot $4 lappal ($5 változatig)",
 	"logentry-move-move": "$1 átnevezte a(z) $3 lapot a következő névre: $4",
 	"logentry-move-move-noredirect": "$1 átnevezte a(z) $3 lapot $4 lapra átirányítás nélkül",
 	"logentry-move-move_redir": "$1 átnevezte a(z) $3 lapot $4 lapra az átirányítást felülírva",

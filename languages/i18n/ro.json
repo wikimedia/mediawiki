@@ -3415,6 +3415,7 @@
 	"compare-invalid-title": "Titlul specificat nu este corect.",
 	"compare-title-not-exists": "Titlul specificat nu există.",
 	"compare-revision-not-exists": "Versiunea specificată nu există.",
+	"diff-form": "un '''formular'''",
 	"dberr-problems": "Ne cerem scuze! Acest site întâmpină dificultăți tehnice.",
 	"dberr-again": "Așteptați câteva minute și încercați din nou.",
 	"dberr-info": "(Nu se poate accesa baza de date: $1)",
@@ -3708,5 +3709,6 @@
 	"authprovider-resetpass-skip-label": "Omite",
 	"linkaccounts-submit": "Leagă conturile",
 	"unlinkaccounts": "Dezleagă conturile",
-	"unlinkaccounts-success": "Contul a fost dezlegat"
+	"unlinkaccounts-success": "Contul a fost dezlegat",
+	"userjsispublic": "Atenție: subpaginile JavaScript nu trebuie să conțină date confidențiale, întrucât ele sunt vizibile altor utilizatori."
 }
