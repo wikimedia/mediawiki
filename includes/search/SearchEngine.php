@@ -728,7 +728,7 @@ abstract class SearchEngine {
 	 * Create a search field definition.
 	 * Specific search engines should override this method to create search fields.
 	 * @param string $name
-	 * @param int    $type One of the types in SearchIndexField::INDEX_TYPE_*
+	 * @param int $type One of the types in SearchIndexField::INDEX_TYPE_*
 	 * @return SearchIndexField
 	 * @since 1.28
 	 */

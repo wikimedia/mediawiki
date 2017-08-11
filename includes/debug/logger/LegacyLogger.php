@@ -454,14 +454,14 @@ class LegacyLogger extends AbstractLogger {
 	}
 
 	/**
-	* Log to a file without getting "file size exceeded" signals.
-	*
-	* Can also log to UDP with the syntax udp://host:port/prefix. This will send
-	* lines to the specified port, prefixed by the specified prefix and a space.
-	*
-	* @param string $text
-	* @param string $file Filename
-	*/
+	 * Log to a file without getting "file size exceeded" signals.
+	 *
+	 * Can also log to UDP with the syntax udp://host:port/prefix. This will send
+	 * lines to the specified port, prefixed by the specified prefix and a space.
+	 *
+	 * @param string $text
+	 * @param string $file Filename
+	 */
 	public static function emit( $text, $file ) {
 		if ( substr( $file, 0, 4 ) == 'udp:' ) {
 			$transport = UDPTransport::newFromString( $file );
