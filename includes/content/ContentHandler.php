@@ -1135,9 +1135,9 @@ abstract class ContentHandler {
 	/**
 	 * Add new field definition to array.
 	 * @param SearchIndexField[] &$fields
-	 * @param SearchEngine       $engine
-	 * @param string             $name
-	 * @param int                $type
+	 * @param SearchEngine $engine
+	 * @param string $name
+	 * @param int $type
 	 * @return SearchIndexField[] new field defs
 	 * @since 1.28
 	 */
@@ -1151,7 +1151,7 @@ abstract class ContentHandler {
 	 * as representation of this document.
 	 * Overriding class should call parent function or take care of calling
 	 * the SearchDataForIndex hook.
-	 * @param WikiPage     $page Page to index
+	 * @param WikiPage $page Page to index
 	 * @param ParserOutput $output
 	 * @param SearchEngine $engine Search engine for which we are indexing
 	 * @return array Map of name=>value for fields
@@ -1190,7 +1190,7 @@ abstract class ContentHandler {
 	 *
 	 * Specific content handlers may override it if they need different content handling.
 	 *
-	 * @param WikiPage    $page
+	 * @param WikiPage $page
 	 * @param ParserCache $cache
 	 * @return ParserOutput
 	 */

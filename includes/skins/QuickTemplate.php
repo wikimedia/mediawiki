@@ -62,11 +62,11 @@ abstract class QuickTemplate {
 	}
 
 	/**
-	* extends the value of data with name $name with the value $value
-	* @since 1.25
-	* @param string $name
-	* @param mixed $value
-	*/
+	 * extends the value of data with name $name with the value $value
+	 * @since 1.25
+	 * @param string $name
+	 * @param mixed $value
+	 */
 	public function extend( $name, $value ) {
 		if ( $this->haveData( $name ) ) {
 			$this->data[$name] = $this->data[$name] . $value;

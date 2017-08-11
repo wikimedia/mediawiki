@@ -355,7 +355,7 @@ abstract class File implements IDBAccessObject {
 		return $this->url;
 	}
 
-	/*
+	/**
 	 * Get short description URL for a files based on the page ID
 	 *
 	 * @return string|null

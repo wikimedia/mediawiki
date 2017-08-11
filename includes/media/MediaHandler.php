@@ -874,7 +874,7 @@ abstract class MediaHandler {
 	 * @param Array $pagesByDimensions
 	 * @return String
 	 * @since 1.30
-	*/
+	 */
 	public static function getPageRangesByDimensions( $pagesByDimensions ) {
 		$pageRangesByDimensions = [];
 

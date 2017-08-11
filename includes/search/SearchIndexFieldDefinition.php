@@ -9,24 +9,28 @@
  * @since 1.28
  */
 abstract class SearchIndexFieldDefinition implements SearchIndexField {
+
 	/**
 	 * Name of the field
 	 *
 	 * @var string
 	 */
 	protected $name;
+
 	/**
 	 * Type of the field, one of the constants above
 	 *
 	 * @var int
 	 */
 	protected $type;
+
 	/**
 	 * Bit flags for the field.
 	 *
 	 * @var int
 	 */
 	protected $flags = 0;
+
 	/**
 	 * Subfields
 	 * @var SearchIndexFieldDefinition[]
@@ -40,7 +44,7 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 
 	/**
 	 * @param string $name Field name
-	 * @param int    $type Index type
+	 * @param int $type Index type
 	 */
 	public function __construct( $name, $type ) {
 		$this->name = $name;
@@ -66,7 +70,7 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 	/**
 	 * Set global flag for this field.
 	 *
-	 * @param int  $flag Bit flag to set/unset
+	 * @param int $flag Bit flag to set/unset
 	 * @param bool $unset True if flag should be unset, false by default
 	 * @return $this
 	 */

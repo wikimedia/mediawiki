@@ -1254,7 +1254,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @return Database[] Array of Database master connections
 	 */
-
 	protected static function getExternalStoreDatabaseConnections() {
 		global $wgDefaultExternalStore;
 

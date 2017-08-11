@@ -53,7 +53,6 @@ class NullStatsdDataFactory implements IBufferingStatsdDataFactory {
 	 * This function creates a 'increment' StatsdData object.
 	 *
 	 * @param string|array $key The metric(s) to increment.
-	 * @param float|1      $sampleRate The rate (0-1) for sampling.
 	 *
 	 * @return array
 	 */
@@ -66,7 +65,6 @@ class NullStatsdDataFactory implements IBufferingStatsdDataFactory {
 	 *
 	 *
 	 * @param string|array $key The metric(s) to decrement.
-	 * @param float|1      $sampleRate The rate (0-1) for sampling.
 	 *
 	 * @return mixed
 	 */

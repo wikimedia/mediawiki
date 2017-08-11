@@ -65,7 +65,7 @@ class SearchResult {
 	/**
 	 * Return a new SearchResult and initializes it with a title.
 	 *
-	 * @param Title           $title
+	 * @param Title $title
 	 * @param SearchResultSet $parentSet
 	 * @return SearchResult
 	 */

@@ -616,7 +616,7 @@ TXT;
 	 * @param ErrorException $e
 	 * @param string $channel
 	 * @param string $level
-	*/
+	 */
 	protected static function logError(
 		ErrorException $e, $channel, $level = LogLevel::ERROR
 	) {
