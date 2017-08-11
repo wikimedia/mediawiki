@@ -2913,7 +2913,7 @@ class OutputPage extends ContextSource {
 		// Use an IE conditional comment to serve the script only to old IE
 		$pieces[] = '<!--[if lt IE 9]>' .
 			Html::element( 'script', [
-				'src' => OutputPage::transformResourcePath(
+				'src' => self::transformResourcePath(
 					$this->getConfig(),
 					"/resources/lib/html5shiv/html5shiv{$min}.js"
 				),
