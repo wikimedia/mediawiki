@@ -678,3 +678,6 @@
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/mediawiki/vendor
 	branch = wmf/1.30.0-wmf.13
+[submodule "skins/Timeless"]
+	path = skins/Timeless
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/skins/Timeless.git
