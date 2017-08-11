@@ -88,7 +88,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 	/**
 	 * @param File $image
-	 * @param array $params
+	 * @param array &$params
 	 * @return bool
 	 */
 	function normaliseParams( $image, &$params ) {

@@ -296,7 +296,7 @@ EOT;
 	}
 
 	/**
-	 * @param Status $status
+	 * @param Status &$status
 	 * @return Status
 	 */
 	public function setupSearchIndex( &$status ) {

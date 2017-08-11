@@ -202,7 +202,7 @@ class JobQueueFederated extends JobQueue {
 
 	/**
 	 * @param array $jobs
-	 * @param HashRing $partitionRing
+	 * @param HashRing &$partitionRing
 	 * @param int $flags
 	 * @throws JobQueueError
 	 * @return array List of Job object that could not be inserted

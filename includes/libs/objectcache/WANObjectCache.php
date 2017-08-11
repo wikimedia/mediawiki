@@ -240,7 +240,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * That method has cache slam avoiding features for hot/expensive keys.
 	 *
 	 * @param string $key Cache key
-	 * @param mixed $curTTL Approximate TTL left on the key if present/tombstoned [returned]
+	 * @param mixed &$curTTL Approximate TTL left on the key if present/tombstoned [returned]
 	 * @param array $checkKeys List of "check" keys
 	 * @param float &$asOf UNIX timestamp of cached value; null on failure [returned]
 	 * @return mixed Value of cache key or false on failure
@@ -261,7 +261,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @see WANObjectCache::get()
 	 *
 	 * @param array $keys List of cache keys
-	 * @param array $curTTLs Map of (key => approximate TTL left) for existing keys [returned]
+	 * @param array &$curTTLs Map of (key => approximate TTL left) for existing keys [returned]
 	 * @param array $checkKeys List of check keys to apply to all $keys. May also apply "check"
 	 *  keys to specific cache keys only by using cache keys as keys in the $checkKeys array.
 	 * @param float[] &$asOfs Map of (key =>  UNIX timestamp of cached value; null on failure)

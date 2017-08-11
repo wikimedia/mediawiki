@@ -45,7 +45,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * @param AuthenticationRequest[] $requests
 	 * @param array $fieldInfo Field information array (union of all
 	 *    AuthenticationRequest::getFieldInfo() responses).
-	 * @param array $formDescriptor HTMLForm descriptor. The special key 'weight' can be set to
+	 * @param array &$formDescriptor HTMLForm descriptor. The special key 'weight' can be set to
 	 *    change the order of the fields.
 	 * @param string $action Authentication type (one of the AuthManager::ACTION_* constants)
 	 * @return bool
@@ -709,7 +709,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * Sort the fields of a form descriptor by their 'weight' property. (Fields with higher weight
 	 * are shown closer to the bottom; weight defaults to 0. Negative weight is allowed.)
 	 * Keep order if weights are equal.
-	 * @param array $formDescriptor
+	 * @param array &$formDescriptor
 	 * @return array
 	 */
 	protected static function sortFormDescriptorFields( array &$formDescriptor ) {

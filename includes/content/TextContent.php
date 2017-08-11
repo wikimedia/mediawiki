@@ -233,7 +233,7 @@ class TextContent extends AbstractContent {
 	 * @param int $revId Revision ID (for {{REVISIONID}})
 	 * @param ParserOptions $options Parser options
 	 * @param bool $generateHtml Whether or not to generate HTML
-	 * @param ParserOutput $output The output object to fill (reference).
+	 * @param ParserOutput &$output The output object to fill (reference).
 	 */
 	protected function fillParserOutput( Title $title, $revId,
 		ParserOptions $options, $generateHtml, ParserOutput &$output

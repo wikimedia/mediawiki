@@ -395,7 +395,7 @@ class MessageCache {
 
 	/**
 	 * @param string $code
-	 * @param array $where List of wfDebug() comments
+	 * @param array &$where List of wfDebug() comments
 	 * @param integer $mode Use MessageCache::FOR_UPDATE to use DB_MASTER
 	 * @return bool|string True on success or one of ("cantacquire", "disabled")
 	 */

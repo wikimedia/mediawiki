@@ -42,7 +42,7 @@ class DumpFilter {
 	protected $sendingThisPage;
 
 	/**
-	 * @param DumpOutput $sink
+	 * @param DumpOutput &$sink
 	 */
 	function __construct( &$sink ) {
 		$this->sink =& $sink;

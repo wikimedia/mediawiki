@@ -131,7 +131,7 @@ class LinkBatch {
 	 * Do the query and add the results to a given LinkCache object
 	 * Return an array mapping PDBK to ID
 	 *
-	 * @param LinkCache $cache
+	 * @param LinkCache &$cache
 	 * @return array Remaining IDs
 	 */
 	protected function executeInto( &$cache ) {

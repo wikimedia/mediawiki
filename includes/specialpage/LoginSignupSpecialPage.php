@@ -1339,7 +1339,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	}
 
 	/**
-	 * @param array $formDescriptor
+	 * @param array &$formDescriptor
 	 */
 	protected function postProcessFormDescriptor( &$formDescriptor, $requests ) {
 		// Pre-fill username (if not creating an account, T46775).

@@ -868,7 +868,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	/**
 	 * Filter $rows by categories set in $opts
 	 *
-	 * @param ResultWrapper $rows Database rows
+	 * @param ResultWrapper &$rows Database rows
 	 * @param FormOptions $opts
 	 */
 	function filterByCategories( &$rows, FormOptions $opts ) {

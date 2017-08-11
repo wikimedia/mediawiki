@@ -39,7 +39,7 @@ class ArrayUtils {
 	 * justification for breaking compatibility with installations
 	 * compiled with ./configure --disable-hash.
 	 *
-	 * @param array $array Array to sort
+	 * @param array &$array Array to sort
 	 * @param string $key
 	 * @param string $separator A separator used to delimit the array elements and the
 	 *     key. This can be chosen to provide backwards compatibility with
