@@ -913,11 +913,11 @@ abstract class MediaHandler {
 	}
 
 	/**
-	* Get useful response headers for GET/HEAD requests for a file with the given metadata
-	* @param $metadata Array Contains this handler's unserialized getMetadata() for a file
-	* @return Array
-	* @since 1.30
-	*/
+	 * Get useful response headers for GET/HEAD requests for a file with the given metadata
+	 * @param array $metadata Contains this handler's unserialized getMetadata() for a file
+	 * @return array
+	 * @since 1.30
+	 */
 	public function getContentHeaders( $metadata ) {
 		return [];
 	}

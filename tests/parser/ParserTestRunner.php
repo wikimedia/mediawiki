@@ -1529,7 +1529,7 @@ class ParserTestRunner {
 	/**
 	 * Add articles to the test DB.
 	 *
-	 * @param $articles Article info array from TestFileReader
+	 * @param array $articles Article info array from TestFileReader
 	 */
 	public function addArticles( $articles ) {
 		global $wgContLang;

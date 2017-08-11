@@ -63,9 +63,9 @@ class ApiCSPReport extends ApiBase {
 
 	/**
 	 * Log CSP report, with a different severity depending on $flags
-	 * @param $flags Array Flags for this report
-	 * @param $logLine String text of log entry
-	 * @param $context Array logging context
+	 * @param array $flags Flags for this report
+	 * @param string $logLine text of log entry
+	 * @param array $context logging context
 	 */
 	private function logReport( $flags, $logLine, $context ) {
 		if ( in_array( 'false-positive', $flags ) ) {
@@ -80,8 +80,8 @@ class ApiCSPReport extends ApiBase {
 	/**
 	 * Get extra notes about the report.
 	 *
-	 * @param $report Array The CSP report
-	 * @return Array
+	 * @param array $report The CSP report
+	 * @return array
 	 */
 	private function getFlags( $report ) {
 		$reportOnly = $this->getParameter( 'reportonly' );
@@ -155,9 +155,9 @@ class ApiCSPReport extends ApiBase {
 	/**
 	 * Get text of log line.
 	 *
-	 * @param $flags Array of additional markers for this report
-	 * @param $report Array the csp report
-	 * @return String Text to put in log
+	 * @param array $flags of additional markers for this report
+	 * @param array $report the csp report
+	 * @return string Text to put in log
 	 */
 	private function generateLogLine( $flags, $report ) {
 		$flagText = '';
@@ -177,8 +177,8 @@ class ApiCSPReport extends ApiBase {
 	/**
 	 * Stop processing the request, and output/log an error
 	 *
-	 * @param $code String error code
-	 * @param $method String method that made error
+	 * @param string $code error code
+	 * @param string $method method that made error
 	 * @throws ApiUsageException Always
 	 */
 	private function error( $code, $method ) {

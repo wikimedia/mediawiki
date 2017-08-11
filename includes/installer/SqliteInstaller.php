@@ -267,8 +267,8 @@ EOT;
 	}
 
 	/**
-	 * @param $dir
-	 * @param $db
+	 * @param string $dir
+	 * @param string $db
 	 * @return Status
 	 */
 	protected function makeStubDBFile( $dir, $db ) {

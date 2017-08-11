@@ -1963,7 +1963,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * @param $maxage
+	 * @param int $maxage
 	 * @deprecated since 1.27 Use setCdnMaxage() instead
 	 */
 	public function setSquidMaxage( $maxage ) {

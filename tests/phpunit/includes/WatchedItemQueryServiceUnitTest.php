@@ -49,7 +49,7 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @param $mockDb
+	 * @param PHPUnit_Framework_MockObject_MockObject|Database $mockDb
 	 * @return PHPUnit_Framework_MockObject_MockObject|LoadBalancer
 	 */
 	private function getMockLoadBalancer( $mockDb ) {

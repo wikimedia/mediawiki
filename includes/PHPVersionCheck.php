@@ -231,9 +231,9 @@ HTML;
 	/**
 	 * Returns an error page, which is suitable for output to the end user via a web browser.
 	 *
-	 * @param $title
-	 * @param $longHtml
-	 * @param $shortText
+	 * @param string $title
+	 * @param string $longHtml
+	 * @param string $shortText
 	 * @return string
 	 */
 	function getIndexErrorOutput( $title, $longHtml, $shortText ) {

@@ -118,7 +118,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 * With conflicting expectations, the most narrow ones will be used
 	 *
 	 * @param array $expects Map of (event => limit)
-	 * @param $fname
+	 * @param string $fname
 	 * @since 1.26
 	 */
 	public function setExpectations( array $expects, $fname ) {

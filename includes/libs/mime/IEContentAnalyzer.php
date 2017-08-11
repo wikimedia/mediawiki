@@ -344,7 +344,7 @@ class IEContentAnalyzer {
 	/**
 	 * Translate a MIME type from IE's idiosyncratic private types into
 	 * more commonly understood type strings
-	 * @param $type
+	 * @param string $type
 	 * @return string
 	 */
 	public function translateMimeType( $type ) {
@@ -383,10 +383,10 @@ class IEContentAnalyzer {
 
 	/**
 	 * Get the MIME type for a given named version
-	 * @param $version
-	 * @param $fileName
-	 * @param $chunk
-	 * @param $proposed
+	 * @param string $version
+	 * @param string $fileName
+	 * @param string $chunk
+	 * @param string $proposed
 	 * @return bool|string
 	 */
 	protected function getMimeTypeForVersion( $version, $fileName, $chunk, $proposed ) {
@@ -553,8 +553,8 @@ class IEContentAnalyzer {
 	/**
 	 * Check for text headers at the start of the chunk
 	 * Confirmed same in 5 and 7.
-	 * @param $version
-	 * @param $chunk
+	 * @param string $version
+	 * @param string $chunk
 	 * @return bool|string
 	 */
 	private function checkTextHeaders( $version, $chunk ) {
@@ -579,8 +579,8 @@ class IEContentAnalyzer {
 	/**
 	 * Check for binary headers at the start of the chunk
 	 * Confirmed same in 5 and 7.
-	 * @param $version
-	 * @param $chunk
+	 * @param string $version
+	 * @param string $chunk
 	 * @return bool|string
 	 */
 	private function checkBinaryHeaders( $version, $chunk ) {
@@ -680,8 +680,8 @@ class IEContentAnalyzer {
 	/**
 	 * Do heuristic checks on the bulk of the data sample.
 	 * Search for HTML tags.
-	 * @param $version
-	 * @param $chunk
+	 * @param string $version
+	 * @param string $chunk
 	 * @return array
 	 */
 	protected function sampleData( $version, $chunk ) {
@@ -832,8 +832,8 @@ class IEContentAnalyzer {
 	}
 
 	/**
-	 * @param $version
-	 * @param $type
+	 * @param string $version
+	 * @param string|null $type
 	 * @return int|string
 	 */
 	protected function getDataFormat( $version, $type ) {

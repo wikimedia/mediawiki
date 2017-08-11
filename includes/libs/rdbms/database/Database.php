@@ -818,7 +818,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @param $sql
+	 * @param string $sql
 	 * @return string|null
 	 */
 	protected function getQueryVerb( $sql ) {

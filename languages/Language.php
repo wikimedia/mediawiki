@@ -203,7 +203,7 @@ class Language {
 	/**
 	 * Create a language object for a given language code
 	 * @param string $code
-	 * @param $fallback boolean Whether we're going through language fallback chain
+	 * @param bool $fallback Whether we're going through language fallback chain
 	 * @throws MWException
 	 * @return Language
 	 */

@@ -8,7 +8,7 @@ class WikitextStructureTest extends MediaWikiLangTestCase {
 
 	/**
 	 * Get parser output for Wiki text
-	 * @param $text
+	 * @param string $text
 	 * @return ParserOutput
 	 */
 	private function getParserOutput( $text ) {
@@ -18,7 +18,7 @@ class WikitextStructureTest extends MediaWikiLangTestCase {
 
 	/**
 	 * Get WikitextStructure for given text
-	 * @param $text
+	 * @param string $text
 	 * @return WikiTextStructure
 	 */
 	private function getStructure( $text ) {

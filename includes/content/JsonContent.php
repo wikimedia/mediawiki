@@ -22,6 +22,7 @@ class JsonContent extends TextContent {
 
 	/**
 	 * @param string $text JSON
+	 * @param string $modelId
 	 */
 	public function __construct( $text, $modelId = CONTENT_MODEL_JSON ) {
 		parent::__construct( $text, $modelId );
