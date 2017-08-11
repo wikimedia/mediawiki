@@ -571,6 +571,7 @@ class OutputPage extends ContextSource {
 	 * @param bool $filter Whether to filter out insufficiently trustworthy modules
 	 * @param string|null $position If not null, only return modules with this position
 	 * @param string $param
+	 * @param string $type
 	 * @return array Array of module names
 	 */
 	public function getModules( $filter = false, $position = null, $param = 'mModules',
@@ -688,7 +689,7 @@ class OutputPage extends ContextSource {
 	 * Add one or more head items to the output
 	 *
 	 * @since 1.28
-	 * @param string|string[] $value Raw HTML
+	 * @param string|string[] $values Raw HTML
 	 */
 	public function addHeadItems( $values ) {
 		$this->mHeadItems = array_merge( $this->mHeadItems, (array)$values );
@@ -1715,7 +1716,7 @@ class OutputPage extends ContextSource {
 	 * Add wikitext with a custom Title object
 	 *
 	 * @param string $text Wikitext
-	 * @param Title $title
+	 * @param Title &$title
 	 * @param bool $linestart Is this the start of a line?
 	 */
 	public function addWikiTextWithTitle( $text, &$title, $linestart = true ) {
@@ -1726,7 +1727,7 @@ class OutputPage extends ContextSource {
 	 * Add wikitext with a custom Title object and tidy enabled.
 	 *
 	 * @param string $text Wikitext
-	 * @param Title $title
+	 * @param Title &$title
 	 * @param bool $linestart Is this the start of a line?
 	 */
 	function addWikiTextTitleTidy( $text, &$title, $linestart = true ) {
@@ -1899,7 +1900,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add the output of a QuickTemplate to the output buffer
 	 *
-	 * @param QuickTemplate $template
+	 * @param QuickTemplate &$template
 	 */
 	public function addTemplate( &$template ) {
 		$this->addHTML( $template->getHTML() );
@@ -1963,7 +1964,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * @param $maxage
+	 * @param int $maxage
 	 * @deprecated since 1.27 Use setCdnMaxage() instead
 	 */
 	public function setSquidMaxage( $maxage ) {
@@ -1998,9 +1999,9 @@ class OutputPage extends ContextSource {
 	 * TTL is 90% of the age of the object, subject to the min and max.
 	 *
 	 * @param string|integer|float|bool|null $mtime Last-Modified timestamp
-	 * @param integer $minTTL Mimimum TTL in seconds [default: 1 minute]
-	 * @param integer $maxTTL Maximum TTL in seconds [default: $wgSquidMaxage]
-	 * @return integer TTL in seconds
+	 * @param int $minTTL Mimimum TTL in seconds [default: 1 minute]
+	 * @param int $maxTTL Maximum TTL in seconds [default: $wgSquidMaxage]
+	 * @return int TTL in seconds
 	 * @since 1.28
 	 */
 	public function adaptCdnTTL( $mtime, $minTTL = 0, $maxTTL = 0 ) {
@@ -3797,7 +3798,7 @@ class OutputPage extends ContextSource {
 	 * Caller is responsible for ensuring the file exists. Emits a PHP warning otherwise.
 	 *
 	 * @since 1.27
-	 * @param string $remotePath URL path prefix that points to $localPath
+	 * @param string $remotePathPrefix URL path prefix that points to $localPath
 	 * @param string $localPath File directory exposed at $remotePath
 	 * @param string $file Path to target file relative to $localPath
 	 * @return string URL

@@ -184,7 +184,7 @@ class ApiParamInfo extends ApiBase {
 	}
 
 	/**
-	 * @param array $res Result array
+	 * @param array &$res Result array
 	 * @param string $key Result key
 	 * @param Message[] $msgs
 	 * @param bool $joinLists

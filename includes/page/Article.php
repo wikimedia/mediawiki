@@ -1920,7 +1920,7 @@ class Article implements Page {
 
 	/**
 	 * Check if the page can be cached
-	 * @param integer $mode One of the HTMLFileCache::MODE_* constants (since 1.28)
+	 * @param int $mode One of the HTMLFileCache::MODE_* constants (since 1.28)
 	 * @return bool
 	 */
 	public function isFileCacheable( $mode = HTMLFileCache::MODE_NORMAL ) {
@@ -2580,7 +2580,7 @@ class Article implements Page {
 	/**
 	 * @param array $limit
 	 * @param array $expiry
-	 * @param bool $cascade
+	 * @param bool &$cascade
 	 * @param string $reason
 	 * @param User $user
 	 * @return Status
@@ -2594,7 +2594,7 @@ class Article implements Page {
 	/**
 	 * @param array $limit
 	 * @param string $reason
-	 * @param int $cascade
+	 * @param int &$cascade
 	 * @param array $expiry
 	 * @return bool
 	 */
@@ -2615,7 +2615,7 @@ class Article implements Page {
 	 * @param bool $suppress
 	 * @param int $u1 Unused
 	 * @param bool $u2 Unused
-	 * @param string $error
+	 * @param string &$error
 	 * @return bool
 	 */
 	public function doDeleteArticle(
@@ -2629,7 +2629,7 @@ class Article implements Page {
 	 * @param string $summary
 	 * @param string $token
 	 * @param bool $bot
-	 * @param array $resultDetails
+	 * @param array &$resultDetails
 	 * @param User|null $user
 	 * @return array
 	 */
@@ -2642,7 +2642,7 @@ class Article implements Page {
 	 * @param string $fromP
 	 * @param string $summary
 	 * @param bool $bot
-	 * @param array $resultDetails
+	 * @param array &$resultDetails
 	 * @param User|null $guser
 	 * @return array
 	 */
@@ -2652,7 +2652,7 @@ class Article implements Page {
 	}
 
 	/**
-	 * @param bool $hasHistory
+	 * @param bool &$hasHistory
 	 * @return mixed
 	 */
 	public function generateReason( &$hasHistory ) {

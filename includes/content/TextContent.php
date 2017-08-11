@@ -157,7 +157,7 @@ class TextContent extends AbstractContent {
 	 * changes.
 	 *
 	 * @since 1.28
-	 * @param $text
+	 * @param string $text
 	 * @return string
 	 */
 	public static function normalizeLineEndings( $text ) {
@@ -233,7 +233,7 @@ class TextContent extends AbstractContent {
 	 * @param int $revId Revision ID (for {{REVISIONID}})
 	 * @param ParserOptions $options Parser options
 	 * @param bool $generateHtml Whether or not to generate HTML
-	 * @param ParserOutput $output The output object to fill (reference).
+	 * @param ParserOutput &$output The output object to fill (reference).
 	 */
 	protected function fillParserOutput( Title $title, $revId,
 		ParserOptions $options, $generateHtml, ParserOutput &$output

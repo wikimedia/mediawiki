@@ -247,7 +247,7 @@ abstract class FileOp {
 	 * This must update $predicates for each path that the op can change
 	 * except when a failing StatusValue object is returned.
 	 *
-	 * @param array $predicates
+	 * @param array &$predicates
 	 * @return StatusValue
 	 */
 	final public function precheck( array &$predicates ) {
@@ -264,7 +264,7 @@ abstract class FileOp {
 	}
 
 	/**
-	 * @param array $predicates
+	 * @param array &$predicates
 	 * @return StatusValue
 	 */
 	protected function doPrecheck( array &$predicates ) {

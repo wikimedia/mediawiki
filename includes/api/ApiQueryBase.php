@@ -478,7 +478,7 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Add information (title and namespace) about a Title object to a
 	 * result array
-	 * @param array $arr Result array à la ApiResult
+	 * @param array &$arr Result array à la ApiResult
 	 * @param Title $title
 	 * @param string $prefix Module prefix
 	 */

@@ -989,8 +989,8 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	/**
-	 * @param string $sql
-	 * @param string $newLine
+	 * @param string &$sql
+	 * @param string &$newLine
 	 * @return bool
 	 */
 	public function streamStatementEnd( &$sql, &$newLine ) {

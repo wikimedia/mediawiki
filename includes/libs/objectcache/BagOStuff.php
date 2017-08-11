@@ -142,7 +142,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @param string $key
 	 * @param int $ttl Time-to-live (seconds)
 	 * @param callable $callback Callback that derives the new value
-	 * @param integer $flags Bitfield of BagOStuff::READ_* constants [optional]
+	 * @param int $flags Bitfield of BagOStuff::READ_* constants [optional]
 	 * @return mixed The cached value if found or the result of $callback otherwise
 	 * @since 1.27
 	 */
@@ -172,8 +172,8 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * higher tiers using standard TTLs.
 	 *
 	 * @param string $key
-	 * @param integer $flags Bitfield of BagOStuff::READ_* constants [optional]
-	 * @param integer $oldFlags [unused]
+	 * @param int $flags Bitfield of BagOStuff::READ_* constants [optional]
+	 * @param int $oldFlags [unused]
 	 * @return mixed Returns false on failure and if the item does not exist
 	 */
 	public function get( $key, $flags = 0, $oldFlags = null ) {
@@ -220,7 +220,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 
 	/**
 	 * @param string $key
-	 * @param integer $flags Bitfield of BagOStuff::READ_* constants [optional]
+	 * @param int $flags Bitfield of BagOStuff::READ_* constants [optional]
 	 * @return mixed Returns false on failure and if the item does not exist
 	 */
 	abstract protected function doGet( $key, $flags = 0 );
@@ -229,8 +229,8 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @note: This method is only needed if merge() uses mergeViaCas()
 	 *
 	 * @param string $key
-	 * @param mixed $casToken
-	 * @param integer $flags Bitfield of BagOStuff::READ_* constants [optional]
+	 * @param mixed &$casToken
+	 * @param int $flags Bitfield of BagOStuff::READ_* constants [optional]
 	 * @return mixed Returns false on failure and if the item does not exist
 	 * @throws Exception
 	 */
@@ -503,7 +503,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	/**
 	 * Get an associative array containing the item for each of the keys that have items.
 	 * @param array $keys List of strings
-	 * @param integer $flags Bitfield; supports READ_LATEST [optional]
+	 * @param int $flags Bitfield; supports READ_LATEST [optional]
 	 * @return array
 	 */
 	public function getMulti( array $keys, $flags = 0 ) {
@@ -747,7 +747,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * Make a global cache key.
 	 *
 	 * @since 1.27
-	 * @param string ... Key component (variadic)
+	 * @param string $keys,... Key component (variadic)
 	 * @return string
 	 */
 	public function makeGlobalKey() {
@@ -758,7 +758,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * Make a cache key, scoped to this instance's keyspace.
 	 *
 	 * @since 1.27
-	 * @param string ... Key component (variadic)
+	 * @param string $keys,... Key component (variadic)
 	 * @return string
 	 */
 	public function makeKey() {
@@ -766,8 +766,8 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
-	 * @param integer $flag ATTR_* class constant
-	 * @return integer QOS_* class constant
+	 * @param int $flag ATTR_* class constant
+	 * @return int QOS_* class constant
 	 * @since 1.28
 	 */
 	public function getQoS( $flag ) {
@@ -778,7 +778,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * Merge the flag maps of one or more BagOStuff objects into a "lowest common denominator" map
 	 *
 	 * @param BagOStuff[] $bags
-	 * @return integer[] Resulting flag map (class ATTR_* constant => class QOS_* constant)
+	 * @return int[] Resulting flag map (class ATTR_* constant => class QOS_* constant)
 	 */
 	protected function mergeFlagMaps( array $bags ) {
 		$map = [];

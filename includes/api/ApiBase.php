@@ -668,7 +668,7 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Set the continuation manager
-	 * @param ApiContinuationManager|null
+	 * @param ApiContinuationManager|null $manager
 	 */
 	public function setContinuationManager( $manager ) {
 		// Main module has setContinuationManager() method overridden
@@ -1432,7 +1432,7 @@ abstract class ApiBase extends ContextSource {
 	 * Validate the value against the minimum and user/bot maximum limits.
 	 * Prints usage info on failure.
 	 * @param string $paramName Parameter name
-	 * @param int $value Parameter value
+	 * @param int &$value Parameter value
 	 * @param int|null $min Minimum value
 	 * @param int|null $max Maximum value for users
 	 * @param int $botMax Maximum value for sysops/bots
@@ -1599,7 +1599,7 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Truncate an array to a certain length.
-	 * @param array $arr Array to truncate
+	 * @param array &$arr Array to truncate
 	 * @param int $limit Maximum length
 	 * @return bool True if the array was truncated, false otherwise
 	 */
