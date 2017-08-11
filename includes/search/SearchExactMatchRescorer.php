@@ -35,8 +35,8 @@ class SearchExactMatchRescorer {
 	 * to not be in the results or be lower down the list.
 	 * @param string $search the query
 	 * @param int[] $namespaces the namespaces
-	 * @param int $limit the max number of results to return
 	 * @param string[] $srchres results
+	 * @param int $limit the max number of results to return
 	 * @return string[] munged results
 	 */
 	public function rescore( $search, $namespaces, $srchres, $limit ) {

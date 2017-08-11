@@ -370,7 +370,7 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Set the continuation manager
-	 * @param ApiContinuationManager|null
+	 * @param ApiContinuationManager|null $manager
 	 */
 	public function setContinuationManager( $manager ) {
 		if ( $manager !== null ) {

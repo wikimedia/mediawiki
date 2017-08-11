@@ -655,7 +655,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 *
 	 * @since 1.26
 	 * @param ResourceLoaderContext $context
-	 * @param string[] $modules List of known module names
+	 * @param string[] $moduleNames List of known module names
 	 * @return string Hash
 	 */
 	public function getCombinedVersion( ResourceLoaderContext $context, array $moduleNames ) {

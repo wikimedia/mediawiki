@@ -1315,7 +1315,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 	/**
 	 * @see BagOStuff::makeKey()
-	 * @param string ... Key component
+	 * @param string $keys,... Key component
 	 * @return string
 	 * @since 1.27
 	 */
@@ -1325,7 +1325,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 	/**
 	 * @see BagOStuff::makeGlobalKey()
-	 * @param string ... Key component
+	 * @param string $keys,... Key component
 	 * @return string
 	 * @since 1.27
 	 */

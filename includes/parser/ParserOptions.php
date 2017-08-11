@@ -761,7 +761,7 @@ class ParserOptions {
 	 * is it allowed in the specific case of parsing this page.
 	 * @see self::getAllowUnsafeRawHtml()
 	 * @since 1.29
-	 * @param bool|null Value to set or null to get current value
+	 * @param bool|null $x Value to set or null to get current value
 	 * @return bool Current value for allowUnsafeRawHtml
 	 */
 	public function setAllowUnsafeRawHtml( $x ) {
