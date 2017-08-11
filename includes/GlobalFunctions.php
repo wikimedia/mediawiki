@@ -2234,7 +2234,8 @@ function wfIniGetBool( $setting ) {
  * (https://bugs.php.net/bug.php?id=26285) and the locale problems on Linux in
  * PHP 5.2.6+ (bug backported to earlier distro releases of PHP).
  *
- * @param string ... strings to escape and glue together, or a single array of strings parameter
+ * @param string $args,... strings to escape and glue together,
+ *  or a single array of strings parameter
  * @return string
  */
 function wfEscapeShellArg( /*...*/ ) {

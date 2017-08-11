@@ -3519,7 +3519,7 @@ class User implements IDBAccessObject {
 	/**
 	 * Check if user is allowed to access a feature / make an action
 	 *
-	 * @param string ... Permissions to test
+	 * @param string $permissions,... Permissions to test
 	 * @return bool True if user is allowed to perform *any* of the given actions
 	 */
 	public function isAllowedAny() {
@@ -3534,7 +3534,7 @@ class User implements IDBAccessObject {
 
 	/**
 	 *
-	 * @param string ... Permissions to test
+	 * @param string $permissions,... Permissions to test
 	 * @return bool True if the user is allowed to perform *all* of the given actions
 	 */
 	public function isAllowedAll() {
