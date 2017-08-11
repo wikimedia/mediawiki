@@ -143,9 +143,9 @@ class FileDeleteForm {
 	/**
 	 * Really delete the file
 	 *
-	 * @param Title $title
-	 * @param File $file
-	 * @param string $oldimage Archive name
+	 * @param Title &$title
+	 * @param File &$file
+	 * @param string &$oldimage Archive name
 	 * @param string $reason Reason of the deletion
 	 * @param bool $suppress Whether to mark all deleted versions as restricted
 	 * @param User $user User object performing the request
@@ -398,8 +398,8 @@ class FileDeleteForm {
 	 * value was provided, does it correspond to an
 	 * existing, local, old version of this file?
 	 *
-	 * @param File $file
-	 * @param File $oldfile
+	 * @param File &$file
+	 * @param File &$oldfile
 	 * @param File $oldimage
 	 * @return bool
 	 */

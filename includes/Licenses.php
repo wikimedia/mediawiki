@@ -92,7 +92,7 @@ class Licenses extends HTMLFormField {
 	}
 
 	/**
-	 * @param array $list
+	 * @param array &$list
 	 * @param array $path
 	 * @param mixed $item
 	 */

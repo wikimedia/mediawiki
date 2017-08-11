@@ -106,7 +106,7 @@ abstract class DatabaseUpdater {
 	protected $holdContentHandlerUseDB = true;
 
 	/**
-	 * @param Database $db To perform updates on
+	 * @param Database &$db To perform updates on
 	 * @param bool $shared Whether to perform updates on shared tables
 	 * @param Maintenance $maintenance Maintenance object which created us
 	 */

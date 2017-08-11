@@ -402,7 +402,7 @@ abstract class RevDelList extends RevisionListBase {
 	/**
 	 * A hook for setVisibility(): do any necessary updates post-commit.
 	 * STUB
-	 * @param array [id => ['oldBits' => $oldBits, 'newBits' => $newBits], ... ]
+	 * @param $visibilityChangeMap array [id => ['oldBits' => $oldBits, 'newBits' => $newBits], ... ]
 	 * @return Status
 	 */
 	public function doPostCommitUpdates( array $visibilityChangeMap ) {

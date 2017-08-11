@@ -73,8 +73,8 @@ class AuthPlugin {
 	/**
 	 * Modify options in the login template.
 	 *
-	 * @param BaseTemplate $template
-	 * @param string $type 'signup' or 'login'. Added in 1.16.
+	 * @param BaseTemplate &$template
+	 * @param string &$type 'signup' or 'login'. Added in 1.16.
 	 */
 	public function modifyUITemplate( &$template, &$type ) {
 		# Override this!
@@ -124,7 +124,7 @@ class AuthPlugin {
 	 *
 	 * @deprecated since 1.26, use the UserLoggedIn hook instead. And assigning
 	 *  a different User object to $user is no longer supported.
-	 * @param User $user
+	 * @param User &$user
 	 * @return bool
 	 */
 	public function updateUser( &$user ) {
@@ -286,7 +286,7 @@ class AuthPlugin {
 	 *
 	 * @deprecated since 1.26, use the UserLoggedIn hook instead. And assigning
 	 *  a different User object to $user is no longer supported.
-	 * @param User $user
+	 * @param User &$user
 	 * @param bool $autocreate True if user is being autocreated on login
 	 */
 	public function initUser( &$user, $autocreate = false ) {
@@ -306,7 +306,7 @@ class AuthPlugin {
 	/**
 	 * Get an instance of a User object
 	 *
-	 * @param User $user
+	 * @param User &$user
 	 *
 	 * @return AuthPluginUser
 	 */
@@ -359,6 +359,7 @@ class AuthPluginUser {
 
 	/**
 	 * @deprecated since 1.28, use SessionManager::invalidateSessionForUser() instead.
+	 * @return bool
 	 */
 	public function resetAuthToken() {
 		# Override this!

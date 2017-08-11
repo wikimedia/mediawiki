@@ -687,7 +687,7 @@ class LocalisationCache {
 	 * exists, the data array is returned, otherwise false is returned.
 	 *
 	 * @param string $code
-	 * @param array $deps
+	 * @param array &$deps
 	 * @return array
 	 */
 	protected function readSourceFilesAndRegisterDeps( $code, &$deps ) {
@@ -719,7 +719,7 @@ class LocalisationCache {
 	 * Merge two localisation values, a primary and a fallback, overwriting the
 	 * primary value in place.
 	 * @param string $key
-	 * @param mixed $value
+	 * @param mixed &$value
 	 * @param mixed $fallbackValue
 	 */
 	protected function mergeItem( $key, &$value, $fallbackValue ) {
@@ -749,7 +749,7 @@ class LocalisationCache {
 	}
 
 	/**
-	 * @param mixed $value
+	 * @param mixed &$value
 	 * @param mixed $fallbackValue
 	 */
 	protected function mergeMagicWords( &$value, $fallbackValue ) {
@@ -775,7 +775,7 @@ class LocalisationCache {
 	 * otherwise.
 	 * @param array $codeSequence
 	 * @param string $key
-	 * @param mixed $value
+	 * @param mixed &$value
 	 * @param mixed $fallbackValue
 	 * @return bool
 	 */

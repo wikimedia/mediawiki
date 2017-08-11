@@ -852,7 +852,7 @@ class EditPage {
 
 	/**
 	 * This function collects the form data and uses it to populate various member variables.
-	 * @param WebRequest $request
+	 * @param WebRequest &$request
 	 * @throws ErrorPageError
 	 */
 	public function importFormData( &$request ) {
@@ -1080,7 +1080,7 @@ class EditPage {
 	 * this method should be overridden and return the page text that will be used
 	 * for saving, preview parsing and so on...
 	 *
-	 * @param WebRequest $request
+	 * @param WebRequest &$request
 	 * @return string|null
 	 */
 	protected function importContentFormData( &$request ) {
@@ -1432,7 +1432,7 @@ class EditPage {
 	/**
 	 * Make sure the form isn't faking a user's credentials.
 	 *
-	 * @param WebRequest $request
+	 * @param WebRequest &$request
 	 * @return bool
 	 * @private
 	 */
@@ -1475,7 +1475,7 @@ class EditPage {
 
 	/**
 	 * Attempt submission
-	 * @param array|bool $resultDetails See docs for $result in internalAttemptSave
+	 * @param array|bool &$resultDetails See docs for $result in internalAttemptSave
 	 * @throws UserBlockedError|ReadOnlyError|ThrottledError|PermissionsError
 	 * @return Status The resulting status object.
 	 */
@@ -1721,7 +1721,7 @@ class EditPage {
 	/**
 	 * Attempt submission (no UI)
 	 *
-	 * @param array $result Array to add statuses to, currently with the
+	 * @param array &$result Array to add statuses to, currently with the
 	 *   possible keys:
 	 *   - spam (string): Spam string from content if any spam is detected by
 	 *     matchSpamRegex.
@@ -4202,7 +4202,7 @@ class EditPage {
 	 * Returns an array of html code of the following checkboxes old style:
 	 * minor and watch
 	 *
-	 * @param int $tabindex Current tabindex
+	 * @param int &$tabindex Current tabindex
 	 * @param array $checked See getCheckboxesDefinition()
 	 * @return array
 	 */
@@ -4260,7 +4260,7 @@ class EditPage {
 	 * Returns an array of html code of the following checkboxes:
 	 * minor and watch
 	 *
-	 * @param int $tabindex Current tabindex
+	 * @param int &$tabindex Current tabindex
 	 * @param array $checked Array of checkbox => bool, where bool indicates the checked
 	 *                 status of the checkbox
 	 *
@@ -4345,7 +4345,7 @@ class EditPage {
 	 * Returns an array of html code of the following buttons:
 	 * save, diff and preview
 	 *
-	 * @param int $tabindex Current tabindex
+	 * @param int &$tabindex Current tabindex
 	 *
 	 * @return array
 	 */

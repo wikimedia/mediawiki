@@ -1638,7 +1638,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * @param Content $content Pre-save transform content
-	 * @param integer $flags
+	 * @param int $flags
 	 * @param User $user
 	 * @param string $summary
 	 * @param array $meta
@@ -1812,7 +1812,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * @param Content $content Pre-save transform content
-	 * @param integer $flags
+	 * @param int $flags
 	 * @param User $user
 	 * @param string $summary
 	 * @param array $meta
@@ -2919,7 +2919,7 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Lock the page row for this title+id and return page_latest (or 0)
 	 *
-	 * @return integer Returns 0 if no row was found with this title+id
+	 * @return int Returns 0 if no row was found with this title+id
 	 * @since 1.27
 	 */
 	public function lockAndGetLatest() {
@@ -3001,7 +3001,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param string $token Rollback token.
 	 * @param bool $bot If true, mark all reverted edits as bot.
 	 *
-	 * @param array $resultDetails Array contains result-specific array of additional values
+	 * @param array &$resultDetails Array contains result-specific array of additional values
 	 *    'alreadyrolled' : 'current' (rev)
 	 *    success        : 'summary' (str), 'current' (rev), 'target' (rev)
 	 *
@@ -3053,7 +3053,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param string $summary Custom summary. Set to default summary if empty.
 	 * @param bool $bot If true, mark all reverted edits as bot.
 	 *
-	 * @param array $resultDetails Contains result-specific array of additional values
+	 * @param array &$resultDetails Contains result-specific array of additional values
 	 * @param User $guser The user performing the rollback
 	 * @param array|null $tags Change tags to apply to the rollback
 	 * Callers are responsible for permission checks
@@ -3414,7 +3414,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @param array $added The names of categories that were added
 	 * @param array $deleted The names of categories that were deleted
-	 * @param integer $id Page ID (this should be the original deleted page ID)
+	 * @param int $id Page ID (this should be the original deleted page ID)
 	 */
 	public function updateCategoryCounts( array $added, array $deleted, $id = 0 ) {
 		$id = $id ?: $this->getId();
@@ -3633,7 +3633,7 @@ class WikiPage implements Page, IDBAccessObject {
 		return $this->getTitle()->getCanonicalURL();
 	}
 
-	/*
+	/**
 	 * @param WANObjectCache $cache
 	 * @return string[]
 	 * @since 1.28

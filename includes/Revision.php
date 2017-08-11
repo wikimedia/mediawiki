@@ -752,7 +752,7 @@ class Revision implements IDBAccessObject {
 	 * This should only be used for proposed revisions that turn out to be null edits
 	 *
 	 * @since 1.28
-	 * @param integer $id User ID
+	 * @param int $id User ID
 	 * @param string $name User name
 	 */
 	public function setUserIdAndName( $id, $name ) {
@@ -1307,7 +1307,7 @@ class Revision implements IDBAccessObject {
 	 * data is compressed, and 'utf-8' if we're saving in UTF-8
 	 * mode.
 	 *
-	 * @param mixed $text Reference to a text
+	 * @param mixed &$text Reference to a text
 	 * @return string
 	 */
 	public static function compressRevisionText( &$text ) {

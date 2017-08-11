@@ -1134,7 +1134,7 @@ abstract class ContentHandler {
 
 	/**
 	 * Add new field definition to array.
-	 * @param SearchIndexField[] $fields
+	 * @param SearchIndexField[] &$fields
 	 * @param SearchEngine       $engine
 	 * @param string             $name
 	 * @param int                $type

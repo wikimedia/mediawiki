@@ -113,7 +113,7 @@ class UploadFromStash extends UploadBase {
 	}
 
 	/**
-	 * @param WebRequest $request
+	 * @param WebRequest &$request
 	 */
 	public function initializeFromRequest( &$request ) {
 		// sends wpSessionKey as a default when wpFileKey is missing
