@@ -102,7 +102,7 @@ class UserMailer {
 	 * @param MailAddress $from Sender's email
 	 * @param string $subject Email's subject.
 	 * @param string $body Email's text or Array of two strings to be the text and html bodies
-	 * @param array $options:
+	 * @param array $options Keys:
 	 *     'replyTo' MailAddress
 	 *     'contentType' string default 'text/plain; charset=UTF-8'
 	 *     'headers' array Extra headers to set
@@ -196,7 +196,7 @@ class UserMailer {
 	 * @param MailAddress $from Sender's email
 	 * @param string $subject Email's subject.
 	 * @param string $body Email's text or Array of two strings to be the text and html bodies
-	 * @param array $options:
+	 * @param array $options Keys:
 	 *     'replyTo' MailAddress
 	 *     'contentType' string default 'text/plain; charset=UTF-8'
 	 *     'headers' array Extra headers to set

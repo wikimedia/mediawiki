@@ -435,7 +435,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	/**
 	 * Register a logger
 	 *
-	 * @param LoggerInterface
+	 * @param LoggerInterface $logger
 	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
