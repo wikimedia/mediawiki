@@ -2030,7 +2030,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param $text
+	 * @param string $text
 	 * @param int $ns
 	 *
 	 * @return PHPUnit_Framework_MockObject_MockObject|Title

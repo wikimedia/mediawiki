@@ -157,7 +157,7 @@ class TextContent extends AbstractContent {
 	 * changes.
 	 *
 	 * @since 1.28
-	 * @param $text
+	 * @param string $text
 	 * @return string
 	 */
 	public static function normalizeLineEndings( $text ) {

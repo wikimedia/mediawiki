@@ -7,7 +7,7 @@ class Blob implements IBlob {
 	protected $mData;
 
 	/**
-	 * @param $data string
+	 * @param string $data
 	 */
 	public function __construct( $data ) {
 		$this->mData = $data;

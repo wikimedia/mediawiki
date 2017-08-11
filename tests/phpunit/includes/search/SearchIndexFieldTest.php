@@ -18,11 +18,11 @@ class SearchIndexFieldTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider getMergeCases
-	 * @param $t1
-	 * @param $n1
-	 * @param $t2
-	 * @param $n2
-	 * @param $result
+	 * @param int $t1
+	 * @param string $n1
+	 * @param int $t2
+	 * @param string $n2
+	 * @param bool $result
 	 */
 	public function testMerge( $t1, $n1, $t2, $n2, $result ) {
 		$field1 =

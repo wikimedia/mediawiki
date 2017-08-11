@@ -98,7 +98,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 	/**
 	 * Load basic request parameters for this Special page.
-	 * @param $subPage
+	 * @param string $subPage
 	 */
 	private function loadRequestParameters( $subPage ) {
 		if ( $this->mLoadedRequest ) {
@@ -1199,7 +1199,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 	/**
 	 * Adds fields provided via the deprecated UserLoginForm / UserCreateForm hooks
-	 * @param $fieldDefinitions array
+	 * @param array $fieldDefinitions
 	 * @param FakeAuthTemplate $template
 	 * @return array
 	 */

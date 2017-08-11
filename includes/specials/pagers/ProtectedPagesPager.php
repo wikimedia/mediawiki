@@ -36,9 +36,9 @@ class ProtectedPagesPager extends TablePager {
 	/**
 	 * @param SpecialProtectedpages $form
 	 * @param array $conds
-	 * @param $type
-	 * @param $level
-	 * @param $namespace
+	 * @param string $type
+	 * @param string $level
+	 * @param int $namespace
 	 * @param string $sizetype
 	 * @param int $size
 	 * @param bool $indefonly

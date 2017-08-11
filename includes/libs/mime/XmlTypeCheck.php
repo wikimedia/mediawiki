@@ -275,7 +275,7 @@ class XmlTypeCheck {
 
 	/**
 	 * Get all of the attributes for an XMLReader's current node
-	 * @param $r XMLReader
+	 * @param XMLReader $r
 	 * @return array of attributes
 	 */
 	private function getAttributesArray( XMLReader $r ) {
@@ -293,8 +293,8 @@ class XmlTypeCheck {
 	}
 
 	/**
-	 * @param $name element or attribute name, maybe with a full or short prefix
-	 * @param $namespaceURI the namespaceURI
+	 * @param string $name element or attribute name, maybe with a full or short prefix
+	 * @param string $namespaceURI the namespaceURI
 	 * @return string the name prefixed with namespaceURI
 	 */
 	private function expandNS( $name, $namespaceURI ) {
@@ -307,8 +307,8 @@ class XmlTypeCheck {
 	}
 
 	/**
-	 * @param $name
-	 * @param $attribs
+	 * @param string $name
+	 * @param string $attribs
 	 */
 	private function elementOpen( $name, $attribs ) {
 		$this->elementDataContext[] = [ $name, $attribs ];
@@ -338,7 +338,7 @@ class XmlTypeCheck {
 	}
 
 	/**
-	 * @param $data
+	 * @param string $data
 	 */
 	private function elementData( $data ) {
 		// Collect any data here, and we'll run the callback in elementClose
@@ -346,8 +346,8 @@ class XmlTypeCheck {
 	}
 
 	/**
-	 * @param $target
-	 * @param $data
+	 * @param string $target
+	 * @param string $data
 	 */
 	private function processingInstructionHandler( $target, $data ) {
 		$callbackReturn = false;
@@ -452,7 +452,7 @@ class XmlTypeCheck {
 	 *
 	 * If there is an error parsing the dtd, sets wellFormed to false.
 	 *
-	 * @param $dtd string
+	 * @param string $dtd
 	 * @return array Possibly containing keys publicid, systemid, type and internal.
 	 */
 	private function parseDTD( $dtd ) {

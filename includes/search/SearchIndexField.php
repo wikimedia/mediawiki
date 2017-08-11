@@ -61,7 +61,7 @@ interface SearchIndexField {
 	public function setFlag( $flag, $unset = false );
 	/**
 	 * Check if flag is set.
-	 * @param $flag
+	 * @param int $flag
 	 * @return int 0 if unset, !=0 if set
 	 */
 	public function checkFlag( $flag );

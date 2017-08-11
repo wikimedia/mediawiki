@@ -621,8 +621,8 @@ EOT
 	/**
 	 * Make the text under the image to say what size preview
 	 *
-	 * @param $params array parameters for thumbnail
-	 * @param $sizeLinkBigImagePreview HTML for the current size
+	 * @param array $params parameters for thumbnail
+	 * @param string $sizeLinkBigImagePreview HTML for the current size
 	 * @return string HTML output
 	 */
 	private function getThumbPrevText( $params, $sizeLinkBigImagePreview ) {

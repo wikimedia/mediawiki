@@ -133,8 +133,8 @@ class IEUrlExtension {
 	/**
 	 * Returns a variant of $url which will pass isUrlExtensionBad() but has the
 	 * same GET parameters, or false if it can't figure one out.
-	 * @param $url
-	 * @param $extWhitelist array
+	 * @param string $url
+	 * @param array $extWhitelist
 	 * @return bool|string
 	 */
 	public static function fixUrlForIE6( $url, $extWhitelist = [] ) {
@@ -251,7 +251,7 @@ class IEUrlExtension {
 	 * or a specification in the style of a User-Agent header, such as
 	 * "Apache/1.3.34 (Unix) mod_ssl/2.8.25 OpenSSL/0.9.8a PHP/4.4.2"
 	 *
-	 * @param $serverSoftware
+	 * @param string $serverSoftware
 	 * @return bool
 	 */
 	public static function haveUndecodedRequestUri( $serverSoftware ) {

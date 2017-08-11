@@ -245,7 +245,7 @@ class WebPHandler extends BitmapHandler {
 	}
 
 	/**
-	 * @param $file
+	 * @param File $file
 	 * @return bool True, not all browsers support WebP
 	 */
 	public function mustRender( $file ) {
@@ -253,7 +253,7 @@ class WebPHandler extends BitmapHandler {
 	}
 
 	/**
-	 * @param $file
+	 * @param File $file
 	 * @return bool False if we are unable to render this image
 	 */
 	public function canRender( $file ) {
@@ -286,9 +286,9 @@ class WebPHandler extends BitmapHandler {
 	/**
 	 * Render files as PNG
 	 *
-	 * @param $ext
-	 * @param $mime
-	 * @param $params
+	 * @param string $ext
+	 * @param string $mime
+	 * @param array|null $params
 	 * @return array
 	 */
 	public function getThumbType( $ext, $mime, $params = null ) {

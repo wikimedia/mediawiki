@@ -912,7 +912,7 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider getWithSetCallback_versions_provider
 	 * @param array $extOpts
-	 * @param $versioned
+	 * @param bool $versioned
 	 */
 	public function testGetWithSetCallback_versions( array $extOpts, $versioned ) {
 		$cache = $this->cache;

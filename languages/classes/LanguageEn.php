@@ -36,8 +36,8 @@ class EnConverter extends LanguageConverter {
 	 * Translates text into Pig Latin. This allows developers to test the language variants
 	 * functionality and user interface without having to switch wiki language away from default.
 	 *
-	 * @param $text string
-	 * @param $toVariant string
+	 * @param string $text
+	 * @param string $toVariant
 	 * @return string
 	 */
 	function translate( $text, $toVariant ) {
