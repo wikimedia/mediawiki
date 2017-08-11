@@ -126,10 +126,14 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 		$oldChangesList = $this->getOldChangesList();
 		$line = $oldChangesList->recentChangesLine( $recentChange, false, 1 );
 
-		$this->assertRegExp( '/<li data-mw-revid="\d+" data-mw-ts="\d+" class="[\w\s-]*mw-tag-vandalism[\w\s-]*">/',
-			$line );
-		$this->assertRegExp( '/<li data-mw-revid="\d+" data-mw-ts="\d+" class="[\w\s-]*mw-tag-newbie[\w\s-]*">/',
-			$line );
+		$this->assertRegExp(
+			'/<li data-mw-revid="\d+" data-mw-ts="\d+" class="[\w\s-]*mw-tag-vandalism[\w\s-]*">/',
+			$line
+		);
+		$this->assertRegExp(
+			'/<li data-mw-revid="\d+" data-mw-ts="\d+" class="[\w\s-]*mw-tag-newbie[\w\s-]*">/',
+			$line
+		);
 	}
 
 	public function testRecentChangesLine_numberOfWatchingUsers() {
