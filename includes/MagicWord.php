@@ -518,7 +518,7 @@ class MagicWord {
 	 * Returns true if the text matches the word, and alters the
 	 * input string, removing all instances of the word
 	 *
-	 * @param string $text
+	 * @param string &$text
 	 *
 	 * @return bool
 	 */
@@ -534,7 +534,7 @@ class MagicWord {
 	}
 
 	/**
-	 * @param string $text
+	 * @param string &$text
 	 * @return bool
 	 */
 	public function matchStartAndRemove( &$text ) {
@@ -655,7 +655,7 @@ class MagicWord {
 	 *
 	 * @param array $magicarr
 	 * @param string $subject
-	 * @param string $result
+	 * @param string &$result
 	 *
 	 * @return bool
 	 */
@@ -677,7 +677,7 @@ class MagicWord {
 	 * Adds all the synonyms of this MagicWord to an array, to allow quick
 	 * lookup in a list of magic words
 	 *
-	 * @param array $array
+	 * @param array &$array
 	 * @param string $value
 	 */
 	public function addToArray( &$array, $value ) {

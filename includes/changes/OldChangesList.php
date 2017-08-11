@@ -25,7 +25,7 @@ class OldChangesList extends ChangesList {
 	/**
 	 * Format a line using the old system (aka without any javascript).
 	 *
-	 * @param RecentChange $rc Passed by reference
+	 * @param RecentChange &$rc Passed by reference
 	 * @param bool $watched (default false)
 	 * @param int $linenumber (default null)
 	 *

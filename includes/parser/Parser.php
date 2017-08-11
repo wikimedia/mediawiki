@@ -972,7 +972,7 @@ class Parser {
 	 *
 	 * @param array $elements List of element names. Comments are always extracted.
 	 * @param string $text Source text string.
-	 * @param array $matches Out parameter, Array: extracted tags
+	 * @param array &$matches Out parameter, Array: extracted tags
 	 * @param string|null $uniq_prefix
 	 * @return string Stripped text
 	 * @since 1.26 The uniq_prefix argument is deprecated.
@@ -2103,7 +2103,7 @@ class Parser {
 
 	/**
 	 * Process [[ ]] wikilinks (RIL)
-	 * @param string $s
+	 * @param string &$s
 	 * @throws MWException
 	 * @return LinkHolderArray
 	 *
@@ -4536,7 +4536,7 @@ class Parser {
 	 * Do not reuse this parser instance after calling getUserSig(),
 	 * as it may have changed if it's the $wgParser.
 	 *
-	 * @param User $user
+	 * @param User &$user
 	 * @param string|bool $nickname Nickname to use or false to use user's default nickname
 	 * @param bool|null $fancySig whether the nicknname is the complete signature
 	 *    or null to use default value
@@ -4897,7 +4897,7 @@ class Parser {
 	 * Replace "<!--LINK-->" link placeholders with actual links, in the buffer
 	 * Placeholders created in Linker::link()
 	 *
-	 * @param string $text
+	 * @param string &$text
 	 * @param int $options
 	 */
 	public function replaceLinkHolders( &$text, $options = 0 ) {
@@ -5406,7 +5406,7 @@ class Parser {
 	 * Callback from the Sanitizer for expanding items found in HTML attribute
 	 * values, so they can be safely tested and escaped.
 	 *
-	 * @param string $text
+	 * @param string &$text
 	 * @param bool|PPFrame $frame
 	 * @return string
 	 */

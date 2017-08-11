@@ -91,7 +91,7 @@ class EnhancedChangesList extends ChangesList {
 	/**
 	 * Format a line for enhanced recentchange (aka with javascript and block of lines).
 	 *
-	 * @param RecentChange $rc
+	 * @param RecentChange &$rc
 	 * @param bool $watched
 	 * @param int $linenumber (default null)
 	 *

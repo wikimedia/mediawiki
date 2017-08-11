@@ -275,7 +275,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @param array $req HTTP request map
+	 * @param array &$req HTTP request map
 	 * @param array $opts
 	 *   - connTimeout    : default connection timeout
 	 *   - reqTimeout     : default request timeout

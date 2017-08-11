@@ -552,9 +552,9 @@ class RecentChange {
 	 * Makes an entry in the database corresponding to an edit
 	 *
 	 * @param string $timestamp
-	 * @param Title $title
+	 * @param Title &$title
 	 * @param bool $minor
-	 * @param User $user
+	 * @param User &$user
 	 * @param string $comment
 	 * @param int $oldId
 	 * @param string $lastTimestamp
@@ -629,9 +629,9 @@ class RecentChange {
 	 * Note: the title object must be loaded with the new id using resetArticleID()
 	 *
 	 * @param string $timestamp
-	 * @param Title $title
+	 * @param Title &$title
 	 * @param bool $minor
-	 * @param User $user
+	 * @param User &$user
 	 * @param string $comment
 	 * @param bool $bot
 	 * @param string $ip
@@ -699,8 +699,8 @@ class RecentChange {
 
 	/**
 	 * @param string $timestamp
-	 * @param Title $title
-	 * @param User $user
+	 * @param Title &$title
+	 * @param User &$user
 	 * @param string $actionComment
 	 * @param string $ip
 	 * @param string $type
@@ -730,8 +730,8 @@ class RecentChange {
 
 	/**
 	 * @param string $timestamp
-	 * @param Title $title
-	 * @param User $user
+	 * @param Title &$title
+	 * @param User &$user
 	 * @param string $actionComment
 	 * @param string $ip
 	 * @param string $type
