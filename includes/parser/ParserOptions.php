@@ -1062,11 +1062,13 @@ class ParserOptions {
 				'speculativeRevIdCallback' => null,
 			];
 
+			// @codingStandardsIgnoreStart Squiz.WhiteSpace.OperatorSpacing.NoSpaceAfterAmp
 			Hooks::run( 'ParserOptionsRegister', [
 				&self::$defaults,
 				&self::$inCacheKey,
 				&self::$lazyOptions,
 			] );
+			// @codingStandardsIgnoreEnd
 
 			ksort( self::$inCacheKey );
 		}

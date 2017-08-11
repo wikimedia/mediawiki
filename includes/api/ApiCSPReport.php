@@ -115,7 +115,7 @@ class ApiCSPReport extends ApiBase {
 		$req = $this->getRequest();
 		$contentType = $req->getHeader( 'content-type' );
 		if ( $contentType !== 'application/json'
-			&& $contentType !=='application/csp-report'
+			&& $contentType !== 'application/csp-report'
 		) {
 			$this->error( 'wrongformat', __METHOD__ );
 		}

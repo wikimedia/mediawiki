@@ -4333,7 +4333,7 @@ class EditPage {
 		$newPage = !$this->mTitle->exists();
 
 		if ( $labelAsPublish ) {
-			$buttonLabelKey =  $newPage ? 'publishpage' : 'publishchanges';
+			$buttonLabelKey = $newPage ? 'publishpage' : 'publishchanges';
 		} else {
 			$buttonLabelKey = $newPage ? 'savearticle' : 'savechanges';
 		}
