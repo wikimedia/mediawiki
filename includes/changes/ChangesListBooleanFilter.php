@@ -157,14 +157,14 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	}
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	public function displaysOnUnstructuredUi() {
 		return !!$this->showHide;
 	}
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	public function isFeatureAvailableOnStructuredUi() {
 		return $this->isReplacedInStructuredUi ||
@@ -206,7 +206,7 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	}
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	public function getJsData() {
 		$output = parent::getJsData();
@@ -217,7 +217,7 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	}
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	public function isSelected( FormOptions $opts ) {
 		return !$opts[ $this->getName() ] &&

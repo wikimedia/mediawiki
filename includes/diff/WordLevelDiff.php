@@ -33,7 +33,7 @@ use MediaWiki\Diff\WordAccumulator;
  */
 class WordLevelDiff extends \Diff {
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	protected $bailoutComplexity = 40000000; // Roughly 6K x 6K words changed
 

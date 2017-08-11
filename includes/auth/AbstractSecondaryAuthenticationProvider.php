@@ -43,7 +43,7 @@ abstract class AbstractSecondaryAuthenticationProvider extends AbstractAuthentic
 	}
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 * @note Reimplement this if self::getAuthenticationRequests( AuthManager::ACTION_REMOVE )
 	 *  doesn't return requests that will revoke all access for the user.
 	 */

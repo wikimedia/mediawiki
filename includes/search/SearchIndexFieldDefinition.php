@@ -141,7 +141,7 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getEngineHints( SearchEngine $engine ) {
 		return [];

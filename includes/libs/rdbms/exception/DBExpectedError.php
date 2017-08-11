@@ -50,7 +50,7 @@ class DBExpectedError extends DBError implements MessageSpecifier, ILocalizedExc
 	}
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 * @since 1.29
 	 */
 	public function getMessageObject() {

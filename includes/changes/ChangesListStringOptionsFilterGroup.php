@@ -129,7 +129,7 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 	}
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	public function isPerGroupRequestParameter() {
 		return true;
@@ -154,7 +154,7 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 	}
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	protected function createFilter( array $filterDefinition ) {
 		return new ChangesListStringOptionsFilter( $filterDefinition );
@@ -232,7 +232,7 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 	}
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	public function getJsData() {
 		$output = parent::getJsData();

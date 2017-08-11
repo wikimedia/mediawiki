@@ -47,7 +47,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	}
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	protected function doMainQuery( $tables, $select, $conds, $query_options,
 		$join_conds, FormOptions $opts

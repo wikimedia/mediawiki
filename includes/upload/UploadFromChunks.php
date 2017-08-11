@@ -64,7 +64,7 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function tryStashFile( User $user, $isPartial = false ) {
 		try {
@@ -77,7 +77,7 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 * @throws UploadChunkVerificationException
 	 * @deprecated since 1.28 Use tryStashFile() instead
 	 */
@@ -88,7 +88,7 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 * @throws UploadChunkVerificationException
 	 * @deprecated since 1.28
 	 */
@@ -99,7 +99,7 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 * @throws UploadChunkVerificationException
 	 * @deprecated since 1.28
 	 */

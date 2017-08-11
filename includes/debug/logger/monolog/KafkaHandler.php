@@ -128,7 +128,7 @@ class KafkaHandler extends AbstractProcessingHandler {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	protected function write( array $record ) {
 		if ( $record['formatted'] !== null ) {
@@ -138,7 +138,7 @@ class KafkaHandler extends AbstractProcessingHandler {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function handleBatch( array $batch ) {
 		$channels = [];

@@ -43,7 +43,7 @@ class ChangesListBooleanFilterGroup extends ChangesListFilterGroup {
 	}
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	protected function createFilter( array $filterDefinition ) {
 		return new ChangesListBooleanFilter( $filterDefinition );
@@ -59,7 +59,7 @@ class ChangesListBooleanFilterGroup extends ChangesListFilterGroup {
 	}
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	public function isPerGroupRequestParameter() {
 		return false;

@@ -34,7 +34,7 @@ use Monolog\Handler\BufferHandler as BaseBufferHandler;
  */
 class BufferHandler extends BaseBufferHandler {
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function handle( array $record ) {
 		if ( !$this->initialized ) {

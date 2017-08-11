@@ -47,7 +47,7 @@ class SamplingStatsdClient extends StatsdClient {
 	 * Sets sampling rate for all items in $data.
 	 * The sample rate specified in a StatsdData entity overrides the sample rate specified here.
 	 *
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function appendSampleRate( $data, $sampleRate = 1 ) {
 		$samplingRates = $this->samplingRates;
@@ -147,7 +147,7 @@ class SamplingStatsdClient extends StatsdClient {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	protected function throwException( Exception $exception ) {
 		if ( !$this->getFailSilently() ) {

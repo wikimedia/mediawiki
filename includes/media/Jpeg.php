@@ -175,7 +175,7 @@ class JpegHandler extends ExifBitmapHandler {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	protected function transformImageMagick( $image, $params ) {
 		global $wgUseTinyRGBForJPGThumbnails;

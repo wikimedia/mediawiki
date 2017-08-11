@@ -27,7 +27,7 @@
  */
 class ResourceLoaderMediaWikiUtilModule extends ResourceLoaderFileModule {
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		return ResourceLoader::makeConfigSetScript(
@@ -38,14 +38,14 @@ class ResourceLoaderMediaWikiUtilModule extends ResourceLoaderFileModule {
 	}
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	public function supportsURLLoading() {
 		return false;
 	}
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	public function enableModuleContentVersion() {
 		return true;

@@ -109,7 +109,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	protected function transformFilterDefinition( array $filterDefinition ) {
 		if ( isset( $filterDefinition['showHideSuffix'] ) ) {
@@ -120,7 +120,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	protected function registerFilters() {
 		parent::registerFilters();
@@ -250,7 +250,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	protected function buildQuery( &$tables, &$fields, &$conds, &$query_options,
 		&$join_conds, FormOptions $opts
@@ -267,7 +267,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	protected function doMainQuery( $tables, $fields, $conds, $query_options,
 		$join_conds, FormOptions $opts

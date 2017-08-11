@@ -60,7 +60,7 @@ class LineFormatter extends MonologLineFormatter {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function format( array $record ) {
 		// Drop the 'private' flag from the context

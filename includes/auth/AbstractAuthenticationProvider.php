@@ -50,7 +50,7 @@ abstract class AbstractAuthenticationProvider implements AuthenticationProvider 
 	}
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 * @note Override this if it makes sense to support more than one instance
 	 */
 	public function getUniqueId() {

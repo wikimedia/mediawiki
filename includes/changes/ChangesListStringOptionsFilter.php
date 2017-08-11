@@ -9,14 +9,14 @@
  */
 class ChangesListStringOptionsFilter extends ChangesListFilter {
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	public function displaysOnUnstructuredUi() {
 		return false;
 	}
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	public function isSelected( FormOptions $opts ) {
 		$option = $opts[ $this->getGroup()->getName() ];

@@ -186,7 +186,7 @@ class ApiUsageException extends UsageException implements ILocalizedException {
 	/**
 	 * @deprecated Do not use. This only exists here because UsageException is in
 	 *  the inheritance chain for backwards compatibility.
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	public function getCodeString() {
 		wfDeprecated( __METHOD__, '1.29' );
@@ -196,7 +196,7 @@ class ApiUsageException extends UsageException implements ILocalizedException {
 	/**
 	 * @deprecated Do not use. This only exists here because UsageException is in
 	 *  the inheritance chain for backwards compatibility.
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	public function getMessageArray() {
 		wfDeprecated( __METHOD__, '1.29' );
@@ -210,7 +210,7 @@ class ApiUsageException extends UsageException implements ILocalizedException {
 	}
 
 	/**
-	 * @inheritdoc
+	 * @inheritDoc
 	 */
 	public function getMessageObject() {
 		return $this->status->getMessage();
