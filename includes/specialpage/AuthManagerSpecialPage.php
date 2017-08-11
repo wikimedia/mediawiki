@@ -45,7 +45,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * @param AuthenticationRequest[] $requests
 	 * @param array $fieldInfo Field information array (union of all
 	 *    AuthenticationRequest::getFieldInfo() responses).
-	 * @param array $formDescriptor HTMLForm descriptor. The special key 'weight' can be set to
+	 * @param array &$formDescriptor HTMLForm descriptor. The special key 'weight' can be set to
 	 *    change the order of the fields.
 	 * @param string $action Authentication type (one of the AuthManager::ACTION_* constants)
 	 * @return bool
@@ -474,7 +474,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	/**
 	 * Submit handler callback for HTMLForm
 	 * @private
-	 * @param $data array Submitted data
+	 * @param array $data Submitted data
 	 * @return Status
 	 */
 	public function handleFormSubmit( $data ) {
@@ -598,7 +598,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	/**
 	 * Adds a sequential tabindex starting from 1 to all form elements. This way the user can
 	 * use the tab key to traverse the form without having to step through all links and such.
-	 * @param $formDescriptor
+	 * @param array &$formDescriptor
 	 */
 	protected function addTabIndex( &$formDescriptor ) {
 		$i = 1;
@@ -709,7 +709,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * Sort the fields of a form descriptor by their 'weight' property. (Fields with higher weight
 	 * are shown closer to the bottom; weight defaults to 0. Negative weight is allowed.)
 	 * Keep order if weights are equal.
-	 * @param array $formDescriptor
+	 * @param array &$formDescriptor
 	 * @return array
 	 */
 	protected static function sortFormDescriptorFields( array &$formDescriptor ) {

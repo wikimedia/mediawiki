@@ -240,7 +240,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * That method has cache slam avoiding features for hot/expensive keys.
 	 *
 	 * @param string $key Cache key
-	 * @param mixed $curTTL Approximate TTL left on the key if present/tombstoned [returned]
+	 * @param mixed &$curTTL Approximate TTL left on the key if present/tombstoned [returned]
 	 * @param array $checkKeys List of "check" keys
 	 * @param float &$asOf UNIX timestamp of cached value; null on failure [returned]
 	 * @return mixed Value of cache key or false on failure
@@ -261,7 +261,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @see WANObjectCache::get()
 	 *
 	 * @param array $keys List of cache keys
-	 * @param array $curTTLs Map of (key => approximate TTL left) for existing keys [returned]
+	 * @param array &$curTTLs Map of (key => approximate TTL left) for existing keys [returned]
 	 * @param array $checkKeys List of check keys to apply to all $keys. May also apply "check"
 	 *  keys to specific cache keys only by using cache keys as keys in the $checkKeys array.
 	 * @param float[] &$asOfs Map of (key =>  UNIX timestamp of cached value; null on failure)
@@ -404,7 +404,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 * @param string $key Cache key
 	 * @param mixed $value
-	 * @param integer $ttl Seconds to live. Special values are:
+	 * @param int $ttl Seconds to live. Special values are:
 	 *   - WANObjectCache::TTL_INDEFINITE: Cache forever
 	 * @param array $opts Options map:
 	 *   - lag : Seconds of replica DB lag. Typically, this is either the replica DB lag
@@ -537,7 +537,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * idempotence, the $ttl should not vary for different delete() calls on the same key.
 	 *
 	 * @param string $key Cache key
-	 * @param integer $ttl Tombstone TTL; Default: WANObjectCache::HOLDOFF_TTL
+	 * @param int $ttl Tombstone TTL; Default: WANObjectCache::HOLDOFF_TTL
 	 * @return bool True if the item was purged or not found, false on failure
 	 */
 	final public function delete( $key, $ttl = self::HOLDOFF_TTL ) {
@@ -797,7 +797,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @see WANObjectCache::set()
 	 *
 	 * @param string $key Cache key
-	 * @param integer $ttl Seconds to live for key updates. Special values are:
+	 * @param int $ttl Seconds to live for key updates. Special values are:
 	 *   - WANObjectCache::TTL_INDEFINITE: Cache forever
 	 *   - WANObjectCache::TTL_UNCACHEABLE: Do not cache at all
 	 * @param callable $callback Value generation function
@@ -929,7 +929,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @see WANObjectCache::getWithSetCallback()
 	 *
 	 * @param string $key
-	 * @param integer $ttl
+	 * @param int $ttl
 	 * @param callback $callback
 	 * @param array $opts Options map for getWithSetCallback()
 	 * @param float &$asOf Cache generation timestamp of returned value [returned]
@@ -1098,7 +1098,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @endcode
 	 *
 	 * @param ArrayIterator $keyedIds Result of WANObjectCache::makeMultiKeys()
-	 * @param integer $ttl Seconds to live for key updates
+	 * @param int $ttl Seconds to live for key updates
 	 * @param callable $callback Callback the yields entity regeneration callbacks
 	 * @param array $opts Options map
 	 * @return array Map of (cache key => value) in the same order as $keyedIds
@@ -1184,7 +1184,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @endcode
 	 *
 	 * @param ArrayIterator $keyedIds Result of WANObjectCache::makeMultiKeys()
-	 * @param integer $ttl Seconds to live for key updates
+	 * @param int $ttl Seconds to live for key updates
 	 * @param callable $callback Callback the yields entity regeneration callbacks
 	 * @param array $opts Options map
 	 * @return array Map of (cache key => value) in the same order as $keyedIds
@@ -1393,8 +1393,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
-	 * @param integer $flag ATTR_* class constant
-	 * @return integer QOS_* class constant
+	 * @param int $flag ATTR_* class constant
+	 * @return int QOS_* class constant
 	 * @since 1.28
 	 */
 	public function getQoS( $flag ) {
@@ -1417,11 +1417,11 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *     $ttl = $cache->adaptiveTTL( $mtime, $cache::TTL_DAY );
 	 * @endcode
 	 *
-	 * @param integer|float $mtime UNIX timestamp
-	 * @param integer $maxTTL Maximum TTL (seconds)
-	 * @param integer $minTTL Minimum TTL (seconds); Default: 30
+	 * @param int|float $mtime UNIX timestamp
+	 * @param int $maxTTL Maximum TTL (seconds)
+	 * @param int $minTTL Minimum TTL (seconds); Default: 30
 	 * @param float $factor Value in the range (0,1); Default: .2
-	 * @return integer Adaptive TTL
+	 * @return int Adaptive TTL
 	 * @since 1.28
 	 */
 	public function adaptiveTTL( $mtime, $maxTTL, $minTTL = 30, $factor = .2 ) {
@@ -1439,7 +1439,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
-	 * @return integer Number of warmup key cache misses last round
+	 * @return int Number of warmup key cache misses last round
 	 * @since 1.30
 	 */
 	public function getWarmupKeyMisses() {
@@ -1452,8 +1452,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * This must set the key to "PURGED:<UNIX timestamp>:<holdoff>"
 	 *
 	 * @param string $key Cache key
-	 * @param integer $ttl How long to keep the tombstone [seconds]
-	 * @param integer $holdoff HOLDOFF_* constant controlling how long to ignore sets for this key
+	 * @param int $ttl How long to keep the tombstone [seconds]
+	 * @param int $holdoff HOLDOFF_* constant controlling how long to ignore sets for this key
 	 * @return bool Success
 	 */
 	protected function relayPurge( $key, $ttl, $holdoff ) {
@@ -1540,8 +1540,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * and get hits too. Similar to worthRefreshExpiring(), randomization is used.
 	 *
 	 * @param float $asOf UNIX timestamp of the value
-	 * @param integer $ageNew Age of key when this might recommend refreshing (seconds)
-	 * @param integer $timeTillRefresh Age of key when it should be refreshed if popular (seconds)
+	 * @param int $ageNew Age of key when this might recommend refreshing (seconds)
+	 * @param int $timeTillRefresh Age of key when it should be refreshed if popular (seconds)
 	 * @param float $now The current UNIX timestamp
 	 * @return bool
 	 */
@@ -1590,7 +1590,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * Do not use this method outside WANObjectCache
 	 *
 	 * @param mixed $value
-	 * @param integer $ttl [0=forever]
+	 * @param int $ttl [0=forever]
 	 * @param float $now Unix Current timestamp just before calling set()
 	 * @return array
 	 */

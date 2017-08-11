@@ -154,6 +154,11 @@ class Linker {
 	 * @since 1.16.3
 	 * @deprecated since 1.28, use MediaWiki\Linker\LinkRenderer instead
 	 * @see Linker::link
+	 * @param Title $target
+	 * @param string $html
+	 * @param array $customAttribs
+	 * @param array $query
+	 * @param string|array $options
 	 * @return string
 	 */
 	public static function linkKnown(
@@ -1350,7 +1355,7 @@ class Linker {
 	/**
 	 * @param Title $contextTitle
 	 * @param string $target
-	 * @param string $text
+	 * @param string &$text
 	 * @return string
 	 */
 	public static function normalizeSubpageLink( $contextTitle, $target, &$text ) {

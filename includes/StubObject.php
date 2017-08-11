@@ -86,7 +86,7 @@ class StubObject {
 	 * infinite loop when unstubbing an object or to avoid reference parameter
 	 * breakage.
 	 *
-	 * @param object $obj Object to check.
+	 * @param object &$obj Object to check.
 	 * @return void
 	 */
 	public static function unstub( &$obj ) {

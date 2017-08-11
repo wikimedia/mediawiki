@@ -106,7 +106,7 @@ class WikiExporter {
 	 * various row objects and XML output for filtering. Filters
 	 * can be chained or used as callbacks.
 	 *
-	 * @param DumpOutput $sink
+	 * @param DumpOutput &$sink
 	 */
 	public function setOutputSink( &$sink ) {
 		$this->sink =& $sink;
@@ -253,6 +253,7 @@ class WikiExporter {
 
 	/**
 	 * @param string $cond
+	 * @param bool $orderRevs
 	 * @throws MWException
 	 * @throws Exception
 	 */

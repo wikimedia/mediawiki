@@ -287,7 +287,7 @@ class LogPage {
 	 * @param string $type
 	 * @param Language|null $lang
 	 * @param Title $title
-	 * @param array $params
+	 * @param array &$params
 	 * @return string
 	 */
 	protected static function getTitleLink( $type, $lang, $title, &$params ) {

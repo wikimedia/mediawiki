@@ -31,7 +31,7 @@ class ORAResult {
 	}
 
 	/**
-	 * @param IDatabase $db
+	 * @param IDatabase &$db
 	 * @param resource $stmt A valid OCI statement identifier
 	 * @param bool $unique
 	 */

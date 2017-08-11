@@ -85,7 +85,7 @@ abstract class MediaHandler {
 	 * Should be idempotent.
 	 * Returns false if the parameters are unacceptable and the transform should fail
 	 * @param File $image
-	 * @param array $params
+	 * @param array &$params
 	 */
 	abstract function normaliseParams( $image, &$params );
 
@@ -304,8 +304,10 @@ abstract class MediaHandler {
 	}
 
 	/**
-	* @deprecated since 1.30, use MediaHandler::getContentHeaders instead
-	*/
+	 * @deprecated since 1.30, use MediaHandler::getContentHeaders instead
+	 * @param array $metadata
+	 * @return array
+	 */
 	public function getStreamHeaders( $metadata ) {
 		wfDeprecated( __METHOD__, '1.30' );
 		return $this->getContentHeaders( $metadata );
@@ -712,7 +714,7 @@ abstract class MediaHandler {
 	 *
 	 * @see LocalFile::purgeThumbnails
 	 *
-	 * @param array $files
+	 * @param array &$files
 	 * @param array $options Purge options. Currently will always be
 	 *  an array with a single key 'forThumbRefresh' set to true.
 	 */
@@ -872,7 +874,7 @@ abstract class MediaHandler {
 	 * @param Array $pagesByDimensions
 	 * @return String
 	 * @since 1.30
-	*/
+	 */
 	public static function getPageRangesByDimensions( $pagesByDimensions ) {
 		$pageRangesByDimensions = [];
 
@@ -913,11 +915,11 @@ abstract class MediaHandler {
 	}
 
 	/**
-	* Get useful response headers for GET/HEAD requests for a file with the given metadata
-	* @param $metadata Array Contains this handler's unserialized getMetadata() for a file
-	* @return Array
-	* @since 1.30
-	*/
+	 * Get useful response headers for GET/HEAD requests for a file with the given metadata
+	 * @param array $metadata Contains this handler's unserialized getMetadata() for a file
+	 * @return array
+	 * @since 1.30
+	 */
 	public function getContentHeaders( $metadata ) {
 		return [];
 	}

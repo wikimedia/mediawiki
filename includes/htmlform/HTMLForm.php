@@ -450,7 +450,7 @@ class HTMLForm extends ContextSource {
 	 * @since 1.23
 	 *
 	 * @param string $fieldname Name of the field
-	 * @param array $descriptor Input Descriptor, as described above
+	 * @param array &$descriptor Input Descriptor, as described above
 	 *
 	 * @throws MWException
 	 * @return string Name of a HTMLFormField subclass
@@ -1893,7 +1893,7 @@ class HTMLForm extends ContextSource {
 	 * 'novalidate' attribute will be added on the `<form>` element. It will be removed if the user
 	 * agent has JavaScript support, in htmlform.js.
 	 *
-	 * @return boolean
+	 * @return bool
 	 * @since 1.29
 	 */
 	public function needsJSForHtml5FormValidation() {

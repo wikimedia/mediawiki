@@ -555,7 +555,7 @@ class SpecialSearch extends SpecialPage {
 	 * Extract "power search" namespace settings from the request object,
 	 * returning a list of index numbers to search.
 	 *
-	 * @param WebRequest $request
+	 * @param WebRequest &$request
 	 * @return array
 	 */
 	protected function powerSearch( &$request ) {

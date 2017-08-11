@@ -616,7 +616,7 @@ class ProtectionForm {
 	/**
 	 * Show protection long extracts for this page
 	 *
-	 * @param OutputPage $out
+	 * @param OutputPage &$out
 	 * @access private
 	 */
 	function showLogExtract( &$out ) {

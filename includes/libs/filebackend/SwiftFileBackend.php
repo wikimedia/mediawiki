@@ -69,7 +69,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::__construct()
-	 * Additional $config params include:
+	 * @param array $config Params include:
 	 *   - swiftAuthUrl       : Swift authentication server URL
 	 *   - swiftUser          : Swift user used by MediaWiki (account:username)
 	 *   - swiftKey           : Swift authentication key for the above user
@@ -828,7 +828,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 *
 	 * @param string $fullCont Resolved container name
 	 * @param string $dir Resolved storage directory with no trailing slash
-	 * @param string|null $after Resolved container relative path to list items after
+	 * @param string|null &$after Resolved container relative path to list items after
 	 * @param int $limit Max number of items to list
 	 * @param array $params Parameters for getDirectoryList()
 	 * @return array List of container relative resolved paths of directories directly under $dir
@@ -908,7 +908,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 *
 	 * @param string $fullCont Resolved container name
 	 * @param string $dir Resolved storage directory with no trailing slash
-	 * @param string|null $after Resolved container relative path of file to list items after
+	 * @param string|null &$after Resolved container relative path of file to list items after
 	 * @param int $limit Max number of items to list
 	 * @param array $params Parameters for getDirectoryList()
 	 * @return array List of resolved container relative paths of files under $dir
@@ -1888,7 +1888,7 @@ abstract class SwiftFileBackendList implements Iterator {
 	 *
 	 * @param string $container Resolved container name
 	 * @param string $dir Resolved path relative to container
-	 * @param string $after
+	 * @param string &$after
 	 * @param int $limit
 	 * @param array $params
 	 * @return Traversable|array

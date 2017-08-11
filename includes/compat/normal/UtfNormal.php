@@ -120,7 +120,7 @@ class UtfNormal {
 	/**
 	 * Returns true if the string is _definitely_ in NFC.
 	 * Returns false if not or uncertain.
-	 * @param string $string a UTF-8 string, altered on output to be valid UTF-8 safe for XML.
+	 * @param string &$string a UTF-8 string, altered on output to be valid UTF-8 safe for XML.
 	 * @return bool
 	 */
 	static function quickIsNFCVerify( &$string ) {

@@ -35,7 +35,7 @@ class SpecialFilepath extends RedirectSpecialPage {
 	/**
 	 * Implement by redirecting through Special:Redirect/file.
 	 *
-	 * @param string|null $subpage
+	 * @param string|null $par
 	 * @return Title
 	 */
 	public function getRedirect( $par ) {

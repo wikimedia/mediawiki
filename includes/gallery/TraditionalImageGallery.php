@@ -348,7 +348,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 *
 	 * Used by a subclass to insert extra high resolution images.
 	 * @param MediaTransformOutput $thumb The thumbnail
-	 * @param array $imageParameters Array of options
+	 * @param array &$imageParameters Array of options
 	 */
 	protected function adjustImageParameters( $thumb, &$imageParameters ) {
 	}

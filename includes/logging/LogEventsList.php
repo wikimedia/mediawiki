@@ -60,7 +60,7 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param IContextSource|Skin $context Context to use; formerly it was
 	 *   a Skin object. Use of Skin is deprecated.
-	 * @param LinkRenderer|null $linkRenderer, previously unused
+	 * @param LinkRenderer|null $linkRenderer previously unused
 	 * @param int $flags Can be a combination of self::NO_ACTION_LINK,
 	 *   self::NO_EXTRA_USER_LINKS or self::USE_CHECKBOXES.
 	 */
@@ -569,7 +569,7 @@ class LogEventsList extends ContextSource {
 	/**
 	 * Show log extract. Either with text and a box (set $msgKey) or without (don't set $msgKey)
 	 *
-	 * @param OutputPage|string $out By-reference
+	 * @param OutputPage|string &$out
 	 * @param string|array $types Log types to show
 	 * @param string|Title $page The page title to show log entries for
 	 * @param string $user The user who made the log entries

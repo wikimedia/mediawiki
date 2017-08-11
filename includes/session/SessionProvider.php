@@ -387,7 +387,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 * reset whatever token it does use here.
 	 *
 	 * @protected For use by \MediaWiki\Session\SessionManager only
-	 * @param User $user;
+	 * @param User $user
 	 */
 	public function invalidateSessionsForUser( User $user ) {
 	}

@@ -109,7 +109,7 @@ class Preferences {
 	 * @throws MWException
 	 * @param User $user
 	 * @param IContextSource $context
-	 * @param array $defaultPreferences Array to load values for
+	 * @param array &$defaultPreferences Array to load values for
 	 * @return array|null
 	 */
 	static function loadPreferenceValues( $user, $context, &$defaultPreferences ) {
@@ -202,7 +202,7 @@ class Preferences {
 	/**
 	 * @param User $user
 	 * @param IContextSource $context
-	 * @param array $defaultPreferences
+	 * @param array &$defaultPreferences
 	 * @return void
 	 */
 	static function profilePreferences( $user, IContextSource $context, &$defaultPreferences ) {
@@ -599,7 +599,7 @@ class Preferences {
 	/**
 	 * @param User $user
 	 * @param IContextSource $context
-	 * @param array $defaultPreferences
+	 * @param array &$defaultPreferences
 	 * @return void
 	 */
 	static function skinPreferences( $user, IContextSource $context, &$defaultPreferences ) {
@@ -650,7 +650,7 @@ class Preferences {
 	/**
 	 * @param User $user
 	 * @param IContextSource $context
-	 * @param array $defaultPreferences
+	 * @param array &$defaultPreferences
 	 */
 	static function filesPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		# # Files #####################################
@@ -671,7 +671,7 @@ class Preferences {
 	/**
 	 * @param User $user
 	 * @param IContextSource $context
-	 * @param array $defaultPreferences
+	 * @param array &$defaultPreferences
 	 * @return void
 	 */
 	static function datetimePreferences( $user, IContextSource $context, &$defaultPreferences ) {
@@ -749,7 +749,7 @@ class Preferences {
 	/**
 	 * @param User $user
 	 * @param IContextSource $context
-	 * @param array $defaultPreferences
+	 * @param array &$defaultPreferences
 	 */
 	static function renderingPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		# # Diffs ####################################
@@ -811,7 +811,7 @@ class Preferences {
 	/**
 	 * @param User $user
 	 * @param IContextSource $context
-	 * @param array $defaultPreferences
+	 * @param array &$defaultPreferences
 	 */
 	static function editingPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		# # Editing #####################################
@@ -884,7 +884,7 @@ class Preferences {
 	/**
 	 * @param User $user
 	 * @param IContextSource $context
-	 * @param array $defaultPreferences
+	 * @param array &$defaultPreferences
 	 */
 	static function rcPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		$config = $context->getConfig();
@@ -960,7 +960,7 @@ class Preferences {
 	/**
 	 * @param User $user
 	 * @param IContextSource $context
-	 * @param array $defaultPreferences
+	 * @param array &$defaultPreferences
 	 */
 	static function watchlistPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		$config = $context->getConfig();
@@ -1110,7 +1110,7 @@ class Preferences {
 	/**
 	 * @param User $user
 	 * @param IContextSource $context
-	 * @param array $defaultPreferences
+	 * @param array &$defaultPreferences
 	 */
 	static function searchPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		foreach ( MWNamespace::getValidNamespaces() as $n ) {
@@ -1122,6 +1122,9 @@ class Preferences {
 
 	/**
 	 * Dummy, kept for backwards-compatibility.
+	 * @param User $user
+	 * @param IContextSource $context
+	 * @param array &$defaultPreferences
 	 */
 	static function miscPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 	}
