@@ -30,16 +30,19 @@ interface SearchIndexField {
 	 * This field is case-insensitive.
 	 */
 	const FLAG_CASEFOLD = 1;
+
 	/**
 	 * This field contains secondary information, which is
 	 * already present in other fields, but can be used for
 	 * scoring.
 	 */
 	const FLAG_SCORING = 2;
+
 	/**
 	 * This field does not need highlight handling.
 	 */
 	const FLAG_NO_HIGHLIGHT = 4;
+
 	/**
 	 * Do not index this field, just store it.
 	 */
@@ -51,20 +54,23 @@ interface SearchIndexField {
 	 * @return array|null Null means this field does not map to anything
 	 */
 	public function getMapping( SearchEngine $engine );
+
 	/**
 	 * Set global flag for this field.
 	 *
-	 * @param int  $flag Bit flag to set/unset
+	 * @param int $flag Bit flag to set/unset
 	 * @param bool $unset True if flag should be unset, false by default
 	 * @return $this
 	 */
 	public function setFlag( $flag, $unset = false );
+
 	/**
 	 * Check if flag is set.
 	 * @param int $flag
 	 * @return int 0 if unset, !=0 if set
 	 */
 	public function checkFlag( $flag );
+
 	/**
 	 * Merge two field definitions if possible.
 	 *

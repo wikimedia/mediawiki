@@ -41,8 +41,8 @@ class BatchRowWriter {
 
 	/**
 	 * @param IDatabase $db The database to write to
-	 * @param string       $table       The name of the table to update
-	 * @param string|bool  $clusterName A cluster name valid for use with LBFactory
+	 * @param string $table The name of the table to update
+	 * @param string|bool $clusterName A cluster name valid for use with LBFactory
 	 */
 	public function __construct( IDatabase $db, $table, $clusterName = false ) {
 		$this->db = $db;

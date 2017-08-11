@@ -64,9 +64,9 @@ class BatchRowUpdate {
 	protected $output;
 
 	/**
-	 * @param BatchRowIterator   $reader    Iterator that returns an
+	 * @param BatchRowIterator $reader Iterator that returns an
 	 *  array of database rows
-	 * @param BatchRowWriter     $writer    Writer capable of pushing
+	 * @param BatchRowWriter $writer Writer capable of pushing
 	 *  row updates to the database
 	 * @param RowUpdateGenerator $generator Generates single row updates
 	 *  based on the rows content

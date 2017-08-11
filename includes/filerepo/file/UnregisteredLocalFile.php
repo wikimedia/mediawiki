@@ -171,8 +171,8 @@ class UnregisteredLocalFile extends File {
 	}
 
 	/**
-	* @return int
-	*/
+	 * @return int
+	 */
 	function getBitDepth() {
 		$gis = $this->getImageSize( $this->getLocalRefPath() );
 

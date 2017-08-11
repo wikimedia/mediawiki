@@ -40,7 +40,7 @@ class TextContentHandler extends ContentHandler {
 	 * Returns the content's text as-is.
 	 *
 	 * @param Content $content
-	 * @param string  $format The serialization format to check
+	 * @param string $format The serialization format to check
 	 *
 	 * @return mixed
 	 */

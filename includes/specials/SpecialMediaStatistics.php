@@ -30,13 +30,15 @@ use Wikimedia\Rdbms\IDatabase;
  */
 class MediaStatisticsPage extends QueryPage {
 	protected $totalCount = 0, $totalBytes = 0;
+
 	/**
-	* @var integer $totalPerType Combined file size of all files in a section
-	*/
+	 * @var integer $totalPerType Combined file size of all files in a section
+	 */
 	protected $totalPerType = 0;
+
 	/**
-	* @var integer $totalSize Combined file size of all files
-	*/
+	 * @var integer $totalSize Combined file size of all files
+	 */
 	protected $totalSize = 0;
 
 	function __construct( $name = 'MediaStatistics' ) {
