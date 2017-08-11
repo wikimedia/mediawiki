@@ -7,8 +7,7 @@
  * WebRequest#response), then you might be able to use this mock to simplify
  * your tests.
  */
-class MockWebRequest extends WebRequest
-{
+class MockWebRequest extends WebRequest {
 	/**
 	 * @var WebResponse
 	 */
