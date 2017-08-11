@@ -300,7 +300,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			'ConfigFactory',
 			self::makeTestConfigFactoryInstantiator(
 				$oldConfigFactory,
-				[ 'main' =>  $bootstrapConfig ]
+				[ 'main' => $bootstrapConfig ]
 			)
 		);
 		$newServices->resetServiceForTesting( 'DBLoadBalancerFactory' );

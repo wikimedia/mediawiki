@@ -1156,7 +1156,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			// Don't show a "create account" link if the user can't.
 			if ( $this->showCreateAccountLink() ) {
 				// link to the other action
-				$linkTitle = $this->getTitleFor( $this->isSignup() ? 'Userlogin' :'CreateAccount' );
+				$linkTitle = $this->getTitleFor( $this->isSignup() ? 'Userlogin' : 'CreateAccount' );
 				$linkq = $this->getReturnToQueryStringFragment();
 				// Pass any language selection on to the mode switch link
 				if ( $this->mLanguage ) {

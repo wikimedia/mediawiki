@@ -197,7 +197,7 @@ class MediaStatisticsPage extends QueryPage {
 		$row .= Html::rawElement(
 			'td',
 			// Make sure js sorts it in numeric order
-			[ 'data-sort-value' =>  $bytes ],
+			[ 'data-sort-value' => $bytes ],
 			$this->msg( 'mediastatistics-nbytes' )
 				->numParams( $bytes )
 				->sizeParams( $bytes )

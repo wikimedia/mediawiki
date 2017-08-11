@@ -1353,7 +1353,7 @@ abstract class Installer {
 		}
 
 		// extensions -> extension.json, skins -> skin.json
-		$jsonFile = substr( $directory, 0, strlen( $directory ) -1 ) . '.json';
+		$jsonFile = substr( $directory, 0, strlen( $directory ) - 1 ) . '.json';
 
 		$dh = opendir( $extDir );
 		$exts = [];

@@ -61,6 +61,6 @@ class InterwikiSearchResultWidget implements SearchResultWidget {
 		}
 
 		return Html::rawElement( 'div', [ 'class' => 'iw-result__title' ], $link . ' ' . $redirect ) .
-			Html::rawElement( 'div', [ 'class'=> 'iw-result__content' ], $snippet );
+			Html::rawElement( 'div', [ 'class' => 'iw-result__content' ], $snippet );
 	}
 }

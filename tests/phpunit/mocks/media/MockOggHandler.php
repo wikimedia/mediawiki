@@ -51,7 +51,7 @@ class MockOggHandler extends OggHandlerTMH {
 			'length' => $this->getLength( $file ),
 			'offset' => $this->getOffset( $file ),
 			'width' => $targetWidth,
-			'height' =>  $targetHeight,
+			'height' => $targetHeight,
 			'isVideo' => !$this->isAudio( $file ),
 			'thumbtime' => isset(
 				$params['thumbtime']
@@ -59,7 +59,7 @@ class MockOggHandler extends OggHandlerTMH {
 			'start' => isset( $params['start'] ) ? $params['start'] : false,
 			'end' => isset( $params['end'] ) ? $params['end'] : false,
 			'fillwindow' => isset( $params['fillwindow'] ) ? $params['fillwindow'] : false,
-			'disablecontrols' => isset ( $params['disablecontrols'] ) ? $params['disablecontrols'] : false
+			'disablecontrols' => isset( $params['disablecontrols'] ) ? $params['disablecontrols'] : false
 		];
 
 		// No thumbs for audio

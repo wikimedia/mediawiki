@@ -145,7 +145,7 @@ class SearchSqlite extends SearchDatabase {
 		$searchChars = parent::legalSearchChars( $type );
 		if ( $type === self::CHARS_ALL ) {
 			// " for phrase, * for wildcard
-			$searchChars =  "\"*" . $searchChars;
+			$searchChars = "\"*" . $searchChars;
 		}
 		return $searchChars;
 	}

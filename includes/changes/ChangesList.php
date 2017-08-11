@@ -757,7 +757,8 @@ class ChangesList extends ContextSource {
 				break;
 			case RecentChange::SRC_LOG:
 				$attrs[ 'data-mw-logid' ] = $rc->mAttribs['rc_logid'];
-				$attrs[ 'data-mw-logaction' ] = $rc->mAttribs['rc_log_type'] . '/' . $rc->mAttribs['rc_log_action'];
+				$attrs[ 'data-mw-logaction' ] =
+					$rc->mAttribs['rc_log_type'] . '/' . $rc->mAttribs['rc_log_action'];
 				break;
 		}
 

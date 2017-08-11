@@ -131,7 +131,7 @@ class SrConverter extends LanguageConverter {
 		$ret = $this->mTables[$toVariant]->replace( $m[0] );
 		$mstart = $m[1] + strlen( $m[0] );
 		foreach ( $matches as $m ) {
-			$ret .= substr( $text, $mstart, $m[1] -$mstart );
+			$ret .= substr( $text, $mstart, $m[1] - $mstart );
 			$ret .= parent::translate( $m[0], $toVariant );
 			$mstart = $m[1] + strlen( $m[0] );
 		}

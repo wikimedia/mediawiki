@@ -82,7 +82,7 @@ class OldChangesList extends ChangesList {
 		if ( $rc->mAttribs['rc_log_type'] ) {
 			$logtitle = SpecialPage::getTitleFor( 'Log', $rc->mAttribs['rc_log_type'] );
 			$this->insertLog( $html, $logtitle, $rc->mAttribs['rc_log_type'] );
-			$flags = $this->recentChangesFlags( [ 'unpatrolled' =>$unpatrolled,
+			$flags = $this->recentChangesFlags( [ 'unpatrolled' => $unpatrolled,
 				'bot' => $rc->mAttribs['rc_bot'] ], '' );
 			if ( $flags !== '' ) {
 				$html .= ' ' . $flags;
