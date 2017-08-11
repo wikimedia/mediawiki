@@ -1677,7 +1677,10 @@ class Sanitizer {
 		$text = preg_replace_callback(
 			self::CHAR_REFS_REGEX,
 			[ 'Sanitizer', 'decodeCharReferencesCallback' ],
-			$text, /* limit */ -1, $count );
+			$text,
+			-1, //limit
+			$count
+		);
 
 		if ( $count ) {
 			return $wgContLang->normalize( $text );

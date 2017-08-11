@@ -1203,7 +1203,7 @@ class BalanceStack implements IteratorAggregate {
 			$furthestBlock = null;
 			$furthestBlockIndex = -1;
 			$stackLength = $this->length();
-			for ( $i = $index+1; $i < $stackLength; $i++ ) {
+			for ( $i = $index + 1; $i < $stackLength; $i++ ) {
 				if ( $this->node( $i )->isA( BalanceSets::$specialSet ) ) {
 					$furthestBlock = $this->node( $i );
 					$furthestBlockIndex = $i;
@@ -1225,7 +1225,7 @@ class BalanceStack implements IteratorAggregate {
 
 			// Let the common ancestor be the element immediately above
 			// the formatting element in the stack of open elements.
-			$ancestor = $this->node( $index-1 );
+			$ancestor = $this->node( $index - 1 );
 
 			// Let a bookmark note the position of the formatting
 			// element in the list of active formatting elements
@@ -2116,7 +2116,7 @@ class Balancer {
 				return $this->insertToken( $token, $value, $attribs, $selfClose );
 			}
 			// "Any other start tag"
-			$adjusted = ( $this->fragmentContext && $this->stack->length()===1 ) ?
+			$adjusted = ( $this->fragmentContext && $this->stack->length() === 1 ) ?
 				$this->fragmentContext : $this->stack->currentNode;
 			$this->stack->insertForeignElement(
 				$adjusted->namespaceURI, $value, $attribs
@@ -2242,7 +2242,7 @@ class Balancer {
 
 	private function switchMode( $mode ) {
 		Assert::parameter(
-			substr( $mode, -4 )==='Mode', '$mode', 'should end in Mode'
+			substr( $mode, -4 ) === 'Mode', '$mode', 'should end in Mode'
 		);
 		$oldMode = $this->parseMode;
 		$this->parseMode = $mode;
@@ -2267,8 +2267,8 @@ class Balancer {
 				switch ( $node->localName ) {
 				case 'select':
 					$stackLength = $this->stack->length();
-					for ( $j = $i + 1; $j < $stackLength-1; $j++ ) {
-						$ancestor = $this->stack->node( $stackLength-$j-1 );
+					for ( $j = $i + 1; $j < $stackLength - 1; $j++ ) {
+						$ancestor = $this->stack->node( $stackLength - $j - 1 );
 						if ( $ancestor->isHtmlNamed( 'template' ) ) {
 							break;
 						}

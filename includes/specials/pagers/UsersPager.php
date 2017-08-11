@@ -270,7 +270,7 @@ class UsersPager extends AlphabeticPager {
 	function getPageHeader() {
 		list( $self ) = explode( '/', $this->getTitle()->getPrefixedDBkey() );
 
-		$groupOptions = [ $this->msg( 'group-all' )->text() =>  '' ];
+		$groupOptions = [ $this->msg( 'group-all' )->text() => '' ];
 		foreach ( $this->getAllGroups() as $group => $groupText ) {
 			$groupOptions[ $groupText ] = $group;
 		}

@@ -75,7 +75,7 @@ class LoginHelper extends ContextSource {
 		// Allow modification of redirect behavior
 		Hooks::run( 'PostLoginRedirect', [ &$returnTo, &$returnToQuery, &$type ] );
 
-		$returnToTitle = Title::newFromText( $returnTo ) ?:  Title::newMainPage();
+		$returnToTitle = Title::newFromText( $returnTo ) ?: Title::newMainPage();
 
 		if ( $wgSecureLogin && !$stickHTTPS ) {
 			$options = [ 'http' ];

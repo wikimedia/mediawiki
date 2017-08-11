@@ -569,7 +569,7 @@ class Preprocessor_Hash extends Preprocessor {
 				$curLen = strlen( $curChar );
 				$count = ( $curLen > 1 ) ?
 					# allow the final character to repeat
-					strspn( $text, $curChar[$curLen-1], $i+1 ) + 1 :
+					strspn( $text, $curChar[$curLen - 1], $i + 1 ) + 1 :
 					strspn( $text, $curChar, $i );
 
 				# we need to add to stack only if opening brace count is enough for one of the rules

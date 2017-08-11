@@ -28,7 +28,7 @@ class ComposerLock {
 				'type' => $installed['type'],
 				'licenses' => isset( $installed['license'] ) ? $installed['license'] : [],
 				'authors' => isset( $installed['authors'] ) ? $installed['authors'] : [],
-				'description' => isset( $installed['description'] ) ? $installed['description']: '',
+				'description' => isset( $installed['description'] ) ? $installed['description'] : '',
 			];
 		}
 

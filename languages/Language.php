@@ -1584,9 +1584,9 @@ class Language {
 	 * @return int[]
 	 */
 	private static function tsToIranian( $ts ) {
-		$gy = substr( $ts, 0, 4 ) -1600;
-		$gm = substr( $ts, 4, 2 ) -1;
-		$gd = substr( $ts, 6, 2 ) -1;
+		$gy = substr( $ts, 0, 4 ) - 1600;
+		$gm = substr( $ts, 4, 2 ) - 1;
+		$gd = substr( $ts, 6, 2 ) - 1;
 
 		# Days passed from the beginning (including leap years)
 		$gDayNo = 365 * $gy
@@ -1666,7 +1666,7 @@ class Language {
 								(int)( ( 275 * $zm ) / 9 ) + $zd + 1729777;
 		}
 
-		$zl = $zjd -1948440 + 10632;
+		$zl = $zjd - 1948440 + 10632;
 		$zn = (int)( ( $zl - 1 ) / 10631 );
 		$zl = $zl - 10631 * $zn + 354;
 		$zj = ( (int)( ( 10985 - $zl ) / 5316 ) ) * ( (int)( ( 50 * $zl ) / 17719 ) ) +
@@ -3346,7 +3346,7 @@ class Language {
 				if ( $start < 0 ) {
 					$start = 0;
 				}
-				$groupedNumber = substr( $number, $start, $end -$start ) . $groupedNumber;
+				$groupedNumber = substr( $number, $start, $end - $start ) . $groupedNumber;
 				$end = $start;
 				if ( $numMatches > 1 ) {
 					// use the last pattern for the rest of the number

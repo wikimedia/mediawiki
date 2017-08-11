@@ -116,7 +116,7 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 	}
 
 	public function key() {
-		return $this->res ? $this->res->key(): 0;
+		return $this->res ? $this->res->key() : 0;
 	}
 
 	public function valid() {

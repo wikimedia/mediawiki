@@ -39,7 +39,7 @@ class ClassicInterwikiLookupTest extends MediaWikiTestCase {
 		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
 			Language::factory( 'en' ),
 			WANObjectCache::newEmpty(),
-			60*60,
+			60 * 60,
 			false,
 			3,
 			'en'
@@ -153,7 +153,7 @@ class ClassicInterwikiLookupTest extends MediaWikiTestCase {
 		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
 			Language::factory( 'en' ),
 			WANObjectCache::newEmpty(),
-			60*60,
+			60 * 60,
 			$cdbFile,
 			3,
 			'en'
@@ -204,7 +204,7 @@ class ClassicInterwikiLookupTest extends MediaWikiTestCase {
 		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
 			Language::factory( 'en' ),
 			WANObjectCache::newEmpty(),
-			60*60,
+			60 * 60,
 			$hash,
 			3,
 			'en'

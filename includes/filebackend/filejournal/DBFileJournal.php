@@ -183,7 +183,7 @@ class DBFileJournal extends FileJournal {
 	protected function getMasterDB() {
 		if ( !$this->dbw ) {
 			// Get a separate connection in autocommit mode
-			$lb =  MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->newMainLB();
+			$lb = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->newMainLB();
 			$this->dbw = $lb->getConnection( DB_MASTER, [], $this->wiki );
 			$this->dbw->clearFlag( DBO_TRX );
 		}

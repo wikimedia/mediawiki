@@ -511,7 +511,7 @@ class MovePage {
 		$logEntry->setComment( $reason );
 		$logEntry->setParameters( [
 			'4::target' => $nt->getPrefixedText(),
-			'5::noredir' => $redirectContent ? '0': '1',
+			'5::noredir' => $redirectContent ? '0' : '1',
 		] );
 
 		$formatter = LogFormatter::newFromEntry( $logEntry );

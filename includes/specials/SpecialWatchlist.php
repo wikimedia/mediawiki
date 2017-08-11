@@ -596,7 +596,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		// default string representation, for example, and would confuse comparisons.
 
 		// Misleadingly, the 'days' option supports hours too.
-		$days = array_map( 'strval', [ 1/24, 2/24, 6/24, 12/24, 1, 3, 7 ] );
+		$days = array_map( 'strval', [ 1 / 24, 2 / 24, 6 / 24, 12 / 24, 1, 3, 7 ] );
 
 		$userWatchlistOption = (string)$this->getUser()->getOption( 'watchlistdays' );
 		// add the user preference, if it isn't available already
