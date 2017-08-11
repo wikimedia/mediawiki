@@ -253,6 +253,7 @@ class WikiExporter {
 
 	/**
 	 * @param string $cond
+	 * @param bool $orderRevs
 	 * @throws MWException
 	 * @throws Exception
 	 */

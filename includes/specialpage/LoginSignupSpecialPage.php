@@ -1247,6 +1247,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	/**
 	 * Returns a string that can be appended to the URL (without encoding) to preserve the
 	 * return target. Does not include leading '?'/'&'.
+	 * @return string
 	 */
 	protected function getReturnToQueryStringFragment() {
 		$returnto = '';
@@ -1340,6 +1341,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 	/**
 	 * @param array &$formDescriptor
+	 * @param array $requests
 	 */
 	protected function postProcessFormDescriptor( &$formDescriptor, $requests ) {
 		// Pre-fill username (if not creating an account, T46775).
@@ -1395,6 +1397,11 @@ class FakeAuthTemplate extends BaseTemplate {
 	/**
 	 * Extensions (AntiSpoof and TitleBlacklist) call this in response to
 	 * UserCreateForm hook to add checkboxes to the create account form.
+	 * @param string $name
+	 * @param string $value
+	 * @param string $type
+	 * @param string $msg
+	 * @param string|bool $helptext
 	 */
 	public function addInputItem( $name, $value, $type, $msg, $helptext = false ) {
 		// use the same indexes as UserCreateForm just in case someone adds an item manually
@@ -1496,6 +1503,7 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * @deprecated since 1.27 - call LoginHelper::getValidErrorMessages instead.
+	 * @return array
 	 */
 	public static function getValidErrorMessages() {
 		return LoginHelper::getValidErrorMessages();
@@ -1503,6 +1511,8 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * @deprecated since 1.27 - don't use LoginForm, use AuthManager instead
+	 * @param string $username
+	 * @return array|false
 	 */
 	public static function incrementLoginThrottle( $username ) {
 		wfDeprecated( __METHOD__, "1.27" );
@@ -1514,6 +1524,8 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * @deprecated since 1.27 - don't use LoginForm, use AuthManager instead
+	 * @param string $username
+	 * @return bool|int
 	 */
 	public static function incLoginThrottle( $username ) {
 		wfDeprecated( __METHOD__, "1.27" );
@@ -1523,6 +1535,8 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * @deprecated since 1.27 - don't use LoginForm, use AuthManager instead
+	 * @param string $username
+	 * @return void
 	 */
 	public static function clearLoginThrottle( $username ) {
 		wfDeprecated( __METHOD__, "1.27" );
@@ -1559,6 +1573,7 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * @deprecated since 1.27 - don't use LoginForm, use AuthManager instead
+	 * @return string
 	 */
 	public static function getCreateaccountToken() {
 		wfDeprecated( __METHOD__, '1.27' );

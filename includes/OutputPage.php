@@ -571,6 +571,7 @@ class OutputPage extends ContextSource {
 	 * @param bool $filter Whether to filter out insufficiently trustworthy modules
 	 * @param string|null $position If not null, only return modules with this position
 	 * @param string $param
+	 * @param string $type
 	 * @return array Array of module names
 	 */
 	public function getModules( $filter = false, $position = null, $param = 'mModules',

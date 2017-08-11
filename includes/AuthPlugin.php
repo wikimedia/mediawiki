@@ -359,6 +359,7 @@ class AuthPluginUser {
 
 	/**
 	 * @deprecated since 1.28, use SessionManager::invalidateSessionForUser() instead.
+	 * @return bool
 	 */
 	public function resetAuthToken() {
 		# Override this!

@@ -1328,6 +1328,7 @@ class ChangeTags {
 	 *
 	 * @see listSoftwareDefinedTags
 	 * @deprecated since 1.28
+	 * @return array
 	 */
 	public static function listExtensionDefinedTags() {
 		wfDeprecated( __METHOD__, '1.28' );
