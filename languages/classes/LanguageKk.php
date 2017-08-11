@@ -282,7 +282,7 @@ class KkConverter extends LanguageConverter {
 		$ret = '';
 
 		foreach ( $matches as $m ) {
-			$ret .= substr( $text, $mstart, $m[1] -$mstart );
+			$ret .= substr( $text, $mstart, $m[1] - $mstart );
 			$ret .= $this->regsConverter( $m[0], $toVariant );
 			$mstart = $m[1] + strlen( $m[0] );
 		}

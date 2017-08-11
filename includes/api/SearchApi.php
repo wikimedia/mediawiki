@@ -115,7 +115,7 @@ trait SearchApi {
 			$defaultProfile = null;
 			foreach ( $profiles as $profile ) {
 				$types[] = $profile['name'];
-				if ( isset ( $profile['desc-message'] ) ) {
+				if ( isset( $profile['desc-message'] ) ) {
 					$helpMessages[$profile['name']] = $profile['desc-message'];
 				}
 				if ( !empty( $profile['default'] ) ) {

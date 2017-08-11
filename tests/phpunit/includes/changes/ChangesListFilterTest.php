@@ -84,7 +84,7 @@ class ChangesListFilterTest extends MediaWikiTestCase {
 			]
 		);
 
-		$groupB =  $this->getGroup(
+		$groupB = $this->getGroup(
 			[
 				'name' => 'groupB',
 				'filters' => [

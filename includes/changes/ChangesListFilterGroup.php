@@ -165,7 +165,7 @@ abstract class ChangesListFilterGroup {
 			$this->title = $groupDefinition['title'];
 		}
 
-		if ( isset ( $groupDefinition['whatsThisHeader'] ) ) {
+		if ( isset( $groupDefinition['whatsThisHeader'] ) ) {
 			$this->whatsThisHeader = $groupDefinition['whatsThisHeader'];
 			$this->whatsThisBody = $groupDefinition['whatsThisBody'];
 			$this->whatsThisUrl = $groupDefinition['whatsThisUrl'];
@@ -352,7 +352,7 @@ abstract class ChangesListFilterGroup {
 			'messageKeys' => [ $this->title ]
 		];
 
-		if ( isset ( $this->whatsThisHeader ) ) {
+		if ( isset( $this->whatsThisHeader ) ) {
 			$output['whatsThisHeader'] = $this->whatsThisHeader;
 			$output['whatsThisBody'] = $this->whatsThisBody;
 			$output['whatsThisUrl'] = $this->whatsThisUrl;

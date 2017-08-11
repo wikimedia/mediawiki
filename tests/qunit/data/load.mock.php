@@ -42,17 +42,17 @@ mw.loader.implement( 'testUsesNestedMissing', function () {
 }, {}, {});
 ",
 
-	'testSkipped' =>"
+	'testSkipped' => "
 mw.loader.implement( 'testSkipped', function () {
 	QUnit.ok( false, 'Module testSkipped was supposed to be skipped.' );
 }, {}, {});
 ",
 
-	'testNotSkipped' =>"
+	'testNotSkipped' => "
 mw.loader.implement( 'testNotSkipped', function () {}, {}, {});
 ",
 
-	'testUsesSkippable' =>"
+	'testUsesSkippable' => "
 mw.loader.implement( 'testUsesSkippable', function () {}, {}, {});
 ",
 ];

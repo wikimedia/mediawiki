@@ -1064,8 +1064,8 @@ class ParserOptions {
 
 			Hooks::run( 'ParserOptionsRegister', [
 				&self::$defaults,
-				&self::$inCacheKey,
-				&self::$lazyOptions,
+				& self::$inCacheKey,
+				& self::$lazyOptions,
 			] );
 
 			ksort( self::$inCacheKey );

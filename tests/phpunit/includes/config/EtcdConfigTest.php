@@ -90,7 +90,7 @@ class EtcConfigTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testConstructCacheSpec() {
 		$config = $this->createConfigMock( [ 'cache' => [
-			'class' =>  HashBagOStuff::class
+			'class' => HashBagOStuff::class
 		] ] );
 		$config->expects( $this->once() )->method( 'fetchAllFromEtcd' )
 			->willReturn( [

@@ -176,7 +176,7 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 		$iwIconUrl = $parsed['scheme'] .
 			$parsed['delimiter'] .
 			$parsed['host'] .
-			( isset ( $parsed['port'] ) ? ':' . $parsed['port'] : '' ) .
+			( isset( $parsed['port'] ) ? ':' . $parsed['port'] : '' ) .
 			'/favicon.ico';
 
 		$iwIcon = new OOUI\IconWidget( [

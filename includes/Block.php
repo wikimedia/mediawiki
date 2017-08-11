@@ -1501,7 +1501,7 @@ class Block {
 			return $id;
 		}
 		$hmac = MWCryptHash::hmac( $id, $secretKey, false );
-		$cookieValue =  $id . '!' . $hmac;
+		$cookieValue = $id . '!' . $hmac;
 		return $cookieValue;
 	}
 

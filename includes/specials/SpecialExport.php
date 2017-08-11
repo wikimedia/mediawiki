@@ -288,7 +288,7 @@ class SpecialExport extends SpecialPage {
 		$formDescriptor += [
 			'wpDownload' => [
 				'type' => 'check',
-				'name' =>'wpDownload',
+				'name' => 'wpDownload',
 				'id' => 'wpDownload',
 				'default' => $request->wasPosted() ? $request->getCheck( 'wpDownload' ) : true,
 				'label-message' => 'export-download',

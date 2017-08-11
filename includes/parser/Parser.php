@@ -3411,7 +3411,7 @@ class Parser {
 		# string or an array containing the string and any flags. This mungs
 		# things around to match what this method should return.
 		if ( !is_array( $result ) ) {
-			$result =[
+			$result = [
 				'found' => true,
 				'text' => $result,
 			];
