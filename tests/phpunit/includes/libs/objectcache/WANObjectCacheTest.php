@@ -2,7 +2,7 @@
 
 use Wikimedia\TestingAccessWrapper;
 
-class WANObjectCacheTest extends PHPUnit_Framework_TestCase  {
+class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 	/** @var WANObjectCache */
 	private $cache;
 	/**@var BagOStuff */

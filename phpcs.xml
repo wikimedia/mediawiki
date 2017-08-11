@@ -2,8 +2,6 @@
 <ruleset name="MediaWiki">
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
 		<exclude name="Generic.ControlStructures.InlineControlStructure" />
-		<!-- Rule will pass in 0.10.0 but update depends on T167168 -->
-		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeClassBrace.NoSpaceBeforeBrace" />
 		<!-- Disable rules added in 0.8.0 that don't pass yet -->
 		<exclude name="MediaWiki.Commenting.FunctionComment.ExtraParamComment" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingParamComment" />
@@ -43,7 +41,10 @@
 		<exclude-pattern>*/includes/StubObject.php</exclude-pattern>
 	</rule>
 	<file>.</file>
-	<arg name="bootstrap" value="vendor/mediawiki/mediawiki-codesniffer/utils/bootstrap-ci.php"/>
+	<!-- The bootstrap of version 0.8.0 to 0.11.0 is buggy, using own version until new release
+	<arg name="bootstrap" value="./vendor/mediawiki/mediawiki-codesniffer/utils/bootstrap-ci.php"/>
+	-->
+	<arg name="bootstrap" value="./utils/bootstrap-ci.php"/><!-- remove this on release after 0.11.0!! -->
 	<arg name="encoding" value="UTF-8"/>
 	<arg name="extensions" value="php,php5,inc,sample"/>
 	<exclude-pattern type="relative">^extensions/</exclude-pattern>
