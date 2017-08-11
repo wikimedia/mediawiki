@@ -35,18 +35,21 @@
 		</properties>
 	</rule>
 	<rule ref="Generic.Files.LineLength">
-		<exclude-pattern>*/languages/messages/Messages*.php</exclude-pattern>
+		<exclude-pattern type="relative">languages/messages/Messages*\.php</exclude-pattern>
 	</rule>
 	<rule ref="PSR2.Methods.MethodDeclaration.Underscore">
-		<exclude-pattern>*/includes/StubObject.php</exclude-pattern>
+		<exclude-pattern type="relative">includes/StubObject\.php</exclude-pattern>
 	</rule>
 	<file>.</file>
-	<arg name="bootstrap" value="vendor/mediawiki/mediawiki-codesniffer/utils/bootstrap-ci.php"/>
+	<!-- The bootstrap of version 0.8.0 to 0.11.0 is buggy, using own version until new release
+	<arg name="bootstrap" value="./vendor/mediawiki/mediawiki-codesniffer/utils/bootstrap-ci.php"/>
+	-->
+	<arg name="bootstrap" value="./utils/bootstrap-ci.php"/><!-- remove this on release after 0.11.0!! -->
 	<arg name="encoding" value="UTF-8"/>
 	<arg name="extensions" value="php,php5,inc,sample"/>
 	<exclude-pattern type="relative">^extensions/</exclude-pattern>
 	<exclude-pattern type="relative">^skins/</exclude-pattern>
-	<exclude-pattern>AdminSettings\.php</exclude-pattern>
-	<exclude-pattern>LocalSettings\.php</exclude-pattern>
-	<exclude-pattern>StartProfiler\.php</exclude-pattern>
+	<exclude-pattern type="relative">^AdminSettings\.php</exclude-pattern>
+	<exclude-pattern type="relative">^LocalSettings\.php</exclude-pattern>
+	<exclude-pattern type="relative">^StartProfiler\.php</exclude-pattern>
 </ruleset>
