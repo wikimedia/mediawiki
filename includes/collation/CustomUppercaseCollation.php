@@ -48,7 +48,7 @@ class CustomUppercaseCollation extends NumericUppercaseCollation {
 	 * @note This assumes $alphabet does not contain U+F3000-U+F303F
 	 *
 	 * @param array $alphabet Sorted array of uppercase characters.
-	 * @param Language $language What language for number sorting.
+	 * @param Language $lang What language for number sorting.
 	 */
 	public function __construct( array $alphabet, Language $lang ) {
 		// It'd be trivial to extend this past 64, you'd just

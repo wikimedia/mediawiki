@@ -477,7 +477,7 @@ class ParserTestRunner {
 	 * @see staticSetup
 	 *
 	 * @param array $teardown The snippet array
-	 * @param ScopedCallback|null A ScopedCallback to consume
+	 * @param ScopedCallback|null $nextTeardown A ScopedCallback to consume
 	 * @return ScopedCallback
 	 */
 	protected function createTeardownObject( $teardown, $nextTeardown = null ) {

@@ -126,7 +126,7 @@ class FauxRequest extends WebRequest {
 
 	/**
 	 * @since 1.26
-	 * @param string $name Unprefixed name of the cookie to set
+	 * @param string $key Unprefixed name of the cookie to set
 	 * @param string|null $value Value of the cookie to set
 	 * @param string|null $prefix Cookie prefix. Defaults to $wgCookiePrefix
 	 */
