@@ -114,7 +114,7 @@
 	"config-postgres-old": "PostgreSQL $1 أو لاحق مطلوب. لديك $2.",
 	"config-mssql-old": "خادم Microsoft SQL $1 أو لاحق مطلوب. لديك $2.",
 	"config-sqlite-mkdir-error": "خطأ في إنشاء دليل البيانات \"$1\". تحقق من الموقع وحاول مرة أخرى.",
-	"config-sqlite-connection-error": "1$.\nتحقق من اسم دليل البيانات وقواعد البيانات أدناه وحاول مرة أخرى.",
+	"config-sqlite-connection-error": "$1.\nتحقق من اسم دليل البيانات وقواعد البيانات أدناه وحاول مرة أخرى.",
 	"config-sqlite-readonly": "الملف <code>$1</code> غير قابل للكتابة.",
 	"config-sqlite-cant-create-db": "لا يمكن إنشاء ملف قاعدة البيانات <code>$1</code>.",
 	"config-can-upgrade": "هناك جداول ميدياويكي في قاعدة البيانات هذه. للارتقاء بها إلى ميدياويكي $1; انقر على <strong>متابعة</strong>.",
