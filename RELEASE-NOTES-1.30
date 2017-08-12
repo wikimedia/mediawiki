@@ -158,6 +158,7 @@ changes to languages because of Phabricator reports.
   nothing and is deprecated.
 * mw.util.escapeId() was deprecated, use escapeIdForAttribute() or
   escapeIdForLink().
+* MagicWord::replaceMultiple() was removed.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for

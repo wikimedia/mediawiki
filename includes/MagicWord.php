@@ -647,33 +647,6 @@ class MagicWord {
 	}
 
 	/**
-	 * $magicarr is an associative array of (magic word ID => replacement)
-	 * This method uses the php feature to do several replacements at the same time,
-	 * thereby gaining some efficiency. The result is placed in the out variable
-	 * $result. The return value is true if something was replaced.
-	 * @deprecated since 1.25, unused
-	 *
-	 * @param array $magicarr
-	 * @param string $subject
-	 * @param string &$result
-	 *
-	 * @return bool
-	 */
-	public function replaceMultiple( $magicarr, $subject, &$result ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		$search = [];
-		$replace = [];
-		foreach ( $magicarr as $id => $replacement ) {
-			$mw = self::get( $id );
-			$search[] = $mw->getRegex();
-			$replace[] = $replacement;
-		}
-
-		$result = preg_replace( $search, $replace, $subject );
-		return $result !== $subject;
-	}
-
-	/**
 	 * Adds all the synonyms of this MagicWord to an array, to allow quick
 	 * lookup in a list of magic words
 	 *
