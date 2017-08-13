@@ -396,9 +396,14 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	function __destruct() {
 		foreach ( $this->connections as $server => &$serverConnections ) {
 			foreach ( $serverConnections as $key => &$connection ) {
-				/** @var Redis $conn */
-				$conn = $connection['conn'];
-				$conn->close();
+				try {
+					/** @var Redis $conn */
+					$conn = $connection['conn'];
+					$conn->close();
+				} catch ( RedisException $e ) {
+					// The destructor can be called on shutdown when random parts of the system
+					// have been destructed already, causing weird errors. Ignore them.
+				}
 			}
 		}
 	}

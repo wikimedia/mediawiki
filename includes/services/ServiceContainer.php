@@ -142,6 +142,7 @@ class ServiceContainer implements DestructibleService {
 	 * @param string[] $skip A list of service names to skip during import
 	 */
 	public function importWiring( ServiceContainer $container, $skip = [] ) {
+		$skip[] = 'ExceptionRenderer';
 		$newInstantiators = array_diff_key(
 			$container->serviceInstantiators,
 			array_flip( $skip )
