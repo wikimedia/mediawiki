@@ -2664,7 +2664,7 @@
 	"import-mapping-subpage": "作为以下页面的子页面导入：",
 	"import-upload-filename": "文件名：",
 	"import-comment": "注释：",
-	"importtext": "请使用[[Special:Export|导出功能]]从源 wiki 导出文件，\n保存到您的电脑并上传到这里。",
+	"importtext": "请使用[[Special:Export|导出功能]]从源wiki导出文件，保存到您的电脑并上传到这里。",
 	"importstart": "正在导入页面...",
 	"import-revision-count": "$1个版本",
 	"importnopages": "没有导入的页面。",

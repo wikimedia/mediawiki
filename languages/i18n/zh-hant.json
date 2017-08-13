@@ -3290,7 +3290,7 @@
 	"confirm-purge-title": "清除此頁快取",
 	"confirm_purge_button": "確定",
 	"confirm-purge-top": "要清除此頁面的快取嗎？",
-	"confirm-purge-bottom": "刷新頁面會清空頁面的快取記錄並強制顯示最近的頁面修訂。",
+	"confirm-purge-bottom": "清除頁面會清除快取紀錄並強制顯示最近的頁面修訂。",
 	"confirm-watch-button": "確定",
 	"confirm-watch-top": "新增此頁面至您的監視清單？",
 	"confirm-unwatch-button": "確定",

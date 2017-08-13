@@ -7,7 +7,8 @@
 			"संजीव कुमार",
 			"Sahilrathod",
 			"Shyamal",
-			"Sfic"
+			"Sfic",
+			"Sachinkatiyar"
 		]
 	},
 	"config-desc": "साँचा लिए इंस्टॉलर",
@@ -50,6 +51,7 @@
 	"config-apc": "[http://www.php.net/apc एपीसी] स्थापित है।",
 	"config-apcu": "[http://www.php.net/apcu एपीसीयू] स्थापित है।",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp विनकैश] स्थापित है।",
+	"config-using-32bit": "<विशेष>चेतावनी:</विशेष> आपका सिस्टम 32-बिट पूर्णांक के साथ चल रहा है यह [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit विवेचित नहीं है]।",
 	"config-db-type": "डेटाबेस प्रकार:",
 	"config-db-host": "डेटाबेस होस्ट:",
 	"config-db-host-oracle": "डेटाबेस टीएनएस:",

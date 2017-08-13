@@ -1495,7 +1495,7 @@
 	"tmp-write-error": "Napaka pri pisanju začasne datoteke",
 	"large-file": "Priporočeno je, da datoteke niso večje od $1; ta datoteka je $2.",
 	"largefileserver": "Velikost datoteke presega strežnikove nastavitve.",
-	"emptyfile": "Kaže, da je aložena datoteka prazna.\nDo tega bi lahko prišlo zaradi tipkarske napake v imenu.\nAli datoteko resnično želite naložiti?",
+	"emptyfile": "Kaže, da je naložena datoteka prazna.\nDo tega bi lahko prišlo zaradi tipkarske napake v imenu.\nAli resnično želite datoteko naložiti?",
 	"windows-nonascii-filename": "Ta wiki ne podpira imen datotek s posebnimi znaki.",
 	"fileexists": "Datoteka s tem imenom že obstaja. Preden jo {{GENDER:|povozite}}, preverite stran <strong>[[:$1]]</strong>.\n[[$1|thumb]]",
 	"filepageexists": "Opisna stran za to datoteko je bila že ustvarjena na <strong>[[:$1]]</strong>, vendar datoteka s tem imenom trenutno ne obstaja.\nPovzetek, ki ste ga vnesli, se ne bo prikazal na opisni strani.\nDa tam prikažete povzetek, morate stran urediti ročno.\n[[$1|thumb]]",
