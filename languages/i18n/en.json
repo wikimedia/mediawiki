@@ -1391,7 +1391,7 @@
 	"rcfilters-filterlist-noresults": "No filters found",
 	"rcfilters-noresults-conflict": "No results found because the search criteria are in conflict",
 	"rcfilters-state-message-subset": "This filter has no effect because its results are included with those of the following, broader {{PLURAL:$2|filter|filters}} (try highlighting to distinguish it): $1",
-	"rcfilters-state-message-fullcoverage": "Selecting all filters in a group is the same as selecting none, so this filter has no effect. Group includes: $1",
+	"rcfilters-state-message-fullcoverage": "Selecting all filters in this group is the same as selecting none, so this filter has no effect. Group includes: $1",
 	"rcfilters-filtergroup-authorship": "Contribution authorship",
 	"rcfilters-filter-editsbyself-label": "Changes by you",
 	"rcfilters-filter-editsbyself-description": "Your own contributions.",
