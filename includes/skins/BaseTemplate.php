@@ -655,11 +655,12 @@ abstract class BaseTemplate extends QuickTemplate {
 	 *
 	 * @param string $iconStyle $option for getFooterIcons: "icononly", "nocopyright"
 	 * @param string $linkStyle $option for getFooterLinks: "flat"
+	 * @param string $id id for footer block; defaults to 'footer'
 	 *
 	 * @return string html
 	 * @since 1.29
 	 */
-	protected function getFooter( $iconStyle = 'icononly', $linkStyle = 'flat' ) {
+	protected function getFooter( $iconStyle = 'icononly', $linkStyle = 'flat', $id = 'footer' ) {
 		$validFooterIcons = $this->getFooterIcons( $iconStyle );
 		$validFooterLinks = $this->getFooterLinks( $linkStyle );
 
@@ -667,7 +668,7 @@ abstract class BaseTemplate extends QuickTemplate {
 
 		if ( count( $validFooterIcons ) + count( $validFooterLinks ) > 0 ) {
 			$html .= Html::openElement( 'div', [
-				'id' => 'footer-bottom',
+				'id' => $id,
 				'role' => 'contentinfo',
 				'lang' => $this->get( 'userlang' ),
 				'dir' => $this->get( 'dir' )
@@ -765,5 +766,5 @@ abstract class BaseTemplate extends QuickTemplate {
 		$html .= $this->get( 'reporttime' );
 
 		return $html;
-	}
+        }
 }
