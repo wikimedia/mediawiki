@@ -85,6 +85,7 @@
 	"config-no-cli-uploads-check": "'''Varning:''' Din standardkatalog för uppladdningar (<code>$1</code>) har inte kontrollerats för sårbarhet från körning av godtyckliga skript under CLI-installationen.",
 	"config-brokenlibxml": "Ditt system har en kombination av PHP och libxml2 som är buggigt och kan orsaka datakorruption i MediaWiki och andra webbprogram.\nUppgradera till libxml2 2.7.3 eller senare ([https//bugs.php.net/bug.php?id=45996 buggfil med PHP]).\nInstallationen avbröts.",
 	"config-suhosin-max-value-length": "Suhosin är installerat och begränsar GET-parametern <code>length</code> till $1 bytes.\nMediaWikis ResourceLoader-komponent kommer att arbeta runt denna begränsning, men det kommer att försämra prestandan.\nOm möjligt bör du sätta <code>suhosin.get.max_value_length</code> till 1024 eller högre i <code>php.ini</code>, och sätta <code>$wgResourceLoaderMaxQueryLength</code> till samma värde som i <code>LocalSettings.php</code>.",
+	"config-using-32bit": "<strong>Varning:</strong> ditt system verkar vara en 32-bitarsversion. Detta [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit rekommenderas inte].",
 	"config-db-type": "Databastyp:",
 	"config-db-host": "Databasvärd:",
 	"config-db-host-help": "Om din databasserver är på en annan server, ange då värdnamnet eller IP-adressen här.\n\nOm du använder ett delat webbhotell, bör din leverantör ge dig rätt värdnamn i deras dokumentation.\n\nOm du installerar på en Windowsserver och använder MySQL, kanske \"localhost\" inte fungerar för servernamnet. Om det inte gör det försök med \"127.0.0.1\" som den lokala IP-adressen.\n\nOm du använder PostgreSQL, lämna detta fält blankt för att ansluta via en Unix-socket.",
@@ -315,6 +316,8 @@
 	"config-help-tooltip": "klicka för att expandera",
 	"config-nofile": "Filen \"$1\" kunde inte hittas. Har den raderats?",
 	"config-extension-link": "Visste du att din wiki stödjer [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions tillägg]?\n\nDu kan bläddra [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category tillägg efter kategori].",
+	"config-skins-screenshots": "$1 (skärmbilder: $2)",
+	"config-screenshot": "skärmbild",
 	"mainpagetext": "<strong>MediaWiki har installerats utan problem.</strong>",
 	"mainpagedocfooter": "Information om hur wiki-programvaran används finns i [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents användarguiden].\n\n== Att komma igång ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista över konfigurationsinställningar]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postlista för nya versioner av MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokalisera MediaWiki för ditt språk]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Läs om hur du bekämpar spam på din wiki]"
 }

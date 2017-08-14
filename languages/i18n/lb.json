@@ -1992,6 +1992,8 @@
 	"watching": "Iwwerwaachen …",
 	"unwatching": "Net méi iwwerwaachen …",
 	"watcherrortext": "Beim Ännere vun den Astellunge vun der Iwwerwaachungslëscht fir \"$1\" ass e Feeler geschitt.",
+	"watchlist-unwatch": "×",
+	"watchlist-unwatch-undo": "+",
 	"enotif_reset": "All Säiten als besicht markéieren",
 	"enotif_impersonal_salutation": "{{SITENAME}}-Benotzer",
 	"enotif_subject_deleted": "D'{{SITENAME}}-Säit $1 gouf vum {{gender:$2|$2}} geläscht",
