@@ -17,8 +17,9 @@
 @colorGray13: #ddd;
 @colorGray14: #eaecf0;
 @colorGray15: #f8f9fa; // lightest
+@colorBaseInverted: #fff;
 
-// Semantic background colors
+// Semantic colors
 // Blue; for contextual use of a continuing action
 @colorProgressive: #36c;
 @colorProgressiveHighlight: #447ff5;
@@ -50,18 +51,30 @@
 @colorWarningText: #705000;
 
 // UI colors
+@backgroundColorInputBinaryChecked: @colorProgressive;
+@backgroundColorInputBinaryActive: @colorProgressiveActive;
 @colorFieldBorder: #a2a9b1;
 @colorShadow: @colorGray14;
 @colorPlaceholder: @colorGray10;
 @colorNeutral: @colorGray7;
 
+// Border colors
+@borderColorInputBinaryChecked: @colorProgressive;
+@borderColorInputBinaryActive: @colorProgressiveActive;
+
 // Global border radius to be used to buttons and inputs
 @borderRadius: 2px;
+
+// Box shadows
+@boxShadowWidget: inset 0 0 0 1px transparent;
+@boxShadowWidgetFocus: inset 0 0 0 1px @colorProgressive;
+@boxShadowProgressiveFocus: inset 0 0 0 1px @colorProgressive, inset 0 0 0 2px @colorBaseInverted;
+@boxShadowInputBinaryActive: inset 0 0 0 1px @colorProgressiveActive;
 
 // Icon related variables
 @iconSize: 1.5em;
 @iconGutterWidth: 1em;
 
-// Form input sizes
-@checkboxSize: 2em;
+// Form input sizes, equal to OOjs UI at 16px base font-size
+@checkboxSize: 1.5625em;
 @radioSize: 2em;

@@ -5,9 +5,9 @@
 //
 // Styling checkboxes in a way that works cross browser is a tricky problem to solve.
 // In MediaWiki UI put a checkbox and label inside a mw-ui-checkbox div.
-// This renders in all browsers except IE 6-8 which do not support the :checked selector;
+// This renders in all browsers except IE 6-8 which do not support the `:checked` selector;
 // these are kept backwards-compatible using the `:not( #noop )` selector.
-// You should give the checkbox and label matching "id" and "for" attributes, respectively.
+// You should give the checkbox and label matching `id` and `for` attributes, respectively.
 //
 // Markup:
 // <div class="mw-ui-checkbox">
@@ -30,52 +30,50 @@
 // Styleguide 3.
 .mw-ui-checkbox {
 	display: inline-block;
+	line-height: @checkboxSize;
 	vertical-align: middle;
 }
 
-// We use the not selector to cancel out styling on IE 8 and below
+// We use the `:not` selector to cancel out styling on IE 8 and below
 // We also disable this styling on JavaScript disabled devices. This fixes the issue with
 // Opera Mini where checking/unchecking doesn't apply styling but potentially leaves other
 // more capable browsers with unstyled checkboxes.
 .client-js .mw-ui-checkbox:not( #noop ) {
+	display: table;
 	// Position relatively so we can make use of absolute pseudo elements
 	position: relative;
-	display: table;
 
 	* {
-		// reset font sizes (see T74727)
+		// Reset font sizes, see T74727
 		font: inherit;
 		vertical-align: middle;
 	}
 
-	input[type='checkbox'] {
-		// we hide the input element as instead we will style the label that follows
-		// we use opacity so that VoiceOver software can still identify it
-		opacity: 0;
-		// Render *on top of* the label, so that it's still clickable (T98905)
-		z-index: 1;
+	[type='checkbox'] {
+		display: table-cell;
 		position: relative;
-		// ensure the invisible checkbox takes up the required width
+		// Ensure the invisible input takes up the required `width` & `height`
 		width: @checkboxSize;
 		height: @checkboxSize;
-		// This is needed for Firefox mobile (See T73750 to workaround default Firefox stylesheet)
+		// Support: Firefox mobile to override user-agent stylesheet, see T73750
 		max-width: none;
 		margin: 0 0.4em 0 0;
-		cursor: pointer;
-		display: table-cell;
+		// Hide `input[type=checkbox]` and instead style the label that follows
+		// Support: VoiceOver. Use `opacity` so that VoiceOver can still identify the checkbox
+		opacity: 0;
+		// Render *on top of* the label, so that it's still clickable, see T98905
+		z-index: 1;
 
 		& + label {
 			display: table-cell;
-			cursor: pointer;
 		}
 
-		// the pseudo before element of the label after the checkbox now looks like a checkbox
+		// Pseudo `:before` element of the label after the checkbox now looks like a checkbox
 		& + label:before {
 			content: '';
 			background-color: #fff;
-			.background-image-svg( 'images/checked.svg', 'images/checked.png' );
-			background-position: center center;
 			background-origin: border-box;
+			background-position: center center;
 			background-repeat: no-repeat;
 			.background-size( 0, 0 );
 			.box-sizing( border-box );
@@ -88,39 +86,72 @@
 			margin-top: -1em;
 			border: 1px solid @colorGray7;
 			border-radius: @borderRadius;
-			line-height: @checkboxSize;
-			cursor: pointer;
 		}
 
-		// when the input is checked, style the label pseudo before element that followed as a checked checkbox
+		// Apply a checkmark on the pseudo `:before` element when the input is checked
 		&:checked + label:before {
-			.background-size( 100%, 100% );
+			.background-image-svg( 'images/checkbox-checked.svg', 'images/checkbox-checked.png' );
+			.background-size( 90%, 90% );
 		}
 
-		&:active + label:before {
-			background-color: @colorGray13;
-			border-color: @colorGray13;
-		}
+		&:enabled {
+			cursor: pointer;
 
-		&:focus + label:before {
-			border-width: 2px;
-		}
+			& + label {
+				cursor: pointer;
+			}
 
-		&:focus:hover + label:before,
-		&:hover + label:before {
-			border-bottom-width: 3px;
+			& + label:before {
+				cursor: pointer;
+				.transition( ~'background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms' );
+			}
+
+			// `:focus` has to come first, otherwise a selector race with `:hover:focus` etc needs to be done
+			&:focus + label:before {
+				border-color: @colorProgressive;
+				box-shadow: @boxShadowWidgetFocus;
+			}
+
+			&:hover + label:before {
+				border-color: @colorProgressive;
+			}
+
+			&:active + label:before {
+				background-color: @colorProgressiveActive;
+				border-color: @borderColorInputBinaryActive;
+				box-shadow: @boxShadowInputBinaryActive;
+			}
+
+			&:checked {
+				& + label:before {
+					background-color: @backgroundColorInputBinaryChecked;
+					border-color: @borderColorInputBinaryChecked;
+				}
+
+				&:focus + label:before {
+					background-color: @backgroundColorInputBinaryChecked;
+					border-color: @borderColorInputBinaryChecked;
+					box-shadow: @boxShadowProgressiveFocus;
+				}
+
+				&:hover + label:before {
+					background-color: @colorProgressiveHighlight;
+					border-color: @colorProgressiveHighlight;
+				}
+
+				&:active + label:before {
+					background-color: @backgroundColorInputBinaryActive;
+					border-color: @borderColorInputBinaryActive;
+					box-shadow: @boxShadowInputBinaryActive;
+				}
+			}
 		}
 
 		// disabled checkboxes have a gray background
 		&:disabled + label:before {
+			background-color: @colorGray12;
+			border-color: @colorGray12;
 			cursor: default;
-			background-color: @colorGray14;
-			border-color: @colorGray14;
-		}
-
-		// disabled and checked checkboxes have a white circle
-		&:disabled:checked + label:before {
-			.background-image-svg( 'images/checked_disabled.svg', 'images/checked_disabled.png' );
 		}
 	}
 }
