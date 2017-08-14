@@ -390,12 +390,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 		# Display the old title if the namespace/title has been changed
 		$oldTitleText = '';
 		$oldTitle = Title::makeTitle( $result->rc_namespace, $result->rc_title );
-		$ret = "{$time} {$dm}{$plink} {$hist} {$dm}{$length} {$dm}{$ulink} {$comment} "
-			. "{$tagDisplay} {$oldTitleText}";
-
-		// Let extensions add data
-		Hooks::run( 'NewPagesLineEnding', [ $this, &$ret, $result, &$classes, &$attribs ] );
-		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isReservedDataAttribute' ] );
 
 		if ( count( $classes ) ) {
 			$attribs['class'] = implode( ' ', $classes );
@@ -409,6 +403,13 @@ class SpecialNewpages extends IncludableSpecialPage {
 				$this->msg( 'rc-old-title' )->params( $oldTitleText )->escaped()
 			);
 		}
+
+		$ret = "{$time} {$dm}{$plink} {$hist} {$dm}{$length} {$dm}{$ulink} {$comment} "
+			. "{$tagDisplay} {$oldTitleText}";
+
+		// Let extensions add data
+		Hooks::run( 'NewPagesLineEnding', [ $this, &$ret, $result, &$classes, &$attribs ] );
+		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isReservedDataAttribute' ] );
 
 		return Html::rawElement( 'li', $attribs, $ret ) . "\n";
 	}
