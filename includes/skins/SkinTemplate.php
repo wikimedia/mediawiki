@@ -1080,7 +1080,12 @@ class SkinTemplate extends Skin {
 						),
 						// uses 'watch' or 'unwatch' message
 						'text' => $this->msg( $mode )->text(),
-						'href' => $title->getLocalURL( [ 'action' => $mode ] )
+						'href' => $title->getLocalURL( [ 'action' => $mode ] ),
+						// Set a data-mw=interface attribute, which the mediawiki.page.ajax
+						// module will look for to make sure it's a trusted link
+						'data' => [
+							'mw' => 'interface',
+						],
 					];
 				}
 			}

@@ -110,9 +110,13 @@
 	);
 
 	$( function () {
-		var $links = $( '.mw-watchlink a, a.mw-watchlink' );
-		// Restrict to core interfaces, ignore user-generated content
-		$links = $links.filter( ':not( #bodyContent *, #content * )' );
+		var $links = $( '.mw-watchlink a[data-mw="interface"], a.mw-watchlink[data-mw="interface"]' );
+		if ( !$links.length ) {
+			// Fallback to the class-based exclusion method for backwards-compatibility
+			$links = $( '.mw-watchlink a, a.mw-watchlink' );
+			// Restrict to core interfaces, ignore user-generated content
+			$links = $links.filter( ':not( #bodyContent *, #content * )' );
+		}
 
 		$links.click( function ( e ) {
 			var mwTitle, action, api, $link;
