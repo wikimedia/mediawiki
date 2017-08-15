@@ -2656,6 +2656,21 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
+	/**
+	 * html5shiv
+	 *
+	 * This library is intended to run on older browsers
+	 * that MediaWiki no longer supports as Grade A, and
+	 * is not loaded through the normal module loading
+	 * system.
+	 */
+	'html5shiv' => [
+		'scripts' => [
+			'resources/lib/html5shiv/html5shiv.js'
+		],
+		'raw' => true,
+	],
+
 	/* OOjs */
 	'oojs' => [
 		'scripts' => [
