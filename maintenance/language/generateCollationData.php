@@ -323,11 +323,6 @@ class GenerateCollationData extends Maintenance {
 			$headerChars[] = $char;
 			if ( $primaryCollator->compare( $char, $prevChar ) <= 0 ) {
 				$numOutOfOrder++;
-				/*
-				printf( "Out of order: U+%05X > U+%05X\n",
-					utf8ToCodepoint( $prevChar ),
-					utf8ToCodepoint( $char ) );
-				 */
 			}
 			$prevChar = $char;
 
