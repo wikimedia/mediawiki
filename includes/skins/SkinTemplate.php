@@ -1080,7 +1080,10 @@ class SkinTemplate extends Skin {
 						),
 						// uses 'watch' or 'unwatch' message
 						'text' => $this->msg( $mode )->text(),
-						'href' => $title->getLocalURL( [ 'action' => $mode ] )
+						'href' => $title->getLocalURL( [ 'action' => $mode ] ),
+						'data' => [
+							'mw-watch' => 'true',
+						],
 					];
 				}
 			}
