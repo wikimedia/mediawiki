@@ -826,7 +826,7 @@
 	 * @return {Object} Minimal filters and highlights list
 	 */
 	mw.rcfilters.Controller.prototype._getMinimalFilterList = function ( valuesObject ) {
-		var result = { filters: {}, highlights: {} },
+		var result = { filters: {}, highlights: {}, invert: valuesObject.invert },
 			baseState = this._getBaseFilterState();
 
 		// XOR results
