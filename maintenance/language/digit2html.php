@@ -21,6 +21,8 @@
  * @ingroup MaintenanceLanguage
  */
 
+use UtfNormal\Utils;
+
 require_once __DIR__ . '/../Maintenance.php';
 
 /**
@@ -57,11 +59,26 @@ class Digit2Html extends Maintenance {
 
 			$this->output( "OK\n\$digitTransformTable = [\n" );
 			foreach ( $digitTransformTable as $latin => $translation ) {
-				$htmlent = utf8ToHexSequence( $translation );
+				$htmlent = self::utf8ToHexSequence( $translation );
 				$this->output( "'$latin' => '$translation', # &#x$htmlent;\n" );
 			}
 			$this->output( "];\n" );
 		}
+	}
+
+	/**
+	 * Converts a string into a sequence of space separated hex values of its UTF-8 characters
+	 *
+	 * @param string $str
+	 * @return string
+	 */
+	private static function utf8ToHexSequence( $str ) {
+		$buf = '';
+		foreach ( preg_split( '//u', $str, -1, PREG_SPLIT_NO_EMPTY ) as $cp ) {
+			$buf .= sprintf( '%04x ', Utils::utf8ToCodepoint( $cp ) );
+		}
+
+		return rtrim( $buf );
 	}
 }
 
