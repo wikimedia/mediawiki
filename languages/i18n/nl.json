@@ -2170,6 +2170,8 @@
 	"watching": "Bezig met plaatsen op volglijst…",
 	"unwatching": "Bezig met verwijderen van volglijst…",
 	"watcherrortext": "Er is een fout opgetreden tijdens het wijzigen van uw volglijstinstellingen voor \"$1\".",
+	"watchlist-unwatch": "×",
+	"watchlist-unwatch-undo": "+",
 	"enotif_reset": "Alle pagina's markeren als bezocht",
 	"enotif_impersonal_salutation": "gebruiker van {{SITENAME}}",
 	"enotif_subject_deleted": "{{SITENAME}}: pagina $1 is verwijderd door {{GENDER:$2|$2}}",

@@ -4,7 +4,8 @@
 			"Mladanali",
 			"아라",
 			"DonCamillo",
-			"Koavf"
+			"Koavf",
+			"Ammarpad"
 		]
 	},
 	"tog-underline": "A shaya zaruruwa",
@@ -100,7 +101,7 @@
 	"sep": "Sat",
 	"oct": "Okt",
 	"nov": "Nuw",
-	"dec": "Dic",
+	"dec": "Dis",
 	"january-date": "Janairu $1",
 	"february-date": "Fabrairu $1",
 	"march-date": "Maris $1",
@@ -174,7 +175,7 @@
 	"disclaimerpage": "Project:Babban gargaɗi",
 	"edithelp": "Taimako kan gyara",
 	"helppage-top-gethelp": "Taimako",
-	"mainpage": "Marhabin",
+	"mainpage": "Babban shafi",
 	"mainpage-description": "Babban shafi",
 	"policy-url": "Shiri:Siyasa",
 	"portal": "Kofan al'umma",
@@ -365,7 +366,7 @@
 	"rcshowhideliu-show": "Nuna",
 	"rcshowhideliu-hide": "Ɓoye",
 	"rcshowhideanons": "$1 ma'aikata masu ɓoyayye suna",
-	"rcshowhideanons-hide": "Ɓooye",
+	"rcshowhideanons-hide": "Ɓoye",
 	"rcshowhidemine": "$1 sauye-sauyena",
 	"rcshowhidemine-hide": "Ɓoye",
 	"rclinks": "Nuna sauye-sauye $1 na ƙarshe a cikin kwanaki $2 na baya",

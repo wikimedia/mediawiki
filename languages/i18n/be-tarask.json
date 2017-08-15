@@ -53,6 +53,7 @@
 	"tog-watchlisthideminor": "Хаваць дробныя праўкі ў сьпісе назіраньня",
 	"tog-watchlisthideliu": "Хаваць праўкі зарэгістраваных удзельнікаў у сьпісе назіраньня",
 	"tog-watchlistreloadautomatically": "Аўтаматычна перазагружаць сьпіс назіраньня пры зьмене фільтру (патрэбны JavaScript)",
+	"tog-watchlistunwatchlinks": "Дадаць спасылкі «назіраць/не назіраць» да элемэнтаў сьпісу назіраньня (патрабуецца JavaScript для актывацыі функцыі)",
 	"tog-watchlisthideanons": "Хаваць праўкі ананімаў у сьпісе назіраньня",
 	"tog-watchlisthidepatrolled": "Хаваць патруляваныя праўкі ў сьпісе назіраньня",
 	"tog-watchlisthidecategorization": "Хаваць катэгарызацыю старонак",

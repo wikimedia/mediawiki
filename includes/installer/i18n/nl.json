@@ -19,7 +19,8 @@
 			"Macofe",
 			"Hex",
 			"Mainframe98",
-			"Rcdeboer"
+			"Rcdeboer",
+			"Festina90"
 		]
 	},
 	"config-desc": "Het installatieprogramma voor MediaWiki",
@@ -95,6 +96,7 @@
 	"config-no-cli-uploads-check": "''Waarschuwing:'' uw standaardmap voor uploads (<code>$1</code>) wordt niet gecontroleerd op kwetsbaarheden voor het uitvoeren van willekeurige scripts gedurende de CLI-installatie.",
 	"config-brokenlibxml": "Uw systeem heeft een combinatie van PHP- en libxml2-versies geïnstalleerd die is foutgevoelig is en kan leiden tot onzichtbare beschadiging van gegevens in MediaWiki en andere webapplicaties.\nUpgrade naar libxml2 2.7.3 of hoger([https://bugs.php.net/bug.php?id=45996 bij PHP gerapporteerde fout]).\nDe installatie wordt afgebroken.",
 	"config-suhosin-max-value-length": "Suhosin is geïnstalleerd en beperkt de GET-parameter <code>length</code> tot $1 bytes.\nDe ResourceLoader van MediaWiki omzeilt deze beperking, maar dat is slecht voor de prestaties.\nAls het mogelijk is, moet u de waarde \"<code>suhosin.get.max_value_length</code>\" in <code>php.ini</code> instellen op 1024 of hoger en <code>$wgResourceLoaderMaxQueryLength</code> in LocalSettings.php op dezelfde waarde instellen.",
+	"config-using-32bit": "<strong>Opgepast:</strong> uw systeem blijkt met 32-bit integers te werken. Dit is [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit niet geadviseerd].",
 	"config-db-type": "Databasetype:",
 	"config-db-host": "Databasehost:",
 	"config-db-host-help": "Als uw databaseserver een andere server is, voer dan de hostnaam of het IP-adres hier in.\n\nAls u gebruik maakt van gedeelde webhosting, hoort uw provider u de juiste hostnaam te hebben verstrekt.\n\nAls u MediaWiki op een Windowsserver installeert en MySQL gebruikt, dan werkt \"localhost\" mogelijk niet als servernaam.\nAls het inderdaad niet werkt, probeer dan \"127.0.0.1\" te gebruiken als lokaal IP-adres.\n\nAls u PostgreSQL gebruikt, laat dit veld dan leeg om via een Unix-socket te verbinden.",

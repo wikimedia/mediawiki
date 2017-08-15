@@ -86,6 +86,7 @@
 	"config-no-cli-uploads-check": "'''אזהרה:''' תיקיית בררת המחדל להעלאות (<code>$1</code>) לא נבדקת לפגיעוּת להרצת תסריטים אקראיים בזמן התקנה דרך CLI.",
 	"config-brokenlibxml": "במערכת שלך יש שילוב של גרסאות של PHP ושל libxml2 שחשוף לבאגים ויכול לגרום לעיוות נתונים נסתר במדיה־ויקי וביישומי רשת אחרים.\nיש לשדרג ל־libxml2 2.7.3 או גרסה חדשה יותר ([https://bugs.php.net/bug.php?id=45996 באג מתויק ב־PHP]).\nההתקנה נעצרה.",
 	"config-suhosin-max-value-length": "מותקן פה Suhosin והוא מגביל את אורך פרמטר GET ל־$1 בתים. רכיב ResourceLoader של מדיה־ויקי יעקוף את המגלבה הזאת, אבל זה יפגע בביצועים. אם זה בכלל אפשרי, כדאי לתקן את הערך של <code>suhosin.get.max_value_length</code> ל־1024 או יותר בקובץ <code>php.ini</code> ולהגדיר את ‎<code>$wgResourceLoaderMaxQueryLength</code> לאותו הערך בקובץ LocalSettings.php.",
+	"config-using-32bit": "<strong>אזהרה:</strong> נראה שהמערכת שלך רצה עם מספרים שלמים של 32 סיביות. זה [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit לא מומלץ].",
 	"config-db-type": "סוג מסד הנתונים:",
 	"config-db-host": "שרת מסד הנתונים:",
 	"config-db-host-help": "אם שרת מסד הנתונים שלך נמצא על שרת אחר, יש להקליד את שם המחשב או את כתובת ה־IP כאן.\n\nאם זה אירוח משותף, ספק האירוח שלכם אמור לתת לך את שם השרת הנכון במסמכים.\n\nאם זוהי התקנה בשרת Windows שמשתמשת ב־MySQL, השימוש ב־localhost עשוי לא לעבוד. אם הוא לא עובד, יש לנסות את \"127.0.0.1\" בתור כתובת ה־IP המקומית.\n\nאם זה PostgreSQL, תשאירו את השדה הזה ריק כדי להתחבר דרך שקע יוניקס.",

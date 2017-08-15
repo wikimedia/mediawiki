@@ -82,7 +82,8 @@
 			"Shyamal",
 			"SatyamMishra",
 			"चक्रपाणी",
-			"Anamdas"
+			"Anamdas",
+			"Sachinkatiyar"
 		]
 	},
 	"tog-underline": "कड़ियाँ अधोरेखन:",
@@ -119,6 +120,7 @@
 	"tog-watchlisthideminor": "मेरी ध्यानसूची से छोटे परिवर्तन छिपाएँ",
 	"tog-watchlisthideliu": "मेरी ध्यानसूची में सत्रारम्भित सदस्यों के सम्पादन न दिखाएँ",
 	"tog-watchlistreloadautomatically": "जब भी छननी बदलने पर ध्यानसूची को अपने आप ही लोड करें (जावास्क्रिप्ट अनिवार्य)",
+	"tog-watchlistunwatchlinks": "देखनेवाली सूची प्रविष्टियों के लिए सीधा अनदेखा/देखा कड़ी जोड़ें (टॉगल कार्यक्षमता के लिए जावास्क्रिप्ट आवश्यक)",
 	"tog-watchlisthideanons": "आई॰पी॰ सदस्यों द्वारा किए सम्पादनों को मेरी ध्यानसूची में न दिखायें",
 	"tog-watchlisthidepatrolled": "परीक्षित सम्पादन मेरी ध्यानसूची में छुपाएँ",
 	"tog-watchlisthidecategorization": "पृष्ठों का श्रेणीकरण छुपाएँ",
@@ -1358,6 +1360,7 @@
 	"recentchanges-legend-heading": "<strong>कुंजी:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|नए पन्नों की सूची]] को भी देखें)",
 	"recentchanges-submit": "दिखाएँ",
+	"rcfilters-legend-heading": "<strong>संकेतों की सूची:</strong>",
 	"rcfilters-other-review-tools": "<strong>दूसरे समीक्षा उपकरण</strong>",
 	"rcfilters-activefilters": "सक्रिय फिल्टर",
 	"rcfilters-limit-title": "दिखाने के लिए बदलाव",
@@ -2154,6 +2157,8 @@
 	"watching": "ध्यान दे रहे हैं...",
 	"unwatching": "ध्यान हटा रहे हैं...",
 	"watcherrortext": "\"$1\" के लिये आपकी ध्यानसूची सेटिंग बदलते समय त्रुटि हुई।",
+	"watchlist-unwatch": "×",
+	"watchlist-unwatch-undo": "+",
 	"enotif_reset": "सभी पृष्ठ देखे हुए दर्शाएँ",
 	"enotif_impersonal_salutation": "{{SITENAME}} सदस्य",
 	"enotif_subject_deleted": "{{SITENAME}} पृष्ठ $1 को {{gender:$2|$2}} ने हटा दिया है",

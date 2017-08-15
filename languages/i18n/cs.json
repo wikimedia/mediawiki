@@ -73,6 +73,7 @@
 	"tog-watchlisthideminor": "Na seznamu sledovaných stránek skrýt malé editace",
 	"tog-watchlisthideliu": "Na seznamu sledovaných stránek skrýt editace přihlášených uživatelů",
 	"tog-watchlistreloadautomatically": "Při změně filtru automaticky aktualizovat seznam sledovaných stránek (vyžaduje JavaScript)",
+	"tog-watchlistunwatchlinks": "K položkám sledovaných stránek přidat odkazy pro sledování/nesledování (rychlé přepnutí vyžaduje JavaScript)",
 	"tog-watchlisthideanons": "Na seznamu sledovaných stránek skrýt editace nepřihlášených uživatelů",
 	"tog-watchlisthidepatrolled": "Skrýt prověřené editace ve sledovaných stránkách",
 	"tog-watchlisthidecategorization": "Skrýt kategorizaci stránek",
