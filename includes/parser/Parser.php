@@ -737,17 +737,6 @@ class Parser {
 	}
 
 	/**
-	 * Get a random string
-	 *
-	 * @return string
-	 * @deprecated since 1.26; use wfRandomString() instead.
-	 */
-	public static function getRandomString() {
-		wfDeprecated( __METHOD__, '1.26' );
-		return wfRandomString( 16 );
-	}
-
-	/**
 	 * Set the current user.
 	 * Should only be used when doing pre-save transform.
 	 *
@@ -755,17 +744,6 @@ class Parser {
 	 */
 	public function setUser( $user ) {
 		$this->mUser = $user;
-	}
-
-	/**
-	 * Accessor for mUniqPrefix.
-	 *
-	 * @return string
-	 * @deprecated since 1.26; use Parser::MARKER_PREFIX instead.
-	 */
-	public function uniqPrefix() {
-		wfDeprecated( __METHOD__, '1.26' );
-		return self::MARKER_PREFIX;
 	}
 
 	/**
@@ -973,14 +951,9 @@ class Parser {
 	 * @param array $elements List of element names. Comments are always extracted.
 	 * @param string $text Source text string.
 	 * @param array &$matches Out parameter, Array: extracted tags
-	 * @param string|null $uniq_prefix
 	 * @return string Stripped text
-	 * @since 1.26 The uniq_prefix argument is deprecated.
 	 */
-	public static function extractTagsAndParams( $elements, $text, &$matches, $uniq_prefix = null ) {
-		if ( $uniq_prefix !== null ) {
-			wfDeprecated( __METHOD__ . ' called with $prefix argument', '1.26' );
-		}
+	public static function extractTagsAndParams( $elements, $text, &$matches ) {
 		static $n = 1;
 		$stripped = '';
 		$matches = [];
