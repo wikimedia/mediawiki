@@ -40,7 +40,7 @@
 .client-js .mw-ui-radio:not( #noop ) {
 	// Position relatively so we can make use of absolute pseudo elements
 	position: relative;
-	line-height: @radioSize;
+	line-height: @sizeInputBinary;
 
 	* {
 		// reset font sizes (see T74727)
@@ -48,65 +48,103 @@
 		vertical-align: middle;
 	}
 
-	input[type='radio'] {
-		// we hide the input element as instead we will style the label that follows
-		// we use opacity so that VoiceOver software can still identify it
-		opacity: 0;
+	[type='radio'] {
 		// ensure the invisible radio takes up the required width
-		width: @radioSize;
-		height: @radioSize;
+		width: @sizeInputBinary;
+		height: @sizeInputBinary;
 		// This is needed for Firefox mobile (See T73750 to workaround default Firefox stylesheet)
 		max-width: none;
-		margin-right: 0.4em;
+		margin: 0;
+		// Hide `input[type=radio]` and instead style the label that follows
+		// Support: VoiceOver. Use `opacity` so that VoiceOver can still identify the radio
+		opacity: 0;
 
-		// the pseudo before element of the label after the radio now looks like a radio
-		& + label:before {
-			content: '';
-			background-color: #fff;
-			.background-image-svg( 'images/radio_checked.svg', 'images/radio_checked.png' );
-			background-origin: border-box;
-			background-position: center center;
-			background-repeat: no-repeat;
-			.background-size( 0, 0 );
-			.box-sizing( border-box );
-			position: absolute;
-			left: 0;
-			width: @radioSize;
-			height: @radioSize;
-			border: 1px solid @colorGray7;
-			border-radius: 100%;
-			cursor: pointer;
+		& + label {
+			padding-left: 0.4em;
+
+			// Pseudo `:before` element of the label after the radio now looks like a radio
+			&:before {
+				content: '';
+				background-color: #fff;
+				.box-sizing( border-box );
+				position: absolute;
+				left: 0;
+				width: @sizeInputBinary;
+				height: @sizeInputBinary;
+				border: 1px solid @colorGray7;
+				border-radius: 100%;
+			}
+
+			// Needed for `:focus` state's inner white circle
+			&:after {
+				content: ' ';
+				position: absolute;
+				top: 2px; // `px` unit due to pixel rounding error when using `@sizeInputBinary / 4`
+				left: 2px;
+				width: 1.14285em; // equals `@sizeInputBinary - 4px`
+				height: 1.14285em;
+				border: 1px solid transparent;
+				border-radius: 100%;
+			}
 		}
 
-		// when the input is checked, style the label pseudo before element that followed as a checked radio
+		// Apply a dot on the pseudo `:before` element when the input is checked
 		&:checked + label:before {
-			.background-size( 100%, 100% );
+			border-width: @borderWidthRadioChecked;
 		}
 
-		&:active + label:before {
-			background-color: @colorGray13;
-			border-color: @colorGray13;
+		&:enabled {
+			cursor: pointer;
+
+			& + label:before {
+				cursor: pointer;
+				.transition( ~'background-color 100ms, color 100ms, border-color 100ms' );
+			}
+
+			&:hover + label:before {
+				border-color: @colorProgressive;
+			}
+
+			&:active + label:before {
+				background-color: @colorProgressiveActive;
+				border-color: @borderColorInputBinaryActive;
+			}
+
+			&:checked {
+				& + label:before {
+					border-color: @borderColorInputBinaryChecked;
+				}
+
+				&:focus + label:after {
+					border-color: #fff;
+				}
+
+				&:hover + label:before {
+					border-color: @colorProgressiveHighlight;
+				}
+
+				&:active {
+					& + label:before {
+						border-color: @borderColorInputBinaryActive;
+						box-shadow: @boxShadowInputBinaryActive;
+					}
+
+					& + label:after {
+						border-color: @borderColorInputBinaryActive;
+					}
+				}
+			}
 		}
 
-		&:focus + label:before {
-			border-width: 2px;
-		}
+		&:disabled {
+			& + label:before {
+				background-color: @colorGray12;
+				border-color: @colorGray12;
+			}
 
-		&:focus:hover + label:before,
-		&:hover + label:before {
-			border-bottom-width: 3px;
-		}
-
-		// disabled radios have a gray background
-		&:disabled + label:before {
-			background-color: @colorGray14;
-			border-color: @colorGray14;
-			cursor: default;
-		}
-
-		// disabled and checked radios have a white circle
-		&:disabled:checked + label:before {
-			.background-image-svg( 'images/radio_disabled.svg', 'images/radio_disabled.png' );
+			&:checked + label:before {
+				background-color: #fff;
+			}
 		}
 	}
 }
