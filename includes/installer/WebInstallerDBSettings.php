@@ -27,6 +27,10 @@ class WebInstallerDBSettings extends WebInstallerPage {
 	public function execute() {
 		$installer = $this->parent->getDBInstaller( $this->getVar( 'wgDBtype' ) );
 
+		if ( $this->getVar( '_EmptyDatabase' ) ) {
+			return 'skip';
+		}
+
 		$r = $this->parent->request;
 		if ( $r->wasPosted() ) {
 			$status = $installer->submitSettingsForm();

@@ -31,13 +31,25 @@ class WebInstallerExistingWiki extends WebInstallerPage {
 			return 'skip';
 		}
 
+		// Deteremine if database is empty. IF it is, this is not an upgrade.
+		$status = $this->handleExistingUpgrade( $vars );
+		if ( $status->isOK() ) {
+			global $wgDBname;
+			$db = $this->parent->getDBInstaller()->db;
+			$db->selectDB( $wgDBname );
+			$result = $db->query( 'SHOW TABLES' );
+			if ( $result->numRows() === 0 ) {
+				$this->setVar( '_EmptyDatabase', true );
+				return 'skip';
+			}
+		}
+
 		// Check if the upgrade key supplied to the user has appeared in LocalSettings.php
 		if ( $vars['wgUpgradeKey'] !== false
 			&& $this->getVar( '_UpgradeKeySupplied' )
 			&& $this->getVar( 'wgUpgradeKey' ) === $vars['wgUpgradeKey']
 		) {
 			// It's there, so the user is authorized
-			$status = $this->handleExistingUpgrade( $vars );
 			if ( $status->isOK() ) {
 				return 'skip';
 			} else {

@@ -1115,6 +1115,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->mTrxPreCommitCallbacks = []; // T67263
 		$this->mSessionTempTables = [];
 		$this->mNamedLocksHeld = [];
+
 		try {
 			// Handle callbacks in mTrxEndCallbacks
 			$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
@@ -1142,6 +1143,28 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				] )
 			);
 			$this->queryLogger->debug( "SQL ERROR: " . $error . "\n" );
+
+			// Table Does not exist. Before throwing an error, ensure that there is at
+			// least a single table otherwise MediaWiki hasn't been installed.
+			if ( $sql !== 'SHOW TABLES' )  {
+				$result = $this->query( 'SHOW TABLES' );
+				if ( $result->numRows() === 0 ) {
+					global $wgVersion;
+					$templateParser = new \TemplateParser();
+
+					echo $templateParser->processTemplate(
+						'NoLocalSettings',
+						[
+							'wgVersion' => ( isset( $wgVersion ) ? $wgVersion : 'VERSION' ),
+							'ext' => 'php',
+							'localSettingsExists' => false,
+							'installerStarted' => true
+						]
+					);
+					exit;
+				}
+			}
+
 			throw new DBQueryError( $this, $error, $errno, $sql, $fname );
 		}
 	}

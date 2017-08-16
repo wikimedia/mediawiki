@@ -22,6 +22,14 @@
 class WebInstallerComplete extends WebInstallerPage {
 
 	public function execute() {
+		if ( $this->getVar( '_EmptyDatabase' ) ) {
+			$this->parent->request->response()->header(
+				'Location: ' . $this->getVar( 'wgScriptPath' ) . '/index.php',
+				true,
+				302
+			);
+		}
+
 		// Pop up a dialog box, to make it difficult for the user to forget
 		// to download the file
 		$lsUrl = $this->getVar( 'wgServer' ) . $this->parent->getUrl( [ 'localsettings' => 1 ] );
