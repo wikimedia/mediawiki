@@ -39,7 +39,9 @@
 	//
 	// Styleguide 6.1.1.
 	&.mw-ui-icon-element {
-		@width: @iconSize + ( 2 * @iconGutterWidth );
+		@iconMargins: 2 * @iconGutterWidth;
+		@width: @iconSize + @iconMargins;
+		@sizeIconLarge: ( @iconSize * 1.75) + @iconMargins;
 
 		text-indent: -999px;
 		overflow: hidden;
@@ -52,6 +54,18 @@
 			right: 0;
 			position: absolute;
 			margin: 0 @iconGutterWidth;
+		}
+
+		&.mw-ui-icon-large {
+			width: @sizeIconLarge;
+			min-width: @sizeIconLarge;
+			max-width: @sizeIconLarge;
+			line-height: @sizeIconLarge;
+			min-height: @sizeIconLarge;
+
+			&:before {
+				min-height: @sizeIconLarge;
+			}
 		}
 	}
 
