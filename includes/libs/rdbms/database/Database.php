@@ -758,7 +758,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 			$closed = $this->closeConnection();
 			$this->mConn = false;
-		} elseif ( $this->mTrxIdleCallbacks || $this->mTrxEndCallbacks ) { // sanity
+		} elseif (
+			$this->mTrxIdleCallbacks ||
+			$this->mTrxPreCommitCallbacks ||
+			$this->mTrxEndCallbacks
+		) { // sanity
 			throw new RuntimeException( "Transaction callbacks still pending." );
 		} else {
 			$closed = true;
