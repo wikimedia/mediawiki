@@ -2153,6 +2153,8 @@
 	"watching": "주시 추가 중…",
 	"unwatching": "주시 해제 중…",
 	"watcherrortext": "\"$1\" 문서에 대한 주시 여부를 바꾸는 중 오류가 발생했습니다.",
+	"watchlist-unwatch": "×",
+	"watchlist-unwatch-undo": "+",
 	"enotif_reset": "모든 문서를 방문한 것으로 표시하기",
 	"enotif_impersonal_salutation": "{{SITENAME}} 사용자",
 	"enotif_subject_deleted": "{{SITENAME}} $1 문서를 $2님이 {{GENDER:$2|삭제했습니다}}",

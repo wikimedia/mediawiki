@@ -2116,6 +2116,8 @@
 	"watching": "Набљудување...",
 	"unwatching": "Отстранувам од набљудувани...",
 	"watcherrortext": "Се појави грешка при менувањето на вашите нагодувања набљудуваните за „$1“.",
+	"watchlist-unwatch": "×",
+	"watchlist-unwatch-undo": "+",
 	"enotif_reset": "Означи ги сите страници како посетени",
 	"enotif_impersonal_salutation": "Википедија корисник",
 	"enotif_subject_deleted": "Страницата $1 на {{SITENAME}} е избришана од {{gender:$2|$2}}",

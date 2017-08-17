@@ -126,7 +126,6 @@
 	"tog-watchlisthideminor": "Ukryj drobne zmiany na liście obserwowanych",
 	"tog-watchlisthideliu": "Ukryj edycje zalogowanych użytkowników na liście obserwowanych",
 	"tog-watchlistreloadautomatically": "Automatycznie odświeżaj listę obserwowanych po każdej zmianie filtra (wymagany JavaScript)",
-	"tog-watchlistunwatchlinks": "Pokazuj linki obserwuj/nie obserwuj bezpośrednio przy wpisach na liście obserwowanych (wymagany JavaScript do funkcji przełączania)",
 	"tog-watchlisthideanons": "Ukryj edycje anonimowych użytkowników na liście obserwowanych",
 	"tog-watchlisthidepatrolled": "Ukryj sprawdzone edycje na liście obserwowanych",
 	"tog-watchlisthidecategorization": "Ukryj kategoryzację stron",
