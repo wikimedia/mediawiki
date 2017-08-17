@@ -1172,7 +1172,7 @@ class LoadBalancer implements ILoadBalancer {
 			if ( $limit > 0 && $time > $limit ) {
 				throw new DBTransactionSizeError(
 					$conn,
-					"Transaction spent $time second(s) in writes, exceeding the $limit limit.",
+					"Transaction spent $time second(s) in writes, exceeding the limit of $limit.",
 					[ $time, $limit ]
 				);
 			}
