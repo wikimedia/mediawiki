@@ -1362,6 +1362,17 @@ return [
 		'messages' => [ 'showtoc', 'hidetoc' ],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.toc.styles' => [
+		'class' => ResourceLoaderLessVarFileModule::class,
+		'lessMessages' => [ 'hidetoc', 'showtoc' ],
+		'styles' => [
+			'resources/src/mediawiki.toc.styles/toctoggle.less'
+				=> [ 'media' => 'screen' ],
+			'resources/src/mediawiki.toc.styles/print.css'
+				=> [ 'media' => 'print' ],
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.Uri' => [
 		'scripts' => 'resources/src/mediawiki.Uri/Uri.js',
 		'templates' => [
