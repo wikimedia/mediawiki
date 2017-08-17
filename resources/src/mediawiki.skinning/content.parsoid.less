@@ -176,3 +176,36 @@ figure[typeof*='mw:Audio/Thumb'] {
 		border: 1px solid #eaecf0;
 	}
 }
+
+/**
+ * Inline media items
+ */
+*:first-child {
+	> img,
+	> video {
+		.mw-valign-middle > & {
+			vertical-align: middle;
+		}
+		.mw-valign-baseline > & {
+			vertical-align: baseline;
+		}
+		.mw-valign-sub > & {
+			vertical-align: sub;
+		}
+		.mw-valign-super > & {
+			vertical-align: super;
+		}
+		.mw-valign-top > & {
+			vertical-align: top;
+		}
+		.mw-valign-text-top > & {
+			vertical-align: text-top;
+		}
+		.mw-valign-bottom > & {
+			vertical-align: bottom;
+		}
+		.mw-valign-text-bottom > & {
+			vertical-align: text-bottom;
+		}
+	}
+}
