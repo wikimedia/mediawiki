@@ -1,0 +1,42 @@
+/* Hide checkbox but let it allow to focus with keyboard */
+.toctogglecheckbox {
+	position: absolute;
+	z-index: -1;
+}
+
+/*
+ * IE8 does not support :checked and therefor it does not support the hiding at all.
+ * The selector ":not( :checked ) >" prevents that the useless brackets are shown on IE8.
+ */
+:not( :checked ) > .toctogglespan:before {
+	content: ' [';
+}
+
+:not( :checked ) > .toctogglespan:after {
+	content: ']';
+}
+
+.toctogglelabel {
+	cursor: pointer;
+	color: #0645ad;
+}
+
+.toctogglelabel:hover {
+	text-decoration: underline;
+}
+
+.toctogglecheckbox:focus + .toctitle .toctogglelabel {
+	outline: dotted 1px; /* Firefox style for focus */
+}
+
+.toctogglecheckbox:checked + .toctitle .toctogglelabel:after {
+	content: attr( data-showtoc );
+}
+
+.toctogglecheckbox:not( :checked ) + .toctitle .toctogglelabel:after {
+	content: attr( data-hidetoc );
+}
+
+.toctogglecheckbox:checked + .toctitle + ul {
+	display: none;
+}
