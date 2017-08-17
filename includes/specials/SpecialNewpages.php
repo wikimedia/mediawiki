@@ -495,16 +495,21 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 	protected function feedItemDesc( $row ) {
 		$revision = $this->revisionFromRcResult( $row );
-		if ( $revision ) {
-			// XXX: include content model/type in feed item?
-			return '<p>' . htmlspecialchars( $revision->getUserText() ) .
-				$this->msg( 'colon-separator' )->inContentLanguage()->escaped() .
-				htmlspecialchars( FeedItem::stripComment( $revision->getComment() ) ) .
-				"</p>\n<hr />\n<div>" .
-				nl2br( htmlspecialchars( $revision->getContent()->serialize() ) ) . "</div>";
+		if ( !$revision ) {
+			return '';
 		}
 
-		return '';
+		$content = $revision->getContent();
+		if ( $content === null ) {
+			return '';
+		}
+
+		// XXX: include content model/type in feed item?
+		return '<p>' . htmlspecialchars( $revision->getUserText() ) .
+			$this->msg( 'colon-separator' )->inContentLanguage()->escaped() .
+			htmlspecialchars( FeedItem::stripComment( $revision->getComment() ) ) .
+			"</p>\n<hr />\n<div>" .
+			nl2br( htmlspecialchars( $content->serialize() ) ) . "</div>";
 	}
 
 	protected function getGroupName() {
