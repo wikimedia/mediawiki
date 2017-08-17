@@ -23,6 +23,11 @@ describe( 'Page', function () {
 
 	it( 'should be creatable', function () {
 
+		// log in
+		let username = browser.options.username,
+			password = browser.options.password;
+		UserLoginPage.login( username, password );
+
 		// create
 		EditPage.edit( name, content );
 
@@ -40,6 +45,11 @@ describe( 'Page', function () {
 		browser.call( function () {
 			return EditPage.apiEdit( name, content );
 		} );
+
+		// log in
+		let username = browser.options.username,
+			password = browser.options.password;
+		UserLoginPage.login( username, password );
 
 		// edit
 		EditPage.edit( name, content2 );
