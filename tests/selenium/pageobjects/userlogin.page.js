@@ -13,6 +13,7 @@ class UserLoginPage extends Page {
 	}
 
 	login( username, password ) {
+		browser.deleteCookie();
 		this.open();
 		this.username.setValue( username );
 		this.password.setValue( password );

@@ -3,16 +3,17 @@ const Page = require( './page' );
 
 class PreferencesPage extends Page {
 
-	get realName() { return browser.element( '#mw-input-wprealname' ); }
+	get existingSignature() { return browser.element( '#mw-htmlform-signature a' ); }
+	get newSignature() { return browser.element( '#mw-input-wpnickname' ); }
 	get save() { return browser.element( '#prefcontrol' ); }
 
 	open() {
 		super.open( 'Special:Preferences' );
 	}
 
-	changeRealName( realName ) {
+	changeSignature( signature ) {
 		this.open();
-		this.realName.setValue( realName );
+		this.newSignature.setValue( signature );
 		this.save.click();
 	}
 
