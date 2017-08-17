@@ -110,6 +110,7 @@
 	"tog-watchlisthideminor": "Esconder edições menores ao listar mudanças às páginas vigiadas",
 	"tog-watchlisthideliu": "Esconder edições de utilizadores autenticados ao listar mudanças às páginas vigiadas",
 	"tog-watchlistreloadautomatically": "Recarregar a lista de páginas vigiadas automaticamente sempre que um filtro é alterado (requer JavaScript)",
+	"tog-watchlistunwatchlinks": "Adicionar links diretos para vigiar ou deixar de vigiar, às entradas da lista de páginas vigiadas (é necessário o JavaScript para alternar entre ambas)",
 	"tog-watchlisthideanons": "Esconder edições de utilizadores anónimos ao listar mudanças às páginas vigiadas",
 	"tog-watchlisthidepatrolled": "Esconder edições patrulhadas ao listar mudanças às páginas vigiadas",
 	"tog-watchlisthidecategorization": "Ocultar categorização de páginas",

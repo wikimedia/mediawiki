@@ -2125,8 +2125,6 @@
 	"watching": "בהוספה לרשימת המעקב...",
 	"unwatching": "בהסרה מרשימת המעקב...",
 	"watcherrortext": "אירעה שגיאה בעת שינוי הגדרות רשימת המעקב של \"$1\".",
-	"watchlist-unwatch": "×",
-	"watchlist-unwatch-undo": "+",
 	"enotif_reset": "סימון כל הדפים כאילו נצפו",
 	"enotif_impersonal_salutation": "משתמש ב{{GRAMMAR:תחילית|{{SITENAME}}}}",
 	"enotif_subject_deleted": "הדף \"$1\" ב{{grammar:תחילית|{{SITENAME}}}} נמחק על־ידי $2",

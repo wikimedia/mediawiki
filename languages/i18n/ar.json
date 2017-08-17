@@ -2155,8 +2155,6 @@
 	"watching": "يراقب...",
 	"unwatching": "إزالة المراقبة...",
 	"watcherrortext": "حدث خطأ أثناء تغيير إعدادات الرصد الخاصة بك \"$1\".",
-	"watchlist-unwatch": "×",
-	"watchlist-unwatch-undo": "+",
 	"enotif_reset": "علم على كل الصفحات كمرئية",
 	"enotif_impersonal_salutation": "مستخدم {{SITENAME}}",
 	"enotif_subject_deleted": "الصفحة {{SITENAME}} $1 حذفها {{الجنس: $2 | $2 }}",

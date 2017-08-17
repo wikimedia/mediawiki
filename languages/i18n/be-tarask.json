@@ -1775,6 +1775,8 @@
 	"pageswithprop-legend": "Старонкі з уласьцівасьцямі старонак",
 	"pageswithprop-text": "На гэтай старонцы адлюстроўваюцца старонкі, якія ўжываюць пэўную ўласьцівасьць старонкі.",
 	"pageswithprop-prop": "Імя ўласьцівасьці:",
+	"pageswithprop-reverse": "Сартаваць у адваротным парадку",
+	"pageswithprop-sortbyvalue": "Сартаваць паводле значэньня ўласьцівасьці",
 	"pageswithprop-submit": "Паказаць",
 	"pageswithprop-prophidden-long": "доўгае тэкставае значэньне ўласьцівасьці схавана ($1)",
 	"pageswithprop-prophidden-binary": "двайковае значэньне ўласьцівасьці схавана ($1)",

@@ -2131,8 +2131,6 @@
 	"watching": "Vixiando...",
 	"unwatching": "Deixando de vixiar...",
 	"watcherrortext": "Houbo un erro ao cambiar as súas opcións de vixilancia para a páxina \"$1\".",
-	"watchlist-unwatch": "×",
-	"watchlist-unwatch-undo": "+",
 	"enotif_reset": "Marcar todas as páxinas como visitadas",
 	"enotif_impersonal_salutation": "Usuario de {{SITENAME}}",
 	"enotif_subject_deleted": "{{GENDER:$2|$2}} borrou a páxina chamada \"$1\" en {{SITENAME}}",

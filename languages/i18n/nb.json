@@ -87,6 +87,7 @@
 	"tog-watchlisthideminor": "Skjul mindre endringer fra overvåkningslisten",
 	"tog-watchlisthideliu": "Skjul endringer av innloggede brukere fra overvåkningslisten",
 	"tog-watchlistreloadautomatically": "Oppdater oversiktslisten automatisk når et filter er endret (JavaScript kreves)",
+	"tog-watchlistunwatchlinks": "Legg til lenker for å overvåke/fjerne overvåking direkte i overvåkningslisten (JavaScript kreves)",
 	"tog-watchlisthideanons": "Skjul endringer av anonyme brukere fra overvåkningslisten",
 	"tog-watchlisthidepatrolled": "Skjul patruljerte endringer fra overvåkningslisten",
 	"tog-watchlisthidecategorization": "Skjul kategorisering av sider",

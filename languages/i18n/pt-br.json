@@ -2199,8 +2199,6 @@
 	"watching": "Vigiando...",
 	"unwatching": "Deixando de vigiar...",
 	"watcherrortext": "Ocorreu um erro ao alterar a configuração da sua lista de páginas vigiadas para \"$1\".",
-	"watchlist-unwatch": "×",
-	"watchlist-unwatch-undo": "+",
 	"enotif_reset": "Marcar todas as páginas como visitadas",
 	"enotif_impersonal_salutation": "Usuário do projeto \"{{SITENAME}}\"",
 	"enotif_subject_deleted": "A página $1 da {{SITENAME}} foi eliminada por {{gender:$2|$2}}",
