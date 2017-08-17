@@ -279,6 +279,10 @@ class RefreshLinksJob extends Job {
 
 		InfoAction::invalidateCache( $title );
 
+		// Commit any writes here in case this method is called in a loop.
+		// In that case, the scoped lock will fail to be acquired.
+		$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+
 		return true;
 	}
 
