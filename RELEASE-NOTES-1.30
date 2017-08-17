@@ -62,11 +62,6 @@ section).
 * Added $wgParserTestMediaHandlers, where mock media handlers can be passed to
   MediaHandlerFactory for parser tests.
 
-=== Languages updated in 1.30 ===
-
-* Support for kbp (Kabɩyɛ / Kabiyè) was added.
-* Support for skr (Saraiki, سرائیکی) was added.
-
 === External library changes in 1.30 ===
 
 ==== Upgraded external libraries ====
@@ -111,7 +106,9 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Phabricator reports.
 
-* …
+* Added: kbp (Kabɩyɛ / Kabiyè)
+* Added: skr (Saraiki, سرائیکی)
+* Added: tay (Tayal / Atayal)
 
 ==== Pig Latin added ====
 * (T45547) Added Pig Latin, a made-up English variant (en-x-piglatin),

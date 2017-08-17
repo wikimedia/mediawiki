@@ -404,6 +404,7 @@ class Names {
 		'sw' => 'Kiswahili', # Swahili
 		'szl' => 'ślůnski', # Silesian
 		'ta' => 'தமிழ்', # Tamil
+		'tay' => 'Tayal', # Atayal
 		'tcy' => 'ತುಳು', # Tulu
 		'te' => 'తెలుగు', # Telugu
 		'tet' => 'tetun', # Tetun
