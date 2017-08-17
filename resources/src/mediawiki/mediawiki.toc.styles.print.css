@@ -1,0 +1,9 @@
+.toctogglecheckbox {
+	display: none;
+}
+/* The rule above is not combined with the rule below to ensure that the */
+/* checkbox is hidden even when :checked is not supported like IE8. */
+.toctogglecheckbox:checked + .toctitle,
+.toctogglecheckbox:checked ~ ul {
+	display: none;
+}
