@@ -10,13 +10,12 @@ describe( 'User', function () {
 		username;
 
 	before( function () {
+		UserLoginPage.login( browser.options.username, browser.options.password );
 		// disable VisualEditor welcome dialog
-		UserLoginPage.open();
 		browser.localStorage( 'POST', { key: 've-beta-welcome-dialog', value: '1' } );
 	} );
 
 	beforeEach( function () {
-		browser.deleteCookie();
 		username = `User-${Math.random().toString()}`;
 		password = Math.random().toString();
 	} );
@@ -27,7 +26,7 @@ describe( 'User', function () {
 		CreateAccountPage.createAccount( username, password );
 
 		// check
-		assert.equal( CreateAccountPage.heading.getText(), `Welcome, ${username}!` );
+		assert.equal( CreateAccountPage.heading.getText(), 'Account created' );
 
 	} );
 
@@ -48,7 +47,7 @@ describe( 'User', function () {
 
 	it( 'should be able to change preferences', function () {
 
-		var realName = Math.random().toString();
+		var signature = Math.random().toString();
 
 		// create
 		browser.call( function () {
@@ -59,10 +58,10 @@ describe( 'User', function () {
 		UserLoginPage.login( username, password );
 
 		// change
-		PreferencesPage.changeRealName( realName );
+		PreferencesPage.changeSignature( signature );
 
 		// check
-		assert.equal( PreferencesPage.realName.getValue(), realName );
+		assert.equal( PreferencesPage.existingSignature.getText(), signature );
 
 	} );
 
