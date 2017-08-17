@@ -44,6 +44,8 @@ class ImageListPager extends TablePager {
 
 	protected $mSearch = '';
 
+	protected $mMime = '';
+
 	protected $mIncluding = false;
 
 	protected $mShowAll = false;
@@ -51,7 +53,7 @@ class ImageListPager extends TablePager {
 	protected $mTableName = 'image';
 
 	function __construct( IContextSource $context, $userName = null, $search = '',
-		$including = false, $showAll = false
+		$mime = '', $including = false, $showAll = false
 	) {
 		$this->setContext( $context );
 		$this->mIncluding = $including;
@@ -82,6 +84,42 @@ class ImageListPager extends TablePager {
 				$this->mQueryConds[] = 'LOWER(img_name)' .
 					$dbr->buildLike( $dbr->anyString(),
 						strtolower( $nt->getDBkey() ), $dbr->anyString() );
+			}
+		}
+
+		if ( $mime !== '' && !$this->getConfig()->get( 'MiserMode' ) ) {
+			$this->mMime = $mime;
+			list($major, $minor) = explode('/', $mime);
+
+			$minorType = [];
+			if ( $minor !== '*' ) {
+				// Allow wildcard searching
+				$minorType['img_minor_mime'] = $minor;
+			}
+
+			if ( self::isValidType( $major ) ) {
+				$dbr = wfGetDB( DB_REPLICA );
+				$listConds = [
+							'img_major_mime' => $major,
+							// This is in order to trigger using
+							// the img_media_mime index in "range" mode.
+							// @todo how is order defined? use MimeAnalyzer::getMediaTypes?
+							'img_media_type' => [
+								MEDIATYPE_BITMAP,
+								MEDIATYPE_DRAWING,
+								MEDIATYPE_AUDIO,
+								MEDIATYPE_VIDEO,
+								MEDIATYPE_MULTIMEDIA,
+								MEDIATYPE_UNKNOWN,
+								MEDIATYPE_OFFICE,
+								MEDIATYPE_TEXT,
+								MEDIATYPE_EXECUTABLE,
+								MEDIATYPE_ARCHIVE,
+								MEDIATYPE_3D,
+							],
+						] + $minorType;
+
+				$this->mQueryConds[] = $dbr->makeList( $listConds, Database::LIST_AND );
 			}
 		}
 
@@ -147,6 +185,37 @@ class ImageListPager extends TablePager {
 			}
 		}
 
+		if ( $this->mMime !== '' && !$this->getConfig()->get( 'MiserMode' ) ) {
+			list($major, $minor) = explode('/', $this->mMime);
+
+			$minorType = [];
+			if ( $minor !== '*' ) {
+				$minorType[$prefix . '_minor_mime'] = $minor;
+			}
+
+			if ( self::isValidType( $major ) ) {
+				$dbr = wfGetDB( DB_REPLICA );
+				$listConds = [
+							$prefix . '_major_mime' => $major,
+							$prefix . '_media_type' => [
+								MEDIATYPE_BITMAP,
+								MEDIATYPE_DRAWING,
+								MEDIATYPE_AUDIO,
+								MEDIATYPE_VIDEO,
+								MEDIATYPE_MULTIMEDIA,
+								MEDIATYPE_UNKNOWN,
+								MEDIATYPE_OFFICE,
+								MEDIATYPE_TEXT,
+								MEDIATYPE_EXECUTABLE,
+								MEDIATYPE_ARCHIVE,
+								MEDIATYPE_3D,
+							],
+						] + $minorType;
+
+				$conds[] = $dbr->makeList( $listConds, Database::LIST_AND );
+			}
+		}
+
 		if ( $table === 'oldimage' ) {
 			// Don't want to deal with revdel.
 			// Future fixme: Show partial information as appropriate.
@@ -156,6 +225,58 @@ class ImageListPager extends TablePager {
 
 		// Add mQueryConds in case anyone was subclassing and using the old variable.
 		return $conds + $this->mQueryConds;
+	}
+
+	/**
+	 * @param string $type
+	 * @return bool
+	 */
+	protected static function isValidType( $type ) {
+		// From maintenance/tables.sql => img_major_mime
+		$types = [
+			'unknown',
+			'application',
+			'audio',
+			'image',
+			'text',
+			'video',
+			'message',
+			'model',
+			'multipart',
+			'chemical'
+		];
+
+		return in_array( $type, $types );
+	}
+
+	/**
+	 * @return array
+	 */
+	function getSuggestionsForTypes() {
+		$dbr = wfGetDB( DB_REPLICA );
+		$lastMajor = null;
+		$suggestions = [];
+		$result = $dbr->select(
+			[ 'image' ],
+			// We ignore img_media_type, but using it in the query is needed for MySQL to choose a
+			// sensible execution plan
+			[ 'img_media_type', 'img_major_mime', 'img_minor_mime' ],
+			[],
+			__METHOD__,
+			[ 'GROUP BY' => [ 'img_media_type', 'img_major_mime', 'img_minor_mime' ] ]
+		);
+		foreach ( $result as $row ) {
+			$major = $row->img_major_mime;
+			$minor = $row->img_minor_mime;
+			$suggestions[ "$major/$minor" ] = "$major/$minor";
+			if ( $lastMajor === $major ) {
+				// If there are at least two with the same major mime type, also include the wildcard
+				$suggestions[ "$major/*" ] = "$major/*";
+			}
+			$lastMajor = $major;
+		}
+		ksort( $suggestions );
+		return $suggestions;
 	}
 
 	/**
@@ -536,21 +657,24 @@ class ImageListPager extends TablePager {
 				'id' => 'mw-ilsearch',
 				'label-message' => 'listfiles_search_for',
 				'default' => $this->mSearch,
-				'size' => '40',
 				'maxlength' => '255',
+			];
+			$fields['ilmime'] = [
+				'type' => 'combobox',
+				'options' => $this->getSuggestionsForTypes(),
+				'name' => 'ilmime',
+				'label-message' => 'mimetype',
+				'default' => $this->mMime,
 			];
 		}
 
-		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
 		$fields['user'] = [
-			'type' => 'text',
+			'type' => 'user',
 			'name' => 'user',
 			'id' => 'mw-listfiles-user',
 			'label-message' => 'username',
 			'default' => $this->mUserName,
-			'size' => '40',
-			'maxlength' => '255',
-			'cssclass' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
+			'maxlength' => '255'
 		];
 
 		$fields['ilshowall'] = [
@@ -565,10 +689,11 @@ class ImageListPager extends TablePager {
 		unset( $query['title'] );
 		unset( $query['limit'] );
 		unset( $query['ilsearch'] );
+		unset( $query['ilmime'] );
 		unset( $query['ilshowall'] );
 		unset( $query['user'] );
 
-		$form = new HTMLForm( $fields, $this->getContext() );
+		$form = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
 
 		$form->setMethod( 'get' );
 		$form->setTitle( $this->getTitle() );
