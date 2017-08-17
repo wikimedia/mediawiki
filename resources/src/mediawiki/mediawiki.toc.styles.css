@@ -1,0 +1,35 @@
+.toc {
+	position: relative;
+}
+
+.toctogglecheckbox {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	margin: 0;
+	height: 1.6em;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.toctitle > h2::after {
+	font-size: 94%;
+	font-weight: normal;
+}
+
+.toctogglecheckbox:checked + .toctitle > h2::after {
+	content: ' [show]';
+}
+
+.toctogglecheckbox:not( :checked ) + .toctitle > h2::after {
+	content: ' [hide]';
+}
+
+.toctogglecheckbox:checked + .toctitle + ul {
+	display: none;
+	/* Alternative:
+	opacity: 0;
+	height: 0;
+	margin: 0 !important;
+	*/
+}

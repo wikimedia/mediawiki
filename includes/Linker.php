@@ -1569,6 +1569,7 @@ class Linker {
 		$title = wfMessage( 'toc' )->inLanguage( $lang )->escaped();
 
 		return '<div id="toc" class="toc">'
+			. '<input type="checkbox" class="toctogglecheckbox" />'
 			. '<div class="toctitle"><h2>' . $title . "</h2></div>\n"
 			. $toc
 			. "</ul>\n</div>\n";
