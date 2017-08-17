@@ -200,6 +200,9 @@ abstract class Skin extends ContextSource {
 
 		if ( $out->isTOCEnabled() ) {
 			$modules['content'][] = 'mediawiki.toc';
+			// Add style module 'mediawiki.toc.styles' here, to deliver the module in
+			// API action=parse.
+			$modules['content'][] = 'mediawiki.toc.styles';
 		}
 
 		// Add various resources if required
