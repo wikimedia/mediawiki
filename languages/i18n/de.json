@@ -2179,6 +2179,8 @@
 	"watching": "Beobachten …",
 	"unwatching": "Nicht mehr beobachten …",
 	"watcherrortext": "Beim Ändern der Beobachtungslisteneinstellungen für „$1“ ist ein Fehler aufgetreten.",
+	"watchlist-unwatch": "×",
+	"watchlist-unwatch-undo": "+",
 	"enotif_reset": "Alle Seiten als besucht markieren",
 	"enotif_impersonal_salutation": "{{SITENAME}}-Benutzer",
 	"enotif_subject_deleted": "{{SITENAME}}-Seite $1 wurde von {{GENDER:$2|$2}} gelöscht",

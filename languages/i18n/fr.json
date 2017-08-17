@@ -2256,6 +2256,8 @@
 	"watching": "Suivi…",
 	"unwatching": "Fin du suivi…",
 	"watcherrortext": "Une erreur s'est produite lors de la modification des paramètres de votre liste de suivi pour « $1 ».",
+	"watchlist-unwatch": "×",
+	"watchlist-unwatch-undo": "+",
 	"enotif_reset": "Marquer toutes les pages comme visitées",
 	"enotif_impersonal_salutation": "Utilisateur de {{SITENAME}}",
 	"enotif_subject_deleted": "La page $1 sur {{SITENAME}} a été {{GENDER:$2|supprimée}} par $2",

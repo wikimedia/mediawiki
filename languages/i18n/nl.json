@@ -2170,6 +2170,8 @@
 	"watching": "Bezig met plaatsen op volglijst…",
 	"unwatching": "Bezig met verwijderen van volglijst…",
 	"watcherrortext": "Er is een fout opgetreden tijdens het wijzigen van uw volglijstinstellingen voor \"$1\".",
+	"watchlist-unwatch": "×",
+	"watchlist-unwatch-undo": "+",
 	"enotif_reset": "Alle pagina's markeren als bezocht",
 	"enotif_impersonal_salutation": "gebruiker van {{SITENAME}}",
 	"enotif_subject_deleted": "{{SITENAME}}: pagina $1 is verwijderd door {{GENDER:$2|$2}}",
@@ -3575,7 +3577,6 @@
 	"compare-title-not-exists": "De titel die u hebt opgegeven bestaat niet.",
 	"compare-revision-not-exists": "De versie die u hebt opgegeven bestaat niet.",
 	"diff-form": "Wijzigingen",
-	"diff-form-oldid": "Oude versienummer (optioneel)",
 	"diff-form-revid": "Versienummer van de wijziging",
 	"diff-form-submit": "Verschillen weergeven",
 	"permanentlink": "Permanente koppeling",
@@ -3989,7 +3990,6 @@
 	"undelete-cantedit": "U kunt deze pagina niet terug plaatsen omdat u niet het recht hebt om deze pagina te bewerken.",
 	"undelete-cantcreate": "U kunt deze pagina niet terugplaatsen omdat er geen bestaande pagina met deze naam is en u geen toestemming hebt om deze pagina aan te maken.",
 	"pagedata-title": "Pagina data",
-	"pagedata-text": "Deze pagina biedt een data interface voor pagina's. Geef een pagina titel op door deze in de URL te plaatsen, met behulp van de deelpagina syntax.\n* De toegepaste inhoudsindeling wordt gebaseerd op de door de client meegestuurde Accept Header. Dit betekent dat de pagina'data wordt aangeleverd in het formaat waaraan de client de voorkeur geeft.",
 	"pagedata-not-acceptable": "Er is geen overeenkomende indeling gevonden. Ondersteunde MIME-typen: $1",
 	"pagedata-bad-title": "Ongeldige titel: $1."
 }
