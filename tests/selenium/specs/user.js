@@ -9,60 +9,50 @@ describe( 'User', function () {
 	var password,
 		username;
 
-	before( function () {
+	beforeEach( function () {
+		username = `User-${Math.random().toString()}`;
+		password = Math.random().toString();
+
+		browser.reload();
+
 		// disable VisualEditor welcome dialog
 		UserLoginPage.open();
 		browser.localStorage( 'POST', { key: 've-beta-welcome-dialog', value: '1' } );
 	} );
 
-	beforeEach( function () {
-		browser.deleteCookie();
-		username = `User-${Math.random().toString()}`;
-		password = Math.random().toString();
-	} );
-
 	it( 'should be able to create account', function () {
 
 		// create
+		UserLoginPage.login( browser.options.username, browser.options.password );
 		CreateAccountPage.createAccount( username, password );
 
 		// check
-		assert.equal( CreateAccountPage.heading.getText(), `Welcome, ${username}!` );
+		assert.equal( CreateAccountPage.heading.getText(), 'Account created' );
 
 	} );
 
 	it( 'should be able to log in', function () {
 
-		// create
-		browser.call( function () {
-			return CreateAccountPage.apiCreateAccount( username, password );
-		} );
-
 		// log in
-		UserLoginPage.login( username, password );
+		UserLoginPage.login( browser.options.username, browser.options.password );
 
 		// check
-		assert.equal( UserLoginPage.userPage.getText(), username );
+		assert.equal( UserLoginPage.userPage.getText(), browser.options.username );
 
 	} );
 
 	it( 'should be able to change preferences', function () {
 
-		var realName = Math.random().toString();
-
-		// create
-		browser.call( function () {
-			return CreateAccountPage.apiCreateAccount( username, password );
-		} );
+		var signature = Math.random().toString();
 
 		// log in
-		UserLoginPage.login( username, password );
+		UserLoginPage.login( browser.options.username, browser.options.password );
 
 		// change
-		PreferencesPage.changeRealName( realName );
+		PreferencesPage.changeSignature( signature );
 
 		// check
-		assert.equal( PreferencesPage.realName.getValue(), realName );
+		assert.equal( PreferencesPage.existingSignature.getText(), signature );
 
 	} );
 

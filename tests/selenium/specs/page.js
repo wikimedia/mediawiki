@@ -9,16 +9,15 @@ describe( 'Page', function () {
 	var content,
 		name;
 
-	before( function () {
-		// disable VisualEditor welcome dialog
-		UserLoginPage.open();
-		browser.localStorage( 'POST', { key: 've-beta-welcome-dialog', value: '1' } );
-	} );
-
 	beforeEach( function () {
-		browser.deleteCookie();
 		content = Math.random().toString();
 		name = Math.random().toString();
+
+		browser.reload();
+		UserLoginPage.login( browser.options.username, browser.options.password );
+
+		// disable VisualEditor welcome dialog
+		browser.localStorage( 'POST', { key: 've-beta-welcome-dialog', value: '1' } );
 	} );
 
 	it( 'should be creatable', function () {
