@@ -142,16 +142,18 @@ abstract class MWLBFactory {
 			}
 		}
 
+		$services = MediaWikiServices::getInstance();
+
 		// Use APC/memcached style caching, but avoids loops with CACHE_DB (T141804)
-		$sCache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
+		$sCache = $services->getLocalServerObjectCache();
 		if ( $sCache->getQoS( $sCache::ATTR_EMULATION ) > $sCache::QOS_EMULATION_SQL ) {
 			$lbConf['srvCache'] = $sCache;
 		}
-		$cCache = ObjectCache::getLocalClusterInstance();
-		if ( $cCache->getQoS( $cCache::ATTR_EMULATION ) > $cCache::QOS_EMULATION_SQL ) {
-			$lbConf['memStash'] = $cCache;
+		$mStash = $services->getMainObjectStash();
+		if ( $mStash->getQoS( $mStash::ATTR_EMULATION ) > $mStash::QOS_EMULATION_SQL ) {
+			$lbConf['memStash'] = $mStash;
 		}
-		$wCache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$wCache = $services->getMainWANObjectCache();
 		if ( $wCache->getQoS( $wCache::ATTR_EMULATION ) > $wCache::QOS_EMULATION_SQL ) {
 			$lbConf['wanCache'] = $wCache;
 		}
