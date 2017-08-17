@@ -224,32 +224,33 @@
 		var changed = false,
 			active = this.areAnySelected();
 
-		if (
-			item.isSelected() &&
-			this.getType() === 'single_option' &&
-			this.currSelected &&
-			this.currSelected !== item
-		) {
-			this.currSelected.toggleSelected( false );
-		}
-
-		// For 'single_option' groups, check if we just unselected all
-		// items. This should never be the result. If we did unselect
-		// all (like resetting all filters to false) then this group
-		// must choose its default item or the first item in the group
-		if (
-			this.getType() === 'single_option' &&
-			!this.getItems().some( function ( filterItem ) {
-				return filterItem.isSelected();
-			} )
-		) {
-			// Single option means there must be a single option
-			// selected, so we have to either select the default
-			// or select the first option
-			this.currSelected = this.getItemByParamName( this.defaultParams[ this.getName() ] ) ||
-				this.getItems()[ 0 ];
-			this.currSelected.toggleSelected( true );
-			changed = true;
+		if ( this.getType() === 'single_option' ) {
+			// This group must have one item selected always
+			// and must never have more than one item selected at a time
+			if ( this.getSelectedItems().length === 0 ) {
+				// Nothing is selected anymore
+				// Select the default or the first item
+				this.currSelected = this.getItemByParamName( this.defaultParams[ this.getName() ] ) ||
+					this.getItems()[ 0 ];
+				this.currSelected.toggleSelected( true );
+				changed = true;
+			} else if ( this.getSelectedItems().length > 1 ) {
+				// There is more than one item selected
+				// This should only happen if the item given
+				// is the one that is selected, so unselect
+				// all items that is not it
+				this.getSelectedItems().forEach( function ( itemModel ) {
+					// Note that in case the given item is actually
+					// not selected, this loop will end up unselecting
+					// all items, which would trigger the case above
+					// when the last item is unselected anyways
+					itemModel.toggleSelected(
+						itemModel.getName() === item.getName() &&
+						item.isSelected()
+					);
+				} );
+				changed = true;
+			}
 		}
 
 		if (
