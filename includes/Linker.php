@@ -1583,12 +1583,24 @@ class Linker {
 		$title = wfMessage( 'toc' )->inLanguage( $lang )->escaped();
 
 		return '<div id="toc" class="toc">'
+			. Html::element( 'input', [
+				'type' => 'checkbox',
+				'id' => 'toctogglecheckbox',
+				'class' => 'toctogglecheckbox',
+				'style' => 'display:none',
+			] )
 			. Html::openElement( 'div', [
 				'class' => 'toctitle',
 				'lang' => $lang->getHtmlCode(),
 				'dir' => $lang->getDir(),
 			] )
-			. '<h2>' . $title . "</h2></div>\n"
+			. "<h2>$title</h2>"
+			. '<span class="toctogglespan">'
+			. Html::label( '', 'toctogglecheckbox', [
+				'class' => 'toctogglelabel',
+			] )
+			. '</span>'
+			. "</div>\n"
 			. $toc
 			. "</ul>\n</div>\n";
 	}
