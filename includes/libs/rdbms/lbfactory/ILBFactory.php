@@ -44,7 +44,7 @@ interface ILBFactory {
 	 *  - localDomain: A DatabaseDomain or domain ID string.
 	 *  - readOnlyReason : Reason the master DB is read-only if so [optional]
 	 *  - srvCache : BagOStuff object for server cache [optional]
-	 *  - memCache : BagOStuff object for cluster memory cache [optional]
+	 *  - memStash : BagOStuff object for cross-datacenter memory storage [optional]
 	 *  - wanCache : WANObjectCache object [optional]
 	 *  - hostname : The name of the current server [optional]
 	 *  - cliMode: Whether the execution context is a CLI script. [optional]
