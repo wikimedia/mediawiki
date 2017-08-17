@@ -94,7 +94,6 @@ interface ILoadBalancer {
 	 *  - readOnlyReason : Reason the master DB is read-only if so [optional]
 	 *  - waitTimeout : Maximum time to wait for replicas for consistency [optional]
 	 *  - srvCache : BagOStuff object for server cache [optional]
-	 *  - memCache : BagOStuff object for cluster memory cache [optional]
 	 *  - wanCache : WANObjectCache object [optional]
 	 *  - chronologyProtector: ChronologyProtector object [optional]
 	 *  - hostname : The name of the current server [optional]

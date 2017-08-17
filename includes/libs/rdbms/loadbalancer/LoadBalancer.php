@@ -62,8 +62,6 @@ class LoadBalancer implements ILoadBalancer {
 	private $chronProt;
 	/** @var BagOStuff */
 	private $srvCache;
-	/** @var BagOStuff */
-	private $memCache;
 	/** @var WANObjectCache */
 	private $wanCache;
 	/** @var object|string Class name or object With profileIn/profileOut methods */
@@ -187,11 +185,6 @@ class LoadBalancer implements ILoadBalancer {
 		} else {
 			$this->srvCache = new EmptyBagOStuff();
 		}
-		if ( isset( $params['memCache'] ) ) {
-			$this->memCache = $params['memCache'];
-		} else {
-			$this->memCache = new EmptyBagOStuff();
-		}
 		if ( isset( $params['wanCache'] ) ) {
 			$this->wanCache = $params['wanCache'];
 		} else {
@@ -244,7 +237,7 @@ class LoadBalancer implements ILoadBalancer {
 			}
 
 			$this->loadMonitor = new $class(
-				$this, $this->srvCache, $this->memCache, $this->loadMonitorConfig );
+				$this, $this->srvCache, $this->wanCache, $this->loadMonitorConfig );
 			$this->loadMonitor->setLogger( $this->replLogger );
 		}
 
