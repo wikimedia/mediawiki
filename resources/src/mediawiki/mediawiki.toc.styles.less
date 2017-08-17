@@ -1,0 +1,58 @@
+/* Hide checkbox. This also prevents focusing the checkbox. */
+.toctogglecheckbox {
+	display: none;
+}
+
+/* When the browser supports :checked then make the checkbox invisible on an other way to allow */
+/* to focus the checkbox with keyboard. */
+:not( :checked ) > .toctogglecheckbox {
+	display: inline;
+	position: absolute;
+	opacity: 0;
+}
+
+.toctogglespan {
+	font-size: 94%;
+}
+
+/* IE8 does not support :checked and therefor it does not support the hiding at all. */
+/* The selector ":not( :checked ) >" prevents that the useless brackets are shown on IE8. */
+:not( :checked ) > .toctogglespan:before {
+	content: ' [';
+}
+
+:not( :checked ) > .toctogglespan:after {
+	content: ']';
+}
+
+/* Make the label look like a link. */
+.toctogglelabel {
+	cursor: pointer;
+	color: #0645ad;
+}
+
+.toctogglelabel:hover {
+	text-decoration: underline;
+}
+
+/* Show a focus ring around the label when focusing the invisible checkbox. */
+/* This simulates that the label is in focus. */
+.toctogglecheckbox:focus + .toctitle .toctogglelabel {
+	text-decoration: underline;
+	outline: dotted 1px; /* Firefox style for focus */
+	outline: auto -webkit-focus-ring-color; /* Webkit style for focus */
+}
+
+/* Change the text of the button based on the state of the checkbox. */
+.toctogglecheckbox:checked + .toctitle .toctogglelabel:after {
+	content: '@{msg-showtoc}';
+}
+
+.toctogglecheckbox:not( :checked ) + .toctitle .toctogglelabel:after {
+	content: '@{msg-hidetoc}';
+}
+
+/* Hide the content of the TOC when the checkbox is checked. */
+.toctogglecheckbox:checked ~ ul {
+	display: none;
+}
