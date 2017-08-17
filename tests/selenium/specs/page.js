@@ -11,12 +11,11 @@ describe( 'Page', function () {
 
 	before( function () {
 		// disable VisualEditor welcome dialog
-		UserLoginPage.open();
+		UserLoginPage.login( browser.options.username, browser.options.password );
 		browser.localStorage( 'POST', { key: 've-beta-welcome-dialog', value: '1' } );
 	} );
 
 	beforeEach( function () {
-		browser.deleteCookie();
 		content = Math.random().toString();
 		name = Math.random().toString();
 	} );

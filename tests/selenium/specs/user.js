@@ -17,8 +17,12 @@ describe( 'User', function () {
 
 	beforeEach( function () {
 		browser.deleteCookie();
+
+		UserLoginPage.login( browser.options.username, browser.options.password );
+
 		username = `User-${Math.random().toString()}`;
 		password = Math.random().toString();
+
 	} );
 
 	it( 'should be able to create account', function () {
