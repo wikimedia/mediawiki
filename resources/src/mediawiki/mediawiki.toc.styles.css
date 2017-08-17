@@ -1,0 +1,38 @@
+/* Hide checkbox but let it allow to focus with keyboard */
+.toctogglecheckbox {
+	position: absolute;
+	z-index: -1;
+}
+
+.toctogglespan:before {
+	content: ' [';
+}
+
+.toctogglespan:after {
+	content: ']';
+}
+
+.toctogglelabel {
+	cursor: pointer;
+	color: #0645ad;
+}
+
+.toctogglelabel:hover {
+	text-decoration: underline;
+}
+
+.toctogglecheckbox:focus + .toctitle .toctogglelabel {
+	outline: dotted 1px; /* Firefox style for focus */
+}
+
+.toctogglecheckbox:checked + .toctitle .toctogglelabel:after {
+	content: attr( data-showtoc );
+}
+
+.toctogglecheckbox:not( :checked ) + .toctitle .toctogglelabel:after {
+	content: attr( data-hidetoc );
+}
+
+.toctogglecheckbox:checked + .toctitle + ul {
+	display: none;
+}
