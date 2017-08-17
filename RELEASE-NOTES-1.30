@@ -43,6 +43,8 @@ section).
   temporary variable during the migration period.
 
 === New features in 1.30 ===
+* (T35835) Special:ListFiles and Special:MIMESearch have merged 
+  and converted to the OOjs (T117743).
 * (T37247) Output from Parser::parse() will now be wrapped in a div with
   class="mw-parser-output" by default. This may be changed or disabled using
   ParserOptions::setWrapOutputClass().

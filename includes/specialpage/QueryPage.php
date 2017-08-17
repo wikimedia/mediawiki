@@ -80,7 +80,6 @@ abstract class QueryPage extends SpecialPage {
 				[ 'LonelyPagesPage', 'Lonelypages' ],
 				[ 'LongPagesPage', 'Longpages' ],
 				[ 'MediaStatisticsPage', 'MediaStatistics' ],
-				[ 'MIMEsearchPage', 'MIMEsearch' ],
 				[ 'MostcategoriesPage', 'Mostcategories' ],
 				[ 'MostimagesPage', 'Mostimages' ],
 				[ 'MostinterwikisPage', 'Mostinterwikis' ],
