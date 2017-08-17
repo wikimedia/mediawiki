@@ -125,7 +125,6 @@ class SpecialPageFactory {
 		'Listfiles' => 'SpecialListFiles',
 		'Filepath' => 'SpecialFilepath',
 		'MediaStatistics' => 'MediaStatisticsPage',
-		'MIMEsearch' => 'MIMEsearchPage',
 		'FileDuplicateSearch' => 'FileDuplicateSearchPage',
 		'Upload' => 'SpecialUpload',
 		'UploadStash' => 'SpecialUploadStash',
