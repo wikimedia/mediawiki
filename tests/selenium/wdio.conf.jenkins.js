@@ -6,8 +6,12 @@ var merge = require( 'deepmerge' ),
 
 // Overwrite default settings
 exports.config = merge( wdioConf.config, {
-	username: 'WikiAdmin',
-	password: 'testpass',
+	username: process.env.MEDIAWIKI_USER === undefined ?
+		'WikiAdmin' :
+		process.env.MEDIAWIKI_USER,
+	password: process.env.MEDIAWIKI_PASSWORD === undefined ?
+		'testpass' :
+		process.env.MEDIAWIKI_PASSWORD,
 	screenshotPath: '../log/',
 	baseUrl: process.env.MW_SERVER + process.env.MW_SCRIPT_PATH,
 
