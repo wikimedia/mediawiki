@@ -1569,7 +1569,17 @@ class Linker {
 		$title = wfMessage( 'toc' )->inLanguage( $lang )->escaped();
 
 		return '<div id="toc" class="toc">'
-			. '<div class="toctitle"><h2>' . $title . "</h2></div>\n"
+			. '<input type="checkbox" id="toctogglecheckbox" class="toctogglecheckbox" />'
+			. '<div class="toctitle">'
+			. "<h2>$title</h2>"
+			. '<span class="toctogglespan">'
+			. Html::label( '', 'toctogglecheckbox', [
+				'class' => 'toctogglelabel',
+				'data-hidetoc' => wfMessage( 'hidetoc' )->text(),
+				'data-showtoc' => wfMessage( 'showtoc' )->text(),
+			] )
+			. '</span>'
+			. "</div>\n"
 			. $toc
 			. "</ul>\n</div>\n";
 	}
