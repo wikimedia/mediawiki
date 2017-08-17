@@ -55,7 +55,7 @@ abstract class LBFactory implements ILBFactory {
 	/** @var BagOStuff */
 	protected $srvCache;
 	/** @var BagOStuff */
-	protected $memCache;
+	protected $memStash;
 	/** @var WANObjectCache */
 	protected $wanCache;
 
@@ -93,7 +93,7 @@ abstract class LBFactory implements ILBFactory {
 		}
 
 		$this->srvCache = isset( $conf['srvCache'] ) ? $conf['srvCache'] : new EmptyBagOStuff();
-		$this->memCache = isset( $conf['memCache'] ) ? $conf['memCache'] : new EmptyBagOStuff();
+		$this->memStash = isset( $conf['memStash'] ) ? $conf['memStash'] : new EmptyBagOStuff();
 		$this->wanCache = isset( $conf['wanCache'] )
 			? $conf['wanCache']
 			: WANObjectCache::newEmpty();
@@ -435,7 +435,7 @@ abstract class LBFactory implements ILBFactory {
 		}
 
 		$this->chronProt = new ChronologyProtector(
-			$this->memCache,
+			$this->memStash,
 			[
 				'ip' => $this->requestInfo['IPAddress'],
 				'agent' => $this->requestInfo['UserAgent'],
