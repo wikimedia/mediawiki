@@ -33,10 +33,12 @@ class SpecialListFiles extends IncludableSpecialPage {
 		if ( $this->including() ) {
 			$userName = $par;
 			$search = '';
+			$mime = '';
 			$showAll = false;
 		} else {
 			$userName = $this->getRequest()->getText( 'user', $par );
 			$search = $this->getRequest()->getText( 'ilsearch', '' );
+			$mime = $this->getRequest()->getText( 'ilmime', '' );
 			$showAll = $this->getRequest()->getBool( 'ilshowall', false );
 		}
 
@@ -44,6 +46,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 			$this->getContext(),
 			$userName,
 			$search,
+			$mime,
 			$this->including(),
 			$showAll
 		);
