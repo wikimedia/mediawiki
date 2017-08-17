@@ -1568,8 +1568,21 @@ class Linker {
 		$lang = wfGetLangObj( $lang );
 		$title = wfMessage( 'toc' )->inLanguage( $lang )->escaped();
 
+		// Random value to get an unique ID when there are multiple TOC on one page.
+		$checkboxId = 'toctogglecheckbox-' . base64_encode( MWCryptRand::generate( 15 ) );
+
 		return '<div id="toc" class="toc">'
-			. '<div class="toctitle"><h2>' . $title . "</h2></div>\n"
+			. '<input type="checkbox" id="'. $checkboxId . '" class="toctogglecheckbox" />'
+			. '<div class="toctitle">'
+			. "<h2>$title</h2>"
+			. '<span class="toctogglespan">'
+			. Html::label( '', $checkboxId, [
+				'class' => 'toctogglelabel',
+				'data-hidetoc' => wfMessage( 'hidetoc' )->text(),
+				'data-showtoc' => wfMessage( 'showtoc' )->text(),
+			] )
+			. '</span>'
+			. "</div>\n"
 			. $toc
 			. "</ul>\n</div>\n";
 	}
