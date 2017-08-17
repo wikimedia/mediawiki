@@ -1,0 +1,4 @@
+/* Hide the complete TOC on print when the TOC is hidden. */
+.toctogglecheckbox:checked + .toctitle {
+	display: none;
+}
