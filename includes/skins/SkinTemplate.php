@@ -70,6 +70,9 @@ class SkinTemplate extends Skin {
 		if ( $out->isSyndicated() ) {
 			$moduleStyles[] = 'mediawiki.feedlink';
 		}
+		if ( $out->isTOCEnabled() ) {
+			$moduleStyles[] = 'mediawiki.toc.styles';
+		}
 
 		// Deprecated since 1.26: Unconditional loading of mediawiki.ui.button
 		// on every page is deprecated. Express a dependency instead.

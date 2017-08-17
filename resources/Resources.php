@@ -1348,6 +1348,16 @@ return [
 		'messages' => [ 'showtoc', 'hidetoc' ],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.toc.styles' => [
+		'lessmessages' => [ 'hidetoc', 'showtoc' ],
+		'styles' => [
+			'resources/src/mediawiki/mediawiki.toc.styles.less'
+				=> [ 'media' => 'screen' ],
+			'resources/src/mediawiki/mediawiki.toc.styles.print.css'
+				=> [ 'media' => 'print' ],
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.Uri' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.Uri.js',
 		'templates' => [

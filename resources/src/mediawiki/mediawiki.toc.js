@@ -6,6 +6,7 @@
 		$content.find( '.toc' ).addBack( '.toc' ).each( function () {
 			var hideToc,
 				$this = $( this ),
+				$tocToggleCheckbox = $this.children( '.toctogglecheckbox' ),
 				$tocTitle = $this.find( '.toctitle' ),
 				$tocToggleLink = $this.find( '.togglelink' ),
 				$tocList = $this.find( 'ul' ).eq( 0 );
@@ -27,7 +28,7 @@
 
 			// Only add it if there is a complete TOC and it doesn't
 			// have a toggle added already
-			if ( $tocTitle.length && $tocList.length && !$tocToggleLink.length ) {
+			if ( !$tocToggleCheckbox.length && $tocTitle.length && $tocList.length && !$tocToggleLink.length ) {
 				hideToc = mw.cookie.get( 'hidetoc' ) === '1';
 
 				$tocToggleLink = $( '<a role="button" tabindex="0" class="togglelink"></a>' )
