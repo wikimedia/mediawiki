@@ -1,0 +1,5 @@
+.toctogglecheckbox,
+.toctogglecheckbox:checked + .toctitle,
+.toctogglecheckbox:checked + .toctitle + ul {
+	display: none;
+}
