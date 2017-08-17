@@ -10,13 +10,12 @@ describe( 'Page', function () {
 		name;
 
 	before( function () {
+		UserLoginPage.login( browser.options.username, browser.options.password );
 		// disable VisualEditor welcome dialog
-		UserLoginPage.open();
 		browser.localStorage( 'POST', { key: 've-beta-welcome-dialog', value: '1' } );
 	} );
 
 	beforeEach( function () {
-		browser.deleteCookie();
 		content = Math.random().toString();
 		name = Math.random().toString();
 	} );
