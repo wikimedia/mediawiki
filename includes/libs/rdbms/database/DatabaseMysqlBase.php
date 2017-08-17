@@ -778,6 +778,8 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @see https://www.percona.com/doc/percona-toolkit/2.1/pt-heartbeat.html
 	 */
 	protected function getHeartbeatData( array $conds ) {
+		// Query time and trip time are not counted
+		$nowUnix = microtime( true );
 		// Do not bother starting implicit transactions here
 		$this->clearFlag( self::DBO_TRX, self::REMEMBER_PRIOR );
 		try {
@@ -793,7 +795,7 @@ abstract class DatabaseMysqlBase extends Database {
 			$this->restoreFlags();
 		}
 
-		return [ $row ? $row->ts : null, microtime( true ) ];
+		return [ $row ? $row->ts : null, $nowUnix ];
 	}
 
 	protected function getApproximateLagStatus() {
