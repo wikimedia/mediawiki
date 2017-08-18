@@ -9,6 +9,13 @@
 
 	&-buttonSelect {
 		&-color {
+			// Override OOUI definition from padded popup; the definition
+			// forces the first-child to be margin-top:0; which overrides
+			// our definitions below where margin is 0.5em.
+			// We set up the margin-top as 0.5em for all circles so we get
+			// a consistent result
+			margin-top: 0.5em !important;
+
 			// Make the rule much more specific to override OOUI
 			.oo-ui-iconElement-icon.oo-ui-icon-check {
 				// Override OOUI icon dimensions
