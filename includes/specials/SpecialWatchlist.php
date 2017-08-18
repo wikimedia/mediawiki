@@ -142,6 +142,43 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	protected function registerFilters() {
 		parent::registerFilters();
 
+		$this->registerFilterGroup( new ChangesListStringOptionsFilterGroup( [
+			'name' => 'watchlistactivity',
+			'title' => 'rcfilters-filtergroup-watchlistactivity',
+			'class' => ChangesListStringOptionsFilterGroup::class,
+			'priority' => 3,
+			'isFullCoverage' => true,
+			'filters' => [
+				[
+					'name' => 'unseen',
+					'label' => 'rcfilters-filter-watchlistactivity-unseen-label',
+					'description' => 'rcfilters-filter-watchlistactivity-unseen-description',
+					'cssClassSuffix' => 'watchedunseen',
+					'isRowApplicableCallable' => function ( $ctx, $rc ) {
+						return $rc->getAttribute( 'rc_timestamp' ) >= $rc->getAttribute( 'wl_notificationtimestamp' );
+					},
+				],
+				[
+					'name' => 'seen',
+					'label' => 'rcfilters-filter-watchlistactivity-seen-label',
+					'description' => 'rcfilters-filter-watchlistactivity-seen-description',
+					'cssClassSuffix' => 'watchedseen',
+					'isRowApplicableCallable' => function ( $ctx, $rc ) {
+						return $rc->getAttribute( 'rc_timestamp' ) < $rc->getAttribute( 'wl_notificationtimestamp' );
+					}
+				],
+			],
+			'default' => ChangesListStringOptionsFilterGroup::NONE,
+			'queryCallable' => function ( $specialPageClassName, $context, $dbr,
+										  &$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedValues ) {
+				if ( $selectedValues === [ 'seen' ] ) {
+					$conds[] = 'rc_timestamp < wl_notificationtimestamp';
+				} elseif ( $selectedValues === [ 'unseen' ] ) {
+					$conds[] = 'rc_timestamp >= wl_notificationtimestamp';
+				}
+			}
+		] ) );
+
 		$user = $this->getUser();
 
 		$significance = $this->getFilterGroup( 'significance' );
