@@ -3790,10 +3790,11 @@ $wgResourceLoaderValidateStaticJS = false;
  */
 $wgResourceLoaderLESSVars = [
 	/**
-	 * Minimum available screen width at which a device can be considered a tablet/desktop
+	 * Minimum available screen width at which a device can be considered a tablet
 	 * The number is currently based on the device width of a Samsung Galaxy S5 mini and is low
 	 * enough to cover iPad (768px). Number is prone to change with new information.
 	 * @since 1.27
+	 * @deprecated 1.31 Use mediawiki.ui/variables instead
 	 */
 	'deviceWidthTablet' => '720px',
 ];
