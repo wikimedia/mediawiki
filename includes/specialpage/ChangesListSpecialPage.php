@@ -525,6 +525,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	public function execute( $subpage ) {
 		$this->rcSubpage = $subpage;
 
+		$this->considerActionsForDefaultSavedQuery();
+
 		$rows = $this->getRows();
 		$opts = $this->getOptions();
 		if ( $rows === false ) {
@@ -577,6 +579,87 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
+	 * Check whether or not the page should load defaults, and if so, whether
+	 * a default saved query is relevant to be redirected to. If it is relevant,
+	 * redirect properly with all necessary query parameters.
+	 */
+	protected function considerActionsForDefaultSavedQuery() {
+		$opts = $this->getOptions();
+
+		// Output the name of the saved query preference
+		$this->getOutput()->addJsConfigVars(
+			'wgStructuredChangeFiltersSavedQueriesPreferenceName',
+			static::$savedQueriesPreferenceName
+		);
+
+		$knownParams = call_user_func_array(
+			[ $this->getRequest(), 'getValues' ],
+			array_keys( $opts->getAllValues() )
+		);
+
+		// HACK: Temporarily until we can properly define "sticky" filters and parameters,
+		// we need to exclude several parameters we know should not be counted towards preventing
+		// the loading of defaults.
+		$excludedParams = [ 'limit' => '', 'days' => '', 'enhanced' => '', 'from' => '', 'invert' => '' ];
+		$knownParams = array_diff_key( $knownParams, $excludedParams );
+
+		if (
+			// If there are any known parameters in the URL request
+			// (that are not excluded) then we need to check into loading
+			// the default saved query
+			count( $knownParams ) === 0 &&
+			static::$savedQueriesPreferenceName &&
+			$this->getUser()->getOption( 'rcenhancedfilters' )
+		) {
+			// Get the saved queries data and parse it
+			$savedQueries = FormatJson::decode(
+				$this->getUser()->getOption( static::$savedQueriesPreferenceName ),
+				true
+			);
+			$savedQueryDefaultID = $savedQueries[ 'default' ];
+
+			if ( $savedQueries && isset( $savedQueryDefaultID ) ) {
+				// We recognize a default saved query exists
+
+				// Only load queries that are 'version' 2, since those
+				// have parameter representation
+				if ( $savedQueries[ 'version' ] === '2' ) {
+					// Find the default query
+					$defaultQuery = $savedQueries[ 'queries' ][ $savedQueryDefaultID ][ 'data' ];
+
+					// Build the entire parameter list
+					$query = array_merge(
+						$defaultQuery[ 'params' ],
+						$defaultQuery[ 'highlights' ],
+						[
+							'urlversion' => '2',
+						]
+					);
+					// Add to the query any parameters that we may have ignored before
+					// but are still valid and requested in the URL
+					$query = array_merge( $this->getRequest()->getValues(), $query );
+
+					// Redirect
+					$this->getOutput()->redirect( $this->getPageTitle()->getCanonicalURL( $query ) );
+				} else {
+					// There's a default, but the version is not 2, and the server can't
+					// actually recognize the query itself. This happens if it is before
+					// the conversion, so we need to tell the UI to reload saved query as
+					// it does the conversion to version 2
+					$this->getOutput()->addJsConfigVars(
+						'wgStructuredChangeFiltersDefaultSavedQueryExists',
+						true
+					);
+
+					// Add the class that tells the frontend it is still loading
+					// another query
+					$this->getOutput()->addBodyClasses( 'mw-rcfilters-ui-default-saved-query' );
+				}
+			}
+		}
+	}
+
+	/**
 	 * Include the modules and configuration for the RCFilters app.
 	 * Conditional on the user having the feature enabled.
 	 *
@@ -623,19 +706,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					'daysDefault' => $this->getDefaultDays(),
 				]
 			);
-
-			if ( static::$savedQueriesPreferenceName ) {
-				$savedQueries = FormatJson::decode(
-					$this->getUser()->getOption( static::$savedQueriesPreferenceName )
-				);
-				if ( $savedQueries && isset( $savedQueries->default ) ) {
-					$out->addBodyClasses( 'mw-rcfilters-ui-default-saved-query' );
-				}
-				$out->addJsConfigVars(
-					'wgStructuredChangeFiltersSavedQueriesPreferenceName',
-					static::$savedQueriesPreferenceName
-				);
-			}
 		} else {
 			$out->addBodyClasses( 'mw-rcfilters-disabled' );
 		}
