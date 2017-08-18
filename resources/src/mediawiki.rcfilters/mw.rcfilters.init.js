@@ -15,7 +15,7 @@
 				savedQueriesPreferenceName = mw.config.get( 'wgStructuredChangeFiltersSavedQueriesPreferenceName' ),
 				filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
 				changesListModel = new mw.rcfilters.dm.ChangesListViewModel(),
-				savedQueriesModel = new mw.rcfilters.dm.SavedQueriesModel(),
+				savedQueriesModel = new mw.rcfilters.dm.SavedQueriesModel( filtersModel ),
 				controller = new mw.rcfilters.Controller(
 					filtersModel, changesListModel, savedQueriesModel,
 					{
