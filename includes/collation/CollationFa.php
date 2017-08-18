@@ -32,9 +32,13 @@ class CollationFa extends IcuCollation {
 
 	// Really hacky - replace with stuff from other blocks.
 	private $override = [
-		"\xd8\xa7" => "\xd8\xa1",
+		// U+0627 ARABIC LETTER ALEF => U+0623 ARABIC LETTER ALEF WITH HAMZA ABOVE
+		"\xd8\xa7" => "\xd8\xa3",
+		// U+0648 ARABIC LETTER WAW => U+0649 ARABIC LETTER ALEF MAKSURA
 		"\xd9\x88" => "\xd9\x89",
+		// U+0672 ARABIC LETTER ALEF WITH WAVY HAMZA ABOVE => U+F3001 (private use area)
 		"\xd9\xb2" => "\xF3\xB3\x80\x81",
+		// U+0673 ARABIC LETTER ALEF WITH WAVY HAMZA BELOW => U+F3002 (private use area)
 		"\xd9\xb3" => "\xF3\xB3\x80\x82",
 	];
 
