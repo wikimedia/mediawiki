@@ -7,10 +7,11 @@
 	 * @mixins OO.EmitterList
 	 *
 	 * @constructor
+	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersModel Filters model
 	 * @param {Object} [config] Configuration options
 	 * @cfg {string} [default] Default query ID
 	 */
-	mw.rcfilters.dm.SavedQueriesModel = function MwRcfiltersDmSavedQueriesModel( config ) {
+	mw.rcfilters.dm.SavedQueriesModel = function MwRcfiltersDmSavedQueriesModel( filtersModel, config ) {
 		config = config || {};
 
 		// Mixin constructor
@@ -18,7 +19,8 @@
 		OO.EmitterList.call( this );
 
 		this.default = config.default;
-		this.baseState = {};
+		this.filtersModel = filtersModel;
+		this.converted = false;
 
 		// Events
 		this.aggregate( { update: 'itemUpdate' } );
@@ -58,6 +60,9 @@
 	 * Initialize the saved queries model by reading it from the user's settings.
 	 * The structure of the saved queries is:
 	 * {
+	 *    version: (string) Version number; if version 2, the query represents
+	 *             parameters. Otherwise, the older version represented filters
+	 *             and needs to be readjusted,
 	 *    default: (string) Query ID
 	 *    queries:{
 	 *       query_id_1: {
@@ -72,62 +77,175 @@
 	 *
 	 * @param {Object} [savedQueries] An object with the saved queries with
 	 *  the above structure.
-	 * @param {Object} [baseState] An object representing the base state
-	 *  so we can normalize the data
-	 * @param {string[]} [ignoreFilters] Filters to ignore and remove from
-	 *  the data
 	 * @fires initialize
 	 */
-	mw.rcfilters.dm.SavedQueriesModel.prototype.initialize = function ( savedQueries, baseState, ignoreFilters ) {
-		var items = [],
-			defaultItem = null;
+	mw.rcfilters.dm.SavedQueriesModel.prototype.initialize = function ( savedQueries ) {
+		var model = this,
+			excludedParams = this.filtersModel.getExcludedParams();
 
 		savedQueries = savedQueries || {};
-		ignoreFilters = ignoreFilters || {};
-
-		this.baseState = baseState;
 
 		this.clearItems();
-		$.each( savedQueries.queries || {}, function ( id, obj ) {
-			var item,
-				normalizedData = $.extend( true, {}, baseState, obj.data ),
-				isDefault = String( savedQueries.default ) === String( id );
+		this.default = null;
+		this.converted = false;
 
-			// Backwards-compat fix: We stored the 'highlight' state with
-			// "1" and "0" instead of true/false; for already-stored states,
-			// we need to fix that.
-			// NOTE: Since this feature is only available in beta, we should
-			// not need this line when we release this to the general wikis.
-			// This method will automatically fix all saved queries anyways
-			// for existing users, who are only betalabs users at the moment.
-			normalizedData.highlights.highlight = !!Number( normalizedData.highlights.highlight );
-
-			// Backwards-compat fix: Remove sticky parameters from the 'ignoreFilters' list
-			ignoreFilters.forEach( function ( name ) {
-				delete normalizedData.filters[ name ];
+		if ( savedQueries.version !== '2' ) {
+			// Old version dealt with filter names. We need to migrate to the new structure
+			// The new structure:
+			// {
+			//   version: (string) '2',
+			//   default: (string) Query ID,
+			//   queries: {
+			//     query_id: {
+			//       label: (string) Name of the query
+			//       data: {
+			//         params: (object) Representing all the parameter states
+			//         highlights: (object) Representing all the filter highlight states
+			//     }
+			//   }
+			// }
+			$.each( savedQueries.queries || {}, function ( id, obj ) {
+				if ( obj.data && obj.data.filters ) {
+					obj.data = model.convertToParameters( obj.data );
+				}
 			} );
 
-			item = new mw.rcfilters.dm.SavedQueryItemModel(
-				id,
-				obj.label,
-				normalizedData,
-				{ 'default': isDefault }
-			);
-
-			if ( isDefault ) {
-				defaultItem = item;
-			}
-
-			items.push( item );
-		} );
-
-		if ( defaultItem ) {
-			this.default = defaultItem.getID();
+			this.converted = true;
+			savedQueries.version = '2';
 		}
 
-		this.addItems( items );
+		// Initialize the query items
+		$.each( savedQueries.queries || {}, function ( id, obj ) {
+			var normalizedData = obj.data,
+				isDefault = String( savedQueries.default ) === String( id );
+
+			if ( normalizedData && normalizedData.params ) {
+				// Backwards-compat fix: Remove excluded parameters from
+				// the given data, if they exist
+				excludedParams.forEach( function ( name ) {
+					delete normalizedData.params[ name ];
+				} );
+
+				id = String( id );
+				model.addNewQuery( obj.label, normalizedData, isDefault, id );
+
+				if ( isDefault ) {
+					model.default = id;
+				}
+			}
+		} );
 
 		this.emit( 'initialize' );
+	};
+
+	/**
+	 * Convert from representation of filters to representation of parameters
+	 *
+	 * @param {Object} data Query data
+	 * @return {Object} New converted query data
+	 */
+	mw.rcfilters.dm.SavedQueriesModel.prototype.convertToParameters = function ( data ) {
+		var newData = {},
+			defaultFilters = this.filtersModel.getFiltersFromParameters( this.filtersModel.getDefaultParams() ),
+			fullFilterRepresentation = $.extend( true, {}, defaultFilters, data.filters ),
+			highlightEnabled = data.highlights.highlight;
+
+		delete data.highlights.highlight;
+
+		// Filters
+		newData.params = this.filtersModel.getParametersFromFilters( fullFilterRepresentation );
+
+		// Highlights (taking out 'highlight' itself, appending _color to keys)
+		newData.highlights = {};
+		Object.keys( data.highlights ).forEach( function ( highlightedFilterName ) {
+			newData.highlights[ highlightedFilterName + '_color' ] = data.highlights[ highlightedFilterName ];
+		} );
+
+		// Add highlight and invert toggles to params
+		newData.params.highlight = String( Number( highlightEnabled || 0 ) );
+		newData.params.invert = String( Number( data.invert || 0 ) );
+
+		return newData;
+	};
+
+	/**
+	 * Get an object representing the base state of parameters
+	 * and highlights.
+	 *
+	 * This is meant to make sure that the saved queries that are
+	 * in memory are always the same structure as what we would get
+	 * by calling the current model's "getSelectedState" and by checking
+	 * highlight items.
+	 *
+	 * In cases where a user saved a query when the system had a certain
+	 * set of params, and then a filter was added to the system, we want
+	 * to make sure that the stored queries can still be comparable to
+	 * the current state, which means that we need the base state for
+	 * two operations:
+	 *
+	 * - Saved queries are stored in "minimal" view (only changed params
+	 *   are stored); When we initialize the system, we merge each minimal
+	 *   query with the base state (using 'getMinimalParamList') so all
+	 *   saved queries have the exact same structure as what we would get
+	 *   by checking the getSelectedState of the filter.
+	 * - When we save the queries, we minimize the object to only represent
+	 *   whatever has actually changed, rather than store the entire
+	 *   object. To check what actually is different so we can store it,
+	 *   we need to obtain a base state to compare against, this is
+	 *   what #getMinimalParamList does
+	 *
+	 * @return {Object} Base parameter state
+	 */
+	mw.rcfilters.dm.SavedQueriesModel.prototype.getBaseParamState = function () {
+		var allParams,
+			highlightedItems = {};
+
+		if ( !this.baseParamState ) {
+			allParams = this.filtersModel.getParametersFromFilters( {} );
+
+			// Prepare highlights
+			this.filtersModel.getItemsSupportingHighlights().forEach( function ( item ) {
+				highlightedItems[ item.getName() + '_color' ] = null;
+			} );
+
+			this.baseParamState = {
+				params: $.extend( true, { invert: '0', highlight: '0' }, allParams ),
+				highlights: highlightedItems
+			};
+		}
+
+		return this.baseParamState;
+	};
+
+	/**
+	 * Get an object that holds only the parameters and highlights that have
+	 * values different than the base value.
+	 *
+	 * This is the reverse of the normalization we do initially on loading and
+	 * initializing the saved queries model.
+	 *
+	 * @param {Object} valuesObject Object representing the state of both
+	 *  filters and highlights in its normalized version, to be minimized.
+	 * @return {Object} Minimal filters and highlights list
+	 */
+	mw.rcfilters.dm.SavedQueriesModel.prototype.getMinimalParamList = function ( valuesObject ) {
+		var result = { params: {}, highlights: {} },
+			baseState = this.getBaseParamState();
+
+		// XOR results
+		$.each( valuesObject.params, function ( name, value ) {
+			if ( baseState.params !== undefined && baseState.params[ name ] !== value ) {
+				result.params[ name ] = value;
+			}
+		} );
+
+		$.each( valuesObject.highlights, function ( name, value ) {
+			if ( baseState.highlights !== undefined && baseState.highlights[ name ] !== value ) {
+				result.highlights[ name ] = value;
+			}
+		} );
+
+		return result;
 	};
 
 	/**
@@ -135,18 +253,22 @@
 	 *
 	 * @param {string} label Label for the new query
 	 * @param {Object} data Data for the new query
+	 * @param {boolean} isDefault Item is default
+	 * @param {string} [id] Query ID, if exists. If this isn't given, a random
+	 *  new ID will be created.
 	 * @return {string} ID of the newly added query
 	 */
-	mw.rcfilters.dm.SavedQueriesModel.prototype.addNewQuery = function ( label, data ) {
-		var randomID = ( new Date() ).getTime(),
-			normalizedData = $.extend( true, {}, this.baseState, data );
+	mw.rcfilters.dm.SavedQueriesModel.prototype.addNewQuery = function ( label, data, isDefault, id ) {
+		var randomID = String( id || ( new Date() ).getTime() ),
+			normalizedData = this.getMinimalParamList( data );
 
 		// Add item
 		this.addItems( [
 			new mw.rcfilters.dm.SavedQueryItemModel(
 				randomID,
 				label,
-				normalizedData
+				normalizedData,
+				{ 'default': isDefault }
 			)
 		] );
 
@@ -179,44 +301,17 @@
 	 * @return {mw.rcfilters.dm.SavedQueryItemModel} Matching item model
 	 */
 	mw.rcfilters.dm.SavedQueriesModel.prototype.findMatchingQuery = function ( fullQueryComparison ) {
-		var model = this;
-
-		fullQueryComparison = this.getDifferenceFromBase( fullQueryComparison );
+		// Minimize before comparison
+		fullQueryComparison = this.getMinimalParamList( fullQueryComparison );
 
 		return this.getItems().filter( function ( item ) {
-			var comparedData = model.getDifferenceFromBase( item.getData() );
 			return OO.compare(
-				comparedData,
+				item.getData(),
 				fullQueryComparison
 			);
 		} )[ 0 ];
 	};
 
-	/**
-	 * Get a minimal representation of the state for comparison
-	 *
-	 * @param {Object} state Given state
-	 * @return {Object} Minimal state
-	 */
-	mw.rcfilters.dm.SavedQueriesModel.prototype.getDifferenceFromBase = function ( state ) {
-		var result = { filters: {}, highlights: {}, invert: state.invert },
-			baseState = this.baseState;
-
-		// XOR results
-		$.each( state.filters, function ( name, value ) {
-			if ( baseState.filters !== undefined && baseState.filters[ name ] !== value ) {
-				result.filters[ name ] = value;
-			}
-		} );
-
-		$.each( state.highlights, function ( name, value ) {
-			if ( baseState.highlights !== undefined && baseState.highlights[ name ] !== value && name !== 'highlight' ) {
-				result.highlights[ name ] = value;
-			}
-		} );
-
-		return result;
-	};
 	/**
 	 * Get query by its identifier
 	 *
@@ -231,16 +326,32 @@
 	};
 
 	/**
+	 * Get an item's full data
+	 *
+	 * @param {string} queryID Query identifier
+	 * @return {Object} Item's full data
+	 */
+	mw.rcfilters.dm.SavedQueriesModel.prototype.getItemFullData = function ( queryID ) {
+		var item = this.getItemByID( queryID );
+
+		// Fill in the base params
+		return item ? $.extend( true, {}, this.getBaseParamState(), item.getData() ) : {};
+	};
+
+	/**
 	 * Get the object representing the state of the entire model and items
 	 *
 	 * @return {Object} Object representing the state of the model and items
 	 */
 	mw.rcfilters.dm.SavedQueriesModel.prototype.getState = function () {
-		var obj = { queries: {} };
+		var model = this,
+			obj = { queries: {}, version: '2' };
 
 		// Translate the items to the saved object
 		this.getItems().forEach( function ( item ) {
 			var itemState = item.getState();
+
+			itemState.data = model.getMinimalParamList( itemState.data );
 
 			obj.queries[ item.getID() ] = itemState;
 		} );
@@ -278,5 +389,15 @@
 	 */
 	mw.rcfilters.dm.SavedQueriesModel.prototype.getDefault = function () {
 		return this.default;
+	};
+
+	/**
+	 * Check if the saved queries were converted
+	 *
+	 * @return {boolean} Saved queries were converted from the previous
+	 *  version to the new version
+	 */
+	mw.rcfilters.dm.SavedQueriesModel.prototype.isConverted = function () {
+		return this.converted;
 	};
 }( mediaWiki, jQuery ) );
