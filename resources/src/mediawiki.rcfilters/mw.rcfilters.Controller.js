@@ -231,31 +231,21 @@
 		// Defaults should only be applied on load (if necessary)
 		// or on request
 		this.initializing = true;
-		if (
-			!mw.user.isAnon() && this.savedQueriesModel.getDefault() &&
-			!this.uriProcessor.doesQueryContainRecognizedParams( uri.query )
-		) {
-			// We have defaults from a saved query.
-			// We will load them straight-forward (as if
-			// they were clicked in the menu) so we trigger
-			// a full ajax request and change of URL
-			this.applySavedQuery( this.savedQueriesModel.getDefault() );
-		} else {
-			// There are either recognized parameters in the URL
-			// or there are none, but there is also no default
-			// saved query (so defaults are from the backend)
-			// We want to update the state but not fetch results
-			// again
-			this.updateStateFromUrl( false );
 
-			// Update the changes list with the existing data
-			// so it gets processed
-			this.changesListModel.update(
-				$changesList.length ? $changesList : 'NO_RESULTS',
-				$( 'fieldset.cloptions' ).first(),
-				true // We're using existing DOM elements
-			);
-		}
+		// There are either recognized parameters in the URL
+		// or there are none, but there is also no default
+		// saved query (so defaults are from the backend)
+		// We want to update the state but not fetch results
+		// again
+		this.updateStateFromUrl( false );
+
+		// Update the changes list with the existing data
+		// so it gets processed
+		this.changesListModel.update(
+			$changesList.length ? $changesList : 'NO_RESULTS',
+			$( 'fieldset.rcoptions' ).first(),
+			true // We're using existing DOM elements
+		);
 
 		this.initializing = false;
 		this.switchView( 'default' );
