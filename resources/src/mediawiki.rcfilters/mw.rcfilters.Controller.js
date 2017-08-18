@@ -1154,23 +1154,31 @@
 
 		return $.ajax( uri.toString(), { contentType: 'html' } )
 			.then(
-				// Success
 				function ( html ) {
-					var $parsed;
+					var $parsed,
+						pieces;
+
 					if ( !latestRequest() ) {
 						return $.Deferred().reject();
 					}
 
 					$parsed = $( $.parseHTML( html ) );
 
-					return {
+					pieces = {
 						// Changes list
 						changes: $parsed.find( '.mw-changeslist' ).first().contents(),
 						// Fieldset
 						fieldset: $parsed.find( 'fieldset.cloptions' ).first()
 					};
+
+					// Watchlist returns 200 when there is no results
+					if ( pieces.changes.length === 0 ) {
+						pieces.changes = 'NO_RESULTS';
+					}
+
+					return pieces;
 				},
-				// Failure
+				// RC returns 404 when there is no results
 				function ( responseObj ) {
 					var $parsed;
 
