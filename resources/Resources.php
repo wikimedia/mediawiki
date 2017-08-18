@@ -1832,6 +1832,7 @@ return [
 			],
 		],
 		'messages' => [
+			'rcfilters-tag-remove',
 			'rcfilters-activefilters',
 			'rcfilters-advancedfilters',
 			'rcfilters-group-results-by-page',

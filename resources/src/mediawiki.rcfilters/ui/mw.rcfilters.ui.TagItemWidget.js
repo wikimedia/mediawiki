@@ -48,6 +48,10 @@
 		this.$highlight = $( '<div>' )
 			.addClass( 'mw-rcfilters-ui-tagItemWidget-highlight' );
 
+		// HACK: This should go upstream
+		// Add title attribute to 'x' button
+		this.closeButton.setTitle( mw.msg( 'rcfilters-tag-remove', this.model.getLabel() ) );
+
 		// Events
 		this.model.connect( this, { update: 'onModelUpdate' } );
 
