@@ -2186,9 +2186,10 @@ return [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.upload.styles.css',
 	],
 	'mediawiki.special.userlogin.common.styles' => [
-		'styles' => [
-			'resources/src/mediawiki.special/mediawiki.special.userlogin.common.css',
-		],
+		'targets' => [ 'desktop', 'mobile' ],
+		'skinStyles' => {
+			'default' => 'resources/src/mediawiki.special/mediawiki.special.userlogin.common.css',
+		},
 	],
 	'mediawiki.special.userlogin.login.styles' => [
 		'styles' => [
