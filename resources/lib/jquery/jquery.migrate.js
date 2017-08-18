@@ -6,6 +6,7 @@
  * - Preserve handler of uncaught exceptions in promise chains
  *   https://gerrit.wikimedia.org/r/#/c/360999/
  *   https://github.com/jquery/jquery-migrate/pull/262
+ * - Add mw.track instrumentation for statistics.
  */
 ;( function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
@@ -81,6 +82,8 @@ function migrateWarn( msg ) {
 	if ( !warnedAbout[ msg ] ) {
 		warnedAbout[ msg ] = true;
 		jQuery.migrateWarnings.push( msg );
+		// PATCH: Add instrumentation for statistics --Krinkle
+		mw.track( "mw.deprecate", "jquery-migrate" );
 		if ( console && console.warn && !jQuery.migrateMute ) {
 			console.warn( "JQMIGRATE: " + msg );
 			if ( jQuery.migrateTrace && console.trace ) {
