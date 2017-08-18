@@ -1842,6 +1842,7 @@ return [
 			'rcfilters-hours-title',
 			'rcfilters-days-show-days',
 			'rcfilters-days-show-hours',
+			'rcfilters-highlighted-filters-list',
 			'rcfilters-quickfilters',
 			'rcfilters-quickfilters-placeholder-title',
 			'rcfilters-quickfilters-placeholder-description',
