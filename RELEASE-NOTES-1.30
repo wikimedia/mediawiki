@@ -168,6 +168,7 @@ changes to languages because of Phabricator reports.
 * WikiImporter now requires the second parameter to be an instance of the Config,
   class. Prior to that, the Config parameter was optional (a behavior deprecated in
   1.25).
+* Removed 'jquery.mwExtension' module. (deprecated since 1.26)
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for

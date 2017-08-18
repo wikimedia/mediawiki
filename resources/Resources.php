@@ -301,10 +301,6 @@ return [
 		'scripts' => 'resources/src/jquery/jquery.mw-jump.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'jquery.mwExtension' => [
-		'scripts' => 'resources/src/jquery/jquery.mwExtension.js',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'jquery.placeholder' => [
 		'deprecated' => 'Use of "jquery.placeholder" is deprecated since MediaWiki 1.29.0',
 
