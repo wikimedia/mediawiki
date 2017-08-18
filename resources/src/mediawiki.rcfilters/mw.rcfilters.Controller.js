@@ -201,8 +201,6 @@
 		// Initialize the model
 		this.filtersModel.initializeFilters( filterStructure, views );
 
-		this._buildBaseFilterState();
-
 		this.uriProcessor = new mw.rcfilters.UriProcessor(
 			this.filtersModel
 		);
@@ -214,15 +212,8 @@
 				parsedSavedQueries = {};
 			}
 
-			// The queries are saved in a minimized state, so we need
-			// to send over the base state so the saved queries model
-			// can normalize them per each query item
-			this.savedQueriesModel.initialize(
-				parsedSavedQueries,
-				this._getBaseFilterState(),
-				// This is for backwards compatibility - delete all excluded filter states
-				Object.keys( this.filtersModel.getExcludedFiltersState() )
-			);
+			// Initialize saved queries
+			this.savedQueriesModel.initialize( parsedSavedQueries );
 		}
 
 		// Check whether we need to load defaults.
@@ -587,35 +578,30 @@
 	 * @param {boolean} [setAsDefault=false] This query should be set as the default
 	 */
 	mw.rcfilters.Controller.prototype.saveCurrentQuery = function ( label, setAsDefault ) {
-		var queryID,
-			highlightedItems = {},
+		var highlightedItems = {},
 			highlightEnabled = this.filtersModel.isHighlightEnabled(),
 			selectedState = this.filtersModel.getSelectedState();
 
 		// Prepare highlights
 		this.filtersModel.getHighlightedItems().forEach( function ( item ) {
-			highlightedItems[ item.getName() ] = highlightEnabled ?
+			highlightedItems[ item.getName() + '_color' ] = highlightEnabled ?
 				item.getHighlightColor() : null;
 		} );
-		// These are filter states; highlight is stored as boolean
-		highlightedItems.highlight = this.filtersModel.isHighlightEnabled();
 
 		// Delete all excluded filters
 		this._deleteExcludedValuesFromFilterState( selectedState );
 
 		// Add item
-		queryID = this.savedQueriesModel.addNewQuery(
+		this.savedQueriesModel.addNewQuery(
 			label || mw.msg( 'rcfilters-savedqueries-defaultlabel' ),
 			{
-				filters: selectedState,
+				filters: this.filtersModel.getParametersFromFilters( selectedState ),
 				highlights: highlightedItems,
-				invert: this.filtersModel.areNamespacesInverted()
-			}
+				invert: String( Number( this.filtersModel.areNamespacesInverted() ) ),
+				highlight: String( Number( this.filtersModel.isHighlightEnabled() ) )
+			},
+			setAsDefault
 		);
-
-		if ( setAsDefault ) {
-			this.savedQueriesModel.setDefault( queryID );
-		}
 
 		// Save item
 		this._saveSavedQueries();
@@ -664,8 +650,9 @@
 	 * @param {string} queryID Query id
 	 */
 	mw.rcfilters.Controller.prototype.applySavedQuery = function ( queryID ) {
-		var data, highlights,
+		var highlights,
 			queryItem = this.savedQueriesModel.getItemByID( queryID ),
+			data = this.savedQueriesModel.getItemFullData( queryID ),
 			currentMatchingQuery = this.findQueryMatchingCurrentState();
 
 		if (
@@ -677,25 +664,26 @@
 				currentMatchingQuery.getID() !== queryItem.getID()
 			)
 		) {
-			data = queryItem.getData();
 			highlights = data.highlights;
-
-			// Backwards compatibility; initial version mispelled 'highlight' with 'highlights'
-			highlights.highlight = highlights.highlights || highlights.highlight;
 
 			// Update model state from filters
 			this.filtersModel.toggleFiltersSelected(
 				// Merge filters with excluded values
-				$.extend( true, {}, data.filters, this.filtersModel.getExcludedFiltersState() )
+				$.extend(
+					true,
+					{},
+					this.filtersModel.getFiltersFromParameters( data.filters ),
+					this.filtersModel.getExcludedFiltersState()
+				)
 			);
 
 			// Update namespace inverted property
 			this.filtersModel.toggleInvertedNamespaces( !!Number( data.invert ) );
 
 			// Update highlight state
-			this.filtersModel.toggleHighlight( !!Number( highlights.highlight ) );
+			this.filtersModel.toggleHighlight( !!Number( data.highlight ) );
 			this.filtersModel.getItems().forEach( function ( filterItem ) {
-				var color = highlights[ filterItem.getName() ];
+				var color = highlights[ filterItem.getName() + '_color' ];
 				if ( color ) {
 					filterItem.setHighlightColor( color );
 				} else {
@@ -725,9 +713,8 @@
 
 		// Prepare highlights of the current query
 		this.filtersModel.getItemsSupportingHighlights().forEach( function ( item ) {
-			highlightedItems[ item.getName() ] = item.getHighlightColor();
+			highlightedItems[ item.getName() + '_color' ] = item.getHighlightColor();
 		} );
-		highlightedItems.highlight = this.filtersModel.isHighlightEnabled();
 
 		// Remove anything that should be excluded from the saved query
 		// this includes sticky filters and filters marked with 'excludedFromSavedQueries'
@@ -735,9 +722,10 @@
 
 		return this.savedQueriesModel.findMatchingQuery(
 			{
-				filters: selectedState,
+				filters: this.filtersModel.getParametersFromFilters( selectedState ),
 				highlights: highlightedItems,
-				invert: this.filtersModel.areNamespacesInverted()
+				highlight: String( Number( this.filtersModel.isHighlightEnabled() ) ),
+				invert: String( Number( this.filtersModel.areNamespacesInverted() ) )
 			}
 		);
 	};
@@ -755,112 +743,12 @@
 	};
 
 	/**
-	 * Get an object representing the base state of parameters
-	 * and highlights.
-	 *
-	 * This is meant to make sure that the saved queries that are
-	 * in memory are always the same structure as what we would get
-	 * by calling the current model's "getSelectedState" and by checking
-	 * highlight items.
-	 *
-	 * In cases where a user saved a query when the system had a certain
-	 * set of filters, and then a filter was added to the system, we want
-	 * to make sure that the stored queries can still be comparable to
-	 * the current state, which means that we need the base state for
-	 * two operations:
-	 *
-	 * - Saved queries are stored in "minimal" view (only changed filters
-	 *   are stored); When we initialize the system, we merge each minimal
-	 *   query with the base state (using 'getNormalizedFilters') so all
-	 *   saved queries have the exact same structure as what we would get
-	 *   by checking the getSelectedState of the filter.
-	 * - When we save the queries, we minimize the object to only represent
-	 *   whatever has actually changed, rather than store the entire
-	 *   object. To check what actually is different so we can store it,
-	 *   we need to obtain a base state to compare against, this is
-	 *   what #_getMinimalFilterList does
-	 */
-	mw.rcfilters.Controller.prototype._buildBaseFilterState = function () {
-		var defaultParams = this.filtersModel.getDefaultParams(),
-			highlightedItems = {};
-
-		// Prepare highlights
-		this.filtersModel.getItemsSupportingHighlights().forEach( function ( item ) {
-			highlightedItems[ item.getName() ] = null;
-		} );
-		highlightedItems.highlight = false;
-
-		this.baseFilterState = {
-			filters: this.filtersModel.getFiltersFromParameters( defaultParams ),
-			highlights: highlightedItems,
-			invert: false
-		};
-	};
-
-	/**
-	 * Get an object representing the base filter state of both
-	 * filters and highlights. The structure is similar to what we use
-	 * to store each query in the saved queries object:
-	 * {
-	 *    filters: {
-	 *        filterName: (bool)
-	 *    },
-	 *    highlights: {
-	 *        filterName: (string|null)
-	 *    }
-	 * }
-	 *
-	 * @return {Object} Object representing the base state of
-	 *  parameters and highlights
-	 */
-	mw.rcfilters.Controller.prototype._getBaseFilterState = function () {
-		return this.baseFilterState;
-	};
-
-	/**
-	 * Get an object that holds only the parameters and highlights that have
-	 * values different than the base default value.
-	 *
-	 * This is the reverse of the normalization we do initially on loading and
-	 * initializing the saved queries model.
-	 *
-	 * @param {Object} valuesObject Object representing the state of both
-	 *  filters and highlights in its normalized version, to be minimized.
-	 * @return {Object} Minimal filters and highlights list
-	 */
-	mw.rcfilters.Controller.prototype._getMinimalFilterList = function ( valuesObject ) {
-		var result = { filters: {}, highlights: {}, invert: valuesObject.invert },
-			baseState = this._getBaseFilterState();
-
-		// XOR results
-		$.each( valuesObject.filters, function ( name, value ) {
-			if ( baseState.filters !== undefined && baseState.filters[ name ] !== value ) {
-				result.filters[ name ] = value;
-			}
-		} );
-
-		$.each( valuesObject.highlights, function ( name, value ) {
-			if ( baseState.highlights !== undefined && baseState.highlights[ name ] !== value ) {
-				result.highlights[ name ] = value;
-			}
-		} );
-
-		return result;
-	};
-
-	/**
 	 * Save the current state of the saved queries model with all
 	 * query item representation in the user settings.
 	 */
 	mw.rcfilters.Controller.prototype._saveSavedQueries = function () {
 		var stringified,
-			state = this.savedQueriesModel.getState(),
-			controller = this;
-
-		// Minimize before save
-		$.each( state.queries, function ( queryID, info ) {
-			state.queries[ queryID ].data = controller._getMinimalFilterList( info.data );
-		} );
+			state = this.savedQueriesModel.getState();
 
 		// Stringify state
 		stringified = JSON.stringify( state );
@@ -1037,22 +925,19 @@
 	 * @return {Object} Default parameters
 	 */
 	mw.rcfilters.Controller.prototype._getDefaultParams = function () {
-		var data, queryHighlights,
+		var queryHighlights,
 			savedParams = {},
 			savedHighlights = {},
-			defaultSavedQueryItem = !mw.user.isAnon() && this.savedQueriesModel.getItemByID( this.savedQueriesModel.getDefault() );
+			stickyParams = this.filtersModel.getParametersFromFilters( this.filtersModel.getStickyFiltersState() ),
+			data = ( !mw.user.isAnon() && this.savedQueriesModel.getItemFullData( this.savedQueriesModel.getDefault() ) ) || {};
 
-		if ( defaultSavedQueryItem ) {
-			data = defaultSavedQueryItem.getData();
-
-			queryHighlights = data.highlights || {};
-			savedParams = this.filtersModel.getParametersFromFilters(
-				// Merge filters with sticky values
-				$.extend( true, {}, data.filters, this.filtersModel.getStickyFiltersState() )
-			);
+		if ( !$.isEmptyObject( data ) ) {
+			// Merge filters with sticky values
+			savedParams = $.extend( true, {}, data.filters, stickyParams );
 
 			// Translate highlights to parameters
-			savedHighlights.highlight = String( Number( queryHighlights.highlight ) );
+			queryHighlights = data.highlights || {};
+			savedHighlights.highlight = queryHighlights.highlight;
 			$.each( queryHighlights, function ( filterName, color ) {
 				if ( filterName !== 'highlights' ) {
 					savedHighlights[ filterName + '_color' ] = color;
@@ -1061,7 +946,6 @@
 
 			return $.extend( true, {}, savedParams, savedHighlights, { invert: String( Number( data.invert || 0 ) ) } );
 		}
-
 		return this.filtersModel.getDefaultParams();
 	};
 
