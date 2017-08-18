@@ -599,6 +599,31 @@
 	};
 
 	/**
+	 * Get the parameter names that represent filters that are excluded
+	 * from saved queries.
+	 *
+	 * @return {string[]} Parameter names
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getExcludedParams = function () {
+		var result = [];
+
+		$.each( this.groups, function ( name, model ) {
+			if ( model.isExcludedFromSavedQueries() ) {
+				if ( model.isGroupParameter() ) {
+					result.push( name );
+				} else {
+					// Each filter is its own param
+					result = result.concat( model.getItems().map( function ( filterItem ) {
+						return filterItem.getParamName();
+					} ) );
+				}
+			}
+		} );
+
+		return result;
+	};
+
+	/**
 	 * Analyze the groups and their filters and output an object representing
 	 * the state of the parameters they represent.
 	 *
