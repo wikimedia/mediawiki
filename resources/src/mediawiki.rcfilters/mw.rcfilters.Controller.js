@@ -43,6 +43,7 @@
 	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure, tagList ) {
 		var parsedSavedQueries,
 			displayConfig = mw.config.get( 'StructuredChangeFiltersDisplayConfig' ),
+			defaultSavedQueryExists = mw.config.get( 'wgStructuredChangeFiltersDefaultSavedQueryExists' ),
 			controller = this,
 			views = {},
 			items = [],
@@ -231,14 +232,12 @@
 		// Defaults should only be applied on load (if necessary)
 		// or on request
 		this.initializing = true;
-		if (
-			!mw.user.isAnon() && this.savedQueriesModel.getDefault() &&
-			!this.uriProcessor.doesQueryContainRecognizedParams( uri.query )
-		) {
-			// We have defaults from a saved query.
-			// We will load them straight-forward (as if
-			// they were clicked in the menu) so we trigger
-			// a full ajax request and change of URL
+
+		if ( defaultSavedQueryExists ) {
+			// This came from the server, meaning that we have a default
+			// saved query, but the server could not load it, probably because
+			// it was pre-conversion to the new format.
+			// We need to load this query again
 			this.applySavedQuery( this.savedQueriesModel.getDefault() );
 		} else {
 			// There are either recognized parameters in the URL
@@ -252,10 +251,11 @@
 			// so it gets processed
 			this.changesListModel.update(
 				$changesList.length ? $changesList : 'NO_RESULTS',
-				$( 'fieldset.cloptions' ).first(),
+				$( 'fieldset.rcoptions' ).first(),
 				true // We're using existing DOM elements
 			);
 		}
+
 
 		this.initializing = false;
 		this.switchView( 'default' );
