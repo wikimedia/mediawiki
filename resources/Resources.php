@@ -302,7 +302,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.mwExtension' => [
-		'scripts' => 'resources/src/jquery/jquery.mwExtension.js',
+		'deprecated' => 'Use of "jquery.mwExtension" is deprecated since MediaWiki 1.26.0',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.placeholder' => [
