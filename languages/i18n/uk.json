@@ -1381,7 +1381,6 @@
 	"rcfilters-restore-default-filters": "Відновити стандартні фільтри",
 	"rcfilters-clear-all-filters": "Очистити фільтри",
 	"rcfilters-show-new-changes": "Переглянути найновіші зміни",
-	"rcfilters-previous-changes-label": "Раніше переглянуті зміни",
 	"rcfilters-search-placeholder": "Фільтруйте нові редагування (переглядайте або почніть вводити)",
 	"rcfilters-invalid-filter": "Недійсний фільтр",
 	"rcfilters-empty-filter": "Без фільтрів. Показано всі зміни.",

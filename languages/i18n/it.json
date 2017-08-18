@@ -1408,7 +1408,6 @@
 	"rcfilters-restore-default-filters": "Ripristina i filtri predefiniti",
 	"rcfilters-clear-all-filters": "Pulisci tutti i filtri",
 	"rcfilters-show-new-changes": "Visualizza le modifiche più recenti",
-	"rcfilters-previous-changes-label": "Modifiche visualizzate precedentemente",
 	"rcfilters-search-placeholder": "Filtra le ultime modifiche (naviga o inizia a digitare)",
 	"rcfilters-invalid-filter": "Filtro non valido",
 	"rcfilters-empty-filter": "Nessun filtro attivo. Sono mostrati tutti i contributi.",

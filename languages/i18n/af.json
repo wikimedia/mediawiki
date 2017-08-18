@@ -23,7 +23,8 @@
 			"Macofe",
 			"Fwolff",
 			"Oesjaar",
-			"Matma Rex"
+			"Matma Rex",
+			"Biggs ZA"
 		]
 	},
 	"tog-underline": "Onderstreep skakels.",
@@ -341,7 +342,7 @@
 	"actionthrottled": "Outo-rem op aksie uitgevoer",
 	"actionthrottledtext": "As 'n teen-strooi aksie, word u beperk om hierdie aksie te veel keer in 'n kort tyd uit te voer, en u het hierdie limiet oorskry.\nProbeer asseblief weer oor 'n paar minute.",
 	"protectedpagetext": "Hierdie bladsy is beskerm om wysigings en ander aksies te verhoed.",
-	"viewsourcetext": "U mag die bronteks van hierdie bladsy lees en kopieer.",
+	"viewsourcetext": "U het toestemming om die bronteks te bekyk en te kopieer.",
 	"viewyourtext": "U kan '''u wysigings''' aan die bronteks van hierdie bladsy bekyk en kopieer:",
 	"protectedinterface": "Hierdie bladsy verskaf teks vir die koppelvlak van die sagteware, en is beskerm om misbruik te voorkom.\nGebruik asseblief [https://translatewiki.net/ translatewiki.net] om vertalings by te voeg of te wysig.",
 	"editinginterface": "'''Waarskuwing:''' U is besig om 'n bladsy te redigeer wat koppelvlakinligting aan die programmatuur voorsien. Wysigings aan hierdie bladsy sal die voorkoms van die gebruikerskoppelvlak vir ander gebruikers beïnvloed. Vir vertalings, oorweeg om eerder [https://translatewiki.net/wiki/Main_Page?setlang=af translatewiki.net] (die vertalingsprojek vir MediaWiki) te gebruik.",
@@ -679,7 +680,7 @@
 	"page_first": "eerste",
 	"page_last": "laaste",
 	"histlegend": "Byskrif: (huidige) = verskil van huidige weergawe,\n(vorige) = verskil van vorige weergawe, M = klein wysiging",
-	"history-fieldset-title": "Soek vir wysigings",
+	"history-fieldset-title": "Soek na wysigings",
 	"history-show-deleted": "Slegs geskrapte",
 	"histfirst": "oudste",
 	"histlast": "nuutste",
@@ -2904,6 +2905,7 @@
 	"compare-invalid-title": "Die titel wat u verskaf het is ongeldig.",
 	"compare-title-not-exists": "Die titel wat u verskaf het bestaan ​​nie.",
 	"compare-revision-not-exists": "Die hersiening wat u verskaf het bestaan ​​nie.",
+	"diff-form": "'n '''vorm'''",
 	"dberr-problems": "Jammer! Die webwerf ondervind op die oomblik tegniese probleme.",
 	"dberr-again": "Wag 'n paar minute en probeer dan weer.",
 	"dberr-info": "(Kan nie die databasisbediener kontak nie: $1)",

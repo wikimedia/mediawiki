@@ -1315,7 +1315,6 @@
 	"rcfilters-restore-default-filters": "Restaurar los filtros predeterminaos",
 	"rcfilters-clear-all-filters": "Borrar tolos filtros",
 	"rcfilters-show-new-changes": "Ver los cambeos más recién",
-	"rcfilters-previous-changes-label": "Cambeos vistos anteriormente",
 	"rcfilters-search-placeholder": "Filtriar los cambeos recién (restola o empieza a escribir)",
 	"rcfilters-invalid-filter": "Filtru inválidu",
 	"rcfilters-empty-filter": "Nun hai filtros activos. Amuésense toles contribuciones.",

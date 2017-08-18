@@ -1316,7 +1316,6 @@
 	"rcfilters-restore-default-filters": "Obnovi privzete filtre",
 	"rcfilters-clear-all-filters": "Počisti vse filtre",
 	"rcfilters-show-new-changes": "Ogled najnovejših sprememb",
-	"rcfilters-previous-changes-label": "Predhodno videne spremembe",
 	"rcfilters-search-placeholder": "Zadnje spremembe filtrov (prebrskajte ali začnite vnašati)",
 	"rcfilters-invalid-filter": "Neveljaven filter",
 	"rcfilters-empty-filter": "Ni dejavnih filtrov. Prikazani so vsi prispevki.",
