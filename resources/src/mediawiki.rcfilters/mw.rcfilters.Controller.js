@@ -996,7 +996,7 @@
 	 * Update the list of changes and notify the model
 	 *
 	 * @param {Object} [params] Extra parameters to add to the API call
-	 * @param {string} [updateMode='filterChange'] One of 'filterChange', 'liveUpdate', 'showNewChanges'
+	 * @param {string} [updateMode='filterChange'] One of 'filterChange', 'liveUpdate', 'showNewChanges', 'markSeen'
 	 * @return {jQuery.Promise} Promise that is resolved when the update is complete
 	 */
 	mw.rcfilters.Controller.prototype.updateChangesList = function ( params, updateMode ) {
@@ -1262,5 +1262,19 @@
 			// Cache the filter names
 			this.prevLoggedItems = filters;
 		}
+	};
+
+	/**
+	 * Mark all changes as seen on Watchlist
+	 */
+	mw.rcfilters.Controller.prototype.markAllChangesAsSeen = function () {
+		var api = new mw.Api();
+		api.postWithToken( 'csrf', {
+			formatversion: 2,
+			action: 'setnotificationtimestamp',
+			entirewatchlist: true
+		} ).then( function () {
+			this.updateChangesList( null, 'markSeen' );
+		}.bind( this ) );
 	};
 }( mediaWiki, jQuery ) );

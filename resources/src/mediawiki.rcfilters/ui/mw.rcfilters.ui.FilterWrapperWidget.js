@@ -17,7 +17,7 @@
 	mw.rcfilters.ui.FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget(
 		controller, model, savedQueriesModel, changesListModel, config
 	) {
-		var $top, $topRow, $bottom;
+		var $top, $bottom;
 		config = config || {};
 
 		// Parent
@@ -59,7 +59,7 @@
 		);
 
 		// Initialize
-		$topRow = $( '<div>' )
+		this.$topRow = $( '<div>' )
 			.addClass( 'mw-rcfilters-ui-row' )
 			.append(
 				$( '<div>' )
@@ -69,7 +69,7 @@
 		$top = $( '<div>' )
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top' )
 			.addClass( 'mw-rcfilters-ui-table' )
-			.append( $topRow );
+			.append( this.$topRow );
 
 		$bottom = $( '<div>' )
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget-bottom' )
@@ -84,7 +84,7 @@
 			{ $overlay: this.$overlay }
 		);
 
-		$topRow.append(
+		this.$topRow.append(
 			$( '<div>' )
 				.addClass( 'mw-rcfilters-ui-cell' )
 				.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top-savedLinks' )
@@ -108,4 +108,19 @@
 
 	OO.inheritClass( mw.rcfilters.ui.FilterWrapperWidget, OO.ui.Widget );
 	OO.mixinClass( mw.rcfilters.ui.FilterWrapperWidget, OO.ui.mixin.PendingElement );
+
+	/* Methods */
+
+	/**
+	 * Add a widget at the beginning of the top row
+	 *
+	 * @param {OO.ui.Widget} widget Any widget
+	 */
+	mw.rcfilters.ui.FilterWrapperWidget.prototype.prependToTopRow = function ( widget ) {
+		this.$topRow.prepend(
+			widget.$element
+				.addClass( 'mw-rcfilters-ui-cell' )
+		);
+	};
+
 }( mediaWiki ) );
