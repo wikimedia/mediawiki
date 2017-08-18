@@ -391,10 +391,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$oldTitleText = '';
 		$oldTitle = Title::makeTitle( $result->rc_namespace, $result->rc_title );
 
-		if ( count( $classes ) ) {
-			$attribs['class'] = implode( ' ', $classes );
-		}
-
 		if ( !$title->equals( $oldTitle ) ) {
 			$oldTitleText = $oldTitle->getPrefixedText();
 			$oldTitleText = Html::rawElement(
@@ -410,6 +406,10 @@ class SpecialNewpages extends IncludableSpecialPage {
 		// Let extensions add data
 		Hooks::run( 'NewPagesLineEnding', [ $this, &$ret, $result, &$classes, &$attribs ] );
 		$attribs = wfArrayFilterByKey( $attribs, [ Sanitizer::class, 'isReservedDataAttribute' ] );
+
+		if ( count( $classes ) ) {
+			$attribs['class'] = implode( ' ', $classes );
+		}
 
 		return Html::rawElement( 'li', $attribs, $ret ) . "\n";
 	}
