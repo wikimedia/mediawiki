@@ -167,9 +167,16 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$out->addJsConfigVars( 'wgStructuredChangeFiltersLiveUpdateSupported', true );
 			$out->addJsConfigVars(
 				'wgStructuredChangeFiltersSavedQueriesPreferenceName',
-				'rcfilters-saved-queries'
+				$this->getSavedQueriesPreferenceName()
 			);
 		}
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	protected function getSavedQueriesPreferenceName() {
+		return 'rcfilters-saved-queries';
 	}
 
 	/**

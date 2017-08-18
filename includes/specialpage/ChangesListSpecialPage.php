@@ -519,6 +519,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	public function execute( $subpage ) {
 		$this->rcSubpage = $subpage;
 
+		$this->redirectForDefaultSavedQuery();
+
 		$rows = $this->getRows();
 		$opts = $this->getOptions();
 		if ( $rows === false ) {
@@ -568,6 +570,87 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		}
 
 		$this->includeRcFiltersApp();
+	}
+
+	/**
+	 * Check whether or not the page should load defaults, and if so, whether
+	 * a default saved query is relevant to be redirected to. If it is relevant,
+	 * redirect properly with all necessary query parameters.
+	 */
+	protected function redirectForDefaultSavedQuery() {
+		$opts = $this->getOptions();
+
+		$knownParams = call_user_func_array(
+			[ $this->getRequest(), 'getValues' ],
+			array_keys( $opts->getAllValues() )
+		);
+
+		// HACK: Temporarily until we can properly define "sticky" filters and parameters,
+		// we need to exclude several parameters we know should not be counted towards preventing
+		// the loading of defaults.
+		$excludedParams = [ 'limit' => '', 'days' => '', 'enhanced' => '', 'from' => '', 'invert' => '' ];
+		$knownParams = array_diff_key( $knownParams, $excludedParams );
+
+		if (
+			// If there are any known parameters in the URL request
+			// (that are not excluded) then we need to check into loading
+			// the default saved query
+			count( $knownParams ) === 0 &&
+			$this->getUser()->getOption( 'rcenhancedfilters' )
+		) {
+			$savedQueriesString = $this->getUser()->getOption( $this->getSavedQueriesPreferenceName() );
+			$savedQueries = json_decode( $savedQueriesString, true );
+
+			$savedQueryDefaultID = $savedQueries && isset( $savedQueries[ 'default' ] ) ?
+				$savedQueries[ 'default' ] : '';
+			$savedQueryVersion = $savedQueries && isset( $savedQueries[ 'version' ] ) ?
+				$savedQueries[ 'version' ] : '';
+
+			if ( $savedQueryDefaultID ) {
+				// We recognize a default saved query exists
+
+				// Only load queries that are 'version' 2, since those
+				// have parameter representation
+				if ( $savedQueryVersion === '2' ) {
+					// Find the default query
+					$defaultQuery = $savedQueries[ 'queries' ][ $savedQueryDefaultID ][ 'data' ];
+
+					// Build the entire parameter list
+					$query = array_merge(
+						$defaultQuery[ 'filters' ],
+						$defaultQuery[ 'highlights' ],
+						[
+							'highlight' => $defaultQuery[ 'highlight' ],
+							'invert' => $defaultQuery[ 'invert' ],
+							'urlversion' => '2',
+						]
+					);
+					// Add to the query any parameters that we may have ignored before
+					// but are still valid and requested in the URL
+					$query = array_merge( $this->getRequest()->getValues(), $query );
+
+					// Redirect
+					$this->getOutput()->redirect( $this->getPageTitle()->getCanonicalURL( $query ) );
+				}
+			} else {
+				// There's a default, but the version is not 2, and the server can't
+				// actually recognize the query itself. This happens if it is before
+				// the conversion, so we need to tell the UI to reload saved query as
+				// it does the conversion to version 2
+				$this->getOutput()->addJsConfigVars(
+					'wgStructuredChangeFiltersDefaultSavedQueryExists',
+					true
+				);
+			}
+		}
+	}
+
+	/**
+	 * Get the name of the preference that stores saved queries
+	 * for structured filters
+	 */
+	protected function getSavedQueriesPreferenceName() {
+		return '';
 	}
 
 	/**

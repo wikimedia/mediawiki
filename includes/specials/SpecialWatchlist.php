@@ -102,13 +102,20 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$output->addJsConfigVars( 'wgStructuredChangeFiltersLiveUpdateSupported', false );
 			$output->addJsConfigVars(
 				'wgStructuredChangeFiltersSavedQueriesPreferenceName',
-				'rcfilters-wl-saved-queries'
+				$this->getSavedQueriesPreferenceName()
 			);
 			$output->addJsConfigVars(
 				'wgStructuredChangeFiltersEditWatchlistUrl',
 				SpecialPage::getTitleFor( 'EditWatchlist' )->getLocalURL()
 			);
 		}
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	protected function getSavedQueriesPreferenceName() {
+		return 'rcfilters-wl-saved-queries';
 	}
 
 	public function isStructuredFilterUiEnabled() {
