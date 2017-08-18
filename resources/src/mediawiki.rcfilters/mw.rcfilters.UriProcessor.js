@@ -310,4 +310,7 @@
 			{ highlight: '0', invert: '0' }
 		);
 	};
+	mw.rcfilters.UriProcessor.prototype.getEmptyParameterState = function () {
+		return this.emptyParameterState;
+	};
 }( mediaWiki, jQuery ) );
