@@ -14,6 +14,7 @@
 		this.newChangesExist = false;
 		this.nextFrom = null;
 		this.liveUpdate = false;
+		this.unseenWatchedChanges = false;
 	};
 
 	/* Initialization */
@@ -81,6 +82,7 @@
 		if ( mw.rcfilters.featureFlags.liveUpdate ) {
 			this.extractNextFrom( $fieldset );
 		}
+		this.checkForUnseenWatchedChanges( changesListContent );
 		this.emit( 'update', changesListContent, $fieldset, isInitialDOM, separateOldAndNew ? from : null );
 	};
 
@@ -140,4 +142,20 @@
 		return this.liveUpdate;
 	};
 
+	/**
+	 * Check if some of the given changes watched and unseen
+	 *
+	 * @param {jQuery|string} changeslistContent
+	 */
+	mw.rcfilters.dm.ChangesListViewModel.prototype.checkForUnseenWatchedChanges = function ( changeslistContent ) {
+		this.unseenWatchedChanges = changeslistContent !== 'NO_RESULTS' &&
+			changeslistContent.find( '.mw-changeslist-line-watched' ).length > 0;
+	};
+
+	/**
+	 * @return {boolean} Whether some of the current changes are watched and unseen
+	 */
+	mw.rcfilters.dm.ChangesListViewModel.prototype.hasUnseenWatchedChanges = function () {
+		return this.unseenWatchedChanges;
+	};
 }( mediaWiki ) );
