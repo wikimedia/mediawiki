@@ -519,12 +519,47 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	public function execute( $subpage ) {
 		$this->rcSubpage = $subpage;
 
+		$opts = $this->getOptions();
+		$recognizedParamsExist = false;
+		foreach ( $opts as $key => $val ) {
+			// TODO: Remove 'sticky' things, like 'days' and 'limit', and 'enhanced'
+			if ( $this->getRequest()->getCheck( $key ) ) {
+				$recognizedParamsExist = true;
+				break;
+			}
+		}
+
+		if (
+			!$recognizedParamsExist &&
+			$this->getUser()->getOption( 'rcenhancedfilters' )
+		) {
+			$savedQueriesString = $this->getUser()->getOption( 'rcfilters-saved-queries' );
+			$savedQueries = json_decode( $savedQueriesString );
+			if ( $savedQueries && isset( $savedQueries[ 'default' ] ) ) {
+				// Redirect to saved queries default
+				$defaultQuery = $savedQueries[ 'queries' ][ $savedQueries[ 'default' ] ];
+				// Build the entire parameter list:
+				$query = array_merge(
+					$defaultQuery[ 'filters' ],
+					$defaultQuery[ 'highlights' ],
+					[
+						'highlight' => $defaultQuery[ 'highlight' ],
+						'invert' => $defaultQuery[ 'invert' ],
+					],
+					'urlversion' => '2',
+				);
+
+				// Redirect
+				$this->getOutput()->redirect( $this->getPageTitle()->getCanonicalURL( $query ) );
+			}
+		}
+
+
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->addModules();
 
 		$rows = $this->getRows();
-		$opts = $this->getOptions();
 		if ( $rows === false ) {
 			$rows = new FakeResultWrapper( [] );
 		}
