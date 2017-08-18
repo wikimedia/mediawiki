@@ -303,10 +303,33 @@
 		}
 
 		this.filtersViewModel.getHighlightedItems().forEach( function ( filterItem ) {
+			var $elements = this.$element.find( '.' + filterItem.getCssClass() );
+
 			// Add highlight class to all highlighted list items
-			this.$element.find( '.' + filterItem.getCssClass() )
+			$elements
 				.addClass( 'mw-rcfilters-highlight-color-' + filterItem.getHighlightColor() );
+
+			$elements.each( function () {
+				var filterString = $( this ).attr( 'data-highlightedFilters' ) || '',
+					filters = filterString ? filterString.split( '|' ) : [];
+
+				if ( filters.indexOf( filterItem.getLabel() ) === -1 ) {
+					filters.push( filterItem.getLabel() );
+				}
+
+				$( this )
+					.attr( 'data-highlightedFilters', filters.join( '|' ) );
+			} );
 		}.bind( this ) );
+		// Apply a title for relevant filters
+		this.$element.find( '[data-highlightedFilters]' ).each( function () {
+			var filterString = $( this ).attr( 'data-highlightedFilters' ) || '',
+				filters = filterString ? filterString.split( '|' ) : [];
+
+			if ( filterString ) {
+				$( this ).attr( 'title', mw.msg( 'rcfilters-highlighted-filters-list', filters.join( ', ' ) ) );
+			}
+		} );
 
 		// Turn on highlights
 		this.$element.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlighted' );
@@ -321,6 +344,9 @@
 			this.$element.find( '.mw-rcfilters-highlight-color-' + color ).removeClass( 'mw-rcfilters-highlight-color-' + color );
 		}.bind( this ) );
 
+		this.$element.find( '[data-highlightedFilters]' )
+			.removeAttr( 'title' )
+			.removeAttr( 'data-highlightedFilters' );
 		// Turn off highlights
 		this.$element.removeClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlighted' );
 	};
