@@ -817,6 +817,19 @@
 	};
 
 	/**
+	 * Check whether this group is represented by a single parameter
+	 * or whether each item is its own parameter
+	 *
+	 * @return {boolean} This group is a single parameter
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.isPerGroupRequestParameter = function () {
+		return (
+			this.getType() === 'string_options' ||
+			this.getType() === 'single_option'
+		);
+	};
+
+	/**
 	 * Get display group
 	 *
 	 * @return {string} Display group
