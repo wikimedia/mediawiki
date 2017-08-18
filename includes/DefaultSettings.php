@@ -3826,12 +3826,25 @@ $wgResourceLoaderValidateStaticJS = false;
  */
 $wgResourceLoaderLESSVars = [
 	/**
-	 * Minimum available screen width at which a device can be considered a tablet/desktop
+	 * Minimum available screen width at which a device can be considered a tablet
 	 * The number is currently based on the device width of a Samsung Galaxy S5 mini and is low
 	 * enough to cover iPad (768px). Number is prone to change with new information.
 	 * @since 1.27
 	 */
 	'deviceWidthTablet' => '720px',
+	/**
+	 * Minimum available screen width at which a device can be considered a desktop
+	 * Number is prone to change with new information.
+	 * @since 1.28
+	 */
+	'deviceWidthDesktop' => '1000px',
+	/**
+	 * Minimum available screen width at which a device can be considered a mobile device
+	 * Many older feature phones have screens smaller than this value.
+	 * Number is prone to change with new information.
+	 * @since 1.28
+	 */
+	'deviceWidthMobile' => '320px',
 ];
 
 /**
