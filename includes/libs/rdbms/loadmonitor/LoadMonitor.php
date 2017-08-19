@@ -146,7 +146,7 @@ class LoadMonitor implements ILoadMonitor {
 			if ( $conn ) {
 				$close = false; // already open
 			} else {
-				$conn = $this->parent->openConnection( $i, $domain );
+				$conn = $this->parent->openConnection( $i, '' );
 				$close = true; // new connection
 			}
 
