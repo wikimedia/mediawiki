@@ -2,10 +2,20 @@
 @import 'mediawiki.widgets.datetime.definitions';
 
 .mw-widgets-datetime-calendarWidget {
+	background-color: @background-color-base;
 	display: inline-block;
 	position: relative;
-	vertical-align: middle;
+	border: @border-base;
+	border-radius: @border-radius-base;
 	padding: 0.5em;
+	box-shadow: @box-shadow-dialog;
+	vertical-align: middle;
+
+	&:focus {
+		border-color: @color-progressive;
+		outline: 0;
+		box-shadow: @box-shadow-base--focus, @box-shadow-dialog;
+	}
 
 	&.mw-widgets-datetime-calendarWidget-dependent {
 		display: block;
@@ -22,22 +32,23 @@
 		}
 	}
 
-	background-color: #fff;
-	border: 1px solid #ccc;
-
 	&.mw-widgets-datetime-calendarWidget-dependent {
 		margin-top: -1px;
-		border-top: 1px solid #fff;
 	}
 
 	&-heading {
+		font-weight: bold;
 		text-align: center;
 		vertical-align: middle;
-		font-weight: bold;
 		white-space: nowrap;
 
 		.mw-widgets-datetime-calendarWidget-previous {
 			float: left;
+
+			// Overwrite OOUI's `.oo-ui-buttonElement-frameless.oo-ui-iconElement:first-child`
+			&:first-child {
+				margin-left: 0;
+			}
 		}
 		.mw-widgets-datetime-calendarWidget-next {
 			float: right;
@@ -52,19 +63,36 @@
 
 			.oo-ui-buttonElement-button {
 				width: 100%;
-				border: 1px dotted rgba( 255, 255, 255, 0 );
-				.oo-ui-box-sizing( border-box );
+				border: 1px solid rgba( 255, 255, 255, 0 );
+				.oo-ui-transition(
+					background-color @transition-base,
+					color @transition-base,
+					border-color @transition-base
+				);
 			}
 
-			&.mw-widgets-datetime-calendarWidget-extra .oo-ui-buttonElement-button .oo-ui-labelElement-label {
-				color: #bbb;
+			&.mw-widgets-datetime-calendarWidget-extra .oo-ui-buttonElement-button {
+				.oo-ui-labelElement-label {
+					color: @color-base--subtle;
+				}
+
+				&:hover .oo-ui-labelElement-label {
+					color: @color-base--inverted;
+				}
 			}
 
 			&.mw-widgets-datetime-calendarWidget-selected .oo-ui-buttonElement-button {
-				background-color: #def;
+				background-color: #2a4b8d;
+
 				.oo-ui-labelElement-label {
-					color: #38f;
+					color: @color-base--inverted;
 				}
+			}
+
+			&.oo-ui-widget-enabled .oo-ui-buttonElement-button:hover {
+				background-color: @color-progressive;
+				color: @color-base--inverted;
+				border-color: @color-progressive;
 			}
 		}
 	}
