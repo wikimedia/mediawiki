@@ -142,7 +142,50 @@ class HooksTest extends MediaWikiTestCase {
 		} );
 		$foo = 'original';
 		Hooks::run( 'MediaWikiHooksTest001', [ &$foo ] );
-		$this->assertSame( 'original', $foo, 'Hooks continued processing after a false return.' );
+		$this->assertSame( 'original', $foo, 'Hooks abort after a false return.' );
+	}
+
+	/**
+	 * @covers Hooks::runWithoutAbort
+	 */
+	public function testRunWithoutAbort() {
+		$list = [];
+		Hooks::register( 'MediaWikiHooksTest001', function ( &$list ) {
+			$list[] = 1;
+			return true; // Explicit true
+		} );
+		Hooks::register( 'MediaWikiHooksTest001', function ( &$list ) {
+			$list[] = 2;
+			return; // Implicit null
+		} );
+		Hooks::register( 'MediaWikiHooksTest001', function ( &$list ) {
+			$list[] = 3;
+			// No return
+		} );
+
+		Hooks::runWithoutAbort( 'MediaWikiHooksTest001', [ &$list ] );
+		$this->assertSame( [ 1, 2, 3 ], $list, 'All hooks ran.' );
+	}
+
+	/**
+	 * @covers Hooks::runWithoutAbort
+	 */
+	public function testRunWithoutAbortWarning() {
+		Hooks::register( 'MediaWikiHooksTest001', function ( &$foo ) {
+			return false;
+		} );
+		Hooks::register( 'MediaWikiHooksTest001', function ( &$foo ) {
+			$foo = 'test';
+			return true;
+		} );
+		$foo = 'original';
+
+		$this->setExpectedException(
+			UnexpectedValueException::class,
+			'Invalid return from hook-MediaWikiHooksTest001-closure for ' .
+				'unabortable MediaWikiHooksTest001'
+		);
+		Hooks::runWithoutAbort( 'MediaWikiHooksTest001', [ &$foo ] );
 	}
 
 	/**
