@@ -109,16 +109,88 @@ class Hooks {
 	}
 
 	/**
+	 * @param string $event Event name
+	 * @param array|callable $hook
+	 * @param array $args Array of parameters passed to hook functions
+	 * @param string|null $deprecatedVersion [optional]
+	 * @param string &$fname [optional] Readable name of hook [returned]
+	 * @return null|string|bool
+	 */
+	private static function callHook( $event, $hook, array $args, $deprecatedVersion = null,
+		&$fname = null
+	) {
+		// Turn non-array values into an array. (Can't use casting because of objects.)
+		if ( !is_array( $hook ) ) {
+			$hook = [ $hook ];
+		}
+
+		if ( !array_filter( $hook ) ) {
+			// Either array is empty or it's an array filled with null/false/empty.
+			return null;
+		}
+
+		if ( is_array( $hook[0] ) ) {
+			// First element is an array, meaning the developer intended
+			// the first element to be a callback. Merge it in so that
+			// processing can be uniform.
+			$hook = array_merge( $hook[0], array_slice( $hook, 1 ) );
+		}
+
+		/**
+		 * $hook can be: a function, an object, an array of $function and
+		 * $data, an array of just a function, an array of object and
+		 * method, or an array of object, method, and data.
+		 */
+		if ( $hook[0] instanceof Closure ) {
+			$fname = "hook-$event-closure";
+			$callback = array_shift( $hook );
+		} elseif ( is_object( $hook[0] ) ) {
+			$object = array_shift( $hook );
+			$method = array_shift( $hook );
+
+			// If no method was specified, default to on$event.
+			if ( $method === null ) {
+				$method = "on$event";
+			}
+
+			$fname = get_class( $object ) . '::' . $method;
+			$callback = [ $object, $method ];
+		} elseif ( is_string( $hook[0] ) ) {
+			$fname = $callback = array_shift( $hook );
+		} else {
+			throw new MWException( 'Unknown datatype in hooks for ' . $event . "\n" );
+		}
+
+		// Run autoloader (workaround for call_user_func_array bug)
+		// and throw error if not callable.
+		if ( !is_callable( $callback ) ) {
+			throw new MWException( 'Invalid callback ' . $fname . ' in hooks for ' . $event . "\n" );
+		}
+
+		// mark hook as deprecated, if deprecation version is specified
+		if ( $deprecatedVersion !== null ) {
+			wfDeprecated( "$event hook (used in $fname)", $deprecatedVersion );
+		}
+
+		// Call the hook.
+		$hook_args = array_merge( $hook, $args );
+		return call_user_func_array( $callback, $hook_args );
+	}
+
+	/**
 	 * Call hook functions defined in Hooks::register and $wgHooks.
 	 *
-	 * For a certain hook event, fetch the array of hook events and
+	 * For the given hook event, fetch the array of hook events and
 	 * process them. Determine the proper callback for each hook and
 	 * then call the actual hook using the appropriate arguments.
 	 * Finally, process the return value and return/throw accordingly.
 	 *
+	 * For hook event that are not abortable through a handler's return value,
+	 * use runWithoutAbort() instead.
+	 *
 	 * @param string $event Event name
 	 * @param array $args Array of parameters passed to hook functions
-	 * @param string|null $deprecatedVersion Optionally, mark hook as deprecated with version number
+	 * @param string|null $deprecatedVersion [optional] Mark hook as deprecated with version number
 	 * @return bool True if no handler aborted the hook
 	 *
 	 * @throws Exception
@@ -130,60 +202,10 @@ class Hooks {
 	 */
 	public static function run( $event, array $args = [], $deprecatedVersion = null ) {
 		foreach ( self::getHandlers( $event ) as $hook ) {
-			// Turn non-array values into an array. (Can't use casting because of objects.)
-			if ( !is_array( $hook ) ) {
-				$hook = [ $hook ];
-			}
-
-			if ( !array_filter( $hook ) ) {
-				// Either array is empty or it's an array filled with null/false/empty.
+			$retval = self::callHook( $event, $hook, $args, $deprecatedVersion );
+			if ( $retval === null ) {
 				continue;
-			} elseif ( is_array( $hook[0] ) ) {
-				// First element is an array, meaning the developer intended
-				// the first element to be a callback. Merge it in so that
-				// processing can be uniform.
-				$hook = array_merge( $hook[0], array_slice( $hook, 1 ) );
 			}
-
-			/**
-			 * $hook can be: a function, an object, an array of $function and
-			 * $data, an array of just a function, an array of object and
-			 * method, or an array of object, method, and data.
-			 */
-			if ( $hook[0] instanceof Closure ) {
-				$func = "hook-$event-closure";
-				$callback = array_shift( $hook );
-			} elseif ( is_object( $hook[0] ) ) {
-				$object = array_shift( $hook );
-				$method = array_shift( $hook );
-
-				// If no method was specified, default to on$event.
-				if ( $method === null ) {
-					$method = "on$event";
-				}
-
-				$func = get_class( $object ) . '::' . $method;
-				$callback = [ $object, $method ];
-			} elseif ( is_string( $hook[0] ) ) {
-				$func = $callback = array_shift( $hook );
-			} else {
-				throw new MWException( 'Unknown datatype in hooks for ' . $event . "\n" );
-			}
-
-			// Run autoloader (workaround for call_user_func_array bug)
-			// and throw error if not callable.
-			if ( !is_callable( $callback ) ) {
-				throw new MWException( 'Invalid callback ' . $func . ' in hooks for ' . $event . "\n" );
-			}
-
-			// mark hook as deprecated, if deprecation version is specified
-			if ( $deprecatedVersion !== null ) {
-				wfDeprecated( "$event hook (used in $func)", $deprecatedVersion );
-			}
-
-			// Call the hook.
-			$hook_args = array_merge( $hook, $args );
-			$retval = call_user_func_array( $callback, $hook_args );
 
 			// Process the return value.
 			if ( is_string( $retval ) ) {
@@ -195,6 +217,28 @@ class Hooks {
 			}
 		}
 
+		return true;
+	}
+
+	/**
+	 * Call hook functions defined in Hooks::register and $wgHooks.
+	 *
+	 * @param string $event Event name
+	 * @param array $args Array of parameters passed to hook functions
+	 * @param string|null $deprecatedVersion [optional] Mark hook as deprecated with version number
+	 * @return bool Always true
+	 * @throws MWException If a callback is invalid, unknown
+	 * @throws UnexpectedValueException If a callback returns an abort value.
+	 * @since 1.30
+	 */
+	public static function runWithoutAbort( $event, array $args = [], $deprecatedVersion = null ) {
+		foreach ( self::getHandlers( $event ) as $hook ) {
+			$fname = null;
+			$retval = self::callHook( $event, $hook, $args, $deprecatedVersion, $fname );
+			if ( $retval !== null && $retval !== true ) {
+				throw new UnexpectedValueException( "Invalid return from $fname for unabortable $event." );
+			}
+		}
 		return true;
 	}
 }
