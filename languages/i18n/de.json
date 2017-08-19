@@ -1406,7 +1406,7 @@
 	"rcfilters-filterlist-noresults": "Keine Filter gefunden",
 	"rcfilters-noresults-conflict": "Keine Ergebnisse gefunden, da sich die Suchkriterien in Konflikt befinden.",
 	"rcfilters-state-message-subset": "Dieser Filter hat keinen Effekt, da seine Ergebnisse mit denen {{PLURAL:$2|des folgenden breiteren Filters|der folgenden breiteren Filter}} einbezogen sind (versuche die Hervorhebung, um sie zu unterscheiden): $1",
-	"rcfilters-state-message-fullcoverage": "Das Auswählen aller Filter in einer Gruppe ist das Gleiche wie das Auswählen keines Filters. Deshalb hat dieser Filter keinen Effekt. Die Gruppe enthält: $1",
+	"rcfilters-state-message-fullcoverage": "Das Auswählen aller Filter in dieser Gruppe ist das Gleiche wie das Auswählen keines Filters. Deshalb hat dieser Filter keinen Effekt. Die Gruppe enthält: $1",
 	"rcfilters-filtergroup-authorship": "Beitrags-Autorenschaft",
 	"rcfilters-filter-editsbyself-label": "Änderungen von dir",
 	"rcfilters-filter-editsbyself-description": "Deine eigenen Beiträge.",

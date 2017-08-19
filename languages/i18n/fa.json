@@ -349,7 +349,7 @@
 	"nospecialpagetext": "<strong>شما یک صفحهٔ ویژهٔ نامجاز را درخواست کرده‌اید.</strong>\n\nفهرستی از صفحه‌های ویژهٔ مجاز در [[Special:SpecialPages|{{int:specialpages}}]] وجود دارد.",
 	"error": "خطا",
 	"databaseerror": "خطای پایگاه داده",
-	"databaseerror-text": "مشکلی در پایگاه‌های داده رخ داد. \nاین ممکن است نشان‌دهندهٔ ایرادی در نرم‌افزار باشد.",
+	"databaseerror-text": "مشکلی در پرسمان از پایگاه داده رخ داد. \nاین ممکن است نشان‌دهندهٔ ایرادی در نرم‌افزار باشد.",
 	"databaseerror-textcl": "یک خطا در پرسمان پایگاه داده رخ داد.",
 	"databaseerror-query": "پرسمان: $1",
 	"databaseerror-function": "تابع: $1",

@@ -1398,7 +1398,7 @@
 	"rcfilters-filterlist-noresults": "Geen filters gevonden",
 	"rcfilters-noresults-conflict": "Geen resultaten gevonden omdat de zoekcriteria met elkaar conflicteren",
 	"rcfilters-state-message-subset": "Dit filter heeft geen effect omdat de resultaten ook worden gefilterd door {{PLURAL:$2|het|de}} bredere {{PLURAL:$2|filter|filters}} (probeer ze te markeren om ze te onderscheiden): $1",
-	"rcfilters-state-message-fullcoverage": "Het selecteren van alle filters in deze groep is hetzelfde als geen filter selecteren, waardoor dit filter geen effect heeft. De groep bevat: $1",
+	"rcfilters-state-message-fullcoverage": "Het selecteren van alle filters in deze groep doet hetzelfde als geen filter selecteren, waardoor dit filter geen effect heeft. De groep bevat: $1",
 	"rcfilters-filtergroup-authorship": "Auteur van de bijdragen",
 	"rcfilters-filter-editsbyself-label": "Uw eigen wijzigingen",
 	"rcfilters-filter-editsbyself-description": "Uw eigen bijdragen.",

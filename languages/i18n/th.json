@@ -2532,6 +2532,7 @@
 	"pageinfo-authors": "จำนวนผู้เขียนทั้งหมด",
 	"pageinfo-recent-edits": "การแก้ไขล่าสุด (ในช่วง $1ที่ผ่านมา)",
 	"pageinfo-recent-authors": "จำนวนผู้เขียนล่าสุด",
+	"pageinfo-magic-words": "{{PLURAL:$1|คำสั่งพิเศษ}} ($1)",
 	"pageinfo-hidden-categories": "หมวดหมู่ที่ซ่อนอยู่ ($1)",
 	"pageinfo-templates": "แม่แบบที่ใช้ ($1)",
 	"pageinfo-toolboxlink": "สารสนเทศหน้า",

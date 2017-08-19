@@ -1401,7 +1401,7 @@
 	"rcfilters-filterlist-noresults": "कोई फिल्टर नहीं पाया",
 	"rcfilters-noresults-conflict": "कोई भी परिणाम नहीं मिला क्योंकि खोज मापदंड संघर्ष में है",
 	"rcfilters-state-message-subset": "इस फिल्टर का कोई प्रभाव नहीं है क्योंकि इसका परिणाम निम्न, व्यापक {{PLURAL: $2 |फ़िल्टर|फिल्टर}} के साथ शामिल है (इसे भेद करने के लिए हाइलाइट करने की कोशिश करें): $1",
-	"rcfilters-state-message-fullcoverage": "किसी समूह में सभी फ़िल्टर चुनना कोई भी नहीं चुनने के समान है इसलिए इस फ़िल्टर का कोई प्रभाव नहीं है समूह में शामिल हैं: $1",
+	"rcfilters-state-message-fullcoverage": "किसी समूह में सभी फ़िल्टर चुनना कोई भी नहीं चुनने के समान है, इसलिए इस फ़िल्टर का कोई प्रभाव नहीं है, समूह में शामिल हैं: $1",
 	"rcfilters-filtergroup-authorship": "लेखक योगदान",
 	"rcfilters-filter-editsbyself-label": "आपके द्वारा बदलाव",
 	"rcfilters-filter-editsbyself-description": "आपके अपने योगदान।",

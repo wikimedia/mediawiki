@@ -1481,7 +1481,7 @@
 	"rcfilters-filterlist-noresults": "Aucun filtre trouvé",
 	"rcfilters-noresults-conflict": "Aucun résultat trouvé car les critères de recherche sont en conflit",
 	"rcfilters-state-message-subset": "Ce filtre n'a aucun effet, parce que ses résultats sont inclus dans ceux de la recherche suivante, {{PLURAL:$2|filtre plus étendu|filtres plus étendus}} (essayez la mise en forme pour le différencier): $1",
-	"rcfilters-state-message-fullcoverage": "Sélectionner tous les filtres dans un groupe est la même chose que d'en sélectionner aucun, aussi ce filtre n'a aucun effet. Le groupe comprend: $1",
+	"rcfilters-state-message-fullcoverage": "Sélectionner tous les filtres dans ce groupe est la même chose que de n’en sélectionner aucun, aussi ce filtre n’a aucun effet. Le groupe comprend : $1",
 	"rcfilters-filtergroup-authorship": "Paternité des contributions",
 	"rcfilters-filter-editsbyself-label": "Modifications faites par vous",
 	"rcfilters-filter-editsbyself-description": "Vos propres contributions.",

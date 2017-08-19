@@ -1327,7 +1327,7 @@
 	"rcfilters-filterlist-noresults": "Фільтры ня знойдзеныя",
 	"rcfilters-noresults-conflict": "Няма вынікаў, бо крытэры пошуку супярэчаць адзін аднаму",
 	"rcfilters-state-message-subset": "Гэты фільтар ня мае эфэкту, бо яго вынікі ўключаныя ў вынікі больш {{PLURAL:$2|шырокага фільтру|шырокіх фільтраў}} (паспрабуйце вылучэньне, каб вызначыць яго): $1",
-	"rcfilters-state-message-fullcoverage": "Выбар усіх фільтраў у групе — тое ж самае, што і выбар ніводнага, адпаведна, гэты фільтар ня мае эфэкту. Група ўключае: $1",
+	"rcfilters-state-message-fullcoverage": "Выбар усіх фільтраў у гэтай групе — тое ж самае, што і выбар ніводнага, адпаведна, гэты фільтар ня мае эфэкту. Група ўключае: $1",
 	"rcfilters-filtergroup-authorship": "Аўтарства ўнёску",
 	"rcfilters-filter-editsbyself-label": "Зьмены, зробленыя вамі",
 	"rcfilters-filter-editsbyself-description": "Ваш уласны ўнёсак.",

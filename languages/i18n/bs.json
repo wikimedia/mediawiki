@@ -1713,7 +1713,7 @@
 	"filedelete-intro-old": "Brišete verziju datoteke '''[[Media:$1|$1]]''' od [$4 $3, $2].",
 	"filedelete-comment": "Razlog:",
 	"filedelete-submit": "Obriši",
-	"filedelete-success": "'''$1''' je obrisano.",
+	"filedelete-success": "Datoteka <strong>$1</strong> je obrisana.",
 	"filedelete-success-old": "Verzija datoteke '''[[Media:$1|$1]]''' od $3, $2 je obrisana.",
 	"filedelete-nofile": "'''$1''' ne postoji.",
 	"filedelete-nofile-old": "Ne postoji arhivirana verzija '''$1''' sa navedenim atributima.",

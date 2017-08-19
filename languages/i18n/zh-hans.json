@@ -1412,7 +1412,7 @@
 	"rcfilters-filterlist-noresults": "找不到过滤器",
 	"rcfilters-noresults-conflict": "找不到结果，因为搜索条件不一致",
 	"rcfilters-state-message-subset": "该过滤器没有影响，因为其结果已包含在以下影响更广的{{PLURAL:$2|过滤器}}中（尝试高亮来区别它）：$1",
-	"rcfilters-state-message-fullcoverage": "组中选择的所有过滤器与选定过滤器相同，因此该过滤器没有影响。组包含：$1",
+	"rcfilters-state-message-fullcoverage": "此组中选择的所有过滤器与选定过滤器相同，因此该过滤器没有影响。组包含：$1",
 	"rcfilters-filtergroup-authorship": "贡献的作者",
 	"rcfilters-filter-editsbyself-label": "您的更改",
 	"rcfilters-filter-editsbyself-description": "您自己的贡献。",

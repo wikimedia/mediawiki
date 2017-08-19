@@ -3437,7 +3437,7 @@
 	"compare-invalid-title": "'U titele ca è specificate jè invalide.",
 	"compare-title-not-exists": "'U titele ca è specificate non g'esiste.",
 	"compare-revision-not-exists": "'A revisione ca è specificate non g'esiste.",
-	"diff-form": "'nu '''form'''",
+	"diff-form": "Differenze",
 	"dberr-problems": "Sime spiacende! Stu site stè 'ngondre de le difficoltà tecniche.",
 	"dberr-again": "Aspitte quacche minute e pò recareche.",
 	"dberr-info": "(Non ge riuscime a trasè sus a'u server d'u database: $1)",
