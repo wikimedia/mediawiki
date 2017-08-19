@@ -729,7 +729,7 @@ class SkinTemplate extends Skin {
 			}
 		}
 
-		Hooks::run( 'PersonalUrls', [ &$personal_urls, &$title, $this ] );
+		Hooks::runWithoutAbort( 'PersonalUrls', [ &$personal_urls, &$title, $this ] );
 		return $personal_urls;
 	}
 
@@ -1092,7 +1092,10 @@ class SkinTemplate extends Skin {
 
 			// Avoid PHP 7.1 warning of passing $this by reference
 			$skinTemplate = $this;
-			Hooks::run( 'SkinTemplateNavigation', [ &$skinTemplate, &$content_navigation ] );
+			Hooks::runWithoutAbort(
+				'SkinTemplateNavigation',
+				[ &$skinTemplate, &$content_navigation ]
+			);
 
 			if ( $userCanRead && !$wgDisableLangConversion ) {
 				$pageLang = $title->getPageLanguage();
@@ -1136,14 +1139,15 @@ class SkinTemplate extends Skin {
 
 			// Avoid PHP 7.1 warning of passing $this by reference
 			$skinTemplate = $this;
-			Hooks::run( 'SkinTemplateNavigation::SpecialPage',
+			Hooks::runWithoutAbort( 'SkinTemplateNavigation::SpecialPage',
 				[ &$skinTemplate, &$content_navigation ] );
 		}
 
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$skinTemplate = $this;
 		// Equiv to SkinTemplateContentActions
-		Hooks::run( 'SkinTemplateNavigation::Universal', [ &$skinTemplate, &$content_navigation ] );
+		Hooks::runWithoutAbort( 'SkinTemplateNavigation::Universal',
+			[ &$skinTemplate, &$content_navigation ] );
 
 		// Setup xml ids and tooltip info
 		foreach ( $content_navigation as $section => &$links ) {
