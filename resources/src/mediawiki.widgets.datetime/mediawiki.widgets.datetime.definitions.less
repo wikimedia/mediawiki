@@ -1,6 +1,6 @@
 /*!
- * OOJS-UI defines used by the existing CSS (will make it easier to put this
- * widget in OOJS-UI once OOJS-UI is capable of handling it)
+ * OOUI defines used by the existing CSS (will make it easier to put this
+ * widget in OOUI once OOUI is capable of handling it)
  */
 
 .oo-ui-box-sizing( @type: border-box ) {
@@ -19,6 +19,7 @@
 
 .oo-ui-inline-spacing( @spacing, @cancelled-spacing: 0 ) {
 	margin-right: @spacing;
+
 	&:last-child {
 		margin-right: @cancelled-spacing;
 	}
@@ -31,7 +32,35 @@
 	transition: @value;
 }
 
-@indicator-size: unit( 12 / 16 / 0.8, em );
-@icon-size: unit( 24 / 16 / 0.8, em );
-@quick-ease: 100ms ease;
-@progressive: #36c;
+// Variables taken from OOUI's WikimediaUI theme
+@background-color-base: #fff;
+@background-color-base--hover: #eaecf0;
+@background-color-base--disabled: #eaecf0;
+
+@color-base: #222;
+@color-base--inverted: #fff;
+@color-base--subtle: #72777d;
+@color-base--disabled: #72777d;
+@color-progressive: #36c;
+@color-erroneous: #d33;
+
+@border-base: 1px solid #a2a9b1;
+@border-color-base--disabled: @color-base--disabled;
+@border-color-erroneous: @color-erroneous;
+
+@border-radius-base: 2px;
+
+@size-indicator: unit( 12 / 16 / 0.8, em );
+@size-icon: unit( 24 / 16 / 0.8, em );
+
+@box-shadow-base--focus: inset 0 0 0 1px @color-progressive;
+@box-shadow-dialog: 0 2px 2px 0 rgba( 0, 0, 0, 0.25 );
+@box-shadow-widget: inset 0 0 0 1px transparent;
+@box-shadow-erroneous--focus: inset 0 0 0 1px @color-erroneous;
+
+@text-shadow-base: 0 1px 1px @color-base--inverted; // 'coined' effect
+@text-shadow-base--disabled: @text-shadow-base;
+
+@opacity-base--disabled: 0.51;
+
+@transition-ease-quick: 100ms;

@@ -4,6 +4,10 @@
 .mw-widgets-datetime-dateTimeInputWidget {
 	display: inline-block;
 	position: relative;
+	width: 100%;
+	max-width: 50em;
+	margin: 0.25em 0;
+	.oo-ui-inline-spacing( 0.5em );
 	vertical-align: middle;
 
 	&-fields {
@@ -13,23 +17,29 @@
 		.oo-ui-unselectable();
 
 		> .mw-widgets-datetime-dateTimeInputWidget-field {
-			.oo-ui-box-sizing(border-box);
-
+			.oo-ui-box-sizing( border-box );
 			display: table-cell;
 			white-space: pre;
 		}
 	}
 
 	&-handle {
-		width: 100%;
+		background-color: @background-color-base;
+		color: @color-base;
 		display: inline-block;
-		overflow: hidden;
-
-		// Needed for proper behavior with overflow: hidden.
+		.oo-ui-box-sizing( border-box );
+		width: 100%;
+		height: 2.5em;
+		margin: 0;
+		border: @border-base;
+		border-radius: @border-radius-base;
+		padding: 0 1em;
+		box-shadow: inset 0 0 0 0 @color-progressive;
+		// Needed for proper behavior with `overflow: hidden`.
 		vertical-align: bottom;
-
+		overflow: hidden;
 		.oo-ui-unselectable();
-		.oo-ui-box-sizing(border-box);
+		.oo-ui-transition( box-shadow @transition-ease-quick );
 
 		> .oo-ui-indicatorElement-indicator,
 		> .oo-ui-iconElement-icon {
@@ -38,110 +48,55 @@
 			background-repeat: no-repeat;
 			z-index: 1;
 		}
-	}
-
-	margin: 0.25em 0;
-	width: 100%;
-	max-width: 50em;
-
-	.oo-ui-inline-spacing(0.5em);
-
-	&-handle {
-		height: 2.5em;
-		border: 1px solid #ccc;
-		padding: 0 1em;
-		margin: 0;
-		background-color: #fff;
-		color: #000;
-		box-shadow: inset 0 0 0 0 @progressive;
-		border-radius: 0.1em;
-		.oo-ui-transition(box-shadow @quick-ease);
-		.oo-ui-box-sizing(border-box);
-
-		> .oo-ui-indicatorElement-indicator {
-			right: 0;
-		}
 
 		> .oo-ui-iconElement-icon {
+			top: 0;
 			left: 0.25em;
+			width: @size-icon;
+			height: @size-icon;
+			margin: 0.3em;
 		}
 
 		> .oo-ui-indicatorElement-indicator {
 			top: 0;
-			width: @indicator-size;
-			height: @indicator-size;
+			right: 0;
+			width: @size-indicator;
+			height: @size-indicator;
 			margin: 0.775em;
-		}
-
-		> .oo-ui-iconElement-icon {
-			top: 0;
-			width: @icon-size;
-			height: @icon-size;
-			margin: 0.3em;
 		}
 	}
 
 	&-empty &-handle {
-		color: #777;
+		color: @color-base--subtle;
 	}
 
 	&-field {
-		padding: 0;
-		margin: 0;
-		font-size: inherit;
-		font-family: inherit;
 		background-color: transparent;
 		color: inherit;
+		.oo-ui-box-sizing( border-box );
+		margin: 0;
 		border: 0;
+		border-radius: @border-radius-base;
+		padding: 0;
 		box-shadow: none;
+		font-size: inherit;
+		font-family: inherit;
 		text-align: center;
 		vertical-align: middle;
-		.oo-ui-box-sizing(border-box);
-	}
-
-	&.oo-ui-widget-disabled {
-		.mw-widgets-datetime-dateTimeInputWidget-handle {
-			color: #ccc;
-			text-shadow: 0 1px 1px #fff;
-			border-color: #ddd;
-			background-color: #f3f3f3;
-
-			> .oo-ui-iconElement-icon,
-			> .oo-ui-indicatorElement-indicator {
-				opacity: 0.2;
-			}
-		}
-	}
-
-	&.oo-ui-widget-enabled {
-		.mw-widgets-datetime-dateTimeInputWidget-editField:hover {
-			background-color: #eee;
-		}
-
-		&.oo-ui-flaggedElement-invalid {
-			.mw-widgets-datetime-dateTimeInputWidget-handle {
-				border-color: #f00;
-				box-shadow: inset 0 0 0 0 #f00;
-			}
-
-			.mw-widgets-datetime-dateTimeInputWidget-handle:focus {
-				border-color: #f00;
-				box-shadow: inset 0 0 0 0.1em #f00;
-			}
-		}
 	}
 
 	input.mw-widgets-datetime-dateTimeInputWidget-field {
 		padding: 0.5em 0;
+		line-height: 1.6; // repeat `.mw-body-content`'s `line-height` for now
 	}
 
 	&-editField.mw-widgets-datetime-dateTimeInputWidget-invalid {
-		border: 1px solid #f00;
-		box-shadow: inset 0 0 0 0 #f00;
+		border: 1px solid @border-color-erroneous;
+		box-shadow: @box-shadow-widget;
 
 		&:focus {
-			border: 1px solid #f00;
-			box-shadow: inset 0 0 0 0.1em #f00;
+			border: 1px solid @border-color-erroneous;
+			box-shadow: @box-shadow-erroneous--focus;
 		}
 	}
 
@@ -151,5 +106,44 @@
 
 	&.oo-ui-indicatorElement .mw-widgets-datetime-dateTimeInputWidget-handle {
 		padding-right: 2em;
+	}
+
+	&.oo-ui-widget-enabled {
+		.mw-widgets-datetime-dateTimeInputWidget-editField:hover {
+			background-color: @background-color-base--hover;
+		}
+
+		&.oo-ui-flaggedElement-invalid {
+			.mw-widgets-datetime-dateTimeInputWidget-handle {
+				border-color: @border-color-erroneous;
+				box-shadow: @box-shadow-widget;
+			}
+
+			.mw-widgets-datetime-dateTimeInputWidget-handle:focus {
+				border-color: @border-color-erroneous;
+				box-shadow: @box-shadow-erroneous--focus;
+			}
+		}
+
+		input.mw-widgets-datetime-dateTimeInputWidget-field:focus {
+			outline: 0;
+			box-shadow: 0 0 0 2px @color-progressive;
+		}
+	}
+
+	&.oo-ui-widget-disabled {
+		.mw-widgets-datetime-dateTimeInputWidget-handle {
+			background-color: @background-color-base--disabled;
+			// Support: Safari
+			-webkit-text-fill-color: @color-base--disabled;
+			color: @color-base--disabled;
+			text-shadow: @text-shadow-base--disabled;
+			border-color: @border-color-base--disabled;
+		}
+
+		> .oo-ui-iconElement-icon,
+		> .oo-ui-indicatorElement-indicator {
+			opacity: @opacity-base--disabled;
+		}
 	}
 }
