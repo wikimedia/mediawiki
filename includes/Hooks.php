@@ -32,6 +32,9 @@
  * @since 1.18
  */
 class Hooks {
+	const ABORTABLE = 1;
+	const NO_ABORT = 3;
+
 	/**
 	 * Array of events mapped to an array of callbacks to be run
 	 * when that event is triggered.
@@ -118,7 +121,9 @@ class Hooks {
 	 *
 	 * @param string $event Event name
 	 * @param array $args Array of parameters passed to hook functions
-	 * @param string|null $deprecatedVersion Optionally, mark hook as deprecated with version number
+	 * @param string|null $deprecatedVersion [optional] Mark hook as deprecated with version number
+	 * @param int $flags [optional] Whether the hook is abortable. Use Hooks::ABORTABLE or Hooks::NO_ABORT.
+	 *  Default: Hooks::ABORTABLE.
 	 * @return bool True if no handler aborted the hook
 	 *
 	 * @throws Exception
@@ -128,7 +133,11 @@ class Hooks {
 	 *   processing to continue. Not returning a value (or explicitly
 	 *   returning null) is equivalent to returning true.
 	 */
-	public static function run( $event, array $args = [], $deprecatedVersion = null ) {
+	public static function run( $event, array $args = [], $deprecatedVersion = null, $flags = 0 ) {
+		if ( $flags === 0 && is_int( $deprecatedVersion ) ) {
+			$flags = $deprecatedVersion;
+			$deprecatedVersion = null;
+		}
 		foreach ( self::getHandlers( $event ) as $hook ) {
 			// Turn non-array values into an array. (Can't use casting because of objects.)
 			if ( !is_array( $hook ) ) {
@@ -185,13 +194,19 @@ class Hooks {
 			$hook_args = array_merge( $hook, $args );
 			$retval = call_user_func_array( $callback, $hook_args );
 
-			// Process the return value.
-			if ( is_string( $retval ) ) {
-				// String returned means error.
-				throw new FatalError( $retval );
-			} elseif ( $retval === false ) {
-				// False was returned. Stop processing, but no error.
-				return false;
+			if ( $flags === self::NO_ABORT && $retval !== null && $retval !== true ) {
+				wfLogWarning(
+					"Invalid return from $func for unabortable hook $event."
+				);
+			} else {
+				// Process the return value.
+				if ( is_string( $retval ) ) {
+					// String returned means error.
+					throw new FatalError( $retval );
+				} elseif ( $retval === false ) {
+					// False was returned. Stop processing, but no error.
+					return false;
+				}
 			}
 		}
 
