@@ -881,6 +881,11 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 
 		$formDescriptor = array_filter( $coreFieldDescriptors + $formDescriptor );
+		// remove rememberMe checkbox if this is a forced re-authentication T168557, as it is not
+		// possible to stay logged in for forced re-authentications
+		if ( $this->securityLevel ) {
+			unset( $formDescriptor['rememberMe'] );
+		}
 		return true;
 	}
 
