@@ -142,7 +142,67 @@ class HooksTest extends MediaWikiTestCase {
 		} );
 		$foo = 'original';
 		Hooks::run( 'MediaWikiHooksTest001', [ &$foo ] );
-		$this->assertSame( 'original', $foo, 'Hooks continued processing after a false return.' );
+		$this->assertSame( 'original', $foo, 'Hooks abort after a false return.' );
+	}
+
+	/**
+	 * @covers Hooks::run
+	 */
+	public function testNoAbort() {
+		$list = [];
+		Hooks::register( 'MediaWikiHooksTest001', function ( &$list ) {
+			$list[] = 1;
+			return true; // Explicit true
+		} );
+		Hooks::register( 'MediaWikiHooksTest001', function ( &$list ) {
+			$list[] = 2;
+			return; // Implicit null
+		} );
+		Hooks::register( 'MediaWikiHooksTest001', function ( &$list ) {
+			$list[] = 3;
+			// No return
+		} );
+
+		MWDebug::init();
+		MWDebug::clearLog();
+		MediaWiki\suppressWarnings();
+		Hooks::run( 'MediaWikiHooksTest001', [ &$list ], Hooks::NO_ABORT );
+		MediaWiki\restoreWarnings();
+		MWDebug::deinit();
+
+		$log = MWDebug::getLog();
+		$this->assertSame( [], $log, 'No warnings' );
+		$this->assertSame( [ 1, 2, 3 ], $list, 'All hooks ran.' );
+	}
+
+	/**
+	 * @covers Hooks::run
+	 */
+	public function testNoAbortWarning() {
+		Hooks::register( 'MediaWikiHooksTest001', function ( &$foo ) {
+			return false;
+		} );
+		Hooks::register( 'MediaWikiHooksTest001', function ( &$foo ) {
+			$foo = 'test';
+			return true;
+		} );
+		$foo = 'original';
+
+		MWDebug::init();
+		MWDebug::clearLog();
+		MediaWiki\suppressWarnings();
+		Hooks::run( 'MediaWikiHooksTest001', [ &$foo ], Hooks::NO_ABORT );
+		MediaWiki\restoreWarnings();
+		MWDebug::deinit();
+
+		$log = MWDebug::getLog();
+		$this->assertSame( 'test', $foo, 'Unabortable hooks continue after a false return.' );
+		$this->assertRegExp(
+			'/^Invalid return from .*closure for unabortable hook MediaWikiHooksTest001.$/',
+			$log[0]['msg'],
+			'Log message'
+		);
+		$this->assertSame( 'Hooks::run', $log[0]['caller'], 'Log caller');
 	}
 
 	/**
