@@ -1408,7 +1408,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$readOnlyMode = \MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode();
 		$readOnlyMode->setReason( 'Because' );
 		$this->assertEquals(
-			\Status::newFatal( 'readonlytext', 'Because' ),
+			\Status::newFatal( wfMessage( 'readonlytext', 'Because' ) ),
 			$this->manager->checkAccountCreatePermissions( new \User )
 		);
 		$readOnlyMode->setReason( false );
