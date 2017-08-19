@@ -1,5 +1,5 @@
 /*!
- * OOUI defines used by the existing CSS (will make it easier to put this
+ * OOUI definitions used by the existing CSS (will make it easier to put this
  * widget in OOUI once OOUI is capable of handling it)
  */
 
@@ -19,6 +19,7 @@
 
 .oo-ui-inline-spacing( @spacing, @cancelled-spacing: 0 ) {
 	margin-right: @spacing;
+
 	&:last-child {
 		margin-right: @cancelled-spacing;
 	}
@@ -31,7 +32,58 @@
 	transition: @value;
 }
 
-@indicator-size: unit( 12 / 16 / 0.8, em );
-@icon-size: unit( 24 / 16 / 0.8, em );
-@quick-ease: 100ms ease;
-@progressive: #36c;
+// Variables taken from OOUI's WikimediaUI theme, see its common.less for further explanations
+@oo-ui-font-size-browser: 16; // assumed browser default of `16px`
+@oo-ui-font-size-base: 0.875em; // equals `14px` at browser default of `16px`
+
+@background-color-base: #fff;
+@background-color-base--hover: #eaecf0;
+@background-color-base--disabled: #eaecf0;
+
+@color-base: #222;
+@color-base--inverted: #fff;
+@color-base--subtle: #72777d;
+@color-base--disabled: #72777d;
+@color-progressive: #36c;
+@color-erroneous: #d33;
+
+@min-size-indicator: 12px;
+@size-base: 32 / @oo-ui-font-size-browser / @oo-ui-font-size-base;
+@size-icon: 24 / @oo-ui-font-size-browser / @oo-ui-font-size-base;
+@size-indicator: 12 / @oo-ui-font-size-browser / @oo-ui-font-size-base;
+@max-width-base: 50em;
+@max-width-input: @max-width-base;
+
+@padding-input-text: @padding-top-base @padding-horizontal-input-text @padding-bottom-base;
+@padding-horizontal-base: 12 / @oo-ui-font-size-browser / @oo-ui-font-size-base;
+@padding-horizontal-input-text: 8 / @oo-ui-font-size-browser / @oo-ui-font-size-base;
+@padding-top-base: 8 / @oo-ui-font-size-browser / @oo-ui-font-size-base;
+@padding-bottom-base: 7 / @oo-ui-font-size-browser / @oo-ui-font-size-base;
+@padding-start-input-text-icon: 6 / @oo-ui-font-size-browser / @oo-ui-font-size-base;
+@padding-start-input-text-icon-label: 32 / @oo-ui-font-size-browser / @oo-ui-font-size-base;
+
+@border-base: 1px solid #a2a9b1;
+@border-color-base--disabled: @color-base--disabled;
+@border-color-base--active: #72777d;
+@border-color-input--hover: @border-color-base--active;
+@border-color-erroneous: @color-erroneous;
+
+@border-radius-base: 2px;
+
+@box-shadow-base--focus: inset 0 0 0 1px @color-progressive;
+@box-shadow-dialog: 0 2px 2px 0 rgba( 0, 0, 0, 0.25 );
+@box-shadow-widget: inset 0 0 0 1px transparent;
+@box-shadow-erroneous--focus: inset 0 0 0 1px @color-erroneous;
+
+@line-height-widget-singleline: 15 / @oo-ui-font-size-browser / @oo-ui-font-size-base;
+
+@text-shadow-base: 0 1px 1px @color-base--inverted; // 'coined' effect
+@text-shadow-base--disabled: @text-shadow-base;
+
+@opacity-base--disabled: 0.51;
+
+@transition-base:             @transition-duration-base;
+@transition-medium:           @transition-duration-medium;
+// Transitions > Durations
+@transition-duration-base:    100ms;
+@transition-duration-medium:  250ms;
