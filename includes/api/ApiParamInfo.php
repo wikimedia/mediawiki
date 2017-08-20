@@ -163,7 +163,7 @@ class ApiParamInfo extends ApiBase {
 	/**
 	 * List all submodules of a module
 	 * @param ApiBase $module
-	 * @param boolean $recursive
+	 * @param bool $recursive
 	 * @return string[]
 	 */
 	private function listAllSubmodules( ApiBase $module, $recursive ) {

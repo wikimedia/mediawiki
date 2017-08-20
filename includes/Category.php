@@ -48,7 +48,7 @@ class Category {
 
 	/**
 	 * Set up all member variables using a database query.
-	 * @param integer $mode
+	 * @param int $mode
 	 * @throws MWException
 	 * @return bool True on success, false on failure.
 	 */

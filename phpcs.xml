@@ -9,10 +9,6 @@
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingReturn" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.SpacingAfter" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.ParamNameNoMatch" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.NotShortBoolReturn" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.NotShortIntReturn" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.NotShortBoolParam" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.NotShortIntParam" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.ExtraParamComment" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.WrongStyle" />
 		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentStart" />

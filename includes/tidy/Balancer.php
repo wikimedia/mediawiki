@@ -1528,7 +1528,7 @@ class BalanceActiveFormattingElements {
 	/**
 	 * Determine whether an element is in the list of formatting elements.
 	 * @param BalanceElement $elt
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isInList( BalanceElement $elt ) {
 		return $this->head === $elt || $elt->prevAFE;

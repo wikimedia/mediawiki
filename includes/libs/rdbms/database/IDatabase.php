@@ -277,7 +277,7 @@ interface IDatabase {
 	/**
 	 * Get the number of affected rows from pending write queries
 	 *
-	 * @return integer
+	 * @return int
 	 * @since 1.30
 	 */
 	public function pendingWriteRowsAffected();

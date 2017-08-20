@@ -542,7 +542,7 @@ class UIDGenerator {
 
 	/**
 	 * @param array $time Result of UIDGenerator::millitime()
-	 * @param integer $delta Number of intervals to add on to the timestamp
+	 * @param int $delta Number of intervals to add on to the timestamp
 	 * @return string 60 bits of "100ns intervals since 15 October 1582" (rolls over in 3400)
 	 * @throws RuntimeException
 	 */

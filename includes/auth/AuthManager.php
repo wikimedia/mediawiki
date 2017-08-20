@@ -2131,7 +2131,7 @@ class AuthManager implements LoggerAwareInterface {
 	 * @param AuthenticationRequest[] &$reqs
 	 * @param string $action
 	 * @param string|null $username
-	 * @param boolean $forceAction
+	 * @param bool $forceAction
 	 */
 	private function fillRequests( array &$reqs, $action, $username, $forceAction = false ) {
 		foreach ( $reqs as $req ) {

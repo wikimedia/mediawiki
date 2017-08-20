@@ -129,7 +129,7 @@ class RemexCompatMunger implements TreeHandler {
 	 * Insert a p-wrapper
 	 *
 	 * @param SerializerNode $parent
-	 * @param integer $sourceStart
+	 * @param int $sourceStart
 	 * @return SerializerNode
 	 */
 	private function insertPWrapper( SerializerNode $parent, $sourceStart ) {
@@ -220,12 +220,12 @@ class RemexCompatMunger implements TreeHandler {
 	 * FIXME: fostering ($preposition == BEFORE) is mostly done by inserting as
 	 * normal, the full algorithm is not followed.
 	 *
-	 * @param integer $preposition
+	 * @param int $preposition
 	 * @param Element|SerializerNode|null $refElement
 	 * @param Element $element
 	 * @param bool $void
-	 * @param integer $sourceStart
-	 * @param integer $sourceLength
+	 * @param int $sourceStart
+	 * @param int $sourceLength
 	 */
 	public function insertElement( $preposition, $refElement, Element $element, $void,
 		$sourceStart, $sourceLength
@@ -313,7 +313,7 @@ class RemexCompatMunger implements TreeHandler {
 	 *
 	 * @param SerializerNode $parentNode
 	 * @param bool $inline
-	 * @param integer $pos The source position
+	 * @param int $pos The source position
 	 * @return SerializerNode
 	 */
 	private function splitTagStack( SerializerNode $parentNode, $inline, $pos ) {

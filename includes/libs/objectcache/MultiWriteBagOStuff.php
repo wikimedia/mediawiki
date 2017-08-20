@@ -171,7 +171,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	/**
 	 * Apply a write method to the first $count backing caches
 	 *
-	 * @param integer $count
+	 * @param int $count
 	 * @param bool $asyncWrites
 	 * @param string $method
 	 * @param mixed $args,...

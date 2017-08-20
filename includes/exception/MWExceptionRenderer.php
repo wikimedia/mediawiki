@@ -33,7 +33,7 @@ class MWExceptionRenderer {
 
 	/**
 	 * @param Exception|Throwable $e Original exception
-	 * @param integer $mode MWExceptionExposer::AS_* constant
+	 * @param int $mode MWExceptionExposer::AS_* constant
 	 * @param Exception|Throwable|null $eNew New exception from attempting to show the first
 	 */
 	public static function output( $e, $mode, $eNew = null ) {
@@ -262,7 +262,7 @@ class MWExceptionRenderer {
 	}
 
 	/**
-	 * @param integer $code
+	 * @param int $code
 	 */
 	private static function statusHeader( $code ) {
 		if ( !headers_sent() ) {

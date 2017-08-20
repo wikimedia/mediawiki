@@ -205,7 +205,7 @@ class LoadMonitor implements ILoadMonitor {
 	}
 
 	/**
-	 * @param integer $index Server index
+	 * @param int $index Server index
 	 * @param IDatabase|null $conn Connection handle or null on connection failure
 	 * @return float
 	 */

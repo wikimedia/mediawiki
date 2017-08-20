@@ -36,7 +36,7 @@ class IcuCollation extends Collation {
 	/** @var Language */
 	protected $digitTransformLanguage;
 
-	/** @var boolean */
+	/** @var bool */
 	private $useNumericCollation = false;
 
 	/** @var array */

@@ -6,7 +6,7 @@ class HTMLFormFieldWithButton extends HTMLFormField {
 	/** @var string $mButtonClass CSS class for the button in this field */
 	protected $mButtonClass = '';
 
-	/** @var string|integer $mButtonId Element ID for the button in this field */
+	/** @var string|int $mButtonId Element ID for the button in this field */
 	protected $mButtonId = '';
 
 	/** @var string $mButtonName Name the button in this field */

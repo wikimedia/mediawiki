@@ -66,7 +66,7 @@ class CreateFromLoginAuthenticationRequest extends AuthenticationRequest {
 	 * Indicate whether this request contains any state for the specified
 	 * action.
 	 * @param string $action One of the AuthManager::ACTION_* constants
-	 * @return boolean
+	 * @return bool
 	 */
 	public function hasStateForAction( $action ) {
 		switch ( $action ) {
@@ -83,7 +83,7 @@ class CreateFromLoginAuthenticationRequest extends AuthenticationRequest {
 	 * Indicate whether this request contains state for the specified
 	 * action sufficient to replace other primary-required requests.
 	 * @param string $action One of the AuthManager::ACTION_* constants
-	 * @return boolean
+	 * @return bool
 	 */
 	public function hasPrimaryStateForAction( $action ) {
 		switch ( $action ) {

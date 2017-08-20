@@ -357,7 +357,7 @@ abstract class HTMLFormField {
 	 * (wpFormIdentifier).
 	 *
 	 * @param WebRequest $request
-	 * @return boolean
+	 * @return bool
 	 */
 	protected function isSubmitAttempt( WebRequest $request ) {
 		return $request->getCheck( 'wpEditToken' ) || $request->getCheck( 'wpFormIdentifier' );
@@ -1218,7 +1218,7 @@ abstract class HTMLFormField {
 	 * Whether this field requires the user agent to have JavaScript enabled for the client-side HTML5
 	 * form validation to work correctly.
 	 *
-	 * @return boolean
+	 * @return bool
 	 * @since 1.29
 	 */
 	public function needsJSForHtml5FormValidation() {

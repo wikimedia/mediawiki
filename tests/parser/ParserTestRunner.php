@@ -527,7 +527,7 @@ class ParserTestRunner {
 	 * Determine whether a particular setup function has been run
 	 *
 	 * @param string $funcName
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isSetupDone( $funcName ) {
 		return isset( $this->setupDone[$funcName] ) ? $this->setupDone[$funcName] : false;

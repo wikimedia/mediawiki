@@ -54,16 +54,16 @@
  */
 interface IDBAccessObject {
 	/** Constants for object loading bitfield flags (higher => higher QoS) */
-	/** @var integer Read from a replica DB/non-quorum */
+	/** @var int Read from a replica DB/non-quorum */
 	const READ_NORMAL = 0;
-	/** @var integer Read from the master/quorum */
+	/** @var int Read from the master/quorum */
 	const READ_LATEST = 1;
-	/* @var integer Read from the master/quorum and lock out other writers */
+	/* @var int Read from the master/quorum and lock out other writers */
 	const READ_LOCKING = 3; // READ_LATEST (1) and "LOCK IN SHARE MODE" (2)
-	/** @var integer Read from the master/quorum and lock out other writers and locking readers */
+	/** @var int Read from the master/quorum and lock out other writers and locking readers */
 	const READ_EXCLUSIVE = 7; // READ_LOCKING (3) and "FOR UPDATE" (4)
 
-	/** @var integer Read from a replica DB or without a quorum, using the master/quorum on miss */
+	/** @var int Read from a replica DB or without a quorum, using the master/quorum on miss */
 	const READ_LATEST_IMMUTABLE = 8;
 
 	// Convenience constant for tracking how data was loaded (higher => higher QoS)

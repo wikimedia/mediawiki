@@ -302,7 +302,7 @@ class User implements IDBAccessObject {
 	/** @var Block */
 	private $mBlockedFromCreateAccount = false;
 
-	/** @var integer User::READ_* constant bitfield used to load data */
+	/** @var int User::READ_* constant bitfield used to load data */
 	protected $queryFlagsUsed = self::READ_NORMAL;
 
 	public static $idCacheByName = [];
@@ -357,7 +357,7 @@ class User implements IDBAccessObject {
 	/**
 	 * Load the user table data for this object from the source given by mFrom.
 	 *
-	 * @param integer $flags User::READ_* constant bitfield
+	 * @param int $flags User::READ_* constant bitfield
 	 */
 	public function load( $flags = self::READ_NORMAL ) {
 		global $wgFullyInitialised;
@@ -419,7 +419,7 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Load user table data, given mId has already been set.
-	 * @param integer $flags User::READ_* constant bitfield
+	 * @param int $flags User::READ_* constant bitfield
 	 * @return bool False if the ID does not exist, true otherwise
 	 */
 	public function loadFromId( $flags = self::READ_NORMAL ) {
@@ -450,7 +450,7 @@ class User implements IDBAccessObject {
 	/**
 	 * @since 1.27
 	 * @param string $wikiId
-	 * @param integer $userId
+	 * @param int $userId
 	 */
 	public static function purge( $wikiId, $userId ) {
 		$cache = ObjectCache::getMainWANInstance();
@@ -759,7 +759,7 @@ class User implements IDBAccessObject {
 	/**
 	 * Get database id given a user name
 	 * @param string $name Username
-	 * @param integer $flags User::READ_* constant bitfield
+	 * @param int $flags User::READ_* constant bitfield
 	 * @return int|null The corresponding user's ID, or null if user is nonexistent
 	 */
 	public static function idFromName( $name, $flags = self::READ_NORMAL ) {
@@ -1252,7 +1252,7 @@ class User implements IDBAccessObject {
 	 * Load user and user_group data from the database.
 	 * $this->mId must be set, this is how the user is identified.
 	 *
-	 * @param integer $flags User::READ_* constant bitfield
+	 * @param int $flags User::READ_* constant bitfield
 	 * @return bool True if the user exists, false if the user is anonymous
 	 */
 	public function loadFromDatabase( $flags = self::READ_LATEST ) {

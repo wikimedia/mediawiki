@@ -336,7 +336,7 @@ class EditPage {
 	/** @var string */
 	public $edittime = '';
 
-	/** @var integer */
+	/** @var int */
 	private $editRevId = null;
 
 	/** @var string */
@@ -1726,7 +1726,7 @@ class EditPage {
 	 *   - spam (string): Spam string from content if any spam is detected by
 	 *     matchSpamRegex.
 	 *   - sectionanchor (string): Section anchor for a section save.
-	 *   - nullEdit (boolean): Set if doEditContent is OK.  True if null edit,
+	 *   - nullEdit (bool): Set if doEditContent is OK.  True if null edit,
 	 *     false otherwise.
 	 *   - redirect (bool): Set if doEditContent is OK. True if resulting
 	 *     revision is a redirect.

@@ -49,7 +49,7 @@ class LoadBalancer implements ILoadBalancer {
 	private $mGroupLoads;
 	/** @var bool Whether to disregard replica DB lag as a factor in replica DB selection */
 	private $mAllowLagged;
-	/** @var integer Seconds to spend waiting on replica DB lag to resolve */
+	/** @var int Seconds to spend waiting on replica DB lag to resolve */
 	private $mWaitTimeout;
 	/** @var array The LoadMonitor configuration */
 	private $loadMonitorConfig;
@@ -79,7 +79,7 @@ class LoadBalancer implements ILoadBalancer {
 
 	/** @var Database DB connection object that caused a problem */
 	private $errorConnection;
-	/** @var integer The generic (not query grouped) replica DB index (of $mServers) */
+	/** @var int The generic (not query grouped) replica DB index (of $mServers) */
 	private $mReadIndex;
 	/** @var bool|DBMasterPos False if not set */
 	private $mWaitForPos;
@@ -91,7 +91,7 @@ class LoadBalancer implements ILoadBalancer {
 	private $mLastError = 'Unknown error';
 	/** @var string|bool Reason the LB is read-only or false if not */
 	private $readOnlyReason = false;
-	/** @var integer Total connections opened */
+	/** @var int Total connections opened */
 	private $connsOpened = 0;
 	/** @var string|bool String if a requested DBO_TRX transaction round is active */
 	private $trxRoundId = false;
@@ -111,17 +111,17 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var callable Exception logger */
 	private $errorLogger;
 
-	/** @var boolean */
+	/** @var bool */
 	private $disabled = false;
-	/** @var boolean */
+	/** @var bool */
 	private $chronProtInitialized = false;
 
-	/** @var integer Warn when this many connection are held */
+	/** @var int Warn when this many connection are held */
 	const CONN_HELD_WARN_THRESHOLD = 10;
 
-	/** @var integer Default 'max lag' when unspecified */
+	/** @var int Default 'max lag' when unspecified */
 	const MAX_LAG_DEFAULT = 10;
-	/** @var integer Seconds to cache master server read-only status */
+	/** @var int Seconds to cache master server read-only status */
 	const TTL_CACHE_READONLY = 5;
 
 	const KEY_LOCAL = 'local';
@@ -845,7 +845,7 @@ class LoadBalancer implements ILoadBalancer {
 	 *
 	 * @param int $i Server index
 	 * @param string $domain Domain ID to open
-	 * @param integer $flags Class CONN_* constant bitfield
+	 * @param int $flags Class CONN_* constant bitfield
 	 * @return Database
 	 */
 	private function openForeignConnection( $i, $domain, $flags = 0 ) {

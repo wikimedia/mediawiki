@@ -71,7 +71,7 @@ class DeferredUpdates {
 	 * In CLI mode, callback magic will also be used to run updates when safe
 	 *
 	 * @param DeferrableUpdate $update Some object that implements doUpdate()
-	 * @param integer $stage DeferredUpdates constant (PRESEND or POSTSEND) (since 1.27)
+	 * @param int $stage DeferredUpdates constant (PRESEND or POSTSEND) (since 1.27)
 	 */
 	public static function addUpdate( DeferrableUpdate $update, $stage = self::POSTSEND ) {
 		global $wgCommandLineMode;
@@ -105,7 +105,7 @@ class DeferredUpdates {
 	 * @see MWCallableUpdate::__construct()
 	 *
 	 * @param callable $callable
-	 * @param integer $stage DeferredUpdates constant (PRESEND or POSTSEND) (since 1.27)
+	 * @param int $stage DeferredUpdates constant (PRESEND or POSTSEND) (since 1.27)
 	 * @param IDatabase|null $dbw Abort if this DB is rolled back [optional] (since 1.28)
 	 */
 	public static function addCallableUpdate(
@@ -118,7 +118,7 @@ class DeferredUpdates {
 	 * Do any deferred updates and clear the list
 	 *
 	 * @param string $mode Use "enqueue" to use the job queue when possible [Default: "run"]
-	 * @param integer $stage DeferredUpdates constant (PRESEND, POSTSEND, or ALL) (since 1.27)
+	 * @param int $stage DeferredUpdates constant (PRESEND, POSTSEND, or ALL) (since 1.27)
 	 */
 	public static function doUpdates( $mode = 'run', $stage = self::ALL ) {
 		$stageEffective = ( $stage === self::ALL ) ? self::POSTSEND : $stage;
@@ -165,7 +165,7 @@ class DeferredUpdates {
 	 *
 	 * @param DeferrableUpdate[] &$queue List of DeferrableUpdate objects
 	 * @param string $mode Use "enqueue" to use the job queue when possible
-	 * @param integer $stage Class constant (PRESEND, POSTSEND) (since 1.28)
+	 * @param int $stage Class constant (PRESEND, POSTSEND) (since 1.28)
 	 * @throws ErrorPageError Happens on top-level calls
 	 * @throws Exception Happens on second-level calls
 	 */
@@ -238,7 +238,7 @@ class DeferredUpdates {
 	 * @param DeferrableUpdate $update
 	 * @param LBFactory $lbFactory
 	 * @param string $mode
-	 * @param integer $stage
+	 * @param int $stage
 	 * @return ErrorPageError|null
 	 */
 	private static function runUpdate(
@@ -322,7 +322,7 @@ class DeferredUpdates {
 	}
 
 	/**
-	 * @return integer Number of enqueued updates
+	 * @return int Number of enqueued updates
 	 * @since 1.28
 	 */
 	public static function pendingUpdatesCount() {
@@ -330,7 +330,7 @@ class DeferredUpdates {
 	}
 
 	/**
-	 * @param integer $stage DeferredUpdates constant (PRESEND, POSTSEND, or ALL)
+	 * @param int $stage DeferredUpdates constant (PRESEND, POSTSEND, or ALL)
 	 * @return DeferrableUpdate[]
 	 * @since 1.29
 	 */

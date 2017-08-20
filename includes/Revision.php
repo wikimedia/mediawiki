@@ -752,7 +752,7 @@ class Revision implements IDBAccessObject {
 	 * This should only be used for proposed revisions that turn out to be null edits
 	 *
 	 * @since 1.28
-	 * @param integer $id User ID
+	 * @param int $id User ID
 	 * @param string $name User name
 	 */
 	public function setUserIdAndName( $id, $name ) {
@@ -1584,7 +1584,7 @@ class Revision implements IDBAccessObject {
 	 * Get the text cache TTL
 	 *
 	 * @param WANObjectCache $cache
-	 * @return integer
+	 * @return int
 	 */
 	private static function getCacheTTL( WANObjectCache $cache ) {
 		global $wgRevisionCacheExpiry;

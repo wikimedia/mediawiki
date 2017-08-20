@@ -58,7 +58,7 @@ interface ILoadMonitor extends LoggerAwareInterface {
 	 *
 	 * Values may be "false" if replication is too broken to estimate
 	 *
-	 * @param integer[] $serverIndexes
+	 * @param int[] $serverIndexes
 	 * @param string $domain
 	 * @return array Map of (server index => float|int|bool)
 	 */

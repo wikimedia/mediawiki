@@ -27,7 +27,7 @@ namespace Wikimedia\Rdbms;
 class DBQueryError extends DBExpectedError {
 	/** @var string */
 	public $error;
-	/** @var integer */
+	/** @var int */
 	public $errno;
 	/** @var string */
 	public $sql;

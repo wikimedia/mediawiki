@@ -87,7 +87,7 @@ class HTMLFileCache extends FileCacheBase {
 	/**
 	 * Check if pages can be cached for this request/user
 	 * @param IContextSource $context
-	 * @param integer $mode One of the HTMLFileCache::MODE_* constants (since 1.28)
+	 * @param int $mode One of the HTMLFileCache::MODE_* constants (since 1.28)
 	 * @return bool
 	 */
 	public static function useFileCache( IContextSource $context, $mode = self::MODE_NORMAL ) {
@@ -140,7 +140,7 @@ class HTMLFileCache extends FileCacheBase {
 	/**
 	 * Read from cache to context output
 	 * @param IContextSource $context
-	 * @param integer $mode One of the HTMLFileCache::MODE_* constants
+	 * @param int $mode One of the HTMLFileCache::MODE_* constants
 	 * @return void
 	 */
 	public function loadFromFileCache( IContextSource $context, $mode = self::MODE_NORMAL ) {

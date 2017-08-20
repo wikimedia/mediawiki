@@ -138,7 +138,7 @@ interface ILBFactory {
 
 	/**
 	 * Prepare all tracked load balancers for shutdown
-	 * @param integer $mode One of the class SHUTDOWN_* constants
+	 * @param int $mode One of the class SHUTDOWN_* constants
 	 * @param callable|null $workCallback Work to mask ChronologyProtector writes
 	 */
 	public function shutdown(

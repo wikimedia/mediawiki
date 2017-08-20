@@ -970,7 +970,7 @@ class MediaWiki {
 	}
 
 	/**
-	 * @param integer $n Number of jobs to try to run
+	 * @param int $n Number of jobs to try to run
 	 * @param LoggerInterface $runJobsLogger
 	 */
 	private function triggerSyncJobs( $n, LoggerInterface $runJobsLogger ) {
@@ -979,7 +979,7 @@ class MediaWiki {
 	}
 
 	/**
-	 * @param integer $n Number of jobs to try to run
+	 * @param int $n Number of jobs to try to run
 	 * @param LoggerInterface $runJobsLogger
 	 * @return bool Success
 	 */
