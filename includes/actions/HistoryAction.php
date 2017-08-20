@@ -160,7 +160,7 @@ class HistoryAction extends FormlessAction {
 				[ 'lim' => 10,
 					'conds' => [ 'log_action != ' . $dbr->addQuotes( 'revision' ) ],
 					'showIfEmpty' => false,
-					'msgKey' => [ 'moveddeleted-notice' ]
+					'msgKey' => [ 'moveddeleted-notice-history' ]
 				]
 			);
 
