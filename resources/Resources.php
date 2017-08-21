@@ -1421,7 +1421,7 @@ return [
 		'dependencies' => [
 			'mediawiki.action.edit.styles',
 			'jquery.textSelection',
-			'jquery.byteLimit',
+			'oojs-ui-core',
 			'mediawiki.widgets.visibleByteLimit',
 			'mediawiki.api',
 		],
