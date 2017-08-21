@@ -598,7 +598,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				[
 					'maxDays' => (int)$this->getConfig()->get( 'RCMaxAge' ) / ( 24 * 3600 ), // Translate to days
 					'limitArray' => $this->getConfig()->get( 'RCLinkLimits' ),
+					'limitDefault' => $this->getDefaultLimit(),
 					'daysArray' => $this->getConfig()->get( 'RCLinkDays' ),
+					'daysDefault' => $this->getDefaultDays(),
 				]
 			);
 		}
@@ -1535,4 +1537,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	protected function isStructuredFilterUiEnabled() {
 		return $this->getUser()->getOption( 'rcenhancedfilters' );
 	}
+
+	abstract function getDefaultLimit();
+
+	abstract function getDefaultDays();
 }

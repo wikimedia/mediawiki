@@ -142,6 +142,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	protected function registerFilters() {
 		parent::registerFilters();
 
+		$this->getFilterGroup( 'lastRevision' )
+			->getFilter( 'hidepreviousrevisions' )
+			->setDefault( true );
+
 		$this->registerFilterGroup( new ChangesListStringOptionsFilterGroup( [
 			'name' => 'watchlistactivity',
 			'title' => 'rcfilters-filtergroup-watchlistactivity',
@@ -379,14 +383,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$fields[] = 'wl_notificationtimestamp';
 		}
 
-		$rollbacker = $user->isAllowed( 'rollback' );
-		if ( $usePage || $rollbacker ) {
-			$tables[] = 'page';
-			$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
-			if ( $rollbacker ) {
-				$fields[] = 'page_latest';
-			}
-		}
+		// JOIN on page, used for 'last revision' filter highlight
+		$tables[] = 'page';
+		$fields[] = 'page_latest';
+		$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
 
 		// Log entries with DELETED_ACTION must not show up unless the user has
 		// the necessary rights.
@@ -857,5 +857,13 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 		$count = $store->countWatchedItems( $this->getUser() );
 		return floor( $count / 2 );
+	}
+
+	function getDefaultLimit() {
+		return $this->getUser()->getIntOption( 'wllimit' );
+	}
+
+	function getDefaultDays() {
+		return $this->getUser()->getIntOption( 'watchlistdays' );
 	}
 }

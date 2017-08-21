@@ -991,4 +991,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	protected function getCacheTTL() {
 		return 60 * 5;
 	}
+
+	function getDefaultLimit() {
+		return $this->getUser()->getIntOption( 'rclimit' );
+	}
+
+	function getDefaultDays() {
+		return $this->getUser()->getIntOption( 'rcdays' );
+	}
 }
