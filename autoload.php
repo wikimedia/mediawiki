@@ -367,7 +367,6 @@ $wgAutoloadLocalClasses = [
 	'DeleteLogFormatter' => __DIR__ . '/includes/logging/DeleteLogFormatter.php',
 	'DeleteOldRevisions' => __DIR__ . '/maintenance/deleteOldRevisions.php',
 	'DeleteOrphanedRevisions' => __DIR__ . '/maintenance/deleteOrphanedRevisions.php',
-	'DeleteRevision' => __DIR__ . '/maintenance/deleteRevision.php',
 	'DeleteSelfExternals' => __DIR__ . '/maintenance/deleteSelfExternals.php',
 	'DeletedContribsPager' => __DIR__ . '/includes/specials/pagers/DeletedContribsPager.php',
 	'DeletedContributionsPage' => __DIR__ . '/includes/specials/SpecialDeletedContributions.php',
