@@ -142,6 +142,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	protected function registerFilters() {
 		parent::registerFilters();
 
+		$this->getFilterGroup( 'lastRevision' )
+			->getFilter( 'hidepreviousrevisions' )
+			->setDefault( true );
+
 		$this->registerFilterGroup( new ChangesListStringOptionsFilterGroup( [
 			'name' => 'watchlistactivity',
 			'title' => 'rcfilters-filtergroup-watchlistactivity',
@@ -857,5 +861,13 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 		$count = $store->countWatchedItems( $this->getUser() );
 		return floor( $count / 2 );
+	}
+
+	function getDefaultLimit() {
+		return $this->getUser()->getIntOption( 'wllimit' );
+	}
+
+	function getDefaultDays() {
+		return $this->getUser()->getIntOption( 'watchlistdays' );
 	}
 }
