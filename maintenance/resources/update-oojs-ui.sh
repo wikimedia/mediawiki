@@ -59,6 +59,7 @@ cp -R ./node_modules/oojs-ui/dist/themes/wikimediaui/images "$REPO_DIR/$TARGET_D
 cp ./node_modules/oojs-ui/src/themes/wikimediaui/*.json "$REPO_DIR/$TARGET_DIR/themes/wikimediaui"
 cp -R ./node_modules/oojs-ui/dist/themes/apex/images "$REPO_DIR/$TARGET_DIR/themes/apex"
 cp ./node_modules/oojs-ui/src/themes/apex/*.json "$REPO_DIR/$TARGET_DIR/themes/apex"
+cp ./node_modules/oojs-ui/dist/wikimedia-ui-base.less "$REPO_DIR/$TARGET_DIR"
 
 # Clean up temporary area
 rm -rf "$NPM_DIR"
