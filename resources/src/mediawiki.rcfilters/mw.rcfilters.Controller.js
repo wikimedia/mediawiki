@@ -97,11 +97,6 @@
 			};
 		}
 
-		// Convert the default from the old preference
-		// since the limit preference actually affects more
-		// than just the RecentChanges page
-		limitDefault = Number( mw.user.options.get( 'rclimit', '50' ) );
-
 		// Add parameter range operations
 		views.range = {
 			groups: [
@@ -117,7 +112,7 @@
 						max: 1000
 					},
 					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
-					'default': String( limitDefault ),
+					'default': displayConfig.limitDefault,
 					// Temporarily making this not sticky until we resolve the problem
 					// with the misleading preference. Note that if this is to be permanent
 					// we should remove all sticky behavior methods completely
@@ -145,7 +140,7 @@
 							( Number( i ) * 24 ).toFixed( 2 ) :
 							Number( i );
 					},
-					'default': mw.user.options.get( 'rcdays', '30' ),
+					'default': displayConfig.daysDefault,
 					// Temporarily making this not sticky while limit is not sticky, see above
 					// isSticky: true,
 					excludedFromSavedQueries: true,
