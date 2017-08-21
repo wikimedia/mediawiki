@@ -4409,6 +4409,7 @@
 	"mw-widgets-mediasearch-noresults": "Label notifying the user no results were found for the media search.",
 	"mw-widgets-titleinput-description-new-page": "Description label for a new page in the title input widget.",
 	"mw-widgets-titleinput-description-redirect": "Description label for a redirect in the title input widget.",
+	"mw-widgets-titleinput-missing-in-target-language": "Label appended to search result in the title input widget, indicating that matching article is missing in target language.",
 	"mw-widgets-categoryselector-add-category-placeholder": "Placeholder displayed in the category selector widget after the capsules of already added categories.",
 	"mw-widgets-usersmultiselect-placeholder": "Placeholder displayed in the input field, where new usernames are entered",
 	"date-range-from": "Label for an input field that specifies the start date of a date range filter.",
