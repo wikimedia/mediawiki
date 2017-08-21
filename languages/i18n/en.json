@@ -4218,6 +4218,7 @@
 	"mw-widgets-mediasearch-noresults": "No results found.",
 	"mw-widgets-titleinput-description-new-page": "page does not exist yet",
 	"mw-widgets-titleinput-description-redirect": "redirect to $1",
+	"mw-widgets-titleinput-missing-in-target-language": "Missing in $1",
 	"mw-widgets-categoryselector-add-category-placeholder": "Add a category...",
 	"mw-widgets-usersmultiselect-placeholder": "Add more...",
 	"date-range-from": "From date:",

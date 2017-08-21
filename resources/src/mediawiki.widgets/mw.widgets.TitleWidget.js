@@ -44,6 +44,8 @@
 		this.showRedirectTargets = config.showRedirectTargets !== false;
 		this.showImages = !!config.showImages;
 		this.showDescriptions = !!config.showDescriptions;
+		this.showMissingInTargetLanguage = !!config.showMissingInTargetLanguage;
+		this.showLanguageCount = !!config.showLanguageCount;
 		this.excludeCurrentPage = !!config.excludeCurrentPage;
 		this.validateTitle = config.validateTitle !== undefined ? config.validateTitle : true;
 		this.cache = config.cache;
@@ -162,6 +164,14 @@
 						params.prop.push( 'pageterms' );
 						params.wbptterms = 'description';
 					}
+					if ( widget.showMissingInTargetLanguage ) {
+						params.prop.push( 'langlinks' );
+						// lllang is used to check if article exists in target language
+						params.lllang = widget.targetLanguage;
+					}
+					if ( widget.showLanguageCount ) {
+						params.prop.push( 'langlinkscount' );
+					}
 					req = api.get( params );
 					promiseAbortObject.abort = req.abort.bind( req ); // TODO ew
 					return req.then( function ( ret ) {
@@ -225,6 +235,8 @@
 				disambiguation: OO.getProp( suggestionPage, 'pageprops', 'disambiguation' ) !== undefined,
 				imageUrl: OO.getProp( suggestionPage, 'thumbnail', 'source' ),
 				description: OO.getProp( suggestionPage, 'terms', 'description' ),
+				langlinks: suggestionPage.langlinks,
+				langlinkscount: suggestionPage.langlinkscount,
 				// Sort index
 				index: suggestionPage.index
 			};
@@ -243,6 +255,8 @@
 					redirect: true,
 					disambiguation: false,
 					description: mw.msg( 'mw-widgets-titleinput-description-redirect', suggestionPage.title ),
+					langlinks: suggestionPage.langlinks,
+					langlinkscount: suggestionPage.langlinkscount,
 					// Sort index, just below its target
 					index: suggestionPage.index + 0.5
 				};
@@ -280,6 +294,10 @@
 		// Offer the exact text as a suggestion if the page exists
 		if ( pageExists && !pageExistsExact ) {
 			titles.unshift( this.getQueryValue() );
+			// Fix lowercase page titles (exact user input) to have same data as the
+			// corresponding non-lowercase page returned as search result
+			// Now both 'einstein' and 'Einstein' have the same 'Missing in [target-language]' info
+			pageData[ this.getQueryValue() ] = pageData[ titleObj.getPrefixedText() ];
 		}
 
 		for ( i = 0, len = titles.length; i < len; i++ ) {

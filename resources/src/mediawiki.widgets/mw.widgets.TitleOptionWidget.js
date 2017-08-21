@@ -24,7 +24,7 @@
 	 * @cfg {string} [query] Matching query string
 	 */
 	mw.widgets.TitleOptionWidget = function MwWidgetsTitleOptionWidget( config ) {
-		var icon;
+		var icon, languageIcon, languageLabel;
 
 		if ( config.missing ) {
 			icon = 'page-not-found';
@@ -89,6 +89,34 @@
 					.addClass( 'mw-widget-titleOptionWidget-description' )
 					.text( config.description )
 					.attr( 'title', config.description )
+			);
+		}
+
+		if ( config.numOfLanguages ) {
+			languageIcon = new OO.ui.IconWidget( {
+				icon: 'language',
+				iconTitle: 'Number of languages'
+			} );
+			languageLabel = new OO.ui.LabelWidget( {
+				label: config.numOfLanguages
+			} );
+			this.$element.append(
+				$( '<span>' )
+					.addClass( 'mw-widget-titleOptionWidget-numOfLanguages' )
+					.append(
+						languageIcon.$element,
+						languageLabel.$element
+					)
+			);
+		}
+
+		if ( config.missingInTargetLanguage ) {
+			this.$element.append(
+				$( '<span>' )
+					.addClass( 'mw-widget-titleOptionWidget-missing' )
+					.text( mw.msg( 'mw-widgets-titleinput-missing-in-target-language',
+						$.uls.data.getAutonym( config.targetLanguage ) )
+					)
 			);
 		}
 	};

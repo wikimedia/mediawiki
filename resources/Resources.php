@@ -2381,6 +2381,7 @@ return [
 			// TitleInputWidget
 			'mw-widgets-titleinput-description-new-page',
 			'mw-widgets-titleinput-description-redirect',
+			'mw-widgets-titleinput-missing-in-target-language'
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
