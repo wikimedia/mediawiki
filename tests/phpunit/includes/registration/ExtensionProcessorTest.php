@@ -220,6 +220,48 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 		$this->assertEquals( 'somevalue', $extracted['globals']['egBar'] );
 	}
 
+	/**
+	 * @covers ExtensionProcessor::addConfigGlobal()
+	 * @expectedException RuntimeException
+	 */
+	public function testDuplicateConfigKey1() {
+		$processor = new ExtensionProcessor;
+		$info = [
+			'config' => [
+				'Bar' => '',
+			]
+		] + self::$default;
+		$info2 = [
+			'config' => [
+				'Bar' => 'g',
+			],
+			'name' => 'FooBar2',
+		];
+		$processor->extractInfo( $this->dir, $info, 1 );
+		$processor->extractInfo( $this->dir, $info2, 1 );
+	}
+
+	/**
+	 * @covers ExtensionProcessor::addConfigGlobal()
+	 * @expectedException RuntimeException
+	 */
+	public function testDuplicateConfigKey2() {
+		$processor = new ExtensionProcessor;
+		$info = [
+			'config' => [
+				'Bar' => [ 'value' => 'somevalue' ],
+			]
+		] + self::$default;
+		$info2 = [
+			'config' => [
+				'Bar' => [ 'value' => 'somevalue' ],
+			],
+			'name' => 'FooBar2',
+		];
+		$processor->extractInfo( $this->dir, $info, 2 );
+		$processor->extractInfo( $this->dir, $info2, 2 );
+	}
+
 	public static function provideExtractExtensionMessagesFiles() {
 		$dir = __DIR__ . '/FooBar/';
 		return [
