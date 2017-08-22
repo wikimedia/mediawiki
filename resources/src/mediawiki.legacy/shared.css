@@ -153,7 +153,7 @@ span.history-deleted {
 
 .unpatrolled {
 	font-weight: bold;
-	color: #f00;
+	color: #d33;
 }
 
 div.patrollink {
@@ -389,7 +389,7 @@ table.wikitable > caption {
 }
 
 .error {
-	color: #c00;
+	color: #d33;
 }
 
 .warning {
@@ -423,7 +423,7 @@ table.wikitable > caption {
 }
 
 .errorbox {
-	color: #c00;
+	color: #d33;
 	border-color: #fac5c5;
 	background-color: #fae3e3;
 }
@@ -460,7 +460,7 @@ table.wikitable > caption {
 
 /* Note on preview page */
 .previewnote {
-	color: #c00;
+	color: #d33;
 	margin-bottom: 1em;
 }
 
