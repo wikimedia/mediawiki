@@ -1,0 +1,24 @@
+# Moves
+DELETE {
+?category ?x ?y
+} INSERT {
+
+<http://acme.test/wiki/Category:MovedTo> a mediawiki:Category ;
+	rdfs:label "MovedTo" ;
+	mediawiki:pages "7"^^xsd:integer ;
+	mediawiki:subcategories "2"^^xsd:integer .
+
+<http://acme.test/wiki/Category:AlsoMoved> a mediawiki:Category ;
+	rdfs:label "AlsoMoved" ;
+	mediawiki:pages "7"^^xsd:integer ;
+	mediawiki:subcategories "2"^^xsd:integer .
+
+<http://acme.test/wiki/Category:MovedTo> mediawiki:isInCategory <http://acme.test/wiki/Category:Parent_of_4> .
+
+<http://acme.test/wiki/Category:AlsoMoved> mediawiki:isInCategory <http://acme.test/wiki/Category:Parent_of_5> .
+
+} WHERE {
+   VALUES ?category {
+     <http://acme.test/wiki/Category:Test> <http://acme.test/wiki/Category:MovedTo> <http://acme.test/wiki/Category:Test_2> <http://acme.test/wiki/Category:Test_3> <http://acme.test/wiki/Category:Test_4>
+   }
+};
