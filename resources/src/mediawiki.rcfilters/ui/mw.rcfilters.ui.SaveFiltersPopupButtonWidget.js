@@ -125,7 +125,7 @@
 	 * Respond to input keyup event, this is the way to intercept 'escape' key
 	 *
 	 * @param {jQuery.Event} e Event data
-	 * @returns {boolean} false
+	 * @return {boolean} false
 	 */
 	mw.rcfilters.ui.SaveFiltersPopupButtonWidget.prototype.onInputKeyup = function ( e ) {
 		if ( e.which === OO.ui.Keys.ESCAPE ) {

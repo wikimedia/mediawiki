@@ -458,11 +458,9 @@
 		this.filtersModel.toggleInvertedNamespaces();
 
 		if (
-			this.filtersModel.getFiltersByView( 'namespaces' )
-				.filter( function ( filterItem ) {
-					return filterItem.isSelected();
-				} )
-				.length
+			this.filtersModel.getFiltersByView( 'namespaces' ).filter(
+				function ( filterItem ) { return filterItem.isSelected(); }
+			).length
 		) {
 			// Only re-fetch results if there are namespace items that are actually selected
 			this.updateChangesList();

@@ -212,7 +212,7 @@
 	 * Respond to input keyup event, this is the way to intercept 'escape' key
 	 *
 	 * @param {jQuery.Event} e Event data
-	 * @returns {boolean} false
+	 * @return {boolean} false
 	 */
 	mw.rcfilters.ui.SavedLinksListItemWidget.prototype.onInputKeyup = function ( e ) {
 		if ( e.which === OO.ui.Keys.ESCAPE ) {
@@ -307,7 +307,7 @@
 	/**
 	 * Get item ID
 	 *
-	 * @returns {string} Query identifier
+	 * @return {string} Query identifier
 	 */
 	mw.rcfilters.ui.SavedLinksListItemWidget.prototype.getID = function () {
 		return this.model.getID();
