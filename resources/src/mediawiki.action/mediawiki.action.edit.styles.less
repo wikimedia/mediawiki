@@ -1,0 +1,56 @@
+/*!
+ * Styles for elements of the editing form.
+ */
+
+/*
+ * Add a bit of margin space between the preview and the toolbar.
+ * This replaces the ugly <p><br /></p> we used to insert into the page source
+ */
+#wikiPreview.ontop {
+	margin-bottom: 1em;
+}
+
+.mw-editform {
+	/* General layout */
+	#wpTextbox1 {
+		margin: 0;
+		display: block;
+		/* Ensure the textarea is not higher than browser's viewport on small screens */
+		max-height: 100vh;
+		/* But don't let it collapse into nothingness on really tiny screens */
+		min-height: 5em;
+	}
+
+	/* Adjustments to edit form elements */
+	#editpage-copywarn {
+		font-size: 0.9em;
+		line-height: 1.26;
+	}
+
+	#wpSummaryWidget {
+		display: block;
+		margin-bottom: 1em;
+		max-width: none;
+	}
+
+	#wpSummaryLabel {
+		margin: 0;
+	}
+
+	.editCheckboxes .oo-ui-fieldLayout {
+		margin-right: 1em;
+	}
+
+	.editHelp {
+		margin-left: 0.5em;
+		vertical-align: middle;
+
+		a {
+			font-weight: bold;
+		}
+	}
+
+	.editOptions {
+		border-radius: 0 0 2px 2px;
+	}
+}
