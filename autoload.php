@@ -1277,7 +1277,6 @@ $wgAutoloadLocalClasses = [
 	'RollbackEdits' => __DIR__ . '/maintenance/rollbackEdits.php',
 	'RowUpdateGenerator' => __DIR__ . '/includes/utils/RowUpdateGenerator.php',
 	'RunJobs' => __DIR__ . '/maintenance/runJobs.php',
-	'RunningStat' => __DIR__ . '/includes/compat/RunningStatCompat.php',
 	'SVGMetadataExtractor' => __DIR__ . '/includes/media/SVGMetadataExtractor.php',
 	'SVGReader' => __DIR__ . '/includes/media/SVGMetadataExtractor.php',
 	'SamplingStatsdClient' => __DIR__ . '/includes/libs/stats/SamplingStatsdClient.php',
