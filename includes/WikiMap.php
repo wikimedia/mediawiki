@@ -20,8 +20,10 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
- * Helper tools for dealing with other wikis.
+ * Helper tools for dealing with other locally-hosted wikis.
  */
 class WikiMap {
 
@@ -81,7 +83,7 @@ class WikiMap {
 	 * @return WikiReference|null WikiReference object or null if the wiki was not found
 	 */
 	private static function getWikiWikiReferenceFromSites( $wikiID ) {
-		$siteLookup = \MediaWiki\MediaWikiServices::getInstance()->getSiteLookup();
+		$siteLookup = MediaWikiServices::getInstance()->getSiteLookup();
 		$site = $siteLookup->getSite( $wikiID );
 
 		if ( !$site instanceof MediaWikiSite ) {
@@ -170,6 +172,69 @@ class WikiMap {
 
 		if ( $wiki ) {
 			return $wiki->getFullUrl( $page, $fragmentId );
+		}
+
+		return false;
+	}
+
+	/**
+	 * Get canonical server info for all local wikis in the map that have one
+	 *
+	 * @return array Map of (local wiki ID => map of (url,parts))
+	 * @since 1.30
+	 */
+	public static function getCanonicalServerInfoForAllWikis() {
+		$cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
+
+		return $cache->getWithSetCallback(
+			$cache->makeGlobalKey( 'wikimap', 'canonical-urls' ),
+			$cache::TTL_DAY,
+			function () {
+				global $wgLocalDatabases, $wgCanonicalServer;
+
+				$infoMap = [];
+				// Make sure at least the current wiki is set, for simple configurations.
+				// This also makes it the first in the map, which is useful for common cases.
+				$infoMap[wfWikiID()] = [
+					'url' => $wgCanonicalServer,
+					'parts' => wfParseUrl( $wgCanonicalServer )
+				];
+
+				foreach ( $wgLocalDatabases as $wikiId ) {
+					$wikiReference = self::getWiki( $wikiId );
+					if ( $wikiReference ) {
+						$url = $wikiReference->getCanonicalServer();
+						$infoMap[$wikiId] = [ 'url' => $url, 'parts' => wfParseUrl( $url ) ];
+					}
+				}
+
+				return $infoMap;
+			}
+		);
+	}
+
+	/**
+	 * @param string $url
+	 * @return bool|string Wiki ID or false
+	 * @since 1.30
+	 */
+	public static function getWikiFromUrl( $url ) {
+		$urlPartsCheck = wfParseUrl( $url );
+		if ( $urlPartsCheck === false ) {
+			return false;
+		}
+
+		$urlPartsCheck = array_intersect_key( $urlPartsCheck, [ 'host' => 1, 'port' => 1 ] );
+		foreach ( self::getCanonicalServerInfoForAllWikis() as $wikiId => $info ) {
+			$urlParts = $info['parts'];
+			if ( $urlParts === false ) {
+				continue; // sanity
+			}
+
+			$urlParts = array_intersect_key( $urlParts, [ 'host' => 1, 'port' => 1 ] );
+			if ( $urlParts == $urlPartsCheck ) {
+				return $wikiId;
+			}
 		}
 
 		return false;
