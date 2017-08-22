@@ -613,7 +613,6 @@ $wgAutoloadLocalClasses = [
 	'ILocalizedException' => __DIR__ . '/includes/exception/LocalizedException.php',
 	'IMaintainableDatabase' => __DIR__ . '/includes/libs/rdbms/database/IMaintainableDatabase.php',
 	'IP' => __DIR__ . '/includes/libs/IP.php',
-	'IPSet' => __DIR__ . '/includes/compat/IPSetCompat.php',
 	'IPTC' => __DIR__ . '/includes/media/IPTC.php',
 	'IRCColourfulRCFeedFormatter' => __DIR__ . '/includes/rcfeed/IRCColourfulRCFeedFormatter.php',
 	'IcuCollation' => __DIR__ . '/includes/collation/IcuCollation.php',
