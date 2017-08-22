@@ -55,6 +55,8 @@
 	"apihelp-compare-param-totitle": "عنوان دوم برای مقایسه.",
 	"apihelp-compare-param-toid": "شناسه صفحه دوم برای مقایسه.",
 	"apihelp-compare-param-torev": "نسخه دوم برای مقایسه.",
+	"apihelp-compare-paramvalue-prop-diff": "تفاوت اچ‌تی‌ام‌ال.",
+	"apihelp-compare-paramvalue-prop-diffsize": "اندازهٔ تفاوت اچ‌تی‌ام‌ال، به بایت.",
 	"apihelp-compare-example-1": "ایجاد تفاوت بین نسخه 1 و 2",
 	"apihelp-createaccount-summary": "ایجاد حساب کاربری",
 	"apihelp-createaccount-param-name": "نام کاربری.",

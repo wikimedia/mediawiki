@@ -1783,7 +1783,7 @@
 	"emailccsubject": "Kopija vaše poruke korisniku $1: $2",
 	"emailsent": "Imejl je poslat",
 	"emailsenttext": "Vaša imejl poruka je poslata.",
-	"emailuserfooter": "Ovaj imejl je {{GENDER:$1|poslao|poslala}} $1 {{GENDER:$2|korisniku|korisnici}} $2 pomoću „{{int:emailuser}}“ s vikija {{SITENAME}}.",
+	"emailuserfooter": "Ovaj imejl je {{GENDER:$1|poslao|poslala}} $1 {{GENDER:$2|korisniku|korisnici}} $2 pomoću opcije „{{int:emailuser}}“ na vikiju {{SITENAME}}. Ako odgovorite na ovaj imejl, {{GENDER:$2|Vaš}} imejl će biti neposredno prosleđen ka {{GENDER:$1|prvobitnom pošiljaocu}}, čime ćete {{GENDER:$2|mu|joj}} otkriti {{GENDER:$2|svoju}} imejl adresu.",
 	"usermessage-summary": "Slanje sistemske poruke.",
 	"usermessage-editor": "Uređivač sistemskih poruka",
 	"usermessage-template": "MediaWiki:UserMessage",

@@ -1185,6 +1185,7 @@
 	"recentchanges-legend-heading": "<strong>Pedaran:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (tempo ogé [[Special:NewPages|béréndélan kaca anyar]])",
 	"recentchanges-submit": "Témbongkeun",
+	"rcfilters-tag-remove": "Pupus '$1'",
 	"rcfilters-activefilters": "Panyaringan aktif",
 	"rcfilters-savedqueries-rename": "Robah ngaran",
 	"rcfilters-savedqueries-remove": "Hapus",

@@ -1420,7 +1420,7 @@
 	"rcfilters-filterlist-noresults": "Nessun filtro trovato",
 	"rcfilters-noresults-conflict": "Nessun risultato trovato, perché i criteri di ricerca sono in conflitto",
 	"rcfilters-state-message-subset": "Questo filtro non ha effetto perché i suoi risultati sono inclusi in quelli {{PLURAL:$2|del seguente filtro, più ampio|dei seguenti filtri, più ampi}} (prova ad evidenziarli per distinguerli): $1",
-	"rcfilters-state-message-fullcoverage": "La selezione di tutti i filtri in un gruppo è come non selezionarne alcuno, in questo modo questo filtro non ha effetto. Il gruppo include: $1",
+	"rcfilters-state-message-fullcoverage": "La selezione di tutti i filtri in questo gruppo è come non selezionarne alcuno, in questo modo questo filtro non ha effetto. Il gruppo include: $1",
 	"rcfilters-filtergroup-authorship": "Autore del contributo",
 	"rcfilters-filter-editsbyself-label": "Mie modifiche",
 	"rcfilters-filter-editsbyself-description": "I tuoi contributi.",

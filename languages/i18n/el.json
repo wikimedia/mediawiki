@@ -777,7 +777,7 @@
 	"node-count-exceeded-category": "Σελίδες υπέρβασης του αριθμού κόμβων",
 	"node-count-exceeded-category-desc": "Η σελίδα υπερβαίνει το μέγιστο αριθμό κόμβων.",
 	"node-count-exceeded-warning": "Η σελίδα έχει υπερβεί τον αριθμό κόμβων",
-	"expansion-depth-exceeded-category": "Σελίδες υπέρβασης της επέκτασης σε βάθος",
+	"expansion-depth-exceeded-category": "Σελίδες όπου υπερβαίνεται το βάθος ανάπτυξης",
 	"expansion-depth-exceeded-category-desc": "Η σελίδα υπερβαίνει το μέγιστο βάθος επέκτασης.",
 	"expansion-depth-exceeded-warning": "Η σελίδα υπερέβη το βάθος επέκτασης",
 	"parser-unstrip-loop-warning": "εντοπίστηκε ένας βρόχος unstrip",

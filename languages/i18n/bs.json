@@ -1709,7 +1709,7 @@
 	"filerevert-identical": "Trenutna verzija datoteke identična je izabranoj.",
 	"filedelete": "Obriši $1",
 	"filedelete-legend": "Obriši datoteku",
-	"filedelete-intro": "Brišete datoteku '''[[Media:$1|$1]]''' zajedno sa svom njenom historijom.",
+	"filedelete-intro": "Brišete datoteku <strong>[[Media:$1|$1]]</strong> zajedno sa svom njenom historijom.",
 	"filedelete-intro-old": "Brišete verziju datoteke '''[[Media:$1|$1]]''' od [$4 $3, $2].",
 	"filedelete-comment": "Razlog:",
 	"filedelete-submit": "Obriši",

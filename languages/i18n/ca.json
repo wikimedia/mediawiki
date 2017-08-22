@@ -3511,7 +3511,7 @@
 	"compare-invalid-title": "El títol que heu especificat no és vàlid.",
 	"compare-title-not-exists": "El títol que heu especificat no existeix.",
 	"compare-revision-not-exists": "La revisió que heu especificat no existeix.",
-	"diff-form": "un '''formulari'''",
+	"diff-form": "Diferències",
 	"dberr-problems": "Ho sentim. Aquest lloc web està experimentant dificultats tècniques.",
 	"dberr-again": "Intenteu esperar uns minuts i tornar a carregar.",
 	"dberr-info": "(No es pot accedir a la base de dades: $1)",

@@ -370,7 +370,7 @@
 	"formerror": "Lomakkeen tiedot eivät kelpaa",
 	"badarticleerror": "Tätä toimintoa ei voi suorittaa tälle sivulle.",
 	"cannotdelete": "Sivun tai tiedoston ”$1” poisto epäonnistui.\nJoku muu on saattanut poistaa sen.",
-	"cannotdelete-title": "Sivua $1 ei voi poistaa",
+	"cannotdelete-title": "Sivua \"$1\" ei voi poistaa",
 	"delete-hook-aborted": "Laajennuskoodi esti poiston antamatta syytä.",
 	"no-null-revision": "Nollamuokkausta sivulla \"$1\" ei voi tehdä",
 	"badtitle": "Kelvoton sivun nimi",

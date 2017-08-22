@@ -1161,6 +1161,8 @@
 	"rcfilters-filter-minor-description": "Labojumi, kas atzīmēti kā maznozīmīgi.",
 	"rcfilters-filter-major-label": "Nozīmīgi labojumi",
 	"rcfilters-filter-major-description": "Labojumi, kas nav atzīmēti kā maznozīmīgi.",
+	"rcfilters-filter-watchlistactivity-unseen-label": "Neapskatītas izmaiņas",
+	"rcfilters-filter-watchlistactivity-seen-label": "Apskatītas izmaiņas",
 	"rcfilters-filtergroup-changetype": "Izmaiņu veids",
 	"rcfilters-filter-pageedits-label": "Lapu labojumi",
 	"rcfilters-filter-pageedits-description": "Labojumi vikivietnes saturā, diskusijā, kategoriju aprakstos...",

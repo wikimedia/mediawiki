@@ -1105,6 +1105,7 @@
 	"rcfilters-filter-user-experience-level-unregistered-description": "Redigeerders wat nie aangemeld is nie.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Nuwelinge",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Minder as 10 wysigings en 4 dae van aktiwiteit.",
+	"rcfilters-filtergroup-watchlistactivity": "Dophoulys-bedrywighede",
 	"rcnotefrom": "{{PLURAL:$5|Wysiging|Wysigings}} sedert <strong>$3 om $4</strong> (maksimum van <strong>$1</strong> word gewys).",
 	"rclistfrom": "Vertoon wysigings vanaf $3 $2",
 	"rcshowhideminor": "$1 klein wysigings",
