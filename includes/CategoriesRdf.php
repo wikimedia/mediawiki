@@ -85,9 +85,18 @@ class CategoriesRdf {
 	}
 
 	/**
+	 * Make URL from title label
+	 * @param string $titleLabel Short label (without namespace) of the category
+	 * @return string URL for the category
+	 */
+	public function labelToUrl( $titleLabel ) {
+		return $this->titleToUrl( Title::makeTitle( NS_CATEGORY, $titleLabel ) );
+	}
+
+	/**
 	 * Convert Title to link to target page.
 	 * @param Title $title
-	 * @return string
+	 * @return string URL for the category
 	 */
 	private function titleToUrl( Title $title ) {
 		return $title->getFullURL( '', false, PROTO_CANONICAL );
