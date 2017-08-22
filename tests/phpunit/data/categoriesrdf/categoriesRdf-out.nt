@@ -1,10 +1,10 @@
-<http://acme.test/categoriesDump> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
-<http://acme.test/categoriesDump> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
-<http://acme.test/categoriesDump> <http://creativecommons.org/ns#license> <https://creativecommons.org/licenses/by-sa/3.0/> .
-<http://acme.test/categoriesDump> <http://schema.org/softwareVersion> "1.0" .
-<http://acme.test/categoriesDump> <http://schema.org/dateModified> "{DATE}"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
-<http://acme.test/categoriesDump> <http://schema.org/isPartOf> <http://acme.test/> .
-<http://acme.test/categoriesDump> <http://www.w3.org/2002/07/owl#imports> <https://www.mediawiki.org/ontology/ontology.owl> .
+<http://acme.test/wiki/Special:CategoryDump> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Dataset> .
+<http://acme.test/wiki/Special:CategoryDump> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<http://acme.test/wiki/Special:CategoryDump> <http://creativecommons.org/ns#license> <https://creativecommons.org/licenses/by-sa/3.0/> .
+<http://acme.test/wiki/Special:CategoryDump> <http://schema.org/softwareVersion> "1.1" .
+<http://acme.test/wiki/Special:CategoryDump> <http://schema.org/dateModified> "{DATE}"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<http://acme.test/wiki/Special:CategoryDump> <http://schema.org/isPartOf> <http://acme.test/> .
+<http://acme.test/wiki/Special:CategoryDump> <http://www.w3.org/2002/07/owl#imports> <https://www.mediawiki.org/ontology/ontology.owl> .
 <http://acme.test/wiki/Category:Category_One> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://www.mediawiki.org/ontology#Category> .
 <http://acme.test/wiki/Category:Category_One> <http://www.w3.org/2000/01/rdf-schema#label> "Category One" .
 <http://acme.test/wiki/Category:2_Category_Two> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://www.mediawiki.org/ontology#Category> .
