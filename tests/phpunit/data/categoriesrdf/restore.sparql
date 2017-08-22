@@ -1,0 +1,10 @@
+# Restores
+INSERT DATA {
+
+<http://acme.test/wiki/Category:Restored_cat> a mediawiki:Category ;
+	rdfs:label "Restored cat" ;
+	mediawiki:pages "7"^^xsd:integer ;
+	mediawiki:subcategories "2"^^xsd:integer ;
+	mediawiki:isInCategory <http://acme.test/wiki/Category:Parent_of_10> .
+
+};
