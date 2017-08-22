@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.22.4
+ * OOjs UI v0.22.5
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-08-03T19:36:51Z
+ * Date: 2017-08-22T21:37:37Z
  */
 ( function ( OO ) {
 
@@ -631,7 +631,7 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 	this.$element
 		.data( 'oo-ui-tool', this )
 		.addClass( 'oo-ui-tool' )
-		.addClass( 'oo-ui-tool-name-' + this.constructor.static.name.replace( /^([^\/]+)\/([^\/]+).*$/, '$1-$2' ) )
+		.addClass( 'oo-ui-tool-name-' + this.constructor.static.name.replace( /^([^/]+)\/([^/]+).*$/, '$1-$2' ) )
 		.toggleClass( 'oo-ui-tool-with-label', this.constructor.static.displayBothIconAndLabel )
 		.append( this.$link );
 	this.setTitle( config.title || this.constructor.static.title );

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.22.4
+ * OOjs UI v0.22.5
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-08-03T19:36:51Z
+ * Date: 2017-08-22T21:37:37Z
  */
 ( function ( OO ) {
 
@@ -362,6 +362,8 @@ OO.ui.infuse = function ( idOrNode ) {
 		'ooui-toolgroup-expand': 'More',
 		// Label for the fake tool that collapses the full list of tools in a toolbar group
 		'ooui-toolgroup-collapse': 'Fewer',
+		// Default label for the tooltip for the button that removes a tag item
+		'ooui-item-remove': 'Remove',
 		// Default label for the accept button of a confirmation dialog
 		'ooui-dialog-message-accept': 'OK',
 		// Default label for the reject button of a confirmation dialog
@@ -659,7 +661,7 @@ OO.ui.Element.static.tagName = 'div';
 OO.ui.Element.static.infuse = function ( idOrNode ) {
 	var obj = OO.ui.Element.static.unsafeInfuse( idOrNode, false );
 	// Verify that the type matches up.
-	// FIXME: uncomment after T89721 is fixed (see T90929)
+	// FIXME: uncomment after T89721 is fixed, see T90929.
 	/*
 	if ( !( obj instanceof this['class'] ) ) {
 		throw new Error( 'Infusion type mismatch!' );
@@ -796,7 +798,7 @@ OO.ui.Element.static.unsafeInfuse = function ( idOrNode, domPromise ) {
 		if ( $elem[ 0 ] !== obj.$element[ 0 ] ) {
 			$elem.replaceWith( obj.$element );
 			// This element is now gone from the DOM, but if anyone is holding a reference to it,
-			// let's allow them to OO.ui.infuse() it and do what they expect (T105828).
+			// let's allow them to OO.ui.infuse() it and do what they expect, see T105828.
 			// Do not use jQuery.data(), as using it on detached nodes leaks memory in 1.x line by design.
 			$elem[ 0 ].oouiInfused = obj.$element;
 		}
@@ -2679,8 +2681,8 @@ OO.ui.mixin.IconElement.prototype.setIcon = function ( icon ) {
  * @chainable
  */
 OO.ui.mixin.IconElement.prototype.setIconTitle = function ( iconTitle ) {
-	iconTitle = typeof iconTitle === 'function' ||
-		( typeof iconTitle === 'string' && iconTitle.length ) ?
+	iconTitle =
+		( typeof iconTitle === 'function' || ( typeof iconTitle === 'string' && iconTitle.length ) ) ?
 			OO.ui.resolveMsg( iconTitle ) : null;
 
 	if ( this.iconTitle !== iconTitle ) {
@@ -2848,8 +2850,8 @@ OO.ui.mixin.IndicatorElement.prototype.setIndicator = function ( indicator ) {
  * @chainable
  */
 OO.ui.mixin.IndicatorElement.prototype.setIndicatorTitle = function ( indicatorTitle ) {
-	indicatorTitle = typeof indicatorTitle === 'function' ||
-		( typeof indicatorTitle === 'string' && indicatorTitle.length ) ?
+	indicatorTitle =
+		( typeof indicatorTitle === 'function' || ( typeof indicatorTitle === 'string' && indicatorTitle.length ) ) ?
 			OO.ui.resolveMsg( indicatorTitle ) : null;
 
 	if ( this.indicatorTitle !== indicatorTitle ) {
@@ -4834,7 +4836,7 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 	clipHeight = allotedHeight < naturalHeight;
 
 	if ( clipWidth ) {
-		// The order matters here. If overflow is not set first, Chrome displays bogus scrollbars. (T157672)
+		// The order matters here. If overflow is not set first, Chrome displays bogus scrollbars. See T157672.
 		// Forcing a reflow is a smaller workaround than calling reconsiderScrollbars() for this case.
 		this.$clippable.css( 'overflowX', 'scroll' );
 		void this.$clippable[ 0 ].offsetHeight; // Force reflow
@@ -4850,7 +4852,7 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 		} );
 	}
 	if ( clipHeight ) {
-		// The order matters here. If overflow is not set first, Chrome displays bogus scrollbars. (T157672)
+		// The order matters here. If overflow is not set first, Chrome displays bogus scrollbars. See T157672.
 		// Forcing a reflow is a smaller workaround than calling reconsiderScrollbars() for this case.
 		this.$clippable.css( 'overflowY', 'scroll' );
 		void this.$clippable[ 0 ].offsetHeight; // Force reflow
@@ -6363,7 +6365,7 @@ OO.ui.SelectWidget.prototype.getItemMatcher = function ( s, exact ) {
 		s = s.normalize();
 	}
 	s = exact ? s.trim() : s.replace( /^\s+/, '' );
-	re = '^\\s*' + s.replace( /([\\{}()|.?*+\-\^$\[\]])/g, '\\$1' ).replace( /\s+/g, '\\s+' );
+	re = '^\\s*' + s.replace( /([\\{}()|.?*+\-^$[\]])/g, '\\$1' ).replace( /\s+/g, '\\s+' );
 	if ( exact ) {
 		re += '\\s*$';
 	}
@@ -7054,9 +7056,9 @@ OO.ui.MenuSelectWidget.prototype.onDocumentMouseDown = function ( e ) {
 	if (
 		this.isVisible() &&
 		!OO.ui.contains(
-				this.$element.add( this.$widget ).add( this.$autoCloseIgnore ).get(),
-				e.target,
-				true
+			this.$element.add( this.$widget ).add( this.$autoCloseIgnore ).get(),
+			e.target,
+			true
 		)
 	) {
 		this.toggle( false );
@@ -8372,7 +8374,7 @@ OO.mixinClass( OO.ui.InputWidget, OO.ui.mixin.AccessKeyedElement );
  */
 OO.ui.InputWidget.static.reusePreInfuseDOM = function ( node, config ) {
 	config = OO.ui.InputWidget.parent.static.reusePreInfuseDOM( node, config );
-	// Reusing $input lets browsers preserve inputted values across page reloads (T114134)
+	// Reusing `$input` lets browsers preserve inputted values across page reloads, see T114134.
 	config.$input = $( node ).find( '.oo-ui-inputWidget-input' );
 	return config;
 };
@@ -9588,7 +9590,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	}, config );
 
 	if ( config.multiline ) {
-		OO.ui.warnDeprecation( 'TextInputWidget: config.multiline is deprecated. Use the MultilineTextInputWidget instead. See T130434 for details.' );
+		OO.ui.warnDeprecation( 'TextInputWidget: config.multiline is deprecated. Use the MultilineTextInputWidget instead. See T130434.' );
 		return new OO.ui.MultilineTextInputWidget( config );
 	}
 
