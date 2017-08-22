@@ -37,6 +37,8 @@ section).
   This PHP extension was deprecated in PHP 5.5 and removed in PHP 7.0. MediaWiki
   auto-selects the 'mysqli' driver since MediaWiki 1.22, except if explicitly
   requested through the configuration parameter $wgDBservers.
+* $wgOOUIEditPage was removed, as it is now the default. This was documented as a
+  temporary variable during the migration period.
 
 === New features in 1.30 ===
 * (T37247) Output from Parser::parse() will now be wrapped in a div with
@@ -183,6 +185,7 @@ changes to languages because of Phabricator reports.
   RunningStat\RunningStat should be used instead.
 * MWMemcached and MemCachedClientforWiki classes (deprecated in 1.27) were removed.
   The MemcachedClient class should be used instead.
+* EditPage::isOouiEnabled() is deprecated and will always return true.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
