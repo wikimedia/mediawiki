@@ -2695,7 +2695,10 @@ return [
 	// This contains only the styles required by core widgets.
 	'oojs-ui-core.styles' => [
 		'class' => 'ResourceLoaderOOUIFileModule',
-		'styles' => 'resources/src/oojs-ui-local.css', // HACK, see inside the file
+		'styles' => [
+			'resources/lib/oojs-ui/wikimedia-ui-base.less', // Providing Wikimedia UI LESS variables to all
+			'resources/src/oojs-ui-local.css', // HACK, see inside the file
+		],
 		'themeStyles' => 'core',
 		'targets' => [ 'desktop', 'mobile' ],
 	],

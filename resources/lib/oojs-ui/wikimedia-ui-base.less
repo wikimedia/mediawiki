@@ -1,0 +1,153 @@
+/**
+ * WikimediaUI Base v0.9.2
+ * Wikimedia Foundation user interface base variables
+ */
+
+/* Colors */
+// WikimediaUI (WMUI) color palette
+@wmui-color-base0:    #000;    // = HSB 0°, 0%, 0%
+@wmui-color-base10:   #222;    // = HSB 0°, 0%, 13%
+@wmui-color-base20:   #54595d; // = HSB 207°, 10%, 36%; WCAG 2.0 level AAA 7.09:1 contrast ratio on `#fff`
+@wmui-color-base30:   #72777d; // = HSB 210°, 9%, 49%; WCAG 2.0 level AA at 4.52:1 contrast ratio on `#fff`
+@wmui-color-base50:   #a2a9b1; // = HSB 212°, 8%, 69%
+@wmui-color-base70:   #c8ccd1; // = HSB 213°, 4%, 82%
+@wmui-color-base80:   #eaecf0; // = HSB 220°, 3%, 94%
+@wmui-color-base90:   #f8f9fa; // = HSB 210°, 1%, 98%
+@wmui-color-base100:  #fff;    // = HSB 0°, 0%, 100%
+
+@wmui-color-accent30: #2a4b8d; // = HSB 220°, 70%, 55%
+@wmui-color-accent50: #36c;    // = HSB 220°, 75%, 80%
+@wmui-color-accent90: #eaf3ff; // = HSB 214°, 8%, 100%
+
+@wmui-color-red30:    #b32424; // = HSB 360°, 80%, 70%
+@wmui-color-red50:    #d33;    // = HSB 360°, 77%, 87%
+@wmui-color-red90:    #fee7e6; // = HSB 3°, 9%, 100%
+
+@wmui-color-yellow30: #ac6600; // = HSB 36°, 100%, 67%
+@wmui-color-yellow50: #fc3;    // = HSB 45°, 80%, 100%
+@wmui-color-yellow90: #fef6e7; // = HSB 39°, 9%, 100%
+
+@wmui-color-green30:  #14866d; // = HSB 167°, 85%, 53%
+@wmui-color-green50:  #00af89; // = HSB 167°, 100%, 69%
+@wmui-color-green90:  #d5fdf4; // = HSB 166°, 16%, 99%
+
+// Background Colors
+@background-color-base:       @wmui-color-base100;
+@background-color-code:       @wmui-color-base90;
+// 'Framed' UI elements (Framed Buttons, Dropdowns, ToggleSwitches...)
+@background-color-framed:     @wmui-color-base90;
+@background-color-framed--hover: @wmui-color-base100;
+@background-color-framed--active: @wmui-color-base70;
+// Tabs Navigation Background Color
+@background-color-tabs:       @wmui-color-base80;
+// Highlight Colors, RGBA Colors include hex fallback on `#fff` for IE 6/7/8
+@background-color-highlight:  rgba( 255, 182, 13, 0.4 );
+@background-color-highlight--fallback: #ffe29e;
+
+// Foreground Colors
+@color-base:                  @wmui-color-base10;
+@color-base--hover:           #444;
+@color-base--active:          @wmui-color-base0;
+@color-base--inverted:        @wmui-color-base100;
+@color-base--emphasized:      @wmui-color-base0;
+@color-base--subtle:          @wmui-color-base30;
+@color-base--disabled:        @wmui-color-base30;
+@color-filled--disabled:      @color-base--inverted;
+@color-placeholder:           @wmui-color-base30;
+// Primary 'Progressive' Color, Background Color and states
+@background-color-primary:    @wmui-color-accent90;
+@background-color-primary--hover: rgba( 41, 98, 204, 0.1 );
+@color-primary:               @wmui-color-accent50;
+@color-primary--hover:        #447ff5; // = `lighten( @color-primary, 3 )`
+@color-primary--active:       @wmui-color-accent30;
+@color-primary--focus:        @color-primary;
+// 'Destructive' Color, Background Color and states
+@background-color-destructive: @wmui-color-red90;
+@color-destructive:           @wmui-color-red50;
+@color-destructive--hover:    #ff4242;
+@color-destructive--active:   @wmui-color-red30;
+@color-destructive--focus:    @color-destructive;
+// Secondary Color and states (links only)
+@color-secondary:             @wmui-color-green50;
+@color-secondary--hover:      #1c6665;
+@color-secondary--active:     @wmui-color-green30;
+@color-secondary--focus:      @color-secondary;
+// Validation error feedback
+@color-erroneous:             @wmui-color-red50;
+
+
+// Opacity
+@opacity-base:                1;
+@opacity-base--disabled:      0.51; // = `#7d7d7d` on `background-color: #fff`; HSB 0°, 0%, 49%
+@opacity-icon-base:           0.87; // = `#222` on `background-color: #fff`
+@opacity-icon-base--hover:    0.73; // = `#454545` on `background-color: #fff`, closest to `#444`
+@opacity-icon-base--selected: 1;
+
+
+/* Positioning */
+// Z-Index
+@z-index-base:                0;
+
+
+/* Box Model properties */
+/* Max Widths */
+@max-width-button:            28.75em; // = `460px` at `16px` base, see T95367
+@max-width-input-inline:      100%;
+
+// Border
+@border-base:                 @border-width-base solid @border-color-base;
+@border-dialog:               @border-base;
+@border-menu:                 @border-base;
+// Border Colors
+@border-color-base:           @wmui-color-base50;
+@border-color-base--hover:    @wmui-color-base50;
+@border-color-base--active:   @wmui-color-base30;
+@border-color-base--disabled: @color-base--disabled;
+@border-color-filled--disabled: @color-filled--disabled;
+@border-color-primary--active: #859dcc;
+@border-color-destructive--active: #b77c79;
+@border-color-inset--focus:   @color-base--inverted;
+@border-color-heading:        @wmui-color-base70;
+// Border Widths
+@border-width-base:           1px;
+// Border Radius
+@border-radius-base:          2px;
+
+// Box Shadows
+@box-shadow-base--focus:      inset 0 0 0 1px @wmui-color-accent50;
+@box-shadow-primary--focus:   inset 0 0 0 1px @color-primary, inset 0 0 0 2px @color-base--inverted;
+@box-shadow-inset--inverted:  inset 0 0 0 1px @color-base--inverted;
+@box-shadow-filled--disabled: inset 0 0 0 1px @color-filled--disabled;
+@box-shadow-dialog:           0 2px 2px 0 rgba( 0, 0, 0, 0.25 );
+@box-shadow-menu:             @box-shadow-dialog;
+
+
+/* Typography incl. print properties */
+// Font Families
+@font-family-base:            @font-family-sans;
+@font-family-heading-main:    @font-family-serif;
+@font-family-sans:            'Helvetica Neue', 'Helvetica', 'Nimbus Sans L', 'Arial', 'Liberation Sans', sans-serif;
+@font-family-sans--fallback:  sans-serif;
+@font-family-serif:           'Linux Libertine', 'Georgia', 'Times', serif;
+@font-family-serif--fallback: serif;
+// Line Heights
+@line-height-base:            1.6;
+@line-height-heading:         1.25;
+@text-decoration-link--hover: none;
+// Text Shadows
+@text-shadow-base:            0 1px 1px @color-base--inverted; // 'coined' effect
+@text-shadow-base--disabled:  @text-shadow-base;
+
+
+/* Other Properties */
+// Cursors
+@cursor-base--disabled:       default;
+
+
+/* Animation & Transition */
+// Transitions
+@transition-base:             @transition-duration-base;
+@transition-medium:           @transition-duration-medium;
+// Transitions > Durations
+@transition-duration-base:    100ms;
+@transition-duration-medium:  250ms;
