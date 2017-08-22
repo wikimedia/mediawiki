@@ -32,6 +32,7 @@
 		// Events
 		this.valuePicker.connect( this, { choose: [ 'emit', 'limit' ] } );
 		this.groupByPageCheckbox.connect( this, { change: [ 'emit', 'groupByPage' ] } );
+		this.groupByPageItemModel.connect( this, { update: 'onGroupByPageModelUpdate' } );
 
 		// Initialize
 		this.$element
