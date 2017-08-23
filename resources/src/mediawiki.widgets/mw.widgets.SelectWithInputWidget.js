@@ -46,11 +46,10 @@
 		// Properties
 		this.textinput = new OO.ui.TextInputWidget( config.textinput );
 		this.dropdowninput = new OO.ui.DropdownInputWidget( config.dropdowninput );
+		this.or = config.or;
 
-		if ( config.or === true ) {
-			this.dropdowninput.on( 'change', this.onChange.bind( this ) );
-			this.onChange();
-		}
+		// Events
+		this.dropdowninput.on( 'change', this.onChange.bind( this ) );
 
 		// Parent constructor
 		mw.widgets.SelectWithInputWidget.parent.call( this, config );
@@ -62,6 +61,7 @@
 				this.dropdowninput.$element,
 				this.textinput.$element
 			);
+		this.onChange();
 	};
 
 	/* Setup */
@@ -116,9 +116,13 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.SelectWithInputWidget.prototype.setDisabled = function ( disabled ) {
+		var textinputIsHidden = this.or && this.dropdowninput.getValue() !== 'other';
 		mw.widgets.SelectWithInputWidget.parent.prototype.setDisabled.call( this, disabled );
-		this.textinput.setDisabled( disabled );
 		this.dropdowninput.setDisabled( disabled );
+		// It is impossible to submit a form with hidden fields failing validation, e.g. one that
+		// is required. However, validity is not checked for disabled fields, as these are not
+		// submitted with the form. So we should also disable fields when hiding them.
+		this.textinput.setDisabled( textinputIsHidden || disabled );
 	};
 
 	/**
@@ -128,8 +132,14 @@
 	 * @private
 	 */
 	mw.widgets.SelectWithInputWidget.prototype.onChange = function ( value ) {
-		value = value || this.dropdowninput.getValue();
-		this.textinput.$element.toggle( value === 'other' );
+		if ( this.or ) {
+			value = value || this.dropdowninput.getValue();
+			this.textinput.$element.toggle( value === 'other' );
+			// It is impossible to submit a form with hidden fields failing validation, e.g. one that
+			// is required. However, validity is not checked for disabled fields, as these are not
+			// submitted with the form. So we should also disable fields when hiding them.
+			this.textinput.setDisabled( value !== 'other' || this.isDisabled() );
+		}
 	};
 
 }( jQuery, mediaWiki ) );
