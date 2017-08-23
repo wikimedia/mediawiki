@@ -1012,4 +1012,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	function getDefaultDays() {
 		return $this->getUser()->getIntOption( 'rcdays' );
 	}
+
+	protected function isStructuredFilterUiEnabled() {
+		if ( $this->getConfig()->get( 'UseStructuredChangeFilters' ) ) {
+			return !$this->getUser()->getOption( 'rcenhancedfilters-disable' );
+		} else {
+			return $this->getUser()->getOption( 'rcenhancedfilters' );
+		}
+	}
 }
