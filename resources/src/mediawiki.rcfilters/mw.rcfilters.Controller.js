@@ -212,21 +212,23 @@
 			this.filtersModel
 		);
 
-		try {
-			parsedSavedQueries = JSON.parse( mw.user.options.get( this.savedQueriesPreferenceName ) || '{}' );
-		} catch ( err ) {
-			parsedSavedQueries = {};
-		}
+		if ( !mw.user.isAnon() ) {
+			try {
+				parsedSavedQueries = JSON.parse( mw.user.options.get( this.savedQueriesPreferenceName ) || '{}' );
+			} catch ( err ) {
+				parsedSavedQueries = {};
+			}
 
-		// The queries are saved in a minimized state, so we need
-		// to send over the base state so the saved queries model
-		// can normalize them per each query item
-		this.savedQueriesModel.initialize(
-			parsedSavedQueries,
-			this._getBaseFilterState(),
-			// This is for backwards compatibility - delete all excluded filter states
-			Object.keys( this.filtersModel.getExcludedFiltersState() )
-		);
+			// The queries are saved in a minimized state, so we need
+			// to send over the base state so the saved queries model
+			// can normalize them per each query item
+			this.savedQueriesModel.initialize(
+				parsedSavedQueries,
+				this._getBaseFilterState(),
+				// This is for backwards compatibility - delete all excluded filter states
+				Object.keys( this.filtersModel.getExcludedFiltersState() )
+			);
+		}
 
 		// Check whether we need to load defaults.
 		// We do this by checking whether the current URI query
@@ -238,7 +240,7 @@
 		// or on request
 		this.initializing = true;
 		if (
-			this.savedQueriesModel.getDefault() &&
+			!mw.user.isAnon() && this.savedQueriesModel.getDefault() &&
 			!this.uriProcessor.doesQueryContainRecognizedParams( uri.query )
 		) {
 			// We have defaults from a saved query.
@@ -1039,7 +1041,7 @@
 		var data, queryHighlights,
 			savedParams = {},
 			savedHighlights = {},
-			defaultSavedQueryItem = this.savedQueriesModel.getItemByID( this.savedQueriesModel.getDefault() );
+			defaultSavedQueryItem = !mw.user.isAnon() && this.savedQueriesModel.getItemByID( this.savedQueriesModel.getDefault() );
 
 		if ( defaultSavedQueryItem ) {
 			data = defaultSavedQueryItem.getData();

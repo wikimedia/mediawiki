@@ -85,17 +85,20 @@
 			classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-resetButton' ]
 		} );
 
-		this.saveQueryButton = new mw.rcfilters.ui.SaveFiltersPopupButtonWidget(
-			this.controller,
-			this.queriesModel
-		);
+		if ( !mw.user.isAnon() ) {
+			this.saveQueryButton = new mw.rcfilters.ui.SaveFiltersPopupButtonWidget(
+				this.controller,
+				this.queriesModel
+			);
 
-		this.saveQueryButton.$element.on( 'mousedown', function ( e ) { e.stopPropagation(); } );
+			this.saveQueryButton.$element.on( 'mousedown', function ( e ) { e.stopPropagation(); } );
 
-		this.saveQueryButton.connect( this, {
-			click: 'onSaveQueryButtonClick',
-			saveCurrent: 'setSavedQueryVisibility'
-		} );
+			this.saveQueryButton.connect( this, {
+				click: 'onSaveQueryButtonClick',
+				saveCurrent: 'setSavedQueryVisibility'
+			} );
+			this.queriesModel.connect( this, { itemUpdate: 'onSavedQueriesItemUpdate' } );
+		}
 
 		this.emptyFilterMessage = new OO.ui.LabelWidget( {
 			label: mw.msg( 'rcfilters-empty-filter' ),
@@ -115,7 +118,6 @@
 			highlightChange: 'onModelHighlightChange'
 		} );
 		this.input.connect( this, { change: 'onInputChange' } );
-		this.queriesModel.connect( this, { itemUpdate: 'onSavedQueriesItemUpdate' } );
 
 		// The filter list and button should appear side by side regardless of how
 		// wide the button is; the button also changes its width depending
@@ -129,12 +131,14 @@
 					.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-cell-filters' )
 			);
 
-		rcFiltersRow.append(
-			$( '<div>' )
-				.addClass( 'mw-rcfilters-ui-cell' )
-				.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-cell-save' )
-				.append( this.saveQueryButton.$element )
-		);
+		if ( !mw.user.isAnon() ) {
+			rcFiltersRow.append(
+				$( '<div>' )
+					.addClass( 'mw-rcfilters-ui-cell' )
+					.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-cell-save' )
+					.append( this.saveQueryButton.$element )
+			);
+		}
 
 		// Add a selector at the right of the input
 		this.viewsSelectWidget = new OO.ui.ButtonSelectWidget( {
@@ -379,6 +383,10 @@
 	 * Set the visibility of the saved query button
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.setSavedQueryVisibility = function () {
+		if ( mw.user.isAnon() ) {
+			return;
+		}
+
 		this.matchingQuery = this.controller.findQueryMatchingCurrentState();
 
 		this.savedQueryTitle.setLabel(

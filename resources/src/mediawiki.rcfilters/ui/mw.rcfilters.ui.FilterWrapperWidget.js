@@ -78,18 +78,20 @@
 				this.dateWidget.$element
 			);
 
-		this.savedLinksListWidget = new mw.rcfilters.ui.SavedLinksListWidget(
-			this.controller,
-			this.queriesModel,
-			{ $overlay: this.$overlay }
-		);
+		if ( !mw.user.isAnon() ) {
+			this.savedLinksListWidget = new mw.rcfilters.ui.SavedLinksListWidget(
+				this.controller,
+				this.queriesModel,
+				{ $overlay: this.$overlay }
+			);
 
-		this.$topRow.append(
-			$( '<div>' )
-				.addClass( 'mw-rcfilters-ui-cell' )
-				.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top-savedLinks' )
-				.append( this.savedLinksListWidget.$element )
-		);
+			this.$topRow.append(
+				$( '<div>' )
+					.addClass( 'mw-rcfilters-ui-cell' )
+					.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top-savedLinks' )
+					.append( this.savedLinksListWidget.$element )
+			);
+		}
 
 		if ( mw.rcfilters.featureFlags.liveUpdate ) {
 			$bottom.append( this.liveUpdateButton.$element );
