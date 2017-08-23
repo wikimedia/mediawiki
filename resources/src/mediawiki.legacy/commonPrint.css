@@ -131,6 +131,11 @@ pre,
 	overflow: auto;
 }
 
+sub,
+sup {
+	line-height: 1;
+}
+
 ul {
 	list-style-type: square;
 }
