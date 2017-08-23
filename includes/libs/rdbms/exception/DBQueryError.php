@@ -49,7 +49,7 @@ class DBQueryError extends DBExpectedError {
 				"Error: $errno $error\n";
 		} else {
 			$message = "A database query error has occurred. Did you forget to run " .
-				"your application's database schema updater after upgrading? \n" .
+				"maintenance/update.php after upgrading MediaWiki or installing a new extension? \n" .
 				"Query: $sql\n" .
 				"Function: $fname\n" .
 				"Error: $errno $error\n";
