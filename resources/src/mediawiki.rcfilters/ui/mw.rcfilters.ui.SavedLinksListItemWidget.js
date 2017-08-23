@@ -93,6 +93,7 @@
 		} );
 		this.$element.on( { click: this.onClick.bind( this ) } );
 		this.$label.on( { click: this.onClick.bind( this ) } );
+		this.$icon.on( { click: this.onDefaultIconClick.bind( this ) } );
 		// Prevent propagation on mousedown for the save button
 		// so the menu doesn't close
 		this.saveButton.$element.on( { mousedown: function () { return false; } } );
@@ -178,6 +179,16 @@
 			this.emit( 'click' );
 		}
 	};
+
+	/**
+	 * Respond to click on the 'default' icon. Open the submenu where the
+	 * default state can be changed.
+	 */
+	mw.rcfilters.ui.SavedLinksListItemWidget.prototype.onDefaultIconClick = function () {
+		this.menu.toggle();
+		return false;
+	};
+
 	/**
 	 * Respond to popup button click event
 	 */
