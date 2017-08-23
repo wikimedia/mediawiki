@@ -152,6 +152,12 @@ class HTMLCacheUpdateJob extends Job {
 	}
 
 	public function workItemCount() {
-		return isset( $this->params['pages'] ) ? count( $this->params['pages'] ) : 1;
+		if ( !empty( $this->params['recursive'] ) ) {
+			return 0; // nothing actually purged
+		} elseif ( isset( $this->params['pages'] ) ) {
+			return count( $this->params['pages'] );
+		}
+
+		return 1; // one title
 	}
 }
