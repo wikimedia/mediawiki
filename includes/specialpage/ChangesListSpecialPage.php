@@ -1533,6 +1533,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return bool
 	 */
 	protected function isStructuredFilterUiEnabled() {
-		return $this->getUser()->getOption( 'rcenhancedfilters' );
+		return (
+			$this->getUser()->getOption( 'rcenhancedfilters' ) ||
+			(
+				$this->getConfig()->get( 'UseStructuredChangeFilters' ) &&
+				!$this->getUser()->getOption( 'rcenhancedfilters-disable' )
+			)
+		);
 	}
 }
