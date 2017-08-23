@@ -112,9 +112,15 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	public function isStructuredFilterUiEnabled() {
-		return parent::isStructuredFilterUiEnabled()
-			&& ( $this->getConfig()->get( 'StructuredChangeFiltersOnWatchlist' )
-				|| $this->getRequest()->getBool( 'rcfilters' ) );
+		return $this->getRequest()->getBool( 'rcfilters' ) || (
+			$this->getConfig()->get( 'StructuredChangeFiltersOnWatchlist' ) &&
+			$this->getUser()->getOption( 'rcenhancedfilters' )
+		);
+	}
+
+	public function isStructuredFilterUiEnabledByDefault() {
+		return $this->getConfig()->get( 'StructuredChangeFiltersOnWatchlist' ) &&
+			$this->getUser()->getDefaultOption( 'rcenhancedfilters' );
 	}
 
 	/**
