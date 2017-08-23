@@ -155,6 +155,7 @@ changes to languages because of Phabricator reports.
   WikiPage::makeParserOptions() to create the ParserOptions object and only
   change options that affect the parser cache key.
 * Article::viewRedirect() is deprecated.
+* IP::isValidBlock() is deprecated. Use the equivalent IP::isValidRange().
 * DeprecatedGlobal no longer supports passing in a direct value, it requires a
   callable factory function or a class name.
 * The $parserMemc global, wfGetParserCacheStorage(), and ParserCache::singleton()
