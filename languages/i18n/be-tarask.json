@@ -1286,6 +1286,7 @@
 	"recentchanges-legend-heading": "<strong>Легенда:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (глядзіце таксама [[Special:NewPages|сьпіс новых старонак]])",
 	"recentchanges-submit": "Паказаць",
+	"rcfilters-tag-remove": "Выдаліць «$1»",
 	"rcfilters-legend-heading": "<strong>Сьпіс абрэвіятураў:</strong>",
 	"rcfilters-other-review-tools": "<strong>Іншыя інструмэнты праверкі</strong>",
 	"rcfilters-group-results-by-page": "Групаваць вынікі паводле старонак",

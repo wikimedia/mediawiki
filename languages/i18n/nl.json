@@ -1357,6 +1357,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (zie ook de [[Special:NewPages|lijst met nieuwe pagina's]])",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "Weergeven",
+	"rcfilters-tag-remove": "Verwijder '$1'",
 	"rcfilters-legend-heading": "<strong>Lijst met afkortingen:</strong>",
 	"rcfilters-other-review-tools": "<strong>Andere controlehulpmiddelen</strong>",
 	"rcfilters-group-results-by-page": "Resultaten per pagina groeperen",

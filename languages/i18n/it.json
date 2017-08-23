@@ -1381,6 +1381,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (vedi le [[Special:NewPages|nuove pagine]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "Mostra",
+	"rcfilters-tag-remove": "Rimuovi '$1'",
 	"rcfilters-legend-heading": "<strong>Elenco di abbreviazioni:</strong>",
 	"rcfilters-other-review-tools": "<strong>Altri strumenti di revisione</strong>",
 	"rcfilters-grouping-title": "Raggruppamento",
