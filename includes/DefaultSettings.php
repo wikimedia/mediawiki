@@ -6828,6 +6828,13 @@ $wgRCWatchCategoryMembership = false;
 $wgUseRCPatrol = true;
 
 /**
+ * Whether to enable the filters system on RecentChanges for users to opt in.
+ *
+ * @since 1.30
+ */
+$wgStructuredChangeFilters = false;
+
+/**
  * Whether to show the new experimental views (like namespaces, tags, and users) in
  * RecentChanges filters
  */
