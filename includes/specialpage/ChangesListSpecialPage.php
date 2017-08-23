@@ -1537,7 +1537,29 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return bool
 	 */
 	public function isStructuredFilterUiEnabled() {
-		return $this->getUser()->getOption( 'rcenhancedfilters' );
+		if ( $this->getRequest()->getBool( 'rcfilters' ) ) {
+			return true;
+		}
+
+		if ( $this->getConfig()->get( 'StructuredChangeFiltersShowPreference' ) ) {
+			return !$this->getUser()->getOption( 'rcenhancedfilters-disable' );
+		} else {
+			return $this->getUser()->getOption( 'rcenhancedfilters' );
+		}
+	}
+
+	/**
+	 * Check whether the structured filter UI is enabled by default (regardless of
+	 * this particular user's setting)
+	 *
+	 * @return bool
+	 */
+	public function isStructuredFilterUiEnabledByDefault() {
+		if ( $this->getConfig()->get( 'StructuredChangeFiltersShowPreference' ) ) {
+			return !$this->getUser()->getDefaultOption( 'rcenhancedfilters-disable' );
+		} else {
+			return $this->getUser()->getDefaultOption( 'rcenhancedfilters' );
+		}
 	}
 
 	abstract function getDefaultLimit();
