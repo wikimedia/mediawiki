@@ -958,6 +958,15 @@ class Preferences {
 				'label-message' => 'tog-shownumberswatching',
 			];
 		}
+
+		if ( $config->get( 'UseStructuredChangeFilters' ) ) {
+			$defaultPreferences['rcenhancedfilters-disable'] = [
+				'type' => 'toggle',
+				'section' => 'rc/advancedrc',
+				'label-message' => 'rcfilters-preference-label',
+				'help-message' => 'rcfilters-preference-help',
+			];
+		}
 	}
 
 	/**
