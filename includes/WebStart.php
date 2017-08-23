@@ -59,31 +59,7 @@ if ( $IP === false ) {
 	$IP = realpath( '.' ) ?: dirname( __DIR__ );
 }
 
-# Grab profiling functions
-require_once "$IP/includes/profiler/ProfilerFunctions.php";
-
-# Start the autoloader, so that extensions can derive classes from core files
-require_once "$IP/includes/AutoLoader.php";
-
-# Load up some global defines.
-require_once "$IP/includes/Defines.php";
-
-# Start the profiler
-$wgProfiler = [];
-if ( file_exists( "$IP/StartProfiler.php" ) ) {
-	require "$IP/StartProfiler.php";
-}
-
-# Load default settings
-require_once "$IP/includes/DefaultSettings.php";
-
-# Load global functions
-require_once "$IP/includes/GlobalFunctions.php";
-
-# Load composer's autoloader if present
-if ( is_readable( "$IP/vendor/autoload.php" ) ) {
-	require_once "$IP/vendor/autoload.php";
-}
+require_once "$IP/includes/PreConfigSetup.php";
 
 # Assert that composer dependencies were successfully loaded
 # Purposely no leading \ due to it breaking HHVM RepoAuthorative mode
