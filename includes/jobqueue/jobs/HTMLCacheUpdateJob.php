@@ -139,9 +139,13 @@ class HTMLCacheUpdateJob extends Job {
 			__METHOD__
 		) );
 
-		// Update CDN
-		$u = CdnCacheUpdate::newFromTitles( $titleArray );
-		$u->doUpdate();
+		// Update CDN; call purge() directly so as to not bother with secondary purges
+		$urls = [];
+		foreach ( $titleArray as $title ) {
+			/** @var Title $title */
+			$urls = array_merge( $urls, $title->getCdnUrls() );
+		}
+		CdnCacheUpdate::purge( $urls );
 
 		// Update file cache
 		if ( $wgUseFileCache ) {
