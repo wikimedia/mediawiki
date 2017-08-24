@@ -485,7 +485,9 @@ class ApiHelp extends ApiBase {
 						$type = $settings[ApiBase::PARAM_TYPE];
 						$multi = !empty( $settings[ApiBase::PARAM_ISMULTI] );
 						$hintPipeSeparated = true;
-						$count = ApiBase::LIMIT_SML2 + 1;
+						$count = !empty( $settings[ApiBase::PARAM_ISMULTI_LIMIT2] )
+							? $settings[ApiBase::PARAM_ISMULTI_LIMIT2] + 1
+							: ApiBase::LIMIT_SML2 + 1;
 
 						if ( is_array( $type ) ) {
 							$count = count( $type );
@@ -669,13 +671,25 @@ class ApiHelp extends ApiBase {
 
 						if ( $multi ) {
 							$extra = [];
+							$lowcount = !empty( $settings[ApiBase::PARAM_ISMULTI_LIMIT1] )
+								? $settings[ApiBase::PARAM_ISMULTI_LIMIT1]
+								: ApiBase::LIMIT_SML1;
+							$highcount = !empty( $settings[ApiBase::PARAM_ISMULTI_LIMIT2] )
+								? $settings[ApiBase::PARAM_ISMULTI_LIMIT2]
+								: ApiBase::LIMIT_SML2;
+
 							if ( $hintPipeSeparated ) {
 								$extra[] = $context->msg( 'api-help-param-multi-separate' )->parse();
 							}
-							if ( $count > ApiBase::LIMIT_SML1 ) {
-								$extra[] = $context->msg( 'api-help-param-multi-max' )
-									->numParams( ApiBase::LIMIT_SML1, ApiBase::LIMIT_SML2 )
-									->parse();
+							if ( $count > $lowcount ) {
+								if ( $lowcount === $highcount ) {
+									$msg = $context->msg( 'api-help-param-multi-max-simple' )
+										->numParams( $lowcount );
+								} else {
+									$msg = $context->msg( 'api-help-param-multi-max' )
+										->numParams( $lowcount, $highcount );
+								}
+								$extra[] = $msg->parse();
 							}
 							if ( $extra ) {
 								$info[] = implode( ' ', $extra );

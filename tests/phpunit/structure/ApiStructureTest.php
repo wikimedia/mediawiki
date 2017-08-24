@@ -3,14 +3,15 @@
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * Checks that all API modules, core and extensions, have documentation i18n messages
- *
- * It won't catch everything since i18n messages can vary based on the wiki
- * configuration, but it should catch many cases for forgotten i18n.
+ * Checks that all API modules, core and extensions, conform to the conventions:
+ * - have documentation i18n messages (the test won't catch everything since
+ *   i18n messages can vary based on the wiki configuration, but it should
+ *   catch many cases for forgotten i18n)
+ * - do not have inconsistencies in the parameter definitions
  *
  * @group API
  */
-class ApiDocumentationTest extends MediaWikiTestCase {
+class ApiStructureTest extends MediaWikiTestCase {
 
 	/** @var ApiMain */
 	private static $main;
@@ -36,7 +37,7 @@ class ApiDocumentationTest extends MediaWikiTestCase {
 			self::$main = new ApiMain( RequestContext::getMain() );
 			self::$main->getContext()->setLanguage( 'en' );
 			self::$main->getContext()->setTitle(
-				Title::makeTitle( NS_SPECIAL, 'Badtitle/dummy title for ApiDocumentationTest' )
+				Title::makeTitle( NS_SPECIAL, 'Badtitle/dummy title for ApiStructureTest' )
 			);
 		}
 		return self::$main;
@@ -161,6 +162,58 @@ class ApiDocumentationTest extends MediaWikiTestCase {
 				$k = "Module $path with " . implode( ', ', $g );
 				$ret[$k] = [ $path, $globals ];
 			}
+		}
+		return $ret;
+	}
+
+	/**
+	 * @dataProvider provideParameterConsistency
+	 * @param string $path
+	 */
+	public function testParameterConsistency( $path ) {
+		$main = self::getMain();
+		$module = TestingAccessWrapper::newFromObject( $main->getModuleFromPath( $path ) );
+
+		$paramsPlain = $module->getFinalParams();
+		$paramsForHelp = $module->getFinalParams( ApiBase::GET_VALUES_FOR_HELP );
+
+		// avoid warnings about empty tests when no parameter needs to be checked
+		$this->assertTrue( true );
+
+		foreach ( [ $paramsPlain, $paramsForHelp ] as $params ) {
+			foreach ( $params as $param => $config ) {
+				if (
+					isset( $config[ApiBase::PARAM_ISMULTI_LIMIT1] )
+					|| isset( $config[ApiBase::PARAM_ISMULTI_LIMIT2] )
+				) {
+					$this->assertTrue( !empty( $config[ApiBase::PARAM_ISMULTI] ), $param
+						. ': PARAM_ISMULTI_LIMIT* only makes sense when PARAM_ISMULTI is true' );
+					$this->assertTrue( isset( $config[ApiBase::PARAM_ISMULTI_LIMIT1] )
+						&& isset( $config[ApiBase::PARAM_ISMULTI_LIMIT2] ), $param
+						. ': PARAM_ISMULTI_LIMIT1 and PARAM_ISMULTI_LIMIT2 must be used together' );
+					$this->assertType( 'int', $config[ApiBase::PARAM_ISMULTI_LIMIT1], $param
+						. 'PARAM_ISMULTI_LIMIT1 must be an integer' );
+					$this->assertType( 'int', $config[ApiBase::PARAM_ISMULTI_LIMIT2], $param
+						. 'PARAM_ISMULTI_LIMIT2 must be an integer' );
+					$this->assertGreaterThanOrEqual( $config[ApiBase::PARAM_ISMULTI_LIMIT1],
+						$config[ApiBase::PARAM_ISMULTI_LIMIT2], $param
+						. 'PARAM_ISMULTI limit cannot be smaller for users with apihighlimits rights' );
+				}
+			}
+		}
+	}
+
+	/**
+	 * @return array List of API module paths to test
+	 */
+	public static function provideParameterConsistency() {
+		$main = self::getMain();
+		$paths = self::getSubModulePaths( $main->getModuleManager() );
+		array_unshift( $paths, $main->getModulePath() );
+
+		$ret = [];
+		foreach ( $paths as $path ) {
+			$ret[] = [ $path ];
 		}
 		return $ret;
 	}
