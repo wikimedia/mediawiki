@@ -91,7 +91,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 			$mysqli->ssl_set(
 				$this->sslKeyPath,
 				$this->sslCertPath,
-				null,
+				$this->sslCAFile,
 				$this->sslCAPath,
 				$this->sslCiphers
 			);

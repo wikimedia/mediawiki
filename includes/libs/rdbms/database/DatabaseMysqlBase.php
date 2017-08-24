@@ -51,6 +51,8 @@ abstract class DatabaseMysqlBase extends Database {
 	/** @var string|null */
 	protected $sslCertPath;
 	/** @var string|null */
+	protected $sslCAFile;
+	/** @var string|null */
 	protected $sslCAPath;
 	/** @var string[]|null */
 	protected $sslCiphers;
@@ -75,7 +77,8 @@ abstract class DatabaseMysqlBase extends Database {
 	 *   - useGTIDs : use GTID methods like MASTER_GTID_WAIT() when possible.
 	 *   - sslKeyPath : path to key file [default: null]
 	 *   - sslCertPath : path to certificate file [default: null]
-	 *   - sslCAPath : parth to certificate authority PEM files [default: null]
+	 *   - sslCAFile: path to a single certificate authority PEM file [default: null]
+	 *   - sslCAPath : parth to certificate authority PEM directory [default: null]
 	 *   - sslCiphers : array list of allowable ciphers [default: null]
 	 * @param array $params
 	 */
@@ -87,7 +90,7 @@ abstract class DatabaseMysqlBase extends Database {
 			? $params['lagDetectionOptions']
 			: [];
 		$this->useGTIDs = !empty( $params['useGTIDs' ] );
-		foreach ( [ 'KeyPath', 'CertPath', 'CAPath', 'Ciphers' ] as $name ) {
+		foreach ( [ 'KeyPath', 'CertPath', 'CAFile', 'CAPath', 'Ciphers' ] as $name ) {
 			$var = "ssl{$name}";
 			if ( isset( $params[$var] ) ) {
 				$this->$var = $params[$var];
