@@ -85,6 +85,7 @@
 	"config-no-cli-uploads-check": "<strong>Upozornění:</strong> Váš výchozí adresář pro načítané soubory (<code>$1</code>) se při instalaci z příkazového řádku nekontroluje na bezpečnostní hrozbu provádění libovolných skriptů.",
 	"config-brokenlibxml": "Váš systém obsahuje kombinaci verzí PHP a libxml2, která je chybná a může v MediaWiki a dalších webových aplikacích způsobovat skryté poškozování dat.\nAktualizujte na libxml2 2.7.3 nebo novější ([https://bugs.php.net/bug.php?id=45996 chyba evidovaná u PHP]).\nInstalace přerušena.",
 	"config-suhosin-max-value-length": "Je nainstalován Suhosin, který omezuje délku parametrů GET na $1 bajtů.\nKomponenta ResourceLoader z MediaWiki dokáže s tímto omezením pracovat, ale sníží to výkon.\nPokud to je alespoň trochu možné, měli byste v <code>php.ini</code> nastavit <code>suhosin.get.max_value_length</code> na 1024 nebo vyšší a na stejnou hodnotu nastavit v <code>LocalSettings.php</code> proměnnou <code>$wgResourceLoaderMaxQueryLength</code>.",
+	"config-using-32bit": "<strong>Upozornění:</strong> Vypadá to, že váš systém běží s 32bitovými celými čísly. To [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit se nedoporučuje].",
 	"config-db-type": "Typ databáze:",
 	"config-db-host": "Databázový server:",
 	"config-db-host-help": "Pokud je váš databázový server na jiném počítači, zadejte zde jméno stroje nebo IP adresu.\n\nPokud používáte sdílený webový hosting, váš poskytovatel by vám měl v dokumentaci sdělit správné jméno stroje.\n\nPokud instalujete na server běžící na Windows a používáte MySQL, jméno „localhost“ nemusí fungovat. V takovém případě zkuste jako místní IP adresu zadat „127.0.0.1“.\n\nPokud používáte PostgreSQL, můžete se připojit Unixovými sockety tak, že toto pole necháte prázdné.",
@@ -318,6 +319,8 @@
 	"config-help-tooltip": "rozbalíte kliknutím",
 	"config-nofile": "Soubor „$1“ nelze nalézt. Byl smazán?",
 	"config-extension-link": "Věděli jste, že vaše wiki podporuje [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions rozšíření]?\n\nMůžete si prohlédnout [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category seznam rozšíření po kategoriích].",
+	"config-skins-screenshots": "$1 (snímky obrazovky: $2)",
+	"config-screenshot": "snímek obrazovky",
 	"mainpagetext": "<strong>MediaWiki byla úspěšně nainstalována.</strong>",
 	"mainpagedocfooter": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Uživatelská příručka] vám napoví, jak používat MediaWiki.\n\n== Začínáme ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Nastavení konfigurace]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Často kladené otázky o MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-mailová konference oznámení MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Překlad MediaWiki do vašeho jazyka]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Naučte se bojovat se spamem na vaší wiki]"
 }

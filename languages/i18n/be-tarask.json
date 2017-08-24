@@ -1299,6 +1299,7 @@
 	"rcfilters-hours-title": "Апошнія гадзіны",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|дзень|дні|дзён}}",
 	"rcfilters-days-show-hours": "$1 {{PLURAL:$1|гадзіна|гадзіны|гадзінаў}}",
+	"rcfilters-highlighted-filters-list": "Вылучана: $1",
 	"rcfilters-quickfilters": "Захаваныя фільтры",
 	"rcfilters-quickfilters-placeholder-title": "Спасылкі яшчэ не захаваныя",
 	"rcfilters-quickfilters-placeholder-description": "Каб захаваць налады вашага фільтру і выкарыстаць іх пазьней, націсьніце на выяву закладкі ў зоне актыўнага фільтру ніжэй.",

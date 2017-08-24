@@ -1188,6 +1188,7 @@
 	"log": "لاگس",
 	"logeventslist-submit": "ڏيکاريو",
 	"all-logs-page": "سڀ عوامي لاگس",
+	"checkbox-all": "سڀ",
 	"checkbox-none": "ڪو بہ نہ",
 	"checkbox-invert": "ابتيو",
 	"allpages": "سڀ صفحا",
@@ -1801,5 +1802,6 @@
 	"special-characters-group-thai": "ٿائي",
 	"mw-widgets-dateinput-no-date": "ڪا بہ تاريخ نہ چونڊيل",
 	"mw-widgets-titleinput-description-new-page": "اڃا اهو صفحو وجود نہ ٿو رکي",
-	"mw-widgets-titleinput-description-redirect": "$1 ڏانهن چوريل"
+	"mw-widgets-titleinput-description-redirect": "$1 ڏانهن چوريل",
+	"log-action-filter-all": "سڀ"
 }
