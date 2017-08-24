@@ -28,6 +28,8 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MediaWikiServices;
 
+throw new \Exception('here');
+
 /**
  * Represents a title within MediaWiki.
  * Optionally may contain an interwiki designation or namespace.

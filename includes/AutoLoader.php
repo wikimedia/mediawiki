@@ -27,8 +27,15 @@
  */
 require_once __DIR__ . '/../autoload.php';
 
+use Composer\Autoload\ClassLoader;
+
 class AutoLoader {
 	static protected $autoloadLocalClassesLower = null;
+
+	/**
+	 * @var ClassLoader
+	 */
+	static protected $classLoader;
 
 	/**
 	 * autoload - take a class name and attempt to load it
@@ -87,6 +94,48 @@ class AutoLoader {
 	 */
 	static function resetAutoloadLocalClassesLower() {
 		self::$autoloadLocalClassesLower = null;
+	}
+
+	/**
+	 * Require the composer autoloader
+	 *
+	 * @since 1.30
+	 */
+	public static function requireComposerAutoloader() {
+		if ( !self::$classLoader ) {
+			self::$classLoader = require dirname( __DIR__ ) . '/vendor/autoload.php';
+			foreach ( self::getAutoloadNamespaces() as $ns => $path ) {
+				self::$classLoader->addPsr4( $ns, [ $path ] );
+			}
+		}
+	}
+
+	/**
+	 * Register PSR-4 compliant namespaces with the autoloader
+	 *
+	 * @param string[] $mapping Namespace => Path
+	 * @since 1.30
+	 */
+	public static function addAutoloadNamespaces( array $mapping ) {
+		self::requireComposerAutoloader();
+		foreach ( $mapping as $ns => $path ) {
+			self::$classLoader->addPsr4( $ns, [ $path ] );
+		}
+	}
+
+	/**
+	 * Get a mapping of namespace => file path
+	 * The namespaces should follow the PSR-4 standard for autoloading
+	 *
+	 * @see <http://www.php-fig.org/psr/psr-4/>
+	 * @private Only public for usage in AutoloadGenerator
+	 * @since 1.30
+	 * @return string[]
+	 */
+	public static function getAutoloadNamespaces() {
+		return [
+			'MediaWiki\\Linker\\' => __DIR__ .'/linker'
+		];
 	}
 }
 
