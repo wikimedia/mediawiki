@@ -550,7 +550,7 @@
 			!this.filtersModel.hasConflict() &&
 			!this.changesListModel.getNewChangesExist() &&
 			!this.updatingChangesList &&
-			mw.rcfilters.featureFlags.liveUpdate;
+			this.changesListModel.getNextFrom();
 	};
 
 	/**
