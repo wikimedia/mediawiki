@@ -153,11 +153,9 @@
 			this.$element.find( '.cloption-submit' ).detach();
 		}
 
-		if ( mw.rcfilters.featureFlags.liveUpdate ) {
-			this.$element.find(
-				'.rclistfrom, .rcnotefrom, .rcoptions-listfromreset'
-			).detach();
-		}
+		this.$element.find(
+			'.rclistfrom, .rcnotefrom, .rcoptions-listfromreset'
+		).detach();
 
 		if ( this.$element.text().trim() === this.$element.find( 'legend' ).text() ) {
 			this.$element.detach();

@@ -79,9 +79,7 @@
 	mw.rcfilters.dm.ChangesListViewModel.prototype.update = function ( changesListContent, $fieldset, isInitialDOM, separateOldAndNew ) {
 		var from = this.nextFrom;
 		this.valid = true;
-		if ( mw.rcfilters.featureFlags.liveUpdate ) {
-			this.extractNextFrom( $fieldset );
-		}
+		this.extractNextFrom( $fieldset );
 		this.checkForUnseenWatchedChanges( changesListContent );
 		this.emit( 'update', changesListContent, $fieldset, isInitialDOM, separateOldAndNew ? from : null );
 	};
@@ -112,7 +110,8 @@
 	 * @param {jQuery} $fieldset
 	 */
 	mw.rcfilters.dm.ChangesListViewModel.prototype.extractNextFrom = function ( $fieldset ) {
-		this.nextFrom = $fieldset.find( '.rclistfrom > a' ).data( 'params' ).from;
+		var data = $fieldset.find( '.rclistfrom > a' ).data( 'params' );
+		this.nextFrom = data ? data.from : null;
 	};
 
 	/**
