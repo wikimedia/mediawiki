@@ -142,16 +142,22 @@
 			this.$element.find( 'hr' ).detach();
 		}
 
+		// Get rid of all <br>s, which are inside rcshowhide
+		// If we still have content in rcshowhide, the <br>s are
+		// gone. Instead, the CSS now has a rule to mark all <span>s
+		// inside .rcshowhide with display:block; to simulate newlines
+		// where they're actually needed.
+		this.$element.find( 'br' ).detach();
 		if ( !this.$element.find( '.rcshowhide' ).contents().length ) {
 			this.$element.find( '.rcshowhide' ).detach();
-			// If we're hiding rcshowhide, the '<br>'s are around it,
-			// there's no need for them either.
-			this.$element.find( 'br' ).detach();
 		}
 
 		if ( this.$element.find( '.cloption' ).text().trim() === '' ) {
 			this.$element.find( '.cloption-submit' ).detach();
 		}
+
+		// Get rid of the legend
+		this.$element.find( 'legend' ).detach();
 
 		this.$element.find(
 			'.rclistfrom, .rcnotefrom, .rcoptions-listfromreset'
