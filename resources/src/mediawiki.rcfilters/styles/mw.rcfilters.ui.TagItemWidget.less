@@ -2,7 +2,7 @@
 
 .mw-rcfilters-ui-tagItemWidget {
 	// Background and color of the capsule widget need a bit
-	// more specificity to override ooui internals
+	// more specificity to override OOUI internals
 	&.oo-ui-flaggedElement-muted.oo-ui-tagItemWidget.oo-ui-widget-enabled {
 		// Muted state
 		background-color: #eaecf0;
@@ -26,7 +26,7 @@
 	// the white background
 	// The specificity is fixed in the patch: https://gerrit.wikimedia.org/r/#/c/349525/
 	// and will be available in the next OOUI release.
-	.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-outlined .oo-ui-tagMultiselectWidget-handle &-selected.oo-ui-tagItemWidget.oo-ui-widget-enabled {
+	.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-outlined &-selected.oo-ui-tagItemWidget.oo-ui-widget-enabled {
 		background-color: #eaf3ff;
 		border-color: #36c;
 	}
