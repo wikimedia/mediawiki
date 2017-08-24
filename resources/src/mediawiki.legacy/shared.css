@@ -105,6 +105,11 @@ span.comment {
 	clear: both;
 }
 
+/* Prevent editing textarea from jumping when toolbar is loaded */
+#toolbar {
+	height: 22px;
+}
+
 /* Edit font preference */
 /* TODO: for 'default' on non-textareas we could compute the default font of textarea in the client */
 .mw-editfont-default:not( textarea ) {
