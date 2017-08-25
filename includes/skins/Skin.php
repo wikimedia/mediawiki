@@ -134,6 +134,14 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * @since 1.30
+	 * @param string $skinname Skin name
+	 */
+	public function __constructor( $skinname ) {
+		$this->skinname = $skinname;
+	}
+
+	/**
 	 * @return string Skin name
 	 */
 	public function getSkinName() {
