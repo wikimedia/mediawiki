@@ -2055,8 +2055,8 @@ $wgDBmysql5 = false;
 $wgDBOracleDRCP = false;
 
 /**
- * Other wikis on this site, can be administered from a single developer
- * account.
+ * Other wikis on this site, can be administered from a single developer account.
+ *
  * Array numeric key => database name
  */
 $wgLocalDatabases = [];
@@ -8303,8 +8303,6 @@ $wgHTTPProxy = false;
  *   subdomain thereof, then no proxy will be used.
  *   Command-line scripts are not affected by this setting and will always use
  *   the proxy if it is configured.
- * - ChronologyProtector: Decide to shutdown LBFactory asynchronously instead
- *   synchronously if the current response redirects to a local virtual host.
  *
  * @since 1.25
  */
