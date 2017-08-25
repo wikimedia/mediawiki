@@ -157,7 +157,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					'isRowApplicableCallable' => function ( $ctx, $rc ) {
 						$changeTs = $rc->getAttribute( 'rc_timestamp' );
 						$lastVisitTs = $rc->getAttribute( 'wl_notificationtimestamp' );
-						return $changeTs >= $lastVisitTs;
+						return $lastVisitTs !== null && $changeTs >= $lastVisitTs;
 					},
 				],
 				[
@@ -168,7 +168,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					'isRowApplicableCallable' => function ( $ctx, $rc ) {
 						$changeTs = $rc->getAttribute( 'rc_timestamp' );
 						$lastVisitTs = $rc->getAttribute( 'wl_notificationtimestamp' );
-						return $changeTs < $lastVisitTs;
+						return $lastVisitTs === null || $changeTs < $lastVisitTs;
 					}
 				],
 			],
@@ -176,9 +176,15 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			'queryCallable' => function ( $specialPageClassName, $context, $dbr,
 										  &$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedValues ) {
 				if ( $selectedValues === [ 'seen' ] ) {
-					$conds[] = 'rc_timestamp < wl_notificationtimestamp';
+					$conds[] = $dbr->makeList( [
+						'wl_notificationtimestamp IS NULL',
+						'rc_timestamp < wl_notificationtimestamp'
+					], LIST_OR );
 				} elseif ( $selectedValues === [ 'unseen' ] ) {
-					$conds[] = 'rc_timestamp >= wl_notificationtimestamp';
+					$conds[] = $dbr->makeList( [
+						'wl_notificationtimestamp IS NOT NULL',
+						'rc_timestamp >= wl_notificationtimestamp'
+					], LIST_AND );
 				}
 			}
 		] ) );
@@ -336,9 +342,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$user = $this->getUser();
 
 		# Toggle watchlist content (all recent edits or just the latest)
-		if ( $opts['extended'] ) {
-			$usePage = false;
-		} else {
+		if ( !$opts['extended'] ) {
 			# Top log Ids for a page are not stored
 			$nonRevisionTypes = [ RC_LOG ];
 			Hooks::run( 'SpecialWatchlistGetNonRevisionTypes', [ &$nonRevisionTypes ] );
@@ -351,7 +355,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					LIST_OR
 				);
 			}
-			$usePage = true;
 		}
 
 		$tables = array_merge( [ 'recentchanges', 'watchlist' ], $tables );
@@ -375,18 +378,11 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$join_conds
 		);
 
-		if ( $this->getConfig()->get( 'ShowUpdatedMarker' ) ) {
-			$fields[] = 'wl_notificationtimestamp';
-		}
+		$tables[] = 'page';
+		$fields[] = 'page_latest';
+		$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
 
-		$rollbacker = $user->isAllowed( 'rollback' );
-		if ( $usePage || $rollbacker ) {
-			$tables[] = 'page';
-			$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
-			if ( $rollbacker ) {
-				$fields[] = 'page_latest';
-			}
-		}
+		$fields[] = 'wl_notificationtimestamp';
 
 		// Log entries with DELETED_ACTION must not show up unless the user has
 		// the necessary rights.
