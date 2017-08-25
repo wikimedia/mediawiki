@@ -50,6 +50,7 @@ class ExtensionProcessor implements Processor {
 		'RemoveGroups',
 		'ResourceLoaderLESSVars',
 		'ResourceLoaderSources',
+		'RestrictionLevels',
 		'RevokePermissions',
 		'SessionProviders',
 		'SpecialPages',

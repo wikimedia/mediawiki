@@ -542,6 +542,13 @@
 				"type": "string"
 			}
 		},
+		"RestrictionLevels": {
+			"type": "array",
+			"description": "Additional protection levels available added by the extension",
+			"items": {
+				"type": "string"
+			}
+		},
 		"ContentHandlers": {
 			"type": "object",
 			"description": "Mapping of model ID to class name",
