@@ -42,6 +42,7 @@ sftp-config.json
 /StartProfiler.php
 
 # Building & testing
+npm-debug.log
 node_modules/
 /tests/phpunit/phpunit.phar
 
