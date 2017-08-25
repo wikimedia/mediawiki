@@ -95,6 +95,7 @@ class SkinFactory {
 		}
 		$skin = call_user_func( $this->factoryFunctions[$name], $name );
 		if ( $skin instanceof Skin ) {
+			$skin->setSkinName( $name );
 			return $skin;
 		} else {
 			throw new UnexpectedValueException( "The builder for $name returned a non-Skin object." );
