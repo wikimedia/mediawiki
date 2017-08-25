@@ -141,6 +141,13 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * @param string Skin name
+	 */
+	public function setSkinName( $skinname ) {
+		$this->skinname = $skinname;
+	}
+
+	/**
 	 * @param OutputPage $out
 	 */
 	public function initPage( OutputPage $out ) {
