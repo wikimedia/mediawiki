@@ -415,6 +415,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$this->runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds, $opts );
 
+		if ( $this->areFiltersInConflict() ) {
+			return false;
+		}
+
 		return $dbr->select(
 			$tables,
 			$fields,
