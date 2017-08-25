@@ -4386,26 +4386,10 @@ class EditPage {
 	}
 
 	/**
-	 * Check if the browser is on a blacklist of user-agents known to
-	 * mangle UTF-8 data on form submission. Returns true if Unicode
-	 * should make it through, false if it's known to be a problem.
 	 * @return bool
 	 */
 	private function checkUnicodeCompliantBrowser() {
-		global $wgBrowserBlackList, $wgRequest;
-
-		$currentbrowser = $wgRequest->getHeader( 'User-Agent' );
-		if ( $currentbrowser === false ) {
-			// No User-Agent header sent? Trust it by default...
-			return true;
-		}
-
-		foreach ( $wgBrowserBlackList as $browser ) {
-			if ( preg_match( $browser, $currentbrowser ) ) {
-				return false;
-			}
-		}
-		return true;
+		return $this->context->getRequest()->isUnicodeCompliantBrowser();
 	}
 
 	/**
@@ -4419,7 +4403,7 @@ class EditPage {
 	protected function safeUnicodeInput( $request, $field ) {
 		$text = rtrim( $request->getText( $field ) );
 		return $request->getBool( 'safemode' )
-			? $this->unmakeSafe( $text )
+			? StringUtils::unmakeSafeForUtf8Editing( $text )
 			: $text;
 	}
 
@@ -4433,90 +4417,7 @@ class EditPage {
 	protected function safeUnicodeOutput( $text ) {
 		return $this->checkUnicodeCompliantBrowser()
 			? $text
-			: $this->makeSafe( $text );
-	}
-
-	/**
-	 * A number of web browsers are known to corrupt non-ASCII characters
-	 * in a UTF-8 text editing environment. To protect against this,
-	 * detected browsers will be served an armored version of the text,
-	 * with non-ASCII chars converted to numeric HTML character references.
-	 *
-	 * Preexisting such character references will have a 0 added to them
-	 * to ensure that round-trips do not alter the original data.
-	 *
-	 * @param string $invalue
-	 * @return string
-	 */
-	private function makeSafe( $invalue ) {
-		// Armor existing references for reversibility.
-		$invalue = strtr( $invalue, [ "&#x" => "&#x0" ] );
-
-		$bytesleft = 0;
-		$result = "";
-		$working = 0;
-		$valueLength = strlen( $invalue );
-		for ( $i = 0; $i < $valueLength; $i++ ) {
-			$bytevalue = ord( $invalue[$i] );
-			if ( $bytevalue <= 0x7F ) { // 0xxx xxxx
-				$result .= chr( $bytevalue );
-				$bytesleft = 0;
-			} elseif ( $bytevalue <= 0xBF ) { // 10xx xxxx
-				$working = $working << 6;
-				$working += ( $bytevalue & 0x3F );
-				$bytesleft--;
-				if ( $bytesleft <= 0 ) {
-					$result .= "&#x" . strtoupper( dechex( $working ) ) . ";";
-				}
-			} elseif ( $bytevalue <= 0xDF ) { // 110x xxxx
-				$working = $bytevalue & 0x1F;
-				$bytesleft = 1;
-			} elseif ( $bytevalue <= 0xEF ) { // 1110 xxxx
-				$working = $bytevalue & 0x0F;
-				$bytesleft = 2;
-			} else { // 1111 0xxx
-				$working = $bytevalue & 0x07;
-				$bytesleft = 3;
-			}
-		}
-		return $result;
-	}
-
-	/**
-	 * Reverse the previously applied transliteration of non-ASCII characters
-	 * back to UTF-8. Used to protect data from corruption by broken web browsers
-	 * as listed in $wgBrowserBlackList.
-	 *
-	 * @param string $invalue
-	 * @return string
-	 */
-	private function unmakeSafe( $invalue ) {
-		$result = "";
-		$valueLength = strlen( $invalue );
-		for ( $i = 0; $i < $valueLength; $i++ ) {
-			if ( ( substr( $invalue, $i, 3 ) == "&#x" ) && ( $invalue[$i + 3] != '0' ) ) {
-				$i += 3;
-				$hexstring = "";
-				do {
-					$hexstring .= $invalue[$i];
-					$i++;
-				} while ( ctype_xdigit( $invalue[$i] ) && ( $i < strlen( $invalue ) ) );
-
-				// Do some sanity checks. These aren't needed for reversibility,
-				// but should help keep the breakage down if the editor
-				// breaks one of the entities whilst editing.
-				if ( ( substr( $invalue, $i, 1 ) == ";" ) && ( strlen( $hexstring ) <= 6 ) ) {
-					$codepoint = hexdec( $hexstring );
-					$result .= UtfNormal\Utils::codepointToUtf8( $codepoint );
-				} else {
-					$result .= "&#x" . $hexstring . substr( $invalue, $i, 1 );
-				}
-			} else {
-				$result .= substr( $invalue, $i, 1 );
-			}
-		}
-		// reverse the transform that we made for reversibility reasons.
-		return strtr( $result, [ "&#x0" => "&#x" ] );
+			: StringUtils::makeSafeForUtf8Editing( $text );
 	}
 
 	/**

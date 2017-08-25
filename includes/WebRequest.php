@@ -1326,4 +1326,32 @@ HTML;
 	public function markAsSafeRequest() {
 		$this->markedAsSafe = true;
 	}
+
+	/**
+	 * Check if the browser is on a blacklist of user-agents known to
+	 * mangle UTF-8 data on form submission. Returns true if Unicode
+	 * should make it through, false if it's known to be a problem.
+	 *
+	 * @since 1.30
+	 *
+	 * @return bool
+	 */
+	public function isUnicodeCompliantBrowser() {
+		global $wgBrowserBlackList;
+
+		$currentbrowser = $this->getHeader( 'User-Agent' );
+		if ( $currentbrowser === false ) {
+			// No User-Agent header sent? Trust it by default...
+			return true;
+		}
+
+		foreach ( $wgBrowserBlackList as $browser ) {
+			if ( preg_match( $browser, $currentbrowser ) ) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 }
