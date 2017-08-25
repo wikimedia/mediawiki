@@ -345,7 +345,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'jsmimetype', $wgJsMimeType );
 		$tpl->set( 'charset', 'UTF-8' );
 		$tpl->set( 'wgScript', $wgScript );
-		$tpl->set( 'skinname', $this->skinname );
+		$tpl->set( 'skinname', $this->getSkinName() );
 		$tpl->set( 'skinclass', static::class );
 		$tpl->set( 'skin', $this );
 		$tpl->set( 'stylename', $this->stylename );
@@ -902,7 +902,7 @@ class SkinTemplate extends Skin {
 				$talkId = "{$subjectId}_talk";
 			}
 
-			$skname = $this->skinname;
+			$skname = $this->getSkinName();
 
 			// Adds namespace links
 			$subjectMsg = [ "nstab-$subjectId" ];
