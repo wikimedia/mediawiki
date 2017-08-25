@@ -393,6 +393,8 @@ class SpecialUndelete extends SpecialPage {
 			// and we are allowed to see...
 		}
 
+		$out->enableOOUI();
+
 		if ( $this->mDiff ) {
 			$previousRev = $archive->getPreviousRevision( $timestamp );
 			if ( $previousRev ) {
@@ -470,25 +472,28 @@ class SpecialUndelete extends SpecialPage {
 				$content->getNativeData() . "\n"
 			);
 
-			$previewButton = Xml::element( 'input', [
-				'type' => 'submit',
+			$previewButton = new OOUI\ButtonInputWidget( [
 				'name' => 'preview',
-				'value' => $this->msg( 'showpreview' )->text()
+				'label' => $this->msg( 'showpreview' )->text(),
+				'infusable' => true,
+				'type' => 'submit',
 			] );
 		} else {
 			$sourceView = '';
 			$previewButton = '';
 		}
 
-		$diffButton = Xml::element( 'input', [
+		$diffButton = new OOUI\ButtonInputWidget( [
 			'name' => 'diff',
+			'label' => $this->msg( 'showdiff' )->text(),
+			'infusable' => true,
 			'type' => 'submit',
-			'value' => $this->msg( 'showdiff' )->text() ] );
+		] );
 
 		$out->addHTML(
 			$sourceView .
 				Xml::openElement( 'div', [
-					'style' => 'clear: both' ] ) .
+					'style' => 'clear: both; margin-top: 0.5em;' ] ) .
 				Xml::openElement( 'form', [
 					'method' => 'post',
 					'action' => $this->getPageTitle()->getLocalURL( [ 'action' => 'submit' ] ) ] ) .
