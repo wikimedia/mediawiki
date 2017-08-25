@@ -755,6 +755,8 @@ $wgCopyUploadProxy = false;
  * timeout longer than the default $wgHTTPTimeout. False means fallback
  * to default.
  *
+ * @var int|bool
+ *
  * @since 1.22
  */
 $wgCopyUploadTimeout = false;
@@ -8271,6 +8273,7 @@ $wgShellLocale = 'C.UTF-8';
 
 /**
  * Timeout for HTTP requests done internally, in seconds.
+ * @var int
  */
 $wgHTTPTimeout = 25;
 
