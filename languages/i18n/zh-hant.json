@@ -2647,7 +2647,7 @@
 	"import-nonewrevisions": "未匯入任何修訂 (修訂已存在，或因錯誤跳過)。",
 	"xml-error-string": "$1 於行 $2，欄 $3 ($4 位元組)：$5",
 	"import-upload": "上傳 XML 資料",
-	"import-token-mismatch": "連線階段資料遺失。\n\n您可能已被登出。<strong>請確認您是否仍在登入狀態並再試一次</strong>。\n若仍無法運作，請嘗試[[Special:UserLogout|登出]]再登入一次，並檢查您的瀏覽器是否允許本站使用 cookie。",
+	"import-token-mismatch": "連線階段資料遺失。\n\n您可能已被登出。'''請確認您是否仍在登入狀態並再試一次'''。\n若仍無法運作，請嘗試[[Special:UserLogout|登出]]再登入一次，並檢查您的瀏覽器是否允許本站使用 cookie。",
 	"import-invalid-interwiki": "不能從指定的 Wiki 匯入。",
 	"import-error-edit": "您沒有權限編輯頁面 \"$1\"，無法匯入。",
 	"import-error-create": "您沒有權限建立頁面 \"$1\"，無法匯入。",

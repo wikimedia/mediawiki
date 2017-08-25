@@ -2809,6 +2809,7 @@
 	"tags-edit-title": "Édit tag",
 	"tags-edit-existing-tags-none": "<em>Taya</em>",
 	"tags-edit-new-tags": "Tag anyar:",
+	"tags-edit-remove": "Pupus ieu tag-tag:",
 	"tags-edit-reason": "Alesan:",
 	"comparepages": "Bandinkeun kaca",
 	"compare-page1": "Kaca 1",
@@ -2884,6 +2885,7 @@
 	"expand_templates_output": "Hasil:",
 	"expand_templates_xml_output": "Output XML",
 	"expand_templates_ok": "Heug",
+	"expand_templates_remove_comments": "Pupus koméntar",
 	"expand_templates_preview": "Pramidang",
 	"pagelang-name": "Kaca",
 	"pagelang-language": "Basa",
@@ -2920,6 +2922,8 @@
 	"special-characters-group-khmer": "Khmer",
 	"log-action-filter-all": "Sakumna",
 	"log-action-filter-block-block": "Peungpeuk",
+	"removecredentials": "Pupus krédensial",
+	"removecredentials-success": "Krédensial Anda geus dipupus.",
 	"gotointerwiki": "Ninggalkeun{{SITENAME}}",
 	"gotointerwiki-invalid": "Judul spésipik henteu valid"
 }

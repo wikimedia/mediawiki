@@ -31,7 +31,8 @@
 			"Dr. Shikha Jaggi",
 			"Xð",
 			"Matma Rex",
-			"Dejavu"
+			"Dejavu",
+			"Jdforrester"
 		]
 	},
 	"tog-underline": "Link underlining:",
@@ -61,7 +62,7 @@
 	"tog-shownumberswatching": "Show the number of watching users",
 	"tog-oldsig": "Your existing signature:",
 	"tog-fancysig": "Treat signature as wikitext (without an automatic link)",
-	"tog-uselivepreview": "Use live preview",
+	"tog-uselivepreview": "Show previews without reloading the page",
 	"tog-forceeditsummary": "Prompt me when entering a blank edit summary",
 	"tog-watchlisthideown": "Hide my edits from the watchlist",
 	"tog-watchlisthidebots": "Hide bot edits from the watchlist",

@@ -3779,7 +3779,7 @@
 	"limitreport-expansiondepth": "最高扩展深度",
 	"limitreport-expensivefunctioncount": "高开销解析函数数量",
 	"expandtemplates": "展开模板",
-	"expand_templates_intro": "此特殊页面可以递归地展开所给文本中的模板。\n它同时还可展开诸如<nowiki>{{</nowiki>#language:...}}的解析器函数和诸如<nowiki>{{</nowiki>CURRENTDAY}}的变量。\n实际上，几乎所有在双重花括号中的内容都会被展开。",
+	"expand_templates_intro": "此特殊页面可以递归地展开所给文本中的模板。它同时还可展开像<code><nowiki>{{</nowiki>#language:…}}</code>这样的解析器函数和像<code><nowiki>{{</nowiki>CURRENTDAY}}</code>这样的变量。实际上，几乎所有在双重花括号中的内容都会被展开。",
 	"expand_templates_title": "上下文标题，用于{{FULLPAGENAME}}等：",
 	"expand_templates_input": "输入文本：",
 	"expand_templates_output": "结果",

@@ -3625,7 +3625,7 @@
 	"htmlform-int-toolow": "Podana wartość jest poniżej dopuszczalnego minimum $1",
 	"htmlform-int-toohigh": "Podana wartość jest powyżej dopuszczalnego maximum $1",
 	"htmlform-required": "Podanie tej wartości jest wymagane",
-	"htmlform-submit": "Zapisz",
+	"htmlform-submit": "Wyślij",
 	"htmlform-reset": "Cofnij zmiany",
 	"htmlform-selectorother-other": "Inne",
 	"htmlform-no": "Nie",

@@ -3572,6 +3572,7 @@
 	"compare-revision-not-exists": "Zadaná revize neexistuje.",
 	"diff-form": "Rozdíly",
 	"diff-form-oldid": "ID staré revize (nepovinné)",
+	"diff-form-revid": "ID revize se změnou",
 	"diff-form-submit": "Zobrazit rozdíly",
 	"permanentlink": "Trvalý odkaz",
 	"permanentlink-revid": "ID revize",
