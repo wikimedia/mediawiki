@@ -113,6 +113,10 @@ class HTMLCacheUpdateJob extends Job {
 		// before the link jobs, so using the current timestamp instead of the root timestamp is
 		// not expected to invalidate these cache entries too often.
 		$touchTimestamp = wfTimestampNow();
+		// If page_touched is higher than this, then something else already bumped it after enqueue
+		$condTimestamp = isset( $this->params['rootJobTimestamp'] )
+			? $this->params['rootJobTimestamp']
+			: $touchTimestamp;
 
 		$dbw = wfGetDB( DB_MASTER );
 		$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
@@ -126,7 +130,7 @@ class HTMLCacheUpdateJob extends Job {
 				[ 'page_touched' => $dbw->timestamp( $touchTimestamp ) ],
 				[ 'page_id' => $batch,
 					// don't invalidated pages that were already invalidated
-					"page_touched < " . $dbw->addQuotes( $dbw->timestamp( $touchTimestamp ) )
+					"page_touched < " . $dbw->addQuotes( $dbw->timestamp( $condTimestamp ) )
 				],
 				__METHOD__
 			);
