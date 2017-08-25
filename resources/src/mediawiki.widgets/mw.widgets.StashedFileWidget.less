@@ -57,22 +57,19 @@
 	> .oo-ui-indicatorElement-indicator,
 	> .oo-ui-iconElement-icon {
 		position: absolute;
+		top: 0;
+		height: 2.3em;
 	}
 
 	> .oo-ui-indicatorElement-indicator {
 		right: 0;
-		top: 0;
 		width: 0.9375em;
-		height: 2.3em;
 		margin-right: 0.775em;
 	}
 
 	> .oo-ui-iconElement-icon {
-		top: 0;
 		width: 1.875em;
-		height: 2.3em;
 		margin-left: 0.5em;
-		left: 0;
 	}
 
 	&.oo-ui-widget-disabled {
@@ -132,11 +129,7 @@
 		> .mw-widgets-stashedFileWidget-label {
 			position: relative;
 
-			> .mw-widgets-stashedFileWidget-fileName {
-				display: block;
-				float: none;
-			}
-
+			> .mw-widgets-stashedFileWidget-fileName,
 			> .mw-widgets-stashedFileWidget-fileType {
 				display: block;
 				float: none;
