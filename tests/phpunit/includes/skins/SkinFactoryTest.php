@@ -48,6 +48,7 @@ class SkinFactoryTest extends MediaWikiTestCase {
 		$skin = $factory->makeSkin( 'testfallback' );
 		$this->assertInstanceOf( 'Skin', $skin );
 		$this->assertInstanceOf( 'SkinFallback', $skin );
+		$this->assertEquals( 'testfallback', $skin->getSkinName() );
 	}
 
 	/**
