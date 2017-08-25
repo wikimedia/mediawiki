@@ -50,7 +50,6 @@
 	"underline-never": "nie",
 	"underline-default": "abhängig von der Benutzerowerfläche orrer Browserinstellung (d.h. Navegationsprogramminstellung)",
 	"editfont-style": "Schriftoort für den Text im Beoorbeitungsfenster:",
-	"editfont-default": "Browserstandard",
 	"editfont-monospace": "Schriftoort (Fontetyp) mit fester Zeichebreit",
 	"editfont-sansserif": "Serifelose Groteskschrift",
 	"editfont-serif": "Schrift mit Serife",

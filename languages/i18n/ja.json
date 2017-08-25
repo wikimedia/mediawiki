@@ -134,7 +134,6 @@
 	"underline-never": "常に付けない",
 	"underline-default": "外装またはブラウザーの既定値を使用",
 	"editfont-style": "編集エリアのフォント形式:",
-	"editfont-default": "ブラウザーの設定を使用",
 	"editfont-monospace": "等幅フォント",
 	"editfont-sansserif": "サンセリフ体のフォント",
 	"editfont-serif": "セリフ体のフォント",
