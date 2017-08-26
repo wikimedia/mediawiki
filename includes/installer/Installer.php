@@ -1389,7 +1389,7 @@ abstract class Installer {
 			}
 		}
 		closedir( $dh );
-		natcasesort( $exts );
+		uksort( $exts, 'strnatcasecmp' );
 
 		return $exts;
 	}
