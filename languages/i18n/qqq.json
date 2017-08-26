@@ -2955,6 +2955,7 @@
 	"import-error-invalid": "Used as error message when importing pages. Parameters:\n* $1 - page title\n{{Related|Import-error}}",
 	"import-error-unserialize": "Import error message displayed when a revision could not be unserialized.\n\nThis may happen if the content got corrupted or the serialization format is mis-reported.\n\nParameters:\n* $1 - the name of the page the offending revision belongs to\n* $2 - the ID of the offending revision, as reported in the dump that is being imported\n* $3 - the content model reported for the offending revision in the dump that is being imported\n* $4 - the serialization format reported for the offending revision in the dump that is being imported\n{{Related|Import-error}}",
 	"import-error-bad-location": "Parameters:\n* $1 - page title\n* $2 - revision ID\n* $3 - content model\n* $4 - (Unused) format\n{{Related|Import-error}}",
+	"import-error-need-filename": "Used as error message when importing uploads. Parameters:\n* $1 - page title\n{{Related|Import-error}}",
 	"import-options-wrong": "Used as error message on [[Special:Import]], when one of the options has an error.\n\nParameters:\n* $1 - ...\n* $2 - number of options",
 	"import-rootpage-invalid": "Used on [[Special:Import]], when the root page is invalid.",
 	"import-rootpage-nosubpage": "Used on [[Special:Import]], when the import namespace does not support subpages. Parameters:\n* $1 is a namespace name.",

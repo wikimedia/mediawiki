@@ -996,14 +996,24 @@ class WikiImporter {
 		$text = isset( $uploadInfo['text'] ) ? $uploadInfo['text'] : '';
 
 		$revision->setTitle( $pageInfo['_title'] );
-		$revision->setID( $pageInfo['id'] );
-		$revision->setTimestamp( $uploadInfo['timestamp'] );
+		if ( isset( $pageInfo['id'] ) ) {
+			$revision->setID( $pageInfo['id'] );
+		}
+		if ( isset( $uploadInfo['timestamp'] ) ) {
+			$revision->setTimestamp( $uploadInfo['timestamp'] );
+		}
 		$revision->setText( $text );
+		if ( !isset( $uploadInfo['filename'] ) ) {
+			$this->notice( 'import-error-need-filename', $pageInfo['_title'] );
+			$uploadInfo['filename'] = $pageInfo['_title']->getDBKey();
+		}
 		$revision->setFilename( $uploadInfo['filename'] );
 		if ( isset( $uploadInfo['archivename'] ) ) {
 			$revision->setArchiveName( $uploadInfo['archivename'] );
 		}
-		$revision->setSrc( $uploadInfo['src'] );
+		if ( isset( $uploadInfo['src'] ) ) {
+			$revision->setSrc( $uploadInfo['src'] );
+		}
 		if ( isset( $uploadInfo['fileSrc'] ) ) {
 			$revision->setFileSrc( $uploadInfo['fileSrc'],
 				!empty( $uploadInfo['isTempSrc'] ) );
@@ -1011,14 +1021,20 @@ class WikiImporter {
 		if ( isset( $uploadInfo['sha1base36'] ) ) {
 			$revision->setSha1Base36( $uploadInfo['sha1base36'] );
 		}
-		$revision->setSize( intval( $uploadInfo['size'] ) );
-		$revision->setComment( $uploadInfo['comment'] );
+		if ( isset( $uploadInfo['size'] ) ) {
+			$revision->setSize( intval( $uploadInfo['size'] ) );
+		}
+		if ( isset( $uploadInfo['comment'] ) ) {
+			$revision->setComment( $uploadInfo['comment'] );
+		}
 
 		if ( isset( $uploadInfo['contributor']['ip'] ) ) {
 			$revision->setUserIP( $uploadInfo['contributor']['ip'] );
 		}
 		if ( isset( $uploadInfo['contributor']['username'] ) ) {
 			$revision->setUsername( $uploadInfo['contributor']['username'] );
+		} else {
+			$revision->setUsername( __CLASS__ );
 		}
 		$revision->setNoUpdates( $this->mNoUpdates );
 
