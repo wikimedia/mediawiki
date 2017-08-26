@@ -743,7 +743,9 @@ EOT;
 		/**
 		 * look for XML formats (XHTML and SVG)
 		 */
+		MediaWiki\suppressWarnings();
 		$xml = new XmlTypeCheck( $file );
+		MediaWiki\restoreWarnings();
 		if ( $xml->wellFormed ) {
 			$xmlTypes = $this->xmlTypes;
 			if ( isset( $xmlTypes[$xml->getRootElement()] ) ) {
