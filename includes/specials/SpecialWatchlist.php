@@ -96,7 +96,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		parent::execute( $subpage );
 
+
 		if ( $this->isStructuredFilterUiEnabled() ) {
+			$output->addModuleStyles( [ 'mediawiki.rcfilters.highlightCircles.seenunseen.styles' ] );
+
 			$output->addJsConfigVars( 'wgStructuredChangeFiltersLiveUpdateSupported', false );
 			$output->addJsConfigVars(
 				'wgStructuredChangeFiltersSavedQueriesPreferenceName',
