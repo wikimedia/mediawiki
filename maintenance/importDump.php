@@ -37,6 +37,7 @@ class BackupReader extends Maintenance {
 	public $revCount = 0;
 	public $dryRun = false;
 	public $uploads = false;
+	protected $uploadCount = 0;
 	public $imageBasePath = false;
 	public $nsFilter = false;
 
