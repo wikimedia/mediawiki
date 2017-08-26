@@ -251,6 +251,7 @@
 				.addClass( highlightClass )
 				.append(
 					$( '<div>' )
+						.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlights-circle' )
 						.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlights-color-none' )
 						.prop( 'data-color', 'none' )
 				);
@@ -264,6 +265,7 @@
 			$highlights.append(
 				$( '<div>' )
 					.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlights-color-' + color )
+					.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlights-circle' )
 					.prop( 'data-color', color )
 			);
 		} );

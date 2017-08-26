@@ -8,8 +8,7 @@
 }
 
 // This is a general mixin for a color circle
-.mw-rcfilters-mixin-circle( @color: #fff, @diameter: 2em, @padding: 0.5em, @border: false ) {
-	background-color: @color;
+.mw-rcfilters-mixin-circle( @color: #fff, @diameter: 2em, @padding: 0.5em, @border: false, @borderColor: #54595d, @emptyBackground: false ) {
 	.box-sizing( border-box );
 	min-width: @diameter;
 	width: @diameter;
@@ -18,8 +17,15 @@
 	margin: @padding;
 	border-radius: 50%;
 
+	& when ( @emptyBackground = false ) {
+		background-color: @color;
+	}
+	& when ( @emptyBackground = true ) {
+		background-color: @highlight-none;
+	}
+
 	& when ( @border = true ) {
-		border: 1px solid #54595d;
+		border: 1px solid @borderColor;
 	}
 }
 

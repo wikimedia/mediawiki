@@ -1748,6 +1748,12 @@ return [
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.less',
 		],
 	],
+	'mediawiki.rcfilters.highlightCircles.seenunseen.styles' => [
+		'styles' => [
+			'resources/src/mediawiki.rcfilters/' .
+			'styles/mw.rcfilters.ui.ChangesListWrapperWidget.highlightCircles.seenunseen.less',
+		],
+	],
 	'mediawiki.rcfilters.filters.dm' => [
 		'scripts' => [
 			'resources/src/mediawiki.rcfilters/mw.rcfilters.js',
