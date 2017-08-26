@@ -1372,6 +1372,7 @@
 	"rcfilters-filter-watchlistactivity-unseen-label": "Непрагледжаныя зьмены",
 	"rcfilters-filter-watchlistactivity-unseen-description": "Зьмены старонак, якія вы не наведвалі пасьля гэтых зьменаў.",
 	"rcfilters-filter-watchlistactivity-seen-label": "Прагледжаныя зьмены",
+	"rcfilters-filter-watchlistactivity-seen-description": "Зьмены старонак, якія вы наведвалі пасьля гэтых зьменаў.",
 	"rcfilters-filtergroup-changetype": "Тып зьмены",
 	"rcfilters-filter-pageedits-label": "Рэдагаваньні старонкі",
 	"rcfilters-filter-pageedits-description": "Рэдагаваньні вікізьместу, абмеркаваньняў, апісаньняў катэгорыяў…",

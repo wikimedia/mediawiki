@@ -378,6 +378,7 @@
 	"template-semiprotected": "(نیم محفوظ)",
 	"hiddencategories": "ایہ ورقہ {{PLURAL:$1|1 لُکے زمریاں|$1 لکا زمرہ }} وچ شامل ہے:",
 	"permissionserrors": "خطائے اجازت",
+	"permissionserrorstext-withaction": "انہاں {{PLURAL:$1|وجہ|وجوہات}} پاروں تہاکوں$2 دی اجازت کائنی",
 	"moveddeleted-notice": "ایہ ورقہ مٹایا ڳیا ہے۔ مٹاوݨ دا لاگ،حفاظت دا لاگ تے ورقہ ٹورݨ دا لاگ  حوالے کیتے ہیٹھاں ݙتے ہوئے ہن۔",
 	"log-fulllog": "پورا لاگ ݙیکھو",
 	"content-model-wikitext": "ویکی متن",

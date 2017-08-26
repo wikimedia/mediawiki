@@ -532,7 +532,7 @@
 	"changeemail-oldemail": "Ներկա էլ․ հասցե․",
 	"changeemail-newemail": "Նոր էլ․ հասցե․",
 	"changeemail-none": "(ոչ մի)",
-	"changeemail-password": "Քո {{SITENAME}} գաղտնաբառը՝",
+	"changeemail-password": "Ձեր {{SITENAME}} գաղտնաբառը՝",
 	"changeemail-submit": "Փոխել էլ․ հասցեն",
 	"changeemail-nochange": "Խնդրում ենք մուտքագրեք այլ նոր էլեկտրոնային փոստի հասցեն։",
 	"resettokens-tokens": "Կտրոններ՝",
