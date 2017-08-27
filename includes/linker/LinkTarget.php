@@ -103,4 +103,13 @@ interface LinkTarget {
 	 * @return string
 	 */
 	public function getInterwiki();
+
+	/**
+	 * Returns an informative human readable representation of the link target,
+	 * for use in logging and debugging. There is no requirement for the return
+	 * value to have any relationship with the input of TitleParser.
+	 *
+	 * @return string
+	 */
+	public function __toString();
 }
