@@ -1676,8 +1676,9 @@ class Title implements LinkTarget {
 
 		# Finally, add the fragment.
 		$url .= $this->getFragmentForURL();
-
-		Hooks::run( 'GetFullURL', [ &$this, &$url, $query ] );
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$titleRef = $this;
+		Hooks::run( 'GetFullURL', [ &$titleRef, &$url, $query ] );
 		return $url;
 	}
 
@@ -1750,7 +1751,9 @@ class Title implements LinkTarget {
 			$dbkey = wfUrlencode( $this->getPrefixedDBkey() );
 			if ( $query == '' ) {
 				$url = str_replace( '$1', $dbkey, $wgArticlePath );
-				Hooks::run( 'GetLocalURL::Article', [ &$this, &$url ] );
+				// Avoid PHP 7.1 warning from passing $this by reference
+				$titleRef = $this;
+				Hooks::run( 'GetLocalURL::Article', [ &$titleRef, &$url ] );
 			} else {
 				global $wgVariantArticlePath, $wgActionPaths, $wgContLang;
 				$url = false;
@@ -1794,8 +1797,9 @@ class Title implements LinkTarget {
 					$url = "{$wgScript}?title={$dbkey}&{$query}";
 				}
 			}
-
-			Hooks::run( 'GetLocalURL::Internal', [ &$this, &$url, $query ] );
+			// Avoid PHP 7.1 warning from passing $this by reference
+			$titleRef = $this;
+			Hooks::run( 'GetLocalURL::Internal', [ &$titleRef, &$url, $query ] );
 
 			// @todo FIXME: This causes breakage in various places when we
 			// actually expected a local URL and end up with dupe prefixes.
@@ -1803,7 +1807,9 @@ class Title implements LinkTarget {
 				$url = $wgServer . $url;
 			}
 		}
-		Hooks::run( 'GetLocalURL', [ &$this, &$url, $query ] );
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$titleRef = $this;
+		Hooks::run( 'GetLocalURL', [ &$titleRef, &$url, $query ] );
 		return $url;
 	}
 
@@ -1851,7 +1857,9 @@ class Title implements LinkTarget {
 		$query = self::fixUrlQueryArgs( $query, $query2 );
 		$server = $wgInternalServer !== false ? $wgInternalServer : $wgServer;
 		$url = wfExpandUrl( $server . $this->getLocalURL( $query ), PROTO_HTTP );
-		Hooks::run( 'GetInternalURL', [ &$this, &$url, $query ] );
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$titleRef = $this;
+		Hooks::run( 'GetInternalURL', [ &$titleRef, &$url, $query ] );
 		return $url;
 	}
 
@@ -1869,7 +1877,9 @@ class Title implements LinkTarget {
 	public function getCanonicalURL( $query = '', $query2 = false ) {
 		$query = self::fixUrlQueryArgs( $query, $query2 );
 		$url = wfExpandUrl( $this->getLocalURL( $query ) . $this->getFragmentForURL(), PROTO_CANONICAL );
-		Hooks::run( 'GetCanonicalURL', [ &$this, &$url, $query ] );
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$titleRef = $this;
+		Hooks::run( 'GetCanonicalURL', [ &$titleRef, &$url, $query ] );
 		return $url;
 	}
 
@@ -2073,18 +2083,22 @@ class Title implements LinkTarget {
 	private function checkPermissionHooks( $action, $user, $errors, $rigor, $short ) {
 		// Use getUserPermissionsErrors instead
 		$result = '';
-		if ( !Hooks::run( 'userCan', [ &$this, &$user, $action, &$result ] ) ) {
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$titleRef = $this;
+		if ( !Hooks::run( 'userCan', [ &$titleRef, &$user, $action, &$result ] ) ) {
 			return $result ? [] : [ [ 'badaccess-group0' ] ];
 		}
 		// Check getUserPermissionsErrors hook
-		if ( !Hooks::run( 'getUserPermissionsErrors', [ &$this, &$user, $action, &$result ] ) ) {
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$titleRef = $this;
+		if ( !Hooks::run( 'getUserPermissionsErrors', [ &$titleRef, &$user, $action, &$result ] ) ) {
 			$errors = $this->resultToError( $errors, $result );
 		}
 		// Check getUserPermissionsErrorsExpensive hook
 		if (
 			$rigor !== 'quick'
 			&& !( $short && count( $errors ) > 0 )
-			&& !Hooks::run( 'getUserPermissionsErrorsExpensive', [ &$this, &$user, $action, &$result ] )
+			&& !Hooks::run( 'getUserPermissionsErrorsExpensive', [ &$titleRef, &$user, $action, &$result ] )
 		) {
 			$errors = $this->resultToError( $errors, $result );
 		}
