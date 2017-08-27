@@ -48,10 +48,8 @@
 			$content.append( data.message );
 		}
 
-		$popup = $( '<div>' ).addClass( 'postedit mw-notification' ).append(
-			$content,
-			$( '<span>' ).addClass( 'postedit-close' ).text( '×' )
-		).click( function () {
+		$popup = $( '<div>' ).addClass( 'postedit mw-notification' ).append( $content )
+		.click( function () {
 			clearTimeout( timeoutId );
 			fadeOutConfirmation();
 		} );
