@@ -2,6 +2,11 @@
 This not a release yet!
 
 === Changes since 1.27.3 ===
+* (T100085) Better handling of jobs execution in post-connection shutdown.
+* (T141604) Support conditionally registered namespaces.
+* (T167798) Fix highlighting for phrase queries and phrase search.
+* (T151136) Provide credits information to callbacks.
+* (T160462) Allow namespaces defined in extension.json to be overwritten locally.
 * (T168856) Allow SVGs created by Dia to be uploaded.
 
 == MediaWiki 1.27.3 ==
