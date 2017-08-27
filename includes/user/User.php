@@ -27,6 +27,7 @@ use MediaWiki\Session\Token;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthenticationRequest;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBExpectedError;
@@ -48,7 +49,7 @@ define( 'EDIT_TOKEN_SUFFIX', Token::SUFFIX );
  * for rendering normal pages are set in the cookie to minimize use
  * of the database.
  */
-class User implements IDBAccessObject {
+class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * @const int Number of characters in user_token field.
 	 */
