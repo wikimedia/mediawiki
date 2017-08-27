@@ -340,7 +340,10 @@ class Article implements Page {
 
 		// @todo Get rid of mContent everywhere!
 		$this->mContent = ContentHandler::getContentText( $content );
-		ContentHandler::runLegacyHooks( 'ArticleAfterFetchContent', [ &$this, &$this->mContent ] );
+
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$articlePage = $this;
+		ContentHandler::runLegacyHooks( 'ArticleAfterFetchContent', [ &$articlePage, &$this->mContent ] );
 
 		return $this->mContent;
 	}
