@@ -192,7 +192,9 @@ class Revision implements IDBAccessObject {
 		$attribs = $overrides + [
 			'page'       => isset( $row->ar_page_id ) ? $row->ar_page_id : null,
 			'id'         => isset( $row->ar_rev_id ) ? $row->ar_rev_id : null,
-			'comment'    => $row->ar_comment,
+			'comment'    => CommentStore::newKey( 'ar_comment' )
+				// Legacy because $row probably came from self::selectArchiveFields()
+				->getCommentLegacy( wfGetDB( DB_REPLICA ), $row, true )->text,
 			'user'       => $row->ar_user,
 			'user_text'  => $row->ar_user_text,
 			'timestamp'  => $row->ar_timestamp,
@@ -443,6 +445,8 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Return the list of revision fields that should be selected to create
 	 * a new revision.
+	 * @todo Deprecate this in favor of a method that returns tables and joins
+	 *  as well, and use CommentStore::getJoin().
 	 * @return array
 	 */
 	public static function selectFields() {
@@ -453,7 +457,6 @@ class Revision implements IDBAccessObject {
 			'rev_page',
 			'rev_text_id',
 			'rev_timestamp',
-			'rev_comment',
 			'rev_user_text',
 			'rev_user',
 			'rev_minor_edit',
@@ -462,6 +465,8 @@ class Revision implements IDBAccessObject {
 			'rev_parent_id',
 			'rev_sha1',
 		];
+
+		$fields += CommentStore::newKey( 'rev_comment' )->getFields();
 
 		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'rev_content_format';
@@ -474,6 +479,8 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Return the list of revision fields that should be selected to create
 	 * a new revision from an archive row.
+	 * @todo Deprecate this in favor of a method that returns tables and joins
+	 *  as well, and use CommentStore::getJoin().
 	 * @return array
 	 */
 	public static function selectArchiveFields() {
@@ -485,7 +492,6 @@ class Revision implements IDBAccessObject {
 			'ar_text',
 			'ar_text_id',
 			'ar_timestamp',
-			'ar_comment',
 			'ar_user_text',
 			'ar_user',
 			'ar_minor_edit',
@@ -494,6 +500,8 @@ class Revision implements IDBAccessObject {
 			'ar_parent_id',
 			'ar_sha1',
 		];
+
+		$fields += CommentStore::newKey( 'ar_comment' )->getFields();
 
 		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'ar_content_format';
@@ -568,7 +576,9 @@ class Revision implements IDBAccessObject {
 			$this->mId = intval( $row->rev_id );
 			$this->mPage = intval( $row->rev_page );
 			$this->mTextId = intval( $row->rev_text_id );
-			$this->mComment = $row->rev_comment;
+			$this->mComment = CommentStore::newKey( 'rev_comment' )
+				// Legacy because $row probably came from self::selectFields()
+				->getCommentLegacy( wfGetDB( DB_REPLICA ), $row, true )->text;
 			$this->mUser = intval( $row->rev_user );
 			$this->mMinorEdit = intval( $row->rev_minor_edit );
 			$this->mTimestamp = $row->rev_timestamp;
@@ -1432,10 +1442,8 @@ class Revision implements IDBAccessObject {
 
 		# Record the text (or external storage URL) to the text table
 		if ( $this->mTextId === null ) {
-			$old_id = $dbw->nextSequenceValue( 'text_old_id_seq' );
 			$dbw->insert( 'text',
 				[
-					'old_id' => $old_id,
 					'old_text' => $data,
 					'old_flags' => $flags,
 				], __METHOD__
@@ -1448,14 +1456,9 @@ class Revision implements IDBAccessObject {
 		}
 
 		# Record the edit in revisions
-		$rev_id = $this->mId !== null
-			? $this->mId
-			: $dbw->nextSequenceValue( 'revision_rev_id_seq' );
 		$row = [
-			'rev_id'         => $rev_id,
 			'rev_page'       => $this->mPage,
 			'rev_text_id'    => $this->mTextId,
-			'rev_comment'    => $this->mComment,
 			'rev_minor_edit' => $this->mMinorEdit ? 1 : 0,
 			'rev_user'       => $this->mUser,
 			'rev_user_text'  => $this->mUserText,
@@ -1469,6 +1472,13 @@ class Revision implements IDBAccessObject {
 				? self::base36Sha1( $this->mText )
 				: $this->mSha1,
 		];
+		if ( $this->mId !== null ) {
+			$row['rev_id'] = $this->mId;
+		}
+
+		list( $commentFields, $commentCallback ) =
+			CommentStore::newKey( 'rev_comment' )->insertWithTempTable( $dbw, $this->mComment );
+		$row += $commentFields;
 
 		if ( $wgContentHandlerUseDB ) {
 			// NOTE: Store null for the default model and format, to save space.
@@ -1495,9 +1505,10 @@ class Revision implements IDBAccessObject {
 		$dbw->insert( 'revision', $row, __METHOD__ );
 
 		if ( $this->mId === null ) {
-			// Only if nextSequenceValue() was called
+			// Only if auto-increment was used
 			$this->mId = $dbw->insertId();
 		}
+		$commentCallback( $this->mId );
 
 		// Assertion to try to catch T92046
 		if ( (int)$this->mId === 0 ) {
