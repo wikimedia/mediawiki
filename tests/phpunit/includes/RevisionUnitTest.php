@@ -1,6 +1,5 @@
 <?php
 
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group ContentHandler
@@ -21,6 +20,13 @@ class RevisionUnitTest extends MediaWikiTestCase {
 		];
 	}
 
+	/**
+	 * @param string $model
+	 * @return Title
+	 */
+			->method( 'getDBKey' )
+			->will( $this->returnValue( 'RevisionTest' ) );
+		$mock->expects( $this->any() )
 	/**
 	 * @dataProvider provideConstructFromArray
 	 * @covers Revision::__construct
@@ -262,6 +268,12 @@ class RevisionUnitTest extends MediaWikiTestCase {
 		$this->testGetRevisionText( $expected, $rowData );
 	}
 
+	/**
+	 * @return BlobStore
+	 */
+	/**
+	 * @return RevisionStore
+	 */
 	public function provideGetRevisionTextWithLegacyEncoding() {
 		yield 'Utf8Native' => [
 			"Wiki est l'\xc3\xa9cole superieur !",
@@ -533,19 +545,38 @@ class RevisionUnitTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function provideFetchFromConds() {
-		yield [ 0, [] ];
-		yield [ Revision::READ_LOCKING, [ 'FOR UPDATE' ] ];
-	}
-
 	/**
-	 * @dataProvider provideFetchFromConds
-	 * @covers Revision::fetchFromConds
+	 * @covers Revision::loadFromTitle
 	 */
-	public function testFetchFromConds( $flags, array $options ) {
-		$conditions = [ 'conditionsArray' ];
+	public function testLoadFromTitle() {
+		$title = $this->getMockTitle();
+
+		$conditions = [
+			0 => 'rev_id=page_latest',
+			'page_namespace' => $title->getNamespace(),
+			'page_title' => 'RevisionTest',
+		];
+
+		$row = (object)[
+			'rev_id' => 17,
+			'rev_timestamp' => '20200202202020',
+			'rev_page' => $title->getArticleID(),
+			'rev_parent' => 7,
+			'rev_len' => 678,
+			'rev_sha1' => null,
+			'rev_text_id' => 700,
+			'rev_comment_text' => 'Testing',
+			'rev_comment_data' => null,
+			'rev_user' => 3,
+			'rev_user_text' => 'Tester',
+			'rev_minor_edit' => 0,
+			'rev_deleted' => 0,
+		];
 
 		$db = $this->getMock( IDatabase::class );
+		$db->expects( $this->any() )
+			->method( 'getDomainId' )
+			->will( $this->returnValue( wfWikiID() ) );
 		$db->expects( $this->once() )
 			->method( 'selectRow' )
 			->with(
@@ -554,16 +585,21 @@ class RevisionUnitTest extends MediaWikiTestCase {
 				$this->isType( 'array' ),
 				$this->equalTo( $conditions ),
 				// Method name
-				$this->equalTo( 'Revision::fetchFromConds' ),
-				$this->equalTo( $options ),
+				$this->stringContains( 'fetchRevisionRowFromConds' ),
+				// We don't really care about the options here
+				$this->isType( 'array' ),
 				// We don't really care about the join conds are they come from the joinCond methods
 				$this->isType( 'array' )
 			)
-			->willReturn( 'RETURNVALUE' );
+			->willReturn( $row );
 
-		$wrapper = TestingAccessWrapper::newFromClass( Revision::class );
-		$result = $wrapper->fetchFromConds( $db, $conditions, $flags );
+		$result = Revision::loadFromTitle( $db, $title );
 
-		$this->assertEquals( 'RETURNVALUE', $result );
+		$this->assertEquals( $title->getArticleID(), $result->getTitle()->getArticleID() );
+		$this->assertEquals( $row->rev_id, $result->getId() );
+		$this->assertEquals( $row->rev_len, $result->getSize() );
+		$this->assertEquals( $row->rev_timestamp, $result->getTimestamp() );
+		$this->assertEquals( $row->rev_comment_text, $result->getComment() );
+		$this->assertEquals( $row->rev_user_text, $result->getUserText() );
 	}
 }
