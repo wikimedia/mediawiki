@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Search\ParserOutputSearchDataExtractor;
 
 /**
@@ -171,11 +172,12 @@ abstract class ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $title
+	 * @param string $slot The role name of the slot. Defaults to 'main'.
 	 *
 	 * @return string Default model name for the page given by $title
 	 */
-	public static function getDefaultModelFor( Title $title ) {
+	public static function getDefaultModelFor( LinkTarget $title, $slot = 'main' ) {
 		// NOTE: this method must not rely on $title->getContentModel() directly or indirectly,
 		//       because it is used to initialize the mContentModel member.
 
@@ -183,6 +185,8 @@ abstract class ContentHandler {
 
 		$ext = false;
 		$m = null;
+
+		// TODO: check slot content model first, if $slot is not 'main'.
 		$model = MWNamespace::getNamespaceContentModel( $ns );
 
 		// Hook can determine default model
