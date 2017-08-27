@@ -1,0 +1,355 @@
+<?php
+
+namespace MediaWiki\Tests\Storage;
+
+use CommentStoreComment;
+use InvalidArgumentException;
+use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Storage\RevisionSlots;
+use MediaWiki\Storage\RevisionStoreRecord;
+use MediaWiki\Storage\SlotRecord;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
+use MediaWikiTestCase;
+use TextContent;
+use Title;
+
+/**
+ * @covers MediaWiki\Storage\RevisionStoreRecord
+ */
+class RevisionStoreRecordTest extends MediaWikiTestCase {
+
+	public function provideConstructor() {
+		$title = Title::newFromText( 'Dummy' );
+		$title->resetArticleID( 17 );
+
+		$user = new UserIdentityValue( 11, 'Tester' );
+
+		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
+
+		$main = SlotRecord::newUnsaved( 'main', new TextContent( 'Lorem Ipsum' ) );
+		$aux = SlotRecord::newUnsaved( 'aux', new TextContent( 'Frumious Bandersnatch' ) );
+		$slots = new RevisionSlots( [ $main, $aux ] );
+
+		$protoRow = [
+			'rev_id' => '7',
+			'rev_page' => strval( $title->getArticleID() ),
+			'rev_timestamp' => '20200101000000',
+			'rev_deleted' => 0,
+			'rev_minor_edit' => 0,
+			'rev_parent_id' => '5',
+			'rev_len' => $slots->computeSize(),
+			'rev_sha1' => $slots->computeSha1(),
+			'page_latest' => '18',
+		];
+
+		$row = $protoRow;
+		yield 'all info' => [
+			$title,
+			$user,
+			$comment,
+			(object)$row,
+			$slots,
+			'acmewiki'
+		];
+
+		$row = $protoRow;
+		$row['rev_minor_edit'] = '1';
+		$row['rev_deleted'] = strval( RevisionRecord::DELETED_USER );
+
+		yield 'minor deleted' => [
+			$title,
+			$user,
+			$comment,
+			(object)$row,
+			$slots
+		];
+
+		$row = $protoRow;
+		$row['page_latest'] = $row['rev_id'];
+
+		yield 'latest' => [
+			$title,
+			$user,
+			$comment,
+			(object)$row,
+			$slots
+		];
+
+		$row = $protoRow;
+		unset( $row['rev_parent'] );
+
+		yield 'no parent' => [
+			$title,
+			$user,
+			$comment,
+			(object)$row,
+			$slots
+		];
+
+		$row = $protoRow;
+		unset( $row['rev_len'] );
+		unset( $row['rev_sha1'] );
+
+		yield 'no length, no hash' => [
+			$title,
+			$user,
+			$comment,
+			(object)$row,
+			$slots
+		];
+	}
+
+	/**
+	 * @dataProvider provideConstructor
+	 *
+	 * @param Title $title
+	 * @param UserIdentity $user
+	 * @param CommentStoreComment $comment
+	 * @param object $row
+	 * @param RevisionSlots $slots
+	 * @param bool $wikiId
+	 */
+	public function testConstructorAndGetters(
+		Title $title,
+		UserIdentity $user,
+		CommentStoreComment $comment,
+		$row,
+		RevisionSlots $slots,
+		$wikiId = false
+	) {
+		$rec = new RevisionStoreRecord( $title, $user, $comment, $row, $slots, $wikiId );
+
+		$this->assertSame( $title, $rec->getPageAsLinkTarget(), 'getPageAsLinkTarget' );
+		$this->assertSame( $user, $rec->getUser( RevisionRecord::RAW ), 'getUser' );
+		$this->assertSame( $comment, $rec->getComment(), 'getComment' );
+
+		$this->assertSame( $slots->getSlotRoles(), $rec->getSlotRoles(), 'getSlotRoles' );
+		$this->assertSame( $wikiId, $rec->getWikiId(), 'getWikiId' );
+
+		$this->assertSame( (int)$row->rev_id, $rec->getId(), 'getId' );
+		$this->assertSame( (int)$row->rev_page, $rec->getPageId(), 'getId' );
+		$this->assertSame( $row->rev_timestamp, $rec->getTimestamp(), 'getTimestamp' );
+		$this->assertSame( (int)$row->rev_deleted, $rec->getVisibility(), 'getVisibility' );
+		$this->assertSame( (bool)$row->rev_minor_edit, $rec->isMinor(), 'getIsMinor' );
+
+		if ( isset( $row->rev_parent_id ) ) {
+			$this->assertSame( (int)$row->rev_parent_id, $rec->getParentId(), 'getParentId' );
+		} else {
+			$this->assertSame( 0, $rec->getParentId(), 'getParentId' );
+		}
+
+		if ( isset( $row->rev_len ) ) {
+			$this->assertSame( (int)$row->rev_len, $rec->getSize(), 'getSize' );
+		} else {
+			$this->assertSame( $slots->computeSize(), $rec->getSize(), 'getSize' );
+		}
+
+		if ( isset( $row->rev_sha1 ) ) {
+			$this->assertSame( $row->rev_sha1, $rec->getSha1(), 'getSha1' );
+		} else {
+			$this->assertSame( $slots->computeSha1(), $rec->getSha1(), 'getSha1' );
+		}
+
+		if ( isset( $row->page_latest ) ) {
+			$this->assertSame(
+				(int)$row->rev_id === (int)$row->page_latest,
+				$rec->isCurrent(),
+				'isCurrent'
+			);
+		} else {
+			$this->assertSame(
+				false,
+				$rec->isCurrent(),
+				'isCurrent'
+			);
+		}
+	}
+
+	public function provideConstructorFailure() {
+		$title = Title::newFromText( 'Dummy' );
+		$title->resetArticleID( 17 );
+
+		$user = new UserIdentityValue( 11, 'Tester' );
+
+		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
+
+		$main = SlotRecord::newUnsaved( 'main', new TextContent( 'Lorem Ipsum' ) );
+		$aux = SlotRecord::newUnsaved( 'aux', new TextContent( 'Frumious Bandersnatch' ) );
+		$slots = new RevisionSlots( [ $main, $aux ] );
+
+		$protoRow = [
+			'rev_id' => '7',
+			'rev_page' => strval( $title->getArticleID() ),
+			'rev_timestamp' => '20200101000000',
+			'rev_deleted' => 0,
+			'rev_minor_edit' => 0,
+			'rev_parent_id' => '5',
+			'rev_len' => $slots->computeSize(),
+			'rev_sha1' => $slots->computeSha1(),
+			'page_latest' => '18',
+		];
+
+		yield 'not a row' => [
+			$title,
+			$user,
+			$comment,
+			'not a row',
+			$slots,
+			'acmewiki'
+		];
+
+		$row = $protoRow;
+		$row['rev_timestamp'] = 'kittens';
+
+		yield 'bad timestamp' => [
+			$title,
+			$user,
+			$comment,
+			(object)$row,
+			$slots
+		];
+
+		$row = $protoRow;
+		$row['rev_page'] = 99;
+
+		yield 'page ID mismatch' => [
+			$title,
+			$user,
+			$comment,
+			(object)$row,
+			$slots
+		];
+
+		$row = $protoRow;
+
+		yield 'bad wiki' => [
+			$title,
+			$user,
+			$comment,
+			(object)$row,
+			$slots,
+			12345
+		];
+	}
+
+	/**
+	 * @dataProvider provideConstructorFailure
+	 *
+	 * @param Title $title
+	 * @param UserIdentity $user
+	 * @param CommentStoreComment $comment
+	 * @param object $row
+	 * @param RevisionSlots $slots
+	 * @param bool $wikiId
+	 */
+	public function testConstructorFailure(
+		Title $title,
+		UserIdentity $user,
+		CommentStoreComment $comment,
+		$row,
+		RevisionSlots $slots,
+		$wikiId = false
+	) {
+		$this->setExpectedException( InvalidArgumentException::class );
+		new RevisionStoreRecord( $title, $user, $comment, $row, $slots, $wikiId );
+	}
+
+	public function getSuppressedRevision( $visibility ) {
+		$title = Title::newFromText( 'Dummy' );
+		$title->resetArticleID( 17 );
+
+		$user = new UserIdentityValue( 11, 'Tester' );
+		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
+
+		$main = SlotRecord::newUnsaved( 'main', new TextContent( 'Lorem Ipsum' ) );
+		$aux = SlotRecord::newUnsaved( 'aux', new TextContent( 'Frumious Bandersnatch' ) );
+		$slots = new RevisionSlots( [ $main, $aux ] );
+
+		$row = [
+			'rev_id' => '7',
+			'rev_page' => strval( $title->getArticleID() ),
+			'rev_timestamp' => '20200101000000',
+			'rev_deleted' => $visibility,
+			'rev_minor_edit' => 0,
+			'rev_parent_id' => '5',
+			'rev_len' => $slots->computeSize(),
+			'rev_sha1' => $slots->computeSha1(),
+			'page_latest' => '18',
+		];
+
+		return new RevisionStoreRecord( $title, $user, $comment, (object)$row, $slots );
+	}
+
+	public function provideGetComment_privilegedAudience() {
+		yield [
+			Revisionrecord::SUPPRESSED_ALL,
+			false
+		];
+
+		yield [
+			Revisionrecord::DELETED_RESTRICTED,
+			false
+		];
+
+		yield [
+			Revisionrecord::DELETED_COMMENT,
+			false
+		];
+
+
+		yield [
+			Revisionrecord::DELETED_TEXT,
+			true
+		];
+
+		yield [
+			0,
+			true
+		];
+
+	}
+
+	/**
+	 * @dataProvider provideGetComment_privilegedAudience
+	 */
+	public function testGetComment_privilegedAudience( $visibility, $isPublic ) {
+		$rev = $this->getSuppressedRevision( $visibility );
+
+		$this->assertNotNull( $rev->getComment( RevisionRecord::RAW ) );
+		$this->assertNotNull( $rev->getComment( RevisionRecord::FOR_THIS_USER, $user1 ) );
+
+		if ( $isPublic ) {
+			$this->assertNull( $rev->getComment( RevisionRecord::FOR_PUBLIC ) );
+			$this->assertNull( $rev->getComment( RevisionRecord::FOR_THIS_USER, $user2 ) );
+		} else {
+			$this->assertNotNull( $rev->getComment( RevisionRecord::FOR_PUBLIC ) );
+			$this->assertNotNull( $rev->getComment( RevisionRecord::FOR_THIS_USER, $user2 ) );
+		}
+	}
+
+	public function testGetUser_audience() {
+	}
+
+	public function testGetSlot() {
+	}
+
+	public function testGetSlot_audience() {
+	}
+
+	public function testGetContent_audience() {
+	}
+
+	public function testGetContent() {
+	}
+
+	public function testHasSameContent() {
+	}
+
+	public function testSerialization_fails() {
+	}
+
+	public function testIsDeleted() {
+	}
+
+}
