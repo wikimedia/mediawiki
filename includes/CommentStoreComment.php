@@ -82,9 +82,11 @@ class CommentStoreComment {
 			$text = $message->inLanguage( $wgContLang ) // Avoid $wgForceUIMsgAsContentMsg
 				->setInterfaceMessageFlag( true )
 				->text();
+			// TODO: store message key and parameters in $data
 			return new CommentStoreComment( null, $text, $message, $data );
 		} else {
 			return new CommentStoreComment( null, $comment, null, $data );
 		}
 	}
+
 }
