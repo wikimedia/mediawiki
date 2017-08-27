@@ -1120,7 +1120,7 @@ $generateHtml: boolean, indicating whether full HTML should be generated. If
 'ContentHandlerDefaultModelFor': Called when the default content model is
 determined for a given title. May be used to assign a different model for that
 title.
-$title: the Title in question
+$title: a LinkTarget referring to the title to get a default model for.
 &$model: the model name. Use with CONTENT_MODEL_XXX constants.
 
 'ContentHandlerForModelID': Called when a ContentHandler is requested for
