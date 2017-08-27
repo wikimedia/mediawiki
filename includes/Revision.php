@@ -1457,7 +1457,9 @@ class Revision implements IDBAccessObject {
 			);
 		}
 
-		Hooks::run( 'RevisionInsertComplete', [ &$this, $data, $flags ] );
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$revision = $this;
+		Hooks::run( 'RevisionInsertComplete', [ &$revision, $data, $flags ] );
 
 		return $this->mId;
 	}

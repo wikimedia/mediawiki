@@ -741,8 +741,10 @@ class Block {
 			return false;
 		}
 
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$block = $this;
 		# Allow hooks to cancel the autoblock.
-		if ( !Hooks::run( 'AbortAutoblock', [ $autoblockIP, &$this ] ) ) {
+		if ( !Hooks::run( 'AbortAutoblock', [ $autoblockIP, &$block ] ) ) {
 			wfDebug( "Autoblock aborted by hook.\n" );
 			return false;
 		}
