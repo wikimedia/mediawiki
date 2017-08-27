@@ -2944,8 +2944,10 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$this->doDeleteUpdates( $id, $content );
 
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$page = $this;
 		Hooks::run( 'ArticleDeleteComplete',
-			[ &$this, &$user, $reason, $id, $content, $logEntry ] );
+			[ &$page, &$user, $reason, $id, $content, $logEntry ] );
 		$status->value = $logid;
 
 		// Show log excerpt on 404 pages rather than just a link
