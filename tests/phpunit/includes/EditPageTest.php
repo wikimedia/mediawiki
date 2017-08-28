@@ -165,6 +165,10 @@ class EditPageTest extends MediaWikiLangTestCase {
 			$edit['wpStarttime'] = wfTimestampNow();
 		}
 
+		if ( !isset( $edit['wpUnicodeCheck'] ) ) {
+			$edit['wpUnicodeCheck'] = EditPage::UNICODE_CHECK;
+		}
+
 		$req = new FauxRequest( $edit, true ); // session ??
 
 		$article = new Article( $title );
@@ -697,7 +701,8 @@ hello
 			'wpTextbox1' => serialize( 'non-text content' ),
 			'wpEditToken' => $user->getEditToken(),
 			'wpEdittime' => '',
-			'wpStarttime' => wfTimestampNow()
+			'wpStarttime' => wfTimestampNow(),
+			'wpUnicodeCheck' => EditPage::UNICODE_CHECK,
 		];
 
 		$req = new FauxRequest( $edit, true );
