@@ -7,29 +7,6 @@
 		border: 0;
 	}
 
-	.mw-recentchanges-toplinks {
-		padding: 0 0.5em;
-
-		.oo-ui-widget-enabled.oo-ui-buttonElement.oo-ui-buttonElement-frameless .oo-ui-buttonElement-button {
-			padding: 0 2.5em 0 0.5em;
-		}
-
-		&-title,
-		.mw-collapsible-text {
-			// Same as the legend
-			font-size: 0.85em;
-		}
-
-		&:not( .mw-collapsed ) {
-			// Same as the legend
-			border: 1px solid #ddd;
-		}
-
-		&:not( .mw-rcfilters-ui-ready ) {
-			display: none;
-		}
-	}
-
 	.rcfilters-head {
 		min-height: 200px;
 
@@ -91,6 +68,12 @@
 		&:after {
 			.animation-delay( 0s );
 		}
+	}
+
+	#contentSub,
+	p.watchlistDetails,
+	form#mw-watchlist-resetbutton {
+		display: none;
 	}
 }
 
