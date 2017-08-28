@@ -1056,6 +1056,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.hlist' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'styles' => [
 			'resources/src/mediawiki/mediawiki.hlist-allskins.less',
 		],
