@@ -61,6 +61,8 @@ section).
   just been unwatched.
 * Added $wgParserTestMediaHandlers, where mock media handlers can be passed to
   MediaHandlerFactory for parser tests.
+* (T174313) Added checkbox on Special:ListUsers to display only users in temporary
+  user groups.
 
 === Languages updated in 1.30 ===
 
