@@ -8,11 +8,7 @@
 		 * @private
 		 */
 		init: function () {
-			var toplinksTitle,
-				topLinksCookieName = 'rcfilters-toplinks-collapsed-state',
-				topLinksCookie = mw.cookie.get( topLinksCookieName ),
-				topLinksCookieValue = topLinksCookie || 'collapsed',
-				savedQueriesPreferenceName = mw.config.get( 'wgStructuredChangeFiltersSavedQueriesPreferenceName' ),
+			var savedQueriesPreferenceName = mw.config.get( 'wgStructuredChangeFiltersSavedQueriesPreferenceName' ),
 				filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
 				changesListModel = new mw.rcfilters.dm.ChangesListViewModel(),
 				savedQueriesModel = new mw.rcfilters.dm.SavedQueriesModel(),
@@ -26,7 +22,13 @@
 					.addClass( 'mw-rcfilters-ui-overlay' ),
 				filtersWidget = new mw.rcfilters.ui.FilterWrapperWidget(
 					controller, filtersModel, savedQueriesModel, changesListModel, { $overlay: $overlay } ),
-				markSeenButton,
+				savedLinksListWidget = new mw.rcfilters.ui.SavedLinksListWidget(
+					controller, savedQueriesModel, { $overlay: $overlay }
+				),
+				$topLinks,
+				rcTopSection,
+				$watchlistDetails,
+				wlTopSection,
 				currentPage = mw.config.get( 'wgCanonicalNamespace' ) +
 					':' +
 					mw.config.get( 'wgCanonicalSpecialPageName' );
@@ -59,36 +61,22 @@
 			controller.replaceUrl();
 
 			if ( currentPage === 'Special:Recentchanges' ) {
-				toplinksTitle = new OO.ui.ButtonWidget( {
-					framed: false,
-					indicator: topLinksCookieValue === 'collapsed' ? 'down' : 'up',
-					flags: [ 'progressive' ],
-					label: $( '<span>' ).append( mw.message( 'rcfilters-other-review-tools' ).parse() ).contents()
-				} );
-				$( '.mw-recentchanges-toplinks-title' ).replaceWith( toplinksTitle.$element );
-				// Move the top links to a designated area so it's near the
-				// 'saved filters' button and make it collapsible
-				$( '.mw-recentchanges-toplinks' )
-					.addClass( 'mw-rcfilters-ui-ready' )
-					.makeCollapsible( {
-						collapsed: topLinksCookieValue === 'collapsed',
-						$customTogglers: toplinksTitle.$element
-					} )
-					.on( 'beforeExpand.mw-collapsible', function () {
-						mw.cookie.set( topLinksCookieName, 'expanded' );
-						toplinksTitle.setIndicator( 'up' );
-					} )
-					.on( 'beforeCollapse.mw-collapsible', function () {
-						mw.cookie.set( topLinksCookieName, 'collapsed' );
-						toplinksTitle.setIndicator( 'down' );
-					} )
-					.appendTo( '.mw-rcfilters-ui-filterWrapperWidget-top-placeholder' );
+				$topLinks = $( '.mw-recentchanges-toplinks' ).detach();
+
+				rcTopSection = new mw.rcfilters.ui.RcTopSectionWidget(
+					savedLinksListWidget, $topLinks
+				);
+				filtersWidget.setTopSection( rcTopSection.$element );
 			} // end Special:RC
 
 			if ( currentPage === 'Special:Watchlist' ) {
-				markSeenButton = new mw.rcfilters.ui.MarkSeenButtonWidget( controller, changesListModel );
-				$( 'form#mw-watchlist-resetbutton' ).detach();
-				filtersWidget.prependToTopRow( markSeenButton );
+				$( '#contentSub, form#mw-watchlist-resetbutton' ).detach();
+				$watchlistDetails = $( '.watchlistDetails' ).detach().contents();
+
+				wlTopSection = new mw.rcfilters.ui.WatchlistTopSectionWidget(
+					controller, changesListModel, savedLinksListWidget, $watchlistDetails
+				);
+				filtersWidget.setTopSection( wlTopSection.$element );
 			} // end Special:WL
 		}
 	};
