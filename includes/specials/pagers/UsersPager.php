@@ -70,6 +70,7 @@ class UsersPager extends AlphabeticPager {
 			$this->requestedGroup = '';
 		}
 		$this->editsOnly = $request->getBool( 'editsOnly' );
+		$this->temporaryOnly = $request->getBool( 'temporaryOnly' );
 		$this->creationSort = $request->getBool( 'creationSort' );
 		$this->including = $including;
 		$this->mDefaultDirection = $request->getBool( 'desc' )
@@ -126,6 +127,10 @@ class UsersPager extends AlphabeticPager {
 
 		if ( $this->editsOnly ) {
 			$conds[] = 'user_editcount > 0';
+		}
+
+		if ( $this->temporaryOnly ) {
+			$conds[] = 'ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() );
 		}
 
 		$options['GROUP BY'] = $this->creationSort ? 'user_id' : 'user_name';
@@ -295,6 +300,13 @@ class UsersPager extends AlphabeticPager {
 				'name' => 'editsOnly',
 				'id' => 'editsOnly',
 				'default' => $this->editsOnly
+			],
+			'temporaryOnly' => [
+				'type' => 'check',
+				'label' => $this->msg( 'listusers-temporaryonly' )->text(),
+				'name' => 'temporaryOnly',
+				'id' => 'temporaryOnly',
+				'default' => $this->temporaryOnly
 			],
 			'creationSort' => [
 				'type' => 'check',
