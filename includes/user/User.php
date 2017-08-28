@@ -5319,6 +5319,10 @@ class User implements IDBAccessObject {
 
 		$this->mOptionsLoaded = true;
 
+		if ( isset( $this->mOptions['email-blacklist'] ) ) {
+			$this->mOptions['email-blacklist'] = array_map( 'intval', explode( "\n", $this->mOptions['email-blacklist'] ) );
+		}
+
 		Hooks::run( 'UserLoadOptions', [ $this, &$this->mOptions ] );
 	}
 
@@ -5332,6 +5336,23 @@ class User implements IDBAccessObject {
 
 		// Not using getOptions(), to keep hidden preferences in database
 		$saveOptions = $this->mOptions;
+
+		// Convert the usernames to ids.
+		if ( isset( $saveOptions['email-blacklist'] ) ) {
+			if ( $saveOptions['email-blacklist'] ) {
+				$lookup = CentralIdLookup::factory();
+				$names = $saveOptions['email-blacklist'];
+				if ( is_string( $names ) ) {
+					$names = explode( "\n", $names );
+				}
+				$ids = $lookup->lookupUserNames( array_flip( $names ), $this );
+				$saveOptions['email-blacklist'] = implode( "\n", array_values( $ids ) );
+			}
+			else {
+				// If the blacklist is empty, set it to null rather than an empty string.
+				$saveOptions['email-blacklist'] = null;
+			}
+		}
 
 		// Allow hooks to abort, for instance to save to a global profile.
 		// Reset options to default state before saving.

@@ -543,12 +543,22 @@ class Preferences {
 			}
 
 			if ( $config->get( 'EnableUserEmail' ) && $user->isAllowed( 'sendemail' ) ) {
+				$lookup = CentralIdLookup::factory();
+				$ids = $user->getOption( 'email-blacklist', [] );
+				$names = $ids ? $lookup->lookupCentralIds( array_flip( $ids ), $user ) : [];
+
 				$defaultPreferences['disablemail'] = [
 					'type' => 'toggle',
 					'invert' => true,
 					'section' => 'personal/email',
 					'label-message' => 'allowemail',
 					'disabled' => $disableEmailPrefs,
+				];
+				$defaultPreferences['email-blacklist'] = [
+					'type' => 'usersmultiselect',
+					'label-message' => 'email-blacklist-label',
+					'section' => 'personal/email',
+					'default' => implode( "\n", array_values( $names ) )
 				];
 				$defaultPreferences['ccmeonemails'] = [
 					'type' => 'toggle',
