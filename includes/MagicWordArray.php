@@ -193,19 +193,19 @@ class MagicWordArray {
 	 * @return array
 	 */
 	public function parseMatch( $m ) {
-		reset( $m );
-		while ( list( $key, $value ) = each( $m ) ) {
-			if ( $key === 0 || $value === '' ) {
+		$len = count( $m );
+		for ( $i = 0; $i < $len - 1; $i++  ) {
+			if ( $i === 0 || $m[$i] === '' ) {
 				continue;
 			}
-			$parts = explode( '_', $key, 2 );
+			$parts = explode( '_', $i, 2 );
 			if ( count( $parts ) != 2 ) {
 				// This shouldn't happen
 				// continue;
 				throw new MWException( __METHOD__ . ': bad parameter name' );
 			}
 			list( /* $synIndex */, $magicName ) = $parts;
-			$paramValue = next( $m );
+			$paramValue = $m[$i + 1];
 			return [ $magicName, $paramValue ];
 		}
 		// This shouldn't happen either
