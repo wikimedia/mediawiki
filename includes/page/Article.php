@@ -1920,7 +1920,7 @@ class Article implements Page {
 
 	/**
 	 * Check if the page can be cached
-	 * @param integer $mode One of the HTMLFileCache::MODE_* constants (since 1.28)
+	 * @param int $mode One of the HTMLFileCache::MODE_* constants (since 1.28)
 	 * @return bool
 	 */
 	public function isFileCacheable( $mode = HTMLFileCache::MODE_NORMAL ) {

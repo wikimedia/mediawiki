@@ -35,15 +35,13 @@ class WikiProcessor {
 	 */
 	public function __invoke( array $record ) {
 		global $wgVersion;
-		$record['extra'] = array_merge(
-			$record['extra'],
-			[
-				'host' => wfHostname(),
-				'wiki' => wfWikiID(),
-				'mwversion' => $wgVersion,
-				'reqId' => \WebRequest::getRequestId(),
-			]
-		);
+		$record['extra']['host'] = wfHostname();
+		$record['extra']['wiki'] = wfWikiID();
+		$record['extra']['mwversion'] = $wgVersion;
+		$record['extra']['reqId'] = \WebRequest::getRequestId();
+		if ( PHP_SAPI === 'cli' && isset( $_SERVER['argv'] ) ) {
+			$record['extra']['cli_argv'] = implode( ' ', $_SERVER['argv'] );
+		}
 		return $record;
 	}
 

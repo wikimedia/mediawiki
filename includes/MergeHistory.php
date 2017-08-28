@@ -56,7 +56,7 @@ class MergeHistory {
 	/** @var MWTimestamp|bool Timestamp upto which history from the source will be merged */
 	protected $timestampLimit;
 
-	/** @var integer Number of revisions merged (for Special:MergeHistory success message) */
+	/** @var int Number of revisions merged (for Special:MergeHistory success message) */
 	protected $revisionsMerged;
 
 	/**

@@ -25,6 +25,7 @@ namespace Wikimedia\Rdbms;
 
 use Psr\Log\LoggerAwareInterface;
 use BagOStuff;
+use WANObjectCache;
 
 /**
  * An interface for database load monitoring
@@ -37,11 +38,11 @@ interface ILoadMonitor extends LoggerAwareInterface {
 	 *
 	 * @param ILoadBalancer $lb LoadBalancer this instance serves
 	 * @param BagOStuff $sCache Local server memory cache
-	 * @param BagOStuff $cCache Local cluster memory cache
+	 * @param WANObjectCache $wCache Local cluster memory cache
 	 * @param array $options Options map
 	 */
 	public function __construct(
-		ILoadBalancer $lb, BagOStuff $sCache, BagOStuff $cCache, array $options = []
+		ILoadBalancer $lb, BagOStuff $sCache, WANObjectCache $wCache, array $options = []
 	);
 
 	/**
@@ -57,7 +58,7 @@ interface ILoadMonitor extends LoggerAwareInterface {
 	 *
 	 * Values may be "false" if replication is too broken to estimate
 	 *
-	 * @param integer[] $serverIndexes
+	 * @param int[] $serverIndexes
 	 * @param string $domain
 	 * @return array Map of (server index => float|int|bool)
 	 */

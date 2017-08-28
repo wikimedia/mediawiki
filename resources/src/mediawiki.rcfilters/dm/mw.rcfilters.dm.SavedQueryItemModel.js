@@ -42,7 +42,7 @@
 	/**
 	 * Get an object representing the state of this item
 	 *
-	 * @returns {Object} Object representing the current data state
+	 * @return {Object} Object representing the current data state
 	 *  of the object
 	 */
 	mw.rcfilters.dm.SavedQueryItemModel.prototype.getState = function () {

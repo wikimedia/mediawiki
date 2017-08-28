@@ -1638,7 +1638,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * @param Content $content Pre-save transform content
-	 * @param integer $flags
+	 * @param int $flags
 	 * @param User $user
 	 * @param string $summary
 	 * @param array $meta
@@ -1812,7 +1812,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * @param Content $content Pre-save transform content
-	 * @param integer $flags
+	 * @param int $flags
 	 * @param User $user
 	 * @param string $summary
 	 * @param array $meta
@@ -2111,13 +2111,13 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param Revision $revision
 	 * @param User $user User object that did the revision
 	 * @param array $options Array of options, following indexes are used:
-	 * - changed: boolean, whether the revision changed the content (default true)
-	 * - created: boolean, whether the revision created the page (default false)
-	 * - moved: boolean, whether the page was moved (default false)
-	 * - restored: boolean, whether the page was undeleted (default false)
+	 * - changed: bool, whether the revision changed the content (default true)
+	 * - created: bool, whether the revision created the page (default false)
+	 * - moved: bool, whether the page was moved (default false)
+	 * - restored: bool, whether the page was undeleted (default false)
 	 * - oldrevision: Revision object for the pre-update revision (default null)
-	 * - oldcountable: boolean, null, or string 'no-change' (default null):
-	 *   - boolean: whether the page was counted as an article before that
+	 * - oldcountable: bool, null, or string 'no-change' (default null):
+	 *   - bool: whether the page was counted as an article before that
 	 *     revision, only used in changed is true and created is false
 	 *   - null: if created is false, don't update the article count; if created
 	 *     is true, do update the article count
@@ -2302,7 +2302,7 @@ class WikiPage implements Page, IDBAccessObject {
 		global $wgCascadingRestrictionLevels, $wgContLang;
 
 		if ( wfReadOnly() ) {
-			return Status::newFatal( 'readonlytext', wfReadOnlyReason() );
+			return Status::newFatal( wfMessage( 'readonlytext', wfReadOnlyReason() ) );
 		}
 
 		$this->loadPageData( 'fromdbmaster' );
@@ -2919,7 +2919,7 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Lock the page row for this title+id and return page_latest (or 0)
 	 *
-	 * @return integer Returns 0 if no row was found with this title+id
+	 * @return int Returns 0 if no row was found with this title+id
 	 * @since 1.27
 	 */
 	public function lockAndGetLatest() {
@@ -3414,7 +3414,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @param array $added The names of categories that were added
 	 * @param array $deleted The names of categories that were deleted
-	 * @param integer $id Page ID (this should be the original deleted page ID)
+	 * @param int $id Page ID (this should be the original deleted page ID)
 	 */
 	public function updateCategoryCounts( array $added, array $deleted, $id = 0 ) {
 		$id = $id ?: $this->getId();

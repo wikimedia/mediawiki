@@ -99,7 +99,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 * With conflicting expectations, the most narrow ones will be used
 	 *
 	 * @param string $event (writes,queries,conns,mConns)
-	 * @param integer $value Maximum count of the event
+	 * @param int $value Maximum count of the event
 	 * @param string $fname Caller
 	 * @since 1.25
 	 */
@@ -199,7 +199,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 * @param string $query Function name or generalized SQL
 	 * @param float $sTime Starting UNIX wall time
 	 * @param bool $isWrite Whether this is a write query
-	 * @param integer $n Number of affected rows
+	 * @param int $n Number of affected rows
 	 */
 	public function recordQueryCompletion( $query, $sTime, $isWrite = false, $n = 0 ) {
 		$eTime = microtime( true );
@@ -266,7 +266,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 * @param string $db DB name
 	 * @param string $id ID string of transaction
 	 * @param float $writeTime Time spent in write queries
-	 * @param integer $affected Number of rows affected by writes
+	 * @param int $affected Number of rows affected by writes
 	 */
 	public function transactionWritingOut( $server, $db, $id, $writeTime = 0.0, $affected = 0 ) {
 		$name = "{$server} ({$db}) (TRX#$id)";

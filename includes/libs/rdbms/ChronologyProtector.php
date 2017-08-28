@@ -61,9 +61,9 @@ class ChronologyProtector implements LoggerAwareInterface {
 	/** @var float[] Map of (DB master name => 1) */
 	protected $shutdownTouchDBs = [];
 
-	/** @var integer Seconds to store positions */
+	/** @var int Seconds to store positions */
 	const POSITION_TTL = 60;
-	/** @var integer Max time to wait for positions to appear */
+	/** @var int Max time to wait for positions to appear */
 	const POS_WAIT_TIMEOUT = 5;
 
 	/**

@@ -206,6 +206,7 @@
 	"config-help": "Hëllef",
 	"config-help-tooltip": "klickt fir opzeklappen",
 	"config-nofile": "De Fichier \"$1\" gouf net fonnt. Gouf e geläscht?",
+	"config-screenshot": "Screenshot",
 	"mainpagetext": "<strong>MediaWiki gouf installéiert.</strong>",
 	"mainpagedocfooter": "Kuckt w.e.g. [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents d'Benotzerhandbuch] fir Informatiounen iwwer de Gebruach vun der Wiki Software.\n\n== Fir  unzefänken ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Hëllef bei der Konfiguratioun]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki-FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglëscht vun neie MediaWiki-Versiounen]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokaliséiert MediaWiki fir Är Sprooch]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Léiert wéi Spam op Ärer Wiki reduzéiert gi kann]"
 }

@@ -755,6 +755,8 @@ $wgCopyUploadProxy = false;
  * timeout longer than the default $wgHTTPTimeout. False means fallback
  * to default.
  *
+ * @var int|bool
+ *
  * @since 1.22
  */
 $wgCopyUploadTimeout = false;
@@ -2053,8 +2055,8 @@ $wgDBmysql5 = false;
 $wgDBOracleDRCP = false;
 
 /**
- * Other wikis on this site, can be administered from a single developer
- * account.
+ * Other wikis on this site, can be administered from a single developer account.
+ *
  * Array numeric key => database name
  */
 $wgLocalDatabases = [];
@@ -3234,14 +3236,6 @@ $wgHTMLFormAllowTableFormat = true;
  * @since 1.24
  */
 $wgUseMediaWikiUIEverywhere = false;
-
-/**
- * Temporary variable that determines whether the EditPage class should use OOjs UI or not.
- * This will be removed later and OOjs UI will become the only option.
- *
- * @since 1.29
- */
-$wgOOUIEditPage = true;
 
 /**
  * Whether to label the store-to-database-and-show-to-others button in the editor
@@ -4901,7 +4895,7 @@ $wgDefaultUserOptions = [
 	'date' => 'default',
 	'diffonly' => 0,
 	'disablemail' => 0,
-	'editfont' => 'default',
+	'editfont' => 'monospace',
 	'editondblclick' => 0,
 	'editsectiononrightclick' => 0,
 	'enotifminoredits' => 0,
@@ -6847,6 +6841,11 @@ $wgStructuredChangeFiltersEnableExperimentalViews = false;
 $wgStructuredChangeFiltersEnableLiveUpdate = false;
 
 /**
+ * Whether to enable RCFilters app on Special:Watchlist
+ */
+$wgStructuredChangeFiltersOnWatchlist = false;
+
+/**
  * Use new page patrolling to check new pages on Special:Newpages
  */
 $wgUseNPPatrol = true;
@@ -8274,6 +8273,7 @@ $wgShellLocale = 'C.UTF-8';
 
 /**
  * Timeout for HTTP requests done internally, in seconds.
+ * @var int
  */
 $wgHTTPTimeout = 25;
 
@@ -8303,8 +8303,6 @@ $wgHTTPProxy = false;
  *   subdomain thereof, then no proxy will be used.
  *   Command-line scripts are not affected by this setting and will always use
  *   the proxy if it is configured.
- * - ChronologyProtector: Decide to shutdown LBFactory asynchronously instead
- *   synchronously if the current response redirects to a local virtual host.
  *
  * @since 1.25
  */

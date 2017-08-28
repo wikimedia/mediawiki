@@ -1933,14 +1933,18 @@ class ApiMain extends ApiBase {
 
 			$id = Sanitizer::escapeIdForAttribute( 'main/datatypes', Sanitizer::ID_PRIMARY );
 			$idFallback = Sanitizer::escapeIdForAttribute( 'main/datatypes', Sanitizer::ID_FALLBACK );
-
-			$help['datatypes'] .= Linker::makeHeadline( min( 6, $level ),
+			$headline = Linker::makeHeadline( min( 6, $level ),
 				' class="apihelp-header"',
 				$id,
 				$header,
 				'',
 				$idFallback
 			);
+			// Ensure we have a sane anchor
+			if ( $id !== 'main/datatypes' && $idFallback !== 'main/datatypes' ) {
+				$headline = '<div id="main/datatypes"></div>' . $headline;
+			}
+			$help['datatypes'] .= $headline;
 			$help['datatypes'] .= $this->msg( 'api-help-datatypes' )->parseAsBlock();
 			if ( !isset( $tocData['main/datatypes'] ) ) {
 				$tocnumber[$level]++;
@@ -1957,13 +1961,18 @@ class ApiMain extends ApiBase {
 			$header = $this->msg( 'api-credits-header' )->parse();
 			$id = Sanitizer::escapeIdForAttribute( 'main/credits', Sanitizer::ID_PRIMARY );
 			$idFallback = Sanitizer::escapeIdForAttribute( 'main/credits', Sanitizer::ID_FALLBACK );
-			$help['credits'] .= Linker::makeHeadline( min( 6, $level ),
+			$headline = Linker::makeHeadline( min( 6, $level ),
 				' class="apihelp-header"',
 				$id,
 				$header,
 				'',
 				$idFallback
 			);
+			// Ensure we have a sane anchor
+			if ( $id !== 'main/credits' && $idFallback !== 'main/credits' ) {
+				$headline = '<div id="main/credits"></div>' . $headline;
+			}
+			$help['credits'] .= $headline;
 			$help['credits'] .= $this->msg( 'api-credits' )->useDatabase( false )->parseAsBlock();
 			if ( !isset( $tocData['main/credits'] ) ) {
 				$tocnumber[$level]++;

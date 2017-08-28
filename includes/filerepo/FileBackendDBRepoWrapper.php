@@ -282,7 +282,7 @@ class FileBackendDBRepoWrapper extends FileBackend {
 	/**
 	 * Get a connection to the repo file registry DB
 	 *
-	 * @param integer $index
+	 * @param int $index
 	 * @return DBConnRef
 	 */
 	protected function getDB( $index ) {

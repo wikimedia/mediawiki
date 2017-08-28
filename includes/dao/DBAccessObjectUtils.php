@@ -28,8 +28,8 @@
  */
 class DBAccessObjectUtils implements IDBAccessObject {
 	/**
-	 * @param integer $bitfield
-	 * @param integer $flags IDBAccessObject::READ_* constant
+	 * @param int $bitfield
+	 * @param int $flags IDBAccessObject::READ_* constant
 	 * @return bool Bitfield has flag $flag set
 	 */
 	public static function hasFlags( $bitfield, $flags ) {
@@ -42,7 +42,7 @@ class DBAccessObjectUtils implements IDBAccessObject {
 	 * The fallback DB index and options are to be used if the entity is not found
 	 * with the initial DB index, typically querying the master DB to avoid lag
 	 *
-	 * @param integer $bitfield Bitfield of IDBAccessObject::READ_* constants
+	 * @param int $bitfield Bitfield of IDBAccessObject::READ_* constants
 	 * @return array List of DB indexes and options in this order:
 	 *   - DB_MASTER or DB_REPLICA constant for the initial query
 	 *   - SELECT options array for the initial query

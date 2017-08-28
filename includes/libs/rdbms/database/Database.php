@@ -108,7 +108,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $mTablePrefix = '';
 	/** @var string */
 	protected $mSchema = '';
-	/** @var integer */
+	/** @var int */
 	protected $mFlags;
 	/** @var array */
 	protected $mLBInfo = [];
@@ -197,11 +197,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	private $mTrxWriteDuration = 0.0;
 	/**
-	 * @var integer Number of write queries for the current transaction
+	 * @var int Number of write queries for the current transaction
 	 */
 	private $mTrxWriteQueryCount = 0;
 	/**
-	 * @var integer Number of rows affected by write queries for the current transaction
+	 * @var int Number of rows affected by write queries for the current transaction
 	 */
 	private $mTrxWriteAffectedRows = 0;
 	/**
@@ -209,7 +209,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	private $mTrxWriteAdjDuration = 0.0;
 	/**
-	 * @var integer Number of write queries counted in mTrxWriteAdjDuration
+	 * @var int Number of write queries counted in mTrxWriteAdjDuration
 	 */
 	private $mTrxWriteAdjQueryCount = 0;
 	/**
@@ -758,7 +758,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 			$closed = $this->closeConnection();
 			$this->mConn = false;
-		} elseif ( $this->mTrxIdleCallbacks || $this->mTrxEndCallbacks ) { // sanity
+		} elseif (
+			$this->mTrxIdleCallbacks ||
+			$this->mTrxPreCommitCallbacks ||
+			$this->mTrxEndCallbacks
+		) { // sanity
 			throw new RuntimeException( "Transaction callbacks still pending." );
 		} else {
 			$closed = true;
@@ -1050,7 +1054,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * @param string $sql A SQL write query
 	 * @param float $runtime Total runtime, including RTT
-	 * @param integer $affected Affected row count
+	 * @param int $affected Affected row count
 	 */
 	private function updateTrxWriteQueryTime( $sql, $runtime, $affected ) {
 		// Whether this is indicative of replica DB runtime (except for RBR or ws_repl)
@@ -2078,7 +2082,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Quotes an identifier using `backticks` or "double quotes" depending on the database type.
 	 * MySQL uses `backticks` while basically everything else uses double quotes.
 	 * Since MySQL is the odd one out here the double quotes are our generic
-	 * and we implement backticks in DatabaseMysql.
+	 * and we implement backticks in DatabaseMysqlBase.
 	 *
 	 * @param string $s
 	 * @return string
@@ -2587,7 +2591,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Do not use this method outside of Database/DBError classes
 	 *
-	 * @param integer|string $errno
+	 * @param int|string $errno
 	 * @return bool Whether the given query error was a connection drop
 	 */
 	public function wasConnectionError( $errno ) {
@@ -2707,7 +2711,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * This method should not be used outside of Database/LoadBalancer
 	 *
-	 * @param integer $trigger IDatabase::TRIGGER_* constant
+	 * @param int $trigger IDatabase::TRIGGER_* constant
 	 * @since 1.20
 	 * @throws Exception
 	 */
@@ -2787,7 +2791,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * This method should not be used outside of Database/LoadBalancer
 	 *
-	 * @param integer $trigger IDatabase::TRIGGER_* constant
+	 * @param int $trigger IDatabase::TRIGGER_* constant
 	 * @throws Exception
 	 * @since 1.20
 	 */

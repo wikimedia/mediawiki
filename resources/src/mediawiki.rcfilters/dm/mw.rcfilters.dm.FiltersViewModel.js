@@ -793,7 +793,9 @@
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.emptyAllFilters = function () {
 		this.getItems().forEach( function ( filterItem ) {
-			this.toggleFilterSelected( filterItem.getName(), false );
+			if ( !filterItem.getGroupModel().isSticky() ) {
+				this.toggleFilterSelected( filterItem.getName(), false );
+			}
 		}.bind( this ) );
 	};
 

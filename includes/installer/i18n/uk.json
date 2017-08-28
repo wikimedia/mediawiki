@@ -88,6 +88,7 @@
 	"config-no-cli-uploads-check": "'''Увага:''' Ваша типова папка для завантажень (<code>$1</code>) не перевірялась на вразливість до виконання довільних скриптів під час встановлення CLI.",
 	"config-brokenlibxml": "У Вашій системі невдале поєднання версій PHP і libxml2, яке може спричинити пошкодження прихованих даних у MediaWiki та інших веб-застосунках.\nОновіть libxml2 до версії 2.7.3 або пізнішої  ([https://bugs.php.net/bug.php?id=45996 відомості про помилку]).\nВстановлення перервано.",
 	"config-suhosin-max-value-length": "Suhosin встановлено і обмежує параметра GET  <code>length</code> до $1 байта. Компонент MediaWiki ResourceLoader буде обходити це обмеження, однак це зменшить продуктивність. Якщо це можливо, Вам варто встановити значення <code>suhosin.get.max_value_length</code> як 1024 і більше у <code>php.ini</code> і встановити таке ж значення <code>$wgResourceLoaderMaxQueryLength</code> у LocalSettings.php .",
+	"config-using-32bit": "<strong>Попередження:</strong> схоже, що Ваша система працює з 32-бітними цілими числами. Таке [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit не рекомендується].",
 	"config-db-type": "Тип бази даних:",
 	"config-db-host": "Хост бази даних:",
 	"config-db-host-help": "Якщо сервер бази даних знаходиться на іншому сервері, введіть тут ім'я хосту і IP адресу.\n\nЯкщо Ви використовуєте віртуальний хостинг, Ваш хостинг-провайдер має надати Вам правильне ім'я хосту у його документації.\n\nЯкщо у Вас сервер із Windows Ви використовуєте MySQL, параметр \"localhost\" може не працювати для імені сервера. Якщо не працює, використайте \"127.0.0.1\" як локальну IP-адресу.\n\nЯкщо Ви використовуєте PostgreSQL, залиште це поле пустим, щоб під'єднатись через сокет Unix.",
@@ -318,6 +319,8 @@
 	"config-help-tooltip": "натисніть, щоб розгорнути",
 	"config-nofile": "Файл \"$1\" не знайдено. Його видалено?",
 	"config-extension-link": "Чи знаєте ви, що ваше вікі підтримує [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions розширення]?\n\nВи можете переглядати [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category розширення по категорії] або в [https://www.mediawiki.org/wiki/Extension_Matrix матрицю розширень] щоб побачити повний список розширень.",
+	"config-skins-screenshots": "$1 (скріншоти: $2)",
+	"config-screenshot": "скріншот",
 	"mainpagetext": "<strong>Програмне забезпечення «MediaWiki» встановлено.</strong>",
 	"mainpagedocfooter": "Інформацію про роботу з цією вікі можна знайти на сторінці [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Довідка:Вміст].\n\n== Деякі корисні ресурси ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Список налаштувань];\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Часті питання з приводу MediaWiki];\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Розсилка повідомлень про появу нових версій MediaWiki];\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Локалізувати MediaWiki своєю мовою]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Дізнатися, як боротися зі спамом у своїй вікі]"
 }

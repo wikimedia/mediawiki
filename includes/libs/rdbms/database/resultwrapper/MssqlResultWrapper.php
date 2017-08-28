@@ -5,7 +5,7 @@ namespace Wikimedia\Rdbms;
 use stdClass;
 
 class MssqlResultWrapper extends ResultWrapper {
-	/** @var integer|null */
+	/** @var int|null */
 	private $mSeekTo = null;
 
 	/**

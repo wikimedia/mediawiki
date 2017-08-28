@@ -149,7 +149,7 @@ abstract class MWLBFactory {
 		}
 		$cCache = ObjectCache::getLocalClusterInstance();
 		if ( $cCache->getQoS( $cCache::ATTR_EMULATION ) > $cCache::QOS_EMULATION_SQL ) {
-			$lbConf['memCache'] = $cCache;
+			$lbConf['memStash'] = $cCache;
 		}
 		$wCache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		if ( $wCache->getQoS( $wCache::ATTR_EMULATION ) > $wCache::QOS_EMULATION_SQL ) {

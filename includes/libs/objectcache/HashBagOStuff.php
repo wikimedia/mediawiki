@@ -31,7 +31,7 @@
 class HashBagOStuff extends BagOStuff {
 	/** @var mixed[] */
 	protected $bag = [];
-	/** @var integer Max entries allowed */
+	/** @var int Max entries allowed */
 	protected $maxCacheKeys;
 
 	const KEY_VAL = 0;

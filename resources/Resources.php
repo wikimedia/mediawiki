@@ -301,10 +301,6 @@ return [
 		'scripts' => 'resources/src/jquery/jquery.mw-jump.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'jquery.mwExtension' => [
-		'scripts' => 'resources/src/jquery/jquery.mwExtension.js',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'jquery.placeholder' => [
 		'deprecated' => 'Use of "jquery.placeholder" is deprecated since MediaWiki 1.29.0',
 
@@ -1425,7 +1421,7 @@ return [
 		'dependencies' => [
 			'mediawiki.action.edit.styles',
 			'jquery.textSelection',
-			'jquery.byteLimit',
+			'oojs-ui-core',
 			'mediawiki.widgets.visibleByteLimit',
 			'mediawiki.api',
 		],
@@ -1752,6 +1748,12 @@ return [
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.less',
 		],
 	],
+	'mediawiki.rcfilters.highlightCircles.seenunseen.styles' => [
+		'styles' => [
+			'resources/src/mediawiki.rcfilters/' .
+			'styles/mw.rcfilters.ui.ChangesListWrapperWidget.highlightCircles.seenunseen.less',
+		],
+	],
 	'mediawiki.rcfilters.filters.dm' => [
 		'scripts' => [
 			'resources/src/mediawiki.rcfilters/mw.rcfilters.js',
@@ -1799,6 +1801,7 @@ return [
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterItemHighlightButton.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.HighlightColorPickerWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.LiveUpdateButtonWidget.js',
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.MarkSeenButtonWidget.js',
 			'resources/src/mediawiki.rcfilters/mw.rcfilters.HighlightColors.js',
 			'resources/src/mediawiki.rcfilters/mw.rcfilters.init.js',
 		],
@@ -1835,6 +1838,7 @@ return [
 			],
 		],
 		'messages' => [
+			'rcfilters-tag-remove',
 			'rcfilters-activefilters',
 			'rcfilters-advancedfilters',
 			'rcfilters-group-results-by-page',
@@ -1845,6 +1849,7 @@ return [
 			'rcfilters-hours-title',
 			'rcfilters-days-show-days',
 			'rcfilters-days-show-hours',
+			'rcfilters-highlighted-filters-list',
 			'rcfilters-quickfilters',
 			'rcfilters-quickfilters-placeholder-title',
 			'rcfilters-quickfilters-placeholder-description',
@@ -1862,7 +1867,6 @@ return [
 			'rcfilters-restore-default-filters',
 			'rcfilters-clear-all-filters',
 			'rcfilters-show-new-changes',
-			'rcfilters-previous-changes-label',
 			'rcfilters-search-placeholder',
 			'rcfilters-invalid-filter',
 			'rcfilters-empty-filter',
@@ -1890,6 +1894,7 @@ return [
 			'rcfilters-liveupdates-button',
 			'rcfilters-liveupdates-button-title-on',
 			'rcfilters-liveupdates-button-title-off',
+			'rcfilters-watchlist-markSeen-button',
 			'rcfilters-other-review-tools',
 			'blanknamespace',
 			'namespaces',
@@ -2696,7 +2701,10 @@ return [
 	// This contains only the styles required by core widgets.
 	'oojs-ui-core.styles' => [
 		'class' => 'ResourceLoaderOOUIFileModule',
-		'styles' => 'resources/src/oojs-ui-local.css', // HACK, see inside the file
+		'styles' => [
+			'resources/lib/oojs-ui/wikimedia-ui-base.less', // Providing Wikimedia UI LESS variables to all
+			'resources/src/oojs-ui-local.css', // HACK, see inside the file
+		],
 		'themeStyles' => 'core',
 		'targets' => [ 'desktop', 'mobile' ],
 	],

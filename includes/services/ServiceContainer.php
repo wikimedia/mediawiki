@@ -56,7 +56,7 @@ class ServiceContainer implements DestructibleService {
 	private $serviceInstantiators = [];
 
 	/**
-	 * @var boolean[] disabled status, per service name
+	 * @var bool[] disabled status, per service name
 	 */
 	private $disabled = [];
 
@@ -66,7 +66,7 @@ class ServiceContainer implements DestructibleService {
 	private $extraInstantiationParams;
 
 	/**
-	 * @var boolean
+	 * @var bool
 	 */
 	private $destroyed = false;
 

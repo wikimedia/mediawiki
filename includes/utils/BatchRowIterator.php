@@ -44,7 +44,7 @@ class BatchRowIterator implements RecursiveIterator {
 	protected $primaryKey;
 
 	/**
-	 * @var integer $batchSize The number of rows to fetch per iteration
+	 * @var int $batchSize The number of rows to fetch per iteration
 	 */
 	protected $batchSize;
 
@@ -76,7 +76,7 @@ class BatchRowIterator implements RecursiveIterator {
 	private $current = [];
 
 	/**
-	 * @var integer key 0-indexed number of pages fetched since self::reset()
+	 * @var int key 0-indexed number of pages fetched since self::reset()
 	 */
 	private $key;
 
@@ -89,7 +89,7 @@ class BatchRowIterator implements RecursiveIterator {
 	 * @param IDatabase $db The database to read from
 	 * @param string|array $table The name or names of the table to read from
 	 * @param string|array $primaryKey The name or names of the primary key columns
-	 * @param integer $batchSize The number of rows to fetch per iteration
+	 * @param int $batchSize The number of rows to fetch per iteration
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( IDatabase $db, $table, $primaryKey, $batchSize ) {
@@ -167,7 +167,7 @@ class BatchRowIterator implements RecursiveIterator {
 	}
 
 	/**
-	 * @return integer 0-indexed count of the page number fetched
+	 * @return int 0-indexed count of the page number fetched
 	 */
 	public function key() {
 		return $this->key;

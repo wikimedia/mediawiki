@@ -32,9 +32,9 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Maintenance
  */
 class RebuildRecentchanges extends Maintenance {
-	/** @var integer UNIX timestamp */
+	/** @var int UNIX timestamp */
 	private $cutoffFrom;
-	/** @var integer UNIX timestamp */
+	/** @var int UNIX timestamp */
 	private $cutoffTo;
 
 	public function __construct() {

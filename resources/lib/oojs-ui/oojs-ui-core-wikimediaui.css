@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.22.4
+ * OOjs UI v0.22.5
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-08-03T19:36:56Z
+ * Date: 2017-08-22T21:37:41Z
  */
 /**
  * WikimediaUI Base v0.9.2
@@ -1178,10 +1178,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   background-color: #c8ccd1;
   border-color: #c8ccd1;
 }
-.oo-ui-checkboxInputWidget [type='checkbox']:disabled:hover + span {
-  background-color: #c8ccd1;
-  border-color: #c8ccd1;
-}
 .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox'] {
   cursor: pointer;
 }
@@ -1191,40 +1187,35 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -moz-transition: background-color 100ms, background-size 100ms, border-color 100ms, box-shadow 100ms;
   transition: background-color 100ms, background-size 100ms, border-color 100ms, box-shadow 100ms;
 }
-.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:hover + span,
-.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:focus:hover + span {
-  border-color: #36c;
-}
-.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:active + span,
-.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:active:focus + span {
-  background-color: #2a4b8d;
-  border-color: #2a4b8d;
-  box-shadow: inset 0 0 0 1px #2a4b8d;
-}
 .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:focus + span {
   border-color: #36c;
   box-shadow: inset 0 0 0 1px #36c;
+}
+.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:hover + span {
+  border-color: #36c;
+}
+.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:active + span {
+  background-color: #2a4b8d;
+  border-color: #2a4b8d;
+  box-shadow: inset 0 0 0 1px #2a4b8d;
 }
 .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked + span {
   background-color: #36c;
   border-color: #36c;
 }
-.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked:hover + span,
-.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked:focus:hover + span {
-  background-color: #447ff5;
-  border-color: #447ff5;
-}
-.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked:active + span,
-.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked:active:hover + span,
-.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked:active:focus + span {
-  background-color: #2a4b8d;
-  border-color: #2a4b8d;
-  box-shadow: inset 0 0 0 1px #2a4b8d;
-}
 .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked:focus + span {
   background-color: #36c;
   border-color: #36c;
   box-shadow: inset 0 0 0 1px #36c, inset 0 0 0 2px #fff;
+}
+.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked:hover + span {
+  background-color: #447ff5;
+  border-color: #447ff5;
+}
+.oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked:active + span {
+  background-color: #2a4b8d;
+  border-color: #2a4b8d;
+  box-shadow: inset 0 0 0 1px #2a4b8d;
 }
 .oo-ui-checkboxMultiselectInputWidget .oo-ui-fieldLayout {
   margin-top: 0;
@@ -1390,21 +1381,18 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked + span {
   border-color: #36c;
 }
-.oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:hover + span,
-.oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:hover:focus + span {
+.oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:focus + span:before {
+  border-color: #fff;
+}
+.oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:hover + span {
   border-color: #447ff5;
 }
-.oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:active + span,
-.oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:active:focus + span {
+.oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:active + span {
   border-color: #2a4b8d;
   box-shadow: inset 0 0 0 1px #2a4b8d;
 }
-.oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:active + span:before,
-.oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:active:focus + span:before {
+.oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:active + span:before {
   border-color: #2a4b8d;
-}
-.oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:focus + span:before {
-  border-color: #fff;
 }
 .oo-ui-radioSelectInputWidget .oo-ui-fieldLayout {
   margin-top: 0;

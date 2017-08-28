@@ -23,10 +23,11 @@ namespace Wikimedia\Rdbms;
 
 use Psr\Log\LoggerInterface;
 use BagOStuff;
+use WANObjectCache;
 
 class LoadMonitorNull implements ILoadMonitor {
 	public function __construct(
-		ILoadBalancer $lb, BagOStuff $sCache, BagOStuff $cCache, array $options = []
+		ILoadBalancer $lb, BagOStuff $sCache, WANObjectCache $wCache, array $options = []
 	) {
 	}
 

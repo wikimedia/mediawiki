@@ -211,10 +211,10 @@ class ParserOutput extends CacheTime {
 	 */
 	private $mFlags = [];
 
-	/** @var integer|null Assumed rev ID for {{REVISIONID}} if no revision is set */
+	/** @var int|null Assumed rev ID for {{REVISIONID}} if no revision is set */
 	private $mSpeculativeRevId;
 
-	/** @var integer Upper bound of expiry based on parse duration */
+	/** @var int Upper bound of expiry based on parse duration */
 	private $mMaxAdaptiveExpiry = INF;
 
 	const EDITSECTION_REGEX =
@@ -291,7 +291,7 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * @param integer $id
+	 * @param int $id
 	 * @since 1.28
 	 */
 	public function setSpeculativeRevIdUsed( $id ) {
@@ -1075,7 +1075,7 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Lower the runtime adaptive TTL to at most this value
 	 *
-	 * @param integer $ttl
+	 * @param int $ttl
 	 * @since 1.28
 	 */
 	public function updateRuntimeAdaptiveExpiry( $ttl ) {

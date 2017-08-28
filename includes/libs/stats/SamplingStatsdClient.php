@@ -77,7 +77,7 @@ class SamplingStatsdClient extends StatsdClient {
 	 *        strings are not allowed here as sampleData requires a StatsdDataInterface
 	 * @param int $sampleRate
 	 *
-	 * @return integer the data sent in bytes
+	 * @return int the data sent in bytes
 	 */
 	public function send( $data, $sampleRate = 1 ) {
 		if ( !is_array( $data ) ) {

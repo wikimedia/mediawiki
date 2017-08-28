@@ -10,7 +10,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 interface IBufferingStatsdDataFactory extends StatsdDataFactoryInterface {
 	/**
 	 * Check whether this data factory has any data.
-	 * @return boolean
+	 * @return bool
 	 */
 	public function hasData();
 

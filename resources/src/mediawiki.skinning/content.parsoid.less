@@ -176,3 +176,53 @@ figure[typeof*='mw:Audio/Thumb'] {
 		border: 1px solid #eaecf0;
 	}
 }
+
+/**
+ * Avoid the need to calculate paddings individually
+ * https://stackoverflow.com/a/7310398
+ */
+.mw-gallery-traditional .gallerybox .thumb {
+	&:before {
+		content: '';
+		vertical-align: middle;
+		display: inline-block;
+		height: 100%;
+	}
+	> * {
+		vertical-align: middle;
+		display: inline-block;
+	}
+}
+
+/**
+ * Inline media items
+ */
+*:first-child {
+	> img,
+	> video {
+		.mw-valign-middle > & {
+			vertical-align: middle;
+		}
+		.mw-valign-baseline > & {
+			vertical-align: baseline;
+		}
+		.mw-valign-sub > & {
+			vertical-align: sub;
+		}
+		.mw-valign-super > & {
+			vertical-align: super;
+		}
+		.mw-valign-top > & {
+			vertical-align: top;
+		}
+		.mw-valign-text-top > & {
+			vertical-align: text-top;
+		}
+		.mw-valign-bottom > & {
+			vertical-align: bottom;
+		}
+		.mw-valign-text-bottom > & {
+			vertical-align: text-bottom;
+		}
+	}
+}

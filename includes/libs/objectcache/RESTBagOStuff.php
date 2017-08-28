@@ -57,7 +57,7 @@ class RESTBagOStuff extends BagOStuff {
 
 	/**
 	 * @param string $key
-	 * @param integer $flags Bitfield of BagOStuff::READ_* constants [optional]
+	 * @param int $flags Bitfield of BagOStuff::READ_* constants [optional]
 	 * @return mixed Returns false on failure and if the item does not exist
 	 */
 	protected function doGet( $key, $flags = 0 ) {

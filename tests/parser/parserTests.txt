@@ -15808,6 +15808,26 @@ parsoid=wt2html
 !! end
 
 !! test
+9. Categories and newlines: should behave properly with linkprefix (T87753)
+!! options
+language=ar
+!! wikitext
+foo bar
+foo bar
+[[تصنيف:Foo]]
+[[تصنيف:Bar]]
+!! html/php
+<p>foo bar
+foo bar
+</p>
+!! html/parsoid
+<p>foo bar
+foo bar</p>
+<link rel="mw:PageProp/Category" href="./تصنيف:Foo"/>
+<link rel="mw:PageProp/Category" href="./تصنيف:Bar"/>
+!! end
+
+!! test
 Category links with multiple namespaces
 !! wikitext
 [[Category:Project:Foo]]
@@ -15852,6 +15872,20 @@ x[[Category:Foo]]y
 </p>
 !! html/parsoid
 <p>x<link rel="mw:PageProp/Category" href="./Flokkur:Foo" data-parsoid=""/>y</p>
+!! end
+
+!! test
+Link prefix/suffixes aren't applied to language links
+!! options
+parsoid=wt2html
+language=is
+!! wikitext
+x[[es:Foo]]y
+!! html/php
+<p>xy
+</p>
+!! html/parsoid
+<p>x<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" data-parsoid=""/>y</p>
 !! end
 
 !! test

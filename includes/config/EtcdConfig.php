@@ -45,11 +45,11 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 	private $directory;
 	/** @var string */
 	private $encoding;
-	/** @var integer */
+	/** @var int */
 	private $baseCacheTTL;
-	/** @var integer */
+	/** @var int */
 	private $skewCacheTTL;
-	/** @var integer */
+	/** @var int */
 	private $timeout;
 
 	/**

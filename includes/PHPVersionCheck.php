@@ -98,7 +98,7 @@ class PHPVersionCheck {
 			'vendor' => 'the PHP Group',
 			'upstreamSupported' => '5.5.0',
 			'minSupported' => '5.5.9',
-			'upgradeURL' => 'http://www.php.net/downloads.php',
+			'upgradeURL' => 'https://secure.php.net/downloads.php',
 		);
 	}
 

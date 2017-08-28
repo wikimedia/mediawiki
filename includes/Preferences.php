@@ -543,12 +543,22 @@ class Preferences {
 			}
 
 			if ( $config->get( 'EnableUserEmail' ) && $user->isAllowed( 'sendemail' ) ) {
+				$lookup = CentralIdLookup::factory();
+				$ids = $user->getOption( 'email-blacklist', [] );
+				$names = $ids ? $lookup->lookupCentralIds( array_flip( $ids ), $user ) : [];
+
 				$defaultPreferences['disablemail'] = [
 					'type' => 'toggle',
 					'invert' => true,
 					'section' => 'personal/email',
 					'label-message' => 'allowemail',
 					'disabled' => $disableEmailPrefs,
+				];
+				$defaultPreferences['email-blacklist'] = [
+					'type' => 'usersmultiselect',
+					'label-message' => 'email-blacklist-label',
+					'section' => 'personal/email',
+					'default' => implode( "\n", array_values( $names ) )
 				];
 				$defaultPreferences['ccmeonemails'] = [
 					'type' => 'toggle',
@@ -832,10 +842,10 @@ class Preferences {
 				'section' => 'editing/editor',
 				'label-message' => 'editfont-style',
 				'options' => [
-					$context->msg( 'editfont-default' )->text() => 'default',
 					$context->msg( 'editfont-monospace' )->text() => 'monospace',
 					$context->msg( 'editfont-sansserif' )->text() => 'sans-serif',
 					$context->msg( 'editfont-serif' )->text() => 'serif',
+					$context->msg( 'editfont-default' )->text() => 'default',
 				]
 			];
 		}
@@ -918,6 +928,9 @@ class Preferences {
 			'section' => 'rc/advancedrc',
 		];
 		$defaultPreferences['rcfilters-saved-queries'] = [
+			'type' => 'api',
+		];
+		$defaultPreferences['rcfilters-wl-saved-queries'] = [
 			'type' => 'api',
 		];
 		$defaultPreferences['rcfilters-rclimit'] = [
@@ -1682,7 +1695,7 @@ class PreferencesForm extends HTMLForm {
 		$html = parent::getButtons();
 
 		if ( $this->getModifiedUser()->isAllowed( 'editmyoptions' ) ) {
-			$t = SpecialPage::getTitleFor( 'Preferences', 'reset' );
+			$t = $this->getTitle()->getSubpage( 'reset' );
 
 			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 			$html .= "\n" . $linkRenderer->makeLink( $t, $this->msg( 'restoreprefs' )->text(),

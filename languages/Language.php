@@ -4279,7 +4279,7 @@ class Language {
 	 *
 	 * @since 1.28
 	 * @param Language $lang
-	 * @return boolean
+	 * @return bool
 	 */
 	public function equals( Language $lang ) {
 		return $lang->getCode() === $this->mCode;
@@ -4343,7 +4343,7 @@ class Language {
 
 	/**
 	 * @param string $code
-	 * @param boolean $fallback Whether we're going through language fallback chain
+	 * @param bool $fallback Whether we're going through language fallback chain
 	 * @return string Name of the language class
 	 */
 	public static function classFromCode( $code, $fallback = true ) {
