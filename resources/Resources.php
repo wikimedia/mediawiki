@@ -1803,6 +1803,9 @@ return [
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.HighlightColorPickerWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.LiveUpdateButtonWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.MarkSeenButtonWidget.js',
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.EditWatchlistButtonWidget.js',
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.RcTopSectionWidget.js',
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.WatchlistTopSectionWidget.js',
 			'resources/src/mediawiki.rcfilters/mw.rcfilters.HighlightColors.js',
 			'resources/src/mediawiki.rcfilters/mw.rcfilters.init.js',
 		],
@@ -1830,6 +1833,8 @@ return [
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.SavedLinksListItemWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.SaveFiltersPopupButtonWidget.less',
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.LiveUpdateButtonWidget.less',
+			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.RcTopSectionWidget.less',
+			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.WatchlistTopSectionWidget.less',
 		],
 		'skinStyles' => [
 			'monobook' => [
@@ -1896,6 +1901,8 @@ return [
 			'rcfilters-liveupdates-button-title-on',
 			'rcfilters-liveupdates-button-title-off',
 			'rcfilters-watchlist-markSeen-button',
+			'rcfilters-watchlist-editWatchlist-button',
+			'rcfilters-watchlist-details',
 			'rcfilters-other-review-tools',
 			'blanknamespace',
 			'namespaces',
