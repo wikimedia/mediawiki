@@ -189,6 +189,7 @@ changes to languages because of Phabricator reports.
 * Parser::uniqPrefix() (deprecated in 1.26) was removed.
 * Parser::extractTagsAndParams() now only accepts three arguments.  The fourth,
   $uniq_prefix was deprecated in 1.26 and has now been removed.
+* EditPage::getCheckboxes() is deprecated in favor of getCheckboxesOOUI().
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
