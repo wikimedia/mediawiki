@@ -18,6 +18,7 @@
 		OO.EmitterList.call( this );
 
 		this.default = config.default;
+		this.baseState = {};
 
 		// Events
 		this.aggregate( { update: 'itemUpdate' } );
@@ -171,14 +172,44 @@
 	 * @return {mw.rcfilters.dm.SavedQueryItemModel} Matching item model
 	 */
 	mw.rcfilters.dm.SavedQueriesModel.prototype.findMatchingQuery = function ( fullQueryComparison ) {
+		var model = this;
+
+		fullQueryComparison = this.getDifferenceFromBase( fullQueryComparison );
+
 		return this.getItems().filter( function ( item ) {
+			var comparedData = model.getDifferenceFromBase( item.getData() );
 			return OO.compare(
-				item.getData(),
+				comparedData,
 				fullQueryComparison
 			);
 		} )[ 0 ];
 	};
 
+	/**
+	 * Get a minimal representation of the state for comparison
+	 *
+	 * @param {Object} state Given state
+	 * @return {Object} Minimal state
+	 */
+	mw.rcfilters.dm.SavedQueriesModel.prototype.getDifferenceFromBase = function ( state ) {
+		var result = { filters: {}, highlights: {}, invert: state.invert },
+			baseState = this.baseState;
+
+		// XOR results
+		$.each( state.filters, function ( name, value ) {
+			if ( baseState.filters !== undefined && baseState.filters[ name ] !== value ) {
+				result.filters[ name ] = value;
+			}
+		} );
+
+		$.each( state.highlights, function ( name, value ) {
+			if ( baseState.highlights !== undefined && baseState.highlights[ name ] !== value && name !== 'highlight' ) {
+				result.highlights[ name ] = value;
+			}
+		} );
+
+		return result;
+	};
 	/**
 	 * Get query by its identifier
 	 *
