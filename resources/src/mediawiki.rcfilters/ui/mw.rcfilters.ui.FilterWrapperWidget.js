@@ -59,17 +59,9 @@
 		);
 
 		// Initialize
-		this.$topRow = $( '<div>' )
-			.addClass( 'mw-rcfilters-ui-row' )
-			.append(
-				$( '<div>' )
-					.addClass( 'mw-rcfilters-ui-cell' )
-					.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top-placeholder' )
-			);
 		$top = $( '<div>' )
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top' )
-			.addClass( 'mw-rcfilters-ui-table' )
-			.append( this.$topRow );
+			.addClass( 'mw-rcfilters-ui-table' );
 
 		$bottom = $( '<div>' )
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget-bottom' )
@@ -77,21 +69,6 @@
 				this.numChangesWidget.$element,
 				this.dateWidget.$element
 			);
-
-		if ( !mw.user.isAnon() ) {
-			this.savedLinksListWidget = new mw.rcfilters.ui.SavedLinksListWidget(
-				this.controller,
-				this.queriesModel,
-				{ $overlay: this.$overlay }
-			);
-
-			this.$topRow.append(
-				$( '<div>' )
-					.addClass( 'mw-rcfilters-ui-cell' )
-					.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top-savedLinks' )
-					.append( this.savedLinksListWidget.$element )
-			);
-		}
 
 		if ( mw.rcfilters.featureFlags.liveUpdate ) {
 			$bottom.append( this.liveUpdateButton.$element );
@@ -113,16 +90,13 @@
 
 	/* Methods */
 
-	/**
-	 * Add a widget at the beginning of the top row
-	 *
-	 * @param {OO.ui.Widget} widget Any widget
-	 */
-	mw.rcfilters.ui.FilterWrapperWidget.prototype.prependToTopRow = function ( widget ) {
-		this.$topRow.prepend(
-			widget.$element
-				.addClass( 'mw-rcfilters-ui-cell' )
-		);
+	mw.rcfilters.ui.FilterWrapperWidget.prototype.setTopRows = function ( $topRows ) {
+		var $top = this.$element.find( '.mw-rcfilters-ui-filterWrapperWidget-top' );
+		if (!Array.isArray( $topRows )) {
+			$topRows = [ $topRows ];
+		}
+		$topRows.forEach( function ( $row ) {
+			$top.append( $row );
+		} );
 	};
-
 }( mediaWiki ) );

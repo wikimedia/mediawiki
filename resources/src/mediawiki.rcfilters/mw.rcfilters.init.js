@@ -26,7 +26,12 @@
 					.addClass( 'mw-rcfilters-ui-overlay' ),
 				filtersWidget = new mw.rcfilters.ui.FilterWrapperWidget(
 					controller, filtersModel, savedQueriesModel, changesListModel, { $overlay: $overlay } ),
+				savedLinksListWidget  = new mw.rcfilters.ui.SavedLinksListWidget(
+					controller, savedQueriesModel, { $overlay: $overlay }
+				),
 				markSeenButton,
+				editWatchlistButton,
+				watchlistDetails,
 				currentPage = mw.config.get( 'wgCanonicalNamespace' ) +
 					':' +
 					mw.config.get( 'wgCanonicalSpecialPageName' );
@@ -83,12 +88,71 @@
 						toplinksTitle.setIndicator( 'down' );
 					} )
 					.appendTo( '.mw-rcfilters-ui-filterWrapperWidget-top-placeholder' );
+
+				filtersWidget.setTopRows(
+					$( '<div>' )
+						.addClass( 'mw-rcfilters-ui-row' )
+						.append(
+							$( '<div>' )
+								.addClass( 'mw-rcfilters-ui-cell' )
+								.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top-placeholder' )
+						)
+						.append(
+							$( '<div>' )
+								.addClass( 'mw-rcfilters-ui-cell' )
+								.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top-savedLinks' )
+								.append( !mw.user.isAnon() ? savedLinksListWidget.$element : null )
+						)
+				);
 			} // end Special:RC
 
 			if ( currentPage === 'Special:Watchlist' ) {
+				$( [
+					'#contentSub', // line with username and edit watchlist links
+					'.watchlistDetails', // "10 pages on your watchlist..."
+					'form#mw-watchlist-resetbutton' // mark all as seen
+				].join( ',' ) ).detach();
+
+				watchlistDetails =  mw.message(
+					'rcfilters-watchlist-details',
+					mw.config.get( 'wgStructuredChangeFiltersWatchlistItemCount' )
+				).parse();
+
+				editWatchlistButton = new mw.rcfilters.ui.EditWatchlistButtonWidget();
 				markSeenButton = new mw.rcfilters.ui.MarkSeenButtonWidget( controller, changesListModel );
-				$( 'form#mw-watchlist-resetbutton' ).detach();
-				filtersWidget.prependToTopRow( markSeenButton );
+
+				filtersWidget.setTopRows( [
+					$( '<div>' )
+						.addClass( 'mw-rcfilters-ui-row' )
+						.append(
+							$( '<div>' )
+								.addClass( 'mw-rcfilters-ui-cell' )
+								.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top-watchlistDetails' )
+								.append( watchlistDetails )
+						)
+						.append(
+							$( '<div>' )
+								.addClass( 'mw-rcfilters-ui-cell' )
+								.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top-editWatchlistButton' )
+								.append( editWatchlistButton.$element )
+						),
+					$( '<div>' )
+						.addClass( 'mw-rcfilters-ui-row' )
+						.addClass( 'mw-rcfilters-ui-row-separator' ),
+					$( '<div>' )
+						.addClass( 'mw-rcfilters-ui-row' )
+						.append(
+							$( '<div>' )
+								.addClass( 'mw-rcfilters-ui-cell' )
+								.append( markSeenButton.$element )
+						)
+						.append(
+							$( '<div>' )
+								.addClass( 'mw-rcfilters-ui-cell' )
+								.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top-savedLinks' )
+								.append( !mw.user.isAnon() ? savedLinksListWidget.$element : null )
+						)
+				] );
 			} // end Special:WL
 		}
 	};
