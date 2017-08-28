@@ -815,21 +815,31 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$showUpdatedMarker = $this->getConfig()->get( 'ShowUpdatedMarker' );
 
 		// Show watchlist header
-		$form .= "<p>";
+		$watchlistHeader = '';
 		if ( $numItems == 0 ) {
-			$form .= $this->msg( 'nowatchlist' )->parse() . "\n";
+			$watchlistHeader .= $this->msg( 'nowatchlist' )->parse();
 		} else {
-			$form .= $this->msg( 'watchlist-details' )->numParams( $numItems )->parse() . "\n";
-			if ( $this->getConfig()->get( 'EnotifWatchlist' )
-				&& $user->getOption( 'enotifwatchlistpages' )
-			) {
-				$form .= $this->msg( 'wlheader-enotif' )->parse() . "\n";
-			}
-			if ( $showUpdatedMarker ) {
-				$form .= $this->msg( 'wlheader-showupdated' )->parse() . "\n";
+			if ( $this->isStructuredFilterUiEnabled() ) {
+				$watchlistHeader = $this->msg( 'rcfilters-watchlist-details' )
+					->numParams( $numItems )
+					->parse();
+			} else {
+				$watchlistHeader .= $this->msg( 'watchlist-details' )->numParams( $numItems )->parse() . "\n";
+				if ( $this->getConfig()->get( 'EnotifWatchlist' )
+					&& $user->getOption( 'enotifwatchlistpages' )
+				) {
+					$watchlistHeader .= $this->msg( 'wlheader-enotif' )->parse() . "\n";
+				}
+				if ( $showUpdatedMarker ) {
+					$watchlistHeader .= $this->msg( 'wlheader-showupdated' )->parse() . "\n";
+				}
 			}
 		}
-		$form .= "</p>";
+		$form .= Html::rawElement(
+			'p',
+			[ 'class' => 'watchlistDetails' ],
+			$watchlistHeader
+		);
 
 		if ( $numItems > 0 && $showUpdatedMarker ) {
 			$form .= Xml::openElement( 'form', [ 'method' => 'post',
