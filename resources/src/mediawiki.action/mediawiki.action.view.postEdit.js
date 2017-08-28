@@ -50,9 +50,8 @@
 
 		$popup = $( '<div>' ).addClass( 'postedit mw-notification' ).append(
 			$content,
-			$( '<a>' ).addClass( 'postedit-close' ).attr( 'href', '#' ).text( '×' )
-		).on( 'click', function ( e ) {
-			e.preventDefault();
+			$( '<span>' ).addClass( 'postedit-close' ).text( '×' )
+		).click( function () {
 			clearTimeout( timeoutId );
 			fadeOutConfirmation();
 		} );
