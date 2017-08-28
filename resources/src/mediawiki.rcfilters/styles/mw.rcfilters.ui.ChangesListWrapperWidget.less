@@ -84,7 +84,9 @@
 			display: inline-block;
 		}
 
-		div {
+		// This needs to be very specific, since these are
+		// position rules that should apply to all overrides
+		.mw-rcfilters-ui-changesListWrapperWidget .mw-rcfilters-ui-changesListWrapperWidget-highlights > div&-circle {
 			.box-sizing( border-box );
 			margin-right: @result-circle-margin;
 			vertical-align: middle;

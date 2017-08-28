@@ -1,0 +1,66 @@
+@import 'mw.rcfilters.mixins';
+
+.mw-rcfilters-ui-changesListWrapperWidget {
+	ul {
+		list-style: none;
+
+		li {
+			list-style: none;
+		}
+	}
+
+	// Make more specific for the overrides
+	div&-highlights {
+		display: inline-block;
+
+		&-color {
+			&-none {
+				display: inline-block;
+				li.mw-changeslist-watchedseen & {
+					.mw-rcfilters-ui-changesListWrapperWidget.mw-rcfilters-ui-changesListWrapperWidget-highlighted & {
+						.mw-rcfilters-mixin-circle( @highlight-none, @result-circle-diameter, 0, true, @highlight-grey, true );
+					}
+
+					.mw-rcfilters-ui-changesListWrapperWidget:not(.mw-rcfilters-ui-changesListWrapperWidget-highlighted) & {
+						.mw-rcfilters-mixin-circle( @highlight-none, @result-circle-diameter, 0, true, @highlight-bluedot, true );
+					}
+				}
+
+				li.mw-changeslist-watchedunseen & {
+					.mw-rcfilters-ui-changesListWrapperWidget.mw-rcfilters-ui-changesListWrapperWidget-highlighted & {
+						.mw-rcfilters-mixin-circle( @highlight-grey, @result-circle-diameter, 0, true, @highlight-grey );
+					}
+
+					.mw-rcfilters-ui-changesListWrapperWidget:not(.mw-rcfilters-ui-changesListWrapperWidget-highlighted) & {
+						.mw-rcfilters-mixin-circle( @highlight-bluedot, @result-circle-diameter, 0, true, @highlight-bluedot );
+					}
+				}
+
+			}
+
+			// Watchlist unseen highlighted fixes
+			// Seen (empty circle)
+			// There's no need to correct 'unseen' because that would be
+			// a filled colorful circle, which is the regular rendering
+			.mw-changeslist-watchedseen &-c1 {
+				.mw-rcfilters-mixin-circle( @highlight-c1, @result-circle-diameter, 0, true, @highlight-c1, true );
+			}
+
+			.mw-changeslist-watchedseen &-c2 {
+				.mw-rcfilters-mixin-circle( @highlight-c2, @result-circle-diameter, 0, true, @highlight-c2, true );
+			}
+
+			.mw-changeslist-watchedseen &-c3 {
+				.mw-rcfilters-mixin-circle( @highlight-c3, @result-circle-diameter, 0, true, @highlight-c3, true );
+			}
+
+			.mw-changeslist-watchedseen &-c4 {
+				.mw-rcfilters-mixin-circle( @highlight-c4, @result-circle-diameter, 0, true, @highlight-c4, true );
+			}
+
+			.mw-changeslist-watchedseen &-c5 {
+				.mw-rcfilters-mixin-circle( @highlight-c5, @result-circle-diameter, 0, true, @highlight-c5, true );
+			}
+		}
+	}
+}
