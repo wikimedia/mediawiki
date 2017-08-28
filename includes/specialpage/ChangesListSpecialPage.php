@@ -553,6 +553,105 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				LoggerFactory::getInstance( 'objectcache' )
 			) );
 		}
+
+		$this->includeRcFiltersApp();
+	}
+
+	/**
+	 * Include the modules and configuration for the RCFilters app.
+	 * Conditional on the user having the feature enabled.
+	 */
+	protected function includeRcFiltersApp() {
+		if ( $this->isStructuredFilterUiEnabled() ) {
+			$out = $this->getOutput();
+			$jsData = $this->getStructuredFilterJsData();
+
+			$messages = [];
+			foreach ( $jsData['messageKeys'] as $key ) {
+				$messages[$key] = $this->msg( $key )->plain();
+			}
+
+			$out->addHTML(
+				ResourceLoader::makeInlineScript(
+					ResourceLoader::makeMessageSetScript( $messages )
+				)
+			);
+
+			$experimentalStructuredChangeFilters =
+				$this->getConfig()->get( 'StructuredChangeFiltersEnableExperimentalViews' );
+
+			$out->addJsConfigVars( 'wgStructuredChangeFilters', $jsData['groups'] );
+			$out->addJsConfigVars(
+				'wgStructuredChangeFiltersEnableExperimentalViews',
+				$experimentalStructuredChangeFilters
+			);
+			$out->addJsConfigVars(
+				'wgStructuredChangeFiltersEnableLiveUpdate',
+				$this->getConfig()->get( 'StructuredChangeFiltersEnableLiveUpdate' )
+			);
+			$out->addJsConfigVars(
+				'wgRCFiltersChangeTags',
+				$this->buildChangeTagList()
+			);
+			$out->addJsConfigVars(
+				'StructuredChangeFiltersDisplayConfig',
+				[
+					'maxDays' => (int)$this->getConfig()->get( 'RCMaxAge' ) / ( 24 * 3600 ), // Translate to days
+					'limitArray' => $this->getConfig()->get( 'RCLinkLimits' ),
+					'daysArray' => $this->getConfig()->get( 'RCLinkDays' ),
+				]
+			);
+		}
+	}
+
+	/**
+	 * Fetch the change tags list for the front end
+	 *
+	 * @return Array Tag data
+	 */
+	protected function buildChangeTagList() {
+		$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
+		$softwareActivatedTags = array_fill_keys( ChangeTags::listSoftwareActivatedTags(), 0 );
+
+		// Hit counts disabled for perf reasons, see T169997
+		/*
+		$tagStats = ChangeTags::tagUsageStatistics();
+		$tagHitCounts = array_merge( $explicitlyDefinedTags, $softwareActivatedTags, $tagStats );
+
+		// Sort by hits
+		arsort( $tagHitCounts );
+		*/
+		$tagHitCounts = array_merge( $explicitlyDefinedTags, $softwareActivatedTags );
+
+		// Build the list and data
+		$result = [];
+		foreach ( $tagHitCounts as $tagName => $hits ) {
+			if (
+				// Only get active tags
+				isset( $explicitlyDefinedTags[ $tagName ] ) ||
+				isset( $softwareActivatedTags[ $tagName ] )
+			) {
+				// Parse description
+				$desc = ChangeTags::tagLongDescriptionMessage( $tagName, $this->getContext() );
+
+				$result[] = [
+					'name' => $tagName,
+					'label' => Sanitizer::stripAllTags(
+						ChangeTags::tagDescription( $tagName, $this->getContext() )
+					),
+					'description' => $desc ? Sanitizer::stripAllTags( $desc->parse() ) : '',
+					'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
+					'hits' => $hits,
+				];
+			}
+		}
+
+		// Instead of sorting by hit count (disabled, see above), sort by display name
+		usort( $result, function ( $a, $b ) {
+			return strcasecmp( $a['label'], $b['label'] );
+		} );
+
+		return $result;
 	}
 
 	/**
@@ -779,19 +878,20 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return FormOptions
 	 */
 	public function getDefaultOptions() {
-		$config = $this->getConfig();
 		$opts = new FormOptions();
-		$structuredUI = $this->getUser()->getOption( 'rcenhancedfilters' );
+		$structuredUI = $this->isStructuredFilterUiEnabled();
 		// If urlversion=2 is set, ignore the filter defaults and set them all to false/empty
 		$useDefaults = $this->getRequest()->getInt( 'urlversion' ) !== 2;
 
 		// Add all filters
+		/** @var ChangesListFilterGroup $filterGroup */
 		foreach ( $this->filterGroups as $filterGroup ) {
 			// URL parameters can be per-group, like 'userExpLevel',
 			// or per-filter, like 'hideminor'.
 			if ( $filterGroup->isPerGroupRequestParameter() ) {
 				$opts->add( $filterGroup->getName(), $useDefaults ? $filterGroup->getDefault() : '' );
 			} else {
+				/** @var ChangesListBooleanFilter $filter */
 				foreach ( $filterGroup->getFilters() as $filter ) {
 					$opts->add( $filter->getName(), $useDefaults ? $filter->getDefault( $structuredUI ) : false );
 				}
@@ -856,8 +956,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			'groups' => [],
 			'messageKeys' => [],
 		];
-
-		$context = $this->getContext();
 
 		usort( $this->filterGroups, function ( $a, $b ) {
 			return $b->getPriority() - $a->getPriority();
@@ -1055,9 +1153,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		&$join_conds, FormOptions $opts
 	) {
 		$dbr = $this->getDB();
-		$user = $this->getUser();
 
-		$context = $this->getContext();
 		foreach ( $this->filterGroups as $filterGroup ) {
 			// URL parameters can be per-group, like 'userExpLevel',
 			// or per-filter, like 'hideminor'.
@@ -1279,12 +1375,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		) . "\n";
 		$legend .= Html::closeElement( 'dl' ) . "\n";
 
-		# Collapsibility
-		$legendHeading = $this->getUser()->getOption(
-			'rcenhancedfilters'
-		) ?
+		$legendHeading = $this->isStructuredFilterUiEnabled() ?
 			$context->msg( 'rcfilters-legend-heading' )->parse() :
 			$context->msg( 'recentchanges-legend-heading' )->parse();
+
+		# Collapsible
 		$legend =
 			'<div class="mw-changeslist-legend">' .
 				$legendHeading .
@@ -1305,6 +1400,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			'mediawiki.special.changeslist',
 		] );
 		$out->addModules( 'mediawiki.special.changeslist.legend.js' );
+
+		if ( $this->isStructuredFilterUiEnabled() ) {
+			$out->addModules( 'mediawiki.rcfilters.filters.ui' );
+			$out->addModuleStyles( 'mediawiki.rcfilters.filters.base.styles' );
+		}
 	}
 
 	protected function getGroupName() {
@@ -1425,5 +1525,14 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		} elseif ( count( $conditions ) === 1 ) {
 			$conds[] = reset( $conditions );
 		}
+	}
+
+	/**
+	 * Check whether the structured filter UI is enabled
+	 *
+	 * @return bool
+	 */
+	protected function isStructuredFilterUiEnabled() {
+		return $this->getUser()->getOption( 'rcenhancedfilters' );
 	}
 }

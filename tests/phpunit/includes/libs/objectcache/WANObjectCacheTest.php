@@ -28,7 +28,7 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 	 * @covers WANObjectCache::get()
 	 * @covers WANObjectCache::makeKey()
 	 * @param mixed $value
-	 * @param integer $ttl
+	 * @param int $ttl
 	 */
 	public function testSetAndGet( $value, $ttl ) {
 		$curTTL = null;

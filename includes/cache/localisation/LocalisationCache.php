@@ -20,8 +20,6 @@
  * @file
  */
 
-use Cdb\Reader as CdbReader;
-use Cdb\Writer as CdbWriter;
 use CLDRPluralRuleParser\Evaluator;
 use CLDRPluralRuleParser\Error as CLDRPluralRuleError;
 use MediaWiki\MediaWikiServices;

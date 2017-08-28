@@ -607,7 +607,7 @@ class MediaWiki {
 			$request->wasPosted() &&
 			$output->getRedirect() &&
 			$lbFactory->hasOrMadeRecentMasterChanges( INF )
-		) ? self::getUrlDomainDistance( $output->getRedirect(), $context ) : false;
+		) ? self::getUrlDomainDistance( $output->getRedirect() ) : false;
 
 		$allowHeaders = !( $output->isDisabled() || headers_sent() );
 		if ( $urlDomainDistance === 'local' || $urlDomainDistance === 'remote' ) {
@@ -676,34 +676,14 @@ class MediaWiki {
 
 	/**
 	 * @param string $url
-	 * @param IContextSource $context
 	 * @return string Either "local", "remote" if in the farm, "external" otherwise
 	 */
-	private static function getUrlDomainDistance( $url, IContextSource $context ) {
-		static $relevantKeys = [ 'host' => true, 'port' => true ];
-
-		$infoCandidate = wfParseUrl( $url );
-		if ( $infoCandidate === false ) {
-			return 'external';
-		}
-
-		$infoCandidate = array_intersect_key( $infoCandidate, $relevantKeys );
-		$clusterHosts = array_merge(
-			// Local wiki host (the most common case)
-			[ $context->getConfig()->get( 'CanonicalServer' ) ],
-			// Any local/remote wiki virtual hosts for this wiki farm
-			$context->getConfig()->get( 'LocalVirtualHosts' )
-		);
-
-		foreach ( $clusterHosts as $i => $clusterHost ) {
-			$parseUrl = wfParseUrl( $clusterHost );
-			if ( !$parseUrl ) {
-				continue;
-			}
-			$infoHost = array_intersect_key( $parseUrl, $relevantKeys );
-			if ( $infoCandidate === $infoHost ) {
-				return ( $i === 0 ) ? 'local' : 'remote';
-			}
+	private static function getUrlDomainDistance( $url ) {
+		$clusterWiki = WikiMap::getWikiFromUrl( $url );
+		if ( $clusterWiki === wfWikiID() ) {
+			return 'local'; // the current wiki
+		} elseif ( $clusterWiki !== false ) {
+			return 'remote'; // another wiki in this cluster/farm
 		}
 
 		return 'external';
@@ -970,7 +950,7 @@ class MediaWiki {
 	}
 
 	/**
-	 * @param integer $n Number of jobs to try to run
+	 * @param int $n Number of jobs to try to run
 	 * @param LoggerInterface $runJobsLogger
 	 */
 	private function triggerSyncJobs( $n, LoggerInterface $runJobsLogger ) {
@@ -979,7 +959,7 @@ class MediaWiki {
 	}
 
 	/**
-	 * @param integer $n Number of jobs to try to run
+	 * @param int $n Number of jobs to try to run
 	 * @param LoggerInterface $runJobsLogger
 	 * @return bool Success
 	 */

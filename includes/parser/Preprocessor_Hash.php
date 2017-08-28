@@ -1715,7 +1715,7 @@ class PPNode_Hash_Tree implements PPNode {
 	 * store array can be accessed via getNextSibling().
 	 *
 	 * @param array $store
-	 * @param integer $index
+	 * @param int $index
 	 */
 	public function __construct( array $store, $index ) {
 		$this->store = $store;
@@ -1728,7 +1728,7 @@ class PPNode_Hash_Tree implements PPNode {
 	 * on what is at the relevant store index.
 	 *
 	 * @param array $store
-	 * @param integer $index
+	 * @param int $index
 	 * @return PPNode_Hash_Tree|PPNode_Hash_Attr|PPNode_Hash_Text
 	 */
 	public static function factory( array $store, $index ) {
@@ -1787,7 +1787,7 @@ class PPNode_Hash_Tree implements PPNode {
 	 * return a temporary proxy object: different instances will be returned
 	 * if this is called more than once on the same node.
 	 *
-	 * @return PPNode_Hash_Tree|PPNode_Hash_Attr|PPNode_Hash_Text|boolean
+	 * @return PPNode_Hash_Tree|PPNode_Hash_Attr|PPNode_Hash_Text|bool
 	 */
 	public function getFirstChild() {
 		if ( !isset( $this->rawChildren[0] ) ) {
@@ -1802,7 +1802,7 @@ class PPNode_Hash_Tree implements PPNode {
 	 * return a temporary proxy object: different instances will be returned
 	 * if this is called more than once on the same node.
 	 *
-	 * @return PPNode_Hash_Tree|PPNode_Hash_Attr|PPNode_Hash_Text|boolean
+	 * @return PPNode_Hash_Tree|PPNode_Hash_Attr|PPNode_Hash_Text|bool
 	 */
 	public function getNextSibling() {
 		return self::factory( $this->store, $this->index + 1 );
@@ -2027,7 +2027,7 @@ class PPNode_Hash_Text implements PPNode {
 	 * store array can be accessed via getNextSibling().
 	 *
 	 * @param array $store
-	 * @param integer $index
+	 * @param int $index
 	 */
 	public function __construct( array $store, $index ) {
 		$this->value = $store[$index];
@@ -2156,7 +2156,7 @@ class PPNode_Hash_Attr implements PPNode {
 	 * store array can be accessed via getNextSibling().
 	 *
 	 * @param array $store
-	 * @param integer $index
+	 * @param int $index
 	 */
 	public function __construct( array $store, $index ) {
 		$descriptor = $store[$index];

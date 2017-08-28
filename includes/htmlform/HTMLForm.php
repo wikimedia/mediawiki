@@ -1893,7 +1893,7 @@ class HTMLForm extends ContextSource {
 	 * 'novalidate' attribute will be added on the `<form>` element. It will be removed if the user
 	 * agent has JavaScript support, in htmlform.js.
 	 *
-	 * @return boolean
+	 * @return bool
 	 * @since 1.29
 	 */
 	public function needsJSForHtml5FormValidation() {

@@ -63,7 +63,7 @@ class HTTPFileStreamer {
 	 * @param array $headers Any additional headers to send if the file exists
 	 * @param bool $sendErrors Send error messages if errors occur (like 404)
 	 * @param array $optHeaders HTTP request header map (e.g. "range") (use lowercase keys)
-	 * @param integer $flags Bitfield of STREAM_* constants
+	 * @param int $flags Bitfield of STREAM_* constants
 	 * @throws MWException
 	 * @return bool Success
 	 */
@@ -179,7 +179,7 @@ class HTTPFileStreamer {
 	 * Send out a standard 404 message for a file
 	 *
 	 * @param string $fname Full name and path of the file to stream
-	 * @param integer $flags Bitfield of STREAM_* constants
+	 * @param int $flags Bitfield of STREAM_* constants
 	 * @since 1.24
 	 */
 	public static function send404Message( $fname, $flags = 0 ) {
@@ -202,7 +202,7 @@ class HTTPFileStreamer {
 	 * Convert a Range header value to an absolute (start, end) range tuple
 	 *
 	 * @param string $range Range header value
-	 * @param integer $size File size
+	 * @param int $size File size
 	 * @return array|string Returns error string on failure (start, end, length)
 	 * @since 1.24
 	 */

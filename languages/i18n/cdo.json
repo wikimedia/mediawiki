@@ -499,7 +499,7 @@
 	"clearyourcache": "'''注意：'''保存以後，汝可能固著刷新汝其瀏覽器緩存來看遘變化。\n* '''火狐/Safari：'''擪下''Shift''篤蜀篤''重新載入''，或者擪蜀擪''Ctrl+F5''或者''Ctrl+R'' （''⌘-R''敆Mac懸頂）\n* '''Google Chrome：'''擪''Ctrl+Shift+R''（敆Mac𡅏使''⌘-Shift-R''）\n* '''Internet Explorer：'''擪''Ctrl''其時候篤蜀篤''刷新''，或者擪''Ctrl+F5''\n* '''Opera：'''敆''工具→首選項''𡅏清除緩存",
 	"note": "<strong>注意：</strong>",
 	"previewnote": "'''記定茲若是蜀萆預覽。'''\n汝其改變固𡅏未保存！",
-	"continue-editing": "行去編輯區",
+	"continue-editing": "繼續修改",
 	"editing": "修改 $1",
 	"creating": "創建$1",
 	"editingsection": "修改$1（段）",

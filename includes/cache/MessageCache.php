@@ -253,7 +253,7 @@ class MessageCache {
 	 * is disabled.
 	 *
 	 * @param string $code Language to which load messages
-	 * @param integer $mode Use MessageCache::FOR_UPDATE to skip process cache [optional]
+	 * @param int $mode Use MessageCache::FOR_UPDATE to skip process cache [optional]
 	 * @throws MWException
 	 * @return bool
 	 */
@@ -396,7 +396,7 @@ class MessageCache {
 	/**
 	 * @param string $code
 	 * @param array &$where List of wfDebug() comments
-	 * @param integer $mode Use MessageCache::FOR_UPDATE to use DB_MASTER
+	 * @param int $mode Use MessageCache::FOR_UPDATE to use DB_MASTER
 	 * @return bool|string True on success or one of ("cantacquire", "disabled")
 	 */
 	protected function loadFromDBWithLock( $code, array &$where, $mode = null ) {
@@ -458,7 +458,7 @@ class MessageCache {
 	 * on-demand from the database later.
 	 *
 	 * @param string $code Language code
-	 * @param integer $mode Use MessageCache::FOR_UPDATE to skip process cache
+	 * @param int $mode Use MessageCache::FOR_UPDATE to skip process cache
 	 * @return array Loaded messages for storing in caches
 	 */
 	protected function loadFromDB( $code, $mode = null ) {
@@ -755,7 +755,7 @@ class MessageCache {
 
 	/**
 	 * @param string $key A language message cache key that stores blobs
-	 * @param integer $timeout Wait timeout in seconds
+	 * @param int $timeout Wait timeout in seconds
 	 * @return null|ScopedCallback
 	 */
 	protected function getReentrantScopedLock( $key, $timeout = self::WAIT_SEC ) {

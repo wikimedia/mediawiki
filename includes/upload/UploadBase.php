@@ -247,7 +247,7 @@ abstract class UploadBase {
 
 	/**
 	 * @param string $tempPath File system path to temporary file containing the upload
-	 * @param integer $fileSize
+	 * @param int $fileSize
 	 */
 	protected function setTempFile( $tempPath, $fileSize = null ) {
 		$this->mTempPath = $tempPath;

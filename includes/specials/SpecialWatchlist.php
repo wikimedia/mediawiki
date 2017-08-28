@@ -32,6 +32,8 @@ use Wikimedia\Rdbms\IDatabase;
  * @ingroup SpecialPage
  */
 class SpecialWatchlist extends ChangesListSpecialPage {
+	private $maxDays;
+
 	public function __construct( $page = 'Watchlist', $restriction = 'viewmywatchlist' ) {
 		parent::__construct( $page, $restriction );
 
@@ -93,6 +95,22 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 
 		parent::execute( $subpage );
+
+		if ( $this->isStructuredFilterUiEnabled() ) {
+			$output->addModuleStyles( [ 'mediawiki.rcfilters.highlightCircles.seenunseen.styles' ] );
+
+			$output->addJsConfigVars( 'wgStructuredChangeFiltersLiveUpdateSupported', false );
+			$output->addJsConfigVars(
+				'wgStructuredChangeFiltersSavedQueriesPreferenceName',
+				'rcfilters-wl-saved-queries'
+			);
+		}
+	}
+
+	protected function isStructuredFilterUiEnabled() {
+		return parent::isStructuredFilterUiEnabled()
+			&& ( $this->getConfig()->get( 'StructuredChangeFiltersOnWatchlist' )
+				|| $this->getRequest()->getBool( 'rcfilters' ) );
 	}
 
 	/**
@@ -125,6 +143,53 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 */
 	protected function registerFilters() {
 		parent::registerFilters();
+
+		$this->registerFilterGroup( new ChangesListStringOptionsFilterGroup( [
+			'name' => 'watchlistactivity',
+			'title' => 'rcfilters-filtergroup-watchlistactivity',
+			'class' => ChangesListStringOptionsFilterGroup::class,
+			'priority' => 3,
+			'isFullCoverage' => true,
+			'filters' => [
+				[
+					'name' => 'unseen',
+					'label' => 'rcfilters-filter-watchlistactivity-unseen-label',
+					'description' => 'rcfilters-filter-watchlistactivity-unseen-description',
+					'cssClassSuffix' => 'watchedunseen',
+					'isRowApplicableCallable' => function ( $ctx, $rc ) {
+						$changeTs = $rc->getAttribute( 'rc_timestamp' );
+						$lastVisitTs = $rc->getAttribute( 'wl_notificationtimestamp' );
+						return $lastVisitTs !== null && $changeTs >= $lastVisitTs;
+					},
+				],
+				[
+					'name' => 'seen',
+					'label' => 'rcfilters-filter-watchlistactivity-seen-label',
+					'description' => 'rcfilters-filter-watchlistactivity-seen-description',
+					'cssClassSuffix' => 'watchedseen',
+					'isRowApplicableCallable' => function ( $ctx, $rc ) {
+						$changeTs = $rc->getAttribute( 'rc_timestamp' );
+						$lastVisitTs = $rc->getAttribute( 'wl_notificationtimestamp' );
+						return $lastVisitTs === null || $changeTs < $lastVisitTs;
+					}
+				],
+			],
+			'default' => ChangesListStringOptionsFilterGroup::NONE,
+			'queryCallable' => function ( $specialPageClassName, $context, $dbr,
+										  &$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedValues ) {
+				if ( $selectedValues === [ 'seen' ] ) {
+					$conds[] = $dbr->makeList( [
+						'wl_notificationtimestamp IS NULL',
+						'rc_timestamp < wl_notificationtimestamp'
+					], LIST_OR );
+				} elseif ( $selectedValues === [ 'unseen' ] ) {
+					$conds[] = $dbr->makeList( [
+						'wl_notificationtimestamp IS NOT NULL',
+						'rc_timestamp >= wl_notificationtimestamp'
+					], LIST_AND );
+				}
+			}
+		] ) );
 
 		$user = $this->getUser();
 
@@ -172,12 +237,14 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$opts->add( 'days', $user->getOption( 'watchlistdays' ), FormOptions::FLOAT );
 		$opts->add( 'extended', $user->getBoolOption( 'extendwatchlist' ) );
+		$opts->add( 'limit', $user->getIntOption( 'wllimit' ), FormOptions::INT );
 
 		return $opts;
 	}
 
 	public function validateOptions( FormOptions $opts ) {
 		$opts->validateBounds( 'days', 0, $this->maxDays );
+		$opts->validateIntBounds( 'limit', 0, 5000 );
 		parent::validateOptions( $opts );
 	}
 
@@ -277,9 +344,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$user = $this->getUser();
 
 		# Toggle watchlist content (all recent edits or just the latest)
-		if ( $opts['extended'] ) {
-			$usePage = false;
-		} else {
+		if ( !$opts['extended'] ) {
 			# Top log Ids for a page are not stored
 			$nonRevisionTypes = [ RC_LOG ];
 			Hooks::run( 'SpecialWatchlistGetNonRevisionTypes', [ &$nonRevisionTypes ] );
@@ -292,7 +357,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					LIST_OR
 				);
 			}
-			$usePage = true;
 		}
 
 		$tables = array_merge( [ 'recentchanges', 'watchlist' ], $tables );
@@ -300,7 +364,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$query_options = array_merge( [
 			'ORDER BY' => 'rc_timestamp DESC',
-			'LIMIT' => $user->getIntOption( 'wllimit' )
+			'LIMIT' => $opts['limit']
 		], $query_options );
 		$join_conds = array_merge(
 			[
@@ -316,18 +380,11 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$join_conds
 		);
 
-		if ( $this->getConfig()->get( 'ShowUpdatedMarker' ) ) {
-			$fields[] = 'wl_notificationtimestamp';
-		}
+		$tables[] = 'page';
+		$fields[] = 'page_latest';
+		$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
 
-		$rollbacker = $user->isAllowed( 'rollback' );
-		if ( $usePage || $rollbacker ) {
-			$tables[] = 'page';
-			$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
-			if ( $rollbacker ) {
-				$fields[] = 'page_latest';
-			}
-		}
+		$fields[] = 'wl_notificationtimestamp';
 
 		// Log entries with DELETED_ACTION must not show up unless the user has
 		// the necessary rights.
@@ -355,6 +412,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		);
 
 		$this->runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds, $opts );
+
+		if ( $this->areFiltersInConflict() ) {
+			return false;
+		}
 
 		return $dbr->select(
 			$tables,
@@ -458,6 +519,11 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 
 		$s = $list->beginRecentChangesList();
+
+		if ( $this->isStructuredFilterUiEnabled() ) {
+			$s .= $this->makeLegend();
+		}
+
 		$userShowHiddenCats = $this->getUser()->getBoolOption( 'showhiddencats' );
 		$counter = 1;
 		foreach ( $rows as $obj ) {
@@ -518,6 +584,24 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$this->setTopText( $opts );
 
+		$form = '';
+
+		$form .= Xml::openElement( 'form', [
+			'method' => 'get',
+			'action' => wfScript(),
+			'id' => 'mw-watchlist-form'
+		] );
+		$form .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
+		$form .= Xml::fieldset(
+			$this->msg( 'watchlist-options' )->text(),
+			false,
+			[ 'id' => 'mw-watchlist-options', 'class' => 'cloptions' ]
+		);
+
+		if ( !$this->isStructuredFilterUiEnabled() ) {
+			$form .= $this->makeLegend();
+		}
+
 		$lang = $this->getLanguage();
 		if ( $opts['days'] > 0 ) {
 			$days = $opts['days'];
@@ -525,16 +609,23 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$days = $this->maxDays;
 		}
 		$timestamp = wfTimestampNow();
-		$wlInfo = $this->msg( 'wlnote' )->numParams( $numRows, round( $days * 24 ) )->params(
-			$lang->userDate( $timestamp, $user ), $lang->userTime( $timestamp, $user )
-		)->parse() . "<br />\n";
+		$wlInfo = Html::rawElement(
+			'span',
+			[ 'class' => 'wlinfo' ],
+			$this->msg( 'wlnote' )->numParams( $numRows, round( $days * 24 ) )->params(
+				$lang->userDate( $timestamp, $user ), $lang->userTime( $timestamp, $user )
+			)->parse()
+		) . "<br />\n";
 
 		$nondefaults = $opts->getChangedValues();
-		$cutofflinks = $this->msg( 'wlshowtime' ) . ' ' . $this->cutoffselector( $opts );
+		$cutofflinks = Html::rawElement(
+			'span',
+			[ 'class' => 'cldays cloption' ],
+			$this->msg( 'wlshowtime' ) . ' ' . $this->cutoffselector( $opts )
+		);
 
 		# Spit out some control panel links
 		$links = [];
-		$context = $this->getContext();
 		$namesOfDisplayedFilters = [];
 		foreach ( $this->getFilterGroups() as $groupName => $group ) {
 			if ( !$group->isPerGroupRequestParameter() ) {
@@ -545,7 +636,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 							$nondefaults,
 							$filter->getShowHide(),
 							$filterName,
-							$opts[$filterName]
+							$opts[$filterName],
+							$filter->isFeatureAvailableOnStructuredUi( $this )
 						);
 					}
 				}
@@ -562,17 +654,19 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			unset( $hiddenFields[$filterName] );
 		}
 
-		# Create output
-		$form = '';
-
 		# Namespace filter and put the whole form together.
 		$form .= $wlInfo;
 		$form .= $cutofflinks;
-		$form .= $this->msg( 'watchlist-hide' ) .
+		$form .= Html::rawElement(
+			'span',
+			[ 'class' => 'clshowhide' ],
+			$this->msg( 'watchlist-hide' ) .
 			$this->msg( 'colon-separator' )->escaped() .
-			implode( ' ', $links );
+			implode( ' ', $links )
+		);
 		$form .= "\n<br />\n";
-		$form .= Html::namespaceSelector(
+
+		$namespaceForm = Html::namespaceSelector(
 			[
 				'selected' => $opts['namespace'],
 				'all' => '',
@@ -583,27 +677,66 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				'class' => 'namespaceselector',
 			]
 		) . "\n";
-		$form .= '<span class="mw-input-with-label">' . Xml::checkLabel(
+		$namespaceForm .= '<span class="mw-input-with-label">' . Xml::checkLabel(
 			$this->msg( 'invert' )->text(),
 			'invert',
 			'nsinvert',
 			$opts['invert'],
 			[ 'title' => $this->msg( 'tooltip-invert' )->text() ]
 		) . "</span>\n";
-		$form .= '<span class="mw-input-with-label">' . Xml::checkLabel(
+		$namespaceForm .= '<span class="mw-input-with-label">' . Xml::checkLabel(
 			$this->msg( 'namespace_association' )->text(),
 			'associated',
 			'nsassociated',
 			$opts['associated'],
 			[ 'title' => $this->msg( 'tooltip-namespace_association' )->text() ]
 		) . "</span>\n";
-		$form .= Xml::submitButton( $this->msg( 'watchlist-submit' )->text() ) . "\n";
+		$form .= Html::rawElement(
+			'span',
+			[ 'class' => 'namespaceForm cloption' ],
+			$namespaceForm
+		);
+
+		$form .= Xml::submitButton(
+			$this->msg( 'watchlist-submit' )->text(),
+			[ 'class' => 'cloption-submit' ]
+		) . "\n";
 		foreach ( $hiddenFields as $key => $value ) {
 			$form .= Html::hidden( $key, $value ) . "\n";
 		}
 		$form .= Xml::closeElement( 'fieldset' ) . "\n";
 		$form .= Xml::closeElement( 'form' ) . "\n";
-		$this->getOutput()->addHTML( $form );
+
+		// Insert a placeholder for RCFilters
+		if ( $this->isStructuredFilterUiEnabled() ) {
+			$rcfilterContainer = Html::element(
+				'div',
+				[ 'class' => 'rcfilters-container' ]
+			);
+
+			$loadingContainer = Html::rawElement(
+				'div',
+				[ 'class' => 'rcfilters-spinner' ],
+				Html::element(
+					'div',
+					[ 'class' => 'rcfilters-spinner-bounce' ]
+				)
+			);
+
+			// Wrap both with rcfilters-head
+			$this->getOutput()->addHTML(
+				Html::rawElement(
+					'div',
+					[ 'class' => 'rcfilters-head' ],
+					$rcfilterContainer . $form
+				)
+			);
+
+			// Add spinner
+			$this->getOutput()->addHTML( $loadingContainer );
+		} else {
+			$this->getOutput()->addHTML( $form );
+		}
 
 		$this->setBottomText( $opts );
 	}
@@ -655,7 +788,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 	function setTopText( FormOptions $opts ) {
 		$nondefaults = $opts->getChangedValues();
-		$form = "";
+		$form = '';
 		$user = $this->getUser();
 
 		$numItems = $this->countItems();
@@ -692,32 +825,27 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$form .= Xml::closeElement( 'form' ) . "\n";
 		}
 
-		$form .= Xml::openElement( 'form', [
-			'method' => 'get',
-			'action' => wfScript(),
-			'id' => 'mw-watchlist-form'
-		] );
-		$form .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
-		$form .= Xml::fieldset(
-			$this->msg( 'watchlist-options' )->text(),
-			false,
-			[ 'id' => 'mw-watchlist-options' ]
-		);
-
-		$form .= $this->makeLegend();
-
 		$this->getOutput()->addHTML( $form );
 	}
 
-	protected function showHideCheck( $options, $message, $name, $value ) {
+	protected function showHideCheck( $options, $message, $name, $value, $inStructuredUi ) {
 		$options[$name] = 1 - (int)$value;
 
-		return '<span class="mw-input-with-label">' . Xml::checkLabel(
-			$this->msg( $message, '' )->text(),
-			$name,
-			$name,
-			(int)$value
-		) . '</span>';
+		$attribs = [ 'class' => 'mw-input-with-label clshowhideoption cloption' ];
+		if ( $inStructuredUi ) {
+			$attribs[ 'data-feature-in-structured-ui' ] = true;
+		}
+
+		return Html::rawElement(
+			'span',
+			$attribs,
+			Xml::checkLabel(
+				$this->msg( $message, '' )->text(),
+				$name,
+				$name,
+				(int)$value
+			)
+		);
 	}
 
 	/**

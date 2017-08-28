@@ -101,9 +101,6 @@
 			$message = $( '<div>' )
 				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results' ),
 			isEmpty = $changesListContent === 'NO_RESULTS',
-			$lastSeen,
-			$indicator,
-			$newChanges = $( [] ),
 			// For enhanced mode, we have to load these modules, which are
 			// not loaded for the 'regular' mode in the backend
 			loaderPromise = mw.user.options.get( 'usenewrc' ) ?
@@ -142,34 +139,7 @@
 				this.$element.empty().append( $changesListContent );
 
 				if ( from ) {
-					$lastSeen = null;
-					this.$element.find( 'li[data-mw-ts]' ).each( function () {
-						var $li = $( this ),
-							ts = $li.data( 'mw-ts' );
-
-						if ( ts >= from ) {
-							$newChanges = $newChanges.add( $li );
-						} else if ( $lastSeen === null ) {
-							$lastSeen = $li;
-							return false;
-						}
-					} );
-
-					if ( $lastSeen ) {
-						$indicator = $( '<div>' )
-							.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-previousChangesIndicator' )
-							.text( mw.message( 'rcfilters-previous-changes-label' ).text() );
-
-						$indicator.on( 'click', function () {
-							$indicator.detach();
-						} );
-
-						$lastSeen.before( $indicator );
-					}
-
-					$newChanges
-						.hide()
-						.fadeIn( 1000 );
+					this.emphasizeNewChanges( from );
 				}
 			}
 
@@ -190,6 +160,47 @@
 			$( '.rcfilters-spinner' ).addClass( 'mw-rcfilters-ui-ready' );
 			widget.$element.addClass( 'mw-rcfilters-ui-ready' );
 		} );
+	};
+
+	/**
+	 * Emphasize the elements (or groups) newer than the 'from' parameter
+	 * @param {string} from Anything newer than this is considered 'new'
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.emphasizeNewChanges = function ( from ) {
+		var $firstNew,
+			$indicator,
+			$newChanges = $( [] ),
+			selector = this.inEnhancedMode() ?
+				'table.mw-enhanced-rc[data-mw-ts]' :
+				'li[data-mw-ts]',
+			set = this.$element.find( selector ),
+			length = set.length;
+
+		set.each( function ( index ) {
+			var $this = $( this ),
+				ts = $this.data( 'mw-ts' );
+
+			if ( ts >= from ) {
+				$newChanges = $newChanges.add( $this );
+				$firstNew = $this;
+
+				// guards against putting the marker after the last element
+				if ( index === ( length - 1 ) ) {
+					$firstNew = null;
+				}
+			}
+		} );
+
+		if ( $firstNew ) {
+			$indicator = $( '<div>' )
+				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-previousChangesIndicator' );
+
+			$firstNew.after( $indicator );
+		}
+
+		$newChanges
+			.hide()
+			.fadeIn( 1000 );
 	};
 
 	/**
@@ -235,12 +246,12 @@
 	 * @param {jQuery|string} $content The content of the updated changes list
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.setupHighlightContainers = function ( $content ) {
-		var uri = new mw.Uri(),
-			highlightClass = 'mw-rcfilters-ui-changesListWrapperWidget-highlights',
+		var highlightClass = 'mw-rcfilters-ui-changesListWrapperWidget-highlights',
 			$highlights = $( '<div>' )
 				.addClass( highlightClass )
 				.append(
 					$( '<div>' )
+						.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlights-circle' )
 						.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlights-color-none' )
 						.prop( 'data-color', 'none' )
 				);
@@ -254,14 +265,12 @@
 			$highlights.append(
 				$( '<div>' )
 					.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlights-color-' + color )
+					.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlights-circle' )
 					.prop( 'data-color', color )
 			);
 		} );
 
-		if (
-			( uri.query.enhanced !== undefined && Number( uri.query.enhanced ) ) ||
-			( uri.query.enhanced === undefined && Number( mw.user.options.get( 'usenewrc' ) ) )
-		) {
+		if ( this.inEnhancedMode() ) {
 			// Enhanced RC
 			$content.find( 'td.mw-enhanced-rc' )
 				.parent()
@@ -277,6 +286,15 @@
 	};
 
 	/**
+	 * @return {boolean} Whether the changes are grouped by page
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.inEnhancedMode = function () {
+		var uri = new mw.Uri();
+		return ( uri.query.enhanced !== undefined && Number( uri.query.enhanced ) ) ||
+			( uri.query.enhanced === undefined && Number( mw.user.options.get( 'usenewrc' ) ) );
+	};
+
+	/**
 	 * Apply color classes based on filters highlight configuration
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.applyHighlight = function () {
@@ -285,10 +303,33 @@
 		}
 
 		this.filtersViewModel.getHighlightedItems().forEach( function ( filterItem ) {
+			var $elements = this.$element.find( '.' + filterItem.getCssClass() );
+
 			// Add highlight class to all highlighted list items
-			this.$element.find( '.' + filterItem.getCssClass() )
+			$elements
 				.addClass( 'mw-rcfilters-highlight-color-' + filterItem.getHighlightColor() );
+
+			$elements.each( function () {
+				var filterString = $( this ).attr( 'data-highlightedFilters' ) || '',
+					filters = filterString ? filterString.split( '|' ) : [];
+
+				if ( filters.indexOf( filterItem.getLabel() ) === -1 ) {
+					filters.push( filterItem.getLabel() );
+				}
+
+				$( this )
+					.attr( 'data-highlightedFilters', filters.join( '|' ) );
+			} );
 		}.bind( this ) );
+		// Apply a title for relevant filters
+		this.$element.find( '[data-highlightedFilters]' ).each( function () {
+			var filterString = $( this ).attr( 'data-highlightedFilters' ) || '',
+				filters = filterString ? filterString.split( '|' ) : [];
+
+			if ( filterString ) {
+				$( this ).attr( 'title', mw.msg( 'rcfilters-highlighted-filters-list', filters.join( ', ' ) ) );
+			}
+		} );
 
 		// Turn on highlights
 		this.$element.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlighted' );
@@ -303,6 +344,9 @@
 			this.$element.find( '.mw-rcfilters-highlight-color-' + color ).removeClass( 'mw-rcfilters-highlight-color-' + color );
 		}.bind( this ) );
 
+		this.$element.find( '[data-highlightedFilters]' )
+			.removeAttr( 'title' )
+			.removeAttr( 'data-highlightedFilters' );
 		// Turn off highlights
 		this.$element.removeClass( 'mw-rcfilters-ui-changesListWrapperWidget-highlighted' );
 	};

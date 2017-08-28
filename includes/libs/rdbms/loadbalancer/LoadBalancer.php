@@ -41,7 +41,7 @@ use Exception;
 class LoadBalancer implements ILoadBalancer {
 	/** @var array[] Map of (server index => server config array) */
 	private $mServers;
-	/** @var Database[][][] Map of local/foreignUsed/foreignFree => server index => IDatabase[] */
+	/** @var Database[][][] Map of (connection category => server index => IDatabase[]) */
 	private $mConns;
 	/** @var float[] Map of (server index => weight) */
 	private $mLoads;
@@ -49,7 +49,7 @@ class LoadBalancer implements ILoadBalancer {
 	private $mGroupLoads;
 	/** @var bool Whether to disregard replica DB lag as a factor in replica DB selection */
 	private $mAllowLagged;
-	/** @var integer Seconds to spend waiting on replica DB lag to resolve */
+	/** @var int Seconds to spend waiting on replica DB lag to resolve */
 	private $mWaitTimeout;
 	/** @var array The LoadMonitor configuration */
 	private $loadMonitorConfig;
@@ -62,8 +62,6 @@ class LoadBalancer implements ILoadBalancer {
 	private $chronProt;
 	/** @var BagOStuff */
 	private $srvCache;
-	/** @var BagOStuff */
-	private $memCache;
 	/** @var WANObjectCache */
 	private $wanCache;
 	/** @var object|string Class name or object With profileIn/profileOut methods */
@@ -81,7 +79,7 @@ class LoadBalancer implements ILoadBalancer {
 
 	/** @var Database DB connection object that caused a problem */
 	private $errorConnection;
-	/** @var integer The generic (not query grouped) replica DB index (of $mServers) */
+	/** @var int The generic (not query grouped) replica DB index (of $mServers) */
 	private $mReadIndex;
 	/** @var bool|DBMasterPos False if not set */
 	private $mWaitForPos;
@@ -93,7 +91,7 @@ class LoadBalancer implements ILoadBalancer {
 	private $mLastError = 'Unknown error';
 	/** @var string|bool Reason the LB is read-only or false if not */
 	private $readOnlyReason = false;
-	/** @var integer Total connections opened */
+	/** @var int Total connections opened */
 	private $connsOpened = 0;
 	/** @var string|bool String if a requested DBO_TRX transaction round is active */
 	private $trxRoundId = false;
@@ -113,28 +111,39 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var callable Exception logger */
 	private $errorLogger;
 
-	/** @var boolean */
+	/** @var bool */
 	private $disabled = false;
-	/** @var boolean */
+	/** @var bool */
 	private $chronProtInitialized = false;
 
-	/** @var integer Warn when this many connection are held */
+	/** @var int Warn when this many connection are held */
 	const CONN_HELD_WARN_THRESHOLD = 10;
 
-	/** @var integer Default 'max lag' when unspecified */
+	/** @var int Default 'max lag' when unspecified */
 	const MAX_LAG_DEFAULT = 10;
-	/** @var integer Seconds to cache master server read-only status */
+	/** @var int Seconds to cache master server read-only status */
 	const TTL_CACHE_READONLY = 5;
 
 	const KEY_LOCAL = 'local';
 	const KEY_FOREIGN_FREE = 'foreignFree';
 	const KEY_FOREIGN_INUSE = 'foreignInUse';
 
+	const KEY_LOCAL_NOROUND = 'localAutoCommit';
+	const KEY_FOREIGN_FREE_NOROUND = 'foreignFreeAutoCommit';
+	const KEY_FOREIGN_INUSE_NOROUND = 'foreignInUseAutoCommit';
+
 	public function __construct( array $params ) {
 		if ( !isset( $params['servers'] ) ) {
 			throw new InvalidArgumentException( __CLASS__ . ': missing servers parameter' );
 		}
 		$this->mServers = $params['servers'];
+		foreach ( $this->mServers as $i => $server ) {
+			if ( $i == 0 ) {
+				$this->mServers[$i]['master'] = true;
+			} else {
+				$this->mServers[$i]['replica'] = true;
+			}
+		}
 
 		$this->localDomain = isset( $params['localDomain'] )
 			? DatabaseDomain::newFromId( $params['localDomain'] )
@@ -152,9 +161,14 @@ class LoadBalancer implements ILoadBalancer {
 
 		$this->mReadIndex = -1;
 		$this->mConns = [
+			// Connection were transaction rounds may be applied
 			self::KEY_LOCAL => [],
 			self::KEY_FOREIGN_INUSE => [],
-			self::KEY_FOREIGN_FREE => []
+			self::KEY_FOREIGN_FREE => [],
+			// Auto-committing counterpart connections that ignore transaction rounds
+			self::KEY_LOCAL_NOROUND => [],
+			self::KEY_FOREIGN_INUSE_NOROUND => [],
+			self::KEY_FOREIGN_FREE_NOROUND => []
 		];
 		$this->mLoads = [];
 		$this->mWaitForPos = false;
@@ -186,11 +200,6 @@ class LoadBalancer implements ILoadBalancer {
 			$this->srvCache = $params['srvCache'];
 		} else {
 			$this->srvCache = new EmptyBagOStuff();
-		}
-		if ( isset( $params['memCache'] ) ) {
-			$this->memCache = $params['memCache'];
-		} else {
-			$this->memCache = new EmptyBagOStuff();
 		}
 		if ( isset( $params['wanCache'] ) ) {
 			$this->wanCache = $params['wanCache'];
@@ -244,7 +253,7 @@ class LoadBalancer implements ILoadBalancer {
 			}
 
 			$this->loadMonitor = new $class(
-				$this, $this->srvCache, $this->memCache, $this->loadMonitorConfig );
+				$this, $this->srvCache, $this->wanCache, $this->loadMonitorConfig );
 			$this->loadMonitor->setLogger( $this->replLogger );
 		}
 
@@ -608,16 +617,7 @@ class LoadBalancer implements ILoadBalancer {
 		return $ok;
 	}
 
-	/**
-	 * @see ILoadBalancer::getConnection()
-	 *
-	 * @param int $i
-	 * @param array $groups
-	 * @param bool $domain
-	 * @return Database
-	 * @throws DBConnectionError
-	 */
-	public function getConnection( $i, $groups = [], $domain = false ) {
+	public function getConnection( $i, $groups = [], $domain = false, $flags = 0 ) {
 		if ( $i === null || $i === false ) {
 			throw new InvalidArgumentException( 'Attempt to call ' . __METHOD__ .
 				' with invalid server index' );
@@ -664,7 +664,7 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		# Now we have an explicit index into the servers array
-		$conn = $this->openConnection( $i, $domain );
+		$conn = $this->openConnection( $i, $domain, $flags );
 		if ( !$conn ) {
 			// Throw an exception
 			$this->reportConnectionError();
@@ -714,20 +714,29 @@ class LoadBalancer implements ILoadBalancer {
 			return; // DBConnRef handle probably survived longer than the LoadBalancer
 		}
 
+		if ( $conn->getLBInfo( 'autoCommitOnly' ) ) {
+			$connFreeKey = self::KEY_FOREIGN_FREE_NOROUND;
+			$connInUseKey = self::KEY_FOREIGN_INUSE_NOROUND;
+		} else {
+			$connFreeKey = self::KEY_FOREIGN_FREE;
+			$connInUseKey = self::KEY_FOREIGN_INUSE;
+		}
+
 		$domain = $conn->getDomainID();
-		if ( !isset( $this->mConns[self::KEY_FOREIGN_INUSE][$serverIndex][$domain] ) ) {
+		if ( !isset( $this->mConns[$connInUseKey][$serverIndex][$domain] ) ) {
 			throw new InvalidArgumentException( __METHOD__ .
 				": connection $serverIndex/$domain not found; it may have already been freed." );
-		} elseif ( $this->mConns[self::KEY_FOREIGN_INUSE][$serverIndex][$domain] !== $conn ) {
+		} elseif ( $this->mConns[$connInUseKey][$serverIndex][$domain] !== $conn ) {
 			throw new InvalidArgumentException( __METHOD__ .
 				": connection $serverIndex/$domain mismatched; it may have already been freed." );
 		}
+
 		$conn->setLBInfo( 'foreignPoolRefCount', --$refCount );
 		if ( $refCount <= 0 ) {
-			$this->mConns[self::KEY_FOREIGN_FREE][$serverIndex][$domain] = $conn;
-			unset( $this->mConns[self::KEY_FOREIGN_INUSE][$serverIndex][$domain] );
-			if ( !$this->mConns[self::KEY_FOREIGN_INUSE][$serverIndex] ) {
-				unset( $this->mConns[ self::KEY_FOREIGN_INUSE ][$serverIndex] ); // clean up
+			$this->mConns[$connFreeKey][$serverIndex][$domain] = $conn;
+			unset( $this->mConns[$connInUseKey][$serverIndex][$domain] );
+			if ( !$this->mConns[$connInUseKey][$serverIndex] ) {
+				unset( $this->mConns[$connInUseKey][$serverIndex] ); // clean up
 			}
 			$this->connLogger->debug( __METHOD__ . ": freed connection $serverIndex/$domain" );
 		} else {
@@ -736,33 +745,26 @@ class LoadBalancer implements ILoadBalancer {
 		}
 	}
 
-	public function getConnectionRef( $db, $groups = [], $domain = false ) {
+	public function getConnectionRef( $db, $groups = [], $domain = false, $flags = 0 ) {
 		$domain = ( $domain !== false ) ? $domain : $this->localDomain;
 
-		return new DBConnRef( $this, $this->getConnection( $db, $groups, $domain ) );
+		return new DBConnRef( $this, $this->getConnection( $db, $groups, $domain, $flags ) );
 	}
 
-	public function getLazyConnectionRef( $db, $groups = [], $domain = false ) {
+	public function getLazyConnectionRef( $db, $groups = [], $domain = false, $flags = 0 ) {
 		$domain = ( $domain !== false ) ? $domain : $this->localDomain;
 
-		return new DBConnRef( $this, [ $db, $groups, $domain ] );
+		return new DBConnRef( $this, [ $db, $groups, $domain, $flags ] );
 	}
 
-	public function getMaintenanceConnectionRef( $db, $groups = [], $domain = false ) {
+	public function getMaintenanceConnectionRef( $db, $groups = [], $domain = false, $flags = 0 ) {
 		$domain = ( $domain !== false ) ? $domain : $this->localDomain;
 
-		return new MaintainableDBConnRef( $this, $this->getConnection( $db, $groups, $domain ) );
+		return new MaintainableDBConnRef(
+			$this, $this->getConnection( $db, $groups, $domain, $flags ) );
 	}
 
-	/**
-	 * @see ILoadBalancer::openConnection()
-	 *
-	 * @param int $i
-	 * @param bool $domain
-	 * @return bool|Database
-	 * @throws DBAccessError
-	 */
-	public function openConnection( $i, $domain = false ) {
+	public function openConnection( $i, $domain = false, $flags = 0 ) {
 		if ( $this->localDomain->equals( $domain ) || $domain === $this->localDomainIdAlias ) {
 			$domain = false; // local connection requested
 		}
@@ -774,26 +776,38 @@ class LoadBalancer implements ILoadBalancer {
 			$this->chronProt->initLB( $this );
 		}
 
+		// Check if an auto-commit connection is being requested. If so, it will not reuse the
+		// main set of DB connections but rather its own pool since:
+		// a) those are usually set to implicitly use transaction rounds via DBO_TRX
+		// b) those must support the use of explicit transaction rounds via beginMasterChanges()
+		$autoCommit = ( ( $flags & self::CONN_TRX_AUTO ) == self::CONN_TRX_AUTO );
+
 		if ( $domain !== false ) {
-			$conn = $this->openForeignConnection( $i, $domain );
-		} elseif ( isset( $this->mConns[self::KEY_LOCAL][$i][0] ) ) {
-			$conn = $this->mConns[self::KEY_LOCAL][$i][0];
+			// Connection is to a foreign domain
+			$conn = $this->openForeignConnection( $i, $domain, $flags );
 		} else {
-			if ( !isset( $this->mServers[$i] ) || !is_array( $this->mServers[$i] ) ) {
-				throw new InvalidArgumentException( "No server with index '$i'." );
-			}
-			// Open a new connection
-			$server = $this->mServers[$i];
-			$server['serverIndex'] = $i;
-			$conn = $this->reallyOpenConnection( $server, false );
-			$serverName = $this->getServerName( $i );
-			if ( $conn->isOpen() ) {
-				$this->connLogger->debug( "Connected to database $i at '$serverName'." );
-				$this->mConns[self::KEY_LOCAL][$i][0] = $conn;
+			// Connection is to the local domain
+			$connKey = $autoCommit ? self::KEY_LOCAL_NOROUND : self::KEY_LOCAL;
+			if ( isset( $this->mConns[$connKey][$i][0] ) ) {
+				$conn = $this->mConns[$connKey][$i][0];
 			} else {
-				$this->connLogger->warning( "Failed to connect to database $i at '$serverName'." );
-				$this->errorConnection = $conn;
-				$conn = false;
+				if ( !isset( $this->mServers[$i] ) || !is_array( $this->mServers[$i] ) ) {
+					throw new InvalidArgumentException( "No server with index '$i'." );
+				}
+				// Open a new connection
+				$server = $this->mServers[$i];
+				$server['serverIndex'] = $i;
+				$server['autoCommitOnly'] = $autoCommit;
+				$conn = $this->reallyOpenConnection( $server, false );
+				$host = $this->getServerName( $i );
+				if ( $conn->isOpen() ) {
+					$this->connLogger->debug( "Connected to database $i at '$host'." );
+					$this->mConns[$connKey][$i][0] = $conn;
+				} else {
+					$this->connLogger->warning( "Failed to connect to database $i at '$host'." );
+					$this->errorConnection = $conn;
+					$conn = false;
+				}
 			}
 		}
 
@@ -804,6 +818,10 @@ class LoadBalancer implements ILoadBalancer {
 			// See DatabaseMyslBase::ping() for how this can happen.
 			$this->errorConnection = $conn;
 			$conn = false;
+		}
+
+		if ( $autoCommit && $conn instanceof IDatabase ) {
+			$conn->clearFlag( $conn::DBO_TRX ); // auto-commit mode
 		}
 
 		return $conn;
@@ -827,27 +845,37 @@ class LoadBalancer implements ILoadBalancer {
 	 *
 	 * @param int $i Server index
 	 * @param string $domain Domain ID to open
+	 * @param int $flags Class CONN_* constant bitfield
 	 * @return Database
 	 */
-	private function openForeignConnection( $i, $domain ) {
+	private function openForeignConnection( $i, $domain, $flags = 0 ) {
 		$domainInstance = DatabaseDomain::newFromId( $domain );
 		$dbName = $domainInstance->getDatabase();
 		$prefix = $domainInstance->getTablePrefix();
+		$autoCommit = ( ( $flags & self::CONN_TRX_AUTO ) == self::CONN_TRX_AUTO );
 
-		if ( isset( $this->mConns[self::KEY_FOREIGN_INUSE][$i][$domain] ) ) {
-			// Reuse an in-use connection for the same domain that is not in-use
-			$conn = $this->mConns[self::KEY_FOREIGN_INUSE][$i][$domain];
+		if ( $autoCommit ) {
+			$connFreeKey = self::KEY_FOREIGN_FREE_NOROUND;
+			$connInUseKey = self::KEY_FOREIGN_INUSE_NOROUND;
+		} else {
+			$connFreeKey = self::KEY_FOREIGN_FREE;
+			$connInUseKey = self::KEY_FOREIGN_INUSE;
+		}
+
+		if ( isset( $this->mConns[$connInUseKey][$i][$domain] ) ) {
+			// Reuse an in-use connection for the same domain
+			$conn = $this->mConns[$connInUseKey][$i][$domain];
 			$this->connLogger->debug( __METHOD__ . ": reusing connection $i/$domain" );
-		} elseif ( isset( $this->mConns[self::KEY_FOREIGN_FREE][$i][$domain] ) ) {
-			// Reuse a free connection for the same domain that is not in-use
-			$conn = $this->mConns[self::KEY_FOREIGN_FREE][$i][$domain];
-			unset( $this->mConns[self::KEY_FOREIGN_FREE][$i][$domain] );
-			$this->mConns[self::KEY_FOREIGN_INUSE][$i][$domain] = $conn;
+		} elseif ( isset( $this->mConns[$connFreeKey][$i][$domain] ) ) {
+			// Reuse a free connection for the same domain
+			$conn = $this->mConns[$connFreeKey][$i][$domain];
+			unset( $this->mConns[$connFreeKey][$i][$domain] );
+			$this->mConns[$connInUseKey][$i][$domain] = $conn;
 			$this->connLogger->debug( __METHOD__ . ": reusing free connection $i/$domain" );
-		} elseif ( !empty( $this->mConns[self::KEY_FOREIGN_FREE][$i] ) ) {
-			// Reuse a connection from another domain
-			$conn = reset( $this->mConns[self::KEY_FOREIGN_FREE][$i] );
-			$oldDomain = key( $this->mConns[self::KEY_FOREIGN_FREE][$i] );
+		} elseif ( !empty( $this->mConns[$connFreeKey][$i] ) ) {
+			// Reuse a free connection from another domain
+			$conn = reset( $this->mConns[$connFreeKey][$i] );
+			$oldDomain = key( $this->mConns[$connFreeKey][$i] );
 			// The empty string as a DB name means "don't care".
 			// DatabaseMysqlBase::open() already handle this on connection.
 			if ( strlen( $dbName ) && !$conn->selectDB( $dbName ) ) {
@@ -857,8 +885,8 @@ class LoadBalancer implements ILoadBalancer {
 				$conn = false;
 			} else {
 				$conn->tablePrefix( $prefix );
-				unset( $this->mConns[self::KEY_FOREIGN_FREE][$i][$oldDomain] );
-				$this->mConns[self::KEY_FOREIGN_INUSE][$i][$domain] = $conn;
+				unset( $this->mConns[$connFreeKey][$i][$oldDomain] );
+				$this->mConns[$connInUseKey][$i][$domain] = $conn;
 				$this->connLogger->debug( __METHOD__ .
 					": reusing free connection from $oldDomain for $domain" );
 			}
@@ -871,6 +899,7 @@ class LoadBalancer implements ILoadBalancer {
 			$server['serverIndex'] = $i;
 			$server['foreignPoolRefCount'] = 0;
 			$server['foreign'] = true;
+			$server['autoCommitOnly'] = $autoCommit;
 			$conn = $this->reallyOpenConnection( $server, $dbName );
 			if ( !$conn->isOpen() ) {
 				$this->connLogger->warning( __METHOD__ . ": connection error for $i/$domain" );
@@ -878,7 +907,7 @@ class LoadBalancer implements ILoadBalancer {
 				$conn = false;
 			} else {
 				$conn->tablePrefix( $prefix );
-				$this->mConns[self::KEY_FOREIGN_INUSE][$i][$domain] = $conn;
+				$this->mConns[$connInUseKey][$i][$domain] = $conn;
 				$this->connLogger->debug( __METHOD__ . ": opened new connection for $i/$domain" );
 			}
 		}
@@ -1037,6 +1066,10 @@ class LoadBalancer implements ILoadBalancer {
 		return ( $name != '' ) ? $name : 'localhost';
 	}
 
+	public function getServerType( $i ) {
+		return isset( $this->mServers[$i]['type'] ) ? $this->mServers[$i]['type'] : 'unknown';
+	}
+
 	/**
 	 * @deprecated Since 1.30, no alternative
 	 */
@@ -1090,8 +1123,11 @@ class LoadBalancer implements ILoadBalancer {
 
 		$this->mConns = [
 			self::KEY_LOCAL => [],
-			self::KEY_FOREIGN_FREE => [],
 			self::KEY_FOREIGN_INUSE => [],
+			self::KEY_FOREIGN_FREE => [],
+			self::KEY_LOCAL_NOROUND => [],
+			self::KEY_FOREIGN_INUSE_NOROUND => [],
+			self::KEY_FOREIGN_FREE_NOROUND => []
 		];
 		$this->connsOpened = 0;
 	}
@@ -1172,7 +1208,7 @@ class LoadBalancer implements ILoadBalancer {
 			if ( $limit > 0 && $time > $limit ) {
 				throw new DBTransactionSizeError(
 					$conn,
-					"Transaction spent $time second(s) in writes, exceeding the $limit limit.",
+					"Transaction spent $time second(s) in writes, exceeding the limit of $limit.",
 					[ $time, $limit ]
 				);
 			}
@@ -1311,6 +1347,10 @@ class LoadBalancer implements ILoadBalancer {
 	 * @param IDatabase $conn
 	 */
 	private function applyTransactionRoundFlags( IDatabase $conn ) {
+		if ( $conn->getLBInfo( 'autoCommitOnly' ) ) {
+			return; // transaction rounds do not apply to these connections
+		}
+
 		if ( $conn->getFlag( $conn::DBO_DEFAULT ) ) {
 			// DBO_TRX is controlled entirely by CLI mode presence with DBO_DEFAULT.
 			// Force DBO_TRX even in CLI mode since a commit round is expected soon.
@@ -1325,6 +1365,10 @@ class LoadBalancer implements ILoadBalancer {
 	 * @param IDatabase $conn
 	 */
 	private function undoTransactionRoundFlags( IDatabase $conn ) {
+		if ( $conn->getLBInfo( 'autoCommitOnly' ) ) {
+			return; // transaction rounds do not apply to these connections
+		}
+
 		if ( $conn->getFlag( $conn::DBO_DEFAULT ) ) {
 			$conn->restoreFlags( $conn::RESTORE_PRIOR );
 		}

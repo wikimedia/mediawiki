@@ -9,6 +9,15 @@
 
 	&-buttonSelect {
 		&-color {
+			// Override OOUI definition from padded popup; the definition
+			// forces the first-child to be margin-top:0; which overrides
+			// our definitions below where margin is 0.5em.
+			// We set up the margin-top as 0.5em for all circles so we get
+			// a consistent result
+			&.oo-ui-widget-enabled.oo-ui-optionWidget.oo-ui-buttonElement.oo-ui-buttonElement-frameless.oo-ui-buttonOptionWidget {
+				margin-top: 0.5em;
+			}
+
 			// Make the rule much more specific to override OOUI
 			.oo-ui-iconElement-icon.oo-ui-icon-check {
 				// Override OOUI icon dimensions
@@ -29,7 +38,7 @@
 
 				.mw-rcfilters-mixin-circle( @highlight-none, 2em, 0.5em, true );
 				// Override border to dashed
-				border: 1px dashed #565656;
+				border: 1px dashed #54595d;
 
 				&.oo-ui-buttonOptionWidget.oo-ui-buttonElement-active,
 				&.oo-ui-buttonOptionWidget.oo-ui-optionWidget-pressed,

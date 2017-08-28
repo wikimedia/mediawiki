@@ -1998,10 +1998,10 @@ class OutputPage extends ContextSource {
 	 * the TTL is higher the older the $mtime timestamp is. Essentially, the
 	 * TTL is 90% of the age of the object, subject to the min and max.
 	 *
-	 * @param string|integer|float|bool|null $mtime Last-Modified timestamp
-	 * @param integer $minTTL Mimimum TTL in seconds [default: 1 minute]
-	 * @param integer $maxTTL Maximum TTL in seconds [default: $wgSquidMaxage]
-	 * @return integer TTL in seconds
+	 * @param string|int|float|bool|null $mtime Last-Modified timestamp
+	 * @param int $minTTL Mimimum TTL in seconds [default: 1 minute]
+	 * @param int $maxTTL Maximum TTL in seconds [default: $wgSquidMaxage]
+	 * @return int TTL in seconds
 	 * @since 1.28
 	 */
 	public function adaptCdnTTL( $mtime, $minTTL = 0, $maxTTL = 0 ) {

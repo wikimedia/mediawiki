@@ -29,7 +29,7 @@ use Wikimedia\Rdbms\IDatabase;
 class LinksDeletionUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	/** @var WikiPage */
 	protected $page;
-	/** @var integer */
+	/** @var int */
 	protected $pageId;
 	/** @var string */
 	protected $timestamp;
@@ -39,7 +39,7 @@ class LinksDeletionUpdate extends DataUpdate implements EnqueueableDataUpdate {
 
 	/**
 	 * @param WikiPage $page Page we are updating
-	 * @param integer|null $pageId ID of the page we are updating [optional]
+	 * @param int|null $pageId ID of the page we are updating [optional]
 	 * @param string|null $timestamp TS_MW timestamp of deletion
 	 * @throws MWException
 	 */

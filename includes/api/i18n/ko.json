@@ -716,6 +716,7 @@
 	"api-help-param-upload": "여러 부분/폼 데이터를 사용한 파일 업로드로 게시되어야 합니다.",
 	"api-help-param-multi-separate": "<kbd>|</kbd> 또는 [[Special:ApiHelp/main#main/datatypes|대안]]으로 값을 구분합니다.",
 	"api-help-param-multi-max": "값들의 최대 수는 {{PLURAL:$1|$1}}입니다. (봇의 경우 {{PLURAL:$2|$2}})",
+	"api-help-param-multi-max-simple": "값의 최대 수는 {{PLURAL:$1|$1}}입니다.",
 	"api-help-param-default": "기본값: $1",
 	"api-help-param-default-empty": "기본값: <span class=\"apihelp-empty\">(비어 있음)</span>",
 	"api-help-param-token": "\"$1\" 토큰은 [[Special:ApiHelp/query+tokens|action=query&meta=tokens]]에서 가져옵니다",

@@ -93,6 +93,7 @@
 		} );
 		this.$element.on( { click: this.onClick.bind( this ) } );
 		this.$label.on( { click: this.onClick.bind( this ) } );
+		this.$icon.on( { click: this.onDefaultIconClick.bind( this ) } );
 		// Prevent propagation on mousedown for the save button
 		// so the menu doesn't close
 		this.saveButton.$element.on( { mousedown: function () { return false; } } );
@@ -178,6 +179,18 @@
 			this.emit( 'click' );
 		}
 	};
+
+	/**
+	 * Respond to click on the 'default' icon. Open the submenu where the
+	 * default state can be changed.
+	 *
+	 * @return {boolean} false
+	 */
+	mw.rcfilters.ui.SavedLinksListItemWidget.prototype.onDefaultIconClick = function () {
+		this.menu.toggle();
+		return false;
+	};
+
 	/**
 	 * Respond to popup button click event
 	 */
@@ -212,7 +225,7 @@
 	 * Respond to input keyup event, this is the way to intercept 'escape' key
 	 *
 	 * @param {jQuery.Event} e Event data
-	 * @returns {boolean} false
+	 * @return {boolean} false
 	 */
 	mw.rcfilters.ui.SavedLinksListItemWidget.prototype.onInputKeyup = function ( e ) {
 		if ( e.which === OO.ui.Keys.ESCAPE ) {
@@ -307,7 +320,7 @@
 	/**
 	 * Get item ID
 	 *
-	 * @returns {string} Query identifier
+	 * @return {string} Query identifier
 	 */
 	mw.rcfilters.ui.SavedLinksListItemWidget.prototype.getID = function () {
 		return this.model.getID();

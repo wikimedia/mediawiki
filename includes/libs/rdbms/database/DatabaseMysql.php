@@ -25,6 +25,9 @@ namespace Wikimedia\Rdbms;
 /**
  * Database abstraction object for PHP extension mysql.
  *
+ * @deprecated 1.30 PHP extension 'mysql' was deprecated in PHP 5.5 and removed in PHP 7.0.
+ * @see PHP extension 'mysqli' and DatabaseMysqli
+ *
  * @ingroup Database
  * @see Database
  */

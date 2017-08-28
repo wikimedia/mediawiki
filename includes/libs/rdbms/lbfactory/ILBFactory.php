@@ -44,7 +44,7 @@ interface ILBFactory {
 	 *  - localDomain: A DatabaseDomain or domain ID string.
 	 *  - readOnlyReason : Reason the master DB is read-only if so [optional]
 	 *  - srvCache : BagOStuff object for server cache [optional]
-	 *  - memCache : BagOStuff object for cluster memory cache [optional]
+	 *  - memStash : BagOStuff object for cross-datacenter memory storage [optional]
 	 *  - wanCache : WANObjectCache object [optional]
 	 *  - hostname : The name of the current server [optional]
 	 *  - cliMode: Whether the execution context is a CLI script. [optional]
@@ -138,7 +138,7 @@ interface ILBFactory {
 
 	/**
 	 * Prepare all tracked load balancers for shutdown
-	 * @param integer $mode One of the class SHUTDOWN_* constants
+	 * @param int $mode One of the class SHUTDOWN_* constants
 	 * @param callable|null $workCallback Work to mask ChronologyProtector writes
 	 */
 	public function shutdown(

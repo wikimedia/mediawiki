@@ -39,9 +39,9 @@ use Wikimedia\Rdbms\DBReplicationWaitError;
 class RefreshLinksJob extends Job {
 	/** @var float Cache parser output when it takes this long to render */
 	const PARSE_THRESHOLD_SEC = 1.0;
-	/** @var integer Lag safety margin when comparing root job times to last-refresh times */
+	/** @var int Lag safety margin when comparing root job times to last-refresh times */
 	const CLOCK_FUDGE = 10;
-	/** @var integer How many seconds to wait for replica DBs to catch up */
+	/** @var int How many seconds to wait for replica DBs to catch up */
 	const LAG_WAIT_TIMEOUT = 15;
 
 	function __construct( Title $title, array $params ) {
@@ -279,6 +279,10 @@ class RefreshLinksJob extends Job {
 
 		InfoAction::invalidateCache( $title );
 
+		// Commit any writes here in case this method is called in a loop.
+		// In that case, the scoped lock will fail to be acquired.
+		$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+
 		return true;
 	}
 
@@ -297,6 +301,12 @@ class RefreshLinksJob extends Job {
 	}
 
 	public function workItemCount() {
-		return isset( $this->params['pages'] ) ? count( $this->params['pages'] ) : 1;
+		if ( !empty( $this->params['recursive'] ) ) {
+			return 0; // nothing actually refreshed
+		} elseif ( isset( $this->params['pages'] ) ) {
+			return count( $this->params['pages'] );
+		}
+
+		return 1; // one title
 	}
 }

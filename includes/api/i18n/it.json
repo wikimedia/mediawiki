@@ -669,6 +669,7 @@
 	"api-help-param-integer-minmax": "{{PLURAL:$1|1=Il valore deve essere compreso|2=I valori devono essere compresi}} tra $2 e $3.",
 	"api-help-param-multi-separate": "Separa i valori con <kbd>|</kbd> o [[Special:ApiHelp/main#main/datatypes|alternativa]].",
 	"api-help-param-multi-max": "Il numero massimo di valori è {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} per i bot).",
+	"api-help-param-multi-max-simple": "Il numero massimo di valori è {{PLURAL:$1|$1}}.",
 	"api-help-param-multi-all": "Per specificare tutti i valori, utilizza <kbd>$1</kbd>.",
 	"api-help-param-default": "Predefinito: $1",
 	"api-help-param-default-empty": "Predefinito: <span class=\"apihelp-empty\">(vuoto)</span>",

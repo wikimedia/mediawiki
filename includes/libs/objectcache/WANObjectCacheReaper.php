@@ -48,7 +48,7 @@ class WANObjectCacheReaper implements LoggerAwareInterface {
 
 	/** @var string */
 	protected $channel;
-	/** @var integer */
+	/** @var int */
 	protected $initialStartWindow;
 
 	/**

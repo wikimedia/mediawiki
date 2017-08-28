@@ -1814,7 +1814,7 @@
 	"excontentauthor": "Diar sted: „$1“, an di iansagst bewerker wiar: [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuschuun]])",
 	"exbeforeblank": "diar sted föör't leesag maagin: „$1“",
 	"delete-confirm": "Strik \"$1\"",
-	"delete-legend": "Strike",
+	"delete-legend": "Strik",
 	"historywarning": "<strong>Paase üüb:</strong> Det sidj, wat dü strik wel, hää $1 {{PLURAL:$1|werjuun|werjuunen}}:",
 	"confirmdeletetext": "Dü wel en sidj mä aal sin werjuunen strik. Dü skel gudkään, dat dü witjst, wat dü dääst an dat din dun mä a [[{{MediaWiki:Policy-url}}|brükerreegeln]] auerian stemet.",
 	"actioncomplete": "Klaar",

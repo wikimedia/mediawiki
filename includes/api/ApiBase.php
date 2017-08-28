@@ -204,6 +204,19 @@ abstract class ApiBase extends ContextSource {
 	 */
 	const PARAM_DEPRECATED_VALUES = 20;
 
+	/**
+	 * (integer) Maximum number of values, for normal users. Must be used with PARAM_ISMULTI.
+	 * @since 1.30
+	 */
+	const PARAM_ISMULTI_LIMIT1 = 21;
+
+	/**
+	 * (integer) Maximum number of values, for users with the apihighimits right.
+	 * Must be used with PARAM_ISMULTI.
+	 * @since 1.30
+	 */
+	const PARAM_ISMULTI_LIMIT2 = 22;
+
 	/**@}*/
 
 	const ALL_DEFAULT_STRING = '*';
@@ -1024,6 +1037,12 @@ abstract class ApiBase extends ContextSource {
 		$multi = isset( $paramSettings[self::PARAM_ISMULTI] )
 			? $paramSettings[self::PARAM_ISMULTI]
 			: false;
+		$multiLimit1 = isset( $paramSettings[self::PARAM_ISMULTI_LIMIT1] )
+			? $paramSettings[self::PARAM_ISMULTI_LIMIT1]
+			: null;
+		$multiLimit2 = isset( $paramSettings[self::PARAM_ISMULTI_LIMIT2] )
+			? $paramSettings[self::PARAM_ISMULTI_LIMIT2]
+			: null;
 		$type = isset( $paramSettings[self::PARAM_TYPE] )
 			? $paramSettings[self::PARAM_TYPE]
 			: null;
@@ -1148,7 +1167,9 @@ abstract class ApiBase extends ContextSource {
 				$value,
 				$multi,
 				is_array( $type ) ? $type : null,
-				$allowAll ? $allSpecifier : null
+				$allowAll ? $allSpecifier : null,
+				$multiLimit1,
+				$multiLimit2
 			);
 		}
 
@@ -1350,21 +1371,25 @@ abstract class ApiBase extends ContextSource {
 	 *  null, all values are accepted.
 	 * @param string|null $allSpecifier String to use to specify all allowed values, or null
 	 *  if this behavior should not be allowed
+	 * @param int|null $limit1 Maximum number of values, for normal users.
+	 * @param int|null $limit2 Maximum number of values, for users with the apihighlimits right.
 	 * @return string|string[] (allowMultiple ? an_array_of_values : a_single_value)
 	 */
 	protected function parseMultiValue( $valueName, $value, $allowMultiple, $allowedValues,
-		$allSpecifier = null
+		$allSpecifier = null, $limit1 = null, $limit2 = null
 	) {
 		if ( ( trim( $value ) === '' || trim( $value ) === "\x1f" ) && $allowMultiple ) {
 			return [];
 		}
+		$limit1 = $limit1 ?: self::LIMIT_SML1;
+		$limit2 = $limit2 ?: self::LIMIT_SML2;
 
 		// This is a bit awkward, but we want to avoid calling canApiHighLimits()
 		// because it unstubs $wgUser
-		$valuesList = $this->explodeMultiValue( $value, self::LIMIT_SML2 + 1 );
-		$sizeLimit = count( $valuesList ) > self::LIMIT_SML1 && $this->mMainModule->canApiHighLimits()
-			? self::LIMIT_SML2
-			: self::LIMIT_SML1;
+		$valuesList = $this->explodeMultiValue( $value, $limit2 + 1 );
+		$sizeLimit = count( $valuesList ) > $limit1 && $this->mMainModule->canApiHighLimits()
+			? $limit2
+			: $limit1;
 
 		if ( $allowMultiple && is_array( $allowedValues ) && $allSpecifier &&
 			count( $valuesList ) === 1 && $valuesList[0] === $allSpecifier

@@ -15,5 +15,6 @@
 	"ooui-dialog-process-dismiss": "Lat att",
 	"ooui-dialog-process-continue": "Hald fram",
 	"ooui-selectfile-button-select": "Vel ei fil",
-	"ooui-selectfile-placeholder": "Inga fil er vald"
+	"ooui-selectfile-placeholder": "Inga fil er vald",
+	"ooui-selectfile-dragdrop-placeholder": "Slepp fil her"
 }

@@ -1188,6 +1188,7 @@
 	"log": "لاگس",
 	"logeventslist-submit": "ڏيکاريو",
 	"all-logs-page": "سڀ عوامي لاگس",
+	"checkbox-all": "سڀ",
 	"checkbox-none": "ڪو بہ نہ",
 	"checkbox-invert": "ابتيو",
 	"allpages": "سڀ صفحا",
@@ -1536,6 +1537,7 @@
 	"show-big-image-preview": "هن پيش نگاھ جي ماپ: $1",
 	"show-big-image-other": "ٻيا {{PLURAL:$2|تحلل}}:$1",
 	"show-big-image-size": "$1*$2 پڪزلس",
+	"file-info-gif-frames": "$1 {{PLURAL:$1|فريم|فريمَ}}",
 	"newimages": "نون فائيلن جي گيلري",
 	"noimages": "ڏسڻ لاءِ ڪجھہ ناهي.",
 	"ilsubmit": "ڳوليو",
@@ -1789,8 +1791,10 @@
 	"special-characters-group-ipa": "بول",
 	"special-characters-group-symbols": "نشانيون",
 	"special-characters-group-greek": "يوناني",
+	"special-characters-group-greekextended": "يوناني توسيعي",
 	"special-characters-group-cyrillic": "رُوسي",
 	"special-characters-group-arabic": "عربي",
+	"special-characters-group-arabicextended": "عربي توسيعي",
 	"special-characters-group-hebrew": "ابراني",
 	"special-characters-group-bangla": "بنگالي",
 	"special-characters-group-tamil": "تامل",
@@ -1799,7 +1803,9 @@
 	"special-characters-group-gujarati": "گجراتي",
 	"special-characters-group-devanagari": "ديوناگري",
 	"special-characters-group-thai": "ٿائي",
+	"special-characters-group-lao": "لائو",
 	"mw-widgets-dateinput-no-date": "ڪا بہ تاريخ نہ چونڊيل",
 	"mw-widgets-titleinput-description-new-page": "اڃا اهو صفحو وجود نہ ٿو رکي",
-	"mw-widgets-titleinput-description-redirect": "$1 ڏانهن چوريل"
+	"mw-widgets-titleinput-description-redirect": "$1 ڏانهن چوريل",
+	"log-action-filter-all": "سڀ"
 }

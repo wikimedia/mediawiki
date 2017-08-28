@@ -67,8 +67,6 @@ define( 'IP_ADDRESS_STRING',
  * and IP blocks.
  */
 class IP {
-	/** @var IPSet */
-	private static $proxyIpSet = null;
 
 	/**
 	 * Determine if a string is as valid IP address or network (CIDR prefix).

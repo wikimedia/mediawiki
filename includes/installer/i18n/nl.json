@@ -20,7 +20,8 @@
 			"Hex",
 			"Mainframe98",
 			"Rcdeboer",
-			"Festina90"
+			"Festina90",
+			"MarcoSwart"
 		]
 	},
 	"config-desc": "Het installatieprogramma voor MediaWiki",
@@ -96,7 +97,7 @@
 	"config-no-cli-uploads-check": "''Waarschuwing:'' uw standaardmap voor uploads (<code>$1</code>) wordt niet gecontroleerd op kwetsbaarheden voor het uitvoeren van willekeurige scripts gedurende de CLI-installatie.",
 	"config-brokenlibxml": "Uw systeem heeft een combinatie van PHP- en libxml2-versies geïnstalleerd die is foutgevoelig is en kan leiden tot onzichtbare beschadiging van gegevens in MediaWiki en andere webapplicaties.\nUpgrade naar libxml2 2.7.3 of hoger([https://bugs.php.net/bug.php?id=45996 bij PHP gerapporteerde fout]).\nDe installatie wordt afgebroken.",
 	"config-suhosin-max-value-length": "Suhosin is geïnstalleerd en beperkt de GET-parameter <code>length</code> tot $1 bytes.\nDe ResourceLoader van MediaWiki omzeilt deze beperking, maar dat is slecht voor de prestaties.\nAls het mogelijk is, moet u de waarde \"<code>suhosin.get.max_value_length</code>\" in <code>php.ini</code> instellen op 1024 of hoger en <code>$wgResourceLoaderMaxQueryLength</code> in LocalSettings.php op dezelfde waarde instellen.",
-	"config-using-32bit": "<strong>Opgepast:</strong> uw systeem blijkt met 32-bit integers te werken. Dit is [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit niet geadviseerd].",
+	"config-using-32bit": "<strong>Pas op:</strong> uw systeem lijkt met 32-bit integers te werken. Dit is [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit anders dan aangeraden].",
 	"config-db-type": "Databasetype:",
 	"config-db-host": "Databasehost:",
 	"config-db-host-help": "Als uw databaseserver een andere server is, voer dan de hostnaam of het IP-adres hier in.\n\nAls u gebruik maakt van gedeelde webhosting, hoort uw provider u de juiste hostnaam te hebben verstrekt.\n\nAls u MediaWiki op een Windowsserver installeert en MySQL gebruikt, dan werkt \"localhost\" mogelijk niet als servernaam.\nAls het inderdaad niet werkt, probeer dan \"127.0.0.1\" te gebruiken als lokaal IP-adres.\n\nAls u PostgreSQL gebruikt, laat dit veld dan leeg om via een Unix-socket te verbinden.",
@@ -330,6 +331,8 @@
 	"config-help-tooltip": "klik om uit te vouwen",
 	"config-nofile": "Het bestand \"$1\" is niet gevonden. Is het verwijderd?",
 	"config-extension-link": "Weet u dat u [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions uitbreidingen] kunt gebruiken voor uw wiki?\n\nU kunt [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category uitbreidingen op categorie] bekijken of ga naar de [https://www.mediawiki.org/wiki/Extension_Matrix uitbreidingenmatrix] om de volledige lijst met uitbreidingen te bekijken.",
+	"config-skins-screenshots": "$1 (schermafbeeldingen: $2)",
+	"config-screenshot": "schermafbeelding",
 	"mainpagetext": "<strong>De installatie van MediaWiki is geslaagd.</strong>",
 	"mainpagedocfooter": "Raadpleeg de [https://meta.wikimedia.org/wiki/Special:MyLanguage/Help:Contents handleiding] voor informatie over het gebruik van de wikisoftware.\n\n== Meer hulp over MediaWiki ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lijst met instellingen]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Veelgestelde vragen (FAQ)]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglijst voor aankondigingen van nieuwe versies]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Maak MediaWiki beschikbaar in uw taal]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Leer hoe u spam kunt voorkomen op uw wiki]"
 }

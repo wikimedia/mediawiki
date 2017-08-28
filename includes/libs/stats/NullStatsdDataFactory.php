@@ -76,7 +76,7 @@ class NullStatsdDataFactory implements IBufferingStatsdDataFactory {
 	 * This function creates a 'updateCount' StatsdData object.
 	 *
 	 * @param string|array $key The metric(s) to decrement.
-	 * @param integer $delta The delta to add to the each metric
+	 * @param int $delta The delta to add to the each metric
 	 *
 	 * @return mixed
 	 */
@@ -108,7 +108,7 @@ class NullStatsdDataFactory implements IBufferingStatsdDataFactory {
 
 	/**
 	 * Check whether this data factory has any data.
-	 * @return boolean
+	 * @return bool
 	 */
 	public function hasData() {
 		return false;

@@ -50,13 +50,13 @@ class MultiHttpClient implements LoggerAwareInterface {
 	protected $multiHandle = null; // curl_multi handle
 	/** @var string|null SSL certificates path  */
 	protected $caBundlePath;
-	/** @var integer */
+	/** @var int */
 	protected $connTimeout = 10;
-	/** @var integer */
+	/** @var int */
 	protected $reqTimeout = 300;
 	/** @var bool */
 	protected $usePipelining = false;
-	/** @var integer */
+	/** @var int */
 	protected $maxConnsPerHost = 50;
 	/** @var string|null proxy */
 	protected $proxy;

@@ -8,11 +8,15 @@
 	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersModel Filters view model
 	 * @param {mw.rcfilters.dm.ChangesListViewModel} changesListModel Changes list view model
 	 * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
+	 * @param {Object} config Additional configuration
+	 * @cfg {string} savedQueriesPreferenceName Where to save the saved queries
 	 */
-	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel, savedQueriesModel ) {
+	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel, savedQueriesModel, config ) {
 		this.filtersModel = filtersModel;
 		this.changesListModel = changesListModel;
 		this.savedQueriesModel = savedQueriesModel;
+		this.savedQueriesPreferenceName = config.savedQueriesPreferenceName;
+
 		this.requestCounter = {};
 		this.baseFilterState = {};
 		this.uriProcessor = null;
@@ -208,21 +212,23 @@
 			this.filtersModel
 		);
 
-		try {
-			parsedSavedQueries = JSON.parse( mw.user.options.get( 'rcfilters-saved-queries' ) || '{}' );
-		} catch ( err ) {
-			parsedSavedQueries = {};
-		}
+		if ( !mw.user.isAnon() ) {
+			try {
+				parsedSavedQueries = JSON.parse( mw.user.options.get( this.savedQueriesPreferenceName ) || '{}' );
+			} catch ( err ) {
+				parsedSavedQueries = {};
+			}
 
-		// The queries are saved in a minimized state, so we need
-		// to send over the base state so the saved queries model
-		// can normalize them per each query item
-		this.savedQueriesModel.initialize(
-			parsedSavedQueries,
-			this._getBaseFilterState(),
-			// This is for backwards compatibility - delete all excluded filter states
-			Object.keys( this.filtersModel.getExcludedFiltersState() )
-		);
+			// The queries are saved in a minimized state, so we need
+			// to send over the base state so the saved queries model
+			// can normalize them per each query item
+			this.savedQueriesModel.initialize(
+				parsedSavedQueries,
+				this._getBaseFilterState(),
+				// This is for backwards compatibility - delete all excluded filter states
+				Object.keys( this.filtersModel.getExcludedFiltersState() )
+			);
+		}
 
 		// Check whether we need to load defaults.
 		// We do this by checking whether the current URI query
@@ -234,7 +240,7 @@
 		// or on request
 		this.initializing = true;
 		if (
-			this.savedQueriesModel.getDefault() &&
+			!mw.user.isAnon() && this.savedQueriesModel.getDefault() &&
 			!this.uriProcessor.doesQueryContainRecognizedParams( uri.query )
 		) {
 			// We have defaults from a saved query.
@@ -254,7 +260,7 @@
 			// so it gets processed
 			this.changesListModel.update(
 				$changesList.length ? $changesList : 'NO_RESULTS',
-				$( 'fieldset.rcoptions' ).first(),
+				$( 'fieldset.cloptions' ).first(),
 				true // We're using existing DOM elements
 			);
 		}
@@ -454,11 +460,9 @@
 		this.filtersModel.toggleInvertedNamespaces();
 
 		if (
-			this.filtersModel.getFiltersByView( 'namespaces' )
-				.filter( function ( filterItem ) {
-					return filterItem.isSelected();
-				} )
-				.length
+			this.filtersModel.getFiltersByView( 'namespaces' ).filter(
+				function ( filterItem ) { return filterItem.isSelected(); }
+			).length
 		) {
 			// Only re-fetch results if there are namespace items that are actually selected
 			this.updateChangesList();
@@ -546,7 +550,7 @@
 			!this.filtersModel.hasConflict() &&
 			!this.changesListModel.getNewChangesExist() &&
 			!this.updatingChangesList &&
-			mw.rcfilters.featureFlags.liveUpdate;
+			this.changesListModel.getNextFrom();
 	};
 
 	/**
@@ -868,9 +872,9 @@
 		}
 
 		// Save the preference
-		new mw.Api().saveOption( 'rcfilters-saved-queries', stringified );
+		new mw.Api().saveOption( this.savedQueriesPreferenceName, stringified );
 		// Update the preference for this session
-		mw.user.options.set( 'rcfilters-saved-queries', stringified );
+		mw.user.options.set( this.savedQueriesPreferenceName, stringified );
 	};
 
 	/**
@@ -992,7 +996,7 @@
 	 * Update the list of changes and notify the model
 	 *
 	 * @param {Object} [params] Extra parameters to add to the API call
-	 * @param {string} [updateMode='filterChange'] One of 'filterChange', 'liveUpdate', 'showNewChanges'
+	 * @param {string} [updateMode='filterChange'] One of 'filterChange', 'liveUpdate', 'showNewChanges', 'markSeen'
 	 * @return {jQuery.Promise} Promise that is resolved when the update is complete
 	 */
 	mw.rcfilters.Controller.prototype.updateChangesList = function ( params, updateMode ) {
@@ -1037,7 +1041,7 @@
 		var data, queryHighlights,
 			savedParams = {},
 			savedHighlights = {},
-			defaultSavedQueryItem = this.savedQueriesModel.getItemByID( this.savedQueriesModel.getDefault() );
+			defaultSavedQueryItem = !mw.user.isAnon() && this.savedQueriesModel.getItemByID( this.savedQueriesModel.getDefault() );
 
 		if ( defaultSavedQueryItem ) {
 			data = defaultSavedQueryItem.getData();
@@ -1150,23 +1154,31 @@
 
 		return $.ajax( uri.toString(), { contentType: 'html' } )
 			.then(
-				// Success
 				function ( html ) {
-					var $parsed;
+					var $parsed,
+						pieces;
+
 					if ( !latestRequest() ) {
 						return $.Deferred().reject();
 					}
 
 					$parsed = $( $.parseHTML( html ) );
 
-					return {
+					pieces = {
 						// Changes list
 						changes: $parsed.find( '.mw-changeslist' ).first().contents(),
 						// Fieldset
-						fieldset: $parsed.find( 'fieldset.rcoptions' ).first()
+						fieldset: $parsed.find( 'fieldset.cloptions' ).first()
 					};
+
+					// Watchlist returns 200 when there is no results
+					if ( pieces.changes.length === 0 ) {
+						pieces.changes = 'NO_RESULTS';
+					}
+
+					return pieces;
 				},
-				// Failure
+				// RC returns 404 when there is no results
 				function ( responseObj ) {
 					var $parsed;
 
@@ -1179,7 +1191,7 @@
 					// Force a resolve state to this promise
 					return $.Deferred().resolve( {
 						changes: 'NO_RESULTS',
-						fieldset: $parsed.find( 'fieldset.rcoptions' ).first()
+						fieldset: $parsed.find( 'fieldset.cloptions' ).first()
 					} ).promise();
 				}
 			);
@@ -1250,5 +1262,19 @@
 			// Cache the filter names
 			this.prevLoggedItems = filters;
 		}
+	};
+
+	/**
+	 * Mark all changes as seen on Watchlist
+	 */
+	mw.rcfilters.Controller.prototype.markAllChangesAsSeen = function () {
+		var api = new mw.Api();
+		api.postWithToken( 'csrf', {
+			formatversion: 2,
+			action: 'setnotificationtimestamp',
+			entirewatchlist: true
+		} ).then( function () {
+			this.updateChangesList( null, 'markSeen' );
+		}.bind( this ) );
 	};
 }( mediaWiki, jQuery ) );

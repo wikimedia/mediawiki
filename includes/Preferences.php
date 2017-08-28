@@ -96,6 +96,7 @@ class Preferences {
 		self::watchlistPreferences( $user, $context, $defaultPreferences );
 		self::searchPreferences( $user, $context, $defaultPreferences );
 		self::miscPreferences( $user, $context, $defaultPreferences );
+		self::prohibitPreferences( $user, $context, $defaultPreferences );
 
 		Hooks::run( 'GetPreferences', [ $user, &$defaultPreferences ] );
 
@@ -832,10 +833,10 @@ class Preferences {
 				'section' => 'editing/editor',
 				'label-message' => 'editfont-style',
 				'options' => [
-					$context->msg( 'editfont-default' )->text() => 'default',
 					$context->msg( 'editfont-monospace' )->text() => 'monospace',
 					$context->msg( 'editfont-sansserif' )->text() => 'sans-serif',
 					$context->msg( 'editfont-serif' )->text() => 'serif',
+					$context->msg( 'editfont-default' )->text() => 'default',
 				]
 			];
 		}
@@ -918,6 +919,9 @@ class Preferences {
 			'section' => 'rc/advancedrc',
 		];
 		$defaultPreferences['rcfilters-saved-queries'] = [
+			'type' => 'api',
+		];
+		$defaultPreferences['rcfilters-wl-saved-queries'] = [
 			'type' => 'api',
 		];
 		$defaultPreferences['rcfilters-rclimit'] = [
@@ -1132,6 +1136,26 @@ class Preferences {
 	 * @param array &$defaultPreferences
 	 */
 	static function miscPreferences( $user, IContextSource $context, &$defaultPreferences ) {
+	}
+
+	/**
+	 * @param User $user
+	 * @param IContextSource $context
+	 * @param array &$defaultPreferences
+	 * @return void
+	 */
+	static function prohibitPreferences( $user, IContextSource $context, &$defaultPreferences ) {
+		$lookup = CentralIdLookup::factory();
+		$ids = $user->getOption( 'email-blacklist', [] );
+		$names = $ids ? $lookup->lookupCentralIds( array_flip( $ids ), $user ) : [];
+		$names = array_values( $names );
+
+		$defaultPreferences['email-blacklist'] = [
+			'type' => 'usersmultiselect',
+			'label-message' => 'email-blacklist-label',
+			'section' => 'prohibit/email',
+			'default' => implode( "\n", $names ),
+		];
 	}
 
 	/**
@@ -1682,7 +1706,7 @@ class PreferencesForm extends HTMLForm {
 		$html = parent::getButtons();
 
 		if ( $this->getModifiedUser()->isAllowed( 'editmyoptions' ) ) {
-			$t = SpecialPage::getTitleFor( 'Preferences', 'reset' );
+			$t = $this->getTitle()->getSubpage( 'reset' );
 
 			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 			$html .= "\n" . $linkRenderer->makeLink( $t, $this->msg( 'restoreprefs' )->text(),

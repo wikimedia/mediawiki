@@ -24,7 +24,7 @@ class SelectWithInputWidget extends \OOUI\Widget {
 	 * @param array $config Configuration options
 	 * @param array $config['textinput'] Configuration for the TextInputWidget
 	 * @param array $config['dropdowninput'] Configuration for the DropdownInputWidget
-	 * @param boolean $config['or'] Configuration for whether the widget is dropdown AND input
+	 * @param bool $config['or'] Configuration for whether the widget is dropdown AND input
 	 *                              or dropdown OR input
 	 */
 	public function __construct( array $config = [] ) {

@@ -101,7 +101,7 @@ class BufferingStatsdDataFactory extends StatsdDataFactory implements IBuffering
 
 	/**
 	 * Check whether this data factory has any data.
-	 * @return boolean
+	 * @return bool
 	 */
 	public function hasData() {
 		return !empty( $this->buffer );

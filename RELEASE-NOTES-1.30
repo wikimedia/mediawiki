@@ -33,6 +33,12 @@ section).
   use $wgFragmentMode to migrate off it to a modern alternative.
 * $wgExternalInterwikiFragmentMode was introduced to control how fragments in
   sinterwikis going outside of current wiki farm are encoded.
+* (T120333) Soft-deprecated the use of PHP extension 'mysql' in favor of 'mysqli'.
+  This PHP extension was deprecated in PHP 5.5 and removed in PHP 7.0. MediaWiki
+  auto-selects the 'mysqli' driver since MediaWiki 1.22, except if explicitly
+  requested through the configuration parameter $wgDBservers.
+* $wgOOUIEditPage was removed, as it is now the default. This was documented as a
+  temporary variable during the migration period.
 
 === New features in 1.30 ===
 * (T37247) Output from Parser::parse() will now be wrapped in a div with
@@ -55,11 +61,6 @@ section).
   just been unwatched.
 * Added $wgParserTestMediaHandlers, where mock media handlers can be passed to
   MediaHandlerFactory for parser tests.
-
-=== Languages updated in 1.30 ===
-
-* Support for kbp (Kabɩyɛ / Kabiyè) was added.
-* Support for skr (Saraiki, سرائیکی) was added.
 
 === External library changes in 1.30 ===
 
@@ -105,7 +106,9 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Phabricator reports.
 
-* …
+* Added: kbp (Kabɩyɛ / Kabiyè)
+* Added: skr (Saraiki, سرائیکی)
+* Added: tay (Tayal / Atayal)
 
 ==== Pig Latin added ====
 * (T45547) Added Pig Latin, a made-up English variant (en-x-piglatin),
@@ -168,6 +171,22 @@ changes to languages because of Phabricator reports.
 * WikiImporter now requires the second parameter to be an instance of the Config,
   class. Prior to that, the Config parameter was optional (a behavior deprecated in
   1.25).
+* Removed 'jquery.mwExtension' module. (deprecated since 1.26)
+* mediawiki.ui: Deprecate greys, which are not part of WikimediaUI color palette
+  any more.
+* CdbReader, CdbWriter, CdbException classes (deprecated in 1.25) were removed.
+  The namespaced classes in the Cdb namespace should be used instead.
+* IPSet class (deprecated in 1.26) was removed. The namespaced IPSet\IPSet
+  should be used instead.
+* RunningStat class (deprecated in 1.27) was removed. The namespaced
+  RunningStat\RunningStat should be used instead.
+* MWMemcached and MemCachedClientforWiki classes (deprecated in 1.27) were removed.
+  The MemcachedClient class should be used instead.
+* EditPage::isOouiEnabled() is deprecated and will always return true.
+* Parser::getRandomString() (deprecated in 1.26) was removed.
+* Parser::uniqPrefix() (deprecated in 1.26) was removed.
+* Parser::extractTagsAndParams() now only accepts three arguments.  The fourth,
+  $uniq_prefix was deprecated in 1.26 and has now been removed.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for

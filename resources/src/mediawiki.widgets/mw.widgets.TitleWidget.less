@@ -4,21 +4,20 @@
  * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
+@import 'mediawiki.mixins';
 
 .mw-widget-titleWidget-menu {
 	.mw-widget-titleOptionWidget {
 		line-height: normal;
 
 		&-description {
-			color: #888;
+			color: #72777d;
 		}
 	}
 
 	&-withImages {
 		.mw-widget-titleOptionWidget {
-			-webkit-box-sizing: border-box;
-			-moz-box-sizing: border-box;
-			box-sizing: border-box;
+			.box-sizing( border-box );
 			min-height: 3.75em;
 			padding-left: 4.75em;
 
@@ -37,7 +36,7 @@
 					height: 3.75em;
 					left: 0;
 					&:not( .mw-widget-titleOptionWidget-hasImage ) {
-						background-color: #ccc;
+						background-color: #c8ccd1;
 						opacity: 0.4;
 					}
 					&.mw-widget-titleOptionWidget-hasImage {

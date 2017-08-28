@@ -1513,7 +1513,7 @@ class Block {
 	 *
 	 * @param string $cookieValue The string in which to find the ID.
 	 *
-	 * @return integer|null The block ID, or null if the HMAC is present and invalid.
+	 * @return int|null The block ID, or null if the HMAC is present and invalid.
 	 */
 	public static function getIdFromCookieValue( $cookieValue ) {
 		// Extract the ID prefix from the cookie value (may be the whole value, if no bang found).
