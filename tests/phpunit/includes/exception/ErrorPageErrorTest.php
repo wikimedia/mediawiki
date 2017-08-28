@@ -43,6 +43,7 @@ class ErrorPageErrorTest extends MediaWikiTestCase {
 		$mock->expects( $this->once() )
 			->method( 'output' );
 		$this->setMwGlobals( 'wgOut', $mock );
+		$this->setMwGlobals( 'wgCommandLineMode', false );
 
 		$e = new ErrorPageError( $title, $mockMessage, $params );
 		$e->report();
