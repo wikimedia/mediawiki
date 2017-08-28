@@ -184,6 +184,7 @@ changes to languages because of Phabricator reports.
   The MemcachedClient class should be used instead.
 * EditPage::isOouiEnabled() is deprecated and will always return true.
 * EditPage::getSummaryInput() is deprecated in favor of getSummaryInputOOUI().
+* EditPage::getCheckboxes() is deprecated in favor of getCheckboxesOOUI().
 * Parser::getRandomString() (deprecated in 1.26) was removed.
 * Parser::uniqPrefix() (deprecated in 1.26) was removed.
 * Parser::extractTagsAndParams() now only accepts three arguments.  The fourth,

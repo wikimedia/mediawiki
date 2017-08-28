@@ -4162,6 +4162,7 @@ class EditPage {
 	 * Returns an array of html code of the following checkboxes old style:
 	 * minor and watch
 	 *
+	 * @deprecated since 1.30 Use getCheckboxesOOUI() or getCheckboxesDefinition() instead
 	 * @param int &$tabindex Current tabindex
 	 * @param array $checked See getCheckboxesDefinition()
 	 * @return array
@@ -4217,20 +4218,18 @@ class EditPage {
 	}
 
 	/**
-	 * Returns an array of html code of the following checkboxes:
-	 * minor and watch
+	 * Returns an array of checkboxes for the edit form, including 'minor' and 'watch' checkboxes and
+	 * any other added by extensions.
 	 *
 	 * @param int &$tabindex Current tabindex
 	 * @param array $checked Array of checkbox => bool, where bool indicates the checked
 	 *                 status of the checkbox
 	 *
-	 * @return array
+	 * @return array Associative array of string keys to OOUI\FieldLayout instances
 	 */
 	public function getCheckboxesOOUI( &$tabindex, $checked ) {
 		$checkboxes = [];
 		$checkboxesDef = $this->getCheckboxesDefinition( $checked );
-
-		$origTabindex = $tabindex;
 
 		foreach ( $checkboxesDef as $name => $options ) {
 			$legacyName = isset( $options['legacy-name'] ) ? $options['legacy-name'] : $name;
@@ -4270,7 +4269,19 @@ class EditPage {
 		// Backwards-compatibility hack to run the EditPageBeforeEditChecks hook. It's important,
 		// people have used it for the weirdest things completely unrelated to checkboxes...
 		// And if we're gonna run it, might as well allow its legacy checkboxes to be shown.
-		$legacyCheckboxes = $this->getCheckboxes( $origTabindex, $checked );
+		$legacyCheckboxes = [];
+		if ( !$this->isNew ) {
+			$legacyCheckboxes['minor'] = '';
+		}
+		$legacyCheckboxes['watch'] = '';
+		// Copy new-style checkboxes into an old-style structure
+		foreach ( $checkboxes as $name => $oouiLayout ) {
+			$legacyCheckboxes[$name] = (string)$oouiLayout;
+		}
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$ep = $this;
+		Hooks::run( 'EditPageBeforeEditChecks', [ &$ep, &$legacyCheckboxes, &$tabindex ], '1.29' );
+		// Copy back any additional old-style checkboxes into the new-style structure
 		foreach ( $legacyCheckboxes as $name => $html ) {
 			if ( $html && !isset( $checkboxes[$name] ) ) {
 				$checkboxes[$name] = new OOUI\Widget( [ 'content' => new OOUI\HtmlSnippet( $html ) ] );
