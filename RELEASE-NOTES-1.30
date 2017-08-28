@@ -66,6 +66,14 @@ section).
 ** This is currently gated by $wgCommentTableSchemaMigrationStage. Most wikis
    can set this to MIGRATION_NEW and run maintenance/migrateComments.php as
    soon as any necessary extensions are updated.
+* (T174313) Added checkbox on Special:ListUsers to display only users in temporary
+  user groups.
+
+=== Languages updated in 1.30 ===
+
+* Support for kbp (Kabɩyɛ / Kabiyè) was added.
+* Support for skr (Saraiki, سرائیکی) was added.
+>>>>>>> Add checkbox in Special:ListUsers to display only users in temporary user groups
 
 === External library changes in 1.30 ===
 
