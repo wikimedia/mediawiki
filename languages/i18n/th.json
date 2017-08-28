@@ -939,7 +939,7 @@
 	"search-showingresults": "{{PLURAL:$4|ผลลัพธ์ <strong>$1</strong> จากทั้งหมด <strong>$3</strong>|ผลลัพธ์ <strong>$1 - $2</strong> จากทั้งหมด <strong>$3</strong>}}",
 	"search-nonefound": "ไม่มีผลลัพธ์ตรงกับคำค้น",
 	"search-nonefound-thiswiki": "ไม่พบผลลัพธ์ตรงกับคำค้นในเว็บไซต์นี้",
-	"powersearch-legend": "ค้นหาขั้นสูง",
+	"powersearch-legend": "การค้นหาขั้นสูง",
 	"powersearch-ns": "ค้นหาในเนมสเปซ:",
 	"powersearch-togglelabel": "เลือก:",
 	"powersearch-toggleall": "ทั้งหมด",
