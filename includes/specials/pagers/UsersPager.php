@@ -70,6 +70,7 @@ class UsersPager extends AlphabeticPager {
 			$this->requestedGroup = '';
 		}
 		$this->editsOnly = $request->getBool( 'editsOnly' );
+		$this->temporaryGroupsOnly = $request->getBool( 'temporaryGroupsOnly' );
 		$this->creationSort = $request->getBool( 'creationSort' );
 		$this->including = $including;
 		$this->mDefaultDirection = $request->getBool( 'desc' )
@@ -110,9 +111,13 @@ class UsersPager extends AlphabeticPager {
 
 		$options = [];
 
+		if ( $this->requestedGroup != '' || $this->temporaryGroupsOnly ) {
+			$conds[] = 'ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() ) .
+			( !$this->temporaryGroupsOnly ? ' OR ug_expiry IS NULL' : '' );
+		}
+
 		if ( $this->requestedGroup != '' ) {
 			$conds['ug_group'] = $this->requestedGroup;
-			$conds[] = 'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() );
 		}
 
 		if ( $this->requestedUser != '' ) {
@@ -295,6 +300,13 @@ class UsersPager extends AlphabeticPager {
 				'name' => 'editsOnly',
 				'id' => 'editsOnly',
 				'default' => $this->editsOnly
+			],
+			'temporaryGroupsOnly' => [
+				'type' => 'check',
+				'label' => $this->msg( 'listusers-temporarygroupsonly' )->text(),
+				'name' => 'temporaryGroupsOnly',
+				'id' => 'temporaryGroupsOnly',
+				'default' => $this->temporaryGroupsOnly
 			],
 			'creationSort' => [
 				'type' => 'check',
