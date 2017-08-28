@@ -1469,6 +1469,8 @@
 	"rcfilters-liveupdates-button-title-on": "Turn off live updates",
 	"rcfilters-liveupdates-button-title-off": "Display new changes as they happen",
 	"rcfilters-watchlist-markSeen-button": "Mark all changes as seen",
+	"rcfilters-watchlist-editWatchlist-button": "Edit your list of watched pages",
+	"rcfilters-watchlist-details": "{{PLURAL:$1|$1 page|$1 pages}} on your watchlist (plus talk pages). Changes to pages you haven't visited since the changes occurred are in <strong>bold</strong>, with solid markers <span class=\"rcfilters-unseenSolidMarker\" />.",
 	"rcnotefrom": "Below {{PLURAL:$5|is the change|are the changes}} since <strong>$3, $4</strong> (up to <strong>$1</strong> shown).",
 	"rclistfromreset": "Reset date selection",
 	"rclistfrom": "Show new changes starting from $2, $3",
