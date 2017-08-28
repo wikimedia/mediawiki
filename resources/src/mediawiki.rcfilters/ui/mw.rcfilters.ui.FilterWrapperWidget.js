@@ -17,7 +17,7 @@
 	mw.rcfilters.ui.FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget(
 		controller, model, savedQueriesModel, changesListModel, config
 	) {
-		var $top, $bottom;
+		var $bottom;
 		config = config || {};
 
 		// Parent
@@ -59,17 +59,8 @@
 		);
 
 		// Initialize
-		this.$topRow = $( '<div>' )
-			.addClass( 'mw-rcfilters-ui-row' )
-			.append(
-				$( '<div>' )
-					.addClass( 'mw-rcfilters-ui-cell' )
-					.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top-placeholder' )
-			);
-		$top = $( '<div>' )
-			.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top' )
-			.addClass( 'mw-rcfilters-ui-table' )
-			.append( this.$topRow );
+		this.$top = $( '<div>' )
+			.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top' );
 
 		$bottom = $( '<div>' )
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget-bottom' )
@@ -78,21 +69,6 @@
 				this.dateWidget.$element
 			);
 
-		if ( !mw.user.isAnon() ) {
-			this.savedLinksListWidget = new mw.rcfilters.ui.SavedLinksListWidget(
-				this.controller,
-				this.queriesModel,
-				{ $overlay: this.$overlay }
-			);
-
-			this.$topRow.append(
-				$( '<div>' )
-					.addClass( 'mw-rcfilters-ui-cell' )
-					.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top-savedLinks' )
-					.append( this.savedLinksListWidget.$element )
-			);
-		}
-
 		if ( mw.rcfilters.featureFlags.liveUpdate ) {
 			$bottom.append( this.liveUpdateButton.$element );
 		}
@@ -100,7 +76,7 @@
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget' )
 			.append(
-				$top,
+				this.$top,
 				this.filterTagWidget.$element,
 				$bottom
 			);
@@ -114,15 +90,11 @@
 	/* Methods */
 
 	/**
-	 * Add a widget at the beginning of the top row
+	 * Set the content of the top section
 	 *
-	 * @param {OO.ui.Widget} widget Any widget
+	 * @param {jQuery} $topSectionElement
 	 */
-	mw.rcfilters.ui.FilterWrapperWidget.prototype.prependToTopRow = function ( widget ) {
-		this.$topRow.prepend(
-			widget.$element
-				.addClass( 'mw-rcfilters-ui-cell' )
-		);
+	mw.rcfilters.ui.FilterWrapperWidget.prototype.setTopSection = function ( $topSectionElement ) {
+		this.$top.append( $topSectionElement );
 	};
-
 }( mediaWiki ) );
