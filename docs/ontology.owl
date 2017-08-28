@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE rdf:RDF [
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+  <!ENTITY owl "http://www.w3.org/2002/07/owl#">
+  <!ENTITY mediawiki "https://www.mediawiki.org/ontology#">
+]>
+
+<rdf:RDF
+  xmlns:xsd="&xsd;"
+  xmlns:rdf="&rdf;"
+  xmlns:rdfs="&rdfs;"
+  xmlns:owl="&owl;"
+>
+
+  <owl:Ontology rdf:about="&mediawiki;">
+    <rdfs:label>MediaWiki ontology</rdfs:label>
+    <rdfs:comment>The ontology of MediaWiki</rdfs:comment>
+  </owl:Ontology>
+
+  <!--
+  ///////////////////////////////////////////////////////////////////////////////////////
+  //
+  // Classes
+  //
+  ///////////////////////////////////////////////////////////////////////////////////////
+  -->
+
+  <owl:Class rdf:about="&mediawiki;Dump">
+    <rdfs:label>Dump</rdfs:label>
+    <rdfs:comment>A dump of MediaWiki content.</rdfs:comment>
+  </owl:Class>
+
+  <owl:Class rdf:about="&mediawiki;Category">
+    <rdfs:label>Category</rdfs:label>
+    <rdfs:comment>MediaWiki category.</rdfs:comment>
+  </owl:Class>
+
+  <!--
+  ///////////////////////////////////////////////////////////////////////////////////////
+  //
+  // Properties
+  //
+  ///////////////////////////////////////////////////////////////////////////////////////
+  -->
+
+  <owl:ObjectProperty rdf:about="&mediawiki;isInCategory">
+      <rdfs:label>isInCategory</rdfs:label>
+      <rdfs:comment>One category is the parent of another.</rdfs:comment>
+      <rdfs:range rdf:resource="&mediawiki;Category"/>
+      <rdfs:domain rdf:resource="&mediawiki;Category"/>
+  </owl:ObjectProperty>
+
+</rdf:RDF>
