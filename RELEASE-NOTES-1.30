@@ -73,6 +73,7 @@ section).
 * (T138166) Added ability for users to prohibit other users from sending them
   emails with Special:Emailuser. Can be enabled by setting
   $wgEnableUserEmailBlacklist to true.
+* $wgBrowserBlacklist is deprecated, and changing it will have no effect.
 
 === External library changes in 1.30 ===
 
@@ -221,6 +222,7 @@ changes to languages because of Phabricator reports.
 * wfShellExec() and related functions are deprecated, use Shell::command().
 * (T138166) SpecialEmailUser::getTarget() now requires a second argument, the sending
   user object. Using the method without the second argument is deprecated.
+* (T67297) Browsers that don't support Unicode will have their edits rejected.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
