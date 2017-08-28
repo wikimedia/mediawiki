@@ -193,8 +193,7 @@ class MagicWordArray {
 	 * @return array
 	 */
 	public function parseMatch( $m ) {
-		reset( $m );
-		while ( list( $key, $value ) = each( $m ) ) {
+		foreach ( $m as $key => $value ) {
 			if ( $key === 0 || $value === '' ) {
 				continue;
 			}
