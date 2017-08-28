@@ -70,6 +70,7 @@ section).
 ** This is currently gated by $wgCommentTableSchemaMigrationStage. Most wikis
    can set this to MIGRATION_NEW and run maintenance/migrateComments.php as
    soon as any necessary extensions are updated.
+* $wgBrowserBlacklist is deprecated, and changing it will have no effect.
 
 === External library changes in 1.30 ===
 
@@ -216,6 +217,7 @@ changes to languages because of Phabricator reports.
 * wfUsePHP() is deprecated.
 * wfFixSessionID() was removed.
 * wfShellExec() and related functions are deprecated, use Shell::command().
+* (T67297) Browsers that don't support Unicode will have their edits rejected.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
