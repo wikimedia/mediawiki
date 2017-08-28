@@ -1,0 +1,33 @@
+.mw-rcfilters-ui-rcTopSectionWidget {
+	&-topLinks {
+		width: 100%;
+	}
+
+	&-savedLinks {
+		vertical-align: bottom;
+		padding-left: 1em;
+	}
+
+	.mw-recentchanges-toplinks {
+		padding: 0 0.5em;
+
+		.oo-ui-widget-enabled.oo-ui-buttonElement.oo-ui-buttonElement-frameless .oo-ui-buttonElement-button {
+			padding: 0 2.5em 0 0.5em;
+		}
+
+		&-title,
+		.mw-collapsible-text {
+			// Same as the legend
+			font-size: 0.85em;
+		}
+
+		&:not( .mw-collapsed ) {
+			// Same as the legend
+			border: 1px solid #ddd;
+		}
+
+		&:not( .mw-rcfilters-ui-ready ) {
+			display: none;
+		}
+	}
+}
