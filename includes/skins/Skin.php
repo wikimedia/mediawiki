@@ -1058,9 +1058,9 @@ abstract class Skin extends ContextSource {
 		}
 
 		# The sending user must have a confirmed email address and the target
-		# user must have a confirmed email address and allow emails from users.
-		return $this->getUser()->canSendEmail() &&
-			$targetUser->canReceiveEmail();
+		# validate must not return an error message.
+		return $this->getUser()->canSendEmail()
+			&& SpecialEmailUser::validateTarget( $targetUser, $this->getUser() ) === '';
 	}
 
 	/**
