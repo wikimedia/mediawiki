@@ -41,6 +41,7 @@ use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Preferences\DefaultPreferencesFactory;
 
 return [
 	'DBLoadBalancerFactory' => function ( MediaWikiServices $services ) {
@@ -272,6 +273,10 @@ return [
 
 		// XXX: MimeMagic::singleton currently requires this service to return an instance of MimeMagic
 		return new MimeMagic( $params );
+	},
+
+	'PreferencesFactory' => function ( MediaWikiServices $services ) {
+		return new DefaultPreferencesFactory();
 	},
 
 	'ProxyLookup' => function ( MediaWikiServices $services ) {
