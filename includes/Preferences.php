@@ -67,6 +67,18 @@ class Preferences {
 	];
 
 	/**
+	 * Get a new Preferences object.
+	 * @param User $user The user who owns the preferences.
+	 * @param IContextSource $contextSource The context in which the preferences are being used.
+	 * @return static
+	 */
+	public static function factory( User $user, IContextSource $contextSource ) {
+		$preferences = new static();
+		Hooks::run( 'PreferencesFactory', [ $user, $contextSource, &$preferences ] );
+		return $preferences;
+	}
+
+	/**
 	 * @return array
 	 */
 	static function getSaveBlacklist() {
@@ -1332,7 +1344,7 @@ class Preferences {
 		$formClass = 'PreferencesForm',
 		array $remove = []
 	) {
-		$formDescriptor = self::getPreferences( $user, $context );
+		$formDescriptor = static::getPreferences( $user, $context );
 		if ( count( $remove ) ) {
 			$removeKeys = array_flip( $remove );
 			$formDescriptor = array_diff_key( $formDescriptor, $removeKeys );
