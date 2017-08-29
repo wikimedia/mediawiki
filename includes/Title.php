@@ -1355,7 +1355,7 @@ class Title implements LinkTarget {
 	 * get the talk page, if it is a subject page get the talk page
 	 *
 	 * @since 1.25
-	 * @throws MWException
+	 * @throws MWException If the page doesn't have an other page
 	 * @return Title
 	 */
 	public function getOtherPage() {
@@ -1365,6 +1365,9 @@ class Title implements LinkTarget {
 		if ( $this->isTalkPage() ) {
 			return $this->getSubjectPage();
 		} else {
+			if ( !$this->canHaveTalkPage() ) {
+				throw new MWException( "{$this->getPrefixedText()} does not have an other page" );
+			}
 			return $this->getTalkPage();
 		}
 	}
