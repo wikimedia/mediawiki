@@ -1036,6 +1036,7 @@ class Title implements LinkTarget {
 	 * Can this title have a corresponding talk page?
 	 *
 	 * @see MWNamespace::hasTalkNamespace
+	 * @since 1.30
 	 *
 	 * @return bool True if this title either is a talk page or can have a talk page associated.
 	 */
