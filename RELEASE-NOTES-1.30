@@ -61,6 +61,9 @@ section).
   just been unwatched.
 * Added $wgParserTestMediaHandlers, where mock media handlers can be passed to
   MediaHandlerFactory for parser tests.
+* (T138166) Added ability for users to prohibit other users from sending them
+  emails with Special:Emailuser. Can be enabled by setting
+  $wgEnableUserEmailBlacklist to true.
 
 === External library changes in 1.30 ===
 
@@ -187,6 +190,11 @@ changes to languages because of Phabricator reports.
 * Parser::uniqPrefix() (deprecated in 1.26) was removed.
 * Parser::extractTagsAndParams() now only accepts three arguments.  The fourth,
   $uniq_prefix was deprecated in 1.26 and has now been removed.
+* (T138166) SpecialEmailUser::validateTarget() was added.
+* (T138166) SpecialEmailUser::getTarget() now requires a second argument, the sending
+  user object. Using the method without the second argument is deprecated.
+* (T138166) CentralIdLookup::namesFromCentralIds() was added.
+* (T138166) CentralIdLookup::centralIdsFromNames() was added.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
