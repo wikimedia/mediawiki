@@ -463,7 +463,7 @@
 	"missing-article": "La base de données n’a pas trouvé le texte d’une page qu’elle aurait dû trouver, intitulée « $1 » $2.\n\nGénéralement, cela survient en suivant un lien vers un diff périmé ou vers l’historique d’une page supprimée.\n\nSi ce n’est pas le cas, il peut s’agir d’une anomalie dans le programme.\nVeuillez la signaler à un [[Special:ListUsers/sysop|administrateur]] sans oublier de lui indiquer l’URL de la page.",
 	"missingarticle-rev": "(numéro de version : $1)",
 	"missingarticle-diff": "(diff : $1, $2)",
-	"readonly_lag": "La base de données a été automatiquement verrouillée pendant que les serveurs secondaires se réalignent sur le serveur principal.",
+	"readonly_lag": "La base de données a été automatiquement verrouillée pendant que les serveurs secondaires se réalignent sur le serveur principal",
 	"nonwrite-api-promise-error": "L’entête HTTP « <code>Promise-Non-Write-API-Action:</code> » a été envoyé mais la requête a été faite à un module d’écriture de l’API.",
 	"internalerror": "Erreur interne",
 	"internalerror_info": "Erreur interne : $1",

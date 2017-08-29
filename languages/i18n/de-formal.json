@@ -72,6 +72,7 @@
 	"yourdomainname": "Ihre Domain:",
 	"password-change-forbidden": "Sie können auf diesem Wiki keine Passwörter ändern.",
 	"externaldberror": "Entweder liegt ein Fehler bei der externen Authentifizierung vor oder Sie dürfen Ihr externes Benutzerkonto nicht aktualisieren.",
+	"login-security": "Verifizieren Sie Ihre Identität",
 	"userlogin-noaccount": "Sie haben noch kein Benutzerkonto?",
 	"userlogin-loggedin": "Sie sind bereits als {{GENDER:$1|$1}} angemeldet.\nBenutzen Sie das unten stehende Formular, um sich unter einem anderen Benutzernamen anzumelden.",
 	"createacct-email-ph": "Geben Sie Ihre E-Mail-Adresse ein",
