@@ -96,6 +96,7 @@ class Preferences {
 		self::watchlistPreferences( $user, $context, $defaultPreferences );
 		self::searchPreferences( $user, $context, $defaultPreferences );
 		self::miscPreferences( $user, $context, $defaultPreferences );
+		self::prohibitPreferences( $user, $context, $defaultPreferences );
 
 		Hooks::run( 'GetPreferences', [ $user, &$defaultPreferences ] );
 
@@ -1135,6 +1136,30 @@ class Preferences {
 	 * @param array &$defaultPreferences
 	 */
 	static function miscPreferences( $user, IContextSource $context, &$defaultPreferences ) {
+	}
+
+	/**
+	 * @param User $user
+	 * @param IContextSource $context
+	 * @param array &$defaultPreferences
+	 * @return void
+	 */
+	static function prohibitPreferences( $user, IContextSource $context, &$defaultPreferences ) {
+		$config = $context->getConfig();
+
+		if ( $config->get( 'EnableUserEmailBlacklist' ) ) {
+			$lookup = CentralIdLookup::factory();
+			$ids = $user->getOption( 'email-blacklist', [] );
+			$names = $ids ? $lookup->lookupCentralIds( array_flip( $ids ), $user ) : [];
+			$names = array_values( $names );
+
+			$defaultPreferences['email-blacklist'] = [
+				'type' => 'usersmultiselect',
+				'label-message' => 'email-blacklist-label',
+				'section' => 'prohibit/email',
+				'default' => implode( "\n", $names ),
+			];
+		}
 	}
 
 	/**
