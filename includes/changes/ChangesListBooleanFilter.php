@@ -67,6 +67,20 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	protected $queryCallable;
 
 	/**
+	 * Value that defined when this filter is considered active
+	 *
+	 * @var bool $activeValue
+	 */
+	protected $activeValue;
+
+	/**
+	 * Whether this filter is visible somewhere (legacy form or structured UI).
+	 *
+	 * @var bool $isVisible
+	 */
+	protected $isVisible;
+
+	/**
 	 * Create a new filter with the specified configuration.
 	 *
 	 * It infers which UI (it can be either or both) to display the filter on based on
@@ -90,6 +104,10 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	 *     to true.  It does not need to be set if the exact same filter is simply visible
 	 *     on both.
 	 * * $filterDefinition['default'] bool Default
+	 * * $filterDefinition['activeValue'] bool This filter is considered active when
+	 *     its value is equal to its activeValue. Default is true.
+	 * * $filterDefinition['isVisible'] bool This filter is visible in the legacy form or
+	 *     structured UI. Default is true.
 	 * * $filterDefinition['priority'] int Priority integer.  Higher value means higher
 	 *     up in the group's filter list.
 	 * * $filterDefinition['queryCallable'] callable Callable accepting parameters, used
@@ -126,6 +144,18 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 		if ( isset( $filterDefinition['queryCallable'] ) ) {
 			$this->queryCallable = $filterDefinition['queryCallable'];
 		}
+
+		if ( isset( $filterDefinition['activeValue'] ) ) {
+			$this->activeValue = $filterDefinition['activeValue'];
+		} else {
+			$this->activeValue = true;
+		}
+
+		if ( isset( $filterDefinition['isVisible'] ) ) {
+			$this->isVisible = $filterDefinition['isVisible'];
+		} else {
+			$this->isVisible = true;
+		}
 	}
 
 	/**
@@ -136,7 +166,7 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	 */
 	public function getDefault( $structuredUI = false ) {
 		return $this->isReplacedInStructuredUi && $structuredUI ?
-			false :
+			!$this->activeValue :
 			$this->defaultValue;
 	}
 
@@ -224,5 +254,25 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 			array_filter( $this->getSiblings(), function ( $sibling ) use ( $opts ) {
 				return $opts[ $sibling->getName() ];
 			} );
+	}
+
+	/**
+	 * @param FormOptions $opts Query parameters merged with defaults
+	 * @param bool $isStructuredUI Whether the structured UI is currently enabled
+	 * @return bool Whether this filter should be considered active
+	 */
+	public function isActive( FormOptions $opts, $isStructuredUI ) {
+		if ( $this->isReplacedInStructuredUi && $isStructuredUI ) {
+			return false;
+		}
+
+		return $opts[ $this->getName() ] === $this->activeValue;
+	}
+
+	/**
+	 * @return bool Whether this filter is visible anywhere
+	 */
+	public function isVisible() {
+		return $this->isVisible;
 	}
 }
