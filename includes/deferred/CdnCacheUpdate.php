@@ -54,6 +54,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	 * @return CdnCacheUpdate
 	 */
 	public static function newFromTitles( $titles, $urlArr = [] ) {
+		( new LinkBatch( $titles ) )->execute();
 		/** @var Title $title */
 		foreach ( $titles as $title ) {
 			$urlArr = array_merge( $urlArr, $title->getCdnUrls() );
