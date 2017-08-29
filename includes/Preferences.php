@@ -556,6 +556,22 @@ class Preferences {
 					'label-message' => 'tog-ccmeonemails',
 					'disabled' => $disableEmailPrefs,
 				];
+
+				if ( $config->get( 'EnableUserEmailBlacklist' )
+					 && !$disableEmailPrefs
+					 && !(bool)$user->getOption( 'disablemail' )
+				) {
+					$lookup = CentralIdLookup::factory();
+					$ids = $user->getOption( 'email-blacklist', [] );
+					$names = $ids ? $lookup->namesFromCentralIds( $ids, $user ) : [];
+
+					$defaultPreferences['email-blacklist'] = [
+						'type' => 'usersmultiselect',
+						'label-message' => 'email-blacklist-label',
+						'section' => 'personal/email',
+						'default' => implode( "\n", $names ),
+					];
+				}
 			}
 
 			if ( $config->get( 'EnotifWatchlist' ) ) {
