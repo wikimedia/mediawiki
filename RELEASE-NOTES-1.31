@@ -49,6 +49,10 @@ changes to languages because of Phabricator reports.
 * The OutputPage class constructor now requires a context parameter,
   (instantiating without context was deprecated in 1.18)
 * mw.page (deprecated in 1.30) was removed.
+* The Preferences::getFormObject() method is now deprecated, replaced by the
+  non-static Preferences::getForm() as part of a change to the preferences
+  system. This change also includes a new PreferencesFactory service, which
+  should be used to retrieve a Preferences object.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. There is experimental support for

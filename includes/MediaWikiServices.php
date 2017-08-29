@@ -11,6 +11,7 @@ use GlobalVarConfig;
 use Hooks;
 use IBufferingStatsdDataFactory;
 use MediaWiki\Shell\CommandFactory;
+use MediaWiki\Preferences\PreferencesFactory;
 use Wikimedia\Rdbms\LBFactory;
 use LinkCache;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -565,6 +566,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getProxyLookup() {
 		return $this->getService( 'ProxyLookup' );
+	}
+
+	/**
+	 * @since 1.31
+	 * @return PreferencesFactory
+	 */
+	public function getPreferencesFactory() {
+		return $this->getService( 'PreferencesFactory' );
 	}
 
 	/**
