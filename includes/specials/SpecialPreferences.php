@@ -21,14 +21,24 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A special page that allows users to change their preferences
  *
  * @ingroup SpecialPage
  */
 class SpecialPreferences extends SpecialPage {
-	function __construct() {
-		parent::__construct( 'Preferences' );
+
+	public function __construct(
+		$name = 'Preferences',
+		$restriction = '',
+		$listed = true,
+		$function = false,
+		$file = '',
+		$includable = false
+	) {
+		parent::__construct( $name, $restriction, $listed, $function, $file, $includable );
 	}
 
 	public function doesWrites() {
@@ -82,7 +92,6 @@ class SpecialPreferences extends SpecialPage {
 		}
 
 		$htmlForm = $this->getFormObject( $user, $this->getContext() );
-		$htmlForm->setSubmitCallback( [ 'Preferences', 'tryUISubmit' ] );
 		$sectionTitles = $htmlForm->getPreferenceSections();
 
 		$prefTabs = '';
@@ -124,10 +133,14 @@ class SpecialPreferences extends SpecialPage {
 	 * @return PreferencesForm|HtmlForm
 	 */
 	protected function getFormObject( $user, IContextSource $context ) {
-		return Preferences::getFormObject( $user, $context );
+		$preferencesFactory = MediaWikiServices::getInstance()->getPreferencesFactory();
+		$preferences = $preferencesFactory->newPreferences( $user, $context );
+		$form = $preferences->getFormObject();
+		$form->setSubmitCallback( [ $preferences, 'tryUISubmit' ] );
+		return $form;
 	}
 
-	private function showResetForm() {
+	protected function showResetForm() {
 		if ( !$this->getUser()->isAllowed( 'editmyoptions' ) ) {
 			throw new PermissionsError( 'editmyoptions' );
 		}

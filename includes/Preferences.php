@@ -22,10 +22,9 @@ use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\MediaWikiServices;
 
 /**
- * We're now using the HTMLForm object with some customisation to generate the
- * Preferences form. This object handles generic submission, CSRF protection,
- * layout and other logic in a reusable manner. We subclass it as a PreferencesForm
- * to make some minor customisations.
+ * We're using the HTMLForm object with some customisation to generate the
+ * Preferences form. This class handles generic submission, CSRF protection,
+ * layout and other logic in a reusable manner.
  *
  * In order to generate the form, the HTMLForm object needs an array structure
  * detailing the form fields available, and that's what this class is for. Each
@@ -47,6 +46,7 @@ use MediaWiki\MediaWikiServices;
  * over to the tryUISubmit static method of this class.
  */
 class Preferences {
+
 	/** @var array */
 	protected static $defaultPreferences = null;
 
@@ -59,16 +59,30 @@ class Preferences {
 	];
 
 	// Stuff that shouldn't be saved as a preference.
-	private static $saveBlacklist = [
+	protected static $saveBlacklist = [
 		'realname',
 		'emailaddress',
 	];
+
+	/** @var User */
+	protected $user;
+
+	/** @var IContextSource */
+	protected $context;
+
+	public function setUser( User $user ) {
+		$this->user = $user;
+	}
+
+	public function setContext( IContextSource $contextSource ) {
+		$this->context = $contextSource;
+	}
 
 	/**
 	 * @return array
 	 */
 	static function getSaveBlacklist() {
-		return self::$saveBlacklist;
+		return static::$saveBlacklist;
 	}
 
 	/**
@@ -78,27 +92,27 @@ class Preferences {
 	 * @return array|null
 	 */
 	static function getPreferences( $user, IContextSource $context ) {
-		if ( self::$defaultPreferences ) {
-			return self::$defaultPreferences;
+		if ( static::$defaultPreferences ) {
+			return static::$defaultPreferences;
 		}
 
 		$defaultPreferences = [];
 
-		self::profilePreferences( $user, $context, $defaultPreferences );
-		self::skinPreferences( $user, $context, $defaultPreferences );
-		self::datetimePreferences( $user, $context, $defaultPreferences );
-		self::filesPreferences( $user, $context, $defaultPreferences );
-		self::renderingPreferences( $user, $context, $defaultPreferences );
-		self::editingPreferences( $user, $context, $defaultPreferences );
-		self::rcPreferences( $user, $context, $defaultPreferences );
-		self::watchlistPreferences( $user, $context, $defaultPreferences );
-		self::searchPreferences( $user, $context, $defaultPreferences );
-		self::miscPreferences( $user, $context, $defaultPreferences );
+		static::profilePreferences( $user, $context, $defaultPreferences );
+		static::skinPreferences( $user, $context, $defaultPreferences );
+		static::datetimePreferences( $user, $context, $defaultPreferences );
+		static::filesPreferences( $user, $context, $defaultPreferences );
+		static::renderingPreferences( $user, $context, $defaultPreferences );
+		static::editingPreferences( $user, $context, $defaultPreferences );
+		static::rcPreferences( $user, $context, $defaultPreferences );
+		static::watchlistPreferences( $user, $context, $defaultPreferences );
+		static::searchPreferences( $user, $context, $defaultPreferences );
+		static::miscPreferences( $user, $context, $defaultPreferences );
 
 		Hooks::run( 'GetPreferences', [ $user, &$defaultPreferences ] );
 
-		self::loadPreferenceValues( $user, $context, $defaultPreferences );
-		self::$defaultPreferences = $defaultPreferences;
+		static::loadPreferenceValues( $user, $context, $defaultPreferences );
+		static::$defaultPreferences = $defaultPreferences;
 		return $defaultPreferences;
 	}
 
@@ -126,8 +140,8 @@ class Preferences {
 		$defaultOptions = User::getDefaultOptions();
 		# # Prod in defaults from the user
 		foreach ( $defaultPreferences as $name => &$info ) {
-			$prefFromUser = self::getOptionFromUser( $name, $info, $user );
-			if ( $disable && !in_array( $name, self::$saveBlacklist ) ) {
+			$prefFromUser = static::getOptionFromUser( $name, $info, $user );
+			if ( $disable && !in_array( $name, static::$saveBlacklist ) ) {
 				$info['disabled'] = 'disabled';
 			}
 			$field = HTMLForm::loadInputFromParameters( $name, $info, $dummyForm ); // For validation
@@ -620,7 +634,7 @@ class Preferences {
 		# # Skin #####################################
 
 		// Skin selector, if there is at least one valid skin
-		$skinOptions = self::generateSkinOptions( $user, $context );
+		$skinOptions = static::generateSkinOptions( $user, $context );
 		if ( $skinOptions ) {
 			$defaultPreferences['skin'] = [
 				'type' => 'radio',
@@ -670,13 +684,13 @@ class Preferences {
 		# # Files #####################################
 		$defaultPreferences['imagesize'] = [
 			'type' => 'select',
-			'options' => self::getImageSizes( $context ),
+			'options' => static::getImageSizes( $context ),
 			'label-message' => 'imagemaxsize',
 			'section' => 'rendering/files',
 		];
 		$defaultPreferences['thumbsize'] = [
 			'type' => 'select',
-			'options' => self::getThumbSizes( $context ),
+			'options' => static::getThumbSizes( $context ),
 			'label-message' => 'thumbsize',
 			'section' => 'rendering/files',
 		];
@@ -690,7 +704,7 @@ class Preferences {
 	 */
 	static function datetimePreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		# # Date and time #####################################
-		$dateOptions = self::getDateOptions( $context );
+		$dateOptions = static::getDateOptions( $context );
 		if ( $dateOptions ) {
 			$defaultPreferences['date'] = [
 				'type' => 'radio',
@@ -729,7 +743,7 @@ class Preferences {
 		$tzOffset = $user->getOption( 'timecorrection' );
 		$tz = explode( '|', $tzOffset, 3 );
 
-		$tzOptions = self::getTimezoneOptions( $context );
+		$tzOptions = static::getTimezoneOptions( $context );
 
 		$tzSetting = $tzOffset;
 		if ( count( $tz ) > 1 && $tz[0] == 'ZoneInfo' &&
@@ -1343,19 +1357,14 @@ class Preferences {
 	}
 
 	/**
-	 * @param User $user
-	 * @param IContextSource $context
-	 * @param string $formClass
+	 * Get a PreferencesForm object for these preferences.
+	 * @param string $formClass The name of the HtmlForm class to use; must be a subclass of
+	 * PreferencesForm.
 	 * @param array $remove Array of items to remove
 	 * @return PreferencesForm|HtmlForm
 	 */
-	static function getFormObject(
-		$user,
-		IContextSource $context,
-		$formClass = 'PreferencesForm',
-		array $remove = []
-	) {
-		$formDescriptor = self::getPreferences( $user, $context );
+	public function getFormObject( $formClass = 'PreferencesForm', array $remove = [] ) {
+		$formDescriptor = $this::getPreferences( $this->user, $this->context );
 		if ( count( $remove ) ) {
 			$removeKeys = array_flip( $remove );
 			$formDescriptor = array_diff_key( $formDescriptor, $removeKeys );
@@ -1371,12 +1380,12 @@ class Preferences {
 		/**
 		 * @var $htmlForm PreferencesForm
 		 */
-		$htmlForm = new $formClass( $formDescriptor, $context, 'prefs' );
+		$htmlForm = new $formClass( $formDescriptor, $this->context, 'prefs' );
 
-		$htmlForm->setModifiedUser( $user );
+		$htmlForm->setModifiedUser( $this->user );
 		$htmlForm->setId( 'mw-prefs-form' );
 		$htmlForm->setAutocomplete( 'off' );
-		$htmlForm->setSubmitText( $context->msg( 'saveprefs' )->text() );
+		$htmlForm->setSubmitText( $this->context->msg( 'saveprefs' )->text() );
 		# Used message keys: 'accesskey-preferences-save', 'tooltip-preferences-save'
 		$htmlForm->setSubmitTooltip( 'preferences-save' );
 		$htmlForm->setSubmitID( 'prefcontrol' );
@@ -1393,7 +1402,7 @@ class Preferences {
 		$opt = [];
 
 		$localTZoffset = $context->getConfig()->get( 'LocalTZoffset' );
-		$timeZoneList = self::getTimeZoneList( $context->getLanguage() );
+		$timeZoneList = static::getTimeZoneList( $context->getLanguage() );
 
 		$timestamp = MWTimestamp::getLocalInstance();
 		// Check that the LocalTZoffset is the same as the local time zone offset
@@ -1506,9 +1515,9 @@ class Preferences {
 
 		// Filter input
 		foreach ( array_keys( $formData ) as $name ) {
-			if ( isset( self::$saveFilters[$name] ) ) {
+			if ( isset( static::$saveFilters[$name] ) ) {
 				$formData[$name] =
-					call_user_func( self::$saveFilters[$name], $formData[$name], $formData );
+					call_user_func( static::$saveFilters[$name], $formData[$name], $formData );
 			}
 		}
 
@@ -1526,7 +1535,7 @@ class Preferences {
 		if ( $user->isAllowed( 'editmyoptions' ) ) {
 			$oldUserOptions = $user->getOptions();
 
-			foreach ( self::$saveBlacklist as $b ) {
+			foreach ( static::$saveBlacklist as $b ) {
 				unset( $formData[$b] );
 			}
 
@@ -1564,7 +1573,7 @@ class Preferences {
 	 * @return Status
 	 */
 	public static function tryUISubmit( $formData, $form ) {
-		$res = self::tryFormSubmit( $formData, $form );
+		$res = static::tryFormSubmit( $formData, $form );
 
 		if ( $res ) {
 			$urlOptions = [];
