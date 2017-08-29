@@ -1604,6 +1604,13 @@ $wgEnableEmail = true;
 $wgEnableUserEmail = true;
 
 /**
+ * Set to true to enable user-to-user e-mail blacklist.
+ *
+ * @since 1.30
+ */
+$wgEnableUserEmailBlacklist = false;
+
+/**
  * If true put the sending user's email in a Reply-To header
  * instead of From (false). ($wgPasswordSender will be used as From.)
  *
