@@ -1382,7 +1382,7 @@
 	"rcfilters-noresults-conflict": "검색 조건이 충돌하기 때문에 결과를 찾을 수 없습니다",
 	"rcfilters-state-message-subset": "필터의 결과가 다음의 범위가 더 넓은 {{PLURAL:$2|필터}}의 결과에 포함되기 때문에 이 필터는 효력이 없습니다 (구별을 위해 강조해 보십시오): $1",
 	"rcfilters-state-message-fullcoverage": "이 그룹의 모든 필터를 선택하는 것은 아무 것도 선택하지 않는 것과 동일하므로 이 필터는 효력이 없습니다. 그룹은 다음을 포함합니다: $1",
-	"rcfilters-filtergroup-authorship": "기여의 저자",
+	"rcfilters-filtergroup-authorship": "원작자 기여",
 	"rcfilters-filter-editsbyself-label": "당신의 변경사항",
 	"rcfilters-filter-editsbyself-description": "당신의 기여.",
 	"rcfilters-filter-editsbyother-label": "다른 사용자의 변경사항",

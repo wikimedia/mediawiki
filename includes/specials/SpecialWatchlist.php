@@ -144,41 +144,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	protected function registerFilters() {
 		parent::registerFilters();
 
-		// legacy 'extended' filter
-		$this->registerFilterGroup( new ChangesListBooleanFilterGroup( [
-			'name' => 'extended-group',
-			'filters' => [
-				[
-					'name' => 'extended',
-					'isReplacedInStructuredUi' => true,
-					'isVisible' => false,
-					'activeValue' => false,
-					'default' => $this->getUser()->getBoolOption( 'extendwatchlist' ),
-					'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables,
-												  &$fields, &$conds, &$query_options, &$join_conds ) {
-						$nonRevisionTypes = [ RC_LOG ];
-						Hooks::run( 'SpecialWatchlistGetNonRevisionTypes', [ &$nonRevisionTypes ] );
-						if ( $nonRevisionTypes ) {
-							$conds[] = $dbr->makeList(
-								[
-									'rc_this_oldid=page_latest',
-									'rc_type' => $nonRevisionTypes,
-								],
-								LIST_OR
-							);
-						}
-					},
-				]
-			],
-
-		] ) );
-
-		if ( $this->isStructuredFilterUiEnabled() ) {
-			$this->getFilterGroup( 'lastRevision' )
-				->getFilter( 'hidepreviousrevisions' )
-				->setDefault( !$this->getUser()->getBoolOption( 'extendwatchlist' ) );
-		}
-
 		$this->registerFilterGroup( new ChangesListStringOptionsFilterGroup( [
 			'name' => 'watchlistactivity',
 			'title' => 'rcfilters-filtergroup-watchlistactivity',
@@ -271,6 +236,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$user = $this->getUser();
 
 		$opts->add( 'days', $user->getOption( 'watchlistdays' ), FormOptions::FLOAT );
+		$opts->add( 'extended', $user->getBoolOption( 'extendwatchlist' ) );
 		$opts->add( 'limit', $user->getIntOption( 'wllimit' ), FormOptions::INT );
 
 		return $opts;
@@ -335,9 +301,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			foreach ( $this->filterGroups as $filterGroup ) {
 				if ( $filterGroup instanceof ChangesListBooleanFilterGroup ) {
 					foreach ( $filterGroup->getFilters() as $filter ) {
-						if ( $filter->isVisible() ) {
-							$allBooleansFalse[$filter->getName()] = false;
-						}
+						$allBooleansFalse[$filter->getName()] = false;
 					}
 				}
 			}
@@ -378,6 +342,22 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	) {
 		$dbr = $this->getDB();
 		$user = $this->getUser();
+
+		# Toggle watchlist content (all recent edits or just the latest)
+		if ( !$opts['extended'] ) {
+			# Top log Ids for a page are not stored
+			$nonRevisionTypes = [ RC_LOG ];
+			Hooks::run( 'SpecialWatchlistGetNonRevisionTypes', [ &$nonRevisionTypes ] );
+			if ( $nonRevisionTypes ) {
+				$conds[] = $dbr->makeList(
+					[
+						'rc_this_oldid=page_latest',
+						'rc_type' => $nonRevisionTypes,
+					],
+					LIST_OR
+				);
+			}
+		}
 
 		$tables = array_merge( [ 'recentchanges', 'watchlist' ], $tables );
 		$fields = array_merge( RecentChange::selectFields(), $fields );
@@ -879,13 +859,5 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 		$count = $store->countWatchedItems( $this->getUser() );
 		return floor( $count / 2 );
-	}
-
-	function getDefaultLimit() {
-		return $this->getUser()->getIntOption( 'wllimit' );
-	}
-
-	function getDefaultDays() {
-		return $this->getUser()->getIntOption( 'watchlistdays' );
 	}
 }

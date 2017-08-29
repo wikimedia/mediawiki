@@ -2658,7 +2658,8 @@ class EditPage {
 		$wgOut->addHTML( Html::openElement(
 			'form',
 			[
-				'class' => 'mw-editform',
+				// Keep mw-editform-ooui class for backwards-compatibility temporarily
+				'class' => 'mw-editform mw-editform-ooui',
 				'id' => self::EDITFORM_ID,
 				'name' => self::EDITFORM_ID,
 				'method' => 'post',

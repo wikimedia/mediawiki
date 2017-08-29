@@ -598,9 +598,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				[
 					'maxDays' => (int)$this->getConfig()->get( 'RCMaxAge' ) / ( 24 * 3600 ), // Translate to days
 					'limitArray' => $this->getConfig()->get( 'RCLinkLimits' ),
-					'limitDefault' => $this->getDefaultLimit(),
 					'daysArray' => $this->getConfig()->get( 'RCLinkDays' ),
-					'daysDefault' => $this->getDefaultDays(),
 				]
 			);
 		}
@@ -1155,7 +1153,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		&$join_conds, FormOptions $opts
 	) {
 		$dbr = $this->getDB();
-		$isStructuredUI = $this->isStructuredFilterUiEnabled();
 
 		foreach ( $this->filterGroups as $filterGroup ) {
 			// URL parameters can be per-group, like 'userExpLevel',
@@ -1165,7 +1162,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					$query_options, $join_conds, $opts[$filterGroup->getName()] );
 			} else {
 				foreach ( $filterGroup->getFilters() as $filter ) {
-					if ( $filter->isActive( $opts, $isStructuredUI ) ) {
+					if ( $opts[$filter->getName()] ) {
 						$filter->modifyQuery( $dbr, $this, $tables, $fields, $conds,
 							$query_options, $join_conds );
 					}
@@ -1538,8 +1535,4 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	protected function isStructuredFilterUiEnabled() {
 		return $this->getUser()->getOption( 'rcenhancedfilters' );
 	}
-
-	abstract function getDefaultLimit();
-
-	abstract function getDefaultDays();
 }
