@@ -43,7 +43,7 @@ class LinkBatch {
 	protected $caller;
 
 	/**
-	 * @param LinkTarget[] $arr Initial items to be added to the batch
+	 * @param Traversable|LinkTarget[] $arr Initial items to be added to the batch
 	 */
 	public function __construct( $arr = [] ) {
 		foreach ( $arr as $item ) {
