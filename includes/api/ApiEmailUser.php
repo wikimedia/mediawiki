@@ -34,7 +34,7 @@ class ApiEmailUser extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		// Validate target
-		$targetUser = SpecialEmailUser::getTarget( $params['target'] );
+		$targetUser = SpecialEmailUser::getTarget( $params['target'], $this->getUser() );
 		if ( !( $targetUser instanceof User ) ) {
 			switch ( $targetUser ) {
 				case 'notarget':
