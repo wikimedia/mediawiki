@@ -5311,6 +5311,13 @@ class User implements IDBAccessObject {
 					$data[$row->up_property] = $row->up_value;
 				}
 			}
+
+			// Convert the email blacklist from a new line deliminiated string
+			// to an array of ids.
+			if ( isset( $data['email-blacklist'] ) ) {
+				$data['email-blacklist'] = array_map( 'intval', explode( "\n", $data['email-blacklist'] ) );
+			}
+
 			foreach ( $data as $property => $value ) {
 				$this->mOptionOverrides[$property] = $value;
 				$this->mOptions[$property] = $value;
@@ -5332,6 +5339,27 @@ class User implements IDBAccessObject {
 
 		// Not using getOptions(), to keep hidden preferences in database
 		$saveOptions = $this->mOptions;
+
+		// Convert usernames to ids.
+		if ( isset( $this->mOptions['email-blacklist'] ) ) {
+			if ( $this->mOptions['email-blacklist'] ) {
+				$lookup = CentralIdLookup::factory();
+				$value = $this->mOptions['email-blacklist'];
+				// Email Blacklist may be an array of ids or a string of new line
+				// delimnated user names.
+				if ( is_array( $value ) ) {
+					$ids = array_filter( $value, 'is_numeric' );
+				} else {
+					$names = explode( "\n", $names );
+					$ids = $lookup->lookupUserNames( array_flip( $names ), $this );
+				}
+				$this->mOptions['email-blacklist'] = array_values( $ids );
+				$saveOptions['email-blacklist'] = implode( "\n", $this->mOptions['email-blacklist'] );
+			} else {
+				// If the blacklist is empty, set it to null rather than an empty string.
+				$this->mOptions['email-blacklist'] = null;
+			}
+		}
 
 		// Allow hooks to abort, for instance to save to a global profile.
 		// Reset options to default state before saving.
