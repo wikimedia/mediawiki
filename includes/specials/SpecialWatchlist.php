@@ -151,7 +151,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				[
 					'name' => 'extended',
 					'isReplacedInStructuredUi' => true,
-					'isVisible' => false,
 					'activeValue' => false,
 					'default' => $this->getUser()->getBoolOption( 'extendwatchlist' ),
 					'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables,
@@ -334,8 +333,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			// unchecked boxes.
 			foreach ( $this->filterGroups as $filterGroup ) {
 				if ( $filterGroup instanceof ChangesListBooleanFilterGroup ) {
+					/** @var ChangesListBooleanFilter $filter */
 					foreach ( $filterGroup->getFilters() as $filter ) {
-						if ( $filter->isVisible() ) {
+						if ( $filter->displaysOnUnstructuredUi() ) {
 							$allBooleansFalse[$filter->getName()] = false;
 						}
 					}
