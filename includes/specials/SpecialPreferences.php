@@ -27,8 +27,16 @@
  * @ingroup SpecialPage
  */
 class SpecialPreferences extends SpecialPage {
-	function __construct() {
-		parent::__construct( 'Preferences' );
+
+	public function __construct(
+		$name = 'Preferences',
+		$restriction = '',
+		$listed = true,
+		$function = false,
+		$file = '',
+		$includable = false
+	) {
+		parent::__construct( $name, $restriction, $listed, $function, $file, $includable );
 	}
 
 	public function doesWrites() {
@@ -82,7 +90,6 @@ class SpecialPreferences extends SpecialPage {
 		}
 
 		$htmlForm = $this->getFormObject( $user, $this->getContext() );
-		$htmlForm->setSubmitCallback( [ 'Preferences', 'tryUISubmit' ] );
 		$sectionTitles = $htmlForm->getPreferenceSections();
 
 		$prefTabs = '';
@@ -124,7 +131,10 @@ class SpecialPreferences extends SpecialPage {
 	 * @return PreferencesForm|HtmlForm
 	 */
 	protected function getFormObject( $user, IContextSource $context ) {
-		return Preferences::getFormObject( $user, $context );
+		$preferences = Preferences::factory( $user, $context );
+		$form = $preferences::getFormObject( $user, $context );
+		$form->setSubmitCallback( [ $preferences, 'tryUISubmit' ] );
+		return $form;
 	}
 
 	private function showResetForm() {
