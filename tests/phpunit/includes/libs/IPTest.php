@@ -237,7 +237,7 @@ class IPTest extends PHPUnit_Framework_TestCase {
 		];
 		foreach ( $ipCIDRs as $i ) {
 			$this->assertFalse( IP::isValid( $i ),
-				"$i is an invalid IP address because it is a block" );
+				"$i is an invalid IP address because it is a range" );
 		}
 		// Incomplete/garbage
 		$invalid = [
@@ -254,9 +254,9 @@ class IPTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Provide some valid IP blocks
+	 * Provide some valid IP ranges
 	 */
-	public function provideValidBlocks() {
+	public function provideValidRanges() {
 		return [
 			[ '116.17.184.5/32' ],
 			[ '0.17.184.5/30' ],
@@ -274,22 +274,22 @@ class IPTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @covers IP::isValidBlock
-	 * @dataProvider provideValidBlocks
+	 * @covers IP::isValidRange
+	 * @dataProvider provideValidRanges
 	 */
-	public function testValidBlocks( $block ) {
-		$this->assertTrue( IP::isValidBlock( $block ), "$block is a valid IP block" );
+	public function testValidRanges( $range ) {
+		$this->assertTrue( IP::isValidRange( $range ), "$range is a valid IP range" );
 	}
 
 	/**
-	 * @covers IP::isValidBlock
-	 * @dataProvider provideInvalidBlocks
+	 * @covers IP::isValidRange
+	 * @dataProvider provideInvalidRanges
 	 */
-	public function testInvalidBlocks( $invalid ) {
-		$this->assertFalse( IP::isValidBlock( $invalid ), "$invalid is not a valid IP block" );
+	public function testInvalidRanges( $invalid ) {
+		$this->assertFalse( IP::isValidRange( $invalid ), "$invalid is not a valid IP range" );
 	}
 
-	public function provideInvalidBlocks() {
+	public function provideInvalidRanges() {
 		return [
 			[ '116.17.184.5/33' ],
 			[ '0.17.184.5/130' ],
