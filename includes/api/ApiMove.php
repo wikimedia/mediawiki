@@ -59,7 +59,7 @@ class ApiMove extends ApiBase {
 		if ( !$toTitle || $toTitle->isExternal() ) {
 			$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['to'] ) ] );
 		}
-		$toTalk = $toTitle->canTalk() ? $toTitle->getTalkPage() : null;
+		$toTalk = $toTitle->getTalkPageIfDefined();
 
 		if ( $toTitle->getNamespace() == NS_FILE
 			&& !RepoGroup::singleton()->getLocalRepo()->findFile( $toTitle )

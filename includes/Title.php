@@ -1324,7 +1324,7 @@ class Title implements LinkTarget {
 	 *
 	 * @since 1.30
 	 *
-	 * @return Title The object for the talk page,
+	 * @return Title|null The object for the talk page,
 	 *         or null if no associated talk page can exist, according to canHaveTalkPage().
 	 */
 	public function getTalkPageIfDefined() {
