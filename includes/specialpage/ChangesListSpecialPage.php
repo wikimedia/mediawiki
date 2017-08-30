@@ -904,6 +904,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$opts->add( 'invert', false );
 		$opts->add( 'associated', false );
 		$opts->add( 'urlversion', 1 );
+		$opts->add( 'tagfilter', '' );
 
 		return $opts;
 	}

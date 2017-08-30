@@ -382,10 +382,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$tables = array_merge( [ 'recentchanges', 'watchlist' ], $tables );
 		$fields = array_merge( RecentChange::selectFields(), $fields );
 
-		$query_options = array_merge( [
-			'ORDER BY' => 'rc_timestamp DESC',
-			'LIMIT' => $opts['limit']
-		], $query_options );
 		$join_conds = array_merge(
 			[
 				'watchlist' => [
@@ -422,13 +418,14 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			], LIST_OR );
 		}
 
+		$tagFilter = $opts['tagfilter'] ? explode( '|', $opts['tagfilter'] ) : [];
 		ChangeTags::modifyDisplayQuery(
 			$tables,
 			$fields,
 			$conds,
 			$join_conds,
 			$query_options,
-			''
+			$tagFilter
 		);
 
 		$this->runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds, $opts );
@@ -436,6 +433,23 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		if ( $this->areFiltersInConflict() ) {
 			return false;
 		}
+
+		$orderByAndLimit = [
+			'ORDER BY' => 'rc_timestamp DESC',
+			'LIMIT' => $opts['limit']
+		];
+		if ( in_array( 'DISTINCT', $query_options ) ) {
+			// ChangeTags::modifyDisplayQuery() adds DISTINCT when filtering on multiple tags.
+			// In order to prevent DISTINCT from causing query performance problems,
+			// we have to GROUP BY the primary key. This in turn requires us to add
+			// the primary key to the end of the ORDER BY, and the old ORDER BY to the
+			// start of the GROUP BY
+			$orderByAndLimit['ORDER BY'] = 'rc_timestamp DESC, rc_id DESC';
+			$orderByAndLimit['GROUP BY'] = 'rc_timestamp, rc_id';
+		}
+		// array_merge() is used intentionally here so that hooks can, should
+		// they so desire, override the ORDER BY / LIMIT condition(s)
+		$query_options = array_merge( $orderByAndLimit, $query_options );
 
 		return $dbr->select(
 			$tables,
