@@ -725,6 +725,25 @@
 	};
 
 	/**
+	 * Get an array of currently applied highlight colors
+	 *
+	 * @return {string[]} Currently applied highlight colors
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getCurrentlyUsedHighlightColors = function () {
+		var result = [];
+
+		this.getHighlightedItems().forEach( function ( filterItem ) {
+			var color = filterItem.getHighlightColor();
+
+			if ( result.indexOf( color ) === -1 ) {
+				result.push( color );
+			}
+		} );
+
+		return result;
+	};
+
+	/**
 	 * Sanitize value group of a string_option groups type
 	 * Remove duplicates and make sure to only use valid
 	 * values.
