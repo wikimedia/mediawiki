@@ -12,14 +12,18 @@
 	mw.rcfilters.ui.RcTopSectionWidget = function MwRcfiltersUiRcTopSectionWidget(
 		savedLinksListWidget, $topLinks, config
 	) {
-		var topLinksCookieName = 'rcfilters-toplinks-collapsed-state',
+		var toplinksTitle,
+			topLinksCookieName = 'rcfilters-toplinks-collapsed-state',
 			topLinksCookie = mw.cookie.get( topLinksCookieName ),
 			topLinksCookieValue = topLinksCookie || 'collapsed',
-			toplinksTitle;
+			widget = this;
+
 		config = config || {};
 
 		// Parent
 		mw.rcfilters.ui.RcTopSectionWidget.parent.call( this, config );
+
+		this.$topLinks = $topLinks;
 
 		toplinksTitle = new OO.ui.ButtonWidget( {
 			framed: false,
@@ -28,7 +32,8 @@
 			label: $( '<span>' ).append( mw.message( 'rcfilters-other-review-tools' ).parse() ).contents()
 		} );
 
-		$topLinks
+
+		this.$topLinks
 			.addClass( 'mw-rcfilters-ui-ready' )
 			.makeCollapsible( {
 				collapsed: topLinksCookieValue === 'collapsed',
@@ -37,38 +42,68 @@
 			.on( 'beforeExpand.mw-collapsible', function () {
 				mw.cookie.set( topLinksCookieName, 'expanded' );
 				toplinksTitle.setIndicator( 'up' );
+				widget.switchTopLinks( 'expanded' );
 			} )
 			.on( 'beforeCollapse.mw-collapsible', function () {
 				mw.cookie.set( topLinksCookieName, 'collapsed' );
 				toplinksTitle.setIndicator( 'down' );
+				widget.switchTopLinks( 'collapsed' );
 			} );
 
-		$topLinks.find( '.mw-recentchanges-toplinks-title' ).replaceWith( toplinksTitle.$element );
+		this.$topLinks.find( '.mw-recentchanges-toplinks-title' ).replaceWith( toplinksTitle.$element );
 
+		// Create two positions for the toplinks to toggle between
+		// in the table (first cell) or up above it
+		this.$top = $( '<div>' )
+			.addClass( 'mw-rcfilters-ui-rcTopSectionWidget-topLinks-top' );
+		this.$tableTopLinks = $( '<div>' )
+			.addClass( 'mw-rcfilters-ui-cell' )
+			.addClass( 'mw-rcfilters-ui-rcTopSectionWidget-topLinks-table' );
+
+		// Initialize
 		this.$element
 			.addClass( 'mw-rcfilters-ui-rcTopSectionWidget' )
-			.addClass( 'mw-rcfilters-ui-table' )
 			.append(
+				this.$top,
 				$( '<div>' )
-					.addClass( 'mw-rcfilters-ui-row' )
+					.addClass( 'mw-rcfilters-ui-table' )
 					.append(
 						$( '<div>' )
-							.addClass( 'mw-rcfilters-ui-cell' )
-							.addClass( 'mw-rcfilters-ui-rcTopSectionWidget-topLinks' )
-							.append( $topLinks )
-					)
-					.append(
-						!mw.user.isAnon() ?
-							$( '<div>' )
-								.addClass( 'mw-rcfilters-ui-cell' )
-								.addClass( 'mw-rcfilters-ui-rcTopSectionWidget-savedLinks' )
-								.append( savedLinksListWidget.$element ) :
-							null
+							.addClass( 'mw-rcfilters-ui-row' )
+							.append(
+								this.$tableTopLinks,
+								$( '<div>' )
+									.addClass( 'mw-rcfilters-ui-table-placeholder' )
+									.addClass( 'mw-rcfilters-ui-cell' ),
+								!mw.user.isAnon() ?
+									$( '<div>' )
+										.addClass( 'mw-rcfilters-ui-cell' )
+										.addClass( 'mw-rcfilters-ui-rcTopSectionWidget-savedLinks' )
+										.append( savedLinksListWidget.$element ) :
+									null
+							)
 					)
 			);
+
+		// Initialize top links position
+		widget.switchTopLinks( topLinksCookieValue );
 	};
 
 	/* Initialization */
 
 	OO.inheritClass( mw.rcfilters.ui.RcTopSectionWidget, OO.ui.Widget );
+
+	/**
+	 * Switch the top links widget from inside the table (when collapsed)
+	 * to the 'top' (when open)
+	 */
+	mw.rcfilters.ui.RcTopSectionWidget.prototype.switchTopLinks = function ( state ) {
+		state = state || 'expanded';
+
+		if ( state === 'expanded' ) {
+			this.$top.append( this.$topLinks );
+		} else {
+			this.$tableTopLinks.append( this.$topLinks );
+		}
+	};
 }( mediaWiki ) );
