@@ -241,7 +241,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		$opts->add( 'categories', '' );
 		$opts->add( 'categories_any', false );
-		$opts->add( 'tagfilter', '' );
 
 		return $opts;
 	}
