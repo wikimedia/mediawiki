@@ -9,7 +9,7 @@ CREATE TABLE /*_*/comment (
   comment_text BLOB NOT NULL,
   comment_data BLOB
 ) /*$wgDBTableOptions*/;
-CREATE INDEX /*i*/comment_hash ON comment (comment_hash);
+CREATE INDEX /*i*/comment_hash ON /*_*/comment (comment_hash);
 
 CREATE TABLE /*_*/revision_comment_temp (
   revcomment_rev int unsigned NOT NULL,

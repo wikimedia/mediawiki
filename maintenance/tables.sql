@@ -521,7 +521,7 @@ CREATE TABLE /*_*/comment (
   comment_data BLOB
 ) /*$wgDBTableOptions*/;
 -- Index used for deduplication.
-CREATE INDEX /*i*/comment_hash ON comment (comment_hash);
+CREATE INDEX /*i*/comment_hash ON /*_*/comment (comment_hash);
 
 
 --
