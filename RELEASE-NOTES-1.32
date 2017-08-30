@@ -1,0 +1,3 @@
+* EditPage::isOouiEnabled() was removed.
+* EditPage::getSummaryInput() was removed. Use getSummaryInputOOUI() instead.
+* EditPage::getCheckboxes() was removed. Use getCheckboxesOOUI() instead.
