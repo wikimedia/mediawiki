@@ -24,4 +24,4 @@ CREATE TABLE image_comment_temp (
 	imgcomment_comment_id INTEGER NOT NULL,
 	PRIMARY KEY (imgcomment_name, imgcomment_comment_id)
 );
-CREATE UNIQUE INDEX imgcomment_name ON image_comment_temp (imgcomment_rev);
+CREATE UNIQUE INDEX imgcomment_name ON image_comment_temp (imgcomment_name);
