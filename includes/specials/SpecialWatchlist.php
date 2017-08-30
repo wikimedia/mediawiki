@@ -830,7 +830,11 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				$watchlistHeader .= $this->msg( 'wlheader-enotif' )->parse() . "\n";
 			}
 			if ( $showUpdatedMarker ) {
-				$watchlistHeader .= $this->msg( 'wlheader-showupdated' )->parse() . "\n";
+				$watchlistHeader .= $this->msg(
+					$this->isStructuredFilterUiEnabled() ?
+						'rcfilters-watchlist-showupdated' :
+						'wlheader-showupdated'
+				)->parse() . "\n";
 			}
 		}
 		$form .= Html::rawElement(
