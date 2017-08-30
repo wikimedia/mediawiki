@@ -1461,14 +1461,6 @@ textarea in the edit form.
 &$buttons: Array of edit buttons "Save", "Preview", "Live", and "Diff"
 &$tabindex: HTML tabindex of the last edit check/button
 
-'EditPageBeforeEditChecks': DEPRECATED! Use 'EditPageGetCheckboxesDefinition' instead,
-or 'EditPage::showStandardInputs:options' if you don't actually care about checkboxes
-and just want to add some HTML to the page.
-Allows modifying the edit checks below the textarea in the edit form.
-&$editpage: The current EditPage object
-&$checks: Array of the HTML for edit checks like "watch this page"/"minor edit"
-&$tabindex: HTML tabindex of the last edit check/button
-
 'EditPageBeforeEditToolbar': Allows modifying the edit toolbar above the
 textarea in the edit form.
 &$toolbar: The toolbar HTML
