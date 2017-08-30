@@ -3276,7 +3276,7 @@
 	"dberr-outofdate": "Imajte na umu da su njihova kazala našeg sadržaja možda zastarjela.",
 	"dberr-cachederror": "Sljedeće je dohvaćena kopija tražene stranice, te možda nije ažurirana.",
 	"htmlform-invalid-input": "Postoje problemi s dijelom Vašeg unosa",
-	"htmlform-select-badoption": "Vrijednost koju ste naveli nije ispravan izbor.",
+	"htmlform-select-badoption": "Vrijednost koju ste naveli nije vrijedeća mogućnost.",
 	"htmlform-int-invalid": "Vrijednost koju ste naveli nije cijeli broj.",
 	"htmlform-float-invalid": "Vrijednost koju ste naveli nije broj.",
 	"htmlform-int-toolow": "Vrijednost koju ste naveli je ispod minimuma od $1",

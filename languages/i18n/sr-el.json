@@ -1169,7 +1169,7 @@
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|izmena od vaše poslednje posete}}",
 	"enhancedrc-history": "istorija",
 	"recentchanges": "Skorašnje izmene",
-	"recentchanges-legend": "Postavke skorašnjih izmena",
+	"recentchanges-legend": "Opcije skorašnjih izmena",
 	"recentchanges-summary": "Pratite skorašnje izmene na ovoj stranici.",
 	"recentchanges-noresult": "Nema promena u zadatom vremenu za zadate kriterijume.",
 	"recentchanges-feed-description": "Pratite skorašnje izmene uz pomoć ovog dovoda.",

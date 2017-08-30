@@ -1258,7 +1258,7 @@
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|измена од ваше последње посете}}",
 	"enhancedrc-history": "историја",
 	"recentchanges": "Скорашње измене",
-	"recentchanges-legend": "Поставке скорашњих измена",
+	"recentchanges-legend": "Опције скорашњих измена",
 	"recentchanges-summary": "Пратите скорашње измене на овој страници.",
 	"recentchanges-noresult": "Нема промена у задатом времену за задате критеријуме.",
 	"recentchanges-feed-description": "Пратите скорашње измене уз помоћ овог довода.",

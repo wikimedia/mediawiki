@@ -30,7 +30,8 @@
 			"Matma Rex",
 			"Bhatakati aatma",
 			"YmKavishwar",
-			"Kevin Kovadia"
+			"Kevin Kovadia",
+			"Drashti4"
 		]
 	},
 	"tog-underline": "કડીઓની નીચે લીટી (અંડરલાઇન):",
@@ -1129,7 +1130,7 @@
 	"recentchangeslinked-feed": "આની સાથે જોડાયેલા ફેરફાર",
 	"recentchangeslinked-toolbox": "આની સાથે જોડાયેલા ફેરફાર",
 	"recentchangeslinked-title": "\"$1\" ને લગતા ફેરફારો",
-	"recentchangeslinked-summary": "આ એવા ફેરફારોની યાદી છે જે આ ચોક્કસ પાના (કે શ્રેણીનાં સભ્ય પાનાઓ) સાથે જોડાયેલા પાનાઓમાં તાજેતરમાં કરવામાં આવ્યા હોય.\n[[Special:Watchlist|તમારી ધ્યાનસૂચિમાં]] હોય તેવા પાનાં '''ઘાટા અક્ષર'''માં વર્ણવ્યાં છે.",
+	"recentchangeslinked-summary": "આ એવા ફેરફારોની યાદી છે જે આ ચોક્કસ પાના (કે શ્રેણીનાં સભ્ય પાનાઓ) સાથે જોડાયેલા પાનાઓમાં તાજેતરમાં કરવામાં આવ્યા હોય.\n[[Special:Watchlist|તમારી ધ્યાનસૂચિમાં]] હોય તેવા પાનાં <strong>ઘાટા અક્ષર</strong>માં વર્ણવ્યાં છે.",
 	"recentchangeslinked-page": "પાનાનું નામ:",
 	"recentchangeslinked-to": "આને બદલે આપેલા પાનાં સાથે જોડાયેલા લેખોમાં થયેલા ફેરફારો શોધો",
 	"upload": "ફાઇલ ચડાવો",
@@ -1501,7 +1502,7 @@
 	"apisandbox-examples": "ઉદાહરણો",
 	"apisandbox-results": "પરિણામો",
 	"booksources": "પુસ્તક સ્રોત",
-	"booksources-search-legend": "પુસ્તક સ્રોત માટે શોધો",
+	"booksources-search-legend": "પુસ્તક સ્રોત શોધો",
 	"booksources-isbn": "આઇએસબીએન:",
 	"booksources-search": "શોધ",
 	"booksources-text": "નીચે દર્શાવેલ યાદી એ કડીઓ બતાવે છે જેઓ નવા અને જૂના પુસ્તકો  વેચે છે , અને તમે માંગેલ વસ્તુ સંબંધિ વધુ મહિતી પણ ધરાવી શકે છે.",
@@ -2739,6 +2740,7 @@
 	"version-libraries-library": "લાઇબ્રેરી",
 	"version-libraries-version": "આવૃત્તિ",
 	"redirect": "ફાઇલ, સભ્ય, પાનું, આવૃત્તિ, અથવા લૉગ ઓળખ વડે દિશાનિર્દેશન",
+	"redirect-summary": "આ વિશિષ્ટ પૃષ્ઠ ફાઇલને (ફાઇલ નામ આપવામાં આવે છે), એક પૃષ્ઠ (પુનરાવર્તન ID અથવા પૃષ્ઠ ID આપવામાં આવે છે), વપરાશકર્તા પૃષ્ઠ (એક આંકડાકીય વપરાશકર્તા ID આપવામાં આવે છે), અથવા લોગ એન્ટ્રી (લોગ ID ને આપવામાં આવે છે) પર પુનર્નિર્દેશન કરે છે.વપરાશ:[[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], [[{{#Special:Redirect}}/user/101]], or [[{{#Special:Redirect}}/logid/186]].",
 	"redirect-submit": "જાઓ",
 	"redirect-lookup": "જુઓ:",
 	"redirect-value": "કિંમત:",

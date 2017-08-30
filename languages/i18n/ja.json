@@ -3936,7 +3936,7 @@
 	"special-characters-title-endash": "en ダッシュ",
 	"special-characters-title-emdash": "em ダッシュ",
 	"special-characters-title-minus": "マイナス記号",
-	"mw-widgets-dateinput-no-date": "選択されたデータ無し",
+	"mw-widgets-dateinput-no-date": "日付未選択",
 	"mw-widgets-mediasearch-input-placeholder": "メディアを検索",
 	"mw-widgets-mediasearch-noresults": "見つかりませんでした。",
 	"mw-widgets-titleinput-description-new-page": "ページは存在しません",

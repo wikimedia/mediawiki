@@ -2240,7 +2240,7 @@
 	"unprotectedarticle": "صفحهٔ «[[$1]]» را از محافظت بیرون آورد",
 	"movedarticleprotection": "تنظیمات محافظت را از «[[$2]]» به «[[$1]]» منتقل کرد",
 	"protectedarticle-comment": "«[[$1]]» را {{GENDER:$2|محافظت کرد}}",
-	"modifiedarticleprotection-comment": "سطح محاظفت «[[$1]]» را {{GENDER:$2|تغییر داد}}",
+	"modifiedarticleprotection-comment": "سطح محافظت «[[$1]]» را {{GENDER:$2|تغییر داد}}",
 	"unprotectedarticle-comment": "«[[$1]]» را از محافظت {{GENDER:$2|در آورد}}",
 	"protect-title": "تغییر وضعیت محافظت «$1»",
 	"protect-title-notallowed": "مشاهدهٔ سطح محافظت «$1»",

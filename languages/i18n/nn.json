@@ -881,7 +881,7 @@
 	"prefs-watchlist-days-max": "Høgst {{PLURAL:$1|éin dag|$1 dagar}}",
 	"prefs-watchlist-edits": "Talet på endringar som viser i den utvida overvakingslista:",
 	"prefs-watchlist-edits-max": "Høgst 1000",
-	"prefs-watchlist-token": "Emne på overvakingslista:",
+	"prefs-watchlist-token": "Nykel for overvakingslista:",
 	"prefs-misc": "Andre",
 	"prefs-resetpass": "Endra passord",
 	"prefs-changeemail": "↓Endre e-postadresse",

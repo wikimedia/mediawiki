@@ -1048,7 +1048,7 @@
 	"apihelp-query+revisions+base-param-section": "Recuperar solamente el contenido de este número de sección.",
 	"apihelp-query+revisions+base-param-contentformat": "Formato de serialización utilizado para <var>$1difftotext</var> y esperado para la salida de contenido.",
 	"apihelp-query+search-summary": "Realizar una búsqueda de texto completa.",
-	"apihelp-query+search-param-namespace": "Buscar sólo en estos espacios de nombres.",
+	"apihelp-query+search-param-namespace": "Buscar solo en estos espacios de nombres.",
 	"apihelp-query+search-param-what": "Tipo de búsqueda que realizar.",
 	"apihelp-query+search-param-info": "Qué metadatos devolver.",
 	"apihelp-query+search-param-prop": "Qué propiedades se devolverán:",
