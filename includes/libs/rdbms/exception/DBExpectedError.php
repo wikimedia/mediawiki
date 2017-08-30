@@ -36,7 +36,7 @@ class DBExpectedError extends DBError implements MessageSpecifier, ILocalizedExc
 	/** @var string[] Message parameters */
 	protected $params;
 
-	function __construct( IDatabase $db = null, $error, array $params = [] ) {
+	public function __construct( IDatabase $db = null, $error, array $params = [] ) {
 		parent::__construct( $db, $error );
 		$this->params = $params;
 	}
