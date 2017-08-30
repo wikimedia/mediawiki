@@ -3,3 +3,6 @@
   removed. Use getSummaryInputWidget() instead.
 * EditPage::getCheckboxes() and EditPage::getCheckboxesOOUI() were
   removed. Use getCheckboxesWidget() or getCheckboxesDefinition() instead.
+
+* Hook 'EditPageBeforeEditChecks' was removed;
+  use 'EditPageGetCheckboxesDefinition' instead.
