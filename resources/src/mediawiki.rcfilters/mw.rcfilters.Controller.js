@@ -1055,7 +1055,7 @@
 				}
 			} );
 
-			return $.extend( true, {}, savedParams, savedHighlights );
+			return $.extend( true, {}, savedParams, savedHighlights, { invert: String( Number( data.invert || 0 ) ) } );
 		}
 
 		return this.filtersModel.getDefaultParams();
