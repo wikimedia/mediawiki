@@ -482,6 +482,7 @@ class EditPage {
 	 * @deprecated since 1.30
 	 */
 	public function isOouiEnabled() {
+		wfDeprecated( __METHOD__, '1.30' );
 		return true;
 	}
 
@@ -3082,6 +3083,7 @@ class EditPage {
 	public function getSummaryInput( $summary = "", $labelText = null,
 		$inputAttrs = null, $spanLabelAttrs = null
 	) {
+		wfDeprecated( __METHOD__, '1.30' );
 		$inputAttrs = $this->getSummaryInputAttributes( $inputAttrs );
 		$inputAttrs += Linker::tooltipAndAccesskeyAttribs( 'summary' );
 
@@ -4169,6 +4171,7 @@ class EditPage {
 	 */
 	public function getCheckboxes( &$tabindex, $checked ) {
 		global $wgUseMediaWikiUIEverywhere;
+		wfDeprecated( __METHOD__, '1.30' );
 
 		$checkboxes = [];
 		$checkboxesDef = $this->getCheckboxesDefinition( $checked );
