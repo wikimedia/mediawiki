@@ -439,6 +439,8 @@ abstract class DatabaseUpdater {
 			$this->runUpdates( $this->getExtensionUpdates(), true );
 		}
 
+		Hooks::run( 'AfterDatabaseUpdaterDoUpdates', [ $this ] );
+
 		if ( isset( $what['stats'] ) ) {
 			$this->checkStats();
 		}
