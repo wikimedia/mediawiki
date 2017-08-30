@@ -3066,6 +3066,47 @@ class EditPage {
 	}
 
 	/**
+	 * Standard summary input and label (wgSummary), abstracted so EditPage
+	 * subclasses may reorganize the form.
+	 * Note that you do not need to worry about the label's for=, it will be
+	 * inferred by the id given to the input. You can remove them both by
+	 * passing [ 'id' => false ] to $userInputAttrs.
+	 *
+	 * @deprecated since 1.30 Use getSummaryInputOOUI() instead
+	 * @param string $summary The value of the summary input
+	 * @param string $labelText The html to place inside the label
+	 * @param array $inputAttrs Array of attrs to use on the input
+	 * @param array $spanLabelAttrs Array of attrs to use on the span inside the label
+	 * @return array An array in the format [ $label, $input ]
+	 */
+	public function getSummaryInput( $summary = "", $labelText = null,
+		$inputAttrs = null, $spanLabelAttrs = null
+	) {
+		wfDeprecated( __METHOD__, '1.30' );
+		$inputAttrs = $this->getSummaryInputAttributes( $inputAttrs );
+		$inputAttrs += Linker::tooltipAndAccesskeyAttribs( 'summary' );
+
+		$spanLabelAttrs = ( is_array( $spanLabelAttrs ) ? $spanLabelAttrs : [] ) + [
+			'class' => $this->missingSummary ? 'mw-summarymissed' : 'mw-summary',
+			'id' => "wpSummaryLabel"
+		];
+
+		$label = null;
+		if ( $labelText ) {
+			$label = Xml::tags(
+				'label',
+				$inputAttrs['id'] ? [ 'for' => $inputAttrs['id'] ] : null,
+				$labelText
+			);
+			$label = Xml::tags( 'span', $spanLabelAttrs, $label );
+		}
+
+		$input = Html::input( 'wpSummary', $summary, 'text', $inputAttrs );
+
+		return [ $label, $input ];
+	}
+
+	/**
 	 * Builds a standard summary input with a label.
 	 *
 	 * @param string $summary The value of the summary input
