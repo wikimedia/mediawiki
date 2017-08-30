@@ -521,6 +521,10 @@ __INDEXATTR__;
 	public function selectSQLText(
 		$table, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
+		if ( is_string( $options ) ) {
+			$options = [ $options ];
+		}
+
 		// Change the FOR UPDATE option as necessary based on the join conditions. Then pass
 		// to the parent function to get the actual SQL text.
 		// In Postgres when using FOR UPDATE, only the main table and tables that are inner joined
@@ -532,12 +536,28 @@ __INDEXATTR__;
 			$forUpdateKey = array_search( 'FOR UPDATE', $options, true );
 			if ( $forUpdateKey !== false && $join_conds ) {
 				unset( $options[$forUpdateKey] );
+				$options['FOR UPDATE'] = [];
+
+				// All tables not in $join_conds are good
+				foreach ( $table as $alias => $name ) {
+					if ( is_numeric( $alias ) ) {
+						$alias = $name;
+					}
+					if ( !isset( $join_conds[$alias] ) ) {
+						$options['FOR UPDATE'][] = $alias;
+					}
+				}
 
 				foreach ( $join_conds as $table_cond => $join_cond ) {
 					if ( 0 === preg_match( '/^(?:LEFT|RIGHT|FULL)(?: OUTER)? JOIN$/i', $join_cond[0] ) ) {
 						$options['FOR UPDATE'][] = $table_cond;
 					}
 				}
+
+				// Quote alias names so $this->tableName() won't mangle them
+				$options['FOR UPDATE'] = array_map( function ( $name ) use ( $table ) {
+					return isset( $table[$name] ) ? $this->addIdentifierQuotes( $name ) : $name;
+				}, $options['FOR UPDATE'] );
 			}
 
 			if ( isset( $options['ORDER BY'] ) && $options['ORDER BY'] == 'NULL' ) {

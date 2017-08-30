@@ -363,6 +363,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 				$this->assertArrayNotHasKey( "{$key}_id", $fields, "new field, stage=$writeStage" );
 			}
 
+			$extraFields[$pk] = $this->db->nextSequenceValue( "{$table}_{$pk}_seq" );
 			$this->db->insert( $table, $extraFields + $fields, __METHOD__ );
 			$id = $this->db->insertId();
 			if ( $usesTemp ) {
@@ -404,17 +405,25 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideInsertRoundTrip() {
+		$db = wfGetDB( DB_REPLICA ); // for timestamps
+
 		$msgComment = new Message( 'parentheses', [ 'message comment' ] );
 		$textCommentMsg = new RawMessage( '$1', [ 'text comment' ] );
 		$nestedMsgComment = new Message( [ 'parentheses', 'rawmessage' ], [ new Message( 'mainpage' ) ] );
 		$ipbfields = [
 			'ipb_range_start' => '',
 			'ipb_range_end' => '',
+			'ipb_by' => 0,
+			'ipb_timestamp' => $db->timestamp(),
+			'ipb_expiry' => $db->getInfinity(),
 		];
 		$revfields = [
 			'rev_page' => 42,
 			'rev_text_id' => 42,
 			'rev_len' => 0,
+			'rev_user' => 0,
+			'rev_user_text' => '',
+			'rev_timestamp' => $db->timestamp(),
 		];
 		$comStoreComment = new CommentStoreComment(
 			null, 'comment store comment', null, [ 'foo' => 'bar' ]
