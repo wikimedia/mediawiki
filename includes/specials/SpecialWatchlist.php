@@ -422,13 +422,14 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			], LIST_OR );
 		}
 
+		$tagFilter = $opts['tagfilter'] ? explode( '|', $opts['tagfilter'] ) : [];
 		ChangeTags::modifyDisplayQuery(
 			$tables,
 			$fields,
 			$conds,
 			$join_conds,
 			$query_options,
-			''
+			$tagFilter
 		);
 
 		$this->runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds, $opts );
