@@ -242,6 +242,8 @@ class PageProps {
 	private function getGoodIDs( $titles ) {
 		$result = [];
 		if ( is_array( $titles ) ) {
+			( new LinkBatch( $titles ) )->execute();
+
 			foreach ( $titles as $title ) {
 				$pageID = $title->getArticleID();
 				if ( $pageID > 0 ) {
