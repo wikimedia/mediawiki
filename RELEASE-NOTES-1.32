@@ -3,3 +3,6 @@
   were removed. Use getSummaryInputOOUI() instead.
 * EditPage::getCheckboxes() and EditPage::getCheckboxesOOUI()
   were removed. Use getCheckboxesOOUI() instead.
+
+* Hook 'EditPageBeforeEditChecks' was removed,
+  use 'EditPageGetCheckboxesDefinition' instead.
