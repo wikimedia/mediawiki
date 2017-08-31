@@ -838,7 +838,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			}
 		}
 		$form .= Html::rawElement(
-			'p',
+			'div',
 			[ 'class' => 'watchlistDetails' ],
 			$watchlistHeader
 		);
