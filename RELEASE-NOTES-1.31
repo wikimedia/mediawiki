@@ -123,6 +123,9 @@ changes to languages because of Phabricator reports.
 * The Block class will no longer accept usable-but-missing usernames for
   'byText' or ->setBlocker(). Callers should either ensure the blocker exists
   locally or use a new interwiki-format username like "iw>Example".
+* The RevisionInsertComplete hook is now deprecated, use RevisionRecordInserted instead.
+  RevisionInsertComplete is still called, but the second and third parameter will always be null.
+  Hard deprecation is scheduled for 1.32.
 * The following methods that get and set ParserOutput state are deprecated.
   Callers should use the new stateless $options parameter to
   ParserOutput::getText() instead.
