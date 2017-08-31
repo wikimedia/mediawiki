@@ -440,7 +440,8 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		return (object)[
 			'rev_id' => (string)$rev->getId(),
 			'rev_page' => (string)$rev->getPage(),
-			'rev_text_id' => (string)$rev->getTextId(),
+			// Just use the int ID, not the new blob address from MCR
+			'rev_text_id' => ( explode( ':', $rev->getTextId() ) )[1],
 			'rev_timestamp' => (string)$rev->getTimestamp(),
 			'rev_user_text' => (string)$rev->getUserText(),
 			'rev_user' => (string)$rev->getUser(),
