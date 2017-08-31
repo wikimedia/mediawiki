@@ -1168,9 +1168,9 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * @throws MWException
 	 */
 	private function checkDatabaseWikiId( IDatabase $db ) {
-		if ( $db->getWikiID() !== $this->wikiId ) {
+		if ( $db->getDomainID() !== $this->wikiId ) {
 			$storeWiki = $this->wikiId === false ? 'local wiki' : $this->wikiId;
-			$dbWiki = $db->getWikiID() === false ? 'local wiki' : $db->getWikiID();
+			$dbWiki = $db->getDomainID() === false ? 'local wiki' : $db->getDomainID();
 
 			throw new MWException( "RevisionStore for $storeWiki "
 				. "cannot be used with a DB connection for $dbWiki" );
@@ -1597,7 +1597,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 
 		$row = $this->cache->getWithSetCallback(
 			// Page/rev IDs passed in from DB to reflect history merges
-			$this->cache->makeGlobalKey( 'revision-row-1.29', $db->getWikiID(), $pageId, $revId ),
+			$this->cache->makeGlobalKey( 'revision-row-1.29', $db->getDomainID(), $pageId, $revId ),
 			WANObjectCache::TTL_WEEK,
 			function ( $curValue, &$ttl, array &$setOpts ) use ( $db, $pageId, $revId ) {
 				$setOpts += Database::getCacheSetOptions( $db );

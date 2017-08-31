@@ -41,6 +41,8 @@ use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\BlobStore;
+use MediaWiki\Storage\RevisionStore;
 
 return [
 	'DBLoadBalancerFactory' => function ( MediaWikiServices $services ) {
@@ -425,6 +427,21 @@ return [
 		return new ReadOnlyMode(
 			$services->getConfiguredReadOnlyMode(),
 			$services->getDBLoadBalancer()
+		);
+	},
+
+	'RevisionStore' => function ( MediaWikiServices $services ) {
+		return new RevisionStore(
+			$services->getDBLoadBalancer(),
+			$services->getBlobStore(),
+			$services->getMainWANObjectCache()
+		);
+	},
+
+	'BlobStore' => function ( MediaWikiServices $services ) {
+		return new BlobStore(
+			$services->getDBLoadBalancer(),
+			$services->getMainWANObjectCache()
 		);
 	},
 

@@ -57,6 +57,26 @@ class RevisionTest extends MediaWikiTestCase {
 		parent::tearDown();
 	}
 
+	public function getMockTitle( $model = CONTENT_MODEL_WIKITEXT ) {
+		$mock = $this->getMockBuilder( Title::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$mock->expects( $this->any() )
+			->method( 'getNamespace' )
+			->will( $this->returnValue( 0 ) );
+		$mock->expects( $this->any() )
+			->method( 'getPrefixedText' )
+			->will( $this->returnValue( 'RevisionTest' ) );
+		$mock->expects( $this->any() )
+			->method( 'getArticleID' )
+			->will( $this->returnValue( 23 ) );
+		$mock->expects( $this->any() )
+			->method( 'getModel' )
+			->will( $this->returnValue( $model ) );
+
+		return $mock;
+	}
+
 	public function provideConstructFromArray() {
 		yield 'with text' => [
 			[
@@ -75,7 +95,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @dataProvider provideConstructFromArray
 	 */
 	public function testConstructFromArray( $rowArray ) {
-		$rev = new Revision( $rowArray );
+		$rev = new Revision( $rowArray, 0, $this->getMockTitle() );
 		$this->assertNotNull( $rev->getContent(), 'no content object available' );
 		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContent()->getModel() );
 		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContentModel() );
@@ -113,7 +133,7 @@ class RevisionTest extends MediaWikiTestCase {
 			$expectedException->getMessage(),
 			$expectedException->getCode()
 		);
-		new Revision( $rowArray );
+		new Revision( $rowArray, 0, $this->getMockTitle() );
 	}
 
 	public function provideGetRevisionText() {
@@ -278,7 +298,9 @@ class RevisionTest extends MediaWikiTestCase {
 				'minor_edit' => false,
 
 				'content_format' => $format,
-			]
+			],
+			0,
+			$this->getMockTitle()
 		);
 
 		return $rev;
@@ -442,7 +464,9 @@ class RevisionTest extends MediaWikiTestCase {
 				'length' => $content->getSize(),
 				'comment' => "testing",
 				'minor_edit' => false,
-			]
+			],
+			0,
+			$this->getMockTitle()
 		);
 
 		/** @var RevisionTestModifyableContent $content */
