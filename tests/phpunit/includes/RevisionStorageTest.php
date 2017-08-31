@@ -186,8 +186,19 @@ class RevisionStorageTest extends MediaWikiTestCase {
 
 		$rev = Revision::newFromTitle( $page->getTitle() );
 
-		$this->assertTrue( $page->getTitle()->equals( $rev->getTitle() ) );
-		$this->assertEquals( $latestRevId, $rev->getId() );
+		$this->assertNotNull(
+			$rev,
+			'$rev'
+		);
+		$this->assertTrue(
+			$page->getTitle()->equals( $rev->getTitle() ),
+			'$page->getTitle()->equals( $rev->getTitle() )'
+		);
+		$this->assertEquals(
+			$latestRevId,
+			$rev->getId(),
+			'$rev->getId()'
+		);
 	}
 
 	/**
@@ -203,8 +214,19 @@ class RevisionStorageTest extends MediaWikiTestCase {
 
 		$rev = Revision::newFromTitle( $page->getTitle(), $latestRevId );
 
-		$this->assertTrue( $page->getTitle()->equals( $rev->getTitle() ) );
-		$this->assertEquals( $latestRevId, $rev->getId() );
+		$this->assertNotNull(
+			$rev,
+			'$rev'
+		);
+		$this->assertTrue(
+			$page->getTitle()->equals( $rev->getTitle() ),
+			'$page->getTitle()->equals( $rev->getTitle() )'
+		);
+		$this->assertEquals(
+			$latestRevId,
+			$rev->getId(),
+			'$rev->getId()'
+		);
 	}
 
 	/**

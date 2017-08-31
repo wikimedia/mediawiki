@@ -1,4 +1,6 @@
 <?php
+use MediaWiki\Storage\BlobStore;
+use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * @group ContentHandler
@@ -57,6 +59,26 @@ class RevisionTest extends MediaWikiTestCase {
 		parent::tearDown();
 	}
 
+	public function getMockTitle( $model = CONTENT_MODEL_WIKITEXT ) {
+		$mock = $this->getMockBuilder( Title::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$mock->expects( $this->any() )
+			->method( 'getNamespace' )
+			->will( $this->returnValue( 0 ) );
+		$mock->expects( $this->any() )
+			->method( 'getPrefixedText' )
+			->will( $this->returnValue( 'RevisionTest' ) );
+		$mock->expects( $this->any() )
+			->method( 'getArticleID' )
+			->will( $this->returnValue( 23 ) );
+		$mock->expects( $this->any() )
+			->method( 'getModel' )
+			->will( $this->returnValue( $model ) );
+
+		return $mock;
+	}
+
 	public function provideConstructFromArray() {
 		yield 'with text' => [
 			[
@@ -75,7 +97,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @dataProvider provideConstructFromArray
 	 */
 	public function testConstructFromArray( $rowArray ) {
-		$rev = new Revision( $rowArray );
+		$rev = new Revision( $rowArray, 0, $this->getMockTitle() );
 		$this->assertNotNull( $rev->getContent(), 'no content object available' );
 		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContent()->getModel() );
 		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContentModel() );
@@ -100,7 +122,7 @@ class RevisionTest extends MediaWikiTestCase {
 		];
 		yield 'bad row format' => [
 			'imastring, not a row',
-			new MWException( 'Revision constructor passed invalid row format.' )
+			new InvalidArgumentException( '$row must be a row object, an associative array, or a RevisionRecord' )
 		];
 	}
 
@@ -113,7 +135,7 @@ class RevisionTest extends MediaWikiTestCase {
 			$expectedException->getMessage(),
 			$expectedException->getCode()
 		);
-		new Revision( $rowArray );
+		new Revision( $rowArray, 0, $this->getMockTitle() );
 	}
 
 	public function provideGetRevisionText() {
@@ -158,6 +180,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function provideGetRevisionTextWithLegacyEncoding() {
 		yield 'Utf8Native' => [
 			"Wiki est l'\xc3\xa9cole superieur !",
+			'fr',
 			'iso-8859-1',
 			[
 				'old_flags' => 'utf-8',
@@ -166,6 +189,7 @@ class RevisionTest extends MediaWikiTestCase {
 		];
 		yield 'Utf8Legacy' => [
 			"Wiki est l'\xc3\xa9cole superieur !",
+			'fr',
 			'iso-8859-1',
 			[
 				'old_flags' => '',
@@ -178,14 +202,18 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::getRevisionText
 	 * @dataProvider provideGetRevisionTextWithLegacyEncoding
 	 */
-	public function testGetRevisionWithLegacyEncoding( $expected, $encoding, $rowData ) {
-		$GLOBALS['wgLegacyEncoding'] = $encoding;
+	public function testGetRevisionWithLegacyEncoding( $expected, $lang, $encoding, $rowData ) {
+		$blobStore = $this->getBlobStore();
+		$blobStore->setLegacyEncoding( $encoding, Language::factory( $lang ) );
+		$this->setService( 'BlobStore', $blobStore );
+
 		$this->testGetRevisionText( $expected, $rowData );
 	}
 
 	public function provideGetRevisionTextWithGzipAndLegacyEncoding() {
 		yield 'Utf8NativeGzip' => [
 			"Wiki est l'\xc3\xa9cole superieur !",
+			'fr',
 			'iso-8859-1',
 			[
 				'old_flags' => 'gzip,utf-8',
@@ -194,6 +222,7 @@ class RevisionTest extends MediaWikiTestCase {
 		];
 		yield 'Utf8LegacyGzip' => [
 			"Wiki est l'\xc3\xa9cole superieur !",
+			'fr',
 			'iso-8859-1',
 			[
 				'old_flags' => 'gzip',
@@ -202,13 +231,29 @@ class RevisionTest extends MediaWikiTestCase {
 		];
 	}
 
+	private function getBlobStore() {
+		/** @var LoadBalancer $lb */
+		$lb = $this->getMockBuilder( LoadBalancer::class )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$cache = \MediaWiki\MediaWikiServices::getInstance()->getMainWANObjectCache();
+
+		$blobStore = new BlobStore( $lb, $cache );
+		return $blobStore;
+	}
+
 	/**
 	 * @covers Revision::getRevisionText
 	 * @dataProvider provideGetRevisionTextWithGzipAndLegacyEncoding
 	 */
-	public function testGetRevisionWithGzipAndLegacyEncoding( $expected, $encoding, $rowData ) {
+	public function testGetRevisionWithGzipAndLegacyEncoding( $expected, $lang, $encoding, $rowData ) {
 		$this->checkPHPExtension( 'zlib' );
-		$GLOBALS['wgLegacyEncoding'] = $encoding;
+
+		$blobStore = $this->getBlobStore();
+		$blobStore->setLegacyEncoding( $encoding, Language::factory( $lang ) );
+		$this->setService( 'BlobStore', $blobStore );
+
 		$this->testGetRevisionText( $expected, $rowData );
 	}
 
@@ -234,7 +279,10 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testCompressRevisionTextUtf8Gzip() {
 		$this->checkPHPExtension( 'zlib' );
-		$this->setMwGlobals( 'wgCompressRevisions', true );
+
+		$blobStore = $this->getBlobStore();
+		$blobStore->setCompressRevisions( true );
+		$this->setService( 'BlobStore', $blobStore );
 
 		$row = new stdClass;
 		$row->old_text = "Wiki est l'\xc3\xa9cole superieur !";
@@ -278,7 +326,9 @@ class RevisionTest extends MediaWikiTestCase {
 				'minor_edit' => false,
 
 				'content_format' => $format,
-			]
+			],
+			0,
+			$this->getMockTitle()
 		);
 
 		return $rev;
@@ -442,7 +492,9 @@ class RevisionTest extends MediaWikiTestCase {
 				'length' => $content->getSize(),
 				'comment' => "testing",
 				'minor_edit' => false,
-			]
+			],
+			0,
+			$this->getMockTitle()
 		);
 
 		/** @var RevisionTestModifyableContent $content */
