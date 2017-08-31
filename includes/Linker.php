@@ -1624,14 +1624,16 @@ class Linker {
 		$link, $fallbackAnchor = false
 	) {
 		$anchorEscaped = htmlspecialchars( $anchor );
-		$ret = "<h$level$attribs"
-			. "<span class=\"mw-headline\" id=\"$anchorEscaped\">$html</span>"
-			. $link
-			. "</h$level>";
+		$fallback = '';
 		if ( $fallbackAnchor !== false && $fallbackAnchor !== $anchor ) {
 			$fallbackAnchor = htmlspecialchars( $fallbackAnchor );
-			$ret = "<div id=\"$fallbackAnchor\"></div>$ret";
+			$fallback = "<span id=\"$fallbackAnchor\"></span>";
 		}
+		$ret = "<h$level$attribs"
+			. "$fallback<span class=\"mw-headline\" id=\"$anchorEscaped\">$html</span>"
+			. $link
+			. "</h$level>";
+
 		return $ret;
 	}
 
