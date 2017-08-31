@@ -559,14 +559,13 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 * @return array [ $schema, $id, $parameters ], with $parameters being an assoc array.
 	 */
 	private static function splitBlobAddress( $address ) {
-		$parts = wfParseUrl( $address );
-		if ( !$parts ) {
+		if ( !preg_match( '/^(\w+):(\w+)(\?(.*))?$/', $address, $m ) ) {
 			throw new InvalidArgumentException( "Bad blob address: $address" );
 		}
 
-		$schema = $parts['schema'];
-		$id = isset( $parts['path'] ) ? $parts['host'] . $parts['path'] : $parts['host'];
-		$parameters = isset( $parts['query'] ) ? wfCgiToArray( $parts['query'] ) : [];
+		$schema = strtolower( $m[1] );
+		$id = $m[2];
+		$parameters = isset( $m[4] ) ? wfCgiToArray( $m[4] ) : [];
 
 		return [ $schema, $id, $parameters ];
 	}
