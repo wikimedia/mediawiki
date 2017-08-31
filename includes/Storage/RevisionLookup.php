@@ -93,21 +93,22 @@ interface RevisionLookup {
 	 *
 	 * MCR migration note: this replaces Revision::getPrevious
 	 *
-	 * @param Title $title
-	 * @param $revId
+	 * @param RevisionRecord $rev
 	 *
 	 * @return RevisionRecord|null
 	 */
-	public function getPreviousRevision( Title $title, $revId );
+	public function getPreviousRevision( RevisionRecord $rev );
 
 	/**
 	 * Get next revision for this title
 	 *
 	 * MCR migration note: this replaces Revision::getNext
 	 *
+	 * @param RevisionRecord $rev
+	 *
 	 * @return RevisionRecord|null
 	 */
-	public function getNextRevision( Title $title, $revId );
+	public function getNextRevision( RevisionRecord $rev );
 
 	/**
 	 * Load a revision based on a known page ID and current revision ID from the DB
