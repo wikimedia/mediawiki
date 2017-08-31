@@ -239,7 +239,7 @@ interface ILBFactory {
 	 *   - cluster : wait on the given external load balancer DBs
 	 *   - timeout : Max wait time. Default: ~60 seconds
 	 *   - ifWritesSince: Only wait if writes were done since this UNIX timestamp
-	 * @throws DBReplicationWaitError If a timeout or error occured waiting on a DB cluster
+	 * @throws DBReplicationWaitError If a timeout or error occurred waiting on a DB cluster
 	 */
 	public function waitForReplication( array $opts = [] );
 
