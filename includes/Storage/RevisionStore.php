@@ -988,8 +988,8 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * @return UserIdentityValue
 	 */
 	private function getUserIdentityFromRowObject( $row, $prefix = 'rev_' ) {
-		$idField = "{$prefix}_user";
-		$nameField = "{$prefix}_user_text";
+		$idField = "{$prefix}user";
+		$nameField = "{$prefix}user_text";
 
 		$userId = intval( $row->$idField );
 
