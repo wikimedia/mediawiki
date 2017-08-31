@@ -6,6 +6,8 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Services\DestructibleService;
 use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceDisabledException;
+use MediaWiki\Storage\ContentStore;
+use MediaWiki\Storage\RevisionStore;
 
 /**
  * @covers MediaWiki\MediaWikiServices
@@ -328,7 +330,9 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'MainObjectStash' => [ 'MainObjectStash', BagOStuff::class ],
 			'MainWANObjectCache' => [ 'MainWANObjectCache', WANObjectCache::class ],
 			'LocalServerObjectCache' => [ 'LocalServerObjectCache', BagOStuff::class ],
-			'VirtualRESTServiceClient' => [ 'VirtualRESTServiceClient', VirtualRESTServiceClient::class ]
+			'VirtualRESTServiceClient' => [ 'VirtualRESTServiceClient', VirtualRESTServiceClient::class ],
+			'ContentStore' => [ 'ContentStore', ContentStore::class ],
+			'RevisionStore' => [ 'RevisionStore', RevisionStore::class ],
 		];
 	}
 
