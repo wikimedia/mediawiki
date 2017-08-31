@@ -11,6 +11,8 @@ use GlobalVarConfig;
 use Hooks;
 use IBufferingStatsdDataFactory;
 use MediaWiki\Shell\CommandFactory;
+use MediaWiki\Storage\BlobStore;
+use MediaWiki\Storage\RevisionStore;
 use Wikimedia\Rdbms\LBFactory;
 use LinkCache;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -688,6 +690,22 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getShellCommandFactory() {
 		return $this->getService( 'ShellCommandFactory' );
+	}
+
+	/**
+	 * @since 1.31
+	 * @return BlobStore
+	 */
+	public function getBlobStore() {
+		return $this->getService( 'BlobStore' );
+	}
+
+	/**
+	 * @since 1.31
+	 * @return RevisionStore
+	 */
+	public function getRevisionStore() {
+		return $this->getService( 'RevisionStore' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////
