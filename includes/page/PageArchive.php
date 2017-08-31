@@ -177,12 +177,14 @@ class PageArchive {
 	 */
 	public function listRevisions() {
 		$dbr = wfGetDB( DB_REPLICA );
+
+		// TODO: use RevisionStore::getArchiveQueryInfo!
 		$commentQuery = CommentStore::newKey( 'ar_comment' )->getJoin();
 
 		$tables = [ 'archive' ] + $commentQuery['tables'];
 
 		$fields = [
-			'ar_minor_edit', 'ar_timestamp', 'ar_user', 'ar_user_text',
+			'ar_id', 'ar_minor_edit', 'ar_timestamp', 'ar_user', 'ar_user_text',
 			'ar_len', 'ar_deleted', 'ar_rev_id', 'ar_sha1',
 			'ar_page_id'
 		] + $commentQuery['fields'];
@@ -542,6 +544,7 @@ class PageArchive {
 			$oldWhere['ar_timestamp'] = array_map( [ &$dbw, 'timestamp' ], $timestamps );
 		}
 
+		// TODO: use RevisionStore::getArchiveQueryInfo!
 		$commentQuery = CommentStore::newKey( 'ar_comment' )->getJoin();
 
 		$tables = [ 'archive', 'revision' ] + $commentQuery['tables'];

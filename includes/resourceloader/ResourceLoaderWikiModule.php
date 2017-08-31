@@ -183,12 +183,10 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * @return Content|null
 	 */
 	protected function getContentObj( Title $title ) {
-		$revision = Revision::newKnownCurrent( wfGetDB( DB_REPLICA ), $title->getArticleID(),
-			$title->getLatestRevID() );
+		$revision = Revision::newKnownCurrent( wfGetDB( DB_REPLICA ), $title );
 		if ( !$revision ) {
 			return null;
 		}
-		$revision->setTitle( $title );
 		$content = $revision->getContent( Revision::RAW );
 		if ( !$content ) {
 			wfDebugLog( 'resourceloader', __METHOD__ . ': failed to load content of JS/CSS page!' );
