@@ -2799,14 +2799,14 @@ called after the addition of 'qunit' and MediaWiki testing resources.
   added to any module.
 &$ResourceLoader: object
 
-'RevisionInsertComplete': Called after a revision is inserted into the database.
-&$revision: the Revision
-$data: the data stored in old_text.  The meaning depends on $flags: if external
-  is set, it's the URL of the revision text in external storage; otherwise,
-  it's the revision text itself.  In either case, if gzip is set, the revision
-  text is gzipped.
-$flags: a comma-delimited list of strings representing the options used.  May
-  include: utf8 (this will always be set for new revisions); gzip; external.
+'RevisionRecordInserted': Called after a revision is inserted into the database.
+$revisionRecord: the RevisionRecord that has just been inserted.
+
+'RevisionInsertComplete': DEPRECATED! Use RevisionRecordInserted hook instead.
+Called after a revision is inserted into the database.
+$revision: the Revision
+$data: DEPRECATED! Always null!
+$flags: DEPRECATED! Always null!
 
 'SearchableNamespaces': An option to modify which namespaces are searchable.
 &$arr: Array of namespaces ($nsId => $name) which will be used.
