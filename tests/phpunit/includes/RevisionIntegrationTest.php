@@ -1,4 +1,6 @@
 <?php
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionStore;
 
 /**
  * @group ContentHandler
@@ -70,7 +72,9 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		MWNamespace::clearCaches();
 		// Reset namespace cache
 		$wgContLang->resetNamespaces();
+
 		if ( !$this->testPage ) {
+			// FIXME: MediaWikiTestCase fails to create UTPage if the main namespace cannot contain wikitext
 			$this->testPage = WikiPage::factory( Title::newFromText( 'UTPage' ) );
 		}
 	}
@@ -94,12 +98,24 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 			$props['text'] = 'Lorem Ipsum';
 		}
 
+		if ( !isset( $props['user_text'] ) ) {
+			$props['user_text'] = 'Tester';
+		}
+
+		if ( !isset( $props['user'] ) ) {
+			$props['user'] = 0;
+		}
+
 		if ( !isset( $props['comment'] ) ) {
 			$props['comment'] = 'just a test';
 		}
 
 		if ( !isset( $props['page'] ) ) {
 			$props['page'] = $this->testPage->getId();
+		}
+
+		if ( !isset( $props['content_model'] ) ) {
+			$props['content_model'] = CONTENT_MODEL_WIKITEXT;
 		}
 
 		$rev = new Revision( $props );
@@ -232,7 +248,14 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		yield [
 			true,
 			function ( $f ) {
-				unset( $f['ar_text_id'] );
+				unset( $f['ar_text'] );
+				return $f;
+			},
+		];
+		yield [
+			false,
+			function ( $f ) {
+				unset( $f['ar_text'] );
 				return $f;
 			},
 		];
@@ -243,6 +266,34 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 				return $f;
 			},
 		];
+		yield [
+			false,
+			function ( $f ) {
+				unset( $f['ar_page_id'] );
+				return $f;
+			},
+		];
+		yield [
+			false,
+			function ( $f ) {
+				unset( $f['ar_parent_id'] );
+				return $f;
+			},
+		];
+		yield [
+			false,
+			function ( $f ) {
+				unset( $f['ar_rev_id'] );
+				return $f;
+			},
+		];
+		yield [
+			false,
+			function ( $f ) {
+				unset( $f['ar_sha1'] );
+				return $f;
+			},
+		];
 	}
 
 	/**
@@ -250,7 +301,16 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 	 * @covers Revision::newFromArchiveRow
 	 */
 	public function testNewFromArchiveRow( $contentHandlerUseDB, $selectModifier ) {
-		$this->setMwGlobals( 'wgContentHandlerUseDB', $contentHandlerUseDB );
+		$services = MediaWikiServices::getInstance();
+
+		$store = new RevisionStore(
+			$services->getDBLoadBalancer(),
+			$services->getBlobStore(),
+			$services->getMainWANObjectCache()
+		);
+
+		$store->setContentHandlerUseDB( $contentHandlerUseDB );
+		$this->setService( 'RevisionStore', $store );
 
 		$page = $this->createPage(
 			'RevisionStorageTest_testNewFromArchiveRow',
@@ -270,6 +330,8 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		$row = $res->fetchObject();
 		$res->free();
 
+		// MCR migration note: $row is now required to contain ar_title and ar_namespace.
+		// Alternatively, a Title object can be passed to RevisionStore::newRevisionFromArchiveRow
 		$rev = Revision::newFromArchiveRow( $row );
 
 		$this->assertRevEquals( $orig, $rev );
@@ -296,7 +358,7 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		$row = $res->fetchObject();
 		$res->free();
 
-		$rev = Revision::newFromArchiveRow( $row, [ 'comment' => 'SOMEOVERRIDE' ] );
+		$rev = Revision::newFromArchiveRow( $row, [ 'comment_text' => 'SOMEOVERRIDE' ] );
 
 		$this->assertNotEquals( $orig->getComment(), $rev->getComment() );
 		$this->assertEquals( 'SOMEOVERRIDE', $rev->getComment() );
@@ -340,7 +402,8 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 	 * @covers Revision::newFromPageId
 	 */
 	public function testNewFromPageIdWithNotLatestId() {
-		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
+		$content = new WikitextContent( __METHOD__ );
+		$this->testPage->doEditContent( $content, __METHOD__ );
 		$rev = Revision::newFromPageId(
 			$this->testPage->getId(),
 			$this->testPage->getRevision()->getPrevious()->getId()
@@ -361,6 +424,7 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
 		$id = $this->testPage->getRevision()->getId();
 
+		$this->hideDeprecated( 'Revision::fetchRevision' );
 		$res = Revision::fetchRevision( $this->testPage->getTitle() );
 
 		# note: order is unspecified
@@ -369,8 +433,7 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 			$rows[$row->rev_id] = $row;
 		}
 
-		$this->assertEquals( 1, count( $rows ), 'expected exactly one revision' );
-		$this->assertArrayHasKey( $id, $rows, 'missing revision with id ' . $id );
+		$this->assertEmpty( $rows, 'expected empty set' );
 	}
 
 	/**
@@ -455,6 +518,8 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 			'new null revision should have a different id from the original revision' );
 		$this->assertEquals( $orig->getTextId(), $rev->getTextId(),
 			'new null revision should have the same text id as the original revision' );
+		$this->assertEquals( $orig->getSha1(), $rev->getSha1(),
+			'new null revision should have the same SHA1 as the original revision' );
 		$this->assertEquals( __METHOD__, $rev->getContent()->getNativeData() );
 	}
 
@@ -517,7 +582,7 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 			'user' => $userA->getId(),
 			'text' => 'zero',
 			'content_model' => CONTENT_MODEL_WIKITEXT,
-			'summary' => 'edit zero'
+			'comment' => 'edit zero'
 		] );
 		$revisions[0]->insertOn( $dbw );
 
@@ -529,7 +594,7 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 			'user' => $userA->getId(),
 			'text' => 'one',
 			'content_model' => CONTENT_MODEL_WIKITEXT,
-			'summary' => 'edit one'
+			'comment' => 'edit one'
 		] );
 		$revisions[1]->insertOn( $dbw );
 
@@ -540,7 +605,7 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 			'user' => $userB->getId(),
 			'text' => 'two',
 			'content_model' => CONTENT_MODEL_WIKITEXT,
-			'summary' => 'edit two'
+			'comment' => 'edit two'
 		] );
 		$revisions[2]->insertOn( $dbw );
 
@@ -551,7 +616,7 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 			'user' => $userA->getId(),
 			'text' => 'three',
 			'content_model' => CONTENT_MODEL_WIKITEXT,
-			'summary' => 'edit three'
+			'comment' => 'edit three'
 		] );
 		$revisions[3]->insertOn( $dbw );
 
@@ -562,12 +627,23 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 			'user' => $userA->getId(),
 			'text' => 'zero',
 			'content_model' => CONTENT_MODEL_WIKITEXT,
-			'summary' => 'edit four'
+			'comment' => 'edit four'
 		] );
 		$revisions[4]->insertOn( $dbw );
 
 		// test it ---------------------------------
 		$since = $revisions[$sinceIdx]->getTimestamp();
+
+		$allRows = iterator_to_array( $dbw->select(
+			'revision',
+			[ 'rev_id', 'rev_timestamp', 'rev_user' ],
+			[
+				'rev_page' => $page->getId(),
+				//'rev_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $since ) )
+			],
+			__METHOD__,
+			[ 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 50 ]
+		) );
 
 		$wasLast = Revision::userWasLastToEdit( $dbw, $page->getId(), $userA->getId(), $since );
 
@@ -815,6 +891,7 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 	 */
 	public function testLoadFromId() {
 		$rev = $this->testPage->getRevision();
+		$this->hideDeprecated( 'Revision::loadFromId' );
 		$this->assertRevEquals(
 			$rev,
 			Revision::loadFromId( wfGetDB( DB_MASTER ), $rev->getId() )
