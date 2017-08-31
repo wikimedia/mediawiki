@@ -4086,7 +4086,7 @@ class EditPage {
 	 *   where bool indicates the checked status of the checkbox
 	 * @return array
 	 */
-	protected function getCheckboxesDefinition( $checked ) {
+	public function getCheckboxesDefinition( $checked ) {
 		global $wgUser;
 		$checkboxes = [];
 
