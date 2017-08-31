@@ -290,15 +290,16 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 	/**
 	 * @param stdClass $result Result row from recent changes
-	 * @return Revision|bool
+	 * @param Title $title
+	 * @return bool|Revision
 	 */
-	protected function revisionFromRcResult( stdClass $result ) {
+	protected function revisionFromRcResult( stdClass $result, Title $title ) {
 		return new Revision( [
 			'comment' => CommentStore::newKey( 'rc_comment' )->getComment( $result )->text,
 			'deleted' => $result->rc_deleted,
 			'user_text' => $result->rc_user_text,
 			'user' => $result->rc_user,
-		] );
+		], 0, $title );
 	}
 
 	/**
@@ -313,8 +314,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		// Revision deletion works on revisions,
 		// so cast our recent change row to a revision row.
-		$rev = $this->revisionFromRcResult( $result );
-		$rev->setTitle( $title );
+		$rev = $this->revisionFromRcResult( $result, $title );
 
 		$classes = [];
 		$attribs = [ 'data-mw-revid' => $result->rev_id ];
