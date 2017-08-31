@@ -385,10 +385,10 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * @param int $pageId ID number of the page to read from
 	 * @param string $summary RevisionRecord's summary
 	 * @param bool $minor Whether the revision should be considered as minor
-	 * @param User|null $user User object to use or null for $wgUser
+	 * @param User $user User object to use or null for $wgUser
 	 * @return RevisionRecord|null RevisionRecord or null on error
 	 */
-	public function newNullRevision( IDatabase $dbw, $pageId, $summary, $minor, $user = null ) {
+	public function newNullRevision( IDatabase $dbw, $pageId, $summary, $minor, User $user ) {
 		global $wgContentHandlerUseDB, $wgContLang;
 
 		$this->checkDatabaseWikiId( $dbw );
@@ -413,11 +413,6 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		);
 
 		if ( $current ) {
-			if ( !$user ) {
-				global $wgUser;
-				$user = $wgUser;
-			}
-
 			// Truncate for whole multibyte characters
 			$summary = $wgContLang->truncate( $summary, 255 );
 
@@ -966,32 +961,6 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	}
 
 	/**
-	 * Return a wrapper for a series of database rows to
-	 * fetch all of a given page's revisions in turn.
-	 * Each row can be fed to the constructor to get objects.
-	 *
-	 * MCR migration note: this replaces Revision::fetchRevision
-	 *
-	 * @param LinkTarget $title
-	 * @return ResultWrapper
-	 * @deprecated Since 1.28
-	 */
-	public function fetchRevisionRows( LinkTarget $title ) {
-		$db = $this->getDBConnection( DB_REPLICA );
-		$row = $this->fetchRevisionRowFromConds(
-			$db,
-			[
-				'rev_id=page_latest',
-				'page_namespace' => $title->getNamespace(),
-				'page_title' => $title->getDBkey()
-			]
-		);
-
-		$this->releaseDBConnection( $db );
-		return new FakeResultWrapper( $row ? [ $row ] : [] );
-	}
-
-	/**
 	 * Throws an exception if the given database connection does not belong to the wiki this
 	 * RevisionStore is bound to.
 	 *
@@ -1210,13 +1179,13 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 *
 	 * MCR migration note: this replaces Revision::getPrevious
 	 *
-	 * @param Title $title
-	 * @param $revId
+	 * @param RevisionRecord $rev
 	 *
 	 * @return RevisionRecord|null
 	 */
-	public function getPreviousRevision( Title $title, $revId ) {
-		$prev = $title->getPreviousRevisionID( $revId );
+	public function getPreviousRevision( RevisionRecord $rev ) {
+		$title = $this->getTitle( $rev );
+		$prev = $title->getPreviousRevisionID( $rev->getId() );
 		if ( $prev ) {
 			return $this->getRevisionByTitle( $title, $prev );
 		}
@@ -1228,10 +1197,13 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 *
 	 * MCR migration note: this replaces Revision::getNext
 	 *
+	 * @param RevisionRecord $rev
+	 *
 	 * @return RevisionRecord|null
 	 */
-	public function getNextRevision( Title $title, $revId ) {
-		$next = $title->getNextRevisionID( $revId );
+	public function getNextRevision( RevisionRecord $rev ) {
+		$title = $this->getTitle( $rev );
+		$next = $title->getNextRevisionID( $rev->getId() );
 		if ( $next ) {
 			return $this->getRevisionByTitle( $title, $next );
 		}
