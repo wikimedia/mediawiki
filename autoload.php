@@ -949,6 +949,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Storage\\RevisionStore' => __DIR__ . '/includes/Storage/RevisionStore.php',
 	'MediaWiki\\Storage\\RevisionStoreRecord' => __DIR__ . '/includes/Storage/RevisionStoreRecord.php',
 	'MediaWiki\\Storage\\SlotRecord' => __DIR__ . '/includes/Storage/SlotRecord.php',
+	'MediaWiki\\Storage\\TransientDataAccess' => __DIR__ . '/includes/Storage/TransientDataAccess.php',
 	'MediaWiki\\Tidy\\BalanceActiveFormattingElements' => __DIR__ . '/includes/tidy/Balancer.php',
 	'MediaWiki\\Tidy\\BalanceElement' => __DIR__ . '/includes/tidy/Balancer.php',
 	'MediaWiki\\Tidy\\BalanceMarker' => __DIR__ . '/includes/tidy/Balancer.php',
