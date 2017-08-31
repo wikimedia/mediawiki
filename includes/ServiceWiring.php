@@ -42,6 +42,8 @@ use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\CommandFactory;
+use MediaWiki\Storage\BlobStore;
+use MediaWiki\Storage\RevisionStore;
 
 return [
 	'DBLoadBalancerFactory' => function ( MediaWikiServices $services ) {
@@ -444,6 +446,36 @@ return [
 		$factory->setLogger( LoggerFactory::getInstance( 'exec' ) );
 
 		return $factory;
+	},
+
+	'RevisionStore' => function ( MediaWikiServices $services ) {
+		$store = new RevisionStore(
+			$services->getDBLoadBalancer(),
+			$services->getBlobStore(),
+			$services->getMainWANObjectCache()
+		);
+
+		$config = $services->getMainConfig();
+		$store->setContentHandlerUseDB( $config->get( 'ContentHandlerUseDB' ) );
+
+		return $store;
+	},
+
+	'BlobStore' => function ( MediaWikiServices $services ) {
+		global $wgContLang; // TODO: manage $wgContLang as a service
+
+		$store = new BlobStore(
+			$services->getDBLoadBalancer(),
+			$services->getMainWANObjectCache()
+		);
+
+		$config = $services->getMainConfig();
+		$store->setCompressRevisions( $config->get( 'CompressRevisions' ) );
+		$store->setLegacyEncoding( $config->get( 'LegacyEncoding' ), $wgContLang );
+		$store->setRevisionCacheExpiry( $config->get( 'RevisionCacheExpiry' ) );
+		$store->setUseExternalStore( $config->get( 'DefaultExternalStore' ) !== false );
+
+		return $store;
 	},
 
 	///////////////////////////////////////////////////////////////////////////
