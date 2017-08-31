@@ -115,12 +115,12 @@ class FetchTextTest extends MediaWikiTestCase {
 			$revision = $value['revision'];
 			$id = $revision->getTextId();
 
-			if ( $id > 0 ) {
-				return $id;
+			if ( $id !== null && preg_match( '/^tt:(\d+)$/', $id, $m ) ) {
+				return intval( $m[1] );
 			}
 		}
 
-		throw new MWException( "Could not determine text id" );
+		throw new MWException( "Could not determine text.old_id" );
 	}
 
 	function addDBDataOnce() {
