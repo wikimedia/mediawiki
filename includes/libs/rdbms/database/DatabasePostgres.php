@@ -39,8 +39,6 @@ class DatabasePostgres extends Database {
 	/** @var int The number of rows affected as an integer */
 	protected $mAffectedRows = null;
 
-	/** @var int */
-	private $mInsertId = null;
 	/** @var float|string */
 	private $numericVersion = null;
 	/** @var string Connect string to open a PostgreSQL connection */
@@ -352,14 +350,10 @@ class DatabasePostgres extends Database {
 		return pg_field_name( $res, $n );
 	}
 
-	/**
-	 * Return the result of the last call to nextSequenceValue();
-	 * This must be called after nextSequenceValue().
-	 *
-	 * @return int|null
-	 */
 	public function insertId() {
-		return $this->mInsertId;
+		$res = $this->query( "SELECT lastval()" );
+		$row = $this->fetchRow( $res );
+		return is_null( $row[0] ) ? null : (int)$row[0];
 	}
 
 	public function dataSeek( $res, $row ) {
@@ -776,12 +770,7 @@ __INDEXATTR__;
 	}
 
 	public function nextSequenceValue( $seqName ) {
-		$safeseq = str_replace( "'", "''", $seqName );
-		$res = $this->query( "SELECT nextval('$safeseq')" );
-		$row = $this->fetchRow( $res );
-		$this->mInsertId = is_null( $row[0] ) ? null : (int)$row[0];
-
-		return $this->mInsertId;
+		return new NextSequenceValue;
 	}
 
 	/**
@@ -1224,6 +1213,8 @@ SQL;
 				$s = pg_escape_bytea( $conn, $s->fetch() );
 			}
 			return "'$s'";
+		} elseif ( $s instanceof NextSequenceValue ) {
+			return 'DEFAULT';
 		}
 
 		return "'" . pg_escape_string( $conn, $s ) . "'";
