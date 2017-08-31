@@ -32,6 +32,9 @@ use Wikimedia\Assert\Assert;
 /**
  * Lazy loading representation of a page revision.
  *
+ * @todo RevisionRecord is probably not needed as a separate interface.
+ * It's useful for now to be explicit about what should be exposed, and what shouldn't.
+ *
  * Callbacks are used for lazy loading, so this class
  * has no knowledge of the actual storage mechanism.
  *
@@ -460,7 +463,8 @@ class DefaultRevisionRecord implements RevisionRecord, TransientDataAccess {
 	 * @param User|null $user User object to check, or null to use $wgUser
 	 * @return bool
 	 */
-	protected function userCan( $field, User $user = null ) {
+	public function userCan( $field, User $user = null ) {
+		// FIXME: require user!
 		return self::userCanBitfield( $this->getVisibility(), $field, $user );
 	}
 
@@ -471,7 +475,7 @@ class DefaultRevisionRecord implements RevisionRecord, TransientDataAccess {
 	 *
 	 * MCR migration note: this replaces Revision::userCanBitfield
 	 *
-	 * @todo: FIXME: move all checks that depend on the user's identity into RevisionStore!
+	 * @todo: FIXME: move this and all checks that depend on the user's identity into RevisionStore!
 	 *
 	 * @param int $bitfield Current field
 	 * @param int $field One of self::DELETED_TEXT = File::DELETED_FILE,
@@ -485,6 +489,8 @@ class DefaultRevisionRecord implements RevisionRecord, TransientDataAccess {
 	public static function userCanBitfield( $bitfield, $field, User $user = null,
 		Title $title = null
 	) {
+		// FIXME: require user!
+
 		if ( $bitfield & $field ) { // aspect is deleted
 			if ( $user === null ) {
 				global $wgUser; // FIXME!
