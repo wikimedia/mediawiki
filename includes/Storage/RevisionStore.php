@@ -179,12 +179,21 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			list( $dbMode, $dbOptions, , ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
 
 			$dbr = $this->getDbConnectionRef( $dbMode );
+			// @todo: Title::getSelectFields(), or Title::getQueryInfo(), or something like that
 			$row = $dbr->selectRow(
-				[ 'page', 'revision' ],
-				$this->selectPageFields(),
-				[ 'page_id=rev_page', 'rev_id' => $revId ],
+				[ 'revision', 'page' ],
+				[
+					'page_namespace',
+					'page_title',
+					'page_id',
+					'page_latest',
+					'page_is_redirect',
+					'page_len',
+				],
+				[ 'rev_id' => $revId ],
 				__METHOD__,
-				$dbOptions
+				[],
+				[ 'page' => [ 'JOIN', 'page_id=rev_page' ] ]
 			);
 			if ( $row ) {
 				// TODO: better foreign title handling (introduce TitleFactory)
@@ -927,7 +936,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		}
 
 		$comment = CommentStore::newKey( 'ar_comment' )
-			// Legacy because $row probably came from self::selectFields()
+			// Legacy because $row may have come from self::selectFields()
 			->getCommentLegacy( $this->getDBConnection( DB_REPLICA ), $row, true );
 
 		$mainSlot = $this->emulateMainSlot_1_29( $row, $queryFlags, $title );
@@ -976,7 +985,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		}
 
 		$comment = CommentStore::newKey( 'rev_comment' )
-			// Legacy because $row probably came from self::selectFields()
+			// Legacy because $row may have come from self::selectFields()
 			->getCommentLegacy( $this->getDBConnection( DB_REPLICA ), $row, true );
 
 		$mainSlot = $this->emulateMainSlot_1_29( $row, $queryFlags, $title );
@@ -1301,22 +1310,18 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	private function fetchRevisionRowFromConds( IDatabase $db, $conditions, $flags = 0 ) {
 		$this->checkDatabaseWikiId( $db );
 
-		$fields = array_merge(
-			$this->selectRevisionFields(),
-			$this->selectPageFields(),
-			$this->selectUserFields()
-		);
+		$revQuery = self::getQueryInfo( [ 'page', 'user' ] );
 		$options = [];
 		if ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING ) {
 			$options[] = 'FOR UPDATE';
 		}
 		return $db->selectRow(
-			[ 'revision', 'page', 'user' ],
-			$fields,
+			$revQuery['tables'],
+			$revQuery['fields'],
 			$conditions,
 			__METHOD__,
 			$options,
-			[ 'page' => $this->pageJoinCond(), 'user' => $this->userJoinCond() ]
+			$revQuery['joins']
 		);
 	}
 
@@ -1455,11 +1460,134 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * Return the list of user fields that should be selected from user table
 	 *
 	 * MCR migration note: this replaces Revision::selectUserFields
+	 * @deprecated since 1.31, use self::getQueryInfo( [ 'user' ] ) instead.
 	 *
 	 * @return array
 	 */
 	public function selectUserFields() {
 		return [ 'user_name' ];
+	}
+
+	/**
+	 * Return the tables, fields, and join conditions to be selected to create
+	 * a new revision object.
+	 *
+	 * MCR migration note: this replaces Revision::getQueryInfo
+	 *
+	 * @since 1.31
+	 *
+	 * @param array $options Any combination of the following strings
+	 *  - 'page': Join with the page table, and select fields to identify the page
+	 *  - 'user': Join with the user table, and select the user name
+	 *  - 'text': Join with the text table, and select fields to load page text
+	 * @return array With three keys:
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 */
+	public function getQueryInfo( $options = [] ) {
+		global $wgContentHandlerUseDB;
+
+		$commentQuery = CommentStore::newKey( 'rev_comment' )->getJoin();
+		$ret = [
+			'tables' => [ 'revision' ] + $commentQuery['tables'],
+			'fields' => [
+					'rev_id',
+					'rev_page',
+					'rev_text_id',
+					'rev_timestamp',
+					'rev_user_text',
+					'rev_user',
+					'rev_minor_edit',
+					'rev_deleted',
+					'rev_len',
+					'rev_parent_id',
+					'rev_sha1',
+				] + $commentQuery['fields'],
+			'joins' => $commentQuery['joins'],
+		];
+
+		if ( $wgContentHandlerUseDB ) {
+			$ret['fields'][] = 'rev_content_format';
+			$ret['fields'][] = 'rev_content_model';
+		}
+
+		if ( in_array( 'page', $options, true ) ) {
+			$ret['tables'][] = 'page';
+			$ret['fields'] = array_merge( $ret['fields'], [
+				'page_namespace',
+				'page_title',
+				'page_id',
+				'page_latest',
+				'page_is_redirect',
+				'page_len',
+			] );
+			$ret['joins']['page'] = [ 'INNER JOIN', [ 'page_id = rev_page' ] ];
+		}
+
+		if ( in_array( 'user', $options, true ) ) {
+			$ret['tables'][] = 'user';
+			$ret['fields'] = array_merge( $ret['fields'], [
+				'user_name',
+			] );
+			$ret['joins']['user'] = [ 'LEFT JOIN', [ 'rev_user != 0', 'user_id = rev_user' ] ];
+		}
+
+		if ( in_array( 'text', $options, true ) ) {
+			$ret['tables'][] = 'text';
+			$ret['fields'] = array_merge( $ret['fields'], [
+				'old_text',
+				'old_flags'
+			] );
+			$ret['joins']['text'] = [ 'INNER JOIN', [ 'rev_text_id=old_id' ] ];
+		}
+
+		return $ret;
+	}
+
+	/**
+	 * Return the tables, fields, and join conditions to be selected to create
+	 * a new archived revision object.
+	 *
+	 * MCR migration note: this replaces Revision::getArchiveQueryInfo
+	 *
+	 * @since 1.31
+	 *
+	 * @return array With three keys:
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 */
+	public function getArchiveQueryInfo() {
+		global $wgContentHandlerUseDB;
+
+		$commentQuery = CommentStore::newKey( 'ar_comment' )->getJoin();
+		$ret = [
+			'tables' => [ 'archive' ] + $commentQuery['tables'],
+			'fields' => [
+					'ar_id',
+					'ar_page_id',
+					'ar_rev_id',
+					'ar_text',
+					'ar_text_id',
+					'ar_timestamp',
+					'ar_user_text',
+					'ar_user',
+					'ar_minor_edit',
+					'ar_deleted',
+					'ar_len',
+					'ar_parent_id',
+					'ar_sha1',
+				] + $commentQuery['fields'],
+			'joins' => $commentQuery['joins'],
+		];
+
+		if ( $wgContentHandlerUseDB ) {
+			$ret['fields'][] = 'ar_content_format';
+			$ret['fields'][] = 'ar_content_model';
+		}
+
+		return $ret;
 	}
 
 	/**
