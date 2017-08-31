@@ -70,7 +70,9 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		MWNamespace::clearCaches();
 		// Reset namespace cache
 		$wgContLang->resetNamespaces();
+
 		if ( !$this->testPage ) {
+			// FIXME: MediaWikiTestCase fails to create UTPage if the main namespace cannot contain wikitext
 			$this->testPage = WikiPage::factory( Title::newFromText( 'UTPage' ) );
 		}
 	}
@@ -94,12 +96,21 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 			$props['text'] = 'Lorem Ipsum';
 		}
 
+		if ( !isset( $props['user'] ) && !isset( $props['user_text'] ) ) {
+			$props['user'] = 7;
+			$props['user_text'] = 'Tester';
+		}
+
 		if ( !isset( $props['comment'] ) ) {
 			$props['comment'] = 'just a test';
 		}
 
 		if ( !isset( $props['page'] ) ) {
 			$props['page'] = $this->testPage->getId();
+		}
+
+		if ( !isset( $props['content_model'] ) ) {
+			$props['content_model'] = CONTENT_MODEL_WIKITEXT;
 		}
 
 		$rev = new Revision( $props );

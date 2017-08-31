@@ -934,6 +934,7 @@ class Revision implements IDBAccessObject {
 	 * @since 1.28
 	 */
 	public static function newKnownCurrent( IDatabase $db, $pageId, $revId ) {
-		return self::getRevisionStore()->getKnownCurrentRevision( $db, $pageId, $revId );
+		$record = self::getRevisionStore()->getKnownCurrentRevision( $db, $pageId, $revId );
+		return $record ? new Revision( $record ) : false;
 	}
 }
