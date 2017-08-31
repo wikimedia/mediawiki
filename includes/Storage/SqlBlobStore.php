@@ -520,7 +520,8 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 
 	/**
 	 * Returns an ID corresponding to the old_id field in the text table, corresponding
-	 * to the given $address.
+	 * to the given $address. If the address does not refer to the text table, null
+	 * is returned.
 	 *
 	 * Currently, $address must start with 'tt:' followed by a decimal integer representing
 	 * the old_id. However, the implementation may change to insert rows into the text
@@ -533,15 +534,13 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 *
 	 * @param string $address
 	 *
-	 * @return int
-	 * @throws InvalidArgumentException if $address is malformed or uses an unsupported schema.
+	 * @return int|null
 	 */
 	public function getTextIdFromAddress( $address ) {
 		list( $schema, $id, ) = self::splitBlobAddress( $address );
 
 		if ( $schema !== 'tt' ) {
-			// XXX: for "ext", we could just insert a row into the text table, and return its id.
-			throw new InvalidArgumentException( "Unsupported blob address schema: $schema" );
+			return null;
 		}
 
 		$textId = intval( $id );

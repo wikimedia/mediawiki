@@ -31,6 +31,7 @@ use Hooks;
 use \IDBAccessObject;
 use InvalidArgumentException;
 use IP;
+use LogicException;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -257,7 +258,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * @param RevisionRecord $rev
 	 * @param IDatabase $dbw (master connection)
 	 *
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 * @return RevisionRecord the new revision record.
 	 */
 	public function insertRevisionOn( RevisionRecord $rev, IDatabase $dbw ) {
@@ -265,11 +266,11 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		$this->checkDatabaseWikiId( $dbw );
 
 		if ( !$rev->getSlotRoles() ) {
-			throw new MWException( 'At least one slot needs to be defined!' );
+			throw new InvalidArgumentException( 'At least one slot needs to be defined!' );
 		}
 
 		if ( $rev->getSlotRoles() !== [ 'main' ] ) {
-			throw new MWException( 'Only the main slot is supported for now!' );
+			throw new InvalidArgumentException( 'Only the main slot is supported for now!' );
 		}
 
 		// TODO: we shouldn't need an actual Title here.
@@ -317,6 +318,12 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		}
 
 		$textId = $this->blobStore->getTextIdFromAddress( $blobAddress );
+
+		if ( !$textId ) {
+			throw new LogicException(
+				'Blob address not supported in 1.29 database schema: ' . $blobAddress
+			);
+		}
 
 		// getTextIdFromAddress() is free to insert something into the text table, so $textId
 		// may be a new value, not anything already contained in $blobAddress.
@@ -609,7 +616,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * @return object a revision row object, corresponding to $archiveRow.
 	 */
 	private static function mapArchiveFields( $archiveRow ) {
-		static $fieldMap = [
+		$fieldMap = [
 			// keep with ar prefix:
 			'ar_id'        => 'ar_id',
 
@@ -635,11 +642,12 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			'ar_comment_old'    => 'rev_comment_old',
 			'ar_content_format' => 'rev_content_format',
 			'ar_content_model'  => 'rev_content_model',
-
-			// map to text table fields:
-			'ar_text'           => 'old_text',
-			'ar_flags'          => 'old_flags',
 		];
+
+		if ( empty( $archiveRow->ar_text_id ) ) {
+			$fieldMap['ar_text'] = 'old_text';
+			$fieldMap['ar_flags'] = 'old_flags';
+		}
 
 		$revRow = new stdClass();
 		foreach ( $fieldMap as $arKey => $revKey ) {
