@@ -23,6 +23,7 @@
 use MediaWiki\Edit\PreparedEdit;
 use \MediaWiki\Logger\LoggerFactory;
 use \MediaWiki\MediaWikiServices;
+use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBError;
@@ -669,7 +670,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$revision = Revision::newFromPageId( $this->getId(), $latest, $flags );
 		} else {
 			$dbr = wfGetDB( DB_REPLICA );
-			$revision = Revision::newKnownCurrent( $dbr, $this->getId(), $latest );
+			$revision = Revision::newKnownCurrent( $dbr, $this->getTitle(), $latest );
 		}
 
 		if ( $revision ) { // sanity
@@ -1262,8 +1263,11 @@ class WikiPage implements Page, IDBAccessObject {
 			$conditions['page_latest'] = $lastRevision;
 		}
 
+		$revId = $revision->getId();
+		Assert::parameter( $revId > 0, '$revision->getId()', 'must be > 0' );
+
 		$row = [ /* SET */
-			'page_latest'      => $revision->getId(),
+			'page_latest'      => $revId,
 			'page_touched'     => $dbw->timestamp( $revision->getTimestamp() ),
 			'page_is_new'      => ( $lastRevision === 0 ) ? 1 : 0,
 			'page_is_redirect' => $rt !== null ? 1 : 0,
