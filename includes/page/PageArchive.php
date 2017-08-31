@@ -530,6 +530,7 @@ class PageArchive {
 			$oldWhere['ar_timestamp'] = array_map( [ &$dbw, 'timestamp' ], $timestamps );
 		}
 
+		// TODO: use RevisionStore::getArchiveQueryInfo!
 		$commentQuery = CommentStore::newKey( 'ar_comment' )->getJoin();
 
 		$tables = [ 'archive', 'revision' ] + $commentQuery['tables'];
