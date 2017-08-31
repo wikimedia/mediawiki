@@ -68,8 +68,10 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 			$revision_id = $revision->getId();
 			$text_id = $revision->getTextId();
 
-			if ( ( $revision_id > 0 ) && ( $text_id > 0 ) ) {
-				return [ $revision_id, $text_id ];
+			if ( ( $revision_id > 0 ) && ( $text_id !== null ) ) {
+				if ( preg_match( '/^tt:(\d+)$/', $text_id, $m ) ) {
+					return [ $revision_id, intval( $m[1] ) ];
+				}
 			}
 		}
 
