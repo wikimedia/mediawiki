@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Storage;
 
 use CommentStoreComment;
 use Exception;
+use InvalidArgumentException;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\IncompleteRevisionException;
@@ -185,7 +186,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 				'timestamp' => '20171117010101',
 				'user' => true,
 			],
-			new MWException( 'At least one slot needs to be defined!' )
+			new InvalidArgumentException( 'At least one slot needs to be defined!' )
 		];
 		yield 'slot that is not main slot' => [
 			Title::newFromText( 'UTPage' ),
@@ -195,7 +196,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 				'timestamp' => '20171117010101',
 				'user' => true,
 			],
-			new MWException( 'Only the main slot is supported for now!' )
+			new InvalidArgumentException( 'Only the main slot is supported for now!' )
 		];
 		yield 'no timestamp' => [
 			Title::newFromText( 'UTPage' ),
