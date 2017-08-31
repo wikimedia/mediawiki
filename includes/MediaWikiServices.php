@@ -10,6 +10,8 @@ use GenderCache;
 use GlobalVarConfig;
 use Hooks;
 use IBufferingStatsdDataFactory;
+use MediaWiki\Storage\BlobStore;
+use MediaWiki\Storage\RevisionStore;
 use Wikimedia\Rdbms\LBFactory;
 use LinkCache;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -681,6 +683,22 @@ class MediaWikiServices extends ServiceContainer {
 		return $this->getService( 'ReadOnlyMode' );
 	}
 
+	}
+
+	/**
+	 * @since 1.31
+	 * @return BlobStore
+	 */
+	public function getBlobStore() {
+		return $this->getService( 'BlobStore' );
+	}
+
+	/**
+	 * @since 1.31
+	 * @return RevisionStore
+	 */
+	public function getRevisionStore() {
+		return $this->getService( 'RevisionStore' );
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service getter here, don't forget to add a test
 	// case for it in MediaWikiServicesTest::provideGetters() and in

@@ -821,8 +821,10 @@ class Revision implements IDBAccessObject {
 			$user = $wgUser;
 		}
 
+		$comment = CommentStoreComment::newUnsavedComment( $summary, null );
+
 		$title = Title::newFromID( $pageId );
-		$rec = self::getRevisionStore()->newNullRevision( $dbw, $title, $summary, $minor, $user );
+		$rec = self::getRevisionStore()->newNullRevision( $dbw, $title, $comment, $minor, $user );
 
 		return new Revision( $rec );
 	}
@@ -934,6 +936,7 @@ class Revision implements IDBAccessObject {
 	 * @since 1.28
 	 */
 	public static function newKnownCurrent( IDatabase $db, $pageId, $revId ) {
-		return self::getRevisionStore()->getKnownCurrentRevision( $db, $pageId, $revId );
+		$record = self::getRevisionStore()->getKnownCurrentRevision( $db, $pageId, $revId );
+		return $record ? new Revision( $record ) : false;
 	}
 }

@@ -22,8 +22,6 @@
 
 namespace MediaWiki\Storage;
 
-use Content;
-use ContentHandler;
 use DBAccessObjectUtils;
 use ExternalStore;
 use IDBAccessObject;
