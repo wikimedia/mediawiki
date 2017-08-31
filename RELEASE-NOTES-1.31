@@ -50,6 +50,11 @@ production.
 === Action API internal changes in 1.31 ===
 * …
 
+=== Hook changes in 1.31 ===
+* The RevisionInsertComplete hook is now deprecated, use RevisionRecordInserted instead.
+  RevisionInsertComplete is still called, but the second and third parameter will always be null.
+  Hard deprecation is scheduled for 1.32.
+
 === Languages updated in 1.31 ===
 MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
