@@ -3,7 +3,7 @@
  */
 
 /* Remember the collapse state of the legend on recent changes and watchlist pages. */
-( function ( mw, $ ) {
+( function ( mw ) {
 	var
 		cookieName = 'changeslist-state',
 		// Expanded by default
@@ -20,7 +20,5 @@
 				} );
 		};
 
-	$( function () {
-		mw.hook( 'wikipage.content' ).add( doCollapsibleLegend );
-	} );
-}( mediaWiki, jQuery ) );
+	mw.hook( 'wikipage.content' ).add( doCollapsibleLegend );
+}( mediaWiki ) );
