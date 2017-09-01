@@ -596,7 +596,6 @@ class ManualLogEntry extends LogEntryBase {
 		global $wgContLang;
 
 		$dbw = $dbw ?: wfGetDB( DB_MASTER );
-		$id = $dbw->nextSequenceValue( 'logging_log_id_seq' );
 
 		if ( $this->timestamp === null ) {
 			$this->timestamp = wfTimestampNow();
@@ -619,7 +618,6 @@ class ManualLogEntry extends LogEntryBase {
 		}
 
 		$data = [
-			'log_id' => $id,
 			'log_type' => $this->getType(),
 			'log_action' => $this->getSubtype(),
 			'log_timestamp' => $dbw->timestamp( $this->getTimestamp() ),

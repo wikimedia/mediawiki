@@ -493,7 +493,6 @@ class Block {
 		}
 
 		$row = $this->getDatabaseArray( $dbw );
-		$row['ipb_id'] = $dbw->nextSequenceValue( "ipblocks_ipb_id_seq" );
 
 		$dbw->insert( 'ipblocks', $row, __METHOD__, [ 'IGNORE' ] );
 		$affected = $dbw->affectedRows();

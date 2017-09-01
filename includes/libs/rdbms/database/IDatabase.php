@@ -420,12 +420,9 @@ interface IDatabase {
 	/**
 	 * Get the inserted value of an auto-increment row
 	 *
-	 * The value inserted should be fetched from nextSequenceValue()
-	 *
-	 * Example:
-	 * $id = $dbw->nextSequenceValue( 'page_page_id_seq' );
-	 * $dbw->insert( 'page', [ 'page_id' => $id ] );
-	 * $id = $dbw->insertId();
+	 * This should only be called after an insert that used an auto-incremented
+	 * value. If no such insert was previously done in the current database
+	 * session, the return value is undefined.
 	 *
 	 * @return int
 	 */

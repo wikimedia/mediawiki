@@ -92,9 +92,8 @@ class ExternalStoreDB extends ExternalStoreMedium {
 
 	public function store( $location, $data ) {
 		$dbw = $this->getMaster( $location );
-		$id = $dbw->nextSequenceValue( 'blob_blob_id_seq' );
 		$dbw->insert( $this->getTable( $dbw ),
-			[ 'blob_id' => $id, 'blob_text' => $data ],
+			[ 'blob_text' => $data ],
 			__METHOD__ );
 		$id = $dbw->insertId();
 		if ( !$id ) {

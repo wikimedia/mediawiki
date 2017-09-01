@@ -214,8 +214,6 @@ class DBSiteStore implements SiteStore {
 					'sites', $fields, [ 'site_id' => $rowId ], __METHOD__
 				) && $success;
 			} else {
-				$rowId = $dbw->nextSequenceValue( 'sites_site_id_seq' );
-				$fields['site_id'] = $rowId;
 				$success = $dbw->insert( 'sites', $fields, __METHOD__ ) && $success;
 				$rowId = $dbw->insertId();
 			}
