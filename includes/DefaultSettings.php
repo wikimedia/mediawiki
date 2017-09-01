@@ -3394,8 +3394,8 @@ $wgExperimentalHtmlIds = false;
 /**
  * How should section IDs be encoded?
  * This array can contain 1 or 2 elements, each of them can be one of:
- * - 'html5'  is modern HTML5 style encoding with minimal escaping. Allows to
- *            display Unicode characters in many browsers' address bars.
+ * - 'html5'  is modern HTML5 style encoding with minimal escaping. Displays Unicode
+ *            characters in most browsers' address bars.
  * - 'legacy' is old MediaWiki-style encoding, e.g. 啤酒 turns into .E5.95.A4.E9.85.92
  * - 'html5-legacy' corresponds to DEPRECATED $wgExperimentalHtmlIds mode. DO NOT use
  *            it for anything but migration off that mode (see below).
