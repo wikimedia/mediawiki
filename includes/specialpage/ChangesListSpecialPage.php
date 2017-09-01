@@ -1536,7 +1536,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 *
 	 * @return bool
 	 */
-	protected function isStructuredFilterUiEnabled() {
+	public function isStructuredFilterUiEnabled() {
 		return $this->getUser()->getOption( 'rcenhancedfilters' );
 	}
 

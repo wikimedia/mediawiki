@@ -111,7 +111,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 	}
 
-	protected function isStructuredFilterUiEnabled() {
+	public function isStructuredFilterUiEnabled() {
 		return parent::isStructuredFilterUiEnabled()
 			&& ( $this->getConfig()->get( 'StructuredChangeFiltersOnWatchlist' )
 				|| $this->getRequest()->getBool( 'rcfilters' ) );
