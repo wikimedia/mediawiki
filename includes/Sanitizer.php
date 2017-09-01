@@ -1284,7 +1284,6 @@ class Sanitizer {
 		$mode = $wgFragmentMode[self::ID_PRIMARY];
 
 		$id = self::escapeIdInternal( $id, $mode );
-		$id = self::urlEscapeId( $id, $mode );
 
 		return $id;
 	}
@@ -1302,23 +1301,6 @@ class Sanitizer {
 		global $wgExternalInterwikiFragmentMode;
 
 		$id = self::escapeIdInternal( $id, $wgExternalInterwikiFragmentMode );
-		$id = self::urlEscapeId( $id, $wgExternalInterwikiFragmentMode );
-
-		return $id;
-	}
-
-	/**
-	 * Helper for escapeIdFor*() functions. URL-escapes the ID if needed.
-	 *
-	 * @param string $id String to escape
-	 * @param string $mode One of modes from $wgFragmentMode
-	 * @return string
-	 */
-	private static function urlEscapeId( $id, $mode ) {
-		if ( $mode === 'html5' ) {
-			$id = urlencode( $id );
-			$id = str_replace( '%3A', ':', $id );
-		}
 
 		return $id;
 	}
