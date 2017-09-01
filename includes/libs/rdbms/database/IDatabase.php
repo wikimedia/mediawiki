@@ -1114,15 +1114,20 @@ interface IDatabase {
 	public function anyString();
 
 	/**
-	 * Returns an appropriately quoted sequence value for inserting a new row.
-	 * MySQL has autoincrement fields, so this is just NULL. But the PostgreSQL
-	 * subclass will return an integer, and save the value for insertId()
+	 * Deprecated method, calls should be removed.
 	 *
-	 * Any implementation of this function should *not* involve reusing
-	 * sequence numbers created for rolled-back transactions.
-	 * See https://bugs.mysql.com/bug.php?id=30767 for details.
+	 * This was formerly used for PostgreSQL and Oracle to handle
+	 * self::insertId() auto-incrementing fields. It is no longer necessary
+	 * since DatabasePostgres::insertId() has been reimplemented using
+	 * `lastval()` and Oracle has been reimplemented using triggers.
+	 *
+	 * Implementations should return null if inserting `NULL` into an
+	 * auto-incrementing field works, otherwise it should return an instance of
+	 * NextSequenceValue and filter it on calls to relevant methods.
+	 *
+	 * @deprecated since 1.30, no longer needed
 	 * @param string $seqName
-	 * @return null|int
+	 * @return null|NextSequenceValue
 	 */
 	public function nextSequenceValue( $seqName );
 

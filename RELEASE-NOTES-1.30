@@ -197,6 +197,8 @@ changes to languages because of Phabricator reports.
   PRIMARY KEYs for increased maintainability: categorylinks, imagelinks, iwlinks,
   langlinks, log_search, module_deps, objectcache, pagelinks, query_cache, site_stats,
   templatelinks, text, transcache, user_former_groups, user_properties.
+* IDatabase::nextSequenceValue() is no longer needed by any database backends
+  (formerly it was needed by PostgreSQL and Oracle), and is now deprecated.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for

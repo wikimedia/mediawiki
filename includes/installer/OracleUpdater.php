@@ -123,6 +123,9 @@ class OracleUpdater extends DatabaseUpdater {
 			[ 'addField', 'externallinks', 'el_index_60', 'patch-externallinks-el_index_60.sql' ],
 			[ 'addField', 'user_groups', 'ug_expiry', 'patch-user_groups-ug_expiry.sql' ],
 
+			// 1.30
+			[ 'doAutoIncrementTriggers' ],
+
 			// KEEP THIS AT THE BOTTOM!!
 			[ 'doRebuildDuplicateFunction' ],
 
@@ -270,6 +273,30 @@ class OracleUpdater extends DatabaseUpdater {
 		}
 
 		$this->applyPatch( 'patch-page_restrictions_pkuk_fix.sql', false );
+		$this->output( "ok\n" );
+	}
+
+	/**
+	 * Add auto-increment triggers
+	 */
+	protected function doAutoIncrementTriggers() {
+		$this->output( "Adding auto-increment triggers ... " );
+
+		$meta = $this->db->query( 'SELECT trigger_name FROM user_triggers WHERE table_owner = \'' .
+			strtoupper( $this->db->getDBname() ) .
+			'\' AND trigger_name = \'' .
+			$this->db->tablePrefix() .
+			'PAGE_DEFAULT_PAGE_ID\''
+		);
+		$row = $meta->fetchRow();
+		if ( $row['column_name'] ) {
+			$this->output( "seems to be up to date.\n" );
+
+			return;
+		}
+
+		$this->applyPatch( 'patch-auto_increment_triggers.sql', false );
+
 		$this->output( "ok\n" );
 	}
 

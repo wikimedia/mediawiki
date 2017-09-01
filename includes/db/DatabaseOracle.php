@@ -37,9 +37,6 @@ class DatabaseOracle extends Database {
 	/** @var int The number of rows affected as an integer */
 	protected $mAffectedRows;
 
-	/** @var int */
-	private $mInsertId = null;
-
 	/** @var bool */
 	private $ignoreDupValOnIndex = false;
 
@@ -319,12 +316,10 @@ class DatabaseOracle extends Database {
 		return oci_field_name( $stmt, $n );
 	}
 
-	/**
-	 * This must be called after nextSequenceVal
-	 * @return null|int
-	 */
 	function insertId() {
-		return $this->mInsertId;
+		$res = $this->query( "SELECT lastval_pkg.getLastval FROM dual" );
+		$row = $this->fetchRow( $res );
+		return is_null( $row[0] ) ? null : (int)$row[0];
 	}
 
 	/**
@@ -647,20 +642,6 @@ class DatabaseOracle extends Database {
 		$name = $this->tableName( $name );
 
 		return preg_replace( '/.*\.(.*)/', '$1', $name );
-	}
-
-	/**
-	 * Return the next in a sequence, save the value for retrieval via insertId()
-	 *
-	 * @param string $seqName
-	 * @return null|int
-	 */
-	function nextSequenceValue( $seqName ) {
-		$res = $this->query( "SELECT $seqName.nextval FROM dual" );
-		$row = $this->fetchRow( $res );
-		$this->mInsertId = $row[0];
-
-		return $this->mInsertId;
 	}
 
 	/**
