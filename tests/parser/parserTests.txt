@@ -28449,10 +28449,10 @@ wgFragmentMode=[ 'html5', 'legacy' ]
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Foo_bar"><span class="tocnumber">1</span> <span class="toctext">Foo bar</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#foo_Bar_2"><span class="tocnumber">2</span> <span class="toctext">foo Bar</span></a></li>
-<li class="toclevel-1 tocsection-3"><a href="#%D0%A2%D0%B5%D1%81%D1%82"><span class="tocnumber">3</span> <span class="toctext">Тест</span></a></li>
-<li class="toclevel-1 tocsection-4"><a href="#%D0%A2%D0%B5%D1%81%D1%82_2"><span class="tocnumber">4</span> <span class="toctext">Тест</span></a></li>
-<li class="toclevel-1 tocsection-5"><a href="#%D1%82%D0%B5%D1%81%D1%82"><span class="tocnumber">5</span> <span class="toctext">тест</span></a></li>
-<li class="toclevel-1 tocsection-6"><a href="#Hey_%3C_%23_%22_%3E_%25_:_%27"><span class="tocnumber">6</span> <span class="toctext">Hey &lt; # " &gt;&#160;%&#160;: '</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Тест"><span class="tocnumber">3</span> <span class="toctext">Тест</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Тест_2"><span class="tocnumber">4</span> <span class="toctext">Тест</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#тест"><span class="tocnumber">5</span> <span class="toctext">тест</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Hey_&lt;_#_&quot;_&gt;_%_:_'"><span class="tocnumber">6</span> <span class="toctext">Hey &lt; # " &gt;&#160;%&#160;: '</span></a></li>
 </ul>
 </div>
 
@@ -28462,9 +28462,9 @@ wgFragmentMode=[ 'html5', 'legacy' ]
 <h2><span id=".D0.A2.D0.B5.D1.81.D1.82_2"></span><span class="mw-headline" id="Тест_2">Тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span id=".D1.82.D0.B5.D1.81.D1.82"></span><span class="mw-headline" id="тест">тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span id="Hey_.3C_.23_.22_.3E_.25_:_.27"></span><span class="mw-headline" id="Hey_&lt;_#_&quot;_&gt;_%_:_'">Hey &lt; # " &gt;&#160;%&#160;: '</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Hey &lt; # &quot; &gt; % : '">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<p><a href="#Foo_bar">#Foo bar</a> <a href="#foo_Bar">#foo Bar</a> <a href="#%D0%A2%D0%B5%D1%81%D1%82">#Тест</a> <a href="#%D1%82%D0%B5%D1%81%D1%82">#тест</a> <a href="#Hey_%3C_%23_%22_%3E_%25_:_%27">#Hey &lt; # " &gt;&#160;%&#160;: '</a>
-</p><p>%F0%9F%92%A9 <span id="%F0%9F%92%A9"></span>
-</p><p><a href="#%E5%95%A4%E9%85%92">#啤酒</a> <a href="#%E5%95%A4%E9%85%92">#啤酒</a>
+<p><a href="#Foo_bar">#Foo bar</a> <a href="#foo_Bar">#foo Bar</a> <a href="#Тест">#Тест</a> <a href="#тест">#тест</a> <a href="#Hey_&lt;_#_&quot;_&gt;_%_:_'">#Hey &lt; # " &gt;&#160;%&#160;: '</a>
+</p><p>💩 <span id="💩"></span>
+</p><p><a href="#啤酒">#啤酒</a> <a href="#啤酒">#啤酒</a>
 </p>
 !! end
 
@@ -28543,10 +28543,10 @@ wgFragmentMode=[ 'html5' ]
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Foo_bar"><span class="tocnumber">1</span> <span class="toctext">Foo bar</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#foo_Bar_2"><span class="tocnumber">2</span> <span class="toctext">foo Bar</span></a></li>
-<li class="toclevel-1 tocsection-3"><a href="#%D0%A2%D0%B5%D1%81%D1%82"><span class="tocnumber">3</span> <span class="toctext">Тест</span></a></li>
-<li class="toclevel-1 tocsection-4"><a href="#%D0%A2%D0%B5%D1%81%D1%82_2"><span class="tocnumber">4</span> <span class="toctext">Тест</span></a></li>
-<li class="toclevel-1 tocsection-5"><a href="#%D1%82%D0%B5%D1%81%D1%82"><span class="tocnumber">5</span> <span class="toctext">тест</span></a></li>
-<li class="toclevel-1 tocsection-6"><a href="#Hey_%3C_%23_%22_%3E_%25_:_%27"><span class="tocnumber">6</span> <span class="toctext">Hey &lt; # " &gt;&#160;%&#160;: '</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Тест"><span class="tocnumber">3</span> <span class="toctext">Тест</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Тест_2"><span class="tocnumber">4</span> <span class="toctext">Тест</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#тест"><span class="tocnumber">5</span> <span class="toctext">тест</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Hey_&lt;_#_&quot;_&gt;_%_:_'"><span class="tocnumber">6</span> <span class="toctext">Hey &lt; # " &gt;&#160;%&#160;: '</span></a></li>
 </ul>
 </div>
 
@@ -28556,8 +28556,8 @@ wgFragmentMode=[ 'html5' ]
 <h2><span class="mw-headline" id="Тест_2">Тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="тест">тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="Hey_&lt;_#_&quot;_&gt;_%_:_'">Hey &lt; # " &gt;&#160;%&#160;: '</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Hey &lt; # &quot; &gt; % : '">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<p><a href="#Foo_bar">#Foo bar</a> <a href="#foo_Bar">#foo Bar</a> <a href="#%D0%A2%D0%B5%D1%81%D1%82">#Тест</a> <a href="#%D1%82%D0%B5%D1%81%D1%82">#тест</a> <a href="#Hey_%3C_%23_%22_%3E_%25_:_%27">#Hey &lt; # " &gt;&#160;%&#160;: '</a>
-</p><p>%F0%9F%92%A9 <span id="%F0%9F%92%A9"></span>
-</p><p><a href="#%E5%95%A4%E9%85%92">#啤酒</a> <a href="#%E5%95%A4%E9%85%92">#啤酒</a>
+<p><a href="#Foo_bar">#Foo bar</a> <a href="#foo_Bar">#foo Bar</a> <a href="#Тест">#Тест</a> <a href="#тест">#тест</a> <a href="#Hey_&lt;_#_&quot;_&gt;_%_:_'">#Hey &lt; # " &gt;&#160;%&#160;: '</a>
+</p><p>💩 <span id="💩"></span>
+</p><p><a href="#啤酒">#啤酒</a> <a href="#啤酒">#啤酒</a>
 </p>
 !! end
