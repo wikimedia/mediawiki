@@ -383,7 +383,7 @@ class EtcConfigTest extends PHPUnit_Framework_TestCase {
 					false // retry
 				],
 			],
-			'200 OK - Skip dir' => [
+			'200 OK - Empty dir' => [
 				'http' => [
 					'code' => 200,
 					'reason' => 'OK',
@@ -395,7 +395,8 @@ class EtcConfigTest extends PHPUnit_Framework_TestCase {
 						],
 						[
 							'key' => '/example/sub',
-							'dir' => true
+							'dir' => true,
+							'nodes' => [],
 						],
 						[
 							'key' => '/example/bar',
@@ -407,6 +408,68 @@ class EtcConfigTest extends PHPUnit_Framework_TestCase {
 				'expect' => [
 					[ 'foo' => true, 'bar' => false ], // data
 					null,
+					false // retry
+				],
+			],
+			'200 OK - Recursive' => [
+				'http' => [
+					'code' => 200,
+					'reason' => 'OK',
+					'headers' => [],
+					'body' => json_encode( [ 'node' => [ 'nodes' => [
+						[
+							'key' => '/example/a',
+							'dir' => true,
+							'nodes' => [
+								[
+									'key' => 'b',
+									'value' => json_encode( [ 'val' => true ] ),
+								],
+								[
+									'key' => 'c',
+									'value' => json_encode( [ 'val' => false ] ),
+								],
+							],
+						],
+					] ] ] ),
+					'error' => '',
+				],
+				'expect' => [
+					[ 'a/b' => true, 'a/c' => false ], // data
+					null,
+					false // retry
+				],
+			],
+			'200 OK - Missing nodes at second level' => [
+				'http' => [
+					'code' => 200,
+					'reason' => 'OK',
+					'headers' => [],
+					'body' => json_encode( [ 'node' => [ 'nodes' => [
+						[
+							'key' => '/example/a',
+							'dir' => true,
+						],
+					] ] ] ),
+					'error' => '',
+				],
+				'expect' => [
+					null,
+					"Unexpected JSON response in dir 'a'; missing 'nodes' list.",
+					false // retry
+				],
+			],
+			'200 OK - Correctly encoded garbage response' => [
+				'http' => [
+					'code' => 200,
+					'reason' => 'OK',
+					'headers' => [],
+					'body' => json_encode( [ 'foo' => 'bar' ] ),
+					'error' => '',
+				],
+				'expect' => [
+					null,
+					"Unexpected JSON response: Missing or invalid node at top level.",
 					false // retry
 				],
 			],
@@ -453,7 +516,7 @@ class EtcConfigTest extends PHPUnit_Framework_TestCase {
 				],
 				'expect' => [
 					null, // data
-					"Unexpected JSON response; missing 'nodes' list.",
+					"Error unserializing JSON response.",
 					false // retry
 				],
 			],

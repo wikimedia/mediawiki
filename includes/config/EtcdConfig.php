@@ -228,7 +228,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 		// Retrieve all the values under the MediaWiki config directory
 		list( $rcode, $rdesc, /* $rhdrs */, $rbody, $rerr ) = $this->http->run( [
 			'method' => 'GET',
-			'url' => "{$this->protocol}://{$address}/v2/keys/{$this->directory}/",
+			'url' => "{$this->protocol}://{$address}/v2/keys/{$this->directory}/?recursive=true",
 			'headers' => [ 'content-type' => 'application/json' ]
 		] );
 
@@ -240,28 +240,65 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 				empty( $terminalCodes[$rcode] )
 			];
 		}
+		try {
+			return [ $this->parseResponse( $rbody ), null, false ];
+		} catch ( EtcdConfigParseError $e ) {
+			return [ null, $e->getMessage(), false ];
+		}
+	}
 
+	/**
+	 * Parse a response body, throwing EtcdConfigParseError if there is a validation error
+	 *
+	 * @param string $rbody
+	 * @return array
+	 */
+	protected function parseResponse( $rbody ) {
 		$info = json_decode( $rbody, true );
-		if ( $info === null || !isset( $info['node']['nodes'] ) ) {
-			return [ null, "Unexpected JSON response; missing 'nodes' list.", false ];
+		if ( $info === null ) {
+			throw new EtcdConfigParseError( "Error unserializing JSON response." );
 		}
-
+		if ( !isset( $info['node'] ) || !is_array( $info['node'] ) ) {
+			throw new EtcdConfigParseError( "Unexpected JSON response: Missing or invalid node at top level." );
+		}
 		$config = [];
-		foreach ( $info['node']['nodes'] as $node ) {
-			if ( !empty( $node['dir'] ) ) {
-				continue; // skip directories
-			}
+		$this->parseDirectory( '', $info['node'], $config );
+		return $config;
 
-			$name = basename( $node['key'] );
-			$value = $this->unserialize( $node['value'] );
-			if ( !is_array( $value ) || !array_key_exists( 'val', $value ) ) {
-				return [ null, "Failed to parse value for '$name'.", false ];
-			}
+	}
 
-			$config[$name] = $value['val'];
+	/**
+	 * Recursively parse a directory node and populate the array passed by
+	 * reference, throwing EtcdConfigParseError if there is a validation error
+	 *
+	 * @param string $dirName The relative directory name
+	 * @param array $dirNode The decoded directory node
+	 * @param array &$config The output array
+	 */
+	protected function parseDirectory( $dirName, $dirNode, &$config ) {
+		if ( !isset( $dirNode['nodes'] ) ) {
+			throw new EtcdConfigParseError(
+				"Unexpected JSON response in dir '$dirName'; missing 'nodes' list." );
+		}
+		if ( !is_array( $dirNode['nodes'] ) ) {
+			throw new EtcdConfigParseError(
+				"Unexpected JSON response in dir '$dirName'; 'nodes' is not an array." );
 		}
 
-		return [ $config, null, false ];
+		foreach ( $dirNode['nodes'] as $node ) {
+			$baseName = basename( $node['key'] );
+			$fullName = $dirName === '' ? $baseName : "$dirName/$baseName";
+			if ( !empty( $node['dir'] ) ) {
+				$this->parseDirectory( $fullName, $node, $config );
+			} else {
+				$value = $this->unserialize( $node['value'] );
+				if ( !is_array( $value ) || !array_key_exists( 'val', $value ) ) {
+					throw new EtcdConfigParseError( "Failed to parse value for '$fullName'." );
+				}
+
+				$config[$fullName] = $value['val'];
+			}
+		}
 	}
 
 	/**
