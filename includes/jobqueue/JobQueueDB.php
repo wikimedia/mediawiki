@@ -734,7 +734,6 @@ class JobQueueDB extends JobQueue {
 			'job_title' => $job->getTitle()->getDBkey(),
 			'job_params' => self::makeBlob( $job->getParams() ),
 			// Additional job metadata
-			'job_id' => $dbw->nextSequenceValue( 'job_job_id_seq' ),
 			'job_timestamp' => $dbw->timestamp(),
 			'job_sha1' => Wikimedia\base_convert(
 				sha1( serialize( $job->getDeduplicationInfo() ) ),

@@ -720,9 +720,7 @@ class WikiRevision {
 				. $this->timestamp . "\n" );
 			return false;
 		}
-		$log_id = $dbw->nextSequenceValue( 'logging_log_id_seq' );
 		$data = [
-			'log_id' => $log_id,
 			'log_type' => $this->type,
 			'log_action' => $this->action,
 			'log_timestamp' => $dbw->timestamp( $this->timestamp ),

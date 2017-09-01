@@ -320,7 +320,6 @@ class RecentChange {
 
 		# Fixup database timestamps
 		$this->mAttribs['rc_timestamp'] = $dbw->timestamp( $this->mAttribs['rc_timestamp'] );
-		$this->mAttribs['rc_id'] = $dbw->nextSequenceValue( 'recentchanges_rc_id_seq' );
 
 		# # If we are using foreign keys, an entry of 0 for the page_id will fail, so use NULL
 		if ( $this->mAttribs['rc_cur_id'] == 0 ) {

@@ -400,11 +400,9 @@ class CommentStore {
 				__METHOD__
 			);
 			if ( !$comment->id ) {
-				$comment->id = $dbw->nextSequenceValue( 'comment_comment_id_seq' );
 				$dbw->insert(
 					'comment',
 					[
-						'comment_id' => $comment->id,
 						'comment_hash' => $hash,
 						'comment_text' => $comment->text,
 						'comment_data' => $dbData,

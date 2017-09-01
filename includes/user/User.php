@@ -4109,12 +4109,10 @@ class User implements IDBAccessObject {
 			unset( $params['options'] );
 		}
 		$dbw = wfGetDB( DB_MASTER );
-		$seqVal = $dbw->nextSequenceValue( 'user_user_id_seq' );
 
 		$noPass = PasswordFactory::newInvalidPassword()->toString();
 
 		$fields = [
-			'user_id' => $seqVal,
 			'user_name' => $name,
 			'user_password' => $noPass,
 			'user_newpassword' => $noPass,
@@ -4179,10 +4177,8 @@ class User implements IDBAccessObject {
 		$noPass = PasswordFactory::newInvalidPassword()->toString();
 
 		$dbw = wfGetDB( DB_MASTER );
-		$seqVal = $dbw->nextSequenceValue( 'user_user_id_seq' );
 		$dbw->insert( 'user',
 			[
-				'user_id' => $seqVal,
 				'user_name' => $this->mName,
 				'user_password' => $noPass,
 				'user_newpassword' => $noPass,

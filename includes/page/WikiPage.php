@@ -1166,11 +1166,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   page ID is already in use.
 	 */
 	public function insertOn( $dbw, $pageId = null ) {
-		$pageIdForInsert = $pageId ?: $dbw->nextSequenceValue( 'page_page_id_seq' );
+		$pageIdForInsert = $pageId ? [ 'page_id' => $pageId ] : [];
 		$dbw->insert(
 			'page',
 			[
-				'page_id'           => $pageIdForInsert,
 				'page_namespace'    => $this->mTitle->getNamespace(),
 				'page_title'        => $this->mTitle->getDBkey(),
 				'page_restrictions' => '',
@@ -1180,7 +1179,7 @@ class WikiPage implements Page, IDBAccessObject {
 				'page_touched'      => $dbw->timestamp(),
 				'page_latest'       => 0, // Fill this in shortly...
 				'page_len'          => 0, // Fill this in shortly...
-			],
+			] + $pageIdForInsert,
 			__METHOD__,
 			'IGNORE'
 		);
@@ -2446,7 +2445,6 @@ class WikiPage implements Page, IDBAccessObject {
 					$dbw->insert(
 						'page_restrictions',
 						[
-							'pr_id' => $dbw->nextSequenceValue( 'page_restrictions_pr_id_seq' ),
 							'pr_page' => $id,
 							'pr_type' => $action,
 							'pr_level' => $restrictions,
