@@ -593,8 +593,6 @@ class ManualLogEntry extends LogEntryBase {
 	 * @throws MWException
 	 */
 	public function insert( IDatabase $dbw = null ) {
-		global $wgContLang;
-
 		$dbw = $dbw ?: wfGetDB( DB_MASTER );
 		$id = $dbw->nextSequenceValue( 'logging_log_id_seq' );
 
@@ -604,9 +602,6 @@ class ManualLogEntry extends LogEntryBase {
 
 		// Trim spaces on user supplied text
 		$comment = trim( $this->getComment() );
-
-		// Truncate for whole multibyte characters.
-		$comment = $wgContLang->truncate( $comment, 255 );
 
 		$params = $this->getParameters();
 		$relations = $this->relations;

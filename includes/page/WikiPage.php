@@ -2299,7 +2299,7 @@ class WikiPage implements Page, IDBAccessObject {
 	public function doUpdateRestrictions( array $limit, array $expiry,
 		&$cascade, $reason, User $user, $tags = null
 	) {
-		global $wgCascadingRestrictionLevels, $wgContLang;
+		global $wgCascadingRestrictionLevels;
 
 		if ( wfReadOnly() ) {
 			return Status::newFatal( wfMessage( 'readonlytext', wfReadOnlyReason() ) );
@@ -2371,9 +2371,6 @@ class WikiPage implements Page, IDBAccessObject {
 			$revCommentMsg = 'protectedarticle-comment';
 			$logAction = 'protect';
 		}
-
-		// Truncate for whole multibyte characters
-		$reason = $wgContLang->truncate( $reason, 255 );
 
 		$logRelationsValues = [];
 		$logRelationsField = null;
@@ -3147,9 +3144,6 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Trim spaces on user supplied text
 		$summary = trim( $summary );
-
-		// Truncate for whole multibyte characters.
-		$summary = $wgContLang->truncate( $summary, 255 );
 
 		// Save
 		$flags = EDIT_UPDATE | EDIT_INTERNAL;
