@@ -2323,11 +2323,8 @@ class Parser {
 						$this->mOutput->addLanguageLink( $nt->getFullText() );
 					}
 
-					/**
-					 * Strip the whitespace interwiki links produce, see T10897
-					 */
 					$s = rtrim( $s . $prefix );
-					$s .= rtrim( $trail, "\n" );
+					$s .= trim( $trail, "\n" ) == '' ? '' : $prefix . $trail;
 					continue;
 				}
 
@@ -2352,11 +2349,7 @@ class Parser {
 						continue;
 					}
 				} elseif ( $ns == NS_CATEGORY ) {
-					/**
-					 * Strip the whitespace Category links produce, see T2087
-					 */
-					$s = rtrim( $s . $prefix ); # T2087, T87753
-					$s .= rtrim( $trail, "\n" );
+					$s = rtrim( $s . "\n" ); # T2087
 
 					if ( $wasblank ) {
 						$sortkey = $this->getDefaultSort();
@@ -2367,6 +2360,11 @@ class Parser {
 					$sortkey = str_replace( "\n", '', $sortkey );
 					$sortkey = $this->getConverterLanguage()->convertCategoryKey( $sortkey );
 					$this->mOutput->addCategory( $nt->getDBkey(), $sortkey );
+
+					/**
+					 * Strip the whitespace Category links produce, see T2087
+					 */
+					$s .= trim( $prefix . $trail, "\n" ) == '' ? '' : $prefix . $trail;
 
 					continue;
 				}
