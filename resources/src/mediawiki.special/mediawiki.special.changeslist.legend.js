@@ -20,7 +20,5 @@
 				} );
 		};
 
-	$( function () {
-		mw.hook( 'wikipage.content' ).add( doCollapsibleLegend );
-	} );
+	mw.hook( 'wikipage.content' ).add( doCollapsibleLegend );
 }( mediaWiki, jQuery ) );
