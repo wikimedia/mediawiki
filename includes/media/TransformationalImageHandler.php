@@ -176,8 +176,8 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		if ( $flags & self::TRANSFORM_LATER ) {
 			wfDebug( __METHOD__ . ": Transforming later per flags.\n" );
 			$newParams = [
-				'width' => $scalerParams['clientWidth'],
-				'height' => $scalerParams['clientHeight']
+				'width' => $scalerParams['physicalWidth'],
+				'height' => $scalerParams['physicalHeight']
 			];
 			if ( isset( $params['quality'] ) ) {
 				$newParams['quality'] = $params['quality'];
@@ -230,7 +230,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		}
 
 		// $scaler will return a MediaTransformError on failure, or false on success.
-		// If the scaler is succesful, it will have created a thumbnail at the destination
+		// If the scaler is successful, it will have created a thumbnail at the destination
 		// path.
 		if ( is_array( $scaler ) && is_callable( $scaler ) ) {
 			// Allow subclasses to specify their own rendering methods.
@@ -260,7 +260,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		# Remove the file if a zero-byte thumbnail was created, or if there was an error
 		$removed = $this->removeBadFile( $dstPath, (bool)$err );
 		if ( $err ) {
-			# transform returned MediaTransforError
+			# transform returned MediaTransformError
 			return $err;
 		} elseif ( $removed ) {
 			# Thumbnail was zero-byte and had to be removed
@@ -272,8 +272,8 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			return $mto;
 		} else {
 			$newParams = [
-				'width' => $scalerParams['clientWidth'],
-				'height' => $scalerParams['clientHeight']
+				'width' => $scalerParams['physicalWidth'],
+				'height' => $scalerParams['physicalHeight']
 			];
 			if ( isset( $params['quality'] ) ) {
 				$newParams['quality'] = $params['quality'];
@@ -320,7 +320,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	abstract protected function getScalerType( $dstPath, $checkDstPath = true );
 
 	/**
-	 * Get a ThumbnailImage that respresents an image that will be scaled
+	 * Get a ThumbnailImage that represents an image that will be scaled
 	 * client side
 	 *
 	 * @param File $image File associated with this thumbnail
