@@ -90,12 +90,10 @@ class LogPage {
 		global $wgLogRestrictions;
 
 		$dbw = wfGetDB( DB_MASTER );
-		$log_id = $dbw->nextSequenceValue( 'logging_log_id_seq' );
 
 		// @todo FIXME private/protected/public property?
 		$this->timestamp = $now = wfTimestampNow();
 		$data = [
-			'log_id' => $log_id,
 			'log_type' => $this->type,
 			'log_action' => $this->action,
 			'log_timestamp' => $dbw->timestamp( $now ),

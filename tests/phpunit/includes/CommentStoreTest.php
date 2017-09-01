@@ -363,7 +363,6 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 				$this->assertArrayNotHasKey( "{$key}_id", $fields, "new field, stage=$writeStage" );
 			}
 
-			$extraFields[$pk] = $this->db->nextSequenceValue( "{$table}_{$pk}_seq" );
 			$this->db->insert( $table, $extraFields + $fields, __METHOD__ );
 			$id = $this->db->insertId();
 			if ( $usesTemp ) {

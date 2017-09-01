@@ -290,7 +290,6 @@ class UploadStash {
 		}
 
 		$this->fileMetadata[$key] = [
-			'us_id' => $dbw->nextSequenceValue( 'uploadstash_us_id_seq' ),
 			'us_user' => $this->userId,
 			'us_key' => $key,
 			'us_orig_path' => $path,

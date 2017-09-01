@@ -1442,10 +1442,8 @@ class Revision implements IDBAccessObject {
 
 		# Record the text (or external storage URL) to the text table
 		if ( $this->mTextId === null ) {
-			$old_id = $dbw->nextSequenceValue( 'text_old_id_seq' );
 			$dbw->insert( 'text',
 				[
-					'old_id' => $old_id,
 					'old_text' => $data,
 					'old_flags' => $flags,
 				], __METHOD__
@@ -1458,11 +1456,7 @@ class Revision implements IDBAccessObject {
 		}
 
 		# Record the edit in revisions
-		$rev_id = $this->mId !== null
-			? $this->mId
-			: $dbw->nextSequenceValue( 'revision_rev_id_seq' );
 		$row = [
-			'rev_id'         => $rev_id,
 			'rev_page'       => $this->mPage,
 			'rev_text_id'    => $this->mTextId,
 			'rev_minor_edit' => $this->mMinorEdit ? 1 : 0,
@@ -1478,6 +1472,9 @@ class Revision implements IDBAccessObject {
 				? self::base36Sha1( $this->mText )
 				: $this->mSha1,
 		];
+		if ( $this->mId !== null ) {
+			$row['rev_id'] = $this->mId;
+		}
 
 		list( $commentFields, $commentCallback ) =
 			CommentStore::newKey( 'rev_comment' )->insertWithTempTable( $dbw, $this->mComment );
@@ -1508,7 +1505,7 @@ class Revision implements IDBAccessObject {
 		$dbw->insert( 'revision', $row, __METHOD__ );
 
 		if ( $this->mId === null ) {
-			// Only if nextSequenceValue() was called
+			// Only if auto-increment was used
 			$this->mId = $dbw->insertId();
 		}
 		$commentCallback( $this->mId );

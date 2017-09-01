@@ -320,7 +320,6 @@ class RecentChange {
 
 		# Fixup database timestamps
 		$this->mAttribs['rc_timestamp'] = $dbw->timestamp( $this->mAttribs['rc_timestamp'] );
-		$this->mAttribs['rc_id'] = $dbw->nextSequenceValue( 'recentchanges_rc_id_seq' );
 
 		# # If we are using foreign keys, an entry of 0 for the page_id will fail, so use NULL
 		if ( $this->mAttribs['rc_cur_id'] == 0 ) {
@@ -332,6 +331,10 @@ class RecentChange {
 		$comment = $row['rc_comment'];
 		unset( $row['rc_comment'], $row['rc_comment_text'], $row['rc_comment_data'] );
 		$row += CommentStore::newKey( 'rc_comment' )->insert( $dbw, $comment );
+
+		# Don't reuse an existing rc_id for the new row, if one happens to be
+		# set for some reason.
+		unset( $row['rc_id'] );
 
 		# Insert new row
 		$dbw->insert( 'recentchanges', $row, __METHOD__ );
