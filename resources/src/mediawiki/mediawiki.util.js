@@ -90,14 +90,9 @@
 		 * @return {string} Encoded string
 		 */
 		escapeIdForLink: function ( str ) {
-			var mode = mw.config.get( 'wgFragmentMode' )[ 0 ],
-				id = escapeIdInternal( str, mode );
+			var mode = mw.config.get( 'wgFragmentMode' )[ 0 ];
 
-			if ( mode === 'html5' ) {
-				id = encodeURIComponent( id ).replace( /%3A/g, ':' );
-			}
-
-			return id;
+			return escapeIdInternal( str, mode );
 		},
 
 		/**
