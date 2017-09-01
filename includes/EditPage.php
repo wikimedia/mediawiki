@@ -3165,7 +3165,7 @@ class EditPage {
 		$wgOut->addHTML( Html::hidden( 'wpStarttime', $this->starttime ) );
 		$wgOut->addHTML( Html::hidden( 'wpEdittime', $this->edittime ) );
 		$wgOut->addHTML( Html::hidden( 'editRevId', $this->editRevId ) );
-		$wgOut->addHTML( Html::hidden( 'wpScrolltop', $this->scrolltop ) );
+		$wgOut->addHTML( Html::hidden( 'wpScrolltop', $this->scrolltop, [ 'id' => 'wpScrolltop' ] ) );
 
 		if ( !$this->checkUnicodeCompliantBrowser() ) {
 			$wgOut->addHTML( Html::hidden( 'safemode', '1' ) );
