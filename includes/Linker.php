@@ -1539,10 +1539,16 @@ class Linker {
 		if ( $sectionIndex !== false ) {
 			$classes .= " tocsection-$sectionIndex";
 		}
-		return "\n<li class=\"$classes\"><a href=\"#" .
-			$anchor . '"><span class="tocnumber">' .
-			$tocnumber . '</span> <span class="toctext">' .
-			$tocline . '</span></a>';
+
+		// \n<li class="classes"><a href="#$anchor"><span class="tocnumber">
+		// $tocnumber</span> <span class="toctext">$tocline</span></a>
+		return "\n" . Html::openElement( 'li', [ 'class' => $classes ] )
+			. Html::rawElement( 'a',
+				[ 'href' => "#$anchor" ],
+				Html::element( 'span', [ 'class' => 'tocnumber' ], $tocnumber )
+					. ' '
+					. Html::rawElement( 'span', [ 'class' => 'toctext' ], $tocline )
+			);
 	}
 
 	/**
