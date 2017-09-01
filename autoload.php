@@ -437,6 +437,7 @@ $wgAutoloadLocalClasses = [
 	'EraseArchivedFile' => __DIR__ . '/maintenance/eraseArchivedFile.php',
 	'ErrorPageError' => __DIR__ . '/includes/exception/ErrorPageError.php',
 	'EtcdConfig' => __DIR__ . '/includes/config/EtcdConfig.php',
+	'EtcdConfigParseError' => __DIR__ . '/includes/config/EtcdConfigParseError.php',
 	'EventRelayer' => __DIR__ . '/includes/libs/eventrelayer/EventRelayer.php',
 	'EventRelayerGroup' => __DIR__ . '/includes/EventRelayerGroup.php',
 	'EventRelayerKafka' => __DIR__ . '/includes/libs/eventrelayer/EventRelayerKafka.php',
