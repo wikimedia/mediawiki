@@ -29,6 +29,12 @@ use Wikimedia\Rdbms\IDatabase;
  */
 class CommentStore {
 
+	/** Maximum length of a comment. Longer comments will be truncated. */
+	const MAX_COMMENT_LENGTH = 65535;
+
+	/** Maximum length of serialized data. Longer data will result in an exception. */
+	const MAX_DATA_LENGTH = 65535;
+
 	/**
 	 * Define fields that use temporary tables for transitional purposes
 	 * @var array Keys are '$key', values are arrays with four fields:
@@ -68,15 +74,21 @@ class CommentStore {
 	/** @var array|null Cache for `self::getJoin()` */
 	protected $joinCache = null;
 
+	/** @var Language Language to use for comment truncation */
+	protected $lang;
+
 	/**
 	 * @param string $key A key such as "rev_comment" identifying the comment
 	 *  field being fetched.
+	 * @param Language $lang Language to use for comment truncation. Defaults
+	 *  to $wgContLang.
 	 */
-	public function __construct( $key ) {
-		global $wgCommentTableSchemaMigrationStage;
+	public function __construct( $key, Language $lang = null ) {
+		global $wgCommentTableSchemaMigrationStage, $wgContLang;
 
 		$this->key = $key;
 		$this->stage = $wgCommentTableSchemaMigrationStage;
+		$this->lang = $lang ?: $wgContLang;
 	}
 
 	/**
@@ -376,6 +388,9 @@ class CommentStore {
 			}
 		}
 
+		# Truncate comment in a Unicode-sensitive manner
+		$comment->text = $this->lang->truncate( $comment->text, self::MAX_COMMENT_LENGTH );
+
 		if ( $this->stage > MIGRATION_OLD && !$comment->id ) {
 			$dbData = $comment->data;
 			if ( !$comment->message instanceof RawMessage ) {
@@ -386,6 +401,11 @@ class CommentStore {
 			}
 			if ( $dbData !== null ) {
 				$dbData = FormatJson::encode( (object)$dbData, false, FormatJson::ALL_OK );
+				$len = strlen( $dbData );
+				if ( $len > self::MAX_DATA_LENGTH ) {
+					$max = self::MAX_DATA_LENGTH;
+					throw new OverflowException( "Comment data is too long ($len bytes, maximum is $max)" );
+				}
 			}
 
 			$hash = self::hash( $comment->text, $dbData );
@@ -432,7 +452,7 @@ class CommentStore {
 		$comment = $this->createComment( $dbw, $comment, $data );
 
 		if ( $this->stage <= MIGRATION_WRITE_BOTH ) {
-			$fields[$this->key] = $comment->text;
+			$fields[$this->key] = $this->lang->truncate( $comment->text, 255 );
 		}
 
 		if ( $this->stage >= MIGRATION_WRITE_BOTH ) {

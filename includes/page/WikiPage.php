@@ -2372,9 +2372,6 @@ class WikiPage implements Page, IDBAccessObject {
 			$logAction = 'protect';
 		}
 
-		// Truncate for whole multibyte characters
-		$reason = $wgContLang->truncate( $reason, 255 );
-
 		$logRelationsValues = [];
 		$logRelationsField = null;
 		$logParamsDetails = [];
@@ -3147,9 +3144,6 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Trim spaces on user supplied text
 		$summary = trim( $summary );
-
-		// Truncate for whole multibyte characters.
-		$summary = $wgContLang->truncate( $summary, 255 );
 
 		// Save
 		$flags = EDIT_UPDATE | EDIT_INTERNAL;

@@ -605,9 +605,6 @@ class ManualLogEntry extends LogEntryBase {
 		// Trim spaces on user supplied text
 		$comment = trim( $this->getComment() );
 
-		// Truncate for whole multibyte characters.
-		$comment = $wgContLang->truncate( $comment, 255 );
-
 		$params = $this->getParameters();
 		$relations = $this->relations;
 

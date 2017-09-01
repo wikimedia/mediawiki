@@ -315,9 +315,6 @@ class RecentChange {
 		# Trim spaces on user supplied text
 		$this->mAttribs['rc_comment'] = trim( $this->mAttribs['rc_comment'] );
 
-		# Make sure summary is truncated (whole multibyte characters)
-		$this->mAttribs['rc_comment'] = $wgContLang->truncate( $this->mAttribs['rc_comment'], 255 );
-
 		# Fixup database timestamps
 		$this->mAttribs['rc_timestamp'] = $dbw->timestamp( $this->mAttribs['rc_timestamp'] );
 		$this->mAttribs['rc_id'] = $dbw->nextSequenceValue( 'recentchanges_rc_id_seq' );

@@ -720,8 +720,7 @@ class SpecialBlock extends FormSpecialPage {
 		$block = new Block();
 		$block->setTarget( $target );
 		$block->setBlocker( $performer );
-		# Truncate reason for whole multibyte characters
-		$block->mReason = $wgContLang->truncate( $data['Reason'][0], 255 );
+		$block->mReason = $data['Reason'][0];
 		$block->mExpiry = $expiryTime;
 		$block->prevents( 'createaccount', $data['CreateAccount'] );
 		$block->prevents( 'editownusertalk', ( !$wgBlockAllowsUTEdit || $data['DisableUTEdit'] ) );

@@ -1230,9 +1230,6 @@ class LocalFile extends File {
 		// Trim spaces on user supplied text
 		$comment = trim( $comment );
 
-		// Truncate nicely or the DB will do it for us
-		// non-nicely (dangling multi-byte chars, non-truncated version in cache).
-		$comment = $wgContLang->truncate( $comment, 255 );
 		$this->lock(); // begin
 		$status = $this->publish( $src, $flags, $options );
 

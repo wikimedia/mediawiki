@@ -342,9 +342,6 @@ class LogPage {
 		# Trim spaces on user supplied text
 		$comment = trim( $comment );
 
-		# Truncate for whole multibyte characters.
-		$comment = $wgContLang->truncate( $comment, 255 );
-
 		$this->action = $action;
 		$this->target = $target;
 		$this->comment = $comment;

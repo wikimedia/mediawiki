@@ -616,6 +616,31 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		$this->assertTrue( is_callable( $callback ) );
 	}
 
+	public function testInsertTruncation() {
+		$comment = str_repeat( '💣', 16400 );
+		$truncated1 = str_repeat( '💣', 63 ) . '...';
+		$truncated2 = str_repeat( '💣', 16383 ) . '...';
+
+		$store = $this->makeStore( MIGRATION_WRITE_BOTH, 'ipb_reason' );
+		$fields = $store->insert( $this->db, $comment );
+		$this->assertSame( $truncated1, $fields['ipb_reason'] );
+		$stored = $this->db->selectField(
+			'comment', 'comment_text', [ 'comment_id' => $fields['ipb_reason_id'] ], __METHOD__
+		);
+		$this->assertSame( $truncated2, $stored );
+	}
+
+	/**
+	 * @expectedException OverflowException
+	 * @expectedExceptionMessage Comment data is too long (65611 bytes, maximum is 65535)
+	 */
+	public function testInsertTooMuchData() {
+		$store = $this->makeStore( MIGRATION_WRITE_BOTH, 'ipb_reason' );
+		$store->insert( $this->db, 'foo', [
+			'long' => str_repeat( '💣', 16400 )
+		] );
+	}
+
 	public function testConstructor() {
 		$this->assertInstanceOf( CommentStore::class, CommentStore::newKey( 'dummy' ) );
 	}
