@@ -189,6 +189,8 @@ changes to languages because of Phabricator reports.
 * MWMemcached and MemCachedClientforWiki classes (deprecated in 1.27) were removed.
   The MemcachedClient class should be used instead.
 * EditPage::isOouiEnabled() is deprecated and will always return true.
+* EditPage::getSummaryInput() and ::getSummaryInputOOUI() are deprecated. Please
+  use ::getSummaryInputWidget() instead.
 * Parser::getRandomString() (deprecated in 1.26) was removed.
 * Parser::uniqPrefix() (deprecated in 1.26) was removed.
 * Parser::extractTagsAndParams() now only accepts three arguments. The fourth,
