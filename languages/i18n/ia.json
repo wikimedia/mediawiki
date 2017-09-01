@@ -1288,6 +1288,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (vide etiam le [[Special:NewPages|lista de nove paginas]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"recentchanges-submit": "Monstrar",
+	"rcfilters-tag-remove": "Remover '$1'",
 	"rcfilters-legend-heading": "<strong>Lista de abbreviationes:</strong>",
 	"rcfilters-other-review-tools": "<strong>Altere instrumentos de revision</strong>",
 	"rcfilters-group-results-by-page": "Gruppar resultatos per pagina",

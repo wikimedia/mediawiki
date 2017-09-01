@@ -1017,6 +1017,7 @@
 	"right-deletechangetags": "Dzēst [[Special:Tags|iezīmes]] no datubāzes",
 	"grant-generic": "\"$1\" tiesību paka",
 	"grant-group-page-interaction": "Darboties ar lapām",
+	"grant-group-file-interaction": "Darboties ar multimediju failiem",
 	"grant-group-email": "Sūtīt e-pastu",
 	"grant-group-high-volume": "Veikt liela apjoma aktivitātes",
 	"grant-group-administration": "Veikt administratīvās darbības",

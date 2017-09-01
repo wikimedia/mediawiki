@@ -855,7 +855,7 @@
 	"editundo": "desegin",
 	"diff-empty": "(Ez dago alderik)",
 	"diff-multi-sameuser": "(Erabiltzaile berdinaren {{PLURAL:$1|erdiko ekarpen bat ez da|$1 erdiko ekarpen ez dira}} erakusten)",
-	"diff-multi-otherusers": "(Erabiltzaile berdinaren {{PLURAL:$1|erdiko ekarpen bat ez da|$1 erdiko ekarpen ez dira}} erakusten)",
+	"diff-multi-otherusers": "({{PLURAL:$1|Tarteko berrikusketa bat|$1 tarteko berrikusketak}}  {{PLURAL:$2|beste erabiltzaile bat|$2 erabiltzaileak}} egina ez da erakusten)",
 	"searchresults": "Bilaketaren emaitzak",
 	"searchresults-title": "«$1» bilaketaren  emaitzak",
 	"titlematches": "Emaitzak artikuluen izenburuetan",

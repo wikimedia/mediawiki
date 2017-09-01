@@ -166,7 +166,7 @@
 	"config-connection-error": "$1.\n\nVerifica el servidor, el nombre de usuario y la contraseña, e intenta de nuevo.",
 	"config-invalid-schema": "El esquema de la base de datos \"$1\"  es inválido.\nUse sólo carateres ASCII: letras (a-z, A-Z), guarismos (0-9) y guiones bajos (_).",
 	"config-db-sys-create-oracle": "El instalador sólo admite el empleo de cuentas SYSDBA como método para crear una cuenta nueva.",
-	"config-db-sys-user-exists-oracle": "La cuenta de usuario \"$1\" ya existe. ¡SYSDBA sólo puede utilizarse para crear una nueva cuenta!",
+	"config-db-sys-user-exists-oracle": "La cuenta de usuario «$1» ya existe. SYSDBA solo puede utilizarse para crear cuentas nuevas.",
 	"config-postgres-old": "Se requiere PostgreSQL $1 o posterior. Tienes la versión $2.",
 	"config-mssql-old": "Se requiere Microsoft SQL Server $1 o posterior. Tienes la versión $2.",
 	"config-sqlite-name-help": "Elige el nombre que identificará a tu wiki.\nNo uses espacios o guiones.\nEste nombre se usará como nombre del archivo de datos de SQLite.",
