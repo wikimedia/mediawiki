@@ -174,7 +174,8 @@
 	parserTest( 'Y Dates', 'date', YDates );
 
 	ISODates = [
-		[ '2000',		false,	946684800000, 'Plain 4-digit year' ],
+		[ '',		false,	-Infinity, 'Not a date' ],
+		[ '2000',	false,	946684800000, 'Plain 4-digit year' ],
 		[ '2000-01',	true,	946684800000, 'Year with month' ],
 		[ '2000-01-01',	true,	946684800000, 'Year with month and day' ],
 		[ '2000-13-01',	false,	978307200000, 'Non existant month' ],

@@ -1163,7 +1163,7 @@
 				match = s.match( ts.rgx.isoDate[ 1 ] );
 			}
 			if ( !match ) {
-				return 0;
+				return -Infinity;
 			}
 			// Month and day
 			for ( i = 2; i <= 4; i += 2 ) {
