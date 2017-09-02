@@ -1490,7 +1490,7 @@
 	"rcfilters-view-namespaces-tooltip": "Filtra risultati per namespace",
 	"rcfilters-view-tags-tooltip": "Filtra risultati per etichette di modifica",
 	"rcfilters-view-return-to-default-tooltip": "Torna al menu filtri principale",
-	"rcfilters-watchlist-editWatchlist-button": "Modifica il tuo elenco di pagine osservate",
+	"rcfilters-watchlist-edit-watchlist-button": "Modifica il tuo elenco di pagine osservate",
 	"rcnotefrom": "Di seguito {{PLURAL:$5|è elencata la modifica apportata|sono elencate le modifiche apportate}} a partire da <strong>$3, $4</strong> (mostrate fino a <strong>$1</strong>).",
 	"rclistfromreset": "Reimposta la selezione della data",
 	"rclistfrom": "Mostra le nuove modifiche a partire daː $2, $3",

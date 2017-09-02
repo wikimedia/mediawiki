@@ -1508,7 +1508,7 @@
 	"rcfilters-liveupdates-button": "Обновлять автоматически",
 	"rcfilters-liveupdates-button-title-on": "Отключить автоматические обновления",
 	"rcfilters-liveupdates-button-title-off": "Показывать новые изменения сразу после их появления",
-	"rcfilters-watchlist-markSeen-button": "Отметить все изменения как просмотренные",
+	"rcfilters-watchlist-markseen-button": "Отметить все изменения как просмотренные",
 	"rcnotefrom": "Ниже {{PLURAL:$5|указано изменение|перечислены изменения}} с <strong>$3, $4</strong> (показано не более <strong>$1</strong>).",
 	"rclistfromreset": "Сбросить выбор даты",
 	"rclistfrom": "Показать изменения с $3 $2.",

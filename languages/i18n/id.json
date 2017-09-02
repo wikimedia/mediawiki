@@ -1448,7 +1448,7 @@
 	"rcfilters-liveupdates-button": "Perubahan langsung",
 	"rcfilters-liveupdates-button-title-on": "Matikan perubahan langsung",
 	"rcfilters-liveupdates-button-title-off": "Tampilkan perubahan baru ketika perubahan tersebut terjadi",
-	"rcfilters-watchlist-markSeen-button": "Tandai semua perubahan sebagai terlihat",
+	"rcfilters-watchlist-markseen-button": "Tandai semua perubahan sebagai terlihat",
 	"rcnotefrom": "Di bawah ini adalah {{PLURAL:$5|perubahan}} sejak <strong>$3, $4</strong> (ditampilkan sampai <strong>$1</strong> perubahan).",
 	"rclistfromreset": "Atur ulang pilihan tanggal",
 	"rclistfrom": "Perlihatkan perubahan terbaru sejak $3 $2",

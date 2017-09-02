@@ -1314,7 +1314,7 @@
 	"rcfilters-view-return-to-default-tooltip": "Oinarrizko iragazketa menura bueltatu",
 	"rcfilters-liveupdates-button": "Zuzenean egindako eguneraketak",
 	"rcfilters-liveupdates-button-title-on": "Desgaitu zuzenean egindako eguneraketak",
-	"rcfilters-watchlist-markSeen-button": "Aldaketa guztiak ikusitakoak bezala markatu",
+	"rcfilters-watchlist-markseen-button": "Aldaketa guztiak ikusitakoak bezala markatu",
 	"rcnotefrom": "Jarraian azaltzen diren {{PLURAL:$5|aldaketak}} data honetatik aurrerakoak dira: <strong>$3,$4</strong> (gehienez <b>$1</b> erakusten dira).",
 	"rclistfromreset": "Data aukeraketa berrezarri",
 	"rclistfrom": "Erakutsi $3 $2 ondorengo aldaketa berriak",

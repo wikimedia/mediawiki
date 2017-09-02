@@ -1416,7 +1416,7 @@
 	"rcfilters-liveupdates-button": "Uuendused reaalajas",
 	"rcfilters-liveupdates-button-title-on": "Lülita reaalajas uuendamine välja",
 	"rcfilters-liveupdates-button-title-off": "Näita uusi muudatusi kohe nende tegemise järel",
-	"rcfilters-watchlist-markSeen-button": "Märgi kõik muudatused nähtuks",
+	"rcfilters-watchlist-markseen-button": "Märgi kõik muudatused nähtuks",
 	"rcnotefrom": "Allpool on toodud {{PLURAL:$5|muudatus|muudatused}} alates: <strong>$3, kell $4</strong> (näidatakse kuni <strong>$1</strong> muudatust)",
 	"rclistfromreset": "Lähtesta kuupäeva valik",
 	"rclistfrom": "Näita muudatusi alates: $3, kell $2",

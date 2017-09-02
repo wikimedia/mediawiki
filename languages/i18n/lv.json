@@ -2474,6 +2474,8 @@
 	"exif-sensingmethod-2": "Vienas mikroshēmas krāsu zonas sensors",
 	"exif-sensingmethod-3": "Divu mikroshēmu krāsu zonas sensors",
 	"exif-sensingmethod-4": "Trīs mikroshēmu krāsu zonas sensors",
+	"exif-filesource-3": "Digitālā kamera",
+	"exif-scenetype-1": "Tieši fotografēts attēls",
 	"exif-customrendered-0": "Normāls process",
 	"exif-customrendered-1": "Dažādots process",
 	"exif-exposuremode-0": "Automātiskā ekspozīcija",

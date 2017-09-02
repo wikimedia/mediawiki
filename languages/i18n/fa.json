@@ -1450,7 +1450,7 @@
 	"rcfilters-liveupdates-button": "به‌روزرسانی‌های زنده",
 	"rcfilters-liveupdates-button-title-on": "خاموش کردن به‌روزرسانی خودکار",
 	"rcfilters-liveupdates-button-title-off": "نمایش تغییرات جدید همچنان که رخ می‌دهند",
-	"rcfilters-watchlist-markSeen-button": "نشانه‌گذاری تمام تغییرات به‌عنوان خوانده‌شده",
+	"rcfilters-watchlist-markseen-button": "نشانه‌گذاری تمام تغییرات به‌عنوان خوانده‌شده",
 	"rcnotefrom": "در زیر تغییرات از <strong>$3, $4</strong> (تا <strong>$1</strong> {{PLURAL:$5|نشان داده شده‌است|نشان داده شده‌اند}}).",
 	"rclistfromreset": "از نو کردن انتخاب تاریخ",
 	"rclistfrom": "نمایش تغییرات تازه با شروع از $3 $2",

@@ -1462,7 +1462,7 @@
 	"rcfilters-liveupdates-button": "Atualizações instantâneas",
 	"rcfilters-liveupdates-button-title-on": "Desligar atualizações ao vivo",
 	"rcfilters-liveupdates-button-title-off": "Apresentar mudanças novas à medida que acontecem",
-	"rcfilters-watchlist-markSeen-button": "Marcar todas as modificações como já vistas",
+	"rcfilters-watchlist-markseen-button": "Marcar todas as modificações como já vistas",
 	"rcnotefrom": "Abaixo {{PLURAL:$5|está a mudança|estão as mudanças}} desde <strong>$2</strong> (mostradas até <strong>$1</strong>).",
 	"rclistfromreset": "Reiniciar a seleção da data",
 	"rclistfrom": "Mostrar as novas mudanças a partir das $2 de $3",

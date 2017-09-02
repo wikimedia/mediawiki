@@ -217,6 +217,8 @@
 	"talk": "ચર્ચા",
 	"views": "દેખાવ",
 	"toolbox": "સાધનો",
+	"tool-link-userrights": "બદલો {{GENDER:$1|સભ્ય}} સમુહો",
+	"tool-link-userrights-readonly": "દેખાડો {{GENDER:$1|સભ્ય}} સમુહો",
 	"tool-link-emailuser": "આ {{GENDER:$1|સભ્ય}}ને ઇમેલ કરો",
 	"imagepage": "ફાઇલનું પાનું જુઓ",
 	"mediawikipage": "સંદેશનું પાનું જુઓ",

@@ -1548,7 +1548,7 @@
 	"rcfilters-liveupdates-button": "Actualizaciones en directo",
 	"rcfilters-liveupdates-button-title-on": "Apagar actualizaciones en directo",
 	"rcfilters-liveupdates-button-title-off": "Mostar los cambios en tiempo real",
-	"rcfilters-watchlist-markSeen-button": "Marcar todos los cambios como vistos",
+	"rcfilters-watchlist-markseen-button": "Marcar todos los cambios como vistos",
 	"rcfilters-watchlist-showupdated": "Los cambios hechos a páginas que no has visitado desde que se efectuaron aparecen en <strong>negrita</strong>, acompañados de marcadores sólidos.",
 	"rcnotefrom": "Debajo {{PLURAL:$5|aparece el cambio|aparecen los cambios}} desde <strong>$3, $4</strong> (se muestran hasta <strong>$1</strong>).",
 	"rclistfromreset": "Restablecer selección de fecha",
