@@ -4263,9 +4263,6 @@ class EditPage {
 			if ( isset( $options['title-message'] ) ) {
 				$title = $this->context->msg( $options['title-message'] )->text();
 			}
-			if ( isset( $options['label-id'] ) ) {
-				$labelAttribs['id'] = $options['label-id'];
-			}
 
 			$checkboxes[ $legacyName ] = new OOUI\FieldLayout(
 				new OOUI\CheckboxInputWidget( [
