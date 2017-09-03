@@ -2111,7 +2111,7 @@
 	"unwatchthispage": "Nesledovat tuto stránku",
 	"notanarticle": "Toto není stránka",
 	"notvisiblerev": "Verze byla smazána",
-	"watchlist-details": "Na vašem seznamu sledovaných stránek {{PLURAL:$1|je $1 stránka|jsou $1 stránky|je $1 stránek}}, nepočítaje v to diskusní stránky.",
+	"watchlist-details": "Na vašem seznamu sledovaných stránek {{PLURAL:$1|je $1 stránka|jsou $1 stránky|je $1 stránek}} (a k tomu diskusní stránky).",
 	"wlheader-enotif": "Upozorňování e-mailem je zapnuto.",
 	"wlheader-showupdated": "Stránky, které se změnily od vaší poslední návštěvy, jsou zobrazeny <strong>tučně</strong>.",
 	"wlnote": "Níže {{PLURAL:$1|je poslední změna|jsou poslední <strong>$1</strong> změny|je posledních <strong>$1</strong> změn}} za {{PLURAL:$2|poslední hodinu|poslední <strong>$2</strong> hodiny|posledních <strong>$2</strong> hodin}} do $4, $3.",

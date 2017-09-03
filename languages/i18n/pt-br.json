@@ -111,7 +111,8 @@
 			"Felipe L. Ewald",
 			"WikiUser22222",
 			"BarbaraAckles",
-			"Trigonometria87"
+			"Trigonometria87",
+			"RadiX"
 		]
 	},
 	"tog-underline": "Link sublinhado:",
@@ -3683,7 +3684,7 @@
 	"logentry-protect-protect-cascade": "$1 {{GENDER:$2|protegeu}} $3 $4 [em cascata]",
 	"logentry-protect-modify": "$1 {{GENDER:$2|alterou}} o nível de proteção para $3 $4",
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|alterou}} o nível de proteção para $3 $4 [em cascata]",
-	"logentry-rights-rights": "$1 {{GENDER:$2|mudou}} membros do grupo para {{GENDER:$6|$3}} de $4 para $5",
+	"logentry-rights-rights": "$1 {{GENDER:$2|alterou}} os grupos de usuário de {{GENDER:$6|$3}} de $4 para $5",
 	"logentry-rights-rights-legacy": "$1 alterou os grupos de $3",
 	"logentry-rights-autopromote": "$1 foi promovido automaticamente de $4 para $5",
 	"logentry-upload-upload": "$1 {{GENDER:$2|carregou}} $3",

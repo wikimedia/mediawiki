@@ -1477,6 +1477,7 @@
 	"api-help-param-upload": "Deve ser postado como um upload de arquivo usando multipart/form-data.",
 	"api-help-param-multi-separate": "Valores separados com <kbd>|</kbd> ou [[Special:ApiHelp/main#main/datatypes|alternativas]].",
 	"api-help-param-multi-max": "O número máximo de valores é {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} para bots).",
+	"api-help-param-multi-max-simple": "O número máximo de valores é {{PLURAL:$1|$1}}.",
 	"api-help-param-multi-all": "Para especificar todos os valores, use <kbd>$1</kbd>.",
 	"api-help-param-default": "Padrão: $1",
 	"api-help-param-default-empty": "Padrão: <span class=\"apihelp-empty\">(vazio)</span>",

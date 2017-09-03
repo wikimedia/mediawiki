@@ -98,6 +98,7 @@
 	"config-no-cli-uploads-check": "<strong>Atenção:</strong> O seu diretório padrão para envios (<code>$1</code>) não está marcado para vulnerabilidade\npara execução de script arbitrário durante a instalação do CLI.",
 	"config-brokenlibxml": "O sistema tem uma combinação de PHP e libxml2 que é conflitante e pode causar corrupção de dados ocultos no MediaWiki e outros aplicativos da web.\nAtualize para o libxml2 2.7.3 ou mais recente ([https://bugs.php.net/bug.php?id=45996 bugs com o PHP]).\nInstalação abortada.",
 	"config-suhosin-max-value-length": "O Suhosin está instalado e limita o parâmetro GET <code>length</code> para $1 bytes. O componente ResourceLoader trabalhará em torno deste limite, mas degradará a performance.\nSe possível, defina <code>suhosin.get.max_value_length</code> em <code>php.ini</code> para 1024 ou mais e defina <code>$wgResourceLoaderMaxQueryLength</code> em <code>LocalSettings.php</code> para o mesmo valor.",
+	"config-using-32bit": "<strong>Aviso:</strong> o seu sistema parece estar sendo executado com inteiros de 32 bits. Isto [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit não é recomendado].",
 	"config-db-type": "Tipo do banco de dados:",
 	"config-db-host": "Servidor do banco de dados:",
 	"config-db-host-help": "Se a banco de dados do seu servidor está em um servidor diferente, digite o nome do host ou o endereço IP aqui.\n\nSe você está utilizando uma hospedagem web compartilhada, o seu provedor de hospedagem deverá fornecer o nome do host correto na sua documentação.\n\nSe você está instalando em um servidor Windows e usando o MySQL, usar \"localhost\" pode não funcionar para o nome de servidor. Se não funcionar, tente \"127.0.0.1\" para o endereço de IP local.\n\nSe você está usando PostgreSQl, deixe este campo em branco para se conectar através de um socket Unix.",
@@ -331,6 +332,8 @@
 	"config-help-tooltip": "clique para expandir",
 	"config-nofile": "O arquivo \"$1\" não foi encontrado. Ele foi apagado?",
 	"config-extension-link": "Você sabia que sua wiki suporta [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensões]?\n\nVocê pode explorar as [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensões por categoria] ou visitar a [https://www.mediawiki.org/wiki/Extension_Matrix Matriz de Extensões] para ver a lista completa.",
+	"config-skins-screenshots": "$1 (screenshots: $2)",
+	"config-screenshot": "screenshot",
 	"mainpagetext": "<strong>O MediaWiki foi instalado.</strong>",
 	"mainpagedocfooter": "Consulte o [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Manual de Usuário] para informações de como usar o software wiki.\n\n== Começando ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista de opções de configuração]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAQ do MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussão com avisos de novas versões do MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Traduza o MediaWiki para seu idioma]"
 }

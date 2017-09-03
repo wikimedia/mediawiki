@@ -2175,7 +2175,7 @@
 	"unwatchthispage": "停止监视",
 	"notanarticle": "非内容页面",
 	"notvisiblerev": "上次由不同用户所作的版本已经删除",
-	"watchlist-details": "不计讨论页，您的监视列表中有$1个页面。",
+	"watchlist-details": "您的监视列表中有{{PLURAL:$1|$1个页面}}（外加讨论页）。",
 	"wlheader-enotif": "已启用电子邮件通知。",
 	"wlheader-showupdated": "您上次访问后发生更改的页面<strong>加粗</strong>显示。",
 	"wlnote": "下面是{{PLURAL:$2|过去<strong>$2</strong>小时}}的{{PLURAL:$1|最后<strong>$1</strong>个更改}}，截至$3 $4。",

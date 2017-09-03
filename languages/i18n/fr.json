@@ -2248,7 +2248,7 @@
 	"unwatchthispage": "Ne plus suivre",
 	"notanarticle": "Ce n'est pas une page de contenu",
 	"notvisiblerev": "La dernière version relue par un utilisateur différent, a été supprimée",
-	"watchlist-details": "{{PLURAL:$1|$1 page|$1 pages}} dans votre liste de suivi, sans compter les pages de discussion.",
+	"watchlist-details": "{{PLURAL:$1|$1 page est|$1 pages sont}} dans votre liste de suivi (plus les pages de discussion).",
 	"wlheader-enotif": "La notification par courriel est activée.",
 	"wlheader-showupdated": "Les pages qui ont été modifiées depuis votre dernière visite sont affichées en <strong>gras</strong>.",
 	"wlnote": "Ci-dessous {{PLURAL:$1|figure la dernière modification effectuée|figurent les <strong>$1</strong> dernières modifications effectuées}} durant {{PLURAL:$2|la dernière heure|les <strong>$2</strong> dernières heures}}, jusqu'au $3, $4.",

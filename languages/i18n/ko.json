@@ -2143,7 +2143,7 @@
 	"unwatchthispage": "주시 해제하기",
 	"notanarticle": "문서가 아님",
 	"notvisiblerev": "이 판은 삭제되었습니다.",
-	"watchlist-details": "토론 문서의 수는 제외하고, 주시문서 목록에 {{PLURAL:$1|문서 $1개}}가 있습니다.",
+	"watchlist-details": "{{PLURAL:$1|문서 $1개}}가 주시문서 목록에 있습니다. (토론 문서 포함)",
 	"wlheader-enotif": "이메일 알림 기능이 활성화되었습니다.",
 	"wlheader-showupdated": "마지막으로 방문한 이후에 바뀐 문서는 '''굵은 글씨'''로 보입니다.",
 	"wlnote": "$3 $4 기준으로, 아래에 최근 {{PLURAL:$2|한 시간|<strong>$2</strong>시간}} 동안 {{PLURAL:$1|마지막 바뀜이|마지막 바뀜 <strong>$1</strong>개가}} 있습니다.",

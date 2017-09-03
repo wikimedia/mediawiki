@@ -1144,6 +1144,7 @@
 	"rcfilters-savedqueries-apply-label": "Lagra innstillingar",
 	"rcfilters-savedqueries-add-new-title": "Lagra gjeldande filterinnstillingar",
 	"rcfilters-clear-all-filters": "Fjern alle filter",
+	"rcfilters-show-new-changes": "Sjå dei nyaste endringane",
 	"rcfilters-search-placeholder": "Filtrer siste endringar (gå gjennom liste eller skriv filternamn)",
 	"rcfilters-invalid-filter": "Ugyldig filter",
 	"rcfilters-empty-filter": "Ingen aktive filter. Alle bidrag er viste.",
