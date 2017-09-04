@@ -878,11 +878,10 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// Update the DB post-send if the page has not cached since now
-		$that = $this;
 		$latest = $this->getLatest();
 		DeferredUpdates::addCallableUpdate(
-			function () use ( $that, $retval, $latest ) {
-				$that->insertRedirectEntry( $retval, $latest );
+			function () use ( $retval, $latest ) {
+				$this->insertRedirectEntry( $retval, $latest );
 			},
 			DeferredUpdates::POSTSEND,
 			wfGetDB( DB_MASTER )
