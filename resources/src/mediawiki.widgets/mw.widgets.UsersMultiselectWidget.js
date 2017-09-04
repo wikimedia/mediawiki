@@ -152,6 +152,9 @@
 	mw.widgets.UsersMultiselectWidget.prototype.updateHiddenInput = function () {
 		if ( 'hiddenInput' in this ) {
 			this.hiddenInput.val( this.getSelectedUsernames().join( '\n' ) );
+			// Hidden inputs do not trigger onChange.
+			// @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/hidden
+			this.hiddenInput.trigger( 'change' );
 		}
 	};
 
