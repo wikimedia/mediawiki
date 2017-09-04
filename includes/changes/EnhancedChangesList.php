@@ -515,7 +515,7 @@ class EnhancedChangesList extends ChangesList {
 
 		$sinceLast = 0;
 		$unvisitedOldid = null;
-		/** @var $rcObj RCCacheEntry */
+		/** @var RCCacheEntry $rcObj */
 		foreach ( $block as $rcObj ) {
 			// Same logic as below inside main foreach
 			if ( $rcObj->watched && $rcObj->mAttribs['rc_timestamp'] >= $rcObj->watched ) {
@@ -537,7 +537,7 @@ class EnhancedChangesList extends ChangesList {
 
 		# Total change link
 		$links = [];
-		/** @var $block0 RecentChange */
+		/** @var RecentChange $block0 */
 		$block0 = $block[0];
 		$last = $block[count( $block ) - 1];
 		if ( !$allLogs ) {

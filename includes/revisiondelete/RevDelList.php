@@ -83,7 +83,7 @@ abstract class RevDelList extends RevisionListBase {
 	public function areAnySuppressed() {
 		$bit = $this->getSuppressBit();
 
-		/** @var $item RevDelItem */
+		/** @var RevDelItem $item */
 		foreach ( $this as $item ) {
 			if ( $item->getBits() & $bit ) {
 				return true;
@@ -151,7 +151,7 @@ abstract class RevDelList extends RevisionListBase {
 		// passed to doPostCommitUpdates().
 		$visibilityChangeMap = [];
 
-		/** @var $item RevDelItem */
+		/** @var RevDelItem $item */
 		foreach ( $this as $item ) {
 			unset( $missing[$item->getId()] );
 
@@ -294,7 +294,7 @@ abstract class RevDelList extends RevisionListBase {
 
 	final protected function acquireItemLocks() {
 		$status = Status::newGood();
-		/** @var $item RevDelItem */
+		/** @var RevDelItem $item */
 		foreach ( $this as $item ) {
 			$status->merge( $item->lock() );
 		}
@@ -304,7 +304,7 @@ abstract class RevDelList extends RevisionListBase {
 
 	final protected function releaseItemLocks() {
 		$status = Status::newGood();
-		/** @var $item RevDelItem */
+		/** @var RevDelItem $item */
 		foreach ( $this as $item ) {
 			$status->merge( $item->unlock() );
 		}

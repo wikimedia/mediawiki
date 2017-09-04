@@ -62,7 +62,7 @@ class ApiEditPage extends ApiBase {
 
 				$redirValues = [];
 
-				/** @var $newTitle Title */
+				/** @var Title $newTitle */
 				foreach ( $titles as $id => $newTitle ) {
 					if ( !isset( $titles[$id - 1] ) ) {
 						$titles[$id - 1] = $oldTitle;
@@ -359,7 +359,7 @@ class ApiEditPage extends ApiBase {
 		$articleContext->setWikiPage( $pageObj );
 		$articleContext->setUser( $this->getUser() );
 
-		/** @var $articleObject Article */
+		/** @var Article $articleObject */
 		$articleObject = Article::newFromWikiPage( $pageObj, $articleContext );
 
 		$ep = new EditPage( $articleObject );

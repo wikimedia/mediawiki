@@ -275,7 +275,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return false;
 		}
-		/** @var $conn Database */
+		/** @var Database $conn */
 		$conn = $status->value;
 
 		// Get current account name

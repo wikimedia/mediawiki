@@ -228,7 +228,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$titleWhere = [];
 		$allRedirNs = [];
 		$allRedirDBkey = [];
-		/** @var $t Title */
+		/** @var Title $t */
 		foreach ( $this->redirTitles as $t ) {
 			$redirNs = $t->getNamespace();
 			$redirDBkey = $t->getDBkey();

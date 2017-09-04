@@ -266,7 +266,7 @@ class MssqlInstaller extends DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return false;
 		}
-		/** @var $conn Database */
+		/** @var Database $conn */
 		$conn = $status->value;
 
 		// We need the server-level ALTER ANY LOGIN permission to create new accounts

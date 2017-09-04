@@ -71,7 +71,7 @@ class ApiUpload extends ApiBase {
 		$this->checkPermissions( $user );
 
 		// Fetch the file (usually a no-op)
-		/** @var $status Status */
+		/** @var Status $status */
 		$status = $this->mUpload->fetchFile();
 		if ( !$status->isGood() ) {
 			$this->dieStatus( $status );
@@ -772,7 +772,7 @@ class ApiUpload extends ApiBase {
 			$this->mParams['text'] = $this->mParams['comment'];
 		}
 
-		/** @var $file LocalFile */
+		/** @var LocalFile $file */
 		$file = $this->mUpload->getLocalFile();
 
 		// For preferences mode, we want to watch if 'watchdefault' is set,
@@ -829,7 +829,7 @@ class ApiUpload extends ApiBase {
 			$result['result'] = 'Poll';
 			$result['stage'] = 'queued';
 		} else {
-			/** @var $status Status */
+			/** @var Status $status */
 			$status = $this->mUpload->performUpload( $this->mParams['comment'],
 				$this->mParams['text'], $watch, $this->getUser(), $this->mParams['tags'] );
 

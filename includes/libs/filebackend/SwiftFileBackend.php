@@ -1250,7 +1250,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @return StatusValue[]
 	 */
 	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {
-		/** @var $statuses StatusValue[] */
+		/** @var StatusValue[] $statuses */
 		$statuses = [];
 
 		$auth = $this->getAuthentication();

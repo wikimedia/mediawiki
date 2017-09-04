@@ -1556,7 +1556,7 @@ class LocalFile extends File {
 						);
 
 						if ( isset( $status->value['revision'] ) ) {
-							/** @var $rev Revision */
+							/** @var Revision $rev */
 							$rev = $status->value['revision'];
 							// Associate new page revision id
 							$logEntry->setAssociatedRevId( $rev->getId() );
@@ -1564,7 +1564,7 @@ class LocalFile extends File {
 						// This relies on the resetArticleID() call in WikiPage::insertOn(),
 						// which is triggered on $descTitle by doEditContent() above.
 						if ( isset( $status->value['revision'] ) ) {
-							/** @var $rev Revision */
+							/** @var Revision $rev */
 							$rev = $status->value['revision'];
 							$updateLogPage = $rev->getPage();
 						}

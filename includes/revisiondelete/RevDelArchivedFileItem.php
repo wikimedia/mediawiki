@@ -23,8 +23,8 @@
  * Item class for a filearchive table row
  */
 class RevDelArchivedFileItem extends RevDelFileItem {
-	/** @var $list RevDelArchivedFileList */
-	/** @var $file ArchivedFile */
+	/** @var RevDelArchivedFileList $list */
+	/** @var ArchivedFile $file */
 	/** @var LocalFile */
 	protected $lockFile;
 

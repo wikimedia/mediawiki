@@ -79,7 +79,7 @@ class BlockListPager extends TablePager {
 			}
 		}
 
-		/** @var $row object */
+		/** @var object $row */
 		$row = $this->mCurrentRow;
 
 		$language = $this->getLanguage();

@@ -166,7 +166,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			// For each page we will request, the user must have read rights for that page
 			$user = $this->getUser();
 			$status = Status::newGood();
-			/** @var $title Title */
+			/** @var Title $title */
 			foreach ( $pageSet->getGoodTitles() as $title ) {
 				if ( !$title->userCan( 'read', $user ) ) {
 					$status->fatal( ApiMessage::create(

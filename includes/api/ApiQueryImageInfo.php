@@ -124,7 +124,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					}
 				}
 
-				/** @var $img File */
+				/** @var File $img */
 				$img = $images[$title];
 
 				if ( self::getTransformCount() >= self::TRANSFORM_LIMIT ) {
@@ -199,7 +199,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				// Get one more to facilitate query-continue functionality
 				$count = ( $gotOne ? 1 : 0 );
 				$oldies = $img->getHistory( $params['limit'] - $count + 1, $start, $params['end'] );
-				/** @var $oldie File */
+				/** @var File $oldie */
 				foreach ( $oldies as $oldie ) {
 					if ( ++$count > $params['limit'] ) {
 						// We've reached the extra one which shows that there are

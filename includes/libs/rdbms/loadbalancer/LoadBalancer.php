@@ -384,9 +384,9 @@ class LoadBalancer implements ILoadBalancer {
 			throw new InvalidArgumentException( "Empty server array given to LoadBalancer" );
 		}
 
-		/** @var $i int|bool Index of selected server */
+		/** @var int|bool $i Index of selected server */
 		$i = false;
-		/** @var $laggedReplicaMode bool Whether server is considered lagged */
+		/** @var bool $laggedReplicaMode Whether server is considered lagged */
 		$laggedReplicaMode = false;
 
 		// Quickly look through the available servers for a server that meets criteria...
@@ -538,7 +538,7 @@ class LoadBalancer implements ILoadBalancer {
 	public function getAnyOpenConnection( $i ) {
 		foreach ( $this->mConns as $connsByServer ) {
 			if ( !empty( $connsByServer[$i] ) ) {
-				/** @var $serverConns IDatabase[] */
+				/** @var IDatabase[] $serverConns */
 				$serverConns = $connsByServer[$i];
 
 				return reset( $serverConns );

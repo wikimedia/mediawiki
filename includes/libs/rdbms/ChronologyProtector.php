@@ -315,7 +315,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	 * @return array
 	 */
 	private static function mergePositions( $curValue, array $shutdownPositions ) {
-		/** @var $curPositions DBMasterPos[] */
+		/** @var DBMasterPos[] $curPositions */
 		if ( $curValue === false ) {
 			$curPositions = $shutdownPositions;
 		} else {

@@ -1657,7 +1657,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// Convenience variables
 		$now = wfTimestampNow();
 		$oldid = $meta['oldId'];
-		/** @var $oldContent Content|null */
+		/** @var Content|null $oldContent */
 		$oldContent = $meta['oldContent'];
 		$newsize = $content->getSize();
 

@@ -120,7 +120,7 @@ class ProtectedPagesPager extends TablePager {
 	 * @throws MWException
 	 */
 	function formatValue( $field, $value ) {
-		/** @var $row object */
+		/** @var object $row */
 		$row = $this->mCurrentRow;
 
 		switch ( $field ) {

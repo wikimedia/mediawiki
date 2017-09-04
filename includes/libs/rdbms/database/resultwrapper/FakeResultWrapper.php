@@ -9,7 +9,7 @@ use stdClass;
  * doesn't go anywhere near an actual database.
  */
 class FakeResultWrapper extends ResultWrapper {
-	/** @var $result stdClass[] */
+	/** @var stdClass[] $result */
 
 	/**
 	 * @param stdClass[] $rows

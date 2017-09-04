@@ -221,7 +221,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		}
 
 		# Try a hook. Called "Bitmap" for historical reasons.
-		/** @var $mto MediaTransformOutput */
+		/** @var MediaTransformOutput $mto */
 		$mto = null;
 		Hooks::run( 'BitmapHandlerTransform', [ $this, $image, &$scalerParams, &$mto ] );
 		if ( !is_null( $mto ) ) {

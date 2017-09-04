@@ -149,7 +149,7 @@ class DeferredUpdates {
 		if ( $update instanceof MergeableUpdate ) {
 			$class = get_class( $update ); // fully-qualified class
 			if ( isset( $queue[$class] ) ) {
-				/** @var $existingUpdate MergeableUpdate */
+				/** @var MergeableUpdate $existingUpdate */
 				$existingUpdate = $queue[$class];
 				$existingUpdate->merge( $update );
 			} else {

@@ -34,7 +34,7 @@ use IP;
  * @see Database
  */
 class DatabaseMysqli extends DatabaseMysqlBase {
-	/** @var $mConn mysqli */
+	/** @var mysqli $mConn */
 
 	/**
 	 * @param string $sql

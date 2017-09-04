@@ -594,7 +594,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			return $status;
 		}
 
-		/** @var $conn DatabasePostgres */
+		/** @var DatabasePostgres $conn */
 		$conn = $status->value;
 
 		if ( $conn->tableExists( 'archive' ) ) {
