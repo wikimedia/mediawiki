@@ -140,7 +140,7 @@ class SpecialPageDataTest extends SpecialPageTestBase {
 		list( $output, ) = $this->executeSpecialPage( '', $request );
 
 		$this->assertContains(
-			"Content negotiation applies based on you client's Accept header.",
+			"Content negotiation applies based on your client's Accept header.",
 			$output,
 			"output"
 		);
