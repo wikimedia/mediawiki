@@ -155,7 +155,6 @@ class SpecialNewFiles extends IncludableSpecialPage {
 
 			'mediatype' => [
 				'type' => 'multiselect',
-				'dropdown' => true,
 				'flatlist' => true,
 				'name' => 'mediatype',
 				'label-message' => 'newimages-mediatype',
