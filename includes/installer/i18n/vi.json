@@ -82,6 +82,7 @@
 	"config-no-cli-uploads-check": "<strong>Cảnh báo:</strong> Thư mục tải lên mặc định của bạn (<code>$1</code>) không được kiểm tra lỗ hỏng bảo mật dễ bị khai thác bởi các đoạn mã thực thi xấu trong quá trình cài đặt giao diện dòng lệnh.",
 	"config-brokenlibxml": "Hệ thống của bạn có kết hợp các phiên bản lỗi lầm của PHP và libxml2, điều này có thể gây ra tổn thương không nhìn thấy được đối với dữ liệu trong MediaWiki và các ứng dụng Web khác.\nHãy nâng cấp lên phiên bản libxml2 2.7.3 trở lên ([https://bugs.php.net/bug.php?id=45996 lỗi nộp PHP]).\nCài đặt bị hủy bỏ.",
 	"config-suhosin-max-value-length": "Suhosin được cài đặt và hạn chế tham số GET <code>length</code> (độ dài) không thể vượt quá $1 byte.\nThành phần ResourceLoader của MediaWiki sẽ khắc phục giới hạn này, nhưng điều này sẽ làm giảm hiệu suất.\nNếu có thể, bạn nên tăng <code>suhosin.get.max_value_length</code> lên 1024 trở lên trong <code>php.ini</code>, và đặt <code>$wgResourceLoaderMaxQueryLength</code> cùng giá trị trong <code>LocalSettings.php</code>.",
+	"config-using-32bit": "<strong>Cảnh báo:</strong> Máy của bạn hình như sử dụng các số nguyên 32 bit. Chế độ này [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit không được khuyên khích].",
 	"config-db-type": "Kiểu cơ sở dữ liệu:",
 	"config-db-host": "Máy chủ của cơ sở dữ liệu:",
 	"config-db-host-help": "Nếu máy chủ cơ sở dữ liệu của bạn nằm trên máy chủ khác, hãy điền tên hoặc địa chỉ IP của máy chủ vào đây.\n\nNếu bạn đang dùng Web hosting chia sẻ, tài liệu của nhà cung cấp hosting của bạn sẽ có tên chính xác của máy chủ.\n\nNếu bạn đang cài đặt trên một máy chủ Windows và sử dụng MySQL, việc dùng “localhost” có thể không hợp với tên máy chủ. Nếu bị như vậy, hãy thử “127.0.0.1” tức địa chỉ IP địa phương.\n\nNếu bạn đang dùng PostgreSQL, hãy để trống mục này để kết nối với một ổ cắm Unix.",
@@ -312,6 +313,8 @@
 	"config-help-tooltip": "nhấn chuột để mở rộng",
 	"config-nofile": "Không tìm thấy tập tin “$1”. Nó có phải bị xóa không?",
 	"config-extension-link": "Bạn có biết rằng wiki của bạn có hỗ trợ [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions mở rộng]?\n\nBạn có thể truy cập [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category phần mở rộng theo thể loại] hoặc [https://www.mediawiki.org/wiki/Extension_Matrix Ma trận Mở rộng] để xem danh sách đầy đủ các phần mở rộng.",
+	"config-skins-screenshots": "$1 (ảnh chụp màn hình: $2)",
+	"config-screenshot": "ảnh chụp màn hình",
 	"mainpagetext": "'''MediaWiki đã được cài đặt.'''",
 	"mainpagedocfooter": "Xin đọc [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Hướng dẫn sử dụng] để biết thêm thông tin về cách sử dụng phần mềm wiki.\n\n== Để bắt đầu ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Danh sách các thiết lập cấu hình]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Các câu hỏi thường gặp MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Danh sách gửi thư về việc phát hành MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Tìm hiểu cách chống spam tại wiki của bạn]"
 }

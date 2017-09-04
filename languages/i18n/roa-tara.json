@@ -1916,7 +1916,7 @@
 	"unwatchthispage": "No condrollà cchiù 'a pàgene",
 	"notanarticle": "Non g'è 'na vosce",
 	"notvisiblerev": "'A revisione ha state scangellete",
-	"watchlist-details": "{{PLURAL:$1|$1 pàgene|$1 pàggene}} jndr'à l'elenghe de le pàggene condrollate, scartanne le pàggene de le 'ngazzaminde.",
+	"watchlist-details": "{{PLURAL:$1|$1 pàgene jè|$1 pàggene stonne}} jndr'à l'elenghe de le pàggene condrollate (cchiù le pàggene de le 'ngazzaminde).",
 	"wlheader-enotif": "* Notifiche pe email abbilitate.",
 	"wlheader-showupdated": "* Le pàggene ca onne state cangiate da l'urtema visite avènene fatte vedè in '''grascette'''",
 	"wlnote": "Aqquà sotte {{PLURAL:$1|ste l'urteme cangiamende|stonne l'urteme <strong>$1</strong> cangiaminde}} jndr'à {{PLURAL:$2|l'urtema ore|l'urteme <strong>$2</strong> ore}}, jndr'à $3, $4.",

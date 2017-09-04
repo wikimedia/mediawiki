@@ -19,7 +19,8 @@
 			"MikaelF",
 			"Macofe",
 			"Matma Rex",
-			"Stryn"
+			"Stryn",
+			"Cûndûllah el-Kurdî"
 		]
 	},
 	"tog-underline": "Xetekê di bin girêdanê de çêke:",
@@ -1209,7 +1210,7 @@
 	"unwatch": "Êdî neşopîne",
 	"unwatchthispage": "Êdî neşopîne",
 	"notanarticle": "Ne gotar e",
-	"watchlist-details": "{{PLURAL:$1|Rûpeleka|$1 rûpel}} li ser lîsteya te ya şopandinê, rûpelên gotûbêjê nayên jimartin.",
+	"watchlist-details": "{{PLURAL:$1|Rûpelekî|$1 rûpel}} li ser lîsteya te ya şopandinê ye (xeynî rûpelên gotûbêjê).",
 	"wlheader-enotif": "Agahdariya e-nameyan hate çalakkirin",
 	"wlheader-showupdated": "Ev rûpela hatî guhertin dema te lê meyzand bi '''nivîsa stûr''' tê xuyakirin.",
 	"wlnote": "Niha {{PLURAL:$1|xeyrandinê|'''$1''' xeyrandinên}} dawî yê {{PLURAL:$2|seetê|'''$2''' seetên}} dawî {{PLURAL:$1|tê|tên}} dîtin.",
@@ -1772,10 +1773,12 @@
 	"version-libraries-license": "Destûr",
 	"version-libraries-description": "Danasîn",
 	"version-libraries-authors": "Xwedî",
+	"redirect-submit": "Here",
+	"redirect-user": "ID'ya Bikarhêner",
+	"redirect-page": "ID'ya  Rûpelê",
 	"fileduplicatesearch-filename": "Navê dosyeyê:",
 	"fileduplicatesearch-submit": "Lê bigere",
 	"specialpages": "Rûpelên taybet",
-	"specialpages-note": "* Rûpelên taybetî ji her kesan ra\n* <strong class=\"mw-specialpagerestricted\">Rûpelên taybetî ji bikarhêneran bi mafên zêdetir ra</strong>",
 	"specialpages-group-other": "Rûpelên taybetî yên din",
 	"specialpages-group-login": "Têkeve / hesabekî nû çêke",
 	"specialpages-group-changes": "Guherandinên dawî û têketin",
