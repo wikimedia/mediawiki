@@ -1256,7 +1256,6 @@ class UploadForm extends HTMLForm {
 		$out->addJsConfigVars( $scriptVars );
 
 		$out->addModules( [
-			'mediawiki.action.edit', // For <charinsert> support
 			'mediawiki.special.upload', // Extras for thumbnail and license preview.
 		] );
 	}
