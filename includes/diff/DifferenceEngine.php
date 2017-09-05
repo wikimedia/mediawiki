@@ -918,7 +918,7 @@ class DifferenceEngine extends ContextSource {
 			$wikidiff2Version = phpversion( 'wikidiff2' );
 			if (
 				$wikidiff2Version !== false &&
-				version_compare( $wikidiff2Version, '0.3.0', '>=' )
+				version_compare( $wikidiff2Version, '0.3', '>=' )
 			) {
 				$text = wikidiff2_do_diff(
 					$otext,
