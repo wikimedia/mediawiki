@@ -519,14 +519,18 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	public function execute( $subpage ) {
 		$this->rcSubpage = $subpage;
 
-		$this->setHeaders();
-		$this->outputHeader();
-		$this->addModules();
-
 		$rows = $this->getRows();
 		$opts = $this->getOptions();
 		if ( $rows === false ) {
 			$rows = new FakeResultWrapper( [] );
+		}
+
+		// Used by "live update" and "view newest" to minimize
+		// the amount of data downloaded on polling
+		if ( $this->getRequest()->getBool( 'peek' ) ) {
+			$code = $rows->numRows() > 0 ? 200 : 404;
+			$this->getOutput()->setStatusCode( $code );
+			return;
 		}
 
 		$batch = new LinkBatch;
@@ -542,6 +546,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			}
 		}
 		$batch->execute();
+
+		$this->setHeaders();
+		$this->outputHeader();
+		$this->addModules();
 		$this->webOutput( $rows, $opts );
 
 		$rows->free();

@@ -561,6 +561,8 @@
 			'liveUpdate',
 			{
 				limit: 1,
+				peek: 1, // bypasses RC form
+				useskin: 'apioutput', // bypasses MW chrome
 				from: this.changesListModel.getNextFrom()
 			}
 		);
