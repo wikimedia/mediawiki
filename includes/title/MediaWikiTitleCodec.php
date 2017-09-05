@@ -328,7 +328,6 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 							# Disallow Talk:File:x type titles...
 							throw new MalformedTitleException( 'title-invalid-talk-namespace', $text );
 						} elseif ( $this->interwikiLookup->isValidInterwiki( $x[1] ) ) {
-							// TODO: get rid of global state!
 							# Disallow Talk:Interwiki:x type titles...
 							throw new MalformedTitleException( 'title-invalid-talk-namespace', $text );
 						}
