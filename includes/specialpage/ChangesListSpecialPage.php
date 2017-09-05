@@ -519,14 +519,23 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	public function execute( $subpage ) {
 		$this->rcSubpage = $subpage;
 
-		$this->setHeaders();
-		$this->outputHeader();
-		$this->addModules();
-
 		$rows = $this->getRows();
 		$opts = $this->getOptions();
 		if ( $rows === false ) {
 			$rows = new FakeResultWrapper( [] );
+		}
+
+		// Used by Structured UI app to get results with MW chrome
+		if ( $this->getRequest()->getVal( 'action' ) === 'render' ) {
+			$this->getOutput()->setArticleBodyOnly( true );
+		}
+
+		// Used by "live update" and "view newest" to check
+		// if there's new changes with minimal data transfer
+		if ( $this->getRequest()->getBool( 'peek' ) ) {
+			$code = $rows->numRows() > 0 ? 200 : 304;
+			$this->getOutput()->setStatusCode( $code );
+			return;
 		}
 
 		$batch = new LinkBatch;
@@ -542,6 +551,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			}
 		}
 		$batch->execute();
+
+		$this->setHeaders();
+		$this->outputHeader();
+		$this->addModules();
 		$this->webOutput( $rows, $opts );
 
 		$rows->free();
