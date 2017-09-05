@@ -336,6 +336,10 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addTable', 'slot_roles', 'patch-slot_roles.sql' ],
 			[ 'addTable', 'content_models', 'patch-content_models.sql' ],
 			[ 'migrateArchiveText' ],
+			[ 'renameIndex', 'user_newtalk', 'user_id', 'PRIMARY', false,
+				'patch-user_newtalk-fix-pk.sql' ],
+			[ 'renameIndex', 'user_newtalk', 'un_user_id', 'PRIMARY', false,
+				'patch-user_newtalk-fix-pk2.sql' ],
 		];
 	}
 

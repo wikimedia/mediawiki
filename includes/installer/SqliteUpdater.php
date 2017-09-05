@@ -200,6 +200,8 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'addTable', 'slots', 'patch-slots.sql' ],
 			[ 'addTable', 'slot_roles', 'patch-slot_roles.sql' ],
 			[ 'migrateArchiveText' ],
+			[ 'renameIndex', 'user_newtalk', 'un_user_id', 'PRIMARY', false,
+				'patch-user_newtalk-fix-pk.sql' ],
 		];
 	}
 
