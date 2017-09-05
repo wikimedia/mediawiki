@@ -139,6 +139,7 @@ class OracleUpdater extends DatabaseUpdater {
 			[ 'migrateArchiveText' ],
 			[ 'addTable', 'actor', 'patch-actor-table.sql' ],
 			[ 'migrateActors' ],
+			[ 'addIndex', 'user_newtalk', 'PRIMARY', 'patch-user_newtalk-fix-pk.sql' ],
 
 			// KEEP THIS AT THE BOTTOM!!
 			[ 'doRebuildDuplicateFunction' ],
