@@ -1448,7 +1448,6 @@ abstract class DatabaseMysqlBase extends Database {
 		 */
 		$renamed = [
 			'ar_usertext_timestamp' => 'usertext_timestamp',
-			'un_user_id' => 'user_id',
 			'un_user_ip' => 'user_ip',
 		];
 
