@@ -477,7 +477,7 @@ class CommentStore {
 	}
 
 	/**
-	 * Prepare for the insertion of a row with a comment
+	 * Insert a comment in preparation for a row that references it
 	 *
 	 * @note It's recommended to include both the call to this method and the
 	 *  row insert in the same transaction.
@@ -496,7 +496,7 @@ class CommentStore {
 	}
 
 	/**
-	 * Prepare for the insertion of a row with a comment and temporary table
+	 * Insert a comment in a temporary table in preparation for a row that references it
 	 *
 	 * This is currently needed for "rev_comment" and "img_description". In the
 	 * future that requirement will be removed.
