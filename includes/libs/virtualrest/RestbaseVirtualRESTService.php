@@ -61,11 +61,9 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 			'fixedUrl' => false,
 		], $params );
 		// Ensure that the url parameter has a trailing slash.
-		$mparams['url'] = preg_replace(
-			'#/?$#',
-			'/',
-			$mparams['url']
-		);
+		if ( substr( $mparams['url'], -1 ) !== '/' ) {
+			$mparams['url'] .= '/';
+		}
 		// Ensure the correct domain format: strip protocol, port,
 		// and trailing slash if present.  This lets us use
 		// $wgCanonicalServer as a default value, which is very convenient.
