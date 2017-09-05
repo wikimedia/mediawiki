@@ -2233,7 +2233,7 @@
 	"unwatchthispage": "Dejar de vigilar",
 	"notanarticle": "No es una página de contenido",
 	"notvisiblerev": "La última revisión de un usuario diferente ha sido borrada",
-	"watchlist-details": "{{PLURAL:$1|$1 página|$1 páginas}} en tu lista de seguimiento, sin contar las de discusión.",
+	"watchlist-details": "Hay {{PLURAL:$1|$1 página|$1 páginas}} en tu lista de seguimiento (más las páginas de discusión).",
 	"wlheader-enotif": "La notificación por correo está activada.",
 	"wlheader-showupdated": "Las páginas modificadas desde tu última visita aparecen en <strong>negrita</strong>.",
 	"wlnote": "A continuación {{PLURAL:$1|se muestra el último cambio|se muestran los últimos <strong>$1</strong> cambios}} en {{PLURAL:$2|la última hora|las últimas <strong>$2</strong> horas}} a fecha de $4 $3.",

@@ -865,6 +865,7 @@
 	"apihelp-setpagelanguage-extended-description-disabled": "ページ言語の変更はこのwikiでは許可されていません。\n\nこの操作を利用するには、<var>[[mw:Special:MyLanguage/Manual:$wgPageLanguageUseDB|$wgPageLanguageUseDB]]</var> を設定してください。",
 	"apihelp-setpagelanguage-param-title": "言語を変更したいページのページ名。<var>$1pageid</var> とは同時に使用できません。",
 	"apihelp-setpagelanguage-param-pageid": "言語を変更したいページのページID。<var>$1title</var> とは同時に使用できません。",
+	"apihelp-setpagelanguage-param-reason": "変更の理由。",
 	"apihelp-stashedit-param-title": "編集されているページのページ名。",
 	"apihelp-stashedit-param-section": "節番号です。先頭の節の場合は <kbd>0</kbd>、新しい節の場合は <kbd>new</kbd>を指定します。",
 	"apihelp-stashedit-param-sectiontitle": "新しい節の名前です。",

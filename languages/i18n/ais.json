@@ -852,5 +852,6 @@
 	"log-action-filter-all": "hamin",
 	"log-action-filter-block-block": "malangat",
 	"log-action-filter-protect-protect": "midiput",
+	"log-action-filter-upload-upload": "baluhay a patapabaw",
 	"authprovider-resetpass-skip-label": "sekipo"
 }

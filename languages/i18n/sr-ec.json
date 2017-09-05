@@ -733,7 +733,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Празан објекат",
 	"content-json-empty-array": "Празан низ",
-	"deprecated-self-close-category": "Странице које користе невалидан самозатварајући HTML таг.",
+	"deprecated-self-close-category": "Странице које користе невалидне самозатварајуће HTML тагове",
 	"duplicate-args-warning": "<strong>Упозорење:</strong> [[:$1]] позива [[:$2]] са више од једне вредности за параметар „$3“. Само последња наведена вредност ће бити коришћена.",
 	"duplicate-args-category": "Странице с дуплираним аргументима код позива шаблона",
 	"duplicate-args-category-desc": "Страница садржи позиве шаблона који користе двоструке аргументе, као што су <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> или <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
