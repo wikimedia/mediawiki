@@ -561,6 +561,7 @@
 			'liveUpdate',
 			{
 				limit: 1,
+				peek: 1, // bypasses all UI
 				from: this.changesListModel.getNextFrom()
 			}
 		);
@@ -1130,6 +1131,7 @@
 
 		counterId = counterId || 'updateChangesList';
 		params = params || {};
+		params.action = 'render'; // bypasses MW chrome
 
 		uri.extend( params );
 
@@ -1149,7 +1151,7 @@
 
 		return $.ajax( uri.toString(), { contentType: 'html' } )
 			.then(
-				function ( html ) {
+				function ( html, reason ) {
 					var $parsed,
 						pieces;
 
@@ -1157,7 +1159,15 @@
 						return $.Deferred().reject();
 					}
 
-					$parsed = $( $.parseHTML( html ) );
+					if ( params.peek && reason === 'notmodified' ) {
+						return {
+							changes: 'NO_RESULTS'
+						};
+					}
+
+					// Because of action=render, the response is a list of nodes.
+					// It has to be put under a root node so it can be queried.
+					$parsed = $( '<div>' ).append( $( $.parseHTML( html ) ) );
 
 					pieces = {
 						// Changes list
