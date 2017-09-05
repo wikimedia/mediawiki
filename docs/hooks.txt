@@ -1022,6 +1022,15 @@ When constructing them, you specify which group they belong to.  You can reuse
 existing groups (accessed through $special->getFilterGroup), or create your own
 (ChangesListBooleanFilterGroup or ChangesListStringOptionsFilterGroup).
 If you create new groups, you must register them with $special->registerFilterGroup.
+
+Note that this is called regardless of whether the user is currently using
+the new (structured) or old (unstructured) filter UI.  If you want your boolean
+filter to show on both the new and old UI, specify all the supported fields.
+These include showHide, label, and description.
+
+See the constructor of each ChangesList* class for documentation of supported
+fields.
+
 $special: ChangesListSpecialPage instance
 
 'ChangeTagAfterDelete': Called after a change tag has been deleted (that is,
