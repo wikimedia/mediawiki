@@ -50,12 +50,19 @@
  * @since 1.20
  * @ingroup Exception
  */
-class UserNotLoggedIn extends ErrorPageError {
+class UserNotLoggedIn extends PermissionsError {
+
+	private $exMessage;
+
+	/**
+	 * @var Title|null
+	 */
+	private $returnTo;
 
 	/**
 	 * @note The value of the $reasonMsg parameter must be put into LoginForm::validErrorMessages or
-	 * set with the LoginFormValidErrorMessages Hook.
-	 * if you want the user to be automatically redirected to the login form.
+	 * set with the LoginFormValidErrorMessages Hook if you want the user to be automatically
+	 * redirected to the login form.
 	 *
 	 * @param string $reasonMsg A message key containing the reason for the error.
 	 *        Optional, default: 'exception-nologin-text'
@@ -63,42 +70,38 @@ class UserNotLoggedIn extends ErrorPageError {
 	 *        Optional, default: 'exception-nologin'
 	 * @param array $params Parameters to wfMessage().
 	 *        Optional, default: []
+	 * @param Title|null $returnTo The return to target after a succesfull login, if a redirect
+	 *        to login will happen. Optional: Defaults to RequestContext::getMain()->getTitle
 	 */
 	public function __construct(
 		$reasonMsg = 'exception-nologin-text',
 		$titleMsg = 'exception-nologin',
-		$params = []
+		$params = [],
+		$returnTo = null
 	) {
-		parent::__construct( $titleMsg, $reasonMsg, $params );
+		$this->exMessage = wfMessage( $reasonMsg, $params );
+		parent::__construct( 'doesNotMatter', [] );
+		$this->title = $titleMsg;
+		$this->msg = $reasonMsg;
+		$this->params = $params;
+
+		$this->returnTo = RequestContext::getMain()->getTitle();
+		if ( $returnTo instanceof Title ) {
+			$this->returnTo = $returnTo;
+		}
 	}
 
 	/**
-	 * Redirect to Special:Userlogin if the specified message is compatible. Otherwise,
-	 * show an error page as usual.
+	 * @inheritDoc
 	 */
-	public function report() {
-		// If an unsupported message is used, don't try redirecting to Special:Userlogin,
-		// since the message may not be compatible.
-		if ( !in_array( $this->msg, LoginHelper::getValidErrorMessages() ) ) {
-			parent::report();
-		}
+	protected function shouldRedirectLogin( $permission, User $user ) {
+		return true;
+	}
 
-		// Message is valid. Redirec to Special:Userlogin
-
-		$context = RequestContext::getMain();
-
-		$output = $context->getOutput();
-		$query = $context->getRequest()->getValues();
-		// Title will be overridden by returnto
-		unset( $query['title'] );
-		// Redirect to Special:Userlogin
-		$output->redirect( SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( [
-			// Return to this page when the user logs in
-			'returnto' => $context->getTitle()->getFullText(),
-			'returntoquery' => wfArrayToCgi( $query ),
-			'warning' => $this->msg,
-		] ) );
-
-		$output->output();
+	/**
+	 * @inheritDoc
+	 */
+	public function getMessageObject() {
+		return $this->exMessage;
 	}
 }
