@@ -86,9 +86,9 @@ CREATE UNIQUE INDEX ufg_user_group ON user_former_groups (ufg_user, ufg_group);
 CREATE TABLE user_newtalk (
   user_id              INTEGER      NOT NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   user_ip              TEXT             NULL,
-  user_last_timestamp  TIMESTAMPTZ
+  user_last_timestamp  TIMESTAMPTZ,
+  PRIMARY KEY(user_id, user_ip)
 );
-CREATE INDEX user_newtalk_id_idx ON user_newtalk (user_id);
 CREATE INDEX user_newtalk_ip_idx ON user_newtalk (user_ip);
 
 CREATE TABLE bot_passwords (
