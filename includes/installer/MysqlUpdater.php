@@ -329,6 +329,10 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'l10n_cache', 'lc_lang_key', 'PRIMARY', false,
 				'patch-l10n_cache-primary-key.sql' ],
 			[ 'doUnsignedSyncronisation' ],
+			[ 'renameIndex', 'user_newtalk', 'user_id', 'PRIMARY', false,
+				'patch-user_newtalk-fix-pk.sql' ],
+			[ 'renameIndex', 'user_newtalk', 'un_user_id', 'PRIMARY', false,
+				'patch-user_newtalk-fix-pk2.sql' ],
 		];
 	}
 
