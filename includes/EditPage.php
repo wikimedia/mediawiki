@@ -514,16 +514,6 @@ class EditPage {
 	}
 
 	/**
-	 * Check if the edit page is using OOUI controls
-	 * @return bool Always true
-	 * @deprecated since 1.30
-	 */
-	public function isOouiEnabled() {
-		wfDeprecated( __METHOD__, '1.30' );
-		return true;
-	}
-
-	/**
 	 * Returns if the given content model is editable.
 	 *
 	 * @param string $modelId The ID of the content model to test. Use CONTENT_MODEL_XXX constants.
@@ -3114,62 +3104,6 @@ class EditPage {
 	}
 
 	/**
-	 * Standard summary input and label (wgSummary), abstracted so EditPage
-	 * subclasses may reorganize the form.
-	 * Note that you do not need to worry about the label's for=, it will be
-	 * inferred by the id given to the input. You can remove them both by
-	 * passing [ 'id' => false ] to $userInputAttrs.
-	 *
-	 * @deprecated since 1.30 Use getSummaryInputWidget() instead
-	 * @param string $summary The value of the summary input
-	 * @param string $labelText The html to place inside the label
-	 * @param array $inputAttrs Array of attrs to use on the input
-	 * @param array $spanLabelAttrs Array of attrs to use on the span inside the label
-	 * @return array An array in the format [ $label, $input ]
-	 */
-	public function getSummaryInput( $summary = "", $labelText = null,
-		$inputAttrs = null, $spanLabelAttrs = null
-	) {
-		wfDeprecated( __METHOD__, '1.30' );
-		$inputAttrs = $this->getSummaryInputAttributes( $inputAttrs );
-		$inputAttrs += Linker::tooltipAndAccesskeyAttribs( 'summary' );
-
-		$spanLabelAttrs = ( is_array( $spanLabelAttrs ) ? $spanLabelAttrs : [] ) + [
-			'class' => $this->missingSummary ? 'mw-summarymissed' : 'mw-summary',
-			'id' => "wpSummaryLabel"
-		];
-
-		$label = null;
-		if ( $labelText ) {
-			$label = Xml::tags(
-				'label',
-				$inputAttrs['id'] ? [ 'for' => $inputAttrs['id'] ] : null,
-				$labelText
-			);
-			$label = Xml::tags( 'span', $spanLabelAttrs, $label );
-		}
-
-		$input = Html::input( 'wpSummary', $summary, 'text', $inputAttrs );
-
-		return [ $label, $input ];
-	}
-
-	/**
-	 * Builds a standard summary input with a label.
-	 *
-	 * @deprecated since 1.30 Use getSummaryInputWidget() instead
-	 * @param string $summary The value of the summary input
-	 * @param string $labelText The html to place inside the label
-	 * @param array $inputAttrs Array of attrs to use on the input
-	 *
-	 * @return OOUI\FieldLayout OOUI FieldLayout with Label and Input
-	 */
-	function getSummaryInputOOUI( $summary = "", $labelText = null, $inputAttrs = null ) {
-		wfDeprecated( __METHOD__, '1.30' );
-		$this->getSummaryInputWidget( $summary, $labelText, $inputAttrs );
-	}
-
-	/**
 	 * Builds a standard summary input with a label.
 	 *
 	 * @param string $summary The value of the summary input
@@ -4216,76 +4150,6 @@ class EditPage {
 		Hooks::run( 'EditPageGetCheckboxesDefinition', [ $editPage, &$checkboxes ] );
 
 		return $checkboxes;
-	}
-
-	/**
-	 * Returns an array of html code of the following checkboxes old style:
-	 * minor and watch
-	 *
-	 * @deprecated since 1.30 Use getCheckboxesWidget() or getCheckboxesDefinition() instead
-	 * @param int &$tabindex Current tabindex
-	 * @param array $checked See getCheckboxesDefinition()
-	 * @return array
-	 */
-	public function getCheckboxes( &$tabindex, $checked ) {
-		wfDeprecated( __METHOD__, '1.30' );
-		$checkboxes = [];
-		$checkboxesDef = $this->getCheckboxesDefinition( $checked );
-
-		// Backwards-compatibility for the EditPageBeforeEditChecks hook
-		if ( !$this->isNew ) {
-			$checkboxes['minor'] = '';
-		}
-		$checkboxes['watch'] = '';
-
-		foreach ( $checkboxesDef as $name => $options ) {
-			$legacyName = isset( $options['legacy-name'] ) ? $options['legacy-name'] : $name;
-			$label = $this->context->msg( $options['label-message'] )->parse();
-			$attribs = [
-				'tabindex' => ++$tabindex,
-				'id' => $options['id'],
-			];
-			$labelAttribs = [
-				'for' => $options['id'],
-			];
-			if ( isset( $options['tooltip'] ) ) {
-				$attribs['accesskey'] = $this->context->msg( "accesskey-{$options['tooltip']}" )->text();
-				$labelAttribs['title'] = Linker::titleAttrib( $options['tooltip'], 'withaccess' );
-			}
-			if ( isset( $options['title-message'] ) ) {
-				$labelAttribs['title'] = $this->context->msg( $options['title-message'] )->text();
-			}
-			if ( isset( $options['label-id'] ) ) {
-				$labelAttribs['id'] = $options['label-id'];
-			}
-			$checkboxHtml =
-				Xml::check( $name, $options['default'], $attribs ) .
-				'&#160;' .
-				Xml::tags( 'label', $labelAttribs, $label );
-
-			$checkboxes[ $legacyName ] = $checkboxHtml;
-		}
-
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$editPage = $this;
-		Hooks::run( 'EditPageBeforeEditChecks', [ &$editPage, &$checkboxes, &$tabindex ], '1.29' );
-		return $checkboxes;
-	}
-
-	/**
-	 * Returns an array of checkboxes for the edit form, including 'minor' and 'watch' checkboxes and
-	 * any other added by extensions.
-	 *
-	 * @deprecated since 1.30 Use getCheckboxesWidget() or getCheckboxesDefinition() instead
-	 * @param int &$tabindex Current tabindex
-	 * @param array $checked Array of checkbox => bool, where bool indicates the checked
-	 *                 status of the checkbox
-	 *
-	 * @return array Associative array of string keys to OOUI\FieldLayout instances
-	 */
-	public function getCheckboxesOOUI( &$tabindex, $checked ) {
-		wfDeprecated( __METHOD__, '1.30' );
-		return $this->getCheckboxesWidget( $tabindex, $checked );
 	}
 
 	/**
