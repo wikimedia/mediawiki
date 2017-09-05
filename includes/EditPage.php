@@ -1461,7 +1461,7 @@ class EditPage {
 			$val = 'restored';
 		}
 
-		$response = RequestContext::getMain()->getRequest()->response();
+		$response = $this->context->getRequest()->response();
 		$response->setCookie( $postEditKey, $val, time() + self::POST_EDIT_COOKIE_DURATION );
 	}
 
@@ -1528,7 +1528,7 @@ class EditPage {
 
 		// "wpExtraQueryRedirect" is a hidden input to modify
 		// after save URL and is not used by actual edit form
-		$request = RequestContext::getMain()->getRequest();
+		$request = $this->context->getRequest();
 		$extraQueryRedirect = $request->getVal( 'wpExtraQueryRedirect' );
 
 		switch ( $status->value ) {
