@@ -102,8 +102,8 @@ CREATE TABLE &mw_prefix.user_newtalk (
   user_ip  VARCHAR2(40)        NULL,
   user_last_timestamp         TIMESTAMP(6) WITH TIME ZONE
 );
+ALTER TABLE &mw_prefix.user_newtalk ADD CONSTRAINT &mw_prefix.user_newtalk_pk PRIMARY KEY (user_id, user_ip);
 ALTER TABLE &mw_prefix.user_newtalk ADD CONSTRAINT &mw_prefix.user_newtalk_fk1 FOREIGN KEY (user_id) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
-CREATE INDEX &mw_prefix.user_newtalk_i01 ON &mw_prefix.user_newtalk (user_id);
 CREATE INDEX &mw_prefix.user_newtalk_i02 ON &mw_prefix.user_newtalk (user_ip);
 
 CREATE TABLE &mw_prefix.user_properties (
