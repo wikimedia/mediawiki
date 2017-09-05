@@ -505,16 +505,6 @@ class EditPage {
 	}
 
 	/**
-	 * Check if the edit page is using OOUI controls
-	 * @return bool Always true
-	 * @deprecated since 1.30
-	 */
-	public function isOouiEnabled() {
-		wfDeprecated( __METHOD__, '1.30' );
-		return true;
-	}
-
-	/**
 	 * Returns if the given content model is editable.
 	 *
 	 * @param string $modelId The ID of the content model to test. Use CONTENT_MODEL_XXX constants.
