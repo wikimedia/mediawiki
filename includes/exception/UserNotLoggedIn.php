@@ -53,6 +53,11 @@
 class UserNotLoggedIn extends ErrorPageError {
 
 	/**
+	 * @var Title|null
+	 */
+	private $returnTo;
+
+	/**
 	 * @note The value of the $reasonMsg parameter must be put into LoginForm::validErrorMessages or
 	 * set with the LoginFormValidErrorMessages Hook.
 	 * if you want the user to be automatically redirected to the login form.
@@ -63,13 +68,20 @@ class UserNotLoggedIn extends ErrorPageError {
 	 *        Optional, default: 'exception-nologin'
 	 * @param array $params Parameters to wfMessage().
 	 *        Optional, default: []
+	 * @param Title|null $returnTo The return to target after a succesfull login, if a redirect
+	 *        to login will happen. Optional: Defaults to RequestContext::getMain()->getTitle
 	 */
 	public function __construct(
 		$reasonMsg = 'exception-nologin-text',
 		$titleMsg = 'exception-nologin',
-		$params = []
+		$params = [],
+		$returnTo = null
 	) {
 		parent::__construct( $titleMsg, $reasonMsg, $params );
+		$this->returnTo = RequestContext::getMain()->getTitle();
+		if ( $returnTo instanceof Title ) {
+			$this->returnTo = $returnTo;
+		}
 	}
 
 	/**
@@ -83,8 +95,7 @@ class UserNotLoggedIn extends ErrorPageError {
 			parent::report();
 		}
 
-		// Message is valid. Redirec to Special:Userlogin
-
+		// Message is valid. Redirect to Special:Userlogin
 		$context = RequestContext::getMain();
 
 		$output = $context->getOutput();
@@ -94,7 +105,7 @@ class UserNotLoggedIn extends ErrorPageError {
 		// Redirect to Special:Userlogin
 		$output->redirect( SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( [
 			// Return to this page when the user logs in
-			'returnto' => $context->getTitle()->getFullText(),
+			'returnto' => $this->returnTo->getFullText(),
 			'returntoquery' => wfArrayToCgi( $query ),
 			'warning' => $this->msg,
 		] ) );

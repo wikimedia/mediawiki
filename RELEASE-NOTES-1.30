@@ -66,6 +66,10 @@ section).
 ** This is currently gated by $wgCommentTableSchemaMigrationStage. Most wikis
    can set this to MIGRATION_NEW and run maintenance/migrateComments.php as
    soon as any necessary extensions are updated.
+* (T17484) On private wikis (where only logged in users have access to read pages),
+  users who try to read a page while not being logged in will automatically re-
+  directed to the login page (Special:UserLogin) with an appropriate message why
+  they need to login to continue.
 
 === External library changes in 1.30 ===
 

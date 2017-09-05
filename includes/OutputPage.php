@@ -2529,55 +2529,23 @@ class OutputPage extends ContextSource {
 			&& ( User::groupHasPermission( 'user', $action )
 			|| User::groupHasPermission( 'autoconfirmed', $action ) )
 		) {
-			$displayReturnto = null;
-
 			# Due to T34276, if a user does not have read permissions,
 			# $this->getTitle() will just give Special:Badtitle, which is
 			# not especially useful as a returnto parameter. Use the title
 			# from the request instead, if there was one.
 			$request = $this->getRequest();
 			$returnto = Title::newFromText( $request->getVal( 'title', '' ) );
-			if ( $action == 'edit' ) {
-				$msg = 'whitelistedittext';
-				$displayReturnto = $returnto;
-			} elseif ( $action == 'createpage' || $action == 'createtalk' ) {
-				$msg = 'nocreatetext';
-			} elseif ( $action == 'upload' ) {
-				$msg = 'uploadnologintext';
+			if ( $action === 'edit' ) {
+				$msg = 'whitelistedit-nologin-text';
+			} elseif ( $action === 'createpage' || $action === 'createtalk' ) {
+				$msg = 'create-nologin-text';
+			} elseif ( $action === 'upload' ) {
+				$msg = 'upload-nologin-text';
 			} else { # Read
-				$msg = 'loginreqpagetext';
-				$displayReturnto = Title::newMainPage();
+				$msg = 'exception-nologin-text';
 			}
 
-			$query = [];
-
-			if ( $returnto ) {
-				$query['returnto'] = $returnto->getPrefixedText();
-
-				if ( !$request->wasPosted() ) {
-					$returntoquery = $request->getValues();
-					unset( $returntoquery['title'] );
-					unset( $returntoquery['returnto'] );
-					unset( $returntoquery['returntoquery'] );
-					$query['returntoquery'] = wfArrayToCgi( $returntoquery );
-				}
-			}
-			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-			$loginLink = $linkRenderer->makeKnownLink(
-				SpecialPage::getTitleFor( 'Userlogin' ),
-				$this->msg( 'loginreqlink' )->text(),
-				[],
-				$query
-			);
-
-			$this->prepareErrorPage( $this->msg( 'loginreqtitle' ) );
-			$this->addHTML( $this->msg( $msg )->rawParams( $loginLink )->parse() );
-
-			# Don't return to a page the user can't read otherwise
-			# we'll end up in a pointless loop
-			if ( $displayReturnto && $displayReturnto->userCan( 'read', $this->getUser() ) ) {
-				$this->returnToMain( null, $displayReturnto );
-			}
+			throw new UserNotLoggedIn( $msg, 'exception-nologin', [], $returnto );
 		} else {
 			$this->prepareErrorPage( $this->msg( 'permissionserrors' ) );
 			$this->addWikiText( $this->formatPermissionsErrorMessage( $errors, $action ) );
