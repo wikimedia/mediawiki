@@ -284,7 +284,7 @@ class RecentChange {
 	 * @param bool $noudp
 	 */
 	public function save( $noudp = false ) {
-		global $wgPutIPinRC, $wgUseEnotif, $wgShowUpdatedMarker, $wgContLang;
+		global $wgPutIPinRC, $wgUseEnotif, $wgShowUpdatedMarker;
 
 		$dbw = wfGetDB( DB_MASTER );
 		if ( !is_array( $this->mExtra ) ) {
@@ -314,9 +314,6 @@ class RecentChange {
 
 		# Trim spaces on user supplied text
 		$this->mAttribs['rc_comment'] = trim( $this->mAttribs['rc_comment'] );
-
-		# Make sure summary is truncated (whole multibyte characters)
-		$this->mAttribs['rc_comment'] = $wgContLang->truncate( $this->mAttribs['rc_comment'], 255 );
 
 		# Fixup database timestamps
 		$this->mAttribs['rc_timestamp'] = $dbw->timestamp( $this->mAttribs['rc_timestamp'] );

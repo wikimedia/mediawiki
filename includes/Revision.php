@@ -1703,7 +1703,7 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null Revision or null on error
 	 */
 	public static function newNullRevision( $dbw, $pageId, $summary, $minor, $user = null ) {
-		global $wgContentHandlerUseDB, $wgContLang;
+		global $wgContentHandlerUseDB;
 
 		$fields = [ 'page_latest', 'page_namespace', 'page_title',
 						'rev_text_id', 'rev_len', 'rev_sha1' ];
@@ -1729,9 +1729,6 @@ class Revision implements IDBAccessObject {
 				global $wgUser;
 				$user = $wgUser;
 			}
-
-			// Truncate for whole multibyte characters
-			$summary = $wgContLang->truncate( $summary, 255 );
 
 			$row = [
 				'page'       => $pageId,
