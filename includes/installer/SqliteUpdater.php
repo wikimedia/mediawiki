@@ -191,8 +191,12 @@ class SqliteUpdater extends DatabaseUpdater {
 				'patch-user_properties-fix-pk.sql' ],
 			[ 'addTable', 'comment', 'patch-comment-table.sql' ],
 			[ 'migrateComments' ],
+
+			// 1.31
 			[ 'renameIndex', 'l10n_cache', 'lc_lang_key', 'PRIMARY', false,
 				'patch-l10n_cache-primary-key.sql' ],
+			[ 'renameIndex', 'user_newtalk', 'un_user_id', 'PRIMARY', false,
+				'patch-user_newtalk-fix-pk.sql' ],
 		];
 	}
 
