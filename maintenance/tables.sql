@@ -194,13 +194,12 @@ CREATE TABLE /*_*/user_newtalk (
   user_ip varbinary(40) NOT NULL default '',
   -- The highest timestamp of revisions of the talk page viewed
   -- by this user
-  user_last_timestamp varbinary(14) NULL default NULL
+  user_last_timestamp varbinary(14) NULL default NULL,
+  PRIMARY KEY (user_id, user_ip)
 ) /*$wgDBTableOptions*/;
 
 -- Indexes renamed for SQLite in 1.14
-CREATE INDEX /*i*/un_user_id ON /*_*/user_newtalk (user_id);
 CREATE INDEX /*i*/un_user_ip ON /*_*/user_newtalk (user_ip);
-
 
 --
 -- User preferences and perhaps other fun stuff. :)
