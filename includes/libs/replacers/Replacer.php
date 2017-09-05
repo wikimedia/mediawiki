@@ -27,7 +27,7 @@ abstract class Replacer {
 	 * @return array
 	 */
 	public function cb() {
-		return [ &$this, 'replace' ];
+		return [ $this, 'replace' ];
 	}
 
 	/**

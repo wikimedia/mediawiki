@@ -132,6 +132,7 @@ class ExtensionProcessor implements Processor {
 
 	/**
 	 * Things to be called once registration of these extensions are done
+	 * keyed by the name of the extension that it belongs to
 	 *
 	 * @var callable[]
 	 */
@@ -165,11 +166,11 @@ class ExtensionProcessor implements Processor {
 		$this->extractNamespaces( $info );
 		$this->extractResourceLoaderModules( $dir, $info );
 		$this->extractParserTestFiles( $dir, $info );
+		$name = $this->extractCredits( $path, $info );
 		if ( isset( $info['callback'] ) ) {
-			$this->callbacks[] = $info['callback'];
+			$this->callbacks[$name] = $info['callback'];
 		}
 
-		$this->extractCredits( $path, $info );
 		foreach ( $info as $key => $val ) {
 			if ( in_array( $key, self::$globalSettings ) ) {
 				$this->storeToArray( $path, "wg$key", $val, $this->globals );
@@ -231,9 +232,19 @@ class ExtensionProcessor implements Processor {
 	protected function extractNamespaces( array $info ) {
 		if ( isset( $info['namespaces'] ) ) {
 			foreach ( $info['namespaces'] as $ns ) {
-				$id = $ns['id'];
-				$this->defines[$ns['constant']] = $id;
-				$this->attributes['ExtensionNamespaces'][$id] = $ns['name'];
+				if ( defined( $ns['constant'] ) ) {
+					// If the namespace constant is already defined, use it.
+					// This allows namespace IDs to be overwritten locally.
+					$id = constant( $ns['constant'] );
+				} else {
+					$id = $ns['id'];
+					$this->defines[ $ns['constant'] ] = $id;
+				}
+
+				if ( !( isset( $ns['conditional'] ) && $ns['conditional'] ) ) {
+					// If it is not conditional, register it
+					$this->attributes['ExtensionNamespaces'][$id] = $ns['name'];
+				}
 				if ( isset( $ns['gender'] ) ) {
 					$this->globals['wgExtraGenderNamespaces'][$id] = $ns['gender'];
 				}
@@ -317,6 +328,7 @@ class ExtensionProcessor implements Processor {
 	/**
 	 * @param string $path
 	 * @param array $info
+	 * @return string Name of thing
 	 * @throws Exception
 	 */
 	protected function extractCredits( $path, array $info ) {
@@ -342,6 +354,8 @@ class ExtensionProcessor implements Processor {
 
 		$this->credits[$name] = $credits;
 		$this->globals['wgExtensionCredits'][$credits['type']][] = $credits;
+
+		return $name;
 	}
 
 	/**

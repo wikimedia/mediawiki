@@ -44,7 +44,7 @@ class SearchSqlite extends SearchDatabase {
 	 */
 	function parseQuery( $filteredText, $fulltext ) {
 		global $wgContLang;
-		$lc = $this->legalSearchChars(); // Minus format chars
+		$lc = $this->legalSearchChars( self::CHARS_NO_SYNTAX ); // Minus syntax chars (" and *)
 		$searchon = '';
 		$this->searchTerms = [];
 
@@ -141,8 +141,13 @@ class SearchSqlite extends SearchDatabase {
 		return $regex;
 	}
 
-	public static function legalSearchChars() {
-		return "\"*" . parent::legalSearchChars();
+	public static function legalSearchChars( $type = self::CHARS_ALL ) {
+		$searchChars = parent::legalSearchChars( $type );
+		if ( $type === self::CHARS_ALL ) {
+			// " for phrase, * for wildcard
+			$searchChars =  "\"*" . $searchChars;
+		}
+		return $searchChars;
 	}
 
 	/**

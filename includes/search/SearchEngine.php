@@ -54,6 +54,12 @@ abstract class SearchEngine {
 	/** @var array Feature values */
 	protected $features = [];
 
+	/** @const int flag for legalSearchChars: includes all chars allowed in a search query */
+	const CHARS_ALL = 1;
+
+	/** @const int flag for legalSearchChars: includes all chars allowed in a search term */
+	const CHARS_NO_SYNTAX = 2;
+
 	/**
 	 * Perform a full text search query and return a result set.
 	 * If full text searches are not supported or disabled, return null.
@@ -172,11 +178,13 @@ abstract class SearchEngine {
 	}
 
 	/**
-	 * Get chars legal for search.
+	 * Get chars legal for search
 	 * NOTE: usage as static is deprecated and preserved only as BC measure
+	 * @param int $type type of search chars (see self::CHARS_ALL
+	 * and self::CHARS_NO_SYNTAX). Defaults to CHARS_ALL
 	 * @return string
 	 */
-	public static function legalSearchChars() {
+	public static function legalSearchChars( $type = self::CHARS_ALL ) {
 		return "A-Za-z_'.0-9\\x80-\\xFF\\-";
 	}
 

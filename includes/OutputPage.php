@@ -1311,10 +1311,12 @@ class OutputPage extends ContextSource {
 			}
 		}
 
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$outputPage = $this;
 		# Add the remaining categories to the skin
 		if ( Hooks::run(
 			'OutputPageMakeCategoryLinks',
-			[ &$this, $categories, &$this->mCategoryLinks ] )
+			[ &$outputPage, $categories, &$this->mCategoryLinks ] )
 		) {
 			foreach ( $categories as $category => $type ) {
 				// array keys will cast numeric category names to ints, so cast back to string
@@ -1810,8 +1812,10 @@ class OutputPage extends ContextSource {
 		// Link flags are ignored for now, but may in the future be
 		// used to mark individual language links.
 		$linkFlags = [];
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$outputPage = $this;
 		Hooks::run( 'LanguageLinks', [ $this->getTitle(), &$this->mLanguageLinks, &$linkFlags ] );
-		Hooks::run( 'OutputPageParserOutput', [ &$this, $parserOutput ] );
+		Hooks::run( 'OutputPageParserOutput', [ &$outputPage, $parserOutput ] );
 	}
 
 	/**
@@ -1839,7 +1843,9 @@ class OutputPage extends ContextSource {
 	 */
 	public function addParserOutputText( $parserOutput ) {
 		$text = $parserOutput->getText();
-		Hooks::run( 'OutputPageBeforeHTML', [ &$this, &$text ] );
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$outputPage = $this;
+		Hooks::run( 'OutputPageBeforeHTML', [ &$outputPage, &$text ] );
 		$this->addHTML( $text );
 	}
 
@@ -2319,9 +2325,11 @@ class OutputPage extends ContextSource {
 			}
 			MWDebug::addModules( $this );
 
+			// Avoid PHP 7.1 warning of passing $this by reference
+			$outputPage = $this;
 			// Hook that allows last minute changes to the output page, e.g.
 			// adding of CSS or Javascript by extensions.
-			Hooks::run( 'BeforePageDisplay', [ &$this, &$sk ] );
+			Hooks::run( 'BeforePageDisplay', [ &$outputPage, &$sk ] );
 
 			try {
 				$sk->outputPage();
