@@ -2761,11 +2761,10 @@
 			msg += ( e ? ':' : '.' );
 			console.log( msg );
 
-			// If we have an exception object, log it to the error channel to trigger
-			// proper stacktraces in browsers that support it. No fallback as we have
-			// no browsers that don't support error(), but do support log().
-			if ( e && console.error ) {
-				console.error( String( e ), e );
+			// If we have an exception object, log it to the warning channel to trigger
+			// proper stacktraces in browsers that support it.
+			if ( e && console.warn ) {
+				console.warn( String( e ), e );
 			}
 		}
 		/* eslint-enable no-console */
