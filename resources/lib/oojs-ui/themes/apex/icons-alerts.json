@@ -9,8 +9,14 @@
 			"rtl": "images/icons/bellOn-rtl.svg"
 		} },
 		"comment": { "file": "images/icons/comment.svg" },
-		"eye": { "file": "images/icons/eye.svg" },
-		"eyeClosed": { "file": "images/icons/eyeClosed.svg" },
+		"eye": {
+			"file": "images/icons/eye.svg",
+			"deprecated": "Moved since v0.23.0 to the 'accessibility' pack."
+		},
+		"eyeClosed": {
+			"file": "images/icons/eyeClosed.svg",
+			"deprecated": "Moved since v0.23.0 to the 'accessibility' pack."
+		},
 		"message": { "file": {
 			"ltr": "images/icons/message-ltr.svg",
 			"rtl": "images/icons/message-rtl.svg"
@@ -19,7 +25,8 @@
 		"signature": { "file": {
 			"ltr": "images/icons/signature-ltr.svg",
 			"rtl": "images/icons/signature-rtl.svg"
-		} },
+		},
+			"deprecated": "Moved since v0.23.0 to the 'editing-advanced' pack." },
 		"speechBubble": { "file": {
 			"ltr": "images/icons/speechBubble-ltr.svg",
 			"rtl": "images/icons/speechBubble-rtl.svg"

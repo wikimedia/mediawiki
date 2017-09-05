@@ -3,7 +3,8 @@
 		"authors": [
 			"RajeshPandey",
 			"सरोज कुमार ढकाल",
-			"Ganesh Paudel"
+			"Ganesh Paudel",
+			"Nirajan pant"
 		]
 	},
 	"ooui-outline-control-move-down": "वस्तुलाई तल सार्ने",
@@ -12,6 +13,7 @@
 	"ooui-toolbar-more": "थप",
 	"ooui-toolgroup-expand": "थप",
 	"ooui-toolgroup-collapse": "कम",
+	"ooui-item-remove": "हटाउनुहोस्",
 	"ooui-dialog-message-accept": "हुन्छ",
 	"ooui-dialog-message-reject": "रद्द गर्ने",
 	"ooui-dialog-process-dismiss": "खारेज गर्ने",

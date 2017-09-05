@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.22.5
+ * OOjs UI v0.23.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-08-22T21:37:41Z
+ * Date: 2017-09-05T21:24:03Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -97,14 +97,13 @@
 .oo-ui-buttonElement-frameless.oo-ui-iconElement > .oo-ui-buttonElement-button {
   padding: 0.3125em 0.3125em;
 }
-.oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label,
-.oo-ui-buttonElement-frameless.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
-  color: #333;
-  margin-left: 0.25em;
-}
 .oo-ui-buttonElement-frameless.oo-ui-labelElement.oo-ui-indicatorElement > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-frameless.oo-ui-iconElement.oo-ui-indicatorElement > .oo-ui-buttonElement-button {
   padding: 0.3125em 0.3125em;
+}
+.oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
+  color: #333;
+  margin-left: 0.25em;
 }
 .oo-ui-buttonElement-frameless.oo-ui-indicatorElement > .oo-ui-buttonElement-button {
   padding: 0;
@@ -909,9 +908,10 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-buttonInputWidget > button,
 .oo-ui-buttonInputWidget > input {
+  background-color: transparent;
+  margin: 0;
   border: 0;
   padding: 0;
-  background-color: transparent;
 }
 .oo-ui-checkboxMultiselectInputWidget .oo-ui-fieldLayout {
   margin-bottom: 0;

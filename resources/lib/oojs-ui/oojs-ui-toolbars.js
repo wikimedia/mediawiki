@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.22.5
+ * OOjs UI v0.23.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-08-22T21:37:37Z
+ * Date: 2017-09-05T21:23:58Z
  */
 ( function ( OO ) {
 
@@ -1037,7 +1037,7 @@ OO.ui.ToolGroup.prototype.onMouseKeyDown = function ( e ) {
 		!this.isDisabled() &&
 		( e.which === OO.ui.MouseButtons.LEFT || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
 	) {
-		this.pressed = this.getTargetTool( e );
+		this.pressed = this.findTargetTool( e );
 		if ( this.pressed ) {
 			this.pressed.setActive( true );
 			this.getElementDocument().addEventListener( 'mouseup', this.onCapturedMouseKeyUpHandler, true );
@@ -1068,7 +1068,7 @@ OO.ui.ToolGroup.prototype.onCapturedMouseKeyUp = function ( e ) {
  * @param {MouseEvent|KeyboardEvent} e Mouse up or key up event
  */
 OO.ui.ToolGroup.prototype.onMouseKeyUp = function ( e ) {
-	var tool = this.getTargetTool( e );
+	var tool = this.findTargetTool( e );
 
 	if (
 		!this.isDisabled() && this.pressed && this.pressed === tool &&
@@ -1090,7 +1090,7 @@ OO.ui.ToolGroup.prototype.onMouseKeyUp = function ( e ) {
  * @param {jQuery.Event} e Mouse over or focus event
  */
 OO.ui.ToolGroup.prototype.onMouseOverFocus = function ( e ) {
-	var tool = this.getTargetTool( e );
+	var tool = this.findTargetTool( e );
 
 	if ( this.pressed && this.pressed === tool ) {
 		this.pressed.setActive( true );
@@ -1104,7 +1104,7 @@ OO.ui.ToolGroup.prototype.onMouseOverFocus = function ( e ) {
  * @param {jQuery.Event} e Mouse out or blur event
  */
 OO.ui.ToolGroup.prototype.onMouseOutBlur = function ( e ) {
-	var tool = this.getTargetTool( e );
+	var tool = this.findTargetTool( e );
 
 	if ( this.pressed && this.pressed === tool ) {
 		this.pressed.setActive( false );
@@ -1121,7 +1121,7 @@ OO.ui.ToolGroup.prototype.onMouseOutBlur = function ( e ) {
  * @param {jQuery.Event} e
  * @return {OO.ui.Tool|null} Tool, `null` if none was found
  */
-OO.ui.ToolGroup.prototype.getTargetTool = function ( e ) {
+OO.ui.ToolGroup.prototype.findTargetTool = function ( e ) {
 	var tool,
 		$item = $( e.target ).closest( '.oo-ui-tool-link' );
 
@@ -1890,7 +1890,7 @@ OO.ui.PopupToolGroup.prototype.onBlur = function ( e ) {
 OO.ui.PopupToolGroup.prototype.onMouseKeyUp = function ( e ) {
 	// Only close toolgroup when a tool was actually selected
 	if (
-		!this.isDisabled() && this.pressed && this.pressed === this.getTargetTool( e ) &&
+		!this.isDisabled() && this.pressed && this.pressed === this.findTargetTool( e ) &&
 		( e.which === OO.ui.MouseButtons.LEFT || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
 	) {
 		this.setActive( false );

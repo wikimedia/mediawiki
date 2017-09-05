@@ -17,7 +17,8 @@
 			"Yury Katkov",
 			"Умар",
 			"Камалист",
-			"Meshkov.a"
+			"Meshkov.a",
+			"Mailman"
 		]
 	},
 	"ooui-outline-control-move-down": "Переместить элемент вниз",
@@ -26,6 +27,7 @@
 	"ooui-toolbar-more": "Ещё",
 	"ooui-toolgroup-expand": "Больше",
 	"ooui-toolgroup-collapse": "Меньше",
+	"ooui-item-remove": "Удалить",
 	"ooui-dialog-message-accept": "ОК",
 	"ooui-dialog-message-reject": "Отмена",
 	"ooui-dialog-process-error": "Что-то пошло не так",

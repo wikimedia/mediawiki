@@ -83,7 +83,9 @@
 		"sun": { "file": {
 			"ltr": "images/icons/sun-ltr.svg",
 			"rtl": "images/icons/sun-rtl.svg"
-		} },
+			},
+			"deprecated": "This will be removed in v0.24.0."
+		},
 		"watchlist": { "file": {
 			"ltr": "images/icons/watchlist-ltr.svg",
 			"rtl": "images/icons/watchlist-rtl.svg"
