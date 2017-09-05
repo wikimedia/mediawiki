@@ -2765,7 +2765,7 @@
 			// proper stacktraces in browsers that support it. No fallback as we have
 			// no browsers that don't support error(), but do support log().
 			if ( e && console.error ) {
-				console.error( String( e ), e );
+				console.warn( String( e ), e );
 			}
 		}
 		/* eslint-enable no-console */
