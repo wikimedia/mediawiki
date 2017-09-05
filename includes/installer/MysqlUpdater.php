@@ -329,6 +329,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'migrateComments' ],
 			[ 'renameIndex', 'l10n_cache', 'lc_lang_key', 'PRIMARY', false,
 				'patch-l10n_cache-primary-key.sql' ],
+			[ 'doCleanupQueryCache' ],
 		];
 	}
 
@@ -1163,6 +1164,11 @@ class MysqlUpdater extends DatabaseUpdater {
 			false,
 			'Making rev_page_id index non-unique'
 		);
+	}
+
+	protected function doCleanupQueryCache() {
+		$task = $this->maintenance->runChild( 'CleanupQueryCache' );
+		$task->execute();
 	}
 
 	public function getSchemaVars() {
