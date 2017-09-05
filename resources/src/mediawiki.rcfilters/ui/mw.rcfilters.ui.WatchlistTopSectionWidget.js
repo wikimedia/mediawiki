@@ -25,7 +25,7 @@
 		mw.rcfilters.ui.WatchlistTopSectionWidget.parent.call( this, config );
 
 		editWatchlistButton = new OO.ui.ButtonWidget( {
-			label: mw.msg( 'rcfilters-watchlist-edit-watchlist-button' ),
+			label: mw.msg( 'rcfilters-watchlist-editWatchlist-button' ),
 			icon: 'edit',
 			href: mw.config.get( 'wgStructuredChangeFiltersEditWatchlistUrl' )
 		} );
