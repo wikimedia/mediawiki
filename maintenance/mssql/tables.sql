@@ -100,11 +100,10 @@ CREATE UNIQUE INDEX /*i*/ufg_user_group ON /*_*/user_former_groups (ufg_user,ufg
 -- of the "you have new messages" box
 -- Changed user_id column to user_id to avoid clashing with user_id function
 CREATE TABLE /*_*/user_newtalk (
-   user_id INT         NOT NULL REFERENCES /*_*/mwuser(user_id) ON DELETE CASCADE,
+   user_id INT         NOT NULL PRIMARY KEY REFERENCES /*_*/mwuser(user_id) ON DELETE CASCADE,
    user_ip NVARCHAR(40) NOT NULL DEFAULT '',
    user_last_timestamp varchar(14) DEFAULT NULL,
 );
-CREATE INDEX /*i*/un_user_id ON /*_*/user_newtalk (user_id);
 CREATE INDEX /*i*/un_user_ip ON /*_*/user_newtalk (user_ip);
 
 --
