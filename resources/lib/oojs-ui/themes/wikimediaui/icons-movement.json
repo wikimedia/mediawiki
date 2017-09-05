@@ -30,22 +30,6 @@
 			"ltr": "images/icons/arrow-rtl.svg",
 			"rtl": "images/icons/arrow-ltr.svg"
 		} },
-		"caretNext": {
-			"file": {
-				"ltr": "images/icons/move-rtl.svg",
-				"rtl": "images/icons/move-ltr.svg"
-			},
-			"deprecated": "Replaced since v0.21.3, use 'next' instead."
-		},
-		"caretLast": {
-			"file": {
-				"ltr": "images/icons/move-ltr.svg",
-				"rtl": "images/icons/move-rtl.svg"
-			},
-			"deprecated": "Replaced since v0.21.3, use 'previous' instead."
-		},
-		"caretDown": { "file": "images/icons/expand.svg", "deprecated": "Replaced since v0.21.3, use 'expand' instead." },
-		"caretUp": { "file": "images/icons/collapse.svg", "deprecated": "Replaced since v0.21.3, use 'collapse' instead." },
 		"collapse": { "file": "images/icons/collapse.svg" },
 		"downTriangle": { "file": "images/icons/downTriangle.svg" },
 		"draggable": { "file": "images/icons/draggable.svg" },

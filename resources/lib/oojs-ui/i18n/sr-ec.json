@@ -5,7 +5,8 @@
 			"Nikola Smolenski",
 			"Милан Јелисавчић",
 			"Zoranzoki21",
-			"Obsuser"
+			"Obsuser",
+			"Prevodim"
 		]
 	},
 	"ooui-outline-control-move-down": "Премести ставку надоле",
@@ -14,6 +15,7 @@
 	"ooui-toolbar-more": "Више",
 	"ooui-toolgroup-expand": "Више",
 	"ooui-toolgroup-collapse": "Мање",
+	"ooui-item-remove": "Уклони",
 	"ooui-dialog-message-accept": "У реду",
 	"ooui-dialog-message-reject": "Откажи",
 	"ooui-dialog-process-error": "Нешто је пошло наопако",

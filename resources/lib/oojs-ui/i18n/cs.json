@@ -12,7 +12,8 @@
 			"Tchoř",
 			"ශ්වෙත",
 			"Vojtěch Dostál",
-			"Matěj Suchánek"
+			"Matěj Suchánek",
+			"Martin Urbanec"
 		]
 	},
 	"ooui-outline-control-move-down": "Přesunout položku dolů",
@@ -21,6 +22,7 @@
 	"ooui-toolbar-more": "Další",
 	"ooui-toolgroup-expand": "Více",
 	"ooui-toolgroup-collapse": "Méně",
+	"ooui-item-remove": "Odebrat",
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Storno",
 	"ooui-dialog-process-error": "Něco se pokazilo",

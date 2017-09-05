@@ -4,7 +4,8 @@
 			"Fohanno",
 			"Fulup",
 			"Y-M D",
-			"Maoris"
+			"Maoris",
+			"Gwendal"
 		]
 	},
 	"ooui-outline-control-move-down": "Lakaat an elfenn da ziskenn",
@@ -13,6 +14,7 @@
 	"ooui-toolbar-more": "Muioc'h",
 	"ooui-toolgroup-expand": "Muioc'h",
 	"ooui-toolgroup-collapse": "Nebeutoc'h",
+	"ooui-item-remove": "Dilemel",
 	"ooui-dialog-message-accept": "Mat eo",
 	"ooui-dialog-message-reject": "Nullañ",
 	"ooui-dialog-process-error": "Un dra bennak a-dreuz a zo bet",

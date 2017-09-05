@@ -10,7 +10,8 @@
 			"Ryuch",
 			"Revi",
 			"Infinity",
-			"Hwangjy9"
+			"Hwangjy9",
+			"Ykhwong"
 		]
 	},
 	"ooui-outline-control-move-down": "항목을 아래로 이동",
@@ -19,6 +20,7 @@
 	"ooui-toolbar-more": "더 보기",
 	"ooui-toolgroup-expand": "더 보기",
 	"ooui-toolgroup-collapse": "덜 보기",
+	"ooui-item-remove": "제거",
 	"ooui-dialog-message-accept": "확인",
 	"ooui-dialog-message-reject": "취소",
 	"ooui-dialog-process-error": "무언가가 잘못되었습니다",

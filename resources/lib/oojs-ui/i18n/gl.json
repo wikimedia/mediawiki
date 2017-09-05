@@ -4,7 +4,8 @@
 			"Alison",
 			"Kscanne",
 			"Toliño",
-			"Elisardojm"
+			"Elisardojm",
+			"Banjo"
 		]
 	},
 	"ooui-outline-control-move-down": "Mover o elemento abaixo",
@@ -13,6 +14,7 @@
 	"ooui-toolbar-more": "Máis",
 	"ooui-toolgroup-expand": "Máis",
 	"ooui-toolgroup-collapse": "Menos",
+	"ooui-item-remove": "Eliminar",
 	"ooui-dialog-message-accept": "Aceptar",
 	"ooui-dialog-message-reject": "Cancelar",
 	"ooui-dialog-process-error": "Algo foi mal",

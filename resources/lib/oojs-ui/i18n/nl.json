@@ -17,7 +17,8 @@
 			"Southparkfan",
 			"सरोज कुमार ढकाल",
 			"Sjoerddebruin",
-			"Gloria sah"
+			"Gloria sah",
+			"Mainframe98"
 		]
 	},
 	"ooui-outline-control-move-down": "Item omlaag verplaatsen",
@@ -26,6 +27,7 @@
 	"ooui-toolbar-more": "Meer",
 	"ooui-toolgroup-expand": "Meer",
 	"ooui-toolgroup-collapse": "Minder",
+	"ooui-item-remove": "Verwijderen",
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Annuleren",
 	"ooui-dialog-process-error": "Er is iets misgegaan",

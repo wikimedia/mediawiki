@@ -39,6 +39,7 @@
 	"ooui-toolbar-more": "Plus",
 	"ooui-toolgroup-expand": "Plus",
 	"ooui-toolgroup-collapse": "Moins",
+	"ooui-item-remove": "Supprimer",
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Annuler",
 	"ooui-dialog-process-error": "Quelque chose s'est mal passé",

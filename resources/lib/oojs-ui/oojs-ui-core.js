@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.22.5
+ * OOjs UI v0.23.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-08-22T21:37:37Z
+ * Date: 2017-09-05T21:23:58Z
  */
 ( function ( OO ) {
 
@@ -683,7 +683,7 @@ OO.ui.Element.static.infuse = function ( idOrNode ) {
  */
 OO.ui.Element.static.unsafeInfuse = function ( idOrNode, domPromise ) {
 	// look for a cached result of a previous infusion.
-	var id, $elem, data, cls, parts, parent, obj, top, state, infusedChildren;
+	var id, $elem, error, data, cls, parts, parent, obj, top, state, infusedChildren;
 	if ( typeof idOrNode === 'string' ) {
 		id = idOrNode;
 		$elem = $( document.getElementById( id ) );
@@ -692,7 +692,14 @@ OO.ui.Element.static.unsafeInfuse = function ( idOrNode, domPromise ) {
 		id = $elem.attr( 'id' );
 	}
 	if ( !$elem.length ) {
-		throw new Error( 'Widget not found: ' + id );
+		if ( typeof idOrNode === 'string' ) {
+			error = 'Widget not found: ' + idOrNode;
+		} else if ( idOrNode && idOrNode.selector ) {
+			error = 'Widget not found: ' + idOrNode.selector;
+		} else {
+			error = 'Widget not found';
+		}
+		throw new Error( error );
 	}
 	if ( $elem[ 0 ].oouiInfused ) {
 		$elem = $elem[ 0 ].oouiInfused;
@@ -737,12 +744,7 @@ OO.ui.Element.static.unsafeInfuse = function ( idOrNode, domPromise ) {
 	parts = data._.split( '.' );
 	cls = OO.getProp.apply( OO, [ window ].concat( parts ) );
 	if ( cls === undefined ) {
-		// The PHP output might be old and not including the "OO.ui" prefix
-		// TODO: Remove this back-compat after next major release
-		cls = OO.getProp.apply( OO, [ OO.ui ].concat( parts ) );
-		if ( cls === undefined ) {
-			throw new Error( 'Unknown widget type: id: ' + id + ', class: ' + data._ );
-		}
+		throw new Error( 'Unknown widget type: id: ' + id + ', class: ' + data._ );
 	}
 
 	// Verify that we're creating an OO.ui.Element instance
@@ -6071,7 +6073,7 @@ OO.ui.SelectWidget.prototype.onFocus = function ( event ) {
 	} else {
 		// One of the options got focussed (and the event bubbled up here).
 		// They can't be tabbed to, but they can be activated using accesskeys.
-		item = this.getTargetItem( event );
+		item = this.findTargetItem( event );
 	}
 
 	if ( item ) {
@@ -6098,7 +6100,7 @@ OO.ui.SelectWidget.prototype.onMouseDown = function ( e ) {
 
 	if ( !this.isDisabled() && e.which === OO.ui.MouseButtons.LEFT ) {
 		this.togglePressed( true );
-		item = this.getTargetItem( e );
+		item = this.findTargetItem( e );
 		if ( item && item.isSelectable() ) {
 			this.pressItem( item );
 			this.selecting = item;
@@ -6120,7 +6122,7 @@ OO.ui.SelectWidget.prototype.onMouseUp = function ( e ) {
 
 	this.togglePressed( false );
 	if ( !this.selecting ) {
-		item = this.getTargetItem( e );
+		item = this.findTargetItem( e );
 		if ( item && item.isSelectable() ) {
 			this.selecting = item;
 		}
@@ -6147,7 +6149,7 @@ OO.ui.SelectWidget.prototype.onMouseMove = function ( e ) {
 	var item;
 
 	if ( !this.isDisabled() && this.pressed ) {
-		item = this.getTargetItem( e );
+		item = this.findTargetItem( e );
 		if ( item && item !== this.selecting && item.isSelectable() ) {
 			this.pressItem( item );
 			this.selecting = item;
@@ -6167,7 +6169,7 @@ OO.ui.SelectWidget.prototype.onMouseOver = function ( e ) {
 		return;
 	}
 	if ( !this.isDisabled() ) {
-		item = this.getTargetItem( e );
+		item = this.findTargetItem( e );
 		this.highlightItem( item && item.isHighlightable() ? item : null );
 	}
 	return false;
@@ -6420,8 +6422,12 @@ OO.ui.SelectWidget.prototype.onToggle = function ( visible ) {
  * @param {jQuery.Event} e
  * @return {OO.ui.OptionWidget|null} Outline item widget, `null` if none was found
  */
-OO.ui.SelectWidget.prototype.getTargetItem = function ( e ) {
-	return $( e.target ).closest( '.oo-ui-optionWidget' ).data( 'oo-ui-optionWidget' ) || null;
+OO.ui.SelectWidget.prototype.findTargetItem = function ( e ) {
+	var $option = $( e.target ).closest( '.oo-ui-optionWidget' );
+	if ( !$option.closest( '.oo-ui-selectWidget' ).is( this.$element ) ) {
+		return null;
+	}
+	return $option.data( 'oo-ui-optionWidget' ) || null;
 };
 
 /**
@@ -8148,51 +8154,6 @@ OO.ui.CheckboxMultiselectWidget.prototype.focus = function () {
 OO.ui.CheckboxMultiselectWidget.prototype.simulateLabelClick = function () {
 	this.focus();
 };
-
-/**
- * FloatingMenuSelectWidget was a menu that would stick under a specified
- * container, even when it is inserted elsewhere in the document.
- * This functionality is now included in MenuSelectWidget, and FloatingMenuSelectWidget
- * is preserved for backwards-compatibility.
- *
- * @class
- * @extends OO.ui.MenuSelectWidget
- * @deprecated since v0.21.3, use MenuSelectWidget instead.
- *
- * @constructor
- * @param {OO.ui.Widget} [inputWidget] Widget to provide the menu for.
- *   Deprecated, omit this parameter and specify `$container` instead.
- * @param {Object} [config] Configuration options
- * @cfg {jQuery} [$container=inputWidget.$element] Element to render menu under
- */
-OO.ui.FloatingMenuSelectWidget = function OoUiFloatingMenuSelectWidget( inputWidget, config ) {
-	OO.ui.warnDeprecation( 'FloatingMenuSelectWidget is deprecated. Use the MenuSelectWidget instead.' );
-
-	// Allow 'inputWidget' parameter and config for backwards compatibility
-	if ( OO.isPlainObject( inputWidget ) && config === undefined ) {
-		config = inputWidget;
-		inputWidget = config.inputWidget;
-	}
-
-	// Configuration initialization
-	config = config || {};
-
-	// Properties
-	this.inputWidget = inputWidget; // For backwards compatibility
-	this.$container = config.$floatableContainer || config.$container || this.inputWidget.$element;
-
-	// Parent constructor
-	OO.ui.FloatingMenuSelectWidget.parent.call( this, $.extend( {}, config, { $floatableContainer: this.$container } ) );
-
-	// Initialization
-	this.$element.addClass( 'oo-ui-floatingMenuSelectWidget' );
-	// For backwards compatibility
-	this.$element.addClass( 'oo-ui-textInputMenuSelectWidget' );
-};
-
-/* Setup */
-
-OO.inheritClass( OO.ui.FloatingMenuSelectWidget, OO.ui.MenuSelectWidget );
 
 /**
  * Progress bars visually display the status of an operation, such as a download,
