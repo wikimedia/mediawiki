@@ -202,6 +202,8 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'migrateArchiveText' ],
 			[ 'addTable', 'actor', 'patch-actor-table.sql' ],
 			[ 'migrateActors' ],
+			[ 'renameIndex', 'user_newtalk', 'un_user_id', 'PRIMARY', false,
+				'patch-user_newtalk-fix-pk.sql' ],
 		];
 	}
 
