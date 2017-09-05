@@ -28,6 +28,10 @@ production.
 * Added 'ApiParseMakeOutputPage' hook.
 * (T174313) Added checkbox on Special:ListUsers to display only users in temporary
   user groups.
+* (T17484) On private wikis (where only logged in users have access to read pages),
+  users who try to read a page while not being logged in will automatically re-
+  directed to the login page (Special:UserLogin) with an appropriate message why
+  they need to login to continue.
 
 === External library changes in 1.32 ===
 * …

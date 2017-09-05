@@ -2552,70 +2552,8 @@ class OutputPage extends ContextSource {
 			$errors[$key] = (array)$error;
 		}
 
-		// For some action (read, edit, create and upload), display a "login to do this action"
-		// error if all of the following conditions are met:
-		// 1. the user is not logged in
-		// 2. the only error is insufficient permissions (i.e. no block or something else)
-		// 3. the error can be avoided simply by logging in
-		if ( in_array( $action, [ 'read', 'edit', 'createpage', 'createtalk', 'upload' ] )
-			&& $this->getUser()->isAnon() && count( $errors ) == 1 && isset( $errors[0][0] )
-			&& ( $errors[0][0] == 'badaccess-groups' || $errors[0][0] == 'badaccess-group0' )
-			&& ( User::groupHasPermission( 'user', $action )
-			|| User::groupHasPermission( 'autoconfirmed', $action ) )
-		) {
-			$displayReturnto = null;
-
-			# Due to T34276, if a user does not have read permissions,
-			# $this->getTitle() will just give Special:Badtitle, which is
-			# not especially useful as a returnto parameter. Use the title
-			# from the request instead, if there was one.
-			$request = $this->getRequest();
-			$returnto = Title::newFromText( $request->getVal( 'title', '' ) );
-			if ( $action == 'edit' ) {
-				$msg = 'whitelistedittext';
-				$displayReturnto = $returnto;
-			} elseif ( $action == 'createpage' || $action == 'createtalk' ) {
-				$msg = 'nocreatetext';
-			} elseif ( $action == 'upload' ) {
-				$msg = 'uploadnologintext';
-			} else { # Read
-				$msg = 'loginreqpagetext';
-				$displayReturnto = Title::newMainPage();
-			}
-
-			$query = [];
-
-			if ( $returnto ) {
-				$query['returnto'] = $returnto->getPrefixedText();
-
-				if ( !$request->wasPosted() ) {
-					$returntoquery = $request->getValues();
-					unset( $returntoquery['title'] );
-					unset( $returntoquery['returnto'] );
-					unset( $returntoquery['returntoquery'] );
-					$query['returntoquery'] = wfArrayToCgi( $returntoquery );
-				}
-			}
-			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-			$loginLink = $linkRenderer->makeKnownLink(
-				SpecialPage::getTitleFor( 'Userlogin' ),
-				$this->msg( 'loginreqlink' )->text(),
-				[],
-				$query
-			);
-
-			$this->prepareErrorPage( $this->msg( 'loginreqtitle' ) );
-			$this->addHTML( $this->msg( $msg )->rawParams( $loginLink )->parse() );
-
-			# Don't return to a page the user can't read otherwise
-			# we'll end up in a pointless loop
-			if ( $displayReturnto && $displayReturnto->userCan( 'read', $this->getUser() ) ) {
-				$this->returnToMain( null, $displayReturnto );
-			}
-		} else {
-			$this->prepareErrorPage( $this->msg( 'permissionserrors' ) );
-			$this->addWikiText( $this->formatPermissionsErrorMessage( $errors, $action ) );
-		}
+		$this->prepareErrorPage( $this->msg( 'permissionserrors' ) );
+		$this->addWikiText( $this->formatPermissionsErrorMessage( $errors, $action ) );
 	}
 
 	/**

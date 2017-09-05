@@ -20,6 +20,9 @@ class LoginHelper extends ContextSource {
 	 */
 	public static $validErrorMessages = [
 		'exception-nologin-text',
+		'uploadnologintext',
+		'create-nologin-text',
+		'whitelistedittext',
 		'watchlistanontext',
 		'changeemail-no-info',
 		'resetpass-no-info',
