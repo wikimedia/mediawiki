@@ -364,8 +364,8 @@ class RecentChange {
 
 			// Never send an RC notification email about categorization changes
 			if (
-				$this->mAttribs['rc_type'] != RC_CATEGORIZE &&
-				Hooks::run( 'AbortEmailNotification', [ $editor, $title, $this ] )
+				Hooks::run( 'AbortEmailNotification', [ $editor, $title, $this ] ) &&
+				$this->mAttribs['rc_type'] != RC_CATEGORIZE
 			) {
 				// @FIXME: This would be better as an extension hook
 				// Send emails or email jobs once this row is safely committed
@@ -853,6 +853,7 @@ class RecentChange {
 	 * @param bool $bot true, if the change was made by a bot
 	 * @param string $ip IP address of the user, if the change was made anonymously
 	 * @param int $deleted Indicates whether the change has been deleted
+	 * @param bool $added true, if the category was added, false for removed
 	 *
 	 * @return RecentChange
 	 */
@@ -867,8 +868,17 @@ class RecentChange {
 		$lastTimestamp,
 		$bot,
 		$ip = '',
-		$deleted = 0
+		$deleted = 0,
+		$added = null
 	) {
+		// Done in a backwards compatible way.
+		$params = [
+			'hidden-cat' => WikiCategoryPage::factory( $categoryTitle )->isHidden()
+		];
+		if ( $added !== null ) {
+			$params['added'] = $added;
+		}
+
 		$rc = new RecentChange;
 		$rc->mTitle = $categoryTitle;
 		$rc->mPerformer = $user;
@@ -897,9 +907,7 @@ class RecentChange {
 			'rc_logid' => 0,
 			'rc_log_type' => null,
 			'rc_log_action' => '',
-			'rc_params' => serialize( [
-				'hidden-cat' => WikiCategoryPage::factory( $categoryTitle )->isHidden()
-			] )
+			'rc_params' => serialize( $params )
 		];
 
 		$rc->mExtra = [
