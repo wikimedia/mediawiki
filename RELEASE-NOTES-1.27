@@ -1,3 +1,26 @@
+== MediaWiki 1.27.4 ==
+This not a release yet!
+
+=== Changes since 1.27.3 ===
+* (T100085) Better handling of jobs execution in post-connection shutdown.
+* (T141604) Support conditionally registered namespaces.
+* (T167798) Fix highlighting for phrase queries and phrase search.
+* (T151136) Provide credits information to callbacks.
+* (T160462) Allow namespaces defined in extension.json to be overwritten locally.
+* (T168856) Allow SVGs created by Dia to be uploaded.
+* (T174262) Various backports for PHP 7.1 support.
+
+== MediaWiki 1.27.3 ==
+Due to a packaging error, the wrong version of the SyntaxHighlight extension was
+included in the tarball version of MediaWiki 1.27.2. The version included had a
+serious security issue in it (T158689). There was also some minor code fixes in
+MediaWiki itself since 1.27.2, but none of them were security relevant.
+
+=== Changes since 1.27.2 ===
+* (T145664) Fix broken wincache merge() implementation
+* (T163434) Add wikimedia/testing-access-wrapper for forwards compatibility
+* (T153505) Fix php warnings on php 7.1 due to use of &$this
+
 == MediaWiki 1.27.2 ==
 This is a security and maintenance release of the MediaWiki 1.27 branch.
 

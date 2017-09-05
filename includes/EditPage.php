@@ -2495,7 +2495,9 @@ class EditPage {
 			$previewOutput = $this->getPreviewText();
 		}
 
-		Hooks::run( 'EditPage::showEditForm:initial', [ &$this, &$wgOut ] );
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$editPage = $this;
+		Hooks::run( 'EditPage::showEditForm:initial', [ &$editPage, &$wgOut ] );
 
 		$this->setHeaders();
 
@@ -2561,7 +2563,9 @@ class EditPage {
 			. Xml::closeElement( 'div' )
 		);
 
-		Hooks::run( 'EditPage::showEditForm:fields', [ &$this, &$wgOut ] );
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$editPage = $this;
+		Hooks::run( 'EditPage::showEditForm:fields', [ &$editPage, &$wgOut ] );
 
 		// Put these up at the top to ensure they aren't lost on early form submission
 		$this->showFormBeforeText();
@@ -3470,7 +3474,9 @@ HTML
 	protected function showConflict() {
 		global $wgOut;
 
-		if ( Hooks::run( 'EditPageBeforeConflictDiff', [ &$this, &$wgOut ] ) ) {
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$editPage = $this;
+		if ( Hooks::run( 'EditPageBeforeConflictDiff', [ &$editPage, &$wgOut ] ) ) {
 			$stats = $wgOut->getContext()->getStats();
 			$stats->increment( 'edit.failures.conflict' );
 
@@ -3974,7 +3980,10 @@ HTML
 				$checkboxes['watch'] = $watchThisHtml;
 			}
 		}
-		Hooks::run( 'EditPageBeforeEditChecks', [ &$this, &$checkboxes, &$tabindex ] );
+
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$editPage = $this;
+		Hooks::run( 'EditPageBeforeEditChecks', [ &$editPage, &$checkboxes, &$tabindex ] );
 		return $checkboxes;
 	}
 
@@ -4015,7 +4024,9 @@ HTML
 		$buttons['diff'] = Html::submitButton( wfMessage( 'showdiff' )->text(),
 			$attribs );
 
-		Hooks::run( 'EditPageBeforeEditButtons', [ &$this, &$buttons, &$tabindex ] );
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$editPage = $this;
+		Hooks::run( 'EditPageBeforeEditButtons', [ &$editPage, &$buttons, &$tabindex ] );
 		return $buttons;
 	}
 
@@ -4029,7 +4040,9 @@ HTML
 		$wgOut->prepareErrorPage( wfMessage( 'nosuchsectiontitle' ) );
 
 		$res = wfMessage( 'nosuchsectiontext', $this->section )->parseAsBlock();
-		Hooks::run( 'EditPageNoSuchSection', [ &$this, &$res ] );
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$editPage = $this;
+		Hooks::run( 'EditPageNoSuchSection', [ &$editPage, &$res ] );
 		$wgOut->addHTML( $res );
 
 		$wgOut->returnToMain( false, $this->mTitle );

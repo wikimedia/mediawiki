@@ -197,7 +197,9 @@ class ContribsPager extends ReverseChronologicalPager {
 			$this->tagFilter
 		);
 
-		Hooks::run( 'ContribsPager::getQueryInfo', [ &$this, &$queryInfo ] );
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$pager = $this;
+		Hooks::run( 'ContribsPager::getQueryInfo', [ &$pager, &$queryInfo ] );
 
 		return $queryInfo;
 	}

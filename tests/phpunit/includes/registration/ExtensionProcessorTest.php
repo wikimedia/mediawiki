@@ -37,6 +37,58 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 		$this->assertArrayNotHasKey( 'AutoloadClasses', $attributes );
 	}
 
+	/**
+	 * @covers ExtensionProcessor::extractInfo
+	 */
+	public function testExtractInfo_namespaces() {
+		// Test that namespace IDs can be overwritten
+		if ( !defined( 'MW_EXTENSION_PROCESSOR_TEST_EXTRACT_INFO_X' ) ) {
+			define( 'MW_EXTENSION_PROCESSOR_TEST_EXTRACT_INFO_X', 123456 );
+		}
+
+		$processor = new ExtensionProcessor();
+		$processor->extractInfo( $this->dir, self::$default + [
+			'namespaces' => [
+				[
+					'id' => 332200,
+					'constant' => 'MW_EXTENSION_PROCESSOR_TEST_EXTRACT_INFO_A',
+					'name' => 'Test_A',
+					'content' => 'TestModel'
+				],
+				[ // Test_X will use ID 123456 not 334400
+					'id' => 334400,
+					'constant' => 'MW_EXTENSION_PROCESSOR_TEST_EXTRACT_INFO_X',
+					'name' => 'Test_X',
+					'content' => 'TestModel'
+				],
+			]
+		], 1 );
+
+		$extracted = $processor->getExtractedInfo();
+
+		$this->assertArrayHasKey(
+			'MW_EXTENSION_PROCESSOR_TEST_EXTRACT_INFO_A',
+			$extracted['defines']
+		);
+		$this->assertArrayNotHasKey(
+			'MW_EXTENSION_PROCESSOR_TEST_EXTRACT_INFO_X',
+			$extracted['defines']
+		);
+
+		$this->assertSame(
+			$extracted['defines']['MW_EXTENSION_PROCESSOR_TEST_EXTRACT_INFO_A'],
+			332200
+		);
+
+		$this->assertArrayHasKey( 'ExtensionNamespaces', $extracted['attributes'] );
+		$this->assertArrayHasKey( 123456, $extracted['attributes']['ExtensionNamespaces'] );
+		$this->assertArrayHasKey( 332200, $extracted['attributes']['ExtensionNamespaces'] );
+		$this->assertArrayNotHasKey( 334400, $extracted['attributes']['ExtensionNamespaces'] );
+
+		$this->assertSame( 'Test_X', $extracted['attributes']['ExtensionNamespaces'][123456] );
+		$this->assertSame( 'Test_A', $extracted['attributes']['ExtensionNamespaces'][332200] );
+	}
+
 	public static function provideRegisterHooks() {
 		$merge = [ ExtensionRegistry::MERGE_STRATEGY => 'array_merge_recursive' ];
 		// Format:

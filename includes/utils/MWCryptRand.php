@@ -230,6 +230,24 @@ class MWCryptRand {
 		}
 
 		if ( strlen( $buffer ) < $bytes ) {
+			// If available make use of PHP 7's random_bytes
+			// On Linux, getrandom syscall will be used if available.
+			// On Windows CryptGenRandom will always be used
+			// On other platforms, /dev/urandom will be used.
+			// Avoids polyfills from before php 7.0
+			// All error situations will throw Exceptions and or Errors
+			if ( PHP_VERSION_ID >= 70000
+				|| ( defined( 'HHVM_VERSION_ID' ) && HHVM_VERSION_ID >= 31101 )
+			) {
+				$rem = $bytes - strlen( $buffer );
+				$buffer .= random_bytes( $rem );
+			}
+			if ( strlen( $buffer ) >= $bytes ) {
+				$this->strong = true;
+			}
+		}
+
+		if ( strlen( $buffer ) < $bytes ) {
 			// If available make use of mcrypt_create_iv URANDOM source to generate randomness
 			// On unix-like systems this reads from /dev/urandom but does it without any buffering
 			// and bypasses openbasedir restrictions, so it's preferable to reading directly

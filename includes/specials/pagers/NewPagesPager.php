@@ -91,8 +91,10 @@ class NewPagesPager extends ReverseChronologicalPager {
 		];
 		$join_conds = [ 'page' => [ 'INNER JOIN', 'page_id=rc_cur_id' ] ];
 
+		// Avoid PHP 7.1 warning from passing $this by reference
+		$pager = $this;
 		Hooks::run( 'SpecialNewpagesConditions',
-			[ &$this, $this->opts, &$conds, &$tables, &$fields, &$join_conds ] );
+			[ &$pager, $this->opts, &$conds, &$tables, &$fields, &$join_conds ] );
 
 		$options = [];
 

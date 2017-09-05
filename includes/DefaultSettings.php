@@ -75,7 +75,11 @@ $wgConfigRegistry = [
  * MediaWiki version number
  * @since 1.2
  */
+<<<<<<< HEAD   (bf97cd Update DonationInterface)
 $wgVersion = '1.27.2-fundraising';
+=======
+$wgVersion = '1.27.3';
+>>>>>>> BRANCH (53912d RELEASE-NOTES for PHP 7.1 backports)
 
 /**
  * Name of the site. It must be changed in LocalSettings.php
