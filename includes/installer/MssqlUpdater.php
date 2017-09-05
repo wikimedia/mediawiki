@@ -118,6 +118,8 @@ class MssqlUpdater extends DatabaseUpdater {
 			[ 'migrateArchiveText' ],
 			[ 'addTable', 'actor', 'patch-actor-table.sql' ],
 			[ 'migrateActors' ],
+			[ 'renameIndex', 'user_newtalk', 'user_id', 'PRIMARY', false,
+				'patch-user_newtalk-fix-pk.sql' ],
 		];
 	}
 

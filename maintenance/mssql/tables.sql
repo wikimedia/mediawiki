@@ -103,8 +103,8 @@ CREATE TABLE /*_*/user_newtalk (
    user_id INT         NOT NULL REFERENCES /*_*/mwuser(user_id) ON DELETE CASCADE,
    user_ip NVARCHAR(40) NOT NULL DEFAULT '',
    user_last_timestamp varchar(14) DEFAULT NULL,
+   PRIMARY KEY(user_id, user_ip)
 );
-CREATE INDEX /*i*/un_user_id ON /*_*/user_newtalk (user_id);
 CREATE INDEX /*i*/un_user_ip ON /*_*/user_newtalk (user_ip);
 
 --
