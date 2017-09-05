@@ -511,6 +511,7 @@ class EditPage {
 	 * @deprecated since 1.29, call edit directly
 	 */
 	public function submit() {
+		wfDeprecated( __METHOD__, '1.29' );
 		$this->edit();
 	}
 
