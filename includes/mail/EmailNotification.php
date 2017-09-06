@@ -76,6 +76,16 @@ class EmailNotification {
 	protected $editor;
 
 	/**
+	 * Getter for the protected property, so extensions can use
+	 * SendWatchlistEmailNotification to handle their own
+	 * notifications if they want to.
+	 * @return string
+	 */
+	public function getPageStatus() {
+		return $this->pageStatus;
+	}
+
+	/**
 	 * @deprecated since 1.27 use WatchedItemStore::updateNotificationTimestamp directly
 	 *
 	 * @param User $editor The editor that triggered the update.  Their notification
