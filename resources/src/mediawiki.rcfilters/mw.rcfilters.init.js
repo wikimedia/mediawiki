@@ -60,7 +60,8 @@
 
 			controller.replaceUrl();
 
-			if ( currentPage === 'Special:Recentchanges' ) {
+			if ( currentPage === 'Special:Recentchanges' ||
+				currentPage === 'Special:Recentchangeslinked' ) {
 				$topLinks = $( '.mw-recentchanges-toplinks' ).detach();
 
 				rcTopSection = new mw.rcfilters.ui.RcTopSectionWidget(
