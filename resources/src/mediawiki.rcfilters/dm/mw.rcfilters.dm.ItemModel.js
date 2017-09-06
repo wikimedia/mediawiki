@@ -14,6 +14,7 @@
 	 *  with 'default' and 'inverted' as keys.
 	 * @cfg {boolean} [active=true] The filter is active and affecting the result
 	 * @cfg {boolean} [selected] The item is selected
+	 * @cfg {*} [value] The value of this item
 	 * @cfg {boolean} [inverted] The item is inverted, meaning the search is excluding
 	 *  this parameter.
 	 * @cfg {string} [namePrefix='item_'] A prefix to add to the param name to act as a unique
@@ -35,7 +36,12 @@
 		this.label = config.label || this.name;
 		this.labelPrefixKey = config.labelPrefixKey;
 		this.description = config.description || '';
-		this.selected = !!config.selected;
+		if ( config.selected ) {
+			this.setSelected( config.selected );
+		}
+		if ( config.value ) {
+			this.setValue( config.value );
+		}
 
 		this.inverted = !!config.inverted;
 		this.identifiers = config.identifiers || [];
@@ -159,7 +165,7 @@
 	 * @return {boolean} Filter is selected
 	 */
 	mw.rcfilters.dm.ItemModel.prototype.isSelected = function () {
-		return this.selected;
+		return !!this.value;
 	};
 
 	/**
@@ -169,10 +175,27 @@
 	 * @fires update
 	 */
 	mw.rcfilters.dm.ItemModel.prototype.toggleSelected = function ( isSelected ) {
-		isSelected = isSelected === undefined ? !this.selected : isSelected;
+		isSelected = isSelected === undefined ? !this.isSelected() : isSelected;
+		this.setValue( isSelected );
+	};
 
-		if ( this.selected !== isSelected ) {
-			this.selected = isSelected;
+	/**
+	 * Get the value
+	 *
+	 * @returns {*}
+	 */
+	mw.rcfilters.dm.ItemModel.prototype.getValue = function () {
+		return this.value;
+	};
+
+	/**
+	 * Set the value
+	 *
+	 * @param {*} newValue
+	 */
+	mw.rcfilters.dm.ItemModel.prototype.setValue = function ( newValue ) {
+		if ( this.value !== newValue ) {
+			this.value = newValue;
 			this.emit( 'update' );
 		}
 	};

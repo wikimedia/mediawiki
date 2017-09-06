@@ -152,6 +152,8 @@
 				// For this group type, parameter values are direct
 				// We need to convert from a boolean to a string ('1' and '0')
 				model.defaultParams[ filter.name ] = String( Number( filter.default || 0 ) );
+			} else if ( model.getType() === 'any_value' ) {
+				model.defaultParams[ filter.name ] = filter.default;
 			}
 		} );
 
@@ -573,7 +575,7 @@
 			if ( buildFromCurrentState ) {
 				// This means we have not been given a filter representation
 				// so we are building one based on current state
-				filterRepresentation[ item.getName() ] = item.isSelected();
+				filterRepresentation[ item.getName() ] = item.getValue();
 			} else if ( filterRepresentation[ item.getName() ] === undefined ) {
 				// We are given a filter representation, but we have to make
 				// sure that we fill in the missing filters if there are any
@@ -593,7 +595,8 @@
 		// Build result
 		if (
 			this.getType() === 'send_unselected_if_any' ||
-			this.getType() === 'boolean'
+			this.getType() === 'boolean' ||
+			this.getType() === 'any_value'
 		) {
 			// First, check if any of the items are selected at all.
 			// If none is selected, we're treating it as if they are
@@ -610,6 +613,8 @@
 					// Representation is straight-forward and direct from
 					// the parameter value to the filter state
 					result[ filterParamNames[ name ] ] = String( Number( !!value ) );
+				} else if ( model.getType() === 'any_value' ) {
+					result[ filterParamNames[ name ] ] = value;
 				}
 			} );
 		} else if ( this.getType() === 'string_options' ) {
@@ -726,6 +731,10 @@
 
 				result[ filterItem.getName() ] = selected;
 				oneWasSelected = oneWasSelected || selected;
+			} );
+		} else if ( this.getType() === 'any_value' ) {
+			this.getItems().forEach( function ( filterItem ) {
+				result[ filterItem.getName() ] = paramRepresentation[ filterItem.getParamName() ];
 			} );
 		}
 
