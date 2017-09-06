@@ -257,6 +257,11 @@ class BlockLevelPass {
 					$output .= $this->nextItem( $prefix[$commonPrefixLength - 1] );
 				}
 
+				# Close an open <dt> if we have a <dd> (":") starting on this line
+				if ( $this->DTopen && substr( $prefix, $commonPrefixLength - 1, 1) === ':' ) {
+					$output .= $this->nextItem( ':' );
+				}
+
 				# Open prefixes where appropriate.
 				if ( $lastPrefix && $prefixLength > $commonPrefixLength ) {
 					$output .= "\n";
