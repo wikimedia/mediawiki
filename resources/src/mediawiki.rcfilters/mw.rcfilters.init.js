@@ -9,9 +9,8 @@
 		 */
 		init: function () {
 			var $topLinks,
-				rcTopSection,
+				topSection,
 				$watchlistDetails,
-				wlTopSection,
 				savedQueriesPreferenceName = mw.config.get( 'wgStructuredChangeFiltersSavedQueriesPreferenceName' ),
 				filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
 				changesListModel = new mw.rcfilters.dm.ChangesListViewModel(),
@@ -60,24 +59,32 @@
 
 			controller.replaceUrl();
 
-			if ( currentPage === 'Special:Recentchanges' ||
-				currentPage === 'Special:Recentchangeslinked' ) {
+			if ( currentPage === 'Special:Recentchanges' ) {
 				$topLinks = $( '.mw-recentchanges-toplinks' ).detach();
 
-				rcTopSection = new mw.rcfilters.ui.RcTopSectionWidget(
+				topSection = new mw.rcfilters.ui.RcTopSectionWidget(
 					savedLinksListWidget, $topLinks
 				);
-				filtersWidget.setTopSection( rcTopSection.$element );
-			} // end Special:RC
+				filtersWidget.setTopSection( topSection.$element );
+			} // end Special:Recentchanges
+
+			if ( currentPage === 'Special:Recentchangeslinked' ) {
+				topSection = new mw.rcfilters.ui.RclTopSectionWidget(
+					savedLinksListWidget, controller,
+					filtersModel.getGroup( 'toOrFrom' ).getItemByParamName( 'showlinkedto' ),
+					filtersModel.getGroup( 'page' ).getItemByParamName( 'target' )
+				);
+				filtersWidget.setTopSection( topSection.$element );
+			} // end Special:Recentchangeslinked
 
 			if ( currentPage === 'Special:Watchlist' ) {
 				$( '#contentSub, form#mw-watchlist-resetbutton' ).detach();
 				$watchlistDetails = $( '.watchlistDetails' ).detach().contents();
 
-				wlTopSection = new mw.rcfilters.ui.WatchlistTopSectionWidget(
+				topSection = new mw.rcfilters.ui.WatchlistTopSectionWidget(
 					controller, changesListModel, savedLinksListWidget, $watchlistDetails
 				);
-				filtersWidget.setTopSection( wlTopSection.$element );
+				filtersWidget.setTopSection( topSection.$element );
 			} // end Special:WL
 
 			/**
