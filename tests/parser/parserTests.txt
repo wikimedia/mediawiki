@@ -4332,6 +4332,21 @@ Definition Lists: Mixed Lists: Test 10
 
 !! end
 
+# This is a regression test for T175099
+# html/php+tidy is insufficient since Tidy covers up the bug.
+# But once Tidy is replaced with RemexHTML, html/php+tidy is good enough
+!! test
+Definition Lists: Mixed Lists: Test 11
+!! wikitext
+;a
+:*b
+!! html
+<dl><dt>a</dt>
+<dd>
+<ul><li>b</li></ul></dd></dl>
+
+!! end
+
 # The Parsoid team disagrees with the PHP parser's seemingly-random
 # rules regarding dd/dt on the next two tests.  Parsoid is more
 # consistent, and recognizes the shared nesting and keeps the
@@ -4339,7 +4354,7 @@ Definition Lists: Mixed Lists: Test 10
 # (And tidy again converts <dt> to <dd> before 'bar'.)
 
 !! test
-Definition Lists: Mixed Lists: Test 11
+Definition Lists: Mixed Lists: Test 12
 !! wikitext
 *#*#;*;;foo :bar
 *#*#;boo :baz
