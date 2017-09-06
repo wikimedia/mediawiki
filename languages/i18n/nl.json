@@ -2389,6 +2389,7 @@
 	"sp-contributions-newonly": "Alleen nieuwe pagina's weergeven",
 	"sp-contributions-hideminor": "Kleine bewerkingen verbergen",
 	"sp-contributions-submit": "Bekijken",
+	"sp-contributions-outofrange": "Kan geen resultaten tonen. Het ingevoerde IP bereik is groter dan de CIDR limiet /$1.",
 	"whatlinkshere": "Verwijzingen naar deze pagina",
 	"whatlinkshere-title": "Pagina's die verwijzen naar \"$1\"",
 	"whatlinkshere-page": "Pagina:",

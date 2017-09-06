@@ -2455,7 +2455,7 @@
 	"markaspatrolledtext": "Označi stranicu kao patroliranu",
 	"markaspatrolledtext-file": "Označi ovu verziju datoteke kao patroliranu",
 	"markedaspatrolled": "Označeno kao patrolirano",
-	"markedaspatrolledtext": "Izabrana izmena na [[:$1]] je označena kao patrolirana.",
+	"markedaspatrolledtext": "Izabrana izmena stranice [[:$1]] označena je kao patrolirana.",
 	"rcpatroldisabled": "Patroliranje skorašnjih izmena je onemogućeno",
 	"rcpatroldisabledtext": "Patroliranje skorašnjih izmena je onemogućeno.",
 	"markedaspatrollederror": "Ne mogu da označim kao patrolirano",

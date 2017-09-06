@@ -2429,6 +2429,7 @@
 	"sp-contributions-newonly": "Показывать только правки, являющиеся созданием страниц",
 	"sp-contributions-hideminor": "Скрыть малые правки",
 	"sp-contributions-submit": "Найти",
+	"sp-contributions-outofrange": "Не удаётся показать результаты. Запрашиваемый IP-диапазон больше, чем лимит CIDR /$1.",
 	"whatlinkshere": "Ссылки сюда",
 	"whatlinkshere-title": "Страницы, ссылающиеся на «$1»",
 	"whatlinkshere-page": "Страница:",

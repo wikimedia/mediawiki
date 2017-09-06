@@ -2672,7 +2672,7 @@
 	"markaspatrolledtext": "Означи страницу као патролирану",
 	"markaspatrolledtext-file": "Означи ову верзију датотеке као патролирану",
 	"markedaspatrolled": "Означено као патролирано",
-	"markedaspatrolledtext": "Изабрана измена на [[:$1]] је означена као патролирана.",
+	"markedaspatrolledtext": "Изабрана измена странице [[:$1]] означена је као патролирана.",
 	"rcpatroldisabled": "Патролирање скорашњих измена је онемогућено",
 	"rcpatroldisabledtext": "Патролирање скорашњих измена је онемогућено.",
 	"markedaspatrollederror": "Не могу да означим као патролирано",

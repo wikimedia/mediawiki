@@ -3042,7 +3042,7 @@
 	"feedback-submit": "ଦାଖଲ କରିବା",
 	"feedback-thanks": "ସାଧୁବାଦ ! ଆପଣଙ୍କର ମତାମତ  \"[$2 $1]\" ପୃଷ୍ଠାରେ ସାଇତାଯାଇଛି ।",
 	"feedback-thanks-title": "ସାଧୁବାଦ!",
-	"searchsuggest-search": "ଖୋଜନ୍ତୁ",
+	"searchsuggest-search": "{{SITENAME}}ରେ ଖୋଜିବେ",
 	"searchsuggest-containing": "ଖୋଜୁଛି...",
 	"api-error-badtoken": "ଭିତର ଅସୁବିଧା: ଖରାପ ଟୋକନ ।",
 	"api-error-emptypage": "ନୂଆ, ଖାଲି ପୃଷ୍ଠ ତିଆରି କରିବାର ଅନୁମତି ନାହି ।",

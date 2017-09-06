@@ -2400,6 +2400,7 @@
 	"sp-contributions-newonly": "Nur Seitenerstellungen anzeigen",
 	"sp-contributions-hideminor": "Kleine Bearbeitungen ausblenden",
 	"sp-contributions-submit": "Suchen",
+	"sp-contributions-outofrange": "Es konnten keine Ergebnisse angezeigt werden. Der angeforderte IP-Adressbereich ist größer als die CIDR-Grenze von /$1.",
 	"whatlinkshere": "Links auf diese Seite",
 	"whatlinkshere-title": "Seiten, die auf „$1“ verlinken",
 	"whatlinkshere-page": "Seite:",

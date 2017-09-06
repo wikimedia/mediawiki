@@ -2406,6 +2406,7 @@
 	"sp-contributions-newonly": "仅显示创建页面的编辑",
 	"sp-contributions-hideminor": "隐藏小编辑",
 	"sp-contributions-submit": "搜索",
+	"sp-contributions-outofrange": "无法显示任何结果。请求的IP段大于CIDR限制/$1。",
 	"whatlinkshere": "链入页面",
 	"whatlinkshere-title": "链接至“$1”的页面",
 	"whatlinkshere-page": "页面：",

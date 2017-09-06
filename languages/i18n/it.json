@@ -2845,7 +2845,7 @@
 	"pageinfo-hidden-categories": "{{PLURAL:$1|Categoria nascosta|Categorie nascoste}} ($1)",
 	"pageinfo-templates": "Template {{PLURAL:$1|incluso|inclusi}} ($1)",
 	"pageinfo-transclusions": "{{PLURAL:$1|Pagina|Pagine}} in cui è incluso ($1)",
-	"pageinfo-toolboxlink": "Informazioni sulla pagina",
+	"pageinfo-toolboxlink": "Informazioni pagina",
 	"pageinfo-redirectsto": "Reindirizza a",
 	"pageinfo-redirectsto-info": "info",
 	"pageinfo-contentpage": "Conteggiata come una pagina di contenuto",

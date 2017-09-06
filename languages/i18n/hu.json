@@ -2859,7 +2859,7 @@
 	"seconds": "{{PLURAL:$1|egy|$1}} másodperccel",
 	"minutes": "{{PLURAL:$1|egy|$1}} perccel",
 	"hours": "{{PLURAL:$1|egy|$1}} órával",
-	"days": "{{PLURAL:$1|egy|$1}} nappal",
+	"days": "$1 nappal",
 	"weeks": "{{PLURAL:$1|$1 hét|$1 hét}}",
 	"months": "{{PLURAL:$1|$1 hónap|$1 hónap}}",
 	"years": "{{PLURAL:$1|$1 év|$1 év}}",
