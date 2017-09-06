@@ -386,7 +386,8 @@
 		$.each( this.groups, function ( group, groupModel ) {
 			if (
 				groupModel.getType() === 'send_unselected_if_any' ||
-				groupModel.getType() === 'boolean'
+				groupModel.getType() === 'boolean' ||
+				groupModel.getType() === 'any_value'
 			) {
 				// Individual filters
 				groupModel.getItems().forEach( function ( filterItem ) {
