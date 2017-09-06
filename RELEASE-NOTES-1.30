@@ -209,6 +209,9 @@ changes to languages because of Phabricator reports.
   (formerly it was needed by PostgreSQL and Oracle), and is now deprecated.
 * (T146591) The lc_lang_key index on the l10n_cache table has been changed into a
   PRIMARY KEY.
+* (T157227) bot_password.bp_user, change_tag.ct_log_id, change_tag.ct_rev_id,
+  page_restrictions.pr_user, tag_summary.ts_log_id, tag_summary.ts_rev_id and
+  user_properties.up_user have all been made unsigned on MySQL.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for

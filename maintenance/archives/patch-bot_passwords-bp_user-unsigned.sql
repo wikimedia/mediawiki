@@ -1,0 +1,1 @@
+ALTER TABLE /*_*/bot_passwords MODIFY bp_user int unsigned NOT NULL;
