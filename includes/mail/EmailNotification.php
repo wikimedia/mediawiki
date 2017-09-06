@@ -76,6 +76,20 @@ class EmailNotification {
 	protected $editor;
 
 	/**
+	 * Extensions that have hooks for
+	 * UpdateUserMailerFormattedPageStatus (to provide additional
+	 * pageStatus indicators) need a way to make sure that, when their
+	 * hook is called in SendWatchlistemailNotification, they only
+	 * handle notifications using their pageStatus indicator.
+	 *
+	 * @since 1.33
+	 * @return string
+	 */
+	public function getPageStatus() {
+		return $this->pageStatus;
+	}
+
+	/**
 	 * @deprecated since 1.27 use WatchedItemStore::updateNotificationTimestamp directly
 	 *
 	 * @param User $editor The editor that triggered the update.  Their notification
