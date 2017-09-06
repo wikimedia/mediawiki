@@ -60,19 +60,24 @@
 
 	QUnit.test( 'getUpdatedUri', function ( assert ) {
 		var uriProcessor,
-			filtersModel = new mw.rcfilters.dm.FiltersViewModel();
+			filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
+			makeUri = function ( queryParams ) {
+				var uri = new mw.Uri();
+				uri.query = queryParams;
+				return uri;
+			};
 
 		filtersModel.initializeFilters( mockFilterStructure );
 		uriProcessor = new mw.rcfilters.UriProcessor( filtersModel );
 
 		assert.deepEqual(
-			( uriProcessor.getUpdatedUri( {} ) ).query,
+			( uriProcessor.getUpdatedUri( makeUri( {} ) ) ).query,
 			{ urlversion: '2' },
 			'Empty model state with empty uri state, assumes the given uri is already normalized, and adds urlversion=2'
 		);
 
 		assert.deepEqual(
-			( uriProcessor.getUpdatedUri( { foo: 'bar' } ) ).query,
+			( uriProcessor.getUpdatedUri( makeUri( { foo: 'bar' } ) ) ).query,
 			{ urlversion: '2', foo: 'bar' },
 			'Empty model state with unrecognized params retains unrecognized params'
 		);
@@ -84,13 +89,13 @@
 		} );
 
 		assert.deepEqual(
-			( uriProcessor.getUpdatedUri( {} ) ).query,
+			( uriProcessor.getUpdatedUri( makeUri( {} ) ) ).query,
 			{ urlversion: '2', filter2: '1', group3: 'filter5' },
 			'Model state is reflected in the updated URI'
 		);
 
 		assert.deepEqual(
-			( uriProcessor.getUpdatedUri( { foo: 'bar' } ) ).query,
+			( uriProcessor.getUpdatedUri( makeUri( { foo: 'bar' } ) ) ).query,
 			{ urlversion: '2', filter2: '1', group3: 'filter5', foo: 'bar' },
 			'Model state is reflected in the updated URI with existing uri params'
 		);
@@ -267,6 +272,40 @@
 			assert.deepEqual(
 				uriProcessor._getNormalizedQueryParams( testCase.query ),
 				testCase.result,
+				testCase.message
+			);
+		} );
+	} );
+
+	QUnit.test( '_normalizeTargetInUri', function ( assert ) {
+		var uriProcessor = new mw.rcfilters.UriProcessor( null ),
+			cases = [
+				{
+					input: 'http://host/wiki/Special:RecentChangesLinked/Moai',
+					output: 'http://host/wiki/Special:RecentChangesLinked?target=Moai',
+					message: 'Target as subpage in path'
+				},
+				{
+					input: 'http://host/wiki/Special:RecentChangesLinked/Category:Foo',
+					output: 'http://host/wiki/Special:RecentChangesLinked?target=Category:Foo',
+					message: 'Target as subpage in path (with namespace)'
+				},
+				{
+					input: 'http://host/w/index.php?title=Special:RecentChangesLinked/Moai',
+					output: 'http://host/w/index.php?title=Special:RecentChangesLinked&target=Moai',
+					message: 'Target as subpage in title param'
+				},
+				{
+					input: 'http://host/wiki/Special:Watchlist',
+					output: 'http://host/wiki/Special:Watchlist',
+					message: 'No target specified'
+				}
+			];
+
+		cases.forEach( function ( testCase ) {
+			assert.equal(
+				uriProcessor._normalizeTargetInUri( new mw.Uri( testCase.input ) ).toString(),
+				new mw.Uri( testCase.output ).toString(),
 				testCase.message
 			);
 		} );

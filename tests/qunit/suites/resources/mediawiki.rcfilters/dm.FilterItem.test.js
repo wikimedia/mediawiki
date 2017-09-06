@@ -184,4 +184,22 @@
 			'Events emitted successfully.'
 		);
 	} );
+
+	QUnit.test( 'get/set boolean value', function ( assert ) {
+		var group = new mw.rcfilters.dm.FilterGroup( 'group1', { type: 'boolean' } ),
+			item = new mw.rcfilters.dm.FilterItem( 'filter1', group );
+
+		item.setValue( '1' );
+
+		assert.equal( item.getValue(), true, 'Value is coerced to boolean' );
+	} );
+
+	QUnit.test( 'get/set any value', function ( assert ) {
+		var group = new mw.rcfilters.dm.FilterGroup( 'group1', { type: 'any_value' } ),
+			item = new mw.rcfilters.dm.FilterItem( 'filter1', group );
+
+		item.setValue( '1' );
+
+		assert.equal( item.getValue(), '1', 'Value is kept as-is' );
+	} );
 }( mediaWiki ) );
