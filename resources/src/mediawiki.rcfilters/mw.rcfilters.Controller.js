@@ -189,6 +189,37 @@
 			]
 		};
 
+		views.recentChangesLinked = {
+			groups: [
+				{
+					name: 'page',
+					type: 'any_value',
+					title: '',
+					hidden: true,
+					isSticky: false,
+					filters: [
+						{
+							name: 'target',
+							'default': ''
+						}
+					]
+				},
+				{
+					name: 'toOrFrom',
+					type: 'boolean',
+					title: '',
+					hidden: true,
+					isSticky: false,
+					filters: [
+						{
+							name: 'showlinkedto',
+							'default': false
+						}
+					]
+				}
+			]
+		};
+
 		// Before we do anything, we need to see if we require additional items in the
 		// groups that have 'AllowArbitrary'. For the moment, those are only single_option
 		// groups; if we ever expand it, this might need further generalization:
@@ -484,6 +515,33 @@
 			// Only re-fetch results if there are namespace items that are actually selected
 			this.updateChangesList();
 		}
+	};
+
+	/**
+	 * Set the value of the 'showlinkedto' parameter
+	 * @param {boolean} value
+	 */
+	mw.rcfilters.Controller.prototype.setShowLinkedTo = function ( value ) {
+		var targetItem = this.filtersModel.getGroup( 'page' ).getItemByParamName( 'target' ),
+			showLinkedToItem = this.filtersModel.getGroup( 'toOrFrom' ).getItemByParamName( 'showlinkedto' );
+
+		this.filtersModel.toggleFilterSelected( showLinkedToItem.getName(), value );
+		this._updateURL();
+		// reload the results only when target is set
+		if ( targetItem.getValue() ) {
+			this.updateChangesList();
+		}
+	};
+
+	/**
+	 * Set the target page
+	 * @param {string} page
+	 */
+	mw.rcfilters.Controller.prototype.setTargetPage = function ( page ) {
+		var targetItem = this.filtersModel.getGroup( 'page' ).getItemByParamName( 'target' );
+		targetItem.setValue( page );
+		this._updateURL();
+		this.updateChangesList();
 	};
 
 	/**
