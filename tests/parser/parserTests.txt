@@ -109,6 +109,13 @@ Template:echo
 {{{1}}}
 !! endarticle
 
+// For Serbian; localize Template namespace
+!! article
+Шаблон:Echo
+!! text
+{{{1}}}
+!! endarticle
+
 !! article
 Template:echo_with_span
 !! text
@@ -276,6 +283,12 @@ Template:EmptyTRWithHTMLAttrTest
 Template:CircularRef
 !! text
 <ref>{{CircularRef}}</ref>
+!! endarticle
+
+!! article
+Template:With: Colon
+!! text
+Template with colon
 !! endarticle
 
 ###
@@ -1855,6 +1868,19 @@ parsoid=wt2html,wt2wt
 </ul>
 !! end
 
+## Make sure ">" gets escaped in comments to avoid XSS
+!! test
+IE conditional comments
+!! wikitext
+<!--[if lt IE 9]>
+	<script>alert('hi');</script>
+<![endif]-->
+!! html/parsoid
+<!--[if lt IE 9]&#x3E;
+	<script&#x3E;alert('hi');</script&#x3E;
+<![endif]-->
+!! end
+
 ###
 ### paragraph wrapping tests
 ###
@@ -2818,7 +2844,7 @@ Templates: Handle comments in the target
 <p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo&lt;!-- should be ignored -->","href":"./Template:Echo"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</p>
 
 <p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</p>
-!!end
+!! end
 
 !! test
 Templates: Handle comments in parameter names (T69657)
@@ -2848,7 +2874,7 @@ Templates: Handle comments in parameter names (T69657)
 <p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo","key":{"wt":"1&lt;!-- should be ignored -->"}}},"i":0}}]}'>foo</p>
 
 <p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo","key":{"wt":"&lt;!-- should be ignored -->1"}}},"i":0}}]}'>foo</p>
-!!end
+!! end
 
 !! test
 Templates: Other wikitext in parameter names (T69657)
@@ -2859,11 +2885,23 @@ Templates: Other wikitext in parameter names (T69657)
 </p>
 !! html/parsoid
 <p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"&#39;&#39;1&#39;&#39;":{"wt":"foo"}},"i":0}}]}'>{{{1}}}</p>
-!!end
+!! end
+
+!! test
+Templates: With colons
+!! wikitext
+{{With: Colon}}
+!! html/php
+<p>Template with colon
+</p>
+!! html/parsoid
+<p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"With: Colon","href":"./Template:With:_Colon"},"params":{},"i":0}}]}'>Template with colon</p>
+!! end
 
 #--------------------------------------------------------------------
 # Transclusion parameter escaping tests
 #--------------------------------------------------------------------
+
 !! test
 Templates: Parsoid parameter escaping test 1
 !! wikitext
@@ -7719,13 +7757,16 @@ Piped link with extlink-like text
 !! wikitext
 [[Main Page|[bar]]]
 [[Main Page|This is a [bar]]]
+[[Main Page|[bar]]
 !! html/php
 <p><a href="/wiki/Main_Page" title="Main Page">[bar]</a>
 <a href="/wiki/Main_Page" title="Main Page">This is a [bar]</a>
+<a href="/wiki/Main_Page" title="Main Page">[bar</a>
 </p>
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./Main_Page" title="Main Page" data-parsoid='{"stx":"piped"}'>[bar]</a>
-<a rel="mw:WikiLink" href="./Main_Page" title="Main Page" data-parsoid='{"stx":"piped"}'>This is a [bar]</a></p>
+<a rel="mw:WikiLink" href="./Main_Page" title="Main Page" data-parsoid='{"stx":"piped"}'>This is a [bar]</a>
+<a rel="mw:WikiLink" href="./Main_Page" title="Main Page" data-parsoid='{"stx":"piped"}'>[bar</a></p>
 !! end
 
 !! test
@@ -8065,7 +8106,6 @@ Plain link to page with question mark in title
 </p>
 !! end
 
-
 # I'm fairly sure the expected result here is wrong.
 # We want these to be URL links, not pseudo-pages with URLs for titles....
 # However the current output is also pretty screwy.
@@ -8086,6 +8126,34 @@ Piped link to URL: [[http://www.example.com|an example URL]]
 </p>
 !! html/parsoid
 <p>Piped link to URL: [<a rel="mw:ExtLink" href="http://www.example.com%7Can" data-parsoid='{"a":{"href":"http://www.example.com%7Can"},"sa":{"href":"http://www.example.com|an"}}'>example URL</a>]</p>
+!! end
+
+!! test
+Plain link in template argument
+!! options
+parsoid=wt2html
+!! wikitext
+{{echo|[http://www.example.com |123]}}
+
+{{echo|[[http://www.example.com |123]]}}
+
+{{echo|[[http://www.example.com |123]}}
+
+{{echo|[http://www.example.com |123]]}}
+!! html/php
+<p>[<a rel="nofollow" class="external free" href="http://www.example.com">http://www.example.com</a> 
+</p><p>[<a rel="nofollow" class="external text" href="http://www.example.com">|123</a>]
+</p><p>{{echo|[<a rel="nofollow" class="external text" href="http://www.example.com">|123</a>}}
+</p><p>[<a rel="nofollow" class="external free" href="http://www.example.com">http://www.example.com</a> 
+</p>
+!! html/parsoid
+<p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[http://www.example.com "},"2":{"wt":"123]"}},"i":0}}]}'>[<a rel="mw:ExtLink" href="http://www.example.com">http://www.example.com</a> </p>
+
+<p about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[[http://www.example.com |123]]"}},"i":0}}]}'>[<a rel="mw:ExtLink" href="http://www.example.com">|123</a>]</p>
+
+<p>{{echo|[<a rel="mw:ExtLink" href="http://www.example.com" data-parsoid='{"targetOff":114,"contentOffsets":[114,118],"dsr":[90,119,24,1]}'>|123</a>}}</p>
+
+<p about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[http://www.example.com "},"2":{"wt":"123]]"}},"i":0}}]}'>[<a rel="mw:ExtLink" href="http://www.example.com">http://www.example.com</a> </p>
 !! end
 
 !! test
@@ -8171,6 +8239,33 @@ Non-breaking spaces in title
 <p><a href="/wiki/Main_Page" title="Main Page">&#160; Main &#160; Page &#160;</a>
 </p>
 !!end
+
+# Add new article for the test below so that it doesn't red-link
+!! article
+Foo bar baz
+!! text
+boo
+!! endarticle
+
+!! test
+Multiple spaces in titles should normalize to a single underscore
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+[[Foo bar baz|x]]
+[[Foo  bar baz|x]]
+[[Foo  bar   baz|x]]
+!! html/php
+<p><a href="/wiki/Foo_bar_baz" title="Foo bar baz">x</a>
+<a href="/wiki/Foo_bar_baz" title="Foo bar baz">x</a>
+<a href="/wiki/Foo_bar_baz" title="Foo bar baz">x</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Foo_bar_baz" title="Foo bar baz">x</a>
+<a rel="mw:WikiLink" href="./Foo_bar_baz" title="Foo bar baz">x</a>
+<a rel="mw:WikiLink" href="./Foo_bar_baz" title="Foo bar baz">x</a>
+</p>
+!! end
 
 !! test
 Internal link with ca linktrail, surrounded by bold apostrophes (T29473 primary issue)
@@ -8743,6 +8838,8 @@ Blah blah blah
 
 !! test
 Multiple colons escaping interlanguage links
+!! options
+parsoid=wt2html
 !! wikitext
 [[:es:Spanish]]
 [[::es:Spanish]]
@@ -8752,6 +8849,10 @@ Multiple colons escaping interlanguage links
 [[::es:Spanish]]
 [[:::es:Spanish]]
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://es.wikipedia.org/wiki/Spanish" title="es:Spanish">es:Spanish</a>
+[[::es:Spanish]]
+[[:::es:Spanish]]</p>
 !! end
 
 ## parsoid html2wt will normalize the space to _
@@ -9155,8 +9256,6 @@ some text
 <ol data-parsoid='{}'><li data-parsoid='{}'>redirect <a rel="mw:WikiLink" href="./Main_Page" title="Main Page" data-parsoid='{"stx":"simple","a":{"href":"./Main_Page"},"sa":{"href":"Main Page"}}'>Main Page</a></li></ol>
 !! end
 
-# FIXME: Should hoist the redirect to the top of the page and ensure there
-# is only one.
 !! test
 New redirect
 !! options
@@ -9164,7 +9263,53 @@ parsoid=html2wt
 !! html/parsoid
 <p>Foo<link rel="mw:PageProp/redirect" href="./Foo"/></p>
 !! wikitext
+#REDIRECT [[Foo]]
 Foo
+!! end
+
+!! test
+Redirect followed by block on the same line
+!! options
+parsoid=wt2html
+!! wikitext
+#REDIRECT [[Main Page]]<!-- haha -->== hi ==
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="./Main_Page"/><!-- haha --><h2 id="hi"> hi </h2>
+!! end
+
+!! test
+Redirect followed by a newline
+!! wikitext
+#REDIRECT [[Main Page]]
+A newline
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="./Main_Page"/>
+<p>A newline</p>
+!! end
+
+!! test
+Redirect followed by multiple newlines
+!! wikitext
+#REDIRECT [[Main Page]]
+
+
+A newline
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="./Main_Page"/>
+
+<p><br/>
+A newline</p>
+!! end
+
+!! test
+Drop duplicate redirects
+!! options
+parsoid=html2wt
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="./Foo"/>
+<link rel="mw:PageProp/redirect" href="./Bar"/>
+<link rel="mw:PageProp/redirect" href="./Baz"/>
+!! wikitext
 #REDIRECT [[Foo]]
 !! end
 
@@ -11892,6 +12037,8 @@ parsoid
 ##{{[[-{{{{{{[[Foo|bar}}]]}-}}}}}]]
 !! test
 Preprocessor precedence 1: link is rightmost opening
+!! options
+parsoid=wt2html
 !! wikitext
 {{[[Foo|bar}}]]
 
@@ -11900,13 +12047,17 @@ But close-brace is not a valid character in a link title:
 
 However, we can still tell this was handled as a link in the preprocessor:
 {{echo|[[Foo}}|bar]]|bat}}
-!! html
+!! html/php
 <p>{{<a href="/wiki/Foo" title="Foo">bar}}</a>
 </p><p>But close-brace is not a valid character in a link title:
 {{[[Foo}}|bar]]
 </p><p>However, we can still tell this was handled as a link in the preprocessor:
 [[Foo}}|bar]]
 </p>
+!! html/parsoid
+<p>{{<a rel="mw:WikiLink" href="./Foo" title="Foo">bar}}</a></p>
+<p>But close-brace is not a valid character in a link title: {{[[Foo}}|bar]]</p>
+<p>However, we can still tell this was handled as a link in the preprocessor: <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[[Foo}}|bar]]"},"2":{"wt":"bat"}},"i":0}}]}'>[[Foo}}|bar]]</span></p>
 !! end
 
 !! test
@@ -11915,26 +12066,33 @@ Preprocessor precedence 2: template is rightmost opening
 language=zh
 !! wikitext
 -{{echo|foo}-}}-
-!! html
+!! html/php
 <p>-foo}--
 </p>
+!! html/parsoid
+<p>-<span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo}-"}},"i":0}}]}'>foo}-</span>-</p>
 !! end
 
 !! test
 Preprocessor precedence 3: language converter is rightmost opening
 !! options
 language=zh
+parsoid=wt2html
 !! wikitext
 {{echo|hi}}
 
 {{-{R|echo|hi}}}-
 
 [[-{R|raw]]}-
-!! html
+!! html/php
 <p>hi
 </p><p>{{echo|hi}}
 </p><p>[[raw]]
 </p>
+!! html/parsoid
+<p typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"hi"}},"i":0}}]}'>hi</p>
+<p>{{<span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"echo|hi}}"}}'></span></p>
+<p>[[<span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw]]"}}'></span></p>
 !! end
 
 !! test
@@ -11943,7 +12101,9 @@ Preprocessor precedence 4: left-most angle bracket
 language=zh
 !! wikitext
 <!--{raw}-->
-!! html
+!! html/php
+!! html/parsoid
+<!--{raw}-->
 !! end
 
 !! article
@@ -11956,21 +12116,28 @@ Template:Precedence5
 Preprocessor precedence 5: tplarg takes precedence over template
 !! wikitext
 {{Precedence5|Bullet}}
-!! html
+!! html/php
 <ul><li> Bar</li></ul>
 
+!! html/parsoid
+<ul typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Precedence5","href":"./Template:Precedence5"},"params":{"1":{"wt":"Bullet"}},"i":0}}]}'><li> Bar</li></ul>
 !! end
 
 !! test
 Preprocessor precedence 6: broken link is rightmost opening
+!! options
+parsoid=wt2html
 !! wikitext
 {{echo|[[Foo}}
 
 {{echo|[[Foo|bar|bat=baz}}
-!! html
+!! html/php
 <p>{{echo|[[Foo}}
 </p><p>{{echo|[[Foo|bar|bat=baz}}
 </p>
+!! html/parsoid
+<p>{{echo|[[Foo}}</p>
+<p>{{echo|[[Foo|bar|bat=baz}}</p>
 !! end
 
 # This next test exposes a difference between PHP and Parsoid:
@@ -11995,6 +12162,8 @@ Preprocessor precedence 6: broken link is rightmost opening
 
 !! test
 Preprocessor precedence 7: broken template is rightmost opening
+!! options
+parsoid=wt2html
 !! wikitext
 [[Foo|{{echo|Bar]]
 
@@ -12002,12 +12171,17 @@ Preprocessor precedence 7: broken template is rightmost opening
 
 Careful: linktrails can move the end of the wikilink:
 [[Foo|{{echo|y']]a}}l]]l
-!! html
+!! html/php
 <p><a href="/wiki/Foo" title="Foo">{{echo|Bar</a>
 </p><p><a href="/wiki/Foo" title="Foo">Bar</a>-x-y]]-z
 </p><p>Careful: linktrails can move the end of the wikilink:
 <a href="/wiki/Foo" title="Foo">y'al</a>]]l
 </p>
+!! html/parsoid
+<p>[[Foo|{{echo|Bar]]</p>
+<p><a rel="mw:WikiLink" href="./Foo" title="Foo"><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"Bar]]-x"}},"i":0}}]}'>Bar]]-x</span>-y</a>-z</p>
+<p>Careful: linktrails can move the end of the wikilink:
+<a rel="mw:WikiLink" href="./Foo" title="Foo"><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"y&#39;]]a"}},"i":0}}]}'>y']]a</span>ll</a></p>
 !! end
 
 !! test
@@ -12034,7 +12208,7 @@ Template:Preprocessor_precedence_9
 Preprocessor precedence 9: groups of braces
 !! wikitext
 {{Preprocessor precedence 9|Four|Bullet|1|2}}
-!! html
+!! html/php
 <dl><dt>4</dt>
 <dd> {Four}</dd>
 <dt>5</dt>
@@ -12045,6 +12219,20 @@ Preprocessor precedence 9: groups of braces
 <dt>7</dt>
 <dd> {Bullet}</dd></dl>
 
+!! html/parsoid
+<dl about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Preprocessor precedence 9","href":"./Template:Preprocessor_precedence_9"},"params":{"1":{"wt":"Four"},"2":{"wt":"Bullet"},"3":{"wt":"1"},"4":{"wt":"2"}},"i":0}}]}'>
+<dt>4</dt>
+<dd>{Four}</dd>
+<dt>5</dt>
+<dd></dd>
+</dl><ul about="#mwt1">
+<li>Bar</li>
+</ul><span about="#mwt1"> </span><dl about="#mwt1">
+<dt>6</dt>
+<dd>Four</dd>
+<dt>7</dt>
+<dd>{Bullet}</dd>
+</dl>
 !! end
 
 !! article
@@ -12065,7 +12253,7 @@ Preprocessor precedence 10: groups of braces with leading dash
 language=zh
 !! wikitext
 {{Preprocessor precedence 10|Three|raw2|Bullet|1|2}}
-!! html
+!! html/php
 <dl><dt>1</dt>
 <dd> raw</dd>
 <dt>2</dt>
@@ -12083,6 +12271,29 @@ language=zh
 <dt>7</dt>
 <dd> raw2</dd></dl>
 
+!! html/parsoid
+<dl about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Preprocessor precedence 10","href":"./Template:Preprocessor_precedence_10"},"params":{"1":{"wt":"Three"},"2":{"wt":"raw2"},"3":{"wt":"Bullet"},"4":{"wt":"1"},"5":{"wt":"2"}},"i":0}}]}'>
+<dt>1</dt>
+<dd><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw"}}'></span></dd>
+<dt>2</dt>
+<dd>-</dd>
+</dl><ul about="#mwt1">
+<li>Bar-</li>
+</ul><span about="#mwt1"> </span><dl about="#mwt1">
+<dt>3</dt>
+<dd>-Three-</dd>
+<dt>4</dt>
+<dd><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw2"}}'></span></dd>
+<dt>5</dt>
+<dd>-</dd>
+</dl><ul about="#mwt1">
+<li>Bar-</li>
+</ul><span about="#mwt1"> </span><dl about="#mwt1">
+<dt>6</dt>
+<dd>-Three-</dd>
+<dt>7</dt>
+<dd><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw2"}}'></span></dd>
+</dl>
 !! end
 
 !! test
@@ -12093,15 +12304,23 @@ Preprocessor precedence 11: found during visual diff testing
 {{echo|-{{echo|-{{echo|x}}}}}}
 
 {{echo|-{{echo|x}}}}
-!! html
+!! html/php
 <p><span>-<span>-x</span></span>
 </p><p>--x
 </p><p>-x
 </p>
+!! html/parsoid
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#tag:span","function":"tag"},"params":{"1":{"wt":"-{{#tag:span|-{{echo|x}}}}"}},"i":0}}]}'>-<span>-x</span></span></p>
+
+<p about="#mwt4" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"-{{echo|-{{echo|x}}}}"}},"i":0}}]}'>--x</p>
+
+<p about="#mwt7" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"-{{echo|x}}"}},"i":0}}]}'>-x</p>
 !! end
 
 !! test
 Preprocessor precedence 12: broken language converter closed by brace.
+!! options
+parsoid=wt2html
 !! wikitext
 This form breaks the template, which is unfortunate:
 * {{echo|foo-{bar}bat}}
@@ -12116,7 +12335,7 @@ tag, nothing bad happens:
 <tag>foo-{bar}bat</tag>
 {{echo|<tag>foo-{bar}bat</tag>}}
 
-!! html+tidy
+!! html/php+tidy
 <p>This form breaks the template, which is unfortunate:</p>
 <ul>
 <li>{{echo|foo-{bar}bat}}</li>
@@ -12144,38 +12363,67 @@ array (
 array (
 )
 </pre>
+!! html/parsoid
+<p>This form breaks the template, which is unfortunate:</p>
+<ul>
+<li>{{echo|foo-{bar}bat}}</li>
+</ul>
+<p>But if the broken language converter markup is inside an extension tag, nothing bad happens:</p>
+<ul>
+<li><span typeof="mw:Nowiki">foo-{bar}bat</span></li>
+<li><span typeof="mw:Transclusion mw:Nowiki" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;nowiki>foo-{bar}bat&lt;/nowiki>"}},"i":0}}]}'>foo-{bar}bat</span></li>
+<li><pre typeof="mw:Extension/pre" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"foo-{bar}bat"}}'>foo-{bar}bat</pre></li>
+<li><pre typeof="mw:Transclusion mw:Extension/pre" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;pre>foo-{bar}bat&lt;/pre>"}},"i":0}}]}'>foo-{bar}bat</pre></li>
+</ul>
+<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"foo-{bar}bat"}}'></pre> <pre typeof="mw:Extension/tag mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;tag>foo-{bar}bat&lt;/tag>"}},"i":0}}]}'></pre>
 !! end
 
 !! test
-Preprocessor precedence, 13: broken language converter in external link
+Preprocessor precedence 13: broken language converter in external link
+!! options
+parsoid=wt2html
 !! wikitext
 * [http://example.com/-{foo Example in URL]
 * [http://example.com Example in -{link} description]
 * {{echo|[http://example.com/-{foo Breaks template, however]}}
-!! html+tidy
+!! html/php+tidy
 <ul>
 <li><a rel="nofollow" class="external text" href="http://example.com/-{foo">Example in URL</a></li>
 <li><a rel="nofollow" class="external text" href="http://example.com">Example in -{link} description</a></li>
 <li>{{echo|<a rel="nofollow" class="external text" href="http://example.com/-{foo">Breaks template, however</a>}}</li>
 </ul>
+!! html/parsoid
+<ul>
+<li><a rel="mw:ExtLink" href="http://example.com/-{foo">Example in URL</a></li>
+<li><a rel="mw:ExtLink" href="http://example.com">Example in -{link} description</a></li>
+<li>{{echo|<a rel="mw:ExtLink" href="http://example.com/-{foo">Breaks template, however</a>}}</li>
+</ul>
 !! end
 
 !! test
-Preprocessor precedence, 14: broken language converter in comment
+Preprocessor precedence 14: broken language converter in comment
 !! wikitext
 * <!--{{foo}}--> ...should be ok
 * <!---{{foo}}--> ...extra dashes
 * {{echo|foo<!-- -{bar} -->bat}} ...should be ok
-!! html+tidy
+!! html/php+tidy
 <ul>
 <li>...should be ok</li>
 <li>...extra dashes</li>
 <li>foobat ...should be ok</li>
 </ul>
+!! html/parsoid
+<ul>
+<li><!--{{foo}}--> ...should be ok</li>
+<li><!--&#x2D;{{foo}}--> ...extra dashes</li>
+<li><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo&lt;!-- -{bar} -->bat"}},"i":0}}]}'>foo</span><span about="#mwt1"><!-- &#x2D;{bar} --></span><span about="#mwt1">bat</span> ...should be ok</li>
+</ul>
 !! end
 
 !! test
-Preprocessor precedence, 15: broken brace markup in headings
+Preprocessor precedence 15: broken brace markup in headings
+!! options
+parsoid=wt2html
 !! wikitext
 __NOTOC__ __NOEDITSECTION__
 ===1 foo[bar 1===
@@ -12190,7 +12438,7 @@ __NOTOC__ __NOEDITSECTION__
 5
 ===6 foo-{bar 6===
 6
-!! html+tidy
+!! html/php+tidy
 <h3><span class="mw-headline" id="1_foo.5Bbar_1">1 foo[bar 1</span></h3>
 <p>1</p>
 <h3><span class="mw-headline" id="2_foo.5B.5Bbar_2">2 foo[[bar 2</span></h3>
@@ -12203,6 +12451,35 @@ __NOTOC__ __NOEDITSECTION__
 <p>5</p>
 <h3><span class="mw-headline" id="6_foo-.7Bbar_6">6 foo-{bar 6</span></h3>
 <p>6</p>
+!! html/parsoid
+<meta property="mw:PageProp/notoc"/> <meta property="mw:PageProp/noeditsection"/
+>
+<h3>1 foo[bar 1</h3>
+<p>1</p>
+<h3>2 foo[[bar 2</h3>
+<p>2</p>
+<h3>3 foo{bar 3</h3>
+<p>3</p>
+<h3>4 foo{{bar 4</h3>
+<p>4</p>
+<h3>5 foo{{{bar 5</h3>
+<p>5</p>
+<h3>6 foo-{bar 6</h3>
+<p>6</p>
+!! end
+
+!! test
+Preprocessor precedence 16: matching closing braces to opening braces
+!! options
+language=zh
+parsoid=wt2html
+!! wikitext
+-{{{echo|foo}}bar}-
+!! html/php
+<p>foobar
+</p>
+!! html/parsoid
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[2,14,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"foo\"}},\"i\":0}}]}&#39;>foo&lt;/span>bar"}}'></span></p>
 !! end
 
 ###
@@ -13141,6 +13418,14 @@ Templates: Parameters substituted at the top-level
 <p about="#mwt3" typeof="mw:Param" data-mw='{"parts":[{"templatearg":{"target":{"wt":"foo"},"params":{"1":{"wt":"bar"},"2":{"wt":"baz"}},"i":0}}]}'>bar</p>
 !! end
 
+!! test
+Templates: Param with empty arg in the final position
+!! wikitext
+{{{hi|}}}
+!! html/parsoid
+<span about="#mwt1" typeof="mw:Param" data-mw='{"parts":[{"templatearg":{"target":{"wt":"hi"},"params":{"1":{"wt":""}},"i":0}}]}'></span>
+!! end
+
 !!test
 Parser Functions: 1. Simple example
 !! wikitext
@@ -13885,6 +14170,16 @@ parsoid=wt2html,wt2wt,html2html
 !! end
 
 !! test
+Serialize simple image with figure-inline wrapper
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><figure-inline class="mw-default-size" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></figure-inline></p>
+!! wikitext
+[[File:Foobar.jpg]]
+!! end
+
+!! test
 Simple image (using File: namespace, now canonical)
 !! wikitext
 [[File:Foobar.jpg]]
@@ -14503,7 +14798,7 @@ parsoid=wt2html,wt2wt,html2html
 #    enlarged.
 
 !! test
-Image: "unspecified format" and border enlarge
+Image: unspecified format and border enlarge
 !! options
 parsoid=wt2html,wt2wt,html2html
 !! wikitext
@@ -14515,8 +14810,8 @@ parsoid=wt2html,wt2wt,html2html
 </p><p><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="2000" height="227" class="thumbborder" /></a>
 </p>
 !! html/parsoid
-<p><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/1941px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="227" width="2000"/></a></span></p>
-<p><span class="mw-image-border" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/1941px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="227" width="2000"/></a></span></p>
+<p><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="227" width="2000"/></a></span></p>
+<p><span class="mw-image-border" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="227" width="2000"/></a></span></p>
 !! end
 
 !! test
@@ -14562,8 +14857,8 @@ parsoid=wt2html,wt2wt,html2html
 <div class="thumb tright"><div class="thumbinner" style="width:2002px;"><a href="/wiki/File:Foobar.svg" class="image"><img alt="Foobar.svg" src="http://example.com/images/thumb/f/ff/Foobar.svg/2000px-Foobar.svg.png" width="2000" height="1500" class="thumbimage" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/3000px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/4000px-Foobar.svg.png 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.svg" class="internal" title="Enlarge"></a></div></div></div></div>
 
 !! html/parsoid
-<figure typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/1941px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></figure>
-<figure typeof="mw:Image/Thumb"><a href="./File:Foobar.svg"><img resource="./File:Foobar.svg" src="//example.com/images/thumb/f/ff/Foobar.svg/240px-Foobar.svg" data-file-width="240" data-file-height="180" data-file-type="drawing" height="1500" width="2000"/></a></figure>
+<figure typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></figure>
+<figure typeof="mw:Image/Thumb"><a href="./File:Foobar.svg"><img resource="./File:Foobar.svg" src="//example.com/images/thumb/f/ff/Foobar.svg/2000px-Foobar.svg.png" data-file-width="240" data-file-height="180" data-file-type="drawing" height="1500" width="2000"/></a></figure>
 !! end
 
 !! test
@@ -14592,8 +14887,8 @@ parsoid=wt2html,wt2wt,html2html
 </p><p><a href="/wiki/File:Foobar.svg" class="image"><img alt="Foobar.svg" src="http://example.com/images/thumb/f/ff/Foobar.svg/2000px-Foobar.svg.png" width="2000" height="1500" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/3000px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/4000px-Foobar.svg.png 2x" /></a>
 </p>
 !! html/parsoid
-<p><span typeof="mw:Image/Frameless"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/1941px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></span></p>
-<p><span typeof="mw:Image/Frameless"><a href="./File:Foobar.svg"><img resource="./File:Foobar.svg" src="//example.com/images/thumb/f/ff/Foobar.svg/240px-Foobar.svg" data-file-width="240" data-file-height="180" data-file-type="drawing" height="1500" width="2000"/></a></span></p>
+<p><span typeof="mw:Image/Frameless"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></span></p>
+<p><span typeof="mw:Image/Frameless"><a href="./File:Foobar.svg"><img resource="./File:Foobar.svg" src="//example.com/images/thumb/f/ff/Foobar.svg/2000px-Foobar.svg.png" data-file-width="240" data-file-height="180" data-file-type="drawing" height="1500" width="2000"/></a></span></p>
 !! end
 
 !! test
@@ -14690,7 +14985,7 @@ SVG thumbnails with no language set
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.svg" class="image"><img alt="" src="http://example.com/images/thumb/f/ff/Foobar.svg/180px-Foobar.svg.png" width="180" height="135" class="thumbimage" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/270px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.svg" class="internal" title="Enlarge"></a></div>caption</div></div></div>
 
 !! html/parsoid
-<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.svg"><img resource="./File:Foobar.svg" src="//example.com/images/thumb/f/ff/Foobar.svg/220px-Foobar.svg" data-file-width="240" data-file-height="180" data-file-type="drawing" height="165" width="220"/></a><figcaption>caption</figcaption></figure>
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.svg"><img resource="./File:Foobar.svg" src="//example.com/images/thumb/f/ff/Foobar.svg/220px-Foobar.svg.png" data-file-width="240" data-file-height="180" data-file-type="drawing" height="165" width="220"/></a><figcaption>caption</figcaption></figure>
 !! end
 
 !! test
@@ -14703,7 +14998,7 @@ parsoid=wt2html,wt2wt,html2html
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/index.php?title=File:Foobar.svg&amp;lang=de" class="image"><img alt="" src="http://example.com/images/thumb/f/ff/Foobar.svg/langde-180px-Foobar.svg.png" width="180" height="135" class="thumbimage" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/langde-270px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/langde-360px-Foobar.svg.png 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.svg" class="internal" title="Enlarge"></a></div>caption</div></div></div>
 
 !! html/parsoid
-<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.svg"><img resource="./File:Foobar.svg" src="//example.com/images/thumb/f/ff/Foobar.svg/220px-Foobar.svg" lang="de" data-file-width="240" data-file-height="180" data-file-type="drawing" height="165" width="220"/></a><figcaption>caption</figcaption></figure>
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.svg"><img resource="./File:Foobar.svg" src="//example.com/images/thumb/f/ff/Foobar.svg/220px-Foobar.svg.png" lang="de" data-file-width="240" data-file-height="180" data-file-type="drawing" height="165" width="220"/></a><figcaption>caption</figcaption></figure>
 !! end
 
 !! test
@@ -16811,6 +17106,24 @@ HTML tag with leading space is parsed as text
 </p>
 !! end
 
+## Don't expect Parsoid and PHP to match, since PHP isn't exactly following
+## the HTML5 parsing spec.
+!! test
+Element with broken attribute syntax
+!! options
+parsoid=wt2html
+!! wikitext
+<div style=" style="123">hi</div>
+<div =>ho</div>
+!! html/php
+<div style="123">hi</div>
+<div>ho</div>
+
+!! html/parsoid
+<div style=" style=" data-parsoid='{"stx":"html","a":{"123\"":null},"sa":{"123\"":""}}'>hi</div>
+<div data-parsoid='{"stx":"html","a":{"=":null},"sa":{"=":""}}'>ho</div>
+!! end
+
 ###
 ### Nesting tests (see T43545, T52604, T53081)
 ###
@@ -16899,11 +17212,17 @@ Nesting of <bdo>
 Media link
 !! wikitext
 [[Media:Foobar.jpg]]
+[[Media:Video.ogv]]
+[[:Media:Video.ogv]]
 !! html/php
 <p><a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">Media:Foobar.jpg</a>
+<a href="http://example.com/images/0/00/Video.ogv" class="internal" title="Video.ogv">Media:Video.ogv</a>
+<a href="http://example.com/images/0/00/Video.ogv" class="internal" title="Video.ogv">Media:Video.ogv</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:MediaLink" href="//example.com/images/3/3a/Foobar.jpg" title="Foobar.jpg">Media:Foobar.jpg</a></p>
+<p><a rel="mw:MediaLink" href="//example.com/images/3/3a/Foobar.jpg" title="Foobar.jpg">Media:Foobar.jpg</a>
+<a rel="mw:MediaLink" href="//example.com/images/0/00/Video.ogv" title="Video.ogv">Media:Video.ogv</a>
+<a rel="mw:MediaLink" href="//example.com/images/0/00/Video.ogv" title="Video.ogv" data-parsoid='{"a":{"namespace":"Media"},"sa":{"namespace":":Media"}}'>Media:Video.ogv</a></p>
 !! end
 
 !! test
@@ -16969,8 +17288,6 @@ Image link to nonexistent file (T3850 - good)
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./File:No_such.jpg" title="File:No such.jpg">Image:No such.jpg</a></p>
 !! end
-
-
 
 !! test
 Character reference normalization in link text (T3938)
@@ -17967,12 +18284,17 @@ but if we add a conversion instance: -{zh-cn:xxx;zh-tw:yyy}-
 then we get cut off here: }-
 
 all additional text is vanished
-!! html
+!! html/php
 <p>this bit is safe: }-
 </p><p>but if we add a conversion instance: xxx
 </p><p>then we get cut off here: }-
 </p><p>all additional text is vanished
 </p>
+!! html/parsoid
+<p>this bit is safe: }-</p>
+<p>but if we add a conversion instance: <span typeof="mw:LanguageVariant" data-parsoid='{"tSp":[6]}' data-mw-variant='{"twoway":[{"l":"zh-cn","t":"xxx"},{"l":"zh-tw","t":"yyy"}]}'></span></p>
+<p>then we get cut off here: }-</p>
+<p>all additional text is vanished</p>
 !! end
 
 !! test
@@ -19679,7 +20001,7 @@ File:File:Foobar.jpg
 
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" type="123" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{"type":"123","summary":"345"},"body":{"extsrc":"\nFile:File:Foobar.jpg\n"}}'>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span style="vertical-align: middle; display: inline-block;">File:File:Foobar.jpg</span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:Image"><a href="./File:File:Foobar.jpg"><img resource="./File:File:Foobar.jpg" src="./Special:FilePath/File:Foobar.jpg" height="120" width="120"/></a></span></div><div class="gallerytext"></div></li>
 </ul>
 !! end
 
@@ -19742,12 +20064,12 @@ image4    |300px| centre
 
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span style="vertical-align: middle; display: inline-block;">image1.png </span></div><div class="gallerytext"></div></li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span style="vertical-align: middle; display: inline-block;">image2.gif</span></div><div class="gallerytext"></div></li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span style="vertical-align: middle; display: inline-block;">image3</span></div><div class="gallerytext"></div></li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span style="vertical-align: middle; display: inline-block;">image4    </span></div><div class="gallerytext"></div></li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span style="vertical-align: middle; display: inline-block;"> image5.svg</span></div><div class="gallerytext"> <a rel="mw:ExtLink" href="http://///////">http://///////</a></div></li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span style="vertical-align: middle; display: inline-block;">* image6</span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:Image"><a href="./File:Image1.png"><img resource="./File:Image1.png" src="./Special:FilePath/Image1.png" height="120" width="120"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:Image"><a href="./File:Image2.gif"><img resource="./File:Image2.gif" src="./Special:FilePath/Image2.gif" height="120" width="120"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:Image"><a href="./File:Image3"><img resource="./File:Image3" src="./Special:FilePath/Image3" height="120" width="120"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:Image"><a href="./File:Image4"><img resource="./File:Image4" src="./Special:FilePath/Image4" height="300" width="300"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:Image"><a href="./File:Image5.svg"><img resource="./File:Image5.svg" src="./Special:FilePath/Image5.svg" height="120" width="120"/></a></span></div><div class="gallerytext"> <a rel="mw:ExtLink" href="http://///////">http://///////</a></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:Image"><a href="./File:*_image6"><img resource="./File:*_image6" src="./Special:FilePath/*_image6" height="120" width="120"/></a></span></div><div class="gallerytext"></div></li>
 </ul>
 !! end
 
@@ -19805,11 +20127,11 @@ image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" style="max-width: 226px; _width: 226px;" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{"widths":"70px","heights":"40px","perrow":"2"},"body":{}}'>
 <li class="gallerycaption">Foo <a rel="mw:WikiLink" href="./Main_Page" title="Main Page">Main Page</a></li>
-<li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span style="vertical-align: middle; display: inline-block;">File:Nonexistent.jpg</span></div><div class="gallerytext">caption</div></li>
-<li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span style="vertical-align: middle; display: inline-block;">File:Nonexistent.jpg</span></div><div class="gallerytext"></div></li>
-<li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/70px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="8" width="70"/></a></span></div><div class="gallerytext">some <b>caption</b> <a rel="mw:WikiLink" href="./Main_Page" title="Main Page">Main Page</a></div></li>
-<li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/70px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="8" width="70"/></a></span></div><div class="gallerytext"></div></li>
-<li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="./File:Foobar.jpg"><img alt="This is a foo-bar." resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/70px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="8" width="70"/></a></span></div><div class="gallerytext">blabla.</div></li>
+<li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><span typeof="mw:Error mw:Image"><a href="./File:Nonexistent.jpg"><img resource="./File:Nonexistent.jpg" src="./Special:FilePath/Nonexistent.jpg" height="40" width="70"/></a></span></div><div class="gallerytext">caption</div></li>
+<li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><span typeof="mw:Error mw:Image"><a href="./File:Nonexistent.jpg"><img resource="./File:Nonexistent.jpg" src="./Special:FilePath/Nonexistent.jpg" height="40" width="70"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/70px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="8" width="70"/></a></span></div><div class="gallerytext">some <b>caption</b> <a rel="mw:WikiLink" href="./Main_Page" title="Main Page">Main Page</a></div></li>
+<li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/70px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="8" width="70"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img alt="This is a foo-bar." resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/70px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="8" width="70"/></a></span></div><div class="gallerytext">blabla.</div></li>
 </ul>
 !! end
 
@@ -19864,13 +20186,13 @@ image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
 </ul>
 
 !! html/parsoid
-<ul class="gallery mw-gallery-traditional" style="max-width: 226px; _width: 226px;" typeof="mw:Extension/gallery" about="#mwt3" data-parsoid='{}' data-mw='{"name":"gallery","attrs":{"widths":"70px","heights":"40px","perrow":"2","caption":"Foo [[Main Page]]"},"body":{"extsrc":"\nFile:Nonexistent.jpg|caption\nFile:Nonexistent.jpg\nimage:foobar.jpg|some &#39;&#39;&#39;caption&#39;&#39;&#39; [[Main Page]]\nimage:foobar.jpg\nimage:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.\n"}}'>
+<ul class="gallery mw-gallery-traditional" style="max-width: 226px; _width: 226px;" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{"widths":"70px","heights":"40px","perrow":"2","caption":"Foo [[Main Page]]"},"body":{"extsrc":"\nFile:Nonexistent.jpg|caption\nFile:Nonexistent.jpg\nimage:foobar.jpg|some &#39;&#39;&#39;caption&#39;&#39;&#39; [[Main Page]]\nimage:foobar.jpg\nimage:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.\n"}}'>
 <li class="gallerycaption">Foo <a rel="mw:WikiLink" href="./Main_Page" title="Main Page">Main Page</a></li>
-<li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span style="vertical-align: middle; display: inline-block;">File:Nonexistent.jpg</span></div><div class="gallerytext">caption</div></li>
-<li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span style="vertical-align: middle; display: inline-block;">File:Nonexistent.jpg</span></div><div class="gallerytext"></div></li>
-<li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/70px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="8" width="70"/></a></span></div><div class="gallerytext">some <b>caption</b> <a rel="mw:WikiLink" href="./Main_Page" title="Main Page">Main Page</a></div></li>
-<li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/70px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="8" width="70"/></a></span></div><div class="gallerytext"></div></li>
-<li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="./File:Foobar.jpg"><img alt="This is a foo-bar." resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/70px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="8" width="70"/></a></span></div><div class="gallerytext">blabla.</div></li>
+<li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><span typeof="mw:Error mw:Image"><a href="./File:Nonexistent.jpg"><img resource="./File:Nonexistent.jpg" src="./Special:FilePath/Nonexistent.jpg" height="40" width="70"/></a></span></div><div class="gallerytext">caption</div></li>
+<li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><span typeof="mw:Error mw:Image"><a href="./File:Nonexistent.jpg"><img resource="./File:Nonexistent.jpg" src="./Special:FilePath/Nonexistent.jpg" height="40" width="70"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/70px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="8" width="70"/></a></span></div><div class="gallerytext">some <b>caption</b> <a rel="mw:WikiLink" href="./Main_Page" title="Main Page">Main Page</a></div></li>
+<li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/70px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="8" width="70"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img alt="This is a foo-bar." resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/70px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="8" width="70"/></a></span></div><div class="gallerytext">blabla.</div></li>
 </ul>
 !! end
 
@@ -19910,9 +20232,9 @@ image:foobar.jpg|link=Main Page#section|caption
 
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="./Main_Page"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"></div></li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="./Main_Page#section"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"></div></li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="./Main_Page#section"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext">caption</div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Image"><a href="./Main_Page"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Image"><a href="./Main_Page#section"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Image"><a href="./Main_Page#section"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext">caption</div></li>
 </ul>
 !! end
 
@@ -19942,7 +20264,7 @@ File:Foobar.jpg|{{echo|ho}}
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt6" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
 <li class="gallerycaption"><span about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"hi"}},"i":0}}]}'>hi</span></li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"><span about="#mwt5" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"ho"}},"i":0}}]}'>ho</span></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"><span about="#mwt5" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"ho"}},"i":0}}]}'>ho</span></div></li>
 </ul>
 !! end
 
@@ -19977,8 +20299,8 @@ File:Foobar.jpg|alt=galleryalt|{{Test|unamedParam|alt=param}}
 
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt6" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="./File:Foobar.jpg"><img alt="galleryalt" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"><span typeof="mw:Image" data-mw='{"caption":"desc"}'><a href="./File:Foobar.jpg"><img alt="inneralt" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/20px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="2" width="20"/></a></span></div></li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="./File:Foobar.jpg"><img alt="galleryalt" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"><span about="#mwt4" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Test","href":"./Template:Test"},"params":{"1":{"wt":"unamedParam"},"alt":{"wt":"param"}},"i":0}}]}'>This is a test template</span></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img alt="galleryalt" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"><span typeof="mw:Image" data-mw='{"caption":"desc"}'><a href="./File:Foobar.jpg"><img alt="inneralt" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/20px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="2" width="20"/></a></span></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img alt="galleryalt" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"><span about="#mwt4" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Test","href":"./Template:Test"},"params":{"1":{"wt":"unamedParam"},"alt":{"wt":"param"}},"i":0}}]}'>This is a test template</span></div></li>
 </ul>
 !! end
 
@@ -20031,14 +20353,14 @@ some <b>caption</b> <a href="/wiki/Main_Page" title="Main Page">Main Page</a>
 
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{"showfilename":""},"body":{}}'>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span style="vertical-align: middle; display: inline-block;">File:Nonexistent.jpg</span></div><div class="gallerytext"><a href="./File:Nonexistent.jpg" class="galleryfilename galleryfilename-truncate" title="File:Nonexistent.jpg">File:Nonexistent.jpg</a>caption</div></li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span style="vertical-align: middle; display: inline-block;">File:Nonexistent.jpg</span></div><div class="gallerytext"><a href="./File:Nonexistent.jpg" class="galleryfilename galleryfilename-truncate" title="File:Nonexistent.jpg">File:Nonexistent.jpg</a></div></li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"><a href="./File:Foobar.jpg" class="galleryfilename galleryfilename-truncate" title="File:Foobar.jpg">File:Foobar.jpg</a>some <b>caption</b> <a rel="mw:WikiLink" href="./Main_Page" title="Main Page">Main Page</a></div></li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"><a href="./File:Foobar.jpg" class="galleryfilename galleryfilename-truncate" title="File:Foobar.jpg">File:Foobar.jpg</a></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:Image"><a href="./File:Nonexistent.jpg"><img resource="./File:Nonexistent.jpg" src="./Special:FilePath/Nonexistent.jpg" height="120" width="120"/></a></span></div><div class="gallerytext"><a href="./File:Nonexistent.jpg" class="galleryfilename galleryfilename-truncate" title="File:Nonexistent.jpg">File:Nonexistent.jpg</a>caption</div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:Image"><a href="./File:Nonexistent.jpg"><img resource="./File:Nonexistent.jpg" src="./Special:FilePath/Nonexistent.jpg" height="120" width="120"/></a></span></div><div class="gallerytext"><a href="./File:Nonexistent.jpg" class="galleryfilename galleryfilename-truncate" title="File:Nonexistent.jpg">File:Nonexistent.jpg</a></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"><a href="./File:Foobar.jpg" class="galleryfilename galleryfilename-truncate" title="File:Foobar.jpg">File:Foobar.jpg</a>some <b>caption</b> <a rel="mw:WikiLink" href="./Main_Page" title="Main Page">Main Page</a></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"><a href="./File:Foobar.jpg" class="galleryfilename galleryfilename-truncate" title="File:Foobar.jpg">File:Foobar.jpg</a></div></li>
 </ul>
 !! end
 
-## Should Parsoid be preserving these variations?
+## Should Parsoid be preserving these variations?  See T151367
 !! test
 Gallery (with namespace-less filenames)
 !! options
@@ -20079,10 +20401,10 @@ foobar.jpg
 
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span style="vertical-align: middle; display: inline-block;">File:Nonexistent.jpg</span></div><div class="gallerytext"></div></li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span style="vertical-align: middle; display: inline-block;">Nonexistent.jpg</span></div><div class="gallerytext"></div></li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"></div></li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:Image"><a href="./File:Nonexistent.jpg"><img resource="./File:Nonexistent.jpg" src="./Special:FilePath/Nonexistent.jpg" height="120" width="120"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:Image"><a href="./File:Nonexistent.jpg"><img resource="./File:Nonexistent.jpg" src="./Special:FilePath/Nonexistent.jpg" height="120" width="120"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"></div></li>
 </ul>
 !! end
 
@@ -20107,7 +20429,7 @@ File:Foobar.jpg|alt=galleryalt|link=InterWikiLink
 
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-parsoid='{"dsr":[0,70,2,2]}' data-mw='{"name":"gallery","attrs":{},"body":{}}'>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="./InterWikiLink"><img alt="galleryalt" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Image"><a href="./InterWikiLink"><img alt="galleryalt" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"></div></li>
 </ul>
 !! end
 
@@ -20132,7 +20454,7 @@ File:Foobar.jpg|alt=galleryalt|link=http://www.example.org
 
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="http://www.example.org"><img alt="galleryalt" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Image"><a href="http://www.example.org"><img alt="galleryalt" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"></div></li>
 </ul>
 !! end
 
@@ -20179,10 +20501,11 @@ File:Foobar.jpg|alt=galleryalt|link=" onclick="alert('malicious javascript code!
 
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="./%22_onclick=%22alert('malicious_javascript_code!');"><img alt="galleryalt" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Image"><a href="./%22_onclick=%22alert('malicious_javascript_code!');"><img alt="galleryalt" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"></div></li>
 </ul>
 !! end
 
+# Note that parsoid uses the invalid link as a caption, PHP does not.
 !! test
 Gallery with invalid title as link (T45964)
 !! options
@@ -20205,7 +20528,7 @@ File:Foobar.jpg|link=<
 
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext">link=&lt;</div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext">link=&lt;</div></li>
 </ul>
 !! end
 
@@ -20219,7 +20542,7 @@ parsoid={
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","body":{}}'>
 <li class="gallerycaption">123</li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span style="vertical-align: middle; display: inline-block;">File:Test.png</span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span>File:Test.png</span></div><div class="gallerytext"></div></li>
 </ul>
 !! wikitext
 <gallery caption="123">
@@ -20248,7 +20571,7 @@ File:Foobar.jpg
 
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional center" style="text-align: center;" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{"class":"center","style":"text-align: center;"},"body":{}}'>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span style="display: inline-block; height: 100%; vertical-align: middle;"></span><span typeof="mw:Image" style="vertical-align: middle; display: inline-block;"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div><div class="gallerytext"></div></li>
 </ul>
 !! end
 
@@ -20996,16 +21319,22 @@ Parsing of overlapping (improperly nested) inline html tags
 ###
 ### Language variants related tests
 ###
+
+# Parsoid does not mark self-links.
+# Parsoid does not convert links; PHP will do any necessary redirects.
+
 !! test
 Self-link in language variants
 !! options
 title=[[Dunav]] language=sr
 !! wikitext
 Both [[Dunav]] and [[Дунав]] are names for this river.
-!! html
+!! html/php
 <p>Both <a class="mw-selflink selflink">Dunav</a> and <a class="mw-selflink selflink">Дунав</a> are names for this river.
 </p>
-!!end
+!! html/parsoid
+<p>Both <a rel="mw:WikiLink" href="./Dunav" title="Dunav">Dunav</a> and <a rel="mw:WikiLink" href="./Дунав" title="Дунав">Дунав</a> are names for this river.</p>
+!! end
 
 !! article
 Дуна
@@ -21019,9 +21348,11 @@ Link to another existing title shouldn't be parsed as self-link even if it's a v
 title=[[Duna]] language=sr
 !! wikitext
 [[Дуна]] is not a self-link while [[Duna]] and [[Dуна]] are still self-links.
-!! html
+!! html/php
 <p><a href="/wiki/%D0%94%D1%83%D0%BD%D0%B0" title="Дуна">Дуна</a> is not a self-link while <a class="mw-selflink selflink">Duna</a> and <a class="mw-selflink selflink">Dуна</a> are still self-links.
 </p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Дуна" title="Дуна">Дуна</a> is not a self-link while <a rel="mw:WikiLink" href="./Duna" title="Duna">Duna</a> and <a rel="mw:WikiLink" href="./Dуна" title="Dуна">Dуна</a> are still self-links.</p>
 !! end
 
 !! test
@@ -21030,9 +21361,11 @@ Link to a section of a variant of this title shouldn't be parsed as self-link
 title=[[Duna]] language=sr
 !! wikitext
 [[Dуна]] is a self-link while [[Dunа#Foo]] and [[Dуна#Foo]] are not self-links.
-!! html
+!! html/php
 <p><a class="mw-selflink selflink">Dуна</a> is a self-link while <a href="/wiki/%D0%94%D1%83%D0%BD%D0%B0" title="Дуна">Dunа#Foo</a> and <a href="/wiki/%D0%94%D1%83%D0%BD%D0%B0" title="Дуна">Dуна#Foo</a> are not self-links.
 </p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Dуна" title="Dуна">Dуна</a> is a self-link while <a rel="mw:WikiLink" href="./Dunа#Foo" title="Dunа">Dunа#Foo</a> and <a rel="mw:WikiLink" href="./Dуна#Foo" title="Dуна">Dуна#Foo</a> are not self-links.</p>
 !! end
 
 !! test
@@ -21041,10 +21374,12 @@ Link to pages in language variants
 language=sr
 !! wikitext
 Main Page can be written as [[Маин Паге]]
-!! html
+!! html/php
 <p>Main Page can be written as <a href="/wiki/Main_Page" title="Main Page">Маин Паге</a>
 </p>
-!!end
+!! html/parsoid
+<p>Main Page can be written as <a rel="mw:WikiLink" href="./Маин_Паге" title="Маин Паге">Маин Паге</a></p>
+!! end
 
 
 !! test
@@ -21053,10 +21388,12 @@ Multiple links to pages in language variants
 language=sr
 !! wikitext
 [[Main Page]] can be written as [[Маин Паге]] same as [[Маин Паге]].
-!! html
+!! html/php
 <p><a href="/wiki/Main_Page" title="Main Page">Main Page</a> can be written as <a href="/wiki/Main_Page" title="Main Page">Маин Паге</a> same as <a href="/wiki/Main_Page" title="Main Page">Маин Паге</a>.
 </p>
-!!end
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Main_Page" title="Main Page">Main Page</a> can be written as <a rel="mw:WikiLink" href="./Маин_Паге" title="Маин Паге">Маин Паге</a> same as <a rel="mw:WikiLink" href="./Маин_Паге" title="Маин Паге">Маин Паге</a>.</p>
+!! end
 
 
 !! test
@@ -21065,7 +21402,7 @@ Simple template in language variants
 language=sr
 !! wikitext
 {{тест}}
-!! html
+!! html/php
 <p>This is a test template
 </p>
 !! end
@@ -21077,7 +21414,7 @@ Template with explicit namespace in language variants
 language=sr
 !! wikitext
 {{Template:тест}}
-!! html
+!! html/php
 <p>This is a test template
 </p>
 !! end
@@ -21089,7 +21426,7 @@ Basic test for template parameter in language variants
 language=sr
 !! wikitext
 {{парамтест|param=foo}}
-!! html
+!! html/php
 <p>This is a test template with parameter foo
 </p>
 !! end
@@ -21143,9 +21480,11 @@ Stripping -{}- tags (language variants)
 language=sr
 !! wikitext
 Latin proverb: -{Ne nuntium necare}-
-!! html
+!! html/php
 <p>Latin proverb: Ne nuntium necare
 </p>
+!! html/parsoid
+<p>Latin proverb: <span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"Ne nuntium necare"}}'></span></p>
 !! end
 
 
@@ -21155,9 +21494,11 @@ Prevent conversion with -{}- tags (language variants)
 language=sr variant=sr-ec
 !! wikitext
 Latinski: -{Ne nuntium necare}-
-!! html
+!! html/php
 <p>Латински: Ne nuntium necare
 </p>
+!! html/parsoid
+<p>Latinski: <span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"Ne nuntium necare"}}'></span></p>
 !! end
 
 
@@ -21167,9 +21508,11 @@ Prevent conversion of text with -{}- tags (language variants)
 language=sr variant=sr-ec
 !! wikitext
 Latinski: -{Ne nuntium necare}-
-!! html
+!! html/php
 <p>Латински: Ne nuntium necare
 </p>
+!! html/parsoid
+<p>Latinski: <span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"Ne nuntium necare"}}'></span></p>
 !! end
 
 
@@ -21179,9 +21522,11 @@ Prevent conversion of links with -{}- tags (language variants)
 language=sr variant=sr-ec
 !! wikitext
 -{[[Main Page]]}-
-!! html
+!! html/php
 <p><a href="/wiki/Main_Page" title="Main Page">Main Page</a>
 </p>
+!! html/parsoid
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"&lt;a rel=\"mw:WikiLink\" href=\"./Main_Page\" title=\"Main Page\" data-parsoid=&#39;{\"stx\":\"simple\",\"a\":{\"href\":\"./Main_Page\"},\"sa\":{\"href\":\"Main Page\"},\"dsr\":[2,15,2,2]}&#39;>Main Page&lt;/a>"}}'></span></p>
 !! end
 
 
@@ -21191,11 +21536,26 @@ language=sr variant=sr-ec
 language=sr variant=sr-ec
 !! wikitext
 == -{Naslov}- ==
-!! html
+
+Note that even an unprotected headline ID is not affected by language
+conversion:
+
+== Latinski ==
+!! html/php
 <h2><span class="mw-headline" id="-.7BNaslov.7D-">Naslov</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Уреди одељак „Naslov“">уреди</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Ноте тхат евен ан унпротецтед хеадлине ИД ис нот аффецтед бy лангуаге
+цонверсион:
+</p>
+<h2><span class="mw-headline" id="Latinski">Латински</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Уреди одељак „Латински“">уреди</a><span class="mw-editsection-bracket">]</span></span></h2>
 
+!! html/parsoid
+<h2 id="-.7BNaslov.7D-"><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"Naslov"}}'></span></h2>
+
+<p>Note that even an unprotected headline ID is not affected by language
+conversion:</p>
+
+<h2 id="Latinski">Latinski</h2>
 !! end
-
 
 !! test
 Explicit definition of language variant alternatives
@@ -21203,66 +21563,284 @@ Explicit definition of language variant alternatives
 language=zh variant=zh-tw
 !! wikitext
 -{zh:China;zh-tw:Taiwan}-, not China
-!! html
+!! html/php
 <p>Taiwan, not China
 </p>
+!! html/parsoid
+<p><span typeof="mw:LanguageVariant" data-parsoid='{"tSp":[6]}' data-mw-variant='{"twoway":[{"l":"zh","t":"China"},{"l":"zh-tw","t":"Taiwan"}]}'></span>, not China</p>
 !! end
 
+!! test
+Filter syntax for language variants
+!! options
+language=zh variant=zh-tw
+!! wikitext
+foo-{zh;zh-hans;zh-hant|blog, WEBJOURNAL, WEBLOG}-quux
+!! html/php
+<p>fooblog, WEBJOURNAL, WEBLOGquux
+</p>
+!! html/parsoid
+<p>foo<span typeof="mw:LanguageVariant" data-mw-variant='{"filter":{"l":["zh","zh-hans","zh-hant"],"t":"blog, WEBJOURNAL, WEBLOG"}}'></span>quux</p>
+!! end
 
+# Note that Parsoid post-processing for language variants needs to
+# update the `title` attribute here, based on the mw:ExpandedAttrs property
 !! test
 Conversion around HTML tags
 !! options
 language=sr variant=sr-ec
 !! wikitext
--{H|span=>sr-ec:script;title=>sr-ec:src;}-
-<span title="La-{sr-el:L;sr-ec:C;}-tin">ski</span>
-!! html
+-{H|span=>sr-ec:script;title=>sr-ec:src}-
+<span title="La-{sr-el:L;sr-ec:C}-tin">ski</span>
+!! html/php
 <p>
 <span title="ЛаCтин">ски</span>
 </p>
+!! html/parsoid
+<p><meta typeof="mw:LanguageVariant" data-parsoid='{"tSp":[8]}' data-mw-variant='{"add":true,"oneway":[{"f":"span","l":"sr-ec","t":"script"},{"f":"title","l":"sr-ec","t":"src"}]}'/>
+<span title="Latin" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"title"},{"html":"La&lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&#39;{\"twoway\":[{\"l\":\"sr-el\",\"t\":\"L\"},{\"l\":\"sr-ec\",\"t\":\"C\"}]}&#39; data-parsoid=&#39;{\"fl\":[],\"tSp\":[6],\"dsr\":[57,76,null,2]}&#39;>&lt;/span>tin"}]]}'>ski</span></p>
 !! end
 
-
 !! test
-Explicit session-wise language variant mapping (A flag and - flag)
+Explicit session-wise two-way language variant mapping (A flag and - flag)
 !! options
 language=zh variant=zh-tw
 !! wikitext
+This is -{zh:China; zh-tw:Taiwan}-, but we'll forget that now.
+
 Taiwan is not China.
-But -{A|zh:China;zh-tw:Taiwan}- is China,
-(This-{-|zh:China;zh-tw:Taiwan}- should be stripped!)
+
+But -{A|zh:China; zh-tw:Taiwan}- is China,
+
+(This-{-|zh:China; zh-tw:Taiwan}- should be stripped!)
+
 and -{China}- is China.
-!! html
-<p>Taiwan is not China.
-But Taiwan is Taiwan,
-(This should be stripped!)
-and China is China.
+!! html/php
+<p>This is Taiwan, but we'll forget that now.
+</p><p>Taiwan is not China.
+</p><p>But Taiwan is Taiwan,
+</p><p>(This should be stripped!)
+</p><p>and China is China.
 </p>
+!! html/parsoid
+<p>This is <span typeof="mw:LanguageVariant" data-mw-variant='{"twoway":[{"l":"zh","t":"China"},{"l":"zh-tw","t":"Taiwan"}]}'></span>, but we'll forget that now.</p>
+<p>Taiwan is not China.</p>
+<p>But <span typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"twoway":[{"l":"zh","t":"China"},{"l":"zh-tw","t":"Taiwan"}]}'></span> is China,</p>
+<p>(This<meta typeof="mw:LanguageVariant" data-mw-variant='{"remove":true,"twoway":[{"l":"zh","t":"China"},{"l":"zh-tw","t":"Taiwan"}]}'/> should be stripped!)</p>
+<p>and <span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"China"}}'></span> is China.</p>
 !! end
 
 !! test
-Explicit session-wise language variant mapping (H flag for hide)
+Explicit session-wise one-way language variant mapping (A flag and - flag)
+!! options
+language=zh variant=zh-tw
+!! wikitext
+This is -{COUNTRY=>zh:China;COUNTRY=>zh-tw:Taiwan}-, but we'll forget that now.
+
+COUNTRY is China or Taiwan.
+
+But -{A|COUNTRY=>zh:China;COUNTRY=>zh-tw:Taiwan}- is COUNTRY,
+
+(This-{-|COUNTRY=>zh:China;COUNTRY=>zh-tw:Taiwan}- should be stripped!)
+
+and -{COUNTRY}- is COUNTRY.
+!! html/php
+<p>This is Taiwan, but we'll forget that now.
+</p><p>COUNTRY is China or Taiwan.
+</p><p>But Taiwan is Taiwan,
+</p><p>(This should be stripped!)
+</p><p>and COUNTRY is COUNTRY.
+</p>
+!! html/parsoid
+<p>This is <span typeof="mw:LanguageVariant" data-mw-variant='{"oneway":[{"f":"COUNTRY","l":"zh","t":"China"},{"f":"COUNTRY","l":"zh-tw","t":"Taiwan"}]}'></span>, but we'll forget that now.</p>
+<p>COUNTRY is China or Taiwan.</p>
+<p>But <span typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"oneway":[{"f":"COUNTRY","l":"zh","t":"China"},{"f":"COUNTRY","l":"zh-tw","t":"Taiwan"}]}'></span> is COUNTRY,</p>
+<p>(This<meta typeof="mw:LanguageVariant" data-mw-variant='{"oneway":[{"f":"COUNTRY","l":"zh","t":"China"},{"f":"COUNTRY","l":"zh-tw","t":"Taiwan"}],"remove":true}'/> should be stripped!)</p>
+<p>and <span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"COUNTRY"}}'></span> is COUNTRY.</p>
+!! end
+
+!! test
+Explicit session-wise two-way language variant mapping (H flag for hide)
 !! options
 language=zh variant=zh-tw
 !! wikitext
 (This-{H|zh:China;zh-tw:Taiwan}- should be stripped!)
+
 Taiwan is China.
-!! html
+!! html/php
 <p>(This should be stripped!)
-Taiwan is Taiwan.
+</p><p>Taiwan is Taiwan.
 </p>
+!! html/parsoid
+<p>(This<meta typeof="mw:LanguageVariant" data-parsoid='{"tSp":[6]}' data-mw-variant='{"add":true,"twoway":[{"l":"zh","t":"China"},{"l":"zh-tw","t":"Taiwan"}]}'/> should be stripped!)</p>
+<p>Taiwan is China.</p>
 !! end
 
+!! test
+Explicit session-wise one-way language variant mapping (H flag for hide)
+!! options
+language=zh variant=zh-tw
+!! wikitext
+(This-{H|COUNTRY=>zh:China;COUNTRY=>zh-tw:Taiwan}- should be stripped!)
+
+COUNTRY is Taiwan or China.
+!! html/php
+<p>(This should be stripped!)
+</p><p>Taiwan is Taiwan or China.
+</p>
+!! html/parsoid
+<p>(This<meta typeof="mw:LanguageVariant" data-parsoid='{"tSp":[8]}' data-mw-variant='{"add":true,"oneway":[{"f":"COUNTRY","l":"zh","t":"China"},{"f":"COUNTRY","l":"zh-tw","t":"Taiwan"}]}'/> should be stripped!)</p>
+<p>COUNTRY is Taiwan or China.</p>
+!! end
+
+## Note that parsoid test runner does not support 'showtitle' option.
 !! test
 Adding explicit conversion rule for title (T flag)
 !! options
 language=zh variant=zh-tw showtitle
 !! wikitext
 Should be stripped-{T|zh:China;zh-tw:Taiwan}-!
-!! html
+
+Taiwan is China.
+!! html/php
 Taiwan
 <p>Should be stripped!
+</p><p>Taiwan is China.
 </p>
+!! html/parsoid
+<p>Should be stripped<meta typeof="mw:LanguageVariant" data-parsoid='{"tSp":[6]}' data-mw-variant='{"title":true,"twoway":[{"l":"zh","t":"China"},{"l":"zh-tw","t":"Taiwan"}]}'/>!</p>
+<p>Taiwan is China.</p>
+!! end
+
+!! test
+Code coverage: T combined with H flag
+!! options
+language=zh variant=zh-tw showtitle
+!! wikitext
+Should be stripped-{T;H|zh:China; zh-tw:Taiwan}-!
+
+Taiwan is China.
+!! html/php
+Taiwan
+<p>Should be stripped!
+</p><p>Taiwan is Taiwan.
+</p>
+!! html/parsoid
+<p>Should be stripped<meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"title":true,"twoway":[{"l":"zh","t":"China"},{"l":"zh-tw","t":"Taiwan"}]}'/>!</p>
+<p>Taiwan is China.</p>
+!! end
+
+!! test
+Code coverage: T with no variants
+!! options
+language=zh variant=zh-tw showtitle
+!! wikitext
+-{H|zh:China; zh-tw:Taiwan}-
+Taiwan is China.-{T|Taiwan is China}-
+!! html/php
+Taiwan is China
+<p>
+Taiwan is Taiwan.
+</p>
+!! html/parsoid
+<p><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"twoway":[{"l":"zh","t":"China"},{"l":"zh-tw","t":"Taiwan"}]}'/>
+Taiwan is China.<meta typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"Taiwan is China"},"title":true}'/></p>
+!! end
+
+!! test
+Code coverage: rules with no variants
+!! options
+language=zh variant=zh-tw
+!! wikitext
+-{H|zh:China; zh-tw:Taiwan}-
+Taiwan is China.
+-{H|China}-
+Taiwan is China.
+!! html/php
+<p>
+Taiwan is Taiwan.
+
+Taiwan is China.
+</p>
+!! html/parsoid
+<p><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"twoway":[{"l":"zh","t":"China"},{"l":"zh-tw","t":"Taiwan"}]}'/>
+Taiwan is China.
+<meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"twoway":[{"l":"*","t":"China"}]}'/>
+Taiwan is China.</p>
+!! end
+
+
+!! test
+Code coverage: D flag for conversion rule
+!! options
+language=zh variant=zh-tw
+!! wikitext
+-{D|zh-cn:XA; zh-tw:YA}-
+-{A;D|zh-cn:XB; zh-tw:YB}-
+-{D;H|zh-cn:XC; zh-tw:YC}-
+
+-{D;H|FOO=>zh-tw:BAR;FOO=>zh-cn:BAT}-
+
+-{D|0=>zh-tw:1}-
+-{A;D|2=>zh-tw:3}-
+-{D;H|4=>zh-tw:5}-
+
+XA XB XC YA YB YC FOO BAR BAT 012345
+!! html/php
+<p>大陆：XA；台灣：YA；
+
+大陆：XC；台灣：YC；
+</p><p>FOO⇒台灣：BAR；FOO⇒大陆：BAT；
+</p><p>0⇒台灣：1；
+
+4⇒台灣：5；
+</p><p>XA YB YC YA YB YC BAR BAR BAT 013355
+</p>
+!! html/parsoid
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"describe":true,"twoway":[{"l":"zh-cn","t":"XA"},{"l":"zh-tw","t":"YA"}]}'></span>
+<meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"describe":true,"twoway":[{"l":"zh-cn","t":"XB"},{"l":"zh-tw","t":"YB"}]}'/>
+<span typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"describe":true,"twoway":[{"l":"zh-cn","t":"XC"},{"l":"zh-tw","t":"YC"}]}'></span></p>
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"describe":true,"oneway":[{"f":"FOO","l":"zh-tw","t":"BAR"},{"f":"FOO","l":"zh-cn","t":"BAT"}]}'></span></p>
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"describe":true,"oneway":[{"f":"0","l":"zh-tw","t":"1"}]}'></span>
+<meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"describe":true,"oneway":[{"f":"2","l":"zh-tw","t":"3"}]}'/>
+<span typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"describe":true,"oneway":[{"f":"4","l":"zh-tw","t":"5"}]}'></span></p>
+<p>XA XB XC YA YB YC FOO BAR BAT 012345</p>
+!! end
+
+!! test
+Code coverage: N flag for conversion rule
+!! options
+language=zh variant=zh-cn
+!! wikitext
+-{N|zh-cn}-
+
+-{N|zh-tw}-
+
+-{N|sr-ec}-
+!! html/php
+<p>大陆
+</p><p>台灣
+</p><p>српски (ћирилица)‎
+</p>
+!! html/parsoid
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"name":{"t":"zh-cn"}}'></span></p>
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"name":{"t":"zh-tw"}}'></span></p>
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"name":{"t":"sr-ec"}}'></span></p>
+!! end
+
+# html2wt suppresses the bogus 'D' flag, so this is wt2html only
+!! test
+Code coverage: N flag for conversion rule (wt2html only)
+!! options
+language=zh variant=zh-cn
+parsoid=wt2html,html2html
+!! wikitext
+-{D;N|en}-
+!! html/php
+<p>English
+</p>
+!! html/parsoid
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"name":{"t":"en"}}' data-parsoid='{"fl":["D","N"]}'></span></p>
 !! end
 
 !! test
@@ -21270,25 +21848,31 @@ Testing that changing the language variant here in the tests actually works
 !! options
 language=zh variant=zh showtitle
 !! wikitext
-Should be stripped-{T|zh:China;zh-tw:Taiwan}-!
-!! html
+Should be stripped-{T|zh:China; zh-tw:Taiwan}-!
+!! html/php
 China
 <p>Should be stripped!
 </p>
+!! html/parsoid
+<p>Should be stripped<meta typeof="mw:LanguageVariant" data-mw-variant='{"title":true,"twoway":[{"l":"zh","t":"China"},{"l":"zh-tw","t":"Taiwan"}]}'/>!</p>
 !! end
 
 !! test
 Recursive conversion of alt and title attrs shouldn't clear converter state
 !! options
-language=zh variant=zh-cn showtitle
+language=zh variant=zh-cn
+showtitle
 !! wikitext
--{H|zh-cn:Exclamation;zh-tw:exclamation;}-
-Should be stripped-{T|zh-cn:China;zh-tw:Taiwan}-<span title="exclamation">!</span>
-!! html
+-{H|zh-cn:Exclamation; zh-tw:exclamation}-
+Should be stripped-{T|zh-cn:China; zh-tw:Taiwan}-<span title="exclamation">!</span>
+!! html/php
 China
 <p>
 Should be stripped<span title="Exclamation">!</span>
 </p>
+!! html/parsoid
+<p><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"twoway":[{"l":"zh-cn","t":"Exclamation"},{"l":"zh-tw","t":"exclamation"}]}'/>
+Should be stripped<meta typeof="mw:LanguageVariant" data-mw-variant='{"title":true,"twoway":[{"l":"zh-cn","t":"China"},{"l":"zh-tw","t":"Taiwan"}]}'/><span title="exclamation">!</span></p>
 !! end
 
 !! test
@@ -21296,13 +21880,17 @@ T26072: more test on conversion rule for title
 !! options
 language=zh variant=zh-tw showtitle
 !! wikitext
-This should be stripped-{T|zh:China;zh-tw:Taiwan}-!
-This won't take interferes with the title rule-{H|zh:Beijing;zh-tw:Taipei}-.
-!! html
+This should be stripped-{T|zh:China; zh-tw:Taiwan}-!
+
+This won't take interferes with the title rule-{H|zh:Beijing; zh-tw:Taipei}-.
+!! html/php
 Taiwan
 <p>This should be stripped!
-This won't take interferes with the title rule.
+</p><p>This won't take interferes with the title rule.
 </p>
+!! html/parsoid
+<p>This should be stripped<meta typeof="mw:LanguageVariant" data-mw-variant='{"title":true,"twoway":[{"l":"zh","t":"China"},{"l":"zh-tw","t":"Taiwan"}]}'/>!</p>
+<p>This won't take interferes with the title rule<meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"twoway":[{"l":"zh","t":"Beijing"},{"l":"zh-tw","t":"Taipei"}]}'/>.</p>
 !! end
 
 !! test
@@ -21311,10 +21899,12 @@ Partly disable title conversion if variant == main language code
 language=zh variant=zh title=[[ZH]] showtitle
 !! wikitext
 -{T|zh-cn:CN;zh-tw:TW}-
-!! html
+!! html/php
 ZH
 <p>
 </p>
+!! html/parsoid
+<p><meta typeof="mw:LanguageVariant" data-parsoid='{"tSp":[6]}' data-mw-variant='{"title":true,"twoway":[{"l":"zh-cn","t":"CN"},{"l":"zh-tw","t":"TW"}]}'/></p>
 !! end
 
 !! test
@@ -21323,10 +21913,12 @@ Partly disable title conversion if variant == main language code, more
 language=zh variant=zh title=[[ZH]] showtitle
 !! wikitext
 -{T|TW}-
-!! html
+!! html/php
 ZH
 <p>
 </p>
+!! html/parsoid
+<p><meta typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"TW"},"title":true}'/></p>
 !! end
 
 !! test
@@ -21335,9 +21927,26 @@ Raw output of variant escape tags (R flag)
 language=zh variant=zh-tw
 !! wikitext
 Raw: -{R|zh:China;zh-tw:Taiwan}-
-!! html
+!! html/php
 <p>Raw: zh:China;zh-tw:Taiwan
 </p>
+!! html/parsoid
+<p>Raw: <span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"zh:China;zh-tw:Taiwan"}}'></span></p>
+!! end
+
+# html2wt suppresses the bogus 'D' flags, so this is wt2html only
+!! test
+Raw output of variant escape tags (R flag) (wt2html only)
+!! options
+language=zh variant=zh-tw
+parsoid=wt2html,html2html
+!! wikitext
+-{Variant}- -{D|syntax}- -{D;R|options}-
+!! html/php
+<p>Variant syntax options
+</p>
+!! html/parsoid
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"Variant"}}'></span> <span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"syntax"}}'></span> <span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"options"}}'></span></p>
 !! end
 
 !! test
@@ -21346,9 +21955,24 @@ Nested markup inside raw output of variant escape tags (R flag)
 language=zh variant=zh-tw
 !! wikitext
 Nested raw: -{R|nested -{zh:China;zh-tw:Taiwan}- nested}-
-!! html
+!! html/php
 <p>Nested raw: nested Taiwan nested
 </p>
+!! html/parsoid
+<p>Nested raw: <span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"nested &lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&#39;{\"twoway\":[{\"l\":\"zh\",\"t\":\"China\"},{\"l\":\"zh-tw\",\"t\":\"Taiwan\"}]}&#39; data-parsoid=&#39;{\"fl\":[],\"tSp\":[6],\"dsr\":[23,48,null,2]}&#39;>&lt;/span> nested"}}'></span></p>
+!! end
+
+!! test
+Nested markup and spaces inside raw output of variant escape tags (R flag)
+!! options
+language=zh variant=zh-tw
+!! wikitext
+X-{ outer -{ inner }- outer }-X
+!! html/php
+<p>X outer  inner  outer X
+</p>
+!! html/parsoid
+<p>X<span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":" outer &lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&#39;{\"disabled\":{\"t\":\" inner \"}}&#39; data-parsoid=&#39;{\"fl\":[],\"dsr\":[10,21,null,2]}&#39;>&lt;/span> outer "}}'></span>X</p>
 !! end
 
 !! test
@@ -21357,9 +21981,11 @@ Templates inside raw output of variant escape tags (R flag)
 language=zh variant=zh-tw
 !! wikitext
 Nested raw: -{R|nested {{echo|hi}} templates}-
-!! html
+!! html/php
 <p>Nested raw: nested hi templates
 </p>
+!! html/parsoid
+<p>Nested raw: <span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"nested &lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[23,34,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"hi\"}},\"i\":0}}]}&#39;>hi&lt;/span> templates"}}'></span></p>
 !! end
 
 !! test
@@ -21368,9 +21994,11 @@ Strings evaluating false shouldn't be ignored by Language converter (T51072)
 language=zh variant=zh-cn
 !! input
 -{zh-cn:0;zh-sg:1;zh-tw:2;zh-hk:3}-
-!! result
+!! html/php
 <p>0
 </p>
+!! html/parsoid
+<p><span typeof="mw:LanguageVariant" data-parsoid='{"tSp":[12]}' data-mw-variant='{"twoway":[{"l":"zh-cn","t":"0"},{"l":"zh-sg","t":"1"},{"l":"zh-tw","t":"2"},{"l":"zh-hk","t":"3"}]}'></span></p>
 !! end
 
 !! test
@@ -21379,31 +22007,37 @@ Conversion rules from [numeric-only string] to [something else] (T48634)
 language=zh variant=zh-cn
 !! input
 -{H|0=>zh-cn:B}--{H|0=>zh-cn:C;0=>zh-cn:D}--{H|0=>zh-hans:A}-012345-{A|zh-tw:0;zh-cn:E;}-012345
-!! result
+!! html/php
 <p>D12345EE12345
 </p>
+!! html/parsoid
+<p><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"oneway":[{"f":"0","l":"zh-cn","t":"B"}]}'/><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"oneway":[{"f":"0","l":"zh-cn","t":"C"},{"f":"0","l":"zh-cn","t":"D"}]}'/><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"oneway":[{"f":"0","l":"zh-hans","t":"A"}]}'/>012345<span typeof="mw:LanguageVariant" data-parsoid='{"fl":["A"],"tSp":[7]}' data-mw-variant='{"add":true,"twoway":[{"l":"zh-tw","t":"0"},{"l":"zh-cn","t":"E"}]}'></span>012345</p>
 !! end
 
 !! test
-Bidirectional converter rule entries with an empty value should be ignored (T53551)
+Two-way converter rule entries with an empty value should be ignored (T53551)
 !! options
 language=zh variant=zh-cn
 !! input
 -{H|zh-cn:foo;zh-tw:;}-foobar
-!! result
+!! html/php
 <p>foobar
 </p>
+!! html/parsoid
+<p><meta typeof="mw:LanguageVariant" data-parsoid='{"tSp":[7]}' data-mw-variant='{"add":true,"twoway":[{"l":"zh-cn","t":"foo"},{"l":"zh-tw","t":""}]}'/>foobar</p>
 !! end
 
 !! test
-Unidirectional converter rule entries with an empty "from" string should be ignored (T53551)
+One-way converter rule entries with an empty "from" string should be ignored (T53551)
 !! options
 language=zh variant=zh-cn
 !! input
 -{H|=>zh-cn:foo;}-foobar
-!! result
+!! html/php
 <p>foobar
 </p>
+!! html/parsoid
+<p><meta typeof="mw:LanguageVariant" data-parsoid='{"tSp":[5]}' data-mw-variant='{"add":true,"oneway":[{"f":"","l":"zh-cn","t":"foo"}]}'/>foobar</p>
 !! end
 
 !! test
@@ -21412,9 +22046,11 @@ Empty converter rule entries shouldn't be inserted into the conversion table (T5
 language=zh variant=zh-cn
 !! input
 -{H|}-foobar
-!! result
+!! html/php
 <p>foobar
 </p>
+!! html/parsoid
+<p><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"twoway":[{"l":"*","t":""}]}'/>foobar</p>
 !! end
 
 !! test
@@ -21423,9 +22059,11 @@ Nested using of manual convert syntax
 language=zh variant=zh-hk
 !! wikitext
 Nested: -{zh-hans:Hi -{zh-cn:China;zh-sg:Singapore;}-;zh-hant:Hello -{zh-tw:Taiwan;zh-hk:H-{ong}- K-{}-ong;}-;}-!
-!! html
+!! html/php
 <p>Nested: Hello Hong Kong!
 </p>
+!! html/parsoid
+<p>Nested: <span typeof="mw:LanguageVariant" data-parsoid='{"tSp":[7]}' data-mw-variant='{"twoway":[{"l":"zh-hans","t":"Hi &lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&#39;{\"twoway\":[{\"l\":\"zh-cn\",\"t\":\"China\"},{\"l\":\"zh-sg\",\"t\":\"Singapore\"}]}&#39; data-parsoid=&#39;{\"fl\":[],\"tSp\":[7],\"dsr\":[21,53,null,2]}&#39;>&lt;/span>"},{"l":"zh-hant","t":"Hello &lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&#39;{\"twoway\":[{\"l\":\"zh-tw\",\"t\":\"Taiwan\"},{\"l\":\"zh-hk\",\"t\":\"H&amp;lt;span typeof=\\\"mw:LanguageVariant\\\" data-mw-variant=&amp;#39;{\\\"disabled\\\":{\\\"t\\\":\\\"ong\\\"}}&amp;#39; data-parsoid=&amp;#39;{\\\"fl\\\":[],\\\"dsr\\\":[90,97,null,2]}&amp;#39;>&amp;lt;/span> K&amp;lt;span typeof=\\\"mw:LanguageVariant\\\" data-mw-variant=&amp;#39;{\\\"disabled\\\":{\\\"t\\\":\\\"\\\"}}&amp;#39; data-parsoid=&amp;#39;{\\\"fl\\\":[],\\\"dsr\\\":[99,103,null,2]}&amp;#39;>&amp;lt;/span>ong\"}]}&#39; data-parsoid=&#39;{\"fl\":[],\"tSp\":[7],\"dsr\":[68,109,null,2]}&#39;>&lt;/span>"}]}'></span>!</p>
 !! end
 
 !! test
@@ -21434,25 +22072,146 @@ HTML markups with conversion syntax in attribs, nested in other conversion block
 language=zh variant=zh-cn
 !! wikitext
 -{zh;zh-hans;zh-hant|<span title="-{X}-">A</span>}-
-!! html
+!! html/php
 <p><span title="X">A</span>
 </p>
+!! html/parsoid
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"filter":{"l":["zh","zh-hans","zh-hant"],"t":"&lt;span title=\"\" about=\"#mwt1\" typeof=\"mw:ExpandedAttrs\" data-parsoid=&#39;{\"stx\":\"html\",\"a\":{\"title\":\"\"},\"sa\":{\"title\":\"-{X}-\"},\"dsr\":[21,49,20,7]}&#39; data-mw=&#39;{\"attribs\":[[{\"txt\":\"title\"},{\"html\":\"&amp;lt;span typeof=\\\"mw:LanguageVariant\\\" data-mw-variant=&amp;#39;{\\\"disabled\\\":{\\\"t\\\":\\\"X\\\"}}&amp;#39; data-parsoid=&amp;#39;{\\\"fl\\\":[],\\\"dsr\\\":[34,39,null,2]}&amp;#39;>&amp;lt;/span>\"}]]}&#39;>A&lt;/span>"}}'></span></p>
 !! end
 
 !! test
-HTML markups with conversion syntax in attribs, nested in other conversion blocks (not working yet)
+HTML markups with conversion syntax in attribs, nested in other conversion blocks (not working yet in PHP parser)
 !! options
-language=zh variant=zh-cn disabled
+language=zh variant=zh-cn
 !! wikitext
 -{<span title="-{X}-">A</span>}-
-!! html
+!! html/php+disabled
 <p><span title="X">A</span>
 </p>
+!! html/parsoid
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"&lt;span title=\"\" about=\"#mwt1\" typeof=\"mw:ExpandedAttrs\" data-parsoid=&#39;{\"stx\":\"html\",\"a\":{\"title\":\"\"},\"sa\":{\"title\":\"-{X}-\"},\"dsr\":[2,30,20,7]}&#39; data-mw=&#39;{\"attribs\":[[{\"txt\":\"title\"},{\"html\":\"&amp;lt;span typeof=\\\"mw:LanguageVariant\\\" data-mw-variant=&amp;#39;{\\\"disabled\\\":{\\\"t\\\":\\\"X\\\"}}&amp;#39; data-parsoid=&amp;#39;{\\\"fl\\\":[],\\\"dsr\\\":[15,20,null,2]}&amp;#39;>&amp;lt;/span>\"}]]}&#39;>A&lt;/span>"}}'></span></p>
+!! end
+
+# Parsoid and PHP disagree on how to parse this example: Parsoid
+# insists that the content of a language converter element be a valid
+# DOM fragment or attribute string
+!! test
+Language converter markup with block content
+!! options
+language=zh variant=zh-cn
+!! wikitext
+<span>a-{b<div>c}-d
+
+<span>a-{zh;zh-hans;zh-hant|b<div>c}-d
+
+<span>a-{H|0=>zh-cn:x<span>y;0=>zh-tw:b<div>c}-d
+!! html/php+tidy
+<p><span>ab</span></p>
+<div><span>cd <span>ab</span></span>
+<div><span>cd <span>ad</span></span></div>
+</div>
+!! html/parsoid
+<p><span data-parsoid='{"stx":"html","autoInsertedEnd":true}'>a</span></p><div typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"b&lt;div data-parsoid=&#39;{\"stx\":\"html\",\"autoInsertedEnd\":true,\"dsr\":[10,16,5,0]}&#39;>c&lt;/div>"}}'></div><p>d</p>
+
+<p><span data-parsoid='{"stx":"html","autoInsertedEnd":true}'>a</span></p><div typeof="mw:LanguageVariant" data-mw-variant='{"filter":{"l":["zh","zh-hans","zh-hant"],"t":"b&lt;div data-parsoid=&#39;{\"stx\":\"html\",\"autoInsertedEnd\":true,\"dsr\":[50,56,5,0]}&#39;>c&lt;/div>"}}'></div><p>d</p>
+
+<p><span data-parsoid='{"stx":"html","autoInsertedEnd":true}'>a<meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"oneway":[{"f":"0","l":"zh-cn","t":"x&lt;span data-parsoid=&#39;{\"stx\":\"html\",\"autoInsertedEnd\":true,\"dsr\":[82,89,6,0]}&#39;>y&lt;/span>"},{"f":"0","l":"zh-tw","t":"b&lt;div data-parsoid=&#39;{\"stx\":\"html\",\"autoInsertedEnd\":true,\"dsr\":[100,106,5,0]}&#39;>c&lt;/div>"}]}'/>d</span></p>
+!! end
+
+!! test
+LanguageConverter selser (1)
+!! options
+language=zh variant=zh-cn
+parsoid={
+  "modes": ["wt2wt", "selser"],
+  "changes": [
+    ["span[typeof]", "attr", "data-mw-variant", "{\"disabled\":{\"t\":\"edited\"}}"]
+  ]
+}
+!! wikitext
+-{raw}-
+!! wikitext/edited
+-{edited}-
+!! end
+
+!! test
+LanguageConverter selser (2)
+!! options
+language=zh variant=zh-cn
+parsoid={
+  "modes": ["wt2wt", "selser"],
+  "changes": [
+    ["span[class='x']", "contents", "text", "-{foo}-"],
+    ["a", "contents", "text", "-{"],
+    ["span[typeof]", "attr", "data-mw", "{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"-{\"}},\"i\":0}}]}"]
+  ]
+}
+!! wikitext
+<span class="x">TEXT1</span>
+[http://example.com TEXT2]
+[[Foo|TEXT3]]
+{{echo|TEXT4}}
+!! wikitext/edited
+<span class="x"><nowiki>-{foo}-</nowiki></span>
+[http://example.com -{]
+[[Foo|<nowiki>-{</nowiki>]]
+{{1x|<nowiki>-{</nowiki>}}
+!! end
+
+# Tests LanguageVariantText in ConstrainedText
+!! test
+LanguageConverter selser (3)
+!! options
+language=zh variant=zh-cn
+parsoid={
+  "modes": ["wt2wt", "selser"],
+  "changes": [
+    ["td > span", "attr", "typeof", "mw:LanguageVariant"],
+    ["td > span", "attr", "data-mw-variant", "{\"disabled\":{\"t\":\"edited\"}}"]
+  ]
+}
+!! wikitext
+{|
+|-
+|<span>Foo</span>
+|}
+!! wikitext/edited
+{|
+|-
+|<nowiki/>-{edited}-
+|}
+!! end
+
+# Tests LanguageVariantText._fromSelser
+!! test
+LanguageConverter selser (4)
+!! options
+language=zh variant=zh-cn
+parsoid={
+  "modes": ["wt2wt", "selser"],
+  "changes": [
+    ["td > span.x", "remove"]
+  ]
+}
+!! wikitext
+{|
+|-
+|<span class="x">Foo</span>-{Bar}-
+||<span class="x">Foo</span>-{Bar}-
+|}
+!! wikitext/edited
+{|
+|-
+|<nowiki/>-{Bar}-
+||-{Bar}-
+|}
 !! end
 
 # Since Parsoid is starting to emit canonical wikitext for links,
 # [http://example.com http://example.com] will not RT back to that
 # form anymore.
+# Parsoid does not language-convert links (it is done in a
+# post-processing step)
 !! test
 Proper conversion of text in external links
 !! options
@@ -21481,8 +22240,8 @@ gopher://www.google.com
 <a rel="mw:ExtLink" href="http://www.google.com">http://www.google.com</a>
 <a rel="mw:ExtLink" href="gopher://www.google.com">gopher://www.google.com</a>
 <a rel="mw:ExtLink" href="https://www.google.com">irc://www.google.com</a>
-<a rel="mw:ExtLink" href="ftp://www.google.com">www.гоогле.цом/фтп://дир</a>
-<a rel="mw:ExtLink" href="//www.google.com">www.гоогле.цом</a></p>
+<a rel="mw:ExtLink" href="ftp://www.google.com">www.google.com/ftp://dir</a>
+<a rel="mw:ExtLink" href="//www.google.com">www.google.com</a></p>
 !! end
 
 !! test
@@ -21491,9 +22250,11 @@ Do not convert roman numbers to language variants
 language=sr variant=sr-ec
 !! wikitext
 Fridrih IV je car.
-!! html
+!! html/php
 <p>Фридрих IV је цар.
 </p>
+!! html/parsoid
+<p>Fridrih IV je car.</p>
 !! end
 
 !! test
@@ -21513,9 +22274,11 @@ Don't convert raw rule "-{R|=&gt;}-" to "=>"
 language=sr
 !! wikitext
 -{R|=&gt;}-
-!! html
+!! html/php
 <p>=&gt;
 </p>
+!! html/parsoid
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"=&lt;span typeof=\"mw:Entity\" data-parsoid=&#39;{\"src\":\"&amp;amp;gt;\",\"srcContent\":\">\",\"dsr\":[5,9,null,null]}&#39;>>&lt;/span>"}}'></span></p>
 !!end
 
 !! test
@@ -21524,9 +22287,11 @@ Don't break link parsing if language converter markup is in the caption.
 language=sr variant=sr-ec
 !! wikitext
 [[Main Page|-{R|main page}-]]
-!! html
+!! html/php
 <p><a href="/wiki/Main_Page" title="Маин Паге">main page</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Main_Page" title="Main Page"><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"main page"}}' data-parsoid='{"fl":["R"]}'></span></a></p>
 !! end
 
 !! test
@@ -21538,6 +22303,8 @@ language=sr variant=sr-ec
 !! html/php
 <p>foo
 </p>
+!! html/parsoid
+<p><span typeof="mw:Transclusion mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"foo"}}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Шаблон:Echo"},"params":{"1":{"wt":"-{R|foo}-"}},"i":0}}]}'></span></p>
 !! end
 
 !! test
@@ -21545,12 +22312,12 @@ T146305: Don't break image parsing if language converter markup is in the captio
 !! options
 language=sr
 !! wikitext
-[[File:Foobar.jpg|thumb|-{R|caption:}-]]
+[[Датотека:Foobar.jpg|thumb|-{R|caption:}-]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/%D0%94%D0%B0%D1%82%D0%BE%D1%82%D0%B5%D0%BA%D0%B0:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/%D0%94%D0%B0%D1%82%D0%BE%D1%82%D0%B5%D0%BA%D0%B0:Foobar.jpg" class="internal" title="Повећај"></a></div>caption:</div></div></div>
 
 !! html/parsoid
-<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./Датотека:Foobar.jpg"><img resource="./Датотека:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption><span typeof="mw:LanguageVariant" data-mw='{"disabled":true,"show":true,"text":"caption:"}'></span></figcaption></figure>
+<figure class="mw-default-size" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"}]}'><a href="./Датотека:Foobar.jpg"><img resource="./Датотека:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"caption:"}}' data-parsoid='{"fl":["R"]}'></span></figcaption></figure>
 !! end
 
 !! test
@@ -21558,14 +22325,15 @@ T146305: Don't break image parsing if nested language converter markup is in the
 !! options
 language=zh variant=zh-cn
 !! wikitext
-[[File:Foobar.jpg|thumb|-{zh-cn:blog (hk: -{zh-hans|WEBJOURNAL}-, tw: -{zh-hans|WEBLOG}-)}-]]
+[[File:Foobar.jpg|thumb|-{|zh-cn:blog (hk: -{zh-hans|WEBJOURNAL}-, tw: -{zh-hans|WEBLOG}-)}-]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="放大"></a></div>blog (hk: WEBJOURNAL, tw: WEBLOG)</div></div></div>
 
 !! html/parsoid
-<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption><span typeof="mw:LanguageVariant" data-mw='{"bidir":[{"l":"zh-cn","t":"blog (hk: &lt;span typeof=\"mw:LanguageVariant\" data-parsoid=&#39;{\"fl\":[\"zh-hans\"],\"dsr\":[42,64,null,2]}&#39; data-mw=&#39;{\"filter\":[\"zh-hans\"],\"text\":\"WEBJOURNAL\"}&#39;>&lt;/span>, tw: &lt;span typeof=\"mw:LanguageVariant\" data-parsoid=&#39;{\"fl\":[\"zh-hans\"],\"dsr\":[70,88,null,2]}&#39; data-mw=&#39;{\"filter\":[\"zh-hans\"],\"text\":\"WEBLOG\"}&#39;>&lt;/span>)"}],"show":true}'></span></figcaption></figure>
+<figure class="mw-default-size" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"}]}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption><span typeof="mw:LanguageVariant" data-mw-variant='{"twoway":[{"l":"zh-cn","t":"blog (hk: &lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&#39;{\"filter\":{\"l\":[\"zh-hans\"],\"t\":\"WEBJOURNAL\"}}&#39; data-parsoid=&#39;{\"fl\":[\"zh-hans\"],\"dsr\":[43,65,null,2]}&#39;>&lt;/span>, tw: &lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&#39;{\"filter\":{\"l\":[\"zh-hans\"],\"t\":\"WEBLOG\"}}&#39; data-parsoid=&#39;{\"fl\":[\"zh-hans\"],\"dsr\":[71,89,null,2]}&#39;>&lt;/span>)"}]}'></span></figcaption></figure>
 !! end
 
+# XXX html2wt disabled because rich markup in alt is not preserved.
 !! test
 Don't break gallery if language converter markup is inside.
 !! options
@@ -21575,7 +22343,7 @@ language=zh
 File:foobar.jpg|[[File:foobar.jpg|20px|desc|alt=-{R|foo}-|-{R|bar}-]]|alt=-{R|bat}-
 File:foobar.jpg|{{Test|unamedParam|alt=-{R|param}-}}|alt=galleryalt
 </gallery>
-!! html
+!! html/php
 <ul class="gallery mw-gallery-traditional">
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
 			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="bat" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" width="120" height="14" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" /></a></div></div>
@@ -21593,6 +22361,17 @@ File:foobar.jpg|{{Test|unamedParam|alt=-{R|param}-}}|alt=galleryalt
 		</div></li>
 </ul>
 
+!! html/parsoid
+<ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" data-mw='{"name":"gallery","attrs":{},"body":{"extsrc":"\nFile:foobar.jpg|[[File:foobar.jpg|20px|desc|alt=-{R|foo}-|-{R|bar}-]]|alt=-{R|bat}-\nFile:foobar.jpg|{{Test|unamedParam|alt=-{R|param}-}}|alt=galleryalt\n"}}'>
+<li class="gallerybox">
+<div class="thumb"><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img alt="" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div>
+<div class="gallerytext"><span typeof="mw:Image" data-mw='{"caption":"&lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&#39;{\"disabled\":{\"t\":\"bar\"}}&#39; data-parsoid=&#39;{\"fl\":[\"R\"],\"dsr\":[68,77,null,2]}&#39;>&lt;/span>"}'><a href="./File:Foobar.jpg"><img alt="" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/20px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="2" width="20"/></a></span></div>
+</li>
+<li class="gallerybox">
+<div class="thumb"><span typeof="mw:Image"><a href="./File:Foobar.jpg"><img alt="galleryalt" resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></span></div>
+<div class="gallerytext"><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Test","href":"./Template:Test"},"params":{"1":{"wt":"unamedParam"},"alt":{"wt":"-{R|param}-"}},"i":0}}]}'>This is a test template</span></div>
+</li>
+</ul>
 !! end
 
 !! test
@@ -21607,9 +22386,8 @@ language=zh variant=zh-cn
 <dt>foo:bar</dt></dl>
 
 !! html/parsoid
-<dl>
-<dt><span typeof="mw:LanguageVariant" data-mw='{"bidir":[{"l":"zh-cn","t":"AAA"},{"l":"zh-tw","t":"BBB"}],"show":true}'></span></dt>
-<dt><span typeof="mw:LanguageVariant" data-mw='{"disabled":true,"show":true,"text":"foo:bar"}'></span></dt>
+<dl><dt data-parsoid='{"dsr":[0,24,1,0]}'><span typeof="mw:LanguageVariant" data-parsoid='{"tSp":[6]}' data-mw-variant='{"twoway":[{"l":"zh-cn","t":"AAA"},{"l":"zh-tw","t":"BBB"}]}'></span></dt>
+<dt data-parsoid='{"dsr":[25,39,1,0]}'><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"foo:bar"}}'></span></dt>
 </dl>
 !! end
 
@@ -21622,16 +22400,15 @@ language=zh variant=zh-cn
 !! wikitext
 ;<b>foo:bar
 ;-{zh-cn:AAA
-!! html/php
-<dl><dt><b>foo:bar</dt>
-<dt>-{zh-cn:AAA</b></dt></dl>
-
-!! html/parsoid
+!! html/php+tidy
 <dl>
 <dt><b>foo:bar</b></dt>
-<b>
-<dt>-{zh-cn</dt>
-<dd>AAA</dd>
+<dt><b>-{zh-cn:AAA</b></dt>
+</dl>
+!! html/parsoid
+<dl><dt data-parsoid='{"dsr":[0,11,1,0]}'><b data-parsoid='{"stx":"html","autoInsertedEnd":true}'>foo:bar</b></dt><b data-parsoid='{"stx":"html","autoInsertedEnd":true,"autoInsertedStart":true}'>
+<dt data-parsoid='{"dsr":[12,20,1,0]}'>-{zh-cn</dt>
+<dd data-parsoid='{"stx":"row","dsr":[20,24,1,0]}'>AAA</dd>
 </b></dl>
 !! end
 
@@ -21640,22 +22417,23 @@ T153135: Nested language converter markup in definition list (code coverage)
 !! options
 language=zh variant=zh-cn
 !! wikitext
-;-{zh-cn:AAA -{zh-hans|foo:bar}- -{R|bat:baz}-}-:def
+;-{|zh-cn:AAA -{zh-hans|foo:bar}- -{R|bat:baz}-}-:def
 !! html/php
 <dl><dt>AAA foo:bar bat:baz</dt>
 <dd>def</dd></dl>
 
 !! html/parsoid
-<dl>
-<dt><span typeof="mw:LanguageVariant" data-mw='{"bidir":[{"l":"zh-cn","t":"AAA &lt;span typeof=\"mw:LanguageVariant\" data-parsoid=&#39;{\"fl\":[\"zh-hans\"],\"dsr\":[13,32,null,2]}&#39; data-mw=&#39;{\"filter\":[\"zh-hans\"],\"text\":\"bar\"}&#39;>&lt;/span> &lt;span typeof=\"mw:LanguageVariant\" data-parsoid=&#39;{\"fl\":[\"R\"],\"dsr\":[33,46,null,2]}&#39; data-mw=&#39;{\"disabled\":true,\"show\":true,\"text\":\"bat:baz\"}&#39;>&lt;/span>"}],"show":true}'></span></dt>
-<dd>def</dd>
+<dl><dt data-parsoid='{"dsr":[0,49,1,0]}'><span typeof="mw:LanguageVariant" data-mw-variant='{"twoway":[{"l":"zh-cn","t":"AAA &lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&#39;{\"filter\":{\"l\":[\"zh-hans\"],\"t\":\"foo:bar\"}}&#39; data-parsoid=&#39;{\"fl\":[\"zh-hans\"],\"dsr\":[14,33,null,2]}&#39;>&lt;/span> &lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&#39;{\"disabled\":{\"t\":\"bat:baz\"}}&#39; data-parsoid=&#39;{\"fl\":[\"R\"],\"dsr\":[34,47,null,2]}&#39;>&lt;/span>"}]}'></span></dt>
+<dd data-parsoid='{"stx":"row","dsr":[49,53,1,0]}'>def</dd>
 </dl>
 !! end
 
+# html2wt mode disabled due to <nowiki> insertion.
 !! test
 T153140: Don't break table handling if language converter markup is in the cell.
 !! options
 language=sr variant=sr-ec
+parsoid=wt2html,wt2wt,html2html
 !! wikitext
 {|
 |-
@@ -21670,11 +22448,112 @@ language=sr variant=sr-ec
 
 !! html/parsoid
 <table>
-
+<tbody>
 <tr>
-<td> B
-</td></tr></table>
+<td><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"B"}}'></span></td>
+</tr>
+</tbody>
+</table>
+!! end
 
+!! test
+Language converter tricky html2wt cases (1)
+!! options
+language=sr
+parsoid=html2wt,wt2wt
+!! html/parsoid
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"}-"}}'></span></p>
+!! wikitext
+-{<nowiki>}-</nowiki>}-
+!! html/php
+<p>&#125;-
+</p>
+!! end
+
+!! test
+Language converter tricky html2wt cases (2)
+!! options
+language=sr
+parsoid=html2wt,wt2wt
+!! html/parsoid
+<p>-{foo}-</p>
+!! wikitext
+<nowiki>-{foo}-</nowiki>
+!! html/php
+<p>-&#123;foo&#125;-
+</p>
+!! end
+
+!! test
+Language converter tricky html2wt cases (3)
+!! options
+language=sr
+parsoid=html2wt,wt2wt
+!! html/parsoid
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"|"}}'></span></p>
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"R|raw"}}'></span></p>
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"-{foo}-"}}'></span></p>
+!! wikitext
+-{R||}-
+
+-{R|R|raw}-
+
+-{<nowiki>-{foo}-</nowiki>}-
+!! html/php
+<p>|
+</p><p>R|raw
+</p><p>-&#123;foo&#125;-
+</p>
+!! end
+
+!! test
+Language converter tricky html2wt cases (4)
+!! options
+language=sr
+parsoid=html2wt,wt2wt
+!! html/parsoid
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[2,14,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"hey\"}},\"i\":0}}]}&#39;>hey&lt;/span>"}}'></span></p>
+!! wikitext
+-{R|{{echo|hey}}}-
+!! html/php
+<p>hey
+</p>
+!! end
+
+# Note that the <nowiki> escaping added by parsoid for source text,
+# destination text, and language names only works on the PHP side
+# for *destination text*.  (HTML entity escaping wouldn't work
+# any better.)  This is probably a bug, at least for source texts.
+# (For language names PHP uses a precise regexp based on the languages
+# it currently knows have variants, which is fragile since this set
+# can grow/shrink over time.)
+!! test
+Language converter tricky html2wt cases (5)
+!! options
+language=zh variant=zh-cn
+!! html/parsoid
+<p><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"oneway":[{"f":"a:b=>c","l":"zh-cn","t":"x;foo=>zh-cn:boo"},{"f":"bar","l":"zh-cn","t":"bat;xyz=>zh-cn:abc"}]}'/>foobar</p>
+<p><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"oneway":[{"f":"A","l":"bo:g;us","t":"B"}]}'/></p>
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"twoway":[{"l":"zh-tw","t":"xyz"},{"l":"zh-cn","t":"0;zh-tw:bar"}]}'></span></p>
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"twoway":[{"l":"bo:g;us","t":"xyz"},{"l":"zh-cn","t":"abc"}]}'></span></p>
+<p>a:b=>c xyz</p>
+!! wikitext
+-{H|<nowiki>a:b=>c</nowiki>=>zh-cn:<nowiki>x;foo=>zh-cn:boo</nowiki>;bar=>zh-cn:<nowiki>bat;xyz=>zh-cn:abc</nowiki>}-foobar
+
+-{H|A=><nowiki>bo:g;us</nowiki>:B}-
+
+-{A|zh-tw:xyz; zh-cn:<nowiki>0;zh-tw:bar</nowiki>}-
+
+-{<nowiki>bo:g;us</nowiki>:xyz; zh-cn:abc}-
+
+a:b=>c xyz
+!! html/php+disabled
+<p>foobat;xyz=&gt;zh-cn:abc
+</p><p>A
+</p><p>0;zh-tw:bar
+</p><p>abc
+</p><p>a:b=&gt;c 0;zh-tw:bar
+</p>
 !! end
 
 !! test
@@ -25982,12 +26861,17 @@ parsoid=html2wt
 <p><a rel='mw:WikiLink' href='fr%3AFoo'>Foo</a>
 <a rel='mw:ExtLink' href='fr%3AFoo'>Foo</a>
 <a href='fr%3AFoo'>Foo</a></p>
+<p><a href='FR%3AFoo'>Foo</a>
+<a href='./FR:Foo'>Foo</a></p>
 !! wikitext
 [[:fr:Foo|Foo]]
 [[:fr:Foo|Foo]]
 [[:fr:Foo|Foo]]
 
 [[:fr:Foo|Foo]]
+[[:fr:Foo|Foo]]
+[[:fr:Foo|Foo]]
+
 [[:fr:Foo|Foo]]
 [[:fr:Foo|Foo]]
 !! end
@@ -26257,7 +27141,7 @@ Image: Block level image should have \n before and after
 <p>123</p>
 <figure class="mw-halign-right" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/150px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="17" width="150"/></a></figure>
 <p>456</p>
-!!end
+!! end
 
 !! test
 Image: New block level image should have \n before and after (existing content)
@@ -26269,7 +27153,7 @@ Image: New block level image should have \n before and after (existing content)
 <p>123</p>
 <figure class="mw-halign-right" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"right","ak":"right"},{"ck":"thumbnail","ak":"thumb"},{"ck":"width","ak":"150x150px"}]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/150px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="17" width="150" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"17","width":"150"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></figure>
 <p>456</p>
-!!end
+!! end
 
 !! test
 Image: upright option (parsoid)
@@ -26281,7 +27165,7 @@ Image: upright option (parsoid)
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/170px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="19" width="170"/></a><figcaption>caption</figcaption></figure>
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/110px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="12" width="110"/></a><figcaption>caption</figcaption></figure>
 <figure typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/500px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="57" width="500"/></a><figcaption>caption</figcaption></figure>
-!!end
+!! end
 
 !! test
 Image: upright option is ignored on inline and frame images (parsoid)
@@ -26289,7 +27173,15 @@ Image: upright option is ignored on inline and frame images (parsoid)
 [[File:Foobar.jpg|500x500px|upright=0.5|caption]]
 !! html/parsoid
 <p><span typeof="mw:Image" data-mw='{"caption":"caption"}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/500px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="57" width="500"/></a></span></p>
-!!end
+!! end
+
+!! test
+Image: in template parameter with empty parameter
+!! wikitext
+{{echo|[[File:Foobar.jpg|link=]]}}
+!! html/parsoid
+<p><span class="mw-default-size" typeof="mw:Transclusion mw:Image" about="#mwt1" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[[File:Foobar.jpg|link=]]"}},"i":0}}]}'><span><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></span></span></p>
+!! end
 
 !! test
 Image: from basic HTML (1)
