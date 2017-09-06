@@ -1072,7 +1072,7 @@
 					selectedLabel = selectedLabel.text();
 				}
 				menu.clearItems().addItems( formatItems );
-				menu.chooseItem( menu.getItemFromLabel( selectedLabel ) || menu.getFirstSelectableItem() );
+				menu.chooseItem( menu.getItemFromLabel( selectedLabel ) || menu.findFirstSelectableItem() );
 
 				// Fire the event to update field visibilities
 				Util.onFormatDropdownChange();
