@@ -99,6 +99,7 @@
 			var subsetNames = [],
 				filterItem = new mw.rcfilters.dm.FilterItem( filter.name, model, {
 					group: model.getName(),
+					groupType: model.getType(),
 					label: filter.label || filter.name,
 					description: filter.description || '',
 					labelPrefixKey: model.labelPrefixKey,
@@ -150,6 +151,8 @@
 				// For this group type, parameter values are direct
 				// We need to convert from a boolean to a string ('1' and '0')
 				model.defaultParams[ filter.name ] = String( Number( filter.default || 0 ) );
+			} else if ( model.getType() === 'any_value' ) {
+				model.defaultParams[ filter.name ] = filter.default;
 			}
 		} );
 
@@ -578,7 +581,7 @@
 			if ( buildFromCurrentState ) {
 				// This means we have not been given a filter representation
 				// so we are building one based on current state
-				filterRepresentation[ item.getName() ] = item.isSelected();
+				filterRepresentation[ item.getName() ] = item.getValue();
 			} else if ( filterRepresentation[ item.getName() ] === undefined ) {
 				// We are given a filter representation, but we have to make
 				// sure that we fill in the missing filters if there are any
@@ -598,7 +601,8 @@
 		// Build result
 		if (
 			this.getType() === 'send_unselected_if_any' ||
-			this.getType() === 'boolean'
+			this.getType() === 'boolean' ||
+			this.getType() === 'any_value'
 		) {
 			// First, check if any of the items are selected at all.
 			// If none is selected, we're treating it as if they are
@@ -615,6 +619,8 @@
 					// Representation is straight-forward and direct from
 					// the parameter value to the filter state
 					result[ filterParamNames[ name ] ] = String( Number( !!value ) );
+				} else if ( model.getType() === 'any_value' ) {
+					result[ filterParamNames[ name ] ] = value;
 				}
 			} );
 		} else if ( this.getType() === 'string_options' ) {
@@ -665,7 +671,8 @@
 		paramRepresentation = paramRepresentation || {};
 		if (
 			this.getType() === 'send_unselected_if_any' ||
-			this.getType() === 'boolean'
+			this.getType() === 'boolean' ||
+			this.getType() === 'any_value'
 		) {
 			// Go over param representation; map and check for selections
 			this.getItems().forEach( function ( filterItem ) {
@@ -694,6 +701,8 @@
 				} else if ( model.getType() === 'boolean' ) {
 					// Straight-forward definition of state
 					result[ filterItem.getName() ] = !!Number( paramRepresentation[ filterItem.getParamName() ] );
+				} else if ( model.getType() === 'any_value' ) {
+					result[ filterItem.getName() ] = paramRepresentation[ filterItem.getParamName() ];
 				}
 			} );
 		} else if ( this.getType() === 'string_options' ) {
@@ -738,9 +747,9 @@
 		// If any filters are missing, they will get a falsey value
 		this.getItems().forEach( function ( filterItem ) {
 			if ( result[ filterItem.getName() ] === undefined ) {
-				result[ filterItem.getName() ] = false;
+				result[ filterItem.getName() ] = this.getFalsyValue();
 			}
-		} );
+		}.bind( this ) );
 
 		// Make sure that at least one option is selected in
 		// single_option groups, no matter what path was taken
@@ -760,6 +769,13 @@
 		}
 
 		return result;
+	};
+
+	/**
+	 * @return {*} The appropriate falsy value for this group type
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.getFalsyValue = function () {
+		return this.getType() === 'any_value' ? '' : false;
 	};
 
 	/**
