@@ -332,6 +332,9 @@ class ExtensionRegistry {
 		}
 
 		foreach ( $info['callbacks'] as $name => $cb ) {
+			if ( !is_callable( $cb ) ) {
+				throw new UnexpectedValueException( "callback '$cb' is not callable" );
+			}
 			call_user_func( $cb, $info['credits'][$name] );
 		}
 	}
