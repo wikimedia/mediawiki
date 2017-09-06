@@ -385,7 +385,8 @@
 		$.each( this.groups, function ( group, groupModel ) {
 			if (
 				groupModel.getType() === 'send_unselected_if_any' ||
-				groupModel.getType() === 'boolean'
+				groupModel.getType() === 'boolean' ||
+				groupModel.getType() === 'any_value'
 			) {
 				// Individual filters
 				groupModel.getItems().forEach( function ( filterItem ) {
@@ -414,18 +415,18 @@
 	 * @param {Object} params Parameters object
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.updateStateFromParams = function ( params ) {
+		var filtersValue;
 		// For arbitrary numeric single_option values make sure the values
 		// are normalized to fit within the limits
 		$.each( this.getFilterGroups(), function ( groupName, groupModel ) {
 			params[ groupName ] = groupModel.normalizeArbitraryValue( params[ groupName ] );
 		} );
 
-		// Update filter states
-		this.toggleFiltersSelected(
-			this.getFiltersFromParameters(
-				params
-			)
-		);
+		// Update filter values
+		filtersValue = this.getFiltersFromParameters( params );
+		Object.keys( filtersValue ).forEach( function ( filterName ) {
+			this.getItemByName( filterName ).setValue( filtersValue[ filterName ] );
+		}.bind( this ) );
 
 		// Update highlight state
 		this.getItemsSupportingHighlights().forEach( function ( filterItem ) {
@@ -619,7 +620,7 @@
 	/**
 	 * Get the current selected state of the filters
 	 *
-	 * @param {boolean} onlySelected return an object containing only the selected filters
+	 * @param {boolean} [onlySelected] return an object containing only the filters with a value
 	 * @return {Object} Filters selected state
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getSelectedState = function ( onlySelected ) {
@@ -628,8 +629,8 @@
 			result = {};
 
 		for ( i = 0; i < items.length; i++ ) {
-			if ( !onlySelected || items[ i ].isSelected() ) {
-				result[ items[ i ].getName() ] = items[ i ].isSelected();
+			if ( !onlySelected || items[ i ].getValue() ) {
+				result[ items[ i ].getName() ] = items[ i ].getValue();
 			}
 		}
 
@@ -739,7 +740,7 @@
 			// all filters (set to false)
 			this.getItems().forEach( function ( filterItem ) {
 				groupItemDefinition[ filterItem.getGroupName() ] = groupItemDefinition[ filterItem.getGroupName() ] || {};
-				groupItemDefinition[ filterItem.getGroupName() ][ filterItem.getName() ] = !!filterDefinition[ filterItem.getName() ];
+				groupItemDefinition[ filterItem.getGroupName() ][ filterItem.getName() ] = filterItem.coerceValue( filterDefinition[ filterItem.getName() ] );
 			} );
 		}
 

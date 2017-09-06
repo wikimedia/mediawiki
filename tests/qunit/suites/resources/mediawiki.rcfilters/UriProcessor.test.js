@@ -272,4 +272,38 @@
 		} );
 	} );
 
+	QUnit.test( '_normalizeTargetInUri', function ( assert ) {
+		var uriProcessor = new mw.rcfilters.UriProcessor( null ),
+			cases = [
+				{
+					input: 'http://host/wiki/Special:RecentChangesLinked/Moai',
+					output: 'http://host/wiki/Special:RecentChangesLinked?target=Moai',
+					message: 'Target as subpage in path'
+				},
+				{
+					input: 'http://host/wiki/Special:RecentChangesLinked/Category:Foo',
+					output: 'http://host/wiki/Special:RecentChangesLinked?target=Category:Foo',
+					message: 'Target as subpage in path (with namespace)'
+				},
+				{
+					input: 'http://host/w/index.php?title=Special:RecentChangesLinked/Moai',
+					output: 'http://host/w/index.php?title=Special:RecentChangesLinked&target=Moai',
+					message: 'Target as subpage in title param'
+				},
+				{
+					input: 'http://host/wiki/Special:Watchlist',
+					output: 'http://host/wiki/Special:Watchlist',
+					message: 'No target specified'
+				}
+			];
+
+		cases.forEach( function ( testCase ) {
+			assert.equal(
+				uriProcessor._normalizeTargetInUri( new mw.Uri( testCase.input ) ).toString(),
+				new mw.Uri( testCase.output ).toString(),
+				testCase.message
+			);
+		} );
+	} );
+
 }( mediaWiki, jQuery ) );
