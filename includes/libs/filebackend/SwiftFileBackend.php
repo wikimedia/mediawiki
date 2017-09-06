@@ -50,6 +50,8 @@ class SwiftFileBackend extends FileBackendStore {
 	protected $rgwS3AccessKey;
 	/** @var string S3 authentication key (RADOS Gateway) */
 	protected $rgwS3SecretKey;
+	/** @var string Thumbor user (account:user) to open permissions for */
+	protected $thumborUser;
 
 	/** @var BagOStuff */
 	protected $srvCache;
@@ -96,6 +98,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 *                          This is used for generating expiring pre-authenticated URLs.
 	 *                          Only use this when using rgw and to work around
 	 *                          http://tracker.newdream.net/issues/3454.
+	 *   - thumborUser        : Swift user used by Thumbor (account:username)
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -136,6 +139,9 @@ class SwiftFileBackend extends FileBackendStore {
 		} else {
 			$this->srvCache = new EmptyBagOStuff();
 		}
+		$this->thumborUser = isset( $config['thumborUser'] )
+			? $config['thumborUser']
+			: '';
 	}
 
 	public function getFeatures() {
@@ -590,11 +596,16 @@ class SwiftFileBackend extends FileBackendStore {
 
 		$stat = $this->getContainerStat( $fullCont );
 		if ( is_array( $stat ) ) {
+			$readWriteGrps = [ $this->swiftUser ];
+
+			if ( strlen( $this->thumborUser ) ) {
+				$readWriteGrps[] = $this->thumborUser;
+			}
 			// Make container private to end-users...
 			$status->merge( $this->setContainerAccess(
 				$fullCont,
-				[ $this->swiftUser ], // read
-				[ $this->swiftUser ] // write
+				$readWriteGrps, // read
+				$readWriteGrps // write
 			) );
 		} elseif ( $stat === false ) {
 			$status->fatal( 'backend-fail-usable', $params['dir'] );
@@ -611,11 +622,23 @@ class SwiftFileBackend extends FileBackendStore {
 
 		$stat = $this->getContainerStat( $fullCont );
 		if ( is_array( $stat ) ) {
+			$readGrps = [ $this->swiftUser, '.r:*' ];
+
+			if ( strlen( $this->thumborUser ) ) {
+				$readGrps[] = $this->thumborUser;
+			}
+
+			$writeGrps = [ $this->swiftUser ];
+
+			if ( strlen( $this->thumborUser ) ) {
+				$writeGrps[] = $this->thumborUser;
+			}
+
 			// Make container public to end-users...
 			$status->merge( $this->setContainerAccess(
 				$fullCont,
-				[ $this->swiftUser, '.r:*' ], // read
-				[ $this->swiftUser ] // write
+				$readGrps, // read
+				$writeGrps // write
 			) );
 		} elseif ( $stat === false ) {
 			$status->fatal( 'backend-fail-usable', $params['dir'] );
@@ -1424,7 +1447,16 @@ class SwiftFileBackend extends FileBackendStore {
 		} else {
 			$readGrps = [ $this->swiftUser ]; // private
 		}
+
+		if ( strlen( $this->thumborUser ) ) {
+			$readGrps[] = $this->thumborUser;
+		}
+
 		$writeGrps = [ $this->swiftUser ]; // sanity
+
+		if ( strlen( $this->thumborUser ) ) {
+			$writeGrps[] = $this->thumborUser;
+		}
 
 		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->http->run( [
 			'method' => 'PUT',
