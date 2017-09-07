@@ -394,6 +394,9 @@ class ContribsPager extends RangeChronologicalPager {
 				if ( $this->contribs === 'newbie' ) { // multiple users
 					$batch->add( NS_USER, $row->user_name );
 					$batch->add( NS_USER_TALK, $row->user_name );
+				} elseif ( $this->isQueryableRange( $this->target ) ) {
+					// If this is an IP range, batch the IP's talk page
+					$batch->add( NS_USER_TALK, $row->rev_user_text );
 				}
 				$batch->add( $row->page_namespace, $row->page_title );
 			}
