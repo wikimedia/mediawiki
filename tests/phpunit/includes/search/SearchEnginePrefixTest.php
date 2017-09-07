@@ -131,13 +131,13 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 				'Special namespace prefix',
 				'query' => 'Special:',
 				'results' => [
+					'Special:AboutIP',
 					'Special:ActiveUsers',
 					'Special:AllMessages',
-					'Special:AllMyUploads',
 				],
 				// Third result when testing offset
 				'offsetresult' => [
-					'Special:AllPages',
+					'Special:AllMyUploads',
 				],
 			] ],
 			[ [

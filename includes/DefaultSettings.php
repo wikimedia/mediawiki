@@ -8838,6 +8838,19 @@ $wgCommentTableSchemaMigrationStage = MIGRATION_OLD;
 $wgActorTableSchemaMigrationStage = MIGRATION_OLD;
 
 /**
+ * Directory where GeoIP databases can be found,
+ * These files should be named:
+ * - GeoLite2-ASN.mmdb
+ * - GeoLite2-City.mmdb
+ *
+ * Setting to false disables all GeoIP features
+ *
+ * @since 1.30
+ * @var string|bool
+ */
+$wgGeoIPDataDirectory = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
