@@ -4659,5 +4659,14 @@
 	"pagedata-title": "Title shown on the special page when a form or text is presented",
 	"pagedata-text": "Error shown when none of the formats acceptable to the client is supported (HTTP error 406). Parameters:\n* $1 - the list of supported MIME types",
 	"pagedata-not-acceptable": "No matching format found. Supported MIME types: $1",
-	"pagedata-bad-title": "Error shown when the requested title is invalid. Parameters:\n* $1: the malformed ID"
+	"pagedata-bad-title": "Error shown when the requested title is invalid. Parameters:\n* $1: the malformed ID",
+	"aboutip": "Special page name",
+	"aboutip-not-enabled": "Informational message shown when GeoIP is not enabled",
+	"aboutip-asn": "Label for table row",
+	"aboutip-continent": "Label for table row",
+	"aboutip-country": "Label for table row",
+	"aboutip-city": "Label for table row",
+	"help-aboutip-url": "{{doc-important|Do not translate the namespace name <code>Help</code>.}}\nUsed as name of the page that provides information about logging into the wiki.\n\nUsed as a link target in the message {{msg-mw|Userlogin-helplink}}.",
+	"ipaddress": "Label for the form intput",
+	"ip-not-valid": "Error message shown when input is not a valid IP address"
 }

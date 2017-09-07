@@ -51,6 +51,7 @@ class SpecialPageFactory {
 	 */
 	private static $coreList = [
 		// Maintenance Reports
+		'AboutIP' => SpecialAboutIP::class,
 		'BrokenRedirects' => BrokenRedirectsPage::class,
 		'Deadendpages' => DeadendPagesPage::class,
 		'DoubleRedirects' => DoubleRedirectsPage::class,
