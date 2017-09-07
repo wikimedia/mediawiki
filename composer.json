@@ -23,6 +23,7 @@
 		"ext-json": "*",
 		"ext-mbstring": "*",
 		"ext-xml": "*",
+		"geoip2/geoip2": "2.8.0",
 		"liuggio/statsd-php-client": "1.0.18",
 		"mediawiki/at-ease": "1.2.0",
 		"oojs/oojs-ui": "0.25.2",
