@@ -4446,5 +4446,14 @@
 	"pagedata-title": "Page data",
 	"pagedata-text": "This page provides a data interface to pages. Please provide the page title in the URL, using subpage syntax.\n* Content negotiation applies based on your client's Accept header. This means that the page data will be provided in the format preferred by your client.",
 	"pagedata-not-acceptable": "No matching format found. Supported MIME types: $1",
-	"pagedata-bad-title": "Invalid title: $1."
+	"pagedata-bad-title": "Invalid title: $1.",
+	"aboutip": "About IP",
+	"aboutip-not-enabled": "GeoIP is not enabled on this wiki. For more information see $1",
+	"aboutip-asn": "Autonomous System Number (ASN)",
+	"aboutip-continent": "Continent",
+	"aboutip-country": "Country",
+	"aboutip-city": "City",
+	"help-aboutip-url": "https://www.mediawiki.org/wiki/Help:GeoIP",
+	"ipaddress": "IP Address:",
+	"ip-not-valid": "Error: $1 is not a valid IP address."
 }
