@@ -682,3 +682,6 @@
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/mediawiki/vendor
 	branch = wmf/1.30.0-wmf.17
+[submodule "extensions/ArticleCreationWorkflow"]
+	path = extensions/ArticleCreationWorkflow
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ArticleCreationWorkflow.git
