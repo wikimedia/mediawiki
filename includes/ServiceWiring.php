@@ -49,6 +49,7 @@ use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\ObjectFactory;
+use MediaWiki\GeoIPLookup;
 
 return [
 	'DBLoadBalancerFactory' => function ( MediaWikiServices $services ) {
@@ -592,6 +593,12 @@ return [
 	'ActorMigration' => function ( MediaWikiServices $services ) {
 		return new ActorMigration(
 			$services->getMainConfig()->get( 'ActorTableSchemaMigrationStage' )
+		);
+	},
+
+	'GeoIPLookup' => function ( MediaWikiServices $services ) {
+		return new GeoIPLookup(
+			$services->getMainConfig()->get( 'GeoIPDataDirectory' )
 		);
 	},
 
