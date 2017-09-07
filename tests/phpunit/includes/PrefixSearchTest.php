@@ -139,7 +139,7 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 				],
 				// Third result when testing offset
 				'offsetresult' => [
-					'Special:AllPages',
+					'Special:AllMessages',
 				],
 			] ],
 			[ [
