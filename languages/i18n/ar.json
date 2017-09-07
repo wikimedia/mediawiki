@@ -3758,7 +3758,7 @@
 	"logentry-newusers-autocreate": "أنشئ حساب {{GENDER:$2|المستخدم|المستخدمة}} $1 تلقائيًا",
 	"logentry-protect-move_prot": "$1 {{GENDER:$2|نقل}} إعدادات الحماية من $4 إلى $3",
 	"logentry-protect-unprotect": "{{GENDER:$2|رفع|رفعت}} $1 الحماية عن $3",
-	"logentry-protect-protect": "$1 {{GENDER:$2|حمى|حمت}} $3 $4",
+	"logentry-protect-protect": "{{GENDER:$2|حمى|حمت}} $1 $3 $4",
 	"logentry-protect-protect-cascade": "$1 {{GENDER:$2|حمى|حمت}} $3 $4 [مضمنة]",
 	"logentry-protect-modify": "{{GENDER:$2|غير|غيرت}} $1 مستوى حماية $3 $4",
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|غير|غيرت}} مستوى الحماية ل$3 $4 [مضمن]",

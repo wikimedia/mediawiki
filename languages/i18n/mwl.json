@@ -347,6 +347,7 @@
 	"noarticletext": "Inda nun eisiste testo nesta páigina.\nTu puodes [[Special:Search/{{PAGENAME}}|percurar pul títalo desta páigina]] noutras páiginas,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} percurar ls registros que téngan a ber]\nó [{{fullurl:{{FULLPAGENAME}}|action=edit}} criar esta páigina]</span>.",
 	"note": "'''Abiso:'''",
 	"previewnote": "<strong>Lhembra-te qu'esto ye solo ua amostra.</strong>\nLas altaraçones inda nun fúrun grabadas!",
+	"continue-editing": "Nabegar pa la ária d'eidiçon",
 	"editing": "A eiditar $1",
 	"editingsection": "A eiditar $1 (cacho)",
 	"yourtext": "L tou testo",

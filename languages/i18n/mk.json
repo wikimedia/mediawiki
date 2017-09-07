@@ -2336,6 +2336,7 @@
 	"sp-contributions-newonly": "Прикажувај само новосоздадени страници",
 	"sp-contributions-hideminor": "Скриј ситни промени",
 	"sp-contributions-submit": "Пребарај",
+	"sp-contributions-outofrange": "Не можам да прикажам исход. Бараниот опсег на IP-адреси е поголем од допуштените /$1 во CIDR.",
 	"whatlinkshere": "Што води овде",
 	"whatlinkshere-title": "Страници со врски што водат до „$1“",
 	"whatlinkshere-page": "Страница:",

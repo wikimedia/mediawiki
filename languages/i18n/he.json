@@ -2345,6 +2345,7 @@
 	"sp-contributions-newonly": "הצגת עריכות שהן יצירות של דפים בלבד",
 	"sp-contributions-hideminor": "הסתרת עריכות משניות",
 	"sp-contributions-submit": "חיפוש",
+	"sp-contributions-outofrange": "לא ניתן להציג תוצאות. טווח ה־IP המבוקש גדול יותר ממגבלת ה־CIDR, שהיא /$1.",
 	"whatlinkshere": "דפים המקושרים לכאן",
 	"whatlinkshere-title": "דפים המקשרים לדף \"$1\"",
 	"whatlinkshere-page": "דף:",
