@@ -423,6 +423,7 @@ $wgAutoloadLocalClasses = [
 	'EditPage' => __DIR__ . '/includes/EditPage.php',
 	'EditWatchlistCheckboxSeriesField' => __DIR__ . '/includes/specials/SpecialEditWatchlist.php',
 	'EditWatchlistNormalHTMLForm' => __DIR__ . '/includes/specials/SpecialEditWatchlist.php',
+	'ElectronVirtualRestService' => __DIR__ . '/includes/libs/virtualrest/ElectronVirtualRestService.php',
 	'EmailConfirmation' => __DIR__ . '/includes/specials/SpecialConfirmemail.php',
 	'EmailInvalidation' => __DIR__ . '/includes/specials/SpecialEmailInvalidate.php',
 	'EmailNotification' => __DIR__ . '/includes/mail/EmailNotification.php',
