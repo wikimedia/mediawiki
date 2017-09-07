@@ -648,6 +648,21 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * Return the URL to show in the printed version of the page
+	 *
+	 * @return string url for printed version
+	 */
+	public static function getPrintSourceURL( $title, $oldid ) {
+		if ( $oldid ) {
+			$canonicalUrl = $title->getCanonicalURL( 'oldid=' . $oldid );
+			return htmlspecialchars( wfExpandIRI( $canonicalUrl ) );
+		} else {
+			// oldid not available for non existing pages
+			return htmlspecialchars( wfExpandIRI( $title->getCanonicalURL() ) );
+		}
+	}
+
+	/**
 	 * Text with the permalink to the source page,
 	 * usually shown on the footer of a printed page
 	 *
@@ -655,13 +670,9 @@ abstract class Skin extends ContextSource {
 	 */
 	function printSource() {
 		$oldid = $this->getRevisionId();
-		if ( $oldid ) {
-			$canonicalUrl = $this->getTitle()->getCanonicalURL( 'oldid=' . $oldid );
-			$url = htmlspecialchars( wfExpandIRI( $canonicalUrl ) );
-		} else {
-			// oldid not available for non existing pages
-			$url = htmlspecialchars( wfExpandIRI( $this->getTitle()->getCanonicalURL() ) );
-		}
+		$config = $this->getConfig();
+		$printSourceFunction = $config->get( 'PrintSourceFunction', 'Skin::getPrintSourceURL' );
+		$url = call_user_func( $printSourceFunction, $this->getTitle(), $oldid );
 
 		return $this->msg( 'retrievedfrom' )
 			->rawParams( '<a dir="ltr" href="' . $url . '">' . $url . '</a>' )
