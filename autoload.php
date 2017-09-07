@@ -1043,6 +1043,7 @@ $wgAutoloadLocalClasses = [
 	'OldLocalFile' => __DIR__ . '/includes/filerepo/file/OldLocalFile.php',
 	'OracleInstaller' => __DIR__ . '/includes/installer/OracleInstaller.php',
 	'OracleUpdater' => __DIR__ . '/includes/installer/OracleUpdater.php',
+	'OrderedStreamingForkController' => __DIR__ . '/includes/OrderedStreamingForkController.php',
 	'OrphanStats' => __DIR__ . '/maintenance/storage/orphanStats.php',
 	'Orphans' => __DIR__ . '/maintenance/orphans.php',
 	'OutputPage' => __DIR__ . '/includes/OutputPage.php',
