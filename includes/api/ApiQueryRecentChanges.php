@@ -287,14 +287,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			);
 			$showRedirects = $this->fld_redirect || isset( $show['redirect'] )
 				|| isset( $show['!redirect'] );
-
-			if ( $this->fld_comment || $this->fld_parsedcomment ) {
-				$this->commentStore = new CommentStore( 'rc_comment' );
-				$commentQuery = $this->commentStore->getJoin();
-				$this->addTables( $commentQuery['tables'] );
-				$this->addFields( $commentQuery['fields'] );
-				$this->addJoinConds( $commentQuery['joins'] );
-			}
 		}
 		$this->addFieldsIf( [ 'rc_this_oldid' ],
 			$resultPageSet && $params['generaterevisions'] );
@@ -360,6 +352,15 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		}
 
 		$this->token = $params['token'];
+
+		if ( $this->fld_comment || $this->fld_parsedcomment || $this->token ) {
+			$this->commentStore = new CommentStore( 'rc_comment' );
+			$commentQuery = $this->commentStore->getJoin();
+			$this->addTables( $commentQuery['tables'] );
+			$this->addFields( $commentQuery['fields'] );
+			$this->addJoinConds( $commentQuery['joins'] );
+		}
+
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
 		$hookData = [];
