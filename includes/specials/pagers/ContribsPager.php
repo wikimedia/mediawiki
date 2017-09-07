@@ -371,7 +371,7 @@ class ContribsPager extends RangeChronologicalPager {
 	 * @return string Name of field
 	 */
 	public function getIndexField() {
-		if ( self::isQueryableRange( $this->target ) ) {
+		if ( $this->isQueryableRange( $this->target ) ) {
 			return 'ipc_rev_timestamp';
 		} else {
 			return 'rev_timestamp';
@@ -546,7 +546,7 @@ class ContribsPager extends RangeChronologicalPager {
 			# When querying for an IP range, we want to always show user and user talk links.
 			$userlink = '';
 			if ( ( $this->contribs == 'newbie' && !$rev->isDeleted( Revision::DELETED_USER ) )
-				|| self::isQueryableRange( $this->target ) ) {
+				|| $this->isQueryableRange( $this->target ) ) {
 				$userlink = ' . . ' . $lang->getDirMark()
 					. Linker::userLink( $rev->getUser(), $rev->getUserText() );
 				$userlink .= ' ' . $this->msg( 'parentheses' )->rawParams(
