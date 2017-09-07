@@ -43,7 +43,8 @@ define( 'DBO_COMPRESS', 512 );
  * Valid database indexes
  * Operation-based indexes
  */
-define( 'DB_SLAVE', -1 );     # Read from the slave (or only server)
+define( 'DB_REPLICA', -1 );   # Read from the replica (or only server)
+define( 'DB_SLAVE', -1 );     # Obsolete alias for DB_REPLICA
 define( 'DB_MASTER', -2 );    # Write to master (or only server)
 /**@}*/
 
