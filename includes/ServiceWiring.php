@@ -37,6 +37,7 @@
  *      MediaWiki code base.
  */
 
+use MediaWiki\GeoIPLookup;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
@@ -425,6 +426,16 @@ return [
 		return new ReadOnlyMode(
 			$services->getConfiguredReadOnlyMode(),
 			$services->getDBLoadBalancer()
+		);
+	},
+
+	'GeoIPLookup' => function ( MediaWikiServices $services ) {
+		if ( !GeoIPLookup::isEnabled() ) {
+			throw new RuntimeException( "GeoIPLookup is disabled" );
+		}
+
+		return new GeoIPLookup(
+			$services->getMainConfig()->get( 'GeoIPDataDirectory' )
 		);
 	},
 
