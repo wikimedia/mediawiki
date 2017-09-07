@@ -384,6 +384,7 @@ class ContribsPager extends RangeChronologicalPager {
 		$parentRevIds = [];
 		$this->mParentLens = [];
 		$batch = new LinkBatch();
+		$isIpRange = $this->isQueryableRange( $this->target );
 		# Give some pointers to make (last) links
 		foreach ( $this->mResult as $row ) {
 			if ( isset( $row->rev_parent_id ) && $row->rev_parent_id ) {
@@ -394,7 +395,7 @@ class ContribsPager extends RangeChronologicalPager {
 				if ( $this->contribs === 'newbie' ) { // multiple users
 					$batch->add( NS_USER, $row->user_name );
 					$batch->add( NS_USER_TALK, $row->user_name );
-				} elseif ( $this->isQueryableRange( $this->target ) ) {
+				} elseif ( $isIpRange ) {
 					// If this is an IP range, batch the IP's talk page
 					$batch->add( NS_USER_TALK, $row->rev_user_text );
 				}
