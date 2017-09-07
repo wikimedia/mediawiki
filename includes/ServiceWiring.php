@@ -41,6 +41,7 @@ use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\GeoIPLookup;
 
 return [
 	'DBLoadBalancerFactory' => function ( MediaWikiServices $services ) {
@@ -425,6 +426,16 @@ return [
 		return new ReadOnlyMode(
 			$services->getConfiguredReadOnlyMode(),
 			$services->getDBLoadBalancer()
+		);
+	},
+
+	'GeoIPLookup' => function ( MediaWikiServices $services ) {
+		if ( !GeoIPLookup::isEnabled() ) {
+			throw new RuntimeException( "GeoIPLookup is disabled" );
+		}
+
+		return new GeoIPLookup(
+			$services->getMainConfig()->get( 'GeoIPDataDirectory' )
 		);
 	},
 

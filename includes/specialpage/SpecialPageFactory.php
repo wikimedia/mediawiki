@@ -50,6 +50,7 @@ class SpecialPageFactory {
 	 */
 	private static $coreList = [
 		// Maintenance Reports
+		'AboutIP' => 'SpecialAboutIP',
 		'BrokenRedirects' => 'BrokenRedirectsPage',
 		'Deadendpages' => 'DeadendPagesPage',
 		'DoubleRedirects' => 'DoubleRedirectsPage',
