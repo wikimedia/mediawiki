@@ -3403,6 +3403,7 @@ function wfShorthandToInteger( $string = '', $default = -1 ) {
 /**
  * Get the normalised IETF language tag
  * See unit test for examples.
+ * See mediawiki.language.bcp47 for the JavaScript implementation.
  *
  * @param string $code The language code.
  * @return string The language code which complying with BCP 47 standards.

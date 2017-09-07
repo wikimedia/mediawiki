@@ -188,6 +188,45 @@
 
 		setSpecialCharacters: function ( data ) {
 			this.specialCharacters = data;
+		},
+
+		/**
+		 * Formats language tags according the BCP47 standard.
+		 * See wfBCP47 for the PHP implementation.
+		 *
+		 * @param {string} languageTag Well-formed language tag
+		 * @return {string}
+		 */
+		bcp47: function ( languageTag ) {
+			var formatted,
+				isFirstSegment = true,
+				isPrivate = false,
+				segments = languageTag.split( '-' );
+
+			formatted = segments.map( function ( segment ) {
+				var newSegment;
+
+				// when previous segment is x, it is a private segment and should be lc
+				if ( isPrivate ) {
+					newSegment = segment.toLowerCase();
+				// ISO 3166 country code
+				} else if ( segment.length === 2 && !isFirstSegment ) {
+					newSegment = segment.toUpperCase();
+				// ISO 15924 script code
+				} else if ( segment.length === 4 && !isFirstSegment ) {
+					newSegment = segment.charAt( 0 ).toUpperCase() + segment.substring( 1 ).toLowerCase();
+				// Use lowercase for other cases
+				} else {
+					newSegment = segment.toLowerCase();
+				}
+
+				isPrivate = segment.toLowerCase() === 'x';
+				isFirstSegment = false;
+
+				return newSegment;
+			} );
+
+			return formatted.join( '-' );
 		}
 	} );
 
