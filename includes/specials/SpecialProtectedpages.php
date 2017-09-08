@@ -97,9 +97,31 @@ class SpecialProtectedpages extends SpecialPage {
 	) {
 		$title = $this->getPageTitle();
 
+		$formDescriptor = [
+			'titlehidden' => [
+				'class' => 'HTMLHiddenField',
+				'name' => 'title',
+				'value' => $title->getPrefixedDBkey(),
+			],
+
+			'namespace' => $this->getNamespaceMenu2( $namespace ),
+			'typemenu' => $this->getTypeMenu2( $type ),
+			'levelmenu' => $this->getLevelMenu2( $level ),
+
+			'expirycheck' => $this->getExpiryCheck2( $indefOnly ),
+			'cascadecheck' => $this->getCascadeCheck2( $cascadeOnly ),
+			'redirectcheck' => $this->getRedirectCheck2( $noRedirect ),
+
+			'sizelimit' => $this->getSizeLimit2( $sizetype, $size ),
+		];
+		$htmlForm = new HTMLForm( $formDescriptor, $this->getContext() );
+		$htmlForm
+			->setWrapperLegendMsg( 'protectedpages' )
+			->setSubmitText( $this->msg( 'protectedpages-submit' )->text() );
+
 		return Xml::openElement( 'form', [ 'method' => 'get', 'action' => wfScript() ] ) .
 			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', [], $this->msg( 'protectedpages' )->text() ) .
+			Xml::element( 'legend', [], $this->msg( 'prozotectedpages' )->text() ) .
 			Html::hidden( 'title', $title->getPrefixedDBkey() ) . "\n" .
 			$this->getNamespaceMenu( $namespace ) . "\n" .
 			$this->getTypeMenu( $type ) . "\n" .
@@ -112,7 +134,8 @@ class SpecialProtectedpages extends SpecialPage {
 			$this->getSizeLimit( $sizetype, $size ) . "\n" .
 			Xml::submitButton( $this->msg( 'protectedpages-submit' )->text() ) . "\n" .
 			Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' );
+			Xml::closeElement( 'form' ) .
+			$htmlForm->prepareForm()->getHTML( true );
 	}
 
 	/**
@@ -139,6 +162,26 @@ class SpecialProtectedpages extends SpecialPage {
 	}
 
 	/**
+	 * Prepare the namespace filter drop-down; standard namespace
+	 * selector, sans the MediaWiki namespace
+	 *
+	 * @param string|null $namespace Pre-select namespace
+	 * @return TODO
+	 */
+	protected function getNamespaceMenu2( $namespace = null ) {
+		return [
+			'class' => 'HTMLSelectNamespace',
+			'name' => 'namespace',
+			'id' => 'namespace',
+			'cssclass' => 'namespaceselector',
+			'selected' => $namespace,
+			'all' => '',
+			'label' => $this->msg( 'namespace' )->text(),
+		];
+	}
+
+
+	/**
 	 * @param bool $indefOnly
 	 * @return string Formatted HTML
 	 */
@@ -149,6 +192,20 @@ class SpecialProtectedpages extends SpecialPage {
 			'indefonly',
 			$indefOnly
 		) . "</span>\n";
+	}
+
+	/**
+	 * @param bool $indefOnly
+	 * @return TODO
+	 */
+	protected function getExpiryCheck2( $indefOnly ) {
+		return [
+			'type' => 'check',
+			'label' => $this->msg( 'protectedpages-indef' )->text(),
+			'name' => 'indefonly',
+			'id' => 'indefonly',
+			'value' => $indefOnly
+		];
 	}
 
 	/**
@@ -165,6 +222,20 @@ class SpecialProtectedpages extends SpecialPage {
 	}
 
 	/**
+	 * @param bool $cascadeOnly
+	 * @return TODO
+	 */
+	protected function getCascadeCheck2( $cascadeOnly ) {
+		return [
+			'type' => 'check',
+			'label' => $this->msg( 'protectedpages-cascade' )->text(),
+			'name' => 'cascadeonly',
+			'id' => 'cascadeonly',
+			'value' => $cascadeOnly
+		];
+	}
+
+	/**
 	 * @param bool $noRedirect
 	 * @return string Formatted HTML
 	 */
@@ -175,6 +246,20 @@ class SpecialProtectedpages extends SpecialPage {
 			'noredirect',
 			$noRedirect
 		) . "</span>\n";
+	}
+
+	/**
+	 * @param bool $noRedirect
+	 * @return TODO
+	 */
+	protected function getRedirectCheck2( $noRedirect ) {
+		return [
+			'type' => 'check',
+			'label' => $this->msg ( 'protectedpages-noredirect' )->text(),
+			'name' => 'noredirect',
+			'id' => 'noredirect',
+			'value' => $noRedirect,
+		];
 	}
 
 	/**
@@ -207,6 +292,25 @@ class SpecialProtectedpages extends SpecialPage {
 	}
 
 	/**
+	 * @param string $sizetype "min" or "max"
+	 * @param mixed $size
+	 * @return TODO
+	 */
+	protected function getSizeLimit2( $sizetype, $size ) {
+		$max = $sizetype === 'max';
+
+		return [
+			'type' => 'radio',
+			'label' => $this->msg( 'minimum-size' )->text(),
+			'name' => 'size',
+			'options' => [
+				'min' => 'wpmin',
+				'max' => 'wpmax',
+			],
+		];
+	}
+
+	/**
 	 * Creates the input label of the restriction type
 	 * @param string $pr_type Protection type
 	 * @return string Formatted HTML
@@ -233,6 +337,37 @@ class SpecialProtectedpages extends SpecialPage {
 			Xml::tags( 'select',
 				[ 'id' => $this->IdType, 'name' => $this->IdType ],
 				implode( "\n", $options ) ) . "</span>";
+	}
+
+	/**
+	 * Creates the input label of the restriction type
+	 * @param string $pr_type Protection type
+	 * @return TODO
+	 */
+	protected function getTypeMenu2( $pr_type ) {
+		$m = []; // Temporary array
+		$options = [];
+
+		// First pass to load the log names
+		foreach ( Title::getFilteredRestrictionTypes( true ) as $type ) {
+			// Messages: restriction-edit, restriction-move, restriction-create, restriction-upload
+			$text = $this->msg( "restriction-$type" )->text();
+			$m[$text] = $type;
+		}
+
+		// Third pass generates sorted XHTML content
+		foreach ( $m as $text => $type ) {
+			$options[$text] = $type;
+		}
+
+		return [
+			'type' => 'select',
+			'options' => $options,
+			'value' => $pr_type,
+			'label' => $this->msg( 'restriction-type' )->text(),
+			'name' => $this->IdType,
+			'id' => $this->IdType,
+		];
 	}
 
 	/**
@@ -265,6 +400,40 @@ class SpecialProtectedpages extends SpecialPage {
 			Xml::tags( 'select',
 				[ 'id' => $this->IdLevel, 'name' => $this->IdLevel ],
 				implode( "\n", $options ) ) . "</span>";
+	}
+
+	/**
+	 * Creates the input label of the restriction level
+	 * @param string $pr_level Protection level
+	 * @return TODO
+	 */
+	protected function getLevelMenu2( $pr_level ) {
+		// Temporary array
+		$m = [ $this->msg( 'restriction-level-all' )->text() => 0 ];
+		$options = [];
+
+		// First pass to load the log names
+		foreach ( $this->getConfig()->get( 'RestrictionLevels' ) as $type ) {
+			// Messages used can be 'restriction-level-sysop' and 'restriction-level-autoconfirmed'
+			if ( $type != '' && $type != '*' ) {
+				$text = $this->msg( "restriction-level-$type" )->text();
+				$m[$text] = $type;
+			}
+		}
+
+		// Third pass generates sorted XHTML content
+		foreach ( $m as $text => $type ) {
+			$options[$text] = $type;
+		}
+
+		return [
+			'type' => 'select',
+			'options' => $options,
+			'value' => $pr_level,
+			'label' => $this->msg( 'restriction-level' )->text(),
+			'name' => $this->IdLevel,
+			'id' => $this->IdLevel
+		];
 	}
 
 	protected function getGroupName() {
