@@ -1809,6 +1809,7 @@
 	"watchlist-hide": "Ffer",
 	"watchlist-submit": "Sken",
 	"wlshowhideliu": "Iseqdacen yettwajerden",
+	"wlshowhideanons": "Iseqdacen udrigen",
 	"watchlist-options": "Iɣewwaṛen n tebdart n uḍfaṛ",
 	"watching": "Ad iɛass...",
 	"unwatching": "Ad ifukk aɛessi...",
@@ -1982,7 +1983,7 @@
 	"sp-contributions-newbies-title": "Ittekkiyen n imseqdacen gar imiḍanen imaynuten",
 	"sp-contributions-blocklog": "Aɣmis n uɛeṭṭil",
 	"sp-contributions-suppresslog": "Attekki n {{GENDER:$1|useqdac|taseqdact}} yettwakkes",
-	"sp-contributions-deleted": "isekcam yemḥan",
+	"sp-contributions-deleted": "Attekki n {{GENDER:$1|useqdac|taseqdact}} yettwakkes",
 	"sp-contributions-uploads": "izdamen",
 	"sp-contributions-logs": "iɣmisen",
 	"sp-contributions-talk": "Mmeslay",
@@ -3137,5 +3138,8 @@
 	"special-characters-group-arabic": "Taɛṛabt",
 	"randomrootpage": "Asebter aẓaṛ agacuran",
 	"log-action-filter-upload-upload": "Asali amaynut",
-	"authprovider-confirmlink-ok-help": "Kemmel deffir n uskan n yiznan n usdukkel ur yeddin ara."
+	"authmanager-username-help": "Isem n useqdac i usesteb",
+	"authmanager-realname-help": "Isem ilaw n useqdac",
+	"authprovider-confirmlink-ok-help": "Kemmel deffir n uskan n yiznan n usdukkel ur yeddin ara.",
+	"userjsispublic": "Ma ulac aɣilif, wali: isebtar isnawanen, JavaScript ur issefk ara ad gebren isefka ibaḍniyen acku ttwalin-ten iseqdacen-nniḍen."
 }

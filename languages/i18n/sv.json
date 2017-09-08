@@ -2383,6 +2383,7 @@
 	"sp-contributions-newonly": "Visa endast redigeringar där sidor skapas",
 	"sp-contributions-hideminor": "Dölj mindre redigeringar",
 	"sp-contributions-submit": "Sök",
+	"sp-contributions-outofrange": "Kunde inte visa några resultat. Det begärda IP-intervallet är större än CIDR-gränsen på /$1.",
 	"whatlinkshere": "Vad som länkar hit",
 	"whatlinkshere-title": "Sidor som länkar till \"$1\"",
 	"whatlinkshere-page": "Sida:",
