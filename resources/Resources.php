@@ -1506,6 +1506,9 @@ return [
 	'mediawiki.action.view.postEdit' => [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.postEdit.js',
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.view.postEdit.less',
+		'skinStyles' => [
+			'monobook' => 'resources/src/mediawiki.action/mediawiki.action.view.postEdit.monobook.css',
+		],
 		'dependencies' => [
 			'mediawiki.jqueryMsg',
 			'mediawiki.notification'
