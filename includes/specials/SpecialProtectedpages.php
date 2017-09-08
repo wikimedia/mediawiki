@@ -42,7 +42,7 @@ class SpecialProtectedpages extends SpecialPage {
 		$request = $this->getRequest();
 		$type = $request->getVal( $this->IdType );
 		$level = $request->getVal( $this->IdLevel );
-		$sizetype = $request->getVal( 'sizetype' );
+		$sizetype = $request->getVal( 'size-mode' );
 		$size = $request->getIntOrNull( 'size' );
 		$ns = $request->getIntOrNull( 'namespace' );
 		$indefOnly = $request->getBool( 'indefonly' ) ? 1 : 0;
@@ -95,24 +95,24 @@ class SpecialProtectedpages extends SpecialPage {
 	protected function showOptions( $namespace, $type = 'edit', $level, $sizetype,
 		$size, $indefOnly, $cascadeOnly, $noRedirect
 	) {
-		$title = $this->getPageTitle();
+		$formDescriptor = [
+			'namespace' => $this->getNamespaceMenu( $namespace ),
+			'typemenu' => $this->getTypeMenu( $type ),
+			'levelmenu' => $this->getLevelMenu( $level ),
 
-		return Xml::openElement( 'form', [ 'method' => 'get', 'action' => wfScript() ] ) .
-			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', [], $this->msg( 'protectedpages' )->text() ) .
-			Html::hidden( 'title', $title->getPrefixedDBkey() ) . "\n" .
-			$this->getNamespaceMenu( $namespace ) . "\n" .
-			$this->getTypeMenu( $type ) . "\n" .
-			$this->getLevelMenu( $level ) . "\n" .
-			"<br />\n" .
-			$this->getExpiryCheck( $indefOnly ) . "\n" .
-			$this->getCascadeCheck( $cascadeOnly ) . "\n" .
-			$this->getRedirectCheck( $noRedirect ) . "\n" .
-			"<br />\n" .
-			$this->getSizeLimit( $sizetype, $size ) . "\n" .
-			Xml::submitButton( $this->msg( 'protectedpages-submit' )->text() ) . "\n" .
-			Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' );
+			'expirycheck' => $this->getExpiryCheck( $indefOnly ),
+			'cascadecheck' => $this->getCascadeCheck( $cascadeOnly ),
+			'redirectcheck' => $this->getRedirectCheck( $noRedirect ),
+
+			'sizelimit' => $this->getSizeLimit( $sizetype, $size ),
+		];
+		$htmlForm = new HTMLForm( $formDescriptor, $this->getContext() );
+		$htmlForm
+			->setMethod( 'get' )
+			->setWrapperLegendMsg( 'protectedpages' )
+			->setSubmitText( $this->msg( 'protectedpages-submit' )->text() );
+
+		return 	$htmlForm->prepareForm()->getHTML();
 	}
 
 	/**
@@ -120,96 +120,80 @@ class SpecialProtectedpages extends SpecialPage {
 	 * selector, sans the MediaWiki namespace
 	 *
 	 * @param string|null $namespace Pre-select namespace
-	 * @return string
+	 * @return array
 	 */
 	protected function getNamespaceMenu( $namespace = null ) {
-		return Html::rawElement( 'span', [ 'class' => 'mw-input-with-label' ],
-			Html::namespaceSelector(
-				[
-					'selected' => $namespace,
-					'all' => '',
-					'label' => $this->msg( 'namespace' )->text()
-				], [
-					'name' => 'namespace',
-					'id' => 'namespace',
-					'class' => 'namespaceselector',
-				]
-			)
-		);
+		return [
+			'class' => 'HTMLSelectNamespace',
+			'name' => 'namespace',
+			'id' => 'namespace',
+			'cssclass' => 'namespaceselector',
+			'selected' => $namespace,
+			'all' => '',
+			'label' => $this->msg( 'namespace' )->text(),
+		];
 	}
 
 	/**
 	 * @param bool $indefOnly
-	 * @return string Formatted HTML
+	 * @return array
 	 */
 	protected function getExpiryCheck( $indefOnly ) {
-		return '<span class="mw-input-with-label">' . Xml::checkLabel(
-			$this->msg( 'protectedpages-indef' )->text(),
-			'indefonly',
-			'indefonly',
-			$indefOnly
-		) . "</span>\n";
+		return [
+			'type' => 'check',
+			'label' => $this->msg( 'protectedpages-indef' )->text(),
+			'name' => 'indefonly',
+			'id' => 'indefonly',
+			'value' => $indefOnly
+		];
 	}
 
 	/**
 	 * @param bool $cascadeOnly
-	 * @return string Formatted HTML
+	 * @return array
 	 */
 	protected function getCascadeCheck( $cascadeOnly ) {
-		return '<span class="mw-input-with-label">' . Xml::checkLabel(
-			$this->msg( 'protectedpages-cascade' )->text(),
-			'cascadeonly',
-			'cascadeonly',
-			$cascadeOnly
-		) . "</span>\n";
+		return [
+			'type' => 'check',
+			'label' => $this->msg( 'protectedpages-cascade' )->text(),
+			'name' => 'cascadeonly',
+			'id' => 'cascadeonly',
+			'value' => $cascadeOnly
+		];
 	}
 
 	/**
 	 * @param bool $noRedirect
-	 * @return string Formatted HTML
+	 * @return array
 	 */
 	protected function getRedirectCheck( $noRedirect ) {
-		return '<span class="mw-input-with-label">' . Xml::checkLabel(
-			$this->msg( 'protectedpages-noredirect' )->text(),
-			'noredirect',
-			'noredirect',
-			$noRedirect
-		) . "</span>\n";
+		return [
+			'type' => 'check',
+			'label' => $this->msg ( 'protectedpages-noredirect' )->text(),
+			'name' => 'noredirect',
+			'id' => 'noredirect',
+			'value' => $noRedirect,
+		];
 	}
 
 	/**
 	 * @param string $sizetype "min" or "max"
 	 * @param mixed $size
-	 * @return string Formatted HTML
+	 * @return array
 	 */
 	protected function getSizeLimit( $sizetype, $size ) {
 		$max = $sizetype === 'max';
 
-		return '<span class="mw-input-with-label">' . Xml::radioLabel(
-			$this->msg( 'minimum-size' )->text(),
-			'sizetype',
-			'min',
-			'wpmin',
-			!$max
-		) .
-			' ' .
-			Xml::radioLabel(
-				$this->msg( 'maximum-size' )->text(),
-				'sizetype',
-				'max',
-				'wpmax',
-				$max
-			) .
-			' ' .
-			Xml::input( 'size', 9, $size, [ 'id' => 'wpsize' ] ) .
-			' ' .
-			Xml::label( $this->msg( 'pagesize' )->text(), 'wpsize' ) . "</span>\n";
+		return [
+			'class' => 'HTMLSizeFilterField',
+			'name' => 'size',
+		];
 	}
 
 	/**
 	 * Creates the input label of the restriction type
 	 * @param string $pr_type Protection type
-	 * @return string Formatted HTML
+	 * @return array
 	 */
 	protected function getTypeMenu( $pr_type ) {
 		$m = []; // Temporary array
@@ -224,21 +208,23 @@ class SpecialProtectedpages extends SpecialPage {
 
 		// Third pass generates sorted XHTML content
 		foreach ( $m as $text => $type ) {
-			$selected = ( $type == $pr_type );
-			$options[] = Xml::option( $text, $type, $selected ) . "\n";
+			$options[$text] = $type;
 		}
 
-		return '<span class="mw-input-with-label">' .
-			Xml::label( $this->msg( 'restriction-type' )->text(), $this->IdType ) . ' ' .
-			Xml::tags( 'select',
-				[ 'id' => $this->IdType, 'name' => $this->IdType ],
-				implode( "\n", $options ) ) . "</span>";
+		return [
+			'type' => 'select',
+			'options' => $options,
+			'value' => $pr_type,
+			'label' => $this->msg( 'restriction-type' )->text(),
+			'name' => $this->IdType,
+			'id' => $this->IdType,
+		];
 	}
 
 	/**
 	 * Creates the input label of the restriction level
 	 * @param string $pr_level Protection level
-	 * @return string Formatted HTML
+	 * @return array
 	 */
 	protected function getLevelMenu( $pr_level ) {
 		// Temporary array
@@ -256,15 +242,17 @@ class SpecialProtectedpages extends SpecialPage {
 
 		// Third pass generates sorted XHTML content
 		foreach ( $m as $text => $type ) {
-			$selected = ( $type == $pr_level );
-			$options[] = Xml::option( $text, $type, $selected );
+			$options[$text] = $type;
 		}
 
-		return '<span class="mw-input-with-label">' .
-			Xml::label( $this->msg( 'restriction-level' )->text(), $this->IdLevel ) . ' ' .
-			Xml::tags( 'select',
-				[ 'id' => $this->IdLevel, 'name' => $this->IdLevel ],
-				implode( "\n", $options ) ) . "</span>";
+		return [
+			'type' => 'select',
+			'options' => $options,
+			'value' => $pr_level,
+			'label' => $this->msg( 'restriction-level' )->text(),
+			'name' => $this->IdLevel,
+			'id' => $this->IdLevel
+		];
 	}
 
 	protected function getGroupName() {
