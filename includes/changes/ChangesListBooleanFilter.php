@@ -127,7 +127,7 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 		}
 
 		if ( isset( $filterDefinition['default'] ) ) {
-			$this->defaultValue = $filterDefinition['default'];
+			$this->setDefault( $filterDefinition['default'] );
 		} else {
 			throw new MWException( 'You must set a default' );
 		}
@@ -156,12 +156,14 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	}
 
 	/**
-	 * Sets default
+	 * Sets default.  It must be a boolean.
+	 *
+	 * It will be coerced to boolean.
 	 *
 	 * @param bool $defaultValue
 	 */
 	public function setDefault( $defaultValue ) {
-		$this->defaultValue = $defaultValue;
+		$this->defaultValue = (bool)$defaultValue;
 	}
 
 	/**
@@ -235,11 +237,11 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	 * @inheritDoc
 	 */
 	public function isSelected( FormOptions $opts ) {
-		return !$this->getValue( $opts ) &&
+		return !$opts[ $this->getName() ] &&
 			array_filter(
 				$this->getSiblings(),
 				function ( ChangesListBooleanFilter $sibling ) use ( $opts ) {
-					return $sibling->getValue( $opts );
+					return $opts[ $sibling->getName() ];
 				}
 			);
 	}
@@ -254,14 +256,6 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 			return false;
 		}
 
-		return $this->getValue( $opts ) === $this->activeValue;
-	}
-
-	/**
-	 * @param FormOptions $opts
-	 * @return bool The current value of this filter according to $opts but coerced to boolean
-	 */
-	public function getValue( FormOptions $opts ) {
-		return (bool)$opts[ $this->getName() ];
+		return $opts[ $this->getName() ] === $this->activeValue;
 	}
 }
