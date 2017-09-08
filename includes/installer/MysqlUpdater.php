@@ -83,7 +83,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'doUserUniqueUpdate' ],
 			[ 'doUserGroupsUpdate' ],
 			[ 'addField', 'site_stats', 'ss_total_pages', 'patch-ss_total_articles.sql' ],
-			[ 'addTable', 'user_newtalk', 'patch-usernewtalk2.sql' ],
+			[ 'addTable', 'user_newtalk', 'patch-usernewtalk.sql' ],
 			[ 'addTable', 'transcache', 'patch-transcache.sql' ],
 			[ 'addField', 'interwiki', 'iw_trans', 'patch-interwiki-trans.sql' ],
 
