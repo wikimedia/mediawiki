@@ -252,10 +252,6 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	 * @return bool Whether this filter should be considered active
 	 */
 	public function isActive( FormOptions $opts, $isStructuredUI ) {
-		if ( $this->isReplacedInStructuredUi && $isStructuredUI ) {
-			return false;
-		}
-
 		return $opts[ $this->getName() ] === $this->activeValue;
 	}
 }
