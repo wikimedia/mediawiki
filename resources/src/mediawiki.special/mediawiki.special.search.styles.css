@@ -51,6 +51,7 @@
 	background-color: #f8f9fa;
 	margin-top: 1em;
 	border: 1px solid #c8ccd1;
+	border-radius: 2px;
 }
 .search-types {
 	float: left;
@@ -93,11 +94,11 @@
 /*==========================*/
 
 #mw-searchoptions {
-	margin: 0;
 	padding: 0.5em 0.75em 0.75em 0.75em;
 	background-color: #f8f9fa;
+	margin: -1px 0 0;
 	border: 1px solid #c8ccd1;
-	border-top-width: 0;
+	border-radius: 0 0 2px 2px;
 }
 #mw-searchoptions legend {
 	display: none;
