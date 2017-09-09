@@ -14,6 +14,7 @@ abstract class TidyDriverBase {
 
 	/**
 	 * Return true if validate() can be used
+	 * @return bool
 	 */
 	public function supportsValidate() {
 		return false;

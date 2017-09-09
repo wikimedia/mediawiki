@@ -74,6 +74,7 @@ class WantedFilesPage extends WantedQueryPage {
 	 * In its own function to allow subclasses to override.
 	 * @see SpecialWantedFilesGUOverride in GlobalUsage extension.
 	 * @since 1.24
+	 * @return bool
 	 */
 	protected function likelyToHaveFalsePositives() {
 		return RepoGroup::singleton()->hasForeignRepos();

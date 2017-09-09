@@ -28,6 +28,10 @@
 class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 	/**
 	 * @see RCFeedFormatter::getLine
+	 * @param array $feed
+	 * @param RecentChange $rc
+	 * @param string|null $actionComment
+	 * @return string|null
 	 */
 	public function getLine( array $feed, RecentChange $rc, $actionComment ) {
 		global $wgUseRCPatrol, $wgUseNPPatrol, $wgLocalInterwikis,

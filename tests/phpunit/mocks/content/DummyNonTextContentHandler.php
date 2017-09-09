@@ -34,6 +34,7 @@ class DummyNonTextContentHandler extends DummyContentHandlerForTesting {
 
 	/**
 	 * Creates an empty Content object of the type supported by this ContentHandler.
+	 * @return DummyNonTextContent
 	 */
 	public function makeEmptyContent() {
 		return new DummyNonTextContent( '' );

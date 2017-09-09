@@ -125,6 +125,7 @@ class MssqlUpdater extends DatabaseUpdater {
 	 * @param string $updatekey
 	 * @param string $patch
 	 * @param bool $fullpath
+	 * @return bool
 	 */
 	protected function updateSchema( $table, $updatekey, $patch, $fullpath = false ) {
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {

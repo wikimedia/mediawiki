@@ -106,6 +106,7 @@ class UserOptions {
 
 	/**
 	 * Dumb stuff to run a mode.
+	 * @return bool
 	 */
 	public function run() {
 		if ( !$this->mReady ) {

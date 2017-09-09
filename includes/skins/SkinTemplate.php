@@ -811,6 +811,9 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * @todo is this even used?
+	 * @param string $name
+	 * @param string $urlaction
+	 * @return array
 	 */
 	function makeArticleUrlDetails( $name, $urlaction = '' ) {
 		$title = Title::newFromText( $name );

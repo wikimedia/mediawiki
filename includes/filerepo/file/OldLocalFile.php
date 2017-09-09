@@ -396,6 +396,7 @@ class OldLocalFile extends LocalFile {
 	 *
 	 * This is the case for a couple files on Wikimedia servers where
 	 * the old version is "lost".
+	 * @return bool
 	 */
 	public function exists() {
 		$archiveName = $this->getArchiveName();

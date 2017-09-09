@@ -213,6 +213,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @param Config|null $bootstrapConfig The bootstrap config to use with the new
 	 *        MediaWikiServices.
+	 * @return MediaWikiServices
 	 */
 	protected static function resetGlobalServices( Config $bootstrapConfig = null ) {
 		$oldServices = MediaWikiServices::getInstance();

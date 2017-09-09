@@ -37,6 +37,7 @@ class Xhprof {
 
 	/**
 	 * Start xhprof profiler
+	 * @return bool
 	 */
 	public static function isEnabled() {
 		return self::$enabled;

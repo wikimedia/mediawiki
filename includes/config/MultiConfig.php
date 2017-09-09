@@ -46,6 +46,9 @@ class MultiConfig implements Config {
 
 	/**
 	 * @see Config::get
+	 * @param string $name
+	 * @return mixed
+	 * @throws ConfigException
 	 */
 	public function get( $name ) {
 		foreach ( $this->configs as $config ) {
@@ -59,6 +62,8 @@ class MultiConfig implements Config {
 
 	/**
 	 * @see Config::has
+	 * @param string $name
+	 * @return bool
 	 */
 	public function has( $name ) {
 		foreach ( $this->configs as $config ) {

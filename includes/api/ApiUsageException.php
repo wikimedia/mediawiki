@@ -152,7 +152,7 @@ class ApiUsageException extends UsageException implements ILocalizedException {
 	}
 
 	/**
-	 * @returns ApiMessage
+	 * @return ApiMessage
 	 */
 	private function getApiMessage() {
 		$errors = $this->status->getErrorsByType( 'error' );

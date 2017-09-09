@@ -189,6 +189,7 @@ class XMPReader implements LoggerAwareInterface {
 
 	/**
 	 * Check if this instance supports using this class
+	 * @return bool
 	 */
 	public static function isSupported() {
 		return function_exists( 'xml_parser_create_ns' ) && class_exists( 'XMLReader' );

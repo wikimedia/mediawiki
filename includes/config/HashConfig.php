@@ -50,6 +50,9 @@ class HashConfig implements Config, MutableConfig {
 
 	/**
 	 * @see Config::get
+	 * @param string $name
+	 * @return mixed
+	 * @throws ConfigException
 	 */
 	public function get( $name ) {
 		if ( !$this->has( $name ) ) {
@@ -61,6 +64,9 @@ class HashConfig implements Config, MutableConfig {
 
 	/**
 	 * @see Config::has
+	 * @param string $name
+	 * @return bool
+	 * @since 1.24
 	 */
 	public function has( $name ) {
 		return array_key_exists( $name, $this->settings );

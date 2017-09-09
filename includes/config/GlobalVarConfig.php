@@ -47,6 +47,9 @@ class GlobalVarConfig implements Config {
 
 	/**
 	 * @see Config::get
+	 * @param string $name
+	 * @return mixed
+	 * @throws ConfigException
 	 */
 	public function get( $name ) {
 		if ( !$this->has( $name ) ) {
@@ -57,6 +60,8 @@ class GlobalVarConfig implements Config {
 
 	/**
 	 * @see Config::has
+	 * @param string $name
+	 * @return bool
 	 */
 	public function has( $name ) {
 		return $this->hasWithPrefix( $this->prefix, $name );
