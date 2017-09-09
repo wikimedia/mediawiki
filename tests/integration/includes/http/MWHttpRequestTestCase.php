@@ -234,7 +234,7 @@ class MWHttpRequestTestCase extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Asserts that the cookie jar does not have the given cookie.
-	 * @param string $expectedName Cookie name
+	 * @param string $name Cookie name
 	 * @param CookieJar $cookieJar
 	 */
 	protected function assertNotHasCookie( $name, CookieJar $cookieJar ) {

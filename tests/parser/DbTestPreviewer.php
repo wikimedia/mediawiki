@@ -29,6 +29,8 @@ class DbTestPreviewer extends TestRecorder {
 
 	/**
 	 * This should be called before the table prefix is changed
+	 * @param IDatabase $db
+	 * @param bool|string $filter
 	 */
 	function __construct( $db, $filter = false ) {
 		$this->db = $db;

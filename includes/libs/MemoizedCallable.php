@@ -75,6 +75,7 @@ class MemoizedCallable {
 	 *
 	 * @param string $key
 	 * @param bool &$success
+	 * @return bool
 	 */
 	protected function fetchResult( $key, &$success ) {
 		$success = false;
@@ -148,6 +149,7 @@ class MemoizedCallable {
 	 * @param callable $callable
 	 * @param array $args
 	 * @param int $ttl
+	 * @return mixed
 	 */
 	public static function call( $callable, array $args = [], $ttl = 3600 ) {
 		$instance = new self( $callable, $ttl );

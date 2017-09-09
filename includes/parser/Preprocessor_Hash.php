@@ -1869,6 +1869,8 @@ class PPNode_Hash_Tree implements PPNode {
 
 	/**
 	 * Like splitArg() but for a raw child array. For internal use only.
+	 * @param array $children
+	 * @return array
 	 */
 	public static function splitRawArg( array $children ) {
 		$bits = [];
@@ -1910,6 +1912,8 @@ class PPNode_Hash_Tree implements PPNode {
 
 	/**
 	 * Like splitExt() but for a raw child array. For internal use only.
+	 * @param array $children
+	 * @return array
 	 */
 	public static function splitRawExt( array $children ) {
 		$bits = [];
@@ -1953,6 +1957,8 @@ class PPNode_Hash_Tree implements PPNode {
 
 	/**
 	 * Like splitHeading() but for a raw child array. For internal use only.
+	 * @param array $children
+	 * @return array
 	 */
 	public static function splitRawHeading( array $children ) {
 		$bits = [];
@@ -1984,6 +1990,8 @@ class PPNode_Hash_Tree implements PPNode {
 
 	/**
 	 * Like splitTemplate() but for a raw child array. For internal use only.
+	 * @param array $children
+	 * @return array
 	 */
 	public static function splitRawTemplate( array $children ) {
 		$parts = [];

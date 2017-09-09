@@ -107,6 +107,7 @@ class XhprofData {
 	 * The resulting array is left padded with nulls, so a key
 	 * with no parent (eg 'main()') will return [null, 'function'].
 	 *
+	 * @param string $key
 	 * @return array
 	 */
 	public static function splitKey( $key ) {

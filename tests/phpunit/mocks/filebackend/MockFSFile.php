@@ -41,6 +41,7 @@ class MockFSFile extends FSFile {
 	/**
 	 * August 22 – The theft of the Mona Lisa is discovered in the Louvre."
 	 * T22281
+	 * @return int
 	 */
 	public function getSize() {
 		return 1911;

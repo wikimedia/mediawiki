@@ -53,6 +53,7 @@ class DatabaseTestHelper extends Database {
 	/**
 	 * Returns SQL queries grouped by '; '
 	 * Clear the list of queries that have been done so far.
+	 * @return string
 	 */
 	public function getLastSqls() {
 		$lastSqls = implode( '; ', $this->lastSqls );

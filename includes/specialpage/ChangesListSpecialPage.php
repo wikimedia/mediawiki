@@ -808,6 +808,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * ChangesListFilterGroup constructors.
 	 *
 	 * There is light processing to simplify core maintenance.
+	 * @param array $definition
 	 */
 	protected function registerFiltersFromDefinitions( array $definition ) {
 		$autoFillPriority = -1;

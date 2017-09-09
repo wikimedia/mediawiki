@@ -40,8 +40,8 @@ class NullStatsdDataFactory implements IBufferingStatsdDataFactory {
 	 * and logged in users by sending the current userId of a user
 	 * with each request with a key of "uniques" (or similar).
 	 *
-	 * @param  string|array $key The metric(s) to set.
-	 * @param  float $value The value for the stats.
+	 * @param string|array $key The metric(s) to set.
+	 * @param float $value The value for the stats.
 	 *
 	 * @return array
 	 */

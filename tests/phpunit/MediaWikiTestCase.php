@@ -213,6 +213,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @param Config|null $bootstrapConfig The bootstrap config to use with the new
 	 *        MediaWikiServices.
+	 * @return MediaWikiServices
 	 */
 	protected static function resetGlobalServices( Config $bootstrapConfig = null ) {
 		$oldServices = MediaWikiServices::getInstance();
@@ -1591,7 +1592,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @since 1.20
 	 *
-	 * @param array $array
+	 * @param array &$array
 	 */
 	protected function objectAssociativeSort( array &$array ) {
 		uasort(
@@ -1609,7 +1610,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @since 1.20
 	 *
-	 * @param mixed $r The array to remove string keys from.
+	 * @param mixed &$r The array to remove string keys from.
 	 */
 	protected static function stripStringKeys( &$r ) {
 		if ( !is_array( $r ) ) {
@@ -1832,6 +1833,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Used as a marker to prevent wfResetOutputBuffers from breaking PHPUnit.
+	 * @param string $buffer
 	 * @return string
 	 */
 	public static function wfResetOutputBuffersBarrier( $buffer ) {

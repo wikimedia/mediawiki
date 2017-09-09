@@ -36,6 +36,10 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 	/**
 	 * Generates a notification that can be easily interpreted by a machine.
 	 * @see RCFeedFormatter::getLine
+	 * @param array $feed
+	 * @param RecentChange $rc
+	 * @param string|null $actionComment
+	 * @return string|null
 	 */
 	public function getLine( array $feed, RecentChange $rc, $actionComment ) {
 		global $wgCanonicalServer, $wgServerName, $wgScriptPath;

@@ -29,6 +29,7 @@ class TidySupport {
 
 	/**
 	 * Determine if there is a usable tidy.
+	 * @param bool $useConfiguration
 	 */
 	public function __construct( $useConfiguration = false ) {
 		global $IP, $wgUseTidy, $wgTidyBin, $wgTidyInternal, $wgTidyConfig,

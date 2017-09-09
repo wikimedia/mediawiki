@@ -168,6 +168,7 @@ class Http {
 	/**
 	 * Get a configured MultiHttpClient
 	 * @param array $options
+	 * @return MultiHttpClient
 	 */
 	public static function createMultiClient( $options = [] ) {
 		global $wgHTTPConnectTimeout, $wgHTTPTimeout, $wgHTTPProxy;

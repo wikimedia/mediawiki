@@ -1158,8 +1158,8 @@ SQL;
 	}
 
 	/**
-	 * @var string $table
-	 * @var string $field
+	 * @param string $table
+	 * @param string $field
 	 * @return PostgresField|null
 	 */
 	public function fieldInfo( $table, $field ) {

@@ -660,6 +660,8 @@ abstract class HTMLFormField {
 
 	/**
 	 * Get a FieldLayout (or subclass thereof) to wrap this field in when using OOUI output.
+	 * @param string $inputField
+	 * @param array $config
 	 * @return OOUI\FieldLayout|OOUI\ActionFieldLayout
 	 */
 	protected function getFieldLayoutOOUI( $inputField, $config ) {

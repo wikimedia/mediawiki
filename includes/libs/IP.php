@@ -510,7 +510,7 @@ class IP {
 	 *     2001:0db8:85a3::7344 - 2001:0db8:85a3::7344   Explicit range
 	 *     2001:0db8:85a3::7344                          Single IP
 	 * @param string $range IP range
-	 * @return array(string, string)
+	 * @return array [ string, string ]
 	 */
 	public static function parseRange( $range ) {
 		// CIDR notation

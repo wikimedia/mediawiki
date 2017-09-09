@@ -97,9 +97,7 @@ abstract class ApiQueryBase extends ApiBase {
 		return $this->mQueryModule;
 	}
 
-	/**
-	 * @see ApiBase::getParent()
-	 */
+	/** @inheritDoc */
 	public function getParent() {
 		return $this->getQuery();
 	}
