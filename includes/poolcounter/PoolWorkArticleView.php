@@ -17,6 +17,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 class PoolWorkArticleView extends PoolCounterWork {
 	/** @var WikiPage */
@@ -27,6 +28,9 @@ class PoolWorkArticleView extends PoolCounterWork {
 
 	/** @var int */
 	private $revid;
+
+	/** @var ParserCache */
+	private $parserCache;
 
 	/** @var ParserOptions */
 	private $parserOptions;
@@ -66,7 +70,8 @@ class PoolWorkArticleView extends PoolCounterWork {
 		$this->cacheable = $useParserCache;
 		$this->parserOptions = $parserOptions;
 		$this->content = $content;
-		$this->cacheKey = ParserCache::singleton()->getKey( $page, $parserOptions );
+		$this->parserCache = MediaWikiServices::getInstance()->getParserCache();
+		$this->cacheKey = $this->parserCache->getKey( $page, $parserOptions );
 		$keyPrefix = $this->cacheKey ?: wfMemcKey( 'articleview', 'missingcachekey' );
 		parent::__construct( 'ArticleView', $keyPrefix . ':revid:' . $revid );
 	}
@@ -153,7 +158,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 		}
 
 		if ( $this->cacheable && $this->parserOutput->isCacheable() && $isCurrent ) {
-			ParserCache::singleton()->save(
+			$this->parserCache->save(
 				$this->parserOutput, $this->page, $this->parserOptions, $cacheTime, $this->revid );
 		}
 
@@ -175,7 +180,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 * @return bool
 	 */
 	public function getCachedWork() {
-		$this->parserOutput = ParserCache::singleton()->get( $this->page, $this->parserOptions );
+		$this->parserOutput = $this->parserCache->get( $this->page, $this->parserOptions );
 
 		if ( $this->parserOutput === false ) {
 			wfDebug( __METHOD__ . ": parser cache miss\n" );
@@ -190,7 +195,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 * @return bool
 	 */
 	public function fallback() {
-		$this->parserOutput = ParserCache::singleton()->getDirty( $this->page, $this->parserOptions );
+		$this->parserOutput = $this->parserCache->getDirty( $this->page, $this->parserOptions );
 
 		if ( $this->parserOutput === false ) {
 			wfDebugLog( 'dirty', 'dirty missing' );

@@ -466,7 +466,7 @@ class Article implements Page {
 		# Allow frames by default
 		$outputPage->allowClickjacking();
 
-		$parserCache = ParserCache::singleton();
+		$parserCache = MediaWikiServices::getInstance()->getParserCache();
 
 		$parserOptions = $this->getParserOptions();
 		# Render printable version, use printable version cache
