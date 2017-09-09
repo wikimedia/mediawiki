@@ -390,7 +390,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		global $IP;
 
 		if ( !$this->doTable( 'interwiki' ) ) {
-			return true;
+			return;
 		}
 
 		if ( $this->db->tableExists( "interwiki", __METHOD__ ) ) {
