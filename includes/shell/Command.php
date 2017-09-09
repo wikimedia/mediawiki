@@ -24,6 +24,7 @@ use Exception;
 use MediaWiki\ProcOpenError;
 use MediaWiki\ShellDisabledError;
 use Profiler;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class used for executing shell commands
@@ -49,13 +50,24 @@ class Command {
 	/** @var bool */
 	private $everExecuted = false;
 
+	/** @var LoggerInterface */
+	private $logger;
+
+	/** @var string|false */
+	private $cgroup = false;
+
 	/**
 	 * Constructor. Don't call directly, instead use Shell::command()
+	 *
+	 * @param LoggerInterface $logger
+	 * @throws ShellDisabledError
 	 */
-	public function __construct() {
+	public function __construct( LoggerInterface $logger ) {
 		if ( Shell::isDisabled() ) {
 			throw new ShellDisabledError();
 		}
+
+		$this->logger = $logger;
 	}
 
 	/**
@@ -116,7 +128,7 @@ class Command {
 	 * @return $this
 	 */
 	public function limits( array $limits ) {
-		$this->limits = $limits;
+		$this->limits = $limits + $this->limits;
 
 		return $this;
 	}
@@ -159,6 +171,18 @@ class Command {
 	}
 
 	/**
+	 * Sets cgroup for this command
+	 *
+	 * @param string|false $cgroup
+	 * @return $this
+	 */
+	public function cGroup( $cgroup ) {
+		$this->cgroup = $cgroup;
+
+		return $this;
+	}
+
+	/**
 	 * Executes command. Afterwards, getExitCode() and getOutput() can be used to access execution
 	 * results.
 	 *
@@ -168,8 +192,7 @@ class Command {
 	 * @throws ShellDisabledError
 	 */
 	public function execute() {
-		global $IP, $wgMaxShellMemory, $wgMaxShellFileSize, $wgMaxShellTime,
-			   $wgMaxShellWallClockTime, $wgShellCgroup;
+		global $IP;
 
 		$this->everExecuted = true;
 
@@ -197,18 +220,12 @@ class Command {
 
 		$useLogPipe = false;
 		if ( is_executable( '/bin/bash' ) ) {
-			$time = intval( isset( $this->limits['time'] ) ? $this->limits['time'] : $wgMaxShellTime );
-			if ( isset( $this->limits['walltime'] ) ) {
-				$wallTime = intval( $this->limits['walltime'] );
-			} elseif ( isset( $this->limits['time'] ) ) {
-				$wallTime = $time;
-			} else {
-				$wallTime = intval( $wgMaxShellWallClockTime );
-			}
-			$mem = intval( isset( $this->limits['memory'] ) ? $this->limits['memory'] : $wgMaxShellMemory );
-			$filesize = intval( isset( $this->limits['filesize'] )
-				? $this->limits['filesize']
-				: $wgMaxShellFileSize );
+			$time = intval( $this->limits['time'] );
+			$wallTime = intval( $this->limits['walltime'] );
+			// for b/c, wall time falls back to time
+			$wallTime = min( $time, $wallTime );
+			$mem = intval( $this->limits['memory'] );
+			$filesize = intval( isset( $this->limits['filesize'] ) );
 
 			if ( $time > 0 || $mem > 0 || $filesize > 0 || $wallTime > 0 ) {
 				$cmd = '/bin/bash ' . escapeshellarg( "$IP/includes/limit.sh" ) . ' ' .
@@ -216,7 +233,7 @@ class Command {
 					   escapeshellarg(
 						   "MW_INCLUDE_STDERR=" . ( $this->useStderr ? '1' : '' ) . ';' .
 						   "MW_CPU_LIMIT=$time; " .
-						   'MW_CGROUP=' . escapeshellarg( $wgShellCgroup ) . '; ' .
+						   'MW_CGROUP=' . escapeshellarg( $this->cgroup ) . '; ' .
 						   "MW_MEM_LIMIT=$mem; " .
 						   "MW_FILE_SIZE_LIMIT=$filesize; " .
 						   "MW_WALL_CLOCK_LIMIT=$wallTime; " .
@@ -252,7 +269,7 @@ class Command {
 		$scoped = Profiler::instance()->scopedProfileIn( __FUNCTION__ . '-' . $profileMethod );
 		$proc = proc_open( $cmd, $desc, $pipes );
 		if ( !$proc ) {
-			wfDebugLog( 'exec', "proc_open() failed: $cmd" );
+			$this->logger->error( "proc_open() failed: {command}", [ 'command' => $cmd ] );
 			throw new ProcOpenError();
 		}
 		$outBuffer = $logBuffer = '';
@@ -329,7 +346,7 @@ class Command {
 						$lines = explode( "\n", $logBuffer );
 						$logBuffer = array_pop( $lines );
 						foreach ( $lines as $line ) {
-							wfDebugLog( 'exec', $line );
+							$this->logger->info( $line );
 						}
 					}
 				}
@@ -369,7 +386,7 @@ class Command {
 		}
 
 		if ( $logMsg !== false ) {
-			wfDebugLog( 'exec', "$logMsg: $cmd" );
+			$this->logger->warning( "$logMsg: {command}", [ 'command' => $cmd ] );
 		}
 
 		return new Result( $retval, $outBuffer );

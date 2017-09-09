@@ -22,6 +22,8 @@
 
 namespace MediaWiki\Shell;
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Executes shell commands
  *
@@ -53,7 +55,10 @@ class Shell {
 			// treat it as a list of arguments
 			$args = reset( $args );
 		}
-		$command = new Command();
+		$command = MediaWikiServices::getInstance()
+			->getShellCommandFactory()
+			->create();
+
 		return $command->params( $args );
 	}
 
