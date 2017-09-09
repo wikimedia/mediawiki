@@ -3232,6 +3232,7 @@ function wfGetParserCacheStorage() {
  * @deprecated since 1.25 - use Hooks::run
  */
 function wfRunHooks( $event, array $args = [], $deprecatedVersion = null ) {
+	wfDeprecated( __METHOD__, '1.25' );
 	return Hooks::run( $event, $args, $deprecatedVersion );
 }
 
