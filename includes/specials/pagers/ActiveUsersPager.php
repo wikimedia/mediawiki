@@ -115,16 +115,10 @@ class ActiveUsersPager extends UsersPager {
 				) . ')';
 		}
 
-		if ( $dbr->implicitGroupby() ) {
-			$options = [ 'GROUP BY' => [ 'qcc_title' ] ];
-		} else {
-			$options = [ 'GROUP BY' => [ 'user_name', 'user_id', 'qcc_title' ] ];
-		}
-
 		return [
 			'tables' => [ 'querycachetwo', 'user', 'recentchanges' ],
 			'fields' => [ 'user_name', 'user_id', 'recentedits' => 'COUNT(*)', 'qcc_title' ],
-			'options' => $options,
+			'options' => [ 'GROUP BY' => [ 'qcc_title' ] ],
 			'conds' => $conds
 		];
 	}
