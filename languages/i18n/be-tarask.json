@@ -3894,5 +3894,6 @@
 	"credentialsform-provider": "Тып уліковых зьвестак:",
 	"credentialsform-account": "Назва рахунку:",
 	"cannotlink-no-provider-title": "Няма рахункаў для далучэньня",
-	"cannotlink-no-provider": "Няма рахункаў для далучэньня."
+	"cannotlink-no-provider": "Няма рахункаў для далучэньня.",
+	"linkaccounts": "Далучэньне рахункаў"
 }

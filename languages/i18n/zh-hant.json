@@ -2131,7 +2131,7 @@
 	"unwatchthispage": "停止監視",
 	"notanarticle": "非內容的頁面",
 	"notvisiblerev": "最後一次由其他使用者所作的修訂已經被刪除",
-	"watchlist-details": "您的監視清單上共有 $1 個頁面 (不包含對話頁面)。",
+	"watchlist-details": "您的監視清單上共有 $1 個頁面（包含對話頁面）。",
 	"wlheader-enotif": "已開啟電子郵件通知功能。",
 	"wlheader-showupdated": "在您最後一次檢視過後修改的頁面會以 <strong>粗體</strong> 顯示。",
 	"wlnote": "以下為自 $3 $4 之前的 <strong>$2</strong> 小時內所做的 <strong>$1</strong> 次變更。",

@@ -1357,6 +1357,7 @@
 	"rcfilters-liveupdates-button-title-off": "Nei Ännerunge weisen esoubal wéi se gemaach ginn",
 	"rcfilters-watchlist-markseen-button": "All Ännerungen als gesi markéieren",
 	"rcfilters-watchlist-edit-watchlist-button": "Ännert Är Lëscht vun iwwerwaachte säiten",
+	"rcfilters-watchlist-showupdated": "Ännerungen op Säiten déi Dir net besicht hutt zanter d'Ännerunge gemaach goufen si <strong>fett</strong> geschriwwen.",
 	"rcnotefrom": "Hei drënner {{PLURAL:$5|gëtt d'Ännerung|ginn d'Ännerungen}} zanter <strong>$3, $4</strong> (maximal <strong>$1</strong> Ännerunge gi gewisen).",
 	"rclistfrom": "Nei Ännerunge vum $3 $2 u weisen",
 	"rcshowhideminor": "Kleng Ännerunge $1",

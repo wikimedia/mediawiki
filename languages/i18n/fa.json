@@ -2365,6 +2365,7 @@
 	"sp-contributions-newonly": "فقط نمایش ویرایش‌هایی که ایجاد صفحه هستند",
 	"sp-contributions-hideminor": "پنهان کردن ویرایش‌های جزئی",
 	"sp-contributions-submit": "جستجو",
+	"sp-contributions-outofrange": "قادر به نمایش نتیجه‌ای نیست. محدوده IP درخواست شده بزرگتر از حد CIDR /$1 است.",
 	"whatlinkshere": "پیوندها به این صفحه",
 	"whatlinkshere-title": "صفحه‌هایی که به «$1» پیوند دارند",
 	"whatlinkshere-page": "صفحه:",

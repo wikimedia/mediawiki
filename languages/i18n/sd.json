@@ -432,6 +432,7 @@
 	"changepassword-throttled": "توهان تازو ئي داخل ٿيڻ جون هيڪانديون گھڻيون ڪوششون ڪيون آهن. مهرباني ڪري $1 لاءِ ترسي پوءِ وري ڪوشش ڪريو.",
 	"botpasswords": "بوٽ جو ڳجھولفظ",
 	"botpasswords-disabled": "بوٽ ڳجھالفظ ناقابلِڪار ڪيل آھن.",
+	"botpasswords-label-appid": "باٽ جو نالو:",
 	"botpasswords-label-create": "سرجيو",
 	"botpasswords-label-update": "تجديد",
 	"botpasswords-label-cancel": "رد",
