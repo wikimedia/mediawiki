@@ -2781,6 +2781,9 @@ function wfDiff( $before, $after, $params = '-u' ) {
  * @see perldoc -f use
  *
  * @param string|int|float $req_ver The version to check, can be a string, an integer, or a float
+ *
+ * @deprecated since 1.30
+ *
  * @throws MWException
  */
 function wfUsePHP( $req_ver ) {
@@ -2809,7 +2812,7 @@ function wfUsePHP( $req_ver ) {
  *
  * @see perldoc -f use
  *
- * @deprecated since 1.26, use the "requires' property of extension.json
+ * @deprecated since 1.26, use the "requires" property of extension.json
  * @param string|int|float $req_ver The version to check, can be a string, an integer, or a float
  * @throws MWException
  */
