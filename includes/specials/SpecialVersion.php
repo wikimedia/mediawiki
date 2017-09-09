@@ -203,6 +203,7 @@ class SpecialVersion extends SpecialPage {
 			'Roan Kattouw', 'Trevor Parscal', 'Bryan Tong Minh', 'Sam Reed',
 			'Victor Vasiliev', 'Rotem Liss', 'Platonides', 'Antoine Musso',
 			'Timo Tijhof', 'Daniel Kinzler', 'Jeroen De Dauw', 'Brad Jorsch',
+			'Bartosz Dziewoński', 'Ed Sanders', 'Moriel Schottlender'
 			$othersLink, $translatorsLink
 		];
 
