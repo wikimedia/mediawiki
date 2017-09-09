@@ -347,7 +347,7 @@ class LocalFile extends File {
 	function getCacheFields( $prefix = 'img_' ) {
 		static $fields = [ 'size', 'width', 'height', 'bits', 'media_type',
 			'major_mime', 'minor_mime', 'metadata', 'timestamp', 'sha1', 'user',
-			'user_text', 'description' ];
+			'user_text' ];
 		static $results = [];
 
 		if ( $prefix == '' ) {
@@ -359,6 +359,7 @@ class LocalFile extends File {
 			foreach ( $fields as $field ) {
 				$prefixedFields[] = $prefix . $field;
 			}
+			$prefixedFields += CommentStore::newKey( "{$prefix}description" )->getFields();
 			$results[$prefix] = $prefixedFields;
 		}
 
@@ -535,6 +536,9 @@ class LocalFile extends File {
 	function loadFromRow( $row, $prefix = 'img_' ) {
 		$this->dataLoaded = true;
 		$this->extraDataLoaded = true;
+
+		$this->description = CommentStore::newKey( "{$prefix}description" )
+			->getComment( $row )->text;
 
 		$array = $this->decodeRow( $row, $prefix );
 
