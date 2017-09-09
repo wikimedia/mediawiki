@@ -531,25 +531,12 @@ class MysqlUpdater extends DatabaseUpdater {
 				) );
 			}
 			$sql = "SELECT cur_title, cur_namespace, cur_id, cur_timestamp FROM $cur WHERE ";
-			$firstCond = true;
+			$dupeTitles = [];
 			foreach ( $duplicate as $ns => $titles ) {
-				if ( $firstCond ) {
-					$firstCond = false;
-				} else {
-					$sql .= ' OR ';
-				}
-				$sql .= "( cur_namespace = {$ns} AND cur_title in (";
-				$first = true;
-				foreach ( $titles as $t ) {
-					if ( $first ) {
-						$sql .= $this->db->addQuotes( $t );
-						$first = false;
-					} else {
-						$sql .= ', ' . $this->db->addQuotes( $t );
-					}
-				}
-				$sql .= ") ) \n";
+				$dupeTitles[] = "( cur_namespace = {$ns} AND cur_title in ("
+					. $this->db->makeList( $titles ) . ") ) \n";
 			}
+			$sql .= $this->db->makeList( $dupeTitles, IDatabase::LIST_OR );
 			# By sorting descending, the most recent entry will be the first in the list.
 			# All following entries will be deleted by the next while-loop.
 			$sql .= 'ORDER BY cur_namespace, cur_title, cur_timestamp DESC';
