@@ -2,6 +2,7 @@
 
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\Linker\LinkTargetResolver;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -19,10 +20,27 @@ class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 	 */
 	private $linkCache;
 
+	/**
+	 * @var LinkTargetResolver
+	 */
+	private $linkTargetResolver;
+
 	public function setUp() {
 		parent::setUp();
 		$this->titleFormatter = MediaWikiServices::getInstance()->getTitleFormatter();
 		$this->linkCache = MediaWikiServices::getInstance()->getLinkCache();
+		$this->linkTargetResolver = MediaWikiServices::getInstance()->getLinkTargetResolver();
+	}
+
+	/**
+	 * @return LinkRendererFactory
+	 */
+	private function newLinkRendererFactory() {
+		return new LinkRendererFactory(
+			$this->titleFormatter,
+			$this->linkCache,
+			$this->linkTargetResolver
+		);
 	}
 
 	public static function provideCreateFromLegacyOptions() {
@@ -54,7 +72,7 @@ class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideCreateFromLegacyOptions
 	 */
 	public function testCreateFromLegacyOptions( $options, $func, $val ) {
-		$factory = new LinkRendererFactory( $this->titleFormatter, $this->linkCache );
+		$factory = $this->newLinkRendererFactory();
 		$linkRenderer = $factory->createFromLegacyOptions(
 			$options
 		);
@@ -63,7 +81,7 @@ class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 	}
 
 	public function testCreate() {
-		$factory = new LinkRendererFactory( $this->titleFormatter, $this->linkCache );
+		$factory = $this->newLinkRendererFactory();
 		$this->assertInstanceOf( LinkRenderer::class, $factory->create() );
 	}
 
@@ -74,7 +92,7 @@ class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 		$user->expects( $this->once() )
 			->method( 'getStubThreshold' )
 			->willReturn( 15 );
-		$factory = new LinkRendererFactory( $this->titleFormatter, $this->linkCache );
+		$factory = $this->newLinkRendererFactory();
 		$linkRenderer = $factory->createForUser( $user );
 		$this->assertInstanceOf( LinkRenderer::class, $linkRenderer );
 		$this->assertEquals( 15, $linkRenderer->getStubThreshold() );
