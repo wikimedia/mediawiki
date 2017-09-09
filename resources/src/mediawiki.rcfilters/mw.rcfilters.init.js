@@ -79,6 +79,14 @@
 				);
 				filtersWidget.setTopSection( wlTopSection.$element );
 			} // end Special:WL
+
+			/**
+			 * Fired when initialization of the filtering interface for changes list is complete.
+			 *
+			 * @event advanced-filters-ui-initialized
+			 * @member mw.hook
+			 */
+			mw.hook( 'advanced-filters-ui-initialized' ).fire();
 		}
 	};
 
