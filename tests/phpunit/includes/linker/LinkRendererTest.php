@@ -135,6 +135,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 
 	public function testGetLinkClasses() {
 		$wanCache = ObjectCache::getMainWANInstance();
+		$linkTargetResolver = MediaWikiServices::getInstance()->getLinkTargetResolver();
 		$titleFormatter = MediaWikiServices::getInstance()->getTitleFormatter();
 		$linkCache = new LinkCache( $titleFormatter, $wanCache );
 		$foobarTitle = new TitleValue( NS_MAIN, 'FooBar' );
@@ -160,7 +161,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 			0 // redir
 		);
 
-		$linkRenderer = new LinkRenderer( $titleFormatter, $linkCache );
+		$linkRenderer = new LinkRenderer( $titleFormatter, $linkCache, $linkTargetResolver );
 		$linkRenderer->setStubThreshold( 0 );
 		$this->assertEquals(
 			'',

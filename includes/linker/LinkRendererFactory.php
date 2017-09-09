@@ -42,19 +42,32 @@ class LinkRendererFactory {
 	private $linkCache;
 
 	/**
+	 * @var LinkTargetResolver
+	 */
+	private $linkTargetResolver;
+
+	/**
 	 * @param TitleFormatter $titleFormatter
 	 * @param LinkCache $linkCache
+	 * @param LinkTargetResolver $linkTargetResolver
 	 */
-	public function __construct( TitleFormatter $titleFormatter, LinkCache $linkCache ) {
+	public function __construct( TitleFormatter $titleFormatter, LinkCache $linkCache,
+		LinkTargetResolver $linkTargetResolver
+	) {
 		$this->titleFormatter = $titleFormatter;
 		$this->linkCache = $linkCache;
+		$this->linkTargetResolver = $linkTargetResolver;
 	}
 
 	/**
 	 * @return LinkRenderer
 	 */
 	public function create() {
-		return new LinkRenderer( $this->titleFormatter, $this->linkCache );
+		return new LinkRenderer(
+			$this->titleFormatter,
+			$this->linkCache,
+			$this->linkTargetResolver
+		);
 	}
 
 	/**

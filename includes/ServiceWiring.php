@@ -39,6 +39,7 @@
 
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\Linker\LinkTargetResolver;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
@@ -308,7 +309,8 @@ return [
 	'LinkRendererFactory' => function ( MediaWikiServices $services ) {
 		return new LinkRendererFactory(
 			$services->getTitleFormatter(),
-			$services->getLinkCache()
+			$services->getLinkCache(),
+			$services->getLinkTargetResolver()
 		);
 	},
 
@@ -320,6 +322,13 @@ return [
 		} else {
 			return $services->getLinkRendererFactory()->createForUser( $wgUser );
 		}
+	},
+
+	'LinkTargetResolver' => function ( MediaWikiServices $services ) {
+		return new LinkTargetResolver(
+			$services->getInterwikiLookup(),
+			$services->getTitleFormatter()
+		);
 	},
 
 	'GenderCache' => function ( MediaWikiServices $services ) {

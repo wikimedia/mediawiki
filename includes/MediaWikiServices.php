@@ -16,6 +16,7 @@ use Wikimedia\Rdbms\LoadBalancer;
 use MediaHandlerFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\Linker\LinkTargetResolver;
 use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceContainer;
 use MediaWiki\Services\NoSuchServiceException;
@@ -615,6 +616,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getLinkRenderer() {
 		return $this->getService( 'LinkRenderer' );
+	}
+
+	/**
+	 * @since 1.30
+	 * @return LinkTargetResolver
+	 */
+	public function getLinkTargetResolver() {
+		return $this->getService( 'LinkTargetResolver' );
 	}
 
 	/**

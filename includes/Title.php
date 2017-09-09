@@ -25,6 +25,7 @@
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Linker\LinkTargetResolver;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MediaWikiServices;
 
@@ -1461,12 +1462,7 @@ class Title implements LinkTarget {
 	 * @return string Fragment in URL form
 	 */
 	public function getFragmentForURL() {
-		if ( !$this->hasFragment() ) {
-			return '';
-		} elseif ( $this->isExternal() && !$this->getTransWikiID() ) {
-			return '#' . Sanitizer::escapeIdForExternalInterwiki( $this->getFragment() );
-		}
-		return '#' . Sanitizer::escapeIdForLink( $this->getFragment() );
+		return self::getLinkTargetResolver()->getFragmentForURL( $this );
 	}
 
 	/**
@@ -1767,20 +1763,7 @@ class Title implements LinkTarget {
 	public function getFullURL( $query = '', $query2 = false, $proto = PROTO_RELATIVE ) {
 		$query = self::fixUrlQueryArgs( $query, $query2 );
 
-		# Hand off all the decisions on urls to getLocalURL
-		$url = $this->getLocalURL( $query );
-
-		# Expand the url to make it a full url. Note that getLocalURL has the
-		# potential to output full urls for a variety of reasons, so we use
-		# wfExpandUrl instead of simply prepending $wgServer
-		$url = wfExpandUrl( $url, $proto );
-
-		# Finally, add the fragment.
-		$url .= $this->getFragmentForURL();
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$titleRef = $this;
-		Hooks::run( 'GetFullURL', [ &$titleRef, &$url, $query ] );
-		return $url;
+		return self::getLinkTargetResolver()->getFullURL( $this, $query, $proto );
 	}
 
 	/**
@@ -1800,14 +1783,14 @@ class Title implements LinkTarget {
 	 * @return String. A url suitable to use in an HTTP location header.
 	 */
 	public function getFullUrlForRedirect( $query = '', $proto = PROTO_CURRENT ) {
-		$target = $this;
-		if ( $this->isExternal() ) {
-			$target = SpecialPage::getTitleFor(
-				'GoToInterwiki',
-				$this->getPrefixedDBKey()
-			);
-		}
-		return $target->getFullUrl( $query, false, $proto );
+		return self::getLinkTargetResolver()->getFullUrlForRedirect( $this, $query, $proto );
+	}
+
+	/**
+	 * @return LinkTargetResolver
+	 */
+	private static function getLinkTargetResolver() {
+		return MediaWikiServices::getInstance()->getLinkTargetResolver();
 	}
 
 	/**
@@ -1834,84 +1817,11 @@ class Title implements LinkTarget {
 	 * @return string String of the URL.
 	 */
 	public function getLocalURL( $query = '', $query2 = false ) {
-		global $wgArticlePath, $wgScript, $wgServer, $wgRequest;
-
 		$query = self::fixUrlQueryArgs( $query, $query2 );
 
-		$interwiki = self::getInterwikiLookup()->fetch( $this->mInterwiki );
-		if ( $interwiki ) {
-			$namespace = $this->getNsText();
-			if ( $namespace != '' ) {
-				# Can this actually happen? Interwikis shouldn't be parsed.
-				# Yes! It can in interwiki transclusion. But... it probably shouldn't.
-				$namespace .= ':';
-			}
-			$url = $interwiki->getURL( $namespace . $this->getDBkey() );
-			$url = wfAppendQuery( $url, $query );
-		} else {
-			$dbkey = wfUrlencode( $this->getPrefixedDBkey() );
-			if ( $query == '' ) {
-				$url = str_replace( '$1', $dbkey, $wgArticlePath );
-				// Avoid PHP 7.1 warning from passing $this by reference
-				$titleRef = $this;
-				Hooks::run( 'GetLocalURL::Article', [ &$titleRef, &$url ] );
-			} else {
-				global $wgVariantArticlePath, $wgActionPaths, $wgContLang;
-				$url = false;
-				$matches = [];
-
-				if ( !empty( $wgActionPaths )
-					&& preg_match( '/^(.*&|)action=([^&]*)(&(.*)|)$/', $query, $matches )
-				) {
-					$action = urldecode( $matches[2] );
-					if ( isset( $wgActionPaths[$action] ) ) {
-						$query = $matches[1];
-						if ( isset( $matches[4] ) ) {
-							$query .= $matches[4];
-						}
-						$url = str_replace( '$1', $dbkey, $wgActionPaths[$action] );
-						if ( $query != '' ) {
-							$url = wfAppendQuery( $url, $query );
-						}
-					}
-				}
-
-				if ( $url === false
-					&& $wgVariantArticlePath
-					&& preg_match( '/^variant=([^&]*)$/', $query, $matches )
-					&& $this->getPageLanguage()->equals( $wgContLang )
-					&& $this->getPageLanguage()->hasVariants()
-				) {
-					$variant = urldecode( $matches[1] );
-					if ( $this->getPageLanguage()->hasVariant( $variant ) ) {
-						// Only do the variant replacement if the given variant is a valid
-						// variant for the page's language.
-						$url = str_replace( '$2', urlencode( $variant ), $wgVariantArticlePath );
-						$url = str_replace( '$1', $dbkey, $url );
-					}
-				}
-
-				if ( $url === false ) {
-					if ( $query == '-' ) {
-						$query = '';
-					}
-					$url = "{$wgScript}?title={$dbkey}&{$query}";
-				}
-			}
-			// Avoid PHP 7.1 warning from passing $this by reference
-			$titleRef = $this;
-			Hooks::run( 'GetLocalURL::Internal', [ &$titleRef, &$url, $query ] );
-
-			// @todo FIXME: This causes breakage in various places when we
-			// actually expected a local URL and end up with dupe prefixes.
-			if ( $wgRequest->getVal( 'action' ) == 'render' ) {
-				$url = $wgServer . $url;
-			}
-		}
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$titleRef = $this;
-		Hooks::run( 'GetLocalURL', [ &$titleRef, &$url, $query ] );
-		return $url;
+		return self::getLinkTargetResolver()->getLocalURL(
+			$this, $query
+		);
 	}
 
 	/**
@@ -1932,14 +1842,8 @@ class Title implements LinkTarget {
 	 * @return string The URL
 	 */
 	public function getLinkURL( $query = '', $query2 = false, $proto = false ) {
-		if ( $this->isExternal() || $proto !== false ) {
-			$ret = $this->getFullURL( $query, $query2, $proto );
-		} elseif ( $this->getPrefixedText() === '' && $this->hasFragment() ) {
-			$ret = $this->getFragmentForURL();
-		} else {
-			$ret = $this->getLocalURL( $query, $query2 ) . $this->getFragmentForURL();
-		}
-		return $ret;
+		$query = self::fixUrlQueryArgs( $query, $query2 );
+		return self::getLinkTargetResolver()->getLinkURL( $this, $query, $proto );
 	}
 
 	/**
@@ -1957,14 +1861,8 @@ class Title implements LinkTarget {
 	 * @return string The URL
 	 */
 	public function getInternalURL( $query = '', $query2 = false ) {
-		global $wgInternalServer, $wgServer;
 		$query = self::fixUrlQueryArgs( $query, $query2 );
-		$server = $wgInternalServer !== false ? $wgInternalServer : $wgServer;
-		$url = wfExpandUrl( $server . $this->getLocalURL( $query ), PROTO_HTTP );
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$titleRef = $this;
-		Hooks::run( 'GetInternalURL', [ &$titleRef, &$url, $query ] );
-		return $url;
+		return self::getLinkTargetResolver()->getInternalURL( $this, $query );
 	}
 
 	/**
@@ -1980,11 +1878,7 @@ class Title implements LinkTarget {
 	 */
 	public function getCanonicalURL( $query = '', $query2 = false ) {
 		$query = self::fixUrlQueryArgs( $query, $query2 );
-		$url = wfExpandUrl( $this->getLocalURL( $query ) . $this->getFragmentForURL(), PROTO_CANONICAL );
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$titleRef = $this;
-		Hooks::run( 'GetCanonicalURL', [ &$titleRef, &$url, $query ] );
-		return $url;
+		return self::getLinkTargetResolver()->getCanonicalURL( $this, $query );
 	}
 
 	/**

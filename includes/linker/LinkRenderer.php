@@ -71,6 +71,11 @@ class LinkRenderer {
 	private $linkCache;
 
 	/**
+	 * @var LinkTargetResolver
+	 */
+	private $linkTargetResolver;
+
+	/**
 	 * Whether to run the legacy Linker hooks
 	 *
 	 * @var bool
@@ -80,10 +85,14 @@ class LinkRenderer {
 	/**
 	 * @param TitleFormatter $titleFormatter
 	 * @param LinkCache $linkCache
+	 * @param LinkTargetResolver $linkTargetResolver
 	 */
-	public function __construct( TitleFormatter $titleFormatter, LinkCache $linkCache ) {
+	public function __construct( TitleFormatter $titleFormatter, LinkCache $linkCache,
+		LinkTargetResolver $linkTargetResolver
+	) {
 		$this->titleFormatter = $titleFormatter;
 		$this->linkCache = $linkCache;
+		$this->linkTargetResolver = $linkTargetResolver;
 	}
 
 	/**
@@ -399,15 +408,13 @@ class LinkRenderer {
 	}
 
 	private function getLinkURL( LinkTarget $target, array $query = [] ) {
-		// TODO: Use a LinkTargetResolver service instead of Title
-		$title = Title::newFromLinkTarget( $target );
 		if ( $this->forceArticlePath ) {
 			$realQuery = $query;
 			$query = [];
 		} else {
 			$realQuery = [];
 		}
-		$url = $title->getLinkURL( $query, false, $this->expandUrls );
+		$url = $this->linkTargetResolver->getLinkURL( $target, $query, $this->expandUrls );
 
 		if ( $this->forceArticlePath && $realQuery ) {
 			$url = wfAppendQuery( $url, $realQuery );
