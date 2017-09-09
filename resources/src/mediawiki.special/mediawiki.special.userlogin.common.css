@@ -40,11 +40,12 @@ section.mw-form-header {
 }
 
 .fancycaptcha-captcha-container {
-	background-color: #f8f8f8;
-	border: 1px solid #c9c9c9;
-	padding: 10px;
-	text-align: center;
+	background-color: #f8f9fa;
 	margin-bottom: 15px;
+	border: 1px solid #c8ccd1;
+	border-radius: 2px;
+	padding: 8px;
+	text-align: center;
 }
 
 .mw-createacct-captcha-assisted {
@@ -54,11 +55,18 @@ section.mw-form-header {
 
 /* Put a border around the fancycaptcha-image-container. */
 .fancycaptcha-captcha-and-reload {
-	border: 1px solid #c9c9c9;
+	border: 1px solid #c8ccd1;
+	border-radius: 2px 2px 0 0;
 	/* Other display formats end up too wide */
 	display: table-cell;
 	width: 270px;
 	background-color: #fff;
+}
+
+.fancycaptcha-captcha-container .mw-ui-input {
+	margin-top: -1px;
+	border-color: #c8ccd1;
+	border-radius: 0 0 2px 2px;
 }
 
 /* Make the fancycaptcha-image-container full-width within its parent. */
