@@ -2299,10 +2299,7 @@ class Parser {
 					/**
 					 * Strip the whitespace interwiki links produce, see T10897
 					 */
-					$s = rtrim( $s . $prefix );
-					// Special case: strip newlines when only thing between
-					// this link and next are newlines
-					$s .= trim( $trail, "\n" ) === '' ? '' : $trail;
+					$s = rtrim( $s . $prefix ) . $trail; # T175416
 					continue;
 				}
 
@@ -2330,10 +2327,7 @@ class Parser {
 					/**
 					 * Strip the whitespace Category links produce, see T2087
 					 */
-					$s = rtrim( $s . $prefix ); # T2087, T87753
-					// Special case: strip newlines when only thing between
-					// this link and next are newlines
-					$s .= trim( $trail, "\n" ) === '' ? '' : $trail;
+					$s = rtrim( $s . $prefix ) . $trail; # T2087, T87753
 
 					if ( $wasblank ) {
 						$sortkey = $this->getDefaultSort();
