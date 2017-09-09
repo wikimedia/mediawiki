@@ -22,6 +22,8 @@
 
 namespace MediaWiki\Shell;
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Executes shell commands
  *
@@ -37,25 +39,6 @@ namespace MediaWiki\Shell;
  *  ... = $result->getStdout();
  */
 class Shell {
-
-	/**
-	 * Returns a new instance of this class
-	 *
-	 * @param string|string[] $command If string, a properly shell-escaped command line,
-	 *   or an array of unescaped arguments, in which case each value will be escaped
-	 *   Example:   [ 'convert', '-font', 'font name' ] would produce "'convert' '-font' 'font name'"
-	 * @return Command
-	 */
-	public static function command( $command ) {
-		$args = func_get_args();
-		if ( count( $args ) === 1 && is_array( reset( $args ) ) ) {
-			// If only one argument has been passed, and that argument is an array,
-			// treat it as a list of arguments
-			$args = reset( $args );
-		}
-		$command = new Command();
-		return $command->params( $args );
-	}
 
 	/**
 	 * Check if this class is effectively disabled via php.ini config

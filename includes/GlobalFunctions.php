@@ -2297,8 +2297,9 @@ function wfShellExec( $cmd, &$retval = null, $environ = [],
 	$includeStderr = isset( $options['duplicateStderr'] ) && $options['duplicateStderr'];
 	$profileMethod = isset( $options['profileMethod'] ) ? $options['profileMethod'] : wfGetCaller();
 
+	$command = MediaWikiServices::getInstance()->getShellCommandFactory()->create();
 	try {
-		$result = Shell::command( [] )
+		$result = $command
 			->unsafeParams( (array)$cmd )
 			->environment( $environ )
 			->limits( $limits )
