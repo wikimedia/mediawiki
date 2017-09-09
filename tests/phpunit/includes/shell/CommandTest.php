@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Shell\Command;
+use MediaWiki\Shell\Shell;
 
 /**
  * @group Shell
@@ -13,7 +14,7 @@ class CommandTest extends PHPUnit_Framework_TestCase {
 		if ( defined( 'HHVM_VERSION' ) ) {
 			$this->markTestSkipped( 'destructors are unreliable in HHVM' );
 		}
-		$command = new Command();
+		$command = Shell::command( '' );
 		$command->params( 'true' );
 	}
 
@@ -29,7 +30,7 @@ class CommandTest extends PHPUnit_Framework_TestCase {
 	public function testExecute( $commandInput, $expectedExitCode, $expectedOutput ) {
 		$this->requirePosix();
 
-		$command = new Command();
+		$command = Shell::command( '' );
 		$result = $command
 			->params( $commandInput )
 			->execute();
@@ -49,7 +50,7 @@ class CommandTest extends PHPUnit_Framework_TestCase {
 	public function testEnvironment() {
 		$this->requirePosix();
 
-		$command = new Command();
+		$command = Shell::command( '' );
 		$result = $command
 			->params( [ 'printenv', 'FOO' ] )
 			->environment( [ 'FOO' => 'bar' ] )
@@ -62,13 +63,13 @@ class CommandTest extends PHPUnit_Framework_TestCase {
 
 		$this->requirePosix();
 
-		$command = new Command();
+		$command = Shell::command( '' );
 		$result = $command
 			->params( [ 'ls', "$IP/index.php" ] )
 			->execute();
 		$this->assertSame( "$IP/index.php", trim( $result->getStdout() ) );
 
-		$command = new Command();
+		$command = Shell::command( '' );
 		$result = $command
 			->params( [ 'ls', 'index.php', 'no-such-file' ] )
 			->includeStderr()
@@ -84,7 +85,7 @@ class CommandTest extends PHPUnit_Framework_TestCase {
 
 		// Test several times because it involves a race condition that may randomly succeed or fail
 		for ( $i = 0; $i < 10; $i++ ) {
-			$command = new Command();
+			$command = Shell::command( '' );
 			$output = $command->unsafeParams( $commandLine )
 				->execute()
 				->getStdout();

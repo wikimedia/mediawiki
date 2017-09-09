@@ -7,6 +7,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Services\DestructibleService;
 use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceDisabledException;
+use MediaWiki\Shell\CommandFactory;
 use Wikimedia\Rdbms\LBFactory;
 
 /**
@@ -330,7 +331,8 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'MainObjectStash' => [ 'MainObjectStash', BagOStuff::class ],
 			'MainWANObjectCache' => [ 'MainWANObjectCache', WANObjectCache::class ],
 			'LocalServerObjectCache' => [ 'LocalServerObjectCache', BagOStuff::class ],
-			'VirtualRESTServiceClient' => [ 'VirtualRESTServiceClient', VirtualRESTServiceClient::class ]
+			'VirtualRESTServiceClient' => [ 'VirtualRESTServiceClient', VirtualRESTServiceClient::class ],
+			'ShellCommandFactory' => [ 'ShellCommandFactory', CommandFactory::class ],
 		];
 	}
 
