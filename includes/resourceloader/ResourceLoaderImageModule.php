@@ -427,6 +427,8 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 
 	/**
 	 * Helper method for getDefinitionSummary.
+	 * @param ResourceLoaderContext $context
+	 * @return array
 	 */
 	protected function getFileHashes( ResourceLoaderContext $context ) {
 		$this->loadFromDefinition();

@@ -56,7 +56,7 @@ class OrderedStreamingForkController extends ForkController {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function start() {
 		if ( $this->procsToStart > 0 ) {

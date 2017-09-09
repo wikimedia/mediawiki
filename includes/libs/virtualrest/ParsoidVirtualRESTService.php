@@ -147,6 +147,10 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 	 * Visual Editor "pretends" the V1 API is like.  A previous version of
 	 * ParsoidVirtualRESTService translated these to the "real" Parsoid v1
 	 * API.  We now translate these to the "real" Parsoid v3 API.
+	 * @param array $req
+	 * @param Closure $idGeneratorFunc
+	 * @return array
+	 * @throws Exception
 	 */
 	public function onParsoid1Request( array $req, Closure $idGeneratorFunc ) {
 		$parts = explode( '/', $req['url'] );

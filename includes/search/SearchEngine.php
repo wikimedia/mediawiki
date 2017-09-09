@@ -269,7 +269,7 @@ abstract class SearchEngine {
 	 * might support more. The default in all implementations should be 'relevance.'
 	 *
 	 * @since 1.25
-	 * @return array(string) the valid sort directions for setSort
+	 * @return string[] the valid sort directions for setSort
 	 */
 	public function getValidSorts() {
 		return [ 'relevance' ];

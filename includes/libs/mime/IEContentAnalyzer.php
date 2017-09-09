@@ -333,7 +333,7 @@ class IEContentAnalyzer {
 	 * @param string $chunk the first 256 bytes of the file
 	 * @param string $proposed the MIME type proposed by the server
 	 *
-	 * @return Array: map of IE version to detected MIME type
+	 * @return array map of IE version to detected MIME type
 	 */
 	public function getRealMimesFromData( $fileName, $chunk, $proposed ) {
 		$types = $this->getMimesFromData( $fileName, $chunk, $proposed );
@@ -371,7 +371,7 @@ class IEContentAnalyzer {
 	 * @param string $chunk the first 256 bytes of the file
 	 * @param string $proposed the MIME type proposed by the server
 	 *
-	 * @return Array: map of IE version to detected MIME type
+	 * @return array map of IE version to detected MIME type
 	 */
 	public function getMimesFromData( $fileName, $chunk, $proposed ) {
 		$types = [];

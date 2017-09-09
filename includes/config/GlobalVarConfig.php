@@ -46,7 +46,7 @@ class GlobalVarConfig implements Config {
 	}
 
 	/**
-	 * @see Config::get
+	 * @inheritDoc
 	 */
 	public function get( $name ) {
 		if ( !$this->has( $name ) ) {
@@ -56,7 +56,7 @@ class GlobalVarConfig implements Config {
 	}
 
 	/**
-	 * @see Config::has
+	 * @inheritDoc
 	 */
 	public function has( $name ) {
 		return $this->hasWithPrefix( $this->prefix, $name );

@@ -294,7 +294,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	/**
-	 * @param stdClass $row Result row from recent changes
+	 * @param stdClass $result Result row from recent changes
 	 * @return Revision|bool
 	 */
 	protected function revisionFromRcResult( stdClass $result ) {

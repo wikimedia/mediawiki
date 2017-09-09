@@ -627,6 +627,7 @@ class BalanceElement {
 
 	/**
 	 * Get a string key for the Noah's Ark algorithm
+	 * @return string
 	 */
 	public function getNoahKey() {
 		if ( $this->noahKey === null ) {
@@ -710,6 +711,7 @@ class BalanceStack implements IteratorAggregate {
 	/**
 	 * Insert a comment at the appropriate place for inserting a node.
 	 * @param string $value Content of the comment.
+	 * @return string
 	 * @see https://html.spec.whatwg.org/multipage/syntax.html#insert-a-comment
 	 */
 	public function insertComment( $value ) {
@@ -721,6 +723,7 @@ class BalanceStack implements IteratorAggregate {
 	 * Insert text at the appropriate place for inserting a node.
 	 * @param string $value
 	 * @param bool $isComment
+	 * @return string
 	 * @see https://html.spec.whatwg.org/multipage/syntax.html#appropriate-place-for-inserting-a-node
 	 */
 	public function insertText( $value, $isComment = false ) {
@@ -901,6 +904,8 @@ class BalanceStack implements IteratorAggregate {
 
 	/**
 	 * Return the adjusted current node.
+	 * @param string $fragmentContext
+	 * @return string
 	 */
 	public function adjustedCurrentNode( $fragmentContext ) {
 		return ( $fragmentContext && count( $this->elements ) === 1 ) ?
@@ -1513,6 +1518,8 @@ class BalanceActiveFormattingElements {
 	 * Find and return the last element with the specified tag between the
 	 * end of the list and the last marker on the list.
 	 * Used when parsing &lt;a&gt; "in body mode".
+	 * @param string $tag
+	 * @return null|Node
 	 */
 	public function findElementByTag( $tag ) {
 		$elt = $this->tail;

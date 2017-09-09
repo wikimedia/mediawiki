@@ -62,6 +62,7 @@ abstract class Preprocessor {
 	 *
 	 * @param string $text
 	 * @param int $flags
+	 * @param string $tree
 	 */
 	protected function cacheSetTree( $text, $flags, $tree ) {
 		$config = RequestContext::getMain()->getConfig();

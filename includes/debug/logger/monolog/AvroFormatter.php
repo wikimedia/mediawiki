@@ -61,7 +61,7 @@ class AvroFormatter implements FormatterInterface {
 	protected $writer;
 
 	/**
-	 * @var array $schemas Map from Monolog channel to Avro schema.
+	 * @param array $schemas Map from Monolog channel to Avro schema.
 	 *  Each schema can be either the JSON string or decoded into PHP
 	 *  arrays.
 	 */
@@ -120,7 +120,7 @@ class AvroFormatter implements FormatterInterface {
 	/**
 	 * Get the writer for the named channel
 	 *
-	 * @var string $channel Name of the schema to fetch
+	 * @param string $channel Name of the schema to fetch
 	 * @return \AvroSchema|null
 	 */
 	protected function getSchema( $channel ) {
@@ -147,7 +147,7 @@ class AvroFormatter implements FormatterInterface {
 	/**
 	 * Get the writer for the named channel
 	 *
-	 * @var string $channel Name of the schema
+	 * @param string $channel Name of the schema
 	 * @return int|null
 	 */
 	public function getSchemaRevisionId( $channel ) {

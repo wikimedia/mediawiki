@@ -30,6 +30,8 @@ use MediaWiki\Session\SessionInfo;
 class InstallerSessionProvider extends SessionProvider {
 	/**
 	 * Pretend there is a session, to avoid MWCryptRand overhead
+	 * @param WebRequest $request
+	 * @return SessionInfo
 	 */
 	public function provideSessionInfo( WebRequest $request ) {
 		return new SessionInfo( 1, [
@@ -40,6 +42,7 @@ class InstallerSessionProvider extends SessionProvider {
 
 	/**
 	 * Yes we will treat your data with great care!
+	 * @return bool
 	 */
 	public function persistsSessionId() {
 		return true;
@@ -47,6 +50,7 @@ class InstallerSessionProvider extends SessionProvider {
 
 	/**
 	 * Sure, you can be whoever you want, as long as you have ID 0
+	 * @return bool
 	 */
 	public function canChangeUser() {
 		return true;

@@ -223,6 +223,7 @@ class MysqlInstaller extends DatabaseInstaller {
 
 	/**
 	 * @param string $s
+	 * @param string $escapeChar
 	 * @return string
 	 */
 	protected function escapeLikeInternal( $s, $escapeChar = '`' ) {
@@ -342,6 +343,8 @@ class MysqlInstaller extends DatabaseInstaller {
 	/**
 	 * Convert a wildcard (as used in LIKE) to a regex
 	 * Slashes are escaped, slash terminators included
+	 * @param string $wildcard
+	 * @return string
 	 */
 	protected function likeToRegex( $wildcard ) {
 		$r = preg_quote( $wildcard, '/' );

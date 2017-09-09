@@ -309,6 +309,7 @@ abstract class ChangesListFilter {
 	 * structured UI.
 	 *
 	 * This can either be the exact filter, or a new filter that replaces it.
+	 * @return bool
 	 */
 	public function isFeatureAvailableOnStructuredUi() {
 		return $this->displaysOnStructuredUi();

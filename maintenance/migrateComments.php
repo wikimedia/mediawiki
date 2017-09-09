@@ -222,7 +222,7 @@ class MigrateComments extends LoggedUpdateMaintenance {
 	 * comment ID field.
 	 * Blanks the old fields while migrating.
 	 *
-	 * @param string $oldTable Table to migrate
+	 * @param string $table Table to migrate
 	 * @param string $primaryKey Primary key of the table.
 	 * @param string $oldField Old comment field name
 	 * @param string $newPrimaryKey Primary key of the new table.

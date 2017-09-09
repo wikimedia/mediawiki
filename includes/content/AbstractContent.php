@@ -55,6 +55,7 @@ abstract class AbstractContent implements Content {
 	 * @since 1.21
 	 *
 	 * @see Content::getModel
+	 * @return string
 	 */
 	public function getModel() {
 		return $this->model_id;
@@ -82,6 +83,7 @@ abstract class AbstractContent implements Content {
 	 * @since 1.21
 	 *
 	 * @see Content::getContentHandler
+	 * @return ContentHandler
 	 */
 	public function getContentHandler() {
 		return ContentHandler::getForContent( $this );
@@ -91,6 +93,7 @@ abstract class AbstractContent implements Content {
 	 * @since 1.21
 	 *
 	 * @see Content::getDefaultFormat
+	 * @return string
 	 */
 	public function getDefaultFormat() {
 		return $this->getContentHandler()->getDefaultFormat();
@@ -100,6 +103,7 @@ abstract class AbstractContent implements Content {
 	 * @since 1.21
 	 *
 	 * @see Content::getSupportedFormats
+	 * @return string[]
 	 */
 	public function getSupportedFormats() {
 		return $this->getContentHandler()->getSupportedFormats();
@@ -334,6 +338,7 @@ abstract class AbstractContent implements Content {
 	/**
 	 * @since 1.21
 	 *
+	 * @param string|int $sectionId
 	 * @return null
 	 *
 	 * @see Content::getSection
@@ -345,6 +350,9 @@ abstract class AbstractContent implements Content {
 	/**
 	 * @since 1.21
 	 *
+	 * @param string|int|null|bool $sectionId
+	 * @param Content $with
+	 * @param string $sectionTitle
 	 * @return null
 	 *
 	 * @see Content::replaceSection
@@ -356,6 +364,9 @@ abstract class AbstractContent implements Content {
 	/**
 	 * @since 1.21
 	 *
+	 * @param Title $title
+	 * @param User $user
+	 * @param ParserOptions $popts
 	 * @return Content $this
 	 *
 	 * @see Content::preSaveTransform
@@ -367,6 +378,7 @@ abstract class AbstractContent implements Content {
 	/**
 	 * @since 1.21
 	 *
+	 * @param string $header
 	 * @return Content $this
 	 *
 	 * @see Content::addSectionHeader
@@ -378,6 +390,9 @@ abstract class AbstractContent implements Content {
 	/**
 	 * @since 1.21
 	 *
+	 * @param Title $title
+	 * @param ParserOptions $popts
+	 * @param array $params
 	 * @return Content $this
 	 *
 	 * @see Content::preloadTransform
@@ -389,6 +404,10 @@ abstract class AbstractContent implements Content {
 	/**
 	 * @since 1.21
 	 *
+	 * @param WikiPage $page
+	 * @param int $flags
+	 * @param int $parentRevId
+	 * @param User $user
 	 * @return Status
 	 *
 	 * @see Content::prepareSave
@@ -405,7 +424,7 @@ abstract class AbstractContent implements Content {
 	 * @since 1.21
 	 *
 	 * @param WikiPage $page
-	 * @param ParserOutput $parserOutput
+	 * @param ParserOutput|null $parserOutput
 	 *
 	 * @return LinksDeletionUpdate[]
 	 *
