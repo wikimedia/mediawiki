@@ -21,6 +21,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @ingroup Maintenance
  */
@@ -41,6 +43,7 @@ class CompareParserCache extends Maintenance {
 		$scanned = 0;
 		$withcache = 0;
 		$withdiff = 0;
+		$parserCache = MediaWikiServices::getInstance()->getParserCache();
 		while ( $pages-- > 0 ) {
 			$row = $dbr->selectRow( 'page', '*',
 				[
@@ -66,7 +69,7 @@ class CompareParserCache extends Maintenance {
 
 			$parserOptions = $page->makeParserOptions( 'canonical' );
 
-			$parserOutputOld = ParserCache::singleton()->get( $page, $parserOptions );
+			$parserOutputOld = $parserCache->get( $page, $parserOptions );
 
 			if ( $parserOutputOld ) {
 				$t1 = microtime( true );

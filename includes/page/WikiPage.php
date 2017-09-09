@@ -1070,7 +1070,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		if ( $useParserCache ) {
-			$parserOutput = ParserCache::singleton()->get( $this, $parserOptions );
+			$parserOutput = MediaWikiServices::getInstance()->getParserCache()->get( $this, $parserOptions );
 			if ( $parserOutput !== false ) {
 				return $parserOutput;
 			}
@@ -2162,7 +2162,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Save it to the parser cache.
 		// Make sure the cache time matches page_touched to avoid double parsing.
-		ParserCache::singleton()->save(
+		MediaWikiServices::getInstance()->getParserCache()->save(
 			$editInfo->output, $this, $editInfo->popts,
 			$revision->getTimestamp(), $editInfo->revid
 		);
