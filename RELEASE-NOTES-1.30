@@ -233,7 +233,10 @@ changes to languages because of Phabricator reports.
 * DB_SLAVE is deprecated. DB_REPLICA should be used instead.
 * wfUsePHP() is deprecated.
 * wfFixSessionID() was removed.
-* wfShellExec() and related functions are deprecated, use Shell::command().
+* wfShellExec() and related functions are deprecated, use Shell::command(). This also
+  slightly changes the behavior of how execution time limits are calculated when only
+  some of defaults are overridden per-call. When in doubt, always override both wall
+  clock and CPU time.
 * (T138166) SpecialEmailUser::getTarget() now requires a second argument, the sending
   user object. Using the method without the second argument is deprecated.
 * (T67297) Browsers that don't support Unicode will have their edits rejected.

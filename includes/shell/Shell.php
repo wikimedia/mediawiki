@@ -22,6 +22,9 @@
 
 namespace MediaWiki\Shell;
 
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
+
 /**
  * Executes shell commands
  *
@@ -39,10 +42,10 @@ namespace MediaWiki\Shell;
 class Shell {
 
 	/**
-	 * Returns a new instance of this class
+	 * Returns a new instance of Command class
 	 *
-	 * @param string|string[] $command If string, a properly shell-escaped command line,
-	 *   or an array of unescaped arguments, in which case each value will be escaped
+	 * @param string|string[] $command String or array of strings representing the command to
+	 * be executed, each value will be escaped.
 	 *   Example:   [ 'convert', '-font', 'font name' ] would produce "'convert' '-font' 'font name'"
 	 * @return Command
 	 */
@@ -54,6 +57,18 @@ class Shell {
 			$args = reset( $args );
 		}
 		$command = new Command();
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+
+		$limits = [
+			'time' => $config->get( 'MaxShellTime' ),
+			'walltime' => $config->get( 'MaxShellWallClockTime' ),
+			'memory' => $config->get( 'MaxShellMemory' ),
+			'filesize' => $config->get( 'MaxShellFileSize' ),
+		];
+		$command->limits( $limits );
+		$command->cgroup( $config->get( 'ShellCgroup' ) );
+		$command->setLogger( LoggerFactory::getInstance( 'exec' ) );
+
 		return $command->params( $args );
 	}
 
