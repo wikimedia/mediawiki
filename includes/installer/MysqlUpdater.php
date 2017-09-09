@@ -385,6 +385,7 @@ class MysqlUpdater extends DatabaseUpdater {
 
 	/**
 	 * Check that interwiki table exists; if it doesn't source it
+	 * @return bool
 	 */
 	protected function doInterwikiUpdate() {
 		global $IP;
@@ -396,7 +397,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		if ( $this->db->tableExists( "interwiki", __METHOD__ ) ) {
 			$this->output( "...already have interwiki table\n" );
 
-			return;
+			return true;
 		}
 
 		$this->applyPatch( 'patch-interwiki.sql', false, 'Creating interwiki table' );
@@ -405,6 +406,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			true,
 			'Adding default interwiki definitions'
 		);
+		return true;
 	}
 
 	/**
