@@ -215,6 +215,7 @@ changes to languages because of Phabricator reports.
 * DB_SLAVE is deprecated. DB_REPLICA should be used instead.
 * wfUsePHP() is deprecated.
 * wfFixSessionID() was removed.
+* OutputPage now can't be instantiated without passing it context.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
