@@ -536,6 +536,9 @@ class LocalFile extends File {
 		$this->dataLoaded = true;
 		$this->extraDataLoaded = true;
 
+		$this->description = CommentStore::newKey( "{$prefix}description" )
+			->getComment( $row )->text;
+
 		$array = $this->decodeRow( $row, $prefix );
 
 		foreach ( $array as $name => $value ) {
