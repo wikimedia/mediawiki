@@ -69,7 +69,7 @@ abstract class Preprocessor {
 		$length = strlen( $text );
 		$threshold = $config->get( 'PreprocessorCacheThreshold' );
 		if ( $threshold === false || $length < $threshold || $length > 1e6 ) {
-			return false;
+			return;
 		}
 
 		$cache = ObjectCache::getLocalClusterInstance();
