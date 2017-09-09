@@ -345,9 +345,10 @@ class LocalFile extends File {
 	 * @return array
 	 */
 	function getCacheFields( $prefix = 'img_' ) {
+		// TODO: Remove 'description' once pre-CommentStore cache entries are gone
 		static $fields = [ 'size', 'width', 'height', 'bits', 'media_type',
 			'major_mime', 'minor_mime', 'metadata', 'timestamp', 'sha1', 'user',
-			'user_text' ];
+			'user_text', 'description' ];
 		static $results = [];
 
 		if ( $prefix == '' ) {
@@ -537,8 +538,13 @@ class LocalFile extends File {
 		$this->dataLoaded = true;
 		$this->extraDataLoaded = true;
 
-		$this->description = CommentStore::newKey( "{$prefix}description" )
-			->getComment( $row )->text;
+		// Old cache entries won't have this row, so check for its existence
+		// TODO: Make this unconditional after pre-CommentStore cache entries are gone
+		if ( isset( $row->${"{$prefix}description_text" } ) ) {
+			$this->description = CommentStore::newKey( "{$prefix}description" )
+				->getComment( $row )->text;
+		}
+		// Legacy cache entries will automatically have $this->description set down below
 
 		$array = $this->decodeRow( $row, $prefix );
 
