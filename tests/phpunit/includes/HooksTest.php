@@ -54,6 +54,8 @@ class HooksTest extends MediaWikiTestCase {
 	 */
 	public function testOldStyleHooks( $msg, array $hook, $expectedFoo, $expectedBar ) {
 		global $wgHooks;
+
+		$this->hideDeprecated( 'wfRunHooks' );
 		$foo = $bar = 'original';
 
 		$wgHooks['MediaWikiHooksTest001'][] = $hook;
