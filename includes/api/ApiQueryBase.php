@@ -99,6 +99,7 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * @see ApiBase::getParent()
+	 * @return ApiQuery
 	 */
 	public function getParent() {
 		return $this->getQuery();

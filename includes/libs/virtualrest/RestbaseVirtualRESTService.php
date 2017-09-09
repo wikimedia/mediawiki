@@ -112,6 +112,10 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 
 	/**
 	 * Remaps Parsoid v1/v3 requests to RESTBase v1 requests.
+	 * @param array $reqs
+	 * @param Closure $idGeneratorFunc
+	 * @return array
+	 * @throws Exception
 	 */
 	public function onParsoidRequests( array $reqs, Closure $idGeneratorFunc ) {
 		$result = [];
@@ -145,6 +149,10 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 	 * NOTE: the POST APIs aren't "real" Parsoid v1 APIs, they are just what
 	 * Visual Editor "pretends" the V1 API is like.  (See
 	 * ParsoidVirtualRESTService.)
+	 * @param array $req
+	 * @param Closure $idGeneratorFunc
+	 * @return array
+	 * @throws Exception
 	 */
 	public function onParsoid1Request( array $req, Closure $idGeneratorFunc ) {
 		$parts = explode( '/', $req['url'] );
@@ -233,6 +241,10 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 	 *   * body: array( 'wikitext' => ... ) or array( 'wikitext' => ..., 'body_only' => true/false )
 	 *   * $title is optional
 	 *   * $revision is optional
+	 * @param array $req
+	 * @param Closure $idGeneratorFunc
+	 * @return array
+	 * @throws Exception
 	 */
 	public function onParsoid3Request( array $req, Closure $idGeneratorFunc ) {
 		$parts = explode( '/', $req['url'] );

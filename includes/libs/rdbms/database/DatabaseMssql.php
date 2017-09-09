@@ -1110,6 +1110,7 @@ class DatabaseMssql extends Database {
 	 * MS SQL supports more pattern operators than other databases (ex: [,],^)
 	 *
 	 * @param string $s
+	 * @param string $escapeChar
 	 * @return string
 	 */
 	protected function escapeLikeInternal( $s, $escapeChar = '`' ) {

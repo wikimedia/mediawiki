@@ -41,6 +41,9 @@ class RedisPubSubFeedEngine extends RCFeedEngine {
 
 	/**
 	 * @see FormattedRCFeed::send
+	 * @param array $feed
+	 * @param string $line
+	 * @return bool
 	 */
 	public function send( array $feed, $line ) {
 		$parsed = wfParseUrl( $feed['uri'] );

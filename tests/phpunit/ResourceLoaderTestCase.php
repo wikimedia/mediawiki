@@ -17,6 +17,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 	 * - string 'modules' Pipe-separated list of module names
 	 * - string|null 'only' "scripts" (unwrapped script), "styles" (stylesheet), or null
 	 *    (mw.loader.implement).
+	 * @param ResourceLoader|null $rl
 	 * @return ResourceLoaderContext
 	 */
 	protected function getResourceLoaderContext( $options = [], ResourceLoader $rl = null ) {

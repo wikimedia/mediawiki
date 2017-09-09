@@ -2106,6 +2106,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @param string $s
+	 * @param string $escapeChar
 	 * @return string
 	 */
 	protected function escapeLikeInternal( $s, $escapeChar = '`' ) {
@@ -2416,6 +2417,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * we don't want to select everything into memory
 	 *
 	 * @see IDatabase::insertSelect()
+	 * @param string $destTable
+	 * @param string|array $srcTable
+	 * @param array $varMap
+	 * @param array $conds
+	 * @param string $fname
+	 * @param array $insertOptions
+	 * @param array $selectOptions
+	 * @param array $selectJoinConds
+	 * @return bool
 	 */
 	protected function nativeInsertSelect( $destTable, $srcTable, $varMap, $conds,
 		$fname = __METHOD__,

@@ -257,7 +257,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * @param string $name
 	 * @param int $width
 	 * @param int $height
-	 * @param array $result Out parameter that will be changed by the function.
+	 * @param array &$result
 	 * @param string $otherParams
 	 *
 	 * @return bool

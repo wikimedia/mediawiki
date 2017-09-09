@@ -132,6 +132,7 @@ abstract class ApiFormatBase extends ApiBase {
 
 	/**
 	 * Overridden to honor $this->forceDefaultParams(), if applicable
+	 * @inheritDoc
 	 * @since 1.26
 	 */
 	protected function getParameterFromSettings( $paramName, $paramSettings, $parseLimit ) {

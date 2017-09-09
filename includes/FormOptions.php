@@ -246,6 +246,9 @@ class FormOptions implements ArrayAccess {
 
 	/**
 	 * @see validateBounds()
+	 * @param string $name
+	 * @param int $min
+	 * @param int $max
 	 */
 	public function validateIntBounds( $name, $min, $max ) {
 		$this->validateBounds( $name, $min, $max );

@@ -1005,6 +1005,7 @@ class WebInstaller extends Installer {
 	 *
 	 * @see getRadioSet
 	 *
+	 * @param mixed[] $params
 	 * @return array
 	 */
 	public function getRadioElements( $params ) {

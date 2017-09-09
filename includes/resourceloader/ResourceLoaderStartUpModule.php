@@ -297,6 +297,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
 	public function getPreloadLinks( ResourceLoaderContext $context ) {

@@ -113,6 +113,7 @@ class HashSiteStore implements SiteStore {
 	/**
 	 * Deletes all sites from the database. After calling clear(), getSites() will return an empty
 	 * list and getSite() will return null until saveSite() or saveSites() is called.
+	 * @return bool
 	 */
 	public function clear() {
 		$this->sites = [];

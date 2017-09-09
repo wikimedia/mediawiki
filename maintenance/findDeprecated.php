@@ -69,6 +69,8 @@ class DeprecatedInterfaceFinder extends FileAwareNodeVisitor {
 	/**
 	 * Check whether a function or method includes a call to wfDeprecated(),
 	 * indicating that it is a hard-deprecated interface.
+	 * @param PhpParser\Node $node
+	 * @return bool
 	 */
 	public function isHardDeprecated( PhpParser\Node $node ) {
 		if ( !$node->stmts ) {

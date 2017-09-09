@@ -474,6 +474,8 @@ class IcuCollation extends Collation {
 	}
 
 	/**
+	 * @param string $index
+	 * @return string
 	 * @since 1.16.3
 	 */
 	public function getLetterByIndex( $index ) {
@@ -481,6 +483,8 @@ class IcuCollation extends Collation {
 	}
 
 	/**
+	 * @param string $index
+	 * @return string
 	 * @since 1.16.3
 	 */
 	public function getSortKeyByLetterIndex( $index ) {
@@ -488,6 +492,8 @@ class IcuCollation extends Collation {
 	}
 
 	/**
+	 * @param string $index
+	 * @return string
 	 * @since 1.16.3
 	 */
 	public function getFirstLetterCount() {
@@ -496,6 +502,8 @@ class IcuCollation extends Collation {
 
 	/**
 	 * Test if a code point is a CJK (Chinese, Japanese, Korean) character
+	 * @param int $codepoint
+	 * @return bool
 	 * @since 1.16.3
 	 */
 	public static function isCjk( $codepoint ) {

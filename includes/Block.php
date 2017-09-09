@@ -1329,7 +1329,7 @@ class Block {
 	 * which in turn gives User::getName().
 	 *
 	 * @param string|int|User|null $target
-	 * @return array( User|String|null, Block::TYPE_ constant|null )
+	 * @return array [ User|String|null, Block::TYPE_ constant|null ]
 	 */
 	public static function parseTarget( $target ) {
 		# We may have been through this before
@@ -1396,7 +1396,7 @@ class Block {
 	 * Get the target and target type for this particular Block.  Note that for autoblocks,
 	 * this returns the unredacted name; frontend functions need to call $block->getRedactedName()
 	 * in this situation.
-	 * @return array( User|String, Block::TYPE_ constant )
+	 * @return array [ User|String, Block::TYPE_ constant ]
 	 * @todo FIXME: This should be an integral part of the Block member variables
 	 */
 	public function getTargetAndType() {

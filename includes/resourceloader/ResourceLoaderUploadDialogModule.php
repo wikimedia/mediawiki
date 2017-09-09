@@ -30,6 +30,7 @@ class ResourceLoaderUploadDialogModule extends ResourceLoaderModule {
 	protected $targets = [ 'desktop', 'mobile' ];
 
 	/**
+	 * @param ResourceLoaderContext $context
 	 * @return string JavaScript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
