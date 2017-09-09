@@ -214,6 +214,7 @@ changes to languages because of Phabricator reports.
   user_properties.up_user have all been made unsigned on MySQL.
 * DB_SLAVE is deprecated. DB_REPLICA should be used instead.
 * wfUsePHP() is deprecated.
+* wfFixSessionID() was removed.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for

@@ -2920,14 +2920,6 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1,
 }
 
 /**
- * @deprecated since 1.27, PHP's session generation isn't used with
- *  MediaWiki\Session\SessionManager
- */
-function wfFixSessionID() {
-	wfDeprecated( __FUNCTION__, '1.27' );
-}
-
-/**
  * Reset the session id
  *
  * @deprecated since 1.27, use MediaWiki\Session\SessionManager instead
