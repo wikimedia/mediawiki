@@ -152,6 +152,7 @@ class SearchResultSet {
 	/**
 	 * Return a result set of hits on other (multiple) wikis associated with this one
 	 *
+	 * @param int $type
 	 * @return SearchResultSet[]
 	 */
 	function getInterwikiResults( $type = self::SECONDARY_RESULTS ) {
@@ -161,6 +162,7 @@ class SearchResultSet {
 	/**
 	 * Check if there are results on other wikis
 	 *
+	 * @param int $type
 	 * @return bool
 	 */
 	function hasInterwikiResults( $type = self::SECONDARY_RESULTS ) {

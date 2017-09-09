@@ -138,6 +138,7 @@ class JobQueueSecondTestQueue extends JobQueue {
 	/**
 	 * @see JobQueue::ack()
 	 * @param Job $job
+	 * @return Job|bool
 	 */
 	protected function doAck( Job $job ) {
 		return $this->mainQueue->doAck( $job );
@@ -172,6 +173,7 @@ class JobQueueSecondTestQueue extends JobQueue {
 
 	/**
 	 * @see JobQueue::delete()
+	 * @return bool
 	 * @throws MWException
 	 */
 	protected function doDelete() {

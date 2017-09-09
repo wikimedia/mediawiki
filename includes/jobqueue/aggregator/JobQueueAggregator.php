@@ -79,6 +79,9 @@ abstract class JobQueueAggregator {
 
 	/**
 	 * @see JobQueueAggregator::notifyQueueEmpty()
+	 * @param string $wiki
+	 * @param string $type
+	 * @return bool
 	 */
 	abstract protected function doNotifyQueueEmpty( $wiki, $type );
 
@@ -97,6 +100,9 @@ abstract class JobQueueAggregator {
 
 	/**
 	 * @see JobQueueAggregator::notifyQueueNonEmpty()
+	 * @param string $wiki
+	 * @param string $type
+	 * @return bool
 	 */
 	abstract protected function doNotifyQueueNonEmpty( $wiki, $type );
 

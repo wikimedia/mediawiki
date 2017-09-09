@@ -518,6 +518,8 @@ class ParserTestRunner {
 	/**
 	 * Ensure a given setup stage has been done, throw an exception if it has
 	 * not.
+	 * @param string $funcName
+	 * @param string|null $funcName2
 	 */
 	protected function checkSetupDone( $funcName, $funcName2 = null ) {
 		if ( !$this->setupDone[$funcName]
@@ -700,6 +702,8 @@ class ParserTestRunner {
 	/**
 	 * Determine whether the current parser has the hooks registered in it
 	 * that are required by a file read by TestFileReader.
+	 * @param array $requirements
+	 * @return bool
 	 */
 	public function meetsRequirements( $requirements ) {
 		foreach ( $requirements as $requirement ) {

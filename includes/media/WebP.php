@@ -299,6 +299,8 @@ class WebPHandler extends BitmapHandler {
 	/**
 	 * Must use "im" for XCF
 	 *
+	 * @param string $dstPath
+	 * @param bool $checkDstPath
 	 * @return string
 	 */
 	protected function getScalerType( $dstPath, $checkDstPath = true ) {

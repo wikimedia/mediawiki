@@ -1975,6 +1975,8 @@ class Title implements LinkTarget {
 	 * NOTE: Unlike getInternalURL(), the canonical URL includes the fragment
 	 *
 	 * @see self::getLocalURL for the arguments.
+	 * @param string $query
+	 * @param string|bool $query2
 	 * @return string The URL
 	 * @since 1.18
 	 */

@@ -72,6 +72,7 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 	 * This class expects the result data to be in a custom format set by self::setResult()
 	 * $result['_feed'] - an instance of one of the $wgFeedClasses classes
 	 * $result['_feeditems'] - an array of FeedItem instances
+	 * @param bool $unused
 	 */
 	public function initPrinter( $unused = false ) {
 		parent::initPrinter( $unused );

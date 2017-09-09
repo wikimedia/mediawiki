@@ -662,7 +662,7 @@ class LanguageConverter {
 	 *
 	 * @param string $text Text to be converted
 	 * @param string $variant The target variant code
-	 * @param int $startPos
+	 * @param int &$startPos
 	 * @param int $depth Depth of recursion
 	 *
 	 * @throws MWException

@@ -74,6 +74,7 @@ class WantedFilesPage extends WantedQueryPage {
 	 * In its own function to allow subclasses to override.
 	 * @see SpecialWantedFilesGUOverride in GlobalUsage extension.
 	 * @since 1.24
+	 * @return bool
 	 */
 	protected function likelyToHaveFalsePositives() {
 		return RepoGroup::singleton()->hasForeignRepos();
@@ -99,6 +100,7 @@ class WantedFilesPage extends WantedQueryPage {
 	 * Use wfFindFile so we still think file namespace pages without
 	 * files are missing, but valid file redirects and foreign files are ok.
 	 *
+	 * @param Title $title
 	 * @return bool
 	 */
 	protected function existenceCheck( Title $title ) {

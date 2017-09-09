@@ -298,6 +298,7 @@ class FileBackendDBRepoWrapper extends FileBackend {
 	 *
 	 * @param string $function
 	 * @param array $params
+	 * @return mixed
 	 */
 	protected function translateSrcParams( $function, array $params ) {
 		$latest = !empty( $params['latest'] );

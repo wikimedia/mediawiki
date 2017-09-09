@@ -167,6 +167,7 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 
 	/**
 	 * @codeCoverageIgnore
+	 * @param string $username
 	 */
 	public function preventSessionsForUser( $username ) {
 		BotPassword::removeAllPasswordsForUser( $username );

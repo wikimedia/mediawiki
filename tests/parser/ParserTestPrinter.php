@@ -280,6 +280,7 @@ class ParserTestPrinter extends TestRecorder {
 
 	/**
 	 * Show a warning to the user
+	 * @param string $message
 	 */
 	public function warning( $message ) {
 		echo "$message\n";
@@ -287,6 +288,8 @@ class ParserTestPrinter extends TestRecorder {
 
 	/**
 	 * Mark a test skipped
+	 * @param string $test
+	 * @param string $subtest
 	 */
 	public function skipped( $test, $subtest ) {
 		if ( $this->showProgress ) {

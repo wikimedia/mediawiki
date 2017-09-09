@@ -216,6 +216,7 @@ class ApiCSPReport extends ApiBase {
 
 	/**
 	 * Mark as internal. This isn't meant to be used by normal api users
+	 * @return bool
 	 */
 	public function isInternal() {
 		return true;
@@ -223,6 +224,7 @@ class ApiCSPReport extends ApiBase {
 
 	/**
 	 * Even if you don't have read rights, we still want your report.
+	 * @return bool
 	 */
 	public function isReadMode() {
 		return false;
@@ -232,6 +234,7 @@ class ApiCSPReport extends ApiBase {
 	 * Doesn't touch db, so max lag should be rather irrelavent.
 	 *
 	 * Also, this makes sure that reports aren't lost during lag events.
+	 * @return bool
 	 */
 	public function shouldCheckMaxLag() {
 		return false;
