@@ -79,6 +79,8 @@
 				);
 				filtersWidget.setTopSection( wlTopSection.$element );
 			} // end Special:WL
+
+			mw.hook( 'advanced-filters-ui-initialized' ).fire();
 		}
 	};
 
