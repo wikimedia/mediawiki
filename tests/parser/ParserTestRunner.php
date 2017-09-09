@@ -630,6 +630,7 @@ class ParserTestRunner {
 		$services->resetServiceForTesting( '_MediaWikiTitleCodec' );
 		$services->resetServiceForTesting( 'LinkRenderer' );
 		$services->resetServiceForTesting( 'LinkRendererFactory' );
+		$services->resetServiceForTesting( 'LinkTargetResolver' );
 	}
 
 	/**
