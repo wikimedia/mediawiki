@@ -20,6 +20,9 @@
 		<exclude name="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound" />
 		<exclude name="MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage" />
 		<exclude name="MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals" />
+		<exclude name="MediaWiki.Files.ClassMatchesFilename.WrongCase" />
+		<exclude name="MediaWiki.Files.ClassMatchesFilename.NotMatch" />
+		<exclude name="MediaWiki.Files.OneClassPerFile.MultipleFound" />
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
 		<properties>

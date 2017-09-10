@@ -352,8 +352,8 @@ class DatabaseMysqlBaseTest extends PHPUnit_Framework_TestCase {
 		$db->setLBInfo( 'clusterMasterHost', 'db1052' );
 		$lagEst = $db->getLag();
 
-		$this->assertGreaterThan( $lag - .010, $lagEst, "Correct heatbeat lag" );
-		$this->assertLessThan( $lag + .010, $lagEst, "Correct heatbeat lag" );
+		$this->assertGreaterThan( $lag - 0.010, $lagEst, "Correct heatbeat lag" );
+		$this->assertLessThan( $lag + 0.010, $lagEst, "Correct heatbeat lag" );
 	}
 
 	public static function provideLagAmounts() {

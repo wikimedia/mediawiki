@@ -112,10 +112,10 @@ class TransactionProfilerTest extends PHPUnit_Framework_TestCase {
 		$tp->setLogger( $logger );
 		$tp->setExpectation( 'queries', 2, __METHOD__ );
 
-		$tp->recordQueryCompletion( "SQL 1", microtime( true ) - .01, false, 0 );
-		$tp->recordQueryCompletion( "SQL 2", microtime( true ) - .01, false, 0 );
-		$tp->recordQueryCompletion( "SQL 3", microtime( true ) - .01, false, 0 ); // warn
-		$tp->recordQueryCompletion( "SQL 4", microtime( true ) - .01, false, 0 ); // warn
+		$tp->recordQueryCompletion( "SQL 1", microtime( true ) - 0.01, false, 0 );
+		$tp->recordQueryCompletion( "SQL 2", microtime( true ) - 0.01, false, 0 );
+		$tp->recordQueryCompletion( "SQL 3", microtime( true ) - 0.01, false, 0 ); // warn
+		$tp->recordQueryCompletion( "SQL 4", microtime( true ) - 0.01, false, 0 ); // warn
 	}
 
 	public function testWriteQueryCount() {
@@ -126,16 +126,16 @@ class TransactionProfilerTest extends PHPUnit_Framework_TestCase {
 		$tp->setLogger( $logger );
 		$tp->setExpectation( 'writes', 2, __METHOD__ );
 
-		$tp->recordQueryCompletion( "SQL 1", microtime( true ) - .01, false, 0 );
-		$tp->recordQueryCompletion( "SQL 2", microtime( true ) - .01, false, 0 );
-		$tp->recordQueryCompletion( "SQL 3", microtime( true ) - .01, false, 0 );
-		$tp->recordQueryCompletion( "SQL 4", microtime( true ) - .01, false, 0 );
+		$tp->recordQueryCompletion( "SQL 1", microtime( true ) - 0.01, false, 0 );
+		$tp->recordQueryCompletion( "SQL 2", microtime( true ) - 0.01, false, 0 );
+		$tp->recordQueryCompletion( "SQL 3", microtime( true ) - 0.01, false, 0 );
+		$tp->recordQueryCompletion( "SQL 4", microtime( true ) - 0.01, false, 0 );
 
 		$tp->transactionWritingIn( 'srv1', 'db1', '123' );
-		$tp->recordQueryCompletion( "SQL 1w", microtime( true ) - .01, true, 2 );
-		$tp->recordQueryCompletion( "SQL 2w", microtime( true ) - .01, true, 5 );
-		$tp->recordQueryCompletion( "SQL 3w", microtime( true ) - .01, true, 3 );
-		$tp->recordQueryCompletion( "SQL 4w", microtime( true ) - .01, true, 1 );
+		$tp->recordQueryCompletion( "SQL 1w", microtime( true ) - 0.01, true, 2 );
+		$tp->recordQueryCompletion( "SQL 2w", microtime( true ) - 0.01, true, 5 );
+		$tp->recordQueryCompletion( "SQL 3w", microtime( true ) - 0.01, true, 3 );
+		$tp->recordQueryCompletion( "SQL 4w", microtime( true ) - 0.01, true, 1 );
 		$tp->transactionWritingOut( 'srv1', 'db1', '123', 1, 1 );
 	}
 }

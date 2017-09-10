@@ -1714,7 +1714,7 @@ abstract class FileBackendStore extends FileBackend {
 			return; // invalid storage path
 		}
 		$mtime = ConvertibleTimestamp::convert( TS_UNIX, $val['mtime'] );
-		$ttl = $this->memCache->adaptiveTTL( $mtime, 7 * 86400, 300, .1 );
+		$ttl = $this->memCache->adaptiveTTL( $mtime, 7 * 86400, 300, 0.1 );
 		$key = $this->fileCacheKey( $path );
 		// Set the cache unless it is currently salted.
 		$this->memCache->set( $key, $val, $ttl );

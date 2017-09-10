@@ -45,7 +45,7 @@ class MemcachedBagOStuff extends BagOStuff {
 	protected function applyDefaultParams( $params ) {
 		return $params + [
 			'compress_threshold' => 1500,
-			'connect_timeout' => .5,
+			'connect_timeout' => 0.5,
 			'debug' => false
 		];
 	}

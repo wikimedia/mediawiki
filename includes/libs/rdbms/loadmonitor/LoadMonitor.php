@@ -157,7 +157,7 @@ class LoadMonitor implements ILoadMonitor {
 			$newWeight = $movAveRatio * $coefficient + ( 1 - $movAveRatio ) * $lastWeight;
 
 			// Scale from 10% to 100% of nominal weight
-			$weightScales[$i] = max( $newWeight, .10 );
+			$weightScales[$i] = max( $newWeight, 0.10 );
 
 			if ( !$conn ) {
 				$lagTimes[$i] = false;

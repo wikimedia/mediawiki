@@ -1424,7 +1424,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @return int Adaptive TTL
 	 * @since 1.28
 	 */
-	public function adaptiveTTL( $mtime, $maxTTL, $minTTL = 30, $factor = .2 ) {
+	public function adaptiveTTL( $mtime, $maxTTL, $minTTL = 30, $factor = 0.2 ) {
 		if ( is_float( $mtime ) || ctype_digit( $mtime ) ) {
 			$mtime = (int)$mtime; // handle fractional seconds and string integers
 		}

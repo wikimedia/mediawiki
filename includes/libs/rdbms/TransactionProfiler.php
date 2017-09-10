@@ -39,7 +39,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 	/** @var float Seconds */
 	protected $dbLockThreshold = 3.0;
 	/** @var float Seconds */
-	protected $eventThreshold = .25;
+	protected $eventThreshold = 0.25;
 	/** @var bool */
 	protected $silenced = false;
 
