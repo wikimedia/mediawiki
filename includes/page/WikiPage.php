@@ -1990,6 +1990,7 @@ class WikiPage implements Page, IDBAccessObject {
 			// This code path is deprecated, and nothing is known to
 			// use it, so performance here shouldn't be a worry.
 			if ( $revid !== null ) {
+				wfDeprecated( __METHOD__ . ' with $revision = revision ID', '1.25' );
 				$revision = Revision::newFromId( $revid, Revision::READ_LATEST );
 			} else {
 				$revision = null;
