@@ -1184,11 +1184,11 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 
 	public static function provideAdaptiveTTL() {
 		return [
-			[ 3600, 900, 30, .2, 720 ],
-			[ 3600, 500, 30, .2, 500 ],
-			[ 3600, 86400, 800, .2, 800 ],
-			[ false, 86400, 800, .2, 800 ],
-			[ null, 86400, 800, .2, 800 ]
+			[ 3600, 900, 30, 0.2, 720 ],
+			[ 3600, 500, 30, 0.2, 500 ],
+			[ 3600, 86400, 800, 0.2, 800 ],
+			[ false, 86400, 800, 0.2, 800 ],
+			[ null, 86400, 800, 0.2, 800 ]
 		];
 	}
 

@@ -54,8 +54,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	const PING_TTL = 1.0;
 	const PING_QUERY = 'SELECT 1 AS ping';
 
-	const TINY_WRITE_SEC = .010;
-	const SLOW_WRITE_SEC = .500;
+	const TINY_WRITE_SEC = 0.010;
+	const SLOW_WRITE_SEC = 0.500;
 	const SMALL_WRITE_ROWS = 100;
 
 	/** @var string SQL query */

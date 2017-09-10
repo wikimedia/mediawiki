@@ -2013,7 +2013,7 @@ class OutputPage extends ContextSource {
 		}
 
 		$age = time() - wfTimestamp( TS_UNIX, $mtime );
-		$adaptiveTTL = max( .9 * $age, $minTTL );
+		$adaptiveTTL = max( 0.9 * $age, $minTTL );
 		$adaptiveTTL = min( $adaptiveTTL, $maxTTL );
 
 		$this->lowerCdnMaxage( (int)$adaptiveTTL );

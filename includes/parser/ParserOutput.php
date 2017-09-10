@@ -223,7 +223,7 @@ class ParserOutput extends CacheTime {
 	// finalizeAdaptiveCacheExpiry() uses TTL = MAX( m * PARSE_TIME + b, MIN_AR_TTL)
 	// Current values imply that m=3933.333333 and b=-333.333333
 	// See https://www.nngroup.com/articles/website-response-times/
-	const PARSE_FAST_SEC = .100; // perceived "fast" page parse
+	const PARSE_FAST_SEC = 0.100; // perceived "fast" page parse
 	const PARSE_SLOW_SEC = 1.0; // perceived "slow" page parse
 	const FAST_AR_TTL = 60; // adaptive TTL for "fast" pages
 	const SLOW_AR_TTL = 3600; // adaptive TTL for "slow" pages
