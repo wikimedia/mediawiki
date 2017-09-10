@@ -90,7 +90,7 @@ function utf8ToCodepoint( $char ) {
  * Escape a string for inclusion in a PHP single-quoted string literal.
  *
  * @param string $string string to be escaped.
- * @return String: escaped string.
+ * @return string escaped string.
  * @public
  * @deprecated since 1.25, use UtfNormal\Utils directly
  */

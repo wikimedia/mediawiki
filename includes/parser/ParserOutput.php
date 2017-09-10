@@ -243,6 +243,7 @@ class ParserOutput extends CacheTime {
 	 * return value is suitable for writing back via setText() but is not valid
 	 * for display to the user.
 	 *
+	 * @return string
 	 * @since 1.27
 	 */
 	public function getRawText() {
@@ -298,7 +299,10 @@ class ParserOutput extends CacheTime {
 		$this->mSpeculativeRevId = $id;
 	}
 
-	/** @since 1.28 */
+	/**
+	 * @return int|null
+	 * @since 1.28
+	 */
 	public function getSpeculativeRevIdUsed() {
 		return $this->mSpeculativeRevId;
 	}
@@ -320,6 +324,7 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
+	 * @return array
 	 * @since 1.25
 	 */
 	public function getIndicators() {
@@ -382,7 +387,10 @@ class ParserOutput extends CacheTime {
 		return $this->mModuleStyles;
 	}
 
-	/** @since 1.23 */
+	/**
+	 * @return array
+	 * @since 1.23
+	 */
 	public function getJsConfigVars() {
 		return $this->mJsConfigVars;
 	}
@@ -471,6 +479,8 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
+	 * @param string $id
+	 * @param string $content
 	 * @since 1.25
 	 */
 	public function setIndicator( $id, $content ) {
@@ -836,6 +846,8 @@ class ParserOutput extends CacheTime {
 	 * @code
 	 *    $parser->getOutput()->my_ext_foo = '...';
 	 * @endcode
+	 * @param string $name
+	 * @param mixed $value
 	 */
 	public function setProperty( $name, $value ) {
 		$this->mProperties[$name] = $value;

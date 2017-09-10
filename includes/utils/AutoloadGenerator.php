@@ -321,7 +321,7 @@ class ClassCollector {
 	protected $alias;
 
 	/**
-	 * @var string $code PHP code (including <?php) to detect class names from
+	 * @param string $code PHP code (including <?php) to detect class names from
 	 * @return array List of FQCN detected within the tokens
 	 */
 	public function getClasses( $code ) {

@@ -88,6 +88,8 @@ class PhpHttpRequest extends MWHttpRequest {
 	 * so normal methods of handling errors programmatically
 	 * like get_last_error() don't work.
 	 * @internal
+	 * @param int $errno
+	 * @param string $errstr
 	 */
 	public function errorHandler( $errno, $errstr ) {
 		$n = count( $this->fopenErrors ) + 1;

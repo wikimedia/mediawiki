@@ -37,6 +37,7 @@ class Xhprof {
 
 	/**
 	 * Start xhprof profiler
+	 * @return bool
 	 */
 	public static function isEnabled() {
 		return self::$enabled;
@@ -44,6 +45,9 @@ class Xhprof {
 
 	/**
 	 * Start xhprof profiler
+	 * @param int $flags
+	 * @param array $options
+	 * @throws Exception
 	 */
 	public static function enable( $flags = 0, $options = [] ) {
 		if ( self::isEnabled() ) {

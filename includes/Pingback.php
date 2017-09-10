@@ -228,6 +228,7 @@ class Pingback {
 	 *
 	 * The schema for the data is located at:
 	 * <https://meta.wikimedia.org/wiki/Schema:MediaWikiPingback>
+	 * @return bool
 	 */
 	public function sendPingback() {
 		if ( !$this->acquireLock() ) {

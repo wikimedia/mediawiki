@@ -410,7 +410,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * gzwrite() / fwrite() wrapper
 	 *
-	 * @param resource $handle
+	 * @param resource &$handle
 	 * @param string $str
 	 */
 	function write( &$handle, $str ) {
@@ -427,7 +427,7 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * gzclose() / fclose() wrapper
 	 *
-	 * @param resource $handle
+	 * @param resource &$handle
 	 */
 	function close( &$handle ) {
 		if ( $this->compress ) {

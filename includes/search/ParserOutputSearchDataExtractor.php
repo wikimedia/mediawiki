@@ -31,6 +31,7 @@ class ParserOutputSearchDataExtractor {
 	/**
 	 * Get a list of categories, as an array with title text strings.
 	 *
+	 * @param ParserOutput $parserOutput
 	 * @return string[]
 	 */
 	public function getCategories( ParserOutput $parserOutput ) {
@@ -46,6 +47,7 @@ class ParserOutputSearchDataExtractor {
 	/**
 	 * Get a list of external links from ParserOutput, as an array of strings.
 	 *
+	 * @param ParserOutput $parserOutput
 	 * @return string[]
 	 */
 	public function getExternalLinks( ParserOutput $parserOutput ) {
@@ -56,6 +58,7 @@ class ParserOutputSearchDataExtractor {
 	 * Get a list of outgoing wiki links (including interwiki links), as
 	 * an array of prefixed title strings.
 	 *
+	 * @param ParserOutput $parserOutput
 	 * @return string[]
 	 */
 	public function getOutgoingLinks( ParserOutput $parserOutput ) {
@@ -74,6 +77,7 @@ class ParserOutputSearchDataExtractor {
 	/**
 	 * Get a list of templates used in the ParserOutput content, as prefixed title strings
 	 *
+	 * @param ParserOutput $parserOutput
 	 * @return string[]
 	 */
 	public function getTemplates( ParserOutput $parserOutput ) {

@@ -839,6 +839,7 @@ class SpecialUpload extends SpecialPage {
 	 * This controls js: mw.config.get( 'wgFileCanRotate' )
 	 *
 	 * @todo What about non-BitmapHandler handled files?
+	 * @return bool
 	 */
 	public static function rotationEnabled() {
 		$bitmapHandler = new BitmapHandler();

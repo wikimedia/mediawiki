@@ -1797,7 +1797,7 @@ class Title implements LinkTarget {
 	 * @see self::getLocalURL for the arguments.
 	 * @param array|string $query
 	 * @param string $proto Protocol type to use in URL
-	 * @return String. A url suitable to use in an HTTP location header.
+	 * @return string A url suitable to use in an HTTP location header.
 	 */
 	public function getFullUrlForRedirect( $query = '', $proto = PROTO_CURRENT ) {
 		$target = $this;
@@ -1975,6 +1975,8 @@ class Title implements LinkTarget {
 	 * NOTE: Unlike getInternalURL(), the canonical URL includes the fragment
 	 *
 	 * @see self::getLocalURL for the arguments.
+	 * @param string $query
+	 * @param string|bool $query2
 	 * @return string The URL
 	 * @since 1.18
 	 */

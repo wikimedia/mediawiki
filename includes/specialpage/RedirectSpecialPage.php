@@ -35,6 +35,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 
 	/**
 	 * @param string|null $subpage
+	 * @return Title|bool
 	 */
 	public function execute( $subpage ) {
 		$redirect = $this->getRedirect( $subpage );

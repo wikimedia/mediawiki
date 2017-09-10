@@ -98,7 +98,7 @@ class WANCacheReapUpdate implements DeferrableUpdate {
 	 * @see WANObjectCacheRepear
 	 * @param WANObjectCache $cache
 	 * @param TitleValue $t
-	 * @returns string[]
+	 * @return string[]
 	 */
 	public function getEventAffectedKeys( WANObjectCache $cache, TitleValue $t ) {
 		/** @var WikiPage[]|LocalFile[]|User[] $entities */

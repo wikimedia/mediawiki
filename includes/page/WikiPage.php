@@ -213,6 +213,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @todo Move this UI stuff somewhere else
 	 *
 	 * @see ContentHandler::getActionOverrides
+	 * @return array
 	 */
 	public function getActionOverrides() {
 		return $this->getContentHandler()->getActionOverrides();
@@ -2733,6 +2734,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param array|string &$error Array of errors to append to
 	 * @param User $user The deleting user
 	 * @param array $tags Tags to apply to the deletion action
+	 * @param string $logsubtype
 	 * @return Status Status object; if successful, $status->value is the log_id of the
 	 *   deletion log entry. If the page couldn't be deleted because it wasn't
 	 *   found, $status is a non-fatal 'cannotdelete' error
