@@ -207,7 +207,7 @@ class RefreshLinksJob extends Job {
 			if ( $page->getTouched() >= $this->params['rootJobTimestamp'] || $opportunistic ) {
 				// Cache is suspected to be up-to-date. As long as the cache rev ID matches
 				// and it reflects the job's triggering change, then it is usable.
-				$parserOutput = ParserCache::singleton()->getDirty( $page, $parserOptions );
+				$parserOutput = $services->getParserCache()->getDirty( $page, $parserOptions );
 				if ( !$parserOutput
 					|| $parserOutput->getCacheRevisionId() != $revision->getId()
 					|| $parserOutput->getCacheTime() < $skewedTimestamp
@@ -234,7 +234,7 @@ class RefreshLinksJob extends Job {
 				&& $parserOutput->isCacheable()
 			) {
 				$ctime = wfTimestamp( TS_MW, (int)$start ); // cache time
-				ParserCache::singleton()->save(
+				$services->getParserCache()->save(
 					$parserOutput, $page, $parserOptions, $ctime, $revision->getId()
 				);
 			}
