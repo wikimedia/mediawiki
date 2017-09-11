@@ -561,7 +561,8 @@
 			'liveUpdate',
 			{
 				limit: 1,
-				peek: 1, // bypasses all UI
+				// temporarily disabled ( T173613#3591657 )
+				// peek: 1, // bypasses all UI
 				from: this.changesListModel.getNextFrom()
 			}
 		);
