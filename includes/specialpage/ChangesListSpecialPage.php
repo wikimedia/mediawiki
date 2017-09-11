@@ -573,16 +573,20 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/**
 	 * Include the modules and configuration for the RCFilters app.
 	 * Conditional on the user having the feature enabled.
+	 *
+	 * If it is disabled, add a <body> class marking that
 	 */
 	protected function includeRcFiltersApp() {
+		$out = $this->getOutput();
 		if ( $this->isStructuredFilterUiEnabled() ) {
-			$out = $this->getOutput();
 			$jsData = $this->getStructuredFilterJsData();
 
 			$messages = [];
 			foreach ( $jsData['messageKeys'] as $key ) {
 				$messages[$key] = $this->msg( $key )->plain();
 			}
+
+			$out->addBodyClasses( 'mw-rcfilters-enabled' );
 
 			$out->addHTML(
 				ResourceLoader::makeInlineScript(
@@ -616,6 +620,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					'daysDefault' => $this->getDefaultDays(),
 				]
 			);
+		} else {
+			$out->addBodyClasses( 'mw-rcfilters-disabled' );
 		}
 	}
 
