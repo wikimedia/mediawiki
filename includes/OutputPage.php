@@ -139,6 +139,9 @@ class OutputPage extends ContextSource {
 	/** @var array Array of elements in "<head>". Parser might add its own headers! */
 	protected $mHeadItems = [];
 
+	/** @var array Additional <body> classes; there are also <body> classes from other sources */
+	protected $mAdditionalBodyClasses = [];
+
 	/** @var array */
 	protected $mModules = [];
 
@@ -703,6 +706,16 @@ class OutputPage extends ContextSource {
 	 */
 	public function hasHeadItem( $name ) {
 		return isset( $this->mHeadItems[$name] );
+	}
+
+	/**
+	 * Add a class to the <body> element
+	 *
+	 * @since 1.30
+	 * @param string|string[] $classes One or more classes to add
+	 */
+	public function addBodyClasses( $classes ) {
+		$this->mAdditionalBodyClasses = array_merge( $this->mAdditionalBodyClasses, (array) $classes );
 	}
 
 	/**
@@ -2923,7 +2936,7 @@ class OutputPage extends ContextSource {
 
 		$pieces[] = Html::closeElement( 'head' );
 
-		$bodyClasses = [];
+		$bodyClasses = $this->mAdditionalBodyClasses;
 		$bodyClasses[] = 'mediawiki';
 
 		# Classes for LTR/RTL directionality support
