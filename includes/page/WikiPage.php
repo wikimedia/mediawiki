@@ -1921,7 +1921,7 @@ class WikiPage implements Page, IDBAccessObject {
 					$wikiPage = $this;
 					// Trigger post-create hook
 					$params = [ &$wikiPage, &$user, $content, $summary,
-						$flags & EDIT_MINOR, null, null, &$flags, $revision ];
+								$flags & EDIT_MINOR, null, null, &$flags, $revision, 0 ];
 					Hooks::run( 'PageContentInsertComplete', $params );
 					// Trigger post-save hook
 					$params = array_merge( $params, [ &$status, $meta['baseRevId'] ] );
