@@ -22,6 +22,7 @@
  * @file
  */
 
+use MediaWiki\Storage\PageRecord;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Linker\LinkTarget;
@@ -163,6 +164,9 @@ class Title implements LinkTarget {
 
 	/** @var TitleValue A corresponding TitleValue object */
 	private $mTitleValue = null;
+
+	/** @var PageRecord A corresponding PageRecord object */
+	private $mPageRecord = null;
 
 	/** @var bool Would deleting this page be a big deletion? */
 	private $mIsBigDeletion = null;
@@ -927,6 +931,32 @@ class Title implements LinkTarget {
 		}
 
 		return $this->mTitleValue;
+	}
+
+	/**
+	 * Get a PageRecord object representing this Title.
+	 *
+	 * @note Not all valid Titles have a corresponding valid PageRecord
+	 * (e.g. PageRecord cannot represent non-existing pages or special pages).
+	 *
+	 * @return PageRecord|null
+	 */
+	public function getPageRecord() {
+		if ( $this->mPageRecord === null ) {
+			try {
+				$this->mPageRecord = new TitleValue(
+					$this->getNamespace(),
+					$this->getDBkey(),
+					$this->getFragment(),
+					$this->getInterwiki()
+				);
+			} catch ( InvalidArgumentException $ex ) {
+				wfDebug( __METHOD__ . ': Can\'t create a TitleValue for [[' .
+					$this->getPrefixedText() . ']]: ' . $ex->getMessage() . "\n" );
+			}
+		}
+
+		return $this->mPageRecord;
 	}
 
 	/**
