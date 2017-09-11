@@ -1604,12 +1604,15 @@ class ParserTestRunner {
 		// get a reference to the mock object.
 		MessageCache::singleton()->getParser();
 		$restore = $this->executeSetupSnippets( [ 'wgParser' => new ParserTestMockParser ] );
-		$status = $page->doEditContent(
-			ContentHandler::makeContent( $text, $title ),
-			'',
-			EDIT_NEW | EDIT_INTERNAL
-		);
-		$restore();
+		try {
+			$status = $page->doEditContent(
+				ContentHandler::makeContent( $text, $title ),
+				'',
+				EDIT_NEW | EDIT_INTERNAL
+			);
+		} finally {
+			$restore();
+		}
 
 		if ( !$status->isOK() ) {
 			throw new MWException( $status->getWikiText( false, false, 'en' ) );
