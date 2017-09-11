@@ -3231,6 +3231,8 @@ class Parser {
 					. wfMessage( 'parser-template-loop-warning', $titleText )->inContentLanguage()->text()
 					. '</span>';
 				$this->addTrackingCategory( 'template-loop-category' );
+				$this->mOutput->addWarning( wfMessage( 'template-loop-warning',
+					wfEscapeWikiText( $titleText ) )->text() );
 				wfDebug( __METHOD__ . ": template loop broken at '$titleText'\n" );
 			}
 		}
