@@ -62,13 +62,16 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 		TestingAccessWrapper::newFromClass( 'Hooks' )->handlers = [];
 
 		// Clear caches so that our new namespace appears
-		MWNamespace::getCanonicalNamespaces( true );
+		MWNamespace::clearCaches();
 		Language::factory( 'en' )->resetNamespaces();
 
 		SpecialPageFactory::resetList();
 	}
 
 	public function tearDown() {
+		MWNamespace::clearCaches();
+		Language::factory( 'en' )->resetNamespaces();
+
 		parent::tearDown();
 
 		TestingAccessWrapper::newFromClass( 'Hooks' )->handlers = $this->originalHandlers;

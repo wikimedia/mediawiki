@@ -35,7 +35,7 @@ class TestPageProps extends MediaWikiLangTestCase {
 		$wgNamespaceContentModels[12312] = 'DUMMY';
 		$wgContentHandlers['DUMMY'] = 'DummyContentHandlerForTesting';
 
-		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		MWNamespace::clearCaches();
 		$wgContLang->resetNamespaces(); # reset namespace cache
 
 		if ( !$this->the_properties ) {
@@ -81,7 +81,7 @@ class TestPageProps extends MediaWikiLangTestCase {
 		unset( $wgNamespaceContentModels[12312] );
 		unset( $wgContentHandlers['DUMMY'] );
 
-		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		MWNamespace::clearCaches();
 		$wgContLang->resetNamespaces(); # reset namespace cache
 	}
 

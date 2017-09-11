@@ -34,6 +34,11 @@ class XmlTest extends MediaWikiTestCase {
 		] );
 	}
 
+	protected function tearDown() {
+		Language::factory( 'en' )->resetNamespaces();
+		parent::tearDown();
+	}
+
 	/**
 	 * @covers Xml::expandAttributes
 	 */

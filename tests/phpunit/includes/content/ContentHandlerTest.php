@@ -35,7 +35,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		] );
 
 		// Reset namespace cache
-		MWNamespace::getCanonicalNamespaces( true );
+		MWNamespace::clearCaches();
 		$wgContLang->resetNamespaces();
 		// And LinkCache
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'LinkCache' );
@@ -45,7 +45,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		global $wgContLang;
 
 		// Reset namespace cache
-		MWNamespace::getCanonicalNamespaces( true );
+		MWNamespace::clearCaches();
 		$wgContLang->resetNamespaces();
 		// And LinkCache
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'LinkCache' );
