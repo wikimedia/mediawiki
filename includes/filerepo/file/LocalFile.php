@@ -538,7 +538,8 @@ class LocalFile extends File {
 		$this->extraDataLoaded = true;
 
 		$this->description = CommentStore::newKey( "{$prefix}description" )
-			->getComment( $row )->text;
+			// $row is probably using getFields() from self::getCacheFields()
+			->getCommentLegacy( wfGetDB( DB_REPLICA ), $row )->text;
 
 		$array = $this->decodeRow( $row, $prefix );
 
