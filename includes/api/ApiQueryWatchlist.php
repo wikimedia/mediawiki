@@ -260,10 +260,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 	private function extractOutputData( WatchedItem $watchedItem, array $recentChangeInfo ) {
 		/* Determine the title of the page that has been changed. */
-		$title = Title::makeTitle(
-			$watchedItem->getLinkTarget()->getNamespace(),
-			$watchedItem->getLinkTarget()->getDBkey()
-		);
+		$title = Title::newFromLinkTarget( $watchedItem->getLinkTarget() );
 		$user = $this->getUser();
 
 		/* Our output data. */
