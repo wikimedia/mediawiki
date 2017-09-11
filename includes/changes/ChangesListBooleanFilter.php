@@ -235,13 +235,10 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	 * @inheritDoc
 	 */
 	public function isSelected( FormOptions $opts ) {
-		return !$this->getValue( $opts ) &&
-			array_filter(
-				$this->getSiblings(),
-				function ( ChangesListBooleanFilter $sibling ) use ( $opts ) {
-					return $sibling->getValue( $opts );
-				}
-			);
+		return !$opts[ $this->getName() ] &&
+			array_filter( $this->getSiblings(), function ( $sibling ) use ( $opts ) {
+				return $opts[ $sibling->getName() ];
+			} );
 	}
 
 	/**
@@ -254,14 +251,6 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 			return false;
 		}
 
-		return $this->getValue( $opts ) === $this->activeValue;
-	}
-
-	/**
-	 * @param FormOptions $opts
-	 * @return bool The current value of this filter according to $opts but coerced to boolean
-	 */
-	public function getValue( FormOptions $opts ) {
-		return (bool)$opts[ $this->getName() ];
+		return $opts[ $this->getName() ] === $this->activeValue;
 	}
 }
