@@ -41,14 +41,14 @@ class RevisionTest extends MediaWikiTestCase {
 			]
 		);
 
-		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		MWNamespace::clearCaches();
 		$wgContLang->resetNamespaces(); # reset namespace cache
 	}
 
 	function tearDown() {
 		global $wgContLang;
 
-		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		MWNamespace::clearCaches();
 		$wgContLang->resetNamespaces(); # reset namespace cache
 
 		parent::tearDown();

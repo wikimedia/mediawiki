@@ -29,7 +29,7 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 			]
 		);
 
-		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		MWNamespace::clearCaches();
 		$wgContLang->resetNamespaces(); # reset namespace cache
 	}
 
@@ -38,7 +38,7 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 
 		parent::tearDown();
 
-		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		MWNamespace::clearCaches();
 		$wgContLang->resetNamespaces(); # reset namespace cache
 	}
 
