@@ -34,6 +34,7 @@ use MediaWiki\MediaWikiServices;
  */
 class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
+	/** @var CommentStore */
 	private $commentStore;
 
 	public function __construct( ApiQuery $query, $moduleName ) {
