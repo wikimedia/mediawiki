@@ -886,6 +886,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Linker\\LinkRenderer' => __DIR__ . '/includes/linker/LinkRenderer.php',
 	'MediaWiki\\Linker\\LinkRendererFactory' => __DIR__ . '/includes/linker/LinkRendererFactory.php',
 	'MediaWiki\\Linker\\LinkTarget' => __DIR__ . '/includes/linker/LinkTarget.php',
+	'MediaWiki\\Linker\\LinkTargetException' => __DIR__ . '/includes/linker/LinkTargetException.php',
 	'MediaWiki\\Logger\\ConsoleLogger' => __DIR__ . '/includes/debug/logger/ConsoleLogger.php',
 	'MediaWiki\\Logger\\ConsoleSpi' => __DIR__ . '/includes/debug/logger/ConsoleSpi.php',
 	'MediaWiki\\Logger\\LegacyLogger' => __DIR__ . '/includes/debug/logger/LegacyLogger.php',

@@ -22,14 +22,44 @@
 namespace MediaWiki\Linker;
 
 /**
+ * Represents the target of a wiki link.
+ *
  * @since 1.27
  */
 interface LinkTarget {
 
 	/**
+	 * Whether the link is relative to some base page. This is true e.g.
+	 * for section links like [[#Kittens]], and for subpage links like
+	 * [[/Kittens]]. Sections links have their text part defined to be
+	 * the empty string.
+	 *
+	 * Corollary: a link cannot be external and relative at the same time.
+	 *
+	 * @since 1.30
+	 *
+	 * @return bool
+	 */
+	public function isRelative();
+
+	/**
+	 * Resolves a relative link using the given base. If this link is not relative,
+	 * the method returns $this. If it is relative, it constructs a new LinkTarget
+	 * based on the information in $base. If $base is relative, the result will again
+	 * be relative. If $base is absolute, the result will be absolte.
+	 *
+	 * @since 1.30
+	 *
+	 * @throw LinkTargetException if $base is also relative
+	 * @return LinkTarget
+	 */
+	public function resolveRelativeLink( LinkTarget $base );
+
+	/**
 	 * Get the namespace index.
 	 * @since 1.27
 	 *
+	 * @throw LinkTargetException if this link is relative or external (since 1.30).
 	 * @return int Namespace index
 	 */
 	public function getNamespace();
@@ -39,6 +69,8 @@ interface LinkTarget {
 	 * @since 1.27
 	 *
 	 * @param int $ns
+	 *
+	 * @throw LinkTargetException if this link is relative or external (since 1.30).
 	 * @return bool
 	 */
 	public function inNamespace( $ns );
@@ -47,7 +79,7 @@ interface LinkTarget {
 	 * Get the link fragment (i.e. the bit after the #) in text form.
 	 * @since 1.27
 	 *
-	 * @return string link fragment
+	 * @return string link fragment (or the empty string if there is no fragement)
 	 */
 	public function getFragment();
 
@@ -60,10 +92,13 @@ interface LinkTarget {
 	public function hasFragment();
 
 	/**
-	 * Get the main part with underscores.
+	 * Get the target page's title, with underscores instead of spaces, for use in href attributes.
 	 * @since 1.27
 	 *
-	 * @return string Main part of the link, with underscores (for use in href attributes)
+	 * @note If this LinkTarget is a relative section link,
+	 *       this method returns the empty string (since 1.30).
+	 *
+	 * @return string Main part of the link, with underscores.
 	 */
 	public function getDBkey();
 
@@ -71,6 +106,9 @@ interface LinkTarget {
 	 * Returns the link in text form, without namespace prefix or fragment.
 	 * This is computed from the DB key by replacing any underscores with spaces.
 	 * @since 1.27
+	 *
+	 * @note If this LinkTarget is a relative section link,
+	 *       this method returns the empty string (since 1.30).
 	 *
 	 * @return string
 	 */
@@ -89,8 +127,10 @@ interface LinkTarget {
 	public function createFragmentTarget( $fragment );
 
 	/**
-	 * Whether this LinkTarget has an interwiki component
+	 * Whether this LinkTarget has an interwiki component.
 	 * @since 1.27
+	 *
+	 * Corollary: a link cannot be external and relative at the same time.
 	 *
 	 * @return bool
 	 */

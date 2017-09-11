@@ -22,6 +22,7 @@
  * @author Daniel Kinzler
  */
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Linker\LinkTargetException;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -55,6 +56,11 @@ class TitleValue implements LinkTarget {
 	protected $interwiki;
 
 	/**
+	 * @var bool
+	 */
+	protected $relative;
+
+	/**
 	 * Constructs a TitleValue.
 	 *
 	 * @note TitleValue expects a valid DB key; typically, a TitleValue is constructed either
@@ -63,35 +69,64 @@ class TitleValue implements LinkTarget {
 	 * un-normalized text when constructing TitleValues. For constructing a TitleValue from
 	 * user input or external sources, use a TitleParser.
 	 *
-	 * @param int $namespace The namespace ID. This is not validated.
+	 * @note Relative link targets can be defined by setting the $relative flag in the constructor.
+	 * Relative link targets can be section links or subpage links. Subpage links have a partial
+	 * $dbkey set, section links set $dbkey to the empty string.
+	 *
+	 * @param int $namespace The namespace ID. This is not validated. For relative linkks,
+	 *        this is ignored.
 	 * @param string $dbkey The page title in valid DBkey form. No normalization is applied.
+	 *        Use an empty string for relative section links.
 	 * @param string $fragment The fragment title. Use '' to represent the whole page.
-	 *   No validation or normalization is applied.
+	 *        No validation or normalization is applied.
 	 * @param string $interwiki The interwiki component
+	 * @param string $relative Whether this link target is defined relative to a base title.
 	 *
 	 * @throws InvalidArgumentException
 	 */
-	public function __construct( $namespace, $dbkey, $fragment = '', $interwiki = '' ) {
+	public function __construct(
+		$namespace,
+		$dbkey,
+		$fragment = '',
+		$interwiki = '',
+		$relative = false
+	) {
 		Assert::parameterType( 'integer', $namespace, '$namespace' );
 		Assert::parameterType( 'string', $dbkey, '$dbkey' );
 		Assert::parameterType( 'string', $fragment, '$fragment' );
 		Assert::parameterType( 'string', $interwiki, '$interwiki' );
+		Assert::parameterType( 'boolean', $relative, '$relative' );
 
 		// Sanity check, no full validation or normalization applied here!
 		Assert::parameter( !preg_match( '/^_|[ \r\n\t]|_$/', $dbkey ), '$dbkey',
 			"invalid DB key '$dbkey'" );
-		Assert::parameter( $dbkey !== '', '$dbkey', 'should not be empty' );
+
+		if ( $relative ) {
+			Assert::parameter(
+				$dbkey !== '' || $fragment !== '', '$dbkey or $interwiki',
+				'must be non-empty for a relative link'
+			);
+			Assert::parameter( $interwiki === '', '$interwiki', 'should be empty for relative links' );
+			Assert::parameter( $namespace === 0, '$namespace', 'should be 0 for relative links' );
+		} else {
+			Assert::parameter( $dbkey !== '', '$dbkey', 'should not be empty' );
+		}
 
 		$this->namespace = $namespace;
 		$this->dbkey = $dbkey;
 		$this->fragment = $fragment;
 		$this->interwiki = $interwiki;
+		$this->relative = $relative;
 	}
 
 	/**
 	 * @return int
 	 */
 	public function getNamespace() {
+		if ( $this->isRelative() || $this->isExternal() ) {
+			throw new LinkTargetException( 'Relative and external links have no namespace ID defined' );
+		}
+
 		return $this->namespace;
 	}
 
@@ -101,6 +136,10 @@ class TitleValue implements LinkTarget {
 	 * @return bool
 	 */
 	public function inNamespace( $ns ) {
+		if ( $this->isRelative() || $this->isExternal() ) {
+			throw new LinkTargetException( 'Relative and external links have no namespace ID defined' );
+		}
+
 		return $this->namespace == $ns;
 	}
 
@@ -157,7 +196,32 @@ class TitleValue implements LinkTarget {
 			$this->namespace,
 			$this->dbkey,
 			$fragment,
-			$this->interwiki
+			$this->interwiki,
+			$this->relative
+		);
+	}
+
+	/**
+	 * Creates a new TitleValue for a different fragment of the same page.
+	 *
+	 * @since 1.27
+	 * @param string $fragment The fragment name, or "" for the entire page.
+	 *
+	 * @return TitleValue
+	 */
+	public function resolveRelativeLink( LinkTarget $base ) {
+		if ( !$this->relative ) {
+			return $this;
+		}
+
+		$ns = $base->isRelative() ? 0 : $base->getNamespace();
+
+		return new TitleValue(
+			$ns,
+			$base->getDBkey() . $this->getDBkey(),
+			$this->getFragment(),
+			$base->getInterwiki(),
+			$base->isRelative()
 		);
 	}
 
@@ -182,6 +246,22 @@ class TitleValue implements LinkTarget {
 	}
 
 	/**
+	 * Whether the link is relative to some base page. This is true e.g.
+	 * for section links like [[#Kittens]], and for subpage links like
+	 * [[/Kittens]]. Sections links have their text part defined to be
+	 * the empty string.
+	 *
+	 * Corollary: a link cannot be external and relative at the same time.
+	 *
+	 * @since 1.30
+	 *
+	 * @return bool
+	 */
+	public function isRelative() {
+		return $this->relative;
+	}
+
+	/**
 	 * Returns a string representation of the title, for logging. This is purely informative
 	 * and must not be used programmatically. Use the appropriate TitleFormatter to generate
 	 * the correct string representation for a given use.
@@ -189,7 +269,11 @@ class TitleValue implements LinkTarget {
 	 * @return string
 	 */
 	public function __toString() {
-		$name = $this->namespace . ':' . $this->dbkey;
+		$name = $this->dbkey;
+
+		if ( !$this->relative ) {
+			$name = $this->namespace . ':' . $name;
+		}
 
 		if ( $this->fragment !== '' ) {
 			$name .= '#' . $this->fragment;
@@ -201,4 +285,5 @@ class TitleValue implements LinkTarget {
 
 		return $name;
 	}
+
 }

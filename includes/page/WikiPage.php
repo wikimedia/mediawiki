@@ -3659,6 +3659,6 @@ class WikiPage implements Page, IDBAccessObject {
 	public function getMutableCacheKeys( WANObjectCache $cache ) {
 		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 
-		return $linkCache->getMutableCacheKeys( $cache, $this->getTitle()->getTitleValue() );
+		return $linkCache->getMutableCacheKeys( $cache, $this->getTitle()->getLinkTarget() );
 	}
 }

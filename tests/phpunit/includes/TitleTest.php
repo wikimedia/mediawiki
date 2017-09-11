@@ -583,6 +583,7 @@ class TitleTest extends MediaWikiTestCase {
 		$this->assertEquals( $title->getDBkey(), $dbkey );
 		$this->assertEquals( $title->getNamespace(), $value->getNamespace() );
 		$this->assertEquals( $title->getFragment(), $value->getFragment() );
+		$this->assertEquals( $title->isRelative(), $value->isRelative() );
 	}
 
 	public static function provideGetFragment() {

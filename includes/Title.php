@@ -22,6 +22,7 @@
  * @file
  */
 
+use MediaWiki\Linker\LinkTargetException;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Linker\LinkTarget;
@@ -789,14 +790,25 @@ class Title implements LinkTarget {
 	 * @param LinkTarget $a
 	 * @param LinkTarget $b
 	 *
-	 * @return int Result of string comparison, or namespace comparison
+	 * @return int Result of string comparison, or namespace compariso
 	 */
 	public static function compare( LinkTarget $a, LinkTarget $b ) {
-		if ( $a->getNamespace() == $b->getNamespace() ) {
-			return strcmp( $a->getText(), $b->getText() );
-		} else {
+		if ( $a->isRelative() !== $b->isRelative() ) {
+			return $a->isRelative() - $b->isRelative();
+		} elseif ( $a->isExternal() !== $b->isExternal() ) {
+			return $a->isExternal() - $b->isExternal();
+		} elseif ( $a->isRelative() || $b->isRelative() || $a->isExternal() || $b->isExternal() ) {
+			// no-op, but don't check namespaces
+		} elseif ( $a->getNamespace() != $b->getNamespace() ) {
 			return $a->getNamespace() - $b->getNamespace();
 		}
+
+		$textComp = strcmp( $a->getText(), $b->getText() );
+		if ( $textComp !== 0 ) {
+			return $textComp;
+		}
+
+		return strcmp( $a->getFragment(), $b->getFragment() );
 	}
 
 	/**
@@ -903,6 +915,15 @@ class Title implements LinkTarget {
 	}
 
 	/**
+	 * Get a LinkTarget corresponding to this Title.
+	 *
+	 * @return LinkTarget
+	 */
+	public function getLinkTarget() {
+		return $this->getTitleValue();
+	}
+
+	/**
 	 * Get a TitleValue object representing this Title.
 	 *
 	 * @note Not all valid Titles have a corresponding valid TitleValue
@@ -918,7 +939,8 @@ class Title implements LinkTarget {
 					$this->getNamespace(),
 					$this->getDBkey(),
 					$this->getFragment(),
-					$this->getInterwiki()
+					$this->getInterwiki(),
+					$this->isRelative()
 				);
 			} catch ( InvalidArgumentException $ex ) {
 				wfDebug( __METHOD__ . ': Can\'t create a TitleValue for [[' .
@@ -976,6 +998,10 @@ class Title implements LinkTarget {
 	 * @return int Namespace index
 	 */
 	public function getNamespace() {
+		if ( $this->isRelative() || $this->isExternal() ) {
+			throw new LinkTargetException( 'Relative and external links have no namespace ID defined' );
+		}
+
 		return $this->mNamespace;
 	}
 
@@ -1034,6 +1060,10 @@ class Title implements LinkTarget {
 	 * @return string|false Namespace text
 	 */
 	public function getNsText() {
+		if ( $this->isRelative() ) {
+			return '';
+		}
+
 		if ( $this->isExternal() ) {
 			// This probably shouldn't even happen,
 			// but for interwiki transclusion it sometimes does.
@@ -5019,4 +5049,35 @@ class Title implements LinkTarget {
 		$this->mTextform = strtr( $this->mDbkeyform, '_', ' ' );
 	}
 
+	/**
+	 * Whether the link is relative to some base page. This is true e.g.
+	 * for section links like [[#Kittens]], and for subpage links like
+	 * [[/Kittens]]. Sections links have their text part defined to be
+	 * the empty string.
+	 *
+	 * Corollary: a link cannot be external and relative at the same time.
+	 *
+	 * @since 1.30
+	 *
+	 * @return bool
+	 */
+	public function isRelative() {
+		// XXX: how to detect relative sub-page links?
+		return $this->getDBkey() === '';
+	}
+
+	/**
+	 * Resolves a relative link using the given base. If this link is not relative,
+	 * the method returns $this. If it is relative, it constructs a new LinkTarget
+	 * based on the information in $base. If $base is relative, the result will again
+	 * be relative. If $base is absolute, the result will be absolte.
+	 *
+	 * @since 1.30
+	 *
+	 * @throw LinkTargetException if $base is also relative
+	 * @return LinkTarget
+	 */
+	public function resolveRelativeLink( LinkTarget $base ) {
+		return $this->getLinkTarget()->resolveRelativeLink( $base );
+	}
 }
