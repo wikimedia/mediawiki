@@ -335,11 +335,15 @@ class ApiStashEdit extends ApiBase {
 	 * @return string|null TS_MW timestamp or null
 	 */
 	private static function lastEditTime( User $user ) {
-		$time = wfGetDB( DB_REPLICA )->selectField(
-			'recentchanges',
+		$db = wfGetDB( DB_REPLICA );
+		$actorQuery = ActorMigration::newKey( 'rc_user' )->getWhere( $db, $user );
+		$time = $db->selectField(
+			[ 'recentchanges' ] + $actorQuery['tables'],
 			'MAX(rc_timestamp)',
-			[ 'rc_user_text' => $user->getName() ],
-			__METHOD__
+			[ $actorQuery['conds'] ],
+			__METHOD__,
+			[],
+			$actorQuery['joins']
 		);
 
 		return wfTimestampOrNull( TS_MW, $time );
