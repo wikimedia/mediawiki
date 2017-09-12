@@ -44,6 +44,18 @@ production.
   initial page text for file uploads.
 * (T181651) The info page for File pages now displays the file's base-36 SHA1
   hash value in the table of basic information.
+* The identity of the logged-in or IP "actor" for logged actions is being moved
+  into a new actor table, with the rows in tables such as revision and logging
+  referring to the actor ID instead of storing the user ID and name/IP in
+  every row.
+  * This is currently gated by $wgActorTableSchemaMigrationStage. Most wikis
+    can set this to MIGRATION_NEW and run maintenance/migrateActors.php as
+    soon as any necessary extensions are updated.
+  * Most code accessing rows for logged actions from the database should use
+    the relevant getQueryInfo() methods to get the information needed to build
+    the SQL query. The ActorMigration class may also be used to get feature-flagged
+    information needed to access actor-related fields during the migration
+    period.
 
 === External library changes in 1.31 ===
 

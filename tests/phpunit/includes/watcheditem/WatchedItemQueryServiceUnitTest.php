@@ -26,10 +26,17 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 			)
 			->will( $this->returnCallback( function ( $a, $conj ) {
 				$sqlConj = $conj === LIST_AND ? ' AND ' : ' OR ';
-				return join( $sqlConj, array_map( function ( $s ) {
-					return '(' . $s . ')';
-				}, $a
-				) );
+				$conds = [];
+				foreach ( $a as $k => $v ) {
+					if ( is_int( $k ) ) {
+						$conds[] = "($v)";
+					} elseif ( is_array( $v ) ) {
+						$conds[] = "($k IN ('" . join( "','", $v ) . "'))";
+					} else {
+						$conds[] = "($k = '$v')";
+					}
+				}
+				return join( $sqlConj, $conds );
 			} ) );
 
 		$mock->expects( $this->any() )
@@ -460,19 +467,61 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_USER ] ],
 				null,
 				[],
-				[ 'rc_user_text' ],
+				[ 'rc_user_text' => 'rc_user_text' ],
 				[],
 				[],
 				[],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_OLD ],
+			],
+			[
+				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_USER ] ],
+				null,
+				[ 'actor_rc_user' => 'actor' ],
+				[ 'rc_user_text' => 'COALESCE( actor_rc_user.actor_name, rc_user_text )' ],
+				[],
+				[],
+				[ 'actor_rc_user' => [ 'LEFT JOIN', 'actor_rc_user.actor_id = rc_actor' ] ],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_WRITE_NEW ],
+			],
+			[
+				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_USER ] ],
+				null,
+				[ 'actor_rc_user' => 'actor' ],
+				[ 'rc_user_text' => 'actor_rc_user.actor_name' ],
+				[],
+				[],
+				[ 'actor_rc_user' => [ 'JOIN', 'actor_rc_user.actor_id = rc_actor' ] ],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_NEW ],
 			],
 			[
 				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_USER_ID ] ],
 				null,
 				[],
-				[ 'rc_user' ],
+				[ 'rc_user' => 'rc_user' ],
 				[],
 				[],
 				[],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_OLD ],
+			],
+			[
+				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_USER_ID ] ],
+				null,
+				[ 'actor_rc_user' => 'actor' ],
+				[ 'rc_user' => 'COALESCE( actor_rc_user.actor_user, rc_user )' ],
+				[],
+				[],
+				[ 'actor_rc_user' => [ 'LEFT JOIN', 'actor_rc_user.actor_id = rc_actor' ] ],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_WRITE_NEW ],
+			],
+			[
+				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_USER_ID ] ],
+				null,
+				[ 'actor_rc_user' => 'actor' ],
+				[ 'rc_user' => 'actor_rc_user.actor_user' ],
+				[],
+				[],
+				[ 'actor_rc_user' => [ 'JOIN', 'actor_rc_user.actor_id = rc_actor' ] ],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_NEW ],
 			],
 			[
 				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_COMMENT ] ],
@@ -726,6 +775,27 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 				[ 'rc_user = 0' ],
 				[],
 				[],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_OLD ],
+			],
+			[
+				[ 'filters' => [ WatchedItemQueryService::FILTER_ANON ] ],
+				null,
+				[ 'actor_rc_user' => 'actor' ],
+				[],
+				[ 'COALESCE( actor_rc_user.actor_user, rc_user ) = 0' ],
+				[],
+				[ 'actor_rc_user' => [ 'LEFT JOIN', 'actor_rc_user.actor_id = rc_actor' ] ],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_WRITE_NEW ],
+			],
+			[
+				[ 'filters' => [ WatchedItemQueryService::FILTER_ANON ] ],
+				null,
+				[ 'actor_rc_user' => 'actor' ],
+				[],
+				[ 'actor_rc_user.actor_user IS NULL' ],
+				[],
+				[ 'actor_rc_user' => [ 'JOIN', 'actor_rc_user.actor_id = rc_actor' ] ],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_NEW ],
 			],
 			[
 				[ 'filters' => [ WatchedItemQueryService::FILTER_NOT_ANON ] ],
@@ -735,6 +805,27 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 				[ 'rc_user != 0' ],
 				[],
 				[],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_OLD ],
+			],
+			[
+				[ 'filters' => [ WatchedItemQueryService::FILTER_NOT_ANON ] ],
+				null,
+				[ 'actor_rc_user' => 'actor' ],
+				[],
+				[ 'COALESCE( actor_rc_user.actor_user, rc_user ) != 0' ],
+				[],
+				[ 'actor_rc_user' => [ 'LEFT JOIN', 'actor_rc_user.actor_id = rc_actor' ] ],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_WRITE_NEW ],
+			],
+			[
+				[ 'filters' => [ WatchedItemQueryService::FILTER_NOT_ANON ] ],
+				null,
+				[ 'actor_rc_user' => 'actor' ],
+				[],
+				[ 'actor_rc_user.actor_user IS NOT NULL' ],
+				[],
+				[ 'actor_rc_user' => [ 'JOIN', 'actor_rc_user.actor_id = rc_actor' ] ],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_NEW ],
 			],
 			[
 				[ 'filters' => [ WatchedItemQueryService::FILTER_PATROLLED ] ],
@@ -777,18 +868,60 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 				null,
 				[],
 				[],
-				[ 'rc_user_text' => 'SomeOtherUser' ],
+				[ '((rc_user_text IN (\'SomeOtherUser\')))' ],
 				[],
 				[],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_OLD ],
+			],
+			[
+				[ 'onlyByUser' => 'SomeOtherUser' ],
+				null,
+				[ 'actor_rc_user' => 'actor' ],
+				[],
+				[ '((rc_actor = \'0\') AND (rc_user_text IN (\'SomeOtherUser\')))' ],
+				[],
+				[ 'actor_rc_user' => [ 'LEFT JOIN', 'actor_rc_user.actor_id = rc_actor' ] ],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_WRITE_NEW ],
+			],
+			[
+				[ 'onlyByUser' => 'SomeOtherUser' ],
+				null,
+				[ 'actor_rc_user' => 'actor' ],
+				[],
+				[ '1=0' ],
+				[],
+				[ 'actor_rc_user' => [ 'JOIN', 'actor_rc_user.actor_id = rc_actor' ] ],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_NEW ],
 			],
 			[
 				[ 'notByUser' => 'SomeOtherUser' ],
 				null,
 				[],
 				[],
-				[ "rc_user_text != 'SomeOtherUser'" ],
+				[ 'NOT(((rc_user_text IN (\'SomeOtherUser\'))))' ],
 				[],
 				[],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_OLD ],
+			],
+			[
+				[ 'notByUser' => 'SomeOtherUser' ],
+				null,
+				[ 'actor_rc_user' => 'actor' ],
+				[],
+				[ 'NOT(((rc_actor = \'0\') AND (rc_user_text IN (\'SomeOtherUser\'))))' ],
+				[],
+				[ 'actor_rc_user' => [ 'LEFT JOIN', 'actor_rc_user.actor_id = rc_actor' ] ],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_WRITE_NEW ],
+			],
+			[
+				[ 'notByUser' => 'SomeOtherUser' ],
+				null,
+				[ 'actor_rc_user' => 'actor' ],
+				[],
+				[ 'NOT(1=0)' ],
+				[],
+				[ 'actor_rc_user' => [ 'JOIN', 'actor_rc_user.actor_id = rc_actor' ] ],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_NEW ],
 			],
 			[
 				[ 'dir' => WatchedItemQueryService::DIR_OLDER ],
@@ -1015,6 +1148,7 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 			[
 				[],
 				'deletedhistory',
+				[],
 				[
 					'(rc_type != ' . RC_LOG . ') OR ((rc_deleted & ' . LogPage::DELETED_ACTION . ') != ' .
 						LogPage::DELETED_ACTION . ')'
@@ -1023,6 +1157,7 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 			[
 				[],
 				'suppressrevision',
+				[],
 				[
 					'(rc_type != ' . RC_LOG . ') OR (' .
 						'(rc_deleted & ' . ( LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED ) . ') != ' .
@@ -1032,6 +1167,7 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 			[
 				[],
 				'viewsuppressed',
+				[],
 				[
 					'(rc_type != ' . RC_LOG . ') OR (' .
 						'(rc_deleted & ' . ( LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED ) . ') != ' .
@@ -1041,36 +1177,66 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 			[
 				[ 'onlyByUser' => 'SomeOtherUser' ],
 				'deletedhistory',
+				[],
 				[
-					'rc_user_text' => 'SomeOtherUser',
+					'((rc_user_text IN (\'SomeOtherUser\')))',
 					'(rc_deleted & ' . Revision::DELETED_USER . ') != ' . Revision::DELETED_USER,
 					'(rc_type != ' . RC_LOG . ') OR ((rc_deleted & ' . LogPage::DELETED_ACTION . ') != ' .
 						LogPage::DELETED_ACTION . ')'
 				],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_OLD ]
+			],
+			[
+				[ 'onlyByUser' => 'SomeOtherUser' ],
+				'deletedhistory',
+				[ 'actor_rc_user' => 'actor' ],
+				[
+					'((rc_actor = \'0\') AND (rc_user_text IN (\'SomeOtherUser\')))',
+					'(rc_deleted & ' . Revision::DELETED_USER . ') != ' . Revision::DELETED_USER,
+					'(rc_type != ' . RC_LOG . ') OR ((rc_deleted & ' . LogPage::DELETED_ACTION . ') != ' .
+						LogPage::DELETED_ACTION . ')'
+				],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_WRITE_NEW ]
+			],
+			[
+				[ 'onlyByUser' => 'SomeOtherUser' ],
+				'deletedhistory',
+				[ 'actor_rc_user' => 'actor' ],
+				[
+					'1=0',
+					'(rc_deleted & ' . Revision::DELETED_USER . ') != ' . Revision::DELETED_USER,
+					'(rc_type != ' . RC_LOG . ') OR ((rc_deleted & ' . LogPage::DELETED_ACTION . ') != ' .
+						LogPage::DELETED_ACTION . ')'
+				],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_NEW ]
 			],
 			[
 				[ 'onlyByUser' => 'SomeOtherUser' ],
 				'suppressrevision',
+				[],
 				[
-					'rc_user_text' => 'SomeOtherUser',
+					'((rc_user_text IN (\'SomeOtherUser\')))',
 					'(rc_deleted & ' . ( Revision::DELETED_USER | Revision::DELETED_RESTRICTED ) . ') != ' .
 						( Revision::DELETED_USER | Revision::DELETED_RESTRICTED ),
 					'(rc_type != ' . RC_LOG . ') OR (' .
 						'(rc_deleted & ' . ( LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED ) . ') != ' .
 						( LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED ) . ')'
 				],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_OLD ]
 			],
 			[
 				[ 'onlyByUser' => 'SomeOtherUser' ],
 				'viewsuppressed',
+				[],
 				[
-					'rc_user_text' => 'SomeOtherUser',
+					'((rc_user_text IN (\'SomeOtherUser\')))',
 					'(rc_deleted & ' . ( Revision::DELETED_USER | Revision::DELETED_RESTRICTED ) . ') != ' .
 						( Revision::DELETED_USER | Revision::DELETED_RESTRICTED ),
 					'(rc_type != ' . RC_LOG . ') OR (' .
 						'(rc_deleted & ' . ( LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED ) . ') != ' .
 						( LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED ) . ')'
 				],
+				[ 'wgActorTableSchemaMigrationStage' => MIGRATION_OLD ]
 			],
 		];
 	}
@@ -1081,8 +1247,24 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 	public function testGetWatchedItemsWithRecentChangeInfo_userPermissionRelatedExtraChecks(
 		array $options,
 		$notAllowedAction,
-		array $expectedExtraConds
+		array $expectedExtraTables,
+		array $expectedExtraConds,
+		array $globals = []
 	) {
+		// Sigh. This test class doesn't extend MediaWikiTestCase, so we have to reinvent setMwGlobals().
+		if ( $globals ) {
+			$resetGlobals = [];
+			foreach ( $globals as $k => $v ) {
+				$resetGlobals[$k] = $GLOBALS[$k];
+				$GLOBALS[$k] = $v;
+			}
+			$reset = new ScopedCallback( function () use ( $resetGlobals ) {
+				foreach ( $resetGlobals as $k => $v ) {
+					$GLOBALS[$k] = $v;
+				}
+			} );
+		}
+
 		$commonConds = [ 'wl_user' => 1, '(rc_this_oldid=page_latest) OR (rc_type=3)' ];
 		$conds = array_merge( $commonConds, $expectedExtraConds );
 
@@ -1090,7 +1272,7 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'select' )
 			->with(
-				[ 'recentchanges', 'watchlist', 'page' ],
+				array_merge( [ 'recentchanges', 'watchlist', 'page' ], $expectedExtraTables ),
 				$this->isType( 'array' ),
 				$conds,
 				$this->isType( 'string' ),
