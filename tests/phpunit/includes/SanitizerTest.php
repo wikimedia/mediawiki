@@ -432,7 +432,6 @@ class SanitizerTest extends MediaWikiTestCase {
 	 * @covers Sanitizer::escapeIdForLink()
 	 * @covers Sanitizer::escapeIdForExternalInterwiki()
 	 * @covers Sanitizer::escapeIdInternal()
-	 * @covers Sanitizer::urlEscapeId()
 	 *
 	 * @param string $stuff
 	 * @param string[] $config
