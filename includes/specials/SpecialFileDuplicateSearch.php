@@ -85,15 +85,17 @@ class FileDuplicateSearchPage extends QueryPage {
 	}
 
 	public function getQueryInfo() {
+		$imgQuery = LocalFile::getQueryInfo();
 		return [
-			'tables' => [ 'image' ],
+			'tables' => $imgQuery['tables'],
 			'fields' => [
 				'title' => 'img_name',
 				'value' => 'img_sha1',
-				'img_user_text',
+				'img_user_text' => $imgQuery['fields']['img_user_text'],
 				'img_timestamp'
 			],
-			'conds' => [ 'img_sha1' => $this->hash ]
+			'conds' => [ 'img_sha1' => $this->hash ],
+			'join_conds' => $imgQuery['joins'],
 		];
 	}
 

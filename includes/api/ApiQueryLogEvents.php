@@ -66,11 +66,15 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$this->addWhere( $hideLogs );
 		}
 
-		// Order is significant here
-		$this->addTables( [ 'logging', 'user', 'page' ] );
+		$actorMigration = ActorMigration::newKey( 'log_user' );
+		$actorQuery = $actorMigration->getJoin();
+		$this->addTables( 'logging' );
+		$this->addTables( $actorQuery['tables'] );
+		$this->addTables( [ 'user', 'page' ] );
+		$this->addJoinConds( $actorQuery['joins'] );
 		$this->addJoinConds( [
 			'user' => [ 'LEFT JOIN',
-				'user_id=log_user' ],
+				'user_id=' . $actorQuery['fields']['log_user'] ],
 			'page' => [ 'LEFT JOIN',
 				[ 'log_namespace=page_namespace',
 					'log_title=page_title' ] ] ] );
@@ -88,8 +92,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		// join at query time.  This leads to different results in various
 		// scenarios, e.g. deletion, recreation.
 		$this->addFieldsIf( 'log_page', $this->fld_ids );
-		$this->addFieldsIf( [ 'log_user', 'log_user_text', 'user_name' ], $this->fld_user );
-		$this->addFieldsIf( 'log_user', $this->fld_userid );
+		$this->addFieldsIf( $actorQuery['fields'] + [ 'user_name' ], $this->fld_user );
+		$this->addFieldsIf( $actorQuery['fields'], $this->fld_userid );
 		$this->addFieldsIf(
 			[ 'log_namespace', 'log_title' ],
 			$this->fld_title || $this->fld_parsedcomment
@@ -170,12 +174,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		$user = $params['user'];
 		if ( !is_null( $user ) ) {
-			$userid = User::idFromName( $user );
-			if ( $userid ) {
-				$this->addWhereFld( 'log_user', $userid );
-			} else {
-				$this->addWhereFld( 'log_user_text', $user );
-			}
+			// Note the joins in $q are the same as those from ->getJoin() above
+			// so we only need to add 'conds' here.
+			$q = $actorMigration->getWhere( $db, User::newFromName( $params['user'], false ) );
+			$this->addWhere( $q['conds'] );
 		}
 
 		$title = $params['title'];

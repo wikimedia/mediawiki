@@ -712,6 +712,8 @@ class InfoAction extends FormlessAction {
 				$dbrWatchlist = wfGetDB( DB_REPLICA, 'watchlist' );
 				$setOpts += Database::getCacheSetOptions( $dbr, $dbrWatchlist );
 
+				$revQuery = Revision::getQueryInfo();
+
 				$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
 
 				$result = [];
@@ -739,10 +741,12 @@ class InfoAction extends FormlessAction {
 					$result['authors'] = 0;
 				} else {
 					$result['authors'] = (int)$dbr->selectField(
-						'revision',
-						'COUNT(DISTINCT rev_user_text)',
+						$revQuery['tables'],
+						'COUNT(DISTINCT ' . $revQuery['fields']['rev_user_text'] . ')',
 						[ 'rev_page' => $id ],
-						$fname
+						$fname,
+						[],
+						$revQuery['joins']
 					);
 				}
 
@@ -763,13 +767,15 @@ class InfoAction extends FormlessAction {
 
 				// Recent number of distinct authors
 				$result['recent_authors'] = (int)$dbr->selectField(
-					'revision',
-					'COUNT(DISTINCT rev_user_text)',
+					$revQuery['tables'],
+					'COUNT(DISTINCT ' . $revQuery['fields']['rev_user_text'] . ')',
 					[
 						'rev_page' => $id,
 						"rev_timestamp >= " . $dbr->addQuotes( $threshold )
 					],
-					$fname
+					$fname,
+					[],
+					$revQuery['joins']
 				);
 
 				// Subpages (if enabled)
