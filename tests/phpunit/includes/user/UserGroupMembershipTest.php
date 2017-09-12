@@ -4,6 +4,9 @@
  * @group Database
  */
 class UserGroupMembershipTest extends MediaWikiTestCase {
+
+	protected $tablesUsed = [ 'user', 'user_groups' ];
+
 	/**
 	 * @var User Belongs to no groups
 	 */
