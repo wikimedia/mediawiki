@@ -770,38 +770,3 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		);
 	}
 }
-
-/**
- * Extend HTMLForm purely so we can have a more sane way of getting the section headers
- */
-class EditWatchlistNormalHTMLForm extends HTMLForm {
-	public function getLegend( $namespace ) {
-		$namespace = substr( $namespace, 2 );
-
-		return $namespace == NS_MAIN
-			? $this->msg( 'blanknamespace' )->escaped()
-			: htmlspecialchars( $this->getContext()->getLanguage()->getFormattedNsText( $namespace ) );
-	}
-
-	public function getBody() {
-		return $this->displaySection( $this->mFieldTree, '', 'editwatchlist-' );
-	}
-}
-
-class EditWatchlistCheckboxSeriesField extends HTMLMultiSelectField {
-	/**
-	 * HTMLMultiSelectField throws validation errors if we get input data
-	 * that doesn't match the data set in the form setup. This causes
-	 * problems if something gets removed from the watchlist while the
-	 * form is open (T34126), but we know that invalid items will
-	 * be harmless so we can override it here.
-	 *
-	 * @param string $value The value the field was submitted with
-	 * @param array $alldata The data collected from the form
-	 * @return bool|string Bool true on success, or String error to display.
-	 */
-	function validate( $value, $alldata ) {
-		// Need to call into grandparent to be a good citizen. :)
-		return HTMLFormField::validate( $value, $alldata );
-	}
-}
