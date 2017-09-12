@@ -1433,6 +1433,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$blockOptions = [
 			'address' => 'UTBlockee',
 			'user' => $user->getID(),
+			'by' => $this->getTestSysop()->getUser()->getId(),
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
 			'createAccount' => true,
@@ -1445,6 +1446,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 
 		$blockOptions = [
 			'address' => '127.0.0.0/24',
+			'by' => $this->getTestSysop()->getUser()->getId(),
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
 			'createAccount' => true,
