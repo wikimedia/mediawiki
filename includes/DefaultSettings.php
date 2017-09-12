@@ -8774,6 +8774,13 @@ $wgInterwikiPrefixDisplayTypes = [];
 $wgCommentTableSchemaMigrationStage = MIGRATION_OLD;
 
 /**
+ * Actor table schema migration stage.
+ * @since 1.31
+ * @var int One of the MIGRATION_* constants
+ */
+$wgActorTableSchemaMigrationStage = MIGRATION_OLD;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}

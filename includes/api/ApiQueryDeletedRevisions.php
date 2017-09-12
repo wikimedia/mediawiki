@@ -119,10 +119,17 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 		}
 
 		if ( !is_null( $params['user'] ) ) {
-			$this->addWhereFld( 'ar_user_text', $params['user'] );
+			$actorQuery = ActorMigration::newKey( 'ar_user' )
+				->getWhere( $db, User::newFromName( $params['user'], false ) );
+			$this->addTables( $actorQuery['tables'] );
+			$this->addJoinConds( $actorQuery['joins'] );
+			$this->addWhere( $actorQuery['conds'] );
 		} elseif ( !is_null( $params['excludeuser'] ) ) {
-			$this->addWhere( 'ar_user_text != ' .
-				$db->addQuotes( $params['excludeuser'] ) );
+			$actorQuery = ActorMigration::newKey( 'ar_user' )
+				->getWhere( $db, User::newFromName( $params['excludeuser'], false ) );
+			$this->addTables( $actorQuery['tables'] );
+			$this->addJoinConds( $actorQuery['joins'] );
+			$this->addWhere( 'NOT(' . $actorQuery['conds'] . ')' );
 		}
 
 		if ( !is_null( $params['user'] ) || !is_null( $params['excludeuser'] ) ) {
