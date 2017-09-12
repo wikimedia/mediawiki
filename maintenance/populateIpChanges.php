@@ -67,12 +67,12 @@ TEXT
 		$this->output( "Copying IP revisions to ip_changes, from rev_id $start to rev_id $end\n" );
 
 		while ( $blockStart <= $end ) {
-			$cond = "rev_id >= $blockStart AND rev_user = 0 ORDER BY rev_id ASC LIMIT " . $this->mBatchSize;
 			$rows = $dbw->select(
 				'revision',
 				[ 'rev_id', 'rev_timestamp', 'rev_user_text' ],
-				$cond,
-				__METHOD__
+				[ "rev_id >= $blockStart", 'rev_user' => 0 ],
+				__METHOD__,
+				[ 'ORDER BY' => 'rev_id ASC', 'LIMIT' => $this->mBatchSize ]
 			);
 
 			if ( !$rows || $rows->numRows() === 0 ) {
