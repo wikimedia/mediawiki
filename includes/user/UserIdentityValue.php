@@ -42,15 +42,23 @@ class UserIdentityValue implements UserIdentity {
 	private $name;
 
 	/**
+	 * @var int
+	 */
+	private $actor;
+
+	/**
 	 * @param int $id
 	 * @param string $name
+	 * @param int $actor
 	 */
-	public function __construct( $id, $name ) {
+	public function __construct( $id, $name, $actor ) {
 		Assert::parameterType( 'integer', $id, '$id' );
 		Assert::parameterType( 'string', $name, '$name' );
+		Assert::parameterType( 'integer', $actor, '$actor' );
 
 		$this->id = $id;
 		$this->name = $name;
+		$this->actor = $actor;
 	}
 
 	/**
@@ -65,6 +73,13 @@ class UserIdentityValue implements UserIdentity {
 	 */
 	public function getName() {
 		return $this->name;
+	}
+
+	/**
+	 * @return int The user's actor ID. May be 0 if no actor ID has been assigned.
+	 */
+	public function getActorId() {
+		return $this->actor;
 	}
 
 }

@@ -1781,12 +1781,13 @@ more stuff
 
 		// Make sure the log entry looks good
 		// log_params is not checked here
+		$actorQuery = ActorMigration::newKey( 'log_user' )->getJoin();
 		$this->assertSelect(
-			'logging',
+			[ 'logging' ] + $actorQuery['tables'],
 			[
 				'log_comment',
-				'log_user',
-				'log_user_text',
+				'log_user' => $actorQuery['fields']['log_user'],
+				'log_user_text' => $actorQuery['fields']['log_user_text'],
 				'log_namespace',
 				'log_title',
 			],
@@ -1797,7 +1798,9 @@ more stuff
 				$user->getName(),
 				(string)$page->getTitle()->getNamespace(),
 				$page->getTitle()->getDBkey(),
-			] ]
+			] ],
+			[],
+			$actorQuery['joins']
 		);
 	}
 
