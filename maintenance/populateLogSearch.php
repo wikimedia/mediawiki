@@ -53,6 +53,8 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
+		global $wgActorTableSchemaMigrationStage;
+
 		$batchSize = $this->getBatchSize();
 		$db = $this->getDB( DB_MASTER );
 		if ( !$db->tableExists( 'log_search' ) ) {
@@ -81,8 +83,8 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 				'logging', [ 'log_id', 'log_type', 'log_action', 'log_params' ], $cond, __FUNCTION__
 			);
 			foreach ( $res as $row ) {
-				// RevisionDelete logs - revisions
 				if ( LogEventsList::typeAction( $row, $delTypes, 'revision' ) ) {
+					// RevisionDelete logs - revisions
 					$params = LogPage::extractParams( $row->log_params );
 					// Param format: <urlparam> <item CSV> [<ofield> <nfield>]
 					if ( count( $params ) < 2 ) {
@@ -107,30 +109,31 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 					$log = new LogPage( $row->log_type );
 					// Add item relations...
 					$log->addRelations( $field, $items, $row->log_id );
-					// Determine what table to query...
+					// Query item author relations...
 					$prefix = substr( $field, 0, strpos( $field, '_' ) ); // db prefix
 					if ( !isset( self::$tableMap[$prefix] ) ) {
 						continue; // bad row?
 					}
-					$table = self::$tableMap[$prefix];
-					$userField = $prefix . '_user';
-					$userTextField = $prefix . '_user_text';
-					// Add item author relations...
-					$userIds = $userIPs = [];
-					$sres = $db->select( $table,
-						[ $userField, $userTextField ],
-						[ $field => $items ]
-					);
-					foreach ( $sres as $srow ) {
-						if ( $srow->$userField > 0 ) {
-							$userIds[] = intval( $srow->$userField );
-						} elseif ( $srow->$userTextField != '' ) {
-							$userIPs[] = $srow->$userTextField;
+					$tables = [ self::$tableMap[$prefix] ];
+					$fields = [];
+					$joins = [];
+					if ( $wgActorTableSchemaMigrationStage < MIGRATION_NEW ) {
+						$fields['userid'] = $prefix . '_user';
+						$fields['username'] = $prefix . '_user_text';
+					}
+					if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+						if ( $prefix === 'rev' ) {
+							$tables[] = 'revision_actor_temp';
+							$joins['revision_actor_temp'] = [
+								$wgActorTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
+								'rev_id = revactor_rev',
+							];
+							$fields['actorid'] = 'revactor_actor';
+						} else {
+							$fields['actorid'] = $prefix . '_actor';
 						}
 					}
-					// Add item author relations...
-					$log->addRelations( 'target_author_id', $userIds, $row->log_id );
-					$log->addRelations( 'target_author_ip', $userIPs, $row->log_id );
+					$sres = $db->select( $tables, $fields, [ $field => $items ], __METHOD__, [], $joins );
 				} elseif ( LogEventsList::typeAction( $row, $delTypes, 'event' ) ) {
 					// RevisionDelete logs - log events
 					$params = LogPage::extractParams( $row->log_params );
@@ -142,21 +145,48 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 					$log = new LogPage( $row->log_type );
 					// Add item relations...
 					$log->addRelations( 'log_id', $items, $row->log_id );
-					// Add item author relations...
-					$userIds = $userIPs = [];
-					$sres = $db->select( 'logging',
-						[ 'log_user', 'log_user_text' ],
-						[ 'log_id' => $items ]
-					);
-					foreach ( $sres as $srow ) {
-						if ( $srow->log_user > 0 ) {
-							$userIds[] = intval( $srow->log_user );
-						} elseif ( IP::isIPAddress( $srow->log_user_text ) ) {
-							$userIPs[] = $srow->log_user_text;
+					// Query item author relations...
+					$fields = [];
+					if ( $wgActorTableSchemaMigrationStage < MIGRATION_NEW ) {
+						$fields['userid'] = 'log_user';
+						$fields['username'] = 'log_user_text';
+					}
+					if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+						$fields['actorid'] = 'log_actor';
+					}
+
+					$sres = $db->select( 'logging', $fields, [ 'log_id' => $items ], __METHOD__ );
+				} else {
+					continue;
+				}
+
+				// Add item author relations...
+				$userIds = $userIPs = $userActors = [];
+				foreach ( $sres as $srow ) {
+					if ( $wgActorTableSchemaMigrationStage < MIGRATION_NEW ) {
+						if ( $srow->userid > 0 ) {
+							$userIds[] = intval( $srow->userid );
+						} elseif ( $srow->username != '' ) {
+							$userIPs[] = $srow->username;
 						}
 					}
+					if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+						if ( $srow->actorid ) {
+							$userActors[] = intval( $srow->actorid );
+						} elseif ( $srow->userid > 0 ) {
+							$userActors[] = User::newFromId( $srow->userid )->getActorId( $db );
+						} else {
+							$userActors[] = User::newFromName( $srow->username, false )->getActorId( $db );
+						}
+					}
+				}
+				// Add item author relations...
+				if ( $wgActorTableSchemaMigrationStage <= MIGRATION_WRITE_BOTH ) {
 					$log->addRelations( 'target_author_id', $userIds, $row->log_id );
 					$log->addRelations( 'target_author_ip', $userIPs, $row->log_id );
+				}
+				if ( $wgActorTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
+					$log->addRelations( 'target_author_actor', $userActors, $row->log_id );
 				}
 			}
 			$blockStart += $batchSize;

@@ -108,7 +108,9 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		}
 
 		if ( !isset( $props['user_text'] ) ) {
-			$props['user_text'] = 'Tester';
+			$user = $this->getTestUser()->getUser();
+			$props['user_text'] = $user->getName();
+			$props['user'] = $user->getId();
 		}
 
 		if ( !isset( $props['user'] ) ) {
@@ -243,7 +245,6 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 				'rev_id',
 				'rev_page',
 				'rev_text_id',
-				'rev_user',
 				'rev_minor_edit',
 				'rev_deleted',
 				'rev_len',
@@ -255,7 +256,6 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 				strval( $rev->getId() ),
 				strval( $this->testPage->getId() ),
 				strval( $textId ),
-				'0',
 				'0',
 				'0',
 				'13',
@@ -397,7 +397,8 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			$services->getDBLoadBalancer(),
 			$services->getService( '_SqlBlobStore' ),
 			$services->getMainWANObjectCache(),
-			$services->getCommentStore()
+			$services->getCommentStore(),
+			$services->getActorMigration()
 		);
 
 		$store->setContentHandlerUseDB( $this->getContentHandlerUseDB() );
@@ -745,15 +746,17 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		// test it ---------------------------------
 		$since = $revisions[$sinceIdx]->getTimestamp();
 
+		$revQuery = Revision::getQueryInfo();
 		$allRows = iterator_to_array( $dbw->select(
-			'revision',
-			[ 'rev_id', 'rev_timestamp', 'rev_user' ],
+			$revQuery['tables'],
+			[ 'rev_id', 'rev_timestamp', 'rev_user' => $revQuery['fields']['rev_user'] ],
 			[
 				'rev_page' => $page->getId(),
 				//'rev_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $since ) )
 			],
 			__METHOD__,
-			[ 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 50 ]
+			[ 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 50 ],
+			$revQuery['joins']
 		) );
 
 		$wasLast = Revision::userWasLastToEdit( $dbw, $page->getId(), $userA->getId(), $since );

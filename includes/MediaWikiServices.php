@@ -770,6 +770,14 @@ class MediaWikiServices extends ServiceContainer {
 		return $this->getService( 'CommentStore' );
 	}
 
+	/**
+	 * @since 1.31
+	 * @return ActorMigration
+	 */
+	public function getActorMigration() {
+		return $this->getService( 'ActorMigration' );
+	}
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service getter here, don't forget to add a test
 	// case for it in MediaWikiServicesTest::provideGetters() and in

@@ -1228,7 +1228,27 @@ abstract class DatabaseUpdater {
 			);
 			$task = $this->maintenance->runChild( MigrateComments::class, 'migrateComments.php' );
 			$task->execute();
-			$this->output( "done.\n" );
+			$this->output( $ok ? "done.\n" : "errors were encountered.\n" );
+		}
+	}
+
+	/**
+	 * Migrate actors to the new 'actor' table
+	 * @since 1.31
+	 */
+	protected function migrateActors() {
+		global $wgActorTableSchemaMigrationStage;
+		if ( $wgActorTableSchemaMigrationStage >= MIGRATION_WRITE_NEW &&
+			!$this->updateRowExists( 'MigrateActors' )
+		) {
+			$this->output(
+				"Migrating actors to the 'actor' table, printing progress markers. For large\n" .
+				"databases, you may want to hit Ctrl-C and do this manually with\n" .
+				"maintenance/migrateActors.php.\n"
+			);
+			$task = $this->maintenance->runChild( 'MigrateActors', 'migrateActors.php' );
+			$ok = $task->execute();
+			$this->output( $ok ? "done.\n" : "errors were encountered.\n" );
 		}
 	}
 

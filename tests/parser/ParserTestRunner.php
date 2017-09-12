@@ -1148,7 +1148,7 @@ class ParserTestRunner {
 	 * @return array
 	 */
 	private function listTables() {
-		global $wgCommentTableSchemaMigrationStage;
+		global $wgCommentTableSchemaMigrationStage, $wgActorTableSchemaMigrationStage;
 
 		$tables = [ 'user', 'user_properties', 'user_former_groups', 'page', 'page_restrictions',
 			'protected_titles', 'revision', 'ip_changes', 'text', 'pagelinks', 'imagelinks',
@@ -1164,6 +1164,12 @@ class ParserTestRunner {
 			$tables[] = 'comment';
 			$tables[] = 'revision_comment_temp';
 			$tables[] = 'image_comment_temp';
+		}
+
+		if ( $wgActorTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
+			// The new tables for actors are in use
+			$tables[] = 'actor';
+			$tables[] = 'revision_actor_temp';
 		}
 
 		if ( in_array( $this->db->getType(), [ 'mysql', 'sqlite', 'oracle' ] ) ) {

@@ -179,7 +179,8 @@ return [
 	'WatchedItemQueryService' => function ( MediaWikiServices $services ) {
 		return new WatchedItemQueryService(
 			$services->getDBLoadBalancer(),
-			$services->getCommentStore()
+			$services->getCommentStore(),
+			$services->getActorMigration()
 		);
 	},
 
@@ -477,7 +478,8 @@ return [
 			$services->getDBLoadBalancer(),
 			$blobStore,
 			$services->getMainWANObjectCache(),
-			$services->getCommentStore()
+			$services->getCommentStore(),
+			$services->getActorMigration()
 		);
 
 		$store->setLogger( LoggerFactory::getInstance( 'RevisionStore' ) );
@@ -532,7 +534,13 @@ return [
 			$wgContLang,
 			$services->getMainConfig()->get( 'CommentTableSchemaMigrationStage' )
 		);
-	}
+	},
+
+	'ActorMigration' => function ( MediaWikiServices $services ) {
+		return new ActorMigration(
+			$services->getMainConfig()->get( 'ActorTableSchemaMigrationStage' )
+		);
+	},
 
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function

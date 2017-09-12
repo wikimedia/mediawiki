@@ -199,10 +199,15 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testRcHidemyselfFilter() {
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_WRITE_BOTH );
+		$this->overrideMwServices();
+
 		$user = $this->getTestUser()->getUser();
+		$user->getActorId( wfGetDB( DB_MASTER ) );
 		$this->assertConditions(
 			[ # expected
-				"rc_user_text != '{$user->getName()}'",
+				"NOT((rc_actor = '{$user->getActorId()}') OR "
+					. "(rc_actor = '0' AND rc_user = '{$user->getId()}'))",
 			],
 			[
 				'hidemyself' => 1,
@@ -212,9 +217,10 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 
 		$user = User::newFromName( '10.11.12.13', false );
+		$id = $user->getActorId( wfGetDB( DB_MASTER ) );
 		$this->assertConditions(
 			[ # expected
-				"rc_user_text != '10.11.12.13'",
+				"NOT((rc_actor = '$id') OR (rc_actor = '0' AND rc_user_text = '10.11.12.13'))",
 			],
 			[
 				'hidemyself' => 1,
@@ -225,10 +231,15 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testRcHidebyothersFilter() {
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_WRITE_BOTH );
+		$this->overrideMwServices();
+
 		$user = $this->getTestUser()->getUser();
+		$user->getActorId( wfGetDB( DB_MASTER ) );
 		$this->assertConditions(
 			[ # expected
-				"rc_user_text = '{$user->getName()}'",
+				"(rc_actor = '{$user->getActorId()}') OR "
+				. "(rc_actor = '0' AND rc_user_text = '{$user->getName()}')",
 			],
 			[
 				'hidebyothers' => 1,
@@ -238,9 +249,10 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 
 		$user = User::newFromName( '10.11.12.13', false );
+		$id = $user->getActorId( wfGetDB( DB_MASTER ) );
 		$this->assertConditions(
 			[ # expected
-				"rc_user_text = '10.11.12.13'",
+				"(rc_actor = '$id') OR (rc_actor = '0' AND rc_user_text = '10.11.12.13')",
 			],
 			[
 				'hidebyothers' => 1,
@@ -428,10 +440,13 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testFilterUserExpLevelAllExperienceLevels() {
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_WRITE_BOTH );
+		$this->overrideMwServices();
+
 		$this->assertConditions(
 			[
 				# expected
-				'rc_user != 0',
+				'COALESCE( actor_rc_user.actor_user, rc_user ) != 0',
 			],
 			[
 				'userExpLevel' => 'newcomer;learner;experienced',
@@ -441,10 +456,13 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testFilterUserExpLevelRegistrered() {
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_WRITE_BOTH );
+		$this->overrideMwServices();
+
 		$this->assertConditions(
 			[
 				# expected
-				'rc_user != 0',
+				'COALESCE( actor_rc_user.actor_user, rc_user ) != 0',
 			],
 			[
 				'userExpLevel' => 'registered',
@@ -454,10 +472,13 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testFilterUserExpLevelUnregistrered() {
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_WRITE_BOTH );
+		$this->overrideMwServices();
+
 		$this->assertConditions(
 			[
 				# expected
-				'rc_user' => 0,
+				'COALESCE( actor_rc_user.actor_user, rc_user ) = 0',
 			],
 			[
 				'userExpLevel' => 'unregistered',
@@ -467,10 +488,13 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testFilterUserExpLevelRegistreredOrLearner() {
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_WRITE_BOTH );
+		$this->overrideMwServices();
+
 		$this->assertConditions(
 			[
 				# expected
-				'rc_user != 0',
+				'COALESCE( actor_rc_user.actor_user, rc_user ) != 0',
 			],
 			[
 				'userExpLevel' => 'registered;learner',
@@ -480,10 +504,14 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testFilterUserExpLevelUnregistreredOrExperienced() {
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_WRITE_BOTH );
+		$this->overrideMwServices();
+
 		$conds = $this->buildQuery( [ 'userExpLevel' => 'unregistered;experienced' ] );
 
 		$this->assertRegExp(
-			'/\(rc_user = 0\) OR \(\(user_editcount >= 500\) AND \(user_registration <= \'[^\']+\'\)\)/',
+			'/\(COALESCE\( actor_rc_user.actor_user, rc_user \) = 0\) OR '
+				. '\(\(user_editcount >= 500\) AND \(user_registration <= \'[^\']+\'\)\)/',
 			reset( $conds ),
 			"rc conditions: userExpLevel=unregistered;experienced"
 		);
@@ -595,8 +623,10 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 			]
 		);
 
+		// @todo: This is not at all safe or sane. It just blindly assumes
+		// nothing in $conds depends on any other tables.
 		$result = wfGetDB( DB_MASTER )->select(
-			$tables,
+			'user',
 			'user_name',
 			array_filter( $conds ) + [ 'user_email' => 'ut' ]
 		);
