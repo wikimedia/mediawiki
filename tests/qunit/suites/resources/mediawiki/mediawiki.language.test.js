@@ -1,7 +1,7 @@
 ( function ( mw, $ ) {
 	'use strict';
 
-	var grammarTests;
+	var grammarTests, bcp47Tests;
 
 	QUnit.module( 'mediawiki.language', QUnit.newMwEnvironment( {
 		setup: function () {
@@ -586,5 +586,101 @@
 		assert.equal( mw.language.listToText( [ 'a' ] ), 'a', 'Single item' );
 		assert.equal( mw.language.listToText( [ 'a', 'b' ] ), 'a and b', 'Two items' );
 		assert.equal( mw.language.listToText( [ 'a', 'b', 'c' ] ), 'a, b and c', 'More than two items' );
+	} );
+
+	bcp47Tests = [
+		// Extracted from BCP 47 (list not exhaustive)
+		// # 2.1.1
+		[ 'en-ca-x-ca', 'en-CA-x-ca' ],
+		[ 'sgn-be-fr', 'sgn-BE-FR' ],
+		[ 'az-latn-x-latn', 'az-Latn-x-latn' ],
+		// # 2.2
+		[ 'sr-Latn-RS', 'sr-Latn-RS' ],
+		[ 'az-arab-ir', 'az-Arab-IR' ],
+
+		// # 2.2.5
+		[ 'sl-nedis', 'sl-nedis' ],
+		[ 'de-ch-1996', 'de-CH-1996' ],
+
+		// # 2.2.6
+		[
+			'en-latn-gb-boont-r-extended-sequence-x-private',
+			'en-Latn-GB-boont-r-extended-sequence-x-private'
+		],
+
+		// Examples from BCP 47 Appendix A
+		// # Simple language subtag:
+		[ 'DE', 'de' ],
+		[ 'fR', 'fr' ],
+		[ 'ja', 'ja' ],
+
+		// # Language subtag plus script subtag:
+		[ 'zh-hans', 'zh-Hans' ],
+		[ 'sr-cyrl', 'sr-Cyrl' ],
+		[ 'sr-latn', 'sr-Latn' ],
+
+		// # Extended language subtags and their primary language subtag
+		// # counterparts:
+		[ 'zh-cmn-hans-cn', 'zh-cmn-Hans-CN' ],
+		[ 'cmn-hans-cn', 'cmn-Hans-CN' ],
+		[ 'zh-yue-hk', 'zh-yue-HK' ],
+		[ 'yue-hk', 'yue-HK' ],
+
+		// # Language-Script-Region:
+		[ 'zh-hans-cn', 'zh-Hans-CN' ],
+		[ 'sr-latn-RS', 'sr-Latn-RS' ],
+
+		// # Language-Variant:
+		[ 'sl-rozaj', 'sl-rozaj' ],
+		[ 'sl-rozaj-biske', 'sl-rozaj-biske' ],
+		[ 'sl-nedis', 'sl-nedis' ],
+
+		// # Language-Region-Variant:
+		[ 'de-ch-1901', 'de-CH-1901' ],
+		[ 'sl-it-nedis', 'sl-IT-nedis' ],
+
+		// # Language-Script-Region-Variant:
+		[ 'hy-latn-it-arevela', 'hy-Latn-IT-arevela' ],
+
+		// # Language-Region:
+		[ 'de-de', 'de-DE' ],
+		[ 'en-us', 'en-US' ],
+		[ 'es-419', 'es-419' ],
+
+		// # Private use subtags:
+		[ 'de-ch-x-phonebk', 'de-CH-x-phonebk' ],
+		[ 'az-arab-x-aze-derbend', 'az-Arab-x-aze-derbend' ],
+		/**
+		 * Previous test does not reflect the BCP 47 which states:
+		 *  az-Arab-x-AZE-derbend
+		 * AZE being private, it should be lower case, hence the test above
+		 * should probably be:
+		 * [ 'az-arab-x-aze-derbend', 'az-Arab-x-AZE-derbend' ],
+		 */
+
+		// # Private use registry values:
+		[ 'x-whatever', 'x-whatever' ],
+		[ 'qaa-qaaa-qm-x-southern', 'qaa-Qaaa-QM-x-southern' ],
+		[ 'de-qaaa', 'de-Qaaa' ],
+		[ 'sr-latn-qm', 'sr-Latn-QM' ],
+		[ 'sr-qaaa-rs', 'sr-Qaaa-RS' ],
+
+		// # Tags that use extensions
+		[ 'en-us-u-islamcal', 'en-US-u-islamcal' ],
+		[ 'zh-cn-a-myext-x-private', 'zh-CN-a-myext-x-private' ],
+		[ 'en-a-myext-b-another', 'en-a-myext-b-another' ]
+
+		// # Invalid:
+		// de-419-DE
+		// a-DE
+		// ar-a-aaa-b-bbb-a-ccc
+	];
+
+	QUnit.test( 'mw.language.bcp47', function ( assert ) {
+		bcp47Tests.forEach( function ( data ) {
+			var input = data[ 0 ],
+				expected = data[ 1 ];
+			assert.equal( mw.language.bcp47( input ), expected );
+		} );
 	} );
 }( mediaWiki, jQuery ) );
