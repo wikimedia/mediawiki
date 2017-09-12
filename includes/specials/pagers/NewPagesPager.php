@@ -39,6 +39,8 @@ class NewPagesPager extends ReverseChronologicalPager {
 	}
 
 	function getQueryInfo() {
+		$rcQuery = RecentChange::getQueryInfo();
+
 		$conds = [];
 		$conds['rc_new'] = 1;
 
@@ -68,13 +70,13 @@ class NewPagesPager extends ReverseChronologicalPager {
 		}
 
 		if ( $user ) {
-			$conds['rc_user_text'] = $user->getText();
-			$rcIndexes = 'rc_user_text';
+			$conds[] = ActorMigration::newKey( 'rc_user' )
+				->getWhere( $this->mDb, User::newFromName( $user->getText(), false ), false )['conds'];
 		} elseif ( User::groupHasPermission( '*', 'createpage' ) &&
 			$this->opts->getValue( 'hideliu' )
 		) {
 			# If anons cannot make new pages, don't "exclude logged in users"!
-			$conds['rc_user'] = 0;
+			$conds[] = ActorMigration::isAnon( $rcQuery['fields']['rc_user'] );
 		}
 
 		# If this user cannot see patrolled edits or they are off, don't do dumb queries!
@@ -90,17 +92,12 @@ class NewPagesPager extends ReverseChronologicalPager {
 			$conds['page_is_redirect'] = 0;
 		}
 
-		$commentQuery = CommentStore::newKey( 'rc_comment' )->getJoin();
-
 		// Allow changes to the New Pages query
-		$tables = [ 'recentchanges', 'page' ] + $commentQuery['tables'];
+		$tables = array_merge( $rcQuery['tables'], [ 'page' ] );
 		$fields = [
-			'rc_namespace', 'rc_title', 'rc_cur_id', 'rc_user', 'rc_user_text',
-			'rc_timestamp', 'rc_patrolled', 'rc_id', 'rc_deleted',
-			'length' => 'page_len', 'rev_id' => 'page_latest', 'rc_this_oldid',
-			'page_namespace', 'page_title'
-		] + $commentQuery['fields'];
-		$join_conds = [ 'page' => [ 'INNER JOIN', 'page_id=rc_cur_id' ] ] + $commentQuery['joins'];
+			'length' => 'page_len', 'rev_id' => 'page_latest', 'page_namespace', 'page_title'
+		] + $rcQuery['fields'];
+		$join_conds = [ 'page' => [ 'INNER JOIN', 'page_id=rc_cur_id' ] ] + $rcQuery['joins'];
 
 		// Avoid PHP 7.1 warning from passing $this by reference
 		$pager = $this;
