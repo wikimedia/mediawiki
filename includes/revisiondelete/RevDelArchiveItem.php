@@ -45,6 +45,10 @@ class RevDelArchiveItem extends RevDelRevisionItem {
 		return 'ar_user_text';
 	}
 
+	public function getAuthorActorField() {
+		return 'ar_actor';
+	}
+
 	public function getId() {
 		# Convert DB timestamp to MW timestamp
 		return $this->revision->getTimestamp();
