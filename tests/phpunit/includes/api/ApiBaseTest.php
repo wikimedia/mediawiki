@@ -157,6 +157,7 @@ class ApiBaseTest extends ApiTestCase {
 		$block = new \Block( [
 			'address' => $user->getName(),
 			'user' => $user->getID(),
+			'by' => $this->getTestSysop()->getUser()->getId(),
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
 		] );

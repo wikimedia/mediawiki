@@ -30,7 +30,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		$title = Title::newFromText( 'Dummy' );
 		$title->resetArticleID( 17 );
 
-		$user = new UserIdentityValue( 11, 'Tester' );
+		$user = new UserIdentityValue( 11, 'Tester', 0 );
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
 
 		$main = SlotRecord::newUnsaved( 'main', new TextContent( 'Lorem Ipsum' ) );
@@ -58,7 +58,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		$title = Title::newFromText( 'Dummy' );
 		$title->resetArticleID( 17 );
 
-		$user = new UserIdentityValue( 11, 'Tester' );
+		$user = new UserIdentityValue( 11, 'Tester', 0 );
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
 
 		$main = SlotRecord::newUnsaved( 'main', new TextContent( 'Lorem Ipsum' ) );
@@ -213,7 +213,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		$title = Title::newFromText( 'Dummy' );
 		$title->resetArticleID( 17 );
 
-		$user = new UserIdentityValue( 11, 'Tester' );
+		$user = new UserIdentityValue( 11, 'Tester', 0 );
 
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
 
@@ -688,7 +688,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 
 			return new RevisionStoreRecord(
 				$title,
-				new UserIdentityValue( 11, __METHOD__ ),
+				new UserIdentityValue( 11, __METHOD__, 0 ),
 				CommentStoreComment::newUnsavedComment( __METHOD__ ),
 				(object)[
 					'rev_id' => strval( $revId ),
