@@ -27,6 +27,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\DatabaseSqlite;
 
@@ -113,8 +114,9 @@ class RebuildTextIndex extends Maintenance {
 			foreach ( $res as $s ) {
 				$title = Title::makeTitle( $s->page_namespace, $s->page_title );
 				try {
-					$rev = new Revision( $s );
-					$content = $rev->getContent();
+					$revStore = MediaWikiServices::getInstance()->getRevisionStore();
+					$rev = $revStore->newRevisionFromRow( $s );
+					$content = $rev->getContent( 'main' ); // TODO: make this index all slots!
 
 					$u = new SearchUpdate( $s->page_id, $title, $content );
 					$u->doUpdate();

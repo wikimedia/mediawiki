@@ -23,6 +23,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * A query action to enumerate revisions of a given page, or show top revisions
@@ -392,7 +393,8 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			if ( $resultPageSet !== null ) {
 				$generated[] = $row->rev_id;
 			} else {
-				$revision = new Revision( $row );
+				$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+				$revision = $revisionStore->newRevisionFromRow( $row );
 				$rev = $this->extractRevisionInfo( $revision, $row );
 
 				if ( $this->token !== null ) {

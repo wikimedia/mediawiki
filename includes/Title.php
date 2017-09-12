@@ -4144,7 +4144,8 @@ class Title implements LinkTarget {
 				]
 			);
 			if ( $row ) {
-				return new Revision( $row );
+				$revStore = MediaWikiServices::getInstance()->getRevisionStore();
+				return $revStore->newRevisionFromRow( $row );
 			}
 		}
 		return null;

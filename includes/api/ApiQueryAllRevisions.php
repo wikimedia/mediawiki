@@ -21,6 +21,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Query module to enumerate all revisions.
@@ -198,7 +199,8 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 					$generated[] = $row->rev_id;
 				}
 			} else {
-				$revision = Revision::newFromRow( $row );
+				$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+				$revision = $revisionStore->newRevisionFromRow( $row );
 				$rev = $this->extractRevisionInfo( $revision, $row );
 
 				if ( !isset( $pageMap[$row->rev_page] ) ) {

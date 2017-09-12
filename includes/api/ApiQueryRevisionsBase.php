@@ -23,6 +23,7 @@
  *
  * @file
  */
+use MediaWiki\Storage\RevisionRecord;
 
 /**
  * A base class for functions common to producing a list of revisions.
@@ -161,11 +162,11 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	/**
 	 * Extract information from the Revision
 	 *
-	 * @param Revision $revision
+	 * @param RevisionRecord $revision
 	 * @param object $row Should have a field 'ts_tags' if $this->fld_tags is set
 	 * @return array
 	 */
-	protected function extractRevisionInfo( Revision $revision, $row ) {
+	protected function extractRevisionInfo( RevisionRecord $revision, $row ) {
 		$title = $revision->getTitle();
 		$user = $this->getUser();
 		$vals = [];
@@ -219,7 +220,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				$vals['sha1hidden'] = true;
 				$anyHidden = true;
 			}
-			if ( $revision->userCan( Revision::DELETED_TEXT, $user ) ) {
+			if ( $revision->userCan( Revision::DELETED_TEXT, $user ) ) { // FIXME
 				if ( $revision->getSha1() != '' ) {
 					$vals['sha1'] = Wikimedia\base_convert( $revision->getSha1(), 36, 16, 40 );
 				} else {
@@ -228,8 +229,10 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 		}
 
+		// TODO: add support for selecting the desired slot(s)
+		// TODO: remove revision content model
 		if ( $this->fld_contentmodel ) {
-			$vals['contentmodel'] = $revision->getContentModel();
+			$vals['contentmodel'] = $revision->getSlot( 'main' )->getContentModel();
 		}
 
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
@@ -241,7 +244,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				$comment = $revision->getComment( Revision::RAW );
 
 				if ( $this->fld_comment ) {
-					$vals['comment'] = $comment;
+					$vals['comment'] = $comment->text;
 				}
 
 				if ( $this->fld_parsedcomment ) {
@@ -263,7 +266,8 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		$content = null;
 		global $wgParser;
 		if ( $this->fetchContent ) {
-			$content = $revision->getContent( Revision::FOR_THIS_USER, $this->getUser() );
+			// FIXME: select slot
+			$content = $revision->getContent( 'main', Revision::FOR_THIS_USER, $this->getUser() );
 			// Expand templates after getting section content because
 			// template-added sections don't count and Parser::preprocess()
 			// will have less input
@@ -380,7 +384,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				$vals['diff'] = [];
 				$context = new DerivativeContext( $this->getContext() );
 				$context->setTitle( $title );
-				$handler = $revision->getContentHandler();
+				$handler = $content->getContentHandler();
 
 				if ( !is_null( $this->difftotext ) ) {
 					$model = $title->getContentModel();
