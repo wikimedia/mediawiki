@@ -171,20 +171,22 @@ class DatabaseLogEntry extends LogEntryBase {
 	 */
 	public static function getSelectQueryData() {
 		$commentQuery = CommentStore::newKey( 'log_comment' )->getJoin();
+		$actorQuery = ActorMigration::newKey( 'log_user' )->getJoin();
 
-		$tables = [ 'logging', 'user' ] + $commentQuery['tables'];
+		$tables = array_merge(
+			[ 'logging' ], $commentQuery['tables'], $actorQuery['tables'], [ 'user' ]
+		);
 		$fields = [
 			'log_id', 'log_type', 'log_action', 'log_timestamp',
-			'log_user', 'log_user_text',
 			'log_namespace', 'log_title', // unused log_page
 			'log_params', 'log_deleted',
 			'user_id', 'user_name', 'user_editcount',
-		] + $commentQuery['fields'];
+		] + $commentQuery['fields'] + $actorQuery['fields'];
 
 		$joins = [
 			// IPs don't have an entry in user table
-			'user' => [ 'LEFT JOIN', 'log_user=user_id' ],
-		] + $commentQuery['joins'];
+			'user' => [ 'LEFT JOIN', 'user_id=' . $actorQuery['fields']['log_user'] ],
+		] + $commentQuery['joins'] + $actorQuery['joins'];
 
 		return [
 			'tables' => $tables,
@@ -293,11 +295,14 @@ class DatabaseLogEntry extends LogEntryBase {
 
 	public function getPerformer() {
 		if ( !$this->performer ) {
+			$actorId = isset( $this->row->log_actor ) ? (int)$this->row->log_actor : 0;
 			$userId = (int)$this->row->log_user;
-			if ( $userId !== 0 ) {
+			if ( $userId !== 0 || $actorId !== 0 ) {
 				// logged-in users
 				if ( isset( $this->row->user_name ) ) {
 					$this->performer = User::newFromRow( $this->row );
+				} elseif ( $actorId !== 0 ) {
+					$this->performer = User::newFromActorId( $actorId );
 				} else {
 					$this->performer = User::newFromId( $userId );
 				}
@@ -356,8 +361,11 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 
 	public function getPerformer() {
 		if ( !$this->performer ) {
+			$actorId = isset( $this->row->rc_actor ) ? (int)$this->row->rc_actor : 0;
 			$userId = (int)$this->row->rc_user;
-			if ( $userId !== 0 ) {
+			if ( $actorId !== 0 ) {
+				$this->performer = User::newFromActorId( $actorId );
+			} elseif ( $userId !== 0 ) {
 				$this->performer = User::newFromId( $userId );
 			} else {
 				$userText = $this->row->rc_user_text;
@@ -616,8 +624,6 @@ class ManualLogEntry extends LogEntryBase {
 			'log_type' => $this->getType(),
 			'log_action' => $this->getSubtype(),
 			'log_timestamp' => $dbw->timestamp( $this->getTimestamp() ),
-			'log_user' => $this->getPerformer()->getId(),
-			'log_user_text' => $this->getPerformer()->getName(),
 			'log_namespace' => $this->getTarget()->getNamespace(),
 			'log_title' => $this->getTarget()->getDBkey(),
 			'log_page' => $this->getTarget()->getArticleID(),
@@ -627,6 +633,7 @@ class ManualLogEntry extends LogEntryBase {
 			$data['log_deleted'] = $this->deleted;
 		}
 		$data += CommentStore::newKey( 'log_comment' )->insert( $dbw, $comment );
+		$data += ActorMigration::newKey( 'log_user' )->getInsertValues( $dbw, $this->getPerformer() );
 
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$this->id = $dbw->insertId();

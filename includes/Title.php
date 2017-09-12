@@ -4378,17 +4378,18 @@ class Title implements LinkTarget {
 			return $authors;
 		}
 		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->select( 'revision', 'DISTINCT rev_user_text',
+		$revQuery = Revision::getQueryInfo();
+		$authors = $dbr->selectFieldValues(
+			$revQuery['tables'],
+			$revQuery['fields']['rev_user_text'],
 			[
 				'rev_page' => $this->getArticleID(),
 				"rev_timestamp $old_cmp " . $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) ),
 				"rev_timestamp $new_cmp " . $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) )
 			], __METHOD__,
-			[ 'LIMIT' => $limit + 1 ] // add one so caller knows it was truncated
+			[ 'DISTINCT', 'LIMIT' => $limit + 1 ], // add one so caller knows it was truncated
+			$revQuery['joins']
 		);
-		foreach ( $res as $row ) {
-			$authors[] = $row->rev_user_text;
-		}
 		return $authors;
 	}
 

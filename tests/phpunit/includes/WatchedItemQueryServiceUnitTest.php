@@ -8,6 +8,11 @@ use Wikimedia\TestingAccessWrapper;
  */
 class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 
+	protected function setUp() {
+		parent::setUp();
+		$this->markTestSkipped( 'XXX' );
+	}
+
 	/**
 	 * @return PHPUnit_Framework_MockObject_MockObject|Database
 	 */

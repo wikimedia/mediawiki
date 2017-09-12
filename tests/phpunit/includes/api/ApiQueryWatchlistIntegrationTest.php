@@ -877,14 +877,17 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		);
 		$this->watchPages( $user, [ $target ] );
 
+		wfDebugLog( 'DBQuery', 'XXX1' );
 		$resultAnon = $this->doListWatchlistRequest( [
 			'wlprop' => 'user',
 			'wlshow' => WatchedItemQueryService::FILTER_ANON
 		] );
+		wfDebugLog( 'DBQuery', 'XXX2' );
 		$resultNotAnon = $this->doListWatchlistRequest( [
 			'wlprop' => 'user',
 			'wlshow' => WatchedItemQueryService::FILTER_NOT_ANON
 		] );
+		wfDebugLog( 'DBQuery', 'XXX3' );
 
 		$this->assertArraySubsetsEqual(
 			$this->getItemsFromApiResponse( $resultAnon ),
@@ -1072,7 +1075,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			'rc_minor' => 0,
 			'rc_cur_id' => $title->getArticleID(),
 			'rc_user' => 0,
-			'rc_user_text' => 'External User',
+			'rc_user_text' => 'ext>External User',
 			'rc_comment' => '',
 			'rc_comment_text' => '',
 			'rc_comment_data' => null,
