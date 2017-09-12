@@ -1179,13 +1179,16 @@ class DatabaseOracle extends Database {
 	}
 
 	public function delete( $table, $conds, $fname = __METHOD__ ) {
+		global $wgActorTableSchemaMigrationStage;
+
 		if ( is_array( $conds ) ) {
 			$conds = $this->wrapConditionsForWhere( $table, $conds );
 		}
 		// a hack for deleting pages, users and images (which have non-nullable FKs)
 		// all deletions on these tables have transactions so final failure rollbacks these updates
+		// @todo: Normalize the schema to match MySQL, no special FKs and such
 		$table = $this->tableName( $table );
-		if ( $table == $this->tableName( 'user' ) ) {
+		if ( $table == $this->tableName( 'user' ) && $wgActorTableSchemaMigrationStage < MIGRATION_NEW ) {
 			$this->update( 'archive', [ 'ar_user' => 0 ],
 				[ 'ar_user' => $conds['user_id'] ], $fname );
 			$this->update( 'ipblocks', [ 'ipb_user' => 0 ],

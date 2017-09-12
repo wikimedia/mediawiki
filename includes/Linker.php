@@ -1752,9 +1752,10 @@ class Linker {
 		$dbr = wfGetDB( DB_REPLICA );
 
 		// Up to the value of $wgShowRollbackEditCount revisions are counted
+		$revQuery = Revision::getQueryInfo();
 		$res = $dbr->select(
-			'revision',
-			[ 'rev_user_text', 'rev_deleted' ],
+			$revQuery['tables'],
+			[ 'rev_user_text' => $revQuery['fields']['rev_user_text'], 'rev_deleted' ],
 			// $rev->getPage() returns null sometimes
 			[ 'rev_page' => $rev->getTitle()->getArticleID() ],
 			__METHOD__,
@@ -1762,7 +1763,8 @@ class Linker {
 				'USE INDEX' => [ 'revision' => 'page_timestamp' ],
 				'ORDER BY' => 'rev_timestamp DESC',
 				'LIMIT' => $wgShowRollbackEditCount + 1
-			]
+			],
+			$revQuery['joins']
 		);
 
 		$editCount = 0;

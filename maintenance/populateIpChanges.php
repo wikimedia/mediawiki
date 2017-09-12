@@ -82,13 +82,18 @@ TEXT
 
 		$this->output( "Copying IP revisions to ip_changes, from rev_id $start to rev_id $end\n" );
 
+		$actorQuery = ActorMigration::newMigration()->getJoin( 'rev_user' );
+		$revUserIsAnon = ActorMigration::isAnon( $actorQuery['fields']['rev_user'] );
+
 		while ( $blockStart <= $end ) {
 			$blockEnd = min( $blockStart + $this->getBatchSize(), $end );
 			$rows = $dbr->select(
-				'revision',
-				[ 'rev_id', 'rev_timestamp', 'rev_user_text' ],
-				[ "rev_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd, 'rev_user' => 0 ],
-				__METHOD__
+				[ 'revision' ] + $actorQuery['tables'],
+				[ 'rev_id', 'rev_timestamp', 'rev_user_text' => $actorQuery['fields']['rev_user_text'] ],
+				[ "rev_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd, $revUserIsAnon ],
+				__METHOD__,
+				[],
+				$actorQuery['joins']
 			);
 
 			$numRows = $rows->numRows();
