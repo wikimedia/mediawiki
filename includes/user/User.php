@@ -30,6 +30,7 @@ use MediaWiki\Auth\AuthenticationRequest;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBExpectedError;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * String Some punctuation to prevent editing from broken text-mangling proxies.
@@ -69,7 +70,7 @@ class User implements IDBAccessObject {
 	/**
 	 * @const int Serialized record version.
 	 */
-	const VERSION = 11;
+	const VERSION = 12;
 
 	/**
 	 * Exclude user options that are set to their default value.
@@ -110,6 +111,8 @@ class User implements IDBAccessObject {
 		'mGroupMemberships',
 		// user_properties table
 		'mOptionOverrides',
+		// actor table
+		'mActorId',
 	];
 
 	/**
@@ -206,6 +209,8 @@ class User implements IDBAccessObject {
 	public $mId;
 	/** @var string */
 	public $mName;
+	/** @var int */
+	protected $mActorId;
 	/** @var string */
 	public $mRealName;
 
@@ -255,6 +260,7 @@ class User implements IDBAccessObject {
 	 *  - 'defaults'   anonymous user initialised from class defaults
 	 *  - 'name'       initialise from mName
 	 *  - 'id'         initialise from mId
+	 *  - 'actor'      initialise from mActorId
 	 *  - 'session'    log in from session if possible
 	 *
 	 * Use the User::newFrom*() family of functions to set this.
@@ -313,6 +319,7 @@ class User implements IDBAccessObject {
 	 *
 	 * @see newFromName()
 	 * @see newFromId()
+	 * @see newFromActorId()
 	 * @see newFromConfirmationCode()
 	 * @see newFromSession()
 	 * @see newFromRow()
@@ -403,6 +410,32 @@ class User implements IDBAccessObject {
 				break;
 			case 'id':
 				$this->loadFromId( $flags );
+				break;
+			case 'actor':
+				// Make sure this thread sees its own changes
+				if ( wfGetLB()->hasOrMadeRecentMasterChanges() ) {
+					$flags |= self::READ_LATEST;
+					$this->queryFlagsUsed = $flags;
+				}
+
+				list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
+				$row = wfGetDB( $index )->selectRow(
+					'actor',
+					[ 'actor_user', 'actor_name' ],
+					[ 'actor_id' => $this->mActorId ],
+					__METHOD__,
+					$options
+				);
+
+				if ( !$row ) {
+					// Ugh.
+					$this->loadDefaults();
+				} elseif ( $row->actor_user ) {
+					$this->mId = $row->actor_user;
+					$this->loadFromId( $flags );
+				} else {
+					$this->loadDefaults( $row->actor_name );
+				}
 				break;
 			case 'session':
 				if ( !$this->loadFromSession() ) {
@@ -576,6 +609,78 @@ class User implements IDBAccessObject {
 		$u->mFrom = 'id';
 		$u->setItemLoaded( 'id' );
 		return $u;
+	}
+
+	/**
+	 * Static factory method for creation from a given actor ID.
+	 *
+	 * @since 1.31
+	 * @param int $id Valid actor ID
+	 * @return User|null The corresponding User object
+	 */
+	public static function newFromActorId( $id ) {
+		global $wgActorTableSchemaMigrationStage;
+
+		if ( $wgActorTableSchemaMigrationStage <= MIGRATION_OLD ) {
+			throw new BadMethodCallException(
+				'Cannot use ' . __METHOD__ . ' when $wgActorTableSchemaMigrationStage is MIGRATION_OLD'
+			);
+		}
+
+		$u = new User;
+		$u->mActorId = $id;
+		$u->mFrom = 'actor';
+		$u->setItemLoaded( 'actor' );
+		return $u;
+	}
+
+	/**
+	 * Static factory method for creation from an ID, name, and/or actor ID
+	 *
+	 * This does not check that the ID, name, and actor ID all correspond to
+	 * the same user.
+	 *
+	 * @since 1.31
+	 * @param int|null $userId User ID, if known
+	 * @param string|null $userName User name, if known
+	 * @param int|null $actorId Actor ID, if known
+	 * @return User
+	 */
+	public static function newFromAnyId( $userId, $userName, $actorId ) {
+		global $wgActorTableSchemaMigrationStage;
+
+		$user = new User;
+		$user->mFrom = 'defaults';
+
+		if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD && $actorId !== null ) {
+			$user->mActorId = (int)$actorId;
+			if ( $user->mActorId !== 0 ) {
+				$user->mFrom = 'actor';
+			}
+			$user->setItemLoaded( 'actor' );
+		}
+
+		if ( $userName !== null && $userName !== '' ) {
+			$user->mName = $userName;
+			$user->mFrom = 'name';
+			$user->setItemLoaded( 'name' );
+		}
+
+		if ( $userId !== null ) {
+			$user->mId = intval( $userId );
+			if ( $user->mId !== 0 ) {
+				$user->mFrom = 'id';
+			}
+			$user->setItemLoaded( 'id' );
+		}
+
+		if ( $user->mFrom === 'defaults' ) {
+			throw new InvalidArgumentException(
+				'Cannot create a user with no name, no ID, and no actor ID'
+			);
+		}
+
+		return $user;
 	}
 
 	/**
@@ -1167,6 +1272,7 @@ class User implements IDBAccessObject {
 	public function loadDefaults( $name = false ) {
 		$this->mId = 0;
 		$this->mName = $name;
+		$this->mActorId = null;
 		$this->mRealName = '';
 		$this->mEmail = '';
 		$this->mOptionOverrides = null;
@@ -1323,11 +1429,29 @@ class User implements IDBAccessObject {
 	 *  user_properties   Array with properties out of the user_properties table
 	 */
 	protected function loadFromRow( $row, $data = null ) {
+		global $wgActorTableSchemaMigrationStage;
+
+		if ( !is_object( $row ) ) {
+			throw new InvalidArgumentException( '$row must be an object' );
+		}
+
 		$all = true;
 
 		$this->mGroupMemberships = null; // deferred
 
-		if ( isset( $row->user_name ) ) {
+		if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+			if ( isset( $row->actor_id ) ) {
+				$this->mActorId = (int)$row->actor_id;
+				if ( $this->mActorId !== 0 ) {
+					$this->mFrom = 'actor';
+				}
+				$this->setItemLoaded( 'actor' );
+			} else {
+				$all = false;
+			}
+		}
+
+		if ( isset( $row->user_name ) && $row->user_name !== '' ) {
 			$this->mName = $row->user_name;
 			$this->mFrom = 'name';
 			$this->setItemLoaded( 'name' );
@@ -1344,13 +1468,15 @@ class User implements IDBAccessObject {
 
 		if ( isset( $row->user_id ) ) {
 			$this->mId = intval( $row->user_id );
-			$this->mFrom = 'id';
+			if ( $this->mId !== 0 ) {
+				$this->mFrom = 'id';
+			}
 			$this->setItemLoaded( 'id' );
 		} else {
 			$all = false;
 		}
 
-		if ( isset( $row->user_id ) && isset( $row->user_name ) ) {
+		if ( isset( $row->user_id ) && isset( $row->user_name ) && $row->user_name !== '' ) {
 			self::$idCacheByName[$row->user_name] = $row->user_id;
 		}
 
@@ -1558,7 +1684,7 @@ class User implements IDBAccessObject {
 	 * data (i.e. self::$mCacheVars) is not cleared unless $reloadFrom is given.
 	 *
 	 * @param bool|string $reloadFrom Reload user and user_groups table data from a
-	 *   given source. May be "name", "id", "defaults", "session", or false for no reload.
+	 *   given source. May be "name", "id", "actor", "defaults", "session", or false for no reload.
 	 */
 	public function clearInstanceCache( $reloadFrom = false ) {
 		$this->mNewtalk = -1;
@@ -2285,6 +2411,69 @@ class User implements IDBAccessObject {
 	public function setName( $str ) {
 		$this->load();
 		$this->mName = $str;
+	}
+
+	/**
+	 * Get the user's actor ID.
+	 * @since 1.31
+	 * @param IDatabase|null $dbw Assign a new actor ID, using this DB handle, if none exists
+	 * @return int The actor's ID, or 0 if no actor ID exists and $dbw was null
+	 */
+	public function getActorId( IDatabase $dbw = null ) {
+		global $wgActorTableSchemaMigrationStage;
+
+		if ( $wgActorTableSchemaMigrationStage <= MIGRATION_OLD ) {
+			throw new BadMethodCallException(
+				'Cannot use ' . __METHOD__ . ' when $wgActorTableSchemaMigrationStage is MIGRATION_OLD'
+			);
+		}
+
+		if ( !$this->isItemLoaded( 'actor' ) ) {
+			$this->load();
+		}
+
+		// Currently $this->mActorId might be null if $this was loaded from a
+		// cache entry that was written when $wgActorTableSchemaMigrationStage
+		// was MIGRATION_OLD. Once that is no longer a possibility (i.e. when
+		// User::VERSION is incremented after $wgActorTableSchemaMigrationStage
+		// has been removed), that condition may be removed.
+		if ( $this->mActorId === null || !$this->mActorId && $dbw ) {
+			$q = [
+				'actor_user' => $this->getId() ?: null,
+				'actor_name' => (string)$this->getName(),
+			];
+			if ( $dbw ) {
+				if ( $q['actor_user'] === null && self::isUsableName( $q['actor_name'] ) ) {
+					throw new OperationFailedException(
+						'Cannot create an actor for a usable name that is not an existing user'
+					);
+				}
+				if ( $q['actor_name'] === '' ) {
+					throw new OperationFailedException( 'Cannot create an actor for a user with no name' );
+				}
+				$dbw->insert( 'actor', $q, __METHOD__, [ 'IGNORE' ] );
+				if ( $dbw->affectedRows() ) {
+					$this->mActorId = (int)$dbw->insertId();
+				} else {
+					// Outdated cache?
+					list( , $options ) = DBAccessObjectUtils::getDBOptions( $this->queryFlagsUsed );
+					$this->mActorId = (int)$dbw->selectField( 'actor', 'actor_id', $q, __METHOD__, $options );
+					if ( !$this->mActorId ) {
+						throw new OperationFailedException(
+							"Cannot create actor ID for user_id={$this->getId()} user_name={$this->getName()}"
+						);
+					}
+				}
+				$this->invalidateCache();
+			} else {
+				list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $this->queryFlagsUsed );
+				$db = wfGetDB( $index );
+				$this->mActorId = (int)$db->selectField( 'actor', 'actor_id', $q, __METHOD__, $options );
+			}
+			$this->setItemLoaded( 'actor' );
+		}
+
+		return (int)$this->mActorId;
 	}
 
 	/**
@@ -4037,31 +4226,40 @@ class User implements IDBAccessObject {
 		$newTouched = $this->newTouchedTimestamp();
 
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->update( 'user',
-			[ /* SET */
-				'user_name' => $this->mName,
-				'user_real_name' => $this->mRealName,
-				'user_email' => $this->mEmail,
-				'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
-				'user_touched' => $dbw->timestamp( $newTouched ),
-				'user_token' => strval( $this->mToken ),
-				'user_email_token' => $this->mEmailToken,
-				'user_email_token_expires' => $dbw->timestampOrNull( $this->mEmailTokenExpires ),
-			], $this->makeUpdateConditions( $dbw, [ /* WHERE */
-				'user_id' => $this->mId,
-			] ), __METHOD__
-		);
-
-		if ( !$dbw->affectedRows() ) {
-			// Maybe the problem was a missed cache update; clear it to be safe
-			$this->clearSharedCache( 'refresh' );
-			// User was changed in the meantime or loaded with stale data
-			$from = ( $this->queryFlagsUsed & self::READ_LATEST ) ? 'master' : 'replica';
-			throw new MWException(
-				"CAS update failed on user_touched for user ID '{$this->mId}' (read from $from);" .
-				" the version of the user to be saved is older than the current version."
+		$dbw->doAtomicSection( __METHOD__, function ( $dbw, $fname ) use ( $newTouched ) {
+			$dbw->update( 'user',
+				[ /* SET */
+					'user_name' => $this->mName,
+					'user_real_name' => $this->mRealName,
+					'user_email' => $this->mEmail,
+					'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
+					'user_touched' => $dbw->timestamp( $newTouched ),
+					'user_token' => strval( $this->mToken ),
+					'user_email_token' => $this->mEmailToken,
+					'user_email_token_expires' => $dbw->timestampOrNull( $this->mEmailTokenExpires ),
+				], $this->makeUpdateConditions( $dbw, [ /* WHERE */
+					'user_id' => $this->mId,
+				] ), $fname
 			);
-		}
+
+			if ( !$dbw->affectedRows() ) {
+				// Maybe the problem was a missed cache update; clear it to be safe
+				$this->clearSharedCache( 'refresh' );
+				// User was changed in the meantime or loaded with stale data
+				$from = ( $this->queryFlagsUsed & self::READ_LATEST ) ? 'master' : 'replica';
+				throw new MWException(
+					"CAS update failed on user_touched for user ID '{$this->mId}' (read from $from);" .
+					" the version of the user to be saved is older than the current version."
+				);
+			}
+
+			$dbw->update(
+				'actor',
+				[ 'actor_name' => $this->mName ],
+				[ 'actor_user' => $this->mId ],
+				$fname
+			);
+		} );
 
 		$this->mTouched = $newTouched;
 		$this->saveOptions();
@@ -4146,13 +4344,19 @@ class User implements IDBAccessObject {
 		foreach ( $params as $name => $value ) {
 			$fields["user_$name"] = $value;
 		}
-		$dbw->insert( 'user', $fields, __METHOD__, [ 'IGNORE' ] );
-		if ( $dbw->affectedRows() ) {
-			$newUser = self::newFromId( $dbw->insertId() );
-		} else {
-			$newUser = null;
-		}
-		return $newUser;
+
+		return $dbw->doAtomicSection( __METHOD__, function ( $dbw, $fname ) use ( $fields ) {
+			$dbw->insert( 'user', $fields, $fname, [ 'IGNORE' ] );
+			if ( $dbw->affectedRows() ) {
+				$newUser = self::newFromId( $dbw->insertId() );
+				$newUser->mName = $fields['user_name'];
+				$newUser->setItemLoaded( 'name' );
+				$newUser->updateActorId( $dbw );
+			} else {
+				$newUser = null;
+			}
+			return $newUser;
+		} );
 	}
 
 	/**
@@ -4193,53 +4397,77 @@ class User implements IDBAccessObject {
 
 		$this->mTouched = $this->newTouchedTimestamp();
 
-		$noPass = PasswordFactory::newInvalidPassword()->toString();
-
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->insert( 'user',
-			[
-				'user_name' => $this->mName,
-				'user_password' => $noPass,
-				'user_newpassword' => $noPass,
-				'user_email' => $this->mEmail,
-				'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
-				'user_real_name' => $this->mRealName,
-				'user_token' => strval( $this->mToken ),
-				'user_registration' => $dbw->timestamp( $this->mRegistration ),
-				'user_editcount' => 0,
-				'user_touched' => $dbw->timestamp( $this->mTouched ),
-			], __METHOD__,
-			[ 'IGNORE' ]
-		);
-		if ( !$dbw->affectedRows() ) {
-			// Use locking reads to bypass any REPEATABLE-READ snapshot.
-			$this->mId = $dbw->selectField(
-				'user',
-				'user_id',
-				[ 'user_name' => $this->mName ],
-				__METHOD__,
-				[ 'LOCK IN SHARE MODE' ]
+		$status = $dbw->doAtomicSection( __METHOD__, function ( $dbw, $fname ) {
+			$noPass = PasswordFactory::newInvalidPassword()->toString();
+			$dbw->insert( 'user',
+				[
+					'user_name' => $this->mName,
+					'user_password' => $noPass,
+					'user_newpassword' => $noPass,
+					'user_email' => $this->mEmail,
+					'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
+					'user_real_name' => $this->mRealName,
+					'user_token' => strval( $this->mToken ),
+					'user_registration' => $dbw->timestamp( $this->mRegistration ),
+					'user_editcount' => 0,
+					'user_touched' => $dbw->timestamp( $this->mTouched ),
+				], $fname,
+				[ 'IGNORE' ]
 			);
-			$loaded = false;
-			if ( $this->mId ) {
-				if ( $this->loadFromDatabase( self::READ_LOCKING ) ) {
-					$loaded = true;
+			if ( !$dbw->affectedRows() ) {
+				// Use locking reads to bypass any REPEATABLE-READ snapshot.
+				$this->mId = $dbw->selectField(
+					'user',
+					'user_id',
+					[ 'user_name' => $this->mName ],
+					__METHOD__,
+					[ 'LOCK IN SHARE MODE' ]
+				);
+				$loaded = false;
+				if ( $this->mId ) {
+					if ( $this->loadFromDatabase( self::READ_LOCKING ) ) {
+						$loaded = true;
+					}
 				}
+				if ( !$loaded ) {
+					throw new MWException( __METHOD__ . ": hit a key conflict attempting " .
+						"to insert user '{$this->mName}' row, but it was not present in select!" );
+				}
+				return Status::newFatal( 'userexists' );
 			}
-			if ( !$loaded ) {
-				throw new MWException( __METHOD__ . ": hit a key conflict attempting " .
-					"to insert user '{$this->mName}' row, but it was not present in select!" );
-			}
-			return Status::newFatal( 'userexists' );
-		}
-		$this->mId = $dbw->insertId();
-		self::$idCacheByName[$this->mName] = $this->mId;
+			$this->mId = $dbw->insertId();
+			self::$idCacheByName[$this->mName] = $this->mId;
+			$this->updateActorId( $dbw );
 
-		// Clear instance cache other than user table data, which is already accurate
+			return Status::newGood();
+		} );
+		if ( !$status->isGood() ) {
+			return $status;
+		}
+
+		// Clear instance cache other than user table data and actor, which is already accurate
 		$this->clearInstanceCache();
 
 		$this->saveOptions();
 		return Status::newGood();
+	}
+
+	/**
+	 * Update the actor ID after an insert
+	 * @param IDatabase $dbw Writable database handle
+	 */
+	private function updateActorId( IDatabase $dbw ) {
+		global $wgActorTableSchemaMigrationStage;
+
+		if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+			$dbw->insert(
+				'actor',
+				[ 'actor_user' => $this->mId, 'actor_name' => $this->mName ],
+				__METHOD__
+			);
+			$this->mActorId = (int)$dbw->insertId();
+		}
 	}
 
 	/**
@@ -4730,10 +4958,14 @@ class User implements IDBAccessObject {
 			return false; // anons
 		}
 		$dbr = wfGetDB( DB_REPLICA );
-		$time = $dbr->selectField( 'revision', 'rev_timestamp',
-			[ 'rev_user' => $this->getId() ],
+		$actorWhere = ActorMigration::newKey( 'rev_user' )->getWhere( $dbr, $this );
+		$time = $dbr->selectField(
+			[ 'revision' ] + $actorWhere['tables'],
+			'rev_timestamp',
+			[ $actorWhere['conds'] ],
 			__METHOD__,
-			[ 'ORDER BY' => 'rev_timestamp ASC' ]
+			[ 'ORDER BY' => 'rev_timestamp ASC' ],
+			$actorWhere['joins']
 		);
 		if ( !$time ) {
 			return false; // no edits
@@ -5181,11 +5413,14 @@ class User implements IDBAccessObject {
 		// Pull from a replica DB to be less cruel to servers
 		// Accuracy isn't the point anyway here
 		$dbr = wfGetDB( DB_REPLICA );
+		$actorWhere = ActorMigration::newKey( 'rev_user' )->getWhere( $dbr, $this );
 		$count = (int)$dbr->selectField(
-			'revision',
-			'COUNT(rev_user)',
-			[ 'rev_user' => $this->getId() ],
-			__METHOD__
+			[ 'revision' ] + $actorWhere['tables'],
+			'COUNT(*)',
+			[ $actorWhere['conds'] ],
+			__METHOD__,
+			[],
+			$actorWhere['joins']
 		);
 		$count = $count + $add;
 
@@ -5534,7 +5769,9 @@ class User implements IDBAccessObject {
 	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
 	 */
 	public static function getQueryInfo() {
-		return [
+		global $wgActorTableSchemaMigrationStage;
+
+		$ret = [
 			'tables' => [ 'user' ],
 			'fields' => [
 				'user_id',
@@ -5551,6 +5788,15 @@ class User implements IDBAccessObject {
 			],
 			'joins' => [],
 		];
+		if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+			$ret['tables']['user_actor'] = 'actor';
+			$ret['fields'][] = 'user_actor.actor_id';
+			$ret['joins']['user_actor'] = [
+				$wgActorTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
+				[ 'user_actor.actor_user = user_id' ]
+			];
+		}
+		return $ret;
 	}
 
 	/**

@@ -58,7 +58,11 @@ class DeletedContribsPager extends IndexPager {
 	}
 
 	function getQueryInfo() {
-		list( $index, $userCond ) = $this->getUserCond();
+		$userCond = [
+			// ->getJoin() below takes care of any joins needed
+			ActorMigration::newKey( 'ar_user' )
+				->getWhere( wfGetDB( DB_REPLICA ), User::newFromName( $this->target, false ), false )['conds']
+		];
 		$conds = array_merge( $userCond, $this->getNamespaceCond() );
 		$user = $this->getUser();
 		// Paranoia: avoid brute force searches (T19792)
@@ -70,16 +74,17 @@ class DeletedContribsPager extends IndexPager {
 		}
 
 		$commentQuery = CommentStore::newKey( 'ar_comment' )->getJoin();
+		$actorQuery = ActorMigration::newKey( 'ar_user' )->getJoin();
 
 		return [
-			'tables' => [ 'archive' ] + $commentQuery['tables'],
+			'tables' => [ 'archive' ] + $commentQuery['tables'] + $actorQuery['tables'],
 			'fields' => [
 				'ar_rev_id', 'ar_namespace', 'ar_title', 'ar_timestamp',
-				'ar_minor_edit', 'ar_user', 'ar_user_text', 'ar_deleted'
-			] + $commentQuery['fields'],
+				'ar_minor_edit', 'ar_deleted'
+			] + $commentQuery['fields'] + $actorQuery['fields'],
 			'conds' => $conds,
-			'options' => [ 'USE INDEX' => [ 'archive' => $index ] ],
-			'join_conds' => $commentQuery['joins'],
+			'options' => [],
+			'join_conds' => $commentQuery['joins'] + $actorQuery['joins'],
 		];
 	}
 
@@ -126,15 +131,6 @@ class DeletedContribsPager extends IndexPager {
 		$result = array_values( $result );
 
 		return new FakeResultWrapper( $result );
-	}
-
-	function getUserCond() {
-		$condition = [];
-
-		$condition['ar_user_text'] = $this->target;
-		$index = 'ar_usertext_timestamp';
-
-		return [ $index, $condition ];
 	}
 
 	function getIndexField() {
@@ -259,6 +255,7 @@ class DeletedContribsPager extends IndexPager {
 			'comment' => CommentStore::newKey( 'ar_comment' )->getComment( $row )->text,
 			'user' => $row->ar_user,
 			'user_text' => $row->ar_user_text,
+			'actor' => isset( $row->ar_actor ) ? $row->ar_actor : null,
 			'timestamp' => $row->ar_timestamp,
 			'minor_edit' => $row->ar_minor_edit,
 			'deleted' => $row->ar_deleted,

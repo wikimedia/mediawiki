@@ -103,7 +103,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
 							&$query_options, &$join_conds
 						) {
-							$conds[] = 'rc_user = 0';
+							$actorQuery = ActorMigration::newKey( 'rc_user' )->getJoin();
+							$tables += $actorQuery['tables'];
+							$join_conds += $actorQuery['joins'];
+							$conds[] = ActorMigration::isAnon( $actorQuery['fields']['rc_user'] );
 						},
 						'isReplacedInStructuredUi' => true,
 
@@ -117,7 +120,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
 							&$query_options, &$join_conds
 						) {
-							$conds[] = 'rc_user != 0';
+							$actorQuery = ActorMigration::newKey( 'rc_user' )->getJoin();
+							$tables += $actorQuery['tables'];
+							$join_conds += $actorQuery['joins'];
+							$conds[] = ActorMigration::isNotAnon( $actorQuery['fields']['rc_user'] );
 						},
 						'isReplacedInStructuredUi' => true,
 					]
@@ -202,8 +208,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
 							&$query_options, &$join_conds
 						) {
-							$user = $ctx->getUser();
-							$conds[] = 'rc_user_text != ' . $dbr->addQuotes( $user->getName() );
+							$actorQuery = ActorMigration::newKey( 'rc_user' )->getWhere( $dbr, $ctx->getUser() );
+							$tables += $actorQuery['tables'];
+							$join_conds += $actorQuery['joins'];
+							$conds[] = 'NOT(' . $actorQuery['conds'] . ')';
 						},
 						'cssClassSuffix' => 'self',
 						'isRowApplicableCallable' => function ( $ctx, $rc ) {
@@ -218,8 +226,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
 							&$query_options, &$join_conds
 						) {
-							$user = $ctx->getUser();
-							$conds[] = 'rc_user_text = ' . $dbr->addQuotes( $user->getName() );
+							$actorQuery = ActorMigration::newKey( 'rc_user' )->getWhere( $dbr, $ctx->getUser(), false );
+							$tables += $actorQuery['tables'];
+							$join_conds += $actorQuery['joins'];
+							$conds[] = $actorQuery['conds'];
 						},
 						'cssClassSuffix' => 'others',
 						'isRowApplicableCallable' => function ( $ctx, $rc ) {
@@ -1666,22 +1676,26 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			return;
 		}
 
+		$actorQuery = ActorMigration::newKey( 'rc_user' )->getJoin();
+		$tables += $actorQuery['tables'];
+		$join_conds += $actorQuery['joins'];
+
 		// 'registered' but not 'unregistered', experience levels, if any, are included in 'registered'
 		if (
 			in_array( 'registered', $selectedExpLevels ) &&
 			!in_array( 'unregistered', $selectedExpLevels )
 		) {
-			$conds[] = 'rc_user != 0';
+			$conds[] = ActorMigration::isNotAnon( $actorQuery['fields']['rc_user'] );
 			return;
 		}
 
 		if ( $selectedExpLevels === [ 'unregistered' ] ) {
-			$conds[] = 'rc_user = 0';
+			$conds[] = ActorMigration::isAnon( $actorQuery['fields']['rc_user'] );
 			return;
 		}
 
 		$tables[] = 'user';
-		$join_conds['user'] = [ 'LEFT JOIN', 'rc_user = user_id' ];
+		$join_conds['user'] = [ 'LEFT JOIN', $actorQuery['fields']['rc_user'] . ' = user_id' ];
 
 		if ( $now === 0 ) {
 			$now = time();
@@ -1711,7 +1725,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		if ( in_array( 'unregistered', $selectedExpLevels ) ) {
 			$selectedExpLevels = array_diff( $selectedExpLevels, [ 'unregistered' ] );
-			$conditions[] = 'rc_user = 0';
+			$conditions[] = ActorMigration::isAnon( $actorQuery['fields']['rc_user'] );
 		}
 
 		if ( $selectedExpLevels === [ 'newcomer' ] ) {
@@ -1733,7 +1747,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		} elseif ( $selectedExpLevels === [ 'experienced', 'learner' ] ) {
 			$conditions[] = $aboveNewcomer;
 		} elseif ( $selectedExpLevels === [ 'experienced', 'learner', 'newcomer' ] ) {
-			$conditions[] = 'rc_user != 0';
+			$conditions[] = ActorMigration::isNotAnon( $actorQuery['fields']['rc_user'] );
 		}
 
 		if ( count( $conditions ) > 1 ) {
