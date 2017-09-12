@@ -110,7 +110,19 @@ class OldLocalFile extends LocalFile {
 	 * @return array
 	 */
 	static function selectFields() {
+		global $wgActorTableSchemaMigrationStage;
+
 		wfDeprecated( __METHOD__, '1.31' );
+		if ( $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
+			// If code is using this instead of self::getQueryInfo(), there's a
+			// decent chance it's going to try to directly access
+			// $row->oi_user or $row->oi_user_text and we can't give it
+			// useful values here once those aren't being written anymore.
+			throw new BadMethodCallException(
+				'Cannot use ' . __METHOD__ . ' when $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH'
+			);
+		}
+
 		return [
 			'oi_name',
 			'oi_archive_name',
@@ -124,6 +136,7 @@ class OldLocalFile extends LocalFile {
 			'oi_minor_mime',
 			'oi_user',
 			'oi_user_text',
+			'oi_actor' => $wgActorTableSchemaMigrationStage > MIGRATION_OLD ? 'oi_actor' : null,
 			'oi_timestamp',
 			'oi_deleted',
 			'oi_sha1',
@@ -143,8 +156,9 @@ class OldLocalFile extends LocalFile {
 	 */
 	public static function getQueryInfo( array $options = [] ) {
 		$commentQuery = CommentStore::getStore()->getJoin( 'oi_description' );
+		$actorQuery = ActorMigration::newMigration()->getJoin( 'oi_user' );
 		$ret = [
-			'tables' => [ 'oldimage' ] + $commentQuery['tables'],
+			'tables' => [ 'oldimage' ] + $commentQuery['tables'] + $actorQuery['tables'],
 			'fields' => [
 				'oi_name',
 				'oi_archive_name',
@@ -155,13 +169,11 @@ class OldLocalFile extends LocalFile {
 				'oi_media_type',
 				'oi_major_mime',
 				'oi_minor_mime',
-				'oi_user',
-				'oi_user_text',
 				'oi_timestamp',
 				'oi_deleted',
 				'oi_sha1',
-			] + $commentQuery['fields'],
-			'joins' => $commentQuery['joins'],
+			] + $commentQuery['fields'] + $actorQuery['fields'],
+			'joins' => $commentQuery['joins'] + $actorQuery['joins'],
 		];
 
 		if ( in_array( 'omit-nonlazy', $options, true ) ) {
@@ -435,6 +447,7 @@ class OldLocalFile extends LocalFile {
 		}
 
 		$commentFields = CommentStore::getStore()->insert( $dbw, 'oi_description', $comment );
+		$actorFields = ActorMigration::newMigration()->getInsertValues( $dbw, 'oi_user', $user );
 		$dbw->insert( 'oldimage',
 			[
 				'oi_name' => $this->getName(),
@@ -444,14 +457,12 @@ class OldLocalFile extends LocalFile {
 				'oi_height' => intval( $props['height'] ),
 				'oi_bits' => $props['bits'],
 				'oi_timestamp' => $dbw->timestamp( $timestamp ),
-				'oi_user' => $user->getId(),
-				'oi_user_text' => $user->getName(),
 				'oi_metadata' => $props['metadata'],
 				'oi_media_type' => $props['media_type'],
 				'oi_major_mime' => $props['major_mime'],
 				'oi_minor_mime' => $props['minor_mime'],
 				'oi_sha1' => $props['sha1'],
-			] + $commentFields, __METHOD__
+			] + $commentFields + $actorFields, __METHOD__
 		);
 
 		return true;

@@ -157,13 +157,6 @@ class RevisionTest extends MediaWikiTestCase {
 			new MWException( "Text already stored in external store (id someid), " .
 				"can't serialize content object" )
 		];
-		yield 'unknown user id and no user name' => [
-			[
-				'content' => new JavaScriptContent( 'hello world.' ),
-				'user' => 9989,
-			],
-			new MWException( 'user_text not given, and unknown user ID 9989' )
-		];
 		yield 'with bad content object (class)' => [
 			[ 'content' => new stdClass() ],
 			new MWException( 'content field must contain a Content object.' )
@@ -494,7 +487,8 @@ class RevisionTest extends MediaWikiTestCase {
 			$lb,
 			$this->getBlobStore(),
 			$cache,
-			MediaWikiServices::getInstance()->getCommentStore()
+			MediaWikiServices::getInstance()->getCommentStore(),
+			MediaWikiServices::getInstance()->getActorMigration()
 		);
 		return $blobStore;
 	}
@@ -617,6 +611,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testLoadFromTitle() {
 		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_OLD );
 		$this->overrideMwServices();
 		$title = $this->getMockTitle();
 
@@ -875,6 +870,8 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testUserJoinCond() {
 		$this->hideDeprecated( 'Revision::userJoinCond' );
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->overrideMwServices();
 		$this->assertEquals(
 			[ 'LEFT JOIN', [ 'rev_user != 0', 'user_id = rev_user' ] ],
 			Revision::userJoinCond()
@@ -892,7 +889,7 @@ class RevisionTest extends MediaWikiTestCase {
 		);
 	}
 
-	private function overrideCommentStore() {
+	private function overrideCommentStoreAndActorMigration() {
 		$mockStore = $this->getMockBuilder( CommentStore::class )
 			->disableOriginalConstructor()
 			->getMock();
@@ -906,8 +903,26 @@ class RevisionTest extends MediaWikiTestCase {
 				'fields' => [ 'commentstore' => 'field' ],
 				'joins' => [ 'commentstore' => 'join' ],
 			] );
-
 		$this->setService( 'CommentStore', $mockStore );
+
+		$mockStore = $this->getMockBuilder( ActorMigration::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$mockStore->expects( $this->any() )
+			->method( 'getJoin' )
+			->willReturnCallback( function ( $key ) {
+				$p = strtok( $key, '_' );
+				return [
+					'tables' => [ 'actormigration' => 'table' ],
+					'fields' => [
+						$p . '_user' => 'actormigration_user',
+						$p . '_user_text' => 'actormigration_user_text',
+						$p . '_actor' => 'actormigration_actor',
+					],
+					'joins' => [ 'actormigration' => 'join' ],
+				];
+			} );
+		$this->setService( 'ActorMigration', $mockStore );
 	}
 
 	public function provideSelectFields() {
@@ -920,6 +935,7 @@ class RevisionTest extends MediaWikiTestCase {
 				'rev_timestamp',
 				'rev_user_text',
 				'rev_user',
+				'rev_actor' => 'NULL',
 				'rev_minor_edit',
 				'rev_deleted',
 				'rev_len',
@@ -939,6 +955,7 @@ class RevisionTest extends MediaWikiTestCase {
 				'rev_timestamp',
 				'rev_user_text',
 				'rev_user',
+				'rev_actor' => 'NULL',
 				'rev_minor_edit',
 				'rev_deleted',
 				'rev_len',
@@ -956,7 +973,8 @@ class RevisionTest extends MediaWikiTestCase {
 	public function testSelectFields( $contentHandlerUseDB, $expected ) {
 		$this->hideDeprecated( 'Revision::selectFields' );
 		$this->setMwGlobals( 'wgContentHandlerUseDB', $contentHandlerUseDB );
-		$this->overrideCommentStore();
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->overrideCommentStoreAndActorMigration();
 		$this->assertEquals( $expected, Revision::selectFields() );
 	}
 
@@ -972,6 +990,7 @@ class RevisionTest extends MediaWikiTestCase {
 				'ar_timestamp',
 				'ar_user_text',
 				'ar_user',
+				'ar_actor' => 'NULL',
 				'ar_minor_edit',
 				'ar_deleted',
 				'ar_len',
@@ -993,6 +1012,7 @@ class RevisionTest extends MediaWikiTestCase {
 				'ar_timestamp',
 				'ar_user_text',
 				'ar_user',
+				'ar_actor' => 'NULL',
 				'ar_minor_edit',
 				'ar_deleted',
 				'ar_len',
@@ -1010,7 +1030,8 @@ class RevisionTest extends MediaWikiTestCase {
 	public function testSelectArchiveFields( $contentHandlerUseDB, $expected ) {
 		$this->hideDeprecated( 'Revision::selectArchiveFields' );
 		$this->setMwGlobals( 'wgContentHandlerUseDB', $contentHandlerUseDB );
-		$this->overrideCommentStore();
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->overrideCommentStoreAndActorMigration();
 		$this->assertEquals( $expected, Revision::selectArchiveFields() );
 	}
 
@@ -1068,6 +1089,7 @@ class RevisionTest extends MediaWikiTestCase {
 				'tables' => [
 					'archive',
 					'commentstore' => 'table',
+					'actormigration' => 'table',
 				],
 				'fields' => [
 					'ar_id',
@@ -1078,16 +1100,17 @@ class RevisionTest extends MediaWikiTestCase {
 					'ar_text',
 					'ar_text_id',
 					'ar_timestamp',
-					'ar_user_text',
-					'ar_user',
 					'ar_minor_edit',
 					'ar_deleted',
 					'ar_len',
 					'ar_parent_id',
 					'ar_sha1',
-					'commentstore' => 'field'
+					'commentstore' => 'field',
+					'ar_user' => 'actormigration_user',
+					'ar_user_text' => 'actormigration_user_text',
+					'ar_actor' => 'actormigration_actor',
 				],
-				'joins' => [ 'commentstore' => 'join' ],
+				'joins' => [ 'commentstore' => 'join', 'actormigration' => 'join' ],
 			]
 		];
 		yield 'wgContentHandlerUseDB true' => [
@@ -1098,6 +1121,7 @@ class RevisionTest extends MediaWikiTestCase {
 				'tables' => [
 					'archive',
 					'commentstore' => 'table',
+					'actormigration' => 'table',
 				],
 				'fields' => [
 					'ar_id',
@@ -1108,18 +1132,19 @@ class RevisionTest extends MediaWikiTestCase {
 					'ar_text',
 					'ar_text_id',
 					'ar_timestamp',
-					'ar_user_text',
-					'ar_user',
 					'ar_minor_edit',
 					'ar_deleted',
 					'ar_len',
 					'ar_parent_id',
 					'ar_sha1',
 					'commentstore' => 'field',
+					'ar_user' => 'actormigration_user',
+					'ar_user_text' => 'actormigration_user_text',
+					'ar_actor' => 'actormigration_actor',
 					'ar_content_format',
 					'ar_content_model',
 				],
-				'joins' => [ 'commentstore' => 'join' ],
+				'joins' => [ 'commentstore' => 'join', 'actormigration' => 'join' ],
 			]
 		];
 	}
@@ -1130,7 +1155,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testGetArchiveQueryInfo( $globals, $expected ) {
 		$this->setMwGlobals( $globals );
-		$this->overrideCommentStore();
+		$this->overrideCommentStoreAndActorMigration();
 
 		$revisionStore = $this->getRevisionStore();
 		$revisionStore->setContentHandlerUseDB( $globals['wgContentHandlerUseDB'] );
@@ -1148,22 +1173,23 @@ class RevisionTest extends MediaWikiTestCase {
 			],
 			[],
 			[
-				'tables' => [ 'revision', 'commentstore' => 'table' ],
+				'tables' => [ 'revision', 'commentstore' => 'table', 'actormigration' => 'table' ],
 				'fields' => [
 					'rev_id',
 					'rev_page',
 					'rev_text_id',
 					'rev_timestamp',
-					'rev_user_text',
-					'rev_user',
 					'rev_minor_edit',
 					'rev_deleted',
 					'rev_len',
 					'rev_parent_id',
 					'rev_sha1',
 					'commentstore' => 'field',
+					'rev_user' => 'actormigration_user',
+					'rev_user_text' => 'actormigration_user_text',
+					'rev_actor' => 'actormigration_actor',
 				],
-				'joins' => [ 'commentstore' => 'join' ],
+				'joins' => [ 'commentstore' => 'join', 'actormigration' => 'join' ],
 			],
 		];
 		yield 'wgContentHandlerUseDB false, opts page' => [
@@ -1172,20 +1198,21 @@ class RevisionTest extends MediaWikiTestCase {
 			],
 			[ 'page' ],
 			[
-				'tables' => [ 'revision', 'commentstore' => 'table', 'page' ],
+				'tables' => [ 'revision', 'commentstore' => 'table', 'actormigration' => 'table', 'page' ],
 				'fields' => [
 					'rev_id',
 					'rev_page',
 					'rev_text_id',
 					'rev_timestamp',
-					'rev_user_text',
-					'rev_user',
 					'rev_minor_edit',
 					'rev_deleted',
 					'rev_len',
 					'rev_parent_id',
 					'rev_sha1',
 					'commentstore' => 'field',
+					'rev_user' => 'actormigration_user',
+					'rev_user_text' => 'actormigration_user_text',
+					'rev_actor' => 'actormigration_actor',
 					'page_namespace',
 					'page_title',
 					'page_id',
@@ -1199,6 +1226,7 @@ class RevisionTest extends MediaWikiTestCase {
 						[ 'page_id = rev_page' ],
 					],
 					'commentstore' => 'join',
+					'actormigration' => 'join',
 				],
 			],
 		];
@@ -1208,31 +1236,33 @@ class RevisionTest extends MediaWikiTestCase {
 			],
 			[ 'user' ],
 			[
-				'tables' => [ 'revision', 'commentstore' => 'table', 'user' ],
+				'tables' => [ 'revision', 'commentstore' => 'table', 'actormigration' => 'table', 'user' ],
 				'fields' => [
 					'rev_id',
 					'rev_page',
 					'rev_text_id',
 					'rev_timestamp',
-					'rev_user_text',
-					'rev_user',
 					'rev_minor_edit',
 					'rev_deleted',
 					'rev_len',
 					'rev_parent_id',
 					'rev_sha1',
 					'commentstore' => 'field',
+					'rev_user' => 'actormigration_user',
+					'rev_user_text' => 'actormigration_user_text',
+					'rev_actor' => 'actormigration_actor',
 					'user_name',
 				],
 				'joins' => [
 					'user' => [
 						'LEFT JOIN',
 						[
-							'rev_user != 0',
-							'user_id = rev_user',
+							'actormigration_user != 0',
+							'user_id = actormigration_user',
 						],
 					],
 					'commentstore' => 'join',
+					'actormigration' => 'join',
 				],
 			],
 		];
@@ -1242,20 +1272,21 @@ class RevisionTest extends MediaWikiTestCase {
 			],
 			[ 'text' ],
 			[
-				'tables' => [ 'revision', 'commentstore' => 'table', 'text' ],
+				'tables' => [ 'revision', 'commentstore' => 'table', 'actormigration' => 'table', 'text' ],
 				'fields' => [
 					'rev_id',
 					'rev_page',
 					'rev_text_id',
 					'rev_timestamp',
-					'rev_user_text',
-					'rev_user',
 					'rev_minor_edit',
 					'rev_deleted',
 					'rev_len',
 					'rev_parent_id',
 					'rev_sha1',
 					'commentstore' => 'field',
+					'rev_user' => 'actormigration_user',
+					'rev_user_text' => 'actormigration_user_text',
+					'rev_actor' => 'actormigration_actor',
 					'old_text',
 					'old_flags',
 				],
@@ -1265,6 +1296,7 @@ class RevisionTest extends MediaWikiTestCase {
 						[ 'rev_text_id=old_id' ],
 					],
 					'commentstore' => 'join',
+					'actormigration' => 'join',
 				],
 			],
 		];
@@ -1274,20 +1306,23 @@ class RevisionTest extends MediaWikiTestCase {
 			],
 			[ 'text', 'page', 'user' ],
 			[
-				'tables' => [ 'revision', 'commentstore' => 'table', 'page', 'user', 'text' ],
+				'tables' => [
+					'revision', 'commentstore' => 'table', 'actormigration' => 'table', 'page', 'user', 'text'
+				],
 				'fields' => [
 					'rev_id',
 					'rev_page',
 					'rev_text_id',
 					'rev_timestamp',
-					'rev_user_text',
-					'rev_user',
 					'rev_minor_edit',
 					'rev_deleted',
 					'rev_len',
 					'rev_parent_id',
 					'rev_sha1',
 					'commentstore' => 'field',
+					'rev_user' => 'actormigration_user',
+					'rev_user_text' => 'actormigration_user_text',
+					'rev_actor' => 'actormigration_actor',
 					'page_namespace',
 					'page_title',
 					'page_id',
@@ -1306,8 +1341,8 @@ class RevisionTest extends MediaWikiTestCase {
 					'user' => [
 						'LEFT JOIN',
 						[
-							'rev_user != 0',
-							'user_id = rev_user',
+							'actormigration_user != 0',
+							'user_id = actormigration_user',
 						],
 					],
 					'text' => [
@@ -1315,6 +1350,7 @@ class RevisionTest extends MediaWikiTestCase {
 						[ 'rev_text_id=old_id' ],
 					],
 					'commentstore' => 'join',
+					'actormigration' => 'join',
 				],
 			],
 		];
@@ -1324,24 +1360,25 @@ class RevisionTest extends MediaWikiTestCase {
 			],
 			[],
 			[
-				'tables' => [ 'revision', 'commentstore' => 'table' ],
+				'tables' => [ 'revision', 'commentstore' => 'table', 'actormigration' => 'table' ],
 				'fields' => [
 					'rev_id',
 					'rev_page',
 					'rev_text_id',
 					'rev_timestamp',
-					'rev_user_text',
-					'rev_user',
 					'rev_minor_edit',
 					'rev_deleted',
 					'rev_len',
 					'rev_parent_id',
 					'rev_sha1',
 					'commentstore' => 'field',
+					'rev_user' => 'actormigration_user',
+					'rev_user_text' => 'actormigration_user_text',
+					'rev_actor' => 'actormigration_actor',
 					'rev_content_format',
 					'rev_content_model',
 				],
-				'joins' => [ 'commentstore' => 'join' ],
+				'joins' => [ 'commentstore' => 'join', 'actormigration' => 'join' ],
 			],
 		];
 	}
@@ -1352,7 +1389,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testGetQueryInfo( $globals, $options, $expected ) {
 		$this->setMwGlobals( $globals );
-		$this->overrideCommentStore();
+		$this->overrideCommentStoreAndActorMigration();
 
 		$revisionStore = $this->getRevisionStore();
 		$revisionStore->setContentHandlerUseDB( $globals['wgContentHandlerUseDB'] );

@@ -286,20 +286,17 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			$this->addWhereFld( 'rev_page', reset( $ids ) );
 
 			if ( $params['user'] !== null ) {
-				$user = User::newFromName( $params['user'] );
-				if ( $user && $user->getId() > 0 ) {
-					$this->addWhereFld( 'rev_user', $user->getId() );
-				} else {
-					$this->addWhereFld( 'rev_user_text', $params['user'] );
-				}
+				$actorQuery = ActorMigration::newMigration()
+					->getWhere( $db, 'rev_user', User::newFromName( $params['user'], false ) );
+				$this->addTables( $actorQuery['tables'] );
+				$this->addJoinConds( $actorQuery['joins'] );
+				$this->addWhere( $actorQuery['conds'] );
 			} elseif ( $params['excludeuser'] !== null ) {
-				$user = User::newFromName( $params['excludeuser'] );
-				if ( $user && $user->getId() > 0 ) {
-					$this->addWhere( 'rev_user != ' . $user->getId() );
-				} else {
-					$this->addWhere( 'rev_user_text != ' .
-						$db->addQuotes( $params['excludeuser'] ) );
-				}
+				$actorQuery = ActorMigration::newMigration()
+					->getWhere( $db, 'rev_user', User::newFromName( $params['excludeuser'], false ) );
+				$this->addTables( $actorQuery['tables'] );
+				$this->addJoinConds( $actorQuery['joins'] );
+				$this->addWhere( 'NOT(' . $actorQuery['conds'] . ')' );
 			}
 			if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
 				// Paranoia: avoid brute force searches (T19342)

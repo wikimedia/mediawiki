@@ -106,6 +106,8 @@ abstract class RevDelList extends RevisionListBase {
 	 * @since 1.23 Added 'perItemStatus' param
 	 */
 	public function setVisibility( array $params ) {
+		global $wgActorTableSchemaMigrationStage;
+
 		$status = Status::newGood();
 
 		$bitPars = $params['value'];
@@ -134,7 +136,7 @@ abstract class RevDelList extends RevisionListBase {
 		$missing = array_flip( $this->ids );
 		$this->clearFileOps();
 		$idsForLog = [];
-		$authorIds = $authorIPs = [];
+		$authorIds = $authorIPs = $authorActors = [];
 
 		if ( $perItemStatus ) {
 			$status->itemStatuses = [];
@@ -216,10 +218,15 @@ abstract class RevDelList extends RevisionListBase {
 				$virtualOldBits |= $removedBits;
 
 				$status->successCount++;
-				if ( $item->getAuthorId() > 0 ) {
-					$authorIds[] = $item->getAuthorId();
-				} elseif ( IP::isIPAddress( $item->getAuthorName() ) ) {
-					$authorIPs[] = $item->getAuthorName();
+				if ( $wgActorTableSchemaMigrationStage <= MIGRATION_WRITE_BOTH ) {
+					if ( $item->getAuthorId() > 0 ) {
+						$authorIds[] = $item->getAuthorId();
+					} elseif ( IP::isIPAddress( $item->getAuthorName() ) ) {
+						$authorIPs[] = $item->getAuthorName();
+					}
+				}
+				if ( $wgActorTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
+					$authorActors[] = $item->getAuthorActor();
 				}
 
 				// Save the old and new bits in $visibilityChangeMap for
@@ -263,6 +270,14 @@ abstract class RevDelList extends RevisionListBase {
 		}
 
 		// Log it
+		$authorFields = [];
+		if ( $wgActorTableSchemaMigrationStage <= MIGRATION_WRITE_BOTH ) {
+			$authorFields['authorIds'] = $authorIds;
+			$authorFields['authorIPs'] = $authorIPs;
+		}
+		if ( $wgActorTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
+			$authorFields['authorActors'] = $authorActors;
+		}
 		$this->updateLog(
 			$logType,
 			[
@@ -272,10 +287,8 @@ abstract class RevDelList extends RevisionListBase {
 				'oldBits' => $virtualOldBits,
 				'comment' => $comment,
 				'ids' => $idsForLog,
-				'authorIds' => $authorIds,
-				'authorIPs' => $authorIPs,
 				'tags' => isset( $params['tags'] ) ? $params['tags'] : [],
-			]
+			] + $authorFields
 		);
 
 		// Clear caches after commit
@@ -330,8 +343,9 @@ abstract class RevDelList extends RevisionListBase {
 	 *     title:           The target title
 	 *     ids:             The ID list
 	 *     comment:         The log comment
-	 *     authorsIds:      The array of the user IDs of the offenders
-	 *     authorsIPs:      The array of the IP/anon user offenders
+	 *     authorIds:       The array of the user IDs of the offenders
+	 *     authorIPs:       The array of the IP/anon user offenders
+	 *     authorActors:    The array of the actor IDs of the offenders
 	 *     tags:            The array of change tags to apply to the log entry
 	 * @throws MWException
 	 */
@@ -350,11 +364,21 @@ abstract class RevDelList extends RevisionListBase {
 		$logEntry->setParameters( $logParams );
 		$logEntry->setPerformer( $this->getUser() );
 		// Allow for easy searching of deletion log items for revision/log items
-		$logEntry->setRelations( [
+		$relations = [
 			$field => $params['ids'],
-			'target_author_id' => $params['authorIds'],
-			'target_author_ip' => $params['authorIPs'],
-		] );
+		];
+		if ( isset( $params['authorIds'] ) ) {
+			$relations += [
+				'target_author_id' => $params['authorIds'],
+				'target_author_ip' => $params['authorIPs'],
+			];
+		}
+		if ( isset( $params['authorActors'] ) ) {
+			$relations += [
+				'target_author_actor' => $params['authorActors'],
+			];
+		}
+		$logEntry->setRelations( $relations );
 		// Apply change tags to the log entry
 		$logEntry->setTags( $params['tags'] );
 		$logId = $logEntry->insert();

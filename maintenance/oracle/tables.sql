@@ -60,6 +60,26 @@ INSERT INTO &mw_prefix.mwuser
   (user_id, user_name, user_options, user_touched, user_registration, user_editcount)
   VALUES (0,'Anonymous','', current_timestamp, current_timestamp,0);
 
+CREATE SEQUENCE actor_actor_id_seq;
+CREATE TABLE &mw_prefix.actor (
+  actor_id NUMBER NOT NULL,
+  actor_user NUMBER,
+  actor_name VARCHAR2(255) NOT NULL
+);
+
+ALTER TABLE &mw_prefix.actor ADD CONSTRAINT &mw_prefix.actor_pk PRIMARY KEY (actor_id);
+
+/*$mw$*/
+CREATE TRIGGER &mw_prefix.actor_seq_trg BEFORE INSERT ON &mw_prefix.actor
+	FOR EACH ROW WHEN (new.actor_id IS NULL)
+BEGIN
+	&mw_prefix.lastval_pkg.setLastval(actor_actor_id_seq.nextval, :new.actor_id);
+END;
+/*$mw$*/
+
+-- Create a dummy actor to satisfy fk contraints
+INSERT INTO &mw_prefix.actor (actor_id, actor_name) VALUES (0,'##Anonymous##');
+
 CREATE TABLE &mw_prefix.user_groups (
   ug_user   NUMBER      DEFAULT 0 NOT NULL,
   ug_group  VARCHAR2(255)     NOT NULL,
@@ -197,6 +217,17 @@ ALTER TABLE &mw_prefix.revision_comment_temp ADD CONSTRAINT &mw_prefix.revision_
 ALTER TABLE &mw_prefix.revision_comment_temp ADD CONSTRAINT &mw_prefix.revision_comment_temp_fk2 FOREIGN KEY (revcomment_comment_id) REFERENCES &mw_prefix."COMMENT"(comment_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 CREATE UNIQUE INDEX &mw_prefix.revcomment_rev ON &mw_prefix.revision_comment_temp (revcomment_rev);
 
+CREATE TABLE &mw_prefix.revision_actor_temp (
+  revactor_rev NUMBER NOT NULL,
+  revactor_actor NUMBER NOT NULL,
+  revactor_timestamp TIMESTAMP(6) WITH TIME ZONE NOT NULL,
+  revactor_page NUMBER NOT NULL
+);
+ALTER TABLE &mw_prefix.revision_actor_temp ADD CONSTRAINT &mw_prefix.revision_actor_temp_pk PRIMARY KEY (revactor_rev, revactor_actor);
+CREATE UNIQUE INDEX &mw_prefix.revactor_rev ON &mw_prefix.revision_actor_temp (revactor_rev);
+CREATE INDEX &mw_prefix.actor_timestamp ON &mw_prefix.revision_actor_temp (revactor_actor,revactor_timestamp);
+CREATE INDEX &mw_prefix.page_actor_timestamp ON &mw_prefix.revision_actor_temp (revactor_page,revactor_actor,revactor_timestamp);
+
 CREATE SEQUENCE text_old_id_seq;
 CREATE TABLE &mw_prefix.pagecontent ( -- replaces reserved word 'text'
   old_id     NUMBER  NOT NULL,
@@ -221,7 +252,8 @@ CREATE TABLE &mw_prefix.archive (
   ar_comment     VARCHAR2(255),
   ar_comment_id  NUMBER DEFAULT 0 NOT NULL,
   ar_user        NUMBER          DEFAULT 0 NOT NULL,
-  ar_user_text   VARCHAR2(255)         NOT NULL,
+  ar_user_text   VARCHAR2(255)         NULL,
+  ar_actor       NUMBER          DEFAULT 0 NOT NULL,
   ar_timestamp   TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
   ar_minor_edit  CHAR(1)         DEFAULT '0' NOT NULL,
   ar_flags       VARCHAR2(255),
@@ -240,6 +272,7 @@ ALTER TABLE &mw_prefix.archive ADD CONSTRAINT &mw_prefix.archive_fk1 FOREIGN KEY
 ALTER TABLE &mw_prefix.archive ADD CONSTRAINT &mw_prefix.archive_fk2 FOREIGN KEY (ar_comment_id) REFERENCES &mw_prefix."COMMENT"(comment_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 CREATE INDEX &mw_prefix.archive_i01 ON &mw_prefix.archive (ar_namespace,ar_title,ar_timestamp);
 CREATE INDEX &mw_prefix.archive_i02 ON &mw_prefix.archive (ar_user_text,ar_timestamp);
+CREATE INDEX &mw_prefix.ar_actor_timestamp ON &mw_prefix.archive (ar_actor,ar_timestamp);
 CREATE INDEX &mw_prefix.archive_i03 ON &mw_prefix.archive (ar_rev_id);
 /*$mw$*/
 CREATE TRIGGER &mw_prefix.archive_seq_trg BEFORE INSERT ON &mw_prefix.archive
@@ -439,6 +472,7 @@ CREATE TABLE &mw_prefix.ipblocks (
   ipb_user              NUMBER      DEFAULT 0 NOT  NULL,
   ipb_by                NUMBER      DEFAULT 0 NOT NULL,
   ipb_by_text           VARCHAR2(255)      NULL,
+  ipb_by_actor          NUMBER      DEFUALT 0 NOT NULL,
   ipb_reason            VARCHAR2(255)      NULL,
   ipb_reason_id         NUMBER DEFAULT 0 NOT NULL,
   ipb_timestamp         TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
@@ -484,7 +518,8 @@ CREATE TABLE &mw_prefix.image (
   img_minor_mime   VARCHAR2(100) DEFAULT 'unknown',
   img_description  VARCHAR2(255),
   img_user         NUMBER       DEFAULT 0 NOT NULL,
-  img_user_text    VARCHAR2(255)      NOT NULL,
+  img_user_text    VARCHAR2(255)      NULL,
+  img_actor        NUMBER       DEFAULT 0 NOT NULL,
   img_timestamp    TIMESTAMP(6) WITH TIME ZONE,
   img_sha1         VARCHAR2(32)
 );
@@ -494,6 +529,7 @@ CREATE INDEX &mw_prefix.image_i01 ON &mw_prefix.image (img_user_text,img_timesta
 CREATE INDEX &mw_prefix.image_i02 ON &mw_prefix.image (img_size);
 CREATE INDEX &mw_prefix.image_i03 ON &mw_prefix.image (img_timestamp);
 CREATE INDEX &mw_prefix.image_i04 ON &mw_prefix.image (img_sha1);
+CREATE INDEX &mw_prefix.img_actor_timestamp ON &mw_prefix.image (img_actor, img_timestamp);
 
 CREATE TABLE &mw_prefix.image_comment_temp (
   imgcomment_name VARCHAR2(255) NOT NULL,
@@ -515,7 +551,8 @@ CREATE TABLE &mw_prefix.oldimage (
   oi_description   VARCHAR2(255),
   oi_description_id  NUMBER DEFAULT 0 NOT NULL,
   oi_user          NUMBER          DEFAULT 0 NOT NULL,
-  oi_user_text     VARCHAR2(255)         NOT NULL,
+  oi_user_text     VARCHAR2(255)         NULL,
+  oi_actor         NUMBER          DEFAULT 0 NOT NULL,
   oi_timestamp     TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
   oi_metadata      CLOB,
   oi_media_type    VARCHAR2(32) DEFAULT NULL,
@@ -528,6 +565,7 @@ ALTER TABLE &mw_prefix.oldimage ADD CONSTRAINT &mw_prefix.oldimage_fk1 FOREIGN K
 ALTER TABLE &mw_prefix.oldimage ADD CONSTRAINT &mw_prefix.oldimage_fk2 FOREIGN KEY (oi_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE &mw_prefix.oldimage ADD CONSTRAINT &mw_prefix.oldimage_fk3 FOREIGN KEY (oi_description_id) REFERENCES &mw_prefix."COMMENT"(comment_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 CREATE INDEX &mw_prefix.oldimage_i01 ON &mw_prefix.oldimage (oi_user_text,oi_timestamp);
+CREATE INDEX &mw_prefix.oi_actor_timestamp ON &mw_prefix.oldimage (oi_actor,oi_timestamp);
 CREATE INDEX &mw_prefix.oldimage_i02 ON &mw_prefix.oldimage (oi_name,oi_timestamp);
 CREATE INDEX &mw_prefix.oldimage_i03 ON &mw_prefix.oldimage (oi_name,oi_archive_name);
 CREATE INDEX &mw_prefix.oldimage_i04 ON &mw_prefix.oldimage (oi_sha1);
@@ -555,7 +593,8 @@ CREATE TABLE &mw_prefix.filearchive (
   fa_description        VARCHAR2(255),
   fa_description_id     NUMBER DEFAULT 0 NOT NULL,
   fa_user               NUMBER          DEFAULT 0 NOT NULL,
-  fa_user_text          VARCHAR2(255)         NOT NULL,
+  fa_user_text          VARCHAR2(255)         NULL,
+  fa_actor              NUMBER          DEFAULT 0 NOT NULL,
   fa_timestamp          TIMESTAMP(6) WITH TIME ZONE,
   fa_deleted            NUMBER      DEFAULT 0 NOT NULL,
   fa_sha1		VARCHAR2(32)
@@ -569,6 +608,7 @@ CREATE INDEX &mw_prefix.filearchive_i01 ON &mw_prefix.filearchive (fa_name, fa_t
 CREATE INDEX &mw_prefix.filearchive_i02 ON &mw_prefix.filearchive (fa_storage_group, fa_storage_key);
 CREATE INDEX &mw_prefix.filearchive_i03 ON &mw_prefix.filearchive (fa_deleted_timestamp);
 CREATE INDEX &mw_prefix.filearchive_i04 ON &mw_prefix.filearchive (fa_user_text,fa_timestamp);
+CREATE INDEX &mw_prefix.fa_actor_timestamp ON &mw_prefix.filearchive (fa_actor,fa_timestamp);
 CREATE INDEX &mw_prefix.filearchive_i05 ON &mw_prefix.filearchive (fa_sha1);
 /*$mw$*/
 CREATE TRIGGER &mw_prefix.filearchive_seq_trg BEFORE INSERT ON &mw_prefix.filearchive
@@ -617,7 +657,8 @@ CREATE TABLE &mw_prefix.recentchanges (
   rc_timestamp       TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
   rc_cur_time        TIMESTAMP(6) WITH TIME ZONE,
   rc_user            NUMBER          DEFAULT 0 NOT NULL,
-  rc_user_text       VARCHAR2(255)         NOT NULL,
+  rc_user_text       VARCHAR2(255)         NULL,
+  rc_actor           NUMBER          DEFAULT 0 NOT NULL,
   rc_namespace       NUMBER     DEFAULT 0 NOT NULL,
   rc_title           VARCHAR2(255)         NOT NULL,
   rc_comment         VARCHAR2(255),
@@ -651,6 +692,8 @@ CREATE INDEX &mw_prefix.recentchanges_i04 ON &mw_prefix.recentchanges (rc_new,rc
 CREATE INDEX &mw_prefix.recentchanges_i05 ON &mw_prefix.recentchanges (rc_ip);
 CREATE INDEX &mw_prefix.recentchanges_i06 ON &mw_prefix.recentchanges (rc_namespace, rc_user_text);
 CREATE INDEX &mw_prefix.recentchanges_i07 ON &mw_prefix.recentchanges (rc_user_text, rc_timestamp);
+CREATE INDEX &mw_prefix.rc_ns_actor ON &mw_prefix.recentchanges (rc_namespace, rc_actor);
+CREATE INDEX &mw_prefix.rc_actor ON &mw_prefix.recentchanges (rc_actor, rc_timestamp);
 CREATE INDEX &mw_prefix.recentchanges_i08 ON &mw_prefix.recentchanges (rc_namespace, rc_type, rc_patrolled, rc_timestamp);
 /*$mw$*/
 CREATE TRIGGER &mw_prefix.recentchanges_seq_trg BEFORE INSERT ON &mw_prefix.recentchanges
@@ -721,6 +764,7 @@ CREATE TABLE &mw_prefix.logging (
   log_timestamp   TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
   log_user        NUMBER                DEFAULT 0 NOT NULL,
   log_user_text 	VARCHAR2(255),
+  log_actor       NUMBER                DEFAULT 0 NOT NULL,
   log_namespace   NUMBER     DEFAULT 0 NOT NULL,
   log_title       VARCHAR2(255)         NOT NULL,
   log_page 				NUMBER,
@@ -739,6 +783,8 @@ CREATE INDEX &mw_prefix.logging_i04 ON &mw_prefix.logging (log_timestamp);
 CREATE INDEX &mw_prefix.logging_i05 ON &mw_prefix.logging (log_type, log_action, log_timestamp);
 CREATE INDEX &mw_prefix.logging_i06 ON &mw_prefix.logging (log_user_text, log_type, log_timestamp);
 CREATE INDEX &mw_prefix.logging_i07 ON &mw_prefix.logging (log_user_text, log_timestamp);
+CREATE INDEX &mw_prefix.actor_time ON &mw_prefix.logging (log_actor, log_timestamp);
+CREATE INDEX &mw_prefix.log_actor_type_time ON &mw_prefix.logging (log_actor, log_type, log_timestamp);
 /*$mw$*/
 CREATE TRIGGER &mw_prefix.logging_seq_trg BEFORE INSERT ON &mw_prefix.logging
 	FOR EACH ROW WHEN (new.log_id IS NULL)

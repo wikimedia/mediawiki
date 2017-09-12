@@ -116,12 +116,11 @@ class RebuildRecentchanges extends Maintenance {
 		$this->output( "Loading from page and revision tables...\n" );
 
 		$commentQuery = $commentStore->getJoin( 'rev_comment' );
+		$actorQuery = ActorMigration::newMigration()->getJoin( 'rev_user' );
 		$res = $dbw->select(
-			[ 'revision', 'page' ] + $commentQuery['tables'],
+			[ 'revision', 'page' ] + $commentQuery['tables'] + $actorQuery['tables'],
 			[
 				'rev_timestamp',
-				'rev_user',
-				'rev_user_text',
 				'rev_minor_edit',
 				'rev_id',
 				'rev_deleted',
@@ -129,7 +128,7 @@ class RebuildRecentchanges extends Maintenance {
 				'page_title',
 				'page_is_new',
 				'page_id'
-			] + $commentQuery['fields'],
+			] + $commentQuery['fields'] + $actorQuery['fields'],
 			[
 				'rev_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
 				'rev_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) )
@@ -138,19 +137,19 @@ class RebuildRecentchanges extends Maintenance {
 			[ 'ORDER BY' => 'rev_timestamp DESC' ],
 			[
 				'page' => [ 'JOIN', 'rev_page=page_id' ],
-			] + $commentQuery['joins']
+			] + $commentQuery['joins'] + $actorQuery['joins']
 		);
 
 		$this->output( "Inserting from page and revision tables...\n" );
 		$inserted = 0;
+		$actorMigration = ActorMigration::newMigration();
 		foreach ( $res as $row ) {
 			$comment = $commentStore->getComment( 'rev_comment', $row );
+			$user = User::newFromAnyId( $row->rev_user, $row->rev_user_text, $row->rev_actor );
 			$dbw->insert(
 				'recentchanges',
 				[
 					'rc_timestamp' => $row->rev_timestamp,
-					'rc_user' => $row->rev_user,
-					'rc_user_text' => $row->rev_user_text,
 					'rc_namespace' => $row->page_namespace,
 					'rc_title' => $row->page_title,
 					'rc_minor' => $row->rev_minor_edit,
@@ -162,7 +161,8 @@ class RebuildRecentchanges extends Maintenance {
 					'rc_type' => $row->page_is_new ? RC_NEW : RC_EDIT,
 					'rc_source' => $row->page_is_new ? RecentChange::SRC_NEW : RecentChange::SRC_EDIT,
 					'rc_deleted' => $row->rev_deleted
-				] + $commentStore->insert( $dbw, 'rc_comment', $comment ),
+				] + $commentStore->insert( $dbw, 'rc_comment', $comment )
+					+ $actorMigration->getInsertValues( $dbw, 'rc_user', $user ),
 				__METHOD__
 			);
 			if ( ( ++$inserted % $this->getBatchSize() ) == 0 ) {
@@ -274,12 +274,11 @@ class RebuildRecentchanges extends Maintenance {
 		$this->output( "Loading from user, page, and logging tables...\n" );
 
 		$commentQuery = $commentStore->getJoin( 'log_comment' );
+		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
 		$res = $dbw->select(
-			[ 'user', 'logging', 'page' ] + $commentQuery['tables'],
+			[ 'logging', 'page' ] + $commentQuery['tables'] + $actorQuery['tables'],
 			[
 				'log_timestamp',
-				'log_user',
-				'user_name',
 				'log_namespace',
 				'log_title',
 				'page_id',
@@ -288,11 +287,10 @@ class RebuildRecentchanges extends Maintenance {
 				'log_id',
 				'log_params',
 				'log_deleted'
-			] + $commentQuery['fields'],
+			] + $commentQuery['fields'] + $actorQuery['fields'],
 			[
 				'log_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
 				'log_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ),
-				'log_user=user_id',
 				// Some logs don't go in RC since they are private.
 				// @FIXME: core/extensions also have spammy logs that don't go in RC.
 				'log_type' => array_diff( $wgLogTypes, array_keys( $wgLogRestrictions ) ),
@@ -302,20 +300,20 @@ class RebuildRecentchanges extends Maintenance {
 			[
 				'page' =>
 					[ 'LEFT JOIN', [ 'log_namespace=page_namespace', 'log_title=page_title' ] ]
-			] + $commentQuery['joins']
+			] + $commentQuery['joins'] + $actorQuery['joins']
 		);
 
 		$field = $dbw->fieldInfo( 'recentchanges', 'rc_cur_id' );
 
 		$inserted = 0;
+		$actorMigration = ActorMigration::newMigration();
 		foreach ( $res as $row ) {
 			$comment = $commentStore->getComment( 'log_comment', $row );
+			$user = User::newFromAnyId( $row->log_user, $row->log_user_text, $row->log_actor );
 			$dbw->insert(
 				'recentchanges',
 				[
 					'rc_timestamp' => $row->log_timestamp,
-					'rc_user' => $row->log_user,
-					'rc_user_text' => $row->user_name,
 					'rc_namespace' => $row->log_namespace,
 					'rc_title' => $row->log_title,
 					'rc_minor' => 0,
@@ -334,7 +332,8 @@ class RebuildRecentchanges extends Maintenance {
 					'rc_logid' => $row->log_id,
 					'rc_params' => $row->log_params,
 					'rc_deleted' => $row->log_deleted
-				] + $commentStore->insert( $dbw, 'rc_comment', $comment ),
+				] + $commentStore->insert( $dbw, 'rc_comment', $comment )
+					+ $actorMigration->getInsertValues( $dbw, 'rc_user', $user ),
 				__METHOD__
 			);
 
@@ -352,8 +351,7 @@ class RebuildRecentchanges extends Maintenance {
 
 		$dbw = $this->getDB( DB_MASTER );
 
-		list( $recentchanges, $usergroups, $user ) =
-			$dbw->tableNamesN( 'recentchanges', 'user_groups', 'user' );
+		$userQuery = User::getQueryInfo();
 
 		# @FIXME: recognize other bot account groups (not the same as users with 'bot' rights)
 		# @NOTE: users with 'bot' rights choose when edits are bot edits or not. That information
@@ -363,32 +361,42 @@ class RebuildRecentchanges extends Maintenance {
 
 		# Flag our recent bot edits
 		if ( $botgroups ) {
-			$botwhere = $dbw->makeList( $botgroups );
-
 			$this->output( "Flagging bot account edits...\n" );
 
 			# Find all users that are bots
-			$sql = "SELECT DISTINCT user_name FROM $usergroups, $user " .
-				"WHERE ug_group IN($botwhere) AND user_id = ug_user";
-			$res = $dbw->query( $sql, __METHOD__ );
+			$res = $dbw->select(
+				array_merge( [ 'user_groups' ], $userQuery['tables'] ),
+				$userQuery['fields'],
+				[ 'ug_group' => $botgroups ],
+				__METHOD__,
+				[ 'DISTINCT' ],
+				[ 'user_group' => [ 'JOIN', 'user_id = ug_user' ] ] + $userQuery['joins']
+			);
 
 			$botusers = [];
 			foreach ( $res as $obj ) {
-				$botusers[] = $obj->user_name;
+				$botusers[] = User::newFromRow( $obj );
 			}
 
 			# Fill in the rc_bot field
 			if ( $botusers ) {
-				$rcids = $dbw->selectFieldValues(
-					'recentchanges',
-					'rc_id',
-					[
-						'rc_user_text' => $botusers,
-						"rc_timestamp > " . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
-						"rc_timestamp < " . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) )
-					],
-					__METHOD__
-				);
+				$actorQuery = ActorMigration::newMigration()->getWhere( $dbw, 'rc_user', $botusers, false );
+				$rcids = [];
+				foreach ( $actorQuery['orconds'] as $cond ) {
+					$rcids = array_merge( $rcids, $dbw->selectFieldValues(
+						[ 'recentchanges' ] + $actorQuery['tables'],
+						'rc_id',
+						[
+							"rc_timestamp > " . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
+							"rc_timestamp < " . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ),
+							$cond,
+						],
+						__METHOD__,
+						[],
+						$actorQuery['joins']
+					) );
+				}
+				$rcids = array_values( array_unique( $rcids ) );
 
 				foreach ( array_chunk( $rcids, $this->getBatchSize() ) as $rcidBatch ) {
 					$dbw->update(
@@ -404,28 +412,40 @@ class RebuildRecentchanges extends Maintenance {
 
 		# Flag our recent autopatrolled edits
 		if ( !$wgMiserMode && $autopatrolgroups ) {
-			$patrolwhere = $dbw->makeList( $autopatrolgroups );
 			$patrolusers = [];
 
 			$this->output( "Flagging auto-patrolled edits...\n" );
 
 			# Find all users in RC with autopatrol rights
-			$sql = "SELECT DISTINCT user_name FROM $usergroups, $user " .
-				"WHERE ug_group IN($patrolwhere) AND user_id = ug_user";
-			$res = $dbw->query( $sql, __METHOD__ );
+			$res = $dbw->select(
+				array_merge( [ 'user_groups' ], $userQuery['tables'] ),
+				$userQuery['fields'],
+				[ 'ug_group' => $autopatrolgroups ],
+				__METHOD__,
+				[ 'DISTINCT' ],
+				[ 'user_group' => [ 'JOIN', 'user_id = ug_user' ] ] + $userQuery['joins']
+			);
 
 			foreach ( $res as $obj ) {
-				$patrolusers[] = $dbw->addQuotes( $obj->user_name );
+				$patrolusers[] = User::newFromRow( $obj );
 			}
 
 			# Fill in the rc_patrolled field
 			if ( $patrolusers ) {
-				$patrolwhere = implode( ',', $patrolusers );
-				$sql2 = "UPDATE $recentchanges SET rc_patrolled=1 " .
-					"WHERE rc_user_text IN($patrolwhere) " .
-					"AND rc_timestamp > " . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ) . ' ' .
-					"AND rc_timestamp < " . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) );
-				$dbw->query( $sql2 );
+				$actorQuery = ActorMigration::newMigration()->getWhere( $dbw, 'rc_user', $patrolusers, false );
+				foreach ( $actorQuery['orconds'] as $cond ) {
+					$dbw->update(
+						'recentchanges',
+						[ 'rc_patrolled' => 1 ],
+						[
+							$cond,
+							'rc_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
+							'rc_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ),
+						],
+						__METHOD__
+					);
+					wfGetLBFactory()->waitForReplication();
+				}
 			}
 		}
 	}
