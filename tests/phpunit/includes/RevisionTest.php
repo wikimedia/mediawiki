@@ -198,6 +198,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::setUserIdAndName
 	 */
 	public function testSetUserIdAndName( $inputId, $expectedId, $name ) {
+		$this->hideDeprecated( 'Revision::setUserIdAndName' );
 		$rev = new Revision( [] );
 		$rev->setUserIdAndName( $inputId, $name );
 		$this->assertSame( $expectedId, $rev->getUser( Revision::RAW ) );
@@ -375,19 +376,18 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
 		$conditions = [ 'conditionsArray' ];
 
+		$revQuery = Revision::getQueryInfo( [ 'page', 'user' ] );
 		$db = $this->getMock( IDatabase::class );
 		$db->expects( $this->once() )
 			->method( 'selectRow' )
 			->with(
-				$this->equalTo( [ 'revision', 'page', 'user' ] ),
-				// We don't really care about the fields are they come from the selectField methods
-				$this->isType( 'array' ),
+				$this->equalTo( $revQuery['tables'] ),
+				$this->equalTo( $revQuery['fields'] ),
 				$this->equalTo( $conditions ),
 				// Method name
 				$this->equalTo( 'Revision::fetchFromConds' ),
 				$this->equalTo( $options ),
-				// We don't really care about the join conds are they come from the joinCond methods
-				$this->isType( 'array' )
+				$this->equalTo( $revQuery['joins'] )
 			)
 			->willReturn( 'RETURNVALUE' );
 
@@ -583,6 +583,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testUserJoinCond() {
 		$this->hideDeprecated( 'Revision::userJoinCond' );
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_OLD );
 		$this->assertEquals(
 			[ 'LEFT JOIN', [ 'rev_user != 0', 'user_id = rev_user' ] ],
 			Revision::userJoinCond()
@@ -610,6 +611,7 @@ class RevisionTest extends MediaWikiTestCase {
 				'rev_timestamp',
 				'rev_user_text',
 				'rev_user',
+				'rev_actor' => 'NULL',
 				'rev_minor_edit',
 				'rev_deleted',
 				'rev_len',
@@ -631,6 +633,7 @@ class RevisionTest extends MediaWikiTestCase {
 				'rev_timestamp',
 				'rev_user_text',
 				'rev_user',
+				'rev_actor' => 'NULL',
 				'rev_minor_edit',
 				'rev_deleted',
 				'rev_len',
@@ -652,6 +655,7 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->hideDeprecated( 'Revision::selectFields' );
 		$this->setMwGlobals( 'wgContentHandlerUseDB', $contentHandlerUseDB );
 		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_OLD );
 		$this->assertEquals( $expected, Revision::selectFields() );
 	}
 
@@ -667,6 +671,7 @@ class RevisionTest extends MediaWikiTestCase {
 				'ar_timestamp',
 				'ar_user_text',
 				'ar_user',
+				'ar_actor' => 'NULL',
 				'ar_minor_edit',
 				'ar_deleted',
 				'ar_len',
@@ -690,6 +695,7 @@ class RevisionTest extends MediaWikiTestCase {
 				'ar_timestamp',
 				'ar_user_text',
 				'ar_user',
+				'ar_actor' => 'NULL',
 				'ar_minor_edit',
 				'ar_deleted',
 				'ar_len',
@@ -711,6 +717,7 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->hideDeprecated( 'Revision::selectArchiveFields' );
 		$this->setMwGlobals( 'wgContentHandlerUseDB', $contentHandlerUseDB );
 		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_OLD );
 		$this->assertEquals( $expected, Revision::selectArchiveFields() );
 	}
 
@@ -760,10 +767,12 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	public function provideGetArchiveQueryInfo() {
-		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage OLD' => [
+		// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage OLD, wgActorTableSchemaMigrationStage OLD' => [
 			[
 				'wgContentHandlerUseDB' => false,
 				'wgCommentTableSchemaMigrationStage' => MIGRATION_OLD,
+				'wgActorTableSchemaMigrationStage' => MIGRATION_OLD,
 			],
 			[
 				'tables' => [ 'archive' ],
@@ -774,8 +783,6 @@ class RevisionTest extends MediaWikiTestCase {
 					'ar_text',
 					'ar_text_id',
 					'ar_timestamp',
-					'ar_user_text',
-					'ar_user',
 					'ar_minor_edit',
 					'ar_deleted',
 					'ar_len',
@@ -784,14 +791,18 @@ class RevisionTest extends MediaWikiTestCase {
 					'ar_comment_text' => 'ar_comment',
 					'ar_comment_data' => 'NULL',
 					'ar_comment_cid' => 'NULL',
+					'ar_user' => 'ar_user',
+					'ar_user_text' => 'ar_user_text',
+					'ar_actor' => 'NULL',
 				],
 				'joins' => [],
 			]
 		];
-		yield 'wgContentHandlerUseDB true, wgCommentTableSchemaMigrationStage OLD' => [
+		yield 'wgContentHandlerUseDB true, wgCommentTableSchemaMigrationStage OLD, wgActorTableSchemaMigrationStage OLD' => [
 			[
 				'wgContentHandlerUseDB' => true,
 				'wgCommentTableSchemaMigrationStage' => MIGRATION_OLD,
+				'wgActorTableSchemaMigrationStage' => MIGRATION_OLD,
 			],
 			[
 				'tables' => [ 'archive' ],
@@ -802,8 +813,6 @@ class RevisionTest extends MediaWikiTestCase {
 					'ar_text',
 					'ar_text_id',
 					'ar_timestamp',
-					'ar_user_text',
-					'ar_user',
 					'ar_minor_edit',
 					'ar_deleted',
 					'ar_len',
@@ -812,21 +821,26 @@ class RevisionTest extends MediaWikiTestCase {
 					'ar_comment_text' => 'ar_comment',
 					'ar_comment_data' => 'NULL',
 					'ar_comment_cid' => 'NULL',
+					'ar_user' => 'ar_user',
+					'ar_user_text' => 'ar_user_text',
+					'ar_actor' => 'NULL',
 					'ar_content_format',
 					'ar_content_model',
 				],
 				'joins' => [],
 			]
 		];
-		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage WRITE_BOTH' => [
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage WRITE_BOTH, wgActorTableSchemaMigrationStage WRITE_BOTH' => [
 			[
 				'wgContentHandlerUseDB' => false,
 				'wgCommentTableSchemaMigrationStage' => MIGRATION_WRITE_BOTH,
+				'wgActorTableSchemaMigrationStage' => MIGRATION_WRITE_BOTH,
 			],
 			[
 				'tables' => [
 					'archive',
 					'comment_ar_comment' => 'comment',
+					'actor_ar_user' => 'actor',
 				],
 				'fields' => [
 					'ar_id',
@@ -835,8 +849,6 @@ class RevisionTest extends MediaWikiTestCase {
 					'ar_text',
 					'ar_text_id',
 					'ar_timestamp',
-					'ar_user_text',
-					'ar_user',
 					'ar_minor_edit',
 					'ar_deleted',
 					'ar_len',
@@ -845,24 +857,33 @@ class RevisionTest extends MediaWikiTestCase {
 					'ar_comment_text' => 'COALESCE( comment_ar_comment.comment_text, ar_comment )',
 					'ar_comment_data' => 'comment_ar_comment.comment_data',
 					'ar_comment_cid' => 'comment_ar_comment.comment_id',
+					'ar_user' => 'COALESCE( actor_ar_user.actor_user, ar_user )',
+					'ar_user_text' => 'COALESCE( actor_ar_user.actor_name, ar_user_text )',
+					'ar_actor' => 'ar_actor',
 				],
 				'joins' => [
 					'comment_ar_comment' => [
 						'LEFT JOIN',
 						'comment_ar_comment.comment_id = ar_comment_id',
 					],
+					'actor_ar_user' => [
+						'LEFT JOIN',
+						'actor_ar_user.actor_id = ar_actor',
+					],
 				],
 			]
 		];
-		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage WRITE_NEW' => [
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage WRITE_NEW, wgActorTableSchemaMigrationStage WRITE_NEW' => [
 			[
 				'wgContentHandlerUseDB' => false,
 				'wgCommentTableSchemaMigrationStage' => MIGRATION_WRITE_NEW,
+				'wgActorTableSchemaMigrationStage' => MIGRATION_WRITE_NEW,
 			],
 			[
 				'tables' => [
 					'archive',
 					'comment_ar_comment' => 'comment',
+					'actor_ar_user' => 'actor',
 				],
 				'fields' => [
 					'ar_id',
@@ -871,8 +892,6 @@ class RevisionTest extends MediaWikiTestCase {
 					'ar_text',
 					'ar_text_id',
 					'ar_timestamp',
-					'ar_user_text',
-					'ar_user',
 					'ar_minor_edit',
 					'ar_deleted',
 					'ar_len',
@@ -881,24 +900,33 @@ class RevisionTest extends MediaWikiTestCase {
 					'ar_comment_text' => 'COALESCE( comment_ar_comment.comment_text, ar_comment )',
 					'ar_comment_data' => 'comment_ar_comment.comment_data',
 					'ar_comment_cid' => 'comment_ar_comment.comment_id',
+					'ar_user' => 'COALESCE( actor_ar_user.actor_user, ar_user )',
+					'ar_user_text' => 'COALESCE( actor_ar_user.actor_name, ar_user_text )',
+					'ar_actor' => 'ar_actor',
 				],
 				'joins' => [
 					'comment_ar_comment' => [
 						'LEFT JOIN',
 						'comment_ar_comment.comment_id = ar_comment_id',
 					],
+					'actor_ar_user' => [
+						'LEFT JOIN',
+						'actor_ar_user.actor_id = ar_actor',
+					],
 				],
 			]
 		];
-		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage NEW' => [
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage NEW, wgActorTableSchemaMigrationStage NEW' => [
 			[
 				'wgContentHandlerUseDB' => false,
 				'wgCommentTableSchemaMigrationStage' => MIGRATION_NEW,
+				'wgActorTableSchemaMigrationStage' => MIGRATION_NEW,
 			],
 			[
 				'tables' => [
 					'archive',
 					'comment_ar_comment' => 'comment',
+					'actor_ar_user' => 'actor',
 				],
 				'fields' => [
 					'ar_id',
@@ -907,8 +935,6 @@ class RevisionTest extends MediaWikiTestCase {
 					'ar_text',
 					'ar_text_id',
 					'ar_timestamp',
-					'ar_user_text',
-					'ar_user',
 					'ar_minor_edit',
 					'ar_deleted',
 					'ar_len',
@@ -917,15 +943,23 @@ class RevisionTest extends MediaWikiTestCase {
 					'ar_comment_text' => 'comment_ar_comment.comment_text',
 					'ar_comment_data' => 'comment_ar_comment.comment_data',
 					'ar_comment_cid' => 'comment_ar_comment.comment_id',
+					'ar_user' => 'actor_ar_user.actor_user',
+					'ar_user_text' => 'actor_ar_user.actor_name',
+					'ar_actor' => 'ar_actor',
 				],
 				'joins' => [
 					'comment_ar_comment' => [
 						'JOIN',
 						'comment_ar_comment.comment_id = ar_comment_id',
 					],
+					'actor_ar_user' => [
+						'JOIN',
+						'actor_ar_user.actor_id = ar_actor',
+					],
 				],
 			]
 		];
+		// @codingStandardsIgnoreEnd
 	}
 
 	/**
@@ -941,10 +975,12 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	public function provideGetQueryInfo() {
-		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage OLD, opts none' => [
+		// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage OLD, wgActorTableSchemaMigrationStage OLD, opts none' => [
 			[
 				'wgContentHandlerUseDB' => false,
 				'wgCommentTableSchemaMigrationStage' => MIGRATION_OLD,
+				'wgActorTableSchemaMigrationStage' => MIGRATION_OLD,
 			],
 			[],
 			[
@@ -954,8 +990,6 @@ class RevisionTest extends MediaWikiTestCase {
 					'rev_page',
 					'rev_text_id',
 					'rev_timestamp',
-					'rev_user_text',
-					'rev_user',
 					'rev_minor_edit',
 					'rev_deleted',
 					'rev_len',
@@ -964,14 +998,18 @@ class RevisionTest extends MediaWikiTestCase {
 					'rev_comment_text' => 'rev_comment',
 					'rev_comment_data' => 'NULL',
 					'rev_comment_cid' => 'NULL',
+					'rev_user' => 'rev_user',
+					'rev_user_text' => 'rev_user_text',
+					'rev_actor' => 'NULL',
 				],
 				'joins' => [],
 			],
 		];
-		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage OLD, opts page' => [
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage OLD, wgActorTableSchemaMigrationStage OLD, opts page' => [
 			[
 				'wgContentHandlerUseDB' => false,
 				'wgCommentTableSchemaMigrationStage' => MIGRATION_OLD,
+				'wgActorTableSchemaMigrationStage' => MIGRATION_OLD,
 			],
 			[ 'page' ],
 			[
@@ -981,8 +1019,6 @@ class RevisionTest extends MediaWikiTestCase {
 					'rev_page',
 					'rev_text_id',
 					'rev_timestamp',
-					'rev_user_text',
-					'rev_user',
 					'rev_minor_edit',
 					'rev_deleted',
 					'rev_len',
@@ -991,6 +1027,9 @@ class RevisionTest extends MediaWikiTestCase {
 					'rev_comment_text' => 'rev_comment',
 					'rev_comment_data' => 'NULL',
 					'rev_comment_cid' => 'NULL',
+					'rev_user' => 'rev_user',
+					'rev_user_text' => 'rev_user_text',
+					'rev_actor' => 'NULL',
 					'page_namespace',
 					'page_title',
 					'page_id',
@@ -1006,10 +1045,11 @@ class RevisionTest extends MediaWikiTestCase {
 				],
 			],
 		];
-		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage OLD, opts user' => [
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage OLD, wgActorTableSchemaMigrationStage OLD, opts user' => [
 			[
 				'wgContentHandlerUseDB' => false,
 				'wgCommentTableSchemaMigrationStage' => MIGRATION_OLD,
+				'wgActorTableSchemaMigrationStage' => MIGRATION_OLD,
 			],
 			[ 'user' ],
 			[
@@ -1019,8 +1059,6 @@ class RevisionTest extends MediaWikiTestCase {
 					'rev_page',
 					'rev_text_id',
 					'rev_timestamp',
-					'rev_user_text',
-					'rev_user',
 					'rev_minor_edit',
 					'rev_deleted',
 					'rev_len',
@@ -1029,6 +1067,9 @@ class RevisionTest extends MediaWikiTestCase {
 					'rev_comment_text' => 'rev_comment',
 					'rev_comment_data' => 'NULL',
 					'rev_comment_cid' => 'NULL',
+					'rev_user' => 'rev_user',
+					'rev_user_text' => 'rev_user_text',
+					'rev_actor' => 'NULL',
 					'user_name',
 				],
 				'joins' => [
@@ -1042,10 +1083,11 @@ class RevisionTest extends MediaWikiTestCase {
 				],
 			],
 		];
-		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage OLD, opts text' => [
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage OLD, wgActorTableSchemaMigrationStage OLD, opts text' => [
 			[
 				'wgContentHandlerUseDB' => false,
 				'wgCommentTableSchemaMigrationStage' => MIGRATION_OLD,
+				'wgActorTableSchemaMigrationStage' => MIGRATION_OLD,
 			],
 			[ 'text' ],
 			[
@@ -1055,8 +1097,6 @@ class RevisionTest extends MediaWikiTestCase {
 					'rev_page',
 					'rev_text_id',
 					'rev_timestamp',
-					'rev_user_text',
-					'rev_user',
 					'rev_minor_edit',
 					'rev_deleted',
 					'rev_len',
@@ -1065,6 +1105,9 @@ class RevisionTest extends MediaWikiTestCase {
 					'rev_comment_text' => 'rev_comment',
 					'rev_comment_data' => 'NULL',
 					'rev_comment_cid' => 'NULL',
+					'rev_user' => 'rev_user',
+					'rev_user_text' => 'rev_user_text',
+					'rev_actor' => 'NULL',
 					'old_text',
 					'old_flags',
 				],
@@ -1076,10 +1119,11 @@ class RevisionTest extends MediaWikiTestCase {
 				],
 			],
 		];
-		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage OLD, opts 3' => [
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage OLD, wgActorTableSchemaMigrationStage OLD, opts 3' => [
 			[
 				'wgContentHandlerUseDB' => false,
 				'wgCommentTableSchemaMigrationStage' => MIGRATION_OLD,
+				'wgActorTableSchemaMigrationStage' => MIGRATION_OLD,
 			],
 			[ 'text', 'page', 'user' ],
 			[
@@ -1089,8 +1133,6 @@ class RevisionTest extends MediaWikiTestCase {
 					'rev_page',
 					'rev_text_id',
 					'rev_timestamp',
-					'rev_user_text',
-					'rev_user',
 					'rev_minor_edit',
 					'rev_deleted',
 					'rev_len',
@@ -1099,6 +1141,9 @@ class RevisionTest extends MediaWikiTestCase {
 					'rev_comment_text' => 'rev_comment',
 					'rev_comment_data' => 'NULL',
 					'rev_comment_cid' => 'NULL',
+					'rev_user' => 'rev_user',
+					'rev_user_text' => 'rev_user_text',
+					'rev_actor' => 'NULL',
 					'page_namespace',
 					'page_title',
 					'page_id',
@@ -1128,10 +1173,11 @@ class RevisionTest extends MediaWikiTestCase {
 				],
 			],
 		];
-		yield 'wgContentHandlerUseDB true, wgCommentTableSchemaMigrationStage OLD, opts none' => [
+		yield 'wgContentHandlerUseDB true, wgCommentTableSchemaMigrationStage OLD, wgActorTableSchemaMigrationStage OLD, opts none' => [
 			[
 				'wgContentHandlerUseDB' => true,
 				'wgCommentTableSchemaMigrationStage' => MIGRATION_OLD,
+				'wgActorTableSchemaMigrationStage' => MIGRATION_OLD,
 			],
 			[],
 			[
@@ -1141,8 +1187,6 @@ class RevisionTest extends MediaWikiTestCase {
 					'rev_page',
 					'rev_text_id',
 					'rev_timestamp',
-					'rev_user_text',
-					'rev_user',
 					'rev_minor_edit',
 					'rev_deleted',
 					'rev_len',
@@ -1151,16 +1195,20 @@ class RevisionTest extends MediaWikiTestCase {
 					'rev_comment_text' => 'rev_comment',
 					'rev_comment_data' => 'NULL',
 					'rev_comment_cid' => 'NULL',
+					'rev_user' => 'rev_user',
+					'rev_user_text' => 'rev_user_text',
+					'rev_actor' => 'NULL',
 					'rev_content_format',
 					'rev_content_model',
 				],
 				'joins' => [],
 			],
 		];
-		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage WRITE_BOTH, opts none' => [
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage WRITE_BOTH, wgActorTableSchemaMigrationStage WRITE_BOTH, opts none' => [
 			[
 				'wgContentHandlerUseDB' => false,
 				'wgCommentTableSchemaMigrationStage' => MIGRATION_WRITE_BOTH,
+				'wgActorTableSchemaMigrationStage' => MIGRATION_WRITE_BOTH,
 			],
 			[],
 			[
@@ -1168,14 +1216,14 @@ class RevisionTest extends MediaWikiTestCase {
 					'revision',
 					'temp_rev_comment' => 'revision_comment_temp',
 					'comment_rev_comment' => 'comment',
+					'temp_rev_user' => 'revision_actor_temp',
+					'actor_rev_user' => 'actor',
 				],
 				'fields' => [
 					'rev_id',
 					'rev_page',
 					'rev_text_id',
 					'rev_timestamp',
-					'rev_user_text',
-					'rev_user',
 					'rev_minor_edit',
 					'rev_deleted',
 					'rev_len',
@@ -1184,6 +1232,9 @@ class RevisionTest extends MediaWikiTestCase {
 					'rev_comment_text' => 'COALESCE( comment_rev_comment.comment_text, rev_comment )',
 					'rev_comment_data' => 'comment_rev_comment.comment_data',
 					'rev_comment_cid' => 'comment_rev_comment.comment_id',
+					'rev_user' => 'COALESCE( actor_rev_user.actor_user, rev_user )',
+					'rev_user_text' => 'COALESCE( actor_rev_user.actor_name, rev_user_text )',
+					'rev_actor' => 'temp_rev_user.revactor_actor',
 				],
 				'joins' => [
 					'temp_rev_comment' => [
@@ -1194,13 +1245,22 @@ class RevisionTest extends MediaWikiTestCase {
 						'LEFT JOIN',
 						'comment_rev_comment.comment_id = temp_rev_comment.revcomment_comment_id',
 					],
+					'temp_rev_user' => [
+						'LEFT JOIN',
+						'temp_rev_user.revactor_rev = rev_id',
+					],
+					'actor_rev_user' => [
+						'LEFT JOIN',
+						'actor_rev_user.actor_id = temp_rev_user.revactor_actor',
+					],
 				],
 			],
 		];
-		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage WRITE_NEW, opts none' => [
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage WRITE_NEW, wgActorTableSchemaMigrationStage WRITE_NEW, opts none' => [
 			[
 				'wgContentHandlerUseDB' => false,
 				'wgCommentTableSchemaMigrationStage' => MIGRATION_WRITE_NEW,
+				'wgActorTableSchemaMigrationStage' => MIGRATION_WRITE_NEW,
 			],
 			[],
 			[
@@ -1208,14 +1268,14 @@ class RevisionTest extends MediaWikiTestCase {
 					'revision',
 					'temp_rev_comment' => 'revision_comment_temp',
 					'comment_rev_comment' => 'comment',
+					'temp_rev_user' => 'revision_actor_temp',
+					'actor_rev_user' => 'actor',
 				],
 				'fields' => [
 					'rev_id',
 					'rev_page',
 					'rev_text_id',
 					'rev_timestamp',
-					'rev_user_text',
-					'rev_user',
 					'rev_minor_edit',
 					'rev_deleted',
 					'rev_len',
@@ -1224,6 +1284,9 @@ class RevisionTest extends MediaWikiTestCase {
 					'rev_comment_text' => 'COALESCE( comment_rev_comment.comment_text, rev_comment )',
 					'rev_comment_data' => 'comment_rev_comment.comment_data',
 					'rev_comment_cid' => 'comment_rev_comment.comment_id',
+					'rev_user' => 'COALESCE( actor_rev_user.actor_user, rev_user )',
+					'rev_user_text' => 'COALESCE( actor_rev_user.actor_name, rev_user_text )',
+					'rev_actor' => 'temp_rev_user.revactor_actor',
 				],
 				'joins' => [
 					'temp_rev_comment' => [
@@ -1234,13 +1297,22 @@ class RevisionTest extends MediaWikiTestCase {
 						'LEFT JOIN',
 						'comment_rev_comment.comment_id = temp_rev_comment.revcomment_comment_id',
 					],
+					'temp_rev_user' => [
+						'LEFT JOIN',
+						'temp_rev_user.revactor_rev = rev_id',
+					],
+					'actor_rev_user' => [
+						'LEFT JOIN',
+						'actor_rev_user.actor_id = temp_rev_user.revactor_actor',
+					],
 				],
 			],
 		];
-		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage NEW, opts none' => [
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage NEW, wgActorTableSchemaMigrationStage NEW, opts none' => [
 			[
 				'wgContentHandlerUseDB' => false,
 				'wgCommentTableSchemaMigrationStage' => MIGRATION_NEW,
+				'wgActorTableSchemaMigrationStage' => MIGRATION_NEW,
 			],
 			[],
 			[
@@ -1248,14 +1320,14 @@ class RevisionTest extends MediaWikiTestCase {
 					'revision',
 					'temp_rev_comment' => 'revision_comment_temp',
 					'comment_rev_comment' => 'comment',
+					'temp_rev_user' => 'revision_actor_temp',
+					'actor_rev_user' => 'actor',
 				],
 				'fields' => [
 					'rev_id',
 					'rev_page',
 					'rev_text_id',
 					'rev_timestamp',
-					'rev_user_text',
-					'rev_user',
 					'rev_minor_edit',
 					'rev_deleted',
 					'rev_len',
@@ -1264,6 +1336,9 @@ class RevisionTest extends MediaWikiTestCase {
 					'rev_comment_text' => 'comment_rev_comment.comment_text',
 					'rev_comment_data' => 'comment_rev_comment.comment_data',
 					'rev_comment_cid' => 'comment_rev_comment.comment_id',
+					'rev_user' => 'actor_rev_user.actor_user',
+					'rev_user_text' => 'actor_rev_user.actor_name',
+					'rev_actor' => 'temp_rev_user.revactor_actor',
 				],
 				'joins' => [
 					'temp_rev_comment' => [
@@ -1274,9 +1349,201 @@ class RevisionTest extends MediaWikiTestCase {
 						'JOIN',
 						'comment_rev_comment.comment_id = temp_rev_comment.revcomment_comment_id',
 					],
+					'temp_rev_user' => [
+						'JOIN',
+						'temp_rev_user.revactor_rev = rev_id',
+					],
+					'actor_rev_user' => [
+						'JOIN',
+						'actor_rev_user.actor_id = temp_rev_user.revactor_actor',
+					],
 				],
 			],
 		];
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage WRITE_BOTH, wgActorTableSchemaMigrationStage WRITE_BOTH, opts user' => [
+			[
+				'wgContentHandlerUseDB' => false,
+				'wgCommentTableSchemaMigrationStage' => MIGRATION_WRITE_BOTH,
+				'wgActorTableSchemaMigrationStage' => MIGRATION_WRITE_BOTH,
+			],
+			[ 'user' ],
+			[
+				'tables' => [
+					'revision',
+					'temp_rev_comment' => 'revision_comment_temp',
+					'comment_rev_comment' => 'comment',
+					'temp_rev_user' => 'revision_actor_temp',
+					'actor_rev_user' => 'actor',
+					'user',
+				],
+				'fields' => [
+					'rev_id',
+					'rev_page',
+					'rev_text_id',
+					'rev_timestamp',
+					'rev_minor_edit',
+					'rev_deleted',
+					'rev_len',
+					'rev_parent_id',
+					'rev_sha1',
+					'rev_comment_text' => 'COALESCE( comment_rev_comment.comment_text, rev_comment )',
+					'rev_comment_data' => 'comment_rev_comment.comment_data',
+					'rev_comment_cid' => 'comment_rev_comment.comment_id',
+					'rev_user' => 'COALESCE( actor_rev_user.actor_user, rev_user )',
+					'rev_user_text' => 'COALESCE( actor_rev_user.actor_name, rev_user_text )',
+					'rev_actor' => 'temp_rev_user.revactor_actor',
+					'user_name',
+				],
+				'joins' => [
+					'temp_rev_comment' => [
+						'LEFT JOIN',
+						'temp_rev_comment.revcomment_rev = rev_id',
+					],
+					'comment_rev_comment' => [
+						'LEFT JOIN',
+						'comment_rev_comment.comment_id = temp_rev_comment.revcomment_comment_id',
+					],
+					'temp_rev_user' => [
+						'LEFT JOIN',
+						'temp_rev_user.revactor_rev = rev_id',
+					],
+					'actor_rev_user' => [
+						'LEFT JOIN',
+						'actor_rev_user.actor_id = temp_rev_user.revactor_actor',
+					],
+					'user' => [
+						'LEFT JOIN',
+						[
+							'COALESCE( actor_rev_user.actor_user, rev_user ) != 0',
+							'user_id = COALESCE( actor_rev_user.actor_user, rev_user )',
+						],
+					],
+				],
+			],
+		];
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage WRITE_NEW, wgActorTableSchemaMigrationStage WRITE_NEW, opts user' => [
+			[
+				'wgContentHandlerUseDB' => false,
+				'wgCommentTableSchemaMigrationStage' => MIGRATION_WRITE_NEW,
+				'wgActorTableSchemaMigrationStage' => MIGRATION_WRITE_NEW,
+			],
+			[ 'user' ],
+			[
+				'tables' => [
+					'revision',
+					'temp_rev_comment' => 'revision_comment_temp',
+					'comment_rev_comment' => 'comment',
+					'temp_rev_user' => 'revision_actor_temp',
+					'actor_rev_user' => 'actor',
+					'user',
+				],
+				'fields' => [
+					'rev_id',
+					'rev_page',
+					'rev_text_id',
+					'rev_timestamp',
+					'rev_minor_edit',
+					'rev_deleted',
+					'rev_len',
+					'rev_parent_id',
+					'rev_sha1',
+					'rev_comment_text' => 'COALESCE( comment_rev_comment.comment_text, rev_comment )',
+					'rev_comment_data' => 'comment_rev_comment.comment_data',
+					'rev_comment_cid' => 'comment_rev_comment.comment_id',
+					'rev_user' => 'COALESCE( actor_rev_user.actor_user, rev_user )',
+					'rev_user_text' => 'COALESCE( actor_rev_user.actor_name, rev_user_text )',
+					'rev_actor' => 'temp_rev_user.revactor_actor',
+					'user_name',
+				],
+				'joins' => [
+					'temp_rev_comment' => [
+						'LEFT JOIN',
+						'temp_rev_comment.revcomment_rev = rev_id',
+					],
+					'comment_rev_comment' => [
+						'LEFT JOIN',
+						'comment_rev_comment.comment_id = temp_rev_comment.revcomment_comment_id',
+					],
+					'temp_rev_user' => [
+						'LEFT JOIN',
+						'temp_rev_user.revactor_rev = rev_id',
+					],
+					'actor_rev_user' => [
+						'LEFT JOIN',
+						'actor_rev_user.actor_id = temp_rev_user.revactor_actor',
+					],
+					'user' => [
+						'LEFT JOIN',
+						[
+							'COALESCE( actor_rev_user.actor_user, rev_user ) != 0',
+							'user_id = COALESCE( actor_rev_user.actor_user, rev_user )',
+						],
+					],
+				],
+			],
+		];
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage NEW, wgActorTableSchemaMigrationStage NEW, opts user' => [
+			[
+				'wgContentHandlerUseDB' => false,
+				'wgCommentTableSchemaMigrationStage' => MIGRATION_NEW,
+				'wgActorTableSchemaMigrationStage' => MIGRATION_NEW,
+			],
+			[ 'user' ],
+			[
+				'tables' => [
+					'revision',
+					'temp_rev_comment' => 'revision_comment_temp',
+					'comment_rev_comment' => 'comment',
+					'temp_rev_user' => 'revision_actor_temp',
+					'actor_rev_user' => 'actor',
+					'user',
+				],
+				'fields' => [
+					'rev_id',
+					'rev_page',
+					'rev_text_id',
+					'rev_timestamp',
+					'rev_minor_edit',
+					'rev_deleted',
+					'rev_len',
+					'rev_parent_id',
+					'rev_sha1',
+					'rev_comment_text' => 'comment_rev_comment.comment_text',
+					'rev_comment_data' => 'comment_rev_comment.comment_data',
+					'rev_comment_cid' => 'comment_rev_comment.comment_id',
+					'rev_user' => 'actor_rev_user.actor_user',
+					'rev_user_text' => 'actor_rev_user.actor_name',
+					'rev_actor' => 'temp_rev_user.revactor_actor',
+					'user_name',
+				],
+				'joins' => [
+					'temp_rev_comment' => [
+						'JOIN',
+						'temp_rev_comment.revcomment_rev = rev_id',
+					],
+					'comment_rev_comment' => [
+						'JOIN',
+						'comment_rev_comment.comment_id = temp_rev_comment.revcomment_comment_id',
+					],
+					'temp_rev_user' => [
+						'JOIN',
+						'temp_rev_user.revactor_rev = rev_id',
+					],
+					'actor_rev_user' => [
+						'JOIN',
+						'actor_rev_user.actor_id = temp_rev_user.revactor_actor',
+					],
+					'user' => [
+						'LEFT JOIN',
+						[
+							'actor_rev_user.actor_user != 0',
+							'user_id = actor_rev_user.actor_user',
+						],
+					],
+				],
+			],
+		];
+		// @codingStandardsIgnoreEnd
 	}
 
 	/**

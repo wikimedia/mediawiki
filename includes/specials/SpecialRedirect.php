@@ -177,11 +177,13 @@ class SpecialRedirect extends FormSpecialPage {
 			return null;
 		}
 
+		$logQuery = ActorMigration::newKey( 'log_user' )->getJoin();
+
 		$logparams = [
-			'log_id',
-			'log_timestamp',
-			'log_type',
-			'log_user_text',
+			'log_id' => 'log_id',
+			'log_timestamp' => 'log_timestamp',
+			'log_type' => 'log_type',
+			'log_user_text' => $logQuery['fields']['log_user_text'],
 		];
 
 		$dbr = wfGetDB( DB_REPLICA );
@@ -197,9 +199,12 @@ class SpecialRedirect extends FormSpecialPage {
 		// Returns all fields mentioned in $logparams of the logs
 		// with the same timestamp as the one returned by the statement above
 		$logsSameTimestamps = $dbr->select(
-			'logging',
+			[ 'logging' ] + $logQuery['tables'],
 			$logparams,
-			[ "log_timestamp = ($inner)" ]
+			[ "log_timestamp = ($inner)" ],
+			__METHOD__,
+			[],
+			$logQuery['joins']
 		);
 		if ( $logsSameTimestamps->numRows() === 0 ) {
 			return null;
@@ -238,7 +243,7 @@ class SpecialRedirect extends FormSpecialPage {
 			'log_user_text' => 'user'
 		];
 
-		foreach ( $logparams as $logKey ) {
+		foreach ( $logparams as $logKey => $dummy ) {
 			$query[$keys[$logKey]] = $matchedRows[0]->$logKey;
 		}
 		$query['offset'] = $query['offset'] + 1;
