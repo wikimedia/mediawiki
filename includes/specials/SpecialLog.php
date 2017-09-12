@@ -32,6 +32,8 @@ class SpecialLog extends SpecialPage {
 	}
 
 	public function execute( $par ) {
+		global $wgActorTableSchemaMigrationStage;
+
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
@@ -80,10 +82,30 @@ class SpecialLog extends SpecialPage {
 		if ( $opts->getValue( 'type' ) == 'suppress' ) {
 			$offender = User::newFromName( $opts->getValue( 'offender' ), false );
 			if ( $offender ) {
-				if ( $offender->getId() > 0 ) {
-					$qc = [ 'ls_field' => 'target_author_id', 'ls_value' => $offender->getId() ];
+				if ( $wgActorTableSchemaMigrationStage === MIGRATION_NEW ) {
+					$qc = [ 'ls_field' => 'target_author_actor', 'ls_value' => $offender->getActorId() ];
 				} else {
-					$qc = [ 'ls_field' => 'target_author_ip', 'ls_value' => $offender->getName() ];
+					if ( $offender->getId() > 0 ) {
+						$field = 'target_author_id';
+						$value = $offender->getId();
+					} else {
+						$field = 'target_author_ip';
+						$value = $offender->getName();
+					}
+					if ( $wgActorTableSchemaMigrationStage === MIGRATION_OLD || !$offender->getActorId() ) {
+						$qc = [ 'ls_field' => $field, 'ls_value' => $value ];
+					} else {
+						$db = wfGetDB( DB_REPLICA );
+						$qc = [
+							'ls_field' => [ 'target_author_actor', $field ], // So LogPager::getQueryInfo() works right
+							$db->makeList( [
+								$db->makeList(
+									[ 'ls_field' => 'target_author_actor', 'ls_value' => $offender->getActorId() ], LIST_AND
+								),
+								$db->makeList( [ 'ls_field' => $field, 'ls_value' => $value ], LIST_AND ),
+							], LIST_OR ),
+						];
+					}
 				}
 			}
 		} else {
