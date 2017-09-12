@@ -3794,7 +3794,7 @@ class EditPage {
 	 * @return string
 	 */
 	public function getPreviewText() {
-		global $wgRawHtml, $wgLang;
+		global $wgRawHtml;
 		global $wgAllowUserCss, $wgAllowUserJs;
 
 		$out = $this->context->getOutput();
@@ -3830,7 +3830,8 @@ class EditPage {
 
 			# provide a anchor link to the editform
 			$continueEditing = '<span class="mw-continue-editing">' .
-				'[[#' . self::EDITFORM_ID . '|' . $wgLang->getArrow() . ' ' .
+				'[[#' . self::EDITFORM_ID . '|' .
+				$this->context->getLanguage()->getArrow() . ' ' .
 				$this->context->msg( 'continue-editing' )->text() . ']]</span>';
 			if ( $this->mTriedSave && !$this->mTokenOk ) {
 				if ( $this->mTokenOkExceptSuffix ) {
@@ -4448,11 +4449,10 @@ class EditPage {
 	 * @param string|array|bool $match Text (or array of texts) which triggered one or more filters
 	 */
 	public function spamPageWithContent( $match = false ) {
-		global $wgLang;
 		$this->textbox2 = $this->textbox1;
 
 		if ( is_array( $match ) ) {
-			$match = $wgLang->listToText( $match );
+			$match = $this->context->getLanguage()->listToText( $match );
 		}
 		$out = $this->context->getOutput();
 		$out->prepareErrorPage( $this->context->msg( 'spamprotectiontitle' ) );
@@ -4640,19 +4640,20 @@ class EditPage {
 	 * @since 1.29
 	 */
 	protected function addLongPageWarningHeader() {
-		global $wgMaxArticleSize, $wgLang;
+		global $wgMaxArticleSize;
 
 		if ( $this->contentLength === false ) {
 			$this->contentLength = strlen( $this->textbox1 );
 		}
 
 		$out = $this->context->getOutput();
+		$lang = $this->context->getLanguage();
 		if ( $this->tooBig || $this->contentLength > $wgMaxArticleSize * 1024 ) {
 			$out->wrapWikiMsg( "<div class='error' id='mw-edit-longpageerror'>\n$1\n</div>",
 				[
 					'longpageerror',
-					$wgLang->formatNum( round( $this->contentLength / 1024, 3 ) ),
-					$wgLang->formatNum( $wgMaxArticleSize )
+					$lang->formatNum( round( $this->contentLength / 1024, 3 ) ),
+					$lang->formatNum( $wgMaxArticleSize )
 				]
 			);
 		} else {
@@ -4660,7 +4661,7 @@ class EditPage {
 				$out->wrapWikiMsg( "<div id='mw-edit-longpage-hint'>\n$1\n</div>",
 					[
 						'longpage-hint',
-						$wgLang->formatSize( strlen( $this->textbox1 ) ),
+						$lang->formatSize( strlen( $this->textbox1 ) ),
 						strlen( $this->textbox1 )
 					]
 				);
