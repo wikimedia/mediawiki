@@ -49,6 +49,10 @@ class RevDelFileItem extends RevDelItem {
 		return 'oi_user_text';
 	}
 
+	public function getAuthorActorField() {
+		return 'oi_actor';
+	}
+
 	public function getId() {
 		$parts = explode( '!', $this->row->oi_archive_name );
 

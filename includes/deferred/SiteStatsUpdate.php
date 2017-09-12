@@ -145,18 +145,21 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 		$dbr = wfGetDB( DB_REPLICA, 'vslow' );
 		# Get non-bot users than did some recent action other than making accounts.
 		# If account creation is included, the number gets inflated ~20+ fold on enwiki.
+		$rcQuery = RecentChange::getQueryInfo();
 		$activeUsers = $dbr->selectField(
-			'recentchanges',
-			'COUNT( DISTINCT rc_user_text )',
+			$rcQuery['tables'],
+			'COUNT( DISTINCT ' . $rcQuery['fields']['rc_user_text'] . ' )',
 			[
 				'rc_type != ' . $dbr->addQuotes( RC_EXTERNAL ), // Exclude external (Wikidata)
-				'rc_user != 0',
+				ActorMigration::isNotAnon( $rcQuery['fields']['rc_user'] ),
 				'rc_bot' => 0,
 				'rc_log_type != ' . $dbr->addQuotes( 'newusers' ) . ' OR rc_log_type IS NULL',
 				'rc_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( wfTimestamp( TS_UNIX )
 					- $wgActiveUserDays * 24 * 3600 ) ),
 			],
-			__METHOD__
+			__METHOD__,
+			[],
+			$rcQuery['joins']
 		);
 		$dbw->update(
 			'site_stats',
