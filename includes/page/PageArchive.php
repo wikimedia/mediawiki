@@ -178,14 +178,14 @@ class PageArchive {
 	public function listRevisions() {
 		$dbr = wfGetDB( DB_REPLICA );
 		$commentQuery = CommentStore::newKey( 'ar_comment' )->getJoin();
+		$actorQuery = ActorMigration::newKey( 'ar_user' )->getJoin();
 
-		$tables = [ 'archive' ] + $commentQuery['tables'];
+		$tables = [ 'archive' ] + $commentQuery['tables'] + $actorQuery['tables'];
 
 		$fields = [
-			'ar_minor_edit', 'ar_timestamp', 'ar_user', 'ar_user_text',
-			'ar_len', 'ar_deleted', 'ar_rev_id', 'ar_sha1',
-			'ar_page_id'
-		] + $commentQuery['fields'];
+			'ar_minor_edit', 'ar_timestamp', 'ar_len', 'ar_deleted',
+			'ar_rev_id', 'ar_sha1', 'ar_page_id'
+		] + $commentQuery['fields'] + $actorQuery['fields'];
 
 		if ( $this->config->get( 'ContentHandlerUseDB' ) ) {
 			$fields[] = 'ar_content_format';
@@ -197,7 +197,7 @@ class PageArchive {
 
 		$options = [ 'ORDER BY' => 'ar_timestamp DESC' ];
 
-		$join_conds = [] + $commentQuery['joins'];
+		$join_conds = [] + $commentQuery['joins'] + $actorQuery['joins'];
 
 		ChangeTags::modifyDisplayQuery(
 			$tables,
@@ -543,16 +543,15 @@ class PageArchive {
 		}
 
 		$commentQuery = CommentStore::newKey( 'ar_comment' )->getJoin();
+		$actorQuery = ActorMigration::newKey( 'ar_user' )->getJoin();
 
-		$tables = [ 'archive', 'revision' ] + $commentQuery['tables'];
+		$tables = [ 'archive', 'revision' ] + $commentQuery['tables'] + $actorQuery['tables'];
 
 		$fields = [
 			'ar_id',
 			'ar_rev_id',
 			'rev_id',
 			'ar_text',
-			'ar_user',
-			'ar_user_text',
 			'ar_timestamp',
 			'ar_minor_edit',
 			'ar_flags',
@@ -561,7 +560,7 @@ class PageArchive {
 			'ar_page_id',
 			'ar_len',
 			'ar_sha1'
-		] + $commentQuery['fields'];
+		] + $commentQuery['fields'] + $actorQuery['fields'];
 
 		if ( $this->config->get( 'ContentHandlerUseDB' ) ) {
 			$fields[] = 'ar_content_format';
@@ -570,7 +569,7 @@ class PageArchive {
 
 		$join_conds = [
 			'revision' => [ 'LEFT JOIN', 'ar_rev_id=rev_id' ],
-		] + $commentQuery['joins'];
+		] + $commentQuery['joins'] + $actorQuery['joins'];
 
 		/**
 		 * Select each archived revision...

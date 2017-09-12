@@ -197,6 +197,7 @@ class RevisionUnitTest extends MediaWikiTestCase {
 	 * @covers Revision::setUserIdAndName
 	 */
 	public function testSetUserIdAndName( $inputId, $expectedId, $name ) {
+		$this->hideDeprecated( 'Revision::setUserIdAndName' );
 		$rev = new Revision( [] );
 		$rev->setUserIdAndName( $inputId, $name );
 		$this->assertSame( $expectedId, $rev->getUser( Revision::RAW ) );
@@ -373,19 +374,18 @@ class RevisionUnitTest extends MediaWikiTestCase {
 	public function testFetchFromConds( $flags, array $options ) {
 		$conditions = [ 'conditionsArray' ];
 
+		$revQuery = Revision::getQueryInfo( [ 'page', 'user' ] );
 		$db = $this->getMock( IDatabase::class );
 		$db->expects( $this->once() )
 			->method( 'selectRow' )
 			->with(
-				$this->equalTo( [ 'revision', 'page', 'user' ] ),
-				// We don't really care about the fields are they come from the selectField methods
-				$this->isType( 'array' ),
+				$this->equalTo( $revQuery['tables'] ),
+				$this->equalTo( $revQuery['fields'] ),
 				$this->equalTo( $conditions ),
 				// Method name
 				$this->equalTo( 'Revision::fetchFromConds' ),
 				$this->equalTo( $options ),
-				// We don't really care about the join conds are they come from the joinCond methods
-				$this->isType( 'array' )
+				$this->equalTo( $revQuery['joins'] )
 			)
 			->willReturn( 'RETURNVALUE' );
 

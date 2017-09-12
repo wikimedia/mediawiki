@@ -76,14 +76,17 @@ class ApiQueryContributors extends ApiQueryBase {
 
 		$result = $this->getResult();
 
+		$actorQuery = ActorMigration::newKey( 'rev_user' )->getJoin();
+
 		// First, count anons
-		$this->addTables( 'revision' );
+		$this->addTables( [ 'revision' ] + $actorQuery['tables'] );
+		$this->addJoinConds( $actorQuery['joins'] );
 		$this->addFields( [
 			'page' => 'rev_page',
-			'anons' => 'COUNT(DISTINCT rev_user_text)',
+			'anons' => 'COUNT(DISTINCT ' . $actorQuery['fields']['rev_user_text'] . ')',
 		] );
 		$this->addWhereFld( 'rev_page', $pages );
-		$this->addWhere( 'rev_user = 0' );
+		$this->addWhere( ActorMigration::isAnon( $actorQuery['fields']['rev_user'] ) );
 		$this->addWhere( $db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
 		$this->addOption( 'GROUP BY', 'rev_page' );
 		$res = $this->select( __METHOD__ );
@@ -105,24 +108,26 @@ class ApiQueryContributors extends ApiQueryBase {
 
 		// Next, add logged-in users
 		$this->resetQueryParams();
-		$this->addTables( 'revision' );
+		$this->addTables( [ 'revision' ] + $actorQuery['tables'] );
+		$this->addJoinConds( $actorQuery['joins'] );
 		$this->addFields( [
 			'page' => 'rev_page',
-			'user' => 'rev_user',
-			'username' => 'MAX(rev_user_text)', // Non-MySQL databases don't like partial group-by
+			'userid' => $actorQuery['fields']['rev_user'],
+			// Non-MySQL databases don't like partial group-by
+			'username' => 'MAX(' . $actorQuery['fields']['rev_user_text'] . ')',
 		] );
 		$this->addWhereFld( 'rev_page', $pages );
-		$this->addWhere( 'rev_user != 0' );
+		$this->addWhere( ActorMigration::isNotAnon( $actorQuery['fields']['rev_user'] ) );
 		$this->addWhere( $db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
-		$this->addOption( 'GROUP BY', 'rev_page, rev_user' );
+		$this->addOption( 'GROUP BY', [ 'rev_page', $actorQuery['fields']['rev_user'] ] );
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
 		// Force a sort order to ensure that properties are grouped by page
 		// But only if pp_page is not constant in the WHERE clause.
 		if ( count( $pages ) > 1 ) {
-			$this->addOption( 'ORDER BY', 'rev_page, rev_user' );
+			$this->addOption( 'ORDER BY', [ 'page', 'userid' ] );
 		} else {
-			$this->addOption( 'ORDER BY', 'rev_user' );
+			$this->addOption( 'ORDER BY', 'userid' );
 		}
 
 		$limitGroups = [];
@@ -161,7 +166,7 @@ class ApiQueryContributors extends ApiQueryBase {
 			$this->addJoinConds( [ 'user_groups' => [
 				$excludeGroups ? 'LEFT OUTER JOIN' : 'INNER JOIN',
 				[
-					'ug_user=rev_user',
+					'ug_user=' . $actorQuery['fields']['rev_user'],
 					'ug_group' => $limitGroups,
 					'ug_expiry IS NULL OR ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
 				]
@@ -177,7 +182,7 @@ class ApiQueryContributors extends ApiQueryBase {
 			$this->addWhere(
 				"rev_page > $cont_page OR " .
 				"(rev_page = $cont_page AND " .
-				"rev_user >= $cont_user)"
+				$actorQuery['fields']['rev_user'] . " >= $cont_user)"
 			);
 		}
 
@@ -187,17 +192,17 @@ class ApiQueryContributors extends ApiQueryBase {
 			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that
 				// there are additional pages to be had. Stop here...
-				$this->setContinueEnumParameter( 'continue', $row->page . '|' . $row->user );
+				$this->setContinueEnumParameter( 'continue', $row->page . '|' . $row->userid );
 
 				return;
 			}
 
 			$fit = $this->addPageSubItem( $row->page,
-				[ 'userid' => (int)$row->user, 'name' => $row->username ],
+				[ 'userid' => (int)$row->userid, 'name' => $row->username ],
 				'user'
 			);
 			if ( !$fit ) {
-				$this->setContinueEnumParameter( 'continue', $row->page . '|' . $row->user );
+				$this->setContinueEnumParameter( 'continue', $row->page . '|' . $row->userid );
 
 				return;
 			}
