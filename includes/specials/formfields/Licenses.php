@@ -187,24 +187,3 @@ class Licenses extends HTMLFormField {
 		return Html::rawElement( 'select', $attribs, $this->html );
 	}
 }
-
-/**
- * A License class for use on Special:Upload (represents a single type of license).
- */
-class License {
-	/** @var string */
-	public $template;
-
-	/** @var string */
-	public $text;
-
-	/**
-	 * @param string $str License name??
-	 */
-	function __construct( $str ) {
-		list( $text, $template ) = explode( '|', strrev( $str ), 2 );
-
-		$this->template = strrev( $template );
-		$this->text = strrev( $text );
-	}
-}
