@@ -1113,7 +1113,7 @@ abstract class HTMLFormField {
 
 	/**
 	 * Get options and make them into arrays suitable for OOUI.
-	 * @return array Options for inclusion in a select or whatever.
+	 * @return array Options for inclusion in a SelectWidget.
 	 */
 	public function getOptionsOOUI() {
 		$oldoptions = $this->getOptions();
@@ -1125,10 +1125,22 @@ abstract class HTMLFormField {
 		$options = [];
 
 		foreach ( $oldoptions as $text => $data ) {
-			$options[] = [
-				'data' => (string)$data,
-				'label' => (string)$text,
-			];
+			if ( is_array( $data ) ) {
+				$options[] = [
+					'optgroup' => (string)$text
+				];
+				foreach( $data as $subtext => $subdata ) {
+					$options[] = [
+						'data' => (string)$subdata,
+						'label' => (string)$subtext,
+					];
+				}
+			} else {
+				$options[] = [
+					'data' => (string)$data,
+					'label' => (string)$text,
+				];
+			}
 		}
 
 		return $options;
