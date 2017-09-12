@@ -198,7 +198,9 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'addTable', 'content', 'patch-content.sql' ],
 			[ 'addTable', 'content_models', 'patch-content_models.sql' ],
 			[ 'addTable', 'slots', 'patch-slots.sql' ],
-			[ 'addTable', 'slot_roles', 'patch-slot_roles.sql' ]
+			[ 'addTable', 'slot_roles', 'patch-slot_roles.sql' ],
+			[ 'addTable', 'actor', 'patch-actor-table.sql' ],
+			[ 'migrateActors' ],
 		];
 	}
 

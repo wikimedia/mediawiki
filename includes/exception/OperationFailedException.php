@@ -1,6 +1,6 @@
 <?php
 /**
- * Interface for objects representing user identity.
+ * Exception thrown when some operation failed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,40 +18,12 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- */
-
-namespace MediaWiki\User;
-
-/**
- * Interface for objects representing user identity.
- *
- * This represents the identity of a user in the context of page revisions and log entries.
  *
  * @since 1.31
  */
-interface UserIdentity {
 
-	/**
-	 * @since 1.31
-	 *
-	 * @return int The user ID. May be 0 for anonymous users or for users with no local account.
-	 */
-	public function getId();
-
-	/**
-	 * @since 1.31
-	 *
-	 * @return string The user's logical name. May be an IPv4 or IPv6 address for anonymous users.
-	 */
-	public function getName();
-
-	/**
-	 * @since 1.31
-	 *
-	 * @return string The user's actor ID. May be 0 if no actor ID is set.
-	 */
-	public function getActorId();
-
-	// TODO: we may want to (optionally?) provide a global ID, see CentralIdLookup.
-
+/**
+ * Exception thrown when some operation failed.
+ */
+class OperationFailedException extends RuntimeException {
 }
