@@ -114,8 +114,12 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		$this->addFieldsIf( 'ar_parent_id', $fld_parentid );
 		$this->addFieldsIf( 'ar_rev_id', $fld_revid );
-		$this->addFieldsIf( 'ar_user_text', $fld_user );
-		$this->addFieldsIf( 'ar_user', $fld_userid );
+		if ( $fld_user || $fld_userid ) {
+			$actorQuery = ActorMigration::newKey( 'ar_user' )->getJoin();
+			$this->addTables( $actorQuery['tables'] );
+			$this->addFields( $actorQuery['fields'] );
+			$this->addJoinConds( $actorQuery['joins'] );
+		}
 		$this->addFieldsIf( 'ar_minor_edit', $fld_minor );
 		$this->addFieldsIf( 'ar_len', $fld_len );
 		$this->addFieldsIf( 'ar_sha1', $fld_sha1 );
@@ -203,10 +207,19 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		}
 
 		if ( !is_null( $params['user'] ) ) {
-			$this->addWhereFld( 'ar_user_text', $params['user'] );
+			// Don't query by user ID here, it might be able to use the ar_usertext_timestamp index.
+			$actorQuery = ActorMigration::newKey( 'ar_user' )
+				->getWhere( $db, User::newFromName( $params['user'], false ), false );
+			$this->addTables( $actorQuery['tables'] );
+			$this->addJoinConds( $actorQuery['joins'] );
+			$this->addWhere( $actorQuery['conds'] );
 		} elseif ( !is_null( $params['excludeuser'] ) ) {
-			$this->addWhere( 'ar_user_text != ' .
-				$db->addQuotes( $params['excludeuser'] ) );
+			// Here there's no chance of using ar_usertext_timestamp.
+			$actorQuery = ActorMigration::newKey( 'ar_user' )
+				->getWhere( $db, User::newFromName( $params['excludeuser'], false ) );
+			$this->addTables( $actorQuery['tables'] );
+			$this->addJoinConds( $actorQuery['joins'] );
+			$this->addWhere( 'NOT(' . $actorQuery['conds'] . ')' );
 		}
 
 		if ( !is_null( $params['user'] ) || !is_null( $params['excludeuser'] ) ) {
@@ -255,10 +268,6 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		}
 
 		$this->addOption( 'LIMIT', $limit + 1 );
-		$this->addOption(
-			'USE INDEX',
-			[ 'archive' => ( $mode == 'user' ? 'ar_usertext_timestamp' : 'name_title_timestamp' ) ]
-		);
 		if ( $mode == 'all' ) {
 			if ( $params['unique'] ) {
 				// @todo Does this work on non-MySQL?
