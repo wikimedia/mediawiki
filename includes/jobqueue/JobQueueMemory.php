@@ -177,7 +177,7 @@ class JobQueueMemory extends JobQueue {
 		return new MappedIterator(
 			$unclaimed,
 			function ( $value ) {
-				$this->jobFromSpecInternal( $value );
+				return $this->jobFromSpecInternal( $value );
 			}
 		);
 	}
@@ -196,7 +196,7 @@ class JobQueueMemory extends JobQueue {
 		return new MappedIterator(
 			$claimed,
 			function ( $value ) {
-				$this->jobFromSpecInternal( $value );
+				return $this->jobFromSpecInternal( $value );
 			}
 		);
 	}
