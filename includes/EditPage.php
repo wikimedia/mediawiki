@@ -3784,30 +3784,30 @@ class EditPage {
 	protected function getLastDelete() {
 		$dbr = wfGetDB( DB_REPLICA );
 		$commentQuery = CommentStore::newKey( 'log_comment' )->getJoin();
+		$actorQuery = ActorMigration::newKey( 'log_user' )->getJoin();
 		$data = $dbr->selectRow(
-			[ 'logging', 'user' ] + $commentQuery['tables'],
+			array_merge( [ 'logging' ], $commentQuery['tables'], $actorQuery['tables'], [ 'user' ] ),
 			[
 				'log_type',
 				'log_action',
 				'log_timestamp',
-				'log_user',
 				'log_namespace',
 				'log_title',
 				'log_params',
 				'log_deleted',
 				'user_name'
-			] + $commentQuery['fields'], [
+			] + $commentQuery['fields'] + $actorQuery['fields'],
+			[
 				'log_namespace' => $this->mTitle->getNamespace(),
 				'log_title' => $this->mTitle->getDBkey(),
 				'log_type' => 'delete',
 				'log_action' => 'delete',
-				'user_id=log_user'
 			],
 			__METHOD__,
 			[ 'LIMIT' => 1, 'ORDER BY' => 'log_timestamp DESC' ],
 			[
-				'user' => [ 'JOIN', 'user_id=log_user' ],
-			] + $commentQuery['joins']
+				'user' => [ 'JOIN', 'user_id=' . $actorQuery['fields']['log_user'] ],
+			] + $commentQuery['joins'] + $actorQuery['joins']
 		);
 		// Quick paranoid permission checks...
 		if ( is_object( $data ) ) {

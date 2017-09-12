@@ -286,9 +286,13 @@ class ProtectedPagesPager extends TablePager {
 		}
 
 		$commentQuery = CommentStore::newKey( 'log_comment' )->getJoin();
+		$actorQuery = ActorMigration::newKey( 'log_user' )->getJoin();
 
 		return [
-			'tables' => [ 'page', 'page_restrictions', 'log_search', 'logging' ] + $commentQuery['tables'],
+			'tables' => [
+				'page', 'page_restrictions', 'log_search',
+				'logparen' => [ 'logging' ] + $commentQuery['tables'] + $actorQuery['tables'],
+			],
 			'fields' => [
 				'pr_id',
 				'page_namespace',
@@ -299,9 +303,8 @@ class ProtectedPagesPager extends TablePager {
 				'pr_expiry',
 				'pr_cascade',
 				'log_timestamp',
-				'log_user',
 				'log_deleted',
-			] + $commentQuery['fields'],
+			] + $commentQuery['fields'] + $actorQuery['fields'],
 			'conds' => $conds,
 			'join_conds' => [
 				'log_search' => [
@@ -309,12 +312,12 @@ class ProtectedPagesPager extends TablePager {
 						'ls_field' => 'pr_id', 'ls_value = ' . $this->mDb->buildStringCast( 'pr_id' )
 					]
 				],
-				'logging' => [
+				'logparen' => [
 					'LEFT JOIN', [
 						'ls_log_id = log_id'
 					]
 				]
-			] + $commentQuery['joins']
+			] + $commentQuery['joins'] + $actorQuery['joins']
 		];
 	}
 

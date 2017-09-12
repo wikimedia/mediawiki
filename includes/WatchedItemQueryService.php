@@ -89,6 +89,10 @@ class WatchedItemQueryService {
 		return $this->commentStore;
 	}
 
+	private function getActorMigration() {
+		return new ActorMigration( 'rc_user' );
+	}
+
 	/**
 	 * @param User $user
 	 * @param array $options Allowed keys:
@@ -335,6 +339,14 @@ class WatchedItemQueryService {
 		if ( in_array( self::INCLUDE_COMMENT, $options['includeFields'] ) ) {
 			$tables += $this->getCommentStore()->getJoin()['tables'];
 		}
+		if ( in_array( self::INCLUDE_USER, $options['includeFields'] ) ||
+			in_array( self::INCLUDE_USER_ID, $options['includeFields'] ) ||
+			in_array( self::FILTER_ANON, $options['filters'] ) ||
+			in_array( self::FILTER_NOT_ANON, $options['filters'] ) ||
+			array_key_exists( 'onlyByUser', $options ) || array_key_exists( 'notByUser', $options )
+		) {
+			$tables += $this->getActorMigration()->getJoin()['tables'];
+		}
 		return $tables;
 	}
 
@@ -367,10 +379,10 @@ class WatchedItemQueryService {
 			$fields = array_merge( $fields, [ 'rc_type', 'rc_minor', 'rc_bot' ] );
 		}
 		if ( in_array( self::INCLUDE_USER, $options['includeFields'] ) ) {
-			$fields[] = 'rc_user_text';
+			$fields['rc_user_text'] = $this->getActorMigration()->getJoin()['fields']['rc_user_text'];
 		}
 		if ( in_array( self::INCLUDE_USER_ID, $options['includeFields'] ) ) {
-			$fields[] = 'rc_user';
+			$fields['rc_user'] = $this->getActorMigration()->getJoin()['fields']['rc_user'];
 		}
 		if ( in_array( self::INCLUDE_COMMENT, $options['includeFields'] ) ) {
 			$fields += $this->getCommentStore()->getJoin()['fields'];
@@ -465,9 +477,9 @@ class WatchedItemQueryService {
 		}
 
 		if ( in_array( self::FILTER_ANON, $options['filters'] ) ) {
-			$conds[] = 'rc_user = 0';
+			$conds[] = $this->getActorMigration()->getJoin()['fields']['rc_user'] . ' = 0';
 		} elseif ( in_array( self::FILTER_NOT_ANON, $options['filters'] ) ) {
-			$conds[] = 'rc_user != 0';
+			$conds[] = $this->getActorMigration()->getJoin()['fields']['rc_user'] . ' != 0';
 		}
 
 		if ( $user->useRCPatrol() || $user->useNPPatrol() ) {
@@ -519,9 +531,11 @@ class WatchedItemQueryService {
 		$conds = [];
 
 		if ( array_key_exists( 'onlyByUser', $options ) ) {
-			$conds['rc_user_text'] = $options['onlyByUser'];
+			$user = User::newFromName( $options['onlyByUser'], false );
+			$conds[] = $this->getActorMigration()->getWhere( $db, $user )['conds'];
 		} elseif ( array_key_exists( 'notByUser', $options ) ) {
-			$conds[] = 'rc_user_text != ' . $db->addQuotes( $options['notByUser'] );
+			$user = User::newFromName( $options['notByUser'], false );
+			$conds[] = 'NOT(' . $this->getActorMigration()->getWhere( $db, $user )['conds'] . ')';
 		}
 
 		// Avoid brute force searches (T19342)
@@ -677,6 +691,14 @@ class WatchedItemQueryService {
 		}
 		if ( in_array( self::INCLUDE_COMMENT, $options['includeFields'] ) ) {
 			$joinConds += $this->getCommentStore()->getJoin()['joins'];
+		}
+		if ( in_array( self::INCLUDE_USER, $options['includeFields'] ) ||
+			in_array( self::INCLUDE_USER_ID, $options['includeFields'] ) ||
+			in_array( self::FILTER_ANON, $options['filters'] ) ||
+			in_array( self::FILTER_NOT_ANON, $options['filters'] ) ||
+			array_key_exists( 'onlyByUser', $options ) || array_key_exists( 'notByUser', $options )
+		) {
+			$joinConds += $this->getActorMigration()->getJoin()['joins'];
 		}
 		return $joinConds;
 	}

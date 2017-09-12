@@ -34,6 +34,7 @@
  *  rc_cur_id       page_id of associated page entry
  *  rc_user         user id who made the entry
  *  rc_user_text    user name who made the entry
+ *  rc_actor        actor id who made the entry
  *  rc_comment      edit summary
  *  rc_this_oldid   rev_id associated with this entry (or zero)
  *  rc_last_oldid   rev_id associated with the entry before this one (or zero)
@@ -210,11 +211,24 @@ class RecentChange {
 	 * @return array
 	 */
 	public static function selectFields() {
+		global $wgActorTableSchemaMigrationStage;
+
+		if ( $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
+			// If code is using this instead of self::getQueryInfo(), there's a
+			// decent chance it's going to try to directly access
+			// $row->rc_user or $row->rc_user_text and we can't give it
+			// useful values here once those aren't being written anymore.
+			throw new BadMethodCallException(
+				'Cannot use ' . __METHOD__ . ' when $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH'
+			);
+		}
+
 		return [
 			'rc_id',
 			'rc_timestamp',
 			'rc_user',
 			'rc_user_text',
+			'rc_actor' => null,
 			'rc_namespace',
 			'rc_title',
 			'rc_minor',
@@ -248,13 +262,12 @@ class RecentChange {
 	 */
 	public static function getQueryInfo() {
 		$commentQuery = CommentStore::newKey( 'rc_comment' )->getJoin();
+		$actorQuery = ActorMigration::newKey( 'rc_user' )->getJoin();
 		return [
-			'tables' => [ 'recentchanges' ] + $commentQuery['tables'],
+			'tables' => [ 'recentchanges' ] + $commentQuery['tables'] + $actorQuery['tables'],
 			'fields' => [
 				'rc_id',
 				'rc_timestamp',
-				'rc_user',
-				'rc_user_text',
 				'rc_namespace',
 				'rc_title',
 				'rc_minor',
@@ -274,8 +287,8 @@ class RecentChange {
 				'rc_log_type',
 				'rc_log_action',
 				'rc_params',
-			] + $commentQuery['fields'],
-			'joins' => $commentQuery['joins'],
+			] + $commentQuery['fields'] + $actorQuery['fields'],
+			'joins' => $commentQuery['joins'] + $actorQuery['joins'],
 		];
 	}
 
@@ -313,7 +326,9 @@ class RecentChange {
 	 */
 	public function getPerformer() {
 		if ( $this->mPerformer === false ) {
-			if ( $this->mAttribs['rc_user'] ) {
+			if ( $this->mAttribs['rc_actor'] ) {
+				$this->mPerformer = User::newFromActorId( $this->mAttribs['rc_actor'] );
+			} elseif ( $this->mAttribs['rc_user'] ) {
 				$this->mPerformer = User::newFromId( $this->mAttribs['rc_user'] );
 			} else {
 				$this->mPerformer = User::newFromName( $this->mAttribs['rc_user_text'], false );
@@ -367,11 +382,21 @@ class RecentChange {
 			unset( $this->mAttribs['rc_cur_id'] );
 		}
 
-		# Convert mAttribs['rc_comment'] for CommentStore
 		$row = $this->mAttribs;
+
+		# Convert mAttribs['rc_comment'] for CommentStore
 		$comment = $row['rc_comment'];
 		unset( $row['rc_comment'], $row['rc_comment_text'], $row['rc_comment_data'] );
 		$row += CommentStore::newKey( 'rc_comment' )->insert( $dbw, $comment );
+
+		# Convert mAttribs['rc_user'] etc for ActorMigration
+		$user = User::newFromRow( [
+			'user_id' => $row['rc_user'],
+			'user_name' => $row['rc_user_text'],
+			'actor_id' => $row['rc_actor'],
+		] );
+		unset( $row['rc_user'], $row['rc_user_text'], $row['rc_actor'] );
+		$row += ActorMigration::newKey( 'rc_user' )->getInsertValues( $dbw, $user );
 
 		# Don't reuse an existing rc_id for the new row, if one happens to be
 		# set for some reason.
@@ -628,6 +653,8 @@ class RecentChange {
 		$bot, $ip = '', $oldSize = 0, $newSize = 0, $newId = 0, $patrol = 0,
 		$tags = []
 	) {
+		global $wgActorTableSchemaMigrationStage;
+
 		$rc = new RecentChange;
 		$rc->mTitle = $title;
 		$rc->mPerformer = $user;
@@ -641,6 +668,7 @@ class RecentChange {
 			'rc_cur_id' => $title->getArticleID(),
 			'rc_user' => $user->getId(),
 			'rc_user_text' => $user->getName(),
+			'rc_actor' => $wgActorTableSchemaMigrationStage > MIGRATION_OLD ? $user->getActorId() : 0,
 			'rc_comment' => &$comment,
 			'rc_comment_text' => &$comment,
 			'rc_comment_data' => null,
@@ -703,6 +731,8 @@ class RecentChange {
 		$timestamp, &$title, $minor, &$user, $comment, $bot,
 		$ip = '', $size = 0, $newId = 0, $patrol = 0, $tags = []
 	) {
+		global $wgActorTableSchemaMigrationStage;
+
 		$rc = new RecentChange;
 		$rc->mTitle = $title;
 		$rc->mPerformer = $user;
@@ -716,6 +746,8 @@ class RecentChange {
 			'rc_cur_id' => $title->getArticleID(),
 			'rc_user' => $user->getId(),
 			'rc_user_text' => $user->getName(),
+			'rc_actor' => $wgActorTableSchemaMigrationStage > MIGRATION_OLD ? $user->getActorId() : 0,
+			'rc_actor' => $user->getActorId(),
 			'rc_comment' => &$comment,
 			'rc_comment_text' => &$comment,
 			'rc_comment_data' => null,
@@ -808,7 +840,7 @@ class RecentChange {
 	public static function newLogEntry( $timestamp, &$title, &$user, $actionComment, $ip,
 		$type, $action, $target, $logComment, $params, $newId = 0, $actionCommentIRC = '',
 		$revId = 0, $isPatrollable = false ) {
-		global $wgRequest;
+		global $wgRequest, $wgActorTableSchemaMigrationStage;
 
 		# # Get pageStatus for email notification
 		switch ( $type . '-' . $action ) {
@@ -848,6 +880,7 @@ class RecentChange {
 			'rc_cur_id' => $target->getArticleID(),
 			'rc_user' => $user->getId(),
 			'rc_user_text' => $user->getName(),
+			'rc_actor' => $wgActorTableSchemaMigrationStage > MIGRATION_OLD ? $user->getActorId() : 0,
 			'rc_comment' => &$logComment,
 			'rc_comment_text' => &$logComment,
 			'rc_comment_data' => null,
@@ -912,6 +945,8 @@ class RecentChange {
 		$deleted = 0,
 		$added = null
 	) {
+		global $wgActorTableSchemaMigrationStage;
+
 		// Done in a backwards compatible way.
 		$params = [
 			'hidden-cat' => WikiCategoryPage::factory( $categoryTitle )->isHidden()
@@ -933,6 +968,9 @@ class RecentChange {
 			'rc_cur_id' => $pageTitle->getArticleID(),
 			'rc_user' => $user ? $user->getId() : 0,
 			'rc_user_text' => $user ? $user->getName() : '',
+			'rc_actor' => $user
+				? $wgActorTableSchemaMigrationStage > MIGRATION_OLD ? $user->getActorId() : 0
+				: null,
 			'rc_comment' => &$comment,
 			'rc_comment_text' => &$comment,
 			'rc_comment_data' => null,
@@ -981,6 +1019,8 @@ class RecentChange {
 	 * @param mixed $row
 	 */
 	public function loadFromRow( $row ) {
+		global $wgActorTableSchemaMigrationStage;
+
 		$this->mAttribs = get_object_vars( $row );
 		$this->mAttribs['rc_timestamp'] = wfTimestamp( TS_MW, $this->mAttribs['rc_timestamp'] );
 		// rc_deleted MUST be set
@@ -1000,6 +1040,12 @@ class RecentChange {
 		$this->mAttribs['rc_comment'] = &$comment;
 		$this->mAttribs['rc_comment_text'] = &$comment;
 		$this->mAttribs['rc_comment_data'] = null;
+
+		if ( $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
+			$user = User::newFromActorId( $this->mAttribs['rc_actor'] );
+			$this->mAttribs['rc_user'] = $user->getId();
+			$this->mAttribs['rc_user_text'] = $user->getName();
+		}
 	}
 
 	/**
@@ -1009,8 +1055,16 @@ class RecentChange {
 	 * @return mixed
 	 */
 	public function getAttribute( $name ) {
+		global $wgActorTableSchemaMigrationStage;
+
 		if ( $name === 'rc_comment' ) {
 			return CommentStore::newKey( 'rc_comment' )->getComment( $this->mAttribs, true )->text;
+		}
+		if ( $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH && $name === 'rc_user' ) {
+			return User::newFromActorId( $this->mAttribs['rc_actor'] )->getId();
+		}
+		if ( $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH && $name === 'rc_user_text' ) {
+			return User::newFromActorId( $this->mAttribs['rc_actor'] )->getName();
 		}
 		return isset( $this->mAttribs[$name] ) ? $this->mAttribs[$name] : null;
 	}
