@@ -610,11 +610,13 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow_1_29
 	 */
 	public function testNewRevisionFromRow_anonEdit() {
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_WRITE_BOTH );
+
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
 		/** @var Revision $rev */
 		$rev = $page->doEditContent(
-			new WikitextContent( __METHOD__. 'a' ),
-			__METHOD__. 'a'
+			new WikitextContent( __METHOD__ . 'a' ),
+			__METHOD__ . 'a'
 		)->value['revision'];
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
@@ -631,10 +633,12 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow_1_29
 	 */
 	public function testNewRevisionFromRow_userEdit() {
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_WRITE_BOTH );
+
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
 		/** @var Revision $rev */
 		$rev = $page->doEditContent(
-			new WikitextContent( __METHOD__. 'b' ),
+			new WikitextContent( __METHOD__ . 'b' ),
 			__METHOD__ . 'b',
 			0,
 			false,
@@ -975,7 +979,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
 		/** @var Revision $rev */
 		$rev = $page->doEditContent(
-			new WikitextContent( __METHOD__. 'b' ),
+			new WikitextContent( __METHOD__ . 'b' ),
 			__METHOD__ . 'b',
 			0,
 			false,
