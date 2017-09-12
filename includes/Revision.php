@@ -35,12 +35,8 @@ class Revision implements IDBAccessObject {
 	protected $mId;
 	/** @var int|null */
 	protected $mPage;
-	/** @var string */
-	protected $mUserText;
-	/** @var string */
-	protected $mOrigUserText;
-	/** @var int */
-	protected $mUser;
+	/** @var User */
+	protected $mUserObj;
 	/** @var bool */
 	protected $mMinorEdit;
 	/** @var string */
@@ -197,6 +193,7 @@ class Revision implements IDBAccessObject {
 				->getCommentLegacy( wfGetDB( DB_REPLICA ), $row, true )->text,
 			'user'       => $row->ar_user,
 			'user_text'  => $row->ar_user_text,
+			'actor'      => isset( $row->ar_actor ) ? $row->ar_actor : null,
 			'timestamp'  => $row->ar_timestamp,
 			'minor_edit' => $row->ar_minor_edit,
 			'text_id'    => isset( $row->ar_text_id ) ? $row->ar_text_id : null,
@@ -426,7 +423,18 @@ class Revision implements IDBAccessObject {
 	 * @return array
 	 */
 	public static function userJoinCond() {
+		global $wgActorTableSchemaMigrationStage;
+
 		wfDeprecated( __METHOD__, '1.31' );
+		if ( $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
+			// If code is using this instead of self::getQueryInfo(), there's
+			// no way the join it's trying to do can work once the old fields
+			// aren't being written anymore.
+			throw new BadMethodCallException(
+				'Cannot use ' . __METHOD__ . ' when $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH'
+			);
+		}
+
 		return [ 'LEFT JOIN', [ 'rev_user != 0', 'user_id = rev_user' ] ];
 	}
 
@@ -449,7 +457,17 @@ class Revision implements IDBAccessObject {
 	 * @return array
 	 */
 	public static function selectFields() {
-		global $wgContentHandlerUseDB;
+		global $wgContentHandlerUseDB, $wgActorTableSchemaMigrationStage;
+
+		if ( $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
+			// If code is using this instead of self::getQueryInfo(), there's a
+			// decent chance it's going to try to directly access
+			// $row->rev_user or $row->rev_user_text and we can't give it
+			// useful values here once those aren't being written anymore.
+			throw new BadMethodCallException(
+				'Cannot use ' . __METHOD__ . ' when $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH'
+			);
+		}
 
 		wfDeprecated( __METHOD__, '1.31' );
 
@@ -460,6 +478,7 @@ class Revision implements IDBAccessObject {
 			'rev_timestamp',
 			'rev_user_text',
 			'rev_user',
+			'rev_actor' => null,
 			'rev_minor_edit',
 			'rev_deleted',
 			'rev_len',
@@ -484,9 +503,18 @@ class Revision implements IDBAccessObject {
 	 * @return array
 	 */
 	public static function selectArchiveFields() {
-		global $wgContentHandlerUseDB;
+		global $wgContentHandlerUseDB, $wgActorTableSchemaMigrationStage;
 
 		wfDeprecated( __METHOD__, '1.31' );
+		if ( $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
+			// If code is using this instead of self::getQueryInfo(), there's a
+			// decent chance it's going to try to directly access
+			// $row->ar_user or $row->ar_user_text and we can't give it
+			// useful values here once those aren't being written anymore.
+			throw new BadMethodCallException(
+				'Cannot use ' . __METHOD__ . ' when $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH'
+			);
+		}
 
 		$fields = [
 			'ar_id',
@@ -497,6 +525,7 @@ class Revision implements IDBAccessObject {
 			'ar_timestamp',
 			'ar_user_text',
 			'ar_user',
+			'ar_actor' => null,
 			'ar_minor_edit',
 			'ar_deleted',
 			'ar_len',
@@ -571,22 +600,21 @@ class Revision implements IDBAccessObject {
 		global $wgContentHandlerUseDB;
 
 		$commentQuery = CommentStore::newKey( 'rev_comment' )->getJoin();
+		$actorQuery = ActorMigration::newKey( 'rev_user' )->getJoin();
 		$ret = [
-			'tables' => [ 'revision' ] + $commentQuery['tables'],
+			'tables' => [ 'revision' ] + $commentQuery['tables'] + $actorQuery['tables'],
 			'fields' => [
 				'rev_id',
 				'rev_page',
 				'rev_text_id',
 				'rev_timestamp',
-				'rev_user_text',
-				'rev_user',
 				'rev_minor_edit',
 				'rev_deleted',
 				'rev_len',
 				'rev_parent_id',
 				'rev_sha1',
-			] + $commentQuery['fields'],
-			'joins' => $commentQuery['joins'],
+			] + $commentQuery['fields'] + $actorQuery['fields'],
+			'joins' => $commentQuery['joins'] + $actorQuery['joins'],
 		];
 
 		if ( $wgContentHandlerUseDB ) {
@@ -612,7 +640,8 @@ class Revision implements IDBAccessObject {
 			$ret['fields'] = array_merge( $ret['fields'], [
 				'user_name',
 			] );
-			$ret['joins']['user'] = [ 'LEFT JOIN', [ 'rev_user != 0', 'user_id = rev_user' ] ];
+			$u = $actorQuery['fields']['rev_user'];
+			$ret['joins']['user'] = [ 'LEFT JOIN', [ "$u != 0", "user_id = $u" ] ];
 		}
 
 		if ( in_array( 'text', $options, true ) ) {
@@ -640,8 +669,9 @@ class Revision implements IDBAccessObject {
 		global $wgContentHandlerUseDB;
 
 		$commentQuery = CommentStore::newKey( 'ar_comment' )->getJoin();
+		$actorQuery = ActorMigration::newKey( 'ar_user' )->getJoin();
 		$ret = [
-			'tables' => [ 'archive' ] + $commentQuery['tables'],
+			'tables' => [ 'archive' ] + $commentQuery['tables'] + $actorQuery['tables'],
 			'fields' => [
 				'ar_id',
 				'ar_page_id',
@@ -649,15 +679,13 @@ class Revision implements IDBAccessObject {
 				'ar_text',
 				'ar_text_id',
 				'ar_timestamp',
-				'ar_user_text',
-				'ar_user',
 				'ar_minor_edit',
 				'ar_deleted',
 				'ar_len',
 				'ar_parent_id',
 				'ar_sha1',
-			] + $commentQuery['fields'],
-			'joins' => $commentQuery['joins'],
+			] + $commentQuery['fields'] + $actorQuery['fields'],
+			'joins' => $commentQuery['joins'] + $actorQuery['joins'],
 		];
 
 		if ( $wgContentHandlerUseDB ) {
@@ -715,7 +743,11 @@ class Revision implements IDBAccessObject {
 		$this->mComment = CommentStore::newKey( 'rev_comment' )
 			// Legacy because $row may have come from self::selectFields()
 			->getCommentLegacy( wfGetDB( DB_REPLICA ), $row, true )->text;
-		$this->mUser = intval( $row->rev_user );
+		$this->mUserObj = User::newFromAnyId(
+			$row->rev_user,
+			isset( $row->user_name ) ? $row->user_name : $row->rev_user_text,
+			isset( $row->rev_actor ) ? $row->rev_actor : null
+		);
 		$this->mMinorEdit = intval( $row->rev_minor_edit );
 		$this->mTimestamp = $row->rev_timestamp;
 		$this->mDeleted = intval( $row->rev_deleted );
@@ -766,15 +798,6 @@ class Revision implements IDBAccessObject {
 			// 'text' table row entry will be lazy-loaded
 			$this->mTextRow = null;
 		}
-
-		// Use user_name for users and rev_user_text for IPs...
-		$this->mUserText = null; // lazy load if left null
-		if ( $this->mUser == 0 ) {
-			$this->mUserText = $row->rev_user_text; // IP user
-		} elseif ( isset( $row->user_name ) ) {
-			$this->mUserText = $row->user_name; // logged-in user
-		}
-		$this->mOrigUserText = $row->rev_user_text;
 	}
 
 	/**
@@ -807,9 +830,15 @@ class Revision implements IDBAccessObject {
 		$this->mId = isset( $row['id'] ) ? intval( $row['id'] ) : null;
 		$this->mPage = isset( $row['page'] ) ? intval( $row['page'] ) : null;
 		$this->mTextId = isset( $row['text_id'] ) ? intval( $row['text_id'] ) : null;
-		$this->mUserText = isset( $row['user_text'] )
-			? strval( $row['user_text'] ) : $wgUser->getName();
-		$this->mUser = isset( $row['user'] ) ? intval( $row['user'] ) : $wgUser->getId();
+		if ( isset( $row['user'] ) || isset( $row['user_text'] ) || isset( $row['actor'] ) ) {
+			$this->mUserObj = User::newFromAnyId(
+				isset( $row['user'] ) ? $row['user'] : null,
+				isset( $row['user_text'] ) ? $row['user_text'] : null,
+				isset( $row['actor'] ) ? $row['actor'] : null
+			);
+		} else {
+			$this->mUserObj = $wgUser;
+		}
 		$this->mMinorEdit = isset( $row['minor_edit'] ) ? intval( $row['minor_edit'] ) : 0;
 		$this->mTimestamp = isset( $row['timestamp'] )
 			? strval( $row['timestamp'] ) : wfTimestampNow();
@@ -906,9 +935,8 @@ class Revision implements IDBAccessObject {
 	 * @param string $name User name
 	 */
 	public function setUserIdAndName( $id, $name ) {
-		$this->mUser = (int)$id;
-		$this->mUserText = $name;
-		$this->mOrigUserText = $name;
+		wfDeprecated( __METHOD__, '1.31' );
+		$this->mUserObj = User::newFromAnyId( $id, $name, null );
 	}
 
 	/**
@@ -1030,7 +1058,7 @@ class Revision implements IDBAccessObject {
 		} elseif ( $audience == self::FOR_THIS_USER && !$this->userCan( self::DELETED_USER, $user ) ) {
 			return 0;
 		} else {
-			return $this->mUser;
+			return $this->mUserObj ? $this->mUserObj->getId() : 0;
 		}
 	}
 
@@ -1042,7 +1070,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public function getRawUser() {
 		wfDeprecated( __METHOD__, '1.25' );
-		return $this->getUser( self::RAW );
+		return $this->mUserObj ? $this->mUserObj->getId() : 0;
 	}
 
 	/**
@@ -1066,15 +1094,7 @@ class Revision implements IDBAccessObject {
 		} elseif ( $audience == self::FOR_THIS_USER && !$this->userCan( self::DELETED_USER, $user ) ) {
 			return '';
 		} else {
-			if ( $this->mUserText === null ) {
-				$this->mUserText = User::whoIs( $this->mUser ); // load on demand
-				if ( $this->mUserText === false ) {
-					# This shouldn't happen, but it can if the wiki was recovered
-					# via importing revs and there is no user table entry yet.
-					$this->mUserText = $this->mOrigUserText;
-				}
-			}
-			return $this->mUserText;
+			return $this->mUserObj ? $this->mUserObj->getName() : '';
 		}
 	}
 
@@ -1086,7 +1106,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public function getRawUserText() {
 		wfDeprecated( __METHOD__, '1.25' );
-		return $this->getUserText( self::RAW );
+		return $this->mUserObj ? $this->mUserObj->getName() : '';
 	}
 
 	/**
@@ -1160,9 +1180,10 @@ class Revision implements IDBAccessObject {
 
 		list( $dbType, ) = DBAccessObjectUtils::getDBOptions( $flags );
 
+		$actorWhere = ActorMigration::newKey( 'rc_user' )->getWhere( $dbr, $this->mUserObj, false );
 		return RecentChange::newFromConds(
 			[
-				'rc_user_text' => $this->getUserText( self::RAW ),
+				$actorWhere['conds'],
 				'rc_timestamp' => $dbr->timestamp( $this->getTimestamp() ),
 				'rc_this_oldid' => $this->getId()
 			],
@@ -1610,8 +1631,6 @@ class Revision implements IDBAccessObject {
 			'rev_page'       => $this->mPage,
 			'rev_text_id'    => $this->mTextId,
 			'rev_minor_edit' => $this->mMinorEdit ? 1 : 0,
-			'rev_user'       => $this->mUser,
-			'rev_user_text'  => $this->mUserText,
 			'rev_timestamp'  => $dbw->timestamp( $this->mTimestamp ),
 			'rev_deleted'    => $this->mDeleted,
 			'rev_len'        => $this->mSize,
@@ -1629,6 +1648,10 @@ class Revision implements IDBAccessObject {
 		list( $commentFields, $commentCallback ) =
 			CommentStore::newKey( 'rev_comment' )->insertWithTempTable( $dbw, $this->mComment );
 		$row += $commentFields;
+
+		list( $actorFields, $actorCallback ) =
+			ActorMigration::newKey( 'rev_user' )->getInsertValuesWithTempTable( $dbw, $this->mUserObj );
+		$row += $actorFields;
 
 		if ( $wgContentHandlerUseDB ) {
 			// NOTE: Store null for the default model and format, to save space.
@@ -1659,6 +1682,7 @@ class Revision implements IDBAccessObject {
 			$this->mId = $dbw->insertId();
 		}
 		$commentCallback( $this->mId );
+		$actorCallback( $this->mId, $row );
 
 		// Assertion to try to catch T92046
 		if ( (int)$this->mId === 0 ) {
@@ -1669,11 +1693,11 @@ class Revision implements IDBAccessObject {
 		}
 
 		// Insert IP revision into ip_changes for use when querying for a range.
-		if ( $this->mUser === 0 && IP::isValid( $this->mUserText ) ) {
+		if ( $this->mUserObj->isAnon() && IP::isValid( $this->mUserObj->getName() ) ) {
 			$ipcRow = [
 				'ipc_rev_id'        => $this->mId,
 				'ipc_rev_timestamp' => $row['rev_timestamp'],
-				'ipc_hex'           => IP::toHex( $row['rev_user_text'] ),
+				'ipc_hex'           => IP::toHex( $this->mUserObj->getName() ),
 			];
 			$dbw->insert( 'ip_changes', $ipcRow, __METHOD__ );
 		}
@@ -2058,14 +2082,20 @@ class Revision implements IDBAccessObject {
 			$db = wfGetDB( $db );
 		}
 
-		$res = $db->select( 'revision',
-			'rev_user',
+		$revQuery = self::getQueryInfo();
+		$res = $db->select(
+			$revQuery['tables'],
+			[
+				'rev_user' => $revQuery['fields']['rev_user'],
+			],
 			[
 				'rev_page' => $pageId,
 				'rev_timestamp > ' . $db->addQuotes( $db->timestamp( $since ) )
 			],
 			__METHOD__,
-			[ 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 50 ] );
+			[ 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 50 ],
+			$revQuery['joins']
+		);
 		foreach ( $res as $row ) {
 			if ( $row->rev_user != $userId ) {
 				return false;
@@ -2109,7 +2139,7 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * For cached revisions, make sure the user name and rev_deleted is up-to-date
+	 * For cached revisions, make sure user and rev_deleted are up-to-date
 	 */
 	private function loadMutableFields() {
 		if ( !$this->mRefreshMutableFields ) {
@@ -2118,15 +2148,28 @@ class Revision implements IDBAccessObject {
 
 		$this->mRefreshMutableFields = false;
 		$dbr = wfGetLB( $this->mWiki )->getConnectionRef( DB_REPLICA, [], $this->mWiki );
+		$revQuery = self::getQueryInfo( [ 'user' ] );
 		$row = $dbr->selectRow(
-			[ 'revision', 'user' ],
-			[ 'rev_deleted', 'user_name' ],
-			[ 'rev_id' => $this->mId, 'user_id = rev_user' ],
-			__METHOD__
+			$revQuery['tables'],
+			[
+				'rev_deleted',
+				'rev_user' => $revQuery['fields']['rev_user'],
+				'rev_user_text' => $revQuery['fields']['rev_user_text'],
+				'rev_actor' => $revQuery['fields']['rev_actor'],
+				'user_name',
+			],
+			[ 'rev_id' => $this->mId ],
+			__METHOD__,
+			[],
+			$revQuery['joins']
 		);
 		if ( $row ) { // update values
 			$this->mDeleted = (int)$row->rev_deleted;
-			$this->mUserText = $row->user_name;
+			$this->mUserObj = User::newFromAnyId(
+				$row->rev_user,
+				isset( $row->user_name ) ? $row->user_name : $row->rev_user_text,
+				isset( $row->rev_actor ) ? $row->rev_actor : null
+			);
 		}
 	}
 }

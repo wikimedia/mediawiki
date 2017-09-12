@@ -44,6 +44,10 @@ class ChangeTagsLogItem extends RevisionItemBase {
 		return 'log_user_text';
 	}
 
+	public function getAuthorActorField() {
+		return 'log_actor';
+	}
+
 	public function canView() {
 		return LogEventsList::userCan( $this->row, Revision::DELETED_RESTRICTED, $this->list->getUser() );
 	}
