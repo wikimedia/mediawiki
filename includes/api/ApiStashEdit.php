@@ -74,6 +74,9 @@ class ApiStashEdit extends ApiBase {
 		if ( strlen( $params['stashedtexthash'] ) ) {
 			// Load from cache since the client indicates the text is the same as last stash
 			$textHash = $params['stashedtexthash'];
+			if ( !preg_match( '/^[0-9a-f]{40}$/', $textHash ) ) {
+				$this->dieWithError( 'apierror-stashedit-missingtext', 'missingtext' );
+			}
 			$textKey = $cache->makeKey( 'stashedit', 'text', $textHash );
 			$text = $cache->get( $textKey );
 			if ( !is_string( $text ) ) {
