@@ -58,6 +58,14 @@ class PopulateLogUsertext extends LoggedUpdateMaintenance {
 		}
 		$end = $db->selectField( 'logging', 'MAX(log_id)', false, __METHOD__ );
 
+		// If this is being run during an upgrade from 1.16 or earlier, this
+		// will be run before the actor table change and should continue. But
+		// if it's being run on a new installation, the field won't exist to be populated.
+		if ( !$db->fieldInfo( 'logging', 'log_user_text' ) ) {
+			$this->output( "No log_user_text field, nothing to do.\n" );
+			return true;
+		}
+
 		# Do remaining chunk
 		$end += $batchSize - 1;
 		$blockStart = $start;

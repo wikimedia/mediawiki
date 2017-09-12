@@ -32,7 +32,8 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			$loadBalancer ? $loadBalancer : $this->getMockLoadBalancer(),
 			$blobStore ? $blobStore : $this->getMockSqlBlobStore(),
 			$WANObjectCache ? $WANObjectCache : $this->getHashWANObjectCache(),
-			MediaWikiServices::getInstance()->getCommentStore()
+			MediaWikiServices::getInstance()->getCommentStore(),
+			MediaWikiServices::getInstance()->getActorMigration()
 		);
 	}
 
@@ -83,8 +84,6 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			'rev_page',
 			'rev_text_id',
 			'rev_timestamp',
-			'rev_user_text',
-			'rev_user',
 			'rev_minor_edit',
 			'rev_deleted',
 			'rev_len',
@@ -98,6 +97,14 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			'rev_comment_text' => 'rev_comment',
 			'rev_comment_data' => 'NULL',
 			'rev_comment_cid' => 'NULL',
+		];
+	}
+
+	private function getActorQueryFields() {
+		return [
+			'rev_user' => 'rev_user',
+			'rev_user_text' => 'rev_user_text',
+			'rev_actor' => 'NULL',
 		];
 	}
 
@@ -117,6 +124,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 				'fields' => array_merge(
 					$this->getDefaultQueryFields(),
 					$this->getCommentQueryFields(),
+					$this->getActorQueryFields(),
 					$this->getContentHandlerQueryFields()
 				),
 				'joins' => [],
@@ -129,7 +137,8 @@ class RevisionStoreTest extends MediaWikiTestCase {
 				'tables' => [ 'revision' ],
 				'fields' => array_merge(
 					$this->getDefaultQueryFields(),
-					$this->getCommentQueryFields()
+					$this->getCommentQueryFields(),
+					$this->getActorQueryFields()
 				),
 				'joins' => [],
 			]
@@ -142,6 +151,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 				'fields' => array_merge(
 					$this->getDefaultQueryFields(),
 					$this->getCommentQueryFields(),
+					$this->getActorQueryFields(),
 					[
 						'page_namespace',
 						'page_title',
@@ -164,6 +174,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 				'fields' => array_merge(
 					$this->getDefaultQueryFields(),
 					$this->getCommentQueryFields(),
+					$this->getActorQueryFields(),
 					[
 						'user_name',
 					]
@@ -181,6 +192,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 				'fields' => array_merge(
 					$this->getDefaultQueryFields(),
 					$this->getCommentQueryFields(),
+					$this->getActorQueryFields(),
 					[
 						'old_text',
 						'old_flags',
@@ -199,6 +211,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 				'fields' => array_merge(
 					$this->getDefaultQueryFields(),
 					$this->getCommentQueryFields(),
+					$this->getActorQueryFields(),
 					$this->getContentHandlerQueryFields(),
 					[
 						'page_namespace',
@@ -227,6 +240,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	 */
 	public function testGetQueryInfo( $contentHandlerUseDb, $options, $expected ) {
 		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_OLD );
 		$this->overrideMwServices();
 		$store = $this->getRevisionStore();
 		$store->setContentHandlerUseDB( $contentHandlerUseDb );
@@ -243,8 +257,6 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			'ar_text',
 			'ar_text_id',
 			'ar_timestamp',
-			'ar_user_text',
-			'ar_user',
 			'ar_minor_edit',
 			'ar_deleted',
 			'ar_len',
@@ -258,6 +270,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	 */
 	public function testGetArchiveQueryInfo_contentHandlerDb() {
 		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_OLD );
 		$this->overrideMwServices();
 		$store = $this->getRevisionStore();
 		$store->setContentHandlerUseDB( true );
@@ -272,6 +285,9 @@ class RevisionStoreTest extends MediaWikiTestCase {
 						'ar_comment_text' => 'ar_comment',
 						'ar_comment_data' => 'NULL',
 						'ar_comment_cid' => 'NULL',
+						'ar_user_text' => 'ar_user_text',
+						'ar_user' => 'ar_user',
+						'ar_actor' => 'NULL',
 						'ar_content_format',
 						'ar_content_model',
 					]
@@ -287,6 +303,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	 */
 	public function testGetArchiveQueryInfo_noContentHandlerDb() {
 		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_OLD );
 		$this->overrideMwServices();
 		$store = $this->getRevisionStore();
 		$store->setContentHandlerUseDB( false );
@@ -301,6 +318,9 @@ class RevisionStoreTest extends MediaWikiTestCase {
 						'ar_comment_text' => 'ar_comment',
 						'ar_comment_data' => 'NULL',
 						'ar_comment_cid' => 'NULL',
+						'ar_user_text' => 'ar_user_text',
+						'ar_user' => 'ar_user',
+						'ar_actor' => 'NULL',
 					]
 				),
 				'joins' => [],

@@ -91,20 +91,26 @@ class RollbackEdits extends Maintenance {
 
 	/**
 	 * Get all pages that should be rolled back for a given user
-	 * @param string $user A name to check against rev_user_text
+	 * @param string $user A name to check against
 	 * @return array
 	 */
 	private function getRollbackTitles( $user ) {
 		$dbr = $this->getDB( DB_REPLICA );
 		$titles = [];
-		$results = $dbr->select(
-			[ 'page', 'revision' ],
-			[ 'page_namespace', 'page_title' ],
-			[ 'page_latest = rev_id', 'rev_user_text' => $user ],
-			__METHOD__
-		);
-		foreach ( $results as $row ) {
-			$titles[] = Title::makeTitle( $row->page_namespace, $row->page_title );
+		$actorQuery = ActorMigration::newMigration()
+			->getWhere( $dbr, 'rev_user', User::newFromName( $user, false ) );
+		foreach ( $actorQuery['orconds'] as $cond ) {
+			$results = $dbr->select(
+				[ 'page', 'revision' ] + $actorQuery['tables'],
+				[ 'page_namespace', 'page_title' ],
+				[ $cond ],
+				__METHOD__,
+				[],
+				[ 'revision' => [ 'JOIN', 'page_latest = rev_id' ] ] + $actorQuery['joins']
+			);
+			foreach ( $results as $row ) {
+				$titles[] = Title::makeTitle( $row->page_namespace, $row->page_title );
+			}
 		}
 
 		return $titles;

@@ -34,6 +34,7 @@
  *  rc_cur_id       page_id of associated page entry
  *  rc_user         user id who made the entry
  *  rc_user_text    user name who made the entry
+ *  rc_actor        actor id who made the entry
  *  rc_comment      edit summary
  *  rc_this_oldid   rev_id associated with this entry (or zero)
  *  rc_last_oldid   rev_id associated with the entry before this one (or zero)
@@ -210,12 +211,25 @@ class RecentChange {
 	 * @return array
 	 */
 	public static function selectFields() {
+		global $wgActorTableSchemaMigrationStage;
+
 		wfDeprecated( __METHOD__, '1.31' );
+		if ( $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
+			// If code is using this instead of self::getQueryInfo(), there's a
+			// decent chance it's going to try to directly access
+			// $row->rc_user or $row->rc_user_text and we can't give it
+			// useful values here once those aren't being written anymore.
+			throw new BadMethodCallException(
+				'Cannot use ' . __METHOD__ . ' when $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH'
+			);
+		}
+
 		return [
 			'rc_id',
 			'rc_timestamp',
 			'rc_user',
 			'rc_user_text',
+			'rc_actor' => 'NULL',
 			'rc_namespace',
 			'rc_title',
 			'rc_minor',
@@ -249,13 +263,12 @@ class RecentChange {
 	 */
 	public static function getQueryInfo() {
 		$commentQuery = CommentStore::getStore()->getJoin( 'rc_comment' );
+		$actorQuery = ActorMigration::newMigration()->getJoin( 'rc_user' );
 		return [
-			'tables' => [ 'recentchanges' ] + $commentQuery['tables'],
+			'tables' => [ 'recentchanges' ] + $commentQuery['tables'] + $actorQuery['tables'],
 			'fields' => [
 				'rc_id',
 				'rc_timestamp',
-				'rc_user',
-				'rc_user_text',
 				'rc_namespace',
 				'rc_title',
 				'rc_minor',
@@ -275,8 +288,8 @@ class RecentChange {
 				'rc_log_type',
 				'rc_log_action',
 				'rc_params',
-			] + $commentQuery['fields'],
-			'joins' => $commentQuery['joins'],
+			] + $commentQuery['fields'] + $actorQuery['fields'],
+			'joins' => $commentQuery['joins'] + $actorQuery['joins'],
 		];
 	}
 
@@ -314,10 +327,14 @@ class RecentChange {
 	 */
 	public function getPerformer() {
 		if ( $this->mPerformer === false ) {
-			if ( $this->mAttribs['rc_user'] ) {
+			if ( !empty( $this->mAttribs['rc_actor'] ) ) {
+				$this->mPerformer = User::newFromActorId( $this->mAttribs['rc_actor'] );
+			} elseif ( !empty( $this->mAttribs['rc_user'] ) ) {
 				$this->mPerformer = User::newFromId( $this->mAttribs['rc_user'] );
-			} else {
+			} elseif ( !empty( $this->mAttribs['rc_user_text'] ) ) {
 				$this->mPerformer = User::newFromName( $this->mAttribs['rc_user_text'], false );
+			} else {
+				throw new MWException( 'RecentChange object lacks rc_actor, rc_user, and rc_user_text' );
 			}
 		}
 
@@ -368,11 +385,21 @@ class RecentChange {
 			unset( $this->mAttribs['rc_cur_id'] );
 		}
 
-		# Convert mAttribs['rc_comment'] for CommentStore
 		$row = $this->mAttribs;
+
+		# Convert mAttribs['rc_comment'] for CommentStore
 		$comment = $row['rc_comment'];
 		unset( $row['rc_comment'], $row['rc_comment_text'], $row['rc_comment_data'] );
 		$row += CommentStore::getStore()->insert( $dbw, 'rc_comment', $comment );
+
+		# Convert mAttribs['rc_user'] etc for ActorMigration
+		$user = User::newFromAnyId(
+			isset( $row['rc_user'] ) ? $row['rc_user'] : null,
+			isset( $row['rc_user_text'] ) ? $row['rc_user_text'] : null,
+			isset( $row['rc_actor'] ) ? $row['rc_actor'] : null
+		);
+		unset( $row['rc_user'], $row['rc_user_text'], $row['rc_actor'] );
+		$row += ActorMigration::newMigration()->getInsertValues( $dbw, 'rc_user', $user );
 
 		# Don't reuse an existing rc_id for the new row, if one happens to be
 		# set for some reason.
@@ -642,6 +669,7 @@ class RecentChange {
 			'rc_cur_id' => $title->getArticleID(),
 			'rc_user' => $user->getId(),
 			'rc_user_text' => $user->getName(),
+			'rc_actor' => $user->getActorId(),
 			'rc_comment' => &$comment,
 			'rc_comment_text' => &$comment,
 			'rc_comment_data' => null,
@@ -717,6 +745,7 @@ class RecentChange {
 			'rc_cur_id' => $title->getArticleID(),
 			'rc_user' => $user->getId(),
 			'rc_user_text' => $user->getName(),
+			'rc_actor' => $user->getActorId(),
 			'rc_comment' => &$comment,
 			'rc_comment_text' => &$comment,
 			'rc_comment_data' => null,
@@ -849,6 +878,7 @@ class RecentChange {
 			'rc_cur_id' => $target->getArticleID(),
 			'rc_user' => $user->getId(),
 			'rc_user_text' => $user->getName(),
+			'rc_actor' => $user->getActorId(),
 			'rc_comment' => &$logComment,
 			'rc_comment_text' => &$logComment,
 			'rc_comment_data' => null,
@@ -934,6 +964,7 @@ class RecentChange {
 			'rc_cur_id' => $pageTitle->getArticleID(),
 			'rc_user' => $user ? $user->getId() : 0,
 			'rc_user_text' => $user ? $user->getName() : '',
+			'rc_actor' => $user ? $user->getActorId() : null,
 			'rc_comment' => &$comment,
 			'rc_comment_text' => &$comment,
 			'rc_comment_data' => null,
@@ -1002,6 +1033,15 @@ class RecentChange {
 		$this->mAttribs['rc_comment'] = &$comment;
 		$this->mAttribs['rc_comment_text'] = &$comment;
 		$this->mAttribs['rc_comment_data'] = null;
+
+		$user = User::newFromAnyId(
+			isset( $this->mAttribs['rc_user'] ) ? $this->mAttribs['rc_user'] : null,
+			isset( $this->mAttribs['rc_user_text'] ) ? $this->mAttribs['rc_user_text'] : null,
+			isset( $this->mAttribs['rc_actor'] ) ? $this->mAttribs['rc_actor'] : null
+		);
+		$this->mAttribs['rc_user'] = $user->getId();
+		$this->mAttribs['rc_user_text'] = $user->getName();
+		$this->mAttribs['rc_actor'] = $user->getActorId();
 	}
 
 	/**
@@ -1015,6 +1055,24 @@ class RecentChange {
 			return CommentStore::getStore()
 				->getComment( 'rc_comment', $this->mAttribs, true )->text;
 		}
+
+		if ( $name === 'rc_user' || $name === 'rc_user_text' || $name === 'rc_actor' ) {
+			$user = User::newFromAnyId(
+				isset( $this->mAttribs['rc_user'] ) ? $this->mAttribs['rc_user'] : null,
+				isset( $this->mAttribs['rc_user_text'] ) ? $this->mAttribs['rc_user_text'] : null,
+				isset( $this->mAttribs['rc_actor'] ) ? $this->mAttribs['rc_actor'] : null
+			);
+			if ( $name === 'rc_user' ) {
+				return $user->getId();
+			}
+			if ( $name === 'rc_user_text' ) {
+				return $user->getName();
+			}
+			if ( $name === 'rc_actor' ) {
+				return $user->getActorId();
+			}
+		}
+
 		return isset( $this->mAttribs[$name] ) ? $this->mAttribs[$name] : null;
 	}
 

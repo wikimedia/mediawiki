@@ -176,13 +176,14 @@ class LogPager extends ReverseChronologicalPager {
 		// Normalize username first so that non-existent users used
 		// in maintenance scripts work
 		$name = $usertitle->getText();
-		/* Fetch userid at first, if known, provides awesome query plan afterwards */
-		$userid = User::idFromName( $name );
-		if ( !$userid ) {
-			$this->mConds['log_user_text'] = IP::sanitizeIP( $name );
-		} else {
-			$this->mConds['log_user'] = $userid;
-		}
+
+		// Assume no joins required for log_user
+		// Don't query by user ID here, it might be able to use the
+		// log_user_text_time or log_user_text_type_time index.
+		$this->mConds[] = ActorMigration::newMigration()->getWhere(
+			wfGetDB( DB_REPLICA ), 'log_user', User::newFromName( $name, false ), false
+		)['conds'];
+
 		$this->enforcePerformerRestrictions();
 
 		$this->performer = $name;

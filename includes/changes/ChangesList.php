@@ -646,6 +646,7 @@ class ChangesList extends ContextSource {
 					'id' => $rc->mAttribs['rc_this_oldid'],
 					'user' => $rc->mAttribs['rc_user'],
 					'user_text' => $rc->mAttribs['rc_user_text'],
+					'actor' => isset( $rc->mAttribs['rc_actor'] ) ? $rc->mAttribs['rc_actor'] : null,
 					'deleted' => $rc->mAttribs['rc_deleted']
 				] );
 				$s .= ' ' . Linker::generateRollback( $rev, $this->getContext() );

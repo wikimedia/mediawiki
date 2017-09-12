@@ -59,11 +59,15 @@ class FixUserRegistration extends Maintenance {
 				$id = $row->user_id;
 				$lastId = $id;
 				// Get first edit time
+				$actorQuery = ActorMigration::newMigration()
+					->getWhere( $dbw, 'rev_user', User::newFromId( $id ) );
 				$timestamp = $dbw->selectField(
-					'revision',
+					[ 'revision' ] + $actorQuery['tables'],
 					'MIN(rev_timestamp)',
-					[ 'rev_user' => $id ],
-					__METHOD__
+					$actorQuery['conds'],
+					__METHOD__,
+					[],
+					$actorQuery['joins']
 				);
 				// Update
 				if ( $timestamp !== null ) {

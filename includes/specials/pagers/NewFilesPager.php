@@ -59,26 +59,24 @@ class NewFilesPager extends RangeChronologicalPager {
 
 	function getQueryInfo() {
 		$opts = $this->opts;
-		$conds = $jconds = [];
-		$tables = [ 'image' ];
-		$fields = [ 'img_name', 'img_user', 'img_timestamp' ];
+		$conds = [];
+		$imgQuery = LocalFile::getQueryInfo();
+		$tables = $imgQuery['tables'];
+		$fields = [ 'img_name', 'img_timestamp' ] + $imgQuery['fields'];
 		$options = [];
+		$jconds = $imgQuery['joins'];
 
 		$user = $opts->getValue( 'user' );
 		if ( $user !== '' ) {
-			$userId = User::idFromName( $user );
-			if ( $userId ) {
-				$conds['img_user'] = $userId;
-			} else {
-				$conds['img_user_text'] = $user;
-			}
+			$conds[] = ActorMigration::newMigration()
+				->getWhere( wfGetDB( DB_REPLICA ), 'img_user', User::newFromName( $user, false ) )['conds'];
 		}
 
 		if ( $opts->getValue( 'newbies' ) ) {
 			// newbie = most recent 1% of users
 			$dbr = wfGetDB( DB_REPLICA );
 			$max = $dbr->selectField( 'user', 'max(user_id)', false, __METHOD__ );
-			$conds[] = 'img_user >' . (int)( $max - $max / 100 );
+			$conds[] = $imgQuery['fields']['img_user'] . ' >' . (int)( $max - $max / 100 );
 
 			// there's no point in looking for new user activity in a far past;
 			// beyond a certain point, we'd just end up scanning the rest of the
@@ -99,7 +97,7 @@ class NewFilesPager extends RangeChronologicalPager {
 					'LEFT JOIN',
 					[
 						'ug_group' => $groupsWithBotPermission,
-						'ug_user = img_user',
+						'ug_user = ' . $imgQuery['fields']['img_user'],
 						'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
 					]
 				];
@@ -107,16 +105,27 @@ class NewFilesPager extends RangeChronologicalPager {
 		}
 
 		if ( $opts->getValue( 'hidepatrolled' ) ) {
+			global $wgActorTableSchemaMigrationStage;
+
 			$tables[] = 'recentchanges';
 			$conds['rc_type'] = RC_LOG;
 			$conds['rc_log_type'] = 'upload';
 			$conds['rc_patrolled'] = 0;
 			$conds['rc_namespace'] = NS_FILE;
+
+			if ( $wgActorTableSchemaMigrationStage === MIGRATION_NEW ) {
+				$jcond = 'rc_actor = ' . $imgQuery['fields']['img_actor'];
+			} else {
+				$rcQuery = ActorMigration::newMigration()->getJoin( 'rc_user' );
+				$tables += $rcQuery['tables'];
+				$joins += $rcQuery['joins'];
+				$jcond = $rcQuery['fields']['rc_user'] . ' = ' . $imgQuery['fields']['img_user'];
+			}
 			$jconds['recentchanges'] = [
 				'INNER JOIN',
 				[
 					'rc_title = img_name',
-					'rc_user = img_user',
+					$jcond,
 					'rc_timestamp = img_timestamp'
 				]
 			];

@@ -290,12 +290,15 @@ EOF
 		$importer->doImport();
 
 		$db = wfGetDB( DB_MASTER );
+		$revQuery = Revision::getQueryInfo();
 
 		$row = $db->selectRow(
-			'revision',
-			[ 'rev_user', 'rev_user_text' ],
+			$revQuery['tables'],
+			$revQuery['fields'],
 			[ 'rev_timestamp' => $db->timestamp( "201601010{$n}0000" ) ],
-			__METHOD__
+			__METHOD__,
+			[],
+			$revQuery['joins']
 		);
 		$this->assertSame(
 			$assign && $create ? 'UserDoesNotExist' : 'Xxx>UserDoesNotExist',
@@ -304,10 +307,12 @@ EOF
 		$this->assertSame( $assign && $create ? $hookId : 0, (int)$row->rev_user );
 
 		$row = $db->selectRow(
-			'revision',
-			[ 'rev_user', 'rev_user_text' ],
+			$revQuery['tables'],
+			$revQuery['fields'],
 			[ 'rev_timestamp' => $db->timestamp( "201601010{$n}0001" ) ],
-			__METHOD__
+			__METHOD__,
+			[],
+			$revQuery['joins']
 		);
 		$this->assertSame( ( $assign ? '' : 'Xxx>' ) . $user->getName(), $row->rev_user_text );
 		$this->assertSame( $assign ? $user->getId() : 0, (int)$row->rev_user );
