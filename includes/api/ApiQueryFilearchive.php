@@ -65,7 +65,12 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$this->addFields( ArchivedFile::selectFields() );
 		$this->addFields( [ 'fa_id', 'fa_name', 'fa_timestamp', 'fa_deleted' ] );
 		$this->addFieldsIf( 'fa_sha1', $fld_sha1 );
-		$this->addFieldsIf( [ 'fa_user', 'fa_user_text' ], $fld_user );
+		if ( $fld_user ) {
+			$actorQuery = ActorMigration::newKey( 'fa_user' )->getJoin();
+			$this->addTables( $actorQuery['tables'] );
+			$this->addFields( $actorQuery['fields'] );
+			$this->addJoinConds( $actorQuery['joins'] );
+		}
 		$this->addFieldsIf( [ 'fa_height', 'fa_width', 'fa_size' ], $fld_dimensions || $fld_size );
 		$this->addFieldsIf( [ 'fa_major_mime', 'fa_minor_mime' ], $fld_mime );
 		$this->addFieldsIf( 'fa_media_type', $fld_mediatype );

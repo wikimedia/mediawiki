@@ -452,11 +452,13 @@ abstract class ApiQueryBase extends ApiBase {
 		if ( $showBlockInfo ) {
 			$this->addFields( [
 				'ipb_id',
-				'ipb_by',
-				'ipb_by_text',
 				'ipb_expiry',
 				'ipb_timestamp'
 			] );
+			$actorQuery = ActorMigration::newKey( 'ipb_by' )->getJoin();
+			$this->addTables( $actorQuery['tables'] );
+			$this->addFields( $actorQuery['fields'] );
+			$this->addJoinConds( $actorQuery['joins'] );
 			$commentQuery = CommentStore::newKey( 'ipb_reason' )->getJoin();
 			$this->addTables( $commentQuery['tables'] );
 			$this->addFields( $commentQuery['fields'] );
