@@ -24,6 +24,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * Query module to enumerate all deleted revisions.
@@ -342,7 +343,8 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 					$generated[] = $row->ar_rev_id;
 				}
 			} else {
-				$revision = Revision::newFromArchiveRow( $row );
+				$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+				$revision = $revisionStore->newRevisionFromArchiveRow( $row );
 				$rev = $this->extractRevisionInfo( $revision, $row );
 
 				if ( !isset( $pageMap[$row->ar_namespace][$row->ar_title] ) ) {

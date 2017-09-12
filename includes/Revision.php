@@ -158,6 +158,7 @@ class Revision implements IDBAccessObject {
 	 * Returns null if no such revision can be found.
 	 *
 	 * @deprecated since 1.30, use RevisionStore::getRevisionById() instead.
+	 * @note No callers in core.
 	 *
 	 * @param IDatabase $db
 	 * @param int $id
@@ -175,6 +176,7 @@ class Revision implements IDBAccessObject {
 	 * to that page, will return null.
 	 *
 	 * @deprecated since 1.30, use RevisionStore::getRevisionByPageId() instead.
+	 * @note No callers in core.
 	 *
 	 * @param IDatabase $db
 	 * @param int $pageid
@@ -434,7 +436,7 @@ class Revision implements IDBAccessObject {
 	 * @param Title $title
 	 */
 	public function setTitle( $title ) {
-		// FIXME!
+		// FIXME! Quite a few callers!
 		throw new LogicException( 'Not implemented: ' . __METHOD__ );
 	}
 

@@ -1401,14 +1401,16 @@ abstract class Maintenance {
 	 */
 	public function updateSearchIndexForPage( $dbw, $pageId ) {
 		// Get current revision
-		$rev = Revision::loadFromPageId( $dbw, $pageId );
+		$revStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$rev = $revStore->loadRevisionFromPageId( $dbw, $pageId );
 		$title = null;
 		if ( $rev ) {
 			$titleObj = $rev->getTitle();
 			$title = $titleObj->getPrefixedDBkey();
 			$this->output( "$title..." );
-			# Update searchindex
-			$u = new SearchUpdate( $pageId, $titleObj->getText(), $rev->getContent() );
+			// Update searchindex
+			// TODO: index all slots!
+			$u = new SearchUpdate( $pageId, $titleObj->getText(), $rev->getContent( 'main' ) );
 			$u->doUpdate();
 			$this->output( "\n" );
 		}
