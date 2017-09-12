@@ -55,6 +55,23 @@ CREATE INDEX /*i*/user_email ON /*_*/mwuser (user_email);
 INSERT INTO /*_*/mwuser (user_name) VALUES ('##Anonymous##');
 
 --
+-- The "actor" table associates user names or IP addresses with integers for
+-- the benefit of other tables that need to refer to either logged-in or
+-- logged-out users. If something can only ever be done by logged-in users, it
+-- can refer to the user table directly.
+--
+CREATE TABLE /*_*/actor (
+  actor_id bigint unsigned NOT NULL CONSTRAINT PK_actor PRIMARY KEY IDENTITY(0,1),
+  actor_user int unsigned,
+  actor_name nvarchar(255) NOT NULL
+);
+CREATE UNIQUE INDEX /*i*/actor_user ON /*_*/actor (actor_user);
+CREATE UNIQUE INDEX /*i*/actor_name ON /*_*/actor (actor_name);
+
+-- Insert a dummy actor to represent no actor
+INSERT INTO /*_*/actor (actor_name) VALUES ('##Anonymous##');
+
+--
 -- User permissions have been broken out to a separate table;
 -- this allows sites with a shared user table to have different
 -- permissions assigned to a user in each project.
@@ -178,6 +195,24 @@ INSERT INTO /*_*/revision (rev_page,rev_text_id,rev_comment,rev_user,rev_len) VA
 ALTER TABLE /*_*/page ADD CONSTRAINT FK_page_latest_page_id FOREIGN KEY (page_latest) REFERENCES /*_*/revision(rev_id);
 
 --
+-- Temporary table to avoid blocking on an alter of revision.
+--
+-- On large wikis like the English Wikipedia, altering the revision table is a
+-- months-long process. This table is being created to avoid such an alter, and
+-- will be merged back into revision in the future.
+--
+CREATE TABLE /*_*/revision_actor_temp (
+  revactor_rev int unsigned NOT NULL CONSTRAINT FK_revactor_rev FOREIGN KEY REFERENCES /*_*/revision(rev_id) ON DELETE CASCADE,
+  revactor_actor bigint unsigned NOT NULL,
+  revactor_timestamp varchar(14) NOT NULL CONSTRAINT DF_revactor_timestamp DEFAULT '',
+  revactor_page int unsigned NOT NULL,
+  CONSTRAINT PK_revision_actor_temp PRIMARY KEY (revactor_rev, revactor_actor)
+);
+CREATE UNIQUE INDEX /*i*/revactor_rev ON /*_*/revision_actor_temp (revactor_rev);
+CREATE INDEX /*i*/actor_timestamp ON /*_*/revision_actor_temp (revactor_actor,revactor_timestamp);
+CREATE INDEX /*i*/page_actor_timestamp ON /*_*/revision_actor_temp (revactor_page,revactor_actor,revactor_timestamp);
+
+--
 -- Holds TEXT of individual page revisions.
 --
 -- Field names are a holdover from the 'old' revisions table in
@@ -209,7 +244,8 @@ CREATE TABLE /*_*/archive (
    ar_text NVARCHAR(MAX) NOT NULL,
    ar_comment NVARCHAR(255) NOT NULL,
    ar_user INT CONSTRAINT ar_user__user_id__fk FOREIGN KEY REFERENCES /*_*/mwuser(user_id),
-   ar_user_text NVARCHAR(255) NOT NULL,
+   ar_user_text NVARCHAR(255) NOT NULL CONSTRAINT DF_ar_user_text DEFAULT '',
+   ar_actor bigint unsigned NOT NULL CONSTRAINT DF_ar_actor DEFAULT 0,
    ar_timestamp varchar(14) NOT NULL default '',
    ar_minor_edit BIT NOT NULL DEFAULT 0,
    ar_flags NVARCHAR(255) NOT NULL,
@@ -225,6 +261,7 @@ CREATE TABLE /*_*/archive (
 );
 CREATE INDEX /*i*/name_title_timestamp ON /*_*/archive (ar_namespace,ar_title,ar_timestamp);
 CREATE INDEX /*i*/ar_usertext_timestamp ON /*_*/archive (ar_user_text,ar_timestamp);
+CREATE INDEX /*i*/ar_actor_timestamp ON /*_*/archive (ar_actor,ar_timestamp);
 CREATE INDEX /*i*/ar_revid ON /*_*/archive (ar_rev_id);
 
 
@@ -563,6 +600,9 @@ CREATE TABLE /*_*/ipblocks (
   -- User ID who made the block.
   ipb_by int REFERENCES /*_*/mwuser(user_id) ON DELETE CASCADE,
 
+  -- Actor ID who made the block.
+  ipb_by_actor bigint unsigned NOT NULL CONSTRAINT DF_ipb_by_actor DEFAULT 0,
+
   -- User name of blocker
   ipb_by_text nvarchar(255) NOT NULL default '',
 
@@ -668,7 +708,7 @@ CREATE TABLE /*_*/image (
 
   -- user_id and user_name of uploader.
   img_user int REFERENCES /*_*/mwuser(user_id) ON DELETE SET NULL,
-  img_user_text nvarchar(255) NOT NULL,
+  img_user_text nvarchar(255) NOT NULL CONSTRAINT DF_img_user_text DEFAULT '',
 
   -- Time of the upload.
   img_timestamp nvarchar(14) NOT NULL default '',
@@ -689,6 +729,22 @@ CREATE INDEX /*i*/img_timestamp ON /*_*/image (img_timestamp);
 CREATE INDEX /*i*/img_sha1 ON /*_*/image (img_sha1);
 -- Used to get media of one type
 CREATE INDEX /*i*/img_media_mime ON /*_*/image (img_media_type,img_major_mime,img_minor_mime);
+
+--
+-- Temporary table to avoid blocking on an alter of image.
+--
+-- On large wikis like Wikimedia Commons, altering the image table is a
+-- months-long process. This table is being created to avoid such an alter, and
+-- will be merged back into image in the future.
+--
+CREATE TABLE /*_*/image_actor_temp (
+  imgactor_name nvarchar(255) NOT NULL CONSTRAINT FK_imgactor_name FOREIGN KEY REFERENCES /*_*/image(img_name) ON DELETE CASCADE,
+  imgactor_actor bigint unsigned NOT NULL,
+  imgactor_timestamp nvarchar(14) NOT NULL default '',
+  PRIMARY KEY (imgactor_name, imgactor_actor)
+);
+CREATE UNIQUE INDEX /*i*/imgactor_name ON /*_*/image_actor_temp (imgactor_name);
+CREATE INDEX /*i*/img_actor_timestamp ON /*_*/image_actor_temp (imgactor_actor, imgactor_timestamp);
 
 
 --
@@ -712,7 +768,8 @@ CREATE TABLE /*_*/oldimage (
   oi_bits int NOT NULL default 0,
   oi_description nvarchar(255) NOT NULL,
   oi_user int REFERENCES /*_*/mwuser(user_id),
-  oi_user_text nvarchar(255) NOT NULL,
+  oi_user_text nvarchar(255) NOT NULL CONSTRAINT DF_oi_user_text DEFAULT '',
+  oi_actor bigint unsigned NOT NULL CONSTRAINT DF_oi_actor DEFAULT 0,
   oi_timestamp varchar(14) NOT NULL default '',
 
   oi_metadata varbinary(max) NOT NULL,
@@ -727,6 +784,7 @@ CREATE TABLE /*_*/oldimage (
 );
 
 CREATE INDEX /*i*/oi_usertext_timestamp ON /*_*/oldimage (oi_user_text,oi_timestamp);
+CREATE INDEX /*i*/oi_actor_timestamp ON /*_*/oldimage (oi_actor,oi_timestamp);
 CREATE INDEX /*i*/oi_name_timestamp ON /*_*/oldimage (oi_name,oi_timestamp);
 CREATE INDEX /*i*/oi_sha1 ON /*_*/oldimage (oi_sha1);
 
@@ -772,7 +830,8 @@ CREATE TABLE /*_*/filearchive (
   fa_minor_mime nvarchar(100) default 'unknown',
   fa_description nvarchar(255),
   fa_user int default 0 REFERENCES /*_*/mwuser(user_id) ON DELETE SET NULL,
-  fa_user_text nvarchar(255),
+  fa_user_text nvarchar(255) CONSTRAINT DF_fa_user_text DEFAULT '',
+  fa_actor bigint unsigned NOT NULL CONSTRAINT DF_fa_actor DEFAULT 0,
   fa_timestamp varchar(14) default '',
 
   -- Visibility of deleted revisions, bitfield
@@ -793,6 +852,7 @@ CREATE INDEX /*i*/fa_storage_group ON /*_*/filearchive (fa_storage_group, fa_sto
 CREATE INDEX /*i*/fa_deleted_timestamp ON /*_*/filearchive (fa_deleted_timestamp);
 -- sort by uploader
 CREATE INDEX /*i*/fa_user_timestamp ON /*_*/filearchive (fa_user_text,fa_timestamp);
+CREATE INDEX /*i*/fa_actor_timestamp ON /*_*/filearchive (fa_actor,fa_timestamp);
 -- find file by sha1, 10 bytes will be enough for hashes to be indexed
 CREATE INDEX /*i*/fa_sha1 ON /*_*/filearchive (fa_sha1);
 
@@ -865,7 +925,8 @@ CREATE TABLE /*_*/recentchanges (
 
   -- As in revision
   rc_user int NOT NULL default 0 CONSTRAINT rc_user__user_id__fk FOREIGN KEY REFERENCES /*_*/mwuser(user_id),
-  rc_user_text nvarchar(255) NOT NULL,
+  rc_user_text nvarchar(255) NOT NULL CONSTRAINT DF_rc_user_text DEFAULT '',
+  rc_actor bigint unsigned NOT NULL CONSTRAINT DF_rc_actor DEFAULT 0,
 
   -- When pages are renamed, their RC entries do _not_ change.
   rc_namespace int NOT NULL default 0,
@@ -936,6 +997,8 @@ CREATE INDEX /*i*/new_name_timestamp ON /*_*/recentchanges (rc_new,rc_namespace,
 CREATE INDEX /*i*/rc_ip ON /*_*/recentchanges (rc_ip);
 CREATE INDEX /*i*/rc_ns_usertext ON /*_*/recentchanges (rc_namespace, rc_user_text);
 CREATE INDEX /*i*/rc_user_text ON /*_*/recentchanges (rc_user_text, rc_timestamp);
+CREATE INDEX /*i*/rc_ns_actor ON /*_*/recentchanges (rc_namespace, rc_actor);
+CREATE INDEX /*i*/rc_actor ON /*_*/recentchanges (rc_actor, rc_timestamp);
 CREATE INDEX /*i*/rc_name_type_patrolled_timestamp ON /*_*/recentchanges (rc_namespace, rc_type, rc_patrolled, rc_timestamp);
 
 
@@ -1067,6 +1130,9 @@ CREATE TABLE /*_*/logging (
   -- Name of the user who performed this action
   log_user_text nvarchar(255) NOT NULL default '',
 
+  -- The actor who performed this action
+  log_actor bigint unsigned NOT NULL CONSTRAINT DF_log_actor DEFAULT 0,
+
   -- Key to the page affected. Where a user is the target,
   -- this will point to the user page.
   log_namespace int NOT NULL default 0,
@@ -1093,6 +1159,8 @@ CREATE INDEX /*i*/log_page_id_time ON /*_*/logging (log_page,log_timestamp);
 CREATE INDEX /*i*/type_action ON /*_*/logging (log_type, log_action, log_timestamp);
 CREATE INDEX /*i*/log_user_text_type_time ON /*_*/logging (log_user_text, log_type, log_timestamp);
 CREATE INDEX /*i*/log_user_text_time ON /*_*/logging (log_user_text, log_timestamp);
+CREATE INDEX /*i*/actor_time ON /*_*/logging (log_actor, log_timestamp);
+CREATE INDEX /*i*/log_actor_type_time ON /*_*/logging (log_actor, log_type, log_timestamp);
 
 INSERT INTO /*_*/logging (log_user,log_page,log_params) VALUES(0,0,'');
 
