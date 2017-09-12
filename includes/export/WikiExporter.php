@@ -227,15 +227,20 @@ class WikiExporter {
 		$this->author_list = "<contributors>";
 		// rev_deleted
 
+		$revQuery = Revision::getQueryInfo( [ 'page' ] )
 		$res = $this->db->select(
-			[ 'page', 'revision' ],
-			[ 'DISTINCT rev_user_text', 'rev_user' ],
+			$revQuery['tables'],
+			[
+				'rev_user_text' => $revQuery['fields']['rev_user_text'],
+				'rev_user' => $revQuery['fields']['rev_user'],
+			],
 			[
 				$this->db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0',
 				$cond,
-				'page_id = rev_id',
 			],
-			__METHOD__
+			__METHOD__,
+			[ 'DISTINCT' ],
+			$revQuery['joins']
 		);
 
 		foreach ( $res as $row ) {
@@ -279,14 +284,18 @@ class WikiExporter {
 			$result = null; // Assuring $result is not undefined, if exception occurs early
 
 			$commentQuery = CommentStore::newKey( 'log_comment' )->getJoin();
+			$actorQuery = ActorMigration::newKey( 'log_user' )->getJoin();
 
 			try {
-				$result = $this->db->select( [ 'logging', 'user' ] + $commentQuery['tables'],
-					[ "{$logging}.*", 'user_name' ] + $commentQuery['fields'], // grab the user name
+				$result = $this->db->select(
+					array_merge( [ 'logging' ], $commentQuery['tables'], $actorQuery['tables'], [ 'user' ] ),
+					[ "{$logging}.*", 'user_name' ] + $commentQuery['fields'] + $actorQuery['fields'],
 					$where,
 					__METHOD__,
 					[ 'ORDER BY' => 'log_id', 'USE INDEX' => [ 'logging' => 'PRIMARY' ] ],
-					[ 'user' => [ 'JOIN', 'user_id = log_user' ] ] + $commentQuery['joins']
+					[
+						'user' => [ 'JOIN', 'user_id = ' . $actorQuery['fields']['log_user'] ]
+					] + $commentQuery['joins'] + $actorQuery['joins']
 				);
 				$this->outputLogStream( $result );
 				if ( $this->buffer == self::STREAM ) {
