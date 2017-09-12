@@ -64,26 +64,25 @@ class RevDelLogList extends RevDelList {
 		$ids = array_map( 'intval', $this->ids );
 
 		$commentQuery = CommentStore::newKey( 'log_comment' )->getJoin();
+		$actorQuery = ActorMigration::newKey( 'log_user' )->getJoin();
 
 		return $db->select(
-			[ 'logging' ] + $commentQuery['tables'],
+			[ 'logging' ] + $commentQuery['tables'] + $actorQuery['tables'],
 			[
 				'log_id',
 				'log_type',
 				'log_action',
 				'log_timestamp',
-				'log_user',
-				'log_user_text',
 				'log_namespace',
 				'log_title',
 				'log_page',
 				'log_params',
 				'log_deleted'
-			] + $commentQuery['fields'],
+			] + $commentQuery['fields'] + $actorQuery['fields'],
 			[ 'log_id' => $ids ],
 			__METHOD__,
 			[ 'ORDER BY' => 'log_id DESC' ],
-			$commentQuery['joins']
+			$commentQuery['joins'] + $actorQuery['joins']
 		);
 	}
 

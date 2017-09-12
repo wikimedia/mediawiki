@@ -412,7 +412,6 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		$ipbfields = [
 			'ipb_range_start' => '',
 			'ipb_range_end' => '',
-			'ipb_by' => 0,
 			'ipb_timestamp' => $db->timestamp(),
 			'ipb_expiry' => $db->getInfinity(),
 		];
@@ -420,8 +419,6 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			'rev_page' => 42,
 			'rev_text_id' => 42,
 			'rev_len' => 0,
-			'rev_user' => 0,
-			'rev_user_text' => '',
 			'rev_timestamp' => $db->timestamp(),
 		];
 		$comStoreComment = new CommentStoreComment(
