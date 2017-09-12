@@ -27,12 +27,16 @@ class RecentChangeTest extends MediaWikiTestCase {
 	 * @covers RecentChange::loadFromRow
 	 */
 	public function testNewFromRow() {
+		$user = $this->getTestUser()->getUser();
+		$actorId = $user->getActorId();
+
 		$row = new stdClass();
 		$row->rc_foo = 'AAA';
 		$row->rc_timestamp = '20150921134808';
 		$row->rc_deleted = 'bar';
 		$row->rc_comment_text = 'comment';
 		$row->rc_comment_data = null;
+		$row->rc_user = $user->getId();
 
 		$rc = RecentChange::newFromRow( $row );
 
@@ -43,6 +47,9 @@ class RecentChangeTest extends MediaWikiTestCase {
 			'rc_comment' => 'comment',
 			'rc_comment_text' => 'comment',
 			'rc_comment_data' => null,
+			'rc_user' => $user->getId(),
+			'rc_user_text' => $user->getName(),
+			'rc_actor' => $actorId,
 		];
 		$this->assertEquals( $expected, $rc->getAttributes() );
 
@@ -51,6 +58,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 		$row->rc_timestamp = '20150921134808';
 		$row->rc_deleted = 'bar';
 		$row->rc_comment = 'comment';
+		$row->rc_user = $user->getId();
 
 		Wikimedia\suppressWarnings();
 		$rc = RecentChange::newFromRow( $row );
@@ -63,6 +71,9 @@ class RecentChangeTest extends MediaWikiTestCase {
 			'rc_comment' => 'comment',
 			'rc_comment_text' => 'comment',
 			'rc_comment_data' => null,
+			'rc_user' => $user->getId(),
+			'rc_user_text' => $user->getName(),
+			'rc_actor' => $actorId,
 		];
 		$this->assertEquals( $expected, $rc->getAttributes() );
 	}

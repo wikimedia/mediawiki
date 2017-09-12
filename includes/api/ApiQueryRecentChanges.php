@@ -211,8 +211,18 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addWhereIf( 'rc_minor != 0', isset( $show['minor'] ) );
 			$this->addWhereIf( 'rc_bot = 0', isset( $show['!bot'] ) );
 			$this->addWhereIf( 'rc_bot != 0', isset( $show['bot'] ) );
-			$this->addWhereIf( 'rc_user = 0', isset( $show['anon'] ) );
-			$this->addWhereIf( 'rc_user != 0', isset( $show['!anon'] ) );
+			if ( isset( $show['anon'] ) || isset( $show['!anon'] ) ) {
+				$actorMigration = ActorMigration::newMigration();
+				$actorQuery = $actorMigration->getJoin( 'rc_user' );
+				$this->addTables( $actorQuery['tables'] );
+				$this->addJoinConds( $actorQuery['joins'] );
+				$this->addWhereIf(
+					$actorMigration->isAnon( $actorQuery['fields']['rc_user'] ), isset( $show['anon'] )
+				);
+				$this->addWhereIf(
+					$actorMigration->isNotAnon( $actorQuery['fields']['rc_user'] ), isset( $show['!anon'] )
+				);
+			}
 			$this->addWhereIf( 'rc_patrolled = 0', isset( $show['!patrolled'] ) );
 			$this->addWhereIf( 'rc_patrolled != 0', isset( $show['patrolled'] ) );
 			$this->addWhereIf( 'page_is_redirect = 1', isset( $show['redirect'] ) );
@@ -237,14 +247,21 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->requireMaxOneParameter( $params, 'user', 'excludeuser' );
 
 		if ( !is_null( $params['user'] ) ) {
-			$this->addWhereFld( 'rc_user_text', $params['user'] );
+			// Don't query by user ID here, it might be able to use the rc_user_text index.
+			$actorQuery = ActorMigration::newMigration()
+				->getWhere( $this->getDB(), 'rc_user', User::newFromName( $params['user'], false ), false );
+			$this->addTables( $actorQuery['tables'] );
+			$this->addJoinConds( $actorQuery['joins'] );
+			$this->addWhere( $actorQuery['conds'] );
 		}
 
 		if ( !is_null( $params['excludeuser'] ) ) {
-			// We don't use the rc_user_text index here because
-			// * it would require us to sort by rc_user_text before rc_timestamp
-			// * the != condition doesn't throw out too many rows anyway
-			$this->addWhere( 'rc_user_text != ' . $this->getDB()->addQuotes( $params['excludeuser'] ) );
+			// Here there's no chance to use the rc_user_text index, so allow ID to be used.
+			$actorQuery = ActorMigration::newMigration()
+				->getWhere( $this->getDB(), 'rc_user', User::newFromName( $params['excludeuser'], false ) );
+			$this->addTables( $actorQuery['tables'] );
+			$this->addJoinConds( $actorQuery['joins'] );
+			$this->addWhere( 'NOT(' . $actorQuery['conds'] . ')' );
 		}
 
 		/* Add the fields we're concerned with to our query. */
@@ -272,8 +289,12 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 			/* Add fields to our query if they are specified as a needed parameter. */
 			$this->addFieldsIf( [ 'rc_this_oldid', 'rc_last_oldid' ], $this->fld_ids );
-			$this->addFieldsIf( 'rc_user', $this->fld_user || $this->fld_userid );
-			$this->addFieldsIf( 'rc_user_text', $this->fld_user );
+			if ( $this->fld_user || $this->fld_userid ) {
+				$actorQuery = ActorMigration::newMigration()->getJoin( 'rc_user' );
+				$this->addTables( $actorQuery['tables'] );
+				$this->addFields( $actorQuery['fields'] );
+				$this->addJoinConds( $actorQuery['joins'] );
+			}
 			$this->addFieldsIf( [ 'rc_minor', 'rc_type', 'rc_bot' ], $this->fld_flags );
 			$this->addFieldsIf( [ 'rc_old_len', 'rc_new_len' ], $this->fld_sizes );
 			$this->addFieldsIf( [ 'rc_patrolled', 'rc_log_type' ], $this->fld_patrolled );

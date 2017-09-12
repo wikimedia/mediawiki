@@ -26,6 +26,7 @@
 
 namespace MediaWiki\Storage;
 
+use ActorMigration;
 use CommentStore;
 use CommentStoreComment;
 use Content;
@@ -98,6 +99,11 @@ class RevisionStore
 	private $commentStore;
 
 	/**
+	 * @var ActorMigration
+	 */
+	private $actorMigration;
+
+	/**
 	 * @var LoggerInterface
 	 */
 	private $logger;
@@ -109,6 +115,7 @@ class RevisionStore
 	 * @param SqlBlobStore $blobStore
 	 * @param WANObjectCache $cache
 	 * @param CommentStore $commentStore
+	 * @param ActorMigration $actorMigration
 	 * @param bool|string $wikiId
 	 */
 	public function __construct(
@@ -116,6 +123,7 @@ class RevisionStore
 		SqlBlobStore $blobStore,
 		WANObjectCache $cache,
 		CommentStore $commentStore,
+		ActorMigration $actorMigration,
 		$wikiId = false
 	) {
 		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
@@ -124,6 +132,7 @@ class RevisionStore
 		$this->blobStore = $blobStore;
 		$this->cache = $cache;
 		$this->commentStore = $commentStore;
+		$this->actorMigration = $actorMigration;
 		$this->wikiId = $wikiId;
 		$this->logger = new NullLogger();
 	}
@@ -381,14 +390,16 @@ class RevisionStore
 		$user = $this->failOnNull( $rev->getUser( RevisionRecord::RAW ), 'user' );
 		$timestamp = $this->failOnEmpty( $rev->getTimestamp(), 'timestamp field' );
 
+		// Checks.
+		$this->failOnNull( $user->getId(), 'user field' );
+		$this->failOnEmpty( $user->getName(), 'user_text field' );
+
 		# Record the edit in revisions
 		$row = [
 			'rev_page'       => $pageId,
 			'rev_parent_id'  => $parentId,
 			'rev_text_id'    => $textId,
 			'rev_minor_edit' => $rev->isMinor() ? 1 : 0,
-			'rev_user'       => $this->failOnNull( $user->getId(), 'user field' ),
-			'rev_user_text'  => $this->failOnEmpty( $user->getName(), 'user_text field' ),
 			'rev_timestamp'  => $dbw->timestamp( $timestamp ),
 			'rev_deleted'    => $rev->getVisibility(),
 			'rev_len'        => $size,
@@ -403,6 +414,10 @@ class RevisionStore
 		list( $commentFields, $commentCallback ) =
 			$this->commentStore->insertWithTempTable( $dbw, 'rev_comment', $comment );
 		$row += $commentFields;
+
+		list( $actorFields, $actorCallback ) =
+			$this->actorMigration->getInsertValuesWithTempTable( $dbw, 'rev_user', $user );
+		$row += $actorFields;
 
 		if ( $this->contentHandlerUseDB ) {
 			// MCR migration note: rev_content_model and rev_content_format will go away
@@ -421,21 +436,20 @@ class RevisionStore
 			$row['rev_id'] = intval( $dbw->insertId() );
 		}
 		$commentCallback( $row['rev_id'] );
+		$actorCallback( $row['rev_id'], $row );
 
 		// Insert IP revision into ip_changes for use when querying for a range.
-		if ( $row['rev_user'] === 0 && IP::isValid( $row['rev_user_text'] ) ) {
+		if ( $user->getId() === 0 && IP::isValid( $user->getName() ) ) {
 			$ipcRow = [
 				'ipc_rev_id'        => $row['rev_id'],
 				'ipc_rev_timestamp' => $row['rev_timestamp'],
-				'ipc_hex'           => IP::toHex( $row['rev_user_text'] ),
+				'ipc_hex'           => IP::toHex( $user->getName() ),
 			];
 			$dbw->insert( 'ip_changes', $ipcRow, __METHOD__ );
 		}
 
 		$newSlot = SlotRecord::newSaved( $row['rev_id'], $blobAddress, $slot );
 		$slots = new RevisionSlots( [ 'main' => $newSlot ] );
-
-		$user = new UserIdentityValue( intval( $row['rev_user'] ), $row['rev_user_text'] );
 
 		$rev = new RevisionStoreRecord(
 			$title,
@@ -576,6 +590,7 @@ class RevisionStore
 				'page'       => $title->getArticleID(),
 				'user_text'  => $user->getName(),
 				'user'       => $user->getId(),
+				'actor'      => $user->getActorId(),
 				'comment'    => $comment,
 				'minor_edit' => $minor,
 				'text_id'    => $current->rev_text_id,
@@ -647,9 +662,10 @@ class RevisionStore
 		}
 
 		// TODO: Select by rc_this_oldid alone - but as of Nov 2017, there is no index on that!
+		$actorWhere = $this->actorMigration->getWhere( $dbr, 'rc_user', $rev->getUser(), false );
 		$rc = RecentChange::newFromConds(
 			[
-				'rc_user_text' => $userIdentity->getName(),
+				$actorWhere['conds'],
 				'rc_timestamp' => $dbr->timestamp( $rev->getTimestamp() ),
 				'rc_this_oldid' => $rev->getId()
 			],
@@ -684,6 +700,7 @@ class RevisionStore
 			'ar_timestamp'      => 'rev_timestamp',
 			'ar_user_text'      => 'rev_user_text',
 			'ar_user'           => 'rev_user',
+			'ar_actor'          => 'rev_actor',
 			'ar_minor_edit'     => 'rev_minor_edit',
 			'ar_deleted'        => 'rev_deleted',
 			'ar_len'            => 'rev_len',
@@ -734,7 +751,7 @@ class RevisionStore
 
 		if ( is_object( $row ) ) {
 			// archive row
-			if ( !isset( $row->rev_id ) && isset( $row->ar_user ) ) {
+			if ( !isset( $row->rev_id ) && ( isset( $row->ar_user ) || isset( $row->ar_actor ) ) ) {
 				$row = $this->mapArchiveFields( $row );
 			}
 
@@ -1075,7 +1092,16 @@ class RevisionStore
 			$row->$field = $value;
 		}
 
-		$user = $this->getUserIdentityFromRowObject( $row, 'ar_' );
+		try {
+			$user = User::newFromAnyId(
+				isset( $row->ar_user ) ? $row->ar_user : null,
+				isset( $row->ar_user_text ) ? $row->ar_user_text : null,
+				isset( $row->ar_actor ) ? $row->ar_actor : null
+			);
+		} catch ( InvalidArgumentException $ex ) {
+			wfWarn( __METHOD__ . ': ' . $ex->getMessage() );
+			$user = new UserIdentityValue( 0, '', 0 );
+		}
 
 		$comment = $this->commentStore
 			// Legacy because $row may have come from self::selectFields()
@@ -1085,34 +1111,6 @@ class RevisionStore
 		$slots = new RevisionSlots( [ 'main' => $mainSlot ] );
 
 		return new RevisionArchiveRecord( $title, $user, $comment, $row, $slots, $this->wikiId );
-	}
-
-	/**
-	 * @param object $row
-	 * @param string $prefix Field prefix, such as 'rev_' or 'ar_'.
-	 *
-	 * @return UserIdentityValue
-	 */
-	private function getUserIdentityFromRowObject( $row, $prefix = 'rev_' ) {
-		$idField = "{$prefix}user";
-		$nameField = "{$prefix}user_text";
-
-		$userId = intval( $row->$idField );
-
-		if ( isset( $row->user_name ) ) {
-			$userName = $row->user_name;
-		} elseif ( isset( $row->$nameField ) ) {
-			$userName = $row->$nameField;
-		} else {
-			$userName = User::whoIs( $userId );
-		}
-
-		if ( $userName === false ) {
-			wfWarn( __METHOD__ . ': Cannot determine user name for user ID ' . $userId );
-			$userName = '';
-		}
-
-		return new UserIdentityValue( $userId, $userName );
 	}
 
 	/**
@@ -1145,7 +1143,16 @@ class RevisionStore
 			}
 		}
 
-		$user = $this->getUserIdentityFromRowObject( $row );
+		try {
+			$user = User::newFromAnyId(
+				isset( $row->rev_user ) ? $row->rev_user : null,
+				isset( $row->rev_user_text ) ? $row->rev_user_text : null,
+				isset( $row->rev_actor ) ? $row->rev_actor : null
+			);
+		} catch ( InvalidArgumentException $ex ) {
+			wfWarn( __METHOD__ . ': ' . $ex->getMessage() );
+			$user = new UserIdentityValue( 0, '', 0 );
+		}
 
 		$comment = $this->commentStore
 			// Legacy because $row may have come from self::selectFields()
@@ -1224,27 +1231,6 @@ class RevisionStore
 			}
 		}
 
-		// Replaces old lazy loading logic in Revision::getUserText.
-		if ( !isset( $fields['user_text'] ) && isset( $fields['user'] ) ) {
-			if ( $fields['user'] instanceof UserIdentity ) {
-				/** @var User $user */
-				$user = $fields['user'];
-				$fields['user_text'] = $user->getName();
-				$fields['user'] = $user->getId();
-			} else {
-				// TODO: wrap this in a callback to make it lazy again.
-				$name = $fields['user'] === 0 ? false : User::whoIs( $fields['user'] );
-
-				if ( $name === false ) {
-					throw new MWException(
-						'user_text not given, and unknown user ID ' . $fields['user']
-					);
-				}
-
-				$fields['user_text'] = $name;
-			}
-		}
-
 		if (
 			isset( $fields['comment'] )
 			&& !( $fields['comment'] instanceof CommentStoreComment )
@@ -1287,16 +1273,15 @@ class RevisionStore
 
 		if ( isset( $fields['user'] ) && ( $fields['user'] instanceof UserIdentity ) ) {
 			$user = $fields['user'];
-		} elseif ( isset( $fields['user'] ) && isset( $fields['user_text'] ) ) {
-			$user = new UserIdentityValue( intval( $fields['user'] ), $fields['user_text'] );
-		} elseif ( isset( $fields['user'] ) ) {
-			$user = User::newFromId( intval( $fields['user'] ) );
-		} elseif ( isset( $fields['user_text'] ) ) {
-			$user = User::newFromName( $fields['user_text'] );
-
-			// User::newFromName will return false for IP addresses (and invalid names)
-			if ( $user == false ) {
-				$user = new UserIdentityValue( 0, $fields['user_text'] );
+		} else {
+			try {
+				$user = User::newFromAnyId(
+					isset( $fields['user'] ) ? $fields['user'] : null,
+					isset( $fields['user_text'] ) ? $fields['user_text'] : null,
+					isset( $fields['actor'] ) ? $fields['actor'] : null
+				);
+			} catch ( InvalidArgumentException $ex ) {
+				$user = null;
 			}
 		}
 
@@ -1613,8 +1598,6 @@ class RevisionStore
 			'rev_page',
 			'rev_text_id',
 			'rev_timestamp',
-			'rev_user_text',
-			'rev_user',
 			'rev_minor_edit',
 			'rev_deleted',
 			'rev_len',
@@ -1626,6 +1609,11 @@ class RevisionStore
 		$ret['tables'] = array_merge( $ret['tables'], $commentQuery['tables'] );
 		$ret['fields'] = array_merge( $ret['fields'], $commentQuery['fields'] );
 		$ret['joins'] = array_merge( $ret['joins'], $commentQuery['joins'] );
+
+		$actorQuery = $this->actorMigration->getJoin( 'rev_user' );
+		$ret['tables'] = array_merge( $ret['tables'], $actorQuery['tables'] );
+		$ret['fields'] = array_merge( $ret['fields'], $actorQuery['fields'] );
+		$ret['joins'] = array_merge( $ret['joins'], $actorQuery['joins'] );
 
 		if ( $this->contentHandlerUseDB ) {
 			$ret['fields'][] = 'rev_content_format';
@@ -1650,7 +1638,8 @@ class RevisionStore
 			$ret['fields'] = array_merge( $ret['fields'], [
 				'user_name',
 			] );
-			$ret['joins']['user'] = [ 'LEFT JOIN', [ 'rev_user != 0', 'user_id = rev_user' ] ];
+			$u = $actorQuery['fields']['rev_user'];
+			$ret['joins']['user'] = [ 'LEFT JOIN', [ "$u != 0", "user_id = $u" ] ];
 		}
 
 		if ( in_array( 'text', $options, true ) ) {
@@ -1680,8 +1669,9 @@ class RevisionStore
 	 */
 	public function getArchiveQueryInfo() {
 		$commentQuery = $this->commentStore->getJoin( 'ar_comment' );
+		$actorQuery = $this->actorMigration->getJoin( 'ar_user' );
 		$ret = [
-			'tables' => [ 'archive' ] + $commentQuery['tables'],
+			'tables' => [ 'archive' ] + $commentQuery['tables'] + $actorQuery['tables'],
 			'fields' => [
 					'ar_id',
 					'ar_page_id',
@@ -1691,15 +1681,13 @@ class RevisionStore
 					'ar_text',
 					'ar_text_id',
 					'ar_timestamp',
-					'ar_user_text',
-					'ar_user',
 					'ar_minor_edit',
 					'ar_deleted',
 					'ar_len',
 					'ar_parent_id',
 					'ar_sha1',
-				] + $commentQuery['fields'],
-			'joins' => $commentQuery['joins'],
+				] + $commentQuery['fields'] + $actorQuery['fields'],
+			'joins' => $commentQuery['joins'] + $actorQuery['joins'],
 		];
 
 		if ( $this->contentHandlerUseDB ) {
@@ -1922,15 +1910,19 @@ class RevisionStore
 			return false;
 		}
 
+		$revQuery = self::getQueryInfo();
 		$res = $db->select(
-			'revision',
-			'rev_user',
+			$revQuery['tables'],
+			[
+				'rev_user' => $revQuery['fields']['rev_user'],
+			],
 			[
 				'rev_page' => $pageId,
 				'rev_timestamp > ' . $db->addQuotes( $db->timestamp( $since ) )
 			],
 			__METHOD__,
-			[ 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 50 ]
+			[ 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 50 ],
+			$revQuery['joins']
 		);
 		foreach ( $res as $row ) {
 			if ( $row->rev_user != $userId ) {
