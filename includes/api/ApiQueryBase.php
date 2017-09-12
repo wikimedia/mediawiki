@@ -381,13 +381,32 @@ abstract class ApiQueryBase extends ApiBase {
 			);
 		}
 
-		$res = $this->getDB()->select( $tables, $fields, $where, $method, $options, $join_conds );
+		$res = $this->doSelect( $tables, $fields, $where, $method, $options, $join_conds );
 
 		if ( $hookData !== null ) {
 			Hooks::run( 'ApiQueryBaseAfterQuery', [ $this, $res, &$hookData ] );
 		}
 
 		return $res;
+	}
+
+	/**
+	 * Actually do the select
+	 *
+	 * This exists in case a module needs to do strange things to the query
+	 * just before it's sent (e.g. ApiQueryRecentChanges). Don't use it directly.
+	 *
+	 * @since 1.31
+	 * @param array $tables See IDatabase::select()
+	 * @param array $fields See IDatabase::select()
+	 * @param array $where See IDatabase::select()
+	 * @param string $method See IDatabase::select()
+	 * @param array $options See IDatabase::select()
+	 * @param array $join_conds See IDatabase::select()
+	 * @return ResultWrapper
+	 */
+	protected function doSelect( $tables, $fields, $where, $method, $options, $join_conds ) {
+		return $this->getDB()->select( $tables, $fields, $where, $method, $options, $join_conds );
 	}
 
 	/**
@@ -452,11 +471,13 @@ abstract class ApiQueryBase extends ApiBase {
 		if ( $showBlockInfo ) {
 			$this->addFields( [
 				'ipb_id',
-				'ipb_by',
-				'ipb_by_text',
 				'ipb_expiry',
 				'ipb_timestamp'
 			] );
+			$actorQuery = ActorMigration::newKey( 'ipb_by' )->getJoin();
+			$this->addTables( $actorQuery['tables'] );
+			$this->addFields( $actorQuery['fields'] );
+			$this->addJoinConds( $actorQuery['joins'] );
 			$commentQuery = CommentStore::newKey( 'ipb_reason' )->getJoin();
 			$this->addTables( $commentQuery['tables'] );
 			$this->addFields( $commentQuery['fields'] );
