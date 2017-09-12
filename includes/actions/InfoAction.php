@@ -718,12 +718,37 @@ class InfoAction extends FormlessAction {
 			self::getCacheKey( $cache, $page->getTitle(), $page->getLatest() ),
 			WANObjectCache::TTL_WEEK,
 			function ( $oldValue, &$ttl, &$setOpts ) use ( $page, $config, $fname ) {
+				global $wgActorTableSchemaMigrationStage;
+
 				$title = $page->getTitle();
 				$id = $title->getArticleID();
 
 				$dbr = wfGetDB( DB_REPLICA );
 				$dbrWatchlist = wfGetDB( DB_REPLICA, 'watchlist' );
 				$setOpts += Database::getCacheSetOptions( $dbr, $dbrWatchlist );
+
+				if ( $wgActorTableSchemaMigrationStage === MIGRATION_NEW ) {
+					$tables = [ 'revision_actor_temp' ];
+					$field = 'revactor_actor';
+					$pageField = 'revactor_page';
+					$tsField = 'revactor_timestamp';
+					$joins = [];
+				} elseif ( $wgActorTableSchemaMigrationStage === MIGRATION_OLD ) {
+					$tables = [ 'revision' ];
+					$field = 'rev_user_text';
+					$pageField = 'rev_page';
+					$tsField = 'rev_timestamp';
+					$joins = [];
+				} else {
+					$tables = [ 'revision', 'revision_actor_temp', 'actor' ];
+					$field = 'COALESCE( actor_name, rev_user_text)';
+					$pageField = 'rev_page';
+					$tsField = 'rev_timestamp';
+					$joins = [
+						'revision_actor_temp' => [ 'LEFT JOIN', 'revactor_rev = rev_id' ],
+						'actor' => [ 'LEFT JOIN', 'revactor_actor = actor_id' ],
+					];
+				}
 
 				$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
 
@@ -752,10 +777,12 @@ class InfoAction extends FormlessAction {
 					$result['authors'] = 0;
 				} else {
 					$result['authors'] = (int)$dbr->selectField(
-						'revision',
-						'COUNT(DISTINCT rev_user_text)',
-						[ 'rev_page' => $id ],
-						$fname
+						$tables,
+						"COUNT(DISTINCT $field)",
+						[ $pageField => $id ],
+						$fname,
+						[],
+						$joins
 					);
 				}
 
@@ -776,13 +803,15 @@ class InfoAction extends FormlessAction {
 
 				// Recent number of distinct authors
 				$result['recent_authors'] = (int)$dbr->selectField(
-					'revision',
-					'COUNT(DISTINCT rev_user_text)',
+					$tables,
+					"COUNT(DISTINCT $field)",
 					[
-						'rev_page' => $id,
-						"rev_timestamp >= " . $dbr->addQuotes( $threshold )
+						$pageField => $id,
+						"$tsField >= " . $dbr->addQuotes( $threshold )
 					],
-					$fname
+					$fname,
+					[],
+					$joins
 				);
 
 				// Subpages (if enabled)

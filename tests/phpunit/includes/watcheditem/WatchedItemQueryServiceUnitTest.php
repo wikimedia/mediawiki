@@ -31,13 +31,48 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @return PHPUnit_Framework_MockObject_MockObject|ActorMigration
+	 */
+	private function getMockActorMigration() {
+		$mockStore = $this->getMockBuilder( ActorMigration::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$mockStore->expects( $this->any() )
+			->method( 'getJoin' )
+			->willReturn( [
+				'tables' => [ 'actormigration' => 'table' ],
+				'fields' => [
+					'rc_user' => 'actormigration_user',
+					'rc_user_text' => 'actormigration_user_text',
+					'rc_actor' => 'actormigration_actor',
+				],
+				'joins' => [ 'actormigration' => 'join' ],
+			] );
+		$mockStore->expects( $this->any() )
+			->method( 'getWhere' )
+			->willReturn( [
+				'tables' => [ 'actormigration' => 'table' ],
+				'conds' => 'actormigration_conds',
+				'joins' => [ 'actormigration' => 'join' ],
+			] );
+		$mockStore->expects( $this->any() )
+			->method( 'isAnon' )
+			->willReturn( 'actormigration is anon' );
+		$mockStore->expects( $this->any() )
+			->method( 'isNotAnon' )
+			->willReturn( 'actormigration is not anon' );
+		return $mockStore;
+	}
+
+	/**
 	 * @param PHPUnit_Framework_MockObject_MockObject|Database $mockDb
 	 * @return WatchedItemQueryService
 	 */
 	private function newService( $mockDb ) {
 		return new WatchedItemQueryService(
 			$this->getMockLoadBalancer( $mockDb ),
-			$this->getMockCommentStore()
+			$this->getMockCommentStore(),
+			$this->getMockActorMigration()
 		);
 	}
 
@@ -57,10 +92,17 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnCallback( function ( $a, $conj ) {
 				$sqlConj = $conj === LIST_AND ? ' AND ' : ' OR ';
-				return join( $sqlConj, array_map( function ( $s ) {
-					return '(' . $s . ')';
-				}, $a
-				) );
+				$conds = [];
+				foreach ( $a as $k => $v ) {
+					if ( is_int( $k ) ) {
+						$conds[] = "($v)";
+					} elseif ( is_array( $v ) ) {
+						$conds[] = "($k IN ('" . join( "','", $v ) . "'))";
+					} else {
+						$conds[] = "($k = '$v')";
+					}
+				}
+				return join( $sqlConj, $conds );
 			} ) );
 
 		$mock->expects( $this->any() )
@@ -490,20 +532,20 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			[
 				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_USER ] ],
 				null,
+				[ 'actormigration' => 'table' ],
+				[ 'rc_user_text' => 'actormigration_user_text' ],
 				[],
-				[ 'rc_user_text' ],
 				[],
-				[],
-				[],
+				[ 'actormigration' => 'join' ],
 			],
 			[
 				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_USER_ID ] ],
 				null,
+				[ 'actormigration' => 'table' ],
+				[ 'rc_user' => 'actormigration_user' ],
 				[],
-				[ 'rc_user' ],
 				[],
-				[],
-				[],
+				[ 'actormigration' => 'join' ],
 			],
 			[
 				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_COMMENT ] ],
@@ -705,20 +747,20 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			[
 				[ 'filters' => [ WatchedItemQueryService::FILTER_ANON ] ],
 				null,
+				[ 'actormigration' => 'table' ],
 				[],
+				[ 'actormigration is anon' ],
 				[],
-				[ 'rc_user = 0' ],
-				[],
-				[],
+				[ 'actormigration' => 'join' ],
 			],
 			[
 				[ 'filters' => [ WatchedItemQueryService::FILTER_NOT_ANON ] ],
 				null,
+				[ 'actormigration' => 'table' ],
 				[],
+				[ 'actormigration is not anon' ],
 				[],
-				[ 'rc_user != 0' ],
-				[],
-				[],
+				[ 'actormigration' => 'join' ],
 			],
 			[
 				[ 'filters' => [ WatchedItemQueryService::FILTER_PATROLLED ] ],
@@ -759,20 +801,20 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			[
 				[ 'onlyByUser' => 'SomeOtherUser' ],
 				null,
+				[ 'actormigration' => 'table' ],
 				[],
+				[ 'actormigration_conds' ],
 				[],
-				[ 'rc_user_text' => 'SomeOtherUser' ],
-				[],
-				[],
+				[ 'actormigration' => 'join' ],
 			],
 			[
 				[ 'notByUser' => 'SomeOtherUser' ],
 				null,
+				[ 'actormigration' => 'table' ],
 				[],
+				[ 'NOT(actormigration_conds)' ],
 				[],
-				[ "rc_user_text != 'SomeOtherUser'" ],
-				[],
-				[],
+				[ 'actormigration' => 'join' ],
 			],
 			[
 				[ 'dir' => WatchedItemQueryService::DIR_OLDER ],
@@ -984,62 +1026,74 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			[
 				[],
 				'deletedhistory',
+				[],
 				[
 					'(rc_type != ' . RC_LOG . ') OR ((rc_deleted & ' . LogPage::DELETED_ACTION . ') != ' .
 						LogPage::DELETED_ACTION . ')'
 				],
+				[],
 			],
 			[
 				[],
 				'suppressrevision',
+				[],
 				[
 					'(rc_type != ' . RC_LOG . ') OR (' .
 						'(rc_deleted & ' . ( LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED ) . ') != ' .
 						( LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED ) . ')'
 				],
+				[],
 			],
 			[
 				[],
 				'viewsuppressed',
+				[],
 				[
 					'(rc_type != ' . RC_LOG . ') OR (' .
 						'(rc_deleted & ' . ( LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED ) . ') != ' .
 						( LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED ) . ')'
 				],
+				[],
 			],
 			[
 				[ 'onlyByUser' => 'SomeOtherUser' ],
 				'deletedhistory',
+				[ 'actormigration' => 'table' ],
 				[
-					'rc_user_text' => 'SomeOtherUser',
+					'actormigration_conds',
 					'(rc_deleted & ' . Revision::DELETED_USER . ') != ' . Revision::DELETED_USER,
 					'(rc_type != ' . RC_LOG . ') OR ((rc_deleted & ' . LogPage::DELETED_ACTION . ') != ' .
 						LogPage::DELETED_ACTION . ')'
 				],
+				[ 'actormigration' => 'join' ],
 			],
 			[
 				[ 'onlyByUser' => 'SomeOtherUser' ],
 				'suppressrevision',
+				[ 'actormigration' => 'table' ],
 				[
-					'rc_user_text' => 'SomeOtherUser',
+					'actormigration_conds',
 					'(rc_deleted & ' . ( Revision::DELETED_USER | Revision::DELETED_RESTRICTED ) . ') != ' .
 						( Revision::DELETED_USER | Revision::DELETED_RESTRICTED ),
 					'(rc_type != ' . RC_LOG . ') OR (' .
 						'(rc_deleted & ' . ( LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED ) . ') != ' .
 						( LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED ) . ')'
 				],
+				[ 'actormigration' => 'join' ],
 			],
 			[
 				[ 'onlyByUser' => 'SomeOtherUser' ],
 				'viewsuppressed',
+				[ 'actormigration' => 'table' ],
 				[
-					'rc_user_text' => 'SomeOtherUser',
+					'actormigration_conds',
 					'(rc_deleted & ' . ( Revision::DELETED_USER | Revision::DELETED_RESTRICTED ) . ') != ' .
 						( Revision::DELETED_USER | Revision::DELETED_RESTRICTED ),
 					'(rc_type != ' . RC_LOG . ') OR (' .
 						'(rc_deleted & ' . ( LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED ) . ') != ' .
 						( LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED ) . ')'
 				],
+				[ 'actormigration' => 'join' ],
 			],
 		];
 	}
@@ -1050,7 +1104,9 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 	public function testGetWatchedItemsWithRecentChangeInfo_userPermissionRelatedExtraChecks(
 		array $options,
 		$notAllowedAction,
-		array $expectedExtraConds
+		array $expectedExtraTables,
+		array $expectedExtraConds,
+		array $expectedExtraJoins
 	) {
 		$commonConds = [ 'wl_user' => 1, '(rc_this_oldid=page_latest) OR (rc_type=3)' ];
 		$conds = array_merge( $commonConds, $expectedExtraConds );
@@ -1059,12 +1115,15 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'select' )
 			->with(
-				[ 'recentchanges', 'watchlist', 'page' ],
+				array_merge( [ 'recentchanges', 'watchlist', 'page' ], $expectedExtraTables ),
 				$this->isType( 'array' ),
 				$conds,
 				$this->isType( 'string' ),
 				$this->isType( 'array' ),
-				$this->isType( 'array' )
+				array_merge( [
+					'watchlist' => [ 'INNER JOIN', [ 'wl_namespace=rc_namespace', 'wl_title=rc_title' ] ],
+					'page' => [ 'LEFT JOIN', 'rc_cur_id=page_id' ],
+				], $expectedExtraJoins )
 			)
 			->will( $this->returnValue( [] ) );
 
