@@ -97,14 +97,13 @@ class LogPage {
 			'log_type' => $this->type,
 			'log_action' => $this->action,
 			'log_timestamp' => $dbw->timestamp( $now ),
-			'log_user' => $this->doer->getId(),
-			'log_user_text' => $this->doer->getName(),
 			'log_namespace' => $this->target->getNamespace(),
 			'log_title' => $this->target->getDBkey(),
 			'log_page' => $this->target->getArticleID(),
 			'log_params' => $this->params
 		];
 		$data += CommentStore::newKey( 'log_comment' )->insert( $dbw, $this->comment );
+		$data += ActorMigration::newKey( 'log_user' )->getInsertValues( $dbw, $this->doer );
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$newId = $dbw->insertId();
 

@@ -986,13 +986,17 @@ abstract class ContentHandler {
 
 		// Find out if there was only one contributor
 		// Only scan the last 20 revisions
-		$res = $dbr->select( 'revision', 'rev_user_text',
+		$revQuery = Revision::getQueryInfo();
+		$res = $dbr->select(
+			$revQuery['tables'],
+			[ 'rev_user_text' => $revQuery['fields']['rev_user_text'] ],
 			[
 				'rev_page' => $title->getArticleID(),
 				$dbr->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0'
 			],
 			__METHOD__,
-			[ 'LIMIT' => 20 ]
+			[ 'LIMIT' => 20 ],
+			$revQuery['joins']
 		);
 
 		if ( $res === false ) {

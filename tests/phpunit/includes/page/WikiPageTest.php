@@ -804,8 +804,7 @@ more stuff
 	 * keeps failing in jenkins for some reason.
 	 */
 	public function broken_testDoRollback() {
-		$admin = new User();
-		$admin->setName( "Admin" );
+		$admin = $this->getTestSysop()->getUser();
 
 		$text = "one";
 		$page = $this->newPage( "WikiPageTest_testDoRollback" );
@@ -840,11 +839,9 @@ more stuff
 		$this->assertEquals( '127.0.1.11', $rev2->getUserText() );
 
 		$rev1 = $rev2->getPrevious();
-		$this->assertEquals( 'Admin', $rev1->getUserText() );
+		$this->assertEquals( $admin->getName(), $rev1->getUserText() );
 
 		# now, try the actual rollback
-		$admin->addToDatabase();
-		$admin->addGroup( "sysop" ); # XXX: make the test user a sysop...
 		$token = $admin->getEditToken(
 			[ $page->getTitle()->getPrefixedText(), $user2->getName() ],
 			null
@@ -874,9 +871,7 @@ more stuff
 	 * @covers WikiPage::doRollback
 	 */
 	public function testDoRollback() {
-		$admin = new User();
-		$admin->setName( "Admin" );
-		$admin->addToDatabase();
+		$admin = $this->getTestSysop()->getUser();
 
 		$text = "one";
 		$page = $this->newPage( "WikiPageTest_testDoRollback" );
@@ -902,7 +897,6 @@ more stuff
 		);
 
 		# now, try the rollback
-		$admin->addGroup( "sysop" ); # XXX: make the test user a sysop...
 		$token = $admin->getEditToken( 'rollback' );
 		$errors = $page->doRollback(
 			$user1->getName(),
@@ -928,10 +922,7 @@ more stuff
 	 * @covers WikiPage::doRollback
 	 */
 	public function testDoRollbackFailureSameContent() {
-		$admin = new User();
-		$admin->setName( "Admin" );
-		$admin->addToDatabase();
-		$admin->addGroup( "sysop" ); # XXX: make the test user a sysop...
+		$admin = $this->getTestSysop()->getUser();
 
 		$text = "one";
 		$page = $this->newPage( "WikiPageTest_testDoRollback" );
@@ -944,10 +935,7 @@ more stuff
 		);
 		$rev1 = $page->getRevision();
 
-		$user1 = new User();
-		$user1->setName( "127.0.1.11" );
-		$user1->addToDatabase();
-		$user1->addGroup( "sysop" ); # XXX: make the test user a sysop...
+		$user1 = $this->getMutableTestUser( [ 'sysop' ] )->getUser();
 		$text .= "\n\ntwo";
 		$page = new WikiPage( $page->getTitle() );
 		$page->doEditContent(
@@ -967,7 +955,7 @@ more stuff
 			$token,
 			false,
 			$resultDetails,
-			$admin
+			$user1
 		);
 
 		$this->assertEquals( [], $errors, "Rollback failed same user" );
@@ -985,7 +973,7 @@ more stuff
 		);
 
 		$this->assertEquals( [ [ 'alreadyrolled', 'WikiPageTest testDoRollback',
-			'127.0.1.11', 'Admin' ] ], $errors, "Rollback not failed" );
+			$user1->getName(), $user1->getName() ] ], $errors, "Rollback not failed" );
 
 		$page = new WikiPage( $page->getTitle() );
 		$this->assertEquals( $rev1->getSha1(), $page->getRevision()->getSha1(),

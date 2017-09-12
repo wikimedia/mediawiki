@@ -204,6 +204,15 @@ abstract class RevisionItemBase {
 	}
 
 	/**
+	 * Get the DB field name storing actor ids.
+	 * Override this function.
+	 * @return bool
+	 */
+	public function getAuthorActorField() {
+		return false;
+	}
+
+	/**
 	 * Get the ID, as it would appear in the ids URL parameter
 	 * @return int
 	 */
@@ -254,6 +263,15 @@ abstract class RevisionItemBase {
 	 */
 	public function getAuthorName() {
 		$field = $this->getAuthorNameField();
+		return strval( $this->row->$field );
+	}
+
+	/**
+	 * Get the author actor ID
+	 * @return string
+	 */
+	public function getAuthorActor() {
+		$field = $this->getAuthorActorField();
 		return strval( $this->row->$field );
 	}
 
