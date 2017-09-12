@@ -4920,6 +4920,7 @@ $wgDefaultUserOptions = [
 	'previewontop' => 1,
 	'rcdays' => 7,
 	'rcenhancedfilters' => 0,
+	'rcenhancedfilters-disable' => 0,
 	'rclimit' => 50,
 	'rows' => 25, // @deprecated since 1.29 No longer used in core
 	'showhiddencats' => 0,
@@ -6830,18 +6831,36 @@ $wgRCWatchCategoryMembership = false;
 $wgUseRCPatrol = true;
 
 /**
+ * Whether a preference is displayed for structured change filters.
+ * If false, no preference is displayed and structured change filters are disabled.
+ * If true, structured change filters are *enabled* by default, and a preference is displayed
+ * that lets users disable them.
+ *
+ * Temporary variable during development and will be removed.
+ *
+ * @since 1.30
+ */
+$wgStructuredChangeFiltersShowPreference = false;
+
+/**
  * Whether to show the new experimental views (like namespaces, tags, and users) in
  * RecentChanges filters
+ *
+ * Temporary variable during development and will be removed.
  */
 $wgStructuredChangeFiltersEnableExperimentalViews = false;
 
 /**
  * Whether to allow users to use the experimental live update feature in the new RecentChanges UI
+ *
+ * Temporary variable during development and will be removed.
  */
 $wgStructuredChangeFiltersEnableLiveUpdate = false;
 
 /**
  * Whether to enable RCFilters app on Special:Watchlist
+ *
+ * Temporary variable during development and will be removed.
  */
 $wgStructuredChangeFiltersOnWatchlist = false;
 
