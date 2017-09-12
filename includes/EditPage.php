@@ -2915,7 +2915,7 @@ class EditPage {
 				}
 			}
 
-			$buttonLabel = $this->context->msg( $this->getSaveButtonLabel() )->text();
+			$buttonLabel = $this->context->msg( $this->getSubmitButtonLabel() )->text();
 
 			if ( $this->missingComment ) {
 				$out->wrapWikiMsg( "<div id='mw-missingcommenttext'>\n$1\n</div>", 'missingcommenttext' );
@@ -4333,9 +4333,9 @@ class EditPage {
 	 *
 	 * @return string
 	 */
-	private function getSaveButtonLabel() {
+	protected function getSubmitButtonLabel() {
 		$labelAsPublish =
-			$this->mArticle->getContext()->getConfig()->get( 'EditSubmitButtonLabelPublish' );
+			$this->context->getConfig()->get( 'EditSubmitButtonLabelPublish' );
 
 		// Can't use $this->isNew as that's also true if we're adding a new section to an extant page
 		$newPage = !$this->mTitle->exists();
@@ -4360,7 +4360,7 @@ class EditPage {
 	public function getEditButtons( &$tabindex ) {
 		$buttons = [];
 
-		$buttonLabel = $this->context->msg( $this->getSaveButtonLabel() )->text();
+		$buttonLabel = $this->context->msg( $this->getSubmitButtonLabel() )->text();
 
 		$attribs = [
 			'name' => 'wpSave',
@@ -4717,7 +4717,7 @@ class EditPage {
 	protected function addExplainConflictHeader( OutputPage $out ) {
 		$out->wrapWikiMsg(
 			"<div class='mw-explainconflict'>\n$1\n</div>",
-			[ 'explainconflict', $this->context->msg( $this->getSaveButtonLabel() )->text() ]
+			[ 'explainconflict', $this->context->msg( $this->getSubmitButtonLabel() )->text() ]
 		);
 	}
 
