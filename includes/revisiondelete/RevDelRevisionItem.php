@@ -47,6 +47,10 @@ class RevDelRevisionItem extends RevDelItem {
 		return 'rev_user_text';
 	}
 
+	public function getAuthorActorField() {
+		return 'rev_actor';
+	}
+
 	public function canView() {
 		return $this->revision->userCan( Revision::DELETED_RESTRICTED, $this->list->getUser() );
 	}
