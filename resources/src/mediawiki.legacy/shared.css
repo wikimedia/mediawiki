@@ -278,7 +278,7 @@ p.mw-delete-editreasons {
 
 /* The auto-generated edit comments */
 .autocomment {
-	color: #808080;
+	color: #72777d;
 }
 
 /** Generic minor/bot/newpage styling (recent changes) */
@@ -361,11 +361,11 @@ a.mw-selflink:visited {
  * keep in sync with commonPrint.css
  */
 table.wikitable {
-	margin: 1em 0;
 	background-color: #f8f9fa;
+	color: #222;
+	margin: 1em 0;
 	border: 1px solid #a2a9b1;
 	border-collapse: collapse;
-	color: #000;
 }
 
 table.wikitable > tr > th,
