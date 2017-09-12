@@ -89,7 +89,8 @@
 			"Kirsan",
 			"Krottyianock",
 			"Mazab IZW",
-			"InternerowyGołąb"
+			"InternerowyGołąb",
+			"Wojtas"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -1481,6 +1482,7 @@
 	"rcfilters-liveupdates-button-title-off": "Wyświetlaj nowe zmiany zaraz po tym jak nastąpią",
 	"rcfilters-watchlist-markseen-button": "Oznacz wszystkie zmiany jako obejrzane",
 	"rcfilters-watchlist-edit-watchlist-button": "Edytuj swoją listę obserwowanych stron",
+	"rcfilters-preference-label": "Wyłącz ulepszenia strony Ostatnie zmiany",
 	"rcnotefrom": "Poniżej {{PLURAL:$5|pokazano zmianę|pokazano zmiany}} {{PLURAL:$5|wykonaną|wykonane}} po <strong>$3, $4</strong> (nie więcej niż '''$1''' pozycji).",
 	"rclistfromreset": "Zresetuj wybór daty",
 	"rclistfrom": "Pokaż nowe zmiany od $3 $2",
@@ -3626,7 +3628,7 @@
 	"htmlform-int-toolow": "Podana wartość jest poniżej dopuszczalnego minimum $1",
 	"htmlform-int-toohigh": "Podana wartość jest powyżej dopuszczalnego maximum $1",
 	"htmlform-required": "Podanie tej wartości jest wymagane",
-	"htmlform-submit": "Wyślij",
+	"htmlform-submit": "Prześlij",
 	"htmlform-reset": "Cofnij zmiany",
 	"htmlform-selectorother-other": "Inne",
 	"htmlform-no": "Nie",

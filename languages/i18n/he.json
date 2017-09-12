@@ -765,6 +765,7 @@
 	"parser-template-loop-warning": "נמצאה תבנית הקוראת לעצמה: [[$1]]",
 	"template-loop-category": "דפים עם לולאות בתבנית",
 	"template-loop-category-desc": "הדף הזה מכיל לולאה בתבנית, כלומר תבנית שקוראת לעצמה באופן רקורסיבי.",
+	"template-loop-warning": "<strong>אזהרה:</strong> הדף הזה קורא ל[[:$1]], וזה גורם ללולאה בתבנית (קריאה רקורסיבית אינסופית).",
 	"parser-template-recursion-depth-warning": "עומק התבניות המוכללות זו בזו עבר את המגבלה ($1)",
 	"language-converter-depth-warning": "עומק ממיר השפה עבר את המגבלה ($1)",
 	"node-count-exceeded-category": "דפים שבהם מספר הצמתים גדול מדי",

@@ -742,6 +742,7 @@
 	"parser-template-loop-warning": "Выяўлены цыкль у шаблёнах: [[$1]]",
 	"template-loop-category": "Старонкі з цыклямі шаблёнаў",
 	"template-loop-category-desc": "Старонка ўтрымлівае цыкль шаблёну, г. зн., шаблён уключае сам сябе рэкурсіўна.",
+	"template-loop-warning": "<strong>Папярэджаньне:</strong> гэтая старонка выклікае [[:$1]], які зьяўляецца прычынай цыклю шаблёнаў (бясконцы рэкурсіўны выклік).",
 	"parser-template-recursion-depth-warning": "Перавышаны ліміт глыбіні рэкурсіі шаблёну ($1)",
 	"language-converter-depth-warning": "Перавышанае абмежаваньне глыбіні канвэртару варыянтаў мовы ($1)",
 	"node-count-exceeded-category": "Старонкі зь перавышанай колькасьцю вузлоў",
@@ -3896,5 +3897,6 @@
 	"cannotlink-no-provider-title": "Няма рахункаў для далучэньня",
 	"cannotlink-no-provider": "Няма рахункаў для далучэньня.",
 	"linkaccounts": "Далучэньне рахункаў",
-	"linkaccounts-success-text": "Рахунак быў далучаны."
+	"linkaccounts-success-text": "Рахунак быў далучаны.",
+	"linkaccounts-submit": "Далучыць рахункі"
 }
