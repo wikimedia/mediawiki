@@ -59,8 +59,12 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$this->addFields( [ 'ipb_auto', 'ipb_id', 'ipb_timestamp' ] );
 
 		$this->addFieldsIf( [ 'ipb_address', 'ipb_user' ], $fld_user || $fld_userid );
-		$this->addFieldsIf( 'ipb_by_text', $fld_by );
-		$this->addFieldsIf( 'ipb_by', $fld_byid );
+		if ( $fld_by || $fld_byid ) {
+			$actorQuery = ActorMigration::newKey( 'ipb_by' )->getJoin();
+			$this->addTables( $actorQuery['tables'] );
+			$this->addFields( $actorQuery['fields'] );
+			$this->addJoinConds( $actorQuery['joins'] );
+		}
 		$this->addFieldsIf( 'ipb_expiry', $fld_expiry );
 		$this->addFieldsIf( [ 'ipb_range_start', 'ipb_range_end' ], $fld_range );
 		$this->addFieldsIf( [ 'ipb_anon_only', 'ipb_create_account', 'ipb_enable_autoblock',
