@@ -245,7 +245,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 * @covers Revision::selectFields
 	 */
 	public function testSelectFields() {
-		global $wgContentHandlerUseDB;
+		global $wgContentHandlerUseDB, $wgActorTableSchemaMigrationStage;
 
 		$fields = Revision::selectFields();
 
@@ -255,7 +255,12 @@ class RevisionStorageTest extends MediaWikiTestCase {
 			in_array( 'rev_timestamp', $fields ),
 			'missing rev_timestamp in list of fields'
 		);
-		$this->assertTrue( in_array( 'rev_user', $fields ), 'missing rev_user in list of fields' );
+
+		if ( $wgActorTableSchemaMigrationStage < MIGRATION_NEW ) {
+			$this->assertTrue( in_array( 'rev_user', $fields ), 'missing rev_user in list of fields' );
+		} else {
+			$this->assertFalse( in_array( 'rev_user', $fields ), 'rev_user present in list of fields' );
+		}
 
 		if ( $wgContentHandlerUseDB ) {
 			$this->assertTrue( in_array( 'rev_content_model', $fields ),

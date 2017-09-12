@@ -686,14 +686,7 @@ class WikiRevision {
 	public function importLogItem() {
 		$dbw = wfGetDB( DB_MASTER );
 
-		$user = $this->getUserObj() ?: User::newFromName( $this->getUser() );
-		if ( $user ) {
-			$userId = intval( $user->getId() );
-			$userText = $user->getName();
-		} else {
-			$userId = 0;
-			$userText = $this->getUser();
-		}
+		$user = $this->getUserObj() ?: User::newFromName( $this->getUser(), false );
 
 		# @todo FIXME: This will not record autoblocks
 		if ( !$this->getTitle() ) {
@@ -724,12 +717,11 @@ class WikiRevision {
 			'log_type' => $this->type,
 			'log_action' => $this->action,
 			'log_timestamp' => $dbw->timestamp( $this->timestamp ),
-			'log_user' => $userId,
-			'log_user_text' => $userText,
 			'log_namespace' => $this->getTitle()->getNamespace(),
 			'log_title' => $this->getTitle()->getDBkey(),
 			'log_params' => $this->params
-		] + CommentStore::newKey( 'log_comment' )->insert( $dbw, $this->getComment() );
+		] + CommentStore::newKey( 'log_comment' )->insert( $dbw, $this->getComment() )
+			+ ActorMigration::newKey( 'log_user' )->getInsertValues( $dbw, $user );
 		$dbw->insert( 'logging', $data, __METHOD__ );
 
 		return true;
