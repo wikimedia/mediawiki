@@ -186,7 +186,7 @@ class ContribsPager extends RangeChronologicalPager {
 
 		if ( $this->contribs == 'newbie' ) {
 			$max = $this->mDb->selectField( 'user', 'max(user_id)', false, __METHOD__ );
-			$queryInfo['conds'][] = 'rev_user >' . (int)( $max - $max / 100 );
+			$queryInfo['conds'][] = $revQuery['fields']['rev_user'] . ' >' . (int)( $max - $max / 100 );
 			# ignore local groups with the bot right
 			# @todo FIXME: Global groups may have 'bot' rights
 			$groupsWithBotPermission = User::getGroupsWithPermission( 'bot' );
@@ -195,7 +195,7 @@ class ContribsPager extends RangeChronologicalPager {
 				$queryInfo['conds'][] = 'ug_group IS NULL';
 				$queryInfo['join_conds']['user_groups'] = [
 					'LEFT JOIN', [
-						'ug_user = rev_user',
+						'ug_user = ' . $revQuery['fields']['rev_user'],
 						'ug_group' => $groupsWithBotPermission,
 						'ug_expiry IS NULL OR ug_expiry >= ' .
 							$this->mDb->addQuotes( $this->mDb->timestamp() )
@@ -208,23 +208,18 @@ class ContribsPager extends RangeChronologicalPager {
 			$queryInfo['conds'][] = 'rev_timestamp > ' .
 				$this->mDb->addQuotes( $this->mDb->timestamp( wfTimestamp() - 30 * 24 * 60 * 60 ) );
 		} else {
-			$uid = User::idFromName( $this->target );
-			if ( $uid ) {
-				$queryInfo['conds']['rev_user'] = $uid;
-				$queryInfo['options']['USE INDEX']['revision'] = 'user_timestamp';
+			$user = User::newFromName( $this->target, false );
+			$ipRangeConds = $user->isAnon() ? $this->getIpRangeConds( $this->mDb, $this->target ) : null;
+			if ( $ipRangeConds ) {
+				$queryInfo['tables'][] = 'ip_changes';
+				$queryInfo['join_conds']['ip_changes'] = [
+					'LEFT JOIN', [ 'ipc_rev_id = rev_id' ]
+				];
+				$queryInfo['conds'][] = $ipRangeConds;
 			} else {
-				$ipRangeConds = $this->getIpRangeConds( $this->mDb, $this->target );
-
-				if ( $ipRangeConds ) {
-					$queryInfo['tables'][] = 'ip_changes';
-					$queryInfo['join_conds']['ip_changes'] = [
-						'LEFT JOIN', [ 'ipc_rev_id = rev_id' ]
-					];
-					$queryInfo['conds'][] = $ipRangeConds;
-				} else {
-					$queryInfo['conds']['rev_user_text'] = $this->target;
-					$queryInfo['options']['USE INDEX']['revision'] = 'usertext_timestamp';
-				}
+				// tables and joins are already handled by Revision::getQueryInfo()
+				$queryInfo['conds'][] = ActorMigration::newFromName( 'rev_user' )
+					->getWhere( $this->mDb, $user )['conds'];
 			}
 		}
 
