@@ -4338,12 +4338,12 @@ Definition Lists: Mixed Lists: Test 10
 !! test
 Definition Lists: Mixed Lists: Test 11
 !! wikitext
-;a
-:*b
-!! html
-<dl><dt>a</dt>
+; a
+:* b
+!! html/*
+<dl><dt> a</dt>
 <dd>
-<ul><li>b</li></ul></dd></dl>
+<ul><li> b</li></ul></dd></dl>
 
 !! end
 
