@@ -70,6 +70,7 @@ section).
 ** This is currently gated by $wgCommentTableSchemaMigrationStage. Most wikis
    can set this to MIGRATION_NEW and run maintenance/migrateComments.php as
    soon as any necessary extensions are updated.
+* Whitelisted the aria-level HTML attribute in wikitext.
 
 === External library changes in 1.30 ===
 

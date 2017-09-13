@@ -1760,6 +1760,7 @@ class Sanitizer {
 			'aria-flowto',
 			'aria-label',
 			'aria-labelledby',
+			'aria-level',
 			'aria-owns',
 			'role',
 
