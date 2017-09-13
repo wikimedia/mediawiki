@@ -1319,7 +1319,7 @@ class Linker {
 	 *
 	 * @note This is only public for technical reasons. It's not intended for use outside Linker.
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $linkTarget
 	 * @param string $text
 	 * @param string|null $wikiId Id of the wiki to link to (if not the local wiki),
 	 *  as used by WikiMap.
@@ -1328,23 +1328,23 @@ class Linker {
 	 * @return string HTML link
 	 */
 	public static function makeCommentLink(
-		Title $title, $text, $wikiId = null, $options = []
+		LinkTarget $linkTarget, $text, $wikiId = null, $options = []
 	) {
-		if ( $wikiId !== null && !$title->isExternal() ) {
+		if ( $wikiId !== null && !$linkTarget->isExternal() ) {
 			$link = self::makeExternalLink(
 				WikiMap::getForeignURL(
 					$wikiId,
-					$title->getNamespace() === 0
-						? $title->getDBkey()
-						: MWNamespace::getCanonicalName( $title->getNamespace() ) . ':'
-							. $title->getDBkey(),
-					$title->getFragment()
+					$linkTarget->getNamespace() === 0
+						? $linkTarget->getDBkey()
+						: MWNamespace::getCanonicalName( $linkTarget->getNamespace() ) . ':'
+							. $linkTarget->getDBkey(),
+					$linkTarget->getFragment()
 				),
 				$text,
 				/* escape = */ false // Already escaped
 			);
 		} else {
-			$link = self::link( $title, $text, [], [], $options );
+			$link = self::link( $linkTarget, $text, [], [], $options );
 		}
 
 		return $link;
