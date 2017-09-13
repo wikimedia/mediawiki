@@ -47,7 +47,7 @@
 		},
 		featureFlags: {
 			liveUpdate: mw.config.get( 'wgStructuredChangeFiltersLiveUpdateSupported' ) &&
-				( mw.config.get( 'wgStructuredChangeFiltersEnableLiveUpdate' ) || new mw.Uri().query.liveupdate )
+				( mw.user.options.get( 'rcenhancedfilters' ) || new mw.Uri().query.liveupdate )
 		}
 	};
 }( mediaWiki ) );
