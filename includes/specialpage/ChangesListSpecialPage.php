@@ -533,7 +533,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		// Used by "live update" and "view newest" to check
 		// if there's new changes with minimal data transfer
 		if ( $this->getRequest()->getBool( 'peek' ) ) {
-			$code = $rows->numRows() > 0 ? 200 : 304;
+			$code = $rows->numRows() > 0 ? 200 : 204;
 			$this->getOutput()->setStatusCode( $code );
 			return;
 		}
