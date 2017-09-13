@@ -1611,7 +1611,7 @@ abstract class Skin extends ContextSource {
 
 		$result .= implode(
 			'<span class="mw-editsection-divider">'
-				. wfMessage( 'pipe-separator' )->inLanguage( $lang )->text()
+				. wfMessage( 'pipe-separator' )->inLanguage( $lang )->escaped()
 				. '</span>',
 			$linksHtml
 		);
