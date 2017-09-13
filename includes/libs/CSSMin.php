@@ -151,6 +151,7 @@ class CSSMin {
 				'%2F' => '/', // Unencode slashes
 				'%3A' => ':', // Unencode colons
 				'%3D' => '=', // Unencode equals signs
+				'%22' => '"', // Unencode double quotes
 			] );
 			// Consolidate runs of multiple spaces in a row
 			$encoded = preg_replace( '/ {2,}/', ' ', $encoded );
@@ -221,7 +222,7 @@ class CSSMin {
 		if ( preg_match( '!^[\w\d:@/~.%+;,?&=-]+$!', $url ) ) {
 			return "url($url)";
 		} else {
-			return 'url("' . strtr( $url, [ '\\' => '\\\\', '"' => '\\"' ] ) . '")';
+			return "url('" . strtr( $url, [ '\\' => '\\\\', "'" => "\\'" ] ) . "')";
 		}
 	}
 
