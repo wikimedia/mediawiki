@@ -259,7 +259,7 @@ class ParserOutput extends CacheTime {
 					global $wgOut, $wgLang;
 					$editsectionPage = Title::newFromText( htmlspecialchars_decode( $m[1] ) );
 					$editsectionSection = htmlspecialchars_decode( $m[2] );
-					$editsectionContent = isset( $m[4] ) ? $m[3] : null;
+					$editsectionContent = isset( $m[4] ) ? Sanitizer::decodeCharReferences( $m[3] ) : null;
 
 					if ( !is_object( $editsectionPage ) ) {
 						throw new MWException( "Bad parser output text." );
