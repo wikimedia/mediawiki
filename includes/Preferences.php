@@ -1363,7 +1363,7 @@ class Preferences {
 		$htmlForm->setSubmitText( $context->msg( 'saveprefs' )->text() );
 		# Used message keys: 'accesskey-preferences-save', 'tooltip-preferences-save'
 		$htmlForm->setSubmitTooltip( 'preferences-save' );
-		$htmlForm->setSubmitID( 'prefsubmit' );
+		$htmlForm->setSubmitID( 'prefcontrol' );
 		$htmlForm->setSubmitCallback( [ 'Preferences', 'tryFormSubmit' ] );
 
 		return $htmlForm;
