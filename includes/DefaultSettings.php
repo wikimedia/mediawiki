@@ -6851,13 +6851,6 @@ $wgStructuredChangeFiltersShowPreference = false;
 $wgStructuredChangeFiltersEnableExperimentalViews = false;
 
 /**
- * Whether to allow users to use the experimental live update feature in the new RecentChanges UI
- *
- * Temporary variable during development and will be removed.
- */
-$wgStructuredChangeFiltersEnableLiveUpdate = false;
-
-/**
  * Whether to enable RCFilters app on Special:Watchlist
  *
  * Temporary variable during development and will be removed.

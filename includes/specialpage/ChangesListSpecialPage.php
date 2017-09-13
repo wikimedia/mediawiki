@@ -603,10 +603,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				$experimentalStructuredChangeFilters
 			);
 			$out->addJsConfigVars(
-				'wgStructuredChangeFiltersEnableLiveUpdate',
-				$this->getConfig()->get( 'StructuredChangeFiltersEnableLiveUpdate' )
-			);
-			$out->addJsConfigVars(
 				'wgRCFiltersChangeTags',
 				$this->buildChangeTagList()
 			);
