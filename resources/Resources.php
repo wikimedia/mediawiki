@@ -1772,6 +1772,7 @@ return [
 			'resources/src/mediawiki.rcfilters/mw.rcfilters.UriProcessor.js',
 		],
 		'dependencies' => [
+			'jquery.byteLength',
 			'oojs',
 			'mediawiki.api',
 			'mediawiki.api.options',

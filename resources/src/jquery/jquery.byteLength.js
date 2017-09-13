@@ -11,7 +11,7 @@
  * @static
  * @inheritable
  * @param {string} str
- * @return {string}
+ * @return {number}
  */
 jQuery.byteLength = function ( str ) {
 	// This basically figures out how many bytes a UTF-16 string (which is what js sees)
