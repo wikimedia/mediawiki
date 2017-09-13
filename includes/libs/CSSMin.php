@@ -142,7 +142,21 @@ class CSSMin {
 		if ( preg_match( '/^[\r\n\t\x20-\x7e]+$/', $contents ) ) {
 			// Do not base64-encode non-binary files (sane SVGs).
 			// (This often produces longer URLs, but they compress better, yielding a net smaller size.)
-			$uri = 'data:' . $type . ',' . rawurlencode( $contents );
+			$encoded = rawurlencode( $contents );
+			// Unencode some things that don't need to be encoded, to make the encoding smaller
+			$encoded = strtr( $encoded, [
+				'%20' => ' ', // Unencode spaces
+				'%0A' => ' ', // Change newlines to spaces
+				'%09' => ' ', // Change tabs to spaces
+				'%2F' => '/', // Unencode slashes
+				'%3A' => ':', // Unencode colons
+				'%3D' => '=', // Unencode equals signs
+			] );
+			// Consolidate runs of multiple spaces in a row
+			$encoded = preg_replace( '/ {2,}/', ' ', $encoded );
+			// Remove trailing and leading spaces
+			$encoded = preg_replace( '/^ | $/', '', $encoded );
+			$uri = 'data:' . $type . ',' . $encoded;
 			if ( !$ie8Compat || strlen( $uri ) < self::DATA_URI_SIZE_LIMIT ) {
 				return $uri;
 			}
