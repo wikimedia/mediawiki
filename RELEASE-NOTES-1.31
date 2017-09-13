@@ -239,6 +239,8 @@ changes to languages because of Phabricator reports.
   * CommentStore::insertWithTemplate
 * The method ResourceLoaderModule::getPosition(), deprecated in 1.29, has been removed.
 * The DeferredStringifier class is deprecated, use Message::listParam() instead.
+* The type string for the parameter $lang of DateFormatter::getInstance is
+  deprecated.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,
