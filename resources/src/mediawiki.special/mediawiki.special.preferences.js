@@ -11,7 +11,6 @@
 			return this.id.replace( /^mw-prefsection/g, 'preftab' );
 		};
 
-		$( '#prefsubmit' ).attr( 'id', 'prefcontrol' );
 		$preftoc = $( '#preftoc' );
 		$preferences = $( '#preferences' );
 
