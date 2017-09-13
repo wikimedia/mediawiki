@@ -1091,6 +1091,9 @@ return [
 		'scripts' => [
 			'resources/src/mediawiki/htmlform/htmlform.Checker.js',
 		],
+		'dependencies' => [
+			'jquery.throttle-debounce',
+		]
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.htmlform.ooui' => [
