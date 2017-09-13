@@ -1491,6 +1491,8 @@
 	"rcfilters-view-tags-tooltip": "Filtra risultati per etichette di modifica",
 	"rcfilters-view-return-to-default-tooltip": "Torna al menu filtri principale",
 	"rcfilters-watchlist-edit-watchlist-button": "Modifica il tuo elenco di pagine osservate",
+	"rcfilters-preference-label": "Nascondi la versione migliorata delle ultime modifiche",
+	"rcfilters-preference-help": "Ripristina la riprogettazione dell'interfaccia 2017 e tutti gli strumenti aggiunti allora e da allora.",
 	"rcnotefrom": "Di seguito {{PLURAL:$5|è elencata la modifica apportata|sono elencate le modifiche apportate}} a partire da <strong>$3, $4</strong> (mostrate fino a <strong>$1</strong>).",
 	"rclistfromreset": "Reimposta la selezione della data",
 	"rclistfrom": "Mostra le nuove modifiche a partire daː $2, $3",
