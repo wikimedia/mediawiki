@@ -313,8 +313,11 @@
 		// Parent
 		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.prototype.onInputFocus.call( this );
 
-		// Scroll to top
-		this.scrollToTop( this.$element );
+		// Only scroll to top of the viewport if:
+		// - The widget is more than 20px from the top
+		// - The widget is not above the top of the viewport (do not scroll downwards)
+		//   (This isn't represented because >20 is, anyways and always, bigger than 0)
+		this.scrollToTop( this.$element, 0, { min: 20, max: Infinity } );
 	};
 
 	/**
@@ -639,17 +642,36 @@
 	 *
 	 * @private
 	 * @param {jQuery} $element Element to position
-	 * @param {number} [marginFromTop] When scrolling the entire widget to the top, leave this
+	 * @param {number} [marginFromTop=0] When scrolling the entire widget to the top, leave this
 	 *  much space (in pixels) above the widget.
+	 * @param {Object} [threshold] Minimum distance from the top of the element to scroll at all
+	 * @param {number} [threshold.min] Minimum distance above the element
+	 * @param {number} [threshold.max] Minimum distance below the element
 	 */
-	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.scrollToTop = function ( $element, marginFromTop ) {
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.scrollToTop = function ( $element, marginFromTop, threshold ) {
 		var container = OO.ui.Element.static.getClosestScrollableContainer( $element[ 0 ], 'y' ),
 			pos = OO.ui.Element.static.getRelativePosition( $element, $( container ) ),
-			containerScrollTop = $( container ).is( 'body, html' ) ? 0 : $( container ).scrollTop();
+			containerScrollTop = $( container ).scrollTop(),
+			effectiveScrollTop = $( container ).is( 'body, html' ) ? 0 : containerScrollTop,
+			newScrollTop = effectiveScrollTop + pos.top - ( marginFromTop || 0 );
 
 		// Scroll to item
-		$( container ).animate( {
-			scrollTop: containerScrollTop + pos.top - ( marginFromTop || 0 )
-		} );
+		if (
+			threshold === undefined ||
+			(
+				(
+					threshold.min === undefined ||
+					newScrollTop - containerScrollTop >= threshold.min
+				) &&
+				(
+					threshold.max === undefined ||
+					newScrollTop - containerScrollTop <= threshold.max
+				)
+			)
+		) {
+			$( container ).animate( {
+				scrollTop: newScrollTop
+			} );
+		}
 	};
 }( mediaWiki ) );
