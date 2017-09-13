@@ -42,7 +42,7 @@ class CommentStoreComment {
 	public $data;
 
 	/**
-	 * @private For use by CommentStore only
+	 * @private For use by CommentStore only. Use self::newUnsavedComment() instead.
 	 * @param int|null $id
 	 * @param string $text
 	 * @param Message|null $message
@@ -53,5 +53,40 @@ class CommentStoreComment {
 		$this->text = $text;
 		$this->message = $message ?: new RawMessage( '$1', [ $text ] );
 		$this->data = $data;
+	}
+
+	/**
+	 * Create a new, unsaved CommentStoreComment
+	 *
+	 * @param string|Message|CommentStoreComment $comment Comment text or Message object.
+	 *  A CommentStoreComment is also accepted here, in which case it is returned unchanged.
+	 * @param array|null $data Structured data to store. Keys beginning with '_' are reserved.
+	 *  Ignored if $comment is a CommentStoreComment.
+	 * @return CommentStoreComment
+	 */
+	public static function newUnsavedComment( $comment, array $data = null ) {
+		global $wgContLang;
+
+		if ( $comment instanceof CommentStoreComment ) {
+			return $comment;
+		}
+
+		if ( $data !== null ) {
+			foreach ( $data as $k => $v ) {
+				if ( substr( $k, 0, 1 ) === '_' ) {
+					throw new InvalidArgumentException( 'Keys in $data beginning with "_" are reserved' );
+				}
+			}
+		}
+
+		if ( $comment instanceof Message ) {
+			$message = clone $comment;
+			$text = $message->inLanguage( $wgContLang ) // Avoid $wgForceUIMsgAsContentMsg
+				->setInterfaceMessageFlag( true )
+				->text();
+			return new CommentStoreComment( null, $text, $message, $data );
+		} else {
+			return new CommentStoreComment( null, $comment, null, $data );
+		}
 	}
 }
