@@ -1291,9 +1291,7 @@ class Linker {
 							if ( $target->getText() == '' && !$target->isExternal()
 								&& !$local && $title
 							) {
-								$newTarget = clone $title;
-								$newTarget->setFragment( '#' . $target->getFragment() );
-								$target = $newTarget;
+								$target = $title->createFragmentTarget( $target->getFragment() );
 							}
 
 							$thelink = Linker::makeCommentLink( $target, $linkText . $inside, $wikiId ) . $trail;
