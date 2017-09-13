@@ -76,7 +76,7 @@ class Linker {
 	 * @since 1.18 Method exists since 1.16 as non-static, made static in 1.18.
 	 * @deprecated since 1.28, use MediaWiki\Linker\LinkRenderer instead
 	 *
-	 * @param Title $target Can currently only be a Title, but this may
+	 * @param LinkTarget $target Can currently only be a LinkTarget, but this may
 	 *   change to support Images, literal URLs, etc.
 	 * @param string $html The HTML contents of the <a> element, i.e.,
 	 *   the link text.  This is raw HTML and will not be escaped.  If null,
@@ -107,8 +107,8 @@ class Linker {
 	public static function link(
 		$target, $html = null, $customAttribs = [], $query = [], $options = []
 	) {
-		if ( !$target instanceof Title ) {
-			wfWarn( __METHOD__ . ': Requires $target to be a Title object.', 2 );
+		if ( !$target instanceof LinkTarget ) {
+			wfWarn( __METHOD__ . ': Requires $target to be a LinkTarget object.', 2 );
 			return "<!-- ERROR -->$html";
 		}
 
