@@ -310,11 +310,20 @@
 	 * @inheritdoc
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onInputFocus = function () {
+		var scrollTop = $( 'body' ).scrollTop(),
+			elementOffset = this.$element.offset().top,
+			distanceFromTop = ( elementOffset - scrollTop );
+
 		// Parent
 		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.prototype.onInputFocus.call( this );
 
-		// Scroll to top
-		this.scrollToTop( this.$element );
+		// Only scroll to top if:
+		// - The widget is more than 20px from the top
+		// - The widget is not above the top (do not scroll downwards)
+		//   (This isn't represented because >20 is, anyways and always, bigger than 0)
+		if ( distanceFromTop > 20 ) {
+			this.scrollToTop( this.$element );
+		}
 	};
 
 	/**
