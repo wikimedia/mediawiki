@@ -383,7 +383,7 @@ class EnhancedChangesList extends ChangesList {
 		) {
 			$classes[] = 'mw-enhanced-watched';
 		}
-		$classes = array_merge( $classes, $this->getHTMLClassesForFilters( $rcObj ) );
+		$classes = array_merge( $classes, $this->getHTMLClasses( $rcObj, $rcObj->watched ) );
 
 		$separator = ' <span class="mw-changeslist-separator">. .</span> ';
 
