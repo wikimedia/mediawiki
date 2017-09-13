@@ -1134,11 +1134,9 @@ class LocalFile extends File {
 
 		if ( $this->historyLine == 0 ) { // called for the first time, return line from cur
 			$this->historyRes = $dbr->select( 'image',
-				[
-					'*',
-					"'' AS oi_archive_name",
-					'0 as oi_deleted',
-					'img_sha1'
+				self::selectFields() + [
+					'oi_archive_name' => $dbr->addQuotes( '' ),
+					'oi_deleted' => 0,
 				],
 				[ 'img_name' => $this->title->getDBkey() ],
 				$fname
@@ -1150,7 +1148,9 @@ class LocalFile extends File {
 				return false;
 			}
 		} elseif ( $this->historyLine == 1 ) {
-			$this->historyRes = $dbr->select( 'oldimage', '*',
+			$this->historyRes = $dbr->select(
+				'oldimage',
+				OldLocalFile::selectFields(),
 				[ 'oi_name' => $this->title->getDBkey() ],
 				$fname,
 				[ 'ORDER BY' => 'oi_timestamp DESC' ]
