@@ -863,7 +863,7 @@
 		// Stringify state
 		stringified = JSON.stringify( state );
 
-		if ( stringified.length > 65535 ) {
+		if ( $.byteLength( stringified ) > 65535 ) {
 			// Sanity check, since the preference can only hold that.
 			return;
 		}
