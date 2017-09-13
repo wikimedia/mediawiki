@@ -126,13 +126,16 @@ class DateFormatter {
 	/**
 	 * Get a DateFormatter object
 	 *
-	 * @param Language|string|null $lang In which language to format the date
+	 * @param Language|null $lang In which language to format the date
 	 *     Defaults to the site content language
 	 * @return DateFormatter
 	 */
 	public static function getInstance( $lang = null ) {
 		global $wgContLang, $wgMainCacheType;
 
+		if ( is_string( $lang ) ) {
+			wfDeprecated( __METHOD__ . ' with type string for $lang', '1.31' );
+		}
 		$lang = $lang ? wfGetLangObj( $lang ) : $wgContLang;
 		$cache = ObjectCache::getLocalServerInstance( $wgMainCacheType );
 
