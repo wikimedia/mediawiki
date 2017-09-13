@@ -1994,15 +1994,6 @@ class EditPage {
 						$this->isConflict = false;
 						wfDebug( __METHOD__ . ": conflict suppressed; new section\n" );
 					}
-				} elseif ( $this->section == ''
-					&& Revision::userWasLastToEdit(
-						DB_MASTER, $this->mTitle->getArticleID(),
-						$wgUser->getId(), $this->edittime
-					)
-				) {
-					# Suppress edit conflict with self, except for section edits where merging is required.
-					wfDebug( __METHOD__ . ": Suppressing edit conflict, same user.\n" );
-					$this->isConflict = false;
 				}
 			}
 
