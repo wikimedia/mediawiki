@@ -149,7 +149,14 @@ class CSSMin {
 				'%2F' => '/', // Unencode slashes
 				'%3A' => ':', // Unencode colons
 				'%3D' => '=', // Unencode equals signs
+				'%22' => '"', // Unencode double quotes
+				'%09' => ' ', // Change tabs to spaces
+				'%0A' => ' ', // Change newlines to spaces
 			] );
+			// Consolidate runs of multiple spaces in a row
+			$encoded = preg_replace( '/ {2,}/', ' ', $encoded );
+			// Remove trailing and leading spaces
+			$encoded = preg_replace( '/^ | $/', '', $encoded );
 			$uri = 'data:' . $type . ',' . $encoded;
 			if ( !$ie8Compat || strlen( $uri ) < self::DATA_URI_SIZE_LIMIT ) {
 				return $uri;
@@ -215,7 +222,7 @@ class CSSMin {
 		if ( preg_match( '!^[\w\d:@/~.%+;,?&=-]+$!', $url ) ) {
 			return "url($url)";
 		} else {
-			return 'url("' . strtr( $url, [ '\\' => '\\\\', '"' => '\\"' ] ) . '")';
+			return "url('" . strtr( $url, [ '\\' => '\\\\', "'" => "\\'" ] ) . "')";
 		}
 	}
 
