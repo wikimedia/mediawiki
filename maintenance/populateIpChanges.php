@@ -82,19 +82,15 @@ TEXT
 			$this->output( "...checking $this->mBatchSize revisions for IP edits that need copying, " .
 				"starting with rev_id $blockStart\n" );
 
+			$insertRows = [];
 			foreach ( $rows as $row ) {
 				// Double-check to make sure this is an IP, e.g. not maintenance user or imported revision.
 				if ( IP::isValid( $row->rev_user_text ) ) {
-					$dbw->insert(
-						'ip_changes',
-						[
-							'ipc_rev_id' => $row->rev_id,
-							'ipc_rev_timestamp' => $row->rev_timestamp,
-							'ipc_hex' => IP::toHex( $row->rev_user_text ),
-						],
-						__METHOD__,
-						'IGNORE'
-					);
+					$insertRows[] = [
+						'ipc_rev_id' => $row->rev_id,
+						'ipc_rev_timestamp' => $row->rev_timestamp,
+						'ipc_hex' => IP::toHex( $row->rev_user_text ),
+					];
 
 					$revCount++;
 				}
@@ -103,6 +99,13 @@ TEXT
 			}
 
 			$blockStart++;
+
+			$dbw->insert(
+				'ip_changes',
+				$insertRows,
+				__METHOD__,
+				'IGNORE'
+			);
 
 			$lbFactory->waitForReplication();
 			usleep( $throttle * 1000 );
