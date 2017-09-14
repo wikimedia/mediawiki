@@ -41,6 +41,15 @@ class ApiExpandTemplates extends ApiBase {
 		$params = $this->extractRequestParams();
 		$this->requireMaxOneParameter( $params, 'prop', 'generatexml' );
 
+		$title = $params['title'];
+		if ( $title === null ) {
+			$titleProvided = false;
+			// A title is needed for parsing, so arbitrarily choose one
+			$title = 'API';
+		} else {
+			$titleProvided = true;
+		}
+
 		if ( $params['prop'] === null ) {
 			$this->addDeprecation(
 				'apiwarn-deprecation-expandtemplates-prop', 'action=expandtemplates&!prop'
@@ -50,6 +59,11 @@ class ApiExpandTemplates extends ApiBase {
 			$prop = array_flip( $params['prop'] );
 		}
 
+		$titleObj = Title::newFromText( $title );
+		if ( !$titleObj || $titleObj->isExternal() ) {
+			$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['title'] ) ] );
+		}
+
 		// Get title and revision ID for parser
 		$revid = $params['revid'];
 		if ( $revid !== null ) {
@@ -57,11 +71,17 @@ class ApiExpandTemplates extends ApiBase {
 			if ( !$rev ) {
 				$this->dieWithError( [ 'apierror-nosuchrevid', $revid ] );
 			}
-			$title_obj = $rev->getTitle();
-		} else {
-			$title_obj = Title::newFromText( $params['title'] );
-			if ( !$title_obj || $title_obj->isExternal() ) {
-				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['title'] ) ] );
+			$pTitleObj = $titleObj;
+			$titleObj = $rev->getTitle();
+			if ( $titleProvided ) {
+				if ( !$titleObj->equals( $pTitleObj ) ) {
+					$this->addWarning( [ 'apierror-revwrongpage', $rev->getId(),
+						wfEscapeWikiText( $pTitleObj->getPrefixedText() ) ] );
+				}
+			} else {
+				// Consider the title derived from the revid as having
+				// been provided.
+				$titleProvided = true;
 			}
 		}
 
@@ -78,12 +98,12 @@ class ApiExpandTemplates extends ApiBase {
 		$reset = null;
 		$suppressCache = false;
 		Hooks::run( 'ApiMakeParserOptions',
-			[ $options, $title_obj, $params, $this, &$reset, &$suppressCache ] );
+			[ $options, $titleObj, $params, $this, &$reset, &$suppressCache ] );
 
 		$retval = [];
 
 		if ( isset( $prop['parsetree'] ) || $params['generatexml'] ) {
-			$wgParser->startExternalParse( $title_obj, $options, Parser::OT_PREPROCESS );
+			$wgParser->startExternalParse( $titleObj, $options, Parser::OT_PREPROCESS );
 			$dom = $wgParser->preprocessToDom( $params['text'] );
 			if ( is_callable( [ $dom, 'saveXML' ] ) ) {
 				$xml = $dom->saveXML();
@@ -103,9 +123,9 @@ class ApiExpandTemplates extends ApiBase {
 		// if they didn't want any output except (probably) the parse tree,
 		// then don't bother actually fully expanding it
 		if ( $prop || $params['prop'] === null ) {
-			$wgParser->startExternalParse( $title_obj, $options, Parser::OT_PREPROCESS );
+			$wgParser->startExternalParse( $titleObj, $options, Parser::OT_PREPROCESS );
 			$frame = $wgParser->getPreprocessor()->newFrame();
-			$wikitext = $wgParser->preprocess( $params['text'], $title_obj, $options, $revid, $frame );
+			$wikitext = $wgParser->preprocess( $params['text'], $titleObj, $options, $revid, $frame );
 			if ( $params['prop'] === null ) {
 				// the old way
 				ApiResult::setContentValue( $retval, 'wikitext', $wikitext );
@@ -169,9 +189,7 @@ class ApiExpandTemplates extends ApiBase {
 
 	public function getAllowedParams() {
 		return [
-			'title' => [
-				ApiBase::PARAM_DFLT => 'API',
-			],
+			'title' => null,
 			'text' => [
 				ApiBase::PARAM_TYPE => 'text',
 				ApiBase::PARAM_REQUIRED => true,

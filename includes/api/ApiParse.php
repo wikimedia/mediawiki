@@ -48,10 +48,11 @@ class ApiParse extends ApiBase {
 		// Get parameters
 		$params = $this->extractRequestParams();
 
-		// No easy way to say that text & title are allowed together while the
-		// rest aren't, so just do it in two calls.
+		// No easy way to say that text and title or revid are allowed together
+		// while the rest aren't, so just do it in three calls.
 		$this->requireMaxOneParameter( $params, 'page', 'pageid', 'oldid', 'text' );
 		$this->requireMaxOneParameter( $params, 'page', 'pageid', 'oldid', 'title' );
+		$this->requireMaxOneParameter( $params, 'page', 'pageid', 'oldid', 'revid' );
 
 		$text = $params['text'];
 		$title = $params['title'];
@@ -169,6 +170,25 @@ class ApiParse extends ApiBase {
 			if ( !$titleObj || $titleObj->isExternal() ) {
 				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $title ) ] );
 			}
+			$revid = $params['revid'];
+			if ( $revid !== null ) {
+				$rev = Revision::newFromId( $revid );
+				if ( !$rev ) {
+					$this->dieWithError( [ 'apierror-nosuchrevid', $revid ] );
+				}
+				$pTitleObj = $titleObj;
+				$titleObj = $rev->getTitle();
+				if ( $titleProvided ) {
+					if ( !$titleObj->equals( $pTitleObj ) ) {
+						$this->addWarning( [ 'apierror-revwrongpage', $rev->getId(),
+							wfEscapeWikiText( $pTitleObj->getPrefixedText() ) ] );
+					}
+				} else {
+					// Consider the title derived from the revid as having
+					// been provided.
+					$titleProvided = true;
+				}
+			}
 			$wgTitle = $titleObj;
 			if ( $titleObj->canExist() ) {
 				$pageObj = WikiPage::factory( $titleObj );
@@ -183,7 +203,11 @@ class ApiParse extends ApiBase {
 
 			if ( !$textProvided ) {
 				if ( $titleProvided && ( $prop || $params['generatexml'] ) ) {
-					$this->addWarning( 'apiwarn-parse-titlewithouttext' );
+					if ( $revid !== null ) {
+						$this->addWarning( 'apiwarn-parse-revidwithouttext' );
+					} else {
+						$this->addWarning( 'apiwarn-parse-titlewithouttext' );
+					}
 				}
 				// Prevent warning from ContentHandler::makeContent()
 				$text = '';
@@ -247,9 +271,9 @@ class ApiParse extends ApiBase {
 
 			// Not cached (save or load)
 			if ( $params['pst'] ) {
-				$p_result = $this->pstContent->getParserOutput( $titleObj, null, $popts );
+				$p_result = $this->pstContent->getParserOutput( $titleObj, $revid, $popts );
 			} else {
-				$p_result = $this->content->getParserOutput( $titleObj, null, $popts );
+				$p_result = $this->content->getParserOutput( $titleObj, $revid, $popts );
 			}
 		}
 
@@ -784,6 +808,9 @@ class ApiParse extends ApiBase {
 			'title' => null,
 			'text' => [
 				ApiBase::PARAM_TYPE => 'text',
+			],
+			'revid' => [
+				ApiBase::PARAM_TYPE => 'integer',
 			],
 			'summary' => null,
 			'page' => null,
