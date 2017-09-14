@@ -97,7 +97,10 @@
 				click: 'onSaveQueryButtonClick',
 				saveCurrent: 'setSavedQueryVisibility'
 			} );
-			this.queriesModel.connect( this, { itemUpdate: 'onSavedQueriesItemUpdate' } );
+			this.queriesModel.connect( this, {
+				itemUpdate: 'onSavedQueriesItemUpdate',
+				initialize: 'onSavedQueriesInitialize'
+			} );
 		}
 
 		this.emptyFilterMessage = new OO.ui.LabelWidget( {
@@ -257,6 +260,13 @@
 	};
 
 	/**
+	 * Respond to save query model initialization
+	 */
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onSavedQueriesInitialize = function () {
+		this.setSavedQueryVisibility();
+	};
+
+	/**
 	 * Respond to save query item change. Mainly this is done to update the label in case
 	 * a query item has been edited
 	 *
@@ -393,10 +403,7 @@
 			this.matchingQuery ? this.matchingQuery.getLabel() : ''
 		);
 		this.savedQueryTitle.toggle( !!this.matchingQuery );
-		this.saveQueryButton.toggle(
-			!this.isEmpty() &&
-			!this.matchingQuery
-		);
+		this.saveQueryButton.toggle(!this.matchingQuery );
 
 		if ( this.matchingQuery ) {
 			this.emphasize();
