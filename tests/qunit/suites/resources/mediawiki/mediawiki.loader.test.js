@@ -907,4 +907,36 @@
 		} );
 	} );
 
+	QUnit.test( 'Implicit dependencies', function ( assert ) {
+		var ranUser = false,
+			userSeesSite = false,
+			ranSite = false;
+
+		mw.loader.implement(
+			'site',
+			function () {
+				ranSite = true;
+			}
+		);
+		mw.loader.implement(
+			'user',
+			function () {
+				userSeesSite = ranSite;
+				ranUser = true;
+			}
+		);
+
+		assert.strictEqual( ranSite, false, 'verify site module not yet loaded' );
+		assert.strictEqual( ranUser, false, 'verify user module not yet loaded' );
+		return mw.loader.using( 'user', function () {
+			assert.strictEqual( ranSite, true, 'ran site module' );
+			assert.strictEqual( ranUser, true, 'ran user module' );
+			assert.strictEqual( userSeesSite, true, 'ran site before user module' );
+
+			// Reset
+			mw.loader.moduleRegistry[ 'site' ].state = 'registered';
+			mw.loader.moduleRegistry[ 'user' ].state = 'registered';
+		} );
+	} );
+
 }( mediaWiki, jQuery ) );
