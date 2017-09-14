@@ -712,10 +712,11 @@ class MediaWiki {
 			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 		}
 
+		$blocksHttpClient = true;
 		// Defer everything else if possible...
-		$callback = function () use ( $mode ) {
+		$callback = function () use ( $mode, &$blocksHttpClient ) {
 			try {
-				$this->restInPeace( $mode );
+				$this->restInPeace( $mode, $blocksHttpClient );
 			} catch ( Exception $e ) {
 				// If this is post-send, then displaying errors can cause broken HTML
 				MWExceptionHandler::rollbackMasterChangesAndLog( $e );
@@ -725,9 +726,11 @@ class MediaWiki {
 		if ( function_exists( 'register_postsend_function' ) ) {
 			// https://github.com/facebook/hhvm/issues/1230
 			register_postsend_function( $callback );
+			$blocksHttpClient = false;
 		} else {
 			if ( function_exists( 'fastcgi_finish_request' ) ) {
 				fastcgi_finish_request();
+				$blocksHttpClient = false;
 			} else {
 				// Either all DB and deferred updates should happen or none.
 				// The latter should not be cancelled due to client disconnect.
@@ -870,8 +873,9 @@ class MediaWiki {
 	/**
 	 * Ends this task peacefully
 	 * @param string $mode Use 'fast' to always skip job running
+	 * @param bool $blocksHttpClient Whether this blocks an HTTP response to a client
 	 */
-	public function restInPeace( $mode = 'fast' ) {
+	public function restInPeace( $mode = 'fast', $blocksHttpClient = true ) {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		// Assure deferred updates are not in the main transaction
 		$lbFactory->commitMasterChanges( __METHOD__ );
@@ -887,8 +891,8 @@ class MediaWiki {
 		// Important: this must be the last deferred update added (T100085, T154425)
 		DeferredUpdates::addCallableUpdate( [ JobQueueGroup::class, 'pushLazyJobs' ] );
 
-		// Do any deferred jobs
-		DeferredUpdates::doUpdates( 'enqueue' );
+		// Do any deferred jobs; preferring to run them now if a client will not wait on them
+		DeferredUpdates::doUpdates( $blocksHttpClient ? 'enqueue' : 'run' );
 
 		// Now that everything specific to this request is done,
 		// try to occasionally run jobs (if enabled) from the queues
