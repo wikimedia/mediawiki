@@ -165,9 +165,18 @@ class ApiParse extends ApiBase {
 				);
 			}
 		} else { // Not $oldid, $pageid, $page. Hence based on $text
-			$titleObj = Title::newFromText( $title );
-			if ( !$titleObj || $titleObj->isExternal() ) {
-				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $title ) ] );
+			$revid = $params['revid'];
+			if ( $revid !== null ) {
+				$rev = Revision::newFromId( $revid );
+				if ( !$rev ) {
+					$this->dieWithError( [ 'apierror-nosuchrevid', $revid ] );
+				}
+				$titleObj = $rev->getTitle();
+			} else {
+				$titleObj = Title::newFromText( $title );
+				if ( !$titleObj || $titleObj->isExternal() ) {
+					$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $title ) ] );
+				}
 			}
 			$wgTitle = $titleObj;
 			if ( $titleObj->canExist() ) {
@@ -247,9 +256,9 @@ class ApiParse extends ApiBase {
 
 			// Not cached (save or load)
 			if ( $params['pst'] ) {
-				$p_result = $this->pstContent->getParserOutput( $titleObj, null, $popts );
+				$p_result = $this->pstContent->getParserOutput( $titleObj, $revid, $popts );
 			} else {
-				$p_result = $this->content->getParserOutput( $titleObj, null, $popts );
+				$p_result = $this->content->getParserOutput( $titleObj, $revid, $popts );
 			}
 		}
 
@@ -784,6 +793,9 @@ class ApiParse extends ApiBase {
 			'title' => null,
 			'text' => [
 				ApiBase::PARAM_TYPE => 'text',
+			],
+			'revid' => [
+				ApiBase::PARAM_TYPE => 'integer',
 			],
 			'summary' => null,
 			'page' => null,
