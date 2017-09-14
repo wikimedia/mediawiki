@@ -38,8 +38,15 @@ use MediaWiki\MediaWikiServices;
 class HTMLCacheUpdateJob extends Job {
 	function __construct( Title $title, array $params ) {
 		parent::__construct( 'htmlCacheUpdate', $title, $params );
-		// Base backlink purge jobs can be de-duplicated
-		$this->removeDuplicates = ( !isset( $params['range'] ) && !isset( $params['pages'] ) );
+		// Avoid the overhead of de-duplication when it would be pointless.
+		// Note that these jobs always set page_touched to the current time,
+		// so letting the older existing job "win" is still correct.
+		$this->removeDuplicates = (
+			// Ranges rarely will line up
+			!isset( $params['range'] ) &&
+			// Multiple pages per job make matches unlikely
+			!( isset( $params['pages'] ) && count( $params['pages'] ) != 1 )
+		);
 	}
 
 	/**
