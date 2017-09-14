@@ -518,14 +518,14 @@
 		}
 
 		this._checkForNewChanges()
-			.then( function ( data ) {
+			.then( function ( newChanges ) {
 				if ( !this._shouldCheckForNewChanges() ) {
 					// by the time the response is received,
 					// it may not be appropriate anymore
 					return;
 				}
 
-				if ( data.changes !== 'NO_RESULTS' ) {
+				if ( newChanges ) {
 					if ( this.changesListModel.getLiveUpdate() ) {
 						return this.updateChangesList( null, this.LIVE_UPDATE );
 					} else {
@@ -551,19 +551,21 @@
 	/**
 	 * Check if new changes, newer than those currently shown, are available
 	 *
-	 * @return {jQuery.Promise} Promise object that resolves after trying
-	 * to fetch 1 change newer than the last known 'from' parameter value
+	 * @return {jQuery.Promise} Promise object that resolves with a bool
+	 * 	specifying if there are new changes or not
 	 *
 	 * @private
 	 */
 	mw.rcfilters.Controller.prototype._checkForNewChanges = function () {
-		return this._fetchChangesList(
-			'liveUpdate',
-			{
-				limit: 1,
-				// temporarily disabled ( T173613#3591657 )
-				// peek: 1, // bypasses all UI
-				from: this.changesListModel.getNextFrom()
+		var params = {
+			limit: 1,
+			peek: 1, // bypasses ChangesList specific UI
+			from: this.changesListModel.getNextFrom()
+		};
+		return this._queryChangesList( 'liveUpdate', params ).then(
+			function ( data ) {
+				// no result is 204 with the 'peek' param
+				return data.status === 200;
 			}
 		);
 	};
@@ -1115,22 +1117,20 @@
 	};
 
 	/**
-	 * Fetch the list of changes from the server for the current filters
+	 * Query the list of changes from the server for the current filters
 	 *
-	 * @param {string} [counterId='updateChangesList'] Id for this request. To allow concurrent requests
+	 * @param {string} counterId Id for this request. To allow concurrent requests
 	 *  not to invalidate each other.
 	 * @param {Object} [params={}] Parameters to add to the query
 	 *
-	 * @return {jQuery.Promise} Promise object that will resolve with the changes list
-	 *  or with a string denoting no results.
+	 * @return {jQuery.Promise} Promise object resolved with { content, status }
 	 */
-	mw.rcfilters.Controller.prototype._fetchChangesList = function ( counterId, params ) {
+	mw.rcfilters.Controller.prototype._queryChangesList = function ( counterId, params ) {
 		var uri = this._getUpdatedUri(),
 			stickyParams = this.filtersModel.getStickyParams(),
 			requestId,
 			latestRequest;
 
-		counterId = counterId || 'updateChangesList';
 		params = params || {};
 		params.action = 'render'; // bypasses MW chrome
 
@@ -1152,53 +1152,52 @@
 
 		return $.ajax( uri.toString(), { contentType: 'html' } )
 			.then(
-				function ( html, reason ) {
-					var $parsed,
-						pieces;
-
+				function ( content, message, jqXHR ) {
 					if ( !latestRequest() ) {
 						return $.Deferred().reject();
 					}
-
-					if ( params.peek && reason === 'notmodified' ) {
-						return {
-							changes: 'NO_RESULTS'
-						};
-					}
-
-					// Because of action=render, the response is a list of nodes.
-					// It has to be put under a root node so it can be queried.
-					$parsed = $( '<div>' ).append( $( $.parseHTML( html ) ) );
-
-					pieces = {
-						// Changes list
-						changes: $parsed.find( '.mw-changeslist' ).first().contents(),
-						// Fieldset
-						fieldset: $parsed.find( 'fieldset.cloptions' ).first()
+					return {
+						content: content,
+						status: jqXHR.status
 					};
+				},
+				// RC returns 404 when there is no results
+				function ( jqXHR ) {
+					if ( latestRequest() ) {
+						return $.Deferred().resolve(
+							{
+								content: jqXHR.responseText,
+								status: jqXHR.status
+							}
+						).promise();
+					}
+				}
+			);
+	};
 
-					// Watchlist returns 200 when there is no results
+	/**
+	 * Fetch the list of changes from the server for the current filters
+	 *
+	 * @return {jQuery.Promise} Promise object that will resolve with the changes list
+	 *  and the fieldset.
+	 */
+	mw.rcfilters.Controller.prototype._fetchChangesList = function () {
+		return this._queryChangesList( 'updateChangesList' )
+			.then(
+				function ( data ) {
+					var $parsed = $( '<div>' ).append( $( $.parseHTML( data.content ) ) ),
+						pieces = {
+							// Changes list
+							changes: $parsed.find( '.mw-changeslist' ).first().contents(),
+							// Fieldset
+							fieldset: $parsed.find( 'fieldset.cloptions' ).first()
+						};
+
 					if ( pieces.changes.length === 0 ) {
 						pieces.changes = 'NO_RESULTS';
 					}
 
 					return pieces;
-				},
-				// RC returns 404 when there is no results
-				function ( responseObj ) {
-					var $parsed;
-
-					if ( !latestRequest() ) {
-						return $.Deferred().reject();
-					}
-
-					$parsed = $( $.parseHTML( responseObj.responseText ) );
-
-					// Force a resolve state to this promise
-					return $.Deferred().resolve( {
-						changes: 'NO_RESULTS',
-						fieldset: $parsed.find( 'fieldset.cloptions' ).first()
-					} ).promise();
 				}
 			);
 	};
