@@ -271,9 +271,9 @@ class CSSMinTest extends MediaWikiTestCase {
 		// data: URIs for red.gif, green.gif, circle.svg
 		$red   = 'data:image/gif;base64,R0lGODlhAQABAIAAAP8AADAAACwAAAAAAQABAAACAkQBADs=';
 		$green = 'data:image/gif;base64,R0lGODlhAQABAIAAAACAADAAACwAAAAAAQABAAACAkQBADs=';
-		$svg = 'data:image/svg+xml,%3C%3Fxml version="1.0" encoding="UTF-8"%3F%3E%0A'
+		$svg = 'data:image/svg+xml,%3C%3Fxml version="1.0" encoding="UTF-8"%3F%3E '
 			. '%3Csvg xmlns="http://www.w3.org/2000/svg" width="8" height='
-			. '"8"%3E%0A%09%3Ccircle cx="4" cy="4" r="2"/%3E%0A%3C/svg%3E%0A';
+			. '"8"%3E %3Ccircle cx="4" cy="4" r="2"/%3E %3C/svg%3E';
 
 		// @codingStandardsIgnoreStart Generic.Files.LineLength
 		return [
