@@ -72,7 +72,11 @@ TEXT
 				[ 'rev_id', 'rev_timestamp', 'rev_user_text' ],
 				[ "rev_id >= $blockStart", 'rev_user' => 0 ],
 				__METHOD__,
-				[ 'ORDER BY' => 'rev_id ASC', 'LIMIT' => $this->mBatchSize ]
+				[
+					'ORDER BY' => 'rev_id ASC',
+					'LIMIT' => $this->mBatchSize,
+					'USE INDEX' => 'PRIMARY',
+				]
 			);
 
 			if ( !$rows || $rows->numRows() === 0 ) {
