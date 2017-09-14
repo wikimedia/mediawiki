@@ -144,6 +144,7 @@ class HTMLCacheUpdateJob extends Job {
 		) );
 
 		// Update CDN; call purge() directly so as to not bother with secondary purges
+		( new LinkBatch( $titleArray ) )->execute();
 		$urls = [];
 		foreach ( $titleArray as $title ) {
 			/** @var Title $title */
