@@ -1063,6 +1063,7 @@
 	"timezoneregion-indian": "Indian Ocean",
 	"timezoneregion-pacific": "Pacific Ocean",
 	"allowemail": "Enable email from other users",
+	"email-blacklist-label": "Prohibit these users from sending emails to me:",
 	"prefs-searchoptions": "Search",
 	"prefs-namespaces": "Namespaces",
 	"default": "default",
