@@ -182,9 +182,9 @@ class ChangesList extends ContextSource {
 			$classes[] = self::CSS_CLASS_PREFIX . 'edit';
 			$classes[] = Sanitizer::escapeClass( self::CSS_CLASS_PREFIX . 'ns' .
 				$rc->mAttribs['rc_namespace'] . '-' . $rc->mAttribs['rc_title'] );
-			$classes[] = Sanitizer::escapeClass( self::CSS_CLASS_PREFIX . 'ns-' .
-				$rc->mAttribs['rc_namespace'] );
 		}
+		$classes[] = Sanitizer::escapeClass( self::CSS_CLASS_PREFIX . 'ns-' .
+			$rc->mAttribs['rc_namespace'] );
 
 		// Indicate watched status on the line to allow for more
 		// comprehensive styling.
