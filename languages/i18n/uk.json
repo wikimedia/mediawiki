@@ -1075,6 +1075,7 @@
 	"timezoneregion-indian": "Індійський океан",
 	"timezoneregion-pacific": "Тихий океан",
 	"allowemail": "Дозволити електронну пошту від інших користувачів",
+	"email-blacklist-label": "Заборонити цим користувачам надсилати мені листи на електронну пошту:",
 	"prefs-searchoptions": "Пошук",
 	"prefs-namespaces": "Простори назв",
 	"default": "за замовчуванням",

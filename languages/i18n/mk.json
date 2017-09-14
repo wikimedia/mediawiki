@@ -1420,6 +1420,8 @@
 	"rcfilters-watchlist-markseen-button": "Означи ги сите промени како видени",
 	"rcfilters-watchlist-edit-watchlist-button": "Уреди набљудувани",
 	"rcfilters-watchlist-showupdated": "Промени во страниците што ги немате посетено откако се случиле се <strong>задебелени</strong>.",
+	"rcfilters-preference-label": "Скриј ја подобрената верзија во Скорешните промени",
+	"rcfilters-preference-help": "Го отповикува преуредувањето на околината од 2017 г. и сите алатки додадени оттогаш.",
 	"rcnotefrom": "Подолу {{PLURAL:$5|е прикажана промената|се прикажани промените}} почнувајќи од <strong>$3, $4</strong>  (се прикажуваат до <b>$1</b>).",
 	"rclistfromreset": "Нов избор на датуми",
 	"rclistfrom": "Прикажи нови промени почнувајќи од $3 $2",

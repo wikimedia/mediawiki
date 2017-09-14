@@ -1012,6 +1012,7 @@
 	"timezoneregion-indian": "Indijski ocean",
 	"timezoneregion-pacific": "Tihi ocean",
 	"allowemail": "Drugim uporabnikom omogoči pošiljanje e-pošte",
+	"email-blacklist-label": "Prepreči naslednjim uporabnikom, da mi pošiljajo e-pošto:",
 	"prefs-searchoptions": "Iskanje",
 	"prefs-namespaces": "Imenski prostori",
 	"default": "privzeto",
