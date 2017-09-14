@@ -946,8 +946,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->handleSessionLoss();
 			if ( $this->reconnect() ) {
 				$msg = __METHOD__ . ": lost connection to {$this->getServer()}; reconnected";
-				$this->connLogger->warning( $msg );
-				$this->queryLogger->warning(
+				$this->connLogger->info( $msg );
+				$this->queryLogger->info(
 					"$msg:\n" . ( new RuntimeException() )->getTraceAsString() );
 
 				if ( !$recoverable ) {
