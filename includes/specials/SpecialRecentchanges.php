@@ -233,10 +233,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 */
 	public function getDefaultOptions() {
 		$opts = parent::getDefaultOptions();
-		$user = $this->getUser();
 
-		$opts->add( 'days', $user->getIntOption( 'rcdays' ), FormOptions::FLOAT );
-		$opts->add( 'limit', $user->getIntOption( 'rclimit' ) );
+		$opts->add( 'days', $this->getDefaultDays(), FormOptions::FLOAT );
+		$opts->add( 'limit', $this->getDefaultLimit() );
 		$opts->add( 'from', '' );
 
 		$opts->add( 'categories', '' );
@@ -1010,6 +1009,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	function getDefaultDays() {
-		return $this->getUser()->getIntOption( 'rcdays' );
+		return floatval( $this->getUser()->getOption( 'rcdays' ) );
 	}
 }
