@@ -1538,10 +1538,9 @@
 			 * @param {string} sourceLoadScript URL of load.php
 			 */
 			function doRequest( moduleMap, currReqBase, sourceLoadScript ) {
-				var query = $.extend(
-					{ modules: buildModulesString( moduleMap ) },
-					currReqBase
-				);
+				// Optimisation: Inherit (Object.create), not copy ($.extend)
+				var query = Object.create( currReqBase );
+				query.modules = buildModulesString( moduleMap );
 				query = sortQuery( query );
 				addScript( sourceLoadScript + '?' + $.param( query ) );
 			}
@@ -1630,9 +1629,10 @@
 						// modules for this group from this source.
 						modules = splits[ source ][ group ];
 
-						currReqBase = $.extend( {
-							version: getCombinedVersion( modules )
-						}, reqBase );
+						// Optimisation: Inherit (Object.create), not copy ($.extend)
+						currReqBase = Object.create( reqBase );
+						currReqBase.version = getCombinedVersion( modules );
+
 						// For user modules append a user name to the query string.
 						if ( group === 'user' && mw.config.get( 'wgUserName' ) !== null ) {
 							currReqBase.user = mw.config.get( 'wgUserName' );
