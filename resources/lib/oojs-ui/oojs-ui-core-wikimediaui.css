@@ -1014,11 +1014,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   position: absolute;
 }
 .oo-ui-popupWidget-head > .oo-ui-labelElement-label {
-  float: left;
   cursor: default;
-}
-.oo-ui-popupWidget-body {
-  clear: both;
 }
 .oo-ui-popupWidget-body.oo-ui-clippableElement-clippable {
   min-height: 1em;
@@ -1106,12 +1102,20 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -moz-transition: width 100ms, height 100ms, left 100ms;
   transition: width 100ms, height 100ms, left 100ms;
 }
+.oo-ui-popupWidget-head {
+  position: relative;
+  padding: 0.703125em 2.5em 0.625em 0.9375em;
+}
 .oo-ui-popupWidget-head > .oo-ui-labelElement-label {
-  margin: 0.703125em 2.5em 0.625em 0.9375em;
   line-height: 1.172em;
 }
 .oo-ui-popupWidget-head > .oo-ui-buttonWidget {
+  top: 50%;
   right: 0;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 .oo-ui-popupWidget-body {
   line-height: 1.4;
