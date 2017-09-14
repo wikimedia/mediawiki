@@ -456,19 +456,7 @@
 		trimFileNameToByteLength = function ( name, extension ) {
 			// There is a special byte limit for file names and ... remember the dot
 			return trimToByteLength( name, FILENAME_MAX_BYTES - extension.length - 1 ) + '.' + extension;
-		},
-
-		// Polyfill for ES5 Object.create
-		createObject = Object.create || ( function () {
-			return function ( o ) {
-				function Title() {}
-				if ( o !== Object( o ) ) {
-					throw new Error( 'Cannot inherit from a non-object' );
-				}
-				Title.prototype = o;
-				return new Title();
-			};
-		}() );
+		};
 
 	/* Static members */
 
@@ -490,7 +478,7 @@
 			return null;
 		}
 
-		t = createObject( Title.prototype );
+		t = Object.create( Title.prototype );
 		t.namespace = parsed.namespace;
 		t.title = parsed.title;
 		t.ext = parsed.ext;
