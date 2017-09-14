@@ -1580,5 +1580,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 	abstract function getDefaultLimit();
 
+	/**
+	 * Get the default value of the number of days to display when loading
+	 * the result set.
+	 * Supports fractional values, and should be cast to a float.
+	 *
+	 * @return float
+	 */
 	abstract function getDefaultDays();
 }
