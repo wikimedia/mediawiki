@@ -1010,6 +1010,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	function getDefaultDays() {
-		return $this->getUser()->getIntOption( 'rcdays' );
+		return $this->getUser()->getOption( 'rcdays' );
 	}
 }

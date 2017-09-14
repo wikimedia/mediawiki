@@ -918,6 +918,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	function getDefaultDays() {
-		return $this->getUser()->getIntOption( 'watchlistdays' );
+		return $this->getUser()->getOption( 'watchlistdays' );
 	}
 }

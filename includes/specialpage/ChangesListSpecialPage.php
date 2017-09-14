@@ -606,12 +606,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				'wgRCFiltersChangeTags',
 				$this->buildChangeTagList()
 			);
+
 			$out->addJsConfigVars(
 				'StructuredChangeFiltersDisplayConfig',
 				[
 					'maxDays' => (int)$this->getConfig()->get( 'RCMaxAge' ) / ( 24 * 3600 ), // Translate to days
 					'limitArray' => $this->getConfig()->get( 'RCLinkLimits' ),
-					'limitDefault' => $this->getDefaultLimit(),
+					'limitDefault' => floatval( $this->getDefaultLimit() ),
 					'daysArray' => $this->getConfig()->get( 'RCLinkDays' ),
 					'daysDefault' => $this->getDefaultDays(),
 				]
