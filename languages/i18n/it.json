@@ -1106,6 +1106,7 @@
 	"timezoneregion-indian": "Oceano Indiano",
 	"timezoneregion-pacific": "Oceano Pacifico",
 	"allowemail": "Abilita la ricezione di messaggi email da altri utenti",
+	"email-blacklist-label": "Impedisci a questi utenti di inviarmi email:",
 	"prefs-searchoptions": "Ricerca",
 	"prefs-namespaces": "Namespace",
 	"default": "predefinito",

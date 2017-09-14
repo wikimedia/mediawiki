@@ -1490,6 +1490,7 @@
 	"api-help-param-upload": "Должно быть отправлено как файл с использованием multipart/form-data.",
 	"api-help-param-multi-separate": "Разделяйте значения с помощью <kbd>|</kbd> или [[Special:ApiHelp/main#main/datatypes|альтернативного разделителя]].",
 	"api-help-param-multi-max": "Максимально разрешённое количество значений — {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} для ботов).",
+	"api-help-param-multi-max-simple": "Максимальное количество значений — {{PLURAL:$1|$1}}.",
 	"api-help-param-multi-all": "Для указания всех значений, используйте <kbd>$1</kbd>.",
 	"api-help-param-default": "По умолчанию: $1",
 	"api-help-param-default-empty": "По умолчанию: <span class=\"apihelp-empty\">(пусто)</span>",

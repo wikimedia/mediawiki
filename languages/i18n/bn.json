@@ -1418,6 +1418,7 @@
 	"rcfilters-liveupdates-button": "সরাসরি হালনাগাদ",
 	"rcfilters-liveupdates-button-title-on": "সরাসরি হালনাগাদ বন্ধ করুন",
 	"rcfilters-watchlist-markseen-button": "দেখা হিসাবে সব পরিবর্তন চিহ্নিত করুন",
+	"rcfilters-preference-label": "সাম্প্রতিক পরিবর্তনের উন্নত সংস্করণটি লুকান",
 	"rcnotefrom": "<strong>$2</strong>টা থেকে সংঘটিত পরিবর্তনগুলি (সর্বোচ্চ <strong>$1টি</strong> দেখানো হয়েছে)।",
 	"rclistfromreset": "তারিখ নির্বাচন পুনঃস্থাপন করুন",
 	"rclistfrom": "$2, $3 তারিখের পর সংঘটিত নতুন পরিবর্তনগুলো দেখাও",

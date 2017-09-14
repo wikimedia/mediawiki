@@ -1083,6 +1083,7 @@
 	"timezoneregion-indian": "Indische Oceaan",
 	"timezoneregion-pacific": "Stille Oceaan",
 	"allowemail": "E-mail van andere gebruikers toestaan",
+	"email-blacklist-label": "Voorkom dat deze gebruikers e-mails naar mij kunnen sturen:",
 	"prefs-searchoptions": "Zoeken",
 	"prefs-namespaces": "Naamruimten",
 	"default": "standaard",
