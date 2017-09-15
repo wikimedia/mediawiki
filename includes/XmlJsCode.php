@@ -26,7 +26,7 @@
  * @par Example:
  * @code
  *     Xml::encodeJsVar( new XmlJsCode( 'a + b' ) );
- * @encode
+ * @endcode
  *
  * This returns "a + b".
  *
