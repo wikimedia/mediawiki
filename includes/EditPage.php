@@ -4185,8 +4185,6 @@ class EditPage {
 	 * @return array
 	 */
 	public function getCheckboxes( &$tabindex, $checked ) {
-		global $wgUseMediaWikiUIEverywhere;
-
 		$checkboxes = [];
 		$checkboxesDef = $this->getCheckboxesDefinition( $checked );
 
@@ -4220,10 +4218,6 @@ class EditPage {
 				Xml::check( $name, $options['default'], $attribs ) .
 				'&#160;' .
 				Xml::tags( 'label', $labelAttribs, $label );
-
-			if ( $wgUseMediaWikiUIEverywhere ) {
-				$checkboxHtml = Html::rawElement( 'div', [ 'class' => 'mw-ui-checkbox' ], $checkboxHtml );
-			}
 
 			$checkboxes[ $legacyName ] = $checkboxHtml;
 		}
