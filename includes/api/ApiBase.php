@@ -1687,6 +1687,36 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * For content that has been compressed with deflate in the client,
+	 * try to uncompress it with inflate.
+	 *
+	 * If data is not prefixed with 'rawdeflate,' it will be returned unmodified.
+	 *
+	 * Data can be compressed in the client using the 'easy-deflate.deflate'
+	 * module:
+	 *
+	 *  mw.loader.using( 'easy-deflate.deflate' ).then( function () {
+	 *      var deflated = EasyDeflate.deflate( myContent );
+	 *  } );
+	 *
+	 * @param string $data Deflated data
+	 * @return string Inflated data
+	 */
+	protected function tryInflate( $data ) {
+		if ( substr( $data, 0, 11 ) === 'rawdeflate,' ) {
+			$deflated = base64_decode( substr( $data, 11 ) );
+			MediaWiki\suppressWarnings();
+			$inflated = gzinflate( $deflated );
+			MediaWiki\restoreWarnings();
+			if ( $deflated === $inflated || $inflated === false ) {
+				$this->dieWithError( 'apierror-invaliddeflate', 'invaliddeflate' );
+			}
+			return $inflated;
+		}
+		return $data;
+	}
+
+	/**
 	 * Create a Message from a string or array
 	 *
 	 * A string is used as a message key. An array has the message key as the
