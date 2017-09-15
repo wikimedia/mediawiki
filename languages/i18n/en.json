@@ -1763,7 +1763,7 @@
 	"listfiles_size": "Size",
 	"listfiles_description": "Description",
 	"listfiles_count": "Versions",
-	"listfiles-show-all": "Include old versions of images",
+	"listfiles-show-all": "Include old versions of files",
 	"listfiles-latestversion": "Current version",
 	"listfiles-latestversion-yes": "Yes",
 	"listfiles-latestversion-no": "No",
