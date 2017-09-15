@@ -2092,7 +2092,12 @@ return [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.pagesWithProp.css',
 	],
 	'mediawiki.special.preferences' => [
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.preferences.js',
+		'scripts' => [
+			'resources/src/mediawiki.special/mediawiki.special.preferences.confirmClose.js',
+			'resources/src/mediawiki.special/mediawiki.special.preferences.convertmessagebox.js',
+			'resources/src/mediawiki.special/mediawiki.special.preferences.tabs.js',
+			'resources/src/mediawiki.special/mediawiki.special.preferences.timezone.js',
+		],
 		'messages' => [
 			'prefs-tabs-navigation-hint',
 			'prefswarning-warning',
