@@ -1695,6 +1695,7 @@
 	"apierror-integeroutofrange-belowminimum": "<var>$1</var> may not be less than $2 (set to $3).",
 	"apierror-invalidcategory": "The category name you entered is not valid.",
 	"apierror-invalid-chunk": "Offset plus current chunk is greater than claimed file size.",
+	"apierror-invaliddeflate": "Content provided is not properly deflated",
 	"apierror-invalidexpiry": "Invalid expiry time \"$1\".",
 	"apierror-invalid-file-key": "Not a valid file key.",
 	"apierror-invalidlang": "Invalid language code for parameter <var>$1</var>.",
