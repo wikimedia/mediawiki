@@ -4481,5 +4481,6 @@
 	"passwordpolicies-policy-passwordcannotmatchusername": "Password cannot be the same as username",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Password cannot match specifically blacklisted passwords",
 	"passwordpolicies-policy-maximalpasswordlength": "Password must be less than $1 {{PLURAL:$1|character|characters}} long",
-	"passwordpolicies-policy-passwordcannotbepopular": "Password cannot be {{PLURAL:$1|the popular password|in the list of $1 popular passwords}}"
+	"passwordpolicies-policy-passwordcannotbepopular": "Password cannot be {{PLURAL:$1|the popular password|in the list of $1 popular passwords}}",
+	"easydeflate-invaliddeflate": "Content provided is not properly deflated"
 }
