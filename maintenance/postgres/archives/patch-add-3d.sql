@@ -1,1 +1,1 @@
-ALTER TYPE media_type ADD VALUE '3D';
+ALTER TYPE media_type ADD VALUE IF NOT EXISTS '3D';
