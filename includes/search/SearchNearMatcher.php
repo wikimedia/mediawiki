@@ -6,8 +6,7 @@
  */
 class SearchNearMatcher {
 	/**
-	 * Configuration object.
-	 * @param Config $config
+	 * @var Config
 	 */
 	protected $config;
 

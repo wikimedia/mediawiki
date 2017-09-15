@@ -163,7 +163,7 @@ class CSSMinTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideIsRemoteUrl
-	 * @cover CSSMin::isRemoteUrl
+	 * @covers CSSMin::isRemoteUrl
 	 */
 	public function testIsRemoteUrl( $expect, $url ) {
 		$this->assertEquals( CSSMinTestable::isRemoteUrl( $url ), $expect );
@@ -180,7 +180,7 @@ class CSSMinTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideIsLocalUrls
-	 * @cover CSSMin::isLocalUrl
+	 * @covers CSSMin::isLocalUrl
 	 */
 	public function testIsLocalUrl( $expect, $url ) {
 		$this->assertEquals( CSSMinTestable::isLocalUrl( $url ), $expect );
