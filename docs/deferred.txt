@@ -30,7 +30,7 @@ Currently there are a few different types of jobs:
 
   htmlCacheUpdate
     Clear caches when a template is changed to ensure that changes can be seen.
-    Each job clears $wgUpdateRowsPerJob pages (500 by default).
+    Each job clears $wgUpdateRowsPerJob pages (300 by default).
 
   enotifNotify
     Used to send mail using the job queue.
