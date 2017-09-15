@@ -782,11 +782,11 @@
 	mw.rcfilters.dm.FiltersViewModel.prototype.areDefaultFiltersEmpty = function () {
 		var defaultFilters;
 
-		if ( this.defaultFiltersEmpty !== null ) {
+		if ( this.defaultFiltersEmpty === null ) {
 			// We only need to do this test once,
 			// because defaults are set once per session
 			defaultFilters = this.getFiltersFromParameters( this.getDefaultParams() );
-			this.defaultFiltersEmpty = Object.keys( defaultFilters ).every( function ( filterName ) {
+			this.defaultFiltersEmpty = $.isEmptyObject( defaultFilters ) || Object.keys( defaultFilters ).every( function ( filterName ) {
 				return !defaultFilters[ filterName ];
 			} );
 		}
