@@ -1583,6 +1583,7 @@
 	"apierror-integeroutofrange-belowminimum": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name\n* $2 - Minimum allowed value\n* $3 - Supplied value",
 	"apierror-invalidcategory": "{{doc-apierror}}",
 	"apierror-invalid-chunk": "{{doc-apierror}}",
+	"apierror-invaliddeflate": "{{doc-apierror}}",
 	"apierror-invalidexpiry": "{{doc-apierror}}\n\nParameters:\n* $1 - Value provided.",
 	"apierror-invalid-file-key": "{{doc-apierror}}",
 	"apierror-invalidlang": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name.",
