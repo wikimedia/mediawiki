@@ -203,14 +203,15 @@
 				if ( response.parse.langlinks && mw.config.get( 'skin' ) === 'vector' ) {
 					newList = [];
 					$.each( response.parse.langlinks, function ( i, langlink ) {
+						var bcp47 = mw.language.bcp47( langlink.lang );
 						li = $( '<li>' )
 							.addClass( 'interlanguage-link interwiki-' + langlink.lang )
 							.append( $( '<a>' )
 								.attr( {
 									href: langlink.url,
 									title: langlink.title + ' - ' + langlink.langname,
-									lang: langlink.lang,
-									hreflang: langlink.lang
+									lang: bcp47,
+									hreflang: bcp47
 								} )
 								.text( langlink.autonym )
 							);
