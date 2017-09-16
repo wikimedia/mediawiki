@@ -92,15 +92,31 @@
   top: 2.75em;
 }
 .oo-ui-menuLayout {
-  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
 }
+.oo-ui-menuLayout-expanded {
+  position: absolute;
+}
+.oo-ui-menuLayout-expanded .oo-ui-menuLayout-menu,
+.oo-ui-menuLayout-expanded .oo-ui-menuLayout-content {
+  position: absolute;
+}
+.oo-ui-menuLayout:not( .oo-ui-menuLayout-expanded).oo-ui-menuLayout-after .oo-ui-menuLayout-menu {
+  float: right;
+}
+.oo-ui-menuLayout:not( .oo-ui-menuLayout-expanded).oo-ui-menuLayout-before .oo-ui-menuLayout-menu {
+  float: left;
+}
+.oo-ui-menuLayout:not( .oo-ui-menuLayout-expanded):after {
+  content: ' ';
+  display: table;
+  clear: both;
+}
 .oo-ui-menuLayout-menu,
 .oo-ui-menuLayout-content {
-  position: absolute;
   -webkit-transition: all 200ms ease;
   -moz-transition: all 200ms ease;
   transition: all 200ms ease;

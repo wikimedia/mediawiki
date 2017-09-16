@@ -5,26 +5,60 @@
 	$( function () {
 		var $preftoc, $preferences, $fieldsets, labelFunc, previousTab;
 
-		labelFunc = function () {
-			return this.id.replace( /^mw-prefsection/g, 'preftab' );
-		};
 
 		$preftoc = $( '#preftoc' );
 		$preferences = $( '#preferences' );
 
-		$fieldsets = $preferences.children( 'fieldset' )
-			.attr( {
-				role: 'tabpanel',
-				'aria-labelledby': labelFunc
-			} );
-		$fieldsets.not( '#mw-prefsection-personal' )
-			.hide()
-			.attr( 'aria-hidden', 'true' );
 
-		// T115692: The following is kept for backwards compatibility with older skins
-		$preferences.addClass( 'jsprefs' );
-		$fieldsets.addClass( 'prefsection' );
-		$fieldsets.children( 'legend' ).addClass( 'mainLegend' );
+
+		// id => label
+		var toplevelSections = {};
+
+		$preftoc.find( 'a' ).each( function () {
+			var $link = $( this );
+			toplevelSections[ $link.attr( 'id' ).replace( 'preftab-', '' ) ] = $link.text();
+		} );
+
+		var tabs = new OO.ui.IndexLayout( {
+			expanded: false
+		} );
+
+		for ( var sectionId in toplevelSections ) {
+			var panel = new OO.ui.TabPanelLayout( sectionId, {
+				expanded: false,
+				label: toplevelSections[ sectionId ]
+			} );
+			var $panelContents = $( '#mw-prefsection-' + sectionId );
+
+			// Hide the unnecessary PHP PanelLayouts
+			// (Do not use .remove(), as that would remove event handlers for everything inside them)
+			$panelContents.parent().detach();
+			panel.$element.append( $panelContents );
+			tabs.addTabPanels( [ panel ] );
+			// Remove duplicate labels
+			// (This must be after .addTabPanels(), otherwise the tab item doesn't exist yet)
+			$panelContents.children( 'legend' ).remove();
+			$panelContents.attr( 'aria-labelledby', panel.getTabItem().getElementId() );
+		}
+
+		var wrapper = new OO.ui.PanelLayout( {
+			expanded: false,
+			padded: false,
+			framed: true
+		} );
+		wrapper.$element.append( tabs.$element );
+		$preferences.prepend( wrapper.$element );
+
+		function updateHash( panel ) {
+			// Handle hash manually to prevent jumping,
+			// therefore save and restore scrollTop to prevent jumping.
+			var scrollTop = $( window ).scrollTop();
+			location.hash = '#mw-prefsection-' + panel.getName();
+			$( window ).scrollTop( scrollTop );
+		}
+
+		tabs.on( 'set', updateHash );
+
 
 		// Make sure the accessibility tip is selectable so that screen reader users take notice,
 		// but hide it per default to reduce interface clutter. Also make sure it becomes visible
@@ -39,61 +73,24 @@
 					$( this ).css( 'height', 'auto' );
 				}
 			} ).insertBefore( $preftoc );
+		$preftoc.remove();
 
 		/**
-		 * It uses document.getElementById for security reasons (HTML injections in $()).
-		 *
 		 * @ignore
 		 * @param {string} name the name of a tab without the prefix ("mw-prefsection-")
 		 * @param {string} [mode] A hash will be set according to the current
 		 *  open section. Set mode 'noHash' to surpress this.
 		 */
 		function switchPrefTab( name, mode ) {
-			var $tab, scrollTop;
-			// Handle hash manually to prevent jumping,
-			// therefore save and restore scrollTop to prevent jumping.
-			scrollTop = $( window ).scrollTop();
-			if ( mode !== 'noHash' ) {
-				location.hash = '#mw-prefsection-' + name;
+			if ( mode === 'noHash' ) {
+				tabs.off( 'set', updateHash );
 			}
-			$( window ).scrollTop( scrollTop );
-
-			$preftoc.find( 'li' ).removeClass( 'selected' )
-				.find( 'a' ).attr( {
-					tabIndex: -1,
-					'aria-selected': 'false'
-				} );
-
-			$tab = $( document.getElementById( 'preftab-' + name ) );
-			if ( $tab.length ) {
-				$tab.attr( {
-					tabIndex: 0,
-					'aria-selected': 'true'
-				} ).focus()
-					.parent().addClass( 'selected' );
-
-				$preferences.children( 'fieldset' ).hide().attr( 'aria-hidden', 'true' );
-				$( document.getElementById( 'mw-prefsection-' + name ) ).show().attr( 'aria-hidden', 'false' );
+			tabs.setTabPanel( name );
+			if ( mode === 'noHash' ) {
+				tabs.on( 'set', updateHash );
 			}
 		}
 
-		// Enable keyboard users to use left and right keys to switch tabs
-		$preftoc.on( 'keydown', function ( event ) {
-			var keyLeft = 37,
-				keyRight = 39,
-				$el;
-
-			if ( event.keyCode === keyLeft ) {
-				$el = $( '#preftoc li.selected' ).prev().find( 'a' );
-			} else if ( event.keyCode === keyRight ) {
-				$el = $( '#preftoc li.selected' ).next().find( 'a' );
-			} else {
-				return;
-			}
-			if ( $el.length > 0 ) {
-				switchPrefTab( $el.attr( 'href' ).replace( '#mw-prefsection-', '' ) );
-			}
-		} );
 
 		// Jump to correct section as indicated by the hash.
 		// This function is called onload and onhashchange.
@@ -114,6 +111,7 @@
 				}
 			}
 		}
+
 
 		// In browsers that support the onhashchange event we will not bind click
 		// handlers and instead let the browser do the default behavior (clicking the
