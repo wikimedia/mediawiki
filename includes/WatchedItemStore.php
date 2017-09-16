@@ -198,11 +198,9 @@ class WatchedItemStore implements StatsdAwareInterface {
 	 * @return array
 	 */
 	private function dbCond( User $user, LinkTarget $target ) {
-		return [
-			'wl_user' => $user->getId(),
-			'wl_namespace' => $target->getNamespace(),
-			'wl_title' => $target->getDBkey(),
-		];
+		return array_merge(
+			[ 'wl_user' => $user->getId() ], $this->getTargetConds( $target )
+		);
 	}
 
 	/**
@@ -240,6 +238,37 @@ class WatchedItemStore implements StatsdAwareInterface {
 	/**
 	 * @param LinkTarget $target
 	 *
+	 * @return array of conditions
+	 */
+	protected function getTargetConds( LinkTarget $target ) {
+		return [
+			'wl_namespace' => $target->getNamespace(),
+			'wl_title' => $target->getDBkey(),
+		];
+	}
+
+	/**
+	 * Get a list of watchers
+	 *
+	 * @param LinkTarget $target to get watchers for
+	 *
+	 * @return array of user ids
+	 */
+	public function getWatchers( LinkTarget $target ) {
+		$dbr = $this->getConnectionRef( DB_REPLICA );
+		$return = $dbr->selectFieldValues(
+			'watchlist',
+			'wl_user',
+			$this->getTargetConds( $target ),
+			__METHOD__
+		);
+
+		return $return;
+	}
+
+	/**
+	 * @param LinkTarget $target
+	 *
 	 * @return int
 	 */
 	public function countWatchers( LinkTarget $target ) {
@@ -247,10 +276,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 		$return = (int)$dbr->selectField(
 			'watchlist',
 			'COUNT(*)',
-			[
-				'wl_namespace' => $target->getNamespace(),
-				'wl_title' => $target->getDBkey(),
-			],
+			$this->getTargetConds( $target ),
 			__METHOD__
 		);
 
@@ -272,13 +298,11 @@ class WatchedItemStore implements StatsdAwareInterface {
 		$visitingWatchers = (int)$dbr->selectField(
 			'watchlist',
 			'COUNT(*)',
-			[
-				'wl_namespace' => $target->getNamespace(),
-				'wl_title' => $target->getDBkey(),
+			array_merge( [
 				'wl_notificationtimestamp >= ' .
 				$dbr->addQuotes( $dbr->timestamp( $threshold ) ) .
 				' OR wl_notificationtimestamp IS NULL'
-			],
+			], $this->getTargetConds( $target ) ),
 			__METHOD__
 		);
 
@@ -620,12 +644,10 @@ class WatchedItemStore implements StatsdAwareInterface {
 		$rows = [];
 		$items = [];
 		foreach ( $targets as $target ) {
-			$rows[] = [
+			$rows[] = array_merge( [
 				'wl_user' => $user->getId(),
-				'wl_namespace' => $target->getNamespace(),
-				'wl_title' => $target->getDBkey(),
 				'wl_notificationtimestamp' => null,
-			];
+			], $this->getTargetConds( $target ) );
 			$items[] = new WatchedItem(
 				$user,
 				$target,
@@ -671,11 +693,10 @@ class WatchedItemStore implements StatsdAwareInterface {
 
 		$dbw = $this->getConnectionRef( DB_MASTER );
 		$dbw->delete( 'watchlist',
-			[
-				'wl_user' => $user->getId(),
-				'wl_namespace' => $target->getNamespace(),
-				'wl_title' => $target->getDBkey(),
-			], __METHOD__
+					  array_merge( [
+						  'wl_user' => $user->getId(),
+					  ], $this->getTargetConds( $target ) ),
+					  __METHOD__
 		);
 		$success = (bool)$dbw->affectedRows();
 
@@ -732,12 +753,10 @@ class WatchedItemStore implements StatsdAwareInterface {
 		$uids = $dbw->selectFieldValues(
 			'watchlist',
 			'wl_user',
-			[
+			array_merge( [
 				'wl_user != ' . intval( $editor->getId() ),
-				'wl_namespace' => $target->getNamespace(),
-				'wl_title' => $target->getDBkey(),
 				'wl_notificationtimestamp IS NULL',
-			],
+			], $this->getTargetConds( $target ) ),
 			__METHOD__
 		);
 
@@ -758,11 +777,9 @@ class WatchedItemStore implements StatsdAwareInterface {
 						$dbw->update( 'watchlist',
 							[ /* SET */
 								'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
-							], [ /* WHERE - TODO Use wl_id T130067 */
+							], array_merge( [ /* WHERE - TODO Use wl_id T130067 */
 								'wl_user' => $watchersChunk,
-								'wl_namespace' => $target->getNamespace(),
-								'wl_title' => $target->getDBkey(),
-							], $fname
+							], $this->getTargetConds( $target ) ), $fname
 						);
 						if ( count( $watchersChunks ) > 1 ) {
 							$factory->commitAndWaitForReplication(
@@ -948,26 +965,18 @@ class WatchedItemStore implements StatsdAwareInterface {
 		$result = $dbw->select(
 			'watchlist',
 			[ 'wl_user', 'wl_notificationtimestamp' ],
-			[
-				'wl_namespace' => $oldTarget->getNamespace(),
-				'wl_title' => $oldTarget->getDBkey(),
-			],
+			$this->getTargetConds( $oldTarget ),
 			__METHOD__,
 			[ 'FOR UPDATE' ]
 		);
 
-		$newNamespace = $newTarget->getNamespace();
-		$newDBkey = $newTarget->getDBkey();
-
 		# Construct array to replace into the watchlist
 		$values = [];
 		foreach ( $result as $row ) {
-			$values[] = [
+			$values[] = array_merge( [
 				'wl_user' => $row->wl_user,
-				'wl_namespace' => $newNamespace,
-				'wl_title' => $newDBkey,
 				'wl_notificationtimestamp' => $row->wl_notificationtimestamp,
-			];
+			], $this->getTargetConds( $newTarget ) );
 		}
 
 		if ( !empty( $values ) ) {
