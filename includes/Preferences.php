@@ -755,6 +755,7 @@ class Preferences {
 			'default' => $tzSetting,
 			'size' => 20,
 			'section' => 'rendering/timeoffset',
+			'id' => 'wpTimeCorrection',
 		];
 	}
 
