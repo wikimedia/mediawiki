@@ -50,8 +50,8 @@ class SpecialPreferences extends SpecialPage {
 			return;
 		}
 
-		$out->addModules( 'mediawiki.special.preferences' );
-		$out->addModuleStyles( 'mediawiki.special.preferences.styles' );
+		$out->addModules( 'mediawiki.special.preferences.ooui' );
+		$out->addModuleStyles( 'mediawiki.special.preferences.styles.ooui' );
 
 		$session = $this->getRequest()->getSession();
 		if ( $session->get( 'specialPreferencesSaveSuccess' ) ) {
@@ -83,37 +83,19 @@ class SpecialPreferences extends SpecialPage {
 
 		$htmlForm = $this->getFormObject( $user, $this->getContext() );
 		$htmlForm->setSubmitCallback( [ 'Preferences', 'tryUISubmit' ] );
-		$sectionTitles = $htmlForm->getPreferenceSections();
 
-		$prefTabs = '';
-		foreach ( $sectionTitles as $key ) {
-			$prefTabs .= Html::rawElement( 'li',
-				[
-					'role' => 'presentation',
-					'class' => ( $key === 'personal' ) ? 'selected' : null
-				],
-				Html::rawElement( 'a',
-					[
-						'id' => 'preftab-' . $key,
-						'role' => 'tab',
-						'href' => '#mw-prefsection-' . $key,
-						'aria-controls' => 'mw-prefsection-' . $key,
-						'aria-selected' => ( $key === 'personal' ) ? 'true' : 'false',
-						'tabIndex' => ( $key === 'personal' ) ? 0 : -1,
-					],
-					$htmlForm->getLegend( $key )
-				)
-			);
+		$prefTabs = [];
+		foreach ( $htmlForm->getPreferenceSections() as $key ) {
+			$prefTabs[] = [
+				'name' => $key,
+				'label' => $htmlForm->getLegend( $key ),
+			];
 		}
+		$out->addJsConfigVars( 'wgPreferencesTabs', $prefTabs );
 
-		$out->addHTML(
-			Html::rawElement( 'ul',
-				[
-					'id' => 'preftoc',
-					'role' => 'tablist'
-				],
-				$prefTabs )
-		);
+		// TODO: Render fake tabs here to avoid FOUC.
+		// $out->addHTML( $fakeTabs );
+
 		$htmlForm->show();
 	}
 
@@ -136,7 +118,7 @@ class SpecialPreferences extends SpecialPage {
 
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $this->getPageTitle( 'reset' ) ); // Reset subpage
-		$htmlForm = new HTMLForm( [], $context, 'prefs-restore' );
+		$htmlForm = HTMLForm::factory( 'ooui', [], $context, 'prefs-restore' );
 
 		$htmlForm->setSubmitTextMsg( 'restoreprefs' );
 		$htmlForm->setSubmitDestructive();
