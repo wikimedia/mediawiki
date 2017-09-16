@@ -47,6 +47,12 @@ TEXT
 		);
 		$this->addOption( 'rev-id', 'The rev_id to start copying from. Default: 0', false, true );
 		$this->addOption(
+			'max-rev-id',
+			'The rev_id to stop at. Default: result of MAX(rev_id)',
+			false,
+			true
+		);
+		$this->addOption(
 			'throttle',
 			'Wait this many milliseconds after copying each batch of revisions. Default: 0',
 			false,
@@ -59,18 +65,22 @@ TEXT
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$dbw = $this->getDB( DB_MASTER );
 		$throttle = intval( $this->getOption( 'throttle', 0 ) );
+		$maxRevId = intval( $this->getOption( 'max-rev-id', 0 ) );
 		$start = $this->getOption( 'rev-id', 0 );
-		$end = $dbw->selectField( 'revision', 'MAX(rev_id)', false, __METHOD__ );
+		$end = $maxRevId > 0
+			? $maxRevId
+			: $dbw->selectField( 'revision', 'MAX(rev_id)', false, __METHOD__ );
 		$blockStart = $start;
 		$revCount = 0;
 
 		$this->output( "Copying IP revisions to ip_changes, from rev_id $start to rev_id $end\n" );
 
 		while ( $blockStart <= $end ) {
+			$blockEnd = min( $blockStart + 200, $end );
 			$rows = $dbw->select(
 				'revision',
 				[ 'rev_id', 'rev_timestamp', 'rev_user_text' ],
-				[ "rev_id >= $blockStart", 'rev_user' => 0 ],
+				[ "rev_id BETWEEN $blockStart AND $blockEnd", 'rev_user' => 0 ],
 				__METHOD__,
 				[ 'ORDER BY' => 'rev_id ASC', 'LIMIT' => $this->mBatchSize ]
 			);
@@ -80,7 +90,7 @@ TEXT
 			}
 
 			$this->output( "...checking $this->mBatchSize revisions for IP edits that need copying, " .
-				"starting with rev_id $blockStart\n" );
+				"between rev_ids $blockStart and $blockEnd\n" );
 
 			$insertRows = [];
 			foreach ( $rows as $row ) {
