@@ -88,7 +88,7 @@ class Interwiki {
 	 * @since 1.26
 	 */
 	public static function invalidateCache( $prefix ) {
-		return MediaWikiServices::getInstance()->getInterwikiLookup()->invalidateCache( $prefix );
+		MediaWikiServices::getInstance()->getInterwikiLookup()->invalidateCache( $prefix );
 	}
 
 	/**
