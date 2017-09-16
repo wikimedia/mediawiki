@@ -150,11 +150,9 @@ class PreferencesTest extends MediaWikiTestCase {
 
 	/** Helper */
 	protected function prefsFor( $user_key ) {
-		$preferences = [];
-		Preferences::profilePreferences(
+		$preferences = Preferences::getPreferences(
 			$this->prefUsers[$user_key],
-			$this->context,
-			$preferences
+			$this->context
 		);
 
 		return $preferences;
