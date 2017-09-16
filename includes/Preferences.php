@@ -625,7 +625,6 @@ class Preferences {
 			$defaultPreferences['skin'] = [
 				'type' => 'radio',
 				'options' => $skinOptions,
-				'label' => '&#160;',
 				'section' => 'rendering/skin',
 			];
 		}
@@ -695,7 +694,6 @@ class Preferences {
 			$defaultPreferences['date'] = [
 				'type' => 'radio',
 				'options' => $dateOptions,
-				'label' => '&#160;',
 				'section' => 'rendering/dateformat',
 			];
 		}
