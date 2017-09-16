@@ -1773,7 +1773,7 @@
 	"listfiles_size": "尺寸",
 	"listfiles_description": "说明",
 	"listfiles_count": "版本",
-	"listfiles-show-all": "包括图片的旧版本",
+	"listfiles-show-all": "包括文件的旧版本",
 	"listfiles-latestversion": "当前版本",
 	"listfiles-latestversion-yes": "是",
 	"listfiles-latestversion-no": "否",

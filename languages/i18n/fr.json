@@ -2933,7 +2933,7 @@
 	"pageinfo-hidden-categories": "{{PLURAL:$1|Catégorie cachée|Catégories cachées}} ($1)",
 	"pageinfo-templates": "{{PLURAL:$1|Modèle inclu|Modèles inclus}} ($1)",
 	"pageinfo-transclusions": "{{PLURAL:$1|Page dans laquelle|Pages dans lesquelles}} cette page est incluse ($1)",
-	"pageinfo-toolboxlink": "Plus d’informations",
+	"pageinfo-toolboxlink": "Information sur la page",
 	"pageinfo-redirectsto": "Rediriger vers",
 	"pageinfo-redirectsto-info": "info",
 	"pageinfo-contentpage": "Comptée comme page de contenu",

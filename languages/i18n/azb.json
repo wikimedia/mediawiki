@@ -20,7 +20,8 @@
 			"Alp Er Tunqa",
 			"Matma Rex",
 			"Ilğım",
-			"ییلماز"
+			"ییلماز",
+			"Saraiki"
 		]
 	},
 	"tog-underline": "باغلانتی‌لارین آلتینی خطله:",
@@ -1101,6 +1102,7 @@
 	"right-override-export-depth": "ایچری باغلانتیلاری اولان صحیفه‌لری، چوخو ۵ درجه درینلیگی ایله، ایخراج ائت",
 	"right-sendemail": "باشقا ایستیفاده‌چیلره ایمیل گؤندر",
 	"grant-group-email": "ایمئیل گؤندر",
+	"grant-createaccount": "حساب یارات",
 	"newuserlogpage": "ایشلدن یارادیلما ژورنالی",
 	"newuserlogpagetext": "بۇ ایشلدن یارادماق لیستی‌دیر.",
 	"rightslog": "ایشلدن حاقلاری ژورنالی",
