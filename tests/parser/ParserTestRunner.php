@@ -1596,7 +1596,15 @@ class ParserTestRunner {
 		$page->loadPageData( 'fromdbmaster' );
 
 		if ( $page->exists() ) {
-			throw new MWException( "duplicate article '$name' at $file:$line\n" );
+			$content = $page->getContent( Revision::RAW );
+			// Only reject the title, if the content is different.
+			// This makes it easier to create Template:(( or Template:)) in different extensions
+			if ( $content && $content->getNativeData() === $text ) {
+				return;
+			}
+			throw new MWException(
+				"duplicate article '$name' with different content at $file:$line\n"
+			);
 		}
 
 		// Use mock parser, to make debugging of actual parser tests simpler.
