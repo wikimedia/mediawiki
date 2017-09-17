@@ -477,4 +477,55 @@ class XmlTest extends MediaWikiTestCase {
 			] )
 		);
 	}
+
+	/**
+	 * @covers Xml::fieldset
+	 */
+	public function testFieldset() {
+		$this->assertEquals(
+			"<fieldset>\n",
+			Xml::fieldset(),
+			'Opening tag'
+		);
+		$this->assertEquals(
+			"<fieldset>\n",
+			Xml::fieldset( false ),
+			'Opening tag (false means no legend)'
+		);
+		$this->assertEquals(
+			"<fieldset>\n",
+			Xml::fieldset( '' ),
+			'Opening tag (empty string also means no legend)'
+		);
+		$this->assertEquals(
+			"<fieldset>\n<legend>Foo</legend>\n",
+			Xml::fieldset( 'Foo' ),
+			'Opening tag with legend'
+		);
+		$this->assertEquals(
+			"<fieldset>\n<legend>Foo</legend>\nBar\n</fieldset>\n",
+			Xml::fieldset( 'Foo', 'Bar' ),
+			'Entire element with legend'
+		);
+		$this->assertEquals(
+			"<fieldset>\n<legend>Foo</legend>\n",
+			Xml::fieldset( 'Foo', false ),
+			'Opening tag with legend (false means no content and no closing tag)'
+		);
+		$this->assertEquals(
+			"<fieldset>\n<legend>Foo</legend>\n\n</fieldset>\n",
+			Xml::fieldset( 'Foo', '' ),
+			'Entire element with legend but no content (empty string generates a closing tag)'
+		);
+		$this->assertEquals(
+			"<fieldset class=\"bar\">\n<legend>Foo</legend>\nBar\n</fieldset>\n",
+			Xml::fieldset( 'Foo', 'Bar', [ 'class' => 'bar' ] ),
+			'Opening tag with legend and attributes'
+		);
+		$this->assertEquals(
+			"<fieldset class=\"bar\">\n<legend>Foo</legend>\n",
+			Xml::fieldset( 'Foo', false, [ 'class' => 'bar' ] ),
+			'Entire element with legend and attributes'
+		);
+	}
 }
