@@ -1466,7 +1466,7 @@ class User implements IDBAccessObject {
 			$this->addGroup( $group );
 		}
 		// update groups in external authentication database
-		Hooks::run( 'UserGroupsChanged', [ $this, $toPromote, [], false, false ] );
+		Hooks::run( 'UserGroupsChanged', [ $this, $toPromote, [], false, false, [], [] ] );
 		AuthManager::callLegacyAuthPlugin( 'updateExternalDBGroups', [ $this, $toPromote ] );
 
 		$newGroups = array_merge( $oldGroups, $toPromote ); // all groups

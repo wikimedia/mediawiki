@@ -69,11 +69,17 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			->with(
 				$this->identicalTo( $user ),
 				$this->identicalTo( [ 'added' ] ),
-				$this->identicalTo( [ 'removed' ] )
+				$this->identicalTo( [ 'removed' ] ),
+				$this->identicalTo( false ),
+				$this->identicalTo( false ),
+				$this->identicalTo( [] ),
+				$this->identicalTo( [] )
 			);
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
 
-		\Hooks::run( 'UserGroupsChanged', [ $user, [ 'added' ], [ 'removed' ] ] );
+		\Hooks::run( 'UserGroupsChanged',
+			[ $user, [ 'added' ], [ 'removed' ], false, false, [], [] ]
+		);
 	}
 
 	public function testOnUserLoggedIn() {
