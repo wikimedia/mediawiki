@@ -1740,7 +1740,7 @@
 	"listfiles_size": "크기",
 	"listfiles_description": "설명",
 	"listfiles_count": "버전",
-	"listfiles-show-all": "그림의 과거 판 포함",
+	"listfiles-show-all": "파일의 과거 판 포함",
 	"listfiles-latestversion": "현재 판",
 	"listfiles-latestversion-yes": "예",
 	"listfiles-latestversion-no": "아니오",

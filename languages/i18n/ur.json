@@ -2464,6 +2464,8 @@
 	"tooltip-preferences-save": "ترجیحات محفوظ کریں",
 	"tooltip-summary": "مختصر خلاصہ درج کریں",
 	"common.css": "body,\ntextarea {\n    font-family: Amiri;\n}",
+	"group-bureaucrat.css": "/* یہاں درج شدہ سی ایس ایس محض مامورین اداری کے لیے فعال رہے گی */",
+	"group-bureaucrat.js": "/* یہاں درج شدہ جاوا اسکرپٹ محض مامورین اداری کے لیے فعال رہے گی */",
 	"anonymous": "{{SITENAME}} {{PLURAL:$1|کا|کے}} گمنام {{PLURAL:$1|صارف|صارفین}}",
 	"siteuser": "{{SITENAME}} $1 صارف",
 	"anonuser": "{{SITENAME}} کا گمنام صارف $1",
