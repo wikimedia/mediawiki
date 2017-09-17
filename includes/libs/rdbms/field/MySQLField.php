@@ -58,6 +58,13 @@ class MySQLField implements Field {
 	}
 
 	/**
+	 * @return int
+	 */
+	function maxLength() {
+		return $this->max_length;
+	}
+
+	/**
 	 * @return bool
 	 */
 	function isKey() {

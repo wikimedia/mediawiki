@@ -267,7 +267,7 @@ class MysqlUpdater extends DatabaseUpdater {
 
 			// 1.25
 			// note this patch covers other _comment and _description fields too
-			[ 'modifyField', 'recentchanges', 'rc_comment', 'patch-editsummary-length.sql' ],
+			[ 'doExtendCommentLengths' ],
 
 			// 1.26
 			[ 'dropTable', 'hitcounter' ],
@@ -1178,6 +1178,24 @@ class MysqlUpdater extends DatabaseUpdater {
 			'patch-revision-page-rev-index-nonunique.sql',
 			false,
 			'Making rev_page_id index non-unique'
+		);
+	}
+
+	protected function doExtendCommentLengths() {
+		/**
+		 * @var MysqlField $info
+		 */
+		$info = $this->db->fieldInfo( 'recentchanges', 'rc_comment' );
+		if ( $info === false ) {
+			return false;
+		}
+		if ( $info->maxLength() == 767 ) {
+			$this->output( "...recentchanges.rc_comment is already the correct length.\n" );
+		}
+		return $this->applyPatch(
+			'patch-editsummary-length.sql',
+			false,
+			'Extending edit summary lengths'
 		);
 	}
 
