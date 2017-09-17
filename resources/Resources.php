@@ -1451,6 +1451,7 @@ return [
 			'jquery.textSelection',
 			'mediawiki.api',
 			'mediawiki.diff.styles',
+			'mediawiki.language',
 			'mediawiki.util',
 			'mediawiki.jqueryMsg',
 			'oojs-ui-core',
