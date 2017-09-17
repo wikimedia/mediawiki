@@ -151,8 +151,24 @@ class AuthManagerAuthPlugin extends \AuthPlugin {
 		return true;
 	}
 
-	public function updateExternalDBGroups( $user, $addgroups, $delgroups = [] ) {
-		\Hooks::run( 'UserGroupsChanged', [ $user, $addgroups, $delgroups ] );
+	public function updateExternalDBGroups(
+		$user,
+		$addgroups,
+		$delgroups = [],
+		$performer = false,
+		$reason = false,
+		$oldUGMs = [],
+		$newUGMs = []
+	) {
+		\Hooks::run( 'UserGroupsChanged', [
+			$user,
+			$addgroups,
+			$delgroups,
+			$performer,
+			$reason,
+			$oldUGMs,
+			$newUGMs
+		] );
 		return true;
 	}
 

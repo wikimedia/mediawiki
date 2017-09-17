@@ -130,9 +130,13 @@ class AuthPluginPrimaryAuthenticationProvider
 	 * @param array $added
 	 * @param array $removed
 	 */
-	public function onUserGroupsChanged( $user, $added, $removed ) {
+	public function onUserGroupsChanged(
+		$user, $added, $removed, $performer, $reason, $oldUGMs, $newUGMs
+	) {
 		// No way to know the domain, just hope the provider handles that.
-		$this->auth->updateExternalDBGroups( $user, $added, $removed );
+		$this->auth->updateExternalDBGroups(
+			$user, $added, $removed, $performer, $reason, $oldUGMs, $newUGMs
+		);
 	}
 
 	/**
