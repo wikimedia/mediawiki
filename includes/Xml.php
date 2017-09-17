@@ -601,7 +601,7 @@ class Xml {
 	 * @param string|bool $legend Legend of the fieldset. If evaluates to false,
 	 *   legend is not added.
 	 * @param string $content Pre-escaped content for the fieldset. If false,
-	 *   only open fieldset is returned.
+	 *   only an empty fieldset is returned.
 	 * @param array $attribs Any attributes to fieldset-element.
 	 *
 	 * @return string
