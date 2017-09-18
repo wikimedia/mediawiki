@@ -237,6 +237,45 @@ CREATE INDEX archive_name_title_timestamp ON archive (ar_namespace,ar_title,ar_t
 CREATE INDEX archive_user_text            ON archive (ar_user_text);
 
 
+CREATE TABLE slots (
+  slot_revision_id INTEGER   NOT NULL,
+  slot_role_id     SMALLINT  NOT NULL,
+  slot_content_id  INTEGER   NOT NULL,
+  slot_inherited   SMALLINT  NOT NULL  DEFAULT 0,
+  PRIMARY KEY (slot_revision_id, slot_role_id)
+);
+
+CREATE INDEX slot_role_inherited ON slots (slot_revision_id, slot_role_id, slot_inherited);
+
+
+CREATE SEQUENCE content_content_id_seq;
+CREATE TABLE content (
+  content_id      INTEGER   NOT NULL PRIMARY KEY DEFAULT nextval('content_content_id_seq'),
+  content_size    INTEGER   NOT NULL,
+  content_sha1    TEXT      NOT NULL,
+  content_model   SMALLINT  NOT NULL,
+  content_address TEXT      NOT NULL
+);
+
+
+CREATE SEQUENCE slot_roles_role_id_seq;
+CREATE TABLE slot_roles (
+  role_id    SMALLINT  NOT NULL PRIMARY KEY DEFAULT nextval('slot_roles_role_id_seq'),
+  role_name  TEXT      NOT NULL
+);
+
+CREATE UNIQUE INDEX role_name ON slot_roles (role_name);
+
+
+CREATE SEQUENCE content_models_model_id_seq;
+CREATE TABLE content_models (
+  model_id    SMALLINT  NOT NULL PRIMARY KEY DEFAULT nextval('content_models_model_id_seq'),
+  model_name  TEXT      NOT NULL
+);
+
+CREATE UNIQUE INDEX model_name ON content_models (model_name);
+
+
 CREATE TABLE redirect (
   rd_from       INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   rd_namespace  SMALLINT NOT NULL,
