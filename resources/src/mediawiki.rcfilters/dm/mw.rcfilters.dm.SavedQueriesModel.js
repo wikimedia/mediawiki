@@ -45,6 +45,13 @@
 	 * An item has changed
 	 */
 
+	/**
+	 * @event default
+	 * @param {string} New default ID
+	 *
+	 * The default has changed
+	 */
+
 	/* Methods */
 
 	/**
@@ -259,6 +266,8 @@
 			this.getItems().forEach( function ( item ) {
 				item.toggleDefault( item.getID() === itemID );
 			} );
+
+			this.emit( 'default', itemID );
 		}
 	};
 
