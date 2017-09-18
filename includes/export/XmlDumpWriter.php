@@ -403,7 +403,7 @@ class XmlDumpWriter {
 		if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
 			$comment = Xml::element( 'comment', [ 'deleted' => 'deleted' ] );
 		} else {
-			$comment = Xml::elementClean( 'comment', null, $file->getDescription() );
+			$comment = Xml::elementClean( 'comment', null, strval( $file->getDescription() ) );
 		}
 		return "    <upload>\n" .
 			$this->writeTimestamp( $file->getTimestamp() ) .
