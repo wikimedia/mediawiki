@@ -48,18 +48,18 @@
 	}
 
 	.mw-changeslist {
-		&-empty {
-			// Hide the 'empty' message when we load rcfilters
-			// since we replace it anyways with a specific
-			// message of our own
-			display: none;
-		}
-
 		// Reserve space for the highlight circles
 		ul,
 		table.mw-enhanced-rc {
 			.result-circle-margin();
 		}
+	}
+
+	// Temporarily hide any 'empty' or 'timeout' message while we
+	// load rcfilters.
+	.mw-changeslist-empty,
+	.mw-changeslist-timeout {
+		display: none;
 	}
 
 	body.mw-rcfilters-ui-loading .mw-changeslist {
