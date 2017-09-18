@@ -31,13 +31,15 @@
 				),
 				currentPage = mw.config.get( 'wgCanonicalNamespace' ) +
 					':' +
-					mw.config.get( 'wgCanonicalSpecialPageName' );
+					mw.config.get( 'wgCanonicalSpecialPageName' ),
+				$changesListRoot;
 
 			// TODO: The changesListWrapperWidget should be able to initialize
 			// after the model is ready.
+			$changesListRoot = $( '.mw-changeslist, .mw-changeslist-empty, .mw-changeslist-timeout' );
 			// eslint-disable-next-line no-new
 			new mw.rcfilters.ui.ChangesListWrapperWidget(
-				filtersModel, changesListModel, controller, $( '.mw-changeslist, .mw-changeslist-empty' ) );
+				filtersModel, changesListModel, controller, $changesListRoot );
 
 			controller.initialize(
 				mw.config.get( 'wgStructuredChangeFilters' ),
