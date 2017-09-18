@@ -219,6 +219,78 @@ BEGIN
 END;
 /*$mw$*/
 
+
+CREATE TABLE &mw_prefix.slots (
+  slot_revision_id NUMBER NOT NULL,
+  slot_role_id NUMBER NOT NULL,
+  slot_content_id NUMBER NOT NULL,
+  slot_inherited NUMBER NOT NULL DEFAULT 0,
+);
+
+ALTER TABLE &mw_prefix.slots ADD CONSTRAINT &mw_prefix.slots_pk PRIMARY KEY (slot_revision_id, slot_role_id);
+
+CREATE INDEX &mw_prefix.slot_role_inherited ON &mw_prefix.slots (slot_revision_id, slot_role_id, slot_inherited);
+
+
+CREATE SEQUENCE content_content_id_seq;
+CREATE TABLE &mw_prefix.content (
+  content_id NUMBER NOT NULL,
+  content_size NUMBER NOT NULL,
+  content_sha1 VARBINARY(32),
+  content_model NUMBER NOT NULL,
+  content_address VARBINARY(255) NOT NULL
+);
+
+ALTER TABLE &mw_prefix.content ADD CONSTRAINT &mw_prefix.content_pk PRIMARY KEY (content_id);
+
+/*$mw$*/
+CREATE TRIGGER &mw_prefix.content_default_content_id BEFORE INSERT ON &mw_prefix.content
+	FOR EACH ROW WHEN (new.content_id IS NULL)
+BEGIN
+	&mw_prefix.lastval_pkg.setLastval(content_content_id_seq.nextval, :new.content_id);
+END;
+/*$mw$*/
+
+
+CREATE SEQUENCE slot_roles_role_id_seq;
+CREATE TABLE &mw_prefix.slot_roles (
+  role_id NUMBER NOT NULL,
+  role_name VARBINARY(64) NOT NULL
+);
+
+ALTER TABLE &mw_prefix.slot_roles ADD CONSTRAINT &mw_prefix.slot_roles_pk PRIMARY KEY (role_id);
+
+CREATE UNIQUE INDEX &mw_prefix.role_name_u01 ON &mw_prefix.slot_roles (role_name);
+
+/*$mw$*/
+CREATE TRIGGER &mw_prefix.slot_roles_default_role_id BEFORE INSERT ON &mw_prefix.slot_roles
+	FOR EACH ROW WHEN (new.role_id IS NULL)
+BEGIN
+	&mw_prefix.lastval_pkg.setLastval(slot_roles_role_id_seq.nextval, :new.role_id);
+END;
+/*$mw$*/
+
+
+CREATE SEQUENCE content_models_model_id_seq;
+CREATE TABLE &mw_prefix.content_models (
+  model_id NUMBER NOT NULL,
+  model_name VARBINARY(64) NOT NULL
+);
+
+
+ALTER TABLE &mw_prefix.conten_models ADD CONSTRAINT &mw_prefix.content_models_pk PRIMARY KEY (model_id);
+
+CREATE UNIQUE INDEX &mw_prefix.model_name_u01 ON &mw_prefix.content_models (model_name);
+
+/*$mw$*/
+CREATE TRIGGER &mw_prefix.content_models_default_model_id BEFORE INSERT ON &mw_prefix.content_models
+	FOR EACH ROW WHEN (new.model_id IS NULL)
+BEGIN
+	&mw_prefix.lastval_pkg.setLastval(content_models_model_id_seq.nextval, :new.model_id);
+END;
+/*$mw$*/
+
+
 CREATE TABLE &mw_prefix.pagelinks (
   pl_from       NUMBER   NOT NULL,
   pl_namespace  NUMBER  DEFAULT 0 NOT NULL,
