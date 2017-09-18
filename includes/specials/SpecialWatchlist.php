@@ -635,10 +635,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			'id' => 'mw-watchlist-form'
 		] );
 		$form .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
-		$form .= Xml::fieldset(
-			$this->msg( 'watchlist-options' )->text(),
-			false,
+		$form .= Xml::openElement(
+			'fieldset',
 			[ 'id' => 'mw-watchlist-options', 'class' => 'cloptions' ]
+		);
+		$form .= Xml::element(
+			'legend', null, $this->msg( 'watchlist-options' )->text()
 		);
 
 		if ( !$this->isStructuredFilterUiEnabled() ) {
