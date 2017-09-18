@@ -118,7 +118,7 @@
 	"apihelp-expandtemplates-summary": "Minden sablon kibontása a wikiszövegben.",
 	"apihelp-expandtemplates-param-title": "Lap címe.",
 	"apihelp-expandtemplates-param-text": "Az átalakítandó wikiszöveg.",
-	"apihelp-expandtemplates-param-revid": "Változatazonosító a <nowiki>{{REVISIONID}}</nowiki> és hasonló változók kibontásához.",
+	"apihelp-expandtemplates-param-revid": "Változatazonosító a <code><nowiki>{{REVISIONID}}</nowiki></code> és hasonló változók kibontásához.",
 	"apihelp-expandtemplates-param-prop": "A lekérendő információk.\n\nHa nincs megadva érték, a válasz tartalmazni fogja a wikiszöveget, de a kimenet elavult formátumú lesz.",
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "A kibontott wikiszöveg.",
 	"apihelp-expandtemplates-paramvalue-prop-categories": "Bármilyen, a bemenetben szereplő kategória, ami nem jelenik meg a wikiszöveges kimenetben.",

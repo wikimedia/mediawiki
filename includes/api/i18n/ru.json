@@ -171,7 +171,7 @@
 	"apihelp-expandtemplates-summary": "Разворачивание всех шаблонов в вики-текст.",
 	"apihelp-expandtemplates-param-title": "Заголовок страницы.",
 	"apihelp-expandtemplates-param-text": "Конвертируемый вики-текст.",
-	"apihelp-expandtemplates-param-revid": "Номер версии, для <nowiki>{{REVISIONID}}</nowiki> и аналогичных переменных.",
+	"apihelp-expandtemplates-param-revid": "Номер версии, для <code><nowiki>{{REVISIONID}}</nowiki></code> и аналогичных переменных.",
 	"apihelp-expandtemplates-param-prop": "Какую информацию включить.\n\nОбратите внимание, что если ни одно из значений не выбрано, результат будет содержать вики-текст, но вывод будет в устаревшем формате.",
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "Расширенный вики-текст.",
 	"apihelp-expandtemplates-paramvalue-prop-categories": "Любые категории, присутствующие во входных данных, но не попавшие в вики-текстовый результат.",

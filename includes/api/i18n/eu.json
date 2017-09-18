@@ -73,7 +73,7 @@
 	"apihelp-emailuser-example-email": "<kbd>WikiSysop</kbd> erabiltzaileari mezu elektronikoa bidali <kbd>Edukia</kbd> testuarekin.",
 	"apihelp-expandtemplates-param-title": "Orrialdearen izenburua.",
 	"apihelp-expandtemplates-param-text": "Bihurtzeko Wikitestua",
-	"apihelp-expandtemplates-param-revid": "Berrikusketa ID, <nowiki>{{BERRIKUSKETAID}}</nowiki> eta antzeko aldagaientzako.",
+	"apihelp-expandtemplates-param-revid": "Berrikusketa ID, <code><nowiki>{{REVISIONID}}</nowiki></code> eta antzeko aldagaientzako.",
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "Wikitestu zabaldua.",
 	"apihelp-expandtemplates-paramvalue-prop-ttl": "Emaitzen cache-ak baliogabetu baino lehen iraun dezaketen denbora.",
 	"apihelp-feedcontributions-param-feedformat": "Produktuaren formatua.",

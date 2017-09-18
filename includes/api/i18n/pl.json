@@ -116,7 +116,7 @@
 	"apihelp-expandtemplates-summary": "Rozwija wszystkie szablony zawarte w wikitekście.",
 	"apihelp-expandtemplates-param-title": "Tytuł strony.",
 	"apihelp-expandtemplates-param-text": "Wikitext do przekonwertowania.",
-	"apihelp-expandtemplates-param-revid": "ID wersji, dla <nowiki>{{REVISIONID}}</nowiki> i podobnych zmiennych.",
+	"apihelp-expandtemplates-param-revid": "ID wersji, dla <code><nowiki>{{REVISIONID}}</nowiki></code> i podobnych zmiennych.",
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "Rozwinięty wikitekst.",
 	"apihelp-feedcontributions-summary": "Zwraca kanał wkładu użytkownika.",
 	"apihelp-feedcontributions-param-feedformat": "Format danych wyjściowych.",

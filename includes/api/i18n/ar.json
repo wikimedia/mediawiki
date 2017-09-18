@@ -116,7 +116,7 @@
 	"apihelp-expandtemplates-summary": "يوسع كافة القوالب ضمن نصوص الويكي.",
 	"apihelp-expandtemplates-param-title": "عنوان الصفحة.",
 	"apihelp-expandtemplates-param-text": "نص ويكي للتحويل.",
-	"apihelp-expandtemplates-param-revid": "معرف المراجعة، ل<nowiki>{{REVISIONID}}</nowiki> والمتغيرات مماثلة.",
+	"apihelp-expandtemplates-param-revid": "معرف المراجعة، ل<code><nowiki>{{REVISIONID}}</nowiki></code> والمتغيرات مماثلة.",
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "نص الويكي الموسع",
 	"apihelp-expandtemplates-paramvalue-prop-properties": "خصائص الصفحة التي تحددها الكلمات السحرية الموسعة في نص الويكي.",
 	"apihelp-expandtemplates-paramvalue-prop-volatile": "إذا كان الإخراج سريع التأثر، ينبغي عدم استخدامه في أي مكان آخر داخل الصفحة.",

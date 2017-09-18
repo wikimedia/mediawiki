@@ -158,7 +158,7 @@
 	"apihelp-expandtemplates-summary": "Expande todas a predefinições em texto wiki.",
 	"apihelp-expandtemplates-param-title": "Título da página.",
 	"apihelp-expandtemplates-param-text": "Texto wiki para converter.",
-	"apihelp-expandtemplates-param-revid": "ID da revisão, para <nowiki>{{REVISIONID}}</nowiki> e variáveis semelhantes.",
+	"apihelp-expandtemplates-param-revid": "ID da revisão, para <code><nowiki>{{REVISIONID}}</nowiki></code> e variáveis semelhantes.",
 	"apihelp-expandtemplates-param-prop": "Quais peças de informação obter.\n\nNote que se nenhum valor for selecionado, o resultado conterá o texto wiki, mas o resultado será em um formato obsoleto.",
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "O texto wiki expandido.",
 	"apihelp-expandtemplates-paramvalue-prop-categories": "Quaisquer categorias presentes na entrada que não estão representadas na saída wikitext.",

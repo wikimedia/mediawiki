@@ -160,7 +160,7 @@
 	"apihelp-expandtemplates-summary": "הרחבת כל התבניות בתוך קוד הוויקי.",
 	"apihelp-expandtemplates-param-title": "כותרת הדף.",
 	"apihelp-expandtemplates-param-text": "איזה קוד ויקי להמיר.",
-	"apihelp-expandtemplates-param-revid": "מזהה גרסה, עבור <nowiki>{{REVISIONID}}</nowiki> ומשתנים דומים.",
+	"apihelp-expandtemplates-param-revid": "מזהה גרסה, עבור <code><nowiki>{{REVISIONID}}</nowiki></code> ומשתנים דומים.",
 	"apihelp-expandtemplates-param-prop": "אילו חלקי מידע לקבל.\n\nיש לשים לכך שאם לא נבחרו ערכים, התוצאה תכיל את קוד הוויקי, אבל הפלט יהיה בתסדיר מיושן.",
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "קוד הוויקי המורחב.",
 	"apihelp-expandtemplates-paramvalue-prop-categories": "קטגוריות כלשהן שקיימות בקלט ואינן מיוצגות בפלט הוויקיטקסט.",

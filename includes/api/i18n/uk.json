@@ -157,7 +157,7 @@
 	"apihelp-expandtemplates-summary": "Розгортає усі шаблони в межах вікірозмітки.",
 	"apihelp-expandtemplates-param-title": "Заголовок сторінки.",
 	"apihelp-expandtemplates-param-text": "Вікітекст для перетворення.",
-	"apihelp-expandtemplates-param-revid": "ID версії, для <nowiki>{{REVISIONID}}</nowiki> і подібних змінних.",
+	"apihelp-expandtemplates-param-revid": "ID версії, для <code><nowiki>{{REVISIONID}}</nowiki></code> і подібних змінних.",
 	"apihelp-expandtemplates-param-prop": "Яку інформацію отримувати.\n\nЗважте, що якщо не вибрано значень, результат міститиме вікітекст, але буде в застарілому форматі.",
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "Розгорнений вікітекст.",
 	"apihelp-expandtemplates-paramvalue-prop-categories": "Будь-які категорії, наявні у джерелі, але не виведені у вікітексті результату.",

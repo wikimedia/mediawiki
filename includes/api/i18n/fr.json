@@ -173,7 +173,7 @@
 	"apihelp-expandtemplates-summary": "Développe tous les modèles avec du wikitexte.",
 	"apihelp-expandtemplates-param-title": "Titre de la page.",
 	"apihelp-expandtemplates-param-text": "Wikitexte à convertir.",
-	"apihelp-expandtemplates-param-revid": "ID de révision, pour <nowiki>{{REVISIONID}}</nowiki> et les variables semblables.",
+	"apihelp-expandtemplates-param-revid": "ID de révision, pour <code><nowiki>{{REVISIONID}}</nowiki></code> et les variables semblables.",
 	"apihelp-expandtemplates-param-prop": "Quelles informations récupérer.\n\nNoter que si aucune valeur n’est sélectionnée, le résultat contiendra le wikitexte, mais la sortie sera dans un format désuet.",
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "Le wikitexte développé",
 	"apihelp-expandtemplates-paramvalue-prop-categories": "Toutes les catégories présentes dans l’entrée qui ne sont pas représentées dans la sortie du wikitexte.",

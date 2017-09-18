@@ -3903,5 +3903,6 @@
 	"cannotlink-no-provider": "Няма рахункаў для далучэньня.",
 	"linkaccounts": "Далучэньне рахункаў",
 	"linkaccounts-success-text": "Рахунак быў далучаны.",
-	"linkaccounts-submit": "Далучыць рахункі"
+	"linkaccounts-submit": "Далучыць рахункі",
+	"unlinkaccounts": "Адлучэньне рахункаў"
 }

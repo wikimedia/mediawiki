@@ -167,7 +167,7 @@
 	"apihelp-expandtemplates-summary": "展开wiki文本中的所有模板。",
 	"apihelp-expandtemplates-param-title": "页面标题。",
 	"apihelp-expandtemplates-param-text": "要转换的wiki文本。",
-	"apihelp-expandtemplates-param-revid": "修订版本ID，用于<nowiki>{{REVISIONID}}</nowiki>和类似变体。",
+	"apihelp-expandtemplates-param-revid": "修订版本ID，用于<code><nowiki>{{REVISIONID}}</nowiki></code>和类似变体。",
 	"apihelp-expandtemplates-param-prop": "要获取的那条信息。\n\n注意如果没有选定值，结果将包含wiki文本，但将以弃用的格式显示。",
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "展开后的wiki文本。",
 	"apihelp-expandtemplates-paramvalue-prop-categories": "任何在输出中提供的，未在wiki文本输出中表现的分类。",

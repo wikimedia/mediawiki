@@ -135,7 +135,7 @@
 	"apihelp-expandtemplates-summary": "Expanderar alla mallar inom wikitext.",
 	"apihelp-expandtemplates-param-title": "Sidans rubrik.",
 	"apihelp-expandtemplates-param-text": "Wikitext att konvertera.",
-	"apihelp-expandtemplates-param-revid": "Revision ID, för <nowiki>{{REVISIONID}}</nowiki> och liknande variabler.",
+	"apihelp-expandtemplates-param-revid": "Revision ID, för <code><nowiki>{{REVISIONID}}</nowiki></code> och liknande variabler.",
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "Den expanderade wikitexten.",
 	"apihelp-expandtemplates-param-includecomments": "Om HTML-kommentarer skall inkluderas i utdata.",
 	"apihelp-expandtemplates-param-generatexml": "Generera ett XML tolknings träd (ersatt av $1prop=parsetree).",

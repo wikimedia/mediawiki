@@ -1771,7 +1771,7 @@
 	"listfiles_size": "Dimensione",
 	"listfiles_description": "Descrizione",
 	"listfiles_count": "Versioni",
-	"listfiles-show-all": "Includi le vecchie versioni delle immagini",
+	"listfiles-show-all": "Includi le vecchie versioni dei file",
 	"listfiles-latestversion": "Versione attuale",
 	"listfiles-latestversion-yes": "Sì",
 	"listfiles-latestversion-no": "No",

@@ -142,7 +142,7 @@
 	"apihelp-expandtemplates-summary": "Expandir tódolos modelos dentro do wikitexto.",
 	"apihelp-expandtemplates-param-title": "Título da páxina.",
 	"apihelp-expandtemplates-param-text": "Sintaxis wiki a converter.",
-	"apihelp-expandtemplates-param-revid": "ID de revisión, para <nowiki>{{REVISIONID}}</nowiki> e variables similares.",
+	"apihelp-expandtemplates-param-revid": "ID de revisión, para <code><nowiki>{{REVISIONID}}</nowiki></code> e variables similares.",
 	"apihelp-expandtemplates-param-prop": "Pezas de información a retornar.\n\nTeña en conta que se non se selecciona ningún valor o resultado conterá o texto wiki, pero a saída estará nun formato obsoleto.",
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "O wikitexto expandido.",
 	"apihelp-expandtemplates-paramvalue-prop-categories": "Calquera categoría presente na entrada que non estea representada na saída do texto wiki.",
