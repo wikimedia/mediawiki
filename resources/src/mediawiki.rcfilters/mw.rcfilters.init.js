@@ -29,13 +29,15 @@
 				savedLinksListWidget = new mw.rcfilters.ui.SavedLinksListWidget(
 					controller, savedQueriesModel, { $overlay: $overlay }
 				),
-				specialPage = mw.config.get( 'wgCanonicalSpecialPageName' );
+				specialPage = mw.config.get( 'wgCanonicalSpecialPageName' ),
+				$changesListRoot = $( '.mw-changeslist, .mw-changeslist-empty, .mw-changeslist-timeout' );
 
 			// TODO: The changesListWrapperWidget should be able to initialize
 			// after the model is ready.
+
 			// eslint-disable-next-line no-new
 			new mw.rcfilters.ui.ChangesListWrapperWidget(
-				filtersModel, changesListModel, controller, $( '.mw-changeslist, .mw-changeslist-empty' ) );
+				filtersModel, changesListModel, controller, $changesListRoot );
 
 			// Remove the -loading class that may have been added on the server side.
 			// If we are in fact going to load a default saved query, this .initialize()

@@ -41,14 +41,13 @@
 	 * @param {Object} [tagList] Tag definition
 	 */
 	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure, tagList ) {
-		var parsedSavedQueries,
+		var parsedSavedQueries, pieces,
 			displayConfig = mw.config.get( 'StructuredChangeFiltersDisplayConfig' ),
 			defaultSavedQueryExists = mw.config.get( 'wgStructuredChangeFiltersDefaultSavedQueryExists' ),
 			controller = this,
 			views = {},
 			items = [],
-			uri = new mw.Uri(),
-			$changesList = $( '.mw-changeslist' ).first().contents();
+			uri = new mw.Uri();
 
 		// Prepare views
 		if ( namespaceStructure ) {
@@ -247,11 +246,14 @@
 			// again
 			this.updateStateFromUrl( false );
 
+			pieces = this._extractChangesListInfo( $( '#mw-content-text' ) );
+
 			// Update the changes list with the existing data
 			// so it gets processed
 			this.changesListModel.update(
-				$changesList.length ? $changesList : 'NO_RESULTS',
-				$( 'fieldset.cloptions' ).first(),
+				pieces.changes,
+				pieces.fieldset,
+				pieces.noResultsDetails === 'NO_RESULTS_TIMEOUT',
 				true // We're using existing DOM elements
 			);
 		}
@@ -263,6 +265,35 @@
 		if ( this.pollingRate ) {
 			this._scheduleLiveUpdate();
 		}
+	};
+
+	/**
+	 * Extracts information from the changes list DOM
+	 *
+	 * @param {jQuery} $root Root DOM to find children from
+	 * @return {Object} Information about changes list
+	 * @return {Object|string} return.changes Changes list, or 'NO_RESULTS' if there are no results
+	 *   (either normally or as an error)
+	 * @return {string} [return.noResultsDetails] 'NO_RESULTS_NORMAL' for a normal 0-result set,
+	 *   'NO_RESULTS_TIMEOUT' for no results due to a timeout, or omitted for more than 0 results
+	 * @return {jQuery} return.fieldset Fieldset
+	 */
+	mw.rcfilters.Controller.prototype._extractChangesListInfo = function ( $root ) {
+		var info, isTimeout,
+			$changesListContents = $root.find( '.mw-changeslist' ).first().contents(),
+			areResults = !!$changesListContents.length;
+
+		info = {
+			changes: $changesListContents.length ? $changesListContents : 'NO_RESULTS',
+			fieldset: $root.find( 'fieldset.cloptions' ).first()
+		};
+
+		if ( !areResults ) {
+			isTimeout = !!$root.find( '.mw-changeslist-timeout' ).length;
+			info.noResultsDetails = isTimeout ? 'NO_RESULTS_TIMEOUT' : 'NO_RESULTS_NORMAL';
+		}
+
+		return info;
 	};
 
 	/**
@@ -964,6 +995,7 @@
 					this.changesListModel.update(
 						$changesListContent,
 						$fieldset,
+						pieces.noResultsDetails === 'NO_RESULTS_TIMEOUT',
 						false,
 						// separator between old and new changes
 						updateMode === this.SHOW_NEW_CHANGES || updateMode === this.LIVE_UPDATE
@@ -1121,22 +1153,15 @@
 	 *  and the fieldset.
 	 */
 	mw.rcfilters.Controller.prototype._fetchChangesList = function () {
+		var self = this;
+
 		return this._queryChangesList( 'updateChangesList' )
 			.then(
 				function ( data ) {
-					var $parsed = $( '<div>' ).append( $( $.parseHTML( data.content ) ) ),
-						pieces = {
-							// Changes list
-							changes: $parsed.find( '.mw-changeslist' ).first().contents(),
-							// Fieldset
-							fieldset: $parsed.find( 'fieldset.cloptions' ).first()
-						};
+					var $parsed = $( '<div>' ).append( $( $.parseHTML( data.content ) ) );
 
-					if ( pieces.changes.length === 0 ) {
-						pieces.changes = 'NO_RESULTS';
-					}
+					return self._extractChangesListInfo( $parsed );
 
-					return pieces;
 				}
 			);
 	};
