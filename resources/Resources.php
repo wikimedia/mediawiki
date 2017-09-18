@@ -1914,6 +1914,7 @@ return [
 			'namespaces',
 			'invert',
 			'recentchanges-noresult',
+			'recentchanges-timeout',
 			'quotation-marks',
 		],
 		'dependencies' => [

@@ -46,6 +46,8 @@
 		this.$element
 			.addClass( 'mw-rcfilters-ui-changesListWrapperWidget' )
 			// We handle our own display/hide of the empty results message
+			// We keep the timeout class here and remove it later, since at this
+			// stage it is still needed to identify that the timeout occurred.
 			.removeClass( 'mw-changeslist-empty' );
 
 		this.setupNewChangesButtonContainer();
@@ -123,7 +125,7 @@
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onModelUpdate = function (
 		$changesListContent, $fieldset, isInitialDOM, from
 	) {
-		var conflictItem,
+		var conflictItem, noResultsKey,
 			$message = $( '<div>' )
 				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results' ),
 			isEmpty = $changesListContent === 'NO_RESULTS',
@@ -151,12 +153,18 @@
 							.text( mw.message( conflictItem.getCurrentConflictResultMessage() ).text() )
 					);
 			} else {
+				noResultsKey = this.changesListViewModel.isDatabaseTimeout() ?
+					'recentchanges-timeout' :
+					'recentchanges-noresult';
+
 				$message
 					.append(
 						$( '<div>' )
 							.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results-noresult' )
-							.text( mw.message( 'recentchanges-noresult' ).text() )
+							.text( mw.message( noResultsKey ).text() )
 					);
+
+				this.$element.removeClass( 'mw-changeslist-timeout' );
 			}
 
 			this.$element.append( $message );
