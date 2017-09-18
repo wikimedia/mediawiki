@@ -286,13 +286,8 @@ class ImageListPager extends TablePager {
 			}
 			unset( $field );
 
-			$dbr = wfGetDB( DB_REPLICA );
-			if ( $dbr->implicitGroupby() ) {
-				$options = [ 'GROUP BY' => 'img_name' ];
-			} else {
-				$columnlist = preg_grep( '/^img/', array_keys( $this->getFieldNames() ) );
-				$options = [ 'GROUP BY' => array_merge( [ 'img_user' ], $columnlist ) ];
-			}
+			$columnlist = preg_grep( '/^img/', array_keys( $this->getFieldNames() ) );
+			$options = [ 'GROUP BY' => array_merge( [ 'img_user' ], $columnlist ) ];
 			$join_conds = [ 'oldimage' => [ 'LEFT JOIN', 'oi_name = img_name' ] ];
 		}
 
