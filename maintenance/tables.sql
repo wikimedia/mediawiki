@@ -303,9 +303,6 @@ CREATE TABLE /*_*/page (
   -- Uncompressed length in bytes of the page's current source text.
   page_len int unsigned NOT NULL,
 
-  -- content model, see CONTENT_MODEL_XXX constants
-  page_content_model varbinary(32) DEFAULT NULL,
-
   -- Page content language
   page_lang varbinary(35) DEFAULT NULL
 ) /*$wgDBTableOptions*/;
@@ -339,12 +336,6 @@ CREATE TABLE /*_*/revision (
   -- Key to page_id. This should _never_ be invalid.
   rev_page int unsigned NOT NULL,
 
-  -- Key to text.old_id, where the actual bulk text is stored.
-  -- It's possible for multiple revisions to use the same text,
-  -- for instance revisions where only metadata is altered
-  -- or a rollback to a previous version.
-  rev_text_id int unsigned NOT NULL,
-
   -- Text comment summarizing the change. Deprecated in favor of
   -- revision_comment_temp.revcomment_comment_id.
   rev_comment varbinary(767) NOT NULL default '',
@@ -375,12 +366,6 @@ CREATE TABLE /*_*/revision (
 
   -- SHA-1 text content hash in base-36
   rev_sha1 varbinary(32) NOT NULL default '',
-
-  -- content model, see CONTENT_MODEL_XXX constants
-  rev_content_model varbinary(32) DEFAULT NULL,
-
-  -- content format, see CONTENT_FORMAT_XXX constants
-  rev_content_format varbinary(64) DEFAULT NULL
 
 ) /*$wgDBTableOptions*/ MAX_ROWS=10000000 AVG_ROW_LENGTH=1024;
 -- In case tables are created as MyISAM, use row hints for MySQL <5.0 to avoid 4GB limit
@@ -536,14 +521,6 @@ CREATE TABLE /*_*/archive (
   ar_namespace int NOT NULL default 0,
   ar_title varchar(255) binary NOT NULL default '',
 
-  -- Newly deleted pages will not store text in this table,
-  -- but will reference the separately existing text rows.
-  -- This field is retained for backwards compatibility,
-  -- so old archived pages will remain accessible after
-  -- upgrading from 1.4 to 1.5.
-  -- Text may be gzipped or otherwise funky.
-  ar_text mediumblob NOT NULL,
-
   -- Basic revision stuff...
   ar_comment varbinary(767) NOT NULL default '', -- Deprecated in favor of ar_comment_id
   ar_comment_id bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that ar_comment should be used)
@@ -551,9 +528,6 @@ CREATE TABLE /*_*/archive (
   ar_user_text varchar(255) binary NOT NULL,
   ar_timestamp binary(14) NOT NULL default '',
   ar_minor_edit tinyint NOT NULL default 0,
-
-  -- See ar_text note.
-  ar_flags tinyblob NOT NULL,
 
   -- When revisions are deleted, their unique rev_id is stored
   -- here so it can be retained after undeletion. This is necessary
@@ -563,17 +537,6 @@ CREATE TABLE /*_*/archive (
   -- Old entries from 1.4 will be NULL here, and a new rev_id will
   -- be created on undeletion for those revisions.
   ar_rev_id int unsigned,
-
-  -- For newly deleted revisions, this is the text.old_id key to the
-  -- actual stored text. To avoid breaking the block-compression scheme
-  -- and otherwise making storage changes harder, the actual text is
-  -- *not* deleted from the text table, merely hidden by removal of the
-  -- page and revision entries.
-  --
-  -- Old entries deleted under 1.2-1.4 will have NULL here, and their
-  -- ar_text and ar_flags fields will be used to create a new text
-  -- row upon undeletion.
-  ar_text_id int unsigned,
 
   -- rev_deleted for archives
   ar_deleted tinyint unsigned NOT NULL default 0,
@@ -594,11 +557,6 @@ CREATE TABLE /*_*/archive (
   -- SHA-1 text content hash in base-36
   ar_sha1 varbinary(32) NOT NULL default '',
 
-  -- content model, see CONTENT_MODEL_XXX constants
-  ar_content_model varbinary(32) DEFAULT NULL,
-
-  -- content format, see CONTENT_FORMAT_XXX constants
-  ar_content_format varbinary(64) DEFAULT NULL
 ) /*$wgDBTableOptions*/;
 
 -- Index for Special:Undelete to page through deleted revisions
