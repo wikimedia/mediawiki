@@ -1532,6 +1532,7 @@
 	"recentchanges-summary": "Summary of [[Special:RecentChanges]].",
 	"recentchangestext": "Text in [[Special:RecentChanges]]",
 	"recentchanges-noresult": "Used in [[Special:RecentChanges]], [[Special:RecentChangesLinked]], and [[Special:Watchlist]] when there are no changes to be shown.",
+	"recentchanges-noresult": "Used in [[Special:RecentChanges]], [[Special:RecentChangesLinked]], and [[Special:Watchlist]] when a query times out.",
 	"recentchanges-feed-description": "Used in feed of RecentChanges. See example [{{canonicalurl:Special:RecentChanges|feed=atom}} feed].",
 	"recentchanges-label-newpage": "# Used as tooltip for {{msg-mw|Newpageletter}}.\n# Also used as legend. Preceded by {{msg-mw|Newpageletter}} and followed by {{msg-mw|Recentchanges-legend-newpage}}.",
 	"recentchanges-label-minor": "# Used as tooltip for {{msg-mw|Minoreditletter}}\n# Also used as legend. Preceded by {{msg-mw|Minoreditletter}}",
