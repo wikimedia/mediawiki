@@ -6,6 +6,16 @@ use MediaWiki\Auth\AuthManager;
  * @group Database
  */
 class PasswordResetTest extends PHPUnit_Framework_TestCase {
+
+	/**
+	 * Unsets a hook
+	 * @param string $hook
+	 */
+	protected function unhook( $hook ) {
+		global $wgHooks;
+		$wgHooks[$hook] = [];
+	}
+
 	/**
 	 * @dataProvider provideIsAllowed
 	 */
@@ -149,6 +159,10 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 			'PasswordResetRoutes' => [ 'username' => true, 'email' => true ],
 			'EnableEmail' => true,
 		] );
+
+		// Unregister the hooks for proper unit testing
+		$this->unhook( 'mailPasswordInternal' );
+		$this->unhook( 'SpecialPasswordResetOnSubmit' );
 
 		$authManager = $this->getMockBuilder( AuthManager::class )->disableOriginalConstructor()
 			->getMock();
