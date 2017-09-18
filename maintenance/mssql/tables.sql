@@ -229,6 +229,76 @@ CREATE INDEX /*i*/ar_revid ON /*_*/archive (ar_rev_id);
 
 
 --
+-- Slots represent an n:m relation between revisions and content objects.
+-- A content object can have a specific "role" in one or more revisions.
+-- Each revision can have multiple content objects, each having a different role.
+--
+CREATE TABLE /*_*/slots (
+
+  -- reference to rev_id
+  slot_revision_id bigint unsigned NOT NULL,
+
+  -- reference to role_id
+  slot_role_id smallint unsigned NOT NULL CONSTRAINT FK_slots_slot_role FOREIGN KEY REFERENCES slot_roles(role_id),
+
+  -- reference to content_id
+  slot_content_id bigint unsigned NOT NULL CONSTRAINT FK_slots_content_id FOREIGN KEY REFERENCES content(content_id),
+
+  -- whether the content is inherited (1) or new in this revision (0)
+  slot_inherited tinyint unsigned NOT NULL CONSTRAINT DF_slot_inherited DEFAULT 0,
+
+  CONSTRAINT PK_slots PRIMARY KEY (slot_revision_id, slot_role_id)
+);
+
+-- Index for finding revisions that modified a specific slot
+CREATE INDEX /*i*/slot_role_inherited ON /*_*/slots (slot_revision_id, slot_role_id, slot_inherited);
+
+--
+-- The content table represents content objects. It's primary purpose is to provide the necessary
+-- meta-data for loading and interpreting a serialized data blob to create a content object.
+--
+CREATE TABLE /*_*/content (
+
+  -- ID of the content object
+  content_id bigint unsigned NOT NULL CONSTRAINT PK_content PRIMARY KEY IDENTITY,
+
+  -- Nominal size of the content object (not necessarily of the serialized blob)
+  content_size int unsigned NOT NULL,
+
+  -- Nominal hash of the content object (not necessarily of the serialized blob)
+  content_sha1 varchar(32) NOT NULL,
+
+  -- reference to model_id
+  content_model smallint unsigned NOT NULL CONSTRAINT FK_content_content_models FOREIGN KEY REFERENCES /*_*/content_models(model_id),
+
+  -- URL-like address of the content blob
+  content_address nvarchar(255) NOT NULL
+);
+
+--
+-- Normalization table for role names
+--
+CREATE TABLE /*_*/slot_roles (
+  role_id smallint NOT NULL CONSTRAINT PK_slot_roles PRIMARY KEY IDENTITY,
+  role_name nvarchar(64) NOT NULL
+);
+
+-- Index for looking of the internal ID of for a name
+CREATE UNIQUE INDEX /*i*/role_name ON /*_*/slot_roles (role_name);
+
+--
+-- Normalization table for content model names
+--
+CREATE TABLE /*_*/content_models (
+  model_id smallint NOT NULL CONSTRAINT PK_content_models PRIMARY KEY IDENTITY,
+  model_name nvarchar(64) NOT NULL
+);
+
+-- Index for looking of the internal ID of for a name
+CREATE UNIQUE INDEX /*i*/model_name ON /*_*/content_models (model_name);
+
+
+--
 -- Track page-to-page hyperlinks within the wiki.
 --
 CREATE TABLE /*_*/pagelinks (
