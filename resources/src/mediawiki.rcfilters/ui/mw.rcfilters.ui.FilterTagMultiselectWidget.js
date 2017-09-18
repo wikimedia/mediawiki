@@ -99,7 +99,8 @@
 			} );
 			this.queriesModel.connect( this, {
 				itemUpdate: 'onSavedQueriesItemUpdate',
-				initialize: 'onSavedQueriesInitialize'
+				initialize: 'onSavedQueriesInitialize',
+				'default': 'reevaluateResetRestoreState'
 			} );
 		}
 
@@ -575,7 +576,7 @@
 	 * Reevaluate the restore state for the widget between setting to defaults and clearing all filters
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.reevaluateResetRestoreState = function () {
-		var defaultsAreEmpty = this.model.areDefaultFiltersEmpty(),
+		var defaultsAreEmpty = this.controller.areDefaultsEmpty(),
 			currFiltersAreEmpty = this.model.areCurrentFiltersEmpty(),
 			hideResetButton = currFiltersAreEmpty && defaultsAreEmpty;
 
