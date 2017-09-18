@@ -83,7 +83,9 @@ function migrateWarn( msg ) {
 		warnedAbout[ msg ] = true;
 		jQuery.migrateWarnings.push( msg );
 		// PATCH: Add instrumentation for statistics --Krinkle
-		mw.track( "mw.deprecate", "jquery-migrate" );
+		if ( window.mw && window.mw.track ) {
+			window.mw.track( "mw.deprecate", "jquery-migrate" );
+		}
 		if ( console && console.warn && !jQuery.migrateMute ) {
 			console.warn( "JQMIGRATE: " + msg );
 			if ( jQuery.migrateTrace && console.trace ) {
