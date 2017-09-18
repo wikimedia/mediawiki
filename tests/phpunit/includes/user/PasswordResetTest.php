@@ -180,7 +180,7 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 		$status = $passwordReset->isAllowed( $performingUser );
 		$this->assertTrue( $status->isGood() );
 
-		$status = $passwordReset->execute( $performingUser, null, 'foo@bar.baz' );
+		$status = $passwordReset->execute( $performingUser, $targetUser1->getName(), 'foo@bar.baz' );
 		$this->assertTrue( $status->isGood() );
 	}
 }
