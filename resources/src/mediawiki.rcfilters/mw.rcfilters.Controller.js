@@ -367,6 +367,20 @@
 	};
 
 	/**
+	 * Check whether the default values of the filters are all false.
+	 *
+	 * @return {boolean} Defaults are all false
+	 */
+	mw.rcfilters.Controller.prototype.areDefaultsEmpty = function () {
+		var defaultFilters = this.filtersModel.getFiltersFromParameters( this._getDefaultParams( true ) );
+
+		// Defaults can change in a session, so we need to do this every time
+		return Object.keys( defaultFilters ).every( function ( filterName ) {
+			return !defaultFilters[ filterName ];
+		} );
+	};
+
+	/**
 	 * Empty all selected filters
 	 */
 	mw.rcfilters.Controller.prototype.emptyFilters = function () {
@@ -1034,9 +1048,10 @@
 	 * Get an object representing the default parameter state, whether
 	 * it is from the model defaults or from the saved queries.
 	 *
+	 * @param {boolean} [noStickies] Do not include sticky definition
 	 * @return {Object} Default parameters
 	 */
-	mw.rcfilters.Controller.prototype._getDefaultParams = function () {
+	mw.rcfilters.Controller.prototype._getDefaultParams = function ( noStickies ) {
 		var data, queryHighlights,
 			savedParams = {},
 			savedHighlights = {},
@@ -1047,8 +1062,9 @@
 
 			queryHighlights = data.highlights || {};
 			savedParams = this.filtersModel.getParametersFromFilters(
-				// Merge filters with sticky values
-				$.extend( true, {}, data.filters, this.filtersModel.getStickyFiltersState() )
+				noStickies ?
+					data.filters :
+					$.extend( true, {}, data.filters, this.filtersModel.getStickyFiltersState() )
 			);
 
 			// Translate highlights to parameters
