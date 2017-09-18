@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\Rdbms\DBQueryTimeoutError;
 use Wikimedia\Rdbms\ResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -542,45 +543,57 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		$this->considerActionsForDefaultSavedQuery();
 
-		$rows = $this->getRows();
 		$opts = $this->getOptions();
-		if ( $rows === false ) {
-			$rows = new FakeResultWrapper( [] );
-		}
+		try {
+			$rows = $this->getRows();
+			if ( $rows === false ) {
+				$rows = new FakeResultWrapper( [] );
+			}
 
-		// Used by Structured UI app to get results without MW chrome
-		if ( $this->getRequest()->getVal( 'action' ) === 'render' ) {
-			$this->getOutput()->setArticleBodyOnly( true );
-		}
+			// Used by Structured UI app to get results without MW chrome
+			if ( $this->getRequest()->getVal( 'action' ) === 'render' ) {
+				$this->getOutput()->setArticleBodyOnly( true );
+			}
 
-		// Used by "live update" and "view newest" to check
-		// if there's new changes with minimal data transfer
-		if ( $this->getRequest()->getBool( 'peek' ) ) {
+			// Used by "live update" and "view newest" to check
+			// if there's new changes with minimal data transfer
+			if ( $this->getRequest()->getBool( 'peek' ) ) {
 			$code = $rows->numRows() > 0 ? 200 : 204;
-			$this->getOutput()->setStatusCode( $code );
-			return;
-		}
+				$this->getOutput()->setStatusCode( $code );
+				return;
+			}
 
-		$batch = new LinkBatch;
-		foreach ( $rows as $row ) {
-			$batch->add( NS_USER, $row->rc_user_text );
-			$batch->add( NS_USER_TALK, $row->rc_user_text );
-			$batch->add( $row->rc_namespace, $row->rc_title );
-			if ( $row->rc_source === RecentChange::SRC_LOG ) {
-				$formatter = LogFormatter::newFromRow( $row );
-				foreach ( $formatter->getPreloadTitles() as $title ) {
-					$batch->addObj( $title );
+			$batch = new LinkBatch;
+			foreach ( $rows as $row ) {
+				$batch->add( NS_USER, $row->rc_user_text );
+				$batch->add( NS_USER_TALK, $row->rc_user_text );
+				$batch->add( $row->rc_namespace, $row->rc_title );
+				if ( $row->rc_source === RecentChange::SRC_LOG ) {
+					$formatter = LogFormatter::newFromRow( $row );
+					foreach ( $formatter->getPreloadTitles() as $title ) {
+						$batch->addObj( $title );
+					}
 				}
 			}
+			$batch->execute();
+
+			$this->setHeaders();
+			$this->outputHeader();
+			$this->addModules();
+			$this->webOutput( $rows, $opts );
+
+			$rows->free();
+		} catch ( DBQueryTimeoutError $timeoutException ) {
+			MWExceptionHandler::logException( $timeoutException );
+
+			$this->setHeaders();
+			$this->outputHeader();
+			$this->addModules();
+
+			$this->getOutput()->setStatusCode( 500 );
+			$this->webOutputHeader( 0, $opts );
+			$this->outputTimeout();
 		}
-		$batch->execute();
-
-		$this->setHeaders();
-		$this->outputHeader();
-		$this->addModules();
-		$this->webOutput( $rows, $opts );
-
-		$rows->free();
 
 		if ( $this->getConfig()->get( 'EnableWANCacheReaper' ) ) {
 			// Clean up any bad page entries for titles showing up in RC
@@ -787,6 +800,17 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$this->getOutput()->addHTML(
 			'<div class="mw-changeslist-empty">' .
 			$this->msg( 'recentchanges-noresult' )->parse() .
+			'</div>'
+		);
+	}
+
+	/**
+	 * Add the "timeout" message to the output
+	 */
+	protected function outputTimeout() {
+		$this->getOutput()->addHTML(
+			'<div class="mw-changeslist-timeout">' .
+			$this->msg( 'recentchanges-timeout' )->parse() .
 			'</div>'
 		);
 	}
@@ -1409,16 +1433,26 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
+	 * Send header output to the OutputPage object, only called if not using feeds
+	 *
+	 * @param int $rowCount Number of database rows
+	 * @param FormOptions $opts
+	 */
+	private function webOutputHeader( $rowCount, $opts ) {
+		if ( !$this->including() ) {
+			$this->outputFeedLinks();
+			$this->doHeader( $opts, $rowCount );
+		}
+	}
+
+	/**
 	 * Send output to the OutputPage object, only called if not used feeds
 	 *
 	 * @param ResultWrapper $rows Database rows
 	 * @param FormOptions $opts
 	 */
 	public function webOutput( $rows, $opts ) {
-		if ( !$this->including() ) {
-			$this->outputFeedLinks();
-			$this->doHeader( $opts, $rows->numRows() );
-		}
+		$this->webOutputHeader( $rows->numRows(), $opts );
 
 		$this->outputChangesList( $rows, $opts );
 	}

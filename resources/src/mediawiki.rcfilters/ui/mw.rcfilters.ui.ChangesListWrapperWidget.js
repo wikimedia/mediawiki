@@ -46,6 +46,8 @@
 		this.$element
 			.addClass( 'mw-rcfilters-ui-changesListWrapperWidget' )
 			// We handle our own display/hide of the empty results message
+			// We keep the timeout class here and remove it later, since at this
+			// stage it is still needed to identify that the timeout occurred.
 			.removeClass( 'mw-changeslist-empty' );
 
 		this.setupNewChangesButtonContainer();
@@ -117,13 +119,14 @@
 	 *
 	 * @param {jQuery|string} $changesListContent The content of the updated changes list
 	 * @param {jQuery} $fieldset The content of the updated fieldset
+	 * @param {boolean} isDatabaseTimeout Whether this is an error state due to a database query
 	 * @param {boolean} isInitialDOM Whether $changesListContent is the existing (already attached) DOM
 	 * @param {boolean} from Timestamp of the new changes
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onModelUpdate = function (
-		$changesListContent, $fieldset, isInitialDOM, from
+		$changesListContent, $fieldset, isDatabaseTimeout, isInitialDOM, from
 	) {
-		var conflictItem,
+		var conflictItem, noResultsKey,
 			$message = $( '<div>' )
 				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results' ),
 			isEmpty = $changesListContent === 'NO_RESULTS',
@@ -151,12 +154,18 @@
 							.text( mw.message( conflictItem.getCurrentConflictResultMessage() ).text() )
 					);
 			} else {
+				noResultsKey = isDatabaseTimeout ?
+					'recentchanges-timeout' :
+					'recentchanges-noresult';
+
 				$message
 					.append(
 						$( '<div>' )
 							.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results-noresult' )
-							.text( mw.message( 'recentchanges-noresult' ).text() )
+							.text( mw.message( noResultsKey ).text() )
 					);
+
+				this.$element.removeClass( 'mw-changeslist-timeout' );
 			}
 
 			this.$element.append( $message );
