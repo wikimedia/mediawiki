@@ -137,6 +137,15 @@ class PHPUnitMaintClass extends Maintenance {
 		return Maintenance::DB_ADMIN;
 	}
 
+	protected function addOption( $name, $description, $required = false,
+		$withArg = false, $shortName = false, $multiOccurrence = false
+	) {
+		// ignore --quiet which does not really make sense for unit tests
+		if ( $name !== 'quiet' ) {
+			parent::addOption( $name, $description, $required, $withArg, $shortName, $multiOccurrence );
+		}
+	}
+
 	/**
 	 * Force the format of elements in $_SERVER['argv']
 	 *  - Split args such as "wiki=enwiki" into two separate arg elements "wiki" and "enwiki"
