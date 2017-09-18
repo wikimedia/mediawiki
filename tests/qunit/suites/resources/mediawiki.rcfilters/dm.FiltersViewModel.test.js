@@ -279,30 +279,6 @@
 			} ),
 			'Default parameters are stored properly per filter and group'
 		);
-
-		assert.ok(
-			!model.areDefaultFiltersEmpty(),
-			'Check if default filters are empty when defaults exist'
-		);
-
-		// Reset on special filter object that has no defaults
-		model = new mw.rcfilters.dm.FiltersViewModel();
-		model.initializeFilters(
-			[ {
-				name: 'group1',
-				type: 'send_unselected_if_any',
-				filters: [
-					{ name: 'filter1', label: 'group1filter1-label', description: 'group1filter1-desc' },
-					{ name: 'filter2', label: 'group1filter2-label', description: 'group1filter2-desc' },
-					{ name: 'filter3', label: 'group1filter3-label', description: 'group1filter3-desc' }
-				]
-			} ]
-		);
-
-		assert.ok(
-			model.areDefaultFiltersEmpty(),
-			'Check if default filters are empty when defaults do not exist'
-		);
 	} );
 
 	QUnit.test( 'Finding matching filters', function ( assert ) {

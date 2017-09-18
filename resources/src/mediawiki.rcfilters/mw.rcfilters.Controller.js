@@ -367,6 +367,22 @@
 	};
 
 	/**
+	 * Check whether the default values of the filters are all false.
+	 *
+	 * @return {boolean} Defaults are all false
+	 */
+	mw.rcfilters.Controller.prototype.areDefaultsEmpty = function () {
+		var defaultFilters = this.filtersModel.getFiltersFromParameters( this._getDefaultParams() );
+
+		this._deleteExcludedValuesFromFilterState( defaultFilters );
+
+		// Defaults can change in a session, so we need to do this every time
+		return Object.keys( defaultFilters ).every( function ( filterName ) {
+			return !defaultFilters[ filterName ];
+		} );
+	};
+
+	/**
 	 * Empty all selected filters
 	 */
 	mw.rcfilters.Controller.prototype.emptyFilters = function () {
@@ -1047,7 +1063,6 @@
 
 			queryHighlights = data.highlights || {};
 			savedParams = this.filtersModel.getParametersFromFilters(
-				// Merge filters with sticky values
 				$.extend( true, {}, data.filters, this.filtersModel.getStickyFiltersState() )
 			);
 
