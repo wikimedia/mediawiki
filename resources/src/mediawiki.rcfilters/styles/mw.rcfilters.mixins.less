@@ -85,3 +85,35 @@
 		.highlight-changesListWrapperWidget( tint( mix( @@c1var, mix( @@c2var, average( @@c3var, @@c4var ), 25% ), 25% ), 25% ) );
 	}
 }
+
+.input-placeholder-color( @color, @font-weight: bold ) {
+	/* stylelint-disable selector-no-vendor-prefix */
+	&::-webkit-input-placeholder { /* WebKit, Blink */
+		color: @color;
+		font-weight: @font-weight;
+	}
+	&:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+		color: @color;
+		opacity: 1; //  Firefox's placeholder defaults with a reduced opacity
+		font-weight: @font-weight;
+	}
+	&::-moz-placeholder { /* Mozilla Firefox 19+ */
+		color: @color;
+		opacity: 1;
+		font-weight: @font-weight;
+	}
+	&:-ms-input-placeholder { /* Internet Explorer 10-11 */
+		color: @color;
+		font-weight: @font-weight;
+	}
+	&::-ms-input-placeholder { /* Microsoft Edge */
+		color: @color;
+		font-weight: @font-weight;
+	}
+	/* stylelint-enable */
+	&::placeholder {
+		color: @color;
+		opacity: 1;
+		font-weight: @font-weight;
+	}
+}

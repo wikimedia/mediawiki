@@ -70,7 +70,7 @@
 				]
 			},
 			input: {
-				icon: 'menu',
+				icon: 'add',
 				placeholder: mw.msg( 'rcfilters-search-placeholder' )
 			}
 		}, config ) );
@@ -313,7 +313,7 @@
 			this.controller.trackFilterGroupings( 'filtermenu' );
 		}
 
-		this.input.setIcon( isVisible ? 'search' : 'menu' );
+		this.input.setIcon( isVisible ? 'search' : 'add' );
 	};
 
 	/**
