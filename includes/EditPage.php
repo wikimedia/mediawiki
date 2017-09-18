@@ -527,7 +527,6 @@ class EditPage {
 	 * the newly-edited page.
 	 */
 	public function edit() {
-		global $wgRequest;
 		// Allow extensions to modify/prevent this form or submission
 		if ( !Hooks::run( 'AlternateEdit', [ $this ] ) ) {
 			return;
@@ -535,13 +534,14 @@ class EditPage {
 
 		wfDebug( __METHOD__ . ": enter\n" );
 
+		$request = $this->context->getRequest();
 		// If they used redlink=1 and the page exists, redirect to the main article
-		if ( $wgRequest->getBool( 'redlink' ) && $this->mTitle->exists() ) {
+		if ( $request->getBool( 'redlink' ) && $this->mTitle->exists() ) {
 			$this->context->getOutput()->redirect( $this->mTitle->getFullURL() );
 			return;
 		}
 
-		$this->importFormData( $wgRequest );
+		$this->importFormData( $request );
 		$this->firsttime = false;
 
 		if ( wfReadOnly() && $this->save ) {
@@ -700,10 +700,8 @@ class EditPage {
 	 * @throws PermissionsError
 	 */
 	protected function displayPermissionsError( array $permErrors ) {
-		global $wgRequest;
-
 		$out = $this->context->getOutput();
-		if ( $wgRequest->getBool( 'redlink' ) ) {
+		if ( $this->context->getRequest()->getBool( 'redlink' ) ) {
 			// The edit page was reached via a red link.
 			// Redirect to the article page and let them click the edit tab if
 			// they really want a permission error.
@@ -785,17 +783,18 @@ class EditPage {
 	 * @return bool
 	 */
 	protected function previewOnOpen() {
-		global $wgRequest, $wgPreviewOnOpenNamespaces;
-		if ( $wgRequest->getVal( 'preview' ) == 'yes' ) {
+		global $wgPreviewOnOpenNamespaces;
+		$request = $this->context->getRequest();
+		if ( $request->getVal( 'preview' ) == 'yes' ) {
 			// Explicit override from request
 			return true;
-		} elseif ( $wgRequest->getVal( 'preview' ) == 'no' ) {
+		} elseif ( $request->getVal( 'preview' ) == 'no' ) {
 			// Explicit override from request
 			return false;
 		} elseif ( $this->section == 'new' ) {
 			// Nothing *to* preview for new sections
 			return false;
-		} elseif ( ( $wgRequest->getVal( 'preload' ) !== null || $this->mTitle->exists() )
+		} elseif ( ( $request->getVal( 'preload' ) !== null || $this->mTitle->exists() )
 			&& $this->context->getUser()->getOption( 'previewonfirst' )
 		) {
 			// Standard preference behavior
@@ -1120,11 +1119,12 @@ class EditPage {
 	 * @since 1.21
 	 */
 	protected function getContentObject( $def_content = null ) {
-		global $wgRequest, $wgContLang;
+		global $wgContLang;
 
 		$content = false;
 
 		$user = $this->context->getUser();
+		$request = $this->context->getRequest();
 		// For message page not locally set, use the i18n message.
 		// For other non-existent articles, use preload text if any.
 		if ( !$this->mTitle->exists() || $this->section == 'new' ) {
@@ -1136,10 +1136,10 @@ class EditPage {
 			}
 			if ( $content === false ) {
 				# If requested, preload some text.
-				$preload = $wgRequest->getVal( 'preload',
+				$preload = $request->getVal( 'preload',
 					// Custom preload text for new sections
 					$this->section === 'new' ? 'MediaWiki:addsection-preload' : '' );
-				$params = $wgRequest->getArray( 'preloadparams', [] );
+				$params = $request->getArray( 'preloadparams', [] );
 
 				$content = $this->getPreloadedContent( $preload, $params );
 			}
@@ -1154,8 +1154,8 @@ class EditPage {
 					$content = $def_content;
 				}
 			} else {
-				$undoafter = $wgRequest->getInt( 'undoafter' );
-				$undo = $wgRequest->getInt( 'undo' );
+				$undoafter = $request->getInt( 'undoafter' );
+				$undo = $request->getInt( 'undo' );
 
 				if ( $undo > 0 && $undoafter > 0 ) {
 					$undorev = Revision::newFromId( $undo );
@@ -1482,9 +1482,7 @@ class EditPage {
 	 * Log when a page was successfully saved after the edit conflict view
 	 */
 	private function incrementResolvedConflicts() {
-		global $wgRequest;
-
-		if ( $wgRequest->getText( 'mode' ) !== 'conflict' ) {
+		if ( $this->context->getRequest()->getText( 'mode' ) !== 'conflict' ) {
 			return;
 		}
 
@@ -1730,7 +1728,7 @@ class EditPage {
 	 * time.
 	 */
 	public function internalAttemptSave( &$result, $bot = false ) {
-		global $wgRequest, $wgMaxArticleSize;
+		global $wgMaxArticleSize;
 		global $wgContentHandlerUseDB;
 
 		$status = Status::newGood();
@@ -1743,7 +1741,8 @@ class EditPage {
 			return $status;
 		}
 
-		$spam = $wgRequest->getText( 'wpAntispam' );
+		$request = $this->context->getRequest()
+		$spam = $request->getText( 'wpAntispam' );
 		if ( $spam !== '' ) {
 			wfDebugLog(
 				'SimpleAntiSpam',
@@ -1803,7 +1802,7 @@ class EditPage {
 		}
 		if ( $match !== false ) {
 			$result['spam'] = $match;
-			$ip = $wgRequest->getIP();
+			$ip = $request->getIP();
 			$pdbk = $this->mTitle->getPrefixedDBkey();
 			$match = str_replace( "\n", '', $match );
 			wfDebugLog( 'SpamRegex', "$ip spam regex hit [[$pdbk]]: \"$match\"" );
@@ -4471,9 +4470,9 @@ class EditPage {
 	 * @return bool
 	 */
 	private function checkUnicodeCompliantBrowser() {
-		global $wgBrowserBlackList, $wgRequest;
+		global $wgBrowserBlackList;
 
-		$currentbrowser = $wgRequest->getHeader( 'User-Agent' );
+		$currentbrowser = $this->context->getRequest()->getHeader( 'User-Agent' );
 		if ( $currentbrowser === false ) {
 			// No User-Agent header sent? Trust it by default...
 			return true;
