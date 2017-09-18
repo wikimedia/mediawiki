@@ -43,7 +43,7 @@ use Wikimedia\Rdbms\IDatabase;
  * @ingroup FileAbstraction
  */
 class LocalFile extends File {
-	const VERSION = 10; // cache version
+	const VERSION = 11; // cache version
 
 	const CACHE_FIELD_MAX_LEN = 1000;
 
