@@ -1695,24 +1695,11 @@ class Article implements Page {
 
 		$outputPage->enableOOUI();
 
-		$options = [];
-		$options[] = [
-			'data' => 'other',
-			'label' => $ctx->msg( 'deletereasonotherlist' )->inContentLanguage()->text(),
-		];
-		$list = $ctx->msg( 'deletereason-dropdown' )->inContentLanguage()->text();
-		foreach ( explode( "\n", $list ) as $option ) {
-			$value = trim( $option );
-			if ( $value == '' ) {
-				continue;
-			} elseif ( substr( $value, 0, 1 ) == '*' && substr( $value, 1, 1 ) != '*' ) {
-				$options[] = [ 'optgroup' => trim( substr( $value, 1 ) ) ];
-			} elseif ( substr( $value, 0, 2 ) == '**' ) {
-				$options[] = [ 'data' => trim( substr( $value, 2 ) ) ];
-			} else {
-				$options[] = [ 'data' => trim( $value ) ];
-			}
-		}
+		$options = Xml::listDropDownOptions(
+			$ctx->msg( 'deletereason-dropdown' )->inContentLanguage()->text(),
+			[ 'other' => $ctx->msg( 'deletereasonotherlist' )->inContentLanguage()->text() ]
+		);
+		$options = Xml::listDropDownOptionsOoui( $options );
 
 		$fields[] = new OOUI\FieldLayout(
 			new OOUI\DropdownInputWidget( [

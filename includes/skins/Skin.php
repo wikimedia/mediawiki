@@ -1057,10 +1057,10 @@ abstract class Skin extends ContextSource {
 			$targetUser = User::newFromId( $id );
 		}
 
-		# The sending user must have a confirmed email address and the target
-		# user must have a confirmed email address and allow emails from users.
-		return $this->getUser()->canSendEmail() &&
-			$targetUser->canReceiveEmail();
+		# The sending user must have a confirmed email address and the receiving
+		# user must accept emails from the sender.
+		return $this->getUser()->canSendEmail()
+			&& SpecialEmailUser::validateTarget( $targetUser, $this->getUser() ) === '';
 	}
 
 	/**
@@ -1578,8 +1578,6 @@ abstract class Skin extends ContextSource {
 
 		$attribs = [];
 		if ( !is_null( $tooltip ) ) {
-			# T27462: undo double-escaping.
-			$tooltip = Sanitizer::decodeCharReferences( $tooltip );
 			$attribs['title'] = wfMessage( 'editsectionhint' )->rawParams( $tooltip )
 				->inLanguage( $lang )->text();
 		}
@@ -1611,7 +1609,7 @@ abstract class Skin extends ContextSource {
 
 		$result .= implode(
 			'<span class="mw-editsection-divider">'
-				. wfMessage( 'pipe-separator' )->inLanguage( $lang )->text()
+				. wfMessage( 'pipe-separator' )->inLanguage( $lang )->escaped()
 				. '</span>',
 			$linksHtml
 		);

@@ -7,6 +7,13 @@ class CollationFaTest extends MediaWikiTestCase {
 	 * against a random version of libicu
 	 */
 
+	public function setUp() {
+		parent::setUp();
+		if ( !extension_loaded( 'intl' ) ) {
+			$this->markTestSkipped( "PHP extension 'intl' is not loaded, skipping." );
+		}
+	}
+
 	/**
 	 * @dataProvider provideGetFirstLetter
 	 */

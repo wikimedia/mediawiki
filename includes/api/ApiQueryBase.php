@@ -119,7 +119,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * See ApiQuery::getNamedDB() for more information
 	 * @param string $name Name to assign to the database connection
 	 * @param int $db One of the DB_* constants
-	 * @param array $groups Query groups
+	 * @param string|string[] $groups Query groups
 	 * @return IDatabase
 	 */
 	public function selectNamedDB( $name, $db, $groups ) {

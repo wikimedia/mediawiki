@@ -533,7 +533,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		// Used by "live update" and "view newest" to check
 		// if there's new changes with minimal data transfer
 		if ( $this->getRequest()->getBool( 'peek' ) ) {
-			$code = $rows->numRows() > 0 ? 200 : 304;
+			$code = $rows->numRows() > 0 ? 200 : 204;
 			$this->getOutput()->setStatusCode( $code );
 			return;
 		}
@@ -573,16 +573,20 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/**
 	 * Include the modules and configuration for the RCFilters app.
 	 * Conditional on the user having the feature enabled.
+	 *
+	 * If it is disabled, add a <body> class marking that
 	 */
 	protected function includeRcFiltersApp() {
+		$out = $this->getOutput();
 		if ( $this->isStructuredFilterUiEnabled() ) {
-			$out = $this->getOutput();
 			$jsData = $this->getStructuredFilterJsData();
 
 			$messages = [];
 			foreach ( $jsData['messageKeys'] as $key ) {
 				$messages[$key] = $this->msg( $key )->plain();
 			}
+
+			$out->addBodyClasses( 'mw-rcfilters-enabled' );
 
 			$out->addHTML(
 				ResourceLoader::makeInlineScript(
@@ -599,10 +603,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				$experimentalStructuredChangeFilters
 			);
 			$out->addJsConfigVars(
-				'wgStructuredChangeFiltersEnableLiveUpdate',
-				$this->getConfig()->get( 'StructuredChangeFiltersEnableLiveUpdate' )
-			);
-			$out->addJsConfigVars(
 				'wgRCFiltersChangeTags',
 				$this->buildChangeTagList()
 			);
@@ -616,6 +616,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					'daysDefault' => $this->getDefaultDays(),
 				]
 			);
+		} else {
+			$out->addBodyClasses( 'mw-rcfilters-disabled' );
 		}
 	}
 
@@ -1551,10 +1553,39 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return bool
 	 */
 	public function isStructuredFilterUiEnabled() {
-		return $this->getUser()->getOption( 'rcenhancedfilters' );
+		if ( $this->getRequest()->getBool( 'rcfilters' ) ) {
+			return true;
+		}
+
+		if ( $this->getConfig()->get( 'StructuredChangeFiltersShowPreference' ) ) {
+			return !$this->getUser()->getOption( 'rcenhancedfilters-disable' );
+		} else {
+			return $this->getUser()->getOption( 'rcenhancedfilters' );
+		}
+	}
+
+	/**
+	 * Check whether the structured filter UI is enabled by default (regardless of
+	 * this particular user's setting)
+	 *
+	 * @return bool
+	 */
+	public function isStructuredFilterUiEnabledByDefault() {
+		if ( $this->getConfig()->get( 'StructuredChangeFiltersShowPreference' ) ) {
+			return !$this->getUser()->getDefaultOption( 'rcenhancedfilters-disable' );
+		} else {
+			return $this->getUser()->getDefaultOption( 'rcenhancedfilters' );
+		}
 	}
 
 	abstract function getDefaultLimit();
 
+	/**
+	 * Get the default value of the number of days to display when loading
+	 * the result set.
+	 * Supports fractional values, and should be cast to a float.
+	 *
+	 * @return float
+	 */
 	abstract function getDefaultDays();
 }

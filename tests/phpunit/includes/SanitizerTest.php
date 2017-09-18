@@ -376,7 +376,7 @@ class SanitizerTest extends MediaWikiTestCase {
 			[ '\'', '.27' ],
 			[ '§', '.C2.A7' ],
 			[ 'Test:A & B/Here', 'Test:A_.26_B.2FHere' ],
-			[ 'A&B&amp;C&amp;amp;D&amp;amp;amp;E', 'A.26B.26C.26amp.3BD.26amp.3Bamp.3BE' ],
+			[ 'A&B&amp;C&amp;amp;D&amp;amp;amp;E', 'A.26B.26amp.3BC.26amp.3Bamp.3BD.26amp.3Bamp.3Bamp.3BE' ],
 		];
 	}
 
@@ -432,7 +432,6 @@ class SanitizerTest extends MediaWikiTestCase {
 	 * @covers Sanitizer::escapeIdForLink()
 	 * @covers Sanitizer::escapeIdForExternalInterwiki()
 	 * @covers Sanitizer::escapeIdInternal()
-	 * @covers Sanitizer::urlEscapeId()
 	 *
 	 * @param string $stuff
 	 * @param string[] $config
@@ -453,11 +452,11 @@ class SanitizerTest extends MediaWikiTestCase {
 
 	public function provideEscapeIdForStuff() {
 		// Test inputs and outputs
-		$text = 'foo тест_#%!\'()[]:<>';
-		$legacyEncoded = 'foo_.D1.82.D0.B5.D1.81.D1.82_.23.25.21.27.28.29.5B.5D:.3C.3E';
-		$html5Encoded = 'foo_тест_#%!\'()[]:<>';
-		$html5Escaped = 'foo_%D1%82%D0%B5%D1%81%D1%82_%23%25%21%27%28%29%5B%5D:%3C%3E';
-		$html5Experimental = 'foo_тест_!_()[]:<>';
+		$text = 'foo тест_#%!\'()[]:<>&&amp;&amp;amp;';
+		$legacyEncoded = 'foo_.D1.82.D0.B5.D1.81.D1.82_.23.25.21.27.28.29.5B.5D:.3C.3E' .
+			'.26.26amp.3B.26amp.3Bamp.3B';
+		$html5Encoded = 'foo_тест_#%!\'()[]:<>&&amp;&amp;amp;';
+		$html5Experimental = 'foo_тест_!_()[]:<>_amp;_amp;amp;';
 
 		// Settings: last element is $wgExternalInterwikiFragmentMode, the rest is $wgFragmentMode
 		$legacy = [ 'legacy', 'legacy' ];
@@ -484,20 +483,20 @@ class SanitizerTest extends MediaWikiTestCase {
 			// New world: HTML5 links, legacy fallbacks
 			[ 'Attribute', $newLegacy, $text, $html5Encoded, Sanitizer::ID_PRIMARY ],
 			[ 'Attribute', $newLegacy, $text, $legacyEncoded, Sanitizer::ID_FALLBACK ],
-			[ 'Link', $newLegacy, $text, $html5Escaped ],
+			[ 'Link', $newLegacy, $text, $html5Encoded ],
 			[ 'ExternalInterwiki', $newLegacy, $text, $legacyEncoded ],
 
 			// Distant future: no legacy fallbacks, but still linking to leagacy wikis
 			[ 'Attribute', $new, $text, $html5Encoded, Sanitizer::ID_PRIMARY ],
 			[ 'Attribute', $new, $text, false, Sanitizer::ID_FALLBACK ],
-			[ 'Link', $new, $text, $html5Escaped ],
+			[ 'Link', $new, $text, $html5Encoded ],
 			[ 'ExternalInterwiki', $new, $text, $legacyEncoded ],
 
 			// Just before the heat death of universe: external interwikis are also HTML5 \m/
 			[ 'Attribute', $allNew, $text, $html5Encoded, Sanitizer::ID_PRIMARY ],
 			[ 'Attribute', $allNew, $text, false, Sanitizer::ID_FALLBACK ],
-			[ 'Link', $allNew, $text, $html5Escaped ],
-			[ 'ExternalInterwiki', $allNew, $text, $html5Escaped ],
+			[ 'Link', $allNew, $text, $html5Encoded ],
+			[ 'ExternalInterwiki', $allNew, $text, $html5Encoded ],
 
 			// Someone flipped $wgExperimentalHtmlIds on
 			[ 'Attribute', $experimentalLegacy, $text, $html5Experimental, Sanitizer::ID_PRIMARY ],
@@ -508,7 +507,7 @@ class SanitizerTest extends MediaWikiTestCase {
 			// Migration from $wgExperimentalHtmlIds to modern HTML5
 			[ 'Attribute', $newExperimental, $text, $html5Encoded, Sanitizer::ID_PRIMARY ],
 			[ 'Attribute', $newExperimental, $text, $html5Experimental, Sanitizer::ID_FALLBACK ],
-			[ 'Link', $newExperimental, $text, $html5Escaped ],
+			[ 'Link', $newExperimental, $text, $html5Encoded ],
 			[ 'ExternalInterwiki', $newExperimental, $text, $legacyEncoded ],
 		];
 	}

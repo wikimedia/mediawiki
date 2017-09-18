@@ -112,9 +112,15 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	public function isStructuredFilterUiEnabled() {
-		return parent::isStructuredFilterUiEnabled()
-			&& ( $this->getConfig()->get( 'StructuredChangeFiltersOnWatchlist' )
-				|| $this->getRequest()->getBool( 'rcfilters' ) );
+		return $this->getRequest()->getBool( 'rcfilters' ) || (
+			$this->getConfig()->get( 'StructuredChangeFiltersOnWatchlist' ) &&
+			$this->getUser()->getOption( 'rcenhancedfilters' )
+		);
+	}
+
+	public function isStructuredFilterUiEnabledByDefault() {
+		return $this->getConfig()->get( 'StructuredChangeFiltersOnWatchlist' ) &&
+			$this->getUser()->getDefaultOption( 'rcenhancedfilters' );
 	}
 
 	/**
@@ -271,10 +277,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 */
 	public function getDefaultOptions() {
 		$opts = parent::getDefaultOptions();
-		$user = $this->getUser();
 
-		$opts->add( 'days', $user->getOption( 'watchlistdays' ), FormOptions::FLOAT );
-		$opts->add( 'limit', $user->getIntOption( 'wllimit' ), FormOptions::INT );
+		$opts->add( 'days', $this->getDefaultDays(), FormOptions::FLOAT );
+		$opts->add( 'limit', $this->getDefaultLimit(), FormOptions::INT );
 
 		return $opts;
 	}
@@ -912,6 +917,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	function getDefaultDays() {
-		return $this->getUser()->getIntOption( 'watchlistdays' );
+		return floatval( $this->getUser()->getOption( 'watchlistdays' ) );
 	}
 }

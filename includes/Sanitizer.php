@@ -1203,8 +1203,6 @@ class Sanitizer {
 		global $wgExperimentalHtmlIds;
 		$options = (array)$options;
 
-		$id = self::decodeCharReferences( $id );
-
 		if ( $wgExperimentalHtmlIds && !in_array( 'legacy', $options ) ) {
 			$id = preg_replace( '/[ \t\n\r\f_\'"&#%]+/', '_', $id );
 			$id = trim( $id, '_' );
@@ -1284,7 +1282,6 @@ class Sanitizer {
 		$mode = $wgFragmentMode[self::ID_PRIMARY];
 
 		$id = self::escapeIdInternal( $id, $mode );
-		$id = self::urlEscapeId( $id, $mode );
 
 		return $id;
 	}
@@ -1302,23 +1299,6 @@ class Sanitizer {
 		global $wgExternalInterwikiFragmentMode;
 
 		$id = self::escapeIdInternal( $id, $wgExternalInterwikiFragmentMode );
-		$id = self::urlEscapeId( $id, $wgExternalInterwikiFragmentMode );
-
-		return $id;
-	}
-
-	/**
-	 * Helper for escapeIdFor*() functions. URL-escapes the ID if needed.
-	 *
-	 * @param string $id String to escape
-	 * @param string $mode One of modes from $wgFragmentMode
-	 * @return string
-	 */
-	private static function urlEscapeId( $id, $mode ) {
-		if ( $mode === 'html5' ) {
-			$id = urlencode( $id );
-			$id = str_replace( '%3A', ':', $id );
-		}
 
 		return $id;
 	}
@@ -1331,8 +1311,6 @@ class Sanitizer {
 	 * @return string
 	 */
 	private static function escapeIdInternal( $id, $mode ) {
-		$id = self::decodeCharReferences( $id );
-
 		switch ( $mode ) {
 			case 'html5':
 				$id = str_replace( ' ', '_', $id );

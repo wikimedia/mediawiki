@@ -158,6 +158,27 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	}
 
 	/**
+	 * Given a an array of central user IDs, return the (local) user names.
+	 * @param int[] $ids Central user IDs
+	 * @param int|User $audience One of the audience constants, or a specific user
+	 * @param int $flags IDBAccessObject read flags
+	 * @return string[] User names
+	 * @since 1.30
+	 */
+	public function namesFromCentralIds(
+		array $ids, $audience = self::AUDIENCE_PUBLIC, $flags = self::READ_NORMAL
+	) {
+		$idToName = array_fill_keys( $ids, false );
+		$names = $this->lookupCentralIds( $idToName, $audience, $flags );
+		$names = array_unique( $names );
+		$names = array_filter( $names, function ( $name ) {
+			return $name !== false && $name !== '';
+		} );
+
+		return array_values( $names );
+	}
+
+	/**
 	 * Given a (local) user name, return the central ID
 	 * @note There's no requirement that the user name actually exists locally,
 	 *  or if it does that it's actually attached to the central account.
@@ -172,6 +193,27 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	) {
 		$nameToId = $this->lookupUserNames( [ $name => 0 ], $audience, $flags );
 		return $nameToId[$name];
+	}
+
+	/**
+	 * Given an array of (local) user names, return the central IDs.
+	 * @param string[] $names Canonicalized user names
+	 * @param int|User $audience One of the audience constants, or a specific user
+	 * @param int $flags IDBAccessObject read flags
+	 * @return int[] User IDs
+	 * @since 1.30
+	 */
+	public function centralIdsFromNames(
+		array $names, $audience = self::AUDIENCE_PUBLIC, $flags = self::READ_NORMAL
+	) {
+		$nameToId = array_fill_keys( $names, false );
+		$ids = $this->lookupUserNames( $nameToId, $audience, $flags );
+		$ids = array_unique( $ids );
+		$ids = array_filter( $ids, function ( $id ) {
+			return $id !== false;
+		} );
+
+		return array_values( $ids );
 	}
 
 	/**

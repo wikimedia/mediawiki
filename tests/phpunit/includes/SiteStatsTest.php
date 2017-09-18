@@ -11,6 +11,11 @@ class SiteStatsTest extends MediaWikiTestCase {
 		$cache = \MediaWiki\MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$jobq = JobQueueGroup::singleton();
 
+		// Delete EditPage jobs that might have been left behind by other tests
+		$jobq->get( 'htmlCacheUpdate' )->delete();
+		$jobq->get( 'recentChangesUpdate' )->delete();
+		$cache->delete( $cache->makeKey( 'SiteStats', 'jobscount' ) );
+
 		$jobq->push( new NullJob( Title::newMainPage(), [] ) );
 		$this->assertEquals( 1, SiteStats::jobs(),
 			 'A single job enqueued bumps jobscount stat to 1' );

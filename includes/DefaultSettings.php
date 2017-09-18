@@ -1604,6 +1604,13 @@ $wgEnableEmail = true;
 $wgEnableUserEmail = true;
 
 /**
+ * Set to true to enable user-to-user e-mail blacklist.
+ *
+ * @since 1.30
+ */
+$wgEnableUserEmailBlacklist = false;
+
+/**
  * If true put the sending user's email in a Reply-To header
  * instead of From (false). ($wgPasswordSender will be used as From.)
  *
@@ -3394,8 +3401,8 @@ $wgExperimentalHtmlIds = false;
 /**
  * How should section IDs be encoded?
  * This array can contain 1 or 2 elements, each of them can be one of:
- * - 'html5'  is modern HTML5 style encoding with minimal escaping. Allows to
- *            display Unicode characters in many browsers' address bars.
+ * - 'html5'  is modern HTML5 style encoding with minimal escaping. Displays Unicode
+ *            characters in most browsers' address bars.
  * - 'legacy' is old MediaWiki-style encoding, e.g. 啤酒 turns into .E5.95.A4.E9.85.92
  * - 'html5-legacy' corresponds to DEPRECATED $wgExperimentalHtmlIds mode. DO NOT use
  *            it for anything but migration off that mode (see below).
@@ -4920,6 +4927,7 @@ $wgDefaultUserOptions = [
 	'previewontop' => 1,
 	'rcdays' => 7,
 	'rcenhancedfilters' => 0,
+	'rcenhancedfilters-disable' => 0,
 	'rclimit' => 50,
 	'rows' => 25, // @deprecated since 1.29 No longer used in core
 	'showhiddencats' => 0,
@@ -6830,18 +6838,29 @@ $wgRCWatchCategoryMembership = false;
 $wgUseRCPatrol = true;
 
 /**
+ * Whether a preference is displayed for structured change filters.
+ * If false, no preference is displayed and structured change filters are disabled.
+ * If true, structured change filters are *enabled* by default, and a preference is displayed
+ * that lets users disable them.
+ *
+ * Temporary variable during development and will be removed.
+ *
+ * @since 1.30
+ */
+$wgStructuredChangeFiltersShowPreference = false;
+
+/**
  * Whether to show the new experimental views (like namespaces, tags, and users) in
  * RecentChanges filters
+ *
+ * Temporary variable during development and will be removed.
  */
 $wgStructuredChangeFiltersEnableExperimentalViews = false;
 
 /**
- * Whether to allow users to use the experimental live update feature in the new RecentChanges UI
- */
-$wgStructuredChangeFiltersEnableLiveUpdate = false;
-
-/**
  * Whether to enable RCFilters app on Special:Watchlist
+ *
+ * Temporary variable during development and will be removed.
  */
 $wgStructuredChangeFiltersOnWatchlist = false;
 

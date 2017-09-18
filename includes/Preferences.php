@@ -1,7 +1,5 @@
 <?php
 /**
- * Form to edit user preferences.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -556,6 +554,22 @@ class Preferences {
 					'label-message' => 'tog-ccmeonemails',
 					'disabled' => $disableEmailPrefs,
 				];
+
+				if ( $config->get( 'EnableUserEmailBlacklist' )
+					 && !$disableEmailPrefs
+					 && !(bool)$user->getOption( 'disablemail' )
+				) {
+					$lookup = CentralIdLookup::factory();
+					$ids = $user->getOption( 'email-blacklist', [] );
+					$names = $ids ? $lookup->namesFromCentralIds( $ids, $user ) : [];
+
+					$defaultPreferences['email-blacklist'] = [
+						'type' => 'usersmultiselect',
+						'label-message' => 'email-blacklist-label',
+						'section' => 'personal/email',
+						'default' => implode( "\n", $names ),
+					];
+				}
 			}
 
 			if ( $config->get( 'EnotifWatchlist' ) ) {
@@ -611,7 +625,6 @@ class Preferences {
 			$defaultPreferences['skin'] = [
 				'type' => 'radio',
 				'options' => $skinOptions,
-				'label' => '&#160;',
 				'section' => 'rendering/skin',
 			];
 		}
@@ -681,7 +694,6 @@ class Preferences {
 			$defaultPreferences['date'] = [
 				'type' => 'radio',
 				'options' => $dateOptions,
-				'label' => '&#160;',
 				'section' => 'rendering/dateformat',
 			];
 		}
@@ -956,6 +968,15 @@ class Preferences {
 				'type' => 'toggle',
 				'section' => 'rc/advancedrc',
 				'label-message' => 'tog-shownumberswatching',
+			];
+		}
+
+		if ( $config->get( 'StructuredChangeFiltersShowPreference' ) ) {
+			$defaultPreferences['rcenhancedfilters-disable'] = [
+				'type' => 'toggle',
+				'section' => 'rc/advancedrc',
+				'label-message' => 'rcfilters-preference-label',
+				'help-message' => 'rcfilters-preference-help',
 			];
 		}
 	}
@@ -1356,7 +1377,7 @@ class Preferences {
 		$htmlForm->setSubmitText( $context->msg( 'saveprefs' )->text() );
 		# Used message keys: 'accesskey-preferences-save', 'tooltip-preferences-save'
 		$htmlForm->setSubmitTooltip( 'preferences-save' );
-		$htmlForm->setSubmitID( 'prefsubmit' );
+		$htmlForm->setSubmitID( 'prefcontrol' );
 		$htmlForm->setSubmitCallback( [ 'Preferences', 'tryFormSubmit' ] );
 
 		return $htmlForm;
@@ -1624,125 +1645,5 @@ class Preferences {
 		}
 
 		return $timeZoneList;
-	}
-}
-
-/** Some tweaks to allow js prefs to work */
-class PreferencesForm extends HTMLForm {
-	// Override default value from HTMLForm
-	protected $mSubSectionBeforeFields = false;
-
-	private $modifiedUser;
-
-	/**
-	 * @param User $user
-	 */
-	public function setModifiedUser( $user ) {
-		$this->modifiedUser = $user;
-	}
-
-	/**
-	 * @return User
-	 */
-	public function getModifiedUser() {
-		if ( $this->modifiedUser === null ) {
-			return $this->getUser();
-		} else {
-			return $this->modifiedUser;
-		}
-	}
-
-	/**
-	 * Get extra parameters for the query string when redirecting after
-	 * successful save.
-	 *
-	 * @return array
-	 */
-	public function getExtraSuccessRedirectParameters() {
-		return [];
-	}
-
-	/**
-	 * @param string $html
-	 * @return string
-	 */
-	function wrapForm( $html ) {
-		$html = Xml::tags( 'div', [ 'id' => 'preferences' ], $html );
-
-		return parent::wrapForm( $html );
-	}
-
-	/**
-	 * @return string
-	 */
-	function getButtons() {
-		$attrs = [ 'id' => 'mw-prefs-restoreprefs' ];
-
-		if ( !$this->getModifiedUser()->isAllowedAny( 'editmyprivateinfo', 'editmyoptions' ) ) {
-			return '';
-		}
-
-		$html = parent::getButtons();
-
-		if ( $this->getModifiedUser()->isAllowed( 'editmyoptions' ) ) {
-			$t = $this->getTitle()->getSubpage( 'reset' );
-
-			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-			$html .= "\n" . $linkRenderer->makeLink( $t, $this->msg( 'restoreprefs' )->text(),
-				Html::buttonAttributes( $attrs, [ 'mw-ui-quiet' ] ) );
-
-			$html = Xml::tags( 'div', [ 'class' => 'mw-prefs-buttons' ], $html );
-		}
-
-		return $html;
-	}
-
-	/**
-	 * Separate multi-option preferences into multiple preferences, since we
-	 * have to store them separately
-	 * @param array $data
-	 * @return array
-	 */
-	function filterDataForSubmit( $data ) {
-		foreach ( $this->mFlatFields as $fieldname => $field ) {
-			if ( $field instanceof HTMLNestedFilterable ) {
-				$info = $field->mParams;
-				$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $fieldname;
-				foreach ( $field->filterDataForSubmit( $data[$fieldname] ) as $key => $value ) {
-					$data["$prefix$key"] = $value;
-				}
-				unset( $data[$fieldname] );
-			}
-		}
-
-		return $data;
-	}
-
-	/**
-	 * Get the whole body of the form.
-	 * @return string
-	 */
-	function getBody() {
-		return $this->displaySection( $this->mFieldTree, '', 'mw-prefsection-' );
-	}
-
-	/**
-	 * Get the "<legend>" for a given section key. Normally this is the
-	 * prefs-$key message but we'll allow extensions to override it.
-	 * @param string $key
-	 * @return string
-	 */
-	function getLegend( $key ) {
-		$legend = parent::getLegend( $key );
-		Hooks::run( 'PreferencesGetLegend', [ $this, $key, &$legend ] );
-		return $legend;
-	}
-
-	/**
-	 * Get the keys of each top level preference section.
-	 * @return array of section keys
-	 */
-	function getPreferenceSections() {
-		return array_keys( array_filter( $this->mFieldTree, 'is_array' ) );
 	}
 }

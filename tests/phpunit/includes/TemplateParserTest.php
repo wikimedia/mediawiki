@@ -109,4 +109,17 @@ class TemplateParserTest extends MediaWikiTestCase {
 			],
 		];
 	}
+
+	public function testEnableRecursivePartials() {
+		$tp = new TemplateParser( $this->templateDir );
+		$data = [ 'r' => [ 'r' => [ 'r' => [] ] ] ];
+
+		$tp->enableRecursivePartials( true );
+		$this->assertEquals( 'rrr', $tp->processTemplate( 'recurse', $data ) );
+
+		$tp->enableRecursivePartials( false );
+		$this->setExpectedException( 'Exception' );
+		$tp->processTemplate( 'recurse', $data );
+	}
+
 }

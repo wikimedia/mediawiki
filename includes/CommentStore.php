@@ -367,26 +367,7 @@ class CommentStore {
 	 * @return CommentStoreComment
 	 */
 	public function createComment( IDatabase $dbw, $comment, array $data = null ) {
-		global $wgContLang;
-
-		if ( !$comment instanceof CommentStoreComment ) {
-			if ( $data !== null ) {
-				foreach ( $data as $k => $v ) {
-					if ( substr( $k, 0, 1 ) === '_' ) {
-						throw new InvalidArgumentException( 'Keys in $data beginning with "_" are reserved' );
-					}
-				}
-			}
-			if ( $comment instanceof Message ) {
-				$message = clone $comment;
-				$text = $message->inLanguage( $wgContLang ) // Avoid $wgForceUIMsgAsContentMsg
-					->setInterfaceMessageFlag( true )
-					->text();
-				$comment = new CommentStoreComment( null, $text, $message, $data );
-			} else {
-				$comment = new CommentStoreComment( null, $comment, null, $data );
-			}
-		}
+		$comment = CommentStoreComment::newUnsavedComment( $comment, $data );
 
 		# Truncate comment in a Unicode-sensitive manner
 		$comment->text = $this->lang->truncate( $comment->text, self::MAX_COMMENT_LENGTH );

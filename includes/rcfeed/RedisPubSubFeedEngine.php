@@ -33,7 +33,7 @@
  *      'formatter' => 'JSONRCFeedFormatter',
  *      'uri'       => "redis://127.0.0.1:6379/rc.$wgDBname",
  * );
- * @encode
+ * @endcode
  *
  * @since 1.22
  */

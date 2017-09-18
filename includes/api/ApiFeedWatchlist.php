@@ -167,7 +167,7 @@ class ApiFeedWatchlist extends ApiBase {
 					// Something is seriously wrong
 					$errorCode = 'internal_api_error';
 				}
-				$errorTitle = $this->msg( 'api-feed-error-title', $msg->getApiCode() );
+				$errorTitle = $this->msg( 'api-feed-error-title', $errorCode );
 				$errorText = $e->getMessage();
 				$feedItems[] = new FeedItem( $errorTitle, $errorText, '', '', '' );
 			}

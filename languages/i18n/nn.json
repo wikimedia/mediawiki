@@ -708,7 +708,7 @@
 	"last": "førre",
 	"page_first": "fyrste",
 	"page_last": "siste",
-	"histlegend": "Merk av for dei versjonane du vil samanlikne og trykk [Enter] eller klikk på knappen nedst på sida.<br />Forklaring: (no) = skilnad frå den noverande versjonen, (førre) = skilnad frå den førre versjonen, <b>s</b> = småplukk",
+	"histlegend": "Merk av for dei versjonane du vil samanlikne og trykk [Enter] eller klikk på knappen nedst på sida.<br />\nForklaring: <strong>({{int:cur}})</strong> = skilnad frå den noverande versjonen, <strong>({{int:last}})</strong> = skilnad frå den førre versjonen, <strong>{{int:minoreditletter}}</strong> = småplukk",
 	"history-fieldset-title": "Søk etter versjonar",
 	"history-show-deleted": "Berre sletta versjonar",
 	"histfirst": "eldste",

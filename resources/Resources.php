@@ -1091,6 +1091,9 @@ return [
 		'scripts' => [
 			'resources/src/mediawiki/htmlform/htmlform.Checker.js',
 		],
+		'dependencies' => [
+			'jquery.throttle-debounce',
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.htmlform.ooui' => [
@@ -1448,6 +1451,7 @@ return [
 			'jquery.textSelection',
 			'mediawiki.api',
 			'mediawiki.diff.styles',
+			'mediawiki.language',
 			'mediawiki.util',
 			'mediawiki.jqueryMsg',
 			'oojs-ui-core',
@@ -1772,6 +1776,7 @@ return [
 			'resources/src/mediawiki.rcfilters/mw.rcfilters.UriProcessor.js',
 		],
 		'dependencies' => [
+			'jquery.byteLength',
 			'oojs',
 			'mediawiki.api',
 			'mediawiki.api.options',

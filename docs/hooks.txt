@@ -996,13 +996,10 @@ $special: ChangesListSpecialPage instance
 'ChangesListSpecialPageQuery': Called when building SQL query on pages
 inheriting from ChangesListSpecialPage (in core: RecentChanges,
 RecentChangesLinked and Watchlist).
-
 Do not use this to implement individual filters if they are compatible with the
 ChangesListFilter and ChangesListFilterGroup structure.
-
 Instead, use sub-classes of those classes, in conjunction with the
 ChangesListSpecialPageStructuredFilters hook.
-
 This hook can be used to implement filters that do not implement that structure,
 or custom behavior that is not an individual filter.
 $name: name of the special page, e.g. 'Watchlist'
@@ -1017,20 +1014,16 @@ $opts: FormOptions for this request
 filters for pages inheriting from ChangesListSpecialPage (in core: RecentChanges,
 RecentChangesLinked, and Watchlist).  Generally, you will want to construct
 new ChangesListBooleanFilter or ChangesListStringOptionsFilter objects.
-
 When constructing them, you specify which group they belong to.  You can reuse
 existing groups (accessed through $special->getFilterGroup), or create your own
 (ChangesListBooleanFilterGroup or ChangesListStringOptionsFilterGroup).
 If you create new groups, you must register them with $special->registerFilterGroup.
-
 Note that this is called regardless of whether the user is currently using
 the new (structured) or old (unstructured) filter UI.  If you want your boolean
 filter to show on both the new and old UI, specify all the supported fields.
 These include showHide, label, and description.
-
 See the constructor of each ChangesList* class for documentation of supported
 fields.
-
 $special: ChangesListSpecialPage instance
 
 'ChangeTagAfterDelete': Called after a change tag has been deleted (that is,

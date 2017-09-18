@@ -3231,6 +3231,8 @@ class Parser {
 					. wfMessage( 'parser-template-loop-warning', $titleText )->inContentLanguage()->text()
 					. '</span>';
 				$this->addTrackingCategory( 'template-loop-category' );
+				$this->mOutput->addWarning( wfMessage( 'template-loop-warning',
+					wfEscapeWikiText( $titleText ) )->text() );
 				wfDebug( __METHOD__ . ": template loop broken at '$titleText'\n" );
 			}
 		}
@@ -4202,6 +4204,8 @@ class Parser {
 			# Save headline for section edit hint before it's escaped
 			$headlineHint = $safeHeadline;
 
+			# Decode HTML entities
+			$safeHeadline = Sanitizer::decodeCharReferences( $safeHeadline );
 			$fallbackHeadline = Sanitizer::escapeIdForAttribute( $safeHeadline, Sanitizer::ID_FALLBACK );
 			$linkAnchor = Sanitizer::escapeIdForLink( $safeHeadline );
 			$safeHeadline = Sanitizer::escapeIdForAttribute( $safeHeadline, Sanitizer::ID_PRIMARY );
@@ -5762,6 +5766,7 @@ class Parser {
 		# Strip out wikitext links(they break the anchor)
 		$text = $this->stripSectionName( $text );
 		$text = Sanitizer::normalizeSectionNameWhitespace( $text );
+		$text = Sanitizer::decodeCharReferences( $text );
 		return '#' . Sanitizer::escapeIdForLink( $text );
 	}
 
@@ -5780,6 +5785,7 @@ class Parser {
 		# Strip out wikitext links(they break the anchor)
 		$text = $this->stripSectionName( $text );
 		$text = Sanitizer::normalizeSectionNameWhitespace( $text );
+		$text = Sanitizer::decodeCharReferences( $text );
 
 		if ( isset( $wgFragmentMode[1] ) && $wgFragmentMode[1] === 'legacy' ) {
 			// ForAttribute() and ForLink() are the same for legacy encoding

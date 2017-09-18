@@ -1298,7 +1298,7 @@
 				registry[ module ].state = 'executing';
 
 				runScript = function () {
-					var script, markModuleReady, nestedAddScript, implicitDependencies, implicitWait;
+					var script, markModuleReady, nestedAddScript;
 
 					script = registry[ module ].script;
 					markModuleReady = function () {
@@ -1319,47 +1319,33 @@
 						} );
 					};
 
-					implicitDependencies = [];
+					try {
+						if ( Array.isArray( script ) ) {
+							nestedAddScript( script, markModuleReady, 0 );
+						} else if ( typeof script === 'function' ) {
+							// Pass jQuery twice so that the signature of the closure which wraps
+							// the script can bind both '$' and 'jQuery'.
+							script( $, $, mw.loader.require, registry[ module ].module );
+							markModuleReady();
 
-					if ( module === 'user' ) {
-						// Implicit dependency on the site module. Not real dependency because
-						// it should run after 'site' regardless of whether it succeeds or fails.
-						implicitDependencies.push( 'site' );
-					}
+						} else if ( typeof script === 'string' ) {
+							// Site and user modules are legacy scripts that run in the global scope.
+							// This is transported as a string instead of a function to avoid needing
+							// to use string manipulation to undo the function wrapper.
+							$.globalEval( script );
+							markModuleReady();
 
-					implicitWait = implicitDependencies.length ?
-						mw.loader.using( implicitDependencies ) :
-						$.Deferred().resolve();
-
-					implicitWait.always( function () {
-						try {
-							if ( Array.isArray( script ) ) {
-								nestedAddScript( script, markModuleReady, 0 );
-							} else if ( typeof script === 'function' ) {
-								// Pass jQuery twice so that the signature of the closure which wraps
-								// the script can bind both '$' and 'jQuery'.
-								script( $, $, mw.loader.require, registry[ module ].module );
-								markModuleReady();
-
-							} else if ( typeof script === 'string' ) {
-								// Site and user modules are legacy scripts that run in the global scope.
-								// This is transported as a string instead of a function to avoid needing
-								// to use string manipulation to undo the function wrapper.
-								$.globalEval( script );
-								markModuleReady();
-
-							} else {
-								// Module without script
-								markModuleReady();
-							}
-						} catch ( e ) {
-							// Use mw.track instead of mw.log because these errors are common in production mode
-							// (e.g. undefined variable), and mw.log is only enabled in debug mode.
-							registry[ module ].state = 'error';
-							mw.track( 'resourceloader.exception', { exception: e, module: module, source: 'module-execute' } );
-							handlePending( module );
+						} else {
+							// Module without script
+							markModuleReady();
 						}
-					} );
+					} catch ( e ) {
+						// Use mw.track instead of mw.log because these errors are common in production mode
+						// (e.g. undefined variable), and mw.log is only enabled in debug mode.
+						registry[ module ].state = 'error';
+						mw.track( 'resourceloader.exception', { exception: e, module: module, source: 'module-execute' } );
+						handlePending( module );
+					}
 				};
 
 				// Add localizations to message system
@@ -1379,7 +1365,13 @@
 						// cssHandlesRegistered ensures we don't take off too soon, e.g. when
 						// one of the cssHandles is fired while we're still creating more handles.
 						if ( cssHandlesRegistered && pending === 0 && runScript ) {
-							runScript();
+							if ( module === 'user' ) {
+								// Implicit dependency on the site module. Not real dependency because
+								// it should run after 'site' regardless of whether it succeeds or fails.
+								mw.loader.using( [ 'site' ] ).always( runScript );
+							} else {
+								runScript();
+							}
 							runScript = undefined; // Revoke
 						}
 					};

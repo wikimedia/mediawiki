@@ -76,7 +76,7 @@ class Linker {
 	 * @since 1.18 Method exists since 1.16 as non-static, made static in 1.18.
 	 * @deprecated since 1.28, use MediaWiki\Linker\LinkRenderer instead
 	 *
-	 * @param Title $target Can currently only be a Title, but this may
+	 * @param LinkTarget $target Can currently only be a LinkTarget, but this may
 	 *   change to support Images, literal URLs, etc.
 	 * @param string $html The HTML contents of the <a> element, i.e.,
 	 *   the link text.  This is raw HTML and will not be escaped.  If null,
@@ -107,8 +107,8 @@ class Linker {
 	public static function link(
 		$target, $html = null, $customAttribs = [], $query = [], $options = []
 	) {
-		if ( !$target instanceof Title ) {
-			wfWarn( __METHOD__ . ': Requires $target to be a Title object.', 2 );
+		if ( !$target instanceof LinkTarget ) {
+			wfWarn( __METHOD__ . ': Requires $target to be a LinkTarget object.', 2 );
 			return "<!-- ERROR -->$html";
 		}
 
@@ -1175,7 +1175,7 @@ class Linker {
 							$sectionTitle = Title::newFromText( '#' . $section );
 						} else {
 							$sectionTitle = Title::makeTitleSafe( $title->getNamespace(),
-								$title->getDBkey(), $section );
+								$title->getDBkey(), Sanitizer::decodeCharReferences( $section ) );
 						}
 						if ( $sectionTitle ) {
 							$link = Linker::makeCommentLink( $sectionTitle, $wgLang->getArrow(), $wikiId, 'noclasses' );
@@ -1291,9 +1291,7 @@ class Linker {
 							if ( $target->getText() == '' && !$target->isExternal()
 								&& !$local && $title
 							) {
-								$newTarget = clone $title;
-								$newTarget->setFragment( '#' . $target->getFragment() );
-								$target = $newTarget;
+								$target = $title->createFragmentTarget( $target->getFragment() );
 							}
 
 							$thelink = Linker::makeCommentLink( $target, $linkText . $inside, $wikiId ) . $trail;
@@ -1321,7 +1319,7 @@ class Linker {
 	 *
 	 * @note This is only public for technical reasons. It's not intended for use outside Linker.
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $linkTarget
 	 * @param string $text
 	 * @param string|null $wikiId Id of the wiki to link to (if not the local wiki),
 	 *  as used by WikiMap.
@@ -1330,23 +1328,23 @@ class Linker {
 	 * @return string HTML link
 	 */
 	public static function makeCommentLink(
-		Title $title, $text, $wikiId = null, $options = []
+		LinkTarget $linkTarget, $text, $wikiId = null, $options = []
 	) {
-		if ( $wikiId !== null && !$title->isExternal() ) {
+		if ( $wikiId !== null && !$linkTarget->isExternal() ) {
 			$link = self::makeExternalLink(
 				WikiMap::getForeignURL(
 					$wikiId,
-					$title->getNamespace() === 0
-						? $title->getDBkey()
-						: MWNamespace::getCanonicalName( $title->getNamespace() ) . ':'
-							. $title->getDBkey(),
-					$title->getFragment()
+					$linkTarget->getNamespace() === 0
+						? $linkTarget->getDBkey()
+						: MWNamespace::getCanonicalName( $linkTarget->getNamespace() ) . ':'
+							. $linkTarget->getDBkey(),
+					$linkTarget->getFragment()
 				),
 				$text,
 				/* escape = */ false // Already escaped
 			);
 		} else {
-			$link = self::link( $title, $text, [], [], $options );
+			$link = self::link( $linkTarget, $text, [], [], $options );
 		}
 
 		return $link;
@@ -1539,10 +1537,16 @@ class Linker {
 		if ( $sectionIndex !== false ) {
 			$classes .= " tocsection-$sectionIndex";
 		}
-		return "\n<li class=\"$classes\"><a href=\"#" .
-			$anchor . '"><span class="tocnumber">' .
-			$tocnumber . '</span> <span class="toctext">' .
-			$tocline . '</span></a>';
+
+		// \n<li class="$classes"><a href="#$anchor"><span class="tocnumber">
+		// $tocnumber</span> <span class="toctext">$tocline</span></a>
+		return "\n" . Html::openElement( 'li', [ 'class' => $classes ] )
+			. Html::rawElement( 'a',
+				[ 'href' => "#$anchor" ],
+				Html::element( 'span', [ 'class' => 'tocnumber' ], $tocnumber )
+					. ' '
+					. Html::rawElement( 'span', [ 'class' => 'toctext' ], $tocline )
+			);
 	}
 
 	/**

@@ -98,7 +98,7 @@ class HttpStatus {
 		$message = self::getMessage( $code );
 		if ( $message === null ) {
 			trigger_error( "Unknown HTTP status code $code", E_USER_WARNING );
-			return false;
+			return;
 		}
 
 		MediaWiki\HeaderCallback::warnIfHeadersSent();

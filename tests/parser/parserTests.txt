@@ -307,7 +307,7 @@ CircularRef
 <references />
 !! html/parsoid
 <p><span about="#mwt1" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Transclusion  mw:Extension/ref" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"CircularRef","href":"./Template:CircularRef"},"params":{},"i":0}}]}'><a href="./Main_Page#cite_note-1" style="counter-reset: mw-Ref 1;"><span class="mw-reflink-text">[1]</span></a></span></p>
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">Error: Expansion loop detected at <a data-parsoid='{"a":{"href":null},"sa":{"href":"Template:CircularRef"}}'>Template:CircularRef</a></span></li></ol>
+<ol class="mw-references references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">Error: Expansion loop detected at <a data-parsoid='{"a":{"href":null},"sa":{"href":"Template:CircularRef"}}'>Template:CircularRef</a></span></li></ol>
 !! end
 
 !! test
@@ -2449,7 +2449,7 @@ Block tag pre
 foo
 </pre>
 !! html/parsoid
-<p data-parsoid='{"stx":"html","autoInsertedEnd":true}'></p><pre typeof="mw:Extension/pre" about="#mwt2" data-parsoid='{"stx":"html"}' data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"foo"}}'>foo</pre><p data-parsoid='{"autoInsertedStart":true,"stx":"html"}'></p>
+<p class='mw-empty-elt' data-parsoid='{"stx":"html","autoInsertedEnd":true}'></p><pre typeof="mw:Extension/pre" about="#mwt2" data-parsoid='{"stx":"html"}' data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"foo"}}'>foo</pre><p class='mw-empty-elt' data-parsoid='{"autoInsertedStart":true,"stx":"html"}'></p>
 !! end
 
 !!test
@@ -4332,6 +4332,21 @@ Definition Lists: Mixed Lists: Test 10
 
 !! end
 
+# This is a regression test for T175099
+# html/php+tidy is insufficient since Tidy covers up the bug.
+# But once Tidy is replaced with RemexHTML, html/php+tidy is good enough
+!! test
+Definition Lists: Mixed Lists: Test 11
+!! wikitext
+; a
+:* b
+!! html/*
+<dl><dt> a</dt>
+<dd>
+<ul><li> b</li></ul></dd></dl>
+
+!! end
+
 # The Parsoid team disagrees with the PHP parser's seemingly-random
 # rules regarding dd/dt on the next two tests.  Parsoid is more
 # consistent, and recognizes the shared nesting and keeps the
@@ -4339,7 +4354,7 @@ Definition Lists: Mixed Lists: Test 10
 # (And tidy again converts <dt> to <dd> before 'bar'.)
 
 !! test
-Definition Lists: Mixed Lists: Test 11
+Definition Lists: Mixed Lists: Test 12
 !! wikitext
 *#*#;*;;foo :bar
 *#*#;boo :baz
@@ -6672,7 +6687,7 @@ Don't break on | in extension attribute in template
 !! html/parsoid
 <p><span about="#mwt2" class="mw-ref" id="cite_ref-hi.7Cho_1-0" rel="dc:references" typeof="mw:Transclusion  mw:Extension/ref" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;ref name=\"hi|ho\">ha&lt;/ref>"}},"i":0}}]}'><a href="./Main_Page#cite_note-hi.7Cho-1" style="counter-reset: mw-Ref 1;"><span class="mw-reflink-text">[1]</span></a></span></p>
 
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt5" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-hi.7Cho-1" id="cite_note-hi.7Cho-1"><a href="./Main_Page#cite_ref-hi.7Cho_1-0" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-hi.7Cho-1" class="mw-reference-text">ha</span></li></ol>
+<ol class="mw-references references" typeof="mw:Extension/references" about="#mwt5" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-hi.7Cho-1" id="cite_note-hi.7Cho-1"><a href="./Main_Page#cite_ref-hi.7Cho_1-0" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-hi.7Cho-1" class="mw-reference-text">ha</span></li></ol>
 !! end
 
 ## We don't support roundtripping of these attributes in Parsoid.
@@ -6847,7 +6862,7 @@ T107652: <ref>s in templates that also generate table cell attributes should be 
 <table>
 <tbody><tr><td style="background:#f9f9f9;" typeof="mw:Transclusion" about="#mwt1" data-mw='{"parts":["|",{"template":{"target":{"wt":"table_attribs_7","href":"./Template:Table_attribs_7"},"params":{},"i":0}}]}'>Foo<span class="mw-ref" id="cite_ref-1" rel="dc:references" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1" style="counter-reset: mw-Ref 1;"><span class="mw-reflink-text">[1]</span></a></span></td></tr>
 </tbody></table>
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt5" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">foo</span></li></ol>
+<ol class="mw-references references" typeof="mw:Extension/references" about="#mwt5" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">foo</span></li></ol>
 !! end
 
 !! test
@@ -7307,8 +7322,8 @@ parsoid=wt2html
 !! html
 <table>
 <tbody>
-<tr></tr>
-<tr></tr>
+<tr class='mw-empty-elt'></tr>
+<tr class='mw-empty-elt'></tr>
 </tbody></table>
 !! end
 
@@ -9691,7 +9706,7 @@ parsoid
 !! wikitext
 *<references />
 !! html/parsoid
-<ul><li data-parsoid='{}'><ol class="mw-references" typeof="mw:Extension/references" about="#mwt2" data-parsoid='{}' data-mw='{"name":"references","attrs":{}}'></ol></li></ul>
+<ul><li data-parsoid='{}'><ol class="mw-references references" typeof="mw:Extension/references" about="#mwt2" data-parsoid='{}' data-mw='{"name":"references","attrs":{}}'></ol></li></ul>
 !! end
 
 !! test
@@ -9861,6 +9876,17 @@ parsoid=wt2html,wt2wt
 <ul>
 <li>not a li-hack</li>
 </ul>
+!! html/parsoid
+<ul><li> foo</li>
+<li data-parsoid='{"stx":"html","autoInsertedEnd":true,"liHackSrc":"* "}'>li-hack</li>
+<li about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"html","autoInsertedEnd":true,,"pi":[[{"k":"1"}]]}' data-mw='{"parts":["* ",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;li>templated li-hack"}},"i":0}}]}'>templated li-hack</li>
+<li data-parsoid='{"autoInsertedEnd":true}'> <!--foo--> </li><li data-parsoid='{"stx":"html","autoInsertedEnd":true}'> unsupported li-hack with preceding comments</li></ul>
+
+<ul data-parsoid='{"stx":"html"}'>
+<li class="mw-empty-elt" data-parsoid='{"stx":"html","autoInsertedEnd":true}'></li><li data-parsoid='{"stx":"html"}'>not a li-hack
+</li>
+</ul>
+
 !!end
 
 !! test
@@ -9896,9 +9922,9 @@ Parsoid: Test of whitespace serialization with Templated bullets
 parsoid
 !! wikitext
 * {{bullet}}
-!! html
+!! html/parsoid
 <ul>
-<li> </li><li about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"bullet","href":"./Template:Bullet"},"params":{},"i":0}}]}'> Bar</li>
+<li class="mw-empty-elt"> </li><li about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"bullet","href":"./Template:Bullet"},"params":{},"i":0}}]}'> Bar</li>
 </ul>
 !! end
 
@@ -13206,7 +13232,7 @@ Templates: Wiki Tables: 7. Fosterable <ref>s should get fostered
 <tbody>
 </tbody></table>
 
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li></ol>
+<ol class="mw-references references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li></ol>
 !!end
 
 !! test
@@ -14243,6 +14269,20 @@ Image with caption, T55312 #3
 
 !! html/parsoid
 <figure class="mw-default-size mw-halign-right" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a><figcaption>Caption page=stuff</figcaption></figure>
+!! end
+
+!! test
+Image caption with pipe entity
+!! wikitext
+[[File:Foobar.jpg|thumb|one &#x7C; two]]
+[[File:Foobar.jpg|thumb|one ''two'' &#x7C; three]]
+!! html/php
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>one &#x7c; two</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>one <i>two</i> &#x7c; three</div></div></div>
+
+!! html/parsoid
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption>one <span typeof="mw:Entity">|</span> two</figcaption></figure>
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption>one <i>two</i> <span typeof="mw:Entity">|</span> three</figcaption></figure>
 !! end
 
 !! test
@@ -15565,7 +15605,7 @@ T93580: 1. Templated <ref> inside block images
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"caption","ak":"Caption with templated ref: {{echo|&lt;ref>foo&lt;/ref>}}"}]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"25","width":"220"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption>Caption with templated ref: <span about="#mwt5" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Transclusion  mw:Extension/ref" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;ref>foo&lt;/ref>"}},"i":0}}]}'><a href="./Main_Page#cite_note-1" style="counter-reset: mw-Ref 1;"><span class="mw-reflink-text">[1]</span></a></span></figcaption></figure>
 
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">foo</span></li></ol>
+<ol class="mw-references references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">foo</span></li></ol>
 !! end
 
 !! test
@@ -15577,7 +15617,7 @@ T93580: 2. <ref> inside inline images
 !! html/parsoid
 <p><span class="mw-default-size" typeof="mw:Image" data-parsoid='{"optList":[{"ck":"caption","ak":"Undisplayed caption in inline image with ref: &lt;ref>foo&lt;/ref>"}]}' data-mw='{"caption":"Undisplayed caption in inline image with ref: &lt;span about=\"#mwt2\" class=\"mw-ref\" id=\"cite_ref-1\" rel=\"dc:references\" typeof=\"mw:Extension/ref\" data-parsoid=&#39;{\"dsr\":[64,78,5,6]}&#39; data-mw=&#39;{\"name\":\"ref\",\"body\":{\"id\":\"mw-reference-text-cite_note-1\"},\"attrs\":{}}&#39;>&lt;a href=\"./Main_Page#cite_note-1\" style=\"counter-reset: mw-Ref 1;\" data-parsoid=\"{}\">&lt;span class=\"mw-reflink-text\" data-parsoid=\"{}\">[1]&lt;/span>&lt;/a>&lt;/span>&lt;meta typeof=\"mw:Extension/ref/Marker\" about=\"#mwt2\" data-parsoid=&#39;{\"group\":\"\",\"name\":\"\",\"content\":\"foo\",\"hasRefInRef\":false,\"dsr\":[64,78,5,6]}&#39;/>"}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{}}'><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span></p>
 
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">foo</span></li></ol>
+<ol class="mw-references references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">foo</span></li></ol>
 !! end
 
 !! test
@@ -15589,7 +15629,7 @@ T93580: 3. Templated <ref> inside inline images
 !! html/parsoid
 <p><span class="mw-default-size" typeof="mw:Image" data-parsoid='{"optList":[{"ck":"caption","ak":"Undisplayed caption in inline image with ref: {{echo|&lt;ref>{{echo|foo}}&lt;/ref>}}"}]}' data-mw='{"caption":"Undisplayed caption in inline image with ref: &lt;span about=\"#mwt2\" class=\"mw-ref\" id=\"cite_ref-1\" rel=\"dc:references\" typeof=\"mw:Transclusion  mw:Extension/ref\" data-parsoid=&#39;{\"dsr\":[64,96,null,null],\"pi\":[[{\"k\":\"1\"}]]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"&amp;lt;ref>{{echo|foo}}&amp;lt;/ref>\"}},\"i\":0}}]}&#39;>&lt;a href=\"./Main_Page#cite_note-1\" style=\"counter-reset: mw-Ref 1;\" data-parsoid=\"{}\">&lt;span class=\"mw-reflink-text\" data-parsoid=\"{}\">[1]&lt;/span>&lt;/a>&lt;/span>&lt;meta typeof=\"mw:Transclusion mw:Extension/ref/Marker\" about=\"#mwt2\" data-parsoid=&#39;{\"group\":\"\",\"name\":\"\",\"content\":\"foo\",\"hasRefInRef\":false,\"dsr\":[64,96,null,null],\"pi\":[[{\"k\":\"1\"}]]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"&amp;lt;ref>{{echo|foo}}&amp;lt;/ref>\"}},\"i\":0}}]}&#39;/>"}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{}}'><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span></p>
 
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">foo</span></li></ol>
+<ol class="mw-references references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">foo</span></li></ol>
 !! end
 
 ###
@@ -18124,7 +18164,7 @@ Parser hook: static parser hook inside a comment
 </p>
 !! html/parsoid
 <!-- <statictag&#x3E;hello, world</statictag&#x3E; -->
-<p typeof="mw:Extension/statictag" data-mw='{"name":"statictag","attrs":{"action":"flush"},"body":null}' data-parsoid='{}' about="#mwt2"></p>
+<p typeof='mw:Extension/statictag' data-mw='{"name":"statictag","attrs":{"action":"flush"},"body":null}' data-parsoid='{}' about='#mwt2'></p>
 !! end
 
 # Nested template calls; this case was broken by Parser.php rev 1.506,
@@ -20910,7 +20950,7 @@ HTML with raw HTML ($wgRawHtml==true)
 wgRawHtml=1
 !! wikitext
 <html><script>alert(1);</script></html>
-!! html
+!! html/php
 <p><script>alert(1);</script>
 </p>
 !! end
@@ -24409,12 +24449,12 @@ Empty LI and TR nodes should not be stripped from top-level content
 !! html/parsoid
 <ul>
 <li> a</li>
-<li></li>
+<li class='mw-empty-elt'></li>
 <li> b</li>
 </ul>
 <table>
 <tbody>
-<tr></tr>
+<tr class='mw-empty-elt'></tr>
 <tr>
 <td>foo</td>
 </tr>
@@ -24428,9 +24468,9 @@ Empty TR nodes should not be stripped if they have any attributes set
 {{EmptyTRWithHTMLAttrTest}}
 !! html/parsoid
 <table about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"EmptyTRWithHTMLAttrTest","href":"./Template:EmptyTRWithHTMLAttrTest"},"params":{},"i":0}}]}'>
-<tr align="center"></tr>
+<tr align='center'></tr>
 <tr><td>foo</td></tr>
-<tr align="center"></tr>
+<tr align='center'></tr>
 <tr><td>bar</td></tr>
 </table>
 !! end
@@ -25716,7 +25756,7 @@ parsoid=html2wt
 '<i>foo</i> <span class="mw-ref" id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span>
 '<i>foo</i> <div title="name">test</div>
 '<i>foo</i> and <br data-parsoid='{"stx":"html","noClose":true}'/> bar
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt5" data-mw='{"name":"references","attrs":{}}'>
+<ol class="mw-references references" typeof="mw:Extension/references" about="#mwt5" data-mw='{"name":"references","attrs":{}}'>
 <li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="./Main_Page#cite_ref-1">↑</a></span> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">test</span></li>
 </ol>
 !! wikitext
@@ -25866,7 +25906,7 @@ a
 parsoid=html2wt
 !! html/parsoid
 <p>foo <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p>
-<ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'>
+<ol class="mw-references references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'>
 <li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text"><i>a</i>
  b</span></li>
 </ol>
@@ -26274,7 +26314,7 @@ RT-ed inter-element separators should be valid separators
 
 !! html/parsoid
 <table>
-<tbody><tr data-parsoid='{"startTagSrc":"|-","a":{"[[foo]]":null},"sa":{"[[foo]]":""},"autoInsertedEnd":true}'></tr>
+<tbody><tr class='mw-empty-elt' data-parsoid='{"startTagSrc":"|-","a":{"[[foo]]":null},"sa":{"[[foo]]":""},"autoInsertedEnd":true}'></tr>
 </tbody></table>
 !!end
 
@@ -26421,7 +26461,7 @@ parsoid
 !! html
 <table>
 <tbody>
-<tr></tr>
+<tr class='mw-empty-elt'></tr>
 <tr about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"<tr><td>foo</td></tr>"}},"i":0}}]}'>
 <td>foo</td></tr>
 </tbody></table>
@@ -26443,7 +26483,7 @@ parsoid
 !! html
 <table>
 <tbody>
-<tr></tr>
+<tr class='mw-empty-elt'></tr>
  <!--c-->
 <tr>
 <!--c--> </tr><!--d-->
@@ -29240,17 +29280,18 @@ unclosed internal link XSS (T137264)
 <p>[[#%3Cscript%3Ealert(1)%3C/script%3E|</p>
 !! end
 
+# Use $wgRawHtml to inject a <style> tag, since you normally can't in wikitext
+# (Parsoid doesn't support $wgRawHtml==true)
 !! test
 Validating that <style> isn't eaten by tidy (T167349)
 !! options
-# Use $wgRawHtml to inject a <style> tag, since you normally can't in wikitext
 wgRawHtml=1
 !! wikitext
 <div class="foo">
 <html><style>.foo::before { content: "<foo>"; }</style></html>
 <html><style data-mw-foobar="baz">.foo::after { content: "<bar>"; }</style></html>
 </div>
-!! html+tidy
+!! html/php+tidy
 <div class="foo">
 <style>.foo::before { content: "<foo>"; }</style>
 <style data-mw-foobar="baz">.foo::after { content: "<bar>"; }</style>
@@ -29264,7 +29305,7 @@ Decoding of HTML entities in headings and links for IDs and link fragments (T103
 [[#A&B&amp;C&amp;amp;D&amp;amp;amp;E]]
 !! html/php
 <h2><span class="mw-headline" id="A.26B.26C.26amp.3BD.26amp.3Bamp.3BE">A&amp;B&amp;C&amp;amp;D&amp;amp;amp;E</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: A&amp;B&amp;C&amp;amp;D&amp;amp;amp;E">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<p><a href="#A.26B.26C.26D.26amp.3BE">#A&amp;B&amp;C&amp;amp;D&amp;amp;amp;E</a>
+<p><a href="#A.26B.26C.26amp.3BD.26amp.3Bamp.3BE">#A&amp;B&amp;C&amp;amp;D&amp;amp;amp;E</a>
 </p>
 !! end
 
@@ -29307,10 +29348,10 @@ wgFragmentMode=[ 'html5', 'legacy' ]
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Foo_bar"><span class="tocnumber">1</span> <span class="toctext">Foo bar</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#foo_Bar_2"><span class="tocnumber">2</span> <span class="toctext">foo Bar</span></a></li>
-<li class="toclevel-1 tocsection-3"><a href="#%D0%A2%D0%B5%D1%81%D1%82"><span class="tocnumber">3</span> <span class="toctext">Тест</span></a></li>
-<li class="toclevel-1 tocsection-4"><a href="#%D0%A2%D0%B5%D1%81%D1%82_2"><span class="tocnumber">4</span> <span class="toctext">Тест</span></a></li>
-<li class="toclevel-1 tocsection-5"><a href="#%D1%82%D0%B5%D1%81%D1%82"><span class="tocnumber">5</span> <span class="toctext">тест</span></a></li>
-<li class="toclevel-1 tocsection-6"><a href="#Hey_%3C_%23_%22_%3E_%25_:_%27"><span class="tocnumber">6</span> <span class="toctext">Hey &lt; # " &gt;&#160;%&#160;: '</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Тест"><span class="tocnumber">3</span> <span class="toctext">Тест</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Тест_2"><span class="tocnumber">4</span> <span class="toctext">Тест</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#тест"><span class="tocnumber">5</span> <span class="toctext">тест</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Hey_&lt;_#_&quot;_&gt;_%_:_'"><span class="tocnumber">6</span> <span class="toctext">Hey &lt; # " &gt;&#160;%&#160;: '</span></a></li>
 </ul>
 </div>
 
@@ -29320,9 +29361,9 @@ wgFragmentMode=[ 'html5', 'legacy' ]
 <h2><span id=".D0.A2.D0.B5.D1.81.D1.82_2"></span><span class="mw-headline" id="Тест_2">Тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span id=".D1.82.D0.B5.D1.81.D1.82"></span><span class="mw-headline" id="тест">тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span id="Hey_.3C_.23_.22_.3E_.25_:_.27"></span><span class="mw-headline" id="Hey_&lt;_#_&quot;_&gt;_%_:_'">Hey &lt; # " &gt;&#160;%&#160;: '</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Hey &lt; # &quot; &gt; % : '">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<p><a href="#Foo_bar">#Foo bar</a> <a href="#foo_Bar">#foo Bar</a> <a href="#%D0%A2%D0%B5%D1%81%D1%82">#Тест</a> <a href="#%D1%82%D0%B5%D1%81%D1%82">#тест</a> <a href="#Hey_%3C_%23_%22_%3E_%25_:_%27">#Hey &lt; # " &gt;&#160;%&#160;: '</a>
-</p><p>%F0%9F%92%A9 <span id="%F0%9F%92%A9"></span>
-</p><p><a href="#%E5%95%A4%E9%85%92">#啤酒</a> <a href="#%E5%95%A4%E9%85%92">#啤酒</a>
+<p><a href="#Foo_bar">#Foo bar</a> <a href="#foo_Bar">#foo Bar</a> <a href="#Тест">#Тест</a> <a href="#тест">#тест</a> <a href="#Hey_&lt;_#_&quot;_&gt;_%_:_'">#Hey &lt; # " &gt;&#160;%&#160;: '</a>
+</p><p>💩 <span id="💩"></span>
+</p><p><a href="#啤酒">#啤酒</a> <a href="#啤酒">#啤酒</a>
 </p>
 !! end
 
@@ -29401,10 +29442,10 @@ wgFragmentMode=[ 'html5' ]
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Foo_bar"><span class="tocnumber">1</span> <span class="toctext">Foo bar</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#foo_Bar_2"><span class="tocnumber">2</span> <span class="toctext">foo Bar</span></a></li>
-<li class="toclevel-1 tocsection-3"><a href="#%D0%A2%D0%B5%D1%81%D1%82"><span class="tocnumber">3</span> <span class="toctext">Тест</span></a></li>
-<li class="toclevel-1 tocsection-4"><a href="#%D0%A2%D0%B5%D1%81%D1%82_2"><span class="tocnumber">4</span> <span class="toctext">Тест</span></a></li>
-<li class="toclevel-1 tocsection-5"><a href="#%D1%82%D0%B5%D1%81%D1%82"><span class="tocnumber">5</span> <span class="toctext">тест</span></a></li>
-<li class="toclevel-1 tocsection-6"><a href="#Hey_%3C_%23_%22_%3E_%25_:_%27"><span class="tocnumber">6</span> <span class="toctext">Hey &lt; # " &gt;&#160;%&#160;: '</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Тест"><span class="tocnumber">3</span> <span class="toctext">Тест</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Тест_2"><span class="tocnumber">4</span> <span class="toctext">Тест</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#тест"><span class="tocnumber">5</span> <span class="toctext">тест</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Hey_&lt;_#_&quot;_&gt;_%_:_'"><span class="tocnumber">6</span> <span class="toctext">Hey &lt; # " &gt;&#160;%&#160;: '</span></a></li>
 </ul>
 </div>
 
@@ -29414,8 +29455,8 @@ wgFragmentMode=[ 'html5' ]
 <h2><span class="mw-headline" id="Тест_2">Тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="тест">тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="Hey_&lt;_#_&quot;_&gt;_%_:_'">Hey &lt; # " &gt;&#160;%&#160;: '</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Hey &lt; # &quot; &gt; % : '">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<p><a href="#Foo_bar">#Foo bar</a> <a href="#foo_Bar">#foo Bar</a> <a href="#%D0%A2%D0%B5%D1%81%D1%82">#Тест</a> <a href="#%D1%82%D0%B5%D1%81%D1%82">#тест</a> <a href="#Hey_%3C_%23_%22_%3E_%25_:_%27">#Hey &lt; # " &gt;&#160;%&#160;: '</a>
-</p><p>%F0%9F%92%A9 <span id="%F0%9F%92%A9"></span>
-</p><p><a href="#%E5%95%A4%E9%85%92">#啤酒</a> <a href="#%E5%95%A4%E9%85%92">#啤酒</a>
+<p><a href="#Foo_bar">#Foo bar</a> <a href="#foo_Bar">#foo Bar</a> <a href="#Тест">#Тест</a> <a href="#тест">#тест</a> <a href="#Hey_&lt;_#_&quot;_&gt;_%_:_'">#Hey &lt; # " &gt;&#160;%&#160;: '</a>
+</p><p>💩 <span id="💩"></span>
+</p><p><a href="#啤酒">#啤酒</a> <a href="#啤酒">#啤酒</a>
 </p>
 !! end

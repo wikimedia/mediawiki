@@ -1,3 +1,5 @@
+@import 'mediawiki.mixins';
+
 .mw-rcfilters-ui-saveFiltersPopupButtonWidget {
 	&-popup {
 		&-layout,
@@ -6,10 +8,16 @@
 		}
 
 		> .oo-ui-popupWidget-popup > .oo-ui-popupWidget-head {
+			position: relative;
 			height: auto;
 			padding: 1em;
 			// Icon width + icon left position (rounded to 0.5 to give a little extra margin)
 			padding-right: 1.875em + 0.5em;
+
+			> .oo-ui-buttonWidget {
+				top: 50%;
+				.transform( translateY( -50% ) );
+			}
 
 			> .oo-ui-iconWidget {
 				float: none;
@@ -19,10 +27,11 @@
 
 			> .oo-ui-labelElement-label {
 				float: none;
-				display: inline;
+				display: inline-block;
 				font-size: 1.2em;
 				margin: 0;
 				font-weight: bold;
+				vertical-align: middle;
 			}
 		}
 	}

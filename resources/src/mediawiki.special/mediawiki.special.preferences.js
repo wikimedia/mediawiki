@@ -11,7 +11,6 @@
 			return this.id.replace( /^mw-prefsection/g, 'preftab' );
 		};
 
-		$( '#prefsubmit' ).attr( 'id', 'prefcontrol' );
 		$preftoc = $( '#preftoc' );
 		$preferences = $( '#preferences' );
 
@@ -106,12 +105,12 @@
 		function detectHash() {
 			var hash = location.hash,
 				matchedElement, parentSection;
-			if ( hash.match( /^#mw-prefsection-[\w-]+/ ) ) {
+			if ( hash.match( /^#mw-prefsection-[\w]+$/ ) ) {
 				mw.storage.session.remove( 'mwpreferences-prevTab' );
 				switchPrefTab( hash.replace( '#mw-prefsection-', '' ) );
-			} else if ( hash.match( /^#mw-[\w-]+/ ) ) {
+			} else if ( hash.match( /^#mw-[\w-]+$/ ) ) {
 				matchedElement = document.getElementById( hash.slice( 1 ) );
-				parentSection = $( matchedElement ).closest( '.prefsection' );
+				parentSection = $( matchedElement ).parent().closest( '[id^="mw-prefsection-"]' );
 				if ( parentSection.length ) {
 					mw.storage.session.remove( 'mwpreferences-prevTab' );
 					// Switch to proper tab and scroll to selected item.
