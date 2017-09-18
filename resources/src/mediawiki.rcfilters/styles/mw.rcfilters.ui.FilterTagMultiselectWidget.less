@@ -1,5 +1,4 @@
-@import 'mediawiki.ui/variables';
-@import 'mw.rcfilters.mixins.less';
+@import 'mediawiki.mixins';
 
 .mw-rcfilters-ui-filterTagMultiselectWidget {
 	max-width: none;
@@ -9,8 +8,6 @@
 		direction: ltr;
 		border-bottom-right-radius: 0;
 		height: 2.5em;
-
-		.input-placeholder-color( @colorGray5 );
 	}
 
 	&.oo-ui-widget-enabled .oo-ui-tagMultiselectWidget-handle {
@@ -81,10 +78,6 @@
 
 				.oo-ui-labelElement.oo-ui-optionWidget.oo-ui-buttonElement:first-child {
 					margin-left: 0;
-
-					> .oo-ui-buttonElement-button {
-						color: @colorGray5;
-					}
 				}
 			}
 		}
