@@ -351,9 +351,8 @@ class LocalFile extends File {
 		static $results = [];
 
 		if ( $prefix == '' ) {
-			return $fields;
+			return array_merge( $fields, [ 'description' ] );
 		}
-
 		if ( !isset( $results[$prefix] ) ) {
 			$prefixedFields = [];
 			foreach ( $fields as $field ) {
