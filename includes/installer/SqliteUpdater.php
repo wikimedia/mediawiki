@@ -193,6 +193,10 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'migrateComments' ],
 			[ 'renameIndex', 'l10n_cache', 'lc_lang_key', 'PRIMARY', false,
 				'patch-l10n_cache-primary-key.sql' ],
+			[ 'addTable', 'content', 'patch-content.sql' ],
+			[ 'addTable', 'content_models', 'patch-content_models.sql' ],
+			[ 'addTable', 'slots', 'patch-slots.sql' ],
+			[ 'addTable', 'slot_roles', 'patch-slot_roles.sql' ]
 		];
 	}
 
