@@ -71,7 +71,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addSequence', 'externallinks', false, 'externallinks_el_id_seq' ],
 			[ 'addSequence', 'watchlist', false, 'watchlist_wl_id_seq' ],
 			[ 'addSequence', 'change_tag', false, 'change_tag_ct_id_seq' ],
-			[ 'addSequence', 'tag_summary', false, 'tag_summary_ts_id_seq' ],
+			[ 'addSequence', 'tag_summary', false, 'tag_summary_ts_itag_summary_ts_id_seqtag_summary_ts_id_seqtag_summary_ts_id_seqd_seq' ],
 
 			# new tables
 			[ 'addTable', 'category', 'patch-category.sql' ],
@@ -483,6 +483,12 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addTable', 'comment', 'patch-comment-table.sql' ],
 			[ 'addIndex', 'site_stats', 'site_stats_pkey', 'patch-site_stats-pk.sql' ],
 			[ 'addTable', 'ip_changes', 'patch-ip_changes.sql' ],
+
+			// 1.31
+            [ 'addTable', 'slots', 'patch-slots-table.sql' ],
+            [ 'addTable', 'content', 'patch-content-table.sql' ],
+            [ 'addTable', 'content_moddels', 'patch-content_models-table.sql' ],
+            [ 'addTable', 'slot_roles', 'patch-slot_roles-table.sql' ],
 		];
 	}
 
