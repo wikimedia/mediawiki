@@ -611,6 +611,77 @@ CREATE INDEX /*i*/ar_usertext_timestamp ON /*_*/archive (ar_user_text,ar_timesta
 -- rows, such as change_tag.
 CREATE INDEX /*i*/ar_revid ON /*_*/archive (ar_rev_id);
 
+--
+-- Slots represent an n:m relation between revisions and content objects.
+-- A content object can have a specific "role" in one or more revisions.
+-- Each revision can have multiple content objects, each having a different role.
+--
+CREATE TABLE /*_*/slots (
+
+  -- reference to rev_id
+  slot_revision bigint unsigned NOT NULL,
+
+  -- reference to role_id
+  slot_role smallint unsigned NOT NULL,
+
+  -- reference to content_id
+  slot_content bigint unsigned NOT NULL,
+
+  -- whether the content is inherited (1) or new in this revision (0)
+  slot_inherited tinyint unsigned NOT NULL DEFAULT 0,
+
+  PRIMARY KEY ( slot_revision, slot_role )
+) /*$wgDBTableOptions*/;
+
+-- Index for finding revisions that modified a specific slot
+CREATE INDEX /*i*/slot_role_inherited ON /*_*/slots (slot_revision, slot_role, slot_inherited);
+
+--
+-- The content table represents content objects. It's primary purpose is to provide the necessary
+-- meta-data for loading and interpreting a serialized data blob to create a content object.
+--
+CREATE TABLE /*_*/content (
+
+  -- ID of the content object
+  content_id bigint unsigned PRIMARY KEY AUTO_INCREMENT,
+
+  -- Nominal size of the content object (not necessarily of the serialized blob)
+  content_size int unsigned NOT NULL,
+
+  -- Nominal hash of the content object (not necessarily of the serialized blob)
+  -- NOTE: nullable so we can stop storing the hash without changing the schema.
+  content_sha1 varbinary(32),
+
+  -- reference to model_id
+  -- XXX: we may want an index for this for statistics
+  content_model smallint unsigned NOT NULL,
+
+  -- URL-like address of the content blob
+  -- XXX: we may want an index on this so we can find orphan blobs
+  content_address varbinary(255) NOT NULL
+) /*$wgDBTableOptions*/;
+
+--
+-- Normalization table for role names
+--
+CREATE TABLE /*_*/roles (
+  role_id smallint PRIMARY KEY AUTO_INCREMENT,
+  role_name varbinary(64) NOT NULL
+);
+
+-- Index for looking of the internal ID of for a name
+CREATE UNIQUE INDEX /*i*/role_name ON /*_*/roles (role_name);
+
+--
+-- Normalization table for content model names
+--
+CREATE TABLE /*_*/models (
+  model_id smallint PRIMARY KEY AUTO_INCREMENT,
+  model_name varbinary(64) NOT NULL
+);
+
+-- Index for looking of the internal ID of for a name
+CREATE UNIQUE INDEX /*i*/model_name ON /*_*/models (model_name);
 
 --
 -- Track page-to-page hyperlinks within the wiki.
