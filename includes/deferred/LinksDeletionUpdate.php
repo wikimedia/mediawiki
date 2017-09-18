@@ -106,7 +106,11 @@ class LinksDeletionUpdate extends DataUpdate implements EnqueueableDataUpdate {
 				__METHOD__
 			);
 			if ( $row ) {
-				Category::newFromRow( $row, $title )->refreshCounts();
+				$cat = Category::newFromRow( $row, $title );
+				// T166757: do the update after the main job DB commit
+				DeferredUpdates::addCallableUpdate( function () use ( $cat ) {
+					$cat->refreshCounts();
+				} );
 			}
 		}
 
