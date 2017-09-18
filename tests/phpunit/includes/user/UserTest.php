@@ -610,7 +610,8 @@ class UserTest extends MediaWikiTestCase {
 			'expiry' => wfTimestamp( TS_MW, $expiryFiveHours ),
 		] );
 		$block->setTarget( $user1tmp );
-		$block->insert();
+		$res = $block->insert();
+		$this->assertTrue( (bool)$res['id'], 'Block succeeded' );
 		$user1 = User::newFromSession( $request1 );
 		$user1->mBlock = $block;
 		$user1->load();
@@ -678,7 +679,8 @@ class UserTest extends MediaWikiTestCase {
 		$request1->getSession()->setUser( $testUser );
 		$block = new Block( [ 'enableAutoblock' => true ] );
 		$block->setTarget( $testUser );
-		$block->insert();
+		$res = $block->insert();
+		$this->assertTrue( (bool)$res['id'], 'Block succeeded' );
 		$user = User::newFromSession( $request1 );
 		$user->mBlock = $block;
 		$user->load();
@@ -714,7 +716,8 @@ class UserTest extends MediaWikiTestCase {
 		$request1->getSession()->setUser( $user1Tmp );
 		$block = new Block( [ 'enableAutoblock' => true, 'expiry' => 'infinity' ] );
 		$block->setTarget( $user1Tmp );
-		$block->insert();
+		$res = $block->insert();
+		$this->assertTrue( (bool)$res['id'], 'Block succeeded' );
 		$user1 = User::newFromSession( $request1 );
 		$user1->mBlock = $block;
 		$user1->load();
@@ -801,7 +804,8 @@ class UserTest extends MediaWikiTestCase {
 		$request1->getSession()->setUser( $user1tmp );
 		$block = new Block( [ 'enableAutoblock' => true ] );
 		$block->setTarget( $user1tmp );
-		$block->insert();
+		$res = $block->insert();
+		$this->assertTrue( (bool)$res['id'], 'Block succeeded' );
 		$user1 = User::newFromSession( $request1 );
 		$user1->mBlock = $block;
 		$user1->load();
@@ -838,7 +842,8 @@ class UserTest extends MediaWikiTestCase {
 		$request1->getSession()->setUser( $user1tmp );
 		$block = new Block( [ 'enableAutoblock' => true ] );
 		$block->setTarget( $user1tmp );
-		$block->insert();
+		$res = $block->insert();
+		$this->assertTrue( (bool)$res['id'], 'Block succeeded' );
 		$user1 = User::newFromSession( $request1 );
 		$user1->mBlock = $block;
 		$user1->load();
