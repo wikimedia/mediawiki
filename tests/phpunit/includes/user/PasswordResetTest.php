@@ -150,6 +150,12 @@ class PasswordResetTest extends PHPUnit_Framework_TestCase {
 			'EnableEmail' => true,
 		] );
 
+		// Unregister the hooks for proper unit testing
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+			'mailPasswordInternal' => [],
+			'SpecialPasswordResetOnSubmit' => [],
+		] );
+
 		$authManager = $this->getMockBuilder( AuthManager::class )->disableOriginalConstructor()
 			->getMock();
 		$authManager->expects( $this->any() )->method( 'allowsAuthenticationDataChange' )
