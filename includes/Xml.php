@@ -615,9 +615,9 @@ class Xml {
 
 		if ( $content !== false ) {
 			$s .= $content . "\n";
+			$s .= self::closeElement( 'fieldset' ) . "\n";
 		}
 
-		$s .= self::closeElement( 'fieldset' ) . "\n";
 		return $s;
 	}
 
