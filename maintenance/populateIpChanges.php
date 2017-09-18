@@ -63,7 +63,6 @@ TEXT
 
 	public function doDBUpdates() {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
 		$dbw = $this->getDB( DB_MASTER );
 		$throttle = intval( $this->getOption( 'throttle', 0 ) );
 		$maxRevId = intval( $this->getOption( 'max-rev-id', 0 ) );
@@ -77,25 +76,26 @@ TEXT
 		$this->output( "Copying IP revisions to ip_changes, from rev_id $start to rev_id $end\n" );
 
 		while ( $blockStart <= $end ) {
-			$blockEnd = min( $blockStart + 200, $end );
-			$rows = $dbr->select(
+			$blockEnd = min( $blockStart + $this->mBatchSize, $end );
+			$rows = $dbw->select(
 				'revision',
 				[ 'rev_id', 'rev_timestamp', 'rev_user_text' ],
 				[ "rev_id BETWEEN $blockStart AND $blockEnd", 'rev_user' => 0 ],
-				__METHOD__,
-				[ 'ORDER BY' => 'rev_id ASC', 'LIMIT' => $this->mBatchSize ]
+				__METHOD__
 			);
 
-			if ( !$rows || $rows->numRows() === 0 ) {
+			$numRows = $rows->numRows();
+
+			if ( !$rows || $numRows === 0 ) {
 				break;
 			}
 
-			$this->output( "...checking $this->mBatchSize revisions for IP edits that need copying, " .
+			$this->output( "...checking $numRows revisions for IP edits that need copying, " .
 				"between rev_ids $blockStart and $blockEnd\n" );
 
 			$insertRows = [];
 			foreach ( $rows as $row ) {
-				// Double-check to make sure this is an IP, e.g. not maintenance user or imported revision.
+				// Make sure this is really an IP, e.g. not maintenance user or imported revision.
 				if ( IP::isValid( $row->rev_user_text ) ) {
 					$insertRows[] = [
 						'ipc_rev_id' => $row->rev_id,
