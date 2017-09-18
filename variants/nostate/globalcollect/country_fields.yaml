@@ -1,0 +1,9 @@
+AU:
+    state_province: true
+CA:
+    address: true
+GB:
+    address: true
+US:
+    postal_code: true
+    street_address: true
