@@ -1130,6 +1130,19 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * Checks whether the cause of the error is detected to be a timeout.
+	 *
+	 * It returns false by default, and not all engines support detecting this yet.
+	 * If this returns false, it will be treated as a generic query error.
+	 *
+	 * @param string $error Error text
+	 * @param int $errno Error number
+	 */
+	protected function wasQueryTimeout( $error, $errno ) {
+		return false;
+	}
+
 	public function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
 		if ( $this->ignoreErrors() || $tempIgnore ) {
 			$this->queryLogger->debug( "SQL ERROR (ignored): $error\n" );
@@ -1146,7 +1159,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				] )
 			);
 			$this->queryLogger->debug( "SQL ERROR: " . $error . "\n" );
-			throw new DBQueryError( $this, $error, $errno, $sql, $fname );
+			$wasQueryTimeout = $this->wasQueryTimeout( $error, $errno );
+			if ( $wasQueryTimeout ) {
+				throw new DBQueryTimeoutError( $this, $error, $errno, $sql, $fname );
+			} else {
+				throw new DBQueryError( $this, $error, $errno, $sql, $fname );
+			}
 		}
 	}
 
