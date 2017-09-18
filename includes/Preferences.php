@@ -974,7 +974,7 @@ class Preferences {
 		if ( $config->get( 'StructuredChangeFiltersShowPreference' ) ) {
 			$defaultPreferences['rcenhancedfilters-disable'] = [
 				'type' => 'toggle',
-				'section' => 'rc/advancedrc',
+				'section' => 'rc/opt-out',
 				'label-message' => 'rcfilters-preference-label',
 				'help-message' => 'rcfilters-preference-help',
 			];
