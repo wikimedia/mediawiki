@@ -486,6 +486,10 @@ abstract class DatabaseMysqlBase extends Database {
 	 */
 	abstract protected function mysqlError( $conn = null );
 
+	protected function wasQueryTimeout( $error, $errno ) {
+		return $errno == 2062;
+	}
+
 	/**
 	 * @param string $table
 	 * @param array $uniqueIndexes

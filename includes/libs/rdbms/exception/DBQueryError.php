@@ -40,19 +40,22 @@ class DBQueryError extends DBExpectedError {
 	 * @param int|string $errno
 	 * @param string $sql
 	 * @param string $fname
+	 * @param string $message Optional message, intended for subclases (optional)
 	 */
-	public function __construct( IDatabase $db, $error, $errno, $sql, $fname ) {
-		if ( $db instanceof Database && $db->wasConnectionError( $errno ) ) {
-			$message = "A connection error occured. \n" .
-				"Query: $sql\n" .
-				"Function: $fname\n" .
-				"Error: $errno $error\n";
-		} else {
-			$message = "A database query error has occurred. Did you forget to run " .
-				"your application's database schema updater after upgrading? \n" .
-				"Query: $sql\n" .
-				"Function: $fname\n" .
-				"Error: $errno $error\n";
+	public function __construct( IDatabase $db, $error, $errno, $sql, $fname, $message = null ) {
+		if ( $message === null ) {
+			if ( $db instanceof Database && $db->wasConnectionError( $errno ) ) {
+				$message = "A connection error occured. \n" .
+					 "Query: $sql\n" .
+					 "Function: $fname\n" .
+					 "Error: $errno $error\n";
+			} else {
+				$message = "A database query error has occurred. Did you forget to run " .
+					 "your application's database schema updater after upgrading? \n" .
+					 "Query: $sql\n" .
+					 "Function: $fname\n" .
+					 "Error: $errno $error\n";
+			}
 		}
 
 		parent::__construct( $db, $message );
