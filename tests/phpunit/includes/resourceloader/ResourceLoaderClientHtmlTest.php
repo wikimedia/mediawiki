@@ -43,6 +43,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 			'test.top' => [ 'position' => 'top' ],
 			'test.private.top' => [ 'group' => 'private', 'position' => 'top' ],
 			'test.private.bottom' => [ 'group' => 'private', 'position' => 'bottom' ],
+			'test.shouldembed.empty' => [ 'shouldEmbed' => true, 'isKnownEmpty' => true ],
 			'test.shouldembed' => [ 'shouldEmbed' => true ],
 
 			'test.styles.pure' => [ 'type' => ResourceLoaderModule::LOAD_STYLES ],
@@ -115,6 +116,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 			'test.private.bottom',
 			'test.private.top',
 			'test.top',
+			'test.shouldembed.empty',
 			'test.shouldembed',
 			'test.unregistered',
 		] );
@@ -138,6 +140,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 			'states' => [
 				'test.private.top' => 'loading',
 				'test.private.bottom' => 'loading',
+				'test.shouldembed.empty' => 'ready',
 				'test.shouldembed' => 'loading',
 				'test.styles.pure' => 'ready',
 				'test.styles.user.empty' => 'ready',
