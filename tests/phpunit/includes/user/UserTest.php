@@ -601,6 +601,7 @@ class UserTest extends MediaWikiTestCase {
 		] );
 
 		// 1. Log in a test user, and block them.
+		$userBlocker = $this->getTestUser()->getUser();
 		$user1tmp = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
 		$request1->getSession()->setUser( $user1tmp );
@@ -610,6 +611,7 @@ class UserTest extends MediaWikiTestCase {
 			'expiry' => wfTimestamp( TS_MW, $expiryFiveHours ),
 		] );
 		$block->setTarget( $user1tmp );
+		$block->setBlocker( $userBlocker );
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user1 = User::newFromSession( $request1 );
@@ -620,8 +622,8 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertTrue( $user1->isLoggedIn() );
 		$this->assertTrue( $user1->isBlocked() );
 		$this->assertEquals( Block::TYPE_USER, $block->getType() );
-		$this->assertTrue( $block->isAutoblocking() );
-		$this->assertGreaterThanOrEqual( 1, $block->getId() );
+		$this->assertTrue( $block->isAutoblocking(), 'Autoblock works' );
+		$this->assertGreaterThanOrEqual( 1, $block->getId(), 'Block ID is correct' );
 
 		// Test for the desired cookie name, value, and expiry.
 		$cookies = $request1->response()->getCookies();
@@ -640,7 +642,8 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertTrue( $user2->isAnon() );
 		$this->assertFalse( $user2->isLoggedIn() );
 		$this->assertTrue( $user2->isBlocked() );
-		$this->assertEquals( true, $user2->getBlock()->isAutoblocking() ); // Non-strict type-check.
+		// Non-strict type-check.
+		$this->assertEquals( true, $user2->getBlock()->isAutoblocking(), 'Autoblock still works' );
 		// Can't directly compare the objects becuase of member type differences.
 		// One day this will work: $this->assertEquals( $block, $user2->getBlock() );
 		$this->assertEquals( $block->getId(), $user2->getBlock()->getId() );
@@ -674,11 +677,13 @@ class UserTest extends MediaWikiTestCase {
 		] );
 
 		// 1. Log in a test user, and block them.
+		$userBlocker = $this->getTestUser()->getUser();
 		$testUser = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
 		$request1->getSession()->setUser( $testUser );
 		$block = new Block( [ 'enableAutoblock' => true ] );
 		$block->setTarget( $testUser );
+		$block->setBlocker( $userBlocker );
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user = User::newFromSession( $request1 );
@@ -710,12 +715,18 @@ class UserTest extends MediaWikiTestCase {
 			'wgCookiePrefix' => 'wm_infinite_block',
 			'wgSecretKey' => MWCryptRand::generateHex( 64, true ),
 		] );
+
 		// 1. Log in a test user, and block them indefinitely.
+		$userBlocker = $this->getTestUser()->getUser();
 		$user1Tmp = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
 		$request1->getSession()->setUser( $user1Tmp );
-		$block = new Block( [ 'enableAutoblock' => true, 'expiry' => 'infinity' ] );
+		$block = new Block( [
+			'enableAutoblock' => true,
+			'expiry' => 'infinity',
+		] );
 		$block->setTarget( $user1Tmp );
+		$block->setBlocker( $userBlocker );
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user1 = User::newFromSession( $request1 );
@@ -799,11 +810,13 @@ class UserTest extends MediaWikiTestCase {
 		] );
 
 		// 1. Log in a blocked test user.
+		$userBlocker = $this->getTestUser()->getUser();
 		$user1tmp = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
 		$request1->getSession()->setUser( $user1tmp );
 		$block = new Block( [ 'enableAutoblock' => true ] );
 		$block->setTarget( $user1tmp );
+		$block->setBlocker( $userBlocker );
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user1 = User::newFromSession( $request1 );
@@ -837,11 +850,13 @@ class UserTest extends MediaWikiTestCase {
 		] );
 
 		// 1. Log in a blocked test user.
+		$userBlocker = $this->getTestUser()->getUser();
 		$user1tmp = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
 		$request1->getSession()->setUser( $user1tmp );
 		$block = new Block( [ 'enableAutoblock' => true ] );
 		$block->setTarget( $user1tmp );
+		$block->setBlocker( $userBlocker );
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user1 = User::newFromSession( $request1 );
