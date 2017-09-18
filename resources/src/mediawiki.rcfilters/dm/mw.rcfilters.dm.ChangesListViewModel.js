@@ -11,6 +11,7 @@
 		OO.EventEmitter.call( this );
 
 		this.valid = true;
+		this.databaseTimeout = false;
 		this.newChangesExist = false;
 		this.nextFrom = null;
 		this.liveUpdate = false;
@@ -33,6 +34,7 @@
 	 * @event update
 	 * @param {jQuery|string} $changesListContent List of changes
 	 * @param {jQuery} $fieldset Server-generated form
+	 * @param {boolean} isDatabaseTimeout Whether this is an error state due to a database query
 	 * @param {boolean} isInitialDOM Whether the previous dom variables are from the initial page load
 	 * @param {boolean} fromLiveUpdate These are new changes fetched via Live Update
 	 *
@@ -72,16 +74,19 @@
 	 *
 	 * @param {jQuery|string} changesListContent
 	 * @param {jQuery} $fieldset
+	 * @param {boolean} isDatabaseTimeout Whether this is an error state due to a database query
+	 *   timeout.
 	 * @param {boolean} [isInitialDOM] Using the initial (already attached) DOM elements
 	 * @param {boolean} [separateOldAndNew] Whether a logical separation between old and new changes is needed
 	 * @fires update
 	 */
-	mw.rcfilters.dm.ChangesListViewModel.prototype.update = function ( changesListContent, $fieldset, isInitialDOM, separateOldAndNew ) {
+	mw.rcfilters.dm.ChangesListViewModel.prototype.update = function ( changesListContent, $fieldset, isDatabaseTimeout, isInitialDOM, separateOldAndNew ) {
 		var from = this.nextFrom;
 		this.valid = true;
 		this.extractNextFrom( $fieldset );
 		this.checkForUnseenWatchedChanges( changesListContent );
-		this.emit( 'update', changesListContent, $fieldset, isInitialDOM, separateOldAndNew ? from : null );
+		this.databaseTimeout = isDatabaseTimeout;
+		this.emit( 'update', changesListContent, $fieldset, isDatabaseTimeout, isInitialDOM, separateOldAndNew ? from : null );
 	};
 
 	/**
@@ -102,6 +107,13 @@
 	 */
 	mw.rcfilters.dm.ChangesListViewModel.prototype.getNewChangesExist = function () {
 		return this.newChangesExist;
+	};
+
+	/**
+	 * @return {boolean} Checks whether it is a database timeout
+	 */
+	mw.rcfilters.dm.ChangesListViewModel.prototype.isDatabaseTimeout = function () {
+		return this.databaseTimeout;
 	};
 
 	/**
