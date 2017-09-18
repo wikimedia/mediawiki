@@ -611,6 +611,93 @@ CREATE INDEX /*i*/ar_usertext_timestamp ON /*_*/archive (ar_user_text,ar_timesta
 -- rows, such as change_tag.
 CREATE INDEX /*i*/ar_revid ON /*_*/archive (ar_rev_id);
 
+--
+-- Slots represent an n:m relation between revisions and content objects.
+-- A content object can have a specific "role" in one or more revisions.
+-- Each revision can have multiple content objects, each having a different role.
+-- TODO: would revision_content be a better name?
+--
+CREATE TABLE /*_*/slots (
+  -- The page this slot belongs to; reference to page_id
+  -- TODO: decide if we need this (for sharding, analysis, and recovery)
+  -- TODO: bigint?
+  slot_page int unsigned NOT NULL,
+
+  -- reference to rev_id
+  slot_revision bigint unsigned NOT NULL,
+
+  -- reference to role_id
+  slot_role smallint unsigned NOT NULL,
+
+  -- reference to content_id
+  slot_content bigint unsigned NOT NULL,
+
+  -- whether the content is inherited (1) or new in this revision (0)
+  slot_inherited tinyint unsigned NOT NULL DEFAULT 0,
+
+  PRIMARY KEY ( slot_page, slot_revision, slot_role )
+) /*$wgDBTableOptions*/;
+
+-- Index for finding revisions that modified a specific slot
+CREATE INDEX /*i*/slot_page_role_inherited ON /*_*/slots (slot_page, slot_role, slot_inherited);
+
+-- Index for finding content usage (and thus detecting orphan content rows)
+CREATE INDEX /*i*/slot_content ON /*_*/slots (slot_page, slot_content);
+
+--
+-- The content table represents content objects. It's primary purpose is to provide the necessary
+-- meta-data for loading and interpreting a serialized data blob to create a content object.
+--
+CREATE TABLE /*_*/content (
+  -- The page this slot belongs to; reference to page_id
+  -- TODO: decide if we need this (for sharding, analysis, and recovery)
+  -- TODO: bigint?
+  content_page int unsigned NOT NULL,
+
+  -- ID of the content object
+  content_id bigint unsigned PRIMARY KEY AUTO_INCREMENT,
+
+  -- Nominal size of the content object (not necessarily of the serialized blob)
+  content_size int unsigned NOT NULL,
+
+  -- Nominal hash of the content object (not necessarily of the serialized blob)
+  -- TODO: only needed if we want to maintain a pre-computed rev_sha1.
+  --       We could also compute rev_sha1 on the fly for every new revison, but that
+  --       means loading even content that wasn't touched, just for hashing.
+  content_sha1 varbinary(32) NOT NULL,
+
+  -- reference to model_id
+  -- TODO: we may want an index for this for statistics
+  content_model smallint unsigned NOT NULL,
+
+  -- URL-like address of the content blob
+  -- TODO: we may want an index on this so we can find orphan blobs
+  content_address varbinary(255) NOT NULL,
+) /*$wgDBTableOptions*/;
+
+CREATE UNIQUE INDEX /*i*/content_page_id ON /*_*/content ( content_page, content_id );
+
+--
+-- Normalization table for role names
+--
+CREATE TABLE /*_*/roles (
+  role_id smallint PRIMARY KEY AUTO_INCREMENT,
+  role_name varbinary(64) NOT NULL
+);
+
+-- Index for looking of the internal ID of for a name
+CREATE UNIQUE INDEX /*i*/role_name ON /*_*/roles (role_name);
+
+--
+-- Normalization table for content model names
+--
+CREATE TABLE /*_*/models (
+  model_id smallint PRIMARY KEY AUTO_INCREMENT,
+  model_name varbinary(64) NOT NULL
+);
+
+-- Index for looking of the internal ID of for a name
+CREATE UNIQUE INDEX /*i*/model_name ON /*_*/models (model_name);
 
 --
 -- Track page-to-page hyperlinks within the wiki.
