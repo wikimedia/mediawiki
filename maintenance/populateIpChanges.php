@@ -88,6 +88,7 @@ TEXT
 			$numRows = $rows->numRows();
 
 			if ( !$rows || $numRows === 0 ) {
+				$blockStart = $blockEnd + 1;
 				break;
 			}
 
