@@ -1,4 +1,4 @@
-( function ( $, mw ) {
+( function ( mw ) {
 	QUnit.module( 'mediawiki.errorLogger', QUnit.newMwEnvironment() );
 
 	QUnit.test( 'installGlobalHandler', function ( assert ) {
@@ -39,4 +39,4 @@
 		assert.strictEqual( w.onerror( errorMessage, errorUrl, errorLine ), true,
 			'Global handler preserves true return from previous handler' );
 	} );
-}( jQuery, mediaWiki ) );
+}( mediaWiki ) );
