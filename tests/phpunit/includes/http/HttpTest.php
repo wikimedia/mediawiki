@@ -4,6 +4,13 @@
  * @group Http
  */
 class HttpTest extends MediaWikiTestCase {
+	public function setUp() {
+		parent::setUp();
+		if ( !extension_loaded( 'curl' ) ) {
+			$this->markTestSkipped( "PHP extension 'curl' is not loaded, skipping." );
+		}
+	}
+
 	/**
 	 * @dataProvider cookieDomains
 	 * @covers Cookie::validateCookieDomain
