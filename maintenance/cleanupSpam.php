@@ -49,10 +49,8 @@ class CleanupSpam extends Maintenance {
 		if ( !$wgUser ) {
 			$this->error( "Invalid username specified in 'spambot_username' message: $username", true );
 		}
-		// Create the user if necessary
-		if ( !$wgUser->getId() ) {
-			$wgUser->addToDatabase();
-		}
+		// Grant bot rights so we don't flood RecentChanges
+		$user->addGroup( 'bot' );
 		$spec = $this->getArg();
 		$like = LinkFilter::makeLikeArray( $spec );
 		if ( !$like ) {
