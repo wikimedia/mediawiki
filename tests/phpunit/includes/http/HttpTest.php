@@ -497,6 +497,10 @@ class HttpTest extends MediaWikiTestCase {
 	 * @dataProvider provideCurlConstants
 	 */
 	public function testCurlConstants( $value ) {
+		if ( !extension_loaded( 'curl' ) ) {
+			$this->markTestSkipped( "PHP extension 'curl' is not loaded, skipping." );
+		}
+
 		$this->assertTrue( defined( $value ), $value . ' not defined' );
 	}
 }
