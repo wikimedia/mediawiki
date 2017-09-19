@@ -152,8 +152,9 @@ class AuthManagerAuthPlugin extends \AuthPlugin {
 	}
 
 	public function updateExternalDBGroups( $user, $addgroups, $delgroups = [] ) {
-		\Hooks::run( 'UserGroupsChanged', [ $user, $addgroups, $delgroups ] );
-		return true;
+		throw new \BadMethodCallException(
+			'Update of user groups via AuthPlugin is not supported with AuthManager.'
+		);
 	}
 
 	public function canCreateAccounts() {

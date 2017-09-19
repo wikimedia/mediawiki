@@ -1462,14 +1462,16 @@ class User implements IDBAccessObject {
 		}
 
 		$oldGroups = $this->getGroups(); // previous groups
+		$oldUGMs = $this->getGroupMemberships();
 		foreach ( $toPromote as $group ) {
 			$this->addGroup( $group );
 		}
-		// update groups in external authentication database
-		Hooks::run( 'UserGroupsChanged', [ $this, $toPromote, [], false, false ] );
-		AuthManager::callLegacyAuthPlugin( 'updateExternalDBGroups', [ $this, $toPromote ] );
-
 		$newGroups = array_merge( $oldGroups, $toPromote ); // all groups
+		$newUGMs = $this->getGroupMemberships();
+
+		// update groups in external authentication database
+		Hooks::run( 'UserGroupsChanged', [ $this, $toPromote, [], false, false, $oldUGMs, $newUGMs ] );
+		AuthManager::callLegacyAuthPlugin( 'updateExternalDBGroups', [ $this, $toPromote ] );
 
 		$logEntry = new ManualLogEntry( 'rights', 'autopromote' );
 		$logEntry->setPerformer( $this );
