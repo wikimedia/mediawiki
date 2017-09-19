@@ -131,14 +131,17 @@ class CleanupSpam extends Maintenance {
 				$page->doEditContent(
 					$content,
 					wfMessage( 'spam_reverting', $domain )->inContentLanguage()->text(),
-					EDIT_UPDATE,
+					// Hide edit from RecentChanges and mark it as bot
+					EDIT_UPDATE | EDIT_FORCE_BOT | EDIT_SUPPRESS_RC,
 					$rev->getId()
 				);
 			} elseif ( $this->hasOption( 'delete' ) ) {
 				// Didn't find a non-spammy revision, blank the page
 				$this->output( "deleting\n" );
-				$page->doDeleteArticle(
-					wfMessage( 'spam_deleting', $domain )->inContentLanguage()->text()
+				$page->doDeleteArticleReal(
+					wfMessage( 'spam_deleting', $domain )->inContentLanguage()->text(),
+					// Hide deletion from RecentChanges
+					EDIT_SUPPRESS_RC
 				);
 			} else {
 				// Didn't find a non-spammy revision, blank the page
@@ -148,7 +151,9 @@ class CleanupSpam extends Maintenance {
 				$this->output( "blanking\n" );
 				$page->doEditContent(
 					$content,
-					wfMessage( 'spam_blanking', $domain )->inContentLanguage()->text()
+					wfMessage( 'spam_blanking', $domain )->inContentLanguage()->text(),
+					// Hide edit from RecentChanges and mark it as bot as well
+					EDIT_UPDATE | EDIT_FORCE_BOT | EDIT_SUPPRESS_RC
 				);
 			}
 			$this->commitTransaction( $dbw, __METHOD__ );
