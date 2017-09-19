@@ -59,56 +59,39 @@ if ( $IP === false ) {
 	$IP = realpath( '.' ) ?: dirname( __DIR__ );
 }
 
-require_once "$IP/includes/PreConfigSetup.php";
-
-# Assert that composer dependencies were successfully loaded
-# Purposely no leading \ due to it breaking HHVM RepoAuthorative mode
-# PHP works fine with both versions
-# See https://github.com/facebook/hhvm/issues/5833
-if ( !interface_exists( 'Psr\Log\LoggerInterface' ) ) {
-	$message = (
-		'MediaWiki requires the <a href="https://github.com/php-fig/log">PSR-3 logging ' .
-		"library</a> to be present. This library is not embedded directly in MediaWiki's " .
-		"git repository and must be installed separately by the end user.\n\n" .
-		'Please see <a href="https://www.mediawiki.org/wiki/Download_from_Git' .
-		'#Fetch_external_libraries">mediawiki.org</a> for help on installing ' .
-		'the required components.'
-	);
-	echo $message;
-	trigger_error( $message, E_USER_ERROR );
-	die( 1 );
-}
-
-# Install a header callback
-MediaWiki\HeaderCallback::register();
-
-if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
-	# Use a callback function to configure MediaWiki
-	call_user_func( MW_CONFIG_CALLBACK );
-} else {
+// If no LocalSettings file exists, try to display an error page
+// (use a callback because it depends on TemplateParser)
+if ( !defined( 'MW_CONFIG_CALLBACK' ) ) {
 	if ( !defined( 'MW_CONFIG_FILE' ) ) {
 		define( 'MW_CONFIG_FILE', "$IP/LocalSettings.php" );
 	}
-
-	# LocalSettings.php is the per site customization file. If it does not exist
-	# the wiki installer needs to be launched or the generated file uploaded to
-	# the root wiki directory. Give a hint, if it is not readable by the server.
 	if ( !is_readable( MW_CONFIG_FILE ) ) {
-		require_once "$IP/includes/NoLocalSettings.php";
-		die();
+		function wfWebStartNoLocalSettings() {
+			# LocalSettings.php is the per-site customization file. If it does not exist
+			# the wiki installer needs to be launched or the generated file uploaded to
+			# the root wiki directory. Give a hint, if it is not readable by the server.
+			global $IP;
+			require_once "$IP/includes/NoLocalSettings.php";
+			die();
+		}
+		define( 'MW_CONFIG_CALLBACK', 'wfWebStartNoLocalSettings' );
 	}
-
-	# Include site settings. $IP may be changed (hopefully before the AutoLoader is invoked)
-	require_once MW_CONFIG_FILE;
 }
 
-# Initialise output buffering
-# Check that there is no previous output or previously set up buffers, because
-# that would cause us to potentially mix gzip and non-gzip output, creating a
-# big mess.
-if ( ob_get_level() == 0 ) {
-	require_once "$IP/includes/OutputHandler.php";
-	ob_start( 'wfOutputHandler' );
+// Custom setup for WebStart entry point
+if ( !defined( 'MW_SETUP_CALLBACK' ) ) {
+	function wfWebStartSetup() {
+		# Initialise output buffering
+		# Check that there is no previous output or previously set up buffers, because
+		# that would cause us to potentially mix gzip and non-gzip output, creating a
+		# big mess.
+		global $IP;
+		if ( ob_get_level() == 0 ) {
+			require_once "$IP/includes/OutputHandler.php";
+			ob_start( 'wfOutputHandler' );
+		}
+	}
+	define( 'MW_SETUP_CALLBACK', 'wfWebStartSetup' );
 }
 
 require_once "$IP/includes/Setup.php";
