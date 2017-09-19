@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function ( $ ) {
 	var loremIpsum = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.';
 
 	QUnit.module( 'jquery.makeCollapsible', QUnit.newMwEnvironment() );
@@ -374,4 +374,4 @@
 
 		$clone.find( '.mw-collapsible-toggle a' ).trigger( 'click' );
 	} );
-}( mediaWiki, jQuery ) );
+}( jQuery ) );
