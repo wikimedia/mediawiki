@@ -1928,7 +1928,6 @@ return [
 			'oojs-ui.styles.icons-editing-core',
 			'oojs-ui.styles.icons-editing-styling',
 			'oojs-ui.styles.icons-interactions',
-			'oojs-ui.styles.icons-layout',
 			'oojs-ui.styles.icons-media',
 		],
 	],
