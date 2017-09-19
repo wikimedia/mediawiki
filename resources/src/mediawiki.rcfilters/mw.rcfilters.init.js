@@ -90,7 +90,12 @@
 		}
 	};
 
-	$( rcfilters.init );
+	// Early execute of init
+	if ( document.readyState === 'interactive' || document.readyState === 'complete' ) {
+		rcfilters.init();
+	} else {
+		$( rcfilters.init );
+	}
 
 	module.exports = rcfilters;
 
