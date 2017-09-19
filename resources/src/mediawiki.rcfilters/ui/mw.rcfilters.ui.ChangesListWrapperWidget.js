@@ -310,14 +310,17 @@
 				);
 
 			// We are adding and changing cells in a table that, despite having nested rows,
-			// is actually all one big table. To do that right, we want to remove the 'placeholder'
-			// cell from the top row, because we're actually adding that placeholder in the children
-			// with the highlights.
-			$content.find( 'table.mw-enhanced-rc tr:first-child td.mw-changeslist-line-prefix' )
-				.detach();
+			// is actually all one big table. To prevent the highlights cell in the "nested"
+			// rows from stretching out the cell with the flags and timestamp in the top row,
+			// we give the latter colspan=2. Then to make things line up again, we add
+			// an empty <td> to the "nested" rows.
+
+			// Set colspan=2 on cell with flags and timestamp in top row
 			$content.find( 'table.mw-enhanced-rc tr:first-child td.mw-enhanced-rc' )
 				.prop( 'colspan', '2' );
-
+			// Add empty <td> to nested rows to compensate
+			$enhancedNestedPagesCell.parent().prepend( $( '<td>' ) );
+			// Add highlights cell to nested rows
 			$enhancedNestedPagesCell
 				.before(
 					$( '<td>' )
@@ -327,7 +330,7 @@
 			// We need to target the nested rows differently than the top rows so that the
 			// LESS rules applies correctly. In top rows, the rule should highlight all but
 			// the first 2 cells td:not( :nth-child( -n+2 ) and the nested rows, the rule
-			// should highlight all but the first 3 cells td:not( :nth-child( -n+3 )
+			// should highlight all but the first 4 cells td:not( :nth-child( -n+4 )
 			$enhancedNestedPagesCell
 				.closest( 'tr' )
 				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-enhanced-nested' );
