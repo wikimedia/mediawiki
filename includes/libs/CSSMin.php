@@ -150,7 +150,14 @@ class CSSMin {
 				'%3A' => ':', // Unencode colons
 				'%3D' => '=', // Unencode equals signs
 				'%22' => '"', // Unencode double quotes
+				'%0A' => ' ', // Change newlines to spaces
+				'%0D' => ' ', // Change carriage returns to spaces
+				'%09' => ' ', // Change tabs to spaces
 			] );
+			// Consolidate runs of multiple spaces in a row
+			$encoded = preg_replace( '/ {2,}/', ' ', $encoded );
+			// Remove leading and trailing spaces
+			$encoded = preg_replace( '/^ | $/', '', $encoded );
 			$uri = 'data:' . $type . ',' . $encoded;
 			if ( !$ie8Compat || strlen( $uri ) < self::DATA_URI_SIZE_LIMIT ) {
 				return $uri;
