@@ -1371,7 +1371,7 @@
 	"rcfilters-restore-default-filters": "기본 필터 복구",
 	"rcfilters-clear-all-filters": "필터 모두 지우기",
 	"rcfilters-show-new-changes": "최신 변경사항 보기",
-	"rcfilters-search-placeholder": "필터 최근 바뀜 (찾아보거나 입력을 시작하십시오)",
+	"rcfilters-search-placeholder": "필터 최근 바뀜 (찾아보거나 입력을 시작하세요)",
 	"rcfilters-invalid-filter": "유효하지 않은 필터",
 	"rcfilters-empty-filter": "활성화된 필터가 없습니다. 모든 기여가 표시됩니다.",
 	"rcfilters-filterlist-title": "필터",
