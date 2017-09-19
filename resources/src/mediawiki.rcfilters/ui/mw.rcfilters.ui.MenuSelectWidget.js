@@ -32,6 +32,7 @@
 		this.views = {};
 		this.userSelecting = false;
 
+		this.menuInitialized = false;
 		this.inputValue = '';
 		this.$overlay = config.$overlay || this.$element;
 		this.$body = $( '<div>' ).addClass( 'mw-rcfilters-ui-menuSelectWidget-body' );
@@ -128,10 +129,22 @@
 		this.switchView( this.model.getCurrentView() );
 	};
 
+
 	/**
-	 * Respond to model initialize event. Populate the menu from the model
+	 * Respond to toggle, popule the menu if not created yet
 	 */
-	mw.rcfilters.ui.MenuSelectWidget.prototype.onModelInitialize = function () {
+	mw.rcfilters.ui.MenuSelectWidget.prototype.toggle = function ( show ) {
+		this.lazyMenuCreation();
+		mw.rcfilters.ui.MenuSelectWidget.parent.prototype.toggle.call( this, show );
+	}
+
+	/**
+	 * lazy creation of the menu
+	 */
+	mw.rcfilters.ui.MenuSelectWidget.prototype.lazyMenuCreation = function () {
+		if ( this.menuInitialized ) return;
+		this.menuInitialized  = true;
+
 		var widget = this,
 			viewGroupCount = {},
 			groups = this.model.getFilterGroups();
@@ -188,6 +201,14 @@
 		} );
 
 		this.switchView( this.model.getCurrentView() );
+
+	}
+
+	/**
+	 * Respond to model initialize event. Populate the menu from the model
+	 */
+	mw.rcfilters.ui.MenuSelectWidget.prototype.onModelInitialize = function () {
+		this.menuInitialized = false;
 	};
 
 	/**
