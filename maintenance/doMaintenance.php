@@ -55,15 +55,14 @@ $maintenance->setup();
 // to $maintenance->mSelf. Keep that here for b/c
 $self = $maintenance->getName();
 
-require_once "$IP/includes/PreConfigSetup.php";
-
-if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
-	# Use a callback function to configure MediaWiki
-	call_user_func( MW_CONFIG_CALLBACK );
-} else {
-	// Require the configuration (probably LocalSettings.php)
-	require $maintenance->loadSettings();
+// Setup
+if ( !defined( 'MW_CONFIG_CALLBACK' ) ) {
+	// Default config loader for maintenance scripts (See also WebStart.php).
+	define( 'MW_CONFIG_CALLBACK', function () use ( $maintenance ) {
+		require $maintenance->loadSettings();
+	} );
 }
+require_once "$IP/includes/Setup.php";
 
 if ( $maintenance->getDbType() === Maintenance::DB_NONE ) {
 	if ( $wgLocalisationCacheConf['storeClass'] === false
@@ -75,8 +74,6 @@ if ( $maintenance->getDbType() === Maintenance::DB_NONE ) {
 }
 
 $maintenance->finalSetup();
-// Some last includes
-require_once "$IP/includes/Setup.php";
 
 // Initialize main config instance
 $maintenance->setConfig( MediaWikiServices::getInstance()->getMainConfig() );
