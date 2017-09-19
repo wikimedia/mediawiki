@@ -9,6 +9,7 @@ This not a release yet!
 * (T160462) Allow namespaces defined in extension.json to be overwritten locally.
 * (T168856) Allow SVGs created by Dia to be uploaded.
 * (T174262) Various backports for PHP 7.1 support.
+* (T66795) Mainly to work around restrictive DMARC policies.
 
 == MediaWiki 1.27.3 ==
 Due to a packaging error, the wrong version of the SyntaxHighlight extension was
