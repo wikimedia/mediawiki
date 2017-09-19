@@ -98,11 +98,11 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 				'wl_namespace=rc_namespace'
 			] ];
 		}
-		if ( $this->getUser()->isAllowed( 'rollback' ) ) {
-			$tables[] = 'page';
-			$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
-			$select[] = 'page_latest';
-		}
+
+		// JOIN on page, used for 'last revision' filter highlight
+		$tables[] = 'page';
+		$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
+		$select[] = 'page_latest';
 
 		$tagFilter = $opts['tagfilter'] ? explode( '|', $opts['tagfilter'] ) : [];
 		ChangeTags::modifyDisplayQuery(
