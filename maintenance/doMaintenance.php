@@ -55,27 +55,30 @@ $maintenance->setup();
 // to $maintenance->mSelf. Keep that here for b/c
 $self = $maintenance->getName();
 
-require_once "$IP/includes/PreConfigSetup.php";
-
-if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
-	# Use a callback function to configure MediaWiki
-	call_user_func( MW_CONFIG_CALLBACK );
-} else {
-	// Require the configuration (probably LocalSettings.php)
-	require $maintenance->loadSettings();
+// Define how settings are loaded (e.g. LocalSettings.php)
+if ( !defined( 'MW_CONFIG_CALLBACK' ) && !defined( 'MW_CONFIG_FILE' ) ) {
+	define( 'MW_CONFIG_FILE', $maintenance->loadSettings() );
 }
 
-if ( $maintenance->getDbType() === Maintenance::DB_NONE ) {
-	if ( $wgLocalisationCacheConf['storeClass'] === false
-		&& ( $wgLocalisationCacheConf['store'] == 'db'
-			|| ( $wgLocalisationCacheConf['store'] == 'detect' && !$wgCacheDirectory ) )
-	) {
-		$wgLocalisationCacheConf['storeClass'] = 'LCStoreNull';
+// Custom setup for Maintenance entry point
+if ( !defined( 'MW_SETUP_CALLBACK' ) ) {
+	function wfMaintenanceSetup() {
+		// @codingStandardsIgnoreLine MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
+		global $maintenance, $wgLocalisationCacheConf, $wgCacheDirectory;
+		if ( $maintenance->getDbType() === Maintenance::DB_NONE ) {
+			if ( $wgLocalisationCacheConf['storeClass'] === false
+				&& ( $wgLocalisationCacheConf['store'] == 'db'
+					|| ( $wgLocalisationCacheConf['store'] == 'detect' && !$wgCacheDirectory ) )
+			) {
+				$wgLocalisationCacheConf['storeClass'] = 'LCStoreNull';
+			}
+		}
+
+		$maintenance->finalSetup();
 	}
+	define( 'MW_SETUP_CALLBACK', 'wfMaintenanceSetup' );
 }
 
-$maintenance->finalSetup();
-// Some last includes
 require_once "$IP/includes/Setup.php";
 
 // Initialize main config instance
