@@ -311,15 +311,6 @@
 						.append( $highlights.clone() )
 				);
 
-			// We are adding and changing cells in a table that, despite having nested rows,
-			// is actually all one big table. To do that right, we want to remove the 'placeholder'
-			// cell from the top row, because we're actually adding that placeholder in the children
-			// with the highlights.
-			$content.find( 'table.mw-enhanced-rc tr:first-child td.mw-changeslist-line-prefix' )
-				.detach();
-			$content.find( 'table.mw-enhanced-rc tr:first-child td.mw-enhanced-rc' )
-				.prop( 'colspan', '2' );
-
 			$enhancedNestedPagesCell
 				.before(
 					$( '<td>' )
