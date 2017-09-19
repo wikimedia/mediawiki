@@ -41,6 +41,7 @@ section).
   requested through the configuration parameter $wgDBservers.
 * $wgOOUIEditPage was removed, as it is now the default. This was documented as a
   temporary variable during the migration period.
+* (T176206) The cleanupSpam.php maintenance script now operates with a 'bot' flag.
 
 === New features in 1.30 ===
 * (T37247) Output from Parser::parse() will now be wrapped in a div with
