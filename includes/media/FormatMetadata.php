@@ -1761,9 +1761,9 @@ class FormatMetadata extends ContextSource {
 			}
 			return $newValue;
 		} else { // _type is 'ul' or 'ol' or missing in which case it defaults to 'ul'
-			list( $k, $v ) = each( $value );
-			if ( $k === '_type' ) {
-				$v = current( $value );
+			$v = reset( $value );
+			if ( key( $value ) === '_type' ) {
+				$v = next( $value );
 			}
 			return $v;
 		}
