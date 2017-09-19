@@ -116,11 +116,12 @@ class HashRing {
 		// If more locations are requested, wrap-around and keep adding them
 		reset( $this->ring );
 		while ( count( $locations ) < $limit ) {
-			list( $location, ) = each( $this->ring );
+			$location = key( $this->ring );
 			if ( $location === $primaryLocation ) {
 				break; // don't go in circles
 			}
 			$locations[] = $location;
+			next( $this->ring );
 		}
 
 		return $locations;

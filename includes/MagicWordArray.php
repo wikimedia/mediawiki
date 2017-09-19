@@ -202,9 +202,8 @@ class MagicWordArray {
 	 * @return array
 	 */
 	public function parseMatch( $m ) {
-		reset( $m );
-		while ( list( $key, $value ) = each( $m ) ) {
-			if ( $key === 0 || $value === '' ) {
+		foreach ( $m as $key => $paramValue ) {
+			if ( is_int( $key ) || $paramValue === '' ) {
 				continue;
 			}
 			$parts = explode( '_', $key, 2 );
@@ -214,7 +213,6 @@ class MagicWordArray {
 				throw new MWException( __METHOD__ . ': bad parameter name' );
 			}
 			list( /* $synIndex */, $magicName ) = $parts;
-			$paramValue = next( $m );
 			return [ $magicName, $paramValue ];
 		}
 		// This shouldn't happen either
