@@ -1,4 +1,5 @@
 @import 'mediawiki.mixins';
+@import 'mediawiki.ui/variables';
 
 .mw-rcfilters-ui-filterTagMultiselectWidget {
 	max-width: none;
@@ -8,6 +9,14 @@
 		direction: ltr;
 		border-bottom-right-radius: 0;
 		height: 2.5em;
+
+		/* stylelint-disable indentation */
+		.mixin-placeholder( {
+			color: @colorGray5;
+			opacity: 1;
+			font-weight: bold;
+		} );
+		/* stylelint-enable indentation */
 	}
 
 	&.oo-ui-widget-enabled .oo-ui-tagMultiselectWidget-handle {
@@ -78,6 +87,10 @@
 
 				.oo-ui-labelElement.oo-ui-optionWidget.oo-ui-buttonElement:first-child {
 					margin-left: 0;
+
+					> .oo-ui-buttonElement-button {
+						color: @colorGray5;
+					}
 				}
 			}
 		}
