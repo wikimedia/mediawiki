@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.23.0
+ * OOjs UI v0.23.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-09-05T21:24:03Z
+ * Date: 2017-09-20T00:32:00Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -626,13 +626,21 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   opacity: 0.2;
 }
 .oo-ui-radioOptionWidget {
+  display: table;
+  width: 100%;
   padding: 0;
   background-color: transparent;
 }
 .oo-ui-radioOptionWidget .oo-ui-radioInputWidget,
-.oo-ui-radioOptionWidget.oo-ui-labelElement .oo-ui-labelElement-label {
-  display: inline-block;
+.oo-ui-radioOptionWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
+  display: table-cell;
   vertical-align: middle;
+}
+.oo-ui-radioOptionWidget .oo-ui-radioInputWidget {
+  width: 1px;
+}
+.oo-ui-radioOptionWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
+  white-space: normal;
 }
 .oo-ui-radioOptionWidget.oo-ui-optionWidget-selected,
 .oo-ui-radioOptionWidget.oo-ui-optionWidget-pressed,
@@ -1387,12 +1395,20 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   color: #ccc;
 }
 .oo-ui-checkboxMultioptionWidget {
+  display: table;
+  width: 100%;
   padding: 0;
 }
 .oo-ui-checkboxMultioptionWidget .oo-ui-checkboxInputWidget,
-.oo-ui-checkboxMultioptionWidget.oo-ui-labelElement .oo-ui-labelElement-label {
-  display: inline-block;
+.oo-ui-checkboxMultioptionWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
+  display: table-cell;
   vertical-align: middle;
+}
+.oo-ui-checkboxMultioptionWidget .oo-ui-checkboxInputWidget {
+  width: 1px;
+}
+.oo-ui-checkboxMultioptionWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
+  white-space: normal;
 }
 .oo-ui-checkboxMultioptionWidget.oo-ui-labelElement .oo-ui-labelElement-label {
   padding-left: 0.5em;
