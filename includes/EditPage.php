@@ -230,16 +230,28 @@ class EditPage {
 	/** @var bool */
 	public $isConflict = false;
 
-	/** @var bool */
+	/**
+	 * @deprecated since 1.30 use Title::isCssJsSubpage()
+	 * @var bool
+	 */
 	public $isCssJsSubpage = false;
 
-	/** @var bool */
+	/**
+	 * @deprecated since 1.30 use Title::isCssSubpage()
+	 * @var bool
+	 */
 	public $isCssSubpage = false;
 
-	/** @var bool */
+	/**
+	 * @deprecated since 1.30 use Title::isJsSubpage()
+	 * @var bool
+	 */
 	public $isJsSubpage = false;
 
-	/** @var bool */
+	/**
+	 * @deprecated since 1.30
+	 * @var bool
+	 */
 	public $isWrongCaseCssJsPage = false;
 
 	/** @var bool New page or new section */
@@ -627,10 +639,11 @@ class EditPage {
 
 		$this->isConflict = false;
 		// css / js subpages of user pages get a special treatment
+		// The following member variables are deprecated since 1.30,
+		// the functions should be used instead.
 		$this->isCssJsSubpage = $this->mTitle->isCssJsSubpage();
 		$this->isCssSubpage = $this->mTitle->isCssSubpage();
 		$this->isJsSubpage = $this->mTitle->isJsSubpage();
-		// @todo FIXME: Silly assignment.
 		$this->isWrongCaseCssJsPage = $this->isWrongCaseCssJsPage();
 
 		# Show applicable editing introductions
@@ -2795,7 +2808,7 @@ class EditPage {
 
 		$out->addHTML( $this->editFormTextBeforeContent );
 
-		if ( !$this->isCssJsSubpage && $showToolbar && $user->getOption( 'showtoolbar' ) ) {
+		if ( !$this->mTitle->isCssJsSubpage() && $showToolbar && $user->getOption( 'showtoolbar' ) ) {
 			$out->addHTML( self::getEditToolbar( $this->mTitle ) );
 		}
 
@@ -3031,27 +3044,28 @@ class EditPage {
 				);
 			}
 		} else {
-			if ( $this->isCssJsSubpage ) {
+			if ( $this->mTitle->isCssJsSubpage() ) {
 				# Check the skin exists
-				if ( $this->isWrongCaseCssJsPage ) {
+				if ( $this->isWrongCaseCssJsPage() ) {
 					$out->wrapWikiMsg(
 						"<div class='error' id='mw-userinvalidcssjstitle'>\n$1\n</div>",
 						[ 'userinvalidcssjstitle', $this->mTitle->getSkinFromCssJsSubpage() ]
 					);
 				}
 				if ( $this->getTitle()->isSubpageOf( $user->getUserPage() ) ) {
+					$isCssSubpage = $this->mTitle->isCssSubpage();
 					$out->wrapWikiMsg( '<div class="mw-usercssjspublic">$1</div>',
-						$this->isCssSubpage ? 'usercssispublic' : 'userjsispublic'
+						$isCssSubpage ? 'usercssispublic' : 'userjsispublic'
 					);
 					if ( $this->formtype !== 'preview' ) {
-						if ( $this->isCssSubpage && $wgAllowUserCss ) {
+						if ( $isCssSubpage && $wgAllowUserCss ) {
 							$out->wrapWikiMsg(
 								"<div id='mw-usercssyoucanpreview'>\n$1\n</div>",
 								[ 'usercssyoucanpreview' ]
 							);
 						}
 
-						if ( $this->isJsSubpage && $wgAllowUserJs ) {
+						if ( $this->mTitle->isJsSubpage() && $wgAllowUserJs ) {
 							$out->wrapWikiMsg(
 								"<div id='mw-userjsyoucanpreview'>\n$1\n</div>",
 								[ 'userjsyoucanpreview' ]
