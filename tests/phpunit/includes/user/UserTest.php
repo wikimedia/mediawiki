@@ -472,6 +472,7 @@ class UserTest extends MediaWikiTestCase {
 			'Interwiki prefix' => [ 'interwiki:Username', [ 'creatable' => false, 'usable' => false,
 				'valid' => false, 'false' => 'Interwiki:Username' ] ],
 			'With hash' => [ 'name with # hash', [ 'creatable' => false, 'usable' => false ] ],
+			'User prefix' => [ 'User:Username', [ 'creatable' => 'Username' ] ],
 			'Multi spaces' => [ 'Multi  spaces', [ 'creatable' => 'Multi spaces',
 				'usable' => 'Multi spaces' ] ],
 			'Lowercase' => [ 'lowercase', [ 'creatable' => 'Lowercase' ] ],

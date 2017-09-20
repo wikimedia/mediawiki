@@ -1090,10 +1090,6 @@ class User implements IDBAccessObject {
 	 * @return bool|string
 	 */
 	public static function getCanonicalName( $name, $validate = 'valid' ) {
-		// Force usernames to capital
-		global $wgContLang;
-		$name = $wgContLang->ucfirst( $name );
-
 		# Reject names containing '#'; these will be cleaned up
 		# with title normalisation, but then it's too late to
 		# check elsewhere
