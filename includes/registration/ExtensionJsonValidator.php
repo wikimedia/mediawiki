@@ -105,7 +105,7 @@ class ExtensionJsonValidator {
 			// All good.
 			return true;
 		} else {
-			$out = "$path did pass validation.\n";
+			$out = "$path did not pass validation.\n";
 			foreach ( $validator->getErrors() as $error ) {
 				$out .= "[{$error['property']}] {$error['message']}\n";
 			}
