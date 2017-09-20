@@ -29,6 +29,7 @@
 		this.model = model;
 		this.queriesModel = savedQueriesModel;
 		this.$overlay = config.$overlay || this.$element;
+		this.uiOpen = true;
 
 		this.filterTagWidget = new mw.rcfilters.ui.FilterTagMultiselectWidget(
 			this.controller,
@@ -57,6 +58,13 @@
 				$overlay: this.$overlay
 			}
 		);
+
+		this.toggleUIButton = new OO.ui.ButtonWidget( {
+				label: mw.msg( 'rcfilters-hide-interface' )
+			} );
+
+		// Events
+		this.toggleUIButton.connect( this, { click: 'onToggleUIButton' } );
 
 		// Initialize
 		this.$top = $( '<div>' )
@@ -96,5 +104,35 @@
 	 */
 	mw.rcfilters.ui.FilterWrapperWidget.prototype.setTopSection = function ( $topSectionElement ) {
 		this.$top.append( $topSectionElement );
+
+		// Add 'hide inteface' button
+		$topSectionElement.find( '.mw-rcfilters-ui-row' ).prepend(
+			$( '<td>' )
+				.addClass( 'mw-rcfilters-ui-cell' )
+				.append( this.toggleUIButton.$element )
+		);
+	};
+
+	mw.rcfilters.ui.FilterWrapperWidget.prototype.onToggleUIButton = function () {
+		var $link,
+			$rchead = $( '.rcfilters-head' ),
+			$link = $rchead.find( '.mw-rcfilters-ui-filterWrapperWidget-hideUIButton' );
+
+		if ( !$link.length ) {
+			$link = $( '<a>' )
+				.addClass( 'mw-rcfilters-ui-filterWrapperWidget-hideUIButton' )
+				.text( mw.msg( 'rcfilters-open-interface' ) )
+				.on( 'click', this.onToggleUIButton.bind( this ) );
+			$rchead.append( $link );
+		}
+		this.uiOpen = !this.uiOpen;
+
+		$link.toggleClass( 'oo-ui-element-hidden', this.uiOpen );
+		$( 'body' ).toggleClass( 'rcfilters-lazyload', !this.uiOpen );
+
+		// Update user option
+		new mw.Api().saveOption( 'rcfilters-expand-ui', Number( this.uiOpen ) );
+		// Update the preference for this session
+		mw.user.options.set( 'rcfilters-expand-ui', Number( this.uiOpen ) );
 	};
 }( mediaWiki ) );

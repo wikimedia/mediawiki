@@ -1353,6 +1353,8 @@
 	"recentchanges-legend-unpatrolled": "{{int:recentchanges-label-unpatrolled}}",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "Show",
+	"rcfilters-open-interface": "Show advanced filters interface",
+	"rcfilters-hide-interface": "Hide interface",
 	"rcfilters-tag-remove": "Remove '$1'",
 	"rcfilters-legend-heading": "<strong>List of abbreviations:</strong>",
 	"rcfilters-other-review-tools": "<strong>Other review tools</strong>",

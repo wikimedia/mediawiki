@@ -1756,6 +1756,11 @@ return [
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.less',
 		],
 	],
+	'mediawiki.rcfilters.filters.base.styles.lazy' => [
+		'styles' => [
+			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.lazy.less',
+		],
+	],
 	'mediawiki.rcfilters.highlightCircles.seenunseen.styles' => [
 		'styles' => [
 			'resources/src/mediawiki.rcfilters/' .
@@ -1782,6 +1787,14 @@ return [
 			'mediawiki.api.options',
 			'mediawiki.Uri',
 			'mediawiki.user',
+		],
+	],
+	'mediawiki.rcfilters.filters.lazy' => [
+		'scripts' => [
+			'resources/src/mediawiki.rcfilters/mw.rcfilters.lazy.js',
+		],
+		'messages' => [
+			'rcfilters-open-interface'
 		],
 	],
 	'mediawiki.rcfilters.filters.ui' => [
@@ -1851,6 +1864,7 @@ return [
 			],
 		],
 		'messages' => [
+			'rcfilters-hide-interface',
 			'rcfilters-tag-remove',
 			'rcfilters-activefilters',
 			'rcfilters-advancedfilters',
@@ -1917,6 +1931,7 @@ return [
 			'quotation-marks',
 		],
 		'dependencies' => [
+			'mediawiki.rcfilters.filters.base.styles.lazy',
 			'oojs-ui',
 			'jquery.makeCollapsible',
 			'mediawiki.language',

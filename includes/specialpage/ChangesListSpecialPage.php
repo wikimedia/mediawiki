@@ -1422,8 +1422,14 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$out->addModules( 'mediawiki.special.changeslist.legend.js' );
 
 		if ( $this->isStructuredFilterUiEnabled() ) {
-			$out->addModules( 'mediawiki.rcfilters.filters.ui' );
-			$out->addModuleStyles( 'mediawiki.rcfilters.filters.base.styles' );
+			if ( $this->getUser()->getBoolOption( 'rcfilters-expand-ui' ) ) {
+				$out->addModules( 'mediawiki.rcfilters.filters.ui' );
+				$out->addModuleStyles( 'mediawiki.rcfilters.filters.base.styles' );
+			} else {
+				$out->addModules( 'mediawiki.rcfilters.filters.lazy' );
+				$out->addModuleStyles( 'mediawiki.rcfilters.filters.base.styles.lazy' );
+				$out->addBodyClasses( 'rcfilters-lazyload' );
+			}
 		}
 	}
 
