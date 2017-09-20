@@ -472,15 +472,17 @@ class UserTest extends MediaWikiTestCase {
 			'Namespace prefix' => [ 'Talk:Username', [ 'creatable' => false, 'usable' => false,
 				'valid' => false, 'false' => 'Talk:Username' ] ],
 			'Interwiki prefix' => [ 'interwiki:Username', [ 'creatable' => false, 'usable' => false,
-				'valid' => false, 'false' => 'Interwiki:Username' ] ],
+				'valid' => false, 'false' => 'interwiki:Username' ] ],
 			'With hash' => [ 'name with # hash', [ 'creatable' => false, 'usable' => false ] ],
+			'User prefix' => [ 'User:Username', [ 'creatable' => 'Username', 'usable' => 'Username' ] ],
 			'Multi spaces' => [ 'Multi  spaces', [ 'creatable' => 'Multi spaces',
 				'usable' => 'Multi spaces' ] ],
 			'Lowercase' => [ 'lowercase', [ 'creatable' => 'Lowercase' ] ],
 			'Invalid character' => [ 'in[]valid', [ 'creatable' => false, 'usable' => false,
-				'valid' => false, 'false' => 'In[]valid' ] ],
+				'valid' => false, 'false' => 'in[]valid' ] ],
 			'With slash' => [ 'with / slash', [ 'creatable' => false, 'usable' => false, 'valid' => false,
-				'false' => 'With / slash' ] ],
+				'false' => 'with / slash' ] ],
+			'IP address' => [ '127.127.127.127', [ 'valid' => false, 'false' => '127.127.127.127' ] ],
 		];
 	}
 
