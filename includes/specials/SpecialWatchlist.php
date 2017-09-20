@@ -32,6 +32,8 @@ use Wikimedia\Rdbms\IDatabase;
  * @ingroup SpecialPage
  */
 class SpecialWatchlist extends ChangesListSpecialPage {
+	protected static $savedQueriesPreferenceName = 'rcfilters-wl-saved-queries';
+
 	private $maxDays;
 
 	public function __construct( $page = 'Watchlist', $restriction = 'viewmywatchlist' ) {
@@ -100,10 +102,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$output->addModuleStyles( [ 'mediawiki.rcfilters.highlightCircles.seenunseen.styles' ] );
 
 			$output->addJsConfigVars( 'wgStructuredChangeFiltersLiveUpdateSupported', false );
-			$output->addJsConfigVars(
-				'wgStructuredChangeFiltersSavedQueriesPreferenceName',
-				'rcfilters-wl-saved-queries'
-			);
 			$output->addJsConfigVars(
 				'wgStructuredChangeFiltersEditWatchlistUrl',
 				SpecialPage::getTitleFor( 'EditWatchlist' )->getLocalURL()
