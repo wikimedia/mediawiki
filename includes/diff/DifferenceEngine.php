@@ -182,7 +182,10 @@ class DifferenceEngine extends ContextSource {
 		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
 			$dbr = wfGetDB( DB_REPLICA );
 			$row = $dbr->selectRow( 'archive',
-				Revision::selectArchiveFields(),
+				array_merge(
+					Revision::selectArchiveFields(),
+					[ 'ar_namespace', 'ar_title' ]
+				),
 				[ 'ar_rev_id' => $id ],
 				__METHOD__ );
 			if ( $row ) {
