@@ -1,6 +1,9 @@
 @import 'mediawiki.mixins.animation';
 @import 'mw.rcfilters.mixins';
 
+@rcfilters-spinner-width: 70px;
+@rcfilters-head-min-height: 200px;
+
 // Corrections for the standard special page
 .client-js {
 	.cloptions {
@@ -8,15 +11,14 @@
 	}
 
 	.rcfilters-head {
-		min-height: 200px;
+		min-height: @rcfilters-head-min-height;
+	}
+	body:not( .mw-rcfilters-ui-initialized ) .rcfilters-head {
+		opacity: 0.5;
+		pointer-events: none;
 
-		&:not( .mw-rcfilters-ui-ready ) {
-			opacity: 0.5;
-			pointer-events: none;
-
-			.cloptions {
-				display: none;
-			}
+		.cloptions {
+			display: none;
 		}
 	}
 
@@ -32,22 +34,23 @@
 			// message of our own
 			display: none;
 		}
+	}
 
-		&:not( .mw-rcfilters-ui-ready ) {
-			opacity: 0.5;
-		}
+	body:not( .mw-rcfilters-ui-initialized ) .mw-changeslist,
+	body.mw-rcfilters-ui-loading .mw-changeslist {
+		opacity: 0.5;
 	}
 
 	.rcfilters-spinner {
-		margin: -2em auto 0;
-		width: 70px;
-		opacity: 0.8;
 		display: none;
-		white-space: nowrap;
+		position: absolute;
+		left: 50%;
+		width: @rcfilters-spinner-width;
+		// Make sure the middle of the spinner is centered, rather than its left edge
+		margin-left: -@rcfilters-spinner-width/2;
 
-		&:not( .mw-rcfilters-ui-ready ) {
-			display: block;
-		}
+		opacity: 0.8;
+		white-space: nowrap;
 
 		& .rcfilters-spinner-bounce,
 		&:before,
@@ -68,6 +71,16 @@
 		&:after {
 			.animation-delay( 0s );
 		}
+	}
+	body:not( .mw-rcfilters-ui-initialized ) .rcfilters-spinner {
+		display: block;
+		// When initializing, display the spinner on top of the area where the UI will appear
+		margin-top: -@rcfilters-head-min-height/2;
+	}
+	body.mw-rcfilters-ui-loading .rcfilters-spinner {
+		display: block;
+		// When loading new results, display the spinner on top of the results area
+		margin-top: 4em;
 	}
 
 	#contentSub,
