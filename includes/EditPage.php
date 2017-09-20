@@ -469,6 +469,10 @@ class EditPage {
 	 */
 	public function getContextTitle() {
 		if ( is_null( $this->mContextTitle ) ) {
+			wfDebugLog(
+				'GlobalTitleFail',
+				__METHOD__ . ' called by ' . wfGetAllCallers( 5 ) . ' with no title set.'
+			);
 			global $wgTitle;
 			return $wgTitle;
 		} else {
