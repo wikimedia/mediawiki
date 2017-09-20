@@ -36,7 +36,7 @@
 		}
 	}
 
-	body:not( .mw-rcfilters-ui-initialized ) .mw-changeslist,
+	body:not( .mw-rcfilters-ui-initialized ).mw-rcfilters-ui-default-saved-query .mw-changeslist,
 	body.mw-rcfilters-ui-loading .mw-changeslist {
 		opacity: 0.5;
 	}
@@ -77,7 +77,8 @@
 		// When initializing, display the spinner on top of the area where the UI will appear
 		margin-top: -@rcfilters-head-min-height/2;
 	}
-	body.mw-rcfilters-ui-loading .rcfilters-spinner {
+	body.mw-rcfilters-ui-loading .rcfilters-spinner,
+	body.mw-rcfilters-ui-default-saved-query .rcfilters-spinner {
 		display: block;
 		// When loading new results, display the spinner on top of the results area
 		margin-top: 4em;

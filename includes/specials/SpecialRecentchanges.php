@@ -32,6 +32,8 @@ use Wikimedia\Rdbms\FakeResultWrapper;
  */
 class SpecialRecentChanges extends ChangesListSpecialPage {
 
+	protected static $savedQueriesPreferenceName = 'rcfilters-saved-queries';
+
 	private $watchlistFilterGroupDefinition;
 
 	// @codingStandardsIgnoreStart Needed "useless" override to change parameters.
@@ -165,10 +167,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		if ( $this->isStructuredFilterUiEnabled() ) {
 			$out->addJsConfigVars( 'wgStructuredChangeFiltersLiveUpdateSupported', true );
-			$out->addJsConfigVars(
-				'wgStructuredChangeFiltersSavedQueriesPreferenceName',
-				'rcfilters-saved-queries'
-			);
 		}
 	}
 

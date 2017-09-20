@@ -52,7 +52,8 @@
 			$( '.rcfilters-container' ).append( filtersWidget.$element );
 			$( 'body' )
 				.append( $overlay )
-				.addClass( 'mw-rcfilters-ui-initialized' );
+				.addClass( 'mw-rcfilters-ui-initialized' )
+				.removeClass( 'mw-rcfilters-ui-default-saved-query' );
 
 			$( 'a.mw-helplink' ).attr(
 				'href',

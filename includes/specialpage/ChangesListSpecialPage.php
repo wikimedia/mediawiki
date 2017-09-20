@@ -32,6 +32,12 @@ use Wikimedia\Rdbms\IDatabase;
  * @ingroup SpecialPage
  */
 abstract class ChangesListSpecialPage extends SpecialPage {
+	/**
+	 * Preference name for saved queries. Subclasses that use saved queries should override this.
+	 * @var string
+	 */
+	protected static $savedQueriesPreferenceName;
+
 	/** @var string */
 	protected $rcSubpage;
 
@@ -602,6 +608,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				'wgStructuredChangeFiltersEnableExperimentalViews',
 				$experimentalStructuredChangeFilters
 			);
+
 			$out->addJsConfigVars(
 				'wgRCFiltersChangeTags',
 				$this->buildChangeTagList()
@@ -616,6 +623,19 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					'daysDefault' => $this->getDefaultDays(),
 				]
 			);
+
+			if ( static::$savedQueriesPreferenceName ) {
+				$savedQueries = FormatJson::decode(
+					$this->getUser()->getOption( static::$savedQueriesPreferenceName )
+				);
+				if ( $savedQueries && isset( $savedQueries->default ) ) {
+					$out->addBodyClasses( 'mw-rcfilters-ui-default-saved-query' );
+				}
+				$out->addJsConfigVars(
+					'wgStructuredChangeFiltersSavedQueriesPreferenceName',
+					static::$savedQueriesPreferenceName
+				);
+			}
 		} else {
 			$out->addBodyClasses( 'mw-rcfilters-disabled' );
 		}
