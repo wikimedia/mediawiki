@@ -109,8 +109,7 @@
 	 * Respond to changes list model invalidate
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onModelInvalidate = function () {
-		$( '.rcfilters-spinner' ).removeClass( 'mw-rcfilters-ui-ready' );
-		this.$element.removeClass( 'mw-rcfilters-ui-ready' );
+		$( 'body' ).addClass( 'mw-rcfilters-ui-loading' );
 	};
 
 	/**
@@ -184,8 +183,7 @@
 				mw.hook( 'wikipage.content' ).fire( widget.$element );
 			}
 
-			$( '.rcfilters-spinner' ).addClass( 'mw-rcfilters-ui-ready' );
-			widget.$element.addClass( 'mw-rcfilters-ui-ready' );
+			$( 'body' ).removeClass( 'mw-rcfilters-ui-loading' );
 		} );
 	};
 
