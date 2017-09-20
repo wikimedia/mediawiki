@@ -38,7 +38,7 @@ class HTMLRestrictionsField extends HTMLTextAreaField {
 		}
 
 		$value = rtrim( $request->getText( $this->mName ), "\r\n" );
-		$ips = $value === '' ? [] : explode( PHP_EOL, $value );
+		$ips = $value === '' ? [] : explode( "\n", $value );
 		try {
 			return MWRestrictions::newFromArray( [ 'IPAddresses' => $ips ] );
 		} catch ( InvalidArgumentException $e ) {
@@ -79,7 +79,7 @@ class HTMLRestrictionsField extends HTMLTextAreaField {
 		if ( is_string( $value ) ) {
 			// MWRestrictions::newFromArray failed; one of the IP ranges must be invalid
 			$status = Status::newGood();
-			foreach ( explode( PHP_EOL,  $value ) as $range ) {
+			foreach ( explode( "\n",  $value ) as $range ) {
 				if ( !\IP::isIPAddress( $range ) ) {
 					$status->fatal( 'restrictionsfield-badip', $range );
 				}
@@ -103,7 +103,7 @@ class HTMLRestrictionsField extends HTMLTextAreaField {
 	 */
 	public function getInputHTML( $value ) {
 		if ( $value instanceof MWRestrictions ) {
-			$value = implode( PHP_EOL, $value->toArray()['IPAddresses'] );
+			$value = implode( "\n", $value->toArray()['IPAddresses'] );
 		}
 		return parent::getInputHTML( $value );
 	}
@@ -114,7 +114,7 @@ class HTMLRestrictionsField extends HTMLTextAreaField {
 	 */
 	public function getInputOOUI( $value ) {
 		if ( $value instanceof MWRestrictions ) {
-			$value = implode( PHP_EOL, $value->toArray()['IPAddresses'] );
+			$value = implode( "\n", $value->toArray()['IPAddresses'] );
 		}
 		return parent::getInputOOUI( $value );
 	}
