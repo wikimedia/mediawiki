@@ -87,7 +87,6 @@
 	 */
 	mw.rcfilters.ui.FormWrapperWidget.prototype.onChangesModelInvalidate = function () {
 		this.$submitButton.prop( 'disabled', true );
-		this.$element.removeClass( 'mw-rcfilters-ui-ready' );
 	};
 
 	/**
@@ -100,7 +99,6 @@
 	 */
 	mw.rcfilters.ui.FormWrapperWidget.prototype.onChangesModelUpdate = function ( $changesList, $fieldset, isInitialDOM ) {
 		this.$submitButton.prop( 'disabled', false );
-		this.$element.removeClass( 'mw-rcfilters-ui-ready' );
 
 		// Replace the entire fieldset
 		this.$element.empty().append( $fieldset.contents() );
