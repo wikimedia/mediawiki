@@ -121,9 +121,11 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 				if ( $this->isTagForcedOff( $thisTag ) ) {
 					$checked = false;
 					$thisAttribs['disabled'] = 1;
+					$thisAttribs['class'] = 'checkmatrix-forced checkmatrix-forced-off';
 				} elseif ( $this->isTagForcedOn( $thisTag ) ) {
 					$checked = true;
 					$thisAttribs['disabled'] = 1;
+					$thisAttribs['class'] = 'checkmatrix-forced checkmatrix-forced-on';
 				}
 
 				$checkbox = $this->getOneCheckbox( $checked, $attribs + $thisAttribs );
