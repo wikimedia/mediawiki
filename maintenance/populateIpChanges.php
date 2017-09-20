@@ -88,7 +88,8 @@ TEXT
 			$numRows = $rows->numRows();
 
 			if ( !$rows || $numRows === 0 ) {
-				break;
+				$blockStart = $blockEnd + 1;
+				continue;
 			}
 
 			$this->output( "...checking $numRows revisions for IP edits that need copying, " .
