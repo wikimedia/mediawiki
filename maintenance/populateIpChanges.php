@@ -110,14 +110,11 @@ TEXT
 				}
 			}
 
-			$dbw->insert(
-				'ip_changes',
-				$insertRows,
-				__METHOD__,
-				'IGNORE'
-			);
+			if ( $insertRows ) {
+				$dbw->insert( 'ip_changes', $insertRows, __METHOD__, 'IGNORE' );
 
-			$inserted += $dbw->affectedRows();
+				$inserted += $dbw->affectedRows();
+			}
 
 			$lbFactory->waitForReplication();
 			usleep( $throttle * 1000 );
