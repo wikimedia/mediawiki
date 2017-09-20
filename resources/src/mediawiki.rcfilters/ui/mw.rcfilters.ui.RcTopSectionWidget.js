@@ -33,7 +33,6 @@
 		} );
 
 		this.$topLinks
-			.addClass( 'mw-rcfilters-ui-ready' )
 			.makeCollapsible( {
 				collapsed: topLinksCookieValue === 'collapsed',
 				$customTogglers: toplinksTitle.$element
