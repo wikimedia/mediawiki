@@ -50,8 +50,9 @@
 				filtersModel, changesListModel, controller, $( 'fieldset.cloptions' ) );
 
 			$( '.rcfilters-container' ).append( filtersWidget.$element );
-			$( 'body' ).append( $overlay );
-			$( '.rcfilters-head' ).addClass( 'mw-rcfilters-ui-ready' );
+			$( 'body' )
+				.append( $overlay )
+				.addClass( 'mw-rcfilters-ui-initialized' );
 
 			$( 'a.mw-helplink' ).attr(
 				'href',
