@@ -12,7 +12,7 @@ use Wikimedia\TestingAccessWrapper;
 class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
 	protected function getPage() {
 		return TestingAccessWrapper::newFromObject(
-			new SpecialRecentchanges
+			new SpecialRecentChanges
 		);
 	}
 
