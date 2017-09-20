@@ -160,7 +160,7 @@ class InfoAction extends FormlessAction {
 		$spanAttribs = [ 'class' => 'mw-headline', 'id' => Sanitizer::escapeIdForAttribute( $header ) ];
 		$h2Attribs = [ 'id' => Sanitizer::escapeIdForAttribute( $canonicalId ) ];
 
-		return Html::rawElement( 'h2', $h2Attribs, Html::element( 'span', $spanAttribs, $header ) );
+		return Html::rawElement( 'h2', $h2Attribs, Html::rawElement( 'span', $spanAttribs, $header ) );
 	}
 
 	/**
