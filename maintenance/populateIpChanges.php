@@ -72,7 +72,8 @@ TEXT
 			? $maxRevId
 			: $dbw->selectField( 'revision', 'MAX(rev_id)', false, __METHOD__ );
 		$blockStart = $start;
-		$revCount = 0;
+		$attempted = 0;
+		$inserted = 0;
 
 		$this->output( "Copying IP revisions to ip_changes, from rev_id $start to rev_id $end\n" );
 
@@ -103,7 +104,7 @@ TEXT
 						'ipc_hex' => IP::toHex( $row->rev_user_text ),
 					];
 
-					$revCount++;
+					$attempted++;
 				}
 
 				$blockStart = (int)$row->rev_id;
@@ -118,11 +119,13 @@ TEXT
 				'IGNORE'
 			);
 
+			$inserted += $dbw->affectedRows();
+
 			$lbFactory->waitForReplication();
 			usleep( $throttle * 1000 );
 		}
 
-		$this->output( "$revCount IP revisions copied.\n" );
+		$this->output( "Attempted to insert $attempted IP revisions, $inserted actually done.\n" );
 
 		return true;
 	}
