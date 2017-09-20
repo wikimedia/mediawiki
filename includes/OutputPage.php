@@ -1852,7 +1852,7 @@ class OutputPage extends ContextSource {
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$outputPage = $this;
 		Hooks::run( 'LanguageLinks', [ $this->getTitle(), &$this->mLanguageLinks, &$linkFlags ] );
-		Hooks::run( 'OutputPageParserOutput', [ &$outputPage, $parserOutput ] );
+		Hooks::runWithoutAbort( 'OutputPageParserOutput', [ &$outputPage, $parserOutput ] );
 
 		// This check must be after 'OutputPageParserOutput' runs in addParserOutputMetadata
 		// so that extensions may modify ParserOutput to toggle TOC.
@@ -1890,7 +1890,7 @@ class OutputPage extends ContextSource {
 		$text = $parserOutput->getText();
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$outputPage = $this;
-		Hooks::run( 'OutputPageBeforeHTML', [ &$outputPage, &$text ] );
+		Hooks::runWithoutAbort( 'OutputPageBeforeHTML', [ &$outputPage, &$text ] );
 		$this->addHTML( $text );
 	}
 
@@ -2436,7 +2436,7 @@ class OutputPage extends ContextSource {
 			$outputPage = $this;
 			// Hook that allows last minute changes to the output page, e.g.
 			// adding of CSS or Javascript by extensions.
-			Hooks::run( 'BeforePageDisplay', [ &$outputPage, &$sk ] );
+			Hooks::runWithoutAbort( 'BeforePageDisplay', [ &$outputPage, &$sk ] );
 
 			try {
 				$sk->outputPage();
@@ -2448,7 +2448,7 @@ class OutputPage extends ContextSource {
 
 		try {
 			// This hook allows last minute changes to final overall output by modifying output buffer
-			Hooks::run( 'AfterFinalPageOutput', [ $this ] );
+			Hooks::runWithoutAbort( 'AfterFinalPageOutput', [ $this ] );
 		} catch ( Exception $e ) {
 			ob_end_clean(); // bug T129657
 			throw $e;
