@@ -1235,6 +1235,7 @@
 	"rcfilters-view-tags": "Билгалонаш",
 	"rcfilters-view-namespaces-tooltip": "Меттигийн цӀерашца литтаран карийнарш",
 	"rcfilters-view-tags-tooltip": "Нисдарийн билгало йолу литтаран карийна хийцамаш",
+	"rcfilters-preference-label": "Керла хийцамийн дика кечйина верси къайлаяккха",
 	"rcnotefrom": "Лахахь гайтина тӀера <strong>$2</strong> (хийцамаш <strong>$1</strong> кӀезиг).",
 	"rclistfromreset": "Терахь харжар дӀадаккха",
 	"rclistfrom": "Гайта хийцам {{CURRENTYEAR}} шеран {{CURRENTDAY}} {{CURRENTMONTHNAMEGEN}} {{CURRENTTIME}} бина болу",

@@ -3905,5 +3905,6 @@
 	"linkaccounts": "Далучэньне рахункаў",
 	"linkaccounts-success-text": "Рахунак быў далучаны.",
 	"linkaccounts-submit": "Далучыць рахункі",
-	"unlinkaccounts": "Адлучэньне рахункаў"
+	"unlinkaccounts": "Адлучэньне рахункаў",
+	"unlinkaccounts-success": "Рахунак быў адлучаны."
 }

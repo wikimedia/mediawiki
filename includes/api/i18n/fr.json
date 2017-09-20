@@ -1742,6 +1742,7 @@
 	"apiwarn-notfile": "« $1 » n'est pas un fichier.",
 	"apiwarn-nothumb-noimagehandler": "Impossible de créer la vignette car $1 n’a pas de gestionnaire d’image associé.",
 	"apiwarn-parse-nocontentmodel": "Ni <var>title</var> ni <var>contentmodel</var> n’ont été fournis, $1 est supposé.",
+	"apiwarn-parse-revidwithouttext": "<var>revid</var> utilisé sans <var>text</var>, et les propriétés de la page analysée ont été demandées. Vouliez-vous utiliser <var>oldid</var> au lieu de <var>revid</var> ?",
 	"apiwarn-parse-titlewithouttext": "<var>title</var> utilisé sans <var>text</var>, et les propriétés de page analysées sont nécessaires. Voulez-vous dire que vous voulez utiliser <var>page</var> à la place de <var>title</var> ?",
 	"apiwarn-redirectsandrevids": "La résolution de la redirection ne peut pas être utilisée avec le paramètre <var>revids</var>. Toutes les redirections vers lesquelles pointent <var>revids</var> n’ont pas été résolues.",
 	"apiwarn-tokennotallowed": "L'action « $1 » n'est pas autorisée pour l'utilisateur actuel.",

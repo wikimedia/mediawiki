@@ -563,6 +563,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ber tamien la [[Special:NewPages|lhista de páiginas nuobas]])",
 	"recentchanges-submit": "Amostrar",
 	"rcfilters-filtergroup-watchlist": "Páiginas begiadas",
+	"rcfilters-watchlist-markseen-button": "Marcar todas las altaraçones cumo yá bistas",
 	"rcnotefrom": "Ambaixo {{PLURAL:$5|stá la altaraçon feita|stan las alteraçones feitas}} zde <strong>$2</strong> (amostradas até <strong>$1</strong>).",
 	"rclistfrom": "Amostrar las noubas altaraçones a partir de $2 de $3",
 	"rcshowhideminor": "$1 eidiçones pequerrixas",

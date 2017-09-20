@@ -2387,7 +2387,7 @@
 	"importcantopen": "Ne mogu otvoriti datoteku za uvoz",
 	"importbadinterwiki": "Neispravna međuwiki poveznica",
 	"importsuccess": "Uvoz je uspio!",
-	"importnosources": "Nije unesen nijedan izvor za transwiki uvoz i neposredno postavljanje povijesti je onemogućeno.",
+	"importnosources": "Nije unesen ijedan izvor za uvoz preko drugih wikija (''transwiki'') i neposredna postavljanja povijesti izmjena stranice onemogućena su.",
 	"importnofile": "Nije postavljena uvozna datoteka.",
 	"importuploaderrorsize": "Uvoz datoteke nije uspio. Datoteka je veća od dopuštene veličine.",
 	"importuploaderrorpartial": "Uvoz datoteke nije uspio. Datoteka je djelomično uvezena/snimljena.",
