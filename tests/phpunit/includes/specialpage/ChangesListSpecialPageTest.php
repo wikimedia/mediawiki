@@ -293,6 +293,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testRcHidepatrolledDisabledFilter() {
+		$this->setMwGlobals( 'wgUseRCPatrol', false );
 		$user = $this->getTestUser()->getUser();
 		$this->assertConditions(
 			[ # expected
@@ -306,6 +307,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testRcHideunpatrolledDisabledFilter() {
+		$this->setMwGlobals( 'wgUseRCPatrol', false );
 		$user = $this->getTestUser()->getUser();
 		$this->assertConditions(
 			[ # expected
