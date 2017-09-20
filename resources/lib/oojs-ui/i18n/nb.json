@@ -7,7 +7,8 @@
 			"Laaknor",
 			"Njardarlogar",
 			"Jdforrester",
-			"Apple farmer"
+			"Apple farmer",
+			"Jon Harald Søby"
 		]
 	},
 	"ooui-outline-control-move-down": "Flytt ned",
@@ -16,6 +17,7 @@
 	"ooui-toolbar-more": "Mer",
 	"ooui-toolgroup-expand": "Mer",
 	"ooui-toolgroup-collapse": "Færre",
+	"ooui-item-remove": "Fjern",
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Avbryt",
 	"ooui-dialog-process-error": "Noe gikk galt",
