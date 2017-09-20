@@ -6,7 +6,7 @@
 
 -- 2002-12-17 by Brion Vibber <brion@pobox.com>
 -- affects, affected by changes to SpecialWatchlist.php, User.php,
--- Article.php, Title.php, SpecialRecentchanges.php
+-- Article.php, Title.php, SpecialRecentChanges.php
 
 DROP TABLE IF EXISTS watchlist2;
 CREATE TABLE watchlist2 (

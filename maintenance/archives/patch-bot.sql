@@ -3,7 +3,7 @@
 -- marked 1 in rc_bot.
 
 -- Change made 2002-12-15 by Brion VIBBER <brion@pobox.com>
--- this affects code in Article.php, User.php SpecialRecentchanges.php
+-- this affects code in Article.php, User.php SpecialRecentChanges.php
 -- column also added to buildTables.inc
 
 ALTER TABLE /*$wgDBprefix*/recentchanges

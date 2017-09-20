@@ -29,7 +29,7 @@
 /**
  * Helper class to keep track of options when mixing links and form elements.
  *
- * @todo This badly needs some examples and tests :) The usage in SpecialRecentchanges class is a
+ * @todo This badly needs some examples and tests :) The usage in SpecialRecentChanges class is a
  *     good ersatz in the meantime.
  */
 class FormOptions implements ArrayAccess {

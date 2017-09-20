@@ -976,7 +976,7 @@ class ChangeTags {
 
 		// tags cannot contain commas (used as a delimiter in tag_summary table),
 		// pipe (used as a delimiter between multiple tags in
-		// SpecialRecentchanges and friends), or slashes (would break tag description messages in
+		// SpecialRecentChanges and friends), or slashes (would break tag description messages in
 		// MediaWiki namespace)
 		if ( strpos( $tag, ',' ) !== false || strpos( $tag, '|' ) !== false
 			|| strpos( $tag, '/' ) !== false ) {

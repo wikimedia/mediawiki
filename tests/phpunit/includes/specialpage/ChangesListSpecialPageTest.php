@@ -81,7 +81,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		return $queryConditions;
 	}
 
-	/** helper to test SpecialRecentchanges::buildQuery() */
+	/** helper to test SpecialRecentChanges::buildQuery() */
 	private function assertConditions(
 		$expected,
 		$requestOptions = null,

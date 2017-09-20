@@ -3,16 +3,16 @@
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * Test class for SpecialRecentchanges class
+ * Test class for SpecialRecentChanges class
  *
  * @group Database
  *
  * @covers SpecialRecentChanges
  */
-class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
+class SpecialRecentChangesTest extends AbstractChangesListSpecialPageTestCase {
 	protected function getPage() {
 		return TestingAccessWrapper::newFromObject(
-			new SpecialRecentchanges
+			new SpecialRecentChanges
 		);
 	}
 
