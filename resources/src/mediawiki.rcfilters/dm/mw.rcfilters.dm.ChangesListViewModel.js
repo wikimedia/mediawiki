@@ -110,7 +110,7 @@
 	 * @param {jQuery} $fieldset
 	 */
 	mw.rcfilters.dm.ChangesListViewModel.prototype.extractNextFrom = function ( $fieldset ) {
-		var data = $fieldset.find( '.rclistfrom > a' ).data( 'params' );
+		var data = $fieldset.find( '.rclistfrom > a, .wlinfo' ).data( 'params' );
 		this.nextFrom = data ? data.from : null;
 	};
 
