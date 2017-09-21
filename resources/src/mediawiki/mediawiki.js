@@ -625,7 +625,7 @@
 		 * @param {Function} callback
 		 */
 		trackUnsubscribe: function ( callback ) {
-			trackHandlers = $.grep( trackHandlers, function ( fns ) {
+			trackHandlers = trackHandlers.filter( function ( fns ) {
 				if ( fns[ 1 ] === callback ) {
 					trackCallbacks.remove( fns[ 0 ] );
 					// Ensure the tuple is removed to avoid holding on to closures
@@ -1465,7 +1465,7 @@
 				if ( ready !== undefined || error !== undefined ) {
 					jobs.push( {
 						// Narrow down the list to modules that are worth waiting for
-						dependencies: $.grep( dependencies, function ( module ) {
+						dependencies: dependencies.filter( function ( module ) {
 							var state = mw.loader.getState( module );
 							return state === 'registered' || state === 'loaded' || state === 'loading' || state === 'executing';
 						} ),
@@ -1782,7 +1782,7 @@
 					if ( mw.loader.store.enabled ) {
 						implementations = [];
 						sourceModules = [];
-						batch = $.grep( batch, function ( module ) {
+						batch = batch.filter( function ( module ) {
 							var implementation = mw.loader.store.get( module );
 							if ( implementation ) {
 								implementations.push( implementation );
@@ -1807,7 +1807,7 @@
 
 							mw.track( 'resourceloader.exception', { exception: err, source: 'store-eval' } );
 							// Re-add the failed ones that are still pending back to the batch
-							failed = $.grep( sourceModules, function ( module ) {
+							failed = sourceModules.filter( function ( module ) {
 								return registry[ module ].state === 'loading';
 							} );
 							batchRequest( failed );
@@ -2071,7 +2071,7 @@
 					}
 
 					// Filter out top-level modules that are unknown or failed to load before.
-					filtered = $.grep( modules, function ( module ) {
+					filtered = modules.filter( function ( module ) {
 						var state = mw.loader.getState( module );
 						return state !== 'error' && state !== 'missing';
 					} );
@@ -2773,7 +2773,7 @@
 	$( function () {
 		var loading, modules;
 
-		modules = $.grep( mw.loader.getModuleNames(), function ( module ) {
+		modules = mw.loader.getModuleNames().filter( function ( module ) {
 			return mw.loader.getState( module ) === 'loading';
 		} );
 		// We only need a callback, not any actual module. First try a single using()
