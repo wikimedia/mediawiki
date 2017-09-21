@@ -1156,6 +1156,7 @@ return [
 		'scripts' => 'resources/src/mediawiki/mediawiki.notification.js',
 		'dependencies' => [
 			'mediawiki.util',
+			'mediawiki.visibleTimeout',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -1408,6 +1409,10 @@ return [
 	],
 	'mediawiki.experiments' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.experiments.js',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	'mediawiki.visibleTimeout' => [
+		'scripts' => 'resources/src/mediawiki/mediawiki.visibleTimeout.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
