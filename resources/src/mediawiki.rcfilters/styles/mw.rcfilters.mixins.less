@@ -43,6 +43,11 @@
 	}
 }
 
+// A mixin for changes list containers. Applies enough margin-left to fit the 5 highlight circles.
+.result-circle-margin() {
+	margin-left: ~'calc( ( @{result-circle-diameter} + @{result-circle-margin} ) * 5 + @{result-circle-general-margin} )';
+}
+
 // A mixin just for changesListWrapperWidget page, to output the scope of the widget
 // so it is before the rest of the rule; we need the li& to be in
 // between the wrapper scope and the color-cX class, which doesn't

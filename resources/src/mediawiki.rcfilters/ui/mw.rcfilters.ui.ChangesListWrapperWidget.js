@@ -48,7 +48,7 @@
 			// We handle our own display/hide of the empty results message
 			.removeClass( 'mw-changeslist-empty' );
 
-		this.setupNewChangesButtonContainer( this.$element );
+		this.setupNewChangesButtonContainer();
 	};
 
 	/* Initialization */
@@ -246,10 +246,8 @@
 
 	/**
 	 * Setup the container for the 'new changes' button.
-	 *
-	 * @param {jQuery} $content
 	 */
-	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.setupNewChangesButtonContainer = function ( $content ) {
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.setupNewChangesButtonContainer = function () {
 		this.showNewChangesLink = new OO.ui.ButtonWidget( {
 			framed: false,
 			label: mw.message( 'rcfilters-show-new-changes' ).text(),
@@ -258,7 +256,10 @@
 		this.showNewChangesLink.connect( this, { click: 'onShowNewChangesClick' } );
 		this.showNewChangesLink.toggle( false );
 
-		$content.before(
+		// HACK: Add the -newChanges div inside rcfilters-head, rather than right above us
+		// Visually it's the same place, but by putting it inside rcfilters-head we are
+		// able to use the min-height rule to prevent the page from jumping when this is added.
+		this.$element.parent().find( '.rcfilters-head' ).append(
 			$( '<div>' )
 				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-newChanges' )
 				.append( this.showNewChangesLink.$element )
