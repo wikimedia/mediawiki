@@ -624,6 +624,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				]
 			);
 
+			$out->addJsConfigVars(
+				'StructuredChangeFiltersLiveUpdatePollingRate',
+				$this->getConfig()->get( 'StructuredChangeFiltersLiveUpdatePollingRate' )
+			);
+
 			if ( static::$savedQueriesPreferenceName ) {
 				$savedQueries = FormatJson::decode(
 					$this->getUser()->getOption( static::$savedQueriesPreferenceName )
