@@ -213,12 +213,18 @@ class EditPage {
 	 */
 	const POST_EDIT_COOKIE_DURATION = 1200;
 
-	/** @var Article */
+	/**
+	 * @deprecated for public usage since 1.30 use EditPage::getArticle()
+	 * @var Article
+	 */
 	public $mArticle;
 	/** @var WikiPage */
 	private $page;
 
-	/** @var Title */
+	/**
+	 * @deprecated for public usage since 1.30 use EditPage::getTitle()
+	 * @var Title
+	 */
 	public $mTitle;
 
 	/** @var null|Title */
