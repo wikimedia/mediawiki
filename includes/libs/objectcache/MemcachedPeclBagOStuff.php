@@ -252,7 +252,21 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 
 	public function changeTTL( $key, $expiry = 0 ) {
 		$this->debugLog( "touch($key)" );
-		$result = $this->client->touch( $key, $expiry );
+
+		try {
+			$result = $this->client->touch( $key, $expiry );
+		} catch ( ErrorException $ee ) {
+			// So the memcached client in pecl and actual memcached versions that support
+			// touching vary greatly. Sometimes it's binary mode, sometimes it's ascii,
+			// sometimes it might even be both. Rather than trying to deal with the myriad
+			// of these let's re-attempt a lame touch (get/set) if we think we're failing
+			// because of the weird bug. Otherwise, just re-raise the exception.
+			if ( !strpos( $ee->getMessage(), 'touch is only supported' ) ) {
+				throw $ee;
+			}
+			$result = $this->client->set( $key, $this->client->get( $key ), $expiry );
+		}
+
 		return $this->checkResult( $key, $result );
 	}
 }
