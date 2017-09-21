@@ -1635,6 +1635,11 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
+	'mediawiki.libs.visibleTimeout' => [
+		'scripts' => 'resources/src/mediawiki.libs/mediawiki.libs.visibleTimeout.js',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+
 	/* MediaWiki Page */
 
 	'mediawiki.page.gallery' => [
