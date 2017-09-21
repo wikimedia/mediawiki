@@ -263,7 +263,10 @@
 		this.initializing = false;
 		this.switchView( 'default' );
 
-		this._scheduleLiveUpdate();
+		this.pollingRate = mw.config.get( 'StructuredChangeFiltersLiveUpdatePollingRate' );
+		if ( this.pollingRate ) {
+			this._scheduleLiveUpdate();
+		}
 	};
 
 	/**
@@ -519,7 +522,7 @@
 	 * @private
 	 */
 	mw.rcfilters.Controller.prototype._scheduleLiveUpdate = function () {
-		setTimeout( this._doLiveUpdate.bind( this ), 3000 );
+		setTimeout( this._doLiveUpdate.bind( this ), this.pollingRate );
 	};
 
 	/**
