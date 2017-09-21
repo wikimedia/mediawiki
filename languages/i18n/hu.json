@@ -707,7 +707,6 @@
 	"explainconflict": "Valaki megváltoztatta a lapot, mióta elkezdted szerkeszteni. A felső szövegdobozban láthatod az oldal jelenlegi tartalmát. A te módosításaid az alsó dobozban találhatók. Át kell másolnod a módosításaidat a felsőbe! \n\n<strong>Csak</strong> a felső dobozban levő szöveg lesz elmentve, amikor a „$1” gombra kattintasz.",
 	"yourtext": "A te változatod",
 	"storedversion": "A tárolt változat",
-	"nonunicodebrowser": "'''Figyelem: A böngésződ nem Unicode kompatibilis. Egy kerülő megoldásként biztonságban szerkesztheted a cikkeket: a nem ASCII karakterek a szerkesztőablakban hexadeciális kódokként jelennek meg.'''",
 	"editingold": "'''FIGYELMEZTETÉS: A lap egy elavult változatát szerkeszted.\nHa elmented, akkor az ezen változat után végzett összes módosítás elvész.'''",
 	"yourdiff": "Eltérések",
 	"copyrightwarning": "Vedd figyelembe, hogy a {{SITENAME}} wikin végzett összes módosítás a(z) $2 alatt jelenik meg (lásd a(z) $1 lapot a részletekért). Ha nem akarod, hogy az írásodat módosítsák vagy továbbterjesszék, akkor ne küldd be.<br />\nAzt is megígéred, hogy ezt magadtól írtad, vagy egy közkincsből vagy más szabad forrásból másoltad.\n'''NE KÜLDJ BE JOGVÉDETT MUNKÁT ENGEDÉLY NÉLKÜL!'''",

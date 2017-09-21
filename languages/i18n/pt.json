@@ -74,7 +74,8 @@
 			"Jdforrester",
 			"Mansil",
 			"Ngl2016",
-			"RadiX"
+			"RadiX",
+			"MokaAkashiyaPT"
 		]
 	},
 	"tog-underline": "Sublinhar ligações:",
@@ -733,7 +734,6 @@
 	"explainconflict": "A página foi alterada por alguém desde que começou a editá-la.\nA caixa de texto abaixo mostra o texto existente neste momento.\nAs suas mudanças são mostradas na área ao fundo da página.\nTerá de reintegrar as suas mudanças no texto da caixa abaixo.\n<strong>Só</strong> o texto desta caixa será gravado quando clicar \"$1\".",
 	"yourtext": "O seu texto",
 	"storedversion": "Versão gravada",
-	"nonunicodebrowser": "<strong>Aviso: O seu navegador não é compatível com as especificações Unicode.</strong>\nFoi ativado um sistema de edição alternativo que lhe permite editar as páginas com segurança: os caracteres que não são ASCII aparecerão na caixa de edição no formato de códigos hexadecimais.",
 	"editingold": "<strong>Aviso: Está a editar uma revisão desatualizada desta página.</strong>\nSe gravar, todas as mudanças feitas a partir desta revisão serão perdidas.",
 	"yourdiff": "Diferenças",
 	"copyrightwarning": "Note, por favor, que todas as suas contribuições na wiki {{SITENAME}} são consideradas publicadas nos termos da licença $2 (consulte $1 para mais detalhes).\nSe não deseja que o seu texto possa ser inexoravelmente editado e redistribuído, não o envie.<br />\nGarante-nos também que isto é algo escrito por si, ou copiado do domínio público ou de outra fonte de teor livre.\n<strong>Não envie conteúdos cujos direitos de autor estão protegidos, sem ter a devida permissão!</strong>",
@@ -3815,7 +3815,7 @@
 	"special-characters-group-thai": "Tailandês",
 	"special-characters-group-lao": "Laociano",
 	"special-characters-group-khmer": "Cambojano",
-	"special-characters-group-canadianaboriginal": "Aborígene Canadense",
+	"special-characters-group-canadianaboriginal": "Aborígene canadiano",
 	"special-characters-title-endash": "hífen",
 	"special-characters-title-emdash": "travessão",
 	"special-characters-title-minus": "sinal de subtração",

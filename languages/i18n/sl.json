@@ -674,7 +674,6 @@
 	"explainconflict": "Med vašim urejanjem je stran spremenil nekdo drug.\nZgornje urejevalno polje vsebuje njeno trenutno vsebino.\nVaše spremembe so prikazane v spodnjem polju, ki jih boste morali združiti z obstoječim besedilom.\n'''Samo''' besedilo v zgornjem polju bo shranjeno, ko boste izbrali ukaz »$1«.",
 	"yourtext": "Vaše besedilo",
 	"storedversion": "Shranjena redakcija",
-	"nonunicodebrowser": "'''Opozorilo: Vaš brskalnik ne podpira Unicode.'''\nZa obhod te težave se bodo ne-ASCII-znaki v urejevalnem polju spodaj pojavili kot šestnajstiške kode.",
 	"editingold": "'''Opozorilo: Urejate staro redakcijo strani.'''\nČe jo boste shranili, bodo vse poznejše spremembe razveljavljene.",
 	"yourdiff": "Primerjava",
 	"copyrightwarning": "Vsi prispevki k {{GRAMMAR:dajalnik|{{SITENAME}}}} se obravnavajo kot objave pod pogoji $2 (za podrobnosti glej $1). Če niste pripravljeni na neusmiljeno urejanje in prosto razširjanje vašega gradiva, ga ne prispevajte.<br />\nPoleg tega zagotavljate, da ste prispevke napisali oziroma ustvarili sami ali pa prepisali iz javno dostopnega ali podobnega prostega vira.\n'''Ne dodajajte avtorsko zaščitenega dela brez dovoljenja!'''",

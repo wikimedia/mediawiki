@@ -625,7 +625,6 @@
 	"explainconflict": "Nokon annan har endra teksten sidan du byrja å skrive.\nDen øvste boksen inneheld den noverande teksten.\nSkilnaden mellom den lagra versjonen og din endra versjon er viste under.\nVersjonen som du har endra er i den nedste boksen.\nDu lyt flette endringane dine saman med den noverande teksten.\n'''Berre''' teksten i den øvste tekstboksen vil bli lagra når du klikkar på «$1».",
 	"yourtext": "Teksten din",
 	"storedversion": "Den lagra versjonen",
-	"nonunicodebrowser": "'''ÅTVARING: Nettlesaren din støttar ikkje «Unicode».\nFor å omgå problemet blir teikn utanfor ASCII-standarden viste som heksadesimale kodar.'''<br />",
 	"editingold": "'''ÅTVARING: Du endrar ein gammal versjon av denne sida. Om du lagrar ho, vil alle endringar gjorde etter denne versjonen bli overskrivne.''' (Men dei kan hentast fram att frå historikken.)<br />",
 	"yourdiff": "Skilnader",
 	"copyrightwarning": "Merk deg at alle bidrag til {{SITENAME}} er å rekne som utgjevne under $2 (sjå $1 for detaljar). Om du ikkje vil ha teksten endra og kopiert under desse vilkåra, kan du ikkje leggje han her.<br />\nTeksten må du ha skrive sjølv, eller kopiert frå ein ressurs som er kompatibel med vilkåra eller ikkje verna av opphavsrett.\n\n'''LEGG ALDRI INN MATERIALE SOM ANDRE HAR OPPHAVSRETT TIL UTAN LØYVE FRÅ DEI!'''",

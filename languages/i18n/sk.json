@@ -691,7 +691,6 @@
 	"explainconflict": "Niekto iný zmenil túto stránku, zatiaľ čo ste ju upravovali vy.\nHorné okno na úpravy obsahuje text stránky tak, ako je momentálne platný.\nVaše úpravy sú uvedené v dolnom okne na úpravy.\nBudete musieť zlúčiť vaše zmeny s existujúcim textom.\n'''Iba''' obsah horného okna sa uloží, keď stlačíte „$1“.",
 	"yourtext": "Váš text",
 	"storedversion": "Uložená verzia",
-	"nonunicodebrowser": "<strong>UPOZORNENIE: Váš prehliadač nepodporuje Unicode.</strong>\nDočasným riešením ako bezpečne upravovať stránky je, že ne-ASCII znaky sa v upravovacom textovom poli zobrazia ako zodpovedajúce hexadecimálne hodnoty.",
 	"editingold": "<strong>UPOZORNENIE: Upravujete starú verziu tejto stránky.</strong>\nAk vašu úpravu uložíte, prepíšete tým všetky úpravy, ktoré nasledovali po tejto starej verzii.",
 	"yourdiff": "Rozdiely",
 	"copyrightwarning": "Nezabudnite, že všetky príspevky do {{GRAMMAR:genitív|{{SITENAME}}}} sa považujú za príspevky pod licenciou $2 (podrobnosti pozri pod $1). Ak nechcete, aby bolo to, čo ste napísali, neúprosne upravované a ďalej ľubovoľne rozširované, tak sem váš text neumiestňujte.<br />\n\nTýmto sa právne zaväzujete, že ste tento text buď napísali sám, alebo že je skopírovaný\nz voľného diela (public domain) alebo podobného zdroja neobmedzeného autorskými právami.\n<strong>NEUMIESTŇUJTE SEM BEZ POVOLENIA DIELA CHRÁNENÉ AUTORSKÝM PRÁVOM!</strong>",

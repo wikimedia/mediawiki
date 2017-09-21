@@ -635,7 +635,6 @@
 	"explainconflict": "Neko drugi je u međuvremenu promenio ovu stranicu.\nGornji okvir sadrži sadašnji tekst stranice.\nVaše izmene su prikazane u donjem okviru.\nMoraćete da unesete svoje promene u sadašnji tekst stranice.\n<strong>Samo</strong> će tekst u gornjem okviru za uređivanje biti sačuvan kada kliknete na „$1”.",
 	"yourtext": "Vaš tekst",
 	"storedversion": "Uskladištena izmena",
-	"nonunicodebrowser": "'''Upozorenje: vaš pregledač ne podržava unikod.'''\nPromenite ga pre nego što počnete s uređivanjem.",
 	"editingold": "<strong>Upozorenje: uređujete zastarelu izmenu ove stranice.</strong>\nAko je sačuvate, sve novije izmene će biti izgubljene.",
 	"yourdiff": "Razlike",
 	"copyrightwarning": "Imajte na umu da se svi doprinosi na ovom vikiju smatraju kao objavljeni pod licencom $2 (više na $1).\nAko ne želite da se vaši tekstovi menjaju i razmenjuju bez ograničenja, onda ih ne šaljite ovde.<br />\nIsto tako obećavate da ste vi autor teksta, ili da ste ga umnožili s izvora koji je u javnom vlasništvu.\n'''Ne šaljite radove zaštićene autorskim pravima bez dozvole!'''",

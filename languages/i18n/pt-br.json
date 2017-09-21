@@ -775,7 +775,6 @@
 	"explainconflict": "Alguém mudou a página enquanto você a estava editando.\nA área de texto acima mostra o texto original.\nSuas mudanças são mostradas na área abaixo.\nVocê terá que mesclar suas modificações no texto existente.\n'''SOMENTE''' o texto na área acima será salvo quando você pressionar \"$1\".",
 	"yourtext": "Seu texto",
 	"storedversion": "Versão guardada",
-	"nonunicodebrowser": "'''AVISO: O seu navegador não é compatível com as especificações unicode.'''\nUm contorno terá de ser utilizado para permitir que você possa editar as páginas com segurança: os caracteres não-ASCII aparecerão na caixa de edição no formato de códigos hexadecimais.",
 	"editingold": "'''CUIDADO: Você está editando uma revisão desatualizada desta página.'''\nSe você salvá-la, todas as mudanças feitas a partir desta revisão serão perdidas.",
 	"yourdiff": "Diferenças",
 	"copyrightwarning": "Por favor, note que todas as suas contribuições em {{SITENAME}} são consideradas como lançadas nos termos da licença $2 (veja $1 para detalhes). Se não deseja que o seu texto seja inexoravelmente editado e redistribuído de tal forma, não o envie.<br />\nVocê está, ao mesmo tempo, garantindo-nos que isto é algo escrito por você mesmo ou algo copiado de uma fonte de textos em domínio público ou similarmente de teor livre.\n'''NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS AUTORAIS SEM A DEVIDA PERMISSÃO!'''",

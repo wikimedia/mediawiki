@@ -3805,7 +3805,7 @@
 	"table_pager_empty": "Used in a table pager when there are no results (e.g. when there are no images in the table on [[Special:ImageList]]).\n{{Identical|No result}}",
 	"autosumm-blank": "The auto summary when blanking the whole page. This is not the same as deleting the page.",
 	"autosumm-replace": "The auto summary when a user removes a lot of characters in the page.\n\nParameters:\n* $1 - truncated text",
-	"autoredircomment": "The auto summary when making a redirect. Parameters:\n* $1 - the page where it redirects to\n* $2 - (Optional) the first X number of characters of the redirect ($2 is usually only used when end users customize the message)",
+	"autoredircomment": "The auto summary when making a redirect. Parameters:\n* $1 - the page where it redirects to\n* $2 - (Optional) the first X number of characters of the redirect ($2 is usually only used when end users customize the message)\n{{Identical|Redirect}}",
 	"autosumm-new": "The auto summary when creating a new page. $1 are the first X number of characters of the new page.",
 	"autosumm-newblank": "The automatic edit summary when creating a blank page. This is not the same as blanking a page.",
 	"autoblock_whitelist": "{{notranslate}}",

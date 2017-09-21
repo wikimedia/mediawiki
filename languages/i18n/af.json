@@ -593,7 +593,6 @@
 	"explainconflict": "Iemand anders het hierdie bladsy gewysig sedert u dit begin wysig het.\nDie boonste invoerboks het die teks wat tans bestaan.\nU wysigings word in die onderste invoerboks gewys.\nU sal u wysigings moet saamsmelt met die huidige teks.\n'''Slegs''' die teks in die boonste invoerboks sal gestoor word wanneer u \"$1\" druk.",
 	"yourtext": "U teks",
 	"storedversion": "Gestoorde weergawe",
-	"nonunicodebrowser": "'''Waarskuwing: U webblaaier ondersteun nie Unikode nie.'''\nDie MediaWiki-sagteware hou hiermee rekening sodat u bladsye veilig kan wysig: nie-ASCII karakters word in die wysigingsvenster as heksadesimale kodes weergegee.",
 	"editingold": "'''WAARSKUWING: U is besig om 'n ouer weergawe van hierdie bladsy te wysig.\nAs u dit stoor, sal enige wysigings sedert hierdie een weer uitgewis word.'''",
 	"yourdiff": "Wysigings",
 	"copyrightwarning": "Alle bydraes aan {{SITENAME}} word onder die $2 beskikbaar gestel (lees $1 vir meer inligting).\nAs u nie wil toelaat dat u teks deur ander persone gewysig of versprei word nie, moet dit asseblief nie hier invoer nie.<br />\nHierdeur beloof u ons dat u die byvoegings self geskryf het, of gekopieer het van publieke domein of soortgelyke vrye bronne.\n'''MOENIE WERK WAT DEUR KOPIEREG BESKERM WORD HIER PLAAS SONDER TOESTEMMING NIE!'''",

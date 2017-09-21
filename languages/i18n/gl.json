@@ -691,7 +691,6 @@
 	"explainconflict": "Alguén cambiou esta páxina desde que comezou a editala.\nA área de texto superior contén o texto da páxina tal e como existe na actualidade.\nOs seus cambios móstranse na área inferior.\nPode mesturar os seus cambios co texto existente.\n'''Só''' se gardará o texto na área superior cando prema en \"$1\".",
 	"yourtext": "O seu texto",
 	"storedversion": "Versión gardada",
-	"nonunicodebrowser": "'''Atención: O seu navegador non soporta o Unicode.'''\nExiste unha solución que lle permite editar páxinas con seguridade: os caracteres non incluídos no ASCII aparecerán na caixa de edición como códigos hexadecimais.",
 	"editingold": "'''Atención: Está editando unha revisión vella desta páxina.'''\nSe a garda, perderanse os cambios realizados tras esta revisión.",
 	"yourdiff": "Diferenzas",
 	"copyrightwarning": "Por favor, teña en conta que todas as contribucións feitas en {{SITENAME}} se consideran publicadas baixo a $2 (consulte $1 para obter máis detalles).\nSe non quere que os seus escritos sexan editados sen piedade e redistribuídos sen límites, entón non os publique aquí.<br />\nDo mesmo xeito, comprométese a que o que vostede escriba é da súa autoría ou está copiado dun recurso de dominio público ou que procede dunha fonte libre.\n<strong>Non envíe material con dereitos de autoría sen permiso!</strong>",

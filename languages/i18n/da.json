@@ -712,7 +712,6 @@
 	"explainconflict": "Nogen har ændret denne side, efter du startede på at redigere den.\nDen øverste tekstboks indeholder den nuværende tekst.\nDine ændringer er vist i den nederste tekstboks.\nDu er nødt til at sammenflette dine ændringer med den eksisterende tekst.\n'''Kun''' teksten i den øverste tekstboks vil blive gemt når du trykker \"$1\".",
 	"yourtext": "Din tekst",
 	"storedversion": "Den gemte version",
-	"nonunicodebrowser": "'''Advarsel: Din browser er ikke unicode-kompatibel, skift eller opdater din browser før du redigerer en artikel.'''",
 	"editingold": "'''ADVARSEL: Du redigerer en gammel version af denne side.\nHvis du gemmer den, vil alle ændringer foretaget siden denne revision blive overskrevet.'''",
 	"yourdiff": "Forskelle",
 	"copyrightwarning": "Bemærk venligst at alle bidrag til {{SITENAME}} er at betragte som udgivne under $2 (se $1 for detaljer).\nHvis du ikke ønsker at din tekst skal udsættes for nådesløse redigeringer og at den kan blive kopieret efter forgodtbefindende, så skal du ikke placere den her.<br />\nDu lover os også, at du selv har forfattet teksten eller har kopieret den fra en public domain-kilde eller en tilsvarende fri kilde.\n'''Læg aldrig materiale her som er beskyttet af andres ophavsret uden deres tilladelse!'''",

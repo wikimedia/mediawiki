@@ -710,7 +710,6 @@
 	"explainconflict": "Noen andre har endret teksten siden du begynte å redigere.\nDen øverste boksen inneholder den nåværende teksten.\nDine endringer vises i den nederste boksen.\nDu er nødt til å flette dine endringer sammen med den nåværende teksten.\n'''Kun''' teksten i den øverste tekstboksen blir lagret når du trykker «$1».",
 	"yourtext": "Din tekst",
 	"storedversion": "Den lagrede versjonen",
-	"nonunicodebrowser": "'''Advarsel: Nettleseren din har ikke Unicode-støtte.'''\nFor å unngå problemer blir som ikke er med i ASCII vist som heksadesimale kode i redigeringsruten.",
 	"editingold": "'''Advarsel: Du redigerer en gammel versjon av denne siden.'''\nOm du lagrer den slik vil alle endringer som ble gjort etter revisjonen du redigerer gå tapt.",
 	"yourdiff": "Forskjeller",
 	"copyrightwarning": "Merk at alle bidrag til {{SITENAME}} anses som frigitt under $2 (se $1 for detaljer).\nOm du ikke vil at ditt materiale skal kunne redigeres og distribueres fritt må du ikke lagre det her.<br />\nDu lover oss også at du har skrevet teksten selv, eller kopiert den fra en kilde i offentlig eie eller en annen fri ressurs.\n'''Ikke lagre opphavsrettsbeskyttet materiale uten tillatelse!'''",

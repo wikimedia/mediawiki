@@ -666,7 +666,6 @@
 	"explainconflict": "En anere Benotzer huet un dëser Säit geschafft, während Dir am Gaang waart, se z'änneren.\nDat iewescht Textfeld weist Iech den aktuellen Text.\nÄr Ännerunge gesitt Dir am ënneschten Textfeld.\nDir musst Är Ännerungen an dat iewescht Textfeld androen.\n'''Nëmmen''' den Text aus dem ieweschten Textfeld gëtt gehale wann Dir op \"$1\" klickt.",
 	"yourtext": "Ären Text",
 	"storedversion": "Gespäichert Versioun",
-	"nonunicodebrowser": "'''OPGEPASST: Äre Browser ass net Unicode kompatibel.'''\nE 'workaround' gëtt agesat deen et erlaabt Säite sécher z'änneren: Net-ASCII Zeeche ginn an der Ännerungskëscht als hexadezimal-Code gewisen.",
 	"editingold": "'''OPGEPASST: Dir ännert eng al Versioun vun dëser Säit. Wann Dir späichert, sinn all rezent Versioune vun dëser Säit verluer.'''",
 	"yourdiff": "Ënnerscheeder",
 	"copyrightwarning": "W.e.g. notéiert datt all Kontributiounen op {{SITENAME}} automatesch ënner der $2 (kuckt $1 fir méi Informatiounen) verëffentlecht sinn.\nWann Dir net wëllt datt är Texter vun anere Mataarbechter verännert, geläscht a weiderverdeelt kënne ginn, da setzt näischt heihinner.<br />\nDir verspriecht ausserdeem datt Dir dësen Text selwer verfaasst hutt, oder aus dem Domaine public oder ähnleche Ressource kopéiert hutt.\n'''DROT KEE COPYRECHTLECH GESCHÜTZTE CONTENU OUNI ERLAABNES AN!'''",
