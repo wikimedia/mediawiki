@@ -821,7 +821,7 @@ class EditPage {
 	 * @return bool
 	 */
 	protected function previewOnOpen() {
-		global $wgPreviewOnOpenNamespaces;
+		$previewOnOpenNamespaces = $this->context->getConfig()->get( 'PreviewOnOpenNamespaces' );
 		$request = $this->context->getRequest();
 		if ( $request->getVal( 'preview' ) == 'yes' ) {
 			// Explicit override from request
@@ -838,8 +838,8 @@ class EditPage {
 			// Standard preference behavior
 			return true;
 		} elseif ( !$this->mTitle->exists()
-			&& isset( $wgPreviewOnOpenNamespaces[$this->mTitle->getNamespace()] )
-			&& $wgPreviewOnOpenNamespaces[$this->mTitle->getNamespace()]
+			&& isset( $previewOnOpenNamespaces[$this->mTitle->getNamespace()] )
+			&& $previewOnOpenNamespaces[$this->mTitle->getNamespace()]
 		) {
 			// Categories are special
 			return true;
@@ -1769,9 +1769,6 @@ class EditPage {
 	 * time.
 	 */
 	public function internalAttemptSave( &$result, $bot = false ) {
-		global $wgMaxArticleSize;
-		global $wgContentHandlerUseDB;
-
 		$status = Status::newGood();
 		$user = $this->context->getUser();
 
@@ -1883,7 +1880,9 @@ class EditPage {
 		}
 
 		$this->contentLength = strlen( $this->textbox1 );
-		if ( $this->contentLength > $wgMaxArticleSize * 1024 ) {
+		$config = $this->context->getConfig();
+		$maxArticleSize = $config->get( 'MaxArticleSize' );
+		if ( $this->contentLength > $maxArticleSize * 1024 ) {
 			// Error will be displayed by showEditForm()
 			$this->tooBig = true;
 			$status->setResult( false, self::AS_CONTENT_TOO_BIG );
@@ -1903,7 +1902,7 @@ class EditPage {
 
 		$changingContentModel = false;
 		if ( $this->contentModel !== $this->mTitle->getContentModel() ) {
-			if ( !$wgContentHandlerUseDB ) {
+			if ( !$config->get( 'ContentHandlerUseDB' ) ) {
 				$status->fatal( 'editpage-cannot-use-custom-model' );
 				$status->value = self::AS_CANNOT_USE_CUSTOM_MODEL;
 				return $status;
@@ -2182,7 +2181,7 @@ class EditPage {
 
 		// Check for length errors again now that the section is merged in
 		$this->contentLength = strlen( $this->toEditText( $content ) );
-		if ( $this->contentLength > $wgMaxArticleSize * 1024 ) {
+		if ( $this->contentLength > $maxArticleSize * 1024 ) {
 			$this->tooBig = true;
 			$status->setResult( false, self::AS_MAX_ARTICLE_SIZE_EXCEEDED );
 			return $status;
@@ -2383,8 +2382,6 @@ class EditPage {
 	}
 
 	public function setHeaders() {
-		global $wgAjaxEditStash;
-
 		$out = $this->context->getOutput();
 
 		$out->addModules( 'mediawiki.action.edit' );
@@ -2436,7 +2433,7 @@ class EditPage {
 		# Keep Resources.php/mediawiki.action.edit.preview in sync with the possible keys
 		$out->addJsConfigVars( [
 			'wgEditMessage' => $msg,
-			'wgAjaxEditStash' => $wgAjaxEditStash,
+			'wgAjaxEditStash' => $this->context->getConfig()->get( 'AjaxEditStash' ),
 		] );
 	}
 
@@ -2938,8 +2935,6 @@ class EditPage {
 	}
 
 	protected function showHeader() {
-		global $wgAllowUserCss, $wgAllowUserJs;
-
 		$out = $this->context->getOutput();
 		$user = $this->context->getUser();
 		if ( $this->isConflict ) {
@@ -3064,14 +3059,15 @@ class EditPage {
 						$isCssSubpage ? 'usercssispublic' : 'userjsispublic'
 					);
 					if ( $this->formtype !== 'preview' ) {
-						if ( $isCssSubpage && $wgAllowUserCss ) {
+						$config = $this->context->getConfig();
+						if ( $isCssSubpage && $config->get( 'AllowUserCss' ) ) {
 							$out->wrapWikiMsg(
 								"<div id='mw-usercssyoucanpreview'>\n$1\n</div>",
 								[ 'usercssyoucanpreview' ]
 							);
 						}
 
-						if ( $this->mTitle->isJsSubpage() && $wgAllowUserJs ) {
+						if ( $this->mTitle->isJsSubpage() && $config->get( 'AllowUserJs' ) ) {
 							$out->wrapWikiMsg(
 								"<div id='mw-userjsyoucanpreview'>\n$1\n</div>",
 								[ 'userjsyoucanpreview' ]
@@ -3826,12 +3822,10 @@ class EditPage {
 	 * @return string
 	 */
 	public function getPreviewText() {
-		global $wgRawHtml;
-		global $wgAllowUserCss, $wgAllowUserJs;
-
 		$out = $this->context->getOutput();
+		$config = $this->context->getConfig();
 
-		if ( $wgRawHtml && !$this->mTokenOk ) {
+		if ( $config->get( 'RawHtml' ) && !$this->mTokenOk ) {
 			// Could be an offsite preview attempt. This is very unsafe if
 			// HTML is enabled, as it could be an attack.
 			$parsedNote = '';
@@ -3894,12 +3888,12 @@ class EditPage {
 
 				if ( $content->getModel() == CONTENT_MODEL_CSS ) {
 					$format = 'css';
-					if ( $level === 'user' && !$wgAllowUserCss ) {
+					if ( $level === 'user' && !$config->get( 'AllowUserCss' ) ) {
 						$format = false;
 					}
 				} elseif ( $content->getModel() == CONTENT_MODEL_JAVASCRIPT ) {
 					$format = 'js';
-					if ( $level === 'user' && !$wgAllowUserJs ) {
+					if ( $level === 'user' && !$config->get( 'AllowUserJs' ) ) {
 						$format = false;
 					}
 				} else {
@@ -4565,20 +4559,19 @@ class EditPage {
 	 * @since 1.29
 	 */
 	protected function addLongPageWarningHeader() {
-		global $wgMaxArticleSize;
-
 		if ( $this->contentLength === false ) {
 			$this->contentLength = strlen( $this->textbox1 );
 		}
 
 		$out = $this->context->getOutput();
 		$lang = $this->context->getLanguage();
-		if ( $this->tooBig || $this->contentLength > $wgMaxArticleSize * 1024 ) {
+		$maxArticleSize = $this->context->getConfig()->get( 'MaxArticleSize' );
+		if ( $this->tooBig || $this->contentLength > $maxArticleSize * 1024 ) {
 			$out->wrapWikiMsg( "<div class='error' id='mw-edit-longpageerror'>\n$1\n</div>",
 				[
 					'longpageerror',
 					$lang->formatNum( round( $this->contentLength / 1024, 3 ) ),
-					$lang->formatNum( $wgMaxArticleSize )
+					$lang->formatNum( $maxArticleSize )
 				]
 			);
 		} else {
