@@ -90,6 +90,13 @@
 					"mw.inspect.reports",
 					"mw.Debug"
 				]
+			},
+			{
+				"name": "VisibleTimeout",
+				"classes": [
+					"mw.setVisibleTimeout",
+					"mw.clearVisibleTimeout"
+				]
 			}
 		]
 	},
