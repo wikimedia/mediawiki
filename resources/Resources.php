@@ -1134,6 +1134,7 @@ return [
 		'scripts' => 'resources/src/mediawiki/mediawiki.notification.js',
 		'dependencies' => [
 			'mediawiki.util',
+			'mediawiki.visibleTimeout',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -1390,6 +1391,10 @@ return [
 	],
 	'mediawiki.editfont.styles' => [
 		'styles' => 'resources/src/mediawiki/mediawiki.editfont.css',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	'mediawiki.visibleTimeout' => [
+		'scripts' => 'resources/src/mediawiki/mediawiki.visibleTimeout.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 

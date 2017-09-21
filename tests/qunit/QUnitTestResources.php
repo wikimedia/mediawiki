@@ -99,6 +99,7 @@ return [
 			'tests/qunit/suites/resources/mediawiki/mediawiki.cldr.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.cookie.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.experiments.test.js',
+			'tests/qunit/suites/resources/mediawiki/mediawiki.visibleTimeout.test.js',
 		],
 		'dependencies' => [
 			'jquery.accessKeyLabel',
@@ -141,6 +142,7 @@ return [
 			'mediawiki.cookie',
 			'mediawiki.experiments',
 			'mediawiki.inspect',
+			'mediawiki.visibleTimeout',
 			'test.mediawiki.qunit.testrunner',
 		],
 	]
