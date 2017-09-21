@@ -343,12 +343,12 @@
 				case OO.ui.Keys.UP:
 				case OO.ui.Keys.LEFT:
 					// Get the next item
-					nextItem = this.getRelativeSelectableItem( currentItem, -1 );
+					nextItem = this.findRelativeSelectableItem( currentItem, -1 );
 					break;
 				case OO.ui.Keys.DOWN:
 				case OO.ui.Keys.RIGHT:
 					// Get the next item
-					nextItem = this.getRelativeSelectableItem( currentItem, 1 );
+					nextItem = this.findRelativeSelectableItem( currentItem, 1 );
 					break;
 			}
 
