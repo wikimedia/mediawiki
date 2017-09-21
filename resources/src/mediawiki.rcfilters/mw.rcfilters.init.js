@@ -32,7 +32,7 @@
 				currentPage = mw.config.get( 'wgCanonicalNamespace' ) +
 					':' +
 					mw.config.get( 'wgCanonicalSpecialPageName' );
-
+debugger;
 			// TODO: The changesListWrapperWidget should be able to initialize
 			// after the model is ready.
 			// eslint-disable-next-line no-new
