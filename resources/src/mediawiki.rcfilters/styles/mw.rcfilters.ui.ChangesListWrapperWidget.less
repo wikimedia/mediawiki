@@ -41,17 +41,6 @@
 		background-color: #dee0e3;
 	}
 
-	h4:first-of-type {
-		margin-top: 0;
-		padding-top: 0;
-	}
-
-	ul {
-		// Each li's margin-left should be the width of the highlights
-		// element + the margin
-		margin-left: ~'calc( ( @{result-circle-diameter} + @{result-circle-margin} ) * 5 + @{result-circle-general-margin} )';
-	}
-
 	&-highlighted {
 		ul {
 			list-style: none;
@@ -69,8 +58,6 @@
 	// Correction for Enhanced RC
 	// This is outside the scope of the 'highlights' wrapper
 	table.mw-enhanced-rc {
-		margin-left: ~'calc( ( @{result-circle-diameter} + @{result-circle-margin} ) * 5 + @{result-circle-general-margin} )';
-
 		td:last-child {
 			width: 100%;
 		}

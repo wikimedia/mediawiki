@@ -2,7 +2,8 @@
 @import 'mw.rcfilters.mixins';
 
 @rcfilters-spinner-width: 70px;
-@rcfilters-head-min-height: 200px;
+@rcfilters-head-min-height: 250px;
+@rcfilters-wl-head-min-height: 315px;
 
 // Corrections for the standard special page
 .client-js {
@@ -10,9 +11,15 @@
 		border: 0;
 	}
 
+	// Reserve space for the UI while it loads
 	.rcfilters-head {
 		min-height: @rcfilters-head-min-height;
 	}
+	// On the watchlist, reserve a bit more
+	.mw-special-Watchlist .rcfilters-head {
+		min-height: @rcfilters-wl-head-min-height;
+	}
+
 	body:not( .mw-rcfilters-ui-initialized ) .rcfilters-head {
 		opacity: 0.5;
 		pointer-events: none;
@@ -33,6 +40,12 @@
 			// since we replace it anyways with a specific
 			// message of our own
 			display: none;
+		}
+
+		// Reserve space for the highlight circles
+		ul,
+		table.mw-enhanced-rc {
+			.result-circle-margin();
 		}
 	}
 
@@ -79,12 +92,18 @@
 	body.mw-rcfilters-ui-loading .rcfilters-spinner {
 		display: block;
 		// When loading new results, display the spinner on top of the results area
-		margin-top: 4em;
+		margin-top: 2em;
 	}
 
 	#contentSub,
 	form#mw-watchlist-resetbutton {
 		display: none;
+	}
+
+	// Make the watchlist-details message display while loading, but make it not take up any
+	// space. This makes the min-height trick work better.
+	.watchlistDetails {
+		float: left;
 	}
 }
 
