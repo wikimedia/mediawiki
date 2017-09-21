@@ -101,7 +101,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		if ( $this->isStructuredFilterUiEnabled() ) {
 			$output->addModuleStyles( [ 'mediawiki.rcfilters.highlightCircles.seenunseen.styles' ] );
 
-			$output->addJsConfigVars( 'wgStructuredChangeFiltersLiveUpdateSupported', false );
 			$output->addJsConfigVars(
 				'wgStructuredChangeFiltersEditWatchlistUrl',
 				SpecialPage::getTitleFor( 'EditWatchlist' )->getLocalURL()
@@ -269,26 +268,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Get a FormOptions object containing the default options
-	 *
-	 * @return FormOptions
-	 */
-	public function getDefaultOptions() {
-		$opts = parent::getDefaultOptions();
-
-		$opts->add( 'days', $this->getDefaultDays(), FormOptions::FLOAT );
-		$opts->add( 'limit', $this->getDefaultLimit(), FormOptions::INT );
-
-		return $opts;
-	}
-
-	public function validateOptions( FormOptions $opts ) {
-		$opts->validateBounds( 'days', 0, $this->maxDays );
-		$opts->validateIntBounds( 'limit', 0, 5000 );
-		parent::validateOptions( $opts );
-	}
-
-	/**
 	 * Get all custom filters
 	 *
 	 * @return array Map of filter URL param names to properties (msg/default)
@@ -358,23 +337,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$opts->fetchValuesFromRequest( $request );
 
 		return $opts;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	protected function buildQuery( &$tables, &$fields, &$conds, &$query_options,
-		&$join_conds, FormOptions $opts
-	) {
-		$dbr = $this->getDB();
-		parent::buildQuery( $tables, $fields, $conds, $query_options, $join_conds,
-			$opts );
-
-		// Calculate cutoff
-		if ( $opts['days'] > 0 ) {
-			$conds[] = 'rc_timestamp > ' .
-				$dbr->addQuotes( $dbr->timestamp( time() - $opts['days'] * 3600 * 24 ) );
-		}
 	}
 
 	/**
@@ -654,7 +616,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$timestamp = wfTimestampNow();
 		$wlInfo = Html::rawElement(
 			'span',
-			[ 'class' => 'wlinfo' ],
+			[
+				'class' => 'wlinfo',
+				'data-params' => json_encode( [ 'from' => $timestamp ] ),
+			],
 			$this->msg( 'wlnote' )->numParams( $numRows, round( $days * 24 ) )->params(
 				$lang->userDate( $timestamp, $user ), $lang->userTime( $timestamp, $user )
 			)->parse()

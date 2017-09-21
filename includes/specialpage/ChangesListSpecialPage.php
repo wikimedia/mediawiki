@@ -944,6 +944,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$opts->add( 'urlversion', 1 );
 		$opts->add( 'tagfilter', '' );
 
+		$opts->add( 'days', $this->getDefaultDays(), FormOptions::FLOAT );
+		$opts->add( 'limit', $this->getDefaultLimit(), FormOptions::INT );
+
+		$opts->add( 'from', '' );
+
 		return $opts;
 	}
 
@@ -1097,6 +1102,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$query = wfArrayToCgi( $this->convertParamsForLink( $opts->getChangedValues() ) );
 			$this->getOutput()->redirect( $this->getPageTitle()->getCanonicalURL( $query ) );
 		}
+
+		$opts->validateIntBounds( 'limit', 0, 5000 );
+		$opts->validateBounds( 'days', 0, $this->getConfig()->get( 'RCMaxAge' ) / ( 3600 * 24 ) );
 	}
 
 	/**
@@ -1236,6 +1244,19 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			}
 			$conds[] = "rc_namespace $operator $value";
 		}
+
+		// Calculate cutoff
+		$cutoff_unixtime = time() - $opts['days'] * 3600 * 24;
+		$cutoff = $dbr->timestamp( $cutoff_unixtime );
+
+		$fromValid = preg_match( '/^[0-9]{14}$/', $opts['from'] );
+		if ( $fromValid && $opts['from'] > wfTimestamp( TS_MW, $cutoff ) ) {
+			$cutoff = $dbr->timestamp( $opts['from'] );
+		} else {
+			$opts->reset( 'from' );
+		}
+
+		$conds[] = 'rc_timestamp >= ' . $dbr->addQuotes( $cutoff );
 	}
 
 	/**
