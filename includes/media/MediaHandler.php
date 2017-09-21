@@ -921,6 +921,6 @@ abstract class MediaHandler {
 	 * @since 1.30
 	 */
 	public function getContentHeaders( $metadata ) {
-		return [];
+		return [ 'X-Content-Dimensions' => '' ]; // T175689
 	}
 }
