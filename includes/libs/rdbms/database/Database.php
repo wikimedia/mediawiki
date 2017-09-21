@@ -945,10 +945,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			# Update state tracking to reflect transaction loss due to disconnection
 			$this->handleSessionLoss();
 			if ( $this->reconnect() ) {
-				$msg = __METHOD__ . ": lost connection to {$this->getServer()}; reconnected";
-				$this->connLogger->warning( $msg );
-				$this->queryLogger->warning(
-					"$msg:\n" . ( new RuntimeException() )->getTraceAsString() );
+				$this->connLogger->warning( __METHOD__ .
+					': lost connection to "{db_server}" but reconnected. Last query: {sql}',
+					[ 'db_server' => $this->getServer(), 'sql' => $commentedSql ]
+				);
 
 				if ( !$recoverable ) {
 					# Callers may catch the exception and continue to use the DB
