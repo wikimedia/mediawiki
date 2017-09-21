@@ -15,17 +15,30 @@
 	.rcfilters-head {
 		min-height: @rcfilters-head-min-height;
 	}
+
 	// On the watchlist, reserve a bit more
 	.mw-special-Watchlist .rcfilters-head {
 		min-height: @rcfilters-wl-head-min-height;
 	}
 
-	body:not( .mw-rcfilters-ui-initialized ) .rcfilters-head {
-		opacity: 0.5;
-		pointer-events: none;
-
-		.cloptions {
+	body:not( .mw-rcfilters-ui-initialized ) {
+		.mw-recentchanges-toplinks-content.mw-rcfilters-toplinks-collapsed {
 			display: none;
+		}
+
+		.mw-recentchanges-toplinks-title.mw-rcfilters-toplinks-collapsed {
+			// Hide, but keep the placement so we don't jump
+			visibility: hidden;
+		}
+
+		.rcfilters-head {
+			opacity: 0.5;
+			pointer-events: none;
+
+			.cloptions {
+				display: none;
+			}
+
 		}
 	}
 
