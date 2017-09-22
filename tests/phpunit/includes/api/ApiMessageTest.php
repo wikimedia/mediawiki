@@ -95,9 +95,6 @@ class ApiMessageTest extends MediaWikiTestCase {
 		$this->compareMessages( $msg, $msg2 );
 		$this->assertEquals( 'foo', $msg2->getApiCode() );
 		$this->assertEquals( [], $msg2->getApiData() );
-
-		$msg2->setApiData( [ 'data2' ] );
-		$this->assertEquals( [ 'data2' ], $msg2->getApiData() );
 	}
 
 	/**
@@ -138,9 +135,6 @@ class ApiMessageTest extends MediaWikiTestCase {
 		$this->compareMessages( $msg, $msg2 );
 		$this->assertEquals( 'code', $msg2->getApiCode() );
 		$this->assertEquals( [ 'data' ], $msg2->getApiData() );
-
-		$msg2->setApiData( [ 'data2' ] );
-		$this->assertEquals( [ 'data2' ], $msg2->getApiData() );
 	}
 	/**
 	 * @covers ApiRawMessage

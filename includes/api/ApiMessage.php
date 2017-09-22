@@ -165,11 +165,8 @@ trait ApiMessageTrait {
 	/**
 	 * Sets additional machine-readable data about the error condition
 	 * @param array $data
-	 *
-	 * @deprecated Use constructor instead. Will be made protected as soon as
-	 *             \Wikibase\Repo\Api\ApiErrorReporter doesn't depend on it anymore
 	 */
-	public function setApiData( array $data ) {
+	protected function setApiData( array $data ) {
 		$this->apiData = $data;
 	}
 
