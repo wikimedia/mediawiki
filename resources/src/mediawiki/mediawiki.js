@@ -2123,10 +2123,7 @@
 				 *  in the registry.
 				 */
 				getVersion: function ( module ) {
-					if ( !hasOwn.call( registry, module ) || registry[ module ].version === undefined ) {
-						return null;
-					}
-					return registry[ module ].version;
+					return hasOwn.call( registry, module ) ? registry[ module ].version : null;
 				},
 
 				/**
@@ -2137,10 +2134,7 @@
 				 *  in the registry.
 				 */
 				getState: function ( module ) {
-					if ( !hasOwn.call( registry, module ) || registry[ module ].state === undefined ) {
-						return null;
-					}
-					return registry[ module ].state;
+					return hasOwn.call( registry, module ) ? registry[ module ].state : null;
 				},
 
 				/**
