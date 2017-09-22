@@ -94,6 +94,8 @@
 /*==========================*/
 
 #mw-searchoptions {
+	/* Support: Firefox, needs `clear: both` on `fieldset` when zoom level > 100%, see T176499 */
+	clear: both;
 	padding: 0.5em 0.75em 0.75em 0.75em;
 	background-color: #f8f9fa;
 	margin: -1px 0 0;
