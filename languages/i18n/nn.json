@@ -1206,6 +1206,7 @@
 	"rcfilters-view-tags": "Endringar med merke",
 	"rcfilters-view-namespaces-tooltip": "Filtrer resultat etter namnerom",
 	"rcfilters-view-tags-tooltip": "Filtrer resultat etter endringsmerke",
+	"rcfilters-liveupdates-button": "Oppdateringar i sanntid",
 	"rcfilters-watchlist-markseen-button": "Merk alle endringar som sette",
 	"rcfilters-watchlist-edit-watchlist-button": "Endra lista over sider du overvaker",
 	"rcnotefrom": "Nedanfor er endringane gjorde sidan <strong>$2</strong> viste (opp til <strong>$1</strong> stykke)",

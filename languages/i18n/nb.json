@@ -711,6 +711,7 @@
 	"yourtext": "Din tekst",
 	"storedversion": "Den lagrede versjonen",
 	"editingold": "'''Advarsel: Du redigerer en gammel versjon av denne siden.'''\nOm du lagrer den slik vil alle endringer som ble gjort etter revisjonen du redigerer gå tapt.",
+	"unicode-support-fail": "Det virker som om nettleseren din ikke støtter Unicode. Det er påkrevd for å redigere sider, så redigeringen din ble ikke lagret.",
 	"yourdiff": "Forskjeller",
 	"copyrightwarning": "Merk at alle bidrag til {{SITENAME}} anses som frigitt under $2 (se $1 for detaljer).\nOm du ikke vil at ditt materiale skal kunne redigeres og distribueres fritt må du ikke lagre det her.<br />\nDu lover oss også at du har skrevet teksten selv, eller kopiert den fra en kilde i offentlig eie eller en annen fri ressurs.\n'''Ikke lagre opphavsrettsbeskyttet materiale uten tillatelse!'''",
 	"copyrightwarning2": "Vennligst merk at alle bidrag til {{SITENAME}} kan bli redigert, endret eller fjernet av andre bidragsytere.\nOm du ikke vil at dine bidrag skal kunne redigeres fritt, ikke legg det til her.<br />\nDu lover også at du har skrevet dette selv, eller kopiert det fra en ressurs som er i offentlig eie eller en lignende fri ressurs (se $1 for detaljer).\n'''Ikke legg til opphavsrettsbeskyttet materiale uten tillatelse!'''",

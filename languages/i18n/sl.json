@@ -675,6 +675,7 @@
 	"yourtext": "Vaše besedilo",
 	"storedversion": "Shranjena redakcija",
 	"editingold": "'''Opozorilo: Urejate staro redakcijo strani.'''\nČe jo boste shranili, bodo vse poznejše spremembe razveljavljene.",
+	"unicode-support-fail": "Videti je, da vaš brskalnik ne podpira unikoda. Za urejanje strani je zahtevan, zato vašega urejanja nismo shranili.",
 	"yourdiff": "Primerjava",
 	"copyrightwarning": "Vsi prispevki k {{GRAMMAR:dajalnik|{{SITENAME}}}} se obravnavajo kot objave pod pogoji $2 (za podrobnosti glej $1). Če niste pripravljeni na neusmiljeno urejanje in prosto razširjanje vašega gradiva, ga ne prispevajte.<br />\nPoleg tega zagotavljate, da ste prispevke napisali oziroma ustvarili sami ali pa prepisali iz javno dostopnega ali podobnega prostega vira.\n'''Ne dodajajte avtorsko zaščitenega dela brez dovoljenja!'''",
 	"copyrightwarning2": "Vedite, da lahko drugi urejevalci urejajo, spremenijo ali odstranijo katerikoli prispevek k {{GRAMMAR:dajalnik|{{SITENAME}}}}.\nČe niste pripravljeni na neusmiljeno urejanje svojega gradiva, ga ne objavljajte tukaj.<br />\nPoleg tega jamčite, da ste prispevke napisali oziroma ustvarili sami ali pa prepisali iz vira v javni lasti ali podobnega prostega vira (za podrobnosti glej $1).\n'''Ne objavljajte avtorsko zaščitenega gradiva brez dovoljenja!'''",
