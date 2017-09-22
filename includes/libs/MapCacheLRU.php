@@ -76,7 +76,8 @@ class MapCacheLRU {
 	 */
 	public function has( $key ) {
 		if ( !is_int( $key ) && !is_string( $key ) ) {
-			throw new MWException( __METHOD__ . ' called with invalid key. Must be string or integer.' );
+			throw new UnexpectedValueException(
+				__METHOD__ . ' called with invalid key. Must be string or integer.' );
 		}
 		return array_key_exists( $key, $this->cache );
 	}
