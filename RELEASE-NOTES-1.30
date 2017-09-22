@@ -73,10 +73,8 @@ section).
 * (T138166) Added ability for users to prohibit other users from sending them
   emails with Special:Emailuser. Can be enabled by setting
   $wgEnableUserEmailBlacklist to true.
-* (T172315) $wgOOUIEditPage was removed, OOUI is the only display option for the
-  edit interface.
 * (T67297) $wgBrowserBlacklist is deprecated, and changing it will have no effect.
-  Instead, users using browsers that do not support unicode will be unable to edit
+  Instead, users using browsers that do not support Unicode will be unable to edit
   and should upgrade to a modern browser instead.
 
 === External library changes in 1.30 ===
