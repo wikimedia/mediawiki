@@ -373,8 +373,17 @@ class ApiUpload extends ApiBase {
 
 		$sv = StatusValue::newGood();
 		foreach ( $errors as $error ) {
-			$msg = ApiMessage::create( $error );
-			$msg->setApiData( $msg->getApiData() + $data );
+			if ( $error instanceof IApiMessage ) {
+				/** @var IApiMessage $error */
+				$newData = $error->getApiData() + $data;
+				$msg = new ApiMessage(
+					$error,
+					$error->getApiCode(),
+					$newData
+				);
+			} else {
+				$msg = ApiMessage::create( $error, null, $data );
+			}
 			$sv->fatal( $msg );
 		}
 		$this->dieStatus( $sv );

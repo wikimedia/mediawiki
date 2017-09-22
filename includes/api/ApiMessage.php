@@ -49,19 +49,6 @@ interface IApiMessage extends MessageSpecifier {
 	 * @return array
 	 */
 	public function getApiData();
-
-	/**
-	 * Sets the machine-readable code for use by the API
-	 * @param string|null $code If null, uses the default (see self::getApiCode())
-	 * @param array|null $data If non-null, passed to self::setApiData()
-	 */
-	public function setApiCode( $code, array $data = null );
-
-	/**
-	 * Sets additional machine-readable data about the error condition
-	 * @param array $data
-	 */
-	public function setApiData( array $data );
 }
 
 /**
@@ -155,7 +142,12 @@ trait ApiMessageTrait {
 		return $this->apiCode;
 	}
 
-	public function setApiCode( $code, array $data = null ) {
+	/**
+	 * Sets the machine-readable code for use by the API
+	 * @param string|null $code If null, uses the default (see self::getApiCode())
+	 * @param array|null $data If non-null, passed to self::setApiData()
+	 */
+	protected function setApiCode( $code, array $data = null ) {
 		if ( $code !== null && !( is_string( $code ) && $code !== '' ) ) {
 			throw new InvalidArgumentException( "Invalid code \"$code\"" );
 		}
@@ -170,6 +162,13 @@ trait ApiMessageTrait {
 		return $this->apiData;
 	}
 
+	/**
+	 * Sets additional machine-readable data about the error condition
+	 * @param array $data
+	 *
+	 * @deprecated Use constructor instead. Will be made protected as soon as
+	 *             \Wikibase\Repo\Api\ApiErrorReporter doesn't depend on it anymore
+	 */
 	public function setApiData( array $data ) {
 		$this->apiData = $data;
 	}
