@@ -84,6 +84,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	public function __construct( $name, $restriction ) {
 		parent::__construct( $name, $restriction );
 
+		$nonRevisionTypes = [ RC_LOG ];
+		Hooks::run( 'SpecialWatchlistGetNonRevisionTypes', [ &$nonRevisionTypes ] );
+
 		$this->filterGroupDefinitions = [
 			[
 				'name' => 'registration',
@@ -322,8 +325,14 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'description' => 'rcfilters-filter-lastrevision-description',
 						'default' => false,
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) {
-							$conds[] = 'rc_this_oldid <> page_latest';
+							&$query_options, &$join_conds ) use ( $nonRevisionTypes ) {
+							$conds[] = $dbr->makeList(
+								[
+									'rc_this_oldid <> page_latest',
+									'rc_type' => $nonRevisionTypes,
+								],
+								LIST_OR
+							);
 						},
 						'cssClassSuffix' => 'last',
 						'isRowApplicableCallable' => function ( $ctx, $rc ) {
@@ -336,8 +345,14 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'description' => 'rcfilters-filter-previousrevision-description',
 						'default' => false,
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) {
-							$conds[] = 'rc_this_oldid = page_latest';
+							&$query_options, &$join_conds ) use ( $nonRevisionTypes ) {
+							$conds[] = $dbr->makeList(
+								[
+									'rc_this_oldid = page_latest',
+									'rc_type' => $nonRevisionTypes,
+								],
+								LIST_OR
+							);
 						},
 						'cssClassSuffix' => 'previous',
 						'isRowApplicableCallable' => function ( $ctx, $rc ) {
