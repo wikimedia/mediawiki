@@ -349,11 +349,6 @@
       },
       "require": {
         "composer/installers": "~1.0"
-      },
-      "autoload": {
-        "files": [
-          ""
-        ]
       }
     }
   }, {
@@ -535,7 +530,7 @@
   }, {
     "type": "package",
     "package": {
-      "name": "mediawiki/blue-spice-skin",
+      "name": "mediawiki/blue-spice-skin-skin",
       "type": "mediawiki-skin",
       "version": "dev-master",
       "source": {
@@ -548,6 +543,9 @@
       },
       "autoload": {
         "files": ["BlueSpiceSkin.php"]
+      },
+      "extra": {
+         "installer-name": "BlueSpiceSkin"
       }
     }
   }],
@@ -578,6 +576,6 @@
 		"mediawiki/user-functions" : "dev-master",
 		"mediawiki/user-merge" : "dev-master",
 		"mediawiki/variables" : "dev-master",
-		"mediawiki/blue-spice-skin" : "dev-master"
+		"mediawiki/blue-spice-skin-skin" : "dev-master"
   }
 }
