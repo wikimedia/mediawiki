@@ -6820,6 +6820,13 @@ $wgStructuredChangeFiltersShowPreference = false;
 $wgStructuredChangeFiltersOnWatchlist = false;
 
 /**
+ * Polling rate, in seconds, used by the 'live update' and 'view newest' features
+ * of the RCFilters app on SpecialRecentChanges and Special:Watchlist.
+ * 0 to disable completely.
+ */
+$wgStructuredChangeFiltersLiveUpdatePollingRate = 3;
+
+/**
  * Use new page patrolling to check new pages on Special:Newpages
  */
 $wgUseNPPatrol = true;
