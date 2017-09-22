@@ -28,7 +28,7 @@
 	}
 
 	// We override the animation for all of these color styles
-	$.each( [
+	[
 		'backgroundColor',
 		'borderBottomColor',
 		'borderLeftColor',
@@ -36,7 +36,7 @@
 		'borderTopColor',
 		'color',
 		'outlineColor'
-	], function ( i, attr ) {
+	].forEach( function ( attr ) {
 		$.fx.step[ attr ] = function ( fx ) {
 			if ( !fx.colorInit ) {
 				fx.start = getColor( fx.elem, attr );

@@ -1474,7 +1474,7 @@
 					} );
 				}
 
-				$.each( dependencies, function ( idx, module ) {
+				dependencies.forEach( function ( module ) {
 					var state = mw.loader.getState( module );
 					// Only queue modules that are still in the initial 'registered' state
 					// (not ones already loading, ready or error).
