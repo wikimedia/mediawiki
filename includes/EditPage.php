@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\EditPage\TextboxBuilder;
+use MediaWiki\EditPage\TextConflictHelper;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
@@ -447,6 +449,18 @@ class EditPage {
 	private $unicodeCheck;
 
 	/**
+	 * Factory function to create an edit conflict helper
+	 *
+	 * @var callable
+	 */
+	private $editConflictHelperFactory;
+
+	/**
+	 * @var TextConflictHelper|null
+	 */
+	private $editConflictHelper;
+
+	/**
 	 * @param Article $article
 	 */
 	public function __construct( Article $article ) {
@@ -459,6 +473,7 @@ class EditPage {
 
 		$handler = ContentHandler::getForModelID( $this->contentModel );
 		$this->contentFormat = $handler->getDefaultFormat();
+		$this->editConflictHelperFactory = [ $this, 'newTextConflictHelper' ];
 	}
 
 	/**
@@ -1534,8 +1549,7 @@ class EditPage {
 			return;
 		}
 
-		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
-		$stats->increment( 'edit.failures.conflict.resolved' );
+		$this->getEditConflictHelper()->incrementResolvedStats();
 	}
 
 	/**
@@ -2818,6 +2832,20 @@ class EditPage {
 		}
 
 		$out->addHTML( $this->editFormTextBeforeContent );
+		if ( $this->isConflict ) {
+			// In an edit conflict, we turn textbox2 into the user's text,
+			// and textbox1 into the stored version
+			$this->textbox2 = $this->textbox1;
+
+			$content = $this->getCurrentContent();
+			$this->textbox1 = $this->toEditText( $content );
+
+			$editConflictHelper = $this->getEditConflictHelper();
+			$editConflictHelper->setTextboxes( $this->textbox2, $this->textbox1 );
+			$editConflictHelper->setContentModel( $this->contentModel );
+			$editConflictHelper->setContentFormat( $this->contentFormat );
+			$out->addHTML( $editConflictHelper->getEditFormHtmlBeforeContent() );
+		}
 
 		if ( !$this->mTitle->isCssJsSubpage() && $showToolbar && $user->getOption( 'showtoolbar' ) ) {
 			$out->addHTML( self::getEditToolbar( $this->mTitle ) );
@@ -2832,12 +2860,8 @@ class EditPage {
 			// and fallback to the raw wpTextbox1 since editconflicts can't be
 			// resolved between page source edits and custom ui edits using the
 			// custom edit ui.
-			$this->textbox2 = $this->textbox1;
-
-			$content = $this->getCurrentContent();
-			$this->textbox1 = $this->toEditText( $content );
-
 			$this->showTextbox1();
+			$out->addHTML( $editConflictHelper->getEditFormHtmlAfterContent() );
 		} else {
 			$this->showContentForm();
 		}
@@ -3361,11 +3385,17 @@ class EditPage {
 	}
 
 	protected function showTextbox( $text, $name, $customAttribs = [] ) {
-		$wikitext = $this->addNewLineAtEnd( $text );
+		$builder = new TextboxBuilder();
+		$attribs = $builder->buildTextboxAttribs(
+			$name,
+			$customAttribs,
+			$this->context->getUser(),
+			$this->mTitle
+		);
 
-		$attribs = $this->buildTextboxAttribs( $name, $customAttribs, $this->context->getUser() );
-
-		$this->context->getOutput()->addHTML( Html::textarea( $name, $wikitext, $attribs ) );
+		$this->context->getOutput()->addHTML(
+			Html::textarea( $name, $builder->addNewLineAtEnd( $text ), $attribs )
+		);
 	}
 
 	protected function displayPreviewArea( $previewOutput, $isOnTop = false ) {
@@ -3687,34 +3717,12 @@ class EditPage {
 		if ( Hooks::run( 'EditPageBeforeConflictDiff', [ &$editPage, &$out ] ) ) {
 			$this->incrementConflictStats();
 
-			$out->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
-
-			$content1 = $this->toEditContent( $this->textbox1 );
-			$content2 = $this->toEditContent( $this->textbox2 );
-
-			$handler = ContentHandler::getForModelID( $this->contentModel );
-			$de = $handler->createDifferenceEngine( $this->context );
-			$de->setContent( $content2, $content1 );
-			$de->showDiff(
-				$this->context->msg( 'yourtext' )->parse(),
-				$this->context->msg( 'storedversion' )->text()
-			);
-
-			$out->wrapWikiMsg( '<h2>$1</h2>', "yourtext" );
-			$this->showTextbox2();
+			$this->getEditConflictHelper()->showEditFormTextAfterFooters();
 		}
 	}
 
 	protected function incrementConflictStats() {
-		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
-		$stats->increment( 'edit.failures.conflict' );
-		// Only include 'standard' namespaces to avoid creating unknown numbers of statsd metrics
-		if (
-			$this->mTitle->getNamespace() >= NS_MAIN &&
-			$this->mTitle->getNamespace() <= NS_CATEGORY_TALK
-		) {
-			$stats->increment( 'edit.failures.conflict.byNamespaceId.' . $this->mTitle->getNamespace() );
-		}
+		$this->getEditConflictHelper()->incrementConflictStats();
 	}
 
 	/**
@@ -4639,9 +4647,8 @@ class EditPage {
 	 * @since 1.29
 	 */
 	protected function addExplainConflictHeader( OutputPage $out ) {
-		$out->wrapWikiMsg(
-			"<div class='mw-explainconflict'>\n$1\n</div>",
-			[ 'explainconflict', $this->context->msg( $this->getSubmitButtonLabel() )->text() ]
+		$out->addHTML(
+			$this->getEditConflictHelper()->getExplainHeader()
 		);
 	}
 
@@ -4653,37 +4660,9 @@ class EditPage {
 	 * @since 1.29
 	 */
 	protected function buildTextboxAttribs( $name, array $customAttribs, User $user ) {
-		$attribs = $customAttribs + [
-				'accesskey' => ',',
-				'id' => $name,
-				'cols' => 80,
-				'rows' => 25,
-				// Avoid PHP notices when appending preferences
-				// (appending allows customAttribs['style'] to still work).
-				'style' => ''
-			];
-
-		// The following classes can be used here:
-		// * mw-editfont-monospace
-		// * mw-editfont-sans-serif
-		// * mw-editfont-serif
-		$class = 'mw-editfont-' . $user->getOption( 'editfont' );
-
-		if ( isset( $attribs['class'] ) ) {
-			if ( is_string( $attribs['class'] ) ) {
-				$attribs['class'] .= ' ' . $class;
-			} elseif ( is_array( $attribs['class'] ) ) {
-				$attribs['class'][] = $class;
-			}
-		} else {
-			$attribs['class'] = $class;
-		}
-
-		$pageLang = $this->mTitle->getPageLanguage();
-		$attribs['lang'] = $pageLang->getHtmlCode();
-		$attribs['dir'] = $pageLang->getDir();
-
-		return $attribs;
+		return ( new TextboxBuilder() )->buildTextboxAttribs(
+			$name, $customAttribs, $user, $this->mTitle
+		);
 	}
 
 	/**
@@ -4692,15 +4671,7 @@ class EditPage {
 	 * @since 1.29
 	 */
 	protected function addNewLineAtEnd( $wikitext ) {
-		if ( strval( $wikitext ) !== '' ) {
-			// Ensure there's a newline at the end, otherwise adding lines
-			// is awkward.
-			// But don't add a newline if the text is empty, or Firefox in XHTML
-			// mode will show an extra newline. A bit annoying.
-			$wikitext .= "\n";
-			return $wikitext;
-		}
-		return $wikitext;
+		return ( new TextboxBuilder() )->addNewLineAtEnd( $wikitext );
 	}
 
 	/**
@@ -4724,5 +4695,43 @@ class EditPage {
 		}
 		// Meanwhile, real browsers get real anchors
 		return $wgParser->guessSectionNameFromWikiText( $text );
+	}
+
+	/**
+	 * Set a factory function to create an EditConflictHelper
+	 *
+	 * @param callable $factory Factory function
+	 * @since 1.31
+	 */
+	public function setEditConflictHelperFactory( callable $factory ) {
+		$this->editConflictHelperFactory = $factory;
+		$this->editConflictHelper = null;
+	}
+
+	/**
+	 * @return TextConflictHelper
+	 */
+	private function getEditConflictHelper() {
+		if ( !$this->editConflictHelper ) {
+			$this->editConflictHelper = call_user_func(
+				$this->editConflictHelperFactory,
+				$this->getSubmitButtonLabel()
+			);
+		}
+
+		return $this->editConflictHelper;
+	}
+
+	/**
+	 * @param string $submitButtonLabel
+	 * @return TextConflictHelper
+	 */
+	private function newTextConflictHelper( $submitButtonLabel ) {
+		return new TextConflictHelper(
+			$this->getTitle(),
+			$this->getContext()->getOutput(),
+			MediaWikiServices::getInstance()->getStatsdDataFactory(),
+			$submitButtonLabel
+		);
 	}
 }
