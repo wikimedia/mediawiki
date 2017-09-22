@@ -1684,7 +1684,7 @@ class EditPage {
 
 		// Run new style post-section-merge edit filter
 		if ( !Hooks::run( 'EditFilterMergedContent',
-				[ $this->mArticle->getContext(), $content, $status, $this->summary,
+				[ $this->context, $content, $status, $this->summary,
 				$user, $this->minoredit ] )
 		) {
 			# Error messages etc. could be handled within the hook...
@@ -3477,7 +3477,7 @@ class EditPage {
 				$newContent = $oldContent->getContentHandler()->makeEmptyContent();
 			}
 
-			$de = $oldContent->getContentHandler()->createDifferenceEngine( $this->mArticle->getContext() );
+			$de = $oldContent->getContentHandler()->createDifferenceEngine( $this->context );
 			$de->setContent( $oldContent, $newContent );
 
 			$difftext = $de->getDiff( $oldtitle, $newtitle );
@@ -3685,7 +3685,7 @@ class EditPage {
 			$content2 = $this->toEditContent( $this->textbox2 );
 
 			$handler = ContentHandler::getForModelID( $this->contentModel );
-			$de = $handler->createDifferenceEngine( $this->mArticle->getContext() );
+			$de = $handler->createDifferenceEngine( $this->context );
 			$de->setContent( $content2, $content1 );
 			$de->showDiff(
 				$this->context->msg( 'yourtext' )->parse(),
@@ -3968,7 +3968,7 @@ class EditPage {
 	 * @return ParserOptions
 	 */
 	protected function getPreviewParserOptions() {
-		$parserOptions = $this->page->makeParserOptions( $this->mArticle->getContext() );
+		$parserOptions = $this->page->makeParserOptions( $this->context );
 		$parserOptions->setIsPreview( true );
 		$parserOptions->setIsSectionPreview( !is_null( $this->section ) && $this->section !== '' );
 		$parserOptions->enableLimitReport();
