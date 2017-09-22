@@ -213,9 +213,6 @@
 			'group2filter5-desc': 'Description of Filter 5 in Group 2',
 			'group2filter6-label': 'xGroup 2: Filter 6',
 			'group2filter6-desc': 'Description of Filter 6 in Group 2'
-		},
-		config: {
-			wgStructuredChangeFiltersEnableExperimentalViews: true
 		}
 	} ) );
 

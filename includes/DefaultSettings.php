@@ -6813,14 +6813,6 @@ $wgUseRCPatrol = true;
 $wgStructuredChangeFiltersShowPreference = false;
 
 /**
- * Whether to show the new experimental views (like namespaces, tags, and users) in
- * RecentChanges filters
- *
- * Temporary variable during development and will be removed.
- */
-$wgStructuredChangeFiltersEnableExperimentalViews = false;
-
-/**
  * Whether to enable RCFilters app on Special:Watchlist
  *
  * Temporary variable during development and will be removed.

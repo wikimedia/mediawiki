@@ -600,14 +600,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				)
 			);
 
-			$experimentalStructuredChangeFilters =
-				$this->getConfig()->get( 'StructuredChangeFiltersEnableExperimentalViews' );
-
 			$out->addJsConfigVars( 'wgStructuredChangeFilters', $jsData['groups'] );
-			$out->addJsConfigVars(
-				'wgStructuredChangeFiltersEnableExperimentalViews',
-				$experimentalStructuredChangeFilters
-			);
 
 			$out->addJsConfigVars(
 				'wgRCFiltersChangeTags',
