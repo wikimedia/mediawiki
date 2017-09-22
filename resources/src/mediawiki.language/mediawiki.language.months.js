@@ -3,7 +3,7 @@
  *
  * Loading this module also ensures the availability of appropriate messages via mw.msg.
  */
-( function ( mw, $ ) {
+( function ( mw ) {
 	var
 		monthMessages = [
 			'january', 'february', 'march', 'april',
@@ -21,8 +21,8 @@
 			'sep', 'oct', 'nov', 'dec'
 		];
 
-	// Function suitable for passing to jQuery.map
-	// Can't use mw.msg directly because jQuery.map passes element index as second argument
+	// Function suitable for passing to Array.prototype.map
+	// Can't use mw.msg directly because Array.prototype.map passes element index as second argument
 	function mwMsgMapper( key ) {
 		return mw.msg( key );
 	}
@@ -48,9 +48,9 @@
 			genitive: monthGenMessages,
 			abbrev: monthAbbrevMessages
 		},
-		names: $.map( monthMessages, mwMsgMapper ),
-		genitive: $.map( monthGenMessages, mwMsgMapper ),
-		abbrev: $.map( monthAbbrevMessages, mwMsgMapper )
+		names: monthMessages.map( mwMsgMapper ),
+		genitive: monthGenMessages.map( mwMsgMapper ),
+		abbrev: monthAbbrevMessages.map( mwMsgMapper )
 	};
 
-}( mediaWiki, jQuery ) );
+}( mediaWiki ) );

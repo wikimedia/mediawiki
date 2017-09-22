@@ -137,7 +137,7 @@
 		}
 
 		parts = ( mw.msg( 'word-separator' ) + mw.msg( 'brackets' ) ).split( '$1' );
-		regexp = new RegExp( $.map( parts, mw.RegExp.escape ).join( '.*?' ) + '$' );
+		regexp = new RegExp( parts.map( mw.RegExp.escape ).join( '.*?' ) + '$' );
 		newTitle = oldTitle.replace( regexp, '' );
 		accessKeyLabel = getAccessKeyLabel( element );
 

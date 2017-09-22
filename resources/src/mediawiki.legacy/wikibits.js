@@ -96,7 +96,7 @@
 	 *
 	 * @deprecated since 1.26
 	 */
-	$.each( [ 'write', 'writeln' ], function ( idx, method ) {
+	[ 'write', 'writeln' ].forEach( function ( method ) {
 		mw.log.deprecate( document, method, function () {
 			$( 'body' ).append( $.parseHTML( Array.prototype.join.call( arguments, '' ) ) );
 		}, 'Use jQuery or mw.loader.load instead.', 'document.' + method );
