@@ -227,6 +227,10 @@ class ApiMessage extends Message implements IApiMessage {
 		}
 
 		if ( $msg instanceof IApiMessage ) {
+			if ( $code !== null  || $data !== null ) {
+				//FIXME Test it
+				throw new \LogicException( 'Error code or data is specified but should not be' );
+			}
 			return $msg;
 		} elseif ( $msg instanceof RawMessage ) {
 			return new ApiRawMessage( $msg, $code, $data );
