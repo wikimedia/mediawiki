@@ -4358,6 +4358,7 @@ class EditPage {
 	/**
 	 * Get the message key of the label for the button to save the page
 	 *
+	 * @since 1.30
 	 * @return string
 	 */
 	protected function getSubmitButtonLabel() {
