@@ -52,14 +52,6 @@ class ApiMessageTest extends MediaWikiTestCase {
 	 * @param mixed $code
 	 */
 	public function testInvalidCode( $code ) {
-		$msg = new ApiMessage( 'foo' );
-		try {
-			$msg->setApiCode( $code );
-			$this->fail( 'Expected exception not thrown' );
-		} catch ( InvalidArgumentException $ex ) {
-			$this->assertTrue( true );
-		}
-
 		try {
 			new ApiMessage( 'foo', $code );
 			$this->fail( 'Expected exception not thrown' );
@@ -104,14 +96,18 @@ class ApiMessageTest extends MediaWikiTestCase {
 		$this->assertEquals( 'foo', $msg2->getApiCode() );
 		$this->assertEquals( [], $msg2->getApiData() );
 
-		$msg2->setApiCode( 'code', [ 'data' ] );
-		$this->assertEquals( 'code', $msg2->getApiCode() );
-		$this->assertEquals( [ 'data' ], $msg2->getApiData() );
-		$msg2->setApiCode( null );
-		$this->assertEquals( 'foo', $msg2->getApiCode() );
-		$this->assertEquals( [ 'data' ], $msg2->getApiData() );
 		$msg2->setApiData( [ 'data2' ] );
 		$this->assertEquals( [ 'data2' ], $msg2->getApiData() );
+	}
+
+	/**
+	 * @covers ApiMessage
+	 * @covers ApiMessageTrait
+	 */
+	public function testApiMessage_CreatedWithoutCode_UsesMessageKeyAsAnApiCode() {
+		$msg = new ApiMessage( 'foo' );
+
+		$this->assertEquals( 'foo', $msg->getApiCode() );
 	}
 
 	/**
@@ -143,14 +139,17 @@ class ApiMessageTest extends MediaWikiTestCase {
 		$this->assertEquals( 'code', $msg2->getApiCode() );
 		$this->assertEquals( [ 'data' ], $msg2->getApiData() );
 
-		$msg2->setApiCode( 'code', [ 'data' ] );
-		$this->assertEquals( 'code', $msg2->getApiCode() );
-		$this->assertEquals( [ 'data' ], $msg2->getApiData() );
-		$msg2->setApiCode( null );
-		$this->assertEquals( 'foo', $msg2->getApiCode() );
-		$this->assertEquals( [ 'data' ], $msg2->getApiData() );
 		$msg2->setApiData( [ 'data2' ] );
 		$this->assertEquals( [ 'data2' ], $msg2->getApiData() );
+	}
+	/**
+	 * @covers ApiRawMessage
+	 * @covers ApiMessageTrait
+	 */
+	public function testApiRawMessage_CreatedWithoutCode_UsesMessageAsAnApiCode() {
+		$msg = new ApiRawMessage( 'foo', null );
+
+		$this->assertEquals( 'foo', $msg->getApiCode() );
 	}
 
 	/**
