@@ -73,7 +73,11 @@ section).
 * (T138166) Added ability for users to prohibit other users from sending them
   emails with Special:Emailuser. Can be enabled by setting
   $wgEnableUserEmailBlacklist to true.
-* $wgBrowserBlacklist is deprecated, and changing it will have no effect.
+* (T172315) $wgOOUIEditPage was removed, OOUI is the only display option for the
+  edit interface.
+* (T67297) $wgBrowserBlacklist is deprecated, and changing it will have no effect.
+  Instead, users using browsers that do not support unicode will be unable to edit
+  and should upgrade to a modern browser instead.
 
 === External library changes in 1.30 ===
 
@@ -196,11 +200,23 @@ changes to languages because of Phabricator reports.
   RunningStat\RunningStat should be used instead.
 * MWMemcached and MemCachedClientforWiki classes (deprecated in 1.27) were removed.
   The MemcachedClient class should be used instead.
-* EditPage::isOouiEnabled() is deprecated and will always return true.
-* EditPage::getSummaryInput() and ::getSummaryInputOOUI() are deprecated. Please
-  use ::getSummaryInputWidget() instead.
-* EditPage::getCheckboxes() and ::getCheckboxesOOUI() are deprecated. Please
-  use ::getCheckboxesWidget() instead.
+* EditPage underwent some refactoring and deprecations:
+  * EditPage::isOouiEnabled() is deprecated and will always return true.
+  * EditPage::getSummaryInput() and ::getSummaryInputOOUI() are deprecated. Please
+    use ::getSummaryInputWidget() instead.
+  * EditPage::getCheckboxes() and ::getCheckboxesOOUI() are deprecated. Please
+    use ::getCheckboxesWidget() instead.
+  * Creating an EditPage instance without calling EditPage::setContextTitle() should
+    be avoided and will be deprecated in a future release.
+  * EditPage::safeUnicodeInput() and ::safeUnicodeOutput() are deprecated and no-ops.
+  * EditPage::$isCssJsSubpage, ::$isCssSubpage, and ::$isJsSubpage are deprecated. The
+    corresponding methods from Title should be used instead.
+  * EditPage::$isWrongCaseCssJsPage is deprecated. There is no replacement.
+  * EditPage::$mArticle and ::$mTitle are deprecated for public usage. The getters
+    ::getArticle() and ::getTitle() should be used instead.
+  * Trying to control or fake EditPage context by overriding $wgUser, $wgRequest, $wgOut,
+    and $wgLang is no longer supported and won't work. The IContextSource returned from
+    EditPage::getContext() must be modified instead.
 * Parser::getRandomString() (deprecated in 1.26) was removed.
 * Parser::uniqPrefix() (deprecated in 1.26) was removed.
 * Parser::extractTagsAndParams() now only accepts three arguments. The fourth,
