@@ -47,7 +47,7 @@
 			var modules = inspect.getLoadedModules(),
 				graph = {};
 
-			$.each( modules, function ( moduleIndex, moduleName ) {
+			modules.forEach( function ( moduleName ) {
 				var dependencies = mw.loader.moduleRegistry[ moduleName ].dependencies || [];
 
 				if ( !hasOwn.call( graph, moduleName ) ) {
@@ -164,7 +164,7 @@
 		 * @return {Array} List of module names
 		 */
 		getLoadedModules: function () {
-			return $.grep( mw.loader.getModuleNames(), function ( module ) {
+			return mw.loader.getModuleNames().filter( function ( module ) {
 				return mw.loader.getState( module ) === 'ready';
 			} );
 		},
@@ -206,7 +206,7 @@
 				Array.prototype.slice.call( arguments ) :
 				$.map( inspect.reports, function ( v, k ) { return k; } );
 
-			$.each( reports, function ( index, name ) {
+			reports.forEach( function ( name ) {
 				inspect.dumpTable( inspect.reports[ name ]() );
 			} );
 		},
@@ -224,7 +224,7 @@
 			 */
 			size: function () {
 				// Map each module to a descriptor object.
-				var modules = $.map( inspect.getLoadedModules(), function ( module ) {
+				var modules = inspect.getLoadedModules().map( function ( module ) {
 					return {
 						name: module,
 						size: inspect.getModuleSize( module )
@@ -235,7 +235,7 @@
 				sortByProperty( modules, 'size', true );
 
 				// Convert size to human-readable string.
-				$.each( modules, function ( i, module ) {
+				modules.forEach( function ( module ) {
 					module.sizeInBytes = module.size;
 					module.size = humanSize( module.size );
 				} );
@@ -252,7 +252,7 @@
 			css: function () {
 				var modules = [];
 
-				$.each( inspect.getLoadedModules(), function ( index, name ) {
+				inspect.getLoadedModules().forEach( function ( name ) {
 					var css, stats, module = mw.loader.moduleRegistry[ name ];
 
 					try {
@@ -306,7 +306,7 @@
 				pattern = new RegExp( mw.RegExp.escape( pattern ), 'g' );
 			}
 
-			return $.grep( inspect.getLoadedModules(), function ( moduleName ) {
+			return inspect.getLoadedModules().filter( function ( moduleName ) {
 				var module = mw.loader.moduleRegistry[ moduleName ];
 
 				// Grep module's JavaScript
