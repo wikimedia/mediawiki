@@ -844,6 +844,12 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
+	/* Mouse */
+	'mouse.js' => [
+		'scripts' => 'resources/src/mouse.js',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	
 	/* MediaWiki */
 
 	'mediawiki' => [
@@ -2216,7 +2222,10 @@ return [
 		],
 	],
 	'mediawiki.special.userlogin.signup.js' => [
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.userlogin.signup.js',
+		'scripts' => [
+			'resources/src/mediawiki.special/mediawiki.special.userlogin.signup.js',
+			'resources/src/mouse.js',
+		],
 		'messages' => [
 			'createacct-emailrequired',
 			'noname',
