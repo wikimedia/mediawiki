@@ -1723,6 +1723,12 @@ class HTMLForm extends ContextSource {
 	 * @return string HTML
 	 */
 	protected function formatSection( array $fieldsHtml, $sectionName, $anyFieldHasLabel ) {
+		if ( !$fieldsHtml ) {
+			// Do not generate any wrappers for empty sections. Sections may be empty if they only have
+			// subsections, but no fields. A legend will still be added in wrapFieldSetSection().
+			return '';
+		}
+
 		$displayFormat = $this->getDisplayFormat();
 		$html = implode( '', $fieldsHtml );
 
