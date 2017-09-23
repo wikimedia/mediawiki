@@ -842,8 +842,7 @@ return [
 			'mediawiki.language',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
-	],
-
+	]
 	/* MediaWiki */
 
 	'mediawiki' => [
@@ -2233,6 +2232,11 @@ return [
 		'styles' => [
 			'resources/src/mediawiki.special/mediawiki.special.userlogin.signup.css',
 		],
+	],
+	/* Mouse data logging on user creation */
+	'mediawiki.special.mouse.data.logger.js' => [
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.mouse.data.logger.js',
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.userrights' => [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.userrights.css',
