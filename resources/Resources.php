@@ -844,6 +844,12 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
+	/* Mouse */
+	'mouse.js' => [
+		'scripts' => 'resources/src/mouse.js',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	
 	/* MediaWiki */
 
 	'mediawiki' => [
