@@ -520,10 +520,7 @@ class ExtensionProcessor implements Processor {
 	public function getExtraAutoloaderPaths( $dir, array $info ) {
 		$paths = [];
 		if ( isset( $info['load_composer_autoloader'] ) && $info['load_composer_autoloader'] === true ) {
-			$path = "$dir/vendor/autoload.php";
-			if ( file_exists( $path ) ) {
-				$paths[] = $path;
-			}
+			$paths[] = "$dir/vendor/autoload.php";
 		}
 		return $paths;
 	}

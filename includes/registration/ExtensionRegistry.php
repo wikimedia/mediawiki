@@ -319,7 +319,9 @@ class ExtensionRegistry {
 			define( $name, $val );
 		}
 		foreach ( $info['autoloaderPaths'] as $path ) {
-			require_once $path;
+			if ( file_exists( $path ) ) {
+				require_once $path;
+			}
 		}
 
 		$this->loaded += $info['credits'];
