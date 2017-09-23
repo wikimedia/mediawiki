@@ -1,17 +1,17 @@
 /* Special:AllMessages */
-#mw-allmessagestable .allmessages-customised td.am_default {
+#mw-allmessagestable .allmessages-customised .am_default {
 	background-color: #fcffc4;
 }
 
-#mw-allmessagestable tr.allmessages-customised:hover td.am_default {
+#mw-allmessagestable .allmessages-customised:hover .am_default {
 	background-color: #faff90;
 }
 
-#mw-allmessagestable td.am_actual {
+#mw-allmessagestable .am_actual {
 	background-color: #e2ffe2;
 }
 
-#mw-allmessagestable tr.allmessages-customised:hover + tr.allmessages-customised td.am_actual {
+#mw-allmessagestable .allmessages-customised:hover + .allmessages-customised .am_actual {
 	background-color: #b1ffb1;
 }
 
@@ -30,7 +30,7 @@
 }
 
 /* Special:Block */
-p.mw-ipb-conveniencelinks {
+.mw-ipb-conveniencelinks {
 	font-size: 90%;
 	text-align: right;
 }
@@ -39,13 +39,13 @@ label[for='mw-input-wpConfirm'] {
 	font-weight: bold;
 }
 
-tr.mw-block-hideuser {
+.mw-block-hideuser {
 	font-weight: bold;
 }
 
 /* Special:BlockList */
-table.mw-blocklist span.mw-usertoollinks,
-span.mw-blocklist-actions {
+.mw-blocklist .mw-usertoollinks,
+.mw-blocklist-actions {
 	white-space: nowrap;
 	font-size: 90%;
 }
@@ -64,8 +64,8 @@ span.mw-blocklist-actions {
 }
 
 /* Special:EmailUser */
-td#mw-emailuser-sender,
-td#mw-emailuser-recipient {
+#mw-emailuser-sender,
+#mw-emailuser-recipient {
 	font-weight: bold;
 }
 
@@ -75,7 +75,7 @@ td#mw-emailuser-recipient {
 }
 
 /* Special:ListGroupRights */
-table.mw-listgrouprights-table tr {
+.mw-listgrouprights-table tr {
 	vertical-align: top;
 }
 .listgrouprights-revoked {
@@ -83,7 +83,7 @@ table.mw-listgrouprights-table tr {
 }
 
 /* Special:RevisionDelete */
-p.mw-revdel-editreasons {
+.mw-revdel-editreasons {
 	font-size: 90%;
 	text-align: right;
 }
@@ -100,18 +100,18 @@ p.mw-revdel-editreasons {
 }
 
 /* Special:Statistics */
-td.mw-statistics-numbers {
+.mw-statistics-numbers {
 	text-align: right;
 }
 
 /* Special:ProtectedPages */
-table.mw-protectedpages span.mw-usertoollinks,
-span.mw-protectedpages-length,
-span.mw-protectedpages-actions {
+.mw-protectedpages .mw-usertoollinks,
+.mw-protectedpages-length,
+.mw-protectedpages-actions {
 	white-space: nowrap;
 	font-size: 90%;
 }
-span.mw-protectedpages-unknown {
+.mw-protectedpages-unknown {
 	color: #72777d;
 	font-size: 90%;
 }
@@ -120,11 +120,11 @@ span.mw-protectedpages-unknown {
 .mw-userrights-disabled {
 	color: #72777d;
 }
-table.mw-userrights-groups * td,
-table.mw-userrights-groups * th {
+.mw-userrights-groups * td,
+.mw-userrights-groups * th {
 	padding-right: 1.5em;
 }
 
-table.mw-userrights-groups * th {
+.mw-userrights-groups * th {
 	text-align: left;
 }
