@@ -2520,7 +2520,7 @@
 	"delete_and_move_text": "Ciljna stran »[[:$1]]« že obstaja.\nAli jo želite izbrisati, da bi pripravite prostor za prestavitev?",
 	"delete_and_move_confirm": "Da, izbriši stran",
 	"delete_and_move_reason": "Izbrisano z namenom pripraviti prostor za »[[$1]]«",
-	"selfmove": "Izvirni in ciljni naslov sta enaka;\nstrani ni mogoče prestaviti samo vaše.",
+	"selfmove": "Naslov je enak;\nstrani ni mogoče prestaviti čez njo.",
 	"immobile-source-namespace": "Ne morem premikati strani v imenskem prostoru »$1«",
 	"immobile-target-namespace": "Ne morem premakniti strani v imenski prostor »$1«",
 	"immobile-target-namespace-iw": "Povezava interwiki ni veljaven cilj za premik strani.",
