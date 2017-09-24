@@ -2574,7 +2574,7 @@
 	"delete_and_move_text": "== 삭제 필요 ==\n이동하려는 제목으로 된 \"[[:$1]]\" 문서가 이미 존재합니다.\n삭제하고 이동할까요?",
 	"delete_and_move_confirm": "네. 문서를 삭제합니다",
 	"delete_and_move_reason": "\"[[$1]]\"에서 문서를 이동하기 위해 삭제함",
-	"selfmove": "원래 제목과 이동하려는 제목이 같습니다.\n같은 제목으로는 문서룰 이동할 수 없습니다.",
+	"selfmove": "제목이 동일합니다.\n같은 제목으로는 문서를 이동할 수 없습니다.",
 	"immobile-source-namespace": "\"$1\" 이름공간에 속한 문서는 이동시킬 수 없습니다.",
 	"immobile-target-namespace": "\"$1\" 이름공간에 속한 문서는 이동시킬 수 없습니다.",
 	"immobile-target-namespace-iw": "인터위키 링크를 넘어 문서를 이동할 수 없습니다.",

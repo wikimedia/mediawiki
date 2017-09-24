@@ -910,7 +910,7 @@
 	"revdelete-hide-image": "隐藏文件内容",
 	"revdelete-hide-name": "隐藏目标和参数",
 	"revdelete-hide-comment": "编辑摘要",
-	"revdelete-hide-user": "编者用户名/IP地址",
+	"revdelete-hide-user": "编辑者的用户名/IP地址",
 	"revdelete-hide-restricted": "同时阻止管理员与其他用户查看数据",
 	"revdelete-radio-same": "（不更改）",
 	"revdelete-radio-set": "隐藏",

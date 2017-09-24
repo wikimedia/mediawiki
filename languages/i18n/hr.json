@@ -1779,7 +1779,7 @@
 	"booksources-search-legend": "Traženje izvora za knjigu",
 	"booksources-search": "Traži",
 	"booksources-text": "Ovdje je popis vanjskih poveznica na internetskim stranicama koje prodaju nove i rabljene knjige, ali mogu sadržavati i ostale podatke o knjigama koje tražite:",
-	"booksources-invalid-isbn": "Čini se da dani ISBN nije valjan; provjerite greške kopirajući iz izvornika.",
+	"booksources-invalid-isbn": "Navedeni ISBN broj nije valjan; molimo Vas provjerite je li došlo do pogrješke prilikom navođenja iz prvobitnoga izvora.",
 	"magiclink-tracking-rfc": "Stranice s čarobnim RFC poveznicama",
 	"magiclink-tracking-rfc-desc": "Ova stranica rabi čarobne RFC poveznice. Za njihovu migraciju vidi [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org].",
 	"magiclink-tracking-pmid": "Stranice s čarobnim PMID poveznicama",
