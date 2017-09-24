@@ -21,8 +21,6 @@
  * @file
  */
 
-use Liuggio\StatsdClient\Factory\StatsdDataFactory;
-
 /**
  * Interface for objects which can provide a MediaWiki context on request
  *
