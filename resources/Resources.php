@@ -1917,7 +1917,7 @@ return [
 			'quotation-marks',
 		],
 		'dependencies' => [
-			'oojs-ui',
+			'oojs-ui-widgets',
 			'jquery.makeCollapsible',
 			'mediawiki.language',
 			'mediawiki.user',
@@ -1927,7 +1927,6 @@ return [
 			'oojs-ui.styles.icons-editing-core',
 			'oojs-ui.styles.icons-editing-styling',
 			'oojs-ui.styles.icons-interactions',
-			'oojs-ui.styles.icons-content',
 			'oojs-ui.styles.icons-layout',
 			'oojs-ui.styles.icons-media',
 		],
