@@ -519,6 +519,7 @@ class EditPage {
 	 * @deprecated since 1.30
 	 */
 	public function isOouiEnabled() {
+		wfDeprecated( __METHOD__, '1.30' );
 		return true;
 	}
 
@@ -4220,6 +4221,7 @@ class EditPage {
 	 * @return array
 	 */
 	public function getCheckboxes( &$tabindex, $checked ) {
+		wfDeprecated( __METHOD__, '1.30' );
 		$checkboxes = [];
 		$checkboxesDef = $this->getCheckboxesDefinition( $checked );
 
@@ -4275,6 +4277,7 @@ class EditPage {
 	 * @return array Associative array of string keys to OOUI\FieldLayout instances
 	 */
 	public function getCheckboxesOOUI( &$tabindex, $checked ) {
+		wfDeprecated( __METHOD__, '1.30' );
 		return $this->getCheckboxesWidget( $tabindex, $checked );
 	}
 
