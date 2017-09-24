@@ -616,11 +616,6 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 		$this->backend->save();
 	}
 
-	/**
-	 * @name Interface methods
-	 * @{
-	 */
-
 	public function count() {
 		$data = &$this->backend->getData();
 		return count( $data );
@@ -685,7 +680,5 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 	public function offsetUnset( $offset ) {
 		$this->remove( $offset );
 	}
-
-	/**@}*/
 
 }

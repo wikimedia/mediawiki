@@ -2,7 +2,6 @@
 
 use Liuggio\StatsdClient\Entity\StatsdData;
 use Liuggio\StatsdClient\Entity\StatsdDataInterface;
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 
 /**
  * @author Addshore

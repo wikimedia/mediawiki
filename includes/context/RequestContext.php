@@ -22,7 +22,6 @@
  * @file
  */
 
-use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;

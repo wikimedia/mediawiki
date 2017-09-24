@@ -23,7 +23,6 @@
  * @file
  * @ingroup SpecialPage
  */
-use MediaWiki\MediaWikiServices;
 
 /**
  * XML file reader for the page data importer.
