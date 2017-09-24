@@ -23,7 +23,10 @@
 use Wikimedia\Assert\Assert;
 
 /**
- * Handles per process caching of items
+ * Class for process caching individual properties of expiring items
+ * 
+ * When the key for an entire item is deleted, all properties for it are deleted
+ * 
  * @ingroup Cache
  */
 class ProcessCacheLRU {
