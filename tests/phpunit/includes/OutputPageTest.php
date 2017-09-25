@@ -685,10 +685,6 @@ class NullMessageBlobStore extends MessageBlobStore {
 		return [];
 	}
 
-	public function insertMessageBlob( $name, ResourceLoaderModule $module, $lang ) {
-		return false;
-	}
-
 	public function updateModule( $name, ResourceLoaderModule $module, $lang ) {
 	}
 
