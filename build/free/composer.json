@@ -1,0 +1,455 @@
+{
+  "repositories": [{
+    "type": "package",
+    "package": {
+      "name": "mediawiki/arrays",
+      "type": "mediawiki-extension",
+      "version": "dev-491256a",
+      "source": {
+        "url": "https://github.com/wikimedia/mediawiki-extensions-Arrays.git",
+        "type": "git",
+        "reference": "491256a"
+      },
+      "require": {
+        "composer/installers": "~1.0"
+      }
+    }
+  }, {
+    "type": "vcs",
+    "url": "https://github.com/hallowelt/mediawiki-extensions-BlueSpiceDistributionConnector.git"
+  }, {
+    "type": "vcs",
+    "url": "https://github.com/hallowelt/mediawiki-extensions-BlueSpiceEchoConnector.git"
+  }, {
+    "type": "package",
+    "package": {
+      "name": "mediawiki/blue-spice-edit-notify-connector",
+    	"type": "mediawiki-extension",
+    	"description": "Extends EditNotify with useroptions",
+      "version": "dev-725a26f",
+    	"require": {
+    		"composer/installers": "~1.0"
+    	},
+      "source": {
+        "url": "https://github.com/wikimedia/mediawiki-extensions-BlueSpiceEditNotifyConnector",
+        "type": "git",
+        "reference": "725a26f"
+      }
+    }
+  }, {
+    "type": "vcs",
+    "url": "https://github.com/wikimedia/mediawiki-extensions-BlueSpiceExtensions"
+  }, {
+    "type": "vcs",
+    "url": "https://github.com/wikimedia/mediawiki-extensions-BlueSpiceFoundation"
+  }, {
+    "type": "vcs",
+    "url": "https://github.com/hallowelt/mediawiki-extensions-BlueSpiceLdapAuthenticationConnector.git"
+  }, {
+    "type": "vcs",
+    "url": "https://github.com/hallowelt/mediawiki-extensions-BlueSpiceUserMergeConnector.git"
+  }, {
+    "type": "package",
+    "package": {
+      "name": "mediawiki/category-tree",
+      "type": "mediawiki-extension",
+      "version": "dev-850c018",
+      "source": {
+        "url": "https://github.com/wikimedia/mediawiki-extensions-CategoryTree",
+        "type": "git",
+        "reference": "850c018"
+      },
+      "require": {
+        "composer/installers": "~1.0"
+      }
+    }
+  }, {
+    "type": "vcs",
+    "url": "https://github.com/hallowelt/mediawiki-extensions-DynamicPageList.git"
+  }, {
+    "type": "package",
+    "package": {
+      "name": "mediawiki/echo",
+      "type": "mediawiki-extension",
+      "version": "dev-36ffa11",
+      "source": {
+        "url": "https://github.com/wikimedia/mediawiki-extensions-Echo",
+        "type": "git",
+        "reference": "36ffa11"
+      },
+      "require": {
+        "composer/installers": "~1.0"
+      }
+    }
+  }, {
+    "type": "vcs",
+    "url": "https://github.com/hallowelt/mediawiki-extensions-EditNotify.git"
+  }, {
+    "type": "vcs",
+    "url": "https://github.com/hallowelt/mediawiki-extensions-EmbedVideo.git"
+  }, {
+    "type": "vcs",
+    "url": "https://github.com/hallowelt/mediawiki-extensions-FilterSpecialPages.git"
+  }, {
+    "type": "vcs",
+    "url": "https://github.com/hallowelt/mediawiki-extensions-HitCounters.git"
+  }, {
+    "type": "vcs",
+    "url": "https://github.com/hallowelt/mediawiki-extensions-ImageMapEdit.git"
+  }, {
+    "type": "vcs",
+    "url": "https://github.com/hallowelt/mediawiki-extensions-LdapAuthentication.git"
+  }, {
+    "type": "package",
+    "package": {
+      "name": "mediawiki/lockdown",
+      "type": "mediawiki-extension",
+      "version": "dev-100fb4a",
+      "source": {
+        "url": "https://github.com/wikimedia/mediawiki-extensions-Lockdown",
+        "type": "git",
+        "reference": "100fb4a"
+      },
+      "require": {
+        "composer/installers": "~1.0"
+      }
+    }
+  }, {
+    "type": "package",
+    "package": {
+      "name": "mediawiki/mobile-frontend",
+      "type": "mediawiki-extension",
+      "version": "dev-5ecc673",
+      "source": {
+        "url": "https://github.com/wikimedia/mediawiki-extensions-MobileFrontend",
+        "type": "git",
+        "reference": "5ecc673"
+      },
+      "require": {
+        "composer/installers": "~1.0"
+      }
+    }
+  }, {
+    "type": "package",
+    "package": {
+      "name": "mediawiki/quiz",
+      "type": "mediawiki-extension",
+      "version": "dev-fe69982",
+      "source": {
+        "url": "https://github.com/wikimedia/mediawiki-extensions-Quiz",
+        "type": "git",
+        "reference": "fe69982"
+      },
+      "require": {
+        "composer/installers": "~1.0"
+      }
+    }
+  }, {
+    "type": "package",
+    "package": {
+      "name": "mediawiki/rss",
+      "type": "mediawiki-extension",
+      "version": "dev-2b16a83",
+      "source": {
+        "url": "https://github.com/wikimedia/mediawiki-extensions-RSS",
+        "type": "git",
+        "reference": "2b16a83"
+      },
+      "require": {
+        "composer/installers": "~1.0"
+      }
+    }
+  }, {
+    "type": "package",
+    "package": {
+      "name": "mediawiki/syntax-highlight_-ge-s-hi",
+      "type": "mediawiki-extension",
+      "version": "dev-08ae879",
+      "source": {
+        "url": "https://github.com/wikimedia/mediawiki-extensions-SyntaxHighlight_GeSHi",
+        "type": "git",
+        "reference": "08ae879"
+      },
+      "require": {
+        "composer/installers": "~1.0",
+        "symfony/process": "~3.2"
+      }
+    }
+  }, {
+    "type": "package",
+    "package": {
+      "name": "mediawiki/title-key",
+      "type": "mediawiki-extension",
+      "version": "dev-a9d4c39",
+      "source": {
+        "url": "https://github.com/wikimedia/mediawiki-extensions-TitleKey",
+        "type": "git",
+        "reference": "a9d4c39"
+      },
+      "require": {
+        "composer/installers": "~1.0"
+      }
+    }
+  }, {
+    "type": "package",
+    "package": {
+      "name": "mediawiki/user-functions",
+      "type": "mediawiki-extension",
+      "version": "dev-5eda8c9",
+      "source": {
+        "url": "https://github.com/wikimedia/mediawiki-extensions-UserFunctions",
+        "type": "git",
+        "reference": "5eda8c9"
+      },
+      "require": {
+        "composer/installers": "~1.0"
+      }
+    }
+  }, {
+    "type": "package",
+    "package": {
+      "name": "mediawiki/user-merge",
+      "type": "mediawiki-extension",
+      "version": "dev-4546537",
+      "source": {
+        "url": "https://github.com/wikimedia/mediawiki-extensions-UserMerge",
+        "type": "git",
+        "reference": "4546537"
+      },
+      "require": {
+        "composer/installers": "~1.0"
+      }
+    }
+  }, {
+    "type": "package",
+    "package": {
+      "name": "mediawiki/variables",
+      "type": "mediawiki-extension",
+      "version": "dev-c75b9d4",
+      "source": {
+        "url": "https://github.com/wikimedia/mediawiki-extensions-Variables",
+        "type": "git",
+        "reference": "c75b9d4"
+      },
+      "require": {
+        "composer/installers": "~1.0"
+      }
+    }
+  }, {
+    "type": "package",
+    "package":{
+      "name": "mediawiki/BlueSpiceSkin",
+    	"type": "mediawiki-skin",
+    	"description": "Skin for BlueSpice Mediawiki Extensions",
+      "version": "dev-51db984",
+    	"require": {
+    		"composer/installers": "~1.0"
+    	},
+      "source":{
+        "url": "https://github.com/wikimedia/mediawiki-skins-BlueSpiceSkin.git",
+        "type": "git",
+        "reference": "51db984"
+      }
+    }
+
+  }, {
+    "type": "package",
+    "package":{
+      "name": "mediawiki/cite",
+    	"type": "mediawiki-extension",
+      "version": "dev-e2ebd23",
+    	"require": {
+    		"composer/installers": "~1.0"
+    	},
+      "source":{
+        "url": "https://github.com/wikimedia/mediawiki-extensions-Cite.git",
+        "type": "git",
+        "reference": "e2ebd23"
+      }
+    }
+
+  }, {
+    "type": "package",
+    "package":{
+      "name": "mediawiki/cite-this-page",
+    	"type": "mediawiki-extension",
+      "version": "dev-48de89b",
+    	"require": {
+    		"composer/installers": "~1.0"
+    	},
+      "source":{
+        "url": "https://github.com/wikimedia/mediawiki-extensions-CiteThisPage.git",
+        "type": "git",
+        "reference": "48de89b"
+      }
+    }
+
+  }, {
+    "type": "package",
+    "package":{
+      "name": "mediawiki/gadgets",
+    	"type": "mediawiki-extension",
+      "version": "dev-da1d465",
+    	"require": {
+    		"composer/installers": "~1.0"
+    	},
+      "source":{
+        "url": "https://github.com/wikimedia/mediawiki-extensions-Gadgets.git",
+        "type": "git",
+        "reference": "da1d465"
+      }
+    }
+
+  }, {
+    "type": "package",
+    "package":{
+      "name": "mediawiki/image-map",
+    	"type": "mediawiki-extension",
+      "version": "dev-c5e94b1",
+    	"require": {
+    		"composer/installers": "~1.0"
+    	},
+      "source":{
+        "url": "https://github.com/wikimedia/mediawiki-extensions-ImageMap.git",
+        "type": "git",
+        "reference": "c5e94b1"
+      }
+    }
+
+  }, {
+    "type": "package",
+    "package":{
+      "name": "mediawiki/input-box",
+    	"type": "mediawiki-extension",
+      "version": "dev-29dec4d",
+    	"require": {
+    		"composer/installers": "~1.0"
+    	},
+      "source":{
+        "url": "https://github.com/wikimedia/mediawiki-extensions-InputBox.git",
+        "type": "git",
+        "reference": "29dec4d"
+      }
+    }
+
+  }, {
+    "type": "package",
+    "package":{
+      "name": "mediawiki/nuke",
+    	"type": "mediawiki-extension",
+      "version": "dev-1d96a44",
+    	"require": {
+    		"composer/installers": "~1.0"
+    	},
+      "source":{
+        "url": "https://github.com/wikimedia/mediawiki-extensions-Nuke.git",
+        "type": "git",
+        "reference": "1d96a44"
+      }
+    }
+
+  }, {
+    "type": "package",
+    "package":{
+      "name": "mediawiki/parser-functions",
+    	"type": "mediawiki-extension",
+      "version": "dev-f4a62ff",
+    	"require": {
+    		"composer/installers": "~1.0"
+    	},
+      "source":{
+        "url": "https://github.com/wikimedia/mediawiki-extensions-ParserFunctions.git",
+        "type": "git",
+        "reference": "f4a62ff"
+      }
+    }
+
+  }, {
+    "type": "package",
+    "package":{
+      "name": "mediawiki/renameuser",
+    	"type": "mediawiki-extension",
+      "version": "dev-7c618d6",
+    	"require": {
+    		"composer/installers": "~1.0"
+    	},
+      "source":{
+        "url": "https://github.com/wikimedia/mediawiki-extensions-Renameuser.git",
+        "type": "git",
+        "reference": "7c618d6"
+      }
+    }
+
+  }, {
+    "type": "package",
+    "package":{
+      "name": "mediawiki/SyntaxHighlight_GeSHi",
+    	"type": "mediawiki-extension",
+      "version": "dev-08ae879",
+    	"require": {
+    		"composer/installers": "~1.0"
+    	},
+      "source":{
+        "url": "https://github.com/wikimedia/mediawiki-extensions-SyntaxHighlight_GeSHi.git",
+        "type": "git",
+        "reference": "08ae879"
+      }
+    }
+
+  }, {
+    "type": "package",
+    "package":{
+      "name": "mediawiki/blue-spice-tag-cloud",
+    	"type": "mediawiki-extension",
+      "version": "dev-372501f6c08b8be2d23c542e6f4ff7c9ecc910b9",
+    	"require": {
+    		"composer/installers": "~1.0"
+    	},
+      "source":{
+        "url": "git@gitlab.hallowelt.com:BlueSpice/mediawiki-extensions-bluespicetagcloud.git",
+        "type": "git",
+        "reference": "372501f6c08b8be2d23c542e6f4ff7c9ecc910b9"
+      }
+    }
+
+  }],
+  "require": {
+    "mediawiki/arrays": "dev-491256a",
+    "mediawiki/blue-spice-distribution-connector": "dev-master",
+    "mediawiki/blue-spice-echo-connector": "dev-master",
+    "mediawiki/blue-spice-edit-notify-connector": "dev-725a26f",
+    "hallowelt/blue-spice-extensions": "dev-master",
+    "hallowelt/blue-spice-foundation": "dev-master",
+    "mediawiki/blue-spice-ldap-authentication-connector": "dev-master",
+    "mediawiki/blue-spice-user-merge-connector": "dev-master",
+    "mediawiki/category-tree": "dev-850c018",
+    "mediawiki/dynamic-page-list": "dev-master",
+    "mediawiki/echo": "dev-36ffa11",
+    "mediawiki/edit-notify": "dev-master",
+    "mediawiki/embed-video": "dev-master",
+    "hallowelt/filter-special-pages": "dev-master",
+    "mediawiki/hit-counters": "dev-master",
+    "mediawiki/image-map-edit": "dev-master",
+    "mediawiki/ldap-authentication": "dev-master",
+    "mediawiki/lockdown": "dev-100fb4a",
+    "mediawiki/mobile-frontend": "dev-5ecc673",
+    "mediawiki/quiz": "dev-fe69982",
+    "mediawiki/rss": "dev-2b16a83",
+    "mediawiki/syntax-highlight_-ge-s-hi": "dev-08ae879",
+    "mediawiki/title-key": "dev-a9d4c39",
+    "mediawiki/user-functions": "dev-5eda8c9",
+    "mediawiki/user-merge": "dev-4546537",
+    "mediawiki/variables": "dev-c75b9d4",
+    "mediawiki/BlueSpiceSkin": "dev-51db984",
+    "mediawiki/cite": "dev-e2ebd23",
+    "mediawiki/cite-this-page": "dev-48de89b",
+    "mediawiki/gadgets": "dev-da1d465",
+    "mediawiki/image-map": "dev-c5e94b1",
+    "mediawiki/input-box": "dev-29dec4d",
+    "mediawiki/nuke": "dev-1d96a44",
+    "mediawiki/parser-functions": "dev-f4a62ff",
+    "mediawiki/renameuser": "dev-7c618d6",
+    "mediawiki/SyntaxHighlight_GeSHi": "dev-08ae879",
+    "mediawiki/blue-spice-tag-cloud": "dev-372501f6c08b8be2d23c542e6f4ff7c9ecc910b9"
+  }
+}

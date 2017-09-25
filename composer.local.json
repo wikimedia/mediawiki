@@ -1,0 +1,10 @@
+{
+  "minimum-stability": "dev",
+  "extra": {
+    "merge-plugin": {
+      "include": [
+        "build/*/composer.json"
+      ]
+    }
+  }
+}
