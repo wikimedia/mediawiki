@@ -1243,8 +1243,22 @@ class LocalFile extends File {
 			// Once the second operation goes through, then the current version was
 			// updated and we must therefore update the DB too.
 			$oldver = $status->value;
-			if ( !$this->recordUpload2( $oldver, $comment, $pageText, $props, $timestamp, $user, $tags ) ) {
-				$status->fatal( 'filenotfound', $srcPath );
+			$uploadStatus = $this->recordUpload2(
+				$oldver,
+				$comment,
+				$pageText,
+				$props,
+				$timestamp,
+				$user,
+				$tags
+			);
+			if ( !$uploadStatus->isOK() ) {
+				if ( $uploadStatus->hasMessage( 'filenotfound' ) ) {
+					// update filenotfound error with more specific path
+					$status->fatal( 'filenotfound', $srcPath );
+				} else {
+					$status->merge( $uploadStatus );
+				}
 			}
 		}
 
@@ -1274,7 +1288,7 @@ class LocalFile extends File {
 
 		$pageText = SpecialUpload::getInitialPageText( $desc, $license, $copyStatus, $source );
 
-		if ( !$this->recordUpload2( $oldver, $desc, $pageText, false, $timestamp, $user ) ) {
+		if ( !$this->recordUpload2( $oldver, $desc, $pageText, false, $timestamp, $user )->isOK() ) {
 			return false;
 		}
 
@@ -1294,7 +1308,7 @@ class LocalFile extends File {
 	 * @param string|bool $timestamp
 	 * @param null|User $user
 	 * @param string[] $tags
-	 * @return bool
+	 * @return Status
 	 */
 	function recordUpload2(
 		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null, $tags = []
@@ -1328,7 +1342,7 @@ class LocalFile extends File {
 		if ( !$this->fileExists ) {
 			wfDebug( __METHOD__ . ": File " . $this->getRel() . " went missing!\n" );
 
-			return false;
+			return Status::newFatal( 'filenotfound', $this->getRel() );
 		}
 
 		$dbw->startAtomic( __METHOD__ );
@@ -1361,16 +1375,24 @@ class LocalFile extends File {
 		$reupload = ( $dbw->affectedRows() == 0 );
 
 		if ( $reupload ) {
+			$row = $dbw->selectRow(
+				'image',
+				[ 'img_timestamp', 'img_sha1' ],
+				[ 'img_name' => $this->getName() ],
+				__METHOD__,
+				[ 'LOCK IN SHARE MODE' ]
+			);
+
+			if ( $row && $row->img_sha1 === $this->sha1 ) {
+				$dbw->endAtomic( __METHOD__ );
+				wfDebug( __METHOD__ . ": File " . $this->getRel() . " already exists!\n" );
+				$title = Title::newFromText( $this->getName(), NS_FILE );
+				return Status::newFatal( 'fileexists-no-change', $title->getPrefixedText() );
+			}
+
 			if ( $allowTimeKludge ) {
 				# Use LOCK IN SHARE MODE to ignore any transaction snapshotting
-				$ltimestamp = $dbw->selectField(
-					'image',
-					'img_timestamp',
-					[ 'img_name' => $this->getName() ],
-					__METHOD__,
-					[ 'LOCK IN SHARE MODE' ]
-				);
-				$lUnixtime = $ltimestamp ? wfTimestamp( TS_UNIX, $ltimestamp ) : false;
+				$lUnixtime = $row ? wfTimestamp( TS_UNIX, $row->img_timestamp ) : false;
 				# Avoid a timestamp that is not newer than the last version
 				# TODO: the image/oldimage tables should be like page/revision with an ID field
 				if ( $lUnixtime && wfTimestamp( TS_UNIX, $timestamp ) <= $lUnixtime ) {
@@ -1641,7 +1663,7 @@ class LocalFile extends File {
 		# Invalidate cache for all pages using this file
 		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this->getTitle(), 'imagelinks' ) );
 
-		return true;
+		return Status::newGood();
 	}
 
 	/**
