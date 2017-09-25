@@ -1649,8 +1649,8 @@ return [
 	],
 	'mediawiki.page.gallery.styles' => [
 		'styles' => [
-			'resources/src/mediawiki/page/gallery.print.css' => [ 'media' => 'print' ],
 			'resources/src/mediawiki/page/gallery.css',
+			'resources/src/mediawiki/page/gallery.print.css' => [ 'media' => 'print' ],
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
