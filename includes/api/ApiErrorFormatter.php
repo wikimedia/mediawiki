@@ -101,7 +101,16 @@ class ApiErrorFormatter {
 	 * @param array|null $data See ApiMessage::create().
 	 */
 	public function addError( $modulePath, $msg, $code = null, $data = null ) {
-		$msg = ApiMessage::create( $msg, $code, $data )
+		$apiMessage = ApiMessage::create( $msg, $code, $data );
+		if (!$apiMessage instanceof Message) {
+			$apiMessage = new ApiMessage(
+				$apiMessage,
+				$apiMessage->getApiCode(),
+				$apiMessage->getApiData()
+			);
+		}
+
+		$msg = $apiMessage
 			->inLanguage( $this->lang )
 			->title( $this->getDummyTitle() )
 			->useDatabase( $this->useDB );
