@@ -2,6 +2,18 @@
 
 use Wikimedia\TestingAccessWrapper;
 
+/**
+ * @covers WANObjectCache::wrap
+ * @covers WANObjectCache::unwrap
+ * @covers WANObjectCache::worthRefreshExpiring
+ * @covers WANObjectCache::worthRefreshPopular
+ * @covers WANObjectCache::isValid
+ * @covers WANObjectCache::getWarmupKeyMisses
+ * @covers WANObjectCache::prefixCacheKeys
+ * @covers WANObjectCache::getProcessCache
+ * @covers WANObjectCache::getNonProcessCachedKeys
+ * @covers WANObjectCache::getRawKeysForWarmup
+ */
 class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 	/** @var WANObjectCache */
 	private $cache;
@@ -270,9 +282,9 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider getMultiWithSetCallback_provider
-	 * @covers WANObjectCache::getMultiWithSetCallback()
-	 * @covers WANObjectCache::makeMultiKeys()
-	 * @covers WANObjectCache::getMulti()
+	 * @covers WANObjectCache::getMultiWithSetCallback
+	 * @covers WANObjectCache::makeMultiKeys
+	 * @covers WANObjectCache::getMulti
 	 * @param array $extOpts
 	 * @param bool $versioned
 	 */
@@ -882,7 +894,9 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @covers WANObjectCache::delete()
+	 * @covers WANObjectCache::delete
+	 * @covers WANObjectCache::relayDelete
+	 * @covers WANObjectCache::relayPurge
 	 */
 	public function testDelete() {
 		$key = wfRandomString();
@@ -988,9 +1002,11 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @covers WANObjectCache::touchCheckKey()
-	 * @covers WANObjectCache::resetCheckKey()
-	 * @covers WANObjectCache::getCheckKeyTime()
+	 * @covers WANObjectCache::touchCheckKey
+	 * @covers WANObjectCache::resetCheckKey
+	 * @covers WANObjectCache::getCheckKeyTime
+	 * @covers WANObjectCache::makePurgeValue
+	 * @covers WANObjectCache::parsePurgeValue
 	 */
 	public function testTouchKeys() {
 		$key = wfRandomString();
@@ -1231,6 +1247,40 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 			[ false, 86400, 800, 0.2, 800 ],
 			[ null, 86400, 800, 0.2, 800 ]
 		];
+	}
+
+	/**
+	 * @covers WANObjectCache::__construct
+	 * @covers WANObjectCache::newEmpty
+	 */
+	public function testNewEmpty() {
+		$this->assertInstanceOf(
+			WANObjectCache::class,
+			WANObjectCache::newEmpty()
+		);
+	}
+
+	/**
+	 * @covers WANObjectCache::setLogger
+	 */
+	public function testSetLogger() {
+		$this->assertSame( null, $this->cache->setLogger( new Psr\Log\NullLogger ) );
+	}
+
+	/**
+	 * @covers WANObjectCache::getQoS
+	 */
+	public function testGetQoS() {
+		$backend = $this->getMockBuilder( HashBagOStuff::class )
+			->setMethods( [ 'getQoS' ] )->getMock();
+		$backend->expects( $this->once() )->method( 'getQoS' )
+			->willReturn( BagOStuff::QOS_UNKNOWN );
+		$wanCache = new WANObjectCache( [ 'cache' => $backend ] );
+
+		$this->assertSame(
+			$wanCache::QOS_UNKNOWN,
+			$wanCache->getQoS( $wanCache::ATTR_EMULATION )
+		);
 	}
 
 	/**
