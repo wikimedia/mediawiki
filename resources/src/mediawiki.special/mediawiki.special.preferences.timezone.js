@@ -61,16 +61,10 @@
 					minuteDiff = -( new Date().getTimezoneOffset() );
 					$tzTextbox.val( minutesToHours( minuteDiff ) );
 					$tzSelect.val( 'other' );
-					$tzTextbox.prop( 'disabled', false );
 				} else {
 					// Grab data from the $tzSelect value
 					minuteDiff = parseInt( type.split( '|' )[ 1 ], 10 ) || 0;
-					$tzTextbox.val( minutesToHours( minuteDiff ) );
 				}
-
-				// Set defaultValue prop on the generated box so we don't trigger the
-				// unsaved preferences check
-				$tzTextbox.prop( 'defaultValue', $tzTextbox.val() );
 			}
 
 			// Determine local time from server time and minutes difference, for display.
