@@ -91,7 +91,7 @@ class LinksDeletionUpdate extends DataUpdate implements EnqueueableDataUpdate {
 			$this->page->updateCategoryCounts( [], $catBatch, $id );
 			if ( count( $catBatches ) > 1 ) {
 				$lbFactory->commitAndWaitForReplication(
-					__METHOD__, $this->ticket, [ 'wiki' => $dbw->getWikiID() ]
+					__METHOD__, $this->ticket, [ 'domain' => $dbw->getDomainID() ]
 				);
 			}
 		}
@@ -187,7 +187,7 @@ class LinksDeletionUpdate extends DataUpdate implements EnqueueableDataUpdate {
 			$dbw->delete( 'recentchanges', [ 'rc_id' => $rcIdBatch ], __METHOD__ );
 			if ( count( $rcIdBatches ) > 1 ) {
 				$lbFactory->commitAndWaitForReplication(
-					__METHOD__, $this->ticket, [ 'wiki' => $dbw->getWikiID() ]
+					__METHOD__, $this->ticket, [ 'domain' => $dbw->getDomainID() ]
 				);
 			}
 		}
@@ -209,7 +209,7 @@ class LinksDeletionUpdate extends DataUpdate implements EnqueueableDataUpdate {
 			if ( count( $pkDeleteConds ) >= $bSize ) {
 				$dbw->delete( $table, $dbw->makeList( $pkDeleteConds, LIST_OR ), __METHOD__ );
 				$lbFactory->commitAndWaitForReplication(
-					__METHOD__, $this->ticket, [ 'wiki' => $dbw->getWikiID() ]
+					__METHOD__, $this->ticket, [ 'domain' => $dbw->getDomainID() ]
 				);
 				$pkDeleteConds = [];
 			}
@@ -230,7 +230,7 @@ class LinksDeletionUpdate extends DataUpdate implements EnqueueableDataUpdate {
 
 	public function getAsJobSpecification() {
 		return [
-			'wiki' => $this->getDB()->getWikiID(),
+			'wiki' => WikiMap::getWikiIdFromDomain( $this->getDB()->getDomainID() ),
 			'job'  => new JobSpecification(
 				'deleteLinks',
 				[ 'pageId' => $this->pageId, 'timestamp' => $this->timestamp ],

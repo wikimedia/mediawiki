@@ -346,6 +346,7 @@ interface IDatabase {
 	 * Alias for getDomainID()
 	 *
 	 * @return string
+	 * @deprecated 1.30
 	 */
 	public function getWikiID();
 

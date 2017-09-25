@@ -366,20 +366,22 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 			return;
 		}
 
-		$wikiId = $this->getDB()->getWikiID();
+		$domainId = $this->getDB()->getDomainID();
 		$wp = WikiPage::factory( $this->mTitle );
 		$lbf = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		// T163801: try to release any row locks to reduce contention
-		$lbf->commitAndWaitForReplication( __METHOD__, $this->ticket, [ 'wiki' => $wikiId ] );
+		$lbf->commitAndWaitForReplication( __METHOD__, $this->ticket, [ 'domain' => $domainId ] );
 
 		foreach ( array_chunk( array_keys( $added ), $wgUpdateRowsPerQuery ) as $addBatch ) {
 			$wp->updateCategoryCounts( $addBatch, [], $this->mId );
-			$lbf->commitAndWaitForReplication( __METHOD__, $this->ticket, [ 'wiki' => $wikiId ] );
+			$lbf->commitAndWaitForReplication(
+				__METHOD__, $this->ticket, [ 'domain' => $domainId ] );
 		}
 
 		foreach ( array_chunk( array_keys( $deleted ), $wgUpdateRowsPerQuery ) as $deleteBatch ) {
 			$wp->updateCategoryCounts( [], $deleteBatch, $this->mId );
-			$lbf->commitAndWaitForReplication( __METHOD__, $this->ticket, [ 'wiki' => $wikiId ] );
+			$lbf->commitAndWaitForReplication(
+				__METHOD__, $this->ticket, [ 'domain' => $domainId ] );
 		}
 	}
 
@@ -450,10 +452,12 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 			}
 		}
 
+		$domainId = $this->getDB()->getDomainID();
+
 		foreach ( $deleteWheres as $deleteWhere ) {
 			$this->getDB()->delete( $table, $deleteWhere, __METHOD__ );
 			$lbf->commitAndWaitForReplication(
-				__METHOD__, $this->ticket, [ 'wiki' => $this->getDB()->getWikiID() ]
+				__METHOD__, $this->ticket, [ 'domain' => $domainId ]
 			);
 		}
 
@@ -461,7 +465,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 		foreach ( $insertBatches as $insertBatch ) {
 			$this->getDB()->insert( $table, $insertBatch, __METHOD__, 'IGNORE' );
 			$lbf->commitAndWaitForReplication(
-				__METHOD__, $this->ticket, [ 'wiki' => $this->getDB()->getWikiID() ]
+				__METHOD__, $this->ticket, [ 'domain' => $domainId ]
 			);
 		}
 
@@ -1143,7 +1147,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 		}
 
 		return [
-			'wiki' => $this->getDB()->getWikiID(),
+			'wiki' => WikiMap::getWikiIdFromDomain( $this->getDB()->getDomainID() ),
 			'job'  => new JobSpecification(
 				'refreshLinksPrioritized',
 				[
