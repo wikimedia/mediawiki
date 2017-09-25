@@ -28,8 +28,32 @@ li.gallerybox div.thumb {
 }
 
 div.gallerytext {
-	overflow: hidden;
-	font-size: 10pt;
-	padding: 2px 4px;
-	word-wrap: break-word;
+	overflow: visible;
 }
+
+ul.mw-gallery-packed-hover div.gallerytextwrapper {
+	overflow: visible;
+	height: auto;
+}
+
+ul.mw-gallery-packed-hover li.gallerybox:hover div.gallerytextwrapper,
+ul.mw-gallery-packed-overlay li.gallerybox div.gallerytextwrapper,
+ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapper {
+	position: static;
+	background: transparent;
+	padding: 0;
+	bottom: 0;
+	max-height: none;
+	overflow: visible;
+	font-weight: normal;
+	margin: 0; /* correspond to style on div.thumb */
+}
+
+ul.mw-gallery-packed-hover li.gallerybox:hover div.gallerytextwrapper p,
+ul.mw-gallery-packed-overlay li.gallerybox div.gallerytextwrapper p,
+ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapper p {
+	text-overflow: clip;
+	white-space: normal;
+	overflow: visible;
+}
+
