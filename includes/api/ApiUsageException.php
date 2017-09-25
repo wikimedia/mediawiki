@@ -124,6 +124,9 @@ class ApiUsageException extends UsageException implements ILocalizedException {
 		// Bug T46111: Messages in the log files should be in English and not
 		// customized by the local wiki.
 		$enMsg = clone $this->getApiMessage();
+		if ( !$enMsg instanceof Message && $enMsg instanceof IApiMessage) {
+			$enMsg = new ApiMessage( $enMsg, $enMsg->getApiCode(), $enMsg->getApiData() );
+		}
 		$enMsg->inLanguage( 'en' )->useDatabase( false );
 		parent::__construct(
 			ApiErrorFormatter::stripMarkup( $enMsg->text() ),
