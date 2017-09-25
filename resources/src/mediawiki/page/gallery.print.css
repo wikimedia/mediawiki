@@ -28,8 +28,32 @@ li.gallerybox div.thumb {
 }
 
 div.gallerytext {
-	overflow: hidden;
-	font-size: 10pt;
-	padding: 2px 4px;
-	word-wrap: break-word;
+	overflow: visible !important;
 }
+
+ul.mw-gallery-packed-hover div.gallerytextwrapper {
+	overflow: visible !important;
+	height: auto !important;
+}
+
+ul.mw-gallery-packed-hover li.gallerybox:hover div.gallerytextwrapper,
+ul.mw-gallery-packed-overlay li.gallerybox div.gallerytextwrapper,
+ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapper {
+	position: static !important;
+	background: transparent !important;
+	padding: 0px !important;
+	bottom: 0px !important;
+	max-height: none !important;
+	overflow: visible !important;
+	font-weight: normal !important;
+	margin: 0px !important; /* correspond to style on div.thumb */
+}
+
+ul.mw-gallery-packed-hover li.gallerybox:hover div.gallerytextwrapper p,
+ul.mw-gallery-packed-overlay li.gallerybox div.gallerytextwrapper p,
+ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapper p {
+	text-overflow: clip !important;
+	white-space: normal !important;
+	overflow: visible !important;
+}
+
