@@ -2073,6 +2073,11 @@ return [
 	'mediawiki.special.import' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.import.js',
 	],
+	'mediawiki.special.mouse.click.js' => [
+		'scripts' => [
+			'resources/src/mediawiki.special/mediawiki.special.mouse.click.js',
+		]
+	],
 	'mediawiki.special.movePage' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.movePage.js',
 		'dependencies' => [
