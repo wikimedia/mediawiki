@@ -227,6 +227,10 @@ class ApiMessage extends Message implements IApiMessage {
 		}
 
 		if ( $msg instanceof IApiMessage ) {
+			if ( !$msg instanceof Message ) {
+				return new ApiMessage( $msg, $msg->getApiCode(), $msg->getApiData() );
+			}
+
 			return $msg;
 		} elseif ( $msg instanceof RawMessage ) {
 			return new ApiRawMessage( $msg, $code, $data );

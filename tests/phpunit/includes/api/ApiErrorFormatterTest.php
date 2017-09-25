@@ -639,4 +639,40 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 		];
 	}
 
+	public function testAddErrorCanHandleIApiMessage() {
+		$result = new ApiResult( 1 );
+		$apiErrorFormatter = new ApiErrorFormatter(
+			$result,
+			Language::factory( 'en' ),
+			'none',
+			false
+		);
+
+		$apiErrorFormatter->addError(
+			null,
+			$this->createIApiMessage( 'some-error-code', [ 'some-error-data' ] )
+		);
+
+		$resultData = $result->getResultData();
+		$error = $resultData['errors'][0];
+		$this->assertEquals( 'some-error-code', $error['code'] );
+		$this->assertContains( 'some-error-data', $error['data'] );
+	}
+
+	/**
+	 * @param string $code
+	 * @param array $data
+	 *
+	 * @return IApiMessage
+	 */
+	private function createIApiMessage( $code, array $data ) {
+		/** @var IApiMessage|\Prophecy\Prophecy\ObjectProphecy $message */
+		$message = $this->prophesize( IApiMessage::class );
+		$message->getKey()->willReturn( 'some-IApiMessage-key' );
+		$message->getParams()->willReturn( [ 'some-IApiMessage-param' ] );
+		$message->getApiCode()->willReturn( $code );
+		$message->getApiData()->willReturn( $data );
+
+		return $message->reveal();
+	}
 }

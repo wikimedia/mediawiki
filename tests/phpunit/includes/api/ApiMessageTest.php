@@ -186,4 +186,29 @@ class ApiMessageTest extends MediaWikiTestCase {
 		$this->assertSame( $msg, ApiMessage::create( $msg ) );
 	}
 
+	public function testCreate_GivenIApiMessageWhichDoesNotExtendMessage_ConvertsToApiMessage() {
+		$IApiMessage = $this->createIApiMessage();
+		$result = ApiMessage::create( $IApiMessage );
+
+		$this->assertInstanceOf( ApiMessage::class, $result );
+		$this->assertEquals( $IApiMessage->getKey(), $result->getKey() );
+		$this->assertEquals( $IApiMessage->getParams(), $result->getParams() );
+		$this->assertEquals( $IApiMessage->getApiCode(), $result->getApiCode() );
+		$this->assertEquals( $IApiMessage->getApiData(), $result->getApiData() );
+	}
+
+	/**
+	 * @return IApiMessage
+	 */
+	private function createIApiMessage() {
+		/** @var IApiMessage|\Prophecy\Prophecy\ObjectProphecy $message */
+		$message = $this->prophesize( IApiMessage::class );
+		$message->getKey()->willReturn( 'some-IApiMessage-key' );
+		$message->getParams()->willReturn( [ 'some-IApiMessage-param' ] );
+		$message->getApiCode()->willReturn( 'some-api-code' );
+		$message->getApiData()->willReturn( [ 'some-api-data' ] );
+
+		return $message->reveal();
+	}
+
 }
