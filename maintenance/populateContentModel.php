@@ -24,6 +24,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use Wikimedia\Rdbms\IDatabase;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Usage:
@@ -45,9 +46,8 @@ class PopulateContentModel extends Maintenance {
 	public function execute() {
 		$dbw = $this->getDB( DB_MASTER );
 
-		$this->wikiId = $dbw->getWikiID();
-
-		$this->wanCache = ObjectCache::getMainWANInstance();
+		$this->wikiId = $dbw->getDomainID();
+		$this->wanCache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 
 		$ns = $this->getOption( 'ns' );
 		if ( !ctype_digit( $ns ) && $ns !== 'all' ) {

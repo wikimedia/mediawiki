@@ -373,7 +373,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			if ( $module instanceof self ) {
 				$mDB = $module->getDB();
 				// Subclasses may disable getDB and implement getTitleInfo differently
-				if ( $mDB && $mDB->getWikiID() === $db->getWikiID() ) {
+				if ( $mDB && $mDB->getDomainID() === $db->getDomainID() ) {
 					$wikiModules[] = $module;
 					$allPages += $module->getPages( $context );
 				}
@@ -395,14 +395,17 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 		$cache = ObjectCache::getMainWANInstance();
 		$allInfo = $cache->getWithSetCallback(
-			$cache->makeGlobalKey( 'resourceloader', 'titleinfo', $db->getWikiID(), $hash ),
+			$cache->makeGlobalKey( 'resourceloader', 'titleinfo', $db->getDomainID(), $hash ),
 			$cache::TTL_HOUR,
 			function ( $curVal, &$ttl, array &$setOpts ) use ( $func, $pageNames, $db, $fname ) {
 				$setOpts += Database::getCacheSetOptions( $db );
 
 				return call_user_func( $func, $db, $pageNames, $fname );
 			},
-			[ 'checkKeys' => [ $cache->makeGlobalKey( 'resourceloader', 'titleinfo', $db->getWikiID() ) ] ]
+			[
+				'checkKeys' => [
+					$cache->makeGlobalKey( 'resourceloader', 'titleinfo', $db->getDomainID() ) ]
+			]
 		);
 
 		foreach ( $wikiModules as $wikiModule ) {
