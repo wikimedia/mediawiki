@@ -2216,7 +2216,8 @@ return [
 		],
 	],
 	'mediawiki.special.userlogin.signup.js' => [
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.userlogin.signup.js',
+		'scripts' => ['resources/src/mediawiki.special/mediawiki.special.userlogin.signup.js',
+				'resources/src/mediawiki.special/mediawiki.special.mouse.click.js'],
 		'messages' => [
 			'createacct-emailrequired',
 			'noname',
