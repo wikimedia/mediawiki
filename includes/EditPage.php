@@ -822,8 +822,15 @@ class EditPage {
 	 * @return bool
 	 */
 	protected function previewOnOpen() {
-		$previewOnOpenNamespaces = $this->context->getConfig()->get( 'PreviewOnOpenNamespaces' );
+		$config = $this->context->getConfig();
+		$previewOnOpenNamespaces = $config->get( 'PreviewOnOpenNamespaces' );
 		$request = $this->context->getRequest();
+		if ( $config->get( 'RawHtml' ) ) {
+			// If raw HTML is enabled, disable preview on open
+			// since it has to be posted with a token for
+			// security reasons
+			return false;
+		}
 		if ( $request->getVal( 'preview' ) == 'yes' ) {
 			// Explicit override from request
 			return true;
