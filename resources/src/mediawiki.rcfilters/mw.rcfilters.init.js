@@ -29,9 +29,7 @@
 				savedLinksListWidget = new mw.rcfilters.ui.SavedLinksListWidget(
 					controller, savedQueriesModel, { $overlay: $overlay }
 				),
-				currentPage = mw.config.get( 'wgCanonicalNamespace' ) +
-					':' +
-					mw.config.get( 'wgCanonicalSpecialPageName' );
+				specialPage = mw.config.get( 'wgCanonicalSpecialPageName' );
 
 			// TODO: The changesListWrapperWidget should be able to initialize
 			// after the model is ready.
@@ -66,8 +64,8 @@
 
 			controller.replaceUrl();
 
-			if ( currentPage === 'Special:Recentchanges' ||
-				currentPage === 'Special:Recentchangeslinked' ) {
+			if ( specialPage === 'Recentchanges' ||
+				specialPage === 'Recentchangeslinked' ) {
 				$topLinks = $( '.mw-recentchanges-toplinks' ).detach();
 
 				rcTopSection = new mw.rcfilters.ui.RcTopSectionWidget(
@@ -76,7 +74,7 @@
 				filtersWidget.setTopSection( rcTopSection.$element );
 			} // end Special:RC
 
-			if ( currentPage === 'Special:Watchlist' ) {
+			if ( specialPage === 'Watchlist' ) {
 				$( '#contentSub, form#mw-watchlist-resetbutton' ).detach();
 				$watchlistDetails = $( '.watchlistDetails' ).detach().contents();
 
@@ -85,6 +83,18 @@
 				);
 				filtersWidget.setTopSection( wlTopSection.$element );
 			} // end Special:WL
+
+			// Log performance data
+			if ( window.performance && window.performance.now ) {
+				mw.track(
+					'timing.MediaWiki.timing.structuredChangeFilters.ready.' + specialPage,
+					window.performance.now()
+				);
+				mw.track(
+					'timing.MediaWiki.timing.structuredChangeFilters.backendResponse.' + specialPage,
+					mw.config.get( 'wgBackendResponseTime' )
+				);
+			}
 
 			/**
 			 * Fired when initialization of the filtering interface for changes list is complete.
