@@ -766,7 +766,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 						);
 						if ( count( $watchersChunks ) > 1 ) {
 							$factory->commitAndWaitForReplication(
-								__METHOD__, $ticket, [ 'wiki' => $dbw->getWikiID() ]
+								__METHOD__, $ticket, [ 'domain' => $dbw->getDomainID() ]
 							);
 						}
 					}

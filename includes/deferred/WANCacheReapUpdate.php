@@ -43,7 +43,7 @@ class WANCacheReapUpdate implements DeferrableUpdate {
 			[ $this, 'getTitleChangeEvents' ],
 			[ $this, 'getEventAffectedKeys' ],
 			[
-				'channel' => 'table:recentchanges:' . $this->db->getWikiID(),
+				'channel' => 'table:recentchanges:' . $this->db->getDomainID(),
 				'logger' => $this->logger
 			]
 		);

@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
  * Helper tools for dealing with other locally-hosted wikis.
@@ -238,5 +239,23 @@ class WikiMap {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Get the wiki ID of a database domain
+	 *
+	 * This is like DatabaseDomain::getId() without encoding (for legacy reasons)
+	 *
+	 * @param string|DatabaseDomain $domain
+	 * @return string
+	 */
+	public static function getWikiIdFromDomain( $domain ) {
+		if ( !( $domain instanceof DatabaseDomain ) ) {
+			$domain = DatabaseDomain::newFromId( $domain );
+		}
+
+		return strlen( $domain->getTablePrefix() )
+			? "{$domain->getDatabase()}-{$domain->getTablePrefix()}"
+			: $domain->getDatabase();
 	}
 }
