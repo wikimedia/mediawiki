@@ -89,6 +89,8 @@
 		"watchlist": { "file": {
 			"ltr": "images/icons/watchlist-ltr.svg",
 			"rtl": "images/icons/watchlist-rtl.svg"
-		} }
+			},
+			"deprecated": "This will be removed in v0.24.0."
+		}
 	}
 }

@@ -206,6 +206,7 @@ interface IDatabase {
 	 * Returns true if this database does an implicit sort when doing GROUP BY
 	 *
 	 * @return bool
+	 * @deprecated Since 1.30; only use grouped or aggregated fields in the SELECT
 	 */
 	public function implicitGroupby();
 

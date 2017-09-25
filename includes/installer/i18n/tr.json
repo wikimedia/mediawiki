@@ -17,7 +17,8 @@
 			"HakanIST",
 			"McAang",
 			"Elftrkn",
-			"Vito Genovese"
+			"Vito Genovese",
+			"Incelemeelemani"
 		]
 	},
 	"config-desc": "MediaWiki yükleyicisi",
@@ -228,6 +229,8 @@
 	"config-install-interwiki-exists": "''' Uyarı:'' ' interwiki Tablo girdileri zaten görünüyor.\nVarsayılan liste atlanıyor.",
 	"config-install-stats": "İstatistik başlatılıyor",
 	"config-install-keys": "Gizli anahtar oluşturma",
+	"config-install-updates-failed": "<strong>Hata:</strong> Güncelleme anahtarlarını tablolara ekleme şu hatayla başarısız oldu: $1",
+	"config-install-sysop": "Yönetici kullanıcı hesabı oluşturma",
 	"config-install-subscribe-notpossible": "cURL yüklü değil ve <code>allow_url_fopen</code> kullanılamaz.",
 	"config-install-mainpage": "Varsayılan içerik ile anasayfa oluşturma",
 	"config-install-extension-tables": "Uzantılar için etkinleştirilmiş tablolar oluşturma",
@@ -237,6 +240,8 @@
 	"config-help-tooltip": "genişletmek için tıklayın",
 	"config-nofile": "\"$1\" dosyası bulunamadı. Silindi mi?",
 	"config-extension-link": "Vikinizin [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions eklentileri] desteklediğini biliyor musunuz?\n\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category Eklentileri kategorilerine göre] inceleyebilir ya da tüm eklentilerin listesini görmek için [https://www.mediawiki.org/wiki/Extension_Matrix Eklenti Matrisine] bakabilirsiniz.",
+	"config-skins-screenshots": "$1 (ekran görüntüleri: $2)",
+	"config-screenshot": "ekran görüntüsü",
 	"mainpagetext": "'''MediaWiki başarı ile kuruldu.'''",
 	"mainpagedocfooter": "Viki yazılımının kullanımı hakkında bilgi almak için [https://meta.wikimedia.org/wiki/Help:Contents kullanıcı rehberine] bakınız.\n\n== Yeni Başlayanlar ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Yapılandırma ayarlarının listesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki SSS]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-posta listesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Kendi diliniz için MediaWiki yerelleştirmesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Kendi vikinizde spam ile nasıl savaşılacağını öğrennin]"
 }

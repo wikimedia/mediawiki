@@ -43,7 +43,7 @@ use Wikimedia\Rdbms\IDatabase;
  * @ingroup FileAbstraction
  */
 class LocalFile extends File {
-	const VERSION = 10; // cache version
+	const VERSION = 11; // cache version
 
 	const CACHE_FIELD_MAX_LEN = 1000;
 
@@ -2307,7 +2307,6 @@ class LocalFileDeleteBatch {
 
 		$encTimestamp = $dbw->addQuotes( $dbw->timestamp( $now ) );
 		$encUserId = $dbw->addQuotes( $this->user->getId() );
-		$encReason = $dbw->addQuotes( $this->reason );
 		$encGroup = $dbw->addQuotes( 'deleted' );
 		$ext = $this->file->getExtension();
 		$dotExt = $ext === '' ? '' : ".$ext";
@@ -2350,7 +2349,10 @@ class LocalFileDeleteBatch {
 			];
 			$joins = [];
 
-			$fields += $commentStoreFaReason->insert( $dbw, $encReason );
+			$fields += array_map(
+				[ $dbw, 'addQuotes' ],
+				$commentStoreFaReason->insert( $dbw, $this->reason )
+			);
 
 			if ( $wgCommentTableSchemaMigrationStage <= MIGRATION_WRITE_BOTH ) {
 				$fields['fa_description'] = 'img_description';

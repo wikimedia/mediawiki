@@ -32,6 +32,8 @@ use Wikimedia\Rdbms\IDatabase;
  * @ingroup SpecialPage
  */
 class SpecialWatchlist extends ChangesListSpecialPage {
+	protected static $savedQueriesPreferenceName = 'rcfilters-wl-saved-queries';
+
 	private $maxDays;
 
 	public function __construct( $page = 'Watchlist', $restriction = 'viewmywatchlist' ) {
@@ -100,10 +102,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$output->addModuleStyles( [ 'mediawiki.rcfilters.highlightCircles.seenunseen.styles' ] );
 
 			$output->addJsConfigVars( 'wgStructuredChangeFiltersLiveUpdateSupported', false );
-			$output->addJsConfigVars(
-				'wgStructuredChangeFiltersSavedQueriesPreferenceName',
-				'rcfilters-wl-saved-queries'
-			);
 			$output->addJsConfigVars(
 				'wgStructuredChangeFiltersEditWatchlistUrl',
 				SpecialPage::getTitleFor( 'EditWatchlist' )->getLocalURL()
@@ -635,10 +633,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			'id' => 'mw-watchlist-form'
 		] );
 		$form .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
-		$form .= Xml::fieldset(
-			$this->msg( 'watchlist-options' )->text(),
-			false,
+		$form .= Xml::openElement(
+			'fieldset',
 			[ 'id' => 'mw-watchlist-options', 'class' => 'cloptions' ]
+		);
+		$form .= Xml::element(
+			'legend', null, $this->msg( 'watchlist-options' )->text()
 		);
 
 		if ( !$this->isStructuredFilterUiEnabled() ) {

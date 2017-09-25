@@ -267,7 +267,7 @@ class MysqlUpdater extends DatabaseUpdater {
 
 			// 1.25
 			// note this patch covers other _comment and _description fields too
-			[ 'modifyField', 'recentchanges', 'rc_comment', 'patch-editsummary-length.sql' ],
+			[ 'doExtendCommentLengths' ],
 
 			// 1.26
 			[ 'dropTable', 'hitcounter' ],
@@ -390,7 +390,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		global $IP;
 
 		if ( !$this->doTable( 'interwiki' ) ) {
-			return true;
+			return;
 		}
 
 		if ( $this->db->tableExists( "interwiki", __METHOD__ ) ) {
@@ -1179,6 +1179,22 @@ class MysqlUpdater extends DatabaseUpdater {
 			false,
 			'Making rev_page_id index non-unique'
 		);
+	}
+
+	protected function doExtendCommentLengths() {
+		$table = $this->db->tableName( 'revision' );
+		$res = $this->db->query( "SHOW COLUMNS FROM $table LIKE 'rev_comment'" );
+		$row = $this->db->fetchObject( $res );
+
+		if ( $row && ( $row->Type !== "varbinary(767)" || $row->Default !== "" ) ) {
+			$this->applyPatch(
+				'patch-editsummary-length.sql',
+				false,
+				'Extending edit summary lengths (and setting defaults)'
+			);
+		} else {
+			$this->output( '...comment fields are up to date' );
+		}
 	}
 
 	public function getSchemaVars() {

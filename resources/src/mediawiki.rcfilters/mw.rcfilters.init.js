@@ -39,6 +39,11 @@
 			new mw.rcfilters.ui.ChangesListWrapperWidget(
 				filtersModel, changesListModel, controller, $( '.mw-changeslist, .mw-changeslist-empty' ) );
 
+			// Remove the -loading class that may have been added on the server side.
+			// If we are in fact going to load a default saved query, this .initialize()
+			// call will do that and add the -loading class right back.
+			$( 'body' ).removeClass( 'mw-rcfilters-ui-loading' );
+
 			controller.initialize(
 				mw.config.get( 'wgStructuredChangeFilters' ),
 				mw.config.get( 'wgFormattedNamespaces' ),
@@ -50,8 +55,9 @@
 				filtersModel, changesListModel, controller, $( 'fieldset.cloptions' ) );
 
 			$( '.rcfilters-container' ).append( filtersWidget.$element );
-			$( 'body' ).append( $overlay );
-			$( '.rcfilters-head' ).addClass( 'mw-rcfilters-ui-ready' );
+			$( 'body' )
+				.append( $overlay )
+				.addClass( 'mw-rcfilters-ui-initialized' );
 
 			$( 'a.mw-helplink' ).attr(
 				'href',
@@ -90,7 +96,12 @@
 		}
 	};
 
-	$( rcfilters.init );
+	// Early execute of init
+	if ( document.readyState === 'interactive' || document.readyState === 'complete' ) {
+		rcfilters.init();
+	} else {
+		$( rcfilters.init );
+	}
 
 	module.exports = rcfilters;
 

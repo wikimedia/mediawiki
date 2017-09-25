@@ -41,6 +41,11 @@ use Wikimedia\ScopedCallback;
  */
 class EditPage {
 	/**
+	 * Used for Unicode support checks
+	 */
+	const UNICODE_CHECK = 'ℳ𝒲♥𝓊𝓃𝒾𝒸ℴ𝒹ℯ';
+
+	/**
 	 * Status: Article successfully updated
 	 */
 	const AS_SUCCESS_UPDATE = 200;
@@ -178,6 +183,11 @@ class EditPage {
 	const AS_CANNOT_USE_CUSTOM_MODEL = 241;
 
 	/**
+	 * Status: edit rejected because browser doesn't support Unicode.
+	 */
+	const AS_UNICODE_NOT_SUPPORTED = 242;
+
+	/**
 	 * HTML id and name for the beginning of the edit form.
 	 */
 	const EDITFORM_ID = 'editform';
@@ -203,12 +213,18 @@ class EditPage {
 	 */
 	const POST_EDIT_COOKIE_DURATION = 1200;
 
-	/** @var Article */
+	/**
+	 * @deprecated for public usage since 1.30 use EditPage::getArticle()
+	 * @var Article
+	 */
 	public $mArticle;
 	/** @var WikiPage */
 	private $page;
 
-	/** @var Title */
+	/**
+	 * @deprecated for public usage since 1.30 use EditPage::getTitle()
+	 * @var Title
+	 */
 	public $mTitle;
 
 	/** @var null|Title */
@@ -220,16 +236,28 @@ class EditPage {
 	/** @var bool */
 	public $isConflict = false;
 
-	/** @var bool */
+	/**
+	 * @deprecated since 1.30 use Title::isCssJsSubpage()
+	 * @var bool
+	 */
 	public $isCssJsSubpage = false;
 
-	/** @var bool */
+	/**
+	 * @deprecated since 1.30 use Title::isCssSubpage()
+	 * @var bool
+	 */
 	public $isCssSubpage = false;
 
-	/** @var bool */
+	/**
+	 * @deprecated since 1.30 use Title::isJsSubpage()
+	 * @var bool
+	 */
 	public $isJsSubpage = false;
 
-	/** @var bool */
+	/**
+	 * @deprecated since 1.30
+	 * @var bool
+	 */
 	public $isWrongCaseCssJsPage = false;
 
 	/** @var bool New page or new section */
@@ -414,6 +442,11 @@ class EditPage {
 	private $isOldRev = false;
 
 	/**
+	 * @var string|null What the user submitted in the 'wpUnicodeCheck' field
+	 */
+	private $unicodeCheck;
+
+	/**
 	 * @param Article $article
 	 */
 	public function __construct( Article $article ) {
@@ -469,6 +502,10 @@ class EditPage {
 	 */
 	public function getContextTitle() {
 		if ( is_null( $this->mContextTitle ) ) {
+			wfDebugLog(
+				'GlobalTitleFail',
+				__METHOD__ . ' called by ' . wfGetAllCallers( 5 ) . ' with no title set.'
+			);
 			global $wgTitle;
 			return $wgTitle;
 		} else {
@@ -482,6 +519,7 @@ class EditPage {
 	 * @deprecated since 1.30
 	 */
 	public function isOouiEnabled() {
+		wfDeprecated( __METHOD__, '1.30' );
 		return true;
 	}
 
@@ -527,7 +565,6 @@ class EditPage {
 	 * the newly-edited page.
 	 */
 	public function edit() {
-		global $wgRequest;
 		// Allow extensions to modify/prevent this form or submission
 		if ( !Hooks::run( 'AlternateEdit', [ $this ] ) ) {
 			return;
@@ -535,13 +572,14 @@ class EditPage {
 
 		wfDebug( __METHOD__ . ": enter\n" );
 
+		$request = $this->context->getRequest();
 		// If they used redlink=1 and the page exists, redirect to the main article
-		if ( $wgRequest->getBool( 'redlink' ) && $this->mTitle->exists() ) {
+		if ( $request->getBool( 'redlink' ) && $this->mTitle->exists() ) {
 			$this->context->getOutput()->redirect( $this->mTitle->getFullURL() );
 			return;
 		}
 
-		$this->importFormData( $wgRequest );
+		$this->importFormData( $request );
 		$this->firsttime = false;
 
 		if ( wfReadOnly() && $this->save ) {
@@ -608,10 +646,11 @@ class EditPage {
 
 		$this->isConflict = false;
 		// css / js subpages of user pages get a special treatment
+		// The following member variables are deprecated since 1.30,
+		// the functions should be used instead.
 		$this->isCssJsSubpage = $this->mTitle->isCssJsSubpage();
 		$this->isCssSubpage = $this->mTitle->isCssSubpage();
 		$this->isJsSubpage = $this->mTitle->isJsSubpage();
-		// @todo FIXME: Silly assignment.
 		$this->isWrongCaseCssJsPage = $this->isWrongCaseCssJsPage();
 
 		# Show applicable editing introductions
@@ -700,10 +739,8 @@ class EditPage {
 	 * @throws PermissionsError
 	 */
 	protected function displayPermissionsError( array $permErrors ) {
-		global $wgRequest;
-
 		$out = $this->context->getOutput();
-		if ( $wgRequest->getBool( 'redlink' ) ) {
+		if ( $this->context->getRequest()->getBool( 'redlink' ) ) {
 			// The edit page was reached via a red link.
 			// Redirect to the article page and let them click the edit tab if
 			// they really want a permission error.
@@ -785,24 +822,25 @@ class EditPage {
 	 * @return bool
 	 */
 	protected function previewOnOpen() {
-		global $wgRequest, $wgPreviewOnOpenNamespaces;
-		if ( $wgRequest->getVal( 'preview' ) == 'yes' ) {
+		$previewOnOpenNamespaces = $this->context->getConfig()->get( 'PreviewOnOpenNamespaces' );
+		$request = $this->context->getRequest();
+		if ( $request->getVal( 'preview' ) == 'yes' ) {
 			// Explicit override from request
 			return true;
-		} elseif ( $wgRequest->getVal( 'preview' ) == 'no' ) {
+		} elseif ( $request->getVal( 'preview' ) == 'no' ) {
 			// Explicit override from request
 			return false;
 		} elseif ( $this->section == 'new' ) {
 			// Nothing *to* preview for new sections
 			return false;
-		} elseif ( ( $wgRequest->getVal( 'preload' ) !== null || $this->mTitle->exists() )
+		} elseif ( ( $request->getVal( 'preload' ) !== null || $this->mTitle->exists() )
 			&& $this->context->getUser()->getOption( 'previewonfirst' )
 		) {
 			// Standard preference behavior
 			return true;
 		} elseif ( !$this->mTitle->exists()
-			&& isset( $wgPreviewOnOpenNamespaces[$this->mTitle->getNamespace()] )
-			&& $wgPreviewOnOpenNamespaces[$this->mTitle->getNamespace()]
+			&& isset( $previewOnOpenNamespaces[$this->mTitle->getNamespace()] )
+			&& $previewOnOpenNamespaces[$this->mTitle->getNamespace()]
 		) {
 			// Categories are special
 			return true;
@@ -862,7 +900,7 @@ class EditPage {
 			# These fields need to be checked for encoding.
 			# Also remove trailing whitespace, but don't remove _initial_
 			# whitespace from the text boxes. This may be significant formatting.
-			$this->textbox1 = $this->safeUnicodeInput( $request, 'wpTextbox1' );
+			$this->textbox1 = rtrim( $request->getText( 'wpTextbox1' ) );
 			if ( !$request->getCheck( 'wpTextbox2' ) ) {
 				// Skip this if wpTextbox2 has input, it indicates that we came
 				// from a conflict page with raw page text, not a custom form
@@ -872,6 +910,8 @@ class EditPage {
 					$this->textbox1 = $textbox1;
 				}
 			}
+
+			$this->unicodeCheck = $request->getText( 'wpUnicodeCheck' );
 
 			$this->summary = $request->getText( 'wpSummary' );
 
@@ -1120,11 +1160,12 @@ class EditPage {
 	 * @since 1.21
 	 */
 	protected function getContentObject( $def_content = null ) {
-		global $wgRequest, $wgContLang;
+		global $wgContLang;
 
 		$content = false;
 
 		$user = $this->context->getUser();
+		$request = $this->context->getRequest();
 		// For message page not locally set, use the i18n message.
 		// For other non-existent articles, use preload text if any.
 		if ( !$this->mTitle->exists() || $this->section == 'new' ) {
@@ -1136,10 +1177,10 @@ class EditPage {
 			}
 			if ( $content === false ) {
 				# If requested, preload some text.
-				$preload = $wgRequest->getVal( 'preload',
+				$preload = $request->getVal( 'preload',
 					// Custom preload text for new sections
 					$this->section === 'new' ? 'MediaWiki:addsection-preload' : '' );
-				$params = $wgRequest->getArray( 'preloadparams', [] );
+				$params = $request->getArray( 'preloadparams', [] );
 
 				$content = $this->getPreloadedContent( $preload, $params );
 			}
@@ -1154,8 +1195,8 @@ class EditPage {
 					$content = $def_content;
 				}
 			} else {
-				$undoafter = $wgRequest->getInt( 'undoafter' );
-				$undo = $wgRequest->getInt( 'undo' );
+				$undoafter = $request->getInt( 'undoafter' );
+				$undo = $request->getInt( 'undo' );
 
 				if ( $undo > 0 && $undoafter > 0 ) {
 					$undorev = Revision::newFromId( $undo );
@@ -1482,9 +1523,7 @@ class EditPage {
 	 * Log when a page was successfully saved after the edit conflict view
 	 */
 	private function incrementResolvedConflicts() {
-		global $wgRequest;
-
-		if ( $wgRequest->getText( 'mode' ) !== 'conflict' ) {
+		if ( $this->context->getRequest()->getText( 'mode' ) !== 'conflict' ) {
 			return;
 		}
 
@@ -1542,6 +1581,7 @@ class EditPage {
 
 			case self::AS_CANNOT_USE_CUSTOM_MODEL:
 			case self::AS_PARSE_ERROR:
+			case self::AS_UNICODE_NOT_SUPPORTED:
 				$out->addWikiText( '<div class="error">' . "\n" . $status->getWikiText() . '</div>' );
 				return true;
 
@@ -1645,7 +1685,7 @@ class EditPage {
 
 		// Run new style post-section-merge edit filter
 		if ( !Hooks::run( 'EditFilterMergedContent',
-				[ $this->mArticle->getContext(), $content, $status, $this->summary,
+				[ $this->context, $content, $status, $this->summary,
 				$user, $this->minoredit ] )
 		) {
 			# Error messages etc. could be handled within the hook...
@@ -1730,9 +1770,6 @@ class EditPage {
 	 * time.
 	 */
 	public function internalAttemptSave( &$result, $bot = false ) {
-		global $wgRequest, $wgMaxArticleSize;
-		global $wgContentHandlerUseDB;
-
 		$status = Status::newGood();
 		$user = $this->context->getUser();
 
@@ -1743,7 +1780,14 @@ class EditPage {
 			return $status;
 		}
 
-		$spam = $wgRequest->getText( 'wpAntispam' );
+		if ( $this->unicodeCheck !== self::UNICODE_CHECK ) {
+			$status->fatal( 'unicode-support-fail' );
+			$status->value = self::AS_UNICODE_NOT_SUPPORTED;
+			return $status;
+		}
+
+		$request = $this->context->getRequest();
+		$spam = $request->getText( 'wpAntispam' );
 		if ( $spam !== '' ) {
 			wfDebugLog(
 				'SimpleAntiSpam',
@@ -1803,7 +1847,7 @@ class EditPage {
 		}
 		if ( $match !== false ) {
 			$result['spam'] = $match;
-			$ip = $wgRequest->getIP();
+			$ip = $request->getIP();
 			$pdbk = $this->mTitle->getPrefixedDBkey();
 			$match = str_replace( "\n", '', $match );
 			wfDebugLog( 'SpamRegex', "$ip spam regex hit [[$pdbk]]: \"$match\"" );
@@ -1837,7 +1881,9 @@ class EditPage {
 		}
 
 		$this->contentLength = strlen( $this->textbox1 );
-		if ( $this->contentLength > $wgMaxArticleSize * 1024 ) {
+		$config = $this->context->getConfig();
+		$maxArticleSize = $config->get( 'MaxArticleSize' );
+		if ( $this->contentLength > $maxArticleSize * 1024 ) {
 			// Error will be displayed by showEditForm()
 			$this->tooBig = true;
 			$status->setResult( false, self::AS_CONTENT_TOO_BIG );
@@ -1857,7 +1903,7 @@ class EditPage {
 
 		$changingContentModel = false;
 		if ( $this->contentModel !== $this->mTitle->getContentModel() ) {
-			if ( !$wgContentHandlerUseDB ) {
+			if ( !$config->get( 'ContentHandlerUseDB' ) ) {
 				$status->fatal( 'editpage-cannot-use-custom-model' );
 				$status->value = self::AS_CANNOT_USE_CUSTOM_MODEL;
 				return $status;
@@ -2136,7 +2182,7 @@ class EditPage {
 
 		// Check for length errors again now that the section is merged in
 		$this->contentLength = strlen( $this->toEditText( $content ) );
-		if ( $this->contentLength > $wgMaxArticleSize * 1024 ) {
+		if ( $this->contentLength > $maxArticleSize * 1024 ) {
 			$this->tooBig = true;
 			$status->setResult( false, self::AS_MAX_ARTICLE_SIZE_EXCEEDED );
 			return $status;
@@ -2337,8 +2383,6 @@ class EditPage {
 	}
 
 	public function setHeaders() {
-		global $wgAjaxEditStash;
-
 		$out = $this->context->getOutput();
 
 		$out->addModules( 'mediawiki.action.edit' );
@@ -2390,7 +2434,7 @@ class EditPage {
 		# Keep Resources.php/mediawiki.action.edit.preview in sync with the possible keys
 		$out->addJsConfigVars( [
 			'wgEditMessage' => $msg,
-			'wgAjaxEditStash' => $wgAjaxEditStash,
+			'wgAjaxEditStash' => $this->context->getConfig()->get( 'AjaxEditStash' ),
 		] );
 	}
 
@@ -2670,6 +2714,9 @@ class EditPage {
 			call_user_func_array( $formCallback, [ &$out ] );
 		}
 
+		// Add a check for Unicode support
+		$out->addHTML( Html::hidden( 'wpUnicodeCheck', self::UNICODE_CHECK ) );
+
 		// Add an empty field to trip up spambots
 		$out->addHTML(
 			Xml::openElement( 'div', [ 'id' => 'antispam-container', 'style' => 'display: none;' ] )
@@ -2765,7 +2812,7 @@ class EditPage {
 
 		$out->addHTML( $this->editFormTextBeforeContent );
 
-		if ( !$this->isCssJsSubpage && $showToolbar && $user->getOption( 'showtoolbar' ) ) {
+		if ( !$this->mTitle->isCssJsSubpage() && $showToolbar && $user->getOption( 'showtoolbar' ) ) {
 			$out->addHTML( self::getEditToolbar( $this->mTitle ) );
 		}
 
@@ -2889,8 +2936,6 @@ class EditPage {
 	}
 
 	protected function showHeader() {
-		global $wgAllowUserCss, $wgAllowUserJs;
-
 		$out = $this->context->getOutput();
 		$user = $this->context->getUser();
 		if ( $this->isConflict ) {
@@ -2942,10 +2987,6 @@ class EditPage {
 
 			if ( $this->hookError !== '' ) {
 				$out->addWikiText( $this->hookError );
-			}
-
-			if ( !$this->checkUnicodeCompliantBrowser() ) {
-				$out->addWikiMsg( 'nonunicodebrowser' );
 			}
 
 			if ( $this->section != 'new' ) {
@@ -3005,27 +3046,29 @@ class EditPage {
 				);
 			}
 		} else {
-			if ( $this->isCssJsSubpage ) {
+			if ( $this->mTitle->isCssJsSubpage() ) {
 				# Check the skin exists
-				if ( $this->isWrongCaseCssJsPage ) {
+				if ( $this->isWrongCaseCssJsPage() ) {
 					$out->wrapWikiMsg(
 						"<div class='error' id='mw-userinvalidcssjstitle'>\n$1\n</div>",
 						[ 'userinvalidcssjstitle', $this->mTitle->getSkinFromCssJsSubpage() ]
 					);
 				}
 				if ( $this->getTitle()->isSubpageOf( $user->getUserPage() ) ) {
+					$isCssSubpage = $this->mTitle->isCssSubpage();
 					$out->wrapWikiMsg( '<div class="mw-usercssjspublic">$1</div>',
-						$this->isCssSubpage ? 'usercssispublic' : 'userjsispublic'
+						$isCssSubpage ? 'usercssispublic' : 'userjsispublic'
 					);
 					if ( $this->formtype !== 'preview' ) {
-						if ( $this->isCssSubpage && $wgAllowUserCss ) {
+						$config = $this->context->getConfig();
+						if ( $isCssSubpage && $config->get( 'AllowUserCss' ) ) {
 							$out->wrapWikiMsg(
 								"<div id='mw-usercssyoucanpreview'>\n$1\n</div>",
 								[ 'usercssyoucanpreview' ]
 							);
 						}
 
-						if ( $this->isJsSubpage && $wgAllowUserJs ) {
+						if ( $this->mTitle->isJsSubpage() && $config->get( 'AllowUserJs' ) ) {
 							$out->wrapWikiMsg(
 								"<div id='mw-userjsyoucanpreview'>\n$1\n</div>",
 								[ 'userjsyoucanpreview' ]
@@ -3218,10 +3261,6 @@ class EditPage {
 		$out->addHTML( Html::hidden( 'wpEdittime', $this->edittime ) );
 		$out->addHTML( Html::hidden( 'editRevId', $this->editRevId ) );
 		$out->addHTML( Html::hidden( 'wpScrolltop', $this->scrolltop, [ 'id' => 'wpScrolltop' ] ) );
-
-		if ( !$this->checkUnicodeCompliantBrowser() ) {
-			$out->addHTML( Html::hidden( 'safemode', '1' ) );
-		}
 	}
 
 	protected function showFormAfterText() {
@@ -3315,8 +3354,7 @@ class EditPage {
 	}
 
 	protected function showTextbox( $text, $name, $customAttribs = [] ) {
-		$wikitext = $this->safeUnicodeOutput( $text );
-		$wikitext = $this->addNewLineAtEnd( $wikitext );
+		$wikitext = $this->addNewLineAtEnd( $text );
 
 		$attribs = $this->buildTextboxAttribs( $name, $customAttribs, $this->context->getUser() );
 
@@ -3440,7 +3478,7 @@ class EditPage {
 				$newContent = $oldContent->getContentHandler()->makeEmptyContent();
 			}
 
-			$de = $oldContent->getContentHandler()->createDifferenceEngine( $this->mArticle->getContext() );
+			$de = $oldContent->getContentHandler()->createDifferenceEngine( $this->context );
 			$de->setContent( $oldContent, $newContent );
 
 			$difftext = $de->getDiff( $oldtitle, $newtitle );
@@ -3648,7 +3686,7 @@ class EditPage {
 			$content2 = $this->toEditContent( $this->textbox2 );
 
 			$handler = ContentHandler::getForModelID( $this->contentModel );
-			$de = $handler->createDifferenceEngine( $this->mArticle->getContext() );
+			$de = $handler->createDifferenceEngine( $this->context );
 			$de->setContent( $content2, $content1 );
 			$de->showDiff(
 				$this->context->msg( 'yourtext' )->parse(),
@@ -3785,12 +3823,10 @@ class EditPage {
 	 * @return string
 	 */
 	public function getPreviewText() {
-		global $wgRawHtml;
-		global $wgAllowUserCss, $wgAllowUserJs;
-
 		$out = $this->context->getOutput();
+		$config = $this->context->getConfig();
 
-		if ( $wgRawHtml && !$this->mTokenOk ) {
+		if ( $config->get( 'RawHtml' ) && !$this->mTokenOk ) {
 			// Could be an offsite preview attempt. This is very unsafe if
 			// HTML is enabled, as it could be an attack.
 			$parsedNote = '';
@@ -3853,12 +3889,12 @@ class EditPage {
 
 				if ( $content->getModel() == CONTENT_MODEL_CSS ) {
 					$format = 'css';
-					if ( $level === 'user' && !$wgAllowUserCss ) {
+					if ( $level === 'user' && !$config->get( 'AllowUserCss' ) ) {
 						$format = false;
 					}
 				} elseif ( $content->getModel() == CONTENT_MODEL_JAVASCRIPT ) {
 					$format = 'js';
-					if ( $level === 'user' && !$wgAllowUserJs ) {
+					if ( $level === 'user' && !$config->get( 'AllowUserJs' ) ) {
 						$format = false;
 					}
 				} else {
@@ -3933,7 +3969,7 @@ class EditPage {
 	 * @return ParserOptions
 	 */
 	protected function getPreviewParserOptions() {
-		$parserOptions = $this->page->makeParserOptions( $this->mArticle->getContext() );
+		$parserOptions = $this->page->makeParserOptions( $this->context );
 		$parserOptions->setIsPreview( true );
 		$parserOptions->setIsSectionPreview( !is_null( $this->section ) && $this->section !== '' );
 		$parserOptions->enableLimitReport();
@@ -4185,8 +4221,7 @@ class EditPage {
 	 * @return array
 	 */
 	public function getCheckboxes( &$tabindex, $checked ) {
-		global $wgUseMediaWikiUIEverywhere;
-
+		wfDeprecated( __METHOD__, '1.30' );
 		$checkboxes = [];
 		$checkboxesDef = $this->getCheckboxesDefinition( $checked );
 
@@ -4221,10 +4256,6 @@ class EditPage {
 				'&#160;' .
 				Xml::tags( 'label', $labelAttribs, $label );
 
-			if ( $wgUseMediaWikiUIEverywhere ) {
-				$checkboxHtml = Html::rawElement( 'div', [ 'class' => 'mw-ui-checkbox' ], $checkboxHtml );
-			}
-
 			$checkboxes[ $legacyName ] = $checkboxHtml;
 		}
 
@@ -4246,6 +4277,7 @@ class EditPage {
 	 * @return array Associative array of string keys to OOUI\FieldLayout instances
 	 */
 	public function getCheckboxesOOUI( &$tabindex, $checked ) {
+		wfDeprecated( __METHOD__, '1.30' );
 		return $this->getCheckboxesWidget( $tabindex, $checked );
 	}
 
@@ -4323,6 +4355,7 @@ class EditPage {
 	/**
 	 * Get the message key of the label for the button to save the page
 	 *
+	 * @since 1.30
 	 * @return string
 	 */
 	protected function getSubmitButtonLabel() {
@@ -4465,137 +4498,30 @@ class EditPage {
 	}
 
 	/**
-	 * Check if the browser is on a blacklist of user-agents known to
-	 * mangle UTF-8 data on form submission. Returns true if Unicode
-	 * should make it through, false if it's known to be a problem.
-	 * @return bool
-	 */
-	private function checkUnicodeCompliantBrowser() {
-		global $wgBrowserBlackList, $wgRequest;
-
-		$currentbrowser = $wgRequest->getHeader( 'User-Agent' );
-		if ( $currentbrowser === false ) {
-			// No User-Agent header sent? Trust it by default...
-			return true;
-		}
-
-		foreach ( $wgBrowserBlackList as $browser ) {
-			if ( preg_match( $browser, $currentbrowser ) ) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	/**
 	 * Filter an input field through a Unicode de-armoring process if it
 	 * came from an old browser with known broken Unicode editing issues.
+	 *
+	 * @deprecated since 1.30, does nothing
 	 *
 	 * @param WebRequest $request
 	 * @param string $field
 	 * @return string
 	 */
 	protected function safeUnicodeInput( $request, $field ) {
-		$text = rtrim( $request->getText( $field ) );
-		return $request->getBool( 'safemode' )
-			? $this->unmakeSafe( $text )
-			: $text;
+		return rtrim( $request->getText( $field ) );
 	}
 
 	/**
 	 * Filter an output field through a Unicode armoring process if it is
 	 * going to an old browser with known broken Unicode editing issues.
 	 *
+	 * @deprecated since 1.30, does nothing
+	 *
 	 * @param string $text
 	 * @return string
 	 */
 	protected function safeUnicodeOutput( $text ) {
-		return $this->checkUnicodeCompliantBrowser()
-			? $text
-			: $this->makeSafe( $text );
-	}
-
-	/**
-	 * A number of web browsers are known to corrupt non-ASCII characters
-	 * in a UTF-8 text editing environment. To protect against this,
-	 * detected browsers will be served an armored version of the text,
-	 * with non-ASCII chars converted to numeric HTML character references.
-	 *
-	 * Preexisting such character references will have a 0 added to them
-	 * to ensure that round-trips do not alter the original data.
-	 *
-	 * @param string $invalue
-	 * @return string
-	 */
-	private function makeSafe( $invalue ) {
-		// Armor existing references for reversibility.
-		$invalue = strtr( $invalue, [ "&#x" => "&#x0" ] );
-
-		$bytesleft = 0;
-		$result = "";
-		$working = 0;
-		$valueLength = strlen( $invalue );
-		for ( $i = 0; $i < $valueLength; $i++ ) {
-			$bytevalue = ord( $invalue[$i] );
-			if ( $bytevalue <= 0x7F ) { // 0xxx xxxx
-				$result .= chr( $bytevalue );
-				$bytesleft = 0;
-			} elseif ( $bytevalue <= 0xBF ) { // 10xx xxxx
-				$working = $working << 6;
-				$working += ( $bytevalue & 0x3F );
-				$bytesleft--;
-				if ( $bytesleft <= 0 ) {
-					$result .= "&#x" . strtoupper( dechex( $working ) ) . ";";
-				}
-			} elseif ( $bytevalue <= 0xDF ) { // 110x xxxx
-				$working = $bytevalue & 0x1F;
-				$bytesleft = 1;
-			} elseif ( $bytevalue <= 0xEF ) { // 1110 xxxx
-				$working = $bytevalue & 0x0F;
-				$bytesleft = 2;
-			} else { // 1111 0xxx
-				$working = $bytevalue & 0x07;
-				$bytesleft = 3;
-			}
-		}
-		return $result;
-	}
-
-	/**
-	 * Reverse the previously applied transliteration of non-ASCII characters
-	 * back to UTF-8. Used to protect data from corruption by broken web browsers
-	 * as listed in $wgBrowserBlackList.
-	 *
-	 * @param string $invalue
-	 * @return string
-	 */
-	private function unmakeSafe( $invalue ) {
-		$result = "";
-		$valueLength = strlen( $invalue );
-		for ( $i = 0; $i < $valueLength; $i++ ) {
-			if ( ( substr( $invalue, $i, 3 ) == "&#x" ) && ( $invalue[$i + 3] != '0' ) ) {
-				$i += 3;
-				$hexstring = "";
-				do {
-					$hexstring .= $invalue[$i];
-					$i++;
-				} while ( ctype_xdigit( $invalue[$i] ) && ( $i < strlen( $invalue ) ) );
-
-				// Do some sanity checks. These aren't needed for reversibility,
-				// but should help keep the breakage down if the editor
-				// breaks one of the entities whilst editing.
-				if ( ( substr( $invalue, $i, 1 ) == ";" ) && ( strlen( $hexstring ) <= 6 ) ) {
-					$codepoint = hexdec( $hexstring );
-					$result .= UtfNormal\Utils::codepointToUtf8( $codepoint );
-				} else {
-					$result .= "&#x" . $hexstring . substr( $invalue, $i, 1 );
-				}
-			} else {
-				$result .= substr( $invalue, $i, 1 );
-			}
-		}
-		// reverse the transform that we made for reversibility reasons.
-		return strtr( $result, [ "&#x0" => "&#x" ] );
+		return $text;
 	}
 
 	/**
@@ -4631,20 +4557,19 @@ class EditPage {
 	 * @since 1.29
 	 */
 	protected function addLongPageWarningHeader() {
-		global $wgMaxArticleSize;
-
 		if ( $this->contentLength === false ) {
 			$this->contentLength = strlen( $this->textbox1 );
 		}
 
 		$out = $this->context->getOutput();
 		$lang = $this->context->getLanguage();
-		if ( $this->tooBig || $this->contentLength > $wgMaxArticleSize * 1024 ) {
+		$maxArticleSize = $this->context->getConfig()->get( 'MaxArticleSize' );
+		if ( $this->tooBig || $this->contentLength > $maxArticleSize * 1024 ) {
 			$out->wrapWikiMsg( "<div class='error' id='mw-edit-longpageerror'>\n$1\n</div>",
 				[
 					'longpageerror',
 					$lang->formatNum( round( $this->contentLength / 1024, 3 ) ),
-					$lang->formatNum( $wgMaxArticleSize )
+					$lang->formatNum( $maxArticleSize )
 				]
 			);
 		} else {

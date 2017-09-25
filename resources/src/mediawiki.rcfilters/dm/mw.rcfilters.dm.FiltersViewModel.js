@@ -775,26 +775,6 @@
 	};
 
 	/**
-	 * Check whether the default values of the filters are all false.
-	 *
-	 * @return {boolean} Default filters are all false
-	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.areDefaultFiltersEmpty = function () {
-		var defaultFilters;
-
-		if ( this.defaultFiltersEmpty === null ) {
-			// We only need to do this test once,
-			// because defaults are set once per session
-			defaultFilters = this.getFiltersFromParameters( this.getDefaultParams() );
-			this.defaultFiltersEmpty = $.isEmptyObject( defaultFilters ) || Object.keys( defaultFilters ).every( function ( filterName ) {
-				return !defaultFilters[ filterName ];
-			} );
-		}
-
-		return this.defaultFiltersEmpty;
-	};
-
-	/**
 	 * Get the item that matches the given name
 	 *
 	 * @param {string} name Filter name

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.23.0
+ * OOjs UI v0.23.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-09-05T21:23:58Z
+ * Date: 2017-09-20T00:31:56Z
  */
 ( function ( OO ) {
 
@@ -6068,7 +6068,7 @@ OO.ui.SelectWidget.prototype.onFocus = function ( event ) {
 		// This widget was focussed, e.g. by the user tabbing to it.
 		// The styles for focus state depend on one of the items being selected.
 		if ( !this.getSelectedItem() ) {
-			item = this.getFirstSelectableItem();
+			item = this.findFirstSelectableItem();
 		}
 	} else {
 		// One of the options got focussed (and the event bubbled up here).
@@ -6197,7 +6197,7 @@ OO.ui.SelectWidget.prototype.onMouseLeave = function () {
 OO.ui.SelectWidget.prototype.onKeyDown = function ( e ) {
 	var nextItem,
 		handled = false,
-		currentItem = this.getHighlightedItem() || this.getSelectedItem();
+		currentItem = this.findHighlightedItem() || this.getSelectedItem();
 
 	if ( !this.isDisabled() && this.isVisible() ) {
 		switch ( e.keyCode ) {
@@ -6211,13 +6211,13 @@ OO.ui.SelectWidget.prototype.onKeyDown = function ( e ) {
 			case OO.ui.Keys.UP:
 			case OO.ui.Keys.LEFT:
 				this.clearKeyPressBuffer();
-				nextItem = this.getRelativeSelectableItem( currentItem, -1 );
+				nextItem = this.findRelativeSelectableItem( currentItem, -1 );
 				handled = true;
 				break;
 			case OO.ui.Keys.DOWN:
 			case OO.ui.Keys.RIGHT:
 				this.clearKeyPressBuffer();
-				nextItem = this.getRelativeSelectableItem( currentItem, 1 );
+				nextItem = this.findRelativeSelectableItem( currentItem, 1 );
 				handled = true;
 				break;
 			case OO.ui.Keys.ESCAPE:
@@ -6323,13 +6323,13 @@ OO.ui.SelectWidget.prototype.onKeyPress = function ( e ) {
 	}
 	this.keyPressBufferTimer = setTimeout( this.clearKeyPressBuffer.bind( this ), 1500 );
 
-	item = this.getHighlightedItem() || this.getSelectedItem();
+	item = this.findHighlightedItem() || this.getSelectedItem();
 
 	if ( this.keyPressBuffer === c ) {
 		// Common (if weird) special case: typing "xxxx" will cycle through all
 		// the items beginning with "x".
 		if ( item ) {
-			item = this.getRelativeSelectableItem( item, 1 );
+			item = this.findRelativeSelectableItem( item, 1 );
 		}
 	} else {
 		this.keyPressBuffer += c;
@@ -6337,7 +6337,7 @@ OO.ui.SelectWidget.prototype.onKeyPress = function ( e ) {
 
 	filter = this.getItemMatcher( this.keyPressBuffer, false );
 	if ( !item || !filter( item ) ) {
-		item = this.getRelativeSelectableItem( item, 1, filter );
+		item = this.findRelativeSelectableItem( item, 1, filter );
 	}
 	if ( item ) {
 		if ( this.isVisible() && item.constructor.static.highlightable ) {
@@ -6447,11 +6447,11 @@ OO.ui.SelectWidget.prototype.getSelectedItem = function () {
 };
 
 /**
- * Get highlighted item.
+ * Find highlighted item.
  *
  * @return {OO.ui.OptionWidget|null} Highlighted item, `null` if no item is highlighted
  */
-OO.ui.SelectWidget.prototype.getHighlightedItem = function () {
+OO.ui.SelectWidget.prototype.findHighlightedItem = function () {
 	var i, len;
 
 	for ( i = 0, len = this.items.length; i < len; i++ ) {
@@ -6460,6 +6460,17 @@ OO.ui.SelectWidget.prototype.getHighlightedItem = function () {
 		}
 	}
 	return null;
+};
+
+/**
+ * Get highlighted item.
+ *
+ * @deprecated 0.23.1 Use {@link #findHighlightedItem} instead.
+ * @return {OO.ui.OptionWidget|null} Highlighted item, `null` if no item is highlighted
+ */
+OO.ui.SelectWidget.prototype.getHighlightedItem = function () {
+	OO.ui.warnDeprecation( 'SelectWidget#getHighlightedItem: Deprecated function. Use findHighlightedItem instead. See T76630.' );
+	return this.findHighlightedItem();
 };
 
 /**
@@ -6672,7 +6683,7 @@ OO.ui.SelectWidget.prototype.chooseItem = function ( item ) {
 };
 
 /**
- * Get an option by its position relative to the specified item (or to the start of the option array,
+ * Find an option by its position relative to the specified item (or to the start of the option array,
  * if item is `null`). The direction in which to search through the option array is specified with a
  * number: -1 for reverse (the default) or 1 for forward. The method will return an option, or
  * `null` if there are no options in the array.
@@ -6683,7 +6694,7 @@ OO.ui.SelectWidget.prototype.chooseItem = function ( item ) {
  *  true. Function takes an OO.ui.OptionWidget and returns a boolean.
  * @return {OO.ui.OptionWidget|null} Item at position, `null` if there are no items in the select
  */
-OO.ui.SelectWidget.prototype.getRelativeSelectableItem = function ( item, direction, filter ) {
+OO.ui.SelectWidget.prototype.findRelativeSelectableItem = function ( item, direction, filter ) {
 	var currentIndex, nextIndex, i,
 		increase = direction > 0 ? 1 : -1,
 		len = this.items.length;
@@ -6711,13 +6722,43 @@ OO.ui.SelectWidget.prototype.getRelativeSelectableItem = function ( item, direct
 };
 
 /**
- * Get the next selectable item or `null` if there are no selectable items.
+ * Get an option by its position relative to the specified item (or to the start of the option array,
+ * if item is `null`). The direction in which to search through the option array is specified with a
+ * number: -1 for reverse (the default) or 1 for forward. The method will return an option, or
+ * `null` if there are no options in the array.
+ *
+ * @deprecated 0.23.1 Use {@link #findRelativeSelectableItem} instead
+ * @param {OO.ui.OptionWidget|null} item Item to describe the start position, or `null` to start at the beginning of the array.
+ * @param {number} direction Direction to move in: -1 to move backward, 1 to move forward
+ * @param {Function} [filter] Only consider items for which this function returns
+ *  true. Function takes an OO.ui.OptionWidget and returns a boolean.
+ * @return {OO.ui.OptionWidget|null} Item at position, `null` if there are no items in the select
+ */
+OO.ui.SelectWidget.prototype.getRelativeSelectableItem = function ( item, direction, filter ) {
+	OO.ui.warnDeprecation( 'SelectWidget#getRelativeSelectableItem: Deprecated function. Use findRelativeSelectableItem instead. See T76630.' );
+	return this.findRelativeSelectableItem( item, direction, filter );
+};
+
+/**
+ * Find the next selectable item or `null` if there are no selectable items.
  * Disabled options and menu-section markers and breaks are not selectable.
  *
  * @return {OO.ui.OptionWidget|null} Item, `null` if there aren't any selectable items
  */
+OO.ui.SelectWidget.prototype.findFirstSelectableItem = function () {
+	return this.findRelativeSelectableItem( null, 1 );
+};
+
+/**
+ * Get the next selectable item or `null` if there are no selectable items.
+ * Disabled options and menu-section markers and breaks are not selectable.
+ *
+ * @deprecated 0.23.1 Use {@link OO.ui.SelectWidget#findFirstSelectableItem} instead.
+ * @return {OO.ui.OptionWidget|null} Item, `null` if there aren't any selectable items
+ */
 OO.ui.SelectWidget.prototype.getFirstSelectableItem = function () {
-	return this.getRelativeSelectableItem( null, 1 );
+	OO.ui.warnDeprecation( 'SelectWidget#getFirstSelectableItem: Deprecated function. Use findFirstSelectableItem instead. See T76630.' );
+	return this.findFirstSelectableItem();
 };
 
 /**
@@ -7075,7 +7116,7 @@ OO.ui.MenuSelectWidget.prototype.onDocumentMouseDown = function ( e ) {
  * @inheritdoc
  */
 OO.ui.MenuSelectWidget.prototype.onKeyDown = function ( e ) {
-	var currentItem = this.getHighlightedItem() || this.getSelectedItem();
+	var currentItem = this.findHighlightedItem() || this.getSelectedItem();
 
 	if ( !this.isDisabled() && this.isVisible() ) {
 		switch ( e.keyCode ) {
@@ -8930,7 +8971,7 @@ OO.ui.DropdownInputWidget.prototype.setValue = function ( value ) {
 	value = this.cleanUpValue( value );
 	// Only allow setting values that are actually present in the dropdown
 	selected = this.dropdownWidget.getMenu().getItemFromData( value ) ||
-		this.dropdownWidget.getMenu().getFirstSelectableItem();
+		this.dropdownWidget.getMenu().findFirstSelectableItem();
 	this.dropdownWidget.getMenu().selectItem( selected );
 	value = selected ? selected.getData() : '';
 	OO.ui.DropdownInputWidget.parent.prototype.setValue.call( this, value );
@@ -10675,7 +10716,7 @@ OO.ui.ComboBoxInputWidget.prototype.onInputChange = function ( value ) {
 	var match = this.menu.getItemFromData( value );
 
 	this.menu.selectItem( match );
-	if ( this.menu.getHighlightedItem() ) {
+	if ( this.menu.findHighlightedItem() ) {
 		this.menu.highlightItem( match );
 	}
 
@@ -10723,7 +10764,7 @@ OO.ui.ComboBoxInputWidget.prototype.onMenuChoose = function ( item ) {
 OO.ui.ComboBoxInputWidget.prototype.onMenuItemsChange = function () {
 	var match = this.menu.getItemFromData( this.getValue() );
 	this.menu.selectItem( match );
-	if ( this.menu.getHighlightedItem() ) {
+	if ( this.menu.findHighlightedItem() ) {
 		this.menu.highlightItem( match );
 	}
 	this.$element.toggleClass( 'oo-ui-comboBoxInputWidget-empty', this.menu.isEmpty() );

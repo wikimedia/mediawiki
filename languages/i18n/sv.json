@@ -736,7 +736,6 @@
 	"explainconflict": "Någon har ändrat den här sidan efter att du började att redigera den.\nDen översta textrutan innehåller den nuvarande sparade versionen av texten.\nDin ändrade version visas i den nedre rutan.\nOm du vill spara dina ändringar så måste du infoga dem i den övre texten.\n<strong>Endast</strong> texten i den översta textrutan kommer att sparas när du trycker på \"$1\".",
 	"yourtext": "Din text",
 	"storedversion": "Den sparade versionen",
-	"nonunicodebrowser": "'''VARNING: Din webbläsare saknar stöd för unicode. För att du ska kunna redigera sidor utan problem, så visas icke-ASCII-tecken som hexadecimala koder i redigeringsrutan.'''",
 	"editingold": "'''VARNING: Du redigerar en gammal version av denna sida. Om du sparar den kommer alla ändringar som har gjorts sedan denna version att skrivas över.'''",
 	"yourdiff": "Skillnader",
 	"copyrightwarning": "Observera att alla bidrag till {{SITENAME}} är att betrakta som utgivna under $2 (se $1 för detaljer). Om du inte vill att din text ska redigeras eller kopieras efter andras gottfinnande skall du inte skriva något här.<br />\nDu lovar oss också att du skrev texten själv, eller kopierade från kulturellt allmängods som inte skyddas av upphovsrätt, eller liknande källor. '''LÄGG INTE UT UPPHOVSRÄTTSSKYDDAT MATERIAL HÄR UTAN TILLÅTELSE!'''",

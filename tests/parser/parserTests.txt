@@ -16143,6 +16143,68 @@ parsoid=wt2html
 !! end
 
 !! test
+9. Categories and newlines: should behave properly with linkprefix (T87753)
+!! options
+language=ar
+!! wikitext
+foo bar
+foo bar
+[[تصنيف:Foo]]
+[[تصنيف:Bar]]
+!! html/php
+<p>foo bar
+foo bar
+</p>
+!! html/parsoid
+<p>foo bar
+foo bar</p>
+<link rel="mw:PageProp/Category" href="./تصنيف:Foo"/>
+<link rel="mw:PageProp/Category" href="./تصنيف:Bar"/>
+!! end
+
+!! test
+10. No regressions on internal links following category (T174639)
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+[[Category:Foo]]<div>a
+
+[[Foo]]</div>
+!! html/php
+<div>a
+<a href="/wiki/Foo" title="Foo">Foo</a></div>
+
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Category:Foo"/><div>a
+
+<a rel="mw:WikiLink" href="./Foo" title="Foo">Foo</a></div>
+!! end
+
+# NOTE that Parsoid does not currently implement this special case
+# (T175416).  The plan is to remove this weird special-case in the PHP
+# parser to make it match the Parsoid output.
+!! test
+11. Special case where only newlines separate links
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+[[Category:Foo]]
+
+[[Foo]][[es:Alimento]]
+
+[[Foo]]
+!! html/php
+<p><a href="/wiki/Foo" title="Foo">Foo</a><a href="/wiki/Foo" title="Foo">Foo</a>
+</p>
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Category:Foo"/>
+
+<p><a rel="mw:WikiLink" href="./Foo" title="Foo">Foo</a></p><link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Alimento"/>
+
+<p><a rel="mw:WikiLink" href="./Foo" title="Foo">Foo</a></p>
+!! end
+
+!! test
 Category links with multiple namespaces
 !! wikitext
 [[Category:Project:Foo]]
@@ -16187,6 +16249,20 @@ x[[Category:Foo]]y
 </p>
 !! html/parsoid
 <p>x<link rel="mw:PageProp/Category" href="./Flokkur:Foo" data-parsoid=""/>y</p>
+!! end
+
+!! test
+Link prefix/suffixes aren't applied to language links
+!! options
+parsoid=wt2html
+language=is
+!! wikitext
+x[[es:Foo]]y
+!! html/php
+<p>xy
+</p>
+!! html/parsoid
+<p>x<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" data-parsoid=""/>y</p>
 !! end
 
 !! test

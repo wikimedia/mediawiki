@@ -4,7 +4,7 @@
  * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
-( function ( $, mw ) {
+( function ( mw ) {
 
 	/**
 	 * Creates an mw.widgets.TitleSearchWidget object.
@@ -102,4 +102,4 @@
 		return response.query || {};
 	};
 
-}( jQuery, mediaWiki ) );
+}( mediaWiki ) );

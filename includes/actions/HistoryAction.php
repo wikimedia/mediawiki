@@ -192,27 +192,26 @@ class HistoryAction extends FormlessAction {
 
 		// Add the general form
 		$action = htmlspecialchars( wfScript() );
+		$content = Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) . "\n";
+		$content .= Html::hidden( 'action', 'history' ) . "\n";
+		$content .= Xml::dateMenu(
+			( $year == null ? MWTimestamp::getLocalInstance()->format( 'Y' ) : $year ),
+			$month
+		) . '&#160;';
+		$content .= $tagSelector ? ( implode( '&#160;', $tagSelector ) . '&#160;' ) : '';
+		$content .= $checkDeleted . Html::submitButton(
+			$this->msg( 'historyaction-submit' )->text(),
+			[],
+			[ 'mw-ui-progressive' ]
+		);
 		$out->addHTML(
 			"<form action=\"$action\" method=\"get\" id=\"mw-history-searchform\">" .
 			Xml::fieldset(
 				$this->msg( 'history-fieldset-title' )->text(),
-				false,
+				$content,
 				[ 'id' => 'mw-history-search' ]
 			) .
-			Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) . "\n" .
-			Html::hidden( 'action', 'history' ) . "\n" .
-			Xml::dateMenu(
-				( $year == null ? MWTimestamp::getLocalInstance()->format( 'Y' ) : $year ),
-				$month
-			) . '&#160;' .
-			( $tagSelector ? ( implode( '&#160;', $tagSelector ) . '&#160;' ) : '' ) .
-			$checkDeleted .
-			Html::submitButton(
-				$this->msg( 'historyaction-submit' )->text(),
-				[],
-				[ 'mw-ui-progressive' ]
-			) . "\n" .
-			'</fieldset></form>'
+			'</form>'
 		);
 
 		Hooks::run( 'PageHistoryBeforeList', [ &$this->page, $this->getContext() ] );

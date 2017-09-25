@@ -983,18 +983,12 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$dbr = wfGetDB( DB_REPLICA );
 
-		if ( $dbr->implicitGroupby() ) {
-			$realNameField = 'user_real_name';
-		} else {
-			$realNameField = 'MIN(user_real_name) AS user_real_name';
-		}
-
 		$tables = [ 'revision', 'user' ];
 
 		$fields = [
 			'user_id' => 'rev_user',
 			'user_name' => 'rev_user_text',
-			$realNameField,
+			'user_real_name' => 'MIN(user_real_name)',
 			'timestamp' => 'MAX(rev_timestamp)',
 		];
 

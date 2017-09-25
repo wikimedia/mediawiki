@@ -112,13 +112,13 @@ span.mw-protectedpages-actions {
 	font-size: 90%;
 }
 span.mw-protectedpages-unknown {
-	color: #808080;
+	color: #72777d;
 	font-size: 90%;
 }
 
 /* Special:UserRights */
 .mw-userrights-disabled {
-	color: #888;
+	color: #72777d;
 }
 table.mw-userrights-groups * td,
 table.mw-userrights-groups * th {

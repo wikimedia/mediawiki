@@ -242,7 +242,7 @@ class CSSMinTest extends MediaWikiTestCase {
 			[
 				"Don't barf at behavior: url(#default#behaviorName) - T162973",
 				[ 'foo { behavior: url(#default#bar); }', false, '/w/', false ],
-				'foo { behavior: url("#default#bar"); }',
+				'foo { behavior: url(\'#default#bar\'); }',
 			],
 		];
 	}
@@ -271,9 +271,9 @@ class CSSMinTest extends MediaWikiTestCase {
 		// data: URIs for red.gif, green.gif, circle.svg
 		$red   = 'data:image/gif;base64,R0lGODlhAQABAIAAAP8AADAAACwAAAAAAQABAAACAkQBADs=';
 		$green = 'data:image/gif;base64,R0lGODlhAQABAIAAAACAADAAACwAAAAAAQABAAACAkQBADs=';
-		$svg = 'data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A'
-			. '%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D'
-			. '%228%22%3E%0A%3Ccircle%20cx%3D%224%22%20cy%3D%224%22%20r%3D%222%22%2F%3E%0A%3C%2Fsvg%3E%0A';
+		$svg = 'data:image/svg+xml,%3C%3Fxml version="1.0" encoding="UTF-8"%3F%3E '
+			. '%3Csvg xmlns="http://www.w3.org/2000/svg" width="8" height='
+			. '"8"%3E %3Ccircle cx="4" cy="4" r="2"/%3E %3C/svg%3E';
 
 		// @codingStandardsIgnoreStart Generic.Files.LineLength
 		return [
@@ -361,7 +361,7 @@ class CSSMinTest extends MediaWikiTestCase {
 			[
 				'SVG files are embedded without base64 encoding and unnecessary IE 6 and 7 fallback',
 				'foo { /* @embed */ background: url(circle.svg); }',
-				"foo { background: url($svg); }",
+				"foo { background: url('$svg'); }",
 			],
 			[
 				'Two regular files in one rule',
@@ -444,17 +444,17 @@ class CSSMinTest extends MediaWikiTestCase {
 			[
 				'Background URL (containing parentheses; T60473)',
 				'foo { background: url("//localhost/styles.css?query=(parens)") }',
-				'foo { background: url("//localhost/styles.css?query=(parens)") }',
+				'foo { background: url(\'//localhost/styles.css?query=(parens)\') }',
 			],
 			[
 				'Background URL (double quoted, containing single quotes; T60473)',
 				'foo { background: url("//localhost/styles.css?quote=\'") }',
-				'foo { background: url("//localhost/styles.css?quote=\'") }',
+				'foo { background: url(\'//localhost/styles.css?quote=\\\'\') }',
 			],
 			[
 				'Background URL (single quoted, containing double quotes; T60473)',
 				'foo { background: url(\'//localhost/styles.css?quote="\') }',
-				'foo { background: url("//localhost/styles.css?quote=\"") }',
+				'foo { background: url(\'//localhost/styles.css?quote="\') }',
 			],
 			[
 				'Simple case with comments before url',
@@ -522,15 +522,25 @@ class CSSMinTest extends MediaWikiTestCase {
 				'url(data:image/png;base64,R0lGODlh/+==)',
 			],
 			[
-				'URL with quotes',
+				'URL with single quotes',
 				"https://en.wikipedia.org/wiki/Wendy's",
-				"url(\"https://en.wikipedia.org/wiki/Wendy's\")",
+				"url('https://en.wikipedia.org/wiki/Wendy\\'s')",
+			],
+			[
+				'URL with double quotes',
+				'https://en.wikipedia.org/wiki/""',
+				"url('https://en.wikipedia.org/wiki/\"\"')",
 			],
 			[
 				'URL with parentheses',
 				'https://en.wikipedia.org/wiki/Boston_(band)',
-				'url("https://en.wikipedia.org/wiki/Boston_(band)")',
+				"url('https://en.wikipedia.org/wiki/Boston_(band)')",
 			],
+			[
+				'URL with spaces',
+				'https://en.wikipedia.org/wiki/Foo bar',
+				"url('https://en.wikipedia.org/wiki/Foo bar')"
+			]
 		];
 	}
 

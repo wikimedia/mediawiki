@@ -48,7 +48,7 @@
 			// We handle our own display/hide of the empty results message
 			.removeClass( 'mw-changeslist-empty' );
 
-		this.setupNewChangesButtonContainer( this.$element );
+		this.setupNewChangesButtonContainer();
 	};
 
 	/* Initialization */
@@ -109,8 +109,7 @@
 	 * Respond to changes list model invalidate
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onModelInvalidate = function () {
-		$( '.rcfilters-spinner' ).removeClass( 'mw-rcfilters-ui-ready' );
-		this.$element.removeClass( 'mw-rcfilters-ui-ready' );
+		$( 'body' ).addClass( 'mw-rcfilters-ui-loading' );
 	};
 
 	/**
@@ -184,8 +183,7 @@
 				mw.hook( 'wikipage.content' ).fire( widget.$element );
 			}
 
-			$( '.rcfilters-spinner' ).addClass( 'mw-rcfilters-ui-ready' );
-			widget.$element.addClass( 'mw-rcfilters-ui-ready' );
+			$( 'body' ).removeClass( 'mw-rcfilters-ui-loading' );
 		} );
 	};
 
@@ -248,10 +246,8 @@
 
 	/**
 	 * Setup the container for the 'new changes' button.
-	 *
-	 * @param {jQuery} $content
 	 */
-	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.setupNewChangesButtonContainer = function ( $content ) {
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.setupNewChangesButtonContainer = function () {
 		this.showNewChangesLink = new OO.ui.ButtonWidget( {
 			framed: false,
 			label: mw.message( 'rcfilters-show-new-changes' ).text(),
@@ -260,7 +256,10 @@
 		this.showNewChangesLink.connect( this, { click: 'onShowNewChangesClick' } );
 		this.showNewChangesLink.toggle( false );
 
-		$content.before(
+		// HACK: Add the -newChanges div inside rcfilters-head, rather than right above us
+		// Visually it's the same place, but by putting it inside rcfilters-head we are
+		// able to use the min-height rule to prevent the page from jumping when this is added.
+		this.$element.parent().find( '.rcfilters-head' ).append(
 			$( '<div>' )
 				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-newChanges' )
 				.append( this.showNewChangesLink.$element )
@@ -312,14 +311,17 @@
 				);
 
 			// We are adding and changing cells in a table that, despite having nested rows,
-			// is actually all one big table. To do that right, we want to remove the 'placeholder'
-			// cell from the top row, because we're actually adding that placeholder in the children
-			// with the highlights.
-			$content.find( 'table.mw-enhanced-rc tr:first-child td.mw-changeslist-line-prefix' )
-				.detach();
+			// is actually all one big table. To prevent the highlights cell in the "nested"
+			// rows from stretching out the cell with the flags and timestamp in the top row,
+			// we give the latter colspan=2. Then to make things line up again, we add
+			// an empty <td> to the "nested" rows.
+
+			// Set colspan=2 on cell with flags and timestamp in top row
 			$content.find( 'table.mw-enhanced-rc tr:first-child td.mw-enhanced-rc' )
 				.prop( 'colspan', '2' );
-
+			// Add empty <td> to nested rows to compensate
+			$enhancedNestedPagesCell.parent().prepend( $( '<td>' ) );
+			// Add highlights cell to nested rows
 			$enhancedNestedPagesCell
 				.before(
 					$( '<td>' )
@@ -329,7 +331,7 @@
 			// We need to target the nested rows differently than the top rows so that the
 			// LESS rules applies correctly. In top rows, the rule should highlight all but
 			// the first 2 cells td:not( :nth-child( -n+2 ) and the nested rows, the rule
-			// should highlight all but the first 3 cells td:not( :nth-child( -n+3 )
+			// should highlight all but the first 4 cells td:not( :nth-child( -n+4 )
 			$enhancedNestedPagesCell
 				.closest( 'tr' )
 				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-enhanced-nested' );

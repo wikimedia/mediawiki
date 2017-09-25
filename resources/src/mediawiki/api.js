@@ -114,7 +114,7 @@
 		 * @method
 		 */
 		abort: function () {
-			$.each( this.requests, function ( index, request ) {
+			this.requests.forEach( function ( request ) {
 				if ( request ) {
 					request.abort();
 				}

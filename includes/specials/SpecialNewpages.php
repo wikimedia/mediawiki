@@ -278,19 +278,14 @@ class SpecialNewpages extends IncludableSpecialPage {
 			}
 		);
 		$htmlForm->setMethod( 'get' );
-
-		$out->addHTML( Xml::fieldset( $this->msg( 'newpages' )->text() ) );
-
+		$htmlForm->setWrapperLegend( true );
+		$htmlForm->setWrapperLegendMsg( 'newpages' );
+		$htmlForm->addFooterText( Html::rawElement(
+			'div',
+			null,
+			$this->filterLinks()
+		) );
 		$htmlForm->show();
-
-		$out->addHTML(
-			Html::rawElement(
-				'div',
-				null,
-				$this->filterLinks()
-			) .
-			Xml::closeElement( 'fieldset' )
-		);
 	}
 
 	/**

@@ -119,7 +119,7 @@
 	"apihelp-expandtemplates-summary": "wikitext ҡалыптарын аса.",
 	"apihelp-expandtemplates-param-title": "Бит баш һүҙе",
 	"apihelp-expandtemplates-param-text": "Конвертлау өсөн викитекст",
-	"apihelp-expandtemplates-param-revid": "<nowiki>{{REVISIONID}}</nowiki> һәм шуға оҡшаған  алмаштар өсөн ID-ны яңынан ҡарау",
+	"apihelp-expandtemplates-param-revid": "<code><nowiki>{{REVISIONID}}</nowiki></code> һәм шуға оҡшаған  алмаштар өсөн ID-ны яңынан ҡарау",
 	"apihelp-expandtemplates-param-prop": "\nАлыу өсөн, мәғлүмәттең ҡайһы өлөшө\n\nИғтибар итегеҙ, әгәр бер ғәмәл дә һайланмаһа, ул саҡта һөҙөмтә  вики- текстан торасаҡ, тик сығыу элекке форматта.",
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "Киңәйтелгән викитекст",
 	"apihelp-expandtemplates-paramvalue-prop-categories": "Бар категориялар ҙа вики текста  күрһәтелмәй индерелгән мәғлүмәттәрҙе күрһәтә",

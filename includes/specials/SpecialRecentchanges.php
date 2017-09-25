@@ -32,6 +32,8 @@ use Wikimedia\Rdbms\FakeResultWrapper;
  */
 class SpecialRecentChanges extends ChangesListSpecialPage {
 
+	protected static $savedQueriesPreferenceName = 'rcfilters-saved-queries';
+
 	private $watchlistFilterGroupDefinition;
 
 	// @codingStandardsIgnoreStart Needed "useless" override to change parameters.
@@ -165,10 +167,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		if ( $this->isStructuredFilterUiEnabled() ) {
 			$out->addJsConfigVars( 'wgStructuredChangeFiltersLiveUpdateSupported', true );
-			$out->addJsConfigVars(
-				'wgStructuredChangeFiltersSavedQueriesPreferenceName',
-				'rcfilters-saved-queries'
-			);
 		}
 	}
 
@@ -658,12 +656,22 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$topLinksAttributes = [ 'class' => 'mw-recentchanges-toplinks' ];
 
 			if ( $this->isStructuredFilterUiEnabled() ) {
+				// Check whether the widget is already collapsed or expanded
+				$collapsedState = $this->getRequest()->getCookie( 'rcfilters-toplinks-collapsed-state' );
+				$collapsedClass = $collapsedState === 'collapsed' ? 'mw-rcfilters-toplinks-collapsed' : '';
+
 				$contentTitle = Html::rawElement( 'div',
-					[ 'class' => 'mw-recentchanges-toplinks-title' ],
+					[ 'class' => 'mw-recentchanges-toplinks-title ' . $collapsedClass ],
 					$this->msg( 'rcfilters-other-review-tools' )->parse()
 				);
 				$contentWrapper = Html::rawElement( 'div',
-					array_merge( [ 'class' => 'mw-collapsible-content' ], $langAttributes ),
+					array_merge(
+						[
+						'class' => 'mw-recentchanges-toplinks-content mw-collapsible-content ' .
+							$collapsedClass
+						],
+						$langAttributes
+					),
 					$content
 				);
 				$content = $contentTitle . $contentWrapper;

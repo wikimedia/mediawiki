@@ -94,7 +94,7 @@
 	"apihelp-expandtemplates-summary": "Rozbalí všechny šablony ve wikitextu.",
 	"apihelp-expandtemplates-param-title": "Název stránky.",
 	"apihelp-expandtemplates-param-text": "Wikitext k převedení.",
-	"apihelp-expandtemplates-param-revid": "ID revize, pro <nowiki>{{REVISIONID}}</nowiki> a podobné proměnné.",
+	"apihelp-expandtemplates-param-revid": "ID revize, pro <code><nowiki>{{REVISIONID}}</nowiki></code> a podobné proměnné.",
 	"apihelp-feedcontributions-summary": "Vrátí kanál příspěvků uživatele.",
 	"apihelp-feedcontributions-param-feedformat": "Formát kanálu.",
 	"apihelp-feedcontributions-param-year": "Od roku (a dříve).",

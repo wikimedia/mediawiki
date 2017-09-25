@@ -32,6 +32,7 @@
 		this.views = {};
 		this.userSelecting = false;
 
+		this.menuInitialized = false;
 		this.inputValue = '';
 		this.$overlay = config.$overlay || this.$element;
 		this.$body = $( '<div>' ).addClass( 'mw-rcfilters-ui-menuSelectWidget-body' );
@@ -129,13 +130,26 @@
 	};
 
 	/**
-	 * Respond to model initialize event. Populate the menu from the model
+	 * @inheritdoc
 	 */
-	mw.rcfilters.ui.MenuSelectWidget.prototype.onModelInitialize = function () {
+	mw.rcfilters.ui.MenuSelectWidget.prototype.toggle = function ( show ) {
+		this.lazyMenuCreation();
+		mw.rcfilters.ui.MenuSelectWidget.parent.prototype.toggle.call( this, show );
+	};
+
+	/**
+	 * lazy creation of the menu
+	 */
+	mw.rcfilters.ui.MenuSelectWidget.prototype.lazyMenuCreation = function () {
 		var widget = this,
 			viewGroupCount = {},
 			groups = this.model.getFilterGroups();
 
+		if ( this.menuInitialized ) {
+			return;
+		}
+
+		this.menuInitialized = true;
 		// Reset
 		this.clearItems();
 
@@ -188,6 +202,13 @@
 		} );
 
 		this.switchView( this.model.getCurrentView() );
+	};
+
+	/**
+	 * Respond to model initialize event. Populate the menu from the model
+	 */
+	mw.rcfilters.ui.MenuSelectWidget.prototype.onModelInitialize = function () {
+		this.menuInitialized = false;
 	};
 
 	/**
@@ -285,6 +306,7 @@
 	 * @return {mw.rcfilters.ui.ItemMenuOptionWidget} Option widget
 	 */
 	mw.rcfilters.ui.MenuSelectWidget.prototype.getItemFromModel = function ( model ) {
+		this.lazyMenuCreation();
 		return this.views[ model.getGroupModel().getView() ].filter( function ( item ) {
 			return item.getName() === model.getName();
 		} )[ 0 ];
@@ -321,12 +343,12 @@
 				case OO.ui.Keys.UP:
 				case OO.ui.Keys.LEFT:
 					// Get the next item
-					nextItem = this.getRelativeSelectableItem( currentItem, -1 );
+					nextItem = this.findRelativeSelectableItem( currentItem, -1 );
 					break;
 				case OO.ui.Keys.DOWN:
 				case OO.ui.Keys.RIGHT:
 					// Get the next item
-					nextItem = this.getRelativeSelectableItem( currentItem, 1 );
+					nextItem = this.findRelativeSelectableItem( currentItem, 1 );
 					break;
 			}
 

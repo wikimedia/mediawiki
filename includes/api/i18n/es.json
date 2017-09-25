@@ -155,7 +155,7 @@
 	"apihelp-expandtemplates-summary": "Expande todas las plantillas en wikitexto.",
 	"apihelp-expandtemplates-param-title": "Título de la página.",
 	"apihelp-expandtemplates-param-text": "Sintaxis wiki que se convertirá.",
-	"apihelp-expandtemplates-param-revid": "Revisión de ID, para <nowiki>{{REVISIONID}}</nowiki> y variables similares.",
+	"apihelp-expandtemplates-param-revid": "Revisión de ID, para <code><nowiki>{{REVISIONID}}</nowiki></code> y variables similares.",
 	"apihelp-expandtemplates-param-prop": "Qué elementos de información se utilizan para llegar.\n\nTenga en cuenta que si no se seleccionan los valores, el resultado contendrá el wikitexto, pero la salida será en un formato obsoleto.",
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "El wikitexto expandido.",
 	"apihelp-expandtemplates-paramvalue-prop-categories": "Cualesquiera categorías presentes en la entrada que no están representadas en salida de wikitexto.",

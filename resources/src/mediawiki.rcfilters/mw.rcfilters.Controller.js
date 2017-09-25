@@ -263,7 +263,10 @@
 		this.initializing = false;
 		this.switchView( 'default' );
 
-		this._scheduleLiveUpdate();
+		this.pollingRate = mw.config.get( 'StructuredChangeFiltersLiveUpdatePollingRate' );
+		if ( this.pollingRate ) {
+			this._scheduleLiveUpdate();
+		}
 	};
 
 	/**
@@ -364,6 +367,22 @@
 		this.uriProcessor.updateModelBasedOnQuery( this._getDefaultParams() );
 
 		this.updateChangesList();
+	};
+
+	/**
+	 * Check whether the default values of the filters are all false.
+	 *
+	 * @return {boolean} Defaults are all false
+	 */
+	mw.rcfilters.Controller.prototype.areDefaultsEmpty = function () {
+		var defaultFilters = this.filtersModel.getFiltersFromParameters( this._getDefaultParams() );
+
+		this._deleteExcludedValuesFromFilterState( defaultFilters );
+
+		// Defaults can change in a session, so we need to do this every time
+		return Object.keys( defaultFilters ).every( function ( filterName ) {
+			return !defaultFilters[ filterName ];
+		} );
 	};
 
 	/**
@@ -503,7 +522,7 @@
 	 * @private
 	 */
 	mw.rcfilters.Controller.prototype._scheduleLiveUpdate = function () {
-		setTimeout( this._doLiveUpdate.bind( this ), 3000 );
+		setTimeout( this._doLiveUpdate.bind( this ), this.pollingRate * 1000 );
 	};
 
 	/**
@@ -1047,7 +1066,6 @@
 
 			queryHighlights = data.highlights || {};
 			savedParams = this.filtersModel.getParametersFromFilters(
-				// Merge filters with sticky values
 				$.extend( true, {}, data.filters, this.filtersModel.getStickyFiltersState() )
 			);
 

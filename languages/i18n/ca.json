@@ -57,7 +57,8 @@
 			"Kippelboy",
 			"Syum90",
 			"Xð",
-			"Abella"
+			"Abella",
+			"Pierpao"
 		]
 	},
 	"tog-underline": "Subratlla els enllaços:",
@@ -723,7 +724,6 @@
 	"explainconflict": "Algú més ha canviat aquesta pàgina des que l'heu editada.\nL'àrea de text superior conté el text de la pàgina com existeix actualment.\nEls vostres canvis es mostren en l'àrea de text inferior.\nHaureu de fusionar els vostres canvis en el text existent.\n'''Només''' el text de l'àrea superior es desarà quan premeu el botó «$1».",
 	"yourtext": "El vostre text",
 	"storedversion": "Versió emmagatzemada",
-	"nonunicodebrowser": "<strong>Alerta: El vostre navegador no és compatible amb Unicode.</strong>\nS'ha activat una alternativa que us permetrà modificar pàgines amb seguretat: els caràcters que no són ASCII us apareixeran en la caixa d'edició com a codis hexadecimals.",
 	"editingold": "'''AVÍS: Esteu editant una revisió desactualitzada de la pàgina.\nSi la deseu, es perdran els canvis que hàgiu fet des de llavors.'''",
 	"yourdiff": "Diferències",
 	"copyrightwarning": "Si us plau, tingueu en compte que totes les contribucions per al projecte {{SITENAME}} es consideren com a publicades sota els termes de la llicència $2 (vegeu-ne més detalls a $1). Si no desitgeu la modificació i distribució lliure dels vostres escrits sense el vostre consentiment, no els poseu ací.<br />\nA més a més, en enviar el vostre text, doneu fe que és vostra l'autoria, o bé de fonts en el domini públic o recursos lliures similars. Heu de saber que aquest '''no''' és el cas de la majoria de pàgines que hi ha a Internet.\n'''No feu servir textos amb drets d'autor sense permís!'''",
@@ -2121,7 +2121,7 @@
 	"unwatchthispage": "Desatén",
 	"notanarticle": "No és una pàgina amb contingut",
 	"notvisiblerev": "S'ha suprimit la versió",
-	"watchlist-details": "Teniu $1 {{PLURAL:$1|pàgina|pàgines}} a la llista de seguiment, sense comptar les pàgines de discussió.",
+	"watchlist-details": "{{PLURAL:$1|pàgina|pàgines}} a la llista de seguiment, sense comptar les pàgines de discussió.",
 	"wlheader-enotif": "La notificació per correu electrònic està habilitada.",
 	"wlheader-showupdated": "Les pàgines que s'han canviat des de la vostra darrera visita es mostren en '''negreta'''.",
 	"wlnote": "A sota hi ha {{PLURAL:$1|el darrer canvi|els darrers <strong>$1</strong> canvis}} en {{PLURAL:$2|la darrera hora|les <strong>$2</strong> darreres hores}}, a $4 del $3.",

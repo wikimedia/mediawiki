@@ -47,6 +47,12 @@ TEXT
 		);
 		$this->addOption( 'rev-id', 'The rev_id to start copying from. Default: 0', false, true );
 		$this->addOption(
+			'max-rev-id',
+			'The rev_id to stop at. Default: result of MAX(rev_id)',
+			false,
+			true
+		);
+		$this->addOption(
 			'throttle',
 			'Wait this many milliseconds after copying each batch of revisions. Default: 0',
 			false,
@@ -57,34 +63,42 @@ TEXT
 
 	public function doDBUpdates() {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
 		$dbw = $this->getDB( DB_MASTER );
 		$throttle = intval( $this->getOption( 'throttle', 0 ) );
+		$maxRevId = intval( $this->getOption( 'max-rev-id', 0 ) );
 		$start = $this->getOption( 'rev-id', 0 );
-		$end = $dbw->selectField( 'revision', 'MAX(rev_id)', false, __METHOD__ );
+		$end = $maxRevId > 0
+			? $maxRevId
+			: $dbw->selectField( 'revision', 'MAX(rev_id)', false, __METHOD__ );
 		$blockStart = $start;
-		$revCount = 0;
+		$attempted = 0;
+		$inserted = 0;
 
 		$this->output( "Copying IP revisions to ip_changes, from rev_id $start to rev_id $end\n" );
 
 		while ( $blockStart <= $end ) {
-			$rows = $dbw->select(
+			$blockEnd = min( $blockStart + $this->mBatchSize, $end );
+			$rows = $dbr->select(
 				'revision',
 				[ 'rev_id', 'rev_timestamp', 'rev_user_text' ],
-				[ "rev_id >= $blockStart", 'rev_user' => 0 ],
-				__METHOD__,
-				[ 'ORDER BY' => 'rev_id ASC', 'LIMIT' => $this->mBatchSize ]
+				[ "rev_id BETWEEN $blockStart AND $blockEnd", 'rev_user' => 0 ],
+				__METHOD__
 			);
 
-			if ( !$rows || $rows->numRows() === 0 ) {
-				break;
+			$numRows = $rows->numRows();
+
+			if ( !$rows || $numRows === 0 ) {
+				$blockStart = $blockEnd + 1;
+				continue;
 			}
 
-			$this->output( "...checking $this->mBatchSize revisions for IP edits that need copying, " .
-				"starting with rev_id $blockStart\n" );
+			$this->output( "...checking $numRows revisions for IP edits that need copying, " .
+				"between rev_ids $blockStart and $blockEnd\n" );
 
 			$insertRows = [];
 			foreach ( $rows as $row ) {
-				// Double-check to make sure this is an IP, e.g. not maintenance user or imported revision.
+				// Make sure this is really an IP, e.g. not maintenance user or imported revision.
 				if ( IP::isValid( $row->rev_user_text ) ) {
 					$insertRows[] = [
 						'ipc_rev_id' => $row->rev_id,
@@ -92,26 +106,23 @@ TEXT
 						'ipc_hex' => IP::toHex( $row->rev_user_text ),
 					];
 
-					$revCount++;
+					$attempted++;
 				}
-
-				$blockStart = (int)$row->rev_id;
 			}
 
-			$blockStart++;
+			if ( $insertRows ) {
+				$dbw->insert( 'ip_changes', $insertRows, __METHOD__, 'IGNORE' );
 
-			$dbw->insert(
-				'ip_changes',
-				$insertRows,
-				__METHOD__,
-				'IGNORE'
-			);
+				$inserted += $dbw->affectedRows();
+			}
 
 			$lbFactory->waitForReplication();
 			usleep( $throttle * 1000 );
+
+			$blockStart = $blockEnd + 1;
 		}
 
-		$this->output( "$revCount IP revisions copied.\n" );
+		$this->output( "Attempted to insert $attempted IP revisions, $inserted actually done.\n" );
 
 		return true;
 	}

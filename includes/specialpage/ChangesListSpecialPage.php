@@ -32,6 +32,12 @@ use Wikimedia\Rdbms\IDatabase;
  * @ingroup SpecialPage
  */
 abstract class ChangesListSpecialPage extends SpecialPage {
+	/**
+	 * Preference name for saved queries. Subclasses that use saved queries should override this.
+	 * @var string
+	 */
+	protected static $savedQueriesPreferenceName;
+
 	/** @var string */
 	protected $rcSubpage;
 
@@ -77,6 +83,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 	public function __construct( $name, $restriction ) {
 		parent::__construct( $name, $restriction );
+
+		$nonRevisionTypes = [ RC_LOG ];
+		Hooks::run( 'SpecialWatchlistGetNonRevisionTypes', [ &$nonRevisionTypes ] );
 
 		$this->filterGroupDefinitions = [
 			[
@@ -316,8 +325,14 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'description' => 'rcfilters-filter-lastrevision-description',
 						'default' => false,
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) {
-							$conds[] = 'rc_this_oldid <> page_latest';
+							&$query_options, &$join_conds ) use ( $nonRevisionTypes ) {
+							$conds[] = $dbr->makeList(
+								[
+									'rc_this_oldid <> page_latest',
+									'rc_type' => $nonRevisionTypes,
+								],
+								LIST_OR
+							);
 						},
 						'cssClassSuffix' => 'last',
 						'isRowApplicableCallable' => function ( $ctx, $rc ) {
@@ -330,8 +345,14 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'description' => 'rcfilters-filter-previousrevision-description',
 						'default' => false,
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
-							&$query_options, &$join_conds ) {
-							$conds[] = 'rc_this_oldid = page_latest';
+							&$query_options, &$join_conds ) use ( $nonRevisionTypes ) {
+							$conds[] = $dbr->makeList(
+								[
+									'rc_this_oldid = page_latest',
+									'rc_type' => $nonRevisionTypes,
+								],
+								LIST_OR
+							);
 						},
 						'cssClassSuffix' => 'previous',
 						'isRowApplicableCallable' => function ( $ctx, $rc ) {
@@ -594,14 +615,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				)
 			);
 
-			$experimentalStructuredChangeFilters =
-				$this->getConfig()->get( 'StructuredChangeFiltersEnableExperimentalViews' );
-
 			$out->addJsConfigVars( 'wgStructuredChangeFilters', $jsData['groups'] );
-			$out->addJsConfigVars(
-				'wgStructuredChangeFiltersEnableExperimentalViews',
-				$experimentalStructuredChangeFilters
-			);
+
 			$out->addJsConfigVars(
 				'wgRCFiltersChangeTags',
 				$this->buildChangeTagList()
@@ -616,6 +631,26 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					'daysDefault' => $this->getDefaultDays(),
 				]
 			);
+
+			$out->addJsConfigVars(
+				'StructuredChangeFiltersLiveUpdatePollingRate',
+				$this->getConfig()->get( 'StructuredChangeFiltersLiveUpdatePollingRate' )
+			);
+
+			if ( static::$savedQueriesPreferenceName ) {
+				$savedQueries = FormatJson::decode(
+					$this->getUser()->getOption( static::$savedQueriesPreferenceName )
+				);
+				if ( $savedQueries && isset( $savedQueries->default ) ) {
+					// If there is a default saved query, show a loading spinner,
+					// since the frontend is going to reload the results
+					$out->addBodyClasses( 'mw-rcfilters-ui-loading' );
+				}
+				$out->addJsConfigVars(
+					'wgStructuredChangeFiltersSavedQueriesPreferenceName',
+					static::$savedQueriesPreferenceName
+				);
+			}
 		} else {
 			$out->addBodyClasses( 'mw-rcfilters-disabled' );
 		}

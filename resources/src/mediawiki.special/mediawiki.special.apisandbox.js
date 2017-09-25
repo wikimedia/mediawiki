@@ -194,7 +194,7 @@
 			multi: function () {
 				var map = this.paramInfo.submodules,
 					v = this.isDisabled() ? this.paramInfo[ 'default' ] : this.getApiValue();
-				return v === undefined || v === '' ? [] : $.map( String( v ).split( '|' ), function ( v ) {
+				return v === undefined || v === '' ? [] : String( v ).split( '|' ).map( function ( v ) {
 					return { value: v, path: map[ v ] };
 				} );
 			}
@@ -488,7 +488,7 @@
 						throw new Error( 'Unknown parameter type ' + pi.type );
 					}
 
-					items = $.map( pi.type, function ( v ) {
+					items = pi.type.map( function ( v ) {
 						var config = {
 							data: String( v ),
 							label: String( v ),
@@ -1072,7 +1072,7 @@
 					selectedLabel = selectedLabel.text();
 				}
 				menu.clearItems().addItems( formatItems );
-				menu.chooseItem( menu.getItemFromLabel( selectedLabel ) || menu.getFirstSelectableItem() );
+				menu.chooseItem( menu.getItemFromLabel( selectedLabel ) || menu.findFirstSelectableItem() );
 
 				// Fire the event to update field visibilities
 				Util.onFormatDropdownChange();

@@ -195,11 +195,15 @@ function wfArrayDiff2_cmp( $a, $b ) {
 	} else {
 		reset( $a );
 		reset( $b );
-		while ( ( list( , $valueA ) = each( $a ) ) && ( list( , $valueB ) = each( $b ) ) ) {
+		while ( key( $a ) !== null && key( $b ) !== null ) {
+			$valueA = current( $a );
+			$valueB = current( $b );
 			$cmp = strcmp( $valueA, $valueB );
 			if ( $cmp !== 0 ) {
 				return $cmp;
 			}
+			next( $a );
+			next( $b );
 		}
 		return 0;
 	}

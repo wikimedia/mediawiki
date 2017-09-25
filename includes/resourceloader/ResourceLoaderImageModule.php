@@ -381,11 +381,13 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @return string[] CSS declarations to use given URIs as background-image
 	 */
 	protected function getCssDeclarations( $primary, $fallback ) {
+		$primaryUrl = CSSMin::buildUrlValue( $primary );
+		$fallbackUrl = CSSMin::buildUrlValue( $fallback );
 		return [
-			"background-image: url($fallback);",
-			"background-image: linear-gradient(transparent, transparent), url($primary);",
+			"background-image: $fallbackUrl;",
+			"background-image: linear-gradient(transparent, transparent), $primaryUrl;",
 			// Do not serve SVG to Opera 12, bad rendering with border-radius or background-size (T87504)
-			"background-image: -o-linear-gradient(transparent, transparent), url($fallback);",
+			"background-image: -o-linear-gradient(transparent, transparent), $fallbackUrl;",
 		];
 	}
 

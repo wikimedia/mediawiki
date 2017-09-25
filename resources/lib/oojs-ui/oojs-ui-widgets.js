@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.23.0
+ * OOjs UI v0.23.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-09-05T21:23:58Z
+ * Date: 2017-09-20T00:31:56Z
  */
 ( function ( OO ) {
 
@@ -860,7 +860,7 @@ OO.ui.mixin.LookupElement.prototype.populateLookupMenu = function () {
  */
 OO.ui.mixin.LookupElement.prototype.initializeLookupMenuSelection = function () {
 	if ( this.lookupHighlightFirstItem && !this.lookupMenu.getSelectedItem() ) {
-		this.lookupMenu.highlightItem( this.lookupMenu.getFirstSelectableItem() );
+		this.lookupMenu.highlightItem( this.lookupMenu.findFirstSelectableItem() );
 	}
 };
 
@@ -2015,7 +2015,7 @@ OO.ui.BookletLayout.prototype.findClosestPage = function ( page ) {
 /**
  * Get the page closest to the specified page.
  *
- * @deprecated 0.22.6 Use {@link OO.ui.BookletLayout#findClosestPage} instead.
+ * @deprecated 0.23.0 Use {@link OO.ui.BookletLayout#findClosestPage} instead.
  * @param {OO.ui.PageLayout} page Page to use as a reference point
  * @return {OO.ui.PageLayout|null} Page closest to the specified page
  */
@@ -2252,7 +2252,7 @@ OO.ui.BookletLayout.prototype.setPage = function ( name ) {
  */
 OO.ui.BookletLayout.prototype.selectFirstSelectablePage = function () {
 	if ( !this.outlineSelectWidget.getSelectedItem() ) {
-		this.outlineSelectWidget.selectItem( this.outlineSelectWidget.getFirstSelectableItem() );
+		this.outlineSelectWidget.selectItem( this.outlineSelectWidget.findFirstSelectableItem() );
 	}
 
 	return this;
@@ -2696,7 +2696,7 @@ OO.ui.IndexLayout.prototype.setTabPanel = function ( name ) {
  */
 OO.ui.IndexLayout.prototype.selectFirstSelectableTabPanel = function () {
 	if ( !this.tabSelectWidget.getSelectedItem() ) {
-		this.tabSelectWidget.selectItem( this.tabSelectWidget.getFirstSelectableItem() );
+		this.tabSelectWidget.selectItem( this.tabSelectWidget.findFirstSelectableItem() );
 	}
 
 	return this;
@@ -5826,7 +5826,7 @@ OO.ui.MenuTagMultiselectWidget.prototype.onTagSelect = function ( tagItem ) {
 OO.ui.MenuTagMultiselectWidget.prototype.addTagFromInput = function () {
 	var inputValue = this.input.getValue(),
 		validated = false,
-		highlightedItem = this.menu.getHighlightedItem(),
+		highlightedItem = this.menu.findHighlightedItem(),
 		item = this.menu.getItemFromData( inputValue );
 
 	// Override the parent method so we add from the menu
@@ -6523,11 +6523,11 @@ OO.ui.SearchWidget.prototype.onQueryKeydown = function ( e ) {
 		dir = e.which === OO.ui.Keys.DOWN ? 1 : ( e.which === OO.ui.Keys.UP ? -1 : 0 );
 
 	if ( dir ) {
-		highlightedItem = this.results.getHighlightedItem();
+		highlightedItem = this.results.findHighlightedItem();
 		if ( !highlightedItem ) {
 			highlightedItem = this.results.getSelectedItem();
 		}
-		nextItem = this.results.getRelativeSelectableItem( highlightedItem, dir );
+		nextItem = this.results.findRelativeSelectableItem( highlightedItem, dir );
 		this.results.highlightItem( nextItem );
 		nextItem.scrollElementIntoView();
 	}
@@ -6555,7 +6555,7 @@ OO.ui.SearchWidget.prototype.onQueryChange = function () {
  * @param {string} value New value
  */
 OO.ui.SearchWidget.prototype.onQueryEnter = function () {
-	var highlightedItem = this.results.getHighlightedItem();
+	var highlightedItem = this.results.findHighlightedItem();
 	if ( highlightedItem ) {
 		this.results.chooseItem( highlightedItem );
 	}

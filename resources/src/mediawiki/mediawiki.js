@@ -625,7 +625,7 @@
 		 * @param {Function} callback
 		 */
 		trackUnsubscribe: function ( callback ) {
-			trackHandlers = $.grep( trackHandlers, function ( fns ) {
+			trackHandlers = trackHandlers.filter( function ( fns ) {
 				if ( fns[ 1 ] === callback ) {
 					trackCallbacks.remove( fns[ 0 ] );
 					// Ensure the tuple is removed to avoid holding on to closures
@@ -1465,7 +1465,7 @@
 				if ( ready !== undefined || error !== undefined ) {
 					jobs.push( {
 						// Narrow down the list to modules that are worth waiting for
-						dependencies: $.grep( dependencies, function ( module ) {
+						dependencies: dependencies.filter( function ( module ) {
 							var state = mw.loader.getState( module );
 							return state === 'registered' || state === 'loaded' || state === 'loading' || state === 'executing';
 						} ),
@@ -1474,7 +1474,7 @@
 					} );
 				}
 
-				$.each( dependencies, function ( idx, module ) {
+				dependencies.forEach( function ( module ) {
 					var state = mw.loader.getState( module );
 					// Only queue modules that are still in the initial 'registered' state
 					// (not ones already loading, ready or error).
@@ -1499,9 +1499,7 @@
 					a = [];
 
 				for ( key in o ) {
-					if ( hasOwn.call( o, key ) ) {
-						a.push( key );
-					}
+					a.push( key );
 				}
 				a.sort();
 				for ( key = 0; key < a.length; key++ ) {
@@ -1538,10 +1536,9 @@
 			 * @param {string} sourceLoadScript URL of load.php
 			 */
 			function doRequest( moduleMap, currReqBase, sourceLoadScript ) {
-				var query = $.extend(
-					{ modules: buildModulesString( moduleMap ) },
-					currReqBase
-				);
+				// Optimisation: Inherit (Object.create), not copy ($.extend)
+				var query = Object.create( currReqBase );
+				query.modules = buildModulesString( moduleMap );
 				query = sortQuery( query );
 				addScript( sourceLoadScript + '?' + $.param( query ) );
 			}
@@ -1630,9 +1627,10 @@
 						// modules for this group from this source.
 						modules = splits[ source ][ group ];
 
-						currReqBase = $.extend( {
-							version: getCombinedVersion( modules )
-						}, reqBase );
+						// Optimisation: Inherit (Object.create), not copy ($.extend)
+						currReqBase = Object.create( reqBase );
+						currReqBase.version = getCombinedVersion( modules );
+
 						// For user modules append a user name to the query string.
 						if ( group === 'user' && mw.config.get( 'wgUserName' ) !== null ) {
 							currReqBase.user = mw.config.get( 'wgUserName' );
@@ -1784,7 +1782,7 @@
 					if ( mw.loader.store.enabled ) {
 						implementations = [];
 						sourceModules = [];
-						batch = $.grep( batch, function ( module ) {
+						batch = batch.filter( function ( module ) {
 							var implementation = mw.loader.store.get( module );
 							if ( implementation ) {
 								implementations.push( implementation );
@@ -1809,7 +1807,7 @@
 
 							mw.track( 'resourceloader.exception', { exception: err, source: 'store-eval' } );
 							// Re-add the failed ones that are still pending back to the batch
-							failed = $.grep( sourceModules, function ( module ) {
+							failed = sourceModules.filter( function ( module ) {
 								return registry[ module ].state === 'loading';
 							} );
 							batchRequest( failed );
@@ -2073,7 +2071,7 @@
 					}
 
 					// Filter out top-level modules that are unknown or failed to load before.
-					filtered = $.grep( modules, function ( module ) {
+					filtered = modules.filter( function ( module ) {
 						var state = mw.loader.getState( module );
 						return state !== 'error' && state !== 'missing';
 					} );
@@ -2125,10 +2123,7 @@
 				 *  in the registry.
 				 */
 				getVersion: function ( module ) {
-					if ( !hasOwn.call( registry, module ) || registry[ module ].version === undefined ) {
-						return null;
-					}
-					return registry[ module ].version;
+					return hasOwn.call( registry, module ) ? registry[ module ].version : null;
 				},
 
 				/**
@@ -2139,10 +2134,7 @@
 				 *  in the registry.
 				 */
 				getState: function ( module ) {
-					if ( !hasOwn.call( registry, module ) || registry[ module ].state === undefined ) {
-						return null;
-					}
-					return registry[ module ].state;
+					return hasOwn.call( registry, module ) ? registry[ module ].state : null;
 				},
 
 				/**
@@ -2775,7 +2767,7 @@
 	$( function () {
 		var loading, modules;
 
-		modules = $.grep( mw.loader.getModuleNames(), function ( module ) {
+		modules = mw.loader.getModuleNames().filter( function ( module ) {
 			return mw.loader.getState( module ) === 'loading';
 		} );
 		// We only need a callback, not any actual module. First try a single using()

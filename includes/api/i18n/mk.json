@@ -110,7 +110,7 @@
 	"apihelp-expandtemplates-summary": "Ги проширува сите шаблони во викитекст.",
 	"apihelp-expandtemplates-param-title": "Наслов на страница.",
 	"apihelp-expandtemplates-param-text": "Викитекст за претворање.",
-	"apihelp-expandtemplates-param-revid": "Назнака на преработката, за <nowiki>{{REVISIONID}}</nowiki> и слични променливи.",
+	"apihelp-expandtemplates-param-revid": "Назнака на преработката, за <code><nowiki>{{REVISIONID}}</nowiki></code> и слични променливи.",
 	"apihelp-expandtemplates-param-prop": "Кои информации треба да ги добиете:\n\nИмајте на ум дека ако не изберете никаква вредност, исходот ќе го содржи викитекстот, но изводот ќе биде во застарен формат.",
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "Проширениот викитекст.",
 	"apihelp-expandtemplates-param-includecomments": "Дали во изводот да се вклучени HTML-коментари.",

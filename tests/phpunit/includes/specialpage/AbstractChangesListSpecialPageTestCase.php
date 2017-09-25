@@ -19,7 +19,10 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiTestCase 
 		global $wgGroupPermissions;
 
 		parent::setUp();
-		$this->setMwGlobals( 'wgRCWatchCategoryMembership', true );
+		$this->setMwGlobals( [
+			'wgRCWatchCategoryMembership' => true,
+			'wgUseRCPatrol' => true,
+		] );
 
 		if ( isset( $wgGroupPermissions['patrollers'] ) ) {
 			$this->oldPatrollersGroup = $wgGroupPermissions['patrollers'];
