@@ -25,6 +25,7 @@
 	right: 0;
 	background: #fff;
 	z-index: 100;
+	overflow: auto;
 }
 
 .mw-apisandbox-fullscreen .mw-apisandbox-container {

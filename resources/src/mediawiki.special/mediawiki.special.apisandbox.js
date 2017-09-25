@@ -2,7 +2,7 @@
 ( function ( $, mw, OO ) {
 	'use strict';
 	var ApiSandbox, Util, WidgetMethods, Validators,
-		$content, panel, booklet, oldhash, windowManager, fullscreenButton,
+		$toolbar, $content, panel, booklet, oldhash, windowManager, fullscreenButton,
 		formatDropdown,
 		api = new mw.Api(),
 		bookletPages = [],
@@ -735,8 +735,6 @@
 		 * Automatically called on $.ready()
 		 */
 		init: function () {
-			var $toolbar;
-
 			ApiSandbox.isFullscreen = false;
 
 			$content = $( '#mw-apisandbox' );
@@ -767,6 +765,7 @@
 				);
 
 			booklet = new OO.ui.BookletLayout( {
+				expanded: false,
 				outlined: true,
 				autoFocus: false
 			} );
@@ -807,10 +806,6 @@
 						.append( $toolbar )
 						.append( panel.$element )
 				);
-
-			$( window ).on( 'resize', ApiSandbox.resizePanel );
-
-			ApiSandbox.resizePanel();
 		},
 
 		/**
@@ -832,26 +827,6 @@
 				fullscreenButton.setLabel( mw.message( 'apisandbox-fullscreen' ).text() );
 				fullscreenButton.setTitle( mw.message( 'apisandbox-fullscreen-tooltip' ).text() );
 				$content.append( $ui );
-			}
-			ApiSandbox.resizePanel();
-		},
-
-		/**
-		 * Set the height of the panel based on the current viewport.
-		 */
-		resizePanel: function () {
-			var height = $( window ).height(),
-				contentTop = $content.offset().top;
-
-			if ( ApiSandbox.isFullscreen ) {
-				height -= panel.$element.offset().top - $( '#mw-apisandbox-ui' ).offset().top;
-				panel.$element.height( height - 1 );
-			} else {
-				// Subtract the height of the intro text
-				height -= panel.$element.offset().top - contentTop;
-
-				panel.$element.height( height - 10 );
-				$( window ).scrollTop( contentTop - 5 );
 			}
 		},
 
@@ -1053,7 +1028,9 @@
 				$result = $( '<div>' )
 					.append( progress.$element );
 
-				resultPage = page = new OO.ui.PageLayout( '|results|' );
+				resultPage = page = new OO.ui.PageLayout( '|results|', {
+					expanded: false
+				} );
 				page.setupOutlineItem = function () {
 					this.outlineItem.setLabel( mw.message( 'apisandbox-results' ).text() );
 				};
@@ -1305,7 +1282,7 @@
 	 * @param {Object} [config] Configuration options
 	 */
 	ApiSandbox.PageLayout = function ( config ) {
-		config = $.extend( { prefix: '' }, config );
+		config = $.extend( { prefix: '', expanded: false }, config );
 		this.displayText = config.key;
 		this.apiModule = config.path;
 		this.prefix = config.prefix;
