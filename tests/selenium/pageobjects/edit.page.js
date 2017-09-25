@@ -26,6 +26,8 @@ class EditPage extends Page {
 				protocol: baseUrl.protocol,
 				server: baseUrl.hostname,
 				port: baseUrl.port,
+				username: process.env.MEDIAWIKI_USER,
+				password: process.env.MEDIAWIKI_PASSWORD,
 				path: baseUrl.path,
 				debug: false
 			} );
