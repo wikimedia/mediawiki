@@ -2554,7 +2554,7 @@
 	"delete_and_move_text": "A páxina de destino, chamada \"[[:$1]]\", xa existe.\nQuérea borrar para deixar sitio para facer o traslado?",
 	"delete_and_move_confirm": "Si, borrar a páxina",
 	"delete_and_move_reason": "Eliminado para facer sitio para mover \"[[$1]]\"",
-	"selfmove": "O título de orixe e o de destino é o mesmo; non se pode mover unha páxina sobre si mesma.",
+	"selfmove": "O título é o mesmo; \nnon se pode mover unha páxina sobre si mesma.",
 	"immobile-source-namespace": "Non se poden mover as páxinas que están no espazo de nomes \"$1\"",
 	"immobile-target-namespace": "Non se poden mover as páxinas ao espazo de nomes \"$1\"",
 	"immobile-target-namespace-iw": "A ligazón interwiki non é válida para o movemento da páxina.",

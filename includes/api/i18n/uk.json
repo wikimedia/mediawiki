@@ -791,7 +791,7 @@
 	"apihelp-query+imageinfo-paramvalue-prop-archivename": "Додає назву файлу архівної версії для неостанніх версій.",
 	"apihelp-query+imageinfo-paramvalue-prop-bitdepth": "Додає бітну глибину версії.",
 	"apihelp-query+imageinfo-paramvalue-prop-uploadwarning": "Використовується на Special:Upload page для отримання інформації про наявний файл. Не призначено для використання поза ядром MediaWiki.",
-	"apihelp-query+imageinfo-paramvalue-prop-badfile": "Додає інформацію про те, чи перебуває файл у \n[[MediaWiki:Bad image list|списку недозволених файлів]]",
+	"apihelp-query+imageinfo-paramvalue-prop-badfile": "Додає інформацію про те, чи перебуває файл у [[MediaWiki:Bad image list|списку недозволених файлів]]",
 	"apihelp-query+imageinfo-param-limit": "Скільки виводити версій кожного файлу.",
 	"apihelp-query+imageinfo-param-start": "Часова мітка, з якої почати список.",
 	"apihelp-query+imageinfo-param-end": "Часова мітка, на якій закінчити список.",

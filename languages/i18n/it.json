@@ -2605,7 +2605,7 @@
 	"delete_and_move_text": "La pagina specificata come destinazione \"[[:$1]]\" esiste già. Vuoi cancellarla per proseguire con lo spostamento?",
 	"delete_and_move_confirm": "Sì, sovrascrivi la pagina esistente",
 	"delete_and_move_reason": "Cancellata per rendere possibile lo spostamento da \"[[$1]]\"",
-	"selfmove": "Il titolo di destinazione è uguale a quello di provenienza, non è possibile spostare una pagina su sé stessa.",
+	"selfmove": "Il titolo è lo stesso, non è possibile spostare una pagina su sé stessa.",
 	"immobile-source-namespace": "Non è possibile spostare pagine del namespace \"$1\"",
 	"immobile-target-namespace": "Non è possibile spostare pagine nel namespace \"$1\"",
 	"immobile-target-namespace-iw": "Un collegamento interwiki non è una destinazione valida per spostare la pagina.",
