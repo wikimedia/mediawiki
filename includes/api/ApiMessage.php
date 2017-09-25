@@ -30,6 +30,13 @@
  * (see e.g. Title::getUserPermissionsErrors()) and the API has to make do with that.
  *
  * @since 1.25
+ * @note This interface exists to work around PHP's inheritance, so ApiMessage
+ *  can extend Message and ApiRawMessage can extend RawMessage while still
+ *  allowing an instanceof check for a Message object including this
+ *  functionality. If for some reason you feel the need to implement this
+ *  interface on some other class, that class must also implement all the
+ *  public methods the Message class provides (not just those from
+ *  MessageSpecifier, which as written is fairly useless).
  * @ingroup API
  */
 interface IApiMessage extends MessageSpecifier {
