@@ -449,7 +449,6 @@
     "mediawiki/nuke": "dev-1d96a44",
     "mediawiki/parser-functions": "dev-f4a62ff",
     "mediawiki/renameuser": "dev-7c618d6",
-    "mediawiki/SyntaxHighlight_GeSHi": "dev-08ae879",
-    "mediawiki/blue-spice-tag-cloud": "dev-372501f6c08b8be2d23c542e6f4ff7c9ecc910b9"
+    "mediawiki/SyntaxHighlight_GeSHi": "dev-08ae879"
   }
 }
