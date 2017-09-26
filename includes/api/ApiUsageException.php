@@ -146,7 +146,7 @@ class ApiUsageException extends UsageException implements ILocalizedException {
 	) {
 		return new static(
 			$module,
-			StatusValue::newFatal( ApiMessage::create( $msg, $code, $data ) ),
+			Status::newFatal( ApiMessage::create( $msg, $code, $data ) ),
 			$httpCode
 		);
 	}
