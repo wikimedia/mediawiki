@@ -1,0 +1,21 @@
+{
+  "repositories": [{
+    "type": "package",
+    "package": {
+      "name": "mediawiki/blue-spice-bookmaker",
+      "type": "mediawiki-extension",
+      "version": "dev-b9f75ec439852e904ab93c1135bc427436b0f902",
+      "source": {
+        "url": "git@gitlab.hallowelt.com:BlueSpice/mediawiki-extensions-bluespicebookmaker.git",
+        "type": "git",
+        "reference": "b9f75ec439852e904ab93c1135bc427436b0f902"
+      },
+      "require": {
+        "composer/installers": "~1.0"
+      }
+    }
+  }],
+  "require": {
+    "mediawiki/blue-spice-bookmaker": "dev-b9f75ec439852e904ab93c1135bc427436b0f902"
+  }
+}
