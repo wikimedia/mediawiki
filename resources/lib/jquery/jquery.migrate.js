@@ -1,5 +1,5 @@
 /*!
- * jQuery Migrate - v3.0.1-pre - 2017-08-17
+ * jQuery Migrate - v3.0.1 - 2017-09-26
  * Copyright jQuery Foundation and other contributors
  *
  * Patched for MediaWiki:
@@ -27,35 +27,31 @@
 "use strict";
 
 
-jQuery.migrateVersion = "3.0.1-pre";
+jQuery.migrateVersion = "3.0.1";
 
 /* exported migrateWarn, migrateWarnFunc, migrateWarnProp */
 
 ( function() {
 
+	var rbadVersions = /^[12]\./;
+
 	// Support: IE9 only
 	// IE9 only creates console object when dev tools are first opened
-	// Also, avoid Function#bind here to simplify PhantomJS usage
-	var log = window.console && window.console.log &&
-		function() {
-			window.console.log.apply( window.console, arguments );
-		},
-		rbadVersions = /^[12]\./;
-
-	if ( !log ) {
+	// IE9 console is a host object, callable but doesn't have .apply()
+	if ( !window.console || !window.console.log ) {
 		return;
 	}
 
 	// Need jQuery 3.0.0+ and no older Migrate loaded
 	if ( !jQuery || rbadVersions.test( jQuery.fn.jquery ) ) {
-		log( "JQMIGRATE: jQuery 3.0.0+ REQUIRED" );
+		window.console.log( "JQMIGRATE: jQuery 3.0.0+ REQUIRED" );
 	}
 	if ( jQuery.migrateWarnings ) {
-		log( "JQMIGRATE: Migrate plugin loaded multiple times" );
+		window.console.log( "JQMIGRATE: Migrate plugin loaded multiple times" );
 	}
 
 	// Show a message on the console so devs know we're active
-	log( "JQMIGRATE: Migrate is installed" +
+	window.console.log( "JQMIGRATE: Migrate is installed" +
 		( jQuery.migrateMute ? "" : " with logging active" ) +
 		", version " + jQuery.migrateVersion );
 
@@ -213,6 +209,9 @@ jQuery.isNumeric = function( val ) {
 
 	return oldValue;
 };
+
+migrateWarnFunc( jQuery, "holdReady", jQuery.holdReady,
+	"jQuery.holdReady is deprecated" );
 
 migrateWarnFunc( jQuery, "unique", jQuery.uniqueSort,
 	"jQuery.unique is deprecated; use jQuery.uniqueSort" );
@@ -375,19 +374,17 @@ jQuery.data = function( elem, name, value ) {
 };
 
 var oldTweenRun = jQuery.Tween.prototype.run;
+var linearEasing = function( pct ) {
+		return pct;
+	};
 
 jQuery.Tween.prototype.run = function( ) {
 	if ( jQuery.easing[ this.easing ].length > 1 ) {
 		migrateWarn(
-			"easing function " +
-			"\"jQuery.easing." + this.easing.toString() +
-			"\" should use only first argument"
+			"'jQuery.easing." + this.easing.toString() + "' should use only one argument"
 		);
 
-		var oldEasing = jQuery.easing[ this.easing ];
-		jQuery.easing[ this.easing ] = function( percent ) {
-			return oldEasing.call( jQuery.easing, percent, percent, 0, 1, 1 );
-		}.bind( this );
+		jQuery.easing[ this.easing ] = linearEasing;
 	}
 
 	oldTweenRun.apply( this, arguments );
@@ -511,6 +508,10 @@ jQuery.fn.extend( {
 		return arguments.length === 1 ?
 			this.off( selector, "**" ) :
 			this.off( types, selector || "**", fn );
+	},
+	hover: function( fnOver, fnOut ) {
+		migrateWarn( "jQuery.fn.hover() is deprecated" );
+		return this.on( "mouseenter", fnOver ).on( "mouseleave", fnOut || fnOver );
 	}
 } );
 
