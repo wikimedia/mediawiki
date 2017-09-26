@@ -619,7 +619,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 			$out->addJsConfigVars(
 				'wgRCFiltersChangeTags',
-				$this->buildChangeTagList()
+				$this->getChangeTagList()
 			);
 			$out->addJsConfigVars(
 				'StructuredChangeFiltersDisplayConfig',
@@ -661,49 +661,60 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 *
 	 * @return Array Tag data
 	 */
-	protected function buildChangeTagList() {
-		$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
-		$softwareActivatedTags = array_fill_keys( ChangeTags::listSoftwareActivatedTags(), 0 );
+	protected function getChangeTagList() {
+		$cache = ObjectCache::getMainWANInstance();
+		$context = $this->getContext();
+		return $cache->getWithSetCallback(
+			$cache->makeKey( 'changeslistspecialpage-changetags', $context->getLanguage()->getCode() ),
+			$cache::TTL_MINUTE * 10,
+			function () use ( $context ) {
+				$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
+				$softwareActivatedTags = array_fill_keys( ChangeTags::listSoftwareActivatedTags(), 0 );
 
-		// Hit counts disabled for perf reasons, see T169997
-		/*
-		$tagStats = ChangeTags::tagUsageStatistics();
-		$tagHitCounts = array_merge( $explicitlyDefinedTags, $softwareActivatedTags, $tagStats );
+				// Hit counts disabled for perf reasons, see T169997
+				/*
+				$tagStats = ChangeTags::tagUsageStatistics();
+				$tagHitCounts = array_merge( $explicitlyDefinedTags, $softwareActivatedTags, $tagStats );
 
-		// Sort by hits
-		arsort( $tagHitCounts );
-		*/
-		$tagHitCounts = array_merge( $explicitlyDefinedTags, $softwareActivatedTags );
+				// Sort by hits
+				arsort( $tagHitCounts );
+				*/
+				$tagHitCounts = array_merge( $explicitlyDefinedTags, $softwareActivatedTags );
 
-		// Build the list and data
-		$result = [];
-		foreach ( $tagHitCounts as $tagName => $hits ) {
-			if (
-				// Only get active tags
-				isset( $explicitlyDefinedTags[ $tagName ] ) ||
-				isset( $softwareActivatedTags[ $tagName ] )
-			) {
-				// Parse description
-				$desc = ChangeTags::tagLongDescriptionMessage( $tagName, $this->getContext() );
+				// Build the list and data
+				$result = [];
+				foreach ( $tagHitCounts as $tagName => $hits ) {
+					if (
+						// Only get active tags
+						isset( $explicitlyDefinedTags[ $tagName ] ) ||
+						isset( $softwareActivatedTags[ $tagName ] )
+					) {
+						// Parse description
+						$desc = ChangeTags::tagLongDescriptionMessage( $tagName, $context );
 
-				$result[] = [
-					'name' => $tagName,
-					'label' => Sanitizer::stripAllTags(
-						ChangeTags::tagDescription( $tagName, $this->getContext() )
-					),
-					'description' => $desc ? Sanitizer::stripAllTags( $desc->parse() ) : '',
-					'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
-					'hits' => $hits,
-				];
-			}
-		}
+						$result[] = [
+							'name' => $tagName,
+							'label' => Sanitizer::stripAllTags(
+								ChangeTags::tagDescription( $tagName, $context )
+							),
+							'description' => $desc ? Sanitizer::stripAllTags( $desc->parse() ) : '',
+							'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
+							'hits' => $hits,
+						];
+					}
+				}
 
-		// Instead of sorting by hit count (disabled, see above), sort by display name
-		usort( $result, function ( $a, $b ) {
-			return strcasecmp( $a['label'], $b['label'] );
-		} );
+				// Instead of sorting by hit count (disabled, see above), sort by display name
+				usort( $result, function ( $a, $b ) {
+					return strcasecmp( $a['label'], $b['label'] );
+				} );
 
-		return $result;
+				return $result;
+			},
+			[
+				'lockTSE' => 30
+			]
+		);
 	}
 
 	/**
