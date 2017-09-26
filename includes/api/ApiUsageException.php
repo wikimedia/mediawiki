@@ -104,6 +104,10 @@ class UsageException extends MWException {
 class ApiUsageException extends UsageException implements ILocalizedException {
 
 	protected $modulePath;
+
+	/**
+	 * @var Status
+	 */
 	protected $status;
 
 	/**
@@ -119,7 +123,7 @@ class ApiUsageException extends UsageException implements ILocalizedException {
 		}
 
 		$this->modulePath = $module ? $module->getModulePath() : null;
-		$this->status = $status;
+		$this->status = Status::wrap( $status );
 
 		// Bug T46111: Messages in the log files should be in English and not
 		// customized by the local wiki.
@@ -146,7 +150,7 @@ class ApiUsageException extends UsageException implements ILocalizedException {
 	) {
 		return new static(
 			$module,
-			StatusValue::newFatal( ApiMessage::create( $msg, $code, $data ) ),
+			Status::newFatal( ApiMessage::create( $msg, $code, $data ) ),
 			$httpCode
 		);
 	}
