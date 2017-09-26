@@ -523,6 +523,8 @@
 	"botpasswords-updated-body": "'A passuord pu bot de nome \"$1\" de l'utende \"$2\" ha state aggiornate.",
 	"botpasswords-deleted-title": "Passuord d'u bot scangellate",
 	"botpasswords-deleted-body": "'A passuord pu bot de nome \"$1\" de l'utende \"$2\" ha state scangellate.",
+	"botpasswords-restriction-failed": "Le restrizziuyne de passuord bot non ge fanne trasè.",
+	"botpasswords-invalid-name": "'U nome de l'utende mise non ge tène 'u separatore pe passuord bot (\"$1\").",
 	"resetpass_forbidden": "Le Password non ge ponne cangià",
 	"resetpass_forbidden-reason": "Le passuord non ge ponne essere cangiate: $1",
 	"resetpass-no-info": "Tu a essere colleghete pe accedere a sta pàgene direttamende.",

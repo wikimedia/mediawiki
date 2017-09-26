@@ -615,7 +615,7 @@
 	"post-expand-template-inclusion-category": "Şablonun daxil olduğu səhifələrin ölçüsü böyükdür.",
 	"post-expand-template-argument-warning": "<strong>Diqqət:</strong> bu səhifədə açılma ölçüsü həddən artıq böyük olan ən azı bir şablon arqumenti var. Həmin arqumentlər buraxılıb.",
 	"post-expand-template-argument-category": "Şablonlarda buraxılmış arqumentlərin mövcud olduğu səhifələr",
-	"parser-template-loop-warning": "[[$1]]: Şablonda düyün tapıldı",
+	"parser-template-loop-warning": "Şablonda düyün tapıldı: [[$1]]",
 	"parser-template-recursion-depth-warning": "($1) Şablonda dərinlik limiti keçildi",
 	"language-converter-depth-warning": "($1) Dil konvertorunun limiti keçildi",
 	"undo-failure": "Dəyişikliklərin toqquşması nəticəsində geriyə qaytarma işi uğursuz oldu.",

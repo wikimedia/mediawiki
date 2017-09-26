@@ -1469,6 +1469,7 @@
 	"rcfilters-filter-watchlistactivity-unseen-label": "Modifiche non ancora viste",
 	"rcfilters-filter-watchlistactivity-unseen-description": "Modifiche alle pagine che non hai ancora visitato da quando le modifiche sono avvenute.",
 	"rcfilters-filter-watchlistactivity-seen-label": "Modifiche già viste",
+	"rcfilters-filter-watchlistactivity-seen-description": "Modifiche alle pagine che hai visitato da quando le modifiche sono avvenute.",
 	"rcfilters-filtergroup-changetype": "Tipo di modifica",
 	"rcfilters-filter-pageedits-label": "Modifiche alle pagine",
 	"rcfilters-filter-pageedits-description": "Modifiche al contenuto wiki, discussioni, descrizioni categoria…",

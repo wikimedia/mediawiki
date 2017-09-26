@@ -1419,7 +1419,7 @@
 	"rcfilters-filter-watchlist-notwatched-label": "No és a la llista de seguiment",
 	"rcfilters-filter-watchlist-notwatched-description": "Tot excepte canvis a les vostres pàgines seguides.",
 	"rcfilters-filtergroup-watchlistactivity": "Activitat de la llista de seguiment",
-	"rcfilters-filter-watchlistactivity-unseen-label": "Canvis no vists",
+	"rcfilters-filter-watchlistactivity-unseen-label": "Canvis no vistos",
 	"rcfilters-filter-watchlistactivity-unseen-description": "Canvis a les pàgines que no heu visitat des que van ocórrer els canvis.",
 	"rcfilters-filter-watchlistactivity-seen-label": "Canvis vists",
 	"rcfilters-filter-watchlistactivity-seen-description": "Canvis a les pàgines que heu visitat des que van ocórrer els canvis.",
