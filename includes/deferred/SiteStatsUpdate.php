@@ -149,6 +149,7 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 			'recentchanges',
 			'COUNT( DISTINCT rc_user_text )',
 			[
+				'rc_type != ' . $dbr->addQuotes( RC_EXTERNAL ), // Exclude external (Wikidata)
 				'rc_user != 0',
 				'rc_bot' => 0,
 				'rc_log_type != ' . $dbr->addQuotes( 'newusers' ) . ' OR rc_log_type IS NULL',
