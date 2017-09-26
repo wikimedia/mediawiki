@@ -1,2 +1,2 @@
 <?php
-require_once( "$IP/extensions/Arrays/Arrays.php" );
+require_once( __DIR__ . "/../extensions/Arrays/Arrays.php" );

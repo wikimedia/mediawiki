@@ -12,7 +12,7 @@ if ( isset( $bsgSettingsDir ) ) {
 	$settingsDir = $bsgSettingsDir;
 }
 else {
-	$settingsDir = "$IP/settings.d";
+	$settingsDir = __DIR__ . "/settings.d";
 }
 
 foreach ( glob( $settingsDir . "/*.php" ) as $conffile ) {

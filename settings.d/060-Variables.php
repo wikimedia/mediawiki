@@ -1,2 +1,2 @@
 <?php
-require_once( "$IP/extensions/Variables/Variables.php" );
+require_once( __DIR__ . "/../extensions/Variables/Variables.php" );
