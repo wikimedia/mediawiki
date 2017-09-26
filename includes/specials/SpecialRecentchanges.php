@@ -620,7 +620,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			if ( $this->isStructuredFilterUiEnabled() ) {
 				// Check whether the widget is already collapsed or expanded
 				$collapsedState = $this->getRequest()->getCookie( 'rcfilters-toplinks-collapsed-state' );
-				$collapsedClass = $collapsedState === 'collapsed' ? 'mw-rcfilters-toplinks-collapsed' : '';
+				// Note that an empty/unset cookie means collapsed, so check for !== 'expanded'
+				$collapsedClass = $collapsedState !== 'expanded' ? 'mw-rcfilters-toplinks-collapsed' : '';
 
 				$contentTitle = Html::rawElement( 'div',
 					[ 'class' => 'mw-recentchanges-toplinks-title ' . $collapsedClass ],
