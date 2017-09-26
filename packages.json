@@ -1,13 +1,13 @@
 {
     "packages": {
         "mediawiki/core": {
-            "dev-a26dddb": {
+            "dev-d600583": {
               "name": "mediawiki/core",
-              "version": "dev-a26dddb",
+              "version": "dev-d600583",
               "source": {
-                "url": "https://github.com/hallowelt/mediawiki.git",
-                "type": "git",
-                "reference": "dev-a26dddb"
+                  "url": "https://github.com/hallowelt/mediawiki.git",
+                  "type": "git",
+                  "reference": "d600583"
               }
             }
         }
