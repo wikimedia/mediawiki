@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.23.1
+ * OOjs UI v0.23.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-09-20T00:31:56Z
+ * Date: 2017-09-26T20:18:42Z
  */
 ( function ( OO ) {
 
@@ -1588,12 +1588,14 @@ OO.ui.StackLayout.prototype.updateHiddenState = function ( items, selectedItem )
  *
  * @constructor
  * @param {Object} [config] Configuration options
+ * @cfg {boolean} [expanded=true] Expand the layout to fill the entire parent element.
  * @cfg {boolean} [showMenu=true] Show menu
  * @cfg {string} [menuPosition='before'] Position of menu: `top`, `after`, `bottom` or `before`
  */
 OO.ui.MenuLayout = function OoUiMenuLayout( config ) {
 	// Configuration initialization
 	config = $.extend( {
+		expanded: true,
 		showMenu: true,
 		menuPosition: 'before'
 	}, config );
@@ -1601,6 +1603,7 @@ OO.ui.MenuLayout = function OoUiMenuLayout( config ) {
 	// Parent constructor
 	OO.ui.MenuLayout.parent.call( this, config );
 
+	this.expanded = !!config.expanded;
 	/**
 	 * Menu DOM node
 	 *
@@ -1619,8 +1622,12 @@ OO.ui.MenuLayout = function OoUiMenuLayout( config ) {
 		.addClass( 'oo-ui-menuLayout-menu' );
 	this.$content.addClass( 'oo-ui-menuLayout-content' );
 	this.$element
-		.addClass( 'oo-ui-menuLayout' )
-		.append( this.$content, this.$menu );
+		.addClass( 'oo-ui-menuLayout' );
+	if ( config.expanded ) {
+		this.$element.addClass( 'oo-ui-menuLayout-expanded' );
+	} else {
+		this.$element.addClass( 'oo-ui-menuLayout-static' );
+	}
 	this.setMenuPosition( config.menuPosition );
 	this.toggleMenu( config.showMenu );
 };
@@ -1670,6 +1677,11 @@ OO.ui.MenuLayout.prototype.isMenuVisible = function () {
 OO.ui.MenuLayout.prototype.setMenuPosition = function ( position ) {
 	this.$element.removeClass( 'oo-ui-menuLayout-' + this.menuPosition );
 	this.menuPosition = position;
+	if ( this.menuPosition === 'top' || this.menuPosition === 'before' ) {
+		this.$element.append( this.$menu, this.$content );
+	} else {
+		this.$element.append( this.$content, this.$menu );
+	}
 	this.$element.addClass( 'oo-ui-menuLayout-' + position );
 
 	return this;
@@ -1745,7 +1757,10 @@ OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 	this.currentPageName = null;
 	this.pages = {};
 	this.ignoreFocus = false;
-	this.stackLayout = new OO.ui.StackLayout( { continuous: !!config.continuous } );
+	this.stackLayout = new OO.ui.StackLayout( {
+		continuous: !!config.continuous,
+		expanded: this.expanded
+	} );
 	this.$content.append( this.stackLayout.$element );
 	this.autoFocus = config.autoFocus === undefined || !!config.autoFocus;
 	this.outlineVisible = false;
@@ -1754,7 +1769,10 @@ OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 		this.editable = !!config.editable;
 		this.outlineControlsWidget = null;
 		this.outlineSelectWidget = new OO.ui.OutlineSelectWidget();
-		this.outlinePanel = new OO.ui.PanelLayout( { scrollable: true } );
+		this.outlinePanel = new OO.ui.PanelLayout( {
+			expanded: this.expanded,
+			scrollable: true
+		} );
 		this.$menu.append( this.outlinePanel.$element );
 		this.outlineVisible = true;
 		if ( this.editable ) {
@@ -2295,7 +2313,6 @@ OO.ui.BookletLayout.prototype.selectFirstSelectablePage = function () {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {boolean} [continuous=false] Show all tab panels, one after another
- * @cfg {boolean} [expanded=true] Expand the content panel to fill the entire parent element.
  * @cfg {boolean} [autoFocus=true] Focus on the first focusable element when a new tab panel is displayed. Disabled on mobile.
  */
 OO.ui.IndexLayout = function OoUiIndexLayout( config ) {
@@ -2312,13 +2329,15 @@ OO.ui.IndexLayout = function OoUiIndexLayout( config ) {
 	this.ignoreFocus = false;
 	this.stackLayout = new OO.ui.StackLayout( {
 		continuous: !!config.continuous,
-		expanded: config.expanded
+		expanded: this.expanded
 	} );
 	this.$content.append( this.stackLayout.$element );
 	this.autoFocus = config.autoFocus === undefined || !!config.autoFocus;
 
 	this.tabSelectWidget = new OO.ui.TabSelectWidget();
-	this.tabPanel = new OO.ui.PanelLayout();
+	this.tabPanel = new OO.ui.PanelLayout( {
+		expanded: this.expanded
+	} );
 	this.$menu.append( this.tabPanel.$element );
 
 	this.toggleMenu( true );
