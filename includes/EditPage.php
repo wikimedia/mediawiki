@@ -918,7 +918,7 @@ class EditPage {
 				}
 			}
 
-			$this->unicodeCheck = $request->getText( 'wpUnicodeCheck', '<not present>' );
+			$this->unicodeCheck = $request->getText( 'wpUnicodeCheck' );
 
 			$this->summary = $request->getText( 'wpSummary' );
 
@@ -1788,10 +1788,6 @@ class EditPage {
 		}
 
 		if ( $this->unicodeCheck !== self::UNICODE_CHECK ) {
-			wfDebugLog( 'AdHocDebug', "Unicode check failed: value={$this->unicodeCheck}, expected "
-				. self::UNICODE_CHECK
-				. " UA: {$this->getContext()->getRequest()->getHeader( 'User-Agent' )}"
-			);
 			$status->fatal( 'unicode-support-fail' );
 			$status->value = self::AS_UNICODE_NOT_SUPPORTED;
 			return $status;
