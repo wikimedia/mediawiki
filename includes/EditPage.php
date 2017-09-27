@@ -41,11 +41,6 @@ use Wikimedia\ScopedCallback;
  */
 class EditPage {
 	/**
-	 * Used for Unicode support checks
-	 */
-	const UNICODE_CHECK = 'ℳ𝒲♥𝓊𝓃𝒾𝒸ℴ𝒹ℯ';
-
-	/**
 	 * Status: Article successfully updated
 	 */
 	const AS_SUCCESS_UPDATE = 200;
@@ -181,11 +176,6 @@ class EditPage {
 	 * $wgContentHandlerUseDB being false
 	 */
 	const AS_CANNOT_USE_CUSTOM_MODEL = 241;
-
-	/**
-	 * Status: edit rejected because browser doesn't support Unicode.
-	 */
-	const AS_UNICODE_NOT_SUPPORTED = 242;
 
 	/**
 	 * HTML id and name for the beginning of the edit form.
@@ -422,11 +412,6 @@ class EditPage {
 	 * @var bool Whether an old revision is edited
 	 */
 	private $isOldRev = false;
-
-	/**
-	 * @var string|null What the user submitted in the 'wpUnicodeCheck' field
-	 */
-	private $unicodeCheck;
 
 	/**
 	 * @param Article $article
@@ -880,7 +865,7 @@ class EditPage {
 			# These fields need to be checked for encoding.
 			# Also remove trailing whitespace, but don't remove _initial_
 			# whitespace from the text boxes. This may be significant formatting.
-			$this->textbox1 = rtrim( $request->getText( 'wpTextbox1' ) );
+			$this->textbox1 = $this->safeUnicodeInput( $request, 'wpTextbox1' );
 			if ( !$request->getCheck( 'wpTextbox2' ) ) {
 				// Skip this if wpTextbox2 has input, it indicates that we came
 				// from a conflict page with raw page text, not a custom form
@@ -890,8 +875,6 @@ class EditPage {
 					$this->textbox1 = $textbox1;
 				}
 			}
-
-			$this->unicodeCheck = $request->getText( 'wpUnicodeCheck' );
 
 			$this->summary = $request->getText( 'wpSummary' );
 
@@ -1561,7 +1544,6 @@ class EditPage {
 
 			case self::AS_CANNOT_USE_CUSTOM_MODEL:
 			case self::AS_PARSE_ERROR:
-			case self::AS_UNICODE_NOT_SUPPORTED:
 				$out->addWikiText( '<div class="error">' . "\n" . $status->getWikiText() . '</div>' );
 				return true;
 
@@ -1760,12 +1742,6 @@ class EditPage {
 			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving\n" );
 			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR;
-			return $status;
-		}
-
-		if ( $this->unicodeCheck !== self::UNICODE_CHECK ) {
-			$status->fatal( 'unicode-support-fail' );
-			$status->value = self::AS_UNICODE_NOT_SUPPORTED;
 			return $status;
 		}
 
@@ -2697,9 +2673,6 @@ class EditPage {
 			call_user_func_array( $formCallback, [ &$out ] );
 		}
 
-		// Add a check for Unicode support
-		$out->addHTML( Html::hidden( 'wpUnicodeCheck', self::UNICODE_CHECK ) );
-
 		// Add an empty field to trip up spambots
 		$out->addHTML(
 			Xml::openElement( 'div', [ 'id' => 'antispam-container', 'style' => 'display: none;' ] )
@@ -2974,6 +2947,10 @@ class EditPage {
 				$out->addWikiText( $this->hookError );
 			}
 
+			if ( !$this->checkUnicodeCompliantBrowser() ) {
+				$out->addWikiMsg( 'nonunicodebrowser' );
+			}
+
 			if ( $this->section != 'new' ) {
 				$revision = $this->mArticle->getRevisionFetched();
 				if ( $revision ) {
@@ -3244,6 +3221,10 @@ class EditPage {
 		$out->addHTML( Html::hidden( 'wpEdittime', $this->edittime ) );
 		$out->addHTML( Html::hidden( 'editRevId', $this->editRevId ) );
 		$out->addHTML( Html::hidden( 'wpScrolltop', $this->scrolltop, [ 'id' => 'wpScrolltop' ] ) );
+
+		if ( !$this->checkUnicodeCompliantBrowser() ) {
+			$out->addHTML( Html::hidden( 'safemode', '1' ) );
+		}
 	}
 
 	protected function showFormAfterText() {
@@ -3337,7 +3318,8 @@ class EditPage {
 	}
 
 	protected function showTextbox( $text, $name, $customAttribs = [] ) {
-		$wikitext = $this->addNewLineAtEnd( $text );
+		$wikitext = $this->safeUnicodeOutput( $text );
+		$wikitext = $this->addNewLineAtEnd( $wikitext );
 
 		$attribs = $this->buildTextboxAttribs( $name, $customAttribs, $this->context->getUser() );
 
@@ -4480,30 +4462,137 @@ class EditPage {
 	}
 
 	/**
+	 * Check if the browser is on a blacklist of user-agents known to
+	 * mangle UTF-8 data on form submission. Returns true if Unicode
+	 * should make it through, false if it's known to be a problem.
+	 * @return bool
+	 */
+	private function checkUnicodeCompliantBrowser() {
+		global $wgBrowserBlackList;
+
+		$currentbrowser = $this->context->getRequest()->getHeader( 'User-Agent' );
+		if ( $currentbrowser === false ) {
+			// No User-Agent header sent? Trust it by default...
+			return true;
+		}
+
+		foreach ( $wgBrowserBlackList as $browser ) {
+			if ( preg_match( $browser, $currentbrowser ) ) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
 	 * Filter an input field through a Unicode de-armoring process if it
 	 * came from an old browser with known broken Unicode editing issues.
-	 *
-	 * @deprecated since 1.30, does nothing
 	 *
 	 * @param WebRequest $request
 	 * @param string $field
 	 * @return string
 	 */
 	protected function safeUnicodeInput( $request, $field ) {
-		return rtrim( $request->getText( $field ) );
+		$text = rtrim( $request->getText( $field ) );
+		return $request->getBool( 'safemode' )
+			? $this->unmakeSafe( $text )
+			: $text;
 	}
 
 	/**
 	 * Filter an output field through a Unicode armoring process if it is
 	 * going to an old browser with known broken Unicode editing issues.
 	 *
-	 * @deprecated since 1.30, does nothing
-	 *
 	 * @param string $text
 	 * @return string
 	 */
 	protected function safeUnicodeOutput( $text ) {
-		return $text;
+		return $this->checkUnicodeCompliantBrowser()
+			? $text
+			: $this->makeSafe( $text );
+	}
+
+	/**
+	 * A number of web browsers are known to corrupt non-ASCII characters
+	 * in a UTF-8 text editing environment. To protect against this,
+	 * detected browsers will be served an armored version of the text,
+	 * with non-ASCII chars converted to numeric HTML character references.
+	 *
+	 * Preexisting such character references will have a 0 added to them
+	 * to ensure that round-trips do not alter the original data.
+	 *
+	 * @param string $invalue
+	 * @return string
+	 */
+	private function makeSafe( $invalue ) {
+		// Armor existing references for reversibility.
+		$invalue = strtr( $invalue, [ "&#x" => "&#x0" ] );
+
+		$bytesleft = 0;
+		$result = "";
+		$working = 0;
+		$valueLength = strlen( $invalue );
+		for ( $i = 0; $i < $valueLength; $i++ ) {
+			$bytevalue = ord( $invalue[$i] );
+			if ( $bytevalue <= 0x7F ) { // 0xxx xxxx
+				$result .= chr( $bytevalue );
+				$bytesleft = 0;
+			} elseif ( $bytevalue <= 0xBF ) { // 10xx xxxx
+				$working = $working << 6;
+				$working += ( $bytevalue & 0x3F );
+				$bytesleft--;
+				if ( $bytesleft <= 0 ) {
+					$result .= "&#x" . strtoupper( dechex( $working ) ) . ";";
+				}
+			} elseif ( $bytevalue <= 0xDF ) { // 110x xxxx
+				$working = $bytevalue & 0x1F;
+				$bytesleft = 1;
+			} elseif ( $bytevalue <= 0xEF ) { // 1110 xxxx
+				$working = $bytevalue & 0x0F;
+				$bytesleft = 2;
+			} else { // 1111 0xxx
+				$working = $bytevalue & 0x07;
+				$bytesleft = 3;
+			}
+		}
+		return $result;
+	}
+
+	/**
+	 * Reverse the previously applied transliteration of non-ASCII characters
+	 * back to UTF-8. Used to protect data from corruption by broken web browsers
+	 * as listed in $wgBrowserBlackList.
+	 *
+	 * @param string $invalue
+	 * @return string
+	 */
+	private function unmakeSafe( $invalue ) {
+		$result = "";
+		$valueLength = strlen( $invalue );
+		for ( $i = 0; $i < $valueLength; $i++ ) {
+			if ( ( substr( $invalue, $i, 3 ) == "&#x" ) && ( $invalue[$i + 3] != '0' ) ) {
+				$i += 3;
+				$hexstring = "";
+				do {
+					$hexstring .= $invalue[$i];
+					$i++;
+				} while ( ctype_xdigit( $invalue[$i] ) && ( $i < strlen( $invalue ) ) );
+
+				// Do some sanity checks. These aren't needed for reversibility,
+				// but should help keep the breakage down if the editor
+				// breaks one of the entities whilst editing.
+				if ( ( substr( $invalue, $i, 1 ) == ";" ) && ( strlen( $hexstring ) <= 6 ) ) {
+					$codepoint = hexdec( $hexstring );
+					$result .= UtfNormal\Utils::codepointToUtf8( $codepoint );
+				} else {
+					$result .= "&#x" . $hexstring . substr( $invalue, $i, 1 );
+				}
+			} else {
+				$result .= substr( $invalue, $i, 1 );
+			}
+		}
+		// reverse the transform that we made for reversibility reasons.
+		return strtr( $result, [ "&#x0" => "&#x" ] );
 	}
 
 	/**
