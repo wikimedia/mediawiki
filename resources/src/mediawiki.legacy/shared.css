@@ -113,12 +113,14 @@ span.comment {
 /* Edit font preference */
 /* TODO: for 'default' on non-textareas we could compute the default font of textarea in the client */
 .mw-editfont-default:not( textarea ) {
-	font-family: monospace;
+	/* Support: Blink, Gecko, Webkit; enable unified font sizes for monospace font. T176636 */
+	font-family: monospace, monospace;
 }
 
 /* Keep this rule separate from the :not rule above so it still works in older browsers */
 .mw-editfont-monospace {
-	font-family: monospace;
+	/* Support: Blink, Gecko, Webkit; enable unified font sizes for monospace font. T176636 */
+	font-family: monospace, monospace;
 }
 
 .mw-editfont-sans-serif {
