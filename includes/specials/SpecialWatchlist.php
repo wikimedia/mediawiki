@@ -248,6 +248,22 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$hideLiu = $registration->getFilter( 'hideliu' );
 		$hideLiu->setDefault( $user->getBoolOption( 'watchlisthideliu' ) );
 
+		// Selecting both hideanons and hideliu on watchlist preferances
+		// gives mutually exclusive filters, so those are ignored
+		if ( $user->getBoolOption( 'watchlisthideanons' ) &&
+			!$user->getBoolOption( 'watchlisthideliu' )
+		) {
+			$this->getFilterGroup( 'userExpLevel' )
+				->setDefault( 'registered' );
+		}
+
+		if ( $user->getBoolOption( 'watchlisthideliu' ) &&
+			!$user->getBoolOption( 'watchlisthideanons' )
+		) {
+			$this->getFilterGroup( 'userExpLevel' )
+				->setDefault( 'unregistered' );
+		}
+
 		$reviewStatus = $this->getFilterGroup( 'reviewStatus' );
 		if ( $reviewStatus !== null ) {
 			// Conditional on feature being available and rights
