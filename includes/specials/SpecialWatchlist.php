@@ -608,11 +608,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 
 		$lang = $this->getLanguage();
-		if ( $opts['days'] > 0 ) {
-			$days = $opts['days'];
-		} else {
-			$days = $this->maxDays;
-		}
 		$timestamp = wfTimestampNow();
 		$wlInfo = Html::rawElement(
 			'span',
@@ -620,7 +615,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				'class' => 'wlinfo',
 				'data-params' => json_encode( [ 'from' => $timestamp ] ),
 			],
-			$this->msg( 'wlnote' )->numParams( $numRows, round( $days * 24 ) )->params(
+			$this->msg( 'wlnote' )->numParams( $numRows, round( $opts['days'] * 24 ) )->params(
 				$lang->userDate( $timestamp, $user ), $lang->userTime( $timestamp, $user )
 			)->parse()
 		) . "<br />\n";
