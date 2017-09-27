@@ -25,6 +25,7 @@
  */
 
 require_once __DIR__ . '/Maintenance.php';
+require_once __DIR__ . '/../includes/export/DumpFilter.php';
 
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\IDatabase;
