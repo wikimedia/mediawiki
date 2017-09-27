@@ -5,7 +5,7 @@ use Wikimedia\TestingAccessWrapper;
 class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 	/** @var WANObjectCache */
 	private $cache;
-	/**@var BagOStuff */
+	/** @var BagOStuff */
 	private $internalCache;
 
 	protected function setUp() {
@@ -260,9 +260,19 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * @covers WANObjectCache::getWithSetCallback()
+	 * @covers WANObjectCache::doGetWithSetCallback()
+	 */
+	public function testGetWithSetCallback_invalidCallback() {
+		$this->setExpectedException( InvalidArgumentException::class );
+		$this->cache->getWithSetCallback( 'key', 30, 'invalid callback' );
+	}
+
+	/**
 	 * @dataProvider getMultiWithSetCallback_provider
 	 * @covers WANObjectCache::getMultiWithSetCallback()
 	 * @covers WANObjectCache::makeMultiKeys()
+	 * @covers WANObjectCache::getMulti()
 	 * @param array $extOpts
 	 * @param bool $versioned
 	 */
@@ -618,6 +628,7 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @covers WANObjectCache::getWithSetCallback()
 	 * @covers WANObjectCache::doGetWithSetCallback()
+	 * @covers WANObjectCache::set()
 	 */
 	public function testLockTSESlow() {
 		$cache = $this->cache;
@@ -911,6 +922,8 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider getWithSetCallback_versions_provider
+	 * @covers WANObjectCache::getWithSetCallback()
+	 * @covers WANObjectCache::doGetWithSetCallback()
 	 * @param array $extOpts
 	 * @param bool $versioned
 	 */
@@ -1098,6 +1111,34 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 		$this->cache->reapCheckKey( $tKey2, $knownPurge, $tBad2 );
 		$this->assertFalse( $tBad1 );
 		$this->assertTrue( $tBad2 );
+	}
+
+	/**
+	 * @covers WANObjectCache::reap()
+	 */
+	public function testReap_fail() {
+		$backend = $this->getMockBuilder( EmptyBagOStuff::class )
+			->setMethods( [ 'get', 'changeTTL' ] )->getMock();
+		$backend->expects( $this->once() )->method( 'get' )
+			->willReturn( [
+				WANObjectCache::FLD_VERSION => WANObjectCache::VERSION,
+				WANObjectCache::FLD_VALUE => 'value',
+				WANObjectCache::FLD_TTL => 3600,
+				WANObjectCache::FLD_TIME => 300,
+			] );
+		$backend->expects( $this->once() )->method( 'changeTTL' )
+			->willReturn( false );
+
+		$wanCache = new WANObjectCache( [
+			'cache' => $backend,
+			'pool' => 'testcache-hash',
+			'relayer' => new EventRelayerNull( [] )
+		] );
+
+		$isStale = null;
+		$ret = $wanCache->reap( 'key', 360, $isStale );
+		$this->assertTrue( $isStale, 'value was stale' );
+		$this->assertFalse( $ret, 'changeTTL failed' );
 	}
 
 	/**
