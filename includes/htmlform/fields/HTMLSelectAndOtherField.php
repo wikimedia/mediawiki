@@ -72,11 +72,10 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 
 		# TextInput
 		$textAttribs = [
-			'id' => $this->mID . '-other',
 			'name' => $this->mName . '-other',
 			'size' => $this->getSize(),
 			'class' => [ 'mw-htmlform-select-and-other-field' ],
-			'data-id-select' => $this->mID,
+			'data-id-select' => $this->mID . '-select',
 			'value' => $value[2],
 		];
 
@@ -100,7 +99,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		# DropdownInput
 		$dropdownInputAttribs = [
 			'name' => $this->mName,
-			'id' => $this->mID,
+			'id' => $this->mID . '-select',
 			'options' => $this->getOptionsOOUI(),
 			'value' => $value[1],
 		];
@@ -119,6 +118,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		}
 
 		return $this->getInputWidget( [
+			'id' => $this->mID,
 			'textinput' => $textAttribs,
 			'dropdowninput' => $dropdownInputAttribs,
 			'or' => false,

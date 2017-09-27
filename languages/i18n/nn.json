@@ -1187,6 +1187,7 @@
 	"rcfilters-filter-watchlist-watchednew-description": "Endringar på sider du overvakar som du ikkje har vitja sidan endringane vart gjorde.",
 	"rcfilters-filter-watchlist-notwatched-label": "Ikkje på overvakingslista",
 	"rcfilters-filter-watchlist-notwatched-description": "Alt utanom endringar på sider du overvakar.",
+	"rcfilters-filtergroup-watchlistactivity": "Overvakingsliste",
 	"rcfilters-filter-watchlistactivity-unseen-label": "Usette endringar",
 	"rcfilters-filter-watchlistactivity-unseen-description": "Endringar på sider du ikkje har vitja sidan endringane vart gjorde.",
 	"rcfilters-filter-watchlistactivity-seen-label": "Sette endringar",

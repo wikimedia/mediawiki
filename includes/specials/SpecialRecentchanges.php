@@ -164,10 +164,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			true
 		);
 		parent::execute( $subpage );
-
-		if ( $this->isStructuredFilterUiEnabled() ) {
-			$out->addJsConfigVars( 'wgStructuredChangeFiltersLiveUpdateSupported', true );
-		}
 	}
 
 	/**
@@ -232,10 +228,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	public function getDefaultOptions() {
 		$opts = parent::getDefaultOptions();
 
-		$opts->add( 'days', $this->getDefaultDays(), FormOptions::FLOAT );
-		$opts->add( 'limit', $this->getDefaultLimit() );
-		$opts->add( 'from', '' );
-
 		$opts->add( 'categories', '' );
 		$opts->add( 'categories_any', false );
 
@@ -285,36 +277,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				$opts['tagfilter'] = $m[1];
 			}
 		}
-	}
-
-	public function validateOptions( FormOptions $opts ) {
-		$opts->validateIntBounds( 'limit', 0, 5000 );
-		$opts->validateBounds( 'days', 0, $this->getConfig()->get( 'RCMaxAge' ) / ( 3600 * 24 ) );
-		parent::validateOptions( $opts );
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	protected function buildQuery( &$tables, &$fields, &$conds,
-		&$query_options, &$join_conds, FormOptions $opts
-	) {
-		$dbr = $this->getDB();
-		parent::buildQuery( $tables, $fields, $conds,
-			$query_options, $join_conds, $opts );
-
-		// Calculate cutoff
-		$cutoff_unixtime = time() - $opts['days'] * 3600 * 24;
-		$cutoff = $dbr->timestamp( $cutoff_unixtime );
-
-		$fromValid = preg_match( '/^[0-9]{14}$/', $opts['from'] );
-		if ( $fromValid && $opts['from'] > wfTimestamp( TS_MW, $cutoff ) ) {
-			$cutoff = $dbr->timestamp( $opts['from'] );
-		} else {
-			$opts->reset( 'from' );
-		}
-
-		$conds[] = 'rc_timestamp >= ' . $dbr->addQuotes( $cutoff );
 	}
 
 	/**
@@ -658,7 +620,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			if ( $this->isStructuredFilterUiEnabled() ) {
 				// Check whether the widget is already collapsed or expanded
 				$collapsedState = $this->getRequest()->getCookie( 'rcfilters-toplinks-collapsed-state' );
-				$collapsedClass = $collapsedState === 'collapsed' ? 'mw-rcfilters-toplinks-collapsed' : '';
+				// Note that an empty/unset cookie means collapsed, so check for !== 'expanded'
+				$collapsedClass = $collapsedState !== 'expanded' ? 'mw-rcfilters-toplinks-collapsed' : '';
 
 				$contentTitle = Html::rawElement( 'div',
 					[ 'class' => 'mw-recentchanges-toplinks-title ' . $collapsedClass ],

@@ -66,6 +66,7 @@
 	"config-admin-email": "בליצפּאָסט אַדרעס:",
 	"config-install-tables": "שאפן טאבעלעס",
 	"config-install-tables-exist": "'''ווארענונג''': זעט אויס אז די מעדיעוויקי טאבעלעס עקזיסטירן שוין.\nאיבערהיפן שאפֿן.",
+	"config-install-stats": "סטאַטיסטיק ווערן איניציאַליזירט",
 	"config-install-mainpage-failed": "מ'האט נישט געקענט אריינגעבן הויפטבלאט: $1",
 	"config-download-localsettings": "אראפלאדן <code>LocalSettings.php</code>",
 	"config-help": "הילף",

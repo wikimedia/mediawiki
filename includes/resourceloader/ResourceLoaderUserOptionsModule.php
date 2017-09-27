@@ -65,6 +65,14 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * @param ResourceLoaderContext $context
+	 * @return bool
+	 */
+	public function isKnownEmpty( ResourceLoaderContext $context ) {
+		return !$context->getUserObj()->getOptions( User::GETOPTIONS_EXCLUDE_DEFAULTS );
+	}
+
+	/**
 	 * @return string
 	 */
 	public function getGroup() {

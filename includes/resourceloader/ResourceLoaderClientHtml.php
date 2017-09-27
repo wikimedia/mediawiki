@@ -149,6 +149,13 @@ class ResourceLoaderClientHtml {
 				continue;
 			}
 
+			$context = $this->getContext( $module->getGroup(), ResourceLoaderModule::TYPE_COMBINED );
+			if ( $module->isKnownEmpty( $context ) ) {
+				// Avoid needless request or embed for empty module
+				$data['states'][$name] = 'ready';
+				continue;
+			}
+
 			if ( $module->shouldEmbedModule( $this->context ) ) {
 				// Embed via mw.loader.implement per T36907.
 				$data['embed']['general'][] = $name;

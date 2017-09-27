@@ -334,7 +334,7 @@ class ImportImages extends Maintenance {
 					$commentText,
 					$props,
 					$timestamp
-				) ) {
+				)->isOK() ) {
 					# We're done!
 					$this->output( "done.\n" );
 

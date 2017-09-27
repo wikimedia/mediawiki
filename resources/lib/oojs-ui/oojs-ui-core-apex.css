@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.23.1
+ * OOjs UI v0.23.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-09-20T00:32:00Z
+ * Date: 2017-09-26T20:18:47Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -136,11 +136,9 @@
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-indicatorElement:not( .oo-ui-iconElement ):not( .oo-ui-labelElement ) > .oo-ui-buttonElement-button:focus:active {
   box-shadow: none;
 }
+.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button > .oo-ui-labelElement-label,
 .oo-ui-buttonElement-frameless.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
   color: #087ecc;
-}
-.oo-ui-buttonElement-frameless.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
-  color: #76ab36;
 }
 .oo-ui-buttonElement-frameless.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
   color: #d45353;
@@ -213,6 +211,7 @@
   margin-left: 0.46875em;
   margin-right: -0.275em;
 }
+.oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button {
   border: 1px solid #a6cee1;
   background-color: #cde7f4;
@@ -222,11 +221,15 @@
   background-image: linear-gradient(to bottom, #eaf4fa 0, #b0d9ee 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeaf4fa', endColorstr='#ffb0d9ee' )";
 }
+.oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button:hover,
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:hover {
   border-color: #9dc2d4;
 }
+.oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active,
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-progressive.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active,
+.oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-progressive.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
+.oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-progressive.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
   border: 1px solid #a6cee1;
   background-color: #cde7f4;
@@ -235,29 +238,6 @@
   background-image: -moz-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
   background-image: linear-gradient(to bottom, #b0d9ee 0, #eaf4fa 100%);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb0d9ee', endColorstr='#ffeaf4fa' )";
-}
-.oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button {
-  border: 1px solid #b8d892;
-  background-color: #daf0bd;
-  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #f0fbe1), color-stop(100%, #c3e59a));
-  background-image: -webkit-linear-gradient(top, #f0fbe1 0, #c3e59a 100%);
-  background-image: -moz-linear-gradient(top, #f0fbe1 0, #c3e59a 100%);
-  background-image: linear-gradient(to bottom, #f0fbe1 0, #c3e59a 100%);
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff0fbe1', endColorstr='#ffc3e59a' )";
-}
-.oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button:hover {
-  border-color: #adcb89;
-}
-.oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active,
-.oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
-.oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
-  border: 1px solid #b8d892;
-  background-color: #daf0bd;
-  background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0, #c3e59a), color-stop(100%, #f0fbe1));
-  background-image: -webkit-linear-gradient(top, #c3e59a 0, #f0fbe1 100%);
-  background-image: -moz-linear-gradient(top, #c3e59a 0, #f0fbe1 100%);
-  background-image: linear-gradient(to bottom, #c3e59a 0, #f0fbe1 100%);
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffc3e59a', endColorstr='#fff0fbe1' )";
 }
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button {
   color: #d45353;
@@ -571,7 +551,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-optionWidget {
   position: relative;
   display: block;
-  padding: 0.25em 0.5em;
   border: 0;
 }
 .oo-ui-optionWidget.oo-ui-widget-enabled {
@@ -628,8 +607,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-radioOptionWidget {
   display: table;
   width: 100%;
-  padding: 0;
-  background-color: transparent;
+  padding: 0.3125em 0;
 }
 .oo-ui-radioOptionWidget .oo-ui-radioInputWidget,
 .oo-ui-radioOptionWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
@@ -642,9 +620,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-radioOptionWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
   white-space: normal;
 }
-.oo-ui-radioOptionWidget.oo-ui-optionWidget-selected,
-.oo-ui-radioOptionWidget.oo-ui-optionWidget-pressed,
-.oo-ui-radioOptionWidget.oo-ui-optionWidget-highlighted {
+.oo-ui-radioOptionWidget.oo-ui-optionWidget-selected {
   background-color: transparent;
 }
 .oo-ui-radioOptionWidget.oo-ui-labelElement .oo-ui-labelElement-label {
@@ -924,6 +900,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-checkboxMultiselectInputWidget .oo-ui-fieldLayout {
   margin-bottom: 0;
 }
+.oo-ui-checkboxMultiselectInputWidget .oo-ui-fieldLayout .oo-ui-fieldLayout-body {
+  padding: 0.3125em 0;
+}
 .oo-ui-dropdownInputWidget {
   position: relative;
   vertical-align: middle;
@@ -979,6 +958,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-radioSelectInputWidget .oo-ui-fieldLayout {
   margin-bottom: 0;
 }
+.oo-ui-radioSelectInputWidget .oo-ui-fieldLayout .oo-ui-fieldLayout-body {
+  padding: 0.3125em 0;
+}
 .oo-ui-textInputWidget {
   position: relative;
   vertical-align: middle;
@@ -1029,11 +1011,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   position: absolute;
   top: 0;
   height: 100%;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-iconElement-icon,
 .oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-indicatorElement-indicator {
@@ -1042,9 +1019,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-textInputWidget-type-search > .oo-ui-indicatorElement-indicator {
   cursor: pointer;
 }
-.oo-ui-textInputWidget.oo-ui-widget-disabled input,
-.oo-ui-textInputWidget.oo-ui-widget-disabled textarea,
-.oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-labelElement-label {
+.oo-ui-textInputWidget.oo-ui-widget-disabled > * {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -1293,7 +1268,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-color: #ddd;
   background-color: #f3f3f3;
 }
-.oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-indicatorElement-indicator {
+.oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-dropdownWidget-handle .oo-ui-indicatorElement-indicator {
   opacity: 0.2;
 }
 .oo-ui-dropdownWidget.oo-ui-iconElement .oo-ui-dropdownWidget-handle .oo-ui-labelElement-label {
@@ -1397,7 +1372,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-checkboxMultioptionWidget {
   display: table;
   width: 100%;
-  padding: 0;
+  padding: 0.3125em 0;
 }
 .oo-ui-checkboxMultioptionWidget .oo-ui-checkboxInputWidget,
 .oo-ui-checkboxMultioptionWidget.oo-ui-labelElement > .oo-ui-labelElement-label {

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.23.1
+ * OOjs UI v0.23.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-09-20T00:31:56Z
+ * Date: 2017-09-26T20:18:42Z
  */
 ( function ( OO ) {
 
@@ -2953,12 +2953,25 @@ OO.ui.mixin.LabelElement.static.label = null;
  *
  * @param {string} text Text
  * @param {string} query Query to find
+ * @param {Function} [compare] Optional string comparator, e.g. Intl.Collator().compare
  * @return {jQuery} Text with the first match of the query
  *  sub-string wrapped in highlighted span
  */
-OO.ui.mixin.LabelElement.static.highlightQuery = function ( text, query ) {
-	var $result = $( '<span>' ),
+OO.ui.mixin.LabelElement.static.highlightQuery = function ( text, query, compare ) {
+	var i, offset, tLen, qLen,
+		$result = $( '<span>' );
+
+	if ( compare ) {
+		tLen = text.length;
+		qLen = query.length;
+		for ( i = 0; offset === undefined && i <= tLen - qLen; i++ ) {
+			if ( compare( query, text.slice( i, i + qLen ) ) === 0 ) {
+				offset = i;
+			}
+		}
+	} else {
 		offset = text.toLowerCase().indexOf( query.toLowerCase() );
+	}
 
 	if ( !query.length || offset === -1 ) {
 		return $result.text( text );
@@ -3023,10 +3036,11 @@ OO.ui.mixin.LabelElement.prototype.setLabel = function ( label ) {
  *
  * @param {string} text Text label to set
  * @param {string} query Substring of text to highlight
+ * @param {Function} [compare] Optional string comparator, e.g. Intl.Collator().compare
  * @chainable
  */
-OO.ui.mixin.LabelElement.prototype.setHighlightedQuery = function ( text, query ) {
-	return this.setLabel( this.constructor.static.highlightQuery( text, query ) );
+OO.ui.mixin.LabelElement.prototype.setHighlightedQuery = function ( text, query, compare ) {
+	return this.setLabel( this.constructor.static.highlightQuery( text, query, compare ) );
 };
 
 /**
@@ -3076,25 +3090,21 @@ OO.ui.mixin.LabelElement.prototype.setLabelContent = function ( label ) {
  *
  * - **progressive**:  Progressive styling is applied to convey that the widget will move the user forward in a process.
  * - **destructive**: Destructive styling is applied to convey that the widget will remove something.
- * - **constructive**: Constructive styling is applied to convey that the widget will create something.
+ * - **constructive**: Constructive styling is deprecated since v0.23.2 and equivalent to progressive.
  *
  * The flags affect the appearance of the buttons:
  *
  *     @example
  *     // FlaggedElement is mixed into ButtonWidget to provide styling flags
  *     var button1 = new OO.ui.ButtonWidget( {
- *         label: 'Constructive',
- *         flags: 'constructive'
+ *         label: 'Progressive',
+ *         flags: 'progressive'
  *     } );
  *     var button2 = new OO.ui.ButtonWidget( {
  *         label: 'Destructive',
  *         flags: 'destructive'
  *     } );
- *     var button3 = new OO.ui.ButtonWidget( {
- *         label: 'Progressive',
- *         flags: 'progressive'
- *     } );
- *     $( 'body' ).append( button1.$element, button2.$element, button3.$element );
+ *     $( 'body' ).append( button1.$element, button2.$element );
  *
  * {@link OO.ui.ActionWidget ActionWidgets}, which are a special kind of button that execute an action, use these flags: **primary** and **safe**.
  * Please see the [OOjs UI documentation on MediaWiki] [1] for more information.
@@ -3106,7 +3116,7 @@ OO.ui.mixin.LabelElement.prototype.setLabelContent = function ( label ) {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {string|string[]} [flags] The name or names of the flags (e.g., 'constructive' or 'primary') to apply.
+ * @cfg {string|string[]} [flags] The name or names of the flags (e.g., 'progressive' or 'primary') to apply.
  *  Please see the [OOjs UI documentation on MediaWiki] [2] for more information about available flags.
  *  [2]: https://www.mediawiki.org/wiki/OOjs_UI/Elements/Flagged
  * @cfg {jQuery} [$flagged] The flagged element. By default,

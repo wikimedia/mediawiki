@@ -33,7 +33,8 @@
 			"Matma Rex",
 			"Dejavu",
 			"Jdforrester",
-			"Pierpao"
+			"Pierpao",
+			"KATMAKROFAN"
 		]
 	},
 	"tog-underline": "Link underlining:",
@@ -566,6 +567,7 @@
 	"bold_sample": "Bold text",
 	"italic_sample": "Italic text",
 	"savearticle": "Save page",
+	"anonpreviewwarning": "<em>You are not logged in. Saving will record your IP address in this page's edit history.</em>",
 	"blockedtext": "<strong>Your username or IP address has been blocked.</strong>\n\nThe block was made by $1.\nThe reason given is <em>$2</em>.\n\n* Start of block: $8\n* Expiry of block: $6\n* Intended blockee: $7\n\nYou can contact $1 or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the block.\nYou cannot use the \"email this user\" feature unless a valid email address is specified in your [[Special:Preferences|account preferences]] and you have not been blocked from using it.\nYour current IP address is $3, and the block ID is #$5.\nPlease include all above details in any queries you make.",
 	"autoblockedtext": "Your IP address has been automatically blocked because it was used by another user, who was blocked by $1.\nThe reason given is:\n\n:<em>$2</em>\n\n* Start of block: $8\n* Expiry of block: $6\n* Intended blockee: $7\n\nYou may contact $1 or one of the other [[{{MediaWiki:Grouppage-sysop}}|administrators]] to discuss the block.\n\nNote that you may not use the \"email this user\" feature unless you have a valid email address registered in your [[Special:Preferences|user preferences]] and you have not been blocked from using it.\n\nYour current IP address is $3, and the block ID is #$5.\nPlease include all above details in any queries you make.",
 	"loginreqlink": "log in",
