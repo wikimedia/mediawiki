@@ -1054,13 +1054,14 @@ class ApiMain extends ApiBase {
 			if ( ( $e instanceof DBQueryError ) && !$config->get( 'ShowSQLErrors' ) ) {
 				$params = [ 'apierror-databaseerror', WebRequest::getRequestId() ];
 			} else {
-				$params = [
-					'apierror-exceptioncaught',
-					WebRequest::getRequestId(),
-					$e instanceof ILocalizedException
-						? $e->getMessageObject()
-						: wfEscapeWikiText( $e->getMessage() )
-				];
+				if ( $e instanceof ILocalizedException ) {
+					$msg = $e->getMessageObject();
+				} elseif ( $e instanceof MessageSpecifier ) {
+					$msg = Message::newFromSpecifier( $e );
+				} else {
+					$msg = wfEscapeWikiText( $e->getMessage() );
+				}
+				$params = [ 'apierror-exceptioncaught', WebRequest::getRequestId(), $msg ];
 			}
 			$messages[] = ApiMessage::create( $params, $code );
 		}
