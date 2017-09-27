@@ -6,6 +6,10 @@
 	path = extensions/Wikidata
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Wikidata
 	branch = wmf/1.30.0-wmf.19
+[submodule "extensions/3D"]
+	path = extensions/3D
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/3D
+	branch = wmf/1.30.0-wmf.19
 [submodule "extensions/AbuseFilter"]
 	path = extensions/AbuseFilter
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/AbuseFilter
