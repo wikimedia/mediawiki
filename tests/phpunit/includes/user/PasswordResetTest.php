@@ -152,7 +152,7 @@ class PasswordResetTest extends MediaWikiTestCase {
 
 		// Unregister the hooks for proper unit testing
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
-			'mailPasswordInternal' => [],
+			'User::mailPasswordInternal' => [],
 			'SpecialPasswordResetOnSubmit' => [],
 		] );
 
