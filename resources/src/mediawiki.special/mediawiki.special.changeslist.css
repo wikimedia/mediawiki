@@ -39,3 +39,8 @@
 	unicode-bidi: -moz-isolate;
 	unicode-bidi: isolate;
 }
+
+/* Prevent FOUC if legend is initially collapsed */
+.mw-changeslist-legend.mw-collapsed .mw-collapsible-content {
+	display: none;
+}
