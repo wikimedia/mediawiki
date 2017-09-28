@@ -2407,6 +2407,37 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			);
 		}
 
+		return $this->nonNativeInsertSelect(
+			$destTable,
+			$srcTable,
+			$varMap,
+			$conds,
+			$fname,
+			$insertOptions,
+			$selectOptions,
+			$selectJoinConds
+		);
+	}
+
+	/**
+	 * Implementation of insertSelect() based on select() and insert()
+	 *
+	 * @see IDatabase::insertSelect()
+	 * @since 1.30
+	 * @param string $destTable
+	 * @param string|array $srcTable
+	 * @param array $varMap
+	 * @param array $conds
+	 * @param string $fname
+	 * @param array $insertOptions
+	 * @param array $selectOptions
+	 * @param array $selectJoinConds
+	 * @return bool
+	 */
+	protected function nonNativeInsertSelect( $destTable, $srcTable, $varMap, $conds,
+		$fname = __METHOD__,
+		$insertOptions = [], $selectOptions = [], $selectJoinConds = []
+	) {
 		// For web requests, do a locking SELECT and then INSERT. This puts the SELECT burden
 		// on only the master (without needing row-based-replication). It also makes it easy to
 		// know how big the INSERT is going to be.
