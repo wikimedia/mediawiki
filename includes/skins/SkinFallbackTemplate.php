@@ -96,12 +96,9 @@ class SkinFallbackTemplate extends BaseTemplate {
 	 * warning message and page content.
 	 */
 	public function execute() {
-		$this->html( 'headelement' ) ?>
-
-		<div class="warningbox">
-			<?php echo $this->buildHelpfulInformationMessage() ?>
-		</div>
-
+		$this->html( 'headelement' );
+		echo Html::warningBox( $this->buildHelpfulInformationMessage() );
+	?>
 		<form action="<?php $this->text( 'wgScript' ) ?>">
 			<input type="hidden" name="title" value="<?php $this->text( 'searchtitle' ) ?>" />
 			<h3><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h3>
