@@ -74,7 +74,7 @@ class SpecialResetTokens extends FormSpecialPage {
 
 	public function onSuccess() {
 		$this->getOutput()->wrapWikiMsg(
-			"<div class='successbox'>\n$1\n</div>",
+			Html::successBox( '$1' ),
 			'resettokens-done'
 		);
 	}
