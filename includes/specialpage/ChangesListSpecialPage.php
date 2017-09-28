@@ -1467,8 +1467,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$context->msg( 'recentchanges-legend-heading' )->parse();
 
 		# Collapsible
+		$collapsedState = $this->getRequest()->getCookie( 'changeslist-state' );
+		$collapsedClass = $collapsedState === 'collapsed' ? ' mw-collapsed' : '';
 		$legend =
-			'<div class="mw-changeslist-legend">' .
+			'<div class="mw-changeslist-legend mw-collapsible' . $collapsedClass . '">' .
 				$legendHeading .
 				'<div class="mw-collapsible-content">' . $legend . '</div>' .
 			'</div>';
