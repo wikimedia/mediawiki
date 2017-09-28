@@ -125,11 +125,8 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	 * @return array Options for inclusion in a select or whatever.
 	 */
 	public function getOptionsOOUI() {
-		$options = parent::getOptionsOOUI();
-		foreach ( $options as &$option ) {
-			$option['disabled'] = in_array( $option['data'], $this->mParams['disabled-options'], true );
-		}
-		return $options;
+		// Sections make this difficult. See getInputOOUI().
+		throw new MWException( 'HTMLMultiSelectField#getOptionsOOUI() is not supported' );
 	}
 
 	/**
@@ -142,28 +139,62 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	public function getInputOOUI( $value ) {
 		$this->mParent->getOutput()->addModules( 'oojs-ui-widgets' );
 
-		$attr = [];
-		$attr['id'] = $this->mID;
-		$attr['name'] = "{$this->mName}[]";
+		$optionsOouiSections = [];
+		$options = $this->getOptions();
+		// If the options are supposed to be split into sections, each section becomes a separate
+		// CheckboxMultiselectInputWidget.
+		foreach ( $options as $label => $section ) {
+			if ( is_array( $section ) ) {
+				$optionsOouiSections[ $label ] = Xml::listDropDownOptionsOoui( $section );
+				unset( $options[$label] );
+			}
+		}
+		// If anything remains in the array, they are sectionless options. Put them in a separate widget
+		// at the beginning.
+		if ( $options ) {
+			$optionsOouiSections = array_merge(
+				[ '' => Xml::listDropDownOptionsOoui( $options ) ],
+				$optionsOouiSections
+			);
+		}
 
-		$attr['value'] = $value;
-		$attr['options'] = $this->getOptionsOOUI();
+		$out = '';
+		foreach ( $optionsOouiSections as $sectionLabel => $optionsOoui ) {
+			$attr = [];
+			$attr['name'] = "{$this->mName}[]";
 
-		if ( $this->mOptionsLabelsNotFromMessage ) {
+			$attr['value'] = $value;
+			$attr['options'] = $optionsOoui;
+
 			foreach ( $attr['options'] as &$option ) {
-				$option['label'] = new OOUI\HtmlSnippet( $option['label'] );
+				$option['disabled'] = in_array( $option['data'], $this->mParams['disabled-options'], true );
+			}
+			if ( $this->mOptionsLabelsNotFromMessage ) {
+				foreach ( $attr['options'] as &$option ) {
+					$option['label'] = new OOUI\HtmlSnippet( $option['label'] );
+				}
+			}
+
+			$attr += OOUI\Element::configFromHtmlAttributes(
+				$this->getAttributes( [ 'disabled', 'tabindex' ] )
+			);
+
+			if ( $this->mClass !== '' ) {
+				$attr['classes'] = [ $this->mClass ];
+			}
+
+			$widget = new OOUI\CheckboxMultiselectInputWidget( $attr );
+			if ( $sectionLabel ) {
+				$out .= new OOUI\FieldsetLayout( [
+					'items' => [ $widget ],
+					'label' => $sectionLabel,
+				] );
+			} else {
+				$out .= $widget;
 			}
 		}
 
-		$attr += OOUI\Element::configFromHtmlAttributes(
-			$this->getAttributes( [ 'disabled', 'tabindex' ] )
-		);
-
-		if ( $this->mClass !== '' ) {
-			$attr['classes'] = [ $this->mClass ];
-		}
-
-		return new OOUI\CheckboxMultiselectInputWidget( $attr );
+		return $out;
 	}
 
 	/**
