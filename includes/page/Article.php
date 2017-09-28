@@ -590,7 +590,7 @@ class Article implements Page {
 							$outputPage->setRobotPolicy( 'noindex,nofollow' );
 
 							$errortext = $error->getWikiText( false, 'view-pool-error' );
-							$outputPage->addWikiText( '<div class="errorbox">' . $errortext . '</div>' );
+							$outputPage->addWikiText( Html::errorBox( $errortext ) );
 						}
 						# Connection or timeout error
 						return;
