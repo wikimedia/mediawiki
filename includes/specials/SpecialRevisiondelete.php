@@ -636,9 +636,10 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	protected function failure( $status ) {
 		// Messages: revdelete-failure, logdelete-failure
 		$this->getOutput()->setPageTitle( $this->msg( 'actionfailed' ) );
-		$this->getOutput()->addWikiText( '<div class="errorbox">' .
-			$status->getWikiText( $this->typeLabels['failure'] ) .
-			'</div>'
+		$this->getOutput()->addWikiText(
+			Html::errorBox(
+				$status->getWikiText( $this->typeLabels['failure'] )
+			)
 		);
 		$this->showForm();
 	}
