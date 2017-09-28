@@ -676,6 +676,52 @@ class Html {
 	}
 
 	/**
+	 * Return the HTML for a message box.
+	 * @since 1.31
+	 * @param string $html of contents of box
+	 * @param string $className corresponding to box
+	 * @param string $heading (optional)
+	 * @return string of HTML representing a box.
+	 */
+	public static function messageBox( $html, $className, $heading = '' ) {
+		if ( $heading ) {
+			$html = self::element( 'h2', [], $heading ) . $html;
+		}
+		return self::rawElement( 'div', [ 'class' => $className ], $html );
+	}
+
+	/**
+	 * Return a warning box.
+	 * @since 1.31
+	 * @param string $html of contents of box
+	 * @return string of HTML representing a warning box.
+	 */
+	public static function warningBox( $html ) {
+		return self::messageBox( $html, 'warningbox' );
+	}
+
+	/**
+	 * Return an error box.
+	 * @since 1.31
+	 * @param string $html of contents of error box
+	 * @param string $heading (optional)
+	 * @return string of HTML representing an error box.
+	 */
+	public static function errorBox( $html, $heading = '' ) {
+		return self::messageBox( $html, 'errorbox', $heading );
+	}
+
+	/**
+	 * Return a success box.
+	 * @since 1.31
+	 * @param string $html of contents of box
+	 * @return string of HTML representing a success box.
+	 */
+	public static function successBox( $html ) {
+		return self::messageBox( $html, 'successbox' );
+	}
+
+	/**
 	 * Convenience function to produce a radio button (input element with type=radio)
 	 *
 	 * @param string $name Name attribute
