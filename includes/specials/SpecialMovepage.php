@@ -235,18 +235,18 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		if ( count( $err ) ) {
-			$out->addHTML( "<div class='errorbox'>\n" );
 			$action_desc = $this->msg( 'action-move' )->plain();
-			$out->addWikiMsg( 'permissionserrorstext-withaction', count( $err ), $action_desc );
+			$errMsgHtml = $this->msg( 'permissionserrorstext-withaction',
+				count( $err ), $action_desc )->parseAsBlock();
 
 			if ( count( $err ) == 1 ) {
 				$errMsg = $err[0];
 				$errMsgName = array_shift( $errMsg );
 
 				if ( $errMsgName == 'hookaborted' ) {
-					$out->addHTML( "<p>{$errMsg[0]}</p>\n" );
+					$errMsgHtml .= "<p>{$errMsg[0]}</p>\n";
 				} else {
-					$out->addWikiMsgArray( $errMsgName, $errMsg );
+					$errMsgHtml .= $this->msg( $errMsgName, $errMsg )->parseAsBlock();
 				}
 			} else {
 				$errStr = [];
@@ -260,9 +260,9 @@ class MovePageForm extends UnlistedSpecialPage {
 					}
 				}
 
-				$out->addHTML( '<ul><li>' . implode( "</li>\n<li>", $errStr ) . "</li></ul>\n" );
+				$errMsgHtml .= '<ul><li>' . implode( "</li>\n<li>", $errStr ) . "</li></ul>\n";
 			}
-			$out->addHTML( "</div>\n" );
+			$out->addHTML( Html::errorBox( $errMsgHtml ) );
 		}
 
 		if ( $this->oldTitle->isProtected( 'move' ) ) {
