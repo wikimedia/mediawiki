@@ -631,7 +631,7 @@ abstract class HTMLFormField {
 
 		// the element could specify, that the label doesn't need to be added
 		$label = $this->getLabel();
-		if ( $label ) {
+		if ( $label && $label !== '&#160;' ) {
 			$config['label'] = new OOUI\HtmlSnippet( $label );
 		}
 
