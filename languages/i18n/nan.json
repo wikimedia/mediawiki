@@ -1109,6 +1109,7 @@
 	"tag-filter": "[[Special:Tags|Piau-chhiam]] chhoē mi̍h:",
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|piau-chhiam}}]]: $2)",
 	"logentry-move-move": "$1 {{GENDER:$2|sóa}} $3 chit ia̍h khì $4",
+	"logentry-move-move_redir": "$1 iōng choán-ia̍h {{GENDER:$2|sóa}} ia̍h-bīn $3 kòe $4",
 	"logentry-newusers-create": "已經{{GENDER:$2|開好}}用者口座 $1",
 	"searchsuggest-search": "Chhoē {{SITENAME}}",
 	"expandtemplates": "Khok-chhiong pang-bô͘",

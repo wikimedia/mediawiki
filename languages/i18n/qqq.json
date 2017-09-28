@@ -1124,7 +1124,7 @@
 	"pagemerge-logentry": "{{ignored}}This is a ''logentry'' message only used on IRC.\n\nParameters:\n* $1 - the page name of the source of the content to be merged\n* $2 - the page into which the content is merged\n* $3 - a timestamp of limit\n\nThe log and its associated special page 'MergeHistory' is not enabled by default.\n\nPlease note that the parameters in a log entry will appear in the log only in the default language of the wiki. View [[Special:Log]] for examples on translatewiki.net with English default language.",
 	"revertmerge": "Used as link text",
 	"mergelogpagetext": "Description of the [{{canonicalurl:Special:Log|type=merge&user=&page=&year=&month=-1}} merge log], on the log. The associated [[Special:MergeHistory|Merge]] special page is not enabled by default.",
-	"history-title": "Displayed as page title when you click on the \"history\" tab. Parameters:\n* $1 - the normal page title",
+	"history-title": "Displayed as page title when you click on the \"history\" tab. Parameters:\n* $1 - the normal page title\n{{Identical|Revision history of}}",
 	"difference-title": "Displayed as page title when viewing the difference between two edits of the same page.\n\nParameters:\n* $1 - the page title of the two revisions",
 	"difference-title-multipage": "Displayed as page title when viewing the difference between two edits of different pages.\n\nParameters:\n* $1 - the page title of the old revision\n* $2 - the page title of the new revision",
 	"difference-multipage": "Displayed under the title when viewing the difference between two or more pages.\nSee also {{msg-mw|difference}}.",
