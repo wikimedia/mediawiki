@@ -817,7 +817,7 @@
 	"parser-template-loop-warning": "साँचा चक्र मिला: [[$1]]",
 	"template-loop-category": "टेम्पलेट लूप वाले पेज",
 	"template-loop-category-desc": "पृष्ठ में एक टेम्पलेट लूप है, अर्थात। एक टेम्पलेट जो स्वयं को पुनरावर्ती रूप से कॉल करता है",
-	"template-loop-warning": "<strong> चेतावनी: </ strong> यह पृष्ठ [[: $ 1]] उनको कॉल करता है जिसके कारण टेम्पलेट लूप (एक अनंत रिकर्सिव कॉल) होता है।",
+	"template-loop-warning": "<strong> चेतावनी: </strong> यह पृष्ठ [[:$1]] उनको कॉल करता है जिसके कारण टेम्पलेट लूप (एक अनंत रिकर्सिव कॉल) होता है।",
 	"parser-template-recursion-depth-warning": "साँचा पुनरावर्ती गहराई सीमा पार ($1)",
 	"language-converter-depth-warning": "भाषा कन्वर्टर गहराई सीमा से बाहर गया ( $1 )",
 	"node-count-exceeded-category": "पृष्ठ जिनमें नोड-संख्या सीमा पार की गई है",
