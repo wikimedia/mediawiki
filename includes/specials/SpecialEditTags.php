@@ -451,9 +451,8 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	 */
 	protected function failure( $status ) {
 		$this->getOutput()->setPageTitle( $this->msg( 'actionfailed' ) );
-		$this->getOutput()->addWikiText( '<div class="errorbox">' .
-			$status->getWikiText( 'tags-edit-failure' ) .
-			'</div>'
+		$this->getOutput()->addWikiText(
+			Html::errorBox( $status->getWikiText( 'tags-edit-failure' ) )
 		);
 		$this->showForm();
 	}

@@ -1,0 +1,8 @@
+<div class="{{className}}">
+	{{!
+		Mustache and Hogan work differently with regards to block rendering so we
+		need to use both hasHeading (boolean) and heading (string).
+	}}
+	{{#hasHeading}}<h2>{{heading}}</h2>{{/hasHeading}}
+	{{{msg}}}
+</div>

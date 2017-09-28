@@ -365,16 +365,12 @@ class SpecialSearch extends SpecialPage {
 		if ( $hasErrors ) {
 			list( $error, $warning ) = $textStatus->splitByErrorType();
 			if ( $error->getErrors() ) {
-				$out->addHTML( Html::rawElement(
-					'div',
-					[ 'class' => 'errorbox' ],
+				$out->addHTML( Html::errorBox(
 					$error->getHTML( 'search-error' )
 				) );
 			}
 			if ( $warning->getErrors() ) {
-				$out->addHTML( Html::rawElement(
-					'div',
-					[ 'class' => 'warningbox' ],
+				$out->addHTML( Html::warningBox(
 					$warning->getHTML( 'search-warning' )
 				) );
 			}
