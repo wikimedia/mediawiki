@@ -597,6 +597,7 @@ __INDEXATTR__;
 		}
 
 		// If IGNORE is set, we use savepoints to emulate mysql's behavior
+		// @todo If PostgreSQL 9.5+, we could use ON CONFLICT DO NOTHING instead
 		$savepoint = $olde = null;
 		$numrowsinserted = 0;
 		if ( in_array( 'IGNORE', $options ) ) {
@@ -710,39 +711,17 @@ __INDEXATTR__;
 		}
 
 		/*
-		 * If IGNORE is set, we use savepoints to emulate mysql's behavior
-		 * Ignore LOW PRIORITY option, since it is MySQL-specific
+		 * If IGNORE is set, use the non-native version.
+		 * @todo If PostgreSQL 9.5+, we could use ON CONFLICT DO NOTHING
 		 */
-		$savepoint = $olde = null;
-		$numrowsinserted = 0;
 		if ( in_array( 'IGNORE', $insertOptions ) ) {
-			$savepoint = new SavepointPostgres( $this, 'mw', $this->queryLogger );
-			$olde = error_reporting( 0 );
-			$savepoint->savepoint();
+			return $this->nonNativeInsertSelect(
+				$destTable, $srcTable, $varMap, $conds, $fname, $insertOptions, $selectOptions, $selectJoinConds
+			);
 		}
 
-		$res = parent::nativeInsertSelect( $destTable, $srcTable, $varMap, $conds, $fname,
+		return parent::nativeInsertSelect( $destTable, $srcTable, $varMap, $conds, $fname,
 			$insertOptions, $selectOptions, $selectJoinConds );
-
-		if ( $savepoint ) {
-			$bar = pg_result_error( $this->mLastResult );
-			if ( $bar != false ) {
-				$savepoint->rollback();
-			} else {
-				$savepoint->release();
-				$numrowsinserted++;
-			}
-			error_reporting( $olde );
-			$savepoint->commit();
-
-			// Set the affected row count for the whole operation
-			$this->mAffectedRows = $numrowsinserted;
-
-			// IGNORE always returns true
-			return true;
-		}
-
-		return $res;
 	}
 
 	public function tableName( $name, $format = 'quoted' ) {
