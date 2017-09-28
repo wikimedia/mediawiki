@@ -11,6 +11,7 @@ production.
   essential.
 
 === New features in 1.31 ===
+* As a first pass in standardising dialog boxes across the MediaWiki product, Html class now provides helper methods for messageBox, successBox, errorBox and warningBox generation.
 * …
 
 === External library changes in 1.31 ===
