@@ -925,6 +925,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		return [
 			'_class' => static::class,
 			'_cacheEpoch' => $this->getConfig()->get( 'CacheEpoch' ),
+			'_cacheVersion' => ResourceLoader::CACHE_VERSION,
 		];
 	}
 
