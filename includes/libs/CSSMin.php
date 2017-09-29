@@ -149,7 +149,6 @@ class CSSMin {
 				'%2F' => '/', // Unencode slashes
 				'%3A' => ':', // Unencode colons
 				'%3D' => '=', // Unencode equals signs
-				'%22' => '"', // Unencode double quotes
 			] );
 			$uri = 'data:' . $type . ',' . $encoded;
 			if ( !$ie8Compat || strlen( $uri ) < self::DATA_URI_SIZE_LIMIT ) {
@@ -216,7 +215,7 @@ class CSSMin {
 		if ( preg_match( '!^[\w\d:@/~.%+;,?&=-]+$!', $url ) ) {
 			return "url($url)";
 		} else {
-			return "url('" . strtr( $url, [ '\\' => '\\\\', "'" => "\\'" ] ) . "')";
+			return 'url("' . strtr( $url, [ '\\' => '\\\\', '"' => '\\"' ] ) . '")';
 		}
 	}
 
