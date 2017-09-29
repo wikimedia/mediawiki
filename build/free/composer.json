@@ -162,6 +162,22 @@
   }, {
     "type": "package",
     "package": {
+      "name": "mediawiki/syntax-highlight_-ge-s-hi",
+      "type": "mediawiki-extension",
+      "version": "dev-08ae879",
+      "source": {
+        "url": "https://github.com/wikimedia/mediawiki-extensions-SyntaxHighlight_GeSHi",
+        "type": "git",
+        "reference": "08ae879"
+      },
+      "require": {
+        "composer/installers": "~1.0",
+        "symfony/process": "~3.2"
+      }
+    }
+  }, {
+    "type": "package",
+    "package": {
       "name": "mediawiki/title-key",
       "type": "mediawiki-extension",
       "version": "dev-a9d4c39",
@@ -406,6 +422,7 @@
     "mediawiki/mobile-frontend": "dev-5ecc673",
     "mediawiki/quiz": "dev-fe69982",
     "mediawiki/rss": "dev-2b16a83",
+    "mediawiki/syntax-highlight_-ge-s-hi": "dev-08ae879",
     "mediawiki/title-key": "dev-a9d4c39",
     "mediawiki/user-functions": "dev-5eda8c9",
     "mediawiki/user-merge": "dev-4546537",
