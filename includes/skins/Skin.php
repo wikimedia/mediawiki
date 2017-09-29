@@ -1095,7 +1095,7 @@ abstract class Skin extends ContextSource {
 		$title = Title::newMainPage();
 		self::checkTitle( $title, '' );
 
-		return $title->getLocalURL( $urlaction );
+		return $title->getLinkURL( $urlaction );
 	}
 
 	/**
