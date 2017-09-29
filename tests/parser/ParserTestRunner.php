@@ -384,7 +384,7 @@ class ParserTestRunner {
 		// Changing wgExtraNamespaces invalidates caches in MWNamespace and
 		// any live Language object, both on setup and teardown
 		$reset = function () {
-			MWNamespace::getCanonicalNamespaces( true );
+			MWNamespace::clearCaches();
 			$GLOBALS['wgContLang']->resetNamespaces();
 		};
 		$setup[] = $reset;

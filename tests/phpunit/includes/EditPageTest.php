@@ -29,8 +29,16 @@ class EditPageTest extends MediaWikiLangTestCase {
 		$wgNamespaceContentModels[12312] = "testing";
 		$wgContentHandlers["testing"] = 'DummyContentHandlerForTesting';
 
-		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		MWNamespace::clearCaches();
 		$wgContLang->resetNamespaces(); # reset namespace cache
+	}
+
+	protected function tearDown() {
+		global $wgContLang;
+
+		MWNamespace::clearCaches();
+		$wgContLang->resetNamespaces(); # reset namespace cache
+		parent::tearDown();
 	}
 
 	/**
