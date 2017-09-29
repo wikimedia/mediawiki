@@ -279,7 +279,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 				'context' => [],
 				'modules' => [ 'test.scripts.user' ],
 				'only' => ResourceLoaderModule::TYPE_SCRIPTS,
-				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.scripts.user\u0026only=scripts\u0026skin=fallback\u0026user=Example\u0026version=0a56zyi");});</script>',
+				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.scripts.user\u0026only=scripts\u0026skin=fallback\u0026user=Example\u0026version=1i5hiv9");});</script>',
 			],
 			[
 				'context' => [ 'debug' => true ],
