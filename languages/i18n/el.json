@@ -1022,7 +1022,7 @@
 	"savedprefs": "Οι προτιμήσεις σας έχουν αποθηκευτεί.",
 	"savedrights": "Οι ομάδες χρηστών {{GENDER:$1|του $1|της $1}} έχουν αποθηκευτεί.",
 	"timezonelegend": "Ζώνη ώρας:",
-	"localtime": "Εμφάνιση τοπικής ώρας:",
+	"localtime": "Τοπική ώρα:",
 	"timezoneuseserverdefault": "Χρήση της προεπιλογής του wiki ($1)",
 	"timezoneuseoffset": "Ἀλλη (καθορισμός της διαφοράς)",
 	"servertime": "Η ώρα του διακομιστή:",

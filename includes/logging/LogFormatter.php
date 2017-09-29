@@ -866,10 +866,12 @@ class LogFormatter {
 			case 'title':
 			case 'title-link':
 				$title = Title::newFromText( $value );
-				if ( $title ) {
-					$value = [];
-					ApiQueryBase::addTitleInfo( $value, $title, "{$name}_" );
+				if ( !$title ) {
+					// Huh? Do something halfway sane.
+					$title = SpecialPage::getTitleFor( 'Badtitle', $value );
 				}
+				$value = [];
+				ApiQueryBase::addTitleInfo( $value, $title, "{$name}_" );
 				return $value;
 
 			case 'user':

@@ -884,7 +884,9 @@ class MediaWiki {
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$trxProfiler->resetExpectations();
 		$trxProfiler->setExpectations(
-			$this->config->get( 'TrxProfilerLimits' )['PostSend'],
+			$this->context->getRequest()->hasSafeMethod()
+				? $this->config->get( 'TrxProfilerLimits' )['PostSend-GET']
+				: $this->config->get( 'TrxProfilerLimits' )['PostSend-POST'],
 			__METHOD__
 		);
 

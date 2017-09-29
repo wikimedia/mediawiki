@@ -36,14 +36,18 @@ class ApiEditPageTest extends ApiTestCase {
 		$wgContentHandlers["testing"] = 'DummyContentHandlerForTesting';
 		$wgContentHandlers["testing-nontext"] = 'DummyNonTextContentHandler';
 
-		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		MWNamespace::clearCaches();
 		$wgContLang->resetNamespaces(); # reset namespace cache
 
 		$this->doLogin();
 	}
 
 	protected function tearDown() {
-		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		global $wgContLang;
+
+		MWNamespace::clearCaches();
+		$wgContLang->resetNamespaces(); # reset namespace cache
+
 		parent::tearDown();
 	}
 

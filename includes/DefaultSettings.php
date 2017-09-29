@@ -6146,14 +6146,20 @@ $wgTrxProfilerLimits = [
 		'writes' => 0,
 		'readQueryTime' => 5
 	],
-	// Deferred updates that run after HTTP response is sent
-	'PostSend' => [
+	// Deferred updates that run after HTTP response is sent for GET requests
+	'PostSend-GET' => [
 		'readQueryTime' => 5,
 		'writeQueryTime' => 1,
 		'maxAffected' => 1000,
 		// Log master queries under the post-send entry point as they are discouraged
 		'masterConns' => 0,
 		'writes' => 0,
+	],
+	// Deferred updates that run after HTTP response is sent for POST requests
+	'PostSend-POST' => [
+		'readQueryTime' => 5,
+		'writeQueryTime' => 1,
+		'maxAffected' => 1000
 	],
 	// Background job runner
 	'JobRunner' => [
