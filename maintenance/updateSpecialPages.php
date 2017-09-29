@@ -101,7 +101,7 @@ class UpdateSpecialPages extends Maintenance {
 						$this->output( sprintf( "%.2fs\n", $seconds ) );
 					}
 					# Reopen any connections that have closed
-					$this->reopenAndWaitFotReplicas();
+					$this->reopenAndWaitForReplicas();
 				} else {
 					$this->output( "cheap, skipped\n" );
 				}
@@ -118,7 +118,7 @@ class UpdateSpecialPages extends Maintenance {
 	 * Queries that take a really long time, might cause the
 	 * mysql connection to "go away"
 	 */
-	private function reopenAndWaiFotReplicas() {
+	private function reopenAndWaitForReplicas() {
 		if ( !wfGetLB()->pingAll() ) {
 			$this->output( "\n" );
 			do {
