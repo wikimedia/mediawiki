@@ -401,14 +401,14 @@
     "package":{
       "name": "mediawiki/blue-spice-tag-cloud",
     	"type": "mediawiki-extension",
-      "version": "dev-c8129fb086d8f1399c43829ed853d86fb6ec596a",
+      "version": "dev-f1455cb",
     	"require": {
     		"composer/installers": "~1.0"
     	},
       "source":{
-        "url": "git@gitlab.hallowelt.com:BlueSpice/mediawiki-extensions-bluespicetagcloud.git",
+        "url": "https://github.com/wikimedia/mediawiki-extensions-BlueSpiceTagCloud.git",
         "type": "git",
-        "reference": "c8129fb086d8f1399c43829ed853d86fb6ec596a"
+        "reference": "f1455cb"
       }
     }
 
@@ -449,6 +449,7 @@
     "mediawiki/nuke": "dev-0743584",
     "mediawiki/parser-functions": "dev-d0a5d10",
     "mediawiki/renameuser": "dev-615d761",
-    "mediawiki/SyntaxHighlight_GeSHi": "dev-d321b84"
+    "mediawiki/SyntaxHighlight_GeSHi": "dev-d321b84",
+    "mediawiki/blue-spice-tag-cloud": "dev-f1455cb"
   }
 }
