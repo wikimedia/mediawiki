@@ -16180,11 +16180,9 @@ parsoid=wt2html,html2html
 <a rel="mw:WikiLink" href="./Foo" title="Foo">Foo</a></div>
 !! end
 
-# NOTE that Parsoid does not currently implement this special case
-# (T175416).  The plan is to remove this weird special-case in the PHP
-# parser to make it match the Parsoid output.
+# Note that Parsoid differs slightly from PHP due to T175421
 !! test
-11. Special case where only newlines separate links
+11. Special case where only newlines separate links (T175416)
 !! options
 parsoid=wt2html,html2html
 !! wikitext
@@ -16194,7 +16192,9 @@ parsoid=wt2html,html2html
 
 [[Foo]]
 !! html/php
-<p><a href="/wiki/Foo" title="Foo">Foo</a><a href="/wiki/Foo" title="Foo">Foo</a>
+<p><br />
+<a href="/wiki/Foo" title="Foo">Foo</a>
+</p><p><a href="/wiki/Foo" title="Foo">Foo</a>
 </p>
 !! html/parsoid
 <link rel="mw:PageProp/Category" href="./Category:Foo"/>
