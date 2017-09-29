@@ -859,6 +859,8 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 					$str .= strval( $mhash );
 				}
 			}
+			// Add RL cache version
+			$str .= ResourceLoader::CACHE_VERSION;
 
 			$this->versionHash[$contextHash] = ResourceLoader::makeHash( $str );
 		}
