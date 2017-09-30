@@ -1127,7 +1127,7 @@
 						registry[ module ].dependencies = [ registry[ module ].dependencies ];
 					}
 				}
-				if ( $.inArray( module, resolved ) !== -1 ) {
+				if ( resolved.indexOf( module ) !== -1 ) {
 					// Module already resolved; nothing to do
 					return;
 				}
@@ -1138,7 +1138,7 @@
 				// Tracks down dependencies
 				deps = registry[ module ].dependencies;
 				for ( i = 0; i < deps.length; i++ ) {
-					if ( $.inArray( deps[ i ], resolved ) === -1 ) {
+					if ( resolved.indexOf( deps[ i ] ) === -1 ) {
 						if ( unresolved.has( deps[ i ] ) ) {
 							throw new Error( mw.format(
 								'Circular reference detected: $1 -> $2',
@@ -1478,7 +1478,7 @@
 					var state = mw.loader.getState( module );
 					// Only queue modules that are still in the initial 'registered' state
 					// (not ones already loading, ready or error).
-					if ( state === 'registered' && $.inArray( module, queue ) === -1 ) {
+					if ( state === 'registered' && queue.indexOf( module ) === -1 ) {
 						// Private modules must be embedded in the page. Don't bother queuing
 						// these as the server will deny them anyway (T101806).
 						if ( registry[ module ].group === 'private' ) {
@@ -1759,7 +1759,7 @@
 						// Only load modules which are registered
 						if ( hasOwn.call( registry, queue[ q ] ) && registry[ queue[ q ] ].state === 'registered' ) {
 							// Prevent duplicate entries
-							if ( $.inArray( queue[ q ], batch ) === -1 ) {
+							if ( batch.indexOf( queue[ q ] ) === -1 ) {
 								batch.push( queue[ q ] );
 								// Mark registered modules as loading
 								registry[ queue[ q ] ].state = 'loading';
@@ -1960,7 +1960,7 @@
 					registry[ name ].messages = messages || null;
 					registry[ name ].templates = templates || null;
 					// The module may already have been marked as erroneous
-					if ( $.inArray( registry[ name ].state, [ 'error', 'missing' ] ) === -1 ) {
+					if ( registry[ name ].state !== 'error' && registry[ name ].state !== 'missing' ) {
 						registry[ name ].state = 'loaded';
 						if ( allReady( registry[ name ].dependencies ) ) {
 							execute( name );
@@ -2108,7 +2108,7 @@
 						mw.loader.register( module );
 					}
 					registry[ module ].state = state;
-					if ( $.inArray( state, [ 'ready', 'error', 'missing' ] ) !== -1 ) {
+					if ( state === 'ready' || state === 'error' || state === 'missing' ) {
 						// Make sure pending modules depending on this one get executed if their
 						// dependencies are now fulfilled!
 						handlePending( module );
@@ -2340,11 +2340,13 @@
 							// Module failed to load
 							descriptor.state !== 'ready' ||
 							// Unversioned, private, or site-/user-specific
-							( !descriptor.version || $.inArray( descriptor.group, [ 'private', 'user' ] ) !== -1 ) ||
+							!descriptor.version ||
+							descriptor.group === 'private' ||
+							descriptor.group === 'user' ||
 							// Partial descriptor
 							// (e.g. skipped module, or style module with state=ready)
-							$.inArray( undefined, [ descriptor.script, descriptor.style,
-								descriptor.messages, descriptor.templates ] ) !== -1
+							[ descriptor.script, descriptor.style, descriptor.messages,
+								descriptor.templates ].indexOf( undefined ) !== -1
 						) {
 							// Decline to store
 							return false;
