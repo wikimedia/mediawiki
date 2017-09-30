@@ -1138,6 +1138,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * @param string $error Error text
 	 * @param int $errno Error number
+	 * @return bool
 	 */
 	protected function wasQueryTimeout( $error, $errno ) {
 		return false;
