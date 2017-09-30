@@ -1718,7 +1718,10 @@
 			function splitModuleKey( key ) {
 				var index = key.indexOf( '@' );
 				if ( index === -1 ) {
-					return { name: key };
+					return {
+						name: key,
+						version: ''
+					};
 				}
 				return {
 					name: key.slice( 0, index ),
