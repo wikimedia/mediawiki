@@ -1063,7 +1063,6 @@ class DatabaseMssql extends Database {
 	 */
 	public function strencode( $s ) {
 		// Should not be called by us
-
 		return str_replace( "'", "''", $s );
 	}
 

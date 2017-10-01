@@ -790,7 +790,7 @@ class DatabaseSqlite extends Database {
 			return "x'" . bin2hex( $s->fetch() ) . "'";
 		} elseif ( is_bool( $s ) ) {
 			return (int)$s;
-		} elseif ( strpos( $s, "\0" ) !== false ) {
+		} elseif ( strpos( (string)$s, "\0" ) !== false ) {
 			// SQLite doesn't support \0 in strings, so use the hex representation as a workaround.
 			// This is a known limitation of SQLite's mprintf function which PDO
 			// should work around, but doesn't. I have reported this to php.net as bug #63419:
@@ -806,9 +806,9 @@ class DatabaseSqlite extends Database {
 				'For consistency all binary data should have been ' .
 				'first processed with self::encodeBlob()'
 			);
-			return "x'" . bin2hex( $s ) . "'";
+			return "x'" . bin2hex( (string)$s ) . "'";
 		} else {
-			return $this->mConn->quote( $s );
+			return $this->mConn->quote( (string)$s );
 		}
 	}
 

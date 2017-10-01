@@ -200,7 +200,7 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	protected function mysqlRealEscapeString( $s ) {
 		$conn = $this->getBindingHandle();
 
-		return mysql_real_escape_string( $s, $conn );
+		return mysql_real_escape_string( (string)$s, $conn );
 	}
 }
 
