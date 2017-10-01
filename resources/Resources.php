@@ -2398,8 +2398,6 @@ return [
 			'mediawiki.Title',
 			'mediawiki.api',
 			'jquery.byteLimit',
-			// TitleOptionWidget
-			'jquery.highlightText',
 		],
 		'messages' => [
 			// NamespaceInputWidget
