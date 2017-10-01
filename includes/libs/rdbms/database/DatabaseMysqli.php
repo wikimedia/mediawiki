@@ -316,7 +316,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	protected function mysqlRealEscapeString( $s ) {
 		$conn = $this->getBindingHandle();
 
-		return $conn->real_escape_string( $s );
+		return $conn->real_escape_string( (string) $s );
 	}
 
 	/**
