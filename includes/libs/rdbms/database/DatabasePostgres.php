@@ -1175,7 +1175,7 @@ SQL;
 
 	public function strencode( $s ) {
 		// Should not be called by us
-		return pg_escape_string( $this->getBindingHandle(), $s );
+		return pg_escape_string( $this->getBindingHandle(), (string) $s );
 	}
 
 	public function addQuotes( $s ) {
@@ -1196,7 +1196,7 @@ SQL;
 			return 'DEFAULT';
 		}
 
-		return "'" . pg_escape_string( $conn, $s ) . "'";
+		return "'" . pg_escape_string( $conn, (string)$s ) . "'";
 	}
 
 	/**
