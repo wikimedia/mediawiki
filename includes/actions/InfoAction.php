@@ -128,7 +128,7 @@ class InfoAction extends FormlessAction {
 			// pageinfo-header-basic, pageinfo-header-edits, pageinfo-header-restrictions,
 			// pageinfo-header-properties, pageinfo-category-info
 			$content .= $this->makeHeader(
-				$this->msg( "pageinfo-${header}" )->escaped(),
+				$this->msg( "pageinfo-${header}" )->text(),
 				"mw-pageinfo-${header}"
 			) . "\n";
 			$table = "\n";
