@@ -277,11 +277,11 @@ class UserRightsProxy {
 			__METHOD__
 		);
 
-		$wikiId = $this->db->getWikiID();
+		$domainId = $this->db->getDomainID();
 		$userId = $this->id;
 		$this->db->onTransactionPreCommitOrIdle(
-			function () use ( $wikiId, $userId ) {
-				User::purge( $wikiId, $userId );
+			function () use ( $domainId, $userId ) {
+				User::purge( $domainId, $userId );
 			},
 			__METHOD__
 		);
