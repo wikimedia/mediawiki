@@ -48,6 +48,10 @@
 		this.validateTitle = config.validateTitle !== undefined ? config.validateTitle : true;
 		this.cache = config.cache;
 		this.api = config.api || new mw.Api();
+		// Supports: IE10, FF28, Chrome23
+		this.compare = window.Intl && Intl.Collator ?
+			new Intl.Collator( mw.config.get( 'wgContentLanguage' ), { sensitivity: 'base' } ).compare :
+			null;
 
 		// Initialization
 		this.$element.addClass( 'mw-widget-titleWidget' );
@@ -334,7 +338,8 @@
 			missing: data.missing,
 			redirect: data.redirect,
 			disambiguation: data.disambiguation,
-			query: this.getQueryValue()
+			query: this.getQueryValue(),
+			compare: this.compare
 		};
 	};
 
