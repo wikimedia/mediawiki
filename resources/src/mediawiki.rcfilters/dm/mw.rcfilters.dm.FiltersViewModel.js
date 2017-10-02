@@ -1026,14 +1026,12 @@
 		enable = enable === undefined ? !this.highlightEnabled : enable;
 
 		if ( this.highlightEnabled !== enable ) {
-			// HACK make sure highlights are disabled globally while we toggle on the items,
-			// otherwise we'll call clearHighlight() and applyHighlight() many many times
-			this.highlightEnabled = false;
+			this.highlightEnabled = enable;
+
 			this.getItems().forEach( function ( filterItem ) {
 				filterItem.toggleHighlight( this.highlightEnabled );
 			}.bind( this ) );
 
-			this.highlightEnabled = enable;
 			this.emit( 'highlightChange', this.highlightEnabled );
 		}
 	};
