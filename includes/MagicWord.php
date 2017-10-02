@@ -59,10 +59,10 @@
 class MagicWord {
 	/**#@-*/
 
-	/** @var int */
+	/** @var string */
 	public $mId;
 
-	/** @var array */
+	/** @var string[] */
 	public $mSynonyms;
 
 	/** @var bool */
@@ -92,7 +92,10 @@ class MagicWord {
 	/** @var bool */
 	private $mFound = false;
 
+	/** @var bool */
 	public static $mVariableIDsInitialised = false;
+
+	/** @var string[] */
 	public static $mVariableIDs = [
 		'!',
 		'currentmonth',
@@ -174,7 +177,9 @@ class MagicWord {
 		'cascadingsources',
 	];
 
-	/* Array of caching hints for ParserCache */
+	/** Array of caching hints for ParserCache
+	 * @var array [ string => int ]
+	 */
 	public static $mCacheTTLs = [
 		'currentmonth' => 86400,
 		'currentmonth1' => 86400,
@@ -216,6 +221,7 @@ class MagicWord {
 		'numberingroup' => 3600,
 	];
 
+	/** @var string[] */
 	public static $mDoubleUnderscoreIDs = [
 		'notoc',
 		'nogallery',
@@ -232,17 +238,30 @@ class MagicWord {
 		'nocontentconvert',
 	];
 
+	/** @var string[] */
 	public static $mSubstIDs = [
 		'subst',
 		'safesubst',
 	];
 
+	/** @var array [ string => MagicWord ] */
 	public static $mObjects = [];
+
+	/** @var MagicWordArray */
 	public static $mDoubleUnderscoreArray = null;
 
 	/**#@-*/
 
-	public function __construct( $id = 0, $syn = [], $cs = false ) {
+	/**
+	 * Create a new MagicWord object
+	 *
+	 * Use factory instead: MagicWord::get
+	 *
+	 * @param string $id The internal name of the magic word
+	 * @param string[]|string $syn synonyms for the magic word
+	 * @param bool $cs If magic word is case sensitive
+	 */
+	public function __construct( $id = null, $syn = [], $cs = false ) {
 		$this->mId = $id;
 		$this->mSynonyms = (array)$syn;
 		$this->mCaseSensitive = $cs;
@@ -251,7 +270,7 @@ class MagicWord {
 	/**
 	 * Factory: creates an object representing an ID
 	 *
-	 * @param int $id
+	 * @param string $id The internal name of the magic word
 	 *
 	 * @return MagicWord
 	 */
@@ -267,7 +286,7 @@ class MagicWord {
 	/**
 	 * Get an array of parser variable IDs
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public static function getVariableIDs() {
 		if ( !self::$mVariableIDsInitialised ) {
@@ -280,7 +299,7 @@ class MagicWord {
 
 	/**
 	 * Get an array of parser substitution modifier IDs
-	 * @return array
+	 * @return string[]
 	 */
 	public static function getSubstIDs() {
 		return self::$mSubstIDs;
@@ -289,7 +308,7 @@ class MagicWord {
 	/**
 	 * Allow external reads of TTL array
 	 *
-	 * @param int $id
+	 * @param string $id
 	 * @return int
 	 */
 	public static function getCacheTTL( $id ) {
@@ -324,7 +343,7 @@ class MagicWord {
 	/**
 	 * Initialises this object with an ID
 	 *
-	 * @param int $id
+	 * @param string $id
 	 * @throws MWException
 	 */
 	public function load( $id ) {
@@ -630,7 +649,7 @@ class MagicWord {
 	}
 
 	/**
-	 * @return array
+	 * @return string[]
 	 */
 	public function getSynonyms() {
 		return $this->mSynonyms;
@@ -650,7 +669,7 @@ class MagicWord {
 	 * Adds all the synonyms of this MagicWord to an array, to allow quick
 	 * lookup in a list of magic words
 	 *
-	 * @param array &$array
+	 * @param string[] &$array
 	 * @param string $value
 	 */
 	public function addToArray( &$array, $value ) {
@@ -668,7 +687,7 @@ class MagicWord {
 	}
 
 	/**
-	 * @return int
+	 * @return string
 	 */
 	public function getId() {
 		return $this->mId;
