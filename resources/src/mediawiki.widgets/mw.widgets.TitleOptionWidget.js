@@ -21,7 +21,7 @@
 	 * @cfg {boolean} [missing] Page doesn't exist
 	 * @cfg {boolean} [redirect] Page is a redirect
 	 * @cfg {boolean} [disambiguation] Page is a disambiguation page
-	 * @cfg {string} [query] Matching query string
+	 * @cfg {string} [query] Matching query string to highlight
 	 */
 	mw.widgets.TitleOptionWidget = function MwWidgetsTitleOptionWidget( config ) {
 		var icon;
@@ -65,9 +65,10 @@
 		} );
 
 		// Highlight matching parts of link suggestion
-		this.$label
-			.highlightText( config.query )
-			.attr( 'title', config.data );
+		if ( config.query ) {
+			this.setHighlightedQuery( config.data, config.query );
+		}
+		this.$label.attr( 'title', config.data );
 
 		if ( config.missing ) {
 			this.$label.addClass( 'new' );
