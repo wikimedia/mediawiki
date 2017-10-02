@@ -5,10 +5,10 @@
     $(function () {
         $("#wpCreateaccount").click(function (e) {
             var position = {
-                xPosition: e.clientX,
-                yPosition: e.clientY
+                mouseClickX  : e.clientX,
+                mouseClickY	 : e.clientY
             }
-            mw.track("CaptchaFormData", position);
+            mw.track("event.CaptchaFormData", position);
         });
     });
 }(mediaWiki, jQuery));
