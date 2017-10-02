@@ -2189,7 +2189,6 @@
 	"block": "Block uiser",
 	"unblock": "Onblock uiser",
 	"blockip": "Block {{GENDER:$1|uiser}}",
-	"blockip-legend": "Block uiser",
 	"blockiptext": "Uise the form ablo tae block write access fae ae speceefic IP address or uisername. This shid be dun juist tae hinder vandaleesm, n in accord wi [[{{MediaWiki:Policy-url}}|policie]]. Fil in ae speceefic raison ablo (fer exemplar, citin parteecular pages that were vandalised).",
 	"ipaddressorusername": "IP address or uisername:",
 	"ipbexpiry": "Expirie:",

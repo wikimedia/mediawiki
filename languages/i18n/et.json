@@ -2327,7 +2327,6 @@
 	"block": "Kasutaja blokeerimine",
 	"unblock": "Kasutaja blokeeringu eemaldamine",
 	"blockip": "Blokeeri {{GENDER:$1|kasutaja}}",
-	"blockip-legend": "Kasutaja blokeerimine",
 	"blockiptext": "See vorm on kindla IP-aadressi või kasutajanime kirjutamisõiguste blokeerimiseks.\nSeda tohib teha ainult vandalismi vältimiseks ja kooskõlas [[{{MediaWiki:Policy-url}}|{{GRAMMAR:genitive|{{SITENAME}}}} sisekorraga]].\nTäida ka põhjuse väli, näiteks viidates lehekülgedele, mis rikuti.\nIP-aadresside vahemikke saad blokeerida [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]-süntaksi abil; suurim lubatud vahemik on IPv4 jaoks /$1 ja IPv6 jaoks /$2.",
 	"ipaddressorusername": "IP-aadress või kasutajanimi:",
 	"ipbexpiry": "Aegumistähtaeg:",

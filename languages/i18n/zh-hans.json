@@ -2436,7 +2436,6 @@
 	"block": "封禁用户",
 	"unblock": "解封用户",
 	"blockip": "封禁{{GENDER:$1|用户}}",
-	"blockip-legend": "封禁用户",
 	"blockiptext": "使用下方的表单来禁止来自特定IP地址或用户名的写访问。\n只有在为了防止破坏，并符合[[{{MediaWiki:Policy-url}}|方针]]的情况下才可采取此行动。\n请在下面输入一个具体的理由（例如引述一个被破坏的页面）。\n您可以使用[https://zh.wikipedia.org/wiki/无类别域间路由 CIDR]语法封禁IP地址段；允许的最大段是/$1（用于IPv4）和/$2（用于IPv6）。",
 	"ipaddressorusername": "IP地址或用户名：",
 	"ipbexpiry": "终止时间：",

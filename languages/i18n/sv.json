@@ -77,7 +77,8 @@
 			"Johan",
 			"Martin Wiss",
 			"Mdjarv",
-			"Frisko"
+			"Frisko",
+			"Bengtsson96"
 		]
 	},
 	"tog-underline": "Stryk under länkar:",
@@ -1117,7 +1118,7 @@
 	"prefs-editor": "Redigerare",
 	"prefs-preview": "Förhandsvisa",
 	"prefs-advancedrc": "Avancerade alternativ",
-	"prefs-opt-out": "Välj att inte få förbättringar",
+	"prefs-opt-out": "Välj bort förbättringar",
 	"prefs-advancedrendering": "Avancerade alternativ",
 	"prefs-advancedsearchoptions": "Avancerade alternativ",
 	"prefs-advancedwatchlist": "Avancerade alternativ",
@@ -2413,7 +2414,6 @@
 	"block": "Blockera användare",
 	"unblock": "Upphäv blockering av användare",
 	"blockip": "Blockera {{GENDER:$1|användare}}",
-	"blockip-legend": "Blockera användare",
 	"blockiptext": "Använd formuläret nedan för att blockera möjligheten att redigera sidor från en specifik IP-adress eller ett användarnamn.\nDetta bör endast göras för att förhindra vandalisering, och i överensstämmelse med gällande [[{{MediaWiki:Policy-url}}|policy]].\nAnge orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).\nDu kan blockera intervaller av IP-adresser med [https://sv.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]-syntax; det största tillåtna intervallet är /$1 för IPv4 och /$2 för IPv6.",
 	"ipaddressorusername": "IP-adress eller användarnamn:",
 	"ipbexpiry": "Varaktighet:",

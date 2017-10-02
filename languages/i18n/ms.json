@@ -2063,7 +2063,6 @@
 	"block": "Sekat pengguna",
 	"unblock": "Nyahsekat pengguna",
 	"blockip": "Sekat {{GENDER:$1|pengguna}}",
-	"blockip-legend": "Sekat pengguna",
 	"blockiptext": "Gunakan borang di bawah untuk menyekat\npenyuntingan daripada alamat IP atau pengguna tertentu.\nTindakan ini perlu dilakukan untuk menentang vandalisme sahaja dan selaras\ndengan [[{{MediaWiki:Policy-url}}|dasar {{SITENAME}}]].\nSila masukkan sebab sekatan di bawah (umpamannya, sebutkan laman yang telah\ndirosakkan).",
 	"ipaddressorusername": "Alamat IP atau nama pengguna:",
 	"ipbexpiry": "Tamat:",

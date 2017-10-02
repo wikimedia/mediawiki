@@ -1369,7 +1369,6 @@
 	"block": "Bikarhêner asteng bike",
 	"unblock": "Astengkirinê rake",
 	"blockip": "{{GENDER:$1|Bikarhêner}} asteng bike",
-	"blockip-legend": "Bikarhêner asteng bike",
 	"blockiptext": "Ji bo astengkirina nivîsandinê ya ji navnîşaneke IP'yê an jî ji bikarhênerekî/ê, vê formê bikarbîne.\nDivê ev tenê ji bo sekinandina vandalîzmê were bikaranîn, ku divê li gorî [[{{MediaWiki:Policy-url}}|rêgezê]] be.\n\nSedemekê binivîse!",
 	"ipaddressorusername": "adresê IP'yekê ya navekî bikarhênerekî",
 	"ipbexpiry": "Dem:",

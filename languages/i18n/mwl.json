@@ -935,7 +935,6 @@
 	"whatlinkshere-filters": "Filtros",
 	"unblock": "Zbloquiar outelizador",
 	"blockip": "Bloquiar {{GENDER:$1|outelizador|outelizadora|outelizador(a)}}",
-	"blockip-legend": "Bloquiar outelizador(a)",
 	"ipboptions": "2 horas:2 hours,1 die:1 day,3 dias:3 days,1 sumana:1 week,2 sumanas:2 weeks,1 més:1 month,3 meses:3 months,6 meses:6 months,1 anho:1 year,anfenito:infinite",
 	"unblockip": "Zbloquiar outelizador",
 	"blocklist": "Outelizadores bloquiados",

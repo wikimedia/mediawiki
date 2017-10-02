@@ -2408,7 +2408,6 @@
 	"block": "Bloquear utilizador(a)",
 	"unblock": "Desbloquear utilizador",
 	"blockip": "Bloquear {{GENDER:$1|utilizador|utilizadora|utilizador(a)}}",
-	"blockip-legend": "Bloquear utilizador(a)",
 	"blockiptext": "Utilize o formulário abaixo para bloquear o acesso de escrita a um endereço IP específico ou a um nome de utilizador(a).\nIsto só deve ser feito para prevenir vandalismo e de acordo com a [[{{MediaWiki:Policy-url}}|política]]. Indique a seguir um motivo de bloqueio específico (por exemplo, indicando as páginas que foram alvo de vandalismo).\nPode bloquear intervalos de endereços IP com a sintaxe [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]; o maior intervalo permitido é /$1 para IPv4 e /$2 para IPv6.",
 	"ipaddressorusername": "Endereço IP ou nome de utilizador:",
 	"ipbexpiry": "Expiração:",

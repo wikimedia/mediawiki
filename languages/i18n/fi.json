@@ -2342,7 +2342,6 @@
 	"block": "Estä käyttäjä",
 	"unblock": "Poista käyttäjän esto",
 	"blockip": "Estä {{GENDER:$1|käyttäjä}}",
-	"blockip-legend": "Estä käyttäjä",
 	"blockiptext": "Tällä toiminnolla voit estää käyttäjätunnusta tai IP-osoitetta muokkaamasta.<br />\nTällainen muokkausesto pitäisi asettaa vain vandalismin torjumiseksi ja [[{{MediaWiki:Policy-url}}|käytännön]] mukaisesti.\nKirjoita eston syy alla olevaan kenttään.\nVoit estää IP-osoiteavaruuksia käyttämällä [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]-syntaksia; suurin sallittu alue on /$1 protokollalle IPv4 ja /$2 protokollalle IPv6.",
 	"ipaddressorusername": "IP-osoite tai käyttäjätunnus:",
 	"ipbexpiry": "Vanhentuu:",

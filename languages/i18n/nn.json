@@ -2008,7 +2008,6 @@
 	"block": "Blokker brukar",
 	"unblock": "Opphev blokkering av brukar",
 	"blockip": "Blokker brukar",
-	"blockip-legend": "Blokker brukar",
 	"blockiptext": "Bruk skjemaet nedanfor for å blokkere skrivetilgangen frå ei spesifikk IP-adresse eller brukarnamn. Dette bør berre gjerast for å hindre hærverk, og i samsvar med [[{{MediaWiki:Policy-url}}|retningslinene]].",
 	"ipaddressorusername": "IP-adresse eller brukarnamn",
 	"ipbexpiry": "Opphøyrstid:",

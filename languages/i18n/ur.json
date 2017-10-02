@@ -2138,7 +2138,6 @@
 	"block": "صارف مسدود کریں",
 	"unblock": "صارف سے پابندی ہٹائیں",
 	"blockip": "داخلہ ممنوع برائے صارف",
-	"blockip-legend": "ممنوع کردہ صارفین",
 	"ipaddressorusername": "آئی پی پتہ یا صارف نام:",
 	"ipbexpiry": "وقت اختتام:",
 	"ipbreason": "وجہ:",

@@ -2418,7 +2418,6 @@
 	"block": "Zablokuj użytkownika",
 	"unblock": "Odblokuj użytkownika",
 	"blockip": "Zablokuj {{GENDER:$1|użytkownika|użytkowniczkę}}",
-	"blockip-legend": "Zablokuj użytkownika",
 	"blockiptext": "Użyj poniższego formularza do zablokowania możliwości edycji spod określonego adresu IP lub konkretnemu użytkownikowi.\nBlokować należy jedynie po to, by zapobiec wandalizmom, zgodnie z [[{{MediaWiki:Policy-url}}|przyjętymi zasadami]].\nPodaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandalizmu).\nMożesz zablokować zakres adresów stosując składnię [https://pl.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]; najszerszym dozwolonym zakresem jest /$1 dla IPv4 i /$2 dla IPv6.",
 	"ipaddressorusername": "Adres IP lub nazwa użytkownika:",
 	"ipbexpiry": "Czas trwania:",

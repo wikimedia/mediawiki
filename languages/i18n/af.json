@@ -1895,7 +1895,6 @@
 	"block": "Blok gebruiker",
 	"unblock": "Deblokkeer gebruiker",
 	"blockip": "Blokkeer {{GENDER:$1|gebruiker}}",
-	"blockip-legend": "Blokkeer gebruiker of IP-adres",
 	"blockiptext": "Gebruik die vorm hier onder om skryftoegang vir 'n gebruiker of IP-adres in te trek.\nDit mag slegs as beskerming teen vandalisme en in ooreenstemming met die [[{{MediaWiki:Policy-url}}|beleid]] gedoen word.\nVul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat gevandaliseer is, aan).",
 	"ipaddressorusername": "IP-adres of gebruikersnaam:",
 	"ipbexpiry": "Duur:",

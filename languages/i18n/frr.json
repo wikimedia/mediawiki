@@ -2049,7 +2049,6 @@
 	"block": "Brüker spere",
 	"unblock": "Brüker ei muar spere",
 	"blockip": "IP-adres/{{GENDER:$1|brüker}} spere",
-	"blockip-legend": "IP-adres/brüker spere",
 	"blockiptext": "Mä detdiar formulaar sperest dü en IP-adres of en brükernööm, so dat faan diar nian feranrangen muar maaget wurd kön. \nDet skul bluas föörnimen wurd, am jin wandaalen föörtugungen an uun auerianstemang mä a [[{{MediaWiki:Policy-url}}|brükerreegeln]].\nSkriiw en guden grünj för det sper ap.\nDü könst IP-adres-beriker mä det [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]-syntax spere; di gratst mögelk berik as /$1 för IPv4 and /$2 för IPv6.",
 	"ipaddressorusername": "IP-adres of brükernööm:",
 	"ipbexpiry": "Sperdüür:",
