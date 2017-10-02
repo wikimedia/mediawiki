@@ -2510,7 +2510,7 @@
 	"delete_and_move_text": "Kohdesivu [[:$1]] on jo olemassa. \nHaluatko poistaa sen, jotta nykyinen sivu voitaisiin siirtää sen tilalle?",
 	"delete_and_move_confirm": "Kyllä, poista kohdesivu",
 	"delete_and_move_reason": "Sivu on sivun [[$1]] siirron tiellä.",
-	"selfmove": "Lähteen ja kohteen nimi on sama.\nSivua ei voi siirtää itsensä päälle.",
+	"selfmove": " Nimi on sama;\nSivua ei voi siirtää itsensä päälle.",
 	"immobile-source-namespace": "Sivuja ei voi siirtää nimiavaruudessa ”$1”",
 	"immobile-target-namespace": "Sivuja ei voi siirtää nimiavaruuteen ”$1”",
 	"immobile-target-namespace-iw": "Kielilinkki ei ole kelvollinen kohde sivun siirrolle.",

@@ -824,7 +824,7 @@ class Sanitizer {
 				|| $attribute === 'aria-labelledby'
 				|| $attribute === 'aria-owns'
 			) {
-				$value = self::escapeIdReferenceList( $value, 'noninitial' );
+				$value = self::escapeIdReferenceList( $value );
 			}
 
 			// RDFa and microdata properties allow URLs, URIs and/or CURIs.
@@ -1344,7 +1344,7 @@ class Sanitizer {
 	 * Given a string containing a space delimited list of ids, escape each id
 	 * to match ids escaped by the escapeId() function.
 	 *
-	 * @todo wfDeprecated() uses of $options in 1.31, remove completely in 1.32
+	 * @todo remove $options completely in 1.32
 	 *
 	 * @since 1.27
 	 *
@@ -1353,6 +1353,9 @@ class Sanitizer {
 	 * @return string
 	 */
 	static function escapeIdReferenceList( $referenceString, $options = [] ) {
+		if ( $options ) {
+			wfDeprecated( __METHOD__ . ' with $options', '1.31' );
+		}
 		# Explode the space delimited list string into an array of tokens
 		$references = preg_split( '/\s+/', "{$referenceString}", -1, PREG_SPLIT_NO_EMPTY );
 

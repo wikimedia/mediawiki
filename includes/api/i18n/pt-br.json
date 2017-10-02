@@ -1727,6 +1727,7 @@
 	"apiwarn-notfile": "\"$1\" não é um arquivo.",
 	"apiwarn-nothumb-noimagehandler": "Não foi possível criar uma miniatura porque $1 não possui um manipulador de imagem associado.",
 	"apiwarn-parse-nocontentmodel": "Não foi dado <var>title</var> ou <var>contentmodel</var>, assumindo $1.",
+	"apiwarn-parse-revidwithouttext": "<var>revid</var> use sem <var>text</var> e as propriedades da página analisada são necessárias. Você quis usar <var>oldid</var> ao invés de <var>revid</var>?",
 	"apiwarn-parse-titlewithouttext": "<var>title</var> usado sem <var>text</var>, e as propriedades da página analisada foram solicitadas. Você quis usar <var>page</var> ao invés de <var>title</var>?",
 	"apiwarn-redirectsandrevids": "A resolução de redirecionamento não pode ser usada em conjunto com o parâmetro <var>revids</var>. Qualquer redirecionamento <var>revids</var> apontando para não foi resolvido.",
 	"apiwarn-tokennotallowed": "A ação \"$1\" não é permitida para o usuário atual.",

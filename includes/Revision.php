@@ -362,7 +362,7 @@ class Revision implements IDBAccessObject {
 		$row = self::fetchFromConds( $db, $conditions, $flags );
 		if ( $row ) {
 			$rev = new Revision( $row );
-			$rev->mWiki = $db->getWikiID();
+			$rev->mWiki = $db->getDomainID();
 
 			return $rev;
 		}
@@ -1941,7 +1941,7 @@ class Revision implements IDBAccessObject {
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		return $cache->getWithSetCallback(
 			// Page/rev IDs passed in from DB to reflect history merges
-			$cache->makeGlobalKey( 'revision', $db->getWikiID(), $pageId, $revId ),
+			$cache->makeGlobalKey( 'revision', $db->getDomainID(), $pageId, $revId ),
 			$cache::TTL_WEEK,
 			function ( $curValue, &$ttl, array &$setOpts ) use ( $db, $pageId, $revId ) {
 				$setOpts += Database::getCacheSetOptions( $db );

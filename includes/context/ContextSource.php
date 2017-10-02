@@ -18,7 +18,6 @@
  * @author Happy-melon
  * @file
  */
-use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use MediaWiki\MediaWikiServices;
 
 /**

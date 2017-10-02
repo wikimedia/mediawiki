@@ -1804,7 +1804,7 @@
 	"unwatchthispage": "Prekini nadgledanje",
 	"notanarticle": "Nije stranica sa sadržajem",
 	"notvisiblerev": "Izmena je obrisana",
-	"watchlist-details": "Imate {{PLURAL:$1|$1 stranicu|$1 stranice|$1 stranica}} na svom spisku nadgledanja, ne računajući zasebno stranice za razgovor.",
+	"watchlist-details": "Na Vašem spisku nadgledanja {{PLURAL:$1|je $1 stranica|su $1 stranice|je $1 stranica}} (plus stranice za razgovor).",
 	"wlheader-enotif": "Obaveštenje imejlom je omogućeno.",
 	"wlheader-showupdated": "Stranice koje su izmenjene otkad ste ih poslednji put posetili su '''podebljane'''.",
 	"wlnote": "Ispod {{PLURAL:$1|je poslednja izmena|su poslednje <strong>$1</strong> izmene|je poslednjih <strong>$1</strong> izmena}} u {{PLURAL:$2|prethodnom satu|prethodna <strong>$2</strong> sata|prethodnih <strong>$2</strong> sati}}, zaključno sa $3, $4.",

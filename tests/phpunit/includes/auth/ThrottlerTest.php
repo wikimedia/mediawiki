@@ -4,7 +4,6 @@ namespace MediaWiki\Auth;
 
 use BagOStuff;
 use HashBagOStuff;
-use InvalidArgumentException;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;

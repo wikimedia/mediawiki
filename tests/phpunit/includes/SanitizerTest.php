@@ -388,7 +388,7 @@ class SanitizerTest extends MediaWikiTestCase {
 	 */
 	public function testEscapeIdReferenceList( $referenceList, $id1, $id2 ) {
 		$this->assertEquals(
-			Sanitizer::escapeIdReferenceList( $referenceList, 'noninitial' ),
+			Sanitizer::escapeIdReferenceList( $referenceList ),
 			Sanitizer::escapeIdForAttribute( $id1 )
 				. ' '
 				. Sanitizer::escapeIdForAttribute( $id2 )
