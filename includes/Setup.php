@@ -811,7 +811,7 @@ $wgUser = RequestContext::getMain()->getUser(); // BackCompat
 /**
  * @var Language $wgLang
  */
-$wgLang = new StubUserLang;
+$wgLang = RequestContext::getMain()->getUser(); // BackCompat
 
 /**
  * @var OutputPage $wgOut
