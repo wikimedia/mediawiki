@@ -27,15 +27,23 @@ class EditPage extends Page {
 				server: baseUrl.hostname,
 				port: baseUrl.port,
 				path: baseUrl.path,
+				username: browser.options.username,
+				password: browser.options.password,
 				debug: false
 			} );
 
 		return new Promise( ( resolve, reject ) => {
-			client.edit( name, content, `Created page with "${content}"`, function ( err ) {
+			client.logIn( function ( err ) {
 				if ( err ) {
-					return reject( err );
+					console.log( err );
+					return;
 				}
-				resolve();
+				client.edit( name, content, `Created page with "${content}"`, function ( err ) {
+					if ( err ) {
+						return reject( err );
+					}
+					resolve();
+				} );
 			} );
 		} );
 	}
