@@ -1596,7 +1596,7 @@ class OutputPage extends ContextSource {
 
 		if ( !$this->mParserOptions ) {
 			if ( !$this->getContext()->getUser()->isSafeToLoad() ) {
-				// $wgUser isn't unstubbable yet, so don't try to get a
+				// $wgUser isn't loaded yet, so don't try to get a
 				// ParserOptions for it. And don't cache this ParserOptions
 				// either.
 				$po = ParserOptions::newFromAnon();

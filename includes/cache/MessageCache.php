@@ -187,7 +187,7 @@ class MessageCache {
 
 		if ( !$this->mParserOptions ) {
 			if ( !$wgUser->isSafeToLoad() ) {
-				// $wgUser isn't unstubbable yet, so don't try to get a
+				// $wgUser isn't loaded yet, so don't try to get a
 				// ParserOptions for it. And don't cache this ParserOptions
 				// either.
 				$po = ParserOptions::newFromAnon();
