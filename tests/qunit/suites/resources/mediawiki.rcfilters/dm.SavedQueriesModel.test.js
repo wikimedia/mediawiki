@@ -6,27 +6,27 @@
 			filters: [
 				// Note: The fact filter2 is default means that in the
 				// filter representation, filter1 and filter3 are 'true'
-				{ name: 'filter1' },
-				{ name: 'filter2', default: true },
-				{ name: 'filter3' }
+				{ name: 'filter1', cssClass: 'filter1class' },
+				{ name: 'filter2', cssClass: 'filter2class', default: true },
+				{ name: 'filter3', cssClass: 'filter3class' }
 			]
 		}, {
 			name: 'group2',
 			type: 'string_options',
 			separator: ',',
 			filters: [
-				{ name: 'filter4' },
-				{ name: 'filter5' },
-				{ name: 'filter6' }
+				{ name: 'filter4', cssClass: 'filter4class' },
+				{ name: 'filter5' }, // NOTE: Not supporting highlights!
+				{ name: 'filter6', cssClass: 'filter6class' }
 			]
 		}, {
 			name: 'group3',
 			type: 'boolean',
 			isSticky: true,
 			filters: [
-				{ name: 'group3option1' },
-				{ name: 'group3option2' },
-				{ name: 'group3option3' }
+				{ name: 'group3option1', cssClass: 'filter1class' },
+				{ name: 'group3option2', cssClass: 'filter1class' },
+				{ name: 'group3option3', cssClass: 'filter1class' }
 			]
 		} ],
 		queriesFilterRepresentation = {
@@ -104,7 +104,7 @@
 								filter2: '1'
 							},
 							highlights: {
-								filter5_color: 'c2'
+								filter3_color: 'c2'
 							}
 						}
 					}
@@ -138,6 +138,13 @@
 					input: $.extend( true, {}, queriesParamRepresentation ),
 					finalState: $.extend( true, {}, queriesParamRepresentation ),
 					msg: 'Parameter representation retains its queries structure'
+				},
+				{
+					// Do not touch invalid color parameters if they already came from the initialization
+					// routine
+					input: $.extend( true, { highlights: filter5_color: 'c2' }, exampleQueryStructure ),
+					finalState: $.extend( true, { highlights: filter5_color: 'c2' }, queriesParamRepresentation ),
+					msg: 'Structure that contains invalid highlights is remains the same in initialization'
 				}
 			];
 
@@ -150,6 +157,101 @@
 				testCase.finalState,
 				testCase.msg
 			);
+		} );
+	} );
+
+	QUnit.test( 'Normalizing queries', function ( assert ) {
+		var filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
+			queriesModel = new mw.rcfilters.dm.SavedQueriesModel( filtersModel ),
+			cases = [
+				{
+					methodParams: [
+						'label1', // Label
+						{ // Data
+							filter1: '1',
+							filter2: '2'
+							filter1_color: 'c2',
+							filter3_color: 'c5'
+						},
+						true, // isDefault
+						'1234' // ID
+					],
+					result: {
+						itemState: {
+							label: 'label1',
+							data: {
+								params: {
+									filter1: '1',
+									filter2: '2'
+								},
+								highlights: {
+									filter1_color: 'c2',
+									filter3_color: 'c5'
+								}
+							}
+						},
+						isDefault: true,
+						id: '1234'
+					},
+					msg: 'Given valid data is preserved.'
+				},
+				{
+					methodParams: [
+						'label2',
+						{
+							filter1: '1',
+							invert: '1',
+							filter15: '1', // Invalid filter - removed
+							filter2: '0', // Falsey value - removed
+							filter1_color: 'c3',
+							filter5_color: 'c1', // Unsupported highlight - removed
+							foobar: 'w00t' // Unrecognized parameter - removed
+						}
+					],
+					result: {
+						itemState: {
+							params: {
+								filter1: '1',
+								invert: '1',
+							},
+							highlights: {
+								filter1_color: 'c3'
+							}
+						},
+						isDefault: false
+					},
+					msg: 'Given data with invalid filters and highlights is normalized'
+				}
+			];
+
+		filtersModel.initializeFilters( filterDefinition );
+
+		// Start with an empty saved queries model
+		queriesModel.initialize( {} );
+
+		cases.forEach( function ( testCase ) {
+			var itemID = queriesModel.addNewQuery.apply( queriesModel, testCase.methodParams ),
+				item = queriesModel.getItemByID( itemID );
+
+			assert.deepEqual(
+				item.getState(),
+				testCase.result.itemState,
+				testCase.msg + ' (itemState)'
+			);
+
+			assert.ok(
+				item.isDefault(),
+				testCase.result.isDefault,
+				testCase.msg + ' (isDefault)'
+			);
+
+			if ( testCase.result.id !== undefined ) {
+				assert.equal(
+					item.getID(),
+					testCase.result.id,
+					testCase.msg + ' (item ID)'
+				);
+			}
 		} );
 	} );
 
