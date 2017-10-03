@@ -2,6 +2,12 @@
  * Add search suggestions to the search form.
  */
 ( function ( mw, $ ) {
+	var searchNS = $.map( mw.config.get( 'wgFormattedNamespaces' ), function ( nsName, nsID ) {
+		if ( nsID >= 0 && mw.user.options.get( 'searchNs' + nsID ) ) {
+			// Cast string key to number
+			return Number( nsID );
+		}
+	} );
 	mw.searchSuggest = {
 		// queries the wiki and calls response with the result
 		request: function ( api, query, response, maxRows, namespace ) {
@@ -9,7 +15,7 @@
 				formatversion: 2,
 				action: 'opensearch',
 				search: query,
-				namespace: namespace || 0,
+				namespace: namespace || searchNS,
 				limit: maxRows,
 				suggest: true
 			} ).done( function ( data, jqXHR ) {
