@@ -493,7 +493,7 @@ class CoreParserFunctions {
 	 *
 	 * @param int|float $num
 	 * @param string $raw
-	 * @param Language|StubUserLang $language
+	 * @param Language $language
 	 * @return string
 	 */
 	public static function formatRaw( $num, $raw, $language ) {

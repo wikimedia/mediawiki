@@ -153,12 +153,9 @@ class Status extends StatusValue {
 	 * @return Language
 	 */
 	protected function languageFromParam( $lang ) {
-		global $wgLang;
-
 		if ( $lang === null ) {
-			// @todo: Use RequestContext::getMain()->getLanguage() instead
-			return $wgLang;
-		} elseif ( $lang instanceof Language || $lang instanceof StubUserLang ) {
+			return RequestContext::getMain()->getLanguage()
+		} elseif ( $lang instanceof Language ) {
 			return $lang;
 		} else {
 			return Language::factory( $lang );
