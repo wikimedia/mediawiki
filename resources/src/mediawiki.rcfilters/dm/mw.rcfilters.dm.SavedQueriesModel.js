@@ -169,86 +169,6 @@
 	};
 
 	/**
-	 * Get an object representing the base state of parameters
-	 * and highlights.
-	 *
-	 * This is meant to make sure that the saved queries that are
-	 * in memory are always the same structure as what we would get
-	 * by calling the current model's "getSelectedState" and by checking
-	 * highlight items.
-	 *
-	 * In cases where a user saved a query when the system had a certain
-	 * set of params, and then a filter was added to the system, we want
-	 * to make sure that the stored queries can still be comparable to
-	 * the current state, which means that we need the base state for
-	 * two operations:
-	 *
-	 * - Saved queries are stored in "minimal" view (only changed params
-	 *   are stored); When we initialize the system, we merge each minimal
-	 *   query with the base state (using 'getMinimalParamList') so all
-	 *   saved queries have the exact same structure as what we would get
-	 *   by checking the getSelectedState of the filter.
-	 * - When we save the queries, we minimize the object to only represent
-	 *   whatever has actually changed, rather than store the entire
-	 *   object. To check what actually is different so we can store it,
-	 *   we need to obtain a base state to compare against, this is
-	 *   what #getMinimalParamList does
-	 *
-	 * @return {Object} Base parameter state
-	 */
-	mw.rcfilters.dm.SavedQueriesModel.prototype.getBaseParamState = function () {
-		var allParams,
-			highlightedItems = {};
-
-		if ( !this.baseParamState ) {
-			allParams = this.filtersModel.getParametersFromFilters( {} );
-
-			// Prepare highlights
-			this.filtersModel.getItemsSupportingHighlights().forEach( function ( item ) {
-				highlightedItems[ item.getName() + '_color' ] = null;
-			} );
-
-			this.baseParamState = {
-				params: $.extend( true, { invert: '0', highlight: '0' }, allParams ),
-				highlights: highlightedItems
-			};
-		}
-
-		return this.baseParamState;
-	};
-
-	/**
-	 * Get an object that holds only the parameters and highlights that have
-	 * values different than the base value.
-	 *
-	 * This is the reverse of the normalization we do initially on loading and
-	 * initializing the saved queries model.
-	 *
-	 * @param {Object} valuesObject Object representing the state of both
-	 *  filters and highlights in its normalized version, to be minimized.
-	 * @return {Object} Minimal filters and highlights list
-	 */
-	mw.rcfilters.dm.SavedQueriesModel.prototype.getMinimalParamList = function ( valuesObject ) {
-		var result = { params: {}, highlights: {} },
-			baseState = this.getBaseParamState();
-
-		// XOR results
-		$.each( valuesObject.params, function ( name, value ) {
-			if ( baseState.params !== undefined && baseState.params[ name ] !== value ) {
-				result.params[ name ] = value;
-			}
-		} );
-
-		$.each( valuesObject.highlights, function ( name, value ) {
-			if ( baseState.highlights !== undefined && baseState.highlights[ name ] !== value ) {
-				result.highlights[ name ] = value;
-			}
-		} );
-
-		return result;
-	};
-
-	/**
 	 * Add a query item
 	 *
 	 * @param {string} label Label for the new query
@@ -260,7 +180,7 @@
 	 */
 	mw.rcfilters.dm.SavedQueriesModel.prototype.addNewQuery = function ( label, data, isDefault, id ) {
 		var randomID = String( id || ( new Date() ).getTime() ),
-			normalizedData = this.getMinimalParamList( data );
+			normalizedData = this.filtersModel.getMinimizedParamRepresentation( data );
 
 		// Add item
 		this.addItems( [
@@ -306,7 +226,7 @@
 	 */
 	mw.rcfilters.dm.SavedQueriesModel.prototype.findMatchingQuery = function ( fullQueryComparison ) {
 		// Minimize before comparison
-		fullQueryComparison = this.getMinimalParamList( fullQueryComparison );
+		fullQueryComparison = this.filtersModel.getMinimizedParamRepresentation( fullQueryComparison );
 
 		return this.getItems().filter( function ( item ) {
 			return OO.compare(
@@ -343,6 +263,53 @@
 	};
 
 	/**
+	 * Get the full data representation of the default query, if it exists
+	 *
+	 * @return {Object|null} Representation of the default params if exists.
+	 *  Null if default doesn't exist or if the user is not logged in.
+	 */
+	mw.rcfilters.dm.SavedQueriesModel.prototype.getDefaultParams = function () {
+		var savedFilters,
+			data = ( !mw.user.isAnon() && this.savedQueriesModel.getItemFullData( this.savedQueriesModel.getDefault() ) );
+
+		return data ? this.buildParamsFromData( data ) : null;
+	};
+
+	/**
+	 * Get a full parameter representation of an item data
+	 *
+	 * @param  {Object} queryID Query ID
+	 * @return {Object} Parameter representation
+	 */
+	mw.rcfilters.dm.SavedQueriesModel.prototype.getItemParams = function ( queryID ) {
+		var data = this.savedQueriesModel.getItemFullData( queryID );
+
+		return !$.isEmptyObject( data ) ? this.buildParamsFromData( data ) : null;
+	};
+
+	/**
+	 * Build a full parameter representation from given item data
+	 *
+	 * @param  {Object} data Item data
+	 * @return {Object} Full param representation
+	 */
+	mw.rcfilters.dm.SavedQueriesModel.prototype.buildParamsFromData = function ( data ) {
+		// Merge saved filter state with sticky filter values
+		var savedFilters = $.extend(
+			true, {},
+			this.filtersModel.getFiltersFromParameters( data.params ),
+			this.filtersModel.getStickyFiltersState()
+		);
+
+		// Return full parameter representation
+		return $.extend( true, {},
+			this.filtersModel.getParametersFromFilters( savedFilters ),
+			data.highlights,
+			{ highlight: data.params.highlight, invert: data.params.invert }
+		);
+	};
+
+	/**
 	 * Get the object representing the state of the entire model and items
 	 *
 	 * @return {Object} Object representing the state of the model and items
@@ -355,7 +322,7 @@
 		this.getItems().forEach( function ( item ) {
 			var itemState = item.getState();
 
-			itemState.data = model.getMinimalParamList( itemState.data );
+			itemState.data = model.filtersModel.getMinimizedParamRepresentation( itemState.data );
 
 			obj.queries[ item.getID() ] = itemState;
 		} );
