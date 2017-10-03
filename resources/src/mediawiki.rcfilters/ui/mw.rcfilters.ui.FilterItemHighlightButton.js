@@ -40,6 +40,8 @@
 		// button
 		this.$element.on( 'mousedown', function ( e ) { e.stopPropagation(); } );
 
+		this.onModelUpdate();
+
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterItemHighlightButton' );
 	};
