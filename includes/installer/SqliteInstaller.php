@@ -33,7 +33,8 @@ use Wikimedia\Rdbms\DBConnectionError;
  */
 class SqliteInstaller extends DatabaseInstaller {
 
-	public $minimumVersion = '3.3.7';
+	public static $minimumVersion = '3.3.7';
+	protected static $notMiniumumVerisonMessage = 'config-outdated-sqlite';
 
 	/**
 	 * @var DatabaseSqlite
@@ -58,12 +59,9 @@ class SqliteInstaller extends DatabaseInstaller {
 	 * @return Status
 	 */
 	public function checkPrerequisites() {
-		$result = Status::newGood();
 		// Bail out if SQLite is too old
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
-		if ( version_compare( $db->getServerVersion(), $this->minimumVersion, '<' ) ) {
-			$result->fatal( 'config-outdated-sqlite', $db->getServerVersion(), $this->minimumVersion );
-		}
+		$result = static::meetsMinimumRequirement( $db->getServerVersion() );
 		// Check for FTS3 full-text search module
 		if ( DatabaseSqlite::getFulltextSearchModule() != 'FTS3' ) {
 			$result->warning( 'config-no-fts3' );
