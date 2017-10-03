@@ -51,7 +51,8 @@ class MssqlInstaller extends DatabaseInstaller {
 
 	// SQL Server 2005 RTM
 	// @todo Are SQL Express version numbers different?)
-	public $minimumVersion = '9.00.1399';
+	public static $minimumVersion = '9.00.1399';
+	protected static $notMiniumumVerisonMessage = 'config-mssql-old';
 
 	// These are schema-level privs
 	// Note: the web user will be created will full permissions if possible, this permission
@@ -191,12 +192,7 @@ class MssqlInstaller extends DatabaseInstaller {
 		$conn = $status->value;
 
 		// Check version
-		$version = $conn->getServerVersion();
-		if ( version_compare( $version, $this->minimumVersion ) < 0 ) {
-			return Status::newFatal( 'config-mssql-old', $this->minimumVersion, $version );
-		}
-
-		return $status;
+		return static::meetsMinimumRequirement( $conn->getServerVersion() );
 	}
 
 	/**
