@@ -16,6 +16,7 @@
 	 * @param {Object} config Configuration options
 	 * @cfg {string} data Label to display
 	 * @cfg {string} url URL of page
+	 * @cfg {boolean} [showImages] Whether to attempt to show images
 	 * @cfg {string} [imageUrl] Thumbnail image URL with URL encoding
 	 * @cfg {string} [description] Page description
 	 * @cfg {boolean} [missing] Page doesn't exist
@@ -26,7 +27,9 @@
 	mw.widgets.TitleOptionWidget = function MwWidgetsTitleOptionWidget( config ) {
 		var icon;
 
-		if ( config.missing ) {
+		if ( !config.showImages ) {
+			icon = null;
+		} else if ( config.missing ) {
 			icon = 'page-not-found';
 		} else if ( config.redirect ) {
 			icon = 'page-redirect';
@@ -78,7 +81,7 @@
 			this.$label.addClass( 'mw-disambig' );
 		}
 
-		if ( config.imageUrl ) {
+		if ( config.showImages && config.imageUrl ) {
 			this.$icon
 				.addClass( 'mw-widget-titleOptionWidget-hasImage' )
 				.css( 'background-image', 'url(' + config.imageUrl + ')' );

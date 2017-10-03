@@ -329,6 +329,7 @@
 				mwTitle.getRelativeText( this.namespace ) :
 				title,
 			url: mwTitle.getUrl(),
+			showImages: this.showImages,
 			imageUrl: this.showImages ? data.imageUrl : null,
 			description: this.showDescriptions ? description : null,
 			missing: data.missing,
