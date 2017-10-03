@@ -659,6 +659,7 @@
 	"apihelp-watch-example-watch": "<kbd>대문</kbd> 문서를 주시합니다.",
 	"apihelp-watch-example-unwatch": "<kbd>대문</kbd> 문서의 주시를 해제합니다.",
 	"apihelp-watch-example-generator": "일반 이름공간의 일부 첫 문서들을 주시합니다.",
+	"apihelp-format-example-generic": "쿼리 결과를 $1 포맷으로 반환합니다.",
 	"apihelp-json-summary": "데이터를 JSON 형식으로 출력합니다.",
 	"apihelp-json-param-formatversion": "출력 형식:\n;1:하위 호환 포맷 (XML 스타일 불린, 콘텐츠 노드를 위한 <samp>*</samp> 키 등).\n;2:실험적인 모던 포맷. 상세 내용은 바뀔 수 있습니다!\n;latest:최신 포맷(현재 <kbd>2</kbd>)을 이용하지만 경고 없이 바뀔 수 있습니다.",
 	"apihelp-jsonfm-summary": "데이터를 JSON 포맷으로 출력합니다. (HTML의 가독성 증가)",

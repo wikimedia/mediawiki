@@ -115,7 +115,8 @@
 			"Valeri'swiki",
 			"Marat-avgust",
 			"Ernác",
-			"Wertuose"
+			"Wertuose",
+			"Helpau"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -166,7 +167,6 @@
 	"underline-never": "Никогда",
 	"underline-default": "Использовать настройки браузера",
 	"editfont-style": "Тип шрифта области редактирования:",
-	"editfont-default": "Шрифт из настроек браузера",
 	"editfont-monospace": "Моноширинный шрифт",
 	"editfont-sansserif": "Шрифт без засечек",
 	"editfont-serif": "Шрифт с засечками",
@@ -400,7 +400,7 @@
 	"nstab-template": "Шаблон",
 	"nstab-help": "Справка",
 	"nstab-category": "Категория",
-	"mainpage-nstab": "Заглавная",
+	"mainpage-nstab": "Главная страница",
 	"nosuchaction": "Такого действия нет",
 	"nosuchactiontext": "Указанное в URL действие ошибочно.\nВозможно, вы допустили опечатку при наборе URL или перешли по ошибочной ссылке.\nЭто может также указывать на ошибку в проекте {{SITENAME}}.",
 	"nosuchspecialpage": "Нет такой служебной страницы",

@@ -141,7 +141,6 @@
 	"underline-never": "nie",
 	"underline-default": "abhängig von der Benutzeroberfläche oder Browsereinstellung",
 	"editfont-style": "Schriftart für den Text im Bearbeitungsfenster:",
-	"editfont-default": "Browserstandard",
 	"editfont-monospace": "Schrift mit fester Zeichenbreite",
 	"editfont-sansserif": "Schrift ohne Serifen",
 	"editfont-serif": "Schrift mit Serifen",

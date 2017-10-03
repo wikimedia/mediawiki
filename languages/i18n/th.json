@@ -77,7 +77,6 @@
 	"underline-never": "ไม่",
 	"underline-default": "ค่าปริยายของหน้าตาหรือเบราว์เซอร์",
 	"editfont-style": "รูปแบบชุดแบบอักษรในพื้นที่แก้ไข:",
-	"editfont-default": "ค่าปริยายของเบราว์เซอร์",
 	"editfont-monospace": "ชุดอักษรแบบความกว้างคงที่",
 	"editfont-sansserif": "ชุดอักษรแบบไม่มีเชิง",
 	"editfont-serif": "ชุดอักษรแบบมีเชิง",

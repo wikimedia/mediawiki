@@ -76,7 +76,6 @@
 	"underline-never": "nikad ne podvlači",
 	"underline-default": "prema temi ili pregledaču",
 	"editfont-style": "Izgled fonta u uređivačkom okviru:",
-	"editfont-default": "po postavkama pregledača",
 	"editfont-monospace": "srazmerno širok font",
 	"editfont-sansserif": "beserifni font",
 	"editfont-serif": "serifni font",

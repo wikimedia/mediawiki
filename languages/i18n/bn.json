@@ -34,7 +34,8 @@
 			"NahidSultan",
 			"Elias Ahmmad",
 			"Catrope",
-			"Mohammed Galib Hasan"
+			"Mohammed Galib Hasan",
+			"এম আবু সাঈদ"
 		]
 	},
 	"tog-underline": "সংযোগের নিচে দাগ দেখানো হোক:",
@@ -85,7 +86,6 @@
 	"underline-never": "কখনো নয়",
 	"underline-default": "স্কিন অথবা ব্রাউজারে যেমনভাবে নির্দিষ্ট করা আছে",
 	"editfont-style": "সম্পাদনা এলাকার ফন্ট শৈলী:",
-	"editfont-default": "ব্রাউজার দ্বারা পূর্বনির্ধারিত",
 	"editfont-monospace": "মনোস্পেস ফন্ট",
 	"editfont-sansserif": "স্যান্স-সেরিফ ফন্ট",
 	"editfont-serif": "সেরিফ ফন্ট",
@@ -1032,7 +1032,7 @@
 	"timezoneregion-indian": "ভারত মহাসাগর",
 	"timezoneregion-pacific": "প্রশান্ত মহাসাগর",
 	"allowemail": "অন্য ব্যবহারকারীদেরকে আপনাকে ই-মেইল পাঠানোর অনুমতি দিন।",
-	"email-blacklist-label": "আমাকে ইমেইল পাঠানো থেকে এই ব্যবহারকারীদের নিষিদ্ধ করুন:",
+	"email-blacklist-label": "আমাকে ইমেইল পাঠানো থেকে এই ব্যবহারকারীদের বিরত রাখুন:",
 	"prefs-searchoptions": "অনুসন্ধান",
 	"prefs-namespaces": "নামস্থানসমূহ",
 	"default": "পূর্বনির্ধারিত",
