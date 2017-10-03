@@ -1904,6 +1904,7 @@ return [
 			'rcfilters-view-namespaces-tooltip',
 			'rcfilters-view-tags-tooltip',
 			'rcfilters-view-return-to-default-tooltip',
+			'rcfilters-view-tags-help-icon-tooltip',
 			'rcfilters-liveupdates-button',
 			'rcfilters-liveupdates-button-title-on',
 			'rcfilters-liveupdates-button-title-off',
