@@ -343,6 +343,53 @@
 	};
 
 	/**
+	 * Get the full data representation of the default query, if it exists
+	 *
+	 * @return {Object|null} Representation of the default params if exists.
+	 *  Null if default doesn't exist or if the user is not logged in.
+	 */
+	mw.rcfilters.dm.SavedQueriesModel.prototype.getDefaultParams = function () {
+		var savedFilters,
+			data = ( !mw.user.isAnon() && this.savedQueriesModel.getItemFullData( this.savedQueriesModel.getDefault() ) );
+
+		return data ? this.buildParamsFromData( data ) : null;
+	};
+
+	/**
+	 * Get a full parameter representation of an item data
+	 *
+	 * @param  {Object} queryID Query ID
+	 * @return {Object} Parameter representation
+	 */
+	mw.rcfilters.dm.SavedQueriesModel.prototype.getItemParams = function ( queryID ) {
+		var data = this.savedQueriesModel.getItemFullData( queryID );
+
+		return !$.isEmptyObject( data ) ? this.buildParamsFromData( data ) : null;
+	};
+
+	/**
+	 * Build a full parameter representation from given item data
+	 *
+	 * @param  {Object} data Item data
+	 * @return {Object} Full param representation
+	 */
+	mw.rcfilters.dm.SavedQueriesModel.prototype.buildParamsFromData = function ( data ) {
+		// Merge saved filter state with sticky filter values
+		var savedFilters = $.extend(
+			true, {},
+			this.filtersModel.getFiltersFromParameters( data.params ),
+			this.filtersModel.getStickyFiltersState()
+		);
+
+		// Return full parameter representation
+		return $.extend( true, {},
+			this.filtersModel.getParametersFromFilters( savedFilters ),
+			data.highlights,
+			{ highlight: data.params.highlight, invert: data.params.invert }
+		);
+	};
+
+	/**
 	 * Get the object representing the state of the entire model and items
 	 *
 	 * @return {Object} Object representing the state of the model and items

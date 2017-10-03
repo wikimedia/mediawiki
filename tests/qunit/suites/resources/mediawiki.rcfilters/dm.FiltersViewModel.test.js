@@ -141,6 +141,22 @@
 			group7: 'group7option2',
 			namespace: ''
 		},
+		emptyParamRepresentation = {
+			filter1: '0',
+			filter2: '0',
+			filter3: '0',
+			filter4: '0',
+			filter5: '0',
+			filter6: '0',
+			group3: '',
+			group4: '',
+			group5: '',
+			group6option1: '0',
+			group6option2: '0',
+			group6option3: '0',
+			group7: '',
+			namespace: ''
+		},
 		baseFilterRepresentation = {
 			group1__filter1: false,
 			group1__filter2: false,
@@ -275,6 +291,33 @@
 				group7: 'group7option1'
 			} ),
 			'Default parameters are stored properly per filter and group'
+		);
+	} );
+
+	QUnit.test( 'Parameter states', function ( assert ) {
+		var model = new mw.rcfilters.dm.FiltersViewModel();
+
+		model.initializeFilters( filterDefinition, viewsDefinition );
+
+		assert.deepEqual(
+			model.getEmptyParameterState(),
+			emptyParamRepresentation,
+			'Producing an empty parameter state'
+		);
+
+		model.toggleFiltersSelected( {
+			group1__filter1: true,
+			group3__filter7: true
+		} );
+
+		assert.deepEqual(
+			model.getCurrentParameterState(),
+			$.extend( true, {}, baseParamRepresentation, {
+				filter2: '1',
+				filter3: '1',
+				group3: 'filter7'
+			} ),
+			'Producing a current parameter state'
 		);
 	} );
 

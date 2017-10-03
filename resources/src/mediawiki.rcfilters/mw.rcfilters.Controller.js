@@ -372,9 +372,10 @@
 	 */
 	mw.rcfilters.Controller.prototype.areDefaultsEmpty = function () {
 		var defaultParams = this._getDefaultParams(),
+			// Translate to filters
 			defaultFilters = this.filtersModel.getFiltersFromParameters( defaultParams );
 
-		this._deleteExcludedValuesFromFilterState( defaultFilters );
+		this.filtersModel.getCleanFilterState( defaultFilters );
 
 		if ( Object.keys( defaultParams ).some( function ( paramName ) {
 			return paramName.endsWith( '_color' ) && defaultParams[ paramName ] !== null;
@@ -611,33 +612,10 @@
 	 * @param {boolean} [setAsDefault=false] This query should be set as the default
 	 */
 	mw.rcfilters.Controller.prototype.saveCurrentQuery = function ( label, setAsDefault ) {
-		var highlightedItems = {},
-			highlightEnabled = this.filtersModel.isHighlightEnabled(),
-			selectedState = this.filtersModel.getSelectedState();
-
-		// Prepare highlights
-		this.filtersModel.getHighlightedItems().forEach( function ( item ) {
-			highlightedItems[ item.getName() + '_color' ] = highlightEnabled ?
-				item.getHighlightColor() : null;
-		} );
-
-		// Delete all excluded filters
-		this._deleteExcludedValuesFromFilterState( selectedState );
-
 		// Add item
 		this.savedQueriesModel.addNewQuery(
 			label || mw.msg( 'rcfilters-savedqueries-defaultlabel' ),
-			{
-				params: $.extend(
-					true,
-					{
-						invert: String( Number( this.filtersModel.areNamespacesInverted() ) ),
-						highlight: String( Number( this.filtersModel.isHighlightEnabled() ) )
-					},
-					this.filtersModel.getParametersFromFilters( selectedState )
-				),
-				highlights: highlightedItems
-			},
+			this.filtersModel.getCurrentParameterState( true ),
 			setAsDefault
 		);
 
@@ -688,55 +666,33 @@
 	 * @param {string} queryID Query id
 	 */
 	mw.rcfilters.Controller.prototype.applySavedQuery = function ( queryID ) {
-		var highlights,
-			queryItem = this.savedQueriesModel.getItemByID( queryID ),
-			data = this.savedQueriesModel.getItemFullData( queryID ),
-			currentMatchingQuery = this.findQueryMatchingCurrentState();
+		var currentMatchingQuery,
+			params = this.savedQueriesModel.getItemParams( queryID );
+
+		if ( !params ) {
+			// Sanity check
+			return;
+		}
+
+		currentMatchingQuery = this.findQueryMatchingCurrentState();
 
 		if (
-			queryItem &&
-			(
-				// If there's already a query, don't reload it
-				// if it's the same as the one that already exists
-				!currentMatchingQuery ||
-				currentMatchingQuery.getID() !== queryItem.getID()
-			)
+			currentMatchingQuery &&
+			currentMatchingQuery.getID() === queryID
 		) {
-			highlights = data.highlights;
-
-			// Update model state from filters
-			this.filtersModel.toggleFiltersSelected(
-				// Merge filters with excluded values
-				$.extend(
-					true,
-					{},
-					this.filtersModel.getFiltersFromParameters( data.params ),
-					this.filtersModel.getExcludedFiltersState()
-				)
-			);
-
-			// Update namespace inverted property
-			this.filtersModel.toggleInvertedNamespaces( !!Number( data.params.invert ) );
-
-			// Update highlight state
-			this.filtersModel.toggleHighlight( !!Number( data.params.highlight ) );
-			this.filtersModel.getItems().forEach( function ( filterItem ) {
-				var color = highlights[ filterItem.getName() + '_color' ];
-				if ( color ) {
-					filterItem.setHighlightColor( color );
-				} else {
-					filterItem.clearHighlightColor();
-				}
-			} );
-
-			// Check all filter interactions
-			this.filtersModel.reassessFilterInteractions();
-
-			this.updateChangesList();
-
-			// Log filter grouping
-			this.trackFilterGroupings( 'savedfilters' );
+			// If the query we want to load is the one that is already
+			// loaded, don't reload it
+			return;
 		}
+
+		// Apply parameters to model
+		this.filtersModel.updateStateFromParams( params );
+
+		// Update changes list
+		this.updateChangesList();
+
+		// Log filter grouping
+		this.trackFilterGroupings( 'savedfilters' );
 	};
 
 	/**
@@ -746,43 +702,9 @@
 	 * @return {boolean} Query exists
 	 */
 	mw.rcfilters.Controller.prototype.findQueryMatchingCurrentState = function () {
-		var highlightedItems = {},
-			selectedState = this.filtersModel.getSelectedState();
-
-		// Prepare highlights of the current query
-		this.filtersModel.getItemsSupportingHighlights().forEach( function ( item ) {
-			highlightedItems[ item.getName() + '_color' ] = item.getHighlightColor();
-		} );
-
-		// Remove anything that should be excluded from the saved query
-		// this includes sticky filters and filters marked with 'excludedFromSavedQueries'
-		this._deleteExcludedValuesFromFilterState( selectedState );
-
 		return this.savedQueriesModel.findMatchingQuery(
-			{
-				params: $.extend(
-					true,
-					{
-						highlight: String( Number( this.filtersModel.isHighlightEnabled() ) ),
-						invert: String( Number( this.filtersModel.areNamespacesInverted() ) )
-					},
-					this.filtersModel.getParametersFromFilters( selectedState )
-				),
-				highlights: highlightedItems
-			}
+			this.filtersModel.getCurrentParameterState( true )
 		);
-	};
-
-	/**
-	 * Delete sticky filters from given object
-	 *
-	 * @param {Object} filterState Filter state
-	 */
-	mw.rcfilters.Controller.prototype._deleteExcludedValuesFromFilterState = function ( filterState ) {
-		// Remove excluded filters
-		$.each( this.filtersModel.getExcludedFiltersState(), function ( filterName ) {
-			delete filterState[ filterName ];
-		} );
 	};
 
 	/**
@@ -983,25 +905,7 @@
 	 * @return {Object} Default parameters
 	 */
 	mw.rcfilters.Controller.prototype._getDefaultParams = function () {
-		var savedFilters,
-			data = ( !mw.user.isAnon() && this.savedQueriesModel.getItemFullData( this.savedQueriesModel.getDefault() ) ) || {};
-
-		if ( !$.isEmptyObject( data ) ) {
-			// Merge saved filter state with sticky filter values
-			savedFilters = $.extend(
-				true, {},
-				this.filtersModel.getFiltersFromParameters( data.params ),
-				this.filtersModel.getStickyFiltersState()
-			);
-
-			// Return parameter representation
-			return $.extend( true, {},
-				this.filtersModel.getParametersFromFilters( savedFilters ),
-				data.highlights,
-				{ highlight: data.params.highlight, invert: data.params.invert }
-			);
-		}
-		return this.filtersModel.getDefaultParams();
+		return this.savedQueriesModel.getDefaultData() || this.filtersModel.getDefaultParams();
 	};
 
 	/**
