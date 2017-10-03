@@ -916,4 +916,35 @@
 	mw.rcfilters.dm.FilterGroup.prototype.isExcludedFromSavedQueries = function () {
 		return this.excludedFromSavedQueries;
 	};
+
+	/**
+	 * Normalize a value given to this group. This is mostly for correcting
+	 * arbitrary values for 'single option' groups, given by the user settings
+	 * or the URL that can go outside the limits that are allowed.
+	 *
+	 * @param  {string} value Given value
+	 * @return {string} Corrected value
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.normalizeArbitraryValue = function ( value ) {
+		if (
+			this.getType() === 'single_option' &&
+			this.isAllowArbitrary()
+		) {
+			if (
+				this.getMaxValue() !== null &&
+				value > this.getMaxValue()
+			) {
+				// Change the value to the actual max value
+				return String( this.getMaxValue() );
+			} else if (
+				this.getMinValue() !== null &&
+				value < this.getMinValue()
+			) {
+				// Change the value to the actual min value
+				return String( this.getMinValue() );
+			}
+		}
+
+		return value;
+	};
 }( mediaWiki ) );

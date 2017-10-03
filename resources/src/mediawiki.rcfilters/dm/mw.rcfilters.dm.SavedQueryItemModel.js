@@ -92,6 +92,15 @@
 	};
 
 	/**
+	 * Get the combined data of this item as a flat object of parameters
+	 *
+	 * @return {Object} Combined parameter data
+	 */
+	mw.rcfilters.dm.SavedQueryItemModel.prototype.getCombinedData = function () {
+		return $.extend( true, {}, this.data.params, this.data.highlights );
+	};
+
+	/**
 	 * Check whether this item is the default
 	 *
 	 * @return {boolean} Query is set to be default
