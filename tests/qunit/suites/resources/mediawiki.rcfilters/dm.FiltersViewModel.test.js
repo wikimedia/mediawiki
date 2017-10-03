@@ -7,6 +7,7 @@
 				{
 					name: 'filter1', label: 'group1filter1-label', description: 'group1filter1-desc',
 					default: true,
+					cssClass: 'filter1class',
 					conflicts: [ { group: 'group2' } ],
 					subset: [
 						{
@@ -22,6 +23,7 @@
 				{
 					name: 'filter2', label: 'group1filter2-label', description: 'group1filter2-desc',
 					conflicts: [ { group: 'group2', filter: 'filter6' } ],
+					cssClass: 'filter2class',
 					subset: [
 						{
 							group: 'group1',
@@ -29,18 +31,20 @@
 						}
 					]
 				},
+				// NOTE: This filter has no highlight!
 				{ name: 'filter3', label: 'group1filter3-label', description: 'group1filter3-desc', default: true }
 			]
 		}, {
 			name: 'group2',
 			type: 'send_unselected_if_any',
 			fullCoverage: true,
+			excludedFromSavedQueries: true,
 			conflicts: [ { group: 'group1', filter: 'filter1' } ],
 			filters: [
-				{ name: 'filter4', label: 'group2filter4-label', description: 'group2filter4-desc' },
-				{ name: 'filter5', label: 'group2filter5-label', description: 'group2filter5-desc', default: true },
+				{ name: 'filter4', label: 'group2filter4-label', description: 'group2filter4-desc', cssClass: 'filter4class' },
+				{ name: 'filter5', label: 'group2filter5-label', description: 'group2filter5-desc', default: true, cssClass: 'filter5class' },
 				{
-					name: 'filter6', label: 'group2filter6-label', description: 'group2filter6-desc',
+					name: 'filter6', label: 'group2filter6-label', description: 'group2filter6-desc', cssClass: 'filter6class',
 					conflicts: [ { group: 'group1', filter: 'filter2' } ]
 				}
 			]
@@ -50,15 +54,16 @@
 			separator: ',',
 			default: 'filter8',
 			filters: [
-				{ name: 'filter7', label: 'group3filter7-label', description: 'group3filter7-desc' },
-				{ name: 'filter8', label: 'group3filter8-label', description: 'group3filter8-desc' },
-				{ name: 'filter9', label: 'group3filter9-label', description: 'group3filter9-desc' }
+				{ name: 'filter7', label: 'group3filter7-label', description: 'group3filter7-desc', cssClass: 'filter7class' },
+				{ name: 'filter8', label: 'group3filter8-label', description: 'group3filter8-desc', cssClass: 'filter8class' },
+				{ name: 'filter9', label: 'group3filter9-label', description: 'group3filter9-desc', cssClass: 'filter9class' }
 			]
 		}, {
 			name: 'group4',
 			type: 'single_option',
 			default: 'option2',
 			filters: [
+				// NOTE: The entire group has no highlight supported
 				{ name: 'option1', label: 'group4option1-label', description: 'group4option1-desc' },
 				{ name: 'option2', label: 'group4option2-label', description: 'group4option2-desc' },
 				{ name: 'option3', label: 'group4option3-label', description: 'group4option3-desc' }
@@ -67,18 +72,18 @@
 			name: 'group5',
 			type: 'single_option',
 			filters: [
-				{ name: 'option1', label: 'group5option1-label', description: 'group5option1-desc' },
-				{ name: 'option2', label: 'group5option2-label', description: 'group5option2-desc' },
-				{ name: 'option3', label: 'group5option3-label', description: 'group5option3-desc' }
+				{ name: 'option1', label: 'group5option1-label', description: 'group5option1-desc', cssClass: 'group5opt1class' },
+				{ name: 'option2', label: 'group5option2-label', description: 'group5option2-desc', cssClass: 'group5opt2class' },
+				{ name: 'option3', label: 'group5option3-label', description: 'group5option3-desc', cssClass: 'group5opt3class' }
 			]
 		}, {
 			name: 'group6',
 			type: 'boolean',
 			isSticky: true,
 			filters: [
-				{ name: 'group6option1', label: 'group6option1-label', description: 'group6option1-desc' },
-				{ name: 'group6option2', label: 'group6option2-label', description: 'group6option2-desc', default: true },
-				{ name: 'group6option3', label: 'group6option3-label', description: 'group6option3-desc', default: true }
+				{ name: 'group6option1', label: 'group6option1-label', description: 'group6option1-desc', cssClass: 'group6opt1class' },
+				{ name: 'group6option2', label: 'group6option2-label', description: 'group6option2-desc', default: true, cssClass: 'group6opt2class' },
+				{ name: 'group6option3', label: 'group6option3-label', description: 'group6option3-desc', default: true, cssClass: 'group6opt3class' }
 			]
 		}, {
 			name: 'group7',
@@ -86,9 +91,9 @@
 			isSticky: true,
 			default: 'group7option2',
 			filters: [
-				{ name: 'group7option1', label: 'group7option1-label', description: 'group7option1-desc' },
-				{ name: 'group7option2', label: 'group7option2-label', description: 'group7option2-desc' },
-				{ name: 'group7option3', label: 'group7option3-label', description: 'group7option3-desc' }
+				{ name: 'group7option1', label: 'group7option1-label', description: 'group7option1-desc', cssClass: 'group7opt1class' },
+				{ name: 'group7option2', label: 'group7option2-label', description: 'group7option2-desc', cssClass: 'group7opt2class' },
+				{ name: 'group7option3', label: 'group7option3-label', description: 'group7option3-desc', cssClass: 'group7opt3class' }
 			]
 		} ],
 		viewsDefinition = {
@@ -101,10 +106,10 @@
 					type: 'string_options',
 					separator: ';',
 					filters: [
-						{ name: 0, label: 'Main' },
-						{ name: 1, label: 'Talk' },
-						{ name: 2, label: 'User' },
-						{ name: 3, label: 'User talk' }
+						{ name: 0, label: 'Main', cssClass: 'namespace-0' },
+						{ name: 1, label: 'Talk', cssClass: 'namespace-1' },
+						{ name: 2, label: 'User', cssClass: 'namespace-2' },
+						{ name: 3, label: 'User talk', cssClass: 'namespace-3' }
 					]
 				} ]
 			}
@@ -140,6 +145,49 @@
 			group6option3: '1',
 			group7: 'group7option2',
 			namespace: ''
+		},
+		emptyParamRepresentation = {
+			filter1: '0',
+			filter2: '0',
+			filter3: '0',
+			filter4: '0',
+			filter5: '0',
+			filter6: '0',
+			group3: '',
+			group4: '',
+			group5: '',
+			group6option1: '0',
+			group6option2: '0',
+			group6option3: '0',
+			group7: '',
+			namespace: '',
+			highlight: '0',
+			// Null highlights
+			group1__filter1_color: null,
+			group1__filter2_color: null,
+			// group1__filter3_color: null, // Highlight isn't supported
+			group2__filter4_color: null,
+			group2__filter5_color: null,
+			group2__filter6_color: null,
+			group3__filter7_color: null,
+			group3__filter8_color: null,
+			group3__filter9_color: null,
+			// group4__option1_color: null, // Highlight isn't supported
+			// group4__option2_color: null, // Highlight isn't supported
+			// group4__option3_color: null, // Highlight isn't supported
+			group5__option1_color: null,
+			group5__option2_color: null,
+			group5__option3_color: null,
+			group6__group6option1_color: null,
+			group6__group6option2_color: null,
+			group6__group6option3_color: null,
+			group7__group7option1_color: null,
+			group7__group7option2_color: null,
+			group7__group7option3_color: null,
+			namespace__0_color: null,
+			namespace__1_color: null,
+			namespace__2_color: null,
+			namespace__3_color: null
 		},
 		baseFilterRepresentation = {
 			group1__filter1: false,
@@ -276,6 +324,155 @@
 			} ),
 			'Default parameters are stored properly per filter and group'
 		);
+	} );
+
+	QUnit.test( 'Parameter minimal state', function ( assert ) {
+		var model = new mw.rcfilters.dm.FiltersViewModel(),
+			cases = [
+				{
+					input: {},
+					result: {},
+					msg: 'Empty parameter representation produces an empty result'
+				},
+				{
+					input: {
+						filter1: '1',
+						filter2: '0',
+						filter3: '0',
+						group3: '',
+						group4: 'option2'
+					},
+					result: {
+						filter1: '1',
+						group4: 'option2'
+					},
+					msg: 'Mixed input results in only non-falsey values as result'
+				},
+				{
+					input: {
+						filter1: '0',
+						filter2: '0',
+						filter3: '0',
+						group3: '',
+						group4: '',
+						group1__filter1_color: null
+					},
+					result: {},
+					msg: 'An all-falsey input results in an empty result.'
+				},
+				{
+					input: {
+						filter1: '0',
+						filter2: '0',
+						filter3: '0',
+						group3: '',
+						group4: '',
+						group1__filter1_color: 'c1'
+					},
+					result: {
+						group1__filter1_color: 'c1'
+					},
+					msg: 'An all-falsey input with highlight params result in only the highlight param.'
+				}
+			];
+
+		model.initializeFilters( filterDefinition, viewsDefinition );
+
+		cases.forEach( function ( test ) {
+			assert.deepEqual(
+				model.getMinimizedParamRepresentation( test.input ),
+				test.result,
+				test.msg
+			);
+		} );
+	} );
+
+	QUnit.test( 'Parameter states', function ( assert ) {
+		// Some groups / params have their defaults immediately applied
+		// to their state. These include single_option which can never
+		// be empty, etc. These are these states:
+		var parametersWithoutExcluded,
+			appliedDefaultParameters = {
+				group4: 'option2',
+				group5: 'option1',
+				// Sticky, their defaults apply immediately
+				group6option2: '1',
+				group6option3: '1',
+				group7: 'group7option2'
+			},
+			model = new mw.rcfilters.dm.FiltersViewModel();
+
+		model.initializeFilters( filterDefinition, viewsDefinition );
+		assert.deepEqual(
+			model.getEmptyParameterState(),
+			emptyParamRepresentation,
+			'Producing an empty parameter state'
+		);
+
+		model.toggleFiltersSelected( {
+			group1__filter1: true,
+			group3__filter7: true
+		} );
+
+		assert.deepEqual(
+			model.getCurrentParameterState(),
+			// appliedDefaultParams applies the default value to parameters
+			// who must have an initial value to begin with, so we have to
+			// take it into account in the current state
+			$.extend( true, {}, appliedDefaultParameters, {
+				filter2: '1',
+				filter3: '1',
+				group3: 'filter7'
+			} ),
+			'Producing a current parameter state'
+		);
+
+		// Reset
+		model = new mw.rcfilters.dm.FiltersViewModel();
+		model.initializeFilters( filterDefinition, viewsDefinition );
+
+		parametersWithoutExcluded = $.extend( true, {}, appliedDefaultParameters );
+		delete parametersWithoutExcluded.group7;
+		delete parametersWithoutExcluded.group6option2;
+		delete parametersWithoutExcluded.group6option3;
+
+		assert.deepEqual(
+			model.getCurrentParameterState( true ),
+			parametersWithoutExcluded,
+			'Producing a current clean parameter state without excluded filters'
+		);
+	} );
+
+	QUnit.test( 'Cleaning up parameter states', function ( assert ) {
+		var model = new mw.rcfilters.dm.FiltersViewModel(),
+			cases = [
+				{
+					input: {},
+					result: {},
+					msg: 'Empty parameter representation produces an empty result'
+				},
+				{
+					input: {
+						filter1: '1', // Regular (do not strip)
+						group6option1: '1', // Sticky
+						filter4: '1', // Excluded
+						filter5: '0' // Excluded
+					},
+					result: { filter1: '1' },
+					msg: 'Valid input strips all sticky and excluded params regardless of value'
+				}
+			];
+
+		model.initializeFilters( filterDefinition, viewsDefinition );
+
+		cases.forEach( function ( test ) {
+			assert.deepEqual(
+				model.removeExcludedParams( test.input ),
+				test.result,
+				test.msg
+			);
+		} );
+
 	} );
 
 	QUnit.test( 'Finding matching filters', function ( assert ) {

@@ -6,11 +6,7 @@
 	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersModel Filters view model
 	 */
 	mw.rcfilters.UriProcessor = function MwRcfiltersController( filtersModel ) {
-		this.emptyParameterState = {};
 		this.filtersModel = filtersModel;
-
-		// Initialize
-		this._buildEmptyParameterState();
 	};
 
 	/* Initialization */
@@ -59,6 +55,77 @@
 	};
 
 	/**
+	 * Replace the current URI with an updated one from the model state
+	 */
+	mw.rcfilters.UriProcessor.prototype.replaceUpdatedUri = function () {
+		this.static.replaceState( this.getUpdatedUri() );
+	};
+
+	/**
+	 * Get an updated mw.Uri object based on the model state
+	 *
+	 * @param {Object} [uriQuery] An external URI query to build the new uri
+	 *  with. This is mainly for tests, to be able to supply external parameters
+	 *  and make sure they are retained.
+	 * @return {mw.Uri} Updated Uri
+	 */
+	mw.rcfilters.UriProcessor.prototype.getUpdatedUri = function ( uriQuery ) {
+		var uri = new mw.Uri();
+
+		if ( uriQuery ) {
+			// This is mainly for tests, to be able to give the method
+			// an initial URI Query and test that it retains parameters
+			uri.query = uriQuery;
+		}
+
+		uri.query = this.filtersModel.getMinimizedParamRepresentation(
+			$.extend(
+				true,
+				{},
+				// We want to retain unrecognized params
+				// The uri params from model will override
+				// any recognized value in the current uri
+				// query, retain unrecognized params, and
+				// the result will then be minimized
+				uri.query,
+				// The representation must be expanded so it can
+				// override the uri query params but we then output
+				// a minimized version for the entire URI representation
+				// for the method
+				this.filtersModel.getExpandedParamRepresentation()
+			)
+		);
+
+		uri.extend( { urlversion: '2' } );
+
+		return uri;
+	};
+
+	/**
+	 * Update the URL of the page to reflect current filters
+	 *
+	 * This should not be called directly from outside the controller.
+	 * If an action requires changing the URL, it should either use the
+	 * highlighting actions below, or call #updateChangesList which does
+	 * the uri corrections already.
+	 *
+	 * @param {Object} [params] Extra parameters to add to the API call
+	 */
+	mw.rcfilters.UriProcessor.prototype._updateURL = function ( params ) {
+		var currentUri = new mw.Uri(),
+			updatedUri = this.getUpdatedUri();
+
+		updatedUri.extend( params || {} );
+
+		if (
+			this.getVersion( currentUri.query ) !== 2 ||
+			this.isNewState( currentUri.query, updatedUri.query )
+		) {
+			mw.rcfilters.UriProcessor.static.replaceState( updatedUri );
+		}
+	};
+
+	/**
 	 * Update the filters model based on the URI query
 	 * This happens on initialization, and from this moment on,
 	 * we consider the system synchronized, and the model serves
@@ -71,92 +138,8 @@
 	 * @param {Object} [uriQuery] URI query
 	 */
 	mw.rcfilters.UriProcessor.prototype.updateModelBasedOnQuery = function ( uriQuery ) {
-		var parameters;
-
-		uriQuery = uriQuery || new mw.Uri().query;
-
-		// For arbitrary numeric single_option values, check the uri and see if it's beyond the limit
-		$.each( this.filtersModel.getFilterGroups(), function ( groupName, groupModel ) {
-			if (
-				groupModel.getType() === 'single_option' &&
-				groupModel.isAllowArbitrary()
-			) {
-				if (
-					groupModel.getMaxValue() !== null &&
-					uriQuery[ groupName ] > groupModel.getMaxValue()
-				) {
-					// Change the value to the actual max value
-					uriQuery[ groupName ] = String( groupModel.getMaxValue() );
-				} else if (
-					groupModel.getMinValue() !== null &&
-					uriQuery[ groupName ] < groupModel.getMinValue()
-				) {
-					// Change the value to the actual min value
-					uriQuery[ groupName ] = String( groupModel.getMinValue() );
-				}
-			}
-		} );
-
-		// Normalize
-		parameters = this._getNormalizedQueryParams( uriQuery );
-
-		// Update filter states
-		this.filtersModel.toggleFiltersSelected(
-			this.filtersModel.getFiltersFromParameters(
-				parameters
-			)
-		);
-
-		// Update highlight state
-		this.filtersModel.getItems().forEach( function ( filterItem ) {
-			var color = parameters[ filterItem.getName() + '_color' ];
-			if ( color ) {
-				filterItem.setHighlightColor( color );
-			} else {
-				filterItem.clearHighlightColor();
-			}
-		} );
-		this.filtersModel.toggleHighlight( !!Number( parameters.highlight ) );
-
-		// Check all filter interactions
-		this.filtersModel.reassessFilterInteractions();
-	};
-
-	/**
-	 * Get parameters representing the current state of the model
-	 *
-	 * @return {Object} Uri query parameters
-	 */
-	mw.rcfilters.UriProcessor.prototype.getUriParametersFromModel = function () {
-		return $.extend(
-			true,
-			{},
-			this.filtersModel.getParametersFromFilters(),
-			this.filtersModel.getHighlightParameters(),
-			{
-				highlight: String( Number( this.filtersModel.isHighlightEnabled() ) )
-			}
-		);
-	};
-
-	/**
-	 * Build the full parameter representation based on given query parameters
-	 *
-	 * @private
-	 * @param {Object} uriQuery Given URI query
-	 * @return {Object} Full parameter state representing the URI query
-	 */
-	mw.rcfilters.UriProcessor.prototype._expandModelParameters = function ( uriQuery ) {
-		var filterRepresentation = this.filtersModel.getFiltersFromParameters( uriQuery );
-
-		return $.extend( true,
-			{},
-			uriQuery,
-			this.filtersModel.getParametersFromFilters( filterRepresentation ),
-			this.filtersModel.extractHighlightValues( uriQuery ),
-			{
-				highlight: String( Number( uriQuery.highlight ) )
-			}
+		this.filtersModel.updateStateFromParams(
+			this._getNormalizedQueryParams( uriQuery || new mw.Uri().query )
 		);
 	};
 
@@ -181,8 +164,8 @@
 		// This will allow us to always have a proper check of whether
 		// the requested new url is one to change or not, regardless of
 		// actual parameter visibility/representation in the URL
-		currentParamState = this._expandModelParameters( currentUriQuery );
-		updatedParamState = this._expandModelParameters( updatedUriQuery );
+		currentParamState = this.filtersModel.getMinimizedParamRepresentation( currentUriQuery );
+		updatedParamState = this.filtersModel.getMinimizedParamRepresentation( updatedUriQuery );
 
 		return notEquivalent( currentParamState, updatedParamState );
 	};
@@ -196,7 +179,7 @@
 	 */
 	mw.rcfilters.UriProcessor.prototype.doesQueryContainRecognizedParams = function ( uriQuery ) {
 		var anyValidInUrl,
-			validParameterNames = Object.keys( this._getEmptyParameterState() )
+			validParameterNames = Object.keys( this.filtersModel.getEmptyParameterState() )
 				.filter( function ( param ) {
 					// Remove 'highlight' parameter from this check;
 					// if it's the only parameter in the URL we still
@@ -215,34 +198,10 @@
 	};
 
 	/**
-	 * Remove all parameters that have the same value as the base state
-	 * This method expects uri queries of the urlversion=2 format
-	 *
-	 * @private
-	 * @param {Object} uriQuery Current uri query
-	 * @return {Object} Minimized query
-	 */
-	mw.rcfilters.UriProcessor.prototype.minimizeQuery = function ( uriQuery ) {
-		var baseParams = this._getEmptyParameterState(),
-			uriResult = $.extend( true, {}, uriQuery );
-
-		$.each( uriResult, function ( paramName, paramValue ) {
-			if (
-				baseParams[ paramName ] !== undefined &&
-				baseParams[ paramName ] === paramValue
-			) {
-				// Remove parameter from query
-				delete uriResult[ paramName ];
-			}
-		} );
-
-		return uriResult;
-	};
-
-	/**
 	 * Get the adjusted URI params based on the url version
 	 * If the urlversion is not 2, the parameters are merged with
 	 * the model's defaults.
+	 * Always merge in the hidden parameter defaults.
 	 *
 	 * @private
 	 * @param {Object} uriQuery Current URI query
@@ -257,53 +216,18 @@
 		// wiki default.
 		// Any subsequent change of the URL through the RCFilters
 		// system will receive 'urlversion=2'
-		var hiddenParamDefaults = {},
+		var hiddenParamDefaults = this.filtersModel.getDefaultHiddenParams(),
 			base = this.getVersion( uriQuery ) === 2 ?
 				{} :
 				this.filtersModel.getDefaultParams();
 
-		// Go over the model and get all hidden parameters' defaults
-		// These defaults should be applied regardless of the urlversion
-		// but be overridden by the URL params if they exist
-		$.each( this.filtersModel.getFilterGroups(), function ( groupName, groupModel ) {
-			if ( groupModel.isHidden() ) {
-				$.extend( true, hiddenParamDefaults, groupModel.getDefaultParams() );
-			}
-		} );
-
-		return this.minimizeQuery(
-			$.extend( true, {}, hiddenParamDefaults, base, uriQuery, { urlversion: '2' } )
-		);
-	};
-
-	/**
-	 * Get the representation of an empty parameter state
-	 *
-	 * @private
-	 * @return {Object} Empty parameter state
-	 */
-	mw.rcfilters.UriProcessor.prototype._getEmptyParameterState = function () {
-		// Override empty parameter state with the sticky parameter values
-		return $.extend( true, {}, this.emptyParameterState, this.filtersModel.getStickyParams() );
-	};
-
-	/**
-	 * Build an empty representation of the parameters, where all parameters
-	 * are either set to '0' or '' depending on their type.
-	 * This must run during initialization, before highlights are set.
-	 *
-	 * @private
-	 */
-	mw.rcfilters.UriProcessor.prototype._buildEmptyParameterState = function () {
-		var emptyParams = this.filtersModel.getParametersFromFilters( {} ),
-			emptyHighlights = this.filtersModel.getEmptyHighlightParameters();
-
-		this.emptyParameterState = $.extend(
+		return $.extend(
 			true,
 			{},
-			emptyParams,
-			emptyHighlights,
-			{ highlight: '0' }
+			this.filtersModel.getMinimizedParamRepresentation(
+				$.extend( true, {}, hiddenParamDefaults, base, uriQuery )
+			),
+			{ urlversion: '2' }
 		);
 	};
 }( mediaWiki, jQuery ) );
