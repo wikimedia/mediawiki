@@ -24,7 +24,7 @@
 		this.controller = controller;
 		this.model = model;
 
-		this.currentSelection = '';
+		this.currentSelection = 'none';
 		this.buttonSelect = new OO.ui.ButtonSelectWidget( {
 			items: colors.map( function ( color ) {
 				return new OO.ui.ButtonOptionWidget( {
@@ -39,11 +39,12 @@
 			} ),
 			classes: 'mw-rcfilters-ui-highlightColorPickerWidget-buttonSelect'
 		} );
-		this.selectColor( 'none' );
 
 		// Event
-		this.model.connect( this, { update: 'onModelUpdate' } );
+		this.model.connect( this, { update: 'updateUiBasedOnModel' } );
 		this.buttonSelect.connect( this, { choose: 'onChooseColor' } );
+
+		this.updateUiBasedOnModel();
 
 		this.$element
 			.addClass( 'mw-rcfilters-ui-highlightColorPickerWidget' )
@@ -73,7 +74,7 @@
 	/**
 	 * Respond to item model update event
 	 */
-	mw.rcfilters.ui.HighlightColorPickerWidget.prototype.onModelUpdate = function () {
+	mw.rcfilters.ui.HighlightColorPickerWidget.prototype.updateUiBasedOnModel = function () {
 		this.selectColor( this.model.getHighlightColor() || 'none' );
 	};
 
