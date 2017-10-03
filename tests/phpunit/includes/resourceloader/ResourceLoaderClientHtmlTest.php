@@ -276,6 +276,12 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 				'output' => '<script async="" src="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.scripts.raw&amp;only=scripts&amp;skin=fallback"></script>',
 			],
 			[
+				'context' => [ 'sync' => true ],
+				'modules' => [ 'test.scripts.raw' ],
+				'only' => ResourceLoaderModule::TYPE_SCRIPTS,
+				'output' => '<script src="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.scripts.raw&amp;only=scripts&amp;skin=fallback&amp;sync=1"></script>',
+			],
+			[
 				'context' => [],
 				'modules' => [ 'test.scripts.user' ],
 				'only' => ResourceLoaderModule::TYPE_SCRIPTS,
@@ -360,7 +366,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 	public function testMakeLoad( array $extraQuery, array $modules, $type, $expected ) {
 		$context = self::makeContext( $extraQuery );
 		$context->getResourceLoader()->register( self::makeSampleModules() );
-		$actual = ResourceLoaderClientHtml::makeLoad( $context, $modules, $type );
+		$actual = ResourceLoaderClientHtml::makeLoad( $context, $modules, $type, $extraQuery );
 		$expected = self::expandVariables( $expected );
 		$this->assertEquals( $expected, (string)$actual );
 	}
