@@ -1468,6 +1468,7 @@
 	"rcfilters-view-namespaces-tooltip": "Filter results by namespace",
 	"rcfilters-view-tags-tooltip": "Filter results using edit tags",
 	"rcfilters-view-return-to-default-tooltip": "Return to main filter menu",
+	"rcfilters-view-tags-help-icon-tooltip": "Learn more about Tagged Edits",
 	"rcfilters-liveupdates-button": "Live updates",
 	"rcfilters-liveupdates-button-title-on": "Turn off live updates",
 	"rcfilters-liveupdates-button-title-off": "Display new changes as they happen",
