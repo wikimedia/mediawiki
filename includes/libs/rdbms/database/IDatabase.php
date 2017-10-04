@@ -1594,6 +1594,8 @@ interface IDatabase {
 	 * throwing an Exception is preferrable, using a pre-installed error handler to trigger
 	 * rollback (in any case, failure to issue COMMIT will cause rollback server-side).
 	 *
+	 * Query, connection, and onTransaction* callback errors will be suppressed and logged.
+	 *
 	 * @param string $fname Calling function name
 	 * @param string $flush Flush flag, set to a situationally valid IDatabase::FLUSHING_*
 	 *   constant to disable warnings about calling rollback when no transaction is in
