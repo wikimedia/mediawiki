@@ -394,9 +394,9 @@ abstract class ChangesListFilterGroup {
 		);
 
 		foreach ( $conflicts as $conflictInfo ) {
-			$output['conflicts'][] = $conflictInfo;
 			unset( $conflictInfo['filterObject'] );
 			unset( $conflictInfo['groupObject'] );
+			$output['conflicts'][] = $conflictInfo;
 			array_push(
 				$output['messageKeys'],
 				$conflictInfo['globalDescription'],
