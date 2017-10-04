@@ -247,6 +247,7 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiTestCase {
 						'cssClass' => null,
 						'conflicts' => [],
 						'subset' => [],
+						'defaultHighlightColor' => null,
 					],
 					[
 						'name' => 'foo',
@@ -256,6 +257,7 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiTestCase {
 						'cssClass' => null,
 						'conflicts' => [],
 						'subset' => [],
+						'defaultHighlightColor' => null,
 					],
 				],
 				'conflicts' => [],
