@@ -12,7 +12,8 @@
 			"Skalman",
 			"WikiPhoenix",
 			"Lokal Profil",
-			"Warrakkk"
+			"Warrakkk",
+			"Bengtsson96"
 		]
 	},
 	"ooui-outline-control-move-down": "Flytta ned objekt",
@@ -21,6 +22,7 @@
 	"ooui-toolbar-more": "Mer",
 	"ooui-toolgroup-expand": "Fler",
 	"ooui-toolgroup-collapse": "Färre",
+	"ooui-item-remove": "Ta bort",
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Avbryt",
 	"ooui-dialog-process-error": "Något gick fel",
