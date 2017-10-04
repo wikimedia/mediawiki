@@ -280,6 +280,10 @@
 				.toggleClass( 'mw-notification-area-layout', !isFloating );
 		}
 
+		/**
+		 * Write to the DOM
+		 */
+
 		// Prepend the notification area to the content area and save it's object.
 		$area = $( '<div id="mw-notification-area" class="mw-notification-area mw-notification-area-layout"></div>' )
 			// Pause auto-hide timers when the mouse is in the notification area.
@@ -301,21 +305,31 @@
 			} );
 
 		mw.util.$content.prepend( $area );
-		offset = $area.offset();
-		$area.css( 'display', 'none' );
 
+		/**
+		 * Read from the DOM.
+		 * Must be in the next frame to avoid synchronous layout
+		 * computation from offset()/getBoundingClientRect().
+		 */
+		rAF( function () {
+			offset = $area.offset();
 
-		$( window ).on( 'scroll', updateAreaMode );
+			// Initial mode (reads, and then maybe writes)
+			updateAreaMode();
 
-		// Initial mode
-		updateAreaMode();
+			// Once we have the offset for where it would normally render, set the
+			// initial state of the (currently empty) notification area to be hidden.
+			$area.css( 'display', 'none' );
 
-		// Handle pre-ready queue.
-		isPageReady = true;
-		while ( preReadyNotifQueue.length ) {
-			notif = preReadyNotifQueue.shift();
-			notif.start();
-		}
+			$( window ).on( 'scroll', updateAreaMode );
+
+			// Handle pre-ready queue.
+			isPageReady = true;
+			while ( preReadyNotifQueue.length ) {
+				notif = preReadyNotifQueue.shift();
+				notif.start();
+			}
+		} );
 	}
 
 	/**
