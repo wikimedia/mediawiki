@@ -38,7 +38,6 @@
 	"config-db-name": "Tanggulo basis data",
 	"config-db-name-oracle": "Skema lo basis data",
 	"config-db-username": "Basis data lo tanggulo user",
-	"config-charset-mysql5": "MySQL 4.1/5.0 UFT-8",
 	"config-type-mysql": "MySQL (meyalo umopasiya)",
 	"config-header-mysql": "Aturangi lo MySQL",
 	"config-header-postgres": "Aturangi lo PostgreSQL",

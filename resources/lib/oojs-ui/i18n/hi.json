@@ -8,7 +8,8 @@
 			"Goelujjwal",
 			"Ankita-ks",
 			"Param Mudgal",
-			"Sfic"
+			"Sfic",
+			"Rishi.Singh"
 		]
 	},
 	"ooui-outline-control-move-down": "प्रविष्टि नीचे ले जाएँ",
@@ -17,6 +18,7 @@
 	"ooui-toolbar-more": "अधिक",
 	"ooui-toolgroup-expand": "अधिक",
 	"ooui-toolgroup-collapse": "कम",
+	"ooui-item-remove": "हटायें",
 	"ooui-dialog-message-accept": "ठीक है",
 	"ooui-dialog-message-reject": "रद्द करें",
 	"ooui-dialog-process-error": "कुछ गलत हुअा है",

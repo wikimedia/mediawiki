@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.23.2
+ * OOjs UI v0.23.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-09-26T20:18:42Z
+ * Date: 2017-10-04T01:20:41Z
  */
 ( function ( OO ) {
 
@@ -1883,12 +1883,21 @@ OO.ui.BookletLayout.prototype.onStackLayoutVisibleItemChange = function ( page )
  * @param {OO.ui.PanelLayout|null} page The page panel that is now the current panel
  */
 OO.ui.BookletLayout.prototype.onStackLayoutSet = function ( page ) {
-	var layout = this;
-	if ( !this.scrolling && page ) {
-		page.scrollElementIntoView().done( function () {
-			if ( layout.autoFocus && !OO.ui.isMobile() ) {
-				layout.focus();
-			}
+	var promise, layout = this;
+	// If everything is unselected, do nothing
+	if ( !page ) {
+		return;
+	}
+	// For continuous BookletLayouts, scroll the selected page into view first
+	if ( this.stackLayout.continuous && !this.scrolling ) {
+		promise = page.scrollElementIntoView();
+	} else {
+		promise = $.Deferred().resolve();
+	}
+	// Focus the first element on the newly selected panel
+	if ( this.autoFocus && !OO.ui.isMobile() ) {
+		promise.done( function () {
+			layout.focus();
 		} );
 	}
 };
@@ -2415,13 +2424,13 @@ OO.ui.IndexLayout.prototype.onStackLayoutFocus = function ( e ) {
  * @param {OO.ui.PanelLayout|null} tabPanel The tab panel that is now the current panel
  */
 OO.ui.IndexLayout.prototype.onStackLayoutSet = function ( tabPanel ) {
-	var layout = this;
-	if ( tabPanel ) {
-		tabPanel.scrollElementIntoView().done( function () {
-			if ( layout.autoFocus && !OO.ui.isMobile() ) {
-				layout.focus();
-			}
-		} );
+	// If everything is unselected, do nothing
+	if ( !tabPanel ) {
+		return;
+	}
+	// Focus the first element on the newly selected panel
+	if ( this.autoFocus && !OO.ui.isMobile() ) {
+		this.focus();
 	}
 };
 

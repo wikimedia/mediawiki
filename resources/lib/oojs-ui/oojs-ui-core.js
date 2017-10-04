@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.23.2
+ * OOjs UI v0.23.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-09-26T20:18:42Z
+ * Date: 2017-10-04T01:20:41Z
  */
 ( function ( OO ) {
 
@@ -2958,13 +2958,14 @@ OO.ui.mixin.LabelElement.static.label = null;
  *  sub-string wrapped in highlighted span
  */
 OO.ui.mixin.LabelElement.static.highlightQuery = function ( text, query, compare ) {
-	var i, offset, tLen, qLen,
+	var i, tLen, qLen,
+		offset = -1,
 		$result = $( '<span>' );
 
 	if ( compare ) {
 		tLen = text.length;
 		qLen = query.length;
-		for ( i = 0; offset === undefined && i <= tLen - qLen; i++ ) {
+		for ( i = 0; offset === -1 && i <= tLen - qLen; i++ ) {
 			if ( compare( query, text.slice( i, i + qLen ) ) === 0 ) {
 				offset = i;
 			}
@@ -2974,15 +2975,16 @@ OO.ui.mixin.LabelElement.static.highlightQuery = function ( text, query, compare
 	}
 
 	if ( !query.length || offset === -1 ) {
-		return $result.text( text );
+		$result.text( text );
+	} else {
+		$result.append(
+			document.createTextNode( text.slice( 0, offset ) ),
+			$( '<span>' )
+				.addClass( 'oo-ui-labelElement-label-highlight' )
+				.text( text.slice( offset, offset + query.length ) ),
+			document.createTextNode( text.slice( offset + query.length ) )
+		);
 	}
-	$result.append(
-		document.createTextNode( text.slice( 0, offset ) ),
-		$( '<span>' )
-			.addClass( 'oo-ui-labelElement-label-highlight' )
-			.text( text.slice( offset, offset + query.length ) ),
-		document.createTextNode( text.slice( offset + query.length ) )
-	);
 	return $result.contents();
 };
 
@@ -6081,9 +6083,16 @@ OO.ui.SelectWidget.prototype.onFocus = function ( event ) {
 			item = this.findFirstSelectableItem();
 		}
 	} else {
-		// One of the options got focussed (and the event bubbled up here).
-		// They can't be tabbed to, but they can be activated using accesskeys.
-		item = this.findTargetItem( event );
+		if ( event.target.tabIndex === -1 ) {
+			// One of the options got focussed (and the event bubbled up here).
+			// They can't be tabbed to, but they can be activated using accesskeys.
+			// OptionWidgets and focusable UI elements inside them have tabindex="-1" set.
+			item = this.findTargetItem( event );
+		} else {
+			// There is something actually user-focusable in one of the labels of the options, and the
+			// user focussed it (e.g. by tabbing to it). Do nothing (especially, don't change the focus).
+			return;
+		}
 	}
 
 	if ( item ) {

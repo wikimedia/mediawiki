@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.23.2
+ * OOjs UI v0.23.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-09-26T20:18:42Z
+ * Date: 2017-10-04T01:20:41Z
  */
 ( function ( OO ) {
 
@@ -1949,6 +1949,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 			this.$clippable.css( 'left', '' );
 			// Try anchoring the popup to the left first
 			this.$element.addClass( 'oo-ui-popupToolGroup-active oo-ui-popupToolGroup-left' );
+			this.setFlags( { progressive: true } );
 			this.toggleClipping( true );
 			if ( this.isClippedHorizontally() ) {
 				// Anchoring to the left caused the popup to clip, so anchor it to the right instead
@@ -1977,6 +1978,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 			this.$element.removeClass(
 				'oo-ui-popupToolGroup-active oo-ui-popupToolGroup-left  oo-ui-popupToolGroup-right'
 			);
+			this.setFlags( { progressive: false } );
 			this.toggleClipping( false );
 		}
 	}
