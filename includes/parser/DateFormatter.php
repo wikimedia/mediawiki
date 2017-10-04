@@ -135,7 +135,7 @@ class DateFormatter {
 	public static function getInstance( Language $lang = null ) {
 		global $wgMainCacheType;
 
-		$lang = $lang ?: MediaWikiServices::getInstance()->getContentLanguage();
+		$lang = $lang ?? MediaWikiServices::getInstance()->getContentLanguage();
 		$cache = ObjectCache::getLocalServerInstance( $wgMainCacheType );
 
 		static $dateFormatter = false;

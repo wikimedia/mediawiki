@@ -2115,7 +2115,7 @@ class LocalFile extends File {
 	 * @param Language|null $lang What language to get description in (Optional)
 	 * @return string|false
 	 */
-	function getDescriptionText( $lang = null ) {
+	function getDescriptionText( Language $lang = null ) {
 		$revision = Revision::newFromTitle( $this->title, false, Revision::READ_NORMAL );
 		if ( !$revision ) {
 			return false;

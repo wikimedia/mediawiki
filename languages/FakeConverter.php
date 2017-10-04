@@ -37,7 +37,7 @@ class FakeConverter {
 	 */
 	public $mLang;
 
-	function __construct( $langobj ) {
+	function __construct( Language $langobj ) {
 		$this->mLang = $langobj;
 	}
 

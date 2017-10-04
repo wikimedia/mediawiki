@@ -858,7 +858,7 @@ class SpecialBlock extends FormSpecialPage {
 	 *     suggestions
 	 * @return array
 	 */
-	public static function getSuggestedDurations( $lang = null, $includeOther = true ) {
+	public static function getSuggestedDurations( Language $lang = null, $includeOther = true ) {
 		$a = [];
 		$msg = $lang === null
 			? wfMessage( 'ipboptions' )->inContentLanguage()->text()

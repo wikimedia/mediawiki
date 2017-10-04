@@ -2051,17 +2051,17 @@ abstract class File implements IDBAccessObject {
 	/**
 	 * Get the HTML text of the description page, if available
 	 *
-	 * @param bool|Language $lang Optional language to fetch description in
+	 * @param Language|null $lang Optional language to fetch description in
 	 * @return string|false
 	 */
-	function getDescriptionText( $lang = false ) {
+	function getDescriptionText( Language $lang = null ) {
 		global $wgLang;
 
 		if ( !$this->repo || !$this->repo->fetchDescription ) {
 			return false;
 		}
 
-		$lang = $lang ?: $wgLang;
+		$lang = $lang ?? $wgLang;
 
 		$renderUrl = $this->repo->getDescriptionRenderUrl( $this->getName(), $lang->getCode() );
 		if ( $renderUrl ) {
