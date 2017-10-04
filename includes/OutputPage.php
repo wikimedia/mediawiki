@@ -1596,7 +1596,7 @@ class OutputPage extends ContextSource {
 
 		if ( !$this->mParserOptions ) {
 			if ( !$this->getContext()->getUser()->isSafeToLoad() ) {
-				// $wgUser isn't unstubbable yet, so don't try to get a
+				// $wgUser isn't loaded yet, so don't try to get a
 				// ParserOptions for it. And don't cache this ParserOptions
 				// either.
 				$po = ParserOptions::newFromAnon();
@@ -2923,15 +2923,14 @@ class OutputPage extends ContextSource {
 		$pieces = array_merge( $pieces, array_values( $this->getHeadLinksArray() ) );
 		$pieces = array_merge( $pieces, array_values( $this->mHeadItems ) );
 
-		$min = ResourceLoader::inDebugMode() ? '' : '.min';
 		// Use an IE conditional comment to serve the script only to old IE
 		$pieces[] = '<!--[if lt IE 9]>' .
-			Html::element( 'script', [
-				'src' => self::transformResourcePath(
-					$this->getConfig(),
-					"/resources/lib/html5shiv/html5shiv{$min}.js"
-				),
-			] ) .
+			ResourceLoaderClientHtml::makeLoad(
+				ResourceLoaderContext::newDummyContext(),
+				[ 'html5shiv' ],
+				ResourceLoaderModule::TYPE_SCRIPTS,
+				[ 'sync' => true ]
+			) .
 			'<![endif]-->';
 
 		$pieces[] = Html::closeElement( 'head' );

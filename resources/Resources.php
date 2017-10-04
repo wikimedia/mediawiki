@@ -1904,6 +1904,7 @@ return [
 			'rcfilters-view-namespaces-tooltip',
 			'rcfilters-view-tags-tooltip',
 			'rcfilters-view-return-to-default-tooltip',
+			'rcfilters-view-tags-help-icon-tooltip',
 			'rcfilters-liveupdates-button',
 			'rcfilters-liveupdates-button-title-on',
 			'rcfilters-liveupdates-button-title-off',
@@ -2012,6 +2013,8 @@ return [
 	'mediawiki.special.block' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.block.js',
 		'dependencies' => [
+			'oojs-ui-core',
+			'mediawiki.widgets.SelectWithInputWidget',
 			'mediawiki.util',
 			'mediawiki.htmlform',
 		],
@@ -2398,8 +2401,6 @@ return [
 			'mediawiki.Title',
 			'mediawiki.api',
 			'jquery.byteLimit',
-			// TitleOptionWidget
-			'jquery.highlightText',
 		],
 		'messages' => [
 			// NamespaceInputWidget
@@ -2653,6 +2654,21 @@ return [
 	'dom-level2-shim' => [
 		'deprecated' => 'Use of the "dom-level2-shim" module is deprecated since MediaWiki 1.29.0',
 		'targets' => [ 'desktop', 'mobile' ],
+	],
+
+	/**
+	 * html5shiv
+	 *
+	 * This library is intended to run on older browsers
+	 * that MediaWiki no longer supports as Grade A, and
+	 * is not loaded through the normal module loading
+	 * system.
+	 */
+	'html5shiv' => [
+		'scripts' => [
+			'resources/lib/html5shiv/html5shiv.js'
+		],
+		'raw' => true,
 	],
 
 	/* OOjs */

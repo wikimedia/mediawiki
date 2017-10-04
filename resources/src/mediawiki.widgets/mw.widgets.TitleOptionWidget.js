@@ -16,17 +16,20 @@
 	 * @param {Object} config Configuration options
 	 * @cfg {string} data Label to display
 	 * @cfg {string} url URL of page
+	 * @cfg {boolean} [showImages] Whether to attempt to show images
 	 * @cfg {string} [imageUrl] Thumbnail image URL with URL encoding
 	 * @cfg {string} [description] Page description
 	 * @cfg {boolean} [missing] Page doesn't exist
 	 * @cfg {boolean} [redirect] Page is a redirect
 	 * @cfg {boolean} [disambiguation] Page is a disambiguation page
-	 * @cfg {string} [query] Matching query string
+	 * @cfg {string} [query] Matching query string to highlight
 	 */
 	mw.widgets.TitleOptionWidget = function MwWidgetsTitleOptionWidget( config ) {
 		var icon;
 
-		if ( config.missing ) {
+		if ( !config.showImages ) {
+			icon = null;
+		} else if ( config.missing ) {
 			icon = 'page-not-found';
 		} else if ( config.redirect ) {
 			icon = 'page-redirect';
@@ -65,9 +68,10 @@
 		} );
 
 		// Highlight matching parts of link suggestion
-		this.$label
-			.highlightText( config.query )
-			.attr( 'title', config.data );
+		if ( config.query ) {
+			this.setHighlightedQuery( config.data, config.query );
+		}
+		this.$label.attr( 'title', config.data );
 
 		if ( config.missing ) {
 			this.$label.addClass( 'new' );
@@ -77,7 +81,7 @@
 			this.$label.addClass( 'mw-disambig' );
 		}
 
-		if ( config.imageUrl ) {
+		if ( config.showImages && config.imageUrl ) {
 			this.$icon
 				.addClass( 'mw-widget-titleOptionWidget-hasImage' )
 				.css( 'background-image', 'url(' + config.imageUrl + ')' );

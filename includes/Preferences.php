@@ -847,7 +847,6 @@ class Preferences {
 					$context->msg( 'editfont-monospace' )->text() => 'monospace',
 					$context->msg( 'editfont-sansserif' )->text() => 'sans-serif',
 					$context->msg( 'editfont-serif' )->text() => 'serif',
-					$context->msg( 'editfont-default' )->text() => 'default',
 				]
 			];
 		}
@@ -933,6 +932,12 @@ class Preferences {
 			'type' => 'api',
 		];
 		$defaultPreferences['rcfilters-wl-saved-queries'] = [
+			'type' => 'api',
+		];
+		$defaultPreferences['rcfilters-saved-queries-versionbackup'] = [
+			'type' => 'api',
+		];
+		$defaultPreferences['rcfilters-wl-saved-queries-versionbackup'] = [
 			'type' => 'api',
 		];
 		$defaultPreferences['rcfilters-rclimit'] = [

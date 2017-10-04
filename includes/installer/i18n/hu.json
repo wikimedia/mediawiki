@@ -192,7 +192,7 @@
 	"config-admin-name-invalid": "A megadott felhasználónév (<nowiki>$1</nowiki>) érvénytelen.\nAdj meg egy másik felhasználónevet.",
 	"config-admin-password-blank": "Add meg az adminisztrátori fiók jelszavát!",
 	"config-admin-password-mismatch": "A megadott jelszavak nem egyeznek.",
-	"config-admin-email": "E-mail cím:",
+	"config-admin-email": "E-mail-cím:",
 	"config-admin-email-help": "Add meg az e-mail címedet, hogy más felhasználók küldhessenek e-maileket a wikin keresztül, új jelszót tudj kérni, és értesülhess a figyelőlistádon lévő lapokon történt változásokról. Üresen is hagyhatod ezt a mezőt.",
 	"config-admin-error-user": "Belső hiba történt a(z) „<nowiki>$1</nowiki>” nevű adminisztrátor létrehozásakor.",
 	"config-admin-error-password": "Belső hiba történt a(z) „<nowiki>$1</nowiki>” nevű adminisztrátor jelszavának beállításakor: <pre>$2</pre>",

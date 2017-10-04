@@ -3,7 +3,9 @@
 /* eslint-disable no-console, comma-dangle */
 'use strict';
 
-const path = require( 'path' );
+const password = 'vagrant',
+	path = require( 'path' ),
+	username = 'Admin';
 
 function relPath( foo ) {
 	return path.resolve( __dirname, '../..', foo );
@@ -23,10 +25,10 @@ exports.config = {
 	// Use if from tests with:
 	// browser.options.username
 	username: process.env.MEDIAWIKI_USER === undefined ?
-		'Admin' :
+		username :
 		process.env.MEDIAWIKI_USER,
 	password: process.env.MEDIAWIKI_PASSWORD === undefined ?
-		'vagrant' :
+		password :
 		process.env.MEDIAWIKI_PASSWORD,
 	//
 	// ======

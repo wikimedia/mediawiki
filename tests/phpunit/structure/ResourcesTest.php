@@ -44,15 +44,24 @@ class ResourcesTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Verify that nothing explicitly depends on the 'jquery' and 'mediawiki' modules.
-	 * They are always loaded, depending on them is unsupported and leads to unexpected behaviour.
+	 * Verify that nothing explicitly depends on base modules, or other raw modules.
+	 *
+	 * Depending on them is unsupported as they are not registered client-side by the startup module.
+	 *
 	 * TODO Modules can dynamically choose dependencies based on context. This method does not
 	 * test such dependencies. The same goes for testMissingDependencies() and
 	 * testUnsatisfiableDependencies().
 	 */
 	public function testIllegalDependencies() {
 		$data = self::getAllModules();
-		$illegalDeps = [ 'jquery', 'mediawiki' ];
+
+		$illegalDeps = ResourceLoaderStartupModule::getStartupModules();
+		foreach ( $data['modules'] as $moduleName => $module ) {
+			if ( $module->isRaw() ) {
+				$illegalDeps[] = $moduleName;
+			}
+		}
+		$illegalDeps = array_unique( $illegalDeps );
 
 		/** @var ResourceLoaderModule $module */
 		foreach ( $data['modules'] as $moduleName => $module ) {

@@ -186,13 +186,23 @@
 		var items = [],
 			self = this;
 
-		// mw.widgets.TitleWidget does a lot more work here, because the TitleOptionWidgets can
-		// differ a lot, depending on the returned data from the request. With the request used here
-		// we get only the search results.
 		$.each( data.data[ 1 ], function ( i, result ) {
 			items.push( new mw.widgets.TitleOptionWidget(
-				// data[ 3 ][ i ] is the link for this result
-				self.getOptionWidgetData( result, null, data.data[ 3 ][ i ] )
+				self.getOptionWidgetData(
+					result,
+					// Create a result object that looks like the one from
+					// the parent's API query.
+					{
+						data: result,
+						// data[ 3 ][ i ] is the link for this result
+						url: data.data[ 3 ][ i ],
+						imageUrl: null,
+						description: null,
+						missing: false,
+						redirect: false,
+						disambiguation: false
+					}
+				)
 			) );
 		} );
 
@@ -205,28 +215,6 @@
 		} );
 
 		return items;
-	};
-
-	/**
-	 * @inheritdoc mw.widgets.TitleWidget
-	 *
-	 * @param {string} title
-	 * @param {Object} data
-	 * @param {string} url The Url to the result
-	 */
-	mw.widgets.SearchInputWidget.prototype.getOptionWidgetData = function ( title, data, url ) {
-		// the values used in mw.widgets-TitleWidget doesn't exist here, that's why
-		// the values are hard-coded here
-		return {
-			data: title,
-			url: url,
-			imageUrl: null,
-			description: null,
-			missing: false,
-			redirect: false,
-			disambiguation: false,
-			query: this.getQueryValue()
-		};
 	};
 
 	/**

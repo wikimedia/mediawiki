@@ -224,6 +224,7 @@ class SpecialBlock extends FormSpecialPage {
 			'type' => 'hidden',
 			'default' => '',
 			'label-message' => 'ipb-confirm',
+			'cssclass' => 'mw-block-confirm',
 		];
 
 		$this->maybeAlterFormDefaults( $a );

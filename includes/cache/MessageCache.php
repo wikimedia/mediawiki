@@ -187,7 +187,7 @@ class MessageCache {
 
 		if ( !$this->mParserOptions ) {
 			if ( !$wgUser->isSafeToLoad() ) {
-				// $wgUser isn't unstubbable yet, so don't try to get a
+				// $wgUser isn't loaded yet, so don't try to get a
 				// ParserOptions for it. And don't cache this ParserOptions
 				// either.
 				$po = ParserOptions::newFromAnon();
@@ -874,7 +874,7 @@ class MessageCache {
 	 * the site language.
 	 *
 	 * @see MessageCache::get
-	 * @param Language|StubObject $lang Preferred language
+	 * @param Language $lang Preferred language
 	 * @param string $lckey Lowercase key for the message (as for localisation cache)
 	 * @param bool $useDB Whether to include messages from the wiki database
 	 * @return string|bool The message, or false if not found
@@ -899,7 +899,7 @@ class MessageCache {
 	 * Given a language, try and fetch messages from that language and its fallbacks.
 	 *
 	 * @see MessageCache::get
-	 * @param Language|StubObject $lang Preferred language
+	 * @param Language $lang Preferred language
 	 * @param string $lckey Lowercase key for the message (as for localisation cache)
 	 * @param bool $useDB Whether to include messages from the wiki database
 	 * @param bool[] $alreadyTried Contains true for each language that has been tried already

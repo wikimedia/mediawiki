@@ -77,7 +77,8 @@
 			"Johan",
 			"Martin Wiss",
 			"Mdjarv",
-			"Frisko"
+			"Frisko",
+			"Bengtsson96"
 		]
 	},
 	"tog-underline": "Stryk under länkar:",
@@ -128,7 +129,6 @@
 	"underline-never": "Aldrig",
 	"underline-default": "Webbläsarens eller utseendets standardinställning",
 	"editfont-style": "Typsnitt i redigeringsrutan:",
-	"editfont-default": "Webbläsarens standard",
 	"editfont-monospace": "Fast bredd",
 	"editfont-sansserif": "Sans-serif-teckensnitt",
 	"editfont-serif": "Serif-teckensnitt",
@@ -1117,7 +1117,7 @@
 	"prefs-editor": "Redigerare",
 	"prefs-preview": "Förhandsvisa",
 	"prefs-advancedrc": "Avancerade alternativ",
-	"prefs-opt-out": "Välj att inte få förbättringar",
+	"prefs-opt-out": "Välj bort förbättringar",
 	"prefs-advancedrendering": "Avancerade alternativ",
 	"prefs-advancedsearchoptions": "Avancerade alternativ",
 	"prefs-advancedwatchlist": "Avancerade alternativ",
@@ -2413,7 +2413,6 @@
 	"block": "Blockera användare",
 	"unblock": "Upphäv blockering av användare",
 	"blockip": "Blockera {{GENDER:$1|användare}}",
-	"blockip-legend": "Blockera användare",
 	"blockiptext": "Använd formuläret nedan för att blockera möjligheten att redigera sidor från en specifik IP-adress eller ett användarnamn.\nDetta bör endast göras för att förhindra vandalisering, och i överensstämmelse med gällande [[{{MediaWiki:Policy-url}}|policy]].\nAnge orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).\nDu kan blockera intervaller av IP-adresser med [https://sv.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]-syntax; det största tillåtna intervallet är /$1 för IPv4 och /$2 för IPv6.",
 	"ipaddressorusername": "IP-adress eller användarnamn:",
 	"ipbexpiry": "Varaktighet:",
@@ -2515,6 +2514,8 @@
 	"ipb_blocked_as_range": "Fel: IP-adressen $1 är inte direkt blockerad, och kan därför inte avblockeras. Adressen är blockerad som en del av IP-intervallet $2, som kan avblockeras.",
 	"ip_range_invalid": "Ogiltigt IP-intervall.",
 	"ip_range_toolarge": "Blockering av block större än /$1 är inte tillåtna.",
+	"ip_range_exceeded": "Ett för stort intervall IP-adresser har valts. Intervallet får inte vara större än: /$1.",
+	"ip_range_toolow": "Intervall av IP-adresser tillåts inte.",
 	"proxyblocker": "Proxy-block",
 	"proxyblockreason": "Din IP-adress har blivit blockerad eftersom den tillhör en öppen proxy. Kontakta din internetleverantör eller din organisations eller företags tekniska support, och informera dem om denna allvarliga säkerhetsrisk.",
 	"sorbsreason": "Din IP-adress är listad som öppen proxy i den DNSBL {{SITENAME}} använder.",
