@@ -1,0 +1,29 @@
+{
+    "description": "collect coordiantes, outrachy microstask schema",
+
+    "properties":{
+	    "mouseHover": {
+		"type": "integer",
+		"description": "Report co-ordinates where mouse hovers for more that threshold time"
+	    },
+	    "Calculate": {
+		"type": "integer",
+		"enum": [
+			"TimeBetweenClicks",
+			"TimeBetweenKeyboardTpyes",
+			"AngleOfCurvature"
+		],
+		"description": "Calculate data for features to create Machine Learning model."
+	    },
+	    "action": {
+		"type": "string",
+		"required": true,
+		"enum": [
+			"capture-mouse-dynamics",
+			"capture-time-spent"
+		],
+		"description": "anticipated workflow"
+	    }
+    }
+}
+	   
