@@ -1457,6 +1457,7 @@
 	"rcfilters-view-namespaces-tooltip": "رشح النتائج حسب النطاق",
 	"rcfilters-view-tags-tooltip": "رشح النتائج حسب وسوم التعديل",
 	"rcfilters-view-return-to-default-tooltip": "ارجع لقائمة المرشحات الرئيسية",
+	"rcfilters-view-tags-help-icon-tooltip": "المزيد حول التعديلات الموسومة",
 	"rcfilters-liveupdates-button": "تحديثات حية",
 	"rcfilters-liveupdates-button-title-on": "إيقاف التحديثات الحية",
 	"rcfilters-liveupdates-button-title-off": "عرض التغييرات الجديدة فور حدوثها",

@@ -1415,6 +1415,7 @@
 	"rcfilters-view-namespaces-tooltip": "Филтрирај исход по именски постор",
 	"rcfilters-view-tags-tooltip": "Филтрирај исход по уредувачки ознаки",
 	"rcfilters-view-return-to-default-tooltip": "Назад на главното филтерско мени",
+	"rcfilters-view-tags-help-icon-tooltip": "Дознајте повеќе за Означените уредувања",
 	"rcfilters-liveupdates-button": "Поднови во живо",
 	"rcfilters-liveupdates-button-title-on": "Исклучи поднови во живо",
 	"rcfilters-liveupdates-button-title-off": "Прикажува нови промени во живо",

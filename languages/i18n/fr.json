@@ -1558,6 +1558,7 @@
 	"rcfilters-view-namespaces-tooltip": "Résultats du filtrage par espace de noms",
 	"rcfilters-view-tags-tooltip": "Résultats du filtrage par balise d'édition",
 	"rcfilters-view-return-to-default-tooltip": "Retour au menu principal du filtre",
+	"rcfilters-view-tags-help-icon-tooltip": "En apprendre plus concernant les modifications balisées (Tagged Edits)",
 	"rcfilters-liveupdates-button": "Mises à jour en direct",
 	"rcfilters-liveupdates-button-title-on": "Désactiver les mises à jour à chaud",
 	"rcfilters-liveupdates-button-title-off": "Afficher les nouveaux changements dès qu'ils se produisent",

@@ -1424,6 +1424,7 @@
 	"rcfilters-view-namespaces-tooltip": "Filtrovat výsledky podle jmenného prostoru",
 	"rcfilters-view-tags-tooltip": "Filtrovat výsledky pomocí značek editací",
 	"rcfilters-view-return-to-default-tooltip": "Vrátit se do hlavního filtrovacího menu",
+	"rcfilters-view-tags-help-icon-tooltip": "Více informací o značkách editací",
 	"rcfilters-liveupdates-button": "Živé aktualizace",
 	"rcfilters-liveupdates-button-title-on": "Vypnout živé aktualizace",
 	"rcfilters-liveupdates-button-title-off": "Zobrazovat nové změny, jakmile jsou zveřejněny",

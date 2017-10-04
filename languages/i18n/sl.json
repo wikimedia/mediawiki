@@ -1402,6 +1402,7 @@
 	"rcfilters-view-namespaces-tooltip": "Filtriraj rezultate po imenskem prostoru",
 	"rcfilters-view-tags-tooltip": "Filtriraj rezultate z uporabo oznak urejanj",
 	"rcfilters-view-return-to-default-tooltip": "Vrni se na glavni meni filtriranja",
+	"rcfilters-view-tags-help-icon-tooltip": "Izvedite več o Označenih urejanjih",
 	"rcfilters-liveupdates-button": "Posodobitve v živo",
 	"rcfilters-liveupdates-button-title-on": "Izklopi posodobitve v živo",
 	"rcfilters-liveupdates-button-title-off": "Prikaži nove spremembe, ko se zgodijo",
