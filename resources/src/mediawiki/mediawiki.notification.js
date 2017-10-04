@@ -266,9 +266,21 @@
 	 * @ignore
 	 */
 	function init() {
-		var offset,
+		var offset, notif,
 			isFloating = false;
 
+		function updateAreaMode() {
+			var shouldFloat = window.pageYOffset > offset.top;
+			if ( isFloating === shouldFloat ) {
+				return;
+			}
+			isFloating = shouldFloat;
+			$area
+				.toggleClass( 'mw-notification-area-floating', isFloating )
+				.toggleClass( 'mw-notification-area-layout', !isFloating );
+		}
+
+		// Prepend the notification area to the content area and save it's object.
 		$area = $( '<div id="mw-notification-area" class="mw-notification-area mw-notification-area-layout"></div>' )
 			// Pause auto-hide timers when the mouse is in the notification area.
 			.on( {
@@ -288,26 +300,22 @@
 				e.stopPropagation();
 			} );
 
-		// Prepend the notification area to the content area and save it's object.
 		mw.util.$content.prepend( $area );
 		offset = $area.offset();
 		$area.css( 'display', 'none' );
 
-		function updateAreaMode() {
-			var shouldFloat = window.pageYOffset > offset.top;
-			if ( isFloating === shouldFloat ) {
-				return;
-			}
-			isFloating = shouldFloat;
-			$area
-				.toggleClass( 'mw-notification-area-floating', isFloating )
-				.toggleClass( 'mw-notification-area-layout', !isFloating );
-		}
 
 		$( window ).on( 'scroll', updateAreaMode );
 
 		// Initial mode
 		updateAreaMode();
+
+		// Handle pre-ready queue.
+		isPageReady = true;
+		while ( preReadyNotifQueue.length ) {
+			notif = preReadyNotifQueue.shift();
+			notif.start();
+		}
 	}
 
 	/**
@@ -423,18 +431,7 @@
 		autoHideLimit: 3
 	};
 
-	$( function () {
-		var notif;
-
-		init();
-
-		// Handle pre-ready queue.
-		isPageReady = true;
-		while ( preReadyNotifQueue.length ) {
-			notif = preReadyNotifQueue.shift();
-			notif.start();
-		}
-	} );
+	$( init );
 
 	mw.notification = notification;
 
