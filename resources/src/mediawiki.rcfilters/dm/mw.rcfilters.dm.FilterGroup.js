@@ -93,6 +93,7 @@
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefault ) {
 		var defaultParam,
+			anyHighlighted,
 			supersetMap = {},
 			model = this,
 			items = [];
@@ -106,7 +107,8 @@
 					description: filter.description || '',
 					labelPrefixKey: model.labelPrefixKey,
 					cssClass: filter.cssClass,
-					identifiers: filter.identifiers
+					identifiers: filter.identifiers,
+					defaultHighlightColor: filter.defaultHighlightColor
 				} );
 
 			if ( filter.subset ) {
@@ -186,6 +188,18 @@
 			// For this group, the parameter is the group name,
 			// and a single item can be selected: default or first item
 			this.defaultParams[ this.getName() ] = defaultParam;
+		}
+
+		// add highlights to defaultParams
+		anyHighlighted = false;
+		this.getItems().forEach( function ( filterItem ) {
+			if ( filterItem.isHighlighted() ) {
+				anyHighlighted = true;
+				this.defaultParams[ filterItem.getName() + '_color' ] = filterItem.getHighlightColor();
+			}
+		}.bind( this ) );
+		if ( anyHighlighted ) {
+			this.defaultParams.highlight = '1';
 		}
 
 		// Store default filter state based on default params
