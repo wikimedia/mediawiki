@@ -102,7 +102,7 @@
 	Notification.prototype.start = function () {
 		var options, $notification, $tagMatches, autohideCount;
 
-		$area.show();
+		$area.css( 'display', '' );
 
 		if ( this.isOpen ) {
 			return;
@@ -230,7 +230,7 @@
 				if ( openNotificationCount === 0 ) {
 					// Hide the area after the last notification closes. Otherwise, the padding on
 					// the area can be obscure content, despite the area being empty/invisible (T54659). // FIXME
-					$area.hide();
+					$area.css( 'display', 'none' );
 					notif.$notification.remove();
 				} else {
 					notif.$notification.slideUp( 'fast', function () {
@@ -291,7 +291,7 @@
 		// Prepend the notification area to the content area and save it's object.
 		mw.util.$content.prepend( $area );
 		offset = $area.offset();
-		$area.hide();
+		$area.css( 'display', 'none' );
 
 		function updateAreaMode() {
 			var shouldFloat = window.pageYOffset > offset.top;
