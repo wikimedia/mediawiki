@@ -15,7 +15,7 @@ class SpecialPageData extends SpecialPage {
 	private $requestHandler = null;
 
 	public function __construct() {
-		parent::__construct( 'PageData' );
+		parent::__construct( 'Pagedata' );
 	}
 
 	/**
