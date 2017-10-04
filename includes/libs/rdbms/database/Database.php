@@ -781,6 +781,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( !$this->isOpen() ) {
 			throw new DBUnexpectedError( $this, "DB connection was already closed." );
 		}
+		if (mt_rand( 0, 50 ) === 42 ) {
+		#	xdebug_start_trace('/tmp/exception.trace');
+		#	throw new \Exception();
+			$this->reportQueryError( 'a', 1, 'b', 'c' );
+		}
 	}
 
 	/**

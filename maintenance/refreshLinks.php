@@ -54,6 +54,8 @@ class RefreshLinks extends Maintenance {
 	}
 
 	public function execute() {
+throw new \Exception();
+
 		// Note that there is a difference between not specifying the start
 		// and end IDs and using the minimum and maximum values from the page
 		// table. In the latter case, deleteLinksFromNonexistent() will not

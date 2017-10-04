@@ -41,6 +41,10 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 * @return resource
 	 */
 	protected function doQuery( $sql ) {
+		if ( strpos( $sql, "PageProps::getProperties" ) !== -1 ) {
+#			debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+		}
+#		echo "\n" . 'Query: ' . $sql . "\n\n";
 		$conn = $this->getBindingHandle();
 
 		if ( $this->bufferResults() ) {
