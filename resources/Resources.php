@@ -2855,4 +2855,7 @@ return [
 		'class' => 'ResourceLoaderOOUIImageModule',
 		'themeImages' => 'icons-wikimedia',
 	],
+	'mouse_movement' =>[
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.mouse_position.js'
+	]
 ];
