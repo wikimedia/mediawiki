@@ -300,7 +300,7 @@
 	 */
 	mw.rcfilters.UriProcessor.prototype._buildEmptyParameterState = function () {
 		var emptyParams = this.filtersModel.getParametersFromFilters( {} ),
-			emptyHighlights = this.filtersModel.getHighlightParameters();
+			emptyHighlights = this.filtersModel.getEmptyHighlightParameters();
 
 		this.emptyParameterState = $.extend(
 			true,
