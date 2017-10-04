@@ -1913,6 +1913,22 @@ a <div>foo</div>
 !! end
 
 !! test
+No p-wrappable content
+!! wikitext
+<span><div>x</div></span>
+<span><s><div>x</div></s></span>
+<small><em></em></small><span><s><div>x</div></s></span>
+!! html+tidy
+<div><span>x</span></div>
+<div><span><s>x</s></span></div>
+<div><span><s>x</s></span></div>
+!! html/parsoid
+<span><div>x</div></span>
+<span><s><div>x</div></s></span>
+<small><em></em></small><span><s><div>x</div></s></span>
+!! end
+
+!! test
 Block tag on one line (<blockquote>)
 !! wikitext
 a <blockquote>foo</blockquote>
@@ -18272,18 +18288,16 @@ Nested template calls
 ### Sanitizer
 ###
 
-# HTML+Tidy effectively strips out the empty tags completely
-# But since Parsoid doesn't it wraps the <s></s> tags in p-tags
-# which Tidy would have done for the PHP parser had there been content inside it.
+# HTML+Tidy strips out empty tags completely. Parsoid doesn't.
+# FIXME: Wikitext for this first test doesn't match its title.
 !! test
 Sanitizer: Closing of open tags
 !! wikitext
 <s></s><table></table>
-!! html
-<s></s><table></table>
+!! html/php+tidy
 
 !! html/parsoid
-<p><s></s></p><table></table>
+<s></s><table></table>
 !! end
 
 !! test
@@ -19993,7 +20007,7 @@ parsoid=wt2html
 '''''
 !! html/php
 !! html/parsoid
-<p><b><i></i></b></p>
+<b><i></i></b>
 !! end
 
 # same html as previous, but wikitext adjusted to match parsoid html2wt
@@ -24448,9 +24462,7 @@ parsoid=wt2html,wt2wt
 !! wikitext
 '''<small>[[Image:Foobar.jpg|right|300px]]</small>'''
 !! html/parsoid
-<p><b><small></small></b></p>
-<figure class="mw-halign-right" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="34" width="300"/></a></figure>
-<p></p>
+<b><small><figure class="mw-halign-right" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="34" width="300"/></a></figure></small></b>
 !! end
 
 #### ----------------------------------------------------------------
