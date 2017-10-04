@@ -128,6 +128,15 @@ class MWExceptionHandler {
 	public static function handleException( $e ) {
 		self::rollbackMasterChangesAndLog( $e );
 		self::report( $e );
+
+		// Make sure we don't claim success on exit for CLI scripts (T177414)
+		if ( isset( $GLOBALS['wgCommandLineMode'] ) && $GLOBALS['wgCommandLineMode'] ) {
+			register_shutdown_function(
+				function() {
+					exit( 255 );
+				}
+			);
+		}
 	}
 
 	/**
