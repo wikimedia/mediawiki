@@ -103,6 +103,12 @@ abstract class ChangesListFilter {
 	 */
 	protected $priority;
 
+	/**
+	 *
+	 * @var string $defaultHighlightColor
+	 */
+	protected $defaultHighlightColor;
+
 	const RESERVED_NAME_CHAR = '_';
 
 	/**
@@ -368,6 +374,7 @@ abstract class ChangesListFilter {
 			'priority' => $this->priority,
 			'subset' => $this->subsetFilters,
 			'conflicts' => [],
+			'defaultHighlightColor' => $this->defaultHighlightColor
 		];
 
 		$output['messageKeys'] = [
@@ -493,5 +500,12 @@ abstract class ChangesListFilter {
 				return $filter !== $this;
 			}
 		);
+	}
+
+	/**
+	 * @param string $defaultHighlightColor
+	 */
+	public function setDefaultHighlightColor( $defaultHighlightColor ) {
+		$this->defaultHighlightColor = $defaultHighlightColor;
 	}
 }

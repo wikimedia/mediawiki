@@ -736,6 +736,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 								'cssClass' => null,
 								'conflicts' => [],
 								'subset' => [],
+								'defaultHighlightColor' => null
 							],
 							[
 								'name' => 'hidefoo',
@@ -746,6 +747,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 								'cssClass' => null,
 								'conflicts' => [],
 								'subset' => [],
+								'defaultHighlightColor' => null
 							],
 						],
 						'fullCoverage' => true,
@@ -767,6 +769,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 								'priority' => -2,
 								'conflicts' => [],
 								'subset' => [],
+								'defaultHighlightColor' => null
 							],
 							[
 								'name' => 'garply',
@@ -776,6 +779,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 								'priority' => -3,
 								'conflicts' => [],
 								'subset' => [],
+								'defaultHighlightColor' => null
 							],
 						],
 						'conflicts' => [],
