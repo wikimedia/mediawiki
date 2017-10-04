@@ -410,6 +410,10 @@
 
 		this.currentView = 'default';
 
+		if ( this.getHighlightedItems() ) {
+			this.toggleHighlight( true );
+		}
+
 		// Finish initialization
 		this.emit( 'initialize' );
 	};
@@ -721,6 +725,22 @@
 			result[ filterItem.getName() + '_color' ] = filterItem.getHighlightColor() || null;
 		} );
 		result.highlight = String( Number( this.isHighlightEnabled() ) );
+
+		return result;
+	};
+
+	/**
+	 * Get an object representing the complete empty state of highlights
+	 *
+	 * @returns {Object} Object containing all the highlight parameters set to their negative value
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getEmptyHighlightParameters = function () {
+		var result = {};
+
+		this.getItems().forEach( function ( filterItem ) {
+			result[ filterItem.getName() + '_color' ] = null;
+		} );
+		result.highlight = '0';
 
 		return result;
 	};
