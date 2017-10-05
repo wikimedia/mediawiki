@@ -690,7 +690,7 @@
 	 * Check whether the current filter and highlight state exists
 	 * in the saved queries model.
 	 *
-	 * @return {boolean} Query exists
+	 * @return {mw.rcfilters.dm.SavedQueryItemModel} Matching item model
 	 */
 	mw.rcfilters.Controller.prototype.findQueryMatchingCurrentState = function () {
 		return this.savedQueriesModel.findMatchingQuery(

@@ -114,16 +114,6 @@
 			$.extend( true, {}, { filter1: '1' } ),
 			'Parameters in Uri query set parameter value in the model'
 		);
-
-		uriProcessor.updateModelBasedOnQuery( { highlight: '1', group1__filter1_color: 'c1', urlversion: '2' } );
-		assert.deepEqual(
-			filtersModel.getCurrentParameterState(),
-			{
-				highlight: '1',
-				group1__filter1_color: 'c1'
-			},
-			'Highlight parameters in Uri query set highlight state in the model'
-		);
 	} );
 
 	QUnit.test( 'isNewState', function ( assert ) {

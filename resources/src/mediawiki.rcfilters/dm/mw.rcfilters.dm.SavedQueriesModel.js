@@ -123,6 +123,8 @@
 				// the given data, if they exist
 				normalizedData.params = model.filtersModel.removeExcludedParams( normalizedData.params );
 
+				model.cleanupHighlights( normalizedData );
+
 				id = String( id );
 
 				// Skip the addNewQuery method because we don't want to unnecessarily manipulate
@@ -150,6 +152,23 @@
 	};
 
 	/**
+	 * Clean up highlight parameters.
+	 * 'highlight' used to be stored, it's not inferred based on the presence of absence of
+	 * filter colors.
+	 *
+	 * @param {Object} data Saved query data
+	 */
+	mw.rcfilters.dm.SavedQueriesModel.prototype.cleanupHighlights = function ( data ) {
+		if (
+			data.params.highlight === '0' &&
+			data.highlights && Object.keys( data.highlights ).length
+		) {
+			data.highlights = {};
+		}
+		delete data.params.highlight;
+	};
+
+	/**
 	 * Convert from representation of filters to representation of parameters
 	 *
 	 * @param {Object} data Query data
@@ -168,7 +187,7 @@
 			this.filtersModel.getParametersFromFilters( fullFilterRepresentation )
 		);
 
-		// Highlights (taking out 'highlight' itself, appending _color to keys)
+		// Highlights: appending _color to keys
 		newData.highlights = {};
 		$.each( data.highlights, function ( highlightedFilterName, value ) {
 			if ( value ) {

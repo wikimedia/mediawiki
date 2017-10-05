@@ -7,14 +7,17 @@
 	 *
 	 * @constructor
 	 * @param {mw.rcfilters.Controller} controller
+	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersViewModel
 	 * @param {mw.rcfilters.dm.FilterItem} invertModel
-	 * @param {mw.rcfilters.dm.FilterItem} model Item model
+	 * @param {mw.rcfilters.dm.FilterItem} itemModel Item model
 	 * @param {Object} config Configuration object
 	 */
-	mw.rcfilters.ui.FilterTagItemWidget = function MwRcfiltersUiFilterTagItemWidget( controller, invertModel, model, config ) {
+	mw.rcfilters.ui.FilterTagItemWidget = function MwRcfiltersUiFilterTagItemWidget(
+		controller, filtersViewModel, invertModel, itemModel, config
+	) {
 		config = config || {};
 
-		mw.rcfilters.ui.FilterTagItemWidget.parent.call( this, controller, invertModel, model, config );
+		mw.rcfilters.ui.FilterTagItemWidget.parent.call( this, controller, filtersViewModel, invertModel, itemModel, config );
 
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterTagItemWidget' );
@@ -32,11 +35,11 @@
 	mw.rcfilters.ui.FilterTagItemWidget.prototype.setCurrentMuteState = function () {
 		this.setFlags( {
 			muted: (
-				!this.model.isSelected() ||
-				this.model.isIncluded() ||
-				this.model.isFullyCovered()
+				!this.itemModel.isSelected() ||
+				this.itemModel.isIncluded() ||
+				this.itemModel.isFullyCovered()
 			),
-			invalid: this.model.isSelected() && this.model.isConflicted()
+			invalid: this.itemModel.isSelected() && this.itemModel.isConflicted()
 		} );
 	};
 }( mediaWiki, jQuery ) );
