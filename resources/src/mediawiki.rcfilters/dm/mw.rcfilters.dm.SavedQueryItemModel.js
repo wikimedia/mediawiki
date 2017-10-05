@@ -10,7 +10,7 @@
 	 * @param {string} label Saved query label
 	 * @param {Object} data Saved query data
 	 * @param {Object} [config] Configuration options
-	 * @param {boolean} [default] This item is the default
+	 * @cfg {boolean} [default] This item is the default
 	 */
 	mw.rcfilters.dm.SavedQueryItemModel = function MwRcfiltersDmSavedQueriesModel( id, label, data, config ) {
 		config = config || {};
@@ -20,7 +20,7 @@
 
 		this.id = id;
 		this.label = label;
-		this.data = data;
+		this.data = this.cleanupHighlight( data );
 		this.default = !!config.default;
 	};
 
@@ -38,6 +38,20 @@
 	 */
 
 	/* Methods */
+
+	/**
+	 * Remove 'highlight' from a saved query object as this attribute
+	 * is no longer needed.
+	 *
+	 * @param {Object} data Saved query data
+	 * @returns {Object}
+	 */
+	mw.rcfilters.dm.SavedQueryItemModel.prototype.cleanupHighlight = function ( data ) {
+		if ( OO.getProp( data, 'params', 'highlight' ) ) {
+			delete data.params.highlight;
+		}
+		return data;
+	};
 
 	/**
 	 * Get an object representing the state of this item

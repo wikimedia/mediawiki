@@ -53,7 +53,6 @@
 							group3__group3option1: true
 						},
 						highlights: {
-							highlight: true,
 							filter1: 'c5',
 							group3option1: 'c1'
 						},
@@ -76,8 +75,7 @@
 							group2: 'filter4',
 							// Note - Group3 is sticky, so it won't show in output
 							// Invert/highlight toggles
-							invert: '1',
-							highlight: '1'
+							invert: '1'
 						},
 						highlights: {
 							filter1_color: 'c5',

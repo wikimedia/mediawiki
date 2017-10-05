@@ -118,7 +118,9 @@
 				filterItem.clearHighlightColor();
 			}
 		} );
-		this.filtersModel.toggleHighlight( !!Number( parameters.highlight ) );
+
+		// todo: this should happen from within the view model
+		this.filtersModel.updateHighlightedState();
 
 		// Check all filter interactions
 		this.filtersModel.reassessFilterInteractions();
@@ -136,7 +138,6 @@
 			this.filtersModel.getParametersFromFilters(),
 			this.filtersModel.getHighlightParameters(),
 			{
-				highlight: String( Number( this.filtersModel.isHighlightEnabled() ) ),
 				invert: String( Number( this.filtersModel.areNamespacesInverted() ) )
 			}
 		);
@@ -158,7 +159,6 @@
 			this.filtersModel.getParametersFromFilters( filterRepresentation ),
 			this.filtersModel.extractHighlightValues( uriQuery ),
 			{
-				highlight: String( Number( uriQuery.highlight ) ),
 				invert: String( Number( uriQuery.invert ) )
 			}
 		);
@@ -200,13 +200,7 @@
 	 */
 	mw.rcfilters.UriProcessor.prototype.doesQueryContainRecognizedParams = function ( uriQuery ) {
 		var anyValidInUrl,
-			validParameterNames = Object.keys( this._getEmptyParameterState() )
-				.filter( function ( param ) {
-					// Remove 'highlight' parameter from this check;
-					// if it's the only parameter in the URL we still
-					// want to consider the URL 'empty' for defaults to load
-					return param !== 'highlight';
-				} );
+			validParameterNames = Object.keys( this._getEmptyParameterState() );
 
 		uriQuery = uriQuery || new mw.Uri().query;
 
@@ -307,7 +301,7 @@
 			{},
 			emptyParams,
 			emptyHighlights,
-			{ highlight: '0', invert: '0' }
+			{ invert: '0' }
 		);
 	};
 }( mediaWiki, jQuery ) );
