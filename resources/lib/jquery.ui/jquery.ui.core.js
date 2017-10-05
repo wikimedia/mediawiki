@@ -151,8 +151,8 @@ function focusable( element, isTabIndexNotNaN ) {
 }
 
 function visible( element ) {
-	return $.expr.filters.visible( element ) &&
-		!$( element ).parents().andSelf().filter(function() {
+	return $.expr.pseudos.visible( element ) &&
+		!$( element ).parents().addBack().filter(function() {
 			return $.css( this, "visibility" ) === "hidden";
 		}).length;
 }
