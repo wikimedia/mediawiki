@@ -3,9 +3,6 @@
  * Copyright jQuery Foundation and other contributors
  *
  * Patched for MediaWiki:
- * - Preserve handler of uncaught exceptions in promise chains
- *   https://gerrit.wikimedia.org/r/#/c/360999/
- *   https://github.com/jquery/jquery-migrate/pull/262
  * - Add mw.track instrumentation for statistics.
  */
 ;( function( factory ) {
