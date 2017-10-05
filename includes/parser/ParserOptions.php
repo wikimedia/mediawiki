@@ -944,6 +944,9 @@ class ParserOptions {
 		}
 		if ( $lang === null ) {
 			global $wgLang;
+			if ( !StubObject::isRealObject( $wgLang ) ) {
+				$wgLang->_unstub();
+			}
 			$lang = $wgLang;
 		}
 		$this->initialiseFromUser( $user, $lang );
@@ -1011,7 +1014,7 @@ class ParserOptions {
 	 *
 	 * @since 1.30
 	 * @param User|null $user
-	 * @param Language|null $lang
+	 * @param Language|StubObject|null $lang
 	 * @return ParserOptions
 	 */
 	public static function newCanonical( User $user = null, $lang = null ) {
