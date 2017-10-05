@@ -403,9 +403,7 @@
 
 		this.currentView = 'default';
 
-		if ( this.getHighlightedItems().length > 0 ) {
-			this.toggleHighlight( true );
-		}
+		this.updateHighlightedState();
 
 		// Finish initialization
 		this.emit( 'initialize' );
@@ -439,7 +437,7 @@
 				filterItem.clearHighlightColor();
 			}
 		} );
-		this.toggleHighlight( !!Number( params.highlight ) );
+		this.updateHighlightedState();
 
 		// Check all filter interactions
 		this.reassessFilterInteractions();
@@ -456,8 +454,7 @@
 				true,
 				{},
 				this.getParametersFromFilters( {} ),
-				this.getEmptyHighlightParameters(),
-				{ highlight: '0' }
+				this.getEmptyHighlightParameters()
 			);
 		}
 		return this.emptyParameterState;
@@ -484,11 +481,9 @@
 
 		// Highlights
 		Object.keys( this.getEmptyHighlightParameters() ).forEach( function ( param ) {
-			if ( param !== 'highlight' && parameters[ param ] ) {
+			if ( parameters[ param ] ) {
 				// If a highlight parameter is not undefined and not null
 				// add it to the result
-				// Ignore "highlight" parameter because that, we checked already with
-				// the empty parameter state (and this soon changes to an implicit value)
 				result[ param ] = parameters[ param ];
 			}
 		} );
@@ -535,12 +530,7 @@
 				true,
 				{},
 				this.getParametersFromFilters( this.getSelectedState() ),
-				this.getHighlightParameters(),
-				{
-					// HACK: Add highlight. This is only needed while it's
-					// stored as an outside state
-					highlight: String( Number( this.isHighlightEnabled() ) )
-				}
+				this.getHighlightParameters()
 			) );
 
 		if ( removeExcludedParams ) {
@@ -612,6 +602,13 @@
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getFilterNames = function () {
 		return this.getItems().map( function ( item ) { return item.getName(); } );
+	};
+
+	/**
+	 * Turn the highlight feature on or off
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.updateHighlightedState = function () {
+		this.toggleHighlight( this.getHighlightedItems().length > 0 );
 	};
 
 	/**
@@ -955,14 +952,16 @@
 	 *                  are the selected highlight colors.
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getHighlightParameters = function () {
-		var result = {};
+		var highlightEnabled = this.isHighlightEnabled(),
+			result = {};
 
 		this.getItems().forEach( function ( filterItem ) {
 			if ( filterItem.isHighlightSupported() ) {
-				result[ filterItem.getName() + '_color' ] = filterItem.getHighlightColor() || null;
+				result[ filterItem.getName() + '_color' ] = highlightEnabled && filterItem.isHighlighted() ?
+					filterItem.getHighlightColor() :
+					null;
 			}
 		} );
-		result.highlight = String( Number( this.isHighlightEnabled() ) );
 
 		return result;
 	};
@@ -980,7 +979,6 @@
 				result[ filterItem.getName() + '_color' ] = null;
 			}
 		} );
-		result.highlight = '0';
 
 		return result;
 	};
@@ -1017,13 +1015,15 @@
 	mw.rcfilters.dm.FiltersViewModel.prototype.getCurrentlyUsedHighlightColors = function () {
 		var result = [];
 
-		this.getHighlightedItems().forEach( function ( filterItem ) {
-			var color = filterItem.getHighlightColor();
+		if ( this.isHighlightEnabled() ) {
+			this.getHighlightedItems().forEach( function ( filterItem ) {
+				var color = filterItem.getHighlightColor();
 
-			if ( result.indexOf( color ) === -1 ) {
-				result.push( color );
-			}
-		} );
+				if ( result.indexOf( color ) === -1 ) {
+					result.push( color );
+				}
+			} );
+		}
 
 		return result;
 	};
@@ -1311,13 +1311,6 @@
 		enable = enable === undefined ? !this.highlightEnabled : enable;
 
 		if ( this.highlightEnabled !== enable ) {
-			// HACK make sure highlights are disabled globally while we toggle on the items,
-			// otherwise we'll call clearHighlight() and applyHighlight() many many times
-			this.highlightEnabled = false;
-			this.getItems().forEach( function ( filterItem ) {
-				filterItem.toggleHighlight( enable );
-			} );
-
 			this.highlightEnabled = enable;
 			this.emit( 'highlightChange', this.highlightEnabled );
 		}
