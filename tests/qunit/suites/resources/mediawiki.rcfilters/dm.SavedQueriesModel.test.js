@@ -83,10 +83,8 @@
 							// in param representation
 							filter2: '1', filter3: '1',
 							// Group type string_options
-							group2: 'filter4',
+							group2: 'filter4'
 							// Note - Group3 is sticky, so it won't show in output
-							// highlight toggle
-							highlight: '1'
 						},
 						highlights: {
 							group1__filter1_color: 'c5',
@@ -95,6 +93,11 @@
 					}
 				}
 			}
+		},
+		removeHighlights = function ( data ) {
+			var copy = $.extend( true, {}, data );
+			copy.queries[ 1234 ].data.highlights = {};
+			return copy;
 		};
 
 	QUnit.module( 'mediawiki.rcfilters - SavedQueriesModel' );
@@ -159,6 +162,12 @@
 					msg: 'Conversion from filter representation to parameters, with default set up, retains data.'
 				},
 				{
+					// Converting from old structure and cleaning up highlights
+					input: $.extend( true, queriesFilterRepresentation, { queries: { 1234: { data: { highlights: { highlight: false } } } } } ),
+					finalState: removeHighlights( queriesParamRepresentation ),
+					msg: 'Conversion from filter representation to parameters and highlight cleanup'
+				},
+				{
 					// New structure
 					input: $.extend( true, {}, queriesParamRepresentation ),
 					finalState: $.extend( true, {}, queriesParamRepresentation ),
@@ -170,6 +179,18 @@
 					input: $.extend( true, { queries: { 1234: { data: { highlights: { group2__filter5_color: 'c2' } } } } }, exampleQueryStructure ),
 					finalState: $.extend( true, { queries: { 1234: { data: { highlights: { group2__filter5_color: 'c2' } } } } }, exampleQueryStructure ),
 					msg: 'Structure that contains invalid highlights remains the same in initialization'
+				},
+				{
+					// Trim colors when highlight=false is stored
+					input: $.extend( true, { queries: { 1234: { data: { params: { highlight: '0' } } } } }, queriesParamRepresentation ),
+					finalState: removeHighlights( queriesParamRepresentation ),
+					msg: 'Colors are removed when highlight=false'
+				},
+				{
+					// Remove highlight when it is true but no colors are specified
+					input: $.extend( true, { queries: { 1234: { data: { params: { highlight: '1' } } } } }, removeHighlights( queriesParamRepresentation ) ),
+					finalState: removeHighlights( queriesParamRepresentation ),
+					msg: 'remove highlight when it is true but there is no colors'
 				}
 			];
 
@@ -298,7 +319,6 @@
 			'New query 1',
 			{
 				group2: 'filter5',
-				highlight: '1',
 				group1__filter1_color: 'c5',
 				group3__group3option1_color: 'c1'
 			}
@@ -327,8 +347,7 @@
 			label: 'New query 1',
 			data: {
 				params: {
-					group2: 'filter5',
-					highlight: '1'
+					group2: 'filter5'
 				},
 				highlights: {
 					group1__filter1_color: 'c5',
@@ -385,7 +404,6 @@
 		// Find matching query
 		matchingItem = queriesModel.findMatchingQuery(
 			{
-				highlight: '1',
 				group2: 'filter5',
 				group1__filter1_color: 'c5',
 				group3__group3option1_color: 'c1'
@@ -403,7 +421,6 @@
 				group2: 'filter5',
 				filter1: '0',
 				filter2: '0',
-				highlight: '1',
 				invert: '0',
 				group1__filter1_color: 'c5',
 				group3__group3option1_color: 'c1'
