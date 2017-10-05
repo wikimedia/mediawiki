@@ -58,7 +58,6 @@
 				filter3: '0',
 				filter4: '0',
 				group3: '',
-				highlight: '0',
 				group1__filter1_color: null,
 				group1__filter2_color: null,
 				group2__filter3_color: null,
@@ -89,16 +88,6 @@
 			uriProcessor.getUriParametersFromModel(),
 			$.extend( true, {}, baseParams, { filter1: '1' } ),
 			'Parameters in Uri query set parameter value in the model'
-		);
-
-		uriProcessor.updateModelBasedOnQuery( { highlight: '1', group1__filter1_color: 'c1', urlversion: '2' } );
-		assert.deepEqual(
-			uriProcessor.getUriParametersFromModel(),
-			$.extend( true, {}, baseParams, {
-				highlight: '1',
-				group1__filter1_color: 'c1'
-			} ),
-			'Highlight parameters in Uri query set highlight state in the model'
 		);
 	} );
 

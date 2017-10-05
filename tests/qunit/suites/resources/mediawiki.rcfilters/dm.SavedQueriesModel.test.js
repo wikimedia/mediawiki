@@ -53,7 +53,6 @@
 							group3__group3option1: true
 						},
 						highlights: {
-							highlight: true,
 							filter1: 'c5',
 							group3option1: 'c1'
 						}
@@ -72,10 +71,8 @@
 							// in param representation
 							filter2: '1', filter3: '1',
 							// Group type string_options
-							group2: 'filter4',
+							group2: 'filter4'
 							// Note - Group3 is sticky, so it won't show in output
-							// highlight toggle
-							highlight: '1'
 						},
 						highlights: {
 							filter1_color: 'c5',
@@ -167,8 +164,7 @@
 			'New query 1',
 			{
 				params: {
-					group2: 'filter5',
-					highlight: '1'
+					group2: 'filter5'
 				},
 				highlights: {
 					filter1_color: 'c5',
@@ -203,8 +199,7 @@
 			label: 'New query 1',
 			data: {
 				params: {
-					group2: 'filter5',
-					highlight: '1'
+					group2: 'filter5'
 				},
 				highlights: {
 					filter1_color: 'c5',
@@ -262,8 +257,7 @@
 		matchingItem = queriesModel.findMatchingQuery(
 			{
 				params: {
-					group2: 'filter5',
-					highlight: '1'
+					group2: 'filter5'
 				},
 				highlights: {
 					filter1_color: 'c5',
@@ -283,8 +277,7 @@
 				params: {
 					group2: 'filter5',
 					filter1: '0',
-					filter2: '0',
-					highlight: '1'
+					filter2: '0'
 				},
 				highlights: {
 					filter1_color: 'c5',

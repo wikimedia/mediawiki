@@ -621,14 +621,14 @@
 	 */
 	mw.rcfilters.Controller.prototype.saveCurrentQuery = function ( label, setAsDefault ) {
 		var highlightedItems = {},
-			highlightEnabled = this.filtersModel.isHighlightEnabled(),
 			selectedState = this.filtersModel.getSelectedState();
 
 		// Prepare highlights
-		this.filtersModel.getHighlightedItems().forEach( function ( item ) {
-			highlightedItems[ item.getName() + '_color' ] = highlightEnabled ?
-				item.getHighlightColor() : null;
-		} );
+		if ( this.filtersModel.isHighlightEnabled() ) {
+			this.filtersModel.getHighlightedItems().forEach( function ( item ) {
+				highlightedItems[ item.getName() + '_color' ] = item.getHighlightColor();
+			} );
+		}
 
 		// Delete all excluded filters
 		this._deleteExcludedValuesFromFilterState( selectedState );
@@ -637,13 +637,7 @@
 		this.savedQueriesModel.addNewQuery(
 			label || mw.msg( 'rcfilters-savedqueries-defaultlabel' ),
 			{
-				params: $.extend(
-					true,
-					{
-						highlight: String( Number( this.filtersModel.isHighlightEnabled() ) )
-					},
-					this.filtersModel.getParametersFromFilters( selectedState )
-				),
+				params: this.filtersModel.getParametersFromFilters( selectedState ),
 				highlights: highlightedItems
 			},
 			setAsDefault
@@ -724,7 +718,6 @@
 			);
 
 			// Update highlight state
-			this.filtersModel.toggleHighlight( !!Number( data.params.highlight ) );
 			this.filtersModel.getItems().forEach( function ( filterItem ) {
 				var color = highlights[ filterItem.getName() + '_color' ];
 				if ( color ) {
@@ -733,6 +726,9 @@
 					filterItem.clearHighlightColor();
 				}
 			} );
+
+			// todo: this should happen from within the view model
+			this.filtersModel.updateHighlightedState();
 
 			// Check all filter interactions
 			this.filtersModel.reassessFilterInteractions();
@@ -748,16 +744,18 @@
 	 * Check whether the current filter and highlight state exists
 	 * in the saved queries model.
 	 *
-	 * @return {boolean} Query exists
+	 * @return {mw.rcfilters.dm.SavedQueryItemModel} Matching item model
 	 */
 	mw.rcfilters.Controller.prototype.findQueryMatchingCurrentState = function () {
 		var highlightedItems = {},
 			selectedState = this.filtersModel.getSelectedState();
 
 		// Prepare highlights of the current query
-		this.filtersModel.getItemsSupportingHighlights().forEach( function ( item ) {
-			highlightedItems[ item.getName() + '_color' ] = item.getHighlightColor();
-		} );
+		if ( this.filtersModel.isHighlightEnabled() ) {
+			this.filtersModel.getHighlightedItems().forEach( function ( item ) {
+				highlightedItems[ item.getName() + '_color' ] = item.getHighlightColor();
+			} );
+		}
 
 		// Remove anything that should be excluded from the saved query
 		// this includes sticky filters and filters marked with 'excludedFromSavedQueries'
@@ -765,13 +763,7 @@
 
 		return this.savedQueriesModel.findMatchingQuery(
 			{
-				params: $.extend(
-					true,
-					{
-						highlight: String( Number( this.filtersModel.isHighlightEnabled() ) )
-					},
-					this.filtersModel.getParametersFromFilters( selectedState )
-				),
+				params: this.filtersModel.getParametersFromFilters( selectedState ),
 				highlights: highlightedItems
 			}
 		);
@@ -1001,8 +993,7 @@
 			// Return parameter representation
 			return $.extend( true, {},
 				this.filtersModel.getParametersFromFilters( savedFilters ),
-				data.highlights,
-				{ highlight: data.params.highlight }
+				data.highlights
 			);
 		}
 		return this.filtersModel.getDefaultParams();
@@ -1039,7 +1030,6 @@
 	 */
 	mw.rcfilters.Controller.prototype._getUpdatedUri = function () {
 		var uri = new mw.Uri();
-
 		// Minimize url
 		uri.query = this.uriProcessor.minimizeQuery(
 			$.extend(

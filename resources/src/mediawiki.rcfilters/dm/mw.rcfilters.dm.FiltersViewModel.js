@@ -402,9 +402,7 @@
 
 		this.currentView = 'default';
 
-		if ( this.getHighlightedItems().length > 0 ) {
-			this.toggleHighlight( true );
-		}
+		this.updateHighlightedState();
 
 		// Finish initialization
 		this.emit( 'initialize' );
@@ -417,6 +415,13 @@
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getFilterNames = function () {
 		return this.getItems().map( function ( item ) { return item.getName(); } );
+	};
+
+	/**
+	 * Turn the highlight feature on or off
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.updateHighlightedState = function () {
+		this.toggleHighlight( this.getHighlightedItems().length > 0 );
 	};
 
 	/**
@@ -711,12 +716,14 @@
 	 *                  are the selected highlight colors.
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.getHighlightParameters = function () {
-		var result = {};
+		var highlightEnabled = this.isHighlightEnabled(),
+			result = {};
 
 		this.getItems().forEach( function ( filterItem ) {
-			result[ filterItem.getName() + '_color' ] = filterItem.getHighlightColor() || null;
+			result[ filterItem.getName() + '_color' ] = highlightEnabled && filterItem.isHighlighted() ?
+				filterItem.getHighlightColor() :
+				null;
 		} );
-		result.highlight = String( Number( this.isHighlightEnabled() ) );
 
 		return result;
 	};
@@ -732,7 +739,6 @@
 		this.getItems().forEach( function ( filterItem ) {
 			result[ filterItem.getName() + '_color' ] = null;
 		} );
-		result.highlight = '0';
 
 		return result;
 	};
@@ -769,13 +775,15 @@
 	mw.rcfilters.dm.FiltersViewModel.prototype.getCurrentlyUsedHighlightColors = function () {
 		var result = [];
 
-		this.getHighlightedItems().forEach( function ( filterItem ) {
-			var color = filterItem.getHighlightColor();
+		if ( this.isHighlightEnabled() ) {
+			this.getHighlightedItems().forEach( function ( filterItem ) {
+				var color = filterItem.getHighlightColor();
 
-			if ( result.indexOf( color ) === -1 ) {
-				result.push( color );
-			}
-		} );
+				if ( result.indexOf( color ) === -1 ) {
+					result.push( color );
+				}
+			} );
+		}
 
 		return result;
 	};
