@@ -6,6 +6,8 @@ MediaWiki 1.31 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.31 ===
+* $wgUsejQueryThree was removed, as it is now the default. This was documented as a
+  temporary variable during the migration period, deprecated since 1.29.
 * …
 
 === New features in 1.31 ===

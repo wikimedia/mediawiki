@@ -3697,16 +3697,6 @@ $wgResourceLoaderMinifierMaxLineLength = 1000;
 $wgIncludeLegacyJavaScript = false;
 
 /**
- * Use jQuery 3 (with jQuery Migrate) instead of jQuery 1.
- *
- * This is a temporary feature flag for the MediaWiki 1.29 development cycle while
- * instabilities with jQuery 3 are being addressed. See T124742.
- *
- * @deprecated since 1.29
- */
-$wgUsejQueryThree = true;
-
-/**
  * Whether or not to assign configuration variables to the global window object.
  *
  * If this is set to false, old code using deprecated variables will no longer
