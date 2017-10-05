@@ -1337,7 +1337,7 @@
 	"rcfilters-filtergroup-changetype": "Typ vun der Ännerung",
 	"rcfilters-filter-pageedits-label": "Säitenännerungen",
 	"rcfilters-filter-pageedits-description": "Ännerungen um Wikiinhalt, an Diskussiounen, a Beschreiwunge vu Kategorien, ...",
-	"rcfilters-filter-newpages-label": "Ugeluechte Säiten",
+	"rcfilters-filter-newpages-label": "Ugeluecht Säiten",
 	"rcfilters-filter-newpages-description": "Ännerunge mat deene nei Säiten ugeluecht ginn.",
 	"rcfilters-filter-categorization-label": "Ännerunge vun de Kategorien:",
 	"rcfilters-filter-logactions-label": "Protokolléiert Aktiounen",
