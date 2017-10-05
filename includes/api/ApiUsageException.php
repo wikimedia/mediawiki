@@ -213,7 +213,7 @@ class ApiUsageException extends UsageException implements ILocalizedException {
 	 * @inheritDoc
 	 */
 	public function getMessageObject() {
-		return $this->status->getMessage();
+		return Status::wrap( $this->status )->getMessage();
 	}
 
 	/**
