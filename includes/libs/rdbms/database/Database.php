@@ -3078,8 +3078,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$this->mTrxIdleCallbacks = []; // clear
 		$this->mTrxPreCommitCallbacks = []; // clear
-		$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
-		$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
+		try {
+			$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
+		} catch ( Exception $e ) {
+			// already logged; finish and let LoadBalancer move on during mass-rollback
+		}
+		try {
+			$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
+		} catch ( Exception $e ) {
+			// already logged; let LoadBalancer move on during mass-rollback
+		}
 	}
 
 	/**

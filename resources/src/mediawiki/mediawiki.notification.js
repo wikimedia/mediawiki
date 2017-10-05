@@ -102,7 +102,7 @@
 	Notification.prototype.start = function () {
 		var options, $notification, $tagMatches, autohideCount;
 
-		$area.show();
+		$area.css( 'display', '' );
 
 		if ( this.isOpen ) {
 			return;
@@ -230,7 +230,7 @@
 				if ( openNotificationCount === 0 ) {
 					// Hide the area after the last notification closes. Otherwise, the padding on
 					// the area can be obscure content, despite the area being empty/invisible (T54659). // FIXME
-					$area.hide();
+					$area.css( 'display', 'none' );
 					notif.$notification.remove();
 				} else {
 					notif.$notification.slideUp( 'fast', function () {
@@ -266,9 +266,22 @@
 	 * @ignore
 	 */
 	function init() {
-		var offset,
+		var offset, notif,
 			isFloating = false;
 
+		function updateAreaMode() {
+			var shouldFloat = window.pageYOffset > offset.top;
+			if ( isFloating === shouldFloat ) {
+				return;
+			}
+			isFloating = shouldFloat;
+			$area
+				.toggleClass( 'mw-notification-area-floating', isFloating )
+				.toggleClass( 'mw-notification-area-layout', !isFloating );
+		}
+
+		// Write to the DOM:
+		// Prepend the notification area to the content area and save its object.
 		$area = $( '<div id="mw-notification-area" class="mw-notification-area mw-notification-area-layout"></div>' )
 			// Pause auto-hide timers when the mouse is in the notification area.
 			.on( {
@@ -288,26 +301,30 @@
 				e.stopPropagation();
 			} );
 
-		// Prepend the notification area to the content area and save it's object.
 		mw.util.$content.prepend( $area );
-		offset = $area.offset();
-		$area.hide();
 
-		function updateAreaMode() {
-			var shouldFloat = window.pageYOffset > offset.top;
-			if ( isFloating === shouldFloat ) {
-				return;
+		// Read from the DOM:
+		// Must be in the next frame to avoid synchronous layout
+		// computation from offset()/getBoundingClientRect().
+		rAF( function () {
+			offset = $area.offset();
+
+			// Initial mode (reads, and then maybe writes)
+			updateAreaMode();
+
+			// Once we have the offset for where it would normally render, set the
+			// initial state of the (currently empty) notification area to be hidden.
+			$area.css( 'display', 'none' );
+
+			$( window ).on( 'scroll', updateAreaMode );
+
+			// Handle pre-ready queue.
+			isPageReady = true;
+			while ( preReadyNotifQueue.length ) {
+				notif = preReadyNotifQueue.shift();
+				notif.start();
 			}
-			isFloating = shouldFloat;
-			$area
-				.toggleClass( 'mw-notification-area-floating', isFloating )
-				.toggleClass( 'mw-notification-area-layout', !isFloating );
-		}
-
-		$( window ).on( 'scroll', updateAreaMode );
-
-		// Initial mode
-		updateAreaMode();
+		} );
 	}
 
 	/**
@@ -423,18 +440,7 @@
 		autoHideLimit: 3
 	};
 
-	$( function () {
-		var notif;
-
-		init();
-
-		// Handle pre-ready queue.
-		isPageReady = true;
-		while ( preReadyNotifQueue.length ) {
-			notif = preReadyNotifQueue.shift();
-			notif.start();
-		}
-	} );
+	$( init );
 
 	mw.notification = notification;
 

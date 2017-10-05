@@ -51,7 +51,7 @@ class MWExceptionHandler {
 	 * Install handlers with PHP.
 	 */
 	public static function installHandler() {
-		set_exception_handler( 'MWExceptionHandler::handleException' );
+		set_exception_handler( 'MWExceptionHandler::handleUncaughtException' );
 		set_error_handler( 'MWExceptionHandler::handleError' );
 
 		// Reserve 16k of memory so we can report OOM fatals
@@ -109,6 +109,25 @@ class MWExceptionHandler {
 		}
 
 		self::logException( $e, self::CAUGHT_BY_HANDLER );
+	}
+
+	/**
+	 * Callback to use with PHP's set_exception_handler.
+	 *
+	 * @since 1.31
+	 * @param Exception|Throwable $e
+	 */
+	public static function handleUncaughtException( $e ) {
+		self::handleException( $e );
+
+		// Make sure we don't claim success on exit for CLI scripts (T177414)
+		if ( PHP_SAPI === 'cli' ) {
+			register_shutdown_function(
+				function () {
+					exit( 255 );
+				}
+			);
+		}
 	}
 
 	/**

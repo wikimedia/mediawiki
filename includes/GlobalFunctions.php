@@ -2350,6 +2350,7 @@ function wfShellExecWithStderr( $cmd, &$retval = null, $environ = [], $limits = 
  * @see $wgShellLocale
  */
 function wfInitShellLocale() {
+	wfDeprecated( __FUNCTION__, '1.30' );
 }
 
 /**

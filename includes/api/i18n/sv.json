@@ -15,7 +15,8 @@
 			"Josve05a",
 			"Rockyfelle",
 			"Macofe",
-			"Magol"
+			"Magol",
+			"Bengtsson96"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentation]]\n* [[mw:Special:MyLanguage/API:FAQ|Vanliga frågor]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Sändlista]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-nyheter]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Buggar och begäran]\n</div>\n<strong>Status:</strong> Alla funktioner som visas på denna sida bör fungera, men API:et är fortfarande under utveckling och kan ändras när som helst. Prenumerera på [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ sändlistan mediawiki-api-announce] för uppdateringsaviseringar.\n\n<strong>Felaktiga begäran:</strong> När felaktiga begäran skickas till API:et kommer en HTTP-header skickas med nyckeln \"MediaWiki-API-Error\" och sedan kommer både värdet i headern och felkoden som skickades tillbaka anges som samma värde. För mer information se [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Fel och varningar]].\n\n<strong>Testning:</strong> För enkelt testning av API-begäran, se [[Special:ApiSandbox]].",
@@ -135,7 +136,7 @@
 	"apihelp-expandtemplates-summary": "Expanderar alla mallar inom wikitext.",
 	"apihelp-expandtemplates-param-title": "Sidans rubrik.",
 	"apihelp-expandtemplates-param-text": "Wikitext att konvertera.",
-	"apihelp-expandtemplates-param-revid": "Revision ID, för <code><nowiki>{{REVISIONID}}</nowiki></code> och liknande variabler.",
+	"apihelp-expandtemplates-param-revid": "Revisions-ID, för <code><nowiki>{{REVISIONID}}</nowiki></code> och liknande variabler.",
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "Den expanderade wikitexten.",
 	"apihelp-expandtemplates-param-includecomments": "Om HTML-kommentarer skall inkluderas i utdata.",
 	"apihelp-expandtemplates-param-generatexml": "Generera ett XML tolknings träd (ersatt av $1prop=parsetree).",

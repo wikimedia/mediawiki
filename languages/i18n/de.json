@@ -1481,6 +1481,7 @@
 	"rcfilters-view-namespaces-tooltip": "Ergebnisse nach Namensraum filtern",
 	"rcfilters-view-tags-tooltip": "Ergebnisse filtern, die Bearbeitungsmarkierungen verwenden",
 	"rcfilters-view-return-to-default-tooltip": "Zurück zum Hauptfiltermenü",
+	"rcfilters-view-tags-help-icon-tooltip": "Mehr über Bearbeitungen mit Markierungen erfahren",
 	"rcfilters-liveupdates-button": "Live-Aktualisierungen",
 	"rcfilters-liveupdates-button-title-on": "Live-Aktualisierungen ausschalten",
 	"rcfilters-liveupdates-button-title-off": "Neue Änderungen bei Auftreten anzeigen",
