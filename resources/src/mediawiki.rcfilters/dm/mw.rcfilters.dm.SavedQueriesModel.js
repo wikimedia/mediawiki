@@ -147,10 +147,7 @@
 	mw.rcfilters.dm.SavedQueriesModel.prototype.convertToParameters = function ( data ) {
 		var newData = {},
 			defaultFilters = this.filtersModel.getFiltersFromParameters( this.filtersModel.getDefaultParams() ),
-			fullFilterRepresentation = $.extend( true, {}, defaultFilters, data.filters ),
-			highlightEnabled = data.highlights.highlight;
-
-		delete data.highlights.highlight;
+			fullFilterRepresentation = $.extend( true, {}, defaultFilters, data.filters );
 
 		// Filters
 		newData.params = this.filtersModel.getParametersFromFilters( fullFilterRepresentation );
@@ -161,8 +158,7 @@
 			newData.highlights[ highlightedFilterName + '_color' ] = data.highlights[ highlightedFilterName ];
 		} );
 
-		// Add highlight and invert toggles to params
-		newData.params.highlight = String( Number( highlightEnabled || 0 ) );
+		// Add 'invert' toggle to params
 		newData.params.invert = String( Number( data.invert || 0 ) );
 
 		return newData;
@@ -209,7 +205,7 @@
 			} );
 
 			this.baseParamState = {
-				params: $.extend( true, { invert: '0', highlight: '0' }, allParams ),
+				params: $.extend( true, { invert: '0' }, allParams ),
 				highlights: highlightedItems
 			};
 		}
