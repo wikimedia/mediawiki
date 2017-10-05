@@ -29,7 +29,7 @@ class EditPage extends Page {
 				path: baseUrl.path,
 				username: browser.options.username,
 				password: browser.options.password,
-				debug: false
+				debug: true
 			} );
 
 		return new Promise( ( resolve, reject ) => {
