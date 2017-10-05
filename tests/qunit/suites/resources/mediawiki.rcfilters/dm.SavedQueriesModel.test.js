@@ -53,7 +53,6 @@
 							group3__group3option1: true
 						},
 						highlights: {
-							highlight: true,
 							filter1: 'c5',
 							group3option1: 'c1'
 						},
@@ -76,8 +75,7 @@
 							group2: 'filter4',
 							// Note - Group3 is sticky, so it won't show in output
 							// Invert/highlight toggles
-							invert: '1',
-							highlight: '1'
+							invert: '1'
 						},
 						highlights: {
 							filter1_color: 'c5',
@@ -169,8 +167,7 @@
 			'New query 1',
 			{
 				params: {
-					group2: 'filter5',
-					highlight: '1'
+					group2: 'filter5'
 				},
 				highlights: {
 					filter1_color: 'c5',
@@ -205,8 +202,7 @@
 			label: 'New query 1',
 			data: {
 				params: {
-					group2: 'filter5',
-					highlight: '1'
+					group2: 'filter5'
 				},
 				highlights: {
 					filter1_color: 'c5',
@@ -264,8 +260,7 @@
 		matchingItem = queriesModel.findMatchingQuery(
 			{
 				params: {
-					group2: 'filter5',
-					highlight: '1'
+					group2: 'filter5'
 				},
 				highlights: {
 					filter1_color: 'c5',
@@ -286,7 +281,6 @@
 					group2: 'filter5',
 					filter1: '0',
 					filter2: '0',
-					highlight: '1',
 					invert: '0'
 				},
 				highlights: {

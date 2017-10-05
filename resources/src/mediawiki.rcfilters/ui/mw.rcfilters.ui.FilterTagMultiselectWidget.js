@@ -416,6 +416,7 @@
 
 	/**
 	 * Respond to model itemUpdate event
+	 * fixme: when a new state is applied to the model this function is called 60+ times in a row
 	 *
 	 * @param {mw.rcfilters.dm.FilterItem} item Filter item model
 	 */
@@ -486,6 +487,8 @@
 				}
 			}.bind( this ) );
 		}
+
+		this.setSavedQueryVisibility();
 	};
 
 	/**

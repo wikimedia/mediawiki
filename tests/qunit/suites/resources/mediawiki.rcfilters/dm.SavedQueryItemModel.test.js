@@ -38,8 +38,18 @@
 
 		assert.deepEqual(
 			model.getData(),
-			itemData,
-			'Item data is retained'
+			{
+				params: {
+					param1: '1',
+					param2: 'foo|bar',
+					invert: '0'
+				},
+				highlights: {
+					param1_color: 'c1',
+					param2_color: 'c2'
+				}
+			},
+			'Item data is retained (but highlight is removed)'
 		);
 
 		assert.ok(
