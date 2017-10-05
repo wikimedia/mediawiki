@@ -84,6 +84,18 @@
 				filtersWidget.setTopSection( wlTopSection.$element );
 			} // end Special:WL
 
+			// Log performance data
+			if ( window.performance && window.performance.now ) {
+				mw.track(
+					'timing.MediaWiki.timing.structuredChangeFilters.ready.' + specialPage,
+					window.performance.now()
+				);
+				mw.track(
+					'timing.MediaWiki.timing.structuredChangeFilters.backendResponse.' + specialPage,
+					mw.config.get( 'wgBackendResponseTime' )
+				);
+			}
+
 			/**
 			 * Fired when initialization of the filtering interface for changes list is complete.
 			 *
