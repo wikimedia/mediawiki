@@ -732,6 +732,8 @@ class Message implements MessageSpecifier, Serializable {
 			if ( !$this->language instanceof Language || $this->language->getCode() != $lang ) {
 				$this->language = Language::factory( $lang );
 			}
+		} elseif ( $lang instanceof StubUserLang ) {
+			$this->language = false;
 		} else {
 			$type = gettype( $lang );
 			throw new MWException( __METHOD__ . " must be "
