@@ -132,14 +132,10 @@ return [
 	/* jQuery */
 
 	'jquery' => [
-		'scripts' => ( $GLOBALS['wgUsejQueryThree'] ?
-			[
+		'scripts' => [
 				'resources/lib/jquery/jquery3.js',
 				'resources/lib/jquery/jquery.migrate.js',
-			] : [
-				'resources/lib/jquery/jquery.js',
-			]
-		),
+		],
 		'raw' => true,
 		'targets' => [ 'desktop', 'mobile' ],
 	],
