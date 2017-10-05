@@ -123,6 +123,8 @@
 				// the given data, if they exist
 				normalizedData.params = model.filtersModel.removeExcludedParams( normalizedData.params );
 
+				normalizedData.highlights = model.cleanupHighlights( normalizedData.highlights );
+
 				id = String( id );
 
 				// Skip the addNewQuery method because we don't want to unnecessarily manipulate
@@ -150,6 +152,32 @@
 	};
 
 	/**
+	 * Clean up highlight parameters.
+	 * 'highlight' used to be stored, it's not inferred based on the presence of absence of
+	 * filter colors.
+	 *
+	 * @param {Object} highlightsData
+	 * @returns {Object}
+	 */
+	mw.rcfilters.dm.SavedQueriesModel.prototype.cleanupHighlights = function ( highlightsData ) {
+		var hasColors;
+
+		if ( highlightsData.highlight === false ) {
+			return {};
+		}
+
+		if ( highlightsData.highlight === true ) {
+			hasColors = Object.keys( highlightsData.highlight ).some( function ( propName ) {
+				return propName.match( '_color$' );
+			} );
+			if ( !hasColors ) {
+				return {};
+			}
+		}
+
+		return highlightsData;
+	};
+	/**
 	 * Convert from representation of filters to representation of parameters
 	 *
 	 * @param {Object} data Query data
@@ -158,26 +186,21 @@
 	mw.rcfilters.dm.SavedQueriesModel.prototype.convertToParameters = function ( data ) {
 		var newData = {},
 			defaultFilters = this.filtersModel.getFiltersFromParameters( this.filtersModel.getDefaultParams() ),
-			fullFilterRepresentation = $.extend( true, {}, defaultFilters, data.filters ),
-			highlightEnabled = data.highlights.highlight;
-
-		delete data.highlights.highlight;
+			fullFilterRepresentation = $.extend( true, {}, defaultFilters, data.filters );
 
 		// Filters
 		newData.params = this.filtersModel.getMinimizedParamRepresentation(
 			this.filtersModel.getParametersFromFilters( fullFilterRepresentation )
 		);
 
-		// Highlights (taking out 'highlight' itself, appending _color to keys)
+		delete data.highlights.highlight;
+		// Highlights: appending _color to keys
 		newData.highlights = {};
 		$.each( data.highlights, function ( highlightedFilterName, value ) {
 			if ( value ) {
 				newData.highlights[ highlightedFilterName + '_color' ] = data.highlights[ highlightedFilterName ];
 			}
 		} );
-
-		// Add highlight
-		newData.params.highlight = String( Number( highlightEnabled || 0 ) );
 
 		return newData;
 	};

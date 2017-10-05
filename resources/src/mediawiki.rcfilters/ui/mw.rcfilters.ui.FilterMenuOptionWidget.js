@@ -6,19 +6,22 @@
 	 *
 	 * @constructor
 	 * @param {mw.rcfilters.Controller} controller RCFilters controller
+	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersViewModel
 	 * @param {mw.rcfilters.dm.FilterItem} invertModel
-	 * @param {mw.rcfilters.dm.FilterItem} model Filter item model
+	 * @param {mw.rcfilters.dm.FilterItem} filterModel Filter item model
 	 * @param {Object} config Configuration object
 	 */
-	mw.rcfilters.ui.FilterMenuOptionWidget = function MwRcfiltersUiFilterMenuOptionWidget( controller, invertModel, model, config ) {
+	mw.rcfilters.ui.FilterMenuOptionWidget = function MwRcfiltersUiFilterMenuOptionWidget(
+		controller, filtersViewModel, invertModel, filterModel, config
+	) {
 		config = config || {};
 
 		this.controller = controller;
 		this.invertModel = invertModel;
-		this.model = model;
+		this.model = filterModel;
 
 		// Parent
-		mw.rcfilters.ui.FilterMenuOptionWidget.parent.call( this, controller, this.invertModel, model, config );
+		mw.rcfilters.ui.FilterMenuOptionWidget.parent.call( this, controller, filtersViewModel, this.invertModel, filterModel, config );
 
 		// Event
 		this.model.getGroupModel().connect( this, { update: 'onGroupModelUpdate' } );

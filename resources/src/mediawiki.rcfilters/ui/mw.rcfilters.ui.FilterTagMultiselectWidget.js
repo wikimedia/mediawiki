@@ -416,6 +416,7 @@
 
 	/**
 	 * Respond to model itemUpdate event
+	 * fixme: when a new state is applied to the model this function is called 60+ times in a row
 	 *
 	 * @param {mw.rcfilters.dm.FilterItem} item Filter item model
 	 */
@@ -425,7 +426,6 @@
 				item.isSelected() ||
 				(
 					this.model.isHighlightEnabled() &&
-					item.isHighlightSupported() &&
 					item.getHighlightColor()
 				)
 			) {
@@ -484,6 +484,8 @@
 				}
 			}.bind( this ) );
 		}
+
+		this.setSavedQueryVisibility();
 	};
 
 	/**
@@ -615,6 +617,7 @@
 		if ( filterItem ) {
 			return new mw.rcfilters.ui.FilterTagItemWidget(
 				this.controller,
+				this.model,
 				this.model.getInvertModel(),
 				filterItem,
 				{
