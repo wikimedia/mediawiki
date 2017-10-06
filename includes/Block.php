@@ -183,11 +183,14 @@ class Block {
 	 */
 	public static function newFromID( $id ) {
 		$dbr = wfGetDB( DB_REPLICA );
+		$blockQuery = self::getQueryInfo();
 		$res = $dbr->selectRow(
-			'ipblocks',
-			self::selectFields(),
+			$blockQuery['tables'],
+			$blockQuery['fields'],
 			[ 'ipb_id' => $id ],
-			__METHOD__
+			__METHOD__,
+			[],
+			$blockQuery['joins']
 		);
 		if ( $res ) {
 			return self::newFromRow( $res );
@@ -199,11 +202,11 @@ class Block {
 	/**
 	 * Return the list of ipblocks fields that should be selected to create
 	 * a new block.
-	 * @todo Deprecate this in favor of a method that returns tables and joins
-	 *  as well, and use CommentStore::getJoin().
+	 * @deprecated since 1.31, use self::getQueryInfo() instead.
 	 * @return array
 	 */
 	public static function selectFields() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return [
 			'ipb_id',
 			'ipb_address',
@@ -220,6 +223,39 @@ class Block {
 			'ipb_allow_usertalk',
 			'ipb_parent_block_id',
 		] + CommentStore::newKey( 'ipb_reason' )->getFields();
+	}
+
+	/**
+	 * Return the tables, fields, and join conditions to be selected to create
+	 * a new block object.
+	 * @since 1.31
+	 * @return array With three keys:
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 */
+	public static function getQueryInfo() {
+		$commentQuery = CommentStore::newKey( 'ipb_reason' )->getJoin();
+		return [
+			'tables' => [ 'ipblocks' ] + $commentQuery['tables'],
+			'fields' => [
+				'ipb_id',
+				'ipb_address',
+				'ipb_by',
+				'ipb_by_text',
+				'ipb_timestamp',
+				'ipb_auto',
+				'ipb_anon_only',
+				'ipb_create_account',
+				'ipb_enable_autoblock',
+				'ipb_expiry',
+				'ipb_deleted',
+				'ipb_block_email',
+				'ipb_allow_usertalk',
+				'ipb_parent_block_id',
+			] + $commentQuery['fields'],
+			'joins' => $commentQuery['joins'],
+		];
 	}
 
 	/**
@@ -295,7 +331,10 @@ class Block {
 			}
 		}
 
-		$res = $db->select( 'ipblocks', self::selectFields(), $conds, __METHOD__ );
+		$blockQuery = self::getQueryInfo();
+		$res = $db->select(
+			$blockQuery['tables'], $blockQuery['fields'], $conds, __METHOD__, [], $blockQuery['joins']
+		);
 
 		# This result could contain a block on the user, a block on the IP, and a russian-doll
 		# set of rangeblocks.  We want to choose the most specific one, so keep a leader board.
@@ -422,7 +461,7 @@ class Block {
 		$db = wfGetDB( DB_REPLICA );
 		$this->mExpiry = $db->decodeExpiry( $row->ipb_expiry );
 		$this->mReason = CommentStore::newKey( 'ipb_reason' )
-			// Legacy because $row probably came from self::selectFields()
+			// Legacy because $row may have come from self::selectFields()
 			->getCommentLegacy( $db, $row )->text;
 
 		$this->isHardblock( !$row->ipb_anon_only );
@@ -1187,14 +1226,14 @@ class Block {
 		if ( !$isAnon ) {
 			$conds = [ $conds, 'ipb_anon_only' => 0 ];
 		}
-		$selectFields = array_merge(
-			[ 'ipb_range_start', 'ipb_range_end' ],
-			self::selectFields()
-		);
-		$rows = $db->select( 'ipblocks',
-			$selectFields,
+		$blockQuery = self::getQueryInfo();
+		$rows = $db->select(
+			$blockQuery['tables'],
+			array_merge( [ 'ipb_range_start', 'ipb_range_end' ], $blockQuery['fields'] ),
 			$conds,
-			__METHOD__
+			__METHOD__,
+			[],
+			$blockQuery['joins']
 		);
 
 		$blocks = [];

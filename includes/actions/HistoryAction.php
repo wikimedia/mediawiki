@@ -258,12 +258,18 @@ class HistoryAction extends FormlessAction {
 
 		$page_id = $this->page->getId();
 
-		return $dbr->select( 'revision',
-			Revision::selectFields(),
+		$revQuery = Revision::getQueryInfo();
+		return $dbr->select(
+			$revQuery['tables'],
+			$revQuery['fields'],
 			array_merge( [ 'rev_page' => $page_id ], $offsets ),
 			__METHOD__,
-			[ 'ORDER BY' => "rev_timestamp $dirs",
-				'USE INDEX' => 'page_timestamp', 'LIMIT' => $limit ]
+			[
+				'ORDER BY' => "rev_timestamp $dirs",
+				'USE INDEX' => [ 'revision' => 'page_timestamp' ],
+				'LIMIT' => $limit
+			],
+			$revQuery['joins']
 		);
 	}
 
@@ -415,14 +421,15 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	function getQueryInfo() {
+		$revQuery = Revision::getQueryInfo( [ 'user' ] );
 		$queryInfo = [
-			'tables' => [ 'revision', 'user' ],
-			'fields' => array_merge( Revision::selectFields(), Revision::selectUserFields() ),
+			'tables' => $revQuery['tables'],
+			'fields' => $revQuery['fields'],
 			'conds' => array_merge(
 				[ 'rev_page' => $this->getWikiPage()->getId() ],
 				$this->conds ),
 			'options' => [ 'USE INDEX' => [ 'revision' => 'page_timestamp' ] ],
-			'join_conds' => [ 'user' => Revision::userJoinCond() ],
+			'join_conds' => $revQuery['joins'],
 		];
 		ChangeTags::modifyDisplayQuery(
 			$queryInfo['tables'],

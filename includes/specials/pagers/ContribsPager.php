@@ -188,11 +188,6 @@ class ContribsPager extends RangeChronologicalPager {
 				' != ' . Revision::SUPPRESSED_USER;
 		}
 
-		# Don't include orphaned revisions
-		$join_cond['page'] = Revision::pageJoinCond();
-		# Get the current user name for accounts
-		$join_cond['user'] = Revision::userJoinCond();
-
 		$options = [];
 		if ( $index ) {
 			$options['USE INDEX'] = [ 'revision' => $index ];
@@ -200,12 +195,7 @@ class ContribsPager extends RangeChronologicalPager {
 
 		$queryInfo = [
 			'tables' => $tables,
-			'fields' => array_merge(
-				Revision::selectFields(),
-				Revision::selectUserFields(),
-				[ 'page_namespace', 'page_title', 'page_is_new',
-					'page_latest', 'page_is_redirect', 'page_len' ]
-			),
+			'fields' => Revision::getQueryInfo( [ 'user', 'page' ] )['fields'],
 			'conds' => $conds,
 			'options' => $options,
 			'join_conds' => $join_cond
@@ -235,8 +225,9 @@ class ContribsPager extends RangeChronologicalPager {
 
 	function getUserCond() {
 		$condition = [];
-		$join_conds = [];
-		$tables = [ 'revision', 'page', 'user' ];
+		$revQuery = Revision::getQueryInfo( [ 'page', 'user' ] );
+		$tables = $revQuery['tables'];
+		$join_conds = $revQuery['joins'];
 		$index = false;
 		if ( $this->contribs == 'newbie' ) {
 			$max = $this->mDb->selectField( 'user', 'max(user_id)', false, __METHOD__ );
