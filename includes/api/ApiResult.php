@@ -61,7 +61,7 @@ class ApiResult implements ApiSerializable {
 	 * probably wrong.
 	 * @since 1.25
 	 */
-	const NO_VALIDATE = 12;
+	const NO_VALIDATE = self::NO_SIZE_CHECK | 8;
 
 	/**
 	 * Key for the 'indexed tag name' metadata item. Value is string.

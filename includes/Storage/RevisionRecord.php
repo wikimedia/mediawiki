@@ -48,8 +48,9 @@ abstract class RevisionRecord {
 	const DELETED_COMMENT = 2;
 	const DELETED_USER = 4;
 	const DELETED_RESTRICTED = 8;
-	const SUPPRESSED_USER = 12; // convenience
-	const SUPPRESSED_ALL = 15; // convenience
+	const SUPPRESSED_USER = self::DELETED_USER | self::DELETED_RESTRICTED; // convenience
+	const SUPPRESSED_ALL = self::DELETED_TEXT | self::DELETED_COMMENT | self::DELETED_USER |
+		self::DELETED_RESTRICTED; // convenience
 
 	// Audience options for accessors
 	const FOR_PUBLIC = 1;
