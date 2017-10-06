@@ -6,17 +6,19 @@
 	 *
 	 * @constructor
 	 * @param {mw.rcfilters.Controller} controller RCFilters controller
+	 * @param {mw.rcfilters.dm.FilterItem} invertModel
 	 * @param {mw.rcfilters.dm.FilterItem} model Filter item model
 	 * @param {Object} config Configuration object
 	 */
-	mw.rcfilters.ui.FilterMenuOptionWidget = function MwRcfiltersUiFilterMenuOptionWidget( controller, model, config ) {
+	mw.rcfilters.ui.FilterMenuOptionWidget = function MwRcfiltersUiFilterMenuOptionWidget( controller, invertModel, model, config ) {
 		config = config || {};
 
 		this.controller = controller;
+		this.invertModel = invertModel;
 		this.model = model;
 
 		// Parent
-		mw.rcfilters.ui.FilterMenuOptionWidget.parent.call( this, controller, model, config );
+		mw.rcfilters.ui.FilterMenuOptionWidget.parent.call( this, controller, this.invertModel, model, config );
 
 		// Event
 		this.model.getGroupModel().connect( this, { update: 'onGroupModelUpdate' } );
@@ -58,7 +60,7 @@
 	mw.rcfilters.ui.FilterMenuOptionWidget.prototype.setCurrentMuteState = function () {
 		if (
 			this.model.getGroupModel().getView() === 'namespaces' &&
-			this.model.isInverted()
+			this.invertModel.isSelected()
 		) {
 			// This is an inverted behavior than the other rules, specifically
 			// for inverted namespaces

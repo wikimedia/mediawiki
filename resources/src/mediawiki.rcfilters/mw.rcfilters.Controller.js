@@ -79,6 +79,15 @@
 					separator: ';',
 					fullCoverage: true,
 					filters: items
+				},
+				{
+					name: 'invertGroup',
+					type: 'boolean',
+					hidden: true,
+					filters: [ {
+						name: 'invert',
+						'default': '0'
+					} ]
 				} ]
 			};
 		}
@@ -631,7 +640,6 @@
 				params: $.extend(
 					true,
 					{
-						invert: String( Number( this.filtersModel.areNamespacesInverted() ) ),
 						highlight: String( Number( this.filtersModel.isHighlightEnabled() ) )
 					},
 					this.filtersModel.getParametersFromFilters( selectedState )
@@ -715,9 +723,6 @@
 				)
 			);
 
-			// Update namespace inverted property
-			this.filtersModel.toggleInvertedNamespaces( !!Number( data.params.invert ) );
-
 			// Update highlight state
 			this.filtersModel.toggleHighlight( !!Number( data.params.highlight ) );
 			this.filtersModel.getItems().forEach( function ( filterItem ) {
@@ -763,8 +768,7 @@
 				params: $.extend(
 					true,
 					{
-						highlight: String( Number( this.filtersModel.isHighlightEnabled() ) ),
-						invert: String( Number( this.filtersModel.areNamespacesInverted() ) )
+						highlight: String( Number( this.filtersModel.isHighlightEnabled() ) )
 					},
 					this.filtersModel.getParametersFromFilters( selectedState )
 				),
@@ -998,7 +1002,7 @@
 			return $.extend( true, {},
 				this.filtersModel.getParametersFromFilters( savedFilters ),
 				data.highlights,
-				{ highlight: data.params.highlight, invert: data.params.invert }
+				{ highlight: data.params.highlight }
 			);
 		}
 		return this.filtersModel.getDefaultParams();

@@ -8,21 +8,22 @@
 	 *
 	 * @constructor
 	 * @param {mw.rcfilters.Controller} controller
+	 * @param {mw.rcfilters.dm.FilterItem} invertModel
 	 * @param {mw.rcfilters.dm.FilterItem} model Item model
 	 * @param {Object} config Configuration object
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
 	 */
-	mw.rcfilters.ui.TagItemWidget = function MwRcfiltersUiTagItemWidget( controller, model, config ) {
+	mw.rcfilters.ui.TagItemWidget = function MwRcfiltersUiTagItemWidget( controller, invertModel, model, config ) {
 		// Configuration initialization
 		config = config || {};
 
 		this.controller = controller;
+		this.invertModel = invertModel;
 		this.model = model;
 		this.selected = false;
 
 		mw.rcfilters.ui.TagItemWidget.parent.call( this, $.extend( {
-			data: this.model.getName(),
-			label: $( '<div>' ).html( this.model.getPrefixedLabel() ).contents()
+			data: this.model.getName()
 		}, config ) );
 
 		this.$overlay = config.$overlay || this.$element;
@@ -52,7 +53,8 @@
 		this.closeButton.setTitle( mw.msg( 'rcfilters-tag-remove', this.model.getLabel() ) );
 
 		// Events
-		this.model.connect( this, { update: 'onModelUpdate' } );
+		this.invertModel.connect( this, { update: 'updateUiBasedOnState' } );
+		this.model.connect( this, { update: 'updateUiBasedOnState' } );
 
 		// Initialization
 		this.$overlay.append( this.popup.$element );
@@ -63,8 +65,7 @@
 			.on( 'mouseenter', this.onMouseEnter.bind( this ) )
 			.on( 'mouseleave', this.onMouseLeave.bind( this ) );
 
-		this.setCurrentMuteState();
-		this.setHighlightColor();
+		this.updateUiBasedOnState();
 	};
 
 	/* Initialization */
@@ -77,11 +78,11 @@
 	/**
 	 * Respond to model update event
 	 */
-	mw.rcfilters.ui.TagItemWidget.prototype.onModelUpdate = function () {
+	mw.rcfilters.ui.TagItemWidget.prototype.updateUiBasedOnState = function () {
 		this.setCurrentMuteState();
 
 		// Update label if needed
-		this.setLabel( $( '<div>' ).html( this.model.getPrefixedLabel() ).contents() );
+		this.setLabel( $( '<div>' ).html( this.model.getPrefixedLabel( this.invertModel.isSelected() ) ).contents() );
 
 		this.setHighlightColor();
 	};
