@@ -92,7 +92,7 @@ class WikiPage implements Page, IDBAccessObject {
 	const PURGE_CDN_CACHE = 1;
 	const PURGE_CLUSTER_PCACHE = 2;
 	const PURGE_GLOBAL_PCACHE = 4;
-	const PURGE_ALL = 7;
+	const PURGE_ALL = self::PURGE_CDN_CACHE | self::PURGE_CLUSTER_PCACHE | self::PURGE_GLOBAL_PCACHE;
 
 	/**
 	 * Constructor and clear the article
