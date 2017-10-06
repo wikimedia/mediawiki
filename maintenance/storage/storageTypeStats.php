@@ -31,7 +31,7 @@ class StorageTypeStats extends Maintenance {
 			exit( 1 );
 		}
 
-		$binSize = intval( pow( 10, floor( log10( $endId ) ) - 3 ) );
+		$binSize = intval( 10 ** ( floor( log10( $endId ) ) - 3 ) );
 		if ( $binSize < 100 ) {
 			$binSize = 100;
 		}

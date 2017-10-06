@@ -351,7 +351,7 @@ class DiffEngine {
 			$this->maxDifferences = ceil( ( $this->m + $this->n ) / 2.0 );
 			if ( $this->m * $this->n > $this->tooLong ) {
 				// limit complexity to D^POW_LIMIT for long sequences
-				$this->maxDifferences = floor( pow( $this->maxDifferences, $this->powLimit - 1.0 ) );
+				$this->maxDifferences = floor( $this->maxDifferences ** ( $this->powLimit - 1.0 ) );
 				wfDebug( "Limiting max number of differences to $this->maxDifferences\n" );
 			}
 
