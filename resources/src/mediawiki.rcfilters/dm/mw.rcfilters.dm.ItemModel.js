@@ -14,8 +14,6 @@
 	 *  with 'default' and 'inverted' as keys.
 	 * @cfg {boolean} [active=true] The filter is active and affecting the result
 	 * @cfg {boolean} [selected] The item is selected
-	 * @cfg {boolean} [inverted] The item is inverted, meaning the search is excluding
-	 *  this parameter.
 	 * @cfg {string} [namePrefix='item_'] A prefix to add to the param name to act as a unique
 	 *  identifier
 	 * @cfg {string} [cssClass] The class identifying the results that match this filter
@@ -38,7 +36,6 @@
 		this.description = config.description || '';
 		this.selected = !!config.selected;
 
-		this.inverted = !!config.inverted;
 		this.identifiers = config.identifiers || [];
 
 		// Highlight
@@ -69,8 +66,7 @@
 	 */
 	mw.rcfilters.dm.ItemModel.prototype.getState = function () {
 		return {
-			selected: this.isSelected(),
-			inverted: this.isInverted()
+			selected: this.isSelected()
 		};
 	};
 
@@ -86,9 +82,10 @@
 	/**
 	 * Get a prefixed label
 	 *
+	 * @param {boolean} inverted This item should be considered inverted
 	 * @return {string} Prefixed label
 	 */
-	mw.rcfilters.dm.ItemModel.prototype.getPrefixedLabel = function () {
+	mw.rcfilters.dm.ItemModel.prototype.getPrefixedLabel = function ( inverted ) {
 		if ( this.labelPrefixKey ) {
 			if ( typeof this.labelPrefixKey === 'string' ) {
 				return mw.message( this.labelPrefixKey, this.getLabel() ).parse();
@@ -97,7 +94,7 @@
 					this.labelPrefixKey[
 						// Only use inverted-prefix if the item is selected
 						// Highlight-only an inverted item makes no sense
-						this.isInverted() && this.isSelected() ?
+						inverted && this.isSelected() ?
 							'inverted' : 'default'
 					],
 					this.getLabel()
@@ -174,30 +171,6 @@
 
 		if ( this.selected !== isSelected ) {
 			this.selected = isSelected;
-			this.emit( 'update' );
-		}
-	};
-
-	/**
-	 * Get the inverted state of this item
-	 *
-	 * @return {boolean} Item is inverted
-	 */
-	mw.rcfilters.dm.ItemModel.prototype.isInverted = function () {
-		return this.inverted;
-	};
-
-	/**
-	 * Toggle the inverted state of the item
-	 *
-	 * @param {boolean} [isInverted] Item is inverted
-	 * @fires update
-	 */
-	mw.rcfilters.dm.ItemModel.prototype.toggleInverted = function ( isInverted ) {
-		isInverted = isInverted === undefined ? !this.inverted : isInverted;
-
-		if ( this.inverted !== isInverted ) {
-			this.inverted = isInverted;
 			this.emit( 'update' );
 		}
 	};
