@@ -175,41 +175,85 @@ class ContribsPager extends RangeChronologicalPager {
 	}
 
 	function getQueryInfo() {
-		list( $tables, $index, $userCond, $join_cond ) = $this->getUserCond();
+		$revQuery = Revision::getQueryInfo( [ 'page', 'user' ] );
+		$queryInfo = [
+			'tables' => $revQuery['tables'],
+			'fields' => $revQuery['fields'],
+			'conds' => [],
+			'options' => [],
+			'join_conds' => $revQuery['joins'],
+		];
+
+		if ( $this->contribs == 'newbie' ) {
+			$max = $this->mDb->selectField( 'user', 'max(user_id)', false, __METHOD__ );
+			$queryInfo['conds'][] = 'rev_user >' . (int)( $max - $max / 100 );
+			# ignore local groups with the bot right
+			# @todo FIXME: Global groups may have 'bot' rights
+			$groupsWithBotPermission = User::getGroupsWithPermission( 'bot' );
+			if ( count( $groupsWithBotPermission ) ) {
+				$queryInfo['tables'][] = 'user_groups';
+				$queryInfo['conds'][] = 'ug_group IS NULL';
+				$queryInfo['join_conds']['user_groups'] = [
+					'LEFT JOIN', [
+						'ug_user = rev_user',
+						'ug_group' => $groupsWithBotPermission,
+						'ug_expiry IS NULL OR ug_expiry >= ' .
+							$this->mDb->addQuotes( $this->mDb->timestamp() )
+					]
+				];
+			}
+			// (T140537) Disallow looking too far in the past for 'newbies' queries. If the user requested
+			// a timestamp offset far in the past such that there are no edits by users with user_ids in
+			// the range, we would end up scanning all revisions from that offset until start of time.
+			$queryInfo['conds'][] = 'rev_timestamp > ' .
+				$this->mDb->addQuotes( $this->mDb->timestamp( wfTimestamp() - 30 * 24 * 60 * 60 ) );
+		} else {
+			$uid = User::idFromName( $this->target );
+			if ( $uid ) {
+				$queryInfo['conds']['rev_user'] = $uid;
+				$queryInfo['options']['USE INDEX']['revision'] = 'user_timestamp';
+			} else {
+				$ipRangeConds = $this->getIpRangeConds( $this->mDb, $this->target );
+
+				if ( $ipRangeConds ) {
+					$queryInfo['tables'][] = 'ip_changes';
+					$queryInfo['join_conds']['ip_changes'] = [
+						'LEFT JOIN', [ 'ipc_rev_id = rev_id' ]
+					];
+					$queryInfo['conds'][] = $ipRangeConds;
+				} else {
+					$queryInfo['conds']['rev_user_text'] = $this->target;
+					$queryInfo['options']['USE INDEX']['revision'] = 'usertext_timestamp';
+				}
+			}
+		}
+
+		if ( $this->deletedOnly ) {
+			$queryInfo['conds'][] = 'rev_deleted != 0';
+		}
+
+		if ( $this->topOnly ) {
+			$queryInfo['conds'][] = 'rev_id = page_latest';
+		}
+
+		if ( $this->newOnly ) {
+			$queryInfo['conds'][] = 'rev_parent_id = 0';
+		}
+
+		if ( $this->hideMinor ) {
+			$queryInfo['conds'][] = 'rev_minor_edit = 0';
+		}
 
 		$user = $this->getUser();
-		$conds = array_merge( $userCond, $this->getNamespaceCond() );
+		$queryInfo['conds'] = array_merge( $queryInfo['conds'], $this->getNamespaceCond() );
 
 		// Paranoia: avoid brute force searches (T19342)
 		if ( !$user->isAllowed( 'deletedhistory' ) ) {
-			$conds[] = $this->mDb->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0';
+			$queryInfo['conds'][] = $this->mDb->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0';
 		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
-			$conds[] = $this->mDb->bitAnd( 'rev_deleted', Revision::SUPPRESSED_USER ) .
+			$queryInfo['conds'][] = $this->mDb->bitAnd( 'rev_deleted', Revision::SUPPRESSED_USER ) .
 				' != ' . Revision::SUPPRESSED_USER;
 		}
-
-		# Don't include orphaned revisions
-		$join_cond['page'] = Revision::pageJoinCond();
-		# Get the current user name for accounts
-		$join_cond['user'] = Revision::userJoinCond();
-
-		$options = [];
-		if ( $index ) {
-			$options['USE INDEX'] = [ 'revision' => $index ];
-		}
-
-		$queryInfo = [
-			'tables' => $tables,
-			'fields' => array_merge(
-				Revision::selectFields(),
-				Revision::selectUserFields(),
-				[ 'page_namespace', 'page_title', 'page_is_new',
-					'page_latest', 'page_is_redirect', 'page_len' ]
-			),
-			'conds' => $conds,
-			'options' => $options,
-			'join_conds' => $join_cond
-		];
 
 		// For IPv6, we use ipc_rev_timestamp on ip_changes as the index field,
 		// which will be referenced when parsing the results of a query.
@@ -231,74 +275,6 @@ class ContribsPager extends RangeChronologicalPager {
 		Hooks::run( 'ContribsPager::getQueryInfo', [ &$pager, &$queryInfo ] );
 
 		return $queryInfo;
-	}
-
-	function getUserCond() {
-		$condition = [];
-		$join_conds = [];
-		$tables = [ 'revision', 'page', 'user' ];
-		$index = false;
-		if ( $this->contribs == 'newbie' ) {
-			$max = $this->mDb->selectField( 'user', 'max(user_id)', false, __METHOD__ );
-			$condition[] = 'rev_user >' . (int)( $max - $max / 100 );
-			# ignore local groups with the bot right
-			# @todo FIXME: Global groups may have 'bot' rights
-			$groupsWithBotPermission = User::getGroupsWithPermission( 'bot' );
-			if ( count( $groupsWithBotPermission ) ) {
-				$tables[] = 'user_groups';
-				$condition[] = 'ug_group IS NULL';
-				$join_conds['user_groups'] = [
-					'LEFT JOIN', [
-						'ug_user = rev_user',
-						'ug_group' => $groupsWithBotPermission,
-						'ug_expiry IS NULL OR ug_expiry >= ' .
-							$this->mDb->addQuotes( $this->mDb->timestamp() )
-					]
-				];
-			}
-			// (T140537) Disallow looking too far in the past for 'newbies' queries. If the user requested
-			// a timestamp offset far in the past such that there are no edits by users with user_ids in
-			// the range, we would end up scanning all revisions from that offset until start of time.
-			$condition[] = 'rev_timestamp > ' .
-				$this->mDb->addQuotes( $this->mDb->timestamp( wfTimestamp() - 30 * 24 * 60 * 60 ) );
-		} else {
-			$uid = User::idFromName( $this->target );
-			if ( $uid ) {
-				$condition['rev_user'] = $uid;
-				$index = 'user_timestamp';
-			} else {
-				$ipRangeConds = $this->getIpRangeConds( $this->mDb, $this->target );
-
-				if ( $ipRangeConds ) {
-					$tables[] = 'ip_changes';
-					$join_conds['ip_changes'] = [
-						'LEFT JOIN', [ 'ipc_rev_id = rev_id' ]
-					];
-					$condition[] = $ipRangeConds;
-				} else {
-					$condition['rev_user_text'] = $this->target;
-					$index = 'usertext_timestamp';
-				}
-			}
-		}
-
-		if ( $this->deletedOnly ) {
-			$condition[] = 'rev_deleted != 0';
-		}
-
-		if ( $this->topOnly ) {
-			$condition[] = 'rev_id = page_latest';
-		}
-
-		if ( $this->newOnly ) {
-			$condition[] = 'rev_parent_id = 0';
-		}
-
-		if ( $this->hideMinor ) {
-			$condition[] = 'rev_minor_edit = 0';
-		}
-
-		return [ $tables, $index, $condition, $join_conds ];
 	}
 
 	function getNamespaceCond() {

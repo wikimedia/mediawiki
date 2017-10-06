@@ -84,8 +84,10 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$ns = $title->getNamespace();
 		$dbkey = $title->getDBkey();
 
-		$tables[] = 'recentchanges';
-		$select = array_merge( RecentChange::selectFields(), $select );
+		$rcQuery = RecentChange::getQueryInfo();
+		$tables = array_merge( $tables, $rcQuery['tables'] );
+		$select = array_merge( $rcQuery['fields'], $select );
+		$join_conds = array_merge( $join_conds, $rcQuery['joins'] );
 
 		// left join with watchlist table to highlight watched rows
 		$uid = $this->getUser()->getId();

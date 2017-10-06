@@ -115,16 +115,18 @@ class CategoryMembershipChangeJob extends Job {
 		// Find revisions to this page made around and after this revision which lack category
 		// notifications in recent changes. This lets jobs pick up were the last one left off.
 		$encCutoff = $dbr->addQuotes( $dbr->timestamp( $cutoffUnix ) );
+		$revQuery = Revision::getQueryInfo();
 		$res = $dbr->select(
-			'revision',
-			Revision::selectFields(),
+			$revQuery['tables'],
+			$revQuery['fields'],
 			[
 				'rev_page' => $page->getId(),
 				"rev_timestamp > $encCutoff" .
 					" OR (rev_timestamp = $encCutoff AND rev_id > $lastRevId)"
 			],
 			__METHOD__,
-			[ 'ORDER BY' => 'rev_timestamp ASC, rev_id ASC' ]
+			[ 'ORDER BY' => 'rev_timestamp ASC, rev_id ASC' ],
+			$revQuery['joins']
 		);
 
 		// Apply all category updates in revision timestamp order

@@ -383,7 +383,7 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 
 	public function getComment() {
 		return CommentStore::newKey( 'rc_comment' )
-			// Legacy because the row probably used RecentChange::selectFields()
+			// Legacy because the row may have used RecentChange::selectFields()
 			->getCommentLegacy( wfGetDB( DB_REPLICA ), $this->row )->text;
 	}
 
