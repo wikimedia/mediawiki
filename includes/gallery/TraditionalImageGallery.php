@@ -35,7 +35,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	function toHTML() {
 		if ( $this->mPerRow > 0 ) {
 			$maxwidth = $this->mPerRow * ( $this->mWidths + $this->getAllPadding() );
-			$oldStyle = isset( $this->mAttribs['style'] ) ? $this->mAttribs['style'] : '';
+			$oldStyle = $this->mAttribs['style'] ?? '';
 			# _width is ignored by any sane browser. IE6 doesn't know max-width
 			# so it uses _width instead
 			$this->mAttribs['style'] = "max-width: {$maxwidth}px;_width: {$maxwidth}px;" .

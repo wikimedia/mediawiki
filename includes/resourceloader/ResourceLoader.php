@@ -1103,7 +1103,7 @@ MESSAGE;
 						$strContent = isset( $styles['css'] ) ? implode( '', $styles['css'] ) : '';
 						break;
 					default:
-						$scripts = isset( $content['scripts'] ) ? $content['scripts'] : '';
+						$scripts = $content['scripts'] ?? '';
 						if ( is_string( $scripts ) ) {
 							if ( $name === 'site' || $name === 'user' ) {
 								// Legacy scripts that run in the global scope without a closure.
@@ -1120,9 +1120,9 @@ MESSAGE;
 						$strContent = self::makeLoaderImplementScript(
 							$implementKey,
 							$scripts,
-							isset( $content['styles'] ) ? $content['styles'] : [],
+							$content['styles'] ?? [],
 							isset( $content['messagesBlob'] ) ? new XmlJsCode( $content['messagesBlob'] ) : [],
-							isset( $content['templates'] ) ? $content['templates'] : []
+							$content['templates'] ?? []
 						);
 						break;
 				}

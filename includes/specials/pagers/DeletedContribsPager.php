@@ -256,7 +256,7 @@ class DeletedContribsPager extends IndexPager {
 			'comment' => CommentStore::getStore()->getComment( 'ar_comment', $row )->text,
 			'user' => $row->ar_user,
 			'user_text' => $row->ar_user_text,
-			'actor' => isset( $row->ar_actor ) ? $row->ar_actor : null,
+			'actor' => $row->ar_actor ?? null,
 			'timestamp' => $row->ar_timestamp,
 			'minor_edit' => $row->ar_minor_edit,
 			'deleted' => $row->ar_deleted,

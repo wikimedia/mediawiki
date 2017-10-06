@@ -583,9 +583,9 @@ class LocalFile extends File {
 			->getComment( 'description', (object)$decoded )->text;
 
 		$decoded['user'] = User::newFromAnyId(
-			isset( $decoded['user'] ) ? $decoded['user'] : null,
-			isset( $decoded['user_text'] ) ? $decoded['user_text'] : null,
-			isset( $decoded['actor'] ) ? $decoded['actor'] : null
+			$decoded['user'] ?? null,
+			$decoded['user_text'] ?? null,
+			$decoded['actor'] ?? null
 		);
 		unset( $decoded['user_text'], $decoded['actor'] );
 
@@ -772,9 +772,9 @@ class LocalFile extends File {
 
 		if ( isset( $info['user'] ) || isset( $info['user_text'] ) || isset( $info['actor'] ) ) {
 			$this->user = User::newFromAnyId(
-				isset( $info['user'] ) ? $info['user'] : null,
-				isset( $info['user_text'] ) ? $info['user_text'] : null,
-				isset( $info['actor'] ) ? $info['actor'] : null
+				$info['user'] ?? null,
+				$info['user_text'] ?? null,
+				$info['actor'] ?? null
 			);
 		}
 

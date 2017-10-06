@@ -95,7 +95,7 @@ class RightsLogFormatter extends LogFormatter {
 
 		if ( count( $oldGroups ) ) {
 			$params[3] = [ 'raw' => $this->formatRightsList( $oldGroups,
-				isset( $allParams['oldmetadata'] ) ? $allParams['oldmetadata'] : [] ) ];
+				$allParams['oldmetadata'] ?? [] ) ];
 		} else {
 			$params[3] = $this->msg( 'rightsnone' )->text();
 		}
@@ -103,7 +103,7 @@ class RightsLogFormatter extends LogFormatter {
 			// Array_values is used here because of T44211
 			// see use of array_unique in UserrightsPage::doSaveUserGroups on $newGroups.
 			$params[4] = [ 'raw' => $this->formatRightsList( array_values( $newGroups ),
-				isset( $allParams['newmetadata'] ) ? $allParams['newmetadata'] : [] ) ];
+				$allParams['newmetadata'] ?? [] ) ];
 		} else {
 			$params[4] = $this->msg( 'rightsnone' )->text();
 		}
@@ -181,8 +181,7 @@ class RightsLogFormatter extends LogFormatter {
 				if ( isset( $oldmetadata[$index] ) ) {
 					$result += $oldmetadata[$index];
 				}
-				$result['expiry'] = ApiResult::formatExpiry( isset( $result['expiry'] ) ?
-					$result['expiry'] : null );
+				$result['expiry'] = ApiResult::formatExpiry( $result['expiry'] ?? null );
 
 				return $result;
 			}, array_keys( $params['4:array:oldgroups'] ) );
@@ -199,8 +198,7 @@ class RightsLogFormatter extends LogFormatter {
 				if ( isset( $newmetadata[$index] ) ) {
 					$result += $newmetadata[$index];
 				}
-				$result['expiry'] = ApiResult::formatExpiry( isset( $result['expiry'] ) ?
-					$result['expiry'] : null );
+				$result['expiry'] = ApiResult::formatExpiry( $result['expiry'] ?? null );
 
 				return $result;
 			}, array_keys( $params['5:array:newgroups'] ) );

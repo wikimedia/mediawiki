@@ -1675,7 +1675,7 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		// Checks passed, create the user...
-		$from = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : 'CLI';
+		$from = $_SERVER['REQUEST_URI'] ?? 'CLI';
 		$this->logger->info( __METHOD__ . ': creating new user ({username}) - from: {from}', [
 			'username' => $username,
 			'from' => $from,

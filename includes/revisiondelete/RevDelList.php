@@ -112,7 +112,7 @@ abstract class RevDelList extends RevisionListBase {
 
 		$bitPars = $params['value'];
 		$comment = $params['comment'];
-		$perItemStatus = isset( $params['perItemStatus'] ) ? $params['perItemStatus'] : false;
+		$perItemStatus = $params['perItemStatus'] ?? false;
 
 		// CAS-style checks are done on the _deleted fields so the select
 		// does not need to use FOR UPDATE nor be in the atomic section
@@ -287,7 +287,7 @@ abstract class RevDelList extends RevisionListBase {
 				'oldBits' => $virtualOldBits,
 				'comment' => $comment,
 				'ids' => $idsForLog,
-				'tags' => isset( $params['tags'] ) ? $params['tags'] : [],
+				'tags' => $params['tags'] ?? [],
 			] + $authorFields
 		);
 

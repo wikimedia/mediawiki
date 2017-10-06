@@ -180,9 +180,7 @@ class WebInstallerExistingWiki extends WebInstallerPage {
 
 		// Copy $wgAuthenticationTokenVersion too, if it exists
 		$this->setVar( 'wgAuthenticationTokenVersion',
-			isset( $vars['wgAuthenticationTokenVersion'] )
-				? $vars['wgAuthenticationTokenVersion']
-				: null
+			$vars['wgAuthenticationTokenVersion'] ?? null
 		);
 
 		return $status;

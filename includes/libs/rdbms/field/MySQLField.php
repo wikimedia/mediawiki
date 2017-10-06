@@ -18,11 +18,11 @@ class MySQLField implements Field {
 		$this->is_multiple = $info->multiple_key;
 		$this->is_key = ( $this->is_pk || $this->is_unique || $this->is_multiple );
 		$this->type = $info->type;
-		$this->binary = isset( $info->binary ) ? $info->binary : false;
-		$this->is_numeric = isset( $info->numeric ) ? $info->numeric : false;
-		$this->is_blob = isset( $info->blob ) ? $info->blob : false;
-		$this->is_unsigned = isset( $info->unsigned ) ? $info->unsigned : false;
-		$this->is_zerofill = isset( $info->zerofill ) ? $info->zerofill : false;
+		$this->binary = $info->binary ?? false;
+		$this->is_numeric = $info->numeric ?? false;
+		$this->is_blob = $info->blob ?? false;
+		$this->is_unsigned = $info->unsigned ?? false;
+		$this->is_zerofill = $info->zerofill ?? false;
 	}
 
 	/**

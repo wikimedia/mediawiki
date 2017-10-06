@@ -70,9 +70,7 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
-		$this->mimeCallback = isset( $config['mimeCallback'] )
-			? $config['mimeCallback']
-			: null;
+		$this->mimeCallback = $config['mimeCallback'] ?? null;
 		$this->srvCache = new EmptyBagOStuff(); // disabled by default
 		$this->memCache = WANObjectCache::newEmpty(); // disabled by default
 		$this->cheapCache = new ProcessCacheLRU( self::CACHE_CHEAP_SIZE );
@@ -649,7 +647,7 @@ abstract class FileBackendStore extends FileBackend {
 		$stat = $this->doGetFileStat( $params );
 		if ( is_array( $stat ) ) { // file exists
 			// Strongly consistent backends can automatically set "latest"
-			$stat['latest'] = isset( $stat['latest'] ) ? $stat['latest'] : $latest;
+			$stat['latest'] = $stat['latest'] ?? $latest;
 			$this->cheapCache->set( $path, 'stat', $stat );
 			$this->setFileCache( $path, $stat ); // update persistent cache
 			if ( isset( $stat['sha1'] ) ) { // some backends store SHA-1 as metadata
@@ -851,8 +849,8 @@ abstract class FileBackendStore extends FileBackend {
 		$status = $this->newStatus();
 
 		// Always set some fields for subclass convenience
-		$params['options'] = isset( $params['options'] ) ? $params['options'] : [];
-		$params['headers'] = isset( $params['headers'] ) ? $params['headers'] : [];
+		$params['options'] = $params['options'] ?? [];
+		$params['headers'] = $params['headers'] ?? [];
 
 		// Don't stream it out as text/html if there was a PHP error
 		if ( ( empty( $params['headless'] ) || $params['headers'] ) && headers_sent() ) {
@@ -1324,7 +1322,7 @@ abstract class FileBackendStore extends FileBackend {
 			}
 			if ( is_array( $stat ) ) { // file exists
 				// Strongly consistent backends can automatically set "latest"
-				$stat['latest'] = isset( $stat['latest'] ) ? $stat['latest'] : $latest;
+				$stat['latest'] = $stat['latest'] ?? $latest;
 				$this->cheapCache->set( $path, 'stat', $stat );
 				$this->setFileCache( $path, $stat ); // update persistent cache
 				if ( isset( $stat['sha1'] ) ) { // some backends store SHA-1 as metadata

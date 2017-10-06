@@ -69,12 +69,8 @@ class LoadMonitor implements ILoadMonitor {
 		$this->wanCache = $wCache;
 		$this->replLogger = new NullLogger();
 
-		$this->movingAveRatio = isset( $options['movingAveRatio'] )
-			? $options['movingAveRatio']
-			: 0.1;
-		$this->lagWarnThreshold = isset( $options['lagWarnThreshold'] )
-			? $options['lagWarnThreshold']
-			: self::LAG_WARN_THRESHOLD;
+		$this->movingAveRatio = $options['movingAveRatio'] ?? 0.1;
+		$this->lagWarnThreshold = $options['lagWarnThreshold'] ?? self::LAG_WARN_THRESHOLD;
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -167,9 +163,7 @@ class LoadMonitor implements ILoadMonitor {
 				$close = true; // new connection
 			}
 
-			$lastWeight = isset( $staleValue['weightScales'][$i] )
-				? $staleValue['weightScales'][$i]
-				: 1.0;
+			$lastWeight = $staleValue['weightScales'][$i] ?? 1.0;
 			$coefficient = $this->getWeightScale( $i, $conn ?: null );
 			$newWeight = $movAveRatio * $coefficient + ( 1 - $movAveRatio ) * $lastWeight;
 

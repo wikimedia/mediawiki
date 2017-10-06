@@ -65,7 +65,7 @@ class FirejailCommand extends Command {
 			$splitCommand = explode( ' ', $command, 2 );
 			$this->logger->debug(
 				"firejail: Command {$splitCommand[0]} {params} has no restrictions",
-				[ 'params' => isset( $splitCommand[1] ) ? $splitCommand[1] : '' ]
+				[ 'params' => $splitCommand[1] ?? '' ]
 			);
 			return parent::buildFinalCommand( $command );
 		}

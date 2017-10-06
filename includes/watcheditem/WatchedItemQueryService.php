@@ -220,7 +220,7 @@ class WatchedItemQueryService {
 			$joinConds
 		);
 
-		$limit = isset( $dbOptions['LIMIT'] ) ? $dbOptions['LIMIT'] : INF;
+		$limit = $dbOptions['LIMIT'] ?? INF;
 		$items = [];
 		$startFrom = null;
 		foreach ( $res as $row ) {

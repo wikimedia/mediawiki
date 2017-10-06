@@ -195,21 +195,11 @@ EOT;
 		$this->typeFile = $params['typeFile'];
 		$this->infoFile = $params['infoFile'];
 		$this->xmlTypes = $params['xmlTypes'];
-		$this->initCallback = isset( $params['initCallback'] )
-			? $params['initCallback']
-			: null;
-		$this->detectCallback = isset( $params['detectCallback'] )
-			? $params['detectCallback']
-			: null;
-		$this->guessCallback = isset( $params['guessCallback'] )
-			? $params['guessCallback']
-			: null;
-		$this->extCallback = isset( $params['extCallback'] )
-			? $params['extCallback']
-			: null;
-		$this->logger = isset( $params['logger'] )
-			? $params['logger']
-			: new \Psr\Log\NullLogger();
+		$this->initCallback = $params['initCallback'] ?? null;
+		$this->detectCallback = $params['detectCallback'] ?? null;
+		$this->guessCallback = $params['guessCallback'] ?? null;
+		$this->extCallback = $params['extCallback'] ?? null;
+		$this->logger = $params['logger'] ?? new \Psr\Log\NullLogger();
 
 		$this->loadFiles();
 	}
@@ -437,7 +427,7 @@ EOT;
 	public function getTypesForExtension( $ext ) {
 		$ext = strtolower( $ext );
 
-		$r = isset( $this->mExtToMime[$ext] ) ? $this->mExtToMime[$ext] : null;
+		$r = $this->mExtToMime[$ext] ?? null;
 		return $r;
 	}
 

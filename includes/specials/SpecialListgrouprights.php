@@ -74,9 +74,7 @@ class SpecialListGroupRights extends SpecialPage {
 		$linkRenderer = $this->getLinkRenderer();
 
 		foreach ( $allGroups as $group ) {
-			$permissions = isset( $groupPermissions[$group] )
-				? $groupPermissions[$group]
-				: [];
+			$permissions = $groupPermissions[$group] ?? [];
 			$groupname = ( $group == '*' ) // Replace * with a more descriptive groupname
 				? 'all'
 				: $group;
@@ -114,13 +112,11 @@ class SpecialListGroupRights extends SpecialPage {
 				$grouplink = '';
 			}
 
-			$revoke = isset( $revokePermissions[$group] ) ? $revokePermissions[$group] : [];
-			$addgroups = isset( $addGroups[$group] ) ? $addGroups[$group] : [];
-			$removegroups = isset( $removeGroups[$group] ) ? $removeGroups[$group] : [];
-			$addgroupsSelf = isset( $groupsAddToSelf[$group] ) ? $groupsAddToSelf[$group] : [];
-			$removegroupsSelf = isset( $groupsRemoveFromSelf[$group] )
-				? $groupsRemoveFromSelf[$group]
-				: [];
+			$revoke = $revokePermissions[$group] ?? [];
+			$addgroups = $addGroups[$group] ?? [];
+			$removegroups = $removeGroups[$group] ?? [];
+			$addgroupsSelf = $groupsAddToSelf[$group] ?? [];
+			$removegroupsSelf = $groupsRemoveFromSelf[$group] ?? [];
 
 			$id = $group == '*' ? false : Sanitizer::escapeIdForAttribute( $group );
 			$out->addHTML( Html::rawElement( 'tr', [ 'id' => $id ], "

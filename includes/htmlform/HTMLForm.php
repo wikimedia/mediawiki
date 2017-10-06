@@ -329,9 +329,7 @@ class HTMLForm extends ContextSource {
 		$this->mFlatFields = [];
 
 		foreach ( $descriptor as $fieldname => $info ) {
-			$section = isset( $info['section'] )
-				? $info['section']
-				: '';
+			$section = $info['section'] ?? '';
 
 			if ( isset( $info['type'] ) && $info['type'] === 'file' ) {
 				$this->mUseMultipart = true;
@@ -801,7 +799,7 @@ class HTMLForm extends ContextSource {
 		if ( $section === null ) {
 			return $this->mHeader;
 		} else {
-			return isset( $this->mSectionHeaders[$section] ) ? $this->mSectionHeaders[$section] : '';
+			return $this->mSectionHeaders[$section] ?? '';
 		}
 	}
 
@@ -856,7 +854,7 @@ class HTMLForm extends ContextSource {
 		if ( $section === null ) {
 			return $this->mFooter;
 		} else {
-			return isset( $this->mSectionFooters[$section] ) ? $this->mSectionFooters[$section] : '';
+			return $this->mSectionFooters[$section] ?? '';
 		}
 	}
 
@@ -955,8 +953,8 @@ class HTMLForm extends ContextSource {
 			$data = [
 				'name' => $args[0],
 				'value' => $args[1],
-				'id' => isset( $args[2] ) ? $args[2] : null,
-				'attribs' => isset( $args[3] ) ? $args[3] : null,
+				'id' => $args[2] ?? null,
+				'attribs' => $args[3] ?? null,
 			];
 		} else {
 			if ( !isset( $data['name'] ) ) {

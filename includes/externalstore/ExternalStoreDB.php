@@ -128,7 +128,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	public function getSlave( $cluster ) {
 		global $wgDefaultExternalStore;
 
-		$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : false;
+		$wiki = $this->params['wiki'] ?? false;
 		$lb = $this->getLoadBalancer( $cluster );
 
 		if ( !in_array( "DB://" . $cluster, (array)$wgDefaultExternalStore ) ) {
@@ -151,7 +151,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @return MaintainableDBConnRef
 	 */
 	public function getMaster( $cluster ) {
-		$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : false;
+		$wiki = $this->params['wiki'] ?? false;
 		$lb = $this->getLoadBalancer( $cluster );
 
 		$db = $lb->getMaintenanceConnectionRef( DB_MASTER, [], $wiki );
@@ -301,7 +301,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		return [
 			$path[2], // cluster
 			$path[3], // id
-			isset( $path[4] ) ? $path[4] : false // itemID
+			$path[4] ?? false // itemID
 		];
 	}
 }

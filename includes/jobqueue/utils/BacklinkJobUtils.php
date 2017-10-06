@@ -103,7 +103,7 @@ class BacklinkJobUtils {
 			$realBSize = $bSize;
 		}
 
-		$extraParams = isset( $opts['params'] ) ? $opts['params'] : [];
+		$extraParams = $opts['params'] ?? [];
 
 		$jobs = [];
 		// Combine the first range (of size $bSize) backlinks into leaf jobs

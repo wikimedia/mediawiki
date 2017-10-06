@@ -43,7 +43,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	} else {
 		$maxID = $dbw->selectField( 'text', 'MAX(old_id)', '', $fname );
 	}
-	$minID = isset( $options['s'] ) ? $options['s'] : 1;
+	$minID = $options['s'] ?? 1;
 
 	moveToExternal( $cluster, $maxID, $minID );
 }
