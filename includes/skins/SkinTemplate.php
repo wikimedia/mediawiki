@@ -400,8 +400,10 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'logo', $this->logoText() );
 
 		$tpl->set( 'copyright', false );
+
 		// No longer used
 		$tpl->set( 'viewcount', false );
+
 		$tpl->set( 'lastmod', false );
 		$tpl->set( 'credits', false );
 		$tpl->set( 'numberofwatchingusers', false );
@@ -423,19 +425,10 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'privacy', $this->privacyLink() );
 		$tpl->set( 'about', $this->aboutLink() );
 
-		$tpl->set( 'footerlinks', [
-			'info' => [
-				'lastmod',
-				'numberofwatchingusers',
-				'credits',
-				'copyright',
-			],
-			'places' => [
-				'privacy',
-				'about',
-				'disclaimer',
-			],
-		] );
+		// Placeholder for use by SkinTemplateOutputPageBeforeExec hooks.
+		// @deprecated since 1.31 Use 'SkinTemplateFooterContent' hook instead.
+		// @see SkinTemplate::buildFooterContent() and BaseTemplate::getFooterLinks().
+		$tpl->set( 'footerlinks', [] );
 
 		global $wgFooterIcons;
 		$tpl->set( 'footericons', $wgFooterIcons );
@@ -497,6 +490,10 @@ class SkinTemplate extends Skin {
 		if ( !Hooks::run( 'SkinTemplateOutputPageBeforeExec', [ &$skinTemplate, &$tpl ] ) ) {
 			wfDebug( __METHOD__ . ": Hook SkinTemplateOutputPageBeforeExec broke outputPage execution!\n" );
 		}
+
+		// Must be after SkinTemplateOutputPageBeforeExec to include
+		// any back-compat 'footerlink' entries.
+		$tpl->set( 'footercontent', $this->buildFooterContent() );
 
 		// Set the bodytext to another key so that skins can just output it on its own
 		// and output printfooter and debughtml separately
@@ -823,6 +820,82 @@ class SkinTemplate extends Skin {
 			'href' => $title->getLocalURL( $urlaction ),
 			'exists' => $title->exists(),
 		];
+	}
+
+	/**
+	 * Structured array of content for skin footer.
+	 *
+	 * Array contains two associative arrays: 'items' and 'areas'.
+	 *
+	 * Items is keyed by item name, and contains data describing
+	 * the item for display in the footer.
+	 *
+	 * Each item has a "type" and optionally other key/value pairs
+	 * supported by the type.
+	 *
+	 * Item types:
+	 *
+	 *  - html-data: (Legacy) The item's name is a key in the
+	 *    SkinTemplate data and should be rendered as raw HTML.
+	 *  - link: A link to display in the interface.
+	 *    Key 'href' contains a URL. (required)
+	 *    Key 'text' contains a label. (required)
+	 *    Key 'rel' may contain the value for a "rel" attribute. (optional)
+	 *
+	 * Areas are keyed by area name and contain a list of item names. The
+	 * order of item names is significant and should be honoured by the skin
+	 * output.
+	 *
+	 * @see BaseTemplate::getFooterLinks()
+	 * @return array
+	 */
+	protected function buildFooterContent() {
+		$content = [
+			'items' => [
+				'lastmod' => [ 'type' => 'html-data' ],
+				'numberofwatchingusers' => [ 'type' => 'html-data' ],
+				'credits' => [ 'type' => 'html-data' ],
+				'copyright' => [ 'type' => 'html-data' ],
+				'privacy' => [ 'type' => 'html-data' ],
+				'about' => [ 'type' => 'html-data' ],
+				'disclaimer' => [ 'type' => 'html-data' ],
+			],
+			'areas' => [
+				'info' => [
+					'lastmod',
+					'numberofwatchingusers',
+					'credits',
+					'copyright',
+				],
+				'places' => [
+					'privacy',
+					'about',
+					'disclaimer',
+				],
+			],
+		];
+
+		// Include legacy entries from 'footerlinks' data
+		foreach ( $this->get( 'footerlinks' ) as $category => $links ) {
+			$area = [];
+			foreach ( $links as $link ) {
+				if ( isset( $this->data[$link] ) && $this->data[$link] ) {
+					$area[] = $link;
+				}
+			}
+			if ( $area ) {
+				if ( !isset( $content['areas'][$category] ) ) {
+					$content['areas'][$category] = $area;
+				} else {
+					$content['areas'][$category] = array_merge(
+						$content['areas'][$category],
+						$area
+					);
+				}
+			}
+		}
+
+		return $content;
 	}
 
 	/**

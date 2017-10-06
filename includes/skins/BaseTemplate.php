@@ -573,40 +573,91 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
-	 * Returns an array of footerlinks trimmed down to only those footer links that
-	 * are valid.
+	 * Returns an array of data keys containing footer HTML content.
+	 *
 	 * If you pass "flat" as an option then the returned array will be a flat array
-	 * of footer icons instead of a key/value array of footerlinks arrays broken
-	 * up into categories.
-	 * @param string $option
-	 * @return array|mixed
+	 * of data keys instead of grouped by footer area.
+	 *
+	 * @param string|null $option [optional]
+	 * @return array
 	 */
-	function getFooterLinks( $option = null ) {
-		$footerlinks = $this->get( 'footerlinks' );
+	public function getFooterLinks( $option = null ) {
+		$content = $this->get( 'footercontent' );
 
-		// Reduce footer links down to only those which are being used
-		$validFooterLinks = [];
-		foreach ( $footerlinks as $category => $links ) {
-			$validFooterLinks[$category] = [];
-			foreach ( $links as $link ) {
-				if ( isset( $this->data[$link] ) && $this->data[$link] ) {
-					$validFooterLinks[$category][] = $link;
+		$keysByArea = [];
+		foreach ( $content['areas'] as $areaName => $itemNames ) {
+			$areaKeys = [];
+			foreach ( $itemNames as $itemName ) {
+				$item = $content['items'][$itemName];
+				switch ( $item['type'] ) {
+				case 'html-data':
+					if ( isset( $this->data[$itemName] ) && $this->data[$itemName] ) {
+						$areaKeys[] = $itemName;
+					}
+					break;
+				default:
+					throw new sException( "Unknown footer content type: {$item['type']}" );
 				}
 			}
-			if ( count( $validFooterLinks[$category] ) <= 0 ) {
-				unset( $validFooterLinks[$category] );
+			if ( $areaKeys ) {
+				$keysByArea[$areaName] = $areaKeys;
 			}
 		}
 
 		if ( $option == 'flat' ) {
-			// fold footerlinks into a single array using a bit of trickery
-			$validFooterLinks = call_user_func_array(
+			// Fold areas into a single list using a bit of trickery
+			return call_user_func_array(
 				'array_merge',
-				array_values( $validFooterLinks )
+				array_values( $keysByArea )
 			);
 		}
 
-		return $validFooterLinks;
+		return $keysByArea;
+	}
+
+	/**
+	 * Returns an array of footer HTML content.
+	 *
+	 * If you pass "flat" as an option then the returned array will be a flat array
+	 * of footer HTML content pieces instead of grouped by footer area.
+	 *
+	 * @since 1.31
+	 * @param string|null $option [optional]
+	 * @return array
+	 */
+	public function getFooterContent( $option = null ) {
+		$content = $this->get( 'footercontent' );
+
+		$htmlsByArea = [];
+
+		foreach ( $content['areas'] as $areaName => $itemNames ) {
+			$areaHtmls = [];
+			foreach ( $itemNames as $itemName ) {
+				$item = $content['items'][$itemName];
+				switch ( $item['type'] ) {
+				case 'html-data':
+					if ( isset( $this->data[$itemName] ) && $this->data[$itemName] ) {
+						$areaHtmls[] = $this->data[$itemName];
+					}
+					break;
+				default:
+					throw new sException( "Unknown footer content type: {$item['type']}" );
+				}
+			}
+			if ( $areaHtmls ) {
+				$htmlsByArea[$areaName] = $areaHtmls;
+			}
+		}
+
+		if ( $option == 'flat' ) {
+			// Fold areas into a single list using a bit of trickery
+			return call_user_func_array(
+				'array_merge',
+				array_values( $htmlsByArea )
+			);
+		}
+
+		return $htmlsByArea;
 	}
 
 	/**
