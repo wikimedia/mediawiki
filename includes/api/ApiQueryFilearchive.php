@@ -60,25 +60,10 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$fld_bitdepth = isset( $prop['bitdepth'] );
 		$fld_archivename = isset( $prop['archivename'] );
 
-		$this->addTables( 'filearchive' );
-
-		$this->addFields( ArchivedFile::selectFields() );
-		$this->addFields( [ 'fa_id', 'fa_name', 'fa_timestamp', 'fa_deleted' ] );
-		$this->addFieldsIf( 'fa_sha1', $fld_sha1 );
-		$this->addFieldsIf( [ 'fa_user', 'fa_user_text' ], $fld_user );
-		$this->addFieldsIf( [ 'fa_height', 'fa_width', 'fa_size' ], $fld_dimensions || $fld_size );
-		$this->addFieldsIf( [ 'fa_major_mime', 'fa_minor_mime' ], $fld_mime );
-		$this->addFieldsIf( 'fa_media_type', $fld_mediatype );
-		$this->addFieldsIf( 'fa_metadata', $fld_metadata );
-		$this->addFieldsIf( 'fa_bits', $fld_bitdepth );
-		$this->addFieldsIf( 'fa_archive_name', $fld_archivename );
-
-		if ( $fld_description ) {
-			$commentQuery = $commentStore->getJoin();
-			$this->addTables( $commentQuery['tables'] );
-			$this->addFields( $commentQuery['fields'] );
-			$this->addJoinConds( $commentQuery['joins'] );
-		}
+		$fileQuery = ArchivedFile::getQueryInfo();
+		$this->addTables( $fileQuery['tables'] );
+		$this->addFields( $fileQuery['fields'] );
+		$this->addJoinConds( $fileQuery['joins'] );
 
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );

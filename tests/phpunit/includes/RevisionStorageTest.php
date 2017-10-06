@@ -162,7 +162,9 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$orig = $this->makeRevision();
 
 		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->select( 'revision', Revision::selectFields(), [ 'rev_id' => $orig->getId() ] );
+		$revQuery = Revision::getQueryInfo();
+		$res = $dbr->select( $revQuery['tables'], $revQuery['fields'], [ 'rev_id' => $orig->getId() ],
+		   __METHOD__, [], $revQuery['joins'] );
 		$this->assertTrue( is_object( $res ), 'query failed' );
 
 		$row = $res->fetchObject();
@@ -230,7 +232,9 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$orig = $this->makeRevision();
 
 		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->select( 'revision', Revision::selectFields(), [ 'rev_id' => $orig->getId() ] );
+		$revQuery = Revision::getQueryInfo();
+		$res = $dbr->select( $revQuery['tables'], $revQuery['fields'], [ 'rev_id' => $orig->getId() ],
+		   __METHOD__, [], $revQuery['joins'] );
 		$this->assertTrue( is_object( $res ), 'query failed' );
 
 		$row = $res->fetchObject();
@@ -254,8 +258,10 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$page->doDeleteArticle( 'test Revision::newFromArchiveRow' );
 
 		$dbr = wfGetDB( DB_REPLICA );
+		$arQuery = Revision::getArchiveQueryInfo();
 		$res = $dbr->select(
-			'archive', Revision::selectArchiveFields(), [ 'ar_rev_id' => $orig->getId() ]
+			$arQuery['tables'], $arQuery['fields'], [ 'ar_rev_id' => $orig->getId() ],
+			__METHOD__, [], $arQuery['joins']
 		);
 		$this->assertTrue( is_object( $res ), 'query failed' );
 
@@ -304,30 +310,6 @@ class RevisionStorageTest extends MediaWikiTestCase {
 
 		$this->assertEquals( 1, count( $rows ), 'expected exactly one revision' );
 		$this->assertArrayHasKey( $id, $rows, 'missing revision with id ' . $id );
-	}
-
-	/**
-	 * @covers Revision::selectFields
-	 */
-	public function testSelectFields() {
-		global $wgContentHandlerUseDB;
-
-		$fields = Revision::selectFields();
-
-		$this->assertTrue( in_array( 'rev_id', $fields ), 'missing rev_id in list of fields' );
-		$this->assertTrue( in_array( 'rev_page', $fields ), 'missing rev_page in list of fields' );
-		$this->assertTrue(
-			in_array( 'rev_timestamp', $fields ),
-			'missing rev_timestamp in list of fields'
-		);
-		$this->assertTrue( in_array( 'rev_user', $fields ), 'missing rev_user in list of fields' );
-
-		if ( $wgContentHandlerUseDB ) {
-			$this->assertTrue( in_array( 'rev_content_model', $fields ),
-				'missing rev_content_model in list of fields' );
-			$this->assertTrue( in_array( 'rev_content_format', $fields ),
-				'missing rev_content_format in list of fields' );
-		}
 	}
 
 	/**

@@ -288,8 +288,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$dbr = $this->getDB();
 		$user = $this->getUser();
 
-		$tables[] = 'recentchanges';
-		$fields = array_merge( RecentChange::selectFields(), $fields );
+		$rcQuery = RecentChange::getQueryInfo();
+		$tables = array_merge( $tables, $rcQuery['tables'] );
+		$fields = array_merge( $rcQuery['fields'], $fields );
+		$join_conds = array_merge( $join_conds, $rcQuery['joins'] );
 
 		// JOIN on watchlist for users
 		if ( $user->isLoggedIn() && $user->isAllowed( 'viewmywatchlist' ) ) {

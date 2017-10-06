@@ -66,6 +66,7 @@ class ArticleTest extends MediaWikiTestCase {
 	 */
 	public function testStaticFunctions() {
 		$this->hideDeprecated( 'Article::selectFields' );
+		$this->hideDeprecated( 'WikiPage::selectFields' );
 
 		$this->assertEquals( WikiPage::selectFields(), Article::selectFields(),
 			"Article static functions" );

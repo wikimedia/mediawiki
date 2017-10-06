@@ -54,10 +54,10 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 		}
 
 		$this->output( "Populating rev_len column\n" );
-		$rev = $this->doLenUpdates( 'revision', 'rev_id', 'rev', Revision::selectFields() );
+		$rev = $this->doLenUpdates( 'revision', 'rev_id', 'rev', Revision::getQueryInfo() );
 
 		$this->output( "Populating ar_len column\n" );
-		$ar = $this->doLenUpdates( 'archive', 'ar_id', 'ar', Revision::selectArchiveFields() );
+		$ar = $this->doLenUpdates( 'archive', 'ar_id', 'ar', Revision::getArchiveQueryInfo() );
 
 		$this->output( "rev_len and ar_len population complete "
 			. "[$rev revision rows, $ar archive rows].\n" );
@@ -69,10 +69,10 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 	 * @param string $table
 	 * @param string $idCol
 	 * @param string $prefix
-	 * @param array $fields
+	 * @param array $queryInfo
 	 * @return int
 	 */
-	protected function doLenUpdates( $table, $idCol, $prefix, $fields ) {
+	protected function doLenUpdates( $table, $idCol, $prefix, $queryInfo ) {
 		$dbr = $this->getDB( DB_REPLICA );
 		$dbw = $this->getDB( DB_MASTER );
 		$start = $dbw->selectField( $table, "MIN($idCol)", false, __METHOD__ );
@@ -91,14 +91,16 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 		while ( $blockStart <= $end ) {
 			$this->output( "...doing $idCol from $blockStart to $blockEnd\n" );
 			$res = $dbr->select(
-				$table,
-				$fields,
+				$queryInfo['tables'],
+				$queryInfo['fields'],
 				[
 					"$idCol >= $blockStart",
 					"$idCol <= $blockEnd",
 					"{$prefix}_len IS NULL"
 				],
-				__METHOD__
+				__METHOD__,
+				[],
+				$queryInfo['joins']
 			);
 
 			if ( $res->numRows() > 0 ) {
