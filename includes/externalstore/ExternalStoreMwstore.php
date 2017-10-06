@@ -81,7 +81,7 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 			// Make sure ID is roughly lexicographically increasing for performance
 			$id = str_pad( UIDGenerator::newTimestampedUID128( 32 ), 26, '0', STR_PAD_LEFT );
 			// Segregate items by wiki ID for the sake of bookkeeping
-			$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : wfWikiID();
+			$wiki = $this->params['wiki'] ?? wfWikiID();
 
 			$url = $be->getContainerStoragePath( 'data' ) . '/' . rawurlencode( $wiki );
 			$url .= ( $be instanceof FSFileBackend )

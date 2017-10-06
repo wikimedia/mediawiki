@@ -119,15 +119,13 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 			$this->keyspace = $params['keyspace'];
 		}
 
-		$this->asyncHandler = isset( $params['asyncHandler'] )
-			? $params['asyncHandler']
-			: null;
+		$this->asyncHandler = $params['asyncHandler'] ?? null;
 
 		if ( !empty( $params['reportDupes'] ) && is_callable( $this->asyncHandler ) ) {
 			$this->reportDupes = true;
 		}
 
-		$this->syncTimeout = isset( $params['syncTimeout'] ) ? $params['syncTimeout'] : 3;
+		$this->syncTimeout = $params['syncTimeout'] ?? 3;
 	}
 
 	/**
@@ -784,7 +782,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @since 1.28
 	 */
 	public function getQoS( $flag ) {
-		return isset( $this->attrMap[$flag] ) ? $this->attrMap[$flag] : self::QOS_UNKNOWN;
+		return $this->attrMap[$flag] ?? self::QOS_UNKNOWN;
 	}
 
 	/**

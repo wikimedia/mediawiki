@@ -1063,7 +1063,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			}
 
 			$state = $session->getSecret( 'AuthManager::authnState' );
-			$maybeLink = isset( $state['maybeLink'] ) ? $state['maybeLink'] : [];
+			$maybeLink = $state['maybeLink'] ?? [];
 			if ( $link && $response->status === AuthenticationResponse::RESTART ) {
 				$this->assertEquals(
 					$response->createRequest->maybeLink,

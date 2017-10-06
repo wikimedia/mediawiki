@@ -128,9 +128,7 @@ class HTMLCacheUpdateJob extends Job {
 		// not expected to invalidate these cache entries too often.
 		$touchTimestamp = wfTimestampNow();
 		// If page_touched is higher than this, then something else already bumped it after enqueue
-		$condTimestamp = isset( $this->params['rootJobTimestamp'] )
-			? $this->params['rootJobTimestamp']
-			: $touchTimestamp;
+		$condTimestamp = $this->params['rootJobTimestamp'] ?? $touchTimestamp;
 
 		$dbw = wfGetDB( DB_MASTER );
 		$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();

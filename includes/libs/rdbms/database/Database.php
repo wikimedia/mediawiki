@@ -315,9 +315,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$this->sessionVars = $params['variables'];
 
-		$this->srvCache = isset( $params['srvCache'] )
-			? $params['srvCache']
-			: new HashBagOStuff();
+		$this->srvCache = $params['srvCache'] ?? new HashBagOStuff();
 
 		$this->profiler = $params['profiler'];
 		$this->trxProfiler = $params['trxProfiler'];
@@ -420,29 +418,27 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @since 1.18
 	 */
 	final public static function factory( $dbType, $p = [], $connect = self::NEW_CONNECTED ) {
-		$class = self::getClass( $dbType, isset( $p['driver'] ) ? $p['driver'] : null );
+		$class = self::getClass( $dbType, $p['driver'] ?? null );
 
 		if ( class_exists( $class ) && is_subclass_of( $class, IDatabase::class ) ) {
 			// Resolve some defaults for b/c
-			$p['host'] = isset( $p['host'] ) ? $p['host'] : false;
-			$p['user'] = isset( $p['user'] ) ? $p['user'] : false;
-			$p['password'] = isset( $p['password'] ) ? $p['password'] : false;
-			$p['dbname'] = isset( $p['dbname'] ) ? $p['dbname'] : false;
-			$p['flags'] = isset( $p['flags'] ) ? $p['flags'] : 0;
-			$p['variables'] = isset( $p['variables'] ) ? $p['variables'] : [];
-			$p['tablePrefix'] = isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : '';
-			$p['schema'] = isset( $p['schema'] ) ? $p['schema'] : '';
-			$p['cliMode'] = isset( $p['cliMode'] )
-				? $p['cliMode']
-				: ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
-			$p['agent'] = isset( $p['agent'] ) ? $p['agent'] : '';
+			$p['host'] = $p['host'] ?? false;
+			$p['user'] = $p['user'] ?? false;
+			$p['password'] = $p['password'] ?? false;
+			$p['dbname'] = $p['dbname'] ?? false;
+			$p['flags'] = $p['flags'] ?? 0;
+			$p['variables'] = $p['variables'] ?? [];
+			$p['tablePrefix'] = $p['tablePrefix'] ?? '';
+			$p['schema'] = $p['schema'] ?? '';
+			$p['cliMode'] = $p['cliMode'] ?? ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
+			$p['agent'] = $p['agent'] ?? '';
 			if ( !isset( $p['connLogger'] ) ) {
 				$p['connLogger'] = new NullLogger();
 			}
 			if ( !isset( $p['queryLogger'] ) ) {
 				$p['queryLogger'] = new NullLogger();
 			}
-			$p['profiler'] = isset( $p['profiler'] ) ? $p['profiler'] : null;
+			$p['profiler'] = $p['profiler'] ?? null;
 			if ( !isset( $p['trxProfiler'] ) ) {
 				$p['trxProfiler'] = new TransactionProfiler();
 			}
@@ -1722,7 +1718,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		if ( isset( $options['LIMIT'] ) ) {
 			$sql = $this->limitResult( $sql, $options['LIMIT'],
-				isset( $options['OFFSET'] ) ? $options['OFFSET'] : false );
+				$options['OFFSET'] ?? false );
 		}
 		$sql = "$sql $postLimitTail";
 
@@ -1875,7 +1871,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			if ( !$var ) {
 				$column = null;
 			} elseif ( count( $var ) == 1 ) {
-				$column = isset( $var[0] ) ? $var[0] : reset( $var );
+				$column = $var[0] ?? reset( $var );
 			} else {
 				throw new DBUnexpectedError( $this, __METHOD__ . ': got multiple columns.' );
 			}
@@ -2583,9 +2579,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return string
 	 */
 	protected function indexName( $index ) {
-		return isset( $this->indexAliases[$index] )
-			? $this->indexAliases[$index]
-			: $index;
+		return $this->indexAliases[$index] ?? $index;
 	}
 
 	public function addQuotes( $s ) {
@@ -3138,8 +3132,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// $conds. Then union them together (using UNION ALL, because the
 		// product *should* already be distinct).
 		$orderBy = $this->makeOrderBy( $options );
-		$limit = isset( $options['LIMIT'] ) ? $options['LIMIT'] : null;
-		$offset = isset( $options['OFFSET'] ) ? $options['OFFSET'] : false;
+		$limit = $options['LIMIT'] ?? null;
+		$offset = $options['OFFSET'] ?? false;
 		$all = empty( $options['NOTALL'] ) && !in_array( 'NOTALL', $options );
 		if ( !$this->unionSupportsOrderAndLimit() ) {
 			unset( $options['ORDER BY'], $options['LIMIT'], $options['OFFSET'] );

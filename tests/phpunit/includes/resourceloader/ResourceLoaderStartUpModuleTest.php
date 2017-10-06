@@ -463,7 +463,7 @@ mw.loader.register( [
 			$this->setMwGlobals( 'wgResourceLoaderSources', $case['sources'] );
 		}
 
-		$extraQuery = isset( $case['extraQuery'] ) ? $case['extraQuery'] : [];
+		$extraQuery = $case['extraQuery'] ?? [];
 		$context = $this->getResourceLoaderContext( $extraQuery );
 		$rl = $context->getResourceLoader();
 		$rl->register( $case['modules'] );

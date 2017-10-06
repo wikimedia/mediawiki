@@ -950,13 +950,12 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		$singletons = $wrappedProvider->singletons;
 		if ( $provider instanceof MonologSpi ) {
 			if ( !isset( $this->loggers[$channel] ) ) {
-				$this->loggers[$channel] = isset( $singletons['loggers'][$channel] )
-					? $singletons['loggers'][$channel] : null;
+				$this->loggers[$channel] = $singletons['loggers'][$channel] ?? null;
 			}
 			$singletons['loggers'][$channel] = $logger;
 		} elseif ( $provider instanceof LegacySpi ) {
 			if ( !isset( $this->loggers[$channel] ) ) {
-				$this->loggers[$channel] = isset( $singletons[$channel] ) ? $singletons[$channel] : null;
+				$this->loggers[$channel] = $singletons[$channel] ?? null;
 			}
 			$singletons[$channel] = $logger;
 		} else {
@@ -1410,8 +1409,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	private function setUpSchema( IMaintainableDatabase $db ) {
 		// Undo any active overrides.
-		$oldOverrides = isset( $db->_schemaOverrides ) ? $db->_schemaOverrides
-			: self::$schemaOverrideDefaults;
+		$oldOverrides = $db->_schemaOverrides ?? self::$schemaOverrideDefaults;
 
 		if ( $oldOverrides['alter'] || $oldOverrides['create'] || $oldOverrides['drop'] ) {
 			$this->undoSchemaOverrides( $db, $oldOverrides );

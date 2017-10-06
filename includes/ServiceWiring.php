@@ -415,9 +415,7 @@ return [
 		foreach ( $config['paths'] as $prefix => $serviceConfig ) {
 			$class = $serviceConfig['class'];
 			// Merge in the global defaults
-			$constructArg = isset( $serviceConfig['options'] )
-				? $serviceConfig['options']
-				: [];
+			$constructArg = $serviceConfig['options'] ?? [];
 			$constructArg += $config['global'];
 			// Make the VRS service available at the mount point
 			$vrsClient->mount( $prefix, [ 'class' => $class, 'config' => $constructArg ] );

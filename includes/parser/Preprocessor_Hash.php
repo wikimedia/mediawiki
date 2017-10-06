@@ -1368,7 +1368,7 @@ class PPFrame_Hash implements PPFrame {
 		if ( $level === false ) {
 			return $this->title->getPrefixedDBkey();
 		} else {
-			return isset( $this->titleCache[$level] ) ? $this->titleCache[$level] : false;
+			return $this->titleCache[$level] ?? false;
 		}
 	}
 

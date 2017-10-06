@@ -211,7 +211,7 @@ abstract class PrefixSearch {
 
 		$searchParts = explode( '/', $search, 2 );
 		$searchKey = $searchParts[0];
-		$subpageSearch = isset( $searchParts[1] ) ? $searchParts[1] : null;
+		$subpageSearch = $searchParts[1] ?? null;
 
 		// Handle subpage search separately.
 		if ( $subpageSearch !== null ) {

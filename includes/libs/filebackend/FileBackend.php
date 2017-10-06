@@ -170,12 +170,9 @@ abstract class FileBackend implements LoggerAwareInterface {
 			throw new InvalidArgumentException(
 				"Backend domain ID not provided for '{$this->name}'." );
 		}
-		$this->lockManager = isset( $config['lockManager'] )
-			? $config['lockManager']
-			: new NullLockManager( [] );
-		$this->fileJournal = isset( $config['fileJournal'] )
-			? $config['fileJournal']
-			: FileJournal::factory( [ 'class' => NullFileJournal::class ], $this->name );
+		$this->lockManager = $config['lockManager'] ?? new NullLockManager( [] );
+		$this->fileJournal = $config['fileJournal']
+			?? FileJournal::factory( [ 'class' => NullFileJournal::class ], $this->name );
 		$this->readOnly = isset( $config['readOnly'] )
 			? (string)$config['readOnly']
 			: '';
@@ -185,18 +182,14 @@ abstract class FileBackend implements LoggerAwareInterface {
 		$this->concurrency = isset( $config['concurrency'] )
 			? (int)$config['concurrency']
 			: 50;
-		$this->obResetFunc = isset( $config['obResetFunc'] )
-			? $config['obResetFunc']
-			: [ $this, 'resetOutputBuffer' ];
-		$this->streamMimeFunc = isset( $config['streamMimeFunc'] )
-			? $config['streamMimeFunc']
-			: null;
-		$this->statusWrapper = isset( $config['statusWrapper'] ) ? $config['statusWrapper'] : null;
+		$this->obResetFunc = $config['obResetFunc'] ?? [ $this, 'resetOutputBuffer' ];
+		$this->streamMimeFunc = $config['streamMimeFunc'] ?? null;
+		$this->statusWrapper = $config['statusWrapper'] ?? null;
 
-		$this->profiler = isset( $config['profiler'] ) ? $config['profiler'] : null;
-		$this->logger = isset( $config['logger'] ) ? $config['logger'] : new \Psr\Log\NullLogger();
-		$this->statusWrapper = isset( $config['statusWrapper'] ) ? $config['statusWrapper'] : null;
-		$this->tmpDirectory = isset( $config['tmpDirectory'] ) ? $config['tmpDirectory'] : null;
+		$this->profiler = $config['profiler'] ?? null;
+		$this->logger = $config['logger'] ?? new \Psr\Log\NullLogger();
+		$this->statusWrapper = $config['statusWrapper'] ?? null;
+		$this->tmpDirectory = $config['tmpDirectory'] ?? null;
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -1414,7 +1407,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 */
 	protected function resolveFSFileObjects( array $ops ) {
 		foreach ( $ops as &$op ) {
-			$src = isset( $op['src'] ) ? $op['src'] : null;
+			$src = $op['src'] ?? null;
 			if ( $src instanceof FSFile ) {
 				$op['srcRef'] = $src;
 				$op['src'] = $src->getPath();

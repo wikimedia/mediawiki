@@ -1268,7 +1268,7 @@ class ChangeTags {
 
 		// store the tag usage statistics
 		$tagUsage = self::tagUsageStatistics();
-		$hitcount = isset( $tagUsage[$tag] ) ? $tagUsage[$tag] : 0;
+		$hitcount = $tagUsage[$tag] ?? 0;
 
 		// do it!
 		$deleteResult = self::deleteTagEverywhere( $tag );

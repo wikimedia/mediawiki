@@ -575,7 +575,7 @@ class JavaScriptMinifier {
 
 			// Now get the token type from our type array
 			$token = substr( $s, $pos, $end - $pos ); // so $end - $pos == strlen( $token )
-			$type = isset( $tokenTypes[$token] ) ? $tokenTypes[$token] : self::TYPE_LITERAL;
+			$type = $tokenTypes[$token] ?? self::TYPE_LITERAL;
 
 			if ( $newlineFound && isset( $semicolon[$state][$type] ) ) {
 				// This token triggers the semicolon insertion mechanism of javascript. While we

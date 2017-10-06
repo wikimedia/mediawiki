@@ -103,9 +103,7 @@ class WantedCategoriesPage extends WantedQueryPage {
 		} else {
 			$plink = $this->getLinkRenderer()->makeLink( $nt, $text );
 
-			$currentValue = isset( $this->currentCategoryCounts[$result->title] )
-				? $this->currentCategoryCounts[$result->title]
-				: 0;
+			$currentValue = $this->currentCategoryCounts[$result->title] ?? 0;
 			$cachedValue = intval( $result->value ); // T76910
 
 			// If the category has been created or emptied since the list was refreshed, strike it

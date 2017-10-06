@@ -126,8 +126,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			'or' => false,
 			'classes' => [ 'mw-htmlform-select-and-other-field' ],
 			'data' => [
-				'maxlengthUnit' => isset( $this->mParams['maxlength-unit'] )
-					? $this->mParams['maxlength-unit'] : 'bytes'
+				'maxlengthUnit' => $this->mParams['maxlength-unit'] ?? 'bytes'
 			],
 		] );
 	}
@@ -177,7 +176,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	}
 
 	public function getSize() {
-		return isset( $this->mParams['size'] ) ? $this->mParams['size'] : 45;
+		return $this->mParams['size'] ?? 45;
 	}
 
 	public function validate( $value, $alldata ) {

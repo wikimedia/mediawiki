@@ -276,9 +276,7 @@ class GenerateSitemap extends Maintenance {
 	 * @return string
 	 */
 	function priority( $namespace ) {
-		return isset( $this->priorities[$namespace] )
-			? $this->priorities[$namespace]
-			: $this->guessPriority( $namespace );
+		return $this->priorities[$namespace] ?? $this->guessPriority( $namespace );
 	}
 
 	/**

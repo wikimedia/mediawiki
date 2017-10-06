@@ -107,7 +107,7 @@ class ApiQueryContributionsTest extends ApiTestCase {
 				$this->assertArrayHasKey( 'query', $apiResult[0], "Batching with limit $limit" );
 				$this->assertArrayHasKey( 'usercontribs', $apiResult[0]['query'],
 					"Batching with limit $limit" );
-				$continue = isset( $apiResult[0]['continue'] ) ? $apiResult[0]['continue'] : null;
+				$continue = $apiResult[0]['continue'] ?? null;
 				foreach ( $apiResult[0]['query']['usercontribs'] as $page ) {
 					$count++;
 					$batchedIds[$page['user']][] = $page['revid'];
