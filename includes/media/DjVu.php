@@ -105,7 +105,7 @@ class DjVuHandler extends ImageHandler {
 	 * @return bool|string
 	 */
 	public function makeParamString( $params ) {
-		$page = isset( $params['page'] ) ? $params['page'] : 1;
+		$page = $params['page'] ?? 1;
 		if ( !isset( $params['width'] ) ) {
 			return false;
 		}

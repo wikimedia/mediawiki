@@ -337,9 +337,7 @@ class CopyFileBackend extends Maintenance {
 		$dPathSha1 = sha1( $dPath );
 		if ( $this->statCache !== null ) {
 			// All dst files are already in stat cache
-			$dstStat = isset( $this->statCache[$dPathSha1] )
-				? $this->statCache[$dPathSha1]
-				: false;
+			$dstStat = $this->statCache[$dPathSha1] ?? false;
 		} else {
 			$dstStat = $dst->getFileStat( [ 'src' => $dPath ] );
 		}

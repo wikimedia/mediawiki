@@ -39,9 +39,7 @@ class LoadMonitorMySQL extends LoadMonitor {
 	) {
 		parent::__construct( $lb, $srvCache, $wCache, $options );
 
-		$this->warmCacheRatio = isset( $options['warmCacheRatio'] )
-			? $options['warmCacheRatio']
-			: 0.0;
+		$this->warmCacheRatio = $options['warmCacheRatio'] ?? 0.0;
 	}
 
 	protected function getWeightScale( $index, IDatabase $conn = null ) {

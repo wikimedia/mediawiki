@@ -61,8 +61,6 @@ class UploadSourceField extends HTMLTextField {
 	 * @return int
 	 */
 	function getSize() {
-		return isset( $this->mParams['size'] )
-			? $this->mParams['size']
-			: 60;
+		return $this->mParams['size'] ?? 60;
 	}
 }

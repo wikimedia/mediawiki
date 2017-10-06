@@ -83,12 +83,8 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param array $params
 	 */
 	function __construct( array $params ) {
-		$this->lagDetectionMethod = isset( $params['lagDetectionMethod'] )
-			? $params['lagDetectionMethod']
-			: 'Seconds_Behind_Master';
-		$this->lagDetectionOptions = isset( $params['lagDetectionOptions'] )
-			? $params['lagDetectionOptions']
-			: [];
+		$this->lagDetectionMethod = $params['lagDetectionMethod'] ?? 'Seconds_Behind_Master';
+		$this->lagDetectionOptions = $params['lagDetectionOptions'] ?? [];
 		$this->useGTIDs = !empty( $params['useGTIDs' ] );
 		foreach ( [ 'KeyPath', 'CertPath', 'CAFile', 'CAPath', 'Ciphers' ] as $name ) {
 			$var = "ssl{$name}";
@@ -96,7 +92,7 @@ abstract class DatabaseMysqlBase extends Database {
 				$this->$var = $params[$var];
 			}
 		}
-		$this->sqlMode = isset( $params['sqlMode'] ) ? $params['sqlMode'] : '';
+		$this->sqlMode = $params['sqlMode'] ?? '';
 		$this->utf8Mode = !empty( $params['utf8Mode'] );
 
 		parent::__construct( $params );
@@ -882,9 +878,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$row = $this->fetchObject( $res );
 
 		if ( $row ) {
-			$pos = isset( $row->Exec_master_log_pos )
-				? $row->Exec_master_log_pos
-				: $row->Exec_Master_Log_Pos;
+			$pos = $row->Exec_master_log_pos ?? $row->Exec_Master_Log_Pos;
 			// Also fetch the last-applied GTID set (MariaDB)
 			if ( $this->useGTIDs ) {
 				$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'gtid_slave_pos'", __METHOD__ );

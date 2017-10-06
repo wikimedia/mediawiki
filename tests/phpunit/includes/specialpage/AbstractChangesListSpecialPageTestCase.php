@@ -97,7 +97,7 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiTestCase 
 		$output->method( 'redirect' )->willReturnCallback(
 			function ( $url ) use ( &$redirectQuery, &$redirected ) {
 				$urlParts = wfParseUrl( $url );
-				$query = isset( $urlParts[ 'query' ] ) ? $urlParts[ 'query' ] : '';
+				$query = $urlParts[ 'query' ] ?? '';
 				parse_str( $query, $redirectQuery );
 				$redirected = true;
 			}

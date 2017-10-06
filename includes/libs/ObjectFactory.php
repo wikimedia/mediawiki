@@ -56,7 +56,7 @@ class ObjectFactory {
 	 * constructor is non-public or non-existent
 	 */
 	public static function getObjectFromSpec( $spec ) {
-		$args = isset( $spec['args'] ) ? $spec['args'] : [];
+		$args = $spec['args'] ?? [];
 		$expandArgs = !isset( $spec['closure_expansion'] ) ||
 			$spec['closure_expansion'] === true;
 

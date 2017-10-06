@@ -173,9 +173,7 @@ abstract class Job implements IJobSpecification {
 	 * @since 1.27
 	 */
 	public function getRequestId() {
-		return isset( $this->params['requestId'] )
-			? $this->params['requestId']
-			: null;
+		return $this->params['requestId'] ?? null;
 	}
 
 	/**
@@ -283,12 +281,8 @@ abstract class Job implements IJobSpecification {
 	 */
 	public function getRootJobParams() {
 		return [
-			'rootJobSignature' => isset( $this->params['rootJobSignature'] )
-				? $this->params['rootJobSignature']
-				: null,
-			'rootJobTimestamp' => isset( $this->params['rootJobTimestamp'] )
-				? $this->params['rootJobTimestamp']
-				: null
+			'rootJobSignature' => $this->params['rootJobSignature'] ?? null,
+			'rootJobTimestamp' => $this->params['rootJobTimestamp'] ?? null
 		];
 	}
 

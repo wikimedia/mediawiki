@@ -157,7 +157,7 @@ class LoadBalancer implements ILoadBalancer {
 			$this->localDomainIdAlias = $this->localDomain->getDatabase();
 		}
 
-		$this->mWaitTimeout = isset( $params['waitTimeout'] ) ? $params['waitTimeout'] : 10;
+		$this->mWaitTimeout = $params['waitTimeout'] ?? 10;
 
 		$this->mReadIndex = -1;
 		$this->mConns = [
@@ -206,28 +206,24 @@ class LoadBalancer implements ILoadBalancer {
 		} else {
 			$this->wanCache = WANObjectCache::newEmpty();
 		}
-		$this->profiler = isset( $params['profiler'] ) ? $params['profiler'] : null;
+		$this->profiler = $params['profiler'] ?? null;
 		if ( isset( $params['trxProfiler'] ) ) {
 			$this->trxProfiler = $params['trxProfiler'];
 		} else {
 			$this->trxProfiler = new TransactionProfiler();
 		}
 
-		$this->errorLogger = isset( $params['errorLogger'] )
-			? $params['errorLogger']
-			: function ( Exception $e ) {
+		$this->errorLogger = $params['errorLogger'] ?? function ( Exception $e ) {
 				trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 			};
 
 		foreach ( [ 'replLogger', 'connLogger', 'queryLogger', 'perfLogger' ] as $key ) {
-			$this->$key = isset( $params[$key] ) ? $params[$key] : new NullLogger();
+			$this->$key = $params[$key] ?? new NullLogger();
 		}
 
-		$this->host = isset( $params['hostname'] )
-			? $params['hostname']
-			: ( gethostname() ?: 'unknown' );
-		$this->cliMode = isset( $params['cliMode'] ) ? $params['cliMode'] : PHP_SAPI === 'cli';
-		$this->agent = isset( $params['agent'] ) ? $params['agent'] : '';
+		$this->host = $params['hostname'] ?? ( gethostname() ?: 'unknown' );
+		$this->cliMode = $params['cliMode'] ?? PHP_SAPI === 'cli';
+		$this->agent = $params['agent'] ?? '';
 
 		if ( isset( $params['chronologyProtector'] ) ) {
 			$this->chronProt = $params['chronologyProtector'];
@@ -273,9 +269,7 @@ class LoadBalancer implements ILoadBalancer {
 		foreach ( $lags as $i => $lag ) {
 			if ( $i != 0 ) {
 				# How much lag this server nominally is allowed to have
-				$maxServerLag = isset( $this->mServers[$i]['max lag'] )
-					? $this->mServers[$i]['max lag']
-					: self::MAX_LAG_DEFAULT; // default
+				$maxServerLag = $this->mServers[$i]['max lag'] ?? self::MAX_LAG_DEFAULT; // default
 				# Constrain that futher by $maxLag argument
 				$maxServerLag = min( $maxServerLag, $maxLag );
 
@@ -978,7 +972,7 @@ class LoadBalancer implements ILoadBalancer {
 		$server['agent'] = $this->agent;
 		// Use DBO_DEFAULT flags by default for LoadBalancer managed databases. Assume that the
 		// application calls LoadBalancer::commitMasterChanges() before the PHP script completes.
-		$server['flags'] = isset( $server['flags'] ) ? $server['flags'] : IDatabase::DBO_DEFAULT;
+		$server['flags'] = $server['flags'] ?? IDatabase::DBO_DEFAULT;
 
 		// Create a live connection object
 		try {
@@ -1067,7 +1061,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getServerType( $i ) {
-		return isset( $this->mServers[$i]['type'] ) ? $this->mServers[$i]['type'] : 'unknown';
+		return $this->mServers[$i]['type'] ?? 'unknown';
 	}
 
 	/**
@@ -1191,7 +1185,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function approveMasterChanges( array $options ) {
-		$limit = isset( $options['maxWriteDuration'] ) ? $options['maxWriteDuration'] : 0;
+		$limit = $options['maxWriteDuration'] ?? 0;
 		$this->forEachOpenMasterConnection( function ( IDatabase $conn ) use ( $limit ) {
 			// If atomic sections or explicit transactions are still open, some caller must have
 			// caught an exception but failed to properly rollback any changes. Detect that and

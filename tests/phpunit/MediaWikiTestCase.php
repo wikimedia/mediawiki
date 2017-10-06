@@ -912,13 +912,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$singletons = $wrappedProvider->singletons;
 		if ( $provider instanceof MonologSpi ) {
 			if ( !isset( $this->loggers[$channel] ) ) {
-				$this->loggers[$channel] = isset( $singletons['loggers'][$channel] )
-					? $singletons['loggers'][$channel] : null;
+				$this->loggers[$channel] = $singletons['loggers'][$channel] ?? null;
 			}
 			$singletons['loggers'][$channel] = $logger;
 		} elseif ( $provider instanceof LegacySpi ) {
 			if ( !isset( $this->loggers[$channel] ) ) {
-				$this->loggers[$channel] = isset( $singletons[$channel] ) ? $singletons[$channel] : null;
+				$this->loggers[$channel] = $singletons[$channel] ?? null;
 			}
 			$singletons[$channel] = $logger;
 		} else {

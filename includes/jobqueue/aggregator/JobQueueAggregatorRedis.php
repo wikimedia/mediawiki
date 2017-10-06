@@ -49,9 +49,7 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 	 */
 	public function __construct( array $params ) {
 		parent::__construct( $params );
-		$this->servers = isset( $params['redisServers'] )
-			? $params['redisServers']
-			: [ $params['redisServer'] ]; // b/c
+		$this->servers = $params['redisServers'] ?? [ $params['redisServer'] ]; // b/c
 		$params['redisConfig']['serializer'] = 'none';
 		$this->redisPool = RedisConnectionPool::singleton( $params['redisConfig'] );
 		$this->logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'redis' );

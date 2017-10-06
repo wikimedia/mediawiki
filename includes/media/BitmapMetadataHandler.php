@@ -184,7 +184,7 @@ class BitmapMetadataHandler {
 			}
 		}
 
-		$meta->getExif( $filename, isset( $seg['byteOrder'] ) ? $seg['byteOrder'] : 'BE' );
+		$meta->getExif( $filename, $seg['byteOrder'] ?? 'BE' );
 
 		return $meta->getMetadataArray();
 	}

@@ -283,7 +283,7 @@ class ExtensionProcessor implements Processor {
 	}
 
 	public function getRequirements( array $info ) {
-		return isset( $info['requires'] ) ? $info['requires'] : [];
+		return $info['requires'] ?? [];
 	}
 
 	protected function extractHooks( array $info ) {
@@ -344,9 +344,7 @@ class ExtensionProcessor implements Processor {
 	}
 
 	protected function extractResourceLoaderModules( $dir, array $info ) {
-		$defaultPaths = isset( $info['ResourceFileModulePaths'] )
-			? $info['ResourceFileModulePaths']
-			: false;
+		$defaultPaths = $info['ResourceFileModulePaths'] ?? false;
 		if ( isset( $defaultPaths['localBasePath'] ) ) {
 			if ( $defaultPaths['localBasePath'] === '' ) {
 				// Avoid double slashes (e.g. /extensions/Example//path)
@@ -410,7 +408,7 @@ class ExtensionProcessor implements Processor {
 	protected function extractCredits( $path, array $info ) {
 		$credits = [
 			'path' => $path,
-			'type' => isset( $info['type'] ) ? $info['type'] : 'other',
+			'type' => $info['type'] ?? 'other',
 		];
 		foreach ( self::$creditsAttributes as $attr ) {
 			if ( isset( $info[$attr] ) ) {

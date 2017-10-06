@@ -91,7 +91,7 @@ class UserOptions {
 			$this->mMode = 'LISTER';
 		} elseif ( isset( $opts['usage'] ) ) {
 			$this->mMode = 'USAGER';
-			$this->mAnOption = isset( $args[0] ) ? $args[0] : false;
+			$this->mAnOption = $args[0] ?? false;
 		} elseif ( isset( $opts['old'] ) && isset( $opts['new'] ) ) {
 			$this->mMode = 'CHANGER';
 			$this->mOldValue = $opts['old'];

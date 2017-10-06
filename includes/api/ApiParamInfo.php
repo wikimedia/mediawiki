@@ -334,9 +334,7 @@ class ApiParamInfo extends ApiBase {
 			}
 
 			if ( !isset( $settings[ApiBase::PARAM_TYPE] ) ) {
-				$dflt = isset( $settings[ApiBase::PARAM_DFLT] )
-					? $settings[ApiBase::PARAM_DFLT]
-					: null;
+				$dflt = $settings[ApiBase::PARAM_DFLT] ?? null;
 				if ( is_bool( $dflt ) ) {
 					$settings[ApiBase::PARAM_TYPE] = 'boolean';
 				} elseif ( is_string( $dflt ) || is_null( $dflt ) ) {
@@ -440,9 +438,7 @@ class ApiParamInfo extends ApiBase {
 					$allowAll = true;
 					$allSpecifier = ApiBase::ALL_DEFAULT_STRING;
 				} else {
-					$allowAll = isset( $settings[ApiBase::PARAM_ALL] )
-						? $settings[ApiBase::PARAM_ALL]
-						: false;
+					$allowAll = $settings[ApiBase::PARAM_ALL] ?? false;
 					$allSpecifier = ( is_string( $allowAll ) ? $allowAll : ApiBase::ALL_DEFAULT_STRING );
 				}
 				if ( $allowAll && $item['multi'] &&

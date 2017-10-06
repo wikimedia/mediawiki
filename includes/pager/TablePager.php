@@ -188,7 +188,7 @@ abstract class TablePager extends IndexPager {
 		$fieldNames = $this->getFieldNames();
 
 		foreach ( $fieldNames as $field => $name ) {
-			$value = isset( $row->$field ) ? $row->$field : null;
+			$value = $row->$field ?? null;
 			$formatted = strval( $this->formatValue( $field, $value ) );
 
 			if ( $formatted == '' ) {
