@@ -784,11 +784,8 @@ class Title implements LinkTarget {
 	 * @return int Result of string comparison, or namespace comparison
 	 */
 	public static function compare( LinkTarget $a, LinkTarget $b ) {
-		if ( $a->getNamespace() == $b->getNamespace() ) {
-			return strcmp( $a->getText(), $b->getText() );
-		} else {
-			return $a->getNamespace() - $b->getNamespace();
-		}
+		return $a->getNamespace() <=> $b->getNamespace()
+			?: strcmp( $a->getText(), $b->getText() );
 	}
 
 	/**

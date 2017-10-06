@@ -3972,12 +3972,8 @@ class OutputPage extends ContextSource {
 		uksort( $logosPerDppx, function ( $a , $b ) {
 			$a = floatval( $a );
 			$b = floatval( $b );
-
-			if ( $a == $b ) {
-				return 0;
-			}
 			// Sort from smallest to largest (e.g. 1x, 1.5x, 2x)
-			return ( $a < $b ) ? -1 : 1;
+			return $a <=> $b;
 		} );
 
 		foreach ( $logosPerDppx as $dppx => $src ) {

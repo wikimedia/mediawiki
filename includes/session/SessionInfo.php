@@ -282,7 +282,7 @@ class SessionInfo {
 	 * @return int Negative if $a < $b, positive if $a > $b, zero if equal
 	 */
 	public static function compare( $a, $b ) {
-		return $a->getPriority() - $b->getPriority();
+		return $a->getPriority() <=> $b->getPriority();
 	}
 
 }
