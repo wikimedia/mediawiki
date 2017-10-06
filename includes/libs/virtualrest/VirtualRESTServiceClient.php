@@ -105,10 +105,7 @@ class VirtualRESTServiceClient {
 		$cmpFunc = function ( $a, $b ) {
 			$al = substr_count( $a, '/' );
 			$bl = substr_count( $b, '/' );
-			if ( $al === $bl ) {
-				return 0; // should not actually happen
-			}
-			return ( $al < $bl ) ? 1 : -1; // largest prefix first
+			return $bl <=> $al; // largest prefix first
 		};
 
 		$matches = []; // matching prefixes (mount points)

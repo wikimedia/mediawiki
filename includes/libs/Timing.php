@@ -157,7 +157,7 @@ class Timing implements LoggerAwareInterface {
 	 */
 	private function sortEntries() {
 		uasort( $this->entries, function ( $a, $b ) {
-			return 10000 * ( $a['startTime'] - $b['startTime'] );
+			return $a['startTime'] <=> $b['startTime'];
 		} );
 	}
 
