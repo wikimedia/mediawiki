@@ -454,7 +454,7 @@ final class SessionManager implements SessionManagerInterface {
 	 */
 	public function getProvider( $name ) {
 		$providers = $this->getProviders();
-		return isset( $providers[$name] ) ? $providers[$name] : null;
+		return $providers[$name] ?? null;
 	}
 
 	/**

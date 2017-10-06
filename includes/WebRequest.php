@@ -88,8 +88,7 @@ class WebRequest {
 	 * @codeCoverageIgnore
 	 */
 	public function __construct() {
-		$this->requestTime = isset( $_SERVER['REQUEST_TIME_FLOAT'] )
-			? $_SERVER['REQUEST_TIME_FLOAT'] : microtime( true );
+		$this->requestTime = $_SERVER['REQUEST_TIME_FLOAT'] ?? microtime( true );
 
 		// POST overrides GET data
 		// We don't use $_REQUEST here to avoid interference from cookies...
@@ -127,7 +126,7 @@ class WebRequest {
 			$a = parse_url( $url );
 			MediaWiki\restoreWarnings();
 			if ( $a ) {
-				$path = isset( $a['path'] ) ? $a['path'] : '';
+				$path = $a['path'] ?? '';
 
 				global $wgScript;
 				if ( $path == $wgScript && $want !== 'all' ) {
@@ -271,8 +270,7 @@ class WebRequest {
 	 */
 	public static function getRequestId() {
 		if ( !self::$reqId ) {
-			self::$reqId = isset( $_SERVER['UNIQUE_ID'] )
-				? $_SERVER['UNIQUE_ID'] : wfRandomString( 24 );
+			self::$reqId = $_SERVER['UNIQUE_ID'] ?? wfRandomString( 24 );
 		}
 
 		return self::$reqId;
@@ -454,7 +452,7 @@ class WebRequest {
 	 * @return mixed Old value if one was present, null otherwise
 	 */
 	public function setVal( $key, $value ) {
-		$ret = isset( $this->data[$key] ) ? $this->data[$key] : null;
+		$ret = $this->data[$key] ?? null;
 		$this->data[$key] = $value;
 		return $ret;
 	}
@@ -698,7 +696,7 @@ class WebRequest {
 	 * @return string
 	 */
 	public function getMethod() {
-		return isset( $_SERVER['REQUEST_METHOD'] ) ? $_SERVER['REQUEST_METHOD'] : 'GET';
+		return $_SERVER['REQUEST_METHOD'] ?? 'GET';
 	}
 
 	/**

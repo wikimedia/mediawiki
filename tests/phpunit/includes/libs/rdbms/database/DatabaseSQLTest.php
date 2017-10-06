@@ -41,10 +41,10 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 		$this->database->select(
 			$sql['tables'],
 			$sql['fields'],
-			isset( $sql['conds'] ) ? $sql['conds'] : [],
+			$sql['conds'] ?? [],
 			__METHOD__,
-			isset( $sql['options'] ) ? $sql['options'] : [],
-			isset( $sql['join_conds'] ) ? $sql['join_conds'] : []
+			$sql['options'] ?? [],
+			$sql['join_conds'] ?? []
 		);
 		$this->assertLastSql( $sqlText );
 	}
@@ -210,7 +210,7 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 			$sql['values'],
 			$sql['conds'],
 			__METHOD__,
-			isset( $sql['options'] ) ? $sql['options'] : []
+			$sql['options'] ?? []
 		);
 		$this->assertLastSql( $sqlText );
 	}
@@ -378,7 +378,7 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 			$sql['table'],
 			$sql['rows'],
 			__METHOD__,
-			isset( $sql['options'] ) ? $sql['options'] : []
+			$sql['options'] ?? []
 		);
 		$this->assertLastSql( $sqlText );
 	}
@@ -434,9 +434,9 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 			$sql['varMap'],
 			$sql['conds'],
 			__METHOD__,
-			isset( $sql['insertOptions'] ) ? $sql['insertOptions'] : [],
-			isset( $sql['selectOptions'] ) ? $sql['selectOptions'] : [],
-			isset( $sql['selectJoinConds'] ) ? $sql['selectJoinConds'] : []
+			$sql['insertOptions'] ?? [],
+			$sql['selectOptions'] ?? [],
+			$sql['selectJoinConds'] ?? []
 		);
 		$this->assertLastSql( $sqlTextNative );
 
@@ -450,9 +450,9 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 			$sql['varMap'],
 			$sql['conds'],
 			__METHOD__,
-			isset( $sql['insertOptions'] ) ? $sql['insertOptions'] : [],
-			isset( $sql['selectOptions'] ) ? $sql['selectOptions'] : [],
-			isset( $sql['selectJoinConds'] ) ? $sql['selectJoinConds'] : []
+			$sql['insertOptions'] ?? [],
+			$sql['selectOptions'] ?? [],
+			$sql['selectJoinConds'] ?? []
 		);
 		$this->assertLastSqlDb( implode( '; ', [ $sqlSelect, $sqlInsert ] ), $dbWeb );
 	}
@@ -834,10 +834,10 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 			$params['table'],
 			$params['vars'],
 			$params['permute_conds'],
-			isset( $params['extra_conds'] ) ? $params['extra_conds'] : '',
+			$params['extra_conds'] ?? '',
 			'FNAME',
-			isset( $params['options'] ) ? $params['options'] : [],
-			isset( $params['join_conds'] ) ? $params['join_conds'] : []
+			$params['options'] ?? [],
+			$params['join_conds'] ?? []
 		) );
 		$this->assertEquals( $expect, $sql );
 	}

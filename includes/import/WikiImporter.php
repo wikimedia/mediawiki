@@ -767,7 +767,7 @@ class WikiImporter {
 			} elseif ( $tag == 'revision' || $tag == 'upload' ) {
 				if ( !isset( $title ) ) {
 					$title = $this->processTitle( $pageInfo['title'],
-						isset( $pageInfo['ns'] ) ? $pageInfo['ns'] : null );
+						$pageInfo['ns'] ?? null );
 
 					// $title is either an array of two titles or false.
 					if ( is_array( $title ) ) {
@@ -995,7 +995,7 @@ class WikiImporter {
 	 */
 	private function processUpload( $pageInfo, $uploadInfo ) {
 		$revision = new WikiRevision( $this->config );
-		$text = isset( $uploadInfo['text'] ) ? $uploadInfo['text'] : '';
+		$text = $uploadInfo['text'] ?? '';
 
 		$revision->setTitle( $pageInfo['_title'] );
 		$revision->setID( $pageInfo['id'] );

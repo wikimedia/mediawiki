@@ -394,8 +394,8 @@ class XmlTypeCheck {
 			$callbackReturn = call_user_func(
 				$externalCallback,
 				$parsedDTD['type'],
-				isset( $parsedDTD['publicid'] ) ? $parsedDTD['publicid'] : null,
-				isset( $parsedDTD['systemid'] ) ? $parsedDTD['systemid'] : null
+				$parsedDTD['publicid'] ?? null,
+				$parsedDTD['systemid'] ?? null
 			);
 		}
 		if ( $callbackReturn ) {

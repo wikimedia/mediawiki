@@ -48,7 +48,7 @@ abstract class FileJournal {
 	 *     'ttlDays' : days to keep log entries around (false means "forever")
 	 */
 	protected function __construct( array $config ) {
-		$this->ttlDays = isset( $config['ttlDays'] ) ? $config['ttlDays'] : false;
+		$this->ttlDays = $config['ttlDays'] ?? false;
 	}
 
 	/**

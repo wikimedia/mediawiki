@@ -170,7 +170,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	}
 
 	public function getSize() {
-		return isset( $this->mParams['size'] ) ? $this->mParams['size'] : 45;
+		return $this->mParams['size'] ?? 45;
 	}
 
 	public function validate( $value, $alldata ) {

@@ -57,7 +57,7 @@ class MySQLMasterPos implements DBMasterPos {
 			$reached = true;
 			// Check that this has positions GTE all of those in $pos for all domains in $pos
 			foreach ( $thatPosByDomain as $domain => $thatPos ) {
-				$thisPos = isset( $thisPosByDomain[$domain] ) ? $thisPosByDomain[$domain] : -1;
+				$thisPos = $thisPosByDomain[$domain] ?? -1;
 				$reached = $reached && ( $thatPos <= $thisPos );
 			}
 

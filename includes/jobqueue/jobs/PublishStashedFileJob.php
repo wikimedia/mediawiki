@@ -84,7 +84,7 @@ class PublishStashedFileJob extends Job {
 				$this->params['text'],
 				$this->params['watch'],
 				$user,
-				isset( $this->params['tags'] ) ? $this->params['tags'] : []
+				$this->params['tags'] ?? []
 			);
 			if ( !$status->isGood() ) {
 				UploadBase::setSessionStatus(

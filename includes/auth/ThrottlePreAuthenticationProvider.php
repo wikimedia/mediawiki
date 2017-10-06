@@ -58,8 +58,7 @@ class ThrottlePreAuthenticationProvider extends AbstractPreAuthenticationProvide
 	public function __construct( $params = [] ) {
 		$this->throttleSettings = array_intersect_key( $params,
 			[ 'accountCreationThrottle' => true, 'passwordAttemptThrottle' => true ] );
-		$this->cache = isset( $params['cache'] ) ? $params['cache'] :
-			\ObjectCache::getLocalClusterInstance();
+		$this->cache = $params['cache'] ?? \ObjectCache::getLocalClusterInstance();
 	}
 
 	public function setConfig( Config $config ) {

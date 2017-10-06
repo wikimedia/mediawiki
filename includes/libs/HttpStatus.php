@@ -84,7 +84,7 @@ class HttpStatus {
 			507 => 'Insufficient Storage',
 			511 => 'Network Authentication Required',
 		];
-		return isset( $statusMessage[$code] ) ? $statusMessage[$code] : null;
+		return $statusMessage[$code] ?? null;
 	}
 
 	/**

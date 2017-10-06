@@ -42,8 +42,7 @@ class Pbkdf2Password extends ParameterizedPassword {
 	}
 
 	protected function shouldUseHashExtension() {
-		return isset( $this->config['use-hash-extension'] ) ?
-			$this->config['use-hash-extension'] : function_exists( 'hash_pbkdf2' );
+		return $this->config['use-hash-extension'] ?? function_exists( 'hash_pbkdf2' );
 	}
 
 	public function crypt( $password ) {

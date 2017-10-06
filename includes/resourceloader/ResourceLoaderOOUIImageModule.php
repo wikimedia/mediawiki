@@ -35,7 +35,7 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 		$themes = self::getSkinThemeMap();
 
 		// For backwards-compatibility, allow missing 'themeImages'
-		$module = isset( $this->definition['themeImages'] ) ? $this->definition['themeImages'] : '';
+		$module = $this->definition['themeImages'] ?? '';
 
 		$definition = [];
 		foreach ( $themes as $skin => $theme ) {
