@@ -427,30 +427,35 @@
 
 			// Add highlight class to all highlighted list items
 			$elements
-				.addClass( 'mw-rcfilters-highlight-color-' + filterItem.getHighlightColor() );
+				.addClass(
+					'mw-rcfilters-highlighted ' +
+					'mw-rcfilters-highlight-color-' + filterItem.getHighlightColor()
+				);
 
+			// Track the filters for each item in .data( 'highlightedFilters' )
 			$elements.each( function () {
-				var filterString = $( this ).attr( 'data-highlightedFilters' ) || '',
-					filters = filterString ? filterString.split( '|' ) : [];
-
+				var filters = $( this ).data( 'highlightedFilters' );
+				if ( !filters ) {
+					filters = [];
+					$( this ).data( 'highlightedFilters', filters );
+				}
 				if ( filters.indexOf( filterItem.getLabel() ) === -1 ) {
 					filters.push( filterItem.getLabel() );
 				}
-
-				$( this )
-					.attr( 'data-highlightedFilters', filters.join( '|' ) );
 			} );
 		}.bind( this ) );
-		// Apply a title for relevant filters
-		this.$element.find( '[data-highlightedFilters]' ).each( function () {
-			var filterString = $( this ).attr( 'data-highlightedFilters' ) || '',
-				filters = filterString ? filterString.split( '|' ) : [];
+		// Apply a title to each highlighted item, with a list of filters
+		this.$element.find( '.mw-rcfilters-highlighted' ).each( function () {
+			var filters = $( this ).data( 'highlightedFilters' );
 
-			if ( filterString ) {
-				$( this ).attr( 'title', mw.msg( 'rcfilters-highlighted-filters-list', filters.join( ', ' ) ) );
+			if ( filters && filters.length ) {
+				$( this ).attr( 'title', mw.msg(
+					'rcfilters-highlighted-filters-list',
+					filters.join( mw.msg( 'comma-separator' ) )
+				) );
 			}
-		} );
 
+		} );
 		if ( this.inEnhancedMode() ) {
 			this.updateEnhancedParentHighlight();
 		}
@@ -465,12 +470,15 @@
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.clearHighlight = function () {
 		// Remove highlight classes
 		mw.rcfilters.HighlightColors.forEach( function ( color ) {
-			this.$element.find( '.mw-rcfilters-highlight-color-' + color ).removeClass( 'mw-rcfilters-highlight-color-' + color );
+			this.$element
+				.find( '.mw-rcfilters-highlight-color-' + color )
+				.removeClass( 'mw-rcfilters-highlight-color-' + color );
 		}.bind( this ) );
 
-		this.$element.find( '[data-highlightedFilters]' )
+		this.$element.find( '.mw-rcfilters-highlighted' )
 			.removeAttr( 'title' )
-			.removeAttr( 'data-highlightedFilters' );
+			.removeData( 'highlightedFilters' )
+			.removeClass( 'mw-rcfilters-highlighted' );
 
 		// Remove grey from enhanced rows
 		this.$element.find( '.mw-rcfilters-ui-changesListWrapperWidget-enhanced-grey' )
