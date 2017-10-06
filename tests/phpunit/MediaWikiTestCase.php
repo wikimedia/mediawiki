@@ -1599,7 +1599,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		uasort(
 			$array,
 			function ( $a, $b ) {
-				return serialize( $a ) > serialize( $b ) ? 1 : -1;
+				return serialize( $a ) <=> serialize( $b );
 			}
 		);
 	}

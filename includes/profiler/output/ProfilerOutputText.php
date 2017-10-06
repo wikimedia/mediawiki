@@ -48,7 +48,7 @@ class ProfilerOutputText extends ProfilerOutput {
 			} );
 			// Sort descending by time elapsed
 			usort( $stats, function ( $a, $b ) {
-				return $a['real'] < $b['real'];
+				return $b['real'] <=> $a['real'];
 			} );
 
 			array_walk( $stats,
