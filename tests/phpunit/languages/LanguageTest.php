@@ -1110,27 +1110,27 @@ class LanguageTest extends LanguageClassesTestCase {
 				"1 gigabyte"
 			],
 			[
-				pow( 1024, 4 ),
+				1024 ** 4,
 				"1 TB",
 				"1 terabyte"
 			],
 			[
-				pow( 1024, 5 ),
+				1024 ** 5,
 				"1 PB",
 				"1 petabyte"
 			],
 			[
-				pow( 1024, 6 ),
+				1024 ** 6,
 				"1 EB",
 				"1,024 exabyte"
 			],
 			[
-				pow( 1024, 7 ),
+				1024 ** 7,
 				"1 ZB",
 				"1 zetabyte"
 			],
 			[
-				pow( 1024, 8 ),
+				1024 ** 8,
 				"1 YB",
 				"1 yottabyte"
 			],
@@ -1173,37 +1173,37 @@ class LanguageTest extends LanguageClassesTestCase {
 				"1 megabit per second"
 			],
 			[
-				pow( 10, 9 ),
+				10 ** 9,
 				"1 Gbps",
 				"1 gigabit per second"
 			],
 			[
-				pow( 10, 12 ),
+				10 ** 12,
 				"1 Tbps",
 				"1 terabit per second"
 			],
 			[
-				pow( 10, 15 ),
+				10 ** 15,
 				"1 Pbps",
 				"1 petabit per second"
 			],
 			[
-				pow( 10, 18 ),
+				10 ** 18,
 				"1 Ebps",
 				"1 exabit per second"
 			],
 			[
-				pow( 10, 21 ),
+				10 ** 21,
 				"1 Zbps",
 				"1 zetabit per second"
 			],
 			[
-				pow( 10, 24 ),
+				10 ** 24,
 				"1 Ybps",
 				"1 yottabit per second"
 			],
 			[
-				pow( 10, 27 ),
+				10 ** 27,
 				"1,000 Ybps",
 				"1,000 yottabits per second"
 			],

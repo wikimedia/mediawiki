@@ -1560,7 +1560,7 @@ abstract class FileBackendStore extends FileBackend {
 		$shards = [];
 		list( $digits, $base ) = $this->getContainerHashLevels( $container );
 		if ( $digits > 0 ) {
-			$numShards = pow( $base, $digits );
+			$numShards = $base ** $digits;
 			for ( $index = 0; $index < $numShards; $index++ ) {
 				$shards[] = '.' . Wikimedia\base_convert( $index, 10, $base, $digits );
 			}
