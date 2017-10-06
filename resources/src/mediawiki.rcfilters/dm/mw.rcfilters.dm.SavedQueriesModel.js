@@ -161,9 +161,8 @@
 			newData.highlights[ highlightedFilterName + '_color' ] = data.highlights[ highlightedFilterName ];
 		} );
 
-		// Add highlight and invert toggles to params
+		// Add highlight
 		newData.params.highlight = String( Number( highlightEnabled || 0 ) );
-		newData.params.invert = String( Number( data.invert || 0 ) );
 
 		return newData;
 	};
@@ -209,7 +208,7 @@
 			} );
 
 			this.baseParamState = {
-				params: $.extend( true, { invert: '0', highlight: '0' }, allParams ),
+				params: $.extend( true, { highlight: '0' }, allParams ),
 				highlights: highlightedItems
 			};
 		}

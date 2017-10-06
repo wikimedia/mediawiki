@@ -59,7 +59,6 @@
 			classes: [ 'mw-rcfilters-ui-filterMenuHeaderWidget-invertNamespacesButton' ]
 		} );
 		this.invertNamespacesButton.toggle( this.model.getCurrentView() === 'namespaces' );
-		this.updateInvertButton( this.model.areNamespacesInverted() );
 
 		// Events
 		this.backButton.connect( this, { click: 'onBackButtonClick' } );
@@ -69,8 +68,8 @@
 			.connect( this, { click: 'onInvertNamespacesButtonClick' } );
 		this.model.connect( this, {
 			highlightChange: 'onModelHighlightChange',
-			invertChange: 'onModelInvertChange',
-			update: 'onModelUpdate'
+			update: 'onModelUpdate',
+			initialize: 'onModelInitialize'
 		} );
 
 		// Initialize
@@ -113,6 +112,19 @@
 	/* Methods */
 
 	/**
+	 * Respond to model initialization event
+	 *
+	 * Note: need to wait for initialization before getting the invertModel
+	 * and registering its update event. Creating all the models before the UI
+	 * would help with that.
+	 */
+	mw.rcfilters.ui.FilterMenuHeaderWidget.prototype.onModelInitialize = function () {
+		this.invertModel = this.model.getInvertModel();
+		this.updateInvertButton();
+		this.invertModel.connect( this, { update: 'updateInvertButton' } );
+	};
+
+	/**
 	 * Respond to model update event
 	 */
 	mw.rcfilters.ui.FilterMenuHeaderWidget.prototype.onModelUpdate = function () {
@@ -135,23 +147,12 @@
 	};
 
 	/**
-	 * Respond to model invert change event
-	 *
-	 * @param {boolean} isInverted Namespaces selection is inverted
-	 */
-	mw.rcfilters.ui.FilterMenuHeaderWidget.prototype.onModelInvertChange = function ( isInverted ) {
-		this.updateInvertButton( isInverted );
-	};
-
-	/**
 	 * Update the state of the invert button
-	 *
-	 * @param {boolean} isInverted Namespaces selection is inverted
 	 */
-	mw.rcfilters.ui.FilterMenuHeaderWidget.prototype.updateInvertButton = function ( isInverted ) {
-		this.invertNamespacesButton.setActive( isInverted );
+	mw.rcfilters.ui.FilterMenuHeaderWidget.prototype.updateInvertButton = function () {
+		this.invertNamespacesButton.setActive( this.invertModel.isSelected() );
 		this.invertNamespacesButton.setLabel(
-			isInverted ?
+			this.invertModel.isSelected() ?
 				mw.msg( 'rcfilters-exclude-button-on' ) :
 				mw.msg( 'rcfilters-exclude-button-off' )
 		);

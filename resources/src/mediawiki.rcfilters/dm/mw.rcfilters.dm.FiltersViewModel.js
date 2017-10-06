@@ -16,7 +16,6 @@
 		this.defaultParams = {};
 		this.defaultFiltersEmpty = null;
 		this.highlightEnabled = false;
-		this.invertedNamespaces = false;
 		this.parameterMap = {};
 
 		this.views = {};
@@ -58,13 +57,6 @@
 	 * @param {boolean} Highlight feature is enabled
 	 *
 	 * Highlight feature has been toggled enabled or disabled
-	 */
-
-	/**
-	 * @event invertChange
-	 * @param {boolean} isInverted Namespace selected is inverted
-	 *
-	 * Namespace selection is inverted or straight forward
 	 */
 
 	/* Methods */
@@ -1096,28 +1088,18 @@
 	 * Propagate the change to namespace filter items.
 	 *
 	 * @param {boolean} enable Inverted property is enabled
-	 * @fires invertChange
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.toggleInvertedNamespaces = function ( enable ) {
-		enable = enable === undefined ? !this.invertedNamespaces : enable;
-
-		if ( this.invertedNamespaces !== enable ) {
-			this.invertedNamespaces = enable;
-
-			this.getFiltersByView( 'namespaces' ).forEach( function ( filterItem ) {
-				filterItem.toggleInverted( this.invertedNamespaces );
-			}.bind( this ) );
-
-			this.emit( 'invertChange', this.invertedNamespaces );
-		}
+		this.toggleFilterSelected( this.getInvertModel().getName(), enable );
 	};
 
 	/**
-	 * Check if the namespaces selection is set to be inverted
-	 * @return {boolean}
+	 * Get the model object that represents the 'invert' filter
+	 *
+	 * @return {mw.rcfilters.dm.FilterItem}
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.areNamespacesInverted = function () {
-		return !!this.invertedNamespaces;
+	mw.rcfilters.dm.FiltersViewModel.prototype.getInvertModel = function () {
+		return this.getGroup( 'invertGroup' ).getItemByParamName( 'invert' );
 	};
 
 	/**

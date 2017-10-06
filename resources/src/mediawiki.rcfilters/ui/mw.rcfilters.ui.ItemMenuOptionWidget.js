@@ -6,10 +6,11 @@
 	 *
 	 * @constructor
 	 * @param {mw.rcfilters.Controller} controller RCFilters controller
+	 * @param {mw.rcfilters.dm.ItemModel} invertModel
 	 * @param {mw.rcfilters.dm.ItemModel} model Item model
 	 * @param {Object} config Configuration object
 	 */
-	mw.rcfilters.ui.ItemMenuOptionWidget = function MwRcfiltersUiItemMenuOptionWidget( controller, model, config ) {
+	mw.rcfilters.ui.ItemMenuOptionWidget = function MwRcfiltersUiItemMenuOptionWidget( controller, invertModel, model, config ) {
 		var layout,
 			classes = [],
 			$label = $( '<div>' )
@@ -18,6 +19,7 @@
 		config = config || {};
 
 		this.controller = controller;
+		this.invertModel = invertModel;
 		this.model = model;
 
 		// Parent
@@ -59,7 +61,7 @@
 		this.excludeLabel = new OO.ui.LabelWidget( {
 			label: mw.msg( 'rcfilters-filter-excluded' )
 		} );
-		this.excludeLabel.toggle( this.model.isSelected() && this.model.isInverted() );
+		this.excludeLabel.toggle( this.model.isSelected() && this.invertModel.isSelected() );
 
 		layout = new OO.ui.FieldLayout( this.checkboxWidget, {
 			label: $label,
@@ -67,6 +69,7 @@
 		} );
 
 		// Events
+		this.invertModel.connect( this, { update: 'onModelUpdate' } );
 		this.model.connect( this, { update: 'onModelUpdate' } );
 		// HACK: Prevent defaults on 'click' for the label so it
 		// doesn't steal the focus away from the input. This means
@@ -125,7 +128,7 @@
 		this.checkboxWidget.setSelected( this.model.isSelected() );
 
 		this.highlightButton.toggle( this.model.isHighlightEnabled() );
-		this.excludeLabel.toggle( this.model.isSelected() && this.model.isInverted() );
+		this.excludeLabel.toggle( this.model.isSelected() && this.invertModel.isSelected() );
 	};
 
 	/**

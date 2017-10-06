@@ -186,6 +186,7 @@
 					currentItems.push(
 						new mw.rcfilters.ui.FilterMenuOptionWidget(
 							widget.controller,
+							widget.model.getInvertModel(),
 							filterItem,
 							{
 								$overlay: widget.$overlay
