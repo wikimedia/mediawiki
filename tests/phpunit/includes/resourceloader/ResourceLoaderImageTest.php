@@ -15,8 +15,8 @@ class ResourceLoaderImageTest extends ResourceLoaderTestCase {
 	protected function getTestImage( $name ) {
 		$options = ResourceLoaderImageModuleTest::$commonImageData[$name];
 		$fileDescriptor = is_string( $options ) ? $options : $options['file'];
-		$allowedVariants = is_array( $options ) &&
-			isset( $options['variants'] ) ? $options['variants'] : [];
+		$allowedVariants = ( is_array( $options ) && isset( $options['variants'] ) ) ?
+			$options['variants'] : [];
 		$variants = array_fill_keys( $allowedVariants, [ 'color' => 'red' ] );
 		return new ResourceLoaderImageTestable(
 			$name,
