@@ -1412,8 +1412,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	protected function doMainQuery( $tables, $fields, $conds,
 		$query_options, $join_conds, FormOptions $opts
 	) {
-		$tables[] = 'recentchanges';
-		$fields = array_merge( RecentChange::selectFields(), $fields );
+		$rcQuery = RecentChange::getQueryInfo();
+		$tables = array_merge( $tables, $rcQuery['tables'] );
+		$fields = array_merge( $rcQuery['fields'], $fields );
+		$join_conds = array_merge( $join_conds, $rcQuery['joins'] );
 
 		ChangeTags::modifyDisplayQuery(
 			$tables,

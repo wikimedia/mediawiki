@@ -1119,7 +1119,15 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
 	 *             // Load the row for this file
-	 *             $row = $dbr->selectRow( 'file', File::selectFields(), [ 'id' => $id ], __METHOD__ );
+	 *             $queryInfo = File::getQueryInfo();
+	 *             $row = $dbr->selectRow(
+	 *                 $queryInfo['tables'],
+	 *                 $queryInfo['fields'],
+	 *                 [ 'id' => $id ],
+	 *                 __METHOD__,
+	 *                 [],
+	 *                 $queryInfo['joins']
+	 *             );
 	 *
 	 *             return $row ? (array)$row : false;
 	 *         },
@@ -1205,7 +1213,15 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 *             // Load the rows for these files
 	 *             $rows = [];
-	 *             $res = $dbr->select( 'file', File::selectFields(), [ 'id' => $ids ], __METHOD__ );
+	 *             $queryInfo = File::getQueryInfo();
+	 *             $res = $dbr->select(
+	 *                 $queryInfo['tables'],
+	 *                 $queryInfo['fields'],
+	 *                 [ 'id' => $ids ],
+	 *                 __METHOD__,
+	 *                 [],
+	 *                 $queryInfo['joins']
+	 *             );
 	 *             foreach ( $res as $row ) {
 	 *                 $rows[$row->id] = $row;
 	 *                 $mtime = wfTimestamp( TS_UNIX, $row->timestamp );

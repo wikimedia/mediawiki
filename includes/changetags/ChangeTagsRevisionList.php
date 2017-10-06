@@ -36,18 +36,16 @@ class ChangeTagsRevisionList extends ChangeTagsList {
 	 */
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );
+		$revQuery = Revision::getQueryInfo( [ 'user' ] );
 		$queryInfo = [
-			'tables' => [ 'revision', 'user' ],
-			'fields' => array_merge( Revision::selectFields(), Revision::selectUserFields() ),
+			'tables' => $revQuery['tables'],
+			'fields' => $revQuery['fields'],
 			'conds' => [
 				'rev_page' => $this->title->getArticleID(),
 				'rev_id' => $ids,
 			],
 			'options' => [ 'ORDER BY' => 'rev_id DESC' ],
-			'join_conds' => [
-				'page' => Revision::pageJoinCond(),
-				'user' => Revision::userJoinCond(),
-			],
+			'join_conds' => $revQuery['joins'],
 		];
 		ChangeTags::modifyDisplayQuery(
 			$queryInfo['tables'],
