@@ -36,15 +36,14 @@
 		this.backButton.toggle( this.model.getCurrentView() !== 'default' );
 
 		// Help icon for Tagged edits
-		this.helpIcon = new OO.ui.ButtonWidget( {
-			icon: 'help',
-			framed: false,
-			title: mw.msg( 'rcfilters-view-tags-help-icon-tooltip' ),
-			classes: [ 'mw-rcfilters-ui-filterMenuHeaderWidget-helpIcon' ],
-			href: 'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:New_filters_for_edit_review/Advanced_filters#tags',
-			target: '_blank'
-		} );
-		this.helpIcon.toggle( this.model.getCurrentView() === 'tags' );
+		this.$helpIcon = $( '<a>' )
+			.addClass( 'mw-rcfilters-ui-filterMenuHeaderWidget-helpIcon' )
+			.prop( {
+				href: 'https://www.mediawiki.org/wiki/Special:MyLanguage/Special:Tags',
+				target: '_blank',
+				title: mw.msg( 'rcfilters-view-tags-help-icon-tooltip' )
+			} );
+		this.$helpIcon.toggle( this.model.getCurrentView() === 'tags' );
 
 		// Highlight button
 		this.highlightButton = new OO.ui.ToggleButtonWidget( {
@@ -91,7 +90,7 @@
 								$( '<div>' )
 									.addClass( 'mw-rcfilters-ui-cell' )
 									.addClass( 'mw-rcfilters-ui-filterMenuHeaderWidget-header-title' )
-									.append( this.$label, this.helpIcon.$element ),
+									.append( this.$label, this.$helpIcon ),
 								$( '<div>' )
 									.addClass( 'mw-rcfilters-ui-cell' )
 									.addClass( 'mw-rcfilters-ui-filterMenuHeaderWidget-header-invert' )
@@ -122,7 +121,7 @@
 
 		this.invertNamespacesButton.toggle( currentView === 'namespaces' );
 		this.backButton.toggle( currentView !== 'default' );
-		this.helpIcon.toggle( currentView === 'tags' );
+		this.$helpIcon.toggle( currentView === 'tags' );
 	};
 
 	/**
