@@ -15,6 +15,7 @@ wfLoadExtension( 'FilterSpecialPages' );
 wfLoadExtension( 'UserMerge' );
 $wgUserMergeProtectedGroups = array();
 $wgUserMergeUnmergeable = array();
+require_once __DIR__ . "/../extensions/Variables/Variables.php";
 require_once __DIR__ . "/../extensions/EditNotify/EditNotify.php";
 require_once __DIR__ . "/../extensions/MobileFrontend/MobileFrontend.php";
 $wgMFAutodetectMobileView = true;
