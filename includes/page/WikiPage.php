@@ -3311,9 +3311,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// raise error, when the edit is an edit without a new version
-		$statusRev = isset( $status->value['revision'] )
-			? $status->value['revision']
-			: null;
+		$statusRev = $status->value['revision'] ?? null;
 		if ( !( $statusRev instanceof Revision ) ) {
 			$resultDetails = [ 'current' => $current ];
 			return [ [ 'alreadyrolled',

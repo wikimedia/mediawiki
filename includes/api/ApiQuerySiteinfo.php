@@ -54,7 +54,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					$fit = $this->appendMagicWords( $p );
 					break;
 				case 'interwikimap':
-					$filteriw = isset( $params['filteriw'] ) ? $params['filteriw'] : false;
+					$filteriw = $params['filteriw'] ?? false;
 					$fit = $this->appendInterwikiMap( $p, $filteriw );
 					break;
 				case 'dbrepllag':
@@ -387,7 +387,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		$params = $this->extractRequestParams();
-		$langCode = isset( $params['inlanguagecode'] ) ? $params['inlanguagecode'] : '';
+		$langCode = $params['inlanguagecode'] ?? '';
 		$langNames = Language::fetchLanguageNames( $langCode );
 
 		$getPrefixes = MediaWikiServices::getInstance()->getInterwikiLookup()->getAllPrefixes( $local );
@@ -629,7 +629,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					}
 
 					if ( SpecialVersion::getExtLicenseFileName( $extensionPath ) ) {
-						$ret['license-name'] = isset( $ext['license-name'] ) ? $ext['license-name'] : '';
+						$ret['license-name'] = $ext['license-name'] ?? '';
 						$ret['license'] = SpecialPage::getTitleFor(
 							'Version',
 							"License/{$ext['name']}"
@@ -699,7 +699,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	public function appendLanguages( $property ) {
 		$params = $this->extractRequestParams();
-		$langCode = isset( $params['inlanguagecode'] ) ? $params['inlanguagecode'] : '';
+		$langCode = $params['inlanguagecode'] ?? '';
 		$langNames = Language::fetchLanguageNames( $langCode );
 
 		$data = [];

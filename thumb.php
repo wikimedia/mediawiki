@@ -94,7 +94,7 @@ function wfStreamThumb( array $params ) {
 
 	$headers = []; // HTTP headers to send
 
-	$fileName = isset( $params['f'] ) ? $params['f'] : '';
+	$fileName = $params['f'] ?? '';
 
 	// Backwards compatibility parameters
 	if ( isset( $params['w'] ) ) {
@@ -244,7 +244,7 @@ function wfStreamThumb( array $params ) {
 		}
 	}
 
-	$rel404 = isset( $params['rel404'] ) ? $params['rel404'] : null;
+	$rel404 = $params['rel404'] ?? null;
 	unset( $params['r'] ); // ignore 'r' because we unconditionally pass File::RENDER
 	unset( $params['f'] ); // We're done with 'f' parameter.
 	unset( $params['rel404'] ); // moved to $rel404
@@ -648,7 +648,7 @@ function wfThumbError( $status, $msgHtml, $msgText = null, $context = [] ) {
 	if ( $wgShowHostnames ) {
 		header( 'X-MW-Thumbnail-Renderer: ' . wfHostname() );
 		$url = htmlspecialchars(
-			isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '',
+			$_SERVER['REQUEST_URI'] ?? '',
 			ENT_NOQUOTES
 		);
 		$hostname = htmlspecialchars( wfHostname(), ENT_NOQUOTES );

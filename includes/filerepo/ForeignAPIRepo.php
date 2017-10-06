@@ -75,7 +75,7 @@ class ForeignAPIRepo extends FileRepo {
 		parent::__construct( $info );
 
 		// https://commons.wikimedia.org/w/api.php
-		$this->mApiBase = isset( $info['apibase'] ) ? $info['apibase'] : null;
+		$this->mApiBase = $info['apibase'] ?? null;
 
 		if ( isset( $info['apiThumbCacheExpiry'] ) ) {
 			$this->apiThumbCacheExpiry = $info['apiThumbCacheExpiry'];

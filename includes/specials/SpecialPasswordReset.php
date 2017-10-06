@@ -133,8 +133,8 @@ class SpecialPasswordReset extends FormSpecialPage {
 	 * @return Status
 	 */
 	public function onSubmit( array $data ) {
-		$username = isset( $data['Username'] ) ? $data['Username'] : null;
-		$email = isset( $data['Email'] ) ? $data['Email'] : null;
+		$username = $data['Username'] ?? null;
+		$email = $data['Email'] ?? null;
 
 		$this->method = $username ? 'username' : 'email';
 		$this->result = Status::wrap(

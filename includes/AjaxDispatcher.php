@@ -76,7 +76,7 @@ class AjaxDispatcher {
 
 		switch ( $this->mode ) {
 			case 'get':
-				$this->func_name = isset( $_GET["rs"] ) ? $_GET["rs"] : '';
+				$this->func_name = $_GET["rs"] ?? '';
 				if ( !empty( $_GET["rsargs"] ) ) {
 					$this->args = $_GET["rsargs"];
 				} else {
@@ -84,7 +84,7 @@ class AjaxDispatcher {
 				}
 				break;
 			case 'post':
-				$this->func_name = isset( $_POST["rs"] ) ? $_POST["rs"] : '';
+				$this->func_name = $_POST["rs"] ?? '';
 				if ( !empty( $_POST["rsargs"] ) ) {
 					$this->args = $_POST["rsargs"];
 				} else {

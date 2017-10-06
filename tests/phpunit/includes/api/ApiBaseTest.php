@@ -234,8 +234,7 @@ class ApiBaseTest extends ApiTestCase {
 			$input !== null ? [ 'myParam' => $input ] : [] ) );
 		$wrapper->mMainModule = new ApiMain( $context );
 
-		$parseLimits = isset( $options['parseLimits'] ) ?
-			$options['parseLimits'] : true;
+		$parseLimits = $options['parseLimits'] ?? true;
 
 		if ( !empty( $options['apihighlimits'] ) ) {
 			$context->setUser( self::$users['sysop']->getUser() );
@@ -1183,7 +1182,7 @@ class ApiBaseTest extends ApiTestCase {
 		];
 
 		foreach ( $integerTests as $test ) {
-			$desc = isset( $test[2] ) ? $test[2] : $test[0];
+			$desc = $test[2] ?? $test[0];
 			$warnings = isset( $test[3] ) ?
 				[ [ 'apiwarn-badutf8', 'myParam' ] ] : [];
 			$returnArray["\"$desc\" as integer"] = [

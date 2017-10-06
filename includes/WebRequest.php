@@ -129,7 +129,7 @@ class WebRequest {
 			$a = parse_url( $url );
 			Wikimedia\restoreWarnings();
 			if ( $a ) {
-				$path = isset( $a['path'] ) ? $a['path'] : '';
+				$path = $a['path'] ?? '';
 
 				global $wgScript;
 				if ( $path == $wgScript && $want !== 'all' ) {
@@ -275,8 +275,7 @@ class WebRequest {
 		// This method is called from various error handlers and should be kept simple.
 
 		if ( !self::$reqId ) {
-			self::$reqId = isset( $_SERVER['UNIQUE_ID'] )
-				? $_SERVER['UNIQUE_ID'] : wfRandomString( 24 );
+			self::$reqId = $_SERVER['UNIQUE_ID'] ?? wfRandomString( 24 );
 		}
 
 		return self::$reqId;
@@ -458,7 +457,7 @@ class WebRequest {
 	 * @return mixed Old value if one was present, null otherwise
 	 */
 	public function setVal( $key, $value ) {
-		$ret = isset( $this->data[$key] ) ? $this->data[$key] : null;
+		$ret = $this->data[$key] ?? null;
 		$this->data[$key] = $value;
 		return $ret;
 	}
@@ -714,7 +713,7 @@ class WebRequest {
 	 * @return string
 	 */
 	public function getMethod() {
-		return isset( $_SERVER['REQUEST_METHOD'] ) ? $_SERVER['REQUEST_METHOD'] : 'GET';
+		return $_SERVER['REQUEST_METHOD'] ?? 'GET';
 	}
 
 	/**

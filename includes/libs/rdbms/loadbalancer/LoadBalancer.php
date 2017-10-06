@@ -172,9 +172,7 @@ class LoadBalancer implements ILoadBalancer {
 			: DatabaseDomain::newUnspecified();
 		$this->setLocalDomain( $localDomain );
 
-		$this->waitTimeout = isset( $params['waitTimeout'] )
-			? $params['waitTimeout']
-			: self::MAX_WAIT_DEFAULT;
+		$this->waitTimeout = $params['waitTimeout'] ?? self::MAX_WAIT_DEFAULT;
 
 		$this->readIndex = -1;
 		$this->conns = [
@@ -228,35 +226,27 @@ class LoadBalancer implements ILoadBalancer {
 		} else {
 			$this->wanCache = WANObjectCache::newEmpty();
 		}
-		$this->profiler = isset( $params['profiler'] ) ? $params['profiler'] : null;
+		$this->profiler = $params['profiler'] ?? null;
 		if ( isset( $params['trxProfiler'] ) ) {
 			$this->trxProfiler = $params['trxProfiler'];
 		} else {
 			$this->trxProfiler = new TransactionProfiler();
 		}
 
-		$this->errorLogger = isset( $params['errorLogger'] )
-			? $params['errorLogger']
-			: function ( Exception $e ) {
+		$this->errorLogger = $params['errorLogger'] ?? function ( Exception $e ) {
 				trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 			};
-		$this->deprecationLogger = isset( $params['deprecationLogger'] )
-			? $params['deprecationLogger']
-			: function ( $msg ) {
+		$this->deprecationLogger = $params['deprecationLogger'] ?? function ( $msg ) {
 				trigger_error( $msg, E_USER_DEPRECATED );
 			};
 
 		foreach ( [ 'replLogger', 'connLogger', 'queryLogger', 'perfLogger' ] as $key ) {
-			$this->$key = isset( $params[$key] ) ? $params[$key] : new NullLogger();
+			$this->$key = $params[$key] ?? new NullLogger();
 		}
 
-		$this->host = isset( $params['hostname'] )
-			? $params['hostname']
-			: ( gethostname() ?: 'unknown' );
-		$this->cliMode = isset( $params['cliMode'] )
-			? $params['cliMode']
-			: ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
-		$this->agent = isset( $params['agent'] ) ? $params['agent'] : '';
+		$this->host = $params['hostname'] ?? ( gethostname() ?: 'unknown' );
+		$this->cliMode = $params['cliMode'] ?? ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
+		$this->agent = $params['agent'] ?? '';
 
 		if ( isset( $params['chronologyCallback'] ) ) {
 			$this->chronologyCallback = $params['chronologyCallback'];
@@ -321,9 +311,7 @@ class LoadBalancer implements ILoadBalancer {
 		foreach ( $lags as $i => $lag ) {
 			if ( $i != 0 ) {
 				# How much lag this server nominally is allowed to have
-				$maxServerLag = isset( $this->servers[$i]['max lag'] )
-					? $this->servers[$i]['max lag']
-					: $this->maxLag; // default
+				$maxServerLag = $this->servers[$i]['max lag'] ?? $this->maxLag; // default
 				# Constrain that futher by $maxLag argument
 				$maxServerLag = min( $maxServerLag, $maxLag );
 
@@ -1033,7 +1021,7 @@ class LoadBalancer implements ILoadBalancer {
 	public function getServerAttributes( $i ) {
 		return Database::attributesFromType(
 			$this->getServerType( $i ),
-			isset( $this->servers[$i]['driver'] ) ? $this->servers[$i]['driver'] : null
+			$this->servers[$i]['driver'] ?? null
 		);
 	}
 
@@ -1106,7 +1094,7 @@ class LoadBalancer implements ILoadBalancer {
 		$server['agent'] = $this->agent;
 		// Use DBO_DEFAULT flags by default for LoadBalancer managed databases. Assume that the
 		// application calls LoadBalancer::commitMasterChanges() before the PHP script completes.
-		$server['flags'] = isset( $server['flags'] ) ? $server['flags'] : IDatabase::DBO_DEFAULT;
+		$server['flags'] = $server['flags'] ?? IDatabase::DBO_DEFAULT;
 
 		// Create a live connection object
 		try {
@@ -1196,7 +1184,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getServerType( $i ) {
-		return isset( $this->servers[$i]['type'] ) ? $this->servers[$i]['type'] : 'unknown';
+		return $this->servers[$i]['type'] ?? 'unknown';
 	}
 
 	public function getMasterPos() {
@@ -1297,7 +1285,7 @@ class LoadBalancer implements ILoadBalancer {
 	public function approveMasterChanges( array $options ) {
 		$this->assertTransactionRoundStage( self::ROUND_FINALIZED );
 
-		$limit = isset( $options['maxWriteDuration'] ) ? $options['maxWriteDuration'] : 0;
+		$limit = $options['maxWriteDuration'] ?? 0;
 
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
 		$this->forEachOpenMasterConnection( function ( IDatabase $conn ) use ( $limit ) {

@@ -261,7 +261,7 @@ class CommentStore {
 	private function getCommentInternal( IDatabase $db = null, $key, $row, $fallback = false ) {
 		$row = (array)$row;
 		if ( array_key_exists( "{$key}_text", $row ) && array_key_exists( "{$key}_data", $row ) ) {
-			$cid = isset( $row["{$key}_cid"] ) ? $row["{$key}_cid"] : null;
+			$cid = $row["{$key}_cid"] ?? null;
 			$text = $row["{$key}_text"];
 			$data = $row["{$key}_data"];
 		} elseif ( $this->stage === MIGRATION_OLD ) {

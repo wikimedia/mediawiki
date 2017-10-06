@@ -203,7 +203,7 @@ class ApiErrorFormatter {
 	public function formatException( $exception, array $options = [] ) {
 		return $this->formatMessage(
 			$this->getMessageFromException( $exception, $options ),
-			isset( $options['format'] ) ? $options['format'] : null
+			$options['format'] ?? null
 		);
 	}
 

@@ -110,44 +110,34 @@ abstract class LBFactory implements ILBFactory {
 			$this->readOnlyReason = $conf['readOnlyReason'];
 		}
 
-		$this->srvCache = isset( $conf['srvCache'] ) ? $conf['srvCache'] : new EmptyBagOStuff();
-		$this->memStash = isset( $conf['memStash'] ) ? $conf['memStash'] : new EmptyBagOStuff();
-		$this->wanCache = isset( $conf['wanCache'] )
-			? $conf['wanCache']
-			: WANObjectCache::newEmpty();
+		$this->srvCache = $conf['srvCache'] ?? new EmptyBagOStuff();
+		$this->memStash = $conf['memStash'] ?? new EmptyBagOStuff();
+		$this->wanCache = $conf['wanCache'] ?? WANObjectCache::newEmpty();
 
 		foreach ( self::$loggerFields as $key ) {
-			$this->$key = isset( $conf[$key] ) ? $conf[$key] : new \Psr\Log\NullLogger();
+			$this->$key = $conf[$key] ?? new \Psr\Log\NullLogger();
 		}
-		$this->errorLogger = isset( $conf['errorLogger'] )
-			? $conf['errorLogger']
-			: function ( Exception $e ) {
+		$this->errorLogger = $conf['errorLogger'] ?? function ( Exception $e ) {
 				trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 			};
-		$this->deprecationLogger = isset( $conf['deprecationLogger'] )
-			? $conf['deprecationLogger']
-			: function ( $msg ) {
+		$this->deprecationLogger = $conf['deprecationLogger'] ?? function ( $msg ) {
 				trigger_error( $msg, E_USER_DEPRECATED );
 			};
 
-		$this->profiler = isset( $conf['profiler'] ) ? $conf['profiler'] : null;
-		$this->trxProfiler = isset( $conf['trxProfiler'] )
-			? $conf['trxProfiler']
-			: new TransactionProfiler();
+		$this->profiler = $conf['profiler'] ?? null;
+		$this->trxProfiler = $conf['trxProfiler'] ?? new TransactionProfiler();
 
 		$this->requestInfo = [
-			'IPAddress' => isset( $_SERVER[ 'REMOTE_ADDR' ] ) ? $_SERVER[ 'REMOTE_ADDR' ] : '',
-			'UserAgent' => isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : '',
+			'IPAddress' => $_SERVER[ 'REMOTE_ADDR' ] ?? '',
+			'UserAgent' => $_SERVER['HTTP_USER_AGENT'] ?? '',
 			'ChronologyProtection' => 'true',
 			// phpcs:ignore MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals -- library can't use $wgRequest
-			'ChronologyPositionIndex' => isset( $_GET['cpPosIndex'] ) ? $_GET['cpPosIndex'] : null
+			'ChronologyPositionIndex' => $_GET['cpPosIndex'] ?? null
 		];
 
-		$this->cliMode = isset( $conf['cliMode'] )
-			? $conf['cliMode']
-			: ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
-		$this->hostname = isset( $conf['hostname'] ) ? $conf['hostname'] : gethostname();
-		$this->agent = isset( $conf['agent'] ) ? $conf['agent'] : '';
+		$this->cliMode = $conf['cliMode'] ?? ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
+		$this->hostname = $conf['hostname'] ?? gethostname();
+		$this->agent = $conf['agent'] ?? '';
 
 		$this->ticket = mt_rand();
 	}

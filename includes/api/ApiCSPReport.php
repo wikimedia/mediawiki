@@ -176,8 +176,8 @@ class ApiCSPReport extends ApiBase {
 			$flagText = '[' . implode( ', ', $flags ) . ']';
 		}
 
-		$blockedFile = isset( $report['blocked-uri'] ) ? $report['blocked-uri'] : 'n/a';
-		$page = isset( $report['document-uri'] ) ? $report['document-uri'] : 'n/a';
+		$blockedFile = $report['blocked-uri'] ?? 'n/a';
+		$page = $report['document-uri'] ?? 'n/a';
 		$line = isset( $report['line-number'] ) ? ':' . $report['line-number'] : '';
 		$warningText = $flagText .
 			' Received CSP report: <' . $blockedFile .

@@ -48,7 +48,7 @@ class ApiAuthManagerHelper {
 		$this->module = $module;
 
 		$params = $module->extractRequestParams();
-		$this->messageFormat = isset( $params['messageformat'] ) ? $params['messageformat'] : 'wikitext';
+		$this->messageFormat = $params['messageformat'] ?? 'wikitext';
 	}
 
 	/**

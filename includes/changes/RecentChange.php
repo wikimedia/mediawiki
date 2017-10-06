@@ -420,9 +420,9 @@ class RecentChange {
 
 		# Convert mAttribs['rc_user'] etc for ActorMigration
 		$user = User::newFromAnyId(
-			isset( $row['rc_user'] ) ? $row['rc_user'] : null,
-			isset( $row['rc_user_text'] ) ? $row['rc_user_text'] : null,
-			isset( $row['rc_actor'] ) ? $row['rc_actor'] : null
+			$row['rc_user'] ?? null,
+			$row['rc_user_text'] ?? null,
+			$row['rc_actor'] ?? null
 		);
 		unset( $row['rc_user'], $row['rc_user_text'], $row['rc_actor'] );
 		$row += ActorMigration::newMigration()->getInsertValues( $dbw, 'rc_user', $user );
@@ -1024,7 +1024,7 @@ class RecentChange {
 	 */
 	public function getParam( $name ) {
 		$params = $this->parseParams();
-		return isset( $params[$name] ) ? $params[$name] : null;
+		return $params[$name] ?? null;
 	}
 
 	/**
@@ -1055,9 +1055,9 @@ class RecentChange {
 		$this->mAttribs['rc_comment_data'] = null;
 
 		$user = User::newFromAnyId(
-			isset( $this->mAttribs['rc_user'] ) ? $this->mAttribs['rc_user'] : null,
-			isset( $this->mAttribs['rc_user_text'] ) ? $this->mAttribs['rc_user_text'] : null,
-			isset( $this->mAttribs['rc_actor'] ) ? $this->mAttribs['rc_actor'] : null
+			$this->mAttribs['rc_user'] ?? null,
+			$this->mAttribs['rc_user_text'] ?? null,
+			$this->mAttribs['rc_actor'] ?? null
 		);
 		$this->mAttribs['rc_user'] = $user->getId();
 		$this->mAttribs['rc_user_text'] = $user->getName();
@@ -1078,9 +1078,9 @@ class RecentChange {
 
 		if ( $name === 'rc_user' || $name === 'rc_user_text' || $name === 'rc_actor' ) {
 			$user = User::newFromAnyId(
-				isset( $this->mAttribs['rc_user'] ) ? $this->mAttribs['rc_user'] : null,
-				isset( $this->mAttribs['rc_user_text'] ) ? $this->mAttribs['rc_user_text'] : null,
-				isset( $this->mAttribs['rc_actor'] ) ? $this->mAttribs['rc_actor'] : null
+				$this->mAttribs['rc_user'] ?? null,
+				$this->mAttribs['rc_user_text'] ?? null,
+				$this->mAttribs['rc_actor'] ?? null
 			);
 			if ( $name === 'rc_user' ) {
 				return $user->getId();
@@ -1093,7 +1093,7 @@ class RecentChange {
 			}
 		}
 
-		return isset( $this->mAttribs[$name] ) ? $this->mAttribs[$name] : null;
+		return $this->mAttribs[$name] ?? null;
 	}
 
 	/**

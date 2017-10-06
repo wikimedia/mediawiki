@@ -690,9 +690,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			&& !is_null( $row->rev_len )
 			&& !is_null( $row->rev_parent_id )
 		) {
-			$parentLen = isset( $this->parentLens[$row->rev_parent_id] )
-				? $this->parentLens[$row->rev_parent_id]
-				: 0;
+			$parentLen = $this->parentLens[$row->rev_parent_id] ?? 0;
 			$vals['sizediff'] = intval( $row->rev_len - $parentLen );
 		}
 

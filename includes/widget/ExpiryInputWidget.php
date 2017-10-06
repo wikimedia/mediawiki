@@ -42,7 +42,7 @@ class ExpiryInputWidget extends Widget {
 		parent::__construct( $options );
 
 		$this->noDatePicker = $options['noDatePicker'];
-		$this->required = isset( $options['required'] ) ? $options['required'] : false;
+		$this->required = $options['required'] ?? false;
 
 		// Properties
 		$this->relativeInput = $relativeInput;
