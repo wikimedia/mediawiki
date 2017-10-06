@@ -103,13 +103,16 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			}
 		}
 
-		$this->addTables( 'archive' );
 		if ( $resultPageSet === null ) {
 			$this->parseParameters( $params );
-			$this->addFields( Revision::selectArchiveFields() );
+			$arQuery = Revision::getArchiveQueryInfo();
+			$this->addTables( $arQuery['tables'] );
+			$this->addJoinConds( $arQuery['joins'] );
+			$this->addFields( $arQuery['fields'] );
 			$this->addFields( [ 'ar_title', 'ar_namespace' ] );
 		} else {
 			$this->limit = $this->getParameter( 'limit' ) ?: 10;
+			$this->addTables( 'archive' );
 			$this->addFields( [ 'ar_title', 'ar_namespace' ] );
 			if ( $optimizeGenerateTitles ) {
 				$this->addOption( 'DISTINCT' );

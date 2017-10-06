@@ -310,8 +310,9 @@ class LocalRepo extends FileRepo {
 		}
 
 		if ( count( $imgNames ) ) {
-			$res = $dbr->select( 'image',
-				LocalFile::selectFields(), [ 'img_name' => $imgNames ], __METHOD__ );
+			$fileQuery = LocalFile::getQueryInfo();
+			$res = $dbr->select( $fileQuery['tables'], $fileQuery['fields'], [ 'img_name' => $imgNames ],
+				__METHOD__, [], $fileQuery['joins'] );
 			$applyMatchingFiles( $res, $searchSet, $finalFiles );
 		}
 
@@ -330,8 +331,10 @@ class LocalRepo extends FileRepo {
 		}
 
 		if ( count( $oiConds ) ) {
-			$res = $dbr->select( 'oldimage',
-				OldLocalFile::selectFields(), $dbr->makeList( $oiConds, LIST_OR ), __METHOD__ );
+			$fileQuery = OldLocalFile::getQueryInfo();
+			$res = $dbr->select( $fileQuery['tables'], $fileQuery['fields'],
+				$dbr->makeList( $oiConds, LIST_OR ),
+				__METHOD__, [], $fileQuery['joins'] );
 			$applyMatchingFiles( $res, $searchSet, $finalFiles );
 		}
 
@@ -372,12 +375,14 @@ class LocalRepo extends FileRepo {
 	 */
 	function findBySha1( $hash ) {
 		$dbr = $this->getReplicaDB();
+		$fileQuery = LocalFile::getQueryInfo();
 		$res = $dbr->select(
-			'image',
-			LocalFile::selectFields(),
+			$fileQuery['tables'],
+			$fileQuery['fields'],
 			[ 'img_sha1' => $hash ],
 			__METHOD__,
-			[ 'ORDER BY' => 'img_name' ]
+			[ 'ORDER BY' => 'img_name' ],
+			$fileQuery['joins']
 		);
 
 		$result = [];
@@ -404,12 +409,14 @@ class LocalRepo extends FileRepo {
 		}
 
 		$dbr = $this->getReplicaDB();
+		$fileQuery = LocalFile::getQueryInfo();
 		$res = $dbr->select(
-			'image',
-			LocalFile::selectFields(),
+			$fileQuery['tables'],
+			$fileQuery['fields'],
 			[ 'img_sha1' => $hashes ],
 			__METHOD__,
-			[ 'ORDER BY' => 'img_name' ]
+			[ 'ORDER BY' => 'img_name' ],
+			$fileQuery['joins']
 		);
 
 		$result = [];
@@ -434,12 +441,14 @@ class LocalRepo extends FileRepo {
 
 		// Query database
 		$dbr = $this->getReplicaDB();
+		$fileQuery = LocalFile::getQueryInfo();
 		$res = $dbr->select(
-			'image',
-			LocalFile::selectFields(),
+			$fileQuery['tables'],
+			$fileQuery['fields'],
 			'img_name ' . $dbr->buildLike( $prefix, $dbr->anyString() ),
 			__METHOD__,
-			$selectOptions
+			$selectOptions,
+			$fileQuery['joins']
 		);
 
 		// Build file objects

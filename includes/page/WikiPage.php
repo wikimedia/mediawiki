@@ -164,8 +164,11 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$from = self::convertSelectType( $from );
 		$db = wfGetDB( $from === self::READ_LATEST ? DB_MASTER : DB_REPLICA );
+		$pageQuery = self::getQueryInfo();
 		$row = $db->selectRow(
-			'page', self::selectFields(), [ 'page_id' => $id ], __METHOD__ );
+			$pageQuery['tables'], $pageQuery['fields'], [ 'page_id' => $id ], __METHOD__,
+			[], $pageQuery['joins']
+		);
 		if ( !$row ) {
 			return null;
 		}
@@ -283,6 +286,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Return the list of revision fields that should be selected to create
 	 * a new page.
 	 *
+	 * @deprecated since 1.31, use self::getQueryInfo() instead.
 	 * @return array
 	 */
 	public static function selectFields() {
@@ -314,6 +318,47 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
+	 * Return the tables, fields, and join conditions to be selected to create
+	 * a new page object.
+	 * @since 1.31
+	 * @return array With three keys:
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 */
+	public static function getQueryInfo() {
+		global $wgContentHandlerUseDB, $wgPageLanguageUseDB;
+
+		$ret = [
+			'tables' => [ 'page' ],
+			'fields' => [
+				'page_id',
+				'page_namespace',
+				'page_title',
+				'page_restrictions',
+				'page_is_redirect',
+				'page_is_new',
+				'page_random',
+				'page_touched',
+				'page_links_updated',
+				'page_latest',
+				'page_len',
+			],
+			'joins' => [],
+		];
+
+		if ( $wgContentHandlerUseDB ) {
+			$ret['fields'][] = 'page_content_model';
+		}
+
+		if ( $wgPageLanguageUseDB ) {
+			$ret['fields'][] = 'page_lang';
+		}
+
+		return $ret;
+	}
+
+	/**
 	 * Fetch a page record with the given conditions
 	 * @param IDatabase $dbr
 	 * @param array $conditions
@@ -321,14 +366,23 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return object|bool Database result resource, or false on failure
 	 */
 	protected function pageData( $dbr, $conditions, $options = [] ) {
-		$fields = self::selectFields();
+		$pageQuery = self::getQueryInfo();
 
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$wikiPage = $this;
 
-		Hooks::run( 'ArticlePageDataBefore', [ &$wikiPage, &$fields ] );
+		Hooks::run( 'ArticlePageDataBefore', [
+			&$wikiPage, &$pageQuery['fields'], &$pageQuery['tables'], &$pageQuery['joins']
+		] );
 
-		$row = $dbr->selectRow( 'page', $fields, $conditions, __METHOD__, $options );
+		$row = $dbr->selectRow(
+			$pageQuery['tables'],
+			$pageQuery['fields'],
+			$conditions,
+			__METHOD__,
+			$options,
+			$pageQuery['joins']
+		);
 
 		Hooks::run( 'ArticlePageDataAfter', [ &$wikiPage, &$row ] );
 
@@ -2805,13 +2859,13 @@ class WikiPage implements Page, IDBAccessObject {
 		$revCommentStore = new CommentStore( 'rev_comment' );
 		$arCommentStore = new CommentStore( 'ar_comment' );
 
-		$fields = Revision::selectFields();
+		$revQuery = Revision::getQueryInfo();
 		$bitfield = false;
 
 		// Bitfields to further suppress the content
 		if ( $suppress ) {
 			$bitfield = Revision::SUPPRESSED_ALL;
-			$fields = array_diff( $fields, [ 'rev_deleted' ] );
+			$revQuery['fields'] = array_diff( $revQuery['fields'], [ 'rev_deleted' ] );
 		}
 
 		// For now, shunt the revision data into the archive table.
@@ -2822,14 +2876,13 @@ class WikiPage implements Page, IDBAccessObject {
 		// the rev_deleted field, which is reserved for this purpose.
 
 		// Get all of the page revisions
-		$commentQuery = $revCommentStore->getJoin();
 		$res = $dbw->select(
-			[ 'revision' ] + $commentQuery['tables'],
-			$fields + $commentQuery['fields'],
+			$revQuery['tables'],
+			$revQuery['fields'],
 			[ 'rev_page' => $id ],
 			__METHOD__,
 			'FOR UPDATE',
-			$commentQuery['joins']
+			$revQuery['joins']
 		);
 
 		// Build their equivalent archive rows

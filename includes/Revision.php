@@ -193,7 +193,7 @@ class Revision implements IDBAccessObject {
 			'page'       => isset( $row->ar_page_id ) ? $row->ar_page_id : null,
 			'id'         => isset( $row->ar_rev_id ) ? $row->ar_rev_id : null,
 			'comment'    => CommentStore::newKey( 'ar_comment' )
-				// Legacy because $row probably came from self::selectArchiveFields()
+				// Legacy because $row may have come from self::selectArchiveFields()
 				->getCommentLegacy( wfGetDB( DB_REPLICA ), $row, true )->text,
 			'user'       => $row->ar_user,
 			'user_text'  => $row->ar_user_text,
@@ -403,22 +403,18 @@ class Revision implements IDBAccessObject {
 	 * @return stdClass
 	 */
 	private static function fetchFromConds( $db, $conditions, $flags = 0 ) {
-		$fields = array_merge(
-			self::selectFields(),
-			self::selectPageFields(),
-			self::selectUserFields()
-		);
+		$revQuery = self::getQueryInfo( [ 'page', 'user' ] );
 		$options = [];
 		if ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING ) {
 			$options[] = 'FOR UPDATE';
 		}
 		return $db->selectRow(
-			[ 'revision', 'page', 'user' ],
-			$fields,
+			$revQuery['tables'],
+			$revQuery['fields'],
 			$conditions,
 			__METHOD__,
 			$options,
-			[ 'page' => self::pageJoinCond(), 'user' => self::userJoinCond() ]
+			$revQuery['joins']
 		);
 	}
 
@@ -426,6 +422,7 @@ class Revision implements IDBAccessObject {
 	 * Return the value of a select() JOIN conds array for the user table.
 	 * This will get user table rows for logged-in users.
 	 * @since 1.19
+	 * @deprecated since 1.31, use self::getQueryInfo( [ 'user' ] ) instead.
 	 * @return array
 	 */
 	public static function userJoinCond() {
@@ -436,6 +433,7 @@ class Revision implements IDBAccessObject {
 	 * Return the value of a select() page conds array for the page table.
 	 * This will assure that the revision(s) are not orphaned from live pages.
 	 * @since 1.19
+	 * @deprecated since 1.31, use self::getQueryInfo( [ 'page' ] ) instead.
 	 * @return array
 	 */
 	public static function pageJoinCond() {
@@ -445,8 +443,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Return the list of revision fields that should be selected to create
 	 * a new revision.
-	 * @todo Deprecate this in favor of a method that returns tables and joins
-	 *  as well, and use CommentStore::getJoin().
+	 * @deprecated since 1.31, use self::getQueryInfo() instead.
 	 * @return array
 	 */
 	public static function selectFields() {
@@ -479,8 +476,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Return the list of revision fields that should be selected to create
 	 * a new revision from an archive row.
-	 * @todo Deprecate this in favor of a method that returns tables and joins
-	 *  as well, and use CommentStore::getJoin().
+	 * @deprecated since 1.31, use self::getArchiveQueryInfo() instead.
 	 * @return array
 	 */
 	public static function selectArchiveFields() {
@@ -513,6 +509,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Return the list of text fields that should be selected to read the
 	 * revision text
+	 * @deprecated since 1.31, use self::getQueryInfo( [ 'text' ] ) instead.
 	 * @return array
 	 */
 	public static function selectTextFields() {
@@ -524,6 +521,7 @@ class Revision implements IDBAccessObject {
 
 	/**
 	 * Return the list of page fields that should be selected from page table
+	 * @deprecated since 1.31, use self::getQueryInfo( [ 'page' ] ) instead.
 	 * @return array
 	 */
 	public static function selectPageFields() {
@@ -539,10 +537,125 @@ class Revision implements IDBAccessObject {
 
 	/**
 	 * Return the list of user fields that should be selected from user table
+	 * @deprecated since 1.31, use self::getQueryInfo( [ 'user' ] ) instead.
 	 * @return array
 	 */
 	public static function selectUserFields() {
 		return [ 'user_name' ];
+	}
+
+	/**
+	 * Return the tables, fields, and join conditions to be selected to create
+	 * a new revision object.
+	 * @since 1.31
+	 * @param array $options Any combination of the following strings
+	 *  - 'page': Join with the page table, and select fields to identify the page
+	 *  - 'user': Join with the user table, and select the user name
+	 *  - 'text': Join with the user table, and select the user name
+	 * @return array With three keys:
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 */
+	public static function getQueryInfo( $options = [] ) {
+		global $wgContentHandlerUseDB;
+
+		$commentQuery = CommentStore::newKey( 'rev_comment' )->getJoin();
+		$ret = [
+			'tables' => [ 'revision' ] + $commentQuery['tables'],
+			'fields' => [
+				'rev_id',
+				'rev_page',
+				'rev_text_id',
+				'rev_timestamp',
+				'rev_user_text',
+				'rev_user',
+				'rev_minor_edit',
+				'rev_deleted',
+				'rev_len',
+				'rev_parent_id',
+				'rev_sha1',
+			] + $commentQuery['fields'],
+			'joins' => $commentQuery['joins'],
+		];
+
+		if ( $wgContentHandlerUseDB ) {
+			$ret['fields'][] = 'rev_content_format';
+			$ret['fields'][] = 'rev_content_model';
+		}
+
+		if ( in_array( 'page', $options, true ) ) {
+			$ret['tables'][] = 'page';
+			$ret['fields'] = array_merge( $ret['fields'], [
+				'page_namespace',
+				'page_title',
+				'page_id',
+				'page_latest',
+				'page_is_redirect',
+				'page_len',
+			] );
+			$ret['joins']['page'] = [ 'INNER JOIN', [ 'page_id = rev_page' ] ];
+		}
+
+		if ( in_array( 'user', $options, true ) ) {
+			$ret['tables'][] = 'user';
+			$ret['fields'] = array_merge( $ret['fields'], [
+				'user_name',
+			] );
+			$ret['joins']['user'] = [ 'LEFT JOIN', [ 'rev_user != 0', 'user_id = rev_user' ] ];
+		}
+
+		if ( in_array( 'text', $options, true ) ) {
+			$ret['tables'][] = 'text';
+			$ret['fields'] = array_merge( $ret['fields'], [
+				'old_text',
+				'old_flags'
+			] );
+			$ret['joins']['text'] = [ 'INNER JOIN', [ 'rev_text_id=old_id' ] ];
+		}
+
+		return $ret;
+	}
+
+	/**
+	 * Return the tables, fields, and join conditions to be selected to create
+	 * a new archived revision object.
+	 * @since 1.31
+	 * @return array With three keys:
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 */
+	public static function getArchiveQueryInfo() {
+		global $wgContentHandlerUseDB;
+
+		$commentQuery = CommentStore::newKey( 'ar_comment' )->getJoin();
+		$ret = [
+			'tables' => [ 'archive' ] + $commentQuery['tables'],
+			'fields' => [
+				'ar_id',
+				'ar_page_id',
+				'ar_rev_id',
+				'ar_text',
+				'ar_text_id',
+				'ar_timestamp',
+				'ar_user_text',
+				'ar_user',
+				'ar_minor_edit',
+				'ar_deleted',
+				'ar_len',
+				'ar_parent_id',
+				'ar_sha1',
+			] + $commentQuery['fields'],
+			'joins' => $commentQuery['joins'],
+		];
+
+		if ( $wgContentHandlerUseDB ) {
+			$ret['fields'][] = 'ar_content_format';
+			$ret['fields'][] = 'ar_content_model';
+		}
+
+		return $ret;
 	}
 
 	/**
@@ -590,7 +703,7 @@ class Revision implements IDBAccessObject {
 		$this->mPage = intval( $row->rev_page );
 		$this->mTextId = intval( $row->rev_text_id );
 		$this->mComment = CommentStore::newKey( 'rev_comment' )
-			// Legacy because $row probably came from self::selectFields()
+			// Legacy because $row may have come from self::selectFields()
 			->getCommentLegacy( wfGetDB( DB_REPLICA ), $row, true )->text;
 		$this->mUser = intval( $row->rev_user );
 		$this->mMinorEdit = intval( $row->rev_minor_edit );
@@ -837,11 +950,21 @@ class Revision implements IDBAccessObject {
 		// rev_id is defined as NOT NULL, but this revision may not yet have been inserted.
 		if ( $this->mId !== null ) {
 			$dbr = wfGetLB( $this->mWiki )->getConnectionRef( DB_REPLICA, [], $this->mWiki );
+			// @todo: Title::getSelectFields(), or Title::getQueryInfo(), or something like that
 			$row = $dbr->selectRow(
-				[ 'page', 'revision' ],
-				self::selectPageFields(),
-				[ 'page_id=rev_page', 'rev_id' => $this->mId ],
-				__METHOD__
+				[ 'revision', 'page' ],
+				[
+					'page_namespace',
+					'page_title',
+					'page_id',
+					'page_latest',
+					'page_is_redirect',
+					'page_len',
+				],
+				[ 'rev_id' => $this->mId ],
+				__METHOD__,
+				[],
+				[ 'page' => [ 'JOIN', 'page_id=rev_page' ] ]
 			);
 			if ( $row ) {
 				// @TODO: better foreign title handling
