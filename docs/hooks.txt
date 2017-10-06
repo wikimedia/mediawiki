@@ -689,6 +689,8 @@ $destTitle: destination title (object)
 'ArticlePageDataBefore': Before loading data of an article from the database.
 &$wikiPage: WikiPage (object) that data will be loaded
 &$fields: fields (array) to load from the database
+&$tables: tables (array) to load from the database
+&$joinConds: join conditions (array) to load from the database
 
 'ArticlePrepareTextForEdit': Called when preparing text to be saved.
 $wikiPage: the WikiPage being saved

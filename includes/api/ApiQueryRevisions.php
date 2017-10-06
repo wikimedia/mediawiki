@@ -129,20 +129,31 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		}
 
 		$db = $this->getDB();
-		$this->addTables( [ 'revision', 'page' ] );
-		$this->addJoinConds(
-			[ 'page' => [ 'INNER JOIN', [ 'page_id = rev_page' ] ] ]
-		);
 
 		if ( $resultPageSet === null ) {
 			$this->parseParameters( $params );
 			$this->token = $params['token'];
-			$this->addFields( Revision::selectFields() );
+			$opts = [];
 			if ( $this->token !== null || $pageCount > 0 ) {
-				$this->addFields( Revision::selectPageFields() );
+				$opts[] = 'page';
 			}
+			if ( $this->fetchContent ) {
+				$opts[] = 'text';
+			}
+			if ( $this->fld_user ) {
+				$opts[] = 'user';
+			}
+			$revQuery = Revision::getQueryInfo( $opts );
+			$this->addTables( $revQuery['tables'] );
+			$this->addFields( $revQuery['fields'] );
+			$this->addJoinConds( $revQuery['joins'] );
 		} else {
 			$this->limit = $this->getParameter( 'limit' ) ?: 10;
+			// Always join 'page' so orphaned revisions are filtered out
+			$this->addTables( [ 'revision', 'page' ] );
+			$this->addJoinConds(
+				[ 'page' => [ 'INNER JOIN', [ 'page_id = rev_page' ] ] ]
+			);
 			$this->addFields( [ 'rev_id', 'rev_timestamp', 'rev_page' ] );
 		}
 
@@ -162,7 +173,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			$this->addWhereFld( 'ct_tag', $params['tag'] );
 		}
 
-		if ( $this->fetchContent ) {
+		if ( $resultPageSet === null && $this->fetchContent ) {
 			// For each page we will request, the user must have read rights for that page
 			$user = $this->getUser();
 			$status = Status::newGood();
@@ -178,20 +189,6 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			if ( !$status->isGood() ) {
 				$this->dieStatus( $status );
 			}
-
-			$this->addTables( 'text' );
-			$this->addJoinConds(
-				[ 'text' => [ 'INNER JOIN', [ 'rev_text_id=old_id' ] ] ]
-			);
-			$this->addFields( 'old_id' );
-			$this->addFields( Revision::selectTextFields() );
-		}
-
-		// add user name, if needed
-		if ( $this->fld_user ) {
-			$this->addTables( 'user' );
-			$this->addJoinConds( [ 'user' => Revision::userJoinCond() ] );
-			$this->addFields( Revision::selectUserFields() );
 		}
 
 		if ( $enumRevMode ) {

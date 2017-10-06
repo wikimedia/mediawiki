@@ -2652,6 +2652,7 @@ class Article implements Page {
 	 * @return array
 	 *
 	 * @deprecated since 1.24, use WikiPage::selectFields() instead
+	 * @deprecated since 1.31, use WikiPage::getQueryInfo() instead
 	 */
 	public static function selectFields() {
 		wfDeprecated( __METHOD__, '1.24' );

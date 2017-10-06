@@ -181,13 +181,15 @@ class DifferenceEngine extends ContextSource {
 	public function deletedLink( $id ) {
 		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
 			$dbr = wfGetDB( DB_REPLICA );
-			$row = $dbr->selectRow( 'archive',
-				array_merge(
-					Revision::selectArchiveFields(),
-					[ 'ar_namespace', 'ar_title' ]
-				),
+			$arQuery = Revision::getArchiveQueryInfo();
+			$row = $dbr->selectRow(
+				$arQuery['tables'],
+				array_merge( $arQuery['fields'], [ 'ar_namespace', 'ar_title' ] ),
 				[ 'ar_rev_id' => $id ],
-				__METHOD__ );
+				__METHOD__,
+				[],
+				$arQuery['joins']
+			);
 			if ( $row ) {
 				$rev = Revision::newFromArchiveRow( $row );
 				$title = Title::makeTitleSafe( $row->ar_namespace, $row->ar_title );
