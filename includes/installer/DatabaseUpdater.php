@@ -988,19 +988,27 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Purge the objectcache table
+	 * Purge various database caches
 	 */
 	public function purgeCache() {
 		global $wgLocalisationCacheConf;
-		# We can't guarantee that the user will be able to use TRUNCATE,
-		# but we know that DELETE is available to us
+		// We can't guarantee that the user will be able to use TRUNCATE,
+		// but we know that DELETE is available to us
 		$this->output( "Purging caches..." );
+
+		// ObjectCache
 		$this->db->delete( 'objectcache', '*', __METHOD__ );
+
+		// LocalisationCache
 		if ( $wgLocalisationCacheConf['manualRecache'] ) {
 			$this->rebuildLocalisationCache();
 		}
+
+		// ResourceLoader: Message cache
 		$blobStore = new MessageBlobStore();
 		$blobStore->clear();
+
+		// ResourceLoader: File-dependency cache
 		$this->db->delete( 'module_deps', '*', __METHOD__ );
 		$this->output( "done.\n" );
 	}
