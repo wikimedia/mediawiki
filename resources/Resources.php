@@ -1922,6 +1922,7 @@ return [
 			'jquery.makeCollapsible',
 			'mediawiki.language',
 			'mediawiki.user',
+			'mediawiki.util',
 			'mediawiki.rcfilters.filters.dm',
 			'oojs-ui.styles.icons-content',
 			'oojs-ui.styles.icons-moderation',
