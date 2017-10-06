@@ -783,7 +783,7 @@ $.extend(Datepicker.prototype, {
 	_findPos: function(obj) {
 		var inst = this._getInst(obj);
 		var isRTL = this._get(inst, 'isRTL');
-		while (obj && (obj.type == 'hidden' || obj.nodeType != 1 || $.expr.filters.hidden(obj))) {
+		while (obj && (obj.type == 'hidden' || obj.nodeType != 1 || $.expr.pseudos.hidden(obj))) {
 			obj = obj[isRTL ? 'previousSibling' : 'nextSibling'];
 		}
 		var position = $(obj).offset();

@@ -3,10 +3,9 @@
  * Copyright jQuery Foundation and other contributors
  *
  * Patched for MediaWiki:
- * - Preserve handler of uncaught exceptions in promise chains
- *   https://gerrit.wikimedia.org/r/#/c/360999/
- *   https://github.com/jquery/jquery-migrate/pull/262
  * - Add mw.track instrumentation for statistics.
+ * - Disable jQuery.migrateTrace by default. They are slow and
+ *   redundant given console.warn() already provides a trace.
  */
 ;( function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
@@ -64,7 +63,8 @@ jQuery.migrateWarnings = [];
 
 // Set to false to disable traces that appear with warnings
 if ( jQuery.migrateTrace === undefined ) {
-	jQuery.migrateTrace = true;
+	// PATCH: Disable extra console.trace() call --Krinkle
+	jQuery.migrateTrace = false;
 }
 
 // Forget any warnings we've already given; public

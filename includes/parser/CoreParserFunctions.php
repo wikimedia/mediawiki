@@ -493,7 +493,7 @@ class CoreParserFunctions {
 	 *
 	 * @param int|float $num
 	 * @param string $raw
-	 * @param Language $language
+	 * @param Language|StubUserLang $language
 	 * @return string
 	 */
 	public static function formatRaw( $num, $raw, $language ) {
@@ -875,7 +875,7 @@ class CoreParserFunctions {
 		$code = strtolower( $code );
 		$inLanguage = strtolower( $inLanguage );
 		$lang = Language::fetchLanguageName( $code, $inLanguage );
-		return $lang !== '' ? $lang : wfBCP47( $code );
+		return $lang !== '' ? $lang : LanguageCode::bcp47( $code );
 	}
 
 	/**

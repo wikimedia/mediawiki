@@ -3167,29 +3167,13 @@ function wfShorthandToInteger( $string = '', $default = -1 ) {
  * See unit test for examples.
  * See mediawiki.language.bcp47 for the JavaScript implementation.
  *
+ * @deprecated since 1.31, use LanguageCode::bcp47() directly.
+ *
  * @param string $code The language code.
  * @return string The language code which complying with BCP 47 standards.
  */
 function wfBCP47( $code ) {
-	$codeSegment = explode( '-', $code );
-	$codeBCP = [];
-	foreach ( $codeSegment as $segNo => $seg ) {
-		// when previous segment is x, it is a private segment and should be lc
-		if ( $segNo > 0 && strtolower( $codeSegment[( $segNo - 1 )] ) == 'x' ) {
-			$codeBCP[$segNo] = strtolower( $seg );
-		// ISO 3166 country code
-		} elseif ( ( strlen( $seg ) == 2 ) && ( $segNo > 0 ) ) {
-			$codeBCP[$segNo] = strtoupper( $seg );
-		// ISO 15924 script code
-		} elseif ( ( strlen( $seg ) == 4 ) && ( $segNo > 0 ) ) {
-			$codeBCP[$segNo] = ucfirst( strtolower( $seg ) );
-		// Use lowercase for other cases
-		} else {
-			$codeBCP[$segNo] = strtolower( $seg );
-		}
-	}
-	$langCode = implode( '-', $codeBCP );
-	return $langCode;
+	return LanguageCode::bcp47( $code );
 }
 
 /**
