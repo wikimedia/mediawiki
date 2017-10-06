@@ -395,13 +395,7 @@ class MagicWord {
 	public function compareStringLength( $s1, $s2 ) {
 		$l1 = strlen( $s1 );
 		$l2 = strlen( $s2 );
-		if ( $l1 < $l2 ) {
-			return 1;
-		} elseif ( $l1 > $l2 ) {
-			return -1;
-		} else {
-			return 0;
-		}
+		return $l2 <=> $l1; // descending
 	}
 
 	/**

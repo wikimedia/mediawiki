@@ -593,7 +593,7 @@ class Parser {
 		// Add on template profiling data in human/machine readable way
 		$dataByFunc = $this->mProfiler->getFunctionStats();
 		uasort( $dataByFunc, function ( $a, $b ) {
-			return $a['real'] < $b['real']; // descending order
+			return $b['real'] <=> $a['real']; // descending order
 		} );
 		$profileReport = [];
 		foreach ( array_slice( $dataByFunc, 0, 10 ) as $item ) {
