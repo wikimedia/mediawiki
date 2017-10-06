@@ -581,11 +581,11 @@ class Revision implements IDBAccessObject {
 				return $row['title'];
 			}
 
-			$pageId = isset( $row['page'] ) ? $row['page'] : 0;
-			$revId = isset( $row['id'] ) ? $row['id'] : 0;
+			$pageId = $row['page'] ?? 0;
+			$revId = $row['id'] ?? 0;
 		} else {
-			$pageId = isset( $row->rev_page ) ? $row->rev_page : 0;
-			$revId = isset( $row->rev_id ) ? $row->rev_id : 0;
+			$pageId = $row->rev_page ?? 0;
+			$revId = $row->rev_id ?? 0;
 		}
 
 		try {

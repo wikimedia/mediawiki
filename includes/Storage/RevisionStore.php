@@ -1117,9 +1117,9 @@ class RevisionStore
 
 		try {
 			$user = User::newFromAnyId(
-				isset( $row->ar_user ) ? $row->ar_user : null,
-				isset( $row->ar_user_text ) ? $row->ar_user_text : null,
-				isset( $row->ar_actor ) ? $row->ar_actor : null
+				$row->ar_user ?? null,
+				$row->ar_user_text ?? null,
+				$row->ar_actor ?? null
 			);
 		} catch ( InvalidArgumentException $ex ) {
 			wfWarn( __METHOD__ . ': ' . $ex->getMessage() );
@@ -1153,8 +1153,8 @@ class RevisionStore
 		Assert::parameterType( 'object', $row, '$row' );
 
 		if ( !$title ) {
-			$pageId = isset( $row->rev_page ) ? $row->rev_page : 0; // XXX: also check page_id?
-			$revId = isset( $row->rev_id ) ? $row->rev_id : 0;
+			$pageId = $row->rev_page ?? 0; // XXX: also check page_id?
+			$revId = $row->rev_id ?? 0;
 
 			$title = $this->getTitle( $pageId, $revId, $queryFlags );
 		}
@@ -1168,9 +1168,9 @@ class RevisionStore
 
 		try {
 			$user = User::newFromAnyId(
-				isset( $row->rev_user ) ? $row->rev_user : null,
-				isset( $row->rev_user_text ) ? $row->rev_user_text : null,
-				isset( $row->rev_actor ) ? $row->rev_actor : null
+				$row->rev_user ?? null,
+				$row->rev_user_text ?? null,
+				$row->rev_actor ?? null
 			);
 		} catch ( InvalidArgumentException $ex ) {
 			wfWarn( __METHOD__ . ': ' . $ex->getMessage() );
@@ -1230,8 +1230,8 @@ class RevisionStore
 		}
 
 		if ( !$title ) {
-			$pageId = isset( $fields['page'] ) ? $fields['page'] : 0;
-			$revId = isset( $fields['id'] ) ? $fields['id'] : 0;
+			$pageId = $fields['page'] ?? 0;
+			$revId = $fields['id'] ?? 0;
 
 			$title = $this->getTitle( $pageId, $revId, $queryFlags );
 		}
@@ -1258,7 +1258,7 @@ class RevisionStore
 			isset( $fields['comment'] )
 			&& !( $fields['comment'] instanceof CommentStoreComment )
 		) {
-			$commentData = isset( $fields['comment_data'] ) ? $fields['comment_data'] : null;
+			$commentData = $fields['comment_data'] ?? null;
 
 			if ( $fields['comment'] instanceof Message ) {
 				$fields['comment'] = CommentStoreComment::newUnsavedComment(
@@ -1299,9 +1299,9 @@ class RevisionStore
 		} else {
 			try {
 				$user = User::newFromAnyId(
-					isset( $fields['user'] ) ? $fields['user'] : null,
-					isset( $fields['user_text'] ) ? $fields['user_text'] : null,
-					isset( $fields['actor'] ) ? $fields['actor'] : null
+					$fields['user'] ?? null,
+					$fields['user_text'] ?? null,
+					$fields['actor'] ?? null
 				);
 			} catch ( InvalidArgumentException $ex ) {
 				$user = null;

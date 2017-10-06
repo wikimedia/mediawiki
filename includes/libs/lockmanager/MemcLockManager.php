@@ -68,7 +68,7 @@ class MemcLockManager extends QuorumLockManager {
 		$this->srvsByBucket = array_filter( $config['srvsByBucket'], 'is_array' );
 		$this->srvsByBucket = array_values( $this->srvsByBucket ); // consecutive
 
-		$memcConfig = isset( $config['memcConfig'] ) ? $config['memcConfig'] : [];
+		$memcConfig = $config['memcConfig'] ?? [];
 		$memcConfig += [ 'class' => MemcachedPhpBagOStuff::class ]; // default
 
 		$class = $memcConfig['class'];

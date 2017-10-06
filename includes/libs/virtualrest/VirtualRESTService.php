@@ -51,7 +51,7 @@ abstract class VirtualRESTService {
 	 * @return string The name of the service behind this VRS object.
 	 */
 	public function getName() {
-		return isset( $this->params['name'] ) ? $this->params['name'] : static::class;
+		return $this->params['name'] ?? static::class;
 	}
 
 	/**

@@ -959,7 +959,7 @@ class ParserOutput extends CacheTime {
 	 * @note You need to use getProperties() to check for boolean and null properties.
 	 */
 	public function getProperty( $name ) {
-		return isset( $this->mProperties[$name] ) ? $this->mProperties[$name] : false;
+		return $this->mProperties[$name] ?? false;
 	}
 
 	public function unsetProperty( $name ) {

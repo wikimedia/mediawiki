@@ -939,7 +939,7 @@ class MediaWiki {
 			try {
 				$statsdServer = explode( ':', $config->get( 'StatsdServer' ) );
 				$statsdHost = $statsdServer[0];
-				$statsdPort = isset( $statsdServer[1] ) ? $statsdServer[1] : 8125;
+				$statsdPort = $statsdServer[1] ?? 8125;
 				$statsdSender = new SocketSender( $statsdHost, $statsdPort );
 				$statsdClient = new SamplingStatsdClient( $statsdSender, true, false );
 				$statsdClient->setSamplingRates( $config->get( 'StatsdSamplingRates' ) );

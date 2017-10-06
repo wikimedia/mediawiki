@@ -47,7 +47,7 @@ class DatabaseTestHelper extends Database {
 
 		$this->profiler = new ProfilerStub( [] );
 		$this->trxProfiler = new TransactionProfiler();
-		$this->cliMode = isset( $opts['cliMode'] ) ? $opts['cliMode'] : true;
+		$this->cliMode = $opts['cliMode'] ?? true;
 		$this->connLogger = new \Psr\Log\NullLogger();
 		$this->queryLogger = new \Psr\Log\NullLogger();
 		$this->errorLogger = function ( Exception $e ) {
@@ -198,9 +198,7 @@ class DatabaseTestHelper extends Database {
 	}
 
 	protected function wasKnownStatementRollbackError() {
-		return isset( $this->lastError['wasKnownStatementRollbackError'] )
-			? $this->lastError['wasKnownStatementRollbackError']
-			: false;
+		return $this->lastError['wasKnownStatementRollbackError'] ?? false;
 	}
 
 	function fieldInfo( $table, $field ) {

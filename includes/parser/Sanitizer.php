@@ -1706,9 +1706,7 @@ class Sanitizer {
 	 */
 	static function attributeWhitelist( $element ) {
 		$list = self::setupAttributeWhitelist();
-		return isset( $list[$element] )
-			? $list[$element]
-			: [];
+		return $list[$element] ?? [];
 	}
 
 	/**

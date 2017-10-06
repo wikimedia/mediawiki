@@ -128,8 +128,8 @@ class ForeignAPIFile extends File {
 		// Note, the this->canRender() check above implies
 		// that we have a handler, and it can do makeParamString.
 		$otherParams = $this->handler->makeParamString( $params );
-		$width = isset( $params['width'] ) ? $params['width'] : -1;
-		$height = isset( $params['height'] ) ? $params['height'] : -1;
+		$width = $params['width'] ?? -1;
+		$height = $params['height'] ?? -1;
 
 		$thumbUrl = $this->repo->getThumbUrlFromCache(
 			$this->getName(),
@@ -311,9 +311,7 @@ class ForeignAPIFile extends File {
 	 * @return bool|string
 	 */
 	function getDescriptionUrl() {
-		return isset( $this->mInfo['descriptionurl'] )
-			? $this->mInfo['descriptionurl']
-			: false;
+		return $this->mInfo['descriptionurl'] ?? false;
 	}
 
 	/**

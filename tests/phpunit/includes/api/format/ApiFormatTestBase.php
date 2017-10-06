@@ -37,13 +37,13 @@ abstract class ApiFormatTestBase extends MediaWikiTestCase {
 		if ( is_string( $options ) ) {
 			$options = [ 'class' => $options ];
 		}
-		$printerName = isset( $options['name'] ) ? $options['name'] : $this->printerName;
+		$printerName = $options['name'] ?? $this->printerName;
 
 		$context = new RequestContext;
 		$context->setRequest( new FauxRequest( $params, true ) );
 		$main = new ApiMain( $context );
 		if ( isset( $options['class'] ) ) {
-			$factory = isset( $options['factory'] ) ? $options['factory'] : null;
+			$factory = $options['factory'] ?? null;
 			$main->getModuleManager()->addModule( $printerName, 'format', $options['class'], $factory );
 		}
 		$result = $main->getResult();

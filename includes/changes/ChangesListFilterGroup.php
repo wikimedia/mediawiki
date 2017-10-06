@@ -322,7 +322,7 @@ abstract class ChangesListFilterGroup {
 	 * @return ChangesListFilter|null Specified filter, or null if it is not registered
 	 */
 	public function getFilter( $name ) {
-		return isset( $this->filters[$name] ) ? $this->filters[$name] : null;
+		return $this->filters[$name] ?? null;
 	}
 
 	/**

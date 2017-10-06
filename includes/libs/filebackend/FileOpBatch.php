@@ -66,7 +66,7 @@ class FileOpBatch {
 		$batchId = $journal->getTimestampedUUID();
 		$ignoreErrors = !empty( $opts['force'] );
 		$journaled = empty( $opts['nonJournaled'] );
-		$maxConcurrency = isset( $opts['concurrency'] ) ? $opts['concurrency'] : 1;
+		$maxConcurrency = $opts['concurrency'] ?? 1;
 
 		$entries = []; // file journal entry list
 		$predicates = FileOp::newPredicates(); // account for previous ops in prechecks

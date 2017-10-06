@@ -139,10 +139,8 @@ class BotPassword implements IDBAccessObject {
 			'bp_user' => 0,
 			'bp_app_id' => isset( $data['appId'] ) ? trim( $data['appId'] ) : '',
 			'bp_token' => '**unsaved**',
-			'bp_restrictions' => isset( $data['restrictions'] )
-				? $data['restrictions']
-				: MWRestrictions::newDefault(),
-			'bp_grants' => isset( $data['grants'] ) ? $data['grants'] : [],
+			'bp_restrictions' => $data['restrictions'] ?? MWRestrictions::newDefault(),
+			'bp_grants' => $data['grants'] ?? [],
 		];
 
 		if (

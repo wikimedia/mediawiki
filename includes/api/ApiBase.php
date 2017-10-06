@@ -1156,36 +1156,16 @@ abstract class ApiBase extends ContextSource {
 			];
 		}
 
-		$default = isset( $paramSettings[self::PARAM_DFLT] )
-			? $paramSettings[self::PARAM_DFLT]
-			: null;
-		$multi = isset( $paramSettings[self::PARAM_ISMULTI] )
-			? $paramSettings[self::PARAM_ISMULTI]
-			: false;
-		$multiLimit1 = isset( $paramSettings[self::PARAM_ISMULTI_LIMIT1] )
-			? $paramSettings[self::PARAM_ISMULTI_LIMIT1]
-			: null;
-		$multiLimit2 = isset( $paramSettings[self::PARAM_ISMULTI_LIMIT2] )
-			? $paramSettings[self::PARAM_ISMULTI_LIMIT2]
-			: null;
-		$type = isset( $paramSettings[self::PARAM_TYPE] )
-			? $paramSettings[self::PARAM_TYPE]
-			: null;
-		$dupes = isset( $paramSettings[self::PARAM_ALLOW_DUPLICATES] )
-			? $paramSettings[self::PARAM_ALLOW_DUPLICATES]
-			: false;
-		$deprecated = isset( $paramSettings[self::PARAM_DEPRECATED] )
-			? $paramSettings[self::PARAM_DEPRECATED]
-			: false;
-		$deprecatedValues = isset( $paramSettings[self::PARAM_DEPRECATED_VALUES] )
-			? $paramSettings[self::PARAM_DEPRECATED_VALUES]
-			: [];
-		$required = isset( $paramSettings[self::PARAM_REQUIRED] )
-			? $paramSettings[self::PARAM_REQUIRED]
-			: false;
-		$allowAll = isset( $paramSettings[self::PARAM_ALL] )
-			? $paramSettings[self::PARAM_ALL]
-			: false;
+		$default = $paramSettings[self::PARAM_DFLT] ?? null;
+		$multi = $paramSettings[self::PARAM_ISMULTI] ?? false;
+		$multiLimit1 = $paramSettings[self::PARAM_ISMULTI_LIMIT1] ?? null;
+		$multiLimit2 = $paramSettings[self::PARAM_ISMULTI_LIMIT2] ?? null;
+		$type = $paramSettings[self::PARAM_TYPE] ?? null;
+		$dupes = $paramSettings[self::PARAM_ALLOW_DUPLICATES] ?? false;
+		$deprecated = $paramSettings[self::PARAM_DEPRECATED] ?? false;
+		$deprecatedValues = $paramSettings[self::PARAM_DEPRECATED_VALUES] ?? [];
+		$required = $paramSettings[self::PARAM_REQUIRED] ?? false;
+		$allowAll = $paramSettings[self::PARAM_ALL] ?? false;
 
 		// When type is not given, and no choices, the type is the same as $default
 		if ( !isset( $type ) ) {
@@ -1313,10 +1293,9 @@ abstract class ApiBase extends ContextSource {
 						}
 						break;
 					case 'integer': // Force everything using intval() and optionally validate limits
-						$min = isset( $paramSettings[self::PARAM_MIN] ) ? $paramSettings[self::PARAM_MIN] : null;
-						$max = isset( $paramSettings[self::PARAM_MAX] ) ? $paramSettings[self::PARAM_MAX] : null;
-						$enforceLimits = isset( $paramSettings[self::PARAM_RANGE_ENFORCE] )
-							? $paramSettings[self::PARAM_RANGE_ENFORCE] : false;
+						$min = $paramSettings[self::PARAM_MIN] ?? null;
+						$max = $paramSettings[self::PARAM_MAX] ?? null;
+						$enforceLimits = $paramSettings[self::PARAM_RANGE_ENFORCE] ?? false;
 
 						if ( is_array( $value ) ) {
 							$value = array_map( 'intval', $value );
@@ -1348,7 +1327,7 @@ abstract class ApiBase extends ContextSource {
 						if ( $multi ) {
 							self::dieDebug( __METHOD__, "Multi-values not supported for $encParamName" );
 						}
-						$min = isset( $paramSettings[self::PARAM_MIN] ) ? $paramSettings[self::PARAM_MIN] : 0;
+						$min = $paramSettings[self::PARAM_MIN] ?? 0;
 						if ( $value == 'max' ) {
 							$value = $this->getMain()->canApiHighLimits()
 								? $paramSettings[self::PARAM_MAX2]
@@ -2335,7 +2314,7 @@ abstract class ApiBase extends ContextSource {
 					'api-help-param-token',
 					$this->needsToken(),
 				],
-			] + ( isset( $params['token'] ) ? $params['token'] : [] );
+			] + ( $params['token'] ?? [] );
 		}
 
 		// Avoid PHP 7.1 warning of passing $this by reference
@@ -2375,7 +2354,7 @@ abstract class ApiBase extends ContextSource {
 				$settings = [];
 			}
 
-			$d = isset( $desc[$param] ) ? $desc[$param] : '';
+			$d = $desc[$param] ?? '';
 			if ( is_array( $d ) ) {
 				// Special handling for prop parameters
 				$d = array_map( function ( $line ) {
@@ -2457,9 +2436,7 @@ abstract class ApiBase extends ContextSource {
 				}
 
 				$valueMsgs = $settings[self::PARAM_HELP_MSG_PER_VALUE];
-				$deprecatedValues = isset( $settings[self::PARAM_DEPRECATED_VALUES] )
-					? $settings[self::PARAM_DEPRECATED_VALUES]
-					: [];
+				$deprecatedValues = $settings[self::PARAM_DEPRECATED_VALUES] ?? [];
 
 				foreach ( $settings[self::PARAM_TYPE] as $value ) {
 					if ( isset( $valueMsgs[$value] ) ) {
@@ -2811,7 +2788,7 @@ abstract class ApiBase extends ContextSource {
 		if ( !$msg instanceof IApiMessage ) {
 			$key = $msg->getKey();
 			$params = $msg->getParams();
-			array_unshift( $params, isset( self::$messageMap[$key] ) ? self::$messageMap[$key] : $key );
+			array_unshift( $params, self::$messageMap[$key] ?? $key );
 			$msg = ApiMessage::create( $params );
 		}
 

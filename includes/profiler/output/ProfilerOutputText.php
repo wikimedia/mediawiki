@@ -33,9 +33,7 @@ class ProfilerOutputText extends ProfilerOutput {
 
 	function __construct( Profiler $collector, array $params ) {
 		parent::__construct( $collector, $params );
-		$this->thresholdMs = isset( $params['thresholdMs'] )
-			? $params['thresholdMs']
-			: 1.0;
+		$this->thresholdMs = $params['thresholdMs'] ?? 1.0;
 	}
 	public function log( array $stats ) {
 		if ( $this->collector->getTemplated() ) {
@@ -62,8 +60,7 @@ class ProfilerOutputText extends ProfilerOutput {
 			if ( wfIsCLI() ) {
 				print "<!--\n{$out}\n-->\n";
 			} elseif ( $contentType === 'text/html' ) {
-				$visible = isset( $this->params['visible'] ) ?
-					$this->params['visible'] : false;
+				$visible = $this->params['visible'] ?? false;
 				if ( $visible ) {
 					print "<pre>{$out}</pre>";
 				} else {

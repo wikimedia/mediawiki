@@ -727,7 +727,7 @@ class MessageCache {
 			$this->wanCache->makeKey( 'messages', $code, 'hash', 'v1' ),
 			[
 				'hash' => $cache['HASH'],
-				'latest' => isset( $cache['LATEST'] ) ? $cache['LATEST'] : 0
+				'latest' => $cache['LATEST'] ?? 0
 			],
 			WANObjectCache::TTL_INDEFINITE
 		);

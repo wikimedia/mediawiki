@@ -51,7 +51,7 @@ class UpdateSpecialPages extends Maintenance {
 
 		foreach ( QueryPage::getPages() as $page ) {
 			list( $class, $special ) = $page;
-			$limit = isset( $page[2] ) ? $page[2] : null;
+			$limit = $page[2] ?? null;
 
 			# --list : just show the name of pages
 			if ( $this->hasOption( 'list' ) ) {
