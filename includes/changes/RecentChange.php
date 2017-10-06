@@ -192,7 +192,10 @@ class RecentChange {
 		$dbType = DB_REPLICA
 	) {
 		$db = wfGetDB( $dbType );
-		$row = $db->selectRow( 'recentchanges', self::selectFields(), $conds, $fname );
+		$rcQuery = self::getQueryInfo();
+		$row = $db->selectRow(
+			$rcQuery['tables'], $rcQuery['fields'], $conds, $fname, [], $rcQuery['joins']
+		);
 		if ( $row !== false ) {
 			return self::newFromRow( $row );
 		} else {
@@ -203,8 +206,7 @@ class RecentChange {
 	/**
 	 * Return the list of recentchanges fields that should be selected to create
 	 * a new recentchanges object.
-	 * @todo Deprecate this in favor of a method that returns tables and joins
-	 *  as well, and use CommentStore::getJoin().
+	 * @deprecated since 1.31, use self::getQueryInfo() instead.
 	 * @return array
 	 */
 	public static function selectFields() {
@@ -233,6 +235,48 @@ class RecentChange {
 			'rc_log_action',
 			'rc_params',
 		] + CommentStore::newKey( 'rc_comment' )->getFields();
+	}
+
+	/**
+	 * Return the tables, fields, and join conditions to be selected to create
+	 * a new recentchanges object.
+	 * @since 1.31
+	 * @return array With three keys:
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 */
+	public static function getQueryInfo() {
+		$commentQuery = CommentStore::newKey( 'rc_comment' )->getJoin();
+		return [
+			'tables' => [ 'recentchanges' ] + $commentQuery['tables'],
+			'fields' => [
+				'rc_id',
+				'rc_timestamp',
+				'rc_user',
+				'rc_user_text',
+				'rc_namespace',
+				'rc_title',
+				'rc_minor',
+				'rc_bot',
+				'rc_new',
+				'rc_cur_id',
+				'rc_this_oldid',
+				'rc_last_oldid',
+				'rc_type',
+				'rc_source',
+				'rc_patrolled',
+				'rc_ip',
+				'rc_old_len',
+				'rc_new_len',
+				'rc_deleted',
+				'rc_logid',
+				'rc_log_type',
+				'rc_log_action',
+				'rc_params',
+			] + $commentQuery['fields'],
+			'joins' => $commentQuery['joins'],
+		];
 	}
 
 	# Accessors
@@ -951,7 +995,7 @@ class RecentChange {
 		}
 
 		$comment = CommentStore::newKey( 'rc_comment' )
-			// Legacy because $row probably came from self::selectFields()
+			// Legacy because $row may have come from self::selectFields()
 			->getCommentLegacy( wfGetDB( DB_REPLICA ), $row, true )->text;
 		$this->mAttribs['rc_comment'] = &$comment;
 		$this->mAttribs['rc_comment_text'] = &$comment;

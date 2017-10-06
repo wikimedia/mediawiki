@@ -60,6 +60,26 @@ changes to languages because of Phabricator reports.
 * The Article::selectFields(), Article::onArticleCreate(),
   Article::onArticleDelete(), and Article::onArticleEdit() methods, deprecated
   in 1.24, were removed.
+* Several methods for returning lists of fields to select from the database
+  have been deprecated in favor of similar methods that also return the tables
+  to select from and the join conditions for those tables.
+  * Block::selectFields() → Block::getQueryInfo()
+  * RecentChange::selectFields() → RecentChange::getQueryInfo()
+  * ArchivedFile::selectFields() → ArchivedFile::getQueryInfo()
+  * LocalFile::selectFields() → LocalFile::getQueryInfo()
+  * LocalFile::getCacheFields() with a prefix no longer works
+  * LocalFile::getLazyCacheFields() with a prefix no longer works
+  * OldLocalFile::selectFields() → OldLocalFile::getQueryInfo()
+  * RecentChange::selectFields() → RecentChange::getQueryInfo()
+  * Revision::userJoinCond() → Revision::getQueryInfo( [ 'user' ] )
+  * Revision::selectUserFields() → Revision::getQueryInfo( [ 'user' ] )
+  * Revision::pageJoinCond() → Revision::getQueryInfo( [ 'page' ] )
+  * Revision::selectPageFields() → Revision::getQueryInfo( [ 'page' ] )
+  * Revision::selectTextFields() → Revision::getQueryInfo( [ 'text' ] )
+  * Revision::selectFields() → Revision::getQueryInfo()
+  * Revision::selectArchiveFields() → Revision::getArchiveQueryInfo()
+  * User::selectFields() → User::getQueryInfo()
+  * WikiPage::selectFields() → WikiPage::getQueryInfo()
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. There is experimental support for

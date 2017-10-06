@@ -55,9 +55,10 @@ class EraseArchivedFile extends Maintenance {
 			$afile = false;
 		} else { // specified version
 			$dbw = $this->getDB( DB_MASTER );
-			$row = $dbw->selectRow( 'filearchive', ArchivedFile::selectFields(),
+			$fileQuery = ArchivedFile::getQueryInfo();
+			$row = $dbw->selectRow( $fileQuery['tables'], $fileQuery['fields'],
 				[ 'fa_storage_group' => 'deleted', 'fa_storage_key' => $filekey ],
-				__METHOD__ );
+				__METHOD__, [], $fileQuery['joins'] );
 			if ( !$row ) {
 				$this->error( "No deleted file exists with key '$filekey'.", 1 );
 			}
@@ -85,9 +86,10 @@ class EraseArchivedFile extends Maintenance {
 
 	protected function scrubAllVersions( $name ) {
 		$dbw = $this->getDB( DB_MASTER );
-		$res = $dbw->select( 'filearchive', ArchivedFile::selectFields(),
+		$fileQuery = ArchivedFile::getQueryInfo();
+		$res = $dbw->select( $fileQuery['tables'], $fileQuery['fields'],
 			[ 'fa_name' => $name, 'fa_storage_group' => 'deleted' ],
-			__METHOD__ );
+			__METHOD__, [], $fileQuery['joins'] );
 		foreach ( $res as $row ) {
 			$this->scrubVersion( ArchivedFile::newFromRow( $row ) );
 		}

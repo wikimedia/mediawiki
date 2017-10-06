@@ -57,6 +57,8 @@ class RefreshFileHeaders extends Maintenance {
 		$count = 0;
 		$dbr = $this->getDB( DB_REPLICA );
 
+		$fileQuery = LocalFile::getQueryInfo();
+
 		do {
 			$conds = [ "img_name > {$dbr->addQuotes( $start )}" ];
 
@@ -76,8 +78,9 @@ class RefreshFileHeaders extends Maintenance {
 				$conds[] = "img_minor_mime = {$dbr->addQuotes( $minor_mime )}";
 			}
 
-			$res = $dbr->select( 'image', LocalFile::selectFields(), $conds,
-				__METHOD__, [ 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'img_name ASC' ] );
+			$res = $dbr->select( $fileQuery['tables'], $fileQuery['fields'], $conds,
+				__METHOD__, [ 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'img_name ASC' ], $fileQuery['joins']
+			);
 
 			if ( $res->numRows() > 0 ) {
 				$row1 = $res->current();

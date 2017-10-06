@@ -193,7 +193,9 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		$orig = $this->makeRevisionWithProps();
 
 		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->select( 'revision', Revision::selectFields(), [ 'rev_id' => $orig->getId() ] );
+		$revQuery = Revision::getQueryInfo();
+		$res = $dbr->select( $revQuery['tables'], $revQuery['fields'], [ 'rev_id' => $orig->getId() ],
+		   __METHOD__, [], $revQuery['joins'] );
 		$this->assertTrue( is_object( $res ), 'query failed' );
 
 		$row = $res->fetchObject();
@@ -261,9 +263,11 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		$page->doDeleteArticle( 'test Revision::newFromArchiveRow' );
 
 		$dbr = wfGetDB( DB_REPLICA );
-		$selectFields = $selectModifier( Revision::selectArchiveFields() );
+		$arQuery = Revision::getArchiveQueryInfo();
+		$arQuery['fields'] = $selectModifier( $arQuery['fields'] );
 		$res = $dbr->select(
-			'archive', $selectFields, [ 'ar_rev_id' => $orig->getId() ]
+			$arQuery['tables'], $arQuery['fields'], [ 'ar_rev_id' => $orig->getId() ],
+			__METHOD__, [], $arQuery['joins']
 		);
 		$this->assertTrue( is_object( $res ), 'query failed' );
 
@@ -288,8 +292,10 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		$page->doDeleteArticle( 'test Revision::newFromArchiveRow' );
 
 		$dbr = wfGetDB( DB_REPLICA );
+		$arQuery = Revision::getArchiveQueryInfo();
 		$res = $dbr->select(
-			'archive', Revision::selectArchiveFields(), [ 'ar_rev_id' => $orig->getId() ]
+			$arQuery['tables'], $arQuery['fields'], [ 'ar_rev_id' => $orig->getId() ],
+			__METHOD__, [], $arQuery['joins']
 		);
 		$this->assertTrue( is_object( $res ), 'query failed' );
 

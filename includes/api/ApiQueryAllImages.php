@@ -90,10 +90,12 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		$userId = !is_null( $params['user'] ) ? User::idFromName( $params['user'] ) : null;
 
 		// Table and return fields
-		$this->addTables( 'image' );
-
 		$prop = array_flip( $params['prop'] );
-		$this->addFields( LocalFile::selectFields() );
+
+		$fileQuery = LocalFile::getQueryInfo();
+		$this->addTables( $fileQuery['tables'] );
+		$this->addFields( $fileQuery['fields'] );
+		$this->addJoinConds( $fileQuery['joins'] );
 
 		$ascendingOrder = true;
 		if ( $params['dir'] == 'descending' || $params['dir'] == 'older' ) {
