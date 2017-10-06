@@ -41,7 +41,7 @@
 			framed: false,
 			title: mw.msg( 'rcfilters-view-tags-help-icon-tooltip' ),
 			classes: [ 'mw-rcfilters-ui-filterMenuHeaderWidget-helpIcon' ],
-			href: 'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:New_filters_for_edit_review/Advanced_filters#tags',
+			href: 'https://www.mediawiki.org/wiki/Special:Tags',
 			target: '_blank'
 		} );
 		this.helpIcon.toggle( this.model.getCurrentView() === 'tags' );
