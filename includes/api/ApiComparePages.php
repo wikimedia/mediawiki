@@ -175,14 +175,17 @@ class ApiComparePages extends ApiBase {
 				$rev = Revision::newFromId( $revId );
 				if ( !$rev ) {
 					// Titles of deleted revisions aren't secret, per T51088
+					$arQuery = Revision::getArchiveQueryInfo();
 					$row = $this->getDB()->selectRow(
-						'archive',
+						$arQuery['tables'],
 						array_merge(
-							Revision::selectArchiveFields(),
+							$arQuery['fields'],
 							[ 'ar_namespace', 'ar_title' ]
 						),
 						[ 'ar_rev_id' => $revId ],
-						__METHOD__
+						__METHOD__,
+						[],
+						$arQuery['joins']
 					);
 					if ( $row ) {
 						$rev = Revision::newFromArchiveRow( $row );
@@ -285,14 +288,17 @@ class ApiComparePages extends ApiBase {
 			$rev = Revision::newFromId( $revId );
 			if ( !$rev && $this->getUser()->isAllowedAny( 'deletedtext', 'undelete' ) ) {
 				// Try the 'archive' table
+				$arQuery = Revision::getArchiveQueryInfo();
 				$row = $this->getDB()->selectRow(
-					'archive',
+					$arQuery['tables'],
 					array_merge(
-						Revision::selectArchiveFields(),
+						$arQuery['fields'],
 						[ 'ar_namespace', 'ar_title' ]
 					),
 					[ 'ar_rev_id' => $revId ],
-					__METHOD__
+					__METHOD__,
+					[],
+					$arQuery['joins']
 				);
 				if ( $row ) {
 					$rev = Revision::newFromArchiveRow( $row );

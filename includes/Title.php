@@ -3627,11 +3627,12 @@ class Title implements LinkTarget {
 		$blNamespace = "{$prefix}_namespace";
 		$blTitle = "{$prefix}_title";
 
+		$pageQuery = WikiPage::getQueryInfo();
 		$res = $db->select(
-			[ $table, 'page' ],
+			array_merge( [ $table ], $pageQuery['tables'] ),
 			array_merge(
 				[ $blNamespace, $blTitle ],
-				WikiPage::selectFields()
+				$pageQuery['fields']
 			),
 			[ "{$prefix}_from" => $id ],
 			__METHOD__,
@@ -3639,7 +3640,11 @@ class Title implements LinkTarget {
 			[ 'page' => [
 				'LEFT JOIN',
 				[ "page_namespace=$blNamespace", "page_title=$blTitle" ]
-			] ]
+			] ] + array_map( function ( $q ) {
+				// Force a LEFT JOIN for all subtables, since 'page' itself is being LEFT JOINed
+				$q[0] = 'LEFT JOIN';
+				return $q;
+			}, $pageQuery['joins'] )
 		);
 
 		$retVal = [];
@@ -4192,13 +4197,15 @@ class Title implements LinkTarget {
 		$pageId = $this->getArticleID( $flags );
 		if ( $pageId ) {
 			$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_REPLICA );
-			$row = $db->selectRow( 'revision', Revision::selectFields(),
+			$revQuery = Revision::getQueryInfo();
+			$row = $db->selectRow( $revQuery['tables'], $revQuery['fields'],
 				[ 'rev_page' => $pageId ],
 				__METHOD__,
 				[
 					'ORDER BY' => 'rev_timestamp ASC, rev_id ASC',
-					'IGNORE INDEX' => 'rev_timestamp', // See T159319
-				]
+					'IGNORE INDEX' => [ 'revision' => 'rev_timestamp' ], // See T159319
+				],
+				$revQuery['joins']
 			);
 			if ( $row ) {
 				return new Revision( $row );

@@ -288,11 +288,14 @@ class PasswordReset implements LoggerAwareInterface {
 	 * @throws MWException On unexpected database errors
 	 */
 	protected function getUsersByEmail( $email ) {
+		$userQuery = User::getQueryInfo();
 		$res = wfGetDB( DB_REPLICA )->select(
-			'user',
-			User::selectFields(),
+			$userQuery['tables'],
+			$userQuery['fields'],
 			[ 'user_email' => $email ],
-			__METHOD__
+			__METHOD__,
+			[],
+			$userQuery['joins']
 		);
 
 		if ( !$res ) {
