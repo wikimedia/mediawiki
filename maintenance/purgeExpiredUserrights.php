@@ -18,10 +18,15 @@
  * @copyright GPLv2 http://www.gnu.org/copyleft/gpl.html
  * @author Eddie Greiner-Petter <wikimedia.org at eddie-sh.de>
  * @ingroup Maintenance
- * @since 1.31
  */
 
 require_once __DIR__ . '/Maintenance.php';
+
+/*
+ * Maintenance script to move expired userrights to user_former_groups
+ *
+ * @since 1.31
+ */
 
 class PurgeExpiredUserrights extends Maintenance {
 	public function __construct() {
@@ -32,9 +37,7 @@ class PurgeExpiredUserrights extends Maintenance {
 	public function execute() {
 		$this->output( "Purging expired user rights...\n" );
 		UserGroupMembership::purgeExpired();
-		$this->output(
-			"Purge requests submitted. (These requests are deferred and may not have immediate effect.)\n"
-		);
+		$this->output( "Purge requests submitted.\n" );
 	}
 }
 
