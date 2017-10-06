@@ -280,7 +280,9 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			return "blockedemailuser";
 		}
 
-		if ( $user->pingLimiter( 'emailuser' ) ) {
+		// Check the ping limiter without incrementing it - we'll check it
+		// again later and increment it on a successful send
+		if ( $user->pingLimiter( 'emailuser', 0 ) ) {
 			wfDebug( "Ping limiter triggered.\n" );
 
 			return 'actionthrottledtext';
@@ -403,6 +405,11 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 					[ '$1', Message::rawParam( (string)$error ) ], 'hookaborted'
 				) );
 			}
+		}
+
+		// Check and increment the rate limits
+		if ( $context->getUser()->pingLimiter( 'emailuser' ) ) {
+			throw new ThrottledError();
 		}
 
 		if ( $config->get( 'UserEmailUseReplyTo' ) ) {
