@@ -84,7 +84,8 @@
 			"Omotecho",
 			"Thibaut120094",
 			"Translatealcd",
-			"Delim"
+			"Delim",
+			"Hinaloe"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -134,7 +135,6 @@
 	"underline-never": "常に付けない",
 	"underline-default": "外装またはブラウザーの既定値を使用",
 	"editfont-style": "編集エリアのフォント形式:",
-	"editfont-default": "ブラウザーの設定を使用",
 	"editfont-monospace": "等幅フォント",
 	"editfont-sansserif": "サンセリフ体のフォント",
 	"editfont-serif": "セリフ体のフォント",
@@ -1383,10 +1383,10 @@
 	"rcfilters-hours-title": "時間",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|日}}",
 	"rcfilters-days-show-hours": "$1 {{PLURAL:$1|時間}}",
-	"rcfilters-quickfilters": "フィルターを保存",
+	"rcfilters-quickfilters": "保存済フィルター",
 	"rcfilters-quickfilters-placeholder-title": "リンクはまだ保存されていません",
 	"rcfilters-quickfilters-placeholder-description": "フィルターの設定を保存し、後で再び使用するためには、下のアクティブフィルター内のブックマークアイコンをクリックしてください。",
-	"rcfilters-savedqueries-defaultlabel": "フィルターを保存",
+	"rcfilters-savedqueries-defaultlabel": "保存済フィルター",
 	"rcfilters-savedqueries-rename": "名称を変更",
 	"rcfilters-savedqueries-setdefault": "デフォルトに設定",
 	"rcfilters-savedqueries-unsetdefault": "既定から削除",
@@ -2406,7 +2406,6 @@
 	"block": "利用者をブロック",
 	"unblock": "利用者のブロックを解除",
 	"blockip": "{{GENDER:$1|利用者}}をブロック",
-	"blockip-legend": "利用者をブロック",
 	"blockiptext": "以下のフォームを使用して、指定したIPアドレスまたは利用者からの書き込みアクセスをブロックできます。\nこのような措置は、荒らしからの防御の目的のみに行われるべきで、また[[{{MediaWiki:Policy-url}}|方針]]に沿ったものであるべきです。\n以下にブロックの理由を具体的に書いてください (例えば、荒らされたページへの言及など)。\n[https://ja.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR] 構文を使用して、IP 範囲をブロックできます。許可された最大の範囲は、IPv4 の場合は /$1、IPv6 の場合は /$2 です。",
 	"ipaddressorusername": "IPアドレスまたは利用者名:",
 	"ipbexpiry": "有効期限:",

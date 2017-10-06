@@ -612,6 +612,7 @@
 	"content-model-css": "CSS",
 	"content-model-json": "JSON",
 	"content-json-empty-object": "تش څيز",
+	"duplicate-args-category": "هغه مخونه چې دوه اړخیزه استدلالونه د کينډۍ په خبرتيا کي کاروي",
 	"duplicate-args-category-desc": "دا هغه مخ دی چې د کينډيو استدعاگانې لري او دوه ځلي آرگومنټونه کاروي، لکه <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> يا <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"post-expand-template-inclusion-warning": "'''گواښنه:''' دا کينډۍ د خپل ټاکلي بريد نه ډېره لويه ده.\nځينې کينډۍ به په کې گډې نه شي.",
 	"post-expand-template-inclusion-category": "هغه مخونه چې په کې د کارېدلو کينډيو شمېر له ټاکلې کچې ډېر دی",

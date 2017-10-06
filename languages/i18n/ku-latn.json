@@ -1841,6 +1841,7 @@
 	"searchsuggest-search": "Li ser {{SITENAME}} bigere",
 	"searchsuggest-containing": "dihundirîne...",
 	"api-error-unknownerror": "Çewtiya nenas: \"$1\".",
+	"duration-days": "$1 {{PLURAL:$1|roj|roj}}",
 	"duration-years": "$1 {{PLURAL:$1|sal}}",
 	"duration-centuries": "$1 {{PLURAL:$1|sedsal}}",
 	"expand_templates_output": "Encam",

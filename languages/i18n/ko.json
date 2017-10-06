@@ -1453,6 +1453,7 @@
 	"rcfilters-view-namespaces-tooltip": "이름공간으로 결과 필터",
 	"rcfilters-view-tags-tooltip": "편집 태그를 사용하여 결과 필터",
 	"rcfilters-view-return-to-default-tooltip": "주 필터 메뉴로 돌아가기",
+	"rcfilters-view-tags-help-icon-tooltip": "태그 편집에 대해 더 알아보기",
 	"rcfilters-liveupdates-button": "실시간 업데이트",
 	"rcfilters-liveupdates-button-title-on": "실시간 업데이트 끄기",
 	"rcfilters-liveupdates-button-title-off": "새로운 변경사항이 발생하면 표시",
