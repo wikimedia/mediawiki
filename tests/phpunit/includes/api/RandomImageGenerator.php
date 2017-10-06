@@ -187,7 +187,7 @@ class RandomImageGenerator {
 		$spec['height'] = mt_rand( $this->minHeight, $this->maxHeight );
 		$spec['fill'] = $this->getRandomColor();
 
-		$diagonalLength = sqrt( pow( $spec['width'], 2 ) + pow( $spec['height'], 2 ) );
+		$diagonalLength = sqrt( $spec['width'] ** 2 + $spec['height'] ** 2 );
 
 		$draws = [];
 		for ( $i = 0; $i <= $this->shapesToDraw; $i++ ) {

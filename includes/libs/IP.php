@@ -425,7 +425,7 @@ class IP {
 			$ip = self::sanitizeIP( $ip );
 			$n = ip2long( $ip );
 			if ( $n < 0 ) {
-				$n += pow( 2, 32 );
+				$n += 2 ** 32;
 				# On 32-bit platforms (and on Windows), 2^32 does not fit into an int,
 				# so $n becomes a float. We convert it to string instead.
 				if ( is_float( $n ) ) {
@@ -487,7 +487,7 @@ class IP {
 			}
 			# Convert to unsigned
 			if ( $network < 0 ) {
-				$network += pow( 2, 32 );
+				$network += 2 ** 32;
 			}
 		} else {
 			$network = false;
@@ -523,7 +523,7 @@ class IP {
 				$start = $end = false;
 			} else {
 				$start = sprintf( '%08X', $network );
-				$end = sprintf( '%08X', $network + pow( 2, ( 32 - $bits ) ) - 1 );
+				$end = sprintf( '%08X', $network + 2 ** ( 32 - $bits ) - 1 );
 			}
 		// Explicit range
 		} elseif ( strpos( $range, '-' ) !== false ) {
