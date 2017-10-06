@@ -599,7 +599,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		) ) {
 			# Interprets arguments:
 			$ns = $args[0];
-			$msg = isset( $args[1] ) ? $args[1] : " dummy message";
+			$msg = $args[1] ?? " dummy message";
 
 			# Forge the namespace constant name:
 			if ( $ns === 0 ) {

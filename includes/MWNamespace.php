@@ -472,9 +472,7 @@ class MWNamespace {
 	 */
 	public static function getNamespaceContentModel( $index ) {
 		global $wgNamespaceContentModels;
-		return isset( $wgNamespaceContentModels[$index] )
-			? $wgNamespaceContentModels[$index]
-			: null;
+		return $wgNamespaceContentModels[$index] ?? null;
 	}
 
 	/**

@@ -185,7 +185,7 @@ class ServiceContainer implements DestructibleService {
 			throw new NoSuchServiceException( $name );
 		}
 
-		return isset( $this->services[$name] ) ? $this->services[$name] : null;
+		return $this->services[$name] ?? null;
 	}
 
 	/**

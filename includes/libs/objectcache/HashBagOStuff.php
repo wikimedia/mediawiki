@@ -44,7 +44,7 @@ class HashBagOStuff extends BagOStuff {
 	function __construct( $params = [] ) {
 		parent::__construct( $params );
 
-		$this->maxCacheKeys = isset( $params['maxKeys'] ) ? $params['maxKeys'] : INF;
+		$this->maxCacheKeys = $params['maxKeys'] ?? INF;
 		if ( $this->maxCacheKeys <= 0 ) {
 			throw new InvalidArgumentException( '$maxKeys parameter must be above zero' );
 		}

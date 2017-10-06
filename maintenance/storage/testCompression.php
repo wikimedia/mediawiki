@@ -45,7 +45,7 @@ if ( isset( $options['limit'] ) ) {
 	$limit = 1000;
 	$untilHappy = true;
 }
-$type = isset( $options['type'] ) ? $options['type'] : 'ConcatenatedGzipHistoryBlob';
+$type = $options['type'] ?? 'ConcatenatedGzipHistoryBlob';
 
 $dbr = $this->getDB( DB_REPLICA );
 $res = $dbr->select(

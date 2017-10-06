@@ -226,7 +226,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			if ( $options['type'] !== 'style' ) {
 				continue;
 			}
-			$media = isset( $options['media'] ) ? $options['media'] : 'all';
+			$media = $options['media'] ?? 'all';
 			$style = $this->getContent( $titleText );
 			if ( strval( $style ) === '' ) {
 				continue;

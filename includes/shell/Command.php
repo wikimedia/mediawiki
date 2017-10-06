@@ -197,7 +197,7 @@ class Command {
 
 		$useLogPipe = false;
 		if ( is_executable( '/bin/bash' ) ) {
-			$time = intval( isset( $this->limits['time'] ) ? $this->limits['time'] : $wgMaxShellTime );
+			$time = intval( $this->limits['time'] ?? $wgMaxShellTime );
 			if ( isset( $this->limits['walltime'] ) ) {
 				$wallTime = intval( $this->limits['walltime'] );
 			} elseif ( isset( $this->limits['time'] ) ) {
@@ -205,10 +205,8 @@ class Command {
 			} else {
 				$wallTime = intval( $wgMaxShellWallClockTime );
 			}
-			$mem = intval( isset( $this->limits['memory'] ) ? $this->limits['memory'] : $wgMaxShellMemory );
-			$filesize = intval( isset( $this->limits['filesize'] )
-				? $this->limits['filesize']
-				: $wgMaxShellFileSize );
+			$mem = intval( $this->limits['memory'] ?? $wgMaxShellMemory );
+			$filesize = intval( $this->limits['filesize'] ?? $wgMaxShellFileSize );
 
 			if ( $time > 0 || $mem > 0 || $filesize > 0 || $wallTime > 0 ) {
 				$cmd = '/bin/bash ' . escapeshellarg( "$IP/includes/limit.sh" ) . ' ' .

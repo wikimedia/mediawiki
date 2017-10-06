@@ -121,7 +121,7 @@ class FauxRequest extends WebRequest {
 			$prefix = $wgCookiePrefix;
 		}
 		$name = $prefix . $key;
-		return isset( $this->cookies[$name] ) ? $this->cookies[$name] : $default;
+		return $this->cookies[$name] ?? $default;
 	}
 
 	/**

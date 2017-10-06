@@ -236,7 +236,7 @@ class ChangesList extends ContextSource {
 				$flagInfos[$key]['letter'] = $value['letter'];
 				$flagInfos[$key]['title'] = $value['title'];
 				// Allow customized class name, fall back to flag name
-				$flagInfos[$key]['class'] = isset( $value['class'] ) ? $value['class'] : $key;
+				$flagInfos[$key]['class'] = $value['class'] ?? $key;
 			}
 		}
 

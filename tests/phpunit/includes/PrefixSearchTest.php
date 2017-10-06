@@ -211,7 +211,7 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 	public function testSearch( array $case ) {
 		$this->searchProvision( null );
 
-		$namespaces = isset( $case['namespaces'] ) ? $case['namespaces'] : [];
+		$namespaces = $case['namespaces'] ?? [];
 
 		if ( wfGetDB( DB_REPLICA )->getType() === 'postgres' ) {
 			// Postgres will sort lexicographically on utf8 code units (" " before "/")
@@ -235,7 +235,7 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 	public function testSearchWithOffset( array $case ) {
 		$this->searchProvision( null );
 
-		$namespaces = isset( $case['namespaces'] ) ? $case['namespaces'] : [];
+		$namespaces = $case['namespaces'] ?? [];
 
 		$searcher = new StringPrefixSearch;
 		$results = $searcher->search( $case['query'], 3, $namespaces, 1 );

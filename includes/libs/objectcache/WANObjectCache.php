@@ -180,13 +180,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 */
 	public function __construct( array $params ) {
 		$this->cache = $params['cache'];
-		$this->purgeChannel = isset( $params['channels']['purge'] )
-			? $params['channels']['purge']
-			: self::DEFAULT_PURGE_CHANNEL;
-		$this->purgeRelayer = isset( $params['relayers']['purge'] )
-			? $params['relayers']['purge']
-			: new EventRelayerNull( [] );
-		$this->setLogger( isset( $params['logger'] ) ? $params['logger'] : new NullLogger() );
+		$this->purgeChannel = $params['channels']['purge'] ?? self::DEFAULT_PURGE_CHANNEL;
+		$this->purgeRelayer = $params['relayers']['purge'] ?? new EventRelayerNull( [] );
+		$this->setLogger( $params['logger'] ?? new NullLogger() );
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -249,10 +245,10 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$curTTLs = [];
 		$asOfs = [];
 		$values = $this->getMulti( [ $key ], $curTTLs, $checkKeys, $asOfs );
-		$curTTL = isset( $curTTLs[$key] ) ? $curTTLs[$key] : null;
-		$asOf = isset( $asOfs[$key] ) ? $asOfs[$key] : null;
+		$curTTL = $curTTLs[$key] ?? null;
+		$asOf = $asOfs[$key] ?? null;
 
-		return isset( $values[$key] ) ? $values[$key] : false;
+		return $values[$key] ?? false;
 	}
 
 	/**
@@ -435,10 +431,10 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 */
 	final public function set( $key, $value, $ttl = 0, array $opts = [] ) {
 		$now = microtime( true );
-		$lockTSE = isset( $opts['lockTSE'] ) ? $opts['lockTSE'] : self::TSE_NONE;
+		$lockTSE = $opts['lockTSE'] ?? self::TSE_NONE;
 		$age = isset( $opts['since'] ) ? max( 0, $now - $opts['since'] ) : 0;
-		$lag = isset( $opts['lag'] ) ? $opts['lag'] : 0;
-		$staleTTL = isset( $opts['staleTTL'] ) ? $opts['staleTTL'] : 0;
+		$lag = $opts['lag'] ?? 0;
+		$staleTTL = $opts['staleTTL'] ?? 0;
 
 		// Do not cache potentially uncommitted data as it might get rolled back
 		if ( !empty( $opts['pending'] ) ) {
@@ -855,13 +851,13 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @note Callable type hints are not used to avoid class-autoloading
 	 */
 	final public function getWithSetCallback( $key, $ttl, $callback, array $opts = [] ) {
-		$pcTTL = isset( $opts['pcTTL'] ) ? $opts['pcTTL'] : self::TTL_UNCACHEABLE;
+		$pcTTL = $opts['pcTTL'] ?? self::TTL_UNCACHEABLE;
 
 		// Try the process cache if enabled and the cache callback is not within a cache callback.
 		// Process cache use in nested callbacks is not lag-safe with regard to HOLDOFF_TTL since
 		// the in-memory value is further lagged than the shared one since it uses a blind TTL.
 		if ( $pcTTL >= 0 && $this->callbackDepth == 0 ) {
-			$group = isset( $opts['pcGroup'] ) ? $opts['pcGroup'] : self::PC_PRIMARY;
+			$group = $opts['pcGroup'] ?? self::PC_PRIMARY;
 			$procCache = $this->getProcessCache( $group );
 			$value = $procCache->get( $key );
 		} else {
@@ -937,13 +933,13 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @note Callable type hints are not used to avoid class-autoloading
 	 */
 	protected function doGetWithSetCallback( $key, $ttl, $callback, array $opts, &$asOf = null ) {
-		$lowTTL = isset( $opts['lowTTL'] ) ? $opts['lowTTL'] : min( self::LOW_TTL, $ttl );
-		$lockTSE = isset( $opts['lockTSE'] ) ? $opts['lockTSE'] : self::TSE_NONE;
-		$checkKeys = isset( $opts['checkKeys'] ) ? $opts['checkKeys'] : [];
-		$busyValue = isset( $opts['busyValue'] ) ? $opts['busyValue'] : null;
-		$popWindow = isset( $opts['hotTTR'] ) ? $opts['hotTTR'] : self::HOT_TTR;
-		$ageNew = isset( $opts['ageNew'] ) ? $opts['ageNew'] : self::AGE_NEW;
-		$minTime = isset( $opts['minAsOf'] ) ? $opts['minAsOf'] : self::MIN_TIMESTAMP_NONE;
+		$lowTTL = $opts['lowTTL'] ?? min( self::LOW_TTL, $ttl );
+		$lockTSE = $opts['lockTSE'] ?? self::TSE_NONE;
+		$checkKeys = $opts['checkKeys'] ?? [];
+		$busyValue = $opts['busyValue'] ?? null;
+		$popWindow = $opts['hotTTR'] ?? self::HOT_TTR;
+		$ageNew = $opts['ageNew'] ?? self::AGE_NEW;
+		$minTime = $opts['minAsOf'] ?? self::MIN_TIMESTAMP_NONE;
 		$versioned = isset( $opts['version'] );
 
 		// Get the current key value
@@ -1108,7 +1104,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		ArrayIterator $keyedIds, $ttl, callable $callback, array $opts = []
 	) {
 		$valueKeys = array_keys( $keyedIds->getArrayCopy() );
-		$checkKeys = isset( $opts['checkKeys'] ) ? $opts['checkKeys'] : [];
+		$checkKeys = $opts['checkKeys'] ?? [];
 
 		// Load required keys into process cache in one go
 		$this->warmupCache = $this->getRawKeysForWarmup(
@@ -1195,7 +1191,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	) {
 		$idsByValueKey = $keyedIds->getArrayCopy();
 		$valueKeys = array_keys( $idsByValueKey );
-		$checkKeys = isset( $opts['checkKeys'] ) ? $opts['checkKeys'] : [];
+		$checkKeys = $opts['checkKeys'] ?? [];
 		unset( $opts['lockTSE'] ); // incompatible
 		unset( $opts['busyValue'] ); // incompatible
 
@@ -1626,7 +1622,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			return [ false, null ];
 		}
 
-		$flags = isset( $wrapped[self::FLD_FLAGS] ) ? $wrapped[self::FLD_FLAGS] : 0;
+		$flags = $wrapped[self::FLD_FLAGS] ?? 0;
 		if ( ( $flags & self::FLG_STALE ) == self::FLG_STALE ) {
 			// Treat as expired, with the cache time as the expiration
 			$age = $now - $wrapped[self::FLD_TIME];
@@ -1712,7 +1708,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	private function getNonProcessCachedKeys( array $keys, array $opts ) {
 		$keysFound = [];
 		if ( isset( $opts['pcTTL'] ) && $opts['pcTTL'] > 0 && $this->callbackDepth == 0 ) {
-			$pcGroup = isset( $opts['pcGroup'] ) ? $opts['pcGroup'] : self::PC_PRIMARY;
+			$pcGroup = $opts['pcGroup'] ?? self::PC_PRIMARY;
 			$procCache = $this->getProcessCache( $pcGroup );
 			foreach ( $keys as $key ) {
 				if ( $procCache->get( $key ) !== false ) {

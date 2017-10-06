@@ -273,9 +273,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 	 * @return string
 	 */
 	protected function getInputHTMLForKey( $key, array $values ) {
-		$displayFormat = isset( $this->mParams['format'] )
-			? $this->mParams['format']
-			: $this->mParent->getDisplayFormat();
+		$displayFormat = $this->mParams['format'] ?? $this->mParent->getDisplayFormat();
 
 		// Conveniently, PHP method names are case-insensitive.
 		$getFieldHtmlMethod = $displayFormat == 'table' ? 'getTableRow' : ( 'get' . $displayFormat );
@@ -306,9 +304,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 
 		if ( !isset( $fields['delete'] ) ) {
 			$name = "{$this->mName}[$key][delete]";
-			$label = isset( $this->mParams['delete-button-message'] )
-				? $this->mParams['delete-button-message']
-				: 'htmlform-cloner-delete';
+			$label = $this->mParams['delete-button-message'] ?? 'htmlform-cloner-delete';
 			$field = HTMLForm::loadInputFromParameters( $name, [
 				'type' => 'submit',
 				'formnovalidate' => true,
@@ -379,9 +375,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		], $html );
 
 		$name = "{$this->mName}[create]";
-		$label = isset( $this->mParams['create-button-message'] )
-			? $this->mParams['create-button-message']
-			: 'htmlform-cloner-create';
+		$label = $this->mParams['create-button-message'] ?? 'htmlform-cloner-create';
 		$field = HTMLForm::loadInputFromParameters( $name, [
 			'type' => 'submit',
 			'formnovalidate' => true,

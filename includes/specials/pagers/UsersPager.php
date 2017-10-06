@@ -399,7 +399,7 @@ class UsersPager extends AlphabeticPager {
 			$user = User::newFromId( $uid );
 			return $user->getGroupMemberships();
 		} else {
-			return isset( $cache[$uid] ) ? $cache[$uid] : [];
+			return $cache[$uid] ?? [];
 		}
 	}
 

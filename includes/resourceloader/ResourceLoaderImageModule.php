@@ -224,7 +224,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	public function getImage( $name, ResourceLoaderContext $context ) {
 		$this->loadFromDefinition();
 		$images = $this->getImages( $context );
-		return isset( $images[$name] ) ? $images[$name] : null;
+		return $images[$name] ?? null;
 	}
 
 	/**
@@ -241,9 +241,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		if ( !isset( $this->imageObjects[$skin] ) ) {
 			$this->imageObjects[$skin] = [];
 			if ( !isset( $this->images[$skin] ) ) {
-				$this->images[$skin] = isset( $this->images['default'] ) ?
-					$this->images['default'] :
-					[];
+				$this->images[$skin] = $this->images['default'] ?? [];
 			}
 			foreach ( $this->images[$skin] as $name => $options ) {
 				$fileDescriptor = is_string( $options ) ? $options : $options['file'];
@@ -290,9 +288,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		if ( !isset( $this->globalVariants[$skin] ) ) {
 			$this->globalVariants[$skin] = [];
 			if ( !isset( $this->variants[$skin] ) ) {
-				$this->variants[$skin] = isset( $this->variants['default'] ) ?
-					$this->variants['default'] :
-					[];
+				$this->variants[$skin] = $this->variants['default'] ?? [];
 			}
 			foreach ( $this->variants[$skin] as $name => $config ) {
 				if ( isset( $config['global'] ) && $config['global'] ) {

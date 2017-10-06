@@ -1225,9 +1225,7 @@ class DatabaseMssql extends Database {
 			$this->populateColumnCaches();
 		}
 
-		return isset( $this->mBinaryColumnCache[$tableRaw] )
-			? $this->mBinaryColumnCache[$tableRaw]
-			: [];
+		return $this->mBinaryColumnCache[$tableRaw] ?? [];
 	}
 
 	/**
@@ -1242,9 +1240,7 @@ class DatabaseMssql extends Database {
 			$this->populateColumnCaches();
 		}
 
-		return isset( $this->mBitColumnCache[$tableRaw] )
-			? $this->mBitColumnCache[$tableRaw]
-			: [];
+		return $this->mBitColumnCache[$tableRaw] ?? [];
 	}
 
 	private function populateColumnCaches() {

@@ -928,7 +928,7 @@ class RecentChange {
 	 */
 	public function getParam( $name ) {
 		$params = $this->parseParams();
-		return isset( $params[$name] ) ? $params[$name] : null;
+		return $params[$name] ?? null;
 	}
 
 	/**
@@ -968,7 +968,7 @@ class RecentChange {
 		if ( $name === 'rc_comment' ) {
 			return CommentStore::newKey( 'rc_comment' )->getComment( $this->mAttribs, true )->text;
 		}
-		return isset( $this->mAttribs[$name] ) ? $this->mAttribs[$name] : null;
+		return $this->mAttribs[$name] ?? null;
 	}
 
 	/**

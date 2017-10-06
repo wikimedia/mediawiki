@@ -3517,7 +3517,7 @@ class Parser {
 		if ( is_string( $stuff['text'] ) ) {
 			$text = strtr( $text, "\x7f", "?" );
 		}
-		$finalTitle = isset( $stuff['finalTitle'] ) ? $stuff['finalTitle'] : $title;
+		$finalTitle = $stuff['finalTitle'] ?? $title;
 		if ( isset( $stuff['deps'] ) ) {
 			foreach ( $stuff['deps'] as $dep ) {
 				$this->mOutput->addTemplate( $dep['title'], $dep['page_id'], $dep['rev_id'] );
@@ -4713,7 +4713,7 @@ class Parser {
 		if ( preg_match( '/[<>\r\n]/', $tag, $m ) ) {
 			throw new MWException( "Invalid character {$m[0]} in setHook('$tag', ...) call" );
 		}
-		$oldVal = isset( $this->mTagHooks[$tag] ) ? $this->mTagHooks[$tag] : null;
+		$oldVal = $this->mTagHooks[$tag] ?? null;
 		$this->mTagHooks[$tag] = $callback;
 		if ( !in_array( $tag, $this->mStripList ) ) {
 			$this->mStripList[] = $tag;
@@ -4744,7 +4744,7 @@ class Parser {
 		if ( preg_match( '/[<>\r\n]/', $tag, $m ) ) {
 			throw new MWException( "Invalid character {$m[0]} in setTransparentHook('$tag', ...) call" );
 		}
-		$oldVal = isset( $this->mTransparentTagHooks[$tag] ) ? $this->mTransparentTagHooks[$tag] : null;
+		$oldVal = $this->mTransparentTagHooks[$tag] ?? null;
 		$this->mTransparentTagHooks[$tag] = $callback;
 
 		return $oldVal;
@@ -4859,8 +4859,7 @@ class Parser {
 		if ( preg_match( '/[<>\r\n]/', $tag, $m ) ) {
 			throw new MWException( "Invalid character {$m[0]} in setFunctionTagHook('$tag', ...) call" );
 		}
-		$old = isset( $this->mFunctionTagHooks[$tag] ) ?
-			$this->mFunctionTagHooks[$tag] : null;
+		$old = $this->mFunctionTagHooks[$tag] ?? null;
 		$this->mFunctionTagHooks[$tag] = [ $callback, $flags ];
 
 		if ( !in_array( $tag, $this->mStripList ) ) {
@@ -5329,7 +5328,7 @@ class Parser {
 		Hooks::run( 'ParserMakeImageParams', [ $title, $file, &$params, $this ] );
 
 		# Linker does the rest
-		$time = isset( $options['time'] ) ? $options['time'] : false;
+		$time = $options['time'] ?? false;
 		$ret = Linker::makeImageLink( $this, $title, $file, $params['frame'], $params['handler'],
 			$time, $descQuery, $this->mOptions->getThumbSize() );
 

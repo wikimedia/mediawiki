@@ -131,9 +131,7 @@ class Preferences {
 				$info['disabled'] = 'disabled';
 			}
 			$field = HTMLForm::loadInputFromParameters( $name, $info, $dummyForm ); // For validation
-			$globalDefault = isset( $defaultOptions[$name] )
-				? $defaultOptions[$name]
-				: null;
+			$globalDefault = $defaultOptions[$name] ?? null;
 
 			// If it validates, set it as the default
 			if ( isset( $info['default'] ) ) {
@@ -167,7 +165,7 @@ class Preferences {
 		if ( ( isset( $info['type'] ) && $info['type'] == 'multiselect' ) ||
 				( isset( $info['class'] ) && $info['class'] == 'HTMLMultiSelectField' ) ) {
 			$options = HTMLFormField::flattenOptions( $info['options'] );
-			$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $name;
+			$prefix = $info['prefix'] ?? $name;
 			$val = [];
 
 			foreach ( $options as $value ) {
@@ -182,7 +180,7 @@ class Preferences {
 				( isset( $info['class'] ) && $info['class'] == 'HTMLCheckMatrix' ) ) {
 			$columns = HTMLFormField::flattenOptions( $info['columns'] );
 			$rows = HTMLFormField::flattenOptions( $info['rows'] );
-			$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $name;
+			$prefix = $info['prefix'] ?? $name;
 			$val = [];
 
 			foreach ( $columns as $column ) {

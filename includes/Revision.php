@@ -191,8 +191,8 @@ class Revision implements IDBAccessObject {
 		global $wgContentHandlerUseDB;
 
 		$attribs = $overrides + [
-			'page'       => isset( $row->ar_page_id ) ? $row->ar_page_id : null,
-			'id'         => isset( $row->ar_rev_id ) ? $row->ar_rev_id : null,
+			'page'       => $row->ar_page_id ?? null,
+			'id'         => $row->ar_rev_id ?? null,
 			'comment'    => CommentStore::newKey( 'ar_comment' )
 				// Legacy because $row probably came from self::selectArchiveFields()
 				->getCommentLegacy( wfGetDB( DB_REPLICA ), $row, true )->text,
@@ -200,12 +200,12 @@ class Revision implements IDBAccessObject {
 			'user_text'  => $row->ar_user_text,
 			'timestamp'  => $row->ar_timestamp,
 			'minor_edit' => $row->ar_minor_edit,
-			'text_id'    => isset( $row->ar_text_id ) ? $row->ar_text_id : null,
+			'text_id'    => $row->ar_text_id ?? null,
 			'deleted'    => $row->ar_deleted,
 			'len'        => $row->ar_len,
-			'sha1'       => isset( $row->ar_sha1 ) ? $row->ar_sha1 : null,
-			'content_model'   => isset( $row->ar_content_model ) ? $row->ar_content_model : null,
-			'content_format'  => isset( $row->ar_content_format ) ? $row->ar_content_format : null,
+			'sha1'       => $row->ar_sha1 ?? null,
+			'content_model'   => $row->ar_content_model ?? null,
+			'content_format'  => $row->ar_content_format ?? null,
 		];
 
 		if ( !$wgContentHandlerUseDB ) {
@@ -682,7 +682,7 @@ class Revision implements IDBAccessObject {
 			$this->mText = isset( $row['text'] ) ? rtrim( strval( $row['text'] ) ) : null;
 			$this->mTextRow = null;
 
-			$this->mTitle = isset( $row['title'] ) ? $row['title'] : null;
+			$this->mTitle = $row['title'] ?? null;
 
 			// if we have a Content object, override mText and mContentModel
 			if ( !empty( $row['content'] ) ) {

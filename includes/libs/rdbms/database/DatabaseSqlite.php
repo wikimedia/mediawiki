@@ -475,7 +475,7 @@ class DatabaseSqlite extends Database {
 		}
 		$e = $this->mConn->errorInfo();
 
-		return isset( $e[2] ) ? $e[2] : '';
+		return $e[2] ?? '';
 	}
 
 	/**
