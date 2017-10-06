@@ -370,11 +370,10 @@ class XhprofData {
 		return function ( $a, $b ) use ( $key, $sub ) {
 			if ( isset( $a[$key] ) && isset( $b[$key] ) ) {
 				// Descending sort: larger values will be first in result.
-				// Assumes all values are numeric.
 				// Values for 'main()' will not have sub keys
 				$valA = is_array( $a[$key] ) ? $a[$key][$sub] : $a[$key];
 				$valB = is_array( $b[$key] ) ? $b[$key][$sub] : $b[$key];
-				return $valB - $valA;
+				return $valB <=> $valA;
 			} else {
 				// Sort datum with the key before those without
 				return isset( $a[$key] ) ? -1 : 1;

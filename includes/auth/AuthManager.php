@@ -2286,9 +2286,10 @@ class AuthManager implements LoggerAwareInterface {
 			$spec = [ 'sort2' => $i++ ] + $spec + [ 'sort' => 0 ];
 		}
 		unset( $spec );
+		// Sort according to the 'sort' field, and if they are equal, according to 'sort2'
 		usort( $specs, function ( $a, $b ) {
-			return ( (int)$a['sort'] ) - ( (int)$b['sort'] )
-				?: $a['sort2'] - $b['sort2'];
+			return $a['sort'] <=> $b['sort']
+				?: $a['sort2'] <=> $b['sort2'];
 		} );
 
 		$ret = [];

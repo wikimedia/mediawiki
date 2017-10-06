@@ -1219,7 +1219,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		];
 
 		usort( $this->filterGroups, function ( $a, $b ) {
-			return $b->getPriority() - $a->getPriority();
+			return $b->getPriority() <=> $a->getPriority();
 		} );
 
 		foreach ( $this->filterGroups as $groupName => $group ) {
