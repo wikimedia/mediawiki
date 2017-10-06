@@ -1073,8 +1073,8 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		Assert::parameterType( 'object', $row, '$row' );
 
 		if ( !$title ) {
-			$pageId = isset( $row->rev_page ) ? $row->rev_page : 0; // XXX: also check page_id?
-			$revId = isset( $row->rev_id ) ? $row->rev_id : 0;
+			$pageId = $row->rev_page ?? 0; // XXX: also check page_id?
+			$revId = $row->rev_id ?? 0;
 
 			$title = $this->getTitle( $pageId, $revId );
 		}
@@ -1141,8 +1141,8 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		}
 
 		if ( !$title ) {
-			$pageId = isset( $fields['page'] ) ? $fields['page'] : 0;
-			$revId = isset( $fields['id'] ) ? $fields['id'] : 0;
+			$pageId = $fields['page'] ?? 0;
+			$revId = $fields['id'] ?? 0;
 
 			$title = $this->getTitle( $pageId, $revId );
 		}
@@ -1190,7 +1190,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			isset( $fields['comment'] )
 			&& !( $fields['comment'] instanceof CommentStoreComment )
 		) {
-			$commentData = isset( $fields['comment_data'] ) ? $fields['comment_data'] : null;
+			$commentData = $fields['comment_data'] ?? null;
 
 			if ( $fields['comment'] instanceof Message ) {
 				$fields['comment'] = CommentStoreComment::newUnsavedComment(

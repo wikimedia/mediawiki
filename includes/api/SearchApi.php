@@ -150,7 +150,7 @@ trait SearchApi {
 	 */
 	public function buildSearchEngine( array $params = null ) {
 		if ( $params != null ) {
-			$type = isset( $params['backend'] ) ? $params['backend'] : null;
+			$type = $params['backend'] ?? null;
 			if ( $type === self::$BACKEND_NULL_PARAM ) {
 				$type = null;
 			}

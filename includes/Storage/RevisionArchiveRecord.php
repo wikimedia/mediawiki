@@ -85,7 +85,7 @@ class RevisionArchiveRecord extends RevisionRecord {
 		$this->mMinorEdit = boolval( $row->ar_minor_edit );
 		$this->mDeleted = intval( $row->ar_deleted );
 		$this->mSize = intval( $row->ar_len );
-		$this->mSha1 = isset( $row->ar_sha1 ) ? $row->ar_sha1 : null;
+		$this->mSha1 = $row->ar_sha1 ?? null;
 	}
 
 	/**

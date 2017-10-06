@@ -38,11 +38,11 @@ class HTMLTextField extends HTMLFormField {
 	}
 
 	public function getSize() {
-		return isset( $this->mParams['size'] ) ? $this->mParams['size'] : 45;
+		return $this->mParams['size'] ?? 45;
 	}
 
 	public function getSpellCheck() {
-		$val = isset( $this->mParams['spellcheck'] ) ? $this->mParams['spellcheck'] : null;
+		$val = $this->mParams['spellcheck'] ?? null;
 		if ( is_bool( $val ) ) {
 			// "spellcheck" attribute literally requires "true" or "false" to work.
 			return $val === true ? 'true' : 'false';
@@ -107,7 +107,7 @@ class HTMLTextField extends HTMLFormField {
 	}
 
 	protected function getType( &$attribs ) {
-		$type = isset( $attribs['type'] ) ? $attribs['type'] : 'text';
+		$type = $attribs['type'] ?? 'text';
 		unset( $attribs['type'] );
 
 		# Implement tiny differences between some field variants

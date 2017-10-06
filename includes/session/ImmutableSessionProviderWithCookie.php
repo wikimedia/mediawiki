@@ -84,9 +84,7 @@ abstract class ImmutableSessionProviderWithCookie extends SessionProvider {
 			);
 		}
 
-		$prefix = isset( $this->sessionCookieOptions['prefix'] )
-			? $this->sessionCookieOptions['prefix']
-			: $this->config->get( 'CookiePrefix' );
+		$prefix = $this->sessionCookieOptions['prefix'] ?? $this->config->get( 'CookiePrefix' );
 		$id = $request->getCookie( $this->sessionCookieName, $prefix );
 		return SessionManager::validateSessionId( $id ) ? $id : null;
 	}
@@ -141,9 +139,7 @@ abstract class ImmutableSessionProviderWithCookie extends SessionProvider {
 			return [];
 		}
 
-		$prefix = isset( $this->sessionCookieOptions['prefix'] )
-			? $this->sessionCookieOptions['prefix']
-			: $this->config->get( 'CookiePrefix' );
+		$prefix = $this->sessionCookieOptions['prefix'] ?? $this->config->get( 'CookiePrefix' );
 		return [ $prefix . $this->sessionCookieName ];
 	}
 

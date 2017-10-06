@@ -92,12 +92,8 @@ class WANObjectCacheReaper implements LoggerAwareInterface {
 			throw new UnexpectedValueException( "No channel specified." );
 		}
 
-		$this->initialStartWindow = isset( $params['initialStartWindow'] )
-			? $params['initialStartWindow']
-			: 3600;
-		$this->logger = isset( $params['logger'] )
-			? $params['logger']
-			: new NullLogger();
+		$this->initialStartWindow = $params['initialStartWindow'] ?? 3600;
+		$this->logger = $params['logger'] ?? new NullLogger();
 	}
 
 	public function setLogger( LoggerInterface $logger ) {

@@ -182,7 +182,7 @@ class DatabaseDomain {
 		for ( $i = 0; $i < $length; ++$i ) {
 			$char = $encoded[$i];
 			if ( $char === '?' ) {
-				$nextChar = isset( $encoded[$i + 1] ) ? $encoded[$i + 1] : null;
+				$nextChar = $encoded[$i + 1] ?? null;
 				if ( $nextChar === 'h' ) {
 					$decoded .= '-';
 					++$i;

@@ -5,7 +5,7 @@
  */
 class HTMLFloatField extends HTMLTextField {
 	public function getSize() {
-		return isset( $this->mParams['size'] ) ? $this->mParams['size'] : 20;
+		return $this->mParams['size'] ?? 20;
 	}
 
 	public function validate( $value, $alldata ) {

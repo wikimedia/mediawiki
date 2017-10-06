@@ -172,7 +172,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 				throw new Exception( "Request has no 'url' field set." );
 			}
 			$this->logger->debug( "{$req['method']}: {$req['url']}" );
-			$req['query'] = isset( $req['query'] ) ? $req['query'] : [];
+			$req['query'] = $req['query'] ?? [];
 			$headers = []; // normalized headers
 			if ( isset( $req['headers'] ) ) {
 				foreach ( $req['headers'] as $name => $value ) {
@@ -184,7 +184,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 				$req['body'] = '';
 				$req['headers']['content-length'] = 0;
 			}
-			$req['flags'] = isset( $req['flags'] ) ? $req['flags'] : [];
+			$req['flags'] = $req['flags'] ?? [];
 			$handles[$index] = $this->getCurlHandle( $req, $opts );
 			if ( count( $reqs ) > 1 ) {
 				// https://github.com/guzzle/guzzle/issues/349
@@ -286,10 +286,10 @@ class MultiHttpClient implements LoggerAwareInterface {
 		$ch = curl_init();
 
 		curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT,
-			isset( $opts['connTimeout'] ) ? $opts['connTimeout'] : $this->connTimeout );
-		curl_setopt( $ch, CURLOPT_PROXY, isset( $req['proxy'] ) ? $req['proxy'] : $this->proxy );
+			$opts['connTimeout'] ?? $this->connTimeout );
+		curl_setopt( $ch, CURLOPT_PROXY, $req['proxy'] ?? $this->proxy );
 		curl_setopt( $ch, CURLOPT_TIMEOUT,
-			isset( $opts['reqTimeout'] ) ? $opts['reqTimeout'] : $this->reqTimeout );
+			$opts['reqTimeout'] ?? $this->reqTimeout );
 		curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1 );
 		curl_setopt( $ch, CURLOPT_MAXREDIRS, 4 );
 		curl_setopt( $ch, CURLOPT_HEADER, 0 );

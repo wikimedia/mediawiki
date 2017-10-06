@@ -807,7 +807,7 @@ abstract class QueryPage extends SpecialPage {
 		}
 		$title = Title::makeTitle( intval( $row->namespace ), $row->title );
 		if ( $title ) {
-			$date = isset( $row->timestamp ) ? $row->timestamp : '';
+			$date = $row->timestamp ?? '';
 			$comments = '';
 			if ( $title ) {
 				$talkpage = $title->getTalkPage();
@@ -831,7 +831,7 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	function feedItemAuthor( $row ) {
-		return isset( $row->user_text ) ? $row->user_text : '';
+		return $row->user_text ?? '';
 	}
 
 	function feedTitle() {

@@ -54,7 +54,7 @@ try {
 	echo $templateParser->processTemplate(
 		'NoLocalSettings',
 		[
-			'wgVersion' => ( isset( $wgVersion ) ? $wgVersion : 'VERSION' ),
+			'wgVersion' => ( $wgVersion ?? 'VERSION' ),
 			'path' => $path,
 			'ext' => $ext,
 			'localSettingsExists' => file_exists( MW_CONFIG_FILE ),

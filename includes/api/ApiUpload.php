@@ -686,9 +686,7 @@ class ApiUpload extends ApiBase {
 				$warning = $warnings['exists'];
 				unset( $warnings['exists'] );
 				/** @var LocalFile $localFile */
-				$localFile = isset( $warning['normalizedFile'] )
-					? $warning['normalizedFile']
-					: $warning['file'];
+				$localFile = $warning['normalizedFile'] ?? $warning['file'];
 				$warnings[$warning['warning']] = $localFile->getName();
 			}
 

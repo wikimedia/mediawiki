@@ -676,8 +676,7 @@ class XMPReader implements LoggerAwareInterface {
 		list( $ns, $tag ) = explode( ' ', $elm, 2 );
 		if ( isset( $this->items[$ns][$tag]['validate'] ) ) {
 			$info =& $this->items[$ns][$tag];
-			$finalName = isset( $info['map_name'] )
-				? $info['map_name'] : $tag;
+			$finalName = $info['map_name'] ?? $tag;
 
 			if ( is_array( $info['validate'] ) ) {
 				$validate = $info['validate'];
@@ -742,8 +741,7 @@ class XMPReader implements LoggerAwareInterface {
 	private function endElementModeLi( $elm ) {
 		list( $ns, $tag ) = explode( ' ', $this->curItem[0], 2 );
 		$info = $this->items[$ns][$tag];
-		$finalName = isset( $info['map_name'] )
-			? $info['map_name'] : $tag;
+		$finalName = $info['map_name'] ?? $tag;
 
 		array_shift( $this->mode );
 
@@ -1069,8 +1067,7 @@ class XMPReader implements LoggerAwareInterface {
 				array_unshift( $this->mode, $mode );
 				array_unshift( $this->curItem, $ns . ' ' . $tag );
 				if ( $mode === self::MODE_STRUCT ) {
-					$this->ancestorStruct = isset( $this->items[$ns][$tag]['map_name'] )
-						? $this->items[$ns][$tag]['map_name'] : $tag;
+					$this->ancestorStruct = $this->items[$ns][$tag]['map_name'] ?? $tag;
 				}
 				if ( $this->charContent !== false ) {
 					// Something weird.
@@ -1179,8 +1176,7 @@ class XMPReader implements LoggerAwareInterface {
 				throw new RuntimeException( 'Can not find parent of BAGSTRUCT.' );
 			}
 			list( $curNS, $curTag ) = explode( ' ', $this->curItem[1] );
-			$this->ancestorStruct = isset( $this->items[$curNS][$curTag]['map_name'] )
-				? $this->items[$curNS][$curTag]['map_name'] : $curTag;
+			$this->ancestorStruct = $this->items[$curNS][$curTag]['map_name'] ?? $curTag;
 
 			$this->doAttribs( $attribs );
 		} else {
@@ -1392,8 +1388,7 @@ class XMPReader implements LoggerAwareInterface {
 	 */
 	private function saveValue( $ns, $tag, $val ) {
 		$info =& $this->items[$ns][$tag];
-		$finalName = isset( $info['map_name'] )
-			? $info['map_name'] : $tag;
+		$finalName = $info['map_name'] ?? $tag;
 		if ( isset( $info['validate'] ) ) {
 			if ( is_array( $info['validate'] ) ) {
 				$validate = $info['validate'];

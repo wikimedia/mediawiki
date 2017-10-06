@@ -13,8 +13,8 @@ trait HTMLFormElement {
 
 	public function initializeHTMLFormElement( array $config = [] ) {
 		// Properties
-		$this->hideIf = isset( $config['hideIf'] ) ? $config['hideIf'] : null;
-		$this->modules = isset( $config['modules'] ) ? $config['modules'] : [];
+		$this->hideIf = $config['hideIf'] ?? null;
+		$this->modules = $config['modules'] ?? [];
 
 		// Initialization
 		if ( $this->hideIf ) {

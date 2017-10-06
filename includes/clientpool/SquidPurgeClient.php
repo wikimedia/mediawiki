@@ -73,7 +73,7 @@ class SquidPurgeClient {
 	public function __construct( $server, $options = [] ) {
 		$parts = explode( ':', $server, 2 );
 		$this->host = $parts[0];
-		$this->port = isset( $parts[1] ) ? $parts[1] : 80;
+		$this->port = $parts[1] ?? 80;
 	}
 
 	/**

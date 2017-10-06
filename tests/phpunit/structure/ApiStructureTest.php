@@ -201,9 +201,8 @@ class ApiStructureTest extends MediaWikiTestCase {
 				if ( isset( $config[ApiBase::PARAM_MAX_BYTES] )
 					|| isset( $config[ApiBase::PARAM_MAX_CHARS] )
 				) {
-					$default = isset( $config[ApiBase::PARAM_DFLT] ) ? $config[ApiBase::PARAM_DFLT] : null;
-					$type = isset( $config[ApiBase::PARAM_TYPE] ) ? $config[ApiBase::PARAM_TYPE]
-						: gettype( $default );
+					$default = $config[ApiBase::PARAM_DFLT] ?? null;
+					$type = $config[ApiBase::PARAM_TYPE] ?? gettype( $default );
 					$this->assertContains( $type, [ 'NULL', 'string', 'text', 'password' ],
 						'PARAM_MAX_BYTES/CHARS is only supported for string-like types' );
 				}

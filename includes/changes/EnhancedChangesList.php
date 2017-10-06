@@ -203,8 +203,7 @@ class EnhancedChangesList extends ChangesList {
 		# Default values for RC flags
 		$collectedRcFlags = [];
 		foreach ( $recentChangesFlags as $key => $value ) {
-			$flagGrouping = ( isset( $recentChangesFlags[$key]['grouping'] ) ?
-					$recentChangesFlags[$key]['grouping'] : 'any' );
+			$flagGrouping = ( $recentChangesFlags[$key]['grouping'] ?? 'any' );
 			switch ( $flagGrouping ) {
 				case 'all':
 					$collectedRcFlags[$key] = true;
@@ -277,8 +276,7 @@ class EnhancedChangesList extends ChangesList {
 
 			// Roll up flags
 			foreach ( $line['recentChangesFlagsRaw'] as $key => $value ) {
-				$flagGrouping = ( isset( $recentChangesFlags[$key]['grouping'] ) ?
-					$recentChangesFlags[$key]['grouping'] : 'any' );
+				$flagGrouping = ( $recentChangesFlags[$key]['grouping'] ?? 'any' );
 				switch ( $flagGrouping ) {
 					case 'all':
 						if ( !$value ) {

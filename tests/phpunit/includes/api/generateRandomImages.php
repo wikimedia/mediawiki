@@ -30,7 +30,7 @@ class GenerateRandomImages extends Maintenance {
 		];
 		$options = getopt( null, $getOptSpec );
 
-		$format = isset( $options['format'] ) ? $options['format'] : 'jpg';
+		$format = $options['format'] ?? 'jpg';
 		unset( $options['format'] );
 
 		$number = isset( $options['number'] ) ? intval( $options['number'] ) : 10;

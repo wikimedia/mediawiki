@@ -1615,7 +1615,7 @@ class EditPage {
 						$query = $query . '&' . $extraQueryRedirect;
 					}
 				}
-				$anchor = isset( $resultDetails['sectionanchor'] ) ? $resultDetails['sectionanchor'] : '';
+				$anchor = $resultDetails['sectionanchor'] ?? '';
 				$out->redirect( $this->mTitle->getFullURL( $query ) . $anchor );
 				return false;
 
@@ -4251,7 +4251,7 @@ class EditPage {
 		$checkboxes['watch'] = '';
 
 		foreach ( $checkboxesDef as $name => $options ) {
-			$legacyName = isset( $options['legacy-name'] ) ? $options['legacy-name'] : $name;
+			$legacyName = $options['legacy-name'] ?? $name;
 			$label = $this->context->msg( $options['label-message'] )->parse();
 			$attribs = [
 				'tabindex' => ++$tabindex,
@@ -4315,7 +4315,7 @@ class EditPage {
 		$checkboxesDef = $this->getCheckboxesDefinition( $checked );
 
 		foreach ( $checkboxesDef as $name => $options ) {
-			$legacyName = isset( $options['legacy-name'] ) ? $options['legacy-name'] : $name;
+			$legacyName = $options['legacy-name'] ?? $name;
 
 			$title = null;
 			$accesskey = null;
@@ -4341,7 +4341,7 @@ class EditPage {
 					'align' => 'inline',
 					'label' => new OOUI\HtmlSnippet( $this->context->msg( $options['label-message'] )->parse() ),
 					'title' => $title,
-					'id' => isset( $options['label-id'] ) ? $options['label-id'] : null,
+					'id' => $options['label-id'] ?? null,
 				]
 			);
 		}

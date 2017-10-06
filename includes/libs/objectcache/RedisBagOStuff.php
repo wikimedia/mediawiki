@@ -396,9 +396,7 @@ class RedisBagOStuff extends BagOStuff {
 	 */
 	protected function getMasterLinkStatus( RedisConnRef $conn ) {
 		$info = $conn->info();
-		return isset( $info['master_link_status'] )
-			? $info['master_link_status']
-			: null;
+		return $info['master_link_status'] ?? null;
 	}
 
 	/**

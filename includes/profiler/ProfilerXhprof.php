@@ -73,7 +73,7 @@ class ProfilerXhprof extends Profiler {
 	public function __construct( array $params = [] ) {
 		parent::__construct( $params );
 
-		$flags = isset( $params['flags'] ) ? $params['flags'] : 0;
+		$flags = $params['flags'] ?? 0;
 		$options = isset( $params['exclude'] )
 			? [ 'ignored_functions' => $params['exclude'] ] : [];
 		Xhprof::enable( $flags, $options );

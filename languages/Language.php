@@ -189,9 +189,7 @@ class Language {
 		}
 
 		// get the language object to process
-		$langObj = isset( self::$mLangObjCache[$code] )
-			? self::$mLangObjCache[$code]
-			: self::newFromCode( $code );
+		$langObj = self::$mLangObjCache[$code] ?? self::newFromCode( $code );
 
 		// merge the language object in to get it up front in the cache
 		self::$mLangObjCache = array_merge( [ $code => $langObj ], self::$mLangObjCache );
@@ -543,7 +541,7 @@ class Language {
 	 */
 	public function getNsText( $index ) {
 		$ns = $this->getNamespaces();
-		return isset( $ns[$index] ) ? $ns[$index] : false;
+		return $ns[$index] ?? false;
 	}
 
 	/**
@@ -578,7 +576,7 @@ class Language {
 		$ns = $wgExtraGenderNamespaces +
 			(array)self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
 
-		return isset( $ns[$index][$gender] ) ? $ns[$index][$gender] : $this->getNsText( $index );
+		return $ns[$index][$gender] ?? $this->getNsText( $index );
 	}
 
 	/**
@@ -614,7 +612,7 @@ class Language {
 	function getLocalNsIndex( $text ) {
 		$lctext = $this->lc( $text );
 		$ids = $this->getNamespaceIds();
-		return isset( $ids[$lctext] ) ? $ids[$lctext] : false;
+		return $ids[$lctext] ?? false;
 	}
 
 	/**
@@ -701,7 +699,7 @@ class Language {
 			return $ns;
 		}
 		$ids = $this->getNamespaceIds();
-		return isset( $ids[$lctext] ) ? $ids[$lctext] : false;
+		return $ids[$lctext] ?? false;
 	}
 
 	/**
@@ -3864,7 +3862,7 @@ class Language {
 		if ( $gender === 'female' ) {
 			return $forms[1];
 		}
-		return isset( $forms[2] ) ? $forms[2] : $forms[0];
+		return $forms[2] ?? $forms[0];
 	}
 
 	/**

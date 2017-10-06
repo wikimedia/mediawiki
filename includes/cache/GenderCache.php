@@ -85,7 +85,7 @@ class GenderCache {
 		/* Undefined if there is a valid username which for some reason doesn't
 		 * exist in the database.
 		 */
-		return isset( $this->cache[$username] ) ? $this->cache[$username] : $this->getDefault();
+		return $this->cache[$username] ?? $this->getDefault();
 	}
 
 	/**

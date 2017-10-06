@@ -186,12 +186,8 @@ class JobSpecification implements IJobSpecification {
 
 	public function getRootJobParams() {
 		return [
-			'rootJobSignature' => isset( $this->params['rootJobSignature'] )
-				? $this->params['rootJobSignature']
-				: null,
-			'rootJobTimestamp' => isset( $this->params['rootJobTimestamp'] )
-				? $this->params['rootJobTimestamp']
-				: null
+			'rootJobSignature' => $this->params['rootJobSignature'] ?? null,
+			'rootJobTimestamp' => $this->params['rootJobTimestamp'] ?? null
 		];
 	}
 
