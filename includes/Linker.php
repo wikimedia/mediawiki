@@ -894,7 +894,7 @@ class Linker {
 		$classes = 'mw-userlink';
 		if ( $userId == 0 ) {
 			$page = SpecialPage::getTitleFor( 'Contributions', $userName );
-			if ( $altUserName === false ) {
+			if ( !$altUserName ) {
 				$altUserName = IP::prettifyIP( $userName );
 			}
 			$classes .= ' mw-anonuserlink'; // Separate link class for anons (T45179)
