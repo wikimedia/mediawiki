@@ -171,30 +171,20 @@ class FileRepo {
 		}
 
 		// Optional settings that have a default
-		$this->initialCapital = isset( $info['initialCapital'] )
-			? $info['initialCapital']
-			: MWNamespace::isCapitalized( NS_FILE );
-		$this->url = isset( $info['url'] )
-			? $info['url']
-			: false; // a subclass may set the URL (e.g. ForeignAPIRepo)
+		$this->initialCapital = $info['initialCapital'] ?? MWNamespace::isCapitalized( NS_FILE );
+		$this->url = $info['url'] ?? false; // a subclass may set the URL (e.g. ForeignAPIRepo)
 		if ( isset( $info['thumbUrl'] ) ) {
 			$this->thumbUrl = $info['thumbUrl'];
 		} else {
 			$this->thumbUrl = $this->url ? "{$this->url}/thumb" : false;
 		}
-		$this->hashLevels = isset( $info['hashLevels'] )
-			? $info['hashLevels']
-			: 2;
-		$this->deletedHashLevels = isset( $info['deletedHashLevels'] )
-			? $info['deletedHashLevels']
-			: $this->hashLevels;
+		$this->hashLevels = $info['hashLevels'] ?? 2;
+		$this->deletedHashLevels = $info['deletedHashLevels'] ?? $this->hashLevels;
 		$this->transformVia404 = !empty( $info['transformVia404'] );
-		$this->abbrvThreshold = isset( $info['abbrvThreshold'] )
-			? $info['abbrvThreshold']
-			: 255;
+		$this->abbrvThreshold = $info['abbrvThreshold'] ?? 255;
 		$this->isPrivate = !empty( $info['isPrivate'] );
 		// Give defaults for the basic zones...
-		$this->zones = isset( $info['zones'] ) ? $info['zones'] : [];
+		$this->zones = $info['zones'] ?? [];
 		foreach ( [ 'public', 'thumb', 'transcoded', 'temp', 'deleted' ] as $zone ) {
 			if ( !isset( $this->zones[$zone]['container'] ) ) {
 				$this->zones[$zone]['container'] = "{$this->name}-{$zone}";
@@ -428,7 +418,7 @@ class FileRepo {
 		if ( isset( $options['bypassCache'] ) ) {
 			$options['latest'] = $options['bypassCache']; // b/c
 		}
-		$time = isset( $options['time'] ) ? $options['time'] : false;
+		$time = $options['time'] ?? false;
 		$flags = !empty( $options['latest'] ) ? File::READ_LATEST : 0;
 		# First try the current version of the file to see if it precedes the timestamp
 		$img = $this->newFile( $title );
@@ -534,7 +524,7 @@ class FileRepo {
 	 * @return File|bool False on failure
 	 */
 	public function findFileFromKey( $sha1, $options = [] ) {
-		$time = isset( $options['time'] ) ? $options['time'] : false;
+		$time = $options['time'] ?? false;
 		# First try to find a matching current version of a file...
 		if ( !$this->fileFactoryKey ) {
 			return false; // find-by-sha1 not supported
@@ -690,7 +680,7 @@ class FileRepo {
 	 */
 	public function getTempHashPath( $suffix ) {
 		$parts = explode( '!', $suffix, 2 ); // format is <timestamp>!<name> or just <name>
-		$name = isset( $parts[1] ) ? $parts[1] : $suffix; // hash path is not based on timestamp
+		$name = $parts[1] ?? $suffix; // hash path is not based on timestamp
 		return self::getHashPathForLevel( $name, $this->hashLevels );
 	}
 
@@ -1225,7 +1215,7 @@ class FileRepo {
 			list( $src, $dstRel, $archiveRel ) = $ntuple;
 			$srcPath = ( $src instanceof FSFile ) ? $src->getPath() : $src;
 
-			$options = isset( $ntuple[3] ) ? $ntuple[3] : [];
+			$options = $ntuple[3] ?? [];
 			// Resolve source to a storage path if virtual
 			$srcPath = $this->resolveToStoragePath( $srcPath );
 			if ( !$this->validateFilename( $dstRel ) ) {
@@ -1250,7 +1240,7 @@ class FileRepo {
 			}
 
 			// Set any desired headers to be use in GET/HEAD responses
-			$headers = isset( $options['headers'] ) ? $options['headers'] : [];
+			$headers = $options['headers'] ?? [];
 
 			// Archive destination file if it exists.
 			// This will check if the archive file also exists and fail if does.

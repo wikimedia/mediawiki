@@ -150,9 +150,7 @@ abstract class PoolCounterWork {
 					PoolCounter::QUEUE_FULL => 'pool-queuefull',
 					PoolCounter::TIMEOUT => 'pool-timeout' ];
 
-				$status = Status::newFatal( isset( $errors[$status->value] )
-					? $errors[$status->value]
-					: 'pool-errorunknown' );
+				$status = Status::newFatal( $errors[$status->value] ?? 'pool-errorunknown' );
 				$this->logError( $status );
 				return $this->error( $status );
 		}

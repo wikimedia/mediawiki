@@ -79,15 +79,9 @@ class FileBackendGroup {
 			$repoName = $info['name'];
 			// Local vars that used to be FSRepo members...
 			$directory = $info['directory'];
-			$deletedDir = isset( $info['deletedDir'] )
-				? $info['deletedDir']
-				: false; // deletion disabled
-			$thumbDir = isset( $info['thumbDir'] )
-				? $info['thumbDir']
-				: "{$directory}/thumb";
-			$transcodedDir = isset( $info['transcodedDir'] )
-				? $info['transcodedDir']
-				: "{$directory}/transcoded";
+			$deletedDir = $info['deletedDir'] ?? false; // deletion disabled
+			$thumbDir = $info['thumbDir'] ?? "{$directory}/thumb";
+			$transcodedDir = $info['transcodedDir'] ?? "{$directory}/transcoded";
 			// Get the FS backend configuration
 			$autoBackends[] = [
 				'name' => $backendName,
@@ -100,7 +94,7 @@ class FileBackendGroup {
 					"{$repoName}-deleted" => $deletedDir,
 					"{$repoName}-temp" => "{$directory}/temp"
 				],
-				'fileMode' => isset( $info['fileMode'] ) ? $info['fileMode'] : 0644,
+				'fileMode' => $info['fileMode'] ?? 0644,
 				'directoryMode' => $wgDirectoryMode,
 			];
 		}

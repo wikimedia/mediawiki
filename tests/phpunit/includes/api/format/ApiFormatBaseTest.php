@@ -59,7 +59,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 		if ( $options['name'] !== 'mockfm' ) {
 			$ct = 'text/x-mock';
 			$file = 'api-result.mock';
-			$status = isset( $options['status'] ) ? $options['status'] : null;
+			$status = $options['status'] ?? null;
 		} elseif ( isset( $params['wrappedhtml'] ) ) {
 			$ct = 'text/mediawiki-api-prettyprint-wrapped';
 			$file = 'api-result-wrapped.json';

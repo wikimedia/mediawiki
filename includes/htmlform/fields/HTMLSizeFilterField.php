@@ -10,7 +10,7 @@
  */
 class HTMLSizeFilterField extends HTMLIntField {
 	public function getSize() {
-		return isset( $this->mParams['size'] ) ? $this->mParams['size'] : 9;
+		return $this->mParams['size'] ?? 9;
 	}
 
 	public function getInputHTML( $value ) {

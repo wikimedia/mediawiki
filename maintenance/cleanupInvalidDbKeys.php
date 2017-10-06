@@ -123,15 +123,9 @@ TEXT
 	protected function cleanupTable( $tableParams ) {
 		$table = $tableParams[0];
 		$prefix = $tableParams[1];
-		$idField = isset( $tableParams['idField'] ) ?
-			$tableParams['idField'] :
-			"{$prefix}_id";
-		$nsField = isset( $tableParams['nsField'] ) ?
-			$tableParams['nsField'] :
-			"{$prefix}_namespace";
-		$titleField = isset( $tableParams['titleField'] ) ?
-			$tableParams['titleField'] :
-			"{$prefix}_title";
+		$idField = $tableParams['idField'] ?? "{$prefix}_id";
+		$nsField = $tableParams['nsField'] ?? "{$prefix}_namespace";
+		$titleField = $tableParams['titleField'] ?? "{$prefix}_title";
 
 		$this->outputStatus( "Looking for invalid $titleField entries in $table...\n" );
 

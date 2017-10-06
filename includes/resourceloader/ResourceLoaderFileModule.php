@@ -641,7 +641,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				$collatedFiles[$default][] = $value;
 			} elseif ( is_array( $value ) ) {
 				// File name as the key, options array as the value
-				$optionValue = isset( $value[$option] ) ? $value[$option] : $default;
+				$optionValue = $value[$option] ?? $default;
 				if ( !isset( $collatedFiles[$optionValue] ) ) {
 					$collatedFiles[$optionValue] = [];
 				}

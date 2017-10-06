@@ -33,9 +33,7 @@ class WfUrlencodeTest extends MediaWikiTestCase {
 		$expected = $this->extractExpect( $server, $expectations );
 
 		// save up global
-		$old = isset( $_SERVER['SERVER_SOFTWARE'] )
-			? $_SERVER['SERVER_SOFTWARE']
-			: null;
+		$old = $_SERVER['SERVER_SOFTWARE'] ?? null;
 		$_SERVER['SERVER_SOFTWARE'] = $server;
 		wfUrlencode( null );
 

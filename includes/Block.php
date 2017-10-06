@@ -458,7 +458,7 @@ class Block {
 	protected function initFromRow( $row ) {
 		$this->setTarget( $row->ipb_address );
 		$this->setBlocker( User::newFromAnyId(
-			$row->ipb_by, $row->ipb_by_text, isset( $row->ipb_by_actor ) ? $row->ipb_by_actor : null
+			$row->ipb_by, $row->ipb_by_text, $row->ipb_by_actor ?? null
 		) );
 
 		$this->mTimestamp = wfTimestamp( TS_MW, $row->ipb_timestamp );

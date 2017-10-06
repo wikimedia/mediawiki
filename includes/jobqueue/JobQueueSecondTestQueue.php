@@ -44,7 +44,7 @@ class JobQueueSecondTestQueue extends JobQueue {
 		$conf = [ 'wiki' => $params['wiki'], 'type' => $params['type'] ];
 		$this->mainQueue = JobQueue::factory( $params['mainqueue'] + $conf );
 		$this->debugQueue = JobQueue::factory( $params['debugqueue'] + $conf );
-		$this->onlyWriteToDebugQueue = isset( $params['readonly'] ) ? $params['readonly'] : false;
+		$this->onlyWriteToDebugQueue = $params['readonly'] ?? false;
 
 		// We need to construct parent after creating the main and debug queue
 		// because super constructor calls some methods we delegate to the main queue.

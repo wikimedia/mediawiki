@@ -113,7 +113,7 @@ class ApiComparePagesTest extends ApiTestCase {
 				$value = self::$repl[$m[1]];
 			} else {
 				$value = preg_replace_callback( '/{{REPL:(.+?)}}/', function ( $m ) {
-					return isset( self::$repl[$m[1]] ) ? self::$repl[$m[1]] : $m[0];
+					return self::$repl[$m[1]] ?? $m[0];
 				}, $value );
 			}
 		} elseif ( is_array( $value ) || is_object( $value ) ) {

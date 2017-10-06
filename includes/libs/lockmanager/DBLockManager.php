@@ -90,9 +90,7 @@ abstract class DBLockManager extends QuorumLockManager {
 
 		// Tracks peers that couldn't be queried recently to avoid lengthy
 		// connection timeouts. This is useless if each bucket has one peer.
-		$this->statusCache = isset( $config['srvCache'] )
-			? $config['srvCache']
-			: new HashBagOStuff();
+		$this->statusCache = $config['srvCache'] ?? new HashBagOStuff();
 	}
 
 	/**

@@ -93,7 +93,7 @@ class JobQueueRedis extends JobQueue {
 		parent::__construct( $params );
 		$params['redisConfig']['serializer'] = 'none'; // make it easy to use Lua
 		$this->server = $params['redisServer'];
-		$this->compression = isset( $params['compression'] ) ? $params['compression'] : 'none';
+		$this->compression = $params['compression'] ?? 'none';
 		$this->redisPool = RedisConnectionPool::singleton( $params['redisConfig'] );
 		if ( empty( $params['daemonized'] ) ) {
 			throw new InvalidArgumentException(

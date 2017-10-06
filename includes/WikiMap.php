@@ -104,7 +104,7 @@ class WikiMap {
 			$path .= '?' . $urlParts['query'];
 		}
 
-		$canonicalServer = isset( $urlParts['scheme'] ) ? $urlParts['scheme'] : 'http';
+		$canonicalServer = $urlParts['scheme'] ?? 'http';
 		$canonicalServer .= '://' . $urlParts['host'];
 
 		return new WikiReference( $canonicalServer, $path );

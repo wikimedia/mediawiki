@@ -65,7 +65,7 @@ class ApiUndelete extends ApiBase {
 
 		$pa = new PageArchive( $titleObj, $this->getConfig() );
 		$retval = $pa->undelete(
-			( isset( $params['timestamps'] ) ? $params['timestamps'] : [] ),
+			( $params['timestamps'] ?? [] ),
 			$params['reason'],
 			$params['fileids'],
 			false,

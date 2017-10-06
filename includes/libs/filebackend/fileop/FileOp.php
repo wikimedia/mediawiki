@@ -137,7 +137,7 @@ abstract class FileOp {
 	 * @return mixed Returns null if the parameter is not set
 	 */
 	final public function getParam( $name ) {
-		return isset( $this->params[$name] ) ? $this->params[$name] : null;
+		return $this->params[$name] ?? null;
 	}
 
 	/**

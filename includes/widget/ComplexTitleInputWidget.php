@@ -40,9 +40,7 @@ class ComplexTitleInputWidget extends \OOUI\Widget {
 			$config['title'],
 			[
 				'relative' => true,
-				'namespace' => isset( $config['namespace']['value'] ) ?
-					$config['namespace']['value'] :
-					null,
+				'namespace' => $config['namespace']['value'] ?? null,
 			]
 		) );
 

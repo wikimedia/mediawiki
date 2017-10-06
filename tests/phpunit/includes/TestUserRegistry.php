@@ -62,9 +62,7 @@ class TestUserRegistry {
 		sort( $groups );
 		$key = implode( ',', $groups );
 
-		$testUser = isset( self::$testUsers[$key] )
-			? self::$testUsers[$key]
-			: false;
+		$testUser = self::$testUsers[$key] ?? false;
 
 		if ( !$testUser || !$testUser->getUser()->isLoggedIn() ) {
 			$id = self::getNextId();

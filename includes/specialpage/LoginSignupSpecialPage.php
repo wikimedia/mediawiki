@@ -846,8 +846,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		// keep the ordering from getCoreFieldDescriptors() where there is no explicit weight
 		foreach ( $coreFieldDescriptors as $fieldName => $coreField ) {
-			$requestField = isset( $formDescriptor[$fieldName] ) ?
-				$formDescriptor[$fieldName] : [];
+			$requestField = $formDescriptor[$fieldName] ?? [];
 
 			// remove everything that is not in the fieldinfo, is not marked as a supplemental field
 			// to something in the fieldinfo, is not B/C for the pre-AuthManager templates,

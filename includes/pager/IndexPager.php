@@ -381,9 +381,9 @@ abstract class IndexPager extends ContextSource implements Pager {
 		$info = $this->getQueryInfo();
 		$tables = $info['tables'];
 		$fields = $info['fields'];
-		$conds = isset( $info['conds'] ) ? $info['conds'] : [];
-		$options = isset( $info['options'] ) ? $info['options'] : [];
-		$join_conds = isset( $info['join_conds'] ) ? $info['join_conds'] : [];
+		$conds = $info['conds'] ?? [];
+		$options = $info['options'] ?? [];
+		$join_conds = $info['join_conds'] ?? [];
 		$sortColumns = array_merge( [ $this->mIndexField ], $this->mExtraSortFields );
 		if ( $descending ) {
 			$options['ORDER BY'] = $sortColumns;

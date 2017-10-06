@@ -120,7 +120,7 @@ class ApiRsd extends ApiBase {
 				'name' => $name,
 				'preferred' => wfBoolToStr( $name == 'MediaWiki' ),
 				'apiLink' => $info['apiLink'],
-				'blogID' => isset( $info['blogID'] ) ? $info['blogID'] : '',
+				'blogID' => $info['blogID'] ?? '',
 			];
 			$settings = [];
 			if ( isset( $info['docs'] ) ) {

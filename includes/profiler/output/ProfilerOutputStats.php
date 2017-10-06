@@ -38,7 +38,7 @@ class ProfilerOutputStats extends ProfilerOutput {
 	 * @param array $stats
 	 */
 	public function log( array $stats ) {
-		$prefix = isset( $this->params['prefix'] ) ? $this->params['prefix'] : '';
+		$prefix = $this->params['prefix'] ?? '';
 		$contextStats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 
 		foreach ( $stats as $stat ) {

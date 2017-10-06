@@ -104,26 +104,18 @@ class ApiFormatXml extends ApiFormatBase {
 			$value = (array)$value;
 		}
 		if ( is_array( $value ) ) {
-			$contentKey = isset( $value[ApiResult::META_CONTENT] )
-				? $value[ApiResult::META_CONTENT]
-				: '*';
-			$subelementKeys = isset( $value[ApiResult::META_SUBELEMENTS] )
-				? $value[ApiResult::META_SUBELEMENTS]
-				: [];
+			$contentKey = $value[ApiResult::META_CONTENT] ?? '*';
+			$subelementKeys = $value[ApiResult::META_SUBELEMENTS] ?? [];
 			if ( isset( $value[ApiResult::META_BC_SUBELEMENTS] ) ) {
 				$subelementKeys = array_merge(
 					$subelementKeys, $value[ApiResult::META_BC_SUBELEMENTS]
 				);
 			}
-			$preserveKeys = isset( $value[ApiResult::META_PRESERVE_KEYS] )
-				? $value[ApiResult::META_PRESERVE_KEYS]
-				: [];
+			$preserveKeys = $value[ApiResult::META_PRESERVE_KEYS] ?? [];
 			$indexedTagName = isset( $value[ApiResult::META_INDEXED_TAG_NAME] )
 				? self::mangleName( $value[ApiResult::META_INDEXED_TAG_NAME], $preserveKeys )
 				: '_v';
-			$bcBools = isset( $value[ApiResult::META_BC_BOOLS] )
-				? $value[ApiResult::META_BC_BOOLS]
-				: [];
+			$bcBools = $value[ApiResult::META_BC_BOOLS] ?? [];
 			$indexSubelements = isset( $value[ApiResult::META_TYPE] )
 				? $value[ApiResult::META_TYPE] !== 'array'
 				: false;

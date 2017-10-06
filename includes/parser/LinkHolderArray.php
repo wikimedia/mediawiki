@@ -372,7 +372,7 @@ class LinkHolderArray {
 			foreach ( $entries as $index => $entry ) {
 				$pdbk = $entry['pdbk'];
 				$title = $entry['title'];
-				$query = isset( $entry['query'] ) ? $entry['query'] : [];
+				$query = $entry['query'] ?? [];
 				$key = "$ns:$index";
 				$searchkey = "<!--LINK'\" $key-->";
 				$displayText = $entry['text'];

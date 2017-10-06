@@ -52,7 +52,7 @@ class Timing implements LoggerAwareInterface {
 
 	public function __construct( array $params = [] ) {
 		$this->clearMarks();
-		$this->setLogger( isset( $params['logger'] ) ? $params['logger'] : new NullLogger() );
+		$this->setLogger( $params['logger'] ?? new NullLogger() );
 	}
 
 	/**
@@ -188,6 +188,6 @@ class Timing implements LoggerAwareInterface {
 	 * @return array|null Entry named $name or null if it does not exist.
 	 */
 	public function getEntryByName( $name ) {
-		return isset( $this->entries[$name] ) ? $this->entries[$name] : null;
+		return $this->entries[$name] ?? null;
 	}
 }

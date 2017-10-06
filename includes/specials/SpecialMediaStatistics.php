@@ -363,8 +363,8 @@ class MediaStatisticsPage extends QueryPage {
 		$this->totalCount = $this->totalBytes = 0;
 		foreach ( $res as $row ) {
 			$mediaStats = $this->splitFakeTitle( $row->title );
-			$this->totalCount += isset( $mediaStats[2] ) ? $mediaStats[2] : 0;
-			$this->totalBytes += isset( $mediaStats[3] ) ? $mediaStats[3] : 0;
+			$this->totalCount += $mediaStats[2] ?? 0;
+			$this->totalBytes += $mediaStats[3] ?? 0;
 		}
 		$res->seek( 0 );
 	}
