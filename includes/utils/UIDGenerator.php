@@ -400,14 +400,14 @@ class UIDGenerator {
 			// Write back the new counter value
 			ftruncate( $handle, 0 );
 			rewind( $handle );
-			fwrite( $handle, fmod( $counter, pow( 2, 48 ) ) ); // warp-around as needed
+			fwrite( $handle, fmod( $counter, 2 ** 48 ) ); // warp-around as needed
 			fflush( $handle );
 			// Release the UID lock file
 			flock( $handle, LOCK_UN );
 		}
 
 		$ids = [];
-		$divisor = pow( 2, $bits );
+		$divisor = 2 ** $bits;
 		$currentId = floor( $counter - $count ); // pre-increment counter value
 		for ( $i = 0; $i < $count; ++$i ) {
 			$ids[] = fmod( ++$currentId, $divisor );
@@ -532,7 +532,7 @@ class UIDGenerator {
 	protected function millisecondsSinceEpochBinary( array $time ) {
 		list( $sec, $msec ) = $time;
 		$ts = 1000 * $sec + $msec;
-		if ( $ts > pow( 2, 52 ) ) {
+		if ( $ts > 2 ** 52 ) {
 			throw new RuntimeException( __METHOD__ .
 				': sorry, this function doesn\'t work after the year 144680' );
 		}
@@ -551,7 +551,7 @@ class UIDGenerator {
 		$offset = '122192928000000000';
 		if ( PHP_INT_SIZE >= 8 ) { // 64 bit integers
 			$ts = ( 1000 * $sec + $msec ) * 10000 + (int)$offset + $delta;
-			$id_bin = str_pad( decbin( $ts % pow( 2, 60 ) ), 60, '0', STR_PAD_LEFT );
+			$id_bin = str_pad( decbin( $ts % ( 2 ** 60 ) ), 60, '0', STR_PAD_LEFT );
 		} elseif ( extension_loaded( 'gmp' ) ) {
 			$ts = gmp_add( gmp_mul( (string)$sec, '1000' ), (string)$msec ); // ms
 			$ts = gmp_add( gmp_mul( $ts, '10000' ), $offset ); // 100ns intervals
