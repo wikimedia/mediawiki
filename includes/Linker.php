@@ -921,10 +921,13 @@ class Linker {
 	 * @param int $flags Customisation flags (e.g. Linker::TOOL_LINKS_NOBLOCK
 	 *   and Linker::TOOL_LINKS_EMAIL).
 	 * @param int $edits User edit count (optional, for performance)
+	 * @param bool $redUserLinkIfIp Weather to show a red link for a ip
+	 *   (optional, for backwards compat)
 	 * @return string HTML fragment
 	 */
 	public static function userToolLinks(
-		$userId, $userText, $redContribsWhenNoEdits = false, $flags = 0, $edits = null
+		$userId, $userText, $redContribsWhenNoEdits = false, $flags = 0, $edits = null,
+		$redUserLinkIfIp = false
 	) {
 		global $wgUser, $wgDisableAnonTalk, $wgLang;
 		$talkable = !( $wgDisableAnonTalk && 0 == $userId );
@@ -944,7 +947,7 @@ class Linker {
 					$user = User::newFromId( $userId );
 					$edits = $user->getEditCount();
 				}
-				if ( $edits === 0 ) {
+				if ( $edits === 0 || $userId === 0 && $redUserLinkIfIp ) {
 					$attribs['class'] .= ' new';
 				}
 			}
@@ -978,10 +981,14 @@ class Linker {
 	 * @param int $userId User identifier
 	 * @param string $userText User name or IP address
 	 * @param int $edits User edit count (optional, for performance)
+	 * @param bool $redUserLinkIfIp Weather to show a red link for a ip
+	 *   (optional, for backwards compat)
 	 * @return string
 	 */
-	public static function userToolLinksRedContribs( $userId, $userText, $edits = null ) {
-		return self::userToolLinks( $userId, $userText, true, 0, $edits );
+	public static function userToolLinksRedContribs(
+		$userId, $userText, $edits = null, $redUserLinkIfIp = false
+	) {
+		return self::userToolLinks( $userId, $userText, true, 0, $edits, $redUserLinkIfIp );
 	}
 
 	/**
