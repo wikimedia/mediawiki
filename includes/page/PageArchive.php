@@ -231,12 +231,14 @@ class PageArchive {
 		}
 
 		$dbr = wfGetDB( DB_REPLICA );
+		$fileQuery = ArchivedFile::getQueryInfo();
 		return $dbr->select(
-			'filearchive',
-			ArchivedFile::selectFields(),
+			$fileQuery['tables'],
+			$fileQuery['fields'],
 			[ 'fa_name' => $this->title->getDBkey() ],
 			__METHOD__,
-			[ 'ORDER BY' => 'fa_timestamp DESC' ]
+			[ 'ORDER BY' => 'fa_timestamp DESC' ],
+			$fileQuery['joins']
 		);
 	}
 
@@ -249,34 +251,11 @@ class PageArchive {
 	 */
 	public function getRevision( $timestamp ) {
 		$dbr = wfGetDB( DB_REPLICA );
-		$commentQuery = CommentStore::newKey( 'ar_comment' )->getJoin();
-
-		$tables = [ 'archive' ] + $commentQuery['tables'];
-
-		$fields = [
-			'ar_rev_id',
-			'ar_text',
-			'ar_user',
-			'ar_user_text',
-			'ar_timestamp',
-			'ar_minor_edit',
-			'ar_flags',
-			'ar_text_id',
-			'ar_deleted',
-			'ar_len',
-			'ar_sha1',
-		] + $commentQuery['fields'];
-
-		if ( $this->config->get( 'ContentHandlerUseDB' ) ) {
-			$fields[] = 'ar_content_format';
-			$fields[] = 'ar_content_model';
-		}
-
-		$join_conds = [] + $commentQuery['joins'];
+		$arQuery = Revision::getArchiveQueryInfo();
 
 		$row = $dbr->selectRow(
-			$tables,
-			$fields,
+			$arQuery['tables'],
+			$arQuery['fields'],
 			[
 				'ar_namespace' => $this->title->getNamespace(),
 				'ar_title' => $this->title->getDBkey(),
@@ -284,7 +263,7 @@ class PageArchive {
 			],
 			__METHOD__,
 			[],
-			$join_conds
+			$arQuery['joins']
 		);
 
 		if ( $row ) {

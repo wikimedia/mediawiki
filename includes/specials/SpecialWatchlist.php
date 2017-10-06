@@ -357,8 +357,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$dbr = $this->getDB();
 		$user = $this->getUser();
 
-		$tables = array_merge( [ 'recentchanges', 'watchlist' ], $tables );
-		$fields = array_merge( RecentChange::selectFields(), $fields );
+		$rcQuery = RecentChange::getQueryInfo();
+		$tables = array_merge( $tables, $rcQuery['tables'], [ 'watchlist' ] );
+		$fields = array_merge( $rcQuery['fields'], $fields );
 
 		$join_conds = array_merge(
 			[
@@ -371,6 +372,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					],
 				],
 			],
+			$rcQuery['joins'],
 			$join_conds
 		);
 

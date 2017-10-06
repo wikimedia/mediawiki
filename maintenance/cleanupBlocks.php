@@ -39,6 +39,7 @@ class CleanupBlocks extends Maintenance {
 
 	public function execute() {
 		$db = $this->getDB( DB_MASTER );
+		$blockQuery = Block::getQueryInfo();
 
 		$max = $db->selectField( 'ipblocks', 'MAX(ipb_user)' );
 
@@ -65,11 +66,14 @@ class CleanupBlocks extends Maintenance {
 			foreach ( $res as $row ) {
 				$bestBlock = null;
 				$res2 = $db->select(
-					'ipblocks',
-					Block::selectFields(),
+					$blockQuery['tables'],
+					$blockQuery['fields'],
 					[
 						'ipb_user' => $row->ipb_user,
-					]
+					],
+					__METHOD__,
+					[],
+					$blockQuery['joins']
 				);
 				foreach ( $res2 as $row2 ) {
 					$block = Block::newFromRow( $row2 );

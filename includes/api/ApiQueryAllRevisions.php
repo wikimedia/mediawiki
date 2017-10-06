@@ -63,20 +63,20 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 			}
 		}
 
-		$this->addTables( 'revision' );
 		if ( $resultPageSet === null ) {
 			$this->parseParameters( $params );
-			$this->addTables( 'page' );
-			$this->addJoinConds(
-				[ 'page' => [ 'INNER JOIN', [ 'rev_page = page_id' ] ] ]
+			$revQuery = Revision::getQueryInfo(
+				$this->fetchContent ? [ 'page', 'text' ] : [ 'page' ]
 			);
-			$this->addFields( Revision::selectFields() );
-			$this->addFields( Revision::selectPageFields() );
+			$this->addTables( $revQuery['tables'] );
+			$this->addFields( $revQuery['fields'] );
+			$this->addJoinConds( $revQuery['joins'] );
 
 			// Review this depeneding on the outcome of T113901
 			$this->addOption( 'STRAIGHT_JOIN' );
 		} else {
 			$this->limit = $this->getParameter( 'limit' ) ?: 10;
+			$this->addTables( 'revision' );
 			$this->addFields( [ 'rev_timestamp', 'rev_id' ] );
 			if ( $params['generatetitles'] ) {
 				$this->addFields( [ 'rev_page' ] );
@@ -103,15 +103,6 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 				[ 'tag_summary' => [ 'LEFT JOIN', [ 'rev_id=ts_rev_id' ] ] ]
 			);
 			$this->addFields( 'ts_tags' );
-		}
-
-		if ( $this->fetchContent ) {
-			$this->addTables( 'text' );
-			$this->addJoinConds(
-				[ 'text' => [ 'INNER JOIN', [ 'rev_text_id=old_id' ] ] ]
-			);
-			$this->addFields( 'old_id' );
-			$this->addFields( Revision::selectTextFields() );
 		}
 
 		if ( $params['user'] !== null ) {
