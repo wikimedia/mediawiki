@@ -89,9 +89,7 @@ class FeedUtils {
 			$timestamp,
 			$row->rc_deleted & Revision::DELETED_COMMENT
 				? wfMessage( 'rev-deleted-comment' )->escaped()
-				: CommentStore::newKey( 'rc_comment' )
-					// Legacy from RecentChange::selectFields() via ChangesListSpecialPage::doMainQuery()
-					->getCommentLegacy( wfGetDB( DB_REPLICA ), $row )->text,
+				: CommentStore::newKey( 'rc_comment' )->getComment( $row )->text,
 			$actiontext
 		);
 	}
