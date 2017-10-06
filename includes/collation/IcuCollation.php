@@ -390,8 +390,7 @@ class IcuCollation extends Collation {
 				wfDebug( "Primary collision '$letter' '{$letterMap[$key]}' (comparison: $comp)\n" );
 				// If that also has a collision, use codepoint as a tiebreaker.
 				if ( $comp === 0 ) {
-					// TODO Use <=> operator when PHP 7 is allowed.
-					$comp = UtfNormal\Utils::utf8ToCodepoint( $letter ) -
+					$comp = UtfNormal\Utils::utf8ToCodepoint( $letter ) <=>
 						UtfNormal\Utils::utf8ToCodepoint( $letterMap[$key] );
 				}
 				if ( $comp < 0 ) {
