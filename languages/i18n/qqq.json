@@ -1660,7 +1660,7 @@
 	"rcfilters-view-namespaces-tooltip": "Tooltip for the button that loads the namespace view in [[Special:RecentChanges]]",
 	"rcfilters-view-tags-tooltip": "Tooltip for the button that loads the tags view in [[Special:RecentChanges]]",
 	"rcfilters-view-return-to-default-tooltip": "Tooltip for the button that returns to the default filter view in [[Special:RecentChanges]]",
-	"rcfilters-view-tags-help-icon-tooltip": "Tooltip for the help button that leads user to [[mw:Special:MyLanguage/Help:New_filters_for_edit_review/Advanced_filters#tags|Help page]] for Tagged Edits",
+	"rcfilters-view-tags-help-icon-tooltip": "Tooltip for the help button that leads user to [[mw:Special:MyLanguage/Special:Tags|Help page]] for Tagged edits",
 	"rcfilters-liveupdates-button": "Label for the button to enable or disable live updates on [[Special:RecentChanges]]",
 	"rcfilters-liveupdates-button-title-on": "Title for the button to enable or disable live updates on [[Special:RecentChanges]] when the feature is ON.",
 	"rcfilters-liveupdates-button-title-off": "Title for the button to enable or disable live updates on [[Special:RecentChanges]] when the feature is OFF.",
