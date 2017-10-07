@@ -171,7 +171,7 @@ $magicWords = [
 ];
 
 $fallback8bitEncoding = 'windows-1257';
-$separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
+$separatorTransformTable = [ ',' => "\u{00A0}", '.' => ',' ];
 
 $dateFormats = [
 	'ymd time' => 'H:i',
