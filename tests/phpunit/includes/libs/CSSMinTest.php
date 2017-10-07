@@ -35,7 +35,7 @@ class CSSMinTest extends MediaWikiTestCase {
 	public static function provideSerializeStringValue() {
 		return [
 			[ 'Hello World!', '"Hello World!"' ],
-			[ "Null\0Null", "\"Null\xEF\xBF\xBDNull\"" ],
+			[ "Null\0Null", "\"Null\u{FFFD}Null\"" ],
 			[ '"', '"\\""' ],
 			[ "'", '"\'"' ],
 			[ "\\", '"\\\\"' ],
@@ -43,9 +43,9 @@ class CSSMinTest extends MediaWikiTestCase {
 			[ "Space  tab \t space", '"Space  tab \\9  space"' ],
 			[ "Line\nfeed", '"Line\\a feed"' ],
 			[ "Return\rreturn", '"Return\\d return"' ],
-			[ "Next\xc2\x85line", "\"Next\xc2\x85line\"" ],
+			[ "Next\u{0085}line", "\"Next\u{0085}line\"" ],
 			[ "Del\x7fDel", '"Del\\7f Del"' ],
-			[ "nb\xc2\xa0sp", "\"nb\xc2\xa0sp\"" ],
+			[ "nb\u{00A0}sp", "\"nb\u{00A0}sp\"" ],
 			[ "AMP&amp;AMP", "\"AMP&amp;AMP\"" ],
 			[ '!"#$%&\'()*+,-./0123456789:;<=>?', '"!\\"#$%&\'()*+,-./0123456789:;<=>?"' ],
 			[ '@[\\]^_`{|}~', '"@[\\\\]^_`{|}~"' ],

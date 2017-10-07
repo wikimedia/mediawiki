@@ -186,7 +186,7 @@ class Licenses extends HTMLFormField {
 			$attribs['selected'] = 'selected';
 		}
 
-		$val = str_repeat( /* &nbsp */ "\xc2\xa0", $depth * 2 ) . $text;
+		$val = str_repeat( /* &nbsp */ "\u{00A0}", $depth * 2 ) . $text;
 		return str_repeat( "\t", $depth ) . Xml::element( 'option', $attribs, $val ) . "\n";
 	}
 

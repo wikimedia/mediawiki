@@ -18,9 +18,9 @@ class RemexCompatFormatter extends HtmlFormatter {
 
 	public function __construct( $options = [] ) {
 		parent::__construct( $options );
-		$this->attributeEscapes["\xc2\xa0"] = '&#160;';
+		$this->attributeEscapes["\u{00A0}"] = '&#160;';
 		unset( $this->attributeEscapes["&"] );
-		$this->textEscapes["\xc2\xa0"] = '&#160;';
+		$this->textEscapes["\u{00A0}"] = '&#160;';
 		unset( $this->textEscapes["&"] );
 	}
 
