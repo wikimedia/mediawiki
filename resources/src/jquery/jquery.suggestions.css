@@ -16,7 +16,7 @@
 	position: relative;
 	background-color: #fff;
 	cursor: pointer;
-	border: solid 1px #aaa;
+	border: 1px solid #a2a9b1;
 	margin: 0;
 	margin-top: -2px;
 	display: none;
@@ -27,7 +27,7 @@
 .suggestions-results {
 	background-color: #fff;
 	cursor: pointer;
-	border: solid 1px #aaa;
+	border: 1px solid #a2a9b1;
 	padding: 0;
 	margin: 0;
 }
@@ -46,12 +46,12 @@
 }
 
 .suggestions-result-current {
-	background-color: #4c59a6;
+	background-color: #2a4b8d;
 	color: #fff;
 }
 
 .suggestions-special .special-label {
-	color: #808080;
+	color: #72777d;
 	text-align: left;
 }
 
@@ -62,7 +62,7 @@
 }
 
 .suggestions-special .special-hover {
-	background-color: #c0c0c0;
+	background-color: #c8ccd1;
 }
 
 .suggestions-result-current .special-label,
