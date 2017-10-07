@@ -323,6 +323,6 @@ $digitTransformTable = [
 	'9' => '९', # &#x096f;
 ];
 
-$linkTrail = "/^([\xE0\xA4\x80-\xE0\xA5\xA3\xE0\xA5\xB1-\xE0\xA5\xBF\xEF\xBB\xBF\xE2\x80\x8D]+)(.*)$/sDu";
+$linkTrail = "/^([\u{0900}-\u{0963}\u{0971}-\u{097F}\u{FEFF}\u{200D}]+)(.*)$/sDu";
 
 $digitGroupingPattern = "##,##,###";
