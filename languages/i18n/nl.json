@@ -87,7 +87,8 @@
 			"Huhbakker",
 			"Jos1950",
 			"Ooswesthoesbes",
-			"MarcoSwart"
+			"MarcoSwart",
+			"Pahles"
 		]
 	},
 	"tog-underline": "Verwijzingen onderstrepen:",
@@ -1394,7 +1395,7 @@
 	"rcfilters-show-new-changes": "Toon nieuwste wijzigingen",
 	"rcfilters-search-placeholder": "Filter recente wijzigingen (blader of begin met intypen)",
 	"rcfilters-invalid-filter": "Ongeldig filter",
-	"rcfilters-empty-filter": "Geen actieve filters. Alle bijdragen worden weergeven.",
+	"rcfilters-empty-filter": "Geen actieve filters. Alle bijdragen worden weergegeven.",
 	"rcfilters-filterlist-title": "Filters",
 	"rcfilters-filterlist-whatsthis": "Hoe werkt dit?",
 	"rcfilters-filterlist-feedbacklink": "Laat ons weten wat u denkt over deze (nieuwe) filterhulpmiddelen",
@@ -1424,7 +1425,7 @@
 	"rcfilters-filtergroup-automated": "Automatische bijdragen",
 	"rcfilters-filter-bots-label": "Bot",
 	"rcfilters-filter-bots-description": "Wijzigingen met behulp van geautomatiseerde hulpmiddelen.",
-	"rcfilters-filter-humans-label": "Menselijk (geen bot)",
+	"rcfilters-filter-humans-label": "Minsjelik (geine bot)",
 	"rcfilters-filter-humans-description": "Bewerkingen door menselijke bewerkers.",
 	"rcfilters-filtergroup-reviewstatus": "Beoordelingsstatus",
 	"rcfilters-filter-patrolled-label": "Gecontroleerd",
