@@ -63,7 +63,7 @@ $namespaceGenderAliases = [
 	NS_USER_TALK => [ 'male' => 'Dalībnieka_diskusija', 'female' => 'Dalībnieces_diskusija' ]
 ];
 
-$separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
+$separatorTransformTable = [ ',' => "\u{00A0}", '.' => ',' ];
 
 /**
  * A list of date format preference keys, which can be selected in user
