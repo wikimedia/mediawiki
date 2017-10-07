@@ -131,7 +131,8 @@ class Command {
 	/**
 	 * Sets execution limits
 	 *
-	 * @param array $limits Optional array with limits(filesize, memory, time, walltime).
+	 * @param array $limits Associative array of limits. Keys (all optional):
+	 *   filesize (for ulimit -f), memory, time, walltime.
 	 * @return $this
 	 */
 	public function limits( array $limits ) {
@@ -180,7 +181,7 @@ class Command {
 	/**
 	 * Sets cgroup for this command
 	 *
-	 * @param string|false $cgroup
+	 * @param string|false $cgroup Absolute file path to the cgroup, or false to not use a cgroup
 	 * @return $this
 	 */
 	public function cgroup( $cgroup ) {
