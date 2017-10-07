@@ -44,4 +44,4 @@ $namespaceGenderAliases = [];
 
 $linkTrail = '/^([a-zа-яёӝӟӥӧӵ]+)(.*)$/sDu';
 $fallback8bitEncoding = 'windows-1251';
-$separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
+$separatorTransformTable = [ ',' => "\u{00A0}", '.' => ',' ];

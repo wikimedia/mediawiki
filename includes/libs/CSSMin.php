@@ -179,7 +179,7 @@ class CSSMin {
 	 * @return string
 	 */
 	public static function serializeStringValue( $value ) {
-		$value = strtr( $value, [ "\0" => "\xEF\xBF\xBD", '\\' => '\\\\', '"' => '\\"' ] );
+		$value = strtr( $value, [ "\0" => "\u{FFFD}", '\\' => '\\\\', '"' => '\\"' ] );
 		$value = preg_replace_callback( '/[\x01-\x1f\x7f]/', function ( $match ) {
 			return '\\' . base_convert( ord( $match[0] ), 10, 16 ) . ' ';
 		}, $value );

@@ -194,5 +194,5 @@ $specialPageAliases = [
 # South Africa uses space for thousands and comma for decimal
 # Reference: AWS Reël 7.4 p. 52, 2002 edition
 # glibc is wrong in this respect in some versions
-$separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
+$separatorTransformTable = [ ',' => "\u{00A0}", '.' => ',' ];
 $linkTrail = "/^([a-z]+)(.*)$/sD";

@@ -508,18 +508,18 @@ class Languages {
 		$this->loadGeneralMessages();
 		$this->loadMessages( $code );
 		$wrongChars = [
-			'[LRM]' => "\xE2\x80\x8E",
-			'[RLM]' => "\xE2\x80\x8F",
-			'[LRE]' => "\xE2\x80\xAA",
-			'[RLE]' => "\xE2\x80\xAB",
-			'[POP]' => "\xE2\x80\xAC",
-			'[LRO]' => "\xE2\x80\xAD",
-			'[RLO]' => "\xE2\x80\xAB",
-			'[ZWSP]' => "\xE2\x80\x8B",
-			'[NBSP]' => "\xC2\xA0",
-			'[WJ]' => "\xE2\x81\xA0",
-			'[BOM]' => "\xEF\xBB\xBF",
-			'[FFFD]' => "\xEF\xBF\xBD",
+			'[LRM]' => "\u{200E}",
+			'[RLM]' => "\u{200F}",
+			'[LRE]' => "\u{202A}",
+			'[RLE]' => "\u{202B}",
+			'[POP]' => "\u{202C}",
+			'[LRO]' => "\u{202D}",
+			'[RLO]' => "\u{202B}",
+			'[ZWSP]' => "\u{200B}",
+			'[NBSP]' => "\u{00A0}",
+			'[WJ]' => "\u{2060}",
+			'[BOM]' => "\u{FEFF}",
+			'[FFFD]' => "\u{FFFD}",
 		];
 		$wrongRegExp = '/(' . implode( '|', array_values( $wrongChars ) ) . ')/sDu';
 		$wrongCharsMessages = [];
