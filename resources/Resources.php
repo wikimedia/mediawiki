@@ -2856,6 +2856,6 @@ return [
 		'themeImages' => 'icons-wikimedia',
 	],
 	'mouse_movement' =>[
-		'scripts' => 'resources/src/mouse_position.js'
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.mouse_position.js'
 	]
 ];
