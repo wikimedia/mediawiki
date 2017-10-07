@@ -41,6 +41,7 @@ use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Shell\CommandFactory;
 
 return [
 	'DBLoadBalancerFactory' => function ( MediaWikiServices $services ) {
@@ -426,6 +427,23 @@ return [
 			$services->getConfiguredReadOnlyMode(),
 			$services->getDBLoadBalancer()
 		);
+	},
+
+	'ShellCommandFactory' => function ( MediaWikiServices $services ) {
+		$config = $services->getMainConfig();
+
+		$limits = [
+			'time' => $config->get( 'MaxShellTime' ),
+			'walltime' => $config->get( 'MaxShellWallClockTime' ),
+			'memory' => $config->get( 'MaxShellMemory' ),
+			'filesize' => $config->get( 'MaxShellFileSize' ),
+		];
+		$cgroup = $config->get( 'ShellCgroup' );
+
+		$factory = new CommandFactory( $limits, $cgroup );
+		$factory->setLogger( LoggerFactory::getInstance( 'exec' ) );
+
+		return $factory;
 	},
 
 	///////////////////////////////////////////////////////////////////////////

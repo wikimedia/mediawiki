@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Shell;
 
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -57,18 +56,9 @@ class Shell {
 			// treat it as a list of arguments
 			$args = reset( $args );
 		}
-		$command = new Command();
-		$config = MediaWikiServices::getInstance()->getMainConfig();
-
-		$limits = [
-			'time' => $config->get( 'MaxShellTime' ),
-			'walltime' => $config->get( 'MaxShellWallClockTime' ),
-			'memory' => $config->get( 'MaxShellMemory' ),
-			'filesize' => $config->get( 'MaxShellFileSize' ),
-		];
-		$command->limits( $limits );
-		$command->cgroup( $config->get( 'ShellCgroup' ) );
-		$command->setLogger( LoggerFactory::getInstance( 'exec' ) );
+		$command = MediaWikiServices::getInstance()
+			->getShellCommandFactory()
+			->create();
 
 		return $command->params( $args );
 	}
