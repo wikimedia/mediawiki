@@ -40,7 +40,7 @@ $namespaceAliases = [
 ];
 
 $fallback8bitEncoding = "iso8859-2";
-$separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
+$separatorTransformTable = [ ',' => "\u{00A0}", '.' => ',' ];
 
 $specialPageAliases = [
 	'Activeusers'               => [ 'Aktív_felhasználók', 'Aktív_szerkesztők' ],

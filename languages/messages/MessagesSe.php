@@ -134,6 +134,6 @@ $magicWords = [
 	'img_link'                  => [ '1', 'liŋka=$1', 'link=$1' ],
 ];
 
-$separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
+$separatorTransformTable = [ ',' => "\u{00A0}", '.' => ',' ];
 
 $linkTrail = '/^(:?[a-zàáâçčʒǯđðéèêëǧǥȟíìîïıǩŋñóòôõßšŧúùûýÿüžþæøåäö]+)(.*)$/sDu';

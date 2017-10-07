@@ -8,7 +8,7 @@
  *
  */
 
-$separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
+$separatorTransformTable = [ ',' => "\u{00A0}", '.' => ',' ];
 
 $namespaceNames = [
 	NS_MEDIA            => 'Multimedia',
