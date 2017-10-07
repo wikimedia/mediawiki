@@ -44,10 +44,10 @@ class CollationFaTest extends MediaWikiTestCase {
 				'و',
 				'واو'
 			],
-			[ "\xd8\xa7", "\xd8\xa7Foo" ],
-			[ "\xd9\x88", "\xd9\x88Foo" ],
-			[ "\xd9\xb2", "\xd9\xb2Foo" ],
-			[ "\xd9\xb3", "\xd9\xb3Foo" ],
+			[ "\u{0627}", "\u{0627}Foo" ],
+			[ "\u{0648}", "\u{0648}Foo" ],
+			[ "\u{0672}", "\u{0672}Foo" ],
+			[ "\u{0673}", "\u{0673}Foo" ],
 		];
 	}
 }
