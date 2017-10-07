@@ -63,7 +63,7 @@ class Command {
 	private $everExecuted = false;
 
 	/** @var string|false */
-	private $cGroup = false;
+	private $cgroup = false;
 
 	/**
 	 * Constructor. Don't call directly, instead use Shell::command()
@@ -131,7 +131,8 @@ class Command {
 	/**
 	 * Sets execution limits
 	 *
-	 * @param array $limits Optional array with limits(filesize, memory, time, walltime).
+	 * @param array $limits Associative array of limits. Keys (all optional):
+	 *   filesize (for ulimit -f), memory, time, walltime.
 	 * @return $this
 	 */
 	public function limits( array $limits ) {
@@ -185,11 +186,11 @@ class Command {
 	/**
 	 * Sets cgroup for this command
 	 *
-	 * @param string|false $cgroup
+	 * @param string|false $cgroup Absolute file path to the cgroup, or false to not use a cgroup
 	 * @return $this
 	 */
 	public function cgroup( $cgroup ) {
-		$this->cGroup = $cgroup;
+		$this->cgroup = $cgroup;
 
 		return $this;
 	}
@@ -241,7 +242,7 @@ class Command {
 					   escapeshellarg(
 						   "MW_INCLUDE_STDERR=" . ( $this->useStderr ? '1' : '' ) . ';' .
 						   "MW_CPU_LIMIT=$time; " .
-						   'MW_CGROUP=' . escapeshellarg( $this->cGroup ) . '; ' .
+						   'MW_CGROUP=' . escapeshellarg( $this->cgroup ) . '; ' .
 						   "MW_MEM_LIMIT=$mem; " .
 						   "MW_FILE_SIZE_LIMIT=$filesize; " .
 						   "MW_WALL_CLOCK_LIMIT=$wallTime; " .
