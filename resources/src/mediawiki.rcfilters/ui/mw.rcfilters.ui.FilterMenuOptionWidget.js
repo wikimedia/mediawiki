@@ -7,16 +7,17 @@
 	 * @constructor
 	 * @param {mw.rcfilters.Controller} controller RCFilters controller
 	 * @param {mw.rcfilters.dm.FilterItem} model Filter item model
+	 * @param {mw.rcfilters.ui.MenuSelectWidget} menu Parent menu
 	 * @param {Object} config Configuration object
 	 */
-	mw.rcfilters.ui.FilterMenuOptionWidget = function MwRcfiltersUiFilterMenuOptionWidget( controller, model, config ) {
+	mw.rcfilters.ui.FilterMenuOptionWidget = function MwRcfiltersUiFilterMenuOptionWidget( controller, model, menu, config ) {
 		config = config || {};
 
 		this.controller = controller;
 		this.model = model;
 
 		// Parent
-		mw.rcfilters.ui.FilterMenuOptionWidget.parent.call( this, controller, model, config );
+		mw.rcfilters.ui.FilterMenuOptionWidget.parent.call( this, controller, model, menu, config );
 
 		// Event
 		this.model.getGroupModel().connect( this, { update: 'onGroupModelUpdate' } );

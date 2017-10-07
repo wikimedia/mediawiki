@@ -7,34 +7,25 @@
 	 * @constructor
 	 * @param {mw.rcfilters.Controller} controller RCFilters controller
 	 * @param {mw.rcfilters.dm.FilterItem} model Filter item model
+	 * @param {mw.rcfilters.ui.MenuSelectWidget} menu Parent menu
 	 * @param {Object} [config] Configuration object
 	 */
-	mw.rcfilters.ui.FilterItemHighlightButton = function MwRcfiltersUiFilterItemHighlightButton( controller, model, config ) {
+	mw.rcfilters.ui.FilterItemHighlightButton = function MwRcfiltersUiFilterItemHighlightButton( controller, model, menu, config ) {
 		config = config || {};
-
-		this.colorPickerWidget = new mw.rcfilters.ui.HighlightColorPickerWidget( controller, model );
 
 		// Parent
 		mw.rcfilters.ui.FilterItemHighlightButton.parent.call( this, $.extend( true, {}, config, {
 			icon: 'highlight',
-			indicator: 'down',
-			popup: {
-				anchor: false,
-				padded: true,
-				align: 'backwards',
-				horizontalPosition: 'end',
-				$floatableContainer: this.$element,
-				width: 290,
-				$content: this.colorPickerWidget.$element
-			}
+			indicator: 'down'
 		} ) );
 
 		this.controller = controller;
 		this.model = model;
+		this.popup = menu.highlightPopup;
+		this.colorPicker = menu.highlightColorPicker;
 
 		// Event
 		this.model.connect( this, { update: 'updateUiBasedOnModel' } );
-		this.colorPickerWidget.connect( this, { chooseColor: 'onChooseColor' } );
 		// This lives inside a MenuOptionWidget, which intercepts mousedown
 		// to select the item. We want to prevent that when we click the highlight
 		// button
@@ -59,6 +50,18 @@
 
 	/* Methods */
 
+	mw.rcfilters.ui.FilterItemHighlightButton.prototype.onAction = function () {
+		// Attach the shared popup to this button
+		this.popup.setFloatableContainer( this.$element );
+		// TODO add setAutoCloseIgnore to PopupWidget upstream
+		this.popup.$autoCloseIgnore = this.$element;
+		this.colorPicker.setItem( this.model );
+		this.colorPicker.connect( this, { chooseColor: 'onChooseColor' } );
+
+		// Parent method
+		mw.rcfilters.ui.FilterItemHighlightButton.parent.prototype.onAction.call( this );
+	};
+
 	/**
 	 * Respond to item model update event
 	 */
@@ -81,6 +84,9 @@
 	};
 
 	mw.rcfilters.ui.FilterItemHighlightButton.prototype.onChooseColor = function () {
+		// Close the popup and disconnect it from this button
 		this.popup.toggle( false );
+		this.popup.disconnect( this );
+		this.popup.$autoCloseIgnore = undefined;
 	};
 }( mediaWiki, jQuery ) );

@@ -7,9 +7,10 @@
 	 * @constructor
 	 * @param {mw.rcfilters.Controller} controller RCFilters controller
 	 * @param {mw.rcfilters.dm.ItemModel} model Item model
+	 * @param {mw.rcfilters.ui.MenuSelectWidget} menu Parent menu
 	 * @param {Object} config Configuration object
 	 */
-	mw.rcfilters.ui.ItemMenuOptionWidget = function MwRcfiltersUiItemMenuOptionWidget( controller, model, config ) {
+	mw.rcfilters.ui.ItemMenuOptionWidget = function MwRcfiltersUiItemMenuOptionWidget( controller, model, menu, config ) {
 		var layout,
 			classes = [],
 			$label = $( '<div>' )
@@ -49,6 +50,7 @@
 		this.highlightButton = new mw.rcfilters.ui.FilterItemHighlightButton(
 			this.controller,
 			this.model,
+			menu,
 			{
 				$overlay: config.$overlay || this.$element,
 				title: mw.msg( 'rcfilters-highlightmenu-help' )

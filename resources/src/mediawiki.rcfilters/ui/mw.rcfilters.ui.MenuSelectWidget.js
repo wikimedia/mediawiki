@@ -153,6 +153,19 @@
 		// Reset
 		this.clearItems();
 
+		// Create shared popup for highlight buttons
+		this.highlightColorPicker = new mw.rcfilters.ui.HighlightColorPickerWidget( this.controller, this.model );
+		this.highlightPopup = new OO.ui.PopupWidget( {
+			autoClose: true,
+			anchor: false,
+			padded: true,
+			align: 'backwards',
+			horizontalPosition: 'end',
+			width: 290,
+			$content: this.highlightColorPicker.$element
+		} );
+		this.$overlay.append( this.highlightPopup.$element );
+
 		// Count groups per view
 		$.each( groups, function ( groupName, groupModel ) {
 			if ( !groupModel.isHidden() ) {
@@ -187,6 +200,7 @@
 						new mw.rcfilters.ui.FilterMenuOptionWidget(
 							widget.controller,
 							filterItem,
+							widget,
 							{
 								$overlay: widget.$overlay
 							}
