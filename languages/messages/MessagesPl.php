@@ -120,7 +120,7 @@ $dateFormats = [
 
 $fallback8bitEncoding = 'iso-8859-2';
 $separatorTransformTable = [
-	',' => "\xc2\xa0", // T4749
+	',' => "\u{00A0}", // T4749
 	'.' => ','
 ];
 

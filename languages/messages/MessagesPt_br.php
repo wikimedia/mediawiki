@@ -120,7 +120,7 @@ $dateFormats = [
 
 ];
 
-$separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
+$separatorTransformTable = [ ',' => "\u{00A0}", '.' => ',' ];
 
 $specialPageAliases = [
 	'Activeusers'               => [ 'Usuários_ativos' ],
