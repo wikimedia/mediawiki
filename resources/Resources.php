@@ -2013,8 +2013,6 @@ return [
 	'mediawiki.special.block' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.block.js',
 		'dependencies' => [
-			'oojs-ui-core',
-			'mediawiki.widgets.SelectWithInputWidget',
 			'mediawiki.util',
 			'mediawiki.htmlform',
 		],

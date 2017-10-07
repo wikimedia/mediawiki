@@ -35,19 +35,12 @@
 	text-align: right;
 }
 
-.mw-block-hideuser,
-.mw-block-confirm {
+label[for='mw-input-wpConfirm'] {
 	font-weight: bold;
 }
 
-#mw-input-wpReason .oo-ui-dropdownInputWidget,
-#mw-input-wpReason .oo-ui-textInputWidget {
-	display: block;
-	max-width: 50em;
-}
-
-#mw-input-wpReason .oo-ui-textInputWidget {
-	margin-top: 0.5em;
+.mw-block-hideuser {
+	font-weight: bold;
 }
 
 /* Special:BlockList */
