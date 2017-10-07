@@ -94,7 +94,7 @@ $namespaceAliases = [
 	'Katejorije_Klaaf'	=> NS_CATEGORY_TALK,
 ];
 
-$separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
+$separatorTransformTable = [ ',' => "\u{00A0}", '.' => ',' ];
 $minimumGroupingDigits = 2;
 
 $linkTrail = '/^([äöüėëĳßəğåůæœça-z]+)(.*)$/sDu';

@@ -836,9 +836,9 @@ class MessageCache {
 				],
 				[
 					' ',
-					"\xc2\xa0",
-					"\xc2\xa0",
-					"\xc2\xad"
+					"\u{00A0}",
+					"\u{00A0}",
+					"\u{00AD}"
 				],
 				$message
 			);

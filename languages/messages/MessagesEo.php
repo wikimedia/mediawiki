@@ -275,7 +275,7 @@ $magicWords = [
 	'url_query'                 => [ '0', 'INFORMPETO', 'QUERY' ],
 ];
 
-$separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
+$separatorTransformTable = [ ',' => "\u{00A0}", '.' => ',' ];
 
 $datePreferences = false;
 $defaultDateFormat = 'dmy';

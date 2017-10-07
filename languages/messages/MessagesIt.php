@@ -32,7 +32,7 @@ $namespaceAliases = [
 	'Discussioni_immagine' => NS_FILE_TALK,
 ];
 
-$separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
+$separatorTransformTable = [ ',' => "\u{00A0}", '.' => ',' ];
 
 $dateFormats = [
 	'mdy time' => 'H:i',

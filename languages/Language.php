@@ -154,9 +154,9 @@ class Language {
 	/**
 	 * Unicode directional formatting characters, for embedBidi()
 	 */
-	static private $lre = "\xE2\x80\xAA"; // U+202A LEFT-TO-RIGHT EMBEDDING
-	static private $rle = "\xE2\x80\xAB"; // U+202B RIGHT-TO-LEFT EMBEDDING
-	static private $pdf = "\xE2\x80\xAC"; // U+202C POP DIRECTIONAL FORMATTING
+	static private $lre = "\u{202A}"; // U+202A LEFT-TO-RIGHT EMBEDDING
+	static private $rle = "\u{202B}"; // U+202B RIGHT-TO-LEFT EMBEDDING
+	static private $pdf = "\u{202C}"; // U+202C POP DIRECTIONAL FORMATTING
 
 	/**
 	 * Directionality test regex for embedBidi(). Matches the first strong directionality codepoint:
@@ -2915,33 +2915,33 @@ class Language {
 			if ( $code < 0xac00 || 0xd7a4 <= $code ) {
 				return $matches[1];
 			} elseif ( $code < 0xb098 ) {
-				return "\xe3\x84\xb1";
+				return "\u{3131}";
 			} elseif ( $code < 0xb2e4 ) {
-				return "\xe3\x84\xb4";
+				return "\u{3134}";
 			} elseif ( $code < 0xb77c ) {
-				return "\xe3\x84\xb7";
+				return "\u{3137}";
 			} elseif ( $code < 0xb9c8 ) {
-				return "\xe3\x84\xb9";
+				return "\u{3139}";
 			} elseif ( $code < 0xbc14 ) {
-				return "\xe3\x85\x81";
+				return "\u{3141}";
 			} elseif ( $code < 0xc0ac ) {
-				return "\xe3\x85\x82";
+				return "\u{3142}";
 			} elseif ( $code < 0xc544 ) {
-				return "\xe3\x85\x85";
+				return "\u{3145}";
 			} elseif ( $code < 0xc790 ) {
-				return "\xe3\x85\x87";
+				return "\u{3147}";
 			} elseif ( $code < 0xcc28 ) {
-				return "\xe3\x85\x88";
+				return "\u{3148}";
 			} elseif ( $code < 0xce74 ) {
-				return "\xe3\x85\x8a";
+				return "\u{314A}";
 			} elseif ( $code < 0xd0c0 ) {
-				return "\xe3\x85\x8b";
+				return "\u{314B}";
 			} elseif ( $code < 0xd30c ) {
-				return "\xe3\x85\x8c";
+				return "\u{314C}";
 			} elseif ( $code < 0xd558 ) {
-				return "\xe3\x85\x8d";
+				return "\u{314D}";
 			} else {
-				return "\xe3\x85\x8e";
+				return "\u{314E}";
 			}
 		} else {
 			return '';
@@ -3090,8 +3090,8 @@ class Language {
 	 * @return string
 	 */
 	function getDirMark( $opposite = false ) {
-		$lrm = "\xE2\x80\x8E"; # LEFT-TO-RIGHT MARK, commonly abbreviated LRM
-		$rlm = "\xE2\x80\x8F"; # RIGHT-TO-LEFT MARK, commonly abbreviated RLM
+		$lrm = "\u{200E}"; # LEFT-TO-RIGHT MARK, commonly abbreviated LRM
+		$rlm = "\u{200F}"; # RIGHT-TO-LEFT MARK, commonly abbreviated RLM
 		if ( $opposite ) {
 			return $this->isRTL() ? $lrm : $rlm;
 		}

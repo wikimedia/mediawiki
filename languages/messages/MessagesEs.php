@@ -298,7 +298,7 @@ $dateFormats = [
 	'dmy both' => 'H:i j M Y',
 ];
 
-$separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
+$separatorTransformTable = [ ',' => "\u{00A0}", '.' => ',' ];
 $minimumGroupingDigits = 2;
 
 $linkTrail = '/^([a-záéíóúñ]+)(.*)$/sDu';

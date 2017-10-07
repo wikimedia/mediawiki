@@ -144,6 +144,6 @@ $magicWords = [
 	'special'                   => [ '0', 'ప్రత్యేక', 'special' ],
 ];
 
-$linkTrail = "/^([\xE0\xB0\x81-\xE0\xB1\xAF]+)(.*)$/sDu";
+$linkTrail = "/^([\u{0C01}-\u{0C6F}]+)(.*)$/sDu";
 
 $digitGroupingPattern = "##,##,###";

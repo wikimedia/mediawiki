@@ -9,7 +9,7 @@
  */
 
 $separatorTransformTable = [
-	',' => "\xc2\xa0", # nbsp
+	',' => "\u{00A0}", # nbsp
 	'.' => ','
 ];
 $minimumGroupingDigits = 2;

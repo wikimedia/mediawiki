@@ -1593,9 +1593,9 @@ class LanguageTest extends LanguageClassesTestCase {
 	 * @covers Language::embedBidi()
 	 */
 	public function testEmbedBidi() {
-		$lre = "\xE2\x80\xAA"; // U+202A LEFT-TO-RIGHT EMBEDDING
-		$rle = "\xE2\x80\xAB"; // U+202B RIGHT-TO-LEFT EMBEDDING
-		$pdf = "\xE2\x80\xAC"; // U+202C POP DIRECTIONAL FORMATTING
+		$lre = "\u{202A}"; // U+202A LEFT-TO-RIGHT EMBEDDING
+		$rle = "\u{202B}"; // U+202B RIGHT-TO-LEFT EMBEDDING
+		$pdf = "\u{202C}"; // U+202C POP DIRECTIONAL FORMATTING
 		$lang = $this->getLang();
 		$this->assertEquals(
 			'123',

@@ -80,6 +80,6 @@ $magicWords = [
 	'url_wiki'                  => [ '0', 'விக்கி', 'WIKI' ],
 ];
 
-$linkTrail = "/^([\xE0\xAE\x80-\xE0\xAF\xBF]+)(.*)$/sDu";
+$linkTrail = "/^([\u{0B80}-\u{0BFF}]+)(.*)$/sDu";
 
 $digitGroupingPattern = "##,##,###";

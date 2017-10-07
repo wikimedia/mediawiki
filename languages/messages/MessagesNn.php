@@ -317,7 +317,7 @@ $specialPageAliases = [
 ];
 
 $separatorTransformTable = [
-	',' => "\xc2\xa0",
+	',' => "\u{00A0}",
 	'.' => ','
 ];
 $linkTrail = '/^([æøåa-z]+)(.*)$/sDu';
