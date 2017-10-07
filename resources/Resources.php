@@ -1705,7 +1705,6 @@ return [
 	'mediawiki.page.watch.ajax' => [
 		'scripts' => 'resources/src/mediawiki/page/watch.js',
 		'dependencies' => [
-			'mediawiki.page.startup',
 			'mediawiki.api.watch',
 			'mediawiki.notify',
 			'mediawiki.util',
