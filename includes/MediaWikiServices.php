@@ -10,6 +10,7 @@ use GenderCache;
 use GlobalVarConfig;
 use Hooks;
 use IBufferingStatsdDataFactory;
+use MediaWiki\Shell\CommandFactory;
 use Wikimedia\Rdbms\LBFactory;
 use LinkCache;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -679,6 +680,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getReadOnlyMode() {
 		return $this->getService( 'ReadOnlyMode' );
+	}
+
+	/**
+	 * @since 1.30
+	 * @return CommandFactory
+	 */
+	public function getShellCommandFactory() {
+		return $this->getService( 'ShellCommandFactory' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////
