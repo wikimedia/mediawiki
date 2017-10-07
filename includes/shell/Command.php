@@ -316,11 +316,16 @@ class Command {
 			$readyPipes = $pipes;
 
 			// Clear last error
+			set_error_handler( function () {}, 0 );
 			// @codingStandardsIgnoreStart Generic.PHP.NoSilencedErrors.Discouraged
 			@trigger_error( '' );
+			// @codingStandardsIgnoreEnd
+			restore_error_handler();
+
+			// @codingStandardsIgnoreStart Generic.PHP.NoSilencedErrors.Discouraged
 			$numReadyPipes = @stream_select( $readyPipes, $emptyArray, $emptyArray, $timeout );
+			// @codingStandardsIgnoreEnd
 			if ( $numReadyPipes === false ) {
-				// @codingStandardsIgnoreEnd
 				$error = error_get_last();
 				if ( strncmp( $error['message'], $eintrMessage, strlen( $eintrMessage ) ) == 0 ) {
 					continue;
