@@ -2231,6 +2231,10 @@ return [
 			'mediawiki.htmlform.checker',
 		],
 	],
+	'mediawiki.special.signup.event.log.js' => [
+ 	
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.signup.event.log.js',
+	],
 	'mediawiki.special.userlogin.signup.styles' => [
 		'styles' => [
 			'resources/src/mediawiki.special/mediawiki.special.userlogin.signup.css',
