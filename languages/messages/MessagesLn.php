@@ -19,4 +19,4 @@ $namespaceGenderAliases = [];
 $linkPrefixExtension = true;
 
 # Same as the French (T10485)
-$separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
+$separatorTransformTable = [ ',' => "\u{00A0}", '.' => ',' ];

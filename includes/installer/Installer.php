@@ -811,7 +811,7 @@ abstract class Installer {
 		// with utf8 support, but not unicode property support.
 		// check that \p{Zs} (space separators) matches
 		// U+3000 (Ideographic space)
-		$regexprop = preg_replace( '/\p{Zs}/u', '', "-\xE3\x80\x80-" );
+		$regexprop = preg_replace( '/\p{Zs}/u', '', "-\u{3000}-" );
 		Wikimedia\restoreWarnings();
 		if ( $regexd != '--' || $regexprop != '--' ) {
 			$this->showError( 'config-pcre-no-utf8' );
