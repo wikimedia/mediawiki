@@ -95,8 +95,8 @@ class FormatJson {
 	 *       and U+000D (CR). However, PHP already escapes LF and CR according to RFC 4627.
 	 */
 	private static $badChars = [
-		"\xe2\x80\xa8", // U+2028 LINE SEPARATOR
-		"\xe2\x80\xa9", // U+2029 PARAGRAPH SEPARATOR
+		"\u{2028}", // U+2028 LINE SEPARATOR
+		"\u{2029}", // U+2029 PARAGRAPH SEPARATOR
 	];
 
 	/**
