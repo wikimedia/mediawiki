@@ -42,6 +42,7 @@ changes to languages because of Phabricator reports.
 * MessageBlobStore::insertMessageBlob() (deprecated in 1.27) was removed.
 * The global function wfBCP47 was renamed to LanguageCode::bcp47.
 * The global function wfBCP47 is now deprecated.
+* mw.page (deprecated in 1.30) was removed.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. There is experimental support for

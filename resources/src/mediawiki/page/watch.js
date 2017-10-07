@@ -2,6 +2,13 @@
  * Animate watch/unwatch links to use asynchronous API requests to
  * watch pages, rather than navigating to a different URI.
  *
+ *     var watch = require( 'mediawiki.page.watch.ajax' );
+ *     watch.updateWatchLink(
+ *         $node,
+ *         'watch',
+ *         'loading'
+ *     );
+ *
  * @class mw.page.watch.ajax
  */
 ( function ( mw, $ ) {
@@ -101,13 +108,6 @@
 		updateWatchLink: updateWatchLink
 	};
 	module.exports = watch;
-
-	// Deprecated since 1.30
-	mw.log.deprecate( mw, 'page',
-		{ watch: watch },
-		'Use require( \'mediawiki.page.watch.ajax\' ) instead.',
-		'mw.page'
-	);
 
 	$( function () {
 		var $links = $( '.mw-watchlink a[data-mw="interface"], a.mw-watchlink[data-mw="interface"]' );
