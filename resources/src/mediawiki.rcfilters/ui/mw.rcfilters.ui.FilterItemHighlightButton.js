@@ -7,34 +7,24 @@
 	 * @constructor
 	 * @param {mw.rcfilters.Controller} controller RCFilters controller
 	 * @param {mw.rcfilters.dm.FilterItem} model Filter item model
+	 * @param {mw.rcfilters.ui.HighlightPopupWidget} highlightPopup Shared highlight color picker
 	 * @param {Object} [config] Configuration object
 	 */
-	mw.rcfilters.ui.FilterItemHighlightButton = function MwRcfiltersUiFilterItemHighlightButton( controller, model, config ) {
+	mw.rcfilters.ui.FilterItemHighlightButton = function MwRcfiltersUiFilterItemHighlightButton( controller, model, highlightPopup, config ) {
 		config = config || {};
-
-		this.colorPickerWidget = new mw.rcfilters.ui.HighlightColorPickerWidget( controller, model );
 
 		// Parent
 		mw.rcfilters.ui.FilterItemHighlightButton.parent.call( this, $.extend( true, {}, config, {
 			icon: 'highlight',
-			indicator: 'down',
-			popup: {
-				anchor: false,
-				padded: true,
-				align: 'backwards',
-				horizontalPosition: 'end',
-				$floatableContainer: this.$element,
-				width: 290,
-				$content: this.colorPickerWidget.$element
-			}
+			indicator: 'down'
 		} ) );
 
 		this.controller = controller;
 		this.model = model;
+		this.popup = highlightPopup;
 
 		// Event
 		this.model.connect( this, { update: 'updateUiBasedOnModel' } );
-		this.colorPickerWidget.connect( this, { chooseColor: 'onChooseColor' } );
 		// This lives inside a MenuOptionWidget, which intercepts mousedown
 		// to select the item. We want to prevent that when we click the highlight
 		// button
@@ -59,6 +49,14 @@
 
 	/* Methods */
 
+	mw.rcfilters.ui.FilterItemHighlightButton.prototype.onAction = function () {
+		this.popup.setAssociatedButton( this );
+		this.popup.setFilterItem( this.model );
+
+		// Parent method
+		mw.rcfilters.ui.FilterItemHighlightButton.parent.prototype.onAction.call( this );
+	};
+
 	/**
 	 * Respond to item model update event
 	 */
@@ -78,9 +76,5 @@
 					c === currentColor
 				);
 		} );
-	};
-
-	mw.rcfilters.ui.FilterItemHighlightButton.prototype.onChooseColor = function () {
-		this.popup.toggle( false );
 	};
 }( mediaWiki, jQuery ) );

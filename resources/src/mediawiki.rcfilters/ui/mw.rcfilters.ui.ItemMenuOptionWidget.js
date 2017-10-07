@@ -9,10 +9,11 @@
 	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersViewModel
 	 * @param {mw.rcfilters.dm.ItemModel} invertModel
 	 * @param {mw.rcfilters.dm.ItemModel} itemModel Item model
+	 * @param {mw.rcfilters.ui.HighlightPopupWidget} highlightPopup Shared highlight color picker
 	 * @param {Object} config Configuration object
 	 */
 	mw.rcfilters.ui.ItemMenuOptionWidget = function MwRcfiltersUiItemMenuOptionWidget(
-		controller, filtersViewModel, invertModel, itemModel, config
+		controller, filtersViewModel, invertModel, itemModel, highlightPopup, config
 	) {
 		var layout,
 			classes = [],
@@ -55,6 +56,7 @@
 		this.highlightButton = new mw.rcfilters.ui.FilterItemHighlightButton(
 			this.controller,
 			this.itemModel,
+			highlightPopup,
 			{
 				$overlay: config.$overlay || this.$element,
 				title: mw.msg( 'rcfilters-highlightmenu-help' )

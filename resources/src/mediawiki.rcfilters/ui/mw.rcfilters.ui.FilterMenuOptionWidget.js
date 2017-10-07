@@ -9,10 +9,11 @@
 	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersViewModel
 	 * @param {mw.rcfilters.dm.FilterItem} invertModel
 	 * @param {mw.rcfilters.dm.FilterItem} itemModel Filter item model
+	 * @param {mw.rcfilters.ui.HighlightPopupWidget} highlightPopup Shared highlight color picker popup
 	 * @param {Object} config Configuration object
 	 */
 	mw.rcfilters.ui.FilterMenuOptionWidget = function MwRcfiltersUiFilterMenuOptionWidget(
-		controller, filtersViewModel, invertModel, itemModel, config
+		controller, filtersViewModel, invertModel, itemModel, highlightPopup, config
 	) {
 		config = config || {};
 
@@ -21,7 +22,7 @@
 		this.model = itemModel;
 
 		// Parent
-		mw.rcfilters.ui.FilterMenuOptionWidget.parent.call( this, controller, filtersViewModel, this.invertModel, itemModel, config );
+		mw.rcfilters.ui.FilterMenuOptionWidget.parent.call( this, controller, filtersViewModel, this.invertModel, itemModel, highlightPopup, config );
 
 		// Event
 		this.model.getGroupModel().connect( this, { update: 'onGroupModelUpdate' } );
