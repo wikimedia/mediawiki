@@ -99,6 +99,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @param HTMLForm $form
 	 */
 	protected function alterForm( HTMLForm $form ) {
+		$form->setWrapperLegendMsg( 'blockip-legend' );
 		$form->setHeaderText( '' );
 		$form->setSubmitDestructive();
 
@@ -120,10 +121,6 @@ class SpecialBlock extends FormSpecialPage {
 		}
 	}
 
-	protected function getDisplayFormat() {
-		return 'ooui';
-	}
-
 	/**
 	 * Get the HTMLForm descriptor array for the block form
 	 * @return array
@@ -137,15 +134,14 @@ class SpecialBlock extends FormSpecialPage {
 
 		$a = [
 			'Target' => [
-				'type' => 'user',
-				'ipallowed' => true,
-				'iprange' => true,
+				'type' => 'text',
 				'label-message' => 'ipaddressorusername',
 				'id' => 'mw-bi-target',
 				'size' => '45',
 				'autofocus' => true,
 				'required' => true,
 				'validation-callback' => [ __CLASS__, 'validateTargetField' ],
+				'cssclass' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
 			],
 			'Expiry' => [
 				'type' => !count( $suggestedDurations ) ? 'text' : 'selectorother',
@@ -327,7 +323,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return string
 	 */
 	protected function preText() {
-		$this->getOutput()->addModules( [ 'mediawiki.special.block' ] );
+		$this->getOutput()->addModules( [ 'mediawiki.special.block', 'mediawiki.userSuggest' ] );
 
 		$blockCIDRLimit = $this->getConfig()->get( 'BlockCIDRLimit' );
 		$text = $this->msg( 'blockiptext', $blockCIDRLimit['IPv4'], $blockCIDRLimit['IPv6'] )->parse();
