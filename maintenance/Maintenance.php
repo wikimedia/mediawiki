@@ -480,6 +480,9 @@ abstract class Maintenance {
 			"http://en.wikipedia.org. This is sometimes necessary because " .
 			"server name detection may fail in command line scripts.", false, true );
 		$this->addOption( 'profiler', 'Profiler output format (usually "text")', false, true );
+		// This is named --mwdebug instead of --debug because that option is already taken
+		// by PHPUnit in case of the main use case, which is our phpunit.php CLI script.
+		$this->addOption( 'mwdebug', 'Enable built-in debug settings from MediaWiki', false, true );
 
 		# Save generic options to display them separately in help
 		$this->mGenericParameters = $this->mParams;
@@ -1107,6 +1110,11 @@ abstract class Maintenance {
 				$wgLBFactoryConf['serverTemplate']['password'] = $wgDBpassword;
 			}
 			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->destroy();
+		}
+
+		# Apply debug settings
+		if ( $this->hasOption( 'mwdebug' ) ) {
+			require_once __DIR__ . '/../tests/TestSettings.php';
 		}
 
 		// Per-script profiling; useful for debugging
