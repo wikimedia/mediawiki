@@ -41,10 +41,9 @@ div.mw-createacct-benefits-container h2 {
  * Needs an ID so that it's more specific than Vector's div#content h3.
  */
 #bodyContent div.mw-number-text h3 {
-	top: 0;
+	color: #222;
 	margin: 0;
 	padding: 0;
-	color: #252525;
 	font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
 	font-weight: normal;
 	font-size: 2.2em;
@@ -52,7 +51,7 @@ div.mw-createacct-benefits-container h2 {
 	text-align: center;
 }
 
-/* Contains a number and explanatory text, with space for an icon */
+/* Contains a “headlined” number and explanatory text, with space for an icon */
 div.mw-number-text {
 	display: block;
 	font-size: 1.2em;
