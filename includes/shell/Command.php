@@ -199,8 +199,6 @@ class Command {
 	 * @throws ShellDisabledError
 	 */
 	public function execute() {
-		global $IP;
-
 		$this->everExecuted = true;
 
 		$profileMethod = $this->method ?: wfGetCaller();
@@ -235,7 +233,7 @@ class Command {
 			$filesize = intval( $this->limits['filesize'] );
 
 			if ( $time > 0 || $mem > 0 || $filesize > 0 || $wallTime > 0 ) {
-				$cmd = '/bin/bash ' . escapeshellarg( "$IP/includes/limit.sh" ) . ' ' .
+				$cmd = '/bin/bash ' . escapeshellarg( __DIR__ . '/limit.sh' ) . ' ' .
 					   escapeshellarg( $cmd ) . ' ' .
 					   escapeshellarg(
 						   "MW_INCLUDE_STDERR=" . ( $this->useStderr ? '1' : '' ) . ';' .
