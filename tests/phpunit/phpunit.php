@@ -21,6 +21,7 @@ class PHPUnitMaintClass extends Maintenance {
 		'use-bagostuff' => false,
 		'use-jobqueue' => false,
 		'use-normal-tables' => false,
+		'mwdebug' => false,
 		'reuse-db' => false,
 		'wiki' => false,
 		'profiler' => false,
