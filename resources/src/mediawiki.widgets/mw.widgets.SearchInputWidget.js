@@ -33,8 +33,7 @@
 			icon: 'search',
 			maxLength: undefined,
 			performSearchOnClick: true,
-			dataLocation: 'header',
-			namespace: 0
+			dataLocation: 'header'
 		}, config );
 
 		// Parent constructor
