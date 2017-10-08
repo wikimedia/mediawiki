@@ -32,6 +32,7 @@ class SearchInputWidget extends TitleInputWidget {
 		$config = array_merge( [
 			'maxLength' => null,
 			'icon' => 'search',
+			'showImages' => false,
 		], $config );
 
 		// Parent constructor
