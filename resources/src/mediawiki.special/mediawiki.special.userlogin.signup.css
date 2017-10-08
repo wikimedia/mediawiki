@@ -10,6 +10,8 @@
 	/* Override the right margin of the form to give space in case a benefits
 	 * column appears to the side. */
 	margin-right: 100px;
+	/* Override `.mw-body-content` to ensure useful, readable paragraphs */
+	line-height: 1.4;
 }
 
 div.mw-createacct-benefits-container {
