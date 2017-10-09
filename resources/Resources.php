@@ -1110,7 +1110,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.htmlform.ooui.styles' => [
-		'styles' => 'resources/src/mediawiki/htmlform/ooui.styles.css',
+		'styles' => 'resources/src/mediawiki/htmlform/ooui.styles.less',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.icon' => [

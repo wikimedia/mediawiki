@@ -637,7 +637,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 	public function setupPLpgSQL() {
 		// Connect as the install user, since it owns the database and so is
-		// the user that needs to run "CREATE LANGAUGE"
+		// the user that needs to run "CREATE LANGUAGE"
 		$status = $this->getPgConnection( 'create-schema' );
 		if ( !$status->isOK() ) {
 			return $status;

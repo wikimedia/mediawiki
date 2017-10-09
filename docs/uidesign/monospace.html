@@ -2,15 +2,24 @@
 <html lang="en" dir="ltr">
 <head>
 	<style>
-		pre {
+		pre,
+		textarea {
 			border: 1px dashed #AAA;
 			background-color: #E0E0E0;
 			color: #000000;
-			margin: 1em 10%;
 			padding: 0.5em;
+			height: 1em;
+			width: 90%;
 		}
 		blockquote {
 			font-style: italic;
+		}
+		table {
+			width: 100%;
+			table-layout: fixed;
+		}
+		td {
+			padding: 0.5em;
 		}
 	</style>
 </head>
@@ -33,45 +42,138 @@ font besides just "monospace", those browsers will no longer treat it as
 monospace and use 0.8 x 16px = 13px instead.
 </blockquote>
 <p>
+Additionally, it seems that textareas have their own font-size set in Chrome
+(but not Firefox and other browsers), making them unaffected by this behavior.
+</p>
+<p>
 Below are various rendering:
 </p>
 
+<table>
+
+<tr>
+<th>&lt;pre&gt;</th>
+<th>&lt;textarea&gt;</th>
+</tr>
+
+<tr>
+<td>
 <pre style='
 font-family: monospace;'>
 font-family: monospace;
 </pre>
+</td>
+<td>
+<textarea style='
+font-family: monospace;'>
+font-family: monospace;
+</textarea>
+</td>
+</tr>
 
+<tr>
+<td>
 <pre style='
 font-family: "Courier New";'>
 font-family: "Courier New";
 </pre>
+</td>
+<td>
+<textarea style='
+font-family: "Courier New";'>
+font-family: "Courier New";
+</textarea>
+</td>
+</tr>
 
+<tr>
+<td>
 <pre style='
 font-family: Courier;'>
 font-family: Courier;
 </pre>
+</td>
+<td>
+<textarea style='
+font-family: Courier;'>
+font-family: Courier;
+</textarea>
+</td>
+</tr>
 
+<tr>
+<td>
 <pre style='
 font-family: monospace, monospace;'>
 font-family: monospace, monospace;
 </pre>
+</td>
+<td>
+<textarea style='
+font-family: monospace, monospace;'>
+font-family: monospace, monospace;
+</textarea>
+</td>
+</tr>
 
+<tr>
+<td>
 <pre style='
 font-family: monospace, "Courier New";'>
 font-family: monospace, "Courier New";
 </pre>
+</td>
+<td>
+<textarea style='
+font-family: monospace, "Courier New";'>
+font-family: monospace, "Courier New";
+</textarea>
+</td>
+</tr>
 
+<tr>
+<td>
 <pre style='
 font-family: monospace, Courier;'>
 font-family: monospace, Courier;
 </pre>
+</td>
+<td>
+<textarea style='
+font-family: monospace, Courier;'>
+font-family: monospace, Courier;
+</textarea>
+</td>
+</tr>
 
+<tr>
+<td>
 <pre style='
 font-family: monospace, Verdana;'>
 font-family: monospace, Verdana;
 </pre>
+</td>
+<td>
+<textarea style='
+font-family: monospace, Verdana;'>
+font-family: monospace, Verdana;
+</textarea>
+</td>
+</tr>
 
+<tr>
+<td>
 <pre style='
 font-family: monospace, DOESNOTEXISTREALLY;'>
 font-family: monospace, DOESNOTEXISTREALLY;
 </pre>
+</td>
+<td>
+<textarea style='
+font-family: monospace, DOESNOTEXISTREALLY;'>
+font-family: monospace, DOESNOTEXISTREALLY;
+</textarea>
+</td>
+</tr>
+
+</table>

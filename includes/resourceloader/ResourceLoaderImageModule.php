@@ -249,7 +249,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 				$fileDescriptor = is_string( $options ) ? $options : $options['file'];
 
 				$allowedVariants = array_merge(
-					is_array( $options ) && isset( $options['variants'] ) ? $options['variants'] : [],
+					( is_array( $options ) && isset( $options['variants'] ) ) ? $options['variants'] : [],
 					$this->getGlobalVariants( $context )
 				);
 				if ( isset( $this->variants[$skin] ) ) {

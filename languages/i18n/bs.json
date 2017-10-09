@@ -2462,7 +2462,7 @@
 	"move-watch": "Prati izvornu i odredišnu stranicu",
 	"movepagebtn": "Premjesti stranicu",
 	"pagemovedsub": "Premještanje uspjelo",
-	"movepage-moved": "<strong>\"$1\" je premještena na \"$2\"</strong>",
+	"movepage-moved": "<strong>Stranica \"$1\" premještena je na \"$2\"</strong>",
 	"movepage-moved-redirect": "Preusmjerenje je napravljeno.",
 	"movepage-moved-noredirect": "Pravljenje preusmjerenja je onemogućeno.",
 	"articleexists": "Stranica pod tim imenom već postoji ili je ime koje ste izabrali neispravno. Molimo Vas da izaberete drugo ime.",

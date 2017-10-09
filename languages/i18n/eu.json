@@ -1286,7 +1286,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ikus, gainera, [[Special:NewPages|orri berrien zerrenda]])",
 	"recentchanges-submit": "Erakutsi",
 	"rcfilters-tag-remove": "$1 ezabatu",
-	"rcfilters-legend-heading": "<indartsu>Laburpenen zerrenda:</indartsu>",
+	"rcfilters-legend-heading": "<strong>Laburpenen zerrenda:</strong>",
 	"rcfilters-other-review-tools": "<strong>Beste berrikusketa tresnak</strong>",
 	"rcfilters-group-results-by-page": "Talde emaitzak orrika",
 	"rcfilters-grouping-title": "Taldekatzen",
