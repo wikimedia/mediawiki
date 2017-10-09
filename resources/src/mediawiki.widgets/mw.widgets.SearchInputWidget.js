@@ -67,6 +67,10 @@
 			} );
 		}.bind( this ) );
 
+		this.connect( this, {
+			change: 'onChange'
+		} );
+
 		this.$element.addClass( 'oo-ui-textInputWidget-type-search' );
 		this.updateSearchIndicator();
 		this.connect( this, {
@@ -117,7 +121,6 @@
 	 * @see OO.ui.SearchInputWidget#onChange
 	 */
 	mw.widgets.SearchInputWidget.prototype.onChange = function () {
-		mw.widgets.SearchInputWidget.parent.prototype.onChange.call( this );
 		this.updateSearchIndicator();
 	};
 
