@@ -265,8 +265,7 @@ class UploadStash {
 			// At this point, $error should contain the single "most important"
 			// error, plus any parameters.
 			$errorMsg = array_shift( $error );
-			throw new UploadStashFileException( "Error storing file in '$path': "
-				. wfMessage( $errorMsg, $error )->text() );
+			throw new UploadStashFileException( wfMessage( $errorMsg, $error ) );
 		}
 		$stashPath = $storeStatus->value;
 
@@ -739,7 +738,27 @@ class UploadStashFile extends UnregisteredLocalFile {
 	}
 }
 
-class UploadStashException extends MWException {
+class UploadStashException extends MWException implements ILocalizedException {
+	/** @var string|array|MessageSpecifier */
+	protected $messageSpec;
+
+	/**
+	 * @param string|array|MessageSpecifier $messageSpec See Message::newFromSpecifier
+	 * @param int $code Exception code
+	 * @param Exception|Throwable $previous The previous exception used for the exception chaining.
+	 */
+	public function __construct( $messageSpec, $code = 0, $previous = null ) {
+		$this->messageSpec = $messageSpec;
+
+		$msg = $this->getMessageObject()->text();
+		$msg = preg_replace( '!</?(var|kbd|samp|code)>!', '"', $msg );
+		$msg = Sanitizer::stripAllTags( $msg );
+		parent::__construct( $msg, $code, $previous );
+	}
+
+	public function getMessageObject() {
+		return Message::newFromSpecifier( $this->messageSpec );
+	}
 }
 
 class UploadStashFileNotFoundException extends UploadStashException {
