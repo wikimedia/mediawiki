@@ -1439,6 +1439,7 @@
 	"rcfilters-view-namespaces-tooltip": "Filtrer resultater etter navnerom",
 	"rcfilters-view-tags-tooltip": "Filtrer resultater med redigeringstagger",
 	"rcfilters-view-return-to-default-tooltip": "Tilbake til hovedmenyen for filtre",
+	"rcfilters-view-tags-help-icon-tooltip": "Les mer om taggede redigeringer",
 	"rcfilters-liveupdates-button": "Live-oppdateringer",
 	"rcfilters-liveupdates-button-title-on": "Slå av live-oppdateringer",
 	"rcfilters-liveupdates-button-title-off": "Vis nye endringer når de skjer",

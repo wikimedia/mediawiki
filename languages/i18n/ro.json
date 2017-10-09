@@ -3791,6 +3791,7 @@
 	"unlinkaccounts": "Dezleagă conturile",
 	"unlinkaccounts-success": "Contul a fost dezlegat",
 	"userjsispublic": "Atenție: subpaginile JavaScript nu trebuie să conțină date confidențiale, întrucât ele sunt vizibile altor utilizatori.",
+	"gotointerwiki-invalid": "Titlul specificat nu este valid.",
 	"pagedata-title": "Datele paginii",
 	"pagedata-bad-title": "Titlu invalid: $1."
 }
