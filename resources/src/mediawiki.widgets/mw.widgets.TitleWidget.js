@@ -22,6 +22,7 @@
 	 * @cfg {boolean} [showRedirectTargets=true] Show the targets of redirects
 	 * @cfg {boolean} [showImages] Show page images
 	 * @cfg {boolean} [showDescriptions] Show page descriptions
+	 * @cfg {boolean} [showMissing=true] Show missing pages
 	 * @cfg {boolean} [excludeCurrentPage] Exclude the current page from suggestions
 	 * @cfg {boolean} [validateTitle=true] Whether the input must be a valid title (if set to true,
 	 *  the widget will marks itself red for invalid inputs, including an empty query).
@@ -44,6 +45,7 @@
 		this.showRedirectTargets = config.showRedirectTargets !== false;
 		this.showImages = !!config.showImages;
 		this.showDescriptions = !!config.showDescriptions;
+		this.showMissing = config.showMissing !== false;
 		this.excludeCurrentPage = !!config.excludeCurrentPage;
 		this.validateTitle = config.validateTitle !== undefined ? config.validateTitle : true;
 		this.cache = config.cache;
@@ -227,6 +229,9 @@
 
 		for ( index in data.pages ) {
 			suggestionPage = data.pages[ index ];
+			if ( !this.showMissing && suggestionPage.missing !== undefined ) {
+				continue;
+			}
 			// When excludeCurrentPage is set, don't list the current page unless the user has type the full title
 			if ( this.excludeCurrentPage && suggestionPage.title === currentPageName && suggestionPage.title !== titleObj.getPrefixedText() ) {
 				continue;
