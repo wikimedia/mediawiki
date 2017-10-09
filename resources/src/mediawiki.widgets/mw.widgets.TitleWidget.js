@@ -32,7 +32,8 @@
 		// Config initialization
 		config = $.extend( {
 			maxLength: 255,
-			limit: 10
+			limit: 10,
+			showMissing: true
 		}, config );
 
 		// Properties
@@ -44,6 +45,7 @@
 		this.showRedirectTargets = config.showRedirectTargets !== false;
 		this.showImages = !!config.showImages;
 		this.showDescriptions = !!config.showDescriptions;
+		this.showMissing = !!config.showMissing;
 		this.excludeCurrentPage = !!config.excludeCurrentPage;
 		this.validateTitle = config.validateTitle !== undefined ? config.validateTitle : true;
 		this.cache = config.cache;
@@ -227,6 +229,9 @@
 
 		for ( index in data.pages ) {
 			suggestionPage = data.pages[ index ];
+			if ( !this.showMissing && suggestionPage.missing !== undefined ) {
+				continue;
+			}
 			// When excludeCurrentPage is set, don't list the current page unless the user has type the full title
 			if ( this.excludeCurrentPage && suggestionPage.title === currentPageName && suggestionPage.title !== titleObj.getPrefixedText() ) {
 				continue;
