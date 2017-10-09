@@ -33,8 +33,7 @@
 			icon: 'search',
 			maxLength: undefined,
 			performSearchOnClick: true,
-			dataLocation: 'header',
-			namespace: 0
+			dataLocation: 'header'
 		}, config );
 
 		// Parent constructor
@@ -66,6 +65,10 @@
 				)
 			} );
 		}.bind( this ) );
+
+		this.connect( this, {
+			change: 'onChange'
+		} );
 
 		this.$element.addClass( 'oo-ui-textInputWidget-type-search' );
 		this.updateSearchIndicator();
@@ -117,7 +120,6 @@
 	 * @see OO.ui.SearchInputWidget#onChange
 	 */
 	mw.widgets.SearchInputWidget.prototype.onChange = function () {
-		mw.widgets.SearchInputWidget.parent.prototype.onChange.call( this );
 		this.updateSearchIndicator();
 	};
 
@@ -184,9 +186,12 @@
 	 */
 	mw.widgets.SearchInputWidget.prototype.getOptionsFromData = function ( data ) {
 		var items = [],
+			titles = data.data[ 1 ],
+			descriptions = data.data[ 2 ],
+			urls = data.data[ 3 ],
 			self = this;
 
-		$.each( data.data[ 1 ], function ( i, result ) {
+		$.each( titles, function ( i, result ) {
 			items.push( new mw.widgets.TitleOptionWidget(
 				self.getOptionWidgetData(
 					result,
@@ -194,10 +199,9 @@
 					// the parent's API query.
 					{
 						data: result,
-						// data[ 3 ][ i ] is the link for this result
-						url: data.data[ 3 ][ i ],
-						imageUrl: null,
-						description: null,
+						url: urls[ i ],
+						imageUrl: null, // The JSON 'opensearch' API doesn't have images
+						description: descriptions[ i ],
 						missing: false,
 						redirect: false,
 						disambiguation: false
