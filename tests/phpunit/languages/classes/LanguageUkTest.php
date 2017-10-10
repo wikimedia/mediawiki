@@ -6,9 +6,6 @@
  * @file
  */
 
-/**
- * @covers LanguageUk
- */
 class LanguageUkTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providePlural
