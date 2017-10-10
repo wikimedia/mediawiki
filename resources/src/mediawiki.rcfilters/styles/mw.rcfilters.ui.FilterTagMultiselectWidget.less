@@ -12,9 +12,9 @@
 	}
 
 	&.oo-ui-widget-enabled .oo-ui-tagMultiselectWidget-handle {
-		border: 1px solid #a2a9b1;
+		border: 1px solid @colorGray10;
 		border-bottom: 0;
-		background-color: #f8f9fa;
+		background-color: @colorGray15;
 		border-radius: 2px 2px 0 0;
 		padding: 0.6em;
 		margin-top: 1em;
@@ -37,11 +37,11 @@
 		&-content {
 			&-title {
 				font-weight: bold;
-				color: #54595d;
+				color: @colorGray5;
 			}
 
 			&-savedQueryTitle {
-				color: #222; // Base10
+				color: @colorGray2; // Base10
 				font-weight: bold;
 				vertical-align: top;
 				margin-left: 1em;
@@ -62,7 +62,7 @@
 			width: 1em;
 
 			&-widget.oo-ui-widget {
-				border: 1px solid #a2a9b1;
+				border: 1px solid @colorGray10;
 				border-left-width: 0;
 				border-top-left-radius: 0;
 				border-top-right-radius: 0;
@@ -71,7 +71,7 @@
 				display: block;
 				text-align: right;
 				height: 2.5em;
-				box-sizing: border-box;
+				.box-sizing( border-box );
 
 				.oo-ui-buttonElement-frameless.oo-ui-iconElement:first-child {
 					margin-left: 0;
@@ -90,7 +90,7 @@
 	}
 
 	&-emptyFilters {
-		color: #72777d;
+		color: @colorGray7;
 	}
 
 	&-cell-filters {

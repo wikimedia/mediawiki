@@ -1,5 +1,6 @@
 @import 'mediawiki.mixins';
 @import 'mw.rcfilters.variables';
+@import 'mediawiki.ui/variables';
 
 .animation-delay( ... ) {
 	-webkit-animation-delay: @arguments; // Chrome 4-42, Safari 4-8, Opera 15-29, Android 2.1-4.4.4
@@ -8,7 +9,7 @@
 }
 
 // This is a general mixin for a color circle
-.mw-rcfilters-mixin-circle( @color: #fff, @diameter: 2em, @padding: 0.5em, @border: false, @borderColor: #54595d, @emptyBackground: false ) {
+.mw-rcfilters-mixin-circle( @color: #fff, @diameter: 2em, @padding: 0.5em, @border: false, @borderColor: @colorGray5, @emptyBackground: false ) {
 	.box-sizing( border-box );
 	min-width: @diameter;
 	width: @diameter;

@@ -1,4 +1,5 @@
 @import 'mediawiki.mixins';
+@import 'mediawiki.ui/variables';
 
 .mw-rcfilters-ui-filterMenuOptionWidget {
 	&.oo-ui-flaggedElement-muted {
@@ -7,19 +8,19 @@
 			// are also inverted, so if they are also selected, we
 			// should make sure the selected background is shown rather
 			// than the muted one
-			background-color: #f8f9fa; // Base90 AAA
+			background-color: @colorGray15; // Base90 AAA
 		}
 
 		.mw-rcfilters-ui-itemMenuOptionWidget-label-title,
 		.mw-rcfilters-ui-itemMenuOptionWidget-label-desc {
-			color: #54595d; // Base20 AAA
+			color: @colorGray5; // Base20 AAA
 		}
 
 		&.oo-ui-optionWidget-highlighted {
 			// Copying over styles from OOUI, since it must
 			// override our 'muted' state
-			background-color: #eaecf0;
-			color: #000;
+			background-color: @colorGray14;
+			color: @colorGray1;
 		}
 	}
 
