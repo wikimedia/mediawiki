@@ -4,6 +4,7 @@
  * @group ContentHandler
  */
 class RevisionTest extends MediaWikiTestCase {
+
 	protected function setUp() {
 		global $wgContLang;
 
@@ -42,14 +43,16 @@ class RevisionTest extends MediaWikiTestCase {
 		);
 
 		MWNamespace::clearCaches();
-		$wgContLang->resetNamespaces(); # reset namespace cache
+		// Reset namespace cache
+		$wgContLang->resetNamespaces();
 	}
 
-	function tearDown() {
+	protected function tearDown() {
 		global $wgContLang;
 
 		MWNamespace::clearCaches();
-		$wgContLang->resetNamespaces(); # reset namespace cache
+		// Reset namespace cache
+		$wgContLang->resetNamespaces();
 
 		parent::tearDown();
 	}
@@ -183,7 +186,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 *
 	 * @return Revision
 	 */
-	function newTestRevision( $text, $title = "Test",
+	private function newTestRevision( $text, $title = "Test",
 		$model = CONTENT_MODEL_WIKITEXT, $format = null
 	) {
 		if ( is_string( $title ) ) {
@@ -210,7 +213,7 @@ class RevisionTest extends MediaWikiTestCase {
 		return $rev;
 	}
 
-	function dataGetContentModel() {
+	public function dataGetContentModel() {
 		// NOTE: we expect the help namespace to always contain wikitext
 		return [
 			[ 'hello world', 'Help:Hello', null, null, CONTENT_MODEL_WIKITEXT ],
@@ -230,7 +233,7 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedModel, $rev->getContentModel() );
 	}
 
-	function dataGetContentFormat() {
+	public function dataGetContentFormat() {
 		// NOTE: we expect the help namespace to always contain wikitext
 		return [
 			[ 'hello world', 'Help:Hello', null, null, CONTENT_FORMAT_WIKITEXT ],
@@ -251,7 +254,7 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedFormat, $rev->getContentFormat() );
 	}
 
-	function dataGetContentHandler() {
+	public function dataGetContentHandler() {
 		// NOTE: we expect the help namespace to always contain wikitext
 		return [
 			[ 'hello world', 'Help:Hello', null, null, 'WikitextContentHandler' ],
@@ -271,7 +274,7 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedClass, get_class( $rev->getContentHandler() ) );
 	}
 
-	function dataGetContent() {
+	public function dataGetContent() {
 		// NOTE: we expect the help namespace to always contain wikitext
 		return [
 			[ 'hello world', 'Help:Hello', null, null, Revision::FOR_PUBLIC, 'hello world' ],
@@ -400,9 +403,11 @@ class RevisionTest extends MediaWikiTestCase {
 			]
 		);
 
+		/** @var RevisionTestModifyableContent $content */
 		$content = $rev->getContent( Revision::RAW );
 		$content->setText( "bar" );
 
+		/** @var RevisionTestModifyableContent $content2 */
 		$content2 = $rev->getContent( Revision::RAW );
 		// content is mutable, expect clone
 		$this->assertNotSame( $content, $content2, "expected a clone" );
@@ -410,7 +415,8 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->assertEquals( "foo", $content2->getText() );
 
 		$content2->setText( "bla bla" );
-		$this->assertEquals( "bar", $content->getText() ); // clones should be independent
+		// clones should be independent
+		$this->assertEquals( "bar", $content->getText() );
 	}
 
 	/**
@@ -426,40 +432,5 @@ class RevisionTest extends MediaWikiTestCase {
 
 		// for immutable content like wikitext, this should be the same object
 		$this->assertSame( $content, $content2 );
-	}
-}
-
-class RevisionTestModifyableContent extends TextContent {
-	public function __construct( $text ) {
-		parent::__construct( $text, "RevisionTestModifyableContent" );
-	}
-
-	public function copy() {
-		return new RevisionTestModifyableContent( $this->mText );
-	}
-
-	public function getText() {
-		return $this->mText;
-	}
-
-	public function setText( $text ) {
-		$this->mText = $text;
-	}
-}
-
-class RevisionTestModifyableContentHandler extends TextContentHandler {
-
-	public function __construct() {
-		parent::__construct( "RevisionTestModifyableContent", [ CONTENT_FORMAT_TEXT ] );
-	}
-
-	public function unserializeContent( $text, $format = null ) {
-		$this->checkFormat( $format );
-
-		return new RevisionTestModifyableContent( $text );
-	}
-
-	public function makeEmptyContent() {
-		return new RevisionTestModifyableContent( '' );
 	}
 }
