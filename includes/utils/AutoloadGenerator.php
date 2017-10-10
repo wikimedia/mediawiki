@@ -156,8 +156,8 @@ class AutoloadGenerator {
 	/**
 	 * Generates a PHP file setting up autoload information.
 	 *
-	 * @param {string} $commandName Command name to include in comment
-	 * @param {string} $filename of PHP file to put autoload information in.
+	 * @param string $commandName Command name to include in comment
+	 * @param string $filename of PHP file to put autoload information in.
 	 * @return string
 	 */
 	protected function generatePHPAutoload( $commandName, $filename ) {

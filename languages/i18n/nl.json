@@ -1425,7 +1425,7 @@
 	"rcfilters-filtergroup-automated": "Automatische bijdragen",
 	"rcfilters-filter-bots-label": "Bot",
 	"rcfilters-filter-bots-description": "Wijzigingen met behulp van geautomatiseerde hulpmiddelen.",
-	"rcfilters-filter-humans-label": "Minsjelik (geine bot)",
+	"rcfilters-filter-humans-label": "Menselijk (geen bot)",
 	"rcfilters-filter-humans-description": "Bewerkingen door menselijke bewerkers.",
 	"rcfilters-filtergroup-reviewstatus": "Beoordelingsstatus",
 	"rcfilters-filter-patrolled-label": "Gecontroleerd",
