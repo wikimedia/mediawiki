@@ -34,6 +34,7 @@ class BSCliInstaller extends CliInstaller {
 		$queue = [];
 
 		require "$IP/includes/DefaultSettings.php";
+		require_once __DIR__ . '/../../extensions/BlueSpiceFoundation/includes/Defines.php';
 		require_once __DIR__ . '/../../LocalSettings.BlueSpice.php';
 
 		foreach ( $exts as $e ) {

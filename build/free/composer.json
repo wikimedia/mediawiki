@@ -100,6 +100,9 @@
     "type": "vcs",
     "url": "https://github.com/hallowelt/mediawiki-extensions-LdapAuthentication.git"
   }, {
+    "type": "vcs",
+    "url": "https://github.com/wikimedia/mediawiki-skins-BlueSpiceSkin"
+  }, {
     "type": "package",
     "package": {
       "name": "mediawiki/lockdown",
@@ -235,23 +238,6 @@
         "composer/installers": "~1.0"
       }
     }
-  }, {
-    "type": "package",
-    "package":{
-      "name": "mediawiki/BlueSpiceSkin",
-    	"type": "mediawiki-skin",
-    	"description": "Skin for BlueSpice Mediawiki Extensions",
-      "version": "dev-51db984",
-    	"require": {
-    		"composer/installers": "~1.0"
-    	},
-      "source":{
-        "url": "https://github.com/wikimedia/mediawiki-skins-BlueSpiceSkin.git",
-        "type": "git",
-        "reference": "51db984"
-      }
-    }
-
   }, {
     "type": "package",
     "package":{
@@ -427,7 +413,7 @@
     "mediawiki/user-functions": "dev-5eda8c9",
     "mediawiki/user-merge": "dev-4546537",
     "mediawiki/variables": "dev-c75b9d4",
-    "mediawiki/BlueSpiceSkin": "dev-51db984",
+    "mediawiki/blue-spice-skin": "dev-master",
     "mediawiki/cite": "dev-e2ebd23",
     "mediawiki/cite-this-page": "dev-48de89b",
     "mediawiki/gadgets": "dev-da1d465",
