@@ -1,3 +1,4 @@
+@import 'mediawiki.ui/variables';
 @import 'mw.rcfilters.mixins';
 
 .mw-rcfilters-ui-highlightColorPickerWidget {
@@ -38,7 +39,7 @@
 
 				.mw-rcfilters-mixin-circle( @highlight-none, 2em, 0.5em, true );
 				// Override border to dashed
-				border: 1px dashed #54595d;
+				border: 1px dashed @colorGray5;
 
 				&.oo-ui-buttonOptionWidget.oo-ui-buttonElement-active,
 				&.oo-ui-buttonOptionWidget.oo-ui-optionWidget-pressed,
