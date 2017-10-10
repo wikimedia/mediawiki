@@ -1,5 +1,7 @@
 @import 'mediawiki.mixins.animation';
 @import 'mw.rcfilters.mixins';
+@import 'mediawiki.mixins';
+@import 'mediawiki.ui/variables';
 
 @rcfilters-spinner-width: 70px;
 @rcfilters-head-min-height: 250px;
@@ -84,7 +86,7 @@
 			display: inline-block;
 			width: 12px;
 			height: 12px;
-			background-color: #c8ccd1;
+			background-color: @colorGray12;
 			border-radius: 100%;
 			.animation( rcfiltersBouncedelay 1.5s ease-in-out -0.16s infinite both );
 		}
@@ -132,7 +134,7 @@
 		transform: scale( 0.7 );
 	}
 	40% {
-		background-color: #a2a9b1;
+		background-color: @colorGray10;
 		-webkit-transform: scale( 1 );
 		transform: scale( 1 );
 	}
@@ -146,7 +148,7 @@
 		transform: scale( 0.7 );
 	}
 	40% {
-		background-color: #a2a9b1;
+		background-color: @colorGray10;
 		-moz-transform: scale( 0.7 );
 		transform: scale( 1 );
 	}
@@ -159,7 +161,7 @@
 		transform: scale( 0.7 );
 	}
 	40% {
-		background-color: #a2a9b1;
+		background-color: @colorGray10;
 		transform: scale( 1 );
 	}
 }

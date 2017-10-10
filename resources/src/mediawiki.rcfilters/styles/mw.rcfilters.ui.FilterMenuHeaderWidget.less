@@ -1,12 +1,12 @@
 @import 'mediawiki.mixins';
+@import 'mediawiki.ui/variables';
 
 .mw-rcfilters-ui-filterMenuHeaderWidget {
 	&-title {
 		display: inline-block;
 		font-size: 1.2em;
 		padding: 0.75em 0 0.75em 0.5em;
-		// TODO: Unify colors with official design palette
-		color: #54595d;
+		color: @colorGray5;
 	}
 
 	&-helpIcon {
@@ -30,8 +30,8 @@
 	}
 
 	&-header {
-		border-bottom: 1px solid #c8ccd1;
-		background: #f8f9fa;
+		border-bottom: 1px solid @colorGray12;
+		background-color: @colorGray15;
 
 		&-invert,
 		&-highlight {
