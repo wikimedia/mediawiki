@@ -76,7 +76,7 @@ class LanguagePlTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * @covers LanguagePl::commafy()
+	 * @covers Language::commafy()
 	 * @dataProvider provideCommafyData
 	 */
 	public function testCommafy( $number, $numbersWithCommas ) {

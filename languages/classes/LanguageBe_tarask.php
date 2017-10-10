@@ -54,20 +54,4 @@ class LanguageBe_tarask extends Language {
 
 		return $s;
 	}
-
-	/**
-	 * Four-digit number should be without group commas (spaces)
-	 * So "1 234 567", "12 345" but "1234"
-	 *
-	 * @param string $_
-	 *
-	 * @return string
-	 */
-	function commafy( $_ ) {
-		if ( preg_match( '/^-?\d{1,4}(\.\d*)?$/', $_ ) ) {
-			return $_;
-		} else {
-			return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $_ ) ) );
-		}
-	}
 }
