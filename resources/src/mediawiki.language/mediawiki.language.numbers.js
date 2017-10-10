@@ -69,6 +69,7 @@
 	 * @param {Object} [options] If provided, both option keys must be present:
 	 * @param {string} options.decimal The decimal separator. Defaults to: `'.'`.
 	 * @param {string} options.group The group separator. Defaults to: `','`.
+	 * @param {string} [options.keepFourDigitNumbersUngrouped=false]
 	 * @return {string}
 	 */
 	function commafyNumber( value, pattern, options ) {
@@ -143,17 +144,19 @@
 			}
 		}
 
-		for ( whole = valueParts[ 0 ]; whole; ) {
-			off = groupSize ? whole.length - groupSize : 0;
-			pieces.push( ( off > 0 ) ? whole.slice( off ) : whole );
-			whole = ( off > 0 ) ? whole.slice( 0, off ) : '';
+		if ( !options.keepFourDigitNumbersUngrouped || valueParts[ 0 ].length > 4 ) {
+			for ( whole = valueParts[ 0 ]; whole; ) {
+				off = groupSize ? whole.length - groupSize : 0;
+				pieces.push( ( off > 0 ) ? whole.slice( off ) : whole );
+				whole = ( off > 0 ) ? whole.slice( 0, off ) : '';
 
-			if ( groupSize2 ) {
-				groupSize = groupSize2;
-				groupSize2 = null;
+				if ( groupSize2 ) {
+					groupSize = groupSize2;
+					groupSize2 = null;
+				}
 			}
+			valueParts[ 0 ] = pieces.reverse().join( options.group );
 		}
-		valueParts[ 0 ] = pieces.reverse().join( options.group );
 
 		return valueParts.join( options.decimal );
 	}
@@ -220,7 +223,9 @@
 				// When unformatting, we just use separatorTransformTable.
 				pattern = mw.language.getData( mw.config.get( 'wgUserLanguage' ),
 					'digitGroupingPattern' ) || '#,##0.###';
-				numberString = mw.language.commafy( num, pattern );
+				keepFourDigitNumbersUngrouped = mw.language.getData( mw.config.get( 'wgUserLanguage' ),
+					'keepFourDigitNumbersUngrouped' ) || false;
+				numberString = mw.language.commafy( num, pattern, keepFourDigitNumbersUngrouped );
 			}
 
 			if ( transformTable ) {
@@ -271,10 +276,11 @@
 		 *
 		 * @param {number} value
 		 * @param {string} pattern Pattern string as described by Unicode TR35
+		 * @param {boolean} [keepFourDigitNumbersUngrouped=false]
 		 * @throws {Error} If unable to find a number expression in `pattern`.
 		 * @return {string}
 		 */
-		commafy: function ( value, pattern ) {
+		commafy: function ( value, pattern, keepFourDigitNumbersUngrouped ) {
 			var numberPattern,
 				transformTable = mw.language.getSeparatorTransformTable(),
 				group = transformTable[ ',' ] || ',',
@@ -291,6 +297,7 @@
 			}
 
 			return pattern.replace( numberPatternRE, commafyNumber( value, numberPattern[ 0 ], {
+				keepFourDigitNumbersUngrouped: !!keepFourDigitNumbersUngrouped,
 				decimal: decimal,
 				group: group
 			} ) );
