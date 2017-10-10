@@ -124,6 +124,8 @@ $separatorTransformTable = [
 	'.' => ','
 ];
 
+$minimumGroupingDigits = 2;
+
 $linkTrail = '/^([a-zęóąśłżźćńĘÓĄŚŁŻŹĆŃ]+)(.*)$/sDu';
 
 $specialPageAliases = [

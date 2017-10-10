@@ -13,6 +13,8 @@ $separatorTransformTable = [
 	'.' => ','
 ];
 
+$minimumGroupingDigits = 2;
+
 $fallback8bitEncoding = 'UTF-8';
 
 $linkPrefixExtension = true;
