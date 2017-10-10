@@ -1,3 +1,5 @@
+@import 'mediawiki.ui/variables';
+
 .mw-rcfilters-ui-savedLinksListWidget {
 	&-menu {
 		width: 100%;
@@ -12,7 +14,7 @@
 		// Extra specificity needed to override OOUI rule that sets white-space: nowrap;
 		// on labels inside options
 		&.oo-ui-optionWidget .oo-ui-labelElement-label {
-			color: #72777d;
+			color: @colorGray7;
 			white-space: normal;
 		}
 

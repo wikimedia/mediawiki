@@ -1,15 +1,17 @@
 @import 'mw.rcfilters.mixins';
+@import 'mw.rcfilters.variables';
+@import 'mediawiki.ui/variables';
 
 .mw-rcfilters-ui-tagItemWidget {
 	// Background and color of the capsule widget need a bit
 	// more specificity to override OOUI internals
 	&.oo-ui-flaggedElement-muted.oo-ui-tagItemWidget.oo-ui-widget-enabled {
 		// Muted state
-		background-color: #eaecf0;
-		border-color: #c8ccd1;
+		background-color: @colorGray14;
+		border-color: @colorGray12;
 
 		.oo-ui-labelElement-label {
-			color: #72777d;
+			color: @colorGray7;
 		}
 		.oo-ui-buttonWidget {
 			opacity: @muted-opacity;
@@ -18,7 +20,7 @@
 
 	&.oo-ui-flaggedElement-invalid.oo-ui-tagItemWidget.oo-ui-widget-enabled {
 		.oo-ui-labelElement-label {
-			color: #b32424;
+			color: @colorDestructiveActive;
 		}
 	}
 
@@ -27,13 +29,13 @@
 	// The specificity is fixed in the patch: https://gerrit.wikimedia.org/r/#/c/349525/
 	// and will be available in the next OOUI release.
 	.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-outlined &-selected.oo-ui-tagItemWidget.oo-ui-widget-enabled {
-		background-color: #eaf3ff;
-		border-color: #36c;
+		background-color: @accent90;
+		border-color: @colorProgressive;
 	}
 
 	&-popup-content {
 		padding: 0.5em;
-		color: #54595d;
+		color: @colorGray5;
 	}
 
 	&.oo-ui-labelElement .oo-ui-labelElement-label {
