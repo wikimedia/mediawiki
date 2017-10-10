@@ -259,6 +259,8 @@ $magicWords = [
 ];
 
 $separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
+$keepFourDigitNumbersUngrouped = true;
+
 $linkTrail = '/^([äöõšüža-z]+)(.*)$/sDu';
 
 $datePreferences = [

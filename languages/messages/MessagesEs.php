@@ -299,4 +299,6 @@ $dateFormats = [
 ];
 
 $separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
+$keepFourDigitNumbersUngrouped = true;
+
 $linkTrail = '/^([a-záéíóúñ]+)(.*)$/sDu';

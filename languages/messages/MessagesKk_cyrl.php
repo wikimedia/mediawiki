@@ -23,6 +23,8 @@ $separatorTransformTable = [
 	'.' => ',',
 ];
 
+$keepFourDigitNumbersUngrouped = true;
+
 $fallback8bitEncoding = 'windows-1251';
 
 $linkTrail = '/^([a-zäçéğıïñöşüýʺʹа-яёәғіқңөұүһٴابپتجحدرزسشعفقكلمنڭەوۇۋۆىيچھ“»]+)(.*)$/sDu';

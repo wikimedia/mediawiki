@@ -15,6 +15,8 @@ $separatorTransformTable = [
 	'.' => ',',
 ];
 
+$keepFourDigitNumbersUngrouped = true;
+
 $fallback8bitEncoding = 'windows-1254';
 
 $linkPrefixExtension = true;
