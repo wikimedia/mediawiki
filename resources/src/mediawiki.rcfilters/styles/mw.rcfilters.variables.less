@@ -1,12 +1,20 @@
+@import 'mediawiki.ui/variables';
+
+@white: #fff;
+@accent90: #eaf3ff;
+// Colors not on WikimediaUI color palette
+@light-gray: #dee0e3;
+@light-green: #ccdecc;
+
 // Highlight color definitions
 @highlight-none: #fff;
-@highlight-c1: #36c;
-@highlight-c2: #00af89;
-@highlight-c3: #fc3;
+@highlight-c1: @colorProgressive;
+@highlight-c2: #00af89; // Green50
+@highlight-c3: @colorLowSevere;
 @highlight-c4: #ff6d22;
-@highlight-c5: #d33;
+@highlight-c5: @colorDestructive;
 @highlight-bluedot: #1d4aad; // Simulates the 'known' browser <li> blue dot
-@highlight-grey: #54595d; // The color of full dots on Watchlist when highlight is enabled
+@highlight-grey: @colorGray5; // The color of full dots on Watchlist when highlight is enabled
 
 // Muted state
 @muted-opacity: 0.5;
