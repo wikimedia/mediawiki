@@ -32,6 +32,7 @@
 		 *
 		 *  - `digitTransformTable`
 		 *  - `separatorTransformTable`
+		 *  - `minimumGroupingDigits`
 		 *  - `grammarForms`
 		 *  - `pluralRules`
 		 *  - `digitGroupingPattern`
