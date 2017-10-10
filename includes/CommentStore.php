@@ -29,10 +29,24 @@ use Wikimedia\Rdbms\IDatabase;
  */
 class CommentStore {
 
-	/** Maximum length of a comment. Longer comments will be truncated. */
+	/**
+	 * Maximum length of a comment in UTF-8 characters. Longer comments will be truncated.
+	 * @note This must be at least 255 and not greater than floor( MAX_COMMENT_LENGTH / 4 ).
+	 */
+	const COMMENT_CHARACTER_LIMIT = 1000;
+
+	/**
+	 * Maximum length of a comment in bytes. Longer comments will be truncated.
+	 * @note This value is determined by the size of the underlying database field,
+	 *  currently BLOB in MySQL/MariaDB.
+	 */
 	const MAX_COMMENT_LENGTH = 65535;
 
-	/** Maximum length of serialized data. Longer data will result in an exception. */
+	/**
+	 * Maximum length of serialized data in bytes. Longer data will result in an exception.
+	 * @note This value is determined by the size of the underlying database field,
+	 *  currently BLOB in MySQL/MariaDB.
+	 */
 	const MAX_DATA_LENGTH = 65535;
 
 	/**
@@ -371,6 +385,15 @@ class CommentStore {
 
 		# Truncate comment in a Unicode-sensitive manner
 		$comment->text = $this->lang->truncate( $comment->text, self::MAX_COMMENT_LENGTH );
+		if ( mb_strlen( $comment->text, 'UTF-8' ) > self::COMMENT_CHARACTER_LIMIT ) {
+			$ellipsis = wfMessage( 'ellipsis' )->inLanguage( $this->lang )->escaped();
+			if ( mb_strlen( $ellipsis ) >= self::COMMENT_CHARACTER_LIMIT ) {
+				// WTF?
+				$ellipsis = '...';
+			}
+			$maxLength = self::COMMENT_CHARACTER_LIMIT - mb_strlen( $ellipsis, 'UTF-8' );
+			$comment->text = mb_substr( $comment->text, 0, $maxLength, 'UTF-8' ) . $ellipsis;
+		}
 
 		if ( $this->stage > MIGRATION_OLD && !$comment->id ) {
 			$dbData = $comment->data;
