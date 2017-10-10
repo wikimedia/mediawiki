@@ -618,7 +618,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	public function testInsertTruncation() {
 		$comment = str_repeat( '💣', 16400 );
 		$truncated1 = str_repeat( '💣', 63 ) . '...';
-		$truncated2 = str_repeat( '💣', 16383 ) . '...';
+		$truncated2 = str_repeat( '💣', CommentStore::COMMENT_CHARACTER_LIMIT - 3 ) . '...';
 
 		$store = $this->makeStore( MIGRATION_WRITE_BOTH, 'ipb_reason' );
 		$fields = $store->insert( $this->db, $comment );
