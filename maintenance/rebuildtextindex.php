@@ -145,9 +145,10 @@ class RebuildTextIndex extends Maintenance {
 	private function createMysqlTextIndex() {
 		$searchindex = $this->db->tableName( 'searchindex' );
 		$this->output( "\nRebuild the index...\n" );
-		$sql = "ALTER TABLE $searchindex ADD FULLTEXT si_title (si_title), " .
-			"ADD FULLTEXT si_text (si_text)";
-		$this->db->query( $sql, __METHOD__ );
+		foreach ( [ 'si_title', 'si_text' ] as $field ) {
+			$sql = "ALTER TABLE $searchindex ADD FULLTEXT $field ($field)";
+			$this->db->query( $sql, __METHOD__ );
+		}
 	}
 
 	/**
