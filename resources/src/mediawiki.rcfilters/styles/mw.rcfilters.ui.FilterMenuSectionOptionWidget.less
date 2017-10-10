@@ -1,14 +1,15 @@
 @import 'mediawiki.mixins';
+@import 'mediawiki.ui/variables';
 
 .mw-rcfilters-ui-filterMenuSectionOptionWidget {
-	background: #eaecf0;
+	background: @colorGray14;
 	padding-bottom: 0.7em;
 
 	&-header {
 		padding: 0 0.75em;
 		// Use a high specificity to override OOUI
 		.oo-ui-optionWidget.oo-ui-labelElement &-title.oo-ui-labelElement-label {
-			color: #54595d;
+			color: @colorGray5;
 			.box-sizing( border-box );
 			display: inline-block;
 		}
@@ -23,7 +24,7 @@
 			padding: 0;
 
 			&:focus {
-				box-shadow: none;
+				.box-shadow( none );
 				outline: 0;
 			}
 		}

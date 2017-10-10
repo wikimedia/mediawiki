@@ -1,4 +1,5 @@
 @import 'mediawiki.mixins';
+@import 'mediawiki.ui/variables';
 
 .mw-rcfilters-ui-menuSelectWidget {
 	z-index: auto;
@@ -11,7 +12,7 @@
 	&-noresults {
 		display: none;
 		padding: 0.5em;
-		color: #54595d;
+		color: @colorGray5;
 
 		.oo-ui-menuSelectWidget-invisible & {
 			display: inline-block;
@@ -24,8 +25,8 @@
 
 	&-footer {
 		padding: 0.5em;
-		background-color: #f8f9fa;
-		border-top: 1px solid #c8ccd1;
+		background-color: @colorGray15;
+		border-top: 1px solid @colorGray12;
 
 		& + & {
 			border-top: 0;
