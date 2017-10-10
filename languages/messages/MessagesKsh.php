@@ -95,6 +95,8 @@ $namespaceAliases = [
 ];
 
 $separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
+$minimumGroupingDigits = 2;
+
 $linkTrail = '/^([äöüėëĳßəğåůæœça-z]+)(.*)$/sDu';
 
 // Remove German aliases

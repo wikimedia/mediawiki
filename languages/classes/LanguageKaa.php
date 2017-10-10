@@ -75,19 +75,4 @@ class LanguageKaa extends Language {
 		return parent::lcfirst( $string );
 	}
 
-	/**
-	 * Avoid grouping whole numbers between 0 to 9999
-	 *
-	 * @param string $_
-	 *
-	 * @return string
-	 */
-	function commafy( $_ ) {
-		if ( !preg_match( '/^\d{1,4}$/', $_ ) ) {
-			return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $_ ) ) );
-		} else {
-			return $_;
-		}
-	}
-
 }
