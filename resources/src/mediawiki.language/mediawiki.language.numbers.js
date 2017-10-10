@@ -66,9 +66,10 @@
 	 * @private
 	 * @param {number} value the number to be formatted, ignores sign
 	 * @param {string} pattern the number portion of a pattern (e.g. `#,##0.00`)
-	 * @param {Object} [options] If provided, both option keys must be present:
+	 * @param {Object} [options] If provided, all option keys must be present:
 	 * @param {string} options.decimal The decimal separator. Defaults to: `'.'`.
 	 * @param {string} options.group The group separator. Defaults to: `','`.
+	 * @param {number|null} options.minimumGroupingDigits
 	 * @return {string}
 	 */
 	function commafyNumber( value, pattern, options ) {
@@ -143,17 +144,22 @@
 			}
 		}
 
-		for ( whole = valueParts[ 0 ]; whole; ) {
-			off = groupSize ? whole.length - groupSize : 0;
-			pieces.push( ( off > 0 ) ? whole.slice( off ) : whole );
-			whole = ( off > 0 ) ? whole.slice( 0, off ) : '';
+		if (
+			options.minimumGroupingDigits === null ||
+			valueParts[ 0 ].length >= groupSize + options.minimumGroupingDigits
+		) {
+			for ( whole = valueParts[ 0 ]; whole; ) {
+				off = groupSize ? whole.length - groupSize : 0;
+				pieces.push( ( off > 0 ) ? whole.slice( off ) : whole );
+				whole = ( off > 0 ) ? whole.slice( 0, off ) : '';
 
-			if ( groupSize2 ) {
-				groupSize = groupSize2;
-				groupSize2 = null;
+				if ( groupSize2 ) {
+					groupSize = groupSize2;
+					groupSize2 = null;
+				}
 			}
+			valueParts[ 0 ] = pieces.reverse().join( options.group );
 		}
-		valueParts[ 0 ] = pieces.reverse().join( options.group );
 
 		return valueParts.join( options.decimal );
 	}
@@ -194,7 +200,7 @@
 		 */
 		convertNumber: function ( num, integer ) {
 			var transformTable, digitTransformTable, separatorTransformTable,
-				i, numberString, convertedNumber, pattern;
+				i, numberString, convertedNumber, pattern, minimumGroupingDigits;
 
 			// Quick shortcut for plain numbers
 			if ( integer && parseInt( num, 10 ) === num ) {
@@ -220,7 +226,9 @@
 				// When unformatting, we just use separatorTransformTable.
 				pattern = mw.language.getData( mw.config.get( 'wgUserLanguage' ),
 					'digitGroupingPattern' ) || '#,##0.###';
-				numberString = mw.language.commafy( num, pattern );
+				minimumGroupingDigits = mw.language.getData( mw.config.get( 'wgUserLanguage' ),
+					'minimumGroupingDigits' ) || null;
+				numberString = mw.language.commafy( num, pattern, minimumGroupingDigits );
 			}
 
 			if ( transformTable ) {
@@ -271,10 +279,11 @@
 		 *
 		 * @param {number} value
 		 * @param {string} pattern Pattern string as described by Unicode TR35
+		 * @param {number|null} [minimumGroupingDigits=null]
 		 * @throws {Error} If unable to find a number expression in `pattern`.
 		 * @return {string}
 		 */
-		commafy: function ( value, pattern ) {
+		commafy: function ( value, pattern, minimumGroupingDigits ) {
 			var numberPattern,
 				transformTable = mw.language.getSeparatorTransformTable(),
 				group = transformTable[ ',' ] || ',',
@@ -285,12 +294,14 @@
 
 			pattern = patternList[ ( value < 0 ) ? 1 : 0 ] || ( '-' + positivePattern );
 			numberPattern = positivePattern.match( numberPatternRE );
+			minimumGroupingDigits = minimumGroupingDigits !== undefined ? minimumGroupingDigits : null;
 
 			if ( !numberPattern ) {
 				throw new Error( 'unable to find a number expression in pattern: ' + pattern );
 			}
 
 			return pattern.replace( numberPatternRE, commafyNumber( value, numberPattern[ 0 ], {
+				minimumGroupingDigits: minimumGroupingDigits,
 				decimal: decimal,
 				group: group
 			} ) );
