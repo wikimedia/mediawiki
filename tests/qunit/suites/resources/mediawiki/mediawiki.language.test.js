@@ -31,6 +31,7 @@
 		mw.language.setData( 'en', 'digitGroupingPattern', null );
 		mw.language.setData( 'en', 'digitTransformTable', null );
 		mw.language.setData( 'en', 'separatorTransformTable', null );
+		mw.language.setData( 'en', 'keepFourDigitNumbersUngrouped', null );
 
 		mw.config.set( 'wgUserLanguage', 'en' );
 		// Number grouping patterns are as per http://cldr.unicode.org/translation/number-patterns
@@ -49,11 +50,20 @@
 		mw.language.setData( 'en', 'digitGroupingPattern', null );
 		mw.language.setData( 'en', 'digitTransformTable', null );
 		mw.language.setData( 'en', 'separatorTransformTable', { ',': '.', '.': ',' } );
+		mw.language.setData( 'en', 'keepFourDigitNumbersUngrouped', null );
 		mw.config.set( 'wgUserLanguage', 'en' );
 		mw.config.set( 'wgTranslateNumerals', true );
 
-		assert.equal( mw.language.convertNumber( 1800 ), '1.800', 'formatting' );
+		assert.equal( mw.language.convertNumber( 180 ), '180', 'formatting 3-digit' );
+		assert.equal( mw.language.convertNumber( 1800 ), '1.800', 'formatting 4-digit' );
+		assert.equal( mw.language.convertNumber( 18000 ), '18.000', 'formatting 5-digit' );
+
 		assert.equal( mw.language.convertNumber( '1.800', true ), '1800', 'unformatting' );
+
+		mw.language.setData( 'en', 'keepFourDigitNumbersUngrouped', true );
+		assert.equal( mw.language.convertNumber( 180 ), '180', 'formatting 3-digit with keepFourDigitNumbersUngrouped' );
+		assert.equal( mw.language.convertNumber( 1800 ), '1800', 'formatting 4-digit with keepFourDigitNumbersUngrouped' );
+		assert.equal( mw.language.convertNumber( 18000 ), '18.000', 'formatting 5-digit with keepFourDigitNumbersUngrouped' );
 	} );
 
 	QUnit.test( 'mw.language.convertNumber - digitTransformTable', function ( assert ) {
@@ -61,6 +71,7 @@
 		mw.config.set( 'wgTranslateNumerals', true );
 		mw.language.setData( 'hi', 'digitGroupingPattern', null );
 		mw.language.setData( 'hi', 'separatorTransformTable', { ',': '.', '.': ',' } );
+		mw.language.setData( 'hi', 'keepFourDigitNumbersUngrouped', null );
 
 		// Example from Hindi (MessagesHi.php)
 		mw.language.setData( 'hi', 'digitTransformTable', {
