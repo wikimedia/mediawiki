@@ -52,6 +52,8 @@ $namespaceAliases = [
 
 $separatorTransformTable = [ ',' => '.', '.' => ',' ];
 
+$keepFourDigitNumbersUngrouped = true;
+
 $specialPageAliases = [
 	'Allmessages'               => [ 'Hemû_Peyam' ],
 	'Allpages'                  => [ 'Hemû_Rûpel' ],

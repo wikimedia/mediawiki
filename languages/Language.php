@@ -3313,13 +3313,20 @@ class Language {
 	 */
 	function commafy( $number ) {
 		$digitGroupingPattern = $this->digitGroupingPattern();
+		$keepFourDigitNumbersUngrouped = $this->keepFourDigitNumbersUngrouped();
 		if ( $number === null ) {
 			return '';
 		}
 
 		if ( !$digitGroupingPattern || $digitGroupingPattern === "###,###,###" ) {
-			// default grouping is at thousands,  use the same for ###,###,### pattern too.
-			return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $number ) ) );
+			// Default grouping is at thousands, use the same for ###,###,### pattern too.
+			// In some languages it's conventional not to insert a thousands separator
+			// in numbers that are four digits long (1000-9999).
+			if ( $keepFourDigitNumbersUngrouped && preg_match( '/^\-?\d{1,4}(\.\d+)?$/', $number ) ) {
+				return $number;
+			} else {
+				return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $number ) ) );
+			}
 		} else {
 			// Ref: http://cldr.unicode.org/translation/number-patterns
 			$sign = "";
@@ -3379,6 +3386,13 @@ class Language {
 	 */
 	function separatorTransformTable() {
 		return self::$dataCache->getItem( $this->mCode, 'separatorTransformTable' );
+	}
+
+	/**
+	 * @return array
+	 */
+	function keepFourDigitNumbersUngrouped() {
+		return self::$dataCache->getItem( $this->mCode, 'keepFourDigitNumbersUngrouped' );
 	}
 
 	/**
