@@ -32,6 +32,7 @@
 		 *
 		 *  - `digitTransformTable`
 		 *  - `separatorTransformTable`
+		 *  - `keepFourDigitNumbersUngrouped`
 		 *  - `grammarForms`
 		 *  - `pluralRules`
 		 *  - `digitGroupingPattern`
