@@ -14,12 +14,12 @@
 	line-height: 1.4;
 }
 
-div.mw-createacct-benefits-container {
+.mw-createacct-benefits-container {
 	/* Keeps this column compact and close to the form, but tends to squish contents. */
 	float: left;
 }
 
-div.mw-createacct-benefits-container h2 {
+.mw-createacct-benefits-container h2 {
 	margin-bottom: 30px;
 }
 
@@ -39,10 +39,10 @@ div.mw-createacct-benefits-container h2 {
 }
 
 /*
- * Special font for numbers in benefits, same as Vector's @content-heading-font-family.
+ * Special font for numbers in benefits, same as Vector's `@content-heading-font-family`.
  * Needs an ID so that it's more specific than Vector's div#content h3.
  */
-#bodyContent div.mw-number-text h3 {
+#bodyContent .mw-number-text h3 {
 	color: #222;
 	margin: 0;
 	padding: 0;
@@ -54,7 +54,7 @@ div.mw-createacct-benefits-container h2 {
 }
 
 /* Contains a “headlined” number and explanatory text, with space for an icon */
-div.mw-number-text {
+.mw-number-text {
 	display: block;
 	font-size: 1.2em;
 	color: #444;
