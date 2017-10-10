@@ -237,6 +237,8 @@ $separatorTransformTable = [
 	'.' => ','
 ];
 
+$minimumGroupingDigits = 2;
+
 $linkTrail = '/^([абвгґджзеёжзійклмнопрстуўфхцчшыьэюяćčłńśšŭźža-z]+)(.*)$/sDu';
 
 $imageFiles = [
