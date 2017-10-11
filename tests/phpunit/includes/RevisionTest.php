@@ -57,7 +57,7 @@ class RevisionTest extends MediaWikiTestCase {
 		parent::tearDown();
 	}
 
-	public function provideConstruct() {
+	public function provideConstructFromArray() {
 		yield 'with text' => [
 			[
 				'text' => 'hello world.',
@@ -76,16 +76,16 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideConstruct
+	 * @dataProvider provideConstructFromArray
 	 */
-	public function testConstruct( $rowArray ) {
+	public function testConstructFromArray( $rowArray ) {
 		$rev = new Revision( $rowArray );
 		$this->assertNotNull( $rev->getContent(), 'no content object available' );
 		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContent()->getModel() );
 		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContentModel() );
 	}
 
-	public function provideConstructThrowsExceptions() {
+	public function provideConstructFromArrayThrowsExceptions() {
 		yield 'content and text_id both not empty' => [
 			[
 				'content' => $this->makeContent(),
@@ -109,9 +109,9 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideConstructThrowsExceptions
+	 * @dataProvider provideConstructFromArrayThrowsExceptions
 	 */
-	public function testConstructThrowsExceptions( $rowArray, Exception $expectedException ) {
+	public function testConstructFromArrayThrowsExceptions( $rowArray, Exception $expectedException ) {
 		$this->setExpectedException(
 			get_class( $expectedException ),
 			$expectedException->getMessage(),
