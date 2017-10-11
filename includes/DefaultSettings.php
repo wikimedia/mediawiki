@@ -7953,6 +7953,8 @@ $wgExemptFromUserRobotsControl = null;
  * machine-readable data via api.php
  *
  * See https://www.mediawiki.org/wiki/API
+ *
+ * @deprecated since 1.31
  */
 $wgEnableAPI = true;
 
@@ -7960,6 +7962,8 @@ $wgEnableAPI = true;
  * Allow the API to be used to perform write operations
  * (page edits, rollback, etc.) when an authorised user
  * accesses it
+ *
+ * @deprecated since 1.31
  */
 $wgEnableWriteAPI = true;
 

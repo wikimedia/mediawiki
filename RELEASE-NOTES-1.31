@@ -6,7 +6,9 @@ MediaWiki 1.31 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.31 ===
-* …
+* $wgEnableAPI and $wgEnableWriteAPI are now deprecated and will be removed in
+  a future version. The API is now considered to be stable, secure and
+  essential.
 
 === New features in 1.31 ===
 * …
