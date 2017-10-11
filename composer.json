@@ -93,5 +93,8 @@
 			],
 			"merge-dev": false
 		}
+	},
+	"archive": {
+		"exclude": ["!/vendor", "!/composer.local.json", "!/composer.json", "!/composer.lock"]
 	}
 }
