@@ -571,168 +571,184 @@ class Revision implements IDBAccessObject {
 	 * @throws MWException
 	 * @access private
 	 */
-	function __construct( $row ) {
+	public function __construct( $row ) {
 		if ( is_object( $row ) ) {
-			$this->mId = intval( $row->rev_id );
-			$this->mPage = intval( $row->rev_page );
-			$this->mTextId = intval( $row->rev_text_id );
-			$this->mComment = CommentStore::newKey( 'rev_comment' )
-				// Legacy because $row probably came from self::selectFields()
-				->getCommentLegacy( wfGetDB( DB_REPLICA ), $row, true )->text;
-			$this->mUser = intval( $row->rev_user );
-			$this->mMinorEdit = intval( $row->rev_minor_edit );
-			$this->mTimestamp = $row->rev_timestamp;
-			$this->mDeleted = intval( $row->rev_deleted );
-
-			if ( !isset( $row->rev_parent_id ) ) {
-				$this->mParentId = null;
-			} else {
-				$this->mParentId = intval( $row->rev_parent_id );
-			}
-
-			if ( !isset( $row->rev_len ) ) {
-				$this->mSize = null;
-			} else {
-				$this->mSize = intval( $row->rev_len );
-			}
-
-			if ( !isset( $row->rev_sha1 ) ) {
-				$this->mSha1 = null;
-			} else {
-				$this->mSha1 = $row->rev_sha1;
-			}
-
-			if ( isset( $row->page_latest ) ) {
-				$this->mCurrent = ( $row->rev_id == $row->page_latest );
-				$this->mTitle = Title::newFromRow( $row );
-			} else {
-				$this->mCurrent = false;
-				$this->mTitle = null;
-			}
-
-			if ( !isset( $row->rev_content_model ) ) {
-				$this->mContentModel = null; # determine on demand if needed
-			} else {
-				$this->mContentModel = strval( $row->rev_content_model );
-			}
-
-			if ( !isset( $row->rev_content_format ) ) {
-				$this->mContentFormat = null; # determine on demand if needed
-			} else {
-				$this->mContentFormat = strval( $row->rev_content_format );
-			}
-
-			// Lazy extraction...
-			$this->mText = null;
-			if ( isset( $row->old_text ) ) {
-				$this->mTextRow = $row;
-			} else {
-				// 'text' table row entry will be lazy-loaded
-				$this->mTextRow = null;
-			}
-
-			// Use user_name for users and rev_user_text for IPs...
-			$this->mUserText = null; // lazy load if left null
-			if ( $this->mUser == 0 ) {
-				$this->mUserText = $row->rev_user_text; // IP user
-			} elseif ( isset( $row->user_name ) ) {
-				$this->mUserText = $row->user_name; // logged-in user
-			}
-			$this->mOrigUserText = $row->rev_user_text;
+			$this->constructFromDbRowObject( $row );
 		} elseif ( is_array( $row ) ) {
-			// Build a new revision to be saved...
-			global $wgUser; // ugh
-
-			# if we have a content object, use it to set the model and type
-			if ( !empty( $row['content'] ) ) {
-				if ( !( $row['content'] instanceof Content ) ) {
-					throw new MWException( '`content` field must contain a Content object.' );
-				}
-
-				// @todo when is that set? test with external store setup! check out insertOn() [dk]
-				if ( !empty( $row['text_id'] ) ) {
-					throw new MWException( "Text already stored in external store (id {$row['text_id']}), " .
-						"can't serialize content object" );
-				}
-
-				$row['content_model'] = $row['content']->getModel();
-				# note: mContentFormat is initializes later accordingly
-				# note: content is serialized later in this method!
-				# also set text to null?
-			}
-
-			$this->mId = isset( $row['id'] ) ? intval( $row['id'] ) : null;
-			$this->mPage = isset( $row['page'] ) ? intval( $row['page'] ) : null;
-			$this->mTextId = isset( $row['text_id'] ) ? intval( $row['text_id'] ) : null;
-			$this->mUserText = isset( $row['user_text'] )
-				? strval( $row['user_text'] ) : $wgUser->getName();
-			$this->mUser = isset( $row['user'] ) ? intval( $row['user'] ) : $wgUser->getId();
-			$this->mMinorEdit = isset( $row['minor_edit'] ) ? intval( $row['minor_edit'] ) : 0;
-			$this->mTimestamp = isset( $row['timestamp'] )
-				? strval( $row['timestamp'] ) : wfTimestampNow();
-			$this->mDeleted = isset( $row['deleted'] ) ? intval( $row['deleted'] ) : 0;
-			$this->mSize = isset( $row['len'] ) ? intval( $row['len'] ) : null;
-			$this->mParentId = isset( $row['parent_id'] ) ? intval( $row['parent_id'] ) : null;
-			$this->mSha1 = isset( $row['sha1'] ) ? strval( $row['sha1'] ) : null;
-
-			$this->mContentModel = isset( $row['content_model'] )
-				? strval( $row['content_model'] ) : null;
-			$this->mContentFormat = isset( $row['content_format'] )
-				? strval( $row['content_format'] ) : null;
-
-			// Enforce spacing trimming on supplied text
-			$this->mComment = isset( $row['comment'] ) ? trim( strval( $row['comment'] ) ) : null;
-			$this->mText = isset( $row['text'] ) ? rtrim( strval( $row['text'] ) ) : null;
-			$this->mTextRow = null;
-
-			$this->mTitle = isset( $row['title'] ) ? $row['title'] : null;
-
-			// if we have a Content object, override mText and mContentModel
-			if ( !empty( $row['content'] ) ) {
-				$handler = $this->getContentHandler();
-				$this->mContent = $row['content'];
-
-				$this->mContentModel = $this->mContent->getModel();
-				$this->mContentHandler = null;
-
-				$this->mText = $handler->serializeContent( $row['content'], $this->getContentFormat() );
-			} elseif ( $this->mText !== null ) {
-				$handler = $this->getContentHandler();
-				$this->mContent = $handler->unserializeContent( $this->mText );
-			}
-
-			// If we have a Title object, make sure it is consistent with mPage.
-			if ( $this->mTitle && $this->mTitle->exists() ) {
-				if ( $this->mPage === null ) {
-					// if the page ID wasn't known, set it now
-					$this->mPage = $this->mTitle->getArticleID();
-				} elseif ( $this->mTitle->getArticleID() !== $this->mPage ) {
-					// Got different page IDs. This may be legit (e.g. during undeletion),
-					// but it seems worth mentioning it in the log.
-					wfDebug( "Page ID " . $this->mPage . " mismatches the ID " .
-						$this->mTitle->getArticleID() . " provided by the Title object." );
-				}
-			}
-
-			$this->mCurrent = false;
-
-			// If we still have no length, see it we have the text to figure it out
-			if ( !$this->mSize && $this->mContent !== null ) {
-				$this->mSize = $this->mContent->getSize();
-			}
-
-			// Same for sha1
-			if ( $this->mSha1 === null ) {
-				$this->mSha1 = $this->mText === null ? null : self::base36Sha1( $this->mText );
-			}
-
-			// force lazy init
-			$this->getContentModel();
-			$this->getContentFormat();
+			$this->constructFromRowArray( $row );
 		} else {
 			throw new MWException( 'Revision constructor passed invalid row format.' );
 		}
 		$this->mUnpatrolled = null;
+	}
+
+	/**
+	 * @param object $row
+	 */
+	private function constructFromDbRowObject( $row ) {
+		$this->mId = intval( $row->rev_id );
+		$this->mPage = intval( $row->rev_page );
+		$this->mTextId = intval( $row->rev_text_id );
+		$this->mComment = CommentStore::newKey( 'rev_comment' )
+			// Legacy because $row probably came from self::selectFields()
+			->getCommentLegacy( wfGetDB( DB_REPLICA ), $row, true )->text;
+		$this->mUser = intval( $row->rev_user );
+		$this->mMinorEdit = intval( $row->rev_minor_edit );
+		$this->mTimestamp = $row->rev_timestamp;
+		$this->mDeleted = intval( $row->rev_deleted );
+
+		if ( !isset( $row->rev_parent_id ) ) {
+			$this->mParentId = null;
+		} else {
+			$this->mParentId = intval( $row->rev_parent_id );
+		}
+
+		if ( !isset( $row->rev_len ) ) {
+			$this->mSize = null;
+		} else {
+			$this->mSize = intval( $row->rev_len );
+		}
+
+		if ( !isset( $row->rev_sha1 ) ) {
+			$this->mSha1 = null;
+		} else {
+			$this->mSha1 = $row->rev_sha1;
+		}
+
+		if ( isset( $row->page_latest ) ) {
+			$this->mCurrent = ( $row->rev_id == $row->page_latest );
+			$this->mTitle = Title::newFromRow( $row );
+		} else {
+			$this->mCurrent = false;
+			$this->mTitle = null;
+		}
+
+		if ( !isset( $row->rev_content_model ) ) {
+			$this->mContentModel = null; # determine on demand if needed
+		} else {
+			$this->mContentModel = strval( $row->rev_content_model );
+		}
+
+		if ( !isset( $row->rev_content_format ) ) {
+			$this->mContentFormat = null; # determine on demand if needed
+		} else {
+			$this->mContentFormat = strval( $row->rev_content_format );
+		}
+
+		// Lazy extraction...
+		$this->mText = null;
+		if ( isset( $row->old_text ) ) {
+			$this->mTextRow = $row;
+		} else {
+			// 'text' table row entry will be lazy-loaded
+			$this->mTextRow = null;
+		}
+
+		// Use user_name for users and rev_user_text for IPs...
+		$this->mUserText = null; // lazy load if left null
+		if ( $this->mUser == 0 ) {
+			$this->mUserText = $row->rev_user_text; // IP user
+		} elseif ( isset( $row->user_name ) ) {
+			$this->mUserText = $row->user_name; // logged-in user
+		}
+		$this->mOrigUserText = $row->rev_user_text;
+	}
+
+	/**
+	 * @param array $row
+	 *
+	 * @throws MWException
+	 */
+	private function constructFromRowArray( array $row ) {
+		// Build a new revision to be saved...
+		global $wgUser; // ugh
+
+		# if we have a content object, use it to set the model and type
+		if ( !empty( $row['content'] ) ) {
+			if ( !( $row['content'] instanceof Content ) ) {
+				throw new MWException( '`content` field must contain a Content object.' );
+			}
+
+			// @todo when is that set? test with external store setup! check out insertOn() [dk]
+			if ( !empty( $row['text_id'] ) ) {
+				throw new MWException( "Text already stored in external store (id {$row['text_id']}), " .
+					"can't serialize content object" );
+			}
+
+			$row['content_model'] = $row['content']->getModel();
+			# note: mContentFormat is initializes later accordingly
+			# note: content is serialized later in this method!
+			# also set text to null?
+		}
+
+		$this->mId = isset( $row['id'] ) ? intval( $row['id'] ) : null;
+		$this->mPage = isset( $row['page'] ) ? intval( $row['page'] ) : null;
+		$this->mTextId = isset( $row['text_id'] ) ? intval( $row['text_id'] ) : null;
+		$this->mUserText = isset( $row['user_text'] )
+			? strval( $row['user_text'] ) : $wgUser->getName();
+		$this->mUser = isset( $row['user'] ) ? intval( $row['user'] ) : $wgUser->getId();
+		$this->mMinorEdit = isset( $row['minor_edit'] ) ? intval( $row['minor_edit'] ) : 0;
+		$this->mTimestamp = isset( $row['timestamp'] )
+			? strval( $row['timestamp'] ) : wfTimestampNow();
+		$this->mDeleted = isset( $row['deleted'] ) ? intval( $row['deleted'] ) : 0;
+		$this->mSize = isset( $row['len'] ) ? intval( $row['len'] ) : null;
+		$this->mParentId = isset( $row['parent_id'] ) ? intval( $row['parent_id'] ) : null;
+		$this->mSha1 = isset( $row['sha1'] ) ? strval( $row['sha1'] ) : null;
+
+		$this->mContentModel = isset( $row['content_model'] )
+			? strval( $row['content_model'] ) : null;
+		$this->mContentFormat = isset( $row['content_format'] )
+			? strval( $row['content_format'] ) : null;
+
+		// Enforce spacing trimming on supplied text
+		$this->mComment = isset( $row['comment'] ) ? trim( strval( $row['comment'] ) ) : null;
+		$this->mText = isset( $row['text'] ) ? rtrim( strval( $row['text'] ) ) : null;
+		$this->mTextRow = null;
+
+		$this->mTitle = isset( $row['title'] ) ? $row['title'] : null;
+
+		// if we have a Content object, override mText and mContentModel
+		if ( !empty( $row['content'] ) ) {
+			$handler = $this->getContentHandler();
+			$this->mContent = $row['content'];
+
+			$this->mContentModel = $this->mContent->getModel();
+			$this->mContentHandler = null;
+
+			$this->mText = $handler->serializeContent( $row['content'], $this->getContentFormat() );
+		} elseif ( $this->mText !== null ) {
+			$handler = $this->getContentHandler();
+			$this->mContent = $handler->unserializeContent( $this->mText );
+		}
+
+		// If we have a Title object, make sure it is consistent with mPage.
+		if ( $this->mTitle && $this->mTitle->exists() ) {
+			if ( $this->mPage === null ) {
+				// if the page ID wasn't known, set it now
+				$this->mPage = $this->mTitle->getArticleID();
+			} elseif ( $this->mTitle->getArticleID() !== $this->mPage ) {
+				// Got different page IDs. This may be legit (e.g. during undeletion),
+				// but it seems worth mentioning it in the log.
+				wfDebug( "Page ID " . $this->mPage . " mismatches the ID " .
+					$this->mTitle->getArticleID() . " provided by the Title object." );
+			}
+		}
+
+		$this->mCurrent = false;
+
+		// If we still have no length, see it we have the text to figure it out
+		if ( !$this->mSize && $this->mContent !== null ) {
+			$this->mSize = $this->mContent->getSize();
+		}
+
+		// Same for sha1
+		if ( $this->mSha1 === null ) {
+			$this->mSha1 = $this->mText === null ? null : self::base36Sha1( $this->mText );
+		}
+
+		// force lazy init
+		$this->getContentModel();
+		$this->getContentFormat();
 	}
 
 	/**
