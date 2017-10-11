@@ -56,8 +56,7 @@
 							highlight: true,
 							filter1: 'c5',
 							group3option1: 'c1'
-						},
-						invert: true
+						}
 					}
 				}
 			}
@@ -75,8 +74,7 @@
 							// Group type string_options
 							group2: 'filter4',
 							// Note - Group3 is sticky, so it won't show in output
-							// Invert/highlight toggles
-							invert: '1',
+							// highlight toggle
 							highlight: '1'
 						},
 						highlights: {
@@ -286,8 +284,7 @@
 					group2: 'filter5',
 					filter1: '0',
 					filter2: '0',
-					highlight: '1',
-					invert: '0'
+					highlight: '1'
 				},
 				highlights: {
 					filter1_color: 'c5',

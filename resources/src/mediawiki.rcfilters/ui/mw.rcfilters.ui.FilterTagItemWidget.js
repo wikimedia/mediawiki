@@ -7,13 +7,14 @@
 	 *
 	 * @constructor
 	 * @param {mw.rcfilters.Controller} controller
+	 * @param {mw.rcfilters.dm.FilterItem} invertModel
 	 * @param {mw.rcfilters.dm.FilterItem} model Item model
 	 * @param {Object} config Configuration object
 	 */
-	mw.rcfilters.ui.FilterTagItemWidget = function MwRcfiltersUiFilterTagItemWidget( controller, model, config ) {
+	mw.rcfilters.ui.FilterTagItemWidget = function MwRcfiltersUiFilterTagItemWidget( controller, invertModel, model, config ) {
 		config = config || {};
 
-		mw.rcfilters.ui.FilterTagItemWidget.parent.call( this, controller, model, config );
+		mw.rcfilters.ui.FilterTagItemWidget.parent.call( this, controller, invertModel, model, config );
 
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterTagItemWidget' );
