@@ -309,13 +309,13 @@ class ImagePage extends Article {
 				$params = [ 'page' => $page ];
 			}
 
-			$renderLang = $request->getVal( 'lang' );
-			if ( !is_null( $renderLang ) ) {
+			$renderLang  = null;
+			$requestLang = $request->getVal( 'lang' );
+			if ( !is_null( $requestLang ) ) {
 				$handler = $this->displayImg->getHandler();
-				if ( $handler && $handler->validateParam( 'lang', $renderLang ) ) {
-					$params['lang'] = $renderLang;
-				} else {
-					$renderLang = null;
+				if ( $handler && in_array( $requestLang, $this->displayImg->getAvailableLanguages() ) ) {
+					$params['lang'] = $requestLang;
+					$renderLang = $requestLang;
 				}
 			}
 
@@ -1072,13 +1072,13 @@ EOT
 			if ( $name !== '' ) {
 				$display = $this->getContext()->msg( 'img-lang-opt', $code, $name )->text();
 			} else {
-				$display = $code;
+				$display = $lang;
 			}
-			$opts .= "\n" . Xml::option( $display, $code, $curLang === $code );
-			if ( $curLang === $code ) {
+			$opts .= "\n" . Xml::option( $display, $lang, $curLang === $lang );
+			if ( $curLang === $lang ) {
 				$haveCurrentLang = true;
 			}
-			if ( $defaultLang === $code ) {
+			if ( $defaultLang === $lang ) {
 				$haveDefaultLang = true;
 			}
 		}

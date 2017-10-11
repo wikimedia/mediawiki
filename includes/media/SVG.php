@@ -499,8 +499,7 @@ class SvgHandler extends ImageHandler {
 	public function makeParamString( $params ) {
 		$lang = '';
 		if ( isset( $params['lang'] ) && $params['lang'] !== 'en' ) {
-			$params['lang'] = strtolower( $params['lang'] );
-			$lang = "lang{$params['lang']}-";
+			$lang = "lang" . $params['lang'] . "-";
 		}
 		if ( !isset( $params['width'] ) ) {
 			return false;
@@ -511,7 +510,7 @@ class SvgHandler extends ImageHandler {
 
 	public function parseParamString( $str ) {
 		$m = false;
-		if ( preg_match( '/^lang([a-z]+(?:-[a-z]+)*)-(\d+)px$/', $str, $m ) ) {
+		if ( preg_match( '/^lang([a-z]+(?:-[a-z]+)*)-(\d+)px$/i', $str, $m ) ) {
 			return [ 'width' => array_pop( $m ), 'lang' => $m[1] ];
 		} elseif ( preg_match( '/^(\d+)px$/', $str, $m ) ) {
 			return [ 'width' => $m[1], 'lang' => 'en' ];
