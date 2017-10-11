@@ -66,9 +66,9 @@ class RevisionTest extends MediaWikiTestCase {
 		];
 		yield 'with content' => [
 			[
-				'content' => ContentHandler::makeContent(
+				'content' => $this->makeContent(
 					'hello world.',
-					Title::newFromText( 'RevisionTest_testConstructWithContent' ),
+					'RevisionTest_testConstructWithContent',
 					CONTENT_MODEL_JAVASCRIPT
 				),
 			],
@@ -83,6 +83,49 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->assertNotNull( $rev->getContent(), 'no content object available' );
 		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContent()->getModel() );
 		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContentModel() );
+	}
+
+	public function provideConstructThrowsExceptions() {
+		yield 'content and text_id both not empty' => [
+			[
+				'content' => $this->makeContent(),
+				'text_id' => 'someid',
+				],
+			new MWException( "Text already stored in external store (id someid), " .
+				"can't serialize content object" )
+		];
+		yield 'with bad content object (class)' => [
+			[ 'content' => new stdClass() ],
+			new MWException( '`content` field must contain a Content object.' )
+		];
+		yield 'with bad content object (string)' => [
+			[ 'content' => 'ImAGoat' ],
+			new MWException( '`content` field must contain a Content object.' )
+		];
+		yield 'bad row format' => [
+			'imastring, not a row',
+			new MWException( 'Revision constructor passed invalid row format.' )
+		];
+	}
+
+	/**
+	 * @dataProvider provideConstructThrowsExceptions
+	 */
+	public function testConstructThrowsExceptions( $rowArray, Exception $expectedException ) {
+		$this->setExpectedException(
+			get_class( $expectedException ),
+			$expectedException->getMessage(),
+			$expectedException->getCode()
+		);
+		new Revision( $rowArray );
+	}
+
+	private function makeContent( $text = 'text', $titleString = 'title', $modelid = null ) {
+		return ContentHandler::makeContent(
+			'hello world.',
+			Title::newFromText( $titleString ),
+			$modelid
+		);
 	}
 
 	public function provideGetRevisionText() {
