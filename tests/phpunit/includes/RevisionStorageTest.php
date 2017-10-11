@@ -39,15 +39,31 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	}
 
 	protected function setUp() {
-		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
+		global $wgContLang;
 
 		parent::setUp();
 
-		$wgExtraNamespaces[12312] = 'Dummy';
-		$wgExtraNamespaces[12313] = 'Dummy_talk';
+		$this->mergeMwGlobalArrayValue(
+			'wgExtraNamespaces',
+			[
+				12312 => 'Dummy',
+				12313 => 'Dummy_talk',
+			]
+		);
 
-		$wgNamespaceContentModels[12312] = 'DUMMY';
-		$wgContentHandlers['DUMMY'] = 'DummyContentHandlerForTesting';
+		$this->mergeMwGlobalArrayValue(
+			'wgNamespaceContentModels',
+			[
+				12312 => 'DUMMY',
+			]
+		);
+
+		$this->mergeMwGlobalArrayValue(
+			'wgContentHandlers',
+			[
+				'DUMMY' => 'DummyContentHandlerForTesting',
+			]
+		);
 
 		MWNamespace::clearCaches();
 		// Reset namespace cache
@@ -64,15 +80,9 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	}
 
 	protected function tearDown() {
-		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
+		global $wgContLang;
 
 		parent::tearDown();
-
-		unset( $wgExtraNamespaces[12312] );
-		unset( $wgExtraNamespaces[12313] );
-
-		unset( $wgNamespaceContentModels[12312] );
-		unset( $wgContentHandlers['DUMMY'] );
 
 		MWNamespace::clearCaches();
 		// Reset namespace cache
