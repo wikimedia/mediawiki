@@ -99,13 +99,13 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 		// Do all of the specified tasks...
 		if ( in_array( 'jobs', explode( '|', $params['tasks'] ) ) ) {
 			$runner = new JobRunner( LoggerFactory::getInstance( 'runJobs' ) );
-			$response = $runner->run( [
+			$runner->run( [
 				'type'     => $params['type'],
 				'maxJobs'  => $params['maxjobs'] ? $params['maxjobs'] : 1,
 				'maxTime'  => $params['maxtime'] ? $params['maxjobs'] : 30
 			] );
 			if ( !$params['async'] ) {
-				print FormatJson::encode( $response, true );
+				print "Done\n";
 			}
 		}
 	}
