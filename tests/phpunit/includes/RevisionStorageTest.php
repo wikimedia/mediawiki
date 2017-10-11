@@ -104,30 +104,33 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		return $rev;
 	}
 
-	protected function createPage( $page, $text, $model = null ) {
-		if ( is_string( $page ) ) {
-			if ( !preg_match( '/:/', $page ) &&
-				( $model === null || $model === CONTENT_MODEL_WIKITEXT )
-			) {
-				$ns = $this->getDefaultWikitextNS();
-				$page = MWNamespace::getCanonicalName( $ns ) . ':' . $page;
-			}
-
-			$page = Title::newFromText( $page );
+	/**
+	 * @param string $titleString
+	 * @param string $text
+	 * @param string|null $model
+	 *
+	 * @return WikiPage
+	 */
+	protected function createPage( $titleString, $text, $model = null ) {
+		if ( !preg_match( '/:/', $titleString ) &&
+			( $model === null || $model === CONTENT_MODEL_WIKITEXT )
+		) {
+			$ns = $this->getDefaultWikitextNS();
+			$titleString = MWNamespace::getCanonicalName( $ns ) . ':' . $titleString;
 		}
 
-		if ( $page instanceof Title ) {
-			$page = new WikiPage( $page );
+		$title = Title::newFromText( $titleString );
+		$wikipage = new WikiPage( $title );
+
+		// Delete the article if it already exists
+		if ( $wikipage->exists() ) {
+			$wikipage->doDeleteArticle( "done" );
 		}
 
-		if ( $page->exists() ) {
-			$page->doDeleteArticle( "done" );
-		}
+		$content = ContentHandler::makeContent( $text, $title, $model );
+		$wikipage->doEditContent( $content, __METHOD__, EDIT_NEW );
 
-		$content = ContentHandler::makeContent( $text, $page->getTitle(), $model );
-		$page->doEditContent( $content, "testing", EDIT_NEW );
-
-		return $page;
+		return $wikipage;
 	}
 
 	protected function assertRevEquals( Revision $orig, Revision $rev = null ) {
@@ -158,6 +161,56 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$rev = new Revision( $row );
 
 		$this->assertRevEquals( $orig, $rev );
+	}
+
+	/**
+	 * @covers Revision::newFromTitle
+	 */
+	public function testNewFromTitle_withoutId() {
+		$page = $this->createPage(
+			__METHOD__,
+			'GOAT',
+			CONTENT_MODEL_WIKITEXT
+		);
+		$latestRevId = $page->getLatest();
+
+		$rev = Revision::newFromTitle( $page->getTitle() );
+
+		$this->assertTrue( $page->getTitle()->equals( $rev->getTitle() ) );
+		$this->assertEquals( $latestRevId, $rev->getId() );
+	}
+
+	/**
+	 * @covers Revision::newFromTitle
+	 */
+	public function testNewFromTitle_withId() {
+		$page = $this->createPage(
+			__METHOD__,
+			'GOAT',
+			CONTENT_MODEL_WIKITEXT
+		);
+		$latestRevId = $page->getLatest();
+
+		$rev = Revision::newFromTitle( $page->getTitle(), $latestRevId );
+
+		$this->assertTrue( $page->getTitle()->equals( $rev->getTitle() ) );
+		$this->assertEquals( $latestRevId, $rev->getId() );
+	}
+
+	/**
+	 * @covers Revision::newFromTitle
+	 */
+	public function testNewFromTitle_withBadId() {
+		$page = $this->createPage(
+			__METHOD__,
+			'GOAT',
+			CONTENT_MODEL_WIKITEXT
+		);
+		$latestRevId = $page->getLatest();
+
+		$rev = Revision::newFromTitle( $page->getTitle(), $latestRevId + 1 );
+
+		$this->assertNull( $rev );
 	}
 
 	/**
