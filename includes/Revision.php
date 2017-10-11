@@ -645,6 +645,10 @@ class Revision implements IDBAccessObject {
 
 			# if we have a content object, use it to set the model and type
 			if ( !empty( $row['content'] ) ) {
+				if ( !( $row['content'] instanceof Content ) ) {
+					throw new MWException( '`content` field must contain a Content object.' );
+				}
+
 				// @todo when is that set? test with external store setup! check out insertOn() [dk]
 				if ( !empty( $row['text_id'] ) ) {
 					throw new MWException( "Text already stored in external store (id {$row['text_id']}), " .
@@ -685,10 +689,6 @@ class Revision implements IDBAccessObject {
 
 			// if we have a Content object, override mText and mContentModel
 			if ( !empty( $row['content'] ) ) {
-				if ( !( $row['content'] instanceof Content ) ) {
-					throw new MWException( '`content` field must contain a Content object.' );
-				}
-
 				$handler = $this->getContentHandler();
 				$this->mContent = $row['content'];
 
