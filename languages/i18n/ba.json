@@ -1302,7 +1302,7 @@
 	"rcfilters-activefilters": "Әүҙем фильтрҙар",
 	"rcfilters-advancedfilters": "Киңәйтелгән фильтрҙар",
 	"rcfilters-limit-title": "Күрһәтеү өсөн үҙгәртеүҙәр",
-	"rcfilters-limit-shownum": "Һуңғы {{PLURAL:$1 үҙгәреште}} күрһәтергә",
+	"rcfilters-limit-shownum": "Һуңғы {{PLURAL:$1}} үҙгәреште күрһәтергә",
 	"rcfilters-days-title": "Аҙаҡҡы көндәр",
 	"rcfilters-hours-title": "Аҙаҡҡы сәғәттәр",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|көн}}",
