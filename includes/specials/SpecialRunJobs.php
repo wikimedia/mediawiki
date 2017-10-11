@@ -105,7 +105,7 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 				'maxTime'  => $params['maxtime'] ? $params['maxjobs'] : 30
 			] );
 			if ( !$params['async'] ) {
-				print FormatJson::encode( $response, true );
+				print 1;
 			}
 		}
 	}
