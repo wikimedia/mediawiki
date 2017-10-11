@@ -363,6 +363,7 @@ class UserTest extends MediaWikiTestCase {
 	 * T39963
 	 * Make sure defaults are loaded when setOption is called.
 	 * @covers User::loadOptions
+	 * @fixme: coverage
 	 */
 	public function testAnonOptions() {
 		global $wgDefaultUserOptions;

@@ -698,6 +698,14 @@ class MediaWikiServices extends ServiceContainer {
 		return $this->getService( 'ExternalStoreFactory' );
 	}
 
+	/**
+	 * @since 1.31
+	 * @return \UserOptionsProvider
+	 */
+	public function getUserOptionsProvider() {
+		return $this->getService( 'UserOptionsProvider' );
+	}
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service getter here, don't forget to add a test
 	// case for it in MediaWikiServicesTest::provideGetters() and in

@@ -234,8 +234,8 @@ class User implements IDBAccessObject {
 	private $mGroups;
 	/** @var array Associative array of (group name => UserGroupMembership object) */
 	protected $mGroupMemberships;
-	/** @var array */
-	protected $mOptionOverrides;
+	/** @var UserOptions */
+	private $userOptions;
 	// @}
 
 	/**
@@ -495,7 +495,6 @@ class User implements IDBAccessObject {
 
 				$this->loadFromDatabase( self::READ_NORMAL );
 				$this->loadGroups();
-				$this->loadOptions();
 
 				$data = [];
 				foreach ( self::$mCacheVars as $name ) {
@@ -1320,7 +1319,7 @@ class User implements IDBAccessObject {
 	 *                table. Previously you were supposed to pass an array of strings
 	 *                here, but we also need expiry info nowadays, so an array of
 	 *                strings is ignored.
-	 *  user_properties   Array with properties out of the user_properties table
+	 *  user_properties   Deprecated, don't use
 	 */
 	protected function loadFromRow( $row, $data = null ) {
 		$all = true;
@@ -1408,7 +1407,8 @@ class User implements IDBAccessObject {
 				}
 			}
 			if ( isset( $data['user_properties'] ) && is_array( $data['user_properties'] ) ) {
-				$this->loadOptions( $data['user_properties'] );
+				throw new Exception( 'Passing user_properties to ' . __METHOD__
+					. ' is not supported anymore' );
 			}
 		}
 	}
@@ -1569,7 +1569,7 @@ class User implements IDBAccessObject {
 		$this->mEffectiveGroups = null;
 		$this->mImplicitGroups = null;
 		$this->mGroupMemberships = null;
-		$this->mOptions = null;
+		$this->userOptions = null;
 		$this->mOptionsLoaded = false;
 		$this->mEditCount = null;
 
@@ -1583,44 +1583,20 @@ class User implements IDBAccessObject {
 	 * Combine the language default options with any site-specific options
 	 * and add the default language variants.
 	 *
+	 * @deprecated since 1.31, use UserOptionsProvider
+	 *
 	 * @return array Array of String options
 	 */
 	public static function getDefaultOptions() {
-		global $wgNamespacesToBeSearchedDefault, $wgDefaultUserOptions, $wgContLang, $wgDefaultSkin;
+		$provider = MediaWikiServices::getInstance()->getUserOptionsProvider();
 
-		static $defOpt = null;
-		static $defOptLang = null;
-
-		if ( $defOpt !== null && $defOptLang === $wgContLang->getCode() ) {
-			// $wgContLang does not change (and should not change) mid-request,
-			// but the unit tests change it anyway, and expect this method to
-			// return values relevant to the current $wgContLang.
-			return $defOpt;
-		}
-
-		$defOpt = $wgDefaultUserOptions;
-		// Default language setting
-		$defOptLang = $wgContLang->getCode();
-		$defOpt['language'] = $defOptLang;
-		foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
-			$defOpt[$langCode == $wgContLang->getCode() ? 'variant' : "variant-$langCode"] = $langCode;
-		}
-
-		// NOTE: don't use SearchEngineConfig::getSearchableNamespaces here,
-		// since extensions may change the set of searchable namespaces depending
-		// on user groups/permissions.
-		foreach ( $wgNamespacesToBeSearchedDefault as $nsnum => $val ) {
-			$defOpt['searchNs' . $nsnum] = (bool)$val;
-		}
-		$defOpt['skin'] = Skin::normalizeKey( $wgDefaultSkin );
-
-		Hooks::run( 'UserGetDefaultOptions', [ &$defOpt ] );
-
-		return $defOpt;
+		return $provider->getDefaultOptions()->getAll();
 	}
 
 	/**
 	 * Get a given default option value.
+	 *
+	 * @deprecated since 1.31, use UserOptionsProvider
 	 *
 	 * @param string $opt Name of option to retrieve
 	 * @return string Default option value
@@ -2890,7 +2866,6 @@ class User implements IDBAccessObject {
 	 */
 	public function getOption( $oname, $defaultOverride = null, $ignoreHidden = false ) {
 		global $wgHiddenPrefs;
-		$this->loadOptions();
 
 		# We want 'disabled' preferences to always behave as the default value for
 		# users, even if they have set the option explicitly in their settings (ie they
@@ -2908,6 +2883,16 @@ class User implements IDBAccessObject {
 		}
 	}
 
+	public function getOptionsObject() {
+		if ( !$this->userOptions ) {
+			$this->userOptions = MediaWikiServices::getInstance()
+				->getUserOptionsProvider()
+				->getUserOptions( $this, $this->queryFlagsUsed );
+		}
+
+		return $this->userOptions;
+	}
+
 	/**
 	 * Get all user's options
 	 *
@@ -2918,8 +2903,8 @@ class User implements IDBAccessObject {
 	 */
 	public function getOptions( $flags = 0 ) {
 		global $wgHiddenPrefs;
-		$this->loadOptions();
-		$options = $this->mOptions;
+
+		$options = $this->getOptionsObject()->getAll();
 
 		# We want 'disabled' preferences to always behave as the default value for
 		# users, even if they have set the option explicitly in their settings (ie they
@@ -2976,8 +2961,6 @@ class User implements IDBAccessObject {
 	 * @param mixed $val New value to set
 	 */
 	public function setOption( $oname, $val ) {
-		$this->loadOptions();
-
 		// Explicitly NULL values should refer to defaults
 		if ( is_null( $val ) ) {
 			$val = self::getDefaultOption( $oname );
@@ -3082,9 +3065,8 @@ class User implements IDBAccessObject {
 	 * @return array The key => kind mapping data
 	 */
 	public function getOptionKinds( IContextSource $context, $options = null ) {
-		$this->loadOptions();
 		if ( $options === null ) {
-			$options = $this->mOptions;
+			$options = $this->getOptionsObject()->getAll();
 		}
 
 		$prefs = Preferences::getPreferences( $this, $context );
@@ -5265,93 +5247,11 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Load the user options either from cache, the database or an array
-	 *
-	 * @param array $data Rows for the current user out of the user_properties table
-	 */
-	protected function loadOptions( $data = null ) {
-		global $wgContLang;
-
-		$this->load();
-
-		if ( $this->mOptionsLoaded ) {
-			return;
-		}
-
-		$this->mOptions = self::getDefaultOptions();
-
-		if ( !$this->getId() ) {
-			// For unlogged-in users, load language/variant options from request.
-			// There's no need to do it for logged-in users: they can set preferences,
-			// and handling of page content is done by $pageLang->getPreferredVariant() and such,
-			// so don't override user's choice (especially when the user chooses site default).
-			$variant = $wgContLang->getDefaultVariant();
-			$this->mOptions['variant'] = $variant;
-			$this->mOptions['language'] = $variant;
-			$this->mOptionsLoaded = true;
-			return;
-		}
-
-		// Maybe load from the object
-		if ( !is_null( $this->mOptionOverrides ) ) {
-			wfDebug( "User: loading options for user " . $this->getId() . " from override cache.\n" );
-			foreach ( $this->mOptionOverrides as $key => $value ) {
-				$this->mOptions[$key] = $value;
-			}
-		} else {
-			if ( !is_array( $data ) ) {
-				wfDebug( "User: loading options for user " . $this->getId() . " from database.\n" );
-				// Load from database
-				$dbr = ( $this->queryFlagsUsed & self::READ_LATEST )
-					? wfGetDB( DB_MASTER )
-					: wfGetDB( DB_REPLICA );
-
-				$res = $dbr->select(
-					'user_properties',
-					[ 'up_property', 'up_value' ],
-					[ 'up_user' => $this->getId() ],
-					__METHOD__
-				);
-
-				$this->mOptionOverrides = [];
-				$data = [];
-				foreach ( $res as $row ) {
-					// Convert '0' to 0. PHP's boolean conversion considers them both
-					// false, but e.g. JavaScript considers the former as true.
-					// @todo: T54542 Somehow determine the desired type (string/int/bool)
-					//  and convert all values here.
-					if ( $row->up_value === '0' ) {
-						$row->up_value = 0;
-					}
-					$data[$row->up_property] = $row->up_value;
-				}
-			}
-
-			// Convert the email blacklist from a new line delimited string
-			// to an array of ids.
-			if ( isset( $data['email-blacklist'] ) && $data['email-blacklist'] ) {
-				$data['email-blacklist'] = array_map( 'intval', explode( "\n", $data['email-blacklist'] ) );
-			}
-
-			foreach ( $data as $property => $value ) {
-				$this->mOptionOverrides[$property] = $value;
-				$this->mOptions[$property] = $value;
-			}
-		}
-
-		$this->mOptionsLoaded = true;
-
-		Hooks::run( 'UserLoadOptions', [ $this, &$this->mOptions ] );
-	}
-
-	/**
 	 * Saves the non-default options for this user, as previously set e.g. via
 	 * setOption(), in the database's "user_properties" (preferences) table.
 	 * Usually used via saveSettings().
 	 */
 	protected function saveOptions() {
-		$this->loadOptions();
-
 		// Not using getOptions(), to keep hidden preferences in database
 		$saveOptions = $this->mOptions;
 
