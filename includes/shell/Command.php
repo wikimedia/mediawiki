@@ -245,10 +245,9 @@ class Command {
 						   "MW_USE_LOG_PIPE=yes"
 					   );
 				$useLogPipe = true;
-			} elseif ( $this->useStderr ) {
-				$cmd .= ' 2>&1';
 			}
-		} elseif ( $this->useStderr ) {
+		}
+		if ( !$useLogPipe && $this->useStderr ) {
 			$cmd .= ' 2>&1';
 		}
 		wfDebug( __METHOD__ . ": $cmd\n" );
@@ -259,7 +258,7 @@ class Command {
 		// input. See T129506.
 		if ( strlen( $cmd ) > SHELL_MAX_ARG_STRLEN ) {
 			throw new Exception( __METHOD__ .
-								 '(): total length of $cmd must not exceed SHELL_MAX_ARG_STRLEN' );
+				'(): total length of $cmd must not exceed SHELL_MAX_ARG_STRLEN' );
 		}
 
 		$desc = [
