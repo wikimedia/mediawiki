@@ -1083,7 +1083,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
 	 *             // Load the row for this file
-	 *             $row = $dbr->selectRow( 'file', '*', [ 'id' => $id ], __METHOD__ );
+	 *             $row = $dbr->selectRow( 'file', File::selectFields(), [ 'id' => $id ], __METHOD__ );
 	 *
 	 *             return $row ? (array)$row : false;
 	 *         },
@@ -1169,7 +1169,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 *             // Load the rows for these files
 	 *             $rows = [];
-	 *             $res = $dbr->select( 'file', '*', [ 'id' => $ids ], __METHOD__ );
+	 *             $res = $dbr->select( 'file', File::selectFields(), [ 'id' => $ids ], __METHOD__ );
 	 *             foreach ( $res as $row ) {
 	 *                 $rows[$row->id] = $row;
 	 *                 $mtime = wfTimestamp( TS_UNIX, $row->timestamp );
