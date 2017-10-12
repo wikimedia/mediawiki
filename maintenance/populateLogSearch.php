@@ -76,7 +76,9 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 		while ( $blockEnd <= $end ) {
 			$this->output( "...doing log_id from $blockStart to $blockEnd\n" );
 			$cond = "log_id BETWEEN $blockStart AND $blockEnd";
-			$res = $db->select( 'logging', '*', $cond, __FUNCTION__ );
+			$res = $db->select(
+				'logging', [ 'log_id', 'log_type', 'log_action', 'log_params' ], $cond, __FUNCTION__
+			);
 			foreach ( $res as $row ) {
 				// RevisionDelete logs - revisions
 				if ( LogEventsList::typeAction( $row, $delTypes, 'revision' ) ) {
