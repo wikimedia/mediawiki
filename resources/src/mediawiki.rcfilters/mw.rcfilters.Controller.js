@@ -386,7 +386,7 @@
 		this._deleteExcludedValuesFromFilterState( defaultFilters );
 
 		if ( Object.keys( defaultParams ).some( function ( paramName ) {
-			return paramName.endsWith( '_color' ) && defaultParams[ paramName ] !== null;
+			return paramName.match( /_color$/ ) && defaultParams[ paramName ] !== null;
 		} ) ) {
 			// There are highlights in the defaults, they're definitely
 			// not empty
