@@ -3,10 +3,64 @@
 class DeferredUpdatesTest extends MediaWikiTestCase {
 
 	/**
+	 * @covers DeferredUpdates::addUpdate
+	 * @covers DeferredUpdates::push
+	 * @covers DeferredUpdates::doUpdates
+	 * @covers DeferredUpdates::execute
+	 * @covers DeferredUpdates::runUpdate
+	 */
+	public function testAddAndRun() {
+		$update = $this->getMockBuilder( DeferrableUpdate::class )
+			->setMethods( [ 'doUpdate' ] )->getMock();
+		$update->expects( $this->once() )->method( 'doUpdate' );
+
+		DeferredUpdates::addUpdate( $update );
+		DeferredUpdates::doUpdates();
+	}
+
+	/**
+	 * @covers DeferredUpdates::addUpdate
+	 * @covers DeferredUpdates::push
+	 */
+	public function testAddMergeable() {
+		$this->setMwGlobals( 'wgCommandLineMode', false );
+
+		$update1 = $this->getMockBuilder( MergeableUpdate::class )
+			->setMethods( [ 'merge', 'doUpdate' ] )->getMock();
+		$update1->expects( $this->once() )->method( 'merge' );
+		$update1->expects( $this->never() )->method( 'doUpdate' );
+
+		$update2 = $this->getMockBuilder( MergeableUpdate::class )
+			->setMethods( [ 'merge', 'doUpdate' ] )->getMock();
+		$update2->expects( $this->never() )->method( 'merge' );
+		$update2->expects( $this->never() )->method( 'doUpdate' );
+
+		DeferredUpdates::addUpdate( $update1 );
+		DeferredUpdates::addUpdate( $update2 );
+	}
+
+	/**
+	 * @covers DeferredUpdates::addCallableUpdate
+	 * @covers MWCallableUpdate::getOrigin
+	 */
+	public function testAddCallableUpdate() {
+		$this->setMwGlobals( 'wgCommandLineMode', true );
+
+		$ran = 0;
+		DeferredUpdates::addCallableUpdate( function () use ( &$ran ) {
+			$ran++;
+		} );
+		DeferredUpdates::doUpdates();
+
+		$this->assertSame( 1, $ran, 'Update ran' );
+	}
+
+	/**
 	 * @covers DeferredUpdates::getPendingUpdates
+	 * @covers DeferredUpdates::clearPendingUpdates
 	 */
 	public function testGetPendingUpdates() {
-		# Prevent updates from running
+		// Prevent updates from running
 		$this->setMwGlobals( 'wgCommandLineMode', false );
 
 		$pre = DeferredUpdates::PRESEND;
@@ -34,6 +88,11 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 		$this->assertCount( 0, DeferredUpdates::getPendingUpdates() );
 	}
 
+	/**
+	 * @covers DeferredUpdates::doUpdates
+	 * @covers DeferredUpdates::execute
+	 * @covers DeferredUpdates::addUpdate
+	 */
 	public function testDoUpdatesWeb() {
 		$this->setMwGlobals( 'wgCommandLineMode', false );
 
@@ -126,6 +185,11 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 		$this->assertEquals( "Marychu", $y, "POSTSEND update ran" );
 	}
 
+	/**
+	 * @covers DeferredUpdates::doUpdates
+	 * @covers DeferredUpdates::execute
+	 * @covers DeferredUpdates::addUpdate
+	 */
 	public function testDoUpdatesCLI() {
 		$this->setMwGlobals( 'wgCommandLineMode', true );
 		$updates = [
@@ -140,7 +204,8 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 			'3-2-1' => "deferred update 1 within deferred update 2 with deferred update 3;\n",
 		];
 
-		wfGetLBFactory()->commitMasterChanges( __METHOD__ ); // clear anything
+		// clear anything
+		wfGetLBFactory()->commitMasterChanges( __METHOD__ );
 
 		DeferredUpdates::addCallableUpdate(
 			function () use ( $updates ) {
@@ -193,12 +258,18 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 		DeferredUpdates::doUpdates();
 	}
 
+	/**
+	 * @covers DeferredUpdates::doUpdates
+	 * @covers DeferredUpdates::execute
+	 * @covers DeferredUpdates::addUpdate
+	 */
 	public function testPresendAddOnPostsendRun() {
 		$this->setMwGlobals( 'wgCommandLineMode', true );
 
 		$x = false;
 		$y = false;
-		wfGetLBFactory()->commitMasterChanges( __METHOD__ ); // clear anything
+		// clear anything
+		wfGetLBFactory()->commitMasterChanges( __METHOD__ );
 
 		DeferredUpdates::addCallableUpdate(
 			function () use ( &$x, &$y ) {
