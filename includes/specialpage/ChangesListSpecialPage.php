@@ -629,7 +629,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			if ( $savedQueries && isset( $savedQueries[ 'default' ] ) ) {
 				// Only load queries that are 'version' 2, since those
 				// have parameter representation
-				if ( $savedQueries[ 'version' ] === '2' ) {
+				if ( isset( $savedQueries[ 'version' ] ) && $savedQueries[ 'version' ] === '2' ) {
 					$savedQueryDefaultID = $savedQueries[ 'default' ];
 					$defaultQuery = $savedQueries[ 'queries' ][ $savedQueryDefaultID ][ 'data' ];
 
