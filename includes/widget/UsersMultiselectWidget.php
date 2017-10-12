@@ -38,9 +38,8 @@ class UsersMultiselectWidget extends \OOUI\Widget {
 			$this->inputPlaceholder = $config['placeholder'];
 		}
 
-		$textarea = new TextInputWidget( [
+		$textarea = new MultilineTextInputWidget( [
 			'name' => $this->inputName,
-			'multiline' => true,
 			'value' => implode( "\n", $this->usersArray ),
 			'rows' => 25,
 		] );
