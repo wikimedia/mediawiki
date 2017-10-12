@@ -369,9 +369,17 @@
 	 * Reset to default filters
 	 */
 	mw.rcfilters.Controller.prototype.resetToDefaults = function () {
+		var newFilterState,
+			currFilterState = this.filtersModel.getSelectedState();
+
 		this.filtersModel.updateStateFromParams( this._getDefaultParams() );
 
-		this.updateChangesList();
+		newFilterState = this.filtersModel.getSelectedState();
+
+		if ( !OO.compare( currFilterState, newFilterState ) ) {
+			// Only update the changes list if there was a change to actual filters
+			this.updateChangesList();
+		}
 	};
 
 	/**
@@ -387,13 +395,19 @@
 	 * Empty all selected filters
 	 */
 	mw.rcfilters.Controller.prototype.emptyFilters = function () {
-		var highlightedFilterNames = this.filtersModel
-			.getHighlightedItems()
-			.map( function ( filterItem ) { return { name: filterItem.getName() }; } );
+		var newFilterState,
+			highlightedFilterNames = this.filtersModel.getHighlightedItems()
+				.map( function ( filterItem ) { return { name: filterItem.getName() }; } ),
+			currFilterState = this.filtersModel.getSelectedState();
 
 		this.filtersModel.updateStateFromParams( {} );
 
-		this.updateChangesList();
+		newFilterState = this.filtersModel.getSelectedState();
+
+		if ( !OO.compare( currFilterState, newFilterState ) ) {
+			// Only update the changes list if there was a change to actual filters
+			this.updateChangesList();
+		}
 
 		if ( highlightedFilterNames ) {
 			this._trackHighlight( 'clearAll', highlightedFilterNames );
@@ -663,7 +677,7 @@
 	 * @param {string} queryID Query id
 	 */
 	mw.rcfilters.Controller.prototype.applySavedQuery = function ( queryID ) {
-		var currentMatchingQuery,
+		var currentMatchingQuery, currFilterState, newFilterState,
 			params = this.savedQueriesModel.getItemParams( queryID );
 
 		currentMatchingQuery = this.findQueryMatchingCurrentState();
@@ -677,10 +691,17 @@
 			return;
 		}
 
+		currFilterState = this.filtersModel.getSelectedState();
+
 		// Apply parameters to model
 		this.filtersModel.updateStateFromParams( params );
 
-		this.updateChangesList();
+		newFilterState = this.filtersModel.getSelectedState();
+
+		if ( !OO.compare( currFilterState, newFilterState ) ) {
+			// Update changes list only if there was a difference in filter selection
+			this.updateChangesList();
+		}
 
 		// Log filter grouping
 		this.trackFilterGroupings( 'savedfilters' );
