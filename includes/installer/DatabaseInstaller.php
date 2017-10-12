@@ -697,7 +697,7 @@ abstract class DatabaseInstaller {
 		}
 		$this->db->selectDB( $this->getVar( 'wgDBname' ) );
 
-		if ( $this->db->selectRow( 'interwiki', '*', [], __METHOD__ ) ) {
+		if ( $this->db->selectRow( 'interwiki', '1', [], __METHOD__ ) ) {
 			$status->warning( 'config-install-interwiki-exists' );
 
 			return $status;

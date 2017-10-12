@@ -66,7 +66,7 @@ class CleanupBlocks extends Maintenance {
 				$bestBlock = null;
 				$res2 = $db->select(
 					'ipblocks',
-					'*',
+					Block::selectFields(),
 					[
 						'ipb_user' => $row->ipb_user,
 					]

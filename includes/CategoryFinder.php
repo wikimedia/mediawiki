@@ -190,7 +190,7 @@ class CategoryFinder {
 		$layer = [];
 		$res = $this->dbr->select(
 			/* FROM   */ 'categorylinks',
-			/* SELECT */ '*',
+			/* SELECT */ [ 'cl_to', 'cl_from' ],
 			/* WHERE  */ [ 'cl_from' => $this->next ],
 			__METHOD__ . '-1'
 		);

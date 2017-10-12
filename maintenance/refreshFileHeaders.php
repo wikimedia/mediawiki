@@ -76,7 +76,7 @@ class RefreshFileHeaders extends Maintenance {
 				$conds[] = "img_minor_mime = {$dbr->addQuotes( $minor_mime )}";
 			}
 
-			$res = $dbr->select( 'image', '*', $conds,
+			$res = $dbr->select( 'image', LocalFile::selectFields(), $conds,
 				__METHOD__, [ 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'img_name ASC' ] );
 
 			if ( $res->numRows() > 0 ) {
