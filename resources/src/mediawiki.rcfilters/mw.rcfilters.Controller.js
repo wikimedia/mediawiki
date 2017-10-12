@@ -725,14 +725,7 @@
 
 			// Update highlight state
 			this.filtersModel.toggleHighlight( !!Number( data.params.highlight ) );
-			this.filtersModel.getItems().forEach( function ( filterItem ) {
-				var color = highlights[ filterItem.getName() + '_color' ];
-				if ( color ) {
-					filterItem.setHighlightColor( color );
-				} else {
-					filterItem.clearHighlightColor();
-				}
-			} );
+			this.filtersModel.applyHighlightFromParams( highlights );
 
 			// Check all filter interactions
 			this.filtersModel.reassessFilterInteractions();

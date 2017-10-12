@@ -20,10 +20,6 @@
 
 		this.views = {};
 		this.currentView = 'default';
-
-		// Events
-		this.aggregate( { update: 'filterItemUpdate' } );
-		this.connect( this, { filterItemUpdate: [ 'emit', 'itemUpdate' ] } );
 	};
 
 	/* Initialization */
@@ -43,13 +39,6 @@
 	 * @event update
 	 *
 	 * Model has been updated
-	 */
-
-	/**
-	 * @event itemUpdate
-	 * @param {mw.rcfilters.dm.FilterItem} item Filter item updated
-	 *
-	 * Filter item has changed
 	 */
 
 	/**
@@ -828,11 +817,29 @@
 	 * This is equivalent to display all.
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.emptyAllFilters = function () {
+		var changed = [];
+
 		this.getItems().forEach( function ( filterItem ) {
 			if ( !filterItem.getGroupModel().isSticky() ) {
+				if ( filterItem.isSelected() ) {
+					changed.push( filterItem.getName() );
+				}
+
 				this.toggleFilterSelected( filterItem.getName(), false );
 			}
 		}.bind( this ) );
+
+		this.finishItemsUpdate( changed );
+	};
+
+	/**
+	 * Finish an item update operation for batching updates
+	 *
+	 * @param  {string[]} itemNames Names of the items that were updated
+	 * @fires filtersUpdated
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.finishItemsUpdate = function ( itemNames ) {
+		this.emit( 'filtersUpdated', itemNames );
 	};
 
 	/**
@@ -847,6 +854,8 @@
 		if ( item ) {
 			item.toggleSelected( isSelected );
 		}
+
+		this.finishItemsUpdate( [ name ] );
 	};
 
 	/**
@@ -858,6 +867,8 @@
 		Object.keys( filterDef ).forEach( function ( name ) {
 			this.toggleFilterSelected( name, filterDef[ name ] );
 		}.bind( this ) );
+
+		this.finishItemsUpdate( Object.keys( filterDef ) );
 	};
 
 	/**
@@ -1053,6 +1064,28 @@
 	};
 
 	/**
+	 * Apply highlights to items based on given parameters
+	 *
+	 * @param  {Object} params Highlight parameter definition
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.applyHighlightFromParams = function ( params ) {
+		this.getItemsSupportingHighlights().forEach( function ( filterItem ) {
+			var color = params[ filterItem.getName() + '_color' ];
+			if ( color ) {
+				filterItem.setHighlightColor( color );
+			} else {
+				filterItem.clearHighlightColor();
+			}
+		} );
+
+		this.finishItemsUpdate(
+			this.getItemsSupportingHighlights().map( function ( filterItem ) {
+				return filterItem.getName();
+			} )
+		);
+	};
+
+	/**
 	 * Toggle the highlight feature on and off.
 	 * Propagate the change to filter items.
 	 *
@@ -1066,12 +1099,18 @@
 			// HACK make sure highlights are disabled globally while we toggle on the items,
 			// otherwise we'll call clearHighlight() and applyHighlight() many many times
 			this.highlightEnabled = false;
-			this.getItems().forEach( function ( filterItem ) {
+			this.getItemsSupportingHighlights().forEach( function ( filterItem ) {
 				filterItem.toggleHighlight( enable );
 			} );
 
 			this.highlightEnabled = enable;
 			this.emit( 'highlightChange', this.highlightEnabled );
+
+			this.finishItemsUpdate(
+				this.getItemsSupportingHighlights().map( function ( filterItem ) {
+					return filterItem.getName();
+				} )
+			);
 		}
 	};
 
@@ -1110,6 +1149,7 @@
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.setHighlightColor = function ( filterName, color ) {
 		this.getItemByName( filterName ).setHighlightColor( color );
+		this.finishItemsUpdate( [ filterName ] );
 	};
 
 	/**
@@ -1119,15 +1159,23 @@
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.clearHighlightColor = function ( filterName ) {
 		this.getItemByName( filterName ).clearHighlightColor();
+		this.finishItemsUpdate( [ filterName ] );
 	};
 
 	/**
 	 * Clear highlight for all filter items
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.clearAllHighlightColors = function () {
-		this.getItems().forEach( function ( filterItem ) {
+		var changed = [];
+
+		this.getItemsSupportingHighlights().forEach( function ( filterItem ) {
+			if ( filterItem.getHighlightColor() ) {
+				changed.push( filterItem.getName() );
+			}
 			filterItem.clearHighlightColor();
 		} );
+
+		this.finishItemsUpdate( changed );
 	};
 
 	/**
