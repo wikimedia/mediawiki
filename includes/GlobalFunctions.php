@@ -2259,6 +2259,7 @@ function wfEscapeShellArg( /*...*/ ) {
  * @deprecated since 1.30 use MediaWiki\Shell::isDisabled()
  */
 function wfShellExecDisabled() {
+	wfDeprecated( __FUNCTION__, '1.30' );
 	return Shell::isDisabled() ? 'disabled' : false;
 }
 
