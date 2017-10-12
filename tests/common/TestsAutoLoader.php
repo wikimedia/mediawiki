@@ -66,7 +66,6 @@ $wgAutoloadClasses += [
 	# tests/phpunit/includes
 	'RevisionTestModifyableContent' => "$testDir/phpunit/includes/RevisionTestModifyableContent.php",
 	'RevisionTestModifyableContentHandler' => "$testDir/phpunit/includes/RevisionTestModifyableContentHandler.php",
-	'RevisionStorageTest' => "$testDir/phpunit/includes/RevisionStorageTest.php",
 	'TestLogger' => "$testDir/phpunit/includes/TestLogger.php",
 
 	# tests/phpunit/includes/api
