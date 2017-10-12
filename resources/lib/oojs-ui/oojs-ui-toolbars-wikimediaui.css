@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.23.3
+ * OOjs UI v0.23.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-10-04T01:20:45Z
+ * Date: 2017-10-12T01:29:23Z
  */
 /**
  * WikimediaUI Base v0.9.2
@@ -37,10 +37,7 @@
 }
 .oo-ui-tool.oo-ui-iconElement .oo-ui-iconElement-icon {
   display: block;
-  position: absolute;
-  top: 0;
   left: 0.625em;
-  height: 100%;
 }
 .oo-ui-tool .oo-ui-tool-title {
   line-height: 1.172em;
@@ -116,10 +113,6 @@
 .oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool > .oo-ui-tool-link .oo-ui-tool-accel {
   display: none;
 }
-.oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool.oo-ui-iconElement > .oo-ui-tool-link .oo-ui-iconElement-icon {
-  display: inline-block;
-  vertical-align: top;
-}
 .oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool.oo-ui-iconElement > .oo-ui-tool-link .oo-ui-tool-title {
   display: none;
 }
@@ -159,10 +152,6 @@
   display: block;
   cursor: pointer;
 }
-.oo-ui-popupToolGroup-handle .oo-ui-indicatorElement-indicator,
-.oo-ui-popupToolGroup-handle .oo-ui-iconElement-icon {
-  position: absolute;
-}
 .oo-ui-popupToolGroup.oo-ui-widget-disabled .oo-ui-popupToolGroup-handle {
   outline: 0;
   cursor: default;
@@ -187,7 +176,6 @@
   vertical-align: middle;
   white-space: nowrap;
 }
-.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-iconElement-icon,
 .oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-accel,
 .oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-title {
   display: table-cell;
@@ -203,11 +191,6 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-}
-.oo-ui-popupToolGroup-handle .oo-ui-iconElement-icon,
-.oo-ui-popupToolGroup-handle .oo-ui-indicatorElement-indicator {
-  top: 0;
-  height: 100%;
 }
 .oo-ui-popupToolGroup-handle .oo-ui-iconElement-icon {
   left: 0.625em;
@@ -271,9 +254,6 @@
 }
 .oo-ui-popupToolGroup .oo-ui-tool-link {
   padding: 1.015625em 0.9375em 0.9375em 2.96875em;
-}
-.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-iconElement-icon {
-  display: block;
 }
 .oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-title {
   color: #222;
@@ -357,11 +337,7 @@
   min-width: 8.125em;
 }
 .oo-ui-menuToolGroup .oo-ui-tool-link .oo-ui-iconElement-icon {
-  background-image: none;
-  position: absolute;
-  top: 0;
   left: 0.625em;
-  height: 100%;
 }
 .oo-ui-menuToolGroup .oo-ui-tool-active .oo-ui-tool-link .oo-ui-iconElement-icon {
   background-image: url('themes/wikimediaui/images/icons/check-progressive.png');
