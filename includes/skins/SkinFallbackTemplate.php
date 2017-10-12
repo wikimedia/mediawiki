@@ -31,7 +31,20 @@ class SkinFallbackTemplate extends BaseTemplate {
 				|| is_file( "$styleDirectory/$skinDir/$skinDir.php" );
 		} );
 
-		return $possibleSkins;
+		// Load meta data for skins to locate ValidSkinNames (see T178118)
+		$validSkins = [];
+		foreach( $possibleSkins as $skinDirName ) {
+			$skinJsonPath = "$styleDirectory/$skinDirName/skin.json";
+			if ( file_exists( $skinJsonPath ) ) {
+				$data = file_get_contents( $skinJsonPath );
+				$json = json_decode( $data, true );
+				if ( isset( $json['ValidSkinNames'] ) ) {
+					$validSkins = array_merge( $validSkins, $json['ValidSkinNames'] );
+				}
+			}
+		}
+
+		return $validSkins;
 	}
 
 	/**
@@ -49,8 +62,7 @@ class SkinFallbackTemplate extends BaseTemplate {
 			$skinsInstalledText = [];
 			$skinsInstalledSnippet = [];
 
-			foreach ( $installedSkins as $skin ) {
-				$normalizedKey = strtolower( $skin );
+			foreach ( $installedSkins as $normalizedKey => $skin ) {
 				$isEnabled = array_key_exists( $normalizedKey, $enabledSkins );
 				if ( $isEnabled ) {
 					$skinsInstalledText[] = $this->getMsg( 'default-skin-not-found-row-enabled' )
