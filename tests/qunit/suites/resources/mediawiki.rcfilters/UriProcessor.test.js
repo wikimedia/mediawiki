@@ -59,7 +59,6 @@
 				filter4: '0',
 				group3: '',
 				highlight: '0',
-				invert: '0',
 				group1__filter1_color: null,
 				group1__filter2_color: null,
 				group2__filter3_color: null,
@@ -100,15 +99,6 @@
 				group1__filter1_color: 'c1'
 			} ),
 			'Highlight parameters in Uri query set highlight state in the model'
-		);
-
-		uriProcessor.updateModelBasedOnQuery( { invert: '1', urlversion: '2' } );
-		assert.deepEqual(
-			uriProcessor.getUriParametersFromModel(),
-			$.extend( true, {}, baseParams, {
-				invert: '1'
-			} ),
-			'Invert parameter in Uri query set invert state in the model'
 		);
 	} );
 

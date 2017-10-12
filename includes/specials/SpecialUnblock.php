@@ -57,7 +57,7 @@ class SpecialUnblock extends SpecialPage {
 
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'unblockip' ) );
-		$out->addModules( [ 'mediawiki.special' ] );
+		$out->addModules( [ 'mediawiki.special', 'mediawiki.userSuggest' ] );
 
 		$form = HTMLForm::factory( 'ooui', $this->getFields(), $this->getContext() );
 		$form->setWrapperLegendMsg( 'unblockip' );
@@ -87,12 +87,12 @@ class SpecialUnblock extends SpecialPage {
 	protected function getFields() {
 		$fields = [
 			'Target' => [
-				'type' => 'user',
+				'type' => 'text',
 				'label-message' => 'ipaddressorusername',
 				'autofocus' => true,
 				'size' => '45',
 				'required' => true,
-				'ipallowed' => true,
+				'cssclass' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
 			],
 			'Name' => [
 				'type' => 'info',

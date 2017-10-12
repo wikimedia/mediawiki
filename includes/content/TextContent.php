@@ -35,6 +35,11 @@
 class TextContent extends AbstractContent {
 
 	/**
+	 * @var string
+	 */
+	protected $mText;
+
+	/**
 	 * @param string $text
 	 * @param string $model_id
 	 * @throws MWException

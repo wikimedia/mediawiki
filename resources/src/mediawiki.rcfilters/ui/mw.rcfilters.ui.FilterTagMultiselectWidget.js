@@ -420,21 +420,19 @@
 	 * @param {mw.rcfilters.dm.FilterItem} item Filter item model
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onModelItemUpdate = function ( item ) {
-		if ( item.getGroupModel().isHidden() ) {
-			return;
-		}
-
-		if (
-			item.isSelected() ||
-			(
-				this.model.isHighlightEnabled() &&
-				item.isHighlightSupported() &&
-				item.getHighlightColor()
-			)
-		) {
-			this.addTag( item.getName(), item.getLabel() );
-		} else {
-			this.removeTagByData( item.getName() );
+		if ( !item.getGroupModel().isHidden() ) {
+			if (
+				item.isSelected() ||
+				(
+					this.model.isHighlightEnabled() &&
+					item.isHighlightSupported() &&
+					item.getHighlightColor()
+				)
+			) {
+				this.addTag( item.getName(), item.getLabel() );
+			} else {
+				this.removeTagByData( item.getName() );
+			}
 		}
 
 		this.setSavedQueryVisibility();
@@ -617,6 +615,7 @@
 		if ( filterItem ) {
 			return new mw.rcfilters.ui.FilterTagItemWidget(
 				this.controller,
+				this.model.getInvertModel(),
 				filterItem,
 				{
 					$overlay: this.$overlay

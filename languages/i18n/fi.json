@@ -3782,7 +3782,7 @@
 	"mw-widgets-usersmultiselect-placeholder": "Lisää enemmän...",
 	"date-range-from": "Aloituspäivä:",
 	"date-range-to": "Päättymispäivä:",
-	"sessionmanager-tie": "!!FYZZ!!Cannot combine multiple request authentication types: $1.",
+	"sessionmanager-tie": "Cannot combine multiple request authentication types: $1.",
 	"sessionprovider-generic": "$1 istuntoa",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "istuntoja, joissa on evästeet käytössä",
 	"sessionprovider-nocookies": "Evästeet on voitu poistaa käytöstä. Varmista, että sinulla on evästeet käytössä ja yritä sitten uudelleen.",

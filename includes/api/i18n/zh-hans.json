@@ -22,7 +22,8 @@
 			"損齋",
 			"Myy730",
 			"D41D8CD98F",
-			"Umherirrender"
+			"Umherirrender",
+			"NeverBehave"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|文档]]\n* [[mw:Special:MyLanguage/API:FAQ|常见问题]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 邮件列表]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 程序错误与功能请求]\n</div>\n<strong>状态信息：</strong>本页所展示的所有特性都应正常工作，但是API仍在开发当中，将会随时变化。请订阅[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 邮件列表]以便获得更新通知。\n\n<strong>错误请求：</strong>当API收到错误请求时，HTTP header将会返回一个包含\"MediaWiki-API-Error\"的值，随后header的值与error code将会送回并设置为相同的值。详细信息请参阅[[mw:Special:MyLanguage/API:Errors_and_warnings|API：错误与警告]]。\n\n<strong>测试中：</strong>测试API请求的易用性，请参见[[Special:ApiSandbox]]。",
@@ -1736,7 +1737,7 @@
 	"apiwarn-notfile": "“$1”不是文件。",
 	"apiwarn-nothumb-noimagehandler": "不能创建缩略图，因为$1没有关联的图片处理器。",
 	"apiwarn-parse-nocontentmodel": "<var>title</var>或<var>contentmodel</var>未提供，假设$1。",
-	"apiwarn-parse-revidwithouttext": "<var>revid</var>在没有<var>text</var>的情况下被使用，并且请求了已解析页面的属性。您是想用<var>oldid</var>而不是<var>revid</var>么？",
+	"apiwarn-parse-revidwithouttext": "<var>revid</var>在没有<var>text</var>的情况下被使用，并且请求了已解析的页面属性。您是想用<var>oldid</var>而不是<var>revid</var>么？",
 	"apiwarn-parse-titlewithouttext": "<var>title</var>在没有<var>text</var>的情况下被使用，并且请求了已解析页面的属性。您是想用<var>page</var>而不是<var>title</var>么？",
 	"apiwarn-redirectsandrevids": "重定向解决方案不能与<var>revids</var>参数一起使用。任何<var>revids</var>所指向的重定向都未被解决。",
 	"apiwarn-tokennotallowed": "操作“$1”不允许当前用户使用。",

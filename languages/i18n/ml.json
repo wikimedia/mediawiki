@@ -1552,6 +1552,7 @@
 	"uploadstash-badtoken": "പ്രവൃത്തി വിജയകരമായിരുന്നില്ല, താങ്കളുടെ തിരുത്തുവാനുള്ള അവകാശങ്ങൾ ചിലപ്പോൾ കാലഹരണപ്പെട്ടിട്ടുണ്ടാകാം. വീണ്ടും ശ്രമിക്കുക.",
 	"uploadstash-errclear": "പ്രമാണങ്ങൾ ശൂന്യമാക്കൽ വിജയകരമായിരുന്നില്ല.",
 	"uploadstash-refresh": "പ്രമാണങ്ങളുടെ പട്ടിക പുതുക്കുക",
+	"uploadstash-thumbnail": "ലഘുചിത്രം കാണുക",
 	"img-auth-accessdenied": "പ്രവേശനമില്ല",
 	"img-auth-nopathinfo": "PATH_INFO ലഭ്യമല്ല.\nതാങ്കളുടെ സെർവർ ഈ വിവരം കൈമാറ്റം ചെയ്യാൻ തയ്യാറാക്കിയിട്ടില്ല.\nഅത് img_auth പിന്തുണയില്ലാത്ത സി.ജി.ഐ. അധിഷ്ഠിതമായ ഒന്നായിരിക്കാം.\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization കാണുക.",
 	"img-auth-notindir": "ആവശ്യപ്പെട്ട പാത അപ്‌‌ലോഡ് ഡയറക്റ്ററിയിൽ സജ്ജീകരിച്ചു നൽകിയിട്ടില്ല.",

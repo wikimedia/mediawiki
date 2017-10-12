@@ -16,7 +16,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 */
 	private $the_page;
 
-	function __construct( $name = null, array $data = [], $dataName = '' ) {
+	public function __construct( $name = null, array $data = [], $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 
 		$this->tablesUsed = array_merge( $this->tablesUsed,
@@ -39,18 +39,35 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	}
 
 	protected function setUp() {
-		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
+		global $wgContLang;
 
 		parent::setUp();
 
-		$wgExtraNamespaces[12312] = 'Dummy';
-		$wgExtraNamespaces[12313] = 'Dummy_talk';
+		$this->mergeMwGlobalArrayValue(
+			'wgExtraNamespaces',
+			[
+				12312 => 'Dummy',
+				12313 => 'Dummy_talk',
+			]
+		);
 
-		$wgNamespaceContentModels[12312] = 'DUMMY';
-		$wgContentHandlers['DUMMY'] = 'DummyContentHandlerForTesting';
+		$this->mergeMwGlobalArrayValue(
+			'wgNamespaceContentModels',
+			[
+				12312 => 'DUMMY',
+			]
+		);
+
+		$this->mergeMwGlobalArrayValue(
+			'wgContentHandlers',
+			[
+				'DUMMY' => 'DummyContentHandlerForTesting',
+			]
+		);
 
 		MWNamespace::clearCaches();
-		$wgContLang->resetNamespaces(); # reset namespace cache
+		// Reset namespace cache
+		$wgContLang->resetNamespaces();
 		if ( !$this->the_page ) {
 			$this->the_page = $this->createPage(
 				'RevisionStorageTest_the_page',
@@ -63,18 +80,13 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	}
 
 	protected function tearDown() {
-		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
+		global $wgContLang;
 
 		parent::tearDown();
 
-		unset( $wgExtraNamespaces[12312] );
-		unset( $wgExtraNamespaces[12313] );
-
-		unset( $wgNamespaceContentModels[12312] );
-		unset( $wgContentHandlers['DUMMY'] );
-
 		MWNamespace::clearCaches();
-		$wgContLang->resetNamespaces(); # reset namespace cache
+		// Reset namespace cache
+		$wgContLang->resetNamespaces();
 	}
 
 	protected function makeRevision( $props = null ) {
@@ -102,30 +114,33 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		return $rev;
 	}
 
-	protected function createPage( $page, $text, $model = null ) {
-		if ( is_string( $page ) ) {
-			if ( !preg_match( '/:/', $page ) &&
-				( $model === null || $model === CONTENT_MODEL_WIKITEXT )
-			) {
-				$ns = $this->getDefaultWikitextNS();
-				$page = MWNamespace::getCanonicalName( $ns ) . ':' . $page;
-			}
-
-			$page = Title::newFromText( $page );
+	/**
+	 * @param string $titleString
+	 * @param string $text
+	 * @param string|null $model
+	 *
+	 * @return WikiPage
+	 */
+	protected function createPage( $titleString, $text, $model = null ) {
+		if ( !preg_match( '/:/', $titleString ) &&
+			( $model === null || $model === CONTENT_MODEL_WIKITEXT )
+		) {
+			$ns = $this->getDefaultWikitextNS();
+			$titleString = MWNamespace::getCanonicalName( $ns ) . ':' . $titleString;
 		}
 
-		if ( $page instanceof Title ) {
-			$page = new WikiPage( $page );
+		$title = Title::newFromText( $titleString );
+		$wikipage = new WikiPage( $title );
+
+		// Delete the article if it already exists
+		if ( $wikipage->exists() ) {
+			$wikipage->doDeleteArticle( "done" );
 		}
 
-		if ( $page->exists() ) {
-			$page->doDeleteArticle( "done" );
-		}
+		$content = ContentHandler::makeContent( $text, $title, $model );
+		$wikipage->doEditContent( $content, __METHOD__, EDIT_NEW );
 
-		$content = ContentHandler::makeContent( $text, $page->getTitle(), $model );
-		$page->doEditContent( $content, "testing", EDIT_NEW );
-
-		return $page;
+		return $wikipage;
 	}
 
 	protected function assertRevEquals( Revision $orig, Revision $rev = null ) {
@@ -156,6 +171,56 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$rev = new Revision( $row );
 
 		$this->assertRevEquals( $orig, $rev );
+	}
+
+	/**
+	 * @covers Revision::newFromTitle
+	 */
+	public function testNewFromTitle_withoutId() {
+		$page = $this->createPage(
+			__METHOD__,
+			'GOAT',
+			CONTENT_MODEL_WIKITEXT
+		);
+		$latestRevId = $page->getLatest();
+
+		$rev = Revision::newFromTitle( $page->getTitle() );
+
+		$this->assertTrue( $page->getTitle()->equals( $rev->getTitle() ) );
+		$this->assertEquals( $latestRevId, $rev->getId() );
+	}
+
+	/**
+	 * @covers Revision::newFromTitle
+	 */
+	public function testNewFromTitle_withId() {
+		$page = $this->createPage(
+			__METHOD__,
+			'GOAT',
+			CONTENT_MODEL_WIKITEXT
+		);
+		$latestRevId = $page->getLatest();
+
+		$rev = Revision::newFromTitle( $page->getTitle(), $latestRevId );
+
+		$this->assertTrue( $page->getTitle()->equals( $rev->getTitle() ) );
+		$this->assertEquals( $latestRevId, $rev->getId() );
+	}
+
+	/**
+	 * @covers Revision::newFromTitle
+	 */
+	public function testNewFromTitle_withBadId() {
+		$page = $this->createPage(
+			__METHOD__,
+			'GOAT',
+			CONTENT_MODEL_WIKITEXT
+		);
+		$latestRevId = $page->getLatest();
+
+		$rev = Revision::newFromTitle( $page->getTitle(), $latestRevId + 1 );
+
+		$this->assertNull( $rev );
 	}
 
 	/**
@@ -461,20 +526,10 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	}
 
 	public static function provideUserWasLastToEdit() {
-		return [
-			[ # 0
-				3, true, # actually the last edit
-			],
-			[ # 1
-				2, true, # not the current edit, but still by this user
-			],
-			[ # 2
-				1, false, # edit by another user
-			],
-			[ # 3
-				0, false, # first edit, by this user, but another user edited in the mean time
-			],
-		];
+		yield 'actually the last edit' => [ 3, true ];
+		yield 'not the current edit, but still by this user' => [ 2, true ];
+		yield 'edit by another user' => [ 1, false ];
+		yield 'first edit, by this user, but another user edited in the mean time' => [ 0, false ];
 	}
 
 	/**
@@ -502,7 +557,6 @@ class RevisionStorageTest extends MediaWikiTestCase {
 			'RevisionStorageTest_testUserWasLastToEdit', $ns ) );
 		$page->insertOn( $dbw );
 
-		# zero
 		$revisions[0] = new Revision( [
 			'page' => $page->getId(),
 			// we need the title to determine the page's default content model
@@ -515,7 +569,6 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		] );
 		$revisions[0]->insertOn( $dbw );
 
-		# one
 		$revisions[1] = new Revision( [
 			'page' => $page->getId(),
 			// still need the title, because $page->getId() is 0 (there's no entry in the page table)
@@ -528,7 +581,6 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		] );
 		$revisions[1]->insertOn( $dbw );
 
-		# two
 		$revisions[2] = new Revision( [
 			'page' => $page->getId(),
 			'title' => $page->getTitle(),
@@ -540,7 +592,6 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		] );
 		$revisions[2]->insertOn( $dbw );
 
-		# three
 		$revisions[3] = new Revision( [
 			'page' => $page->getId(),
 			'title' => $page->getTitle(),
@@ -552,7 +603,6 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		] );
 		$revisions[3]->insertOn( $dbw );
 
-		# four
 		$revisions[4] = new Revision( [
 			'page' => $page->getId(),
 			'title' => $page->getTitle(),

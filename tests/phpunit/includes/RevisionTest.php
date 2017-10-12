@@ -4,6 +4,7 @@
  * @group ContentHandler
  */
 class RevisionTest extends MediaWikiTestCase {
+
 	protected function setUp() {
 		global $wgContLang;
 
@@ -42,98 +43,173 @@ class RevisionTest extends MediaWikiTestCase {
 		);
 
 		MWNamespace::clearCaches();
-		$wgContLang->resetNamespaces(); # reset namespace cache
+		// Reset namespace cache
+		$wgContLang->resetNamespaces();
 	}
 
-	function tearDown() {
+	protected function tearDown() {
 		global $wgContLang;
 
 		MWNamespace::clearCaches();
-		$wgContLang->resetNamespaces(); # reset namespace cache
+		// Reset namespace cache
+		$wgContLang->resetNamespaces();
 
 		parent::tearDown();
 	}
 
+	public function provideConstructFromArray() {
+		yield 'with text' => [
+			[
+				'text' => 'hello world.',
+				'content_model' => CONTENT_MODEL_JAVASCRIPT
+			],
+		];
+		yield 'with content' => [
+			[
+				'content' => new JavaScriptContent( 'hellow world.' )
+			],
+		];
+	}
+
 	/**
-	 * @covers Revision::getRevisionText
+	 * @dataProvider provideConstructFromArray
 	 */
-	public function testGetRevisionText() {
-		$row = new stdClass;
-		$row->old_flags = '';
-		$row->old_text = 'This is a bunch of revision text.';
-		$this->assertEquals(
-			'This is a bunch of revision text.',
-			Revision::getRevisionText( $row ) );
+	public function testConstructFromArray( $rowArray ) {
+		$rev = new Revision( $rowArray );
+		$this->assertNotNull( $rev->getContent(), 'no content object available' );
+		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContent()->getModel() );
+		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContentModel() );
+	}
+
+	public function provideConstructFromArrayThrowsExceptions() {
+		yield 'content and text_id both not empty' => [
+			[
+				'content' => new WikitextContent( 'GOAT' ),
+				'text_id' => 'someid',
+				],
+			new MWException( "Text already stored in external store (id someid), " .
+				"can't serialize content object" )
+		];
+		yield 'with bad content object (class)' => [
+			[ 'content' => new stdClass() ],
+			new MWException( '`content` field must contain a Content object.' )
+		];
+		yield 'with bad content object (string)' => [
+			[ 'content' => 'ImAGoat' ],
+			new MWException( '`content` field must contain a Content object.' )
+		];
+		yield 'bad row format' => [
+			'imastring, not a row',
+			new MWException( 'Revision constructor passed invalid row format.' )
+		];
+	}
+
+	/**
+	 * @dataProvider provideConstructFromArrayThrowsExceptions
+	 */
+	public function testConstructFromArrayThrowsExceptions( $rowArray, Exception $expectedException ) {
+		$this->setExpectedException(
+			get_class( $expectedException ),
+			$expectedException->getMessage(),
+			$expectedException->getCode()
+		);
+		new Revision( $rowArray );
+	}
+
+	public function provideGetRevisionText() {
+		yield 'Generic test' => [
+			'This is a goat of revision text.',
+			[
+				'old_flags' => '',
+				'old_text' => 'This is a goat of revision text.',
+			],
+		];
 	}
 
 	/**
 	 * @covers Revision::getRevisionText
+	 * @dataProvider provideGetRevisionText
 	 */
-	public function testGetRevisionTextGzip() {
+	public function testGetRevisionText( $expected, $rowData, $prefix = 'old_', $wiki = false ) {
+		$this->assertEquals(
+			$expected,
+			Revision::getRevisionText( (object)$rowData, $prefix, $wiki ) );
+	}
+
+	public function provideGetRevisionTextWithZlibExtension() {
+		yield 'Generic gzip test' => [
+			'This is a small goat of revision text.',
+			[
+				'old_flags' => 'gzip',
+				'old_text' => gzdeflate( 'This is a small goat of revision text.' ),
+			],
+		];
+	}
+
+	/**
+	 * @covers Revision::getRevisionText
+	 * @dataProvider provideGetRevisionTextWithZlibExtension
+	 */
+	public function testGetRevisionWithZlibExtension( $expected, $rowData ) {
 		$this->checkPHPExtension( 'zlib' );
-
-		$row = new stdClass;
-		$row->old_flags = 'gzip';
-		$row->old_text = gzdeflate( 'This is a bunch of revision text.' );
-		$this->assertEquals(
-			'This is a bunch of revision text.',
-			Revision::getRevisionText( $row ) );
+		$this->testGetRevisionText( $expected, $rowData );
 	}
 
-	/**
-	 * @covers Revision::getRevisionText
-	 */
-	public function testGetRevisionTextUtf8Native() {
-		$row = new stdClass;
-		$row->old_flags = 'utf-8';
-		$row->old_text = "Wiki est l'\xc3\xa9cole superieur !";
-		$GLOBALS['wgLegacyEncoding'] = 'iso-8859-1';
-		$this->assertEquals(
+	public function provideGetRevisionTextWithLegacyEncoding() {
+		yield 'Utf8Native' => [
 			"Wiki est l'\xc3\xa9cole superieur !",
-			Revision::getRevisionText( $row ) );
-	}
-
-	/**
-	 * @covers Revision::getRevisionText
-	 */
-	public function testGetRevisionTextUtf8Legacy() {
-		$row = new stdClass;
-		$row->old_flags = '';
-		$row->old_text = "Wiki est l'\xe9cole superieur !";
-		$GLOBALS['wgLegacyEncoding'] = 'iso-8859-1';
-		$this->assertEquals(
+			'iso-8859-1',
+			[
+				'old_flags' => 'utf-8',
+				'old_text' => "Wiki est l'\xc3\xa9cole superieur !",
+			]
+		];
+		yield 'Utf8Legacy' => [
 			"Wiki est l'\xc3\xa9cole superieur !",
-			Revision::getRevisionText( $row ) );
+			'iso-8859-1',
+			[
+				'old_flags' => '',
+				'old_text' => "Wiki est l'\xe9cole superieur !",
+			]
+		];
 	}
 
 	/**
 	 * @covers Revision::getRevisionText
+	 * @dataProvider provideGetRevisionTextWithLegacyEncoding
 	 */
-	public function testGetRevisionTextUtf8NativeGzip() {
+	public function testGetRevisionWithLegacyEncoding( $expected, $encoding, $rowData ) {
+		$GLOBALS['wgLegacyEncoding'] = $encoding;
+		$this->testGetRevisionText( $expected, $rowData );
+	}
+
+	public function provideGetRevisionTextWithGzipAndLegacyEncoding() {
+		yield 'Utf8NativeGzip' => [
+			"Wiki est l'\xc3\xa9cole superieur !",
+			'iso-8859-1',
+			[
+				'old_flags' => 'gzip,utf-8',
+				'old_text' => gzdeflate( "Wiki est l'\xc3\xa9cole superieur !" ),
+			]
+		];
+		yield 'Utf8LegacyGzip' => [
+			"Wiki est l'\xc3\xa9cole superieur !",
+			'iso-8859-1',
+			[
+				'old_flags' => 'gzip',
+				'old_text' => gzdeflate( "Wiki est l'\xe9cole superieur !" ),
+			]
+		];
+	}
+
+	/**
+	 * @covers Revision::getRevisionText
+	 * @dataProvider provideGetRevisionTextWithGzipAndLegacyEncoding
+	 */
+	public function testGetRevisionWithGzipAndLegacyEncoding( $expected, $encoding, $rowData ) {
 		$this->checkPHPExtension( 'zlib' );
-
-		$row = new stdClass;
-		$row->old_flags = 'gzip,utf-8';
-		$row->old_text = gzdeflate( "Wiki est l'\xc3\xa9cole superieur !" );
-		$GLOBALS['wgLegacyEncoding'] = 'iso-8859-1';
-		$this->assertEquals(
-			"Wiki est l'\xc3\xa9cole superieur !",
-			Revision::getRevisionText( $row ) );
-	}
-
-	/**
-	 * @covers Revision::getRevisionText
-	 */
-	public function testGetRevisionTextUtf8LegacyGzip() {
-		$this->checkPHPExtension( 'zlib' );
-
-		$row = new stdClass;
-		$row->old_flags = 'gzip';
-		$row->old_text = gzdeflate( "Wiki est l'\xe9cole superieur !" );
-		$GLOBALS['wgLegacyEncoding'] = 'iso-8859-1';
-		$this->assertEquals(
-			"Wiki est l'\xc3\xa9cole superieur !",
-			Revision::getRevisionText( $row ) );
+		$GLOBALS['wgLegacyEncoding'] = $encoding;
+		$this->testGetRevisionText( $expected, $rowData );
 	}
 
 	/**
@@ -173,8 +249,6 @@ class RevisionTest extends MediaWikiTestCase {
 			Revision::getRevisionText( $row ), "getRevisionText" );
 	}
 
-	# =========================================================================
-
 	/**
 	 * @param string $text
 	 * @param string $title
@@ -183,7 +257,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 *
 	 * @return Revision
 	 */
-	function newTestRevision( $text, $title = "Test",
+	private function newTestRevision( $text, $title = "Test",
 		$model = CONTENT_MODEL_WIKITEXT, $format = null
 	) {
 		if ( is_string( $title ) ) {
@@ -210,7 +284,7 @@ class RevisionTest extends MediaWikiTestCase {
 		return $rev;
 	}
 
-	function dataGetContentModel() {
+	public function provideGetContentModel() {
 		// NOTE: we expect the help namespace to always contain wikitext
 		return [
 			[ 'hello world', 'Help:Hello', null, null, CONTENT_MODEL_WIKITEXT ],
@@ -221,7 +295,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 	/**
 	 * @group Database
-	 * @dataProvider dataGetContentModel
+	 * @dataProvider provideGetContentModel
 	 * @covers Revision::getContentModel
 	 */
 	public function testGetContentModel( $text, $title, $model, $format, $expectedModel ) {
@@ -230,7 +304,7 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedModel, $rev->getContentModel() );
 	}
 
-	function dataGetContentFormat() {
+	public function provideGetContentFormat() {
 		// NOTE: we expect the help namespace to always contain wikitext
 		return [
 			[ 'hello world', 'Help:Hello', null, null, CONTENT_FORMAT_WIKITEXT ],
@@ -242,7 +316,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 	/**
 	 * @group Database
-	 * @dataProvider dataGetContentFormat
+	 * @dataProvider provideGetContentFormat
 	 * @covers Revision::getContentFormat
 	 */
 	public function testGetContentFormat( $text, $title, $model, $format, $expectedFormat ) {
@@ -251,7 +325,7 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedFormat, $rev->getContentFormat() );
 	}
 
-	function dataGetContentHandler() {
+	public function provideGetContentHandler() {
 		// NOTE: we expect the help namespace to always contain wikitext
 		return [
 			[ 'hello world', 'Help:Hello', null, null, 'WikitextContentHandler' ],
@@ -262,7 +336,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 	/**
 	 * @group Database
-	 * @dataProvider dataGetContentHandler
+	 * @dataProvider provideGetContentHandler
 	 * @covers Revision::getContentHandler
 	 */
 	public function testGetContentHandler( $text, $title, $model, $format, $expectedClass ) {
@@ -271,7 +345,7 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedClass, get_class( $rev->getContentHandler() ) );
 	}
 
-	function dataGetContent() {
+	public function provideGetContent() {
 		// NOTE: we expect the help namespace to always contain wikitext
 		return [
 			[ 'hello world', 'Help:Hello', null, null, Revision::FOR_PUBLIC, 'hello world' ],
@@ -296,7 +370,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 	/**
 	 * @group Database
-	 * @dataProvider dataGetContent
+	 * @dataProvider provideGetContent
 	 * @covers Revision::getContent
 	 */
 	public function testGetContent( $text, $title, $model, $format,
@@ -311,7 +385,7 @@ class RevisionTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function dataGetSize() {
+	public function provideGetSize() {
 		return [
 			[ "hello world.", CONTENT_MODEL_WIKITEXT, 12 ],
 			[ serialize( "hello world." ), "testing", 12 ],
@@ -321,14 +395,14 @@ class RevisionTest extends MediaWikiTestCase {
 	/**
 	 * @covers Revision::getSize
 	 * @group Database
-	 * @dataProvider dataGetSize
+	 * @dataProvider provideGetSize
 	 */
 	public function testGetSize( $text, $model, $expected_size ) {
 		$rev = $this->newTestRevision( $text, 'RevisionTest_testGetSize', $model );
 		$this->assertEquals( $expected_size, $rev->getSize() );
 	}
 
-	public function dataGetSha1() {
+	public function provideGetSha1() {
 		return [
 			[ "hello world.", CONTENT_MODEL_WIKITEXT, Revision::base36Sha1( "hello world." ) ],
 			[
@@ -342,40 +416,11 @@ class RevisionTest extends MediaWikiTestCase {
 	/**
 	 * @covers Revision::getSha1
 	 * @group Database
-	 * @dataProvider dataGetSha1
+	 * @dataProvider provideGetSha1
 	 */
 	public function testGetSha1( $text, $model, $expected_hash ) {
 		$rev = $this->newTestRevision( $text, 'RevisionTest_testGetSha1', $model );
 		$this->assertEquals( $expected_hash, $rev->getSha1() );
-	}
-
-	/**
-	 * @covers Revision::__construct
-	 */
-	public function testConstructWithText() {
-		$rev = new Revision( [
-			'text' => 'hello world.',
-			'content_model' => CONTENT_MODEL_JAVASCRIPT
-		] );
-
-		$this->assertNotNull( $rev->getContent(), 'no content object available' );
-		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContent()->getModel() );
-		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContentModel() );
-	}
-
-	/**
-	 * @covers Revision::__construct
-	 */
-	public function testConstructWithContent() {
-		$title = Title::newFromText( 'RevisionTest_testConstructWithContent' );
-
-		$rev = new Revision( [
-			'content' => ContentHandler::makeContent( 'hello world.', $title, CONTENT_MODEL_JAVASCRIPT ),
-		] );
-
-		$this->assertNotNull( $rev->getContent(), 'no content object available' );
-		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContent()->getModel() );
-		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContentModel() );
 	}
 
 	/**
@@ -400,9 +445,11 @@ class RevisionTest extends MediaWikiTestCase {
 			]
 		);
 
+		/** @var RevisionTestModifyableContent $content */
 		$content = $rev->getContent( Revision::RAW );
 		$content->setText( "bar" );
 
+		/** @var RevisionTestModifyableContent $content2 */
 		$content2 = $rev->getContent( Revision::RAW );
 		// content is mutable, expect clone
 		$this->assertNotSame( $content, $content2, "expected a clone" );
@@ -410,7 +457,8 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->assertEquals( "foo", $content2->getText() );
 
 		$content2->setText( "bla bla" );
-		$this->assertEquals( "bar", $content->getText() ); // clones should be independent
+		// clones should be independent
+		$this->assertEquals( "bar", $content->getText() );
 	}
 
 	/**
@@ -426,40 +474,5 @@ class RevisionTest extends MediaWikiTestCase {
 
 		// for immutable content like wikitext, this should be the same object
 		$this->assertSame( $content, $content2 );
-	}
-}
-
-class RevisionTestModifyableContent extends TextContent {
-	public function __construct( $text ) {
-		parent::__construct( $text, "RevisionTestModifyableContent" );
-	}
-
-	public function copy() {
-		return new RevisionTestModifyableContent( $this->mText );
-	}
-
-	public function getText() {
-		return $this->mText;
-	}
-
-	public function setText( $text ) {
-		$this->mText = $text;
-	}
-}
-
-class RevisionTestModifyableContentHandler extends TextContentHandler {
-
-	public function __construct() {
-		parent::__construct( "RevisionTestModifyableContent", [ CONTENT_FORMAT_TEXT ] );
-	}
-
-	public function unserializeContent( $text, $format = null ) {
-		$this->checkFormat( $format );
-
-		return new RevisionTestModifyableContent( $text );
-	}
-
-	public function makeEmptyContent() {
-		return new RevisionTestModifyableContent( '' );
 	}
 }
