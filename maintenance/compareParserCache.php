@@ -45,7 +45,12 @@ class CompareParserCache extends Maintenance {
 		$withdiff = 0;
 		$parserCache = MediaWikiServices::getInstance()->getParserCache();
 		while ( $pages-- > 0 ) {
-			$row = $dbr->selectRow( 'page', '*',
+			$row = $dbr->selectRow( 'page',
+				// @todo Title::selectFields() or Title::getQueryInfo() or something
+				[
+					'page_namespace', 'page_title', 'page_id',
+					'page_len', 'page_is_redirect', 'page_latest',
+				],
 				[
 					'page_namespace' => $this->getOption( 'namespace' ),
 					'page_is_redirect' => 0,
