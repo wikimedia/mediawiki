@@ -452,12 +452,20 @@
 	 */
 	mw.rcfilters.Controller.prototype.clearFilter = function ( filterName ) {
 		var filterItem = this.filtersModel.getItemByName( filterName ),
-			isHighlighted = filterItem.isHighlighted();
+			isHighlighted = filterItem.isHighlighted(),
+			isSelected = filterItem.isSelected();
 
-		if ( filterItem.isSelected() || isHighlighted ) {
+		if ( isSelected || isHighlighted ) {
 			this.filtersModel.clearHighlightColor( filterName );
 			this.filtersModel.toggleFilterSelected( filterName, false );
-			this.updateChangesList();
+
+			if ( isSelected ) {
+				// Only update the changes list if the filter changed
+				// its selection state. If it only changed its highlight
+				// then don't reload
+				this.updateChangesList();
+			}
+
 			this.filtersModel.reassessFilterInteractions( filterItem );
 
 			// Log filter grouping
