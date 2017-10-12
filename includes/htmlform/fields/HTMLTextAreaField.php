@@ -92,10 +92,9 @@ class HTMLTextAreaField extends HTMLFormField {
 			$this->getAttributes( $allowedParams )
 		);
 
-		return new OOUI\TextInputWidget( [
+		return new OOUI\MultilineTextInputWidget( [
 			'id' => $this->mID,
 			'name' => $this->mName,
-			'multiline' => true,
 			'value' => $value,
 			'rows' => $this->getRows(),
 		] + $attribs );

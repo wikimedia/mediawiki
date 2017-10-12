@@ -73,6 +73,10 @@
 			"ltr": "images/icons/printer-ltr.svg",
 			"rtl": "images/icons/printer-rtl.svg"
 		} },
+		"reload": { "file": {
+			"ltr": "images/icons/reload-ltr.svg",
+			"rtl": "images/icons/reload-rtl.svg"
+		} },
 		"search": { "file": {
 			"ltr": "images/icons/search-ltr.svg",
 			"rtl": "images/icons/search-rtl.svg"
