@@ -740,8 +740,13 @@ class FormatMetadata extends ContextSource {
 
 					case 'Software':
 						if ( is_array( $val ) ) {
-							// if its a software, version array.
-							$val = $this->msg( 'exif-software-version-value', $val[0], $val[1] )->text();
+							if ( count( $val ) > 1 ) {
+								// if its a software, version array.
+								$val = $this->msg( 'exif-software-version-value', $val[0], $val[1] )->text();
+							} else {
+								// https://phabricator.wikimedia.org/T178130
+								$val = $this->exifMsg( $tag, '', $val[0] );
+							}
 						} else {
 							$val = $this->exifMsg( $tag, '', $val );
 						}
