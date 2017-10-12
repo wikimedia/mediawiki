@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.23.3
+ * OOjs UI v0.23.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-10-04T01:20:45Z
+ * Date: 2017-10-12T01:29:23Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -36,18 +36,8 @@
   border-color: transparent;
   padding: 0;
 }
-.oo-ui-buttonElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon,
-.oo-ui-buttonElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator {
-  display: none;
-}
 .oo-ui-buttonElement.oo-ui-widget-disabled > .oo-ui-buttonElement-button {
   cursor: default;
-}
-.oo-ui-buttonElement.oo-ui-indicatorElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator,
-.oo-ui-buttonElement.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label,
-.oo-ui-buttonElement-frameless.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
-  display: inline-block;
-  vertical-align: middle;
 }
 .oo-ui-buttonElement-frameless {
   position: relative;
@@ -68,9 +58,11 @@
 .oo-ui-buttonElement.oo-ui-labelElement .oo-ui-labelElement-label {
   line-height: 1.875em;
 }
-.oo-ui-buttonElement.oo-ui-iconElement .oo-ui-iconElement-icon {
-  height: 100%;
-  margin-left: 0;
+.oo-ui-buttonElement.oo-ui-indicatorElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator,
+.oo-ui-buttonElement.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label,
+.oo-ui-buttonElement-frameless.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
+  display: inline-block;
+  vertical-align: middle;
 }
 .oo-ui-buttonElement.oo-ui-iconElement .oo-ui-indicatorElement-indicator {
   margin-left: 0.46875em;
@@ -276,13 +268,18 @@
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
   min-width: 24px;
   width: 1.875em;
   min-height: 24px;
-  height: 1.875em;
+  height: 100%;
 }
 .oo-ui-iconElement .oo-ui-iconElement-icon,
 .oo-ui-iconElement.oo-ui-iconElement-icon {
+  position: static;
+  top: auto;
+  height: 1.875em;
   opacity: 0.8;
 }
 .oo-ui-indicatorElement .oo-ui-indicatorElement-indicator,
@@ -290,13 +287,18 @@
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
   min-width: 12px;
   width: 0.9375em;
   min-height: 12px;
-  height: 0.9375em;
+  height: 100%;
 }
 .oo-ui-indicatorElement .oo-ui-indicatorElement-indicator,
 .oo-ui-indicatorElement.oo-ui-indicatorElement-indicator {
+  position: static;
+  top: auto;
+  height: 0.9375em;
   opacity: 0.8;
 }
 .oo-ui-labelElement .oo-ui-labelElement-label-highlight {
@@ -447,10 +449,6 @@
 body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   display: table-cell;
 }
-.oo-ui-fieldsetLayout.oo-ui-iconElement > .oo-ui-fieldsetLayout-header > .oo-ui-iconElement-icon {
-  display: block;
-  position: absolute;
-}
 .oo-ui-fieldsetLayout.oo-ui-labelElement > .oo-ui-fieldsetLayout-header {
   color: inherit;
   display: inline-table;
@@ -491,8 +489,10 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   line-height: 1.8em;
 }
 .oo-ui-fieldsetLayout.oo-ui-iconElement > .oo-ui-fieldsetLayout-header > .oo-ui-iconElement-icon {
-  left: 0;
+  display: block;
+  position: absolute;
   top: 0.25em;
+  left: 0;
 }
 .oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-header > .oo-ui-popupButtonWidget {
   margin-right: 0;
@@ -548,6 +548,10 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-horizontalLayout > .oo-ui-layout {
   margin-top: 0;
 }
+.oo-ui-widget.oo-ui-iconElement .oo-ui-iconElement-icon,
+.oo-ui-widget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
+  display: block;
+}
 .oo-ui-optionWidget {
   position: relative;
   display: block;
@@ -585,12 +589,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-decoratedOptionWidget {
   padding: 0.5em 2em 0.5em 3em;
 }
-.oo-ui-decoratedOptionWidget > .oo-ui-iconElement-icon,
-.oo-ui-decoratedOptionWidget > .oo-ui-indicatorElement-indicator {
-  position: absolute;
-}
 .oo-ui-decoratedOptionWidget.oo-ui-iconElement .oo-ui-iconElement-icon,
 .oo-ui-decoratedOptionWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
+  position: absolute;
   top: 0;
   height: 100%;
 }
@@ -638,6 +639,12 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   vertical-align: middle;
   line-height: 2.5em;
 }
+.oo-ui-iconWidget.oo-ui-iconElement.oo-ui-iconElement-icon {
+  display: inline-block;
+  position: static;
+  top: auto;
+  height: 1.875em;
+}
 .oo-ui-iconWidget.oo-ui-widget-disabled {
   opacity: 0.2;
 }
@@ -646,6 +653,12 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   vertical-align: middle;
   line-height: 2.5em;
   margin: 0.46875em;
+}
+.oo-ui-indicatorWidget.oo-ui-indicatorElement.oo-ui-indicatorElement-indicator {
+  display: inline-block;
+  position: static;
+  top: auto;
+  height: 1.875em;
 }
 .oo-ui-indicatorWidget.oo-ui-widget-disabled {
   opacity: 0.2;
@@ -1000,18 +1013,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-textInputWidget [type='search']::-webkit-search-cancel-button {
   display: none;
 }
-.oo-ui-textInputWidget > .oo-ui-iconElement-icon,
-.oo-ui-textInputWidget > .oo-ui-indicatorElement-indicator,
-.oo-ui-textInputWidget > .oo-ui-labelElement-label {
-  display: none;
-}
-.oo-ui-textInputWidget.oo-ui-iconElement > .oo-ui-iconElement-icon,
-.oo-ui-textInputWidget.oo-ui-indicatorElement > .oo-ui-indicatorElement-indicator {
-  display: block;
-  position: absolute;
-  top: 0;
-  height: 100%;
-}
 .oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-iconElement-icon,
 .oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-indicatorElement-indicator {
   cursor: text;
@@ -1116,19 +1117,31 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-color: #ddd;
   background-color: #f3f3f3;
 }
-.oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-iconElement-icon,
-.oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-indicatorElement-indicator {
+.oo-ui-textInputWidget.oo-ui-widget-disabled > .oo-ui-iconElement-icon,
+.oo-ui-textInputWidget.oo-ui-widget-disabled > .oo-ui-indicatorElement-indicator {
   opacity: 0.2;
 }
-.oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-labelElement-label {
+.oo-ui-textInputWidget.oo-ui-widget-disabled > .oo-ui-labelElement-label {
   color: #ddd;
   text-shadow: 0 1px 1px #fff;
+}
+.oo-ui-textInputWidget > .oo-ui-iconElement-icon,
+.oo-ui-textInputWidget > .oo-ui-indicatorElement-indicator,
+.oo-ui-textInputWidget > .oo-ui-labelElement-label {
+  display: none;
+}
+.oo-ui-textInputWidget.oo-ui-iconElement > .oo-ui-iconElement-icon,
+.oo-ui-textInputWidget.oo-ui-indicatorElement > .oo-ui-indicatorElement-indicator {
+  display: block;
+  position: absolute;
+  top: 0;
+  height: 100%;
 }
 .oo-ui-textInputWidget.oo-ui-iconElement input,
 .oo-ui-textInputWidget.oo-ui-iconElement textarea {
   padding-left: 2.475em;
 }
-.oo-ui-textInputWidget.oo-ui-iconElement .oo-ui-iconElement-icon {
+.oo-ui-textInputWidget.oo-ui-iconElement > .oo-ui-iconElement-icon {
   max-height: 2.5em;
   margin-left: 0.3em;
 }
@@ -1136,7 +1149,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-textInputWidget.oo-ui-indicatorElement textarea {
   padding-right: 2.4875em;
 }
-.oo-ui-textInputWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
+.oo-ui-textInputWidget.oo-ui-indicatorElement > .oo-ui-indicatorElement-indicator {
   max-height: 2.5em;
   margin-right: 0.775em;
 }
@@ -1168,6 +1181,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-menuSelectWidget-invisible {
   display: none;
 }
+.oo-ui-menuOptionWidget.oo-ui-optionWidget > .oo-ui-indicatorElement-indicator {
+  display: none;
+}
 .oo-ui-menuOptionWidget.oo-ui-optionWidget-selected {
   background-color: transparent;
 }
@@ -1180,6 +1196,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   background-repeat: no-repeat;
   background-size: contain;
   display: block;
+  position: absolute;
   left: 0.5em;
   top: 0;
   min-width: 24px;
@@ -1223,12 +1240,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-.oo-ui-dropdownWidget-handle .oo-ui-iconElement-icon,
-.oo-ui-dropdownWidget-handle .oo-ui-indicatorElement-indicator {
-  position: absolute;
-  top: 0;
-  height: 100%;
-}
 .oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle {
   cursor: pointer;
 }
@@ -1245,6 +1256,12 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-dropdownWidget-handle:focus {
   outline: 0;
+}
+.oo-ui-dropdownWidget-handle .oo-ui-iconElement-icon,
+.oo-ui-dropdownWidget-handle .oo-ui-indicatorElement-indicator {
+  position: absolute;
+  top: 0;
+  height: 100%;
 }
 .oo-ui-dropdownWidget-handle .oo-ui-iconElement-icon {
   left: 0.25em;
