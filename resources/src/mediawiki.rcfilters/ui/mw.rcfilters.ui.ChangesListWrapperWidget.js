@@ -33,7 +33,7 @@
 
 		// Events
 		this.filtersViewModel.connect( this, {
-			itemUpdate: 'onItemUpdate',
+			filtersUpdated: 'onFiltersUpdated',
 			highlightChange: 'onHighlightChange',
 			initialize: 'onFiltersModelInitialize'
 		} );
@@ -98,7 +98,7 @@
 	/**
 	 * Respond to a filter item model update
 	 */
-	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onItemUpdate = function () {
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onFiltersUpdated = function () {
 		if ( this.filtersModelInitialized && this.filtersViewModel.isHighlightEnabled() ) {
 			this.clearHighlight();
 			this.applyHighlight();
