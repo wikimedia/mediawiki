@@ -118,7 +118,7 @@
 		this.model.connect( this, {
 			initialize: 'onModelInitialize',
 			update: 'onModelUpdate',
-			itemUpdate: 'onModelItemUpdate',
+			filtersUpdated: 'onModelFiltersUpdate',
 			highlightChange: 'onModelHighlightChange'
 		} );
 		this.input.connect( this, { change: 'onInputChange' } );
@@ -415,25 +415,31 @@
 	};
 
 	/**
-	 * Respond to model itemUpdate event
+	 * Respond to model filtersUpdate event
 	 *
-	 * @param {mw.rcfilters.dm.FilterItem} item Filter item model
+	 * @param {mw.rcfilters.dm.FilterItem} items Filter item model
 	 */
-	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onModelItemUpdate = function ( item ) {
-		if ( !item.getGroupModel().isHidden() ) {
-			if (
-				item.isSelected() ||
-				(
-					this.model.isHighlightEnabled() &&
-					item.isHighlightSupported() &&
-					item.getHighlightColor()
-				)
-			) {
-				this.addTag( item.getName(), item.getLabel() );
-			} else {
-				this.removeTagByData( item.getName() );
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onModelFiltersUpdate = function ( items ) {
+		var widget = this;
+
+		items.forEach( function ( itemName ) {
+			var item = widget.model.getItemByName( itemName );
+
+			if ( !item.getGroupModel().isHidden() ) {
+				if (
+					item.isSelected() ||
+					(
+						widget.model.isHighlightEnabled() &&
+						item.isHighlightSupported() &&
+						item.getHighlightColor()
+					)
+				) {
+					widget.addTag( item.getName(), item.getLabel() );
+				} else {
+					widget.removeTagByData( item.getName() );
+				}
 			}
-		}
+		} );
 
 		this.setSavedQueryVisibility();
 
