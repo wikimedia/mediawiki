@@ -50,7 +50,11 @@ $type = isset( $options['type'] ) ? $options['type'] : 'ConcatenatedGzipHistoryB
 $dbr = $this->getDB( DB_REPLICA );
 $res = $dbr->select(
 	[ 'page', 'revision', 'text' ],
-	'*',
+	array_merge(
+		Revision::selectFields(),
+		Revision::selectPageFields(),
+		Revision::selectTextFields(),
+	),
 	[
 		'page_namespace' => $title->getNamespace(),
 		'page_title' => $title->getDBkey(),

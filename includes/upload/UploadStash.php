@@ -515,7 +515,12 @@ class UploadStash {
 
 		$row = $dbr->selectRow(
 			'uploadstash',
-			'*',
+			[
+				'us_user', 'us_key', 'us_orig_path', 'us_path', 'us_props',
+				'us_size', 'us_sha1', 'us_mime', 'us_media_type',
+				'us_image_width', 'us_image_height', 'us_image_bits',
+				'us_source_type', 'us_timestamp', 'us_status',
+			],
 			[ 'us_key' => $key ],
 			__METHOD__
 		);
