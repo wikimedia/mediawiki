@@ -286,6 +286,8 @@ class WikiPage implements Page, IDBAccessObject {
 	public static function selectFields() {
 		global $wgContentHandlerUseDB, $wgPageLanguageUseDB;
 
+		wfDeprecated( __METHOD__, '1.31' );
+
 		$fields = [
 			'page_id',
 			'page_namespace',

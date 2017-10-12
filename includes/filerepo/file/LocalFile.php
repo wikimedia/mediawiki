@@ -200,6 +200,7 @@ class LocalFile extends File {
 	 * @return array
 	 */
 	static function selectFields() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return [
 			'img_name',
 			'img_size',
