@@ -739,7 +739,7 @@ class FormatMetadata extends ContextSource {
 						break;
 
 					case 'Software':
-						if ( is_array( $val ) ) {
+						if ( is_array( $val ) && count( $val )  > 1 ) {
 							// if its a software, version array.
 							$val = $this->msg( 'exif-software-version-value', $val[0], $val[1] )->text();
 						} else {
