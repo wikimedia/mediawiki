@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.23.3
+ * OOjs UI v0.23.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-10-04T01:20:45Z
+ * Date: 2017-10-12T01:29:23Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -66,9 +66,13 @@
   border-right: 1px solid #ddd;
 }
 .oo-ui-indexLayout > .oo-ui-menuLayout-menu {
-  height: 3em;
+  height: auto;
 }
-.oo-ui-indexLayout > .oo-ui-menuLayout-content {
+.oo-ui-indexLayout.oo-ui-menuLayout-expanded > .oo-ui-menuLayout-menu {
+  height: 3em;
+  white-space: nowrap;
+}
+.oo-ui-indexLayout.oo-ui-menuLayout-expanded > .oo-ui-menuLayout-content {
   top: 3em;
 }
 .oo-ui-indexLayout-stackLayout > .oo-ui-panelLayout {
@@ -84,6 +88,9 @@
 .oo-ui-menuLayout-expanded .oo-ui-menuLayout-menu,
 .oo-ui-menuLayout-expanded .oo-ui-menuLayout-content {
   position: absolute;
+}
+.oo-ui-menuLayout-expanded .oo-ui-menuLayout-menu {
+  z-index: 1;
 }
 .oo-ui-menuLayout-static.oo-ui-menuLayout-after,
 .oo-ui-menuLayout-static.oo-ui-menuLayout-before {
@@ -221,16 +228,16 @@
 .oo-ui-buttonOptionWidget.oo-ui-buttonElement-active .oo-ui-buttonElement-button {
   cursor: default;
 }
+.oo-ui-buttonOptionWidget.oo-ui-optionWidget-selected,
+.oo-ui-buttonOptionWidget.oo-ui-optionWidget-pressed,
+.oo-ui-buttonOptionWidget.oo-ui-optionWidget-highlighted {
+  background-color: transparent;
+}
 .oo-ui-buttonOptionWidget.oo-ui-iconElement .oo-ui-iconElement-icon,
 .oo-ui-buttonOptionWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
   position: static;
   display: inline-block;
   vertical-align: middle;
-}
-.oo-ui-buttonOptionWidget.oo-ui-optionWidget-selected,
-.oo-ui-buttonOptionWidget.oo-ui-optionWidget-pressed,
-.oo-ui-buttonOptionWidget.oo-ui-optionWidget-highlighted {
-  background-color: transparent;
 }
 .oo-ui-toggleButtonWidget {
   margin-right: 0.5em;
@@ -385,12 +392,6 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-.oo-ui-selectFileWidget-info > .oo-ui-indicatorElement-indicator,
-.oo-ui-selectFileWidget-info > .oo-ui-iconElement-icon {
-  position: absolute;
-  top: 0;
-  height: 100%;
-}
 .oo-ui-widget-disabled .oo-ui-selectFileWidget-info {
   cursor: default;
   -webkit-touch-callout: none;
@@ -417,8 +418,7 @@
   height: 8.815em;
 }
 .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-dropLabel,
-.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-selectButton,
-.oo-ui-selectFileWidget-dropTarget .oo-ui-iconElement-icon {
+.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-selectButton {
   display: none;
 }
 .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-thumbnail {
@@ -504,6 +504,10 @@
 .oo-ui-selectFileWidget-selectButton > .oo-ui-buttonElement-button {
   border-radius: 0 0.25em 0.25em 0;
 }
+.oo-ui-selectFileWidget-selectButton > .oo-ui-buttonElement-button .oo-ui-iconElement-icon,
+.oo-ui-selectFileWidget-selectButton > .oo-ui-buttonElement-button .oo-ui-indicatorElement-indicator {
+  display: none;
+}
 .oo-ui-selectFileWidget-info {
   height: 2.4em;
   background-color: #fff;
@@ -511,13 +515,17 @@
   border-radius: 0.25em 0 0 0.25em;
   border-width: 1px 0 1px 1px;
 }
+.oo-ui-selectFileWidget-info > .oo-ui-indicatorElement-indicator,
 .oo-ui-selectFileWidget-info > .oo-ui-iconElement-icon {
-  left: 0;
-  margin-left: 0.3em;
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
+.oo-ui-selectFileWidget-info > .oo-ui-iconElement-icon {
+  left: 0.3em;
 }
 .oo-ui-selectFileWidget-info > .oo-ui-indicatorElement-indicator {
-  right: 0;
-  margin-right: 0.775em;
+  right: 0.775em;
 }
 .oo-ui-selectFileWidget-label {
   -webkit-box-sizing: border-box;
@@ -565,7 +573,7 @@
 .oo-ui-selectFileWidget-supported.oo-ui-widget-enabled.oo-ui-selectFileWidget-canDrop.oo-ui-selectFileWidget-dropTarget {
   background-color: #e1f3ff;
 }
-.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-label {
+.oo-ui-selectFileWidget-notsupported.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-label {
   padding: 1em;
 }
 .oo-ui-selectFileWidget-dropTarget {
@@ -699,8 +707,8 @@
 }
 .oo-ui-tabSelectWidget {
   text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   background-color: #eee;
   box-shadow: inset 0 -0.015em 0.1em rgba(0, 0, 0, 0.1);
 }
@@ -930,12 +938,6 @@
   display: block;
   position: relative;
 }
-.oo-ui-capsuleMultiselectWidget-handle > .oo-ui-iconElement-icon,
-.oo-ui-capsuleMultiselectWidget-handle > .oo-ui-indicatorElement-indicator {
-  position: absolute;
-  top: 0;
-  height: 100%;
-}
 .oo-ui-capsuleMultiselectWidget-content {
   position: relative;
 }
@@ -970,6 +972,12 @@
 }
 .oo-ui-capsuleMultiselectWidget-handle:last-child {
   margin-right: 0;
+}
+.oo-ui-capsuleMultiselectWidget-handle > .oo-ui-iconElement-icon,
+.oo-ui-capsuleMultiselectWidget-handle > .oo-ui-indicatorElement-indicator {
+  position: absolute;
+  top: 0;
+  height: 100%;
 }
 .oo-ui-capsuleMultiselectWidget-handle > .oo-ui-capsuleMultiselectWidget-content > input {
   border: 0;
