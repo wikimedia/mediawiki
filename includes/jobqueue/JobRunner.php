@@ -119,6 +119,7 @@ class JobRunner implements LoggerAwareInterface {
 			$response['reached'] = 'none-possible';
 			return $response;
 		}
+
 		// Bail out if DB is in read-only mode
 		if ( wfReadOnly() ) {
 			$response['reached'] = 'read-only';
@@ -126,6 +127,9 @@ class JobRunner implements LoggerAwareInterface {
 		}
 
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		if ( $lbFactory->hasTransactionRound() ) {
+			throw new LogicException( __METHOD__ . ' called with an active transaction round.' );
+		}
 		// Bail out if there is too much DB lag.
 		// This check should not block as we want to try other wiki queues.
 		list( , $maxLag ) = $lbFactory->getMainLB( wfWikiID() )->getMaxLag();
@@ -133,9 +137,6 @@ class JobRunner implements LoggerAwareInterface {
 			$response['reached'] = 'replica-lag-limit';
 			return $response;
 		}
-
-		// Flush any pending DB writes for sanity
-		$lbFactory->commitAll( __METHOD__ );
 
 		// Catch huge single updates that lead to replica DB lag
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
@@ -170,7 +171,6 @@ class JobRunner implements LoggerAwareInterface {
 			} else {
 				$job = $group->pop( $type ); // job from a single queue
 			}
-			$lbFactory->commitMasterChanges( __METHOD__ ); // flush any JobQueueDB writes
 
 			if ( $job ) { // found a job
 				++$jobsPopped;
@@ -193,7 +193,6 @@ class JobRunner implements LoggerAwareInterface {
 				$info = $this->executeJob( $job, $lbFactory, $stats, $popTime );
 				if ( $info['status'] !== false || !$job->allowRetries() ) {
 					$group->ack( $job ); // succeeded or job cannot be retried
-					$lbFactory->commitMasterChanges( __METHOD__ ); // flush any JobQueueDB writes
 				}
 
 				// Back off of certain jobs for a while (for throttling and for errors)
