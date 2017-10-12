@@ -210,6 +210,7 @@ class RecentChange {
 	 * @return array
 	 */
 	public static function selectFields() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return [
 			'rc_id',
 			'rc_timestamp',
