@@ -407,6 +407,7 @@
 			.getHighlightedItems()
 			.map( function ( filterItem ) { return { name: filterItem.getName() }; } );
 
+
 		this.filtersModel.emptyAllFilters();
 		this.filtersModel.clearAllHighlightColors();
 		// Check all filter interactions
