@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.23.3
+ * OOjs UI v0.23.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-10-04T01:20:41Z
+ * Date: 2017-10-12T01:29:19Z
  */
 ( function ( OO ) {
 
@@ -581,7 +581,9 @@ OO.ui.mixin = {};
  *  Data can also be specified with the #setData method.
  */
 OO.ui.Element = function OoUiElement( config ) {
-	this.initialConfig = config;
+	if ( OO.ui.isDemo ) {
+		this.initialConfig = config;
+	}
 	// Configuration initialization
 	config = config || {};
 
@@ -5358,7 +5360,9 @@ OO.ui.PopupWidget.prototype.computePosition = function () {
 	floatablePos = this.$floatableContainer.offset();
 	floatablePos[ far ] = floatablePos[ near ] + this.$floatableContainer[ 'outer' + sizeProp ]();
 	// Measure where the offsetParent is and compute our position based on that and parentPosition
-	offsetParentPos = this.$element.offsetParent().offset();
+	offsetParentPos = this.$element.offsetParent()[ 0 ] === document.documentElement ?
+		{ top: 0, left: 0 } :
+		this.$element.offsetParent().offset();
 
 	if ( positionProp === near ) {
 		popupPos[ near ] = offsetParentPos[ near ] + parentPosition[ near ];
@@ -5394,7 +5398,9 @@ OO.ui.PopupWidget.prototype.computePosition = function () {
 	}
 
 	// Check if the popup will go beyond the edge of this.$container
-	containerPos = this.$container.offset();
+	containerPos = this.$container[ 0 ] === document.documentElement ?
+		{ top: 0, left: 0 } :
+		this.$container.offset();
 	containerPos[ far ] = containerPos[ near ] + this.$container[ 'inner' + sizeProp ]();
 	// Take into account how much the popup will move because of the adjustments we're going to make
 	popupPos[ near ] += ( positionProp === near ? 1 : -1 ) * positionAdjustment;
@@ -9948,7 +9954,7 @@ OO.ui.TextInputWidget.prototype.getInputElement = function ( config ) {
  *
  * @param {Object} config Configuration options
  * @return {string|null}
- * @private
+ * @protected
  */
 OO.ui.TextInputWidget.prototype.getSaneType = function ( config ) {
 	var allowedTypes = [
@@ -10276,10 +10282,6 @@ OO.ui.SearchInputWidget = function OoUiSearchInputWidget( config ) {
 		icon: 'search'
 	}, config );
 
-	// Set type to text so that TextInputWidget doesn't
-	// get stuck in an infinite loop.
-	config.type = 'text';
-
 	// Parent constructor
 	OO.ui.SearchInputWidget.parent.call( this, config );
 
@@ -10289,7 +10291,6 @@ OO.ui.SearchInputWidget = function OoUiSearchInputWidget( config ) {
 	} );
 
 	// Initialization
-	this.$element.addClass( 'oo-ui-textInputWidget-type-search' );
 	this.updateSearchIndicator();
 	this.connect( this, {
 		disable: 'onDisable'
@@ -10306,8 +10307,8 @@ OO.inheritClass( OO.ui.SearchInputWidget, OO.ui.TextInputWidget );
  * @inheritdoc
  * @protected
  */
-OO.ui.SearchInputWidget.prototype.getInputElement = function () {
-	return $( '<input>' ).attr( 'type', 'search' );
+OO.ui.SearchInputWidget.prototype.getSaneType = function () {
+	return 'search';
 };
 
 /**

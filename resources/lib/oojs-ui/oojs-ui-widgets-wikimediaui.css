@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.23.3
+ * OOjs UI v0.23.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-10-04T01:20:45Z
+ * Date: 2017-10-12T01:29:23Z
  */
 /**
  * WikimediaUI Base v0.9.2
@@ -77,18 +77,22 @@
   border-right: 1px solid #c8ccd1;
 }
 .oo-ui-indexLayout > .oo-ui-menuLayout-menu {
-  height: 3em;
+  height: auto;
 }
-.oo-ui-indexLayout > .oo-ui-menuLayout-content {
+.oo-ui-indexLayout.oo-ui-menuLayout-expanded > .oo-ui-menuLayout-menu {
+  height: 3em;
+  white-space: nowrap;
+}
+.oo-ui-indexLayout.oo-ui-menuLayout-expanded > .oo-ui-menuLayout-content {
   top: 3em;
 }
 .oo-ui-indexLayout-stackLayout > .oo-ui-panelLayout {
   padding: 1.5em;
 }
-.oo-ui-indexLayout > .oo-ui-menuLayout-menu {
+.oo-ui-indexLayout.oo-ui-menuLayout-expanded > .oo-ui-menuLayout-menu {
   height: 2.75em;
 }
-.oo-ui-indexLayout > .oo-ui-menuLayout-content {
+.oo-ui-indexLayout.oo-ui-menuLayout-expanded > .oo-ui-menuLayout-content {
   top: 2.75em;
 }
 .oo-ui-menuLayout {
@@ -101,6 +105,9 @@
 .oo-ui-menuLayout-expanded .oo-ui-menuLayout-menu,
 .oo-ui-menuLayout-expanded .oo-ui-menuLayout-content {
   position: absolute;
+}
+.oo-ui-menuLayout-expanded .oo-ui-menuLayout-menu {
+  z-index: 1;
 }
 .oo-ui-menuLayout-static.oo-ui-menuLayout-after,
 .oo-ui-menuLayout-static.oo-ui-menuLayout-before {
@@ -216,10 +223,6 @@
   border-bottom-right-radius: 2px;
   border-top-right-radius: 2px;
 }
-.oo-ui-buttonSelectWidget .oo-ui-buttonOptionWidget.oo-ui-iconElement .oo-ui-iconElement-icon,
-.oo-ui-buttonSelectWidget .oo-ui-buttonOptionWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
-  position: absolute;
-}
 .oo-ui-buttonSelectWidget .oo-ui-buttonOptionWidget.oo-ui-widget-disabled + .oo-ui-widget-disabled > .oo-ui-buttonElement-button {
   border-left-color: #fff;
 }
@@ -242,12 +245,6 @@
 }
 .oo-ui-buttonOptionWidget.oo-ui-buttonElement-active .oo-ui-buttonElement-button {
   cursor: default;
-}
-.oo-ui-buttonOptionWidget.oo-ui-iconElement .oo-ui-iconElement-icon,
-.oo-ui-buttonOptionWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
-  position: static;
-  display: inline-block;
-  vertical-align: middle;
 }
 .oo-ui-toggleButtonWidget {
   margin-right: 0.5em;
@@ -436,12 +433,6 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-.oo-ui-selectFileWidget-info > .oo-ui-indicatorElement-indicator,
-.oo-ui-selectFileWidget-info > .oo-ui-iconElement-icon {
-  position: absolute;
-  top: 0;
-  height: 100%;
-}
 .oo-ui-widget-disabled .oo-ui-selectFileWidget-info {
   cursor: default;
   -webkit-touch-callout: none;
@@ -468,8 +459,7 @@
   height: 8.815em;
 }
 .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-dropLabel,
-.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-selectButton,
-.oo-ui-selectFileWidget-dropTarget .oo-ui-iconElement-icon {
+.oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-selectButton {
   display: none;
 }
 .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-thumbnail {
@@ -562,12 +552,14 @@
   border-right-width: 0;
 }
 .oo-ui-selectFileWidget-info > .oo-ui-iconElement-icon {
+  display: none;
   top: -1px;
   left: 0.46875em;
   min-height: 2.5em;
   margin-left: -1px;
 }
 .oo-ui-selectFileWidget-info > .oo-ui-indicatorElement-indicator {
+  display: none;
   top: -1px;
   right: 0.9375em;
   min-height: 2.5em;
@@ -782,8 +774,8 @@
 }
 .oo-ui-tabSelectWidget {
   text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   background-color: #eaecf0;
 }
 .oo-ui-tabOptionWidget {
@@ -1063,12 +1055,6 @@
   width: 100%;
   display: block;
   position: relative;
-}
-.oo-ui-capsuleMultiselectWidget-handle > .oo-ui-iconElement-icon,
-.oo-ui-capsuleMultiselectWidget-handle > .oo-ui-indicatorElement-indicator {
-  position: absolute;
-  top: 0;
-  height: 100%;
 }
 .oo-ui-capsuleMultiselectWidget-content {
   position: relative;
