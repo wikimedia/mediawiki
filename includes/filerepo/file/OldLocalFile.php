@@ -110,6 +110,7 @@ class OldLocalFile extends LocalFile {
 	 * @return array
 	 */
 	static function selectFields() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return [
 			'oi_name',
 			'oi_archive_name',
