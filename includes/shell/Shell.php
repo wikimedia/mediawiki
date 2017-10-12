@@ -38,6 +38,7 @@ use MediaWiki\MediaWikiServices;
  *
  *  ... = $result->getExitCode();
  *  ... = $result->getStdout();
+ *  ... = $result->getStderr();
  */
 class Shell {
 
