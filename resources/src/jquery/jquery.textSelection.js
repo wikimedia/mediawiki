@@ -175,9 +175,6 @@
 							// See bug T37201.
 
 							activateElementOnIE( this );
-							if ( context ) {
-								context.fn.restoreCursorAndScrollTop();
-							}
 							if ( options.selectionStart !== undefined ) {
 								$( this ).textSelection( 'setSelection', { start: options.selectionStart, end: options.selectionEnd } );
 							}
