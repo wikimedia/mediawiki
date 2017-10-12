@@ -426,6 +426,7 @@ class Revision implements IDBAccessObject {
 	 * @return array
 	 */
 	public static function userJoinCond() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return [ 'LEFT JOIN', [ 'rev_user != 0', 'user_id = rev_user' ] ];
 	}
 
@@ -437,6 +438,7 @@ class Revision implements IDBAccessObject {
 	 * @return array
 	 */
 	public static function pageJoinCond() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return [ 'INNER JOIN', [ 'page_id = rev_page' ] ];
 	}
 
@@ -448,6 +450,8 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function selectFields() {
 		global $wgContentHandlerUseDB;
+
+		wfDeprecated( __METHOD__, '1.31' );
 
 		$fields = [
 			'rev_id',
@@ -481,6 +485,9 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function selectArchiveFields() {
 		global $wgContentHandlerUseDB;
+
+		wfDeprecated( __METHOD__, '1.31' );
+
 		$fields = [
 			'ar_id',
 			'ar_page_id',
@@ -513,6 +520,7 @@ class Revision implements IDBAccessObject {
 	 * @return array
 	 */
 	public static function selectTextFields() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return [
 			'old_text',
 			'old_flags'
@@ -525,6 +533,7 @@ class Revision implements IDBAccessObject {
 	 * @return array
 	 */
 	public static function selectPageFields() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return [
 			'page_namespace',
 			'page_title',
@@ -541,6 +550,7 @@ class Revision implements IDBAccessObject {
 	 * @return array
 	 */
 	public static function selectUserFields() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return [ 'user_name' ];
 	}
 
