@@ -250,6 +250,8 @@ class DeferredUpdates {
 				// Run only the job enqueue logic to complete the update later
 				$spec = $update->getAsJobSpecification();
 				JobQueueGroup::singleton( $spec['wiki'] )->push( $spec['job'] );
+			} elseif ( $update instanceof TransactionRoundDefiningUpdate ) {
+				$update->doUpdate();
 			} else {
 				// Run the bulk of the update now
 				$fnameTrxOwner = get_class( $update ) . '::doUpdate';

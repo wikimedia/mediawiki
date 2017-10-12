@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 class DeferredUpdatesTest extends MediaWikiTestCase {
 
 	/**
@@ -288,5 +290,47 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 
 		$this->assertTrue( $x, "Outer POSTSEND update ran" );
 		$this->assertTrue( $y, "Nested PRESEND update ran" );
+	}
+
+	/**
+	 * @covers DeferredUpdates::runUpdate
+	 */
+	public function testRunUpdateTransactionScope() {
+		$this->setMwGlobals( 'wgCommandLineMode', false );
+
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$this->assertFalse( $lbFactory->hasTransactionRound(), 'Initial state' );
+
+		$ran = 0;
+		DeferredUpdates::addCallableUpdate( function () use ( &$ran, $lbFactory ) {
+			$ran++;
+			$this->assertTrue( $lbFactory->hasTransactionRound(), 'Has transaction' );
+		} );
+		DeferredUpdates::doUpdates();
+
+		$this->assertSame( 1, $ran, 'Update ran' );
+		$this->assertFalse( $lbFactory->hasTransactionRound(), 'Final state' );
+	}
+
+	/**
+	 * @covers DeferredUpdates::runUpdate
+	 * @covers TransactionRoundDefiningUpdate::getOrigin
+	 */
+	public function testRunOuterScopeUpdate() {
+		$this->setMwGlobals( 'wgCommandLineMode', false );
+
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$this->assertFalse( $lbFactory->hasTransactionRound(), 'Initial state' );
+
+		$ran = 0;
+		DeferredUpdates::addUpdate( new TransactionRoundDefiningUpdate(
+			function () use ( &$ran, $lbFactory ) {
+				$ran++;
+				$this->assertFalse( $lbFactory->hasTransactionRound(), 'No transaction' );
+			} )
+		);
+		DeferredUpdates::doUpdates();
+
+		$this->assertSame( 1, $ran, 'Update ran' );
 	}
 }
