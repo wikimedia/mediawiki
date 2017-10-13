@@ -59,7 +59,7 @@
 		"nikic/php-parser": "2.1.0",
 		"nmred/kafka-php": "0.1.5",
 		"phpunit/phpunit": "4.8.35",
-		"psy/psysh": "0.8.5",
+		"psy/psysh": "0.8.11",
 		"wikimedia/avro": "1.7.7",
 		"wikimedia/testing-access-wrapper": "~1.0",
 		"wmde/hamcrest-html-matchers": "^0.1.0"
