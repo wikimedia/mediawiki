@@ -1417,6 +1417,32 @@ abstract class Maintenance {
 	}
 
 	/**
+	 * Count down from $seconds to zero on the terminal, with a one-second pause
+	 * between showing each number. If the maintenance script is in quiet mode,
+	 * this function does nothing.
+	 *
+	 * @since 1.31
+	 *
+	 * @codeCoverageIgnore
+	 * @param int $seconds
+	 */
+	protected function countDown( $seconds ) {
+		if ( $this->isQuiet() ) {
+			return;
+		}
+		for ( $i = $seconds; $i >= 0; $i-- ) {
+			if ( $i != $seconds ) {
+				$this->output( str_repeat( "\x08", strlen( $i + 1 ) ) );
+			}
+			$this->output( $i );
+			if ( $i ) {
+				sleep( 1 );
+			}
+		}
+		$this->output( "\n" );
+	}
+
+	/**
 	 * Wrapper for posix_isatty()
 	 * We default as considering stdin a tty (for nice readline methods)
 	 * but treating stout as not a tty to avoid color codes

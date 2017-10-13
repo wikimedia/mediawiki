@@ -128,7 +128,7 @@ class UpdateMediaWiki extends Maintenance {
 			$this->compatChecks();
 		} else {
 			$this->output( "Skipping compatibility checks, proceed at your own risk (Ctrl+C to abort)\n" );
-			wfCountDown( 5 );
+			$this->countDown( 5 );
 		}
 
 		// Check external dependencies are up to date
@@ -155,7 +155,7 @@ class UpdateMediaWiki extends Maintenance {
 		if ( !$this->hasOption( 'quick' ) ) {
 			$this->output( "Abort with control-c in the next five seconds "
 				. "(skip this countdown with --quick) ... " );
-			wfCountDown( 5 );
+			$this->countDown( 5 );
 		}
 
 		$time1 = microtime( true );
