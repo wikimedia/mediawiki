@@ -250,6 +250,7 @@
 	"config-help-tooltip": "اضغط للتوسيع",
 	"config-nofile": "لا يمكن العثور على الملف \"$1\". هل حُذف؟",
 	"config-extension-link": "هل كنت تعلم أن الويكي الخاصة بك تدعم [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions الامتدادات]؟\n\nيمكنك تصفح [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category الامتدادات حسب التصنيف] أو [https://www.mediawiki.org/wiki/Extension_Matrix مصفوفة الامتدادت] لترى القائمة الكاملة للامتدادات.",
+	"config-screenshot": "لقطة شاشة",
 	"mainpagetext": "<strong>تم تثبيت ميدياويكي بنجاح.</strong>",
 	"mainpagedocfooter": "استشر [https://meta.wikimedia.org/wiki/Help:Contents دليل المستخدم] لمعلومات حول استخدام برنامج الويكي.\n\n== البداية ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings قائمة إعدادات الضبط]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ أسئلة متكررة حول ميدياويكي]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce القائمة البريدية الخاصة بإصدار ميدياويكي]"
 }

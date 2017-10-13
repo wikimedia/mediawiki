@@ -691,6 +691,8 @@
 	"recentchanges-label-plusminus": "Hit ia̍h kái liáu; cheng-chha ê ūi-goân-cho͘",
 	"recentchanges-legend-heading": "<strong>Ké-soeh:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (請參考[[Special:NewPages|新頁清單]])",
+	"rcfilters-legend-heading": "<strong>Kán-siá lia̍t-toaⁿ:</strong>",
+	"rcfilters-savedqueries-cancel-label": "Chhú-siau",
 	"rcnotefrom": "Ē-kha sī <b>$2</b> kàu taⁿ ê kái-piàn (ke̍k-ke hián-sī <b>$1</b> hāng).",
 	"rclistfrom": "Hián-sī tùi $3 $2 kàu taⁿ ê sin kái-piàn",
 	"rcshowhideminor": "$1 sió siu-kái",

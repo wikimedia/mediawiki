@@ -85,7 +85,8 @@
 			"Thibaut120094",
 			"Translatealcd",
 			"Delim",
-			"Hinaloe"
+			"Hinaloe",
+			"Phantomize"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -1425,7 +1426,7 @@
 	"rcfilters-filter-user-experience-level-unregistered-label": "未登録",
 	"rcfilters-filter-user-experience-level-unregistered-description": "ログインしていない利用者。",
 	"rcfilters-filter-user-experience-level-newcomer-label": "新規利用者",
-	"rcfilters-filter-user-experience-level-newcomer-description": "登録から4日以内、かつ10編集以下の利用者",
+	"rcfilters-filter-user-experience-level-newcomer-description": "登録から4日以内、または編集回数が10回以下の利用者",
 	"rcfilters-filter-user-experience-level-learner-label": "初学者",
 	"rcfilters-filter-user-experience-level-learner-description": "「新規利用者」よりも編集経験があり、「経験者」より編集経験が少ない利用者",
 	"rcfilters-filter-user-experience-level-experienced-label": "経験者",
@@ -1475,7 +1476,7 @@
 	"rcfilters-exclude-button-on": "選択済みを除外中",
 	"rcfilters-view-advanced-filters-label": "詳細フィルター",
 	"rcfilters-view-tags": "タグ付けされた編集",
-	"rcfilters-view-namespaces-tooltip": "名前空間別のフィルター結果",
+	"rcfilters-view-namespaces-tooltip": "名前空間で絞り込む",
 	"rcfilters-view-tags-tooltip": "編集タグを利用した絞込み",
 	"rcfilters-view-return-to-default-tooltip": "メインフィルターメニューに戻る",
 	"rcfilters-view-tags-help-icon-tooltip": "タグ付けされた編集とは",
