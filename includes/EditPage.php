@@ -3166,7 +3166,7 @@ class EditPage {
 	 */
 	function getSummaryInputOOUI( $summary = "", $labelText = null, $inputAttrs = null ) {
 		wfDeprecated( __METHOD__, '1.30' );
-		$this->getSummaryInputWidget( $summary, $labelText, $inputAttrs );
+		return $this->getSummaryInputWidget( $summary, $labelText, $inputAttrs );
 	}
 
 	/**
