@@ -9,9 +9,9 @@
 class RevisionIntegrationTest extends MediaWikiTestCase {
 
 	/**
-	 * @var WikiPage $the_page
+	 * @var WikiPage $testPage
 	 */
-	private $the_page;
+	private $testPage;
 
 	public function __construct( $name = null, array $data = [], $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
@@ -70,10 +70,10 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		MWNamespace::clearCaches();
 		// Reset namespace cache
 		$wgContLang->resetNamespaces();
-		if ( !$this->the_page ) {
-			$this->the_page = $this->createPage(
-				'RevisionStorageTest_the_page',
-				"just a dummy page",
+		if ( !$this->testPage ) {
+			$this->testPage = $this->createPage(
+				__METHOD__,
+				__METHOD__,
 				CONTENT_MODEL_WIKITEXT
 			);
 		}
@@ -89,7 +89,7 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		$wgContLang->resetNamespaces();
 	}
 
-	protected function makeRevision( $props = null ) {
+	private function makeRevisionWithProps( $props = null ) {
 		if ( $props === null ) {
 			$props = [];
 		}
@@ -103,7 +103,7 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		}
 
 		if ( !isset( $props['page'] ) ) {
-			$props['page'] = $this->the_page->getId();
+			$props['page'] = $this->testPage->getId();
 		}
 
 		$rev = new Revision( $props );
@@ -121,7 +121,7 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 	 *
 	 * @return WikiPage
 	 */
-	protected function createPage( $titleString, $text, $model = null ) {
+	private function createPage( $titleString, $text, $model = null ) {
 		if ( !preg_match( '/:/', $titleString ) &&
 			( $model === null || $model === CONTENT_MODEL_WIKITEXT )
 		) {
@@ -143,7 +143,7 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		return $wikipage;
 	}
 
-	protected function assertRevEquals( Revision $orig, Revision $rev = null ) {
+	private function assertRevEquals( Revision $orig, Revision $rev = null ) {
 		$this->assertNotNull( $rev, 'missing revision' );
 
 		$this->assertEquals( $orig->getId(), $rev->getId() );
@@ -159,34 +159,32 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 	 * @covers Revision::__construct
 	 */
 	public function testConstructFromRow() {
-		$orig = $this->makeRevision();
+		$latestRevisionId = $this->testPage->getLatest();
+		$latestRevision = $this->testPage->getRevision();
 
 		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->select( 'revision', Revision::selectFields(), [ 'rev_id' => $orig->getId() ] );
+		$res = $dbr->select(
+			'revision',
+			Revision::selectFields(),
+			[ 'rev_id' => $latestRevisionId ]
+		);
 		$this->assertTrue( is_object( $res ), 'query failed' );
 
 		$row = $res->fetchObject();
 		$res->free();
 
-		$rev = new Revision( $row );
-
-		$this->assertRevEquals( $orig, $rev );
+		$this->assertRevEquals( $latestRevision, new Revision( $row ) );
 	}
 
 	/**
 	 * @covers Revision::newFromTitle
 	 */
 	public function testNewFromTitle_withoutId() {
-		$page = $this->createPage(
-			__METHOD__,
-			'GOAT',
-			CONTENT_MODEL_WIKITEXT
-		);
-		$latestRevId = $page->getLatest();
+		$latestRevId = $this->testPage->getLatest();
 
-		$rev = Revision::newFromTitle( $page->getTitle() );
+		$rev = Revision::newFromTitle( $this->testPage->getTitle() );
 
-		$this->assertTrue( $page->getTitle()->equals( $rev->getTitle() ) );
+		$this->assertTrue( $this->testPage->getTitle()->equals( $rev->getTitle() ) );
 		$this->assertEquals( $latestRevId, $rev->getId() );
 	}
 
@@ -194,16 +192,11 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 	 * @covers Revision::newFromTitle
 	 */
 	public function testNewFromTitle_withId() {
-		$page = $this->createPage(
-			__METHOD__,
-			'GOAT',
-			CONTENT_MODEL_WIKITEXT
-		);
-		$latestRevId = $page->getLatest();
+		$latestRevId = $this->testPage->getLatest();
 
-		$rev = Revision::newFromTitle( $page->getTitle(), $latestRevId );
+		$rev = Revision::newFromTitle( $this->testPage->getTitle(), $latestRevId );
 
-		$this->assertTrue( $page->getTitle()->equals( $rev->getTitle() ) );
+		$this->assertTrue( $this->testPage->getTitle()->equals( $rev->getTitle() ) );
 		$this->assertEquals( $latestRevId, $rev->getId() );
 	}
 
@@ -211,14 +204,9 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 	 * @covers Revision::newFromTitle
 	 */
 	public function testNewFromTitle_withBadId() {
-		$page = $this->createPage(
-			__METHOD__,
-			'GOAT',
-			CONTENT_MODEL_WIKITEXT
-		);
-		$latestRevId = $page->getLatest();
+		$latestRevId = $this->testPage->getLatest();
 
-		$rev = Revision::newFromTitle( $page->getTitle(), $latestRevId + 1 );
+		$rev = Revision::newFromTitle( $this->testPage->getTitle(), $latestRevId + 1 );
 
 		$this->assertNull( $rev );
 	}
@@ -227,7 +215,7 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 	 * @covers Revision::newFromRow
 	 */
 	public function testNewFromRow() {
-		$orig = $this->makeRevision();
+		$orig = $this->makeRevisionWithProps();
 
 		$dbr = wfGetDB( DB_REPLICA );
 		$res = $dbr->select( 'revision', Revision::selectFields(), [ 'rev_id' => $orig->getId() ] );
@@ -271,7 +259,7 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 	 * @covers Revision::newFromId
 	 */
 	public function testNewFromId() {
-		$orig = $this->makeRevision();
+		$orig = $this->makeRevisionWithProps();
 
 		$rev = Revision::newFromId( $orig->getId() );
 
@@ -282,19 +270,13 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 	 * @covers Revision::fetchRevision
 	 */
 	public function testFetchRevision() {
-		$page = $this->createPage(
-			'RevisionStorageTest_testFetchRevision',
-			'one',
-			CONTENT_MODEL_WIKITEXT
-		);
-
 		// Hidden process cache assertion below
-		$page->getRevision()->getId();
+		$this->testPage->getRevision()->getId();
 
-		$page->doEditContent( new WikitextContent( 'two' ), 'second rev' );
-		$id = $page->getRevision()->getId();
+		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
+		$id = $this->testPage->getRevision()->getId();
 
-		$res = Revision::fetchRevision( $page->getTitle() );
+		$res = Revision::fetchRevision( $this->testPage->getTitle() );
 
 		# note: order is unspecified
 		$rows = [];
@@ -334,9 +316,9 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 	 * @covers Revision::getPage
 	 */
 	public function testGetPage() {
-		$page = $this->the_page;
+		$page = $this->testPage;
 
-		$orig = $this->makeRevision( [ 'page' => $page->getId() ] );
+		$orig = $this->makeRevisionWithProps( [ 'page' => $page->getId() ] );
 		$rev = Revision::newFromId( $orig->getId() );
 
 		$this->assertEquals( $page->getId(), $rev->getPage() );
@@ -346,12 +328,7 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 	 * @covers Revision::isCurrent
 	 */
 	public function testIsCurrent() {
-		$page = $this->createPage(
-			'RevisionStorageTest_testIsCurrent',
-			'Lorem Ipsum',
-			CONTENT_MODEL_WIKITEXT
-		);
-		$rev1 = $page->getRevision();
+		$rev1 = $this->testPage->getRevision();
 
 		# @todo find out if this should be true
 		# $this->assertTrue( $rev1->isCurrent() );
@@ -359,11 +336,8 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		$rev1x = Revision::newFromId( $rev1->getId() );
 		$this->assertTrue( $rev1x->isCurrent() );
 
-		$page->doEditContent(
-			ContentHandler::makeContent( 'Bla bla', $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
-			'second rev'
-		);
-		$rev2 = $page->getRevision();
+		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
+		$rev2 = $this->testPage->getRevision();
 
 		# @todo find out if this should be true
 		# $this->assertTrue( $rev2->isCurrent() );
@@ -379,42 +353,28 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 	 * @covers Revision::getPrevious
 	 */
 	public function testGetPrevious() {
-		$page = $this->createPage(
-			'RevisionStorageTest_testGetPrevious',
-			'Lorem Ipsum testGetPrevious',
-			CONTENT_MODEL_WIKITEXT
-		);
-		$rev1 = $page->getRevision();
+		$oldestRevision = $this->testPage->getOldestRevision();
+		$latestRevision = $this->testPage->getLatest();
 
-		$this->assertNull( $rev1->getPrevious() );
+		$this->assertNull( $oldestRevision->getPrevious() );
 
-		$page->doEditContent(
-			ContentHandler::makeContent( 'Bla bla', $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
-			'second rev testGetPrevious' );
-		$rev2 = $page->getRevision();
+		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
+		$newRevision = $this->testPage->getRevision();
 
-		$this->assertNotNull( $rev2->getPrevious() );
-		$this->assertEquals( $rev1->getId(), $rev2->getPrevious()->getId() );
+		$this->assertNotNull( $newRevision->getPrevious() );
+		$this->assertEquals( $latestRevision, $newRevision->getPrevious()->getId() );
 	}
 
 	/**
 	 * @covers Revision::getNext
 	 */
 	public function testGetNext() {
-		$page = $this->createPage(
-			'RevisionStorageTest_testGetNext',
-			'Lorem Ipsum testGetNext',
-			CONTENT_MODEL_WIKITEXT
-		);
-		$rev1 = $page->getRevision();
+		$rev1 = $this->testPage->getRevision();
 
 		$this->assertNull( $rev1->getNext() );
 
-		$page->doEditContent(
-			ContentHandler::makeContent( 'Bla bla', $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
-			'second rev testGetNext'
-		);
-		$rev2 = $page->getRevision();
+		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
+		$rev2 = $this->testPage->getRevision();
 
 		$this->assertNotNull( $rev1->getNext() );
 		$this->assertEquals( $rev2->getId(), $rev1->getNext()->getId() );
@@ -424,21 +384,17 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 	 * @covers Revision::newNullRevision
 	 */
 	public function testNewNullRevision() {
-		$page = $this->createPage(
-			'RevisionStorageTest_testNewNullRevision',
-			'some testing text',
-			CONTENT_MODEL_WIKITEXT
-		);
-		$orig = $page->getRevision();
+		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
+		$orig = $this->testPage->getRevision();
 
 		$dbw = wfGetDB( DB_MASTER );
-		$rev = Revision::newNullRevision( $dbw, $page->getId(), 'a null revision', false );
+		$rev = Revision::newNullRevision( $dbw, $this->testPage->getId(), 'a null revision', false );
 
 		$this->assertNotEquals( $orig->getId(), $rev->getId(),
-			'new null revision shold have a different id from the original revision' );
+			'new null revision should have a different id from the original revision' );
 		$this->assertEquals( $orig->getTextId(), $rev->getTextId(),
-			'new null revision shold have the same text id as the original revision' );
-		$this->assertEquals( 'some testing text', $rev->getContent()->getNativeData() );
+			'new null revision should have the same text id as the original revision' );
+		$this->assertEquals( __METHOD__, $rev->getContent()->getNativeData() );
 	}
 
 	/**
@@ -447,7 +403,7 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 	public function testInsertOn() {
 		$ip = '2600:387:ed7:947e:8c16:a1ad:dd34:1dd7';
 
-		$orig = $this->makeRevision( [
+		$orig = $this->makeRevisionWithProps( [
 			'user_text' => $ip
 		] );
 
@@ -694,8 +650,8 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 	 */
 	public function testGetContent_failure() {
 		$rev = new Revision( [
-			'page' => $this->the_page->getId(),
-			'content_model' => $this->the_page->getContentModel(),
+			'page' => $this->testPage->getId(),
+			'content_model' => $this->testPage->getContentModel(),
 			'text_id' => 123456789, // not in the test DB
 		] );
 
