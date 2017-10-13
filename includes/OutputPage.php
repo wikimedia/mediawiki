@@ -314,15 +314,10 @@ class OutputPage extends ContextSource {
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
 	 * a OutputPage tied to that context.
-	 * @param IContextSource|null $context
+	 * @param IContextSource $context
 	 */
-	function __construct( IContextSource $context = null ) {
-		if ( $context === null ) {
-			# Extensions should use `new RequestContext` instead of `new OutputPage` now.
-			wfDeprecated( __METHOD__, '1.18' );
-		} else {
-			$this->setContext( $context );
-		}
+	function __construct( IContextSource $context ) {
+		$this->setContext( $context );
 	}
 
 	/**
