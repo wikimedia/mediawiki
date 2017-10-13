@@ -62,7 +62,6 @@
 		this.$element
 			.addClass( 'mw-rcfilters-ui-rcTopSectionWidget' )
 			.append(
-				this.$top,
 				$( '<div>' )
 					.addClass( 'mw-rcfilters-ui-table' )
 					.append(
@@ -82,6 +81,9 @@
 							)
 					)
 			);
+
+		// Hack: For jumpiness reasons, this should be a sibling of -head
+		$( '.rcfilters-head' ).before( this.$top );
 
 		// Initialize top links position
 		widget.switchTopLinks( topLinksCookieValue );
