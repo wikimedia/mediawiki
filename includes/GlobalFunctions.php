@@ -2684,6 +2684,7 @@ function wfRelativePath( $path, $from ) {
 function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1,
 	$lowercase = true, $engine = 'auto'
 ) {
+	wfDeprecated( __FUNCTION__, '1.27' );
 	return Wikimedia\base_convert( $input, $sourceBase, $destBase, $pad, $lowercase, $engine );
 }
 
