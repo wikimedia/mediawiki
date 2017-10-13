@@ -47,9 +47,10 @@ class Shell {
 	 * @param string|string[] $command String or array of strings representing the command to
 	 * be executed, each value will be escaped.
 	 *   Example:   [ 'convert', '-font', 'font name' ] would produce "'convert' '-font' 'font name'"
+	 * @param string $method Name of calling method, for profiling.
 	 * @return Command
 	 */
-	public static function command( $command ) {
+	public static function command( $command, $method = __METHOD__ ) {
 		$args = func_get_args();
 		if ( count( $args ) === 1 && is_array( reset( $args ) ) ) {
 			// If only one argument has been passed, and that argument is an array,
@@ -59,8 +60,7 @@ class Shell {
 		$command = MediaWikiServices::getInstance()
 			->getShellCommandFactory()
 			->create();
-
-		return $command->params( $args );
+		return $command->profileMethod( $method )->params( $args );
 	}
 
 	/**
