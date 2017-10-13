@@ -56,7 +56,7 @@ class ApiQueryTokens extends ApiQueryBase {
 
 	/**
 	 * Get the salts for known token types
-	 * @return (string|array)[] Returning a string will use that as the salt
+	 * @return string|string[] Returning a string will use that as the salt
 	 *  for User::getEditTokenObject() to fetch the token, which will give a
 	 *  LoggedOutEditToken (always "+\\") for anonymous users. Returning an
 	 *  array will use it as parameters to MediaWiki\Session\Session::getToken(),
