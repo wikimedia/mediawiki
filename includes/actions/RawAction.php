@@ -233,10 +233,18 @@ class RawAction extends FormlessAction {
 				$ctype = 'text/javascript';
 			} elseif ( $gen == 'css' ) {
 				$ctype = 'text/css';
+			} elseif ( $gen == 'json' ) {
+				$ctype = 'application/json';
 			}
 		}
 
-		$allowedCTypes = [ 'text/x-wiki', 'text/javascript', 'text/css', 'application/x-zope-edit' ];
+		$allowedCTypes = [
+			'text/x-wiki',
+			'text/javascript',
+			'text/css',
+			'application/x-zope-edit',
+			'application/json'
+		];
 		if ( $ctype == '' || !in_array( $ctype, $allowedCTypes ) ) {
 			$ctype = 'text/x-wiki';
 		}
