@@ -94,6 +94,45 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function provideTableNamesWithIndexClauseOrJOIN() {
+		return [
+			'one-element array' => [
+				[ 'table' ], [], 'table '
+			],
+			'comma join' => [
+				[ 'table1', 'table2' ], [], 'table1,table2 '
+			],
+			'real join' => [
+				[ 'table1', 'table2' ],
+				[ 'table2' => [ 'LEFT JOIN', 't1_id = t2_id' ] ],
+				'table1 LEFT JOIN table2 ON ((t1_id = t2_id))'
+			],
+			'real join with multiple conditionals' => [
+				[ 'table1', 'table2' ],
+				[ 'table2' => [ 'LEFT JOIN', [ 't1_id = t2_id', 't2_x = \'X\'' ] ] ],
+				'table1 LEFT JOIN table2 ON ((t1_id = t2_id) AND (t2_x = \'X\'))'
+			],
+			'join with parenthesized group' => [
+				[ 'table1', 'n' => [ 'table2', 'table3' ] ],
+				[
+					'table3' => [ 'JOIN', 't2_id = t3_id' ],
+					'n' => [ 'LEFT JOIN', 't1_id = t2_id' ],
+				],
+				'table1 LEFT JOIN (table2 JOIN table3 ON ((t2_id = t3_id))) ON ((t1_id = t2_id))'
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideTableNamesWithIndexClauseOrJOIN
+	 * @covers Wikimedia\Rdbms\Database::tableNamesWithIndexClauseOrJOIN
+	 */
+	public function testTableNamesWithIndexClauseOrJOIN( $tables, $join_conds, $expect ) {
+		$clause = TestingAccessWrapper::newFromObject( $this->db )
+			->tableNamesWithIndexClauseOrJOIN( $tables, [], [], $join_conds );
+		$this->assertSame( $expect, $clause );
+	}
+
 	/**
 	 * @covers Wikimedia\Rdbms\Database::onTransactionIdle
 	 * @covers Wikimedia\Rdbms\Database::runOnTransactionIdleCallbacks
