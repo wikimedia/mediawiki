@@ -1786,6 +1786,7 @@ return [
 	],
 	'mediawiki.rcfilters.filters.ui' => [
 		'scripts' => [
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.GroupWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.CheckboxInputWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterTagMultiselectWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.ItemMenuOptionWidget.js',
