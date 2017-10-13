@@ -621,23 +621,26 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				// Check whether the widget is already collapsed or expanded
 				$collapsedState = $this->getRequest()->getCookie( 'rcfilters-toplinks-collapsed-state' );
 				// Note that an empty/unset cookie means collapsed, so check for !== 'expanded'
-				$collapsedClass = $collapsedState !== 'expanded' ? 'mw-rcfilters-toplinks-collapsed' : '';
+				$topLinksAttributes[ 'class' ] .= $collapsedState !== 'expanded' ? ' mw-recentchanges-toplinks-collapsed' : '';
 
-				$contentTitle = Html::rawElement( 'div',
-					[ 'class' => 'mw-recentchanges-toplinks-title ' . $collapsedClass ],
-					$this->msg( 'rcfilters-other-review-tools' )->parse()
-				);
+				$this->getOutput()->enableOOUI();
+				$contentTitle = new OOUI\ButtonWidget( [
+					'classes' => [ 'mw-recentchanges-toplinks-title' ],
+					'label' => new OOUI\HtmlSnippet( $this->msg( 'rcfilters-other-review-tools' )->parse() ),
+					'framed' => false,
+					'indicator' => $collapsedState !== 'expanded' ? 'down' : 'up',
+					'flags' => [ 'progressive' ],
+				] );
+
 				$contentWrapper = Html::rawElement( 'div',
 					array_merge(
-						[
-						'class' => 'mw-recentchanges-toplinks-content mw-collapsible-content ' .
-							$collapsedClass
-						],
+						[ 'class' => 'mw-recentchanges-toplinks-content mw-collapsible-content' ],
 						$langAttributes
 					),
 					$content
 				);
 				$content = $contentTitle . $contentWrapper;
+
 			} else {
 				// Language direction should be on the top div only
 				// if the title is not there. If it is there, it's
