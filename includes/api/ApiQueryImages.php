@@ -85,7 +85,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 		}
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
-		if ( !is_null( $params['images'] ) ) {
+		if ( $params['images'] ) {
 			$images = [];
 			foreach ( $params['images'] as $img ) {
 				$title = Title::newFromText( $img );
@@ -94,6 +94,10 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 				} else {
 					$images[] = $title->getDBkey();
 				}
+			}
+			if ( !$images ) {
+				// No titles so no results
+				return;
 			}
 			$this->addWhereFld( 'il_to', $images );
 		}

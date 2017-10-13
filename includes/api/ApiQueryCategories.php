@@ -69,7 +69,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 		$this->addTables( 'categorylinks' );
 		$this->addWhereFld( 'cl_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
-		if ( !is_null( $params['categories'] ) ) {
+		if ( $params['categories'] ) {
 			$cats = [];
 			foreach ( $params['categories'] as $cat ) {
 				$title = Title::newFromText( $cat );
@@ -78,6 +78,10 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				} else {
 					$cats[] = $title->getDBkey();
 				}
+			}
+			if ( !$cats ) {
+				// No titles so no results
+				return;
 			}
 			$this->addWhereFld( 'cl_to', $cats );
 		}

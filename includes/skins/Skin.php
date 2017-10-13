@@ -34,7 +34,11 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Skins
  */
 abstract class Skin extends ContextSource {
+	/**
+	 * @var string|null
+	 */
 	protected $skinname = null;
+
 	protected $mRelevantTitle = null;
 	protected $mRelevantUser = null;
 
@@ -134,7 +138,17 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @return string Skin name
+	 * @since 1.31
+	 * @param string|null $skinname
+	 */
+	public function __construct( $skinname = null ) {
+		if ( is_string( $skinname ) ) {
+			$this->skinname = $skinname;
+		}
+	}
+
+	/**
+	 * @return string|null Skin name
 	 */
 	public function getSkinName() {
 		return $this->skinname;
