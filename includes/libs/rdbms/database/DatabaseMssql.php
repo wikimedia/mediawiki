@@ -440,8 +440,14 @@ class DatabaseMssql extends Database {
 		if ( strpos( $sql, 'MAX(' ) !== false || strpos( $sql, 'MIN(' ) !== false ) {
 			$bitColumns = [];
 			if ( is_array( $table ) ) {
-				foreach ( $table as $t ) {
-					$bitColumns += $this->getBitColumns( $this->tableName( $t ) );
+				$tables = $table;
+				while ( $tables ) {
+					$t = array_pop( $tables );
+					if ( is_array( $t ) ) {
+						$tables = array_merge( $tables, $t );
+					} else {
+						$bitColumns += $this->getBitColumns( $this->tableName( $t ) );
+					}
 				}
 			} else {
 				$bitColumns = $this->getBitColumns( $this->tableName( $table ) );

@@ -620,6 +620,19 @@ interface IDatabase {
 	 * This includes the user table in the query, with the alias "a" available
 	 * for use in field names (e.g. a.user_name).
 	 *
+	 * Joins using parentheses for grouping (since MediaWiki 1.31) may be
+	 * constructed using nested arrays. For example,
+	 *
+	 *    [ 'tableA', 'nestedB' => [ 'tableB', 'b2' => 'tableB2' ] ]
+	 *
+	 * along with `$join_conds` like
+	 *
+	 *    [ 'b2' => [ 'JOIN', 'b_id = b2_id' ], 'nestedB' => [ 'LEFT JOIN', 'b_a = a_id' ] ]
+	 *
+	 * will produce SQL something like
+	 *
+	 *    FROM tableA LEFT JOIN (tableB JOIN tableB2 AS b2 ON (b_id = b2_id)) ON (b_a = a_id)
+	 *
 	 * All of the table names given here are automatically run through
 	 * Database::tableName(), which causes the table prefix (if any) to be
 	 * added, and various other table name mappings to be performed.

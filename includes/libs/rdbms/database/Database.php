@@ -2015,11 +2015,21 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				// No alias? Set it equal to the table name
 				$alias = $table;
 			}
+
+			if ( is_array( $table ) ) {
+				// A parenthesized group
+				$joinedTable = '('
+					. $this->tableNamesWithIndexClauseOrJOIN( $table, $use_index, $ignore_index, $join_conds )
+					. ')';
+			} else {
+				$joinedTable = $this->tableNameWithAlias( $table, $alias );
+			}
+
 			// Is there a JOIN clause for this table?
 			if ( isset( $join_conds[$alias] ) ) {
 				list( $joinType, $conds ) = $join_conds[$alias];
 				$tableClause = $joinType;
-				$tableClause .= ' ' . $this->tableNameWithAlias( $table, $alias );
+				$tableClause .= ' ' . $joinedTable;
 				if ( isset( $use_index[$alias] ) ) { // has USE INDEX?
 					$use = $this->useIndexClause( implode( ',', (array)$use_index[$alias] ) );
 					if ( $use != '' ) {
@@ -2041,7 +2051,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$retJOIN[] = $tableClause;
 			} elseif ( isset( $use_index[$alias] ) ) {
 				// Is there an INDEX clause for this table?
-				$tableClause = $this->tableNameWithAlias( $table, $alias );
+				$tableClause = $joinedTable;
 				$tableClause .= ' ' . $this->useIndexClause(
 						implode( ',', (array)$use_index[$alias] )
 					);
@@ -2049,14 +2059,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$ret[] = $tableClause;
 			} elseif ( isset( $ignore_index[$alias] ) ) {
 				// Is there an INDEX clause for this table?
-				$tableClause = $this->tableNameWithAlias( $table, $alias );
+				$tableClause = $joinedTable;
 				$tableClause .= ' ' . $this->ignoreIndexClause(
 						implode( ',', (array)$ignore_index[$alias] )
 					);
 
 				$ret[] = $tableClause;
 			} else {
-				$tableClause = $this->tableNameWithAlias( $table, $alias );
+				$tableClause = $joinedTable;
 
 				$ret[] = $tableClause;
 			}
