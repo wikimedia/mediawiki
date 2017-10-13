@@ -29,6 +29,8 @@
  */
 class CssContentHandler extends CodeContentHandler {
 
+	protected $MIMEType = 'text/css';
+
 	/**
 	 * @param string $modelId
 	 */

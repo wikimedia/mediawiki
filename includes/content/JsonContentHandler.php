@@ -29,6 +29,8 @@
  */
 class JsonContentHandler extends CodeContentHandler {
 
+	protected $MIMEType = 'application/json';
+
 	public function __construct( $modelId = CONTENT_MODEL_JSON ) {
 		parent::__construct( $modelId, [ CONTENT_FORMAT_JSON ] );
 	}

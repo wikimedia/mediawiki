@@ -28,6 +28,8 @@
  */
 class JavaScriptContentHandler extends CodeContentHandler {
 
+	protected $MIMEType = 'text/javascript';
+
 	/**
 	 * @param string $modelId
 	 */

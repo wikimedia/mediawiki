@@ -47,6 +47,12 @@ use MediaWiki\Search\ParserOutputSearchDataExtractor;
  * @ingroup Content
  */
 abstract class ContentHandler {
+
+	/**
+	 * @var string
+	 */
+	protected $MIMEType = 'text/x-wiki';
+
 	/**
 	 * Convenience function for getting flat text from a Content object. This
 	 * should only be used in the context of backwards compatibility with code
@@ -1208,6 +1214,13 @@ abstract class ContentHandler {
 			}
 		}
 		return $parserOutput;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getMIMEType() {
+		return $this->MIMEType;
 	}
 
 }

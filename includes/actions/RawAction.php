@@ -33,6 +33,9 @@
  * @ingroup Actions
  */
 class RawAction extends FormlessAction {
+
+	private $contentType;
+
 	public function getName() {
 		return 'raw';
 	}
@@ -64,12 +67,16 @@ class RawAction extends FormlessAction {
 			$this->gen = true;
 		}
 
-		$contentType = $this->getContentType();
+		$text = $this->getRawText();
+		// Sanity check
+		if ( $this->contentType === null ) {
+			$this->contentType = 'text/x-wiki';
+		}
 
 		$maxage = $request->getInt( 'maxage', $config->get( 'SquidMaxage' ) );
 		$smaxage = $request->getIntOrNull( 'smaxage' );
 		if ( $smaxage === null ) {
-			if ( $contentType == 'text/css' || $contentType == 'text/javascript' ) {
+			if ( $this->contentType == 'text/css' || $this->contentType == 'text/javascript' ) {
 				// CSS/JS raw content has its own CDN max age configuration.
 				// Note: Title::getCdnUrls() includes action=raw for css/js pages,
 				// so if using the canonical url, this will get HTCP purges.
@@ -86,7 +93,7 @@ class RawAction extends FormlessAction {
 			$response->header( $this->getOutput()->getKeyHeader() );
 		}
 
-		$response->header( 'Content-type: ' . $contentType . '; charset=UTF-8' );
+		$response->header( 'Content-type: ' . $this->contentType . '; charset=UTF-8' );
 		// Output may contain user-specific data;
 		// vary generated content for open sessions on private wikis
 		$privateCache = !User::isEveryoneAllowed( 'read' ) &&
@@ -98,13 +105,11 @@ class RawAction extends FormlessAction {
 			'Cache-Control: ' . $mode . ', s-maxage=' . $smaxage . ', max-age=' . $maxage
 		);
 
-		$text = $this->getRawText();
-
 		// Don't return a 404 response for CSS or JavaScript;
 		// 404s aren't generally cached and it would create
 		// extra hits when user CSS/JS are on and the user doesn't
 		// have the pages.
-		if ( $text === false && $contentType == 'text/x-wiki' ) {
+		if ( $text === false && $this->contentType == 'text/x-wiki' ) {
 			$response->statusHeader( 404 );
 		}
 
@@ -161,6 +166,7 @@ class RawAction extends FormlessAction {
 				} else {
 					// want a section?
 					$section = $request->getIntOrNull( 'section' );
+					$this->updateContentType( $content );
 					if ( $section !== null ) {
 						$content = $content->getSection( $section );
 					}
@@ -219,28 +225,25 @@ class RawAction extends FormlessAction {
 		return $oldid;
 	}
 
-	/**
-	 * Get the content type to use for the response
-	 *
-	 * @return string
-	 */
-	public function getContentType() {
-		$ctype = $this->getRequest()->getVal( 'ctype' );
+	private function updateContentType( Content $content ) {
+		$cType = $this->getRequest()->getVal( 'ctype' );
 
-		if ( $ctype == '' ) {
+		if ( $cType == '' ) {
 			$gen = $this->getRequest()->getVal( 'gen' );
 			if ( $gen == 'js' ) {
-				$ctype = 'text/javascript';
+				$cType = 'text/javascript';
 			} elseif ( $gen == 'css' ) {
-				$ctype = 'text/css';
+				$cType = 'text/css';
 			}
 		}
 
 		$allowedCTypes = [ 'text/x-wiki', 'text/javascript', 'text/css', 'application/x-zope-edit' ];
-		if ( $ctype == '' || !in_array( $ctype, $allowedCTypes ) ) {
-			$ctype = 'text/x-wiki';
+		if ( $cType == '' || !in_array( $cType, $allowedCTypes ) ) {
+			$contentHandler = ContentHandler::getForContent( $content );
+			$cType = $contentHandler->getMIMEType();
 		}
 
-		return $ctype;
+		$this->contentType = $cType;
 	}
+
 }
