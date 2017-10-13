@@ -154,7 +154,7 @@ class Command {
 	}
 
 	/**
-	 * Sets calling function for profiler. By default, the caller for execute() will be used.
+	 * Sets name of calling function for use in the profiler.
 	 *
 	 * @param string $method
 	 * @return $this
