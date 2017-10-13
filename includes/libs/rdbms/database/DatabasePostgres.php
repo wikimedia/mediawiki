@@ -532,26 +532,30 @@ __INDEXATTR__;
 				unset( $options[$forUpdateKey] );
 				$options['FOR UPDATE'] = [];
 
-				// All tables not in $join_conds are good
-				foreach ( $table as $alias => $name ) {
-					if ( is_numeric( $alias ) ) {
+				$toCheck = $table;
+				reset( $toCheck );
+				while ( $toCheck ) {
+					$alias = key( $toCheck );
+					$name = $toCheck[$alias];
+					unset( $toCheck[$alias] );
+
+					$hasAlias = !is_numeric( $alias );
+					if ( !$hasAlias && is_string( $name ) ) {
 						$alias = $name;
 					}
-					if ( !isset( $join_conds[$alias] ) ) {
-						$options['FOR UPDATE'][] = $alias;
+
+					if ( !isset( $join_conds[$alias] ) ||
+						!preg_match( '/^(?:LEFT|RIGHT|FULL)(?: OUTER)? JOIN$/i', $join_conds[$alias][0] )
+					) {
+						if ( is_array( $name ) ) {
+							// It's a parenthesized group, process all the tables inside the group.
+							$toCheck = array_merge( $toCheck, $name );
+						} else {
+							// Quote alias names so $this->tableName() won't mangle them
+							$options['FOR UPDATE'][] = $hasAlias ? $this->addIdentifierQuotes( $alias ) : $alias;
+						}
 					}
 				}
-
-				foreach ( $join_conds as $table_cond => $join_cond ) {
-					if ( 0 === preg_match( '/^(?:LEFT|RIGHT|FULL)(?: OUTER)? JOIN$/i', $join_cond[0] ) ) {
-						$options['FOR UPDATE'][] = $table_cond;
-					}
-				}
-
-				// Quote alias names so $this->tableName() won't mangle them
-				$options['FOR UPDATE'] = array_map( function ( $name ) use ( $table ) {
-					return isset( $table[$name] ) ? $this->addIdentifierQuotes( $name ) : $name;
-				}, $options['FOR UPDATE'] );
 			}
 
 			if ( isset( $options['ORDER BY'] ) && $options['ORDER BY'] == 'NULL' ) {
