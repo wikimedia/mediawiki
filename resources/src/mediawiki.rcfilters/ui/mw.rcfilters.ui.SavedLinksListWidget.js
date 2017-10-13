@@ -36,10 +36,14 @@
 			label: $labelNoEntries,
 			icon: 'unClip'
 		} );
-		// The only reason we're using "ButtonGroupWidget" here is that
-		// straight-out "GroupWidget" is a mixin and cannot be initialized
-		// on its own, so we need something to be its widget.
-		this.menu = new OO.ui.ButtonGroupWidget( {
+
+		this.menu = new mw.rcfilters.ui.GroupWidget( {
+			events: {
+				click: 'menuItemClick',
+				'delete': 'menuItemDelete',
+				'default': 'menuItemDefault',
+				edit: 'menuItemEdit'
+			},
 			classes: [ 'mw-rcfilters-ui-savedLinksListWidget-menu' ],
 			items: [ this.placeholderItem ]
 		} );
@@ -56,13 +60,6 @@
 				$autoCloseIgnore: this.$overlay,
 				$content: this.menu.$element
 			}
-		} );
-
-		this.menu.aggregate( {
-			click: 'menuItemClick',
-			'delete': 'menuItemDelete',
-			'default': 'menuItemDefault',
-			edit: 'menuItemEdit'
 		} );
 
 		// Events
