@@ -3047,6 +3047,8 @@ function wfWaitForSlaves(
  * Count down from $seconds to zero on the terminal, with a one-second pause
  * between showing each number. For use in command-line scripts.
  *
+ * @deprecated since 1.31, use Maintenance::countDown()
+ *
  * @codeCoverageIgnore
  * @param int $seconds
  */
