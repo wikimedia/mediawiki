@@ -255,7 +255,6 @@ $wgAutoloadLocalClasses = [
 	'CheckLanguageCLI' => __DIR__ . '/maintenance/language/checkLanguage.inc',
 	'CheckLess' => __DIR__ . '/maintenance/checkLess.php',
 	'CheckStorage' => __DIR__ . '/maintenance/storage/checkStorage.php',
-	'CheckSyntax' => __DIR__ . '/maintenance/checkSyntax.php',
 	'CheckUsernames' => __DIR__ . '/maintenance/checkUsernames.php',
 	'ClassCollector' => __DIR__ . '/includes/utils/AutoloadGenerator.php',
 	'CleanupAncientTables' => __DIR__ . '/maintenance/cleanupAncientTables.php',
