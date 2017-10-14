@@ -841,4 +841,43 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Revision::loadFromTitle
+	 */
+	public function testLoadFromTitle() {
+		$this->assertRevEquals(
+			$this->testPage->getRevision(),
+			Revision::loadFromTitle( wfGetDB( DB_MASTER ), $this->testPage->getTitle() )
+		);
+	}
+
+	/**
+	 * @covers Revision::loadFromTitle
+	 */
+	public function testLoadFromTitleWithLatestRevId() {
+		$this->assertRevEquals(
+			$this->testPage->getRevision(),
+			Revision::loadFromTitle(
+				wfGetDB( DB_MASTER ),
+				$this->testPage->getTitle(),
+				$this->testPage->getLatest()
+			)
+		);
+	}
+
+	/**
+	 * @covers Revision::loadFromTitle
+	 */
+	public function testLoadFromTitleWithNotLatestRevId() {
+		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
+		$this->assertRevEquals(
+			$this->testPage->getRevision()->getPrevious(),
+			Revision::loadFromTitle(
+				wfGetDB( DB_MASTER ),
+				$this->testPage->getTitle(),
+				$this->testPage->getRevision()->getPrevious()->getId()
+			)
+		);
+	}
+
 }
