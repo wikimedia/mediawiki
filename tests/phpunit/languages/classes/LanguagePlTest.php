@@ -74,4 +74,31 @@ class LanguagePlTest extends LanguageClassesTestCase {
 			[ 'other', 201 ],
 		];
 	}
+
+	/**
+	 * @covers LanguagePl::commafy()
+	 * @dataProvider provideCommafyData
+	 */
+	public function testCommafy( $number, $numbersWithCommas ) {
+		$this->assertEquals(
+			$numbersWithCommas,
+			$this->getLang()->commafy( $number ),
+			"commafy('$number')"
+		);
+	}
+
+	public static function provideCommafyData() {
+		// Note that commafy() always uses English separators (',' and '.') instead of
+		// Polish (' ' and ','). There is another function that converts them later.
+		return [
+			[ 1000, '1000' ],
+			[ 10000, '10,000' ],
+			[ 1000.0001, '1000.0001' ],
+			[ 10000.0001, '10,000.0001' ],
+			[ -1000, '-1000' ],
+			[ -10000, '-10,000' ],
+			[ -1000.0001, '-1000.0001' ],
+			[ -10000.0001, '-10,000.0001' ],
+		];
+	}
 }
