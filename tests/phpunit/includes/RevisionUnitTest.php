@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @group ContentHandler
  */
@@ -455,4 +457,37 @@ class RevisionUnitTest extends MediaWikiTestCase {
 		);
 	}
 
+	public function provideFetchFromConds() {
+		yield [ 0, [] ];
+		yield [ Revision::READ_LOCKING, [ 'FOR UPDATE' ] ];
+	}
+
+	/**
+	 * @dataProvider provideFetchFromConds
+	 * @covers Revision::fetchFromConds
+	 */
+	public function testFetchFromConds( $flags, array $options ) {
+		$conditions = [ 'conditionsArray' ];
+
+		$db = $this->getMock( IDatabase::class );
+		$db->expects( $this->once() )
+			->method( 'selectRow' )
+			->with(
+				$this->equalTo( [ 'revision', 'page', 'user' ] ),
+				// We don't really care about the fields are they come from the selectField methods
+				$this->isType( 'array' ),
+				$this->equalTo( $conditions ),
+				// Method name
+				$this->equalTo( 'Revision::fetchFromConds' ),
+				$this->equalTo( $options ),
+				// We don't really care about the join conds are they come from the joinCond methods
+				$this->isType( 'array' )
+			)
+			->willReturn( 'RETURNVALUE' );
+
+		$wrapper = TestingAccessWrapper::newFromClass( Revision::class );
+		$result = $wrapper->fetchFromConds( $db, $conditions, $flags );
+
+		$this->assertEquals( 'RETURNVALUE', $result );
+	}
 }
