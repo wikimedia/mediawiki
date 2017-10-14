@@ -261,6 +261,46 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers Revision::newFromPageId
+	 */
+	public function testNewFromPageId() {
+		$rev = Revision::newFromPageId( $this->testPage->getId() );
+		$this->assertRevEquals(
+			$this->testPage->getRevision(),
+			$rev
+		);
+	}
+
+	/**
+	 * @covers Revision::newFromPageId
+	 */
+	public function testNewFromPageIdWithLatestId() {
+		$rev = Revision::newFromPageId(
+			$this->testPage->getId(),
+			$this->testPage->getLatest()
+		);
+		$this->assertRevEquals(
+			$this->testPage->getRevision(),
+			$rev
+		);
+	}
+
+	/**
+	 * @covers Revision::newFromPageId
+	 */
+	public function testNewFromPageIdWithNotLatestId() {
+		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
+		$rev = Revision::newFromPageId(
+			$this->testPage->getId(),
+			$this->testPage->getRevision()->getPrevious()->getId()
+		);
+		$this->assertRevEquals(
+			$this->testPage->getRevision()->getPrevious(),
+			$rev
+		);
+	}
+
+	/**
 	 * @covers Revision::fetchRevision
 	 */
 	public function testFetchRevision() {
