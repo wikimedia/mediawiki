@@ -7,10 +7,6 @@
 		&-top {
 			display: block;
 			width: 100%;
-
-			.mw-recentchanges-toplinks {
-				margin-bottom: 0.5em;
-			}
 		}
 	}
 
@@ -20,25 +16,8 @@
 	}
 
 	.mw-recentchanges-toplinks {
-		padding: 0 0.5em;
-
 		.oo-ui-widget-enabled.oo-ui-buttonElement.oo-ui-buttonElement-frameless .oo-ui-buttonElement-button {
 			padding: 0 2.5em 0 0.5em;
-		}
-
-		&-title,
-		.mw-collapsible-text {
-			// Same as the legend
-			font-size: 0.85em;
-		}
-
-		&:not( .mw-collapsed ) {
-			// Same as the legend
-			border: 1px solid #ddd;
-		}
-
-		body:not( .mw-rcfilters-ui-initialized ) & {
-			display: none;
 		}
 	}
 }
