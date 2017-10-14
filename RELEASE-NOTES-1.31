@@ -6,6 +6,8 @@ MediaWiki 1.31 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.31 ===
+* (T44246) $wgFilterLogTypes will no longer ignore patrol when user does
+  not have the right to mark things patrolled.
 * …
 
 === New features in 1.31 ===
