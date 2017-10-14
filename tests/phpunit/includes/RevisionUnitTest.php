@@ -74,6 +74,87 @@ class RevisionUnitTest extends MediaWikiTestCase {
 		];
 	}
 
+	public function provideGetId() {
+		yield [
+			[],
+			null
+		];
+		yield [
+			[ 'id' => 998 ],
+			998
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetId
+	 * @covers Revision::getId
+	 */
+	public function testGetId( $rowArray, $expectedId ) {
+		$rev = new Revision( $rowArray );
+		$this->assertEquals( $expectedId, $rev->getId() );
+	}
+
+	public function provideSetId() {
+		yield [ '123', 123 ];
+		yield [ 456, 456 ];
+	}
+
+	/**
+	 * @dataProvider provideSetId
+	 * @covers Revision::setId
+	 */
+	public function testSetId( $input, $expected ) {
+		$rev = new Revision( [] );
+		$rev->setId( $input );
+		$this->assertSame( $expected, $rev->getId() );
+	}
+
+	public function provideSetUserIdAndName() {
+		yield [ '123', 123, 'GOaT' ];
+		yield [ 456, 456, 'GOaT' ];
+	}
+
+	/**
+	 * @dataProvider provideSetUserIdAndName
+	 * @covers Revision::setUserIdAndName
+	 */
+	public function testSetUserIdAndName( $inputId, $expectedId, $name ) {
+		$rev = new Revision( [] );
+		$rev->setUserIdAndName( $inputId, $name );
+		$this->assertSame( $expectedId, $rev->getUser( Revision::RAW ) );
+		$this->assertEquals( $name, $rev->getUserText( Revision::RAW ) );
+	}
+
+	public function provideGetTextId() {
+		yield [ [], null ];
+		yield [ [ 'text_id' => '123' ], 123 ];
+		yield [ [ 'text_id' => 456 ], 456 ];
+	}
+
+	/**
+	 * @dataProvider provideGetTextId
+	 * @covers Revision::getTextId()
+	 */
+	public function testGetTextId( $rowArray, $expected ) {
+		$rev = new Revision( $rowArray );
+		$this->assertSame( $expected, $rev->getTextId() );
+	}
+
+	public function provideGetParentId() {
+		yield [ [], null ];
+		yield [ [ 'parent_id' => '123' ], 123 ];
+		yield [ [ 'parent_id' => 456 ], 456 ];
+	}
+
+	/**
+	 * @dataProvider provideGetParentId
+	 * @covers Revision::getParentId()
+	 */
+	public function testGetParentId( $rowArray, $expected ) {
+		$rev = new Revision( $rowArray );
+		$this->assertSame( $expected, $rev->getParentId() );
+	}
+
 	/**
 	 * @covers Revision::getRevisionText
 	 * @dataProvider provideGetRevisionText
