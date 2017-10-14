@@ -880,4 +880,18 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Revision::loadFromTimestamp()
+	 */
+	public function testLoadFromTimestamp() {
+		$this->assertRevEquals(
+			$this->testPage->getRevision(),
+			Revision::loadFromTimestamp(
+				wfGetDB( DB_MASTER ),
+				$this->testPage->getTitle(),
+				$this->testPage->getRevision()->getTimestamp()
+			)
+		);
+	}
+
 }
