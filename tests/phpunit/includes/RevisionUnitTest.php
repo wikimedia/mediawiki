@@ -202,4 +202,24 @@ class RevisionUnitTest extends MediaWikiTestCase {
 			Revision::getRevisionText( $row ), "getRevisionText" );
 	}
 
+	/**
+	 * @covers Revision::userJoinCond
+	 */
+	public function testUserJoinCond() {
+		$this->assertEquals(
+			[ 'LEFT JOIN', [ 'rev_user != 0', 'user_id = rev_user' ] ],
+			Revision::userJoinCond()
+		);
+	}
+
+	/**
+	 * @covers Revision::pageJoinCond
+	 */
+	public function testPageJoinCond() {
+		$this->assertEquals(
+			[ 'INNER JOIN', [ 'page_id = rev_page' ] ],
+			Revision::pageJoinCond()
+		);
+	}
+
 }
