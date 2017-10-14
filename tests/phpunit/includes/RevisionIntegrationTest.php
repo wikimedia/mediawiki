@@ -225,10 +225,18 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		$this->assertRevEquals( $orig, $rev );
 	}
 
+	public function provideTrueFalse() {
+		yield [ true ];
+		yield [ false ];
+	}
+
 	/**
+	 * @dataProvider provideTrueFalse
 	 * @covers Revision::newFromArchiveRow
 	 */
-	public function testNewFromArchiveRow() {
+	public function testNewFromArchiveRow( $contentHandlerUseDB ) {
+		$this->setMwGlobals( 'wgContentHandlerUseDB', $contentHandlerUseDB );
+
 		$page = $this->createPage(
 			'RevisionStorageTest_testNewFromArchiveRow',
 			'Lorem Ipsum',
