@@ -7661,6 +7661,7 @@ $wgLogRestrictions = [
 $wgFilterLogTypes = [
 	'patrol' => true,
 	'tag' => true,
+	'newusers' => false,
 ];
 
 /**
