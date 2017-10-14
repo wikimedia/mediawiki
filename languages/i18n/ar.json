@@ -1066,7 +1066,7 @@
 	"timezoneregion-europe": "أوروبا",
 	"timezoneregion-indian": "المحيط الهندي",
 	"timezoneregion-pacific": "المحيط الهادي",
-	"allowemail": "مكن تلقي البريد الإلكتروني من المستخدمين الآخرين",
+	"allowemail": "اسمح للمستخدمين الآخرين بإرسال بريد إلكتروني إلي",
 	"email-blacklist-label": "امنع هؤلاء المستخدمين من إرسال بريد إلكتروني لي:",
 	"prefs-searchoptions": "البحث",
 	"prefs-namespaces": "أسماء النطاقات",

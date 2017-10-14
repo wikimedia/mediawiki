@@ -1061,7 +1061,7 @@
 	"timezoneregion-europe": "유럽",
 	"timezoneregion-indian": "인도양",
 	"timezoneregion-pacific": "태평양",
-	"allowemail": "다른 사용자가 보낸 이메일을 받음",
+	"allowemail": "다른 사용자가 내게 이메일을 보낼 수 있게 허용",
 	"email-blacklist-label": "이 사용자들이 내게 이메일을 보내는 것을 금지합니다:",
 	"prefs-searchoptions": "검색",
 	"prefs-namespaces": "이름공간",

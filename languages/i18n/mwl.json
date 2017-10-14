@@ -674,6 +674,7 @@
 	"recentchangeslinked-to": "Amostrar antes altaraçones a páiginas que téngan a ber cula páigina dada",
 	"upload": "Cargar fexeiro",
 	"uploadbtn": "Cargar fexeiro",
+	"uploadtext": "Outelize l formulairo ambaixo pa cargar nuobos fexeiros.\nPa ber ó percurar fexeiros ambiados antes, cunsulte la [[Special:FileList|lhista de fexeiros]]. Las (re)cargaduras dun fexeiro son tamien registradas ne l [[Special:Log/upload|registro de cargaduras]], i ls fexeiros botados fuora ne l [[Special:Log/delete|registro de páiginas botadas fuora]].\n\nPa outelizar un fexeiro nua páigina, adepuis de cargar el, ansira ua lhigaçon cun un de ls seguintes formatos:\n* <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fexeiro.jpg]]</nowiki></code></strong> pa amostrar ua eimaige nas sues dimensones oureginales;\n* <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fexeiro.png|200px|thumb|left|testo]]</nowiki></code></strong> pa amostrar ua eimaige cula dimenson hourizuntal de 200 píxeles, drento dua caixa, na marge squierda, amostrando \"testo\" cumo çcriçon;\n* <strong><code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fexeiro.ogg]]</nowiki></code></strong> pa ua lhigaçon direta al fexeiro sien que el seia amostrado.",
 	"uploadlogpage": "Registro de carregamientos",
 	"filename": "Nome de l fexeiro",
 	"filedesc": "Çcriçon de l fexeiro",

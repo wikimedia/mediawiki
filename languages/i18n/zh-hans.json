@@ -1094,7 +1094,7 @@
 	"timezoneregion-europe": "欧洲",
 	"timezoneregion-indian": "印度洋",
 	"timezoneregion-pacific": "太平洋",
-	"allowemail": "启用来自其他用户的电子邮件",
+	"allowemail": "允许其他用户向我发送电子邮件",
 	"email-blacklist-label": "禁止这些用户给我发送电子邮件：",
 	"prefs-searchoptions": "搜索",
 	"prefs-namespaces": "名字空间",

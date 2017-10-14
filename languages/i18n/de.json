@@ -2133,7 +2133,7 @@
 	"emailuser-title-target": "E-Mail an {{GENDER:$1|diesen Benutzer|diese Benutzerin}} senden",
 	"emailuser-title-notarget": "E-Mail an Benutzer",
 	"emailpagetext": "Du kannst {{GENDER:$1|dem Benutzer|der Benutzerin}} mit dem unten stehenden Formular eine E-Mail senden.\nAls Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellungen]] eingetragen, damit {{GENDER:$1|der Benutzer|die Benutzerin}} dir direkt antworten kann.",
-	"defemailsubject": "{{SITENAME}} – E-Mail von Benutzer „$1“",
+	"defemailsubject": "{{SITENAME}} – E-Mail von {{GENDER:$1|Benutzer|Benutzerin}} „$1“",
 	"usermaildisabled": "E-Mail-Empfang deaktiviert",
 	"usermaildisabledtext": "Du kannst in diesem Wiki keine E-Mails an andere Benutzer senden",
 	"noemailtitle": "Keine E-Mail-Adresse",
