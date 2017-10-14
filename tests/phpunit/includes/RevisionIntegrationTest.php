@@ -791,4 +791,54 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		$this->assertSame( $content, $content2 );
 	}
 
+	/**
+	 * @covers Revision::loadFromId
+	 */
+	public function testLoadFromId() {
+		$rev = $this->testPage->getRevision();
+		$this->assertRevEquals(
+			$rev,
+			Revision::loadFromId( wfGetDB( DB_MASTER ), $rev->getId() )
+		);
+	}
+
+	/**
+	 * @covers Revision::loadFromPageId
+	 */
+	public function testLoadFromPageId() {
+		$this->assertRevEquals(
+			$this->testPage->getRevision(),
+			Revision::loadFromPageId( wfGetDB( DB_MASTER ), $this->testPage->getId() )
+		);
+	}
+
+	/**
+	 * @covers Revision::loadFromPageId
+	 */
+	public function testLoadFromPageIdWithLatestRevId() {
+		$this->assertRevEquals(
+			$this->testPage->getRevision(),
+			Revision::loadFromPageId(
+				wfGetDB( DB_MASTER ),
+				$this->testPage->getId(),
+				$this->testPage->getLatest()
+			)
+		);
+	}
+
+	/**
+	 * @covers Revision::loadFromPageId
+	 */
+	public function testLoadFromPageIdWithNotLatestRevId() {
+		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
+		$this->assertRevEquals(
+			$this->testPage->getRevision()->getPrevious(),
+			Revision::loadFromPageId(
+				wfGetDB( DB_MASTER ),
+				$this->testPage->getId(),
+				$this->testPage->getRevision()->getPrevious()->getId()
+			)
+		);
+	}
+
 }
