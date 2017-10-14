@@ -3253,6 +3253,7 @@
 	"patrol-log-header": "Text that appears above the log entries on the [[Special:log|patrol log]].",
 	"log-show-hide-patrol": "Used in [[Special:Log]]. Parameters:\n* $1 - link text; one of {{msg-mw|Show}} or {{msg-mw|Hide}}\n{{Related|Log-show-hide}}",
 	"log-show-hide-tag": "Used in [[Special:Log]]. Parameters:\n* $1 - link text; one of {{msg-mw|Show}} or {{msg-mw|Hide}}\n{{Related|Log-show-hide}}",
+	"log-show-hide-newusers": "Used in [[Special:Log]] as a toggle to show or hide account creations in the main log page. Parameters:\n* $1 - link text; one of {{msg-mw|Show}} or {{msg-mw|Hide}}\n{{Related|Log-show-hide}}",
 	"confirm-markpatrolled-button": "Used as Submit button text.\n{{Identical|OK}}",
 	"confirm-markpatrolled-top": "Confirmation message on interstitial form.\n\nParameters:\n* $1 - Target page title\n* $2 - Link to target page with page title as label\n* $3 - Link to recent change diff with revision ID as label",
 	"deletedrevision": "Used as log comment. Parameters:\n* $1 - archive name of old image",
