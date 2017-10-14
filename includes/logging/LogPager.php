@@ -97,13 +97,11 @@ class LogPager extends ReverseChronologicalPager {
 			return $filters;
 		}
 		foreach ( $wgFilterLogTypes as $type => $default ) {
-			// Avoid silly filtering
-			if ( $type !== 'patrol' || $this->getUser()->useNPPatrol() ) {
-				$hide = $this->getRequest()->getInt( "hide_{$type}_log", $default );
-				$filters[$type] = $hide;
-				if ( $hide ) {
-					$this->mConds[] = 'log_type != ' . $this->mDb->addQuotes( $type );
-				}
+			$hide = $this->getRequest()->getInt( "hide_{$type}_log", $default );
+
+			$filters[$type] = $hide;
+			if ( $hide ) {
+				$this->mConds[] = 'log_type != ' . $this->mDb->addQuotes( $type );
 			}
 		}
 

@@ -6803,6 +6803,9 @@ $wgRCWatchCategoryMembership = false;
 /**
  * Use RC Patrolling to check for vandalism (from recent changes and watchlists)
  * New pages and new files are included.
+ *
+ * @note If you disable all patrolling features, you probably also want to
+ *  remove patrol from $wgFilterLogTypes.
  */
 $wgUseRCPatrol = true;
 
