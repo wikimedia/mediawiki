@@ -23,7 +23,7 @@
  * @ingroup SpecialPage
  */
 
-use Mediawiki\MediaWikiServices;
+use MediaWiki\MediaWikiServices;
 
 /**
  * A special page that allows users to export pages in a XML file
