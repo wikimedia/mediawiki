@@ -3187,7 +3187,7 @@
 	"version-license-not-found": "اس توسیع کے اجازت نامے سے متعلق تفصیلی معلومات دستیاب نہین ہوئی۔",
 	"version-credits-title": "$1 کے انتسابات",
 	"version-credits-not-found": "اس توسیع کے انتسابات سے متعلق تفصیلی معلومات دستیاب نہین ہوئی۔",
-	"version-poweredby-credits": "پیش نظر ویکی <strong>[https://www.mediawiki.org/ میڈیاویکی]</strong> کی تقویت یافتہ ہے، جملہ حقوق محفوظ © 2001-$1 $2 بنام",
+	"version-poweredby-credits": "پیش نظر ویکی <strong>[https://www.mediawiki.org/ میڈیاویکی سافٹ ویئر]</strong> کی تقویت یافتہ ہے۔ جملہ حقوق محفوظ © 2001-$1 $2",
 	"version-poweredby-others": "دیگر",
 	"version-poweredby-translators": "translatewiki.net کے مترجمین",
 	"version-credits-summary": "ہم درج ذیل اشخاص کی [[Special:Version|میڈیاویکی]] کی تعمیر میں شرکت کرنے کا اعتراف کرتے ہیں۔",

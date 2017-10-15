@@ -112,7 +112,8 @@
 			"WikiUser22222",
 			"BarbaraAckles",
 			"Trigonometria87",
-			"RadiX"
+			"RadiX",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Link sublinhado:",
@@ -1995,7 +1996,7 @@
 	"nopagetitle": "Página alvo não existe",
 	"nopagetext": "A página alvo especificada não existe.",
 	"pager-newer-n": "{{PLURAL:$1|posterior|$1 posteriores}}",
-	"pager-older-n": "{{PLURAL:$1|1 anterior|$1 anteriores}}",
+	"pager-older-n": "{{PLURAL:$1|anterior|$1 anteriores}}",
 	"suppress": "Suprimir",
 	"querypage-disabled": "Esta página especial está desativada para não prejudicar o desempenho.",
 	"apihelp": "Ajuda de API",
@@ -2551,7 +2552,7 @@
 	"ipb_blocked_as_range": "Erro: O IP $1 não se encontra bloqueado de forma direta, não podendo ser desbloqueado deste modo. Se encontra bloqueado como parte do \"range\" $2, o qual pode ser desbloqueado.",
 	"ip_range_invalid": "Gama de IPs inválida.",
 	"ip_range_toolarge": "Intervalos de bloqueio maiores do que /$1 não são permitidos",
-	"ip_range_exceeded": "O intervalo de IP excede o seu alcance máximo. Intervalo permitido:: /$1.",
+	"ip_range_exceeded": "O intervalo de IP excede o seu alcance máximo. Intervalo permitido: /$1.",
 	"ip_range_toolow": "Os intervalos de IP não são efetivamente permitidos.",
 	"proxyblocker": "Bloqueador de proxy",
 	"proxyblockreason": "O seu endereço de IP foi bloqueado por ser um proxy público. Por favor contacte o seu fornecedor do serviço de Internet ou o apoio técnico e informe-os deste problema de segurança grave.",
