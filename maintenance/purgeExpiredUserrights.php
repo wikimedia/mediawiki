@@ -21,6 +21,7 @@
  */
 
 require_once __DIR__ . '/Maintenance.php';
+use MediaWiki\MediaWikiServices;
 
 /*
  * Maintenance script to move expired userrights to user_former_groups
@@ -36,7 +37,10 @@ class PurgeExpiredUserrights extends Maintenance {
 
 	public function execute() {
 		$this->output( "Purging expired user rights...\n" );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory->beginMasterChanges( __METHOD__ );
 		UserGroupMembership::purgeExpired();
+		$lbFactory->commitMasterChanges( __METHOD__ );
 		$this->output( "Purge requests submitted.\n" );
 	}
 }
