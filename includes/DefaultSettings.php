@@ -7459,6 +7459,7 @@ $wgJobClasses = [
 	'clearUserWatchlist' => ClearUserWatchlistJob::class,
 	'cdnPurge' => CdnPurgeJob::class,
 	'enqueue' => EnqueueJob::class, // local queue for multi-DC setups
+	'userGroupExpiry' => UserGroupExpiryJob::class,
 	'null' => NullJob::class,
 ];
 

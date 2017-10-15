@@ -11,9 +11,10 @@ class SiteStatsTest extends MediaWikiTestCase {
 		$cache = \MediaWiki\MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$jobq = JobQueueGroup::singleton();
 
-		// Delete EditPage jobs that might have been left behind by other tests
+		// Delete jobs that might have been left behind by other tests
 		$jobq->get( 'htmlCacheUpdate' )->delete();
 		$jobq->get( 'recentChangesUpdate' )->delete();
+		$jobq->get( 'userGroupExpiry' )->delete();
 		$cache->delete( $cache->makeKey( 'SiteStats', 'jobscount' ) );
 
 		$jobq->push( new NullJob( Title::newMainPage(), [] ) );
