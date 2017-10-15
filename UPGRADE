@@ -3,7 +3,7 @@ specific problems, check
 
 * the documentation at https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents
 * the mediawiki-l mailing list archive at
-  http://lists.wikimedia.org/pipermail/mediawiki-l/
+  https://lists.wikimedia.org/pipermail/mediawiki-l/
 * the bug tracker at https://phabricator.wikimedia.org/
 
 for information and workarounds to common issues.
@@ -36,7 +36,7 @@ your operating system documentation for information on making copies of files.
 
 Download the files for the new version of the software. These are available
 as a compressed "tar" archive from the Wikimedia Download Service
-(http://download.wikimedia.org/mediawiki).
+(https://releases.wikimedia.org/mediawiki/).
 
 You can also obtain the new files directly from our Git source code
 repository.
