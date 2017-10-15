@@ -21,6 +21,7 @@
  */
 
 use Wikimedia\Rdbms\IDatabase;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Represents a "user group membership" -- a specific instance of a user belonging
@@ -253,19 +254,31 @@ class UserGroupMembership {
 			__METHOD__,
 			function ( IDatabase $dbw, $fname ) {
 				$expiryCond = [ 'ug_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ];
-				$res = $dbw->select( 'user_groups', self::selectFields(), $expiryCond, $fname );
 
-				// save an array of users/groups to insert to user_former_groups
-				$usersAndGroups = [];
-				foreach ( $res as $row ) {
-					$usersAndGroups[] = [ 'ufg_user' => $row->ug_user, 'ufg_group' => $row->ug_group ];
+				while ( $dbw->selectRowCount( 'user_groups', self::selectFields(), $expiryCond, $fname ) > 0 ) {
+
+					$res = $dbw->select( 'user_groups',
+						self::selectFields(),
+						$expiryCond,
+						$fname,
+						[ 'FOR UPDATE', 'LIMIT' => 100 ] );
+
+					$insertData = []; // save an array of users/groups to insert to user_former_groups
+					$deleteCond = []; // and another one for deleting the rows that are to be moved around
+					foreach ( $res as $row ) {
+						$insertData[] = [ 'ufg_user' => $row->ug_user, 'ufg_group' => $row->ug_group ];
+						$deleteCond[] = $dbw->makeList( [ 'ug_user' => $row->ug_user, 'ug_group' => $row->ug_group ],
+							$dbw::LIST_AND );
+					}
+
+					// delete the rows we're about to move
+					$dbw->delete( 'user_groups', $dbw->makeList( $deleteCond, $dbw::LIST_OR ), $fname );
+
+					// and push the groups to user_former_groups
+					$dbw->insert( 'user_former_groups', $insertData, __METHOD__, [ 'IGNORE' ] );
+
+					MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
 				}
-
-				// delete 'em all
-				$dbw->delete( 'user_groups', $expiryCond, $fname );
-
-				// and push the groups to user_former_groups
-				$dbw->insert( 'user_former_groups', $usersAndGroups, __METHOD__, [ 'IGNORE' ] );
 			}
 		) );
 	}
