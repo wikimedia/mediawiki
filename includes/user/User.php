@@ -763,9 +763,9 @@ class User implements IDBAccessObject {
 	 * @return int|null The corresponding user's ID, or null if user is nonexistent
 	 */
 	public static function idFromName( $name, $flags = self::READ_NORMAL ) {
-		$nt = Title::makeTitleSafe( NS_USER, $name );
-		if ( is_null( $nt ) ) {
-			// Illegal name
+		// Validate the user name - if it is invalid, e.g. it is an IP address, stop here.
+		$name = self::getCanonicalName( $name );
+		if ( !$name ) {
 			return null;
 		}
 
@@ -779,7 +779,7 @@ class User implements IDBAccessObject {
 		$s = $db->selectRow(
 			'user',
 			[ 'user_id' ],
-			[ 'user_name' => $nt->getText() ],
+			[ 'user_name' => $name ],
 			__METHOD__,
 			$options
 		);
