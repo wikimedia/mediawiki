@@ -5,7 +5,7 @@ class BSLocalSettingsGenerator extends LocalSettingsGenerator {
 	function getText() {
 		// add a new setting
 		$ls = parent::getText();
-		return $ls . "\nrequire_once '\$IP/LocalSettings.BlueSpice.php';\n";
+		return $ls . "\nrequire_once \"\$IP/LocalSettings.BlueSpice.php\";\n";
 	}
 }
 
@@ -33,7 +33,7 @@ class BSCliInstaller extends CliInstaller {
 		$wgAutoloadClasses = [];
 		$queue = [];
 
-		require "$IP/includes/DefaultSettings.php";
+		require_once "$IP/includes/DefaultSettings.php";
 		require_once __DIR__ . '/../../extensions/BlueSpiceFoundation/includes/Defines.php';
 		require_once __DIR__ . '/../../LocalSettings.BlueSpice.php';
 
