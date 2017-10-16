@@ -5324,6 +5324,8 @@ class User implements IDBAccessObject {
 			// to an array of ids.
 			if ( isset( $data['email-blacklist'] ) && $data['email-blacklist'] ) {
 				$data['email-blacklist'] = array_map( 'intval', explode( "\n", $data['email-blacklist'] ) );
+			} else {
+				$data['email-blacklist'] = [];
 			}
 
 			foreach ( $data as $property => $value ) {
@@ -5363,8 +5365,9 @@ class User implements IDBAccessObject {
 				$this->mOptions['email-blacklist'] = $ids;
 				$saveOptions['email-blacklist'] = implode( "\n", $this->mOptions['email-blacklist'] );
 			} else {
-				// If the blacklist is empty, set it to null rather than an empty string.
-				$this->mOptions['email-blacklist'] = null;
+				// If the blacklist is empty, Remove it from the options.
+				$this->mOptions['email-blacklist'] = [];
+				unset( $saveOptions['email-blacklist'] );
 			}
 		}
 
