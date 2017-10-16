@@ -1,4 +1,6 @@
 @import 'mediawiki.mixins';
+@import 'mediawiki.ui/variables';
+@import 'mw.rcfilters.variables';
 
 .mw-rcfilters-ui-itemMenuOptionWidget {
 	min-height: 3.5em;
@@ -6,11 +8,11 @@
 	.box-sizing( border-box );
 
 	&:not( :last-child ) {
-		border-bottom: 1px solid #eaecf0; // Base80 AAA
+		border-bottom: 1px solid @colorGray14;
 	}
 
 	&-view-namespaces {
-		border-top: 5px solid #c8ccd1;
+		border-top: 5px solid @colorGray12;
 
 		&:first-child,
 		&.mw-rcfilters-ui-itemMenuOptionWidget-identifier-subject + &.mw-rcfilters-ui-itemMenuOptionWidget-identifier-talk {
@@ -19,7 +21,7 @@
 	}
 
 	&:hover {
-		background-color: #f8f9fa;
+		background-color: @colorGray15;
 	}
 
 	.mw-rcfilters-ui-table {
@@ -27,17 +29,17 @@
 	}
 
 	&.oo-ui-optionWidget-selected {
-		background-color: #eaf3ff; // Accent90 AAA
+		background-color: @background-color-primary;
 	}
 
 	&-label {
 		&-title {
 			font-weight: bold;
 			font-size: 1.15em;
-			color: #222;
+			color: @colorGray2;
 		}
 		&-desc {
-			color: #54595d;
+			color: @colorGray5;
 			white-space: normal;
 		}
 	}
@@ -61,7 +63,7 @@
 	&-excludeLabel {
 		width: 5em;
 		padding-left: 1em;
-		color: #54595d; // Base20 AAA
+		color: @colorGray5;
 	}
 
 	&-highlightButton {

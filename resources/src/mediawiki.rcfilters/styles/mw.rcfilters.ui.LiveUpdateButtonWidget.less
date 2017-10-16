@@ -1,3 +1,5 @@
+@import 'mediawiki.mixins';
+
 .mw-rcfilters-ui-liveUpdateButtonWidget {
 	margin-left: 1em;
 
@@ -26,15 +28,15 @@
 @keyframes ripple {
 	0%,
 	35% {
-		transform: scale( 0 );
+		.transform( scale( 0 ) );
 		opacity: 1;
 	}
 	50% {
-		transform: scale( 1.5 );
+		.transform( scale( 1.5 ) );
 		opacity: 0.8;
 	}
 	100% {
 		opacity: 0;
-		transform: scale( 4 );
+		.transform( scale( 4 ) );
 	}
 }
