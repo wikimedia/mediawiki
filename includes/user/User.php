@@ -5330,7 +5330,9 @@ class User implements IDBAccessObject {
 			// Convert the email blacklist from a new line delimited string
 			// to an array of ids.
 			if ( isset( $data['email-blacklist'] ) && $data['email-blacklist'] ) {
-				$data['email-blacklist'] = array_map( 'intval', explode( "\n", $data['email-blacklist'] ) );
+				$data['email-blacklist'] = $this->intArray( explode( "\n", $data['email-blacklist'] ) );
+			} else {
+				$data['email-blacklist'] = [];
 			}
 
 			foreach ( $data as $property => $value ) {
@@ -5342,6 +5344,27 @@ class User implements IDBAccessObject {
 		$this->mOptionsLoaded = true;
 
 		Hooks::run( 'UserLoadOptions', [ $this, &$this->mOptions ] );
+	}
+
+	/**
+	 * Generates an array of ints.
+	 *
+	 * @param array $numbers
+	 *
+	 * @return int[]
+	 */
+	protected function intArray( array $numbers ) {
+		$data = [];
+
+		foreach ( $numbers as $value ) {
+			$int = intval( $value );
+			if ( $int === 0 ) {
+				continue;
+			}
+			$data[] = $int;
+		}
+
+		return $data;
 	}
 
 	/**
@@ -5367,11 +5390,15 @@ class User implements IDBAccessObject {
 					$lookup = CentralIdLookup::factory();
 					$ids = $lookup->centralIdsFromNames( explode( "\n", $value ), $this );
 				}
+
+				$ids = $this->intArray( $ids );
+
 				$this->mOptions['email-blacklist'] = $ids;
 				$saveOptions['email-blacklist'] = implode( "\n", $this->mOptions['email-blacklist'] );
 			} else {
-				// If the blacklist is empty, set it to null rather than an empty string.
-				$this->mOptions['email-blacklist'] = null;
+				// If the blacklist is empty, Remove it from the options.
+				$this->mOptions['email-blacklist'] = [];
+				unset( $saveOptions['email-blacklist'] );
 			}
 		}
 
