@@ -48,7 +48,8 @@
 				widget.switchTopLinks( 'collapsed' );
 			} );
 
-		this.$topLinks.find( '.mw-recentchanges-toplinks-title' ).replaceWith( toplinksTitle.$element );
+		this.$topLinks.find( '.mw-recentchanges-toplinks-title' )
+			.replaceWith( toplinksTitle.$element.removeAttr( 'tabIndex' ) );
 
 		// Create two positions for the toplinks to toggle between
 		// in the table (first cell) or up above it
