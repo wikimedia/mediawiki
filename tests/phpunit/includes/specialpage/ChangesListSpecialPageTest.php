@@ -15,6 +15,13 @@ use Wikimedia\TestingAccessWrapper;
  * @covers ChangesListSpecialPage
  */
 class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase {
+	public function setUp() {
+		parent::setUp();
+		$this->setMwGlobals( [
+			'wgStructuredChangeFiltersShowPreference' => true,
+		] );
+	}
+
 	protected function getPage() {
 		$mock = $this->getMockBuilder( ChangesListSpecialPage::class )
 			->setConstructorArgs(
