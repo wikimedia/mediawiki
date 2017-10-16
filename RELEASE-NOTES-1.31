@@ -48,6 +48,10 @@ changes to languages because of Phabricator reports.
   Maintenance::countDown()
 * The OutputPage class constructor now requires a context parameter,
   (instantiating without context was deprecated in 1.18)
+* The following methods of OutputPage are now deprecated in favour
+  of using showFatalError directly: OutputPage::showFileDeleteError()
+  OutputPage::showFileNotFoundError(), OutputPage::showFileRenameError()
+  OutputPage::showFileCopyError() and OutputPage::showUnexpectedValueError().
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. There is experimental support for
