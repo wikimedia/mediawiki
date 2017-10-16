@@ -963,7 +963,7 @@ EOT
 				$fromSrc = $this->getContext()->msg(
 					'shared-repo-from',
 					$file->getRepo()->getDisplayName()
-				)->text();
+				)->escaped();
 			}
 			$out->addHTML( "<li>{$link} {$fromSrc}</li>\n" );
 		}
