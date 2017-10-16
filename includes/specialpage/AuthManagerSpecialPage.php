@@ -697,6 +697,10 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 				$descriptor['default'] = $singleFieldInfo['value'];
 			}
 
+			if ( isset( $singleFieldInfo['weight'] ) ) {
+				$descriptor['weight'] = $singleFieldInfo['weight'];
+			}
+
 			if ( empty( $singleFieldInfo['optional'] ) ) {
 				$descriptor['required'] = true;
 			}
