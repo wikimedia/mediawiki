@@ -135,6 +135,11 @@ class Command {
 	 * @return $this
 	 */
 	public function limits( array $limits ) {
+		if ( !isset( $limits['walltime'] ) && isset( $limits['time'] ) ) {
+			// Emulate the behavior of old wfShellExec() where walltime fell back on time
+			// if the latter was overridden and the former wasn't
+			$limits['walltime'] = $limits['time'];
+		}
 		$this->limits = $limits + $this->limits;
 
 		return $this;
@@ -227,8 +232,6 @@ class Command {
 		if ( is_executable( '/bin/bash' ) ) {
 			$time = intval( $this->limits['time'] );
 			$wallTime = intval( $this->limits['walltime'] );
-			// for b/c, wall time falls back to time
-			$wallTime = min( $time, $wallTime );
 			$mem = intval( $this->limits['memory'] );
 			$filesize = intval( $this->limits['filesize'] );
 
