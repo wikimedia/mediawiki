@@ -5330,7 +5330,13 @@ class User implements IDBAccessObject {
 			// Convert the email blacklist from a new line delimited string
 			// to an array of ids.
 			if ( isset( $data['email-blacklist'] ) && $data['email-blacklist'] ) {
-				$data['email-blacklist'] = array_map( 'intval', explode( "\n", $data['email-blacklist'] ) );
+				$ids = array_map( 'intval', explode( "\n", $data['email-blacklist'] ) );
+				$ids = array_filter( $ids, function ( $id ) {
+					return $id !== 0;
+				} );
+				$data['email-blacklist'] = $ids;
+			} else {
+				$data['email-blacklist'] = [];
 			}
 
 			foreach ( $data as $property => $value ) {
@@ -5367,11 +5373,18 @@ class User implements IDBAccessObject {
 					$lookup = CentralIdLookup::factory();
 					$ids = $lookup->centralIdsFromNames( explode( "\n", $value ), $this );
 				}
+
+				$ids = array_map( 'intval', $ids );
+				$ids = array_filter( $ids, function ( $id ) {
+					return $id !== 0;
+				} );
+
 				$this->mOptions['email-blacklist'] = $ids;
 				$saveOptions['email-blacklist'] = implode( "\n", $this->mOptions['email-blacklist'] );
 			} else {
-				// If the blacklist is empty, set it to null rather than an empty string.
-				$this->mOptions['email-blacklist'] = null;
+				// If the blacklist is empty, Remove it from the options.
+				$this->mOptions['email-blacklist'] = [];
+				unset( $saveOptions['email-blacklist'] );
 			}
 		}
 
