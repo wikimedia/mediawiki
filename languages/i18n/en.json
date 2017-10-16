@@ -1367,7 +1367,7 @@
 	"rcfilters-days-show-hours": "$1 {{PLURAL:$1|hour|hours}}",
 	"rcfilters-highlighted-filters-list": "Highlighted: $1",
 	"rcfilters-quickfilters": "Saved filters",
-	"rcfilters-quickfilters-placeholder-title": "No links saved yet",
+	"rcfilters-quickfilters-placeholder-title": "No filters saved yet",
 	"rcfilters-quickfilters-placeholder-description": "To save your filter settings and reuse them later, click the bookmark icon in the Active Filter area, below.",
 	"rcfilters-savedqueries-defaultlabel": "Saved filters",
 	"rcfilters-savedqueries-rename": "Rename",
