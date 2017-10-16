@@ -26,7 +26,7 @@ supporting them became too heavy to bear. Those were:
 
 * Nostalgia: A skin which looks like Wikipedia did in its first year (2001).
   This skin is now used for the old Wikipedia snapshot at
-  http://nostalgia.wikipedia.org/
+  https://nostalgia.wikipedia.org/
 
 * Chick: A lightweight Monobook skin with no sidebar. The sidebar links were
   given at the bottom of the page instead.

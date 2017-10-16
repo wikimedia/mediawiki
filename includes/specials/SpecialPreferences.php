@@ -121,7 +121,7 @@ class SpecialPreferences extends SpecialPage {
 	 * Get the preferences form to use.
 	 * @param User $user The user.
 	 * @param IContextSource $context The context.
-	 * @return PreferencesForm|HtmlForm
+	 * @return PreferencesForm|HTMLForm
 	 */
 	protected function getFormObject( $user, IContextSource $context ) {
 		return Preferences::getFormObject( $user, $context );

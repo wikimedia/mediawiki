@@ -18,7 +18,10 @@
 		this.controller = controller;
 		this.model = model;
 
-		this.buttons = new OO.ui.ButtonGroupWidget( {
+		this.buttons = new mw.rcfilters.ui.GroupWidget( {
+			events: {
+				click: 'buttonClick'
+			},
 			items: [
 				new OO.ui.ButtonWidget( {
 					data: 'namespaces',
@@ -35,7 +38,6 @@
 
 		// Events
 		this.model.connect( this, { update: 'onModelUpdate' } );
-		this.buttons.aggregate( { click: 'buttonClick' } );
 		this.buttons.connect( this, { buttonClick: 'onButtonClick' } );
 
 		this.$element

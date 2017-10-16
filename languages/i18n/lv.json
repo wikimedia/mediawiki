@@ -1186,6 +1186,7 @@
 	"rcfilters-view-advanced-filters-label": "Paplašinātie filtri",
 	"rcfilters-view-tags": "Iezīmētie labojumi",
 	"rcfilters-view-namespaces-tooltip": "Filtrēt rezultātus pēc vārdtelpas",
+	"rcfilters-view-tags-help-icon-tooltip": "Uzzināt vairāk par iezīmētajiem labojumiem",
 	"rcfilters-watchlist-markseen-button": "Atzīmēt visas izmaiņas kā apskatītas",
 	"rcfilters-watchlist-edit-watchlist-button": "Labot manu uzraugāmo lapu sarakstu",
 	"rcnotefrom": "Šobrīd redzamas izmaiņas kopš '''$2''' (parādītas ne vairāk par '''$1''').",

@@ -52,7 +52,7 @@ class SkinFactoryTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers Skin::__constructor
+	 * @covers Skin::__construct
 	 * @covers Skin::getSkinName
 	 */
 	public function testGetSkinName() {

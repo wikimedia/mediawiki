@@ -136,7 +136,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 	}
 
 	public function getInputWidget( $params ) {
-		return new Mediawiki\Widget\SelectWithInputWidget( $params );
+		return new MediaWiki\Widget\SelectWithInputWidget( $params );
 	}
 
 	/**

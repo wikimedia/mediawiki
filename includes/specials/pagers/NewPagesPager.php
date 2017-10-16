@@ -28,7 +28,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	protected $opts;
 
 	/**
-	 * @var HtmlForm
+	 * @var HTMLForm
 	 */
 	protected $mForm;
 
