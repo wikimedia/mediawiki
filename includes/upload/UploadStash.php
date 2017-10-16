@@ -118,12 +118,15 @@ class UploadStash {
 	 */
 	public function getFile( $key, $noAuth = false ) {
 		if ( !preg_match( self::KEY_FORMAT_REGEX, $key ) ) {
-			throw new UploadStashBadPathException( "key '$key' is not in a proper format" );
+			throw new UploadStashBadPathException(
+				wfMessage( 'uploadstash-bad-path-bad-format', $key )
+			);
 		}
 
 		if ( !$noAuth && !$this->isLoggedIn ) {
-			throw new UploadStashNotLoggedInException( __METHOD__ .
-				' No user is logged in, files must belong to users' );
+			throw new UploadStashNotLoggedInException(
+				wfMessage( 'uploadstash-not-logged-in' )
+			);
 		}
 
 		if ( !isset( $this->fileMetadata[$key] ) ) {
@@ -134,7 +137,9 @@ class UploadStash {
 			}
 
 			if ( !isset( $this->fileMetadata[$key] ) ) {
-				throw new UploadStashFileNotFoundException( "key '$key' not found in stash" );
+				throw new UploadStashFileNotFoundException(
+					wfMessage( 'uploadstash-file-not-found', $key )
+				);
 			}
 
 			// create $this->files[$key]
@@ -153,13 +158,16 @@ class UploadStash {
 		if ( !$this->files[$key]->exists() ) {
 			wfDebug( __METHOD__ . " tried to get file at $key, but it doesn't exist\n" );
 			// @todo Is this not an UploadStashFileNotFoundException case?
-			throw new UploadStashBadPathException( "path doesn't exist" );
+			throw new UploadStashBadPathException(
+				wfMessage( 'uploadstash-bad-path' )
+			);
 		}
 
 		if ( !$noAuth ) {
 			if ( $this->fileMetadata[$key]['us_user'] != $this->userId ) {
-				throw new UploadStashWrongOwnerException( "This file ($key) doesn't "
-					. "belong to the current user." );
+				throw new UploadStashWrongOwnerException(
+					wfMessage( 'uploadstash-wrong-owner', $key )
+				);
 			}
 		}
 
@@ -205,7 +213,9 @@ class UploadStash {
 	public function stashFile( $path, $sourceType = null ) {
 		if ( !is_file( $path ) ) {
 			wfDebug( __METHOD__ . " tried to stash file at '$path', but it doesn't exist\n" );
-			throw new UploadStashBadPathException( "path doesn't exist" );
+			throw new UploadStashBadPathException(
+				wfMessage( 'uploadstash-bad-path' )
+			);
 		}
 
 		$mwProps = new MWFileProps( MimeMagic::singleton() );
@@ -236,7 +246,9 @@ class UploadStash {
 		$this->fileProps[$key] = $fileProps;
 
 		if ( !preg_match( self::KEY_FORMAT_REGEX, $key ) ) {
-			throw new UploadStashBadPathException( "key '$key' is not in a proper format" );
+			throw new UploadStashBadPathException(
+				wfMessage( 'uploadstash-bad-path-bad-format', $key )
+			);
 		}
 
 		wfDebug( __METHOD__ . " key for '$path': $key\n" );
@@ -271,8 +283,9 @@ class UploadStash {
 
 		// fetch the current user ID
 		if ( !$this->isLoggedIn ) {
-			throw new UploadStashNotLoggedInException( __METHOD__
-				. ' No user is logged in, files must belong to users' );
+			throw new UploadStashNotLoggedInException(
+				wfMessage( 'uploadstash-not-logged-in' )
+			);
 		}
 
 		// insert the file metadata into the db.
@@ -331,8 +344,9 @@ class UploadStash {
 	 */
 	public function clear() {
 		if ( !$this->isLoggedIn ) {
-			throw new UploadStashNotLoggedInException( __METHOD__
-				. ' No user is logged in, files must belong to users' );
+			throw new UploadStashNotLoggedInException(
+				wfMessage( 'uploadstash-not-logged-in' )
+			);
 		}
 
 		wfDebug( __METHOD__ . ' clearing all rows for user ' . $this->userId . "\n" );
@@ -360,8 +374,9 @@ class UploadStash {
 	 */
 	public function removeFile( $key ) {
 		if ( !$this->isLoggedIn ) {
-			throw new UploadStashNotLoggedInException( __METHOD__
-				. ' No user is logged in, files must belong to users' );
+			throw new UploadStashNotLoggedInException(
+				wfMessage( 'uploadstash-not-logged-in' )
+			);
 		}
 
 		$dbw = $this->repo->getMasterDB();
@@ -376,12 +391,15 @@ class UploadStash {
 		);
 
 		if ( !$row ) {
-			throw new UploadStashNoSuchKeyException( "No such key ($key), cannot remove" );
+			throw new UploadStashNoSuchKeyException(
+				wfMessage( 'uploadstash-no-such-key', $key )
+			);
 		}
 
 		if ( $row->us_user != $this->userId ) {
-			throw new UploadStashWrongOwnerException( "Can't delete: "
-				. "the file ($key) doesn't belong to this user." );
+			throw new UploadStashWrongOwnerException(
+				wfMessage( 'uploadstash-wrong-owner', $key )
+			);
 		}
 
 		return $this->removeFileNoAuth( $key );
@@ -426,8 +444,9 @@ class UploadStash {
 	 */
 	public function listFiles() {
 		if ( !$this->isLoggedIn ) {
-			throw new UploadStashNotLoggedInException( __METHOD__
-				. ' No user is logged in, files must belong to users' );
+			throw new UploadStashNotLoggedInException(
+				wfMessage( 'uploadstash-not-logged-in' )
+			);
 		}
 
 		$dbr = $this->repo->getReplicaDB();
@@ -480,7 +499,9 @@ class UploadStash {
 		}
 
 		if ( is_null( $extension ) ) {
-			throw new UploadStashFileException( "extension is null" );
+			throw new UploadStashFileException(
+				wfMessage( 'uploadstash-no-extension' )
+			);
 		}
 
 		$extension = File::normalizeExtension( $extension );
@@ -545,7 +566,9 @@ class UploadStash {
 	protected function initFile( $key ) {
 		$file = new UploadStashFile( $this->repo, $this->fileMetadata[$key]['us_path'], $key );
 		if ( $file->getSize() === 0 ) {
-			throw new UploadStashZeroLengthFileException( "File is zero length" );
+			throw new UploadStashZeroLengthFileException(
+				wfMessage( 'uploadstash-zero-length' )
+			);
 		}
 		$this->files[$key] = $file;
 
@@ -585,14 +608,18 @@ class UploadStashFile extends UnregisteredLocalFile {
 			) {
 				wfDebug( "UploadStash: tried to construct an UploadStashFile "
 					. "from a file that should already exist at '$path', but path is not valid\n" );
-				throw new UploadStashBadPathException( 'path is not valid' );
+				throw new UploadStashBadPathException(
+					wfMessage( 'uploadstash-bad-path-invalid' )
+				);
 			}
 
 			// check if path exists! and is a plain file.
 			if ( !$repo->fileExists( $path ) ) {
 				wfDebug( "UploadStash: tried to construct an UploadStashFile from "
 					. "a file that should already exist at '$path', but path is not found\n" );
-				throw new UploadStashFileNotFoundException( 'cannot find path, or not a plain file' );
+				throw new UploadStashFileNotFoundException(
+					wfMessage( 'uploadstash-file-not-found-not-exists' )
+				);
 			}
 		}
 
