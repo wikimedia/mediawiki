@@ -1,11 +1,13 @@
+@import 'mediawiki.ui/variables';
 @import 'mw.rcfilters.mixins';
+@import 'mw.rcfilters.variables';
 
 @keyframes fadeBlue {
 	60% {
-		border-top-color: #36c;
+		border-top-color: @colorProgressive;
 	}
 	100% {
-		border-top-color: #c8ccd1;
+		border-top-color: @colorGray12;
 	}
 }
 
@@ -19,7 +21,7 @@
 
 	&-previousChangesIndicator {
 		margin: 10px 0;
-		border-top: 2px solid #c8ccd1;
+		border-top: 2px solid @colorGray12;
 		animation: 1s ease fadeBlue;
 	}
 
@@ -38,7 +40,7 @@
 	// We want the expand button to appear outside the color
 	// to match the way the general highlight background appears
 	&-enhanced-grey td:not( :nth-child( -n+2 ) ) {
-		background-color: #dee0e3;
+		background-color: @light-gray;
 	}
 
 	&-highlighted {
@@ -52,7 +54,7 @@
 	}
 
 	.mw-changeslist-legend {
-		background-color: #fff;
+		background-color: @background-color-base;
 	}
 
 	// Correction for Enhanced RC
@@ -140,7 +142,7 @@
 // a custom color rather than the computed tint
 // see https://phabricator.wikimedia.org/T161267
 .mw-rcfilters-highlight-color-c1.mw-rcfilters-highlight-color-c3 {
-	.highlight-changesListWrapperWidget( #ccdecc );
+	.highlight-changesListWrapperWidget( @light-green );
 }
 .highlight-color-mix( c1, c4 );
 .highlight-color-mix( c1, c5 );
