@@ -1295,8 +1295,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			// URL parameters can be per-group, like 'userExpLevel',
 			// or per-filter, like 'hideminor'.
 			if ( $filterGroup->isPerGroupRequestParameter() ) {
-				$filterGroup->modifyQuery( $dbr, $this, $tables, $fields, $conds,
-					$query_options, $join_conds, $opts[$filterGroup->getName()] );
+				if ( $filterGroup->isActive( $isStructuredUI ) ) {
+					$filterGroup->modifyQuery( $dbr, $this, $tables, $fields, $conds,
+						$query_options, $join_conds, $opts[$filterGroup->getName()] );
+				}
 			} else {
 				foreach ( $filterGroup->getFilters() as $filter ) {
 					if ( $filter->isActive( $opts, $isStructuredUI ) ) {
