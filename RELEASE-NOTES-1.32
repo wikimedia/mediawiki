@@ -112,6 +112,11 @@ because of Phabricator reports.
   in extending classes is deprecated.  Extend related doSearch* methods
   instead.
 * CollationFa has been removed completely as it's not needed anymore
+* The following methods of OutputPage are now deprecated in favour
+  of using showFatalError directly: OutputPage::showFileDeleteError()
+  OutputPage::showFileNotFoundError(), OutputPage::showFileRenameError()
+  OutputPage::showFileCopyError() and OutputPage::showUnexpectedValueError().
+
 
 === Other changes in 1.32 ===
 * Soft hyphens (U+00AD) are now automatically removed from titles; these
