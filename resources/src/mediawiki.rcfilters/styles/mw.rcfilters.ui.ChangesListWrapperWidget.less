@@ -59,8 +59,10 @@
 
 	// Correction for Enhanced RC
 	// This is outside the scope of the 'highlights' wrapper
-	table.mw-enhanced-rc {
-		td:last-child {
+	table.mw-enhanced-rc td {
+		vertical-align: middle;
+
+		&:last-child{
 			width: 100%;
 		}
 	}
