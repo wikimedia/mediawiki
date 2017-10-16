@@ -2677,30 +2677,56 @@ class OutputPage extends ContextSource {
 		}
 	}
 
+	/**
+	 * Output an error page
+	 *
+	 * @note FatalError exception class provides an alternative.
+	 * @param string $message Error to output. Must be escaped for HTML.
+	 */
 	public function showFatalError( $message ) {
 		$this->prepareErrorPage( $this->msg( 'internalerror' ) );
 
 		$this->addHTML( $message );
 	}
 
+	/**
+	 * @deprecated 1.32 Use OutputPage::showFatalError or throw FatalError instead.
+	 */
 	public function showUnexpectedValueError( $name, $val ) {
-		$this->showFatalError( $this->msg( 'unexpected', $name, $val )->text() );
+		wfDeprecated( __METHOD__, '1.32' );
+		$this->showFatalError( $this->msg( 'unexpected', $name, $val )->escaped() );
 	}
 
+	/**
+	 * @deprecated 1.32 Use OutputPage::showFatalError or throw FatalError instead.
+	 */
 	public function showFileCopyError( $old, $new ) {
-		$this->showFatalError( $this->msg( 'filecopyerror', $old, $new )->text() );
+		wfDeprecated( __METHOD__, '1.32' );
+		$this->showFatalError( $this->msg( 'filecopyerror', $old, $new )->escaped() );
 	}
 
+	/**
+	 * @deprecated 1.32 Use OutputPage::showFatalError or throw FatalError instead.
+	 */
 	public function showFileRenameError( $old, $new ) {
-		$this->showFatalError( $this->msg( 'filerenameerror', $old, $new )->text() );
+		wfDeprecated( __METHOD__, '1.32' );
+		$this->showFatalError( $this->msg( 'filerenameerror', $old, $new )->escpaed() );
 	}
 
+	/**
+	 * @deprecated 1.32 Use OutputPage::showFatalError or throw FatalError instead.
+	 */
 	public function showFileDeleteError( $name ) {
-		$this->showFatalError( $this->msg( 'filedeleteerror', $name )->text() );
+		wfDeprecated( __METHOD__, '1.32' );
+		$this->showFatalError( $this->msg( 'filedeleteerror', $name )->escaped() );
 	}
 
+	/**
+	 * @deprecated 1.32 Use OutputPage::showFatalError or throw FatalError instead.
+	 */
 	public function showFileNotFoundError( $name ) {
-		$this->showFatalError( $this->msg( 'filenotfound', $name )->text() );
+		wfDeprecated( __METHOD__, '1.32' );
+		$this->showFatalError( $this->msg( 'filenotfound', $name )->escaped() );
 	}
 
 	/**
