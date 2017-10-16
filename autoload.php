@@ -1706,5 +1706,8 @@ $wgAutoloadLocalClasses = [
 	'ZhConverter' => __DIR__ . '/languages/classes/LanguageZh.php',
 	'ZipDirectoryReader' => __DIR__ . '/includes/utils/ZipDirectoryReader.php',
 	'ZipDirectoryReaderError' => __DIR__ . '/includes/utils/ZipDirectoryReaderError.php',
+	'concatenatedgziphistoryblob' => __DIR__ . '/includes/HistoryBlob.php',
+	'historyblobcurstub' => __DIR__ . '/includes/HistoryBlob.php',
+	'historyblobstub' => __DIR__ . '/includes/HistoryBlob.php',
 	'profile_point' => __DIR__ . '/profileinfo.php',
 ];
