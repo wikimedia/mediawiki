@@ -2693,29 +2693,55 @@ class OutputPage extends ContextSource {
 		}
 	}
 
+	/**
+	 * Output an error page
+	 *
+	 * @note FatalError exception class provides an alternative.
+	 * @param string $message Error to output. Must be escaped.
+	 */
 	public function showFatalError( $message ) {
 		$this->prepareErrorPage( $this->msg( 'internalerror' ) );
 
 		$this->addHTML( $message );
 	}
 
+	/**
+	 * @deprecated 1.31 Use OutputPage::showFatalError or throw FatalError instead.
+	 */
 	public function showUnexpectedValueError( $name, $val ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$this->showFatalError( $this->msg( 'unexpected', $name, $val )->text() );
 	}
 
+	/**
+	 * @deprecated 1.31 Use OutputPage::showFatalError or throw FatalError instead.
+	 */
 	public function showFileCopyError( $old, $new ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$this->showFatalError( $this->msg( 'filecopyerror', $old, $new )->text() );
 	}
 
+	/**
+	 * @deprecated 1.31 Use OutputPage::showFatalError or throw FatalError instead.
+	 */
 	public function showFileRenameError( $old, $new ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$this->showFatalError( $this->msg( 'filerenameerror', $old, $new )->text() );
 	}
 
+	/**
+	 * @deprecated 1.31 Use OutputPage::showFatalError or throw FatalError instead.
+	 */
 	public function showFileDeleteError( $name ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$this->showFatalError( $this->msg( 'filedeleteerror', $name )->text() );
 	}
 
+	/**
+	 * @deprecated 1.31 Use OutputPage::showFatalError or throw FatalError instead.
+	 */
 	public function showFileNotFoundError( $name ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$this->showFatalError( $this->msg( 'filenotfound', $name )->text() );
 	}
 
