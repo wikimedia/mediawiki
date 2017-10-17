@@ -70,6 +70,78 @@ class RevisionUnitTest extends MediaWikiTestCase {
 		new Revision( $rowArray );
 	}
 
+	public function provideConstructFromRow() {
+		yield 'Full construction' => [
+			[
+				'rev_id' => '2',
+				'rev_page' => '1',
+				'rev_text_id' => '2',
+				'rev_timestamp' => '20171017114835',
+				'rev_user_text' => '127.0.0.1',
+				'rev_user' => '0',
+				'rev_minor_edit' => '0',
+				'rev_deleted' => '0',
+				'rev_len' => '46',
+				'rev_parent_id' => '1',
+				'rev_sha1' => 'rdqbbzs3pkhihgbs8qf2q9jsvheag5z',
+				'rev_comment_text' => 'Goat Comment!',
+				'rev_comment_data' => null,
+				'rev_comment_cid' => null,
+				'rev_content_format' => 'GOATFORMAT',
+				'rev_content_model' => 'GOATMODEL',
+			],
+			function ( RevisionUnitTest $testCase, Revision $rev ) {
+				$testCase->assertSame( 2, $rev->getId() );
+				$testCase->assertSame( 1, $rev->getPage() );
+				$testCase->assertSame( 2, $rev->getTextId() );
+				$testCase->assertSame( '20171017114835', $rev->getTimestamp() );
+				$testCase->assertSame( '127.0.0.1', $rev->getUserText() );
+				$testCase->assertSame( 0, $rev->getUser() );
+				$testCase->assertSame( false, $rev->isMinor() );
+				$testCase->assertSame( false, $rev->isDeleted( Revision::DELETED_TEXT ) );
+				$testCase->assertSame( 46, $rev->getSize() );
+				$testCase->assertSame( 1, $rev->getParentId() );
+				$testCase->assertSame( 'rdqbbzs3pkhihgbs8qf2q9jsvheag5z', $rev->getSha1() );
+				$testCase->assertSame( 'Goat Comment!', $rev->getComment() );
+				$testCase->assertSame( 'GOATFORMAT', $rev->getContentFormat() );
+				$testCase->assertSame( 'GOATMODEL', $rev->getContentModel() );
+			}
+		];
+		yield 'null fields' => [
+			[
+				'rev_id' => '2',
+				'rev_page' => '1',
+				'rev_text_id' => '2',
+				'rev_timestamp' => '20171017114835',
+				'rev_user_text' => '127.0.0.1',
+				'rev_user' => '0',
+				'rev_minor_edit' => '0',
+				'rev_deleted' => '0',
+				'rev_comment_text' => 'Goat Comment!',
+				'rev_comment_data' => null,
+				'rev_comment_cid' => null,
+			],
+			function( RevisionUnitTest $testCase, Revision $rev ) {
+				$testCase->assertNull( $rev->getSize() );
+				$testCase->assertNull( $rev->getParentId() );
+				$testCase->assertNull( $rev->getSha1() );
+				$testCase->assertSame( 'text/x-wiki', $rev->getContentFormat() );
+				$testCase->assertSame( 'wikitext', $rev->getContentModel() );
+			}
+		];
+	}
+
+	/**
+	 * @dataProvider provideConstructFromRow
+	 * @covers Revision::__construct
+	 * @covers Revision::constructFromDbRowObject
+	 */
+	public function testConstructFromRow( array $arrayData, $assertions ) {
+		$row = (object)$arrayData;
+		$rev = new Revision( $row );
+		$assertions( $this, $rev );
+	}
+
 	public function provideGetRevisionText() {
 		yield 'Generic test' => [
 			'This is a goat of revision text.',
