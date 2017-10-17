@@ -1,8 +1,8 @@
 {
   "repositories": [{
-			"type": "composer",
-			"url": "https://selfservice.bluespice.com/packages/"
-	}],
+	"type": "composer",
+	"url": "https://selfservice.bluespice.com/packages/"
+  }],
   "require": {
     "mediawiki/arrays": "dev-491256a",
     "mediawiki/blue-spice-distribution-connector": "dev-master",
