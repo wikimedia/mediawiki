@@ -152,27 +152,6 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers Revision::__construct
-	 */
-	public function testConstructFromRow() {
-		$latestRevisionId = $this->testPage->getLatest();
-		$latestRevision = $this->testPage->getRevision();
-
-		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->select(
-			'revision',
-			Revision::selectFields(),
-			[ 'rev_id' => $latestRevisionId ]
-		);
-		$this->assertTrue( is_object( $res ), 'query failed' );
-
-		$row = $res->fetchObject();
-		$res->free();
-
-		$this->assertRevEquals( $latestRevision, new Revision( $row ) );
-	}
-
-	/**
 	 * @covers Revision::newFromTitle
 	 */
 	public function testNewFromTitle_withoutId() {
