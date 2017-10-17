@@ -1185,7 +1185,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @param FormOptions $opts
 	 */
 	public function validateOptions( FormOptions $opts ) {
-		if ( $this->fixContradictoryOptions( $opts ) ) {
+		$isContradictory = $this->fixContradictoryOptions( $opts );
+		$isReplaced = $this->replaceOldOptions( $opts );
+
+		if ( $isContradictory || $isReplaced ) {
 			$query = wfArrayToCgi( $this->convertParamsForLink( $opts->getChangedValues() ) );
 			$this->getOutput()->redirect( $this->getPageTitle()->getCanonicalURL( $query ) );
 		}
@@ -1250,6 +1253,34 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				$opts['hidehumans'] = 1;
 			}
 
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Replace old options 'hideanons' or 'hideliu' with structured UI equivalent
+	 *
+	 * @param FormOptions $opts
+	 * @return bool True if the change was made
+	 */
+	public function replaceOldOptions( FormOptions $opts ) {
+		if ( !$this->isStructuredFilterUiEnabled() ) {
+			return false;
+		}
+
+		// At this point 'hideanons' and 'hideliu' cannot be both true,
+		// because fixBackwardsCompatibilityOptions resets (at least) 'hideanons' in such case
+		if ( $opts[ 'hideanons' ] ) {
+			$opts->reset( 'hideanons' );
+			$opts[ 'userExpLevel' ] = 'registered';
+			return true;
+		}
+
+		if ( $opts[ 'hideliu' ] ) {
+			$opts->reset( 'hideliu' );
+			$opts[ 'userExpLevel' ] = 'unregistered';
 			return true;
 		}
 
