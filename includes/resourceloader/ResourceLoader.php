@@ -98,6 +98,11 @@ class ResourceLoader implements LoggerAwareInterface {
 	 */
 	private $logger;
 
+	/**
+	 * @var int|null Time at start of respond()
+	 */
+	private $startTime;
+
 	/** @var string JavaScript / CSS pragma to disable minification. **/
 	const FILTER_NOMIN = '/*@nomin*/';
 
@@ -719,6 +724,8 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @param ResourceLoaderContext $context Context in which a response should be formed
 	 */
 	public function respond( ResourceLoaderContext $context ) {
+		$this->startTime = microtime( true );
+
 		// Buffer output to catch warnings. Normally we'd use ob_clean() on the
 		// top-level output buffer to clear warnings, but that breaks when ob_gzhandler
 		// is used: ob_clean() will clear the GZIP header in that case and it won't come
@@ -768,14 +775,18 @@ class ResourceLoader implements LoggerAwareInterface {
 
 		// Try the client-side cache first
 		if ( $this->tryRespondNotModified( $context, $etag ) ) {
-			return; // output handled (buffers cleared)
+			// output handled (buffers cleared)
+			$this->setResponseTime();
+			return;
 		}
 
 		// Use file cache if enabled and available...
 		if ( $this->config->get( 'UseFileCache' ) ) {
 			$fileCache = ResourceFileCache::newFromContext( $context );
 			if ( $this->tryRespondFromFileCache( $fileCache, $context, $etag ) ) {
-				return; // output handled
+				// output handled
+				$this->setResponseTime();
+				return;
 			}
 		}
 
@@ -826,6 +837,19 @@ class ResourceLoader implements LoggerAwareInterface {
 
 		$this->errors = [];
 		echo $response;
+		$this->setResponseTime();
+	}
+
+	protected function setResponseTime() {
+		if ( !$this->startTime ) {
+			return;
+		}
+
+		$duration = microtime( true ) - $this->startTime;
+		MediaWikiServices::getInstance()->getStatsdDataFactory()->timing(
+			'resourceloader.responseTime',
+			$duration * 1000
+		);
 	}
 
 	/**
