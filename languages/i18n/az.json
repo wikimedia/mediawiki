@@ -1008,7 +1008,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (həmçinin bax: [[Special:NewPages|yeni səhifələrin siyahısı]])",
 	"recentchanges-submit": "Göstər",
 	"rcfilters-legend-heading": "<strong>Abreviaturalar siyahısı:</strong>",
-	"rcfilters-other-review-tools": "<strong>Digər yoxlama alətləri</strong>",
+	"rcfilters-other-review-tools": "Digər yoxlama alətləri",
 	"rcfilters-group-results-by-page": "Dəyişiklikləri səhifələrə görə qruplaşdır",
 	"rcfilters-grouping-title": "Qruplaşdırma",
 	"rcfilters-activefilters": "Aktiv filtrlər",

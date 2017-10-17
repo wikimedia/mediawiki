@@ -1147,7 +1147,7 @@
 	"recentchanges-legend-heading": "<strong>Легенда:&nbsp;</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (хьажа кхин [[Special:NewPages|керла агӀонийн могӀа]])",
 	"recentchanges-submit": "Гайта",
-	"rcfilters-other-review-tools": "<strong>Талларан кхин гӀирсаш</strong>",
+	"rcfilters-other-review-tools": "Талларан кхин гӀирсаш",
 	"rcfilters-group-results-by-page": "Карийнарш, агӀонгахь тобанаш ян",
 	"rcfilters-grouping-title": "Тобанашца нисъяр",
 	"rcfilters-activefilters": "Жигара литтарш",

@@ -1340,7 +1340,7 @@
 	"recentchanges-submit": "نمایش",
 	"rcfilters-tag-remove": "حذف «$1»",
 	"rcfilters-legend-heading": "<strong>فهرست کوته‌نوشت‌ها:</strong>",
-	"rcfilters-other-review-tools": "<strong>دیگر ابزارهای بازبینی</strong>",
+	"rcfilters-other-review-tools": "دیگر ابزارهای بازبینی",
 	"rcfilters-group-results-by-page": "گروه‌بندی نتایج بر اساس صفحه",
 	"rcfilters-grouping-title": "گروه‌بندی",
 	"rcfilters-activefilters": "پالایه‌های فعال",

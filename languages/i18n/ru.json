@@ -1399,7 +1399,7 @@
 	"recentchanges-submit": "Показать",
 	"rcfilters-tag-remove": "Удалить '$1'",
 	"rcfilters-legend-heading": "<strong>Список сокращений:</strong>",
-	"rcfilters-other-review-tools": "<strong>Другие инструменты проверки</strong>",
+	"rcfilters-other-review-tools": "Другие инструменты проверки",
 	"rcfilters-group-results-by-page": "Группировать результаты по странице",
 	"rcfilters-grouping-title": "Группировка",
 	"rcfilters-activefilters": "Активные фильтры",

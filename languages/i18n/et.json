@@ -1304,7 +1304,7 @@
 	"recentchanges-submit": "Näita",
 	"rcfilters-tag-remove": "Eemalda \"$1\"",
 	"rcfilters-legend-heading": "<strong>Lühendite loetelu:</strong>",
-	"rcfilters-other-review-tools": "<strong>Muud ülevaatusriistad</strong>",
+	"rcfilters-other-review-tools": "Muud ülevaatusriistad",
 	"rcfilters-group-results-by-page": "Rühmita tulemused lehekülje kaupa",
 	"rcfilters-grouping-title": "Rühmitamine",
 	"rcfilters-activefilters": "Aktiivsed filtrid",
