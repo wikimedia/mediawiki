@@ -233,6 +233,7 @@
 	"ok": "Ṭhik gea",
 	"retrievedfrom": "\"$1\" khon ñam ạgui",
 	"youhavenewmessages": "Amaḱ do $1 ($2) menaḱa",
+	"newmessagesdifflinkplural": "ᱢᱩᱪᱟᱹᱫ {{PLURAL:$1|ᱵᱚᱫᱚᱞ|999=ᱵᱚᱫᱚᱞᱠᱚ}}",
 	"youhavenewmessagesmulti": "Amaḱ nãwã mesagko do $1 menaḱa",
 	"editsection": "Tońge",
 	"editold": "Toṅge",

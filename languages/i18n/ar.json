@@ -1346,7 +1346,7 @@
 	"recentchanges-submit": "أظهر",
 	"rcfilters-tag-remove": "أزل '$1'",
 	"rcfilters-legend-heading": "<strong>قائمة الاختصارات:</strong>",
-	"rcfilters-other-review-tools": "<strong>أدوات مراجعة أخرى</strong>",
+	"rcfilters-other-review-tools": "أدوات مراجعة أخرى",
 	"rcfilters-group-results-by-page": "جمع النتائج حسب الصفحة",
 	"rcfilters-grouping-title": "جمع",
 	"rcfilters-activefilters": "المرشحات النشطة",

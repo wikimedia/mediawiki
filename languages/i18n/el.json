@@ -1310,7 +1310,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (δείτε [[Special:NewPages|κατάλογος νέων σελίδων]])",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "Προβολή",
-	"rcfilters-other-review-tools": "<strong>Άλλα εργαλεία επιθεώρησης</strong>",
+	"rcfilters-other-review-tools": "Άλλα εργαλεία επιθεώρησης",
 	"rcfilters-group-results-by-page": "Ομαδοποίηση αποτελεσμάτων ανά σελίδα",
 	"rcfilters-grouping-title": "Ομαδοποίηση",
 	"rcfilters-activefilters": "Ενεργά φίλτρα",

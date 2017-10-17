@@ -904,7 +904,7 @@
 	"recentchanges-legend-heading": "<strong>ڪنجي:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (پڻ ڏسو [[Special:NewPages|نون صفحن جي فھرست]])",
 	"recentchanges-submit": "ڏيکاريو",
-	"rcfilters-other-review-tools": "<strong>نظرثانيءَ جا ٻيا اوزار</strong>",
+	"rcfilters-other-review-tools": "نظرثانيءَ جا ٻيا اوزار",
 	"rcfilters-activefilters": "سرگرم ڇاڻيون",
 	"rcfilters-advancedfilters": "متقدم ڇاڻيون",
 	"rcfilters-limit-shownum": "آخري {{PLURAL:$1|تبديلي|$1 تبديليون}} ڏيکاريو",

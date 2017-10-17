@@ -1277,7 +1277,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (نیز [[Special:NewPages|جدید صفحات کی فہرست]]) ملاحظہ فرمائیں",
 	"recentchanges-submit": "دکھائیں",
 	"rcfilters-legend-heading": "<strong>اختصارات کی فہرست:</strong>",
-	"rcfilters-other-review-tools": "<strong>نظرثانی کے دیگر آلات</strong>",
+	"rcfilters-other-review-tools": "نظرثانی کے دیگر آلات",
 	"rcfilters-group-results-by-page": "نتائج گروہ بندی بلحاظ صفحہ",
 	"rcfilters-grouping-title": "گروہ بندی",
 	"rcfilters-activefilters": "فعال فلٹر",
