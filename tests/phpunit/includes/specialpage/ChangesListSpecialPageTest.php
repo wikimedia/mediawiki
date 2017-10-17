@@ -981,15 +981,33 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 			[
 				[ 'hideanons' => 1, 'hideliu' => 1, 'hidebots' => 1 ],
 				true,
-				[ 'hideliu' => 1, 'hidebots' => 1, ],
+				[ 'userExpLevel' => 'unregistered', 'hidebots' => 1, ],
 			],
-
 			[
 				[ 'hideanons' => 1, 'hideliu' => 1, 'hidebots' => 0 ],
 				true,
 				[ 'hidebots' => 0, 'hidehumans' => 1 ],
 			],
-
+			[
+				[ 'hideanons' => 1 ],
+				true,
+				[ 'userExpLevel' => 'registered' ]
+			],
+			[
+				[ 'hideliu' => 1 ],
+				true,
+				[ 'userExpLevel' => 'unregistered' ]
+			],
+			[
+				[ 'hideanons' => 1, 'hidebots' => 1 ],
+				true,
+				[ 'userExpLevel' => 'registered', 'hidebots' => 1 ]
+			],
+			[
+				[ 'hideliu' => 1, 'hidebots' => 0 ],
+				true,
+				[ 'userExpLevel' => 'unregistered', 'hidebots' => 0 ]
+			],
 			[
 				[ 'hidemyself' => 1, 'hidebyothers' => 1 ],
 				true,
