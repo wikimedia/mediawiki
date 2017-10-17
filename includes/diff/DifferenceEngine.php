@@ -21,6 +21,7 @@
  * @ingroup DifferenceEngine
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Shell\Shell;
 
 /** @deprecated use class constant instead */
 define( 'MW_DIFF_VERSION', '1.11a' );
@@ -966,8 +967,10 @@ class DifferenceEngine extends ContextSource {
 			fwrite( $tempFile2, $ntext );
 			fclose( $tempFile1 );
 			fclose( $tempFile2 );
-			$cmd = wfEscapeShellArg( $wgExternalDiffEngine, $tempName1, $tempName2 );
-			$difftext = wfShellExec( $cmd );
+			$cmd = [ $wgExternalDiffEngine, $tempName1, $tempName2 ];
+			$result = Shell::command( $cmd )
+				->execute();
+			$difftext = $result->getStdout();
 			$difftext .= $this->debug( "external $wgExternalDiffEngine" );
 			unlink( $tempName1 );
 			unlink( $tempName2 );
