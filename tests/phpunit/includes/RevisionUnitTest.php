@@ -23,8 +23,10 @@ class RevisionUnitTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideConstructFromArray
+	 * @covers Revision::__construct
+	 * @covers Revision::constructFromRowArray
 	 */
-	public function testConstructFromArray( $rowArray ) {
+	public function testConstructFromArray( array $rowArray ) {
 		$rev = new Revision( $rowArray );
 		$this->assertNotNull( $rev->getContent(), 'no content object available' );
 		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContent()->getModel() );
@@ -56,8 +58,13 @@ class RevisionUnitTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideConstructFromArrayThrowsExceptions
+	 * @covers Revision::__construct
+	 * @covers Revision::constructFromRowArray
 	 */
-	public function testConstructFromArrayThrowsExceptions( $rowArray, Exception $expectedException ) {
+	public function testConstructFromArrayThrowsExceptions(
+		array $rowArray,
+		Exception $expectedException
+	) {
 		$this->setExpectedException(
 			get_class( $expectedException ),
 			$expectedException->getMessage(),
