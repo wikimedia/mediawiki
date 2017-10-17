@@ -71,9 +71,9 @@ td.diff-marker {
 }
 
 .diff-context {
-	background: #f9f9f9;
-	border-color: #e6e6e6;
-	color: #333;
+	background: #f8f9fa;
+	border-color: #eaecf0;
+	color: #222;
 }
 
 .diffchange {
