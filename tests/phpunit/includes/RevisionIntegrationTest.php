@@ -225,16 +225,20 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		$this->assertRevEquals( $orig, $rev );
 	}
 
-	public function provideTrueFalse() {
-		yield [ true ];
-		yield [ false ];
+	public function provideNewFromArchiveRow() {
+		yield [ true, function( $f ) { return $f; } ];
+		yield [ false, function( $f ) { return $f; } ];
+		yield [ true, function( $f ) { return $f + [ 'ar_namespace', 'ar_title' ]; } ];
+		yield [ false, function( $f ) { return $f + [ 'ar_namespace', 'ar_title' ]; } ];
+		yield [ true, function( $f ) { unset( $f['ar_text_id'] ); return $f; } ];
+		yield [ false, function( $f ) { unset( $f['ar_text_id'] ); return $f; } ];
 	}
 
 	/**
-	 * @dataProvider provideTrueFalse
+	 * @dataProvider provideNewFromArchiveRow
 	 * @covers Revision::newFromArchiveRow
 	 */
-	public function testNewFromArchiveRow( $contentHandlerUseDB ) {
+	public function testNewFromArchiveRow( $contentHandlerUseDB, $selectModifier ) {
 		$this->setMwGlobals( 'wgContentHandlerUseDB', $contentHandlerUseDB );
 
 		$page = $this->createPage(
@@ -246,8 +250,9 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		$page->doDeleteArticle( 'test Revision::newFromArchiveRow' );
 
 		$dbr = wfGetDB( DB_REPLICA );
+		$selectFields = $selectModifier( Revision::selectArchiveFields() );
 		$res = $dbr->select(
-			'archive', Revision::selectArchiveFields(), [ 'ar_rev_id' => $orig->getId() ]
+			'archive',$selectFields , [ 'ar_rev_id' => $orig->getId() ]
 		);
 		$this->assertTrue( is_object( $res ), 'query failed' );
 
@@ -257,6 +262,33 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		$rev = Revision::newFromArchiveRow( $row );
 
 		$this->assertRevEquals( $orig, $rev );
+	}
+
+	/**
+	 * @covers Revision::newFromArchiveRow
+	 */
+	public function testNewFromArchiveRowOverrides() {
+		$page = $this->createPage(
+			'RevisionStorageTest_testNewFromArchiveRow',
+			'Lorem Ipsum',
+			CONTENT_MODEL_WIKITEXT
+		);
+		$orig = $page->getRevision();
+		$page->doDeleteArticle( 'test Revision::newFromArchiveRow' );
+
+		$dbr = wfGetDB( DB_REPLICA );
+		$res = $dbr->select(
+			'archive',Revision::selectArchiveFields() , [ 'ar_rev_id' => $orig->getId() ]
+		);
+		$this->assertTrue( is_object( $res ), 'query failed' );
+
+		$row = $res->fetchObject();
+		$res->free();
+
+		$rev = Revision::newFromArchiveRow( $row, [ 'comment' => 'SOMEOVERRIDE' ] );
+
+		$this->assertNotEquals( $orig->getComment(), $rev->getComment() );
+		$this->assertEquals( 'SOMEOVERRIDE', $rev->getComment() );
 	}
 
 	/**
