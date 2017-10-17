@@ -543,7 +543,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 			// Additional styles and scripts for signup form
 			$out->addModules( [
-				'mediawiki.special.userlogin.signup.js'
+				'mediawiki.special.userlogin.signup.js',
+				'mediawiki.special.signup.trackmouse'
 			] );
 			$out->addModuleStyles( [
 				'mediawiki.special.userlogin.signup.styles'
