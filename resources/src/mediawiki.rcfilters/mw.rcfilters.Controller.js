@@ -369,7 +369,7 @@
 	 * Reset to default filters
 	 */
 	mw.rcfilters.Controller.prototype.resetToDefaults = function () {
-		this.uriProcessor.updateModelBasedOnQuery( this._getDefaultParams() );
+		this.filtersModel.updateStateFromParams( this._getDefaultParams() );
 
 		this.updateChangesList();
 	};
@@ -380,23 +380,7 @@
 	 * @return {boolean} Defaults are all false
 	 */
 	mw.rcfilters.Controller.prototype.areDefaultsEmpty = function () {
-		var defaultParams = this._getDefaultParams(),
-			defaultFilters = this.filtersModel.getFiltersFromParameters( defaultParams );
-
-		this._deleteExcludedValuesFromFilterState( defaultFilters );
-
-		if ( Object.keys( defaultParams ).some( function ( paramName ) {
-			return paramName.match( /_color$/ ) && defaultParams[ paramName ] !== null;
-		} ) ) {
-			// There are highlights in the defaults, they're definitely
-			// not empty
-			return false;
-		}
-
-		// Defaults can change in a session, so we need to do this every time
-		return Object.keys( defaultFilters ).every( function ( filterName ) {
-			return !defaultFilters[ filterName ];
-		} );
+		return $.isEmptyObject( this._getDefaultParams( true ) );
 	};
 
 	/**
@@ -407,10 +391,7 @@
 			.getHighlightedItems()
 			.map( function ( filterItem ) { return { name: filterItem.getName() }; } );
 
-		this.filtersModel.emptyAllFilters();
-		this.filtersModel.clearAllHighlightColors();
-		// Check all filter interactions
-		this.filtersModel.reassessFilterInteractions();
+		this.filtersModel.updateStateFromParams( {} );
 
 		this.updateChangesList();
 
@@ -482,7 +463,7 @@
 	 */
 	mw.rcfilters.Controller.prototype.toggleHighlight = function () {
 		this.filtersModel.toggleHighlight();
-		this._updateURL();
+		this.uriProcessor.updateURL();
 
 		if ( this.filtersModel.isHighlightEnabled() ) {
 			mw.hook( 'RcFilters.highlight.enable' ).fire();
@@ -513,7 +494,7 @@
 	 */
 	mw.rcfilters.Controller.prototype.setHighlightColor = function ( filterName, color ) {
 		this.filtersModel.setHighlightColor( filterName, color );
-		this._updateURL();
+		this.uriProcessor.updateURL();
 		this._trackHighlight( 'set', { name: filterName, color: color } );
 	};
 
@@ -524,7 +505,7 @@
 	 */
 	mw.rcfilters.Controller.prototype.clearHighlightColor = function ( filterName ) {
 		this.filtersModel.clearHighlightColor( filterName );
-		this._updateURL();
+		this.uriProcessor.updateURL();
 		this._trackHighlight( 'clear', filterName );
 	};
 
@@ -628,32 +609,10 @@
 	 * @param {boolean} [setAsDefault=false] This query should be set as the default
 	 */
 	mw.rcfilters.Controller.prototype.saveCurrentQuery = function ( label, setAsDefault ) {
-		var highlightedItems = {},
-			highlightEnabled = this.filtersModel.isHighlightEnabled(),
-			selectedState = this.filtersModel.getSelectedState();
-
-		// Prepare highlights
-		this.filtersModel.getHighlightedItems().forEach( function ( item ) {
-			highlightedItems[ item.getName() + '_color' ] = highlightEnabled ?
-				item.getHighlightColor() : null;
-		} );
-
-		// Delete all excluded filters
-		this._deleteExcludedValuesFromFilterState( selectedState );
-
 		// Add item
 		this.savedQueriesModel.addNewQuery(
 			label || mw.msg( 'rcfilters-savedqueries-defaultlabel' ),
-			{
-				params: $.extend(
-					true,
-					{
-						highlight: String( Number( this.filtersModel.isHighlightEnabled() ) )
-					},
-					this.filtersModel.getParametersFromFilters( selectedState )
-				),
-				highlights: highlightedItems
-			},
+			this.filtersModel.getCurrentParameterState( true ),
 			setAsDefault
 		);
 
@@ -704,52 +663,27 @@
 	 * @param {string} queryID Query id
 	 */
 	mw.rcfilters.Controller.prototype.applySavedQuery = function ( queryID ) {
-		var highlights,
-			queryItem = this.savedQueriesModel.getItemByID( queryID ),
-			data = this.savedQueriesModel.getItemFullData( queryID ),
-			currentMatchingQuery = this.findQueryMatchingCurrentState();
+		var currentMatchingQuery,
+			params = this.savedQueriesModel.getItemParams( queryID );
+
+		currentMatchingQuery = this.findQueryMatchingCurrentState();
 
 		if (
-			queryItem &&
-			(
-				// If there's already a query, don't reload it
-				// if it's the same as the one that already exists
-				!currentMatchingQuery ||
-				currentMatchingQuery.getID() !== queryItem.getID()
-			)
+			currentMatchingQuery &&
+			currentMatchingQuery.getID() === queryID
 		) {
-			highlights = data.highlights;
-
-			// Update model state from filters
-			this.filtersModel.toggleFiltersSelected(
-				// Merge filters with excluded values
-				$.extend(
-					true,
-					{},
-					this.filtersModel.getFiltersFromParameters( data.params ),
-					this.filtersModel.getExcludedFiltersState()
-				)
-			);
-
-			// Update highlight state
-			this.filtersModel.toggleHighlight( !!Number( data.params.highlight ) );
-			this.filtersModel.getItems().forEach( function ( filterItem ) {
-				var color = highlights[ filterItem.getName() + '_color' ];
-				if ( color ) {
-					filterItem.setHighlightColor( color );
-				} else {
-					filterItem.clearHighlightColor();
-				}
-			} );
-
-			// Check all filter interactions
-			this.filtersModel.reassessFilterInteractions();
-
-			this.updateChangesList();
-
-			// Log filter grouping
-			this.trackFilterGroupings( 'savedfilters' );
+			// If the query we want to load is the one that is already
+			// loaded, don't reload it
+			return;
 		}
+
+		// Apply parameters to model
+		this.filtersModel.updateStateFromParams( params );
+
+		this.updateChangesList();
+
+		// Log filter grouping
+		this.trackFilterGroupings( 'savedfilters' );
 	};
 
 	/**
@@ -759,42 +693,9 @@
 	 * @return {boolean} Query exists
 	 */
 	mw.rcfilters.Controller.prototype.findQueryMatchingCurrentState = function () {
-		var highlightedItems = {},
-			selectedState = this.filtersModel.getSelectedState();
-
-		// Prepare highlights of the current query
-		this.filtersModel.getItemsSupportingHighlights().forEach( function ( item ) {
-			highlightedItems[ item.getName() + '_color' ] = item.getHighlightColor();
-		} );
-
-		// Remove anything that should be excluded from the saved query
-		// this includes sticky filters and filters marked with 'excludedFromSavedQueries'
-		this._deleteExcludedValuesFromFilterState( selectedState );
-
 		return this.savedQueriesModel.findMatchingQuery(
-			{
-				params: $.extend(
-					true,
-					{
-						highlight: String( Number( this.filtersModel.isHighlightEnabled() ) )
-					},
-					this.filtersModel.getParametersFromFilters( selectedState )
-				),
-				highlights: highlightedItems
-			}
+			this.filtersModel.getCurrentParameterState( true )
 		);
-	};
-
-	/**
-	 * Delete sticky filters from given object
-	 *
-	 * @param {Object} filterState Filter state
-	 */
-	mw.rcfilters.Controller.prototype._deleteExcludedValuesFromFilterState = function ( filterState ) {
-		// Remove excluded filters
-		$.each( this.filtersModel.getExcludedFiltersState(), function ( filterName ) {
-			delete filterState[ filterName ];
-		} );
 	};
 
 	/**
@@ -924,7 +825,7 @@
 	 * without adding an history entry.
 	 */
 	mw.rcfilters.Controller.prototype.replaceUrl = function () {
-		mw.rcfilters.UriProcessor.static.replaceState( this._getUpdatedUri() );
+		this.uriProcessor.replaceUpdatedUri();
 	};
 
 	/**
@@ -960,7 +861,7 @@
 		updateMode = updateMode === undefined ? this.FILTER_CHANGE : updateMode;
 
 		if ( updateMode === this.FILTER_CHANGE ) {
-			this._updateURL( params );
+			this.uriProcessor.updateURL( params );
 		}
 		if ( updateMode === this.FILTER_CHANGE || updateMode === this.SHOW_NEW_CHANGES ) {
 			this.changesListModel.invalidate();
@@ -992,79 +893,15 @@
 	 * Get an object representing the default parameter state, whether
 	 * it is from the model defaults or from the saved queries.
 	 *
+	 * @param {boolean} [excludeHiddenParams] Exclude hidden and sticky params
 	 * @return {Object} Default parameters
 	 */
-	mw.rcfilters.Controller.prototype._getDefaultParams = function () {
-		var savedFilters,
-			data = ( !mw.user.isAnon() && this.savedQueriesModel.getItemFullData( this.savedQueriesModel.getDefault() ) ) || {};
-
-		if ( !$.isEmptyObject( data ) ) {
-			// Merge saved filter state with sticky filter values
-			savedFilters = $.extend(
-				true, {},
-				this.filtersModel.getFiltersFromParameters( data.params ),
-				this.filtersModel.getStickyFiltersState()
-			);
-
-			// Return parameter representation
-			return $.extend( true, {},
-				this.filtersModel.getParametersFromFilters( savedFilters ),
-				data.highlights,
-				{ highlight: data.params.highlight }
-			);
+	mw.rcfilters.Controller.prototype._getDefaultParams = function ( excludeHiddenParams ) {
+		if ( this.savedQueriesModel.getDefault() ) {
+			return this.savedQueriesModel.getDefaultParams( excludeHiddenParams );
+		} else {
+			return this.filtersModel.getDefaultParams( excludeHiddenParams );
 		}
-		return this.filtersModel.getDefaultParams();
-	};
-
-	/**
-	 * Update the URL of the page to reflect current filters
-	 *
-	 * This should not be called directly from outside the controller.
-	 * If an action requires changing the URL, it should either use the
-	 * highlighting actions below, or call #updateChangesList which does
-	 * the uri corrections already.
-	 *
-	 * @param {Object} [params] Extra parameters to add to the API call
-	 */
-	mw.rcfilters.Controller.prototype._updateURL = function ( params ) {
-		var currentUri = new mw.Uri(),
-			updatedUri = this._getUpdatedUri();
-
-		updatedUri.extend( params || {} );
-
-		if (
-			this.uriProcessor.getVersion( currentUri.query ) !== 2 ||
-			this.uriProcessor.isNewState( currentUri.query, updatedUri.query )
-		) {
-			mw.rcfilters.UriProcessor.static.replaceState( updatedUri );
-		}
-	};
-
-	/**
-	 * Get an updated mw.Uri object based on the model state
-	 *
-	 * @return {mw.Uri} Updated Uri
-	 */
-	mw.rcfilters.Controller.prototype._getUpdatedUri = function () {
-		var uri = new mw.Uri();
-
-		// Minimize url
-		uri.query = this.uriProcessor.minimizeQuery(
-			$.extend(
-				true,
-				{},
-				// We want to retain unrecognized params
-				// The uri params from model will override
-				// any recognized value in the current uri
-				// query, retain unrecognized params, and
-				// the result will then be minimized
-				uri.query,
-				this.uriProcessor.getUriParametersFromModel(),
-				{ urlversion: '2' }
-			)
-		);
-
-		return uri;
 	};
 
 	/**
@@ -1077,8 +914,8 @@
 	 * @return {jQuery.Promise} Promise object resolved with { content, status }
 	 */
 	mw.rcfilters.Controller.prototype._queryChangesList = function ( counterId, params ) {
-		var uri = this._getUpdatedUri(),
-			stickyParams = this.filtersModel.getStickyParams(),
+		var uri = this.uriProcessor.getUpdatedUri(),
+			stickyParams = this.filtersModel.getStickyParamsValues(),
 			requestId,
 			latestRequest;
 

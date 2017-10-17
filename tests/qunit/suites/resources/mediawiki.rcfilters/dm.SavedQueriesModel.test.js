@@ -6,28 +6,38 @@
 			filters: [
 				// Note: The fact filter2 is default means that in the
 				// filter representation, filter1 and filter3 are 'true'
-				{ name: 'filter1' },
-				{ name: 'filter2', default: true },
-				{ name: 'filter3' }
+				{ name: 'filter1', cssClass: 'filter1class' },
+				{ name: 'filter2', cssClass: 'filter2class', default: true },
+				{ name: 'filter3', cssClass: 'filter3class' }
 			]
 		}, {
 			name: 'group2',
 			type: 'string_options',
 			separator: ',',
 			filters: [
-				{ name: 'filter4' },
-				{ name: 'filter5' },
-				{ name: 'filter6' }
+				{ name: 'filter4', cssClass: 'filter4class' },
+				{ name: 'filter5' }, // NOTE: Not supporting highlights!
+				{ name: 'filter6', cssClass: 'filter6class' }
 			]
 		}, {
 			name: 'group3',
 			type: 'boolean',
 			isSticky: true,
 			filters: [
-				{ name: 'group3option1' },
-				{ name: 'group3option2' },
-				{ name: 'group3option3' }
+				{ name: 'group3option1', cssClass: 'filter1class' },
+				{ name: 'group3option2', cssClass: 'filter1class' },
+				{ name: 'group3option3', cssClass: 'filter1class' }
 			]
+		}, {
+			// Copy of the way the controller defines invert
+			// to check whether the conversion works
+			name: 'invertGroup',
+			type: 'boolean',
+			hidden: true,
+			filters: [ {
+				name: 'invert',
+				default: '0'
+			} ]
 		} ],
 		queriesFilterRepresentation = {
 			queries: {
@@ -54,9 +64,10 @@
 						},
 						highlights: {
 							highlight: true,
-							filter1: 'c5',
-							group3option1: 'c1'
-						}
+							group1__filter1: 'c5',
+							group3__group3option1: 'c1'
+						},
+						invert: true
 					}
 				}
 			}
@@ -78,8 +89,8 @@
 							highlight: '1'
 						},
 						highlights: {
-							filter1_color: 'c5',
-							group3option1_color: 'c1'
+							group1__filter1_color: 'c5',
+							group3__group3option1_color: 'c1'
 						}
 					}
 				}
@@ -102,7 +113,7 @@
 								filter2: '1'
 							},
 							highlights: {
-								filter5_color: 'c2'
+								group1__filter3_color: 'c2'
 							}
 						}
 					}
@@ -126,6 +137,22 @@
 					msg: 'Conversion from filter representation to parameters retains data.'
 				},
 				{
+					// Converting from old structure
+					input: $.extend( true, {}, queriesFilterRepresentation, { queries: { 1234: { data: {
+						filters: {
+							// Entire group true: normalize params
+							filter1: true,
+							filter2: true,
+							filter3: true
+						},
+						highlights: {
+							filter3: null // Get rid of empty highlight
+						}
+					} } } } ),
+					finalState: $.extend( true, {}, queriesParamRepresentation ),
+					msg: 'Conversion from filter representation to parameters normalizes params and highlights.'
+				},
+				{
 					// Converting from old structure with default
 					input: $.extend( true, { default: '1234' }, queriesFilterRepresentation ),
 					finalState: $.extend( true, { default: '1234' }, queriesParamRepresentation ),
@@ -136,6 +163,13 @@
 					input: $.extend( true, {}, queriesParamRepresentation ),
 					finalState: $.extend( true, {}, queriesParamRepresentation ),
 					msg: 'Parameter representation retains its queries structure'
+				},
+				{
+					// Do not touch invalid color parameters from the initialization routine
+					// (Normalization, or "fixing" the query should only happen when we add new query or actively convert queries)
+					input: $.extend( true, { queries: { 1234: { data: { highlights: { group2__filter5_color: 'c2' } } } } }, exampleQueryStructure ),
+					finalState: $.extend( true, { queries: { 1234: { data: { highlights: { group2__filter5_color: 'c2' } } } } }, exampleQueryStructure ),
+					msg: 'Structure that contains invalid highlights remains the same in initialization'
 				}
 			];
 
@@ -148,6 +182,103 @@
 				testCase.finalState,
 				testCase.msg
 			);
+		} );
+	} );
+
+	QUnit.test( 'Adding new queries', function ( assert ) {
+		var filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
+			queriesModel = new mw.rcfilters.dm.SavedQueriesModel( filtersModel ),
+			cases = [
+				{
+					methodParams: [
+						'label1', // Label
+						{ // Data
+							filter1: '1',
+							filter2: '2',
+							group1__filter1_color: 'c2',
+							group1__filter3_color: 'c5'
+						},
+						true, // isDefault
+						'1234' // ID
+					],
+					result: {
+						itemState: {
+							label: 'label1',
+							data: {
+								params: {
+									filter1: '1',
+									filter2: '2'
+								},
+								highlights: {
+									group1__filter1_color: 'c2',
+									group1__filter3_color: 'c5'
+								}
+							}
+						},
+						isDefault: true,
+						id: '1234'
+					},
+					msg: 'Given valid data is preserved.'
+				},
+				{
+					methodParams: [
+						'label2',
+						{
+							filter1: '1',
+							invert: '1',
+							filter15: '1', // Invalid filter - removed
+							filter2: '0', // Falsey value - removed
+							group1__filter1_color: 'c3',
+							foobar: 'w00t' // Unrecognized parameter - removed
+						}
+					],
+					result: {
+						itemState: {
+							label: 'label2',
+							data: {
+								params: {
+									filter1: '1',
+									invert: '1'
+								},
+								highlights: {
+									group1__filter1_color: 'c3'
+								}
+							}
+						},
+						isDefault: false
+					},
+					msg: 'Given data with invalid filters and highlights is normalized'
+				}
+			];
+
+		filtersModel.initializeFilters( filterDefinition );
+
+		// Start with an empty saved queries model
+		queriesModel.initialize( {} );
+
+		cases.forEach( function ( testCase ) {
+			var itemID = queriesModel.addNewQuery.apply( queriesModel, testCase.methodParams ),
+				item = queriesModel.getItemByID( itemID );
+
+			assert.deepEqual(
+				item.getState(),
+				testCase.result.itemState,
+				testCase.msg + ' (itemState)'
+			);
+
+			assert.equal(
+				item.isDefault(),
+				testCase.result.isDefault,
+				testCase.msg + ' (isDefault)'
+			);
+
+			if ( testCase.result.id !== undefined ) {
+				assert.equal(
+					item.getID(),
+					testCase.result.id,
+					testCase.msg + ' (item ID)'
+				);
+			}
 		} );
 	} );
 
@@ -166,25 +297,18 @@
 		id1 = queriesModel.addNewQuery(
 			'New query 1',
 			{
-				params: {
-					group2: 'filter5',
-					highlight: '1'
-				},
-				highlights: {
-					filter1_color: 'c5',
-					group3option1_color: 'c1'
-				}
+				group2: 'filter5',
+				highlight: '1',
+				group1__filter1_color: 'c5',
+				group3__group3option1_color: 'c1'
 			}
 		);
 		id2 = queriesModel.addNewQuery(
 			'New query 2',
 			{
-				params: {
-					filter1: '1',
-					filter2: '1',
-					invert: '1'
-				},
-				highlights: {}
+				filter1: '1',
+				filter2: '1',
+				invert: '1'
 			}
 		);
 		item1 = queriesModel.getItemByID( id1 );
@@ -207,8 +331,8 @@
 					highlight: '1'
 				},
 				highlights: {
-					filter1_color: 'c5',
-					group3option1_color: 'c1'
+					group1__filter1_color: 'c5',
+					group3__group3option1_color: 'c1'
 				}
 			}
 		};
@@ -261,14 +385,10 @@
 		// Find matching query
 		matchingItem = queriesModel.findMatchingQuery(
 			{
-				params: {
-					group2: 'filter5',
-					highlight: '1'
-				},
-				highlights: {
-					filter1_color: 'c5',
-					group3option1_color: 'c1'
-				}
+				highlight: '1',
+				group2: 'filter5',
+				group1__filter1_color: 'c5',
+				group3__group3option1_color: 'c1'
 			}
 		);
 		assert.deepEqual(
@@ -280,16 +400,13 @@
 		// Find matching query with 0-values (base state)
 		matchingItem = queriesModel.findMatchingQuery(
 			{
-				params: {
-					group2: 'filter5',
-					filter1: '0',
-					filter2: '0',
-					highlight: '1'
-				},
-				highlights: {
-					filter1_color: 'c5',
-					group3option1_color: 'c1'
-				}
+				group2: 'filter5',
+				filter1: '0',
+				filter2: '0',
+				highlight: '1',
+				invert: '0',
+				group1__filter1_color: 'c5',
+				group3__group3option1_color: 'c1'
 			}
 		);
 		assert.deepEqual(
