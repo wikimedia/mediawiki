@@ -2153,6 +2153,9 @@ return [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.search.styles.css',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.special.signup.trackmouse' => [
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.signup.trackmouse.js',
+	],
 	'mediawiki.special.undelete' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.undelete.js',
 	],
