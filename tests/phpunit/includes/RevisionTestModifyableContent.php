@@ -2,8 +2,10 @@
 
 class RevisionTestModifyableContent extends TextContent {
 
+	const MODEL_ID = "RevisionTestModifyableContent";
+
 	public function __construct( $text ) {
-		parent::__construct( $text, "RevisionTestModifyableContent" );
+		parent::__construct( $text, self::MODEL_ID );
 	}
 
 	public function copy() {
