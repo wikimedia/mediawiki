@@ -370,7 +370,7 @@ class Names {
 		'sd' => 'سنڌي', # Sindhi
 		'sdc' => 'Sassaresu', # Sassarese
 		'sdh' => 'کوردی خوارگ', # Southern Kurdish
-		'se' => 'sámegiella', # Northern Sami
+		'se' => 'davvisámegiella', # Northern Sami
 		'sei' => 'Cmique Itom', # Seri
 		'ses' => 'Koyraboro Senni', # Koyraboro Senni
 		'sg' => 'Sängö', # Sango/Sangho
