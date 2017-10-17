@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\Shell\Shell;
+
 /**
  * A class to help return information about a git repo MediaWiki may be inside
  * This is used by Special:Version and is also useful for the LocalSettings.php
@@ -221,13 +224,19 @@ class GitInfo {
 				is_executable( $wgGitBin ) &&
 				$this->getHead() !== false
 			) {
-				$environment = [ "GIT_DIR" => $this->basedir ];
-				$cmd = wfEscapeShellArg( $wgGitBin ) .
-					" show -s --format=format:%ct HEAD";
-				$retc = false;
-				$commitDate = wfShellExec( $cmd, $retc, $environment );
-				if ( $retc === 0 ) {
-					$date = (int)$commitDate;
+				$cmd = [
+					$wgGitBin,
+					'show',
+					'-s',
+					'--format=format:%ct',
+					'HEAD',
+				];
+				$result = Shell::command( $cmd )
+					->environment( [ 'GIT_DIR' => $this->basedir ] )
+					->execute();
+
+				if ( $result->getExitCode() === 0 ) {
+					$date = (int)$result->getStdout();
 				}
 			}
 			$this->cache['headCommitDate'] = $date;
