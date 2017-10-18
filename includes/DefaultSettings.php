@@ -8255,6 +8255,19 @@ $wgPhpCli = '/usr/bin/php';
  */
 $wgShellLocale = 'C.UTF-8';
 
+/**
+ * Method to use to restrict shell commands
+ *
+ * Supported options:
+ * - null: Autodetect if any restriction methods are available (default)
+ * - 'firejail': Use firejail <https://firejail.wordpress.com/>
+ * - false: Don't use any restrictions
+ *
+ * @since 1.31
+ * @var null|string|bool
+ */
+$wgShellRestrictionMethod = null;
+
 /** @} */ # End shell }
 
 /************************************************************************//**

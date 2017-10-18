@@ -36,10 +36,10 @@ class Command {
 	use LoggerAwareTrait;
 
 	/** @var string */
-	private $command = '';
+	protected $command = '';
 
 	/** @var array */
-	private $limits = [
+	protected $limits = [
 		// seconds
 		'time' => 180,
 		// seconds
@@ -51,21 +51,21 @@ class Command {
 	];
 
 	/** @var string[] */
-	private $env = [];
+	protected $env = [];
 
 	/** @var string */
 	private $method;
 
 	/** @var bool */
-	private $useStderr = false;
+	protected $useStderr = false;
 
 	/** @var bool */
 	private $everExecuted = false;
 
 	/** @var string|false */
-	private $cgroup = false;
+	protected $cgroup = false;
 
-	private $useLogPipe = false;
+	protected $useLogPipe = false;
 
 	/**
 	 * Constructor. Don't call directly, instead use Shell::command()

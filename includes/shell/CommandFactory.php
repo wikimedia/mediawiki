@@ -38,14 +38,21 @@ class CommandFactory {
 	private $cgroup;
 
 	/**
+	 * @var string|bool
+	 */
+	private $restrictionMethod;
+
+	/**
 	 * Constructor
 	 *
 	 * @param array $limits See {@see Command::limits()}
 	 * @param string|bool $cgroup See {@see Command::cgroup()}
+	 * @param string|bool $restrictionMethod
 	 */
-	public function __construct( array $limits, $cgroup ) {
+	public function __construct( array $limits, $cgroup, $restrictionMethod ) {
 		$this->limits = $limits;
 		$this->cgroup = $cgroup;
+		$this->restrictionMethod = $restrictionMethod;
 		$this->setLogger( new NullLogger() );
 	}
 
@@ -55,7 +62,11 @@ class CommandFactory {
 	 * @return Command
 	 */
 	public function create() {
-		$command = new Command();
+		if ( $this->restrictionMethod === 'firejail' ) {
+			$command = new FirejailCommand();
+		} else {
+			$command = new Command();
+		}
 		$command->setLogger( $this->logger );
 
 		return $command
