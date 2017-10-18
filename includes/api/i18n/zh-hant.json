@@ -311,6 +311,7 @@
 	"apierror-permissiondenied": "您沒有權限$1。",
 	"apierror-reauthenticate": "於本工作階段還未核對身分，請重新核對。",
 	"apierror-timeout": "伺服器未有在預計的時間內回應。",
+	"api-feed-error-title": "錯誤（$1）",
 	"api-credits-header": "製作群",
 	"api-credits": "API 開發人員：\n* Roan Kattouw (首席開發者 Sep 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (創立者，首席開發者 Sep 2006–Sep 2007)\n* Brad Jorsch (首席開發者 2013–present)\n\n請傳送您的評論、建議以及問題至 mediawiki-api@lists.wikimedia.org\n或者回報問題至 https://phabricator.wikimedia.org/。"
 }
