@@ -23,6 +23,7 @@
  * @file
  */
 
+use MediaWiki\Shell\FirejailCommand;
 use MediaWiki\Shell\Shell;
 
 class GitInfo {
@@ -230,9 +231,14 @@ class GitInfo {
 					'--format=format:%ct',
 					'HEAD',
 				];
-				$result = Shell::command( $cmd )
+				$command = Shell::command( $cmd )
 					->environment( [ 'GIT_DIR' => $this->basedir ] )
-					->execute();
+					->restrict( Shell::RESTRICT_DEFAULT | Shell::NO_NETWORK );
+
+				if ( $command instanceof FirejailCommand ) {
+					$command->whitelistPaths( [ $this->basedir ] );
+				}
+				$result = $command->execute();
 
 				if ( $result->getExitCode() === 0 ) {
 					$date = (int)$result->getStdout();
