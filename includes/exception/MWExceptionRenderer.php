@@ -193,12 +193,16 @@ class MWExceptionRenderer {
 	 * @return string Message with arguments replaced
 	 */
 	private static function msg( $key, $fallback /*[, params...] */ ) {
-		$args = array_slice( func_get_args(), 2 );
+		global $wgSitename;
 		try {
-			return wfMessage( $key, $args )->text();
+			$res = wfMessage( $key, $args )->text();
 		} catch ( Exception $e ) {
-			return wfMsgReplaceArgs( $fallback, $args );
+			$res = wfMsgReplaceArgs( $fallback, $args );
 		}
+
+		// If an exception happens inside message rendering,
+		// {{SITENAME}} sometimes won't be replaced.
+		return preg_replace( '/\{\{SITENAME\}\}/', $wgSitename, $res );
 	}
 
 	/**
