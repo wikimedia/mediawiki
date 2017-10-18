@@ -109,6 +109,7 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 						'nl' => SVGReader::LANG_FULL_MATCH,
 						'tlh-ca' => SVGReader::LANG_FULL_MATCH,
 						'tlh' => SVGReader::LANG_PREFIX_MATCH
+
 					],
 				]
 			],
