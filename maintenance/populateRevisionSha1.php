@@ -55,10 +55,10 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 		}
 
 		$this->output( "Populating rev_sha1 column\n" );
-		$rc = $this->doSha1Updates( 'revision', 'rev_id', 'rev' );
+		$rc = $this->doSha1Updates( 'revision', 'rev_id', Revision::selectFields(), 'rev' );
 
 		$this->output( "Populating ar_sha1 column\n" );
-		$ac = $this->doSha1Updates( 'archive', 'ar_rev_id', 'ar' );
+		$ac = $this->doSha1Updates( 'archive', 'ar_rev_id', Revision::selectArchiveFields(), 'ar' );
 		$this->output( "Populating ar_sha1 column legacy rows\n" );
 		$ac += $this->doSha1LegacyUpdates();
 
@@ -74,7 +74,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	 * @param string $prefix
 	 * @return int Rows changed
 	 */
-	protected function doSha1Updates( $table, $idCol, $prefix ) {
+	protected function doSha1Updates( $table, $idCol, $fields, $prefix ) {
 		$db = $this->getDB( DB_MASTER );
 		$start = $db->selectField( $table, "MIN($idCol)", false, __METHOD__ );
 		$end = $db->selectField( $table, "MAX($idCol)", false, __METHOD__ );
@@ -93,7 +93,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			$this->output( "...doing $idCol from $blockStart to $blockEnd\n" );
 			$cond = "$idCol BETWEEN $blockStart AND $blockEnd
 				AND $idCol IS NOT NULL AND {$prefix}_sha1 = ''";
-			$res = $db->select( $table, '*', $cond, __METHOD__ );
+			$res = $db->select( $table, $fields, $cond, __METHOD__ );
 
 			$this->beginTransaction( $db, __METHOD__ );
 			foreach ( $res as $row ) {
@@ -117,7 +117,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	protected function doSha1LegacyUpdates() {
 		$count = 0;
 		$db = $this->getDB( DB_MASTER );
-		$res = $db->select( 'archive', '*',
+		$res = $db->select( 'archive', Revision::selectArchiveFields(),
 			[ 'ar_rev_id IS NULL', 'ar_sha1' => '' ], __METHOD__ );
 
 		$updateSize = 0;
