@@ -36,7 +36,7 @@ class ApiQueryContributions extends ApiQueryBase {
 	}
 
 	private $params, $prefixMode, $userprefix, $multiUserMode, $idMode, $usernames, $userids,
-		$parentLens, $commentStore;
+		$parentLens, $commentStore, $ipRange;
 	private $fld_ids = false, $fld_title = false, $fld_timestamp = false,
 		$fld_comment = false, $fld_parsedcomment = false, $fld_flags = false,
 		$fld_patrolled = false, $fld_tags = false, $fld_size = false, $fld_sizediff = false;
@@ -67,7 +67,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		// TODO: if the query is going only against the revision table, should this be done?
 		$this->selectNamedDB( 'contributions', DB_REPLICA, 'contributions' );
 
-		$this->requireOnlyOneParameter( $this->params, 'userprefix', 'userids', 'user' );
+		$this->requireOnlyOneParameter( $this->params, 'userprefix', 'userids', 'iprange', 'user' );
 
 		$this->idMode = false;
 		if ( isset( $this->params['userprefix'] ) ) {
@@ -93,6 +93,17 @@ class ApiQueryContributions extends ApiQueryBase {
 			$this->prefixMode = false;
 			$this->multiUserMode = ( count( $this->params['userids'] ) > 1 );
 			$this->idMode = true;
+		} elseif ( isset( $this->params['iprange'] ) ) {
+			$this->ipRange = $this->params['iprange'];
+			$encParamName = $this->encodeParamName( 'iprange' );
+			if ( !IP::isValidRange( $this->ipRange ) ) {
+				$this->dieWithError( [ 'apierror-invalidrange', $encParamName ], "invalidrange_$encParamName" );
+			}
+			if ( !ContribsPager::isQueryableRange( $this->ipRange ) ) {
+				$this->dieWithError( [ 'apierror-rangeoutofrange', $encParamName ], "invalidrange_$encParamName" );
+			}
+
+			$this->multiUserMode = true;
 		} else {
 			$anyIPs = false;
 			$this->userids = [];
@@ -246,6 +257,14 @@ class ApiQueryContributions extends ApiQueryBase {
 		}
 		if ( $bitmask ) {
 			$this->addWhere( $this->getDB()->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask" );
+		}
+
+		if ( $this->ipRange ) {
+			$this->addTables( 'ip_changes' );
+			$this->addJoinConds( [
+				'ip_changes' => [ 'LEFT JOIN', [ 'ipc_rev_id = rev_id' ] ]
+			] );
+			$this->addWhere( ContribsPager::getIpRangeConds( $this->getDB(), $this->ipRange ) );
 		}
 
 		// We only want pages by the specified users.
@@ -527,6 +546,7 @@ class ApiQueryContributions extends ApiQueryBase {
 				ApiBase::PARAM_ISMULTI => true
 			],
 			'userprefix' => null,
+			'iprange' => null,
 			'dir' => [
 				ApiBase::PARAM_DFLT => 'older',
 				ApiBase::PARAM_TYPE => [

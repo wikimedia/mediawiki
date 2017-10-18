@@ -213,7 +213,7 @@ class ContribsPager extends RangeChronologicalPager {
 				$queryInfo['conds']['rev_user'] = $uid;
 				$queryInfo['options']['USE INDEX']['revision'] = 'user_timestamp';
 			} else {
-				$ipRangeConds = $this->getIpRangeConds( $this->mDb, $this->target );
+				$ipRangeConds = self::getIpRangeConds( $this->mDb, $this->target );
 
 				if ( $ipRangeConds ) {
 					$queryInfo['tables'][] = 'ip_changes';
@@ -307,9 +307,9 @@ class ContribsPager extends RangeChronologicalPager {
 	 * @param string         $ip The IP address or CIDR
 	 * @return string|false  SQL for valid IP ranges, false if invalid
 	 */
-	private function getIpRangeConds( $db, $ip ) {
+	public static function getIpRangeConds( IDatabase $db, $ip ) {
 		// First make sure it is a valid range and they are not outside the CIDR limit
-		if ( !$this->isQueryableRange( $ip ) ) {
+		if ( !self::isQueryableRange( $ip ) ) {
 			return false;
 		}
 
@@ -325,14 +325,14 @@ class ContribsPager extends RangeChronologicalPager {
 	 * @return bool True if it is valid
 	 * @since 1.30
 	 */
-	public function isQueryableRange( $ipRange ) {
-		$limits = $this->getConfig()->get( 'RangeContributionsCIDRLimit' );
+	public static function isQueryableRange( $ipRange ) {
+		global $wgRangeContributionsCIDRLimit;
 
 		$bits = IP::parseCIDR( $ipRange )[1];
 		if (
 			( $bits === false ) ||
-			( IP::isIPv4( $ipRange ) && $bits < $limits['IPv4'] ) ||
-			( IP::isIPv6( $ipRange ) && $bits < $limits['IPv6'] )
+			( IP::isIPv4( $ipRange ) && $bits < $wgRangeContributionsCIDRLimit['IPv4'] ) ||
+			( IP::isIPv6( $ipRange ) && $bits < $wgRangeContributionsCIDRLimit['IPv6'] )
 		) {
 			return false;
 		}
