@@ -42,6 +42,14 @@ use MediaWiki\MediaWikiServices;
 class Shell {
 
 	/**
+	 * If possible, restrict the request to have no
+	 * network access
+	 *
+	 * @since 1.31
+	 */
+	const NO_NETWORK = 1;
+
+	/**
 	 * Returns a new instance of Command class
 	 *
 	 * @param string|string[] $command String or array of strings representing the command to
