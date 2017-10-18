@@ -17,6 +17,8 @@ This is not a release yet!
 * (T160298) Remove use of implicitGroupBy() in ActiveUsersPager.
 * (T174255) Declare uploadCount property in importDump.php.
 * Updated dev dependancy phpunit/phpunit from v4.8.24 to v4.8.36.
+* (T178451) SECURITY: Potential XSS when $wgShowExceptionDetails = false and browser
+  sends non-standard url escaping.
 
 == MediaWiki 1.28.1 ==
 
