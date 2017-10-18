@@ -781,6 +781,23 @@ abstract class MediaHandler {
 	}
 
 	/**
+	 * Get the language code from the available languages for this file that matches the language
+	 * requested by the user
+	 *
+	 * @param string $userPreferredLanguage
+	 * @param array $availableLanguages
+	 * @return string
+	 */
+	public function getMatchedLanguage( $userPreferredLanguage, array $availableLanguages ) {
+		foreach ($availableLanguages as $availableLanguage) {
+			if ($userPreferredLanguage == $availableLanguage) {
+				return $availableLanguage;
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * On file types that support renderings in multiple languages,
 	 * which language is used by default if unspecified.
 	 *

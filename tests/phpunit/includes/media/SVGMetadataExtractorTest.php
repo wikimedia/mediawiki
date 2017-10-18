@@ -104,11 +104,10 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 					'originalWidth' => '17.7cm',
 					'originalHeight' => '13cm',
 					'translations' => [
-						'de' => SVGReader::LANG_FULL_MATCH,
-						'fr' => SVGReader::LANG_FULL_MATCH,
-						'nl' => SVGReader::LANG_FULL_MATCH,
-						'tlh-ca' => SVGReader::LANG_FULL_MATCH,
-						'tlh' => SVGReader::LANG_PREFIX_MATCH
+						'de',
+						'fr',
+						'nl',
+						'tlh-ca'
 					],
 				]
 			],
