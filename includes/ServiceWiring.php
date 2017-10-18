@@ -42,6 +42,7 @@ use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\CommandFactory;
+use MediaWiki\Shell\FirejailCommand;
 
 return [
 	'DBLoadBalancerFactory' => function ( MediaWikiServices $services ) {
@@ -440,7 +441,16 @@ return [
 		];
 		$cgroup = $config->get( 'ShellCgroup' );
 
-		$factory = new CommandFactory( $limits, $cgroup );
+		$restrictionMethod = $config->get( 'ShellRestrictionMethod' );
+		if ( $restrictionMethod === 'autodetect' ) {
+			if ( FirejailCommand::isUsable() ) {
+				$restrictionMethod = 'firejail';
+			} else {
+				$restrictionMethod = false;
+			}
+		}
+
+		$factory = new CommandFactory( $limits, $cgroup, $restrictionMethod );
 		$factory->setLogger( LoggerFactory::getInstance( 'exec' ) );
 
 		return $factory;
