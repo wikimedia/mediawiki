@@ -42,6 +42,23 @@ use MediaWiki\MediaWikiServices;
 class Shell {
 
 	/**
+	 * Don't enable the restrictions listed in
+	 * firejail.profile that restrict some system
+	 * access.
+	 *
+	 * @since 1.31
+	 */
+	const ALLOW_SYSTEM_ACCESS = 1;
+
+	/**
+	 * If possible, restrict the request to have no
+	 * network access
+	 *
+	 * @since 1.31
+	 */
+	const NO_NETWORK = 2;
+
+	/**
 	 * Returns a new instance of Command class
 	 *
 	 * @param string|string[] $command String or array of strings representing the command to
