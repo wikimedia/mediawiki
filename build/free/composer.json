@@ -7,7 +7,7 @@
     "mediawiki/arrays": "dev-491256a",
     "mediawiki/blue-spice-distribution-connector": "dev-master",
     "mediawiki/blue-spice-echo-connector": "dev-master",
-    "mediawiki/blue-spice-edit-notify-connector": "dev-725a26f",
+    "mediawiki/blue-spice-edit-notify-connector": "dev-master",
     "hallowelt/blue-spice-extensions": "dev-master",
     "hallowelt/blue-spice-foundation": "dev-master",
     "mediawiki/blue-spice-ldap-authentication-connector": "dev-master",
