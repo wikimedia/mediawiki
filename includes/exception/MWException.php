@@ -114,13 +114,15 @@ class MWException extends Exception {
 			$logId = WebRequest::getRequestId();
 			$type = static::class;
 			return "<div class=\"errorbox\">" .
-			'[' . $logId . '] ' .
-			gmdate( 'Y-m-d H:i:s' ) . ": " .
-			$this->msg( "internalerror-fatal-exception",
-				"Fatal exception of type $1",
-				$type,
-				$logId,
-				MWExceptionHandler::getURL( $this )
+			htmlspecialchars(
+				'[' . $logId . '] ' .
+				gmdate( 'Y-m-d H:i:s' ) . ": " .
+				$this->msg( "internalerror-fatal-exception",
+					"Fatal exception of type $1",
+					$type,
+					$logId,
+					MWExceptionHandler::getURL( $this )
+				)
 			) . "</div>\n" .
 			"<!-- Set \$wgShowExceptionDetails = true; " .
 			"at the bottom of LocalSettings.php to show detailed " .

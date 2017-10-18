@@ -12,6 +12,8 @@ This not a release yet!
 * (T163646) Pass a string not an int to mysql_real_escape_string().
 * (T180143) Bump justinrainbow/json-schema development dependency to ~5.2.
 * Updated dev dependancy phpunit/phpunit from v4.8.35 to v4.8.36.
+* (T178451) SECURITY: Potential XSS when $wgShowExceptionDetails = false and browser
+  sends non-standard url escaping.
 
 == MediaWiki 1.29.1 ==
 
