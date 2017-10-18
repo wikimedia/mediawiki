@@ -4050,6 +4050,17 @@ class Language {
 	}
 
 	/**
+	 * convert text to a variant
+	 *
+	 * @param string $text
+	 * @param string|boolean $variant
+	 * @return string
+	 */
+	public function autoConvert( $text, $variant = false ) {
+		return $this->mConverter->autoConvert( $text, $variant );
+	}
+
+	/**
 	 * convert text to all supported variants
 	 *
 	 * @param string $text
@@ -4083,10 +4094,11 @@ class Language {
 	 * Convert a namespace index to a string in the preferred variant
 	 *
 	 * @param int $ns
+	 * @param string $variant
 	 * @return string
 	 */
-	public function convertNamespace( $ns ) {
-		return $this->mConverter->convertNamespace( $ns );
+	public function convertNamespace( $ns, $variant = null ) {
+		return $this->mConverter->convertNamespace( $ns, $variant );
 	}
 
 	/**
