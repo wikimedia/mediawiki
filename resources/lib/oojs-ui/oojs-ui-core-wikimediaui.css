@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.23.5
+ * OOjs UI v0.24.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-10-12T21:25:55Z
+ * Date: 2017-10-17T23:18:56Z
  */
 /**
  * WikimediaUI Base v0.9.2
@@ -1089,7 +1089,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-popupWidget-body-padded {
   margin: 0.703125em 0.9375em 0.625em;
 }
-.oo-ui-popupWidget-body-padded :first-child {
+.oo-ui-popupWidget-body-padded > :first-child {
   margin-top: 0;
 }
 .oo-ui-popupWidget-footer {
@@ -1480,28 +1480,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -moz-transition: border-color 200ms cubic-bezier(0.4, 0.55, 0.55, 1), box-shadow 200ms cubic-bezier(0.4, 0.55, 0.55, 1);
   transition: border-color 200ms cubic-bezier(0.4, 0.55, 0.55, 1), box-shadow 200ms cubic-bezier(0.4, 0.55, 0.55, 1);
 }
-.oo-ui-textInputWidget.oo-ui-widget-enabled input:hover,
-.oo-ui-textInputWidget.oo-ui-widget-enabled textarea:hover {
-  border-color: #72777d;
-}
-.oo-ui-textInputWidget.oo-ui-widget-enabled input:focus,
-.oo-ui-textInputWidget.oo-ui-widget-enabled textarea:focus {
-  outline: 0;
-  border-color: #36c;
-  box-shadow: inset 0 0 0 1px #36c;
-}
-.oo-ui-textInputWidget.oo-ui-widget-enabled input[readonly],
-.oo-ui-textInputWidget.oo-ui-widget-enabled textarea[readonly] {
-  background-color: #f8f9fa;
-}
-.oo-ui-textInputWidget.oo-ui-widget-enabled input[readonly]:hover,
-.oo-ui-textInputWidget.oo-ui-widget-enabled textarea[readonly]:hover {
-  border-color: #c8ccd1;
-}
-.oo-ui-textInputWidget.oo-ui-widget-enabled input[readonly]:focus,
-.oo-ui-textInputWidget.oo-ui-widget-enabled textarea[readonly]:focus {
-  border-color: #36c;
-}
 .oo-ui-textInputWidget.oo-ui-widget-enabled input::-webkit-input-placeholder,
 .oo-ui-textInputWidget.oo-ui-widget-enabled textarea::-webkit-input-placeholder {
   color: #72777d;
@@ -1526,6 +1504,20 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-textInputWidget.oo-ui-widget-enabled textarea::placeholder {
   color: #72777d;
   opacity: 1;
+}
+.oo-ui-textInputWidget.oo-ui-widget-enabled input:focus,
+.oo-ui-textInputWidget.oo-ui-widget-enabled textarea:focus {
+  outline: 0;
+  border-color: #36c;
+  box-shadow: inset 0 0 0 1px #36c;
+}
+.oo-ui-textInputWidget.oo-ui-widget-enabled input[readonly],
+.oo-ui-textInputWidget.oo-ui-widget-enabled textarea[readonly] {
+  background-color: #f8f9fa;
+}
+.oo-ui-textInputWidget.oo-ui-widget-enabled:hover input,
+.oo-ui-textInputWidget.oo-ui-widget-enabled:hover textarea {
+  border-color: #72777d;
 }
 @media screen and (min-width: 0) {
   .oo-ui-textInputWidget.oo-ui-widget-enabled textarea:focus {
