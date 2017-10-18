@@ -253,7 +253,7 @@ class Command {
 		if ( !$useLogPipe && $this->useStderr ) {
 			$cmd .= ' 2>&1';
 		}
-		wfDebug( __METHOD__ . ": $cmd\n" );
+		$this->logger->debug( __METHOD__ . ": $cmd" );
 
 		// Don't try to execute commands that exceed Linux's MAX_ARG_STRLEN.
 		// Other platforms may be more accomodating, but we don't want to be
