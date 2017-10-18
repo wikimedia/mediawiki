@@ -43,8 +43,6 @@ class SVGReader {
 	const DEFAULT_WIDTH = 512;
 	const DEFAULT_HEIGHT = 512;
 	const NS_SVG = 'http://www.w3.org/2000/svg';
-	const LANG_PREFIX_MATCH = 1;
-	const LANG_FULL_MATCH = 2;
 
 	/** @var null|XMLReader */
 	private $reader = null;
@@ -265,25 +263,9 @@ class SVGReader {
 					// See https://www.w3.org/TR/SVG/struct.html#SystemLanguageAttribute
 					$langList = explode( ',', $sysLang );
 					foreach ( $langList as $langItem ) {
-						$langItem = trim( $langItem );
-						if ( Language::isWellFormedLanguageTag( $langItem ) ) {
-							$this->languages[$langItem] = self::LANG_FULL_MATCH;
-						}
-						// Note, the standard says that any prefix should work,
-						// here we do only the initial prefix, since that will catch
-						// 99% of cases, and we are going to compare against fallbacks.
-						// This differs mildly from how the spec says languages should be
-						// handled, however it matches better how the MediaWiki language
-						// preference is generally handled.
-						$dash = strpos( $langItem, '-' );
-						// Intentionally checking both !false and > 0 at the same time.
-						if ( $dash ) {
-							$itemPrefix = substr( $langItem, 0, $dash );
-							if ( Language::isWellFormedLanguageTag( $itemPrefix ) ) {
-								$this->languagePrefixes[$itemPrefix] = self::LANG_PREFIX_MATCH;
-							}
-						}
+						$this->languages[] = trim( $langItem );
 					}
+					$this->languages = array_unique( $this->languages );
 				}
 				switch ( $this->reader->localName ) {
 					case 'script':
