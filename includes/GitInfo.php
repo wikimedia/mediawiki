@@ -232,6 +232,7 @@ class GitInfo {
 				];
 				$result = Shell::command( $cmd )
 					->environment( [ 'GIT_DIR' => $this->basedir ] )
+					->restrict( Shell::NO_SYSTEM_ACCESS | Shell::NO_NETWORK )
 					->execute();
 
 				if ( $result->getExitCode() === 0 ) {
