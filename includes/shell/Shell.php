@@ -42,6 +42,22 @@ use MediaWiki\MediaWikiServices;
 class Shell {
 
 	/**
+	 * Restrict system access and directories
+	 * that shouldn't be needed for most commands
+	 *
+	 * @since 1.31
+	 */
+	const NO_SYSTEM_ACCESS = 1;
+
+	/**
+	 * If possible, restrict the request to have no
+	 * network access
+	 *
+	 * @since 1.31
+	 */
+	const NO_NETWORK = 2;
+
+	/**
 	 * Returns a new instance of Command class
 	 *
 	 * @param string|string[] $command String or array of strings representing the command to
