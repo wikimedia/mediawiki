@@ -42,6 +42,7 @@ use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\CommandFactory;
+use MediaWiki\Shell\FirejailCommand;
 
 return [
 	'DBLoadBalancerFactory' => function ( MediaWikiServices $services ) {
@@ -439,8 +440,9 @@ return [
 			'filesize' => $config->get( 'MaxShellFileSize' ),
 		];
 		$cgroup = $config->get( 'ShellCgroup' );
+		$restrictionMethod = $config->get( 'ShellRestrictionMethod' );
 
-		$factory = new CommandFactory( $limits, $cgroup );
+		$factory = new CommandFactory( $limits, $cgroup, $restrictionMethod );
 		$factory->setLogger( LoggerFactory::getInstance( 'exec' ) );
 		$factory->logStderr();
 
