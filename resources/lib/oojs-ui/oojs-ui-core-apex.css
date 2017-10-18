@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.23.5
+ * OOjs UI v0.24.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-10-12T21:25:55Z
+ * Date: 2017-10-17T23:18:56Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -548,8 +548,18 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-horizontalLayout > .oo-ui-layout {
   margin-top: 0;
 }
+.oo-ui-widget .oo-ui-iconElement-icon,
+.oo-ui-widget .oo-ui-indicatorElement-indicator,
+.oo-ui-widget.oo-ui-iconElement .oo-ui-widget .oo-ui-iconElement-icon,
+.oo-ui-widget.oo-ui-indicatorElement .oo-ui-widget .oo-ui-indicatorElement-indicator {
+  display: none;
+}
 .oo-ui-widget.oo-ui-iconElement .oo-ui-iconElement-icon,
-.oo-ui-widget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
+.oo-ui-widget.oo-ui-iconElement > * > .oo-ui-iconElement-icon,
+.oo-ui-widget.oo-ui-iconElement .oo-ui-iconElement .oo-ui-iconElement-icon,
+.oo-ui-widget.oo-ui-indicatorElement > .oo-ui-indicatorElement-indicator,
+.oo-ui-widget.oo-ui-indicatorElement > * > .oo-ui-indicatorElement-indicator,
+.oo-ui-widget.oo-ui-indicatorElement .oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
   display: block;
 }
 .oo-ui-optionWidget {
@@ -1125,14 +1135,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   color: #ddd;
   text-shadow: 0 1px 1px #fff;
 }
-.oo-ui-textInputWidget > .oo-ui-iconElement-icon,
-.oo-ui-textInputWidget > .oo-ui-indicatorElement-indicator,
-.oo-ui-textInputWidget > .oo-ui-labelElement-label {
-  display: none;
-}
 .oo-ui-textInputWidget.oo-ui-iconElement > .oo-ui-iconElement-icon,
 .oo-ui-textInputWidget.oo-ui-indicatorElement > .oo-ui-indicatorElement-indicator {
-  display: block;
   position: absolute;
   top: 0;
   height: 100%;
@@ -1154,6 +1158,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin-right: 0.775em;
 }
 .oo-ui-textInputWidget > .oo-ui-labelElement-label {
+  display: none;
   top: 1px;
   padding: 0.546875em 0.4em 0.625em 0.4em;
   line-height: 1.172em;
