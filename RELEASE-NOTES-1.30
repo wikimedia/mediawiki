@@ -251,6 +251,8 @@ changes to languages because of Phabricator reports.
 * (T178450) The module 'jquery.badge' is deprecated and will be removed in a future
   release. For notifying the user of an event, the Notifications ("Echo") system
   should be used instead.
+* (T178451) SECURITY: Potential XSS when $wgShowExceptionDetails = false and browser
+  sends non-standard url escaping.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
