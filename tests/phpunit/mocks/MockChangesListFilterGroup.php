@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Rdbms\IDatabase;
+
 class MockChangesListFilterGroup extends ChangesListFilterGroup {
 	public function createFilter( array $filterDefinition ) {
 		return new MockChangesListFilter( $filterDefinition );
@@ -9,11 +11,11 @@ class MockChangesListFilterGroup extends ChangesListFilterGroup {
 		$this->filters[$filter->getName()] = $filter;
 	}
 
-	public function isPerGroupRequestParameter() {
-		throw new MWException(
-			'Not implemented: If the test relies on this, put it one of the ' .
-			'subclasses\' tests (e.g. ChangesListBooleanFilterGroupTest) ' .
-			'instead of testing the abstract class'
-		);
+	public function modifyQuery( IDatabase $dbr, ChangesListSpecialPage $specialPage,
+		&$tables, &$fields, &$conds, &$query_options, &$join_conds, FormOptions $opts,
+		$isStructuredFiltersEnabled ) {
+	}
+
+	public function addOptions( FormOptions $opts, $allowDefaults, $isStructuredFiltersEnabled ) {
 	}
 }
