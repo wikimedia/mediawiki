@@ -9,6 +9,9 @@ production.
 * $wgEnableAPI and $wgEnableWriteAPI are now deprecated and will be removed in
   a future version. The API is now considered to be stable, secure and
   essential.
+* $wgUsejQueryThree was removed, as it is now the default. This was documented as a
+  temporary variable during the migration period, deprecated since 1.29.
+* …
 
 === New features in 1.31 ===
 * Wikimedia\Rdbms\IDatabase->select() and similar methods now support
