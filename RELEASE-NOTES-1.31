@@ -11,7 +11,8 @@ production.
   essential.
 
 === New features in 1.31 ===
-* …
+* Wikimedia\Rdbms\IDatabase->select() and similar methods now support
+  joins with parentheses for grouping.
 
 === External library changes in 1.31 ===
 
