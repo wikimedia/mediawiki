@@ -36,10 +36,10 @@ class Command {
 	use LoggerAwareTrait;
 
 	/** @var string */
-	private $command = '';
+	protected $command = '';
 
 	/** @var array */
-	private $limits = [
+	protected $limits = [
 		// seconds
 		'time' => 180,
 		// seconds
@@ -51,21 +51,19 @@ class Command {
 	];
 
 	/** @var string[] */
-	private $env = [];
+	protected $env = [];
 
 	/** @var string */
 	private $method;
 
 	/** @var bool */
-	private $useStderr = false;
+	protected $useStderr = false;
 
 	/** @var bool */
 	private $everExecuted = false;
 
 	/** @var string|false */
-	private $cgroup = false;
-
-	private $useLogPipe = false;
+	protected $cgroup = false;
 
 	/**
 	 * Constructor. Don't call directly, instead use Shell::command()
@@ -203,7 +201,7 @@ class Command {
 	 * String together all the options and build the final command
 	 * to execute
 	 *
-	 * @return string
+	 * @return array [ command, whether it needs a log pipe ]
 	 */
 	protected function buildFinalCommand() {
 		$envcmd = '';
@@ -224,6 +222,7 @@ class Command {
 			}
 		}
 
+		$useLogPipe = false;
 		$cmd = $envcmd . trim( $this->command );
 
 		if ( is_executable( '/bin/bash' ) ) {
@@ -244,14 +243,14 @@ class Command {
 						"MW_WALL_CLOCK_LIMIT=$wallTime; " .
 						"MW_USE_LOG_PIPE=yes"
 					);
-				$this->useLogPipe = true;
+				$useLogPipe = true;
 			}
 		}
-		if ( !$this->useLogPipe && $this->useStderr ) {
+		if ( !$useLogPipe && $this->useStderr ) {
 			$cmd .= ' 2>&1';
 		}
 
-		return $cmd;
+		return [ $cmd, $useLogPipe ];
 	}
 
 	/**
@@ -268,7 +267,7 @@ class Command {
 
 		$profileMethod = $this->method ?: wfGetCaller();
 
-		$cmd = $this->buildFinalCommand();
+		list( $cmd, $useLogPipe ) = $this->buildFinalCommand();
 
 		$this->logger->debug( __METHOD__ . ": $cmd" );
 
@@ -286,7 +285,7 @@ class Command {
 			1 => [ 'pipe', 'w' ],
 			2 => [ 'pipe', 'w' ],
 		];
-		if ( $this->useLogPipe ) {
+		if ( $useLogPipe ) {
 			$desc[3] = [ 'pipe', 'w' ];
 		}
 		$pipes = null;
