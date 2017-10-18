@@ -333,15 +333,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 			// This is how we handle the fact that HTML forms don't submit
 			// unchecked boxes.
-			foreach ( $this->filterGroups as $filterGroup ) {
-				if ( $filterGroup instanceof ChangesListBooleanFilterGroup ) {
-					/** @var ChangesListBooleanFilter $filter */
-					foreach ( $filterGroup->getFilters() as $filter ) {
-						if ( $filter->displaysOnUnstructuredUi() ) {
-							$allBooleansFalse[$filter->getName()] = false;
-						}
-					}
-				}
+			foreach ( $this->getLegacyShowHideFilters() as $filter ) {
+				$allBooleansFalse[ $filter->getName() ] = false;
 			}
 
 			$params = $params + $allBooleansFalse;
@@ -646,21 +639,15 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		# Spit out some control panel links
 		$links = [];
 		$namesOfDisplayedFilters = [];
-		foreach ( $this->getFilterGroups() as $groupName => $group ) {
-			if ( !$group->isPerGroupRequestParameter() ) {
-				foreach ( $group->getFilters() as $filterName => $filter ) {
-					if ( $filter->displaysOnUnstructuredUi( $this ) ) {
-						$namesOfDisplayedFilters[] = $filterName;
-						$links[] = $this->showHideCheck(
-							$nondefaults,
-							$filter->getShowHide(),
-							$filterName,
-							$opts[$filterName],
-							$filter->isFeatureAvailableOnStructuredUi( $this )
-						);
-					}
-				}
-			}
+		foreach ( $this->getLegacyShowHideFilters() as $filterName => $filter ) {
+			$namesOfDisplayedFilters[] = $filterName;
+			$links[] = $this->showHideCheck(
+				$nondefaults,
+				$filter->getShowHide(),
+				$filterName,
+				$opts[ $filterName ],
+				$filter->isFeatureAvailableOnStructuredUi( $this )
+			);
 		}
 
 		$hiddenFields = $nondefaults;
