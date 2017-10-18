@@ -1316,7 +1316,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/**
 	 * @see BagOStuff::makeKey()
 	 * @param string $keys,... Key component
-	 * @return string
+	 * @return string Colon-delimited list of $keyspace followed by escaped components of $args
 	 * @since 1.27
 	 */
 	public function makeKey() {
@@ -1326,7 +1326,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/**
 	 * @see BagOStuff::makeGlobalKey()
 	 * @param string $keys,... Key component
-	 * @return string
+	 * @return string Colon-delimited list of $keyspace followed by escaped components of $args
 	 * @since 1.27
 	 */
 	public function makeGlobalKey() {
