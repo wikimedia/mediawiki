@@ -65,6 +65,8 @@ class Command {
 	/** @var string|false */
 	private $cgroup = false;
 
+	private $useLogPipe = false;
+
 	/**
 	 * Constructor. Don't call directly, instead use Shell::command()
 	 *
@@ -198,19 +200,12 @@ class Command {
 	}
 
 	/**
-	 * Executes command. Afterwards, getExitCode() and getOutput() can be used to access execution
-	 * results.
+	 * String together all the options and build the final command
+	 * to execute
 	 *
-	 * @return Result
-	 * @throws Exception
-	 * @throws ProcOpenError
-	 * @throws ShellDisabledError
+	 * @return string
 	 */
-	public function execute() {
-		$this->everExecuted = true;
-
-		$profileMethod = $this->method ?: wfGetCaller();
-
+	protected function buildFinalCommand() {
 		$envcmd = '';
 		foreach ( $this->env as $k => $v ) {
 			if ( wfIsWindows() ) {
@@ -231,7 +226,6 @@ class Command {
 
 		$cmd = $envcmd . trim( $this->command );
 
-		$useLogPipe = false;
 		if ( is_executable( '/bin/bash' ) ) {
 			$time = intval( $this->limits['time'] );
 			$wallTime = intval( $this->limits['walltime'] );
@@ -240,22 +234,42 @@ class Command {
 
 			if ( $time > 0 || $mem > 0 || $filesize > 0 || $wallTime > 0 ) {
 				$cmd = '/bin/bash ' . escapeshellarg( __DIR__ . '/limit.sh' ) . ' ' .
-					   escapeshellarg( $cmd ) . ' ' .
-					   escapeshellarg(
-						   "MW_INCLUDE_STDERR=" . ( $this->useStderr ? '1' : '' ) . ';' .
-						   "MW_CPU_LIMIT=$time; " .
-						   'MW_CGROUP=' . escapeshellarg( $this->cgroup ) . '; ' .
-						   "MW_MEM_LIMIT=$mem; " .
-						   "MW_FILE_SIZE_LIMIT=$filesize; " .
-						   "MW_WALL_CLOCK_LIMIT=$wallTime; " .
-						   "MW_USE_LOG_PIPE=yes"
-					   );
-				$useLogPipe = true;
+					escapeshellarg( $cmd ) . ' ' .
+					escapeshellarg(
+						"MW_INCLUDE_STDERR=" . ( $this->useStderr ? '1' : '' ) . ';' .
+						"MW_CPU_LIMIT=$time; " .
+						'MW_CGROUP=' . escapeshellarg( $this->cgroup ) . '; ' .
+						"MW_MEM_LIMIT=$mem; " .
+						"MW_FILE_SIZE_LIMIT=$filesize; " .
+						"MW_WALL_CLOCK_LIMIT=$wallTime; " .
+						"MW_USE_LOG_PIPE=yes"
+					);
+				$this->useLogPipe = true;
 			}
 		}
-		if ( !$useLogPipe && $this->useStderr ) {
+		if ( !$this->useLogPipe && $this->useStderr ) {
 			$cmd .= ' 2>&1';
 		}
+
+		return $cmd;
+	}
+
+	/**
+	 * Executes command. Afterwards, getExitCode() and getOutput() can be used to access execution
+	 * results.
+	 *
+	 * @return Result
+	 * @throws Exception
+	 * @throws ProcOpenError
+	 * @throws ShellDisabledError
+	 */
+	public function execute() {
+		$this->everExecuted = true;
+
+		$profileMethod = $this->method ?: wfGetCaller();
+
+		$cmd = $this->buildFinalCommand();
+
 		$this->logger->debug( __METHOD__ . ": $cmd" );
 
 		// Don't try to execute commands that exceed Linux's MAX_ARG_STRLEN.
@@ -272,7 +286,7 @@ class Command {
 			1 => [ 'pipe', 'w' ],
 			2 => [ 'pipe', 'w' ],
 		];
-		if ( $useLogPipe ) {
+		if ( $this->useLogPipe ) {
 			$desc[3] = [ 'pipe', 'w' ];
 		}
 		$pipes = null;
