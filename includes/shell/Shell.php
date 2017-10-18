@@ -42,6 +42,57 @@ use MediaWiki\MediaWikiServices;
 class Shell {
 
 	/**
+	 * Apply a default set of restrictions for improved
+	 * security out of the box.
+	 *
+	 * Equal to NO_ROOT | SECCOMP | PRIVATE_DEV
+	 *
+	 * @note This value will change over time to provide increased security
+	 *       by default, and is not guaranteed to be backwards-compatible.
+	 * @since 1.31
+	 */
+	const RESTRICT_DEFAULT = 7;
+
+	/**
+	 * Disallow any root access. Any setuid binaries
+	 * will be run without elevated access.
+	 *
+	 * @since 1.31
+	 */
+	const NO_ROOT = 1;
+
+	/**
+	 * Use seccomp to block dangerous syscalls
+	 * @see <https://en.wikipedia.org/wiki/seccomp>
+	 *
+	 * @since 1.31
+	 */
+	const SECCOMP = 2;
+
+	/**
+	 * Create a private /dev
+	 *
+	 * @since 1.31
+	 */
+	const PRIVATE_DEV = 4;
+
+	/**
+	 * Restrict the request to have no
+	 * network access
+	 *
+	 * @since 1.31
+	 */
+	const NO_NETWORK = 8;
+
+	/**
+	 * Deny execve syscall with seccomp
+	 * @see <https://en.wikipedia.org/wiki/exec_(system_call)>
+	 *
+	 * @since 1.31
+	 */
+	const NO_EXECVE = 16;
+
+	/**
 	 * Returns a new instance of Command class
 	 *
 	 * @param string|string[] $command String or array of strings representing the command to
