@@ -83,12 +83,14 @@ class Command {
 	 */
 	public function __destruct() {
 		if ( !$this->everExecuted ) {
+			$context = [ 'command' => $this->command ];
 			$message = __CLASS__ . " was instantiated, but execute() was never called.";
 			if ( $this->method ) {
-				$message .= " Calling method: {$this->method}.";
+				$message .= ' Calling method: {method}.';
+				$context['method'] = $this->method;
 			}
-			$message .= " Command: {$this->command}";
-			trigger_error( $message, E_USER_NOTICE );
+			$message .= ' Command: {command}';
+			$this->logger->warning( $message, $context );
 		}
 	}
 
