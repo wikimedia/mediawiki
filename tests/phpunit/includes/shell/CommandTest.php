@@ -6,17 +6,6 @@ use MediaWiki\Shell\Command;
  * @group Shell
  */
 class CommandTest extends PHPUnit_Framework_TestCase {
-	/**
-	 * @expectedException PHPUnit_Framework_Error_Notice
-	 */
-	public function testDestruct() {
-		if ( defined( 'HHVM_VERSION' ) ) {
-			$this->markTestSkipped( 'destructors are unreliable in HHVM' );
-		}
-		$command = new Command();
-		$command->params( 'true' );
-	}
-
 	private function requirePosix() {
 		if ( wfIsWindows() ) {
 			$this->markTestSkipped( 'This test requires a POSIX environment.' );
