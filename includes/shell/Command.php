@@ -36,10 +36,10 @@ class Command {
 	use LoggerAwareTrait;
 
 	/** @var string */
-	private $command = '';
+	protected $command = '';
 
 	/** @var array */
-	private $limits = [
+	protected $limits = [
 		// seconds
 		'time' => 180,
 		// seconds
@@ -51,19 +51,26 @@ class Command {
 	];
 
 	/** @var string[] */
-	private $env = [];
+	protected $env = [];
 
 	/** @var string */
 	private $method;
 
 	/** @var bool */
-	private $useStderr = false;
+	protected $useStderr = false;
 
 	/** @var bool */
 	private $everExecuted = false;
 
 	/** @var string|false */
-	private $cgroup = false;
+	protected $cgroup = false;
+
+	/**
+	 * bitfield with restrictions
+	 *
+	 * @var int
+	 */
+	protected $restrictions = 0;
 
 	/**
 	 * Constructor. Don't call directly, instead use Shell::command()
@@ -195,6 +202,30 @@ class Command {
 		$this->cgroup = $cgroup;
 
 		return $this;
+	}
+
+	/**
+	 * Set additional restrictions for this request
+	 *
+	 * @since 1.31
+	 * @param int $restrictions
+	 * @return $this
+	 */
+	public function restrict( $restrictions ) {
+		$this->restrictions |= $restrictions;
+
+		return $this;
+	}
+
+	/**
+	 * Bitfield helper on whether a specific restriction is enabled
+	 *
+	 * @param int $restriction
+	 *
+	 * @return bool
+	 */
+	protected function hasRestriction( $restriction ) {
+		return ( $this->restrictions & $restriction ) === $restriction;
 	}
 
 	/**
