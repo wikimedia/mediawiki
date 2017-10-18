@@ -41,7 +41,46 @@ class FirejailCommand extends Command {
 	}
 
 	protected function buildFinalCommand() {
-		return parent::buildFinalCommand();
+		if ( $this->restrictions === 0 ) {
+			// If there are no restrictions, then execute
+			// without using firejail
+			return parent::buildFinalCommand();
+		}
+
+		// quiet has to come first to prevent firejail from adding
+		// any output. Use --noprofile so we don't inherit any of
+		// the default profiles
+		$cmd = 'firejail --quiet --noprofile ';
+
+		// By default firejail hides all other user directories, so if
+		// MediaWiki is inside a home directory (/home) but not the
+		// current user's home directory, pass --allusers to whitelist
+		// the home directories again.
+		static $useAllUsers = null;
+		if ( $useAllUsers === null ) {
+			global $IP;
+			$currentUser = posix_getpwuid( posix_geteuid() );
+			$useAllUsers = ( strpos( $IP, '/home/' ) === 0 )
+				&& ( strpos( $IP, $currentUser['dir'] ) !== 0 );
+			if ( $useAllUsers ) {
+				$this->logger->warning( 'firejail: MediaWiki is located ' .
+					'in a home directory that does not belong to the ' .
+					'current user, so allowing access to all home ' .
+					'directories (--allusers)' );
+			}
+		}
+
+		if ( $useAllUsers ) {
+			$cmd .= '--allusers ';
+		}
+
+		if ( $this->restrictions & Shell::NO_NETWORK ) {
+			$cmd .= '--net=none ';
+		}
+
+		list( $fullCommand, $useLogPipe) = parent::buildFinalCommand();
+
+		return [ "$cmd $fullCommand", $useLogPipe ];
 	}
 
 }

@@ -66,6 +66,13 @@ class Command {
 	protected $cgroup = false;
 
 	/**
+	 * bitfield with restrictions
+	 *
+	 * @var int
+	 */
+	protected $restrictions = 0;
+
+	/**
 	 * Constructor. Don't call directly, instead use Shell::command()
 	 *
 	 * @throws ShellDisabledError
@@ -193,6 +200,19 @@ class Command {
 	 */
 	public function cgroup( $cgroup ) {
 		$this->cgroup = $cgroup;
+
+		return $this;
+	}
+
+	/**
+	 * Set additional restrictions for this request
+	 *
+	 * @since 1.31
+	 * @param int $restrictions
+	 * @return $this
+	 */
+	public function restrict( $restrictions ) {
+		$this->restrictions |= $restrictions;
 
 		return $this;
 	}
