@@ -61,7 +61,27 @@ class ChangesListBooleanFilterGroup extends ChangesListFilterGroup {
 	/**
 	 * @inheritDoc
 	 */
-	public function isPerGroupRequestParameter() {
-		return false;
+	public function modifyQuery( IDatabase $dbr, ChangesListSpecialPage $specialPage,
+		&$tables, &$fields, &$conds, &$query_options, &$join_conds,
+		FormOptions $opts, $isStructuredFiltersEnabled
+	) {
+		/** @var ChangesListBooleanFilter $filter */
+		foreach ( $this->getFilters() as $filter ) {
+			if ( $filter->isActive( $opts, $isStructuredFiltersEnabled ) ) {
+				$filter->modifyQuery( $dbr, $specialPage, $tables, $fields, $conds,
+					$query_options, $join_conds );
+			}
+		}
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function addOptions( FormOptions $opts, $allowDefaults, $isStructuredFiltersEnabled ) {
+		/** @var ChangesListBooleanFilter $filter */
+		foreach ( $this->getFilters() as $filter ) {
+			$defaultValue = $allowDefaults ? $filter->getDefault( $isStructuredFiltersEnabled ) : false;
+			$opts->add( $filter->getName(), $defaultValue );
+		}
 	}
 }

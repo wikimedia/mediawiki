@@ -971,6 +971,23 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
+	 * @return array The legacy show/hide toggle filters
+	 */
+	protected function getLegacyShowHideFilters() {
+		$filters = [];
+		foreach ( $this->filterGroups as $group ) {
+			if ( $group instanceof  ChangesListBooleanFilterGroup ) {
+				foreach ( $group->getFilters() as $key => $filter ) {
+					if ( $filter->displaysOnUnstructuredUi( $this ) ) {
+						$filters[ $key ] = $filter;
+					}
+				}
+			}
+		}
+		return $filters;
+	}
+
+	/**
 	 * Register all the filters, including legacy hook-driven ones.
 	 * Then create a FormOptions object with options as specified by the user
 	 *
@@ -1010,19 +1027,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		// If urlversion=2 is set, ignore the filter defaults and set them all to false/empty
 		$useDefaults = $this->getRequest()->getInt( 'urlversion' ) !== 2;
 
-		// Add all filters
 		/** @var ChangesListFilterGroup $filterGroup */
 		foreach ( $this->filterGroups as $filterGroup ) {
-			// URL parameters can be per-group, like 'userExpLevel',
-			// or per-filter, like 'hideminor'.
-			if ( $filterGroup->isPerGroupRequestParameter() ) {
-				$opts->add( $filterGroup->getName(), $useDefaults ? $filterGroup->getDefault() : '' );
-			} else {
-				/** @var ChangesListBooleanFilter $filter */
-				foreach ( $filterGroup->getFilters() as $filter ) {
-					$opts->add( $filter->getName(), $useDefaults ? $filter->getDefault( $structuredUI ) : false );
-				}
-			}
+			$filterGroup->addOptions( $opts, $useDefaults, $structuredUI );
 		}
 
 		$opts->add( 'namespace', '', FormOptions::STRING );
@@ -1153,9 +1160,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		// or per-filter, like 'hideminor'.
 
 		foreach ( $this->filterGroups as $filterGroup ) {
-			if ( $filterGroup->isPerGroupRequestParameter() ) {
+			if ( $filterGroup instanceof ChangesListStringOptionsFilterGroup ) {
 				$stringParameterNameSet[$filterGroup->getName()] = true;
-			} elseif ( $filterGroup->getType() === ChangesListBooleanFilterGroup::TYPE ) {
+			} elseif ( $filterGroup instanceof ChangesListBooleanFilterGroup ) {
 				foreach ( $filterGroup->getFilters() as $filter ) {
 					$hideParameterNameSet[$filter->getName()] = true;
 				}
@@ -1291,22 +1298,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$dbr = $this->getDB();
 		$isStructuredUI = $this->isStructuredFilterUiEnabled();
 
+		/** @var ChangesListFilterGroup $filterGroup */
 		foreach ( $this->filterGroups as $filterGroup ) {
-			// URL parameters can be per-group, like 'userExpLevel',
-			// or per-filter, like 'hideminor'.
-			if ( $filterGroup->isPerGroupRequestParameter() ) {
-				if ( $filterGroup->isActive( $isStructuredUI ) ) {
-					$filterGroup->modifyQuery( $dbr, $this, $tables, $fields, $conds,
-						$query_options, $join_conds, $opts[$filterGroup->getName()] );
-				}
-			} else {
-				foreach ( $filterGroup->getFilters() as $filter ) {
-					if ( $filter->isActive( $opts, $isStructuredUI ) ) {
-						$filter->modifyQuery( $dbr, $this, $tables, $fields, $conds,
-							$query_options, $join_conds );
-					}
-				}
-			}
+			$filterGroup->modifyQuery( $dbr, $this, $tables, $fields, $conds,
+				$query_options, $join_conds, $opts, $isStructuredUI );
 		}
 
 		// Namespace filtering

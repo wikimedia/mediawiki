@@ -915,40 +915,32 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		$links = [];
 
-		$filterGroups = $this->getFilterGroups();
-
-		foreach ( $filterGroups as $groupName => $group ) {
-			if ( !$group->isPerGroupRequestParameter() ) {
-				foreach ( $group->getFilters() as $key => $filter ) {
-					if ( $filter->displaysOnUnstructuredUi( $this ) ) {
-						$msg = $filter->getShowHide();
-						$linkMessage = $this->msg( $msg . '-' . $showhide[1 - $options[$key]] );
-						// Extensions can define additional filters, but don't need to define the corresponding
-						// messages. If they don't exist, just fall back to 'show' and 'hide'.
-						if ( !$linkMessage->exists() ) {
-							$linkMessage = $this->msg( $showhide[1 - $options[$key]] );
-						}
-
-						$link = $this->makeOptionsLink( $linkMessage->text(),
-							[ $key => 1 - $options[$key] ], $nondefaults );
-
-						$attribs = [
-							'class' => "$msg rcshowhideoption clshowhideoption",
-							'data-filter-name' => $filter->getName(),
-						];
-
-						if ( $filter->isFeatureAvailableOnStructuredUi( $this ) ) {
-							$attribs['data-feature-in-structured-ui'] = true;
-						}
-
-						$links[] = Html::rawElement(
-							'span',
-							$attribs,
-							$this->msg( $msg )->rawParams( $link )->escaped()
-						);
-					}
-				}
+		foreach ( $this->getLegacyShowHideFilters() as $key => $filter ) {
+			$msg = $filter->getShowHide();
+			$linkMessage = $this->msg( $msg . '-' . $showhide[1 - $options[$key]] );
+			// Extensions can define additional filters, but don't need to define the corresponding
+			// messages. If they don't exist, just fall back to 'show' and 'hide'.
+			if ( !$linkMessage->exists() ) {
+				$linkMessage = $this->msg( $showhide[1 - $options[$key]] );
 			}
+
+			$link = $this->makeOptionsLink( $linkMessage->text(),
+				[ $key => 1 - $options[$key] ], $nondefaults );
+
+			$attribs = [
+				'class' => "$msg rcshowhideoption clshowhideoption",
+				'data-filter-name' => $filter->getName(),
+			];
+
+			if ( $filter->isFeatureAvailableOnStructuredUi( $this ) ) {
+				$attribs['data-feature-in-structured-ui'] = true;
+			}
+
+			$links[] = Html::rawElement(
+				'span',
+				$attribs,
+				$this->msg( $msg )->rawParams( $link )->escaped()
+			);
 		}
 
 		// show from this onward link

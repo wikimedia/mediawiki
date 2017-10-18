@@ -327,14 +327,6 @@ abstract class ChangesListFilterGroup {
 	}
 
 	/**
-	 * Check whether the URL parameter is for the group, or for individual filters.
-	 * Defaults can also be defined on the group if and only if this is true.
-	 *
-	 * @return bool True if and only if the URL parameter is per-group
-	 */
-	abstract public function isPerGroupRequestParameter();
-
-	/**
 	 * Gets the JS data in the format required by the front-end of the structured UI
 	 *
 	 * @return array|null Associative array, or null if there are no filters that
@@ -449,4 +441,34 @@ abstract class ChangesListFilterGroup {
 			}
 		) );
 	}
+
+	/**
+	 * Modifies the query to include the filter group.
+	 *
+	 * The modification is only done if the filter group is in effect.  This means that
+	 * one or more valid and allowed filters were selected.
+	 *
+	 * @param IDatabase $dbr Database, for addQuotes, makeList, and similar
+	 * @param ChangesListSpecialPage $specialPage Current special page
+	 * @param array &$tables Array of tables; see IDatabase::select $table
+	 * @param array &$fields Array of fields; see IDatabase::select $vars
+	 * @param array &$conds Array of conditions; see IDatabase::select $conds
+	 * @param array &$query_options Array of query options; see IDatabase::select $options
+	 * @param array &$join_conds Array of join conditions; see IDatabase::select $join_conds
+	 * @param FormOptions $opts Wrapper for the current request options and their defaults
+	 * @param bool $isStructuredFiltersEnabled True if the Structured UI is currently enabled
+	 */
+	abstract public function modifyQuery( IDatabase $dbr, ChangesListSpecialPage $specialPage,
+		&$tables, &$fields, &$conds, &$query_options, &$join_conds,
+		FormOptions $opts, $isStructuredFiltersEnabled );
+
+	/**
+	 * All the options represented by this filter group to $opts
+	 *
+	 * @param FormOptions $opts
+	 * @param bool $allowDefaults
+	 * @param bool $isStructuredFiltersEnabled
+	 */
+	abstract public function addOptions( FormOptions $opts, $allowDefaults,
+										 $isStructuredFiltersEnabled );
 }
