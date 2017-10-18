@@ -1,11 +1,11 @@
 .mw-badge {
+	background-color: #72777d;
 	min-width: 7px;
 	border-radius: 2px;
 	padding: 1px 4px;
 	text-align: center;
 	font-size: 12px;
 	line-height: 12px;
-	background-color: #d2d2d2;
 	cursor: pointer;
 }
 
@@ -13,7 +13,6 @@
 	font-weight: bold;
 	color: #fff;
 	vertical-align: baseline;
-	text-shadow: 0 1px rgba( 0, 0, 0, 0.4 );
 }
 
 .mw-badge-inline {
