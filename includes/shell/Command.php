@@ -69,6 +69,13 @@ class Command {
 	private $cgroup = false;
 
 	/**
+	 * bitfield with restrictions
+	 *
+	 * @var int
+	 */
+	protected $restrictions = 0;
+
+	/**
 	 * Constructor. Don't call directly, instead use Shell::command()
 	 *
 	 * @throws ShellDisabledError
@@ -209,6 +216,45 @@ class Command {
 	public function cgroup( $cgroup ) {
 		$this->cgroup = $cgroup;
 
+		return $this;
+	}
+
+	/**
+	 * Set additional restrictions for this request
+	 *
+	 * @since 1.31
+	 * @param int $restrictions
+	 * @return $this
+	 */
+	public function restrict( $restrictions ) {
+		$this->restrictions |= $restrictions;
+
+		return $this;
+	}
+
+	/**
+	 * Bitfield helper on whether a specific restriction is enabled
+	 *
+	 * @param int $restriction
+	 *
+	 * @return bool
+	 */
+	protected function hasRestriction( $restriction ) {
+		return ( $this->restrictions & $restriction ) === $restriction;
+	}
+
+	/**
+	 * If called, only the files/directories that are
+	 * whitelisted will be available to the shell command.
+	 *
+	 * limit.sh will always be whitelisted
+	 *
+	 * @param string[] $paths
+	 *
+	 * @return $this
+	 */
+	public function whitelistPaths( array $paths ) {
+		// Default implementation is a no-op
 		return $this;
 	}
 
