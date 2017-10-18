@@ -97,19 +97,50 @@ class SvgHandler extends ImageHandler {
 			if ( isset( $metadata['translations'] ) ) {
 				foreach ( $metadata['translations'] as $lang => $langType ) {
 					if ( $langType === SVGReader::LANG_FULL_MATCH ) {
-						$langList[] = $lang;
+						$langList[] = strtolower( $lang );
 					}
 				}
 			}
 		}
-		return $langList;
+		return array_unique( $langList );
 	}
 
 	/**
-	 * What language to render file in if none selected.
+	 * SVG's systemLanguage matching rules state:
+	 * 'The `systemLanguage` attribute ... [e]valuates to "true" if one of the languages indicated
+	 * by user preferences exactly equals one of the languages given in the value of this parameter,
+	 * or if one of the languages indicated by user preferences exactly equals a prefix of one of
+	 * the languages given in the value of this parameter such that the first tag character
+	 * following the prefix is "-".'
 	 *
-	 * @param File $file
-	 * @return string Language code.
+	 * Return the first element of $svgLanguages that matches $userPreferredLanguage
+	 *
+	 * @see https://www.w3.org/TR/SVG/struct.html#SystemLanguageAttribute
+	 * @param string $userPreferredLanguage
+	 * @param array $svgLanguages
+	 * @return string|null
+	 */
+	public function getMatchedLanguage( $userPreferredLanguage, array $svgLanguages ) {
+		foreach ( $svgLanguages as $svgLang ) {
+			if ( strcasecmp( $svgLang, $userPreferredLanguage ) === 0 ) {
+				return $svgLang;
+			}
+			$trimmedSvgLang = $svgLang;
+			while ( strpos( $trimmedSvgLang, '-' ) !== false ) {
+				$trimmedSvgLang = substr( $trimmedSvgLang, 0, strrpos( $trimmedSvgLang, '-' ) );
+				if ( strcasecmp( $trimmedSvgLang, $userPreferredLanguage ) === 0 ) {
+					return $svgLang;
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * What language to render file in if none selected
+	 *
+	 * @param File $file Language code
+	 * @return string
 	 */
 	public function getDefaultRenderLanguage( File $file ) {
 		return 'en';
@@ -479,7 +510,7 @@ class SvgHandler extends ImageHandler {
 			return ( $value > 0 );
 		} elseif ( $name == 'lang' ) {
 			// Validate $code
-			if ( $value === '' || !Language::isValidBuiltInCode( $value ) ) {
+			if ( $value === '' || !Language::isValidCode( $value ) ) {
 				wfDebug( "Invalid user language code\n" );
 
 				return false;
@@ -499,8 +530,7 @@ class SvgHandler extends ImageHandler {
 	public function makeParamString( $params ) {
 		$lang = '';
 		if ( isset( $params['lang'] ) && $params['lang'] !== 'en' ) {
-			$params['lang'] = strtolower( $params['lang'] );
-			$lang = "lang{$params['lang']}-";
+			$lang = 'lang' . strtolower( $params['lang'] ) . '-';
 		}
 		if ( !isset( $params['width'] ) ) {
 			return false;
@@ -511,7 +541,7 @@ class SvgHandler extends ImageHandler {
 
 	public function parseParamString( $str ) {
 		$m = false;
-		if ( preg_match( '/^lang([a-z]+(?:-[a-z]+)*)-(\d+)px$/', $str, $m ) ) {
+		if ( preg_match( '/^lang([a-z]+(?:-[a-z]+)*)-(\d+)px$/i', $str, $m ) ) {
 			return [ 'width' => array_pop( $m ), 'lang' => $m[1] ];
 		} elseif ( preg_match( '/^(\d+)px$/', $str, $m ) ) {
 			return [ 'width' => $m[1], 'lang' => 'en' ];
