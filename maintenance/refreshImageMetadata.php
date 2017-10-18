@@ -127,7 +127,7 @@ class RefreshImageMetadata extends Maintenance {
 		do {
 			$res = $dbw->select(
 				'image',
-				'*',
+				LocalFile::selectFields(),
 				array_merge( $conds, $conds2 ),
 				__METHOD__,
 				$options
