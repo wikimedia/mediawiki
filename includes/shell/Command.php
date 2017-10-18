@@ -65,6 +65,13 @@ class Command {
 	/** @var string|false */
 	protected $cgroup = false;
 
+	/**
+	 * bitfield with restrictions
+	 *
+	 * @var int
+	 */
+	protected $restrictions = 0;
+
 	protected $useLogPipe = false;
 
 	/**
@@ -195,6 +202,19 @@ class Command {
 	 */
 	public function cgroup( $cgroup ) {
 		$this->cgroup = $cgroup;
+
+		return $this;
+	}
+
+	/**
+	 * Set additional restrictions for this request
+	 *
+	 * @since 1.31
+	 * @param int $restrictions
+	 * @return $this
+	 */
+	public function restrict( $restrictions ) {
+		$this->restrictions |= $restrictions;
 
 		return $this;
 	}

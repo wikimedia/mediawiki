@@ -43,6 +43,9 @@ class FirejailCommand extends Command {
 			$cmd .= "--env=$k=" . escapeshellarg( $v );
 		}
 
+		if ( $this->restrictions & Shell::NO_NETWORK ) {
+			$cmd .= " --net=none";
+		}
 
 		if ( $this->cgroup !== false ) {
 			$cmd .= " --cgroup={$this->cgroup}/tasks";
