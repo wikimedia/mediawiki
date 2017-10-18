@@ -837,6 +837,7 @@
 	"apihelp-query+info-paramvalue-prop-readable": "{{doc-apihelp-paramvalue|query+info|prop|readable}}",
 	"apihelp-query+info-paramvalue-prop-preload": "{{doc-apihelp-paramvalue|query+info|prop|preload}}",
 	"apihelp-query+info-paramvalue-prop-displaytitle": "{{doc-apihelp-paramvalue|query+info|prop|displaytitle}}",
+	"apihelp-query+info-paramvalue-prop-varianttitles": "{{doc-apihelp-paramvalue|query+info|prop|varianttitles}}",
 	"apihelp-query+info-param-testactions": "{{doc-apihelp-param|query+info|testactions}}",
 	"apihelp-query+info-param-token": "{{doc-apihelp-param|query+info|token}}",
 	"apihelp-query+info-example-simple": "{{doc-apihelp-example|query+info}}",

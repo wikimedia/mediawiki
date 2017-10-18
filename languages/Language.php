@@ -4050,6 +4050,16 @@ class Language {
 	}
 
 	/**
+	 * convert text to a variant
+	 *
+	 * @param string $text
+	 * @return string
+	 */
+	public function autoConvert( $text, $variant = false ) {
+		return $this->mConverter->autoConvert( $text, $variant );
+	}
+
+	/**
 	 * convert text to all supported variants
 	 *
 	 * @param string $text
