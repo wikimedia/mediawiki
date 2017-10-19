@@ -45,6 +45,7 @@
     "mediawiki/blue-spice-extended-statistics": "dev-master",
     "mediawiki/blue-spice-authors": "dev-master",
     "mediawiki/blue-spice-user-manager": "dev-master",
-    "mediawiki/blue-spice-page-templates": "dev-master"
+    "mediawiki/blue-spice-page-templates": "dev-master",
+    "mediawiki/blue-spice-extended-search": "dev-master"
   }
 }
