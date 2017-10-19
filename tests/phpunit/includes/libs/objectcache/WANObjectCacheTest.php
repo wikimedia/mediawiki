@@ -1322,4 +1322,27 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 
 		$this->assertSame( 'special', $wanCache->makeGlobalKey( 'a', 'b' ) );
 	}
+
+	public static function statsKeyProvider() {
+		return [
+			[ 'domain:page:5', 'page' ],
+			[ 'domain:main-key', 'main-key' ],
+			[ 'domain:page:history', 'page' ],
+			[ 'missingdomainkey', 'missingdomainkey' ]
+		];
+	}
+
+	/**
+	 * @dataProvider statsKeyProvider
+	 * @covers WANObjectCache::determineKeyClass
+	 */
+	public function testStatsKeyClass( $key, $class ) {
+		$wanCache = TestingAccessWrapper::newFromObject( new WANObjectCache( [
+			'cache' => new HashBagOStuff,
+			'pool' => 'testcache-hash',
+			'relayer' => new EventRelayerNull( [] )
+		] ) );
+
+		$this->assertEquals( $class, $wanCache->determineKeyClass( $key ) );
+	}
 }

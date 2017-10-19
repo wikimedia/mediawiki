@@ -19,6 +19,7 @@
  * @ingroup Cache
  */
 
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -88,6 +89,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	protected $purgeRelayer;
 	/** @var LoggerInterface */
 	protected $logger;
+	/** @var StatsdDataFactoryInterface */
+	protected $stats;
 
 	/** @var int ERR_* constant for the "last error" registry */
 	protected $lastRelayError = self::ERR_NONE;
@@ -177,6 +180,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *   - channels : Map of (action => channel string). Actions include "purge".
 	 *   - relayers : Map of (action => EventRelayer object). Actions include "purge".
 	 *   - logger   : LoggerInterface object
+	 *   - stats    : LoggerInterface object
 	 */
 	public function __construct( array $params ) {
 		$this->cache = $params['cache'];
@@ -187,6 +191,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			? $params['relayers']['purge']
 			: new EventRelayerNull( [] );
 		$this->setLogger( isset( $params['logger'] ) ? $params['logger'] : new NullLogger() );
+		$this->stats = isset( $params['stats'] ) ? $params['stats'] : new NullStatsdDataFactory();
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -239,7 +244,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * Consider using getWithSetCallback() instead of get() and set() cycles.
 	 * That method has cache slam avoiding features for hot/expensive keys.
 	 *
-	 * @param string $key Cache key
+	 * @param string $key Cache key made from makeKey() or makeGlobalKey()
 	 * @param mixed &$curTTL Approximate TTL left on the key if present/tombstoned [returned]
 	 * @param array $checkKeys List of "check" keys
 	 * @param float &$asOf UNIX timestamp of cached value; null on failure [returned]
@@ -260,7 +265,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 * @see WANObjectCache::get()
 	 *
-	 * @param array $keys List of cache keys
+	 * @param array $keys List of cache keys made from makeKey() or makeGlobalKey()
 	 * @param array &$curTTLs Map of (key => approximate TTL left) for existing keys [returned]
 	 * @param array $checkKeys List of check keys to apply to all $keys. May also apply "check"
 	 *  keys to specific cache keys only by using cache keys as keys in the $checkKeys array.
@@ -799,7 +804,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @see WANObjectCache::get()
 	 * @see WANObjectCache::set()
 	 *
-	 * @param string $key Cache key
+	 * @param string $key Cache key made from makeKey() or makeGlobalKey()
 	 * @param int $ttl Seconds to live for key updates. Special values are:
 	 *   - WANObjectCache::TTL_INDEFINITE: Cache forever
 	 *   - WANObjectCache::TTL_UNCACHEABLE: Do not cache at all
@@ -951,6 +956,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$minTime = isset( $opts['minAsOf'] ) ? $opts['minAsOf'] : self::MIN_TIMESTAMP_NONE;
 		$versioned = isset( $opts['version'] );
 
+		// Get a collection name to describe this class of key
+		$kClass = $this->determineKeyClass( $key );
+
 		// Get the current key value
 		$curTTL = null;
 		$cValue = $this->get( $key, $curTTL, $checkKeys, $asOf ); // current value
@@ -964,6 +972,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			&& !$this->worthRefreshExpiring( $curTTL, $lowTTL )
 			&& !$this->worthRefreshPopular( $asOf, $ageNew, $popWindow, $preCallbackTime )
 		) {
+			$this->stats->increment( "wanobjectcache.$kClass.hit.good" );
+
 			return $value;
 		}
 
@@ -990,6 +1000,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 				// Lock acquired; this thread should update the key
 				$lockAcquired = true;
 			} elseif ( $value !== false && $this->isValid( $value, $versioned, $asOf, $minTime ) ) {
+				$this->stats->increment( "wanobjectcache.$kClass.hit.stale" );
 				// If it cannot be acquired; then the stale value can be used
 				return $value;
 			} else {
@@ -998,10 +1009,14 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 				// use the INTERIM value from the last thread that regenerated it.
 				$value = $this->getInterimValue( $key, $versioned, $minTime, $asOf );
 				if ( $value !== false ) {
+					$this->stats->increment( "wanobjectcache.$kClass.hit.volatile" );
+
 					return $value;
 				}
 				// Use the busy fallback value if nothing else
 				if ( $busyValue !== null ) {
+					$this->stats->increment( "wanobjectcache.$kClass.miss.busy" );
+
 					return is_callable( $busyValue ) ? $busyValue() : $busyValue;
 				}
 			}
@@ -1043,6 +1058,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			// Avoid using delete() to avoid pointless mcrouter broadcasting
 			$this->cache->changeTTL( self::MUTEX_KEY_PREFIX . $key, (int)$preCallbackTime - 60 );
 		}
+
+		$this->stats->increment( "wanobjectcache.$kClass.miss.compute" );
 
 		return $value;
 	}
@@ -1691,6 +1708,16 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		}
 
 		return $res;
+	}
+
+	/**
+	 * @param string $key String of the format <scope>:<class>[:<class or variable>]...
+	 * @return string
+	 */
+	protected function determineKeyClass( $key ) {
+		$parts = explode( ':', $key );
+
+		return isset( $parts[1] ) ? $parts[1] : $parts[0]; // sanity
 	}
 
 	/**
