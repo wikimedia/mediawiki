@@ -159,8 +159,9 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( 9, $hit, "Values evicted" );
 
 		$key = reset( $keys );
-		// Get into cache
+		// Get into cache (default process cache group)
 		$this->cache->getWithSetCallback( $key, 100, $callback, [ 'pcTTL' => 5 ] );
+		$this->assertEquals( 10, $hit, "Value calculated" );
 		$this->cache->getWithSetCallback( $key, 100, $callback, [ 'pcTTL' => 5 ] );
 		$this->assertEquals( 10, $hit, "Value cached" );
 		$outerCallback = function () use ( &$callback, $key ) {
@@ -168,7 +169,8 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 
 			return 43 + $v;
 		};
-		$this->cache->getWithSetCallback( $key, 100, $outerCallback );
+		// Outer key misses and refuses inner key process cache value
+		$this->cache->getWithSetCallback( "$key-miss-outer", 100, $outerCallback );
 		$this->assertEquals( 11, $hit, "Nested callback value process cache skipped" );
 	}
 
