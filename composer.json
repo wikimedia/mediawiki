@@ -100,7 +100,7 @@
 		],
 		"pre-update-cmd": [
 			"ComposerHookHandler::onPreUpdate",
-			"if curl -Is 'http://localhost:9200/?pretty' > /dev/null 2>&1 ; then echo \"ElasticSearch installation seems to be ok\"; else echo \"ElasticSearch installation not found with default options.\"; fi"
+			"curl 'http://localhost:9200/?pretty'"
 		],
 		"test": [
 			"composer lint",
