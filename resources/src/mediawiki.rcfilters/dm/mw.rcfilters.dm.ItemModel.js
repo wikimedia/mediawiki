@@ -181,6 +181,10 @@
 	 * @param {string|null} highlightColor
 	 */
 	mw.rcfilters.dm.ItemModel.prototype.setHighlightColor = function ( highlightColor ) {
+		if ( !this.isHighlightSupported() ) {
+			return;
+		}
+
 		if ( this.highlightColor !== highlightColor ) {
 			this.highlightColor = highlightColor;
 			this.emit( 'update' );
@@ -223,36 +227,6 @@
 	};
 
 	/**
-	 * Toggle the highlight feature on and off for this filter.
-	 * It only works if highlight is supported for this filter.
-	 *
-	 * @param {boolean} enable Highlight should be enabled
-	 */
-	mw.rcfilters.dm.ItemModel.prototype.toggleHighlight = function ( enable ) {
-		enable = enable === undefined ? !this.highlightEnabled : enable;
-
-		if ( !this.isHighlightSupported() ) {
-			return;
-		}
-
-		if ( enable === this.highlightEnabled ) {
-			return;
-		}
-
-		this.highlightEnabled = enable;
-		this.emit( 'update' );
-	};
-
-	/**
-	 * Check if the highlight feature is currently enabled for this filter
-	 *
-	 * @return {boolean}
-	 */
-	mw.rcfilters.dm.ItemModel.prototype.isHighlightEnabled = function () {
-		return !!this.highlightEnabled;
-	};
-
-	/**
 	 * Check if the highlight feature is supported for this filter
 	 *
 	 * @return {boolean}
@@ -267,6 +241,6 @@
 	 * @return {boolean}
 	 */
 	mw.rcfilters.dm.ItemModel.prototype.isHighlighted = function () {
-		return this.isHighlightEnabled() && !!this.getHighlightColor();
+		return !!this.getHighlightColor();
 	};
 }( mediaWiki ) );

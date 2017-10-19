@@ -208,13 +208,7 @@
 	 */
 	mw.rcfilters.UriProcessor.prototype.doesQueryContainRecognizedParams = function ( uriQuery ) {
 		var anyValidInUrl,
-			validParameterNames = Object.keys( this.filtersModel.getEmptyParameterState() )
-				.filter( function ( param ) {
-					// Remove 'highlight' parameter from this check;
-					// if it's the only parameter in the URL we still
-					// want to consider the URL 'empty' for defaults to load
-					return param !== 'highlight';
-				} );
+			validParameterNames = Object.keys( this.filtersModel.getEmptyParameterState() );
 
 		uriQuery = uriQuery || new mw.Uri().query;
 
