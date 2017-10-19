@@ -291,7 +291,7 @@ class RefreshLinksJob extends Job {
 		if ( is_array( $info['params'] ) ) {
 			// For per-pages jobs, the job title is that of the template that changed
 			// (or similar), so remove that since it ruins duplicate detection
-			if ( isset( $info['pages'] ) ) {
+			if ( isset( $info['params']['pages'] ) ) {
 				unset( $info['namespace'] );
 				unset( $info['title'] );
 			}
