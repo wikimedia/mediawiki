@@ -679,7 +679,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 		];
 
 		if ( $type === 'submit' && isset( $singleFieldInfo['label'] ) ) {
-			$descriptor['default'] = wfMessage( $singleFieldInfo['label'] )->plain();
+			$descriptor['default'] = $singleFieldInfo['label']->plain();
 		} elseif ( $type !== 'submit' ) {
 			$descriptor += array_filter( [
 				// help-message is omitted as it is usually not really useful for a web interface
