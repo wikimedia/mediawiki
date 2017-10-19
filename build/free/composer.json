@@ -40,6 +40,11 @@
     "mediawiki/parser-functions": "dev-f4a62ff",
     "mediawiki/renameuser": "dev-7c618d6",
     "mediawiki/SyntaxHighlight_GeSHi": "dev-08ae879",
-    "mediawiki/blue-spice-tag-cloud": "dev-master"
+    "mediawiki/blue-spice-tag-cloud": "dev-master",
+    "mediawiki/blue-spice-smart-list": "dev-master",
+    "mediawiki/blue-spice-extended-statistics": "dev-master",
+    "mediawiki/blue-spice-authors": "dev-master",
+    "mediawiki/blue-spice-user-manager": "dev-master",
+    "mediawiki/blue-spice-page-templates": "dev-master"
   }
 }
