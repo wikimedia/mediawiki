@@ -964,6 +964,10 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 		// A deleted key with a negative TTL left must be tombstoned
 		$isTombstone = ( $curTTL !== null && $value === false );
+		if ( $isTombstone && $lockTSE <= 0 ) {
+			// Use the INTERIM value for tombstoned keys to reduce regeneration load
+			$lockTSE = 1;
+		}
 		// Assume a key is hot if requested soon after invalidation
 		$isHot = ( $curTTL !== null && $curTTL <= 0 && abs( $curTTL ) <= $lockTSE );
 		// Use the mutex if there is no value and a busy fallback is given
@@ -1032,7 +1036,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 		if ( $lockAcquired ) {
 			// Avoid using delete() to avoid pointless mcrouter broadcasting
-			$this->cache->changeTTL( self::MUTEX_KEY_PREFIX . $key, 1 );
+			$this->cache->changeTTL( self::MUTEX_KEY_PREFIX . $key, (int)$preCallbackTime - 60 );
 		}
 
 		return $value;
@@ -1751,7 +1755,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		return array_diff( $keys, $keysFound );
 	}
 
-		/**
+	/**
 	 * @param array $keys
 	 * @param array $checkKeys
 	 * @return array Map of (cache key => mixed)
