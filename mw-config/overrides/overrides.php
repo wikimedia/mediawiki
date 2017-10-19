@@ -5,6 +5,7 @@ class BSLocalSettingsGenerator extends LocalSettingsGenerator {
 	function getText() {
 		// add a new setting
 		$ls = parent::getText();
+		return $ls . "\n\$wgFileExtensions[] = '';\n";
 		return $ls . "\nrequire_once \"\$IP/LocalSettings.BlueSpice.php\";\n";
 	}
 }
