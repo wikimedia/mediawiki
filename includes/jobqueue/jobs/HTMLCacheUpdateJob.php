@@ -47,6 +47,7 @@ class HTMLCacheUpdateJob extends Job {
 			// Multiple pages per job make matches unlikely
 			!( isset( $params['pages'] ) && count( $params['pages'] ) != 1 )
 		);
+		$this->params += [ 'causeAction' => 'unknown', 'causeUser' => 'unknown' ];
 	}
 
 	/**
@@ -75,14 +76,18 @@ class HTMLCacheUpdateJob extends Job {
 
 		// Job to purge all (or a range of) backlink pages for a page
 		if ( !empty( $this->params['recursive'] ) ) {
+			// Carry over information for de-duplication
+			$extraParams = $this->getRootJobParams();
+			// Carry over cause information for logging
+			$extraParams['causeAction'] = $this->params['causeAction'];
+			$extraParams['causeUser'] = $this->params['causeUser'];
 			// Convert this into no more than $wgUpdateRowsPerJob HTMLCacheUpdateJob per-title
 			// jobs and possibly a recursive HTMLCacheUpdateJob job for the rest of the backlinks
 			$jobs = BacklinkJobUtils::partitionBacklinkJob(
 				$this,
 				$wgUpdateRowsPerJob,
 				$wgUpdateRowsPerQuery, // jobs-per-title
-				// Carry over information for de-duplication
-				[ 'params' => $this->getRootJobParams() ]
+				[ 'params' => $extraParams ]
 			);
 			JobQueueGroup::singleton()->push( $jobs );
 		// Job to purge pages for a set of titles
@@ -167,6 +172,22 @@ class HTMLCacheUpdateJob extends Job {
 				HTMLFileCache::clearFileCache( $title );
 			}
 		}
+	}
+
+	public function getDeduplicationInfo() {
+		$info = parent::getDeduplicationInfo();
+		unset( $info['causeAction'] );
+		unset( $info['causeUser'] );
+		if ( is_array( $info['params'] ) ) {
+			// For per-pages jobs, the job title is that of the template that changed
+			// (or similar), so remove that since it ruins duplicate detection
+			if ( isset( $info['pages'] ) ) {
+				unset( $info['namespace'] );
+				unset( $info['title'] );
+			}
+		}
+
+		return $info;
 	}
 
 	public function workItemCount() {

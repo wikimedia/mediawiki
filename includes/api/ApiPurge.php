@@ -93,6 +93,7 @@ class ApiPurge extends ApiBase {
 						$updates = $content->getSecondaryDataUpdates(
 							$title, null, $forceRecursiveLinkUpdate, $p_result );
 						foreach ( $updates as $update ) {
+							$update->setCause( 'api-purge', $this->getUser()->getName() );
 							DeferredUpdates::addUpdate( $update, DeferredUpdates::PRESEND );
 						}
 

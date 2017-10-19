@@ -306,10 +306,13 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	 * using the job queue.
 	 */
 	protected function queueRecursiveJobs() {
-		self::queueRecursiveJobsForTable( $this->mTitle, 'templatelinks' );
+		$action = $this->getCauseAction();
+		$userName = $this->getCauseUser();
+
+		self::queueRecursiveJobsForTable( $this->mTitle, 'templatelinks', $action, $userName );
 		if ( $this->mTitle->getNamespace() == NS_FILE ) {
 			// Process imagelinks in case the title is or was a redirect
-			self::queueRecursiveJobsForTable( $this->mTitle, 'imagelinks' );
+			self::queueRecursiveJobsForTable( $this->mTitle, 'imagelinks', $action, $userName );
 		}
 
 		$bc = $this->mTitle->getBacklinkCache();
@@ -320,7 +323,10 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 		// Which ever runs first generally no-ops the other one.
 		$jobs = [];
 		foreach ( $bc->getCascadeProtectedLinks() as $title ) {
-			$jobs[] = RefreshLinksJob::newPrioritized( $title, [] );
+			$jobs[] = RefreshLinksJob::newPrioritized(
+				$title,
+				[ 'causeAction' => $this->getCauseAction(), 'causeUser' => $this->getCauseUser() ]
+			);
 		}
 		JobQueueGroup::singleton()->push( $jobs );
 	}
@@ -330,8 +336,12 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 	 *
 	 * @param Title $title Title to do job for
 	 * @param string $table Table to use (e.g. 'templatelinks')
+	 * @param array $action Triggering action
+	 * @param array $userName Triggering user name
 	 */
-	public static function queueRecursiveJobsForTable( Title $title, $table ) {
+	public static function queueRecursiveJobsForTable(
+		Title $title, $table, $action = 'unknown', $userName = 'unknown'
+	) {
 		if ( $title->getBacklinkCache()->hasLinks( $table ) ) {
 			$job = new RefreshLinksJob(
 				$title,
@@ -340,7 +350,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 					'recursive' => true,
 				] + Job::newRootJobParams( // "overall" refresh links job info
 					"refreshlinks:{$table}:{$title->getPrefixedText()}"
-				)
+				) + [ 'causeAction' => $action, 'causeUser' => $userName ]
 			);
 
 			JobQueueGroup::singleton()->push( $job );
