@@ -869,4 +869,41 @@ mw.example();
 			'Extra headers'
 		);
 	}
+
+	/**
+	 * @covers ResourceLoader::respond
+	 */
+	public function testRespond() {
+		$rl = $this->getMockBuilder( EmptyResourceLoader::class )
+			->setMethods( [
+				'tryRespondNotModified',
+				'sendResponseHeaders',
+				'measureResponseTime',
+			] )
+			->getMock();
+		$context = $this->getResourceLoaderContext( [ 'modules' => '' ], $rl );
+
+		$rl->expects( $this->once() )->method( 'measureResponseTime' );
+		$this->expectOutputRegex( '/no modules were requested/' );
+
+		$rl->respond( $context );
+	}
+
+	/**
+	 * @covers ResourceLoader::measureResponseTime
+	 */
+	public function testMeasureResponseTime() {
+		$stats = $this->getMockBuilder( NullStatsdDataFactory::class )
+			->setMethods( [ 'timing' ] )->getMock();
+		$this->setService( 'StatsdDataFactory', $stats );
+
+		$stats->expects( $this->once() )->method( 'timing' )
+			->with( 'resourceloader.responseTime', $this->anything() );
+
+		$timing = new Timing();
+		$timing->mark( 'requestShutdown' );
+		$rl = TestingAccessWrapper::newFromObject( new EmptyResourceLoader );
+		$rl->measureResponseTime( $timing );
+		DeferredUpdates::doUpdates();
+	}
 }
