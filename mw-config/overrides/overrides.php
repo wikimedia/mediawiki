@@ -29,9 +29,12 @@ class BSCliInstaller extends CliInstaller {
 		 * but we're not opening that can of worms
 		 * @see https://phabricator.wikimedia.org/T28857
 		 */
-		global $wgAutoloadClasses;
+		global $wgAutoloadClasses, $wgFileExtensions;
 		$wgAutoloadClasses = [];
 		$queue = [];
+		if( !isset( $wgFileExtensions ) || !is_array( $wgFileExtensions ) ){
+			$wgFileExtensions[] = '';
+		}
 
 		require_once "$IP/includes/DefaultSettings.php";
 		require_once __DIR__ . '/../../extensions/BlueSpiceFoundation/includes/Defines.php';
