@@ -77,6 +77,9 @@
 		"fix": "phpcbf",
 		"pre-install-cmd": "ComposerHookHandler::onPreInstall",
 		"pre-update-cmd": "ComposerHookHandler::onPreUpdate",
+		"post-update-cmd": [
+			"wget -nc https://github.com/hallowelt/misc-BSsolr/releases/download/v4.7.2/solr.war -P extensions/BlueSpiceExtensions/ExtendedSearch/webservices"
+		],
 		"test": [
 			"composer lint",
 			"composer phpcs"
