@@ -95,7 +95,10 @@
 		"lint": "parallel-lint --exclude vendor",
 		"phpcs": "phpcs -p -s",
 		"fix": "phpcbf",
-		"pre-install-cmd": "ComposerHookHandler::onPreInstall",
+		"pre-install-cmd": [
+			"ComposerHookHandler::onPreInstall",
+			"if curl -Is 'http://localhost:9200/?pretty' > /dev/null 2>&1 ; then echo \"ElasticSearch installation seems to be ok\"; else echo \"ElasticSearch installation not found with default options.\"; fi"
+		],
 		"pre-update-cmd": "ComposerHookHandler::onPreUpdate",
 		"test": [
 			"composer lint",
