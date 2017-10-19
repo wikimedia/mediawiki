@@ -1399,7 +1399,7 @@
 	"rcfilters-days-show-hours": "$1 {{PLURAL:$1|ora|ore}}",
 	"rcfilters-highlighted-filters-list": "Evidenziato: $1",
 	"rcfilters-quickfilters": "Filtri salvati",
-	"rcfilters-quickfilters-placeholder-title": "Nessun collegamento salvato ancora",
+	"rcfilters-quickfilters-placeholder-title": "Nessun filtro salvato ancora",
 	"rcfilters-quickfilters-placeholder-description": "Per salvare le impostazioni del tuo filtro e riutilizzarle dopo, clicca l'icona segnalibro nell'area \"Filtri attivi\" qui sotto",
 	"rcfilters-savedqueries-defaultlabel": "Filtri salvati",
 	"rcfilters-savedqueries-rename": "Rinomina",

@@ -1407,7 +1407,7 @@
 	"rcfilters-filter-user-experience-level-unregistered-label": "Unregistered",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Editors who aren't logged-in.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Newcomers",
-	"rcfilters-filter-user-experience-level-newcomer-description": "Registered editors with fewer than 10 edits and 4 days of activity.",
+	"rcfilters-filter-user-experience-level-newcomer-description": "Registered editors who have fewer than 10 edits or 4 days of activity.",
 	"rcfilters-filter-user-experience-level-learner-label": "Learners",
 	"rcfilters-filter-user-experience-level-learner-description": "Registered editors whose experience falls between \"Newcomers\" and \"Experienced users.\"",
 	"rcfilters-filter-user-experience-level-experienced-label": "Experienced users",

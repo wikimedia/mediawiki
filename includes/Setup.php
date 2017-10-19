@@ -284,7 +284,7 @@ unset( $repo ); // no global pollution; destroy reference
 
 // Convert this deprecated setting to modern system
 if ( $wgExperimentalHtmlIds ) {
-	$wgFragmentMode = [ 'html5-legacy', 'legacy' ];
+	$wgFragmentMode = [ 'html5-legacy', 'html5' ];
 }
 
 $rcMaxAgeDays = $wgRCMaxAge / ( 3600 * 24 );

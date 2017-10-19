@@ -39,7 +39,7 @@
 	"tog-shownumberswatching": "Hián-sī tng leh khoàⁿ ê iōng-chiá sò͘-bo̍k",
 	"tog-oldsig": "Lí kì-sêng ê chhiam-miâ:",
 	"tog-fancysig": "共我的簽名當做文章文字，（無需要自動連結）",
-	"tog-uselivepreview": "Ēng sui khoàⁿ-māi",
+	"tog-uselivepreview": "Bián têng-lia̍h ia̍h-bīn ê preview tián-sī",
 	"tog-forceeditsummary": "Pian-chi̍p khài-iàu bô thiⁿ ê sî-chūn, kā goá thê-chhéⁿ",
 	"tog-watchlisthideown": "Kàm-sī-toaⁿ bián hián-sī goá ê pian-chi̍p",
 	"tog-watchlisthidebots": "Kàm-sī-toaⁿ bián hián-sī ki-khì pian-chi̍p",
@@ -1117,5 +1117,7 @@
 	"expand_templates_input": "Su-ji̍p bûn-jī:",
 	"expand_templates_output": "Kiat-kó:",
 	"expand_templates_remove_comments": "Comments the̍h tiāu",
-	"mw-widgets-mediasearch-input-placeholder": "搜揣媒體"
+	"mw-widgets-mediasearch-input-placeholder": "搜揣媒體",
+	"date-range-from": "Khai-sí ji̍t-chí:",
+	"date-range-to": "Kiat-sok ji̍t-chí:"
 }

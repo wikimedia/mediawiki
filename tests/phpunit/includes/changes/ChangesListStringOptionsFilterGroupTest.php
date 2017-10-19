@@ -190,6 +190,8 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiTestCase {
 		$group = new ChangesListStringOptionsFilterGroup( $groupDefinition );
 
 		$specialPage = $this->getSpecialPage();
+		$opts = new FormOptions();
+		$opts->add( $groupDefinition[ 'name' ], $input );
 
 		$group->modifyQuery(
 			$dbr,
@@ -199,7 +201,8 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiTestCase {
 			$conds,
 			$query_options,
 			$join_conds,
-			$input
+			$opts,
+			true
 		);
 	}
 

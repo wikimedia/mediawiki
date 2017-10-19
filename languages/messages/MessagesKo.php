@@ -142,7 +142,7 @@ $specialPageAliases = [
 	'Preferences'               => [ '환경설정' ],
 	'Prefixindex'               => [ '접두어찾기' ],
 	'Protectedpages'            => [ '보호된문서' ],
-	'Protectedtitles'           => [ '만들기보호된문서', '생성보호된문서' ],
+	'Protectedtitles'           => [ '생성보호된문서', '만들기보호된문서' ],
 	'Randompage'                => [ '임의문서' ],
 	'RandomInCategory'          => [ '분류안의임의문서' ],
 	'Randomredirect'            => [ '임의넘겨주기' ],
@@ -165,7 +165,7 @@ $specialPageAliases = [
 	'Uncategorizedpages'        => [ '분류안된문서' ],
 	'Uncategorizedtemplates'    => [ '분류안된틀' ],
 	'Undelete'                  => [ '삭제취소', '삭제된문서' ],
-	'Unlockdb'                  => [ 'DB잠금취소', 'DB잠금해제' ],
+	'Unlockdb'                  => [ 'DB잠금해제', 'DB잠금취소' ],
 	'Unusedcategories'          => [ '안쓰는분류', '쓰이지않는분류' ],
 	'Unusedimages'              => [ '안쓰는파일', '안쓰는그림', '쓰이지않는파일', '쓰이지않는그림' ],
 	'Unusedtemplates'           => [ '안쓰는틀', '쓰이지않는틀' ],
@@ -311,8 +311,8 @@ $magicWords = [
 	'displaytitle'              => [ '1', '보일제목', '표시제목', 'DISPLAYTITLE' ],
 	'rawsuffix'                 => [ '1', '원', 'R' ],
 	'nocommafysuffix'           => [ '0', '구분자없음', 'NOSEP' ],
-	'newsectionlink'            => [ '1', '__새글쓰기__', '__NEWSECTIONLINK__' ],
-	'nonewsectionlink'          => [ '1', '__새글쓰기숨기기__', '__NONEWSECTIONLINK__' ],
+	'newsectionlink'            => [ '1', '__새문단쓰기__', '__새글쓰기__', '__NEWSECTIONLINK__' ],
+	'nonewsectionlink'          => [ '1', '__새문단쓰기숨기기__', '__새글쓰기숨기기__', '__NONEWSECTIONLINK__' ],
 	'currentversion'            => [ '1', '현재버전', 'CURRENTVERSION' ],
 	'urlencode'                 => [ '0', '주소인코딩:', 'URLENCODE:' ],
 	'anchorencode'              => [ '0', '책갈피인코딩', 'ANCHORENCODE' ],
@@ -353,7 +353,7 @@ $magicWords = [
 ];
 
 $bookstoreList = [
-	'Aladdin.co.kr' => 'http://www.aladdin.co.kr/catalog/book.asp?ISBN=$1',
+	'Aladin.co.kr' => 'http://www.aladin.co.kr/catalog/book.asp?ISBN=$1',
 	'inherit' => true,
 ];
 
