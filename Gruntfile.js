@@ -12,6 +12,7 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-eslint' );
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
 	grunt.loadNpmTasks( 'grunt-karma' );
+	grunt.loadNpmTasks( 'grunt-simple-mocha' );
 	grunt.loadNpmTasks( 'grunt-stylelint' );
 	grunt.loadNpmTasks( 'grunt-webdriver' );
 
@@ -110,6 +111,18 @@ module.exports = function ( grunt ) {
 		webdriver: {
 			test: {
 				configFile: './tests/selenium/wdio.conf.js'
+			}
+		},
+
+		simplemocha: {
+			options: {
+				timeout: 20000
+			},
+			all: {
+				src: [
+					'tests/mocha/**/*.js',
+					'./extensions/*/tests/mocha/**/*.js'
+				]
 			}
 		}
 
