@@ -108,5 +108,6 @@
 		} else {
 			this.$tableTopLinks.append( this.$topLinks );
 		}
+		this.$topLinks.toggleClass( 'mw-recentchanges-toplinks-collapsed', state === 'collapsed' );
 	};
 }( mediaWiki ) );
