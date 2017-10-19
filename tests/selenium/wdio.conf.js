@@ -48,10 +48,7 @@ exports.config = {
 	// directory is where your package.json resides, so `wdio` will be called from there.
 	//
 	specs: [
-		relPath( './tests/selenium/specs/**/*.js' ),
-		relPath( './extensions/*/tests/selenium/specs/**/*.js' ),
-		relPath( './extensions/VisualEditor/modules/ve-mw/tests/selenium/specs/**/*.js' ),
-		relPath( './skins/*/tests/selenium/specs/**/*.js' ),
+		relPath( './extensions/*/tests/mocha/**/*.js' ),
 	],
 	// Patterns to exclude.
 	exclude: [
