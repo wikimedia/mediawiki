@@ -996,6 +996,12 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 					return is_callable( $busyValue ) ? $busyValue() : $busyValue;
 				}
 			}
+		} elseif ( $isTombstone ) {
+			// Use the INTERIM value for tombstoned keys to reduce regeneration load
+			$value = $this->getInterimValue( $key, $versioned, $minTime, $asOf );
+			if ( $value !== false ) {
+				return $value;
+			}
 		}
 
 		if ( !is_callable( $callback ) ) {
@@ -1014,7 +1020,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 		// When delete() is called, writes are write-holed by the tombstone,
 		// so use a special INTERIM key to pass the new value around threads.
-		if ( ( $isTombstone && $lockTSE > 0 ) && $valueIsCacheable ) {
+		if ( $isTombstone && $valueIsCacheable ) {
 			$tempTTL = max( 1, (int)$lockTSE ); // set() expects seconds
 			$newAsOf = microtime( true );
 			$wrapped = $this->wrap( $value, $tempTTL, $newAsOf );
@@ -1751,7 +1757,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		return array_diff( $keys, $keysFound );
 	}
 
-		/**
+	/**
 	 * @param array $keys
 	 * @param array $checkKeys
 	 * @return array Map of (cache key => mixed)
