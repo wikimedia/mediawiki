@@ -3,6 +3,7 @@
   "scripts": {
     "test": "grunt test",
     "doc": "jsduck",
+    "mocha": "grunt simplemocha",
     "postdoc": "grunt copy:jsduck",
     "selenium": "killall -0 chromedriver 2>/dev/null || chromedriver --url-base=/wd/hub --port=4444 & grunt webdriver:test; killall chromedriver"
   },
@@ -17,6 +18,7 @@
     "grunt-eslint": "20.0.0",
     "grunt-jsonlint": "1.1.0",
     "grunt-karma": "2.0.0",
+    "grunt-simple-mocha": "0.4.1",
     "grunt-stylelint": "0.8.0",
     "grunt-webdriver": "2.0.3",
     "karma": "1.5.0",
@@ -24,6 +26,7 @@
     "karma-firefox-launcher": "1.0.1",
     "karma-mocha-reporter": "2.2.3",
     "karma-qunit": "1.0.0",
+    "mocha": "4.0.1",
     "nodemw": "0.10.1",
     "qunitjs": "1.23.1",
     "stylelint": "7.8.0",
