@@ -5,7 +5,6 @@ class BSLocalSettingsGenerator extends LocalSettingsGenerator {
 	function getText() {
 		// add a new setting
 		$ls = parent::getText();
-		return $ls . "\n\$wgFileExtensions[] = '';\n";
 		return $ls . "\nrequire_once \"\$IP/LocalSettings.BlueSpice.php\";\n";
 	}
 }
@@ -30,12 +29,10 @@ class BSCliInstaller extends CliInstaller {
 		 * but we're not opening that can of worms
 		 * @see https://phabricator.wikimedia.org/T28857
 		 */
-		global $wgAutoloadClasses, $wgFileExtensions;
+		global $wgAutoloadClasses;
 		$wgAutoloadClasses = [];
 		$queue = [];
-		if( !isset( $wgFileExtensions ) || !is_array( $wgFileExtensions ) ){
-			$wgFileExtensions[] = '';
-		}
+
 
 		require_once "$IP/includes/DefaultSettings.php";
 		require_once __DIR__ . '/../../extensions/BlueSpiceFoundation/includes/Defines.php';
