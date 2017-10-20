@@ -776,6 +776,7 @@ class Title implements LinkTarget {
 	 * @return string Escaped string
 	 */
 	static function escapeFragmentForURL( $fragment ) {
+		wfDeprecated( __METHOD__, '1.30' );
 		# Note that we don't urlencode the fragment.  urlencoded Unicode
 		# fragments appear not to work in IE (at least up to 7) or in at least
 		# one version of Opera 9.x.  The W3C validator, for one, doesn't seem
