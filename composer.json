@@ -99,8 +99,7 @@
 			"ComposerHookHandler::onPreInstall"			
 		],
 		"pre-update-cmd": [
-			"ComposerHookHandler::onPreUpdate",
-			"curl 'http://localhost:9200/?pretty'"
+			"ComposerHookHandler::onPreUpdate"
 		],
 		"test": [
 			"composer lint",
