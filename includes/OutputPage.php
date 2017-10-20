@@ -788,15 +788,18 @@ class OutputPage extends ContextSource {
 			return false;
 		}
 
-		$timestamp = wfTimestamp( TS_MW, $timestamp );
 		$modifiedTimes = [
-			'page' => $timestamp,
+			'page' => wfTimestamp( TS_MW, $timestamp ),
 			'user' => $this->getUser()->getTouched(),
 			'epoch' => $config->get( 'CacheEpoch' )
 		];
 		if ( $config->get( 'UseSquid' ) ) {
 			// T46570: the core page itself may not change, but resources might
-			$modifiedTimes['sepoch'] = wfTimestamp( TS_MW, time() - $config->get( 'SquidMaxage' ) );
+			// Force an updated date every SquidMaxage period since last page update
+			$timestamp = wfTimestamp( TS_UNIX, $timestamp );
+			$period = $config->get( 'SquidMaxage' );
+			$ages = floor( ( time() - $timestamp ) / $period );
+			$modifiedTimes['sepoch'] = wfTimestamp( TS_MW, $timestamp + $period * $ages );
 		}
 		Hooks::run( 'OutputPageCheckLastModified', [ &$modifiedTimes, $this ] );
 
