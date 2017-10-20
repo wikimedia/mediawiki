@@ -140,11 +140,11 @@ class OutputPageTest extends MediaWikiTestCase {
 			] ],
 			'after 24h and a bit' => [ $base + [
 				'reqTime' => '2011-04-02T12:34:56+00:00',
-				'expect' => '2011-04-01T12:34:56+00:00',
+				'expect' => '2011-04-02T12:00:00+00:00',
 			] ],
 			'after a year' => [ $base + [
 				'reqTime' => '2012-05-06T00:12:07+00:00',
-				'expect' => '2012-05-05T00:12:07+00:00',
+				'expect' => '2012-05-05T12:00:00+00:00',
 			] ],
 		];
 	}
@@ -156,7 +156,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		$out = TestingAccessWrapper::newFromObject( $this->newInstance() );
 		$reqTime = strtotime( $params['reqTime'] );
 		$pageTime = strtotime( $params['pageTime'] );
-		$actual = max( $pageTime, $out->getCdnCacheEpoch( $reqTime, $params['maxAge'] ) );
+		$actual = max( $pageTime, $out->getCdnCacheEpoch( $reqTime, $pageTime, $params['maxAge'] ) );
 
 		$this->assertEquals(
 			$params['expect'],

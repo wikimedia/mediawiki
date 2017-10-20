@@ -754,6 +754,7 @@ class OutputPage extends ContextSource {
 		if ( $config->get( 'UseSquid' ) ) {
 			$modifiedTimes['sepoch'] = wfTimestamp( TS_MW, $this->getCdnCacheEpoch(
 				time(),
+				wfTimestamp( TS_UNIX, $timestamp ),
 				$config->get( 'SquidMaxage' )
 			) );
 		}
@@ -819,15 +820,17 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * @param int $reqTime Time of request (eg. now)
+	 * @param int $pageTime Time the wiki page content was last modified
 	 * @param int $maxAge Cache TTL in seconds
 	 * @return int Timestamp
 	 */
-	private function getCdnCacheEpoch( $reqTime, $maxAge ) {
+	private function getCdnCacheEpoch( $reqTime, $pageTime, $maxAge ) {
 		// Ensure Last-Modified is never more than (wgSquidMaxage) in the past,
 		// because even if the wiki page content hasn't changed since, static
 		// resources may have changed (skin HTML, interface messages, urls, etc.)
 		// and must roll-over in a timely manner (T46570)
-		return $reqTime - $maxAge;
+		$intervals = floor( ( $reqTime - $pageTime ) / $maxAge );
+		return $pageTime + ( $maxAge * $intervals );
 	}
 
 	/**
