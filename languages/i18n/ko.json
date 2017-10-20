@@ -1395,7 +1395,7 @@
 	"rcfilters-filter-user-experience-level-unregistered-label": "등록 안 됨",
 	"rcfilters-filter-user-experience-level-unregistered-description": "로그인하지 않은 편집자.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "신규 사용자",
-	"rcfilters-filter-user-experience-level-newcomer-description": "10회 미만의 편집 및 4일 미만의 활동.",
+	"rcfilters-filter-user-experience-level-newcomer-description": "10회 미만의 편집 또는 4일 미만의 활동을 한 등록된 편집자.",
 	"rcfilters-filter-user-experience-level-learner-label": "학습자",
 	"rcfilters-filter-user-experience-level-learner-description": "\"신규 사용자\" 보다 경험이 더 많지만 \"능숙한 사용자\" 보다는 적습니다.",
 	"rcfilters-filter-user-experience-level-experienced-label": "능숙한 사용자",

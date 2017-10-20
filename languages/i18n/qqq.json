@@ -313,7 +313,7 @@
 	"period-pm": "Text indicating the second period of the day when using a 12-hour calendar.",
 	"pagecategories": "Used in the categories section of pages.\n\nFollowed by a colon and a list of categories.\n\nParameters:\n* $1 - number of categories\n{{Identical|Category}}",
 	"pagecategorieslink": "{{notranslate}}",
-	"category_header": "In category description page. Parameters:\n* $1 - category name\nSee also:\n* {{msg-mw|Category-media-header}}",
+	"category_header": "In category description page, be aware that this is not about biology, but about bibliography. Parameters:\n* $1 - category name\nSee also:\n* {{msg-mw|Category-media-header}}",
 	"subcategories": "Used as a header on category pages that have subcategories.\n{{Identical|Subcategory}}",
 	"category-media-header": "In category description page. Parameters:\n* $1 - category name\nSee also:\n* {{msg-mw|Category header}}",
 	"category-empty": "The text displayed in category page when that category is empty",

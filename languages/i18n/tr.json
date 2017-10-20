@@ -777,7 +777,7 @@
 	"sectioneditnotsupported-text": "Bölüm değiştirmesi bu sayfada desteklenmiyor.",
 	"permissionserrors": "İzin hatası",
 	"permissionserrorstext": "Aşağıdaki {{PLURAL:$1|sebep|sebepler}}den dolayı, bunu yapmaya yetkiniz yok:",
-	"permissionserrorstext-withaction": "Aşağıdaki {{PLURAL:$1|neden|nedenler}}den dolayı $2 için yetkiniz yok:",
+	"permissionserrorstext-withaction": "Aşağıdaki {{PLURAL:$1|neden|nedenler}}den dolayı $2 yetkiniz yok:",
 	"recreate-moveddeleted-warn": "<strong>Uyarı: Daha önceden silinmiş bir sayfayı tekrar oluşturuyorsunuz.</strong>\n\nBu sayfayı düzenlemeye devam etmenin uygun olup olmadığını düşünmelisiniz.\nBu sayfanın silme ve taşıma günlüğü kolaylık için burada verilmiştir:",
 	"moveddeleted-notice": "Bu sayfa silinmiş.\nSayfanın silme ve taşıma kaydı referans için aşağıda verilmiştir.",
 	"log-fulllog": "Tam günlüğü gör",
