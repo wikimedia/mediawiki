@@ -13,6 +13,8 @@ use Wikimedia\TestingAccessWrapper;
  * @covers WANObjectCache::getProcessCache
  * @covers WANObjectCache::getNonProcessCachedKeys
  * @covers WANObjectCache::getRawKeysForWarmup
+ * @covers WANObjectCache::getInterimValue
+ * @covers WANObjectCache::setInterimValue
  */
 class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 	/** @var WANObjectCache */
