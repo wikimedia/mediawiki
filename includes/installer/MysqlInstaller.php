@@ -51,7 +51,8 @@ class MysqlInstaller extends DatabaseInstaller {
 
 	public $supportedEngines = [ 'InnoDB', 'MyISAM' ];
 
-	public $minimumVersion = '5.5.8';
+	public static $minimumVersion = '5.5.8';
+	protected static $notMiniumumVerisonMessage = 'config-mysql-old';
 
 	public $webUserPrivs = [
 		'DELETE',
@@ -133,12 +134,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		$conn = $status->value;
 
 		// Check version
-		$version = $conn->getServerVersion();
-		if ( version_compare( $version, $this->minimumVersion ) < 0 ) {
-			return Status::newFatal( 'config-mysql-old', $this->minimumVersion, $version );
-		}
-
-		return $status;
+		return static::meetsMinimumRequirement( $conn->getServerVersion() );
 	}
 
 	/**
