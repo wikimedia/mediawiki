@@ -4,7 +4,6 @@
 		params: {
 			param1: '1',
 			param2: 'foo|bar',
-			highlight: '1',
 			invert: '0'
 		},
 		highlights: {

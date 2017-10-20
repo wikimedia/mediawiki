@@ -671,7 +671,7 @@
 	"anonpreviewwarning": "<em>로그인하고 있지 않습니다. 문서를 저장하면 당신의 IP 주소가 문서의 편집 역사에 남게 됩니다.</em>",
 	"missingsummary": "'''알림:''' 편집 요약을 적지 않았습니다.\n\"$1\" 버튼을 다시 클릭하면 편집 요약 없이 편집이 저장됩니다.",
 	"selfredirect": "<strong>경고:</strong> 자기 자신으로 문서를 넘겨주고 있습니다.\n넘겨줄 대상을 잘못 입력했거나, 잘못된 문서를 편집하고 있을 수 있습니다.\n\"$1\" 버튼을 다시 클릭하면, 넘겨주기 문서가 생성됩니다.",
-	"missingcommenttext": "아래에 내용을 채워 넣어 주세요.",
+	"missingcommenttext": "댓글을 입력해 주십시오.",
 	"missingcommentheader": "<strong>알림:</strong> 이 댓글에 제목을 입력하지 않았습니다.\n\"$1\" 버튼을 다시 클릭하면 제목 없이 편집이 저장됩니다.",
 	"summary-preview": "편집 요약 미리 보기:",
 	"subject-preview": "주제 미리 보기:",

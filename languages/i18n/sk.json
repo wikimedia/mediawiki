@@ -35,7 +35,8 @@
 			"Hromoslav",
 			"Matma Rex",
 			"LacoR",
-			"Xð"
+			"Xð",
+			"Pmikolas44"
 		]
 	},
 	"tog-underline": "Podčiarkovať odkazy:",
@@ -637,7 +638,7 @@
 	"anonpreviewwarning": "''Nie ste prihlásený. Uložením zaznamenáte svoju IP adresu do histórie úprav tejto stránky.''",
 	"missingsummary": "'''Pripomienka:''' Neposkytli ste zhrnutie úprav. Ak kliknete znova na Uložiť, vaše úpravy sa uložia bez zhrnutia úprav.",
 	"selfredirect": "<strong>Upozornenie:</strong> Snažíte sa túto stránku presmerovať samú na seba.\nMožno ste zadali chybný cieľ presmerovania, alebo editujete nesprávnu stránku.\nAk znova kliknete na „$1“, bude presmerovanie aj napriek tomu vytvorené.",
-	"missingcommenttext": "Prosím, dolu napíšte komentár.",
+	"missingcommenttext": "Prosím, vložte komentár.",
 	"missingcommentheader": "<strong>Pripomienka:</strong> Neposkytli ste predmet/hlavičku tohto komentára.\nAk znova kliknete na tlačidlo „$1“, vaša úprava sa uloží bez nej.",
 	"summary-preview": "Náhľad zhrnutia:",
 	"subject-preview": "Náhľad predmetu:",
@@ -1333,7 +1334,7 @@
 	"rcfilters-filter-user-experience-level-unregistered-label": "Neregistrovaní",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Redaktori, ktorí nie sú prihlásení.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Nováčikovia",
-	"rcfilters-filter-user-experience-level-newcomer-description": "Registrovaní používatelia s menej ako 10 úpravami a 4 dňami aktivity.",
+	"rcfilters-filter-user-experience-level-newcomer-description": "Registrovaní editori, ktorí majú menej ako 10 úprav alebo 4 dni aktivity.",
 	"rcfilters-filter-user-experience-level-learner-label": "Začiatočníci",
 	"rcfilters-filter-user-experience-level-learner-description": "Registrovaní používatelia, ktorých skúsenosti spadajú medzi „Nováčikmi“ a „Skúsenými používateľmi“.",
 	"rcfilters-filter-user-experience-level-experienced-label": "Skúsení používatelia",

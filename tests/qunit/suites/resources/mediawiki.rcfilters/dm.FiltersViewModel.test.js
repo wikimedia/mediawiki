@@ -161,7 +161,6 @@
 			group6option3: '0',
 			group7: '',
 			namespace: '',
-			highlight: '0',
 			// Null highlights
 			group1__filter1_color: null,
 			group1__filter2_color: null,

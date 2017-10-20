@@ -728,6 +728,8 @@ class ResourceLoader implements LoggerAwareInterface {
 		// See https://bugs.php.net/bug.php?id=36514
 		ob_start();
 
+		$this->measureResponseTime( RequestContext::getMain()->getTiming() );
+
 		// Find out which modules are missing and instantiate the others
 		$modules = [];
 		$missing = [];
@@ -826,6 +828,16 @@ class ResourceLoader implements LoggerAwareInterface {
 
 		$this->errors = [];
 		echo $response;
+	}
+
+	protected function measureResponseTime( Timing $timing ) {
+		DeferredUpdates::addCallableUpdate( function () use ( $timing ) {
+			$measure = $timing->measure( 'responseTime', 'requestStart', 'requestShutdown' );
+			if ( $measure !== false ) {
+				$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+				$stats->timing( 'resourceloader.responseTime', $measure['duration'] * 1000 );
+			}
+		} );
 	}
 
 	/**
