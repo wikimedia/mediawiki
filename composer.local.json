@@ -1,10 +1,12 @@
 {
-  "minimum-stability": "dev",
-  "extra": {
-    "merge-plugin": {
-      "include": [
-        "build/*/composer.json"
-      ]
-    }
-  }
+	"minimum-stability": "dev",
+	"extra": {
+		"merge-plugin": {
+			"include": [
+				"build/*/composer.json",
+				"extensions/*/composer.json",
+				"skins/*/composer.json"
+			]
+		}
+	}
 }
