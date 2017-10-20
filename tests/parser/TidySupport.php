@@ -66,7 +66,7 @@ class TidySupport {
 					$this->config['driver'] = 'RaggettExternal';
 					$this->config['tidyBin'] = $wgTidyBin;
 				} else {
-					$path = Installer::locateExecutableInDefaultPaths( $wgTidyBin );
+					$path = ExecutableFinder::findInDefaultPaths( $wgTidyBin );
 					if ( $path !== false ) {
 						$this->config['driver'] = 'RaggettExternal';
 						$this->config['tidyBin'] = $wgTidyBin;
