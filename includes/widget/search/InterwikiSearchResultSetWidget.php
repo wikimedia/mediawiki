@@ -168,7 +168,7 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 	 *
 	 * @param string $iwPrefix Interwiki prefix
 	 * @return OOUI\IconWidget
-	 **/
+	 */
 	protected function iwIcon( $iwPrefix ) {
 		$interwiki = $this->iwLookup->fetch( $iwPrefix );
 		$parsed = wfParseUrl( wfExpandUrl( $interwiki ? $interwiki->getURL() : '/' ) );

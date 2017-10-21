@@ -42,7 +42,7 @@ if ( !isset( $options['output'] ) ) {
 	$options['output'] = 'wiki';
 }
 
-/** Print a usage message*/
+/** Print a usage message */
 function showUsage() {
 	print <<<TEXT
 Usage: php transstat.php [--help] [--output=csv|text|wiki]
