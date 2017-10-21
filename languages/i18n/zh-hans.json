@@ -1432,7 +1432,7 @@
 	"rcfilters-filter-user-experience-level-learner-label": "初学者",
 	"rcfilters-filter-user-experience-level-learner-description": "比“新手”拥有更多经验，但少于“有经验的用户”。",
 	"rcfilters-filter-user-experience-level-experienced-label": "有经验的用户",
-	"rcfilters-filter-user-experience-level-experienced-description": "超过30天活跃和500次编辑。",
+	"rcfilters-filter-user-experience-level-experienced-description": "超过500次编辑和30天活跃的注册编辑者。",
 	"rcfilters-filtergroup-automated": "自动化贡献者",
 	"rcfilters-filter-bots-label": "机器人",
 	"rcfilters-filter-bots-description": "由自动化工具做出的编辑。",

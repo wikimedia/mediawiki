@@ -2153,7 +2153,7 @@
 	"emailccsubject": "Kopie deiner Nachricht an $1: $2",
 	"emailsent": "E-Mail verschickt",
 	"emailsenttext": "Deine E-Mail wurde verschickt.",
-	"emailuserfooter": "Diese E-Mail wurde von „$1“ an „{{GENDER:$2|$2}}“ durch die Funktion „{{int:emailuser}}“ bei {{SITENAME}} {{GENDER:$1|gesendet}}. Falls {{GENDER:$2|du}} auf diese E-Mail antwortest, wird sie direkt an {{GENDER:$1|den Originalabsender|die Originalabsenderin}} gesendet. Dabei erfährt {{GENDER:$1|er|sie}} {{GENDER:$2|deine}} E-Mail-Adresse.",
+	"emailuserfooter": "Diese E-Mail wurde von „$1“ an „{{GENDER:$2|$2}}“ durch die Funktion „{{int:emailuser|$2}}“ bei {{SITENAME}} {{GENDER:$1|gesendet}}. Falls {{GENDER:$2|du}} auf diese E-Mail antwortest, wird sie direkt an {{GENDER:$1|den Originalabsender|die Originalabsenderin}} gesendet. Dabei erfährt {{GENDER:$1|er|sie}} {{GENDER:$2|deine}} E-Mail-Adresse.",
 	"usermessage-summary": "Systemnachricht gespeichert.",
 	"usermessage-editor": "System-Messenger",
 	"usermessage-template": "MediaWiki:Benutzernachricht",
