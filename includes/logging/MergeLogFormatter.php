@@ -54,9 +54,9 @@ class MergeLogFormatter extends LogFormatter {
 
 		// Show unmerge link
 		$params = $this->extractParameters();
-		$revert = Linker::linkKnown(
+		$revert = $this->getLinkRenderer()->makeKnownLink(
 			SpecialPage::getTitleFor( 'MergeHistory' ),
-			$this->msg( 'revertmerge' )->escaped(),
+			$this->msg( 'revertmerge' )->text(),
 			[],
 			[
 				'target' => $params[3],
