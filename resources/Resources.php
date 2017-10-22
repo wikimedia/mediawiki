@@ -2149,6 +2149,9 @@ return [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.search.styles.css',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.special.signup.captchatracking' => [
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.signup.captchatracking.js',
+	],
 	'mediawiki.special.undelete' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.undelete.js',
 	],
