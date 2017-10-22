@@ -47,13 +47,11 @@ class PhpHttpRequest extends MWHttpRequest {
 		if ( $this->caInfo ) {
 			$certLocations = [ 'manual' => $this->caInfo ];
 		} elseif ( version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
-			// @codingStandardsIgnoreStart Generic.Files.LineLength
 			// Default locations, based on
 			// https://www.happyassassin.net/2015/01/12/a-note-about-ssltls-trusted-certificate-stores-and-platforms/
 			// PHP 5.5 and older doesn't have any defaults, so we try to guess ourselves.
 			// PHP 5.6+ gets the CA location from OpenSSL as long as it is not set manually,
 			// so we should leave capath/cafile empty there.
-			// @codingStandardsIgnoreEnd
 			$certLocations = array_filter( [
 				getenv( 'SSL_CERT_DIR' ),
 				getenv( 'SSL_CERT_PATH' ),
