@@ -1218,6 +1218,7 @@
 	"tag-filter": "Filtrar las [[Special:Tags|etiquetas]]:",
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Eitiqueta|Eitiquetas}}]]: $2)",
 	"tags-title": "Eitiquetas",
+	"tags-source-header": "Ourige",
 	"tags-active-yes": "Si",
 	"tags-active-no": "Nó",
 	"tags-edit": "eiditar",

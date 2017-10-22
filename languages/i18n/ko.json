@@ -2749,7 +2749,7 @@
 	"tooltip-minoredit": "이 편집을 사소한 편집으로 표시하기",
 	"tooltip-save": "바뀐 내용 저장하기",
 	"tooltip-publish": "변경사항 게시",
-	"tooltip-preview": "바뀜을 미리 봅니다. 저장하기 전에 미리 보기를 해주세요!",
+	"tooltip-preview": "바뀐 내용을 미리 봅니다. 저장하기 전에 미리 보기를 해주세요.",
 	"tooltip-diff": "자신이 바꾼 내용 보기",
 	"tooltip-compareselectedversions": "이 문서에서 선택한 두 판 간의 차이를 비교",
 	"tooltip-watch": "이 문서를 주시문서 목록에 추가",

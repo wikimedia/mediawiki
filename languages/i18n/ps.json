@@ -898,6 +898,7 @@
 	"username": "{{GENDER:$1|کارن نوم}}:",
 	"prefs-memberingroups": "د {{PLURAL:$1|ډله|ډلې}} {{GENDER:$2|غړی}}:",
 	"prefs-memberingroups-type": "$1",
+	"group-membership-link-with-expiry": "$1 (تر $2)",
 	"prefs-registration": "د نومليکنې وخت:",
 	"prefs-registration-date-time": "$1",
 	"yourrealname": "اصلي نوم:",

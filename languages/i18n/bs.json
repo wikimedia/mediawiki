@@ -3811,7 +3811,7 @@
 	"log-action-filter-contentmodel-change": "Izmjena modela sadržaja",
 	"log-action-filter-contentmodel-new": "Nova stranica s nestandardnim modelom sadržaja",
 	"log-action-filter-delete-delete": "Brisanje stranice",
-	"log-action-filter-delete-delete_redir": "Prepisivanje preusmjerenja",
+	"log-action-filter-delete-delete_redir": "Presnimavanje preusmjerenja",
 	"log-action-filter-delete-restore": "Vraćanje obrisane stranice",
 	"log-action-filter-delete-event": "Brisanje unosa u zapisniku",
 	"log-action-filter-delete-revision": "Brisanje izmjene",
