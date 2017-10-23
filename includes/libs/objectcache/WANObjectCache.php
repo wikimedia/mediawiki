@@ -686,8 +686,11 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * having to inspect a "current time left" variable (e.g. $curTTL, $curTTLs), a cache
 	 * regeneration will automatically be triggered using the callback.
 	 *
-	 * The simplest way to avoid stampedes for hot keys is to use
-	 * the 'lockTSE' option in $opts. If cache purges are needed, also:
+	 * The $ttl argument and "hotTTR" option (in $opts) use time-dependant randomization
+	 * to avoid stampedes. Keys that are slow to regenerate and either heavily used
+	 * or subject to explicit (unpredictable) purges, may need additional mechanisms.
+	 * The simplest way to avoid stampedes for such keys is to use 'lockTSE' (in $opts).
+	 * If explicit purges are needed, also:
 	 *   - a) Pass $key into $checkKeys
 	 *   - b) Use touchCheckKey( $key ) instead of delete( $key )
 	 *
@@ -839,11 +842,13 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *      This is useful if the source of a key is suspected of having possibly changed
 	 *      recently, and the caller wants any such changes to be reflected.
 	 *      Default: WANObjectCache::MIN_TIMESTAMP_NONE.
-	 *   - hotTTR: Expected time-till-refresh for keys that average ~1 hit/second.
-	 *      This should be greater than "ageNew". Keys with higher hit rates will regenerate
-	 *      more often. This is useful when a popular key is changed but the cache purge was
-	 *      delayed or lost. Seldom used keys are rarely affected by this setting, unless an
-	 *      extremely low "hotTTR" value is passed in.
+	 *   - hotTTR: Expected time-till-refresh (TTR) for keys that average ~1 hit/second (1 Hz).
+	 *      Keys with a hit rate higher than 1Hz will refresh sooner than this TTR and vise versa.
+	 *      Such refreshses won't happen until keys are "ageNew" seconds old. The TTR is useful at
+	 *      reducing the impact of missed cache purges, since the effect of a heavily referenced
+	 *      key being stale is worse than that of a rarely referenced key. Unlike simply lowering
+	 *      $ttl, seldomly used keys are largely unaffected by this option, which makes it possible
+	 *      to have a high hit rate for the "long-tail" of less-used keys.
 	 *      Default: WANObjectCache::HOT_TTR.
 	 *   - lowTTL: Consider pre-emptive updates when the current TTL (seconds) of the key is less
 	 *      than this. It becomes more likely over time, becoming certain once the key is expired.
@@ -1534,7 +1539,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
-	 * Check if a key should be regenerated (using random probability)
+	 * Check if a key is nearing expiration and thus due for randomized regeneration
 	 *
 	 * This returns false if $curTTL >= $lowTTL. Otherwise, the chance
 	 * of returning true increases steadily from 0% to 100% as the $curTTL
