@@ -178,6 +178,7 @@ class Language {
 	/**
 	 * Get a cached or new language object for a given language code
 	 * @param string $code
+	 * @throws MWException
 	 * @return Language
 	 */
 	static function factory( $code ) {
