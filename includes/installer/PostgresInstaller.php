@@ -46,7 +46,8 @@ class PostgresInstaller extends DatabaseInstaller {
 		'_InstallUser' => 'postgres',
 	];
 
-	public $minimumVersion = '8.3';
+	public static $minimumVersion = '8.3';
+	protected static $notMiniumumVerisonMessage = 'config-postgres-old';
 	public $maxRoleSearchDepth = 5;
 
 	protected $pgConns = [];
@@ -124,8 +125,9 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		// Check version
 		$version = $conn->getServerVersion();
-		if ( version_compare( $version, $this->minimumVersion ) < 0 ) {
-			return Status::newFatal( 'config-postgres-old', $this->minimumVersion, $version );
+		$status = static::meetsMinimumRequirement( $conn->getServerVersion() );
+		if ( !$status->isOK() ) {
+			return $status;
 		}
 
 		$this->setVar( 'wgDBuser', $this->getVar( '_InstallUser' ) );

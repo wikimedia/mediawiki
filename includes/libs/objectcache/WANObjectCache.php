@@ -987,11 +987,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 				// Use the INTERIM value for tombstoned keys to reduce regeneration load.
 				// For hot keys, either another thread has the lock or the lock failed;
 				// use the INTERIM value from the last thread that regenerated it.
-				$wrapped = $this->cache->get( self::INTERIM_KEY_PREFIX . $key );
-				list( $value ) = $this->unwrap( $wrapped, microtime( true ) );
-				if ( $value !== false && $this->isValid( $value, $versioned, $asOf, $minTime ) ) {
-					$asOf = $wrapped[self::FLD_TIME];
-
+				$value = $this->getInterimValue( $key, $versioned, $minTime, $asOf );
+				if ( $value !== false ) {
 					return $value;
 				}
 				// Use the busy fallback value if nothing else
@@ -1013,24 +1010,19 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		} finally {
 			--$this->callbackDepth;
 		}
+		$valueIsCacheable = ( $value !== false && $ttl >= 0 );
+
 		// When delete() is called, writes are write-holed by the tombstone,
 		// so use a special INTERIM key to pass the new value around threads.
-		if ( ( $isTombstone && $lockTSE > 0 ) && $value !== false && $ttl >= 0 ) {
+		if ( ( $isTombstone && $lockTSE > 0 ) && $valueIsCacheable ) {
 			$tempTTL = max( 1, (int)$lockTSE ); // set() expects seconds
 			$newAsOf = microtime( true );
 			$wrapped = $this->wrap( $value, $tempTTL, $newAsOf );
 			// Avoid using set() to avoid pointless mcrouter broadcasting
-			$this->cache->merge(
-				self::INTERIM_KEY_PREFIX . $key,
-				function () use ( $wrapped ) {
-					return $wrapped;
-				},
-				$tempTTL,
-				1
-			);
+			$this->setInterimValue( $key, $wrapped, $tempTTL );
 		}
 
-		if ( $value !== false && $ttl >= 0 ) {
+		if ( $valueIsCacheable ) {
 			$setOpts['lockTSE'] = $lockTSE;
 			// Use best known "since" timestamp if not provided
 			$setOpts += [ 'since' => $preCallbackTime ];
@@ -1044,6 +1036,41 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		}
 
 		return $value;
+	}
+
+	/**
+	 * @param string $key
+	 * @param bool $versioned
+	 * @param float $minTime
+	 * @param mixed $asOf
+	 * @return mixed
+	 */
+	protected function getInterimValue( $key, $versioned, $minTime, &$asOf ) {
+		$wrapped = $this->cache->get( self::INTERIM_KEY_PREFIX . $key );
+		list( $value ) = $this->unwrap( $wrapped, microtime( true ) );
+		if ( $value !== false && $this->isValid( $value, $versioned, $asOf, $minTime ) ) {
+			$asOf = $wrapped[self::FLD_TIME];
+
+			return $value;
+		}
+
+		return false;
+	}
+
+	/**
+	 * @param string $key
+	 * @param array $wrapped
+	 * @param int $tempTTL
+	 */
+	protected function setInterimValue( $key, $wrapped, $tempTTL ) {
+		$this->cache->merge(
+			self::INTERIM_KEY_PREFIX . $key,
+			function () use ( $wrapped ) {
+				return $wrapped;
+			},
+			$tempTTL,
+			1
+		);
 	}
 
 	/**

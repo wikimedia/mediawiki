@@ -25,6 +25,8 @@
 		<exclude name="MediaWiki.VariableAnalysis.ForbiddenGlobalVariables.ForbiddenGlobal$wgTitle" />
 		<exclude name="MediaWiki.Usage.DeprecatedConstantUsage.NS_IMAGE" />
 		<exclude name="MediaWiki.Usage.DeprecatedConstantUsage.NS_IMAGE_TALK" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.SpacingDocStar" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.SpacingDocTag" />
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
 		<properties>

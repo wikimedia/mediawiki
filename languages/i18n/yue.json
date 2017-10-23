@@ -648,7 +648,7 @@
 	"userpage-userdoesnotexist": "用戶戶口\"<nowiki>$1</nowiki>\"重未開。請響䦒／編輯呢版之前先檢查一下。",
 	"userpage-userdoesnotexist-view": "用戶戶口\"$1\"重未開。",
 	"blocked-notice-logextract": "呢位用戶而家被封鎖緊。\n下面有最近嘅封鎖紀錄以供參考：",
-	"clearyourcache": "<strong>注意</strong>：喺儲存之後，你可能要先略過你嘅瀏覽器快取去睇到更改。\n*<strong>Firefox / Safari:</strong> 㩒住<em>Shift<em>掣再撳<em>重新載入</em>，又或者㩒<em>Ctrl-F5</em>或者<em>Ctrl-R</em>（喺Mac㩒<em>Command-R</em>掣）；\n*<strong>Google Chrome:</strong> 㩒<em>Ctrl-Shift-R</em>（喺Mac㩒<em>Command-R</em>掣）；\n*<strong>Internet Explorer:</strong> 㩒住<em>Ctrl</em>掣再撳<em>重新整理</em>，又或者㩒<em>Ctrl-F5</em>掣；\n*<strong>Opera:</strong> 去 <em>選單 → 設定</em> （喺 Mac 係 <em>Opera → 偏好設定</em>） 跟住再到 <em>隱私 & 安全性 → 清除瀏覽資料 → 已快取的圖片與檔案</em>。",
+	"clearyourcache": "<strong>注意</strong>：喺儲存之後，你可能要先略過你嘅瀏覽器快取去睇到更改。\n* <strong>Firefox / Safari:</strong> 㩒住<em>Shift</em>掣再撳<em>重新載入</em>，又或者㩒<em>Ctrl-F5</em>或者<em>Ctrl-R</em>（喺Mac㩒<em>Command-R</em>掣）；\n* <strong>Google Chrome:</strong> 㩒<em>Ctrl-Shift-R</em>（喺Mac㩒<em>Command-R</em>掣）；\n* <strong>Internet Explorer:</strong> 㩒住<em>Ctrl</em>掣再撳<em>重新整理</em>，又或者㩒<em>Ctrl-F5</em>掣；\n* <strong>Opera:</strong> 去 <em>選單 → 設定</em> （喺 Mac 係 <em>Opera → 偏好設定</em>） 跟住再到 <em>隱私 & 安全性 → 清除瀏覽資料 → 已快取的圖片與檔案</em>。",
 	"usercssyoucanpreview": "'''提示：'''響儲存前，用「{{int:showpreview}}」個掣嚟測試你嘅新CSS。",
 	"userjsyoucanpreview": "'''提示：'''響儲存前，用「{{int:showpreview}}」個掣嚟測試你嘅新JavaScript。",
 	"usercsspreview": "'''記住你而家只係預覽緊你嘅用戶CSS樣式表。'''\n'''佢嘅內容重未儲存！'''",

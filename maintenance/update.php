@@ -145,6 +145,16 @@ class UpdateMediaWiki extends Maintenance {
 		# This will vomit up an error if there are permissions problems
 		$db = $this->getDB( DB_MASTER );
 
+		# Check to see whether the database server meets the minimum requirements
+		/** @var DatabaseInstaller $dbInstallerClass */
+		$dbInstallerClass = Installer::getDBInstallerClass( $db->getType() );
+		$status = $dbInstallerClass::meetsMinimumRequirement( $db->getServerVersion() );
+		if ( !$status->isOK() ) {
+			// This might output some wikitext like <strong> but it should be comprehensible
+			$text = $status->getWikiText();
+			$this->error( $text, 1 );
+		}
+
 		$this->output( "Going to run database updates for " . wfWikiID() . "\n" );
 		if ( $db->getType() === 'sqlite' ) {
 			/** @var IMaintainableDatabase|DatabaseSqlite $db */

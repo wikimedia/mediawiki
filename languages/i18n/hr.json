@@ -1327,7 +1327,7 @@
 	"rcfilters-filter-watchlist-notwatched-label": "Izvan popisa praćenja",
 	"rcfilters-filter-watchlist-notwatched-description": "Sve izmjene na stranicama osim onih na popisu praćenja.",
 	"rcfilters-filtergroup-changetype": "Vrste promjena",
-	"rcfilters-filter-pageedits-label": "Uređivanja stranice",
+	"rcfilters-filter-pageedits-label": "Uređivanja stranica",
 	"rcfilters-filter-pageedits-description": "Uređivanja wikisadržaja, rasprave, opisi kategorija...",
 	"rcfilters-filter-newpages-label": "Stvaranje stranica",
 	"rcfilters-filter-newpages-description": "Uređivanja kojima su stvorene nove stranice.",

@@ -547,6 +547,17 @@ abstract class Installer {
 	}
 
 	/**
+	 * Get the DatabaseInstaller class name for this type
+	 *
+	 * @param string $type database type ($wgDBtype)
+	 * @return string Class name
+	 * @since 1.30
+	 */
+	public static function getDBInstallerClass( $type ) {
+		return ucfirst( $type ) . 'Installer';
+	}
+
+	/**
 	 * Get an instance of DatabaseInstaller for the specified DB type.
 	 *
 	 * @param mixed $type DB installer for which is needed, false to use default.
@@ -561,7 +572,7 @@ abstract class Installer {
 		$type = strtolower( $type );
 
 		if ( !isset( $this->dbInstallers[$type] ) ) {
-			$class = ucfirst( $type ) . 'Installer';
+			$class = self::getDBInstallerClass( $type );
 			$this->dbInstallers[$type] = new $class( $this );
 		}
 
