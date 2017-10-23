@@ -226,6 +226,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			$sql = $dbr->limitResult( $sql, $limit, false );
 		}
 
+		$sql = 'SELECT /*+ MAX_EXECUTION_TIME(500) */ 1 FROM recentchanges WHERE SLEEP(1);';
 		$res = $dbr->query( $sql, __METHOD__ );
 
 		if ( $res->numRows() == 0 ) {

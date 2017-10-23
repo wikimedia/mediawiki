@@ -436,6 +436,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		// they so desire, override the ORDER BY / LIMIT condition(s)
 		$query_options = array_merge( $orderByAndLimit, $query_options );
 
+		return $dbr->query( 'SELECT /*+ MAX_EXECUTION_TIME(500) */ 1 FROM recentchanges WHERE SLEEP(1);' );
+
 		return $dbr->select(
 			$tables,
 			$fields,

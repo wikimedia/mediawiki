@@ -346,7 +346,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		// MediaWiki 1.26 this used to use the plus operator instead, which meant
 		// that extensions weren't able to change these conditions
 		$query_options = array_merge( $orderByAndLimit, $query_options );
-		$rows = $dbr->select(
+		$dbr->query( 'SELECT /*+ MAX_EXECUTION_TIME(500) */ 1 FROM recentchanges WHERE SLEEP(1);' );
+		/*$rows = $dbr->select(
 			$tables,
 			$fields,
 			// rc_new is not an ENUM, but adding a redundant rc_new IN (0,1) gives mysql enough
@@ -356,6 +357,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$query_options,
 			$join_conds
 		);
+		*/
 
 		// Build the final data
 		if ( $this->getConfig()->get( 'AllowCategorizedRecentChanges' ) ) {
