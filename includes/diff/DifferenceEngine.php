@@ -605,14 +605,15 @@ class DifferenceEngine extends ContextSource {
 		$out->addHTML( "<hr class='diff-hr' id='mw-oldid' />
 		<h2 class='diff-currentversion-title'>{$revHeader}</h2>\n" );
 		# Page content may be handled by a hooked call instead...
-		# @codingStandardsIgnoreStart Ignoring long lines.
 		if ( Hooks::run( 'ArticleContentOnDiff', [ $this, $out ] ) ) {
 			$this->loadNewText();
 			$out->setRevisionId( $this->mNewid );
 			$out->setRevisionTimestamp( $this->mNewRev->getTimestamp() );
 			$out->setArticleFlag( true );
 
-			if ( !Hooks::run( 'ArticleContentViewCustom', [ $this->mNewContent, $this->mNewPage, $out ] ) ) {
+			if ( !Hooks::run( 'ArticleContentViewCustom',
+				[ $this->mNewContent, $this->mNewPage, $out ] )
+			) {
 				// Handled by extension
 			} else {
 				// Normal page
@@ -631,13 +632,14 @@ class DifferenceEngine extends ContextSource {
 				# WikiPage::getParserOutput() should not return false, but just in case
 				if ( $parserOutput ) {
 					// Allow extensions to change parser output here
-					if ( Hooks::run( 'DifferenceEngineRenderRevisionAddParserOutput', [ $this, $out, $parserOutput, $wikiPage ] ) ) {
+					if ( Hooks::run( 'DifferenceEngineRenderRevisionAddParserOutput',
+						[ $this, $out, $parserOutput, $wikiPage ] )
+					) {
 						$out->addParserOutput( $parserOutput );
 					}
 				}
 			}
 		}
-		# @codingStandardsIgnoreEnd
 
 		// Allow extensions to optionally not show the final patrolled link
 		if ( Hooks::run( 'DifferenceEngineRenderRevisionShowFinalPatrolLink' ) ) {

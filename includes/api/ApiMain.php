@@ -125,7 +125,6 @@ class ApiMain extends ApiBase {
 		'none' => 'ApiFormatNone',
 	];
 
-	// @codingStandardsIgnoreStart String contenation on "msg" not allowed to break long line
 	/**
 	 * List of user roles that are specifically relevant to the API.
 	 * [ 'right' => [ 'msg'    => 'Some message with a $1',
@@ -142,7 +141,6 @@ class ApiMain extends ApiBase {
 			'params' => [ ApiBase::LIMIT_SML2, ApiBase::LIMIT_BIG2 ]
 		]
 	];
-	// @codingStandardsIgnoreEnd
 
 	/**
 	 * @var ApiFormatBase

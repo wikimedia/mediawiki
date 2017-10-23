@@ -1669,13 +1669,11 @@ class BalanceActiveFormattingElements {
 		$this->addToNoahList( $b );
 	}
 
-	// @codingStandardsIgnoreStart Generic.Files.LineLength.TooLong
 	/**
 	 * Reconstruct the active formatting elements.
 	 * @param BalanceStack $stack The open elements stack
 	 * @see https://html.spec.whatwg.org/multipage/syntax.html#reconstruct-the-active-formatting-elements
 	 */
-	// @codingStandardsIgnoreEnd
 	public function reconstruct( $stack ) {
 		$entry = $this->tail;
 		// If there are no entries in the list of active formatting elements,
