@@ -48,6 +48,10 @@ table.mw-enhanced-rc td.mw-enhanced-rc-nested {
 	display: none;
 }
 
+.mw-enhancedchanges-arrow {
+	padding-top: 2px;
+}
+
 .mw-enhancedchanges-arrow-space {
 	display: inline-block;
 	*display: inline; /* IE7 and below */
