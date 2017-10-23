@@ -13,7 +13,8 @@
 			"烈羽",
 			"Corainn",
 			"A2093064",
-			"Wwycheuk"
+			"Wwycheuk",
+			"Wbxshiori"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|說明文件]]\n* [[mw:Special:MyLanguage/API:FAQ|常見問題]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 郵遞清單]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 報告錯誤及請求功能]\n</div>\n<strong>狀態資訊：</strong>本頁所展示的所有功能都應正常運作，但API仍在開發，會隨時變化。請訂閱[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 郵遞清單]以便獲得更新通知。\n\n<strong>錯誤的請求：</strong>當API收到錯誤的請求，會發出以「MediaWiki-API-Error」為鍵的HTTP標頭欄位，隨後標頭欄位的值，以及傳回的錯誤碼會設為相同值。詳細資訊請參閱[[mw:Special:MyLanguage/API:Errors_and_warnings|API: 錯誤與警告]]。\n\n<strong>測試：</strong>要簡化API請求的測試過程，請見[[Special:ApiSandbox]]。",
@@ -185,6 +186,13 @@
 	"apihelp-protect-param-protections": "保護層級清單，格式為 <kbd>action=level</kbd> (例如 <kbd>edit=sysop</kbd>)。<kbd>all</kbd> 層級代表所有人都可以進行行動，亦即無限制。\n\n<strong>注意：</strong>未列入清單項目的限制皆會移除。",
 	"apihelp-protect-param-expiry": "期限時間戳記，若只設定一個時間戳記，該時間戳記將會套用至所有的保護層級。 使用 <kbd>infinite</kbd>、<kbd>indefinite</kbd>、<kbd>infinity</kbd> 或 <kbd>never</kbd> 來設定保護層級期限為永遠。",
 	"apihelp-protect-param-reason": "(解除)保護的原因。",
+	"apihelp-protect-param-tags": "修改標籤以套用於保護日誌裡的項目。",
+	"apihelp-protect-param-cascade": "啟用連鎖保護（也就是保護包含於此頁面的頁面）。如果所有提供的保護等級不支援連鎖，就將其忽略。",
+	"apihelp-protect-param-watch": "如果被設定，就將被（解除）保護的頁面加至目前使用者的監視列表。",
+	"apihelp-protect-param-watchlist": "無條件地將該頁面加入至或移除自目前使用者的監視列表、使用偏好設定或不更改監視。",
+	"apihelp-protect-example-protect": "保護一個頁面。",
+	"apihelp-purge-summary": "為指定標題清除快取。",
+	"apihelp-purge-example-generator": "重新整理主要命名空間的前10個頁面。",
 	"apihelp-query-summary": "擷取來自及有關MediaWiki的數據。",
 	"apihelp-query+allcategories-param-limit": "要回傳的分類數量。",
 	"apihelp-query+allfileusages-param-limit": "要回傳的項目總數。",
