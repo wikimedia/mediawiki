@@ -133,13 +133,14 @@ class FullSearchResultWidget implements SearchResultWidget {
 		$title = clone $result->getTitle();
 		$query = [];
 
+		$attributes = [ 'data-serp-pos' => $position ];
 		Hooks::run( 'ShowSearchHitTitle',
-			[ &$title, &$snippet, $result, $terms, $this->specialPage, &$query ] );
+			[ &$title, &$snippet, $result, $terms, $this->specialPage, &$query, &$attributes ] );
 
 		$link = $this->linkRenderer->makeLink(
 			$title,
 			$snippet,
-			[ 'data-serp-pos' => $position ],
+			$attributes,
 			$query
 		);
 
