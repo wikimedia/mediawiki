@@ -118,4 +118,25 @@ class CommandTest extends PHPUnit_Framework_TestCase {
 			$this->assertEquals( 333333, strlen( $output ) );
 		}
 	}
+
+	public function testLogStderr() {
+		$this->requirePosix();
+
+		$logger = new TestLogger( true, function ( $message, $level, $context ) {
+			return $level === Psr\Log\LogLevel::ERROR ? '1' : null;
+		}, true );
+		$command = new Command();
+		$command->setLogger( $logger );
+		$command->params( 'bash', '-c', 'echo ThisIsStderr 1>&2' );
+		$command->execute();
+		$this->assertEmpty( $logger->getBuffer() );
+
+		$command = new Command();
+		$command->setLogger( $logger );
+		$command->logStderr();
+		$command->params( 'bash', '-c', 'echo ThisIsStderr 1>&2' );
+		$command->execute();
+		$this->assertSame( 1, count( $logger->getBuffer() ) );
+		$this->assertSame( trim( $logger->getBuffer()[0][2]['error'] ), 'ThisIsStderr' );
+	}
 }
