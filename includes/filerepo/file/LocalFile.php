@@ -2463,7 +2463,7 @@ class LocalFileDeleteBatch {
 	}
 
 	function doDBDeletes() {
-		global $wgUpdateCompatibleMetadata;
+		global $wgCommentTableSchemaMigrationStage;
 
 		$dbw = $this->file->repo->getMasterDB();
 		list( $oldRels, $deleteCurrent ) = $this->getOldRels();
@@ -2478,7 +2478,7 @@ class LocalFileDeleteBatch {
 
 		if ( $deleteCurrent ) {
 			$dbw->delete( 'image', [ 'img_name' => $this->file->getName() ], __METHOD__ );
-			if ( $wgUpdateCompatibleMetadata > MIGRATION_OLD ) {
+			if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
 				$dbw->delete(
 					'image_comment_temp', [ 'imgcomment_name' => $this->file->getName() ], __METHOD__
 				);
