@@ -28,6 +28,7 @@ production.
 * …
 
 ==== Removed and replaced external libraries ====
+* (T17845) The deprecated 'jquery.badge' module was removed.
 * …
 
 === Bug fixes in 1.31 ===
