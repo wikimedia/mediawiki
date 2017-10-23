@@ -57,7 +57,10 @@ class Command {
 	private $method;
 
 	/** @var bool */
-	private $useStderr = false;
+	private $doIncludeStderr = false;
+
+	/** @var bool */
+	private $doLogStderr = false;
 
 	/** @var bool */
 	private $everExecuted = false;
@@ -180,7 +183,19 @@ class Command {
 	 * @return $this
 	 */
 	public function includeStderr( $yesno = true ) {
-		$this->useStderr = $yesno;
+		$this->doIncludeStderr = $yesno;
+
+		return $this;
+	}
+
+	/**
+	 * When enabled, text sent to stderr will be logged with a level of 'error'.
+	 *
+	 * @param bool $yesno
+	 * @return $this
+	 */
+	public function logStderr( $yesno = true ) {
+		$this->doLogStderr = $yesno;
 
 		return $this;
 	}
@@ -235,7 +250,7 @@ class Command {
 				$cmd = '/bin/bash ' . escapeshellarg( __DIR__ . '/limit.sh' ) . ' ' .
 					escapeshellarg( $cmd ) . ' ' .
 					escapeshellarg(
-						"MW_INCLUDE_STDERR=" . ( $this->useStderr ? '1' : '' ) . ';' .
+						"MW_INCLUDE_STDERR=" . ( $this->doIncludeStderr ? '1' : '' ) . ';' .
 						"MW_CPU_LIMIT=$time; " .
 						'MW_CGROUP=' . escapeshellarg( $this->cgroup ) . '; ' .
 						"MW_MEM_LIMIT=$mem; " .
@@ -246,7 +261,7 @@ class Command {
 				$useLogPipe = true;
 			}
 		}
-		if ( !$useLogPipe && $this->useStderr ) {
+		if ( !$useLogPipe && $this->doIncludeStderr ) {
 			$cmd .= ' 2>&1';
 		}
 
@@ -422,6 +437,15 @@ class Command {
 
 		if ( $logMsg !== false ) {
 			$this->logger->warning( "$logMsg: {command}", [ 'command' => $cmd ] );
+		}
+
+		if ( $errBuffer && $this->doLogStderr ) {
+			$this->logger->error( "Error running {command}: {error}", [
+				'command' => $cmd,
+				'error' => $errBuffer,
+				'exitcode' => $retval,
+				'exception' => new Exception( 'Shell error' ),
+			] );
 		}
 
 		return new Result( $retval, $outBuffer, $errBuffer );
