@@ -280,7 +280,9 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			return "blockedemailuser";
 		}
 
-		if ( $user->pingLimiter( 'emailuser' ) ) {
+		// Check the ping limiter without incrementing it - we'll check it
+		// again later and increment it on a successful send
+		if ( $user->pingLimiter( 'emailuser', 0 ) ) {
 			wfDebug( "Ping limiter triggered.\n" );
 
 			return 'actionthrottledtext';
@@ -375,6 +377,11 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$text = rtrim( $text ) . "\n\n-- \n";
 		$text .= $context->msg( 'emailuserfooter',
 			$from->name, $to->name )->inContentLanguage()->text();
+
+		// Check and increment the rate limits
+		if ( $context->getUser()->pingLimiter( 'emailuser' ) ) {
+			throw new ThrottledError();
+		}
 
 		$error = false;
 		if ( !Hooks::run( 'EmailUser', [ &$to, &$from, &$subject, &$text, &$error ] ) ) {
