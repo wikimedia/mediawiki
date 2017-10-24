@@ -68,7 +68,7 @@ class RunJobs extends Maintenance {
 			}
 		}
 
-		$outputJSON = ( $this->getOption( 'result' ) === 'json' );
+		$outputJSON = ( strlower( $this->getOption( 'result' ) ) === 'json' );
 		$wait = $this->hasOption( 'wait' );
 
 		$runner = new JobRunner( LoggerFactory::getInstance( 'runJobs' ) );
