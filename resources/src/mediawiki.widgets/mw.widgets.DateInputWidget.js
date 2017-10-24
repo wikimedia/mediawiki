@@ -465,7 +465,8 @@
 			format = llll.replace( lll.replace( ll, '' ), '' );
 
 			if ( this.longDisplayFormat ) {
-				format = format.replace( 'MMM', 'MMMM' ).replace( 'ddd', 'dddd' );
+				format = format.replace( 'MMMM', 'MMM' ).replace( 'MMM', 'MMMM' );
+				format = format.replace( 'dddd', 'ddd' ).replace( 'ddd', 'dddd' );
 			}
 
 			return format;
