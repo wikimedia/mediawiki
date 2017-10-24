@@ -969,7 +969,7 @@
 	"prefs-email": "Mogućnosti e-maila",
 	"prefs-rendering": "Izgled",
 	"saveprefs": "Spremi",
-	"restoreprefs": "Vrati sve postavke na prvotno zadane",
+	"restoreprefs": "Vrati sve postavke na prvobitno zadane (u svim odjeljcima)",
 	"prefs-editing": "Uređivanje",
 	"searchresultshead": "Prikaz rezultata pretrage",
 	"stub-threshold": "Prag za formatiranje poveznice na mrve ($1):",

@@ -79,6 +79,7 @@
 	"config-no-cli-uploads-check": "'''Attention:''' Le directorio predefinite pro files incargate (<code>$1</code>) non es verificate contra le vulnerabilitate\nal execution arbitrari de scripts durante le installation de CLI.",
 	"config-brokenlibxml": "Vostre systema ha un combination de versiones de PHP e libxml2 que es defectuose e pote causar corruption celate de datos in MediaWiki e altere applicationes web.\nActualisa a libxml2 2.7.3 o plus recente ([https://bugs.php.net/bug.php?id=45996 problema reportate presso PHP]).\nInstallation abortate.",
 	"config-suhosin-max-value-length": "Suhosin es installate e limita parametro <code>length</code> de GET a $1 bytes.\nLe componente ResourceLoader de MediaWiki va contornar iste limite, ma isto prejudicara le rendimento.\nSi possibile, tu deberea mitter <code>suhosin.get.max_value_length</code> a 1024 o superior in <code>php.ini</code>, e mitter <code>$wgResourceLoaderMaxQueryLength</code> al mesme valor in <code>LocalSettings.php</code>.",
+	"config-using-32bit": "<strong>Attention:</strong> tu systema pare operar con integres de 32 bits. Isto [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit non es recommendate].",
 	"config-db-type": "Typo de base de datos:",
 	"config-db-host": "Servitor de base de datos:",
 	"config-db-host-help": "Si tu servitor de base de datos es in un altere servitor, entra hic le nomine o adresse IP del servitor.\n\nSi tu usa un servitor web usate in commun, tu providitor deberea dar te le correcte nomine de servitor in su documentation.\n\nSi tu face le installation in un servitor Windows e usa MySQL, le nomine \"localhost\" possibilemente non functiona como nomine de servitor. In tal caso, essaya \"127.0.0.1\", i.e. le adresse IP local.\n\nSi tu usa PostgreSQL, lassa iste campo vacue pro connecter via un \"socket\" de Unix.",
@@ -312,6 +313,8 @@
 	"config-help-tooltip": "clicca pro displicar",
 	"config-nofile": "Le file \"$1\" non poteva esser trovate. Ha illo essite delite?",
 	"config-extension-link": "Sapeva tu que tu wiki supporta [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensiones]?\n\nTu pote explorar le [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensiones per category] o le [https://www.mediawiki.org/wiki/Extension_Matrix matrice de extensiones] pro vider le lista complete de extensiones.",
+	"config-skins-screenshots": "$1 (capturas de schermo: $2)",
+	"config-screenshot": "captura de schermo",
 	"mainpagetext": "<strong>MediaWiki ha essite installate.</strong>",
 	"mainpagedocfooter": "Consulta le [https://meta.wikimedia.org/wiki/Help:Contents Guida del usator] pro information sur le uso del software wiki.\n\n== Pro initiar ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista de configurationes]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAQ a proposito de MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de diffusion pro annuncios de nove versiones de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Traducer MediaWiki in tu lingua]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Como combatter le spam in tu wiki]"
 }

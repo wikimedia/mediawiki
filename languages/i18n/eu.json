@@ -1294,6 +1294,7 @@
 	"recentchanges-legend": "Azken aldaketen aukerak",
 	"recentchanges-summary": "Orrialde honetan ikus ditzakezu wiki honetan egindako azken aldaketak.",
 	"recentchanges-noresult": "Ez da egon aldaketarik emandako tartean irizpide hau betetzen dutenik.",
+	"recentchanges-timeout": "Bilaketa honek denbora muga gainditu du. Agian beste parametro batzuekin bilatu nahi duzu.",
 	"recentchanges-feed-description": "Sindikazio honetan wikian eginiko azkeneko aldaketak jarrai daitezke.",
 	"recentchanges-label-newpage": "Aldaketa honek orri berri bat sortu du",
 	"recentchanges-label-minor": "Aldaketa hau txikia da",
