@@ -64,6 +64,7 @@ $wgAutoloadClasses += [
 	'LessFileCompilationTest' => "$testDir/phpunit/LessFileCompilationTest.php",
 
 	# tests/phpunit/includes
+	'RevisionIntegrationTestBase' => "$testDir/phpunit/includes/RevisionIntegrationTestBase.php",
 	'RevisionTestModifyableContent' => "$testDir/phpunit/includes/RevisionTestModifyableContent.php",
 	'RevisionTestModifyableContentHandler' => "$testDir/phpunit/includes/RevisionTestModifyableContentHandler.php",
 	'TestLogger' => "$testDir/phpunit/includes/TestLogger.php",
