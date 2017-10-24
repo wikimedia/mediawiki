@@ -2394,6 +2394,7 @@ class EditPage {
 
 		$out->addModules( 'mediawiki.action.edit' );
 		$out->addModuleStyles( 'mediawiki.action.edit.styles' );
+		$out->addModuleStyles( 'mediawiki.editfont.styles' );
 
 		$user = $this->context->getUser();
 		if ( $user->getOption( 'showtoolbar' ) ) {

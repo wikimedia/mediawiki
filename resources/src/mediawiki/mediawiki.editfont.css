@@ -1,0 +1,12 @@
+/* Edit font preference */
+.mw-editfont-monospace {
+	font-family: monospace;
+}
+
+.mw-editfont-sans-serif {
+	font-family: sans-serif;
+}
+
+.mw-editfont-serif {
+	font-family: serif;
+}
