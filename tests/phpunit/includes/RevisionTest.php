@@ -3,9 +3,10 @@
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @group ContentHandler
+ * Test cases in RevisionTest should not interact with the Database.
+ * For test cases that need Database interaction see RevisionDbTestBase.
  */
-class RevisionUnitTest extends MediaWikiTestCase {
+class RevisionTest extends MediaWikiTestCase {
 
 	public function provideConstructFromArray() {
 		yield 'with text' => [
@@ -90,7 +91,7 @@ class RevisionUnitTest extends MediaWikiTestCase {
 				'rev_content_format' => 'GOATFORMAT',
 				'rev_content_model' => 'GOATMODEL',
 			],
-			function ( RevisionUnitTest $testCase, Revision $rev ) {
+			function ( RevisionTest $testCase, Revision $rev ) {
 				$testCase->assertSame( 2, $rev->getId() );
 				$testCase->assertSame( 1, $rev->getPage() );
 				$testCase->assertSame( 2, $rev->getTextId() );
@@ -121,7 +122,7 @@ class RevisionUnitTest extends MediaWikiTestCase {
 				'rev_comment_data' => null,
 				'rev_comment_cid' => null,
 			],
-			function ( RevisionUnitTest $testCase, Revision $rev ) {
+			function ( RevisionTest $testCase, Revision $rev ) {
 				$testCase->assertNull( $rev->getSize() );
 				$testCase->assertNull( $rev->getParentId() );
 				$testCase->assertNull( $rev->getSha1() );
