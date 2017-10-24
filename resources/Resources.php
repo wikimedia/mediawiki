@@ -1388,6 +1388,10 @@ return [
 		'scripts' => 'resources/src/mediawiki/mediawiki.experiments.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.editfont.styles' => [
+		'styles' => 'resources/src/mediawiki/mediawiki.editfont.css',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 
 	/* MediaWiki Action */
 
@@ -1399,6 +1403,7 @@ return [
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.css',
 		'dependencies' => [
 			'mediawiki.action.edit.styles',
+			'mediawiki.editfont.styles',
 			'jquery.textSelection',
 			'oojs-ui-core',
 			'mediawiki.widgets.visibleByteLimit',
