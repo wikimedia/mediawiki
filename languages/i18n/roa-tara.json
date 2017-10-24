@@ -305,6 +305,7 @@
 	"databaseerror-query": "Inderrogazione: $1",
 	"databaseerror-function": "Funzione: $1",
 	"databaseerror-error": "Errore: $1",
+	"transaction-duration-limit-exceeded": "Pe evità 'nu retarde ierte de repliche, sta operazzione ha state inderrotte peurcé 'a durate d'u tiembe de scretture ($1) ave supranate 'u limite de $2 {{PLURAL:$2|seconde}}.\n\nCe se ste cange 'nu sbuénne de vôsce jndr'à 'na botta sole, pruève a ffà cchiù operazziune cu mene vôsce a vote.",
 	"laggedslavemode": "Attenzione: 'A pàgene no ge tène cangiaminde recente.",
 	"readonly": "Archivie blocchete",
 	"enterlockreason": "Mitte 'na raggione p'u blocche, 'ncludenne 'na stime de quanne 'u blocche avène luate.",

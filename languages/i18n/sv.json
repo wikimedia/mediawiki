@@ -1408,7 +1408,7 @@
 	"rcfilters-filter-user-experience-level-unregistered-label": "Oregistrerade",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Redigerare som inte är inloggade.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Nykomlingar",
-	"rcfilters-filter-user-experience-level-newcomer-description": "Registrerade redigerare med färre än 10 redigeringar och 4 dagars aktivitet.",
+	"rcfilters-filter-user-experience-level-newcomer-description": "Registrerade redigerare som har färre än 10 redigeringar eller 4 dagars aktivitet.",
 	"rcfilters-filter-user-experience-level-learner-label": "Nybörjare",
 	"rcfilters-filter-user-experience-level-learner-description": "Registrerade redigerare vars erfarenhet hamnar mellan \"Nybörjare\" och \"Erfarna användare\".",
 	"rcfilters-filter-user-experience-level-experienced-label": "Erfarna användare",

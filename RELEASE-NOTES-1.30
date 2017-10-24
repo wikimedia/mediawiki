@@ -240,6 +240,9 @@ changes to languages because of Phabricator reports.
 * (T138166) SpecialEmailUser::getTarget() now requires a second argument, the sending
   user object. Using the method without the second argument is deprecated.
 * (T67297) Browsers that don't support Unicode will have their edits rejected.
+* (T178450) The module 'jquery.badge' is deprecated and will be removed in a future
+  release. For notifying the user of an event, the Notifications ("Echo") system
+  should be used instead.
 
 == Compatibility ==
 MediaWiki 1.30 requires PHP 5.5.9 or later. There is experimental support for
