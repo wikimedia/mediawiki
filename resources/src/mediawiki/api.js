@@ -168,9 +168,8 @@
 					} else {
 						parameters[ key ] = '\x1f' + parameters[ key ].join( '\x1f' );
 					}
-				}
-				// Boolean values are only false when not given at all
-				if ( parameters[ key ] === false || parameters[ key ] === undefined ) {
+				} else if ( parameters[ key ] === false || parameters[ key ] === undefined ) {
+					// Boolean values are only false when not given at all
 					delete parameters[ key ];
 				}
 			}
