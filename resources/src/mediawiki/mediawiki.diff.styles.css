@@ -119,3 +119,36 @@ td.diff-marker {
 	direction: ltr !important; /* stylelint-disable-line declaration-no-important */
 	unicode-bidi: embed;
 }
+
+/*!
+ * Wikidiff2 rendering for moved paragraphs
+ */
+
+.mw-diff-movedpara-left,
+.mw-diff-movedpara-right {
+	color: transparent;
+}
+
+.mw-diff-movedpara-left:hover,
+.mw-diff-movedpara-right:hover {
+	text-decoration: none;
+}
+
+.mw-diff-movedpara-left:after,
+.mw-diff-movedpara-right:after {
+	color: #222;
+	display: block;
+	position: absolute;
+	margin-top: -1.25em;
+	margin-right: -1px;
+}
+
+.mw-diff-movedpara-left:after,
+.rtl .mw-diff-movedpara-right:after {
+	content: '↪';
+}
+
+.mw-diff-movedpara-right:after,
+.rtl .mw-diff-movedpara-left:after {
+	content: '↩';
+}
