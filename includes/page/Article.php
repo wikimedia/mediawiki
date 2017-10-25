@@ -2118,16 +2118,6 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
-	 * @see WikiPage::getLastPurgeTimestamp
-	 * @deprecated since 1.29
-	 */
-	public function getLastPurgeTimestamp() {
-		wfDeprecated( __METHOD__, '1.29' );
-		return $this->mPage->getLastPurgeTimestamp();
-	}
-
-	/**
-	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::doViewUpdates
 	 */
 	public function doViewUpdates( User $user, $oldid = 0 ) {
