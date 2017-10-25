@@ -151,10 +151,6 @@ return [
 		'messages' => [ 'brackets', 'word-separator' ],
 		'targets' => [ 'mobile', 'desktop' ],
 	],
-	'jquery.appear' => [
-		'deprecated' => 'Please use "mediawiki.viewport" instead.',
-		'scripts' => 'resources/lib/jquery/jquery.appear.js',
-	],
 	'jquery.async' => [
 		'scripts' => 'resources/lib/jquery/jquery.async.js',
 	],

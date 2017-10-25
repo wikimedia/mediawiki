@@ -34,6 +34,8 @@ production.
 * The deprecated 'jquery.autoEllipsis' module was removed. Use the CSS
   text-overflow property instead.
 * The deprecated 'jquery.placeholder' module was removed.
+* The deprecated 'jquery.appear' module was removed. Use the
+  'mediawiki.viewport' module instead.
 * …
 
 === Bug fixes in 1.31 ===
