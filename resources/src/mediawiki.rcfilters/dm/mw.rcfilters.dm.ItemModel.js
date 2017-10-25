@@ -83,12 +83,13 @@
 	 * Get a prefixed label
 	 *
 	 * @param {boolean} inverted This item should be considered inverted
-	 * @return {string} Prefixed label
+	 * @return {string} Prefixed label (HTML)
 	 */
 	mw.rcfilters.dm.ItemModel.prototype.getPrefixedLabel = function ( inverted ) {
+		var escapedLabel = mw.html.escape( this.getLabel() );
 		if ( this.labelPrefixKey ) {
 			if ( typeof this.labelPrefixKey === 'string' ) {
-				return mw.message( this.labelPrefixKey, this.getLabel() ).parse();
+				return mw.message( this.labelPrefixKey, escapedLabel ).parse();
 			} else {
 				return mw.message(
 					this.labelPrefixKey[
@@ -97,11 +98,11 @@
 						inverted && this.isSelected() ?
 							'inverted' : 'default'
 					],
-					this.getLabel()
+					escapedLabel
 				).parse();
 			}
 		} else {
-			return this.getLabel();
+			return escapedLabel;
 		}
 	};
 
