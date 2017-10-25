@@ -36,6 +36,8 @@ production.
 * The deprecated 'jquery.placeholder' module was removed.
 * The deprecated 'jquery.appear' module was removed. Use the
   'mediawiki.viewport' module instead.
+* The deprecated 'mediawiki.widgets.CategorySelector' module alias was removed.
+  Use the 'mediawiki.widgets.CategoryMultiselectWidget' module directly instead.
 * …
 
 === Bug fixes in 1.31 ===
