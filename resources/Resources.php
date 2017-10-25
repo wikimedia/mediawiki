@@ -2504,12 +2504,6 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'mediawiki.widgets.CategorySelector' => [
-		'deprecated' => 'Use "mw.widgets.CategoryMultiselectWidget" instead. See T161285.',
-		'dependencies' => [
-			'mediawiki.widgets.CategoryMultiselectWidget',
-		],
-	],
 	'mediawiki.widgets.CategoryMultiselectWidget' => [
 		'scripts' => [
 			'resources/src/mediawiki.widgets/mw.widgets.CategoryCapsuleItemWidget.js',
