@@ -1840,6 +1840,11 @@ $revisionInfo: Array of revision information
 Return false to stop further processing of the tag
 $reader: XMLReader object
 
+'ImportHandleUnknownUser': When a user does exist locally, this hook is called
+to give extensions an opportunity to auto-create it. If the auto-creation is
+successful, return false.
+$name: User name
+
 'ImportHandleUploadXMLTag': When parsing a XML tag in a file upload.
 Return false to stop further processing of the tag
 $reader: XMLReader object

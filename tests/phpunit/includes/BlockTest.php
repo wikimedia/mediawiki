@@ -157,7 +157,7 @@ class BlockTest extends MediaWikiLangTestCase {
 			'enableAutoblock' => true,
 			'hideName' => true,
 			'blockEmail' => true,
-			'byText' => 'MetaWikiUser',
+			'byText' => 'm>MetaWikiUser',
 		];
 		$block = new Block( $blockOptions );
 		$block->insert();
@@ -211,7 +211,7 @@ class BlockTest extends MediaWikiLangTestCase {
 			'enableAutoblock' => true,
 			'hideName' => true,
 			'blockEmail' => true,
-			'byText' => 'MetaWikiUser',
+			'byText' => 'Meta>MetaWikiUser',
 		];
 		$block = new Block( $blockOptions );
 
@@ -227,8 +227,9 @@ class BlockTest extends MediaWikiLangTestCase {
 			'Correct blockee name'
 		);
 		$this->assertEquals( $userId, $block->getTarget()->getId(), 'Correct blockee id' );
-		$this->assertEquals( 'MetaWikiUser', $block->getBlocker(), 'Correct blocker name' );
-		$this->assertEquals( 'MetaWikiUser', $block->getByName(), 'Correct blocker name' );
+		$this->assertEquals( 'Meta>MetaWikiUser', $block->getBlocker()->getName(),
+			'Correct blocker name' );
+		$this->assertEquals( 'Meta>MetaWikiUser', $block->getByName(), 'Correct blocker name' );
 		$this->assertEquals( 0, $block->getBy(), 'Correct blocker id' );
 	}
 
@@ -279,6 +280,7 @@ class BlockTest extends MediaWikiLangTestCase {
 			],
 		];
 
+		$blocker = $this->getTestUser()->getUser();
 		foreach ( $blockList as $insBlock ) {
 			$target = $insBlock['target'];
 
@@ -290,7 +292,7 @@ class BlockTest extends MediaWikiLangTestCase {
 
 			$block = new Block();
 			$block->setTarget( $target );
-			$block->setBlocker( 'testblocker@global' );
+			$block->setBlocker( $blocker );
 			$block->mReason = $insBlock['desc'];
 			$block->mExpiry = 'infinity';
 			$block->prevents( 'createaccount', $insBlock['ACDisable'] );
@@ -416,7 +418,7 @@ class BlockTest extends MediaWikiLangTestCase {
 			'reason' => 'test system block',
 			'timestamp' => wfTimestampNow(),
 			'expiry' => $this->db->getInfinity(),
-			'byText' => 'MetaWikiUser',
+			'byText' => 'MediaWiki default',
 			'systemBlock' => 'test',
 			'enableAutoblock' => true,
 		];

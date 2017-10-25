@@ -893,9 +893,17 @@ class Linker {
 	public static function userLink( $userId, $userName, $altUserName = false ) {
 		$classes = 'mw-userlink';
 		if ( $userId == 0 ) {
-			$page = SpecialPage::getTitleFor( 'Contributions', $userName );
-			if ( $altUserName === false ) {
-				$altUserName = IP::prettifyIP( $userName );
+			$pos = strpos( $userName, '>' );
+			if ( $pos !== false ) {
+				$page = Title::makeTitle(
+					NS_USER, substr( $userName, $pos + 1 ), '', substr( $userName, 0, $pos )
+				);
+				$classes .= ' mw-extuserlink';
+			} else {
+				$page = SpecialPage::getTitleFor( 'Contributions', $userName );
+				if ( $altUserName === false ) {
+					$altUserName = IP::prettifyIP( $userName );
+				}
 			}
 			$classes .= ' mw-anonuserlink'; // Separate link class for anons (T45179)
 		} else {
@@ -930,6 +938,11 @@ class Linker {
 		$talkable = !( $wgDisableAnonTalk && 0 == $userId );
 		$blockable = !( $flags & self::TOOL_LINKS_NOBLOCK );
 		$addEmailLink = $flags & self::TOOL_LINKS_EMAIL && $userId;
+
+		if ( $userId == 0 && strpos( $userText, '>' ) !== false ) {
+			// No tools for an external user
+			return '';
+		}
 
 		$items = [];
 		if ( $talkable ) {
