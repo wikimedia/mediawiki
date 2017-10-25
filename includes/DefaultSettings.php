@@ -4839,6 +4839,7 @@ $wgReservedUsernames = [
 	'msg:double-redirect-fixer', // Automatic double redirect fix
 	'msg:usermessage-editor', // Default user for leaving user messages
 	'msg:proxyblocker', // For $wgProxyList and Special:Blockme (removed in 1.22)
+	'msg:sorbs', // For $wgEnableDnsBlacklist etc.
 	'msg:spambot_username', // Used by cleanupSpam.php
 	'msg:autochange-username', // Used by anon category RC entries (parser functions, Lua & purges)
 ];
