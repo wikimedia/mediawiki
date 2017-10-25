@@ -321,6 +321,7 @@
 	"config-install-subscribe-fail": "mediawiki-announce を購読できませんでした: $1",
 	"config-install-subscribe-notpossible": "cURL がインストールされていないため、<code>allow_url_fopen</code> を利用できません。",
 	"config-install-mainpage": "メインページを既定の内容で作成",
+	"config-install-mainpage-exists": "メインページはすでに存在するためスキップします",
 	"config-install-extension-tables": "有効にした拡張機能のためのテーブルを作成しています",
 	"config-install-mainpage-failed": "メインページを挿入できませんでした: $1",
 	"config-install-done": "<strong>おめでとうございます!</strong>\nMediaWikiのインストールに成功しました。\n\n<code>LocalSettings.php</code>ファイルが生成されました。\nこのファイルはすべての設定を含んでいます。\n\nこれをダウンロードして、ウィキをインストールした基準ディレクトリ (index.phpと同じディレクトリ) に設置する必要があります。ダウンロードは自動的に開始されるはずです。\n\nダウンロードが開始されていない場合、またはダウンロードをキャンセルした場合は、下記のリンクをクリックしてダウンロードを再開できます:\n\n$3\n\n<strong>注意:</strong> この生成された設定ファイルをダウンロードせずにインストールを終了すると、このファイルは利用できなくなります。\n\n上記の作業が完了すると、<strong>[$2 ウィキに入る]</strong>ことができます。",
@@ -330,6 +331,8 @@
 	"config-help-tooltip": "クリックで展開",
 	"config-nofile": "ファイル「$1」が見つかりませんでした。削除された可能性があります。",
 	"config-extension-link": "あなたのウィキは[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions 拡張機能]をサポートしていることをご存知ですか?\n\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category カテゴリ別で拡張機能を見る]か[https://www.mediawiki.org/wiki/Extension_Matrix 拡張機能のマトリックス]で拡張機能すべてのリストをご覧になれます。",
+	"config-skins-screenshots": "$1 (スクリーンショット: $2)",
+	"config-screenshot": "スクリーンショット",
 	"mainpagetext": "<strong>MediaWiki はインストール済みです。</strong>",
 	"mainpagedocfooter": "ウィキソフトウェアの使い方に関する情報は[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 利用者案内]を参照してください。\n\n== はじめましょう ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings/ja 設定の一覧]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/ja MediaWiki よくある質問と回答]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki リリース情報メーリングリスト]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation/ja MediaWiki のあなたの言語へのローカライズ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam あなたのウィキでスパムと戦う方法を学ぶ]"
 }
