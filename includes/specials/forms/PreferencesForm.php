@@ -80,7 +80,7 @@ class PreferencesForm extends HTMLForm {
 		$html = parent::getButtons();
 
 		if ( $this->getModifiedUser()->isAllowed( 'editmyoptions' ) ) {
-			$t = $this->getTitle()->getSubpage( 'reset' );
+			$t = $this->getPageTitle()->getSubpage( 'reset' );
 
 			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 			$html .= "\n" . $linkRenderer->makeLink( $t, $this->msg( 'restoreprefs' )->text(),
