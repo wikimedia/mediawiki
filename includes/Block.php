@@ -1479,9 +1479,19 @@ class Block {
 
 	/**
 	 * Set the user who implemented (or will implement) this block
-	 * @param User|string $user Local User object or username string for foreign users
+	 * @param User|string $user Local User object or username string
 	 */
 	public function setBlocker( $user ) {
+		if ( is_string( $user ) ) {
+			$user = User::newFromName( $user, false );
+		}
+
+		if ( $user->isAnon() && User::isUsableName( $user->getName() ) ) {
+			throw new InvalidArgumentException(
+				'Blocker must be a local user or a name that cannot be a local user'
+			);
+		}
+
 		$this->blocker = $user;
 	}
 

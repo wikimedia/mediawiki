@@ -250,6 +250,8 @@
 	"apihelp-import-extended-description": "Note that the HTTP POST must be done as a file upload (i.e. using multipart/form-data) when sending a file for the <var>xml</var> parameter.",
 	"apihelp-import-param-summary": "Log entry import summary.",
 	"apihelp-import-param-xml": "Uploaded XML file.",
+	"apihelp-import-param-interwikiprefix": "For uploaded imports: interwiki prefix to apply to unknown user names (and known users if <var>$1assignknownusers</var> is set).",
+	"apihelp-import-param-assignknownusers": "Assign edits to local users where the named user exists locally.",
 	"apihelp-import-param-interwikisource": "For interwiki imports: wiki to import from.",
 	"apihelp-import-param-interwikipage": "For interwiki imports: page to import.",
 	"apihelp-import-param-fullhistory": "For interwiki imports: import the full history, not just the current version.",
