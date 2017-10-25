@@ -266,8 +266,14 @@ return [
 
 		$detectorCmd = $mainConfig->get( 'MimeDetectorCommand' );
 		if ( $detectorCmd ) {
-			$params['detectCallback'] = function ( $file ) use ( $detectorCmd ) {
-				return wfShellExec( "$detectorCmd " . wfEscapeShellArg( $file ) );
+			$params['detectCallback'] = function ( $file ) use ( $detectorCmd, $services ) {
+				$result = $services->getShellCommandFactory()
+					->create()
+					// $wgMimeDetectorCommand can contain commands with parameters
+					->unsafeParams( $detectorCmd )
+					->params( $file )
+					->execute();
+				return $result->getStdout();
 			};
 		}
 
