@@ -385,6 +385,9 @@ class HistoryPager extends ReverseChronologicalPager {
 	/** @var bool Whether to show the tag editing UI */
 	protected $showTagEditUI;
 
+	/** @var string */
+	private $tagFilter;
+
 	/**
 	 * @param HistoryAction $historyPage
 	 * @param string $year
