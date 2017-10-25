@@ -240,6 +240,8 @@
 	"apihelp-import-extended-description": "{{doc-apihelp-extended-description|import}}",
 	"apihelp-import-param-summary": "{{doc-apihelp-param|import|summary|info=The parameter being documented here provides the summary used on the log messages about the import. The phrase \"Import summary\" here is grammatically equivalent to a phrase such as \"science book\", not \"eat food\".}}",
 	"apihelp-import-param-xml": "{{doc-apihelp-param|import|xml}}",
+	"apihelp-import-param-interwikiprefix": "{{doc-apihelp-param|import|interwikiprefix}}",
+	"apihelp-import-param-assignknownusers": "{{doc-apihelp-param|import|assignknownusers}}",
 	"apihelp-import-param-interwikisource": "{{doc-apihelp-param|import|interwikisource}}",
 	"apihelp-import-param-interwikipage": "{{doc-apihelp-param|import|interwikipage}}",
 	"apihelp-import-param-fullhistory": "{{doc-apihelp-param|import|fullhistory}}",

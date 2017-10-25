@@ -15,6 +15,8 @@ production.
   possible for fallback images such as png.
 * (T44246) $wgFilterLogTypes will no longer ignore 'patrol' when user does
   not have the right to mark things patrolled.
+* Wikis that contain imported revisions or CentralAuth global blocks should run
+  maintenance/cleanupUsersWithNoId.php.
 
 === New features in 1.31 ===
 * Wikimedia\Rdbms\IDatabase->select() and similar methods now support
@@ -22,6 +24,13 @@ production.
 * As a first pass in standardizing dialog boxes across the MediaWiki product,
   Html class now provides helper methods for messageBox, successBox, errorBox and
   warningBox generation.
+* (T9240) Imports will now record unknown (and, optionally, known) usernames in
+  a format like "iw>Example".
+* (T20209) Linker (used on history pages, log pages, and so on) will display
+  usernames formed like "iw>Example" as interwiki links, as if by wikitext like
+  [[iw:User:Example|iw>Example]].
+* (T111605) The 'ImportHandleUnknownUser' hook allows extensions to auto-create
+  users during an import.
 
 === External library changes in 1.31 ===
 
@@ -102,6 +111,9 @@ changes to languages because of Phabricator reports.
   override DifferenceEngine::getDiffBodyCacheKeyParams() instead.
 * The deprecated MW_DIFF_VERSION constant was removed.
   DifferenceEngine::MW_DIFF_VERSION should be used instead.
+* The Block class will no longer accept usable-but-missing usernames for
+  'byText' or ->setBlocker(). Callers should either ensure the blocker exists
+  locally or use a new interwiki-format username like "iw>Example".
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. There is experimental support for
