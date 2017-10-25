@@ -46,7 +46,6 @@ return [
 		'scripts' => [
 			'tests/qunit/suites/resources/startup.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.accessKeyLabel.test.js',
-			'tests/qunit/suites/resources/jquery/jquery.autoEllipsis.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.byteLength.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.byteLimit.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.color.test.js',
@@ -103,7 +102,6 @@ return [
 		],
 		'dependencies' => [
 			'jquery.accessKeyLabel',
-			'jquery.autoEllipsis',
 			'jquery.byteLength',
 			'jquery.byteLimit',
 			'jquery.color',
