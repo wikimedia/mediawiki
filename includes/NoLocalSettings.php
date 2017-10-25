@@ -50,6 +50,7 @@ $templateParser = new TemplateParser();
 
 # Render error page if no LocalSettings file can be found
 try {
+	global $wgVersion;
 	echo $templateParser->processTemplate(
 		'NoLocalSettings',
 		[
