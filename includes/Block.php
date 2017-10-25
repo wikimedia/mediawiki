@@ -709,7 +709,7 @@ class Block {
 		// than getting the msg raw and explode()'ing it.
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$lines = $cache->getWithSetCallback(
-			$cache->makeKey( 'ipb', 'autoblock', 'whitelist' ),
+			$cache->makeKey( 'ip-autoblock', 'whitelist' ),
 			$cache::TTL_DAY,
 			function ( $curValue, &$ttl, array &$setOpts ) {
 				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );

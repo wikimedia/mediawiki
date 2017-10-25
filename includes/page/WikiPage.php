@@ -512,7 +512,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$cache = ObjectCache::getMainWANInstance();
 
 			return $cache->getWithSetCallback(
-				$cache->makeKey( 'page', 'content-model', $this->getLatest() ),
+				$cache->makeKey( 'page-content-model', $this->getLatest() ),
 				$cache::TTL_MONTH,
 				function () {
 					$rev = $this->getRevision();
