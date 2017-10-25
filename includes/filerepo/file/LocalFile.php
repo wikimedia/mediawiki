@@ -1646,7 +1646,12 @@ class LocalFile extends File {
 						);
 					} else {
 						# Update backlink pages pointing to this title if created
-						LinksUpdate::queueRecursiveJobsForTable( $this->getTitle(), 'imagelinks' );
+						LinksUpdate::queueRecursiveJobsForTable(
+							$this->getTitle(),
+							'imagelinks',
+							'upload-image',
+							$user->getName()
+						);
 					}
 
 					$this->prerenderThumbnails();

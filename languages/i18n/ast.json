@@ -1279,6 +1279,7 @@
 	"recentchanges-legend": "Opciones de cambios recientes",
 	"recentchanges-summary": "Sigui los cambios más recientes na wiki nesta páxina.",
 	"recentchanges-noresult": "Nengún cambiu nel periodu conseñáu coincide con esos criterios.",
+	"recentchanges-timeout": "Esta gueta escosó'l tiempu. Escurque quieras tentar con parámetros de gueta distintos.",
 	"recentchanges-feed-description": "Sigui nesta canal los últimos cambios de la wiki.",
 	"recentchanges-label-newpage": "Esta edición creó una páxina nueva",
 	"recentchanges-label-minor": "Esta ye una edición menor",

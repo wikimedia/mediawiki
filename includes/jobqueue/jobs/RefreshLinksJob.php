@@ -53,6 +53,7 @@ class RefreshLinksJob extends Job {
 			// Multiple pages per job make matches unlikely
 			!( isset( $params['pages'] ) && count( $params['pages'] ) != 1 )
 		);
+		$this->params += [ 'causeAction' => 'unknown', 'causeAgent' => 'unknown' ];
 	}
 
 	/**
@@ -102,6 +103,9 @@ class RefreshLinksJob extends Job {
 			// Carry over information for de-duplication
 			$extraParams = $this->getRootJobParams();
 			$extraParams['triggeredRecursive'] = true;
+			// Carry over cause information for logging
+			$extraParams['causeAction'] = $this->params['causeAction'];
+			$extraParams['causeAgent'] = $this->params['causeAgent'];
 			// Convert this into no more than $wgUpdateRowsPerJob RefreshLinks per-title
 			// jobs and possibly a recursive RefreshLinks job for the rest of the backlinks
 			$jobs = BacklinkJobUtils::partitionBacklinkJob(
@@ -254,6 +258,8 @@ class RefreshLinksJob extends Job {
 		$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
 
 		foreach ( $updates as $update ) {
+			// Carry over cause in case so the update can do extra logging
+			$update->setCause( $this->params['causeAction'], $this->params['causeAgent'] );
 			// FIXME: This code probably shouldn't be here?
 			// Needed by things like Echo notifications which need
 			// to know which user caused the links update
@@ -288,6 +294,8 @@ class RefreshLinksJob extends Job {
 
 	public function getDeduplicationInfo() {
 		$info = parent::getDeduplicationInfo();
+		unset( $info['causeAction'] );
+		unset( $info['causeAgent'] );
 		if ( is_array( $info['params'] ) ) {
 			// For per-pages jobs, the job title is that of the template that changed
 			// (or similar), so remove that since it ruins duplicate detection

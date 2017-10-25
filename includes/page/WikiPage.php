@@ -2171,6 +2171,7 @@ class WikiPage implements Page, IDBAccessObject {
 				$this->getTitle(), null, $recursive, $editInfo->output
 			);
 			foreach ( $updates as $update ) {
+				$update->setCause( 'edit-page', $user->getName() );
 				if ( $update instanceof LinksUpdate ) {
 					$update->setRevision( $revision );
 					$update->setTriggeringUser( $user );
@@ -2913,7 +2914,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$dbw->endAtomic( __METHOD__ );
 
-		$this->doDeleteUpdates( $id, $content, $revision );
+		$this->doDeleteUpdates( $id, $content, $revision, $user );
 
 		Hooks::run( 'ArticleDeleteComplete', [
 			&$wikiPageBeforeDelete,
@@ -2964,8 +2965,11 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   the required updates. This may be needed because $this->getContent()
 	 *   may already return null when the page proper was deleted.
 	 * @param Revision|null $revision The latest page revision
+	 * @param User|null $user The user that caused the deletion
 	 */
-	public function doDeleteUpdates( $id, Content $content = null, Revision $revision = null ) {
+	public function doDeleteUpdates(
+		$id, Content $content = null, Revision $revision = null, User $user = null
+	) {
 		try {
 			$countable = $this->isCountable();
 		} catch ( Exception $ex ) {
@@ -2983,12 +2987,14 @@ class WikiPage implements Page, IDBAccessObject {
 			DeferredUpdates::addUpdate( $update );
 		}
 
+		$causeAgent = $user ? $user->getName() : 'unknown';
 		// Reparse any pages transcluding this page
-		LinksUpdate::queueRecursiveJobsForTable( $this->mTitle, 'templatelinks' );
-
+		LinksUpdate::queueRecursiveJobsForTable(
+			$this->mTitle, 'templatelinks', 'delete-page', $causeAgent );
 		// Reparse any pages including this image
 		if ( $this->mTitle->getNamespace() == NS_FILE ) {
-			LinksUpdate::queueRecursiveJobsForTable( $this->mTitle, 'imagelinks' );
+			LinksUpdate::queueRecursiveJobsForTable(
+				$this->mTitle, 'imagelinks', 'delete-page', $causeAgent );
 		}
 
 		// Clear caches

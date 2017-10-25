@@ -1358,6 +1358,7 @@
 	"recentchanges-legend": "Anzeigeoptionen",
 	"recentchanges-summary": "Auf dieser Seite kannst du die letzten Änderungen in diesem Wiki nachverfolgen.",
 	"recentchanges-noresult": "Keine Änderungen während des angegebenen Zeitraums entsprechen diesen Kriterien.",
+	"recentchanges-timeout": "Die Zeit für diese Suche wurde überschritten. Du kannst verschiedene Suchparameter ausprobieren.",
 	"recentchanges-feed-description": "Verfolge mit diesem Feed die letzten Änderungen in {{SITENAME}}.",
 	"recentchanges-label-newpage": "Neue Seite",
 	"recentchanges-label-minor": "Kleine Änderung",

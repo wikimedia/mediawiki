@@ -33,6 +33,85 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit( 1 );
 }
 
+/**
+ * Pre-config setup: Before loading LocalSettings.php
+ */
+
+// Grab profiling functions
+require_once "$IP/includes/profiler/ProfilerFunctions.php";
+
+// Start the autoloader, so that extensions can derive classes from core files
+require_once "$IP/includes/AutoLoader.php";
+
+// Load up some global defines
+require_once "$IP/includes/Defines.php";
+
+// Start the profiler
+$wgProfiler = [];
+if ( file_exists( "$IP/StartProfiler.php" ) ) {
+	require "$IP/StartProfiler.php";
+}
+
+// Load default settings
+require_once "$IP/includes/DefaultSettings.php";
+
+// Load global functions
+require_once "$IP/includes/GlobalFunctions.php";
+
+// Load composer's autoloader if present
+if ( is_readable( "$IP/vendor/autoload.php" ) ) {
+	require_once "$IP/vendor/autoload.php";
+}
+
+// Assert that composer dependencies were successfully loaded
+// Purposely no leading \ due to it breaking HHVM RepoAuthorative mode
+// PHP works fine with both versions
+// See https://github.com/facebook/hhvm/issues/5833
+if ( !interface_exists( 'Psr\Log\LoggerInterface' ) ) {
+	$message = (
+		'MediaWiki requires the <a href="https://github.com/php-fig/log">PSR-3 logging ' .
+		"library</a> to be present. This library is not embedded directly in MediaWiki's " .
+		"git repository and must be installed separately by the end user.\n\n" .
+		'Please see <a href="https://www.mediawiki.org/wiki/Download_from_Git' .
+		'#Fetch_external_libraries">mediawiki.org</a> for help on installing ' .
+		'the required components.'
+	);
+	echo $message;
+	trigger_error( $message, E_USER_ERROR );
+	die( 1 );
+}
+
+// Install a header callback
+MediaWiki\HeaderCallback::register();
+
+/**
+ * Load LocalSettings.php
+ */
+
+if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
+	call_user_func( MW_CONFIG_CALLBACK );
+} else {
+	if ( !defined( 'MW_CONFIG_FILE' ) ) {
+		define( 'MW_CONFIG_FILE', "$IP/LocalSettings.php" );
+	}
+	require_once MW_CONFIG_FILE;
+}
+
+/**
+ * Customization point after all loading (constants, functions, classes,
+ * DefaultSettings, LocalSettings). Specifically, this is before usage of
+ * settings, before instantiation of Profiler (and other singletons), and
+ * before any setup functions or hooks run.
+ */
+
+if ( defined( 'MW_SETUP_CALLBACK' ) ) {
+	call_user_func( MW_SETUP_CALLBACK );
+}
+
+/**
+ * Main setup
+ */
+
 $fname = 'Setup.php';
 $ps_setup = Profiler::instance()->scopedProfileIn( $fname );
 
