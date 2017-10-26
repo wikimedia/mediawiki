@@ -152,6 +152,76 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers Revision::insertOn
+	 */
+	public function testInsertOn_success() {
+		// If an ExternalStore is set don't use it.
+		$this->setMwGlobals( 'wgDefaultExternalStore', false );
+
+		$rev = new Revision( [
+			'page' => 9989,
+			'title' => Title::newFromText( 'RevisionTitle' ),
+			'text' => 'Revision Text',
+			'comment' => 'Revision comment',
+		] );
+
+		$revId = $rev->insertOn( wfGetDB( DB_MASTER ) );
+
+		$this->assertInternalType( 'integer', $revId );
+		$this->assertInternalType( 'integer', $rev->getTextId() );
+		$this->assertSame( $revId, $rev->getId() );
+
+		$this->assertSelect(
+			'text',
+			[ 'old_id', 'old_text' ],
+			"old_id = {$rev->getTextId()}",
+			[ [ strval( $rev->getTextId() ), 'Revision Text' ] ]
+		);
+		$this->assertSelect(
+			'revision',
+			[
+				'rev_id',
+				'rev_page',
+				'rev_text_id',
+				'rev_user',
+				'rev_minor_edit',
+				'rev_deleted',
+				'rev_len',
+				'rev_parent_id',
+				'rev_sha1',
+			],
+			"rev_id = {$rev->getId()}",
+			[ [
+				strval( $rev->getId() ),
+				'9989',
+				strval( $rev->getTextId() ),
+				'0',
+				'0',
+				'0',
+				'13',
+				'0',
+				's0ngbdoxagreuf2vjtuxzwdz64n29xm',
+			] ]
+		);
+	}
+
+	/**
+	 * @covers Revision::insertOn
+	 */
+	public function testInsertOn_exceptionOnNoPage() {
+		// If an ExternalStore is set don't use it.
+		$this->setMwGlobals( 'wgDefaultExternalStore', false );
+		$this->setExpectedException(
+			MWException::class,
+			"Cannot insert revision: page ID must be nonzero"
+		);
+
+		$rev = new Revision( [] );
+
+		$rev->insertOn( wfGetDB( DB_MASTER ) );
+	}
+
+	/**
 	 * @covers Revision::newFromTitle
 	 */
 	public function testNewFromTitle_withoutId() {
