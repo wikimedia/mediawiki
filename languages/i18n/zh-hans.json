@@ -1363,6 +1363,7 @@
 	"recentchanges-legend": "最近更改选项",
 	"recentchanges-summary": "在本页面追踪本wiki的最近更改。",
 	"recentchanges-noresult": "在此期间没有符合这些条件的编辑",
+	"recentchanges-timeout": "此次搜索已超时。您可以尝试不同的搜索参数。",
 	"recentchanges-feed-description": "用这个源跟踪本wiki的最近更改。",
 	"recentchanges-label-newpage": "该编辑创建了新页面",
 	"recentchanges-label-minor": "该编辑为小编辑",

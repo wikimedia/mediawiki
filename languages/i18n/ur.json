@@ -32,7 +32,8 @@
 			"قیصرانی",
 			"Junaid Ahmad",
 			"Abuaneeqa",
-			"Saraiki"
+			"Saraiki",
+			"BukhariSaeed"
 		]
 	},
 	"tog-underline": "ربط کی خط کشیدگی:",
@@ -3536,7 +3537,7 @@
 	"feedback-thanks": "شکریہ! آپ کا تبصرہ صفحہ «[$1 $2]» میں درج کر دیا گیا ہے۔",
 	"feedback-thanks-title": "شکریہ!",
 	"feedback-useragent": "یوزر ایجنٹ:",
-	"searchsuggest-search": "تلاش",
+	"searchsuggest-search": "{{SITENAME}} میں تلاش کریں",
 	"searchsuggest-containing": "نتائج...",
 	"api-error-badtoken": "داخلی نقص: غلط ٹوکن۔",
 	"api-error-emptypage": "نئے خالی صفحات بنانے کی اجازت نہیں ہے۔",
