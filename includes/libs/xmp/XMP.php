@@ -388,7 +388,7 @@ class XMPReader implements LoggerAwareInterface {
 			}
 		} catch ( Exception $e ) {
 			$this->logger->warning(
-				'{method} Exception caught while parsing: ' . $e->getMessage(),
+				'{method} Exception caught while parsing: {exception.message}',
 				[
 					'method' => __METHOD__,
 					'exception' => $e,
