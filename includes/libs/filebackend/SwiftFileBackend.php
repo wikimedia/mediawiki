@@ -714,7 +714,8 @@ class SwiftFileBackend extends FileBackendStore {
 
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
-		$this->logger->error( __METHOD__ . ": $path was not stored with SHA-1 metadata." );
+		$this->logger->error( __METHOD__ . ": {path} was not stored with SHA-1 metadata.",
+			[ 'path' => $path ] );
 
 		$objHdrs['x-object-meta-sha1base36'] = false;
 
