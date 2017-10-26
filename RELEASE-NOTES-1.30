@@ -124,6 +124,7 @@ changes to languages because of Phabricator reports.
 * Added: kbp (Kabɩyɛ / Kabiyè)
 * Added: skr (Saraiki, سرائیکی)
 * Added: tay (Tayal / Atayal)
+* Removed: tokipona (Toki Pona)
 
 ==== Pig Latin added ====
 * (T45547) Added Pig Latin, a made-up English variant (en-x-piglatin),

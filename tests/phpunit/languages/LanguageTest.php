@@ -479,7 +479,6 @@ class LanguageTest extends LanguageClassesTestCase {
 			[ 'fr', true, 'Two letters, minor case' ],
 			[ 'EN', false, 'Two letters, upper case' ],
 			[ 'tyv', true, 'Three letters' ],
-			[ 'tokipona', true, 'long language code' ],
 			[ 'be-tarask', true, 'With dash' ],
 			[ 'be-x-old', true, 'With extension (two dashes)' ],
 			[ 'be_tarask', false, 'Reject underscores' ],
