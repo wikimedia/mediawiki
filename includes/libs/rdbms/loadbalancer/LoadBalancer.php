@@ -568,7 +568,8 @@ class LoadBalancer implements ILoadBalancer {
 			$knownReachedPos->hasReached( $this->mWaitForPos )
 		) {
 			$this->replLogger->debug( __METHOD__ .
-				": replica DB $server known to be caught up (pos >= $knownReachedPos)." );
+				': replica DB {dbserver} known to be caught up (pos >= $knownReachedPos).',
+			 	[ 'dbserver' => $server ] );
 			return true;
 		}
 
@@ -576,13 +577,15 @@ class LoadBalancer implements ILoadBalancer {
 		$conn = $this->getAnyOpenConnection( $index );
 		if ( !$conn ) {
 			if ( !$open ) {
-				$this->replLogger->debug( __METHOD__ . ": no connection open for $server" );
+				$this->replLogger->debug( __METHOD__ . ': no connection open for {dbserver}',
+			 		[ 'dbserver' => $server ] );
 
 				return false;
 			} else {
 				$conn = $this->openConnection( $index, self::DOMAIN_ANY );
 				if ( !$conn ) {
-					$this->replLogger->warning( __METHOD__ . ": failed to connect to $server" );
+					$this->replLogger->warning( __METHOD__ . ': failed to connect to {dbserver}',
+						[ 'dbserver' => $server ] );
 
 					return false;
 				}
@@ -592,7 +595,8 @@ class LoadBalancer implements ILoadBalancer {
 			}
 		}
 
-		$this->replLogger->info( __METHOD__ . ": Waiting for replica DB $server to catch up..." );
+		$this->replLogger->info( __METHOD__ . ': Waiting for replica DB {dbserver} to catch up...',
+			[ 'dbserver' => $server ] );
 		$timeout = $timeout ?: $this->mWaitTimeout;
 		$result = $conn->masterPosWait( $this->mWaitForPos, $timeout );
 
