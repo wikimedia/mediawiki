@@ -35,7 +35,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 */
 	protected function checkHasGzip() {
 		if ( self::$hasGzip === null ) {
-			self::$hasGzip = ( Installer::locateExecutableInDefaultPaths( 'gzip' ) !== false );
+			self::$hasGzip = ( ExecutableFinder::findInDefaultPaths( 'gzip' ) !== false );
 		}
 
 		if ( !self::$hasGzip ) {
