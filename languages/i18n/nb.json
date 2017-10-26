@@ -1316,6 +1316,7 @@
 	"recentchanges-legend": "Alternativer for siste endringer",
 	"recentchanges-summary": "På denne siden vises de siste endringene i wikien.",
 	"recentchanges-noresult": "Ingen endringer i perioden passer med kriteriene.",
+	"recentchanges-timeout": "Tidsfristen for søket har løpt ut. Du bør prøve andre søkeparametere.",
 	"recentchanges-feed-description": "Følg med på siste endringer i denne wikien med denne matingen.",
 	"recentchanges-label-newpage": "Denne redigeringen opprettet en ny side",
 	"recentchanges-label-minor": "Dette er en mindre endring",

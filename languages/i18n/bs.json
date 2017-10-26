@@ -894,7 +894,7 @@
 	"revertmerge": "Vrati spajanje",
 	"mergelogpagetext": "Ispod je spisak nedavnih spajanja historija stranica.",
 	"history-title": "Historija izmjena stranice \"$1\"",
-	"difference-title": "Razlike između verzija stranice \"$1\"",
+	"difference-title": "Razlika između izmjena na stranici \"$1\"",
 	"difference-title-multipage": "$1 i $2: Razlike između stranica",
 	"difference-multipage": "(Razlika između stranica)",
 	"lineno": "Red $1:",

@@ -129,4 +129,46 @@ class ApiParseTest extends ApiTestCase {
 			);
 		}
 	}
+
+	public function testSkinModules() {
+		$factory = new SkinFactory();
+		$factory->register( 'testing', 'Testing', function () {
+			$skin = $this->getMockBuilder( SkinFallback::class )
+				->setMethods( [ 'getDefaultModules', 'setupSkinUserCss' ] )
+				->getMock();
+			$skin->expects( $this->once() )->method( 'getDefaultModules' )
+				->willReturn( [
+					'core' => [ 'foo', 'bar' ],
+					'content' => [ 'baz' ]
+				] );
+			$skin->expects( $this->once() )->method( 'setupSkinUserCss' )
+				->will( $this->returnCallback( function ( OutputPage $out ) {
+					$out->addModuleStyles( 'foo.styles' );
+				} ) );
+			return $skin;
+		} );
+		$this->setService( 'SkinFactory', $factory );
+
+		$res = $this->doApiRequest( [
+			'action' => 'parse',
+			'pageid' => self::$pageId,
+			'useskin' => 'testing',
+			'prop' => 'modules',
+		] );
+		$this->assertSame(
+			[ 'foo', 'bar', 'baz' ],
+			$res[0]['parse']['modules'],
+			'resp.parse.modules'
+		);
+		$this->assertSame(
+			[],
+			$res[0]['parse']['modulescripts'],
+			'resp.parse.modulescripts'
+		);
+		$this->assertSame(
+			[ 'foo.styles' ],
+			$res[0]['parse']['modulestyles'],
+			'resp.parse.modulestyles'
+		);
+	}
 }

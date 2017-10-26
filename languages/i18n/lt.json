@@ -2126,7 +2126,7 @@
 	"movedarticleprotection": "perkelti apsaugos nustatymai iš „[[$2]]“ į „[[$1]]“",
 	"protectedarticle-comment": "{{GENDER:$2|Užrakino}} „[[$1]]“",
 	"modifiedarticleprotection-comment": "{{GENDER:$2|Pakeitė „[[$1]]“ apsaugos lygį}}",
-	"unprotectedarticle-comment": "{{GENDER:$2|Pašalino apsaugą}} iš „[[$1]]“",
+	"unprotectedarticle-comment": "{{GENDER:$2|Atrakino}} „[[$1]]“",
 	"protect-title": "Nustatomas apsaugos lygis puslapiui „$1“",
 	"protect-title-notallowed": "Peržiūrėti \"$1\" apsaugos lygį",
 	"prot_1movedto2": "[[$1]] pervadintas į [[$2]]",

@@ -1330,6 +1330,7 @@
 	"recentchanges-legend": "최근 바뀜 설정",
 	"recentchanges-summary": "이 페이지에서 위키의 최근 바뀜을 추적합니다.",
 	"recentchanges-noresult": "지정한 조건과 일치하는 주어진 기간 동안 바뀜이 없습니다.",
+	"recentchanges-timeout": "이 검색의 시간이 초과되었습니다. 다른 검색 변수를 사용할 수 있습니다.",
 	"recentchanges-feed-description": "이 피드에 위키의 최근 바뀜을 추적합니다.",
 	"recentchanges-label-newpage": "새 문서",
 	"recentchanges-label-minor": "사소한 편집",

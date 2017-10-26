@@ -88,12 +88,6 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	protected $mLinksUpdated = '19700101000000';
 
-	/** @deprecated since 1.29. Added in 1.28 for partial purging, no longer used. */
-	const PURGE_CDN_CACHE = 1;
-	const PURGE_CLUSTER_PCACHE = 2;
-	const PURGE_GLOBAL_PCACHE = 4;
-	const PURGE_ALL = 7;
-
 	/**
 	 * Constructor and clear the article
 	 * @param Title $title Reference to a Title object.
@@ -512,7 +506,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$cache = ObjectCache::getMainWANInstance();
 
 			return $cache->getWithSetCallback(
-				$cache->makeKey( 'page', 'content-model', $this->getLatest() ),
+				$cache->makeKey( 'page-content-model', $this->getLatest() ),
 				$cache::TTL_MONTH,
 				function () {
 					$rev = $this->getRevision();
@@ -1132,18 +1126,6 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		return true;
-	}
-
-	/**
-	 * Get the last time a user explicitly purged the page via action=purge
-	 *
-	 * @return string|bool TS_MW timestamp or false
-	 * @since 1.28
-	 * @deprecated since 1.29. It will always return false.
-	 */
-	public function getLastPurgeTimestamp() {
-		wfDeprecated( __METHOD__, '1.29' );
-		return false;
 	}
 
 	/**

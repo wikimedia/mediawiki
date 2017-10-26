@@ -1279,6 +1279,7 @@
 	"recentchanges-legend": "Налады апошніх зьменаў",
 	"recentchanges-summary": "Сачыце за апошнімі зьменамі ў {{GRAMMAR:месны|{{SITENAME}}}} на гэтай старонцы.",
 	"recentchanges-noresult": "Зьмены, што пасуюць дадзенаму пэрыяду і крытэрам, ня знойдзеныя.",
+	"recentchanges-timeout": "Адведзены на гэты пошук час скончыўся. Вы можаце паспрабаваць іншыя парамэтры пошуку.",
 	"recentchanges-feed-description": "Сачыце за апошнімі зьменамі ў вікі праз гэтую стужку.",
 	"recentchanges-label-newpage": "Гэтым рэдагаваньнем была створаная новая старонка",
 	"recentchanges-label-minor": "Гэта дробнае рэдагаваньне",
