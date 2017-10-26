@@ -50,8 +50,6 @@
 	"mediawiki/blue-spice-permission-manager": "dev-master",
 	"mediawiki/blue-spice-group-manager": "dev-master",
 	"mediawiki/blue-spice-user-preferences": "dev-master",
-	"mediawiki/blue-spice-readers": "dev-master",
-	"mediawiki/blue-spice-article-info": "dev-master",
-	"mediawiki/blue-spice-avatars": "dev-master"
+	"mediawiki/blue-spice-readers": "dev-master"
   }
 }
