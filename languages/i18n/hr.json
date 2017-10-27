@@ -1689,7 +1689,7 @@
 	"statistics-files": "Postavljene datoteke",
 	"statistics-edits": "Broj uređivanja od nastanka projekta {{SITENAME}}",
 	"statistics-edits-average": "Prosječan broj uređivanja po stranici",
-	"statistics-users": "Prijavljeni [[Special:ListUsers|suradnici]]",
+	"statistics-users": "Registrirani [[Special:ListUsers|suradnici]]",
 	"statistics-users-active": "Aktivni suradnici",
 	"statistics-users-active-desc": "Suradnici koji su napravili neku od radnji u posljednjih {{PLURAL:$1|dan|$1 dana}}",
 	"pageswithprop": "Stranice s određenim osobinama",
