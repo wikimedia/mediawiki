@@ -23,11 +23,13 @@ class CommandFactoryTest extends PHPUnit_Framework_TestCase {
 
 		$factory = new CommandFactory( $limits, $cgroup );
 		$factory->setLogger( $logger );
+		$factory->logStderr();
 		$command = $factory->create();
 
 		$wrapper = TestingAccessWrapper::newFromObject( $command );
 		$this->assertSame( $logger, $wrapper->logger );
 		$this->assertSame( $cgroup, $wrapper->cgroup );
 		$this->assertSame( $limits, $wrapper->limits );
+		$this->assertTrue( $wrapper->doLogStderr );
 	}
 }
