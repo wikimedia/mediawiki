@@ -456,5 +456,6 @@ return [
 
 	// A list of plugin files to execute
 	'plugins' => [
+		'tests/phan/plugins/InlineTypePlugin.php',
 	],
 ];
