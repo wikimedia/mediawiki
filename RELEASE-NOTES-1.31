@@ -57,6 +57,11 @@ changes to languages because of Phabricator reports.
 * mw.page (deprecated in 1.30) was removed.
 * Article::getLastPurgeTimestamp(), WikiPage::getLastPurgeTimestamp(), and the
   related WikiPage::PURGE_* constants, deprecated in 1.29, were removed.
+* The Article::selectFields(), Article::onArticleCreate(),
+  Article::onArticleDelete(), and Article::onArticleEdit() methods, deprecated
+  in 1.24, were removed.
+* Installer::locateExecutable() and Installer::locateExecutableInDefaultPaths()
+  were removed, use ExecutableFinder::findInDefaultPaths() instead.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. There is experimental support for

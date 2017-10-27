@@ -242,7 +242,7 @@
 	"apihelp-paraminfo-example-1": "<kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>, <kbd>[[Special:ApiHelp/jsonfm|format=jsonfm]]</kbd>, <kbd>[[Special:ApiHelp/query+allpages|action=query&list=allpages]]</kbd>, and <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> に関する情報を表示する。",
 	"apihelp-parse-param-title": "文字列が属するページのページ名。これを省略する場合、必ず <var>$1contentmodel</var> を指定しなければなりません。また、その場合 [[API]] がページ名として使用されます。",
 	"apihelp-parse-param-text": "構文解析する文字列。コンテンツ・モデルを制御するためには<var>$1title</var> または <var>$1contentmodel</var> を使用してください。",
-	"apihelp-parse-param-summary": "構文解析のための要約",
+	"apihelp-parse-param-summary": "構文解析する要約",
 	"apihelp-parse-param-page": "このページの内容を構文解析します。<var>$1text</var> および <var>$1title</var> とは同時に使用できません。",
 	"apihelp-parse-param-pageid": "このページの内容を構文解析する。<var>$1page</var> をオーバーライドします。",
 	"apihelp-parse-param-redirects": "もし <var>$1page</var> や <var>$1pageid</var> に転送ページが指定された場合、それを解決する。",

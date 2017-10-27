@@ -54,26 +54,4 @@ class ArticleTest extends MediaWikiTestCase {
 		$this->assertEquals( -8, $this->article->ext_someNewProperty,
 			"Article get/set magic on update to new field" );
 	}
-
-	/**
-	 * Checks for the existence of the backwards compatibility static functions
-	 * (forwarders to WikiPage class)
-	 *
-	 * @covers Article::selectFields
-	 * @covers Article::onArticleCreate
-	 * @covers Article::onArticleDelete
-	 * @covers Article::onArticleEdit
-	 */
-	public function testStaticFunctions() {
-		$this->hideDeprecated( 'Article::selectFields' );
-
-		$this->assertEquals( WikiPage::selectFields(), Article::selectFields(),
-			"Article static functions" );
-		$this->assertEquals( true, is_callable( "Article::onArticleCreate" ),
-			"Article static functions" );
-		$this->assertEquals( true, is_callable( "Article::onArticleDelete" ),
-			"Article static functions" );
-		$this->assertEquals( true, is_callable( "ImagePage::onArticleEdit" ),
-			"Article static functions" );
-	}
 }

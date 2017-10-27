@@ -893,10 +893,13 @@ abstract class Installer {
 	 * @return bool
 	 */
 	protected function envCheckDiff3() {
-		$names = [ "gdiff3", "diff3", "diff3.exe" ];
-		$versionInfo = [ '$1 --version 2>&1', 'GNU diffutils' ];
+		$names = [ "gdiff3", "diff3" ];
+		if ( wfIsWindows() ) {
+			$names[] = 'diff3.exe';
+		}
+		$versionInfo = [ '--version', 'GNU diffutils' ];
 
-		$diff3 = self::locateExecutableInDefaultPaths( $names, $versionInfo );
+		$diff3 = ExecutableFinder::findInDefaultPaths( $names, $versionInfo );
 
 		if ( $diff3 ) {
 			$this->setVar( 'wgDiff3', $diff3 );
@@ -913,9 +916,9 @@ abstract class Installer {
 	 * @return bool
 	 */
 	protected function envCheckGraphics() {
-		$names = [ wfIsWindows() ? 'convert.exe' : 'convert' ];
-		$versionInfo = [ '$1 -version', 'ImageMagick' ];
-		$convert = self::locateExecutableInDefaultPaths( $names, $versionInfo );
+		$names = wfIsWindows() ? 'convert.exe' : 'convert';
+		$versionInfo = [ '-version', 'ImageMagick' ];
+		$convert = ExecutableFinder::findInDefaultPaths( $names, $versionInfo );
 
 		$this->setVar( 'wgImageMagickConvertCommand', '' );
 		if ( $convert ) {
@@ -939,10 +942,10 @@ abstract class Installer {
 	 * @return bool
 	 */
 	protected function envCheckGit() {
-		$names = [ wfIsWindows() ? 'git.exe' : 'git' ];
-		$versionInfo = [ '$1 --version', 'git version' ];
+		$names = wfIsWindows() ? 'git.exe' : 'git';
+		$versionInfo = [ '--version', 'git version' ];
 
-		$git = self::locateExecutableInDefaultPaths( $names, $versionInfo );
+		$git = ExecutableFinder::findInDefaultPaths( $names, $versionInfo );
 
 		if ( $git ) {
 			$this->setVar( 'wgGitBin', $git );
@@ -1189,88 +1192,6 @@ abstract class Installer {
 		global $IP;
 		$IP = dirname( dirname( __DIR__ ) );
 		$this->setVar( 'IP', $IP );
-	}
-
-	/**
-	 * Get an array of likely places we can find executables. Check a bunch
-	 * of known Unix-like defaults, as well as the PATH environment variable
-	 * (which should maybe make it work for Windows?)
-	 *
-	 * @return array
-	 */
-	protected static function getPossibleBinPaths() {
-		return array_merge(
-			[ '/usr/bin', '/usr/local/bin', '/opt/csw/bin',
-				'/usr/gnu/bin', '/usr/sfw/bin', '/sw/bin', '/opt/local/bin' ],
-			explode( PATH_SEPARATOR, getenv( 'PATH' ) )
-		);
-	}
-
-	/**
-	 * Search a path for any of the given executable names. Returns the
-	 * executable name if found. Also checks the version string returned
-	 * by each executable.
-	 *
-	 * Used only by environment checks.
-	 *
-	 * @param string $path Path to search
-	 * @param array $names Array of executable names
-	 * @param array|bool $versionInfo False or array with two members:
-	 *   0 => Command to run for version check, with $1 for the full executable name
-	 *   1 => String to compare the output with
-	 *
-	 * If $versionInfo is not false, only executables with a version
-	 * matching $versionInfo[1] will be returned.
-	 * @return bool|string
-	 */
-	public static function locateExecutable( $path, $names, $versionInfo = false ) {
-		if ( !is_array( $names ) ) {
-			$names = [ $names ];
-		}
-
-		foreach ( $names as $name ) {
-			$command = $path . DIRECTORY_SEPARATOR . $name;
-
-			MediaWiki\suppressWarnings();
-			$file_exists = is_executable( $command );
-			MediaWiki\restoreWarnings();
-
-			if ( $file_exists ) {
-				if ( !$versionInfo ) {
-					return $command;
-				}
-
-				$file = str_replace( '$1', wfEscapeShellArg( $command ), $versionInfo[0] );
-				if ( strstr( wfShellExec( $file ), $versionInfo[1] ) !== false ) {
-					return $command;
-				}
-			}
-		}
-
-		return false;
-	}
-
-	/**
-	 * Same as locateExecutable(), but checks in getPossibleBinPaths() by default
-	 * @see locateExecutable()
-	 * @param array $names Array of possible names.
-	 * @param array|bool $versionInfo Default: false or array with two members:
-	 *   0 => Command to run for version check, with $1 for the full executable name
-	 *   1 => String to compare the output with
-	 *
-	 * If $versionInfo is not false, only executables with a version
-	 * matching $versionInfo[1] will be returned.
-	 * @return bool|string
-	 */
-	public static function locateExecutableInDefaultPaths( $names, $versionInfo = false ) {
-		foreach ( self::getPossibleBinPaths() as $path ) {
-			$exe = self::locateExecutable( $path, $names, $versionInfo );
-			if ( $exe !== false ) {
-				return $exe;
-			}
-		}
-
-		return false;
 	}
 
 	/**

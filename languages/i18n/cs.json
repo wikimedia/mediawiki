@@ -1301,6 +1301,7 @@
 	"recentchanges-legend": "Možnosti posledních změn",
 	"recentchanges-summary": "Na této stránce sledujte poslední změny na {{grammar:6sg|{{SITENAME}}}}.",
 	"recentchanges-noresult": "V daném období neodpovídaly zadaným kritériím žádné změny.",
+	"recentchanges-timeout": "Časový limit vyhledávání vypršel. Můžete ho zkusit znovu s jinými parametry.",
 	"recentchanges-feed-description": "Na tomto kanále sledujte poslední změny na {{grammar:6sg|{{SITENAME}}}}.",
 	"recentchanges-label-newpage": "Touto editací byla založena nová stránka",
 	"recentchanges-label-minor": "Toto je malá editace",
