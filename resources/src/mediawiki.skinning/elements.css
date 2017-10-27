@@ -13,7 +13,7 @@ a {
 	background: none;
 }
 
-a:not( [href] ) {
+a:not( [ href ] ) {
 	cursor: pointer; /* Always cursor:pointer even without href */
 }
 

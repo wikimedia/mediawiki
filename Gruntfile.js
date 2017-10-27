@@ -62,9 +62,6 @@ module.exports = function ( grunt ) {
 			installer: 'includes/installer/i18n/'
 		},
 		stylelint: {
-			options: {
-				syntax: 'less'
-			},
 			src: '{resources/src,mw-config}/**/*.{css,less}'
 		},
 		watch: {
