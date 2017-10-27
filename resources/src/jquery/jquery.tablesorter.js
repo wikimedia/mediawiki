@@ -465,11 +465,11 @@
 		}
 	}
 
-	function sortText( a, b ) {
+	function sortAsc( a, b ) {
 		return ( ( a < b ) ? -1 : ( ( a > b ) ? 1 : 0 ) );
 	}
 
-	function sortTextDesc( a, b ) {
+	function sortDesc( a, b ) {
 		return ( ( b < a ) ? -1 : ( ( b > a ) ? 1 : 0 ) );
 	}
 
@@ -478,19 +478,29 @@
 			sortFn = [];
 
 		for ( i = 0; i < sortList.length; i++ ) {
-			sortFn[ i ] = ( sortList[ i ][ 1 ] ) ? sortTextDesc : sortText;
+			sortFn[ i ] = ( sortList[ i ][ 1 ] ) ? sortDesc : sortAsc;
 		}
 		cache.normalized.sort( function ( array1, array2 ) {
 			var i, col, ret;
 			for ( i = 0; i < sortList.length; i++ ) {
 				col = sortList[ i ][ 0 ];
-				ret = sortFn[ i ].call( this, array1[ col ], array2[ col ] );
+
+				if ( ts.collator && 'string' === typeof array1[ col ] && 'string' === typeof array2[ col ] ) {
+					if ( sortList[ i ][ 1 ] ) {
+						// Desc
+						ret = ts.collator.compare( array2[ col ], array1[ col ] );
+					} else {
+						ret = ts.collator.compare( array1[ col ], array2[ col ] );
+					}
+				} else {
+					ret = sortFn[ i ].call( this, array1[ col ], array2[ col ] );
+				}
 				if ( ret !== 0 ) {
 					return ret;
 				}
 			}
 			// Fall back to index number column to ensure stable sort
-			return sortText.call( this, array1[ array1.length - 1 ], array2[ array2.length - 1 ] );
+			return sortAsc.call( this, array1[ array1.length - 1 ], array2[ array2.length - 1 ] );
 		} );
 		return cache;
 	}
@@ -860,6 +870,11 @@
 					// scripts may call .tablesorter() before they have done the
 					// tableSorterCollation customizations.
 					buildCollationTable();
+					if( typeof Intl !== 'undefined' ){
+						if ( Intl.Collator.supportedLocalesOf( mw.config.get( 'wgContentLanguage' ), { numeric: true } ).length > 0 ) {
+							ts.collator = new Intl.Collator( mw.config.get( 'wgContentLanguage' ), { numeric: true } );
+						}
+					}
 
 					// Legacy fix of .sortbottoms
 					// Wrap them inside a tfoot (because that's what they actually want to be)
@@ -1091,10 +1106,10 @@
 		},
 		format: function ( s ) {
 			var tsc;
-			s = $.trim( s.toLowerCase() );
-			if ( ts.collationRegex ) {
+			s = $.trim( s );
+			if ( !ts.collator && ts.collationRegex ) {
 				tsc = ts.collationTable;
-				s = s.replace( ts.collationRegex, function ( match ) {
+				s = s.toLowerCase().replace( ts.collationRegex, function ( match ) {
 					var r = tsc[ match ] ? tsc[ match ] : tsc[ match.toUpperCase() ];
 					return r.toLowerCase();
 				} );
