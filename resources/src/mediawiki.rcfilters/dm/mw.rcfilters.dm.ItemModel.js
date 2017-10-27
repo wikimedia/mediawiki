@@ -80,30 +80,24 @@
 	};
 
 	/**
-	 * Get a prefixed label
+	 * Get the message key to use to wrap the label. This message takes the label as a parameter.
 	 *
-	 * @param {boolean} inverted This item should be considered inverted
-	 * @return {string} Prefixed label (HTML)
+	 * @param {boolean} inverted Whether this item should be considered inverted
+	 * @return {string|null} Message key, or null if no message
 	 */
-	mw.rcfilters.dm.ItemModel.prototype.getPrefixedLabel = function ( inverted ) {
-		var escapedLabel = mw.html.escape( this.getLabel() );
+	mw.rcfilters.dm.ItemModel.prototype.getLabelMessageKey = function ( inverted ) {
 		if ( this.labelPrefixKey ) {
 			if ( typeof this.labelPrefixKey === 'string' ) {
-				return mw.message( this.labelPrefixKey, escapedLabel ).parse();
-			} else {
-				return mw.message(
-					this.labelPrefixKey[
-						// Only use inverted-prefix if the item is selected
-						// Highlight-only an inverted item makes no sense
-						inverted && this.isSelected() ?
-							'inverted' : 'default'
-					],
-					escapedLabel
-				).parse();
+				return this.labelPrefixKey;
 			}
-		} else {
-			return escapedLabel;
+			return this.labelPrefixKey[
+				// Only use inverted-prefix if the item is selected
+				// Highlight-only an inverted item makes no sense
+				inverted && this.isSelected() ?
+					'inverted' : 'default'
+			];
 		}
+		return null;
 	};
 
 	/**
