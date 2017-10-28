@@ -977,6 +977,7 @@
 	"rcfilters-filterlist-whatsthis": "Ինչպե՞ս է սա աշխատում:",
 	"rcfilters-highlightmenu-title": "Ընտրեք գույնը",
 	"rcfilters-filter-editsbyself-label": "Ձեր խմբագրումներ",
+	"rcfilters-filter-user-experience-level-newcomer-label": "Նորեկներ",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Գրանցված խմբագիրներ՝ ոչ պակաս քան 10 խմբագրումով և 4 օր ակտիվությամբ:",
 	"rcfilters-filtergroup-lastRevision": "Ընթացիկ տարբերակ",
 	"rcnotefrom": "Ստորև բերված են փոփոխությունները սկսած՝ '''$2''' (մինչև՝ '''$1''')։",
