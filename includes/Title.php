@@ -481,6 +481,10 @@ class Title implements LinkTarget {
 			}
 			if ( isset( $row->page_latest ) ) {
 				$this->mLatestID = (int)$row->page_latest;
+				if ( !$this->mLatestID ) {
+					wfWarn( 'Initializing Title from page row with page_latest = 0!' );
+					$this->mLatestID = false;
+				}
 			}
 			if ( !$this->mForcedContentModel && isset( $row->page_content_model ) ) {
 				$this->mContentModel = strval( $row->page_content_model );
@@ -3431,6 +3435,7 @@ class Title implements LinkTarget {
 		$cached = $linkCache->getGoodLinkFieldObj( $this, 'revision' );
 		if ( $cached === null ) {
 			# Trust LinkCache's state over our own, as for isRedirect()
+			// XXX: Shouldn't we set $this->mArticleID = 0 here? Or call resetArticleID()?
 			$this->mLatestID = 0;
 			return $this->mLatestID;
 		}
