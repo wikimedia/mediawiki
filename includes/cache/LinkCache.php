@@ -271,8 +271,12 @@ class LinkCache {
 		}
 
 		if ( $row ) {
-			$this->addGoodLinkObjFromRow( $nt, $row );
-			$id = intval( $row->page_id );
+			if ( intval( $row->page_latest ) ) {
+				$this->addGoodLinkObjFromRow( $nt, $row );
+				$id = intval( $row->page_id );
+			} else {
+				wfWarn( 'Attempt to cache incomplete page row for page ID ' . $row->page_id . '!' );
+			}
 		} else {
 			$this->addBadLinkObj( $nt );
 			$id = 0;
