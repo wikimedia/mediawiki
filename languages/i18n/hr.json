@@ -2053,7 +2053,7 @@
 	"unprotectedarticle": "uklonjena zaštita članka \"[[$1]]\"",
 	"movedarticleprotection": "premještene postavke zaštite s \"[[$2]]\" na \"[[$1]]\"",
 	"protectedarticle-comment": "{{GENDER:$2|$2 je zaštitio|$2 je zaštitila}} \"[[$1]]\"",
-	"modifiedarticleprotection-comment": "{{GENDER:$2|$2 je promijenio nivo zaštite|$2 je promijenila nivo zaštite}} za \"[[$1]]\"",
+	"modifiedarticleprotection-comment": "{{GENDER:$2|$2 je promijenio razinu zaštite|$2 je promijenila razinu zaštite}} za »[[$1]]«",
 	"unprotectedarticle-comment": "{{GENDER:$2|$2 je uklonio zaštitu|$2 je uklonila zaštitu}} za \"[[$1]]\"",
 	"protect-title": "Zaštićujem \"$1\"",
 	"protect-title-notallowed": "Vidi stupanj zaštite stranice \"$1\"",
