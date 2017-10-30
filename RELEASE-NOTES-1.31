@@ -13,6 +13,8 @@ production.
   temporary variable during the migration period, deprecated since 1.29.
 * $wgLogoHD has been updated to support svg images and uses $wgLogo where
   possible for fallback images such as png.
+* (T44246) $wgFilterLogTypes will no longer ignore 'patrol' when user does
+  not have the right to mark things patrolled.
 * …
 
 === New features in 1.31 ===
