@@ -1445,7 +1445,9 @@ abstract class File implements IDBAccessObject {
 		// Purge cache of all pages using this file
 		$title = $this->getTitle();
 		if ( $title ) {
-			DeferredUpdates::addUpdate( new HTMLCacheUpdate( $title, 'imagelinks' ) );
+			DeferredUpdates::addUpdate(
+				new HTMLCacheUpdate( $title, 'imagelinks', 'file-purge' )
+			);
 		}
 	}
 
