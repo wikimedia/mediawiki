@@ -6804,6 +6804,10 @@ $wgRCWatchCategoryMembership = false;
 /**
  * Use RC Patrolling to check for vandalism (from recent changes and watchlists)
  * New pages and new files are included.
+ *
+ * @note If you disable all patrolling features, you probably also want to
+ *  remove 'patrol' from $wgFilterLogTypes so a show/hide link isn't shown on
+ *  Special:Log.
  */
 $wgUseRCPatrol = true;
 
@@ -6835,11 +6839,19 @@ $wgStructuredChangeFiltersLiveUpdatePollingRate = 3;
 
 /**
  * Use new page patrolling to check new pages on Special:Newpages
+ *
+ * @note If you disable all patrolling features, you probably also want to
+ *  remove 'patrol' from $wgFilterLogTypes so a show/hide link isn't shown on
+ *  Special:Log.
  */
 $wgUseNPPatrol = true;
 
 /**
  * Use file patrolling to check new files on Special:Newfiles
+ *
+ * @note If you disable all patrolling features, you probably also want to
+ *  remove 'patrol' from $wgFilterLogTypes so a show/hide link isn't shown on
+ *  Special:Log.
  *
  * @since 1.27
  */
