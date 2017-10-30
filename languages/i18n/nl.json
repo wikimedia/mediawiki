@@ -88,7 +88,8 @@
 			"Jos1950",
 			"Ooswesthoesbes",
 			"MarcoSwart",
-			"Pahles"
+			"Pahles",
+			"Optilete"
 		]
 	},
 	"tog-underline": "Verwijzingen onderstrepen:",
@@ -1352,6 +1353,7 @@
 	"recentchanges-legend": "Opties voor recente wijzigingen",
 	"recentchanges-summary": "Op deze pagina kunt u de recentste wijzigingen in deze wiki bekijken.",
 	"recentchanges-noresult": "Er zijn in deze periode geen wijzigingen gemaakt die aan de criteria voldoen.",
+	"recentchanges-timeout": "Deze zoekopdracht kost te veel tijd. U kunt het opnieuw proberen met andere zoekparameters.",
 	"recentchanges-feed-description": "Met deze feed kunt u de recentste wijzigingen in deze wiki bekijken.",
 	"recentchanges-label-newpage": "Met deze bewerking is een nieuwe pagina aangemaakt",
 	"recentchanges-label-minor": "Dit is een kleine bewerking",

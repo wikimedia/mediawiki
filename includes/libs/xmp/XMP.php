@@ -388,7 +388,7 @@ class XMPReader implements LoggerAwareInterface {
 			}
 		} catch ( Exception $e ) {
 			$this->logger->warning(
-				'{method} Exception caught while parsing: ' . $e->getMessage(),
+				'{method} {exception}',
 				[
 					'method' => __METHOD__,
 					'exception' => $e,
@@ -420,7 +420,8 @@ class XMPReader implements LoggerAwareInterface {
 			|| $this->results['xmp-special']['HasExtendedXMP'] !== $guid
 		) {
 			$this->logger->info( __METHOD__ .
-				" Ignoring XMPExtended block due to wrong guid (guid= '$guid')" );
+				" Ignoring XMPExtended block due to wrong guid (guid= '{guid}')",
+				[ 'guid' => 'guid' ] );
 
 			return false;
 		}
@@ -954,8 +955,8 @@ class XMPReader implements LoggerAwareInterface {
 		} else {
 			// something else we don't recognize, like a qualifier maybe.
 			$this->logger->info( __METHOD__ .
-				" Encountered element <$elm> where only expecting character data as value of " .
-				$this->curItem[0] );
+				" Encountered element <{element}> where only expecting character data as value of {curitem}",
+				[ 'element' => $elm, 'curitem' => $this->curItem[0] ] );
 			array_unshift( $this->mode, self::MODE_IGNORE );
 			array_unshift( $this->curItem, $elm );
 		}
@@ -1005,8 +1006,10 @@ class XMPReader implements LoggerAwareInterface {
 					// a child of a struct), then something weird is
 					// happening, so ignore this element and its children.
 
-					$this->logger->warning( "Encountered <$ns:$tag> outside"
-						. " of its expected parent. Ignoring." );
+					$this->logger->warning(
+						'Encountered <{element}> outside of its expected parent. Ignoring.',
+						[ 'element' => "$ns:$tag" ]
+					);
 
 					array_unshift( $this->mode, self::MODE_IGNORE );
 					array_unshift( $this->curItem, $ns . ' ' . $tag );
@@ -1027,7 +1030,8 @@ class XMPReader implements LoggerAwareInterface {
 				}
 			} else {
 				// This element is not on our list of allowed elements so ignore.
-				$this->logger->debug( __METHOD__ . " Ignoring unrecognized element <$ns:$tag>." );
+				$this->logger->debug( __METHOD__ . ' Ignoring unrecognized element <{element}>.',
+					[ 'element' => "$ns:$tag" ] );
 				array_unshift( $this->mode, self::MODE_IGNORE );
 				array_unshift( $this->curItem, $ns . ' ' . $tag );
 

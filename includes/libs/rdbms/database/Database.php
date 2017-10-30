@@ -945,10 +945,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			# Update state tracking to reflect transaction loss due to disconnection
 			$this->handleSessionLoss();
 			if ( $this->reconnect() ) {
-				$msg = __METHOD__ . ": lost connection to {$this->getServer()}; reconnected";
-				$this->connLogger->warning( $msg );
+				$msg = __METHOD__ . ': lost connection to {dbserver}; reconnected';
+				$params = [ 'dbserver' => $this->getServer() ];
+				$this->connLogger->warning( $msg, $params );
 				$this->queryLogger->warning(
-					"$msg:\n" . ( new RuntimeException() )->getTraceAsString() );
+					"$msg:\n" . ( new RuntimeException() )->getTraceAsString(),
+					$params );
 
 				if ( !$recoverable ) {
 					# Callers may catch the exception and continue to use the DB
@@ -958,8 +960,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					$ret = $this->doProfiledQuery( $sql, $commentedSql, $isNonTempWrite, $fname );
 				}
 			} else {
-				$msg = __METHOD__ . ": lost connection to {$this->getServer()} permanently";
-				$this->connLogger->error( $msg );
+				$msg = __METHOD__ . ': lost connection to {dbserver} permanently';
+				$this->connLogger->error( $msg, [ 'dbserver' => $this->getServer() ] );
 			}
 		}
 

@@ -442,6 +442,7 @@ return [
 
 		$factory = new CommandFactory( $limits, $cgroup );
 		$factory->setLogger( LoggerFactory::getInstance( 'exec' ) );
+		$factory->logStderr();
 
 		return $factory;
 	},

@@ -77,8 +77,8 @@ a.stub {
 }
 
 /* Expand protocol-relative URLs for printing */
-.mw-body-content a.external.text[href^='//']:after,
-.mw-body-content a.external.autonumber[href^='//']:after {
+.mw-body-content a.external.text[ href^='//' ]:after,
+.mw-body-content a.external.autonumber[ href^='//' ]:after {
 	content: ' (https:' attr( href ) ')';
 }
 

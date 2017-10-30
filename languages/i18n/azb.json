@@ -1786,7 +1786,7 @@
 	"deleting-backlinks-warning": "'''اخطار:''' بو سیلمگه قصدینیز اولان صفحه‌یه، [[Special:WhatLinksHere/{{FULLPAGENAME}}|باشقا صفحه‌لر]] باغلانتی وئریب یا اونو اؤزلرین‌ده ایشلدیب‌لر.",
 	"rollback": "اوولکی نوسخه لر",
 	"rollbacklink": "قایتار",
-	"rollbacklinkcount": "{{PLURAL:$1|دییشدیرمه}}نی قایتار",
+	"rollbacklinkcount": "{{PLURAL:$1|دییشدیرمه}}‌نی قایتار",
 	"rollbacklinkcount-morethan": "$1-دن چوْخ دییشدیرمه‌نی قایتار",
 	"rollbackfailed": "گئری قایتارما اوغورسوزدور",
 	"cantrollback": "دییشدیر گئری قایتاریلا بیلمز؛ آخیرینجی دییشدیر صحیفه‌ده اولان یئگانه فالیت‌دیر.",

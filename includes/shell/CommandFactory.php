@@ -37,6 +37,9 @@ class CommandFactory {
 	/** @var string|bool */
 	private $cgroup;
 
+	/** @var bool */
+	private $doLogStderr = false;
+
 	/**
 	 * Constructor
 	 *
@@ -50,6 +53,16 @@ class CommandFactory {
 	}
 
 	/**
+	 * When enabled, text sent to stderr will be logged with a level of 'error'.
+	 *
+	 * @param bool $yesno
+	 * @see Command::logStderr
+	 */
+	public function logStderr( $yesno = true ) {
+		$this->doLogStderr = $yesno;
+	}
+
+	/**
 	 * Instantiates a new Command
 	 *
 	 * @return Command
@@ -60,6 +73,7 @@ class CommandFactory {
 
 		return $command
 			->limits( $this->limits )
-			->cgroup( $this->cgroup );
+			->cgroup( $this->cgroup )
+			->logStderr( $this->doLogStderr );
 	}
 }

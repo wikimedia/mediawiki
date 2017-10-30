@@ -303,7 +303,7 @@
 	"apihelp-move-param-ignorewarnings": "忽略任何警告。",
 	"apihelp-move-param-tags": "要在移动日志，以及在目标页面的空修订版本中应用到实体的更改标签。",
 	"apihelp-move-example-move": "移动<kbd>Badtitle</kbd>到<kbd>Goodtitle</kbd>，不保留重定向。",
-	"apihelp-opensearch-summary": "使用OpenSearch协议搜索wiki。",
+	"apihelp-opensearch-summary": "使用开放搜索协议搜索wiki。",
 	"apihelp-opensearch-param-search": "搜索字符串。",
 	"apihelp-opensearch-param-limit": "要返回的结果最大数。",
 	"apihelp-opensearch-param-namespace": "搜索的名字空间。",
