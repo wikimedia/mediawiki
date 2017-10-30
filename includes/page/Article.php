@@ -1179,7 +1179,8 @@ class Article implements Page {
 		$cache = MediaWikiServices::getInstance()->getMainObjectStash();
 		$key = $cache->makeKey( 'page-recent-delete', md5( $title->getPrefixedText() ) );
 		$loggedIn = $this->getContext()->getUser()->isLoggedIn();
-		if ( $loggedIn || $cache->get( $key ) ) {
+		$sessionExists = $this->getContext()->getRequest()->getSession()->isPersistent();
+		if ( $loggedIn || $cache->get( $key ) || $sessionExists ) {
 			$logTypes = [ 'delete', 'move', 'protect' ];
 
 			$dbr = wfGetDB( DB_REPLICA );
@@ -1196,7 +1197,7 @@ class Article implements Page {
 					'lim' => 10,
 					'conds' => $conds,
 					'showIfEmpty' => false,
-					'msgKey' => [ $loggedIn
+					'msgKey' => [ $loggedIn || $sessionExists
 						? 'moveddeleted-notice'
 						: 'moveddeleted-notice-recent'
 					]
