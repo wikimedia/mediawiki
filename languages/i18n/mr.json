@@ -260,7 +260,7 @@
 	"pool-errorunknown": "अपरिचित त्रुटी",
 	"pool-servererror": "पूल काउंटर सेवा उपलब्ध नाही($1).",
 	"poolcounter-usage-error": "वापर त्रुटी:$1",
-	"aboutsite": "{{SITENAME}} बद्दल",
+	"aboutsite": "{{SITENAME}}बद्दल",
 	"aboutpage": "Project:माहितीपृष्ठ",
 	"copyright": "येथील मजकूर $1च्या अंतर्गत उपलब्ध आहे जोपर्यंत इतर नोंदी केलेल्या नाहीत.",
 	"copyrightpage": "{{ns:project}}:प्रताधिकार",

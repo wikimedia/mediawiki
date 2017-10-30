@@ -2513,7 +2513,7 @@
 	"tooltip-pt-login": "Oturum açmanız tavsiye edilmektedir; ancak bu zorunlu değildir",
 	"tooltip-pt-logout": "Sistemden çık",
 	"tooltip-pt-createaccount": "Bir hesap oluşturup oturum açmanız tavsiye edilmektedir ancak bu zorunlu değildir",
-	"tooltip-ca-talk": "Kullanıcı mesaj sayfası",
+	"tooltip-ca-talk": "İçerik ile ilgili tartışma",
 	"tooltip-ca-edit": "Bu sayfayı düzenleyin",
 	"tooltip-ca-addsection": "Yeni bir altbaşlık aç",
 	"tooltip-ca-viewsource": "Bu sayfa koruma altında. Sadece kaynağını görebilirsiniz.",
