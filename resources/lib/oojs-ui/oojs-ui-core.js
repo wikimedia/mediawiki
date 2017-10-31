@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.24.0
+ * OOjs UI v0.24.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-10-17T23:18:51Z
+ * Date: 2017-10-31T22:46:35Z
  */
 ( function ( OO ) {
 
@@ -7590,9 +7590,14 @@ OO.ui.DropdownWidget.prototype.onKeyDown = function ( e ) {
 		(
 			e.which === OO.ui.Keys.ENTER ||
 			(
+				e.which === OO.ui.Keys.SPACE &&
+				// Avoid conflicts with type-to-search, see SelectWidget#onKeyPress.
+				// Space only closes the menu is the user is not typing to search.
+				this.menu.keyPressBuffer === ''
+			) ||
+			(
 				!this.menu.isVisible() &&
 				(
-					e.which === OO.ui.Keys.SPACE ||
 					e.which === OO.ui.Keys.UP ||
 					e.which === OO.ui.Keys.DOWN
 				)
@@ -10679,7 +10684,8 @@ OO.ui.ComboBoxInputWidget = function OoUiComboBoxInputWidget( config ) {
 	this.menu.connect( this, {
 		choose: 'onMenuChoose',
 		add: 'onMenuItemsChange',
-		remove: 'onMenuItemsChange'
+		remove: 'onMenuItemsChange',
+		toggle: 'onMenuToggle'
 	} );
 
 	// Initialization
@@ -10788,6 +10794,16 @@ OO.ui.ComboBoxInputWidget.prototype.onMenuItemsChange = function () {
 		this.menu.highlightItem( match );
 	}
 	this.$element.toggleClass( 'oo-ui-comboBoxInputWidget-empty', this.menu.isEmpty() );
+};
+
+/**
+ * Handle menu toggle events.
+ *
+ * @private
+ * @param {boolean} isVisible Menu toggle event
+ */
+OO.ui.ComboBoxInputWidget.prototype.onMenuToggle = function ( isVisible ) {
+	this.$element.toggleClass( 'oo-ui-comboBoxInputWidget-open', isVisible );
 };
 
 /**

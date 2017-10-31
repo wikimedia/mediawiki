@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.24.0
+ * OOjs UI v0.24.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-10-17T23:18:56Z
+ * Date: 2017-10-31T22:46:39Z
  */
 /**
  * WikimediaUI Base v0.9.2
@@ -424,21 +424,21 @@
 .oo-ui-toolbar-narrow.oo-ui-toolbar-position-bottom .oo-ui-toolbar-bar:after {
   border-top: 1px solid #c8ccd1;
 }
-.oo-ui-toolbar-actions .oo-ui-buttonElement {
+.oo-ui-toolbar-actions > .oo-ui-buttonElement {
   margin-right: 0;
 }
-.oo-ui-toolbar-actions .oo-ui-buttonElement > .oo-ui-buttonElement-button {
+.oo-ui-toolbar-actions > .oo-ui-buttonElement > .oo-ui-buttonElement-button {
   border: 0;
   border-radius: 0;
   padding-top: 3.125em;
   padding-left: 1.25em;
   padding-right: 1.25em;
 }
-.oo-ui-toolbar-narrow .oo-ui-toolbar-actions .oo-ui-buttonElement > .oo-ui-buttonElement-button {
+.oo-ui-toolbar-narrow .oo-ui-toolbar-actions > .oo-ui-buttonElement > .oo-ui-buttonElement-button {
   padding-left: 0.9375em;
   padding-right: 0.9375em;
 }
-.oo-ui-toolbar-actions .oo-ui-buttonElement.oo-ui-labelElement > .oo-ui-buttonElement-button {
+.oo-ui-toolbar-actions > .oo-ui-buttonElement.oo-ui-labelElement > .oo-ui-buttonElement-button {
   padding-top: 1.015625em;
   padding-bottom: 0.9375em;
 }
