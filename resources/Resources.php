@@ -1913,6 +1913,7 @@ return [
 			'invert',
 			'recentchanges-noresult',
 			'recentchanges-timeout',
+			'recentchanges-network',
 			'quotation-marks',
 		],
 		'dependencies' => [
