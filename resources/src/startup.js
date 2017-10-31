@@ -155,14 +155,12 @@ window.isCompatible = function ( str ) {
 
 	script = document.createElement( 'script' );
 	script.src = $VARS.baseModulesUri;
-	script.onload = script.onreadystatechange = function () {
-		if ( !script.readyState || /loaded|complete/.test( script.readyState ) ) {
-			// Clean up
-			script.onload = script.onreadystatechange = null;
-			script = null;
-			// Callback
-			startUp();
-		}
+	script.onload = function () {
+		// Clean up
+		script.onload = null;
+		script = null;
+		// Callback
+		startUp();
 	};
 	document.getElementsByTagName( 'head' )[ 0 ].appendChild( script );
 }() );
