@@ -42,17 +42,18 @@ class ViewAction extends FormlessAction {
 
 	public function show() {
 		$config = $this->context->getConfig();
+		$page = $this->getWikiPage();
 
 		if (
 			$config->get( 'DebugToolbar' ) == false && // don't let this get stuck on pages
-			$this->page->checkTouched() // page exists and is not a redirect
+			$page->checkTouched() // page exists and is not a redirect
 		) {
 			// Include any redirect in the last-modified calculation
-			$redirFromTitle = $this->page->getRedirectedFrom();
+			$redirFromTitle = $this->getDisplayController()->getRedirectedFrom();
 			if ( !$redirFromTitle ) {
-				$touched = $this->page->getTouched();
+				$touched = $page->getTouched();
 			} elseif ( $config->get( 'MaxRedirects' ) <= 1 ) {
-				$touched = max( $this->page->getTouched(), $redirFromTitle->getTouched() );
+				$touched = max( $page->getTouched(), $redirFromTitle->getTouched() );
 			} else {
 				// Don't bother following the chain and getting the max mtime
 				$touched = null;
@@ -65,6 +66,6 @@ class ViewAction extends FormlessAction {
 			}
 		}
 
-		$this->page->view();
+		$this->page->view(); // TODO: move view logic here into this class
 	}
 }
