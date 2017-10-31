@@ -73,18 +73,18 @@
 	 *
 	 * @param {jQuery|string} changesListContent
 	 * @param {jQuery} $fieldset
-	 * @param {boolean} isDatabaseTimeout Whether this is an error state due to a database query
+	 * @param {string} noResultsDetails Type of no result error
 	 *   timeout.
 	 * @param {boolean} [isInitialDOM] Using the initial (already attached) DOM elements
 	 * @param {boolean} [separateOldAndNew] Whether a logical separation between old and new changes is needed
 	 * @fires update
 	 */
-	mw.rcfilters.dm.ChangesListViewModel.prototype.update = function ( changesListContent, $fieldset, isDatabaseTimeout, isInitialDOM, separateOldAndNew ) {
+	mw.rcfilters.dm.ChangesListViewModel.prototype.update = function ( changesListContent, $fieldset, noResultsDetails, isInitialDOM, separateOldAndNew ) {
 		var from = this.nextFrom;
 		this.valid = true;
 		this.extractNextFrom( $fieldset );
 		this.checkForUnseenWatchedChanges( changesListContent );
-		this.emit( 'update', changesListContent, $fieldset, isDatabaseTimeout, isInitialDOM, separateOldAndNew ? from : null );
+		this.emit( 'update', changesListContent, $fieldset, noResultsDetails, isInitialDOM, separateOldAndNew ? from : null );
 	};
 
 	/**

@@ -1340,6 +1340,7 @@
 	"recentchangestext": "-",
 	"recentchanges-noresult": "No changes during the given period match these criteria.",
 	"recentchanges-timeout": "This search has timed out. You may wish to try different search parameters.",
+	"recentchanges-network": "Due to a technical error, no results could be loaded. Please try refreshing the page.",
 	"recentchanges-feed-description": "Track the most recent changes to the wiki in this feed.",
 	"recentchanges-label-newpage": "This edit created a new page",
 	"recentchanges-label-minor": "This is a minor edit",
