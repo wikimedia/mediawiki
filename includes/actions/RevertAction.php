@@ -42,6 +42,14 @@ class RevertAction extends FormAction {
 		return 'upload';
 	}
 
+	/**
+	 * @return File|false
+	 */
+	public function getFile() {
+		// XXX: we just trust that $this->page is an ImagePage
+		return $this->page->getFile();
+	}
+
 	protected function checkCanExecute( User $user ) {
 		if ( $this->getTitle()->getNamespace() !== NS_FILE ) {
 			throw new ErrorPageError( $this->msg( 'nosuchaction' ), $this->msg( 'nosuchactiontext' ) );
@@ -100,7 +108,7 @@ class RevertAction extends FormAction {
 				'default' => $this->msg( 'filerevert-intro',
 					$this->getTitle()->getText(), $userDate, $userTime,
 					wfExpandUrl(
-						$this->page->getFile()->getArchiveUrl( $this->getRequest()->getText( 'oldimage' ) ),
+						$this->getFile()->getArchiveUrl( $this->getRequest()->getText( 'oldimage' ) ),
 						PROTO_CURRENT
 					) )->parseAsBlock()
 			],
@@ -117,7 +125,7 @@ class RevertAction extends FormAction {
 		$this->useTransactionalTimeLimit();
 
 		$old = $this->getRequest()->getText( 'oldimage' );
-		$localFile = $this->page->getFile();
+		$localFile = $this->getFile();
 		$oldFile = OldLocalFile::newFromArchiveName( $this->getTitle(), $localFile->getRepo(), $old );
 
 		$source = $localFile->getArchiveVirtualUrl( $old );
@@ -148,7 +156,7 @@ class RevertAction extends FormAction {
 
 		$this->getOutput()->addWikiMsg( 'filerevert-success', $this->getTitle()->getText(),
 			$userDate, $userTime,
-			wfExpandUrl( $this->page->getFile()->getArchiveUrl( $this->getRequest()->getText( 'oldimage' ) ),
+			wfExpandUrl( $this->getFile()->getArchiveUrl( $this->getRequest()->getText( 'oldimage' ) ),
 				PROTO_CURRENT
 		) );
 		$this->getOutput()->returnToMain( false, $this->getTitle() );

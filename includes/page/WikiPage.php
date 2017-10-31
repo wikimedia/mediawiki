@@ -34,7 +34,7 @@ use Wikimedia\Rdbms\DBUnexpectedError;
  * Some fields are public only for backwards-compatibility. Use accessors.
  * In the past, this class was part of Article.php and everything was public.
  */
-class WikiPage implements Page, IDBAccessObject {
+class WikiPage implements IDBAccessObject {
 	// Constants for $mDataLoadedFrom and related
 
 	/**
@@ -204,12 +204,13 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * @todo Move this UI stuff somewhere else
+	 * @deprecated since 3.1, use Action::getActionOverrides instead.
 	 *
 	 * @see ContentHandler::getActionOverrides
 	 * @return array
 	 */
 	public function getActionOverrides() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->getContentHandler()->getActionOverrides();
 	}
 

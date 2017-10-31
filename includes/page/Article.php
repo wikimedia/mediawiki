@@ -32,7 +32,7 @@ use MediaWiki\MediaWikiServices;
  * Note: edit user interface and cache support functions have been
  * moved to separate EditPage and HTMLFileCache classes.
  */
-class Article implements Page {
+class Article implements Page, PageDisplayController {
 	/** @var IContextSource The context this Article is executed in */
 	protected $mContext;
 
@@ -2015,10 +2015,11 @@ class Article implements Page {
 	 */
 	public function __get( $fname ) {
 		if ( property_exists( $this->mPage, $fname ) ) {
-			# wfWarn( "Access to raw $fname field " . __CLASS__ );
+			wfWarn( "Access to raw $fname field " . __CLASS__ );
 			return $this->mPage->$fname;
 		}
 		trigger_error( 'Inaccessible property via __get(): ' . $fname, E_USER_NOTICE );
+		return null;
 	}
 
 	/**
@@ -2030,7 +2031,7 @@ class Article implements Page {
 	 */
 	public function __set( $fname, $fvalue ) {
 		if ( property_exists( $this->mPage, $fname ) ) {
-			# wfWarn( "Access to raw $fname field of " . __CLASS__ );
+			wfWarn( "Access to raw $fname field of " . __CLASS__ );
 			$this->mPage->$fname = $fvalue;
 		// Note: extensions may want to toss on new fields
 		} elseif ( !in_array( $fname, [ 'mContext', 'mPage' ] ) ) {
@@ -2045,6 +2046,7 @@ class Article implements Page {
 	 * @see WikiPage::checkFlags
 	 */
 	public function checkFlags( $flags ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->checkFlags( $flags );
 	}
 
@@ -2053,6 +2055,7 @@ class Article implements Page {
 	 * @see WikiPage::checkTouched
 	 */
 	public function checkTouched() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->checkTouched();
 	}
 
@@ -2061,6 +2064,7 @@ class Article implements Page {
 	 * @see WikiPage::clearPreparedEdit
 	 */
 	public function clearPreparedEdit() {
+		wfDeprecated( __METHOD__, '1.31' );
 		$this->mPage->clearPreparedEdit();
 	}
 
@@ -2072,6 +2076,7 @@ class Article implements Page {
 		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', User $user = null,
 		$tags = []
 	) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->doDeleteArticleReal(
 			$reason, $suppress, $u1, $u2, $error, $user, $tags
 		);
@@ -2082,6 +2087,7 @@ class Article implements Page {
 	 * @see WikiPage::doDeleteUpdates
 	 */
 	public function doDeleteUpdates( $id, Content $content = null ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->doDeleteUpdates( $id, $content );
 	}
 
@@ -2104,6 +2110,7 @@ class Article implements Page {
 	 * @see WikiPage::doEditUpdates
 	 */
 	public function doEditUpdates( Revision $revision, User $user, array $options = [] ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->doEditUpdates( $revision, $user, $options );
 	}
 
@@ -2114,6 +2121,7 @@ class Article implements Page {
 	 *  controlled how much purging was done.
 	 */
 	public function doPurge() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->doPurge();
 	}
 
@@ -2122,6 +2130,7 @@ class Article implements Page {
 	 * @see WikiPage::doViewUpdates
 	 */
 	public function doViewUpdates( User $user, $oldid = 0 ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$this->mPage->doViewUpdates( $user, $oldid );
 	}
 
@@ -2130,6 +2139,7 @@ class Article implements Page {
 	 * @see WikiPage::exists
 	 */
 	public function exists() {
+		wfDeprecated( __METHOD__, '1.31' ); // FIXME: used in ArticleBlacklist
 		return $this->mPage->exists();
 	}
 
@@ -2138,14 +2148,17 @@ class Article implements Page {
 	 * @see WikiPage::followRedirect
 	 */
 	public function followRedirect() {
+		wfDeprecated( __METHOD__, '1.31' ); // FIXME: used in ArticleBlacklist
 		return $this->mPage->followRedirect();
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 3.1, use Action::getActionOverrides instead.
+	 *
 	 * @see ContentHandler::getActionOverrides
 	 */
 	public function getActionOverrides() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->getActionOverrides();
 	}
 
@@ -2154,6 +2167,7 @@ class Article implements Page {
 	 * @see WikiPage::getAutoDeleteReason
 	 */
 	public function getAutoDeleteReason( &$hasHistory ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->getAutoDeleteReason( $hasHistory );
 	}
 
@@ -2162,6 +2176,7 @@ class Article implements Page {
 	 * @see WikiPage::getCategories
 	 */
 	public function getCategories() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->getCategories();
 	}
 
@@ -2170,6 +2185,7 @@ class Article implements Page {
 	 * @see WikiPage::getComment
 	 */
 	public function getComment( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->getComment( $audience, $user );
 	}
 
@@ -2178,6 +2194,7 @@ class Article implements Page {
 	 * @see WikiPage::getContentHandler
 	 */
 	public function getContentHandler() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->getContentHandler();
 	}
 
@@ -2186,6 +2203,7 @@ class Article implements Page {
 	 * @see WikiPage::getContentModel
 	 */
 	public function getContentModel() {
+		wfDeprecated( __METHOD__, '1.31' ); // FIXME: used in AbuseFilter
 		return $this->mPage->getContentModel();
 	}
 
@@ -2194,6 +2212,7 @@ class Article implements Page {
 	 * @see WikiPage::getContributors
 	 */
 	public function getContributors() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->getContributors();
 	}
 
@@ -2202,6 +2221,7 @@ class Article implements Page {
 	 * @see WikiPage::getCreator
 	 */
 	public function getCreator( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->getCreator( $audience, $user );
 	}
 
@@ -2210,6 +2230,7 @@ class Article implements Page {
 	 * @see WikiPage::getDeletionUpdates
 	 */
 	public function getDeletionUpdates( Content $content = null ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->getDeletionUpdates( $content );
 	}
 
@@ -2218,6 +2239,7 @@ class Article implements Page {
 	 * @see WikiPage::getHiddenCategories
 	 */
 	public function getHiddenCategories() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->getHiddenCategories();
 	}
 
@@ -2226,6 +2248,7 @@ class Article implements Page {
 	 * @see WikiPage::getId
 	 */
 	public function getId() {
+		// FIXME: used by OAI
 		return $this->mPage->getId();
 	}
 
@@ -2234,6 +2257,7 @@ class Article implements Page {
 	 * @see WikiPage::getLatest
 	 */
 	public function getLatest() {
+		wfDeprecated( __METHOD__, '1.31' ); // FIXME: used by FlaggedRevs
 		return $this->mPage->getLatest();
 	}
 
@@ -2242,6 +2266,7 @@ class Article implements Page {
 	 * @see WikiPage::getLinksTimestamp
 	 */
 	public function getLinksTimestamp() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->getLinksTimestamp();
 	}
 
@@ -2250,6 +2275,7 @@ class Article implements Page {
 	 * @see WikiPage::getMinorEdit
 	 */
 	public function getMinorEdit() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->getMinorEdit();
 	}
 
@@ -2258,6 +2284,7 @@ class Article implements Page {
 	 * @see WikiPage::getOldestRevision
 	 */
 	public function getOldestRevision() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->getOldestRevision();
 	}
 
@@ -2266,6 +2293,7 @@ class Article implements Page {
 	 * @see WikiPage::getRedirectTarget
 	 */
 	public function getRedirectTarget() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->getRedirectTarget();
 	}
 
@@ -2274,6 +2302,7 @@ class Article implements Page {
 	 * @see WikiPage::getRedirectURL
 	 */
 	public function getRedirectURL( $rt ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->getRedirectURL( $rt );
 	}
 
@@ -2282,6 +2311,7 @@ class Article implements Page {
 	 * @see WikiPage::getRevision
 	 */
 	public function getRevision() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->getRevision();
 	}
 
@@ -2290,6 +2320,7 @@ class Article implements Page {
 	 * @see WikiPage::getTimestamp
 	 */
 	public function getTimestamp() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->getTimestamp();
 	}
 
@@ -2298,6 +2329,7 @@ class Article implements Page {
 	 * @see WikiPage::getTouched
 	 */
 	public function getTouched() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->getTouched();
 	}
 
@@ -2306,6 +2338,7 @@ class Article implements Page {
 	 * @see WikiPage::getUndoContent
 	 */
 	public function getUndoContent( Revision $undo, Revision $undoafter = null ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->getUndoContent( $undo, $undoafter );
 	}
 
@@ -2314,6 +2347,7 @@ class Article implements Page {
 	 * @see WikiPage::getUser
 	 */
 	public function getUser( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->getUser( $audience, $user );
 	}
 
@@ -2322,6 +2356,7 @@ class Article implements Page {
 	 * @see WikiPage::getUserText
 	 */
 	public function getUserText( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->getUserText( $audience, $user );
 	}
 
@@ -2330,6 +2365,7 @@ class Article implements Page {
 	 * @see WikiPage::hasViewableContent
 	 */
 	public function hasViewableContent() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->hasViewableContent();
 	}
 
@@ -2338,6 +2374,7 @@ class Article implements Page {
 	 * @see WikiPage::insertOn
 	 */
 	public function insertOn( $dbw, $pageId = null ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->insertOn( $dbw, $pageId );
 	}
 
@@ -2348,6 +2385,7 @@ class Article implements Page {
 	public function insertProtectNullRevision( $revCommentMsg, array $limit,
 		array $expiry, $cascade, $reason, $user = null
 	) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->insertProtectNullRevision( $revCommentMsg, $limit,
 			$expiry, $cascade, $reason, $user
 		);
@@ -2358,6 +2396,7 @@ class Article implements Page {
 	 * @see WikiPage::insertRedirect
 	 */
 	public function insertRedirect() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->insertRedirect();
 	}
 
@@ -2366,6 +2405,7 @@ class Article implements Page {
 	 * @see WikiPage::insertRedirectEntry
 	 */
 	public function insertRedirectEntry( Title $rt, $oldLatest = null ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->insertRedirectEntry( $rt, $oldLatest );
 	}
 
@@ -2374,6 +2414,7 @@ class Article implements Page {
 	 * @see WikiPage::isCountable
 	 */
 	public function isCountable( $editInfo = false ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->isCountable( $editInfo );
 	}
 
@@ -2382,6 +2423,7 @@ class Article implements Page {
 	 * @see WikiPage::isRedirect
 	 */
 	public function isRedirect() {
+		wfDeprecated( __METHOD__, '1.31' ); // FIXME: used by ProtectionForm
 		return $this->mPage->isRedirect();
 	}
 
@@ -2390,6 +2432,7 @@ class Article implements Page {
 	 * @see WikiPage::loadFromRow
 	 */
 	public function loadFromRow( $data, $from ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->loadFromRow( $data, $from );
 	}
 
@@ -2398,6 +2441,7 @@ class Article implements Page {
 	 * @see WikiPage::loadPageData
 	 */
 	public function loadPageData( $from = 'fromdb' ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$this->mPage->loadPageData( $from );
 	}
 
@@ -2406,6 +2450,7 @@ class Article implements Page {
 	 * @see WikiPage::lockAndGetLatest
 	 */
 	public function lockAndGetLatest() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->lockAndGetLatest();
 	}
 
@@ -2414,6 +2459,7 @@ class Article implements Page {
 	 * @see WikiPage::makeParserOptions
 	 */
 	public function makeParserOptions( $context ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->makeParserOptions( $context );
 	}
 
@@ -2422,6 +2468,7 @@ class Article implements Page {
 	 * @see WikiPage::pageDataFromId
 	 */
 	public function pageDataFromId( $dbr, $id, $options = [] ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->pageDataFromId( $dbr, $id, $options );
 	}
 
@@ -2430,6 +2477,7 @@ class Article implements Page {
 	 * @see WikiPage::pageDataFromTitle
 	 */
 	public function pageDataFromTitle( $dbr, $title, $options = [] ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->pageDataFromTitle( $dbr, $title, $options );
 	}
 
@@ -2441,6 +2489,7 @@ class Article implements Page {
 		Content $content, $revision = null, User $user = null,
 		$serialFormat = null, $useCache = true
 	) {
+		wfDeprecated( __METHOD__, '1.31' ); // FIXME: used by SpamBlacklist
 		return $this->mPage->prepareContentForEdit(
 			$content, $revision, $user,
 			$serialFormat, $useCache
@@ -2452,6 +2501,7 @@ class Article implements Page {
 	 * @see WikiPage::protectDescription
 	 */
 	public function protectDescription( array $limit, array $expiry ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->protectDescription( $limit, $expiry );
 	}
 
@@ -2460,6 +2510,7 @@ class Article implements Page {
 	 * @see WikiPage::protectDescriptionLog
 	 */
 	public function protectDescriptionLog( array $limit, array $expiry ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->protectDescriptionLog( $limit, $expiry );
 	}
 
@@ -2470,6 +2521,7 @@ class Article implements Page {
 	public function replaceSectionAtRev( $sectionId, Content $sectionContent,
 		$sectionTitle = '', $baseRevId = null
 	) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->replaceSectionAtRev( $sectionId, $sectionContent,
 			$sectionTitle, $baseRevId
 		);
@@ -2482,6 +2534,7 @@ class Article implements Page {
 	public function replaceSectionContent(
 		$sectionId, Content $sectionContent, $sectionTitle = '', $edittime = null
 	) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->replaceSectionContent(
 			$sectionId, $sectionContent, $sectionTitle, $edittime
 		);
@@ -2492,7 +2545,8 @@ class Article implements Page {
 	 * @see WikiPage::setTimestamp
 	 */
 	public function setTimestamp( $ts ) {
-		return $this->mPage->setTimestamp( $ts );
+		wfDeprecated( __METHOD__, '1.31' );
+		$this->mPage->setTimestamp( $ts );
 	}
 
 	/**
@@ -2500,6 +2554,7 @@ class Article implements Page {
 	 * @see WikiPage::shouldCheckParserCache
 	 */
 	public function shouldCheckParserCache( ParserOptions $parserOptions, $oldId ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->shouldCheckParserCache( $parserOptions, $oldId );
 	}
 
@@ -2508,6 +2563,7 @@ class Article implements Page {
 	 * @see WikiPage::supportsSections
 	 */
 	public function supportsSections() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->supportsSections();
 	}
 
@@ -2516,6 +2572,7 @@ class Article implements Page {
 	 * @see WikiPage::triggerOpportunisticLinksUpdate
 	 */
 	public function triggerOpportunisticLinksUpdate( ParserOutput $parserOutput ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->triggerOpportunisticLinksUpdate( $parserOutput );
 	}
 
@@ -2524,6 +2581,7 @@ class Article implements Page {
 	 * @see WikiPage::updateCategoryCounts
 	 */
 	public function updateCategoryCounts( array $added, array $deleted, $id = 0 ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->updateCategoryCounts( $added, $deleted, $id );
 	}
 
@@ -2532,6 +2590,7 @@ class Article implements Page {
 	 * @see WikiPage::updateIfNewerOn
 	 */
 	public function updateIfNewerOn( $dbw, $revision ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->updateIfNewerOn( $dbw, $revision );
 	}
 
@@ -2540,6 +2599,7 @@ class Article implements Page {
 	 * @see WikiPage::updateRedirectOn
 	 */
 	public function updateRedirectOn( $dbw, $redirectTitle, $lastRevIsRedirect = null ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->updateRedirectOn( $dbw, $redirectTitle, $lastRevIsRedirect = null );
 	}
 
@@ -2550,6 +2610,7 @@ class Article implements Page {
 	public function updateRevisionOn( $dbw, $revision, $lastRevision = null,
 		$lastRevIsRedirect = null
 	) {
+		wfDeprecated( __METHOD__, '1.31' ); // FIXME: used by OAI
 		return $this->mPage->updateRevisionOn( $dbw, $revision, $lastRevision,
 			$lastRevIsRedirect
 		);
@@ -2566,6 +2627,7 @@ class Article implements Page {
 	public function doUpdateRestrictions( array $limit, array $expiry, &$cascade,
 		$reason, User $user
 	) {
+		wfDeprecated( __METHOD__, '1.31' ); // FIXME: used by ProtectionForm
 		return $this->mPage->doUpdateRestrictions( $limit, $expiry, $cascade, $reason, $user );
 	}
 
@@ -2579,6 +2641,7 @@ class Article implements Page {
 	public function updateRestrictions( $limit = [], $reason = '',
 		&$cascade = 0, $expiry = []
 	) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mPage->doUpdateRestrictions(
 			$limit,
 			$expiry,
@@ -2599,6 +2662,7 @@ class Article implements Page {
 	public function doDeleteArticle(
 		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = ''
 	) {
+		wfDeprecated( __METHOD__, '1.31' ); // FIXME: used by OAI
 		return $this->mPage->doDeleteArticle( $reason, $suppress, $u1, $u2, $error );
 	}
 
@@ -2612,6 +2676,7 @@ class Article implements Page {
 	 * @return array
 	 */
 	public function doRollback( $fromP, $summary, $token, $bot, &$resultDetails, User $user = null ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$user = is_null( $user ) ? $this->getContext()->getUser() : $user;
 		return $this->mPage->doRollback( $fromP, $summary, $token, $bot, $resultDetails, $user );
 	}
@@ -2625,6 +2690,7 @@ class Article implements Page {
 	 * @return array
 	 */
 	public function commitRollback( $fromP, $summary, $bot, &$resultDetails, User $guser = null ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$guser = is_null( $guser ) ? $this->getContext()->getUser() : $guser;
 		return $this->mPage->commitRollback( $fromP, $summary, $bot, $resultDetails, $guser );
 	}
