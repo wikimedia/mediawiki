@@ -51,11 +51,11 @@ class EditAction extends FormlessAction {
 				'mediawiki.ui.checkbox',
 			] );
 		}
-		$page = $this->page;
+		$article = $this->getArticle();
 		$user = $this->getUser();
 
-		if ( Hooks::run( 'CustomEditor', [ $page, $user ] ) ) {
-			$editor = new EditPage( $page );
+		if ( Hooks::run( 'CustomEditor', [ $article, $user ] ) ) {
+			$editor = new EditPage( $article );
 			$editor->setContextTitle( $this->getTitle() );
 			$editor->edit();
 		}

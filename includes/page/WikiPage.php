@@ -35,6 +35,7 @@ use Wikimedia\Rdbms\DBUnexpectedError;
  * In the past, this class was part of Article.php and everything was public.
  */
 class WikiPage implements Page, IDBAccessObject {
+	// FIXME: don't implement the deprecated Page interface!
 	// Constants for $mDataLoadedFrom and related
 
 	/**
@@ -204,12 +205,13 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * @todo Move this UI stuff somewhere else
+	 * @deprecated since 3.1, use Action::getActionOverrides instead.
 	 *
 	 * @see ContentHandler::getActionOverrides
 	 * @return array
 	 */
 	public function getActionOverrides() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->getContentHandler()->getActionOverrides();
 	}
 

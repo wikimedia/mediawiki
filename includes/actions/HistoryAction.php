@@ -71,7 +71,7 @@ class HistoryAction extends FormlessAction {
 	}
 
 	/**
-	 * @return WikiPage|Article|ImagePage|CategoryPage|Page The Article object we are working on.
+	 * @return Article
 	 */
 	public function getArticle() {
 		return $this->page;
@@ -101,7 +101,7 @@ class HistoryAction extends FormlessAction {
 		/**
 		 * Allow client caching.
 		 */
-		if ( $out->checkLastModified( $this->page->getTouched() ) ) {
+		if ( $out->checkLastModified( $this->getWikiPage()->getTouched() ) ) {
 			return; // Client cache fresh and headers sent, nothing more to do.
 		}
 
@@ -142,7 +142,7 @@ class HistoryAction extends FormlessAction {
 		$this->addHelpLink( '//meta.wikimedia.org/wiki/Special:MyLanguage/Help:Page_history', true );
 
 		// Fail nicely if article doesn't exist.
-		if ( !$this->page->exists() ) {
+		if ( !$this->getWikiPage()->exists() ) {
 			global $wgSend404Code;
 			if ( $wgSend404Code ) {
 				$out->setStatusCode( 404 );
@@ -214,7 +214,8 @@ class HistoryAction extends FormlessAction {
 			'</form>'
 		);
 
-		Hooks::run( 'PageHistoryBeforeList', [ &$this->page, $this->getContext() ] );
+		$article = $this->getArticle();
+		Hooks::run( 'PageHistoryBeforeList', [ &$article, $this->getContext() ] );
 
 		// Create and output the list.
 		$pager = new HistoryPager( $this, $year, $month, $tagFilter, $conds );
@@ -256,7 +257,7 @@ class HistoryAction extends FormlessAction {
 			$offsets = [];
 		}
 
-		$page_id = $this->page->getId();
+		$page_id = $this->getWikiPage()->getId();
 
 		return $dbr->select( 'revision',
 			Revision::selectFields(),

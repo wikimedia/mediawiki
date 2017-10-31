@@ -88,9 +88,9 @@ class InfoAction extends FormlessAction {
 		$content = '';
 
 		// Validate revision
-		$oldid = $this->page->getOldID();
+		$oldid = $this->getDisplayController()->getOldID();
 		if ( $oldid ) {
-			$revision = $this->page->getRevisionFetched();
+			$revision = $this->getDisplayController()->getRevisionFetched();
 
 			// Revision is missing
 			if ( $revision === null ) {
@@ -211,7 +211,7 @@ class InfoAction extends FormlessAction {
 		$config = $this->context->getConfig();
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
-		$pageCounts = $this->pageCounts( $this->page );
+		$pageCounts = $this->pageCounts( $this->getWikiPage() );
 
 		$pageProperties = [];
 		$props = PageProps::getInstance()->getAllProperties( $title );
@@ -237,10 +237,10 @@ class InfoAction extends FormlessAction {
 		if ( $title->isRedirect() ) {
 			$pageInfo['header-basic'][] = [
 				$this->msg( 'pageinfo-redirectsto' ),
-				$linkRenderer->makeLink( $this->page->getRedirectTarget() ) .
+				$linkRenderer->makeLink( $this->getWikiPage()->getRedirectTarget() ) .
 				$this->msg( 'word-separator' )->escaped() .
 				$this->msg( 'parentheses' )->rawParams( $linkRenderer->makeLink(
-					$this->page->getRedirectTarget(),
+					$this->getWikiPage()->getRedirectTarget(),
 					$this->msg( 'pageinfo-redirectsto-info' )->text(),
 					[],
 					[ 'action' => 'info' ]
@@ -322,7 +322,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Use robot policy logic
-		$policy = $this->page->getRobotPolicy( 'view', $pOutput );
+		$policy = $this->getDisplayController()->getRobotPolicy( 'view', $pOutput );
 		$pageInfo['header-basic'][] = [
 			// Messages: pageinfo-robot-index, pageinfo-robot-noindex
 			$this->msg( 'pageinfo-robot-policy' ),
@@ -383,7 +383,7 @@ class InfoAction extends FormlessAction {
 		];
 
 		// Is it counted as a content page?
-		if ( $this->page->isCountable() ) {
+		if ( $this->getWikiPage()->isCountable() ) {
 			$pageInfo['header-basic'][] = [
 				$this->msg( 'pageinfo-contentpage' ),
 				$this->msg( 'pageinfo-contentpage-yes' )
@@ -495,15 +495,15 @@ class InfoAction extends FormlessAction {
 			];
 		}
 
-		if ( !$this->page->exists() ) {
+		if ( !$this->getWikiPage()->exists() ) {
 			return $pageInfo;
 		}
 
 		// Edit history
 		$pageInfo['header-edits'] = [];
 
-		$firstRev = $this->page->getOldestRevision();
-		$lastRev = $this->page->getRevision();
+		$firstRev = $this->getWikiPage()->getOldestRevision();
+		$lastRev = $this->getWikiPage()->getRevision();
 		$batch = new LinkBatch;
 
 		if ( $firstRev ) {
@@ -557,9 +557,9 @@ class InfoAction extends FormlessAction {
 				$this->msg( 'pageinfo-lasttime' ),
 				$linkRenderer->makeKnownLink(
 					$title,
-					$lang->userTimeAndDate( $this->page->getTimestamp(), $user ),
+					$lang->userTimeAndDate( $this->getWikiPage()->getTimestamp(), $user ),
 					[],
-					[ 'oldid' => $this->page->getLatest() ]
+					[ 'oldid' => $this->getWikiPage()->getLatest() ]
 				)
 			];
 		}
@@ -606,7 +606,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		$localizedList = Html::rawElement( 'ul', [], implode( '', $listItems ) );
-		$hiddenCategories = $this->page->getHiddenCategories();
+		$hiddenCategories = $this->getWikiPage()->getHiddenCategories();
 
 		if (
 			count( $listItems ) > 0 ||
@@ -693,10 +693,10 @@ class InfoAction extends FormlessAction {
 	/**
 	 * Returns page counts that would be too "expensive" to retrieve by normal means.
 	 *
-	 * @param WikiPage|Article|Page $page
+	 * @param WikiPage $page
 	 * @return array
 	 */
-	protected function pageCounts( Page $page ) {
+	protected function pageCounts( WikiPage $page ) {
 		$fname = __METHOD__;
 		$config = $this->context->getConfig();
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
@@ -842,7 +842,7 @@ class InfoAction extends FormlessAction {
 	 * @return string Html
 	 */
 	protected function getContributors() {
-		$contributors = $this->page->getContributors();
+		$contributors = $this->getWikiPage()->getContributors();
 		$real_names = [];
 		$user_names = [];
 		$anon_ips = [];

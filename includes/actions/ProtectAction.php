@@ -49,7 +49,7 @@ class ProtectAction extends FormlessAction {
 			] );
 		}
 
-		$this->page->protect();
+		$this->page->protect(); // TODO: move protection UI logic here
 	}
 
 	public function doesWrites() {

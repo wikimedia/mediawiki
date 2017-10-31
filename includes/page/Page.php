@@ -20,6 +20,8 @@
 
 /**
  * Interface for type hinting (accepts WikiPage, Article, ImagePage, CategoryPage)
+ *
+ * @deprecated use WikiPage or Article instead.
  */
 interface Page {
 }
