@@ -39,7 +39,7 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Page on which we're performing the action
 	 * @since 1.17
-	 * @var WikiPage|Article|ImagePage|CategoryPage|Page $page
+	 * @var Article
 	 */
 	protected $page;
 
@@ -84,27 +84,47 @@ abstract class Action implements MessageLocalizer {
 	}
 
 	/**
+	 * @param WikiPage $page
+	 *
+	 * @return array
+	 */
+	private static function getActionOverrides( WikiPage $page ) {
+		// TODO: action overrides need to take into account the target slot and the namespace.
+		return $page->getContentHandler()->getActionOverrides();
+	}
+
+	/**
 	 * Get an appropriate Action subclass for the given action
 	 * @since 1.17
 	 * @param string $action
-	 * @param Page $page
-	 * @param IContextSource|null $context
+	 * @param WikiPage|Article $article
+	 * @param IContextSource $context
 	 * @return Action|bool|null False if the action is disabled, null
 	 *     if it is not recognised
 	 */
-	final public static function factory( $action, Page $page, IContextSource $context = null ) {
-		$classOrCallable = self::getClass( $action, $page->getActionOverrides() );
+	final public static function factory( $action, $article, IContextSource $context ) {
+		if ( !$context ) {
+			wfWarn( __METHOD__ . ' called without providing a Context object.' );
+			$context = $article->getContext();
+		}
+
+		if ( $article instanceof WikiPage ) {
+			$article = Article::newFromWikiPage( $article, $context );
+		}
+
+		$overrides = self::getActionOverrides( $article->getPage() );
+		$classOrCallable = self::getClass( $action, $overrides );
 
 		if ( is_string( $classOrCallable ) ) {
 			if ( !class_exists( $classOrCallable ) ) {
 				return false;
 			}
-			$obj = new $classOrCallable( $page, $context );
+			$obj = new $classOrCallable( $article, $context );
 			return $obj;
 		}
 
 		if ( is_callable( $classOrCallable ) ) {
-			return call_user_func_array( $classOrCallable, [ $page, $context ] );
+			return call_user_func_array( $classOrCallable, [ $article, $context ] );
 		}
 
 		return $classOrCallable;
@@ -261,10 +281,10 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Only public since 1.21
 	 *
-	 * @param Page $page
+	 * @param Article $page
 	 * @param IContextSource|null $context
 	 */
-	public function __construct( Page $page, IContextSource $context = null ) {
+	public function __construct( Article $page, IContextSource $context = null ) {
 		if ( $context === null ) {
 			wfWarn( __METHOD__ . ' called without providing a Context object.' );
 			// NOTE: We could try to initialize $context using $page->getContext(),
@@ -292,6 +312,36 @@ abstract class Action implements MessageLocalizer {
 	 */
 	public function getRestriction() {
 		return null;
+	}
+
+	/**
+	 * @since 1.31
+	 *
+	 * @return WikiPage
+	 */
+	protected function getWikiPage() {
+		return $this->page->getPage();
+	}
+
+	/**
+	 * @since 1.31
+	 *
+	 * @deprecated since 1.31 use getWikiPage, getPageDisplayController, or move logic
+	 * from Article into Action classes.
+	 *
+	 * @return Article
+	 */
+	protected function getArticle() {
+		return $this->page;
+	}
+
+	/**
+	 * @since 1.31
+	 *
+	 * @return PageDisplayController
+	 */
+	protected function getDisplayController() {
+		return $this->page;
 	}
 
 	/**

@@ -29,7 +29,10 @@ class ArticleTest extends MediaWikiTestCase {
 	 * @covers Article::__get
 	 */
 	public function testImplementsGetMagic() {
-		$this->assertEquals( false, $this->article->mLatest, "Article __get magic" );
+		MediaWiki\suppressWarnings();
+		$this->article->getPage()->mLatest = 2;
+		$this->assertSame( 2, $this->article->mLatest, "Article __get magic" );
+		MediaWiki\suppressWarnings( 'end' );
 	}
 
 	/**
@@ -37,8 +40,10 @@ class ArticleTest extends MediaWikiTestCase {
 	 * @covers Article::__set
 	 */
 	public function testImplementsSetMagic() {
+		MediaWiki\suppressWarnings();
 		$this->article->mLatest = 2;
-		$this->assertEquals( 2, $this->article->mLatest, "Article __set magic" );
+		$this->assertSame( 2, $this->article->getPage()->mLatest, "Article __set magic" );
+		MediaWiki\suppressWarnings( 'end' );
 	}
 
 	/**
@@ -46,6 +51,8 @@ class ArticleTest extends MediaWikiTestCase {
 	 * @covers Article::__set
 	 */
 	public function testGetOrSetOnNewProperty() {
+		MediaWiki\suppressWarnings();
+
 		$this->article->ext_someNewProperty = 12;
 		$this->assertEquals( 12, $this->article->ext_someNewProperty,
 			"Article get/set magic on new field" );
@@ -53,5 +60,7 @@ class ArticleTest extends MediaWikiTestCase {
 		$this->article->ext_someNewProperty = -8;
 		$this->assertEquals( -8, $this->article->ext_someNewProperty,
 			"Article get/set magic on update to new field" );
+
+		MediaWiki\suppressWarnings( 'end' );
 	}
 }

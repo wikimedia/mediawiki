@@ -1084,6 +1084,7 @@ $wgAutoloadLocalClasses = [
 	'Page' => __DIR__ . '/includes/page/Page.php',
 	'PageArchive' => __DIR__ . '/includes/page/PageArchive.php',
 	'PageDataRequestHandler' => __DIR__ . '/includes/linkeddata/PageDataRequestHandler.php',
+	'PageDisplayController' => __DIR__ . '/includes/page/PageDisplayController.php',
 	'PageExists' => __DIR__ . '/maintenance/pageExists.php',
 	'PageLangLogFormatter' => __DIR__ . '/includes/logging/PageLangLogFormatter.php',
 	'PageProps' => __DIR__ . '/includes/PageProps.php',

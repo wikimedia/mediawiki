@@ -74,7 +74,7 @@ abstract class FormAction extends Action {
 		$this->fields = $this->getFormFields();
 
 		// Give hooks a chance to alter the form, adding extra fields or text etc
-		Hooks::run( 'ActionModifyFormFields', [ $this->getName(), &$this->fields, $this->page ] );
+		Hooks::run( 'ActionModifyFormFields', [ $this->getName(), &$this->fields, $this->getArticle() ] );
 
 		if ( $this->usesOOUI() ) {
 			$form = HTMLForm::factory( 'ooui', $this->fields, $this->getContext(), $this->getName() );
@@ -99,7 +99,7 @@ abstract class FormAction extends Action {
 		$this->alterForm( $form );
 
 		// Give hooks a chance to alter the form, adding extra fields or text etc
-		Hooks::run( 'ActionBeforeFormDisplay', [ $this->getName(), &$form, $this->page ] );
+		Hooks::run( 'ActionBeforeFormDisplay', [ $this->getName(), &$form, $this->getArticle() ] );
 
 		return $form;
 	}
