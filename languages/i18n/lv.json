@@ -24,7 +24,8 @@
 			"Macofe",
 			"Nitalynx",
 			"Silraks",
-			"Zuiks"
+			"Zuiks",
+			"Martinsdzerve"
 		]
 	},
 	"tog-underline": "Pasvītrot saites:",
@@ -370,6 +371,7 @@
 	"virus-scanfailed": "skenēšana neizdevās (kods $1)",
 	"virus-unknownscanner": "nezināms antivīruss:",
 	"logouttext": "'''Tu esi izgājis no {{grammar:ģenitīvs|{{SITENAME}}}}.'''\n\nVari turpināt to izmantot anonīmi, vari <span class='plainlinks'>[$1 atgriezties]</span> kā cits lietotājs vai varbūt tas pats.\nŅem vērā, ka arī pēc iziešanas, dažas lapas var tikt parādītas tā, it kā tu vēl būtu iekšā, līdz tiks iztīrīta pārlūka kešatmiņa.",
+	"cannotlogoutnow-title": "Šobrīd iziet nav iespējams",
 	"welcomeuser": "Laipni lūgts, $1!",
 	"yourname": "Tavs lietotājvārds",
 	"userlogin-yourname": "Lietotājvārds",

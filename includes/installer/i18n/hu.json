@@ -11,7 +11,8 @@
 			"Macofe",
 			"Máté",
 			"Seb35",
-			"Urbalazs"
+			"Urbalazs",
+			"MeskoBalazs"
 		]
 	},
 	"config-desc": "A MediaWiki telepítője",
@@ -296,14 +297,18 @@
 	"config-install-subscribe-fail": "Nem sikerült feliratkozni a mediawiki-announce levelezőlistára: $1",
 	"config-install-subscribe-notpossible": "A cURL nincs telepítve és az <code>allow_url_fopen</code> nem érhető el.",
 	"config-install-mainpage": "Kezdőlap létrehozása az alapértelmezett tartalommal",
+	"config-install-mainpage-exists": "A főoldal már létezik, kihagyás",
 	"config-install-extension-tables": "Táblák létrehozása az engedélyezett kiterjesztésekhez",
 	"config-install-mainpage-failed": "Nemsikerült létrehozni a kezdőlapot: $1",
 	"config-install-done": "<strong>Gratulálunk!</strong>\nA MediaWiki telepítése sikeresen befejeződött.\n\nA telepítő elkészítette a <code>LocalSettings.php</code> fájlt, amely tartalmazza az összes beállítást.\n\nEzt le kell tölteni, majd elhelyezni a wiki telepítési könyvtárába (az a könyvtár, ahol az index.php is található).\n\nA letöltés automatikusan elindul. Ha mégsem indulna el, vagy megszakítottad, az alábbi linkre kattintva újra letöltheted:\n\n$3\n\n<strong>Megjegyzés:</strong> Ha ezt most nem teszed meg, és kilépsz a telepítésből, az elkészített konfigurációs fájlt nem tudod elérni a későbbiekben.\n\nHa végeztél a fájl elhelyezésével, <strong>[$2 beléphetsz a wikibe]</strong>.",
+	"config-install-done-path": "<strong>Gratulálunk!</strong>\nA MediaWiki telepítése sikeresen befejeződött.\n\nA telepítő elkészítette a <code>LocalSettings.php</code> fájlt, amely tartalmazza az összes beállítást.\n\nEzt le kell tölteni, majd elhelyezni ide: <code>$4</code>. A letöltés automatikusan el kell elinduljon.\n\nHa mégsem indulna el, vagy megszakítottad, az alábbi linkre kattintva újra letöltheted:\n\n$3\n\n<strong>Megjegyzés:</strong> Ha ezt most nem teszed meg, és kilépsz a telepítésből, az elkészített konfigurációs fájlt nem tudod elérni a későbbiekben.\n\nHa végeztél a fájl elhelyezésével, <strong>[$2 beléphetsz a wikibe]</strong>.",
 	"config-download-localsettings": "<code>LocalSettings.php</code> letöltése",
 	"config-help": "segítség",
 	"config-help-tooltip": "kattints a kibontáshoz",
 	"config-nofile": "\"$1\" fájl nem található. Törölve lett?",
 	"config-extension-link": "Tudtad, hogy a wikid támogat [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions kiterjesztéseket]?\n\nBöngészhetsz [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category kiterjesztéseket kategóriánként] vagy válogathatsz a [https://www.mediawiki.org/wiki/Extension_Matrix kiterjesztésmátrixból] az összes kiterjesztés áttekintéséhez.",
+	"config-skins-screenshots": "$1 (képernyőképek: $2)",
+	"config-screenshot": "képernyőkép",
 	"mainpagetext": "<strong>A MediaWiki telepítése sikeresen befejeződött.</strong>",
 	"mainpagedocfooter": "Ha segítségre van szükséged a wikiszoftver használatához, akkor keresd fel a [https://meta.wikimedia.org/wiki/Help:Contents User's Guide] oldalt.\n\n== Alapok (angol nyelven) ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Beállítások listája]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki GyIK]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-kiadások levelezőlistája]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources A MediaWiki fordítása a saját nyelvedre]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Tudd meg többet, hogyan küzdhetsz a kéretlen levelek ellen a wikiden]"
 }
