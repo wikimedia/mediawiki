@@ -22,6 +22,7 @@
  * @author Roan Kattouw
  */
 
+use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -434,20 +435,27 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * Clear the preloadTitleInfo() cache for all wiki modules on this wiki on
 	 * page change if it was a JS or CSS page
 	 *
+	 * @warn Prior to 1.31, the second and third parameter took a Revision object.
+	 * This was changed without backwards compatibility, since these parameters
+	 * were unused outside of WikiPage.
+	 *
 	 * @param Title $title
-	 * @param Revision|null $old Prior page revision
-	 * @param Revision|null $new New page revision
+	 * @param string|null $oldModel Content model of the old revision's main slot
+	 * @param string|null $newModel Content model of the new revision's main slot
 	 * @param string $wikiId
 	 * @since 1.28
 	 */
 	public static function invalidateModuleCache(
-		Title $title, Revision $old = null, Revision $new = null, $wikiId
+		Title $title, $oldModel = null, $newModel = null, $wikiId
 	) {
-		static $formats = [ CONTENT_FORMAT_CSS, CONTENT_FORMAT_JAVASCRIPT ];
+		static $models = [ CONTENT_MODEL_CSS, CONTENT_MODEL_JAVASCRIPT ];
 
-		if ( $old && in_array( $old->getContentFormat(), $formats ) ) {
+		Assert::parameterType( 'string|null', $oldModel, '$oldModel' );
+		Assert::parameterType( 'string|null', $newModel, '$newModel' );
+
+		if ( $oldModel && in_array( $oldModel, $models ) ) {
 			$purge = true;
-		} elseif ( $new && in_array( $new->getContentFormat(), $formats ) ) {
+		} elseif ( $newModel && in_array( $newModel, $models ) ) {
 			$purge = true;
 		} else {
 			$purge = ( $title->isCssOrJsPage() || $title->isCssJsSubpage() );

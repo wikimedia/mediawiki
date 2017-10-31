@@ -1727,6 +1727,41 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		}
 	}
 
+	/**
+	 * Get the first revision of the page, or null if the page does not exist.
+	 *
+	 * @param Title $title
+	 * @param int $flags See IDBAccessObject::READ_XXX, default is 0.
+	 *
+	 * @return RevisionRecord|null
+	 */
+	public function getFirstRevision( Title $title, $flags = 0 ) {
+		if ( !$title->exists( $flags ) ) {
+			return null;
+		}
+
+		$pageId = $title->getArticleID( $flags );
+
+		$db = ( $flags & self::READ_LATEST )
+			? $this->getDBConnection( DB_MASTER )
+			: $this->getDBConnection( DB_REPLICA );
+
+		$row = $db->selectRow( 'revision', self::selectRevisionFields(),
+			[ 'rev_page' => $pageId ],
+			__METHOD__,
+			[
+				'ORDER BY' => 'rev_timestamp ASC, rev_id ASC',
+				'IGNORE INDEX' => 'rev_timestamp', // See T159319
+			]
+		);
+
+		if ( $row ) {
+			return $this->newRevisionFromRow( $row );
+		}
+
+		return null;
+	}
+
 	// TODO: move relevant methods from Title here, e.g. getFirstRevision, isBigDeletion, etc.
 
 }

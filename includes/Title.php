@@ -22,6 +22,7 @@
  * @file
  */
 
+use MediaWiki\Storage\RevisionStore;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Linker\LinkTarget;
@@ -51,7 +52,7 @@ class Title implements LinkTarget {
 	 * Used to be GAID_FOR_UPDATE define. Used with getArticleID() and friends
 	 * to use the master DB
 	 */
-	const GAID_FOR_UPDATE = 1;
+	const GAID_FOR_UPDATE = IDBAccessObject::READ_LATEST;
 
 	/**
 	 * @name Private member variables
@@ -4184,28 +4185,19 @@ class Title implements LinkTarget {
 	}
 
 	/**
-	 * Get the first revision of the page
+	 * Get the first revision of the page, or null if the page does not exist.
 	 *
 	 * @param int $flags Title::GAID_FOR_UPDATE
 	 * @return Revision|null If page doesn't exist
 	 */
 	public function getFirstRevision( $flags = 0 ) {
-		$pageId = $this->getArticleID( $flags );
-		if ( $pageId ) {
-			$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_REPLICA );
-			$row = $db->selectRow( 'revision', Revision::selectFields(),
-				[ 'rev_page' => $pageId ],
-				__METHOD__,
-				[
-					'ORDER BY' => 'rev_timestamp ASC, rev_id ASC',
-					'IGNORE INDEX' => 'rev_timestamp', // See T159319
-				]
-			);
-			if ( $row ) {
-				return new Revision( $row );
-			}
-		}
-		return null;
+		// not needed if we rely on self::GAID_FOR_UPDATE === RevisionStore::READ_LATEST.
+		$revStoreFlags = ( $flags & self::GAID_FOR_UPDATE ) ? RevisionStore::READ_LATEST : 0;
+
+		$revStore = MediaWikiServices::getInstance()->getRevisionStore(); // inject?
+		$revRec = $revStore->getFirstRevision( $this, $revStoreFlags );
+
+		return $revRec ? new Revision( $revRec, $revStoreFlags, $this ) : null;
 	}
 
 	/**
