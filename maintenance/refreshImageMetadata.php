@@ -124,13 +124,16 @@ class RefreshImageMetadata extends Maintenance {
 			'ORDER BY' => 'img_name ASC',
 		];
 
+		$fileQuery = LocalFile::getQueryInfo();
+
 		do {
 			$res = $dbw->select(
-				'image',
-				LocalFile::selectFields(),
+				$fileQuery['tables'],
+				$fileQuery['fields'],
 				array_merge( $conds, $conds2 ),
 				__METHOD__,
-				$options
+				$options,
+				$fileQuery['joins']
 			);
 
 			if ( $res->numRows() > 0 ) {

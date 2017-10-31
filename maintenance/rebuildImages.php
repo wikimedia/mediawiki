@@ -125,12 +125,14 @@ class ImageBuilder extends Maintenance {
 		flush();
 	}
 
-	function buildTable( $table, $key, $fields, $callback ) {
+	function buildTable( $table, $key, $queryInfo, $callback ) {
 		$count = $this->dbw->selectField( $table, 'count(*)', '', __METHOD__ );
 		$this->init( $count, $table );
 		$this->output( "Processing $table...\n" );
 
-		$result = $this->getDB( DB_REPLICA )->select( $table, $fields, [], __METHOD__ );
+		$result = $this->getDB( DB_REPLICA )->select(
+			$queryInfo['tables'], $queryInfo['fields'], [], __METHOD__, [], $queryInfo['joins']
+		);
 
 		foreach ( $result as $row ) {
 			$update = call_user_func( $callback, $row, null );
@@ -145,7 +147,7 @@ class ImageBuilder extends Maintenance {
 
 	function buildImage() {
 		$callback = [ $this, 'imageCallback' ];
-		$this->buildTable( 'image', 'img_name', LocalFile::selectFields(), $callback );
+		$this->buildTable( 'image', 'img_name', LocalFile::getQueryInfo(), $callback );
 	}
 
 	function imageCallback( $row, $copy ) {
@@ -157,7 +159,7 @@ class ImageBuilder extends Maintenance {
 	}
 
 	function buildOldImage() {
-		$this->buildTable( 'oldimage', 'oi_archive_name', OldLocalFile::selectFields(),
+		$this->buildTable( 'oldimage', 'oi_archive_name', OldLocalFile::getQueryInfo(),
 			[ $this, 'oldimageCallback' ] );
 	}
 

@@ -93,7 +93,10 @@ class OldLocalFile extends LocalFile {
 			$conds['oi_timestamp'] = $dbr->timestamp( $timestamp );
 		}
 
-		$row = $dbr->selectRow( 'oldimage', self::selectFields(), $conds, __METHOD__ );
+		$fileQuery = self::getQueryInfo();
+		$row = $dbr->selectRow(
+			$fileQuery['tables'], $fileQuery['fields'], $conds, __METHOD__, [], $fileQuery['joins']
+		);
 		if ( $row ) {
 			return self::newFromRow( $row, $repo );
 		} else {
@@ -103,8 +106,7 @@ class OldLocalFile extends LocalFile {
 
 	/**
 	 * Fields in the oldimage table
-	 * @todo Deprecate this in favor of a method that returns tables and joins
-	 *  as well, and use CommentStore::getJoin().
+	 * @deprecated since 1.31, use self::getQueryInfo() instead.
 	 * @return array
 	 */
 	static function selectFields() {
@@ -125,6 +127,52 @@ class OldLocalFile extends LocalFile {
 			'oi_deleted',
 			'oi_sha1',
 		] + CommentStore::newKey( 'oi_description' )->getFields();
+	}
+
+	/**
+	 * Return the tables, fields, and join conditions to be selected to create
+	 * a new oldlocalfile object.
+	 * @since 1.31
+	 * @param string[] $options
+	 *   - omit-lazy: Omit fields that are lazily cached.
+	 * @return array With three keys:
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 */
+	public static function getQueryInfo( array $options = [] ) {
+		$commentQuery = CommentStore::newKey( 'oi_description' )->getJoin();
+		$ret = [
+			'tables' => [ 'oldimage' ] + $commentQuery['tables'],
+			'fields' => [
+				'oi_name',
+				'oi_archive_name',
+				'oi_size',
+				'oi_width',
+				'oi_height',
+				'oi_bits',
+				'oi_media_type',
+				'oi_major_mime',
+				'oi_minor_mime',
+				'oi_user',
+				'oi_user_text',
+				'oi_timestamp',
+				'oi_deleted',
+				'oi_sha1',
+			] + $commentQuery['fields'],
+			'joins' => $commentQuery['joins'],
+		];
+
+		if ( in_array( 'omit-nonlazy', $options, true ) ) {
+			// Internal use only for getting only the lazy fields
+			$ret['fields'] = [];
+		}
+		if ( !in_array( 'omit-lazy', $options, true ) ) {
+			// Note: Keep this in sync with self::getLazyCacheFields()
+			$ret['fields'][] = 'oi_metadata';
+		}
+
+		return $ret;
 	}
 
 	/**
@@ -188,8 +236,15 @@ class OldLocalFile extends LocalFile {
 		} else {
 			$conds['oi_timestamp'] = $dbr->timestamp( $this->requestedTime );
 		}
-		$row = $dbr->selectRow( 'oldimage', $this->getCacheFields( 'oi_' ),
-			$conds, __METHOD__, [ 'ORDER BY' => 'oi_timestamp DESC' ] );
+		$fileQuery = static::getQueryInfo();
+		$row = $dbr->selectRow(
+			$fileQuery['tables'],
+			$fileQuery['fields'],
+			$conds,
+			__METHOD__,
+			[ 'ORDER BY' => 'oi_timestamp DESC' ],
+			$fileQuery['joins']
+		);
 		if ( $row ) {
 			$this->loadFromRow( $row, 'oi_' );
 		} else {
@@ -209,14 +264,27 @@ class OldLocalFile extends LocalFile {
 		} else {
 			$conds['oi_timestamp'] = $dbr->timestamp( $this->requestedTime );
 		}
+		$fileQuery = static::getQueryInfo( [ 'omit-nonlazy' ] );
 		// In theory the file could have just been renamed/deleted...oh well
-		$row = $dbr->selectRow( 'oldimage', $this->getLazyCacheFields( 'oi_' ),
-			$conds, __METHOD__, [ 'ORDER BY' => 'oi_timestamp DESC' ] );
+		$row = $dbr->selectRow(
+			$fileQuery['tables'],
+			$fileQuery['fields'],
+			$conds,
+			__METHOD__,
+			[ 'ORDER BY' => 'oi_timestamp DESC' ],
+			$fileQuery['joins']
+		);
 
 		if ( !$row ) { // fallback to master
 			$dbr = $this->repo->getMasterDB();
-			$row = $dbr->selectRow( 'oldimage', $this->getLazyCacheFields( 'oi_' ),
-				$conds, __METHOD__, [ 'ORDER BY' => 'oi_timestamp DESC' ] );
+			$row = $dbr->selectRow(
+				$fileQuery['tables'],
+				$fileQuery['fields'],
+				$conds,
+				__METHOD__,
+				[ 'ORDER BY' => 'oi_timestamp DESC' ],
+				$fileQuery['joins']
+			);
 		}
 
 		if ( $row ) {
@@ -228,11 +296,8 @@ class OldLocalFile extends LocalFile {
 		}
 	}
 
-	/**
-	 * @param string $prefix
-	 * @return array
-	 */
-	function getCacheFields( $prefix = 'img_' ) {
+	/** @inheritDoc */
+	protected function getCacheFields( $prefix = 'img_' ) {
 		$fields = parent::getCacheFields( $prefix );
 		$fields[] = $prefix . 'archive_name';
 		$fields[] = $prefix . 'deleted';

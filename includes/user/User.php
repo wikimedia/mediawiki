@@ -688,20 +688,25 @@ class User implements IDBAccessObject {
 		}
 
 		$dbr = wfGetDB( DB_REPLICA );
+		$userQuery = self::getQueryInfo();
 		$row = $dbr->selectRow(
-			'user',
-			self::selectFields(),
+			$userQuery['tables'],
+			$userQuery['fields'],
 			[ 'user_name' => $name ],
-			__METHOD__
+			__METHOD__,
+			[],
+			$userQuery['joins']
 		);
 		if ( !$row ) {
 			// Try the master database...
 			$dbw = wfGetDB( DB_MASTER );
 			$row = $dbw->selectRow(
-				'user',
-				self::selectFields(),
+				$userQuery['tables'],
+				$userQuery['fields'],
 				[ 'user_name' => $name ],
-				__METHOD__
+				__METHOD__,
+				[],
+				$userQuery['joins']
 			);
 		}
 
@@ -1278,12 +1283,14 @@ class User implements IDBAccessObject {
 		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
 		$db = wfGetDB( $index );
 
+		$userQuery = self::getQueryInfo();
 		$s = $db->selectRow(
-			'user',
-			self::selectFields(),
+			$userQuery['tables'],
+			$userQuery['fields'],
 			[ 'user_id' => $this->mId ],
 			__METHOD__,
-			$options
+			$options,
+			$userQuery['joins']
 		);
 
 		$this->queryFlagsUsed = $flags;
@@ -5497,6 +5504,7 @@ class User implements IDBAccessObject {
 	/**
 	 * Return the list of user fields that should be selected to create
 	 * a new user object.
+	 * @deprecated since 1.31, use self::getQueryInfo() instead.
 	 * @return array
 	 */
 	public static function selectFields() {
@@ -5512,6 +5520,35 @@ class User implements IDBAccessObject {
 			'user_email_token_expires',
 			'user_registration',
 			'user_editcount',
+		];
+	}
+
+	/**
+	 * Return the tables, fields, and join conditions to be selected to create
+	 * a new user object.
+	 * @since 1.31
+	 * @return array With three keys:
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 */
+	public static function getQueryInfo() {
+		return [
+			'tables' => [ 'user' ],
+			'fields' => [
+				'user_id',
+				'user_name',
+				'user_real_name',
+				'user_email',
+				'user_touched',
+				'user_token',
+				'user_email_authenticated',
+				'user_email_token',
+				'user_email_token_expires',
+				'user_registration',
+				'user_editcount',
+			],
+			'joins' => [],
 		];
 	}
 
