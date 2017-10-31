@@ -119,12 +119,12 @@
 	 *
 	 * @param {jQuery|string} $changesListContent The content of the updated changes list
 	 * @param {jQuery} $fieldset The content of the updated fieldset
-	 * @param {boolean} isDatabaseTimeout Whether this is an error state due to a database query
+	 * @param {string} noResultsDetails Type of no result error
 	 * @param {boolean} isInitialDOM Whether $changesListContent is the existing (already attached) DOM
 	 * @param {boolean} from Timestamp of the new changes
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onModelUpdate = function (
-		$changesListContent, $fieldset, isDatabaseTimeout, isInitialDOM, from
+		$changesListContent, $fieldset, noResultsDetails, isInitialDOM, from
 	) {
 		var conflictItem, noResultsKey,
 			$message = $( '<div>' )
@@ -154,9 +154,12 @@
 							.text( mw.message( conflictItem.getCurrentConflictResultMessage() ).text() )
 					);
 			} else {
-				noResultsKey = isDatabaseTimeout ?
-					'recentchanges-timeout' :
-					'recentchanges-noresult';
+				noResultsKey =
+					( noResultsDetails === 'NO_RESULTS_TIMEOUT' ) ?
+						'recentchanges-timeout' :
+						( noResultsDetails === 'NO_RESULTS_NETWORK_ERROR' ) ?
+							'recentchanges-network' :
+							'recentchanges-noresult';
 
 				$message
 					.append(

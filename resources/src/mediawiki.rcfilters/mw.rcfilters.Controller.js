@@ -908,7 +908,7 @@
 					this.changesListModel.update(
 						$changesListContent,
 						$fieldset,
-						pieces.noResultsDetails === 'NO_RESULTS_TIMEOUT',
+						pieces.noResultsDetails,
 						false,
 						// separator between old and new changes
 						updateMode === this.SHOW_NEW_CHANGES || updateMode === this.LIVE_UPDATE
@@ -1005,7 +1005,22 @@
 		return this._queryChangesList( 'updateChangesList' )
 			.then(
 				function ( data ) {
-					var $parsed = $( '<div>' ).append( $( $.parseHTML( data.content ) ) );
+					var $parsed;
+
+					// Status code 0 is not HTTP status code,
+					// but is valid value of XMLHttpRequest status.
+					// It is used for variety of network errors, for example
+					// when an AJAX call was cancelled before getting the response
+					if ( data && data.status === 0 ) {
+						return {
+							changes: 'NO_RESULTS',
+							// We need empty result set, to avoid exceptions because of undefined value
+							fieldset: $( [] ),
+							noResultsDetails: 'NO_RESULTS_NETWORK_ERROR'
+						};
+					}
+
+					$parsed = $( '<div>' ).append( $( $.parseHTML( data.content ) ) );
 
 					return this._extractChangesListInfo( $parsed );
 

@@ -95,10 +95,10 @@
 	 *
 	 * @param {jQuery|string} $changesList Updated changes list
 	 * @param {jQuery} $fieldset Updated fieldset
-	 * @param {boolean} isDatabaseTimeout Whether this is an error state due to a database query
+	 * @param {string} noResultsDetails Type of no result error
 	 * @param {boolean} isInitialDOM Whether $changesListContent is the existing (already attached) DOM
 	 */
-	mw.rcfilters.ui.FormWrapperWidget.prototype.onChangesModelUpdate = function ( $changesList, $fieldset, isDatabaseTimeout, isInitialDOM ) {
+	mw.rcfilters.ui.FormWrapperWidget.prototype.onChangesModelUpdate = function ( $changesList, $fieldset, noResultsDetails, isInitialDOM ) {
 		this.$submitButton.prop( 'disabled', false );
 
 		// Replace the entire fieldset
