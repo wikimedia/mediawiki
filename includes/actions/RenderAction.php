@@ -41,6 +41,6 @@ class RenderAction extends FormlessAction {
 	}
 
 	public function show() {
-		$this->page->render();
+		$this->page->render(); // TODO: mave display UI logic here.
 	}
 }

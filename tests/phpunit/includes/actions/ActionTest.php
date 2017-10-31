@@ -14,6 +14,7 @@ class ActionTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		$context = $this->getContext();
+		$article = Article::newFromWikiPage( $context->getWikiPage(), $context );
 		$this->setMwGlobals( 'wgActions', [
 			'null' => null,
 			'disabled' => false,
@@ -24,7 +25,7 @@ class ActionTest extends MediaWikiTestCase {
 			'string' => 'NamedDummyAction',
 			'declared' => 'NonExistingClassName',
 			'callable' => [ $this, 'dummyActionCallback' ],
-			'object' => new InstantiatedDummyAction( $context->getWikiPage(), $context ),
+			'object' => new InstantiatedDummyAction( $article, $context ),
 		] );
 	}
 
@@ -152,7 +153,8 @@ class ActionTest extends MediaWikiTestCase {
 
 	public function testNull_canNotBeInstantiated() {
 		$page = $this->getPage();
-		$action = Action::factory( null, $page );
+		$context = $this->getContext( null );
+		$action = Action::factory( null, $page, $context );
 
 		$this->assertNull( $action );
 	}
@@ -172,14 +174,16 @@ class ActionTest extends MediaWikiTestCase {
 
 	public function testDisabledAction_factoryReturnsFalse() {
 		$page = $this->getPage();
-		$action = Action::factory( 'disabled', $page );
+		$context = $this->getContext( null );
+		$action = Action::factory( 'disabled', $page, $context );
 
 		$this->assertFalse( $action );
 	}
 
 	public function dummyActionCallback() {
 		$context = $this->getContext();
-		return new CalledDummyAction( $context->getWikiPage(), $context );
+		$article = Article::newFromWikiPage( $context->getWikiPage(), $context );
+		return new CalledDummyAction( $article, $context );
 	}
 
 }
