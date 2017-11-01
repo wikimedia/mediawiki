@@ -12,6 +12,7 @@
 				rcTopSection,
 				$watchlistDetails,
 				wlTopSection,
+				namespaces,
 				savedQueriesPreferenceName = mw.config.get( 'wgStructuredChangeFiltersSavedQueriesPreferenceName' ),
 				filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
 				changesListModel = new mw.rcfilters.dm.ChangesListViewModel(),
@@ -44,9 +45,13 @@
 			// call will do that and add the -loading class right back.
 			$( 'body' ).removeClass( 'mw-rcfilters-ui-loading' );
 
+			// Remove Media namespace
+			namespaces = mw.config.get( 'wgFormattedNamespaces' );
+			delete namespaces[ mw.config.get( 'wgNamespaceIds' ).media ];
+
 			controller.initialize(
 				mw.config.get( 'wgStructuredChangeFilters' ),
-				mw.config.get( 'wgFormattedNamespaces' ),
+				namespaces,
 				mw.config.get( 'wgRCFiltersChangeTags' )
 			);
 
