@@ -63,7 +63,7 @@ class RawAction extends FormlessAction {
 
 		$contentType = $this->getContentType();
 
-		$maxage = $request->getInt( 'maxage', $config->get( 'SquidMaxage' ) );
+		$maxage = $request->getInt( 'maxage', $config->get( 'CdnMaxAge' ) );
 		$smaxage = $request->getIntOrNull( 'smaxage' );
 		if ( $smaxage === null ) {
 			if (

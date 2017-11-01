@@ -91,14 +91,14 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	}
 
 	/**
-	 * Purges a list of CDN nodes defined in $wgSquidServers.
+	 * Purges a list of CDN nodes defined in $wgCdnServers.
 	 * $urlArr should contain the full URLs to purge as values
 	 * (example: $urlArr[] = 'http://my.host/something')
 	 *
 	 * @param string[] $urlArr List of full URLs to purge
 	 */
 	public static function purge( array $urlArr ) {
-		global $wgSquidServers, $wgHTCPRouting;
+		global $wgCdnServers, $wgHTCPRouting;
 
 		if ( !$urlArr ) {
 			return;
@@ -132,20 +132,20 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 		}
 
 		// Do direct server purges if enabled (this does not scale very well)
-		if ( $wgSquidServers ) {
-			// Maximum number of parallel connections per squid
-			$maxSocketsPerSquid = 8;
+		if ( $wgCdnServers ) {
+			// Maximum number of parallel connections per CDN
+			$maxSocketsPerCdn = 8;
 			// Number of requests to send per socket
 			// 400 seems to be a good tradeoff, opening a socket takes a while
 			$urlsPerSocket = 400;
-			$socketsPerSquid = ceil( count( $urlArr ) / $urlsPerSocket );
-			if ( $socketsPerSquid > $maxSocketsPerSquid ) {
-				$socketsPerSquid = $maxSocketsPerSquid;
+			$socketsPerCdn = ceil( count( $urlArr ) / $urlsPerSocket );
+			if ( $socketsPerCdn > $maxSocketsPerCdn ) {
+				$socketsPerCdn = $maxSocketsPerCdn;
 			}
 
 			$pool = new SquidPurgeClientPool;
-			$chunks = array_chunk( $urlArr, ceil( count( $urlArr ) / $socketsPerSquid ) );
-			foreach ( $wgSquidServers as $server ) {
+			$chunks = array_chunk( $urlArr, ceil( count( $urlArr ) / $socketsPerCdn ) );
+			foreach ( $wgCdnServers as $server ) {
 				foreach ( $chunks as $chunk ) {
 					$client = new SquidPurgeClient( $server );
 					foreach ( $chunk as $url ) {

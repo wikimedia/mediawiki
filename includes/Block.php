@@ -1225,7 +1225,7 @@ class Block {
 			if ( !IP::isValid( $ipaddr ) ) {
 				continue;
 			}
-			# Don't check trusted IPs (includes local squids which will be in every request)
+			# Don't check trusted IPs (includes local CDNs which will be in every request)
 			if ( $proxyLookup->isTrustedProxy( $ipaddr ) ) {
 				continue;
 			}
@@ -1286,7 +1286,7 @@ class Block {
 	 * @param array $ipChain List of IPs (strings). This is used to determine how "close"
 	 *     a block is to the server, and if a block matches exactly, or is in a range.
 	 *     The order is furthest from the server to nearest e.g., (Browser, proxy1, proxy2,
-	 *     local-squid, ...)
+	 *     local-cdn, ...)
 	 * @throws MWException
 	 * @return Block|null The "best" block from the list
 	 */

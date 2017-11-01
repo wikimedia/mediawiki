@@ -509,9 +509,31 @@ $wgDummyLanguageCodes += [
 // To determine the user language, use $wgLang->getCode()
 $wgContLanguageCode = $wgLanguageCode;
 
+// Backwards-compatibility reading of old Squid-named CDN settings as of MediaWiki 1.31
+if ( !isset( $wgUseCdn ) && isset( $wgUseSquid ) ) {
+	$wgUseCdn = $wgUseSquid;
+	// wfDeprecated( '$wgUseSquid set instead of $wgUseCdn', '1.31' );
+}
+if ( !isset( $wgCdnServers ) && isset( $wgSquidServers ) ) {
+	$wgCdnServers = $wgSquidServers;
+	// wfDeprecated( '$wgSquidServers set instead of $wgCdnServers', '1.31' );
+}
+if ( !isset( $wgCdnServersNoPurge ) && isset( $wgSquidServersNoPurge ) ) {
+	$wgCdnServersNoPurge = $wgSquidServersNoPurge;
+	// wfDeprecated( '$wgSquidServersNoPurge set instead of $wgCdnServersNoPurge', '1.31' );
+}
+if ( !isset( $wgCdnMaxAge ) && isset( $wgSquidMaxage ) ) {
+	$wgCdnMaxAge = $wgSquidMaxage;
+	// wfDeprecated( '$wgSquidMaxage set instead of $wgCdnMaxAge', '1.31' );
+}
+if ( !isset( $wgCdnPurgeUseHostHeader ) && isset( $wgSquidPurgeUseHostHeader ) ) {
+	$wgCdnPurgeUseHostHeader = $wgSquidPurgeUseHostHeader;
+	// wfDeprecated( '$wgSquidPurgeUseHostHeader set instead of $wgCdnPurgeUseHostHeader', '1.31' );
+}
+
 // Easy to forget to falsify $wgDebugToolbar for static caches.
 // If file cache or CDN cache is on, just disable this (DWIMD).
-if ( $wgUseFileCache || $wgUseSquid ) {
+if ( $wgUseFileCache || $wgUseCdn ) {
 	$wgDebugToolbar = false;
 }
 

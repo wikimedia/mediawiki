@@ -2669,7 +2669,8 @@ $wgExtensionInfoMTime = false;
  * @name   HTTP proxy (CDN) settings
  *
  * Many of these settings apply to any HTTP proxy used in front of MediaWiki,
- * although they are referred to as Squid settings for historical reasons.
+ * although they are sometimes still referred to as Squid settings for
+ * historical reasons.
  *
  * Achieving a high hit ratio with an HTTP proxy requires special
  * configuration. See https://www.mediawiki.org/wiki/Manual:Squid_caching for
@@ -2681,8 +2682,10 @@ $wgExtensionInfoMTime = false;
 /**
  * Enable/disable CDN.
  * See https://www.mediawiki.org/wiki/Manual:Squid_caching
+ *
+ * @since 1.31 Renamed from $wgUseSquid.
  */
-$wgUseSquid = false;
+$wgUseCdn = false;
 
 /**
  * If you run Squid3 with ESI support, enable this (default:false):
@@ -2692,6 +2695,7 @@ $wgUseESI = false;
 /**
  * Send the Key HTTP header for better caching.
  * See https://datatracker.ietf.org/doc/draft-fielding-http-key/ for details.
+ *
  * @since 1.27
  */
 $wgUseKeyHeader = false;
@@ -2722,12 +2726,15 @@ $wgInternalServer = false;
  * out s-maxage in the CDN config.
  *
  * 18000 seconds = 5 hours, more cache hits with 2678400 = 31 days.
+ *
+ * @since 1.31 Renamed from $wgSquidMaxage
  */
-$wgSquidMaxage = 18000;
+$wgCdnMaxAge = 18000;
 
 /**
  * Cache timeout for the CDN when DB replica DB lag is high
- * @see $wgSquidMaxage
+ * @see $wgCdnMaxAge
+ *
  * @since 1.27
  */
 $wgCdnMaxageLagged = 30;
@@ -2750,7 +2757,7 @@ $wgCdnReboundPurgeDelay = 0;
 
 /**
  * Cache timeout for the CDN when a response is known to be wrong or incomplete (due to load)
- * @see $wgSquidMaxage
+ * @see $wgCdnMaxAge
  * @since 1.27
  */
 $wgCdnMaxageSubstitute = 60;
@@ -2769,20 +2776,24 @@ $wgForcedRawSMaxage = 300;
  * headers sent/modified from these proxies when obtaining the remote IP address
  *
  * For a list of trusted servers which *aren't* purged, see $wgSquidServersNoPurge.
+ *
+ * @since 1.31 Renamed from $wgSquidServers.
  */
-$wgSquidServers = [];
+$wgCdnServers = [];
 
 /**
- * As above, except these servers aren't purged on page changes; use to set a
- * list of trusted proxies, etc. Supports both individual IP addresses and
- * CIDR blocks.
+ * As with $wgCdnServers, except these servers aren't purged on page changes;
+ * use to set a list of trusted proxies, etc. Supports both individual IP
+ * addresses and CIDR blocks.
+ *
  * @since 1.23 Supports CIDR ranges
+ * @since 1.31 Renamed from $wgSquidServersNoPurge
  */
-$wgSquidServersNoPurge = [];
+$wgCdnServersNoPurge = [];
 
 /**
  * Whether to use a Host header in purge requests sent to the proxy servers
- * configured in $wgSquidServers. Set this to false to support Squid
+ * configured in $wgCdnServers. Set this to false to support a CDN
  * configured in forward-proxy mode.
  *
  * If this is set to true, a Host header will be sent, and only the path
@@ -2798,8 +2809,9 @@ $wgSquidServersNoPurge = [];
  * reverse).
  *
  * @since 1.21
+ * @since 1.31 Renamed from $wgSquidPurgeUseHostHeader
  */
-$wgSquidPurgeUseHostHeader = true;
+$wgCdnPurgeUseHostHeader = true;
 
 /**
  * Routing configuration for HTCP multicast purging. Add elements here to
@@ -6457,7 +6469,7 @@ $wgCachePrefix = false;
 /**
  * Display the new debugging toolbar. This also enables profiling on database
  * queries and other useful output.
- * Will be ignored if $wgUseFileCache or $wgUseSquid is enabled.
+ * Will be ignored if $wgUseFileCache or $wgUseCdn is enabled.
  *
  * @since 1.19
  */

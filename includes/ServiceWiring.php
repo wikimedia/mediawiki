@@ -303,9 +303,10 @@ return [
 
 	'ProxyLookup' => function ( MediaWikiServices $services ) {
 		$mainConfig = $services->getMainConfig();
+
 		return new ProxyLookup(
-			$mainConfig->get( 'SquidServers' ),
-			$mainConfig->get( 'SquidServersNoPurge' )
+			$mainConfig->get( 'CdnServers' ),
+			$mainConfig->get( 'CdnServersNoPurge' )
 		);
 	},
 

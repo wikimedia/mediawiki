@@ -794,7 +794,7 @@ class OutputPage extends ContextSource {
 			'user' => $this->getUser()->getTouched(),
 			'epoch' => $config->get( 'CacheEpoch' )
 		];
-		if ( $config->get( 'UseSquid' ) ) {
+		if ( $config->get( 'UseCdn' ) ) {
 			$modifiedTimes['sepoch'] = wfTimestamp( TS_MW, $this->getCdnCacheEpoch(
 				time(),
 				$config->get( 'SquidMaxage' )
@@ -2017,13 +2017,13 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param string|int|float|bool|null $mtime Last-Modified timestamp
 	 * @param int $minTTL Mimimum TTL in seconds [default: 1 minute]
-	 * @param int $maxTTL Maximum TTL in seconds [default: $wgSquidMaxage]
+	 * @param int $maxTTL Maximum TTL in seconds [default: $wgCdnMaxAge]
 	 * @return int TTL in seconds
 	 * @since 1.28
 	 */
 	public function adaptCdnTTL( $mtime, $minTTL = 0, $maxTTL = 0 ) {
 		$minTTL = $minTTL ?: IExpiringStore::TTL_MINUTE;
-		$maxTTL = $maxTTL ?: $this->getConfig()->get( 'SquidMaxage' );
+		$maxTTL = $maxTTL ?: $this->getConfig()->get( 'CdnMaxAge' );
 
 		if ( $mtime === null || $mtime === false ) {
 			return $minTTL; // entity does not exist
@@ -2284,7 +2284,7 @@ class OutputPage extends ContextSource {
 
 		if ( $this->mEnableClientCache ) {
 			if (
-				$config->get( 'UseSquid' ) &&
+				$config->get( 'UseCdn' ) &&
 				!$response->hasCookies() &&
 				!SessionManager::getGlobalSession()->isPersistent() &&
 				!$this->isPrintable() &&
@@ -2300,7 +2300,7 @@ class OutputPage extends ContextSource {
 					# start with a shorter timeout for initial testing
 					# header( 'Surrogate-Control: max-age=2678400+2678400, content="ESI/1.0"');
 					$response->header(
-						"Surrogate-Control: max-age={$config->get( 'SquidMaxage' )}" .
+						"Surrogate-Control: max-age={$config->get( 'CdnMaxAge' )}" .
 						"+{$this->mCdnMaxage}, content=\"ESI/1.0\""
 					);
 					$response->header( 'Cache-Control: s-maxage=0, must-revalidate, max-age=0' );
