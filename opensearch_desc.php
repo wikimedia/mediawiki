@@ -37,7 +37,7 @@ if ( $wgRequest->getVal( 'ctype' ) == 'application/xml' ) {
 $response = $wgRequest->response();
 $response->header( "Content-type: $ctype" );
 
-// Set an Expires header so that squid can cache it for a short time
+// Set an Expires header so that CDN can cache it for a short time
 // Short enough so that the sysadmin barely notices when $wgSitename is changed
 $expiryTime = 600; # 10 minutes
 $response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', time() + $expiryTime ) . ' GMT' );
