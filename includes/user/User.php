@@ -5508,6 +5508,7 @@ class User implements IDBAccessObject {
 	 * @return array
 	 */
 	public static function selectFields() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return [
 			'user_id',
 			'user_name',
