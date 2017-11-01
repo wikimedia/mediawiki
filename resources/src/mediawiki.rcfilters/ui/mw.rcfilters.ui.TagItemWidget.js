@@ -84,11 +84,17 @@
 	 * Respond to model update event
 	 */
 	mw.rcfilters.ui.TagItemWidget.prototype.updateUiBasedOnState = function () {
-		this.setCurrentMuteState();
-
 		// Update label if needed
-		this.setLabel( $( '<div>' ).html( this.itemModel.getPrefixedLabel( this.invertModel.isSelected() ) ).contents() );
+		var labelMsg = this.itemModel.getLabelMessageKey( this.invertModel.isSelected() );
+		if ( labelMsg ) {
+			this.setLabel( $( '<div>' ).html(
+				mw.message( labelMsg, mw.html.escape( this.itemModel.getLabel() ) ).parse()
+			).contents() );
+		} else {
+			this.setLabel( this.itemModel.getLabel() );
+		}
 
+		this.setCurrentMuteState();
 		this.setHighlightColor();
 	};
 
