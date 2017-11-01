@@ -44,6 +44,7 @@ class LanguageConverter {
 		'shi',
 		'sr',
 		'tg',
+		'tt',
 		'uz',
 		'zh',
 	];
