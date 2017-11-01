@@ -178,7 +178,7 @@ class ContribsPager extends RangeChronologicalPager {
 		$revQuery = Revision::getQueryInfo( [ 'page', 'user' ] );
 		$queryInfo = [
 			'tables' => $revQuery['tables'],
-			'fields' => $revQuery['fields'],
+			'fields' => array_merge( $revQuery['fields'], [ 'page_is_new' ] ),
 			'conds' => [],
 			'options' => [],
 			'join_conds' => $revQuery['joins'],
