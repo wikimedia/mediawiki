@@ -66,7 +66,12 @@ class RawAction extends FormlessAction {
 
 		$contentType = $this->getContentType();
 
-		$maxage = $request->getInt( 'maxage', $config->get( 'SquidMaxage' ) );
+		// Backwards-compatibility reading of old $wgSquidMaxage setting as of MediaWiki 1.31
+		$configMaxAge = $config->has( 'SquidMaxage' ) ?
+			$config->get( 'SquidMaxage' ) :
+			$config->get( 'CdnMaxAge' );
+
+		$maxage = $request->getInt( 'maxage', $configMaxAge );
 		$smaxage = $request->getIntOrNull( 'smaxage' );
 		if ( $smaxage === null ) {
 			if ( $contentType == 'text/css' || $contentType == 'text/javascript' ) {

@@ -1370,18 +1370,30 @@ class ApiMain extends ApiBase {
 						$ts->format( 'D M j H:i:s Y' ) === $value ||
 						$ts->format( 'D M  j H:i:s Y' ) === $value
 					) {
+						$config = $this->getConfig();
 						$lastMod = $module->getConditionalRequestData( 'last-modified' );
 						if ( $lastMod !== null ) {
 							// Mix in some MediaWiki modification times
 							$modifiedTimes = [
 								'page' => $lastMod,
 								'user' => $this->getUser()->getTouched(),
-								'epoch' => $this->getConfig()->get( 'CacheEpoch' ),
+								'epoch' => $config->get( 'CacheEpoch' ),
 							];
-							if ( $this->getConfig()->get( 'UseSquid' ) ) {
+
+							// Backwards-compatibility reading of old $wgUseSquid setting as of MediaWiki 1.31
+							$configUseCdn = $config->has( 'UseSquid' ) ?
+								$config->get( 'UseSquid' ) :
+								$config->get( 'UseCdn' );
+
+							// Backwards-compatibility reading of old $wgSquidMaxage setting as of MediaWiki 1.31
+							$configCdnMaxAge = $config->has( 'SquidMaxage' ) ?
+								$config->get( 'SquidMaxage' ) :
+								$config->get( 'CdnMaxAge' );
+
+							if ( $configUseCdn ) {
 								// T46570: the core page itself may not change, but resources might
 								$modifiedTimes['sepoch'] = wfTimestamp(
-									TS_MW, time() - $this->getConfig()->get( 'SquidMaxage' )
+									TS_MW, time() - $configCdnMaxAge
 								);
 							}
 							Hooks::run( 'OutputPageCheckLastModified', [ &$modifiedTimes, $this->getOutput() ] );

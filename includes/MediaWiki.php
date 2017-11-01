@@ -367,7 +367,7 @@ class MediaWiki {
 			}
 			throw new HttpError( 500, $message );
 		}
-		$output->setSquidMaxage( 1200 );
+		$output->setCdnMaxage( 1200 );
 		$output->redirect( $targetUrl, '301' );
 		return true;
 	}
@@ -485,15 +485,24 @@ class MediaWiki {
 				$request->markAsSafeRequest();
 			}
 
+			// Backwards-compatibility reading of old $wgUseSquid setting as of MediaWiki 1.31
+			$configUseCdn = $this->$config->has( 'UseSquid' ) ?
+				$this->$config->get( 'UseSquid' ) :
+				$this->$config->get( 'UseCdn' );
+			// Backwards-compatibility reading of old $wgSquidMaxage setting as of MediaWiki 1.31
+			$configCdnMaxAge = $this->$config->has( 'SquidMaxage' ) ?
+				$this->$config->get( 'SquidMaxage' ) :
+				$this->$config->get( 'CdnMaxAge' );
+
 			# Let CDN cache things if we can purge them.
-			if ( $this->config->get( 'UseSquid' ) &&
+			if ( $configUseCdn &&
 				in_array(
 					// Use PROTO_INTERNAL because that's what getCdnUrls() uses
 					wfExpandUrl( $request->getRequestURL(), PROTO_INTERNAL ),
 					$requestTitle->getCdnUrls()
 				)
 			) {
-				$output->setCdnMaxage( $this->config->get( 'SquidMaxage' ) );
+				$output->setCdnMaxage( $configCdnMaxAge );
 			}
 
 			$action->show();

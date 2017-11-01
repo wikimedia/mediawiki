@@ -794,9 +794,19 @@ class OutputPage extends ContextSource {
 			'user' => $this->getUser()->getTouched(),
 			'epoch' => $config->get( 'CacheEpoch' )
 		];
-		if ( $config->get( 'UseSquid' ) ) {
+
+		// Backwards-compatibility reading of old $wgUseSquid setting as of MediaWiki 1.31
+		$configUseCdn = $config->has( 'UseSquid' ) ?
+			$config->get( 'UseSquid' ) :
+			$config->get( 'UseCdn' );
+		// Backwards-compatibility reading of old $wgSquidMaxage setting as of MediaWiki 1.31
+		$configCdnMaxAge = $config->has( 'SquidMaxage' ) ?
+			$config->get( 'SquidMaxage' ) :
+			$config->get( 'CdnMaxAge' );
+
+		if ( $configUseCdn ) {
 			// T46570: the core page itself may not change, but resources might
-			$modifiedTimes['sepoch'] = wfTimestamp( TS_MW, time() - $config->get( 'SquidMaxage' ) );
+			$modifiedTimes['sepoch'] = wfTimestamp( TS_MW, time() - $configCdnMaxAge );
 		}
 		Hooks::run( 'OutputPageCheckLastModified', [ &$modifiedTimes, $this ] );
 
@@ -2008,13 +2018,18 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param string|int|float|bool|null $mtime Last-Modified timestamp
 	 * @param int $minTTL Mimimum TTL in seconds [default: 1 minute]
-	 * @param int $maxTTL Maximum TTL in seconds [default: $wgSquidMaxage]
+	 * @param int $maxTTL Maximum TTL in seconds [default: $wgCdnMaxAge]
 	 * @return int TTL in seconds
 	 * @since 1.28
 	 */
 	public function adaptCdnTTL( $mtime, $minTTL = 0, $maxTTL = 0 ) {
+		// Backwards-compatibility reading of old $wgSquidMaxage setting as of MediaWiki 1.31
+		$configCdnMaxAge = $this->getConfig()->has( 'SquidMaxage' ) ?
+			$this->getConfig()->get( 'SquidMaxage' ) :
+			$this->getConfig()->get( 'CdnMaxAge' );
+
 		$minTTL = $minTTL ?: IExpiringStore::TTL_MINUTE;
-		$maxTTL = $maxTTL ?: $this->getConfig()->get( 'SquidMaxage' );
+		$maxTTL = $maxTTL ?: $configCdnMaxAge;
 
 		if ( $mtime === null || $mtime === false ) {
 			return $minTTL; // entity does not exist
@@ -2273,9 +2288,18 @@ class OutputPage extends ContextSource {
 			$response->header( $this->getKeyHeader() );
 		}
 
+		// Backwards-compatibility reading of old $wgUseSquid setting as of MediaWiki 1.31
+		$configUseCdn = $config->has( 'UseSquid' ) ?
+			$config->get( 'UseSquid' ) :
+			$config->get( 'UseCdn' );
+		// Backwards-compatibility reading of old $wgSquidMaxage setting as of MediaWiki 1.31
+		$configCdnMaxAge = $config->has( 'SquidMaxage' ) ?
+			$config->get( 'SquidMaxage' ) :
+			$config->get( 'CdnMaxAge' );
+
 		if ( $this->mEnableClientCache ) {
 			if (
-				$config->get( 'UseSquid' ) &&
+				$configUseCdn &&
 				!$response->hasCookies() &&
 				!SessionManager::getGlobalSession()->isPersistent() &&
 				!$this->isPrintable() &&
@@ -2291,7 +2315,7 @@ class OutputPage extends ContextSource {
 					# start with a shorter timeout for initial testing
 					# header( 'Surrogate-Control: max-age=2678400+2678400, content="ESI/1.0"');
 					$response->header(
-						"Surrogate-Control: max-age={$config->get( 'SquidMaxage' )}" .
+						"Surrogate-Control: max-age={$configCdnMaxAge}" .
 						"+{$this->mCdnMaxage}, content=\"ESI/1.0\""
 					);
 					$response->header( 'Cache-Control: s-maxage=0, must-revalidate, max-age=0' );

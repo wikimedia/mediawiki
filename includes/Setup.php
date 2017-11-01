@@ -517,7 +517,8 @@ $wgContLanguageCode = $wgLanguageCode;
 
 // Easy to forget to falsify $wgDebugToolbar for static caches.
 // If file cache or CDN cache is on, just disable this (DWIMD).
-if ( $wgUseFileCache || $wgUseSquid ) {
+// Backwards-compatibility reading of old $wgUseSquid setting as of MediaWiki 1.31
+if ( $wgUseFileCache || ( isset( $wgUseSquid ) ? $wgUseSquid : $wgUseCdn ) ) {
 	$wgDebugToolbar = false;
 }
 

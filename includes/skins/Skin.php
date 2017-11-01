@@ -395,14 +395,17 @@ abstract class Skin extends ContextSource {
 	 * @return array
 	 */
 	public static function getDynamicStylesheetQuery() {
-		global $wgSquidMaxage;
+		global $wgSquidMaxage, $wgCdnMaxAge;
+
+		// Backwards-compatibility reading of old $wgSquidMaxage setting as of MediaWiki 1.31
+		$configCdnMaxAge = isset( $wgSquidMaxage ) ? $wgSquidMaxage : $wgCdnMaxAge;
 
 		return [
 				'action' => 'raw',
-				'maxage' => $wgSquidMaxage,
+				'maxage' => $configCdnMaxAge,
 				'usemsgcache' => 'yes',
 				'ctype' => 'text/css',
-				'smaxage' => $wgSquidMaxage,
+				'smaxage' => $configCdnMaxAge,
 			];
 	}
 

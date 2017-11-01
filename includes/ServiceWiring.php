@@ -277,10 +277,17 @@ return [
 
 	'ProxyLookup' => function ( MediaWikiServices $services ) {
 		$mainConfig = $services->getMainConfig();
-		return new ProxyLookup(
-			$mainConfig->get( 'SquidServers' ),
-			$mainConfig->get( 'SquidServersNoPurge' )
-		);
+
+		// Backwards-compatibility reading of old $wgSquidServers setting as of MediaWiki 1.31
+		$configCdnServers = $config->has( 'SquidServers' ) ?
+			$mainConfig->get( 'SquidServers' ) :
+			$mainConfig->get( 'CdnServers' );
+		// Backwards-compatibility reading of old $wgSquidServersNoPurge setting as of MediaWiki 1.31
+		$configCdnServersNoPurge = $config->has( 'SquidServersNoPurge' ) ?
+			$mainConfig->get( 'SquidServersNoPurge' ) :
+			$mainConfig->get( 'CdnServersNoPurge' );
+
+		return new ProxyLookup( $configCdnServers, $configCdnServersNoPurge );
 	},
 
 	'Parser' => function ( MediaWikiServices $services ) {

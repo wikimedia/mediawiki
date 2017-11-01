@@ -151,7 +151,7 @@ class SquidPurgeClient {
 			if ( IP::isIPv4( $this->host ) ) {
 				$this->ip = $this->host;
 			} elseif ( IP::isIPv6( $this->host ) ) {
-				throw new MWException( '$wgSquidServers does not support IPv6' );
+				throw new MWException( '$wgCdnServers does not support IPv6' );
 			} else {
 				MediaWiki\suppressWarnings();
 				$this->ip = gethostbyname( $this->host );
@@ -195,10 +195,11 @@ class SquidPurgeClient {
 	 * @param string $url
 	 */
 	public function queuePurge( $url ) {
-		global $wgSquidPurgeUseHostHeader;
+		global $wgSquidPurgeUseHostHeader, $wgCdnPurgeUseHostHeader;
 		$url = CdnCacheUpdate::expand( str_replace( "\n", '', $url ) );
 		$request = [];
-		if ( $wgSquidPurgeUseHostHeader ) {
+		// Backwards-compatibility reading of old $wgSquidPurgeUseHostHeader setting as of MediaWiki 1.31
+		if ( isset( $wgSquidPurgeUseHostHeader ) ? $wgSquidPurgeUseHostHeader : $wgCdnPurgeUseHostHeader ) {
 			$url = wfParseUrl( $url );
 			$host = $url['host'];
 			if ( isset( $url['port'] ) && strlen( $url['port'] ) > 0 ) {
