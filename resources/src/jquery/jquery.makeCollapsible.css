@@ -1,21 +1,26 @@
 /* See also jquery.makeCollapsible.js */
 .mw-collapsible-toggle {
-	float: right;
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
 }
+caption .mw-collapsible-toggle {
+	float: right;
+	margin-left: 0.3em;
+}
 /* Align the toggle based on the direction of the content language */
 /* @noflip */
-.mw-content-ltr .mw-collapsible-toggle,
-.mw-content-rtl .mw-content-ltr .mw-collapsible-toggle {
+.mw-content-ltr caption .mw-collapsible-toggle,
+.mw-content-rtl .mw-content-ltr caption .mw-collapsible-toggle {
 	float: right;
+	margin-left: 0.3em;
 }
 /* @noflip */
-.mw-content-rtl .mw-collapsible-toggle,
-.mw-content-ltr .mw-content-rtl .mw-collapsible-toggle {
+.mw-content-rtl caption .mw-collapsible-toggle,
+.mw-content-ltr .mw-content-rtl caption .mw-collapsible-toggle {
 	float: left;
+	margin-right: 0.3em;
 }
 
 .mw-customtoggle,
