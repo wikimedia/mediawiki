@@ -526,9 +526,9 @@ class OutputPageTest extends MediaWikiTestCase {
 				function ( $op ) {
 					$op->getContext()->setUser( $this->getTestUser()->getUser() );
 				} ],
-			'After Squid expiry' =>
+			'After CDN expiry' =>
 				[ $lastModified, $lastModified, false,
-					[ 'UseSquid' => true, 'SquidMaxage' => 3599 ] ],
+					[ 'UseCdn' => true, 'CdnMaxAge' => 3599 ] ],
 			'Hook allows cache use' =>
 				[ $lastModified + 1, $lastModified, true, [],
 				function ( $op, $that ) {
@@ -2225,7 +2225,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	public function provideAdaptCdnTTL() {
-		global $wgSquidMaxage;
+		global $wgCdnMaxAge;
 		$now = time();
 		self::$fakeTime = $now;
 		return [
@@ -2234,7 +2234,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			'Five minutes from now' => [ [ $now + 300 ], IExpiringStore::TTL_MINUTE ],
 			'Five minutes ago, initial maxage four minutes' =>
 				[ [ $now - 300 ], 270, [ 'initialMaxage' => 240 ] ],
-			'A very long time ago' => [ [ $now - 1000000000 ], $wgSquidMaxage ],
+			'A very long time ago' => [ [ $now - 1000000000 ], $wgCdnMaxAge ],
 			'Initial maxage zero' => [ [ $now - 300 ], 270, [ 'initialMaxage' => 0 ] ],
 
 			'false' => [ [ false ], IExpiringStore::TTL_MINUTE ],
