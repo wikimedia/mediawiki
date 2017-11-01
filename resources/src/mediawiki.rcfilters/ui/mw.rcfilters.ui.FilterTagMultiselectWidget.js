@@ -150,21 +150,16 @@
 			items: [
 				new OO.ui.ButtonOptionWidget( {
 					framed: false,
-					data: '',
-					disabled: true,
-					classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-views-select-widget-label' ],
-					label: mw.msg( 'rcfilters-view-advanced-filters-label' )
-				} ),
-				new OO.ui.ButtonOptionWidget( {
-					framed: false,
 					data: 'namespaces',
 					icon: 'article',
+					label: mw.msg( 'namespaces' ),
 					title: mw.msg( 'rcfilters-view-namespaces-tooltip' )
 				} ),
 				new OO.ui.ButtonOptionWidget( {
 					framed: false,
 					data: 'tags',
 					icon: 'tag',
+					label: mw.msg( 'tags-title' ),
 					title: mw.msg( 'rcfilters-view-tags-tooltip' )
 				} )
 			]
