@@ -15,6 +15,14 @@ production.
   possible for fallback images such as png.
 * (T44246) $wgFilterLogTypes will no longer ignore 'patrol' when user does
   not have the right to mark things patrolled.
+* Several CDN configuration variables have been renamed from being specific to Squid:
+    wgUseSquid                 → wgUseCdn
+    wgSquidServers             → wgCdnServers
+    wgSquidServersNoPurge      → wgCdnServersNoPurge
+    wgSquidMaxage              → wgCdnMaxAge
+    wgSquidPurgeUseHostHeader  → wgCdnPurgeUseHostHeader
+  The previous configuration variables are deprecated, but will be used if their
+  replacements are not set.
 * …
 
 === New features in 1.31 ===

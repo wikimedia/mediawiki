@@ -137,8 +137,8 @@ class PurgeChangedPages extends Maintenance {
 			}
 
 			// Send batch of purge requests out to squids
-			$squid = new CdnCacheUpdate( $urls, count( $urls ) );
-			$squid->doUpdate();
+			$cdn = new CdnCacheUpdate( $urls, count( $urls ) );
+			$cdn->doUpdate();
 
 			if ( $this->hasOption( 'sleep-per-batch' ) ) {
 				// sleep-per-batch is milliseconds, usleep wants micro seconds.
