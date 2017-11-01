@@ -1412,7 +1412,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "$1 <strong>:ez</strong>",
 	"rcfilters-exclude-button-off": "Baztertzea aukeratuta",
 	"rcfilters-exclude-button-on": "Baztertzea aukeratuta",
-	"rcfilters-view-advanced-filters-label": "Iragazki aurreratuak",
 	"rcfilters-view-tags": "Etiketa aldaketak",
 	"rcfilters-view-namespaces-tooltip": "Emaitzak aurrikiaren arabera hautatu",
 	"rcfilters-view-tags-tooltip": "Iragazi emaitzak aldaketa etiketak erabiliz",

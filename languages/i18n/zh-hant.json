@@ -1470,7 +1470,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:不是</strong>$1",
 	"rcfilters-exclude-button-off": "排除選項",
 	"rcfilters-exclude-button-on": "排除所選",
-	"rcfilters-view-advanced-filters-label": "高級過濾器",
 	"rcfilters-view-tags": "標記的編輯",
 	"rcfilters-view-namespaces-tooltip": "按命名空間過濾結果",
 	"rcfilters-view-tags-tooltip": "按編輯標籤過濾結果",

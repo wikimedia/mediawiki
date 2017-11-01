@@ -1398,7 +1398,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:non</strong> $1",
 	"rcfilters-exclude-button-off": "Torgar los seleicionaos",
 	"rcfilters-exclude-button-on": "Torgando los seleicionaos",
-	"rcfilters-view-advanced-filters-label": "Filtros avanzaos",
 	"rcfilters-view-tags": "Ediciones etiquetaes",
 	"rcfilters-view-namespaces-tooltip": "Filtriar los resultaos por espaciu de nomes",
 	"rcfilters-view-tags-tooltip": "Filtriar los resultaos usando les etiquetes d'edición",

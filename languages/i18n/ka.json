@@ -1425,7 +1425,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:არა</strong> $1",
 	"rcfilters-exclude-button-off": "მონიშნულის გარდა",
 	"rcfilters-exclude-button-on": "მონიშნულის გარდა",
-	"rcfilters-view-advanced-filters-label": "გაფართოებული ფილტრები",
 	"rcfilters-view-tags": "ტეგირებული რედაქტირებები",
 	"rcfilters-view-namespaces-tooltip": "ფილტრის შედეგები სახელთა სივრცეების მიხედვით",
 	"rcfilters-view-tags-tooltip": "ფილტრის შედეგები, რომლებც იყენებენ რედაქტირების ტეგებს",

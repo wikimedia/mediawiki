@@ -1453,7 +1453,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:ليس</strong> $1",
 	"rcfilters-exclude-button-off": "استبعاد المختارة",
 	"rcfilters-exclude-button-on": "استثناء المختارة",
-	"rcfilters-view-advanced-filters-label": "مرشحات متقدمة",
 	"rcfilters-view-tags": "تعديلات موسومة",
 	"rcfilters-view-namespaces-tooltip": "رشح النتائج حسب النطاق",
 	"rcfilters-view-tags-tooltip": "رشح النتائج حسب وسوم التعديل",

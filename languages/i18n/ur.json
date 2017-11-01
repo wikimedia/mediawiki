@@ -1393,7 +1393,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:نہیں</strong> $1",
 	"rcfilters-exclude-button-off": "منتخب شدہ کو مستثنیٰ کریں",
 	"rcfilters-exclude-button-on": "منتخب شدہ مستثنی ہیں",
-	"rcfilters-view-advanced-filters-label": "اضافی فلٹر",
 	"rcfilters-view-tags": "ٹیگ شدہ ترامیم",
 	"rcfilters-view-namespaces-tooltip": "فلٹر کے نتائج بلحاظ نام فضا",
 	"rcfilters-view-tags-tooltip": "ترمیمی ٹیگ کے ذریعہ نتائج کو فلٹر کریں",

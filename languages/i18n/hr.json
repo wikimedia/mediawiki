@@ -1344,7 +1344,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:ne</strong> $1",
 	"rcfilters-exclude-button-off": "Izuzmi izabrane",
 	"rcfilters-exclude-button-on": "Izuzimanje označenoga",
-	"rcfilters-view-advanced-filters-label": "Napredni filtri",
 	"rcfilters-view-tags": "Označena uređivanja",
 	"rcfilters-view-namespaces-tooltip": "Filtriranje prema imenskom prostoru",
 	"rcfilters-view-tags-tooltip": "Filtriranje rezultata po oznakama uređivanja",

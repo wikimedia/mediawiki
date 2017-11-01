@@ -1417,7 +1417,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "$1 <strong>:নয়</strong>",
 	"rcfilters-exclude-button-off": "নির্বাচিতগুলি বাদ দিন",
 	"rcfilters-exclude-button-on": "নির্বাচিতগুলি বাদে",
-	"rcfilters-view-advanced-filters-label": "উন্নত ছাঁকনি",
 	"rcfilters-view-tags": "ট্যাগকৃত সম্পাদনা",
 	"rcfilters-view-namespaces-tooltip": "নামস্থান অনুযায়ী ফলাফল ছাঁকুন",
 	"rcfilters-view-tags-tooltip": "সম্পাদনা ট্যাগ ব্যবহার করে ফলাফল ছাঁকুন",

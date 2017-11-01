@@ -1482,7 +1482,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:不是</strong>$1",
 	"rcfilters-exclude-button-off": "排除选项",
 	"rcfilters-exclude-button-on": "排除选项",
-	"rcfilters-view-advanced-filters-label": "高级过滤器",
 	"rcfilters-view-tags": "标记的编辑",
 	"rcfilters-view-namespaces-tooltip": "按名字空间过滤结果",
 	"rcfilters-view-tags-tooltip": "按编辑标签过滤结果",

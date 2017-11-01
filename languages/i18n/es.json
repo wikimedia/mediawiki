@@ -1545,7 +1545,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>Estado:</strong> $1",
 	"rcfilters-exclude-button-off": "Excluir los seleccionados",
 	"rcfilters-exclude-button-on": "Excluyendo los seleccionados",
-	"rcfilters-view-advanced-filters-label": "Filtros avanzados",
 	"rcfilters-view-tags": "Ediciones etiquetadas",
 	"rcfilters-view-namespaces-tooltip": "Filtrar resultados por espacio de nombres",
 	"rcfilters-view-tags-tooltip": "filtrado de resultados usando etiquetas de edición",

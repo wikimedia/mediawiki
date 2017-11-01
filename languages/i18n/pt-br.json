@@ -1500,7 +1500,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:não</strong> $1",
 	"rcfilters-exclude-button-off": "Excluir selecionado",
 	"rcfilters-exclude-button-on": "Excluindo selecionados",
-	"rcfilters-view-advanced-filters-label": "Filtros avançados",
 	"rcfilters-view-tags": "Edições marcadas",
 	"rcfilters-view-namespaces-tooltip": "Filtrar resultados por namespace",
 	"rcfilters-view-tags-tooltip": "Filtre os resultados usando edit tags",

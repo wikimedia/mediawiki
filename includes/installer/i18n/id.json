@@ -14,7 +14,8 @@
 			"WongKentir",
 			"Macofe",
 			"Rachmat.Wahidi",
-			"Gombang"
+			"Gombang",
+			"Rachmat04"
 		]
 	},
 	"config-desc": "Penginstal untuk MediaWiki",
@@ -61,8 +62,8 @@
 	"config-env-php": "PHP $1 diinstal.",
 	"config-env-hhvm": "HHVM $1 telah dipasang.",
 	"config-unicode-using-intl": "Menggunakan [http://pecl.php.net/intl ekstensi PECL intl] untuk normalisasi Unicode.",
-	"config-unicode-pure-php-warning": "'''Peringatan''': [http://pecl.php.net/intl Ekstensi intl PECL] untuk menangani normalisasi Unicode tidak tersedia, kembali menggunakan implementasi murni PHP yang lambat.\nJika Anda menjalankan situs berlalu lintas tinggi, Anda harus sedikit membaca [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations normalisasi Unicode].",
-	"config-unicode-update-warning": "'''Peringatan''': Versi terinstal dari pembungkus normalisasi Unicode menggunakan versi lama pustaka [http://site.icu-project.org/ proyek ICU].\nAnda harus [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations memutakhirkannya] jika Anda ingin menggunakan Unicode.",
+	"config-unicode-pure-php-warning": "<strong>Peringatan:</strong> [http://pecl.php.net/intl intl Ekstensi PECL] tidak tersedia untuk menangani normalisasi Unicode, dikembalikan untuk melambatkan implementasi PHP asli.\nApabila Anda menjalankan situs dengan lalu-lintas tinggi, Anda harus membaca [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations normalisasi Unicode].",
+	"config-unicode-update-warning": "<strong>Peringatan:</strong> Versi terinstal dari pembungkus normalisasi Unicode menggunakan versi lama pustaka [http://site.icu-project.org/ proyek ICU].\nAnda harus [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations meningkatkan versinya] jika ingin menggunakan Unicode.",
 	"config-no-db": "Pengandar basis data yang sesuai tidak ditemukan! Anda perlu menginstal pengandar basis data untuk PHP.\n{{PLURAL:$2|Jenis|Jenis}} basis data yang didukung: $1.\n\nJika Anda mengompilasi PHP sendiri, ubahlah konfigurasinya dengan mengaktifkan klien basis data, misalnya menggunakan <code>./configure --with-mysqli</code>.\nJika Anda menginstal PHP dari paket Debian atau Ubuntu, maka Anda juga perlu menginstal seperti paket <code>php5-mysql</code>.",
 	"config-outdated-sqlite": "<strong>Peringatan:</strong> Anda menggunakan SQLite $1, yang lebih rendah dari versi minimum yang diperlukan $2. SQLite akan tidak tersedia.",
 	"config-no-fts3": "'''Peringatan''': SQLite dikompilasi tanpa [//sqlite.org/fts3.html modul FTS3], fitur pencarian tidak akan tersedia pada konfigurasi ini.",
@@ -126,7 +127,7 @@
 	"config-type-mssql": "Microsoft SQL Server",
 	"config-support-info": "MediaWiki mendukung sistem basis data berikut:\n\n$1\n\nJika Anda tidak melihat sistem basis data yang Anda gunakan tercantum di bawah ini, ikuti petunjuk terkait di atas untuk mengaktifkan dukungan.",
 	"config-dbsupport-mysql": "* [{{int:version-db-mysql-url}} MySQL] adalah target utama MediaWiki dan memiliki dukungan terbaik. MediaWiki juga berjalan dengan [{{int:version-db-mariadb-url}} MariaDB] dan [{{int:version-db-percona-url}} Server Percona], yang kompatibel dengan MySQL. ([http://www.php.net/manual/en/mysql.installation.php Cara mengompilasi PHP dengan dukungan MySQL])",
-	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] adalah sistem basis data sumber terbuka populer sebagai alternatif untuk MySQL. Mungkin ada beberapa bug terbuka dan alternatif ini tidak direkomendasikan untuk dipakai dalam lingkungan produksi. ([http://www.php.net/manual/en/pgsql.installation.php cara mengompilasi PHP dengan dukungan PostgreSQL])",
+	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] adalah sistem basis data sumber terbuka populer sebagai alternatif MySQL.([http://www.php.net/manual/en/pgsql.installation.php Bagaimana mengompilasikan PHP dengan dukungan PostgreSQL])",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] adalah sistem basis data yang ringan yang sangat baik dukungannya. ([http://www.php.net/manual/en/pdo.installation.php cara mengompilasi PHP dengan dukungan SQLite], menggunakan PDO)",
 	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle] adalah basis data komersial untuk perusahaan. ([http://www.php.net/manual/en/oci8.installation.php cara mengompilasi PHP dengan dukungan OCI8])",
 	"config-dbsupport-mssql": "[{{int:version-db-mssql-url}} Microsoft SQL Server] adalah database perusahaan komersial untuk Windows. ([http://www.php.net/manual/en/sqlsrv.installation.php Bagaimana cara mengkompilasi PHP dengan dukungan SQLSRV])",
@@ -260,7 +261,7 @@
 	"config-cache-options": "Pengaturan untuk penyinggahan objek:",
 	"config-cache-help": "Penyinggahan objek digunakan untuk meningkatkan kecepatan MediaWiki dengan menyinggahkan data yang sering digunakan.\nSitus berukuran sedang hingga besar sangat dianjurkan untuk mengaktifkan fitur ini, dan situs kecil juga akan merasakan manfaatnya.",
 	"config-cache-none": "Tidak ada penyinggahan (tidak ada fungsi yang dibuang, tetapi kecepatan dapat terpengaruh pada situs wiki yang besar)",
-	"config-cache-accel": "Penyinggahan objek PHP (APC, XCache atau WinCache)",
+	"config-cache-accel": "Penyinggahan objek PHP (APC, APCu, XCache atau WinCache)",
 	"config-cache-memcached": "Gunakan Memcached (memerlukan setup dan konfigurasi tambahan)",
 	"config-memcached-servers": "Server Memcached:",
 	"config-memcached-help": "Daftar alamat IP yang digunakan untuk Memcached.\nHarus dispesifikasikan per baris berikut porta yang akan digunakan. Contoh:\n 127.0.0.1:11211\n 192.168.1.25:1234",
@@ -320,5 +321,5 @@
 	"config-nofile": "Berkas \"$1\" tidak dapat ditemukan. Mungkin sudah dihapus?",
 	"config-extension-link": "Tahukah Anda bahwa wiki Anda mendukung [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions ekstensi]?\n\nAnda dapat menjelajahi [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category ekstensi menurut kategori] atau [https://www.mediawiki.org/wiki/Extension_Matrix Ekstensi Matriks] untuk melihat daftar lengkap ekstensi.",
 	"mainpagetext": "<strong>MediaWiki telah terpasang dengan sukses.</strong>",
-	"mainpagedocfooter": "Silakan baca [https://www.mediawiki.org/wiki/Help:Contents Panduan Pengguna] untuk cara penggunaan perangkat lunak wiki ini.\n\n== Memulai penggunaan ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings/id Daftar pengaturan konfigurasi]\n* [https://www.mediawiki.org/wiki/Manual:FAQ/id Daftar pertanyaan yang sering diajukan mengenai MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Terjemahkan MediaWiki ke bahasa Anda]"
+	"mainpagedocfooter": "Konsultasikan [https://www.mediawiki.org/wiki/Help:Contents Panduan Pengguna] untuk cara penggunaan perangkat lunak wiki ini.\n\n== Memulai ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Daftar pengaturan konfigurasi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Pertanyaan yang sering diajukan mengenai MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Pelokalan MediaWiki untuk bahasa Anda]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Belajar bagaimana menghadapi spam di wiki lokal]"
 }

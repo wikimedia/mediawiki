@@ -1432,7 +1432,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:nem</strong> $1",
 	"rcfilters-exclude-button-off": "A kiválasztottak kizárása",
 	"rcfilters-exclude-button-on": "A kiválasztottak kizárva",
-	"rcfilters-view-advanced-filters-label": "Haladó szűrők",
 	"rcfilters-view-tags": "Megjelölt szerkesztések",
 	"rcfilters-view-namespaces-tooltip": "Találatok szűrése névtér szerint",
 	"rcfilters-view-tags-tooltip": "Találatok szűrése címkék használatával",

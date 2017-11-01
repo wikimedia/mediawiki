@@ -1388,7 +1388,6 @@
 	"rcfilters-filter-categorization-description": "Kategorilere eklenen veya kaldırılan sayfaların kayıtları.",
 	"rcfilters-filter-logactions-label": "Günlüğü tutulan işlemler",
 	"rcfilters-filter-logactions-description": "Hizmetli işlemleri, hesap oluşturmalar, sayfa silmeler, yüklemeler....",
-	"rcfilters-view-advanced-filters-label": "Gelişmiş filtreler",
 	"rcnotefrom": "<strong>$3, $4</strong> tarihinden itibaren yapılan {{PLURAL:$5|değişiklik|değişiklik}} aşağıdadır (<strong>$1</strong> tarhine kadar olanlar gösterilmektedir).",
 	"rclistfrom": "$3 $2 tarihinden itibaren yeni değişiklikleri göster",
 	"rcshowhideminor": "Küçük değişiklikleri $1",
