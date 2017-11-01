@@ -603,8 +603,8 @@ class LoadBalancer implements ILoadBalancer {
 		if ( $result == -1 || is_null( $result ) ) {
 			// Timed out waiting for replica DB, use master instead
 			$this->replLogger->warning(
-				__METHOD__ . ": Timed out waiting on {host} pos {$this->mWaitForPos}",
-				[ 'host' => $server ]
+				__METHOD__ . ': Timed out waiting on {host} pos {pos}',
+				[ 'host' => $server, 'pos' => $this->mWaitForPos ]
 			);
 			$ok = false;
 		} else {
@@ -1640,16 +1640,18 @@ class LoadBalancer implements ILoadBalancer {
 		if ( $pos instanceof DBMasterPos ) {
 			$result = $conn->masterPosWait( $pos, $timeout );
 			if ( $result == -1 || is_null( $result ) ) {
-				$msg = __METHOD__ . ": Timed out waiting on {$conn->getServer()} pos {$pos}";
-				$this->replLogger->warning( "$msg" );
+				$msg = __METHOD__ . ': Timed out waiting on {host} pos {pos}';
+				$this->replLogger->warning( $msg,
+					[ 'host' => $conn->getServer(), 'pos' => $pos ] );
 				$ok = false;
 			} else {
-				$this->replLogger->info( __METHOD__ . ": Done" );
+				$this->replLogger->info( __METHOD__ . ': Done' );
 				$ok = true;
 			}
 		} else {
 			$ok = false; // something is misconfigured
-			$this->replLogger->error( "Could not get master pos for {$conn->getServer()}." );
+			$this->replLogger->error( 'Could not get master pos for {host}',
+				[ 'host' => $conn->getServer() ] );
 		}
 
 		return $ok;
