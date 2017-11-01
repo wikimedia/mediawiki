@@ -21,6 +21,14 @@ production.
   adds a defense-in-depth feature to stop an attacker who has found a bug in
   the parser allowing them to insert malicious attributes. Disabled by default,
   you can configure this via $wgCSPHeader and $wgCSPReportOnlyHeader.
+* Several CDN config variables have been renamed from being specific to Squid:
+    wgUseSquid                 → wgUseCdn
+    wgSquidServers             → wgCdnServers
+    wgSquidServersNoPurge      → wgCdnServersNoPurge
+    wgSquidMaxage              → wgCdnMaxAge
+    wgSquidPurgeUseHostHeader  → wgCdnPurgeUseHostHeader
+  The previous configuration variables are deprecated, but will be used as the
+  fall back if their replacements are not set.
 
 === New features in 1.32 ===
 * (T112474) Generalized the ResourceLoader mechanism for overriding modules

@@ -487,14 +487,14 @@ class MediaWiki {
 			}
 
 			# Let CDN cache things if we can purge them.
-			if ( $this->config->get( 'UseSquid' ) &&
+			if ( $this->$config->get( 'UseCdn' ) &&
 				in_array(
 					// Use PROTO_INTERNAL because that's what getCdnUrls() uses
 					wfExpandUrl( $request->getRequestURL(), PROTO_INTERNAL ),
 					$requestTitle->getCdnUrls()
 				)
 			) {
-				$output->setCdnMaxage( $this->config->get( 'SquidMaxage' ) );
+				$output->setCdnMaxage( $this->$config->get( 'CdnMaxAge' ) );
 			}
 
 			$action->show();

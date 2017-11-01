@@ -460,7 +460,7 @@ class ApiMainTest extends ApiTestCase {
 	 * @param int $status Expected response status
 	 * @param array $options Array of options:
 	 *   post => true Request is a POST
-	 *   cdn => true CDN is enabled ($wgUseSquid)
+	 *   cdn => true CDN is enabled ($wgUseCdn)
 	 */
 	public function testCheckConditionalRequestHeaders(
 		$headers, $conditions, $status, $options = []
@@ -478,7 +478,7 @@ class ApiMainTest extends ApiTestCase {
 		$priv->mInternalMode = false;
 
 		if ( !empty( $options['cdn'] ) ) {
-			$this->setMwGlobals( 'wgUseSquid', true );
+			$this->setMwGlobals( 'wgUseCdn', true );
 		}
 
 		// Can't do this in TestSetup.php because Setup.php will override it
@@ -501,7 +501,7 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	public static function provideCheckConditionalRequestHeaders() {
-		global $wgSquidMaxage;
+		global $wgCdnMaxage;
 		$now = time();
 
 		return [
@@ -584,15 +584,15 @@ class ApiMainTest extends ApiTestCase {
 				[ [ 'If-Modified-Since' => 'a potato' ],
 					[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 200 ],
 
-			// Anything before $wgSquidMaxage seconds ago should be considered
+			// Anything before $wgCdnMaxage seconds ago should be considered
 			// expired.
 			'If-Modified-Since with CDN post-expiry' =>
-				[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now - $wgSquidMaxage * 2 ) ],
-					[ 'last-modified' => wfTimestamp( TS_MW, $now - $wgSquidMaxage * 3 ) ],
+				[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now - $wgCdnMaxage * 2 ) ],
+					[ 'last-modified' => wfTimestamp( TS_MW, $now - $wgCdnMaxage * 3 ) ],
 					200, [ 'cdn' => true ] ],
 			'If-Modified-Since with CDN pre-expiry' =>
-				[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now - $wgSquidMaxage / 2 ) ],
-					[ 'last-modified' => wfTimestamp( TS_MW, $now - $wgSquidMaxage * 3 ) ],
+				[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now - $wgCdnMaxage / 2 ) ],
+					[ 'last-modified' => wfTimestamp( TS_MW, $now - $wgCdnMaxage * 3 ) ],
 					304, [ 'cdn' => true ] ],
 		];
 	}

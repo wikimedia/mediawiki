@@ -421,14 +421,14 @@ abstract class Skin extends ContextSource {
 	 * @return array
 	 */
 	public static function getDynamicStylesheetQuery() {
-		global $wgSquidMaxage;
+		global $wgCdnMaxAge;
 
 		return [
 				'action' => 'raw',
-				'maxage' => $wgSquidMaxage,
+				'maxage' => $wgCdnMaxAge,
 				'usemsgcache' => 'yes',
 				'ctype' => 'text/css',
-				'smaxage' => $wgSquidMaxage,
+				'smaxage' => $wgCdnMaxAge,
 			];
 	}
 

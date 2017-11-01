@@ -180,12 +180,14 @@ class AjaxResponse {
 			# and tell the client to always check with the CDN. Otherwise,
 			# tell the client to use a cached copy, without a way to purge it.
 
-			if ( $this->mConfig->get( 'UseSquid' ) ) {
+			$config = $this->mConfig;
+
+			if ( $config->get( 'UseCdn' ) ) {
 				# Expect explicit purge of the proxy cache, but require end user agents
 				# to revalidate against the proxy on each visit.
 				# Surrogate-Control controls our CDN, Cache-Control downstream caches
 
-				if ( $this->mConfig->get( 'UseESI' ) ) {
+				if ( $config->get( 'UseESI' ) ) {
 					header( 'Surrogate-Control: max-age=' . $this->mCacheDuration . ', content="ESI/1.0"' );
 					header( 'Cache-Control: s-maxage=0, must-revalidate, max-age=0' );
 				} else {
