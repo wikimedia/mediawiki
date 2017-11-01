@@ -25,7 +25,7 @@
 		"ext-xml": "*",
 		"liuggio/statsd-php-client": "1.0.18",
 		"mediawiki/at-ease": "1.1.0",
-		"oojs/oojs-ui": "0.24.0",
+		"oojs/oojs-ui": "0.24.1",
 		"oyejorge/less.php": "1.7.0.14",
 		"php": ">=5.5.9",
 		"psr/log": "1.0.2",

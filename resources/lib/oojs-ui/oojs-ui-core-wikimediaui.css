@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.24.0
+ * OOjs UI v0.24.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-10-17T23:18:56Z
+ * Date: 2017-10-31T22:46:39Z
  */
 /**
  * WikimediaUI Base v0.9.2
@@ -1250,7 +1250,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-dropdownInputWidget select::-ms-expand {
   display: none;
 }
-.oo-ui-dropdownInputWidget select:not( [no-ie] ) {
+.oo-ui-dropdownInputWidget select:not( [ no-ie ] ) {
   background-position: right 1.75em center;
   width: calc( 100% + 1em );
   height: 2.5em;
@@ -1629,6 +1629,15 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-menuSectionOptionWidget.oo-ui-widget-enabled {
   cursor: default;
 }
+.oo-ui-menuSectionOptionWidget ~ .oo-ui-menuOptionWidget {
+  padding-left: 1.875em;
+}
+.oo-ui-menuSectionOptionWidget ~ .oo-ui-menuOptionWidget.oo-ui-iconElement {
+  padding-left: 3.90625em;
+}
+.oo-ui-menuSectionOptionWidget ~ .oo-ui-menuOptionWidget.oo-ui-iconElement .oo-ui-iconElement-icon {
+  left: 1.875em;
+}
 .oo-ui-dropdownWidget {
   display: inline-block;
   position: relative;
@@ -1804,6 +1813,12 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-comboBoxInputWidget-php .oo-ui-indicatorWidget {
   right: 0.9375em;
   margin: 0;
+}
+.oo-ui-comboBoxInputWidget-open .oo-ui-comboBoxInputWidget-dropdownButton > .oo-ui-buttonElement-button {
+  background-color: #fff;
+}
+.oo-ui-comboBoxInputWidget-open .oo-ui-comboBoxInputWidget-dropdownButton > .oo-ui-buttonElement-button .oo-ui-indicatorElement-indicator {
+  opacity: 1;
 }
 .oo-ui-comboBoxInputWidget.oo-ui-widget-disabled .oo-ui-indicatorElement-indicator {
   opacity: 1;
