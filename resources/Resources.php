@@ -286,12 +286,6 @@ return [
 		'scripts' => 'resources/src/jquery/jquery.mw-jump.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'jquery.placeholder' => [
-		'deprecated' => 'Use of "jquery.placeholder" is deprecated since MediaWiki 1.29.0',
-
-		'scripts' => 'resources/src/jquery/jquery.placeholder.js',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'jquery.qunit' => [
 		'scripts' => 'resources/lib/qunitjs/qunit.js',
 		'styles' => 'resources/lib/qunitjs/qunit.css',
