@@ -6351,7 +6351,9 @@ $wgStatsdMetricPrefix = 'MediaWiki';
  * Rates are sampling probabilities (e.g. 0.1 means 1 in 10 events are sampled).
  * @since 1.28
  */
-$wgStatsdSamplingRates = [];
+$wgStatsdSamplingRates = [
+	'wanobjectcache:*' => 0.001
+];
 
 /**
  * InfoAction retrieves a list of transclusion links (both to and from).
