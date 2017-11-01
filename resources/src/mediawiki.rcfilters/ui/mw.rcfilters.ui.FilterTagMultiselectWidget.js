@@ -285,6 +285,8 @@
 		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.prototype.onMenuToggle.call( this );
 
 		if ( isVisible ) {
+			this.focus();
+
 			mw.hook( 'RcFilters.popup.open' ).fire();
 
 			if ( !this.getMenu().getSelectedItem() ) {
@@ -294,6 +296,8 @@
 				setTimeout( function () { this.getMenu().scrollToTop(); }.bind( this ), 0 );
 			}
 		} else {
+			this.blur();
+
 			// Clear selection
 			this.selectTag( null );
 
@@ -335,6 +339,17 @@
 
 		// Blur the input
 		this.input.$input.blur();
+	};
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onMouseDown = function ( e ) {
+		if ( !this.isDisabled() && e.which === OO.ui.MouseButtons.LEFT ) {
+			this.menu.toggle();
+
+			return false;
+		}
 	};
 
 	/**
