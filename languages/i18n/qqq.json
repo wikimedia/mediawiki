@@ -1657,7 +1657,6 @@
 	"rcfilters-tag-prefix-tags": "Prefix for the edit tags in [[Special:RecentChanges]]. Edit tags use a hash (#) as prefix. Please keep this format.\n\nParameters:\n* $1 - Tag display name.",
 	"rcfilters-exclude-button-off": "Title for the button that excludes selected namespaces, when it is not yet active.",
 	"rcfilters-exclude-button-on": "Title for the button that excludes selected namespaces, when it is active.",
-	"rcfilters-view-advanced-filters-label": "Label for the view switch that changes between advanced filters in [[Special:RecentChanges]]",
 	"rcfilters-view-tags": "Title for the tags view in [[Special:RecentChanges]]\n{{Identical|Tag}}",
 	"rcfilters-view-namespaces-tooltip": "Tooltip for the button that loads the namespace view in [[Special:RecentChanges]]",
 	"rcfilters-view-tags-tooltip": "Tooltip for the button that loads the tags view in [[Special:RecentChanges]]",
