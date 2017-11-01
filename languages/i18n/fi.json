@@ -1420,7 +1420,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:ei</strong> $1",
 	"rcfilters-exclude-button-off": "Poissulje valitut",
 	"rcfilters-exclude-button-on": "Poissuljetaan valitut",
-	"rcfilters-view-advanced-filters-label": "Kehittyneet suodattimet",
 	"rcfilters-view-namespaces-tooltip": "Suodata tuloksia nimiavaruuden mukaan",
 	"rcfilters-view-tags-tooltip": "Suodata tuloksia käyttäen merkkauksia",
 	"rcfilters-liveupdates-button": "Live-päivitykset",

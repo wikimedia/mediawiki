@@ -1207,7 +1207,6 @@
 	"rcfilters-filter-excluded": "Uitgesluit",
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:nie</strong> $1",
 	"rcfilters-exclude-button-off": "Sluit uit",
-	"rcfilters-view-advanced-filters-label": "Gevorderde filters",
 	"rcfilters-view-tags": "Geëtiketteerde wysigings",
 	"rcfilters-view-namespaces-tooltip": "Filtreer resultate volgens naamruimte",
 	"rcfilters-view-tags-tooltip": "Filter resultate volgens wysigingsetikette",

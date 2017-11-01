@@ -1472,7 +1472,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": " $1 <strong>:नहीं</strong>",
 	"rcfilters-exclude-button-off": "चयनित निकालें",
 	"rcfilters-exclude-button-on": "चयनित को छोड़कर",
-	"rcfilters-view-advanced-filters-label": "उन्नत फ़िल्टर",
 	"rcfilters-view-tags": "टैग वाले सम्पादन",
 	"rcfilters-view-namespaces-tooltip": "नाम स्थान द्वारा फिल्टर परिणाम",
 	"rcfilters-view-tags-tooltip": "संपादन टैग का उपयोग करके फ़िल्टर परिणाम",

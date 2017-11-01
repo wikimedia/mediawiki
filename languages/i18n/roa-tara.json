@@ -1338,7 +1338,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:non</strong> $1",
 	"rcfilters-exclude-button-off": "Scitte le scacchiate",
 	"rcfilters-exclude-button-on": "Scettanne le scacchiate",
-	"rcfilters-view-advanced-filters-label": "Filtre avanzate",
 	"rcfilters-view-tags": "Cangiaminde taggate",
 	"rcnotefrom": "Sotte {{PLURAL:$5|ste 'u cangiamende|stonne le cangiaminde}} da <strong>$3, $4</strong> ('nzigne a <strong>$1</strong> fatte vedè).",
 	"rclistfrom": "Fà vedè le urteme cangiaminde partenne da $3 $2",

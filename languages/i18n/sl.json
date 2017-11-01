@@ -1398,7 +1398,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:ne</strong> $1",
 	"rcfilters-exclude-button-off": "Izključi izbrane",
 	"rcfilters-exclude-button-on": "Izključitev izbranih",
-	"rcfilters-view-advanced-filters-label": "Napredni filtri",
 	"rcfilters-view-tags": "Označena urejanja",
 	"rcfilters-view-namespaces-tooltip": "Filtriraj rezultate po imenskem prostoru",
 	"rcfilters-view-tags-tooltip": "Filtriraj rezultate z uporabo oznak urejanj",

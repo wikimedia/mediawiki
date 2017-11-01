@@ -1367,7 +1367,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:не</strong> $1",
 	"rcfilters-exclude-button-off": "Изключване на избраните",
 	"rcfilters-exclude-button-on": "Изключване на избраните",
-	"rcfilters-view-advanced-filters-label": "Разширени филтри",
 	"rcfilters-view-tags": "Редакции с етикети",
 	"rcfilters-view-namespaces-tooltip": "Филтриране на резултатите по именни пространства",
 	"rcfilters-view-tags-tooltip": "Филтриране на резултатите по етикети на редакциите",

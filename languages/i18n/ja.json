@@ -1475,7 +1475,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "$1 <strong>ではない</strong>",
 	"rcfilters-exclude-button-off": "選択済みを除外",
 	"rcfilters-exclude-button-on": "選択済みを除外中",
-	"rcfilters-view-advanced-filters-label": "詳細フィルター",
 	"rcfilters-view-tags": "タグ付けされた編集",
 	"rcfilters-view-namespaces-tooltip": "名前空間で絞り込む",
 	"rcfilters-view-tags-tooltip": "編集タグを利用した絞込み",

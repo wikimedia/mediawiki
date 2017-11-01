@@ -1386,7 +1386,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:no</strong> $1",
 	"rcfilters-exclude-button-off": "Esclui elejedas",
 	"rcfilters-exclude-button-on": "Escluinte elejedas",
-	"rcfilters-view-advanced-filters-label": "Filtros avansada",
 	"rcfilters-view-tags": "Editas eticetida",
 	"rcfilters-view-namespaces-tooltip": "Filtri resultas par spasio de nom",
 	"rcfilters-view-tags-tooltip": "Filtri resultas par eticetas de edita",

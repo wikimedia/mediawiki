@@ -1435,7 +1435,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:not</strong> $1",
 	"rcfilters-exclude-button-off": "Ekskluder de valgte",
 	"rcfilters-exclude-button-on": "Ekskluderer de valgte",
-	"rcfilters-view-advanced-filters-label": "Avanserte filtre",
 	"rcfilters-view-tags": "Taggede redigeringer",
 	"rcfilters-view-namespaces-tooltip": "Filtrer resultater etter navnerom",
 	"rcfilters-view-tags-tooltip": "Filtrer resultater med redigeringstagger",

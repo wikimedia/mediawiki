@@ -1167,11 +1167,17 @@ class Message implements MessageSpecifier, Serializable {
 			} elseif ( isset( $param['list'] ) ) {
 				return $this->formatListParam( $param['list'], $param['type'], $format );
 			} else {
-				$warning = 'Invalid parameter for message "' . $this->getKey() . '": ' .
-					htmlspecialchars( serialize( $param ) );
-				trigger_error( $warning, E_USER_WARNING );
-				$e = new Exception;
-				wfDebugLog( 'Bug58676', $warning . "\n" . $e->getTraceAsString() );
+				if ( !is_scalar( $param ) ) {
+					$param = serialize( $param );
+				}
+				\MediaWiki\Logger\LoggerFactory::getInstance( 'Bug58676' )->warning(
+					'Invalid parameter for message "{msgkey}": {param}',
+					[
+						'exception' => new Exception,
+						'msgkey' => $this->getKey(),
+						'param' => htmlspecialchars( $param ),
+					]
+				);
 
 				return [ 'before', '[INVALID]' ];
 			}

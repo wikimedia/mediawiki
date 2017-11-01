@@ -1390,7 +1390,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:nie</strong> $1",
 	"rcfilters-exclude-button-off": "Vylúčiť zvolené",
 	"rcfilters-exclude-button-on": "Zvolené vylúčené",
-	"rcfilters-view-advanced-filters-label": "Pokročilé filtre",
 	"rcfilters-view-tags": "Označené úpravy",
 	"rcfilters-view-namespaces-tooltip": "Filtrovať výsledky podľa menného priestoru",
 	"rcfilters-view-tags-tooltip": "Filtrovať výsledky pomocou značiek úprav",

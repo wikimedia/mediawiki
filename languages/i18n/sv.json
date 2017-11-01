@@ -1462,7 +1462,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:not</strong> $1",
 	"rcfilters-exclude-button-off": "Exkludera markerade",
 	"rcfilters-exclude-button-on": "Exkluderar markerade",
-	"rcfilters-view-advanced-filters-label": "Avancerade filter",
 	"rcfilters-view-tags": "Märkta redigeringar",
 	"rcfilters-view-namespaces-tooltip": "Filtrera resultat efter namnrymder",
 	"rcfilters-view-tags-tooltip": "Filtrera resultat med redigeringsmärken",

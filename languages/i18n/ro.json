@@ -32,7 +32,8 @@
 			"Nemo bis",
 			"Turbojet",
 			"Stephanecbisson",
-			"Matrafox"
+			"Matrafox",
+			"Cybernenea11"
 		]
 	},
 	"tog-underline": "Sublinierea legăturilor:",
@@ -1409,7 +1410,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:nu</strong> $1",
 	"rcfilters-exclude-button-off": "Exclude cele selectate",
 	"rcfilters-exclude-button-on": "Se exclud cele selectate",
-	"rcfilters-view-advanced-filters-label": "Filtre avansate",
 	"rcfilters-view-tags": "Editări marcate",
 	"rcfilters-view-namespaces-tooltip": "Filtrează rezultatele după spațiul de nume",
 	"rcfilters-liveupdates-button": "Actualizări în timp real",

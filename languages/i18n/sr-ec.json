@@ -1380,7 +1380,6 @@
 	"rcfilters-filter-excluded": "Изостављено",
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:није</strong> $1",
 	"rcfilters-exclude-button-off": "Изостави означено",
-	"rcfilters-view-advanced-filters-label": "Напредни филтери",
 	"rcfilters-view-tags": "Означене измјене",
 	"rcfilters-view-namespaces-tooltip": "Филтер резултата према именском простору",
 	"rcfilters-view-tags-tooltip": "Филтер резултата према ознаци измјене",

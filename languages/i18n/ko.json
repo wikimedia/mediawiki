@@ -1449,7 +1449,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:아님</strong> $1",
 	"rcfilters-exclude-button-off": "선택 제외",
 	"rcfilters-exclude-button-on": "선택 제외",
-	"rcfilters-view-advanced-filters-label": "고급 필터",
 	"rcfilters-view-tags": "태그된 편집",
 	"rcfilters-view-namespaces-tooltip": "이름공간으로 결과 필터",
 	"rcfilters-view-tags-tooltip": "편집 태그를 사용하여 결과 필터",

@@ -1323,7 +1323,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:ഇവയല്ലാത്തവ -</strong> $1",
 	"rcfilters-exclude-button-off": "തിരഞ്ഞെടുത്തവ ഒഴിച്ചുനിർത്തുക",
 	"rcfilters-exclude-button-on": "തിരഞ്ഞെടുത്തവ ഒഴിവാക്കുക",
-	"rcfilters-view-advanced-filters-label": "വിപുല അരിപ്പകൾ",
 	"rcfilters-view-tags": "ടാഗ് ചെയ്തിട്ടുള്ള തിരുത്തുകൾ",
 	"rcfilters-view-namespaces-tooltip": "നാമമേഖല അനുസരിച്ച് ഫലങ്ങൾ അരിച്ചെടുക്കുക",
 	"rcfilters-liveupdates-button": "നിലവിലുള്ള പുതുക്കലുകൾ",
