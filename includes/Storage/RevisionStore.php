@@ -44,6 +44,7 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LoadBalancer;
 
 /**
@@ -1310,18 +1311,14 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	private function fetchRevisionRowFromConds( IDatabase $db, $conditions, $flags = 0 ) {
 		$this->checkDatabaseWikiId( $db );
 
-		$revQuery = self::getQueryInfo( [ 'page', 'user' ] );
-		$options = [];
-		if ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING ) {
-			$options[] = 'FOR UPDATE';
-		}
-		return $db->selectRow(
-			$revQuery['tables'],
-			$revQuery['fields'],
+		return $this->selectRow(
+			[ 'page', 'user' ],
+			[],
 			$conditions,
 			__METHOD__,
-			$options,
-			$revQuery['joins']
+			$flags,
+			[],
+			$db
 		);
 	}
 
@@ -1466,6 +1463,133 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 */
 	public function selectUserFields() {
 		return [ 'user_name' ];
+	}
+
+	/**
+	 * @param string|array|int $flagsOrOptions Query options, or READ_XXX flags if an int.
+	 * @return array
+	 */
+	private function normalizeQueryOptions( $flagsOrOptions ) {
+		if ( is_int( $flagsOrOptions ) ) {
+			if ( ( $flagsOrOptions & self::READ_LOCKING ) == self::READ_LOCKING ) {
+				return [ 'FOR UPDATE' ];
+			} else {
+				return [];
+			}
+		}
+
+		return (array)$flagsOrOptions;
+	}
+
+	/**
+	 * @param string|array|int $flagsOrOptions Query options, or READ_XXX flags if an int.
+	 * @return IDatabase
+	 */
+	private function getDBConnectionForFlagsOrOptions( $flagsOrOptions ) {
+		if (
+			is_int( $flagsOrOptions )
+			&& ( $flagsOrOptions & self::READ_LATEST ) == self::READ_LATEST
+		) {
+			return $this->getDBConnection( DB_MASTER );
+		} else {
+			return $this->getDBConnection( DB_REPLICA );
+		}
+	}
+
+	/**
+	 * Runs a select query on the given database connection, augmenting the query with
+	 * additional fields and joins required to construct RevisionRecords and other
+	 * related objects. Each row in the result can be used with newRevisionFrfomRow().
+	 *
+	 * This method provides a low level interface for accessing revision rows in the
+	 * database. It is intended for bulk operations, and should otherwise be avoided.
+	 *
+	 * The signature of this method should be kept similar IDatabase::select.
+	 *
+	 * @since 1.31
+	 *
+	 * @param array $tables Any combination of the following strings (table names)
+	 *  - 'page': Join with the page table, and select fields to identify the page
+	 *  - 'user': Join with the user table, and select the user name
+	 *  - 'text': Join with the text table, and select fields to load page text
+	 * @param string|array $fields Field names
+	 * @param string|array $conds Conditions
+	 * @param string $fname Caller function name
+	 * @param array|int $flagsOrOptions Query options, or READ_XXX flags if an int.
+	 * @param array $join_conds Join conditions
+	 * @param IDatabase $db The database connection to use. Optional.
+	 *
+	 * @return IResultWrapper
+	 */
+	public function select(
+		$tables,
+		$fields,
+		$conds,
+		$fname = __METHOD__,
+		$flagsOrOptions = 0,
+		$join_conds = [],
+		IDatabase $db = null
+	) {
+		$db = $db ?: $this->getDBConnectionForFlagsOrOptions( $flagsOrOptions );
+		$queryInfo = $this->getQueryInfo( $tables );
+		$options = $this->normalizeQueryOptions( $flagsOrOptions );
+
+		return $db->select(
+			array_merge( (array)$tables, $queryInfo['tables'] ),
+			array_merge( (array)$fields, $queryInfo['fields'] ),
+			$conds,
+			$fname,
+			$options,
+			array_merge( $join_conds, $queryInfo['joins'] )
+		);
+	}
+
+	/**
+	 * Runs a select query on the given database connection, augmenting the query with
+	 * additional fields and joins required to construct RevisionRecords and other
+	 * related objects. The resulting row can be used with newRevisionFrfomRow().
+	 *
+	 * This method provides a low level interface for accessing revision rows in the
+	 * database. It should be avoided if an appropriate abstraction is available.
+	 *
+	 * The signature of this method should be kept similar IDatabase::select.
+	 *
+	 * @since 1.31
+	 *
+	 * @param array $tables Any combination of the following strings (table names)
+	 *  - 'page': Join with the page table, and select fields to identify the page
+	 *  - 'user': Join with the user table, and select the user name
+	 *  - 'text': Join with the text table, and select fields to load page text
+	 * @param string|array $fields Field names
+	 * @param string|array $conds Conditions
+	 * @param string $fname Caller function name
+	 * @param array|int $flagsOrOptions Query options, or READ_XXX flags if an int.
+	 * @param array $join_conds Join conditions
+	 * @param IDatabase $db The database connection to use. Optional.
+	 *
+	 * @return IResultWrapper
+	 */
+	public function selectRow(
+		$tables,
+		$fields,
+		$conds,
+		$fname = __METHOD__,
+		$flagsOrOptions = 0,
+		$join_conds = [],
+		IDatabase $db = null
+	) {
+		$db = $db ?: $this->getDBConnectionForFlagsOrOptions( $flagsOrOptions );
+		$options = $this->normalizeQueryOptions( $flagsOrOptions );
+		$queryInfo = $this->getQueryInfo( $tables );
+
+		return $db->selectRow(
+			array_merge( (array)$tables, $queryInfo['tables'] ),
+			array_merge( (array)$fields, $queryInfo['fields'] ),
+			$conds,
+			$fname,
+			$options,
+			array_merge( $join_conds, $queryInfo['joins'] )
+		);
 	}
 
 	/**
