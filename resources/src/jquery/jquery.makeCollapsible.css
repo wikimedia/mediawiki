@@ -32,6 +32,25 @@ caption .mw-collapsible-toggle,
 	float: none;
 }
 
+caption .mw-collapsible-toggle,
+th .mw-collapsible-toggle {
+	margin-left: 0.3em;
+}
+/* @noflip */
+.mw-content-ltr caption .mw-collapsible-toggle,
+.mw-content-ltr th .mw-collapsible-toggle,
+.mw-content-rtl .mw-content-ltr caption .mw-collapsible-toggle,
+.mw-content-rtl .mw-content-ltr th .mw-collapsible-toggle {
+	margin-left: 0.3em;
+}
+/* @noflip */
+.mw-content-rtl caption .mw-collapsible-toggle,
+.mw-content-rtl th .mw-collapsible-toggle,
+.mw-content-ltr .mw-content-rtl caption .mw-collapsible-toggle,
+.mw-content-ltr .mw-content-rtl th .mw-collapsible-toggle {
+	margin-right: 0.3em;
+}
+
 /* list-items go as wide as their parent element, don't float them inside list items */
 li .mw-collapsible-toggle,
 .mw-content-ltr li .mw-collapsible-toggle,
