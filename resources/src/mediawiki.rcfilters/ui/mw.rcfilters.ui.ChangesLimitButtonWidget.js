@@ -107,7 +107,7 @@
 	 */
 	mw.rcfilters.ui.ChangesLimitButtonWidget.prototype.onPopupGroupByPage = function ( isGrouped ) {
 		this.controller.toggleFilterSelect( this.groupByPageItemModel.getName(), isGrouped );
-		this.controller.updateGroupByPageDefault( Number( isGrouped ) );
+		this.controller.updateGroupByPageDefault( isGrouped );
 		this.button.popup.toggle( false );
 	};
 
