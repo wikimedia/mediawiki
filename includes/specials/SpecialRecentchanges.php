@@ -33,6 +33,8 @@ use Wikimedia\Rdbms\FakeResultWrapper;
 class SpecialRecentChanges extends ChangesListSpecialPage {
 
 	protected static $savedQueriesPreferenceName = 'rcfilters-saved-queries';
+	protected static $daysPreferenceName = 'rcfilters-days';
+	protected static $limitPreferenceName = 'rcfilters-limit';
 
 	private $watchlistFilterGroupDefinition;
 

@@ -33,6 +33,8 @@ use Wikimedia\Rdbms\IDatabase;
  */
 class SpecialWatchlist extends ChangesListSpecialPage {
 	protected static $savedQueriesPreferenceName = 'rcfilters-wl-saved-queries';
+	protected static $daysPreferenceName = 'watchlistdays';
+	protected static $limitPreferenceName = 'wllimit';
 
 	private $maxDays;
 

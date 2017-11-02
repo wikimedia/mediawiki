@@ -56,6 +56,9 @@
 
 	/**
 	 * Replace the current URI with an updated one from the model state
+	 *
+	 * This happens only on initialization. Other iterations, #updateURL
+	 * is used to also compare whether the url query changed before update.
 	 */
 	mw.rcfilters.UriProcessor.prototype.replaceUpdatedUri = function () {
 		this.constructor.static.replaceState( this.getUpdatedUri() );

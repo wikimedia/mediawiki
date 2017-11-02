@@ -16,6 +16,8 @@
 		this.changesListModel = changesListModel;
 		this.savedQueriesModel = savedQueriesModel;
 		this.savedQueriesPreferenceName = config.savedQueriesPreferenceName;
+		this.daysPreferenceName = config.daysPreferenceName;
+		this.limitPreferenceName = config.limitPreferenceName;
 
 		this.requestCounter = {};
 		this.baseFilterState = {};
@@ -123,12 +125,8 @@
 						max: 1000
 					},
 					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
-					'default': displayConfig.limitDefault,
-					// Temporarily making this not sticky until we resolve the problem
-					// with the misleading preference. Note that if this is to be permanent
-					// we should remove all sticky behavior methods completely
-					// See T172156
-					// isSticky: true,
+					'default': mw.user.options.get( this.limitPreferenceName ) || displayConfig.limitDefault,
+					isSticky: true,
 					excludedFromSavedQueries: true,
 					filters: displayConfig.limitArray.map( function ( num ) {
 						return controller._createFilterDataFromNumber( num, num );
@@ -151,9 +149,8 @@
 							( Number( i ) * 24 ).toFixed( 2 ) :
 							Number( i );
 					},
-					'default': displayConfig.daysDefault,
-					// Temporarily making this not sticky while limit is not sticky, see above
-					// isSticky: true,
+					'default': mw.user.options.get( this.daysPreferenceName ) || displayConfig.daysDefault,
+					isSticky: true,
 					excludedFromSavedQueries: true,
 					filters: [
 						// Hours (1, 2, 6, 12)
@@ -753,24 +750,19 @@
 	 *
 	 * param {number} newValue New value
 	 */
-	mw.rcfilters.Controller.prototype.updateLimitDefault = function ( /* newValue */ ) {
-		// HACK: Temporarily remove this from being sticky
-		// See T172156
-
-		/*
+	mw.rcfilters.Controller.prototype.updateLimitDefault = function ( newValue ) {
 		if ( !$.isNumeric( newValue ) ) {
 			return;
 		}
 
 		newValue = Number( newValue );
 
-		if ( mw.user.options.get( 'rcfilters-rclimit' ) !== newValue ) {
+		if ( mw.user.options.get( this.limitPreferenceName ) !== newValue ) {
 			// Save the preference
-			new mw.Api().saveOption( 'rcfilters-rclimit', newValue );
+			new mw.Api().saveOption( this.limitPreferenceName, newValue );
 			// Update the preference for this session
-			mw.user.options.set( 'rcfilters-rclimit', newValue );
+			mw.user.options.set( this.limitPreferenceName, newValue );
 		}
-		*/
 		return;
 	};
 
@@ -779,24 +771,20 @@
 	 *
 	 * param {number} newValue New value
 	 */
-	mw.rcfilters.Controller.prototype.updateDaysDefault = function ( /* newValue */ ) {
-		// HACK: Temporarily remove this from being sticky
-		// See T172156
-
-		/*
+	mw.rcfilters.Controller.prototype.updateDaysDefault = function ( newValue ) {
 		if ( !$.isNumeric( newValue ) ) {
 			return;
 		}
 
 		newValue = Number( newValue );
 
-		if ( mw.user.options.get( 'rcdays' ) !== newValue ) {
+		if ( mw.user.options.get( this.daysPreferenceName ) !== newValue ) {
 			// Save the preference
-			new mw.Api().saveOption( 'rcdays', newValue );
+			new mw.Api().saveOption( this.daysPreferenceName, newValue );
 			// Update the preference for this session
-			mw.user.options.set( 'rcdays', newValue );
+			mw.user.options.set( this.daysPreferenceName, newValue );
 		}
-		*/
+
 		return;
 	};
 
