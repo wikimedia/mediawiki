@@ -994,6 +994,7 @@ class DifferenceEngine extends ContextSource {
 		$diffs = new Diff( $ota, $nta );
 		$formatter = new TableDiffFormatter();
 		$difftext = $wgContLang->unsegmentForDiff( $formatter->format( $diffs ) );
+		$difftext .= $this->debug( 'native PHP' );
 
 		return $difftext;
 	}
