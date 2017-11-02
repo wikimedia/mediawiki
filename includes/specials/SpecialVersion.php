@@ -724,6 +724,7 @@ class SpecialVersion extends SpecialPage {
 
 		if ( isset( $extension['path'] ) ) {
 			global $IP;
+			global $wgSpecialVersionVcsCacheTime;
 			$extensionPath = dirname( $extension['path'] );
 			if ( $this->coreId == '' ) {
 				wfDebug( 'Looking up core head id' );
@@ -747,7 +748,7 @@ class SpecialVersion extends SpecialPage {
 					$vcsLink = $gitInfo->getHeadViewUrl();
 					$vcsDate = $gitInfo->getHeadCommitDate();
 				}
-				$cache->set( $memcKey, [ $vcsVersion, $vcsLink, $vcsDate ], 60 * 60 * 24 );
+				$cache->set( $memcKey, [ $vcsVersion, $vcsLink, $vcsDate ], $wgSpecialVersionVcsCacheTime );
 			} else {
 				wfDebug( "Pulled VCS info for extension {$extension['name']} from cache" );
 			}
