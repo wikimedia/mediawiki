@@ -1976,6 +1976,7 @@ class OutputPage extends ContextSource {
 	 * @deprecated since 1.27 Use setCdnMaxage() instead
 	 */
 	public function setSquidMaxage( $maxage ) {
+		wfDeprecated( __METHOD__, '1.27' );
 		$this->setCdnMaxage( $maxage );
 	}
 
