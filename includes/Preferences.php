@@ -934,16 +934,16 @@ class Preferences {
 		$defaultPreferences['rcfilters-wl-saved-queries'] = [
 			'type' => 'api',
 		];
+		// Override RCFilters preferences for RecentChanges 'limit'
+		$defaultPreferences['rcfilters-limit'] = [
+			'type' => 'api',
+		];
 		$defaultPreferences['rcfilters-saved-queries-versionbackup'] = [
 			'type' => 'api',
 		];
 		$defaultPreferences['rcfilters-wl-saved-queries-versionbackup'] = [
 			'type' => 'api',
 		];
-		$defaultPreferences['rcfilters-rclimit'] = [
-			'type' => 'api',
-		];
-
 		if ( $config->get( 'RCWatchCategoryMembership' ) ) {
 			$defaultPreferences['hidecategorization'] = [
 				'type' => 'toggle',
@@ -1554,6 +1554,14 @@ class Preferences {
 				# If the user has not set a non-default value here, the default will be returned
 				# and subsequently discarded
 				$formData[$pref] = $user->getOption( $pref, null, true );
+			}
+
+			// If the user changed the rclimit preference, also change the rcfilters-rclimit preference
+			if (
+				isset( $formData['rclimit'] ) &&
+				intval( $formData[ 'rclimit' ] ) !== $user->getIntOption( 'rclimit' )
+			) {
+				$formData['rcfilters-limit'] = $formData['rclimit'];
 			}
 
 			// Keep old preferences from interfering due to back-compat code, etc.
