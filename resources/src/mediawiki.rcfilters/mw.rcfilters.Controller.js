@@ -10,12 +10,16 @@
 	 * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
 	 * @param {Object} config Additional configuration
 	 * @cfg {string} savedQueriesPreferenceName Where to save the saved queries
+	 * @cfg {string} daysPreferenceName Preference name for the days filter
+	 * @cfg {string} limitPreferenceName Preference name for the limit filter
 	 */
 	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel, savedQueriesModel, config ) {
 		this.filtersModel = filtersModel;
 		this.changesListModel = changesListModel;
 		this.savedQueriesModel = savedQueriesModel;
 		this.savedQueriesPreferenceName = config.savedQueriesPreferenceName;
+		this.daysPreferenceName = config.daysPreferenceName;
+		this.limitPreferenceName = config.limitPreferenceName;
 
 		this.requestCounter = {};
 		this.baseFilterState = {};
@@ -123,12 +127,8 @@
 						max: 1000
 					},
 					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
-					'default': displayConfig.limitDefault,
-					// Temporarily making this not sticky until we resolve the problem
-					// with the misleading preference. Note that if this is to be permanent
-					// we should remove all sticky behavior methods completely
-					// See T172156
-					// isSticky: true,
+					'default': mw.user.options.get( this.limitPreferenceName, displayConfig.limitDefault ),
+					isSticky: true,
 					excludedFromSavedQueries: true,
 					filters: displayConfig.limitArray.map( function ( num ) {
 						return controller._createFilterDataFromNumber( num, num );
@@ -151,9 +151,8 @@
 							( Number( i ) * 24 ).toFixed( 2 ) :
 							Number( i );
 					},
-					'default': displayConfig.daysDefault,
-					// Temporarily making this not sticky while limit is not sticky, see above
-					// isSticky: true,
+					'default': mw.user.options.get( this.daysPreferenceName, displayConfig.daysDefault ),
+					isSticky: true,
 					excludedFromSavedQueries: true,
 					filters: [
 						// Hours (1, 2, 6, 12)
@@ -751,53 +750,19 @@
 	/**
 	 * Update the limit default value
 	 *
-	 * param {number} newValue New value
+	 * @param {number} newValue New value
 	 */
-	mw.rcfilters.Controller.prototype.updateLimitDefault = function ( /* newValue */ ) {
-		// HACK: Temporarily remove this from being sticky
-		// See T172156
-
-		/*
-		if ( !$.isNumeric( newValue ) ) {
-			return;
-		}
-
-		newValue = Number( newValue );
-
-		if ( mw.user.options.get( 'rcfilters-rclimit' ) !== newValue ) {
-			// Save the preference
-			new mw.Api().saveOption( 'rcfilters-rclimit', newValue );
-			// Update the preference for this session
-			mw.user.options.set( 'rcfilters-rclimit', newValue );
-		}
-		*/
-		return;
+	mw.rcfilters.Controller.prototype.updateLimitDefault = function ( newValue ) {
+		this.updateBooleanPreference( this.limitPreferenceName, newValue );
 	};
 
 	/**
 	 * Update the days default value
 	 *
-	 * param {number} newValue New value
+	 * @param {number} newValue New value
 	 */
-	mw.rcfilters.Controller.prototype.updateDaysDefault = function ( /* newValue */ ) {
-		// HACK: Temporarily remove this from being sticky
-		// See T172156
-
-		/*
-		if ( !$.isNumeric( newValue ) ) {
-			return;
-		}
-
-		newValue = Number( newValue );
-
-		if ( mw.user.options.get( 'rcdays' ) !== newValue ) {
-			// Save the preference
-			new mw.Api().saveOption( 'rcdays', newValue );
-			// Update the preference for this session
-			mw.user.options.set( 'rcdays', newValue );
-		}
-		*/
-		return;
+	mw.rcfilters.Controller.prototype.updateDaysDefault = function ( newValue ) {
+		this.updateBooleanPreference( this.daysPreferenceName, newValue );
 	};
 
 	/**
@@ -806,17 +771,27 @@
 	 * @param {number} newValue New value
 	 */
 	mw.rcfilters.Controller.prototype.updateGroupByPageDefault = function ( newValue ) {
+		this.updateBooleanPreference( 'usenewrc', newValue );
+	};
+
+	/**
+	 * Update a boolean preference with a new value
+	 *
+	 * @param  {string} prefName Preference name
+	 * @param  {string} newValue New value
+	 */
+	mw.rcfilters.Controller.prototype.updateBooleanPreference = function ( prefName, newValue ) {
 		if ( !$.isNumeric( newValue ) ) {
 			return;
 		}
 
 		newValue = Number( newValue );
 
-		if ( mw.user.options.get( 'usenewrc' ) !== newValue ) {
+		if ( mw.user.options.get( prefName ) !== newValue ) {
 			// Save the preference
-			new mw.Api().saveOption( 'usenewrc', newValue );
+			new mw.Api().saveOption( prefName, newValue );
 			// Update the preference for this session
-			mw.user.options.set( 'usenewrc', newValue );
+			mw.user.options.set( prefName, newValue );
 		}
 	};
 
