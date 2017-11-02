@@ -38,6 +38,18 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	protected static $savedQueriesPreferenceName;
 
+	/**
+	 * Preference name for 'days'. Subclasses should override this.
+	 * @var string
+	 */
+	protected static $daysPreferenceName;
+
+	/**
+	 * Preference name for 'limit'. Subclasses should override this.
+	 * @var string
+	 */
+	protected static $limitPreferenceName;
+
 	/** @var string */
 	protected $rcSubpage;
 
@@ -708,6 +720,14 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$out->addJsConfigVars(
 				'wgStructuredChangeFiltersSavedQueriesPreferenceName',
 				static::$savedQueriesPreferenceName
+			);
+			$out->addJsConfigVars(
+				'wgStructuredChangeFiltersLimitPreferenceName',
+				static::$limitPreferenceName
+			);
+			$out->addJsConfigVars(
+				'wgStructuredChangeFiltersDaysPreferenceName',
+				static::$daysPreferenceName
 			);
 
 			$out->addJsConfigVars(
@@ -1713,15 +1733,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return bool
 	 */
 	public function isStructuredFilterUiEnabled() {
-		if ( $this->getRequest()->getBool( 'rcfilters' ) ) {
-			return true;
-		}
-
-		if ( $this->getConfig()->get( 'StructuredChangeFiltersShowPreference' ) ) {
-			return !$this->getUser()->getOption( 'rcenhancedfilters-disable' );
-		} else {
-			return $this->getUser()->getOption( 'rcenhancedfilters' );
-		}
+		return self::checkStructuredFilterUiEnabled(
+			$this->getContext(),
+			$this->getUser()
+		);
 	}
 
 	/**
@@ -1731,14 +1746,55 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return bool
 	 */
 	public function isStructuredFilterUiEnabledByDefault() {
-		if ( $this->getConfig()->get( 'StructuredChangeFiltersShowPreference' ) ) {
-			return !$this->getUser()->getDefaultOption( 'rcenhancedfilters-disable' );
+		return self::checkStructuredFilterUiEnabledByDefault(
+			$this->getContext(),
+			$this->getUser()
+		);
+	}
+
+	/**
+	 * Static method to check whether StructuredFilter UI is enabled for the given user
+	 *
+	 * @param Context $context Context
+	 * @param User $user User object
+	 * @return bool
+	 */
+	public static function checkStructuredFilterUiEnabled( $context, User $user ) {
+		if ( $context->getRequest()->getBool( 'rcfilters' ) ) {
+			return true;
+		}
+
+		if ( $context->getConfig()->get( 'StructuredChangeFiltersShowPreference' ) ) {
+			return !$user->getOption( 'rcenhancedfilters-disable' );
 		} else {
-			return $this->getUser()->getDefaultOption( 'rcenhancedfilters' );
+			return $user->getOption( 'rcenhancedfilters' );
 		}
 	}
 
-	abstract function getDefaultLimit();
+	/**
+	 * Static method to check whether StructuredFilter UI is enabled by default
+	 *
+	 * @param Context $context Context
+	 * @param User $user User object
+	 * @return bool
+	 */
+	public static function checkStructuredFilterUiEnabledByDefault( $context, User $user ) {
+		if ( $context->getConfig()->get( 'StructuredChangeFiltersShowPreference' ) ) {
+			return !$user->getDefaultOption( 'rcenhancedfilters-disable' );
+		} else {
+			return $user->getDefaultOption( 'rcenhancedfilters' );
+		}
+	}
+
+	/**
+	 * Get the default value of the number of changes to display when loading
+	 * the result set.
+	 *
+	 * @return int
+	 */
+	public function getDefaultLimit() {
+		return $this->getUser()->getIntOption( static::$limitPreferenceName );
+	}
 
 	/**
 	 * Get the default value of the number of days to display when loading
@@ -1747,5 +1803,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 *
 	 * @return float
 	 */
-	abstract function getDefaultDays();
+	public function getDefaultDays() {
+		return floatval( $this->getUser()->getOption( static::$daysPreferenceName ) );
+	}
 }

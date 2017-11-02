@@ -13,13 +13,17 @@
 				$watchlistDetails,
 				wlTopSection,
 				savedQueriesPreferenceName = mw.config.get( 'wgStructuredChangeFiltersSavedQueriesPreferenceName' ),
+				daysPreferenceName = mw.config.get( 'wgStructuredChangeFiltersDaysPreferenceName' ),
+				limitPreferenceName = mw.config.get( 'wgStructuredChangeFiltersLimitPreferenceName' ),
 				filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
 				changesListModel = new mw.rcfilters.dm.ChangesListViewModel(),
 				savedQueriesModel = new mw.rcfilters.dm.SavedQueriesModel( filtersModel ),
 				controller = new mw.rcfilters.Controller(
 					filtersModel, changesListModel, savedQueriesModel,
 					{
-						savedQueriesPreferenceName: savedQueriesPreferenceName
+						savedQueriesPreferenceName: savedQueriesPreferenceName,
+						daysPreferenceName: daysPreferenceName,
+						limitPreferenceName: limitPreferenceName
 					}
 				),
 				$overlay = $( '<div>' )
