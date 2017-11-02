@@ -1579,7 +1579,7 @@
 	"rcfilters-restore-default-filters": "Label for the button that resets filters to defaults",
 	"rcfilters-clear-all-filters": "Title for the button that clears all filters",
 	"rcfilters-show-new-changes": "Label for the button to show new changes.",
-	"rcfilters-search-placeholder": "Placeholder for the filter search input.",
+	"rcfilters-search-placeholder": "Placeholder for the filter search input. The first \"Filter\" is a verb, and the second \"filter\" is a noun.",
 	"rcfilters-invalid-filter": "A label for an invalid filter.",
 	"rcfilters-empty-filter": "Placeholder for the filter list when no filters were chosen.",
 	"rcfilters-filterlist-title": "Title for the filters list.\n{{Identical|Filter}}",

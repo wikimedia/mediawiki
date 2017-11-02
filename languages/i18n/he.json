@@ -1303,6 +1303,7 @@
 	"recentchanges-summary": "ניתן לעקוב אחרי השינויים האחרונים באתר בדף זה.",
 	"recentchanges-noresult": "לא היו בתקופה זו שינויים המתאימים לאפשרויות שנבחרו.",
 	"recentchanges-timeout": "נגמר זמן ההמתנה לקבלת תוצאות החיפוש. ניתן לנסות פרמטרים אחרים לחיפוש.",
+	"recentchanges-network": "בשל תקלה טכנית, לא ניתן היה לטעון את התוצאות. אפשר לנסות לרענן את הדף.",
 	"recentchanges-feed-description": "ניתן לעקוב אחרי השינויים האחרונים באתר בדף זה.",
 	"recentchanges-label-newpage": "בעריכה זו נוצר דף חדש",
 	"recentchanges-label-minor": "זוהי עריכה משנית",

@@ -163,7 +163,8 @@
 			"Jnistal12",
 			"Javier",
 			"Luisangelrg",
-			"Pierpao"
+			"Pierpao",
+			"Ohlila"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -1428,6 +1429,7 @@
 	"recentchanges-legend": "Opciones sobre cambios recientes",
 	"recentchanges-summary": "Sigue los cambios más recientes del wiki en esta página.",
 	"recentchanges-noresult": "No hubo cambios que respondan a esos criterios durante el período seleccionado.",
+	"recentchanges-network": "Debido a un problema técnico, ningún resultado ha sido cargado. Trata de volver a cargar la página.",
 	"recentchanges-feed-description": "Realiza un seguimiento de los cambios más recientes en el wiki con este canal.",
 	"recentchanges-label-newpage": "Esta edición creó una página",
 	"recentchanges-label-minor": "Esta es una edición menor",
@@ -1468,7 +1470,7 @@
 	"rcfilters-restore-default-filters": "Restaurar filtros predeterminados",
 	"rcfilters-clear-all-filters": "Borrar todos los filtros",
 	"rcfilters-show-new-changes": "Ver cambios más recientes",
-	"rcfilters-search-placeholder": "Filtrar cambios recientes (navega o empieza a escribir)",
+	"rcfilters-search-placeholder": "Filtrar cambios (usa el menú o buscar para aplicar filtro)",
 	"rcfilters-invalid-filter": "Filtro no válido",
 	"rcfilters-empty-filter": "No hay filtros activos. Se muestran todas las contribuciones.",
 	"rcfilters-filterlist-title": "Filtros",

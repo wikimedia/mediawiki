@@ -14,7 +14,8 @@
 			"Janezdrilc",
 			"Matma Rex",
 			"NegativeTwelveDollars",
-			"Xð"
+			"Xð",
+			"HairyFotr"
 		]
 	},
 	"tog-underline": "Podčrtavanje povezav:",
@@ -1321,7 +1322,7 @@
 	"rcfilters-restore-default-filters": "Obnovi privzete filtre",
 	"rcfilters-clear-all-filters": "Počisti vse filtre",
 	"rcfilters-show-new-changes": "Ogled najnovejših sprememb",
-	"rcfilters-search-placeholder": "Filtrirajte zadnje spremembe (prebrskajte ali začnite vnašati)",
+	"rcfilters-search-placeholder": "Filtrirajte spremembe (uporabite meni ali poiščite ime filtra)",
 	"rcfilters-invalid-filter": "Neveljaven filter",
 	"rcfilters-empty-filter": "Ni dejavnih filtrov. Prikazani so vsi prispevki.",
 	"rcfilters-filterlist-title": "Filtri",
@@ -1340,9 +1341,9 @@
 	"rcfilters-filter-editsbyother-label": "Spremembe drugih",
 	"rcfilters-filter-editsbyother-description": "Vse spremembe razen vaših.",
 	"rcfilters-filtergroup-userExpLevel": "Prijava in izkušnje uporabnika",
-	"rcfilters-filter-user-experience-level-registered-label": "Prijavljeni",
+	"rcfilters-filter-user-experience-level-registered-label": "Registrirani",
 	"rcfilters-filter-user-experience-level-registered-description": "Prijavljeni uporabniki.",
-	"rcfilters-filter-user-experience-level-unregistered-label": "Neprijavljeni",
+	"rcfilters-filter-user-experience-level-unregistered-label": "Neregistrirani",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Uporabniki, ki niso prijavljeni.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Novinci",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Registrirani uporabniki, ki imajo manj kot 10 urejanj ali 4 dni dejavnosti.",
