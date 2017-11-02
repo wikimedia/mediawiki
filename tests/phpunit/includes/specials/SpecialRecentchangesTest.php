@@ -15,7 +15,7 @@ class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
 
 		# setup the CLSP object
 		$this->changesListSpecialPage = TestingAccessWrapper::newFromObject(
-			new SpecialRecentchanges
+			new SpecialRecentChanges
 		);
 	}
 
