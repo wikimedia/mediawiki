@@ -2942,6 +2942,7 @@ $result: The SearchResult object
 $terms: String of the search terms entered
 $specialSearch: The SpecialSearch object
 &$query: Array of query string parameters for the link representing the search result.
+&$attributes: Array of title link attributes, can be modified by extension.
 
 'SidebarBeforeOutput': Allows to edit sidebar just before it is output by skins.
 Warning: This hook is run on each display. You should consider to use
