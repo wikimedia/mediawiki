@@ -15,7 +15,8 @@
 			type: 'send_unselected_if_any',
 			filters: [
 				{ name: 'filter3', cssClass: 'filter3class' },
-				{ name: 'filter4', cssClass: 'filter4class', default: true }
+				{ name: 'filter4', cssClass: 'filter4class', default: true },
+				{ name: 'stickyFilter', cssClass: 'stickyFilterclass', sticky: true }
 			]
 		}, {
 			name: 'group3',
@@ -84,6 +85,17 @@
 			( uriProcessor.getUpdatedUri( { foo: 'bar' } ) ).query,
 			{ urlversion: '2', filter2: '1', group3: 'filter5', foo: 'bar' },
 			'Model state is reflected in the updated URI with existing uri params'
+		);
+
+		// Update the model
+		filtersModel.toggleFiltersSelected( {
+			group2__stickyFilter: true // Param: stickyFilter: '1'
+		} );
+
+		assert.deepEqual(
+			( uriProcessor.getUpdatedUri( {} ) ).query,
+			{ urlversion: '2', filter2: '1', group3: 'filter5' },
+			'Sticky parameters are not reflected in the URI query'
 		);
 	} );
 
