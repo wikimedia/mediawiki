@@ -709,6 +709,14 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				'wgStructuredChangeFiltersSavedQueriesPreferenceName',
 				static::$savedQueriesPreferenceName
 			);
+			$out->addJsConfigVars(
+				'wgStructuredChangeFiltersLimitPreferenceName',
+				static::$limitPreferenceName
+			);
+			$out->addJsConfigVars(
+				'wgStructuredChangeFiltersDaysPreferenceName',
+				static::$daysPreferenceName
+			);
 
 			$out->addJsConfigVars(
 				'StructuredChangeFiltersLiveUpdatePollingRate',
