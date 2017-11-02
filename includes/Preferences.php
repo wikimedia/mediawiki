@@ -901,15 +901,26 @@ class Preferences {
 		$config = $context->getConfig();
 		$rcMaxAge = $config->get( 'RCMaxAge' );
 		# # RecentChanges #####################################
-		$defaultPreferences['rcdays'] = [
-			'type' => 'float',
-			'label-message' => 'recentchangesdays',
-			'section' => 'rc/displayrc',
-			'min' => 1,
-			'max' => ceil( $rcMaxAge / ( 3600 * 24 ) ),
-			'help' => $context->msg( 'recentchangesdays-max' )->numParams(
-				ceil( $rcMaxAge / ( 3600 * 24 ) ) )->escaped()
-		];
+
+		if (
+			// Only display this preferences if RCFilters is not enabled on Watchlist
+			!$user->getOption( 'rcenhancedfilters' ) ||
+			(
+				$config->get( 'StructuredChangeFiltersShowPreference' ) &&
+				$user->getOption( 'rcenhancedfilters-disable' )
+			)
+		) {
+			$defaultPreferences['rcdays'] = [
+				'type' => 'float',
+				'label-message' => 'recentchangesdays',
+				'section' => 'rc/displayrc',
+				'min' => 1,
+				'max' => ceil( $rcMaxAge / ( 3600 * 24 ) ),
+				'help' => $context->msg( 'recentchangesdays-max' )->numParams(
+					ceil( $rcMaxAge / ( 3600 * 24 ) ) )->escaped()
+			];
+		}
+
 		$defaultPreferences['rclimit'] = [
 			'type' => 'int',
 			'min' => 0,
@@ -932,6 +943,13 @@ class Preferences {
 			'type' => 'api',
 		];
 		$defaultPreferences['rcfilters-wl-saved-queries'] = [
+			'type' => 'api',
+		];
+		// Override preferences for RecentChanges 'days' and 'limit'
+		$defaultPreferences['rcfilters-days'] = [
+			'type' => 'api',
+		];
+		$defaultPreferences['rcfilters-limit'] = [
 			'type' => 'api',
 		];
 		$defaultPreferences['rcfilters-saved-queries-versionbackup'] = [
@@ -1021,23 +1039,29 @@ class Preferences {
 			];
 		}
 
-		$defaultPreferences['watchlistdays'] = [
-			'type' => 'float',
-			'min' => 0,
-			'max' => $watchlistdaysMax,
-			'section' => 'watchlist/displaywatchlist',
-			'help' => $context->msg( 'prefs-watchlist-days-max' )->numParams(
-				$watchlistdaysMax )->escaped(),
-			'label-message' => 'prefs-watchlist-days',
-		];
-		$defaultPreferences['wllimit'] = [
-			'type' => 'int',
-			'min' => 0,
-			'max' => 1000,
-			'label-message' => 'prefs-watchlist-edits',
-			'help' => $context->msg( 'prefs-watchlist-edits-max' )->escaped(),
-			'section' => 'watchlist/displaywatchlist',
-		];
+		if (
+			// Only display these preferences if RCFilters is not enabled on Watchlist
+			!$context->getUser()->getOption( 'rcenhancedfilters' )
+		) {
+			$defaultPreferences['watchlistdays'] = [
+				'type' => 'float',
+				'min' => 0,
+				'max' => $watchlistdaysMax,
+				'section' => 'watchlist/displaywatchlist',
+				'help' => $context->msg( 'prefs-watchlist-days-max' )->numParams(
+					$watchlistdaysMax )->escaped(),
+				'label-message' => 'prefs-watchlist-days',
+			];
+			$defaultPreferences['wllimit'] = [
+				'type' => 'int',
+				'min' => 0,
+				'max' => 1000,
+				'label-message' => 'prefs-watchlist-edits',
+				'help' => $context->msg( 'prefs-watchlist-edits-max' )->escaped(),
+				'section' => 'watchlist/displaywatchlist',
+			];
+		}
+
 		$defaultPreferences['extendwatchlist'] = [
 			'type' => 'toggle',
 			'section' => 'watchlist/advancedwatchlist',
