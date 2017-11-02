@@ -1,3 +1,22 @@
+== MediaWiki 1.29.2 ==
+
+This not a release yet!
+
+=== Changes since 1.29.1 ===
+* (T166757) Avoid scoped lock errors in Category::refreshCounts() due to nesting.
+* (T175439) Unbreak Postgres Updater when setting defaults for a column.
+* (T160298) Remove use of implicitGroupBy() in ActiveUsersPager.
+* Fixed login button label to accept RawMessage.
+* Fixed case of SpecialRecentChanges class.
+* Declare uploadCount property in importDump.php.
+
+== MediaWiki 1.29.1 ==
+
+This is a security and maintenance release of the MediaWiki 1.29 branch.
+
+The SpamBlacklist and PdfHandler extensions were missing from the generated
+packages.
+
 == MediaWiki 1.29 ==
 
 === Configuration changes in 1.29 ===
