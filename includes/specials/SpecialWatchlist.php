@@ -33,6 +33,8 @@ use Wikimedia\Rdbms\IDatabase;
  */
 class SpecialWatchlist extends ChangesListSpecialPage {
 	protected static $savedQueriesPreferenceName = 'rcfilters-wl-saved-queries';
+	protected static $daysPreferenceName = 'watchlistdays';
+	protected static $limitPreferenceName = 'wllimit';
 
 	private $maxDays;
 
@@ -108,16 +110,18 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 	}
 
-	public function isStructuredFilterUiEnabled() {
-		return $this->getRequest()->getBool( 'rcfilters' ) || (
-			$this->getConfig()->get( 'StructuredChangeFiltersOnWatchlist' ) &&
-			$this->getUser()->getOption( 'rcenhancedfilters' )
+	public static function checkStructuredFilterUiEnabled( IContextSource $context, User $user ) {
+		return $context->getRequest()->getBool( 'rcfilters' ) || (
+			$context->getConfig()->get( 'StructuredChangeFiltersOnWatchlist' ) &&
+			$user->getOption( 'rcenhancedfilters' )
 		);
 	}
 
-	public function isStructuredFilterUiEnabledByDefault() {
-		return $this->getConfig()->get( 'StructuredChangeFiltersOnWatchlist' ) &&
-			$this->getUser()->getDefaultOption( 'rcenhancedfilters' );
+	public static function checkStructuredFilterUiEnabledByDefault(
+		IContextSource $context, User $user
+	) {
+		return $context->getConfig()->get( 'StructuredChangeFiltersOnWatchlist' ) &&
+			$user->getDefaultOption( 'rcenhancedfilters' );
 	}
 
 	/**
@@ -873,13 +877,5 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 		$count = $store->countWatchedItems( $this->getUser() );
 		return floor( $count / 2 );
-	}
-
-	function getDefaultLimit() {
-		return $this->getUser()->getIntOption( 'wllimit' );
-	}
-
-	function getDefaultDays() {
-		return floatval( $this->getUser()->getOption( 'watchlistdays' ) );
 	}
 }
