@@ -337,6 +337,7 @@ abstract class Job implements IJobSpecification {
 	 * @deprecated since 1.21
 	 */
 	public function insert() {
+		wfDeprecated( __METHOD__, '1.21' );
 		JobQueueGroup::singleton()->push( $this );
 		return true;
 	}
