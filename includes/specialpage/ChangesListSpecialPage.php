@@ -709,6 +709,14 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				'wgStructuredChangeFiltersSavedQueriesPreferenceName',
 				static::$savedQueriesPreferenceName
 			);
+			$out->addJsConfigVars(
+				'wgStructuredChangeFiltersLimitPreferenceName',
+				static::$limitPreferenceName
+			);
+			$out->addJsConfigVars(
+				'wgStructuredChangeFiltersDaysPreferenceName',
+				static::$daysPreferenceName
+			);
 
 			$out->addJsConfigVars(
 				'StructuredChangeFiltersLiveUpdatePollingRate',
@@ -1738,7 +1746,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		}
 	}
 
-	abstract function getDefaultLimit();
+	/**
+	 * Get the default value of the number of changes to display when loading
+	 * the result set.
+	 *
+	 * @return int
+	 */
+	public function getDefaultLimit() {
+		return $this->getUser()->getIntOption( static::$limitPreferenceName );
+	}
 
 	/**
 	 * Get the default value of the number of days to display when loading
@@ -1747,5 +1763,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 *
 	 * @return float
 	 */
-	abstract function getDefaultDays();
+	public function getDefaultDays() {
+		return floatval( $this->getUser()->getOption( static::$daysPreferenceName ) );
+	}
 }
