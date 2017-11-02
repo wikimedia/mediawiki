@@ -934,16 +934,16 @@ class Preferences {
 		$defaultPreferences['rcfilters-wl-saved-queries'] = [
 			'type' => 'api',
 		];
+		// Override RCFilters preferences for RecentChanges 'limit'
+		$defaultPreferences['rcfilters-limit'] = [
+			'type' => 'api',
+		];
 		$defaultPreferences['rcfilters-saved-queries-versionbackup'] = [
 			'type' => 'api',
 		];
 		$defaultPreferences['rcfilters-wl-saved-queries-versionbackup'] = [
 			'type' => 'api',
 		];
-		$defaultPreferences['rcfilters-rclimit'] = [
-			'type' => 'api',
-		];
-
 		if ( $config->get( 'RCWatchCategoryMembership' ) ) {
 			$defaultPreferences['hidecategorization'] = [
 				'type' => 'toggle',
