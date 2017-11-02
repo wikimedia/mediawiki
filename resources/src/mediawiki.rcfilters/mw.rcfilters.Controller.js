@@ -825,7 +825,7 @@
 	 * without adding an history entry.
 	 */
 	mw.rcfilters.Controller.prototype.replaceUrl = function () {
-		this.uriProcessor.replaceUpdatedUri();
+		this.uriProcessor.updateURL();
 	};
 
 	/**

@@ -55,13 +55,6 @@
 	};
 
 	/**
-	 * Replace the current URI with an updated one from the model state
-	 */
-	mw.rcfilters.UriProcessor.prototype.replaceUpdatedUri = function () {
-		this.constructor.static.replaceState( this.getUpdatedUri() );
-	};
-
-	/**
 	 * Get an updated mw.Uri object based on the model state
 	 *
 	 * @param {Object} [uriQuery] An external URI query to build the new uri
