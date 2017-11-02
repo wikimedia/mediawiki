@@ -33,6 +33,8 @@ use Wikimedia\Rdbms\FakeResultWrapper;
 class SpecialRecentChanges extends ChangesListSpecialPage {
 
 	protected static $savedQueriesPreferenceName = 'rcfilters-saved-queries';
+	protected static $daysPreferenceName = 'rcdays'; // Use general RecentChanges preference
+	protected static $limitPreferenceName = 'rcfilters-limit'; // Use RCFilters-specific preference
 
 	private $watchlistFilterGroupDefinition;
 
@@ -972,11 +974,13 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		return 60 * 5;
 	}
 
-	function getDefaultLimit() {
-		return $this->getUser()->getIntOption( 'rclimit' );
-	}
+	public function getDefaultLimit() {
+		// Only use the given saved preference for limit if RCFilters is enabled
+		if ( $this->isStructuredFilterUiEnabled() ) {
+			parent::getDefaultLimit();
+		}
 
-	function getDefaultDays() {
-		return floatval( $this->getUser()->getOption( 'rcdays' ) );
+		// Otherwise, use the system rclimit preference value
+		return $this->getUser()->getIntOption( 'rclimit' );
 	}
 }
