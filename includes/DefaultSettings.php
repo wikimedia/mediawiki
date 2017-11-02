@@ -8789,6 +8789,13 @@ $wgInterwikiPrefixDisplayTypes = [];
 $wgCommentTableSchemaMigrationStage = MIGRATION_OLD;
 
 /**
+ * Time to cache VCS info for extensions on the Special:Version page.
+ * Default is 1 day.
+ * @since 1.31
+ */
+$wgSpecialVersionVcsCacheTime = 60 * 60 * 24;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
