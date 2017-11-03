@@ -25,6 +25,15 @@
 				{ name: 'filter5', cssClass: 'filter5class' },
 				{ name: 'filter6' } // Not supporting highlights
 			]
+		}, {
+			name: 'group4',
+			title: 'Group 4',
+			type: 'boolean',
+			sticky: true,
+			filters: [
+				{ name: 'stickyFilter7', cssClass: 'filter7class' },
+				{ name: 'stickyFilter8', cssClass: 'filter8class' }
+			]
 		} ],
 		minimalDefaultParams = {
 			filter1: '1',
