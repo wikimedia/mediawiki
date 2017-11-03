@@ -29,7 +29,7 @@
 			name: 'group4',
 			title: 'Group 4',
 			type: 'boolean',
-			isSticky: true,
+			sticky: true,
 			filters: [
 				{ name: 'stickyFilter7', cssClass: 'filter7class' },
 				{ name: 'stickyFilter8', cssClass: 'filter8class' }

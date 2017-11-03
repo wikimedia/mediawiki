@@ -22,7 +22,7 @@
 		}, {
 			name: 'group3',
 			type: 'boolean',
-			isSticky: true,
+			sticky: true,
 			filters: [
 				{ name: 'group3option1', cssClass: 'filter1class' },
 				{ name: 'group3option2', cssClass: 'filter1class' },

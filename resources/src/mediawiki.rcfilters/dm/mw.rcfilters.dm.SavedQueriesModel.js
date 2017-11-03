@@ -121,7 +121,7 @@
 			if ( normalizedData && normalizedData.params ) {
 				// Backwards-compat fix: Remove excluded parameters from
 				// the given data, if they exist
-				normalizedData.params = model.filtersModel.removeExcludedParams( normalizedData.params );
+				normalizedData.params = model.filtersModel.removeStickyParams( normalizedData.params );
 
 				model.cleanupHighlights( normalizedData );
 
@@ -296,20 +296,11 @@
 	/**
 	 * Get the full data representation of the default query, if it exists
 	 *
-	 * @param {boolean} [excludeHiddenParams] Exclude hidden parameters in the result
 	 * @return {Object|null} Representation of the default params if exists.
 	 *  Null if default doesn't exist or if the user is not logged in.
 	 */
-	mw.rcfilters.dm.SavedQueriesModel.prototype.getDefaultParams = function ( excludeHiddenParams ) {
-		var data = ( !mw.user.isAnon() && this.getItemParams( this.getDefault() ) ) || {};
-
-		if ( excludeHiddenParams ) {
-			Object.keys( this.filtersModel.getDefaultHiddenParams() ).forEach( function ( paramName ) {
-				delete data[ paramName ];
-			} );
-		}
-
-		return data;
+	mw.rcfilters.dm.SavedQueriesModel.prototype.getDefaultParams = function () {
+		return ( !mw.user.isAnon() && this.getItemParams( this.getDefault() ) ) || {};
 	};
 
 	/**
@@ -332,23 +323,10 @@
 	 * @return {Object} Full param representation
 	 */
 	mw.rcfilters.dm.SavedQueriesModel.prototype.buildParamsFromData = function ( data ) {
-		// Merge saved filter state with sticky filter values
-		var savedFilters;
-
 		data = data || {};
-
-		// In order to merge sticky filters with the data, we have to
-		// transform this to filters first, merge, and then back to
-		// parameters
-		savedFilters = $.extend(
-			true, {},
-			this.filtersModel.getFiltersFromParameters( data.params ),
-			this.filtersModel.getStickyFiltersState()
-		);
-
 		// Return parameter representation
 		return this.filtersModel.getMinimizedParamRepresentation( $.extend( true, {},
-			this.filtersModel.getParametersFromFilters( savedFilters ),
+			data.params,
 			data.highlights
 		) );
 	};
