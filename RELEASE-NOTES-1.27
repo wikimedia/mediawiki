@@ -8,9 +8,15 @@ This not a release yet!
 * (T151136) Provide credits information to callbacks.
 * (T160462) Allow namespaces defined in extension.json to be overwritten locally.
 * (T168856) Allow SVGs created by Dia to be uploaded.
-* (T174262) Various backports for PHP 7.1 support.
+* (T144705) (T148662) Password reset link is no longer shown when no reset options are
+  available.
+* (T143788) (T174262) Various backports for PHP 7.0 and 7.1 support.
 * (T66795) $wgUserEmailUseReplyTo is now true by default to work around restrictive DMARC
   policies.
+* DB_REPLICA constant added from REL1_28+ to ease backports to extensions and core.
+* (T175439) Unbreak Postgres Updater when setting defaults for a column.
+* (T160298) Remove use of implicitGroupBy() in ActiveUsersPager.
+* (T142304) Allow putting the app ID in the password for bot passwords.
 
 == MediaWiki 1.27.3 ==
 Due to a packaging error, the wrong version of the SyntaxHighlight extension was

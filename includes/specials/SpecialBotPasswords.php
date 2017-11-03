@@ -292,9 +292,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 		] );
 
 		if ( $this->operation === 'insert' || !empty( $data['resetPassword'] ) ) {
-			$this->password = PasswordFactory::generateRandomPasswordString(
-				max( 32, $this->getConfig()->get( 'MinimalPasswordLength' ) )
-			);
+			$this->password = BotPassword::generatePassword( $this->getConfig() );
 			$passwordFactory = new PasswordFactory();
 			$passwordFactory->init( RequestContext::getMain()->getConfig() );
 			$password = $passwordFactory->newFromPlaintext( $this->password );
@@ -337,7 +335,9 @@ class SpecialBotPasswords extends FormSpecialPage {
 			$out->addWikiMsg(
 				'botpasswords-newpassword',
 				htmlspecialchars( $username . $sep . $this->par ),
-				htmlspecialchars( $this->password )
+				htmlspecialchars( $this->password ),
+				htmlspecialchars( $username ),
+				htmlspecialchars( $this->par . $sep . $this->password )
 			);
 			$this->password = null;
 		}

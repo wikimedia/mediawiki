@@ -220,6 +220,34 @@ class BotPasswordTest extends MediaWikiTestCase {
 		$this->assertNotNull( BotPassword::newFromCentralId( 43, 'BotPassword' ) );
 	}
 
+	/**
+	 * @dataProvider provideCanonicalizeLoginData
+	 */
+	public function testCanonicalizeLoginData( $username, $password, $expectedResult ) {
+		$result = BotPassword::canonicalizeLoginData( $username, $password );
+		if ( is_array( $expectedResult ) ) {
+			$this->assertArrayEquals( $expectedResult, $result, true, true );
+		} else {
+			$this->assertSame( $expectedResult, $result );
+		}
+	}
+
+	public function provideCanonicalizeLoginData() {
+		return [
+			[ 'user', 'pass', false ],
+			[ 'user', 'abc@def', false ],
+			[ 'legacy@user', 'pass', false ],
+			[ 'user@bot', '12345678901234567890123456789012',
+				[ 'user@bot', '12345678901234567890123456789012', true ] ],
+			[ 'user', 'bot@12345678901234567890123456789012',
+				[ 'user@bot', '12345678901234567890123456789012', true ] ],
+			[ 'user', 'bot@12345678901234567890123456789012345',
+				[ 'user@bot', '12345678901234567890123456789012345', true ] ],
+			[ 'user', 'bot@x@12345678901234567890123456789012',
+				[ 'user@bot@x', '12345678901234567890123456789012', true ] ],
+		];
+	}
+
 	public function testLogin() {
 		// Test failure when bot passwords aren't enabled
 		$this->setMwGlobals( 'wgEnableBotPasswords', false );

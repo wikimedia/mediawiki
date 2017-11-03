@@ -110,17 +110,18 @@ class ApiLogin extends ApiBase {
 		}
 
 		// Try bot passwords
-		if ( $authRes === false && $this->getConfig()->get( 'EnableBotPasswords' ) &&
-			strpos( $params['name'], BotPassword::getSeparator() ) !== false
+		if (
+			$authRes === false && $this->getConfig()->get( 'EnableBotPasswords' ) &&
+			( $botLoginData = BotPassword::canonicalizeLoginData( $params['name'], $params['password'] ) )
 		) {
 			$status = BotPassword::login(
-				$params['name'], $params['password'], $this->getRequest()
+				$botLoginData[0], $botLoginData[1], $this->getRequest()
 			);
 			if ( $status->isOK() ) {
 				$session = $status->getValue();
 				$authRes = 'Success';
 				$loginType = 'BotPassword';
-			} else {
+			} elseif ( !$botLoginData[2] ) {
 				$authRes = 'Failed';
 				$message = $status->getMessage();
 				LoggerFactory::getInstance( 'authmanager' )->info(

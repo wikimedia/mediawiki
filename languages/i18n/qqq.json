@@ -747,7 +747,7 @@
 	"botpasswords-updated-body": "Success message when a bot password is updated. Parameters:\n* $1 - Bot name\n* $2 - User name",
 	"botpasswords-deleted-title": "Title of the success page when a bot password is deleted.",
 	"botpasswords-deleted-body": "Success message when a bot password is deleted. Parameters:\n* $1 - Bot name\n* $2 - User name",
-	"botpasswords-newpassword": "Success message to display the new password when a bot password is created or updated. Parameters:\n* $1 - User name to be used for login.\n* $2 - Password to be used for login.",
+	"botpasswords-newpassword": "Success message to display the new password when a bot password is created or updated. Parameters:\n* $1 - User name to be used for login.\n* $2 - Password to be used for login.\n* $3, $4 - an alternative version of the user name and password, respectively, which is less preferred, but more compatible with old bots.",
 	"botpasswords-no-provider": "Error message when login is attempted but the BotPasswordsSessionProvider is not included in <code>$wgSessionProviders</code>.",
 	"botpasswords-restriction-failed": "Error message when login is rejected because the configured restrictions were not satisfied.",
 	"botpasswords-invalid-name": "Error message when a username lacking the separator character is passed to BotPassword. Parameters:\n* $1 - The separator character.",
