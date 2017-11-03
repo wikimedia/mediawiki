@@ -2,6 +2,7 @@
 
 require_once __DIR__ . "/../extensions/BlueSpiceFoundation/BlueSpiceFoundation.php";
 require_once __DIR__ . "/../extensions/BlueSpiceExtensions/BlueSpiceExtensions.php";
+wfLoadExtension("BlueSpiceCountThings");
 wfLoadExtension("BlueSpiceAvatars");
 wfLoadExtension("BlueSpiceInterWikiLinks");
 wfLoadExtension("BlueSpicePagesVisited");
