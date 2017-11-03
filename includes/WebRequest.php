@@ -93,7 +93,28 @@ class WebRequest {
 
 		// POST overrides GET data
 		// We don't use $_REQUEST here to avoid interference from cookies...
-		$this->data = $_POST + $_GET;
+		// Parse the data correctly if the client supplied it as a JSON object
+		// in the request's body
+		$headers = $this->getAllHeaders();
+		if ( $this->wasPosted() &&
+				isset( $headers['CONTENT-TYPE'] ) &&
+				preg_match( "/\bapplication\/json/i", $headers['CONTENT-TYPE'] ) ) {
+			$decoded = null;
+			try {
+				$decoded = json_decode( $this->getRawPostString(), true );
+			} catch ( Exception $e ) {
+				// the contents of the body cannot be decoded properly, so log the
+				// exception, but continue as if the body was not there
+				MWExceptionHandler::logException( $e );
+			}
+			if ( is_array( $decoded ) ) {
+				$this->data = $decoded + $_GET;
+			} else {
+				$this->data = $_GET;
+			}
+		} else {
+			$this->data = $_POST + $_GET;
+		}
 	}
 
 	/**
