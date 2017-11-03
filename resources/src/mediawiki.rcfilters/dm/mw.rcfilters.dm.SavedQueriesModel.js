@@ -296,20 +296,11 @@
 	/**
 	 * Get the full data representation of the default query, if it exists
 	 *
-	 * @param {boolean} [excludeHiddenParams] Exclude hidden parameters in the result
 	 * @return {Object|null} Representation of the default params if exists.
 	 *  Null if default doesn't exist or if the user is not logged in.
 	 */
-	mw.rcfilters.dm.SavedQueriesModel.prototype.getDefaultParams = function ( excludeHiddenParams ) {
-		var data = ( !mw.user.isAnon() && this.getItemParams( this.getDefault() ) ) || {};
-
-		if ( excludeHiddenParams ) {
-			Object.keys( this.filtersModel.getDefaultHiddenParams() ).forEach( function ( paramName ) {
-				delete data[ paramName ];
-			} );
-		}
-
-		return data;
+	mw.rcfilters.dm.SavedQueriesModel.prototype.getDefaultParams = function () {
+		return ( !mw.user.isAnon() && this.getItemParams( this.getDefault() ) ) || {};
 	};
 
 	/**
