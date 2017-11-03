@@ -13,10 +13,6 @@
 	 *  is a part of.
 	 * @cfg {boolean} [isSticky] This group is using a 'sticky' default; meaning
 	 *  that every time a value is changed, it becomes the new default
-	 * @cfg {boolean} [excludedFromSavedQueries] A specific requirement to exclude
-	 *  this filter from saved queries. This is always true if the filter is 'sticky'
-	 *  but can be used for non-sticky filters as an additional requirement. Similarly
-	 *  to 'sticky' it works for the entire group as a whole.
 	 * @cfg {string} [title] Group title
 	 * @cfg {boolean} [hidden] This group is hidden from the regular menu views
 	 * @cfg {boolean} [allowArbitrary] Allows for an arbitrary value to be added to the
@@ -48,7 +44,6 @@
 		this.type = config.type || 'send_unselected_if_any';
 		this.view = config.view || 'default';
 		this.sticky = !!config.isSticky;
-		this.excludedFromSavedQueries = this.sticky || !!config.excludedFromSavedQueries;
 		this.title = config.title || name;
 		this.hidden = !!config.hidden;
 		this.allowArbitrary = !!config.allowArbitrary;
@@ -900,15 +895,6 @@
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.isSticky = function () {
 		return this.sticky;
-	};
-
-	/**
-	 * Check whether the group value is excluded from saved queries
-	 *
-	 * @return {boolean} Group value is excluded from saved queries
-	 */
-	mw.rcfilters.dm.FilterGroup.prototype.isExcludedFromSavedQueries = function () {
-		return this.excludedFromSavedQueries;
 	};
 
 	/**

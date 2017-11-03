@@ -38,7 +38,6 @@
 			name: 'group2',
 			type: 'send_unselected_if_any',
 			fullCoverage: true,
-			excludedFromSavedQueries: true,
 			conflicts: [ { group: 'group1', filter: 'filter1' } ],
 			filters: [
 				{ name: 'filter4', label: 'group2filter4-label', description: 'group2filter4-desc', cssClass: 'filter4class' },
@@ -61,6 +60,7 @@
 		}, {
 			name: 'group4',
 			type: 'single_option',
+			hidden: true,
 			default: 'option2',
 			filters: [
 				// NOTE: The entire group has no highlight supported
@@ -96,6 +96,22 @@
 				{ name: 'group7option3', label: 'group7option3-label', description: 'group7option3-desc', cssClass: 'group7opt3class' }
 			]
 		} ],
+		shortFilterDefinition = [ {
+			name: 'group1',
+			type: 'send_unselected_if_any',
+			filters: [ { name: 'filter1' }, { name: 'filter2' } ]
+		}, {
+			name: 'group2',
+			type: 'boolean',
+			hidden: true,
+			filters: [ { name: 'filter3' }, { name: 'filter4' } ]
+		}, {
+			name: 'group3',
+			type: 'string_options',
+			isSticky: true,
+			default: 'filter6',
+			filters: [ { name: 'filter5' }, { name: 'filter6' }, { name: 'filter7' } ]
+		} ],
 		viewsDefinition = {
 			namespaces: {
 				label: 'Namespaces',
@@ -124,10 +140,6 @@
 			group3: 'filter8',
 			group4: 'option2',
 			group5: 'option1',
-			group6option1: '0',
-			group6option2: '1',
-			group6option3: '1',
-			group7: 'group7option2',
 			namespace: ''
 		},
 		baseParamRepresentation = {
@@ -307,21 +319,7 @@
 		assert.deepEqual(
 			model.getDefaultParams(),
 			defaultParameters,
-			'Default parameters are stored properly per filter and group'
-		);
-
-		// Change sticky filter
-		model.toggleFiltersSelected( {
-			group7__group7option1: true
-		} );
-
-		// Make sure defaults have changed
-		assert.deepEqual(
-			model.getDefaultParams(),
-			$.extend( true, {}, defaultParameters, {
-				group7: 'group7option1'
-			} ),
-			'Default parameters are stored properly per filter and group'
+			'Default parameters are stored properly per filter and group (sticky groups are ignored)'
 		);
 	} );
 
@@ -463,9 +461,7 @@
 				{
 					input: {
 						filter1: '1', // Regular (do not strip)
-						group6option1: '1', // Sticky
-						filter4: '1', // Excluded
-						filter5: '0' // Excluded
+						group6option1: '1' // Sticky
 					},
 					result: { filter1: '1' },
 					msg: 'Valid input strips all sticky and excluded params regardless of value'
@@ -1521,5 +1517,46 @@
 			],
 			'Items without a specified class identifier are not highlighted.'
 		);
+	} );
+
+	QUnit.test( 'emptyAllFilters', function ( assert ) {
+		var model = new mw.rcfilters.dm.FiltersViewModel();
+
+		model.initializeFilters( shortFilterDefinition, null );
+
+		model.toggleFiltersSelected( {
+			group1__filter1: true,
+			group2__filter4: true, // hidden
+			group3__filter5: true // sticky
+		} );
+
+		model.emptyAllFilters();
+
+		assert.deepEqual(
+			model.getSelectedState( true ),
+			{
+				group3__filter5: true,
+				group3__filter6: true
+			},
+			'Emptying filters does not affect sticky filters'
+		);
+	} );
+
+	QUnit.test( 'areCurrentFiltersEmpty', function ( assert ) {
+		var model = new mw.rcfilters.dm.FiltersViewModel();
+		model.initializeFilters( shortFilterDefinition, null );
+
+		model.emptyAllFilters();
+		assert.ok( model.areCurrentFiltersEmpty() );
+
+		model.toggleFiltersSelected( {
+			group3__filter5: true // sticky
+		} );
+		assert.ok( model.areCurrentFiltersEmpty() );
+
+		model.toggleFiltersSelected( {
+			group1__filter1: true
+		} );
+		assert.notOk( model.areCurrentFiltersEmpty() );
 	} );
 }( mediaWiki, jQuery ) );
