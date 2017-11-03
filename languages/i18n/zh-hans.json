@@ -1405,7 +1405,7 @@
 	"rcfilters-restore-default-filters": "恢复默认过滤器",
 	"rcfilters-clear-all-filters": "清空所有过滤器",
 	"rcfilters-show-new-changes": "显示最新更改",
-	"rcfilters-search-placeholder": "过滤最近更改（浏览或开始输入）",
+	"rcfilters-search-placeholder": "过滤更改（使用菜单或搜索过滤器名称）",
 	"rcfilters-invalid-filter": "无效过滤器",
 	"rcfilters-empty-filter": "没有激活的过滤器。已显示所有贡献。",
 	"rcfilters-filterlist-title": "过滤器",

@@ -367,7 +367,7 @@ class MediaWiki {
 			}
 			throw new HttpError( 500, $message );
 		}
-		$output->setSquidMaxage( 1200 );
+		$output->setCdnMaxage( 1200 );
 		$output->redirect( $targetUrl, '301' );
 		return true;
 	}

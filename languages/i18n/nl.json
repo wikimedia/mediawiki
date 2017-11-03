@@ -1354,6 +1354,7 @@
 	"recentchanges-summary": "Op deze pagina kunt u de recentste wijzigingen in deze wiki bekijken.",
 	"recentchanges-noresult": "Er zijn in deze periode geen wijzigingen gemaakt die aan de criteria voldoen.",
 	"recentchanges-timeout": "Deze zoekopdracht kost te veel tijd. U kunt het opnieuw proberen met andere zoekparameters.",
+	"recentchanges-network": "Vanwege een technische fout kunnen er geen resultaten worden geladen. U kunt proberen de pagina te verversen.",
 	"recentchanges-feed-description": "Met deze feed kunt u de recentste wijzigingen in deze wiki bekijken.",
 	"recentchanges-label-newpage": "Met deze bewerking is een nieuwe pagina aangemaakt",
 	"recentchanges-label-minor": "Dit is een kleine bewerking",
