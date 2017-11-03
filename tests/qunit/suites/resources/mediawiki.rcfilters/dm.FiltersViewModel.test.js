@@ -61,6 +61,7 @@
 		}, {
 			name: 'group4',
 			type: 'single_option',
+			hidden: true,
 			default: 'option2',
 			filters: [
 				// NOTE: The entire group has no highlight supported
@@ -95,6 +96,22 @@
 				{ name: 'group7option2', label: 'group7option2-label', description: 'group7option2-desc', cssClass: 'group7opt2class' },
 				{ name: 'group7option3', label: 'group7option3-label', description: 'group7option3-desc', cssClass: 'group7opt3class' }
 			]
+		} ],
+		shortFilterDefinition = [ {
+			name: 'group1',
+			type: 'send_unselected_if_any',
+			filters: [ { name: 'filter1' }, { name: 'filter2' } ]
+		}, {
+			name: 'group2',
+			type: 'boolean',
+			hidden: true,
+			filters: [ { name: 'filter3' }, { name: 'filter4' } ]
+		}, {
+			name: 'group3',
+			type: 'string_options',
+			isSticky: true,
+			default: 'filter6',
+			filters: [ { name: 'filter5' }, { name: 'filter6' }, { name: 'filter7' } ]
 		} ],
 		viewsDefinition = {
 			namespaces: {
@@ -1521,5 +1538,46 @@
 			],
 			'Items without a specified class identifier are not highlighted.'
 		);
+	} );
+
+	QUnit.test( 'emptyAllFilters', function ( assert ) {
+		var model = new mw.rcfilters.dm.FiltersViewModel();
+
+		model.initializeFilters( shortFilterDefinition, null );
+
+		model.toggleFiltersSelected( {
+			group1__filter1: true,
+			group2__filter4: true, // hidden
+			group3__filter5: true // sticky
+		} );
+
+		model.emptyAllFilters();
+
+		assert.deepEqual(
+			model.getSelectedState( true ),
+			{
+				group3__filter5: true,
+				group3__filter6: true
+			},
+			'Emptying filters does not affect sticky filters'
+		);
+	} );
+
+	QUnit.test( 'areCurrentFiltersEmpty', function ( assert ) {
+		var model = new mw.rcfilters.dm.FiltersViewModel();
+		model.initializeFilters( shortFilterDefinition, null );
+
+		model.emptyAllFilters();
+		assert.ok( model.areCurrentFiltersEmpty() );
+
+		model.toggleFiltersSelected( {
+			group3__filter5: true // sticky
+		} );
+		assert.ok( model.areCurrentFiltersEmpty() );
+
+		model.toggleFiltersSelected( {
+			group1__filter1: true
+		} );
+		assert.notOk( model.areCurrentFiltersEmpty() );
 	} );
 }( mediaWiki, jQuery ) );
