@@ -61,6 +61,7 @@
 		}, {
 			name: 'group4',
 			type: 'single_option',
+			hidden: true,
 			default: 'option2',
 			filters: [
 				// NOTE: The entire group has no highlight supported
@@ -1521,5 +1522,47 @@
 			],
 			'Items without a specified class identifier are not highlighted.'
 		);
+	} );
+
+	QUnit.test( 'emptyAllFilters', function ( assert ) {
+		var model = new mw.rcfilters.dm.FiltersViewModel();
+		model.initializeFilters( filterDefinition, viewsDefinition );
+
+		model.toggleFiltersSelected( {
+			group1__filter1: true,
+			group2__filter5: true,
+			group4__option3: true, // hidden
+			group6__group6option1: true, // sticky
+			group6__group6option2: true // sticky
+		} );
+
+		model.emptyAllFilters();
+
+		assert.deepEqual(
+			model.getSelectedState( true ),
+			{
+				group6__group6option1: true,
+				group6__group6option2: true
+			},
+			'Emptying filters does not affect sticky filters'
+		);
+	} );
+
+	QUnit.test( 'areCurrentFiltersEmpty', function ( assert ) {
+		var model = new mw.rcfilters.dm.FiltersViewModel();
+		model.initializeFilters( filterDefinition, viewsDefinition );
+
+		model.emptyAllFilters();
+		assert.ok( model.areCurrentFiltersEmpty() );
+
+		model.toggleFiltersSelected( {
+			group6__group6option1: true // sticky
+		} );
+		assert.ok( model.areCurrentFiltersEmpty() );
+
+		model.toggleFiltersSelected( {
+			group1__filter1: true
+		} );
+		assert.notOk( model.areCurrentFiltersEmpty() );
 	} );
 }( mediaWiki, jQuery ) );
