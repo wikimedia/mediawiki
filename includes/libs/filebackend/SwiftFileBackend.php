@@ -755,7 +755,8 @@ class SwiftFileBackend extends FileBackendStore {
 			}
 		}
 
-		$this->logger->error( __METHOD__ . ": unable to set SHA-1 metadata for $path" );
+		$this->logger->error( __METHOD__ . ': unable to set SHA-1 metadata for {path}',
+			[ 'path' => $path ] );
 
 		return $objHdrs; // failed
 	}
@@ -1361,7 +1362,8 @@ class SwiftFileBackend extends FileBackendStore {
 
 		if ( $rcode != 204 && $rcode !== 202 ) {
 			$status->fatal( 'backend-fail-internal', $this->name );
-			$this->logger->error( __METHOD__ . ': unexpected rcode value (' . $rcode . ')' );
+			$this->logger->error( __METHOD__ . ': unexpected rcode value ({rcode})',
+				[ 'rcode' => $rcode ] );
 		}
 
 		return $status;
@@ -1772,10 +1774,18 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( $code == 401 ) { // possibly a stale token
 			$this->srvCache->delete( $this->getCredsCacheKey( $this->swiftUser ) );
 		}
-		$this->logger->error(
-			"HTTP $code ($desc) in '{$func}' (given '" . FormatJson::encode( $params ) . "')" .
-			( $err ? ": $err" : "" )
-		);
+		$msg = "HTTP {code} ({desc}) in '{func}' (given '{params}')";
+		$msgParams = [
+			'code'   => $code,
+			'desc'   => $desc,
+			'func'   => $func,
+			'req_params' => FormatJson::encode( $params ),
+		];
+		if ( $err ) {
+			$msg .= ': {err}';
+			$msgParams['err'] = $err;
+		}
+		$this->logger->error( $msg, $msgParams );
 	}
 }
 
