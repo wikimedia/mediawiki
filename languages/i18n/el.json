@@ -54,7 +54,8 @@
 			"Thodoris",
 			"Ftsalamp",
 			"Kostas20142",
-			"Nikosgranturismogt"
+			"Nikosgranturismogt",
+			"KATRINE1992"
 		]
 	},
 	"tog-underline": "Υπογράμμιση συνδέσμων:",
@@ -1036,7 +1037,7 @@
 	"timezoneregion-europe": "Ευρώπη",
 	"timezoneregion-indian": "Ινδικός Ωκεανός",
 	"timezoneregion-pacific": "Ειρηνικός Ωκεανός",
-	"allowemail": "Ενεργοποίηση παραλαβής μηνύματος ηλεκτρονικού ταχυδρομείου από άλλους χρήστες",
+	"allowemail": "Να επιτρέπεται σε άλλους χρήστες να μου στέλνουν email",
 	"prefs-searchoptions": "Αναζήτηση",
 	"prefs-namespaces": "Περιοχές ονομάτων",
 	"default": "προεπιλογή",
@@ -1310,7 +1311,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (δείτε [[Special:NewPages|κατάλογος νέων σελίδων]])",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "Προβολή",
-	"rcfilters-other-review-tools": "Άλλα εργαλεία επιθεώρησης",
+	"rcfilters-other-review-tools": "Άλλα εργαλεία ελέγχου",
 	"rcfilters-group-results-by-page": "Ομαδοποίηση αποτελεσμάτων ανά σελίδα",
 	"rcfilters-grouping-title": "Ομαδοποίηση",
 	"rcfilters-activefilters": "Ενεργά φίλτρα",
@@ -1384,7 +1385,6 @@
 	"rcfilters-filter-logactions-label": "Καταγραφόμενες ενέργειες",
 	"rcfilters-filter-logactions-description": "Διαχειριστικές ενέργειες, δημιουργίες λογαριασμών, διαγραφές σελίδων, ανεβάσματα αρχείων…",
 	"rcfilters-exclude-button-off": "Εξαίρεση επιλεγμένων",
-	"rcfilters-view-advanced-filters-label": "Προχωρημένα φίλτρα",
 	"rcfilters-view-tags": "Επεξεργασίες με ετικέτες",
 	"rcfilters-view-namespaces-tooltip": "Φιλτράρισμα αποτελεσμάτων κατά ονοματοχώρο",
 	"rcnotefrom": "Παρακάτω {{PLURAL:$5|είναι η αλλαγή|είναι οι αλλαγές}} από <strong>$3, $4</strong> (έως <strong>$1</strong> που εμφανίζεται).",

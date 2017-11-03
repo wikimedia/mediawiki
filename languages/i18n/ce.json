@@ -3083,6 +3083,8 @@
 	"date-range-to": "Терхье:",
 	"sessionprovider-generic": "$1 сесси",
 	"randomrootpage": "Цахууш нисъелла ораман агӀо",
+	"log-action-filter-block": "Блоктохаран тайпа:",
+	"log-action-filter-all": "Ерриге",
 	"log-action-filter-block-block": "Блоктохар",
 	"log-action-filter-block-reblock": "Блоктохар хийцар",
 	"log-action-filter-block-unblock": "БлокдӀаяхарш",

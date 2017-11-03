@@ -1979,7 +1979,7 @@
 	"booksources-invalid-isbn": "თქვენს მიერ მითითებული ISBN, შეცდომას შეიცავს.  შეამოწმეთ, თუ თავდაპირველი წყარო სწორადაა აკრეფილი.",
 	"magiclink-tracking-rfc": "გვერდები, რომლებიც იყენებენ RFC magic ბმულებს",
 	"magiclink-tracking-rfc-desc": "ეს გვერდი იყენებს RFC magic ბმულებს. იხილეთ [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org], თუ გსურთ წაიკითხოთ მიგრაციის ინსტრუქცია.",
-	"magiclink-tracking-pmid": "გვერდები, რომლებიც იყენებენ PMID magic ბმულებს",
+	"magiclink-tracking-pmid": "გვერდები PMID-ის ჯადოსნური ბმულებით",
 	"magiclink-tracking-pmid-desc": "ეს გვერდი იყენებს PMID magic ბმულებს. იხილეთ [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org], თუ გსურთ წაიკითხოთ მიგრაციის ინსტრუქცია.",
 	"magiclink-tracking-isbn": "გვერდები, რომლებიც იყენებენ ISBN magic ბმულებს",
 	"magiclink-tracking-isbn-desc": "ეს გვერდი იყენებს ISBN magic ბმულებს. იხილეთ [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org], თუ გსურთ წაიკითხოთ მიგრაციის ინსტრუქცია.",

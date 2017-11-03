@@ -1429,7 +1429,7 @@
 	"recentchanges-legend": "Opciones sobre cambios recientes",
 	"recentchanges-summary": "Sigue los cambios más recientes del wiki en esta página.",
 	"recentchanges-noresult": "No hubo cambios que respondan a esos criterios durante el período seleccionado.",
-	"recentchanges-network": "Debido a un problema técnico, ningún resultado ha sido cargado. Trata de volver a cargar la página.",
+	"recentchanges-network": "No se cargó ningún resultado debido a un problema técnico. Prueba a volver a cargar la página.",
 	"recentchanges-feed-description": "Realiza un seguimiento de los cambios más recientes en el wiki con este canal.",
 	"recentchanges-label-newpage": "Esta edición creó una página",
 	"recentchanges-label-minor": "Esta es una edición menor",
