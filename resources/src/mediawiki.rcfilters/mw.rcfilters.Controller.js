@@ -127,7 +127,7 @@
 					// with the misleading preference. Note that if this is to be permanent
 					// we should remove all sticky behavior methods completely
 					// See T172156
-					// isSticky: true,
+					isSticky: true,
 					excludedFromSavedQueries: true,
 					filters: displayConfig.limitArray.map( function ( num ) {
 						return controller._createFilterDataFromNumber( num, num );
@@ -152,7 +152,7 @@
 					},
 					'default': displayConfig.daysDefault,
 					// Temporarily making this not sticky while limit is not sticky, see above
-					// isSticky: true,
+					isSticky: true,
 					excludedFromSavedQueries: true,
 					filters: [
 						// Hours (1, 2, 6, 12)
@@ -411,7 +411,7 @@
 	 * @return {boolean} Defaults are all false
 	 */
 	mw.rcfilters.Controller.prototype.areDefaultsEmpty = function () {
-		return $.isEmptyObject( this._getDefaultParams( true ) );
+		return $.isEmptyObject( this._getDefaultParams() );
 	};
 
 	/**
@@ -422,7 +422,7 @@
 			.getHighlightedItems()
 			.map( function ( filterItem ) { return { name: filterItem.getName() }; } );
 
-		this.filtersModel.updateStateFromParams( {} );
+		this.filtersModel.emptyAllFilters();
 
 		this.updateChangesList();
 
@@ -925,14 +925,13 @@
 	 * Get an object representing the default parameter state, whether
 	 * it is from the model defaults or from the saved queries.
 	 *
-	 * @param {boolean} [excludeHiddenParams] Exclude hidden and sticky params
 	 * @return {Object} Default parameters
 	 */
-	mw.rcfilters.Controller.prototype._getDefaultParams = function ( excludeHiddenParams ) {
+	mw.rcfilters.Controller.prototype._getDefaultParams = function () {
 		if ( this.savedQueriesModel.getDefault() ) {
-			return this.savedQueriesModel.getDefaultParams( excludeHiddenParams );
+			return this.savedQueriesModel.getDefaultParams();
 		} else {
-			return this.filtersModel.getDefaultParams( excludeHiddenParams );
+			return this.filtersModel.getDefaultParams( true );
 		}
 	};
 

@@ -721,22 +721,18 @@
 	/**
 	 * Get an object representing default parameters state
 	 *
-	 * @param {boolean} [excludeHiddenParams] Exclude hidden and sticky params
+	 * @param {boolean} [excludeStickyParams] Exclude sticky params
 	 * @return {Object} Default parameter values
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.getDefaultParams = function ( excludeHiddenParams ) {
+	mw.rcfilters.dm.FiltersViewModel.prototype.getDefaultParams = function ( excludeStickyParams ) {
 		var result = {};
 
 		// Get default filter state
 		$.each( this.groups, function ( name, model ) {
-			$.extend( true, result, model.getDefaultParams() );
+			if ( !excludeStickyParams || !model.isSticky() ) {
+				$.extend( true, result, model.getDefaultParams() );
+			}
 		} );
-
-		if ( excludeHiddenParams ) {
-			Object.keys( this.getDefaultHiddenParams() ).forEach( function ( paramName ) {
-				delete result[ paramName ];
-			} );
-		}
 
 		return result;
 	};
@@ -1031,7 +1027,7 @@
 		// Check if there are either any selected items or any items
 		// that have highlight enabled
 		return !this.getItems().some( function ( filterItem ) {
-			return !filterItem.getGroupModel().isHidden() && ( filterItem.isSelected() || filterItem.isHighlighted() );
+			return !filterItem.getGroupModel().isSticky() && ( filterItem.isSelected() || filterItem.isHighlighted() );
 		} );
 	};
 
