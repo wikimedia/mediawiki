@@ -85,8 +85,8 @@
 			)
 		);
 
-		// Remove excluded params from the url
-		uri.query = this.filtersModel.removeExcludedParams( uri.query );
+		// Remove sticky params from the url
+		uri.query = this.filtersModel.removeStickyParams( uri.query );
 
 		// Reapply unrecognized params and url version
 		uri.query = $.extend( true, {}, uri.query, unrecognizedParams, { urlversion: '2' } );
@@ -235,16 +235,15 @@
 		// wiki default.
 		// Any subsequent change of the URL through the RCFilters
 		// system will receive 'urlversion=2'
-		var hiddenParamDefaults = this.filtersModel.getDefaultHiddenParams(),
-			base = this.getVersion( uriQuery ) === 2 ?
-				{} :
-				this.filtersModel.getDefaultParams();
+		var base = this.getVersion( uriQuery ) === 2 ?
+			{} :
+			this.filtersModel.getDefaultParams();
 
 		return $.extend(
 			true,
 			{},
 			this.filtersModel.getMinimizedParamRepresentation(
-				$.extend( true, {}, hiddenParamDefaults, base, uriQuery )
+				$.extend( true, {}, base, uriQuery )
 			),
 			{ urlversion: '2' }
 		);
