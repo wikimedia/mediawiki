@@ -53,6 +53,7 @@
 	"mediawiki/blue-spice-readers": "dev-master",
 	"mediawiki/blue-spice-inter-wiki-links": "dev-master",
 	"mediawiki/blue-spice-pages-visited": "dev-master",
-	"mediawiki/blue-spice-avatars": "dev-master"
+	"mediawiki/blue-spice-avatars": "dev-master",
+	"mediawiki/blue-spice-count-things": "dev-master"
   }
 }
