@@ -4206,6 +4206,9 @@ class Parser {
 
 			# Decode HTML entities
 			$safeHeadline = Sanitizer::decodeCharReferences( $safeHeadline );
+
+			$safeHeadline = $this->normalizeSectionName( $safeHeadline );
+
 			$fallbackHeadline = Sanitizer::escapeIdForAttribute( $safeHeadline, Sanitizer::ID_FALLBACK );
 			$linkAnchor = Sanitizer::escapeIdForLink( $safeHeadline );
 			$safeHeadline = Sanitizer::escapeIdForAttribute( $safeHeadline, Sanitizer::ID_PRIMARY );
@@ -5767,6 +5770,8 @@ class Parser {
 		$text = $this->stripSectionName( $text );
 		$text = Sanitizer::normalizeSectionNameWhitespace( $text );
 		$text = Sanitizer::decodeCharReferences( $text );
+		$text = $this->normalizeSectionName( $text );
+
 		return '#' . Sanitizer::escapeIdForLink( $text );
 	}
 
@@ -5786,6 +5791,7 @@ class Parser {
 		$text = $this->stripSectionName( $text );
 		$text = Sanitizer::normalizeSectionNameWhitespace( $text );
 		$text = Sanitizer::decodeCharReferences( $text );
+		$text = $this->normalizeSectionName( $text );
 
 		if ( isset( $wgFragmentMode[1] ) && $wgFragmentMode[1] === 'legacy' ) {
 			// ForAttribute() and ForLink() are the same for legacy encoding
@@ -5795,6 +5801,24 @@ class Parser {
 		}
 
 		return "#$id";
+	}
+
+	/**
+	 * Apply the same normalization as code making links to this section would
+	 *
+	 * @param string $text
+	 * @return string
+	 */
+	private function normalizeSectionName( $text ) {
+		# T90902: ensure the same normalization is applied for IDs as to links
+		$titleParser = MediaWikiServices::getInstance()->getTitleParser();
+		try {
+
+			$parts = $titleParser->splitTitleString( "#$text" );
+		} catch ( MalformedTitleException $ex ) {
+			return $text;
+		}
+		return $parts['fragment'];
 	}
 
 	/**
