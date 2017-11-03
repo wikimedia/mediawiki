@@ -127,8 +127,7 @@
 					},
 					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
 					'default': mw.user.options.get( this.limitPreferenceName, displayConfig.limitDefault ),
-					isSticky: true,
-					excludedFromSavedQueries: true,
+					sticky: true,
 					filters: displayConfig.limitArray.map( function ( num ) {
 						return controller._createFilterDataFromNumber( num, num );
 					} )
@@ -151,8 +150,7 @@
 							Number( i );
 					},
 					'default': mw.user.options.get( this.daysPreferenceName, displayConfig.daysDefault ),
-					isSticky: true,
-					excludedFromSavedQueries: true,
+					sticky: true,
 					filters: [
 						// Hours (1, 2, 6, 12)
 						0.04166, 0.0833, 0.25, 0.5
@@ -176,7 +174,7 @@
 					type: 'boolean',
 					title: '', // Because it's a hidden group, this title actually appears nowhere
 					hidden: true,
-					isSticky: true,
+					sticky: true,
 					filters: [
 						{
 							name: 'enhanced',
@@ -414,7 +412,7 @@
 	 * @return {boolean} Defaults are all false
 	 */
 	mw.rcfilters.Controller.prototype.areDefaultsEmpty = function () {
-		return $.isEmptyObject( this._getDefaultParams( true ) );
+		return $.isEmptyObject( this._getDefaultParams() );
 	};
 
 	/**
@@ -908,14 +906,13 @@
 	 * Get an object representing the default parameter state, whether
 	 * it is from the model defaults or from the saved queries.
 	 *
-	 * @param {boolean} [excludeHiddenParams] Exclude hidden and sticky params
 	 * @return {Object} Default parameters
 	 */
-	mw.rcfilters.Controller.prototype._getDefaultParams = function ( excludeHiddenParams ) {
+	mw.rcfilters.Controller.prototype._getDefaultParams = function () {
 		if ( this.savedQueriesModel.getDefault() ) {
-			return this.savedQueriesModel.getDefaultParams( excludeHiddenParams );
+			return this.savedQueriesModel.getDefaultParams();
 		} else {
-			return this.filtersModel.getDefaultParams( excludeHiddenParams );
+			return this.filtersModel.getDefaultParams();
 		}
 	};
 
