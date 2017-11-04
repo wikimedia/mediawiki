@@ -323,8 +323,6 @@ return [
 		"PhanParamTooManyCallable",
 		// approximate error count: 3
 		"PhanParamTooManyInternal",
-		// approximate error count: 1
-		"PhanRedefineFunctionInternal",
 		// approximate error count: 2
 		"PhanTraitParentReference",
 		// approximate error count: 3

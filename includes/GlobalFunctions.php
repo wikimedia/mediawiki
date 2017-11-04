@@ -66,6 +66,7 @@ if ( !function_exists( 'hash_equals' ) ) {
 	 *
 	 * Longer explanation: http://www.emerose.com/timing-attacks-explained
 	 *
+	 * @suppress PhanRedefineFunctionInternal
 	 * @codeCoverageIgnore
 	 * @param string $known_string Fixed-length secret string to compare against
 	 * @param string $user_string User-provided string
