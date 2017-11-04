@@ -76,17 +76,6 @@ textarea {
 	width: auto;
 }
 
-#contentSub:empty,
-#contentSub2:empty {
-	display: none;
-}
-
-#contentSub:empty ~ #jump-to-nav,
-#contentSub2:empty ~ #jump-to-nav {
-	margin-top: 0;
-	margin-bottom: 0;
-}
-
 span.subpages {
 	display: block;
 }
