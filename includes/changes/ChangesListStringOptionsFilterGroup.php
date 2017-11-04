@@ -239,7 +239,8 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 	/**
 	 * Check if this filter group is currently active
 	 *
-	 * @param {boolean} $isStructuredUI Is structured filters UI current enabled
+	 * @param bool $isStructuredUI Is structured filters UI current enabled
+	 * @return bool
 	 */
 	private function isActive( $isStructuredUI ) {
 		// STRING_OPTIONS filter groups are exclusively active on Structured UI
