@@ -18,7 +18,7 @@ class NamespaceInputWidget extends \OOUI\DropdownInputWidget {
 	 * @param array $config Configuration options
 	 * @param string $config['includeAllValue'] If specified, add a "all namespaces" option to the
 	 *     namespace dropdown, and use this as the input value for it
-	 * @param number[] $config['exclude'] List of namespace numbers to exclude from the selector
+	 * @param int[] $config['exclude'] List of namespace numbers to exclude from the selector
 	 */
 	public function __construct( array $config = [] ) {
 		// Configuration initialization
