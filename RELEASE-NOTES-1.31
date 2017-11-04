@@ -98,6 +98,10 @@ changes to languages because of Phabricator reports.
 * Revision::setUserIdAndName() was deprecated.
 * Access to TitleValue class properties was deprecated, the relevant getters
   should be used instead.
+* DifferenceEngine::getDiffBodyCacheKey() is deprecated. Subclasses should
+  override DifferenceEngine::getDiffBodyCacheKeyParams() instead.
+* The deprecated MW_DIFF_VERSION constant was removed.
+  DifferenceEngine::MW_DIFF_VERSION should be used instead.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. There is experimental support for
