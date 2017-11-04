@@ -23,9 +23,6 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
-/** @deprecated use class constant instead */
-define( 'MW_DIFF_VERSION', '1.11a' );
-
 /**
  * @todo document
  * @ingroup DifferenceEngine
@@ -37,7 +34,7 @@ class DifferenceEngine extends ContextSource {
 	 * fixes important bugs or such to force cached diff views to
 	 * clear.
 	 */
-	const DIFF_VERSION = MW_DIFF_VERSION;
+	const DIFF_VERSION = '1.12';
 
 	/** @var int */
 	public $mOldid;
@@ -753,7 +750,15 @@ class DifferenceEngine extends ContextSource {
 		$key = false;
 		$cache = ObjectCache::getMainWANInstance();
 		if ( $this->mOldid && $this->mNewid ) {
+			// Check if subclass is still using the old way
+			// for backwards-compatibility
 			$key = $this->getDiffBodyCacheKey();
+			if ( $key === null ) {
+				$key = call_user_func_array(
+					[ $cache, 'makeKey' ],
+					$this->getDiffBodyCacheKeyParams()
+				);
+			}
 
 			// Try cache
 			if ( !$this->mRefreshCache ) {
@@ -799,18 +804,49 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Returns the cache key for diff body text or content.
 	 *
+	 * @deprecated since 1.31, use getDiffBodyCacheKeyParams() instead
 	 * @since 1.23
 	 *
 	 * @throws MWException
-	 * @return string
+	 * @return string|null
 	 */
 	protected function getDiffBodyCacheKey() {
+		return null;
+	}
+
+	/**
+	 * Get the cache key parameters
+	 *
+	 * Subclasses can replace the first element in the array to something
+	 * more specific to the type of diff (e.g. "inline-diff"), or append
+	 * if the cache should vary on more things. Overriding entirely should
+	 * be avoided.
+	 *
+	 * @since 1.31
+	 *
+	 * @return array
+	 * @throws MWException
+	 */
+	protected function getDiffBodyCacheKeyParams() {
 		if ( !$this->mOldid || !$this->mNewid ) {
 			throw new MWException( 'mOldid and mNewid must be set to get diff cache key.' );
 		}
 
-		return wfMemcKey( 'diff', 'version', self::DIFF_VERSION,
-			'oldid', $this->mOldid, 'newid', $this->mNewid );
+		$engine = $this->getEngine();
+		$params = [
+			'diff',
+			$engine,
+			self::DIFF_VERSION,
+			"old-{$this->mOldid}",
+			"rev-{$this->mNewid}"
+		];
+
+		if ( $engine === 'wikidiff2' ) {
+			$params[] = phpversion( 'wikidiff2' );
+			$params[] = $this->getConfig()->get( 'WikiDiff2MovedParagraphDetectionCutoff' );
+		}
+
+		return $params;
 	}
 
 	/**
@@ -897,19 +933,14 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * Generates diff, to be wrapped internally in a logging/instrumentation
+	 * Process $wgExternalDiffEngine and get a sane, usable engine
 	 *
-	 * @param string $otext Old text, must be already segmented
-	 * @param string $ntext New text, must be already segmented
-	 * @return bool|string
-	 * @throws Exception
+	 * @return bool|string 'wikidiff2', path to an executable, or false
 	 */
-	protected function textDiff( $otext, $ntext ) {
-		global $wgExternalDiffEngine, $wgContLang;
-
-		$otext = str_replace( "\r\n", "\n", $otext );
-		$ntext = str_replace( "\r\n", "\n", $ntext );
-
+	private function getEngine() {
+		global $wgExternalDiffEngine;
+		// We use the global here instead of Config because we write to the value,
+		// and Config is not mutable.
 		if ( $wgExternalDiffEngine == 'wikidiff' || $wgExternalDiffEngine == 'wikidiff3' ) {
 			wfDeprecated( "\$wgExternalDiffEngine = '{$wgExternalDiffEngine}'", '1.27' );
 			$wgExternalDiffEngine = false;
@@ -922,9 +953,34 @@ class DifferenceEngine extends ContextSource {
 			$wgExternalDiffEngine = false;
 		}
 
+		if ( is_string( $wgExternalDiffEngine ) && is_executable( $wgExternalDiffEngine ) ) {
+			return $wgExternalDiffEngine;
+		} elseif ( $wgExternalDiffEngine === false && function_exists( 'wikidiff2_do_diff' ) ) {
+			return 'wikidiff2';
+		} else {
+			// Native PHP
+			return false;
+		}
+	}
+
+	/**
+	 * Generates diff, to be wrapped internally in a logging/instrumentation
+	 *
+	 * @param string $otext Old text, must be already segmented
+	 * @param string $ntext New text, must be already segmented
+	 * @return bool|string
+	 */
+	protected function textDiff( $otext, $ntext ) {
+		global $wgContLang;
+
+		$otext = str_replace( "\r\n", "\n", $otext );
+		$ntext = str_replace( "\r\n", "\n", $ntext );
+
+		$engine = $this->getEngine();
+
 		// Better external diff engine, the 2 may some day be dropped
 		// This one does the escaping and segmenting itself
-		if ( function_exists( 'wikidiff2_do_diff' ) && $wgExternalDiffEngine === false ) {
+		if ( $engine === 'wikidiff2' ) {
 			$wikidiff2Version = phpversion( 'wikidiff2' );
 			if (
 				$wikidiff2Version !== false &&
@@ -954,7 +1010,7 @@ class DifferenceEngine extends ContextSource {
 			$text .= $this->debug( 'wikidiff2' );
 
 			return $text;
-		} elseif ( $wgExternalDiffEngine !== false && is_executable( $wgExternalDiffEngine ) ) {
+		} elseif ( $engine !== false ) {
 			# Diff via the shell
 			$tmpDir = wfTempDir();
 			$tempName1 = tempnam( $tmpDir, 'diff_' );
@@ -972,7 +1028,7 @@ class DifferenceEngine extends ContextSource {
 			fwrite( $tempFile2, $ntext );
 			fclose( $tempFile1 );
 			fclose( $tempFile2 );
-			$cmd = [ $wgExternalDiffEngine, $tempName1, $tempName2 ];
+			$cmd = [ $engine, $tempName1, $tempName2 ];
 			$result = Shell::command( $cmd )
 				->execute();
 			$exitCode = $result->getExitCode();
@@ -982,7 +1038,7 @@ class DifferenceEngine extends ContextSource {
 				);
 			}
 			$difftext = $result->getStdout();
-			$difftext .= $this->debug( "external $wgExternalDiffEngine" );
+			$difftext .= $this->debug( "external $engine" );
 			unlink( $tempName1 );
 			unlink( $tempName2 );
 
