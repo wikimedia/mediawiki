@@ -1,6 +1,7 @@
 /* See also jquery.makeCollapsible.js */
 .mw-collapsible-toggle {
 	float: right;
+	margin-left: 0.3em;
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
@@ -11,11 +12,13 @@
 .mw-content-ltr .mw-collapsible-toggle,
 .mw-content-rtl .mw-content-ltr .mw-collapsible-toggle {
 	float: right;
+	margin-left: 0.3em;
 }
 /* @noflip */
 .mw-content-rtl .mw-collapsible-toggle,
 .mw-content-ltr .mw-content-rtl .mw-collapsible-toggle {
 	float: left;
+	margin-right: 0.3em;
 }
 
 .mw-customtoggle,
@@ -30,6 +33,8 @@ caption .mw-collapsible-toggle,
 .mw-content-rtl .mw-content-ltr caption .mw-collapsible-toggle,
 .mw-content-ltr .mw-content-rtl caption .mw-collapsible-toggle {
 	float: none;
+	margin-left: 0;
+	margin-right: 0;
 }
 
 /* list-items go as wide as their parent element, don't float them inside list items */
@@ -39,6 +44,8 @@ li .mw-collapsible-toggle,
 .mw-content-rtl .mw-content-ltr li .mw-collapsible-toggle,
 .mw-content-ltr .mw-content-rtl li .mw-collapsible-toggle {
 	float: none;
+	margin-left: 0;
+	margin-right: 0;
 }
 
 /* the added list item should have no list-style */

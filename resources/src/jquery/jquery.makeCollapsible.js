@@ -314,7 +314,7 @@
 
 						// If there is no toggle link, add it to the end of the caption
 						if ( !$toggle.length ) {
-							$toggleLink = buildDefaultToggleLink().appendTo( $caption );
+							$toggleLink = $caption.append( ' ', buildDefaultToggleLink() );
 						} else {
 							$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler )
 								.prop( 'tabIndex', 0 );
