@@ -931,7 +931,7 @@
 	"searchprofile-advanced-tooltip": "Traži u ostalim imenskim prostorima",
 	"search-result-size": "$1 ({{PLURAL:$2|$2 riječ|$2 riječi}})",
 	"search-result-category-size": "{{PLURAL:$1|1 član|$1 člana|$1 članova}} ({{PLURAL:$2|1 potkategorija|$2 potkategorije|$2 potkategorija}}, {{PLURAL:$3|1 datoteka|$3 datoteke|$3 datoteka}})",
-	"search-redirect": "(preusmjereno sa $1)",
+	"search-redirect": "(preusmjerenje sa $1)",
 	"search-section": "(sekcija $1)",
 	"search-category": "(kategorija $1)",
 	"search-file-match": "(podudara se sadržaj datoteke)",

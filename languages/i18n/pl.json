@@ -1357,6 +1357,7 @@
 	"recentchanges-legend": "Opcje ostatnich zmian",
 	"recentchanges-summary": "Ta strona przedstawia historię ostatnich zmian w tej wiki.",
 	"recentchanges-noresult": "Brak zmian w wybranym okresie spełniających twoje kryteria.",
+	"recentchanges-network": "Z powodu błędu technicznego nie można załadować żadnych wyników. Spróbuj odświeżyć stronę.",
 	"recentchanges-feed-description": "Obserwuj najświeższe zmiany w tej wiki.",
 	"recentchanges-label-newpage": "W tej edycji utworzono nową stronę",
 	"recentchanges-label-minor": "To jest drobna zmiana",
