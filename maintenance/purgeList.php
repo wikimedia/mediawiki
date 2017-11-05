@@ -99,7 +99,7 @@ class PurgeList extends Maintenance {
 				$conds + [ 'page_id > ' . $dbr->addQuotes( $startId ) ],
 				__METHOD__,
 				[
-					'LIMIT' => $this->mBatchSize,
+					'LIMIT' => $this->getBatchSize(),
 					'ORDER BY' => 'page_id'
 
 				]

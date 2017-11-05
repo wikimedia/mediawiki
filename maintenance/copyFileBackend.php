@@ -110,10 +110,10 @@ class CopyFileBackend extends Maintenance {
 				// Check up on the rate file periodically to adjust the concurrency
 				if ( $rateFile && ( !$count || ( $count % 500 ) == 0 ) ) {
 					$this->setBatchSize( max( 1, (int)file_get_contents( $rateFile ) ) );
-					$this->output( "\tBatch size is now {$this->mBatchSize}.\n" );
+					$this->output( "\tBatch size is now {$this->getBatchSize()}.\n" );
 				}
 				$batchPaths[$srcPathRel] = 1; // remove duplicates
-				if ( count( $batchPaths ) >= $this->mBatchSize ) {
+				if ( count( $batchPaths ) >= $this->getBatchSize() ) {
 					$this->copyFileBatch( array_keys( $batchPaths ), $backendRel, $src, $dst );
 					$batchPaths = []; // done
 				}
@@ -137,10 +137,10 @@ class CopyFileBackend extends Maintenance {
 					// Check up on the rate file periodically to adjust the concurrency
 					if ( $rateFile && ( !$count || ( $count % 500 ) == 0 ) ) {
 						$this->setBatchSize( max( 1, (int)file_get_contents( $rateFile ) ) );
-						$this->output( "\tBatch size is now {$this->mBatchSize}.\n" );
+						$this->output( "\tBatch size is now {$this->getBatchSize()}.\n" );
 					}
 					$batchPaths[$delPathRel] = 1; // remove duplicates
-					if ( count( $batchPaths ) >= $this->mBatchSize ) {
+					if ( count( $batchPaths ) >= $this->getBatchSize() ) {
 						$this->delFileBatch( array_keys( $batchPaths ), $backendRel, $dst );
 						$batchPaths = []; // done
 					}

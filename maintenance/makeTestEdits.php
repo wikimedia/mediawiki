@@ -55,7 +55,7 @@ class MakeTestEdits extends Maintenance {
 			$page->doEditContent( $content, $summary, 0, false, $user );
 
 			$this->output( "Edited $title\n" );
-			if ( $i && ( $i % $this->mBatchSize ) == 0 ) {
+			if ( $i && ( $i % $this->getBatchSize() ) == 0 ) {
 				wfWaitForSlaves();
 			}
 		}

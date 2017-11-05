@@ -308,6 +308,15 @@ abstract class Maintenance {
 	}
 
 	/**
+	 * Returns batch size
+	 *
+	 * @return int
+	 */
+	protected function getBatchSize() {
+		return $this->mBatchSize;
+	}
+
+	/**
 	 * Set the batch size.
 	 * @param int $s The number of operations to do in a batch
 	 */

@@ -60,7 +60,7 @@ class DumpCategoriesAsRdf extends Maintenance {
 			$dbr,
 			'page',
 			[ 'page_title' ],
-			$this->mBatchSize
+			$this->getBatchSize()
 		);
 		$it->addConditions( [
 			'page_namespace' => NS_CATEGORY,
@@ -80,7 +80,7 @@ class DumpCategoriesAsRdf extends Maintenance {
 			$dbr,
 			'categorylinks',
 			[ 'cl_from', 'cl_to' ],
-			$this->mBatchSize
+			$this->getBatchSize()
 		);
 		$it->addConditions( [
 			'cl_type' => 'subcat',
