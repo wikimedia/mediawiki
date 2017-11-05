@@ -42,6 +42,7 @@ class MigrateUserGroup extends Maintenance {
 		$oldGroup = $this->getArg( 0 );
 		$newGroup = $this->getArg( 1 );
 		$dbw = $this->getDB( DB_MASTER );
+		$batchSize = $this->getBatchSize();
 		$start = $dbw->selectField( 'user_groups', 'MIN(ug_user)',
 			[ 'ug_group' => $oldGroup ], __FUNCTION__ );
 		$end = $dbw->selectField( 'user_groups', 'MAX(ug_user)',
@@ -50,9 +51,9 @@ class MigrateUserGroup extends Maintenance {
 			$this->error( "Nothing to do - no users in the '$oldGroup' group", true );
 		}
 		# Do remaining chunk
-		$end += $this->mBatchSize - 1;
+		$end += $batchSize - 1;
 		$blockStart = $start;
-		$blockEnd = $start + $this->mBatchSize - 1;
+		$blockEnd = $start + $batchSize - 1;
 		// Migrate users over in batches...
 		while ( $blockEnd <= $end ) {
 			$affected = 0;
@@ -97,8 +98,8 @@ class MigrateUserGroup extends Maintenance {
 			}
 
 			$count += $affected;
-			$blockStart += $this->mBatchSize;
-			$blockEnd += $this->mBatchSize;
+			$blockStart += $batchSize;
+			$blockEnd += $batchSize;
 			wfWaitForSlaves();
 		}
 		$this->output( "Done! $count users in group '$oldGroup' are now in '$newGroup' instead.\n" );
