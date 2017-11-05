@@ -35,7 +35,8 @@
 			"Elias Ahmmad",
 			"Catrope",
 			"Mohammed Galib Hasan",
-			"এম আবু সাঈদ"
+			"এম আবু সাঈদ",
+			"Shahadat1971"
 		]
 	},
 	"tog-underline": "সংযোগের নিচে দাগ দেখানো হোক:",
@@ -1301,6 +1302,7 @@
 	"recentchanges-summary": "এই পাতায় উইকিটির সবচেয়ে সাম্প্রতিক পরিবর্তনগুলি অনুসরণ করুন।",
 	"recentchanges-noresult": "নির্ধারিত সময়ের মধ্যে কোনো পরিবর্তন পাওয়া যায়নি।",
 	"recentchanges-timeout": "এই অনুসন্ধানের সময় শেষ হয়েছে। আপনি ভিন্ন অনুসন্ধানের পরামিতি দিয়ে চেষ্টা করতে পারেন।",
+	"recentchanges-network": "কারিগরি ত্রুটির কারনে কোন ফলাফল পাওয়া যায়নি । অনুগ্রহকরে এই পাতাটি রিফ্রেশ করে আমার চেষ্টা করুন ।",
 	"recentchanges-feed-description": "এই ফিডে উইকিটির সবচেয়ে সাম্প্রতিক পরিবর্তনগুলি অনুসরণ করুন।",
 	"recentchanges-label-newpage": "এই সম্পাদনায় একটি নতুন পাতা তৈরি হয়েছে",
 	"recentchanges-label-minor": "এটি একটি অনুল্লেখিত সম্পাদনা",
@@ -3599,6 +3601,7 @@
 	"compare-title-not-exists": "আপনার কাঙ্ক্ষিত শিরোনামটি নেই।",
 	"compare-revision-not-exists": "আপনার কাঙ্ক্ষিত সংস্করণটি নেই।",
 	"diff-form": "পার্থক্য",
+	"diff-form-oldid": "পুরানো সংস্করণ আইডি (ঐচ্ছিক)",
 	"diff-form-submit": "পার্থক্য দেখান",
 	"permanentlink": "স্থায়ী সংযোগ",
 	"permanentlink-revid": "সংশোধন আইডি",

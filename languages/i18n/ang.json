@@ -315,6 +315,8 @@
 	"cannotdelete": "Se tramet oþðe ymele \"$1\" ne meahte beon ahwiten. Meahtlice hæfþ adihtere ær hine astricon.",
 	"cannotdelete-title": "Ne cann forlēosan þone tramet \"$1\"",
 	"badtitle": "Nā genge titul",
+	"title-invalid-too-long": "Se trametnama þone þū wilt is to lang.  He sceal bēon ne langor þon $1 {{PLURAL:$1|byte|bytan}} in UTF-8 rūncræfte.",
+	"title-invalid-leading-colon": "Se trametnama þone þū wilt beclypeþ unregolfæsten twafealden prican æt his orde.",
 	"querypage-no-updates": "Ednīwunga for þissum tramete ne sindon nū gelīfeda. \nCȳþþu hēr ne biþ hraðe ednīwod.",
 	"viewsource": "Sēon fruman",
 	"viewsource-title": "Fruman for $1 sēon",
