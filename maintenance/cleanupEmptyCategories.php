@@ -109,7 +109,7 @@ TEXT
 					__METHOD__,
 					[
 						'ORDER BY' => 'page_title',
-						'LIMIT' => $this->mBatchSize,
+						'LIMIT' => $this->getBatchSize(),
 					],
 					[
 						'category' => [ 'LEFT JOIN', 'page_title = cat_title' ],
@@ -161,7 +161,7 @@ TEXT
 					__METHOD__,
 					[
 						'ORDER BY' => 'cat_title',
-						'LIMIT' => $this->mBatchSize,
+						'LIMIT' => $this->getBatchSize(),
 					],
 					[
 						'page' => [ 'LEFT JOIN', [

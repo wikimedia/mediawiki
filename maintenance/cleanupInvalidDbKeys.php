@@ -161,7 +161,7 @@ TEXT
 				$titleField . $dbr->buildLike( $percent, '_' ),
 			], LIST_OR ) ],
 			__METHOD__,
-			[ 'LIMIT' => $this->mBatchSize ]
+			[ 'LIMIT' => $this->getBatchSize() ]
 		);
 
 		$this->outputStatus( "Number of invalid rows: " . $res->numRows() . "\n" );

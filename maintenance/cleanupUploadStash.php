@@ -103,7 +103,7 @@ class UploadStashCleanup extends Maintenance {
 		foreach ( $iterator as $file ) {
 			if ( wfTimestamp( TS_UNIX, $tempRepo->getFileTimestamp( "$dir/$file" ) ) < $cutoff ) {
 				$batch[] = [ 'op' => 'delete', 'src' => "$dir/$file" ];
-				if ( count( $batch ) >= $this->mBatchSize ) {
+				if ( count( $batch ) >= $this->getBatchSize() ) {
 					$this->doOperations( $tempRepo, $batch );
 					$i += count( $batch );
 					$batch = [];
@@ -129,7 +129,7 @@ class UploadStashCleanup extends Maintenance {
 		foreach ( $iterator as $file ) {
 			if ( wfTimestamp( TS_UNIX, $tempRepo->getFileTimestamp( "$dir/$file" ) ) < $cutoff ) {
 				$batch[] = [ 'op' => 'delete', 'src' => "$dir/$file" ];
-				if ( count( $batch ) >= $this->mBatchSize ) {
+				if ( count( $batch ) >= $this->getBatchSize() ) {
 					$this->doOperations( $tempRepo, $batch );
 					$i += count( $batch );
 					$batch = [];

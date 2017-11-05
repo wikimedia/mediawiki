@@ -78,7 +78,7 @@ TEXT
 		$this->output( "Copying IP revisions to ip_changes, from rev_id $start to rev_id $end\n" );
 
 		while ( $blockStart <= $end ) {
-			$blockEnd = min( $blockStart + $this->mBatchSize, $end );
+			$blockEnd = min( $blockStart + $this->getBatchSize(), $end );
 			$rows = $dbr->select(
 				'revision',
 				[ 'rev_id', 'rev_timestamp', 'rev_user_text' ],
