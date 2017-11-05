@@ -59,11 +59,12 @@ class PopulateBacklinkNamespace extends LoggedUpdateMaintenance {
 			return false;
 		}
 		$end = $db->selectField( 'page', 'MAX(page_id)', false, __METHOD__ );
+		$batchSize = $this->getBatchSize();
 
 		# Do remaining chunk
-		$end += $this->mBatchSize - 1;
+		$end += $batchSize - 1;
 		$blockStart = $start;
-		$blockEnd = $start + $this->mBatchSize - 1;
+		$blockEnd = $start + $batchSize - 1;
 		while ( $blockEnd <= $end ) {
 			$this->output( "...doing page_id from $blockStart to $blockEnd\n" );
 			$cond = "page_id BETWEEN $blockStart AND $blockEnd";
@@ -85,8 +86,8 @@ class PopulateBacklinkNamespace extends LoggedUpdateMaintenance {
 					__METHOD__
 				);
 			}
-			$blockStart += $this->mBatchSize - 1;
-			$blockEnd += $this->mBatchSize - 1;
+			$blockStart += $batchSize - 1;
+			$blockEnd += $batchSize - 1;
 			wfWaitForSlaves();
 		}
 		return true;

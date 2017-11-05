@@ -87,7 +87,7 @@ class WrapOldPasswords extends Maintenance {
 				__METHOD__,
 				[
 					'ORDER BY' => 'user_id',
-					'LIMIT' => $this->mBatchSize,
+					'LIMIT' => $this->getBatchSize(),
 					'LOCK IN SHARE MODE',
 				]
 			);

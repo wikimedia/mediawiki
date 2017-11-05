@@ -256,7 +256,7 @@ class RebuildRecentchanges extends Maintenance {
 				$lastOldId = intval( $obj->rc_this_oldid );
 				$lastSize = $size;
 
-				if ( ( ++$updated % $this->mBatchSize ) == 0 ) {
+				if ( ( ++$updated % $this->getBatchSize() ) == 0 ) {
 					wfGetLBFactory()->waitForReplication();
 				}
 			}
@@ -340,7 +340,7 @@ class RebuildRecentchanges extends Maintenance {
 				__METHOD__
 			);
 
-			if ( ( ++$inserted % $this->mBatchSize ) == 0 ) {
+			if ( ( ++$inserted % $this->getBatchSize() ) == 0 ) {
 				wfGetLBFactory()->waitForReplication();
 			}
 		}
@@ -392,7 +392,7 @@ class RebuildRecentchanges extends Maintenance {
 					__METHOD__
 				);
 
-				foreach ( array_chunk( $rcids, $this->mBatchSize ) as $rcidBatch ) {
+				foreach ( array_chunk( $rcids, $this->getBatchSize() ) as $rcidBatch ) {
 					$dbw->update(
 						'recentchanges',
 						[ 'rc_bot' => 1 ],
@@ -474,7 +474,7 @@ class RebuildRecentchanges extends Maintenance {
 				__METHOD__
 			);
 
-			if ( ( ++$updates % $this->mBatchSize ) == 0 ) {
+			if ( ( ++$updates % $this->getBatchSize() ) == 0 ) {
 				wfGetLBFactory()->waitForReplication();
 			}
 		}

@@ -80,7 +80,7 @@ class ResetUserTokens extends Maintenance {
 		$maxid = $dbr->selectField( 'user', 'MAX(user_id)', [], __METHOD__ );
 
 		$min = 0;
-		$max = $this->mBatchSize;
+		$max = $this->getBatchSize();
 
 		do {
 			$result = $dbr->select( 'user',
@@ -99,7 +99,7 @@ class ResetUserTokens extends Maintenance {
 			}
 
 			$min = $max;
-			$max = $min + $this->mBatchSize;
+			$max = $min + $this->getBatchSize();
 
 			wfWaitForSlaves();
 		} while ( $min <= $maxid );

@@ -200,7 +200,7 @@ class PurgeChangedFiles extends Maintenance {
 
 				$this->verbose( "Purged file {$row->log_title}; {$type} @{$row->log_timestamp}.\n" );
 
-				if ( $this->hasOption( 'sleep-per-batch' ) && ++$bSize > $this->mBatchSize ) {
+				if ( $this->hasOption( 'sleep-per-batch' ) && ++$bSize > $this->getBatchSize() ) {
 					$bSize = 0;
 					// sleep-per-batch is milliseconds, usleep wants micro seconds.
 					usleep( 1000 * (int)$this->getOption( 'sleep-per-batch' ) );

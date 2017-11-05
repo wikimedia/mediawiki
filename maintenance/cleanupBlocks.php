@@ -44,8 +44,9 @@ class CleanupBlocks extends Maintenance {
 		$max = $db->selectField( 'ipblocks', 'MAX(ipb_user)' );
 
 		// Step 1: Clean up any duplicate user blocks
-		for ( $from = 1; $from <= $max; $from += $this->mBatchSize ) {
-			$to = min( $max, $from + $this->mBatchSize - 1 );
+		$batchSize = $this->getBatchSize();
+		for ( $from = 1; $from <= $max; $from += $batchSize ) {
+			$to = min( $max, $from + $batchSize - 1 );
 			$this->output( "Cleaning up duplicate ipb_user ($from-$to of $max)\n" );
 
 			$delete = [];
@@ -118,8 +119,8 @@ class CleanupBlocks extends Maintenance {
 		}
 
 		// Step 2: Update the user name in any blocks where it doesn't match
-		for ( $from = 1; $from <= $max; $from += $this->mBatchSize ) {
-			$to = min( $max, $from + $this->mBatchSize - 1 );
+		for ( $from = 1; $from <= $max; $from += $batchSize ) {
+			$to = min( $max, $from + $batchSize - 1 );
 			$this->output( "Cleaning up mismatched user name ($from-$to of $max)\n" );
 
 			$res = $db->select(
