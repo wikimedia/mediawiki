@@ -524,13 +524,42 @@ class SkinTemplate extends Skin {
 	 * @return string
 	 */
 	public function getPersonalToolsList() {
+		return $this->makePersonalToolsList();
+	}
+
+	/**
+	 * Get the HTML for the personal tools list
+	 *
+	 * @param array $personalTools
+	 * @param array $options
+	 * @return string
+	 */
+	public function makePersonalToolsList( $personalTools = null, $options = [] ) {
 		$tpl = $this->setupTemplateForOutput();
 		$tpl->set( 'personal_urls', $this->buildPersonalUrls() );
 		$html = '';
-		foreach ( $tpl->getPersonalTools() as $key => $item ) {
-			$html .= $tpl->makeListItem( $key, $item );
+
+		if ( $personalTools === null ) {
+			$personalTools = $tpl->getPersonalTools();
 		}
+
+		foreach ( $personalTools as $key => $item ) {
+			$html .= $tpl->makeListItem( $key, $item, $options );
+		}
+
 		return $html;
+	}
+
+	/**
+	 * Get personal tools for the user
+	 *
+	 * @return array Array of personal tools
+	 */
+	public function getPersonalTools() {
+		$tpl = $this->setupTemplateForOutput();
+		$tpl->set( 'personal_urls', $this->buildPersonalUrls() );
+
+		return $tpl->getPersonalTools();
 	}
 
 	/**
