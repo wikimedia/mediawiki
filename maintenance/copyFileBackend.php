@@ -109,7 +109,7 @@ class CopyFileBackend extends Maintenance {
 			foreach ( $srcPathsRel as $srcPathRel ) {
 				// Check up on the rate file periodically to adjust the concurrency
 				if ( $rateFile && ( !$count || ( $count % 500 ) == 0 ) ) {
-					$this->mBatchSize = max( 1, (int)file_get_contents( $rateFile ) );
+					$this->setBatchSize( max( 1, (int)file_get_contents( $rateFile ) ) );
 					$this->output( "\tBatch size is now {$this->mBatchSize}.\n" );
 				}
 				$batchPaths[$srcPathRel] = 1; // remove duplicates
@@ -136,7 +136,7 @@ class CopyFileBackend extends Maintenance {
 				foreach ( $delPathsRel as $delPathRel ) {
 					// Check up on the rate file periodically to adjust the concurrency
 					if ( $rateFile && ( !$count || ( $count % 500 ) == 0 ) ) {
-						$this->mBatchSize = max( 1, (int)file_get_contents( $rateFile ) );
+						$this->setBatchSize( max( 1, (int)file_get_contents( $rateFile ) ) );
 						$this->output( "\tBatch size is now {$this->mBatchSize}.\n" );
 					}
 					$batchPaths[$delPathRel] = 1; // remove duplicates

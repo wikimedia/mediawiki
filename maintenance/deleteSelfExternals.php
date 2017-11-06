@@ -33,7 +33,7 @@ class DeleteSelfExternals extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Delete self-references to $wgServer from externallinks' );
-		$this->mBatchSize = 1000;
+		$this->setBatchSize( 1000 );
 	}
 
 	public function execute() {
