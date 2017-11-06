@@ -3,6 +3,19 @@ This is not a release yet!
 
 === Changes since 1.28.1 ==
 * (T168856) Allow SVGs created by Dia to be uploaded.
+* (T157545) Add missing doUpdates() call to refreshLinks.php.
+* (T165714) (T100085) Better handling of jobs execution in post-connection shutdown.
+* (T154425) (T154438) (T157679) Use AutoCommitUpdate instead of Database->onTransactionIdle.
+* (T154425) Make DeferredUpdates detect LBFactory transaction rounds.
+* (T149454) Restore erroneously removed realTableName call from DatabasePostgres.
+* (T167798) Fix phrase search and highlighting for phrase queries.
+* (T151136) Provide credits information to callbacks in extension registration.
+* (T160462) Allow namespaces defined in extension.json to be overwritten locally.
+* (T168337) Fix ErrorPageError to work from non-UI contexts.
+* (T143788) Backports for PHP 7.0 and 7.1 support.
+* (T175439) Unbreak Postgres Updater when setting defaults for a column.
+* (T160298) Remove use of implicitGroupBy() in ActiveUsersPager.
+* (T174255) Declare uploadCount property in importDump.php.
 
 == MediaWiki 1.28.1 ==
 
