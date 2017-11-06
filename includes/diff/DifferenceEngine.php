@@ -751,7 +751,7 @@ class DifferenceEngine extends ContextSource {
 		}
 		// Cacheable?
 		$key = false;
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		if ( $this->mOldid && $this->mNewid ) {
 			$key = $this->getDiffBodyCacheKey();
 
@@ -809,8 +809,12 @@ class DifferenceEngine extends ContextSource {
 			throw new MWException( 'mOldid and mNewid must be set to get diff cache key.' );
 		}
 
-		return wfMemcKey( 'diff', 'version', self::DIFF_VERSION,
-			'oldid', $this->mOldid, 'newid', $this->mNewid );
+		return ObjectCache::getLocalClusterInstance()->makeKey(
+			'diff',
+			'version', self::DIFF_VERSION,
+			'oldid', $this->mOldid,
+			'newid', $this->mNewid
+		);
 	}
 
 	/**
