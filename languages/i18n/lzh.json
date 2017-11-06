@@ -635,6 +635,7 @@
 	"history-feed-description": "維基誌審",
 	"history-feed-item-nocomment": "$1於$2",
 	"history-feed-empty": "此頁不存，或刪、或更。類由此[[Special:Search|尋]]",
+	"history-edit-tags": "修訂標識",
 	"rev-deleted-comment": "（此註刪矣）",
 	"rev-deleted-user": "（此簿刪矣）",
 	"rev-deleted-event": "（此誌刪矣）",
