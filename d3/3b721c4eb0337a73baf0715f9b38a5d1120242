@@ -1,0 +1,8 @@
+Code-Review+1: Cparle <cparle@wikimedia.org>
+Code-Review+2: MarkTraceur <mholmquist@wikimedia.org>
+Verified+2: jenkins-bot
+Submitted-by: Matthias Mullie <mmullie@wikimedia.org>
+Submitted-at: Mon, 06 Nov 2017 13:09:00 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/384538
+Project: mediawiki/core
+Branch: refs/heads/master
