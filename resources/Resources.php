@@ -1791,6 +1791,7 @@ return [
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterTagItemWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.FilterMenuHeaderWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.MenuSelectWidget.js',
+			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.MainWrapperWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.ViewSwitchWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.ValuePickerWidget.js',
 			'resources/src/mediawiki.rcfilters/ui/mw.rcfilters.ui.ChangesLimitPopupWidget.js',
