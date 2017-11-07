@@ -37,10 +37,12 @@
  *      MediaWiki code base.
  */
 
+use MediaWiki\Auth\AuthManager;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\SqlBlobStore;
@@ -496,6 +498,13 @@ return [
 		}
 
 		return $store;
+	},
+
+	'PreferencesFactory' => function ( MediaWikiServices $services ) {
+		global $wgContLang;
+		$authManager = AuthManager::singleton();
+		$linkRenderer = $services->getLinkRenderer();
+		return new DefaultPreferencesFactory( $wgContLang, $authManager, $linkRenderer );
 	},
 
 	///////////////////////////////////////////////////////////////////////////
