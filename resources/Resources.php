@@ -2096,6 +2096,7 @@ return [
 		'scripts' => [
 			'resources/src/mediawiki.special/mediawiki.special.preferences.confirmClose.js',
 			'resources/src/mediawiki.special/mediawiki.special.preferences.convertmessagebox.js',
+			'resources/src/mediawiki.special/mediawiki.special.preferences.editfont.js',
 			'resources/src/mediawiki.special/mediawiki.special.preferences.tabs.js',
 			'resources/src/mediawiki.special/mediawiki.special.preferences.timezone.js',
 		],
