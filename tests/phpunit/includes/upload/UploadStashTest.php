@@ -19,7 +19,7 @@ class UploadStashTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->tmpFile = wfTempDir() . '/' . uniqid();
+		$this->tmpFile = $this->getNewTempFile();
 		file_put_contents( $this->tmpFile, "\x00" );
 
 		self::$users = [
@@ -36,18 +36,6 @@ class UploadStashTest extends MediaWikiTestCase {
 				[]
 			)
 		];
-	}
-
-	protected function tearDown() {
-		if ( file_exists( $this->tmpFile . "." ) ) {
-			unlink( $this->tmpFile . "." );
-		}
-
-		if ( file_exists( $this->tmpFile ) ) {
-			unlink( $this->tmpFile );
-		}
-
-		parent::tearDown();
 	}
 
 	/**
