@@ -417,7 +417,10 @@
 			this.matchingQuery ? this.matchingQuery.getLabel() : ''
 		);
 		this.savedQueryTitle.toggle( !!this.matchingQuery );
-		this.saveQueryButton.toggle( !this.matchingQuery );
+		this.saveQueryButton.setDisabled( !!this.matchingQuery );
+		this.saveQueryButton.setTitle( !this.matchingQuery ?
+			mw.msg( 'rcfilters-savedqueries-add-new-title' ) :
+			mw.msg( 'rcfilters-savedqueries-already-saved' ) );
 
 		if ( this.matchingQuery ) {
 			this.emphasize();

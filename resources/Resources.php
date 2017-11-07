@@ -1854,6 +1854,7 @@ return [
 			'rcfilters-savedqueries-new-name-label',
 			'rcfilters-savedqueries-new-name-placeholder',
 			'rcfilters-savedqueries-add-new-title',
+			'rcfilters-savedqueries-already-saved',
 			'rcfilters-savedqueries-apply-label',
 			'rcfilters-savedqueries-apply-and-setdefault-label',
 			'rcfilters-savedqueries-cancel-label',
