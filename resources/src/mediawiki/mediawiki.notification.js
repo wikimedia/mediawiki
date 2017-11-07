@@ -80,6 +80,7 @@
 		//          to stop replacement of a tagged notification with another notification using the same message.
 		// options: The options passed to the notification with a little sanitization. Used by various methods.
 		// $notification: jQuery object containing the notification DOM node.
+		// timeout: Holds appropriate methods to set/clear timeouts
 		this.autoHideSeconds = options.autoHideSeconds &&
 			notification.autoHideSeconds[ options.autoHideSeconds ] ||
 			notification.autoHideSeconds.short;
@@ -88,6 +89,14 @@
 		this.message = message;
 		this.options = options;
 		this.$notification = $notification;
+		if ( options.visibleTimeout ) {
+			this.timeout = require( 'mediawiki.visibleTimeout' );
+		} else {
+			this.timeout = {
+				set: setTimeout,
+				clear: clearTimeout
+			};
+		}
 	}
 
 	/**
@@ -171,9 +180,9 @@
 		}
 		this.isPaused = true;
 
-		if ( this.timeout ) {
-			clearTimeout( this.timeout );
-			delete this.timeout;
+		if ( this.timeoutId ) {
+			this.timeout.clear( this.timeoutId );
+			delete this.timeoutId;
 		}
 	};
 
@@ -184,15 +193,16 @@
 	 */
 	Notification.prototype.resume = function () {
 		var notif = this;
+
 		if ( !notif.isPaused ) {
 			return;
 		}
 		// Start any autoHide timeouts
 		if ( notif.options.autoHide ) {
 			notif.isPaused = false;
-			notif.timeout = setTimeout( function () {
+			notif.timeoutId = notif.timeout.set( function () {
 				// Already finished, so don't try to re-clear it
-				delete notif.timeout;
+				delete notif.timeoutId;
 				notif.close();
 			}, this.autoHideSeconds * 1000 );
 		}
@@ -409,13 +419,18 @@
 		 * - type:
 		 *   An optional string for the type of the message used for styling:
 		 *   Examples: 'info', 'warn', 'error'.
+		 *
+		 * - visibleTimeout:
+		 *   A boolean indicating if the autoHide timeout should be based on
+		 *   time the page was visible to user. Or if it should use wall clock time.
 		 */
 		defaults: {
 			autoHide: true,
 			autoHideSeconds: 'short',
 			tag: null,
 			title: null,
-			type: null
+			type: null,
+			visibleTimeout: true
 		},
 
 		/**
