@@ -447,6 +447,11 @@ return [
 		return $factory;
 	},
 
+	'PreferencesFactory' => function ( MediaWikiServices $services ) {
+		$className = $services->getMainConfig()->get( 'PreferencesFactoryClass' );
+		return new $className;
+	}
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
 	// in the MediaWikiServices class. The convenience getter should just call
