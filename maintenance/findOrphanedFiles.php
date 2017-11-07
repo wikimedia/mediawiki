@@ -61,7 +61,7 @@ class FindOrphanedFiles extends Maintenance {
 			}
 
 			$pathBatch[] = $path;
-			if ( count( $pathBatch ) >= $this->mBatchSize ) {
+			if ( count( $pathBatch ) >= $this->getBatchSize() ) {
 				$this->checkFiles( $repo, $pathBatch, $verbose );
 				$pathBatch = [];
 			}

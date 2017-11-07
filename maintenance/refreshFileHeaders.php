@@ -78,8 +78,15 @@ class RefreshFileHeaders extends Maintenance {
 				$conds[] = "img_minor_mime = {$dbr->addQuotes( $minor_mime )}";
 			}
 
-			$res = $dbr->select( $fileQuery['tables'], $fileQuery['fields'], $conds,
-				__METHOD__, [ 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'img_name ASC' ], $fileQuery['joins']
+			$res = $dbr->select( $fileQuery['tables'],
+				$fileQuery['fields'],
+				$conds,
+				__METHOD__,
+				[
+					'LIMIT' => $this->getBatchSize(),
+					'ORDER BY' => 'img_name ASC'
+				],
+				$fileQuery['joins']
 			);
 
 			if ( $res->numRows() > 0 ) {
@@ -122,7 +129,7 @@ class RefreshFileHeaders extends Maintenance {
 
 			$this->output( "Updating headers for {$backendOperationsCount} file(s).\n" );
 			$this->updateFileHeaders( $repo, $backendOperations );
-		} while ( $res->numRows() === $this->mBatchSize );
+		} while ( $res->numRows() === $this->getBatchSize() );
 
 		$this->output( "Done. Updated headers for $count file(s).\n" );
 	}

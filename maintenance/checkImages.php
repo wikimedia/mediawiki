@@ -47,7 +47,7 @@ class CheckImages extends Maintenance {
 		do {
 			$res = $dbr->select( $fileQuery['tables'], $fileQuery['fields'],
 				[ 'img_name > ' . $dbr->addQuotes( $start ) ],
-				__METHOD__, [ 'LIMIT' => $this->mBatchSize ], $fileQuery['joins'] );
+				__METHOD__, [ 'LIMIT' => $this->getBatchSize() ], $fileQuery['joins'] );
 			foreach ( $res as $row ) {
 				$numImages++;
 				$start = $row->img_name;

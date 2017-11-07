@@ -48,6 +48,7 @@ class PopulateLogUsertext extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
+		$batchSize = $this->getBatchSize();
 		$db = $this->getDB( DB_MASTER );
 		$start = $db->selectField( 'logging', 'MIN(log_id)', false, __METHOD__ );
 		if ( !$start ) {
@@ -58,9 +59,9 @@ class PopulateLogUsertext extends LoggedUpdateMaintenance {
 		$end = $db->selectField( 'logging', 'MAX(log_id)', false, __METHOD__ );
 
 		# Do remaining chunk
-		$end += $this->mBatchSize - 1;
+		$end += $batchSize - 1;
 		$blockStart = $start;
-		$blockEnd = $start + $this->mBatchSize - 1;
+		$blockEnd = $start + $batchSize - 1;
 		while ( $blockEnd <= $end ) {
 			$this->output( "...doing log_id from $blockStart to $blockEnd\n" );
 			$cond = "log_id BETWEEN $blockStart AND $blockEnd AND log_user = user_id";
@@ -73,8 +74,8 @@ class PopulateLogUsertext extends LoggedUpdateMaintenance {
 					[ 'log_id' => $row->log_id ], __METHOD__ );
 			}
 			$this->commitTransaction( $db, __METHOD__ );
-			$blockStart += $this->mBatchSize;
-			$blockEnd += $this->mBatchSize;
+			$blockStart += $batchSize;
+			$blockEnd += $batchSize;
 			wfWaitForSlaves();
 		}
 		$this->output( "Done populating log_user_text field.\n" );

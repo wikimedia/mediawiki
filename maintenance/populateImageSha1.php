@@ -119,7 +119,7 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 		$numRows = $res->numRows();
 		$i = 0;
 		foreach ( $res as $row ) {
-			if ( $i % $this->mBatchSize == 0 ) {
+			if ( $i % $this->getBatchSize() == 0 ) {
 				$this->output( sprintf(
 					"Done %d of %d, %5.3f%%  \r", $i, $numRows, $i / $numRows * 100 ) );
 				wfWaitForSlaves();

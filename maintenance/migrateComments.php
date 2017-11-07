@@ -161,7 +161,7 @@ class MigrateComments extends LoggedUpdateMaintenance {
 				__METHOD__,
 				[
 					'ORDER BY' => $primaryKey,
-					'LIMIT' => $this->mBatchSize,
+					'LIMIT' => $this->getBatchSize(),
 				]
 			);
 			if ( !$res->numRows() ) {
@@ -245,7 +245,7 @@ class MigrateComments extends LoggedUpdateMaintenance {
 				__METHOD__,
 				[
 					'ORDER BY' => $primaryKey,
-					'LIMIT' => $this->mBatchSize,
+					'LIMIT' => $this->getBatchSize(),
 				],
 				[ $newTable => [ 'LEFT JOIN', "{$primaryKey}={$newPrimaryKey}" ] ]
 			);
