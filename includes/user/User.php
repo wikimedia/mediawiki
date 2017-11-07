@@ -3088,12 +3088,13 @@ class User implements IDBAccessObject, UserIdentity {
 			$options = $this->mOptions;
 		}
 
-		$prefs = Preferences::getPreferences( $this, $context );
+		$preferencesFactory = MediaWikiServices::getInstance()->getPreferencesFactory();
+		$prefs = $preferencesFactory->getPreferences( $this, $context );
 		$mapping = [];
 
 		// Pull out the "special" options, so they don't get converted as
 		// multiselect or checkmatrix.
-		$specialOptions = array_fill_keys( Preferences::getSaveBlacklist(), true );
+		$specialOptions = array_fill_keys( $preferencesFactory->getSaveBlacklist(), true );
 		foreach ( $specialOptions as $name => $value ) {
 			unset( $prefs[$name] );
 		}

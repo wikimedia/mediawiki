@@ -41,6 +41,7 @@ use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Shell\CommandFactory;
 
 return [
@@ -455,6 +456,10 @@ return [
 			$config->get( 'ExternalStores' )
 		);
 	},
+
+	'PreferencesFactory' => function ( MediaWikiServices $services ) {
+		return new PreferencesFactory();
+	}
 
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
