@@ -57,6 +57,7 @@
 	"mediawiki/blue-spice-count-things": "dev-master",
 	"mediawiki/blue-spice-emoticons":  "dev-master",
 	"mediawiki/blue-spice-dashboards": "dev-master",
-	"mediawiki/blue-spice-context-menu": "dev-master"
+	"mediawiki/blue-spice-context-menu": "dev-master",
+	"mediawiki/blue-spice-namespace-manager": "dev-master"
   }
 }
