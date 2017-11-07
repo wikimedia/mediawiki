@@ -12,6 +12,7 @@
 }
 
 .mw-rcfilters-ui-changesListWrapperWidget {
+	position: relative;
 
 	&-newChanges {
 		min-height: 34px;
@@ -56,6 +57,18 @@
 
 	.mw-changeslist-legend {
 		background-color: @background-color-base;
+		position: relative;
+	}
+
+	.mw-changeslist-overlay {
+		position: absolute;
+		display: none;
+		width: 100%;
+		height: 100%;
+	}
+
+	&--overlayed > .mw-changeslist-overlay {
+		display: block;
 	}
 
 	// Correction for Enhanced RC
