@@ -4929,6 +4929,8 @@ $wgDefaultUserOptions = [
  */
 $wgHiddenPrefs = [];
 
+$wgPreferencesFactoryClass = \MediaWiki\Preferences\PreferencesFactory::class;
+
 /**
  * Characters to prevent during new account creations.
  * This is used in a regular expression character class during
