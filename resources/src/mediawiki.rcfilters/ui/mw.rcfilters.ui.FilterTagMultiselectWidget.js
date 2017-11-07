@@ -298,6 +298,8 @@
 		} else {
 			this.blur();
 
+			mw.hook( 'RcFilters.popup.close' ).fire();
+
 			// Clear selection
 			this.selectTag( null );
 

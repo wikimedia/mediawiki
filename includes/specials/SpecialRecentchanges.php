@@ -425,6 +425,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$userShowHiddenCats = $this->getUser()->getBoolOption( 'showhiddencats' );
 		$rclistOutput = $list->beginRecentChangesList();
 		if ( $this->isStructuredFilterUiEnabled() ) {
+			$rclistOutput .= $this->makeOverlay();
 			$rclistOutput .= $this->makeLegend();
 		}
 

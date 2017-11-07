@@ -535,6 +535,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$s = $list->beginRecentChangesList();
 
 		if ( $this->isStructuredFilterUiEnabled() ) {
+			$s .= $this->makeOverlay();
 			$s .= $this->makeLegend();
 		}
 

@@ -1606,6 +1606,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
+	 * Return the overlay displayed within the changes list
+	 *
+	 * @return string
+	 */
+	public function makeOverlay() {
+		return '<div class="mw-changeslist-overlay"></div>';
+	}
+
+	/**
 	 * Add page-specific modules.
 	 */
 	protected function addModules() {
