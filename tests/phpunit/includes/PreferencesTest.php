@@ -44,6 +44,7 @@ class PreferencesTest extends MediaWikiTestCase {
 	/**
 	 * Placeholder to verify T36302
 	 * @covers Preferences::profilePreferences
+	 * @deprecated replaced by DefaultPreferencesFactoryTest::testEmailAuthentication()
 	 */
 	public function testEmailAuthenticationFieldWhenUserHasNoEmail() {
 		$prefs = $this->prefsFor( 'noemail' );
@@ -56,6 +57,7 @@ class PreferencesTest extends MediaWikiTestCase {
 	/**
 	 * Placeholder to verify T36302
 	 * @covers Preferences::profilePreferences
+	 * @deprecated replaced by DefaultPreferencesFactoryTest::testEmailAuthentication()
 	 */
 	public function testEmailAuthenticationFieldWhenUserEmailNotAuthenticated() {
 		$prefs = $this->prefsFor( 'notauth' );
@@ -68,6 +70,7 @@ class PreferencesTest extends MediaWikiTestCase {
 	/**
 	 * Placeholder to verify T36302
 	 * @covers Preferences::profilePreferences
+	 * @deprecated replaced by DefaultPreferencesFactoryTest::testEmailAuthentication()
 	 */
 	public function testEmailAuthenticationFieldWhenUserEmailIsAuthenticated() {
 		$prefs = $this->prefsFor( 'auth' );
@@ -75,77 +78,6 @@ class PreferencesTest extends MediaWikiTestCase {
 			$prefs['emailauthentication']
 		);
 		$this->assertEquals( 'mw-email-authenticated', $prefs['emailauthentication']['cssclass'] );
-	}
-
-	/**
-	 * Test that PreferencesFormPreSave hook has correct data:
-	 *  - user Object is passed
-	 *  - oldUserOptions contains previous user options (before save)
-	 *  - formData and User object have set up new properties
-	 *
-	 * @see https://phabricator.wikimedia.org/T169365
-	 * @covers Preferences::tryFormSubmit
-	 */
-	public function testPreferencesFormPreSaveHookHasCorrectData() {
-		$oldOptions = [
-			'test' => 'abc',
-			'option' => 'old'
-		];
-		$newOptions = [
-			'test' => 'abc',
-			'option' => 'new'
-		];
-		$configMock = new HashConfig( [
-			'HiddenPrefs' => []
-		] );
-		$form = $this->getMockBuilder( PreferencesForm::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$userMock = $this->getMockBuilder( User::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$userMock->method( 'getOptions' )
-			->willReturn( $oldOptions );
-		$userMock->method( 'isAllowedAny' )
-			->willReturn( true );
-		$userMock->method( 'isAllowed' )
-			->willReturn( true );
-
-		$userMock->expects( $this->exactly( 2 ) )
-			->method( 'setOption' )
-			->withConsecutive(
-				[ $this->equalTo( 'test' ), $this->equalTo( $newOptions[ 'test' ] ) ],
-				[ $this->equalTo( 'option' ), $this->equalTo( $newOptions[ 'option' ] ) ]
-			);
-
-		$form->expects( $this->any() )
-			->method( 'getModifiedUser' )
-			->willReturn( $userMock );
-
-		$form->expects( $this->any() )
-			->method( 'getContext' )
-			->willReturn( $this->context );
-
-		$form->expects( $this->any() )
-			->method( 'getConfig' )
-			->willReturn( $configMock );
-
-		$this->setTemporaryHook( 'PreferencesFormPreSave', function (
-			$formData, $form, $user, &$result, $oldUserOptions )
-			use ( $newOptions, $oldOptions, $userMock ) {
-			$this->assertSame( $userMock, $user );
-			foreach ( $newOptions as $option => $value ) {
-				$this->assertSame( $value, $formData[ $option ] );
-			}
-			foreach ( $oldOptions as $option => $value ) {
-				$this->assertSame( $value, $oldUserOptions[ $option ] );
-			}
-			$this->assertEquals( true, $result );
-		}
-		);
-
-		Preferences::tryFormSubmit( $newOptions, $form );
 	}
 
 	/** Helper */
