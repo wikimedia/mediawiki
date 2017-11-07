@@ -765,7 +765,7 @@ class DifferenceEngine extends ContextSource {
 				$difftext = $cache->get( $key );
 				if ( $difftext ) {
 					wfIncrStats( 'diff_cache.hit' );
-					$difftext = $this->localiseLineNumbers( $difftext );
+					$difftext = $this->localiseDiff( $difftext );
 					$difftext .= "\n<!-- diff cache key $key -->\n";
 
 					return $difftext;
@@ -793,9 +793,9 @@ class DifferenceEngine extends ContextSource {
 		} else {
 			wfIncrStats( 'diff_cache.uncacheable' );
 		}
-		// Replace line numbers with the text in the user's language
+		// localise line numbers and title attribute text
 		if ( $difftext !== false ) {
-			$difftext = $this->localiseLineNumbers( $difftext );
+			$difftext = $this->localiseDiff( $difftext );
 		}
 
 		return $difftext;
@@ -1081,6 +1081,22 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
+	 * Localise diff output
+	 *
+	 * @param string $text
+	 * @return string
+	 */
+	private function localiseDiff( $text ) {
+		$text = $this->localiseLineNumbers( $text );
+		if ( $this->getEngine() === 'wikidiff2' &&
+			version_compare( phpversion( 'wikidiff2' ), '1.5.1', '>=' )
+		) {
+			$text = $this->addLocalisedTitleTooltips( $text );
+		}
+		return $text;
+	}
+
+	/**
 	 * Replace line numbers with the text in the user's language
 	 *
 	 * @param string $text
@@ -1101,6 +1117,31 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		return $this->msg( 'lineno' )->numParams( $matches[1] )->escaped();
+	}
+
+	/**
+	 * Add title attributes for tooltips on moved paragraph indicators
+	 *
+	 * @param string $text
+	 * @return string
+	 */
+	private function addLocalisedTitleTooltips( $text ) {
+		return preg_replace_callback(
+			'/class="mw-diff-movedpara-(left|old)"/',
+			[ $this, 'addLocalisedTitleTooltipsCb' ],
+			$text
+		);
+	}
+
+	/**
+	 * @param array $matches
+	 * @return string
+	 */
+	private function addLocalisedTitleTooltipsCb( array $matches ) {
+		$key = $matches[1] === 'right' ?
+			'diff-paragraph-moved-toold' :
+			'diff-paragraph-moved-tonew';
+		return $matches[0] . ' title="' . $this->msg( $key )->escaped() . '"';
 	}
 
 	/**
