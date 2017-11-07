@@ -97,4 +97,13 @@
 	mw.rcfilters.ui.FilterWrapperWidget.prototype.setTopSection = function ( $topSectionElement ) {
 		this.$top.append( $topSectionElement );
 	};
+
+	/**
+	 * Register callback function to be called on RCFilters menu opened/closed
+	 *
+	 * @param {Function} callback
+	 */
+	mw.rcfilters.ui.FilterWrapperWidget.prototype.registerOnMenuToggleCallback = function ( callback ) {
+		this.filterTagWidget.onMenuToggleCallback = callback;
+	};
 }( mediaWiki ) );

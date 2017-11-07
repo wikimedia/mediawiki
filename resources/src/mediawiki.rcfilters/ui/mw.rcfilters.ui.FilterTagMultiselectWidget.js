@@ -314,7 +314,14 @@
 		}
 
 		this.input.setIcon( isVisible ? 'search' : 'menu' );
+		this.onMenuToggleCallback( isVisible );
 	};
+
+	/**
+	 * Callback function called on the end of onMenuToggle event.
+	 * No default behavior, intended to be overridden.
+	 */
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onMenuToggleCallback = function () {};
 
 	/**
 	 * @inheritdoc

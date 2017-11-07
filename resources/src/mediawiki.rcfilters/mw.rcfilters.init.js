@@ -13,6 +13,7 @@
 				$watchlistDetails,
 				wlTopSection,
 				namespaces,
+				changesListWidget,
 				savedQueriesPreferenceName = mw.config.get( 'wgStructuredChangeFiltersSavedQueriesPreferenceName' ),
 				filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
 				changesListModel = new mw.rcfilters.dm.ChangesListViewModel(),
@@ -36,9 +37,15 @@
 			// TODO: The changesListWrapperWidget should be able to initialize
 			// after the model is ready.
 
-			// eslint-disable-next-line no-new
-			new mw.rcfilters.ui.ChangesListWrapperWidget(
+			changesListWidget = new mw.rcfilters.ui.ChangesListWrapperWidget(
 				filtersModel, changesListModel, controller, $changesListRoot );
+
+			// Toggle overlay on RCFilters menu opened/closed. We use overlay to prevent users
+			// from accidentally clicking on links in result (changes list) area
+			// while RCFilters menu is opened
+			filtersWidget.registerOnMenuToggleCallback( function ( isVisible ) {
+				changesListWidget.toggleOverlay( isVisible );
+			} );
 
 			// Remove the -loading class that may have been added on the server side.
 			// If we are in fact going to load a default saved query, this .initialize()
