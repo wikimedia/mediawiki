@@ -127,7 +127,7 @@ class SpecialPreferences extends SpecialPage {
 		return Preferences::getFormObject( $user, $context );
 	}
 
-	private function showResetForm() {
+	protected function showResetForm() {
 		if ( !$this->getUser()->isAllowed( 'editmyoptions' ) ) {
 			throw new PermissionsError( 'editmyoptions' );
 		}
