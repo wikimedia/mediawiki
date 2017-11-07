@@ -24,6 +24,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * API module that facilitates the changing of user's preferences.
  * Requires API write mode to be enabled.
@@ -78,7 +80,8 @@ class ApiOptions extends ApiBase {
 			$this->dieWithError( 'apierror-nochanges' );
 		}
 
-		$prefs = Preferences::getPreferences( $user, $this->getContext() );
+		$preferencesFactory = MediaWikiServices::getInstance()->getPreferencesFactory();
+		$prefs = $preferencesFactory->getFormDescriptor( $user, $this->getContext() );
 		$prefsKinds = $user->getOptionKinds( $this->getContext(), $changes );
 
 		$htmlForm = null;
