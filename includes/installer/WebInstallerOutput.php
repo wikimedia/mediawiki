@@ -342,7 +342,7 @@ class WebInstallerOutput {
 	 * @return string
 	 */
 	public function getJQuery() {
-		return Html::linkedScript( "../resources/lib/jquery/jquery.js" );
+		return Html::linkedScript( "../resources/lib/jquery/jquery3.js" );
 	}
 
 }
