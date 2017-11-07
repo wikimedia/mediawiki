@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A special page that allows users to change their preferences
  *
@@ -124,7 +126,10 @@ class SpecialPreferences extends SpecialPage {
 	 * @return PreferencesForm|HTMLForm
 	 */
 	protected function getFormObject( $user, IContextSource $context ) {
-		return Preferences::getFormObject( $user, $context );
+		$preferencesFactory = MediaWikiServices::getInstance()->getPreferencesFactory();
+		$form = $preferencesFactory->getFormObject( $user, $context );
+		$form->setSubmitCallback( [ $preferencesFactory, 'tryUISubmit' ] );
+		return $form;
 	}
 
 	private function showResetForm() {
