@@ -58,6 +58,9 @@
 			}
 		);
 
+		// Events
+		this.filterTagWidget.menu.connect( this, { toggle: [ 'emit', 'menuToggle' ] } );
+
 		// Initialize
 		this.$top = $( '<div>' )
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top' );
