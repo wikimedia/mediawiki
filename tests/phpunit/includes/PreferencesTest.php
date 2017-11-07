@@ -44,6 +44,7 @@ class PreferencesTest extends MediaWikiTestCase {
 	/**
 	 * Placeholder to verify T36302
 	 * @covers Preferences::profilePreferences
+	 * @deprecated replaced by DefaultPreferencesFactoryTest::testEmailAuthentication()
 	 */
 	public function testEmailAuthenticationFieldWhenUserHasNoEmail() {
 		$prefs = $this->prefsFor( 'noemail' );
@@ -56,6 +57,7 @@ class PreferencesTest extends MediaWikiTestCase {
 	/**
 	 * Placeholder to verify T36302
 	 * @covers Preferences::profilePreferences
+	 * @deprecated replaced by DefaultPreferencesFactoryTest::testEmailAuthentication()
 	 */
 	public function testEmailAuthenticationFieldWhenUserEmailNotAuthenticated() {
 		$prefs = $this->prefsFor( 'notauth' );
@@ -68,6 +70,7 @@ class PreferencesTest extends MediaWikiTestCase {
 	/**
 	 * Placeholder to verify T36302
 	 * @covers Preferences::profilePreferences
+	 * @deprecated replaced by DefaultPreferencesFactoryTest::testEmailAuthentication()
 	 */
 	public function testEmailAuthenticationFieldWhenUserEmailIsAuthenticated() {
 		$prefs = $this->prefsFor( 'auth' );
@@ -85,6 +88,8 @@ class PreferencesTest extends MediaWikiTestCase {
 	 *
 	 * @see https://phabricator.wikimedia.org/T169365
 	 * @covers Preferences::tryFormSubmit
+	 * @deprecated replaced by
+	 * DefaultPreferencesFactoryTest::testPreferencesFormPreSaveHookHasCorrectData()
 	 */
 	public function testPreferencesFormPreSaveHookHasCorrectData() {
 		$oldOptions = [
