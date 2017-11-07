@@ -27,8 +27,15 @@
  * @ingroup SpecialPage
  */
 class SpecialPreferences extends SpecialPage {
-	function __construct() {
-		parent::__construct( 'Preferences' );
+
+	/**
+	 * @inheritDoc
+	 */
+	public function __construct(
+		$name = 'Preferences', $restriction = '', $listed = true,
+		$function = false, $file = '', $includable = false
+	) {
+		parent::__construct( $name, $restriction, $listed, $function, $file, $includable );
 	}
 
 	public function doesWrites() {
@@ -127,7 +134,7 @@ class SpecialPreferences extends SpecialPage {
 		return Preferences::getFormObject( $user, $context );
 	}
 
-	private function showResetForm() {
+	protected function showResetForm() {
 		if ( !$this->getUser()->isAllowed( 'editmyoptions' ) ) {
 			throw new PermissionsError( 'editmyoptions' );
 		}
