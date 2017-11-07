@@ -43,6 +43,10 @@
 			newChangesExist: 'onNewChangesExist'
 		} );
 
+		// Hooks
+		mw.hook( 'RcFilters.popup.open' ).add( this.toggleOverlay.bind( this, true ) );
+		mw.hook( 'RcFilters.popup.close' ).add( this.toggleOverlay.bind( this, false ) );
+
 		this.$element
 			.addClass( 'mw-rcfilters-ui-changesListWrapperWidget' )
 			// We handle our own display/hide of the empty results message
@@ -189,6 +193,8 @@
 
 		}
 
+		this.$element.prepend( $( '<div>' ).addClass( 'mw-changeslist-overlay' ) );
+
 		loaderPromise.done( function () {
 			if ( !isInitialDOM && !isEmpty ) {
 				// Make sure enhanced RC re-initializes correctly
@@ -197,6 +203,15 @@
 
 			$( 'body' ).removeClass( 'mw-rcfilters-ui-loading' );
 		} );
+	};
+
+	/**
+	 * Toggles overlay class on changes list when RCFilters menu opens/closes
+	 *
+	 * @param {bool} isVisible True if RCFilters menu is visible
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.toggleOverlay = function ( isVisible ) {
+		this.$element.toggleClass( 'mw-rcfilters-ui-changesListWrapperWidget--overlaid', isVisible );
 	};
 
 	/**
