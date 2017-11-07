@@ -82,7 +82,7 @@ class ManageJobs extends Maintenance {
 			$queue->push( $job );
 			++$count;
 
-			if ( ( $count % $this->mBatchSize ) == 0 ) {
+			if ( ( $count % $this->getBatchSize() ) == 0 ) {
 				$queue->waitForBackups();
 			}
 		}

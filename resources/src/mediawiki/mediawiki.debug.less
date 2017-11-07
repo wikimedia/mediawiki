@@ -16,6 +16,14 @@
 		width: 100%;
 		table-layout: fixed;
 
+		tr {
+			background-color: #fff;
+
+			&:nth-child( even ) {
+				background-color: #f9f9f9;
+			}
+		}
+
 		td,
 		th {
 			padding: 4px 10px;
@@ -30,15 +38,7 @@
 			}
 
 			span.stats {
-				color: #808080;
-			}
-		}
-
-		tr {
-			background-color: #fff;
-
-			&:nth-child( even ) {
-				background-color: #f9f9f9;
+				color: #727272;
 			}
 		}
 	}

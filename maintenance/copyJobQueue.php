@@ -77,7 +77,7 @@ class CopyJobQueue extends Maintenance {
 		foreach ( $jobs as $job ) {
 			++$total;
 			$batch[] = $job;
-			if ( count( $batch ) >= $this->mBatchSize ) {
+			if ( count( $batch ) >= $this->getBatchSize() ) {
 				$dst->push( $batch );
 				$totalOK += count( $batch );
 				$batch = [];

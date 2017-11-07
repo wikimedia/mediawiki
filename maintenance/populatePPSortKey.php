@@ -57,7 +57,7 @@ class PopulatePPSortKey extends LoggedUpdateMaintenance {
 				__METHOD__,
 				[
 					'ORDER BY' => 'pp_page, pp_propname',
-					'LIMIT' => $this->mBatchSize
+					'LIMIT' => $this->getBatchSize()
 				]
 			);
 

@@ -1438,7 +1438,7 @@
 	"recentchanges-summary": "Suivez les changements les plus récents du wiki sur cette page.",
 	"recentchanges-noresult": "Aucune modification correspondant à ces critères sur la période indiquée.",
 	"recentchanges-timeout": "Cette recherche a dépassé le délai imparti. Vous pouvez vouloir essayer avec des paramètres de recherche différents.",
-	"recentchanges-network": "Du fait d’une erreur technique, aucun résultat n’a pu être chargé. Veuillez essayer de rafraîchir la page.",
+	"recentchanges-network": "Aucun résultat ne peut être affiché du fait d’une erreur technique. Veuillez actualiser la page.",
 	"recentchanges-feed-description": "Suivez les dernières modifications du wiki dans ce flux.",
 	"recentchanges-label-newpage": "Cette modification a créé une nouvelle page",
 	"recentchanges-label-minor": "Cette modification est mineure.",

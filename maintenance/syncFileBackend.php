@@ -161,7 +161,7 @@ class SyncFileBackend extends Maintenance {
 
 		$next = null;
 		do {
-			$limit = min( $this->mBatchSize, $end - $start + 1 ); // don't go pass ending ID
+			$limit = min( $this->getBatchSize(), $end - $start + 1 ); // don't go pass ending ID
 			$this->output( "Doing id $start to " . ( $start + $limit - 1 ) . "...\n" );
 
 			$entries = $src->getJournal()->getChangeEntries( $start, $limit, $next );

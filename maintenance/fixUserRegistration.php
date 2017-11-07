@@ -51,7 +51,7 @@ class FixUserRegistration extends Maintenance {
 				],
 				__METHOD__,
 				[
-					'LIMIT' => $this->mBatchSize,
+					'LIMIT' => $this->getBatchSize(),
 					'ORDER BY' => 'user_id',
 				]
 			);
@@ -83,7 +83,7 @@ class FixUserRegistration extends Maintenance {
 			$this->output( "Waiting for replica DBs..." );
 			wfWaitForSlaves();
 			$this->output( " done.\n" );
-		} while ( $res->numRows() >= $this->mBatchSize );
+		} while ( $res->numRows() >= $this->getBatchSize() );
 	}
 }
 

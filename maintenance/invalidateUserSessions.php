@@ -83,7 +83,7 @@ class InvalidateUserSesssions extends Maintenance {
 					. str_replace( [ "\r", "\n" ], ' ', $e->getMessage() ) . "\n" );
 			}
 
-			if ( $i % $this->mBatchSize ) {
+			if ( $i % $this->getBatchSize() ) {
 				$lbFactory->waitForReplication();
 			}
 		}

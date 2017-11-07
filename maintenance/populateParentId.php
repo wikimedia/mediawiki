@@ -46,6 +46,7 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
+		$batchSize = $this->getBatchSize();
 		$db = $this->getDB( DB_MASTER );
 		if ( !$db->tableExists( 'revision' ) ) {
 			$this->error( "revision table does not exist" );
@@ -62,7 +63,7 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 		}
 		# Do remaining chunk
 		$blockStart = intval( $start );
-		$blockEnd = intval( $start ) + $this->mBatchSize - 1;
+		$blockEnd = intval( $start ) + $batchSize - 1;
 		$count = 0;
 		$changed = 0;
 		while ( $blockStart <= $end ) {
@@ -116,8 +117,8 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 					__METHOD__ );
 				$count++;
 			}
-			$blockStart += $this->mBatchSize;
-			$blockEnd += $this->mBatchSize;
+			$blockStart += $batchSize;
+			$blockEnd += $batchSize;
 			wfWaitForSlaves();
 		}
 		$this->output( "rev_parent_id population complete ... {$count} rows [{$changed} changed]\n" );
