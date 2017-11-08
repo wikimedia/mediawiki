@@ -75,6 +75,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 	protected function doLenUpdates( $table, $idCol, $prefix, $queryInfo ) {
 		$dbr = $this->getDB( DB_REPLICA );
 		$dbw = $this->getDB( DB_MASTER );
+		$batchSize = $this->getBatchSize();
 		$start = $dbw->selectField( $table, "MIN($idCol)", false, __METHOD__ );
 		$end = $dbw->selectField( $table, "MAX($idCol)", false, __METHOD__ );
 		if ( !$start || !$end ) {
@@ -85,7 +86,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 
 		# Do remaining chunks
 		$blockStart = intval( $start );
-		$blockEnd = intval( $start ) + $this->mBatchSize - 1;
+		$blockEnd = intval( $start ) + $batchSize - 1;
 		$count = 0;
 
 		while ( $blockStart <= $end ) {
@@ -114,8 +115,8 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 				$this->commitTransaction( $dbw, __METHOD__ );
 			}
 
-			$blockStart += $this->mBatchSize;
-			$blockEnd += $this->mBatchSize;
+			$blockStart += $batchSize;
+			$blockEnd += $batchSize;
 			wfWaitForSlaves();
 		}
 

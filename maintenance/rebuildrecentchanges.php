@@ -109,7 +109,7 @@ class RebuildRecentchanges extends Maintenance {
 				'rc_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) )
 			]
 		);
-		foreach ( array_chunk( $rcids, $this->mBatchSize ) as $rcidBatch ) {
+		foreach ( array_chunk( $rcids, $this->getBatchSize() ) as $rcidBatch ) {
 			$dbw->delete( 'recentchanges', [ 'rc_id' => $rcidBatch ], __METHOD__ );
 			wfGetLBFactory()->waitForReplication();
 		}
@@ -166,7 +166,7 @@ class RebuildRecentchanges extends Maintenance {
 				] + $rcCommentStore->insert( $dbw, $comment ),
 				__METHOD__
 			);
-			if ( ( ++$inserted % $this->mBatchSize ) == 0 ) {
+			if ( ( ++$inserted % $this->getBatchSize() ) == 0 ) {
 				wfGetLBFactory()->waitForReplication();
 			}
 		}

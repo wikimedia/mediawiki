@@ -41,6 +41,7 @@ class UpdateRestrictions extends Maintenance {
 
 	public function execute() {
 		$db = $this->getDB( DB_MASTER );
+		$batchSize = $this->getBatchSize();
 		if ( !$db->tableExists( 'page_restrictions' ) ) {
 			$this->error( "page_restrictions table does not exist", true );
 		}
@@ -52,9 +53,9 @@ class UpdateRestrictions extends Maintenance {
 		$end = $db->selectField( 'page', 'MAX(page_id)', false, __METHOD__ );
 
 		# Do remaining chunk
-		$end += $this->mBatchSize - 1;
+		$end += $batchSize - 1;
 		$blockStart = $start;
-		$blockEnd = $start + $this->mBatchSize - 1;
+		$blockEnd = $start + $batchSize - 1;
 		$encodedExpiry = 'infinity';
 		while ( $blockEnd <= $end ) {
 			$this->output( "...doing page_id from $blockStart to $blockEnd out of $end\n" );
@@ -105,8 +106,8 @@ class UpdateRestrictions extends Maintenance {
 					throw new MWException( "Deadlock loop failed wtf :(" );
 				}
 			}
-			$blockStart += $this->mBatchSize - 1;
-			$blockEnd += $this->mBatchSize - 1;
+			$blockStart += $batchSize - 1;
+			$blockEnd += $batchSize - 1;
 			wfWaitForSlaves();
 		}
 		$this->output( "...removing dead rows from page_restrictions\n" );

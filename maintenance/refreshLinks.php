@@ -80,9 +80,9 @@ class RefreshLinks extends Maintenance {
 			$redir = $this->hasOption( 'redirects-only' );
 			$oldRedir = $this->hasOption( 'old-redirects-only' );
 			$this->doRefreshLinks( $start, $new, $end, $redir, $oldRedir );
-			$this->deleteLinksFromNonexistent( null, null, $this->mBatchSize, $dfnChunkSize );
+			$this->deleteLinksFromNonexistent( null, null, $this->getBatchSize(), $dfnChunkSize );
 		} else {
-			$this->deleteLinksFromNonexistent( $start, $end, $this->mBatchSize, $dfnChunkSize );
+			$this->deleteLinksFromNonexistent( $start, $end, $this->getBatchSize(), $dfnChunkSize );
 		}
 	}
 
@@ -456,7 +456,7 @@ class RefreshLinks extends Maintenance {
 				__METHOD__,
 				[
 					'ORDER BY' => [ 'cl_timestamp', 'cl_from' ],
-					'LIMIT' => $this->mBatchSize,
+					'LIMIT' => $this->getBatchSize(),
 				]
 			);
 
@@ -470,7 +470,7 @@ class RefreshLinks extends Maintenance {
 				self::fixLinksFromArticle( $row->page_id );
 			}
 
-		} while ( $res->numRows() == $this->mBatchSize );
+		} while ( $res->numRows() == $this->getBatchSize() );
 	}
 
 	/**
