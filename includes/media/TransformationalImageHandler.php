@@ -104,6 +104,9 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * @return MediaTransformError|ThumbnailImage|TransformParameterError
 	 */
 	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
+		$originalWidth = isset( $params['width'] ) ? $params['width'] : 0;
+		$originalHeight = isset( $params['height'] ) ? $params['height'] : 0;
+
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return new TransformParameterError( $params );
 		}
@@ -128,6 +131,9 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			'dstPath' => $dstPath,
 			'dstUrl' => $dstUrl,
 			'interlace' => isset( $params['interlace'] ) ? $params['interlace'] : false,
+			'crop' =>  isset( $params['crop'] ) && $params['crop'] == 1 ? true : false,
+			'originalWidth' => $originalWidth,
+			'originalHeight' => $originalHeight,
 		];
 
 		if ( isset( $params['quality'] ) && $params['quality'] === 'low' ) {
@@ -138,6 +144,8 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		if ( $image->isMultipage() && isset( $params['page'] ) ) {
 			$scalerParams['page'] = intval( $params['page'] );
 		}
+
+		Hooks::run( 'TransformationalImageHandlerDoTransformScalerParams', [ $params, &$scalerParams ] );
 
 		# Determine scaler type
 		$scaler = $this->getScalerType( $dstPath );
@@ -156,10 +164,13 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			&& $scalerParams['physicalHeight'] == $scalerParams['srcHeight']
 			&& !isset( $scalerParams['quality'] )
 		) {
-			# normaliseParams (or the user) wants us to return the unscaled image
-			wfDebug( __METHOD__ . ": returning unscaled image\n" );
+			// Allow extensions to prevent returning an unconverted image
+			if ( Hooks::run( 'ImageConvertNoScale', [ $image, $scalerParams ] ) ) {
+				# normaliseParams (or the user) wants us to return the unscaled image
+				wfDebug( __METHOD__ . ": returning unscaled image\n" );
 
-			return $this->getClientScalingThumbnailImage( $image, $scalerParams );
+				return $this->getClientScalingThumbnailImage( $image, $scalerParams );
+			}
 		}
 
 		if ( $scaler == 'client' ) {
