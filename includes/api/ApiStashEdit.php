@@ -210,7 +210,8 @@ class ApiStashEdit extends ApiBase {
 				[ $page, $content, $editInfo->output, $summary, $user ] );
 
 			if ( $alreadyCached ) {
-				$logger->debug( "Already cached parser output for key '$key' ('$title')." );
+				$logger->debug( "Already cached parser output for key '{cachekey}' ('{title}').",
+					[ 'cachekey' => $key, 'title' => $title ] );
 				return self::ERROR_NONE;
 			}
 
@@ -224,14 +225,17 @@ class ApiStashEdit extends ApiBase {
 			if ( $stashInfo ) {
 				$ok = $cache->set( $key, $stashInfo, $ttl );
 				if ( $ok ) {
-					$logger->debug( "Cached parser output for key '$key' ('$title')." );
+					$logger->debug( "Cached parser output for key '{cachekey}' ('{title}').",
+						[ 'cachekey' => $key, 'title' => $title ] );
 					return self::ERROR_NONE;
 				} else {
-					$logger->error( "Failed to cache parser output for key '$key' ('$title')." );
+					$logger->error( "Failed to cache parser output for key '{cachekey}' ('{title}').",
+						[ 'cachekey' => $key, 'title' => $title ] );
 					return self::ERROR_CACHE;
 				}
 			} else {
-				$logger->info( "Uncacheable parser output for key '$key' ('$title') [$code]." );
+				$logger->info( "Uncacheable parser output for key '{cachekey}' ('{title}') [{code}].",
+					[ 'cachekey' => $key, 'title' => $title, 'code' => $code ] );
 				return self::ERROR_UNCACHEABLE;
 			}
 		}
