@@ -933,14 +933,15 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @param array $params Handler-specific parameters
 	 * @param int $flags Bitfield that supports THUMB_* constants
+	 * @param array $clientParams Parameters that have not been normalized
 	 * @return string|null
 	 */
-	public function thumbName( $params, $flags = 0 ) {
+	public function thumbName( $params, $flags = 0, $clientParams = [] ) {
 		$name = ( $this->repo && !( $flags & self::THUMB_FULL_NAME ) )
 			? $this->repo->nameForThumb( $this->getName() )
 			: $this->getName();
 
-		return $this->generateThumbName( $name, $params );
+		return $this->generateThumbName( $name, $params, $clientParams );
 	}
 
 	/**
@@ -948,9 +949,10 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @param string $name
 	 * @param array $params Parameters which will be passed to MediaHandler::makeParamString
+	 * @param array $clientParams Parameters that have not been normalized
 	 * @return string|null
 	 */
-	public function generateThumbName( $name, $params ) {
+	public function generateThumbName( $name, $params, $clientParams = [] ) {
 		if ( !$this->getHandler() ) {
 			return null;
 		}
@@ -968,6 +970,10 @@ abstract class File implements IDBAccessObject {
 				$thumbName .= ".$thumbExt";
 			}
 		}
+
+		// Hook to change the file name based on params (like crop or watermark for example)
+		Hooks::run( 'FileThumbName', [ $this, $clientParams, $params, &$thumbName,
+			$thumbExt, $extension ] );
 
 		return $thumbName;
 	}
@@ -1074,7 +1080,10 @@ abstract class File implements IDBAccessObject {
 				}
 				// Check if an up-to-date thumbnail already exists...
 				wfDebug( __METHOD__ . ": Doing stat for $thumbPath\n" );
-				if ( !( $flags & self::RENDER_FORCE ) && $this->repo->fileExists( $thumbPath ) ) {
+				if (
+					Hooks::run( 'FileTransform', [ $this, &$params ] ) &&
+					!( $flags & self::RENDER_FORCE ) && $this->repo->fileExists( $thumbPath )
+				) {
 					$timestamp = $this->repo->getFileTimestamp( $thumbPath );
 					if ( $timestamp !== false && $timestamp >= $wgThumbnailEpoch ) {
 						// XXX: Pass in the storage path even though we are not rendering anything

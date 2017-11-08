@@ -227,8 +227,23 @@ class BitmapHandler extends TransformationalImageHandler {
 		$rotation = isset( $params['disableRotation'] ) ? 0 : $this->getRotation( $image );
 		list( $width, $height ) = $this->extractPreRotationDimensions( $params, $rotation );
 
+		// For the -thumbnail option a "!" is needed to force exact size,
+		// or ImageMagick may decide your ratio is wrong and slice off
+		// a pixel.
+		$thumbnail = [ '-thumbnail', "{$width}x{$height}!" ];
+
+		// Allow extensions to alter crop, unsharpening and thumbnailing parameters
+		$crop = [];
+		$unsharp = [];
+
+		Hooks::run(
+			'ConstructImageConvertCommand',
+			[ $params, &$quality, $width, $height, &$crop, &$unsharp, &$thumbnail ]
+		);
+
 		$cmd = call_user_func_array( 'wfEscapeShellArg', array_merge(
 			[ $wgImageMagickConvertCommand ],
+			$unsharp,
 			$quality,
 			// Specify white background color, will be used for transparent images
 			// in Internet Explorer/Windows instead of default black.
@@ -236,10 +251,8 @@ class BitmapHandler extends TransformationalImageHandler {
 			$decoderHint,
 			[ $this->escapeMagickInput( $params['srcPath'], $scene ) ],
 			$animation_pre,
-			// For the -thumbnail option a "!" is needed to force exact size,
-			// or ImageMagick may decide your ratio is wrong and slice off
-			// a pixel.
-			[ '-thumbnail', "{$width}x{$height}!" ],
+			$thumbnail,
+			$crop,
 			// Add the source url as a comment to the thumb, but don't add the flag if there's no comment
 			( $params['comment'] !== ''
 				? [ '-set', 'comment', $this->escapeMagickProperty( $params['comment'] ) ]
@@ -255,7 +268,10 @@ class BitmapHandler extends TransformationalImageHandler {
 
 		wfDebug( __METHOD__ . ": running ImageMagick: $cmd\n" );
 		$retval = 0;
-		$err = wfShellExecWithStderr( $cmd, $retval, $env );
+		if ( Hooks::run( 'ImageConvert', [ $params ] ) ) {
+			$err = wfShellExecWithStderr( $cmd, $retval, $env );
+			Hooks::run( 'ImageConvertComplete', [ $params ] );
+		}
 
 		if ( $retval !== 0 ) {
 			$this->logErrorForExternalProcess( $retval, $err, $cmd );

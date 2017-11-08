@@ -1094,6 +1094,21 @@ $collationName: Name of the collation in question
 successfully.
 $user: user (object) whose email is being confirmed
 
+'ConstructImageConvertCommand': Called when transforming an image using
+ImageMagick.
+$params: array of scaler parameters to be passed to ImageMagick
+&$quality: array containing quality information, such as [ '-quality', '95' ]
+when using zlib 9, adaptive filtering. Empty by default and only set when
+$params['quality'] is set.
+$width: image width (int), as extracted by
+TransformationalImageHandler#extractPreRotationDimensions
+$height: image heigh (int), as extracted by
+TransformationalImageHandler#extractPreRotationDimensions
+&$crop: array of crop-related scaler parameters, empty by default
+&$unsharp: array of scaler parameters related to the unsharp mask parameter, empty by default
+&$thumbnail: array of thumbnail-related scaler parameters, default is
+[ '-thumbnail', "{$width}x{$height}!" ]
+
 'ContentAlterParserOutput': Modify parser output for a given content object.
 Called by Content::getParserOutput after parsing has finished. Can be used
 for changes that depend on the result of the parsing but have to be done
@@ -1553,6 +1568,22 @@ $user: User the list is being fetched for
 &$user: user who performed the deletion
 &$reason: reason
 
+'FileThumbName': Called when generating a thumbnail file name from a name and
+specified parameters. Allows extensions to change the file name based on params.
+$file: The File object representing the image we're dealing with
+$clientParams: Array of parameters that have not been normalized
+$params: Array of parameters which will be passed to MediaHandler#makeParamString
+&$thumbName: Thumbnail file name
+$thumbExt: Thumbnail file extension as guessed by MediaHandler#getThumbType.
+May differ from $extension.
+$extension: File extension (such as "svg") supplied by File#getExtension
+
+'FileTransform': Called during the file transformation process when checking if
+an up-to-date thumbnail already exists.
+$file: The File object we're transforming
+&$params: An associative array of handler-specific parameters. Typical keys are
+width, height and page.
+
 'FileTransformed': When a file is transformed and moved into storage.
 $file: reference to the File object
 $thumb: the MediaTransformOutput object
@@ -1780,6 +1811,26 @@ just modify a few things using call-by-reference.
   includes/Linker.php for Linker::makeImageLink
 &$time: Timestamp of file in 'YYYYMMDDHHIISS' string form, or false for current
 &$res: Final HTML output, used if you return false
+
+'ImageConvert': Called before shelling out to ImageMagick to transform an image.
+Return false to prevent calling ImageMagick and thus also from calling the
+'ImageConvertComplete' hook.
+$params: Scalar parameters
+
+'ImageConvertComplete': Called after an image has been transformed by
+ImageMagick, provided that the 'ImageConvert' hook was run.
+$params: Scalar parameters
+
+'ImageConvertNoScale': Allows extensions to prevent returning an unconverted
+image in TransformationalImageHandler#doTransform.
+$image: File object representing the image being scaled
+$scalerParams: Array of parameters passed to the image scaler
+
+'ImageHandlerParseParamString': Allows extensions to override the handling of
+ImageHandler#parseParamString by parsing $str and settings $params to an array.
+$str: The parameter string without file name (e.g. 122px)
+&$params: Boolean false by default; set this to an array in an extension to
+override the default behavior.
 
 'ImageOpenShowImageInlineBefore': Call potential extension just before showing
 the image on an image page.
@@ -3433,6 +3484,12 @@ $user: Current user object
 'TitleSquidURLs': Called to determine which URLs to purge from HTTP caches.
 $title: Title object to purge
 &$urls: An array of URLs to purge from the caches, to be manipulated.
+
+'TransformationalImageHandlerDoTransformScalerParams': Allows to alter the
+parameters which are passed to the image scaler in
+TransformationalImageHandler#doTransform.
+$params: Array of original parameters supplied to the function
+&$scalerParams: Parameter array to be passed to the image scaler
 
 'UnblockUser': Before an IP address or user is unblocked.
 &$block: The Block object about to be saved
