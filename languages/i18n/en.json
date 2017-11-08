@@ -1382,7 +1382,7 @@
 	"rcfilters-savedqueries-apply-and-setdefault-label": "Create default filter",
 	"rcfilters-savedqueries-cancel-label": "Cancel",
 	"rcfilters-savedqueries-add-new-title": "Save current filter settings",
-	"rcfilters-savedqueries-already-saved": "These filters are already saved",
+	"rcfilters-savedqueries-already-saved": "These filters are already saved. Change your settings to create a new Saved Filter.",
 	"rcfilters-restore-default-filters": "Restore default filters",
 	"rcfilters-clear-all-filters": "Clear all filters",
 	"rcfilters-show-new-changes": "View newest changes",
