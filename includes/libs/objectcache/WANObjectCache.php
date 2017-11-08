@@ -447,7 +447,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 		// Do not cache potentially uncommitted data as it might get rolled back
 		if ( !empty( $opts['pending'] ) ) {
-			$this->logger->info( "Rejected set() for $key due to pending writes." );
+			$this->logger->info( 'Rejected set() for {cachekey} due to pending writes.',
+				[ 'cachekey' => $key ] );
 
 			return true; // no-op the write for being unsafe
 		}
@@ -461,16 +462,19 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 				$wrapExtra[self::FLD_FLAGS] = self::FLG_STALE; // mark as stale
 			// Case B: any long-running transaction; ignore this set()
 			} elseif ( $age > self::MAX_READ_LAG ) {
-				$this->logger->info( "Rejected set() for $key due to snapshot lag." );
+				$this->logger->info( 'Rejected set() for {cachekey} due to snapshot lag.',
+					[ 'cachekey' => $key ] );
 
 				return true; // no-op the write for being unsafe
 			// Case C: high replication lag; lower TTL instead of ignoring all set()s
 			} elseif ( $lag === false || $lag > self::MAX_READ_LAG ) {
 				$ttl = $ttl ? min( $ttl, self::TTL_LAGGED ) : self::TTL_LAGGED;
-				$this->logger->warning( "Lowered set() TTL for $key due to replication lag." );
+				$this->logger->warning( 'Lowered set() TTL for {cachekey} due to replication lag.',
+					[ 'cachekey' => $key ] );
 			// Case D: medium length request with medium replication lag; ignore this set()
 			} else {
-				$this->logger->info( "Rejected set() for $key due to high read lag." );
+				$this->logger->info( 'Rejected set() for {cachekey} due to high read lag.',
+					[ 'cachekey' => $key ] );
 
 				return true; // no-op the write for being unsafe
 			}
