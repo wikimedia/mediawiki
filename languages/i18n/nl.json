@@ -1731,7 +1731,7 @@
 	"uploadstash-file-not-found": "Sleutel \"$1\" niet gevonden in de opslag.",
 	"uploadstash-file-not-found-no-thumb": "Kon geen miniatuur verkrijgen.",
 	"uploadstash-file-not-found-no-object": "Kan geen lokaal bestandsobject voor het miniatuur aanmaken.",
-	"uploadstash-file-not-found-no-remote-thumb": "Ophalen van het miniatuur mislukt: $1\nurl = $2\n.",
+	"uploadstash-file-not-found-no-remote-thumb": "Ophalen van het miniatuur mislukt: $1\nurl = $2",
 	"uploadstash-file-not-found-not-exists": "Kan het pad niet vinden, of het bestand is geen platte tekst.",
 	"uploadstash-file-too-large": "Kan geen bestand versturen dat groter is dan $1 bytes.",
 	"uploadstash-not-logged-in": "Er is geen gebruiker aangemeld, bestanden moeten van een gebruiker zijn.",

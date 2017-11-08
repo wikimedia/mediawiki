@@ -1398,6 +1398,7 @@
 	"rcfilters-savedqueries-apply-and-setdefault-label": "Standardfilter erstellen",
 	"rcfilters-savedqueries-cancel-label": "Abbrechen",
 	"rcfilters-savedqueries-add-new-title": "Aktuelle Filtereinstellungen speichern",
+	"rcfilters-savedqueries-already-saved": "Diese Filter sind bereits gespeichert",
 	"rcfilters-restore-default-filters": "Standardfilter wiederherstellen",
 	"rcfilters-clear-all-filters": "Alle Filter löschen",
 	"rcfilters-show-new-changes": "Neueste Änderungen ansehen",

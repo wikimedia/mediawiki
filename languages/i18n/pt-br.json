@@ -1761,7 +1761,7 @@
 	"uploadstash-file-not-found-no-thumb": "Não foi possível obter a miniatura.",
 	"uploadstash-file-not-found-no-local-path": "Não existe um caminho local para o elemento redimensionado.",
 	"uploadstash-file-not-found-no-object": "Não foi possível criar um objeto arquivo local para a miniatura.",
-	"uploadstash-file-not-found-no-remote-thumb": "A obtenção da miniatura falhou: $1\nURL = $2\n.",
+	"uploadstash-file-not-found-no-remote-thumb": "A obtenção da miniatura falhou: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Cabeçalho content-type em falta.",
 	"uploadstash-file-not-found-not-exists": "Não é possível encontrar o caminho, ou o arquivo não é normal.",
 	"uploadstash-file-too-large": "Não é possível servir um arquivo maior do que $1 bytes.",
