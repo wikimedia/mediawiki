@@ -4911,7 +4911,7 @@ External links: Free with trailing quotes (T113666)
 news:'a'b''c''d e
 !! html/php
 <p><b>News:</b> Stuff here
-</p><p><a rel="nofollow" class="external free" href="news:'a'b">news:'a'b</a><i>c</i>d e
+</p><p><a rel="nofollow" class="external free" href="news:&#39;a&#39;b">news:'a'b</a><i>c</i>d e
 </p>
 !! html/parsoid
 <p><b>News:</b> Stuff here</p>
@@ -5557,8 +5557,8 @@ External link containing a single quote. (T65947)
 
 [//foo.org/bar'baz bang]
 !! html/php
-<p><a rel="nofollow" class="external autonumber" href="//foo.org/bar'baz">[1]</a>
-</p><p><a rel="nofollow" class="external text" href="//foo.org/bar'baz">bang</a>
+<p><a rel="nofollow" class="external autonumber" href="//foo.org/bar&#39;baz">[1]</a>
+</p><p><a rel="nofollow" class="external text" href="//foo.org/bar&#39;baz">bang</a>
 </p>
 !! html/parsoid
 <p><a rel="mw:ExtLink" href="//foo.org/bar'baz"></a></p>
@@ -7973,7 +7973,7 @@ Link containing double-single-quotes '' (T6598)
 !! wikitext
 [[Lista d''e paise d''o munno]]
 !! html/php
-<p><a href="/index.php?title=Lista_d%27%27e_paise_d%27%27o_munno&amp;action=edit&amp;redlink=1" class="new" title="Lista d''e paise d''o munno (page does not exist)">Lista d''e paise d''o munno</a>
+<p><a href="/index.php?title=Lista_d%27%27e_paise_d%27%27o_munno&amp;action=edit&amp;redlink=1" class="new" title="Lista d&#39;&#39;e paise d&#39;&#39;o munno (page does not exist)">Lista d''e paise d''o munno</a>
 </p>
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./Lista_d''e_paise_d''o_munno" title="Lista d''e paise d''o munno">Lista d''e paise d''o munno</a></p>
@@ -8038,9 +8038,9 @@ Link with double quotes in title part (literal) and alternate part (interpreted)
 [[''Pentecoste''|''Pentecoste'']]
 !! html/php
 <p><a href="/index.php?title=Special:Upload&amp;wpDestFile=Denys_Savchenko_%27%27Pentecoste%27%27.jpg" class="new" title="File:Denys Savchenko &#39;&#39;Pentecoste&#39;&#39;.jpg">File:Denys Savchenko <i>Pentecoste</i>.jpg</a>
-</p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)">''Pentecoste''</a>
-</p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)">Pentecoste</a>
-</p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)"><i>Pentecoste</i></a>
+</p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="&#39;&#39;Pentecoste&#39;&#39; (page does not exist)">''Pentecoste''</a>
+</p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="&#39;&#39;Pentecoste&#39;&#39; (page does not exist)">Pentecoste</a>
+</p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="&#39;&#39;Pentecoste&#39;&#39; (page does not exist)"><i>Pentecoste</i></a>
 </p>
 !! html/parsoid
 <p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./File:Denys_Savchenko_''Pentecoste''.jpg"><img resource="./File:Denys_Savchenko_''Pentecoste''.jpg" src="./Special:FilePath/Denys_Savchenko_''Pentecoste''.jpg" height="220" width="220"/></a></span></p>
@@ -8333,7 +8333,7 @@ language=kaa
 !! wikitext
 [[Something]]'nice
 !! html
-<p><a href="/index.php?title=Something&amp;action=edit&amp;redlink=1" class="new" title="Something (bet ele jaratılmag'an)">Something'nice</a>
+<p><a href="/index.php?title=Something&amp;action=edit&amp;redlink=1" class="new" title="Something (bet ele jaratılmag&#39;an)">Something'nice</a>
 </p>
 !! end
 
@@ -15817,7 +15817,7 @@ Link to category
 !! wikitext
 [[:Category:MediaWiki User's Guide]]
 !! html
-<p><a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">Category:MediaWiki User's Guide</a>
+<p><a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User&#39;s Guide">Category:MediaWiki User's Guide</a>
 </p>
 !! end
 
@@ -16794,7 +16794,7 @@ section 5
 <h2><span class="mw-headline" id="text_.26_text">text &amp; text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: text &amp; text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p>section 3
 </p>
-<h2><span class="mw-headline" id="text_.27_text">text ' text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: text ' text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="text_.27_text">text ' text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: text &#039; text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p>section 4
 </p>
 <h2><span class="mw-headline" id="text_.22_text">text " text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: text &quot; text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
@@ -29427,7 +29427,7 @@ wgFragmentMode=[ 'html5', 'legacy' ]
 <li class="toclevel-1 tocsection-3"><a href="#Тест"><span class="tocnumber">3</span> <span class="toctext">Тест</span></a></li>
 <li class="toclevel-1 tocsection-4"><a href="#Тест_2"><span class="tocnumber">4</span> <span class="toctext">Тест</span></a></li>
 <li class="toclevel-1 tocsection-5"><a href="#тест"><span class="tocnumber">5</span> <span class="toctext">тест</span></a></li>
-<li class="toclevel-1 tocsection-6"><a href="#Hey_&lt;_#_&quot;_&gt;_%_:_'"><span class="tocnumber">6</span> <span class="toctext">Hey &lt; # " &gt;&#160;%&#160;: '</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Hey_&lt;_#_&quot;_&gt;_%_:_&#39;"><span class="tocnumber">6</span> <span class="toctext">Hey &lt; # " &gt;&#160;%&#160;: '</span></a></li>
 </ul>
 </div>
 
@@ -29436,8 +29436,8 @@ wgFragmentMode=[ 'html5', 'legacy' ]
 <h2><span id=".D0.A2.D0.B5.D1.81.D1.82"></span><span class="mw-headline" id="Тест">Тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span id=".D0.A2.D0.B5.D1.81.D1.82_2"></span><span class="mw-headline" id="Тест_2">Тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span id=".D1.82.D0.B5.D1.81.D1.82"></span><span class="mw-headline" id="тест">тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<h2><span id="Hey_.3C_.23_.22_.3E_.25_:_.27"></span><span class="mw-headline" id="Hey_&lt;_#_&quot;_&gt;_%_:_'">Hey &lt; # " &gt;&#160;%&#160;: '</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Hey &lt; # &quot; &gt; % : '">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<p><a href="#Foo_bar">#Foo bar</a> <a href="#foo_Bar">#foo Bar</a> <a href="#Тест">#Тест</a> <a href="#тест">#тест</a> <a href="#Hey_&lt;_#_&quot;_&gt;_%_:_'">#Hey &lt; # " &gt;&#160;%&#160;: '</a>
+<h2><span id="Hey_.3C_.23_.22_.3E_.25_:_.27"></span><span class="mw-headline" id="Hey_&lt;_#_&quot;_&gt;_%_:_'">Hey &lt; # " &gt;&#160;%&#160;: '</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Hey &lt; # &quot; &gt; % : &#039;">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p><a href="#Foo_bar">#Foo bar</a> <a href="#foo_Bar">#foo Bar</a> <a href="#Тест">#Тест</a> <a href="#тест">#тест</a> <a href="#Hey_&lt;_#_&quot;_&gt;_%_:_&#39;">#Hey &lt; # " &gt;&#160;%&#160;: '</a>
 </p><p>💩 <span id="💩"></span>
 </p><p><a href="#啤酒">#啤酒</a> <a href="#啤酒">#啤酒</a>
 </p>
@@ -29483,7 +29483,7 @@ wgFragmentMode=[ 'legacy', 'html5' ]
 <h2><span id="Тест"></span><span class="mw-headline" id=".D0.A2.D0.B5.D1.81.D1.82">Тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span id="Тест_2"></span><span class="mw-headline" id=".D0.A2.D0.B5.D1.81.D1.82_2">Тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span id="тест"></span><span class="mw-headline" id=".D1.82.D0.B5.D1.81.D1.82">тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<h2><span id="Hey_&lt;_#_&quot;_&gt;_%_:_'"></span><span class="mw-headline" id="Hey_.3C_.23_.22_.3E_.25_:_.27">Hey &lt; # " &gt;&#160;%&#160;: '</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Hey &lt; # &quot; &gt; % : '">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span id="Hey_&lt;_#_&quot;_&gt;_%_:_'"></span><span class="mw-headline" id="Hey_.3C_.23_.22_.3E_.25_:_.27">Hey &lt; # " &gt;&#160;%&#160;: '</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Hey &lt; # &quot; &gt; % : &#039;">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p><a href="#Foo_bar">#Foo bar</a> <a href="#foo_Bar">#foo Bar</a> <a href="#.D0.A2.D0.B5.D1.81.D1.82">#Тест</a> <a href="#.D1.82.D0.B5.D1.81.D1.82">#тест</a> <a href="#Hey_.3C_.23_.22_.3E_.25_:_.27">#Hey &lt; # " &gt;&#160;%&#160;: '</a>
 </p><p>.F0.9F.92.A9 <span id=".F0.9F.92.A9"></span>
 </p><p><a href="#.E5.95.A4.E9.85.92">#啤酒</a> <a href="#.E5.95.A4.E9.85.92">#啤酒</a>
@@ -29521,7 +29521,7 @@ wgFragmentMode=[ 'html5' ]
 <li class="toclevel-1 tocsection-3"><a href="#Тест"><span class="tocnumber">3</span> <span class="toctext">Тест</span></a></li>
 <li class="toclevel-1 tocsection-4"><a href="#Тест_2"><span class="tocnumber">4</span> <span class="toctext">Тест</span></a></li>
 <li class="toclevel-1 tocsection-5"><a href="#тест"><span class="tocnumber">5</span> <span class="toctext">тест</span></a></li>
-<li class="toclevel-1 tocsection-6"><a href="#Hey_&lt;_#_&quot;_&gt;_%_:_'"><span class="tocnumber">6</span> <span class="toctext">Hey &lt; # " &gt;&#160;%&#160;: '</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Hey_&lt;_#_&quot;_&gt;_%_:_&#39;"><span class="tocnumber">6</span> <span class="toctext">Hey &lt; # " &gt;&#160;%&#160;: '</span></a></li>
 </ul>
 </div>
 
@@ -29530,8 +29530,8 @@ wgFragmentMode=[ 'html5' ]
 <h2><span class="mw-headline" id="Тест">Тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="Тест_2">Тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="тест">тест</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: тест">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<h2><span class="mw-headline" id="Hey_&lt;_#_&quot;_&gt;_%_:_'">Hey &lt; # " &gt;&#160;%&#160;: '</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Hey &lt; # &quot; &gt; % : '">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<p><a href="#Foo_bar">#Foo bar</a> <a href="#foo_Bar">#foo Bar</a> <a href="#Тест">#Тест</a> <a href="#тест">#тест</a> <a href="#Hey_&lt;_#_&quot;_&gt;_%_:_'">#Hey &lt; # " &gt;&#160;%&#160;: '</a>
+<h2><span class="mw-headline" id="Hey_&lt;_#_&quot;_&gt;_%_:_'">Hey &lt; # " &gt;&#160;%&#160;: '</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Hey &lt; # &quot; &gt; % : &#039;">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p><a href="#Foo_bar">#Foo bar</a> <a href="#foo_Bar">#foo Bar</a> <a href="#Тест">#Тест</a> <a href="#тест">#тест</a> <a href="#Hey_&lt;_#_&quot;_&gt;_%_:_&#39;">#Hey &lt; # " &gt;&#160;%&#160;: '</a>
 </p><p>💩 <span id="💩"></span>
 </p><p><a href="#啤酒">#啤酒</a> <a href="#啤酒">#啤酒</a>
 </p>
