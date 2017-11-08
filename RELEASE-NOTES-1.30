@@ -80,12 +80,18 @@ section).
 === External library changes in 1.30 ===
 
 ==== Upgraded external libraries ====
-* mediawiki/mediawiki-codesniffer updated to 0.8.1.
-* wikimedia/composer-merge-plugin updated to 1.4.1.
+* Updated justinrainbow/json-schema from v3.0 to v5.2.
+* Updated mediawiki/mediawiki-codesniffer from v0.7.2 to v0.12.0.
+* Updated wikimedia/composer-merge-plugin from v1.4.0 to v1.4.1.
+* Updated wikimedia/relpath from v1.0.3 to v2.0.0.
+* Updated OOjs from v2.0.0 to v2.1.0.
+* Updated OOUI from v0.21.1 to v0.23.0.
+* Updated QUnit from v1.23.1 to v2.4.0.
 
 ==== New external libraries ====
 * The class \TestingAccessWrapper has been moved to the external library
   wikimedia/testing-access-wrapper and renamed \Wikimedia\TestingAccessWrapper.
+* Purtle, a fast, lightweight RDF generator.
 
 ==== Removed and replaced external libraries ====
 * …
