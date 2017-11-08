@@ -295,20 +295,32 @@ return [
 	 * to this black-list to inhibit them from being reported.
 	 */
 	'suppress_issue_types' => [
+		// approximate error count: 1
+		"PhanAccessMethodProtected",
+		// approximate error count: 29
+		"PhanCommentParamOnEmptyParamList",
+		// approximate error count: 33
+		"PhanCommentParamWithoutRealParam",
 		// approximate error count: 8
 		"PhanDeprecatedClass",
 		// approximate error count: 415
 		"PhanDeprecatedFunction",
 		// approximate error count: 25
 		"PhanDeprecatedProperty",
+		// approximate error count: 17
+		"PhanNonClassMethodCall",
 		// approximate error count: 11
 		"PhanParamReqAfterOpt",
 		// approximate error count: 888
 		"PhanParamSignatureMismatch",
 		// approximate error count: 7
 		"PhanParamSignatureMismatchInternal",
+		// approximate error count: 1
+		"PhanParamSignatureRealMismatchTooFewParameters",
 		// approximate error count: 125
 		"PhanParamTooMany",
+		// approximate error count: 1
+		"PhanParamTooManyCallable",
 		// approximate error count: 3
 		"PhanParamTooManyInternal",
 		// approximate error count: 1
@@ -317,12 +329,28 @@ return [
 		"PhanTraitParentReference",
 		// approximate error count: 3
 		"PhanTypeComparisonFromArray",
+		// approximate error count: 2
+		"PhanTypeComparisonToArray",
 		// approximate error count: 3
 		"PhanTypeInvalidRightOperand",
+		// approximate error count: 1
+		"PhanTypeMagicVoidWithReturn",
 		// approximate error count: 218
 		"PhanTypeMismatchArgument",
 		// approximate error count: 13
 		"PhanTypeMismatchArgumentInternal",
+		// approximate error count: 6
+		"PhanTypeMismatchDeclaredParam",
+		// approximate error count: 111
+		"PhanTypeMismatchDeclaredParamNullable",
+		// approximate error count: 1
+		"PhanTypeMismatchDefault",
+		// approximate error count: 5
+		"PhanTypeMismatchDimAssignment",
+		// approximate error count: 2
+		"PhanTypeMismatchDimEmpty",
+		// approximate error count: 1
+		"PhanTypeMismatchDimFetch",
 		// approximate error count: 14
 		"PhanTypeMismatchForeach",
 		// approximate error count: 56
@@ -333,6 +361,8 @@ return [
 		"PhanTypeMissingReturn",
 		// approximate error count: 5
 		"PhanTypeNonVarPassByRef",
+		// approximate error count: 1
+		"PhanUndeclaredClassInCallable",
 		// approximate error count: 32
 		"PhanUndeclaredConstant",
 		// approximate error count: 233
@@ -341,6 +371,12 @@ return [
 		"PhanUndeclaredProperty",
 		// approximate error count: 3
 		"PhanUndeclaredStaticMethod",
+		// approximate error count: 11
+		"PhanUndeclaredTypeReturnType",
+		// approximate error count: 27
+		"PhanUndeclaredVariable",
+		// approximate error count: 58
+		"PhanUndeclaredVariableDim",
 	],
 
 	/**

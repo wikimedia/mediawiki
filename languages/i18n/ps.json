@@ -1708,7 +1708,7 @@
 	"protect-otherreason-op": "بل سبب",
 	"protect-dropdown": "*د ژغورلو عام سببونه\n** ډېره زياته ورانکاري\n** ډېره زياته سپام خپرونه\n** بې گټې سمونې او خپرونې\n** ډېر لوستونکی مخ",
 	"protect-edit-reasonlist": "د ژغورنې سببونه سمول",
-	"protect-expiry-options": "۱ ساعت:1 hour,۱ ورځ:1 day,۱ اوونۍ:1 week,۲ اوونۍ:2 weeks,۱ مياشت:1 month,۳ مياشتې:3 months,۶ مياشتې:6 months,۱ کال:1 year,نامحدوده:infinite",
+	"protect-expiry-options": "1 ساعت:1 hour,1 ورځ:1 day,1 اوونۍ:1 week,2 اوونۍ:2 weeks,1 مياشت:1 month,3 مياشتې:3 months,6 مياشتې:6 months,1 کال:1 year,نامحدوده:infinite",
 	"restriction-type": "اجازه:",
 	"restriction-level": "د بنديز کچه:",
 	"minimum-size": "وړه کچه",

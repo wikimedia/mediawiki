@@ -79,7 +79,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 			if ( !Hooks::run( 'ShowSearchHit', [
 				$this->specialPage, $result, $terms,
 				&$link, &$redirect, &$section, &$extract,
-				&$score, &$size, &$date, &$related, &$html
+				&$score, &$desc, &$date, &$related, &$html
 			] ) ) {
 				return $html;
 			}

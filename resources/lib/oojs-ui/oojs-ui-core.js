@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.24.1
+ * OOjs UI v0.24.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-10-31T22:46:35Z
+ * Date: 2017-11-07T22:52:40Z
  */
 ( function ( OO ) {
 
@@ -7555,7 +7555,7 @@ OO.ui.DropdownWidget.prototype.onMenuSelect = function ( item ) {
  * Handle menu toggle events.
  *
  * @private
- * @param {boolean} isVisible Menu toggle event
+ * @param {boolean} isVisible Open state of the menu
  */
 OO.ui.DropdownWidget.prototype.onMenuToggle = function ( isVisible ) {
 	this.$element.toggleClass( 'oo-ui-dropdownWidget-open', isVisible );
@@ -10800,7 +10800,7 @@ OO.ui.ComboBoxInputWidget.prototype.onMenuItemsChange = function () {
  * Handle menu toggle events.
  *
  * @private
- * @param {boolean} isVisible Menu toggle event
+ * @param {boolean} isVisible Open state of the menu
  */
 OO.ui.ComboBoxInputWidget.prototype.onMenuToggle = function ( isVisible ) {
 	this.$element.toggleClass( 'oo-ui-comboBoxInputWidget-open', isVisible );

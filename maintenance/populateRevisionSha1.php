@@ -77,6 +77,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	 */
 	protected function doSha1Updates( $table, $idCol, $queryInfo, $prefix ) {
 		$db = $this->getDB( DB_MASTER );
+		$batchSize = $this->getBatchSize();
 		$start = $db->selectField( $table, "MIN($idCol)", false, __METHOD__ );
 		$end = $db->selectField( $table, "MAX($idCol)", false, __METHOD__ );
 		if ( !$start || !$end ) {
@@ -87,9 +88,9 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 
 		$count = 0;
 		# Do remaining chunk
-		$end += $this->mBatchSize - 1;
+		$end += $batchSize - 1;
 		$blockStart = $start;
-		$blockEnd = $start + $this->mBatchSize - 1;
+		$blockEnd = $start + $batchSize - 1;
 		while ( $blockEnd <= $end ) {
 			$this->output( "...doing $idCol from $blockStart to $blockEnd\n" );
 			$cond = "$idCol BETWEEN $blockStart AND $blockEnd
@@ -106,8 +107,8 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			}
 			$this->commitTransaction( $db, __METHOD__ );
 
-			$blockStart += $this->mBatchSize;
-			$blockEnd += $this->mBatchSize;
+			$blockStart += $batchSize;
+			$blockEnd += $batchSize;
 			wfWaitForSlaves();
 		}
 

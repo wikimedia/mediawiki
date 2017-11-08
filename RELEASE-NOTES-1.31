@@ -41,6 +41,7 @@ production.
 * …
 
 === Bug fixes in 1.31 ===
+* (T90902) Non-breaking space in header ID breaks anchor
 * …
 
 === Action API changes in 1.31 ===

@@ -25,6 +25,15 @@
 				{ name: 'filter5', cssClass: 'filter5class' },
 				{ name: 'filter6' } // Not supporting highlights
 			]
+		}, {
+			name: 'group4',
+			title: 'Group 4',
+			type: 'boolean',
+			isSticky: true,
+			filters: [
+				{ name: 'stickyFilter7', cssClass: 'filter7class' },
+				{ name: 'stickyFilter8', cssClass: 'filter8class' }
+			]
 		} ],
 		minimalDefaultParams = {
 			filter1: '1',
@@ -84,6 +93,17 @@
 			( uriProcessor.getUpdatedUri( { foo: 'bar' } ) ).query,
 			{ urlversion: '2', filter2: '1', group3: 'filter5', foo: 'bar' },
 			'Model state is reflected in the updated URI with existing uri params'
+		);
+
+		// Update the model with sticky filter
+		filtersModel.toggleFiltersSelected( {
+			group4__stickyFilter7: true
+		} );
+
+		assert.deepEqual(
+			( uriProcessor.getUpdatedUri( {} ) ).query,
+			{ urlversion: '2', filter2: '1', group3: 'filter5' },
+			'Sticky parameters are not reflected in the URI query'
 		);
 	} );
 

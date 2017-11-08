@@ -78,6 +78,7 @@ class RebuildFileCache extends Maintenance {
 		$this->output( "Building content page file cache from page {$start}!\n" );
 
 		$dbr = $this->getDB( DB_REPLICA );
+		$batchSize = $this->getBatchSize();
 		$overwrite = $this->hasOption( 'overwrite' );
 		$start = ( $start > 0 )
 			? $start
@@ -92,9 +93,9 @@ class RebuildFileCache extends Maintenance {
 		$_SERVER['HTTP_ACCEPT_ENCODING'] = 'bgzip'; // hack, no real client
 
 		# Do remaining chunk
-		$end += $this->mBatchSize - 1;
+		$end += $batchSize - 1;
 		$blockStart = $start;
-		$blockEnd = $start + $this->mBatchSize - 1;
+		$blockEnd = $start + $batchSize - 1;
 
 		$dbw = $this->getDB( DB_MASTER );
 		// Go through each page and save the output
@@ -171,8 +172,8 @@ class RebuildFileCache extends Maintenance {
 			}
 			$this->commitTransaction( $dbw, __METHOD__ ); // commit any changes (just for sanity)
 
-			$blockStart += $this->mBatchSize;
-			$blockEnd += $this->mBatchSize;
+			$blockStart += $batchSize;
+			$blockEnd += $batchSize;
 		}
 		$this->output( "Done!\n" );
 	}

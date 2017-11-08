@@ -1647,6 +1647,7 @@
 	"uploadstash-refresh": "Абнавіць сьпіс файлаў.",
 	"uploadstash-thumbnail": "прагляд мініятуры",
 	"uploadstash-exception": "Не магу захаваць загрузку ў сховішчы ($1): «$2».",
+	"uploadstash-bad-path": "Шлях не існуе.",
 	"invalid-chunk-offset": "Няслушнае зрушэньне фрагмэнту",
 	"img-auth-accessdenied": "Доступ забаронены",
 	"img-auth-nopathinfo": "Адсутнічае PATH_INFO.\nВаш сэрвэр не ўстаноўлены на пропуск гэтай інфармацыі.\nМагчма, ён працуе праз CGI і не падтрымлівае img_auth.\nГлядзіце https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",

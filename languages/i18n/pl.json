@@ -1724,6 +1724,8 @@
 	"uploadstash-refresh": "Odśwież listę plików",
 	"uploadstash-thumbnail": "pokaż miniaturkę",
 	"uploadstash-exception": "Nie udało się zapisać przesyłanego pliku w magazynie tymczasowym ($1): „$2”.",
+	"uploadstash-bad-path": "Ścieżka nie istnieje.",
+	"uploadstash-bad-path-invalid": "Ścieżka jest nieprawidłowa.",
 	"invalid-chunk-offset": "Nieprawidłowe przesunięcie fragmentu",
 	"img-auth-accessdenied": "Odmowa dostępu",
 	"img-auth-nopathinfo": "Brak PATH_INFO.\nSerwer nie został skonfigurowany, tak aby przekazywał tę informację.\nMożliwe, że jest oparty na CGI i nie może obsługiwać img_auth.\nWięcej o informacji o autoryzacji grafik na https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",

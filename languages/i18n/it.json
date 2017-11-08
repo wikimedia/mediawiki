@@ -1741,6 +1741,8 @@
 	"uploadstash-refresh": "Aggiorna l'elenco dei file",
 	"uploadstash-thumbnail": "vedi miniatura",
 	"uploadstash-exception": "Impossibile memorizzare il caricamento in stash ($1): \"$2\".",
+	"uploadstash-bad-path-unknown-type": "Tipo sconosciuto \"$1\".",
+	"uploadstash-zero-length": "Il file ha lunghezza zero.",
 	"invalid-chunk-offset": "Offset della parte non valido.",
 	"img-auth-accessdenied": "Accesso negato",
 	"img-auth-nopathinfo": "PATH_INFO mancante.\nIl server non è impostato per passare questa informazione.\nPotrebbe essere basato su CGI e non può supportare img_auth.\nVedi https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",

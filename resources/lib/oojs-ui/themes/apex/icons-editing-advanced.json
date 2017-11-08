@@ -2,7 +2,11 @@
 	"prefix": "oo-ui-icon",
 	"intro": "@import '../../../../src/styles/common';",
 	"images": {
-		"alignCentre": { "file": "images/icons/align-center.svg" },
+		"alignCenter": { "file": "images/icons/align-center.svg" },
+		"alignCentre": {
+			"file": "images/icons/align-center.svg",
+			"deprecated": "Replaced since v0.24.2, use 'alignCenter' instead."
+		},
 		"alignLeft": { "file": "images/icons/align-float-left.svg" },
 		"alignRight": { "file": "images/icons/align-float-right.svg" },
 		"attachment": { "file": {

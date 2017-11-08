@@ -106,7 +106,8 @@ class RefreshImageMetadata extends Maintenance {
 		$error = 0;
 
 		$dbw = $this->getDB( DB_MASTER );
-		if ( $this->mBatchSize <= 0 ) {
+		$batchSize = $this->getBatchSize();
+		if ( $batchSize <= 0 ) {
 			$this->error( "Batch size is too low...", 12 );
 		}
 
@@ -120,7 +121,7 @@ class RefreshImageMetadata extends Maintenance {
 		}
 
 		$options = [
-			'LIMIT' => $this->mBatchSize,
+			'LIMIT' => $batchSize,
 			'ORDER BY' => 'img_name ASC',
 		];
 
@@ -194,7 +195,7 @@ class RefreshImageMetadata extends Maintenance {
 			}
 			$conds2 = [ 'img_name > ' . $dbw->addQuotes( $row->img_name ) ];
 			wfWaitForSlaves();
-		} while ( $res->numRows() === $this->mBatchSize );
+		} while ( $res->numRows() === $batchSize );
 
 		$total = $upgraded + $leftAlone;
 		if ( $force ) {
