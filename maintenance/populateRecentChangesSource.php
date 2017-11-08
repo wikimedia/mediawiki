@@ -60,8 +60,6 @@ class PopulateRecentChangesSource extends LoggedUpdateMaintenance {
 		$updatedValues = $this->buildUpdateCondition( $dbw );
 
 		while ( $blockEnd <= $end ) {
-			$cond = "rc_id BETWEEN $blockStart AND $blockEnd";
-
 			$dbw->update(
 				'recentchanges',
 				[ $updatedValues ],
