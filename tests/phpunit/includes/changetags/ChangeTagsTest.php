@@ -5,7 +5,7 @@
  */
 class ChangeTagsTest extends MediaWikiTestCase {
 
-	// TODO only modifyDisplayQuery is tested, nothing else is
+	// TODO only modifyDisplayQuery and getCoreTags are tested, nothing else is
 
 	/** @dataProvider provideModifyDisplayQuery */
 	public function testModifyDisplayQuery( $origQuery, $filter_tag, $useTags, $modifiedQuery ) {
@@ -244,4 +244,70 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		];
 	}
 
+	public static function dataGetCoreTags() {
+		return [
+			[
+				[
+					'mw-contentModelChange',
+					'mw-redirect',
+					'mw-rollback',
+					'mw-blank',
+					'mw-replace'
+				],
+				[
+					'mw-rollback',
+					'mw-redirect',
+					'mw-replace',
+					'mw-blank'
+				]
+			],
+
+			[
+				[
+					'mw-contentmodelchanged',
+					'mw-replace',
+					'mw-redirects',
+					'mw-rolback',
+					'mw-blanking'
+				],
+				[
+					'mw-replace'
+				]
+			],
+
+			[
+				[
+					null,
+					false,
+					'Lorem ipsum',
+					'mw-translation'
+				],
+				[]
+			],
+
+			[
+				[],
+				[]
+			],
+
+			[
+				false,
+				[]
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider dataGetCoreTags
+	 * @covers ChangeTags::getCoreTags
+	 */
+	public function testGetCoreTags( $coreTags, $expected ) {
+		$this->setMwGlobals( 'wgCoreTags', $coreTags );
+
+		$actual = ChangeTags::getCoreTags();
+		// Order of tags in arrays is not important
+		sort( $expected );
+		sort( $actual );
+		$this->assertEquals( $expected, $actual );
+	}
 }

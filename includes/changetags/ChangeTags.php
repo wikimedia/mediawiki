@@ -33,9 +33,27 @@ class ChangeTags {
 	const MAX_DELETE_USES = 5000;
 
 	/**
-	 * @var string[]
+	 * Loads defined core tags, checks for invalid types (if not array),
+	 * and filters for supported tags only.
 	 */
-	private static $coreTags = [ 'mw-contentmodelchange' ];
+	public static function getCoreTags() {
+		global $wgCoreTags;
+		$coreTags = [];
+
+		if ( !is_array( $wgCoreTags ) ) {
+			return $coreTags;
+		}
+
+		$coreTags = array_intersect( $wgCoreTags, [
+			'mw-contentmodelchange',
+			'mw-redirect',
+			'mw-blank',
+			'mw-replace',
+			'mw-rollback'
+		] );
+
+		return $coreTags;
+	}
 
 	/**
 	 * Creates HTML for the given tags
@@ -1210,7 +1228,7 @@ class ChangeTags {
 	 */
 	public static function listSoftwareActivatedTags() {
 		// core active tags
-		$tags = self::$coreTags;
+		$tags = self::getCoreTags();
 		if ( !Hooks::isRegistered( 'ChangeTagsListActive' ) ) {
 			return $tags;
 		}
@@ -1301,7 +1319,7 @@ class ChangeTags {
 	 */
 	public static function listSoftwareDefinedTags() {
 		// core defined tags
-		$tags = self::$coreTags;
+		$tags = self::getCoreTags();
 		if ( !Hooks::isRegistered( 'ListDefinedTags' ) ) {
 			return $tags;
 		}

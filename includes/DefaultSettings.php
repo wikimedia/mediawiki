@@ -6962,6 +6962,23 @@ $wgAllowCategorizedRecentChanges = false;
 $wgUseTagFilter = true;
 
 /**
+ * List of core tags to enable. Available tags are:
+ * - 'mw-contentmodelchange': Edit changes content model of a page
+ * - 'mw-redirect': Edit makes new redirect page (new page or by changing content page)
+ *	or changes redirect target
+ * - 'mw-blank': Edit completely blanks the page
+ * - 'mw-replace': Edit removes more than 90% of the content
+ * - 'mw-rollback': Edit is a rollback, made through the rollback link or rollback API
+ */
+$wgCoreTags = [
+	'mw-contentmodelchange',
+	'mw-redirect',
+	'mw-blank',
+	'mw-replace',
+	'mw-rollback'
+];
+
+/**
  * If set to an integer, pages that are watched by this many users or more
  * will not require the unwatchedpages permission to view the number of
  * watchers.
