@@ -1617,14 +1617,15 @@ class WikiPage implements Page, IDBAccessObject {
 		$old_revision = $this->getRevision(); // current revision
 		$old_content = $this->getContent( Revision::RAW ); // current revision's content
 
-		if ( $old_content && $old_content->getModel() !== $content->getModel() ) {
-			$tags[] = 'mw-contentmodelchange';
-		}
-
 		// Provide autosummaries if one is not provided and autosummaries are enabled
 		if ( $wgUseAutomaticEditSummaries && ( $flags & EDIT_AUTOSUMMARY ) && $summary == '' ) {
 			$handler = $content->getContentHandler();
-			$summary = $handler->getAutosummary( $old_content, $content, $flags );
+			// extract() puts auto-summary into $summary variable, and tag into $tag variable
+			extract( $handler->getAutosummaryAndChangeTag( $old_content, $content, $flags ) );
+			// If there is no applicable tag, null is returned, so we need the check
+			if ( $tag ) {
+				$tags[] = $tag;
+			}
 		}
 
 		// Avoid statsd noise and wasted cycles check the edit stash (T136678)
@@ -3078,6 +3079,12 @@ class WikiPage implements Page, IDBAccessObject {
 		$fromP, $summary, $token, $bot, &$resultDetails, User $user, $tags = null
 	) {
 		$resultDetails = null;
+
+		if ( !$tags ) {
+			$tags[] = 'mw-rollback';
+		} else {
+			array_unshift( $tags, 'mw-rollback' );
+		}
 
 		// Check permissions
 		$editErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $user );
