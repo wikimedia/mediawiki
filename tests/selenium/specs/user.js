@@ -12,7 +12,6 @@ describe( 'User', function () {
 	before( function () {
 		// disable VisualEditor welcome dialog
 		UserLoginPage.open();
-		browser.localStorage( 'POST', { key: 've-beta-welcome-dialog', value: '1' } );
 	} );
 
 	beforeEach( function () {

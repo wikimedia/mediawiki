@@ -49,9 +49,6 @@ exports.config = {
 	//
 	specs: [
 		relPath( './tests/selenium/specs/**/*.js' ),
-		relPath( './extensions/*/tests/selenium/specs/**/*.js' ),
-		relPath( './extensions/VisualEditor/modules/ve-mw/tests/selenium/specs/**/*.js' ),
-		relPath( './skins/*/tests/selenium/specs/**/*.js' ),
 	],
 	// Patterns to exclude.
 	exclude: [
@@ -86,12 +83,10 @@ exports.config = {
 		// 5 instances get started at a time.
 		maxInstances: 1,
 		//
-		browserName: 'chrome',
-		// Since Chrome v57 https://bugs.chromium.org/p/chromedriver/issues/detail?id=1625
-		chromeOptions: {
-			args: [ '--enable-automation' ]
-		}
+		browserName: 'firefox',
 	} ],
+	// Path to chromedriver or geckodriver
+	path: '/',
 	//
 	// ===================
 	// Test Configurations

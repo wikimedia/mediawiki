@@ -4,7 +4,7 @@
     "test": "grunt test",
     "doc": "jsduck",
     "postdoc": "grunt copy:jsduck",
-    "selenium": "killall -0 chromedriver 2>/dev/null || chromedriver --url-base=/wd/hub --port=4444 & grunt webdriver:test; killall chromedriver"
+    "selenium": "killall -0 geckodriver 2>/dev/null || geckodriver & grunt webdriver:test; killall geckodriver"
   },
   "devDependencies": {
     "deepmerge": "1.3.2",
@@ -32,6 +32,6 @@
     "wdio-mocha-framework": "0.5.8",
     "wdio-sauce-service": "^0.3.1",
     "wdio-spec-reporter": "0.0.5",
-    "webdriverio": "4.6.2"
+    "webdriverio": "4.9.4"
   }
 }

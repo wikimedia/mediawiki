@@ -5,7 +5,7 @@ class Page {
 		this.title = 'My Page';
 	}
 	open( path ) {
-		browser.url( '/index.php?title=' + path );
+		browser.url( 'w/index.php?title=' + path );
 	}
 }
 module.exports = Page;
