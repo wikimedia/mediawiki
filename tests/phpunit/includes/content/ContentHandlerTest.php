@@ -342,13 +342,32 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$content = new DummyContentHandlerForTesting( CONTENT_MODEL_WIKITEXT );
 		$title = Title::newFromText( 'Help:Test' );
 		// Create a new content object with no content
-		$newContent = ContentHandler::makeContent( '', $title, null, null, CONTENT_MODEL_WIKITEXT );
+		$newContent = ContentHandler::makeContent( '', $title, CONTENT_MODEL_WIKITEXT, null );
 		// first check, if we become a blank page created summary with the right bitmask
 		$autoSummary = $content->getAutosummary( null, $newContent, 97 );
-		$this->assertEquals( $autoSummary, 'Created blank page' );
+		$this->assertEquals( $autoSummary,
+			wfMessage( 'autosumm-newblank' )->inContentLanguage()->text() );
 		// now check, what we become with another bitmask
 		$autoSummary = $content->getAutosummary( null, $newContent, 92 );
 		$this->assertEquals( $autoSummary, '' );
+	}
+
+	/**
+	 * Test core tag that is added when content model of the page changes
+	 * @covers ContentHandler::getChangeTag
+	 */
+	public function testGetChangeTag() {
+		global $wgCoreTags;
+
+		$wikitextContentHandler = new DummyContentHandlerForTesting( CONTENT_MODEL_WIKITEXT );
+		// Create old content object with wikitext content model
+		$oldContent = ContentHandler::makeContent( '', null, CONTENT_MODEL_JAVASCRIPT, null );
+		// Create new content object with javascript content model
+		$newContent = ContentHandler::makeContent( '', null, CONTENT_MODEL_WIKITEXT, null );
+		// Get the tag for this edit
+		$tag = $wikitextContentHandler->getChangeTag( $oldContent, $newContent, EDIT_UPDATE );
+		$this->assertSame( $tag,
+			in_array( 'mw-contentmodelchange', $wgCoreTags ) ? 'mw-contentmodelchange' : null );
 	}
 
 	/*

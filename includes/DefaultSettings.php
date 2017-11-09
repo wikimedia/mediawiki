@@ -6962,6 +6962,23 @@ $wgAllowCategorizedRecentChanges = false;
 $wgUseTagFilter = true;
 
 /**
+ * List of tags which are added to edits if:
+ * - Edit changes content model of a page
+ * - Edit makes new redirect page (new page or by changing content page) or changes redirect target
+ * - Edit completely blanks the page
+ * - Edit removes more than 90% of the content
+ * - Edit is a rollback, made through the rollback link
+ * respectively.
+ */
+$wgCoreTags = [
+	'mw-contentmodelchange',
+	'mw-redirect',
+	'mw-blank',
+	'mw-replace',
+	'mw-rollback'
+];
+
+/**
  * If set to an integer, pages that are watched by this many users or more
  * will not require the unwatchedpages permission to view the number of
  * watchers.

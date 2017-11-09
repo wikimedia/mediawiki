@@ -1617,14 +1617,21 @@ class WikiPage implements Page, IDBAccessObject {
 		$old_revision = $this->getRevision(); // current revision
 		$old_content = $this->getContent( Revision::RAW ); // current revision's content
 
-		if ( $old_content && $old_content->getModel() !== $content->getModel() ) {
-			$tags[] = 'mw-contentmodelchange';
-		}
-
 		// Provide autosummaries if one is not provided and autosummaries are enabled
 		if ( $wgUseAutomaticEditSummaries && ( $flags & EDIT_AUTOSUMMARY ) && $summary == '' ) {
 			$handler = $content->getContentHandler();
-			$summary = $handler->getAutosummary( $old_content, $content, $flags );
+
+			// List unpacking of variables in array returned from getAutosummaryAndChangeTag
+			list( $summary, $tag ) = $handler->getAutosummaryAndChangeTag(
+				$old_content,
+				$content,
+				$flags
+			);
+
+			// If there is no applicable tag, null is returned, so we need the check
+			if ( $tag ) {
+				$tags[] = $tag;
+			}
 		}
 
 		// Avoid statsd noise and wasted cycles check the edit stash (T136678)
@@ -3123,7 +3130,7 @@ class WikiPage implements Page, IDBAccessObject {
 	public function commitRollback( $fromP, $summary, $bot,
 		&$resultDetails, User $guser, $tags = null
 	) {
-		global $wgUseRCPatrol, $wgContLang;
+		global $wgUseRCPatrol, $wgContLang, $wgCoreTags;
 
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -3211,6 +3218,11 @@ class WikiPage implements Page, IDBAccessObject {
 		$targetContent = $target->getContent();
 		$changingContentModel = $targetContent->getModel() !== $current->getContentModel();
 
+		if ( in_array( 'mw-rollback', $wgCoreTags ) ) {
+			$tags = ( !isset( $tags ) || is_null( $tags ) ) ? [] : $tags;
+			array_unshift( $tags, 'mw-rollback' );
+		}
+
 		// Actually store the edit
 		$status = $this->doEditContent(
 			$targetContent,
@@ -3287,7 +3299,8 @@ class WikiPage implements Page, IDBAccessObject {
 			'summary' => $summary,
 			'current' => $current,
 			'target' => $target,
-			'newid' => $revId
+			'newid' => $revId,
+			'tags' => $tags
 		];
 
 		return [];
