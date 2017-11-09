@@ -572,7 +572,7 @@ function wfExtractThumbParams( $file, $params ) {
  * @return void
  */
 function wfThumbErrorText( $status, $msgText ) {
-	wfThumbError( $status, htmlspecialchars( $msgText ) );
+	wfThumbError( $status, htmlspecialchars( $msgText, ENT_NOQUOTES ) );
 }
 
 /**
@@ -602,9 +602,10 @@ function wfThumbError( $status, $msgHtml, $msgText = null, $context = [] ) {
 	if ( $wgShowHostnames ) {
 		header( 'X-MW-Thumbnail-Renderer: ' . wfHostname() );
 		$url = htmlspecialchars(
-			isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : ''
+			isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '',
+			ENT_NOQUOTES
 		);
-		$hostname = htmlspecialchars( wfHostname() );
+		$hostname = htmlspecialchars( wfHostname(), ENT_NOQUOTES );
 		$debug = "<!-- $url -->\n<!-- $hostname -->\n";
 	} else {
 		$debug = '';
