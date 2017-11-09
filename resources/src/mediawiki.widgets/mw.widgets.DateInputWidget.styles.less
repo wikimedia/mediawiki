@@ -106,6 +106,16 @@
 				border-color: @border-color-base--focus;
 				box-shadow: @box-shadow-widget--focus;
 			}
+
+			& > .oo-ui-labelElement-label {
+				cursor: pointer;
+			}
+		}
+	}
+
+	&-active {
+		&.oo-ui-textInputWidget input {
+			cursor: text;
 		}
 	}
 }
