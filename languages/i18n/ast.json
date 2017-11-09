@@ -1660,7 +1660,7 @@
 	"uploadstash-file-not-found-no-thumb": "Nun pudo llograse la miniatura.",
 	"uploadstash-file-not-found-no-local-path": "Nun hai una ruta llocal pal elementu redimensionáu.",
 	"uploadstash-file-not-found-no-object": "Nun pudo crease l'oxetu de ficheru llocal pa la miniatura.",
-	"uploadstash-file-not-found-no-remote-thumb": "Falló la descarga de la miniatura: $1\nurl = $2",
+	"uploadstash-file-not-found-no-remote-thumb": "Fallu al llograr la miniatura: $1\nurl = $2",
 	"uploadstash-file-not-found-missing-content-type": "Falta la cabecera de triba de conteníu.",
 	"uploadstash-file-not-found-not-exists": "Nun pudo alcontrase la ruta, o nun ye un ficheru.",
 	"uploadstash-file-too-large": "Nun puede sirvise un ficheru mayor de $1 bytes.",

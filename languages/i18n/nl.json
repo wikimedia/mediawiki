@@ -1393,6 +1393,7 @@
 	"rcfilters-savedqueries-apply-and-setdefault-label": "Standaard filter aanmaken",
 	"rcfilters-savedqueries-cancel-label": "Annuleren",
 	"rcfilters-savedqueries-add-new-title": "Huidige filter instellingen opslaan",
+	"rcfilters-savedqueries-already-saved": "Deze filters zijn al opgeslagen",
 	"rcfilters-restore-default-filters": "Standaard filters terugzetten",
 	"rcfilters-clear-all-filters": "Alle filters verwijderen",
 	"rcfilters-show-new-changes": "Toon nieuwste wijzigingen",

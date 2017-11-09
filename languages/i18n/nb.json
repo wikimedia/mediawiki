@@ -1356,6 +1356,7 @@
 	"rcfilters-savedqueries-apply-and-setdefault-label": "Opprett standardfilter",
 	"rcfilters-savedqueries-cancel-label": "Avbryt",
 	"rcfilters-savedqueries-add-new-title": "Lagre de gjeldende filterinnstillingene",
+	"rcfilters-savedqueries-already-saved": "Disse filtrene er allerede lagret",
 	"rcfilters-restore-default-filters": "Gjenopprett standardfiltre",
 	"rcfilters-clear-all-filters": "Nullstill alle filtre",
 	"rcfilters-show-new-changes": "Vis de nyeste endringene",
