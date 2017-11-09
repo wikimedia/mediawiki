@@ -32,7 +32,6 @@ production.
 ==== Removed and replaced external libraries ====
 * The deprecated 'jquery.autoEllipsis' module was removed. Use the CSS
   text-overflow property instead.
-* The deprecated 'jquery.placeholder' module was removed.
 * The deprecated 'jquery.appear' module was removed. Use the
   'mediawiki.viewport' module instead.
 * The deprecated 'mediawiki.widgets.CategorySelector' module alias was removed.
