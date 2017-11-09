@@ -154,6 +154,12 @@ return [
 	'jquery.async' => [
 		'scripts' => 'resources/lib/jquery/jquery.async.js',
 	],
+	'jquery.badge' => [
+		'deprecated' => 'Please use Notifications instead.',
+		'scripts' => 'resources/src/jquery/jquery.badge.js',
+		'styles' => 'resources/src/jquery/jquery.badge.css',
+		'dependencies' => 'mediawiki.language',
+	],
 	'jquery.byteLength' => [
 		'scripts' => 'resources/src/jquery/jquery.byteLength.js',
 		'targets' => [ 'desktop', 'mobile' ],

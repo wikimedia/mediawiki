@@ -33,7 +33,6 @@ warningBox generation.
 * …
 
 ==== Removed and replaced external libraries ====
-* (T17845) The deprecated 'jquery.badge' module was removed.
 * The deprecated 'jquery.autoEllipsis' module was removed. Use the CSS
   text-overflow property instead.
 * The deprecated 'jquery.placeholder' module was removed.
