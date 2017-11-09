@@ -991,4 +991,56 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Revision::getParentLengths
+	 */
+	public function testGetParentLengths_noRevIds() {
+		$this->assertSame(
+			[],
+			Revision::getParentLengths(
+				wfGetDB( DB_MASTER ),
+				[]
+			)
+		);
+	}
+
+	/**
+	 * @covers Revision::getParentLengths
+	 */
+	public function testGetParentLengths_oneRevId() {
+		$text[37] = '831jr091jr0921kr21kr0921kjr0921j09rj1';
+
+		$this->testPage->doEditContent( new WikitextContent( $text[37] ), __METHOD__ );
+		$rev[1] = $this->testPage->getLatest();
+
+		$this->assertSame(
+			[ $rev[1] => '37' ],
+			Revision::getParentLengths(
+				wfGetDB( DB_MASTER ),
+				[ $rev[1] ]
+			)
+		);
+	}
+
+	/**
+	 * @covers Revision::getParentLengths
+	 */
+	public function testGetParentLengths_multipleRevIds() {
+		$text[37] = '831jr091jr0921kr21kr0921kjr0921j09rj1';
+		$text[22] = '831jr091jr092121j09rj1';
+
+		$this->testPage->doEditContent( new WikitextContent( $text[37] ), __METHOD__ );
+		$rev[1] = $this->testPage->getLatest();
+		$this->testPage->doEditContent( new WikitextContent( $text[22] ), __METHOD__ );
+		$rev[2] = $this->testPage->getLatest();
+
+		$this->assertSame(
+			[ $rev[1] => '37', $rev[2] => '22' ],
+			Revision::getParentLengths(
+				wfGetDB( DB_MASTER ),
+				[ $rev[1], $rev[2] ]
+			)
+		);
+	}
+
 }
