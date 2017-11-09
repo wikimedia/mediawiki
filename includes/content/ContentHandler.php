@@ -755,6 +755,67 @@ abstract class ContentHandler {
 	}
 
 	/**
+	 * Return type of change if one exists for the given edit.
+	 *
+	 * @param Content $oldContent The previous text of the page.
+	 * @param Content $newContent The submitted text of the page.
+	 * @param int $flags Bit mask: a bit mask of flags submitted for the edit.
+	 *
+	 * @return string|null String key representing type of change, or null.
+	 */
+	private function getChangeType(
+		Content $oldContent = null,
+		Content $newContent = null,
+		$flags = 0
+	) {
+		$oldTarget = $oldContent !== null ? $oldContent->getRedirectTarget() : null;
+		$redirectTarget = $newContent !== null ? $newContent->getRedirectTarget() : null;
+
+		// We check for the type of change in the given edit, and return string key accordingly
+
+		// Redirect
+		if ( $redirectTarget &&
+			( !$oldTarget ||
+				!$redirectTarget->equals( $oldTarget ) ||
+				$oldTarget->getFragment() !== $redirectTarget->getFragment()
+			)
+		) {
+			return 'redirect';
+		}
+
+		// New page created
+		if ( $flags & EDIT_NEW && $newContent && $newContent->getSize() > 0 ) {
+			return 'newpage';
+		}
+
+		// Blanking of a page
+		if ( $oldContent && $oldContent->getSize() > 0 &&
+			$newContent && $newContent->getSize() == 0 ) {
+			return 'blank';
+		}
+
+		// Removing more than 90% of the article
+		if ( $oldContent && $newContent &&
+			$oldContent->getSize() > 10 * $newContent->getSize() &&
+			$newContent->getSize() < 500
+		) {
+			return 'replace';
+		}
+
+		// New blank article
+		if ( $flags & EDIT_NEW && $newContent && $newContent->isEmpty() ) {
+			return 'newblank';
+		}
+
+		// Content model changed
+		if ( $oldContent && $newContent && $oldContent->getModel() !== $newContent->getModel() ) {
+			return 'contentmodelchange';
+		}
+
+		return null;
+	}
+
+	/**
 	 * Return an applicable auto-summary if one exists for the given edit.
 	 *
 	 * @since 1.21
@@ -765,71 +826,103 @@ abstract class ContentHandler {
 	 *
 	 * @return string An appropriate auto-summary, or an empty string.
 	 */
-	public function getAutosummary( Content $oldContent = null, Content $newContent = null,
-		$flags ) {
+	public function getAutosummary(
+		Content $oldContent = null,
+		Content $newContent = null,
+		$flags = 0
+	) {
+		$changeType = $this->getChangeType( $oldContent, $newContent, $flags );
+
+		// There's no applicable auto-summary for our case, so our auto-summary is empty.
+		if ( !$changeType ) {
+			return '';
+		}
+
 		// Decide what kind of auto-summary is needed.
-
-		// Redirect auto-summaries
-
-		/**
-		 * @var $ot Title
-		 * @var $rt Title
-		 */
-
-		$ot = !is_null( $oldContent ) ? $oldContent->getRedirectTarget() : null;
-		$rt = !is_null( $newContent ) ? $newContent->getRedirectTarget() : null;
-
-		if ( is_object( $rt ) ) {
-			if ( !is_object( $ot )
-				|| !$rt->equals( $ot )
-				|| $ot->getFragment() != $rt->getFragment()
-			) {
+		switch ( $changeType ) {
+			case 'redirect':
+				$redirectTarget = $newContent !== null ? $newContent->getRedirectTarget() : null;
 				$truncatedtext = $newContent->getTextForSummary(
 					250
 					- strlen( wfMessage( 'autoredircomment' )->inContentLanguage()->text() )
-					- strlen( $rt->getFullText() ) );
+					- strlen( $redirectTarget->getFullText() ) );
 
-				return wfMessage( 'autoredircomment', $rt->getFullText() )
+				return wfMessage( 'autoredircomment', $redirectTarget->getFullText() )
 					->rawParams( $truncatedtext )->inContentLanguage()->text();
-			}
+			case 'newpage':
+				// If they're making a new article, give its text, truncated, in the summary.
+				$truncatedtext = $newContent->getTextForSummary(
+					200 - strlen( wfMessage( 'autosumm-new' )->inContentLanguage()->text() ) );
+
+				return wfMessage( 'autosumm-new' )->rawParams( $truncatedtext )
+					->inContentLanguage()->text();
+			case 'blank':
+				return wfMessage( 'autosumm-blank' )->inContentLanguage()->text();
+			case 'replace':
+				$truncatedtext = $newContent->getTextForSummary(
+					200 - strlen( wfMessage( 'autosumm-replace' )->inContentLanguage()->text() ) );
+
+				return wfMessage( 'autosumm-replace' )->rawParams( $truncatedtext )
+					->inContentLanguage()->text();
+			case 'newblank':
+				return wfMessage( 'autosumm-newblank' )->inContentLanguage()->text();
+			default:
+				return '';
+		}
+	}
+
+	/**
+	 * Return an applicable tag if one exists for the given edit or return null.
+	 *
+	 * @param Content $oldContent The previous text of the page.
+	 * @param Content $newContent The submitted text of the page.
+	 * @param int $flags Bit mask: a bit mask of flags submitted for the edit.
+	 *
+	 * @return string|null An appropriate tag, or null.
+	 */
+	public function getChangeTag(
+		Content $oldContent = null,
+		Content $newContent = null,
+		$flags = 0
+	) {
+		$changeType = $this->getChangeType( $oldContent, $newContent, $flags );
+
+		// There's no applicable tag for this change.
+		if ( !$changeType ) {
+			return null;
 		}
 
-		// New page auto-summaries
-		if ( $flags & EDIT_NEW && $newContent->getSize() > 0 ) {
-			// If they're making a new article, give its text, truncated, in
-			// the summary.
+		// ChangeTags::$coreTags uses the same keys as ones returned from $this->getChangeType()
+		// but prefixed with pseudo namespace 'mw-', so we add the prefix before checking
+		// if this type of change should be tagged
+		$tag = 'mw-' . $changeType;
 
-			$truncatedtext = $newContent->getTextForSummary(
-				200 - strlen( wfMessage( 'autosumm-new' )->inContentLanguage()->text() ) );
-
-			return wfMessage( 'autosumm-new' )->rawParams( $truncatedtext )
-				->inContentLanguage()->text();
+		// Not all change types are tagged, so we check against the list of defined tags.
+		if ( in_array( $tag, ChangeTags::listDefinedTags() ) ) {
+			return $tag;
 		}
 
-		// Blanking auto-summaries
-		if ( !empty( $oldContent ) && $oldContent->getSize() > 0 && $newContent->getSize() == 0 ) {
-			return wfMessage( 'autosumm-blank' )->inContentLanguage()->text();
-		} elseif ( !empty( $oldContent )
-			&& $oldContent->getSize() > 10 * $newContent->getSize()
-			&& $newContent->getSize() < 500
-		) {
-			// Removing more than 90% of the article
+		return null;
+	}
 
-			$truncatedtext = $newContent->getTextForSummary(
-				200 - strlen( wfMessage( 'autosumm-replace' )->inContentLanguage()->text() ) );
-
-			return wfMessage( 'autosumm-replace' )->rawParams( $truncatedtext )
-				->inContentLanguage()->text();
-		}
-
-		// New blank article auto-summary
-		if ( $flags & EDIT_NEW && $newContent->isEmpty() ) {
-			return wfMessage( 'autosumm-newblank' )->inContentLanguage()->text();
-		}
-
-		// If we reach this point, there's no applicable auto-summary for our
-		// case, so our auto-summary is empty.
-		return '';
+	/**
+	 * Return an applicable auto-summary and tag if those exist for the given edit.
+	 *
+	 * @param Content $oldContent The previous text of the page.
+	 * @param Content $newContent The submitted text of the page.
+	 * @param int $flags Bit mask: a bit mask of flags submitted for the edit.
+	 *
+	 * @return array Associative array mapping summary and tag.
+	 */
+	public function getAutosummaryAndChangeTag(
+		Content $oldContent = null,
+		Content $newContent = null,
+		$flags = 0
+	) {
+		return [
+			$this->getAutosummary( $oldContent, $newContent, $flags ),
+			$this->getChangeTag( $oldContent, $newContent, $flags )
+		];
 	}
 
 	/**

@@ -35,7 +35,13 @@ class ChangeTags {
 	/**
 	 * @var string[]
 	 */
-	private static $coreTags = [ 'mw-contentmodelchange' ];
+	private static $coreTags = [
+		'mw-contentmodelchange',
+		'mw-redirect',
+		'mw-blank',
+		'mw-replace',
+		'mw-rollback'
+	];
 
 	/**
 	 * Creates HTML for the given tags
