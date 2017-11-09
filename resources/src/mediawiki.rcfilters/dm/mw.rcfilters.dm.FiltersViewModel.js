@@ -1339,15 +1339,6 @@
 	};
 
 	/**
-	 * Clear highlight for all filter items
-	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.clearAllHighlightColors = function () {
-		this.getItems().forEach( function ( filterItem ) {
-			filterItem.clearHighlightColor();
-		} );
-	};
-
-	/**
 	 * Return a version of the given string that is without any
 	 * view triggers.
 	 *

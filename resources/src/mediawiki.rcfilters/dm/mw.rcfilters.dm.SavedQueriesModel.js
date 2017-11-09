@@ -349,8 +349,7 @@
 		// Return parameter representation
 		return this.filtersModel.getMinimizedParamRepresentation( $.extend( true, {},
 			this.filtersModel.getParametersFromFilters( savedFilters ),
-			data.highlights,
-			{ highlight: data.params.highlight }
+			data.highlights
 		) );
 	};
 
