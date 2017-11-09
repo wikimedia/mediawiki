@@ -993,6 +993,60 @@ more stuff
 		$this->assertEquals( "one", $page->getContent()->getNativeData() );
 	}
 
+	/**
+	 * Tests tagging for edits that do rollback action
+	 * @covers WikiPage::doRollback
+	 */
+	public function testDoRollbackTagging() {
+		if ( !in_array( 'mw-rollback', ChangeTags::getSoftwareTags() ) ) {
+			$this->markTestSkipped( 'Rollback tag deactivated, skipped the test.' );
+		}
+
+		$admin = new User();
+		$admin->setName( 'Administrator' );
+		$admin->addToDatabase();
+
+		$text = 'First line';
+		$page = $this->newPage( 'WikiPageTest_testDoRollbackTagging' );
+		$page->doEditContent(
+			ContentHandler::makeContent( $text, $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
+			'Added first line',
+			EDIT_NEW,
+			false,
+			$admin
+		);
+
+		$secondUser = new User();
+		$secondUser->setName( '92.65.217.32' );
+		$text .= '\n\nSecond line';
+		$page = new WikiPage( $page->getTitle() );
+		$page->doEditContent(
+			ContentHandler::makeContent( $text, $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
+			'Adding second line',
+			0,
+			false,
+			$secondUser
+		);
+
+		// Now, try the rollback
+		$admin->addGroup( 'sysop' ); // Make the test user a sysop
+		$token = $admin->getEditToken( 'rollback' );
+		$errors = $page->doRollback(
+			$secondUser->getName(),
+			'testing rollback',
+			$token,
+			false,
+			$resultDetails,
+			$admin
+		);
+
+		// If doRollback completed without errors
+		if ( $errors === [] ) {
+			$tags = $resultDetails[ 'tags' ];
+			$this->assertContains( 'mw-rollback', $tags );
+		}
+	}
+
 	public static function provideGetAutoDeleteReason() {
 		return [
 			[
