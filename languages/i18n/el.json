@@ -1638,6 +1638,8 @@
 	"uploadstash-bad-path-unknown-type": "Άγνωστος τύπος ''$1''.",
 	"uploadstash-bad-path-bad-format": "Ο κωδικός ''$1' δεν έχει τον κατάλληλο τύπο.",
 	"uploadstash-file-not-found-no-thumb": "Δεν μπόρεσε να αποκτήσει το ''thumbnail''.",
+	"uploadstash-file-not-found-no-object": "Δεν μπόρεσε να δημιουργήσει τοπικό φάκελλο ''thumbnail''.",
+	"uploadstash-file-not-found-no-remote-thumb": "Η προσκόμιση του ''thumnail'' απέτυχε:$1\nURL=$2",
 	"uploadstash-file-not-found-missing-content-type": "Λείπει τίτλος περιεχομένου",
 	"uploadstash-file-not-found-not-exists": "Δεν μπορεί να βρει τον τρόπο, ή όχι έναν κανονικό φάκελλο.",
 	"uploadstash-file-too-large": "Δεν δέχεται έναν φάκελλο μεγαλύτερο από $1 bytes.",

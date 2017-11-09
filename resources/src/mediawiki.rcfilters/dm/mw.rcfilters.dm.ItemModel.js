@@ -41,7 +41,6 @@
 		// Highlight
 		this.cssClass = config.cssClass;
 		this.highlightColor = config.defaultHighlightColor;
-		this.highlightEnabled = !!config.defaultHighlightColor;
 	};
 
 	/* Initialization */
