@@ -400,9 +400,10 @@
 	 * Reset to default filters
 	 */
 	mw.rcfilters.Controller.prototype.resetToDefaults = function () {
-		this.filtersModel.updateStateFromParams( this._getDefaultParams() );
-
-		this.updateChangesList();
+		if ( this.applyParamChange( this._getDefaultParams() ) ) {
+			// Only update the changes list if there was a change to actual filters
+			this.updateChangesList();
+		}
 	};
 
 	/**
@@ -418,13 +419,13 @@
 	 * Empty all selected filters
 	 */
 	mw.rcfilters.Controller.prototype.emptyFilters = function () {
-		var highlightedFilterNames = this.filtersModel
-			.getHighlightedItems()
+		var highlightedFilterNames = this.filtersModel.getHighlightedItems()
 			.map( function ( filterItem ) { return { name: filterItem.getName() }; } );
 
-		this.filtersModel.updateStateFromParams( {} );
-
-		this.updateChangesList();
+		if ( this.applyParamChange( {} ) ) {
+			// Only update the changes list if there was a change to actual filters
+			this.updateChangesList();
+		}
 
 		if ( highlightedFilterNames ) {
 			this._trackHighlight( 'clearAll', highlightedFilterNames );
@@ -708,10 +709,10 @@
 			return;
 		}
 
-		// Apply parameters to model
-		this.filtersModel.updateStateFromParams( params );
-
-		this.updateChangesList();
+		if ( this.applyParamChange( params ) ) {
+			// Update changes list only if there was a difference in filter selection
+			this.updateChangesList();
+		}
 
 		// Log filter grouping
 		this.trackFilterGroupings( 'savedfilters' );
@@ -1093,6 +1094,24 @@
 			// Cache the filter names
 			this.prevLoggedItems = filters;
 		}
+	};
+
+	/**
+	 * Apply a change of parameters to the model state, and check whether
+	 * the new state is different than the old state.
+	 *
+	 * @param  {Object} newParamState New parameter state to apply
+	 * @return {boolean} New applied model state is different than the previous state
+	 */
+	mw.rcfilters.Controller.prototype.applyParamChange = function ( newParamState ) {
+		var after,
+			before = this.filtersModel.getSelectedState();
+
+		this.filtersModel.updateStateFromParams( newParamState );
+
+		after = this.filtersModel.getSelectedState();
+
+		return !OO.compare( before, after );
 	};
 
 	/**
