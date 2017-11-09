@@ -1046,4 +1046,35 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Revision::getTitle
+	 */
+	public function testGetTitle_fromExistingRevision() {
+		$this->assertTrue(
+			$this->testPage->getTitle()->equals(
+				$this->testPage->getRevision()->getTitle()
+			)
+		);
+	}
+
+	/**
+	 * @covers Revision::getTitle
+	 */
+	public function testGetTitle_fromBarleyLoadedRevision() {
+		$rev = new Revision( [ 'id' => $this->testPage->getLatest() ] );
+		$this->assertTrue(
+			$this->testPage->getTitle()->equals(
+				$rev->getTitle()
+			)
+		);
+	}
+
+	/**
+	 * @covers Revision::getTitle
+	 */
+	public function testGetTitle_forBadRevision() {
+		$rev = new Revision( [] );
+		$this->assertEquals( null, $rev->getTitle() );
+	}
+
 }
