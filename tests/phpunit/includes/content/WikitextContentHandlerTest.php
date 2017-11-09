@@ -227,6 +227,74 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	public static function dataGetChangeTag() {
+		return [
+			[
+				'Lorem ipsum dolor',
+				'#REDIRECT [[Foo]]',
+				0,
+				in_array( 'mw-redirect', ChangeTags::getSoftwareTags() ) ? 'mw-redirect' : null
+			],
+
+			[
+				null,
+				'Lorem ipsum dolor',
+				EDIT_NEW,
+				in_array( 'mw-newpage', ChangeTags::getSoftwareTags() ) ? 'mw-newpage' : null
+			],
+
+			[
+				null,
+				'',
+				EDIT_NEW,
+				in_array( 'mw-newblank', ChangeTags::getSoftwareTags() ) ? 'mw-newblank' : null
+			],
+
+			[
+				'Lorem ipsum dolor',
+				'',
+				0,
+				in_array( 'mw-blank', ChangeTags::getSoftwareTags() ) ? 'mw-blank' : null
+			],
+
+			[
+				'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+				eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+				voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+				clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+				'Ipsum',
+				0,
+				in_array( 'mw-replace', ChangeTags::getSoftwareTags() ) ? 'mw-replace' : null
+			],
+
+			[
+				'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+				eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+				voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+				clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+				'Duis purus odio, rhoncus et finibus dapibus, facilisis ac urna. Pellentesque
+				arcu, tristique nec tempus nec, suscipit vel arcu. Sed non dolor nec ligula
+				congue tempor. Quisque pellentesque finibus orci a molestie. Nam maximus, purus
+				euismod finibus mollis, dui ante malesuada felis, dignissim rutrum diam sapien.',
+				0,
+				null
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider dataGetChangeTag
+	 * @covers WikitextContentHandler::getChangeTag
+	 */
+	public function testGetChangeTag( $old, $new, $flags, $expected ) {
+		$oldContent = is_null( $old ) ? null : new WikitextContent( $old );
+		$newContent = is_null( $new ) ? null : new WikitextContent( $new );
+
+		$tag = $this->handler->getChangeTag( $oldContent, $newContent, $flags );
+
+		$this->assertSame( $expected, $tag );
+	}
+
 	/**
 	 * @todo Text case requires database, should be done by a test class in the Database group
 	 */
