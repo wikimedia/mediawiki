@@ -3317,7 +3317,9 @@ class WikiPage implements Page, IDBAccessObject {
 		MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $title );
 
 		// Invalidate caches of articles which include this page
-		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $title, 'templatelinks' ) );
+		DeferredUpdates::addUpdate(
+			new HTMLCacheUpdate( $title, 'templatelinks', 'page-create' )
+		);
 
 		if ( $title->getNamespace() == NS_CATEGORY ) {
 			// Load the Category object, which will schedule a job to create
@@ -3355,7 +3357,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Images
 		if ( $title->getNamespace() == NS_FILE ) {
-			DeferredUpdates::addUpdate( new HTMLCacheUpdate( $title, 'imagelinks' ) );
+			DeferredUpdates::addUpdate(
+				new HTMLCacheUpdate( $title, 'imagelinks', 'page-delete' )
+			);
 		}
 
 		// User talk pages
@@ -3378,10 +3382,14 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public static function onArticleEdit( Title $title, Revision $revision = null ) {
 		// Invalidate caches of articles which include this page
-		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $title, 'templatelinks' ) );
+		DeferredUpdates::addUpdate(
+			new HTMLCacheUpdate( $title, 'templatelinks', 'page-edit' )
+		);
 
 		// Invalidate the caches of all pages which redirect here
-		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $title, 'redirect' ) );
+		DeferredUpdates::addUpdate(
+			new HTMLCacheUpdate( $title, 'redirect', 'page-edit' )
+		);
 
 		MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $title );
 
