@@ -164,6 +164,12 @@ return [
 		'dependencies' => 'jquery.highlightText',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'jquery.badge' => [
+		'deprecated' => 'Please use Notifications instead.',
+		'scripts' => 'resources/src/jquery/jquery.badge.js',
+		'styles' => 'resources/src/jquery/jquery.badge.css',
+		'dependencies' => 'mediawiki.language',
+	],
 	'jquery.byteLength' => [
 		'scripts' => 'resources/src/jquery/jquery.byteLength.js',
 		'targets' => [ 'desktop', 'mobile' ],
