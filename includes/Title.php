@@ -4622,9 +4622,11 @@ class Title implements LinkTarget {
 	 * on the number of links. Typically called on create and delete.
 	 */
 	public function touchLinks() {
-		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this, 'pagelinks' ) );
+		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this, 'pagelinks', 'page-touch' ) );
 		if ( $this->getNamespace() == NS_CATEGORY ) {
-			DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this, 'categorylinks' ) );
+			DeferredUpdates::addUpdate(
+				new HTMLCacheUpdate( $this, 'categorylinks', 'category-touch' )
+			);
 		}
 	}
 

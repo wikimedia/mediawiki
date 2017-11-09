@@ -47,14 +47,16 @@ class HTMLCacheUpdateJob extends Job {
 			// Multiple pages per job make matches unlikely
 			!( isset( $params['pages'] ) && count( $params['pages'] ) != 1 )
 		);
+		$this->params += [ 'causeAction' => 'unknown', 'causeAgent' => 'unknown' ];
 	}
 
 	/**
 	 * @param Title $title Title to purge backlink pages from
 	 * @param string $table Backlink table name
+	 * @param array $params Additional job parameters
 	 * @return HTMLCacheUpdateJob
 	 */
-	public static function newForBacklinks( Title $title, $table ) {
+	public static function newForBacklinks( Title $title, $table, $params = [] ) {
 		return new self(
 			$title,
 			[
@@ -62,7 +64,7 @@ class HTMLCacheUpdateJob extends Job {
 				'recursive' => true
 			] + Job::newRootJobParams( // "overall" refresh links job info
 				"htmlCacheUpdate:{$table}:{$title->getPrefixedText()}"
-			)
+			) + $params
 		);
 	}
 
@@ -75,6 +77,11 @@ class HTMLCacheUpdateJob extends Job {
 
 		// Job to purge all (or a range of) backlink pages for a page
 		if ( !empty( $this->params['recursive'] ) ) {
+			// Carry over information for de-duplication
+			$extraParams = $this->getRootJobParams();
+			// Carry over cause information for logging
+			$extraParams['causeAction'] = $this->params['causeAction'];
+			$extraParams['causeAgent'] = $this->params['causeAgent'];
 			// Convert this into no more than $wgUpdateRowsPerJob HTMLCacheUpdateJob per-title
 			// jobs and possibly a recursive HTMLCacheUpdateJob job for the rest of the backlinks
 			$jobs = BacklinkJobUtils::partitionBacklinkJob(
@@ -82,7 +89,7 @@ class HTMLCacheUpdateJob extends Job {
 				$wgUpdateRowsPerJob,
 				$wgUpdateRowsPerQuery, // jobs-per-title
 				// Carry over information for de-duplication
-				[ 'params' => $this->getRootJobParams() ]
+				[ 'params' => $extraParams ]
 			);
 			JobQueueGroup::singleton()->push( $jobs );
 		// Job to purge pages for a set of titles

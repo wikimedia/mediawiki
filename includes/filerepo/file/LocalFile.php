@@ -1740,7 +1740,9 @@ class LocalFile extends File {
 		}
 
 		# Invalidate cache for all pages using this file
-		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this->getTitle(), 'imagelinks' ) );
+		DeferredUpdates::addUpdate(
+			new HTMLCacheUpdate( $this->getTitle(), 'imagelinks', 'file-upload' )
+		);
 
 		return Status::newGood();
 	}

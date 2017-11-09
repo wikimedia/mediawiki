@@ -1055,7 +1055,9 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 					$inv = [ $inv ];
 				}
 				foreach ( $inv as $table ) {
-					DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this->mTitle, $table ) );
+					DeferredUpdates::addUpdate(
+						new HTMLCacheUpdate( $this->mTitle, $table, 'page-props' )
+					);
 				}
 			}
 		}
