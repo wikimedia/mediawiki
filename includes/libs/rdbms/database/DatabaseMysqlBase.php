@@ -24,9 +24,9 @@ namespace Wikimedia\Rdbms;
 
 use DateTime;
 use DateTimeZone;
-use MediaWiki;
-use InvalidArgumentException;
 use Exception;
+use InvalidArgumentException;
+use MediaWiki;
 use stdClass;
 
 /**
@@ -559,6 +559,29 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	/**
+	 * Determines whether a field exists in a table
+	 * T180157: Use a DESCRIBE query instead of SELECT to avoid a full table scan
+	 *
+	 * @param string $table Table name
+	 * @param string $field Filed to check on that table
+	 * @param string $fname Calling function name (optional)
+	 * @return bool Whether $table has filed $field
+	 */
+	public function fieldExists( $table, $field, $fname = __METHOD__ ) {
+		// This handles escaping and optionally resolving the table
+		$tableName = $this->tableName( $table );
+		$res = $this->query( "DESCRIBE $tableName", __METHOD__ );
+
+		foreach ( $res as $row ) {
+			if ( $row->Field === $field ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+    /**
 	 * @param string $table
 	 * @param string $field
 	 * @return bool|MySQLField
