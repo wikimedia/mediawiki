@@ -5,7 +5,7 @@
  */
 class ChangeTagsTest extends MediaWikiTestCase {
 
-	// TODO only modifyDisplayQuery is tested, nothing else is
+	// TODO only modifyDisplayQuery and getSoftwareTags are tested, nothing else is
 
 	/** @dataProvider provideModifyDisplayQuery */
 	public function testModifyDisplayQuery( $origQuery, $filter_tag, $useTags, $modifiedQuery ) {
@@ -244,4 +244,66 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		];
 	}
 
+	public static function dataGetSoftwareTags() {
+		return [
+			[
+				[
+					'mw-contentModelChange' => true,
+					'mw-redirect' => true,
+					'mw-rollback' => true,
+					'mw-blank' => true,
+					'mw-replace' => true
+				],
+				[
+					'mw-rollback',
+					'mw-replace',
+					'mw-blank'
+				]
+			],
+
+			[
+				[
+					'mw-contentmodelchanged' => true,
+					'mw-replace' => true,
+					'mw-new-redirects' => true,
+					'mw-changed-redirect-target' => true,
+					'mw-rolback' => true,
+					'mw-blanking' => false
+				],
+				[
+					'mw-replace',
+					'mw-changed-redirect-target'
+				]
+			],
+
+			[
+				[
+					null,
+					false,
+					'Lorem ipsum',
+					'mw-translation'
+				],
+				[]
+			],
+
+			[
+				[],
+				[]
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider dataGetSoftwareTags
+	 * @covers ChangeTags::getSoftwareTags
+	 */
+	public function testGetSoftwareTags( $softwareTags, $expected ) {
+		$this->setMwGlobals( 'wgSoftwareTags', $softwareTags );
+
+		$actual = ChangeTags::getSoftwareTags();
+		// Order of tags in arrays is not important
+		sort( $expected );
+		sort( $actual );
+		$this->assertEquals( $expected, $actual );
+	}
 }
