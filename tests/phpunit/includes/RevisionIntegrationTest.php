@@ -991,4 +991,90 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Revision::getParentLengths
+	 */
+	public function testGetParentLengths_noRevIds() {
+		$this->assertSame(
+			[],
+			Revision::getParentLengths(
+				wfGetDB( DB_MASTER ),
+				[]
+			)
+		);
+	}
+
+	/**
+	 * @covers Revision::getParentLengths
+	 */
+	public function testGetParentLengths_oneRevId() {
+		$text = '831jr091jr0921kr21kr0921kjr0921j09rj1';
+		$textLength = strlen( $text );
+
+		$this->testPage->doEditContent( new WikitextContent( $text ), __METHOD__ );
+		$rev[1] = $this->testPage->getLatest();
+
+		$this->assertSame(
+			[ $rev[1] => strval( $textLength ) ],
+			Revision::getParentLengths(
+				wfGetDB( DB_MASTER ),
+				[ $rev[1] ]
+			)
+		);
+	}
+
+	/**
+	 * @covers Revision::getParentLengths
+	 */
+	public function testGetParentLengths_multipleRevIds() {
+		$textOne = '831jr091jr0921kr21kr0921kjr0921j09rj1';
+		$textOneLength = strlen( $textOne );
+		$textTwo = '831jr091jr092121j09rj1';
+		$textTwoLength = strlen( $textTwo );
+
+		$this->testPage->doEditContent( new WikitextContent( $textOne ), __METHOD__ );
+		$rev[1] = $this->testPage->getLatest();
+		$this->testPage->doEditContent( new WikitextContent( $textTwo ), __METHOD__ );
+		$rev[2] = $this->testPage->getLatest();
+
+		$this->assertSame(
+			[ $rev[1] => strval( $textOneLength ), $rev[2] => strval( $textTwoLength ) ],
+			Revision::getParentLengths(
+				wfGetDB( DB_MASTER ),
+				[ $rev[1], $rev[2] ]
+			)
+		);
+	}
+
+	/**
+	 * @covers Revision::getTitle
+	 */
+	public function testGetTitle_fromExistingRevision() {
+		$this->assertTrue(
+			$this->testPage->getTitle()->equals(
+				$this->testPage->getRevision()->getTitle()
+			)
+		);
+	}
+
+	/**
+	 * @covers Revision::getTitle
+	 */
+	public function testGetTitle_fromRevisionWhichWillLoadTheTitle() {
+		$rev = new Revision( [ 'id' => $this->testPage->getLatest() ] );
+		$this->assertTrue(
+			$this->testPage->getTitle()->equals(
+				$rev->getTitle()
+			)
+		);
+	}
+
+	/**
+	 * @covers Revision::getTitle
+	 */
+	public function testGetTitle_forBadRevision() {
+		$rev = new Revision( [] );
+		$this->assertNull( $rev->getTitle() );
+	}
+
 }
