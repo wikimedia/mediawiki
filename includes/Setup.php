@@ -37,9 +37,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * Pre-config setup: Before loading LocalSettings.php
  */
 
-// Grab profiling functions
-require_once "$IP/includes/profiler/ProfilerFunctions.php";
-
 // Start the autoloader, so that extensions can derive classes from core files
 require_once "$IP/includes/AutoLoader.php";
 
