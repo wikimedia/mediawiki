@@ -1304,4 +1304,49 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		);
 	}
 
+
+	public function provideUserCan() {
+		yield [ 0, 0, [], true ];
+		// Bitfields match, user has no permissions
+		yield [ Revision::DELETED_TEXT, Revision::DELETED_TEXT, [], false ];
+		yield [ Revision::DELETED_COMMENT, Revision::DELETED_COMMENT, [], false ];
+		yield [ Revision::DELETED_USER, Revision::DELETED_USER, [], false ];
+		yield [ Revision::DELETED_RESTRICTED, Revision::DELETED_RESTRICTED, [], false ];
+		// Bitfields match, user (admin) does have permissions
+		yield [ Revision::DELETED_TEXT, Revision::DELETED_TEXT, [ 'sysop' ], true ];
+		yield [ Revision::DELETED_COMMENT, Revision::DELETED_COMMENT, [ 'sysop' ], true ];
+		yield [ Revision::DELETED_USER, Revision::DELETED_USER, [ 'sysop' ], true ];
+		// Bitfields match, user (admin) does not have permissions
+		yield [ Revision::DELETED_RESTRICTED, Revision::DELETED_RESTRICTED, [ 'sysop' ], false ];
+		// Bitfields match, user (oversight) does have permissions
+		yield [ Revision::DELETED_RESTRICTED, Revision::DELETED_RESTRICTED, [ 'oversight' ], true ];
+	}
+
+	/**
+	 * @dataProvider provideUserCan
+	 * @covers Revision::userCan
+	 */
+	public function testUserCan( $bitField, $field, $userGroups, $expected ) {
+		$this->setMwGlobals(
+			'wgGroupPermissions',
+			[
+				'sysop' => [
+					'deletedtext' => true,
+					'deletedhistory' => true,
+				],
+				'oversight' => [
+					'viewsuppressed' => true,
+					'suppressrevision' => true,
+				],
+			]
+		);
+		$user = $this->getTestUser( $userGroups )->getUser();
+		$revision = new Revision( [ 'deleted' => $bitField ] );
+
+		$this->assertSame(
+			$expected,
+			$revision->userCan( $field, $user )
+		);
+	}
+
 }
