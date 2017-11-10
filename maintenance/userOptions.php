@@ -24,12 +24,182 @@
  * @author Antoine Musso <hashar at free dot fr>
  */
 
-// This is a command line script, load tools and parse args
-require_once 'userOptions.inc';
+require_once __DIR__ . '/Maintenance.php';
 
-// Load up our tool system, exit with usage() if options are not fine
-$uo = new UserOptions( $options, $args );
+/**
+ * @ingroup Maintenance
+ */
+class UserOptionsMaintenance extends Maintenance {
 
-$uo->run();
+	function __construct() {
+		parent::__construct();
 
-print "Done.\n";
+		$this->addDescription( 'Pass through all users and change one of their options.
+The new option is NOT validated.' );
+
+		$this->addOption( 'list', 'List available user options and their default value' );
+		$this->addOption( 'usage', 'Report all options statistics or just one if you specify it' );
+		$this->addOption( 'old', 'The value to look for', false, true );
+		$this->addOption( 'new', 'Rew value to update users with', false, true );
+		$this->addOption( 'nowarn', 'Hides the 5 seconds warning' );
+		$this->addOption( 'dry', 'Do not save user settings back to database' );
+		$this->addArg( 'option name', 'Name of the option to change or provide statistics about', false );
+	}
+
+	/**
+	 * Do the actual work
+	 */
+	public function execute() {
+		if ( $this->hasOption( 'list' ) ) {
+			$this->listAvailableOptions();
+		} elseif ( $this->hasOption( 'usage' ) ) {
+			$this->showUsageStats();
+		} elseif ( $this->hasOption( 'old' )
+			&& $this->hasOption( 'new' )
+			&& $this->hasArg( 0 )
+		) {
+			$this->updateOptions();
+		} else {
+			$this->maybeHelp( /* force = */ true );
+		}
+	}
+
+	/**
+	 * List default options and their value
+	 */
+	private function listAvailableOptions() {
+		$def = User::getDefaultOptions();
+		ksort( $def );
+		$maxOpt = 0;
+		foreach ( $def as $opt => $value ) {
+			$maxOpt = max( $maxOpt, strlen( $opt ) );
+		}
+		foreach ( $def as $opt => $value ) {
+			$this->output( sprintf( "%-{$maxOpt}s: %s\n", $opt, $value ) );
+		}
+	}
+
+	/**
+	 * List options usage
+	 */
+	private function showUsageStats() {
+		$option = $this->getArg( 0 );
+
+		$ret = [];
+		$defaultOptions = User::getDefaultOptions();
+
+		// We list user by user_id from one of the replica DBs
+		$dbr = wfGetDB( DB_REPLICA );
+		$result = $dbr->select( 'user',
+			[ 'user_id' ],
+			[],
+			__METHOD__
+		);
+
+		foreach ( $result as $id ) {
+			$user = User::newFromId( $id->user_id );
+
+			// Get the options and update stats
+			if ( $option ) {
+				if ( !array_key_exists( $option, $defaultOptions ) ) {
+					$this->error( "Invalid user option. Use --list to see valid choices\n", 1 );
+				}
+
+				$userValue = $user->getOption( $option );
+				if ( $userValue <> $defaultOptions[$option] ) {
+					// @codingStandardsIgnoreStart Ignore silencing errors is discouraged warning
+					@$ret[$option][$userValue]++;
+					// @codingStandardsIgnoreEnd
+				}
+			} else {
+
+				foreach ( $defaultOptions as $name => $defaultValue ) {
+					$userValue = $user->getOption( $name );
+					if ( $userValue != $defaultValue ) {
+						// @codingStandardsIgnoreStart Ignore silencing errors is discouraged warning
+						@$ret[$name][$userValue]++;
+						// @codingStandardsIgnoreEnd
+					}
+				}
+			}
+		}
+
+		foreach ( $ret as $optionName => $usageStats ) {
+			$this->output( "Usage for <$optionName> (default: '{$defaultOptions[$optionName]}'):\n" );
+			foreach ( $usageStats as $value => $count ) {
+				$this->output( " $count user(s): '$value'\n" );
+			}
+			print "\n";
+		}
+	}
+
+	/**
+	 * Change our users options
+	 */
+	private function updateOptions() {
+		$dryRun = $this->hasOption( 'dry' );
+		$option = $this->getArg( 0 );
+		$from = $this->getOption( 'old' );
+		$to = $this->getOption( 'new' );
+
+		if ( !$dryRun ) {
+			$this->warn( $option, $from, $to );
+		}
+
+		// We list user by user_id from one of the replica DBs
+		// @todo: getting all users in one query does not scale
+		$dbr = wfGetDB( DB_REPLICA );
+		$result = $dbr->select( 'user',
+			[ 'user_id' ],
+			[],
+			__METHOD__
+		);
+
+		foreach ( $result as $id ) {
+			$user = User::newFromId( $id->user_id );
+
+			$curValue = $user->getOption( $option );
+			$username = $user->getName();
+
+			if ( $curValue == $from ) {
+				$this->output( "Setting {$option} for $username from '{$from}' to '{$to}'): " );
+
+				// Change value
+				$user->setOption( $option, $to );
+
+				// Will not save the settings if run with --dry
+				if ( !$dryRun ) {
+					$user->saveSettings();
+				}
+				$this->output( " OK\n" );
+			} else {
+				$this->output( "Not changing '$username' using <{$option}> = '$curValue'\n" );
+			}
+		}
+	}
+
+	/**
+	 * The warning message and countdown
+	 *
+	 * @param string $option
+	 * @param string $from
+	 * @param string $to
+	 */
+	private function warn( $option, $from, $to ) {
+		if ( $this->hasOption( 'nowarn' ) ) {
+			return;
+		}
+
+		$this->output( <<<WARN
+The script is about to change the options for ALL USERS in the database.
+Users with option <$option> = '$from' will be made to use '$to'.
+
+Abort with control-c in the next five seconds....
+WARN
+		);
+		$this->countDown( 5 );
+	}
+}
+
+$maintClass = 'UserOptionsMaintenance';
+require RUN_MAINTENANCE_IF_MAIN;
