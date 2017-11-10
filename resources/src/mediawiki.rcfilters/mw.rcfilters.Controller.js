@@ -262,7 +262,7 @@
 			this.changesListModel.update(
 				pieces.changes,
 				pieces.fieldset,
-				pieces.noResultsDetails === 'NO_RESULTS_TIMEOUT',
+				pieces.noResultsDetails,
 				true // We're using existing DOM elements
 			);
 		}
