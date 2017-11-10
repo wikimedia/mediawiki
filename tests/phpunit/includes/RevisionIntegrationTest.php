@@ -1184,11 +1184,29 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * This is a simple blanket test for all simple getters and is methods to provide some
-	 * coverage before the split of Revision into multiple classes for MCR work.
 	 * @covers Revision::isUnpatrolled
 	 */
-	public function testIsUnpatrolled_true() {
+	public function testIsUnpatrolled_returnsRecentChangesId() {
+		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
+		$rev = $this->testPage->getRevision();
+
+		$this->assertGreaterThan( 0, $rev->isUnpatrolled() );
+		$this->assertSame( $rev->getRecentChange()->getAttribute( 'rc_id' ), $rev->isUnpatrolled() );
+	}
+
+	/**
+	 * @covers Revision::isUnpatrolled
+	 */
+	public function testIsUnpatrolled_returnsZeroIfPatrolled() {
+		// This assumes that sysops are auto patrolled
+		$sysop = $this->getTestSysop()->getUser();
+		$this->testPage->doEditContent(
+			new WikitextContent( __METHOD__ ),
+			__METHOD__,
+			0,
+			false,
+			$sysop
+		);
 		$rev = $this->testPage->getRevision();
 
 		$this->assertSame( 0, $rev->isUnpatrolled() );
