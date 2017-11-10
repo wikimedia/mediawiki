@@ -183,6 +183,7 @@
 	"apihelp-import-param-xml": "업로드한 XML 파일.",
 	"apihelp-linkaccount-summary": "서드파티 제공자의 계정을 현재 사용자와 연결합니다.",
 	"apihelp-login-summary": "로그인한 다음 인증 쿠키를 가져옵니다.",
+	"apihelp-login-extended-description": "이 동작은 [[Special:BotPasswords|특수:BotPasswords]]와 함께 사용해야만 합니다. 주 계정 로그인을 위해 사용하는 것은 권장되지 않으며 경고 없이 실패할 수 있습니다. 주 계정에 안전하게 로그인하려면 <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>을 사용하십시오.",
 	"apihelp-login-param-name": "사용자 이름.",
 	"apihelp-login-param-password": "비밀번호.",
 	"apihelp-login-param-domain": "도메인 (선택).",
