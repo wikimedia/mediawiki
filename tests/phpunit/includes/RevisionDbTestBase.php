@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * RevisionDbTestBase contains test cases for the Revision class that have Database interactions.
  *
@@ -1220,6 +1222,30 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$this->assertSame( $this->testPage->getContentModel(), $rev->getContentModel() );
 		$this->assertSame( $this->testPage->getContent()->getDefaultFormat(), $rev->getContentFormat() );
 		$this->assertSame( $this->testPage->getContentHandler(), $rev->getContentHandler() );
+	}
+
+	/**
+	 * @covers Revision::newKnownCurrent
+	 */
+	public function testNewKnownCurrent() {
+		// Setup the services
+		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
+		$this->setService( 'MainWANObjectCache', $cache );
+		$db = wfGetDB( DB_MASTER );
+
+		// Get a fresh revision to use during testing
+		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
+		$rev = $this->testPage->getRevision();
+
+		// Clear any previous cache for the revision during creation
+		$key = $cache->makeGlobalKey( 'revision', $db->getDomainID(), $rev->getPage(), $rev->getId() );
+		$cache->delete( $key, WANObjectCache::HOLDOFF_NONE );
+		$this->assertFalse( $cache->get( $key ) );
+
+		// Get the new revision and make sure it is in the cache and correct
+		$newRev = Revision::newKnownCurrent( $db, $rev->getPage(), $rev->getId() );
+		$this->assertRevEquals( $rev, $newRev );
+		$this->assertRevEquals( $rev, $cache->get( $key ) );
 	}
 
 }
