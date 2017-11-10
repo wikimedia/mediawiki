@@ -5785,7 +5785,7 @@ $wgPasswordAttemptThrottle = [
 ];
 
 /**
- * @var Array Map of (grant => right => boolean)
+ * @var array Map of (grant => right => boolean)
  * Users authorize consumers (like Apps) to act on their behalf but only with
  * a subset of the user's normal account rights (signed off on by the user).
  * The possible rights to grant to a consumer are bundled into groups called
@@ -5887,7 +5887,7 @@ $wgGrantPermissions['createaccount']['createaccount'] = true;
 $wgGrantPermissions['privateinfo']['viewmyprivateinfo'] = true;
 
 /**
- * @var Array Map of grants to their UI grouping
+ * @var array Map of grants to their UI grouping
  * @since 1.27
  */
 $wgGrantPermissionGroups = [
