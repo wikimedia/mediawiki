@@ -1246,4 +1246,62 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$this->assertRevEquals( $rev, $cache->get( $key ) );
 	}
 
+	public function provideUserCanBitfield() {
+		yield [ 0, 0, [], null, true ];
+		// Bitfields match, user has no permissions
+		yield [ Revision::DELETED_TEXT, Revision::DELETED_TEXT, [], null, false ];
+		yield [ Revision::DELETED_COMMENT, Revision::DELETED_COMMENT, [], null, false ];
+		yield [ Revision::DELETED_USER, Revision::DELETED_USER, [], null, false ];
+		yield [ Revision::DELETED_RESTRICTED, Revision::DELETED_RESTRICTED, [], null, false ];
+		// Bitfields match, user (admin) does have permissions
+		yield [ Revision::DELETED_TEXT, Revision::DELETED_TEXT, [ 'sysop' ], null, true ];
+		yield [ Revision::DELETED_COMMENT, Revision::DELETED_COMMENT, [ 'sysop' ], null, true ];
+		yield [ Revision::DELETED_USER, Revision::DELETED_USER, [ 'sysop' ], null, true ];
+		// Bitfields match, user (admin) does not have permissions
+		yield [ Revision::DELETED_RESTRICTED, Revision::DELETED_RESTRICTED, [ 'sysop' ], null, false ];
+		// Bitfields match, user (oversight) does have permissions
+		yield [ Revision::DELETED_RESTRICTED, Revision::DELETED_RESTRICTED, [ 'oversight' ], null, true ];
+		// Check permissions using the title
+		yield [
+			Revision::DELETED_TEXT,
+			Revision::DELETED_TEXT,
+			[ 'sysop' ],
+			Title::newFromText( __METHOD__ ),
+			true,
+		];
+		yield [
+			Revision::DELETED_TEXT,
+			Revision::DELETED_TEXT,
+			[],
+			Title::newFromText( __METHOD__ ),
+			false,
+		];
+	}
+
+	/**
+	 * @dataProvider provideUserCanBitfield
+	 * @covers Revision::userCanBitfield
+	 */
+	public function testUserCanBitfield( $bitField, $field, $userGroups, $title, $expected ) {
+		$this->setMwGlobals(
+			'wgGroupPermissions',
+			[
+				'sysop' => [
+					'deletedtext' => true,
+					'deletedhistory' => true,
+				],
+				'oversight' => [
+					'viewsuppressed' => true,
+					'suppressrevision' => true,
+				],
+			]
+		);
+		$user = $this->getTestUser( $userGroups )->getUser();
+
+		$this->assertSame(
+			$expected,
+			Revision::userCanBitfield( $bitField, $field, $user, $title )
+		);
+	}
+
 }
