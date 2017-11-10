@@ -82,6 +82,7 @@ section).
 ==== Upgraded external libraries ====
 * mediawiki/mediawiki-codesniffer updated to 0.8.1.
 * wikimedia/composer-merge-plugin updated to 1.4.1.
+* Updated dev dependancy phpunit/phpunit from v3.8.35 to v3.8.36.
 
 ==== New external libraries ====
 * The class \TestingAccessWrapper has been moved to the external library
