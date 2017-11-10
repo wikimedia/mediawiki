@@ -53,33 +53,33 @@ a.new:visited,
 }
 
 /* Interwiki Styling */
-.mw-body-content a.extiw,
-.mw-body-content a.extiw:active {
+.mw-parser-output a.extiw,
+.mw-parser-output a.extiw:active {
 	color: #36b;
 }
 
-.mw-body-content a.extiw:visited {
+.mw-parser-output a.extiw:visited {
 	color: #636;
 }
 
-.mw-body-content a.extiw:active {
+.mw-parser-output a.extiw:active {
 	color: #b63;
 }
 
 /* External links */
-.mw-body-content a.external {
+.mw-parser-output a.external {
 	color: #36b;
 }
 
-.mw-body-content a.external:visited {
+.mw-parser-output a.external:visited {
 	color: #636; /* T5112 */
 }
 
-.mw-body-content a.external:active {
+.mw-parser-output a.external:active {
 	color: #b63;
 }
 
-.mw-body-content a.external.free {
+.mw-parser-output a.external.free {
 	word-wrap: break-word;
 }
 
