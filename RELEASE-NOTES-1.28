@@ -16,6 +16,7 @@ This is not a release yet!
 * (T175439) Unbreak Postgres Updater when setting defaults for a column.
 * (T160298) Remove use of implicitGroupBy() in ActiveUsersPager.
 * (T174255) Declare uploadCount property in importDump.php.
+* Updated dev dependancy phpunit/phpunit from v3.8.24 to v3.8.36.
 
 == MediaWiki 1.28.1 ==
 
