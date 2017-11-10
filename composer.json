@@ -53,7 +53,7 @@
 		"monolog/monolog": "~1.18.2",
 		"nikic/php-parser": "2.1.0",
 		"nmred/kafka-php": "0.1.5",
-		"phpunit/phpunit": "4.8.24",
+		"phpunit/phpunit": "4.8.36",
 		"wikimedia/testing-access-wrapper": "~1.0",
 		"wikimedia/avro": "1.7.7"
 	},
