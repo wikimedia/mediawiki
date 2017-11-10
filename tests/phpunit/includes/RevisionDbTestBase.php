@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @group ContentHandler
- * @group Database
+ * RevisionDbTestBase contains test cases for the Revision class that have Database interactions.
  *
+ * @group Database
  * @group medium
  */
-class RevisionIntegrationTest extends MediaWikiTestCase {
+abstract class RevisionDbTestBase extends MediaWikiTestCase {
 
 	/**
 	 * @var WikiPage $testPage
@@ -67,11 +67,17 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 			]
 		);
 
+		$this->setMwGlobals( 'wgContentHandlerUseDB', $this->getContentHandlerUseDB() );
+
 		MWNamespace::clearCaches();
 		// Reset namespace cache
 		$wgContLang->resetNamespaces();
 		if ( !$this->testPage ) {
-			$this->testPage = WikiPage::factory( Title::newFromText( 'UTPage' ) );
+			/**
+			 * We have to create a new page for each subclass as the page creation may result
+			 * in different DB fields being filled based on configuration.
+			 */
+			$this->testPage = $this->createPage( __CLASS__, __CLASS__ );
 		}
 	}
 
@@ -84,6 +90,8 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 		// Reset namespace cache
 		$wgContLang->resetNamespaces();
 	}
+
+	abstract protected function getContentHandlerUseDB();
 
 	private function makeRevisionWithProps( $props = null ) {
 		if ( $props === null ) {
@@ -280,38 +288,16 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 
 	public function provideNewFromArchiveRow() {
 		yield [
-			true,
 			function ( $f ) {
 				return $f;
 			},
 		];
 		yield [
-			false,
-			function ( $f ) {
-				return $f;
-			},
-		];
-		yield [
-			true,
 			function ( $f ) {
 				return $f + [ 'ar_namespace', 'ar_title' ];
 			},
 		];
 		yield [
-			false,
-			function ( $f ) {
-				return $f + [ 'ar_namespace', 'ar_title' ];
-			},
-		];
-		yield [
-			true,
-			function ( $f ) {
-				unset( $f['ar_text_id'] );
-				return $f;
-			},
-		];
-		yield [
-			false,
 			function ( $f ) {
 				unset( $f['ar_text_id'] );
 				return $f;
@@ -323,9 +309,7 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 	 * @dataProvider provideNewFromArchiveRow
 	 * @covers Revision::newFromArchiveRow
 	 */
-	public function testNewFromArchiveRow( $contentHandlerUseDB, $selectModifier ) {
-		$this->setMwGlobals( 'wgContentHandlerUseDB', $contentHandlerUseDB );
-
+	public function testNewFromArchiveRow( $selectModifier ) {
 		$page = $this->createPage(
 			'RevisionStorageTest_testNewFromArchiveRow',
 			'Lorem Ipsum',
@@ -1184,11 +1168,29 @@ class RevisionIntegrationTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * This is a simple blanket test for all simple getters and is methods to provide some
-	 * coverage before the split of Revision into multiple classes for MCR work.
 	 * @covers Revision::isUnpatrolled
 	 */
-	public function testIsUnpatrolled_true() {
+	public function testIsUnpatrolled_returnsRecentChangesId() {
+		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
+		$rev = $this->testPage->getRevision();
+
+		$this->assertGreaterThan( 0, $rev->isUnpatrolled() );
+		$this->assertSame( $rev->getRecentChange()->getAttribute( 'rc_id' ), $rev->isUnpatrolled() );
+	}
+
+	/**
+	 * @covers Revision::isUnpatrolled
+	 */
+	public function testIsUnpatrolled_returnsZeroIfPatrolled() {
+		// This assumes that sysops are auto patrolled
+		$sysop = $this->getTestSysop()->getUser();
+		$this->testPage->doEditContent(
+			new WikitextContent( __METHOD__ ),
+			__METHOD__,
+			0,
+			false,
+			$sysop
+		);
 		$rev = $this->testPage->getRevision();
 
 		$this->assertSame( 0, $rev->isUnpatrolled() );

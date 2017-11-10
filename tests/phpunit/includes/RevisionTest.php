@@ -3,9 +3,10 @@
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @group ContentHandler
+ * Test cases in RevisionTest should not interact with the Database.
+ * For test cases that need Database interaction see RevisionDbTestBase.
  */
-class RevisionUnitTest extends MediaWikiTestCase {
+class RevisionTest extends MediaWikiTestCase {
 
 	public function provideConstructFromArray() {
 		yield 'with text' => [
@@ -90,7 +91,7 @@ class RevisionUnitTest extends MediaWikiTestCase {
 				'rev_content_format' => 'GOATFORMAT',
 				'rev_content_model' => 'GOATMODEL',
 			],
-			function ( RevisionUnitTest $testCase, Revision $rev ) {
+			function ( RevisionTest $testCase, Revision $rev ) {
 				$testCase->assertSame( 2, $rev->getId() );
 				$testCase->assertSame( 1, $rev->getPage() );
 				$testCase->assertSame( 2, $rev->getTextId() );
@@ -121,7 +122,7 @@ class RevisionUnitTest extends MediaWikiTestCase {
 				'rev_comment_data' => null,
 				'rev_comment_cid' => null,
 			],
-			function ( RevisionUnitTest $testCase, Revision $rev ) {
+			function ( RevisionTest $testCase, Revision $rev ) {
 				$testCase->assertNull( $rev->getSize() );
 				$testCase->assertNull( $rev->getParentId() );
 				$testCase->assertNull( $rev->getSha1() );
@@ -394,4 +395,75 @@ class RevisionUnitTest extends MediaWikiTestCase {
 
 		$this->assertEquals( 'RETURNVALUE', $result );
 	}
+
+	public function provideDecompressRevisionText() {
+		yield '(no legacy encoding), false in false out' => [ false, false, [], false ];
+		yield '(no legacy encoding), empty in empty out' => [ false, '', [], '' ];
+		yield '(no legacy encoding), empty in empty out' => [ false, 'A', [], 'A' ];
+		yield '(no legacy encoding), string in with gzip flag returns string' => [
+			// gzip string below generated with gzdeflate( 'AAAABBAAA' )
+			false, "sttttr\002\022\000", [ 'gzip' ], 'AAAABBAAA',
+		];
+		yield '(no legacy encoding), string in with object flag returns false' => [
+			// gzip string below generated with serialize( 'JOJO' )
+			false, "s:4:\"JOJO\";", [ 'object' ], false,
+		];
+		yield '(no legacy encoding), serialized object in with object flag returns string' => [
+			false,
+			// Using a TitleValue object as it has a getText method (which is needed)
+			serialize( new TitleValue( 0, 'HHJJDDFF' ) ),
+			[ 'object' ],
+			'HHJJDDFF',
+		];
+		yield '(no legacy encoding), serialized object in with object & gzip flag returns string' => [
+			false,
+			// Using a TitleValue object as it has a getText method (which is needed)
+			gzdeflate( serialize( new TitleValue( 0, '8219JJJ840' ) ) ),
+			[ 'object', 'gzip' ],
+			'8219JJJ840',
+		];
+		yield '(ISO-8859-1 encoding), string in string out' => [
+			'ISO-8859-1',
+			iconv( 'utf8', 'ISO-8859-1', "1®Àþ1" ),
+			[],
+			'1®Àþ1',
+		];
+		yield '(ISO-8859-1 encoding), serialized object in with gzip flags returns string' => [
+			'ISO-8859-1',
+			gzdeflate( iconv( 'utf8', 'ISO-8859-1', "4®Àþ4" ) ),
+			[ 'gzip' ],
+			'4®Àþ4',
+		];
+		yield '(ISO-8859-1 encoding), serialized object in with object flags returns string' => [
+			'ISO-8859-1',
+			serialize( new TitleValue( 0, iconv( 'utf8', 'ISO-8859-1', "3®Àþ3" ) ) ),
+			[ 'object' ],
+			'3®Àþ3',
+		];
+		yield '(ISO-8859-1 encoding), serialized object in with object & gzip flags returns string' => [
+			'ISO-8859-1',
+			gzdeflate( serialize( new TitleValue( 0, iconv( 'utf8', 'ISO-8859-1', "2®Àþ2" ) ) ) ),
+			[ 'gzip', 'object' ],
+			'2®Àþ2',
+		];
+	}
+
+	/**
+	 * @dataProvider provideDecompressRevisionText
+	 * @covers Revision::decompressRevisionText
+	 *
+	 * @param bool $legacyEncoding
+	 * @param mixed $text
+	 * @param array $flags
+	 * @param mixed $expected
+	 */
+	public function testDecompressRevisionText( $legacyEncoding, $text, $flags, $expected ) {
+		$this->setMwGlobals( 'wgLegacyEncoding', $legacyEncoding );
+		$this->setMwGlobals( 'wgLanguageCode', 'en' );
+		$this->assertSame(
+			$expected,
+			Revision::decompressRevisionText( $text, $flags )
+		);
+	}
+
 }
