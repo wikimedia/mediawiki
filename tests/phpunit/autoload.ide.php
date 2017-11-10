@@ -38,16 +38,13 @@ $maintenance->setup();
 // to $maintenance->mSelf. Keep that here for b/c
 $self = $maintenance->getName();
 global $IP;
-# Start the autoloader, so that extensions can derive classes from core files
-require_once "$IP/includes/AutoLoader.php";
-# Grab profiling functions
-require_once "$IP/includes/profiler/ProfilerFunctions.php";
-
-# Start the profiler
+# Get profiler configuraton
 $wgProfiler = [];
 if ( file_exists( "$IP/StartProfiler.php" ) ) {
 	require "$IP/StartProfiler.php";
 }
+# Start the autoloader, so that extensions can derive classes from core files
+require_once "$IP/includes/AutoLoader.php";
 
 $requireOnceGlobalsScope = function ( $file ) use ( $self ) {
 	foreach ( array_keys( $GLOBALS ) as $varName ) {

@@ -37,20 +37,17 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * Pre-config setup: Before loading LocalSettings.php
  */
 
-// Grab profiling functions
-require_once "$IP/includes/profiler/ProfilerFunctions.php";
+// Get profiler configuraton
+$wgProfiler = [];
+if ( file_exists( "$IP/StartProfiler.php" ) ) {
+	require "$IP/StartProfiler.php";
+}
 
 // Start the autoloader, so that extensions can derive classes from core files
 require_once "$IP/includes/AutoLoader.php";
 
 // Load up some global defines
 require_once "$IP/includes/Defines.php";
-
-// Start the profiler
-$wgProfiler = [];
-if ( file_exists( "$IP/StartProfiler.php" ) ) {
-	require "$IP/StartProfiler.php";
-}
 
 // Load default settings
 require_once "$IP/includes/DefaultSettings.php";
