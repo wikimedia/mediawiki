@@ -68,7 +68,8 @@
 	},
 	"autoload": {
 		"psr-0": {
-			"ComposerHookHandler": "includes/composer"
+			"ComposerHookHandler": "includes/composer",
+			"ComposerVendorHtaccessCreator": "includes/composer"
 		}
 	},
 	"scripts": {
@@ -77,6 +78,8 @@
 		"fix": "phpcbf",
 		"pre-install-cmd": "ComposerHookHandler::onPreInstall",
 		"pre-update-cmd": "ComposerHookHandler::onPreUpdate",
+		"post-install-cmd": "ComposerVendorHtaccessCreator::onEvent",
+		"post-update-cmd": "ComposerVendorHtaccessCreator::onEvent",
 		"test": [
 			"composer lint",
 			"composer phpcs"
