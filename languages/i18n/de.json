@@ -103,7 +103,7 @@
 	"tog-numberheadings": "Überschriften automatisch nummerieren",
 	"tog-showtoolbar": "Bearbeiten-Werkzeugleiste anzeigen",
 	"tog-editondblclick": "Seiten mit Doppelklick bearbeiten",
-	"tog-editsectiononrightclick": "Einzelne Abschnitte per Rechtsklick bearbeiten",
+	"tog-editsectiononrightclick": "Einzelne Abschnitte per Rechtsklick auf die Überschrift bearbeiten",
 	"tog-watchcreations": "Selbst erstellte Seiten und hochgeladene Dateien automatisch beobachten",
 	"tog-watchdefault": "Selbst geänderte Seiten und Dateien automatisch beobachten",
 	"tog-watchmoves": "Selbst verschobene Seiten und Dateien automatisch beobachten",
