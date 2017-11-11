@@ -3288,7 +3288,7 @@ class EditPage {
 
 	protected function showFormBeforeText() {
 		$out = $this->context->getOutput();
-		$out->addHTML( Html::hidden( 'wpSection', htmlspecialchars( $this->section ) ) );
+		$out->addHTML( Html::hidden( 'wpSection', $this->section ) );
 		$out->addHTML( Html::hidden( 'wpStarttime', $this->starttime ) );
 		$out->addHTML( Html::hidden( 'wpEdittime', $this->edittime ) );
 		$out->addHTML( Html::hidden( 'editRevId', $this->editRevId ) );
