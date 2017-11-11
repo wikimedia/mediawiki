@@ -20,6 +20,7 @@ This not a release yet!
 * (T176247) SECURITY: Ensure Message::rawParams can't lead to XSS.
 * (T125163) SECURITY: Make anchor for headlines escape > and <.
 * (T180237) SECURITY: Protect vendor folder with .htaccess.
+* (T180231) SECURITY: Remove PHPUnit file with known RCE if exists in update.php.
 
 == MediaWiki 1.29.1 ==
 
