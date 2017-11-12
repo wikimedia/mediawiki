@@ -1162,6 +1162,8 @@
 	"recentchanges-label-plusminus": "صفحه‌نین اؤلچوسو بایت میقداری ایله تعیین ائدیلیر",
 	"recentchanges-legend-heading": "<strong>قیسالتمالار:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (بیرده [[Special:NewPages|یئنی صفحه‌لرین لیستینه]] باخین)",
+	"rcfilters-other-review-tools": "داها یوخلاما آلتلری",
+	"rcfilters-savedqueries-defaultlabel": "ذخیره اوْلونموش فیلترلر",
 	"rcnotefrom": "آشاغی داکی دَییشیک لرده <strong>$3, $4</strong> (دن <strong>$1</strong> {{PLURAL:$5|چان گوستریلیب|چان گوستریلیب دیر}}).",
 	"rclistfrom": "$3 $2 واختیندان باشلایاراق یئنی دییشیکلری گؤستر",
 	"rcshowhideminor": "کیچیک دَییشیکلری $1",
