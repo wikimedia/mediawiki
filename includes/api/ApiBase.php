@@ -217,6 +217,18 @@ abstract class ApiBase extends ContextSource {
 	 */
 	const PARAM_ISMULTI_LIMIT2 = 22;
 
+	/**
+	 * (integer) Maximum length of a string in bytes (in UTF-8 encoding).
+	 * @since 1.31
+	 */
+	const PARAM_MAX_BYTES = 23;
+
+	/**
+	 * (integer) Maximum length of a string in characters (unicode codepoints).
+	 * @since 1.31
+	 */
+	const PARAM_MAX_CHARS = 24;
+
 	/**@}*/
 
 	const ALL_DEFAULT_STRING = '*';
@@ -1173,9 +1185,9 @@ abstract class ApiBase extends ContextSource {
 			);
 		}
 
-		// More validation only when choices were not given
-		// choices were validated in parseMultiValue()
 		if ( isset( $value ) ) {
+			// More validation only when choices were not given
+			// choices were validated in parseMultiValue()
 			if ( !is_array( $type ) ) {
 				switch ( $type ) {
 					case 'NULL': // nothing to do
@@ -1283,6 +1295,23 @@ abstract class ApiBase extends ContextSource {
 			// Throw out duplicates if requested
 			if ( !$dupes && is_array( $value ) ) {
 				$value = array_unique( $value );
+			}
+
+			if ( in_array( $type, [ 'NULL', 'string', 'text', 'password' ], true ) ) {
+				foreach ( (array)$value as $val ) {
+					if ( isset( $paramSettings[self::PARAM_MAX_BYTES] )
+						&& strlen( $val ) > $paramSettings[self::PARAM_MAX_BYTES]
+					) {
+						$this->dieWithError( [ 'apierror-maxbytes', $encParamName,
+							$paramSettings[self::PARAM_MAX_BYTES] ] );
+					}
+					if ( isset( $paramSettings[self::PARAM_MAX_CHARS] )
+						&& mb_strlen( $val, 'UTF-8' ) > $paramSettings[self::PARAM_MAX_CHARS]
+					) {
+						$this->dieWithError( [ 'apierror-maxchars', $encParamName,
+							$paramSettings[self::PARAM_MAX_CHARS] ] );
+					}
+				}
 			}
 
 			// Set a warning if a deprecated parameter has been passed
