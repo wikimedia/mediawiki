@@ -73,7 +73,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			);
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
 
-		\Hooks::run( 'UserGroupsChanged', [ $user, [ 'added' ], [ 'removed' ] ] );
+		\Hooks::run( 'UserGroupsChanged', [ $user, [ 'added' ], [ 'removed' ], false, false, [], [] ] );
 	}
 
 	public function testOnUserLoggedIn() {
