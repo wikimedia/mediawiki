@@ -471,6 +471,14 @@ class ApiParamInfo extends ApiBase {
 			if ( !empty( $settings[ApiBase::PARAM_RANGE_ENFORCE] ) ) {
 				$item['enforcerange'] = true;
 			}
+			if ( in_array( $item['type'], [ null, 'string', 'text', 'password' ], true ) ) {
+				if ( isset( $settings[self::PARAM_MAX_BYTES] ) ) {
+					$item['maxbytes'] = $settings[self::PARAM_MAX_BYTES];
+				}
+				if ( isset( $settings[self::PARAM_MAX_CHARS] ) ) {
+					$item['maxchars'] = $settings[self::PARAM_MAX_CHARS];
+				}
+			}
 			if ( !empty( $settings[ApiBase::PARAM_DEPRECATED_VALUES] ) ) {
 				$deprecatedValues = array_keys( $settings[ApiBase::PARAM_DEPRECATED_VALUES] );
 				if ( is_array( $item['type'] ) ) {

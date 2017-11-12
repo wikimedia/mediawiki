@@ -528,6 +528,17 @@ class ApiHelp extends ApiBase {
 								->parse();
 							$hintPipeSeparated = false;
 						} else {
+							if ( in_array( $type, [ null, 'string', 'text', 'password' ], true ) ) {
+								if ( isset( $settings[self::PARAM_MAX_BYTES] ) ) {
+									$info[] = $context->msg( 'api-help-param-maxbytes' )
+										->numParams( $settings[self::PARAM_MAX_BYTES] );
+								}
+								if ( isset( $settings[self::PARAM_MAX_CHARS] ) ) {
+									$info[] = $context->msg( 'api-help-param-maxchars' )
+										->numParams( $settings[self::PARAM_MAX_CHARS] );
+								}
+							}
+
 							switch ( $type ) {
 								case 'submodule':
 									$groups[] = $name;
@@ -668,7 +679,6 @@ class ApiHelp extends ApiBase {
 								$info[] = $msg->params( $multi ? 2 : 1 )->parse();
 							}
 						}
-
 						if ( $multi ) {
 							$extra = [];
 							$lowcount = !empty( $settings[ApiBase::PARAM_ISMULTI_LIMIT1] )
