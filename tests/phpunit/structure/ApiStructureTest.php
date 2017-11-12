@@ -199,6 +199,16 @@ class ApiStructureTest extends MediaWikiTestCase {
 						$config[ApiBase::PARAM_ISMULTI_LIMIT2], $param
 						. 'PARAM_ISMULTI limit cannot be smaller for users with apihighlimits rights' );
 				}
+				if (
+					isset( $config[ApiBase::PARAM_MAX_BYTES] )
+					|| isset( $config[ApiBase::PARAM_MAX_CHARS] )
+				) {
+					$default = isset( $config[ApiBase::PARAM_DFLT] ) ? $config[ApiBase::PARAM_DFLT] : null;
+					$type = isset( $config[ApiBase::PARAM_TYPE] ) ? $config[ApiBase::PARAM_TYPE]
+						: gettype( $default );
+					$this->assertContains( $type, [ 'NULL', 'string', 'text', 'password' ],
+						'PARAM_MAX_BYTES/CHARS is only supported for string-like types' );
+				}
 			}
 		}
 	}
