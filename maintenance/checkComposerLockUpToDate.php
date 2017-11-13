@@ -25,7 +25,7 @@ class CheckComposerLockUpToDate extends Maintenance {
 			$lockLocation = "$IP/vendor/composer.lock";
 			if ( !file_exists( $lockLocation ) ) {
 				$this->error(
-					'Could not find composer.lock file. Have you run "composer install"?',
+					'Could not find composer.lock file. Have you run "composer install --no-dev"?',
 					1
 				);
 			}
@@ -53,7 +53,7 @@ class CheckComposerLockUpToDate extends Maintenance {
 		if ( $found ) {
 			$this->error(
 				'Error: your composer.lock file is not up to date. ' .
-					'Run "composer update" to install newer dependencies',
+					'Run "composer update --no-dev" to install newer dependencies',
 				1
 			);
 		} else {

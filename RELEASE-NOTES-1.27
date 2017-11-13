@@ -17,6 +17,7 @@ This not a release yet!
 * (T175439) Unbreak Postgres Updater when setting defaults for a column.
 * (T160298) Remove use of implicitGroupBy() in ActiveUsersPager.
 * (T142304) Allow putting the app ID in the password for bot passwords.
+* Updated dev dependancy phpunit/phpunit from v4.8.24 to v4.8.36.
 
 == MediaWiki 1.27.3 ==
 Due to a packaging error, the wrong version of the SyntaxHighlight extension was
