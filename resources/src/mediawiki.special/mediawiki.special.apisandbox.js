@@ -1601,6 +1601,18 @@
 								} ) );
 							}
 						}
+						if ( 'maxbytes' in pi.parameters[ i ] ) {
+							descriptionContainer.append( $( '<div>', {
+								addClass: 'info',
+								append: Util.parseMsg( 'api-help-param-maxbytes', pi.parameters[ i ].maxbytes )
+							} ) );
+						}
+						if ( 'maxchars' in pi.parameters[ i ] ) {
+							descriptionContainer.append( $( '<div>', {
+								addClass: 'info',
+								append: Util.parseMsg( 'api-help-param-maxchars', pi.parameters[ i ].maxchars )
+							} ) );
+						}
 						helpField = new OO.ui.FieldLayout(
 							new OO.ui.Widget( {
 								$content: '\xa0',
