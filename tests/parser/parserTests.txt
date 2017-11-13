@@ -29655,3 +29655,14 @@ wgFragmentMode=[ 'html5', 'legacy' ]
 <p><a href="#Foo_bar">#Foo&#160;bar</a>
 </p>
 !! end
+
+!! test
+T179544: {{anchorencode:}} output should be always usable in links
+!! config
+wgFragmentMode=[ 'html5' ]
+!! wikitext
+<span id="{{anchorencode:[foo]}}"></span>[[#{{anchorencode:[foo]}}]]
+!! html/php
+<p><span id="&#91;foo&#93;"></span><a href="#[foo]">#&#91;foo&#93;</a>
+</p>
+!! end
