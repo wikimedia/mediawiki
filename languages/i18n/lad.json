@@ -1096,7 +1096,7 @@
 	"feedback-cancel": "Anular",
 	"feedback-message": "Messaje",
 	"feedback-subject": "Sujeto",
-	"searchsuggest-search": "Busxca en {{SITENAME}}",
+	"searchsuggest-search": "Buxca en {{SITENAME}}",
 	"duration-seconds": "$1{{PLURAL:$1|segundo|segundos}}",
 	"duration-minutes": "$1{{PLURAL:$1|minuto|minutos}}",
 	"duration-hours": "$1{{PLURAL:$1|ora|oras}}",

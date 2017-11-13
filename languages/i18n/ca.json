@@ -1435,7 +1435,7 @@
 	"rcfilters-filtergroup-lastRevision": "Darreres revisions",
 	"rcfilters-filter-lastrevision-label": "Darrera revisió",
 	"rcfilters-filter-lastrevision-description": "El canvi més recent a una pàgina.",
-	"rcfilters-filter-previousrevision-label": "Revisions anteriors",
+	"rcfilters-filter-previousrevision-label": "No la darrera revisió",
 	"rcfilters-filter-previousrevision-description": "Tots els canvis que no són «la darrera revisió».",
 	"rcfilters-filter-excluded": "Exclòs",
 	"rcfilters-exclude-button-off": "Exclou els seleccionats",

@@ -1356,7 +1356,7 @@
 	"rcfilters-restore-default-filters": "Alapértelmezett szűrők visszaállítása",
 	"rcfilters-clear-all-filters": "Összes szűrő kikapcsolása",
 	"rcfilters-show-new-changes": "Legfrissebb változtatások megtekintése",
-	"rcfilters-search-placeholder": "Friss változtatások szűrése (böngéssz vagy kezdj el gépelni)",
+	"rcfilters-search-placeholder": "Változtatások szűrése (használd a menüt vagy keress szűrőkre)",
 	"rcfilters-invalid-filter": "Érvénytelen szűrő",
 	"rcfilters-empty-filter": "Nincs aktív szűrő. Minden közreműködés látható.",
 	"rcfilters-filterlist-title": "Szűrők",
