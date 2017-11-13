@@ -1161,7 +1161,9 @@ class Sanitizer {
 		# Stupid hack
 		$encValue = preg_replace_callback(
 			'/((?i)' . wfUrlProtocols() . ')/',
-			[ 'Sanitizer', 'armorLinksCallback' ],
+			function ( $matches ) {
+				return str_replace( ':', '&#58;', $matches[1] );
+			},
 			$encValue );
 		return $encValue;
 	}
@@ -1404,15 +1406,6 @@ class Sanitizer {
 		# don't cause the entire string to disappear.
 		$html = htmlspecialchars( $html, ENT_QUOTES | ENT_SUBSTITUTE );
 		return $html;
-	}
-
-	/**
-	 * Regex replace callback for armoring links against further processing.
-	 * @param array $matches
-	 * @return string
-	 */
-	private static function armorLinksCallback( $matches ) {
-		return str_replace( ':', '&#58;', $matches[1] );
 	}
 
 	/**
