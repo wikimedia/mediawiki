@@ -96,7 +96,10 @@ class LocalPasswordPrimaryAuthenticationProvider
 			__METHOD__
 		);
 		if ( !$row ) {
-			return AuthenticationResponse::newAbstain();
+			// Do not reveal whether its bad username or
+			// bad password to prevent username enumeration
+			// on private wikis. (T134100)
+			return $this->failResponse( $req );
 		}
 
 		// Check for *really* old password hashes that don't even have a type
