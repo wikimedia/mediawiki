@@ -96,7 +96,7 @@
 		"phpcs": "phpcs -p -s",
 		"fix": "phpcbf",
 		"pre-install-cmd": [
-			"ComposerHookHandler::onPreInstall"			
+			"ComposerHookHandler::onPreInstall"
 		],
 		"pre-update-cmd": [
 			"ComposerHookHandler::onPreUpdate"
@@ -104,6 +104,9 @@
 		"test": [
 			"composer lint",
 			"composer phpcs"
+		],
+		"post-update-cmd": [
+			"cd extensions/VisualEditor && git submodule foreach --recursive git reset --hard && git submodule update --init --recursive && cd -"
 		]
 	},
 	"config": {

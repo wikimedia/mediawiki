@@ -6,7 +6,9 @@
 				"build/*/composer.json",
 				"extensions/*/composer.json",
 				"skins/*/composer.json"
-			]
+			],
+			"merge-extra": true,
+			"merge-scripts": true
 		}
 	}
 }
