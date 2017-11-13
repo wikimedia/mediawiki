@@ -345,7 +345,8 @@
 						$.extend( widget, WidgetMethods.capsuleWidget );
 					} else {
 						widget = new OO.ui.TextInputWidget( {
-							required: Util.apiBool( pi.required )
+							required: Util.apiBool( pi.required ),
+							maxLength: pi.maxchars
 						} );
 					}
 					if ( !Util.apiBool( pi.multi ) ) {
@@ -362,7 +363,8 @@
 
 				case 'text':
 					widget = new OO.ui.MultilineTextInputWidget( {
-						required: Util.apiBool( pi.required )
+						required: Util.apiBool( pi.required ),
+						maxLength: pi.maxchars
 					} );
 					widget.paramInfo = pi;
 					$.extend( widget, WidgetMethods.textInputWidget );
@@ -372,7 +374,8 @@
 				case 'password':
 					widget = new OO.ui.TextInputWidget( {
 						type: 'password',
-						required: Util.apiBool( pi.required )
+						required: Util.apiBool( pi.required ),
+						maxLength: pi.maxchars
 					} );
 					widget.paramInfo = pi;
 					$.extend( widget, WidgetMethods.textInputWidget );
@@ -1600,6 +1603,18 @@
 									append: Util.parseHTML( tmp.join( ' ' ) )
 								} ) );
 							}
+						}
+						if ( 'maxbytes' in pi.parameters[ i ] ) {
+							descriptionContainer.append( $( '<div>', {
+								addClass: 'info',
+								append: Util.parseMsg( 'api-help-param-maxbytes', pi.parameters[ i ].maxbytes )
+							} ) );
+						}
+						if ( 'maxchars' in pi.parameters[ i ] ) {
+							descriptionContainer.append( $( '<div>', {
+								addClass: 'info',
+								append: Util.parseMsg( 'api-help-param-maxchars', pi.parameters[ i ].maxchars )
+							} ) );
 						}
 						helpField = new OO.ui.FieldLayout(
 							new OO.ui.Widget( {
