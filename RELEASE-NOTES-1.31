@@ -24,7 +24,7 @@ production.
 === External library changes in 1.31 ===
 
 ==== Upgraded external libraries ====
-* …
+* Updated dev dependancy phpunit/phpunit from v4.8.35 to v4.8.36.
 
 ==== New external libraries ====
 * …
@@ -55,7 +55,7 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Phabricator reports.
 
-* …
+* (T180052) Mirandese (mwl) now supports gendered NS_USER/NS_USER_TALK namespaces.
 
 === Other changes in 1.31 ===
 * MessageBlobStore::insertMessageBlob() (deprecated in 1.27) was removed.

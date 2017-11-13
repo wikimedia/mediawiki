@@ -1376,7 +1376,7 @@
 	"bad_image_list": "Is é seo a leanas an formáid:\n\nNíl ach míreanna liosta amháin (línte ag tosú le *) san áireamh.\nIs riachtanach gur nasc do dhrochchomhad é an chéad nasc ar líne.\nIs eisceachtaí iad na naisc eile ar an líne céanna, .i. leathanaigh gur féidir an comhad a bheith orthu go hinlíne.",
 	"metadata": "Meiteasonraí",
 	"metadata-help": "Tá breis eolais sa comhad seo, curtha, is dócha, as ceamara digiteach ná scanóir a chruthaigh ná a digitigh é.\nMá tá an comhad mionathraithe as an bunleagan, b'fhéidir nach mbeidh ceann de na sonraí fágtha sa comhad atá athruithe.",
-	"metadata-expand": "Taispeáin sonraí síneadh",
+	"metadata-expand": "Taispeáin sonraí sínte",
 	"metadata-collapse": "Folaigh sonraí síneadh",
 	"metadata-fields": "Beidh na meiteasonraí EXIF seo a leanas dá dtaispeáint ar an leathanach íomhá nuair atá an clár meiteasonraí ceilte.\nBeidh na cinn eile ceilte de réir réamhshocraithe.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
 	"exif-imagewidth": "Leithead",

@@ -7,6 +7,7 @@
  * @file
  *
  * @author Alchimista
+ * @author Athena
  * @author Cecílio
  * @author MCruz
  * @author Malafaya
@@ -20,8 +21,8 @@ $namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Special',
 	NS_TALK             => 'Cumbersa',
-	NS_USER             => 'Outelizador',
-	NS_USER_TALK        => 'Cumbersa_outelizador',
+	NS_USER             => 'Outelizador(a)',
+	NS_USER_TALK        => 'Cumbersa_outelizador(a)',
 	NS_PROJECT_TALK     => '$1_cumbersa',
 	NS_FILE             => 'Fexeiro',
 	NS_FILE_TALK        => 'Cumbersa_fexeiro',
@@ -53,11 +54,16 @@ $namespaceAliases = [
 	'Categoria_Discussão' => NS_CATEGORY_TALK,
 ];
 
+$namespaceGenderAliases = [
+	NS_USER => [ 'male' => 'Outelizador', 'female' => 'Outelizadora' ],
+	NS_USER_TALK => [ 'male' => 'Cumbersa_outelizador', 'female' => 'Cumbersa_outelizadora' ],
+]; // T180052
+
 $specialPageAliases = [
-	'CreateAccount'             => [ 'Criar Cuonta' ],
-	'Lonelypages'               => [ 'Páiginas Uorfanas' ],
-	'Uncategorizedcategories'   => [ 'Catadories sien catadories' ],
-	'Uncategorizedimages'       => [ 'Eimaiges sien catadories' ],
+	'CreateAccount'             => [ 'Criar_Cuonta' ],
+	'Lonelypages'               => [ 'Páiginas_Uorfanas' ],
+	'Uncategorizedcategories'   => [ 'Catadories_sien_catadories' ],
+	'Uncategorizedimages'       => [ 'Eimaiges_sien_catadories' ],
 	'Userlogin'                 => [ 'Antrar' ],
 	'Userlogout'                => [ 'Salir' ],
 ];

@@ -3637,7 +3637,7 @@
 	"htmlform-user-not-valid": "<strong>$1</strong> 不是有效的使用者名稱。",
 	"logentry-delete-delete": "$1 刪除頁面 $3",
 	"logentry-delete-delete_redir": "$1 透過覆寫{{GENDER:$2|刪除了}}重新導向 $3",
-	"logentry-delete-restore": "$1{{GENDER:$2|還原}}頁面 $3（$4）",
+	"logentry-delete-restore": "$1 {{GENDER:$2|還原}}頁面 $3（$4）",
 	"logentry-delete-restore-nocount": "$1 {{GENDER:$2|已還原}}頁面 $3",
 	"restore-count-revisions": "{{PLURAL:$1|1 修訂|$1 修訂}}",
 	"restore-count-files": "{{PLURAL:$1|1 檔案|$1 檔案}}",

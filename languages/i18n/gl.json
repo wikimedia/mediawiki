@@ -1344,6 +1344,7 @@
 	"rcfilters-savedqueries-apply-and-setdefault-label": "Crear filtro por defecto",
 	"rcfilters-savedqueries-cancel-label": "Cancelar",
 	"rcfilters-savedqueries-add-new-title": "Gardar a configuración do filtro actual",
+	"rcfilters-savedqueries-already-saved": "Estes filtro xa están gardados",
 	"rcfilters-restore-default-filters": "Restaurar os filtros por defecto",
 	"rcfilters-clear-all-filters": "Borrar todos os filtros",
 	"rcfilters-show-new-changes": "Mostrar os cambios máis recentes",

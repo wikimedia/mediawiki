@@ -15,6 +15,7 @@
 	margin-bottom: 0.5em;
 	border: solid 1px #ddd;
 	background-color: #fcfcfc;
+	color: #252525;
 	/* Click handler in mediawiki.notification.js */
 	cursor: pointer;
 
