@@ -29611,7 +29611,7 @@ wgFragmentMode=[ 'html5' ]
 == тест ==
 
 == Hey < # " > % : ' ==
-[[#Foo bar]] [[#foo Bar]] [[#Тест]] [[#тест]] [[#Hey < # " > % : ']]
+[[#Foo bar]] [[#foo Bar]] [[#Тест]] k[[#тест]] [[#Hey < # " > % : ']]
 
 {{anchorencode:💩}} <span id="{{anchorencode:💩}}"></span>
 
@@ -29654,4 +29654,13 @@ wgFragmentMode=[ 'html5', 'legacy' ]
 <h2><span class="mw-headline" id="Foo_bar">Foo&#160;bar</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Foo bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p><a href="#Foo_bar">#Foo&#160;bar</a>
 </p>
+!! end
+
+!! test
+T179544: {{
+!! config
+wgFragmentMode=[ 'html5', 'legacy' ]
+!! wikitext
+<span id="{{anchorencode:[foo]}}"></span>[[#{{anchorencode:[foo]}}]]
+!! html/php
 !! end
