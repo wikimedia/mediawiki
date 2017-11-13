@@ -16,5 +16,12 @@ else {
 }
 
 foreach ( glob( $settingsDir . "/*.php" ) as $conffile ) {
-	include_once $conffile;
+  $localConfFile = preg_replace( '/\\.[^.\\s]{3,4}$/', '', $conffile ) . ".local.php";
+
+  if ( file_exists( $localConfFile ) ){
+    include_once $localConfFile;
+  } else {
+    include_once $conffile;
+  }
+
 }
