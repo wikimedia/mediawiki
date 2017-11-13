@@ -29729,3 +29729,13 @@ T72875: Test for brackets in attributes of elements in internal link texts
 <a href="/wiki/Foo" title="Foo">link <span title="title with &#91;&#91;double brackets&#93;&#93;">span</span></a>
 </p>
 !! end
+
+T179544: {{anchorencode:}} output should be always usable in links
+!! config
+wgFragmentMode=[ 'html5' ]
+!! wikitext
+<span id="{{anchorencode:[foo]}}"></span>[[#{{anchorencode:[foo]}}]]
+!! html/php
+<p><span id="&#91;foo&#93;"></span><a href="#[foo]">#&#91;foo&#93;</a>
+</p>
+!! end
