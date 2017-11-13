@@ -21,6 +21,7 @@ This is not a release yet!
   sends non-standard url escaping.
 * (T165846) SECURITY: BotPassword login attempts weren't throttled.
 * (T128209) SECURITY: Reflected File Download from api.php.
+* (T134100) SECURITY: Do not reveal if user exists during login failure.
 
 == MediaWiki 1.28.1 ==
 
