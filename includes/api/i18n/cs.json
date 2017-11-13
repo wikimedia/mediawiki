@@ -287,6 +287,7 @@
 	"api-help-permissions-granted-to": "Uděleno {{PLURAL:$1|skupině|skupinám}}: $2",
 	"api-help-right-apihighlimits": "Používání vyšších limitů v API dotazech (pomalé dotazy: $1, rychlé dotazy: $2). Limity pro pomalé dotazy se vztahují i na vícehodnotové parametry.",
 	"api-help-open-in-apisandbox": "<small>[otevřít v pískovišti]</small>",
+	"apierror-mustbeloggedin": "Abyste mohli $1, musíte být přihlášeni.",
 	"apierror-nosuchsection-what": "$2 neobsahuje sekci $1.",
 	"apierror-sectionsnotsupported-what": "$1 nepodporuje sekce.",
 	"apierror-timeout": "Server neodpověděl v očekávaném čase.",
