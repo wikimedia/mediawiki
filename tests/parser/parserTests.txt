@@ -17738,7 +17738,7 @@ T4304: HTML attribute safety (link)
 !! wikitext
 <div title="[[Main Page]]"></div>
 !! html
-<div title="&#91;&#91;Main Page]]"></div>
+<div title="&#91;&#91;Main Page&#93;&#93;"></div>
 
 !! end
 
@@ -17801,7 +17801,7 @@ T4304: HTML attribute safety (named web link)
 !! wikitext
 <div title="[http://example.com/ link]"></div>
 !! html
-<div title="&#91;http&#58;//example.com/ link]"></div>
+<div title="&#91;http&#58;//example.com/ link&#93;"></div>
 
 !! end
 
