@@ -1,6 +1,6 @@
 == MediaWiki 1.29.2 ==
 
-This not a release yet!
+This is a security and maintenance release of the MediaWiki 1.29 branch.
 
 === Changes since 1.29.1 ===
 * (T166757) Avoid scoped lock errors in Category::refreshCounts() due to nesting.
