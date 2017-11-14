@@ -1,4 +1,4 @@
-/* OOUIHTMLForm styles */
+// OOUIHTMLForm styles
 .mw-htmlform-ooui-wrapper.oo-ui-panelLayout-padded {
 	padding: 1em 1.25em 1.25em;
 }
@@ -43,9 +43,14 @@
 	}
 }
 
-/* Flatlist styling for PHP widgets... */
+// HACK: Hide empty fieldsetLayoutHeaders, until T180535 isn't resolved
+.oo-ui-fieldsetLayout:not( .oo-ui-labelElement ):not( .oo-ui-iconElement ) > .oo-ui-fieldsetLayout-header {
+	display: none;
+}
+
+// Flatlist styling for PHP widgets...
 .mw-htmlform-flatlist .oo-ui-fieldLayout-align-inline,
-/* ...and for JS widgets */
+// ...and for JS widgets
 .mw-htmlform-flatlist .oo-ui-radioOptionWidget,
 .mw-htmlform-flatlist .oo-ui-checkboxMultioptionWidget {
 	display: inline-block;
