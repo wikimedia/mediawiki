@@ -1575,14 +1575,15 @@ $wgEnableEmail = true;
 $wgEnableUserEmail = true;
 
 /**
- * Set to true to put the sending user's email in a Reply-To header
- * instead of From. ($wgEmergencyContact will be used as From.)
+ * If true put the sending user's email in a Reply-To header
+ * instead of From (false). ($wgPasswordSender will be used as From.)
  *
  * Some mailers (eg SMTP) set the SMTP envelope sender to the From value,
  * which can cause problems with SPF validation and leak recipient addresses
- * when bounces are sent to the sender.
+ * when bounces are sent to the sender. In addition, DMARC restrictions
+ * can cause emails to fail to be received when false.
  */
-$wgUserEmailUseReplyTo = false;
+$wgUserEmailUseReplyTo = true;
 
 /**
  * Minimum time, in hours, which must elapse between password reminder
