@@ -1080,10 +1080,10 @@ $addTags: List of tags user intends to add.
 $user: User who is adding the tags.
 
 'ChangeUserGroups': Called before user groups are changed.
-$performer: The User who will perform the change
 $user: The User whose groups will be changed
 &$add: The groups that will be added
 &$remove: The groups that will be removed
+$performer: The User who will perform the change
 
 'Collation::factory': Called if $wgCategoryCollation is an unknown collation.
 $collationName: Name of the collation in question
