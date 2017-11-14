@@ -160,6 +160,30 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers Revision::getRecentChange
+	 */
+	public function testGetRecentChange() {
+		$rev = $this->testPage->getRevision();
+		$recentChange = $rev->getRecentChange();
+
+		// Make sure various attributes look right / the correct entry has been retrieved.
+		$this->assertEquals( $rev->getTimestamp(), $recentChange->getAttribute( 'rc_timestamp' ) );
+		$this->assertEquals(
+			$rev->getTitle()->getNamespace(),
+			$recentChange->getAttribute( 'rc_namespace' )
+		);
+		$this->assertEquals(
+			$rev->getTitle()->getDBkey(),
+			$recentChange->getAttribute( 'rc_title' )
+		);
+		$this->assertEquals( $rev->getUser(), $recentChange->getAttribute( 'rc_user' ) );
+		$this->assertEquals( $rev->getUserText(), $recentChange->getAttribute( 'rc_user_text' ) );
+		$this->assertEquals( $rev->getComment(), $recentChange->getAttribute( 'rc_comment' ) );
+		$this->assertEquals( $rev->getPage(), $recentChange->getAttribute( 'rc_cur_id' ) );
+		$this->assertEquals( $rev->getId(), $recentChange->getAttribute( 'rc_this_oldid' ) );
+	}
+
+	/**
 	 * @covers Revision::insertOn
 	 */
 	public function testInsertOn_success() {
