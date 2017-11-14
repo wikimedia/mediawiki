@@ -74,3 +74,6 @@ Thumbs.db
 /.htpasswd
 /tests/phan/issues
 *.rej
+
+#bluespice
+/settings.d/*.local.php

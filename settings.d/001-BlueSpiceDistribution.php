@@ -19,6 +19,7 @@ require_once __DIR__ . "/../extensions/Variables/Variables.php";
 require_once __DIR__ . "/../extensions/EditNotify/EditNotify.php";
 require_once __DIR__ . "/../extensions/MobileFrontend/MobileFrontend.php";
 $wgMFAutodetectMobileView = true;
+$wgMFDefaultSkinClass = "SkinBlueSpiceSkin";
 require_once __DIR__ . "/../extensions/BlueSpiceEchoConnector/BlueSpiceEchoConnector.php";
 require_once __DIR__ . "/../extensions/BlueSpiceDistributionConnector/BlueSpiceDistributionConnector.php";
 require_once __DIR__ . "/../extensions/BlueSpiceUserMergeConnector/BlueSpiceUserMergeConnector.php";
