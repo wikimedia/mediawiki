@@ -40,12 +40,6 @@ class WrapOldPasswords extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgAuth;
-
-		if ( !$wgAuth->allowSetLocalPassword() ) {
-			$this->error( '$wgAuth does not allow local passwords. Aborting.', true );
-		}
-
 		$passwordFactory = new PasswordFactory();
 		$passwordFactory->init( RequestContext::getMain()->getConfig() );
 
