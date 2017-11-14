@@ -447,6 +447,14 @@ return [
 		return $factory;
 	},
 
+	'ExternalStoreFactory' => function ( MediaWikiServices $services ) {
+		$config = $services->getMainConfig();
+
+		return new ExternalStoreFactory(
+			$config->get( 'ExternalStores' )
+		);
+	},
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
 	// in the MediaWikiServices class. The convenience getter should just call

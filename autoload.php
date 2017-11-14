@@ -454,6 +454,7 @@ $wgAutoloadLocalClasses = [
 	'ExtensionRegistry' => __DIR__ . '/includes/registration/ExtensionRegistry.php',
 	'ExternalStore' => __DIR__ . '/includes/externalstore/ExternalStore.php',
 	'ExternalStoreDB' => __DIR__ . '/includes/externalstore/ExternalStoreDB.php',
+	'ExternalStoreFactory' => __DIR__ . '/includes/externalstore/ExternalStoreFactory.php',
 	'ExternalStoreHttp' => __DIR__ . '/includes/externalstore/ExternalStoreHttp.php',
 	'ExternalStoreMedium' => __DIR__ . '/includes/externalstore/ExternalStoreMedium.php',
 	'ExternalStoreMwstore' => __DIR__ . '/includes/externalstore/ExternalStoreMwstore.php',
