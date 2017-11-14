@@ -8,6 +8,8 @@ class ExternalStoreForTesting {
 			'300' => [
 				'Hello', 'World',
 			],
+			// gzip string below generated with gzdeflate( 'AAAABBAAA' )
+			'12345' => "sttttr\002\022\000",
 		],
 	];
 
