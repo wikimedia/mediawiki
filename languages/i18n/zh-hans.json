@@ -1403,7 +1403,7 @@
 	"rcfilters-savedqueries-apply-and-setdefault-label": "创建默认过滤器",
 	"rcfilters-savedqueries-cancel-label": "取消",
 	"rcfilters-savedqueries-add-new-title": "保存当前过滤器设置",
-	"rcfilters-savedqueries-already-saved": "这些过滤器已保存",
+	"rcfilters-savedqueries-already-saved": "这些过滤器已保存。更改您的设置以创建新的保存过滤器。",
 	"rcfilters-restore-default-filters": "恢复默认过滤器",
 	"rcfilters-clear-all-filters": "清空所有过滤器",
 	"rcfilters-show-new-changes": "显示最新更改",

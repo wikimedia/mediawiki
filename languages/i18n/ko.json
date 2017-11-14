@@ -1370,7 +1370,7 @@
 	"rcfilters-savedqueries-apply-and-setdefault-label": "기본 필터 만들기",
 	"rcfilters-savedqueries-cancel-label": "취소",
 	"rcfilters-savedqueries-add-new-title": "현재의 필터 설정 저장",
-	"rcfilters-savedqueries-already-saved": "이 필터는 이미 저장되어 있습니다",
+	"rcfilters-savedqueries-already-saved": "이 필터는 이미 저장되어 있습니다. 새로운 저장된 필터를 만들려면 설정을 변경하십시오.",
 	"rcfilters-restore-default-filters": "기본 필터 복구",
 	"rcfilters-clear-all-filters": "필터 모두 지우기",
 	"rcfilters-show-new-changes": "최신 변경사항 보기",

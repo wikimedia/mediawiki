@@ -1421,7 +1421,7 @@
 	"rcfilters-savedqueries-apply-and-setdefault-label": "Criar filtro padrão",
 	"rcfilters-savedqueries-cancel-label": "Cancelar",
 	"rcfilters-savedqueries-add-new-title": "Gravar configurações atuais de filtros",
-	"rcfilters-savedqueries-already-saved": "Esses filtros já foram salvos",
+	"rcfilters-savedqueries-already-saved": "Esses filtros já foram salvos. Altere suas configurações para criar um novo Filtro Salvo.",
 	"rcfilters-restore-default-filters": "Restaurar filtros padrão",
 	"rcfilters-clear-all-filters": "Limpar todos os filtros",
 	"rcfilters-show-new-changes": "Veja as novas mudanças",
