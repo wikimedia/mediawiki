@@ -106,7 +106,7 @@
 			"composer phpcs"
 		],
 		"post-update-cmd": [
-			"cd extensions/VisualEditor && git submodule foreach --recursive git reset --hard && git submodule update --init --recursive && cd -"
+			"cd extensions/VisualEditor && git submodule foreach --recursive git reset --hard && git submodule update --init --recursive"
 		]
 	},
 	"config": {
