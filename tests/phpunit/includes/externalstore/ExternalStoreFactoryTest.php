@@ -3,7 +3,7 @@
 /**
  * @covers ExternalStoreFactory
  */
-class ExternalStoreTest extends PHPUnit_Framework_TestCase {
+class ExternalStoreFactoryTest extends PHPUnit_Framework_TestCase {
 
 	public function testExternalStoreFactory_noStores() {
 		$factory = new ExternalStoreFactory( [] );
