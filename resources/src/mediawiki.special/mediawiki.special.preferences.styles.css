@@ -1,27 +1,28 @@
 /* Reuses colors from mediawiki.legacy/shared.css */
-.mw-email-not-authenticated .mw-input,
-.mw-email-none .mw-input {
+.mw-email-not-authenticated .oo-ui-labelWidget,
+.mw-email-none .oo-ui-labelWidget {
 	border: 1px solid #fde29b;
 	background-color: #fdf1d1;
 	color: #000;
 }
 /* Authenticated email field has its own class too. Unstyled by default */
 /*
-.mw-email-authenticated .mw-input { }
+.mw-email-authenticated .oo-ui-labelWidget { }
 */
-/* This breaks due to nolabel styling */
-#preferences > fieldset td.mw-label {
-	width: 20%;
+
+/* This is needed because add extra buttons in a weird way */
+.mw-prefs-buttons .mw-htmlform-submit-buttons {
+	margin: 0;
+	display: inline;
 }
 
-#preferences > fieldset table {
-	width: 100%;
-}
-#preferences > fieldset table.mw-htmlform-matrix {
-	width: auto;
+.mw-prefs-buttons {
+	margin-top: 1em;
 }
 
-/* The CSS below is also for JS enabled version, because we want to prevent FOUC */
+#prefcontrol {
+	margin-right: 0.5em;
+}
 
 /*
  * Hide, but keep accessible for screen-readers.
@@ -33,15 +34,35 @@
 	zoom: 1;
 }
 
-.client-nojs #preftoc {
-	display: none;
+/* Override OOUI styles so that dropdowns near the bottom of the form don't get clipped,
+ * e.g.'Appearance' / 'Threshold for stub link formatting'. This is hacky and bad, it would be
+ * better solved by setting overlays for the widgets, but we can't do it from PHP... */
+#preferences .oo-ui-panelLayout {
+	position: static;
+	overflow: visible;
+	-webkit-transform: none;
+	transform: none;
 }
 
-.client-js #preferences > fieldset {
-	display: none;
+/* Tweak the margins to reduce the shifting of form contents
+ * after JS code loads and rearranges the page */
+.client-js #preferences > .oo-ui-panelLayout {
+	margin: 1em 0;
 }
 
-/* Only the 1st tab is shown by default in JS mode */
-.client-js #preferences #mw-prefsection-personal {
-	display: block;
+.client-js #preferences .oo-ui-panelLayout-framed .oo-ui-panelLayout-framed {
+	margin-left: 0.25em;
+}
+
+.client-js #preferences .oo-ui-panelLayout-framed .oo-ui-tabPanelLayout .oo-ui-panelLayout-framed {
+	margin-left: 0;
+}
+
+.client-js #preferences .oo-ui-panelLayout-framed .oo-ui-tabPanelLayout {
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+
+.client-js #preferences > .oo-ui-panelLayout > .oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-header {
+	margin-bottom: 1em;
 }
