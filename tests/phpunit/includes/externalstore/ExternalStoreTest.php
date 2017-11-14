@@ -1,31 +1,39 @@
 <?php
-/**
- * External Store tests
- */
 
 class ExternalStoreTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers ExternalStore::fetchFromURL
 	 */
-	public function testExternalFetchFromURL() {
-		$this->setMwGlobals( 'wgExternalStores', false );
-
-		$this->assertFalse(
-			ExternalStore::fetchFromURL( 'FOO://cluster1/200' ),
-			'Deny if wgExternalStores is not set to a non-empty array'
+	public function testExternalFetchFromURL_noExternalStores() {
+		$this->setService(
+			'ExternalStoreFactory',
+			new ExternalStoreFactory( [] )
 		);
 
-		$this->setMwGlobals( 'wgExternalStores', [ 'FOO' ] );
+		$this->assertFalse(
+			ExternalStore::fetchFromURL( 'ForTesting://cluster1/200' ),
+			'Deny if wgExternalStores is not set to a non-empty array'
+		);
+	}
+
+	/**
+	 * @covers ExternalStore::fetchFromURL
+	 */
+	public function testExternalFetchFromURL_someExternalStore() {
+		$this->setService(
+			'ExternalStoreFactory',
+			new ExternalStoreFactory( [ 'ForTesting' ] )
+		);
 
 		$this->assertEquals(
-			ExternalStore::fetchFromURL( 'FOO://cluster1/200' ),
 			'Hello',
+			ExternalStore::fetchFromURL( 'ForTesting://cluster1/200' ),
 			'Allow FOO://cluster1/200'
 		);
 		$this->assertEquals(
-			ExternalStore::fetchFromURL( 'FOO://cluster1/300/0' ),
 			'Hello',
+			ExternalStore::fetchFromURL( 'ForTesting://cluster1/300/0' ),
 			'Allow FOO://cluster1/300/0'
 		);
 		# Assertions for r68900
@@ -41,47 +49,5 @@ class ExternalStoreTest extends MediaWikiTestCase {
 			ExternalStore::fetchFromURL( 'http://' ),
 			'Deny protocol http://'
 		);
-	}
-}
-
-class ExternalStoreFOO {
-
-	protected $data = [
-		'cluster1' => [
-			'200' => 'Hello',
-			'300' => [
-				'Hello', 'World',
-			],
-		],
-	];
-
-	/**
-	 * Fetch data from given URL
-	 * @param string $url An url of the form FOO://cluster/id or FOO://cluster/id/itemid.
-	 * @return mixed
-	 */
-	function fetchFromURL( $url ) {
-		// Based on ExternalStoreDB
-		$path = explode( '/', $url );
-		$cluster = $path[2];
-		$id = $path[3];
-		if ( isset( $path[4] ) ) {
-			$itemID = $path[4];
-		} else {
-			$itemID = false;
-		}
-
-		if ( !isset( $this->data[$cluster][$id] ) ) {
-			return null;
-		}
-
-		if ( $itemID !== false
-			&& is_array( $this->data[$cluster][$id] )
-			&& isset( $this->data[$cluster][$id][$itemID] )
-		) {
-			return $this->data[$cluster][$id][$itemID];
-		}
-
-		return $this->data[$cluster][$id];
 	}
 }
