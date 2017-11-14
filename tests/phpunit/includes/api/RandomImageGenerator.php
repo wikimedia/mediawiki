@@ -23,6 +23,8 @@
  * @author Neil Kandalgaonkar <neilk@wikimedia.org>
  */
 
+use MediaWiki\Shell\Shell;
+
 /**
  * RandomImageGenerator: does what it says on the tin.
  * Can fetch a random image, or also write a number of them to disk with random filenames.
@@ -310,16 +312,16 @@ class RandomImageGenerator {
 		// for now (only works if you have exiv2 installed, a program to read
 		// and manipulate exif).
 		if ( $wgExiv2Command ) {
-			$cmd = wfEscapeShellArg( $wgExiv2Command )
-				. " -M "
-				. wfEscapeShellArg( "set Exif.Image.Orientation " . $orientation['exifCode'] )
-				. " "
-				. wfEscapeShellArg( $filename );
+			$command = Shell::command( $wgExiv2Command,
+				'-M',
+				"set Exif.Image.Orientation {$orientation['exifCode']}",
+				$filename
+			)->includeStderr();
 
-			$retval = 0;
-			$err = wfShellExec( $cmd, $retval );
+			$result = $command->execute();
+			$retval = $result->getExitCode();
 			if ( $retval !== 0 ) {
-				print "Error with $cmd: $retval, $err\n";
+				print "Error with $command: $retval, {$result->getStdout()}\n";
 			}
 		}
 	}
@@ -396,22 +398,25 @@ class RandomImageGenerator {
 	 */
 	public function writeImageWithCommandLine( $spec, $format, $filename ) {
 		global $wgImageMagickConvertCommand;
-		$args = [];
-		$args[] = "-size " . wfEscapeShellArg( $spec['width'] . 'x' . $spec['height'] );
-		$args[] = wfEscapeShellArg( "xc:" . $spec['fill'] );
+
+		$args = [
+			$wgImageMagickConvertCommand,
+			'-size',
+			$spec['width'] . 'x' . $spec['height'],
+			"xc:{$spec['fill']}",
+		];
 		foreach ( $spec['draws'] as $draw ) {
 			$fill = $draw['fill'];
 			$polygon = self::shapePointsToString( $draw['shape'] );
 			$drawCommand = "fill $fill  polygon $polygon";
-			$args[] = '-draw ' . wfEscapeShellArg( $drawCommand );
+			$args[] = '-draw';
+			$args[] = $drawCommand;
 		}
-		$args[] = wfEscapeShellArg( $filename );
+		$args[] = $filename;
 
-		$command = wfEscapeShellArg( $wgImageMagickConvertCommand ) . " " . implode( " ", $args );
-		$retval = null;
-		wfShellExec( $command, $retval );
+		$result = Shell::command( $args )->execute();
 
-		return ( $retval === 0 );
+		return ( $result->getExitCode() === 0 );
 	}
 
 	/**
