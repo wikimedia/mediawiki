@@ -1,5 +1,5 @@
 == MediaWiki 1.27.4 ==
-This not a release yet!
+This is a security and maintenance release of the MediaWiki 1.27 branch.
 
 === Changes since 1.27.3 ===
 * (T100085) Better handling of jobs execution in post-connection shutdown.
