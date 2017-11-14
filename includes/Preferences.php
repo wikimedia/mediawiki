@@ -534,12 +534,22 @@ class Preferences {
 
 			if ( $config->get( 'EnableUserEmail' ) && $user->isAllowed( 'sendemail' ) ) {
 				$defaultPreferences['disablemail'] = [
+					'id' => 'wpAllowEmail',
 					'type' => 'toggle',
 					'invert' => true,
 					'section' => 'personal/email',
 					'label-message' => 'allowemail',
 					'disabled' => $disableEmailPrefs,
 				];
+
+				$defaultPreferences['email-allow-new-users'] = [
+					'id' => 'wpAllowEmailFromNewUsers',
+					'type' => 'toggle',
+					'section' => 'personal/email',
+					'label-message' => 'email-allow-new-users-label',
+					'disabled' => $disableEmailPrefs,
+				];
+
 				$defaultPreferences['ccmeonemails'] = [
 					'type' => 'toggle',
 					'section' => 'personal/email',
@@ -547,10 +557,7 @@ class Preferences {
 					'disabled' => $disableEmailPrefs,
 				];
 
-				if ( $config->get( 'EnableUserEmailBlacklist' )
-					 && !$disableEmailPrefs
-					 && !(bool)$user->getOption( 'disablemail' )
-				) {
+				if ( $config->get( 'EnableUserEmailBlacklist' ) ) {
 					$lookup = CentralIdLookup::factory();
 					$ids = $user->getOption( 'email-blacklist', [] );
 					$names = $ids ? $lookup->namesFromCentralIds( $ids, $user ) : [];
