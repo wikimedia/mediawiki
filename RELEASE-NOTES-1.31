@@ -20,6 +20,9 @@ production.
 === New features in 1.31 ===
 * Wikimedia\Rdbms\IDatabase->select() and similar methods now support
   joins with parentheses for grouping.
+* As a first pass in standardizing dialog boxes across the MediaWiki product,
+Html class now provides helper methods for messageBox, successBox, errorBox and
+warningBox generation.
 
 === External library changes in 1.31 ===
 
