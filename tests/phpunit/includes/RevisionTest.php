@@ -532,4 +532,49 @@ class RevisionTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Revision::getRevisionText
+	 */
+	public function testGetRevisionText_external_noOldId() {
+		$this->setService(
+			'ExternalStoreFactory',
+			new ExternalStoreFactory( [ 'ForTesting' ] )
+		);
+		$this->assertSame(
+			'AAAABBAAA',
+			Revision::getRevisionText(
+				(object)[
+					'old_text' => 'ForTesting://cluster1/12345',
+					'old_flags' => 'external,gzip',
+				]
+			)
+		);
+	}
+
+	/**
+	 * @covers Revision::getRevisionText
+	 */
+	public function testGetRevisionText_external_oldId() {
+		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
+		$this->setService( 'MainWANObjectCache', $cache );
+		$this->setService(
+			'ExternalStoreFactory',
+			new ExternalStoreFactory( [ 'ForTesting' ] )
+		);
+
+		$cacheKey = $cache->makeKey( 'revisiontext', 'textid', '7777' );
+
+		$this->assertSame(
+			'AAAABBAAA',
+			Revision::getRevisionText(
+				(object)[
+					'old_text' => 'ForTesting://cluster1/12345',
+					'old_flags' => 'external,gzip',
+					'old_id' => '7777',
+				]
+			)
+		);
+		$this->assertSame( 'AAAABBAAA', $cache->get( $cacheKey ) );
+	}
+
 }
