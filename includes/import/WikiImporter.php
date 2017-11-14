@@ -546,8 +546,9 @@ class WikiImporter {
 
 	/**
 	 * Primary entry point
-	 * @throws MWException
 	 * @return bool
+	 * @throws Exception
+	 * @throws MWException
 	 */
 	public function doImport() {
 		// Calls to reader->read need to be wrapped in calls to
@@ -848,6 +849,7 @@ class WikiImporter {
 	 * @param array $pageInfo
 	 * @param array $revisionInfo
 	 * @return bool|mixed
+	 * @throws MWException
 	 */
 	private function processRevision( $pageInfo, $revisionInfo ) {
 		global $wgMaxArticleSize;
