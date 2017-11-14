@@ -21,6 +21,7 @@
 
 namespace MediaWiki\Auth;
 
+use StatusValue;
 use User;
 
 /**
@@ -76,8 +77,15 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 		return true;
 	}
 
+	/**
+	 * @param User $user
+	 * @param User $creator
+	 * @param AuthenticationRequest[] $reqs
+	 *
+	 * @return StatusValue
+	 */
 	public function testForAccountCreation( $user, $creator, array $reqs ) {
-		return \StatusValue::newGood();
+		return StatusValue::newGood();
 	}
 
 	public function continuePrimaryAccountCreation( $user, $creator, array $reqs ) {
@@ -91,8 +99,15 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 	public function postAccountCreation( $user, $creator, AuthenticationResponse $response ) {
 	}
 
+	/**
+	 * @param User $user
+	 * @param bool|string $autocreate
+	 * @param array $options
+	 *
+	 * @return StatusValue
+	 */
 	public function testUserForCreation( $user, $autocreate, array $options = [] ) {
-		return \StatusValue::newGood();
+		return StatusValue::newGood();
 	}
 
 	public function autoCreatedAccount( $user, $source ) {
