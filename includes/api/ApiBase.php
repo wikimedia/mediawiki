@@ -1039,10 +1039,10 @@ abstract class ApiBase extends ContextSource {
 			} else {
 				$type = 'NULL'; // allow everything
 			}
+		}
 
-			if ( $type == 'password' || !empty( $paramSettings[self::PARAM_SENSITIVE] ) ) {
-				$this->getMain()->markParamsSensitive( $encParamName );
-			}
+		if ( $type == 'password' || !empty( $paramSettings[self::PARAM_SENSITIVE] ) ) {
+			$this->getMain()->markParamsSensitive( $encParamName );
 		}
 
 		if ( $type == 'boolean' ) {
