@@ -1,7 +1,8 @@
-== MediaWiki 1.28.1 ==
-This is not a release yet!
+== MediaWiki 1.28.3 ==
 
-=== Changes since 1.28.1 ==
+This is a security and maintenance release of the MediaWiki 1.28 branch.
+
+=== Changes since 1.28.2 ==
 * (T168856) Allow SVGs created by Dia to be uploaded.
 * (T157545) Add missing doUpdates() call to refreshLinks.php.
 * (T165714) (T100085) Better handling of jobs execution in post-connection shutdown.
@@ -28,6 +29,13 @@ This is not a release yet!
 * (T180231) SECURITY: Remove PHPUnit file with known RCE if exists in update.php.
 * (T124404) SECURITY: XSS in langconverter when regex hits pcre.backtrack_limit.
 * (T119158) SECURITY: Handle -{}- syntax in attributes safely.
+
+== MediaWiki 1.28.2 ==
+
+Due to a packaging error, the wrong version of the SyntaxHighlight extension was
+included in the tarball version of MediaWiki 1.28.1. The version included had a
+serious security issue in it (T158689). There was also some minor code fixes in
+MediaWiki itself since 1.28.1, but none of them were security relevant.
 
 == MediaWiki 1.28.1 ==
 
