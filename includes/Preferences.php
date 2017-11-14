@@ -539,7 +539,17 @@ class Preferences {
 					'section' => 'personal/email',
 					'label-message' => 'allowemail',
 					'disabled' => $disableEmailPrefs,
+					'id' => 'wpAllowEmail'
 				];
+
+				$defaultPreferences['email-allow-new-users'] = [
+					'type' => 'toggle',
+					'section' => 'personal/email',
+					'label-message' => 'email-allow-new-users-label',
+					'disabled' => $disableEmailPrefs,
+					'id' => 'wpAllowEmailFromNewUsers'
+				];
+
 				$defaultPreferences['ccmeonemails'] = [
 					'type' => 'toggle',
 					'section' => 'personal/email',
@@ -547,10 +557,7 @@ class Preferences {
 					'disabled' => $disableEmailPrefs,
 				];
 
-				if ( $config->get( 'EnableUserEmailBlacklist' )
-					 && !$disableEmailPrefs
-					 && !(bool)$user->getOption( 'disablemail' )
-				) {
+				if ( $config->get( 'EnableUserEmailBlacklist' ) ) {
 					$lookup = CentralIdLookup::factory();
 					$ids = $user->getOption( 'email-blacklist', [] );
 					$names = $ids ? $lookup->namesFromCentralIds( $ids, $user ) : [];
@@ -560,6 +567,7 @@ class Preferences {
 						'label-message' => 'email-blacklist-label',
 						'section' => 'personal/email',
 						'default' => implode( "\n", $names ),
+						'disabled' => $disableEmailPrefs,
 					];
 				}
 			}
