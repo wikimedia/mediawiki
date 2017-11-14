@@ -223,11 +223,11 @@ class ApiLoginTest extends ApiTestCase {
 		$centralId = CentralIdLookup::factory()->centralIdFromLocalUser( $user->getUser() );
 		$this->assertNotEquals( 0, $centralId, 'sanity check' );
 
+		$password = 'ngfhmjm64hv0854493hsj5nncjud2clk';
 		$passwordFactory = new PasswordFactory();
 		$passwordFactory->init( RequestContext::getMain()->getConfig() );
 		// A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
-		$passwordFactory->setDefaultType( 'A' );
-		$pwhash = $passwordFactory->newFromPlaintext( 'foobaz' );
+		$passwordHash = $passwordFactory->newFromPlaintext( $password );
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->insert(
@@ -235,7 +235,7 @@ class ApiLoginTest extends ApiTestCase {
 			[
 				'bp_user' => $centralId,
 				'bp_app_id' => 'foo',
-				'bp_password' => $pwhash->toString(),
+				'bp_password' => $passwordHash->toString(),
 				'bp_token' => '',
 				'bp_restrictions' => MWRestrictions::newDefault()->toJson(),
 				'bp_grants' => '["test"]',
@@ -248,7 +248,7 @@ class ApiLoginTest extends ApiTestCase {
 		$ret = $this->doApiRequest( [
 			'action' => 'login',
 			'lgname' => $lgName,
-			'lgpassword' => 'foobaz',
+			'lgpassword' => $password,
 		] );
 
 		$result = $ret[0];
@@ -263,7 +263,7 @@ class ApiLoginTest extends ApiTestCase {
 			'action' => 'login',
 			'lgtoken' => $token,
 			'lgname' => $lgName,
-			'lgpassword' => 'foobaz',
+			'lgpassword' => $password,
 		], $ret[2] );
 
 		$result = $ret[0];

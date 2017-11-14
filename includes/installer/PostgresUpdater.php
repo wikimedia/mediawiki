@@ -736,7 +736,8 @@ END;
 		$info = $this->db->fieldInfo( $table, $field );
 		if ( $info->defaultValue() !== $default ) {
 			$this->output( "Changing '$table.$field' default value\n" );
-			$this->db->query( "ALTER TABLE $table ALTER $field SET DEFAULT " . $default );
+			$this->db->query( "ALTER TABLE $table ALTER $field SET DEFAULT "
+				. $this->db->addQuotes( $default ) );
 		}
 	}
 
