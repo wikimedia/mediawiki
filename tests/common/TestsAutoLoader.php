@@ -105,6 +105,9 @@ $wgAutoloadClasses += [
 	# tests/phpunit/includes/diff
 	'FakeDiffOp' => "$testDir/phpunit/includes/diff/FakeDiffOp.php",
 
+	# tests/phpunit/includes/externalstore
+	'ExternalStoreForTesting' => "$testDir/phpunit/includes/externalstore/ExternalStoreForTesting.php",
+
 	# tests/phpunit/includes/logging
 	'LogFormatterTestCase' => "$testDir/phpunit/includes/logging/LogFormatterTestCase.php",
 
