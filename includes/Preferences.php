@@ -555,6 +555,14 @@ class Preferences {
 					'label-message' => 'allowemail',
 					'disabled' => $disableEmailPrefs,
 				];
+
+				$defaultPreferences['email-allow-new-users'] = [
+					'type' => 'toggle',
+					'section' => 'personal/email',
+					'label-message' => 'email-allow-new-users-label',
+					'disabled' => $disableEmailPrefs,
+				];
+
 				$defaultPreferences['ccmeonemails'] = [
 					'type' => 'toggle',
 					'section' => 'personal/email',
