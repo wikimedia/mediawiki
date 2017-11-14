@@ -56,6 +56,14 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 	public function getInputOOUI( $value ) {
 		$params = [ 'name' => $this->mName ];
 
+		if ( isset( $this->mParams['id'] ) ) {
+			$params['id'] = $this->mParams['id'];
+		}
+
+		if ( isset( $this->mParams['disabled'] ) ) {
+			$params['disabled'] = $this->mParams['disabled'];
+		}
+
 		if ( isset( $this->mParams['default'] ) ) {
 			$params['default'] = $this->mParams['default'];
 		}
