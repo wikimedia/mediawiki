@@ -466,4 +466,70 @@ class RevisionTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Revision::getRevisionText
+	 */
+	public function testGetRevisionText_returnsFalseWhenNoTextField() {
+		$this->assertFalse( Revision::getRevisionText( new stdClass() ) );
+	}
+
+	public function provideTestGetRevisionText_returnsDecompressedTextFieldWhenNotExternal() {
+		yield 'Just text' => [
+			(object)[ 'old_text' => 'SomeText' ],
+			'old_',
+			'SomeText'
+		];
+		// gzip string below generated with gzdeflate( 'AAAABBAAA' )
+		yield 'gzip text' => [
+			(object)[
+				'old_text' => "sttttr\002\022\000",
+				'old_flags' => 'gzip'
+			],
+			'old_',
+			'AAAABBAAA'
+		];
+		yield 'gzip text and different prefix' => [
+			(object)[
+				'jojo_text' => "sttttr\002\022\000",
+				'jojo_flags' => 'gzip'
+			],
+			'jojo_',
+			'AAAABBAAA'
+		];
+	}
+
+	/**
+	 * @dataProvider provideTestGetRevisionText_returnsDecompressedTextFieldWhenNotExternal
+	 * @covers Revision::getRevisionText
+	 */
+	public function testGetRevisionText_returnsDecompressedTextFieldWhenNotExternal(
+		$row,
+		$prefix,
+		$expected
+	) {
+		$this->assertSame( $expected, Revision::getRevisionText( $row, $prefix ) );
+	}
+
+	public function provideTestGetRevisionText_external_returnsFalseWhenNotEnoughUrlParts() {
+		yield 'Just some text' => [ 'someNonUrlText' ];
+		yield 'No second URL part' => [ 'someProtocol://' ];
+	}
+
+	/**
+	 * @dataProvider provideTestGetRevisionText_external_returnsFalseWhenNotEnoughUrlParts
+	 * @covers Revision::getRevisionText
+	 */
+	public function testGetRevisionText_external_returnsFalseWhenNotEnoughUrlParts(
+		$text
+	) {
+		$this->assertFalse(
+			Revision::getRevisionText(
+				(object)[
+					'old_text' => $text,
+					'old_flags' => 'external',
+				]
+			)
+		);
+	}
+
 }
