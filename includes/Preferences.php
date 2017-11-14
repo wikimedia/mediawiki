@@ -547,6 +547,15 @@ class Preferences {
 					'label-message' => 'allowemail',
 					'disabled' => $disableEmailPrefs,
 				];
+
+				if ( !$disableEmailPrefs && !$user->getOption( 'disablemail' ) ) {
+					$defaultPreferences['email-allow-new-users'] = [
+						'type' => 'toggle',
+						'section' => 'personal/email',
+						'label-message' => 'email-allow-new-users-label',
+					];
+				}
+
 				$defaultPreferences['ccmeonemails'] = [
 					'type' => 'toggle',
 					'section' => 'personal/email',
