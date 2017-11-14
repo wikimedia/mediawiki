@@ -530,11 +530,10 @@ class SanitizerTest extends MediaWikiTestCase {
 			[ '<p id="one">Foo</p><p id="two">Bar</p>', 'FooBar' ],
 			[ "<p>Foo</p>\n<p>Bar</p>", 'Foo Bar' ],
 			[ '<p>Hello &lt;strong&gt; wor&#x6c;&#100; caf&eacute;</p>', 'Hello <strong> world café' ],
-			// This one is broken, see T179978
-			//[
-			//	'<p><small data-foo=\'bar"&lt;baz>quux\'><a href="./Foo">Bar</a></small> Whee!</p>',
-			//	'Bar Whee!'
-			//],
+			[
+				'<p><small data-foo=\'bar"&lt;baz>quux\'><a href="./Foo">Bar</a></small> Whee!</p>',
+				'Bar Whee!'
+			],
 			[ '1<span class="<?php">2</span>3', '123' ],
 			[ '1<span class="<?">2</span>3', '123' ],
 		];

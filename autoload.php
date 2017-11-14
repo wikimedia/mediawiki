@@ -1218,6 +1218,7 @@ $wgAutoloadLocalClasses = [
 	'RefreshLinks' => __DIR__ . '/maintenance/refreshLinks.php',
 	'RefreshLinksJob' => __DIR__ . '/includes/jobqueue/jobs/RefreshLinksJob.php',
 	'RegexlikeReplacer' => __DIR__ . '/includes/libs/replacers/RegexlikeReplacer.php',
+	'RemexStripTagHandler' => __DIR__ . '/includes/parser/RemexStripTagHandler.php',
 	'RemoveInvalidEmails' => __DIR__ . '/maintenance/removeInvalidEmails.php',
 	'RemoveUnusedAccounts' => __DIR__ . '/maintenance/removeUnusedAccounts.php',
 	'RenameDbPrefix' => __DIR__ . '/maintenance/renameDbPrefix.php',
