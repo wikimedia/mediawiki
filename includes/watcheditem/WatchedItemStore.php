@@ -7,11 +7,11 @@ use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\Assert;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\LoadBalancer;
-use Wikimedia\Rdbms\DBUnexpectedError;
 
 /**
  * Storage layer class for WatchedItems.
- * Database interaction.
+ * Database interaction & caching
+ * TODO caching should be factored out into a CachingWatchedItemStore class
  *
  * Uses database because this uses User::isAnon
  *
@@ -20,10 +20,7 @@ use Wikimedia\Rdbms\DBUnexpectedError;
  * @author Addshore
  * @since 1.27
  */
-class WatchedItemStore implements StatsdAwareInterface {
-
-	const SORT_DESC = 'DESC';
-	const SORT_ASC = 'ASC';
+class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterface {
 
 	/**
 	 * @var LoadBalancer
@@ -216,12 +213,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * Count the number of individual items that are watched by the user.
-	 * If a subject and corresponding talk page are watched this will return 2.
-	 *
-	 * @param User $user
-	 *
-	 * @return int
+	 * @since 1.31
 	 */
 	public function countWatchedItems( User $user ) {
 		$dbr = $this->getConnectionRef( DB_REPLICA );
@@ -238,9 +230,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * @param LinkTarget $target
-	 *
-	 * @return int
+	 * @since 1.27
 	 */
 	public function countWatchers( LinkTarget $target ) {
 		$dbr = $this->getConnectionRef( DB_REPLICA );
@@ -258,14 +248,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * Number of page watchers who also visited a "recent" edit
-	 *
-	 * @param LinkTarget $target
-	 * @param mixed $threshold timestamp accepted by wfTimestamp
-	 *
-	 * @return int
-	 * @throws DBUnexpectedError
-	 * @throws MWException
+	 * @since 1.27
 	 */
 	public function countVisitingWatchers( LinkTarget $target, $threshold ) {
 		$dbr = $this->getConnectionRef( DB_REPLICA );
@@ -286,13 +269,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * @param LinkTarget[] $targets
-	 * @param array $options Allowed keys:
-	 *        'minimumWatchers' => int
-	 *
-	 * @return array multi dimensional like $return[$namespaceId][$titleString] = int $watchers
-	 *         All targets will be present in the result. 0 either means no watchers or the number
-	 *         of watchers was below the minimumWatchers option if passed.
+	 * @since 1.27
 	 */
 	public function countWatchersMultiple( array $targets, array $options = [] ) {
 		$dbOptions = [ 'GROUP BY' => [ 'wl_namespace', 'wl_title' ] ];
@@ -325,19 +302,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * Number of watchers of each page who have visited recent edits to that page
-	 *
-	 * @param array $targetsWithVisitThresholds array of pairs (LinkTarget $target, mixed $threshold),
-	 *        $threshold is:
-	 *        - a timestamp of the recent edit if $target exists (format accepted by wfTimestamp)
-	 *        - null if $target doesn't exist
-	 * @param int|null $minimumWatchers
-	 * @return array multi-dimensional like $return[$namespaceId][$titleString] = $watchers,
-	 *         where $watchers is an int:
-	 *         - if the page exists, number of users watching who have visited the page recently
-	 *         - if the page doesn't exist, number of users that have the page on their watchlist
-	 *         - 0 means there are no visiting watchers or their number is below the minimumWatchers
-	 *         option (if passed).
+	 * @since 1.27
 	 */
 	public function countVisitingWatchersMultiple(
 		array $targetsWithVisitThresholds,
@@ -417,12 +382,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * Get an item (may be cached)
-	 *
-	 * @param User $user
-	 * @param LinkTarget $target
-	 *
-	 * @return WatchedItem|false
+	 * @since 1.27
 	 */
 	public function getWatchedItem( User $user, LinkTarget $target ) {
 		if ( $user->isAnon() ) {
@@ -439,12 +399,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * Loads an item from the db
-	 *
-	 * @param User $user
-	 * @param LinkTarget $target
-	 *
-	 * @return WatchedItem|false
+	 * @since 1.27
 	 */
 	public function loadWatchedItem( User $user, LinkTarget $target ) {
 		// Only loggedin user can have a watchlist
@@ -475,13 +430,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * @param User $user
-	 * @param array $options Allowed keys:
-	 *        'forWrite' => bool defaults to false
-	 *        'sort' => string optional sorting by namespace ID and title
-	 *                     one of the self::SORT_* constants
-	 *
-	 * @return WatchedItem[]
+	 * @since 1.27
 	 */
 	public function getWatchedItemsForUser( User $user, array $options = [] ) {
 		$options += [ 'forWrite' => false ];
@@ -522,25 +471,14 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * Must be called separately for Subject & Talk namespaces
-	 *
-	 * @param User $user
-	 * @param LinkTarget $target
-	 *
-	 * @return bool
+	 * @since 1.27
 	 */
 	public function isWatched( User $user, LinkTarget $target ) {
 		return (bool)$this->getWatchedItem( $user, $target );
 	}
 
 	/**
-	 * @param User $user
-	 * @param LinkTarget[] $targets
-	 *
-	 * @return array multi-dimensional like $return[$namespaceId][$titleString] = $timestamp,
-	 *         where $timestamp is:
-	 *         - string|null value of wl_notificationtimestamp,
-	 *         - false if $target is not watched by $user.
+	 * @since 1.27
 	 */
 	public function getNotificationTimestampsBatch( User $user, array $targets ) {
 		$timestamps = [];
@@ -589,20 +527,14 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * Must be called separately for Subject & Talk namespaces
-	 *
-	 * @param User $user
-	 * @param LinkTarget $target
+	 * @since 1.27
 	 */
 	public function addWatch( User $user, LinkTarget $target ) {
 		$this->addWatchBatchForUser( $user, [ $target ] );
 	}
 
 	/**
-	 * @param User $user
-	 * @param LinkTarget[] $targets
-	 *
-	 * @return bool success
+	 * @since 1.27
 	 */
 	public function addWatchBatchForUser( User $user, array $targets ) {
 		if ( $this->readOnlyMode->isReadOnly() ) {
@@ -651,15 +583,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * Removes the an entry for the User watching the LinkTarget
-	 * Must be called separately for Subject & Talk namespaces
-	 *
-	 * @param User $user
-	 * @param LinkTarget $target
-	 *
-	 * @return bool success
-	 * @throws DBUnexpectedError
-	 * @throws MWException
+	 * @since 1.27
 	 */
 	public function removeWatch( User $user, LinkTarget $target ) {
 		// Only logged in user can have a watchlist
@@ -683,11 +607,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * @param User $user The user to set the timestamp for
-	 * @param string|null $timestamp Set the update timestamp to this value
-	 * @param LinkTarget[] $targets List of targets to update. Default to all targets
-	 *
-	 * @return bool success
+	 * @since 1.27
 	 */
 	public function setNotificationTimestampsForUser( User $user, $timestamp, array $targets = [] ) {
 		// Only loggedin user can have a watchlist
@@ -720,12 +640,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * @param User $editor The editor that triggered the update. Their notification
-	 *  timestamp will not be updated(they have already seen it)
-	 * @param LinkTarget $target The target to update timestamps for
-	 * @param string $timestamp Set the update timestamp to this value
-	 *
-	 * @return int[] Array of user IDs the timestamp has been updated for
+	 * @since 1.27
 	 */
 	public function updateNotificationTimestamp( User $editor, LinkTarget $target, $timestamp ) {
 		$dbw = $this->getConnectionRef( DB_MASTER );
@@ -781,16 +696,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * Reset the notification timestamp of this entry
-	 *
-	 * @param User $user
-	 * @param Title $title
-	 * @param string $force Whether to force the write query to be executed even if the
-	 *    page is not watched or the notification timestamp is already NULL.
-	 *    'force' in order to force
-	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
-	 *
-	 * @return bool success
+	 * @since 1.27
 	 */
 	public function resetNotificationTimestamp( User $user, Title $title, $force = '', $oldid = 0 ) {
 		// Only loggedin user can have a watchlist
@@ -879,11 +785,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * @param User $user
-	 * @param int $unreadLimit
-	 *
-	 * @return int|bool The number of unread notifications
-	 *                  true if greater than or equal to $unreadLimit
+	 * @since 1.27
 	 */
 	public function countUnreadNotifications( User $user, $unreadLimit = null ) {
 		$queryOptions = [];
@@ -916,13 +818,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * Check if the given title already is watched by the user, and if so
-	 * add a watch for the new title.
-	 *
-	 * To be used for page renames and such.
-	 *
-	 * @param LinkTarget $oldTarget
-	 * @param LinkTarget $newTarget
+	 * @since 1.27
 	 */
 	public function duplicateAllAssociatedEntries( LinkTarget $oldTarget, LinkTarget $newTarget ) {
 		$oldTarget = Title::newFromLinkTarget( $oldTarget );
@@ -933,14 +829,7 @@ class WatchedItemStore implements StatsdAwareInterface {
 	}
 
 	/**
-	 * Check if the given title already is watched by the user, and if so
-	 * add a watch for the new title.
-	 *
-	 * To be used for page renames and such.
-	 * This must be called separately for Subject and Talk pages
-	 *
-	 * @param LinkTarget $oldTarget
-	 * @param LinkTarget $newTarget
+	 * @since 1.27
 	 */
 	public function duplicateEntry( LinkTarget $oldTarget, LinkTarget $newTarget ) {
 		$dbw = $this->getConnectionRef( DB_MASTER );
