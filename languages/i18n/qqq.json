@@ -1258,6 +1258,7 @@
 	"timezoneregion-indian": "Used in \"Time zone\" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], \"date and time\" tab.\n{{Related|Timezoneregion}}",
 	"timezoneregion-pacific": "Used in \"Time zone\" listbox in [[Special:Preferences#mw-prefsection-datetime|preferences]], \"date and time\" tab.\n{{Related|Timezoneregion}}",
 	"allowemail": "Used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.",
+	"email-allow-new-users-label": "Used in [[Special:Preferences]] > {{int:prefs-prohibit}} > {{int:email}}.",
 	"email-blacklist-label": "Used in [[Special:Preferences]] > {{int:prefs-prohibit}} > {{int:email}}.",
 	"prefs-searchoptions": "{{Identical|Search}}",
 	"prefs-namespaces": "Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferences]]\n{{Identical|Namespace}}",

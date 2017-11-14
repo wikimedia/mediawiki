@@ -2092,6 +2092,7 @@ return [
 			'resources/src/mediawiki.special/mediawiki.special.preferences.editfont.js',
 			'resources/src/mediawiki.special/mediawiki.special.preferences.tabs.js',
 			'resources/src/mediawiki.special/mediawiki.special.preferences.timezone.js',
+			'resources/src/mediawiki.special/mediawiki.special.preferences.personalEmail.js',
 		],
 		'messages' => [
 			'prefs-tabs-navigation-hint',
