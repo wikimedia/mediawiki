@@ -1,5 +1,7 @@
 <?php
 
+namespace Wikimedia\Http;
+
 /**
  * Utility for negotiating a value from a set of supported values using a preference list.
  * This is intended for use with HTTP headers like Accept, Accept-Language, Accept-Encoding, etc.
@@ -10,11 +12,8 @@
  *
  * @license GPL-2.0+
  * @author Daniel Kinzler
- * @author Thiemo Mättig
+ * @author Thiemo Kreuz
  */
-
-namespace Wikimedia\Http;
-
 class HttpAcceptNegotiator {
 
 	/**

@@ -6,7 +6,7 @@
  * @group JobQueue
  *
  * @licence GNU GPL v2+
- * @author Thiemo Mättig
+ * @author Thiemo Kreuz
  */
 class JobQueueMemoryTest extends PHPUnit_Framework_TestCase {
 
