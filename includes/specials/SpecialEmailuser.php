@@ -243,6 +243,14 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 					return 'nowikiemail';
 				}
 			}
+
+			if ( !$target->getOption( 'email-allow-new-users' ) ) {
+				if ( $sender->isNewbie() ) {
+					wfDebug( "User does not allow user emails from new users.\n" );
+
+					return 'nowikiemail';
+				}
+			}
 		}
 
 		return '';
