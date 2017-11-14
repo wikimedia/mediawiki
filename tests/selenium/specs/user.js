@@ -62,6 +62,7 @@ describe( 'User', function () {
 		PreferencesPage.changeRealName( realName );
 
 		// check
+		browser.refresh(); // T180035
 		assert.equal( PreferencesPage.realName.getValue(), realName );
 
 	} );
