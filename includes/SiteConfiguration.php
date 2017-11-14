@@ -556,7 +556,7 @@ class SiteConfiguration {
 				]
 			);
 			// ulimit5.sh breaks this call
-			$data = trim( wfShellExec( $cmd, $retVal, [], [ 'memory' => 0 ] ) );
+			$data = trim( wfShellExec( $cmd, $retVal, [], [ 'memory' => 0, 'filesize' => 0 ] ) );
 			if ( $retVal != 0 || !strlen( $data ) ) {
 				throw new MWException( "Failed to run getConfiguration.php." );
 			}
