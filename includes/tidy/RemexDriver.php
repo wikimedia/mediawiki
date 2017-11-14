@@ -54,4 +54,16 @@ class RemexDriver extends TidyDriverBase {
 		] );
 		return $serializer->getResult();
 	}
+
+	public static function stripAllTags( $html ) {
+		$handler = new RemexStripTagHandler;
+		$tokenizer = new Tokenizer( $handler, $html, [
+			'ignoreErrors' => true,
+			// don't ignore char refs, we want them to be decoded
+			'ignoreNulls' => true,
+			'skipPreprocess' => true,
+		] );
+		$tokenizer->execute();
+		return $handler->getResult();
+	}
 }

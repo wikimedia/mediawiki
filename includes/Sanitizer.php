@@ -1971,11 +1971,7 @@ class Sanitizer {
 	 * @return string
 	 */
 	static function stripAllTags( $text ) {
-		# Actual <tags>
-		$text = StringUtils::delimiterReplace( '<', '>', '', $text );
-
-		# Normalize &entities and whitespace
-		$text = self::decodeCharReferences( $text );
+		$text = MediaWiki\Tidy\RemexDriver::stripAllTags( $text );
 		$text = self::normalizeWhitespace( $text );
 
 		return $text;

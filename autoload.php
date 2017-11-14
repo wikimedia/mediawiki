@@ -955,6 +955,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Tidy\\RemexCompatMunger' => __DIR__ . '/includes/tidy/RemexCompatMunger.php',
 	'MediaWiki\\Tidy\\RemexDriver' => __DIR__ . '/includes/tidy/RemexDriver.php',
 	'MediaWiki\\Tidy\\RemexMungerData' => __DIR__ . '/includes/tidy/RemexMungerData.php',
+	'MediaWiki\\Tidy\\RemexStripTagHandler' => __DIR__ . '/includes/tidy/RemexStripTagHandler.php',
 	'MediaWiki\\Tidy\\TidyDriverBase' => __DIR__ . '/includes/tidy/TidyDriverBase.php',
 	'MediaWiki\\Widget\\ComplexNamespaceInputWidget' => __DIR__ . '/includes/widget/ComplexNamespaceInputWidget.php',
 	'MediaWiki\\Widget\\ComplexTitleInputWidget' => __DIR__ . '/includes/widget/ComplexTitleInputWidget.php',
