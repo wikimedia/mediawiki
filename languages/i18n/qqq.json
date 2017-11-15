@@ -1431,6 +1431,7 @@
 	"right-siteadmin": "{{doc-right|siteadmin}}",
 	"right-override-export-depth": "{{doc-right|override-export-depth}}",
 	"right-sendemail": "{{doc-right|sendemail}}",
+	"right-sendemail-new-users": "{{doc-right|sendemail-new-users}}",
 	"right-managechangetags": "{{doc-right|managechangetags}}",
 	"right-applychangetags": "{{doc-right|applychangetags}}",
 	"right-changetags": "{{doc-right|changetags}}",
