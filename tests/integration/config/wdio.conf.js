@@ -72,7 +72,7 @@ exports.config = {
 	// directory is where your package.json resides, so `wdio` will be called from there.
 	//
 	specs: [
-		relPath( './integration/features/*.feature' )
+		relPath( '../extensions/CirrusSearch/tests/integration/features/*.feature' )
 	],
 	cucumberOpts: {
 		tagsInTitle: true,

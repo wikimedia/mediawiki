@@ -1,4 +1,6 @@
-/* eslint-env node */
+/* eslint-env node, es6 */
+
+const path = require( 'path' );
 
 module.exports = function ( grunt ) {
 
@@ -22,9 +24,9 @@ module.exports = function ( grunt ) {
 	};
 
 	if ( process.env.JENKINS_HOME ) {
-		WebdriverIOconfigFile = './tests/selenium/wdio.conf.jenkins.js';
+		WebdriverIOconfigFile = './tests/integration/config/wdio.conf.jenkins.js';
 	} else {
-		WebdriverIOconfigFile = './tests/selenium/wdio.conf.js';
+		WebdriverIOconfigFile = './tests/integration/config/wdio.conf.js';
 	}
 
 	grunt.initConfig( {
@@ -113,10 +115,20 @@ module.exports = function ( grunt ) {
 			}
 		},
 
-		// Configure WebdriverIO task
+		// Configure WebdriverIO Node task
 		webdriver: {
 			test: {
-				configFile: WebdriverIOconfigFile
+				configFile: WebdriverIOconfigFile,
+				spec: ( () => {
+					let spec = grunt.option( 'spec' );
+					if ( !spec ) {
+						return undefined;
+					}
+					if ( spec[ 0 ] === '/' ) {
+						return spec;
+					}
+					return path.join( __dirname, 'tests/integration/features', spec );
+				} )()
 			}
 		}
 
