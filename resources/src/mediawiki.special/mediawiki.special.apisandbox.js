@@ -221,7 +221,36 @@
 
 	Validators = {
 		generic: function () {
-			return !Util.apiBool( this.paramInfo.required ) || this.getApiValue() !== '';
+			var values, value, i, length;
+
+			if ( Util.apiBool( this.paramInfo.required ) && this.getApiValue() === '' ) {
+				return false;
+			}
+
+			// String length checking must be in normal form. For IE, just fall back to
+			// server-side validation.
+			if ( ''.normalize ) {
+				values = this.getValue();
+				values = Array.isArray( values ) ? values : [ values ];
+				for ( i = 0; i < values.length; i++ ) {
+					value = values[ i ].normalize( 'NFC' );
+					if ( 'maxbytes' in this.paramInfo ) {
+						// maxbytes is in UTF-8 bytes; use encodeURI to get (percent-encoded) UTF-8.
+						length = encodeURI( value ).replace( /%[A-F\d]{2}/g, 'U' ).length;
+						if ( length > this.paramInfo.maxbytes ) {
+							return false;
+						}
+					}
+					if ( 'maxchars' in this.paramInfo ) {
+						// Replace surrogate pairs with a single character to get accurate codepoint count.
+						length = value.replace( /[\uD800-\uDBFF][\uDC00-\uDFFF]/g, 'S' ).length;
+						if ( length > this.paramInfo.maxchars ) {
+							return false;
+						}
+					}
+				}
+			}
+			return true;
 		}
 	};
 
