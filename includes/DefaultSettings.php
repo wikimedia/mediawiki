@@ -75,7 +75,11 @@ $wgConfigRegistry = [
  * MediaWiki version number
  * @since 1.2
  */
+<<<<<<< HEAD   (8bdce4 Update vendor submodule for .htaccess)
 $wgVersion = '1.27.3-fundraising';
+=======
+$wgVersion = '1.27.4';
+>>>>>>> BRANCH (a80647 Bump 1.27.4)
 
 /**
  * Name of the site. It must be changed in LocalSettings.php
