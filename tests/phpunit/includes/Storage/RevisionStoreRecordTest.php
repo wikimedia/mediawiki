@@ -22,10 +22,11 @@ use Title;
 class RevisionStoreRecordTest extends MediaWikiTestCase {
 
 	/**
-	 * @param array $overrides
+	 * @param array $rowOverrides
+	 *
 	 * @return RevisionStoreRecord
 	 */
-	public function newRevision( array $overrides = [] ) {
+	public function newRevision( array $rowOverrides = [] ) {
 		$title = Title::newFromText( 'Dummy' );
 		$title->resetArticleID( 17 );
 
@@ -48,7 +49,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 			'page_latest' => '18',
 		];
 
-		$row = array_merge( $row, $overrides );
+		$row = array_merge( $row, $rowOverrides );
 
 		return new RevisionStoreRecord( $title, $user, $comment, (object)$row, $slots );
 	}
@@ -661,16 +662,144 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function testHasSameContent() {
-		// TBD
+	private function getSlotRecord( $role, $contentString ) {
+		return SlotRecord::newUnsaved( $role, new TextContent( $contentString ) );
 	}
 
-	public function testIsDeleted() {
-		// TBD
+	public function provideHasSameContent() {
+		/**
+		 * @param SlotRecord[] $slots
+		 * @param int $revId
+		 * @return RevisionStoreRecord
+		 */
+		$recordCreator = function ( array $slots, $revId ) {
+			$title = Title::newFromText( 'provideHasSameContent' );
+			$title->resetArticleID( 19 );
+			$slots = new RevisionSlots( $slots );
+
+			return new RevisionStoreRecord(
+				$title,
+				new UserIdentityValue( 11, __METHOD__ ),
+				CommentStoreComment::newUnsavedComment( __METHOD__ ),
+				(object)[
+					'rev_id' => strval( $revId ),
+					'rev_page' => strval( $title->getArticleID() ),
+					'rev_timestamp' => '20200101000000',
+					'rev_deleted' => 0,
+					'rev_minor_edit' => 0,
+					'rev_parent_id' => '5',
+					'rev_len' => $slots->computeSize(),
+					'rev_sha1' => $slots->computeSha1(),
+					'page_latest' => '18',
+				],
+				$slots
+			);
+		};
+
+		// Create some slots with content
+		$mainA = SlotRecord::newUnsaved( 'main', new TextContent( 'A' ) );
+		$mainB = SlotRecord::newUnsaved( 'main', new TextContent( 'B' ) );
+		$auxA = SlotRecord::newUnsaved( 'aux', new TextContent( 'A' ) );
+		$auxB = SlotRecord::newUnsaved( 'aux', new TextContent( 'A' ) );
+
+		$initialRecord = $recordCreator( [ $mainA ], 12 );
+
+		return [
+			'same record object' => [
+				true,
+				$initialRecord,
+				$initialRecord,
+			],
+			'same record content, different object' => [
+				true,
+				$recordCreator( [ $mainA ], 12 ),
+				$recordCreator( [ $mainA ], 13 ),
+			],
+			'same record content, aux slot, different object' => [
+				true,
+				$recordCreator( [ $auxA ], 12 ),
+				$recordCreator( [ $auxB ], 13 ),
+			],
+			'different content' => [
+				false,
+				$recordCreator( [ $mainA ], 12 ),
+				$recordCreator( [ $mainB ], 13 ),
+			],
+			'different content and number of slots' => [
+				false,
+				$recordCreator( [ $mainA ], 12 ),
+				$recordCreator( [ $mainA, $mainB ], 13 ),
+			],
+		];
 	}
 
-	public function testUserCan() {
-		// TBD
+	/**
+	 * @dataProvider provideHasSameContent
+	 * @covers RevisionRecord::hasSameContent
+	 * @group Database
+	 */
+	public function testHasSameContent(
+		$expected,
+		RevisionRecord $record1,
+		RevisionRecord $record2
+	) {
+		$this->assertSame(
+			$expected,
+			$record1->hasSameContent( $record2 )
+		);
+	}
+
+	public function provideIsDeleted() {
+		yield 'no deletion' => [
+			0,
+			[
+				RevisionRecord::DELETED_TEXT => false,
+				RevisionRecord::DELETED_COMMENT => false,
+				RevisionRecord::DELETED_USER => false,
+				RevisionRecord::DELETED_RESTRICTED => false,
+			]
+		];
+		yield 'text deleted' => [
+			RevisionRecord::DELETED_TEXT,
+			[
+				RevisionRecord::DELETED_TEXT => true,
+				RevisionRecord::DELETED_COMMENT => false,
+				RevisionRecord::DELETED_USER => false,
+				RevisionRecord::DELETED_RESTRICTED => false,
+			]
+		];
+		yield 'text and comment deleted' => [
+			RevisionRecord::DELETED_TEXT + RevisionRecord::DELETED_COMMENT,
+			[
+				RevisionRecord::DELETED_TEXT => true,
+				RevisionRecord::DELETED_COMMENT => true,
+				RevisionRecord::DELETED_USER => false,
+				RevisionRecord::DELETED_RESTRICTED => false,
+			]
+		];
+		yield 'all 4 deleted' => [
+			RevisionRecord::DELETED_TEXT +
+			RevisionRecord::DELETED_COMMENT +
+			RevisionRecord::DELETED_RESTRICTED +
+			RevisionRecord::DELETED_USER,
+			[
+				RevisionRecord::DELETED_TEXT => true,
+				RevisionRecord::DELETED_COMMENT => true,
+				RevisionRecord::DELETED_USER => true,
+				RevisionRecord::DELETED_RESTRICTED => true,
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideIsDeleted
+	 * @covers RevisionRecord::isDeleted
+	 */
+	public function testIsDeleted( $revDeleted, $assertionMap ) {
+		$rev = $this->newRevision( [ 'rev_deleted' => $revDeleted ] );
+		foreach ( $assertionMap as $deletionLevel => $expected ) {
+			$this->assertSame( $expected, $rev->isDeleted( $deletionLevel ) );
+		}
 	}
 
 }
