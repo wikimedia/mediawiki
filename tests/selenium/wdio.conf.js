@@ -3,9 +3,10 @@
 /* eslint-disable no-console, comma-dangle */
 'use strict';
 
-const password = 'vagrant',
-	path = require( 'path' ),
-	username = 'Admin';
+const childProcess = require( 'child_process' ),
+	path = require( 'path' );
+
+var forkedTracker;
 
 function relPath( foo ) {
 	return path.resolve( __dirname, '../..', foo );
@@ -25,19 +26,42 @@ exports.config = {
 	// Use if from tests with:
 	// browser.options.username
 	username: process.env.MEDIAWIKI_USER === undefined ?
-		username :
+		'Admin' :
 		process.env.MEDIAWIKI_USER,
 	password: process.env.MEDIAWIKI_PASSWORD === undefined ?
-		password :
+		'vagrant' :
 		process.env.MEDIAWIKI_PASSWORD,
+	wikis: {
+		'default': 'cirrustest',
+		cirrustest: {
+			username: 'Admin',
+			password: 'vagrant',
+			apiUrl: 'http://cirrustest.wiki.local.wmftest.net:8080/w/api.php'
+		},
+		commons: {
+			username: 'Admin',
+			password: 'vagrant',
+			apiUrl: 'http://commons.wiki.local.wmftest.net:8080/w/api.php'
+		},
+		ru: {
+			username: 'Admin',
+			password: 'vagrant',
+			apiUrl: 'http://ru.wiki.local.wmftest.net:8080/w/api.php'
+		},
+		beta: {},
+		test2: {},
+		integration: {},
+		cindy: {},
+		searchdemo: {}
+	},
 	//
 	// ======
 	// Sauce Labs
 	// ======
 	//
-	services: [ 'sauce' ],
-	user: process.env.SAUCE_USERNAME,
-	key: process.env.SAUCE_ACCESS_KEY,
+	// services: [ 'sauce' ],
+	// user: process.env.SAUCE_USERNAME,
+	// key: process.env.SAUCE_ACCESS_KEY,
 	//
 	// ==================
 	// Specify Test Files
@@ -48,11 +72,17 @@ exports.config = {
 	// directory is where your package.json resides, so `wdio` will be called from there.
 	//
 	specs: [
-		relPath( './tests/selenium/specs/**/*.js' ),
-		relPath( './extensions/*/tests/selenium/specs/**/*.js' ),
-		relPath( './extensions/VisualEditor/modules/ve-mw/tests/selenium/specs/**/*.js' ),
-		relPath( './skins/*/tests/selenium/specs/**/*.js' ),
+		relPath( './integration/features/*.feature' )
 	],
+	cucumberOpts: {
+		tagsInTitle: true,
+		require: [
+			relPath( './integration/features/support/world.js' ),
+			relPath( './integration/features/support/hooks.js' ),
+			relPath( './integration/features/step_definitions/page_step_helpers.js' ),
+			relPath( './integration/features/step_definitions/page_steps.js' )
+		]
+	},
 	// Patterns to exclude.
 	exclude: [
 	// 'path/to/excluded/files'
@@ -116,7 +146,7 @@ exports.config = {
 	// with "/", then the base url gets prepended.
 	baseUrl: (
 		process.env.MW_SERVER === undefined ?
-			'http://127.0.0.1:8080' :
+			'http://dev.wiki.local.wmftest.net:8080' :
 			process.env.MW_SERVER
 	) + (
 		process.env.MW_SCRIPT_PATH === undefined ?
@@ -163,7 +193,7 @@ exports.config = {
 	//
 	// Make sure you have the wdio adapter package for the specific framework installed
 	// before running any tests.
-	framework: 'mocha',
+	framework: 'cucumber',
 
 	// Test reporter for stdout.
 	// The only one supported by default is 'dot'
@@ -185,9 +215,23 @@ exports.config = {
 	// methods to it. If one of them returns with a promise, WebdriverIO will wait until that promise got
 	// resolved to continue.
 	//
+	// unix socket path for tag tracker
+	trackerPath: '/tmp/cirrussearch-integration-tagtracker',
+	//
 	// Gets executed once before all workers get launched.
-	// onPrepare: function ( config, capabilities ) {
-	// }
+	onPrepare: function ( config ) {
+		forkedTracker = childProcess.fork( relPath( './integration/lib/tracker.js' ) );
+		forkedTracker.send( { config: config } );
+		return new Promise( ( resolve, reject ) => {
+			forkedTracker.on( 'message', ( msg ) => {
+				if ( msg.initialized ) {
+					resolve();
+				} else {
+					reject( msg.error );
+				}
+			} );
+		} );
+	},
 	//
 	// Gets executed before test execution begins. At this point you can access all global
 	// variables, such as `browser`. It is the perfect place to define custom commands.
@@ -246,6 +290,8 @@ exports.config = {
 	//
 	// Gets executed after all workers got shut down and the process is about to exit. It is not
 	// possible to defer the end of the process using a promise.
-	// onComplete: function(exitCode) {
-	// }
+	onComplete: function () {
+		// TODO: Is this method being called a guarantee, or should we handle signals to be sure?
+		forkedTracker.send( { exit: true } );
+	}
 };
