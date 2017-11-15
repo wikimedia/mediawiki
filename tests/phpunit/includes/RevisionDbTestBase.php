@@ -1326,6 +1326,16 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			$expected,
 			Revision::userCanBitfield( $bitField, $field, $user, $title )
 		);
+
+		// Fallback to $wgUser
+		$this->setMwGlobals(
+			'wgUser',
+			$user
+		);
+		$this->assertSame(
+			$expected,
+			Revision::userCanBitfield( $bitField, $field, null, $title )
+		);
 	}
 
 	public function provideUserCan() {
