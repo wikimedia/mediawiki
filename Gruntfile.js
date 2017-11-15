@@ -22,9 +22,9 @@ module.exports = function ( grunt ) {
 	};
 
 	if ( process.env.JENKINS_HOME ) {
-		WebdriverIOconfigFile = './tests/selenium/wdio.conf.jenkins.js';
+		WebdriverIOconfigFile = './extensions/CirrusSearch/tests/integration/config/wdio.conf.jenkins.js';
 	} else {
-		WebdriverIOconfigFile = './tests/selenium/wdio.conf.js';
+		WebdriverIOconfigFile = './extensions/CirrusSearch/tests/integration/config/wdio.conf.js';
 	}
 
 	grunt.initConfig( {
