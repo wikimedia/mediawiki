@@ -554,7 +554,7 @@
 	"nosuchusershort": "Não existe um usuário com o nome \"$1\". Verifique o nome que introduziu.",
 	"nouserspecified": "Você precisa especificar um nome de usuário.",
 	"login-userblocked": "Este usuário está bloqueado. Entrada proibida.",
-	"wrongpassword": "A senha que introduziu é inválida. Por favor, tente novamente.",
+	"wrongpassword": "Nome de usuário ou senha incorretos inseridos.\nPor favor, tente novamente.",
 	"wrongpasswordempty": "Foi fornecida uma senha em branco.\nTente novamente.",
 	"passwordtooshort": "As senhas devem ter no mínimo {{PLURAL:$1|1 caractere|$1 caracteres}}.",
 	"passwordtoolong": "Senhas não podem ser maiores do que {{PLURAL:$1|1 caractere|$1 caracteres}}.",

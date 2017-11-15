@@ -1654,6 +1654,7 @@
 	"uploadstash-bad-path-unrecognized-thumb-name": "Невядомая назва мініятуры.",
 	"uploadstash-bad-path-no-handler": "Ня знойдзены апрацоўнік для mime-тыпу $1 файлу $2.",
 	"uploadstash-bad-path-bad-format": "Ключ «$1» мае няслушны фармат.",
+	"uploadstash-file-not-found": "Ключ «$1» ня знойдзены ў схованцы.",
 	"invalid-chunk-offset": "Няслушнае зрушэньне фрагмэнту",
 	"img-auth-accessdenied": "Доступ забаронены",
 	"img-auth-nopathinfo": "Адсутнічае PATH_INFO.\nВаш сэрвэр не ўстаноўлены на пропуск гэтай інфармацыі.\nМагчма, ён працуе праз CGI і не падтрымлівае img_auth.\nГлядзіце https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
