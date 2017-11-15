@@ -85,9 +85,6 @@
 			)
 		);
 
-		// Remove excluded params from the url
-		uri.query = this.filtersModel.removeExcludedParams( uri.query );
-
 		// Reapply unrecognized params and url version
 		uri.query = $.extend( true, {}, uri.query, unrecognizedParams, { urlversion: '2' } );
 
