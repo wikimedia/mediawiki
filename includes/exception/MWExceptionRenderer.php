@@ -128,7 +128,7 @@ class MWExceptionRenderer {
 
 			// Show any custom GUI message before the details
 			if ( $e instanceof MessageSpecifier ) {
-				$wgOut->addHTML( Message::newFromSpecifier( $e )->escaped() );
+				$wgOut->addHTML( Html::element( 'p', [], Message::newFromSpecifier( $e )->text() ) );
 			}
 			$wgOut->addHTML( self::getHTML( $e ) );
 
