@@ -404,7 +404,7 @@ class LanguageConverter {
 					// We hit the end.
 					$elementPos = strlen( $text );
 					$element = '';
-				} elseif( substr( $element, -1 ) === "\004" ) {
+				} elseif ( substr( $element, -1 ) === "\004" ) {
 					// This can sometimes happen if we have
 					// unclosed html tags (For example
 					// when converting a title attribute
