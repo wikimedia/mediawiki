@@ -5235,6 +5235,8 @@ $wgGroupPermissions['bureaucrat']['noratelimit'] = true;
 # $wgGroupPermissions['bureaucrat']['userrights-interwiki'] = true;
 // Permission to export pages including linked pages regardless of $wgExportMaxLinkDepth
 # $wgGroupPermissions['bureaucrat']['override-export-depth'] = true;
+// Permission to send new users emails.
+$wgGroupPermissions['bureaucrat']['sendemail-new-users'] = true;
 
 # $wgGroupPermissions['sysop']['deletelogentry'] = true;
 # $wgGroupPermissions['sysop']['deleterevision'] = true;
