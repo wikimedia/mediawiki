@@ -46,7 +46,9 @@
 		"wikimedia/timestamp": "1.0.0",
 		"wikimedia/wait-condition-loop": "1.0.1",
 		"wikimedia/wrappedstring": "2.2.0",
-		"zordius/lightncandy": "0.23"
+		"zordius/lightncandy": "0.23",
+		"pear/mail": "^1.4",
+		"pear/net_smtp": "^1.7"
 	},
 	"require-dev": {
 		"composer/spdx-licenses": "1.1.4",
