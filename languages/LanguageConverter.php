@@ -420,11 +420,11 @@ class LanguageConverter {
 				$log = LoggerFactory::getInstance( 'languageconverter' );
 				$log->error( "Hit pcre.backtrack_limit in " . __METHOD__
 					. ". Disabling language conversion for this page.",
-					array(
+					[
 						"method" => __METHOD__,
 						"variant" => $toVariant,
 						"startOfText" => substr( $text, 0, 500 )
-					)
+					]
 				);
 				return $text;
 			}
@@ -682,7 +682,9 @@ class LanguageConverter {
 
 		$noScript = '<script.*?>.*?<\/script>(*SKIP)(*FAIL)';
 		$noStyle = '<style.*?>.*?<\/style>(*SKIP)(*FAIL)';
+		// @codingStandardsIgnoreStart Generic.Files.LineLength.TooLong
 		$noHtml = '<(?:[^>=]*+(?>[^>=]*+=\s*+(?:"[^"]*"|\'[^\']*\'|[^\'">\s]*+))*+[^>=]*+>|.*+)(*SKIP)(*FAIL)';
+		// @codingStandardsIgnoreEnd
 		while ( $startPos < $length && $continue ) {
 			$continue = preg_match(
 				// Only match -{ outside of html.
