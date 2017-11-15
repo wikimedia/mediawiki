@@ -285,6 +285,19 @@ class ImagePage extends Article {
 		return parent::getContentObject();
 	}
 
+	private function getLanguageForRendering( WebRequest $request, File $file ) {
+		$handler = $this->displayImg->getHandler();
+
+		$requestLanguage = $request->getVal( 'lang' );
+		if ( !is_null( $requestLanguage ) ) {
+			if ( $handler && $handler->validateParam( 'lang', $requestLanguage ) ) {
+				return $requestLanguage;
+			}
+		}
+
+		return $handler->getDefaultRenderLanguage( $this->displayImg );
+	}
+
 	protected function openShowImage() {
 		global $wgEnableUploads, $wgSend404Code, $wgSVGMaxSize;
 
@@ -309,14 +322,9 @@ class ImagePage extends Article {
 				$params = [ 'page' => $page ];
 			}
 
-			$renderLang = $request->getVal( 'lang' );
+			$renderLang = $this->getLanguageForRendering( $request, $this->displayImg );
 			if ( !is_null( $renderLang ) ) {
-				$handler = $this->displayImg->getHandler();
-				if ( $handler && $handler->validateParam( 'lang', $renderLang ) ) {
-					$params['lang'] = $renderLang;
-				} else {
-					$renderLang = null;
-				}
+				$params['lang'] = $renderLang;
 			}
 
 			$width_orig = $this->displayImg->getWidth( $page );
@@ -544,12 +552,7 @@ EOT
 
 			$renderLangOptions = $this->displayImg->getAvailableLanguages();
 			if ( count( $renderLangOptions ) >= 1 ) {
-				$currentLanguage = $renderLang;
-				$defaultLang = $this->displayImg->getDefaultRenderLanguage();
-				if ( is_null( $currentLanguage ) ) {
-					$currentLanguage = $defaultLang;
-				}
-				$out->addHTML( $this->doRenderLangOpt( $renderLangOptions, $currentLanguage, $defaultLang ) );
+				$out->addHTML( $this->doRenderLangOpt( $renderLangOptions, $renderLang ) );
 			}
 
 			// Add cannot animate thumbnail warning
@@ -1047,59 +1050,30 @@ EOT
 	 * Output a drop-down box for language options for the file
 	 *
 	 * @param array $langChoices Array of string language codes
-	 * @param string $curLang Language code file is being viewed in.
-	 * @param string $defaultLang Language code that image is rendered in by default
+	 * @param string $renderLang Language code for the language we want the file to rendered in.
 	 * @return string HTML to insert underneath image.
 	 */
-	protected function doRenderLangOpt( array $langChoices, $curLang, $defaultLang ) {
+	protected function doRenderLangOpt( array $langChoices, $renderLang ) {
 		global $wgScript;
-		sort( $langChoices );
-		$curLang = LanguageCode::bcp47( $curLang );
-		$defaultLang = LanguageCode::bcp47( $defaultLang );
 		$opts = '';
-		$haveCurrentLang = false;
-		$haveDefaultLang = false;
 
-		// We make a list of all the language choices in the file.
-		// Additionally if the default language to render this file
-		// is not included as being in this file (for example, in svgs
-		// usually the fallback content is the english content) also
-		// include a choice for that. Last of all, if we're viewing
-		// the file in a language not on the list, add it as a choice.
+		$matchedRenderLang = $this->displayImg->getMatchedLanguage( $renderLang );
+
 		foreach ( $langChoices as $lang ) {
-			$code = LanguageCode::bcp47( $lang );
-			$name = Language::fetchLanguageName( $code, $this->getContext()->getLanguage()->getCode() );
-			if ( $name !== '' ) {
-				$display = $this->getContext()->msg( 'img-lang-opt', $code, $name )->text();
-			} else {
-				$display = $code;
-			}
-			$opts .= "\n" . Xml::option( $display, $code, $curLang === $code );
-			if ( $curLang === $code ) {
-				$haveCurrentLang = true;
-			}
-			if ( $defaultLang === $code ) {
-				$haveDefaultLang = true;
-			}
+			$opts .= $this->createXmlOptionStringForLanguage(
+				$lang,
+				$matchedRenderLang === $lang
+			);
 		}
-		if ( !$haveDefaultLang ) {
-			// Its hard to know if the content is really in the default language, or
-			// if its just unmarked content that could be in any language.
-			$opts = Xml::option(
-					$this->getContext()->msg( 'img-lang-default' )->text(),
-				$defaultLang,
-				$defaultLang === $curLang
-			) . $opts;
-		}
-		if ( !$haveCurrentLang && $defaultLang !== $curLang ) {
-			$name = Language::fetchLanguageName( $curLang, $this->getContext()->getLanguage()->getCode() );
-			if ( $name !== '' ) {
-				$display = $this->getContext()->msg( 'img-lang-opt', $curLang, $name )->text();
-			} else {
-				$display = $curLang;
-			}
-			$opts = Xml::option( $display, $curLang, true ) . $opts;
-		}
+
+		// Allow for the default case in an svg <switch> that is displayed if no
+		// systemLanguage attribute matches
+		$opts .= "\n" .
+			Xml::option(
+				$this->getContext()->msg( 'img-lang-default' )->text(),
+				'und',
+				is_null( $matchedRenderLang )
+			);
 
 		$select = Html::rawElement(
 			'select',
@@ -1117,6 +1091,27 @@ EOT
 			Html::rawElement( 'form', [ 'action' => $wgScript ], $formContents )
 		);
 		return $langSelectLine;
+	}
+
+	/**
+	 * @param $lang string
+	 * @param $selected bool
+	 * @return string
+	 */
+	private function createXmlOptionStringForLanguage( $lang, $selected ) {
+		$code = LanguageCode::bcp47( $lang );
+		$name = Language::fetchLanguageName( $code, $this->getContext()->getLanguage()->getCode() );
+		if ( $name !== '' ) {
+			$display = $this->getContext()->msg( 'img-lang-opt', $code, $name )->text();
+		} else {
+			$display = $code;
+		}
+		return "\n" .
+			Xml::option(
+				$display,
+				$lang,
+				$selected
+			);
 	}
 
 	/**
