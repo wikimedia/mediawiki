@@ -781,7 +781,7 @@
 	"shown-title": "Parādīt $1 {{PLURAL:$1|rezultātus|rezultātu|rezultātus}} vienā lapā",
 	"viewprevnext": "Skatīt ($1 {{int:pipe-separator}} $2) ($3 vienā lapā).",
 	"searchmenu-exists": "'''Šajā projektā ir raksts ar nosaukumu \"[[:$1]]\"'''",
-	"searchmenu-new": "'''Izveido rakstu \"[[:$1]]\" šajā projektā!'''",
+	"searchmenu-new": "<strong>Izveido lapu \"[[:$1]]\" šajā projektā!</strong> {{PLURAL:$2|0=|Apskati arī meklēšanā atrasto lapu.|Apskati arī meklēšanā atrastos rezultātus.}}",
 	"searchprofile-articles": "Rakstos",
 	"searchprofile-images": "Multivides failos",
 	"searchprofile-everything": "Visur",

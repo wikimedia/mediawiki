@@ -2926,7 +2926,7 @@
 	"newimages-hidepatrolled": "巡回済みのアップロードを隠す",
 	"newimages-mediatype": "メディアの種類：",
 	"noimages": "表示できるものがありません。",
-	"gallery-slideshow-toggle": "トグルサムネイル",
+	"gallery-slideshow-toggle": "サムネイルを切り替える",
 	"ilsubmit": "検索",
 	"bydate": "日付順",
 	"sp-newimages-showfrom": "$1の$2以降の新しいファイルを表示",

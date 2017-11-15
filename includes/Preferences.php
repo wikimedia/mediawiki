@@ -48,9 +48,6 @@ use MediaWiki\MediaWikiServices;
  */
 class Preferences {
 	/** @var array */
-	protected static $defaultPreferences = null;
-
-	/** @var array */
 	protected static $saveFilters = [
 		'timecorrection' => [ 'Preferences', 'filterTimezoneInput' ],
 		'rclimit' => [ 'Preferences', 'filterIntval' ],
@@ -78,10 +75,6 @@ class Preferences {
 	 * @return array|null
 	 */
 	static function getPreferences( $user, IContextSource $context ) {
-		if ( self::$defaultPreferences ) {
-			return self::$defaultPreferences;
-		}
-
 		OutputPage::setupOOUI(
 			strtolower( $context->getSkin()->getSkinName() ),
 			$context->getLanguage()->getDir()
@@ -103,7 +96,6 @@ class Preferences {
 		Hooks::run( 'GetPreferences', [ $user, &$defaultPreferences ] );
 
 		self::loadPreferenceValues( $user, $context, $defaultPreferences );
-		self::$defaultPreferences = $defaultPreferences;
 		return $defaultPreferences;
 	}
 

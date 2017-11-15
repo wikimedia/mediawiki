@@ -1587,6 +1587,7 @@
 	"uploadstash-thumbnail": "Miniaturbild weisen",
 	"uploadstash-bad-path": "Wee (path) gëtt et net.",
 	"uploadstash-bad-path-unknown-type": "Onbekannten Typ \"$1\".",
+	"uploadstash-file-not-found-no-thumb": "D'Miniaturbild konnt net erofgeluede ginn.",
 	"uploadstash-no-extension": "Erweiderung ass eidel (null).",
 	"uploadstash-zero-length": "Fichier huet d'Gréisst null.",
 	"img-auth-accessdenied": "Zougang refuséiert",
