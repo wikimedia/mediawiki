@@ -87,6 +87,7 @@ section).
 * Updated OOjs from v2.0.0 to v2.1.0.
 * Updated OOUI from v0.21.1 to v0.23.0.
 * Updated QUnit from v1.23.1 to v2.4.0.
+* Updated phpunit/phpunit from v4.8.35 to v4.8.36.
 
 ==== New external libraries ====
 * The class \TestingAccessWrapper has been moved to the external library

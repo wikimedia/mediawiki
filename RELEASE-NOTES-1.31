@@ -27,7 +27,7 @@ warningBox generation.
 === External library changes in 1.31 ===
 
 ==== Upgraded external libraries ====
-* Updated dev dependancy phpunit/phpunit from v4.8.35 to v4.8.36.
+* …
 
 ==== New external libraries ====
 * …
