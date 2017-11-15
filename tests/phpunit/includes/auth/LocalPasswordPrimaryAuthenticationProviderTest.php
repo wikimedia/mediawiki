@@ -170,9 +170,6 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		$this->assertFalse( $ret->hard );
 	}
 
-    /**
-     * @skipped till backport fixed
-     */
 	public function testAuthentication() {
 		$dbw = wfGetDB( DB_MASTER );
 		$oldHash = $dbw->selectField( 'user', 'user_password', [ 'user_name' => 'UTSysop' ] );
@@ -219,8 +216,12 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		$req->password = 'DoesNotExist';
 		$ret = $provider->beginPrimaryAuthentication( $reqs );
 		$this->assertEquals(
-			AuthenticationResponse::newAbstain(),
-			$provider->beginPrimaryAuthentication( $reqs )
+			AuthenticationResponse::FAIL,
+			$ret->status
+		);
+		$this->assertEquals(
+			'wrongpassword',
+			$ret->message->getKey()
 		);
 
 		// Validation failure
