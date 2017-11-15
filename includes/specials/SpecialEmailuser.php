@@ -224,15 +224,42 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			wfDebug( "Target is invalid user.\n" );
 
 			return 'notarget';
-		} elseif ( !$target->isEmailConfirmed() ) {
+		}
+
+		if ( !$target->isEmailConfirmed() ) {
 			wfDebug( "User has no valid email.\n" );
 
 			return 'noemail';
-		} elseif ( !$target->canReceiveEmail() ) {
+		}
+
+		if ( !$target->canReceiveEmail() ) {
 			wfDebug( "User does not allow user emails.\n" );
 
 			return 'nowikiemail';
-		} elseif ( $sender !== null ) {
+		}
+
+		if (
+			$target->getEditCount() === 0
+			&& ( $sender === null || !$sender->isAllowed( 'sendemail-new-users' ) )
+		) {
+			// Determine if target has any other logged actions.
+			$db = wfGetDB( DB_REPLICA );
+			$log_id = $db->selectField(
+				'logging',
+				'log_id',
+				'log_user = ' . $target->getId(),
+				__METHOD__,
+				[ 'LIMIT' => 1 ]
+			);
+
+			if ( !$log_id ) {
+				wfDebug( "User has no logged actions on this wiki.\n" );
+
+				return 'nowikiemail';
+			}
+		}
+
+		if ( $sender !== null ) {
 			$blacklist = $target->getOption( 'email-blacklist', [] );
 			if ( $blacklist ) {
 				$lookup = CentralIdLookup::factory();
