@@ -44,6 +44,14 @@
 	transform: none;
 }
 
+#preferences .oo-ui-panelLayout-framed .oo-ui-panelLayout-framed {
+	border-color: #c8ccd1;
+	border-width: 1px 0 0;
+	border-radius: 0;
+	padding-left: 0;
+	padding-right: 0;
+}
+
 /* Tweak the margins to reduce the shifting of form contents
  * after JS code loads and rearranges the page */
 .client-js #preferences > .oo-ui-panelLayout {
@@ -54,13 +62,16 @@
 	margin-left: 0.25em;
 }
 
-.client-js #preferences .oo-ui-panelLayout-framed .oo-ui-tabPanelLayout .oo-ui-panelLayout-framed {
-	margin-left: 0;
-}
-
-.client-js #preferences .oo-ui-panelLayout-framed .oo-ui-tabPanelLayout {
+.client-js #preferences .oo-ui-tabPanelLayout {
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
+}
+
+.client-js #preferences .oo-ui-tabPanelLayout .oo-ui-panelLayout-framed {
+	margin-left: 0;
+	margin-bottom: 0;
+	border: 0;
+	padding-top: 0;
 }
 
 .client-js #preferences > .oo-ui-panelLayout > .oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-header {
