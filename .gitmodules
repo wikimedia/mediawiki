@@ -5,7 +5,7 @@
 [submodule "extensions/Wikidata"]
 	path = extensions/Wikidata
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Wikidata
-	branch = wmf/1.31.0-wmf.8
+	branch = wmf/1.31.0-wmf.6
 [submodule "extensions/3D"]
 	path = extensions/3D
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/3D
