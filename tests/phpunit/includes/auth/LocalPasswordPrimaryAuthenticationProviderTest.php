@@ -170,9 +170,6 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		$this->assertFalse( $ret->hard );
 	}
 
-    /**
-     * @skipped till backport fixed
-     */
 	public function testAuthentication() {
 		$dbw = wfGetDB( DB_MASTER );
 		$oldHash = $dbw->selectField( 'user', 'user_password', [ 'user_name' => 'UTSysop' ] );
