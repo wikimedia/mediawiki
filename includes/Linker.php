@@ -1789,22 +1789,24 @@ class Linker {
 	 *   a space and ending with '>'
 	 *   This *must* be at least '>' for no attribs
 	 * @param string $anchor The anchor to give the headline (the bit after the #)
-	 * @param string $html Html for the text of the header
+	 * @param string $html HTML for the text of the header
 	 * @param string $link HTML to add for the section edit link
-	 * @param bool|string $legacyAnchor A second, optional anchor to give for
+	 * @param string|bool $fallbackAnchor A second, optional anchor to give for
 	 *   backward compatibility (false to omit)
 	 *
 	 * @return string HTML headline
 	 */
 	public static function makeHeadline( $level, $attribs, $anchor, $html,
-		$link, $legacyAnchor = false
+		$link, $fallbackAnchor = false
 	) {
+		$anchorEscaped = htmlspecialchars( $anchor );
 		$ret = "<h$level$attribs"
-			. "<span class=\"mw-headline\" id=\"$anchor\">$html</span>"
+			. "<span class=\"mw-headline\" id=\"$anchorEscaped\">$html</span>"
 			. $link
 			. "</h$level>";
-		if ( $legacyAnchor !== false ) {
-			$ret = "<div id=\"$legacyAnchor\"></div>$ret";
+		if ( $fallbackAnchor !== false && $fallbackAnchor !== $anchor ) {
+			$fallbackAnchor = htmlspecialchars( $fallbackAnchor );
+			$ret = "<div id=\"$fallbackAnchor\"></div>$ret";
 		}
 		return $ret;
 	}

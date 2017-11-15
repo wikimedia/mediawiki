@@ -68,7 +68,8 @@
 	},
 	"autoload": {
 		"psr-0": {
-			"ComposerHookHandler": "includes/composer"
+			"ComposerHookHandler": "includes/composer",
+			"ComposerVendorHtaccessCreator": "includes/composer"
 		}
 	},
 	"scripts": {
@@ -78,8 +79,10 @@
 		"pre-install-cmd": "ComposerHookHandler::onPreInstall",
 		"pre-update-cmd": "ComposerHookHandler::onPreUpdate",
 		"post-update-cmd": [
-			"wget -nc https://github.com/hallowelt/misc-BSsolr/releases/download/v4.7.2/solr.war -P extensions/BlueSpiceExtensions/ExtendedSearch/webservices"
+			"wget -nc https://github.com/hallowelt/misc-BSsolr/releases/download/v4.7.2/solr.war -P extensions/BlueSpiceExtensions/ExtendedSearch/webservices",
+			"ComposerVendorHtaccessCreator::onEvent"
 		],
+		"post-install-cmd": "ComposerVendorHtaccessCreator::onEvent",
 		"test": [
 			"composer lint",
 			"composer phpcs"

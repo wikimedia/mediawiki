@@ -157,6 +157,25 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$wgRequest->setVal( 'variant', null );
 		$this->assertEquals( 'tg', $this->lc->getPreferredVariant() );
 	}
+
+	/**
+	 * Test exhausting pcre.backtrack_limit
+	 */
+	public function testAutoConvertT124404() {
+		$testString = '';
+		for ( $i = 0; $i < 1000; $i++ ) {
+			$testString .= 'xxx xxx xxx';
+		}
+		$testString .= "\n<big id='в'></big>";
+		$old = ini_set( 'pcre.backtrack_limit', 200 );
+		$result = $this->lc->autoConvert( $testString, 'tg-latn' );
+		ini_set( 'pcre.backtrack_limit', $old );
+		// The в in the id attribute should not get converted to a v
+		$this->assertFalse(
+			strpos( $result, 'v' ),
+			"в converted to v despite being in attribue"
+		);
+	}
 }
 
 /**

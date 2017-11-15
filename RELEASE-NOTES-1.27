@@ -1,5 +1,5 @@
 == MediaWiki 1.27.4 ==
-This not a release yet!
+This is a security and maintenance release of the MediaWiki 1.27 branch.
 
 === Changes since 1.27.3 ===
 * (T100085) Better handling of jobs execution in post-connection shutdown.
@@ -18,6 +18,17 @@ This not a release yet!
 * (T160298) Remove use of implicitGroupBy() in ActiveUsersPager.
 * (T142304) Allow putting the app ID in the password for bot passwords.
 * Updated dev dependancy phpunit/phpunit from v4.8.24 to v4.8.36.
+* (T178451) SECURITY: Potential XSS when $wgShowExceptionDetails = false and browser
+  sends non-standard url escaping.
+* (T165846) SECURITY: BotPassword login attempts weren't throttled.
+* (T128209) SECURITY: Reflected File Download from api.php.
+* (T134100) SECURITY: Do not reveal if user exists during login failure.
+* (T176247) SECURITY: Ensure Message::rawParams can't lead to XSS.
+* (T125163) SECURITY: Make anchor for headlines escape > and <.
+* (T180237) SECURITY: Protect vendor folder with .htaccess.
+* (T180231) SECURITY: Remove PHPUnit file with known RCE if exists in update.php.
+* (T124404) SECURITY: XSS in langconverter when regex hits pcre.backtrack_limit.
+* (T119158) SECURITY: Handle -{}- syntax in attributes safely.
 
 == MediaWiki 1.27.3 ==
 Due to a packaging error, the wrong version of the SyntaxHighlight extension was
