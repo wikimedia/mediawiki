@@ -3415,6 +3415,7 @@
 	"fileduplicatesearch-noresults": "Tiedostoa nimeltä ”$1” ei löytynyt.",
 	"specialpages": "Toimintosivut",
 	"specialpages-note-top": "Merkkien selitys",
+	"specialpages-note-restricted": "* Tavalliset toimintosivut.\n* <span class=\"mw-specialpagerestricted\">Rajoitetut toimintosivut.</span>",
 	"specialpages-group-maintenance": "Sivujen huoltaminen",
 	"specialpages-group-other": "Muut",
 	"specialpages-group-login": "Sisäänkirjautuminen ja tunnusten luonti",
@@ -3534,9 +3535,12 @@
 	"compare-title-not-exists": "Määrittämääsi sivua ei ole.",
 	"compare-revision-not-exists": "Määrittämääsi versiota ei ole.",
 	"diff-form": "Eroavaisuudet",
+	"diff-form-oldid": "Vanhan sivuversion tunnistenumero (vapaaehtoinen tieto)",
+	"diff-form-revid": "Eroavan sivuversion tunnistenumero",
 	"diff-form-submit": "Näytä muutokset",
 	"permanentlink": "Pysyvä linkki",
 	"permanentlink-revid": "Versiotunniste",
+	"permanentlink-submit": "Mene sivuversioon",
 	"dberr-problems": "Tällä sivustolla on teknisiä ongelmia.",
 	"dberr-again": "Odota hetki ja lataa sivu uudelleen.",
 	"dberr-info": "(Tietokantaan ei saada yhteyttä: $1)",
@@ -3939,5 +3943,6 @@
 	"gotointerwiki-external": "Olet lähdössä {{GRAMMAR:elative|{{SITENAME}}}} toiselle sivustolle [[$2]].\n\n'''[$1 Jatka osoitteeseen $1]'''",
 	"undelete-cantedit": "Et voi palauttaa tätä sivua, koska sinulla ei ole oikeutta muokata tätä sivua.",
 	"undelete-cantcreate": "Et voi palauttaa tätä sivua, koska tällä nimellä ei ole olemassaolevaa sivua eikä sinulla ole oikeutta luoda tätä sivua.",
+	"pagedata-title": "Sivudata",
 	"pagedata-bad-title": "Virheellinen otsikko: $1."
 }

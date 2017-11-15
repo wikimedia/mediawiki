@@ -128,7 +128,7 @@ class MWExceptionRenderer {
 
 			// Show any custom GUI message before the details
 			if ( $e instanceof MessageSpecifier ) {
-				$wgOut->addHTML( Message::newFromSpecifier( $e )->escaped() );
+				$wgOut->addHTML( Html::element( 'p', [], Message::newFromSpecifier( $e )->text() ) );
 			}
 			$wgOut->addHTML( self::getHTML( $e ) );
 
@@ -169,14 +169,15 @@ class MWExceptionRenderer {
 		} else {
 			$logId = WebRequest::getRequestId();
 			$html = "<div class=\"errorbox mw-content-ltr\">" .
-				'[' . $logId . '] ' .
-				gmdate( 'Y-m-d H:i:s' ) . ": " .
-				self::msg( "internalerror-fatal-exception",
-					"Fatal exception of type $1",
-					get_class( $e ),
-					$logId,
-					MWExceptionHandler::getURL()
-				) . "</div>\n" .
+				htmlspecialchars(
+					'[' . $logId . '] ' .
+					gmdate( 'Y-m-d H:i:s' ) . ": " .
+					self::msg( "internalerror-fatal-exception",
+						"Fatal exception of type $1",
+						get_class( $e ),
+						$logId,
+						MWExceptionHandler::getURL()
+				) ) . "</div>\n" .
 				"<!-- " . wordwrap( self::getShowBacktraceError( $e ), 50 ) . " -->";
 		}
 

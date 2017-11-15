@@ -340,10 +340,20 @@ abstract class DatabaseUpdater {
 	 *
 	 * @param string $tableName The table name
 	 * @param string $fieldName The field to be modified
-	 * @param string $sqlPath The path to the SQL change path
+	 * @param string $sqlPath The path to the SQL patch
 	 */
 	public function modifyExtensionField( $tableName, $fieldName, $sqlPath ) {
 		$this->extensionUpdates[] = [ 'modifyField', $tableName, $fieldName, $sqlPath, true ];
+	}
+
+	/**
+	 * @since 1.31
+	 *
+	 * @param string $tableName The table name
+	 * @param string $sqlPath The path to the SQL patch
+	 */
+	public function modifyExtensionTable( $tableName, $sqlPath ) {
+		$this->extensionUpdates[] = [ 'modifyTable', $tableName, $sqlPath, true ];
 	}
 
 	/**

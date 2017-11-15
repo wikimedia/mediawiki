@@ -1342,7 +1342,7 @@
 	"rcfilters-savedqueries-apply-and-setdefault-label": "יצירת מסנן התחלתי",
 	"rcfilters-savedqueries-cancel-label": "ביטול",
 	"rcfilters-savedqueries-add-new-title": "שמירת הגדרות המסננים הנוכחיות",
-	"rcfilters-savedqueries-already-saved": "מסננים אלה כבר נשמרו",
+	"rcfilters-savedqueries-already-saved": "מסננים אלה כבר נשמרו. באפשרותך לשנות את ההגדרות שלך כדי ליצור ולשמור מסנן חדש.",
 	"rcfilters-restore-default-filters": "שחזור למסנני ברירת המחדל",
 	"rcfilters-clear-all-filters": "מחיקת כל המסננים",
 	"rcfilters-show-new-changes": "הצגת השינויים החדשים ביותר",

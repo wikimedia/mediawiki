@@ -1123,11 +1123,29 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return string
 	 */
 	protected function replaceParameters( $message, $type = 'before', $format ) {
+		// A temporary marker for $1 parameters that is only valid
+		// in non-attribute contexts. However if the entire message is escaped
+		// then we don't want to use it because it will be mangled in all contexts
+		// and its unnessary as ->escaped() messages aren't html.
+		$marker = $format === self::FORMAT_ESCAPED ? '$' : '$\'"';
 		$replacementKeys = [];
 		foreach ( $this->parameters as $n => $param ) {
 			list( $paramType, $value ) = $this->extractParam( $param, $format );
-			if ( $type === $paramType ) {
-				$replacementKeys['$' . ( $n + 1 )] = $value;
+			if ( $type === 'before' ) {
+				if ( $paramType === 'before' ) {
+					$replacementKeys['$' . ( $n + 1 )] = $value;
+				} else /* $paramType === 'after' */ {
+					// To protect against XSS from replacing parameters
+					// inside html attributes, we convert $1 to $'"1.
+					// In the event that one of the parameters ends up
+					// in an attribute, either the ' or the " will be
+					// escaped, breaking the replacement and avoiding XSS.
+					$replacementKeys['$' . ( $n + 1 )] = $marker . ( $n + 1 );
+				}
+			} else {
+				if ( $paramType === 'after' ) {
+					$replacementKeys[$marker . ( $n + 1 )] = $value;
+				}
 			}
 		}
 		$message = strtr( $message, $replacementKeys );

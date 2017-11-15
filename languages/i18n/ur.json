@@ -33,7 +33,8 @@
 			"Junaid Ahmad",
 			"Abuaneeqa",
 			"Saraiki",
-			"BukhariSaeed"
+			"BukhariSaeed",
+			"Zainab Meher"
 		]
 	},
 	"tog-underline": "ربط کی خط کشیدگی:",
@@ -1313,10 +1314,11 @@
 	"rcfilters-savedqueries-apply-and-setdefault-label": "طے شدہ فلٹر بنائیں",
 	"rcfilters-savedqueries-cancel-label": "منسوخ کریں",
 	"rcfilters-savedqueries-add-new-title": "فلٹر کی موجودہ ترتیبات محفوظ کریں",
+	"rcfilters-savedqueries-already-saved": "یہ فلٹرز پھلے سے محفوظ کر دیۓ گۓ ہیں۔نۓ فحفوظ شدہ فلٹرز بنانے کے لیۓاپنی ترکیب تبدیل کریں۔",
 	"rcfilters-restore-default-filters": "طے شدہ فلٹر بحال کریں",
 	"rcfilters-clear-all-filters": "تمام فلٹروں کو ہٹائیں",
 	"rcfilters-show-new-changes": "تازہ ترین تبدیلیاں دیکھیں",
-	"rcfilters-search-placeholder": "حالیہ تبدیلیوں کا فلٹر (تلاش یا تحریر کریں)",
+	"rcfilters-search-placeholder": "تبدیلیوں کو فلٹر کریں (فلٹر کا نام جاننے کے لیے مینو استعمال کریں یا تلاش کریں)",
 	"rcfilters-invalid-filter": "نادرست فلٹر",
 	"rcfilters-empty-filter": "کوئی فلٹر فعال نہیں ہے چنانچہ تمام شراکتیں دکھائی جا رہی ہیں۔",
 	"rcfilters-filterlist-title": "فلٹروں کی فہرست",

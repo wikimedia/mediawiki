@@ -1355,6 +1355,7 @@
 	"rcfilters-savedqueries-apply-and-setdefault-label": "Δημιουργία προεπιλεγμένου φίλτρου",
 	"rcfilters-savedqueries-cancel-label": "Ακύρωση",
 	"rcfilters-savedqueries-add-new-title": "Αποθήκευση τρεχουσών ρυθμίσεων φίλτρων",
+	"rcfilters-savedqueries-already-saved": "Αυτά τα φίλτρα έχουν ήδη αποθηκευτεί. Αλλάξετε τις παραμέτρους για να δημιουργήσετε ένα νέο Αποθηκευμένο Φίλτρο.",
 	"rcfilters-restore-default-filters": "Επαναφορά προεπιλεγμένων φίλτρων",
 	"rcfilters-clear-all-filters": "Εκκαθάριση όλων των φίλτρων",
 	"rcfilters-show-new-changes": "Προβολή νεότερων αλλαγών",

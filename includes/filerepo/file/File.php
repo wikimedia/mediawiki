@@ -582,6 +582,25 @@ abstract class File implements IDBAccessObject {
 	}
 
 	/**
+	 * Get the language code from the available languages for this file that matches the language
+	 * requested by the user
+	 *
+	 * @param string $userPreferredLanguage
+	 * @return string|null
+	 */
+	public function getMatchedLanguage( $userPreferredLanguage ) {
+		$handler = $this->getHandler();
+		if ( $handler && method_exists( $handler, 'getMatchedLanguage' ) ) {
+			return $handler->getMatchedLanguage(
+				$userPreferredLanguage,
+				$handler->getAvailableLanguages( $this )
+			);
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * In files that support multiple language, what is the default language
 	 * to use if none specified.
 	 *

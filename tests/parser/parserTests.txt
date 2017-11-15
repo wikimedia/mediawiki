@@ -15140,9 +15140,9 @@ SVG thumbnails with invalid language code
 !! options
 parsoid=wt2html,wt2wt,html2html
 !! wikitext
-[[File:Foobar.svg|thumb|caption|lang=invalid.language.code]]
+[[File:Foobar.svg|thumb|caption|lang=invalid:language:code]]
 !! html/php
-<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.svg" class="image"><img alt="" src="http://example.com/images/thumb/f/ff/Foobar.svg/180px-Foobar.svg.png" width="180" height="135" class="thumbimage" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/270px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.svg" class="internal" title="Enlarge"></a></div>lang=invalid.language.code</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.svg" class="image"><img alt="" src="http://example.com/images/thumb/f/ff/Foobar.svg/180px-Foobar.svg.png" width="180" height="135" class="thumbimage" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/270px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.svg" class="internal" title="Enlarge"></a></div>lang=invalid:language:code</div></div></div>
 
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.svg"><img resource="./File:Foobar.svg" src="//example.com/images/f/ff/Foobar.svg" data-file-width="240" data-file-height="180" data-file-type="drawing" height="165" width="220"/></a><figcaption>lang=invalid.language.code</figcaption></figure>
@@ -18503,6 +18503,20 @@ all additional text is vanished
 <p>but if we add a conversion instance: <span typeof="mw:LanguageVariant" data-parsoid='{"tSp":[6]}' data-mw-variant='{"twoway":[{"l":"zh-cn","t":"xxx"},{"l":"zh-tw","t":"yyy"}]}'></span></p>
 <p>then we get cut off here: }-</p>
 <p>all additional text is vanished</p>
+!! end
+
+!! test
+Language converter glossary rules inside attributes (T119158)
+!! options
+language=sr variant=sr-el
+!! wikitext
+-{H|foAjrjvi=>sr-el:" onload="alert(1)" data-foo="}-
+
+[[File:Foobar.jpg|alt=-{}-foAjrjvi-{}-]]
+!! html
+<p>
+</p><p><a href="/wiki/%D0%94%D0%B0%D1%82%D0%BE%D1%82%D0%B5%D0%BA%D0%B0:Foobar.jpg" class="image"><img alt="&quot; onload=&quot;alert(1)&quot; data-foo=&quot;" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
+</p>
 !! end
 
 !! test

@@ -467,7 +467,7 @@
 	"nosuchusershort": "There is no user by the name \"$1\".\nCheck your spelling.",
 	"nouserspecified": "You have to specify a username.",
 	"login-userblocked": "This user is blocked. Login not allowed.",
-	"wrongpassword": "Incorrect password entered.\nPlease try again.",
+	"wrongpassword": "Incorrect username or password entered.\nPlease try again.",
 	"wrongpasswordempty": "Password entered was blank.\nPlease try again.",
 	"passwordtooshort": "Passwords must be at least {{PLURAL:$1|1 character|$1 characters}}.",
 	"passwordtoolong": "Passwords cannot be longer than {{PLURAL:$1|1 character|$1 characters}}.",

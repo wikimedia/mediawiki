@@ -1374,7 +1374,7 @@
 	"rcfilters-savedqueries-apply-and-setdefault-label": "إنشاء مرشح افتراضي",
 	"rcfilters-savedqueries-cancel-label": "ألغ",
 	"rcfilters-savedqueries-add-new-title": "احفظ إعدادات المرشحات الحالية",
-	"rcfilters-savedqueries-already-saved": "المرشحات محفوظة بالفعل",
+	"rcfilters-savedqueries-already-saved": "هذه المرشحات محفوظة بالفعل. غير إعداداتك لإنشاء مرشح محفوظ جديد.",
 	"rcfilters-restore-default-filters": "استرجاع المرشحات الافتراضية",
 	"rcfilters-clear-all-filters": "مسح كل المرشحات",
 	"rcfilters-show-new-changes": "عرض أحدث التغييرات",
