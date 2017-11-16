@@ -1339,7 +1339,6 @@ class Parser {
 			'/(.) (?=\\?|:|;|!|%|\\302\\273)/' => '\\1&#160;',
 			# french spaces, Guillemet-right
 			'/(\\302\\253) /' => '\\1&#160;',
-			'/&#160;(!\s*important)/' => ' \\1', # Beware of CSS magic word !important, T13874.
 		];
 		$text = preg_replace( array_keys( $fixtags ), array_values( $fixtags ), $text );
 

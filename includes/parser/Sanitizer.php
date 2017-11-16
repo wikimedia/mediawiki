@@ -1159,6 +1159,16 @@ class Sanitizer {
 			'__'   => '&#95;_',
 		] );
 
+		# Armor against French spaces detection (T5158)
+		$fixtags = [
+			# French spaces, last one Guillemet-left
+			# only if there is something before the space
+			'/(.) (?=\\?|:|;|!|%|\\302\\273)/' => '\\1&#32;',
+			# french spaces, Guillemet-right
+			'/(\\302\\253) /' => '\\1&#32;',
+		];
+		$encValue = preg_replace( array_keys( $fixtags ), array_values( $fixtags ), $encValue );
+
 		# Stupid hack
 		$encValue = preg_replace_callback(
 			'/((?i)' . wfUrlProtocols() . ')/',
