@@ -2680,6 +2680,27 @@ class EditPage {
 		Hooks::run( 'EditPage::showEditForm:initial', [ &$editPage, &$out ] );
 
 		$this->setHeaders();
+          
+		// get categories with either "hiddencat" or "editnoticecat" properties
+		$categories =  $this->page->getCategoriesWithProperties(
+			[ 'hiddencat', 'editnoticecat' ]
+		);
+		$hiddenCategories = [];
+		$editnoticeCategories = [];
+		foreach ( $categories as $cat => $props ) {
+			// make list of hidden categories
+			if ( isset( $props['hiddencat'] ) ) {
+				$hiddenCategories[] = Title::makeTitle( NS_CATEGORY, $cat );
+			}
+			// make list of categories to check for per-category editnotices
+			if ( isset( $props['editnoticecat'] ) ) {
+				$editnoticeCategories[] = $cat;
+			}
+		}
+          
+		if ( $this->showHeader( $editnoticeCategories ) === false ) {
+			return;
+		}
 
 		$this->addTalkPageText();
 		$this->addEditNotices();
@@ -2882,7 +2903,7 @@ class EditPage {
 		$out->addHTML( $this->makeTemplatesOnThisPageList( $this->getTemplates() ) );
 
 		$out->addHTML( Html::rawElement( 'div', [ 'class' => 'hiddencats' ],
-			Linker::formatHiddenCategories( $this->page->getHiddenCategories() ) ) );
+			Linker::formatHiddenCategories( $hiddenCategories ) ) );
 
 		$out->addHTML( Html::rawElement( 'div', [ 'class' => 'limitreport' ],
 			self::getPreviewLimitReport( $this->mParserOutput ) ) );
@@ -4543,9 +4564,9 @@ class EditPage {
 	/**
 	 * @since 1.29
 	 */
-	protected function addEditNotices() {
+	protected function addEditNotices( $editnoticeCategories ) {
 		$out = $this->context->getOutput();
-		$editNotices = $this->mTitle->getEditNotices( $this->oldid );
+		$editNotices = $this->mTitle->getEditNotices( $this->oldid, $editnoticeCategories );
 		if ( count( $editNotices ) ) {
 			$out->addHTML( implode( "\n", $editNotices ) );
 		} else {
