@@ -132,13 +132,17 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	/**
 	 * Get the OOUI version of this field.
 	 *
+	 * Returns OOUI\CheckboxMultiselectInputWidget for fields that only have one section,
+	 * string otherwise.
+	 *
 	 * @since 1.28
 	 * @param string[] $value
-	 * @return OOUI\CheckboxMultiselectInputWidget
+	 * @return string|OOUI\CheckboxMultiselectInputWidget
 	 */
 	public function getInputOOUI( $value ) {
 		$this->mParent->getOutput()->addModules( 'oojs-ui-widgets' );
 
+		$hasSections = false;
 		$optionsOouiSections = [];
 		$options = $this->getOptions();
 		// If the options are supposed to be split into sections, each section becomes a separate
@@ -147,6 +151,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			if ( is_array( $section ) ) {
 				$optionsOouiSections[ $label ] = Xml::listDropDownOptionsOoui( $section );
 				unset( $options[$label] );
+				$hasSections = true;
 			}
 		}
 		// If anything remains in the array, they are sectionless options. Put them in a separate widget
@@ -158,7 +163,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			);
 		}
 
-		$out = '';
+		$out = [];
 		foreach ( $optionsOouiSections as $sectionLabel => $optionsOoui ) {
 			$attr = [];
 			$attr['name'] = "{$this->mName}[]";
@@ -185,16 +190,22 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 
 			$widget = new OOUI\CheckboxMultiselectInputWidget( $attr );
 			if ( $sectionLabel ) {
-				$out .= new OOUI\FieldsetLayout( [
+				$out[] = new OOUI\FieldsetLayout( [
 					'items' => [ $widget ],
 					'label' => $sectionLabel,
 				] );
 			} else {
-				$out .= $widget;
+				$out[] = $widget;
 			}
 		}
 
-		return $out;
+		if ( !$hasSections ) {
+			// Directly return the only OOUI\CheckboxMultiselectInputWidget.
+			// This allows it to be made infusable and later tweaked by JS code.
+			return $out[ 0 ];
+		}
+
+		return implode( '', $out );
 	}
 
 	/**
