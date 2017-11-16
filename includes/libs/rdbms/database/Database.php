@@ -3424,7 +3424,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			if ( $done || feof( $fp ) ) {
 				$cmd = $this->replaceVars( $cmd );
 
-				if ( !$inputCallback || call_user_func( $inputCallback, $cmd ) ) {
+				if ( $inputCallback ) {
+					$callbackResult = call_user_func( $inputCallback, $cmd );
+
+					if ( is_string( $callbackResult ) || !$callbackResult ) {
+						$cmd = $callbackResult;
+					}
+				}
+
+				if ( $cmd ) {
 					$res = $this->query( $cmd, $fname );
 
 					if ( $resultCallback ) {

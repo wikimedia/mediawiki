@@ -50,12 +50,12 @@ class CloneDatabase {
 	 * @param bool $dropCurrentTables
 	 */
 	public function __construct( IMaintainableDatabase $db, array $tablesToClone,
-		$newTablePrefix, $oldTablePrefix = '', $dropCurrentTables = true
+		$newTablePrefix, $oldTablePrefix = null, $dropCurrentTables = true
 	) {
 		$this->db = $db;
 		$this->tablesToClone = $tablesToClone;
 		$this->newTablePrefix = $newTablePrefix;
-		$this->oldTablePrefix = $oldTablePrefix ? $oldTablePrefix : $this->db->tablePrefix();
+		$this->oldTablePrefix = $oldTablePrefix !== null ? $oldTablePrefix : $this->db->tablePrefix();
 		$this->dropCurrentTables = $dropCurrentTables;
 	}
 
