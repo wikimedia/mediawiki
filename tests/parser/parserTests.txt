@@ -6350,7 +6350,7 @@ Accept "!!" in table data
 
 !! html/parsoid
 <table>
-<tbody><tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td data-parsoid='{"autoInsertedEnd":true}'> Foo!! </td><td data-parsoid='{"stx_v":"row","autoInsertedEnd":true}'></td></tr>
+<tbody><tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td data-parsoid='{"autoInsertedEnd":true}'> Foo!! </td><td data-parsoid='{"stx":"row","autoInsertedEnd":true}'></td></tr>
 </tbody></table>
 !! end
 
@@ -6626,7 +6626,7 @@ parsoid=wt2html,html2html
 !! html/parsoid
 <table><tbody>
 <tr>
-<td data-parsoid='{"startTagSrc":"| ","attrSepSrc":"|","autoInsertedEnd":true}'>[<a rel="mw:ExtLink" href="ftp://%7Cx" data-parsoid='{"stx":"url","a":{"href":"ftp://%7Cx"},"sa":{"href":"ftp://|x"}}'>ftp://%7Cx</a></td><td data-parsoid='{"stx_v":"row","autoInsertedEnd":true}'>]" onmouseover="alert(document.cookie)">test</td></tr></tbody></table>
+<td data-parsoid='{"startTagSrc":"| ","attrSepSrc":"|","autoInsertedEnd":true}'>[<a rel="mw:ExtLink" href="ftp://%7Cx" data-parsoid='{"stx":"url","a":{"href":"ftp://%7Cx"},"sa":{"href":"ftp://|x"}}'>ftp://%7Cx</a></td><td data-parsoid='{"stx":"row","autoInsertedEnd":true}'>]" onmouseover="alert(document.cookie)">test</td></tr></tbody></table>
 !! end
 
 !! test
@@ -6683,7 +6683,7 @@ parsoid=wt2html
 
 !! html/parsoid
 <table>
-<tbody><tr><td> style="color: red !important;" data-contrived="put this here </td><td data-parsoid='{"stx_v":"row","a":{"\"":null},"sa":{"\"":""},"autoInsertedEnd":true}'> foo</td></tr>
+<tbody><tr><td> style="color: red !important;" data-contrived="put this here </td><td data-parsoid='{"stx":"row","a":{"\"":null},"sa":{"\"":""},"autoInsertedEnd":true}'> foo</td></tr>
 </tbody></table>
 !! end
 
@@ -11492,9 +11492,9 @@ Abort table cell attribute parsing on wikilink
 
 !! html/parsoid
 <table>
-<tbody><tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td data-parsoid='{"autoInsertedEnd":true}'> testing <a rel="mw:WikiLink" href="./One" title="One" data-parsoid='{"stx":"piped","a":{"href":"./One"},"sa":{"href":"one"}}'>two</a> | three </td><td data-parsoid='{"stx_v":"row","autoInsertedEnd":true}'> four</td>
-<td data-parsoid='{"a":{"testing":null,"one":null,"two":null},"sa":{"testing":"","one":"","two":""},"autoInsertedEnd":true}'> three </td><td data-parsoid='{"stx_v":"row","autoInsertedEnd":true}'> four</td>
-<td> testing="<a rel="mw:WikiLink" href="./One" title="One" data-parsoid='{"stx":"piped","a":{"href":"./One"},"sa":{"href":"one"}}'>two</a>" | three </td><td data-parsoid='{"stx_v":"row","autoInsertedEnd":true}'> four</td></tr>
+<tbody><tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td data-parsoid='{"autoInsertedEnd":true}'> testing <a rel="mw:WikiLink" href="./One" title="One" data-parsoid='{"stx":"piped","a":{"href":"./One"},"sa":{"href":"one"}}'>two</a> | three </td><td data-parsoid='{"stx":"row","autoInsertedEnd":true}'> four</td>
+<td data-parsoid='{"a":{"testing":null,"one":null,"two":null},"sa":{"testing":"","one":"","two":""},"autoInsertedEnd":true}'> three </td><td data-parsoid='{"stx":"row","autoInsertedEnd":true}'> four</td>
+<td> testing="<a rel="mw:WikiLink" href="./One" title="One" data-parsoid='{"stx":"piped","a":{"href":"./One"},"sa":{"href":"one"}}'>two</a>" | three </td><td data-parsoid='{"stx":"row","autoInsertedEnd":true}'> four</td></tr>
 </tbody></table>
 !! end
 
@@ -14831,7 +14831,43 @@ Alt image option should handle most kinds of wikitext without barfing
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="This is a link and a bold template." src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>This is the image caption</div></div></div>
 
 !! html/parsoid
-<figure class="mw-default-size" typeof="mw:Image/Thumb mw:ExpandedAttrs" about="#mwt2" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"caption","ak":"This is the image caption"},{"ck":"alt","ak":"alt=This is a [[link]] and a {{echo|&#39;&#39;bold template&#39;&#39;}}."}]}' data-mw='{"attribs":[["thumbnail",{"html":"thumb"}],["alt",{"html":"alt=This is a &lt;a rel=\"mw:WikiLink\" href=\"./Link\" title=\"Link\" data-parsoid=&#39;{\"stx\":\"simple\",\"a\":{\"href\":\"./Link\"},\"sa\":{\"href\":\"link\"},\"dsr\":[65,73,2,2]}&#39;>link&lt;/a> and a &lt;i about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"dsr\":[80,106,null,null],\"pi\":[[{\"k\":\"1\"}]]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"&amp;#39;&amp;#39;bold template&amp;#39;&amp;#39;\"}},\"i\":0}}]}&#39;>bold template&lt;/i>."}]]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{}}'><img alt="This is a link and a bold template." resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" data-parsoid='{"a":{"alt":"This is a link and a bold template.","resource":"./File:Foobar.jpg","height":"25","width":"220"},"sa":{"alt":"alt=This is a [[link]] and a {{echo|&#39;&#39;bold template&#39;&#39;}}.","resource":"Image:Foobar.jpg"}}'/></a><figcaption>This is the image caption</figcaption></figure>
+<figure class="mw-default-size" typeof="mw:Image/Thumb mw:ExpandedAttrs" about="#mwt2" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"caption","ak":"This is the image caption"},{"ck":"alt","ak":"alt=This is a [[link]] and a {{echo|&apos;&apos;bold template&apos;&apos;}}."}]}' data-mw='{"attribs":[["thumbnail",{"html":"thumb"}],["alt",{"html":"alt=This is a &lt;a rel=\"mw:WikiLink\" href=\"./Link\" title=\"Link\" data-parsoid=&apos;{\"stx\":\"simple\",\"a\":{\"href\":\"./Link\"},\"sa\":{\"href\":\"link\"},\"dsr\":[65,73,2,2]}&apos;>link&lt;/a> and a &lt;i about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"dsr\":[80,106,null,null],\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"&amp;apos;&amp;apos;bold template&amp;apos;&amp;apos;\"}},\"i\":0}}]}&#39;>bold template&lt;/i>."}]]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{}}'><img alt="This is a link and a bold template." resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" data-parsoid='{"a":{"alt":"This is a link and a bold template.","resource":"./File:Foobar.jpg","height":"25","width":"220"},"sa":{"alt":"alt=This is a [[link]] and a {{echo|&#39;&#39;bold template&#39;&#39;}}.","resource":"Image:Foobar.jpg"}}'/></a><figcaption>This is the image caption</figcaption></figure>
+!! end
+
+!! test
+Image with table with attributes in caption
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+[[File:Foobar.jpg|thumb|
+{| class="123" |
+|- class="456" |
+| ha
+|}
+]]
+!! html/parsoid
+<figure class="mw-default-size" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"caption","ak":"\n{| class=\"123\" |\n|- class=\"456\" |\n| ha\n|}\n"}]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{"href":"File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"25","width":"220"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption>
+<table class="123">
+<tbody><tr class="456" data-parsoid='{"startTagSrc":"|-"}'>
+<td> ha</td></tr>
+</tbody></table>
+</figcaption></figure>
+!! end
+
+!! test
+Image with table with rows from templates in caption
+!! wikitext
+[[File:Foobar.jpg|thumb|
+{|
+{{echo|{{!}} hi}}
+|}
+]]
+!! html/parsoid
+<figure class="mw-default-size" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"caption","ak":"\n{|\n{{echo|{{!}} hi}}\n|}\n"}]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{"href":"File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"25","width":"220"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption>
+<table>
+<tbody about="#mwt4" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"{{!}} hi"}},"i":0}},"\n"]}'><tr><td> hi</td></tr>
+</tbody></table>
+</figcaption></figure>
 !! end
 
 !! test
@@ -22285,7 +22321,7 @@ Nested: -{zh-hans:Hi -{zh-cn:China;zh-sg:Singapore;}-;zh-hant:Hello -{zh-tw:Taiw
 <p>Nested: Hello Hong Kong!
 </p>
 !! html/parsoid
-<p>Nested: <span typeof="mw:LanguageVariant" data-parsoid='{"tSp":[7]}' data-mw-variant='{"twoway":[{"l":"zh-hans","t":"Hi &lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&#39;{\"twoway\":[{\"l\":\"zh-cn\",\"t\":\"China\"},{\"l\":\"zh-sg\",\"t\":\"Singapore\"}]}&#39; data-parsoid=&#39;{\"fl\":[],\"tSp\":[7],\"dsr\":[21,53,null,2]}&#39;>&lt;/span>"},{"l":"zh-hant","t":"Hello &lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&#39;{\"twoway\":[{\"l\":\"zh-tw\",\"t\":\"Taiwan\"},{\"l\":\"zh-hk\",\"t\":\"H&amp;lt;span typeof=\\\"mw:LanguageVariant\\\" data-mw-variant=&amp;#39;{\\\"disabled\\\":{\\\"t\\\":\\\"ong\\\"}}&amp;#39; data-parsoid=&amp;#39;{\\\"fl\\\":[],\\\"dsr\\\":[90,97,null,2]}&amp;#39;>&amp;lt;/span> K&amp;lt;span typeof=\\\"mw:LanguageVariant\\\" data-mw-variant=&amp;#39;{\\\"disabled\\\":{\\\"t\\\":\\\"\\\"}}&amp;#39; data-parsoid=&amp;#39;{\\\"fl\\\":[],\\\"dsr\\\":[99,103,null,2]}&amp;#39;>&amp;lt;/span>ong\"}]}&#39; data-parsoid=&#39;{\"fl\":[],\"tSp\":[7],\"dsr\":[68,109,null,2]}&#39;>&lt;/span>"}]}'></span>!</p>
+<p>Nested: <span typeof="mw:LanguageVariant" data-parsoid='{"tSp":[7]}' data-mw-variant='{"twoway":[{"l":"zh-hans","t":"Hi &lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&apos;{\"twoway\":[{\"l\":\"zh-cn\",\"t\":\"China\"},{\"l\":\"zh-sg\",\"t\":\"Singapore\"}]}&apos; data-parsoid=&apos;{\"fl\":[],\"tSp\":[7],\"dsr\":[21,53,null,2]}&apos;>&lt;/span>"},{"l":"zh-hant","t":"Hello &lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&apos;{\"twoway\":[{\"l\":\"zh-tw\",\"t\":\"Taiwan\"},{\"l\":\"zh-hk\",\"t\":\"H&amp;lt;span typeof=\\\"mw:LanguageVariant\\\" data-mw-variant=&amp;apos;{\\\"disabled\\\":{\\\"t\\\":\\\"ong\\\"}}&amp;apos; data-parsoid=&amp;apos;{\\\"fl\\\":[],\\\"dsr\\\":[90,97,null,2]}&amp;apos;>&amp;lt;/span> K&amp;lt;span typeof=\\\"mw:LanguageVariant\\\" data-mw-variant=&amp;apos;{\\\"disabled\\\":{\\\"t\\\":\\\"\\\"}}&amp;apos; data-parsoid=&amp;apos;{\\\"fl\\\":[],\\\"dsr\\\":[99,103,null,2]}&amp;apos;>&amp;lt;/span>ong\"}]}&apos; data-parsoid=&apos;{\"fl\":[],\"tSp\":[7],\"dsr\":[68,109,null,2]}&apos;>&lt;/span>"}]}'></span>!</p>
 !! end
 
 !! test
@@ -22298,7 +22334,7 @@ language=zh variant=zh-cn
 <p><span title="X">A</span>
 </p>
 !! html/parsoid
-<p><span typeof="mw:LanguageVariant" data-mw-variant='{"filter":{"l":["zh","zh-hans","zh-hant"],"t":"&lt;span title=\"\" about=\"#mwt1\" typeof=\"mw:ExpandedAttrs\" data-parsoid=&#39;{\"stx\":\"html\",\"a\":{\"title\":\"\"},\"sa\":{\"title\":\"-{X}-\"},\"dsr\":[21,49,20,7]}&#39; data-mw=&#39;{\"attribs\":[[{\"txt\":\"title\"},{\"html\":\"&amp;lt;span typeof=\\\"mw:LanguageVariant\\\" data-mw-variant=&amp;#39;{\\\"disabled\\\":{\\\"t\\\":\\\"X\\\"}}&amp;#39; data-parsoid=&amp;#39;{\\\"fl\\\":[],\\\"dsr\\\":[34,39,null,2]}&amp;#39;>&amp;lt;/span>\"}]]}&#39;>A&lt;/span>"}}'></span></p>
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"filter":{"l":["zh","zh-hans","zh-hant"],"t":"&lt;span title=\"\" about=\"#mwt1\" typeof=\"mw:ExpandedAttrs\" data-parsoid=&#39;{\"stx\":\"html\",\"a\":{\"title\":\"\"},\"sa\":{\"title\":\"-{X}-\"},\"dsr\":[21,49,20,7]}&#39; data-mw=&#39;{\"attribs\":[[{\"txt\":\"title\"},{\"html\":\"&amp;lt;span typeof=\\\"mw:LanguageVariant\\\" data-mw-variant=&amp;apos;{\\\"disabled\\\":{\\\"t\\\":\\\"X\\\"}}&amp;apos; data-parsoid=&amp;apos;{\\\"fl\\\":[],\\\"dsr\\\":[34,39,null,2]}&amp;apos;>&amp;lt;/span>\"}]]}&#39;>A&lt;/span>"}}'></span></p>
 !! end
 
 !! test
@@ -22311,7 +22347,7 @@ language=zh variant=zh-cn
 <p><span title="X">A</span>
 </p>
 !! html/parsoid
-<p><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"&lt;span title=\"\" about=\"#mwt1\" typeof=\"mw:ExpandedAttrs\" data-parsoid=&#39;{\"stx\":\"html\",\"a\":{\"title\":\"\"},\"sa\":{\"title\":\"-{X}-\"},\"dsr\":[2,30,20,7]}&#39; data-mw=&#39;{\"attribs\":[[{\"txt\":\"title\"},{\"html\":\"&amp;lt;span typeof=\\\"mw:LanguageVariant\\\" data-mw-variant=&amp;#39;{\\\"disabled\\\":{\\\"t\\\":\\\"X\\\"}}&amp;#39; data-parsoid=&amp;#39;{\\\"fl\\\":[],\\\"dsr\\\":[15,20,null,2]}&amp;#39;>&amp;lt;/span>\"}]]}&#39;>A&lt;/span>"}}'></span></p>
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"&lt;span title=\"\" about=\"#mwt1\" typeof=\"mw:ExpandedAttrs\" data-parsoid=&#39;{\"stx\":\"html\",\"a\":{\"title\":\"\"},\"sa\":{\"title\":\"-{X}-\"},\"dsr\":[2,30,20,7]}&#39; data-mw=&#39;{\"attribs\":[[{\"txt\":\"title\"},{\"html\":\"&amp;lt;span typeof=\\\"mw:LanguageVariant\\\" data-mw-variant=&amp;apos;{\\\"disabled\\\":{\\\"t\\\":\\\"X\\\"}}&amp;apos; data-parsoid=&amp;apos;{\\\"fl\\\":[],\\\"dsr\\\":[15,20,null,2]}&amp;apos;>&amp;lt;/span>\"}]]}&#39;>A&lt;/span>"}}'></span></p>
 !! end
 
 # Parsoid and PHP disagree on how to parse this example: Parsoid
@@ -28319,17 +28355,17 @@ parsoid=html2wt
 <tbody>
 <tr><td>a
 b
-</td><td data-parsoid='{"stx_v":"row"}'>c</td></tr>
+</td><td data-parsoid='{"stx":"row"}'>c</td></tr>
 <tr><td><p>x</p>
-</td><td data-parsoid='{"stx_v":"row", "startTagSrc": "{{!}}{{!}}"}'>y</td></tr>
+</td><td data-parsoid='{"stx":"row", "startTagSrc": "{{!}}{{!}}"}'>y</td></tr>
 </tbody></table>
 <table>
 <tbody>
 <tr><th>a
 b
-</th><th data-parsoid='{"stx_v":"row"}'>c</th></tr>
+</th><th data-parsoid='{"stx":"row"}'>c</th></tr>
 <tr><th><p>x</h>
-</th><th data-parsoid='{"stx_v":"row"}'>y</th></tr>
+</th><th data-parsoid='{"stx":"row"}'>y</th></tr>
 </tbody></table>
 !! wikitext
 {|

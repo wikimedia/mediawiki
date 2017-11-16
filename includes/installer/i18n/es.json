@@ -256,7 +256,7 @@
 	"config-email-settings": "Configuración de correo electrónico",
 	"config-enable-email": "Activar el envío de correos electrónicos",
 	"config-enable-email-help": "Si quieres que el correo electrónico funcione, la [http://www.php.net/manual/en/mail.configuration.php configuración PHP de correo electrónico] debe ser la correcta.\nSi no quieres la funcionalidad de correo electrónico, puedes desactivarla aquí.",
-	"config-email-user": "Habilitar correo electrónico entre usuarios",
+	"config-email-user": "Activar correo electrónico entre usuarios",
 	"config-email-user-help": "Permitir que todos los usuarios intercambien correos electrónicos si lo han activado en sus preferencias.",
 	"config-email-usertalk": "Activar notificaciones de páginas de discusión de usuarios",
 	"config-email-usertalk-help": "Permitir a los usuarios recibir notificaciones de cambios en la página de discusión de usuario, si lo han activado en sus preferencias.",

@@ -150,20 +150,9 @@ class PreferencesTest extends MediaWikiTestCase {
 
 	/** Helper */
 	protected function prefsFor( $user_key ) {
-		// TODO This should use Preferences::getPreferences() instead of calling internal methods.
-		// Unfortunately that currently ignores the $user parameter if it has cached data, even for
-		// a different user...
-		OutputPage::setupOOUI(
-			strtolower( $this->context->getSkin()->getSkinName() ),
-			$this->context->getLanguage()->getDir()
-		);
-		$preferences = [];
-		Preferences::profilePreferences(
+		return Preferences::getPreferences(
 			$this->prefUsers[$user_key],
-			$this->context,
-			$preferences
+			$this->context
 		);
-
-		return $preferences;
 	}
 }
