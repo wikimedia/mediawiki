@@ -167,9 +167,11 @@ class UpdateMediaWiki extends Maintenance {
 
 		$badPhpUnit = dirname( __DIR__ ) . '/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php';
 		if ( file_exists( $badPhpUnit ) ) {
+			// @codingStandardsIgnoreStart Generic.Files.LineLength.TooLong
 			// Bad versions of the file are:
 			// https://raw.githubusercontent.com/sebastianbergmann/phpunit/c820f915bfae34e5a836f94967a2a5ea5ef34f21/src/Util/PHP/eval-stdin.php
 			// https://raw.githubusercontent.com/sebastianbergmann/phpunit/3aaddb1c5bd9b9b8d070b4cf120e71c36fd08412/src/Util/PHP/eval-stdin.php
+			// @codingStandardsIgnoreEnd
 			$md5 = md5_file( $badPhpUnit );
 			if ( $md5 === '120ac49800671dc383b6f3709c25c099'
 				|| $md5 === '28af792cb38fc9a1b236b91c1aad2876'
