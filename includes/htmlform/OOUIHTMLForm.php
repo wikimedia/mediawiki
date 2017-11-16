@@ -182,16 +182,16 @@ class OOUIHTMLForm extends HTMLForm {
 			return '';
 		}
 
-		$config = [
-			'items' => $fieldsHtml,
-		];
+		$html = implode( '', $fieldsHtml );
+
 		if ( $sectionName ) {
-			$config['id'] = Sanitizer::escapeIdForAttribute( $sectionName );
+			$html = Html::rawElement(
+				'div',
+				[ 'id' => Sanitizer::escapeIdForAttribute( $sectionName ) ],
+				$html
+			);
 		}
-		if ( is_string( $this->mWrapperLegend ) ) {
-			$config['label'] = $this->mWrapperLegend;
-		}
-		return new OOUI\FieldsetLayout( $config );
+		return $html;
 	}
 
 	/**
@@ -283,9 +283,22 @@ class OOUIHTMLForm extends HTMLForm {
 	}
 
 	public function wrapForm( $html ) {
+		if ( is_string( $this->mWrapperLegend ) ) {
+			$content = new OOUI\FieldsetLayout( [
+				'label' => $this->mWrapperLegend,
+				'items' => [
+					new OOUI\Widget( [
+						'content' => new OOUI\HtmlSnippet( $html )
+					] ),
+				],
+			] );
+		} else {
+			$content = new OOUI\HtmlSnippet( $html );
+		}
+
 		$form = new OOUI\FormLayout( $this->getFormAttributes() + [
 			'classes' => [ 'mw-htmlform', 'mw-htmlform-ooui' ],
-			'content' => new OOUI\HtmlSnippet( $html ),
+			'content' => $content,
 		] );
 
 		// Include a wrapper for style, if requested.
