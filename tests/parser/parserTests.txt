@@ -30144,3 +30144,12 @@ foo
 
 </section><section data-mw-section-id="2"><h1 id="d"> d </h1></section>
 !! end
+
+!! test
+T5158: Test for French spaces in attributes
+!! wikitext
+<br style=" clear : both ; " />
+!! html/php
+<p><br style="clear&#32;: both&#32;;" />
+</p>
+!! end
