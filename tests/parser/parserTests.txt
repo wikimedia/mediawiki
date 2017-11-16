@@ -6589,7 +6589,7 @@ Element attributes with double ! should not be broken up by <th>
 !! html/php
 <table>
 <tr>
-<td><div style="color: red !important;" data-contrived="put this here &#124;&#124;">hi</div>
+<td><div style="color: red&#32;!important;" data-contrived="put this here &#124;&#124;">hi</div>
 </td></tr></table>
 
 !! html/parsoid
@@ -6610,7 +6610,7 @@ parsoid=wt2html
 !! html/php
 <table>
 <tr>
-<td>style="color: red !important;" data-contrived="put this here</td>
+<td>style="color: red&#160;!important;" data-contrived="put this here</td>
 <td>foo
 </td></tr></table>
 
@@ -18685,7 +18685,7 @@ Punctuation: CSS !important (T13874)
 !! wikitext
 <div style="width:50% !important">important</div>
 !! html
-<div style="width:50% !important">important</div>
+<div style="width:50%&#32;!important">important</div>
 
 !!end
 
@@ -18694,7 +18694,7 @@ Punctuation: CSS ! important (T13874; with space after)
 !! wikitext
 <div style="width:50% ! important">important</div>
 !! html
-<div style="width:50% ! important">important</div>
+<div style="width:50%&#32;! important">important</div>
 
 !!end
 
@@ -23954,10 +23954,10 @@ Play a bit with r67090 and T5158
 <div style="width:50%&#160;!important">&nbsp;</div>
 <div style="border : solid;">&nbsp;</div>
 !! html/php
-<div style="width:50% !important">&#160;</div>
+<div style="width:50%&#32;!important">&#160;</div>
 <div style="width:50% !important">&#160;</div>
 <div style="width:50% !important">&#160;</div>
-<div style="border&#160;: solid;">&#160;</div>
+<div style="border&#32;: solid;">&#160;</div>
 
 !! html/parsoid
 <div style="width:50% !important" data-parsoid='{"stx":"html"}'><span typeof="mw:Entity" data-parsoid='{"srcContent":" "}'> </span></div>
@@ -23965,6 +23965,15 @@ Play a bit with r67090 and T5158
 <div style="width:50% !important" data-parsoid='{"stx":"html","a":{"style":"width:50% !important"},"sa":{"style":"width:50%&amp;#160;!important"}}'><span typeof="mw:Entity" data-parsoid='{"srcContent":" "}'> </span></div>
 <div style="border : solid;" data-parsoid='{"stx":"html"}'><span typeof="mw:Entity" data-parsoid='{"srcContent":" "}'> </span></div>
 
+!! end
+
+!! test
+T5158: Test for French spaces in attributes
+!! wikitext
+<br style=" clear : both ; " />
+!! html/php
+<p><br style="clear&#32;: both&#32;;" />
+</p>
 !! end
 
 !! test
