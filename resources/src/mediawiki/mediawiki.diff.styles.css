@@ -137,6 +137,7 @@ td.diff-marker {
 .mw-diff-movedpara-left:hover,
 .mw-diff-movedpara-right:hover {
 	text-decoration: none;
+	color: transparent;
 }
 
 .mw-diff-movedpara-left:after,
