@@ -536,7 +536,7 @@
 	"nosuchusershort": "没有名为“$1”的用户。请检查您的拼写。",
 	"nouserspecified": "您必须指定一个用户名。",
 	"login-userblocked": "该用户已被封禁，禁止登录。",
-	"wrongpassword": "您输入的密码错误。请重试。",
+	"wrongpassword": "您输入的用户名或密码错误。请重试。",
 	"wrongpasswordempty": "密码输入为空。请重试。",
 	"passwordtooshort": "您的密码至少需要$1个字符。",
 	"passwordtoolong": "密码不能超过{{PLURAL:$1|$1个字符}}。",
