@@ -328,6 +328,7 @@
 	"config-help-tooltip": "kliknij, aby rozwinąć",
 	"config-nofile": "Nie udało się odnaleźć pliku \"$1\". Czy nie został usunięty?",
 	"config-extension-link": "Czy wiesz, że twoja wiki obsługuje [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions rozszerzenia]?\n\nMożesz przejrzeć [https://www.mediawiki.org/wiki/Category:Extensions_by_category rozszerzenia według kategorii] lub [https://www.mediawiki.org/wiki/Extension_Matrix Extension Matrix], aby zobaczyć pełną listę rozszerzeń.",
+	"config-screenshot": "zrzut ekranu",
 	"mainpagetext": "<strong>Instalacja MediaWiki powiodła się.</strong>",
 	"mainpagedocfooter": "Zapoznaj się z [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Podręcznikiem użytkownika] zawierającym informacje o tym jak korzystać z oprogramowania wiki.\n\n== Na początek ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista ustawień konfiguracyjnych]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Komunikaty o nowych wersjach MediaWiki (lista dyskusyjna)]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Przetłumacz MediaWiki na swój język]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Dowiedz się, jak walczyć ze spamem na swojej wiki]"
 }

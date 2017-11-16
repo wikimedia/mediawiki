@@ -1673,6 +1673,7 @@
 	"uploadstash-wrong-owner": "($1) Fitxategia ez da uneko erabiltzailearena.",
 	"uploadstash-no-such-key": "($1) gakorik ez dago, ezin da ezabatu.",
 	"uploadstash-no-extension": "Luzapena nulua da.",
+	"uploadstash-zero-length": "Fitxategiaren luzeera zero da.",
 	"invalid-chunk-offset": "Desplazamendu zati baliogabea",
 	"img-auth-accessdenied": "Sarbide ukatua",
 	"img-auth-nopathinfo": "PATH_INFO falta da.\nZure zerbitzaria ez dago informazio hau pasatzeko konfiguratuta.\nCGI-oinarriduna izan daiteke, img_auth onartzen ez duena.\nIkusi https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",

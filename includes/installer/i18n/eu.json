@@ -146,6 +146,7 @@
 	"config-upgrade-done-no-regenerate": "Eguneratze prozesua amaitu egin da.\n\nHasi ahal zara [ $1 wikia arabiltzen]",
 	"config-regenerate": "Birsortu LocalSettings.php →",
 	"config-show-table-status": "<code>SHOW TABLE STATUS</code> kontsulta huts egin du!",
+	"config-unknown-collation": "<strong>Abisua:</strong> Datu-baseak kolazio ezezaguna ari da erabiltzen.",
 	"config-db-web-account": "Datu-basearen kontua web sarbiderako.",
 	"config-db-web-help": "Aukeratu erabiliko den erabiltzaile izena eta pasahitza web serbidorea eta datu-basearen serbidorea konektatzeko, wikiren operazio normalaren bitartean.",
 	"config-db-web-account-same": "Instalazioan erabili duzun kontu berdina erabili.",
@@ -156,6 +157,7 @@
 	"config-mysql-myisam": "MyISAM",
 	"config-mysql-myisam-dep": "<strong>Oharra:</strong> MyISAM MySQL biltegiratze-motor gisa aukeratu duzu, MediaWikirekin erabiltzeko gomendagarria ez dena honengatik:\n*taula blokeoak direla-eta gauza gutxi onartu ohi du\n*beste motore batzuek baino ustelkeria gehiago izateko aukerak ditu\n*MediaWiki-ren kode baseak ez du beti kudeatzen MyISAM behar bezala\n\nZure MySQL instalazioa InnoDB onartzen badu, hori aukeratzeko gomendatzen da.\nZure MySQL instalazioa InnoDB ez badu onartzen, baliteke bertsioa berritzeko ordua izatea.",
 	"config-mysql-only-myisam-dep": "<strong> Oharra: </strong> MyISAM makinaren MySQL biltegiratze motarako bakarra da, eta hau ez da MediaWiki-rekin erabiltzeko gomendatzen, honengatik:\n* maiztasunez taula blokeoek konkurrentzia ez dute onartzen \n* Beste motore batzuek baino ustelkeria gehiago izaten dute\n* MediaWiki-ren kodekak ez du beti kudeatzen MyISAM behar bezala\n\nZure MySQL instalazioak ez du InnoDB onartzen, agian bertsio berritzeko ordua da.",
+	"config-mysql-charset": "Datu-basearen karaktere multzoa:",
 	"config-mysql-binary": "Bitarra",
 	"config-mysql-utf8": "UTF-8",
 	"config-mssql-auth": "Autentifikazio mota:",
@@ -277,7 +279,7 @@
 	"config-install-mainpage-exists": "Orri nagusia dagoeneko existitzen da, hurrengora saltatzen",
 	"config-install-extension-tables": "Taulak sortzen aktibatutako luzapenentzako.",
 	"config-install-mainpage-failed": "Orri nagusia ezin izan da txertatu: $1",
-	"config-install-done": "<strong>Zorionak!</strong>\nMediaWiki instalatu duzu.\n\nInstalatzaileak sortu egin du <code>LocalSettings.php</code>\nZure konfigurazio guztia dauka.\n\nDeskargatu egin behar duzu eta jarri <code>$4</code> -ean . Deskarga automakikoki hasiko da.\n\nEz badizu deskargatzeko aukerarik eman, edo kantzelatu egin baduzu, hurrengo linkean klikatu berrabiatzeko:\n\n$3\n\n<strong>Oharra:</strong> Instalazio prozesuatik ateratzen bazara konfigurazio artxikoa deskargatu barik, gero ez da egongo eskuragarri.\n\nBehin hori eginda, <strong>[$2 enter your wiki]</strong> ahal duzu.",
+	"config-install-done": "<strong>Zorionak!</strong>\nMediaWiki instalatu duzu.\n\nInstalatzaileak <code>LocalSettings.php</code> fitxategia sortu egin du. \nZure konfigurazio guztia darama.\n\nDeskargatu egin beharko duzu eta zure wiki instalazio oinarrian jarri (index.php-rako direktorio berean). Deskarga automakikoki hasi behar izan da.\n\nDeskargatzeko aukerarik ez bazaizu eskaini, edo kantzelatu egin baduzu, hurrengo linkean klikatu berrabiarazteko deskarga:\n\n$3\n\n<strong>Oharra:</strong> Orain ez baduzu egiten, sortutako konfigurazio fitxategi hau ez da erabilgarri egongo geroago instalazioa bertan behera uzten baduzu deskargatu gabe.\n\nBehin hori eginda, <strong>[$2 zure wikia sartu]</strong> ahal duzu.",
 	"config-install-done-path": "<strong>Zorionak!</strong>\nMediaWiki instalatu duzu.\n\nInstalatzaileak sortu egin du <code>LocalSettings.php</code>\nZure konfigurazio guztia dauka.\n\nDeskargatu egin behar duzu eta jarri <code>$4</code> -ean . Deskarga automakikoki hasiko da.\n\nEz badizu deskargatzeko aukerarik eman, edo kantzalatu egin baduzu, hurrengo linkean klikatu berrabiatzeko:\n\n$3\n\n<strong>Oharra:</strong> Instalazio prozesuatik ateratzen bazara konfigurazio artxikoa deskargatu barik, gero ez da egongo eskuragarri.\n\nBehin hori eginda, <strong>[$2 enter your wiki]</strong> ahal duzu.",
 	"config-download-localsettings": "Jaitsi <code>LocalSettings.php</code>",
 	"config-help": "Laguntza",
@@ -287,5 +289,5 @@
 	"config-skins-screenshots": "$1 (Pantaila-irudia: $2)",
 	"config-screenshot": "Pantaila-irudia",
 	"mainpagetext": "<strong>MediaWiki instalatu da.</strong>",
-	"mainpagedocfooter": "Ikus [https://meta.wikimedia.org/wiki/Help:Contents Erabiltzaile Gida] wiki softwarea erabiltzen hasteko informazio gehiagorako.\n\n== Nola hasi ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Konfigurazio balioen zerrenda]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ (Maiz egindako galderak)]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWikiren argitalpenen posta zerrenda]"
+	"mainpagedocfooter": "Ikusi [https://meta.wikimedia.org/wiki/Help:Contents Erabiltzailearen Gida] wiki softwarea erabiltzen hasteko informazio gehiagorako.\n\n== Nola hasi ==\n\n*\n [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Konfigurazio balioen zerrenda]\n*\n [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ (MediaWikin Maiz egindako galderak)]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWikiren argitalpenen posta zerrenda]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Aurkitu MediaWiki zure hizkuntzan]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Zure wikian spam-a nola borrokatzen ikasi]"
 }

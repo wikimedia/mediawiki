@@ -549,7 +549,7 @@
 	"nosuchusershort": "Non è registrato alcun utente di nome \"$1\". Verificare il nome inserito.",
 	"nouserspecified": "È necessario specificare un nome utente.",
 	"login-userblocked": "Questa utenza è bloccata. Non è possibile effettuare il login.",
-	"wrongpassword": "La password inserita non è corretta. Riprovare.",
+	"wrongpassword": "Nome utente o password inserita non corretta.\nRiprova.",
 	"wrongpasswordempty": "Non è stata inserita alcuna password. Riprovare.",
 	"passwordtooshort": "Le password devono contenere almeno {{PLURAL:$1|1 carattere|$1 caratteri}}.",
 	"passwordtoolong": "La password non può contenere più di {{PLURAL:$1|1 carattere|$1 caratteri}}.",

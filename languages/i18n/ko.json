@@ -505,7 +505,7 @@
 	"nosuchusershort": "이름이 \"$1\"인 사용자는 없습니다.\n철자가 맞는지 확인하세요.",
 	"nouserspecified": "사용자 계정 이름을 입력하지 않았습니다.",
 	"login-userblocked": "이 사용자는 차단되었습니다. 로그인할 수 없습니다.",
-	"wrongpassword": "입력한 비밀번호가 잘못되었습니다.\n다시 시도하세요.",
+	"wrongpassword": "잘못된 사용자 이름 또는 비밀번호가 입력되었습니다.\n다시 시도해 주십시오.",
 	"wrongpasswordempty": "비밀번호를 입력하지 않았습니다.\n다시 시도하세요.",
 	"passwordtooshort": "비밀번호는 {{PLURAL:$1|$1 글자}} 이상이어야 합니다.",
 	"passwordtoolong": "비밀번호는 {{PLURAL:$1|1자|$1자}}보다 길어서는 안 됩니다.",
