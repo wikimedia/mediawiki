@@ -13,7 +13,7 @@ a {
 	background: none;
 }
 
-a:not( [ href ] ) {
+a:not( [href] ) { // stylelint-disable-line selector-attribute-brackets-space-inside
 	cursor: pointer; /* Always cursor:pointer even without href */
 }
 
