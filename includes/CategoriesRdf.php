@@ -80,14 +80,23 @@ class CategoriesRdf {
 	/**
 	 * Write out the data for single category.
 	 * @param string $categoryName Category name
+	 * @param bool $isHidden Hidden category?
+	 * @param int $pages Page count (note this includes only Wiki articles, not subcats or files)
+	 * @param int $subcategories Subcategory count
 	 */
-	public function writeCategoryData( $categoryName ) {
+	public function writeCategoryData( $categoryName, $isHidden, $pages, $subcategories ) {
 		$title = Title::makeTitle( NS_CATEGORY, $categoryName );
 		$this->rdfWriter->about( $this->titleToUrl( $title ) )
 			->say( 'a' )
 			->is( self::ONTOLOGY_PREFIX, 'Category' );
+		if ( $isHidden ) {
+			$this->rdfWriter->is( self::ONTOLOGY_PREFIX, 'HiddenCategory' );
+		}
 		$titletext = $title->getText();
 		$this->rdfWriter->say( 'rdfs', 'label' )->value( $titletext );
+		$this->rdfWriter->say( self::ONTOLOGY_PREFIX, 'pages' )->value( $pages );
+		$this->rdfWriter->say( self::ONTOLOGY_PREFIX, 'subcategories' )->value( $subcategories );
+		// TODO: do we want files too here? Easy to add, but don't have use case so far.
 	}
 
 	/**
