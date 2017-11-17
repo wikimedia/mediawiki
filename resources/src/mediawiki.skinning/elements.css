@@ -13,7 +13,9 @@ a {
 	background: none;
 }
 
-a:not( [ href ] ) {
+/* Support: Firefox 57 - it can't parse `rule[ attr ]` and the LESS compiler doesn't */
+/* strip whitespace inside the :not() (T180138) */
+a:not( [href] ) { /* stylelint-disable-line selector-attribute-brackets-space-inside */
 	cursor: pointer; /* Always cursor:pointer even without href */
 }
 
