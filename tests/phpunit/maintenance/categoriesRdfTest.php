@@ -5,12 +5,33 @@ class CategoriesRdfTest extends MediaWikiLangTestCase {
 		return [
 			// batch 1
 			[
-				(object)[ 'page_title' => 'Category One', 'page_id' => 1 ],
-				(object)[ 'page_title' => '2 Category Two', 'page_id' => 2 ],
+				(object)[
+					'page_title' => 'Category One',
+					'page_id' => 1,
+					'pp_propname' => null,
+					'cat_pages' => '20',
+					'cat_subcats' => '10',
+					'cat_files' => '3'
+				],
+				(object)[
+					'page_title' => '2 Category Two',
+					'page_id' => 2,
+					'pp_propname' => 'hiddencat',
+					'cat_pages' => 20,
+					'cat_subcats' => 0,
+					'cat_files' => 3
+				],
 			],
 			// batch 2
 			[
-				(object)[ 'page_title' => 'Третья категория', 'page_id' => 3 ],
+				(object)[
+					'page_title' => 'Третья категория',
+					'page_id' => 3,
+					'pp_propname' => null,
+					'cat_pages' => '0',
+					'cat_subcats' => '0',
+					'cat_files' => '0'
+				],
 			]
 		];
 	}
