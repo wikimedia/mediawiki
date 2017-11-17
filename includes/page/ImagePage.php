@@ -315,7 +315,7 @@ class ImagePage extends Article {
 		if ( $this->displayImg->exists() ) {
 			# image
 			$page = $request->getIntOrNull( 'page' );
-			if ( is_null( $page ) ) {
+			if ( is_null( $page ) || $page <= 0 ) {
 				$params = [];
 				$page = 1;
 			} else {
@@ -458,7 +458,7 @@ class ImagePage extends Article {
 							$this->getTitle(),
 							$label,
 							[],
-							[ 'page' => $page + 1 ]
+							( $page > 0 ) ? [ 'page' => $page + 1 ] : [ 'page' => 2 ]
 						);
 						$thumb2 = Linker::makeThumbLinkObj(
 							$this->getTitle(),
@@ -466,7 +466,7 @@ class ImagePage extends Article {
 							$link,
 							$label,
 							'none',
-							[ 'page' => $page + 1 ]
+							( $page > 0 ) ? [ 'page' => $page + 1 ] : [ 'page' => 2 ]
 						);
 					} else {
 						$thumb2 = '';
