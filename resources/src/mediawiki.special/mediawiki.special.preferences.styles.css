@@ -50,6 +50,7 @@
 	border-radius: 0;
 	padding-left: 0;
 	padding-right: 0;
+	box-shadow: none;
 }
 
 /* Tweak the margins to reduce the shifting of form contents
