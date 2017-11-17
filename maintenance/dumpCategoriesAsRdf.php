@@ -58,14 +58,32 @@ class DumpCategoriesAsRdf extends Maintenance {
 	public function getCategoryIterator( IDatabase $dbr ) {
 		$it = new BatchRowIterator(
 			$dbr,
-			'page',
+			['page', 'page_props', 'category' ],
 			[ 'page_title' ],
 			$this->getBatchSize()
 		);
 		$it->addConditions( [
 			'page_namespace' => NS_CATEGORY,
 		] );
-		$it->setFetchColumns( [ 'page_title', 'page_id' ] );
+		$it->setFetchColumns( [
+			'page_title',
+			'page_id',
+			'pp_propname',
+			'cat_pages',
+			'cat_subcats',
+			'cat_files'
+		] );
+		$it->addJoinConditions(
+			[
+				'page_props' => [
+					'LEFT JOIN', [ 'pp_propname' => 'hiddencat', 'pp_page = page_id' ]
+				],
+			    'category' => [
+				    'LEFT JOIN', [ 'cat_title = page_title' ]
+			    ]
+			]
+
+		);
 		return $it;
 	}
 
@@ -90,6 +108,10 @@ class DumpCategoriesAsRdf extends Maintenance {
 		return new RecursiveIteratorIterator( $it );
 	}
 
+	/**
+	 * Produce dump header.
+	 * @param int $timestamp
+	 */
 	public function addDumpHeader( $timestamp ) {
 		global $wgRightsUrl;
 		$licenseUrl = $wgRightsUrl;
@@ -129,7 +151,12 @@ class DumpCategoriesAsRdf extends Maintenance {
 		foreach ( $this->getCategoryIterator( $dbr ) as $batch ) {
 			$pages = [];
 			foreach ( $batch as $row ) {
-				$this->categoriesRdf->writeCategoryData( $row->page_title );
+				$this->categoriesRdf->writeCategoryData(
+					$row->page_title,
+					$row->pp_propname == 'hiddencat',
+					(int)$row->cat_pages - (int)$row->cat_subcats - (int)$row->cat_files,
+					(int)$row->cat_subcats
+				);
 				$pages[$row->page_id] = $row->page_title;
 			}
 
