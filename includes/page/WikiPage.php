@@ -108,6 +108,8 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Create a WikiPage object of the appropriate class for the given title.
 	 *
+	 * MCR migration note: replaced by PageContentComposerFactory::newContentComposer
+	 *
 	 * @param Title $title
 	 *
 	 * @throws MWException
@@ -127,6 +129,7 @@ class WikiPage implements Page, IDBAccessObject {
 			return $page;
 		}
 
+		// FIXME: these are PageContentComposers!
 		switch ( $ns ) {
 			case NS_FILE:
 				$page = new WikiFilePage( $title );
@@ -143,6 +146,8 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * Constructor from a page id
+	 *
+	 * MCR migration note: replaced by PageStore::newPageRecordFromId
 	 *
 	 * @param int $id Article ID to load
 	 * @param string|int $from One of the following values:
@@ -226,7 +231,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @since 1.21
 	 */
-	public function getContentHandler() {
+	public function getContentHandler() { // FIXME: remove usages
 		return ContentHandler::getForModelID( $this->getContentModel() );
 	}
 
@@ -242,7 +247,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Clear the object
 	 * @return void
 	 */
-	public function clear() {
+	public function clear() { // FIXME: still needed??
 		$this->mDataLoaded = false;
 		$this->mDataLoadedFrom = self::READ_NONE;
 
@@ -253,7 +258,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Clear the object cache fields
 	 * @return void
 	 */
-	protected function clearCacheFields() {
+	protected function clearCacheFields() {  // FIXME: still needed??
 		$this->mId = null;
 		$this->mRedirectTarget = null; // Title object if set
 		$this->mLastRevision = null; // Latest revision
@@ -273,7 +278,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return void
 	 * @since 1.23
 	 */
-	public function clearPreparedEdit() {
+	public function clearPreparedEdit() {// FIXME: still needed??
 		$this->mPreparedEdit = false;
 	}
 
@@ -684,7 +689,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Set the latest revision
 	 * @param Revision $revision
 	 */
-	protected function setLastEdit( Revision $revision ) {
+	protected function setLastEdit( Revision $revision ) { // FIXME: still needed?
 		$this->mLastRevision = $revision;
 		$this->mTimestamp = $revision->getTimestamp();
 	}
@@ -693,7 +698,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Get the latest revision
 	 * @return Revision|null
 	 */
-	public function getRevision() {
+	public function getRevision() { // use RevisionStore::getRevisionByTitle
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
 			return $this->mLastRevision;
@@ -714,7 +719,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @since 1.21
 	 */
-	public function getContent( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+	public function getContent( $audience = Revision::FOR_PUBLIC, User $user = null ) { // FIXME: kill
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
 			return $this->mLastRevision->getContent( $audience, $user );
@@ -739,7 +744,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param string $ts MW timestamp of last article revision
 	 * @return void
 	 */
-	public function setTimestamp( $ts ) {
+	public function setTimestamp( $ts ) { // FIXME: needed? MutablePageRecord?
 		$this->mTimestamp = wfTimestamp( TS_MW, $ts );
 	}
 
@@ -753,6 +758,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return int User ID for the user that made the last article revision
 	 */
 	public function getUser( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+		// FIXME: replace with getCurrentRevision()->getUser()
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
 			return $this->mLastRevision->getUser( $audience, $user );
@@ -791,6 +797,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return string Username of the user that made the last article revision
 	 */
 	public function getUserText( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+		// FIXME: replace with getCurrentRevision()->getUser()
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
 			return $this->mLastRevision->getUserText( $audience, $user );
@@ -809,6 +816,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return string Comment stored for the last article revision
 	 */
 	public function getComment( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+		// FIXME: replace with getCurrentRevision()->getComment()
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
 			return $this->mLastRevision->getComment( $audience, $user );
@@ -823,6 +831,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return bool Minor edit indicator for the last article revision.
 	 */
 	public function getMinorEdit() {
+		// FIXME: replace with getCurrentRevision()->getMinorEdit()
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
 			return $this->mLastRevision->isMinor();
@@ -1387,7 +1396,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @since 1.21
 	 * Before we had the Content object, this was done in getUndoText
 	 */
-	public function getUndoContent( Revision $undo, Revision $undoafter = null ) {
+	public function getUndoContent( Revision $undo, Revision $undoafter = null ) { // FIXME: kill
 		$handler = $undo->getContentHandler();
 		return $handler->getUndoContent( $this->getRevision(), $undo, $undoafter );
 	}
@@ -1402,7 +1411,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @todo The EditPage should check this and not offer section functionality
 	 *   if sections are not supported.
 	 */
-	public function supportsSections() {
+	public function supportsSections() { // FIXME: kill
 		return $this->getContentHandler()->supportsSections();
 	}
 
@@ -3461,17 +3470,6 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		return $result;
-	}
-
-	/**
-	 * Auto-generates a deletion reason
-	 *
-	 * @param bool &$hasHistory Whether the page has a history
-	 * @return string|bool String containing deletion reason or empty string, or boolean false
-	 *    if no revision occurred
-	 */
-	public function getAutoDeleteReason( &$hasHistory ) {
-		return $this->getContentHandler()->getAutoDeleteReason( $this->getTitle(), $hasHistory );
 	}
 
 	/**

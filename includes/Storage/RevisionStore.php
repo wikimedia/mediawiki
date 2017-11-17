@@ -1265,16 +1265,18 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * @param IDatabase $db
 	 * @param int $pageid
 	 * @param int $id
+	 * @param int $flags
+	 *
 	 * @return RevisionRecord|null
 	 */
-	public function loadRevisionFromPageId( IDatabase $db, $pageid, $id = 0 ) {
+	public function loadRevisionFromPageId( IDatabase $db, $pageid, $id = 0, $flags = 0 ) {
 		$conds = [ 'rev_page' => intval( $pageid ), 'page_id' => intval( $pageid ) ];
 		if ( $id ) {
 			$conds['rev_id'] = intval( $id );
 		} else {
 			$conds[] = 'rev_id=page_latest';
 		}
-		return $this->loadRevisionFromConds( $db, $conds );
+		return $this->loadRevisionFromConds( $db, $conds, $flags );
 	}
 
 	/**
