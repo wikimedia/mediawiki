@@ -2225,7 +2225,23 @@ function wfPercent( $nr, $acc = 2, $round = true ) {
  * @return bool
  */
 function wfIniGetBool( $setting ) {
-	$val = strtolower( ini_get( $setting ) );
+	return wfStringToBool( ini_get( $setting ) );
+}
+
+/**
+ * Convert string value to boolean, when the following are interpreted as true:
+ * - on
+ * - true
+ * - yes
+ * - Any number, except 0
+ * All other strings are interpreted as false.
+ *
+ * @param string $val
+ * @return bool
+ * @since 1.31
+ */
+function wfStringToBool( $val ) {
+	$val = strtolower( $val );
 	// 'on' and 'true' can't have whitespace around them, but '1' can.
 	return $val == 'on'
 		|| $val == 'true'
