@@ -1827,7 +1827,7 @@
 	"uploadstash-file-too-large": "Impossible de fournir un fichier plus grand que $1 octets.",
 	"uploadstash-not-logged-in": "Aucun utilisateur n’est connecté, les fichiers doivent appartenir à des utilisateurs.",
 	"uploadstash-wrong-owner": "Ce fichier ($1) n’appartient pas à l’utilisateur courant.",
-	"uploadstash-no-such-key": "Aucune clé ($1), impossible de supprimer.",
+	"uploadstash-no-such-key": "Clé introuvable ($1), impossible de supprimer.",
 	"uploadstash-no-extension": "L’extension est nulle.",
 	"uploadstash-zero-length": "La taille du fichier est zéro.",
 	"invalid-chunk-offset": "Offset de segment non valide",

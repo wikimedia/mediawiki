@@ -2574,7 +2574,7 @@
 	"articleexists": "該頁面名稱已存在，或您選擇的名稱無效。\n請改選擇其他名稱。",
 	"cantmove-titleprotected": "您選擇的新標題已被禁止使用，您不可移動頁面到該位置。",
 	"movetalk": "移動相關的對話頁面",
-	"move-subpages": "移動子頁面 (共 $1 頁)",
+	"move-subpages": "移動子頁面（至多 $1 頁）",
 	"move-talk-subpages": "移動對話頁面的子頁面 (共 $1 頁)",
 	"movepage-page-exists": "頁面 $1 已存在，無法自動覆蓋。",
 	"movepage-page-moved": "已移動頁面 $1 到 $2。",
