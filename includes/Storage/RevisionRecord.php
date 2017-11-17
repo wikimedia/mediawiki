@@ -160,6 +160,10 @@ abstract class RevisionRecord {
 	 * @return Content|null The content of the given slot, or null if access is forbidden.
 	 */
 	public function getContent( $role, $audience = self::FOR_PUBLIC, User $user = null ) {
+		// Callers porting from Revision::getContent() are prone to forget the first argument.
+		// Check the type so this does not go unnoticed if an audience is specified.
+		Assert::parameterType( 'string', $role, '$page' );
+
 		// XXX: throwing an exception would be nicer, but would a further
 		// departure from the signature of Revision::getContent(), and thus
 		// more complex and error prone refactoring.
@@ -184,6 +188,10 @@ abstract class RevisionRecord {
 	 *         calling getContent() on the SlotRecord will throw an exception.
 	 */
 	public function getSlot( $role, $audience = self::FOR_PUBLIC, User $user = null ) {
+		// Callers porting from Revision::getContent() are prone to forget the first argument.
+		// Check the type so this does not go unnoticed if an audience is specified.
+		Assert::parameterType( 'string', $role, '$page' );
+
 		$slot = $this->mSlots->getSlot( $role );
 
 		if ( !$this->audienceCan( self::DELETED_TEXT, $audience, $user ) ) {
