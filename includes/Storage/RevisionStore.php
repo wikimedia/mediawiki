@@ -224,7 +224,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	private function failOnNull( $value, $name ) {
 		if ( $value === null ) {
 			throw new IncompleteRevisionException(
-				"$name must not be null!"
+				"$name must not be " . var_export( null, true ) . "!"
 			);
 		}
 
@@ -236,7 +236,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * @param string $name
 	 *
 	 * @throw IncompleteRevisionException if $value is null
-	 * @return mixed $value, if $value is not null
+	 * @return mixed $value, if $value is not empty
 	 */
 	private function failOnEmpty( $value, $name ) {
 		if ( $value === null || $value === 0 || $value === '' ) {
@@ -323,6 +323,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		$blobAddress = 'tt:' . $textId;
 
 		$comment = $this->failOnNull( $rev->getComment(), 'comment' );
+		$user = $this->failOnNull( $rev->getUser(), 'user' );
 		$timestamp = $this->failOnEmpty( $rev->getTimestamp(), 'timestamp field' );
 
 		# Record the edit in revisions
@@ -331,8 +332,8 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			'rev_parent_id'  => $parentId,
 			'rev_text_id'    => $textId,
 			'rev_minor_edit' => $rev->isMinor() ? 1 : 0,
-			'rev_user'       => $this->failOnNull( $rev->getUser()->getId(), 'user field' ),
-			'rev_user_text'  => $this->failOnEmpty( $rev->getUser()->getName(), 'user_text field' ),
+			'rev_user'       => $rev->getUser()->getId(),
+			'rev_user_text'  => $rev->getUser()->getName(),
 			'rev_timestamp'  => $dbw->timestamp( $timestamp ),
 			'rev_deleted'    => $rev->getVisibility(),
 			'rev_len'        => $size,
@@ -988,8 +989,8 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * @return UserIdentityValue
 	 */
 	private function getUserIdentityFromRowObject( $row, $prefix = 'rev_' ) {
-		$idField = "{$prefix}_user";
-		$nameField = "{$prefix}_user_text";
+		$idField = "{$prefix}user";
+		$nameField = "{$prefix}user_text";
 
 		$userId = intval( $row->$idField );
 
@@ -1160,6 +1161,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		}
 
 		$mainSlot = $this->emulateMainSlot_1_29( $fields, $queryFlags, $title );
+
 
 		$revision = new MutableRevisionRecord( $title, $this->wikiId );
 		$this->initializeMutableRevisionFromArray( $revision, $fields );
@@ -1730,7 +1732,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			__METHOD__
 		);
 		if ( $row ) {
-			return $row->revCount;
+			return (int)$row->revCount;
 		}
 		return 0;
 	}

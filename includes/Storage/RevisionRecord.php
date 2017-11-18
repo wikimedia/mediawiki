@@ -74,7 +74,7 @@ abstract class RevisionRecord {
 	protected $mSize;
 	/** @var string|null */
 	protected $mSha1;
-	/** @var int */
+	/** @var int|null */
 	protected $mParentId;
 	/** @var CommentStoreComment|null */
 	protected $mComment;
