@@ -756,4 +756,185 @@ class RevisionTest extends MediaWikiTestCase {
 		);
 	}
 
+	public function provideGetArchiveQueryInfo() {
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage OLD' => [
+			[
+				'wgContentHandlerUseDB' => false,
+				'wgCommentTableSchemaMigrationStage' => MIGRATION_OLD,
+			],
+			[
+				'tables' => [ 'archive' ],
+				'fields' => [
+					'ar_id',
+					'ar_page_id',
+					'ar_rev_id',
+					'ar_text',
+					'ar_text_id',
+					'ar_timestamp',
+					'ar_user_text',
+					'ar_user',
+					'ar_minor_edit',
+					'ar_deleted',
+					'ar_len',
+					'ar_parent_id',
+					'ar_sha1',
+					'ar_comment_text' => 'ar_comment',
+					'ar_comment_data' => 'NULL',
+					'ar_comment_cid' => 'NULL',
+				],
+				'joins' => [],
+			]
+		];
+		yield 'wgContentHandlerUseDB true, wgCommentTableSchemaMigrationStage OLD' => [
+			[
+				'wgContentHandlerUseDB' => true,
+				'wgCommentTableSchemaMigrationStage' => MIGRATION_OLD,
+			],
+			[
+				'tables' => [ 'archive' ],
+				'fields' => [
+					'ar_id',
+					'ar_page_id',
+					'ar_rev_id',
+					'ar_text',
+					'ar_text_id',
+					'ar_timestamp',
+					'ar_user_text',
+					'ar_user',
+					'ar_minor_edit',
+					'ar_deleted',
+					'ar_len',
+					'ar_parent_id',
+					'ar_sha1',
+					'ar_comment_text' => 'ar_comment',
+					'ar_comment_data' => 'NULL',
+					'ar_comment_cid' => 'NULL',
+					'ar_content_format',
+					'ar_content_model',
+				],
+				'joins' => [],
+			]
+		];
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage WRITE_BOTH' => [
+			[
+				'wgContentHandlerUseDB' => false,
+				'wgCommentTableSchemaMigrationStage' => MIGRATION_WRITE_BOTH,
+			],
+			[
+				'tables' => [
+					'archive',
+					'comment_ar_comment' => 'comment',
+				],
+				'fields' => [
+					'ar_id',
+					'ar_page_id',
+					'ar_rev_id',
+					'ar_text',
+					'ar_text_id',
+					'ar_timestamp',
+					'ar_user_text',
+					'ar_user',
+					'ar_minor_edit',
+					'ar_deleted',
+					'ar_len',
+					'ar_parent_id',
+					'ar_sha1',
+					'ar_comment_text' => 'COALESCE( comment_ar_comment.comment_text, ar_comment )',
+					'ar_comment_data' => 'comment_ar_comment.comment_data',
+					'ar_comment_cid' => 'comment_ar_comment.comment_id',
+				],
+				'joins' => [
+					'comment_ar_comment' => [
+						'LEFT JOIN',
+						'comment_ar_comment.comment_id = ar_comment_id',
+					],
+				],
+			]
+		];
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage WRITE_NEW' => [
+			[
+				'wgContentHandlerUseDB' => false,
+				'wgCommentTableSchemaMigrationStage' => MIGRATION_WRITE_NEW,
+			],
+			[
+				'tables' => [
+					'archive',
+					'comment_ar_comment' => 'comment',
+				],
+				'fields' => [
+					'ar_id',
+					'ar_page_id',
+					'ar_rev_id',
+					'ar_text',
+					'ar_text_id',
+					'ar_timestamp',
+					'ar_user_text',
+					'ar_user',
+					'ar_minor_edit',
+					'ar_deleted',
+					'ar_len',
+					'ar_parent_id',
+					'ar_sha1',
+					'ar_comment_text' => 'COALESCE( comment_ar_comment.comment_text, ar_comment )',
+					'ar_comment_data' => 'comment_ar_comment.comment_data',
+					'ar_comment_cid' => 'comment_ar_comment.comment_id',
+				],
+				'joins' => [
+					'comment_ar_comment' => [
+						'LEFT JOIN',
+						'comment_ar_comment.comment_id = ar_comment_id',
+					],
+				],
+			]
+		];
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage NEW' => [
+			[
+				'wgContentHandlerUseDB' => false,
+				'wgCommentTableSchemaMigrationStage' => MIGRATION_NEW,
+			],
+			[
+				'tables' => [
+					'archive',
+					'comment_ar_comment' => 'comment',
+				],
+				'fields' => [
+					'ar_id',
+					'ar_page_id',
+					'ar_rev_id',
+					'ar_text',
+					'ar_text_id',
+					'ar_timestamp',
+					'ar_user_text',
+					'ar_user',
+					'ar_minor_edit',
+					'ar_deleted',
+					'ar_len',
+					'ar_parent_id',
+					'ar_sha1',
+					'ar_comment_text' => 'comment_ar_comment.comment_text',
+					'ar_comment_data' => 'comment_ar_comment.comment_data',
+					'ar_comment_cid' => 'comment_ar_comment.comment_id',
+				],
+				'joins' => [
+					'comment_ar_comment' => [
+						'JOIN',
+						'comment_ar_comment.comment_id = ar_comment_id',
+					],
+				],
+			]
+		];
+	}
+
+	/**
+	 * @covers Revision::getArchiveQueryInfo
+	 * @dataProvider provideGetArchiveQueryInfo
+	 */
+	public function testGetArchiveQueryInfo( $globals, $expected ) {
+		$this->setMwGlobals( $globals );
+		$this->assertEquals(
+			$expected,
+			Revision::getArchiveQueryInfo()
+		);
+	}
+
 }
