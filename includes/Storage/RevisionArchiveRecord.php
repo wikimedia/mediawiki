@@ -73,7 +73,8 @@ class RevisionArchiveRecord extends RevisionRecord {
 		// with the same title. Archive rows for that title will then have the wrong page id.
 		$this->mPageId = isset( $row->ar_page_id ) ? intval( $row->ar_page_id ) : $title->getArticleID();
 
-		$this->mParentId = isset( $row->ar_parent_id ) ? intval( $row->ar_parent_id ) : null;
+		$this->mParentId = isset( $row->ar_parent_id ) && $row->ar_parent_id != 0
+			? intval( $row->ar_parent_id ) : null;
 		$this->mId = isset( $row->ar_rev_id ) ? intval( $row->ar_rev_id ) : null;
 		$this->mComment = $comment;
 		$this->mUser = $user;

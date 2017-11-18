@@ -75,8 +75,8 @@ class RevisionStoreRecord extends RevisionRecord {
 		$this->mTimestamp = $timestamp;
 		$this->mDeleted = intval( $row->rev_deleted );
 
-		if ( !isset( $row->rev_parent_id ) ) {
-			$this->mParentId = 0;
+		if ( !isset( $row->rev_parent_id ) || $row->rev_parent_id == 0 ) {
+			$this->mParentId = null;
 		} else {
 			$this->mParentId = intval( $row->rev_parent_id );
 		}
