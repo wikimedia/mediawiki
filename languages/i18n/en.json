@@ -4404,5 +4404,12 @@
 	"pagedata-title": "Page data",
 	"pagedata-text": "This page provides a data interface to pages. Please provide the page title in the URL, using subpage syntax.\n* Content negotiation applies based on your client's Accept header. This means that the page data will be provided in the format preferred by your client.",
 	"pagedata-not-acceptable": "No matching format found. Supported MIME types: $1",
-	"pagedata-bad-title": "Invalid title: $1."
+	"pagedata-bad-title": "Invalid title: $1.",
+	"passwordpolicies": "Password policies",
+	"passwordpolicies-summary": "This is a list of the effective password policies for the user groups defined in this wiki.",
+	"passwordpolicies-helppage": "Manual:$wgPasswordPolicy",
+	"passwordpolicies-group": "Group",
+	"passwordpolicies-policies": "Policies",
+ 	"passwordpolicies-policy-display": "<span class=\"passwordpolicies-policy\">$1 <code>($2)</code></span>"
+
 }
