@@ -60,8 +60,8 @@ class CategoriesRdfTest extends MediaWikiLangTestCase {
 		$dumpScript->execute();
 		$actualOut = file_get_contents( $outFileName );
 		$actualOut = preg_replace(
-			'|<http://acme.test/categoriesDump> <http://schema.org/dateModified> "[^"]+?"|',
-			'<http://acme.test/categoriesDump> <http://schema.org/dateModified> "{DATE}"',
+			'|<http://acme.test/wiki/Special:CategoryDump> <http://schema.org/dateModified> "[^"]+?"|',
+			'<http://acme.test/wiki/Special:CategoryDump> <http://schema.org/dateModified> "{DATE}"',
 			$actualOut
 		);
 
