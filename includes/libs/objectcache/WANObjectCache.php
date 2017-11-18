@@ -207,7 +207,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @return WANObjectCache
 	 */
 	public static function newEmpty() {
-		return new self( [
+		return new static( [
 			'cache'   => new EmptyBagOStuff(),
 			'pool'    => 'empty'
 		] );
@@ -314,7 +314,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			$wrappedValues += $this->cache->getMulti( $keysGet );
 		}
 		// Time used to compare/init "check" keys (derived after getMulti() to be pessimistic)
-		$now = microtime( true );
+		$now = $this->getCurrentTime();
 
 		// Collect timestamps from all "check" keys
 		$purgeValuesForAll = $this->processCheckKeys( $checkKeysForAll, $wrappedValues, $now );
@@ -443,7 +443,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @return bool Success
 	 */
 	final public function set( $key, $value, $ttl = 0, array $opts = [] ) {
-		$now = microtime( true );
+		$now = $this->getCurrentTime();
 		$lockTSE = isset( $opts['lockTSE'] ) ? $opts['lockTSE'] : self::TSE_NONE;
 		$staleTTL = isset( $opts['staleTTL'] ) ? $opts['staleTTL'] : self::STALE_TTL_NONE;
 		$age = isset( $opts['since'] ) ? max( 0, $now - $opts['since'] ) : 0;
@@ -594,7 +594,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			$time = $purge[self::FLD_TIME];
 		} else {
 			// Casting assures identical floats for the next getCheckKeyTime() calls
-			$now = (string)microtime( true );
+			$now = (string)$this->getCurrentTime();
 			$this->cache->add( $key,
 				$this->makePurgeValue( $now, self::HOLDOFF_TTL ),
 				self::CHECK_KEY_TTL
@@ -972,7 +972,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$cValue = $this->get( $key, $curTTL, $checkKeys, $asOf ); // current value
 		$value = $cValue; // return value
 
-		$preCallbackTime = microtime( true );
+		$preCallbackTime = $this->getCurrentTime();
 		// Determine if a cached value regeneration is needed or desired
 		if ( $value !== false
 			&& $curTTL > 0
@@ -1048,7 +1048,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		// so use a special INTERIM key to pass the new value around threads.
 		if ( ( $isTombstone && $lockTSE > 0 ) && $valueIsCacheable ) {
 			$tempTTL = max( 1, (int)$lockTSE ); // set() expects seconds
-			$newAsOf = microtime( true );
+			$newAsOf = $this->getCurrentTime();
 			$wrapped = $this->wrap( $value, $tempTTL, $newAsOf );
 			// Avoid using set() to avoid pointless mcrouter broadcasting
 			$this->setInterimValue( $key, $wrapped, $tempTTL );
@@ -1081,7 +1081,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 */
 	protected function getInterimValue( $key, $versioned, $minTime, &$asOf ) {
 		$wrapped = $this->cache->get( self::INTERIM_KEY_PREFIX . $key );
-		list( $value ) = $this->unwrap( $wrapped, microtime( true ) );
+		list( $value ) = $this->unwrap( $wrapped, $this->getCurrentTime() );
 		if ( $value !== false && $this->isValid( $value, $versioned, $asOf, $minTime ) ) {
 			$asOf = $wrapped[self::FLD_TIME];
 
@@ -1539,7 +1539,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		if ( $this->purgeRelayer instanceof EventRelayerNull ) {
 			// This handles the mcrouter and the single-DC case
 			$ok = $this->cache->set( $key,
-				$this->makePurgeValue( microtime( true ), self::HOLDOFF_NONE ),
+				$this->makePurgeValue( $this->getCurrentTime(), self::HOLDOFF_NONE ),
 				$ttl
 			);
 		} else {
@@ -1598,7 +1598,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @return bool
 	 */
 	protected function worthRefreshExpiring( $curTTL, $lowTTL ) {
-		if ( $curTTL >= $lowTTL ) {
+		if ( $lowTTL <= 0 ) {
+			return false;
+		} elseif ( $curTTL >= $lowTTL ) {
 			return false;
 		} elseif ( $curTTL <= 0 ) {
 			return true;
@@ -1625,6 +1627,10 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @return bool
 	 */
 	protected function worthRefreshPopular( $asOf, $ageNew, $timeTillRefresh, $now ) {
+		if ( $ageNew < 0 || $timeTillRefresh <= 0 ) {
+			return false;
+		}
+
 		$age = $now - $asOf;
 		$timeOld = $age - $ageNew;
 		if ( $timeOld <= 0 ) {
@@ -1744,6 +1750,13 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$parts = explode( ':', $key );
 
 		return isset( $parts[1] ) ? $parts[1] : $parts[0]; // sanity
+	}
+
+	/**
+	 * @return float UNIX timestamp
+	 */
+	protected function getCurrentTime() {
+		return microtime( true );
 	}
 
 	/**
