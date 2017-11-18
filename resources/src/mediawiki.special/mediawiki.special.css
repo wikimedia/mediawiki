@@ -122,3 +122,8 @@
 	color: #72777d;
 	font-size: 90%;
 }
+
+/* Special:PasswordPolicies */
+.mw-passwordpolicies-table tr {
+	vertical-align: top;
+}
