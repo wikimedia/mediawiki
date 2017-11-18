@@ -3520,6 +3520,36 @@ class User implements IDBAccessObject, UserIdentity {
 		$this->loadGroups();
 		return $this->mGroupMemberships;
 	}
+  
+	/**
+	 * Gets All Groups from merging $wgGroupPermissions, $wgRevokePermissions
+	 * $wgAddGroups, $wgRemoveGroups, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf
+	 * 
+	 * @since 1.32
+	 * 
+	 * @return array
+	 */
+	public static function getAllGroups() {
+		$config = RequestContext::getMain()->getConfig();
+
+		$groupPermissions = $config->get( 'GroupPermissions' );
+		$revokePermissions = $config->get( 'RevokePermissions' );
+		$addGroups = $config->get( 'AddGroups' );
+		$removeGroups = $config->get( 'RemoveGroups' );
+		$groupsAddToSelf = $config->get( 'GroupsAddToSelf' );
+		$groupsRemoveFromSelf = $config->get( 'GroupsRemoveFromSelf' );
+		$allGroups = array_unique( array_merge(
+			array_keys( $groupPermissions ),
+			array_keys( $revokePermissions ),
+			array_keys( $addGroups ),
+			array_keys( $removeGroups ),
+			array_keys( $groupsAddToSelf ),
+			array_keys( $groupsRemoveFromSelf )
+		) );
+		asort( $allGroups );
+
+		return $allGroups;
+	}
 
 	/**
 	 * Get the list of implicit group memberships this user has.
