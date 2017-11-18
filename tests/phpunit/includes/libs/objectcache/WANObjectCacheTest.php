@@ -377,8 +377,8 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 		};
 
 		$cache = new NearExpiringWANObjectCache( [
-			'cache'   => new HashBagOStuff(),
-			'pool'    => 'empty'
+			'cache'        => new HashBagOStuff(),
+			'pool'         => 'empty',
 		] );
 
 		$wasSet = 0;
@@ -399,12 +399,48 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 		$v = $cache->getWithSetCallback( $key, 30, $func, $opts );
 		$this->assertEquals( 1, $wasSet, "Value cached" );
 
-		$cache = new PopularityRefreshingWANObjectCache( [
-			'cache'   => new HashBagOStuff(),
-			'pool'    => 'empty'
+		$asycList = [];
+		$asyncHandler = function ( $callback ) use ( &$asycList ) {
+			$asycList[] = $callback;
+		};
+		$cache = new NearExpiringWANObjectCache( [
+			'cache'        => new TimeAdjustableHashBagOStuff(),
+			'pool'         => 'empty',
+			'asyncHandler' => $asyncHandler
 		] );
 
 		$now = microtime( true ); // reference time
+		$cache->setTime( $now );
+
+		$wasSet = 0;
+		$key = wfRandomString();
+		$checkKey = wfRandomString();
+		$opts = [ 'lowTTL' => 100 ];
+		$v = $cache->getWithSetCallback( $key, 300, $func, $opts );
+		$this->assertEquals( $value, $v, "Value returned" );
+		$this->assertEquals( 1, $wasSet, "Value calculated" );
+		$v = $cache->getWithSetCallback( $key, 300, $func, $opts );
+		$this->assertEquals( 1, $wasSet, "Cached value used" );
+		$this->assertEquals( $v, $value, "Value cached" );
+
+		$cache->setTime( $now + 250 );
+		$v = $cache->getWithSetCallback( $key, 300, $func, $opts );
+		$this->assertEquals( $value, $v, "Value returned" );
+		$this->assertEquals( 1, $wasSet, "Stale value used" );
+		$this->assertEquals( 1, count( $asycList ), "Refresh deferred." );
+		$asycList[0](); // run the refresh callback
+		$asycList = [];
+		$this->assertEquals( 2, $wasSet, "Value calculated at later time" );
+		$this->assertEquals( 0, count( $asycList ), "No deferred refreshes added." );
+		$this->assertEquals( $value, $v, "Value calculated at later time" );
+
+		$cache = new PopularityRefreshingWANObjectCache( [
+			'cache'   => new TimeAdjustableHashBagOStuff(),
+			'pool'    => 'empty'
+		] );
+
+		$cache->setTime( $now );
+
 		$wasSet = 0;
 		$key = wfRandomString();
 		$opts = [ 'hotTTR' => 900 ];
@@ -424,6 +460,7 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( 1, $wasSet, "Value calculated" );
 		$cache->setTime( $now + 30 );
 		$v = $cache->getWithSetCallback( $key, 60, $func, $opts );
+		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertEquals( 2, $wasSet, "Value re-calculated" );
 	}
 
