@@ -4598,5 +4598,8 @@
 	"pagedata-title": "Title shown on the special page when a form or text is presented",
 	"pagedata-text": "Error shown when none of the formats acceptable to the client is supported (HTTP error 406). Parameters:\n* $1 - the list of supported MIME types",
 	"pagedata-not-acceptable": "No matching format found. Supported MIME types: $1",
-	"pagedata-bad-title": "Error shown when the requested title is invalid. Parameters:\n* $1: the malformed ID"
+	"pagedata-bad-title": "Error shown when the requested title is invalid. Parameters:\n* $1: the malformed ID",
+	"passwordpolicies": "The name of the special page [[Special:PasswordPolicies]].",
+	"passwordpolicies-summary": "The description used on [[Special:ListGroupRights]].\n\nRefers to {{msg-mw|Passwordpolicies-helppage}}.",
+	"passwordpolicies--helppage": "The link used on [[Special:PasswordPolicies]]."
 }
