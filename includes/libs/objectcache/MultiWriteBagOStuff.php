@@ -233,11 +233,11 @@ class MultiWriteBagOStuff extends BagOStuff {
 		return $ret;
 	}
 
-	public function makeKey() {
+	public function makeKey( $class, $component = null ) {
 		return call_user_func_array( [ $this->caches[0], __FUNCTION__ ], func_get_args() );
 	}
 
-	public function makeGlobalKey() {
+	public function makeGlobalKey( $class, $component = null ) {
 		return call_user_func_array( [ $this->caches[0], __FUNCTION__ ], func_get_args() );
 	}
 }
