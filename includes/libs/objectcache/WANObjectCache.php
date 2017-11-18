@@ -91,6 +91,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	protected $logger;
 	/** @var StatsdDataFactoryInterface */
 	protected $stats;
+	/** @var callable|null Function that takes a WAN cache callback and runs it later */
+	protected $asyncHandler;
 
 	/** @var int ERR_* constant for the "last error" registry */
 	protected $lastRelayError = self::ERR_NONE;
@@ -184,6 +186,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *   - relayers : Map of (action => EventRelayer object). Actions include "purge".
 	 *   - logger   : LoggerInterface object
 	 *   - stats    : LoggerInterface object
+	 *   - asyncHandler : A function to run preemptive refresh callbacks at a later time
 	 */
 	public function __construct( array $params ) {
 		$this->cache = $params['cache'];
@@ -195,6 +198,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			: new EventRelayerNull( [] );
 		$this->setLogger( isset( $params['logger'] ) ? $params['logger'] : new NullLogger() );
 		$this->stats = isset( $params['stats'] ) ? $params['stats'] : new NullStatsdDataFactory();
+		$this->asyncHandler = isset( $params['asyncHandler'] ) ? $params['asyncHandler'] : null;
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -977,12 +981,27 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		if ( $value !== false
 			&& $curTTL > 0
 			&& $this->isValid( $value, $versioned, $asOf, $minTime )
-			&& !$this->worthRefreshExpiring( $curTTL, $lowTTL )
-			&& !$this->worthRefreshPopular( $asOf, $ageNew, $popWindow, $preCallbackTime )
 		) {
-			$this->stats->increment( "wanobjectcache.$kClass.hit.good" );
+			$preemptiveRefresh = (
+				$this->worthRefreshExpiring( $curTTL, $lowTTL ) ||
+				$this->worthRefreshPopular( $asOf, $ageNew, $popWindow, $preCallbackTime )
+			);
 
-			return $value;
+			if ( !$preemptiveRefresh ) {
+				$this->stats->increment( "wanobjectcache.$kClass.hit.good" );
+
+				return $value;
+			} elseif ( $this->asyncHandler ) {
+				// Update the cache value later, such during post-send of an HTTP request
+				$func = $this->asyncHandler;
+				$func( function () use ( $key, $ttl, $callback, $opts, $asOf ) {
+					$opts['minAsOf'] = INF; // force a refresh
+					$this->doGetWithSetCallback( $key, $ttl, $callback, $opts, $asOf );
+				} );
+				$this->stats->increment( "wanobjectcache.$kClass.hit.refresh" );
+
+				return $value;
+			}
 		}
 
 		// A deleted key with a negative TTL left must be tombstoned
