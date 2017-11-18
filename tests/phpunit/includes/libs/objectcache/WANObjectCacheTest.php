@@ -275,6 +275,62 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 		];
 	}
 
+	public function testPreemtiveRefresh() {
+		$value = 'KatCafe';
+		$wasSet = 0;
+		$func = function ( $old, &$ttl, &$opts, $asOf ) use ( &$wasSet, $value )
+		{
+			++$wasSet;
+			return $value;
+		};
+
+		$cache = new NearExpiringWANObjectCache( [
+			'cache'   => new HashBagOStuff(),
+			'pool'    => 'empty'
+		] );
+
+		$wasSet = 0;
+		$key = wfRandomString();
+		$opts = [ 'lowTTL' => 30 ];
+		$v = $cache->getWithSetCallback( $key, 20, $func, $opts );
+		$this->assertEquals( $value, $v, "Value returned" );
+		$this->assertEquals( 1, $wasSet, "Value calculated" );
+		$v = $cache->getWithSetCallback( $key, 20, $func, $opts );
+		$this->assertEquals( 2, $wasSet, "Value re-calculated" );
+
+		$wasSet = 0;
+		$key = wfRandomString();
+		$opts = [ 'lowTTL' => 1 ];
+		$v = $cache->getWithSetCallback( $key, 30, $func, $opts );
+		$this->assertEquals( $value, $v, "Value returned" );
+		$this->assertEquals( 1, $wasSet, "Value calculated" );
+		$v = $cache->getWithSetCallback( $key, 30, $func, $opts );
+		$this->assertEquals( 1, $wasSet, "Value cached" );
+
+		$cache = new PopularityRefreshingWANObjectCache( [
+			'cache'   => new HashBagOStuff(),
+			'pool'    => 'empty'
+		] );
+
+		$wasSet = 0;
+		$key = wfRandomString();
+		$opts = [ 'hotTTR' => 900 ];
+		$v = $cache->getWithSetCallback( $key, 60, $func, $opts );
+		$this->assertEquals( $value, $v, "Value returned" );
+		$this->assertEquals( 1, $wasSet, "Value calculated" );
+		$v = $cache->getWithSetCallback( $key, 60, $func, $opts );
+		$this->assertEquals( 1, $wasSet, "Value cached" );
+
+		$wasSet = 0;
+		$key = wfRandomString();
+		$opts = [ 'hotTTR' => 10 ];
+		$v = $cache->getWithSetCallback( $key, 60, $func, $opts );
+		$this->assertEquals( $value, $v, "Value returned" );
+		$this->assertEquals( 1, $wasSet, "Value calculated" );
+		$v = $cache->getWithSetCallback( $key, 60, $func, $opts );
+		$this->assertEquals( 2, $wasSet, "Value re-calculated" );
+	}
+
 	/**
 	 * @covers WANObjectCache::getWithSetCallback()
 	 * @covers WANObjectCache::doGetWithSetCallback()
@@ -1344,5 +1400,25 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 		] ) );
 
 		$this->assertEquals( $class, $wanCache->determineKeyClass( $key ) );
+	}
+}
+
+class NearExpiringWANObjectCache extends WANObjectCache {
+	const CLOCK_SKEW = 1;
+
+	protected function worthRefreshExpiring( $curTTL, $lowTTL ) {
+		return ( ( $curTTL + self::CLOCK_SKEW ) < $lowTTL );
+	}
+}
+
+class PopularityRefreshingWANObjectCache extends WANObjectCache {
+	const OBJECT_AGE = 30;
+
+	protected function worthRefreshPopular( $asOf, $ageNew, $timeTillRefresh, $now ) {
+		return ( self::OBJECT_AGE > $timeTillRefresh );
+	}
+
+	protected function getCurrentTime() {
+		return microtime( true ) + 30; // make objects look older
 	}
 }
