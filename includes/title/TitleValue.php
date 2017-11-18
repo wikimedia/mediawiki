@@ -34,25 +34,26 @@ use Wikimedia\Assert\Assert;
  * @since 1.23
  */
 class TitleValue implements LinkTarget {
+
 	/**
 	 * @var int
 	 */
-	protected $namespace;
+	private $namespace;
 
 	/**
 	 * @var string
 	 */
-	protected $dbkey;
+	private $dbkey;
 
 	/**
 	 * @var string
 	 */
-	protected $fragment;
+	private $fragment;
 
 	/**
 	 * @var string
 	 */
-	protected $interwiki;
+	private $interwiki;
 
 	/**
 	 * Constructs a TitleValue.
@@ -89,6 +90,7 @@ class TitleValue implements LinkTarget {
 	}
 
 	/**
+	 * @since 1.23
 	 * @return int
 	 */
 	public function getNamespace() {
@@ -105,6 +107,7 @@ class TitleValue implements LinkTarget {
 	}
 
 	/**
+	 * @since 1.23
 	 * @return string
 	 */
 	public function getFragment() {
@@ -122,6 +125,7 @@ class TitleValue implements LinkTarget {
 	/**
 	 * Returns the title's DB key, as supplied to the constructor,
 	 * without namespace prefix or fragment.
+	 * @since 1.23
 	 *
 	 * @return string
 	 */
@@ -132,6 +136,7 @@ class TitleValue implements LinkTarget {
 	/**
 	 * Returns the title in text form,
 	 * without namespace prefix or fragment.
+	 * @since 1.23
 	 *
 	 * This is computed from the DB key by replacing any underscores with spaces.
 	 *
@@ -185,6 +190,7 @@ class TitleValue implements LinkTarget {
 	 * Returns a string representation of the title, for logging. This is purely informative
 	 * and must not be used programmatically. Use the appropriate TitleFormatter to generate
 	 * the correct string representation for a given use.
+	 * @since 1.23
 	 *
 	 * @return string
 	 */
