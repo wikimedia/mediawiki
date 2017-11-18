@@ -112,6 +112,7 @@ class SpecialPageFactory {
 		'Listbots' => SpecialListBots::class,
 		'Userrights' => UserrightsPage::class,
 		'EditWatchlist' => SpecialEditWatchlist::class,
+		'PasswordPolicies' => SpecialPasswordPolicies::class,
 
 		// Recent changes and logs
 		'Newimages' => SpecialNewFiles::class,

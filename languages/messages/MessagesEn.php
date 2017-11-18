@@ -468,6 +468,7 @@ $specialPageAliases = [
 	'PagesWithProp'             => [ 'PagesWithProp', 'Pageswithprop', 'PagesByProp', 'Pagesbyprop' ],
 	'PageData'                  => [ 'PageData' ],
 	'PageLanguage'              => [ 'PageLanguage' ],
+	'PasswordPolicies'          => [ 'PasswordPolicies' ],
 	'PasswordReset'             => [ 'PasswordReset' ],
 	'PermanentLink'             => [ 'PermanentLink', 'PermaLink' ],
 	'Preferences'               => [ 'Preferences' ],

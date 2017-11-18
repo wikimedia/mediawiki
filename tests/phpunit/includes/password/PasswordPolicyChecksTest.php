@@ -156,4 +156,21 @@ class PasswordPolicyChecksTest extends MediaWikiTestCase {
 		$status = PasswordPolicyChecks::checkPopularPasswordBlacklist( PHP_INT_MAX, $user, $password );
 		$this->assertSame( $expected, $status->isGood() );
 	}
+
+	/**
+	 * Verify that all password policy description messages actually exist.
+	 * Messages used on Special:PasswordPolicies
+	 */
+	public function testPasswordPolicyDescriptionsExist() {
+		global $wgPasswordPolicy;
+		$lang = Language::factory( 'en' );
+
+		foreach ( array_keys( $wgPasswordPolicy['checks'] ) as $check ) {
+			$msgKey = 'passwordpolicies-policy-' . strtolower( $check );
+			$this->assertTrue(
+				wfMessage( $msgKey )->useDatabase( false )->inLanguage( $lang )->exists(),
+				"Message '$msgKey' required by '$check' must exist"
+			);
+		}
+	}
 }
