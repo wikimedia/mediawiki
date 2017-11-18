@@ -55,21 +55,7 @@ class SpecialListGroupRights extends SpecialPage {
 		);
 
 		$config = $this->getConfig();
-		$groupPermissions = $config->get( 'GroupPermissions' );
-		$revokePermissions = $config->get( 'RevokePermissions' );
-		$addGroups = $config->get( 'AddGroups' );
-		$removeGroups = $config->get( 'RemoveGroups' );
-		$groupsAddToSelf = $config->get( 'GroupsAddToSelf' );
-		$groupsRemoveFromSelf = $config->get( 'GroupsRemoveFromSelf' );
-		$allGroups = array_unique( array_merge(
-			array_keys( $groupPermissions ),
-			array_keys( $revokePermissions ),
-			array_keys( $addGroups ),
-			array_keys( $removeGroups ),
-			array_keys( $groupsAddToSelf ),
-			array_keys( $groupsRemoveFromSelf )
-		) );
-		asort( $allGroups );
+		$allGroups = UsUserGroupMembership::getAllPossibleGroups();();
 
 		$linkRenderer = $this->getLinkRenderer();
 
@@ -252,7 +238,7 @@ class SpecialListGroupRights extends SpecialPage {
 		sort( $r );
 
 		$lang = $this->getLanguage();
-		$allGroups = User::getAllGroups();
+		$allGroups = UserGroupMembership::getAllPossibleGroups();
 
 		$changeGroups = [
 			'addgroup' => $add,
