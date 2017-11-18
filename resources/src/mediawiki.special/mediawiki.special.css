@@ -135,3 +135,8 @@
 .mw-userrights-groups * th {
 	text-align: left;
 }
+
+/* Special:PasswordPolicies */
+.mw-passwordpolicies-table tr {
+	vertical-align: top;
+}
