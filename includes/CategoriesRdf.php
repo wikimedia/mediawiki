@@ -37,7 +37,13 @@ class CategoriesRdf {
 	/**
 	 * Current version of the dump format.
 	 */
-	const FORMAT_VERSION = "1.0";
+	const FORMAT_VERSION = "1.1";
+	/**
+	 * Special page for Dump identification.
+	 * Used as head URI for each wiki's category dump, e.g.:
+	 * https://en.wikipedia.org/wiki/Special:CategoryDump
+	 */
+	const SPECIAL_DUMP = 'CategoryDump';
 	/**
 	 * @var RdfWriter
 	 */
@@ -85,11 +91,29 @@ class CategoriesRdf {
 	}
 
 	/**
+	 * Make URL from title label
+	 * @param string $titleLabel Short label (without namespace) of the category
+	 * @return string URL for the category
+	 */
+	public function labelToUrl( $titleLabel ) {
+		return $this->titleToUrl( Title::makeTitle( NS_CATEGORY, $titleLabel ) );
+	}
+
+	/**
 	 * Convert Title to link to target page.
 	 * @param Title $title
-	 * @return string
+	 * @return string URL for the category
 	 */
 	private function titleToUrl( Title $title ) {
 		return $title->getFullURL( '', false, PROTO_CANONICAL );
 	}
+
+	/**
+	 * Get URI of the dump for this particular wiki.
+	 * @return false|string
+	 */
+	public function getDumpURI() {
+		return $this->titleToUrl( Title::makeTitle( NS_SPECIAL, self::SPECIAL_DUMP ) );
+	}
+
 }
