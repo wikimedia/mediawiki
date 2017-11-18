@@ -346,6 +346,8 @@ class ObjectCache {
 		} else {
 			$params['logger'] = LoggerFactory::getInstance( 'objectcache' );
 		}
+		// Let pre-emptive refreshes happen post-send on HTTP requests
+		$params['asyncHandler'] = [ DeferredUpdates::class, 'addCallableUpdate' ];
 		$class = $params['class'];
 
 		return new $class( $params );
