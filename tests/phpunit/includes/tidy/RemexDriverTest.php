@@ -252,6 +252,11 @@ class RemexDriverTest extends MediaWikiTestCase {
 			'<table><b>1<p>2</b>3</p>',
 			'<b>1</b><p><b>2</b>3</p><table></table>'
 		],
+		[
+			'AAA causes reparent of p-wrapped text node (T178632)',
+			'<i><blockquote>x</i></blockquote>',
+			'<i></i><blockquote><p><i>x</i></p></blockquote>',
+		],
 	];
 
 	public function provider() {
