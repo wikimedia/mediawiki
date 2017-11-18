@@ -1345,6 +1345,7 @@
 	"rcfilters-grouping-title": "Agrupació",
 	"rcfilters-activefilters": "Filtres actius",
 	"rcfilters-advancedfilters": "Filtres avançats",
+	"rcfilters-limit-title": "Canvis a mostrar",
 	"rcfilters-limit-shownum": "Mostra {{PLURAL:$1|el darrer canvi| els darrers $1 canvis}}",
 	"rcfilters-days-title": "Darrers dies",
 	"rcfilters-hours-title": "Hores recents",
