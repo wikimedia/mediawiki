@@ -93,6 +93,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	protected $stats;
 	/** @var bool Whether to use "interim" caching while keys are tombstoned */
 	protected $useInterimHoldOffCaching = true;
+	/** @var callable|null Function that takes a WAN cache callback and runs it later */
+	protected $asyncHandler;
 
 	/** @var int ERR_* constant for the "last error" registry */
 	protected $lastRelayError = self::ERR_NONE;
@@ -191,6 +193,13 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *   - relayers : Map of (action => EventRelayer object). Actions include "purge".
 	 *   - logger   : LoggerInterface object
 	 *   - stats    : LoggerInterface object
+	 *   - asyncHandler : A function that takes a callback and runs it later. If supplied,
+	 *       whenever a preemptive refresh would be triggered in getWithSetCallback(), the
+	 *       current cache value is still used instead. However, the async-handler function
+	 *       receives a WAN cache callback that, when run, will execute the value generation
+	 *       callback supplied by the getWithSetCallback() caller. The result will be saved
+	 *       as normal. The handler is expected to call the WAN cache callback at an opportune
+	 *       time (e.g. HTTP post-send), though generally within a few 100ms. [optional]
 	 */
 	public function __construct( array $params ) {
 		$this->cache = $params['cache'];
@@ -202,6 +211,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			: new EventRelayerNull( [] );
 		$this->setLogger( isset( $params['logger'] ) ? $params['logger'] : new NullLogger() );
 		$this->stats = isset( $params['stats'] ) ? $params['stats'] : new NullStatsdDataFactory();
+		$this->asyncHandler = isset( $params['asyncHandler'] ) ? $params['asyncHandler'] : null;
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -1002,12 +1012,27 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		if ( $value !== false
 			&& $this->isAliveOrInGracePeriod( $curTTL, $graceTTL )
 			&& $this->isValid( $value, $versioned, $asOf, $minTime )
-			&& !$this->worthRefreshExpiring( $curTTL, $lowTTL )
-			&& !$this->worthRefreshPopular( $asOf, $ageNew, $popWindow, $preCallbackTime )
 		) {
-			$this->stats->increment( "wanobjectcache.$kClass.hit.good" );
+			$preemptiveRefresh = (
+				$this->worthRefreshExpiring( $curTTL, $lowTTL ) ||
+				$this->worthRefreshPopular( $asOf, $ageNew, $popWindow, $preCallbackTime )
+			);
 
-			return $value;
+			if ( !$preemptiveRefresh ) {
+				$this->stats->increment( "wanobjectcache.$kClass.hit.good" );
+
+				return $value;
+			} elseif ( $this->asyncHandler ) {
+				// Update the cache value later, such during post-send of an HTTP request
+				$func = $this->asyncHandler;
+				$func( function () use ( $key, $ttl, $callback, $opts, $asOf ) {
+					$opts['minAsOf'] = INF; // force a refresh
+					$this->doGetWithSetCallback( $key, $ttl, $callback, $opts, $asOf );
+				} );
+				$this->stats->increment( "wanobjectcache.$kClass.hit.refresh" );
+
+				return $value;
+			}
 		}
 
 		// A deleted key with a negative TTL left must be tombstoned
