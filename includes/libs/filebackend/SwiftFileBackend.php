@@ -158,7 +158,7 @@ class SwiftFileBackend extends FileBackendStore {
 	protected function resolveContainerPath( $container, $relStoragePath ) {
 		if ( !mb_check_encoding( $relStoragePath, 'UTF-8' ) ) {
 			return null; // not UTF-8, makes it hard to use CF and the swift HTTP API
-		} elseif ( strlen( urlencode( $relStoragePath ) ) > 1024 ) {
+		} elseif ( strlen( rawurlencode( $relStoragePath ) ) > 1024 ) {
 			return null; // too long for Swift
 		}
 
