@@ -22,6 +22,9 @@
  * @file
  */
 
+use MediaWiki\Page\ImmutablePageIdentity;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Linker\LinkTarget;
@@ -36,7 +39,7 @@ use MediaWiki\MediaWikiServices;
  * @note Consider using a TitleValue object instead. TitleValue is more lightweight
  *       and does not rely on global state or the database.
  */
-class Title implements LinkTarget {
+class Title implements LinkTarget, PageIdentity {
 	/** @var HashBagOStuff */
 	static private $titleCache = null;
 
@@ -252,6 +255,46 @@ class Title implements LinkTarget {
 			$linkTarget->getFragment(),
 			$linkTarget->getInterwiki()
 		);
+	}
+
+	/**
+	 * Get a Title from a PageIdentity.
+	 *
+	 * @see getAsImmutablePageIdentity
+	 *
+	 * @note New code should avoid using Title objects, and bind to the LinkTarget and PageIdentity
+	 * interfaces instead. This method should be used to interface between old and new code.
+	 *
+	 * @since 1.31
+	 *
+	 * @param PageIdentity $page
+	 *
+	 * @return Title
+	 */
+	public static function newFromPageIdentity( PageIdentity $page ) {
+		if ( $page instanceof Title ) {
+			return $page;
+		}
+
+		if ( isset( $page->_title ) && $page->_title instanceof Title ) {
+			// HACK: Title was glued to the PageIdentity objects, so we can efficiently round-trip
+			//       via getAsImmutablePageIdentity.
+
+			return $page->_title;
+		}
+
+		if ( $page->getAsLinkTarget() instanceof Title ) {
+			return $page->getAsLinkTarget();
+		}
+
+		$title = self::makeTitle(
+			$page->getNamespace(),
+			$page->getText()
+		);
+
+		$title->mArticleID = $page->getArticleID();
+
+		return $title;
 	}
 
 	/**
@@ -933,6 +976,13 @@ class Title implements LinkTarget {
 		}
 
 		return $this->mTitleValue;
+	}
+
+	/**
+	 * @return LinkTarget A LinkTarget giving the title and namespace of the page.
+	 */
+	public function getAsLinkTarget() {
+		return $this;
 	}
 
 	/**
@@ -3357,6 +3407,28 @@ class Title implements LinkTarget {
 			}
 		}
 		return $this->mArticleID;
+	}
+
+	/**
+	 * Returns an ImmutablePageIdentity corresponding to this Title.
+	 * This can be used by code that wants to avoid Title's attempts to reflect changes
+	 * in the database.
+	 *
+	 * @since 1.31
+	 *
+	 * @return ImmutablePageIdentity
+	 */
+	public function getAsImmutablePageIdentity() {
+		$page = new PageIdentityValue(
+			$this->getArticleID(),
+			$this->getTitleValue()
+		);
+
+		// HACK: Glue this Title to the new objects, so we can efficiently round-trip
+		//       via newFromPageIdentity.
+		$page->_title = $this;
+
+		return $page;
 	}
 
 	/**
