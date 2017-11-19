@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Storage\MutableRevisionRecord;
+use MediaWiki\Storage\PageIdentity;
 use MediaWiki\Storage\RevisionAccessException;
 use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\Storage\RevisionStore;
@@ -208,7 +209,11 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function loadFromTitle( $db, $title, $id = 0 ) {
-		$rec = self::getRevisionStore()->loadRevisionFromTitle( $db, $title, $id );
+		$rec = self::getRevisionStore()->loadRevisionFromTitle(
+			$db,
+			$title->getPageIdentity(),
+			$id
+		);
 		return $rec === null ? null : new Revision( $rec );
 	}
 
@@ -226,7 +231,11 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function loadFromTimestamp( $db, $title, $timestamp ) {
 		// XXX: replace loadRevisionFromTimestamp by getRevisionByTimestamp?
-		$rec = self::getRevisionStore()->loadRevisionFromTimestamp( $db, $title, $timestamp );
+		$rec = self::getRevisionStore()->loadRevisionFromTimestamp(
+			$db,
+			$title->getPageIdentity(),
+			$timestamp
+		);
 		return $rec === null ? null : new Revision( $rec );
 	}
 
@@ -436,13 +445,13 @@ class Revision implements IDBAccessObject {
 			$this->mRecord = self::getRevisionStore()->newMutableRevisionFromArray(
 				$row,
 				$queryFlags,
-				$title
+				$title ? $title->getPageIdentity() : null
 			);
 		} elseif ( is_object( $row ) ) {
 			$this->mRecord = self::getRevisionStore()->newRevisionFromRow(
 				$row,
 				$queryFlags,
-				$title
+				$title ? $title->getPageIdentity() : null
 			);
 		} else {
 			throw new InvalidArgumentException(
@@ -573,8 +582,11 @@ class Revision implements IDBAccessObject {
 	 * @return Title
 	 */
 	public function getTitle() {
-		$linkTarget = $this->mRecord->getPageAsLinkTarget();
-		return Title::newFromLinkTarget( $linkTarget );
+		$page = $this->mRecord->getPageIdentity();
+
+		// Note that newFromPageIdentity() merely unwraps a Title object if the PageIdentity
+		// was originally constructed by Title::getPageIdentity().
+		return Title::newFromPageIdentity( $page );
 	}
 
 	/**
@@ -589,7 +601,7 @@ class Revision implements IDBAccessObject {
 			throw new InvalidArgumentException(
 				$title->getPrefixedText()
 					. ' is not the same as '
-					. $this->mRecord->getPageAsLinkTarget()->__toString()
+					. $this->mRecord->getPageIdentity()->__toString()
 			);
 		}
 	}
@@ -1001,7 +1013,8 @@ class Revision implements IDBAccessObject {
 		$comment = CommentStoreComment::newUnsavedComment( $summary, null );
 
 		$title = Title::newFromID( $pageId );
-		$rec = self::getRevisionStore()->newNullRevision( $dbw, $title, $comment, $minor, $user );
+		$page = $title->getPageIdentity();
+		$rec = self::getRevisionStore()->newNullRevision( $dbw, $page, $comment, $minor, $user );
 
 		return new Revision( $rec );
 	}
@@ -1043,6 +1056,8 @@ class Revision implements IDBAccessObject {
 			$user = $wgUser;
 		}
 
+		// NOTE: Compatibility with this call is the only reason that
+		//       RevisionRecord::userCanBitfield() accepts a Title object as the last parameter.
 		return RevisionRecord::userCanBitfield( $bitfield, $field, $user, $title );
 	}
 
@@ -1055,7 +1070,7 @@ class Revision implements IDBAccessObject {
 	 * @return string|bool False if not found
 	 */
 	static function getTimestampFromId( $title, $id, $flags = 0 ) {
-		return self::getRevisionStore()->getTimestampFromId( $title, $id, $flags );
+		return self::getRevisionStore()->getTimestampFromId( $title->getPageIdentity(), $id, $flags );
 	}
 
 	/**
@@ -1077,7 +1092,7 @@ class Revision implements IDBAccessObject {
 	 * @return int
 	 */
 	static function countByTitle( $db, $title ) {
-		return self::getRevisionStore()->countRevisionsByTitle( $db, $title );
+		return self::getRevisionStore()->countRevisionsByTitle( $db, $title->getPageIdentity() );
 	}
 
 	/**
@@ -1112,17 +1127,28 @@ class Revision implements IDBAccessObject {
 	 * The title will also be loaded if $pageIdOrTitle is an integer ID.
 	 *
 	 * @param IDatabase $db
-	 * @param int|Title $pageIdOrTitle Page ID or Title object
+	 * @param int|Title|PageIdentity $pageOrTitle Page ID or Title or PageIdentity object
 	 * @param int $revId Known current revision of this page. Determined automatically if not given.
 	 * @return Revision|bool Returns false if missing
 	 * @since 1.28
 	 */
-	public static function newKnownCurrent( IDatabase $db, $pageIdOrTitle, $revId = 0 ) {
-		$title = $pageIdOrTitle instanceof Title
-			? $pageIdOrTitle
-			: Title::newFromID( $pageIdOrTitle );
+	public static function newKnownCurrent( IDatabase $db, $pageOrTitle, $revId = 0 ) {
+		if ( $pageOrTitle instanceof PageIdentity && $revId > 0 ) {
+			$page = $pageOrTitle;
+		} else {
+			// We'll need a title object to determine the latest revision and construct a PageIdentity.
+			$title = $pageOrTitle instanceof Title
+				? $pageOrTitle
+				: Title::newFromID( $pageOrTitle );
 
-		$record = self::getRevisionStore()->getKnownCurrentRevision( $db, $title, $revId );
+			if ( $revId <= 0 ) {
+				$revId = $title->getLatestRevID();
+			}
+
+			$page = $title->getPageIdentity();
+		}
+
+		$record = self::getRevisionStore()->getKnownCurrentRevision( $db, $page, $revId );
 		return $record ? new Revision( $record ) : false;
 	}
 }
