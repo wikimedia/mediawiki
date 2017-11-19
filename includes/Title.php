@@ -22,6 +22,8 @@
  * @file
  */
 
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Linker\LinkTarget;
@@ -252,6 +254,37 @@ class Title implements LinkTarget {
 			$linkTarget->getFragment(),
 			$linkTarget->getInterwiki()
 		);
+	}
+
+	/**
+	 * Create a new Title from a LinkTarget
+	 *
+	 * @note New code should avoid using Title objects, and bind to the LinkTarget and PageIdentity
+	 * interfaces instead. This method should be used to interface between old and new code.
+	 *
+	 * @since 1.31
+	 *
+	 * @param \MediaWiki\Page\PageIdentity $page Assumed to be safe.
+	 *
+	 * @return Title
+	 */
+	public static function newFromPageIdentity( PageIdentity $page ) {
+		// NOTE: Title cannot implement PageIdentity, since PageIdentity
+		// guarantees a non-special local page.
+
+		if ( $page->getAsLinkTarget() instanceof Title ) {
+			// See Title::getPageIdentity()
+			return $page->getAsLinkTarget();
+		}
+
+		$title = self::makeTitle(
+			$page->getNamespace(),
+			$page->getTitleText()
+		);
+
+		$title->mArticleID = $page->getId();
+
+		return $title;
 	}
 
 	/**
@@ -3357,6 +3390,29 @@ class Title implements LinkTarget {
 			}
 		}
 		return $this->mArticleID;
+	}
+
+	/**
+	 * Returns the PageIdentity corresponding to this Title.
+	 * If this title is special or not local, this method returns null.
+	 *
+	 * @note New code should avoid using Title objects, and bind to the LinkTarget and PageIdentity
+	 * interfaces instead. This method should be used to interface between old and new code.
+	 *
+	 * @since 1.31
+	 *
+	 * @return PageIdentityValue|null
+	 */
+	public function getPageIdentity() {
+		// NOTE: This is why Title cannot implement PageIdentity!
+		if ( !$this->isLocal() || !$this->canExist() ) {
+			return null;
+		}
+
+		return new PageIdentityValue(
+			$this->getArticleID(),
+			$this
+		);
 	}
 
 	/**

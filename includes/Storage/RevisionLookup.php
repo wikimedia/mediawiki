@@ -24,7 +24,7 @@ namespace MediaWiki\Storage;
 
 use \IDBAccessObject;
 use MediaWiki\Linker\LinkTarget;
-use Title;
+use MediaWiki\Page\PageIdentity;
 
 /**
  * Service for looking up page revisions.
@@ -108,11 +108,11 @@ interface RevisionLookup extends IDBAccessObject {
 	 *
 	 * MCR migration note: this replaces Revision::newKnownCurrent
 	 *
-	 * @param Title $title the associated page title
+	 * @param PageIdentity $page the associated page title
 	 * @param int $revId current revision of this page
 	 *
 	 * @return RevisionRecord|bool Returns false if missing
 	 */
-	public function getKnownCurrentRevision( Title $title, $revId );
+	public function getKnownCurrentRevision( PageIdentity $page, $revId );
 
 }
