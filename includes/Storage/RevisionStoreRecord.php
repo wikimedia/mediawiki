@@ -44,7 +44,7 @@ class RevisionStoreRecord extends RevisionRecord {
 	 * @note Avoid calling this constructor directly. Use the appropriate methods
 	 * in RevisionStore instead.
 	 *
-	 * @param Title $title The title of the page this Revision is associated with.
+	 * @param PageIdentity $pageIdentity The identity of the page this Revision is associated with.
 	 * @param UserIdentity $user
 	 * @param CommentStoreComment $comment
 	 * @param object $row A row from the revision table.
@@ -53,14 +53,14 @@ class RevisionStoreRecord extends RevisionRecord {
 	 *        or false for the local site.
 	 */
 	function __construct(
-		Title $title,
+		PageIdentity $pageIdentity,
 		UserIdentity $user,
 		CommentStoreComment $comment,
 		$row,
 		RevisionSlots $slots,
 		$wikiId = false
 	) {
-		parent::__construct( $title, $slots, $wikiId );
+		parent::__construct( $pageIdentity, $slots, $wikiId );
 		Assert::parameterType( 'object', $row, '$row' );
 
 		$this->mId = intval( $row->rev_id );
@@ -82,18 +82,15 @@ class RevisionStoreRecord extends RevisionRecord {
 		$this->mSize = isset( $row->rev_len ) ? intval( $row->rev_len ) : null;
 		$this->mSha1 = isset( $row->rev_sha1 ) ? $row->rev_sha1 : null;
 
-		// NOTE: we must not call $this->mTitle->getLatestRevID() here, since the state of
-		// page_latest may be in limbo during revision creation. In that case, calling
-		// $this->mTitle->getLatestRevID() would cause a bad value to be cached in the Title
-		// object. During page creation, that bad value would be 0.
 		if ( isset( $row->page_latest ) ) {
 			$this->mCurrent = ( $row->rev_id == $row->page_latest );
 		}
 
 		// sanity check
-		if ( $this->mPageId && $this->mPageId !== $this->mTitle->getArticleID() ) {
+		if ( $this->mPageId && $this->mPageId !== $this->mPageIdentity->getId() ) {
 			throw new InvalidArgumentException(
-				'The given Title does not belong to page ID ' . $this->mPageId
+				'The given page ID does not match the given PageIdentity: '
+				. $this->mPageId
 			);
 		}
 	}

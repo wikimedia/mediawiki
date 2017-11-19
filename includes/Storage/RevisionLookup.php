@@ -119,11 +119,11 @@ interface RevisionLookup {
 	 * MCR migration note: this replaces Revision::newKnownCurrent
 	 *
 	 * @param IDatabase $db
-	 * @param Title $title the associated page title
+	 * @param PageIdentity $page the associated page title
 	 * @param int $revId current revision of this page
 	 *
 	 * @return RevisionRecord|bool Returns false if missing
 	 */
-	public function getKnownCurrentRevision( IDatabase $db, Title $title, $revId );
+	public function getKnownCurrentRevision( IDatabase $db, PageIdentity $page, $revId );
 
 }
