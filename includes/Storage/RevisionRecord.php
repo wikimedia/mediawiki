@@ -26,7 +26,6 @@ use CommentStoreComment;
 use Content;
 use InvalidArgumentException;
 use LogicException;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\User\UserIdentity;
 use MWException;
 use Title;
@@ -79,8 +78,8 @@ abstract class RevisionRecord {
 	/** @var CommentStoreComment|null */
 	protected $mComment;
 
-	/**  @var Title */
-	protected $mTitle; // TODO: we only need the title for permission checks!
+	/**  @var PageIdentity */
+	protected $mPageIdentity;
 
 	/** @var RevisionSlots */
 	protected $mSlots;
@@ -89,22 +88,22 @@ abstract class RevisionRecord {
 	 * @note Avoid calling this constructor directly. Use the appropriate methods
 	 * in RevisionStore instead.
 	 *
-	 * @param Title $title The title of the page this Revision is associated with.
+	 * @param PageIdentity $pageIdentity The title of the page this Revision is associated with.
 	 * @param RevisionSlots $slots The slots of this revision.
 	 * @param bool|string $wikiId the wiki ID of the site this Revision belongs to,
 	 *        or false for the local site.
 	 *
 	 * @throws MWException
 	 */
-	function __construct( Title $title, RevisionSlots $slots, $wikiId = false ) {
+	function __construct( PageIdentity $pageIdentity, RevisionSlots $slots, $wikiId = false ) {
 		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
 
-		$this->mTitle = $title;
+		$this->mPageIdentity = $pageIdentity;
 		$this->mSlots = $slots;
 		$this->mWiki = $wikiId;
 
 		// XXX: this is a sensible default, but we may not have a Title object here in the future.
-		$this->mPageId = $title->getArticleID();
+		$this->mPageId = $pageIdentity->getId();
 	}
 
 	/**
@@ -279,10 +278,10 @@ abstract class RevisionRecord {
 	 *
 	 * MCR migration note: this replaces Revision::getTitle
 	 *
-	 * @return LinkTarget
+	 * @return PageIdentity
 	 */
-	public function getPageAsLinkTarget() {
-		return $this->mTitle;
+	public function getPageIdentity() {
+		return $this->mPageIdentity;
 	}
 
 	/**
@@ -420,27 +419,28 @@ abstract class RevisionRecord {
 	 * @return bool
 	 */
 	protected function userCan( $field, User $user ) {
-		// TODO: use callback for permission checks, so we don't need to know a Title object!
-		return self::userCanBitfield( $this->getVisibility(), $field, $user, $this->mTitle );
+		// TODO: use callback for permission checks, so we can move userCanBitfield() to a service!
+		return self::userCanBitfield( $this->getVisibility(), $field, $user, $this->mPageIdentity );
 	}
 
 	/**
 	 * Determine if the current user is allowed to view a particular
-	 * field of this revision, if it's marked as deleted. This is used
-	 * by various classes to avoid duplication.
+	 * field of this revision, if it's marked as deleted.
 	 *
 	 * MCR migration note: this replaces Revision::userCanBitfield
+	 *
+	 * @todo Move this to a dedicated PagePermission service, along with Title::userCan.
 	 *
 	 * @param int $bitfield Current field
 	 * @param int $field One of self::DELETED_TEXT = File::DELETED_FILE,
 	 *                               self::DELETED_COMMENT = File::DELETED_COMMENT,
 	 *                               self::DELETED_USER = File::DELETED_USER
 	 * @param User $user User object to check
-	 * @param Title|null $title A Title object to check for per-page restrictions on,
-	 *                          instead of just plain userrights
+	 * @param PageIdentity|Title|null $page Identity of the page to check. This accepts as Title
+	 *        object for backwards compatibility. Use of Title is however deprecated.
 	 * @return bool
 	 */
-	public static function userCanBitfield( $bitfield, $field, User $user, Title $title = null ) {
+	public static function userCanBitfield( $bitfield, $field, User $user, $page = null ) {
 		if ( $bitfield & $field ) { // aspect is deleted
 			if ( $bitfield & self::DELETED_RESTRICTED ) {
 				$permissions = [ 'suppressrevision', 'viewsuppressed' ];
@@ -450,12 +450,17 @@ abstract class RevisionRecord {
 				$permissions = [ 'deletedhistory' ];
 			}
 			$permissionlist = implode( ', ', $permissions );
-			if ( $title === null ) {
+			if ( $page === null ) {
 				wfDebug( "Checking for $permissionlist due to $field match on $bitfield\n" );
 				return call_user_func_array( [ $user, 'isAllowedAny' ], $permissions );
 			} else {
-				$text = $title->getPrefixedText();
-				wfDebug( "Checking for $permissionlist on $text due to $field match on $bitfield\n" );
+				wfDebug( "Checking for $permissionlist on $page due to $field match on $bitfield\n" );
+
+				// NOTE: We shouldn't need a Title here.
+				// The below is a B/C cludge to avoid wrapping/unwrapping Titles objects that
+				// came in via Revision::userCanBitfield().
+				$title = $page instanceof Title ? $page : Title::newFromPageIdentity( $page );
+
 				foreach ( $permissions as $perm ) {
 					if ( $title->userCan( $perm, $user ) ) {
 						return true;
