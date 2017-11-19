@@ -23,7 +23,6 @@
 namespace MediaWiki\Storage;
 
 use MWException;
-use Title;
 
 /**
  * Service for constructing revision objects.
@@ -45,12 +44,16 @@ interface RevisionFactory {
 	 *
 	 * @param array $fields
 	 * @param int $queryFlags Flags for lazy loading behavior, see IDBAccessObject::READ_XXX.
-	 * @param Title|null $title
+	 * @param PageIdentity|null $page
 	 *
 	 * @return MutableRevisionRecord
 	 * @throws MWException
 	 */
-	public function newMutableRevisionFromArray( array $fields, $queryFlags = 0, Title $title = null );
+	public function newMutableRevisionFromArray(
+		array $fields,
+		$queryFlags = 0,
+		PageIdentity $page = null
+	);
 
 	/**
 	 * Constructs a RevisionRecord given a database row and content slots.
@@ -60,12 +63,12 @@ interface RevisionFactory {
 	 *
 	 * @param object $row
 	 * @param int $queryFlags Flags for lazy loading behavior, see IDBAccessObject::READ_XXX.
-	 * @param Title|null $title
+	 * @param PageIdentity|null $page
 	 *
 	 * @return RevisionRecord
 	 * @internal param RevisionSlots $slots
 	 */
-	public function newRevisionFromRow( $row, $queryFlags = 0, Title $title = null );
+	public function newRevisionFromRow( $row, $queryFlags = 0, PageIdentity $page = null );
 
 	/**
 	 * Make a fake revision object from an archive table row. This is queried
@@ -75,7 +78,7 @@ interface RevisionFactory {
 	 *
 	 * @param object $row
 	 * @param int $queryFlags Flags for lazy loading behavior, see IDBAccessObject::READ_XXX.
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param array $overrides
 	 *
 	 * @return RevisionRecord
@@ -83,7 +86,7 @@ interface RevisionFactory {
 	public function newRevisionFromArchiveRow(
 		$row,
 		$queryFlags = 0,
-		Title $title = null,
+		PageIdentity $page = null,
 		array $overrides = []
 	);
 
