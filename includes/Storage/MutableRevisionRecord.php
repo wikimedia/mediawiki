@@ -27,7 +27,6 @@ use Content;
 use InvalidArgumentException;
 use MediaWiki\User\UserIdentity;
 use MWException;
-use Title;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -56,9 +55,7 @@ class MutableRevisionRecord extends RevisionRecord {
 		UserIdentity $user,
 		$timestamp
 	) {
-		// TODO: ideally, we wouldn't need a Title here
-		$title = Title::newFromLinkTarget( $parent->getPageAsLinkTarget() );
-		$rev = new MutableRevisionRecord( $title, $parent->getWikiId() );
+		$rev = new MutableRevisionRecord( $parent->getPageIdentity(), $parent->getWikiId() );
 
 		$rev->setComment( $comment );
 		$rev->setUser( $user );
@@ -79,16 +76,16 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @note Avoid calling this constructor directly. Use the appropriate methods
 	 * in RevisionStore instead.
 	 *
-	 * @param Title $title The title of the page this Revision is associated with.
+	 * @param PageIdentity $pageIdentity The identity of the page this Revision is associated with.
 	 * @param bool|string $wikiId the wiki ID of the site this Revision belongs to,
 	 *        or false for the local site.
 	 *
 	 * @throws MWException
 	 */
-	function __construct( Title $title, $wikiId = false ) {
+	function __construct( PageIdentity $pageIdentity, $wikiId = false ) {
 		$slots = new MutableRevisionSlots();
 
-		parent::__construct( $title, $slots, $wikiId );
+		parent::__construct( $pageIdentity, $slots, $wikiId );
 
 		$this->mSlots = $slots; // redundant, but nice for static analysis
 	}
@@ -264,9 +261,10 @@ class MutableRevisionRecord extends RevisionRecord {
 	public function setPageId( $pageId ) {
 		Assert::parameterType( 'integer', $pageId, '$pageId' );
 
-		if ( $this->mTitle->exists() && $pageId !== $this->mTitle->getArticleID() ) {
+		if ( $this->mPageIdentity->exists() && $pageId !== $this->mPageIdentity->getId() ) {
 			throw new InvalidArgumentException(
-				'The given Title does not belong to page ID ' . $this->mPageId
+				'The given page ID does not match the PageIdentity provided to the constructor: '
+					. $this->mPageId
 			);
 		}
 
