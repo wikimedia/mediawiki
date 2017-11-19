@@ -5,6 +5,8 @@ namespace MediaWiki\Tests\Storage;
 use CommentStoreComment;
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\Storage\PageIdentity;
+use MediaWiki\Storage\PageIdentityValue;
 use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\Storage\RevisionSlots;
 use MediaWiki\Storage\RevisionStoreRecord;
@@ -27,8 +29,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 	 * @return RevisionStoreRecord
 	 */
 	public function newRevision( array $rowOverrides = [] ) {
-		$title = Title::newFromText( 'Dummy' );
-		$title->resetArticleID( 17 );
+		$page = PageIdentityValue::newFromDBKey( 17, NS_MAIN, 'Dummy' );
 
 		$user = new UserIdentityValue( 11, 'Tester' );
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
@@ -39,7 +40,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 
 		$row = [
 			'rev_id' => '7',
-			'rev_page' => strval( $title->getArticleID() ),
+			'rev_page' => strval( $page->getId() ),
 			'rev_timestamp' => '20200101000000',
 			'rev_deleted' => 0,
 			'rev_minor_edit' => 0,
@@ -51,12 +52,11 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 
 		$row = array_merge( $row, $rowOverrides );
 
-		return new RevisionStoreRecord( $title, $user, $comment, (object)$row, $slots );
+		return new RevisionStoreRecord( $page, $user, $comment, (object)$row, $slots );
 	}
 
 	public function provideConstructor() {
-		$title = Title::newFromText( 'Dummy' );
-		$title->resetArticleID( 17 );
+		$page = PageIdentityValue::newFromDBKey( 17, NS_MAIN, 'Dummy' );
 
 		$user = new UserIdentityValue( 11, 'Tester' );
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
@@ -67,7 +67,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 
 		$protoRow = [
 			'rev_id' => '7',
-			'rev_page' => strval( $title->getArticleID() ),
+			'rev_page' => strval( $page->getId() ),
 			'rev_timestamp' => '20200101000000',
 			'rev_deleted' => 0,
 			'rev_minor_edit' => 0,
@@ -79,7 +79,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 
 		$row = $protoRow;
 		yield 'all info' => [
-			$title,
+			$page,
 			$user,
 			$comment,
 			(object)$row,
@@ -92,7 +92,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		$row['rev_deleted'] = strval( RevisionRecord::DELETED_USER );
 
 		yield 'minor deleted' => [
-			$title,
+			$page,
 			$user,
 			$comment,
 			(object)$row,
@@ -103,7 +103,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		$row['page_latest'] = $row['rev_id'];
 
 		yield 'latest' => [
-			$title,
+			$page,
 			$user,
 			$comment,
 			(object)$row,
@@ -114,7 +114,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		unset( $row['rev_parent'] );
 
 		yield 'no parent' => [
-			$title,
+			$page,
 			$user,
 			$comment,
 			(object)$row,
@@ -126,7 +126,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		unset( $row['rev_sha1'] );
 
 		yield 'no length, no hash' => [
-			$title,
+			$page,
 			$user,
 			$comment,
 			(object)$row,
@@ -137,7 +137,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideConstructor
 	 *
-	 * @param Title $title
+	 * @param PageIdentity $pageIdentity
 	 * @param UserIdentity $user
 	 * @param CommentStoreComment $comment
 	 * @param object $row
@@ -145,16 +145,16 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 	 * @param bool $wikiId
 	 */
 	public function testConstructorAndGetters(
-		Title $title,
+		PageIdentity $pageIdentity,
 		UserIdentity $user,
 		CommentStoreComment $comment,
 		$row,
 		RevisionSlots $slots,
 		$wikiId = false
 	) {
-		$rec = new RevisionStoreRecord( $title, $user, $comment, $row, $slots, $wikiId );
+		$rec = new RevisionStoreRecord( $pageIdentity, $user, $comment, $row, $slots, $wikiId );
 
-		$this->assertSame( $title, $rec->getPageAsLinkTarget(), 'getPageAsLinkTarget' );
+		$this->assertSame( $pageIdentity, $rec->getPageIdentity() );
 		$this->assertSame( $user, $rec->getUser( RevisionRecord::RAW ), 'getUser' );
 		$this->assertSame( $comment, $rec->getComment(), 'getComment' );
 
@@ -201,8 +201,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 	}
 
 	public function provideConstructorFailure() {
-		$title = Title::newFromText( 'Dummy' );
-		$title->resetArticleID( 17 );
+		$page = PageIdentityValue::newFromDBKey( 17, NS_MAIN, __METHOD__ );
 
 		$user = new UserIdentityValue( 11, 'Tester' );
 
@@ -214,7 +213,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 
 		$protoRow = [
 			'rev_id' => '7',
-			'rev_page' => strval( $title->getArticleID() ),
+			'rev_page' => strval( $page->getId() ),
 			'rev_timestamp' => '20200101000000',
 			'rev_deleted' => 0,
 			'rev_minor_edit' => 0,
@@ -225,7 +224,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		];
 
 		yield 'not a row' => [
-			$title,
+			$page,
 			$user,
 			$comment,
 			'not a row',
@@ -237,7 +236,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		$row['rev_timestamp'] = 'kittens';
 
 		yield 'bad timestamp' => [
-			$title,
+			$page,
 			$user,
 			$comment,
 			(object)$row,
@@ -248,7 +247,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		$row['rev_page'] = 99;
 
 		yield 'page ID mismatch' => [
-			$title,
+			$page,
 			$user,
 			$comment,
 			(object)$row,
@@ -258,7 +257,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		$row = $protoRow;
 
 		yield 'bad wiki' => [
-			$title,
+			$page,
 			$user,
 			$comment,
 			(object)$row,
@@ -270,7 +269,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideConstructorFailure
 	 *
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param UserIdentity $user
 	 * @param CommentStoreComment $comment
 	 * @param object $row
@@ -278,7 +277,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 	 * @param bool $wikiId
 	 */
 	public function testConstructorFailure(
-		Title $title,
+		PageIdentity $page,
 		UserIdentity $user,
 		CommentStoreComment $comment,
 		$row,
@@ -286,7 +285,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		$wikiId = false
 	) {
 		$this->setExpectedException( InvalidArgumentException::class );
-		new RevisionStoreRecord( $title, $user, $comment, $row, $slots, $wikiId );
+		new RevisionStoreRecord( $page, $user, $comment, $row, $slots, $wikiId );
 	}
 
 	private function provideAudienceCheckData( $field ) {
@@ -630,7 +629,22 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 			null,
 			true,
 		];
-		// Check permissions using the title
+		// Check permissions using the PageIdentity
+		yield [
+			RevisionRecord::DELETED_TEXT,
+			RevisionRecord::DELETED_TEXT,
+			[ 'sysop' ],
+			PageIdentityValue::newFromDBKey( 17, NS_MAIN, __METHOD__ ),
+			true,
+		];
+		yield [
+			RevisionRecord::DELETED_TEXT,
+			RevisionRecord::DELETED_TEXT,
+			[],
+			PageIdentityValue::newFromDBKey( 17, NS_MAIN, __METHOD__ ),
+			false,
+		];
+		// Check permissions using the Title
 		yield [
 			RevisionRecord::DELETED_TEXT,
 			RevisionRecord::DELETED_TEXT,
@@ -662,10 +676,6 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		);
 	}
 
-	private function getSlotRecord( $role, $contentString ) {
-		return SlotRecord::newUnsaved( $role, new TextContent( $contentString ) );
-	}
-
 	public function provideHasSameContent() {
 		/**
 		 * @param SlotRecord[] $slots
@@ -673,17 +683,16 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		 * @return RevisionStoreRecord
 		 */
 		$recordCreator = function ( array $slots, $revId ) {
-			$title = Title::newFromText( 'provideHasSameContent' );
-			$title->resetArticleID( 19 );
+			$page = PageIdentityValue::newFromDBKey( 19, 0, __METHOD__ );
 			$slots = new RevisionSlots( $slots );
 
 			return new RevisionStoreRecord(
-				$title,
+				$page,
 				new UserIdentityValue( 11, __METHOD__ ),
 				CommentStoreComment::newUnsavedComment( __METHOD__ ),
 				(object)[
 					'rev_id' => strval( $revId ),
-					'rev_page' => strval( $title->getArticleID() ),
+					'rev_page' => strval( $page->getId() ),
 					'rev_timestamp' => '20200101000000',
 					'rev_deleted' => 0,
 					'rev_minor_edit' => 0,
