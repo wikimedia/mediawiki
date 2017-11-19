@@ -1,4 +1,7 @@
 <?php
+use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Storage\PageIdentity;
+use MediaWiki\Storage\PageIdentityValue;
 
 /**
  * @group Database
@@ -548,7 +551,7 @@ class TitleTest extends MediaWikiTestCase {
 		return [
 			[ new TitleValue( NS_MAIN, 'Foo' ) ],
 			[ new TitleValue( NS_MAIN, 'Foo', 'bar' ) ],
-			[ new TitleValue( NS_USER, 'Hansi_Maier' ) ],
+			[ new TitleValue( NS_USER, 'Hansi_Maier', '', 'xyz' ) ],
 		];
 	}
 
@@ -566,23 +569,92 @@ class TitleTest extends MediaWikiTestCase {
 
 	public static function provideGetTitleValue() {
 		return [
-			[ 'Foo' ],
-			[ 'Foo#bar' ],
-			[ 'User:Hansi_Maier' ],
+			[ Title::newFromText( 'Foo' ) ],
+			[ Title::newFromText( 'Foo#bar' ) ],
+			[ Title::newFromText( 'User:Hansi_Maier' ) ],
+			[ Title::makeTitle( NS_MAIN, 'Foo', '', 'xy' ) ],
 		];
 	}
 
 	/**
 	 * @dataProvider provideGetTitleValue
 	 */
-	public function testGetTitleValue( $text ) {
-		$title = Title::newFromText( $text );
+	public function testGetTitleValue( Title $title ) {
 		$value = $title->getTitleValue();
 
 		$dbkey = str_replace( ' ', '_', $value->getText() );
 		$this->assertEquals( $title->getDBkey(), $dbkey );
 		$this->assertEquals( $title->getNamespace(), $value->getNamespace() );
 		$this->assertEquals( $title->getFragment(), $value->getFragment() );
+	}
+
+	public static function provideNewFromLinkTarget() {
+		return [
+			[ new TitleValue( NS_MAIN, 'Foo' ) ],
+			[ new TitleValue( NS_MAIN, 'Foo', 'bar' ) ],
+			[ new TitleValue( NS_USER, 'Hansi_Maier', '', 'xyz' ) ],
+			[ Title::makeTitle( NS_USER, 'Tester' ) ]
+		];
+	}
+
+	/**
+	 * @dataProvider provideNewFromLinkTarget
+	 */
+	public function testNewFromLinkTarget( LinkTarget $link ) {
+		$title = Title::newFromLinkTarget( $link );
+
+		$dbkey = str_replace( ' ', '_', $link->getText() );
+		$this->assertSame( $dbkey, $title->getDBkey() );
+		$this->assertSame( $link->getNamespace(), $title->getNamespace() );
+		$this->assertSame( $link->getFragment(), $title->getFragment() );
+		$this->assertSame( $link->getInterwiki(), $title->getInterwiki() );
+
+		$this->assertSame( $link instanceof Title, $link === $title, 'Title stays Title' );
+	}
+
+	public static function provideNewFromPageIdentity() {
+		return [
+			[ PageIdentityValue::newFromDBKey( 0, NS_MAIN, 'Foo' ) ],
+			[ PageIdentityValue::newFromDBKey( 8, NS_USER, 'Hansi_Maier' ) ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideNewFromPageIdentity
+	 */
+	public function testNewFromPageIdentity( PageIdentity $page ) {
+		$title = Title::newFromPageIdentity( $page );
+
+		$this->assertSame( $page->getNamespace(), $title->getNamespace() );
+		$this->assertSame( $page->getTitleDBkey(), $title->getDBkey() );
+		$this->assertSame( $page->getTitleText(), $title->getText() );
+		$this->assertSame( $page->exists(), $title->exists() );
+		$this->assertSame( $page->getId(), $title->getArticleID() );
+	}
+
+	public static function provideGetPageIdentity() {
+		$foo = Title::makeTitle( NS_MAIN, 'Foo' );
+		$bar = Title::makeTitle( NS_MAIN, 'Bar' );
+		$bar->resetArticleID( 8 );
+
+		return [
+			[ $foo ],
+			[ $bar ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetPageIdentity
+	 */
+	public function testGetPageIdentity( Title $title ) {
+		$page = $title->getPageIdentity();
+
+		$this->assertSame( $title, $page->getAsLinkTarget() );
+		$this->assertSame( $title->getNamespace(), $page->getNamespace() );
+		$this->assertSame( $title->getText(), $page->getTitleText() );
+		$this->assertSame( $title->getDBkey(), $page->getTitleDBkey() );
+		$this->assertSame( $title->getArticleID(), $page->getId() );
+		$this->assertSame( $title->exists(), $page->exists() );
 	}
 
 	public static function provideGetFragment() {
