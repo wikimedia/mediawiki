@@ -320,10 +320,16 @@ $wgAppleTouchIcon = false;
 
 /**
  * Value for the referrer policy meta tag.
- * One of 'never', 'default', 'origin', 'always'. Setting it to false just
- * prevents the meta tag from being output.
- * See https://www.w3.org/TR/referrer-policy/ for details.
+ * One of the values defined in the Referrer Policy specification:
+ * https://w3c.github.io/webappsec-referrer-policy/
+ * ('no-referrer', 'no-referrer-when-downgrade', 'same-origin',
+ * 'origin', 'strict-origin', 'origin-when-cross-origin',
+ * 'strict-origin-when-cross-origin', or 'unsafe-url')
+ * Setting it to false prevents the meta tag from being output
+ * (which results in falling back to the Referrer-Policy header,
+ * or 'no-referrer-when-downgrade' if that's not set either.)
  *
+ * @var string|bool
  * @since 1.25
  */
 $wgReferrerPolicy = false;
