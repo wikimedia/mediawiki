@@ -673,7 +673,6 @@ class OutputPageTest extends MediaWikiTestCase {
 		$context->setConfig( new HashConfig( $config + [
 			'AppleTouchIcon' => false,
 			'DisableLangConversion' => true,
-			'EnableAPI' => false,
 			'EnableCanonicalServerLink' => false,
 			'Favicon' => false,
 			'Feed' => false,

@@ -2,13 +2,10 @@
 /**
  * This file is the entry point for all API queries.
  *
- * It begins by checking whether the API is enabled on this wiki; if not,
- * it informs the user that s/he should set $wgEnableAPI to true and exits.
- * Otherwise, it constructs a new ApiMain using the parameter passed to it
- * as an argument in the URL ('?action=') and with write-enabled set to the
- * value of $wgEnableWriteAPI as specified in LocalSettings.php.
- * It then invokes "execute()" on the ApiMain object instance, which
- * produces output in the format specified in the URL.
+ * It begins by constructing a new ApiMain using the parameter passed to it
+ * as an argument in the URL ('?action='). It then invokes "execute()" on the
+ * ApiMain object instance, which produces output in the format specified in
+ * the URL.
  *
  * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
@@ -55,14 +52,6 @@ if ( isset( $_SERVER['PATH_INFO'] ) && $_SERVER['PATH_INFO'] != '' ) {
 	die( 1 );
 }
 
-// Verify that the API has not been disabled
-if ( !$wgEnableAPI ) {
-	header( $_SERVER['SERVER_PROTOCOL'] . ' 500 MediaWiki configuration Error', true, 500 );
-	echo 'MediaWiki API is not enabled for this site. Add the following line to your LocalSettings.php'
-		. '<pre><b>$wgEnableAPI=true;</b></pre>';
-	die( 1 );
-}
-
 // Set a dummy $wgTitle, because $wgTitle == null breaks various things
 // In a perfect world this wouldn't be necessary
 $wgTitle = Title::makeTitle( NS_SPECIAL, 'Badtitle/dummy title for API calls set in api.php' );
@@ -76,7 +65,7 @@ try {
 	 * is some form of an ApiMain, possibly even one that produces an error message,
 	 * but we don't care here, as that is handled by the constructor.
 	 */
-	$processor = new ApiMain( RequestContext::getMain(), $wgEnableWriteAPI );
+	$processor = new ApiMain( RequestContext::getMain(), true );
 
 	// Last chance hook before executing the API
 	Hooks::run( 'ApiBeforeMain', [ &$processor ] );

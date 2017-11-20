@@ -89,8 +89,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgContentLanguage' => $wgContLang->getCode(),
 			'wgTranslateNumerals' => $conf->get( 'TranslateNumerals' ),
 			'wgVersion' => $conf->get( 'Version' ),
-			'wgEnableAPI' => $conf->get( 'EnableAPI' ),
-			'wgEnableWriteAPI' => $conf->get( 'EnableWriteAPI' ),
 			'wgMainPageTitle' => $mainPage->getPrefixedText(),
 			'wgFormattedNamespaces' => $wgContLang->getFormattedNamespaces(),
 			'wgNamespaceIds' => $namespaceIds,

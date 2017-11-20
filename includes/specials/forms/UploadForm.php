@@ -407,8 +407,7 @@ class UploadForm extends HTMLForm {
 		$config = $this->getConfig();
 
 		$useAjaxDestCheck = $config->get( 'UseAjax' ) && $config->get( 'AjaxUploadDestCheck' );
-		$useAjaxLicensePreview = $config->get( 'UseAjax' ) &&
-			$config->get( 'AjaxLicensePreview' ) && $config->get( 'EnableAPI' );
+		$useAjaxLicensePreview = $config->get( 'UseAjax' ) && $config->get( 'AjaxLicensePreview' );
 		$this->mMaxUploadSize['*'] = UploadBase::getMaxUploadSize();
 
 		$scriptVars = [
