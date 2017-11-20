@@ -1487,5 +1487,8 @@
 	"logentry-move-move_redir-noredirect": "$1 adlı qullanıcı $3 saifesiniñ adını yönetme üzerinden yañı bir yönetme qaldırmayıp $4 dep {{GENDER:$2|deñiştirdi}}",
 	"searchsuggest-search": "Qıdır",
 	"searchsuggest-containing": "içinde bu olğan...",
+	"variantname-crh": "Lat./Кир.",
+	"variantname-crh-latn": "Latin",
+	"variantname-crh-cyrl": "Кирил",
 	"pagelang-language": "Til"
 }

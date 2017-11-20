@@ -1491,5 +1491,8 @@
 	"logentry-move-move_redir-noredirect": "$1 адлы къулланыджы $3 саифесининъ адыны ёнетме узеринден янъы бир ёнетме къалдырмайып $4 деп {{GENDER:$2|денъиштирди}}",
 	"searchsuggest-search": "Къыдыр",
 	"searchsuggest-containing": "ичинде бу олгъан...",
+	"variantname-crh": "Lat./Кир.",
+	"variantname-crh-latn": "Latin",
+	"variantname-crh-cyrl": "Кирил",
 	"pagelang-language": "Тиль"
 }
