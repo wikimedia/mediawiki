@@ -22,3 +22,9 @@
 .mw-userrights-groups * th {
 	text-align: left;
 }
+
+/* Dynamically show/hide the expiry selection underneath each checkbox */
+/* Support: Firefox 57 - it can't parse `[ attrib ]` with spaces only `[attrib]`. https://bugzilla.mozilla.org/1418152 */
+#mw-userrights-form2 input[type='checkbox']:not( :checked ) ~ div { /* stylelint-disable-line selector-attribute-brackets-space-inside */
+	display: none;
+}
