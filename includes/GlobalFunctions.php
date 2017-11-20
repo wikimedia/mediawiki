@@ -1746,7 +1746,10 @@ function wfEscapeWikiText( $text ) {
 		}
 		$repl2 = $repl2 ? '/\b(' . implode( '|', $repl2 ) . '):/i' : '/^(?!)/';
 	}
-	$text = substr( strtr( "\n$text", $repl ), 1 );
+	$text = "\n$text";
+	$text = strtr( $text, $repl );
+	$text = preg_replace( '/([\r\n][ \t]*)!/', '$1&#33;', $text );
+	$text = substr( $text, 1 );
 	$text = preg_replace( $repl2, '$1&#58;', $text );
 	return $text;
 }
