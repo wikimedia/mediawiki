@@ -36,24 +36,28 @@ use Wikimedia\Assert\Assert;
 class TitleValue implements LinkTarget {
 
 	/**
+	 * @deprecated in 1.31. This class is immutable. Use the getter for access.
 	 * @var int
 	 */
-	private $namespace;
+	protected $namespace;
 
 	/**
+	 * @deprecated in 1.31. This class is immutable. Use the getter for access.
 	 * @var string
 	 */
-	private $dbkey;
+	protected $dbkey;
 
 	/**
+	 * @deprecated in 1.31. This class is immutable. Use the getter for access.
 	 * @var string
 	 */
-	private $fragment;
+	protected $fragment;
 
 	/**
+	 * @deprecated in 1.31. This class is immutable. Use the getter for access.
 	 * @var string
 	 */
-	private $interwiki;
+	protected $interwiki;
 
 	/**
 	 * Constructs a TitleValue.
