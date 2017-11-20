@@ -66,7 +66,7 @@
 			label: mw.msg( 'rcfilters-filter-excluded' )
 		} );
 		this.excludeLabel.toggle(
-			this.itemModel.getGroupModel().getView() === 'namespace' &&
+			this.itemModel.getGroupModel().getView() === 'namespaces' &&
 			this.itemModel.isSelected() &&
 			this.invertModel.isSelected()
 		);
@@ -138,7 +138,7 @@
 
 		this.highlightButton.toggle( this.filtersViewModel.isHighlightEnabled() );
 		this.excludeLabel.toggle(
-			this.itemModel.getGroupModel().getView() === 'namespace' &&
+			this.itemModel.getGroupModel().getView() === 'namespaces' &&
 			this.itemModel.isSelected() &&
 			this.invertModel.isSelected()
 		);
