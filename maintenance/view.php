@@ -38,17 +38,17 @@ class ViewCLI extends Maintenance {
 	public function execute() {
 		$title = Title::newFromText( $this->getArg() );
 		if ( !$title ) {
-			$this->error( "Invalid title", true );
+			$this->die( "Invalid title" );
 		}
 
 		$page = WikiPage::factory( $title );
 
 		$content = $page->getContent( Revision::RAW );
 		if ( !$content ) {
-			$this->error( "Page has no content", true );
+			$this->die( "Page has no content" );
 		}
 		if ( !$content instanceof TextContent ) {
-			$this->error( "Non-text content models not supported", true );
+			$this->die( "Non-text content models not supported" );
 		}
 
 		$this->output( $content->getNativeData() );

@@ -136,7 +136,7 @@ class CommandLineInstaller extends Maintenance {
 			$dbpass = file_get_contents( $dbpassfile ); // returns false on failure
 			MediaWiki\restoreWarnings();
 			if ( $dbpass === false ) {
-				$this->error( "Couldn't open $dbpassfile", true );
+				$this->die( "Couldn't open $dbpassfile" );
 			}
 			$this->mOptions['dbpass'] = trim( $dbpass, "\r\n" );
 		}
@@ -153,11 +153,11 @@ class CommandLineInstaller extends Maintenance {
 			$pass = file_get_contents( $passfile ); // returns false on failure
 			MediaWiki\restoreWarnings();
 			if ( $pass === false ) {
-				$this->error( "Couldn't open $passfile", true );
+				$this->die( "Couldn't open $passfile" );
 			}
 			$this->mOptions['pass'] = trim( $pass, "\r\n" );
 		} elseif ( $this->getOption( 'pass' ) === null ) {
-			$this->error( 'You need to provide the option "pass" or "passfile"', true );
+			$this->die( 'You need to provide the option "pass" or "passfile"' );
 		}
 	}
 

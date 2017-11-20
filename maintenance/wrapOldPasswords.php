@@ -43,6 +43,12 @@ class WrapOldPasswords extends Maintenance {
 	}
 
 	public function execute() {
+		global $wgAuth;
+
+		if ( !$wgAuth->allowSetLocalPassword() ) {
+			$this->die( '$wgAuth does not allow local passwords. Aborting.' );
+		}
+
 		$passwordFactory = new PasswordFactory();
 		$passwordFactory->init( RequestContext::getMain()->getConfig() );
 
@@ -51,12 +57,12 @@ class WrapOldPasswords extends Maintenance {
 
 		// Check that type exists and is a layered type
 		if ( !isset( $typeInfo[$layeredType] ) ) {
-			$this->error( 'Undefined password type', true );
+			$this->die( 'Undefined password type' );
 		}
 
 		$passObj = $passwordFactory->newFromType( $layeredType );
 		if ( !$passObj instanceof LayeredParameterizedPassword ) {
-			$this->error( 'Layered parameterized password type must be used.', true );
+			$this->die( 'Layered parameterized password type must be used.' );
 		}
 
 		// Extract the first layer type

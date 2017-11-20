@@ -421,7 +421,7 @@ class BackupDumper extends Maintenance {
 	}
 
 	function fatalError( $msg ) {
-		$this->error( "$msg\n", 1 );
+		$this->die( "$msg\n" );
 	}
 }
 

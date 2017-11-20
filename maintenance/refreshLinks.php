@@ -70,7 +70,7 @@ class RefreshLinks extends Maintenance {
 		if ( ( $category = $this->getOption( 'category', false ) ) !== false ) {
 			$title = Title::makeTitleSafe( NS_CATEGORY, $category );
 			if ( !$title ) {
-				$this->error( "'$category' is an invalid category name!\n", true );
+				$this->die( "'$category' is an invalid category name!\n" );
 			}
 			$this->refreshCategory( $title );
 		} elseif ( ( $category = $this->getOption( 'tracking-category', false ) ) !== false ) {
@@ -485,7 +485,7 @@ class RefreshLinks extends Maintenance {
 		if ( isset( $cats[$categoryKey] ) ) {
 			return $cats[$categoryKey]['cats'];
 		}
-		$this->error( "Unknown tracking category {$categoryKey}\n", true );
+		$this->die( "Unknown tracking category {$categoryKey}\n" );
 	}
 }
 

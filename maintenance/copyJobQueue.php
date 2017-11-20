@@ -48,9 +48,9 @@ class CopyJobQueue extends Maintenance {
 		$dstKey = $this->getOption( 'dst' );
 
 		if ( !isset( $wgJobQueueMigrationConfig[$srcKey] ) ) {
-			$this->error( "\$wgJobQueueMigrationConfig not set for '$srcKey'.", 1 );
+			$this->die( "\$wgJobQueueMigrationConfig not set for '$srcKey'." );
 		} elseif ( !isset( $wgJobQueueMigrationConfig[$dstKey] ) ) {
-			$this->error( "\$wgJobQueueMigrationConfig not set for '$dstKey'.", 1 );
+			$this->die( "\$wgJobQueueMigrationConfig not set for '$dstKey'." );
 		}
 
 		$types = ( $this->getOption( 'type' ) === 'all' )

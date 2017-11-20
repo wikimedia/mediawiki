@@ -83,7 +83,7 @@ class SqliteMaintenance extends Maintenance {
 	private function vacuum() {
 		$prevSize = filesize( $this->db->getDbFilePath() );
 		if ( $prevSize == 0 ) {
-			$this->error( "Can't vacuum an empty database.\n", true );
+			$this->die( "Can't vacuum an empty database.\n" );
 		}
 
 		$this->output( 'VACUUM: ' );
