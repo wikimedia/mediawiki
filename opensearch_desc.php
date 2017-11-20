@@ -85,7 +85,7 @@ $urls[] = [
 	'template' => $searchPage->getCanonicalURL( 'search={searchTerms}' ) ];
 
 foreach ( $wgOpenSearchTemplates as $type => $template ) {
-	if ( !$template && $wgEnableAPI ) {
+	if ( !$template ) {
 		$template = ApiOpenSearch::getOpenSearchTemplate( $type );
 	}
 

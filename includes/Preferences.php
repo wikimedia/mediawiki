@@ -1130,26 +1130,24 @@ class Preferences {
 			}
 		}
 
-		if ( $config->get( 'EnableAPI' ) ) {
-			$defaultPreferences['watchlisttoken'] = [
-				'type' => 'api',
-			];
+		$defaultPreferences['watchlisttoken'] = [
+			'type' => 'api',
+		];
 
-			$tokenButton = new OOUI\ButtonWidget( [
-				'href' => SpecialPage::getTitleFor( 'ResetTokens' )->getLinkURL( [
-					'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText()
-				] ),
-				'label' => $context->msg( 'prefs-watchlist-managetokens' )->text(),
-			] );
-			$defaultPreferences['watchlisttoken-info'] = [
-				'type' => 'info',
-				'section' => 'watchlist/tokenwatchlist',
-				'label-message' => 'prefs-watchlist-token',
-				'help-message' => 'prefs-help-tokenmanagement',
-				'raw' => true,
-				'default' => (string)$tokenButton,
-			];
-		}
+		$tokenButton = new OOUI\ButtonWidget( [
+			'href' => SpecialPage::getTitleFor( 'ResetTokens' )->getLinkURL( [
+				'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText()
+			] ),
+			'label' => $context->msg( 'prefs-watchlist-managetokens' )->text(),
+		] );
+		$defaultPreferences['watchlisttoken-info'] = [
+			'type' => 'info',
+			'section' => 'watchlist/tokenwatchlist',
+			'label-message' => 'prefs-watchlist-token',
+			'help-message' => 'prefs-help-tokenmanagement',
+			'raw' => true,
+			'default' => (string)$tokenButton,
+		];
 	}
 
 	/**
