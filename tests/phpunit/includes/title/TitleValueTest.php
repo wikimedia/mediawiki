@@ -116,4 +116,33 @@ class TitleValueTest extends MediaWikiTestCase {
 
 		$this->assertEquals( $text, $title->getText() );
 	}
+
+	public function provideTestToString() {
+		yield [
+			new TitleValue( 0, 'Foo' ),
+			'0:Foo'
+		];
+		yield [
+			new TitleValue( 1, 'Bar_Baz' ),
+			'1:Bar_Baz'
+		];
+		yield [
+			new TitleValue( 9, 'JoJo', 'Frag' ),
+			'9:JoJo#Frag'
+		];
+		yield [
+			new TitleValue( 200, 'tea', 'Fragment', 'wikicode' ),
+			'wikicode:200:tea#Fragment'
+		];
+	}
+
+	/**
+	 * @dataProvider provideTestToString
+	 */
+	public function testToString( TitleValue $value, $expected ) {
+		$this->assertSame(
+			$expected,
+			$value->__toString()
+		);
+	}
 }
