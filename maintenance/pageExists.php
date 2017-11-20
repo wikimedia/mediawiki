@@ -45,7 +45,7 @@ class PageExists extends Maintenance {
 			$code = 1;
 		}
 		$this->output( $text );
-		$this->error( '', $code );
+		exit( $code );
 	}
 }
 

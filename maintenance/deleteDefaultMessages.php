@@ -72,7 +72,7 @@ class DeleteDefaultMessages extends Maintenance {
 		// in order to hide it in RecentChanges.
 		$user = User::newFromName( 'MediaWiki default' );
 		if ( !$user ) {
-			$this->error( "Invalid username", true );
+			$this->fatalError( "Invalid username" );
 		}
 		$user->addGroup( 'bot' );
 		$wgUser = $user;

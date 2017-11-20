@@ -56,7 +56,7 @@ class FixTimestamps extends Maintenance {
 		$row = $dbw->fetchObject( $res );
 
 		if ( is_null( $row->minrev ) ) {
-			$this->error( "No revisions in search period.", true );
+			$this->fatalError( "No revisions in search period." );
 		}
 
 		$minRev = $row->minrev;
@@ -99,14 +99,14 @@ class FixTimestamps extends Maintenance {
 
 		$numBadRevs = count( $badRevs );
 		if ( $numBadRevs > $numGoodRevs ) {
-			$this->error(
+			$this->fatalError(
 				"The majority of revisions in the search interval are marked as bad.
 
 		Are you sure the offset ($offset) has the right sign? Positive means the clock
 		was incorrectly set forward, negative means the clock was incorrectly set back.
 
 		If the offset is right, then increase the search interval until there are enough
-		good revisions to provide a majority reference.", true );
+		good revisions to provide a majority reference." );
 		} elseif ( $numBadRevs == 0 ) {
 			$this->output( "No bad revisions found.\n" );
 			exit( 0 );

@@ -133,11 +133,11 @@ class ImportImages extends Maintenance {
 
 		# Check Protection
 		if ( $this->hasOption( 'protect' ) && $this->hasOption( 'unprotect' ) ) {
-			$this->error( "Cannot specify both protect and unprotect.  Only 1 is allowed.\n", 1 );
+			$this->fatalError( "Cannot specify both protect and unprotect.  Only 1 is allowed.\n" );
 		}
 
 		if ( $this->hasOption( 'protect' ) && trim( $this->getOption( 'protect' ) ) ) {
-			$this->error( "You must specify a protection option.\n", 1 );
+			$this->fatalError( "You must specify a protection option.\n" );
 		}
 
 		# Prepare the list of allowed extensions
@@ -170,7 +170,7 @@ class ImportImages extends Maintenance {
 		if ( $commentFile !== null ) {
 			$comment = file_get_contents( $commentFile );
 			if ( $comment === false || $comment === null ) {
-				$this->error( "failed to read comment file: {$commentFile}\n", 1 );
+				$this->fatalError( "failed to read comment file: {$commentFile}\n" );
 			}
 		} else {
 			$comment = $this->getOption( 'comment', 'Importing file' );

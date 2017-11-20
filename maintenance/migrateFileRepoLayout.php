@@ -43,11 +43,11 @@ class MigrateFileRepoLayout extends Maintenance {
 	public function execute() {
 		$oldLayout = $this->getOption( 'oldlayout' );
 		if ( !in_array( $oldLayout, [ 'name', 'sha1' ] ) ) {
-			$this->error( "Invalid old layout.", 1 );
+			$this->fatalError( "Invalid old layout." );
 		}
 		$newLayout = $this->getOption( 'newlayout' );
 		if ( !in_array( $newLayout, [ 'name', 'sha1' ] ) ) {
-			$this->error( "Invalid new layout.", 1 );
+			$this->fatalError( "Invalid new layout." );
 		}
 		$since = $this->getOption( 'since' );
 

@@ -40,7 +40,7 @@ class LangMemUsage extends Maintenance {
 
 	public function execute() {
 		if ( !function_exists( 'memory_get_usage' ) ) {
-			$this->error( "You must compile PHP with --enable-memory-limit", true );
+			$this->fatalError( "You must compile PHP with --enable-memory-limit" );
 		}
 
 		$langtool = new Languages();

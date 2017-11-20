@@ -61,8 +61,8 @@ class MergeMessageFileList extends Maintenance {
 			&& !$this->hasOption( 'list-file' )
 			&& !$this->hasOption( 'extensions-dir' )
 		) {
-			$this->error( "Either --list-file or --extensions-dir must be provided if " .
-				"\$wgExtensionEntryPointListFiles is not set", 1 );
+			$this->fatalError( "Either --list-file or --extensions-dir must be provided if " .
+				"\$wgExtensionEntryPointListFiles is not set" );
 		}
 
 		$mmfl = [ 'setupFiles' => [] ];

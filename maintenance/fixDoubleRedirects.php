@@ -48,7 +48,7 @@ class FixDoubleRedirects extends Maintenance {
 		if ( $this->hasOption( 'title' ) ) {
 			$title = Title::newFromText( $this->getOption( 'title' ) );
 			if ( !$title || !$title->isRedirect() ) {
-				$this->error( $title->getPrefixedText() . " is not a redirect!\n", true );
+				$this->fatalError( $title->getPrefixedText() . " is not a redirect!\n" );
 			}
 		} else {
 			$title = null;
