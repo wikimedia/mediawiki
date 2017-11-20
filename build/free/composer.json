@@ -20,9 +20,7 @@
 		"hallowelt/filter-special-pages": "dev-master",
 		"mediawiki/hit-counters": "dev-master",
 		"mediawiki/image-map-edit": "dev-master",
-		"mediawiki/ldap-authentication": "dev-master",
 		"mediawiki/lockdown": "dev-100fb4a",
-		"mediawiki/mobile-frontend": "dev-5ecc673",
 		"mediawiki/quiz": "dev-fe69982",
 		"mediawiki/rss": "dev-2b16a83",
 		"mediawiki/syntax-highlight_-ge-s-hi": "dev-08ae879",
@@ -40,6 +38,7 @@
 		"mediawiki/parser-functions": "dev-f4a62ff",
 		"mediawiki/renameuser": "dev-7c618d6",
 		"mediawiki/SyntaxHighlight_GeSHi": "dev-08ae879",
+		"mediawiki/wiki-editor": "dev-9b73200",
 		"mediawiki/blue-spice-tag-cloud": "dev-master",
 		"mediawiki/blue-spice-smart-list": "dev-master",
 		"mediawiki/blue-spice-extended-statistics": "dev-master",
@@ -61,6 +60,7 @@
 		"mediawiki/blue-spice-namespace-manager": "dev-master",
 		"mediawiki/blue-spice-blog": "dev-master",
 		"mediawiki/blue-spice-checklist": "dev-master",
-		"mediawiki/visual-editor": "dev-9b73200"
+		"mediawiki/visual-editor": "dev-9b73200",
+		"mediawiki/code-editor": "dev-9b73200"
 	}
 }
