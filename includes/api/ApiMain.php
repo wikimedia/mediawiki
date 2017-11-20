@@ -149,7 +149,6 @@ class ApiMain extends ApiBase {
 	/** @var ApiContinuationManager|null */
 	private $mContinuationManager;
 	private $mAction;
-	private $mEnableWrite;
 	private $mInternalMode, $mSquidMaxage;
 	/** @var ApiBase */
 	private $mModule;
@@ -167,9 +166,8 @@ class ApiMain extends ApiBase {
 	 *
 	 * @param IContextSource|WebRequest $context If this is an instance of
 	 *    FauxRequest, errors are thrown and no printing occurs
-	 * @param bool $enableWrite Should be set to true if the api may modify data
 	 */
-	public function __construct( $context = null, $enableWrite = false ) {
+	public function __construct( $context = null, $enableWrite = true ) {
 		if ( $context === null ) {
 			$context = RequestContext::getMain();
 		} elseif ( $context instanceof WebRequest ) {
@@ -290,7 +288,10 @@ class ApiMain extends ApiBase {
 		Hooks::run( 'ApiMain::moduleManager', [ $this->mModuleMgr ] );
 
 		$this->mContinuationManager = null;
-		$this->mEnableWrite = $enableWrite;
+
+		if ( $enableWrite = false ) {
+			wfDeprecated( 'APIs cannot have $enableWrite set to false any more', '1.32' );
+		}
 
 		$this->mSquidMaxage = -1; // flag for executeActionWithErrorHandling()
 		$this->mCommit = false;
@@ -1421,9 +1422,7 @@ class ApiMain extends ApiBase {
 		}
 
 		if ( $module->isWriteMode() ) {
-			if ( !$this->mEnableWrite ) {
-				$this->dieWithError( 'apierror-noapiwrite' );
-			} elseif ( !$user->isAllowed( 'writeapi' ) ) {
+			if ( !$user->isAllowed( 'writeapi' ) ) {
 				$this->dieWithError( 'apierror-writeapidenied' );
 			} elseif ( $this->getRequest()->getHeader( 'Promise-Non-Write-API-Action' ) ) {
 				$this->dieWithError( 'apierror-promised-nonwrite-api' );

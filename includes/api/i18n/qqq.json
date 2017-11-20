@@ -1635,7 +1635,6 @@
 	"apierror-mustbeloggedin": "{{doc-apierror}}\n\nParameters:\n* $1 - One of the action-* messages (for example {{msg-mw|action-edit}}) or other such messages tagged with {{tl|doc-action}} in their documentation\n\nPlease report at [[Support]] if you are unable to properly translate this message. Also see [[phab:T16246]] (now closed) for background.\n\nSee also:\n* {{msg-mw|apierror-permissiondenied}}\n* {{msg-mw|permissionserrorstext-withaction}}",
 	"apierror-mustbeposted": "{{doc-apierror}}\n\nParameters:\n* $1 - Module name.",
 	"apierror-mustpostparams": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter names.\n* $2 - Number of parameters.",
-	"apierror-noapiwrite": "{{doc-apierror}}",
 	"apierror-nochanges": "{{doc-apierror}}",
 	"apierror-nodeleteablefile": "{{doc-apierror}}",
 	"apierror-no-direct-editing": "{{doc-apierror}}\n\nParameters:\n* $1 - Content model.\n* $2 - Title using the model.",

@@ -2245,7 +2245,6 @@
 	"apisandbox": "{{doc-special|ApiSandbox}}",
 	"apisandbox-summary": "{{ignored}}\n{{doc-specialpagesummary|ApiSandbox}}",
 	"apisandbox-jsonly": "Displayed as an error message if the browser does not have JavaScript enabled.",
-	"apisandbox-api-disabled": "Displayed as an error message if the API is disabled on this site.",
 	"apisandbox-intro": "Displayed (from JavaScript) as a header on [[Special:ApiSandbox]].",
 	"apisandbox-fullscreen": "JavaScript button label for enabling full-page mode.\n\nSee https://phabricator.wikimedia.org/T129632#2465838 for details.",
 	"apisandbox-fullscreen-tooltip": "Tooltip for the {{msg-mw|apisandbox-fullscreen}} button.",
