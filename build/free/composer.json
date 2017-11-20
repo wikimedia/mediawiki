@@ -34,6 +34,7 @@
 		"mediawiki/gadgets": "dev-da1d465",
 		"mediawiki/image-map": "dev-c5e94b1",
 		"mediawiki/input-box": "dev-29dec4d",
+		"mediawiki/ldap-authentication": "",
 		"mediawiki/nuke": "dev-1d96a44",
 		"mediawiki/parser-functions": "dev-f4a62ff",
 		"mediawiki/renameuser": "dev-7c618d6",
