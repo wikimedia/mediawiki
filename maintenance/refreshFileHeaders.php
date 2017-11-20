@@ -40,6 +40,7 @@ class RefreshFileHeaders extends Maintenance {
 		$this->addOption( 'media_type', 'Media type to filter for', false, true );
 		$this->addOption( 'major_mime', 'Major mime type to filter for', false, true );
 		$this->addOption( 'minor_mime', 'Minor mime type to filter for', false, true );
+		$this->addOption( 'refreshContentType', 'Set true to refresh file content type from mime data in db', false, false);
 		$this->setBatchSize( 200 );
 	}
 
@@ -100,7 +101,10 @@ class RefreshFileHeaders extends Maintenance {
 			foreach ( $res as $row ) {
 				$file = $repo->newFileFromRow( $row );
 				$headers = $file->getContentHeaders();
-
+				if ( $this->getOption( 'refreshContentType', false ) ) {
+					$headers['Content-Type'] = $row->img_major_mime . '/' . $row->img_minor_mime;
+				}
+				
 				if ( count( $headers ) ) {
 					$backendOperations[] = [
 						'op' => 'describe', 'src' => $file->getPath(), 'headers' => $headers
