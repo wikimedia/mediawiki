@@ -76,9 +76,7 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 				__METHOD__
 			);
 			if ( !$res ) {
-				$this->error( "No such file: $file", true );
-
-				return false;
+				$this->fatalError( "No such file: $file" );
 			}
 			$this->output( "Populating img_sha1 field for specified files\n" );
 		} else {

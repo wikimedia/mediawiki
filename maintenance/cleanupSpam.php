@@ -47,7 +47,7 @@ class CleanupSpam extends Maintenance {
 		$username = wfMessage( 'spambot_username' )->text();
 		$wgUser = User::newSystemUser( $username );
 		if ( !$wgUser ) {
-			$this->error( "Invalid username specified in 'spambot_username' message: $username", true );
+			$this->fatalError( "Invalid username specified in 'spambot_username' message: $username" );
 		}
 		// Hack: Grant bot rights so we don't flood RecentChanges
 		$wgUser->addGroup( 'bot' );
@@ -55,7 +55,7 @@ class CleanupSpam extends Maintenance {
 		$spec = $this->getArg();
 		$like = LinkFilter::makeLikeArray( $spec );
 		if ( !$like ) {
-			$this->error( "Not a valid hostname specification: $spec", true );
+			$this->fatalError( "Not a valid hostname specification: $spec" );
 		}
 
 		if ( $this->hasOption( 'all' ) ) {

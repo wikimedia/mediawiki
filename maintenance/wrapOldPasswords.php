@@ -51,12 +51,12 @@ class WrapOldPasswords extends Maintenance {
 
 		// Check that type exists and is a layered type
 		if ( !isset( $typeInfo[$layeredType] ) ) {
-			$this->error( 'Undefined password type', true );
+			$this->fatalError( 'Undefined password type' );
 		}
 
 		$passObj = $passwordFactory->newFromType( $layeredType );
 		if ( !$passObj instanceof LayeredParameterizedPassword ) {
-			$this->error( 'Layered parameterized password type must be used.', true );
+			$this->fatalError( 'Layered parameterized password type must be used.' );
 		}
 
 		// Extract the first layer type

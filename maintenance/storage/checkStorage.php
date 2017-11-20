@@ -134,24 +134,24 @@ class CheckStorage {
 					// This is a known bug from 2004
 					// It's safe to just erase the old_flags field
 					if ( $fix ) {
-						$this->error( 'fixed', "Warning: old_flags set to 0", $id );
+						$this->addError( 'fixed', "Warning: old_flags set to 0", $id );
 						$dbw = wfGetDB( DB_MASTER );
 						$dbw->ping();
 						$dbw->update( 'text', [ 'old_flags' => '' ],
 							[ 'old_id' => $id ], __METHOD__ );
 						echo "Fixed\n";
 					} else {
-						$this->error( 'fixable', "Warning: old_flags set to 0", $id );
+						$this->addError( 'fixable', "Warning: old_flags set to 0", $id );
 					}
 				} elseif ( count( array_diff( $flagArray, $knownFlags ) ) ) {
-					$this->error( 'unfixable', "Error: invalid flags field \"$flags\"", $id );
+					$this->addError( 'unfixable', "Error: invalid flags field \"$flags\"", $id );
 				}
 			}
 			$dbr->freeResult( $res );
 
 			// Output errors for any missing text rows
 			foreach ( $missingTextRows as $oldId => $revId ) {
-				$this->error( 'restore revision', "Error: missing text row", $oldId );
+				$this->addError( 'restore revision', "Error: missing text row", $oldId );
 			}
 
 			// Verify external revisions
@@ -163,12 +163,15 @@ class CheckStorage {
 				foreach ( $res as $row ) {
 					$urlParts = explode( '://', $row->old_text, 2 );
 					if ( count( $urlParts ) !== 2 || $urlParts[1] == '' ) {
-						$this->error( 'restore text', "Error: invalid URL \"{$row->old_text}\"", $row->old_id );
+						$this->addError( 'restore text', "Error: invalid URL \"{$row->old_text}\"", $row->old_id );
 						continue;
 					}
 					list( $proto, ) = $urlParts;
 					if ( $proto != 'DB' ) {
-						$this->error( 'restore text', "Error: invalid external protocol \"$proto\"", $row->old_id );
+						$this->addError(
+							'restore text',
+							"Error: invalid external protocol \"$proto\"",
+							$row->old_id );
 						continue;
 					}
 					$path = explode( '/', $row->old_text );
@@ -204,7 +207,10 @@ class CheckStorage {
 					$extDb->freeResult( $res );
 					// Print errors for missing blobs rows
 					foreach ( $xBlobIds as $blobId => $oldId ) {
-						$this->error( 'restore text', "Error: missing target $blobId for one-part ES URL", $oldId );
+						$this->addError(
+							'restore text',
+							"Error: missing target $blobId for one-part ES URL",
+							$oldId );
 					}
 				}
 			}
@@ -225,13 +231,13 @@ class CheckStorage {
 					$oldId = $row->old_id;
 					$matches = [];
 					if ( !preg_match( '/^O:(\d+):"(\w+)"/', $row->header, $matches ) ) {
-						$this->error( 'restore text', "Error: invalid object header", $oldId );
+						$this->addError( 'restore text', "Error: invalid object header", $oldId );
 						continue;
 					}
 
 					$className = strtolower( $matches[2] );
 					if ( strlen( $className ) != $matches[1] ) {
-						$this->error(
+						$this->addError(
 							'restore text',
 							"Error: invalid object header, wrong class name length",
 							$oldId
@@ -249,12 +255,12 @@ class CheckStorage {
 						case 'historyblobstub':
 						case 'historyblobcurstub':
 							if ( strlen( $row->header ) == $headerLength ) {
-								$this->error( 'unfixable', "Error: overlong stub header", $oldId );
+								$this->addError( 'unfixable', "Error: overlong stub header", $oldId );
 								continue;
 							}
 							$stubObj = unserialize( $row->header );
 							if ( !is_object( $stubObj ) ) {
-								$this->error( 'restore text', "Error: unable to unserialize stub object", $oldId );
+								$this->addError( 'restore text', "Error: unable to unserialize stub object", $oldId );
 								continue;
 							}
 							if ( $className == 'historyblobstub' ) {
@@ -264,7 +270,7 @@ class CheckStorage {
 							}
 							break;
 						default:
-							$this->error( 'unfixable', "Error: unrecognised object class \"$className\"", $oldId );
+							$this->addError( 'unfixable', "Error: unrecognised object class \"$className\"", $oldId );
 					}
 				}
 				$dbr->freeResult( $res );
@@ -287,7 +293,7 @@ class CheckStorage {
 						if ( in_array( 'object', $flags ) ) {
 							$urlParts = explode( '/', $row->header );
 							if ( $urlParts[0] != 'DB:' ) {
-								$this->error(
+								$this->addError(
 									'unfixable',
 									"Error: unrecognised external storage type \"{$urlParts[0]}",
 									$row->old_id
@@ -303,7 +309,7 @@ class CheckStorage {
 								);
 							}
 						} else {
-							$this->error(
+							$this->addError(
 								'unfixable',
 								"Error: invalid flags \"{$row->old_flags}\" on concat bulk row {$row->old_id}",
 								$concatBlobs[$row->old_id] );
@@ -312,7 +318,7 @@ class CheckStorage {
 						substr( $row->header, 0, strlen( self::CONCAT_HEADER ) ),
 						self::CONCAT_HEADER
 					) ) {
-						$this->error(
+						$this->addError(
 							'restore text',
 							"Error: Incorrect object header for concat bulk row {$row->old_id}",
 							$concatBlobs[$row->old_id]
@@ -357,7 +363,7 @@ class CheckStorage {
 		}
 	}
 
-	function error( $type, $msg, $ids ) {
+	function addError( $type, $msg, $ids ) {
 		if ( is_array( $ids ) && count( $ids ) == 1 ) {
 			$ids = reset( $ids );
 		}
@@ -399,7 +405,7 @@ class CheckStorage {
 				[ 'blob_id IN( ' . implode( ',', $blobIds ) . ')' ], __METHOD__ );
 			foreach ( $res as $row ) {
 				if ( strcasecmp( $row->header, self::CONCAT_HEADER ) ) {
-					$this->error(
+					$this->addError(
 						'restore text',
 						"Error: invalid header on target $cluster/{$row->blob_id} of two-part ES URL",
 						$oldIds[$row->blob_id]
@@ -411,7 +417,7 @@ class CheckStorage {
 
 			// Print errors for missing blobs rows
 			foreach ( $oldIds as $blobId => $oldIds2 ) {
-				$this->error(
+				$this->addError(
 					'restore text',
 					"Error: missing target $cluster/$blobId for two-part ES URL",
 					$oldIds2

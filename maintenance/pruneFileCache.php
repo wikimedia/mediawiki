@@ -43,25 +43,25 @@ class PruneFileCache extends Maintenance {
 		global $wgUseFileCache, $wgFileCacheDirectory;
 
 		if ( !$wgUseFileCache ) {
-			$this->error( "Nothing to do -- \$wgUseFileCache is disabled.", true );
+			$this->fatalError( "Nothing to do -- \$wgUseFileCache is disabled." );
 		}
 
 		$age = $this->getOption( 'agedays' );
 		if ( !ctype_digit( $age ) ) {
-			$this->error( "Non-integer 'age' parameter given.", true );
+			$this->fatalError( "Non-integer 'age' parameter given." );
 		}
 		// Delete items with a TS older than this
 		$this->minSurviveTimestamp = time() - ( 86400 * $age );
 
 		$dir = $wgFileCacheDirectory;
 		if ( !is_dir( $dir ) ) {
-			$this->error( "Nothing to do -- \$wgFileCacheDirectory directory not found.", true );
+			$this->fatalError( "Nothing to do -- \$wgFileCacheDirectory directory not found." );
 		}
 
 		$subDir = $this->getOption( 'subdir' );
 		if ( $subDir !== null ) {
 			if ( !is_dir( "$dir/$subDir" ) ) {
-				$this->error( "The specified subdirectory `$subDir` does not exist.", true );
+				$this->fatalError( "The specified subdirectory `$subDir` does not exist." );
 			}
 			$this->output( "Pruning `$dir/$subDir` directory...\n" );
 			$this->prune_directory( "$dir/$subDir", 'report' );

@@ -64,7 +64,7 @@ class GetConfiguration extends Maintenance {
 
 		$validFormat = in_array( $format, self::$outFormats );
 		if ( !$validFormat ) {
-			$this->error( "--format set to an unrecognized format", 0 );
+			$this->error( "--format set to an unrecognized format" );
 			$error_out = true;
 		}
 

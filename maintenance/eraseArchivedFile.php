@@ -50,7 +50,7 @@ class EraseArchivedFile extends Maintenance {
 
 		if ( $filekey === '*' ) { // all versions by name
 			if ( !strlen( $filename ) ) {
-				$this->error( "Missing --filename parameter.", 1 );
+				$this->fatalError( "Missing --filename parameter." );
 			}
 			$afile = false;
 		} else { // specified version
@@ -60,7 +60,7 @@ class EraseArchivedFile extends Maintenance {
 				[ 'fa_storage_group' => 'deleted', 'fa_storage_key' => $filekey ],
 				__METHOD__, [], $fileQuery['joins'] );
 			if ( !$row ) {
-				$this->error( "No deleted file exists with key '$filekey'.", 1 );
+				$this->fatalError( "No deleted file exists with key '$filekey'." );
 			}
 			$filename = $row->fa_name;
 			$afile = ArchivedFile::newFromRow( $row );
@@ -68,7 +68,7 @@ class EraseArchivedFile extends Maintenance {
 
 		$file = wfLocalFile( $filename );
 		if ( $file->exists() ) {
-			$this->error( "File '$filename' is still a public file, use the delete form.\n", 1 );
+			$this->fatalError( "File '$filename' is still a public file, use the delete form.\n" );
 		}
 
 		$this->output( "Purging all thumbnails for file '$filename'..." );
