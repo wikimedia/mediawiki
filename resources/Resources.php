@@ -2103,6 +2103,7 @@ return [
 			'mediawiki.notification.convertmessagebox',
 			'oojs-ui-widgets',
 			'mediawiki.widgets.SelectWithInputWidget',
+			'mediawiki.editfont.styles',
 		],
 	],
 	'mediawiki.special.preferences.styles.ooui' => [

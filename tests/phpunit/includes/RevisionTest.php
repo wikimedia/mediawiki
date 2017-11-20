@@ -577,4 +577,715 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->assertSame( 'AAAABBAAA', $cache->get( $cacheKey ) );
 	}
 
+	/**
+	 * @covers Revision::userJoinCond
+	 */
+	public function testUserJoinCond() {
+		$this->hideDeprecated( 'Revision::userJoinCond' );
+		$this->assertEquals(
+			[ 'LEFT JOIN', [ 'rev_user != 0', 'user_id = rev_user' ] ],
+			Revision::userJoinCond()
+		);
+	}
+
+	/**
+	 * @covers Revision::pageJoinCond
+	 */
+	public function testPageJoinCond() {
+		$this->hideDeprecated( 'Revision::pageJoinCond' );
+		$this->assertEquals(
+			[ 'INNER JOIN', [ 'page_id = rev_page' ] ],
+			Revision::pageJoinCond()
+		);
+	}
+
+	public function provideSelectFields() {
+		yield [
+			true,
+			[
+				'rev_id',
+				'rev_page',
+				'rev_text_id',
+				'rev_timestamp',
+				'rev_user_text',
+				'rev_user',
+				'rev_minor_edit',
+				'rev_deleted',
+				'rev_len',
+				'rev_parent_id',
+				'rev_sha1',
+				'rev_comment_text' => 'rev_comment',
+				'rev_comment_data' => 'NULL',
+				'rev_comment_cid' => 'NULL',
+				'rev_content_format',
+				'rev_content_model',
+			]
+		];
+		yield [
+			false,
+			[
+				'rev_id',
+				'rev_page',
+				'rev_text_id',
+				'rev_timestamp',
+				'rev_user_text',
+				'rev_user',
+				'rev_minor_edit',
+				'rev_deleted',
+				'rev_len',
+				'rev_parent_id',
+				'rev_sha1',
+				'rev_comment_text' => 'rev_comment',
+				'rev_comment_data' => 'NULL',
+				'rev_comment_cid' => 'NULL',
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideSelectFields
+	 * @covers Revision::selectFields
+	 * @todo a true unit test would mock CommentStore
+	 */
+	public function testSelectFields( $contentHandlerUseDB, $expected ) {
+		$this->hideDeprecated( 'Revision::selectFields' );
+		$this->setMwGlobals( 'wgContentHandlerUseDB', $contentHandlerUseDB );
+		$this->assertEquals( $expected, Revision::selectFields() );
+	}
+
+	public function provideSelectArchiveFields() {
+		yield [
+			true,
+			[
+				'ar_id',
+				'ar_page_id',
+				'ar_rev_id',
+				'ar_text',
+				'ar_text_id',
+				'ar_timestamp',
+				'ar_user_text',
+				'ar_user',
+				'ar_minor_edit',
+				'ar_deleted',
+				'ar_len',
+				'ar_parent_id',
+				'ar_sha1',
+				'ar_comment_text' => 'ar_comment',
+				'ar_comment_data' => 'NULL',
+				'ar_comment_cid' => 'NULL',
+				'ar_content_format',
+				'ar_content_model',
+			]
+		];
+		yield [
+			false,
+			[
+				'ar_id',
+				'ar_page_id',
+				'ar_rev_id',
+				'ar_text',
+				'ar_text_id',
+				'ar_timestamp',
+				'ar_user_text',
+				'ar_user',
+				'ar_minor_edit',
+				'ar_deleted',
+				'ar_len',
+				'ar_parent_id',
+				'ar_sha1',
+				'ar_comment_text' => 'ar_comment',
+				'ar_comment_data' => 'NULL',
+				'ar_comment_cid' => 'NULL',
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideSelectArchiveFields
+	 * @covers Revision::selectArchiveFields
+	 * @todo a true unit test would mock CommentStore
+	 */
+	public function testSelectArchiveFields( $contentHandlerUseDB, $expected ) {
+		$this->hideDeprecated( 'Revision::selectArchiveFields' );
+		$this->setMwGlobals( 'wgContentHandlerUseDB', $contentHandlerUseDB );
+		$this->assertEquals( $expected, Revision::selectArchiveFields() );
+	}
+
+	/**
+	 * @covers Revision::selectTextFields
+	 */
+	public function testSelectTextFields() {
+		$this->hideDeprecated( 'Revision::selectTextFields' );
+		$this->assertEquals(
+			[
+				'old_text',
+				'old_flags',
+			],
+			Revision::selectTextFields()
+		);
+	}
+
+	/**
+	 * @covers Revision::selectPageFields
+	 */
+	public function testSelectPageFields() {
+		$this->hideDeprecated( 'Revision::selectPageFields' );
+		$this->assertEquals(
+			[
+				'page_namespace',
+				'page_title',
+				'page_id',
+				'page_latest',
+				'page_is_redirect',
+				'page_len',
+			],
+			Revision::selectPageFields()
+		);
+	}
+
+	/**
+	 * @covers Revision::selectUserFields
+	 */
+	public function testSelectUserFields() {
+		$this->hideDeprecated( 'Revision::selectUserFields' );
+		$this->assertEquals(
+			[
+				'user_name',
+			],
+			Revision::selectUserFields()
+		);
+	}
+
+	public function provideGetArchiveQueryInfo() {
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage OLD' => [
+			[
+				'wgContentHandlerUseDB' => false,
+				'wgCommentTableSchemaMigrationStage' => MIGRATION_OLD,
+			],
+			[
+				'tables' => [ 'archive' ],
+				'fields' => [
+					'ar_id',
+					'ar_page_id',
+					'ar_rev_id',
+					'ar_text',
+					'ar_text_id',
+					'ar_timestamp',
+					'ar_user_text',
+					'ar_user',
+					'ar_minor_edit',
+					'ar_deleted',
+					'ar_len',
+					'ar_parent_id',
+					'ar_sha1',
+					'ar_comment_text' => 'ar_comment',
+					'ar_comment_data' => 'NULL',
+					'ar_comment_cid' => 'NULL',
+				],
+				'joins' => [],
+			]
+		];
+		yield 'wgContentHandlerUseDB true, wgCommentTableSchemaMigrationStage OLD' => [
+			[
+				'wgContentHandlerUseDB' => true,
+				'wgCommentTableSchemaMigrationStage' => MIGRATION_OLD,
+			],
+			[
+				'tables' => [ 'archive' ],
+				'fields' => [
+					'ar_id',
+					'ar_page_id',
+					'ar_rev_id',
+					'ar_text',
+					'ar_text_id',
+					'ar_timestamp',
+					'ar_user_text',
+					'ar_user',
+					'ar_minor_edit',
+					'ar_deleted',
+					'ar_len',
+					'ar_parent_id',
+					'ar_sha1',
+					'ar_comment_text' => 'ar_comment',
+					'ar_comment_data' => 'NULL',
+					'ar_comment_cid' => 'NULL',
+					'ar_content_format',
+					'ar_content_model',
+				],
+				'joins' => [],
+			]
+		];
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage WRITE_BOTH' => [
+			[
+				'wgContentHandlerUseDB' => false,
+				'wgCommentTableSchemaMigrationStage' => MIGRATION_WRITE_BOTH,
+			],
+			[
+				'tables' => [
+					'archive',
+					'comment_ar_comment' => 'comment',
+				],
+				'fields' => [
+					'ar_id',
+					'ar_page_id',
+					'ar_rev_id',
+					'ar_text',
+					'ar_text_id',
+					'ar_timestamp',
+					'ar_user_text',
+					'ar_user',
+					'ar_minor_edit',
+					'ar_deleted',
+					'ar_len',
+					'ar_parent_id',
+					'ar_sha1',
+					'ar_comment_text' => 'COALESCE( comment_ar_comment.comment_text, ar_comment )',
+					'ar_comment_data' => 'comment_ar_comment.comment_data',
+					'ar_comment_cid' => 'comment_ar_comment.comment_id',
+				],
+				'joins' => [
+					'comment_ar_comment' => [
+						'LEFT JOIN',
+						'comment_ar_comment.comment_id = ar_comment_id',
+					],
+				],
+			]
+		];
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage WRITE_NEW' => [
+			[
+				'wgContentHandlerUseDB' => false,
+				'wgCommentTableSchemaMigrationStage' => MIGRATION_WRITE_NEW,
+			],
+			[
+				'tables' => [
+					'archive',
+					'comment_ar_comment' => 'comment',
+				],
+				'fields' => [
+					'ar_id',
+					'ar_page_id',
+					'ar_rev_id',
+					'ar_text',
+					'ar_text_id',
+					'ar_timestamp',
+					'ar_user_text',
+					'ar_user',
+					'ar_minor_edit',
+					'ar_deleted',
+					'ar_len',
+					'ar_parent_id',
+					'ar_sha1',
+					'ar_comment_text' => 'COALESCE( comment_ar_comment.comment_text, ar_comment )',
+					'ar_comment_data' => 'comment_ar_comment.comment_data',
+					'ar_comment_cid' => 'comment_ar_comment.comment_id',
+				],
+				'joins' => [
+					'comment_ar_comment' => [
+						'LEFT JOIN',
+						'comment_ar_comment.comment_id = ar_comment_id',
+					],
+				],
+			]
+		];
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage NEW' => [
+			[
+				'wgContentHandlerUseDB' => false,
+				'wgCommentTableSchemaMigrationStage' => MIGRATION_NEW,
+			],
+			[
+				'tables' => [
+					'archive',
+					'comment_ar_comment' => 'comment',
+				],
+				'fields' => [
+					'ar_id',
+					'ar_page_id',
+					'ar_rev_id',
+					'ar_text',
+					'ar_text_id',
+					'ar_timestamp',
+					'ar_user_text',
+					'ar_user',
+					'ar_minor_edit',
+					'ar_deleted',
+					'ar_len',
+					'ar_parent_id',
+					'ar_sha1',
+					'ar_comment_text' => 'comment_ar_comment.comment_text',
+					'ar_comment_data' => 'comment_ar_comment.comment_data',
+					'ar_comment_cid' => 'comment_ar_comment.comment_id',
+				],
+				'joins' => [
+					'comment_ar_comment' => [
+						'JOIN',
+						'comment_ar_comment.comment_id = ar_comment_id',
+					],
+				],
+			]
+		];
+	}
+
+	/**
+	 * @covers Revision::getArchiveQueryInfo
+	 * @dataProvider provideGetArchiveQueryInfo
+	 */
+	public function testGetArchiveQueryInfo( $globals, $expected ) {
+		$this->setMwGlobals( $globals );
+		$this->assertEquals(
+			$expected,
+			Revision::getArchiveQueryInfo()
+		);
+	}
+
+	public function provideGetQueryInfo() {
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage OLD, opts none' => [
+			[
+				'wgContentHandlerUseDB' => false,
+				'wgCommentTableSchemaMigrationStage' => MIGRATION_OLD,
+			],
+			[],
+			[
+				'tables' => [ 'revision' ],
+				'fields' => [
+					'rev_id',
+					'rev_page',
+					'rev_text_id',
+					'rev_timestamp',
+					'rev_user_text',
+					'rev_user',
+					'rev_minor_edit',
+					'rev_deleted',
+					'rev_len',
+					'rev_parent_id',
+					'rev_sha1',
+					'rev_comment_text' => 'rev_comment',
+					'rev_comment_data' => 'NULL',
+					'rev_comment_cid' => 'NULL',
+				],
+				'joins' => [],
+			],
+		];
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage OLD, opts page' => [
+			[
+				'wgContentHandlerUseDB' => false,
+				'wgCommentTableSchemaMigrationStage' => MIGRATION_OLD,
+			],
+			[ 'page' ],
+			[
+				'tables' => [ 'revision', 'page' ],
+				'fields' => [
+					'rev_id',
+					'rev_page',
+					'rev_text_id',
+					'rev_timestamp',
+					'rev_user_text',
+					'rev_user',
+					'rev_minor_edit',
+					'rev_deleted',
+					'rev_len',
+					'rev_parent_id',
+					'rev_sha1',
+					'rev_comment_text' => 'rev_comment',
+					'rev_comment_data' => 'NULL',
+					'rev_comment_cid' => 'NULL',
+					'page_namespace',
+					'page_title',
+					'page_id',
+					'page_latest',
+					'page_is_redirect',
+					'page_len',
+				],
+				'joins' => [
+					'page' => [
+						'INNER JOIN',
+						[ 'page_id = rev_page' ],
+					],
+				],
+			],
+		];
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage OLD, opts user' => [
+			[
+				'wgContentHandlerUseDB' => false,
+				'wgCommentTableSchemaMigrationStage' => MIGRATION_OLD,
+			],
+			[ 'user' ],
+			[
+				'tables' => [ 'revision', 'user' ],
+				'fields' => [
+					'rev_id',
+					'rev_page',
+					'rev_text_id',
+					'rev_timestamp',
+					'rev_user_text',
+					'rev_user',
+					'rev_minor_edit',
+					'rev_deleted',
+					'rev_len',
+					'rev_parent_id',
+					'rev_sha1',
+					'rev_comment_text' => 'rev_comment',
+					'rev_comment_data' => 'NULL',
+					'rev_comment_cid' => 'NULL',
+					'user_name',
+				],
+				'joins' => [
+					'user' => [
+						'LEFT JOIN',
+						[
+							'rev_user != 0',
+							'user_id = rev_user',
+						],
+					],
+				],
+			],
+		];
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage OLD, opts text' => [
+			[
+				'wgContentHandlerUseDB' => false,
+				'wgCommentTableSchemaMigrationStage' => MIGRATION_OLD,
+			],
+			[ 'text' ],
+			[
+				'tables' => [ 'revision', 'text' ],
+				'fields' => [
+					'rev_id',
+					'rev_page',
+					'rev_text_id',
+					'rev_timestamp',
+					'rev_user_text',
+					'rev_user',
+					'rev_minor_edit',
+					'rev_deleted',
+					'rev_len',
+					'rev_parent_id',
+					'rev_sha1',
+					'rev_comment_text' => 'rev_comment',
+					'rev_comment_data' => 'NULL',
+					'rev_comment_cid' => 'NULL',
+					'old_text',
+					'old_flags',
+				],
+				'joins' => [
+					'text' => [
+						'INNER JOIN',
+						[ 'rev_text_id=old_id' ],
+					],
+				],
+			],
+		];
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage OLD, opts 3' => [
+			[
+				'wgContentHandlerUseDB' => false,
+				'wgCommentTableSchemaMigrationStage' => MIGRATION_OLD,
+			],
+			[ 'text', 'page', 'user' ],
+			[
+				'tables' => [ 'revision', 'page', 'user', 'text' ],
+				'fields' => [
+					'rev_id',
+					'rev_page',
+					'rev_text_id',
+					'rev_timestamp',
+					'rev_user_text',
+					'rev_user',
+					'rev_minor_edit',
+					'rev_deleted',
+					'rev_len',
+					'rev_parent_id',
+					'rev_sha1',
+					'rev_comment_text' => 'rev_comment',
+					'rev_comment_data' => 'NULL',
+					'rev_comment_cid' => 'NULL',
+					'page_namespace',
+					'page_title',
+					'page_id',
+					'page_latest',
+					'page_is_redirect',
+					'page_len',
+					'user_name',
+					'old_text',
+					'old_flags',
+				],
+				'joins' => [
+					'page' => [
+						'INNER JOIN',
+						[ 'page_id = rev_page' ],
+					],
+					'user' => [
+						'LEFT JOIN',
+						[
+							'rev_user != 0',
+							'user_id = rev_user',
+						],
+					],
+					'text' => [
+						'INNER JOIN',
+						[ 'rev_text_id=old_id' ],
+					],
+				],
+			],
+		];
+		yield 'wgContentHandlerUseDB true, wgCommentTableSchemaMigrationStage OLD, opts none' => [
+			[
+				'wgContentHandlerUseDB' => true,
+				'wgCommentTableSchemaMigrationStage' => MIGRATION_OLD,
+			],
+			[],
+			[
+				'tables' => [ 'revision' ],
+				'fields' => [
+					'rev_id',
+					'rev_page',
+					'rev_text_id',
+					'rev_timestamp',
+					'rev_user_text',
+					'rev_user',
+					'rev_minor_edit',
+					'rev_deleted',
+					'rev_len',
+					'rev_parent_id',
+					'rev_sha1',
+					'rev_comment_text' => 'rev_comment',
+					'rev_comment_data' => 'NULL',
+					'rev_comment_cid' => 'NULL',
+					'rev_content_format',
+					'rev_content_model',
+				],
+				'joins' => [],
+			],
+		];
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage WRITE_BOTH, opts none' => [
+			[
+				'wgContentHandlerUseDB' => false,
+				'wgCommentTableSchemaMigrationStage' => MIGRATION_WRITE_BOTH,
+			],
+			[],
+			[
+				'tables' => [
+					'revision',
+					'temp_rev_comment' => 'revision_comment_temp',
+					'comment_rev_comment' => 'comment',
+				],
+				'fields' => [
+					'rev_id',
+					'rev_page',
+					'rev_text_id',
+					'rev_timestamp',
+					'rev_user_text',
+					'rev_user',
+					'rev_minor_edit',
+					'rev_deleted',
+					'rev_len',
+					'rev_parent_id',
+					'rev_sha1',
+					'rev_comment_text' => 'COALESCE( comment_rev_comment.comment_text, rev_comment )',
+					'rev_comment_data' => 'comment_rev_comment.comment_data',
+					'rev_comment_cid' => 'comment_rev_comment.comment_id',
+				],
+				'joins' => [
+					'temp_rev_comment' => [
+						'LEFT JOIN',
+						'temp_rev_comment.revcomment_rev = rev_id',
+					],
+					'comment_rev_comment' => [
+						'LEFT JOIN',
+						'comment_rev_comment.comment_id = temp_rev_comment.revcomment_comment_id',
+					],
+				],
+			],
+		];
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage WRITE_NEW, opts none' => [
+			[
+				'wgContentHandlerUseDB' => false,
+				'wgCommentTableSchemaMigrationStage' => MIGRATION_WRITE_NEW,
+			],
+			[],
+			[
+				'tables' => [
+					'revision',
+					'temp_rev_comment' => 'revision_comment_temp',
+					'comment_rev_comment' => 'comment',
+				],
+				'fields' => [
+					'rev_id',
+					'rev_page',
+					'rev_text_id',
+					'rev_timestamp',
+					'rev_user_text',
+					'rev_user',
+					'rev_minor_edit',
+					'rev_deleted',
+					'rev_len',
+					'rev_parent_id',
+					'rev_sha1',
+					'rev_comment_text' => 'COALESCE( comment_rev_comment.comment_text, rev_comment )',
+					'rev_comment_data' => 'comment_rev_comment.comment_data',
+					'rev_comment_cid' => 'comment_rev_comment.comment_id',
+				],
+				'joins' => [
+					'temp_rev_comment' => [
+						'LEFT JOIN',
+						'temp_rev_comment.revcomment_rev = rev_id',
+					],
+					'comment_rev_comment' => [
+						'LEFT JOIN',
+						'comment_rev_comment.comment_id = temp_rev_comment.revcomment_comment_id',
+					],
+				],
+			],
+		];
+		yield 'wgContentHandlerUseDB false, wgCommentTableSchemaMigrationStage NEW, opts none' => [
+			[
+				'wgContentHandlerUseDB' => false,
+				'wgCommentTableSchemaMigrationStage' => MIGRATION_NEW,
+			],
+			[],
+			[
+				'tables' => [
+					'revision',
+					'temp_rev_comment' => 'revision_comment_temp',
+					'comment_rev_comment' => 'comment',
+				],
+				'fields' => [
+					'rev_id',
+					'rev_page',
+					'rev_text_id',
+					'rev_timestamp',
+					'rev_user_text',
+					'rev_user',
+					'rev_minor_edit',
+					'rev_deleted',
+					'rev_len',
+					'rev_parent_id',
+					'rev_sha1',
+					'rev_comment_text' => 'comment_rev_comment.comment_text',
+					'rev_comment_data' => 'comment_rev_comment.comment_data',
+					'rev_comment_cid' => 'comment_rev_comment.comment_id',
+				],
+				'joins' => [
+					'temp_rev_comment' => [
+						'JOIN',
+						'temp_rev_comment.revcomment_rev = rev_id',
+					],
+					'comment_rev_comment' => [
+						'JOIN',
+						'comment_rev_comment.comment_id = temp_rev_comment.revcomment_comment_id',
+					],
+				],
+			],
+		];
+	}
+
+	/**
+	 * @covers Revision::getQueryInfo
+	 * @dataProvider provideGetQueryInfo
+	 */
+	public function testGetQueryInfo( $globals, $options, $expected ) {
+		$this->setMwGlobals( $globals );
+		$this->assertEquals(
+			$expected,
+			Revision::getQueryInfo( $options )
+		);
+	}
+
 }

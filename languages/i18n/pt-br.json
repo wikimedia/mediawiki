@@ -1444,7 +1444,7 @@
 	"rcfilters-filter-editsbyother-label": "Mudanças de outros",
 	"rcfilters-filter-editsbyother-description": "Todas as mudanças, exceto a sua.",
 	"rcfilters-filtergroup-userExpLevel": "Registro e experiência do usuário",
-	"rcfilters-filter-user-experience-level-registered-label": "Registrado",
+	"rcfilters-filter-user-experience-level-registered-label": "Registrados",
 	"rcfilters-filter-user-experience-level-registered-description": "Editores registrados.",
 	"rcfilters-filter-user-experience-level-unregistered-label": "Não registados",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Editores que não estão autenticados.",

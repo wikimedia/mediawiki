@@ -86,7 +86,8 @@
 			"Translatealcd",
 			"Delim",
 			"Hinaloe",
-			"Phantomize"
+			"Phantomize",
+			"Suzukaze-c"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -1134,6 +1135,7 @@
 	"prefs-editor": "エディター",
 	"prefs-preview": "プレビュー",
 	"prefs-advancedrc": "詳細の設定",
+	"prefs-opt-out": "改善の使用を断る",
 	"prefs-advancedrendering": "詳細の設定",
 	"prefs-advancedsearchoptions": "詳細設定",
 	"prefs-advancedwatchlist": "詳細の設定",
@@ -1485,6 +1487,7 @@
 	"rcfilters-liveupdates-button-title-off": "新しい編集を即座に読み表示する",
 	"rcfilters-watchlist-markseen-button": "すべての変更を訪問済みにする",
 	"rcfilters-watchlist-edit-watchlist-button": "ウォッチリストを編集",
+	"rcfilters-preference-label": "最近の更新の改善版を隠す",
 	"rcnotefrom": "以下は<strong>$3 $4</strong>以降の{{PLURAL:$5|更新です}} (最大 <strong>$1</strong> 件)。",
 	"rclistfromreset": "日時指定をリセット",
 	"rclistfrom": "$3の$2以降の更新を表示する",

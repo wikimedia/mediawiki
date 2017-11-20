@@ -2619,7 +2619,7 @@
 	"movesubpagetalktext": "Die dazugehörige Diskussionsseite hat {{PLURAL:$1|eine Unterseite, die unten angezeigt wird|$1 Unterseiten, die unten angezeigt werden}}.",
 	"movenosubpage": "Diese Seite hat keine Unterseiten.",
 	"movereason": "Grund:",
-	"revertmove": "zurück verschieben",
+	"revertmove": "zurückverschieben",
 	"delete_and_move_text": "Die Seite „[[:$1]]“ existiert bereits.\nMöchtest du diese löschen, um die Seite verschieben zu können?",
 	"delete_and_move_confirm": "Ja, Seite löschen",
 	"delete_and_move_reason": "Gelöscht, um Platz für die Verschiebung von „[[$1]]“ zu machen",
