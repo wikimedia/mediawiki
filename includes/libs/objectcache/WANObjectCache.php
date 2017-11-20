@@ -1388,21 +1388,23 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 	/**
 	 * @see BagOStuff::makeKey()
-	 * @param string $keys,... Key component (starting with a key collection name)
+	 * @param string $class Key class
+	 * @param string $component [optional] Key component (starting with a key collection name)
 	 * @return string Colon-delimited list of $keyspace followed by escaped components of $args
 	 * @since 1.27
 	 */
-	public function makeKey() {
+	public function makeKey( $class, $component = null ) {
 		return call_user_func_array( [ $this->cache, __FUNCTION__ ], func_get_args() );
 	}
 
 	/**
 	 * @see BagOStuff::makeGlobalKey()
-	 * @param string $keys,... Key component (starting with a key collection name)
+	 * @param string $class Key class
+	 * @param string $component [optional] Key component (starting with a key collection name)
 	 * @return string Colon-delimited list of $keyspace followed by escaped components of $args
 	 * @since 1.27
 	 */
-	public function makeGlobalKey() {
+	public function makeGlobalKey( $class, $component = null ) {
 		return call_user_func_array( [ $this->cache, __FUNCTION__ ], func_get_args() );
 	}
 
