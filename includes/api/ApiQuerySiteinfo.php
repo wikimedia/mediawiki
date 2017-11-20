@@ -223,7 +223,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		if ( $data['readonly'] ) {
 			$data['readonlyreason'] = wfReadOnlyReason();
 		}
-		$data['writeapi'] = (bool)$config->get( 'EnableWriteAPI' );
+		$data['writeapi'] = true; // Deprecated since MW 1.32
 
 		$data['maxarticlesize'] = $config->get( 'MaxArticleSize' ) * 1024;
 
