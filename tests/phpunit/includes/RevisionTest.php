@@ -34,6 +34,72 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContentModel() );
 	}
 
+	public function provideConstructFromArray_userSetAsExpected() {
+		yield 'no user defaults to wgUser' => [
+			[
+				'content' => new JavaScriptContent( 'hello world.' ),
+			],
+			null,
+			null,
+		];
+		yield 'user text and id' => [
+			[
+				'content' => new JavaScriptContent( 'hello world.' ),
+				'user_text' => 'SomeTextUserName',
+				'user' => 99,
+
+			],
+			99,
+			'SomeTextUserName',
+		];
+		// Note: the below XXX test cases are odd and probably result in unexpected behaviour if used
+		// in production code.
+		yield 'XXX: user text only' => [
+			[
+				'content' => new JavaScriptContent( 'hello world.' ),
+				'user_text' => '111.111.111.111',
+			],
+			null,
+			'111.111.111.111',
+		];
+		yield 'XXX: user id only' => [
+			[
+				'content' => new JavaScriptContent( 'hello world.' ),
+				'user' => 9989,
+			],
+			9989,
+			null,
+		];
+	}
+
+	/**
+	 * @dataProvider provideConstructFromArray_userSetAsExpected
+	 * @covers Revision::__construct
+	 * @covers Revision::constructFromRowArray
+	 *
+	 * @param array $rowArray
+	 * @param mixed $expectedUserId null to expect the current wgUser ID
+	 * @param mixed $expectedUserName null to expect the current wgUser name
+	 */
+	public function testConstructFromArray_userSetAsExpected(
+		array $rowArray,
+		$expectedUserId,
+		$expectedUserName
+	) {
+		$testUser = $this->getTestUser()->getUser();
+		$this->setMwGlobals( 'wgUser', $testUser );
+		if ( $expectedUserId === null ) {
+			$expectedUserId = $testUser->getId();
+		}
+		if ( $expectedUserName === null ) {
+			$expectedUserName = $testUser->getName();
+		}
+
+		$rev = new Revision( $rowArray );
+		$this->assertEquals( $expectedUserId, $rev->getUser() );
+		$this->assertEquals( $expectedUserName, $rev->getUserText() );
+	}
+
 	public function provideConstructFromArrayThrowsExceptions() {
 		yield 'content and text_id both not empty' => [
 			[
