@@ -22,3 +22,8 @@
 .mw-userrights-groups * th {
 	text-align: left;
 }
+
+/* Support: Firefox 57 https://bugzilla.mozilla.org/1418152 */
+#mw-userrights-form2 input[type='checkbox']:not( :checked ) ~ div { /* stylelint-disable-line selector-attribute-brackets-space-inside */
+	display: none;
+}
