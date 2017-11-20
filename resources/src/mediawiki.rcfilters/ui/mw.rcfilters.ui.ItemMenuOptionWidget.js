@@ -65,7 +65,11 @@
 		this.excludeLabel = new OO.ui.LabelWidget( {
 			label: mw.msg( 'rcfilters-filter-excluded' )
 		} );
-		this.excludeLabel.toggle( this.itemModel.isSelected() && this.invertModel.isSelected() );
+		this.excludeLabel.toggle(
+			this.itemModel.getGroupModel().getView() === 'namespace' &&
+			this.itemModel.isSelected() &&
+			this.invertModel.isSelected()
+		);
 
 		layout = new OO.ui.FieldLayout( this.checkboxWidget, {
 			label: $label,
@@ -133,7 +137,11 @@
 		this.checkboxWidget.setSelected( this.itemModel.isSelected() );
 
 		this.highlightButton.toggle( this.filtersViewModel.isHighlightEnabled() );
-		this.excludeLabel.toggle( this.itemModel.isSelected() && this.invertModel.isSelected() );
+		this.excludeLabel.toggle(
+			this.itemModel.getGroupModel().getView() === 'namespace' &&
+			this.itemModel.isSelected() &&
+			this.invertModel.isSelected()
+		);
 	};
 
 	/**
