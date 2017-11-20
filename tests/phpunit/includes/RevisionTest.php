@@ -372,6 +372,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::fetchFromConds
 	 */
 	public function testFetchFromConds( $flags, array $options ) {
+		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
 		$conditions = [ 'conditionsArray' ];
 
 		$db = $this->getMock( IDatabase::class );
@@ -650,6 +651,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function testSelectFields( $contentHandlerUseDB, $expected ) {
 		$this->hideDeprecated( 'Revision::selectFields' );
 		$this->setMwGlobals( 'wgContentHandlerUseDB', $contentHandlerUseDB );
+		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
 		$this->assertEquals( $expected, Revision::selectFields() );
 	}
 
@@ -708,6 +710,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function testSelectArchiveFields( $contentHandlerUseDB, $expected ) {
 		$this->hideDeprecated( 'Revision::selectArchiveFields' );
 		$this->setMwGlobals( 'wgContentHandlerUseDB', $contentHandlerUseDB );
+		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
 		$this->assertEquals( $expected, Revision::selectArchiveFields() );
 	}
 
