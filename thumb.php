@@ -337,7 +337,42 @@ function wfStreamThumb( array $params ) {
 		return;
 	}
 
-	list( $thumb, $errorMsg ) = wfGenerateThumbnail( $img, $params, $thumbName, $thumbPath );
+	$thumbProxyUrl = $img->getRepo()->getThumbProxyUrl();
+
+	if ( strlen( $thumbProxyUrl ) ) {
+		// Instead of generating the thumbnail ourselves, we proxy the request to another service
+		$thumbProxiedUrl = $thumbProxyUrl  . $img->getThumbRel( $thumbName );
+
+		$req = MWHttpRequest::factory( $thumbProxiedUrl );
+		$secret = $img->getRepo()->getThumbProxySecret();
+
+		// Pass a secret key shared with the proxied service if any
+		if ( strlen( $secret ) ) {
+			$req->setHeader( 'X-Swift-Secret', $secret );
+		}
+
+		// Send request to proxied service
+		$status = $req->execute();
+
+		// Simply serve the response from the proxied service as-is
+		header( 'HTTP/1.1 ' . $req->getStatus() );
+
+		$headers = $req->getResponseHeaders();
+
+		foreach ( $headers as $key => $values ) {
+			foreach ( $values as $value ) {
+				header( $key . ': ' . $value, false );
+			}
+		}
+
+		echo $req->getContent();
+
+		// No local fallback when in proxy mode
+		return;
+	} else {
+		// Generate the thumbnail locally
+		list( $thumb, $errorMsg ) = wfGenerateThumbnail( $img, $params, $thumbName, $thumbPath );
+	}
 
 	/** @var MediaTransformOutput|MediaTransformError|bool $thumb */
 
