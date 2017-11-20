@@ -28,6 +28,7 @@
  * StatusValue messages should avoid mentioning the Swift account name.
  * Likewise, error suppression should be used to avoid path disclosure.
  *
+ *
  * @ingroup FileBackend
  * @since 1.19
  */
@@ -181,6 +182,24 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param array $params
 	 * @return array Sanitized value of 'headers' field in $params
 	 */
+	protected function sanitizeHdrsStrict( array $params ) {
+		return isset( $params['headers'] )
+			? $this->getCustomHeadersMinusContentType( $params['headers'] )
+			: [];
+	}
+
+	/**
+	 * Sanitize and filter the custom headers from a $params array.
+	 * Only allows certain "standard" Content- and X-Content- headers.
+	 *
+	 * When POSTing data, libcurl adds Content-Type: application/x-www-form-urlencoded
+	 * if Content-Type is not set, which overwrites the stored Content-Type header
+	 * in Swift - therefore for POSTing data do not strip the Content-Type header (the
+	 * previously-stored header that has been already read back from swift is sent)
+	 *
+	 * @param array $params
+	 * @return array Sanitized value of 'headers' field in $params
+	 */
 	protected function sanitizeHdrs( array $params ) {
 		return isset( $params['headers'] )
 			? $this->getCustomHeaders( $params['headers'] )
@@ -197,7 +216,7 @@ class SwiftFileBackend extends FileBackendStore {
 		// Normalize casing, and strip out illegal headers
 		foreach ( $rawHeaders as $name => $value ) {
 			$name = strtolower( $name );
-			if ( preg_match( '/^content-(type|length)$/', $name ) ) {
+			if ( preg_match( '/^content-length$/', $name ) ) {
 				continue; // blacklisted
 			} elseif ( preg_match( '/^(x-)?content-/', $name ) ) {
 				$headers[$name] = $value; // allowed
@@ -221,6 +240,21 @@ class SwiftFileBackend extends FileBackendStore {
 			$headers['content-disposition'] = $disposition;
 		}
 
+		return $headers;
+	}
+
+	/**
+	 * When sending data to swift via PUT don't set a Content-Type header so that
+	 * swift will determine the content type from the file itself
+	 *
+	 * @param array $rawHeaders
+	 * @return array Custom non-metadata HTTP headers
+	 */
+	protected function getCustomHeadersMinusContentType( array $rawHeaders ) {
+		$headers = $this->getCustomHeaders( $rawHeaders );
+		if ( isset( $headers[ 'content-type' ] ) ) {
+			unset( $headers[ 'content-type' ] );
+		}
 		return $headers;
 	}
 
@@ -269,15 +303,15 @@ class SwiftFileBackend extends FileBackendStore {
 			: $this->getContentType( $params['dst'], $params['content'], null );
 
 		$reqs = [ [
-			'method' => 'PUT',
-			'url' => [ $dstCont, $dstRel ],
-			'headers' => [
+					  'method' => 'PUT',
+					  'url' => [ $dstCont, $dstRel ],
+					  'headers' => [
 				'content-length' => strlen( $params['content'] ),
 				'etag' => md5( $params['content'] ),
 				'content-type' => $contentType,
 				'x-object-meta-sha1base36' => $sha1Hash
-			] + $this->sanitizeHdrs( $params ),
-			'body' => $params['content']
+			] + $this->sanitizeHdrsStrict( $params ),
+					  'body' => $params['content']
 		] ];
 
 		$method = __METHOD__;
@@ -333,15 +367,15 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		$reqs = [ [
-			'method' => 'PUT',
-			'url' => [ $dstCont, $dstRel ],
-			'headers' => [
+					  'method' => 'PUT',
+					  'url' => [ $dstCont, $dstRel ],
+					  'headers' => [
 				'content-length' => filesize( $params['src'] ),
 				'etag' => md5_file( $params['src'] ),
 				'content-type' => $contentType,
 				'x-object-meta-sha1base36' => $sha1Hash
-			] + $this->sanitizeHdrs( $params ),
-			'body' => $handle // resource
+			] + $this->sanitizeHdrsStrict( $params ),
+					  'body' => $handle // resource
 		] ];
 
 		$method = __METHOD__;
@@ -386,12 +420,12 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		$reqs = [ [
-			'method' => 'PUT',
-			'url' => [ $dstCont, $dstRel ],
-			'headers' => [
+					  'method' => 'PUT',
+					  'url' => [ $dstCont, $dstRel ],
+					  'headers' => [
 				'x-copy-from' => '/' . rawurlencode( $srcCont ) .
 					'/' . str_replace( "%2F", "/", rawurlencode( $srcRel ) )
-			] + $this->sanitizeHdrs( $params ), // extra headers merged into object
+			] + $this->sanitizeHdrsStrict( $params ), // extra headers merged into object
 		] ];
 
 		$method = __METHOD__;
@@ -440,7 +474,7 @@ class SwiftFileBackend extends FileBackendStore {
 				'headers' => [
 					'x-copy-from' => '/' . rawurlencode( $srcCont ) .
 						'/' . str_replace( "%2F", "/", rawurlencode( $srcRel ) )
-				] + $this->sanitizeHdrs( $params ) // extra headers merged into object
+				] + $this->sanitizeHdrsStrict( $params ) // extra headers merged into object
 			]
 		];
 		if ( "{$srcCont}/{$srcRel}" !== "{$dstCont}/{$dstRel}" ) {
