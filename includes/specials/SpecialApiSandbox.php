@@ -35,10 +35,6 @@ class SpecialApiSandbox extends SpecialPage {
 		$out = $this->getOutput();
 		$this->addHelpLink( 'Help:ApiSandbox' );
 
-		if ( !$this->getConfig()->get( 'EnableAPI' ) ) {
-			$out->showErrorPage( 'error', 'apisandbox-api-disabled' );
-		}
-
 		$out->addJsConfigVars( 'apihighlimits', $this->getUser()->isAllowed( 'apihighlimits' ) );
 		$out->addModuleStyles( [
 			'mediawiki.special.apisandbox.styles',
