@@ -102,7 +102,7 @@ The new option is NOT validated.' );
 			// Get the options and update stats
 			if ( $option ) {
 				if ( !array_key_exists( $option, $defaultOptions ) ) {
-					$this->error( "Invalid user option. Use --list to see valid choices\n", 1 );
+					$this->fatalError( "Invalid user option. Use --list to see valid choices\n" );
 				}
 
 				$userValue = $user->getOption( $option );

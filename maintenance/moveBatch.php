@@ -73,7 +73,7 @@ class MoveBatch extends Maintenance {
 
 		# Setup
 		if ( !$file ) {
-			$this->error( "Unable to read file, exiting", true );
+			$this->fatalError( "Unable to read file, exiting" );
 		}
 		if ( $user === false ) {
 			$wgUser = User::newSystemUser( 'Move page script', [ 'steal' => true ] );
@@ -81,7 +81,7 @@ class MoveBatch extends Maintenance {
 			$wgUser = User::newFromName( $user );
 		}
 		if ( !$wgUser ) {
-			$this->error( "Invalid username", true );
+			$this->fatalError( "Invalid username" );
 		}
 
 		# Setup complete, now start

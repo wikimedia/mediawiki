@@ -419,10 +419,6 @@ class BackupDumper extends Maintenance {
 			fwrite( $this->stderr, $string . "\n" );
 		}
 	}
-
-	function fatalError( $msg ) {
-		$this->error( "$msg\n", 1 );
-	}
 }
 
 class ExportProgressFilter extends DumpFilter {

@@ -45,9 +45,9 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 		$db = $this->getDB( DB_MASTER );
 
 		if ( !$db->tableExists( 'revision' ) ) {
-			$this->error( "revision table does not exist", true );
+			$this->fatalError( "revision table does not exist" );
 		} elseif ( !$db->tableExists( 'archive' ) ) {
-			$this->error( "archive table does not exist", true );
+			$this->fatalError( "archive table does not exist" );
 		} elseif ( !$db->fieldExists( 'revision', 'rev_sha1', __METHOD__ ) ) {
 			$this->output( "rev_sha1 column does not exist\n\n", true );
 

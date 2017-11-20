@@ -60,18 +60,18 @@ class RebuildFileCache extends Maintenance {
 		global $wgRequestTime;
 
 		if ( !$this->enabled ) {
-			$this->error( "Nothing to do -- \$wgUseFileCache is disabled.", true );
+			$this->fatalError( "Nothing to do -- \$wgUseFileCache is disabled." );
 		}
 
 		$start = $this->getOption( 'start', "0" );
 		if ( !ctype_digit( $start ) ) {
-			$this->error( "Invalid value for start parameter.", true );
+			$this->fatalError( "Invalid value for start parameter." );
 		}
 		$start = intval( $start );
 
 		$end = $this->getOption( 'end', "0" );
 		if ( !ctype_digit( $end ) ) {
-			$this->error( "Invalid value for end parameter.", true );
+			$this->fatalError( "Invalid value for end parameter." );
 		}
 		$end = intval( $end );
 
@@ -87,7 +87,7 @@ class RebuildFileCache extends Maintenance {
 			? $end
 			: $dbr->selectField( 'page', 'MAX(page_id)', false, __METHOD__ );
 		if ( !$start ) {
-			$this->error( "Nothing to do.", true );
+			$this->fatalError( "Nothing to do." );
 		}
 
 		$_SERVER['HTTP_ACCEPT_ENCODING'] = 'bgzip'; // hack, no real client

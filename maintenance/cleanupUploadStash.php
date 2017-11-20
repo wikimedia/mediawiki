@@ -122,7 +122,7 @@ class UploadStashCleanup extends Maintenance {
 		$iterator = $tempRepo->getBackend()->getFileList( [ 'dir' => $dir, 'adviseStat' => 1 ] );
 		$this->output( "Deleting orphaned temp files...\n" );
 		if ( strpos( $dir, '/local-temp' ) === false ) { // sanity check
-			$this->error( "Temp repo is not using the temp container.", 1 ); // die
+			$this->fatalError( "Temp repo is not using the temp container." );
 		}
 		$i = 0;
 		$batch = []; // operation batch

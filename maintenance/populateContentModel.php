@@ -51,7 +51,7 @@ class PopulateContentModel extends Maintenance {
 
 		$ns = $this->getOption( 'ns' );
 		if ( !ctype_digit( $ns ) && $ns !== 'all' ) {
-			$this->error( 'Invalid namespace', 1 );
+			$this->fatalError( 'Invalid namespace' );
 		}
 		$ns = $ns === 'all' ? 'all' : (int)$ns;
 		$table = $this->getOption( 'table' );
@@ -64,7 +64,7 @@ class PopulateContentModel extends Maintenance {
 				$this->populatePage( $dbw, $ns );
 				break;
 			default:
-				$this->error( "Invalid table name: $table", 1 );
+				$this->fatalError( "Invalid table name: $table" );
 		}
 	}
 

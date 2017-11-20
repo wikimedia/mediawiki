@@ -56,17 +56,17 @@ class RebuildTextIndex extends Maintenance {
 		// Shouldn't be needed for Postgres
 		$this->db = $this->getDB( DB_MASTER );
 		if ( $this->db->getType() == 'postgres' ) {
-			$this->error( "This script is not needed when using Postgres.\n", true );
+			$this->fatalError( "This script is not needed when using Postgres.\n" );
 		}
 
 		if ( $this->db->getType() == 'sqlite' ) {
 			if ( !DatabaseSqlite::getFulltextSearchModule() ) {
-				$this->error( "Your version of SQLite module for PHP doesn't "
-					. "support full-text search (FTS3).\n", true );
+				$this->fatalError( "Your version of SQLite module for PHP doesn't "
+					. "support full-text search (FTS3).\n" );
 			}
 			if ( !$this->db->checkForEnabledSearch() ) {
-				$this->error( "Your database schema is not configured for "
-					. "full-text search support. Run update.php.\n", true );
+				$this->fatalError( "Your database schema is not configured for "
+					. "full-text search support. Run update.php.\n" );
 			}
 		}
 

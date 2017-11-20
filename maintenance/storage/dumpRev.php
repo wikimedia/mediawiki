@@ -43,7 +43,7 @@ class DumpRev extends Maintenance {
 			[ 'old_id=rev_text_id', 'rev_id' => $this->getArg() ]
 		);
 		if ( !$row ) {
-			$this->error( "Row not found", true );
+			$this->fatalError( "Row not found" );
 		}
 
 		$flags = explode( ',', $row->old_flags );

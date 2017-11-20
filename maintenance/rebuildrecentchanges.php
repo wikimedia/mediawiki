@@ -61,7 +61,7 @@ class RebuildRecentchanges extends Maintenance {
 			( $this->hasOption( 'from' ) && !$this->hasOption( 'to' ) ) ||
 			( !$this->hasOption( 'from' ) && $this->hasOption( 'to' ) )
 		) {
-			$this->error( "Both 'from' and 'to' must be given, or neither", 1 );
+			$this->fatalError( "Both 'from' and 'to' must be given, or neither" );
 		}
 
 		$this->rebuildRecentChangesTablePass1();

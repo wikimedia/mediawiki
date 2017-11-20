@@ -14,12 +14,12 @@ class UpdateExtensionJsonSchema extends Maintenance {
 	public function execute() {
 		$filename = $this->getArg( 0 );
 		if ( !is_readable( $filename ) ) {
-			$this->error( "Error: Unable to read $filename", 1 );
+			$this->fatalError( "Error: Unable to read $filename" );
 		}
 
 		$json = FormatJson::decode( file_get_contents( $filename ), true );
 		if ( $json === null ) {
-			$this->error( "Error: Invalid JSON", 1 );
+			$this->fatalError( "Error: Invalid JSON" );
 		}
 
 		if ( !isset( $json['manifest_version'] ) ) {

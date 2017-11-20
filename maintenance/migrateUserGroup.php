@@ -48,7 +48,7 @@ class MigrateUserGroup extends Maintenance {
 		$end = $dbw->selectField( 'user_groups', 'MAX(ug_user)',
 			[ 'ug_group' => $oldGroup ], __FUNCTION__ );
 		if ( $start === null ) {
-			$this->error( "Nothing to do - no users in the '$oldGroup' group", true );
+			$this->fatalError( "Nothing to do - no users in the '$oldGroup' group" );
 		}
 		# Do remaining chunk
 		$end += $batchSize - 1;

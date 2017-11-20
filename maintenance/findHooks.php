@@ -143,7 +143,7 @@ class FindHooks extends Maintenance {
 		) {
 			$this->output( "Looks good!\n" );
 		} else {
-			$this->error( 'The script finished with errors.', 1 );
+			$this->fatalError( 'The script finished with errors.' );
 		}
 	}
 
