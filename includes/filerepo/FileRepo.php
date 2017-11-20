@@ -132,6 +132,13 @@ class FileRepo {
 	/** @var array callable|bool Override these in the base class */
 	protected $oldFileFactoryKey = false;
 
+	/** @var string URL of where to proxy thumb.php requests to.
+	 *    Example: http://127.0.0.1:8888/wiki/dev/thumb/
+	 */
+	protected $thumbProxyUrl;
+	/** @var string Secret key to pass as an X-Swift-Secret header to the proxied thumb service */
+	protected $thumbProxySecret;
+
 	/**
 	 * @param array|null $info
 	 * @throws MWException
@@ -159,7 +166,7 @@ class FileRepo {
 		$optionalSettings = [
 			'descBaseUrl', 'scriptDirUrl', 'articleUrl', 'fetchDescription',
 			'thumbScriptUrl', 'pathDisclosureProtection', 'descriptionCacheExpiry',
-			'scriptExtension', 'favicon'
+			'scriptExtension', 'favicon', 'thumbProxyUrl', 'thumbProxySecret'
 		];
 		foreach ( $optionalSettings as $var ) {
 			if ( isset( $info[$var] ) ) {
@@ -609,6 +616,24 @@ class FileRepo {
 	 */
 	public function getThumbScriptUrl() {
 		return $this->thumbScriptUrl;
+	}
+
+	/**
+	 * Get the URL thumb.php requests are being proxied to
+	 *
+	 * @return string
+	 */
+	public function getThumbProxyUrl() {
+		return $this->thumbProxyUrl;
+	}
+
+	/**
+	 * Get the secret key for the proxied thumb service
+	 *
+	 * @return string
+	 */
+	public function getThumbProxySecret() {
+		return $this->thumbProxySecret;
 	}
 
 	/**
