@@ -75,7 +75,7 @@ TEXT
 	public function execute() {
 		$this->mode = $this->getOption( 'mode' );
 		if ( !in_array( $this->mode, [ 'pages', 'subcats', 'files' ] ) ) {
-			$this->error( 'Please specify a valid mode: one of "pages", "subcats" or "files".', 1 );
+			$this->fatalError( 'Please specify a valid mode: one of "pages", "subcats" or "files".' );
 		}
 
 		$this->minimumId = intval( $this->getOption( 'begin', 0 ) );

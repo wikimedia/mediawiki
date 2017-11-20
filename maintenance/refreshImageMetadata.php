@@ -108,7 +108,7 @@ class RefreshImageMetadata extends Maintenance {
 		$dbw = $this->getDB( DB_MASTER );
 		$batchSize = $this->getBatchSize();
 		if ( $batchSize <= 0 ) {
-			$this->error( "Batch size is too low...", 12 );
+			$this->fatalError( "Batch size is too low...", 12 );
 		}
 
 		$repo = RepoGroup::singleton()->getLocalRepo();
@@ -255,7 +255,7 @@ class RefreshImageMetadata extends Maintenance {
 		}
 
 		if ( $brokenOnly && $force ) {
-			$this->error( 'Cannot use --broken-only and --force together. ', 2 );
+			$this->fatalError( 'Cannot use --broken-only and --force together. ', 2 );
 		}
 	}
 }

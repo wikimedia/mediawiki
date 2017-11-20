@@ -37,7 +37,7 @@ class ExportSites extends Maintenance {
 		$handle = fopen( $file, 'w' );
 
 		if ( !$handle ) {
-			$this->error( "Failed to open $file for writing.\n", 1 );
+			$this->fatalError( "Failed to open $file for writing.\n" );
 		}
 
 		$exporter = new SiteExporter( $handle );

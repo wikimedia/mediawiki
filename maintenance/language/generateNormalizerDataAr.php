@@ -46,22 +46,19 @@ class GenerateNormalizerDataAr extends Maintenance {
 		if ( !$this->hasOption( 'unicode-data-file' ) ) {
 			$dataFile = 'UnicodeData.txt';
 			if ( !file_exists( $dataFile ) ) {
-				$this->error( "Unable to find UnicodeData.txt. Please specify " .
+				$this->fatalError( "Unable to find UnicodeData.txt. Please specify " .
 					"its location with --unicode-data-file=<FILE>" );
-				exit( 1 );
 			}
 		} else {
 			$dataFile = $this->getOption( 'unicode-data-file' );
 			if ( !file_exists( $dataFile ) ) {
-				$this->error( 'Unable to find the specified data file.' );
-				exit( 1 );
+				$this->fatalError( 'Unable to find the specified data file.' );
 			}
 		}
 
 		$file = fopen( $dataFile, 'r' );
 		if ( !$file ) {
-			$this->error( 'Unable to open the data file.' );
-			exit( 1 );
+			$this->fatalError( 'Unable to open the data file.' );
 		}
 
 		// For the file format, see http://www.unicode.org/reports/tr44/

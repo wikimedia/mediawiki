@@ -59,7 +59,7 @@ class EditCLI extends Maintenance {
 			$wgUser = User::newFromName( $userName );
 		}
 		if ( !$wgUser ) {
-			$this->error( "Invalid username", true );
+			$this->fatalError( "Invalid username" );
 		}
 		if ( $wgUser->isAnon() ) {
 			$wgUser->addToDatabase();
@@ -67,13 +67,13 @@ class EditCLI extends Maintenance {
 
 		$title = Title::newFromText( $this->getArg() );
 		if ( !$title ) {
-			$this->error( "Invalid title", true );
+			$this->fatalError( "Invalid title" );
 		}
 
 		if ( $this->hasOption( 'nocreate' ) && !$title->exists() ) {
-			$this->error( "Page does not exist", true );
+			$this->fatalError( "Page does not exist" );
 		} elseif ( $this->hasOption( 'createonly' ) && $title->exists() ) {
-			$this->error( "Page already exists", true );
+			$this->fatalError( "Page already exists" );
 		}
 
 		$page = WikiPage::factory( $title );

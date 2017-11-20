@@ -65,7 +65,7 @@ class DeleteBatch extends Maintenance {
 			$user = User::newFromName( $username );
 		}
 		if ( !$user ) {
-			$this->error( "Invalid username", true );
+			$this->fatalError( "Invalid username" );
 		}
 		$wgUser = $user;
 
@@ -77,7 +77,7 @@ class DeleteBatch extends Maintenance {
 
 		# Setup
 		if ( !$file ) {
-			$this->error( "Unable to read file, exiting", true );
+			$this->fatalError( "Unable to read file, exiting" );
 		}
 
 		$dbw = $this->getDB( DB_MASTER );

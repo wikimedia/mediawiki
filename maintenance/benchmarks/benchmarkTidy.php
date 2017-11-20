@@ -15,19 +15,19 @@ class BenchmarkTidy extends Maintenance {
 	public function execute() {
 		$html = file_get_contents( $this->getOption( 'file' ) );
 		if ( $html === false ) {
-			$this->error( "Unable to open input file", 1 );
+			$this->fatalError( "Unable to open input file" );
 		}
 		if ( $this->hasOption( 'driver' ) || $this->hasOption( 'tidy-config' ) ) {
 			$config = json_decode( $this->getOption( 'tidy-config', '{}' ), true );
 			if ( !is_array( $config ) ) {
-				$this->error( "Invalid JSON tidy config", 1 );
+				$this->fatalError( "Invalid JSON tidy config" );
 			}
 			$config += [ 'driver' => $this->getOption( 'driver', 'RemexHtml' ) ];
 			$driver = MWTidy::factory( $config );
 		} else {
 			$driver = MWTidy::singleton();
 			if ( !$driver ) {
-				$this->error( "Tidy disabled or not installed", 1 );
+				$this->fatalError( "Tidy disabled or not installed" );
 			}
 		}
 

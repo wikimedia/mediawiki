@@ -60,12 +60,12 @@ class GenerateCommonPassword extends Maintenance {
 		$outfile = $this->getArg( 1 );
 
 		if ( !is_readable( $infile ) && $infile !== 'php://stdin' ) {
-			$this->error( "Cannot open input file $infile for reading", 1 );
+			$this->fatalError( "Cannot open input file $infile for reading" );
 		}
 
 		$file = fopen( $infile, 'r' );
 		if ( $file === false ) {
-			$this->error( "Cannot read input file $infile", 1 );
+			$this->fatalError( "Cannot read input file $infile" );
 		}
 
 		try {
@@ -109,7 +109,7 @@ class GenerateCommonPassword extends Maintenance {
 				" (out of $i) passwords to $outfile\n"
 			);
 		} catch ( \Cdb\Exception $e ) {
-			$this->error( "Error writing cdb file: " . $e->getMessage(), 2 );
+			$this->fatalError( "Error writing cdb file: " . $e->getMessage(), 2 );
 		}
 	}
 }

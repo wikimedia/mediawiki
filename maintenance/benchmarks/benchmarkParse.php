@@ -106,7 +106,7 @@ class BenchmarkParse extends Maintenance {
 
 		$loops = $this->getOption( 'loops', 1 );
 		if ( $loops < 1 ) {
-			$this->error( 'Invalid number of loops specified', true );
+			$this->fatalError( 'Invalid number of loops specified' );
 		}
 		$startUsage = getrusage();
 		$startTime = microtime( true );

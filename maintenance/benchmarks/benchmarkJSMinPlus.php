@@ -41,7 +41,7 @@ class BenchmarkJSMinPlus extends Benchmarker {
 		$content = file_get_contents( $this->getOption( 'file' ) );
 		MediaWiki\restoreWarnings();
 		if ( $content === false ) {
-			$this->error( 'Unable to open input file', 1 );
+			$this->fatalError( 'Unable to open input file' );
 		}
 
 		$filename = basename( $this->getOption( 'file' ) );
