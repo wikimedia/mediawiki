@@ -22,3 +22,7 @@
 .mw-userrights-groups * th {
 	text-align: left;
 }
+
+#mw-userrights-form2 input[type=checkbox]:not( :checked ) ~ div {
+	display: none;
+}

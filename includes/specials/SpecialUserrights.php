@@ -847,10 +847,6 @@ class UserrightsPage extends SpecialPage {
 				}
 				$checkboxHtml = Xml::checkLabel( $text, "wpGroup-" . $group,
 					"wpGroup-" . $group, $checkbox['set'], $attr );
-				$ret .= "\t\t" . ( ( $checkbox['disabled'] && $checkbox['disabled-expiry'] )
-					? Xml::tags( 'div', [ 'class' => 'mw-userrights-disabled' ], $checkboxHtml )
-					: Xml::tags( 'div', [], $checkboxHtml )
-				) . "\n";
 
 				if ( $this->canProcessExpiries() ) {
 					$uiUser = $this->getUser();
@@ -939,8 +935,12 @@ class UserrightsPage extends SpecialPage {
 						'id' => "mw-userrights-nested-wpGroup-$group",
 						'class' => 'mw-userrights-nested',
 					];
-					$ret .= "\t\t\t" . Xml::tags( 'div', $divAttribs, $expiryHtml ) . "\n";
+					$checkboxHtml .= "\t\t\t" . Xml::tags( 'div', $divAttribs, $expiryHtml ) . "\n";
 				}
+				$ret .= "\t\t" . ( ( $checkbox['disabled'] && $checkbox['disabled-expiry'] )
+					? Xml::tags( 'div', [ 'class' => 'mw-userrights-disabled' ], $checkboxHtml )
+					: Xml::tags( 'div', [], $checkboxHtml )
+				) . "\n";
 			}
 			$ret .= "\t</td>\n";
 		}
