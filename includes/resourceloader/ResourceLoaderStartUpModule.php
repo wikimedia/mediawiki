@@ -101,8 +101,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgContentLanguage' => $wgContLang->getCode(),
 			'wgTranslateNumerals' => $conf->get( 'TranslateNumerals' ),
 			'wgVersion' => $conf->get( 'Version' ),
-			'wgEnableAPI' => $conf->get( 'EnableAPI' ),
-			'wgEnableWriteAPI' => $conf->get( 'EnableWriteAPI' ),
+			'wgEnableAPI' => true, // Deprecated since MW 1.32
+			'wgEnableWriteAPI' => true, // Deprecated since MW 1.32
 			'wgMainPageTitle' => $mainPage->getPrefixedText(),
 			'wgFormattedNamespaces' => $wgContLang->getFormattedNamespaces(),
 			'wgNamespaceIds' => $namespaceIds,
