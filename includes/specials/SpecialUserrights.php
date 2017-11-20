@@ -916,7 +916,12 @@ class UserrightsPage extends SpecialPage {
 						$expiryHtml .= $expiryFormOptions->getHTML() . '<br />';
 
 						// Add custom expiry field
-						$attribs = [ 'id' => "mw-input-wpExpiry-$group-other" ];
+						$attribs = [
+							'id' => "mw-input-wpExpiry-$group-other",
+							// Initial hide the input field to prevent a FOUC on loading
+							// JavaScript will unhide the input field when in use
+							'style' => 'display: none',
+						];
 						if ( $checkbox['disabled-expiry'] ) {
 							$attribs['disabled'] = 'disabled';
 						}
