@@ -1188,18 +1188,16 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			}
 		}
 
-		if ( $this->config->get( 'EnableAPI' ) ) {
-			$defaultPreferences['watchlisttoken'] = [
-				'type' => 'api',
-			];
-			$defaultPreferences['watchlisttoken-info'] = [
-				'type' => 'info',
-				'section' => 'watchlist/tokenwatchlist',
-				'label-message' => 'prefs-watchlist-token',
-				'default' => $user->getTokenFromOption( 'watchlisttoken' ),
-				'help-message' => 'prefs-help-watchlist-token2',
-			];
-		}
+		$defaultPreferences['watchlisttoken'] = [
+			'type' => 'api',
+		];
+		$defaultPreferences['watchlisttoken-info'] = [
+			'type' => 'info',
+			'section' => 'watchlist/tokenwatchlist',
+			'label-message' => 'prefs-watchlist-token',
+			'default' => $user->getTokenFromOption( 'watchlisttoken' ),
+			'help-message' => 'prefs-help-watchlist-token2',
+		];
 	}
 
 	/**

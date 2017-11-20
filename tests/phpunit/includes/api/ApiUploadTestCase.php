@@ -12,7 +12,6 @@ abstract class ApiUploadTestCase extends ApiTestCase {
 
 		$this->setMwGlobals( [
 			'wgEnableUploads' => true,
-			'wgEnableAPI' => true,
 		] );
 
 		$this->clearFakeUploads();
