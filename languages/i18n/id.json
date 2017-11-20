@@ -56,7 +56,8 @@
 			"Rachmat04",
 			"Arifpedia",
 			"Uchup19",
-			"Archd"
+			"Archd",
+			"Empu"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -1334,6 +1335,7 @@
 	"recentchanges-summary": "Temukan perubahan terbaru dalam wiki di halaman ini.<br />\n;Keterangan:(<span style=\"color:blue;\">beda</span>) perubahan, (<span style=\"color:blue;\">versi</span>) sejarah revisi, '''B''' halaman baru, '''b''' suntingan bot, '''k''' suntingan kecil, <span class=\"unpatrolled\">!</span> perubahan belum dipatroli,<br /><span style=\"color:green;\">'''(+ ''bita'')'''</span> isi konten bertambah, <span style=\"color:red;\">(- ''bita'')</span> isi konten berkurang, (← Ringkasan otomatis), (→ <span style=\"color:grey;\">Suntingan bagian</span>)",
 	"recentchanges-noresult": "Tidak ada perubahan dalam rentang waktu ini yang cocok dengan kriteria.",
 	"recentchanges-timeout": "Waktu pencarian ini telah habis. Anda mungkin ingin mencoba parameter pencarian lain.",
+	"recentchanges-network": "Selama terjadi kesalahan teknis, tidak ada hasil yang bisa dimuat. Silakan coba untuk menyegarkan kembali halaman.",
 	"recentchanges-feed-description": "Temukan perubahan terbaru dalam wiki di umpan ini.",
 	"recentchanges-label-newpage": "Suntingan ini membuat halaman baru",
 	"recentchanges-label-minor": "Ini adalah suntingan kecil",

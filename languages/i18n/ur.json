@@ -3548,7 +3548,7 @@
 	"logentry-patrol-patrol": "$1 نے صفحہ $3 کے نسخہ $4 کو مراجعت شدہ {{GENDER:$2|نشان زد کیا}}",
 	"logentry-patrol-patrol-auto": "$1 نے صفحہ $3 کے نسخہ $4 کو خودکار طور پر مراجعت شدہ {{GENDER:$2|نشان زد کیا}}",
 	"logentry-newusers-newusers": "صارف کھاتہ $1 {{GENDER:$2|تخلیق ہو چکا ہے}}",
-	"logentry-newusers-create": "صارف کھاتہ $1 {{GENDER:$2|بنایا گیا}}",
+	"logentry-newusers-create": "$1 کے نام سے صارف کھاتہ {{GENDER:$2|بنایا گیا}}",
 	"logentry-newusers-create2": "$1 نے صارف کھاتہ $3 {{GENDER:$2|تخلیق کیا}}",
 	"logentry-newusers-byemail": "$1 نے صارف کھاتہ $3 {{GENDER:$2|تخلیق کیا}} اور پاس ورڈ بذریعہ برقی خط روانہ کیا گیا ہے",
 	"logentry-newusers-autocreate": "صارف کھاتہ $1 خودکار طور پر {{GENDER:$2|تخلیق ہوا}}",

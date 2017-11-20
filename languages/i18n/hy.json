@@ -1875,7 +1875,7 @@
 	"metadata": "Մետատվյալներ",
 	"metadata-help": "Նիշքը պարունակում է ընդարձակ տվյալները, հավանաբար ավելացված թվային լուսանկարչական ապարատի կամ սկաների կողմից, որոնք օգտագործվել են նկարը ստեղծելու կամ թվայնացնելու համար։\nԵթե նիշքը ձևափոխվել է ստեղծումից ի վեր, ապա որոշ տվյալները կարող են չհամապատասխանել ձևափոխված նիշքին։",
 	"metadata-expand": "Ցուց տալ ընդարձակ տվյալները",
-	"metadata-collapse": "Թաքցնել ընդարձակ տվյլաները",
+	"metadata-collapse": "Թաքցնել լրացուցիչ տվյալները",
 	"metadata-fields": "EXIF մետատվյալների այն դաշտերը, որոնք նշված ենք այս ուղերձի մեջ, կցուցադրվեն պատկերի էջում, երբ մետատվյալների աղյուսակը ծալված է։ Այլ տվյալները լռությամբ կթաքցվեն։\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
 	"exif-imagewidth": "Լայնք",
 	"exif-imagelength": "Բարձրություն",
