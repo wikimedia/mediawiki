@@ -912,7 +912,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 					// Value existed before with a different version; use variant key.
 					// Reflect purges to $key by requiring that this key value be newer.
 					$value = $this->doGetWithSetCallback(
-						'cache-variant:' . md5( $key ) . ":$version",
+						$this->makeGlobalKey( 'WANCache-key-variant', md5( $key ), $version ),
 						$ttl,
 						$callback,
 						// Regenerate value if not newer than $key
