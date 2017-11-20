@@ -175,11 +175,163 @@ class Preferences {
 	 * @param IContextSource $context
 	 * @param array &$defaultPreferences
 	 */
-	public static function watchlistPreferences(
-		$user, IContextSource $context, &$defaultPreferences
-	) {
-		wfDeprecated( __METHOD__, '1.31' );
-		$defaultPreferences = self::getPreferences( $user, $context );
+	static function watchlistPreferences( $user, IContextSource $context, &$defaultPreferences ) {
+		$config = $context->getConfig();
+		$watchlistdaysMax = ceil( $config->get( 'RCMaxAge' ) / ( 3600 * 24 ) );
+
+		# # Watchlist #####################################
+		if ( $user->isAllowed( 'editmywatchlist' ) ) {
+			$editWatchlistLinks = '';
+			$editWatchlistModes = [
+				'edit' => [ 'EditWatchlist', false ],
+				'raw' => [ 'EditWatchlist', 'raw' ],
+				'clear' => [ 'EditWatchlist', 'clear' ],
+			];
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+			foreach ( $editWatchlistModes as $editWatchlistMode => $mode ) {
+				// Messages: prefs-editwatchlist-edit, prefs-editwatchlist-raw, prefs-editwatchlist-clear
+				$editWatchlistLinks .=
+					new OOUI\ButtonWidget( [
+						'href' => SpecialPage::getTitleFor( $mode[0], $mode[1] )->getLinkURL(),
+						'label' => new OOUI\HtmlSnippet(
+							$context->msg( "prefs-editwatchlist-{$editWatchlistMode}" )->parse()
+						),
+					] );
+			}
+
+			$defaultPreferences['editwatchlist'] = [
+				'type' => 'info',
+				'raw' => true,
+				'default' => $editWatchlistLinks,
+				'label-message' => 'prefs-editwatchlist-label',
+				'section' => 'watchlist/editwatchlist',
+			];
+		}
+
+		$defaultPreferences['watchlistdays'] = [
+			'type' => 'float',
+			'min' => 0,
+			'max' => $watchlistdaysMax,
+			'section' => 'watchlist/displaywatchlist',
+			'help' => $context->msg( 'prefs-watchlist-days-max' )->numParams(
+				$watchlistdaysMax )->escaped(),
+			'label-message' => 'prefs-watchlist-days',
+		];
+		$defaultPreferences['wllimit'] = [
+			'type' => 'int',
+			'min' => 0,
+			'max' => 1000,
+			'label-message' => 'prefs-watchlist-edits',
+			'help' => $context->msg( 'prefs-watchlist-edits-max' )->escaped(),
+			'section' => 'watchlist/displaywatchlist',
+		];
+		$defaultPreferences['extendwatchlist'] = [
+			'type' => 'toggle',
+			'section' => 'watchlist/advancedwatchlist',
+			'label-message' => 'tog-extendwatchlist',
+		];
+		$defaultPreferences['watchlisthideminor'] = [
+			'type' => 'toggle',
+			'section' => 'watchlist/advancedwatchlist',
+			'label-message' => 'tog-watchlisthideminor',
+		];
+		$defaultPreferences['watchlisthidebots'] = [
+			'type' => 'toggle',
+			'section' => 'watchlist/advancedwatchlist',
+			'label-message' => 'tog-watchlisthidebots',
+		];
+		$defaultPreferences['watchlisthideown'] = [
+			'type' => 'toggle',
+			'section' => 'watchlist/advancedwatchlist',
+			'label-message' => 'tog-watchlisthideown',
+		];
+		$defaultPreferences['watchlisthideanons'] = [
+			'type' => 'toggle',
+			'section' => 'watchlist/advancedwatchlist',
+			'label-message' => 'tog-watchlisthideanons',
+		];
+		$defaultPreferences['watchlisthideliu'] = [
+			'type' => 'toggle',
+			'section' => 'watchlist/advancedwatchlist',
+			'label-message' => 'tog-watchlisthideliu',
+		];
+		$defaultPreferences['watchlistreloadautomatically'] = [
+			'type' => 'toggle',
+			'section' => 'watchlist/advancedwatchlist',
+			'label-message' => 'tog-watchlistreloadautomatically',
+		];
+		$defaultPreferences['watchlistunwatchlinks'] = [
+			'type' => 'toggle',
+			'section' => 'watchlist/advancedwatchlist',
+			'label-message' => 'tog-watchlistunwatchlinks',
+		];
+
+		if ( $config->get( 'RCWatchCategoryMembership' ) ) {
+			$defaultPreferences['watchlisthidecategorization'] = [
+				'type' => 'toggle',
+				'section' => 'watchlist/advancedwatchlist',
+				'label-message' => 'tog-watchlisthidecategorization',
+			];
+		}
+
+		if ( $user->useRCPatrol() ) {
+			$defaultPreferences['watchlisthidepatrolled'] = [
+				'type' => 'toggle',
+				'section' => 'watchlist/advancedwatchlist',
+				'label-message' => 'tog-watchlisthidepatrolled',
+			];
+		}
+
+		$watchTypes = [
+			'edit' => 'watchdefault',
+			'move' => 'watchmoves',
+			'delete' => 'watchdeletion'
+		];
+
+		// Kinda hacky
+		if ( $user->isAllowed( 'createpage' ) || $user->isAllowed( 'createtalk' ) ) {
+			$watchTypes['read'] = 'watchcreations';
+		}
+
+		if ( $user->isAllowed( 'rollback' ) ) {
+			$watchTypes['rollback'] = 'watchrollback';
+		}
+
+		if ( $user->isAllowed( 'upload' ) ) {
+			$watchTypes['upload'] = 'watchuploads';
+		}
+
+		foreach ( $watchTypes as $action => $pref ) {
+			if ( $user->isAllowed( $action ) ) {
+				// Messages:
+				// tog-watchdefault, tog-watchmoves, tog-watchdeletion, tog-watchcreations, tog-watchuploads
+				// tog-watchrollback
+				$defaultPreferences[$pref] = [
+					'type' => 'toggle',
+					'section' => 'watchlist/advancedwatchlist',
+					'label-message' => "tog-$pref",
+				];
+			}
+		}
+
+		$defaultPreferences['watchlisttoken'] = [
+			'type' => 'api',
+		];
+
+		$tokenButton = new OOUI\ButtonWidget( [
+			'href' => SpecialPage::getTitleFor( 'ResetTokens' )->getLinkURL( [
+				'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText()
+			] ),
+			'label' => $context->msg( 'prefs-watchlist-managetokens' )->text(),
+		] );
+		$defaultPreferences['watchlisttoken-info'] = [
+			'type' => 'info',
+			'section' => 'watchlist/tokenwatchlist',
+			'label-message' => 'prefs-watchlist-token',
+			'help-message' => 'prefs-help-tokenmanagement',
+			'raw' => true,
+			'default' => (string)$tokenButton,
+		];
 	}
 
 	/**

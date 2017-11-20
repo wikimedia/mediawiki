@@ -3337,24 +3337,22 @@ class OutputPage extends ContextSource {
 			'title' => $this->msg( 'opensearch-desc' )->inContentLanguage()->text(),
 		] );
 
-		if ( $config->get( 'EnableAPI' ) ) {
-			# Real Simple Discovery link, provides auto-discovery information
-			# for the MediaWiki API (and potentially additional custom API
-			# support such as WordPress or Twitter-compatible APIs for a
-			# blogging extension, etc)
-			$tags['rsd'] = Html::element( 'link', [
-				'rel' => 'EditURI',
-				'type' => 'application/rsd+xml',
-				// Output a protocol-relative URL here if $wgServer is protocol-relative.
-				// Whether RSD accepts relative or protocol-relative URLs is completely
-				// undocumented, though.
-				'href' => wfExpandUrl( wfAppendQuery(
-					wfScript( 'api' ),
-					[ 'action' => 'rsd' ] ),
-					PROTO_RELATIVE
-				),
-			] );
-		}
+		# Real Simple Discovery link, provides auto-discovery information
+		# for the MediaWiki API (and potentially additional custom API
+		# support such as WordPress or Twitter-compatible APIs for a
+		# blogging extension, etc)
+		$tags['rsd'] = Html::element( 'link', [
+			'rel' => 'EditURI',
+			'type' => 'application/rsd+xml',
+			// Output a protocol-relative URL here if $wgServer is protocol-relative.
+			// Whether RSD accepts relative or protocol-relative URLs is completely
+			// undocumented, though.
+			'href' => wfExpandUrl( wfAppendQuery(
+				wfScript( 'api' ),
+				[ 'action' => 'rsd' ] ),
+				PROTO_RELATIVE
+			),
+		] );
 
 		# Language variants
 		if ( !$config->get( 'DisableLangConversion' ) ) {
