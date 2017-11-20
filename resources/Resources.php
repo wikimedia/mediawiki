@@ -2230,11 +2230,13 @@ return [
 		],
 	],
 	'mediawiki.special.userrights' => [
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.userrights.css',
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.userrights.js',
 		'dependencies' => [
 			'mediawiki.notification.convertmessagebox',
 		],
+	],
+	'mediawiki.special.userrights.styles' => [
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.userrights.css',
 	],
 	'mediawiki.special.watchlist' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.watchlist.js',

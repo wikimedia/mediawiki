@@ -140,7 +140,7 @@ class UserrightsPage extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
-		$out->addModuleStyles( 'mediawiki.special' );
+		$out->addModuleStyles( 'mediawiki.special.userrights.styles' );
 		$this->addHelpLink( 'Help:Assigning permissions' );
 
 		$this->switchForm();
