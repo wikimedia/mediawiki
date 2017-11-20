@@ -10,3 +10,5 @@ wfLoadExtension( 'ParserFunctions' );
 $wgPFEnableStringFunctions = true;
 wfLoadExtension( 'Renameuser' );
 wfLoadExtension( 'SyntaxHighlight_GeSHi' );
+wfLoadExtension( 'WikiEditor' );
+wfLoadExtension( 'CodeEditor' );
