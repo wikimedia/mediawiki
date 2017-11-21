@@ -137,7 +137,7 @@ class MemcachedBagOStuff extends BagOStuff {
 		);
 
 		if ( $charsLeft < 0 ) {
-			return $keyspace . ':##' . md5( implode( ':', $args ) );
+			return $keyspace . ':BagOStuff-long-key:##' . md5( implode( ':', $args ) );
 		}
 
 		return $keyspace . ':' . implode( ':', $args );
