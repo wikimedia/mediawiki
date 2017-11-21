@@ -189,6 +189,7 @@ class LoadBalancer implements ILoadBalancer {
 		} else {
 			$this->loadMonitorConfig = [ 'class' => 'LoadMonitorNull' ];
 		}
+		$this->loadMonitorConfig += [ 'lagWarnThreshold' => $this->maxLag ];
 
 		foreach ( $params['servers'] as $i => $server ) {
 			$this->mLoads[$i] = $server['load'];
