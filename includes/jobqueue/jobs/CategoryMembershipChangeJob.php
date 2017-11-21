@@ -25,6 +25,8 @@ use Wikimedia\Rdbms\LBFactory;
 /**
  * Job to add recent change entries mentioning category membership changes
  *
+ * This allows users to easily scan categories for recent page membership changes
+ *
  * Parameters include:
  *   - pageId : page ID
  *   - revTimestamp : timestamp of the triggering revision
@@ -81,28 +83,28 @@ class CategoryMembershipChangeJob extends Job {
 		// between COMMIT and actual enqueueing of the CategoryMembershipChangeJob job.
 		$cutoffUnix -= self::ENQUEUE_FUDGE_SEC;
 
-		// Get the newest revision that has a SRC_CATEGORIZE row...
+		// Get the newest page revision that has a SRC_CATEGORIZE row.
+		// Assume that category changes before it were already handled.
 		$row = $dbr->selectRow(
-			[ 'revision', 'recentchanges' ],
+			'revision',
 			[ 'rev_timestamp', 'rev_id' ],
 			[
 				'rev_page' => $page->getId(),
-				'rev_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( $cutoffUnix ) )
-			],
-			__METHOD__,
-			[ 'ORDER BY' => 'rev_timestamp DESC, rev_id DESC' ],
-			[
-				'recentchanges' => [
-					'INNER JOIN',
+				'rev_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( $cutoffUnix ) ),
+				'EXISTS (' . $dbr->selectSQLText(
+					'recentchanges',
+					'1',
 					[
 						'rc_this_oldid = rev_id',
 						'rc_source' => RecentChange::SRC_CATEGORIZE,
 						// Allow rc_cur_id or rc_timestamp index usage
 						'rc_cur_id = rev_page',
-						'rc_timestamp >= rev_timestamp'
+						'rc_timestamp = rev_timestamp'
 					]
-				]
-			]
+				) . ')'
+			],
+			__METHOD__,
+			[ 'ORDER BY' => 'rev_timestamp DESC, rev_id DESC' ]
 		);
 		// Only consider revisions newer than any such revision
 		if ( $row ) {
