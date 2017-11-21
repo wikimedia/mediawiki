@@ -135,7 +135,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	const TTL_LAGGED = 30;
 	/** Idiom for delete() for "no hold-off" */
 	const HOLDOFF_NONE = 0;
-	/** Idiom for set() for "do not augment the storage medium TTL" */
+	/** Idiom for set()/getWithSetCallback() for "do not augment the storage medium TTL" */
 	const STALE_TTL_NONE = 0;
 
 	/** Idiom for getWithSetCallback() for "no minimum required as-of timestamp" */
@@ -868,6 +868,11 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *      Default: WANObjectCache::LOW_TTL.
 	 *   - ageNew: Consider popularity refreshes only once a key reaches this age in seconds.
 	 *      Default: WANObjectCache::AGE_NEW.
+	 *   - staleTTL : Seconds to keep the key around if it is stale. This means that on cache
+	 *      miss the callback may get $oldValue/$oldAsOf values for keys that have already been
+	 *      expired for this specified time. This is useful if adaptiveTTL() is used on the old
+	 *      value's as-of time when it is verified as still being correct.
+	 *      Default: WANObjectCache::STALE_TTL_NONE
 	 * @return mixed Value found or written to the key
 	 * @note Options added in 1.28: version, busyValue, hotTTR, ageNew, pcGroup, minAsOf
 	 * @note Callable type hints are not used to avoid class-autoloading
@@ -957,6 +962,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	protected function doGetWithSetCallback( $key, $ttl, $callback, array $opts, &$asOf = null ) {
 		$lowTTL = isset( $opts['lowTTL'] ) ? $opts['lowTTL'] : min( self::LOW_TTL, $ttl );
 		$lockTSE = isset( $opts['lockTSE'] ) ? $opts['lockTSE'] : self::TSE_NONE;
+		$staleTTL = isset( $opts['staleTTL'] ) ? $opts['staleTTL'] : self::STALE_TTL_NONE;
 		$checkKeys = isset( $opts['checkKeys'] ) ? $opts['checkKeys'] : [];
 		$busyValue = isset( $opts['busyValue'] ) ? $opts['busyValue'] : null;
 		$popWindow = isset( $opts['hotTTR'] ) ? $opts['hotTTR'] : self::HOT_TTR;
@@ -1056,6 +1062,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 		if ( $valueIsCacheable ) {
 			$setOpts['lockTSE'] = $lockTSE;
+			$setOpts['staleTTL'] = $staleTTL;
 			// Use best known "since" timestamp if not provided
 			$setOpts += [ 'since' => $preCallbackTime ];
 			// Update the cache; this will fail if the key is tombstoned
@@ -1494,6 +1501,46 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *     // defaults, then $ttl is 3600 * .2 = 720. If $minTTL was greater than 720, then
 	 *     // $ttl would be $minTTL. If $maxTTL was smaller than 720, $ttl would be $maxTTL.
 	 *     $ttl = $cache->adaptiveTTL( $mtime, $cache::TTL_DAY );
+	 * @endcode
+	 *
+	 * Another use case is when there are no applicable "last modified" fields in the DB,
+	 * and there are too many dependencies for explicit purges to be viable, and the rate of
+	 * change to relevant content is unstable, and it is highly valued to have the cached value
+	 * be as up-to-date as possible.
+	 *
+	 * Example usage:
+	 * @code
+	 *     $query = "<some complex query>";
+	 *     $idListFromComplexQuery = $cache->getWithSetCallback(
+	 *         $cache->makeKey( 'complex-graph-query', $hashOfQuery ),
+	 *         GraphQueryClass::STARTING_TTL,
+	 *         function ( $oldValue, &$ttl, array &$setOpts, $oldAsOf ) use ( $query, $cache ) {
+	 *             $gdb = $this->getReplicaGraphDbConnection();
+	 *             // Account for any snapshot/replica DB lag
+	 *             $setOpts += GraphDatabase::getCacheSetOptions( $gdb );
+	 *
+	 *             $newList = iterator_to_array( $gdb->query( $query ) );
+	 *             sort( $newList, SORT_NUMERIC ); // normalize
+	 *
+	 *             $minTTL = GraphQueryClass::MIN_TTL;
+	 *             $maxTTL = GraphQueryClass::MAX_TTL;
+	 *             if ( $oldValue !== false ) {
+	 *                 // Note that $oldAsOf is the last time this callback ran
+	 *                 $ttl = ( $newList === $oldValue )
+	 *                     // No change: cache for 150% of the age of $oldValue
+	 *                     ? $cache->adaptiveTTL( $oldAsOf, $maxTTL, $minTTL, 1.5 )
+	 *                     // Changed: cache for %50 of the age of $oldValue
+	 *                     : $cache->adaptiveTTL( $oldAsOf, $maxTTL, $minTTL, .5 );
+	 *             }
+	 *
+	 *             return $newList;
+	 *        },
+	 *        [
+	 *             // Keep stale values around for doing comparisons for TTL calculations.
+	 *             // High values improve long-tail keys hit-rates, though might waste space.
+	 *             'staleTTL' => GraphQueryClass::GRACE_TTL
+	 *        ]
+	 *     );
 	 * @endcode
 	 *
 	 * @param int|float $mtime UNIX timestamp
