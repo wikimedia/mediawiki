@@ -1972,6 +1972,8 @@ return [
 			'api-help-param-integer-minmax',
 			'api-help-param-multi-separate',
 			'api-help-param-multi-max',
+			'api-help-param-maxbytes',
+			'api-help-param-maxchars',
 			'apisandbox-submit-invalid-fields-title',
 			'apisandbox-submit-invalid-fields-message',
 			'apisandbox-results',
