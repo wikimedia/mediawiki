@@ -25,7 +25,7 @@
     "karma-mocha-reporter": "2.2.5",
     "karma-qunit": "1.2.1",
     "nodemw": "0.11.0",
-    "qunitjs": "2.4.1",
+    "qunit": "2.4.1",
     "stylelint": "8.2.0",
     "stylelint-config-wikimedia": "0.4.2",
     "wdio-junit-reporter": "0.2.0",
