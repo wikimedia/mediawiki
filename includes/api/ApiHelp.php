@@ -713,6 +713,15 @@ class ApiHelp extends ApiBase {
 						}
 					}
 
+					if ( isset( $settings[self::PARAM_MAX_BYTES] ) ) {
+						$info[] = $context->msg( 'api-help-param-maxbytes' )
+							->numParams( $settings[self::PARAM_MAX_BYTES] );
+					}
+					if ( isset( $settings[self::PARAM_MAX_CHARS] ) ) {
+						$info[] = $context->msg( 'api-help-param-maxchars' )
+							->numParams( $settings[self::PARAM_MAX_CHARS] );
+					}
+
 					// Add default
 					$default = isset( $settings[ApiBase::PARAM_DFLT] )
 						? $settings[ApiBase::PARAM_DFLT]
