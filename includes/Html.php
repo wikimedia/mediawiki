@@ -683,7 +683,7 @@ class Html {
 	 * @param string $heading (optional)
 	 * @return string of HTML representing a box.
 	 */
-	public static function messageBox( $html, $className, $heading = '' ) {
+	private static function messageBox( $html, $className, $heading = '' ) {
 		if ( $heading ) {
 			$html = self::element( 'h2', [], $heading ) . $html;
 		}

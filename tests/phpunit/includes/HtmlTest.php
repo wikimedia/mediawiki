@@ -448,6 +448,47 @@ class HtmlTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers Html::warningBox
+	 * @covers Html::messageBox
+	 */
+	public function testWarningBox() {
+		$this->assertEquals(
+			Html::warningBox( 'warn' ),
+			'<div class="warningbox">warn</div>'
+		);
+	}
+
+	/**
+	 * @covers Html::errorBox
+	 * @covers Html::messageBox
+	 */
+	public function testErrorBox() {
+		$this->assertEquals(
+			Html::errorBox( 'err' ),
+			'<div class="errorbox">err</div>'
+		);
+		$this->assertEquals(
+			Html::errorBox( 'err', 'heading' ),
+			'<div class="errorbox"><h2>heading</h2>err</div>'
+		);
+	}
+
+	/**
+	 * @covers Html::successBox
+	 * @covers Html::messageBox
+	 */
+	public function testSuccessBox() {
+		$this->assertEquals(
+			Html::successBox( 'great' ),
+			'<div class="successbox">great</div>'
+		);
+		$this->assertEquals(
+			Html::successBox( '<script>beware no escaping!</script>' ),
+			'<div class="successbox"><script>beware no escaping!</script></div>'
+		);
+	}
+
+	/**
 	 * List of input element types values introduced by HTML5
 	 * Full list at https://www.w3.org/TR/html-markup/input.html
 	 */
