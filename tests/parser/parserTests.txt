@@ -15181,7 +15181,7 @@ parsoid=wt2html,wt2wt,html2html
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.svg" class="image"><img alt="" src="http://example.com/images/thumb/f/ff/Foobar.svg/180px-Foobar.svg.png" width="180" height="135" class="thumbimage" srcset="http://example.com/images/thumb/f/ff/Foobar.svg/270px-Foobar.svg.png 1.5x, http://example.com/images/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.svg" class="internal" title="Enlarge"></a></div>lang=invalid:language:code</div></div></div>
 
 !! html/parsoid
-<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.svg"><img resource="./File:Foobar.svg" src="//example.com/images/f/ff/Foobar.svg" data-file-width="240" data-file-height="180" data-file-type="drawing" height="165" width="220"/></a><figcaption>lang=invalid.language.code</figcaption></figure>
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.svg"><img resource="./File:Foobar.svg" src="//example.com/images/thumb/f/ff/Foobar.svg/220px-Foobar.svg.png" data-file-width="240" data-file-height="180" data-file-type="drawing" height="165" width="220"/></a><figcaption>lang=invalid:language:code</figcaption></figure>
 !! end
 
 !! test
@@ -18549,10 +18549,14 @@ language=sr variant=sr-el
 -{H|foAjrjvi=>sr-el:" onload="alert(1)" data-foo="}-
 
 [[File:Foobar.jpg|alt=-{}-foAjrjvi-{}-]]
-!! html
+!! html/php
 <p>
 </p><p><a href="/wiki/%D0%94%D0%B0%D1%82%D0%BE%D1%82%D0%B5%D0%BA%D0%B0:Foobar.jpg" class="image"><img alt="&quot; onload=&quot;alert(1)&quot; data-foo=&quot;" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
 </p>
+!! html/parsoid
+<p><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"oneway":[{"f":"foAjrjvi","l":"sr-el","t":"\" onload=\"alert(1)\" data-foo=\""}]}'/></p>
+
+<p><span class="mw-default-size" typeof="mw:Image"><a href="./Датотека:Foobar.jpg"><img alt="foAjrjvi" resource="./Датотека:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"alt":"foAjrjvi","resource":"./Датотека:Foobar.jpg","height":"220","width":"1941"},"sa":{"alt":"alt=-{}-foAjrjvi-{}-","resource":"File:Foobar.jpg"}}'/></a></span></p>
 !! end
 
 !! test
@@ -29739,4 +29743,403 @@ wgFragmentMode=[ 'html5' ]
 !! html/php
 <p><span id="&#91;foo&#93;"></span><a href="#[foo]">#&#91;foo&#93;</a>
 </p>
+
+## ------------------------------
+## Parsoid section-wrapping tests
+## ------------------------------
+!! test
+Section wrapping for well-nested sections (no leading content)
+!! options
+parsoid={
+  "wrapSections": true
+}
+!! wikitext
+= 1 =
+a
+
+= 2 =
+b
+
+== 2.1 ==
+c
+
+== 2.2 ==
+d
+
+=== 2.2.1 ===
+e
+
+= 3 =
+f
+!! html/parsoid
+<section data-mw-section-id="1"><h1 id="1"> 1 </h1>
+<p>a</p>
+
+</section><section data-mw-section-id="2"><h1 id="2"> 2 </h1>
+<p>b</p>
+
+<section data-mw-section-id="3"><h2 id="2.1"> 2.1 </h2>
+<p>c</p>
+
+</section><section data-mw-section-id="4"><h2 id="2.2"> 2.2 </h2>
+<p>d</p>
+
+<section data-mw-section-id="5"><h3 id="2.2.1"> 2.2.1 </h3>
+<p>e</p>
+
+</section></section></section><section data-mw-section-id="6"><h1 id="3"> 3 </h1>
+<p>f</p>
+
+</section>
+!! end
+
+!! test
+Section wrapping for well-nested sections (with leading content)
+!! options
+parsoid={
+  "wrapSections": true
+}
+!! wikitext
+Para 1.
+
+Para 2 with a <div>nested in it</div>
+
+Para 3.
+
+= 1 =
+a
+
+= 2 =
+b
+
+== 2.1 ==
+c
+!! html/parsoid
+<section data-mw-section-id="0"><p>Para 1.</p>
+
+<p>Para 2 with a </p><div>nested in it</div>
+
+<p>Para 3.</p>
+
+</section><section data-mw-section-id="1"><h1 id="1"> 1 </h1>
+<p>a</p>
+
+</section><section data-mw-section-id="2"><h1 id="2"> 2 </h1>
+<p>b</p>
+
+<section data-mw-section-id="3"><h2 id="2.1"> 2.1 </h2>
+<p>c</p>
+
+</section></section>
+!! end
+
+!! test
+Section wrapping with template-generated sections (good nesting 1)
+!! options
+parsoid={
+  "wrapSections": true
+}
+!! wikitext
+= 1 =
+a
+
+{{echo|1=
+== 1.1 ==
+b
+}}
+
+== 1.2 ==
+c
+
+= 2 =
+d
+!! html/parsoid
+<section data-mw-section-id="1"><h1 id="1"> 1 </h1>
+<p>a</p>
+
+<section data-mw-section-id="-1"><h2 about="#mwt1" typeof="mw:Transclusion" id="1.1" data-parsoid='{"dsr":[9,33,null,null],"pi":[[{"k":"1","named":true,"spc":["","","\n","\n"]}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"== 1.1 ==\nb"}},"i":0}}]}'> 1.1 </h2><span about="#mwt1">
+</span><p about="#mwt1">b</p>
+</section><section data-mw-section-id="3"><h2 id="1.2"> 1.2 </h2>
+<p>c</p>
+
+</section></section><section data-mw-section-id="4"><h1 id="2"> 2 </h1>
+<p>d</p></section>
+!! end
+
+# In this example, the template scope is mildly expanded to incorporate the
+# trailing newline after the transclusion since that is part of section 1.1.1
+!! test
+Section wrapping with template-generated sections (good nesting 2)
+!! options
+parsoid={
+  "wrapSections": true,
+  "modes": ["wt2html", "wt2wt"]
+}
+!! wikitext
+= 1 =
+a
+
+{{echo|1=
+== 1.1 ==
+b
+=== 1.1.1 ===
+d
+}}
+= 2 =
+e
+!! html/parsoid
+<section data-mw-section-id="1"><h1 id="1"> 1 </h1>
+<p>a</p>
+
+<section data-mw-section-id="-1"><h2 about="#mwt1" typeof="mw:Transclusion" id="1.1" data-parsoid='{"dsr":[9,50,null,null],"pi":[[{"k":"1","named":true,"spc":["","","\n","\n"]}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"== 1.1 ==\nb\n=== 1.1.1 ===\nd"}},"i":0}},"\n"]}'> 1.1 </h2><span about="#mwt1">
+</span><p about="#mwt1">b</p><span about="#mwt1">
+</span><section data-mw-section-id="-1" about="#mwt1"><h3 about="#mwt1" id="1.1.1"> 1.1.1 </h3><span about="#mwt1">
+</span><p about="#mwt1">d</p><span about="#mwt1">
+</span></section></section></section><section data-mw-section-id="4" data-parsoid="{}"><h1 id="2"> 2 </h1>
+<p>e</p></section>
+!! end
+
+# In this example, the template scope is mildly expanded to incorporate the
+# trailing newline after the transclusion since that is part of section 1.2.1
+!! test
+Section wrapping with template-generated sections (good nesting 3)
+!! options
+parsoid={
+  "wrapSections": true,
+  "modes": ["wt2html", "wt2wt"]
+}
+!! wikitext
+= 1 =
+a
+
+{{echo|1=
+x
+== 1.1 ==
+b
+==1.2==
+c
+===1.2.1===
+d
+}}
+= 2 =
+e
+!! html/parsoid
+<section data-mw-section-id="1" data-parsoid="{}"><h1 id="1"> 1 </h1>
+<p>a</p>
+
+<p about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"dsr":[9,60,0,0],"pi":[[{"k":"1","named":true,"spc":["","","\n","\n"]}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"x\n== 1.1 ==\nb\n==1.2==\nc\n===1.2.1===\nd"}},"i":0}},"\n"]}'>x</p><span about="#mwt1">
+</span><section data-mw-section-id="-1" about="#mwt1"><h2 about="#mwt1" id="1.1"> 1.1 </h2><span about="#mwt1">
+</span><p about="#mwt1">b</p><span about="#mwt1">
+</span></section><section data-mw-section-id="-1" about="#mwt1"><h2 about="#mwt1" id="1.2">1.2</h2><span about="#mwt1">
+</span><p about="#mwt1">c</p><span about="#mwt1">
+</span><section data-mw-section-id="-1" about="#mwt1"><h3 about="#mwt1" id="1.2.1">1.2.1</h3><span about="#mwt1">
+</span><p about="#mwt1">d</p><span about="#mwt1">
+</span></section></section></section><section data-mw-section-id="5"><h1 id="2"> 2 </h1>
+<p>e</p></section>
+!! end
+
+# Because of section-wrapping and template-wrapping interactions,
+# the scope of the template is expanded so that the template markup
+# is valid in the presence of <section> tags.
+!! test
+Section wrapping with template-generated sections (bad nesting 1)
+!! options
+parsoid={
+  "wrapSections": true
+}
+!! wikitext
+= 1 =
+a
+
+{{echo|1=
+= 2 =
+b
+== 2.1 ==
+c
+}}
+
+d
+
+= 3 =
+e
+!! html/parsoid
+<section data-mw-section-id="1"><h1 id="1"> 1 </h1>
+<p>a</p>
+
+</section><section data-mw-section-id="-1"><h1 about="#mwt1" typeof="mw:Transclusion" id="2" data-parsoid='{"dsr":[9,45,null,null],"pi":[[{"k":"1","named":true,"spc":["","","\n","\n"]}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"= 2 =\nb\n== 2.1 ==\nc"}},"i":0}},"\n\nd\n\n"]}'> 2 </h1><span about="#mwt1">
+</span><p about="#mwt1">b</p><span about="#mwt1">
+</span><section data-mw-section-id="-1" about="#mwt1"><h2 about="#mwt1" id="2.1"> 2.1 </h2><span about="#mwt1">
+</span><p about="#mwt1">c</p><span about="#mwt1">
+
+</span><p about="#mwt1">d</p><span about="#mwt1">
+
+</span></section></section><section data-mw-section-id="4"><h1 id="3"> 3 </h1>
+<p>e</p></section>
+!! end
+
+# Because of section-wrapping and template-wrapping interactions,
+# additional template wrappers are added to <section> tags
+# so that template wrapping semantics are valid whether section
+# tags are retained or stripped. But, the template scope can expand
+# greatly when accounting for section tags.
+!! test
+Section wrapping with template-generated sections (bad nesting 2)
+!! options
+parsoid={
+  "wrapSections": true,
+  "modes": ["wt2html", "wt2wt"]
+}
+!! wikitext
+= 1 =
+a
+
+{{echo|1=
+== 1.2 ==
+b
+= 2 =
+c
+}}
+
+d
+
+= 3 =
+e
+!! html/parsoid
+<section data-mw-section-id="1" about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":["= 1 =\na\n\n",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"== 1.2 ==\nb\n= 2 =\nc"}},"i":0}},"\n\nd\n\n"]}'><h1 id="1"> 1 </h1>
+<p>a</p>
+
+<section data-mw-section-id="-1"><h2 about="#mwt1" typeof="mw:Transclusion" id="1.2" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"== 1.2 ==\nb\n= 2 =\nc"}},"i":0}}]}'> 1.2 </h2><span about="#mwt1">
+</span><p about="#mwt1">b</p><span about="#mwt1">
+</span></section></section><section data-mw-section-id="-1" about="#mwt1"><h1 about="#mwt1" id="2"> 2 </h1><span about="#mwt1">
+</span><p about="#mwt1">c</p>
+
+<p>d</p>
+</section><section data-mw-section-id="4" data-parsoid="{}"><h1 id="3"> 3 </h1>
+<p>e</p></section>
+!! end
+
+!! test
+Section wrapping with uneditable lead section + div wrapping multiple sections
+!! options
+parsoid={
+  "wrapSections": true
+}
+!! wikitext
+foo
+
+<div style="border:1px solid red;">
+= 1 =
+a
+
+== 1.1 ==
+b
+
+= 2 =
+c
+</div>
+
+= 3 =
+d
+
+== 3.1 ==
+e
+!! html/parsoid
+<section data-mw-section-id="-1"><p>foo</p>
+
+</section><section data-mw-section-id="-2"><div style="border:1px solid red;">
+<section data-mw-section-id="1"><h1 id="1"> 1 </h1>
+<p>a</p>
+
+<section data-mw-section-id="2"><h2 id="1.1"> 1.1 </h2>
+<p>b</p>
+
+</section></section><section data-mw-section-id="-1"><h1 id="2"> 2 </h1>
+<p>c</p>
+</section></div>
+
+</section><section data-mw-section-id="4"><h1 id="3"> 3 </h1>
+<p>d</p>
+
+<section data-mw-section-id="5"><h2 id="3.1"> 3.1 </h2>
+<p>e</p>
+</section></section>
+!! end
+
+!! test
+Section wrapping with editable lead section + div overlapping multiple sections
+!! options
+parsoid={
+  "wrapSections": true
+}
+!! wikitext
+foo
+
+= 1 =
+a
+<div style="border:1px solid red;">
+b
+
+== 1.1 ==
+c
+
+= 2 =
+d
+</div>
+e
+
+= 3 =
+f
+
+== 3.1 ==
+g
+!! html/parsoid
+<section data-mw-section-id="0"><p>foo</p>
+
+</section><section data-mw-section-id="-1"><h1 id="1"> 1 </h1>
+<p>a</p>
+</section><section data-mw-section-id="-2"><div style="border:1px solid red;">
+<p>b</p>
+
+<section data-mw-section-id="2"><h2 id="1.1"> 1.1 </h2>
+<p>c</p>
+
+</section><section data-mw-section-id="-1"><h1 id="2"> 2 </h1>
+<p>d</p>
+</section></div>
+<p>e</p>
+
+</section><section data-mw-section-id="4"><h1 id="3"> 3 </h1>
+<p>f</p>
+
+<section data-mw-section-id="5"><h2 id="3.1"> 3.1 </h2>
+<p>g</p>
+</section></section>
+!! end
+
+!! test
+HTML header tags should not be wrapped in section tags
+!! options
+parsoid={
+  "wrapSections": true
+}
+!! wikitext
+foo
+
+<h1>a</h1>
+
+= b =
+
+<h1>c</h1>
+
+= d =
+!! html/parsoid
+<section data-mw-section-id="0"><p>foo</p>
+
+<h1 id="a" data-parsoid='{"stx":"html"}'>a</h1>
+
+</section><section data-mw-section-id="1"><h1 id="b"> b </h1>
+
+<h1 id="c" data-parsoid='{"stx":"html"}'>c</h1>
+
+</section><section data-mw-section-id="2"><h1 id="d"> d </h1></section>
 !! end
