@@ -1413,6 +1413,7 @@
 	"filehist-comment": "Komentārs",
 	"imagelinks": "Faila lietojums",
 	"linkstoimage": "{{PLURAL:$1|Šajās $1 lapās ir saites|Šajā lapā ir saite|Šajās $1 lapās ir saites}} uz šo failu:",
+	"linkstoimage-more": "Uz šo failu ir saites vairāk nekā $1 {{PLURAL:$1|lapās|lapā|lapās}}.\nŠajā sarakstā ir tikai {{PLURAL:$1|pirmās $1 saistītās lapas|pirmā $1 saistītā lapa|pirmās $1 saistītās lapas}} uz šo failu.\nPieejams arī [[Special:WhatLinksHere/$2|pilns saraksts]].",
 	"nolinkstoimage": "Nevienā lapā nav norāžu uz šo attēlu.",
 	"morelinkstoimage": "Skatīt [[Special:WhatLinksHere/$1|vairāk saites]] uz šo failu.",
 	"linkstoimage-redirect": "$1 (faila pāradresācija) $2",

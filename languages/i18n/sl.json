@@ -899,6 +899,8 @@
 	"diff-multi-sameuser": "({{PLURAL:$1|1=Vmesna redakcija|$1 vmesna redakcija|$1 vmesni redakciji|$1 vmesne redakcije|$1 vmesnih redakcij}} istega uporabnika {{PLURAL:$1|ni prikazana|nista prikazani|niso prikazane|ni prikazanih}})",
 	"diff-multi-otherusers": "({{PLURAL:$1|1=Vmesna redakcija|$1 vmesna redakcija|$1 vmesni redakciji|$1 vmesne redakcije|$1 vmesnih redakcij}} {{PLURAL:$2|1=drugega uporabnika|$2 uporabnikov}} {{PLURAL:$1|ni prikazana|nista prikazani|niso prikazane|ni prikazanih}})",
 	"diff-multi-manyusers": "({{PLURAL:$1|$1 vmesna redakcija|$1 vmesni redakciji|$1 vmesne redakcije|$1 vmesnih redakcij}} več kot $2 {{PLURAL:$2|uporabnika|uporabnikov}} {{PLURAL:$1|ni prikazana|nista prikazani|niso prikazane|ni prikazanih}})",
+	"diff-paragraph-moved-tonew": "Odstavek je premaknjen. Kliknite, da skočite na novo nahajališče.",
+	"diff-paragraph-moved-toold": "Odstavek je bil premaknjen. Kliknite, da skočite na staro nahajališče.",
 	"difference-missing-revision": "{{PLURAL:$2|Ene redakcije|$2 redakcij}} razlike ($1) {{PLURAL:$2|nisem}} našel.\n\nPo navadi se to zgodi, ko sledite zastareli povezavi na razliko redakcij strani, ki jo je nekdo izbrisal.\nPodrobnosti lahko najdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].",
 	"searchresults": "Izid iskanja",
 	"searchresults-title": "Zadetki za povpraševanje »$1«",

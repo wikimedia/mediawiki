@@ -1343,6 +1343,9 @@
 	"minutes-abbrev": "$1daq.",
 	"hours-abbrev": "$1saat",
 	"bad_image_list": "Format böyle olmalı:\n\nEr satır * işaretinen başlamalı. Satırnıñ birinci bağlantısı qoşmağa yasaqlanğan faylğa bağlanmalı.\nŞu satırda ilerideki bağlantılar istisna olur, yani şu saifelerde işbu fayl qullanmaq mümkün.",
+	"variantname-crh": "Lat./Кир.",
+	"variantname-crh-latn": "Latin",
+	"variantname-crh-cyrl": "Кирил",
 	"metadata": "Resim detalleri",
 	"metadata-help": "Faylda (adetince raqamlı kamera ve skanerlernen qoşulğan) ilâve malümatı bar. Eger bu fayl yaratılğandan soñ deñiştirilse edi, belki de bazı parametrler eskirdi.",
 	"metadata-expand": "Tafsilâtnı köster",
@@ -1487,8 +1490,5 @@
 	"logentry-move-move_redir-noredirect": "$1 adlı qullanıcı $3 saifesiniñ adını yönetme üzerinden yañı bir yönetme qaldırmayıp $4 dep {{GENDER:$2|deñiştirdi}}",
 	"searchsuggest-search": "Qıdır",
 	"searchsuggest-containing": "içinde bu olğan...",
-	"variantname-crh": "Lat./Кир.",
-	"variantname-crh-latn": "Latin",
-	"variantname-crh-cyrl": "Кирил",
 	"pagelang-language": "Til"
 }

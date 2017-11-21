@@ -532,7 +532,7 @@
 	"nosuchusershort": "「$1」という名前の利用者は存在しません。\n綴りを確認してください。",
 	"nouserspecified": "利用者名を指定してください。",
 	"login-userblocked": "この利用者はブロックされています。ログインは拒否されます。",
-	"wrongpassword": "パスワードが間違っています。 \nもう一度やり直してください。",
+	"wrongpassword": "利用者名またはパスワードが間違っています。 \nもう一度やり直してください。",
 	"wrongpasswordempty": "パスワードを空欄にはできません。\nもう一度やり直してください。",
 	"passwordtooshort": "パスワードは {{PLURAL:$1|$1 文字}}以上にしてください。",
 	"passwordtoolong": "パスワードは {{PLURAL:$1|$1 文字}}以下にしてください。",

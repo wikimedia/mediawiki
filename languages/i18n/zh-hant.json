@@ -1411,7 +1411,7 @@
 	"rcfilters-filtergroup-authorship": "貢獻的作者",
 	"rcfilters-filter-editsbyself-label": "您的編輯",
 	"rcfilters-filter-editsbyself-description": "您的貢獻",
-	"rcfilters-filter-editsbyother-label": "其他人的更改",
+	"rcfilters-filter-editsbyother-label": "其他人的變更",
 	"rcfilters-filter-editsbyother-description": "除了您以外的所有更改",
 	"rcfilters-filtergroup-userExpLevel": "使用者註冊及經驗",
 	"rcfilters-filter-user-experience-level-registered-label": "已註冊",
