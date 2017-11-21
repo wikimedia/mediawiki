@@ -1150,6 +1150,7 @@ class Sanitizer {
 			'{'    => '&#123;',
 			'}'    => '&#125;', // prevent unpaired language conversion syntax
 			'['    => '&#91;',
+			']'    => '&#93;',
 			"''"   => '&#39;&#39;',
 			'ISBN' => '&#73;SBN',
 			'RFC'  => '&#82;FC',

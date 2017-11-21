@@ -17774,7 +17774,7 @@ T4304: HTML attribute safety (link)
 !! wikitext
 <div title="[[Main Page]]"></div>
 !! html
-<div title="&#91;&#91;Main Page]]"></div>
+<div title="&#91;&#91;Main Page&#93;&#93;"></div>
 
 !! end
 
@@ -17837,7 +17837,7 @@ T4304: HTML attribute safety (named web link)
 !! wikitext
 <div title="[http://example.com/ link]"></div>
 !! html
-<div title="&#91;http&#58;//example.com/ link]"></div>
+<div title="&#91;http&#58;//example.com/ link&#93;"></div>
 
 !! end
 
@@ -29703,5 +29703,29 @@ wgFragmentMode=[ 'html5', 'legacy' ]
 !! html/php
 <h2><span class="mw-headline" id="Foo_bar">Foo&#160;bar</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Foo bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p><a href="#Foo_bar">#Foo&#160;bar</a>
+</p>
+!! end
+
+!! test
+T51672: Test for brackets in attributes of elements in external link texts
+!! wikitext
+[http://example.com/ link <span title="title with [brackets]">span</span>]
+[http://example.com/ link <span title="title with &#91;brackets&#93;">span</span>]
+
+!! html/php
+<p><a rel="nofollow" class="external text" href="http://example.com/">link <span title="title with &#91;brackets&#93;">span</span></a>
+<a rel="nofollow" class="external text" href="http://example.com/">link <span title="title with &#91;brackets&#93;">span</span></a>
+</p>
+!! end
+
+!! test
+T72875: Test for brackets in attributes of elements in internal link texts
+!! wikitext
+[[Foo|link <span title="title with [[double brackets]]">span</span>]]
+[[Foo|link <span title="title with &#91;&#91;double brackets&#93;&#93;">span</span>]]
+
+!! html/php
+<p><a href="/wiki/Foo" title="Foo">link <span title="title with &#91;&#91;double brackets&#93;&#93;">span</span></a>
+<a href="/wiki/Foo" title="Foo">link <span title="title with &#91;&#91;double brackets&#93;&#93;">span</span></a>
 </p>
 !! end
