@@ -30,6 +30,8 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	/** @var bool|Title */
 	protected $rclTargetTitle;
 
+	protected $rclTarget;
+
 	function __construct() {
 		parent::__construct( 'Recentchangeslinked' );
 	}
@@ -44,6 +46,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 
 	public function parseParameters( $par, FormOptions $opts ) {
 		$opts['target'] = $par;
+		$this->rclTarget = $par;
 	}
 
 	/**
@@ -292,5 +295,16 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	 */
 	public function prefixSearchSubpages( $search, $limit, $offset ) {
 		return $this->prefixSearchString( $search, $limit, $offset );
+	}
+
+	/**
+	 * Get a self-referential title object
+	 * with consideration to the given subpage.
+	 *
+	 * @return Title
+	 * @since 1.23
+	 */
+	public function getPageTitle() {
+		return parent::getPageTitle( $this->rclTarget );
 	}
 }
