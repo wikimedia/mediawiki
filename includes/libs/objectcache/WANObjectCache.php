@@ -135,6 +135,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	const TTL_LAGGED = 30;
 	/** Idiom for delete() for "no hold-off" */
 	const HOLDOFF_NONE = 0;
+	/** Idiom for set() for "do not augment the storage medium TTL" */
+	const STALE_TTL_NONE = 0;
+
 	/** Idiom for getWithSetCallback() for "no minimum required as-of timestamp" */
 	const MIN_TIMESTAMP_NONE = 0.0;
 
@@ -426,24 +429,25 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *      they certainly should not see ones that ended up getting rolled back.
 	 *      Default: false
 	 *   - lockTSE : if excessive replication/snapshot lag is detected, then store the value
-	 *      with this TTL and flag it as stale. This is only useful if the reads for
-	 *      this key use getWithSetCallback() with "lockTSE" set.
+	 *      with this TTL and flag it as stale. This is only useful if the reads for this key
+	 *      use getWithSetCallback() with "lockTSE" set. Note that if "staleTTL" is set
+	 *      then it will still add on to this TTL in the excessive lag scenario.
 	 *      Default: WANObjectCache::TSE_NONE
 	 *   - staleTTL : Seconds to keep the key around if it is stale. The get()/getMulti()
 	 *      methods return such stale values with a $curTTL of 0, and getWithSetCallback()
 	 *      will call the regeneration callback in such cases, passing in the old value
 	 *      and its as-of time to the callback. This is useful if adaptiveTTL() is used
 	 *      on the old value's as-of time when it is verified as still being correct.
-	 *      Default: 0.
+	 *      Default: WANObjectCache::STALE_TTL_NONE.
 	 * @note Options added in 1.28: staleTTL
 	 * @return bool Success
 	 */
 	final public function set( $key, $value, $ttl = 0, array $opts = [] ) {
 		$now = microtime( true );
 		$lockTSE = isset( $opts['lockTSE'] ) ? $opts['lockTSE'] : self::TSE_NONE;
+		$staleTTL = isset( $opts['staleTTL'] ) ? $opts['staleTTL'] : self::STALE_TTL_NONE;
 		$age = isset( $opts['since'] ) ? max( 0, $now - $opts['since'] ) : 0;
 		$lag = isset( $opts['lag'] ) ? $opts['lag'] : 0;
-		$staleTTL = isset( $opts['staleTTL'] ) ? $opts['staleTTL'] : 0;
 
 		// Do not cache potentially uncommitted data as it might get rolled back
 		if ( !empty( $opts['pending'] ) ) {
