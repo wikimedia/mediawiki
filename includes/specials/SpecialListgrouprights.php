@@ -149,11 +149,11 @@ class SpecialListGroupRights extends SpecialPage {
 			return;
 		}
 
-		$header = $this->msg( 'listgrouprights-namespaceprotection-header' )->parse();
+		$header = $this->msg( 'listgrouprights-namespaceprotection-header' )->text();
 		$out->addHTML(
 			Html::rawElement( 'h2', [], Html::element( 'span', [
 				'class' => 'mw-headline',
-				'id' => $wgParser->guessSectionNameFromWikiText( $header )
+				'id' => substr( $wgParser->guessSectionNameFromWikiText( $header ), 1 )
 			], $header ) ) .
 			Xml::openElement( 'table', [ 'class' => 'wikitable' ] ) .
 			Html::element(
