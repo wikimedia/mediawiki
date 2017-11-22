@@ -105,6 +105,8 @@ class ParserOutputTest extends MediaWikiTestCase {
 			'wgScriptPath' => '/w',
 			'wgScript' => '/w/index.php',
 		] );
+		$this->hideDeprecated( 'ParserOutput stateful allowTOC' );
+		$this->hideDeprecated( 'ParserOutput stateful enableSectionEditLinks' );
 
 		$po = new ParserOutput( $text );
 
