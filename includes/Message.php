@@ -1244,7 +1244,9 @@ class Message implements MessageSpecifier, Serializable {
 			$this->getLanguage()
 		);
 
-		return $out instanceof ParserOutput ? $out->getText() : $out;
+		return $out instanceof ParserOutput
+			? $out->getText( [ 'enableSectionEditLinks' => false ] )
+			: $out;
 	}
 
 	/**

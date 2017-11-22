@@ -23,6 +23,12 @@
  */
 class ParserOutput extends CacheTime {
 	/**
+	 * Feature flag to indicate to extensions that MediaWiki core supports and
+	 * uses getText() stateless transforms.
+	 */
+	const SUPPORTS_STATELESS_TRANSFORMS = 1;
+
+	/**
 	 * @var string $mText The output text
 	 */
 	public $mText;
@@ -147,7 +153,7 @@ class ParserOutput extends CacheTime {
 	 * @deprecated since 1.31 Use getText() options.
 	 * @var bool $mEditSectionTokens prefix/suffix markers if edit sections were output as tokens.
 	 */
-	public $mEditSectionTokens = false;
+	public $mEditSectionTokens = true;
 
 	/**
 	 * @var array $mProperties Name/value pairs to be cached in the DB.
@@ -269,7 +275,7 @@ class ParserOutput extends CacheTime {
 
 		// @todo Warn if !array_key_exists( 'enableSectionEditLinks', $options )
 		//     && !$this->mEditSectionTokens
-		//  Note that while $this->mEditSectionTokens defaults to false,
+		//  Note that while $this->mEditSectionTokens formerly defaulted to false,
 		//  ParserOptions->getEditSection() defaults to true and Parser copies
 		//  that to us so true makes more sense as the stateless default.
 
