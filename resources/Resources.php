@@ -1922,7 +1922,10 @@ return [
 		],
 	],
 	'mediawiki.special' => [
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.css',
+		'styles' => [
+			'resources/src/mediawiki.special/mediawiki.special.css',
+			'resources/src/mediawiki.special/mediawiki.special.userrights.css',
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.apisandbox.styles' => [
@@ -2236,9 +2239,6 @@ return [
 		'dependencies' => [
 			'mediawiki.notification.convertmessagebox',
 		],
-	],
-	'mediawiki.special.userrights.styles' => [
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.userrights.css',
 	],
 	'mediawiki.special.watchlist' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.watchlist.js',
