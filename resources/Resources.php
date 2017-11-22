@@ -2749,6 +2749,7 @@ return [
 			'oojs-ui.styles.icons-moderation',
 		],
 		'messages' => [
+			'ooui-item-remove',
 			'ooui-outline-control-move-down',
 			'ooui-outline-control-move-up',
 			'ooui-outline-control-remove',
