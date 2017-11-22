@@ -288,11 +288,6 @@ class OutputPage extends ContextSource {
 	private $mEnableTOC = false;
 
 	/**
-	 * @var bool Whether parser output should contain section edit links
-	 */
-	private $mEnableSectionEditLinks = true;
-
-	/**
 	 * @var string|null The URL to send in a <link> element with rel=license
 	 */
 	private $copyrightUrl;
@@ -1548,7 +1543,6 @@ class OutputPage extends ContextSource {
 			// Someone is trying to set a bogus pre-$wgUser PO. Check if it has
 			// been changed somehow, and keep it if so.
 			$anonPO = ParserOptions::newFromAnon();
-			$anonPO->setEditSection( false );
 			$anonPO->setAllowUnsafeRawHtml( false );
 			if ( !$options->matches( $anonPO ) ) {
 				wfLogWarning( __METHOD__ . ': Setting a changed bogus ParserOptions: ' . wfGetAllCallers( 5 ) );
@@ -1562,7 +1556,6 @@ class OutputPage extends ContextSource {
 				// ParserOptions for it. And don't cache this ParserOptions
 				// either.
 				$po = ParserOptions::newFromAnon();
-				$po->setEditSection( false );
 				$po->setAllowUnsafeRawHtml( false );
 				$po->isBogus = true;
 				if ( $options !== null ) {
@@ -1572,7 +1565,6 @@ class OutputPage extends ContextSource {
 			}
 
 			$this->mParserOptions = ParserOptions::newFromContext( $this->getContext() );
-			$this->mParserOptions->setEditSection( false );
 			$this->mParserOptions->setAllowUnsafeRawHtml( false );
 		}
 
@@ -1822,7 +1814,7 @@ class OutputPage extends ContextSource {
 		// so that extensions may modify ParserOutput to toggle TOC.
 		// This cannot be moved to addParserOutputText because that is not
 		// called by EditPage for Preview.
-		if ( $parserOutput->getTOCEnabled() && $parserOutput->getTOCHTML() ) {
+		if ( $parserOutput->getTOCHTML() ) {
 			$this->mEnableTOC = true;
 		}
 	}
@@ -1868,17 +1860,6 @@ class OutputPage extends ContextSource {
 	 */
 	function addParserOutput( $parserOutput, $poOptions = [] ) {
 		$this->addParserOutputMetadata( $parserOutput );
-
-		// Touch section edit links only if not previously disabled
-		if ( $parserOutput->getEditSectionTokens() ) {
-			$parserOutput->setEditSectionTokens( $this->mEnableSectionEditLinks );
-		}
-		if ( !$this->mEnableSectionEditLinks
-			&& !array_key_exists( 'enableSectionEditLinks', $poOptions )
-		) {
-			$poOptions['enableSectionEditLinks'] = false;
-		}
-
 		$this->addParserOutputText( $parserOutput, $poOptions );
 	}
 
@@ -3896,7 +3877,7 @@ class OutputPage extends ContextSource {
 	 * @deprecated since 1.31, use $poOptions to addParserOutput() instead.
 	 */
 	public function enableSectionEditLinks( $flag = true ) {
-		$this->mEnableSectionEditLinks = $flag;
+		wfDeprecated( __METHOD__, '1.31' );
 	}
 
 	/**
@@ -3905,7 +3886,8 @@ class OutputPage extends ContextSource {
 	 * @deprecated since 1.31, use $poOptions to addParserOutput() instead.
 	 */
 	public function sectionEditLinksEnabled() {
-		return $this->mEnableSectionEditLinks;
+		wfDeprecated( __METHOD__, '1.31' );
+		return true;
 	}
 
 	/**
