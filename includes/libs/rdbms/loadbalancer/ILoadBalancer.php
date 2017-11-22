@@ -96,6 +96,7 @@ interface ILoadBalancer {
 	 *  - loadMonitor : Name of a class used to fetch server lag and load.
 	 *  - readOnlyReason : Reason the master DB is read-only if so [optional]
 	 *  - waitTimeout : Maximum time to wait for replicas for consistency [optional]
+	 *  - maxLag: Avoid replica DB servers with more lag than this [optional]
 	 *  - srvCache : BagOStuff object for server cache [optional]
 	 *  - wanCache : WANObjectCache object [optional]
 	 *  - chronologyProtector: ChronologyProtector object [optional]

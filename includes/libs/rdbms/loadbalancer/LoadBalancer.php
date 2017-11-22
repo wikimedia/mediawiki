@@ -115,11 +115,13 @@ class LoadBalancer implements ILoadBalancer {
 	private $disabled = false;
 	/** @var bool */
 	private $chronProtInitialized = false;
+	/** @var int */
+	private $maxLag = self::MAX_LAG_DEFAULT;
 
 	/** @var int Warn when this many connection are held */
 	const CONN_HELD_WARN_THRESHOLD = 10;
 
-	/** @var int Default 'max lag' when unspecified */
+	/** @var int Default 'maxLag' when unspecified */
 	const MAX_LAG_DEFAULT = 10;
 	/** @var int Seconds to cache master server read-only status */
 	const TTL_CACHE_READONLY = 5;
@@ -176,6 +178,10 @@ class LoadBalancer implements ILoadBalancer {
 
 		if ( isset( $params['readOnlyReason'] ) && is_string( $params['readOnlyReason'] ) ) {
 			$this->readOnlyReason = $params['readOnlyReason'];
+		}
+
+		if ( isset( $params['maxLag'] ) ) {
+			$this->maxLag = $params['maxLag'];
 		}
 
 		if ( isset( $params['loadMonitor'] ) ) {
@@ -275,7 +281,7 @@ class LoadBalancer implements ILoadBalancer {
 				# How much lag this server nominally is allowed to have
 				$maxServerLag = isset( $this->mServers[$i]['max lag'] )
 					? $this->mServers[$i]['max lag']
-					: self::MAX_LAG_DEFAULT; // default
+					: $this->maxLag; // default
 				# Constrain that futher by $maxLag argument
 				$maxServerLag = min( $maxServerLag, $maxLag );
 
