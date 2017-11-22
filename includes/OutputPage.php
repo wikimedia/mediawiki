@@ -1573,10 +1573,14 @@ class OutputPage extends ContextSource {
 	 * Get/set the ParserOptions object to use for wikitext parsing
 	 *
 	 * @param ParserOptions|null $options Either the ParserOption to use or null to only get the
-	 *   current ParserOption object
+	 *   current ParserOption object. This parameter is deprecated since 1.31.
 	 * @return ParserOptions
 	 */
 	public function parserOptions( $options = null ) {
+		if ( $options !== null ) {
+			wfDeprecated( __METHOD__ . ' with non-null $options', '1.31' );
+		}
+
 		if ( $options !== null && !empty( $options->isBogus ) ) {
 			// Someone is trying to set a bogus pre-$wgUser PO. Check if it has
 			// been changed somehow, and keep it if so.
