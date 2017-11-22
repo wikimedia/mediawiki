@@ -117,4 +117,21 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 		$this->assertEquals( $revs[2], $diffEngine->getNewid(), 'diff get new id' );
 	}
 
+	public function provideLocaliseTestData() {
+		return [
+			'moved paragraph shoud get title attribute' => [
+				'<a class="mw-diff-movedpara-left" href="#">⚫</a>',
+				'<a class="mw-diff-movedpara-left" title="Paragraph was moved. Click to jump to new location." href="#">⚫</a>',
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideLocaliseTestData
+	 */
+	public function testAddLocalisedTitleTooltips( $input, $expected ) {
+		$diffEngine = TestingAccessWrapper::newFromClass( 'DifferenceEngine' );
+		$this->assertEquals( $expected, $diffEngine->addLocalisedTitleTooltips( $input ) );
+	}
+
 }
