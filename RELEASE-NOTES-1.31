@@ -22,6 +22,8 @@ production.
 * As a first pass in standardizing dialog boxes across the MediaWiki product,
   Html class now provides helper methods for messageBox, successBox, errorBox and
   warningBox generation.
+* Added a hook, ParserOutputPostCacheTransform, to allow extensions to affect
+  the ParserOutput::getText() post-cache transformations.
 
 === External library changes in 1.31 ===
 
@@ -105,6 +107,18 @@ changes to languages because of Phabricator reports.
 * Use of Maintenance::error( $err, $die ) to exit script was deprecated. Use
   Maintenance::fatalError() instead.
 * Passing a ParserOptions object to OutputPage::parserOptions() is deprecated.
+* The following methods that get and set ParserOutput state are deprecated.
+  Callers should use the new stateless $options parameter to
+  ParserOutput::getText() instead.
+  * ParserOptions::getEditSection()
+  * ParserOptions::setEditSection()
+  * ParserOutput::getEditSectionTokens()
+  * ParserOutput::setEditSectionTokens()
+  * ParserOutput::getTOCEnabled()
+  * ParserOutput::setTOCEnabled()
+  * OutputPage::enableSectionEditLinks()
+  * OutputPage::sectionEditLinksEnabled()
+  * The public ParserOutput state fields $mTOCEnabled and $mEditSectionTokens are also deprecated.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. There is experimental support for

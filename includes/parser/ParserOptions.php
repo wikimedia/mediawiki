@@ -869,6 +869,7 @@ class ParserOptions {
 
 	/**
 	 * Create "edit section" links?
+	 * @deprecated since 1.31, use ParserOutput::getText() options instead.
 	 * @return bool
 	 */
 	public function getEditSection() {
@@ -877,6 +878,7 @@ class ParserOptions {
 
 	/**
 	 * Create "edit section" links?
+	 * @deprecated since 1.31, use ParserOutput::getText() options instead.
 	 * @param bool|null $x New value (null is no change)
 	 * @return bool Old value
 	 */
