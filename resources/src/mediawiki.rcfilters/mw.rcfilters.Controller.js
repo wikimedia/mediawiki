@@ -400,9 +400,12 @@
 	 * Reset to default filters
 	 */
 	mw.rcfilters.Controller.prototype.resetToDefaults = function () {
-		if ( this.applyParamChange( this._getDefaultParams() ) ) {
+		var params = this._getDefaultParams();
+		if ( this.applyParamChange( params ) ) {
 			// Only update the changes list if there was a change to actual filters
 			this.updateChangesList();
+		} else {
+			this.uriProcessor.updateURL( params );
 		}
 	};
 
@@ -425,6 +428,8 @@
 		if ( this.applyParamChange( {} ) ) {
 			// Only update the changes list if there was a change to actual filters
 			this.updateChangesList();
+		} else {
+			this.uriProcessor.updateURL();
 		}
 
 		if ( highlightedFilterNames ) {
@@ -712,6 +717,8 @@
 		if ( this.applyParamChange( params ) ) {
 			// Update changes list only if there was a difference in filter selection
 			this.updateChangesList();
+		} else {
+			this.uriProcessor.updateURL( params );
 		}
 
 		// Log filter grouping
