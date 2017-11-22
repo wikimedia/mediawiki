@@ -150,12 +150,6 @@ class ParserOutput extends CacheTime {
 	public $mSections = [];
 
 	/**
-	 * @deprecated since 1.31 Use getText() options.
-	 * @var bool $mEditSectionTokens prefix/suffix markers if edit sections were output as tokens.
-	 */
-	public $mEditSectionTokens = true;
-
-	/**
 	 * @var array $mProperties Name/value pairs to be cached in the DB.
 	 */
 	public $mProperties = [];
@@ -169,12 +163,6 @@ class ParserOutput extends CacheTime {
 	 * @var string $mTimestamp Timestamp of the revision.
 	 */
 	public $mTimestamp;
-
-	/**
-	 * @deprecated since 1.31 Use getText() options.
-	 * @var bool $mTOCEnabled Whether TOC should be shown, can't override __NOTOC__.
-	 */
-	public $mTOCEnabled = true;
 
 	/**
 	 * @var bool $mEnableOOUI Whether OOUI should be enabled.
@@ -271,21 +259,9 @@ class ParserOutput extends CacheTime {
 	 * @return string HTML
 	 */
 	public function getText( $options = [] ) {
-		if ( !array_key_exists( 'allowTOC', $options ) && empty( $this->mTOCEnabled ) ) {
-			wfDeprecated( 'ParserOutput stateful allowTOC', '1.31' );
-		}
-
-		//  Note that while $this->mEditSectionTokens formerly defaulted to false,
-		//  ParserOptions->getEditSection() defaults to true and Parser copies
-		//  that to us so true makes more sense as the stateless default.
-		if ( !array_key_exists( 'enableSectionEditLinks', $options ) && !$this->mEditSectionTokens ) {
-			wfDeprecated( 'ParserOutput stateful enableSectionEditLinks', '1.31' );
-		}
-
 		$options += [
-			// empty() here because old cached versions might lack the field somehow
-			'allowTOC' => !empty( $this->mTOCEnabled ),
-			'enableSectionEditLinks' => $this->mEditSectionTokens,
+			'allowTOC' => true,
+			'enableSectionEditLinks' => true,
 		];
 		$text = $this->mText;
 
@@ -382,7 +358,8 @@ class ParserOutput extends CacheTime {
 	 * @deprecated since 1.31 Use getText() options.
 	 */
 	public function getEditSectionTokens() {
-		return $this->mEditSectionTokens;
+		wfDeprecated( __METHOD__, '1.31' );
+		return true;
 	}
 
 	public function &getLinks() {
@@ -472,7 +449,8 @@ class ParserOutput extends CacheTime {
 	 * @deprecated since 1.31 Use getText() options.
 	 */
 	public function getTOCEnabled() {
-		return $this->mTOCEnabled;
+		wfDeprecated( __METHOD__, '1.31' );
+		return true;
 	}
 
 	public function getEnableOOUI() {
@@ -503,7 +481,8 @@ class ParserOutput extends CacheTime {
 	 * @deprecated since 1.31 Use getText() options.
 	 */
 	public function setEditSectionTokens( $t ) {
-		return wfSetVar( $this->mEditSectionTokens, $t );
+		wfDeprecated( __METHOD__, '1.31' );
+		return true;
 	}
 
 	public function setIndexPolicy( $policy ) {
@@ -522,7 +501,8 @@ class ParserOutput extends CacheTime {
 	 * @deprecated since 1.31 Use getText() options.
 	 */
 	public function setTOCEnabled( $flag ) {
-		return wfSetVar( $this->mTOCEnabled, $flag );
+		wfDeprecated( __METHOD__, '1.31' );
+		return true;
 	}
 
 	public function addCategory( $c, $sort ) {

@@ -4009,7 +4009,6 @@ class EditPage {
 			$this->mTitle, $pstContent, $user );
 		$parserOutput = $pstContent->getParserOutput( $this->mTitle, null, $parserOptions );
 		ScopedCallback::consume( $scopedCallback );
-		$parserOutput->setEditSectionTokens( false ); // no section edit links
 		return [
 			'parserOutput' => $parserOutput,
 			'html' => $parserOutput->getText( [

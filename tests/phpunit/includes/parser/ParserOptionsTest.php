@@ -136,23 +136,6 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		$confstr .= '!onPageRenderingHash';
 	}
 
-	// Test weird historical behavior is still weird
-	public function testOptionsHashEditSection() {
-		$popt = ParserOptions::newCanonical();
-		$popt->registerWatcher( function ( $name ) {
-			$this->assertNotEquals( 'editsection', $name );
-		} );
-
-		$this->assertTrue( $popt->getEditSection() );
-		$this->assertSame( 'canonical', $popt->optionsHash( [] ) );
-		$this->assertSame( 'canonical', $popt->optionsHash( [ 'editsection' ] ) );
-
-		$popt->setEditSection( false );
-		$this->assertFalse( $popt->getEditSection() );
-		$this->assertSame( 'canonical', $popt->optionsHash( [] ) );
-		$this->assertSame( 'editsection=0', $popt->optionsHash( [ 'editsection' ] ) );
-	}
-
 	/**
 	 * @expectedException InvalidArgumentException
 	 * @expectedExceptionMessage Unknown parser option bogus
