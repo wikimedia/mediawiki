@@ -1127,7 +1127,7 @@ class DifferenceEngine extends ContextSource {
 	 */
 	private function addLocalisedTitleTooltips( $text ) {
 		return preg_replace_callback(
-			'/class="mw-diff-movedpara-(left|old)"/',
+			'/class="mw-diff-movedpara-(left|right)"/',
 			[ $this, 'addLocalisedTitleTooltipsCb' ],
 			$text
 		);
