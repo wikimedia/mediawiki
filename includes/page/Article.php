@@ -76,6 +76,13 @@ class Article implements Page {
 	public $mParserOutput;
 
 	/**
+	 * @var bool Whether render() was called. With the way subclasses work
+	 * here, there doesn't seem to be any other way to stop calling
+	 * OutputPage::enableSectionEditLinks() and still have it work as it did before.
+	 */
+	private $disableSectionEditForRender = false;
+
+	/**
 	 * Constructor and clear the article
 	 * @param Title $title Reference to a Title object.
 	 * @param int $oldId Revision ID, null to fetch from request, zero for current
@@ -469,12 +476,17 @@ class Article implements Page {
 		$parserCache = MediaWikiServices::getInstance()->getParserCache();
 
 		$parserOptions = $this->getParserOptions();
+		$poOptions = [];
 		# Render printable version, use printable version cache
 		if ( $outputPage->isPrintable() ) {
 			$parserOptions->setIsPrintable( true );
 			$parserOptions->setEditSection( false );
-		} elseif ( !$this->isCurrent() || !$this->getTitle()->quickUserCan( 'edit', $user ) ) {
+			$poOptions['enableSectionEditLinks'] = false;
+		} elseif ( $this->disableSectionEditForRender
+			|| !$this->isCurrent() || !$this->getTitle()->quickUserCan( 'edit', $user )
+		) {
 			$parserOptions->setEditSection( false );
+			$poOptions['enableSectionEditLinks'] = false;
 		}
 
 		# Try client and file cache
@@ -533,7 +545,7 @@ class Article implements Page {
 							} else {
 								wfDebug( __METHOD__ . ": showing parser cache contents\n" );
 							}
-							$outputPage->addParserOutput( $this->mParserOutput );
+							$outputPage->addParserOutput( $this->mParserOutput, $poOptions );
 							# Ensure that UI elements requiring revision ID have
 							# the correct version information.
 							$outputPage->setRevisionId( $this->mPage->getLatest() );
@@ -597,7 +609,7 @@ class Article implements Page {
 					}
 
 					$this->mParserOutput = $poolArticleView->getParserOutput();
-					$outputPage->addParserOutput( $this->mParserOutput );
+					$outputPage->addParserOutput( $this->mParserOutput, $poOptions );
 					if ( $content->getRedirectTarget() ) {
 						$outputPage->addSubtitle( "<span id=\"redirectsub\">" .
 							$this->getContext()->msg( 'redirectpagesub' )->parse() . "</span>" );
@@ -1515,6 +1527,7 @@ class Article implements Page {
 		$this->getContext()->getRequest()->response()->header( 'X-Robots-Tag: noindex' );
 		$this->getContext()->getOutput()->setArticleBodyOnly( true );
 		$this->getContext()->getOutput()->enableSectionEditLinks( false );
+		$this->disableSectionEditForRender = true;
 		$this->view();
 	}
 
