@@ -288,10 +288,6 @@ class ApiParse extends ApiBase {
 			$result_array['textsuppressed'] = true;
 		}
 
-		if ( $params['disabletoc'] ) {
-			$p_result->setTOCEnabled( false );
-		}
-
 		if ( isset( $params['useskin'] ) ) {
 			$factory = MediaWikiServices::getInstance()->getSkinFactory();
 			$skin = $factory->makeSkin( Skin::normalizeKey( $params['useskin'] ) );
@@ -347,7 +343,10 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['text'] ) ) {
-			$result_array['text'] = $p_result->getText();
+			$result_array['text'] = $p_result->getText( [
+				'allowTOC' => !$params['disabletoc'],
+				'enableSectionEditLinks' => !$params['disableeditsection'],
+			] );
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'text';
 		}
 
