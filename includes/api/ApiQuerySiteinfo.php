@@ -130,7 +130,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendGeneralInfo( $property ) {
-		global $wgContLang;
+		global $wgContLang, $wgConf;
 
 		$config = $this->getConfig();
 
@@ -282,6 +282,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$data['interwikimagic'] = (bool)$config->get( 'InterwikiMagic' );
 		$data['magiclinks'] = $config->get( 'EnableMagicLinks' );
+
+		$data['initialisesettings'] = $wgConf->settings;
 
 		Hooks::run( 'APIQuerySiteInfoGeneralInfo', [ $this, &$data ] );
 
