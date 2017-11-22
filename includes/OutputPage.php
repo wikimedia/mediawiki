@@ -1783,7 +1783,9 @@ class OutputPage extends ContextSource {
 
 		$popts->setTidy( $oldTidy );
 
-		$this->addParserOutput( $parserOutput );
+		$this->addParserOutput( $parserOutput, [
+			'enableSectionEditLinks' => false,
+		] );
 	}
 
 	/**
@@ -1868,9 +1870,10 @@ class OutputPage extends ContextSource {
 	 *
 	 * @since 1.24
 	 * @param ParserOutput $parserOutput
+	 * @param array $poOptions Options to ParserOutput::getText()
 	 */
-	public function addParserOutputContent( $parserOutput ) {
-		$this->addParserOutputText( $parserOutput );
+	public function addParserOutputContent( $parserOutput, $poOptions = [] ) {
+		$this->addParserOutputText( $parserOutput, $poOptions );
 
 		$this->addModules( $parserOutput->getModules() );
 		$this->addModuleScripts( $parserOutput->getModuleScripts() );
@@ -1884,9 +1887,10 @@ class OutputPage extends ContextSource {
 	 *
 	 * @since 1.24
 	 * @param ParserOutput $parserOutput
+	 * @param array $poOptions Options to ParserOutput::getText()
 	 */
-	public function addParserOutputText( $parserOutput ) {
-		$text = $parserOutput->getText();
+	public function addParserOutputText( $parserOutput, $poOptions = [] ) {
+		$text = $parserOutput->getText( $poOptions );
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$outputPage = $this;
 		Hooks::runWithoutAbort( 'OutputPageBeforeHTML', [ &$outputPage, &$text ] );
@@ -1897,16 +1901,22 @@ class OutputPage extends ContextSource {
 	 * Add everything from a ParserOutput object.
 	 *
 	 * @param ParserOutput $parserOutput
+	 * @param array $poOptions Options to ParserOutput::getText()
 	 */
-	function addParserOutput( $parserOutput ) {
+	function addParserOutput( $parserOutput, $poOptions = [] ) {
 		$this->addParserOutputMetadata( $parserOutput );
 
 		// Touch section edit links only if not previously disabled
 		if ( $parserOutput->getEditSectionTokens() ) {
 			$parserOutput->setEditSectionTokens( $this->mEnableSectionEditLinks );
 		}
+		if ( !$this->mEnableSectionEditLinks
+			&& !array_key_exists( 'enableSectionEditLinks', $poOptions )
+		) {
+			$poOptions['enableSectionEditLinks'] = false;
+		}
 
-		$this->addParserOutputText( $parserOutput );
+		$this->addParserOutputText( $parserOutput, $poOptions );
 	}
 
 	/**
@@ -1957,7 +1967,9 @@ class OutputPage extends ContextSource {
 			$popts->setTargetLanguage( $oldLang );
 		}
 
-		return $parserOutput->getText();
+		return $parserOutput->getText( [
+			'enableSectionEditLinks' => false,
+		] );
 	}
 
 	/**
@@ -3957,6 +3969,7 @@ class OutputPage extends ContextSource {
 	 * Enables/disables section edit links, doesn't override __NOEDITSECTION__
 	 * @param bool $flag
 	 * @since 1.23
+	 * @deprecated since 1.31, use $poOptions to addParserOutput() instead.
 	 */
 	public function enableSectionEditLinks( $flag = true ) {
 		$this->mEnableSectionEditLinks = $flag;
@@ -3965,6 +3978,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * @return bool
 	 * @since 1.23
+	 * @deprecated since 1.31, use $poOptions to addParserOutput() instead.
 	 */
 	public function sectionEditLinksEnabled() {
 		return $this->mEnableSectionEditLinks;

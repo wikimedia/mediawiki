@@ -853,8 +853,9 @@ class ParserTestRunner {
 			$out = $parser->getPreloadText( $test['input'], $title, $options );
 		} else {
 			$output = $parser->parse( $test['input'], $title, $options, true, true, 1337 );
-			$output->setTOCEnabled( !isset( $opts['notoc'] ) );
-			$out = $output->getText();
+			$out = $output->getText( [
+				'allowTOC' => !isset( $opts['notoc'] )
+			] );
 			if ( isset( $opts['tidy'] ) ) {
 				$out = preg_replace( '/\s+$/', '', $out );
 			}

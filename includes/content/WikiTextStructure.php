@@ -146,9 +146,10 @@ class WikiTextStructure {
 		if ( !is_null( $this->allText ) ) {
 			return;
 		}
-		$this->parserOutput->setEditSectionTokens( false );
-		$this->parserOutput->setTOCEnabled( false );
-		$text = $this->parserOutput->getText();
+		$text = $this->parserOutput->getText( [
+			'enableSectionEditTokens' => false,
+			'allowTOC' => false,
+		] );
 		if ( strlen( $text ) == 0 ) {
 			$this->allText = "";
 			// empty text - nothing to seek here
