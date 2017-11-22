@@ -624,6 +624,16 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * cannot be inferred, causing any get() after the reset to treat the key
 	 * as being "hot", resulting in more stale value usage.
 	 *
+	 * A complex use case might involve the following situation:
+	 *   - a) One or more classes of entities ("page", "forum") include
+	 *        millions of entities as members. Call these members PF.
+	 *   - b) Another class of entities ("template") includes
+	 *        thousands of entities. Call these members T.
+	 *   - c) Renderings of PF entities are commonly needed and worth caching.
+	 *   - d) Each PF entity likely depends on dozens of T entities.
+	 *   - e) Some T entities are depended on by millions of PF entities.
+	 *
+	 *
 	 * Note that "check" keys won't collide with other regular keys.
 	 *
 	 * @see WANObjectCache::get()
