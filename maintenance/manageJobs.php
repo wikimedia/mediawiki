@@ -48,7 +48,7 @@ class ManageJobs extends Maintenance {
 		} elseif ( $action === 'repush-abandoned' ) {
 			$this->repushAbandoned( $queue );
 		} else {
-			$this->error( "Invalid action '$action'.", 1 );
+			$this->fatalError( "Invalid action '$action'." );
 		}
 	}
 

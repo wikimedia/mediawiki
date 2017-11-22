@@ -165,7 +165,7 @@ class TitleCleanup extends TableCleanup {
 			$title = $verified;
 		}
 		if ( is_null( $title ) ) {
-			$this->error( "Something awry; empty title.", true );
+			$this->fatalError( "Something awry; empty title." );
 		}
 		$ns = $title->getNamespace();
 		$dest = $title->getDBkey();

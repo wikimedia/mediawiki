@@ -123,7 +123,7 @@ class DeleteEqualMessages extends Maintenance {
 				$this->fetchMessageInfo( false, $messageInfo );
 			} else {
 				if ( !isset( $langCodes[$langCode] ) ) {
-					$this->error( 'Invalid language code: ' . $langCode, 1 );
+					$this->fatalError( 'Invalid language code: ' . $langCode );
 				}
 				$this->fetchMessageInfo( $langCode, $messageInfo );
 			}
@@ -164,7 +164,7 @@ class DeleteEqualMessages extends Maintenance {
 
 		$user = User::newSystemUser( 'MediaWiki default', [ 'steal' => true ] );
 		if ( !$user ) {
-			$this->error( "Invalid username", true );
+			$this->fatalError( "Invalid username" );
 		}
 		global $wgUser;
 		$wgUser = $user;

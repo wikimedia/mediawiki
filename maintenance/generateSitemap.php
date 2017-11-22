@@ -182,7 +182,7 @@ class GenerateSitemap extends Maintenance {
 		# Create directory if needed
 		$fspath = $this->getOption( 'fspath', getcwd() );
 		if ( !wfMkdirParents( $fspath, null, __METHOD__ ) ) {
-			$this->error( "Can not create directory $fspath.", 1 );
+			$this->fatalError( "Can not create directory $fspath." );
 		}
 
 		$this->fspath = realpath( $fspath ) . DIRECTORY_SEPARATOR;

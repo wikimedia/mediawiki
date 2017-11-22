@@ -87,7 +87,7 @@ TEXT
 
 	public function execute() {
 		if ( wfReadOnly() ) {
-			$this->error( "Wiki is in read-only mode; you'll need to disable it for import to work.", true );
+			$this->fatalError( "Wiki is in read-only mode; you'll need to disable it for import to work." );
 		}
 
 		$this->reportingInterval = intval( $this->getOption( 'report', 100 ) );
@@ -134,7 +134,7 @@ TEXT
 		if ( strval( $ns ) === $namespace && $wgContLang->getNsText( $ns ) !== false ) {
 			return $ns;
 		}
-		$this->error( "Unknown namespace text / index specified: $namespace", true );
+		$this->fatalError( "Unknown namespace text / index specified: $namespace" );
 	}
 
 	/**
@@ -299,7 +299,7 @@ TEXT
 			$statusRootPage = $importer->setTargetRootPage( $this->getOption( 'rootpage' ) );
 			if ( !$statusRootPage->isGood() ) {
 				// Die here so that it doesn't print "Done!"
-				$this->error( $statusRootPage->getMessage()->text(), 1 );
+				$this->fatalError( $statusRootPage->getMessage()->text() );
 				return false;
 			}
 		}

@@ -9,7 +9,7 @@ class ValidateRegistrationFile extends Maintenance {
 	}
 	public function execute() {
 		$validator = new ExtensionJsonValidator( function ( $msg ) {
-			$this->error( $msg, 1 );
+			$this->fatalError( $msg );
 		} );
 		$validator->checkDependencies();
 		$path = $this->getArg( 0 );
@@ -17,7 +17,7 @@ class ValidateRegistrationFile extends Maintenance {
 			$validator->validate( $path );
 			$this->output( "$path validates against the schema!\n" );
 		} catch ( ExtensionJsonValidationError $e ) {
-			$this->error( $e->getMessage(), 1 );
+			$this->fatalError( $e->getMessage() );
 		}
 	}
 }

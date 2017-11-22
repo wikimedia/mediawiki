@@ -48,14 +48,12 @@ class MinifyScript extends Maintenance {
 
 	public function execute() {
 		if ( !count( $this->mArgs ) ) {
-			$this->error( "minify.php: At least one input file must be specified." );
-			exit( 1 );
+			$this->fatalError( "minify.php: At least one input file must be specified." );
 		}
 
 		if ( $this->hasOption( 'outfile' ) ) {
 			if ( count( $this->mArgs ) > 1 ) {
-				$this->error( '--outfile may only be used with a single input file.' );
-				exit( 1 );
+				$this->fatalError( '--outfile may only be used with a single input file.' );
 			}
 
 			// Minify one file
@@ -77,7 +75,7 @@ class MinifyScript extends Maintenance {
 			}
 
 			if ( !file_exists( $inPath ) ) {
-				$this->error( "File does not exist: $arg", true );
+				$this->fatalError( "File does not exist: $arg" );
 			}
 
 			$extension = $this->getExtension( $inName );
@@ -95,8 +93,7 @@ class MinifyScript extends Maintenance {
 	public function getExtension( $fileName ) {
 		$dotPos = strrpos( $fileName, '.' );
 		if ( $dotPos === false ) {
-			$this->error( "No file extension, cannot determine type: $fileName" );
-			exit( 1 );
+			$this->fatalError( "No file extension, cannot determine type: $fileName" );
 		}
 
 		return substr( $fileName, $dotPos + 1 );
@@ -108,13 +105,11 @@ class MinifyScript extends Maintenance {
 
 		$inText = file_get_contents( $inPath );
 		if ( $inText === false ) {
-			$this->error( "Unable to open file $inPath for reading." );
-			exit( 1 );
+			$this->fatalError( "Unable to open file $inPath for reading." );
 		}
 		$outFile = fopen( $outPath, 'w' );
 		if ( !$outFile ) {
-			$this->error( "Unable to open file $outPath for writing." );
-			exit( 1 );
+			$this->fatalError( "Unable to open file $outPath for writing." );
 		}
 
 		switch ( $extension ) {
