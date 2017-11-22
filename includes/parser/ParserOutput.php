@@ -271,13 +271,16 @@ class ParserOutput extends CacheTime {
 	 * @return string HTML
 	 */
 	public function getText( $options = [] ) {
-		// @todo Warn if !array_key_exists( 'allowTOC', $options ) && empty( $this->mTOCEnabled )
+		if ( !array_key_exists( 'allowTOC', $options ) && empty( $this->mTOCEnabled ) ) {
+			wfDeprecated( 'ParserOutput stateful allowTOC', '1.31' );
+		}
 
-		// @todo Warn if !array_key_exists( 'enableSectionEditLinks', $options )
-		//     && !$this->mEditSectionTokens
 		//  Note that while $this->mEditSectionTokens formerly defaulted to false,
 		//  ParserOptions->getEditSection() defaults to true and Parser copies
 		//  that to us so true makes more sense as the stateless default.
+		if ( !array_key_exists( 'enableSectionEditLinks', $options ) && !$this->mEditSectionTokens ) {
+			wfDeprecated( 'ParserOutput stateful enableSectionEditLinks', '1.31' );
+		}
 
 		$options += [
 			'allowTOC' => !empty( $this->mTOCEnabled ),
