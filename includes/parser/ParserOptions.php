@@ -82,13 +82,6 @@ class ParserOptions {
 	private $mTimestamp;
 
 	/**
-	 * The edit section flag is in ParserOptions for historical reasons, but
-	 * doesn't actually affect the parser output since Feb 2015.
-	 * @var bool
-	 */
-	private $mEditSection = true;
-
-	/**
 	 * Stored user object
 	 * @var User
 	 * @todo Track this for caching somehow without fragmenting the cache insanely
@@ -873,7 +866,8 @@ class ParserOptions {
 	 * @return bool
 	 */
 	public function getEditSection() {
-		return $this->mEditSection;
+		wfDeprecated( __METHOD__, '1.31' );
+		return true;
 	}
 
 	/**
@@ -883,7 +877,8 @@ class ParserOptions {
 	 * @return bool Old value
 	 */
 	public function setEditSection( $x ) {
-		return wfSetVar( $this->mEditSection, $x );
+		wfDeprecated( __METHOD__, '1.31' );
+		return true;
 	}
 
 	/**
@@ -1280,18 +1275,6 @@ class ParserOptions {
 		$options = $this->options;
 		$defaults = self::getCanonicalOverrides() + self::getDefaults();
 		$inCacheKey = self::$inCacheKey;
-
-		// Historical hack: 'editsection' hasn't been a true parser option since
-		// Feb 2015 (instead the parser outputs a constant placeholder and post-parse
-		// processing handles the option). But Wikibase forces it in $forOptions
-		// and expects the cache key to still vary on it for T85252.
-		// @deprecated since 1.30, Wikibase should use addExtraKey() or something instead.
-		if ( in_array( 'editsection', $forOptions, true ) ) {
-			$options['editsection'] = $this->mEditSection;
-			$defaults['editsection'] = true;
-			$inCacheKey['editsection'] = true;
-			ksort( $inCacheKey );
-		}
 
 		// We only include used options with non-canonical values in the key
 		// so adding a new option doesn't invalidate the entire parser cache.

@@ -536,7 +536,6 @@ class ApiParse extends ApiBase {
 		$popts->enableLimitReport( !$params['disablepp'] && !$params['disablelimitreport'] );
 		$popts->setIsPreview( $params['preview'] || $params['sectionpreview'] );
 		$popts->setIsSectionPreview( $params['sectionpreview'] );
-		$popts->setEditSection( !$params['disableeditsection'] );
 		if ( $params['disabletidy'] ) {
 			$popts->setTidy( false );
 		}
