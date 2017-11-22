@@ -253,11 +253,6 @@ class ParserCache {
 
 		wfDebug( "ParserOutput cache found.\n" );
 
-		// The edit section preference may not be the appropiate one in
-		// the ParserOutput, as we are not storing it in the parsercache
-		// key. Force it here. See T33445.
-		$value->setEditSectionTokens( $popts->getEditSection() );
-
 		$wikiPage = method_exists( $article, 'getPage' )
 			? $article->getPage()
 			: $article;

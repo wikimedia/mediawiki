@@ -480,12 +480,10 @@ class Article implements Page {
 		# Render printable version, use printable version cache
 		if ( $outputPage->isPrintable() ) {
 			$parserOptions->setIsPrintable( true );
-			$parserOptions->setEditSection( false );
 			$poOptions['enableSectionEditLinks'] = false;
 		} elseif ( $this->disableSectionEditForRender
 			|| !$this->isCurrent() || !$this->getTitle()->quickUserCan( 'edit', $user )
 		) {
-			$parserOptions->setEditSection( false );
 			$poOptions['enableSectionEditLinks'] = false;
 		}
 
@@ -1526,7 +1524,6 @@ class Article implements Page {
 	public function render() {
 		$this->getContext()->getRequest()->response()->header( 'X-Robots-Tag: noindex' );
 		$this->getContext()->getOutput()->setArticleBodyOnly( true );
-		$this->getContext()->getOutput()->enableSectionEditLinks( false );
 		$this->disableSectionEditForRender = true;
 		$this->view();
 	}
