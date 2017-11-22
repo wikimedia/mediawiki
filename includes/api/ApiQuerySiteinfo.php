@@ -283,6 +283,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['interwikimagic'] = (bool)$config->get( 'InterwikiMagic' );
 		$data['magiclinks'] = $config->get( 'EnableMagicLinks' );
 
+		$data['categorycollation'] = $config->get( 'CategoryCollation' );
+
 		Hooks::run( 'APIQuerySiteInfoGeneralInfo', [ $this, &$data ] );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
