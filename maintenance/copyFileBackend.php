@@ -81,7 +81,7 @@ class CopyFileBackend extends Maintenance {
 					'adviseStat' => true // avoid HEADs
 				] );
 				if ( $srcPathsRel === null ) {
-					$this->error( "Could not list files in $container.", 1 ); // die
+					$this->fatalError( "Could not list files in $container." );
 				}
 			}
 
@@ -93,7 +93,7 @@ class CopyFileBackend extends Maintenance {
 					'adviseStat' => true // avoid HEADs
 				] );
 				if ( $dstPathsRel === null ) {
-					$this->error( "Could not list files in $container.", 1 ); // die
+					$this->fatalError( "Could not list files in $container." );
 				}
 				$this->statCache = [];
 				foreach ( $dstPathsRel as $dstPathRel ) {
@@ -174,12 +174,12 @@ class CopyFileBackend extends Maintenance {
 		$srcPathsRel = $src->getFileList( [
 			'dir' => $src->getRootStoragePath() . "/$backendRel" ] );
 		if ( $srcPathsRel === null ) {
-			$this->error( "Could not list files in source container.", 1 ); // die
+			$this->fatalError( "Could not list files in source container." );
 		}
 		$dstPathsRel = $dst->getFileList( [
 			'dir' => $dst->getRootStoragePath() . "/$backendRel" ] );
 		if ( $dstPathsRel === null ) {
-			$this->error( "Could not list files in destination container.", 1 ); // die
+			$this->fatalError( "Could not list files in destination container." );
 		}
 		// Get the list of destination files
 		$relFilesDstSha1 = [];
@@ -263,7 +263,7 @@ class CopyFileBackend extends Maintenance {
 			$status = $dst->prepare( [ 'dir' => dirname( $dstPath ), 'bypassReadOnly' => 1 ] );
 			if ( !$status->isOK() ) {
 				$this->error( print_r( $status->getErrorsArray(), true ) );
-				$this->error( "$wikiId: Could not copy $srcPath to $dstPath.", 1 ); // die
+				$this->fatalError( "$wikiId: Could not copy $srcPath to $dstPath." );
 			}
 			$ops[] = [ 'op' => 'store',
 				'src' => $fsFile->getPath(), 'dst' => $dstPath, 'overwrite' => 1 ];
@@ -280,7 +280,7 @@ class CopyFileBackend extends Maintenance {
 		$elapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
 		if ( !$status->isOK() ) {
 			$this->error( print_r( $status->getErrorsArray(), true ) );
-			$this->error( "$wikiId: Could not copy file batch.", 1 ); // die
+			$this->fatalError( "$wikiId: Could not copy file batch." );
 		} elseif ( count( $copiedRel ) ) {
 			$this->output( "\n\tCopied these file(s) [{$elapsed_ms}ms]:\n\t" .
 				implode( "\n\t", $copiedRel ) . "\n\n" );
@@ -317,7 +317,7 @@ class CopyFileBackend extends Maintenance {
 		$elapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
 		if ( !$status->isOK() ) {
 			$this->error( print_r( $status->getErrorsArray(), true ) );
-			$this->error( "$wikiId: Could not delete file batch.", 1 ); // die
+			$this->fatalError( "$wikiId: Could not delete file batch." );
 		} elseif ( count( $deletedRel ) ) {
 			$this->output( "\n\tDeleted these file(s) [{$elapsed_ms}ms]:\n\t" .
 				implode( "\n\t", $deletedRel ) . "\n\n" );

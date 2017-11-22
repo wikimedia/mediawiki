@@ -66,23 +66,21 @@ class UpdateMediaWiki extends Maintenance {
 
 		list( $pcreVersion ) = explode( ' ', PCRE_VERSION, 2 );
 		if ( version_compare( $pcreVersion, $minimumPcreVersion, '<' ) ) {
-			$this->error(
+			$this->fatalError(
 				"PCRE $minimumPcreVersion or later is required.\n" .
 				"Your PHP binary is linked with PCRE $pcreVersion.\n\n" .
 				"More information:\n" .
 				"https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE\n\n" .
-				"ABORTING.\n",
-				true );
+				"ABORTING.\n" );
 		}
 
 		$test = new PhpXmlBugTester();
 		if ( !$test->ok ) {
-			$this->error(
+			$this->fatalError(
 				"Your system has a combination of PHP and libxml2 versions that is buggy\n" .
 				"and can cause hidden data corruption in MediaWiki and other web apps.\n" .
 				"Upgrade to libxml2 2.7.3 or later.\n" .
-				"ABORTING (see https://bugs.php.net/bug.php?id=45996).\n",
-				true );
+				"ABORTING (see https://bugs.php.net/bug.php?id=45996).\n" );
 		}
 	}
 
@@ -94,22 +92,22 @@ class UpdateMediaWiki extends Maintenance {
 				|| $this->hasOption( 'schema' )
 				|| $this->hasOption( 'noschema' ) )
 		) {
-			$this->error( "Do not run update.php on this wiki. If you're seeing this you should\n"
+			$this->fatalError( "Do not run update.php on this wiki. If you're seeing this you should\n"
 				. "probably ask for some help in performing your schema updates or use\n"
 				. "the --noschema and --schema options to get an SQL file for someone\n"
 				. "else to inspect and run.\n\n"
-				. "If you know what you are doing, you can continue with --force\n", true );
+				. "If you know what you are doing, you can continue with --force\n" );
 		}
 
 		$this->fileHandle = null;
 		if ( substr( $this->getOption( 'schema' ), 0, 2 ) === "--" ) {
-			$this->error( "The --schema option requires a file as an argument.\n", true );
+			$this->fatalError( "The --schema option requires a file as an argument.\n" );
 		} elseif ( $this->hasOption( 'schema' ) ) {
 			$file = $this->getOption( 'schema' );
 			$this->fileHandle = fopen( $file, "w" );
 			if ( $this->fileHandle === false ) {
 				$err = error_get_last();
-				$this->error( "Problem opening the schema file for writing: $file\n\t{$err['message']}", true );
+				$this->fatalError( "Problem opening the schema file for writing: $file\n\t{$err['message']}" );
 			}
 		}
 
@@ -152,7 +150,7 @@ class UpdateMediaWiki extends Maintenance {
 		if ( !$status->isOK() ) {
 			// This might output some wikitext like <strong> but it should be comprehensible
 			$text = $status->getWikiText();
-			$this->error( $text, 1 );
+			$this->fatalError( $text );
 		}
 
 		$this->output( "Going to run database updates for " . wfWikiID() . "\n" );

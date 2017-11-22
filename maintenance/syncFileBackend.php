@@ -54,7 +54,7 @@ class SyncFileBackend extends Maintenance {
 		if ( $this->hasOption( 'posdump' ) ) {
 			// Just dump the current position into the specified position dir
 			if ( !$this->hasOption( 'posdir' ) ) {
-				$this->error( "Param posdir required!", 1 );
+				$this->fatalError( "Param posdir required!" );
 			}
 			if ( $this->hasOption( 'postime' ) ) {
 				$id = (int)$src->getJournal()->getPositionAtTime( $this->getOption( 'postime' ) );
@@ -76,7 +76,7 @@ class SyncFileBackend extends Maintenance {
 		}
 
 		if ( !$this->hasOption( 'dst' ) ) {
-			$this->error( "Param dst required!", 1 );
+			$this->fatalError( "Param dst required!" );
 		}
 		$dst = FileBackendGroup::singleton()->get( $this->getOption( 'dst' ) );
 
@@ -156,7 +156,7 @@ class SyncFileBackend extends Maintenance {
 		$first = true; // first batch
 
 		if ( $start > $end ) { // sanity
-			$this->error( "Error: given starting ID greater than ending ID.", 1 );
+			$this->fatalError( "Error: given starting ID greater than ending ID." );
 		}
 
 		$next = null;

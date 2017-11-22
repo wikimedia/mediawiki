@@ -49,9 +49,9 @@ class InvalidateUserSesssions extends Maintenance {
 		$file = $this->getOption( 'file' );
 
 		if ( $username === null && $file === null ) {
-			$this->error( 'Either --user or --file is required', 1 );
+			$this->fatalError( 'Either --user or --file is required' );
 		} elseif ( $username !== null && $file !== null ) {
-			$this->error( 'Cannot use both --user and --file', 1 );
+			$this->fatalError( 'Cannot use both --user and --file' );
 		}
 
 		if ( $username !== null ) {
@@ -60,7 +60,7 @@ class InvalidateUserSesssions extends Maintenance {
 			$usernames = is_readable( $file ) ?
 				file( $file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES ) : false;
 			if ( $usernames === false ) {
-				$this->error( "Could not open $file", 2 );
+				$this->fatalError( "Could not open $file", 2 );
 			}
 		}
 

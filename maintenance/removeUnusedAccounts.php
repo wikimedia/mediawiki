@@ -53,7 +53,7 @@ class RemoveUnusedAccounts extends Maintenance {
 		}
 		$touched = $this->getOption( 'ignore-touched', "1" );
 		if ( !ctype_digit( $touched ) ) {
-			$this->error( "Please put a valid positive integer on the --ignore-touched parameter.", true );
+			$this->fatalError( "Please put a valid positive integer on the --ignore-touched parameter." );
 		}
 		$touchedSeconds = 86400 * $touched;
 		foreach ( $res as $row ) {

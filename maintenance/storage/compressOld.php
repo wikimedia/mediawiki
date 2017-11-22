@@ -103,8 +103,8 @@ class CompressOld extends Maintenance {
 	public function execute() {
 		global $wgDBname;
 		if ( !function_exists( "gzdeflate" ) ) {
-			$this->error( "You must enable zlib support in PHP to compress old revisions!\n" .
-				"Please see http://www.php.net/manual/en/ref.zlib.php\n", true );
+			$this->fatalError( "You must enable zlib support in PHP to compress old revisions!\n" .
+				"Please see http://www.php.net/manual/en/ref.zlib.php\n" );
 		}
 
 		$type = $this->getOption( 'type', 'concat' );

@@ -41,8 +41,7 @@ class MaintenanceFormatInstallDoc extends Maintenance {
 			$fileName = $this->getArg( 0 );
 			$inFile = fopen( $fileName, 'r' );
 			if ( !$inFile ) {
-				$this->error( "Unable to open input file \"$fileName\"" );
-				exit( 1 );
+				$this->fatalError( "Unable to open input file \"$fileName\"" );
 			}
 		} else {
 			$inFile = STDIN;
@@ -52,8 +51,7 @@ class MaintenanceFormatInstallDoc extends Maintenance {
 			$fileName = $this->getOption( 'outfile' );
 			$outFile = fopen( $fileName, 'w' );
 			if ( !$outFile ) {
-				$this->error( "Unable to open output file \"$fileName\"" );
-				exit( 1 );
+				$this->fatalError( "Unable to open output file \"$fileName\"" );
 			}
 		} else {
 			$outFile = STDOUT;
