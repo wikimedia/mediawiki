@@ -104,6 +104,7 @@ changes to languages because of Phabricator reports.
   DifferenceEngine::MW_DIFF_VERSION should be used instead.
 * Use of Maintenance::error( $err, $die ) to exit script was deprecated. Use
   Maintenance::fatalError() instead.
+* Passing a ParserOptions object to OutputPage::parserOptions() is deprecated.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. There is experimental support for
