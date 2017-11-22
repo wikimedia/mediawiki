@@ -127,3 +127,8 @@ if ( $wgAPIRequestLog ) {
 
 $mediawiki = new MediaWiki();
 $mediawiki->doPostOutputShutdown( 'fast' );
+
+
+
+
+
