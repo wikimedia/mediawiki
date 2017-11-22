@@ -2594,6 +2594,12 @@ RejectParserCacheValue hook) because MediaWiki won't do it for you.
   callable here. The callable is passed the ParserOptions object and the option
   name.
 
+'ParserOutputPostCacheTransform': Called from ParserOutput::getText() to do
+post-cache transforms.
+$parserOutput: The ParserOutput object.
+&$text: The text being transformed, before core transformations are done.
+&$options: The options array being used for the transformation.
+
 'ParserSectionCreate': Called each time the parser creates a document section
 from wikitext. Use this to apply per-section modifications to HTML (like
 wrapping the section in a DIV).  Caveat: DIVs are valid wikitext, and a DIV
