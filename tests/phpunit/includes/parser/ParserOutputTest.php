@@ -100,6 +100,9 @@ class ParserOutputTest extends MediaWikiTestCase {
 	 * @param string $expect Expected output
 	 */
 	public function testGetText( $options, $poState, $text, $expect ) {
+		$this->hideDeprecated( 'ParserOutput stateful allowTOC' );
+		$this->hideDeprecated( 'ParserOutput stateful enableSectionEditLinks' );
+
 		$po = new ParserOutput( $text );
 
 		// Emulate Parser
