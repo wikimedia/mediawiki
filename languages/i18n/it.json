@@ -993,8 +993,6 @@
 	"diff-multi-sameuser": "({{PLURAL:$1|Una versione intermedia|$1 versioni intermedie}} di uno stesso utente non {{PLURAL:$1|è mostrata|sono mostrate}})",
 	"diff-multi-otherusers": "({{PLURAL:$1|Una versione intermedia|$1 versioni intermedie}} di {{PLURAL:$2|un altro utente|$2 utenti}} non mostrate)",
 	"diff-multi-manyusers": "({{PLURAL:$1|Una versione intermedia|$1 versioni intermedie}} di oltre $2 {{PLURAL:$2|utente|utenti}} non {{PLURAL:$1|mostrata|mostrate}})",
-	"diff-paragraph-moved-tonew": "Il paragrafo è stato spostato. Clicca per passare alla nuova posizione.",
-	"diff-paragraph-moved-toold": "Il paragrafo è stato spostato. Clicca per passare alla vecchia posizione.",
 	"difference-missing-revision": "{{PLURAL:$2|Una versione|$2 versioni}} di questa differenza ($1) {{PLURAL:$2|non è stata trovata|non sono state trovate}}.\n\nQuesto si verifica solitamente seguendo un collegamento obsoleto di un diff a una pagina cancellata.\nI dettagli possono essere trovati nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro delle cancellazioni].",
 	"searchresults": "Risultati della ricerca",
 	"searchresults-title": "Risultati della ricerca di \"$1\"",
