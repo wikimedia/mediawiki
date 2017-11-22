@@ -4207,7 +4207,7 @@ class Parser {
 			# Decode HTML entities
 			$safeHeadline = Sanitizer::decodeCharReferences( $safeHeadline );
 
-			$safeHeadline = $this->normalizeSectionName( $safeHeadline );
+			$safeHeadline = self::normalizeSectionName( $safeHeadline );
 
 			$fallbackHeadline = Sanitizer::escapeIdForAttribute( $safeHeadline, Sanitizer::ID_FALLBACK );
 			$linkAnchor = Sanitizer::escapeIdForLink( $safeHeadline );
@@ -5756,43 +5756,19 @@ class Parser {
 		return $this->mDefaultSort;
 	}
 
-	/**
-	 * Try to guess the section anchor name based on a wikitext fragment
-	 * presumably extracted from a heading, for example "Header" from
-	 * "== Header ==".
-	 *
-	 * @param string $text
-	 *
-	 * @return string
-	 */
-	public function guessSectionNameFromWikiText( $text ) {
-		# Strip out wikitext links(they break the anchor)
-		$text = $this->stripSectionName( $text );
+	private static function getSectionNameFromStrippedText( $text ) {
 		$text = Sanitizer::normalizeSectionNameWhitespace( $text );
 		$text = Sanitizer::decodeCharReferences( $text );
-		$text = $this->normalizeSectionName( $text );
-
-		return '#' . Sanitizer::escapeIdForLink( $text );
+		$text = self::normalizeSectionName( $text );
+		return $text;
 	}
 
-	/**
-	 * Same as guessSectionNameFromWikiText(), but produces legacy anchors
-	 * instead, if possible. For use in redirects, since various versions
-	 * of Microsoft browsers interpret Location: headers as something other
-	 * than UTF-8, resulting in breakage.
-	 *
-	 * @param string $text The section name
-	 * @return string An anchor
-	 */
-	public function guessLegacySectionNameFromWikiText( $text ) {
+	private static function makeAnchor( $sectionName ) {
+		return '#' . Sanitizer::escapeIdForLink( $sectionName );
+	}
+
+	private static function makeLegacyAnchor( $sectionName ) {
 		global $wgFragmentMode;
-
-		# Strip out wikitext links(they break the anchor)
-		$text = $this->stripSectionName( $text );
-		$text = Sanitizer::normalizeSectionNameWhitespace( $text );
-		$text = Sanitizer::decodeCharReferences( $text );
-		$text = $this->normalizeSectionName( $text );
-
 		if ( isset( $wgFragmentMode[1] ) && $wgFragmentMode[1] === 'legacy' ) {
 			// ForAttribute() and ForLink() are the same for legacy encoding
 			$id = Sanitizer::escapeIdForAttribute( $text, Sanitizer::ID_FALLBACK );
@@ -5804,12 +5780,53 @@ class Parser {
 	}
 
 	/**
+	 * Try to guess the section anchor name based on a wikitext fragment
+	 * presumably extracted from a heading, for example "Header" from
+	 * "== Header ==".
+	 *
+	 * @param string $text
+	 * @return string Anchor (starting with '#')
+	 */
+	public function guessSectionNameFromWikiText( $text ) {
+		# Strip out wikitext links(they break the anchor)
+		$text = $this->stripSectionName( $text );
+		$sectionName = self::getSectionNameFromStrippedText( $text );
+		return self::makeAnchor( $sectionName );
+	}
+
+	/**
+	 * Same as guessSectionNameFromWikiText(), but produces legacy anchors
+	 * instead, if possible. For use in redirects, since various versions
+	 * of Microsoft browsers interpret Location: headers as something other
+	 * than UTF-8, resulting in breakage.
+	 *
+	 * @param string $text The section name
+	 * @return string Anchor (starting with '#')
+	 */
+	public function guessLegacySectionNameFromWikiText( $text ) {
+		# Strip out wikitext links(they break the anchor)
+		$text = $this->stripSectionName( $text );
+		$sectionName = self::getSectionNameFromStrippedText( $text );
+		return self::makeLegacyAnchor( $sectionName );
+	}
+
+	/**
+	 * Like guessSectionNameFromWikiText(), but takes already-stripped text as input.
+	 * @param string $text Section name (plain text)
+	 * @return string Anchor (starting with '#')
+	 */
+	public static function guessSectionNameFromStrippedText( $text ) {
+		$sectionName = self::getSectionNameFromStrippedText( $text );
+		return self::makeAnchor( $sectionName );
+	}
+
+	/**
 	 * Apply the same normalization as code making links to this section would
 	 *
 	 * @param string $text
 	 * @return string
 	 */
-	private function normalizeSectionName( $text ) {
+	private static function normalizeSectionName( $text ) {
 		# T90902: ensure the same normalization is applied for IDs as to links
 		$titleParser = MediaWikiServices::getInstance()->getTitleParser();
 		try {
