@@ -676,6 +676,8 @@
 	"api-help-param-token": "Un token \"$1\" recuperato da [[Special:ApiHelp/query+tokens|action=query&meta=tokens]]",
 	"api-help-param-continue": "Quando più risultati sono disponibili, usa questo per continuare.",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(nessuna descrizione)</span>",
+	"api-help-param-maxbytes": "Non può essere più lungo di $1 {{PLURAL:$1|byte}}.",
+	"api-help-param-maxchars": "Non può essere più lungo di $1 {{PLURAL:$1|carattere|caratteri}}.",
 	"api-help-examples": "{{PLURAL:$1|Esempio|Esempi}}:",
 	"api-help-permissions": "{{PLURAL:$1|Permesso|Permessi}}:",
 	"api-help-open-in-apisandbox": "<small>[apri in una sandbox]</small>",
@@ -687,6 +689,8 @@
 	"api-help-authmanagerhelper-additional-params": "Questo modulo accetta parametri aggiuntivi a seconda delle richieste di autenticazione disponibili. Utilizza <kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> con <kbd>amirequestsfor=$1</kbd> (o una precedente risposta da questo modulo, se applicabile) per determinare le richieste disponibili e i campi usati da queste.",
 	"apierror-invalidoldimage": "Il parametro <var>oldimage</var> ha un formato non valido.",
 	"apierror-invaliduserid": "L'ID utente <var>$1</var> non è valido.",
+	"apierror-maxbytes": "Il parametro <var>$1</var> non può essere più lungo di $2 {{PLURAL:$2|byte}}",
+	"apierror-maxchars": "Il parametro <var>$1</var> non può essere più lungo di $2 {{PLURAL:$2|carattere|caratteri}}",
 	"apierror-nosuchuserid": "Non c'è alcun utente con ID $1.",
 	"apierror-timeout": "Il server non ha risposto entro il tempo previsto.",
 	"api-credits-header": "Crediti"

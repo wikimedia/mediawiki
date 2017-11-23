@@ -1067,7 +1067,6 @@
 	"recentchangesdays-max": "最多 $1 {{PLURAL:$1|天}}",
 	"recentchangescount": "預設顯示的編輯數：",
 	"prefs-help-recentchangescount": "這包含近期變更、頁面歷史以及日誌。",
-	"prefs-help-watchlist-token2": "訂閱您的監視清單所需的密鑰。\n任何人只要知道密鑰就能夠讀取您的監視清單，所以請勿任意與它人共享。\n若有需要 [[Special:ResetTokens|您可重設密鑰]]。",
 	"savedprefs": "已儲存您的偏好設定。",
 	"savedrights": "已儲存 {{GENDER:$1|$1}} 的使用者權限。",
 	"timezonelegend": "時區：",

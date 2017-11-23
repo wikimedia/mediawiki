@@ -35,7 +35,7 @@
 	"config-session-expired": "Os seus dados de sessão parecem ter expirado.\nAs sessões estão configuradas para uma duração de $1.\nPode aumentar esta duração configurando <code>session.gc_maxlifetime</code> no php.ini.\nReinicie o processo de instalação.",
 	"config-no-session": "Os seus dados de sessão foram perdidos!\nVerifique o seu php.ini e certifique-se de que em <code>session.save_path</code> está definido um diretório apropriado.",
 	"config-your-language": "A sua língua:",
-	"config-your-language-help": "Selecione o idioma que será usado durante o processo de instalação.",
+	"config-your-language-help": "Selecione a língua que será usada durante o processo de instalação.",
 	"config-wiki-language": "Língua da wiki:",
 	"config-wiki-language-help": "Selecione a língua que será predominante na wiki.",
 	"config-back": "← Voltar",

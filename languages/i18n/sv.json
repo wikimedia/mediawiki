@@ -1055,7 +1055,6 @@
 	"recentchangesdays-max": "Maximalt $1 {{PLURAL:$1|dygn}}",
 	"recentchangescount": "Antal redigeringar som visas som standard:",
 	"prefs-help-recentchangescount": "Detta inkluderar senaste ändringarna, sidhistorik och loggar.",
-	"prefs-help-watchlist-token2": "Detta är den hemliga nyckeln till webbflödet i din bevakningslista.\nNågon som vet den kommer att kunna läsa din bevakningslista, så dela inte ut den.\n[[Special:ResetTokens|Klicka här om du behöver återställa den]].",
 	"savedprefs": "Dina inställningar har sparats",
 	"savedrights": "Användargrupperna för {{GENDER:$1|$1}} har sparats.",
 	"timezonelegend": "Tidszon:",
