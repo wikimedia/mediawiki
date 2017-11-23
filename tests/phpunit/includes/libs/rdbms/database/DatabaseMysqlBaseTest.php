@@ -27,6 +27,7 @@ use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\MySQLMasterPos;
 use Wikimedia\Rdbms\DatabaseMysqlBase;
+use Wikimedia\Rdbms\Database;
 
 /**
  * Fake class around abstract class so we can call concrete methods.
@@ -367,5 +368,23 @@ class DatabaseMysqlBaseTest extends PHPUnit_Framework_TestCase {
 			[ 600.22 ],
 			[ 1000.77 ],
 		];
+	}
+
+	/**
+	 * @expectedException UnexpectedValueException
+	 */
+	public function testDBOIgnoreSet() {
+		$db = new FakeDatabaseMysqlBase();
+
+		$db->setFlag( Database::DBO_IGNORE );
+	}
+
+	/**
+	 * @expectedException UnexpectedValueException
+	 */
+	public function testDBOIgnoreClear() {
+		$db = new FakeDatabaseMysqlBase();
+
+		$db->clearFlag( Database::DBO_IGNORE );
 	}
 }
