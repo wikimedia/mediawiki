@@ -569,7 +569,8 @@ interface IDatabase {
 	 * @param string|array $options The query options. See IDatabase::select() for details.
 	 * @param string|array $join_conds The query join conditions. See IDatabase::select() for details.
 	 *
-	 * @return bool|mixed The value from the field, or false on failure.
+	 * @return mixed The value from the field
+	 * @throws DBQueryError
 	 */
 	public function selectField(
 		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
@@ -591,7 +592,8 @@ interface IDatabase {
 	 * @param string|array $options The query options. See IDatabase::select() for details.
 	 * @param string|array $join_conds The query join conditions. See IDatabase::select() for details.
 	 *
-	 * @return bool|array The values from the field, or false on failure
+	 * @return array The values from the field
+	 * @throws DBQueryError
 	 * @since 1.25
 	 */
 	public function selectFieldValues(
@@ -755,10 +757,8 @@ interface IDatabase {
 	 *
 	 *    [ 'page' => [ 'LEFT JOIN', 'page_latest=rev_id' ] ]
 	 *
-	 * @return IResultWrapper|bool If the query returned no rows, a IResultWrapper
-	 *   with no rows in it will be returned. If there was a query error, a
-	 *   DBQueryError exception will be thrown, except if the "ignore errors"
-	 *   option was set, in which case false will be returned.
+	 * @return IResultWrapper Resulting rows
+	 * @throws DBQueryError
 	 */
 	public function select(
 		$table, $vars, $conds = '', $fname = __METHOD__,
@@ -799,6 +799,7 @@ interface IDatabase {
 	 * @param array|string $join_conds Join conditions
 	 *
 	 * @return stdClass|bool
+	 * @throws DBQueryError
 	 */
 	public function selectRow( $table, $vars, $conds, $fname = __METHOD__,
 		$options = [], $join_conds = []
@@ -823,6 +824,7 @@ interface IDatabase {
 	 * @param string $fname Function name for profiling
 	 * @param array $options Options for select
 	 * @return int Row count
+	 * @throws DBQueryError
 	 */
 	public function estimateRowCount(
 		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = []
@@ -844,6 +846,7 @@ interface IDatabase {
 	 * @param array $options Options for select
 	 * @param array $join_conds Join conditions (since 1.27)
 	 * @return int Row count
+	 * @throws DBQueryError
 	 */
 	public function selectRowCount(
 		$tables, $vars = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
