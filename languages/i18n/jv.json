@@ -920,7 +920,6 @@
 	"recentchangesdays-max": "(maksimum $1 {{PLURAL:$1|dina|dina}})",
 	"recentchangescount": "Cacahing besutan sing dituduhaké kanthi baku:",
 	"prefs-help-recentchangescount": "Iki klebu owah-owahan pungkasan, kaca sajarah, lan log.",
-	"prefs-help-watchlist-token2": "Ini adalah kunci rahasia (token) ke web feed dari daftar pantauan Anda.\nSiapa saja yang tahu akan dapat melihat daftar pantauan Anda, jadi jangan dibagikan.\n[[Special:ResetTokens|Klik di sini jika Anda perlu menyetel ulang]].",
 	"savedprefs": "Prèferènsi Panjenengan wis disimpen",
 	"savedrights": "Golongan panganggo {{GENDER:$1|$1}} wis disimpen.",
 	"timezonelegend": "Zona wektu:",

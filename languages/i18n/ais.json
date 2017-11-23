@@ -937,7 +937,6 @@
 	"recentchangesdays-max": "sayadahay $1 {{PLURAL:$1|a demiad}}",
 	"recentchangescount": "pataayaw tu kawaw paazihay nu mikawaway-kalumyiti nikayadah:",
 	"prefs-help-recentchangescount": "uyni yamalyilu capi demiad a sumad, kasabelih nasulitan-nazipa’an atu nazipa’an",
-	"prefs-help-watchlist-token2": "miaca aazihan numisuay a miazihay a piazihan-tu-sulit maydihay a mima-sabuhat.\namahicahica tademaw matineng ku mama-sabuhat dada’ taneng maasip numisuay a miazihay a piazihan-tu-sulit，sisa amana kilul tu nizateng kasasimel tu zuma a tadeamw.\namahica izaw ku maydih [[Special:ResetTokens|kapah kisu miliyaw patizeng mima-sabuhat]].",
 	"savedprefs": "masuped setin tu kanamuhan nu misu.",
 	"savedrights": "masuped tu {{GENDER:$1|$1}} misaungayay a tungus.",
 	"timezonelegend": "tatukian a kakitizaan:",

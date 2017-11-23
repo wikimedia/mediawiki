@@ -971,7 +971,6 @@
 	"recentchangesdays-max": "(Maximal $1 {{PLURAL:$1|Dag|Deeg}})",
 	"recentchangescount": "Zuel vun den Ännerungen déi als Standard gewise ginn:",
 	"prefs-help-recentchangescount": "Inklusiv Rezent Ännerungen, Versiounshistoriquen a Logbicher.",
-	"prefs-help-watchlist-token2": "Dëst ass de geheime Schlëssel fir de Webfeed vun Ärer Iwwerwaachungslëscht. Jiddwereen deen e kennt kann Är Iwwerwaachungslëscht liesen, dofir sollt Dir en net weider ginn. [[Special:ResetTokens|Klickt hei wann Dir en zrécksetze musst]].",
 	"savedprefs": "Är Astellunge goufe gespäichert.",
 	"savedrights": "D'Benotzergruppe vum {{GENDER:$1|$1}} goufe gespäichert.",
 	"timezonelegend": "Zäitzon:",

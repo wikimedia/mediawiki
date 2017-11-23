@@ -25,7 +25,7 @@
 			"LR Guanzon"
 		]
 	},
-	"tog-underline": "Pagsasalungguhit ng kawing:",
+	"tog-underline": "Pagsasalungguhit ng link:",
 	"tog-hideminor": "Itago ang mga maliliit na pagbabago mula sa mga huling pagbabago",
 	"tog-hidepatrolled": "Itago ang mga napatrolyang pagbabago mula sa mga huling pagbabago",
 	"tog-newpageshidepatrolled": "Itago ang mga napatrolyang pahina mula talaan ng bagong pahina",
@@ -188,7 +188,7 @@
 	"history_small": "kasaysayan",
 	"updatedmarker": "isinapanahon mula noong huli kong pagdalaw",
 	"printableversion": "Bersiyong maililimbag",
-	"permalink": "Permanenteng kawing",
+	"permalink": "Permanenteng link",
 	"print": "Ilimbag",
 	"view": "Tingnan",
 	"view-foreign": "Tingnan sa $1",

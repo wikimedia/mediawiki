@@ -1041,7 +1041,6 @@
 	"recentchangesdays-max": "(màxim $1 {{PLURAL:$1|dia|dies}})",
 	"recentchangescount": "Nombre d'edicions a mostrar per defecte:",
 	"prefs-help-recentchangescount": "Inclou els canvis recents, els historials de pàgines i els registres.",
-	"prefs-help-watchlist-token2": "Aquesta és la clau secreta pel canal de continguts de la vostra llista de seguiment.\nQualsevol que la conegui podria llegir la vostra llista de seguiment, així que no la compartiu.\n[[Special:ResetTokens|Cliqueu aquí si voleu restaurar-la]].",
 	"savedprefs": "S’han desat les vostres preferències.",
 	"savedrights": "S'han desat els grups d'usuari de {{GENDER:$1|$1}}.",
 	"timezonelegend": "Fus horari:",

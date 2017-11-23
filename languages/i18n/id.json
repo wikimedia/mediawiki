@@ -1042,7 +1042,6 @@
 	"recentchangesdays-max": "(maksimum $1 {{PLURAL:$1|hari|hari}})",
 	"recentchangescount": "Standar jumlah suntingan yang ditampilkan:",
 	"prefs-help-recentchangescount": "Opsi ini berlaku untuk perubahan terbaru, versi terdahulu halaman, dan log.",
-	"prefs-help-watchlist-token2": "Ini adalah kunci rahasia (token) ke umpan web dari daftar pantauan Anda.\nSiapa saja yang tahu akan dapat melihat daftar pantauan Anda, jadi jangan dibagikan. Jika diperlukan\n[[Special:ResetTokens|Anda dapat mengatur ulang kunci tersebut]].",
 	"savedprefs": "Preferensi Anda telah disimpan",
 	"savedrights": "Kelompok hak pengguna {{GENDER:$1|$1}} telah disimpan.",
 	"timezonelegend": "Zona waktu:",

@@ -972,7 +972,6 @@
 	"recentchangesdays-max": "(massime $1 {{PLURAL:$1|sciurne|sciurne}})",
 	"recentchangescount": "Numere de cangiaminde da fà vedè pe default:",
 	"prefs-help-recentchangescount": "Quiste 'nglude le urteme cangiaminde, le storie de le pàggene e le archivije.",
-	"prefs-help-watchlist-token2": "Queste jè 'a chiave segrete a le feed d'u web de l'elenghe de le pàggene condrollate tune.\nCengate vò ccu canosce ce pò leggere l'elenghe de le pàggene condrollate tune, accussì non g'ù pò condividere.\n[[Special:ResetTokens|Cazze aqquà ce tìne abbesogne de azzerarle]].",
 	"savedprefs": "Le preferenze tue onne state aggiornete.",
 	"savedrights": "Le gruppe utinde de {{GENDER:$1$1}} onne state reggistrate.",
 	"timezonelegend": "Orarie d'a zone:",

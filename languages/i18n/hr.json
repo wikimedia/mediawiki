@@ -979,7 +979,6 @@
 	"recentchangesdays-max": "(maksimalno $1 {{PLURAL:$1|dan|dana}})",
 	"recentchangescount": "Zadani broj izmjena koje se prikazuju:",
 	"prefs-help-recentchangescount": "Ovo uključuje nedavne promjene, stare izmjene, i evidencije.",
-	"prefs-help-watchlist-token2": "Ovo je tajni ključ prema sažetku Vašeg popisa praćenja. Svaki suradnik kojem je poznat, moći će čitati Vaš popis praćenih stranica. Ne dijelite ga ni s kim. [[Special:ResetTokens|Kliknite ovdje ako ga želite ponovo postaviti]].",
 	"savedprefs": "Vaše postavke su sačuvane.",
 	"savedrights": "Suradnička su prava {{GENDER:$1|suradnika $1|suradnice $1}} spremljena.",
 	"timezonelegend": "Vremenska zona:",

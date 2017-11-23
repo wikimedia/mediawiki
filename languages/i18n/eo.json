@@ -1026,7 +1026,6 @@
 	"recentchangesdays-max": "(maksimume $1 {{PLURAL:$1|tago|tagoj}})",
 	"recentchangescount": "Nombro de redaktoj por montri defaŭlte:",
 	"prefs-help-recentchangescount": "Ĉi tiu inkluzivas lastajn ŝanĝojn, paĝajn historiojn, kaj protokolojn.",
-	"prefs-help-watchlist-token2": "Tio estas la sekreta ŝlosilo al la retfluo de via atentaro.\nĈiu, kiu konas ĝin, povas legi vian atentaron. Do, ne kunhavigu ĝin.\nSe vi devas, [[Special:ResetTokens|vi povas rekomencigi ĝin]].",
 	"savedprefs": "Viaj preferoj estas konservitaj.",
 	"savedrights": "La uzanto-grupoj de {{GENDER:$1|$1}} estis konservitaj.",
 	"timezonelegend": "Horzono:",
