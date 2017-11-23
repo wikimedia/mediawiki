@@ -212,7 +212,6 @@ class TextContentTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider dataIsCountable
-	 * @group Database
 	 * @covers TextContent::isCountable
 	 */
 	public function testIsCountable( $text, $hasLinks, $mode, $expected ) {

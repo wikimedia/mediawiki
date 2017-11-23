@@ -968,12 +968,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @since 1.18
 	 */
 	public function needsDB() {
-		# if the test says it uses database tables, it needs the database
+		// If the test says it uses database tables, it needs the database
 		if ( $this->tablesUsed ) {
 			return true;
 		}
 
-		# if the test says it belongs to the Database group, it needs the database
+		// If the test class says it belongs to the Database group, it needs the database.
+		// NOTE: This ONLY checks for the group in the class level doc comment.
 		$rc = new ReflectionClass( $this );
 		if ( preg_match( '/@group +Database/im', $rc->getDocComment() ) ) {
 			return true;

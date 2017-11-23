@@ -193,7 +193,6 @@ class ExtraParserTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @group Database
 	 * @covers Parser::parse
 	 */
 	public function testTrackingCategory() {
@@ -207,7 +206,6 @@ class ExtraParserTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @group Database
 	 * @covers Parser::parse
 	 */
 	public function testTrackingCategorySpecial() {
