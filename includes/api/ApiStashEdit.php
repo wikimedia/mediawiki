@@ -181,9 +181,14 @@ class ApiStashEdit extends ApiBase {
 		$title = $page->getTitle();
 		$key = self::getStashKey( $title, self::getContentHash( $content ), $user );
 
-		// Use the master DB for fast blocking locks
+		// Use the master DB to allow for fast blocking locks on the "save path" where this
+		// value might actually be used to complete a page edit. If the edit submission request
+		// happens before this edit stash requests finishes, then the submission will block until
+		// the stash request finishes parsing. For the lock acquisition below, there is not much
+		// need to duplicate parsing of the same content/user/summary bundle, so try to avoid
+		// blocking at all here.
 		$dbw = wfGetDB( DB_MASTER );
-		if ( !$dbw->lock( $key, __METHOD__, 1 ) ) {
+		if ( !$dbw->lock( $key, __METHOD__, 0 ) ) {
 			// De-duplicate requests on the same key
 			return self::ERROR_BUSY;
 		}
