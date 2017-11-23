@@ -467,7 +467,6 @@ class MessageTest extends MediaWikiLangTestCase {
 
 	/**
 	 * FIXME: This should not need database, but Language#formatExpiry does (T57912)
-	 * @group Database
 	 * @covers Message::expiryParam
 	 * @covers Message::expiryParams
 	 */

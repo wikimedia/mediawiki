@@ -282,7 +282,6 @@ class TitleTest extends MediaWikiTestCase {
 	/**
 	 * Auth-less test of Title::isValidMoveOperation
 	 *
-	 * @group Database
 	 * @param string $source
 	 * @param string $target
 	 * @param array|string|bool $expected Required error
