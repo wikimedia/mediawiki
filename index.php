@@ -41,8 +41,4 @@ require __DIR__ . '/includes/WebStart.php';
 
 $mediaWiki = new MediaWiki();
 $mediaWiki->run();
-
-
-
-
-
+#just a test
