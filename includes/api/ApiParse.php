@@ -345,6 +345,7 @@ class ApiParse extends ApiBase {
 				'allowTOC' => !$params['disabletoc'],
 				'enableSectionEditLinks' => !$params['disableeditsection'],
 				'unwrap' => $params['wrapoutputclass'] === '',
+				'deduplicateStyles' => !$params['disablestylededuplication'],
 			] );
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'text';
 		}
@@ -877,6 +878,7 @@ class ApiParse extends ApiBase {
 			'disablelimitreport' => false,
 			'disableeditsection' => false,
 			'disabletidy' => false,
+			'disablestylededuplication' => false,
 			'generatexml' => [
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_HELP_MSG => [
