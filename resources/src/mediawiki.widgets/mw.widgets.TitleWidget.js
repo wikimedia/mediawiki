@@ -211,7 +211,7 @@
 	 * @return {OO.ui.OptionWidget[]} Menu items
 	 */
 	mw.widgets.TitleWidget.prototype.getOptionsFromData = function ( data ) {
-		var i, len, index, pageExists, pageExistsExact, suggestionPage, page, redirect, redirects,
+		var i, len, index, suggestionPage, page, redirect, redirects,
 			currentPageName = new mw.Title( mw.config.get( 'wgRelevantPageName' ) ).getPrefixedText(),
 			items = [],
 			titles = [],
@@ -272,31 +272,12 @@
 			return pageData[ a ].index - pageData[ b ].index;
 		} );
 
-		// If not found, run value through mw.Title to avoid treating a match as a
-		// mismatch where normalisation would make them matching (T50476)
-
-		pageExistsExact = (
-			Object.prototype.hasOwnProperty.call( pageData, this.getQueryValue() ) &&
-			(
-				!pageData[ this.getQueryValue() ].missing ||
-				pageData[ this.getQueryValue() ].known
-			)
-		);
-		pageExists = pageExistsExact || (
-			titleObj &&
-			Object.prototype.hasOwnProperty.call( pageData, titleObj.getPrefixedText() ) &&
-			(
-				!pageData[ titleObj.getPrefixedText() ].missing ||
-				pageData[ titleObj.getPrefixedText() ].known
-			)
-		);
-
 		if ( this.cache ) {
 			this.cache.set( pageData );
 		}
 
-		// Offer the exact text as a suggestion if the page exists
-		if ( pageExists && !pageExistsExact ) {
+		if ( this.shouldAddQueryInput( pageData ) ) {
+			// Offer the exact text as a suggestion if the page exists
 			titles.unshift( this.getQueryValue() );
 		}
 
@@ -316,6 +297,32 @@
 	 */
 	mw.widgets.TitleWidget.prototype.createOptionWidget = function ( data ) {
 		return new mw.widgets.TitleOptionWidget( data );
+	};
+
+	/**
+	 * Determines whether exact input query should be added to the suggestions.
+	 *
+	 * @param {Array} pageData
+	 * @return {boolean} True if exact user input query should be added to the suggestions.
+	 */
+	mw.widgets.TitleWidget.prototype.shouldAddQueryInput = function ( pageData ) {
+		var queryValue = this.getQueryValue(),
+			titleObj = mw.Title.newFromText( queryValue );
+
+		if ( !titleObj ) {
+			return false;
+		}
+
+		function pageExists( title ) {
+			return Object.prototype.hasOwnProperty.call( pageData, title ) &&
+				(
+					!pageData[ title ].missing ||
+					pageData[ title ].known
+				);
+		}
+
+		// We want normalized page to exist, and page exact to input query NOT to exist in pageData
+		return pageExists( titleObj.getPrefixedText() ) && !pageExists( queryValue );
 	};
 
 	/**
