@@ -21,6 +21,9 @@
  * @file
  * @ingroup Parser
  */
+
+use HtmlFormatter\HtmlFormatter;
+
 class ParserOutput extends CacheTime {
 	/**
 	 * Feature flag to indicate to extensions that MediaWiki core supports and
@@ -268,6 +271,11 @@ class ParserOutput extends CacheTime {
 	 *  - enableSectionEditLinks: (bool) Include section edit links, assuming
 	 *    section edit link tokens are present in the HTML. Default is true,
 	 *     but might be statefully overridden.
+	 *  - deduplicateStyles: (bool) When true, which is the default, <style>
+	 *    tags with the `mw-deduplicate` attribute set are deduplicated by
+	 *    value of the attribute: all but the first will have the attribute
+	 *    replaced with a `mw-deduplicated` attribute and will have all child
+	 *    nodes removed.
 	 * @return string HTML
 	 */
 	public function getText( $options = [] ) {
@@ -283,6 +291,7 @@ class ParserOutput extends CacheTime {
 			// empty() here because old cached versions might lack the field somehow
 			'allowTOC' => !empty( $this->mTOCEnabled ),
 			'enableSectionEditLinks' => $this->mEditSectionTokens,
+			'deduplicateStyles' => true,
 		];
 		$text = $this->mText;
 
@@ -322,6 +331,31 @@ class ParserOutput extends CacheTime {
 				'',
 				$text
 			);
+		}
+
+		if ( $options['deduplicateStyles'] ) {
+			// Hide newlines from HtmlFormatter, it sometimes strips them
+			$text = str_replace( "\n<", '&#10;<', $text );
+
+			$formatter = new HtmlFormatter( $text );
+			$doc = $formatter->getDoc();
+			$xpath = new DOMXPath( $doc );
+
+			$seen = [];
+			$nodes = $xpath->query( '//style[@mw-deduplicate]' );
+			foreach ( $nodes as $node ) {
+				$key = $node->getAttribute( 'mw-deduplicate' );
+				if ( isset( $seen[$key] ) ) {
+					$node->removeAttribute( 'mw-deduplicate' );
+					$node->setAttribute( 'mw-deduplicated', $key );
+					while ( $node->firstChild !== null ) {
+						$node->removeChild( $node->firstChild );
+					}
+				}
+				$seen[$key] = true;
+			}
+
+			$text = $formatter->getText();
 		}
 
 		return $text;
