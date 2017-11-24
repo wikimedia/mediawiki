@@ -589,9 +589,12 @@ class Html {
 	 *
 	 * @param string $contents CSS
 	 * @param string $media A media type string, like 'screen'
+	 * @param array $attribs (since 1.31) Associative array of attributes, e.g., [
+	 *   'href' => 'https://www.mediawiki.org/' ]. See expandAttributes() for
+	 *   further documentation.
 	 * @return string Raw HTML
 	 */
-	public static function inlineStyle( $contents, $media = 'all' ) {
+	public static function inlineStyle( $contents, $media = 'all', $attribs = [] ) {
 		// Don't escape '>' since that is used
 		// as direct child selector.
 		// Remember, in css, there is no "x" for hexadecimal escapes, and
@@ -609,7 +612,7 @@ class Html {
 
 		return self::rawElement( 'style', [
 			'media' => $media,
-		], $contents );
+		] + $attribs, $contents );
 	}
 
 	/**
