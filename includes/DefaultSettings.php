@@ -2554,6 +2554,8 @@ $wgGitInfoCacheDirectory = false;
  * It should be appended in the query string of static CSS and JS includes,
  * to ensure that client-side caches do not keep obsolete copies of global
  * styles.
+ *
+ * @deprecated since 1.31
  */
 $wgStyleVersion = '303';
 
