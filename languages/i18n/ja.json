@@ -1404,7 +1404,7 @@
 	"rcfilters-restore-default-filters": "標準設定の絞り込み条件を適用",
 	"rcfilters-clear-all-filters": "すべてのフィルターをクリア",
 	"rcfilters-show-new-changes": "最新の変更を表示",
-	"rcfilters-search-placeholder": "絞り込みを行う（一覧から選択、または検索）",
+	"rcfilters-search-placeholder": "絞り込みを行う（メニューから選択、またはフィルター名で検索）",
 	"rcfilters-invalid-filter": "無効なフィルター",
 	"rcfilters-empty-filter": "絞り込みは行われていません。全ての項目が表示さます。",
 	"rcfilters-filterlist-title": "フィルター",
