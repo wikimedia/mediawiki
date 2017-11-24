@@ -23,6 +23,7 @@
 	 * @cfg {boolean} [showImages] Show page images
 	 * @cfg {boolean} [showDescriptions] Show page descriptions
 	 * @cfg {boolean} [showMissing=true] Show missing pages
+	 * @cfg {boolean} [addQueryInput=true] Add exact user's input query to results
 	 * @cfg {boolean} [excludeCurrentPage] Exclude the current page from suggestions
 	 * @cfg {boolean} [validateTitle=true] Whether the input must be a valid title (if set to true,
 	 *  the widget will marks itself red for invalid inputs, including an empty query).
@@ -46,6 +47,7 @@
 		this.showImages = !!config.showImages;
 		this.showDescriptions = !!config.showDescriptions;
 		this.showMissing = config.showMissing !== false;
+		this.addQueryInput = config.addQueryInput !== false;
 		this.excludeCurrentPage = !!config.excludeCurrentPage;
 		this.validateTitle = config.validateTitle !== undefined ? config.validateTitle : true;
 		this.cache = config.cache;
@@ -296,7 +298,7 @@
 		}
 
 		// Offer the exact text as a suggestion if the page exists
-		if ( pageExists && !pageExistsExact ) {
+		if ( this.addQueryInput && pageExists && !pageExistsExact ) {
 			titles.unshift( this.getQueryValue() );
 		}
 
