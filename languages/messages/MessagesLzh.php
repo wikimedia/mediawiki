@@ -148,6 +148,9 @@ $digitTransformTable = [
 	'7' => '七',
 	'8' => '八',
 	'9' => '九',
+];
+
+$separatorTransformTable = [
 	'.' => '點',
 	',' => '',
 ];

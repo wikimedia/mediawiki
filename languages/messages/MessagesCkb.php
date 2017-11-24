@@ -130,6 +130,9 @@ $digitTransformTable = [
 	'7' => '٧', # &#x0667;
 	'8' => '٨', # &#x0668;
 	'9' => '٩', # &#x0669;
+];
+
+$separatorTransformTable = [
 	'.' => '٫', # &#x066b; wrong table ?
 	',' => '٬', # &#x066c;
 ];
