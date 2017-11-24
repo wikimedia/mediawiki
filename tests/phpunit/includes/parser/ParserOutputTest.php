@@ -147,6 +147,19 @@ class ParserOutputTest extends MediaWikiTestCase {
 </p>
 EOF;
 
+		$dedupText = <<<EOF
+<p>This is a test document.</p>
+<style mw-deduplicate="duplicate1">.Duplicate1 {}</style>
+<style mw-deduplicate="duplicate1">.Duplicate1 {}</style>
+<style mw-deduplicate="duplicate2">.Duplicate2 {}</style>
+<style mw-deduplicate="duplicate1">.Duplicate1 {}</style>
+<style mw-deduplicate="duplicate2">.Duplicate2 {}</style>
+<style mw-not-deduplicate="duplicate1">.Duplicate1 {}</style>
+<style mw-deduplicate="duplicate1">.Same-attribute-different-content {}</style>
+<style mw-deduplicate="duplicate3">.Duplicate1 {}</style>
+<style>.Duplicate1 {}</style>
+EOF;
+
 		return [
 			'No stateless options, default state' => [
 				[], [], $text, <<<EOF
@@ -307,6 +320,23 @@ EOF
 <p>Three
 </p>
 EOF
+			],
+			'Style deduplication' => [
+				[], [], $dedupText, <<<EOF
+<p>This is a test document.</p>
+<style mw-deduplicate="duplicate1">.Duplicate1 {}</style>
+<style mw-deduplicated="duplicate1"></style>
+<style mw-deduplicate="duplicate2">.Duplicate2 {}</style>
+<style mw-deduplicated="duplicate1"></style>
+<style mw-deduplicated="duplicate2"></style>
+<style mw-not-deduplicate="duplicate1">.Duplicate1 {}</style>
+<style mw-deduplicated="duplicate1"></style>
+<style mw-deduplicate="duplicate3">.Duplicate1 {}</style>
+<style>.Duplicate1 {}</style>
+EOF
+			],
+			'Style deduplication disabled' => [
+				[ 'deduplicateStyles' => false ], [], $dedupText, $dedupText
 			],
 		];
 		// @codingStandardsIgnoreEnd
