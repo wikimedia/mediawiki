@@ -1089,14 +1089,14 @@ abstract class Skin extends ContextSource {
 	 * @throws MWException
 	 */
 	function getSkinStylePath( $name ) {
-		global $wgStylePath, $wgStyleVersion;
+		global $wgStylePath;
 
 		if ( $this->stylename === null ) {
 			$class = static::class;
 			throw new MWException( "$class::\$stylename must be set to use getSkinStylePath()" );
 		}
 
-		return "$wgStylePath/{$this->stylename}/$name?$wgStyleVersion";
+		return "$wgStylePath/{$this->stylename}/$name";
 	}
 
 	/* these are used extensively in SkinTemplate, but also some other places */

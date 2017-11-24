@@ -494,19 +494,15 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param string $file Filename in skins/common or complete on-server path
 	 *              (/foo/bar.js)
-	 * @param string $version Style version of the file. Defaults to $wgStyleVersion
 	 */
-	public function addScriptFile( $file, $version = null ) {
+	public function addScriptFile( $file ) {
 		// See if $file parameter is an absolute URL or begins with a slash
 		if ( substr( $file, 0, 1 ) == '/' || preg_match( '#^[a-z]*://#i', $file ) ) {
 			$path = $file;
 		} else {
 			$path = $this->getConfig()->get( 'StylePath' ) . "/common/{$file}";
 		}
-		if ( is_null( $version ) ) {
-			$version = $this->getConfig()->get( 'StyleVersion' );
-		}
-		$this->addScript( Html::linkedScript( wfAppendQuery( $path, $version ) ) );
+		$this->addScript( Html::linkedScript( $path ) );
 	}
 
 	/**
@@ -3739,8 +3735,7 @@ class OutputPage extends ContextSource {
 			$url = $style;
 		} else {
 			$config = $this->getConfig();
-			$url = $config->get( 'StylePath' ) . '/' . $style . '?' .
-				$config->get( 'StyleVersion' );
+			$url = $config->get( 'StylePath' ) . '/' . $style;
 		}
 
 		$link = Html::linkedStyle( $url, $media );
