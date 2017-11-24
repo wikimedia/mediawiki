@@ -33,6 +33,9 @@ production.
   users during an import.
 * Added a hook, ParserOutputPostCacheTransform, to allow extensions to affect
   the ParserOutput::getText() post-cache transformations.
+* Style tags with a 'data-mw-deduplicate' attribute will be deduplicated as a
+  ParserOutput::getText() post-cache transformation. This may be disabled by
+  passing 'deduplicateStyles' => false to that method.
 
 === External library changes in 1.31 ===
 

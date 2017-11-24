@@ -21,6 +21,7 @@
  * @file
  * @ingroup Parser
  */
+
 class ParserOutput extends CacheTime {
 	/**
 	 * Feature flag to indicate to extensions that MediaWiki core supports and
@@ -268,6 +269,11 @@ class ParserOutput extends CacheTime {
 	 *  - enableSectionEditLinks: (bool) Include section edit links, assuming
 	 *    section edit link tokens are present in the HTML. Default is true,
 	 *     but might be statefully overridden.
+	 *  - deduplicateStyles: (bool) When true, which is the default, <style>
+	 *    tags with the `data-mw-deduplicate` attribute set are deduplicated by
+	 *    value of the attribute: all but the first will have the attribute
+	 *    replaced with a `data-mw-deduplicated` attribute and will have all child
+	 *    nodes removed.
 	 * @return string HTML
 	 */
 	public function getText( $options = [] ) {
@@ -284,6 +290,7 @@ class ParserOutput extends CacheTime {
 			// In that situation, the historical behavior (possibly buggy) is to remove the TOC.
 			'allowTOC' => !empty( $this->mTOCEnabled ),
 			'enableSectionEditLinks' => $this->mEditSectionTokens,
+			'deduplicateStyles' => true,
 		];
 		$text = $this->mText;
 
@@ -321,6 +328,30 @@ class ParserOutput extends CacheTime {
 			$text = preg_replace(
 				'#' . preg_quote( Parser::TOC_START, '#' ) . '.*?' . preg_quote( Parser::TOC_END, '#' ) . '#s',
 				'',
+				$text
+			);
+		}
+
+		if ( $options['deduplicateStyles'] ) {
+			$seen = [];
+			$text = preg_replace_callback(
+				'#<style\s+([^>]*data-mw-deduplicate\s*=[^>]*)>.*?</style>#s',
+				function ( $m ) use ( &$seen ) {
+					$attr = Sanitizer::decodeTagAttributes( $m[1] );
+					if ( !isset( $attr['data-mw-deduplicate'] ) ) {
+						return $m[0];
+					}
+
+					$key = $attr['data-mw-deduplicate'];
+					if ( !isset( $seen[$key] ) ) {
+						$seen[$key] = true;
+						return $m[0];
+					}
+
+					unset( $attr['data-mw-deduplicate'] );
+					$attr['data-mw-deduplicated'] = $key;
+					return Html::element( 'style', $attr, '' );
+				},
 				$text
 			);
 		}
