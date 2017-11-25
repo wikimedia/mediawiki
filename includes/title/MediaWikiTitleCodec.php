@@ -275,10 +275,11 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 			'user_case_dbkey' => $dbkey,
 		];
 
-		# Strip Unicode bidi override characters.
+		# Strip soft hyphens (U+00AD) and Unicode bidi override characters
+		# (U+200E, U+200F, U+202A. U+202B, U+202C, U+202D, U+202E).
 		# Sometimes they slip into cut-n-pasted page titles, where the
-		# override chars get included in list displays.
-		$dbkey = preg_replace( '/\xE2\x80[\x8E\x8F\xAA-\xAE]/S', '', $dbkey );
+		# soft hyphens or override chars get included in list displays.
+		$dbkey = preg_replace( '/\xC2\xAD|\xE2\x80[\x8E\x8F\xAA-\xAE]/S', '', $dbkey );
 
 		# Clean up whitespace
 		# Note: use of the /u option on preg_replace here will cause
