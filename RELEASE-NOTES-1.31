@@ -119,6 +119,8 @@ changes to languages because of Phabricator reports.
 * The Block class will no longer accept usable-but-missing usernames for
   'byText' or ->setBlocker(). Callers should either ensure the blocker exists
   locally or use a new interwiki-format username like "iw>Example".
+* Soft hyphens (U+00AD) are now automatically removed from titles; these
+  characters can accidentally end up in copy-and-pasted titles.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. There is experimental support for
