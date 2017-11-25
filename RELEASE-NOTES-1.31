@@ -186,6 +186,8 @@ changes to languages because of Phabricator reports.
 * The driver 'mysql' for MySQL, deprecated in MediaWiki 1.30, has been removed.
   The driver has been deprecated since PHP 5.5 and was removed in PHP 7.0. The
   default driver for MySQL has been 'mysqli' since MediaWiki 1.22.
+* Soft hyphens (U+00AD) are now automatically removed from titles; these
+  characters can accidentally end up in copy-and-pasted titles.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,
