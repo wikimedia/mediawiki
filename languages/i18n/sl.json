@@ -995,6 +995,7 @@
 	"recentchangesdays-max": "Največ $1 {{PLURAL:$1|dan|dneva|dnevi|dni}}",
 	"recentchangescount": "Privzeto število prikazanih urejanj:",
 	"prefs-help-recentchangescount": "Vključuje zadnje spremembe, zgodovine strani in dnevniške zapise.",
+	"prefs-help-tokenmanagement": "Lahko si ogledate ali ponastavite skrivni ključ vašega računa, s katerim lahko dostopate do spletnega vira vašega spiska nadzorov. Vsak, ki pozna vaš ključ, lahko bere vaš spisek nadzorov, zato ga ne delite.",
 	"savedprefs": "Spremembe smo uspešno shranili.",
 	"savedrights": "Uporabniške skupine {{GENDER:$1|$1}} smo shranili.",
 	"timezonelegend": "Časovni pas",
