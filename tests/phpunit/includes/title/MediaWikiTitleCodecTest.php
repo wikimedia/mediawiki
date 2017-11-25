@@ -138,6 +138,9 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 		return [
 			[ NS_MAIN, 'Foo_Bar', '', 'en', 'Foo Bar' ],
 			[ NS_USER, 'Hansi_Maier', 'stuff_and_so_on', 'en', 'Hansi Maier' ],
+			// Strip soft hyphen and Unicode bidi override characters
+			[ NS_MAIN, "Foo\xC2\xAD\xE2\x80\x8E\xE2\x80\x8F\xE2\x80\xAA\xE2\x80\xAB" .
+				"\xE2\x80\xAC\xE2\x80\xAD\xE2\x80\xAEbar", '', 'en', 'Foobar' ],
 		];
 	}
 
