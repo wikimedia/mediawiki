@@ -343,6 +343,8 @@ changes to languages because of Phabricator reports.
 * Wikimedia\Rdbms\SavepointPostgres is deprecated.
 * The DO_MAINTENANCE constant is deprecated. RUN_MAINTENANCE_IF_MAIN should be
   used instead.
+* Soft hyphens (U+00AD) are now automatically removed from titles; these
+  characters can accidentally end up in copy-and-pasted titles.
 
 === Other changes in 1.31 ===
 * Browser support for Internet Explorer 10 was lowered from Grade A to Grade C.
