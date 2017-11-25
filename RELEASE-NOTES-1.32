@@ -62,6 +62,8 @@ changes to languages because of Phabricator reports.
   configuration in LocalSettings.php.
 
 === Other changes in 1.32 ===
+* Soft hyphens (U+00AD) are now automatically removed from titles; these
+  characters can accidentally end up in copy-and-pasted titles.
 * …
 
 == Compatibility ==
