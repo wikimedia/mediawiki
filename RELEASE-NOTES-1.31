@@ -359,6 +359,8 @@ changes to languages because of Phabricator reports.
   wikitext table captions, wikitext table headings, wikitext table cells. HTML
   headings, HTML list items, HTML table captions, HTML table headings, HTML table cells
   will not have this trimming behavior.
+* Soft hyphens (U+00AD) are now automatically removed from titles; these
+  characters can accidentally end up in copy-and-pasted titles.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,
