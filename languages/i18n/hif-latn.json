@@ -18,7 +18,8 @@
 			"V6rg",
 			"C.R.",
 			"Smcnarayan",
-			"Vito Genovese"
+			"Vito Genovese",
+			"Maxí"
 		]
 	},
 	"tog-underline": "Jorr ke niche line khicho:",
@@ -989,7 +990,6 @@
 	"recentchangesdays-max": "(sab se jaada $1 {{PLURAL:$1|din|din}})",
 	"recentchangescount": "Default se ketnaa badlao ke dekhae ke chaahi:",
 	"prefs-help-recentchangescount": "Isme hai haali ke badlao, panna ke itihaas aur loga.",
-	"prefs-help-watchlist-token2": "Aap ke dhyan suchi ke web feed ke ii secret key hae.\nAur koi agar iske bare me jaane hae aap ke dhyan suchi ke parrhae sake hae, tab iske aur ki ke nai dena.\n[[Special:ResetTokens|Agar aap iske reset kare mangtaa hae tab hian pe click karo]].",
 	"savedprefs": "Aap ke pasand ke save kar lewa gais hai.",
 	"savedrights": "{{GENDER:$1|$1}} ke user group ke bachae lewa gais hai.",
 	"timezonelegend": "Time ke zone:",
@@ -1386,7 +1386,7 @@
 	"rcfilters-view-namespaces-tooltip": "Results ke namespace se filter karo",
 	"rcfilters-view-tags-tooltip": "Results ke, edit tags ke kaam me laae ke, filter karo",
 	"rcfilters-view-return-to-default-tooltip": "Main filter menu pe lauto",
-	"rcfilters-liveupdates-button": "Live updates",
+	"rcfilters-liveupdates-button": "Breytingar í beinni",
 	"rcnotefrom": "Niche {{PLURAL:$5|badlao hae|badlao hae}} <strong>$3, $4</strong> (<strong>$1</strong> talak dekhawa gais) talak.",
 	"rclistfromreset": "Taarik ke selection ke reset karo",
 	"rclistfrom": "$3 $2 se suruu kar ke nawaa badlao dekhao",

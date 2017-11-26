@@ -283,6 +283,7 @@
 	"apihelp-xml-summary": "使用 XML 格式輸出資料。",
 	"apihelp-xmlfm-summary": "使用 XML 格式輸出資料 (使用 HTML 格式顯示)。",
 	"api-format-title": "MediaWiki API 結果",
+	"api-format-prettyprint-header": "這是$1格式的HTML呈現。HTML適合用於除錯，但不適合應用程式使用。\n\n指定<var>format</var>參數以更改輸出格式。要檢視$1格式的非HTML呈現，設定<kbd>format=$2</kbd>。\n\n參考 [[mw:Special:MyLanguage/API|完整說明文件]] 或 [[Special:ApiHelp/main|API說明]] 以取得更多資訊。",
 	"api-pageset-param-titles": "要使用的標題清單。",
 	"api-pageset-param-pageids": "要使用的頁面 ID 清單。",
 	"api-pageset-param-revids": "要使用的修訂 ID 清單。",

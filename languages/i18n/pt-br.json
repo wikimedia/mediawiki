@@ -1449,7 +1449,7 @@
 	"rcfilters-filtergroup-userExpLevel": "Registro e experiência do usuário",
 	"rcfilters-filter-user-experience-level-registered-label": "Registrados",
 	"rcfilters-filter-user-experience-level-registered-description": "Editores registrados.",
-	"rcfilters-filter-user-experience-level-unregistered-label": "Não registados",
+	"rcfilters-filter-user-experience-level-unregistered-label": "Não registrados",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Editores que não estão autenticados.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Recém-chegados",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Editores registrados com menos de 10 edições ou 4 dias de atividade.",

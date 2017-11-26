@@ -878,6 +878,7 @@
 	"diff-multi-sameuser": "({{PLURAL:$1|Eng Tëscheversioun|$1 Tëscheversioune}} vun deemselwechte Benotzer net gewisen)",
 	"diff-multi-otherusers": "({{PLURAL:$1|Eng Tëscheversioun|$1 Tëscheversioune}} vun {{PLURAL:$2|engem anere|$2}} Benotzer {{PLURAL:$1|gëtt|ginn}} net gewisen)",
 	"diff-multi-manyusers": "({{PLURAL:$1|Eng Tëscheversioun|$1 Tëscheversioune}} vu méi wéi $2 {{PLURAL:$2|Benotzer|Benotzer}} ginn net gewisen)",
+	"diff-paragraph-moved-tonew": "Den Abschnitt gouf geréckelt. Klickt fir op déi nei Plaz ze sprangen.",
 	"difference-missing-revision": "{{PLURAL:$2|Eng Versioun|$2 Versioune}} vun dëser Differenz ($1) {{PLURAL:$2|gouf|goufen}} net fonnt.\n\nDat geschitt normalerweis wann Dir op e vereelste Link vun enger Versioun vun enger Säit klickt déi geläscht ginn ass.\nDetailer fannt Dir am [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Logbuch vum Läschen].",
 	"searchresults": "Resultat vum Sichen",
 	"searchresults-title": "Resultater vum Sichen no \"$1\"",
