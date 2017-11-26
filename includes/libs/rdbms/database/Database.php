@@ -85,6 +85,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $connLogger;
 	/** @var LoggerInterface */
 	protected $queryLogger;
+	/** @var LoggerInterface|null */
+	protected $explainLogger;
 	/** @var callback Error logging callback */
 	protected $errorLogger;
 
@@ -276,6 +278,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->trxProfiler = $params['trxProfiler'];
 		$this->connLogger = $params['connLogger'];
 		$this->queryLogger = $params['queryLogger'];
+		$this->explainLogger = isset( $params['explainLogger'] ) ? $params['explainLogger'] : null;
 		$this->errorLogger = $params['errorLogger'];
 
 		// Set initial dummy domain until open() sets the final DB/prefix
@@ -323,6 +326,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *      used to adjust lock timeouts or encoding modes and the like.
 	 *   - connLogger: Optional PSR-3 logger interface instance.
 	 *   - queryLogger: Optional PSR-3 logger interface instance.
+	 *   - explainLogger: Optional PSR-3 logger interface instance. When present, all appropriate
+	 *      queries will be EXPLAINed first and the output sent to this channel.
 	 *   - profiler: Optional class name or object with profileIn()/profileOut() methods.
 	 *      These will be called in query(), using a simplified version of the SQL that also
 	 *      includes the agent as a SQL comment.
@@ -804,7 +809,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * The DBMS-dependent part of query()
 	 *
 	 * @param string $sql SQL query.
-	 * @return ResultWrapper|bool Result object to feed to fetchObject,
+	 * @return ResultWrapper|resource|object|bool Result object to feed to fetchObject,
 	 *   fetchRow, ...; or false on failure
 	 */
 	abstract protected function doQuery( $sql );
@@ -842,6 +847,20 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return !in_array(
 			$this->getQueryVerb( $sql ),
 			[ 'BEGIN', 'COMMIT', 'ROLLBACK', 'SHOW', 'SET', 'CREATE', 'ALTER' ],
+			true
+		);
+	}
+
+	/**
+	 * Determine whether EXPLAIN works with this query.
+	 *
+	 * @param string $sql
+	 * @return bool
+	 */
+	protected function isExplainableQuery( $sql ) {
+		return in_array(
+			$this->getQueryVerb( $sql ),
+			[ 'SELECT', 'INSERT', 'UPDATE', 'REPLACE', 'DELETE' ],
 			true
 		);
 	}
@@ -997,6 +1016,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *     object for a successful read query, or false on failure
 	 */
 	private function doProfiledQuery( $sql, $commentedSql, $isWrite, $fname ) {
+		if ( $this->explainLogger && $this->isExplainableQuery( $sql ) ) {
+			$res = $this->doQuery( "EXPLAIN $commentedSql" );
+			if ( $res !== false ) {
+				$explain = $this->formatResult( $res );
+				$this->freeResult( $res );
+				$this->explainLogger->info( "$commentedSql\n$explain", [
+					'caller' => $fname,
+				] );
+			}
+		}
+
 		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
 		# generalizeSQL() will probably cut down the query to reasonable
 		# logging size most of the time. The substr is really just a sanity check.
@@ -3694,6 +3724,57 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		return $this->mConn;
+	}
+
+	/**
+	 * Formats a database result set in a similar way to DB clients. This is meant as a
+	 * convenience for debugging/logging.
+	 * @param mixed|false $res Query result as returned by doQuery().
+	 * @return string
+	 */
+	protected function formatResult( $res ) {
+		if ( $res === false || $this->numRows( $res ) === 0 ) {
+			return '';
+		}
+
+		$data = [];
+		while ( $row = $this->fetchObject( $res ) ) {
+			$data[] = (array)$row;
+		}
+
+		$lengths = $header = [];
+		foreach ( $data[0] as $columnName => $_ ) {
+			$lengths[$columnName] = max( strlen( $columnName ),
+				max( array_map( 'strlen', array_column( $data, $columnName ) ) ) );
+			$header[$columnName] = $columnName;
+		}
+
+		$explain = $this->formatResultRow( null, $lengths ) . PHP_EOL
+			. $this->formatResultRow( $header, $lengths ) . PHP_EOL
+			. $this->formatResultRow( null, $lengths ) . PHP_EOL;
+		foreach ( $data as $row ) {
+			$explain .= $this->formatResultRow( $row, $lengths ) . PHP_EOL;
+		}
+		$explain .= $this->formatResultRow( null, $lengths ) . PHP_EOL;
+		return $explain;
+	}
+
+	/**
+	 * Helper method for formatResult().
+	 * @param array|null $row Row data, or null for a separator row.
+	 * @param array $lengths Column lengths.
+	 * @return string
+	 */
+	protected function formatResultRow( $row, array $lengths ) {
+		$rowText = $row ? '|' : '+';
+		foreach ( $lengths as $columnName => $length ) {
+			if ( $row ) {
+				$rowText .= ' ' . str_pad( $row[$columnName], $length + 1 ) . '|';
+			} else {
+				$rowText .= str_pad( '', $length + 2, '-' ) . '+';
+			}
+		}
+		return $rowText;
 	}
 
 	/**
