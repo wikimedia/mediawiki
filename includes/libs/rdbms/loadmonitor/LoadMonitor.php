@@ -45,9 +45,22 @@ class LoadMonitor implements ILoadMonitor {
 
 	/** @var float Moving average ratio (e.g. 0.1 for 10% weight to new weight) */
 	private $movingAveRatio;
+	/** @var int Amount of replication lag in seconds before warnings are logged */
+	private $lagWarnThreshold;
 
-	const VERSION = 1; // cache key version
+	/** @var int cache key version */
+	const VERSION = 1;
+	/** @var int Default 'max lag' in seconds when unspecified */
+	const LAG_WARN_THRESHOLD = 10;
 
+	/**
+	 * @param ILoadBalancer $lb
+	 * @param BagOStuff $srvCache
+	 * @param WANObjectCache $wCache
+	 * @param array $options
+	 *   - movingAveRatio: moving average constant for server weight updates based on lag
+	 *   - lagWarnThreshold: how many seconds of lag trigger warnings
+	 */
 	public function __construct(
 		ILoadBalancer $lb, BagOStuff $srvCache, WANObjectCache $wCache, array $options = []
 	) {
@@ -59,6 +72,9 @@ class LoadMonitor implements ILoadMonitor {
 		$this->movingAveRatio = isset( $options['movingAveRatio'] )
 			? $options['movingAveRatio']
 			: 0.1;
+		$this->lagWarnThreshold = isset( $options['lagWarnThreshold'] )
+			? $options['lagWarnThreshold']
+			: self::LAG_WARN_THRESHOLD;
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -159,9 +175,10 @@ class LoadMonitor implements ILoadMonitor {
 			// Scale from 10% to 100% of nominal weight
 			$weightScales[$i] = max( $newWeight, 0.10 );
 
+			$host = $this->parent->getServerName( $i );
+
 			if ( !$conn ) {
 				$lagTimes[$i] = false;
-				$host = $this->parent->getServerName( $i );
 				$this->replLogger->error(
 					__METHOD__ . ": host {db_server} is unreachable",
 					[ 'db_server' => $host ]
@@ -174,10 +191,18 @@ class LoadMonitor implements ILoadMonitor {
 			} else {
 				$lagTimes[$i] = $conn->getLag();
 				if ( $lagTimes[$i] === false ) {
-					$host = $this->parent->getServerName( $i );
 					$this->replLogger->error(
 						__METHOD__ . ": host {db_server} is not replicating?",
 						[ 'db_server' => $host ]
+					);
+				} elseif ( $lagTimes[$i] > $this->lagWarnThreshold ) {
+					$this->replLogger->error(
+						"Server {host} has {lag} seconds of lag (>= {maxlag})",
+						[
+							'host' => $host,
+							'lag' => $lagTimes[$i],
+							'maxlag' => $this->lagWarnThreshold
+						]
 					);
 				}
 			}
