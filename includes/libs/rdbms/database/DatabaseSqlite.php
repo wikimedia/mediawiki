@@ -302,6 +302,11 @@ class DatabaseSqlite extends Database {
 		return parent::isWriteQuery( $sql ) && !preg_match( '/^(ATTACH|PRAGMA)\b/i', $sql );
 	}
 
+	/** @inheritDoc */
+	protected function explainQuery( $sql ) {
+		return $this->doQuery( "EXPLAIN QUERY PLAN $sql" );
+	}
+
 	/**
 	 * SQLite doesn't allow buffered results or data seeking etc, so we'll use fetchAll as the result
 	 *
