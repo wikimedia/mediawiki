@@ -73,6 +73,8 @@ class LoadBalancer implements ILoadBalancer {
 	protected $connLogger;
 	/** @var LoggerInterface */
 	protected $queryLogger;
+	/** @var LoggerInterface|null */
+	protected $explainLogger;
 	/** @var LoggerInterface */
 	protected $perfLogger;
 
@@ -224,7 +226,7 @@ class LoadBalancer implements ILoadBalancer {
 			: function ( Exception $e ) {
 				trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 			};
-
+		$this->explainLogger = isset( $params['explainLogger'] ) ? $params['explainLogger'] : null;
 		foreach ( [ 'replLogger', 'connLogger', 'queryLogger', 'perfLogger' ] as $key ) {
 			$this->$key = isset( $params[$key] ) ? $params[$key] : new NullLogger();
 		}
@@ -1008,6 +1010,7 @@ class LoadBalancer implements ILoadBalancer {
 		// Set loggers and profilers
 		$server['connLogger'] = $this->connLogger;
 		$server['queryLogger'] = $this->queryLogger;
+		$server['explainLogger'] = $this->explainLogger;
 		$server['errorLogger'] = $this->errorLogger;
 		$server['profiler'] = $this->profiler;
 		$server['trxProfiler'] = $this->trxProfiler;

@@ -6106,6 +6106,11 @@ $wgDebugComments = false;
 $wgDebugDumpSql = false;
 
 /**
+ * Run EXPLAIN on all queries and log the output to the DBExplain channel.
+ */
+$wgDebugExplainSql = false;
+
+/**
  * Performance expectations for DB usage
  *
  * @since 1.26

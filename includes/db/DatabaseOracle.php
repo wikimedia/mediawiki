@@ -184,6 +184,12 @@ class DatabaseOracle extends Database {
 		return oci_close( $this->mConn );
 	}
 
+	/** @inheritDoc */
+	protected function explainQuery( $sql ) {
+		// TODO use EXPLAIN PLAN FOR
+		return false;
+	}
+
 	function execFlags() {
 		return $this->mTrxLevel ? OCI_NO_AUTO_COMMIT : OCI_COMMIT_ON_SUCCESS;
 	}

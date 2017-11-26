@@ -1,11 +1,14 @@
 <?php
 
+use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\TestingAccessWrapper;
 
 class DatabaseTest extends PHPUnit_Framework_TestCase {
+	/** @var DatabaseTestHelper */
+	protected $db;
 
 	protected function setUp() {
 		$this->db = new DatabaseTestHelper( __CLASS__ . '::' . $this->getName() );
@@ -463,5 +466,24 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( 'xxx', $this->db->dbSchema(), "Schema set" );
 		$this->db->dbSchema( $old );
 		$this->assertNotEquals( 'xxx', $this->db->dbSchema() );
+	}
+
+	public function testFormatResult() {
+		$wrapper = TestingAccessWrapper::newFromObject( $this->db );
+		$result = new FakeResultWrapper( [
+			[ 'c' => 'value1', 'longColumn' => 'v2' ],
+			[ 'c' => 'v3', 'longColumn' => 'value4' ],
+		] );
+		$actualOutput = $wrapper->formatResult( $result );
+		$expectedOutput = <<<RESULT
++--------+------------+
+| c      | longColumn |
++--------+------------+
+| value1 | v2         |
+| v3     | value4     |
++--------+------------+
+
+RESULT;
+		$this->assertEquals( $expectedOutput, $actualOutput );
 	}
 }

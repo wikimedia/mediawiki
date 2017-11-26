@@ -53,6 +53,8 @@ interface ILBFactory {
 	 *  - replLogger: PSR-3 logger instance. [optional]
 	 *  - connLogger: PSR-3 logger instance. [optional]
 	 *  - queryLogger: PSR-3 logger instance. [optional]
+	 *  - explainLogger: PSR-3 logger interface instance. When present, all appropriate
+	 *     queries will be EXPLAINed first and the output sent to this channel. [optional]
 	 *  - perfLogger: PSR-3 logger instance. [optional]
 	 *  - errorLogger : Callback that takes an Exception and logs it. [optional]
 	 * @throws InvalidArgumentException

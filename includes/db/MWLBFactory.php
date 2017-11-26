@@ -60,6 +60,9 @@ abstract class MWLBFactory {
 			'hostname' => wfHostname(),
 			'readOnlyReason' => $readOnlyMode->getReason(),
 		];
+		if ( $mainConfig->get( 'DebugExplainSql' ) ) {
+			$lbConf['explainLogger'] = LoggerFactory::getInstance( 'DBExplain' );
+		}
 
 		// When making changes here, remember to also specify MediaWiki-specific options
 		// for Database classes in the relevant Installer subclass.

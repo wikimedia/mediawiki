@@ -150,6 +150,12 @@ class DatabaseMssql extends Database {
 		}
 	}
 
+	/** @inheritDoc */
+	protected function explainQuery( $sql ) {
+		// TODO use SHOWPLAN_ALL
+		return false;
+	}
+
 	/**
 	 * @param string $sql
 	 * @return bool|MssqlResultWrapper|resource
