@@ -48,6 +48,8 @@ abstract class LBFactory implements ILBFactory {
 	protected $connLogger;
 	/** @var LoggerInterface */
 	protected $queryLogger;
+	/** @var LoggerInterface|null */
+	protected $explainLogger;
 	/** @var LoggerInterface */
 	protected $perfLogger;
 	/** @var callable Error logger */
@@ -106,6 +108,7 @@ abstract class LBFactory implements ILBFactory {
 			: function ( Exception $e ) {
 				trigger_error( E_USER_WARNING, get_class( $e ) . ': ' . $e->getMessage() );
 			};
+		$this->explainLogger = isset( $conf['explainLogger'] ) ? $conf['explainLogger'] : null;
 
 		$this->profiler = isset( $conf['profiler'] ) ? $conf['profiler'] : null;
 		$this->trxProfiler = isset( $conf['trxProfiler'] )
@@ -504,6 +507,7 @@ abstract class LBFactory implements ILBFactory {
 			'profiler' => $this->profiler,
 			'trxProfiler' => $this->trxProfiler,
 			'queryLogger' => $this->queryLogger,
+			'explainLogger' => $this->explainLogger,
 			'connLogger' => $this->connLogger,
 			'replLogger' => $this->replLogger,
 			'errorLogger' => $this->errorLogger,
