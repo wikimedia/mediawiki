@@ -266,6 +266,46 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 		$v = $cache->getWithSetCallback( $key, 30, $func, [ 'pcTTL' => 5 ] + $extOpts );
 		$this->assertEquals( $value, $v, "Value still returned after deleted" );
 		$this->assertEquals( 1, $wasSet, "Value process cached while deleted" );
+
+		$backToTheFutureCache = new TimeAdjustableWANObjectCache( [
+			'cache'   => new TimeAdjustableHashBagOStuff(),
+			'pool'    => 'empty'
+		] );
+
+		$oldValReceived = -1;
+		$oldAsOfReceived = -1;
+		$checkFunc = function ( $oldVal, &$ttl, array $setOpts, $oldAsOf )
+		use ( &$oldValReceived, &$oldAsOfReceived, &$wasSet ) {
+			++$wasSet;
+			$oldValReceived = $oldVal;
+			$oldAsOfReceived = $oldAsOf;
+
+			return 'xxx' . $wasSet;
+		};
+
+		$wasSet = 0;
+		$key = wfRandomString();
+		$v = $backToTheFutureCache->getWithSetCallback(
+			$key, 30, $checkFunc, [ 'staleTTL' => 50 ] + $extOpts );
+		$this->assertEquals( 'xxx1', $v, "Value returned" );
+		$this->assertEquals( false, $oldValReceived, "Callback got no stale value" );
+		$this->assertEquals( null, $oldAsOfReceived, "Callback got no stale value" );
+
+		$backToTheFutureCache->setTime( microtime( true ) + 40 );
+		$v = $backToTheFutureCache->getWithSetCallback(
+			$key, 30, $checkFunc, [ 'staleTTL' => 50 ] + $extOpts );
+		$this->assertEquals( 'xxx2', $v, "Value still returned after expired" );
+		$this->assertEquals( 2, $wasSet, "Value recalculated while expired" );
+		$this->assertEquals( 'xxx1', $oldValReceived, "Callback got stale value" );
+		$this->assertNotEquals( null, $oldAsOfReceived, "Callback got stale value" );
+
+		$backToTheFutureCache->setTime( microtime( true ) + 300 );
+		$v = $backToTheFutureCache->getWithSetCallback(
+			$key, 30, $checkFunc, [ 'staleTTL' => 50 ] + $extOpts );
+		$this->assertEquals( 'xxx3', $v, "Value still returned after expired" );
+		$this->assertEquals( 3, $wasSet, "Value recalculated while expired" );
+		$this->assertEquals( false, $oldValReceived, "Callback got no stale value" );
+		$this->assertEquals( null, $oldAsOfReceived, "Callback got no stale value" );
 	}
 
 	public static function getWithSetCallback_provider() {
