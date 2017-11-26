@@ -613,20 +613,22 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * on all keys that should be changed. When get() is called on those
 	 * keys, the relevant "check" keys must be supplied for this to work.
 	 *
-	 * The "check" key essentially represents a last-modified field.
-	 * When touched, the field will be updated on all cache servers.
-	 * Keys using it via get(), getMulti(), or getWithSetCallback() will
-	 * be invalidated. It is treated as being HOLDOFF_TTL seconds in the future
-	 * by those methods to avoid race conditions where dependent keys get updated
-	 * with stale values (e.g. from a DB replica DB).
+	 * The "check" key essentially represents a last-modified time of an entity.
+	 * When the key is touched, the timestamp will be updated to the current time.
+	 * Keys using the "check" key via get(), getMulti(), or getWithSetCallback() will
+	 * be invalidated. The timestamp of "check" is treated as being HOLDOFF_TTL seconds
+	 * in the future by get*() methods in order to avoid race conditions where keys are
+	 * updated with stale values (e.g. from a DB replica DB).
 	 *
-	 * This is typically useful for keys with hardcoded names or in some cases
-	 * dynamically generated names where a low number of combinations exist.
-	 * When a few important keys get a large number of hits, a high cache
-	 * time is usually desired as well as "lockTSE" logic. The resetCheckKey()
-	 * method is less appropriate in such cases since the "time since expiry"
-	 * cannot be inferred, causing any get() after the reset to treat the key
-	 * as being "hot", resulting in more stale value usage.
+	 * This method is typically useful for keys with hardcoded names or in some cases
+	 * dynamically generated names, provided the number of such keys is modest. It sets a
+	 * high TTL on the "check" key, making it possible to know the timestamp of the last
+	 * change to the corresponding entities in most cases.
+	 *
+	 * When a few important keys get a large number of hits, a high cache time is usually
+	 * desired as well as "lockTSE" logic. The resetCheckKey() method is less appropriate
+	 * in such cases since the "time since expiry" cannot be inferred, causing any get()
+	 * after the reset to treat the key as being "hot", resulting in more stale value usage.
 	 *
 	 * Note that "check" keys won't collide with other regular keys.
 	 *
@@ -657,12 +659,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *        to, any temporary ejection of that server will cause the value to be
 	 *        seen as purged as a new server will initialize the "check" key.
 	 *
-	 * The advantage is that this does not place high TTL keys on every cache
-	 * server, making it better for code that will cache many different keys
-	 * and either does not use lockTSE or uses a low enough TTL anyway.
-	 *
-	 * This is typically useful for keys with dynamically generated names
-	 * where a high number of combinations exist.
+	 * The advantage here is that the "check" keys, which have high TTLs, will only
+	 * be created when a get*() method actually uses that key. This is better when
+	 * a large number of "check" keys are invalided in a short period of time.
 	 *
 	 * Note that "check" keys won't collide with other regular keys.
 	 *
