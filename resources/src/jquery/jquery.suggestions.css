@@ -40,7 +40,6 @@
 	text-align: left;
 	/* Apply ellipsis to suggestions */
 	overflow: hidden;
-	-o-text-overflow: ellipsis; /* Opera 9 to 10 */
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
