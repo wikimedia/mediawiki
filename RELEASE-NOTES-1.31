@@ -26,6 +26,7 @@ production.
 === External library changes in 1.31 ===
 
 ==== Upgraded external libraries ====
+* Updated jquery.chosen from v0.9.14 to v1.8.2.
 * …
 
 ==== New external libraries ====
