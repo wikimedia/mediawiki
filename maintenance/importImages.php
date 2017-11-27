@@ -299,7 +299,7 @@ class ImportImages extends Maintenance {
 						" publishing {$file} by '{$wgUser->getName()}', comment '$commentText'... "
 					);
 				} else {
-					$mwProps = new MWFileProps( MimeMagic::singleton() );
+					$mwProps = new MWFileProps( MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer() );
 					$props = $mwProps->getPropsFromPath( $file, true );
 					$flags = 0;
 					$publishOptions = [];

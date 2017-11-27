@@ -30,9 +30,9 @@ class MWFileProps {
 	private $magic;
 
 	/**
-	 * @param MimeMagic $magic
+	 * @param MimeAnalyzer $magic
 	 */
-	public function __construct( MimeMagic $magic ) {
+	public function __construct( MimeAnalyzer $magic ) {
 		$this->magic = $magic;
 	}
 

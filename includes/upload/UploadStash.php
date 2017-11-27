@@ -218,7 +218,7 @@ class UploadStash {
 			);
 		}
 
-		$mwProps = new MWFileProps( MimeMagic::singleton() );
+		$mwProps = new MWFileProps( MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer() );
 		$fileProps = $mwProps->getPropsFromPath( $path, true );
 		wfDebug( __METHOD__ . " stashing file at '$path'\n" );
 
@@ -490,9 +490,9 @@ class UploadStash {
 			$extension = $n ? substr( $path, $n + 1 ) : '';
 		} else {
 			// If not, assume that it should be related to the MIME type of the original file.
-			$magic = MimeMagic::singleton();
+			$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
 			$mimeType = $magic->guessMimeType( $path );
-			$extensions = explode( ' ', MimeMagic::singleton()->getExtensionsForType( $mimeType ) );
+			$extensions = explode( ' ', $magic->getExtensionsForType( $mimeType ) );
 			if ( count( $extensions ) ) {
 				$extension = $extensions[0];
 			}

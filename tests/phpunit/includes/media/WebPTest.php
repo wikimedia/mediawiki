@@ -123,7 +123,7 @@ class WebPHandlerTest extends MediaWikiTestCase {
 	 * @dataProvider provideTestGetMimeType
 	 */
 	public function testGuessMimeType( $path ) {
-		$mime = MimeMagic::singleton();
+		$mime = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
 		$this->assertEquals( 'image/webp', $mime->guessMimeType( $path, false ) );
 	}
 	public function provideTestGetMimeType() {
