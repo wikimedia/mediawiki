@@ -137,6 +137,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	const HOLDOFF_NONE = 0;
 	/** Idiom for set()/getWithSetCallback() for "do not augment the storage medium TTL" */
 	const STALE_TTL_NONE = 0;
+	/** Idiom for set()/getWithSetCallback() for "no post-expired grace period" */
+	const GRACE_TTL_NONE = 0;
 
 	/** Idiom for getWithSetCallback() for "no minimum required as-of timestamp" */
 	const MIN_TIMESTAMP_NONE = 0.0;
@@ -820,6 +822,12 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *   - checkKeys: List of "check" keys. The key at $key will be seen as invalid when either
 	 *      touchCheckKey() or resetCheckKey() is called on any of these keys.
 	 *      Default: [].
+	 *   - graceTTL: Consider reusing expired values instead of refreshing them if they expired
+	 *      less than this many seconds ago. The odds of a refresh becomes more likely over time,
+	 *      becoming certain once the grace period is reached. This can reduce traffic spikes
+	 *      when millions of keys are compared to the same "check" key and touchCheckKey()
+	 *      or resetCheckKey() is called on that "check" key.
+	 *      Default: WANObjectCache::GRACE_TTL_NONE.
 	 *   - lockTSE: If the key is tombstoned or expired (by checkKeys) less than this many seconds
 	 *      ago, then try to have a single thread handle cache regeneration at any given time.
 	 *      Other threads will try to use stale values if possible. If, on miss, the time since
@@ -854,13 +862,13 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *      This is useful if the source of a key is suspected of having possibly changed
 	 *      recently, and the caller wants any such changes to be reflected.
 	 *      Default: WANObjectCache::MIN_TIMESTAMP_NONE.
-	 *   - hotTTR: Expected time-till-refresh (TTR) for keys that average ~1 hit/second (1 Hz).
-	 *      Keys with a hit rate higher than 1Hz will refresh sooner than this TTR and vise versa.
-	 *      Such refreshes won't happen until keys are "ageNew" seconds old. The TTR is useful at
-	 *      reducing the impact of missed cache purges, since the effect of a heavily referenced
-	 *      key being stale is worse than that of a rarely referenced key. Unlike simply lowering
-	 *      $ttl, seldomly used keys are largely unaffected by this option, which makes it possible
-	 *      to have a high hit rate for the "long-tail" of less-used keys.
+	 *   - hotTTR: Expected time-till-refresh (TTR) in seconds for keys that average ~1 hit per
+	 *      second (e.g. 1Hz). Keys with a hit rate higher than 1Hz will refresh sooner than this
+	 *      TTR and vise versa. Such refreshes won't happen until keys are "ageNew" seconds old.
+	 *      The TTR is useful at reducing the impact of missed cache purges, since the effect of
+	 *      a heavily referenced key being stale is worse than that of a rarely referenced key.
+	 *      Unlike simply lowering $ttl, seldomly used keys are largely unaffected by this option,
+	 *      which makes it possible to have a high hit rate for the "long-tail" of less-used keys.
 	 *      Default: WANObjectCache::HOT_TTR.
 	 *   - lowTTL: Consider pre-emptive updates when the current TTL (seconds) of the key is less
 	 *      than this. It becomes more likely over time, becoming certain once the key is expired.
@@ -962,6 +970,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$lowTTL = isset( $opts['lowTTL'] ) ? $opts['lowTTL'] : min( self::LOW_TTL, $ttl );
 		$lockTSE = isset( $opts['lockTSE'] ) ? $opts['lockTSE'] : self::TSE_NONE;
 		$staleTTL = isset( $opts['staleTTL'] ) ? $opts['staleTTL'] : self::STALE_TTL_NONE;
+		$graceTTL = isset( $opts['graceTTL'] ) ? $opts['graceTTL'] : self::GRACE_TTL_NONE;
 		$checkKeys = isset( $opts['checkKeys'] ) ? $opts['checkKeys'] : [];
 		$busyValue = isset( $opts['busyValue'] ) ? $opts['busyValue'] : null;
 		$popWindow = isset( $opts['hotTTR'] ) ? $opts['hotTTR'] : self::HOT_TTR;
@@ -980,7 +989,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$preCallbackTime = $this->getCurrentTime();
 		// Determine if a cached value regeneration is needed or desired
 		if ( $value !== false
-			&& $curTTL > 0
+			&& $this->isAliveOrInGracePeriod( $curTTL, $graceTTL )
 			&& $this->isValid( $value, $versioned, $asOf, $minTime )
 			&& !$this->worthRefreshExpiring( $curTTL, $lowTTL )
 			&& !$this->worthRefreshPopular( $asOf, $ageNew, $popWindow, $preCallbackTime )
@@ -1632,12 +1641,39 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
+	 * Check if a key is fresh or in the grace window and thus due for randomized reuse
+	 *
+	 * If $curTTL > 0 (e.g. not expired) this returns true. Otherwise, the chance of returning
+	 * true decrease steadily from 100% to 0% as the |$curTTL| moves from 0 to $graceTTL seconds.
+	 * This handles widely varying levels of cache access traffic.
+	 *
+	 * If $curTTL <= -$graceTTL (e.g. already expired), then this returns false.
+	 *
+	 * @param float $curTTL Approximate TTL left on the key if present
+	 * @param integer $graceTTL Consider using stale values if $curTTL is greater than this
+	 * @return bool
+	 */
+	protected function isAliveOrInGracePeriod( $curTTL, $graceTTL ) {
+		if ( $curTTL > 0 ) {
+			return true;
+		} elseif ( $graceTTL <= 0 ) {
+			return false;
+		}
+
+		$ageStale = abs( $curTTL ); // seconds of staleness
+		$curGTTL = ( $graceTTL - $ageStale ); // current grace-time-to-live
+
+		return !$this->worthRefreshExpiring( $curGTTL, $graceTTL );
+	}
+
+	/**
 	 * Check if a key is nearing expiration and thus due for randomized regeneration
 	 *
-	 * This returns false if $curTTL >= $lowTTL. Otherwise, the chance
-	 * of returning true increases steadily from 0% to 100% as the $curTTL
-	 * moves from $lowTTL to 0 seconds. This handles widely varying
-	 * levels of cache access traffic.
+	 * This returns false if $curTTL >= $lowTTL. Otherwise, the chance of returning true
+	 * increases steadily from 0% to 100% as the $curTTL moves from $lowTTL to 0 seconds.
+	 * This handles widely varying levels of cache access traffic.
+	 *
+	 * If $curTTL <= 0 (e.g. already expired), then this returns false.
 	 *
 	 * @param float $curTTL Approximate TTL left on the key if present
 	 * @param float $lowTTL Consider a refresh when $curTTL is less than this
