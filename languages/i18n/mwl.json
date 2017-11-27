@@ -527,7 +527,6 @@
 	"recentchangesdays-max": "Mássimo: $1 {{PLURAL:$1|die|dies}}",
 	"recentchangescount": "Númaro d'eidiçones a apersentar por omisson:",
 	"prefs-help-recentchangescount": "Anclui mudanças recentes, stórico de páiginas i registros.",
-	"prefs-help-watchlist-token2": "Esta ye la chabe secreta pa l ''feed'' RSS de la sue lhista de páiginas begiadas.\nQualquiera pessona que coinça la chabe será capaç de lher la sue lhista de páiginas begiadas, por esso nun la dibulgue.\n[[Special:ResetTokens|Clique eiqui pa redefenir eilha]].",
 	"timezonelegend": "Fuso hourário:",
 	"localtime": "Hora lhocal:",
 	"timezoneuseoffset": "Outro (specificar defréncia)",
