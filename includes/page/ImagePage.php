@@ -287,10 +287,13 @@ class ImagePage extends Article {
 
 	private function getLanguageForRendering( WebRequest $request, File $file ) {
 		$handler = $this->displayImg->getHandler();
+		if ( !$handler ) {
+			return null;
+		}
 
 		$requestLanguage = $request->getVal( 'lang' );
 		if ( !is_null( $requestLanguage ) ) {
-			if ( $handler && $handler->validateParam( 'lang', $requestLanguage ) ) {
+			if ( $handler->validateParam( 'lang', $requestLanguage ) ) {
 				return $requestLanguage;
 			}
 		}
