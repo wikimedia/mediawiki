@@ -38,8 +38,6 @@
 .background-image-svg( @svg, @fallback ) {
 	background-image: url( @fallback );
 	background-image: linear-gradient( transparent, transparent ), e( '/* @embed */' ) url( @svg );
-	// Do not serve SVG to Opera 12, bad rendering with border-radius or background-size (T87504)
-	background-image: -o-linear-gradient( transparent, transparent ), url( @fallback );
 }
 
 // Shorthand for background-image-svg. Use if your PNG and SVG have the same name
