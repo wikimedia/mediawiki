@@ -899,25 +899,17 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 				$cur = $this->doGetWithSetCallback(
 					$key,
 					$ttl,
-					function ( $oldValue, &$ttl, &$setOpts, $oldAsOf )
-					use ( $callback, $version ) {
-						if ( is_array( $oldValue )
-							&& array_key_exists( self::VFLD_DATA, $oldValue )
-						) {
-							$oldData = $oldValue[self::VFLD_DATA];
-						} else {
-							// VFLD_DATA is not set if an old, unversioned, key is present
-							$oldData = false;
-						}
-
+					function ( $oldValue, &$ttl, &$setOpts ) use ( $callback, $version ) {
+						// Do not send an old version value to a newer version callback
 						return [
-							self::VFLD_DATA => $callback( $oldData, $ttl, $setOpts, $oldAsOf ),
+							self::VFLD_DATA => $callback( false, $ttl, $setOpts, null ),
 							self::VFLD_VERSION => $version
 						];
 					},
 					$opts,
 					$asOf
 				);
+
 				if ( $cur[self::VFLD_VERSION] === $version ) {
 					// Value created or existed before with version; use it
 					$value = $cur[self::VFLD_DATA];
