@@ -616,14 +616,13 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * The "check" key essentially represents a last-modified time of an entity.
 	 * When the key is touched, the timestamp will be updated to the current time.
 	 * Keys using the "check" key via get(), getMulti(), or getWithSetCallback() will
-	 * be invalidated. The timestamp of "check" is treated as being HOLDOFF_TTL seconds
-	 * in the future by get*() methods in order to avoid race conditions where keys are
-	 * updated with stale values (e.g. from a DB replica DB).
+	 * be invalidated. This approach is useful if many keys depend on a single entity.
 	 *
-	 * This method is typically useful for keys with hardcoded names or in some cases
-	 * dynamically generated names, provided the number of such keys is modest. It sets a
-	 * high TTL on the "check" key, making it possible to know the timestamp of the last
-	 * change to the corresponding entities in most cases.
+	 * The timestamp of the "check" key is treated as being HOLDOFF_TTL seconds in the
+	 * future by get*() methods in order to avoid race conditions where keys are updated
+	 * with stale values (e.g. from a lagged replica DB). A high TTL is set on the "check"
+	 * key, making it possible to know the timestamp of the last change to the corresponding
+	 * entities in most cases. This might use more cache space than resetCheckKey().
 	 *
 	 * When a few important keys get a large number of hits, a high cache time is usually
 	 * desired as well as "lockTSE" logic. The resetCheckKey() method is less appropriate
@@ -813,12 +812,14 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 * @param string $key Cache key made from makeKey() or makeGlobalKey()
 	 * @param int $ttl Seconds to live for key updates. Special values are:
-	 *   - WANObjectCache::TTL_INDEFINITE: Cache forever
-	 *   - WANObjectCache::TTL_UNCACHEABLE: Do not cache at all
+	 *   - WANObjectCache::TTL_INDEFINITE: Cache forever (subject to LRU-style evictions)
+	 *   - WANObjectCache::TTL_UNCACHEABLE: Do not cache (if the key exists, it is not deleted)
 	 * @param callable $callback Value generation function
 	 * @param array $opts Options map:
 	 *   - checkKeys: List of "check" keys. The key at $key will be seen as invalid when either
-	 *      touchCheckKey() or resetCheckKey() is called on any of these keys.
+	 *      touchCheckKey() or resetCheckKey() is called on any of the keys in this list. This
+	 *      is useful if thousands or millions of keys depend on the same entity. The entity can
+	 *      simply have its "check" key updated whenever the entity is modified.
 	 *      Default: [].
 	 *   - lockTSE: If the key is tombstoned or expired (by checkKeys) less than this many seconds
 	 *      ago, then try to have a single thread handle cache regeneration at any given time.
@@ -856,14 +857,16 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *      Default: WANObjectCache::MIN_TIMESTAMP_NONE.
 	 *   - hotTTR: Expected time-till-refresh (TTR) for keys that average ~1 hit/second (1 Hz).
 	 *      Keys with a hit rate higher than 1Hz will refresh sooner than this TTR and vise versa.
-	 *      Such refreshes won't happen until keys are "ageNew" seconds old. The TTR is useful at
-	 *      reducing the impact of missed cache purges, since the effect of a heavily referenced
-	 *      key being stale is worse than that of a rarely referenced key. Unlike simply lowering
-	 *      $ttl, seldomly used keys are largely unaffected by this option, which makes it possible
-	 *      to have a high hit rate for the "long-tail" of less-used keys.
+	 *      Such refreshes won't happen until keys are "ageNew" seconds old. This also uses
+	 *      randomization to avoid triggering stampedes. The TTR is useful at reducing the impact
+	 *      of missed cache purges, since the effect of a heavily referenced key being stale is
+	 *      worse than that of a rarely referenced key. Unlike simply lowering $ttl, seldomly
+	 *      used keys are largely unaffected by this option, which makes it possible to have a
+	 *      high hit rate for the "long-tail" of less-used keys.
 	 *      Default: WANObjectCache::HOT_TTR.
 	 *   - lowTTL: Consider pre-emptive updates when the current TTL (seconds) of the key is less
 	 *      than this. It becomes more likely over time, becoming certain once the key is expired.
+	 *      This helps avoid stampedes that might be triggered due to the key expiring.
 	 *      Default: WANObjectCache::LOW_TTL.
 	 *   - ageNew: Consider popularity refreshes only once a key reaches this age in seconds.
 	 *      Default: WANObjectCache::AGE_NEW.
