@@ -2,6 +2,45 @@ Change notes from older releases. For current info see RELEASE-NOTES-1.30.
 
 = MediaWiki 1.29 =
 
+== MediaWiki 1.29.2 ==
+
+This is a security and maintenance release of the MediaWiki 1.29 branch.
+
+=== Changes since 1.29.1 ===
+* (T166757) Avoid scoped lock errors in Category::refreshCounts() due to nesting.
+* (T175439) Unbreak Postgres Updater when setting defaults for a column.
+* (T160298) Remove use of implicitGroupBy() in ActiveUsersPager.
+* Fixed login button label to accept RawMessage.
+* Fixed case of SpecialRecentChanges class usage.
+* (T174255) Declare uploadCount property in importDump.php.
+* (T163646) Pass a string not an int to mysql_real_escape_string().
+* (T180143) Bump justinrainbow/json-schema development dependency to ~5.2.
+* Updated dev dependancy phpunit/phpunit from v4.8.35 to v4.8.36.
+* (T178451) SECURITY: Potential XSS when $wgShowExceptionDetails = false and browser
+  sends non-standard url escaping.
+* (T165846) SECURITY: BotPassword login attempts weren't throttled.
+* (T128209) SECURITY: Reflected File Download from api.php.
+* (T134100) SECURITY: Do not reveal if user exists during login failure.
+* (T176247) SECURITY: Ensure Message::rawParams can't lead to XSS.
+* (T125163) SECURITY: Make anchor for headlines escape > and <.
+* (T180237) SECURITY: Protect vendor folder with .htaccess.
+* (T180231) SECURITY: Remove PHPUnit file with known RCE if exists in update.php.
+* (T124404) SECURITY: XSS in langconverter when regex hits pcre.backtrack_limit.
+* (T119158) SECURITY: Handle -{}- syntax in attributes safely.
+* (T180488) (T125177) "api.log contains passwords in plaintext" wasn't correctly fixed in all
+  branches in the previous security release.
+
+== MediaWiki 1.29.1 ==
+
+This is a maintenance release of the MediaWiki 1.29 branch.
+
+The SpamBlacklist and PdfHandler extensions were missing from the generated
+packages.
+
+=== Changes since 1.29.1 ===
+* (T164999) Define mw.Upload.Dialog.static.name in mediawiki.Upload.Dialog.js.
+* (T172061) Fix fatal when passing a category to refreshLinks.php.
+
 == MediaWiki 1.29.0 ==
 
 === Configuration changes in 1.29 ===
@@ -335,6 +374,45 @@ changes to languages because of Phabricator reports.
   addModuleStyles() is deprecated and will log a warning server-side.
 
 = MediaWiki 1.28 =
+
+== MediaWiki 1.28.3 ==
+
+This is a security and maintenance release of the MediaWiki 1.28 branch.
+
+=== Changes since 1.28.2 ==
+* (T168856) Allow SVGs created by Dia to be uploaded.
+* (T157545) Add missing doUpdates() call to refreshLinks.php.
+* (T165714) (T100085) Better handling of jobs execution in post-connection shutdown.
+* (T154425) (T154438) (T157679) Use AutoCommitUpdate instead of Database->onTransactionIdle.
+* (T154425) Make DeferredUpdates detect LBFactory transaction rounds.
+* (T149454) Restore erroneously removed realTableName call from DatabasePostgres.
+* (T167798) Fix phrase search and highlighting for phrase queries.
+* (T151136) Provide credits information to callbacks in extension registration.
+* (T160462) Allow namespaces defined in extension.json to be overwritten locally.
+* (T168337) Fix ErrorPageError to work from non-UI contexts.
+* (T143788) Backports for PHP 7.0 and 7.1 support.
+* (T175439) Unbreak Postgres Updater when setting defaults for a column.
+* (T160298) Remove use of implicitGroupBy() in ActiveUsersPager.
+* (T174255) Declare uploadCount property in importDump.php.
+* (T180231) SECURITY: Updated dev dependancy phpunit/phpunit from v4.8.24 to v4.8.36.
+* (T178451) SECURITY: Potential XSS when $wgShowExceptionDetails = false and browser
+  sends non-standard url escaping.
+* (T165846) SECURITY: BotPassword login attempts weren't throttled.
+* (T128209) SECURITY: Reflected File Download from api.php.
+* (T134100) SECURITY: Do not reveal if user exists during login failure.
+* (T176247) SECURITY: Ensure Message::rawParams can't lead to XSS.
+* (T125163) SECURITY: Make anchor for headlines escape > and <.
+* (T180237) SECURITY: Protect vendor folder with .htaccess.
+* (T180231) SECURITY: Remove PHPUnit file with known RCE if exists in update.php.
+* (T124404) SECURITY: XSS in langconverter when regex hits pcre.backtrack_limit.
+* (T119158) SECURITY: Handle -{}- syntax in attributes safely.
+
+== MediaWiki 1.28.2 ==
+
+Due to a packaging error, the wrong version of the SyntaxHighlight extension was
+included in the tarball version of MediaWiki 1.28.1. The version included had a
+serious security issue in it (T158689). There was also some minor code fixes in
+MediaWiki itself since 1.28.1, but none of them were security relevant.
 
 == MediaWiki 1.28.1 ==
 
@@ -698,6 +776,38 @@ going to run a public MediaWiki, so you can be notified of security fixes.
 There's usually someone online in #mediawiki on irc.freenode.net.
 
 = MediaWiki 1.27 =
+
+== MediaWiki 1.27.4 ==
+This is a security and maintenance release of the MediaWiki 1.27 branch.
+
+=== Changes since 1.27.3 ===
+* (T100085) Better handling of jobs execution in post-connection shutdown.
+* (T141604) Support conditionally registered namespaces.
+* (T167798) Fix highlighting for phrase queries and phrase search.
+* (T151136) Provide credits information to callbacks.
+* (T160462) Allow namespaces defined in extension.json to be overwritten locally.
+* (T168856) Allow SVGs created by Dia to be uploaded.
+* (T144705) (T148662) Password reset link is no longer shown when no reset options are
+  available.
+* (T143788) (T174262) Various backports for PHP 7.0 and 7.1 support.
+* (T66795) $wgUserEmailUseReplyTo is now true by default to work around restrictive DMARC
+  policies.
+* DB_REPLICA constant added from REL1_28+ to ease backports to extensions and core.
+* (T175439) Unbreak Postgres Updater when setting defaults for a column.
+* (T160298) Remove use of implicitGroupBy() in ActiveUsersPager.
+* (T142304) Allow putting the app ID in the password for bot passwords.
+* Updated dev dependancy phpunit/phpunit from v4.8.24 to v4.8.36.
+* (T178451) SECURITY: Potential XSS when $wgShowExceptionDetails = false and browser
+  sends non-standard url escaping.
+* (T165846) SECURITY: BotPassword login attempts weren't throttled.
+* (T128209) SECURITY: Reflected File Download from api.php.
+* (T134100) SECURITY: Do not reveal if user exists during login failure.
+* (T176247) SECURITY: Ensure Message::rawParams can't lead to XSS.
+* (T125163) SECURITY: Make anchor for headlines escape > and <.
+* (T180237) SECURITY: Protect vendor folder with .htaccess.
+* (T180231) SECURITY: Remove PHPUnit file with known RCE if exists in update.php.
+* (T124404) SECURITY: XSS in langconverter when regex hits pcre.backtrack_limit.
+* (T119158) SECURITY: Handle -{}- syntax in attributes safely.
 
 == MediaWiki 1.27.3 ==
 Due to a packaging error, the wrong version of the SyntaxHighlight extension was
