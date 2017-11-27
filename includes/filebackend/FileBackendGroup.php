@@ -229,7 +229,7 @@ class FileBackendGroup {
 	 * @since 1.27
 	 */
 	public function guessMimeInternal( $storagePath, $content, $fsPath ) {
-		$magic = MimeMagic::singleton();
+		$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
 		// Trust the extension of the storage path (caller must validate)
 		$ext = FileBackend::extensionFromPath( $storagePath );
 		$type = $magic->guessTypesForExtension( $ext );
