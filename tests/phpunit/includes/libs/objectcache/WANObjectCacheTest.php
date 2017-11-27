@@ -1052,7 +1052,7 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 		$value = wfRandomString();
 
 		$wasSet = 0;
-		$func = function ( $old, &$ttl ) use ( &$wasSet, $value ) {
+		$func = function () use ( &$wasSet, $value ) {
 			++$wasSet;
 			return $value;
 		};
@@ -1064,21 +1064,36 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( 1, $wasSet, "Value regenerated" );
 		$cache->getWithSetCallback( $key, 30, $func, $extOpts );
 		$this->assertEquals( 1, $wasSet, "Value not regenerated" );
-		// Set the key for version N+1 (if versioned)
+
 		if ( $versioned ) {
+			// Set the key for version N+1 format
 			$verOpts = [ 'version' => $extOpts['version'] + 1 ];
 
+			$priorValue = false;
+			$priorAsOf = null;
+			$func = function ( $oldValue, &$ttl, $setOpts, $oldAsOf )
+			use ( &$wasSet, $value, &$priorValue, &$priorAsOf ) {
+				$priorValue = $oldValue;
+				$priorAsOf = $oldAsOf;
+				++$wasSet;
+				return [ $value ]; // new array format
+			};
+
+			// Value goes to secondary key
 			$wasSet = 0;
 			$v = $cache->getWithSetCallback( $key, 30, $func, $verOpts + $extOpts );
-			$this->assertEquals( $value, $v, "Value returned" );
+			$this->assertEquals( [ $value ], $v, "Value returned" );
 			$this->assertEquals( 1, $wasSet, "Value regenerated" );
+			$this->assertEquals( false, $priorValue, "Old value not given due to old format" );
+			$this->assertEquals( null, $priorAsOf, "Old value not given due to old format" );
 
 			$wasSet = 0;
 			$v = $cache->getWithSetCallback( $key, 30, $func, $verOpts + $extOpts );
-			$this->assertEquals( $value, $v, "Value returned" );
+			$this->assertEquals( [ $value ], $v, "Value returned" );
 			$this->assertEquals( 0, $wasSet, "Value not regenerated" );
 		}
 
+		// Key is either version N or N+1
 		$wasSet = 0;
 		$cache->getWithSetCallback( $key, 30, $func, $extOpts );
 		$this->assertEquals( 0, $wasSet, "Value not regenerated" );
@@ -1090,10 +1105,11 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( 1, $wasSet, "Value regenerated" );
 
 		if ( $versioned ) {
+			// Set the key for version N+1 format
 			$wasSet = 0;
 			$verOpts = [ 'version' => $extOpts['version'] + 1 ];
 			$v = $cache->getWithSetCallback( $key, 30, $func, $verOpts + $extOpts );
-			$this->assertEquals( $value, $v, "Value returned" );
+			$this->assertEquals( [ $value ], $v, "Value returned" );
 			$this->assertEquals( 1, $wasSet, "Value regenerated" );
 		}
 	}
