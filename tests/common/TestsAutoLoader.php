@@ -112,7 +112,7 @@ $wgAutoloadClasses += [
 	'LogFormatterTestCase' => "$testDir/phpunit/includes/logging/LogFormatterTestCase.php",
 
 	# tests/phpunit/includes/page
-	'WikiPageTest' => "$testDir/phpunit/includes/page/WikiPageTest.php",
+	'WikiPageDbTestBase' => "$testDir/phpunit/includes/page/WikiPageDbTestBase.php",
 
 	# tests/phpunit/includes/parser
 	'ParserIntegrationTest' => "$testDir/phpunit/includes/parser/ParserIntegrationTest.php",

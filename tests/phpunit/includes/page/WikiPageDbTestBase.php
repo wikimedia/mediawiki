@@ -1,11 +1,6 @@
 <?php
 
-/**
- * @group ContentHandler
- * @group Database
- * @group medium
- */
-class WikiPageTest extends MediaWikiLangTestCase {
+abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 
 	private $pagesToDelete;
 
@@ -52,6 +47,8 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		}
 		parent::tearDown();
 	}
+
+	abstract protected function getContentHandlerUseDB();
 
 	/**
 	 * @param Title|string $title
