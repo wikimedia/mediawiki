@@ -420,7 +420,7 @@ abstract class UploadBase {
 			$chunk = fread( $fp, 256 );
 			fclose( $fp );
 
-			$magic = MimeMagic::singleton();
+			$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
 			$extMime = $magic->guessTypesForExtension( $this->mFinalExtension );
 			$ieTypes = $magic->getIEMimeTypes( $this->mTempPath, $chunk, $extMime );
 			foreach ( $ieTypes as $ieType ) {
@@ -446,7 +446,7 @@ abstract class UploadBase {
 			return $status;
 		}
 
-		$mwProps = new MWFileProps( MimeMagic::singleton() );
+		$mwProps = new MWFileProps( MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer() );
 		$this->mFileProps = $mwProps->getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
 		$mime = $this->mFileProps['mime'];
 
@@ -505,7 +505,7 @@ abstract class UploadBase {
 		# getTitle() sets some internal parameters like $this->mFinalExtension
 		$this->getTitle();
 
-		$mwProps = new MWFileProps( MimeMagic::singleton() );
+		$mwProps = new MWFileProps( MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer() );
 		$this->mFileProps = $mwProps->getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
 
 		# check MIME type, if desired
@@ -950,7 +950,7 @@ abstract class UploadBase {
 			$this->mFinalExtension = '';
 
 			# No extension, try guessing one
-			$magic = MimeMagic::singleton();
+			$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
 			$mime = $magic->guessMimeType( $this->mTempPath );
 			if ( $mime !== 'unknown/unknown' ) {
 				# Get a space separated list of extensions
@@ -1207,7 +1207,7 @@ abstract class UploadBase {
 	 * @return bool
 	 */
 	public static function verifyExtension( $mime, $extension ) {
-		$magic = MimeMagic::singleton();
+		$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
 
 		if ( !$mime || $mime == 'unknown' || $mime == 'unknown/unknown' ) {
 			if ( !$magic->isRecognizableExtension( $extension ) ) {

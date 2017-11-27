@@ -1284,7 +1284,7 @@ class LocalFile extends File {
 			) {
 				$props = $this->repo->getFileProps( $srcPath );
 			} else {
-				$mwProps = new MWFileProps( MimeMagic::singleton() );
+				$mwProps = new MWFileProps( MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer() );
 				$props = $mwProps->getPropsFromPath( $srcPath, true );
 			}
 		}
