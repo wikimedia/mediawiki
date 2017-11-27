@@ -1151,6 +1151,7 @@
 	"recentchangesdays-max": "(maximum $1 jour{{PLURAL:$1||s}})",
 	"recentchangescount": "Nombre de modifications à afficher par défaut :",
 	"prefs-help-recentchangescount": "Ceci inclut les modifications récentes, les pages d'historiques et les journaux.",
+	"prefs-help-tokenmanagement": "Vous pouvez voir et réinitialiser la clé secrète de votre compte qui peut accéder au flux Web de votre liste de suivi. Toute personne connaissant la clé pourra lire votre liste de suivi, alors ne la partagez pas.",
 	"savedprefs": "Les préférences ont été sauvegardées.",
 	"savedrights": "Les droits utilisateur de {{GENDER:$1|$1}} ont été enregistrés.",
 	"timezonelegend": "Fuseau horaire :",

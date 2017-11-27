@@ -355,7 +355,7 @@
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Você tem}} $1 de {{PLURAL:$3|outro usuário|$3 usuários}} ($2).",
 	"youhavenewmessagesmanyusers": "Você tem $1 de muitos usuários ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|uma mensagem nova|999=mensagens novas}}",
-	"newmessagesdifflinkplural": "último {{PLURAL:$1|mudança|999=mudanças}}",
+	"newmessagesdifflinkplural": "{{PLURAL:$1|última mudança|999=últimas mudanças}}",
 	"youhavenewmessagesmulti": "Você tem novas mensagens em $1",
 	"editsection": "editar",
 	"editold": "editar",
