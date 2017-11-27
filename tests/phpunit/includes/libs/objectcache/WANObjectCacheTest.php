@@ -267,7 +267,7 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( $value, $v, "Value still returned after deleted" );
 		$this->assertEquals( 1, $wasSet, "Value process cached while deleted" );
 
-		$backToTheFutureCache = new TimeAdjustableWANObjectCache( [
+		$timeyCache = new TimeAdjustableWANObjectCache( [
 			'cache'   => new TimeAdjustableHashBagOStuff(),
 			'pool'    => 'empty'
 		] );
@@ -283,29 +283,73 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 			return 'xxx' . $wasSet;
 		};
 
+		$now = microtime( true ); // reference time
+
 		$wasSet = 0;
 		$key = wfRandomString();
-		$v = $backToTheFutureCache->getWithSetCallback(
+		$timeyCache->setTime( $now );
+		$v = $timeyCache->getWithSetCallback(
 			$key, 30, $checkFunc, [ 'staleTTL' => 50 ] + $extOpts );
 		$this->assertEquals( 'xxx1', $v, "Value returned" );
 		$this->assertEquals( false, $oldValReceived, "Callback got no stale value" );
 		$this->assertEquals( null, $oldAsOfReceived, "Callback got no stale value" );
 
-		$backToTheFutureCache->setTime( microtime( true ) + 40 );
-		$v = $backToTheFutureCache->getWithSetCallback(
+		$timeyCache->setTime( $now + 40 );
+		$v = $timeyCache->getWithSetCallback(
 			$key, 30, $checkFunc, [ 'staleTTL' => 50 ] + $extOpts );
 		$this->assertEquals( 'xxx2', $v, "Value still returned after expired" );
 		$this->assertEquals( 2, $wasSet, "Value recalculated while expired" );
 		$this->assertEquals( 'xxx1', $oldValReceived, "Callback got stale value" );
 		$this->assertNotEquals( null, $oldAsOfReceived, "Callback got stale value" );
 
-		$backToTheFutureCache->setTime( microtime( true ) + 300 );
-		$v = $backToTheFutureCache->getWithSetCallback(
+		$timeyCache->setTime( $now + 300 );
+		$v = $timeyCache->getWithSetCallback(
 			$key, 30, $checkFunc, [ 'staleTTL' => 50 ] + $extOpts );
 		$this->assertEquals( 'xxx3', $v, "Value still returned after expired" );
 		$this->assertEquals( 3, $wasSet, "Value recalculated while expired" );
 		$this->assertEquals( false, $oldValReceived, "Callback got no stale value" );
 		$this->assertEquals( null, $oldAsOfReceived, "Callback got no stale value" );
+
+		$wasSet = 0;
+		$key = wfRandomString();
+		$checkKey = $timeyCache->makeKey( 'template', 'X' );
+		$timeyCache->setTime( $now - $timeyCache::HOLDOFF_TTL - 1 );
+		$timeyCache->touchCheckKey( $checkKey ); // init check key
+		$timeyCache->setTime( $now );
+		$v = $timeyCache->getWithSetCallback(
+			$key,
+			$timeyCache::TTL_WEEK,
+			$checkFunc,
+			[ 'graceTTL' => $timeyCache::TTL_DAY, 'checkKeys' => [ $checkKey ] ] + $extOpts
+		);
+		$this->assertEquals( 'xxx1', $v, "Value returned" );
+		$this->assertEquals( 1, $wasSet, "Value computed" );
+		$this->assertEquals( false, $oldValReceived, "Callback got no stale value" );
+		$this->assertEquals( null, $oldAsOfReceived, "Callback got no stale value" );
+
+		$timeyCache->setTime( $now + 300 ); // some time passes
+		$timeyCache->touchCheckKey( $checkKey ); // make key stale
+		$timeyCache->setTime( $now + 3600 ); // ~23 hours left of grace
+		$v = $timeyCache->getWithSetCallback(
+			$key,
+			$timeyCache::TTL_WEEK,
+			$checkFunc,
+			[ 'graceTTL' => $timeyCache::TTL_DAY, 'checkKeys' => [ $checkKey ] ] + $extOpts
+		);
+		$this->assertEquals( 'xxx1', $v, "Value still returned after expired (in grace)" );
+		$this->assertEquals( 1, $wasSet, "Value still returned after expired (in grace)" );
+
+		$timeyCache->setTime( $now + $timeyCache::TTL_DAY * 86400 );
+		$v = $timeyCache->getWithSetCallback(
+			$key,
+			$timeyCache::TTL_WEEK,
+			$checkFunc,
+			[ 'graceTTL' => $timeyCache::TTL_DAY, 'checkKeys' => [ $checkKey ] ] + $extOpts
+		);
+		$this->assertEquals( 'xxx2', $v, "Value was recomputed (past grace)" );
+		$this->assertEquals( 2, $wasSet, "Value was recomputed (past grace)" );
+		$this->assertEquals( 'xxx1', $oldValReceived, "Callback got post-grace stale value" );
+		$this->assertNotEquals( null, $oldAsOfReceived, "Callback got post-grace stale value" );
 	}
 
 	public static function getWithSetCallback_provider() {
