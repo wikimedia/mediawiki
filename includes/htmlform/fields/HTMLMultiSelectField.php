@@ -22,8 +22,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			$this->mParams['disabled-options'] = [];
 		}
 
-		// For backwards compatibility, also handle the old way with 'cssclass' => 'mw-chosen'
-		if ( isset( $params['dropdown'] ) || strpos( $this->mClass, 'mw-chosen' ) !== false ) {
+		if ( isset( $params['dropdown'] ) ) {
 			$this->mClass .= ' mw-htmlform-dropdown';
 		}
 

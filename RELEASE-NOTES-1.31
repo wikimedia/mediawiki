@@ -106,6 +106,10 @@ changes to languages because of Phabricator reports.
 * Use of Maintenance::error( $err, $die ) to exit script was deprecated. Use
   Maintenance::fatalError() instead.
 * Passing a ParserOptions object to OutputPage::parserOptions() is deprecated.
+* The backwards-compatibility code in HTMLForm to add a drop-down control to an
+  option that is not set to be a drop-down if the "mw-chosen" class is present,
+  is now removed.
+* …
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. There is experimental support for
