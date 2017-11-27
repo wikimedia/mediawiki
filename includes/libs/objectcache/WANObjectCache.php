@@ -857,14 +857,16 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *      Default: WANObjectCache::MIN_TIMESTAMP_NONE.
 	 *   - hotTTR: Expected time-till-refresh (TTR) for keys that average ~1 hit/second (1 Hz).
 	 *      Keys with a hit rate higher than 1Hz will refresh sooner than this TTR and vise versa.
-	 *      Such refreshes won't happen until keys are "ageNew" seconds old. The TTR is useful at
-	 *      reducing the impact of missed cache purges, since the effect of a heavily referenced
-	 *      key being stale is worse than that of a rarely referenced key. Unlike simply lowering
-	 *      $ttl, seldomly used keys are largely unaffected by this option, which makes it possible
-	 *      to have a high hit rate for the "long-tail" of less-used keys.
+	 *      Such refreshes won't happen until keys are "ageNew" seconds old. This also uses
+	 *      randomization to avoid triggering stampedes. The TTR is useful at reducing the impact
+	 *      of missed cache purges, since the effect of a heavily referenced key being stale is
+	 *      worse than that of a rarely referenced key. Unlike simply lowering $ttl, seldomly
+	 *      used keys are largely unaffected by this option, which makes it possible to have a
+	 *      high hit rate for the "long-tail" of less-used keys.
 	 *      Default: WANObjectCache::HOT_TTR.
 	 *   - lowTTL: Consider pre-emptive updates when the current TTL (seconds) of the key is less
 	 *      than this. It becomes more likely over time, becoming certain once the key is expired.
+	 *      This helps avoid stampedes that might be triggered due to the key expiring.
 	 *      Default: WANObjectCache::LOW_TTL.
 	 *   - ageNew: Consider popularity refreshes only once a key reaches this age in seconds.
 	 *      Default: WANObjectCache::AGE_NEW.
