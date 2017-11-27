@@ -40,7 +40,6 @@
 			.append(
 				this.valuePicker.$element,
 				new OO.ui.FieldsetLayout( {
-					label: mw.msg( 'rcfilters-grouping-title' ),
 					items: [
 						new OO.ui.FieldLayout(
 							this.groupByPageCheckbox,
