@@ -1558,7 +1558,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			return $minTTL; // no last-modified time provided
 		}
 
-		$age = time() - $mtime;
+		$age = $this->getCurrentTime() - $mtime;
 
 		return (int)min( $maxTTL, max( $minTTL, $factor * $age ) );
 	}
