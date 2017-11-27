@@ -1052,7 +1052,7 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 		$value = wfRandomString();
 
 		$wasSet = 0;
-		$func = function ( $old, &$ttl ) use ( &$wasSet, $value ) {
+		$func = function () use ( &$wasSet, $value ) {
 			++$wasSet;
 			return $value;
 		};
@@ -1068,14 +1068,26 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 		if ( $versioned ) {
 			$verOpts = [ 'version' => $extOpts['version'] + 1 ];
 
-			$wasSet = 0;
-			$v = $cache->getWithSetCallback( $key, 30, $func, $verOpts + $extOpts );
-			$this->assertEquals( $value, $v, "Value returned" );
-			$this->assertEquals( 1, $wasSet, "Value regenerated" );
+			$priorValue = false;
+			$priorAsOf = null;
+			$func = function ( $oldValue, &$ttl, $setOpts, $oldAsOf )
+			use ( &$wasSet, $value, &$priorValue, &$priorAsOf ) {
+				$priorValue = $oldValue;
+				$priorAsOf = $oldAsOf;
+				++$wasSet;
+				return [ $value ]; // new array format
+			};
 
 			$wasSet = 0;
 			$v = $cache->getWithSetCallback( $key, 30, $func, $verOpts + $extOpts );
-			$this->assertEquals( $value, $v, "Value returned" );
+			$this->assertEquals( [ $value ], $v, "Value returned" );
+			$this->assertEquals( 1, $wasSet, "Value regenerated" );
+			$this->assertEquals( false, $priorValue, "Old value not given due to old format" );
+			$this->assertEquals( null, $priorAsOf, "Old value not given due to old format" );
+
+			$wasSet = 0;
+			$v = $cache->getWithSetCallback( $key, 30, $func, $verOpts + $extOpts );
+			$this->assertEquals( [ $value ], $v, "Value returned" );
 			$this->assertEquals( 0, $wasSet, "Value not regenerated" );
 		}
 
