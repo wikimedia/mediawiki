@@ -4881,7 +4881,6 @@ $wgDefaultUserOptions = [
 	'hidepatrolled' => 0,
 	'hidecategorization' => 1,
 	'imagesize' => 2,
-	'math' => 1,
 	'minordefault' => 0,
 	'newpageshidepatrolled' => 0,
 	'nickname' => '',
