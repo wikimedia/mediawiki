@@ -78,7 +78,8 @@ abstract class ApiFormatBase extends ApiBase {
 		} elseif ( $this->getIsHtml() ) {
 			return 'api-result.html';
 		} else {
-			$exts = MimeMagic::singleton()->getExtensionsForType( $this->getMimeType() );
+			$exts = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer()
+				->getExtensionsForType( $this->getMimeType() );
 			$ext = $exts ? strtok( $exts, ' ' ) : strtolower( $this->mFormat );
 			return "api-result.$ext";
 		}

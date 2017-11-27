@@ -288,7 +288,7 @@ abstract class MediaHandler {
 	 * @return array Thumbnail extension and MIME type
 	 */
 	function getThumbType( $ext, $mime, $params = null ) {
-		$magic = MimeMagic::singleton();
+		$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
 		if ( !$ext || $magic->isMatchingExtension( $ext, $mime ) === false ) {
 			// The extension is not valid for this MIME type and we do
 			// recognize the MIME type

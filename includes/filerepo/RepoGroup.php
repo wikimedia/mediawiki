@@ -452,7 +452,7 @@ class RepoGroup {
 
 			return $repo->getFileProps( $fileName );
 		} else {
-			$mwProps = new MWFileProps( MimeMagic::singleton() );
+			$mwProps = new MWFileProps( MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer() );
 
 			return $mwProps->getPropsFromPath( $fileName, true );
 		}

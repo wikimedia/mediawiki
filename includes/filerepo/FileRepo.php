@@ -1543,7 +1543,7 @@ class FileRepo {
 	 */
 	public function getFileProps( $virtualUrl ) {
 		$fsFile = $this->getLocalReference( $virtualUrl );
-		$mwProps = new MWFileProps( MimeMagic::singleton() );
+		$mwProps = new MWFileProps( MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer() );
 		if ( $fsFile ) {
 			$props = $mwProps->getPropsFromPath( $fsFile->getPath(), true );
 		} else {
