@@ -1,11 +1,6 @@
 <?php
 
-/**
- * @group ContentHandler
- * @group Database
- * @group medium
- */
-class WikiPageTest extends MediaWikiLangTestCase {
+abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 
 	private $pagesToDelete;
 
@@ -35,6 +30,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 	protected function setUp() {
 		parent::setUp();
+		$this->setMwGlobals( 'wgContentHandlerUseDB', $this->getContentHandlerUseDB() );
 		$this->pagesToDelete = [];
 	}
 
@@ -52,6 +48,8 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		}
 		parent::tearDown();
 	}
+
+	abstract protected function getContentHandlerUseDB();
 
 	/**
 	 * @param Title|string $title
@@ -78,7 +76,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	 *
 	 * @return WikiPage
 	 */
-	private function createPage( $page, $text, $model = null ) {
+	protected function createPage( $page, $text, $model = null ) {
 		if ( is_string( $page ) || $page instanceof Title ) {
 			$page = $this->newPage( $page, $model );
 		}
@@ -264,46 +262,6 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 		$content = $page->getContent();
 		$this->assertEquals( "some text", $content->getNativeData() );
-	}
-
-	/**
-	 * @covers WikiPage::getContentModel
-	 */
-	public function testGetContentModel() {
-		global $wgContentHandlerUseDB;
-
-		if ( !$wgContentHandlerUseDB ) {
-			$this->markTestSkipped( '$wgContentHandlerUseDB is disabled' );
-		}
-
-		$page = $this->createPage(
-			__METHOD__,
-			"some text",
-			CONTENT_MODEL_JAVASCRIPT
-		);
-
-		$page = new WikiPage( $page->getTitle() );
-		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $page->getContentModel() );
-	}
-
-	/**
-	 * @covers WikiPage::getContentHandler
-	 */
-	public function testGetContentHandler() {
-		global $wgContentHandlerUseDB;
-
-		if ( !$wgContentHandlerUseDB ) {
-			$this->markTestSkipped( '$wgContentHandlerUseDB is disabled' );
-		}
-
-		$page = $this->createPage(
-			__METHOD__,
-			"some text",
-			CONTENT_MODEL_JAVASCRIPT
-		);
-
-		$page = new WikiPage( $page->getTitle() );
-		$this->assertEquals( 'JavaScriptContentHandler', get_class( $page->getContentHandler() ) );
 	}
 
 	/**
