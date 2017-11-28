@@ -93,3 +93,15 @@
 	display: inline-block;
 	vertical-align: middle;
 }
+
+/* Expand the dropdown and textfield of "Time zone" field to the */
+/* usual maximum width and display them on separate lines. */
+#wpTimeCorrection .oo-ui-dropdownInputWidget,
+#wpTimeCorrection .oo-ui-textInputWidget {
+	display: block;
+	max-width: 50em;
+}
+
+#wpTimeCorrection .oo-ui-textInputWidget {
+	margin-top: 0.5em;
+}
