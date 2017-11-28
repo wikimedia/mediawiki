@@ -1001,6 +1001,7 @@ $wgAutoloadLocalClasses = [
 	'MessageContent' => __DIR__ . '/includes/content/MessageContent.php',
 	'MessageLocalizer' => __DIR__ . '/languages/MessageLocalizer.php',
 	'MessageSpecifier' => __DIR__ . '/includes/libs/MessageSpecifier.php',
+	'MigrateArchiveText' => __DIR__ . '/maintenance/migrateArchiveText.php',
 	'MigrateComments' => __DIR__ . '/maintenance/migrateComments.php',
 	'MigrateFileRepoLayout' => __DIR__ . '/maintenance/migrateFileRepoLayout.php',
 	'MigrateUserGroup' => __DIR__ . '/maintenance/migrateUserGroup.php',

@@ -483,6 +483,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addTable', 'comment', 'patch-comment-table.sql' ],
 			[ 'addIndex', 'site_stats', 'site_stats_pkey', 'patch-site_stats-pk.sql' ],
 			[ 'addTable', 'ip_changes', 'patch-ip_changes.sql' ],
+
+			// 1.31
+			[ 'migrateArchiveText' ],
 		];
 	}
 
