@@ -187,3 +187,4 @@ chemical/x-mdl-rdfile rd
 chemical/x-mdl-rgfile rg
 application/x-amf amf
 application/sla stl
+application/wasm wasm
