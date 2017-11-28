@@ -656,11 +656,6 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			'ar_content_model'  => 'rev_content_model',
 		];
 
-		if ( empty( $archiveRow->ar_text_id ) ) {
-			$fieldMap['ar_text'] = 'old_text';
-			$fieldMap['ar_flags'] = 'old_flags';
-		}
-
 		$revRow = new stdClass();
 		foreach ( $fieldMap as $arKey => $revKey ) {
 			if ( property_exists( $archiveRow, $arKey ) ) {
@@ -1632,7 +1627,6 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 					'ar_namespace',
 					'ar_title',
 					'ar_rev_id',
-					'ar_text',
 					'ar_text_id',
 					'ar_timestamp',
 					'ar_user_text',
