@@ -204,7 +204,6 @@ CREATE TABLE archive (
   ar_id             INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('archive_ar_id_seq'),
   ar_namespace      SMALLINT     NOT NULL,
   ar_title          TEXT         NOT NULL,
-  ar_text           TEXT, -- technically should be bytea, but not used anymore
   ar_page_id        INTEGER          NULL,
   ar_parent_id      INTEGER          NULL,
   ar_sha1           TEXT         NOT NULL DEFAULT '',
@@ -214,9 +213,8 @@ CREATE TABLE archive (
   ar_user_text      TEXT         NOT NULL,
   ar_timestamp      TIMESTAMPTZ  NOT NULL,
   ar_minor_edit     SMALLINT     NOT NULL  DEFAULT 0,
-  ar_flags          TEXT,
   ar_rev_id         INTEGER,
-  ar_text_id        INTEGER,
+  ar_text_id        INTEGER      NOT NULL,
   ar_deleted        SMALLINT     NOT NULL  DEFAULT 0,
   ar_len            INTEGER          NULL,
   ar_content_model  TEXT,

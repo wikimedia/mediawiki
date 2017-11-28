@@ -37,6 +37,14 @@ class MigrateArchiveText extends LoggedUpdateMaintenance {
 		);
 	}
 
+	/**
+	 * Sets whether a run of this maintenance script has the force parameter set
+	 * @param bool $forced
+	 */
+	public function setForce( $forced = true ) {
+		$this->mOptions['force'] = $forced;
+	}
+
 	protected function getUpdateKey() {
 		return __CLASS__;
 	}
@@ -46,9 +54,16 @@ class MigrateArchiveText extends LoggedUpdateMaintenance {
 
 		$batchSize = $this->getBatchSize();
 
-		$this->output( "Migrating ar_text to modern storage...\n" );
 		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
 		$dbw = $this->getDB( DB_MASTER );
+		if ( !$dbr->fieldExists( 'archive', 'ar_text', __METHOD__ ) ||
+			!$dbw->fieldExists( 'archive', 'ar_text', __METHOD__ )
+		) {
+			$this->output( "No ar_text field, so nothing to migrate.\n" );
+			return true;
+		}
+
+		$this->output( "Migrating ar_text to modern storage...\n" );
 		$start = 0;
 		$count = 0;
 		$errors = 0;
