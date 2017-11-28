@@ -224,7 +224,6 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			'ar_namespace',
 			'ar_title',
 			'ar_rev_id',
-			'ar_text',
 			'ar_text_id',
 			'ar_timestamp',
 			'ar_user_text',
