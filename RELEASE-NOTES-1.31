@@ -5,6 +5,14 @@ THIS IS NOT A RELEASE YET
 MediaWiki 1.31 is an alpha-quality branch and is not recommended for use in
 production.
 
+=== Important pre-upgrade notes for 1.31 ===
+* If you're using MySQL, SQLite, or MSSQL, are not using update.php to apply
+  schema changes, and cannot have downtime to run migrateArchiveText.php and
+  apply patch-drop-ar_text.sql manually, you'll have to apply a default value
+  to the ar_text and ar_flags columns of the archive table or make those
+  columns nullable before upgrading to MediaWiki 1.31.
+  maintenance/archives/patch-nullable-ar_text.sql shows how to do this for MySQL.
+
 === Configuration changes in 1.31 ===
 * $wgEnableAPI and $wgEnableWriteAPI are now deprecated and will be removed in
   a future version. The API is now considered to be stable, secure and
