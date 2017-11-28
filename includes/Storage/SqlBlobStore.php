@@ -466,6 +466,11 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 			return false;
 		}
 
+		if ( in_array( 'error', $blobFlags ) ) {
+			// Error row, return false
+			return false;
+		}
+
 		if ( in_array( 'gzip', $blobFlags ) ) {
 			# Deal with optional compression of archived pages.
 			# This can be done periodically via maintenance/compressOld.php, and
