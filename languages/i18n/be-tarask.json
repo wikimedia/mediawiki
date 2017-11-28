@@ -1665,6 +1665,7 @@
 	"uploadstash-file-not-found-missing-content-type": "Адсутнічае загаловак тыпу зьместу.",
 	"uploadstash-file-not-found-not-exists": "Не атрымалася знайсьці шлях, ці не зьяўляецца простым файлам.",
 	"uploadstash-file-too-large": "Немагчыма апрацаваць файл памерам большым за $1 байтаў.",
+	"uploadstash-not-logged-in": "Удзельнік не ўвайшоў у сыстэму, файлы мусяць належаць удзельнікам.",
 	"invalid-chunk-offset": "Няслушнае зрушэньне фрагмэнту",
 	"img-auth-accessdenied": "Доступ забаронены",
 	"img-auth-nopathinfo": "Адсутнічае PATH_INFO.\nВаш сэрвэр не ўстаноўлены на пропуск гэтай інфармацыі.\nМагчма, ён працуе праз CGI і не падтрымлівае img_auth.\nГлядзіце https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
