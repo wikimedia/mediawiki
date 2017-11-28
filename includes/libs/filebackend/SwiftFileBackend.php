@@ -185,10 +185,10 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( !isset( $params['headers'] ) ) {
 			return [];
 		}
-		$headers = $this->getCustomHeaders( $params ['headers'] );
-		if ( isset( $headers[ 'content-type' ] ) ) {
-			unset( $headers[ 'content-type' ] );
-		}
+
+		$headers = $this->getCustomHeaders( $params['headers'] );
+		unset( $headers[ 'content-type' ] );
+
 		return $headers;
 	}
 
