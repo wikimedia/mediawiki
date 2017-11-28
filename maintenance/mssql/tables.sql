@@ -270,7 +270,6 @@ CREATE TABLE /*_*/archive (
    ar_id int NOT NULL PRIMARY KEY IDENTITY,
    ar_namespace SMALLINT NOT NULL DEFAULT 0,
    ar_title NVARCHAR(255) NOT NULL DEFAULT '',
-   ar_text NVARCHAR(MAX) NOT NULL,
    ar_comment NVARCHAR(255) NOT NULL CONSTRAINT DF_ar_comment DEFAULT '',
    ar_comment_id bigint unsigned NOT NULL CONSTRAINT DF_ar_comment_id DEFAULT 0 CONSTRAINT FK_ar_comment_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
    ar_user INT CONSTRAINT ar_user__user_id__fk FOREIGN KEY REFERENCES /*_*/mwuser(user_id),
@@ -278,9 +277,8 @@ CREATE TABLE /*_*/archive (
    ar_actor bigint unsigned NOT NULL CONSTRAINT DF_ar_actor DEFAULT 0,
    ar_timestamp varchar(14) NOT NULL default '',
    ar_minor_edit BIT NOT NULL DEFAULT 0,
-   ar_flags NVARCHAR(255) NOT NULL,
    ar_rev_id INT NOT NULL, -- NOT a FK, the row gets deleted from revision and moved here
-   ar_text_id INT CONSTRAINT ar_text_id__old_id__fk FOREIGN KEY REFERENCES /*_*/text(old_id) ON DELETE CASCADE,
+   ar_text_id INT NOT NULL CONSTRAINT DF_ar_text_id DEFAULT 0 CONSTRAINT ar_text_id__old_id__fk FOREIGN KEY REFERENCES /*_*/text(old_id) ON DELETE CASCADE,
    ar_deleted TINYINT NOT NULL DEFAULT 0,
    ar_len INT,
    ar_page_id INT NULL, -- NOT a FK, the row gets deleted from page and moved here

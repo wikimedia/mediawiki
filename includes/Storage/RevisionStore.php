@@ -724,11 +724,6 @@ class RevisionStore
 			'ar_content_model'  => 'rev_content_model',
 		];
 
-		if ( empty( $archiveRow->ar_text_id ) ) {
-			$fieldMap['ar_text'] = 'old_text';
-			$fieldMap['ar_flags'] = 'old_flags';
-		}
-
 		$revRow = new stdClass();
 		foreach ( $fieldMap as $arKey => $revKey ) {
 			if ( property_exists( $archiveRow, $arKey ) ) {
@@ -1704,7 +1699,6 @@ class RevisionStore
 					'ar_namespace',
 					'ar_title',
 					'ar_rev_id',
-					'ar_text',
 					'ar_text_id',
 					'ar_timestamp',
 					'ar_minor_edit',
