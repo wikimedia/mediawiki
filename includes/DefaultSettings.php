@@ -8271,6 +8271,22 @@ $wgPhpCli = '/usr/bin/php';
  */
 $wgShellLocale = 'C.UTF-8';
 
+/**
+ * Method to use to restrict shell commands
+ *
+ * Supported options:
+ * - 'autodetect': Autodetect if any restriction methods are available
+ * - 'firejail': Use firejail <https://firejail.wordpress.com/>
+ * - false: Don't use any restrictions
+ *
+ * @note If using firejail with MediaWiki running in a home directory different
+ *  from the webserver user, firejail 0.9.44+ is required.
+ *
+ * @since 1.31
+ * @var string|bool
+ */
+$wgShellRestrictionMethod = false;
+
 /** @} */ # End shell }
 
 /************************************************************************//**

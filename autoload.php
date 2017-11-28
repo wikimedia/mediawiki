@@ -939,6 +939,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\ShellDisabledError' => __DIR__ . '/includes/exception/ShellDisabledError.php',
 	'MediaWiki\\Shell\\Command' => __DIR__ . '/includes/shell/Command.php',
 	'MediaWiki\\Shell\\CommandFactory' => __DIR__ . '/includes/shell/CommandFactory.php',
+	'MediaWiki\\Shell\\FirejailCommand' => __DIR__ . '/includes/shell/FirejailCommand.php',
 	'MediaWiki\\Shell\\Result' => __DIR__ . '/includes/shell/Result.php',
 	'MediaWiki\\Shell\\Shell' => __DIR__ . '/includes/shell/Shell.php',
 	'MediaWiki\\Site\\MediaWikiPageNameNormalizer' => __DIR__ . '/includes/site/MediaWikiPageNameNormalizer.php',

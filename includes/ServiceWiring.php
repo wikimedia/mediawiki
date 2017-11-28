@@ -439,8 +439,9 @@ return [
 			'filesize' => $config->get( 'MaxShellFileSize' ),
 		];
 		$cgroup = $config->get( 'ShellCgroup' );
+		$restrictionMethod = $config->get( 'ShellRestrictionMethod' );
 
-		$factory = new CommandFactory( $limits, $cgroup );
+		$factory = new CommandFactory( $limits, $cgroup, $restrictionMethod );
 		$factory->setLogger( LoggerFactory::getInstance( 'exec' ) );
 		$factory->logStderr();
 
