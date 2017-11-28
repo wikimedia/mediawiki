@@ -592,14 +592,6 @@ CREATE TABLE /*_*/archive (
   -- Copied from page_title
   ar_title varchar(255) binary NOT NULL default '',
 
-  -- Copied from text.old_text, for pages deleted before MediaWiki 1.5.
-  -- This row may contain the raw revision text, possibly compressed.
-  -- Newer MediaWiki versions use ar_text_id instead.
-  -- This field is retained for backwards compatibility, so that
-  -- old archived pages will remain accessible.
-  -- See migrateArchiveText.php for migrating values to text storage.
-  ar_text mediumblob NOT NULL,
-
   -- Basic revision stuff...
   ar_comment varbinary(767) NOT NULL default '', -- Deprecated in favor of ar_comment_id
   ar_comment_id bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that ar_comment should be used)
@@ -609,29 +601,20 @@ CREATE TABLE /*_*/archive (
   ar_timestamp binary(14) NOT NULL default '',
   ar_minor_edit tinyint NOT NULL default 0,
 
-  -- Copied from text.old_flags, for pages deleted before MediaWiki 1.5.
-  -- Otherwise empty string.
-  -- See also note for ar_text.
-  ar_flags tinyblob NOT NULL,
-
-  -- Copied from rev_id.
+  -- When revisions are deleted, their unique rev_id is stored
+  -- here so it can be retained after undeletion. This is necessary
+  -- to retain permalinks to given revisions after accidental delete
+  -- cycles or messy operations like history merges.
   --
   -- @since 1.5 Entries from 1.4 will be NULL here. When restoring
   -- archive rows from before 1.5, a new rev_id is created.
   ar_rev_id int unsigned,
 
-  -- Copied from rev_text_id, references text.old_id.
-  -- To avoid breaking the block-compression scheme and otherwise making
-  -- storage changes harder, the actual text is *not* deleted from the
-  -- text storage. Instead, it is merely hidden from public view, by removal
-  -- of the page and revision entries.
-  --
-  -- @since 1.5 Entries from 1.2-1.4 will have NULL here. When restoring
-  -- archive rows without this, ar_text and ar_flags are used instead.
-  -- @deprecated since 1.31. If rows in the slots table with slot_revision_id = ar_rev_id
-  -- exist, this field should be ignored (and may be NULL or 0) in favor of the
-  -- corresponding data from the slots and content tables
-  ar_text_id int unsigned,
+  -- This is the text.old_id key to the actual stored text. To avoid breaking
+  -- the block-compression scheme and otherwise making storage changes harder,
+  -- the actual text is *not* deleted from the text table, merely hidden by
+  -- removal of the page and revision entries.
+  ar_text_id int unsigned NOT NULL DEFAULT 0,
 
   -- Copied from rev_deleted. Although this may be raised during deletion.
   -- Users with the "suppressrevision" right may "archive" and "suppress"
