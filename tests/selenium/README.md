@@ -30,6 +30,10 @@ Then in another terminal:
     cd tests/selenium
     ../../node_modules/.bin/wdio --spec specs/page.js
 
+To run only one test (name contains string 'preferences'):
+
+    ../../node_modules/.bin/wdio --spec specs/user.js --mochaOpts.grep preferences
+
 The runner reads the config file `wdio.conf.js` and runs the spec listed in
 `page.js`.
 
