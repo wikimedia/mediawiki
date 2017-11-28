@@ -825,7 +825,7 @@
 	"revdelete-unsuppress": "Ukloni ograničenja na vraćenim izmjenama",
 	"revdelete-log": "Razlog:",
 	"revdelete-submit": "Primijeni na {{PLURAL:$1|odabranu inačicu|odabrane inačice}}",
-	"revdelete-success": "Vidljivost izmjene ažurirana.",
+	"revdelete-success": "Vidljivost izmjene je ažurirana.",
 	"revdelete-failure": "'''Vidljivost inačice nije mogla biti ažurirana:'''\n$1",
 	"logdelete-success": "Vidljivost uređivanja postavljena.",
 	"logdelete-failure": "'''Vidljivost evidencije ne može biti postavljena:'''\n$1",

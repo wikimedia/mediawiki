@@ -193,7 +193,8 @@
 			"Mainframe98",
 			"Pginer",
 			"Wladek92",
-			"Gombang"
+			"Gombang",
+			"Trizek (WMF)"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -1607,7 +1608,7 @@
 	"rcfilters-filter-user-experience-level-unregistered-label": "Label for the filter for showing edits made by anonymous editors.",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Description for the filter for showing edits made by anonymous editors.",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Label for the filter for showing edits made by new editors.",
-	"rcfilters-filter-user-experience-level-newcomer-description": "Description for the filter for showing edits made by new editors.",
+	"rcfilters-filter-user-experience-level-newcomer-description": "Description for the filter for showing edits made by new editors. The user has created the account less than 4 days ago (4th day included) ''or'' has made less than 10 edits (10 included).",
 	"rcfilters-filter-user-experience-level-learner-label": "Label for the filter for showing edits made by learning editors.",
 	"rcfilters-filter-user-experience-level-learner-description": "Description for the filter for showing edits made by learning editors.",
 	"rcfilters-filter-user-experience-level-experienced-label": "Label for the filter for showing edits made by experienced editors.",
