@@ -45,6 +45,12 @@ class LogPager extends ReverseChronologicalPager {
 	/** @var string */
 	private $action = '';
 
+	/** @var bool */
+	private $performerRestrictionsEnforced = false;
+
+	/** @var bool */
+	private $actionRestrictionsEnforced = false;
+
 	/** @var LogEventsList */
 	public $mLogEventsList;
 
@@ -177,14 +183,7 @@ class LogPager extends ReverseChronologicalPager {
 		} else {
 			$this->mConds['log_user'] = $userid;
 		}
-		// Paranoia: avoid brute force searches (T19342)
-		$user = $this->getUser();
-		if ( !$user->isAllowed( 'deletedhistory' ) ) {
-			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::DELETED_USER ) . ' = 0';
-		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
-			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::SUPPRESSED_USER ) .
-				' != ' . LogPage::SUPPRESSED_USER;
-		}
+		$this->enforcePerformerRestrictions();
 
 		$this->performer = $name;
 	}
@@ -252,14 +251,7 @@ class LogPager extends ReverseChronologicalPager {
 		} else {
 			$this->mConds['log_title'] = $title->getDBkey();
 		}
-		// Paranoia: avoid brute force searches (T19342)
-		$user = $this->getUser();
-		if ( !$user->isAllowed( 'deletedhistory' ) ) {
-			$this->mConds[] = $db->bitAnd( 'log_deleted', LogPage::DELETED_ACTION ) . ' = 0';
-		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
-			$this->mConds[] = $db->bitAnd( 'log_deleted', LogPage::SUPPRESSED_ACTION ) .
-				' != ' . LogPage::SUPPRESSED_ACTION;
-		}
+		$this->enforceActionRestrictions();
 	}
 
 	/**
@@ -419,5 +411,40 @@ class LogPager extends ReverseChronologicalPager {
 		$this->mDb->setBigSelects();
 		parent::doQuery();
 		$this->mDb->setBigSelects( 'default' );
+	}
+
+	/**
+	 * Paranoia: avoid brute force searches (T19342)
+	 */
+	private function enforceActionRestrictions() {
+		if ( $this->actionRestrictionsEnforced ) {
+			return;
+		}
+		$this->actionRestrictionsEnforced = true;
+		$user = $this->getUser();
+		if ( !$user->isAllowed( 'deletedhistory' ) ) {
+			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::DELETED_USER ) . ' = 0';
+		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
+			$this->mConds[] = $this->mDb->bitAnd( 'log_deleted', LogPage::SUPPRESSED_USER ) .
+				' != ' . LogPage::SUPPRESSED_USER;
+		}
+	}
+
+	/**
+	 * Paranoia: avoid brute force searches (T19342)
+	 */
+	private function enforcePerformerRestrictions() {
+		// Same as enforceActionRestrictions(), except for _USER instead of _ACTION bits.
+		if ( $this->performerRestrictionsEnforced ) {
+			return;
+		}
+		$this->performerRestrictionsEnforced = true;
+		$user = $this->getUser();
+		if ( !$user->isAllowed( 'deletedhistory' ) ) {
+			$this->mConds[] = $db->bitAnd( 'log_deleted', LogPage::DELETED_ACTION ) . ' = 0';
+		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
+			$this->mConds[] = $db->bitAnd( 'log_deleted', LogPage::SUPPRESSED_ACTION ) .
+				' != ' . LogPage::SUPPRESSED_ACTION;
+		}
 	}
 }
