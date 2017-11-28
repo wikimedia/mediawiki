@@ -219,13 +219,6 @@ class Revision implements IDBAccessObject {
 			$attribs['title'] = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 		}
 
-		if ( isset( $row->ar_text ) && !$row->ar_text_id ) {
-			// Pre-1.5 ar_text row
-			$attribs['text'] = self::getRevisionText( $row, 'ar_' );
-			if ( $attribs['text'] === false ) {
-				throw new MWException( 'Unable to load text from archive row (possibly T24624)' );
-			}
-		}
 		return new self( $attribs );
 	}
 
@@ -492,7 +485,6 @@ class Revision implements IDBAccessObject {
 			'ar_id',
 			'ar_page_id',
 			'ar_rev_id',
-			'ar_text',
 			'ar_text_id',
 			'ar_timestamp',
 			'ar_user_text',
@@ -646,7 +638,6 @@ class Revision implements IDBAccessObject {
 				'ar_id',
 				'ar_page_id',
 				'ar_rev_id',
-				'ar_text',
 				'ar_text_id',
 				'ar_timestamp',
 				'ar_user_text',

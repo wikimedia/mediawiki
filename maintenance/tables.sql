@@ -536,14 +536,6 @@ CREATE TABLE /*_*/archive (
   ar_namespace int NOT NULL default 0,
   ar_title varchar(255) binary NOT NULL default '',
 
-  -- Newly deleted pages will not store text in this table,
-  -- but will reference the separately existing text rows.
-  -- This field is retained for backwards compatibility,
-  -- so old archived pages will remain accessible after
-  -- upgrading from 1.4 to 1.5.
-  -- Text may be gzipped or otherwise funky.
-  ar_text mediumblob NOT NULL,
-
   -- Basic revision stuff...
   ar_comment varbinary(767) NOT NULL default '', -- Deprecated in favor of ar_comment_id
   ar_comment_id bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that ar_comment should be used)
@@ -551,9 +543,6 @@ CREATE TABLE /*_*/archive (
   ar_user_text varchar(255) binary NOT NULL,
   ar_timestamp binary(14) NOT NULL default '',
   ar_minor_edit tinyint NOT NULL default 0,
-
-  -- See ar_text note.
-  ar_flags tinyblob NOT NULL,
 
   -- When revisions are deleted, their unique rev_id is stored
   -- here so it can be retained after undeletion. This is necessary
@@ -569,11 +558,7 @@ CREATE TABLE /*_*/archive (
   -- and otherwise making storage changes harder, the actual text is
   -- *not* deleted from the text table, merely hidden by removal of the
   -- page and revision entries.
-  --
-  -- Old entries deleted under 1.2-1.4 will have NULL here, and their
-  -- ar_text and ar_flags fields will be used to create a new text
-  -- row upon undeletion.
-  ar_text_id int unsigned,
+  ar_text_id int unsigned NOT NULL,
 
   -- rev_deleted for archives
   ar_deleted tinyint unsigned NOT NULL default 0,
