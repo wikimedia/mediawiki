@@ -31,6 +31,17 @@
 			// Same as the legend
 			border: 1px solid @colorGray12;
 		}
+
+		/* stylelint-disable declaration-no-important */
+		.oo-ui-buttonElement > .oo-ui-buttonElement-button {
+			padding-right: 1.2em !important;
+
+			> .oo-ui-indicatorElement-indicator {
+				right: 0 !important;
+				width: 0.9375em !important;
+			}
+		}
+		/* stylelint-enable declaration-no-important */
 	}
 
 	body:not( .mw-rcfilters-ui-initialized ) {
