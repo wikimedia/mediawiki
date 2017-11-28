@@ -11,6 +11,10 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ApiMainTest extends ApiTestCase {
 
+	public function testFail() {
+		$this->fail( 'test' );
+	}
+
 	/**
 	 * Test that the API will accept a FauxRequest and execute.
 	 */
