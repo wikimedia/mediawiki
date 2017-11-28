@@ -87,6 +87,7 @@ application/x-tcsh	[EXECUTABLE]
 application/x-tcl	[EXECUTABLE]
 application/x-perl	[EXECUTABLE]
 application/x-python	[EXECUTABLE]
+application/wasm	[EXECUTABLE]
 
 application/pdf application/acrobat	[OFFICE]
 application/msword		[OFFICE]
