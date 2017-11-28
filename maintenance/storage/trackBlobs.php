@@ -87,25 +87,6 @@ class TrackBlobs {
 			exit( 1 );
 		}
 
-		// Scan the archive table for HistoryBlobStub objects or external flags (T24624)
-		$flags = $dbr->selectField( 'archive', 'ar_flags',
-			'ar_flags LIKE \'%external%\' OR (' .
-			'ar_flags LIKE \'%object%\' ' .
-			'AND LOWER(CONVERT(LEFT(ar_text,22) USING latin1)) = \'o:15:"historyblobstub"\' )',
-			__METHOD__
-		);
-
-		if ( strpos( $flags, 'external' ) !== false ) {
-			echo "Integrity check failed: found external storage pointers in your archive table.\n" .
-				"Run normaliseArchiveTable.php to fix this.\n";
-			exit( 1 );
-		} elseif ( $flags ) {
-			echo "Integrity check failed: found HistoryBlobStub objects in your archive table.\n" .
-				"These objects are probably already broken, continuing would make them\n" .
-				"unrecoverable. Run \"normaliseArchiveTable.php --fix-cgz-bug\" to fix this.\n";
-			exit( 1 );
-		}
-
 		echo "Integrity check OK\n";
 	}
 
