@@ -34,15 +34,15 @@ class SwiftFileBackendTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provider_testSanitizeHdrs
+	 * @dataProvider provider_testSanitizeHdrsStrict
 	 */
-	public function testSanitizeHdrs( $raw, $sanitized ) {
-		$hdrs = $this->backend->sanitizeHdrs( [ 'headers' => $raw ] );
+	public function testSanitizeHdrsStrict( $raw, $sanitized ) {
+		$hdrs = $this->backend->sanitizeHdrsStrict( [ 'headers' => $raw ] );
 
-		$this->assertEquals( $hdrs, $sanitized, 'sanitizeHdrs() has expected result' );
+		$this->assertEquals( $hdrs, $sanitized, 'sanitizeHdrsStrict() has expected result' );
 	}
 
-	public static function provider_testSanitizeHdrs() {
+	public static function provider_testSanitizeHdrsStrict() {
 		return [
 			[
 				[
@@ -86,6 +86,71 @@ class SwiftFileBackendTest extends MediaWikiTestCase {
 					'x-content-custom' => 'hello'
 				],
 				[
+					'content-disposition' => '',
+					'content-duration' => 35.6363,
+					'content-custom' => 'hello',
+					'x-content-custom' => 'hello'
+				]
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provider_testSanitizeHdrs
+	 */
+	public function testSanitizeHdrs( $raw, $sanitized ) {
+		$hdrs = $this->backend->sanitizeHdrs( [ 'headers' => $raw ] );
+
+		$this->assertEquals( $hdrs, $sanitized, 'sanitizeHdrs() has expected result' );
+	}
+
+	public static function provider_testSanitizeHdrs() {
+		return [
+			[
+				[
+					'content-length' => 345,
+					'content-type'   => 'image+bitmap/jpeg',
+					'content-disposition' => 'inline',
+					'content-duration' => 35.6363,
+					'content-Custom' => 'hello',
+					'x-content-custom' => 'hello'
+				],
+				[
+					'content-type'   => 'image+bitmap/jpeg',
+					'content-disposition' => 'inline',
+					'content-duration' => 35.6363,
+					'content-custom' => 'hello',
+					'x-content-custom' => 'hello'
+				]
+			],
+			[
+				[
+					'content-length' => 345,
+					'content-type'   => 'image+bitmap/jpeg',
+					'content-Disposition' => 'inline; filename=xxx; ' . str_repeat( 'o', 1024 ),
+					'content-duration' => 35.6363,
+					'content-custom' => 'hello',
+					'x-content-custom' => 'hello'
+				],
+				[
+					'content-type'   => 'image+bitmap/jpeg',
+					'content-disposition' => 'inline;filename=xxx',
+					'content-duration' => 35.6363,
+					'content-custom' => 'hello',
+					'x-content-custom' => 'hello'
+				]
+			],
+			[
+				[
+					'content-length' => 345,
+					'content-type'   => 'image+bitmap/jpeg',
+					'content-disposition' => 'filename=' . str_repeat( 'o', 1024 ) . ';inline',
+					'content-duration' => 35.6363,
+					'content-custom' => 'hello',
+					'x-content-custom' => 'hello'
+				],
+				[
+					'content-type'   => 'image+bitmap/jpeg',
 					'content-disposition' => '',
 					'content-duration' => 35.6363,
 					'content-custom' => 'hello',
