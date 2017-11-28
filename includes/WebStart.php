@@ -56,7 +56,7 @@ define( 'MEDIAWIKI', true );
 # if we don't have permissions on parent directories.
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
-	$IP = realpath( '.' ) ?: dirname( __DIR__ );
+	$IP = dirname( __DIR__ );
 }
 
 // If no LocalSettings file exists, try to display an error page
