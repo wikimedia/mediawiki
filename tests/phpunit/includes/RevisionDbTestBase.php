@@ -350,12 +350,6 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		];
 		yield [
 			function ( $f ) {
-				unset( $f['ar_text'] );
-				return $f;
-			},
-		];
-		yield [
-			function ( $f ) {
 				unset( $f['ar_text_id'] );
 				return $f;
 			},
