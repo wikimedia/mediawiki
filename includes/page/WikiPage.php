@@ -2918,8 +2918,6 @@ class WikiPage implements Page, IDBAccessObject {
 				'ar_rev_id'     => $row->rev_id,
 				'ar_parent_id'  => $row->rev_parent_id,
 				'ar_text_id'    => $row->rev_text_id,
-				'ar_text'       => '',
-				'ar_flags'      => '',
 				'ar_len'        => $row->rev_len,
 				'ar_page_id'    => $id,
 				'ar_deleted'    => $suppress ? $bitfield : $row->rev_deleted,
