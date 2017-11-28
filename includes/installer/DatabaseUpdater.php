@@ -1230,4 +1230,15 @@ abstract class DatabaseUpdater {
 		}
 	}
 
+	/**
+	 * Migrate ar_text to modern storage
+	 * @since 1.31
+	 */
+	protected function migrateArchiveText() {
+		$this->output( "Migrating archive ar_text to modern storage.\n" );
+		$task = $this->maintenance->runChild( 'MigrateArchiveText', 'migrateArchiveText.php' );
+		$task->execute();
+		$this->output( "done.\n" );
+	}
+
 }
