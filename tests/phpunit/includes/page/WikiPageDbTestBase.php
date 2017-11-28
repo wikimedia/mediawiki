@@ -696,62 +696,64 @@ more stuff
 	}
 
 	/**
-	 * @todo FIXME: this is a better rollback test than the one below, but it
-	 * keeps failing in jenkins for some reason.
+	 * @covers WikiPage::doRollback
+	 * @covers WikiPage::commitRollback
 	 */
-	public function broken_testDoRollback() {
+	public function testDoRollback() {
 		$admin = $this->getTestSysop()->getUser();
+		$user1 = $this->getTestUser()->getUser();
+		// Use the confirmed group for user2 to make sure the user is different
+		$user2 = $this->getTestUser( [ 'confirmed' ] )->getUser();
 
-		$text = "one";
 		$page = $this->newPage( __METHOD__ );
-		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ),
+
+		// Make some edits
+		$text = "one";
+		$status1 = $page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ),
 			"section one", EDIT_NEW, false, $admin );
 
-		$user1 = $this->getTestUser()->getUser();
 		$text .= "\n\ntwo";
-		$page = new WikiPage( $page->getTitle() );
-		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ),
+		$status2 = $page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ),
 			"adding section two", 0, false, $user1 );
 
-		$user2 = $this->getTestUser()->getUser();
 		$text .= "\n\nthree";
-		$page = new WikiPage( $page->getTitle() );
-		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ),
+		$status3 = $page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ),
 			"adding section three", 0, false, $user2 );
 
-		# we are having issues with doRollback spuriously failing. Apparently
-		# the last revision somehow goes missing or not committed under some
-		# circumstances. So, make sure the last revision has the right user name.
-		$dbr = wfGetDB( DB_REPLICA );
-		$this->assertEquals( 3, Revision::countByPageId( $dbr, $page->getId() ) );
+		/** @var Revision $rev1 */
+		/** @var Revision $rev2 */
+		/** @var Revision $rev3 */
+		$rev1 = $status1->getValue()['revision'];
+		$rev2 = $status2->getValue()['revision'];
+		$rev3 = $status3->getValue()['revision'];
 
-		$page = new WikiPage( $page->getTitle() );
-		$rev3 = $page->getRevision();
-		$this->assertEquals( '127.0.2.13', $rev3->getUserText() );
+		/**
+		 * We are having issues with doRollback spuriously failing. Apparently
+		 * the last revision somehow goes missing or not committed under some
+		 * circumstances. So, make sure the revisions have the correct usernames.
+		 */
+		$this->assertEquals( 3, Revision::countByPageId( wfGetDB( DB_REPLICA ), $page->getId() ) );
+		$this->assertEquals( $admin->getName(), $rev1->getUserText() );
+		$this->assertEquals( $user1->getName(), $rev2->getUserText() );
+		$this->assertEquals( $user2->getName(), $rev3->getUserText() );
 
-		$rev2 = $rev3->getPrevious();
-		$this->assertEquals( '127.0.1.11', $rev2->getUserText() );
-
-		$rev1 = $rev2->getPrevious();
-		$this->assertEquals( 'Admin', $rev1->getUserText() );
-
-		# now, try the actual rollback
-		$token = $admin->getEditToken(
-			[ $page->getTitle()->getPrefixedText(), $user2->getName() ],
-			null
-		);
-		$errors = $page->doRollback(
+		// Now, try the actual rollback
+		$token = $admin->getEditToken( 'rollback' );
+		$rollbackErrors = $page->doRollback(
 			$user2->getName(),
-			"testing revert",
+			"testing rollback",
 			$token,
 			false,
-			$details,
+			$resultDetails,
 			$admin
 		);
 
-		if ( $errors ) {
-			$this->fail( "Rollback failed:\n" . print_r( $errors, true )
-				. ";\n" . print_r( $details, true ) );
+		if ( $rollbackErrors ) {
+			$this->fail(
+				"Rollback failed:\n" .
+				print_r( $rollbackErrors, true ) . ";\n" .
+				print_r( $resultDetails, true )
+			);
 		}
 
 		$page = new WikiPage( $page->getTitle() );
@@ -761,11 +763,10 @@ more stuff
 	}
 
 	/**
-	 * @todo FIXME: the above rollback test is better, but it keeps failing in jenkins for some reason.
 	 * @covers WikiPage::doRollback
 	 * @covers WikiPage::commitRollback
 	 */
-	public function testDoRollback() {
+	public function testDoRollback_simple() {
 		$admin = $this->getTestSysop()->getUser();
 
 		$text = "one";
