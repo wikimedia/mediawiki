@@ -1464,7 +1464,9 @@ class Title implements LinkTarget {
 	public function getFragmentForURL() {
 		if ( !$this->hasFragment() ) {
 			return '';
-		} elseif ( $this->isExternal() && !$this->getTransWikiID() ) {
+		} elseif ( $this->isExternal()
+			&& !self::getInterwikiLookup()->fetch( $this->mInterwiki )->isLocal()
+		) {
 			return '#' . Sanitizer::escapeIdForExternalInterwiki( $this->getFragment() );
 		}
 		return '#' . Sanitizer::escapeIdForLink( $this->getFragment() );
